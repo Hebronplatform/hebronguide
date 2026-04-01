@@ -1072,27 +1072,27 @@ async function submitOrder() {
   // Build data object
   const data = {
     access_key: WEB3FORMS_KEY,
-    subject: '🆕 [Hebron Guide] 새 주문! — ' + document.getElementById('church-ko').value,
+    subject: '🆕 [Hebron Guide] New Order — ' + (document.getElementById('church-en').value || document.getElementById('church-ko').value),
     from_name: 'Hebron Guide Order',
     botcheck: '',
     // Order info
-    '📦_패키지': document.querySelector('input[name="package"]:checked')?.value || '',
-    '🗺️_도시': document.getElementById('city').value + ', ' + document.getElementById('state').value,
-    '🌐_언어': langs,
-    '👥_대상커뮤니티': document.getElementById('community').value || '(없음)',
-    '⛪_교회명_한글': document.getElementById('church-ko').value,
-    '⛪_교회명_영문': document.getElementById('church-en').value || '(없음)',
-    '📍_교회주소': document.getElementById('address').value,
-    '🌐_교회웹사이트': document.getElementById('website').value || '(없음)',
-    '🕐_예배시간': document.getElementById('service').value || '(없음)',
-    '👤_담당자': document.getElementById('pastor').value,
-    '📞_전화': document.getElementById('phone').value || '(없음)',
-    '📧_이메일': document.getElementById('email').value,
-    '📣_알게된경로': document.getElementById('referral').value || '(없음)',
-    '⏰_희망납품시기': document.getElementById('timeline').value || '(없음)',
-    '📝_특별요청': document.getElementById('special').value || '(없음)',
-    '🕒_제출시각': document.getElementById('ts').value,
-    '🌍_폼언어': curLang === 'ko' ? '한국어' : 'English'
+    '📦 Package': document.querySelector('input[name="package"]:checked')?.value || '',
+    '🗺️ City': document.getElementById('city').value + ', ' + document.getElementById('state').value,
+    '🌐 Language(s)': langs,
+    '👥 Target Community': document.getElementById('community').value || '(none)',
+    '⛪ Church Name (Korean)': document.getElementById('church-ko').value || '(none)',
+    '⛪ Church Name (English)': document.getElementById('church-en').value || '(none)',
+    '📍 Church Address': document.getElementById('address').value,
+    '🌐 Church Website': document.getElementById('website').value || '(none)',
+    '🕐 Service Time': document.getElementById('service').value || '(none)',
+    '👤 Contact Person': document.getElementById('pastor').value,
+    '📞 Phone': document.getElementById('phone').value || '(none)',
+    '📧 Email': document.getElementById('email').value,
+    '📣 How They Heard': document.getElementById('referral').value || '(none)',
+    '⏰ Preferred Timeline': document.getElementById('timeline').value || '(none)',
+    '📝 Special Requests': document.getElementById('special').value || '(none)',
+    '🕒 Submitted At': document.getElementById('ts').value,
+    '🌍 Form Language': curLang === 'ko' ? 'Korean' : 'English'
   };
 
   try {
