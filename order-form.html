@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hebron Guide — 가이드 앱 주문 | Order Your City Guide App</title>
+<style>
+  :root {
+    --blue:   #1F4E79;
+    --lblue:  #2E75B6;
+    --light:  #EDF5FF;
+    --accent: #E8A020;
+    --green:  #27AE60;
+    --border: #D5E3F0;
+    --gray:   #F7F9FC;
+    --text:   #1A1A2E;
+    --muted:  #6B7280;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    background: #EEF4FB;
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* Header */
+  header {
+    background: var(--blue);
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo { color: #fff; font-weight: 800; font-size: 1.1rem; text-decoration: none; letter-spacing: .02em; }
+  .logo span { color: #A9D0F5; font-weight: 400; font-size: .85rem; margin-left: 8px; }
+  .lang-row { display: flex; gap: 6px; align-items: center; }
+  .lang-btn {
+    border: 1.5px solid rgba(255,255,255,.35);
+    background: rgba(255,255,255,.12);
+    color: #fff;
+    padding: 5px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: .78rem;
+    font-weight: 600;
+    transition: background .2s;
+  }
+  .lang-btn.on { background: rgba(255,255,255,.35); }
+
+  /* Multilang dropdown */
+  .lang-dropdown { position: relative; }
+  .lang-dropdown-btn {
+    border: 1.5px solid rgba(255,255,255,.35);
+    background: rgba(255,255,255,.12);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: .78rem;
+    font-weight: 600;
+    display: flex; align-items: center; gap: 5px;
+    transition: background .2s;
+    white-space: nowrap;
+  }
+  .lang-dropdown-btn.on { background: rgba(255,255,255,.35); }
+  .lang-dropdown-btn .arrow { font-size: .6rem; transition: transform .2s; }
+  .lang-dropdown-btn.open .arrow { transform: rotate(180deg); }
+  .lang-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 28px rgba(0,0,0,.18);
+    overflow: hidden;
+    min-width: 160px;
+    z-index: 100;
+  }
+  .lang-menu.show { display: block; }
+  .lang-menu button {
+    display: flex; align-items: center; gap: 8px;
+    width: 100%; padding: 10px 16px;
+    background: none; border: none;
+    font-size: .85rem; font-weight: 600;
+    color: var(--text); cursor: pointer;
+    text-align: left;
+    transition: background .15s;
+  }
+  .lang-menu button:hover { background: var(--light); }
+  .lang-menu button.active { background: var(--light); color: var(--blue); }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--blue), var(--lblue));
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px 32px;
+  }
+  .hero h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; margin-bottom: 10px; }
+  .hero p  { font-size: .95rem; opacity: .88; max-width: 480px; margin: 0 auto 14px; line-height: 1.6; }
+  .hero .tag {
+    display: inline-block;
+    background: rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: .8rem;
+    font-style: italic;
+  }
+
+  /* Main */
+  .wrap { max-width: 640px; margin: 32px auto 60px; padding: 0 16px; }
+
+  /* Card */
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(31,78,121,.09);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  /* Section header inside card */
+  .sec-head {
+    background: var(--light);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sec-head .ico { font-size: 1.2rem; }
+  .sec-head h2 { font-size: .95rem; font-weight: 700; color: var(--blue); }
+  .sec-body { padding: 22px 24px 26px; }
+  @media(max-width:520px){ .sec-body{ padding:18px 16px 22px; } }
+
+  /* Divider between sections */
+  .sec-divider { border: none; border-top: 6px solid var(--gray); margin: 0; }
+
+  /* Package cards */
+  .pkg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width:460px){ .pkg-grid{ grid-template-columns:1fr; } }
+
+  .pkg {
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 14px;
+    cursor: pointer;
+    position: relative;
+    transition: border-color .2s, background .2s;
+    user-select: none;
+  }
+  .pkg:hover  { border-color: var(--lblue); background: #F0F7FF; }
+  .pkg.picked { border-color: var(--lblue); background: var(--light); }
+  .pkg.star   { border-color: var(--accent); }
+  .pkg.star.picked { background: #FFF8EE; }
+
+  .pkg-badge {
+    position: absolute; top: -9px; right: 10px;
+    background: var(--accent); color: #fff;
+    font-size: .65rem; font-weight: 700;
+    padding: 2px 9px; border-radius: 10px;
+  }
+  .pkg input[type=radio] { position: absolute; opacity: 0; pointer-events: none; }
+  .pkg-name  { font-weight: 700; font-size: .88rem; color: var(--blue); margin-bottom: 3px; }
+  .pkg-price { font-size: 1.35rem; font-weight: 800; color: var(--lblue); }
+  .pkg-price small { font-size: .75rem; font-weight: 400; color: var(--muted); }
+  .pkg-desc  { font-size: .75rem; color: var(--muted); margin-top: 5px; line-height: 1.45; }
+  .pkg-check { display: none; position: absolute; top: 8px; left: 10px; color: var(--lblue); font-size: .95rem; }
+  .pkg.picked .pkg-check { display: block; }
+
+  /* Form fields */
+  .field { margin-bottom: 18px; }
+  .field:last-child { margin-bottom: 0; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width:480px){ .field-row{ grid-template-columns:1fr; } }
+
+  label.lbl {
+    display: block;
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+  label.lbl .req { color: #E74C3C; }
+  label.lbl .opt { color: var(--muted); font-weight: 400; font-size: .75rem; }
+
+  input[type=text], input[type=email], input[type=tel], select, textarea {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: .9rem;
+    color: var(--text);
+    font-family: inherit;
+    background: #fff;
+    transition: border-color .2s, box-shadow .2s;
+    outline: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--lblue);
+    box-shadow: 0 0 0 3px rgba(46,117,182,.1);
+  }
+  textarea { resize: vertical; min-height: 80px; }
+
+  /* Checkboxes (language) */
+  .cb-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .cb {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--gray); border: 1.5px solid var(--border);
+    border-radius: 8px; padding: 7px 12px;
+    cursor: pointer; font-size: .82rem;
+    transition: all .2s; user-select: none;
+  }
+  .cb:has(input:checked) { background: var(--light); border-color: var(--lblue); color: var(--blue); font-weight: 700; }
+  .cb input { width: 14px; height: 14px; accent-color: var(--lblue); }
+
+  /* Submit area */
+  .submit-area { padding: 24px; border-top: 1px solid var(--border); background: var(--gray); }
+  .agree {
+    display: flex; align-items: flex-start; gap: 10px;
+    margin-bottom: 18px; cursor: pointer;
+  }
+  .agree input { margin-top: 2px; width: 16px; height: 16px; accent-color: var(--lblue); flex-shrink: 0; }
+  .agree span { font-size: .82rem; color: var(--muted); line-height: 1.5; }
+
+  .btn-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--lblue), var(--blue));
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: .02em;
+    box-shadow: 0 4px 16px rgba(46,117,182,.35);
+    transition: transform .2s, box-shadow .2s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-submit:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(46,117,182,.4); }
+  .btn-submit:disabled { opacity: .6; cursor: not-allowed; }
+
+  .spinner {
+    width: 18px; height: 18px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    display: none;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px; margin-top: 14px; }
+  .trust-i { font-size: .73rem; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+
+  /* Success */
+  #done {
+    display: none;
+    text-align: center;
+    padding: 48px 24px;
+  }
+  #done .ico { font-size: 3.5rem; margin-bottom: 14px; }
+  #done h2  { font-size: 1.5rem; font-weight: 800; color: var(--blue); margin-bottom: 10px; }
+  #done p   { color: var(--muted); line-height: 1.7; font-size: .92rem; }
+  .done-box {
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    text-align: left;
+    font-size: .84rem;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  /* Error */
+  .err { color: #E74C3C; font-size: .76rem; margin-top: 4px; display: none; }
+  .bad { border-color: #E74C3C !important; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: .74rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    background: #fff;
+  }
+  footer a { color: var(--lblue); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="https://hebronguide.com" class="logo">HEBRON GUIDE <span>City Settlement App</span></a>
+  <div class="lang-row">
+    <button class="lang-btn on" onclick="lang('en')" id="ben">English</button>
+    <div class="lang-dropdown" id="lang-dd">
+      <button class="lang-dropdown-btn" id="dd-btn" onclick="toggleDD()">
+        🌐 Language <span class="arrow">▼</span>
+      </button>
+      <div class="lang-menu" id="dd-menu">
+        <button onclick="pickLang('ko')">🇰🇷 한국어</button>
+        <button onclick="pickLang('es')">🇪🇸 Español</button>
+        <button onclick="pickLang('tl')">🇵🇭 Filipino</button>
+        <button onclick="pickLang('zh')">🇨🇳 中文</button>
+        <button onclick="pickLang('vi')">🇻🇳 Tiếng Việt</button>
+        <button onclick="pickLang('hi')">🇮🇳 हिन्दी</button>
+        <button onclick="pickLang('ru')">🇷🇺 Русский</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <h1 id="h-title">Order Your City Guide App</h1>
+  <p id="h-sub">A custom PWA settlement guide for church planters and immigrant communities.<br>Installs via QR code — no app store needed.</p>
+  <div class="tag">Arrive. Connect. Belong.</div>
+</div>
+
+<div class="wrap">
+<div class="card" id="form-card">
+<form id="oform" novalidate>
+
+  <!-- Web3Forms access key — Paul이 여기만 교체하면 됩니다 -->
+  <input type="hidden" name="access_key" value="2eb76a16-085c-4477-8f5a-8a8a4ec36af7">
+  <input type="hidden" name="subject"    value="🆕 [Hebron Guide] 새 주문이 들어왔습니다!">
+  <input type="hidden" name="from_name"  value="Hebron Guide Order Form">
+
+  <!-- ① 패키지 선택 -->
+  <div class="sec-head">
+    <span class="ico">📦</span>
+    <h2 id="s1h">서비스 패키지 선택 <span style="color:var(--muted);font-weight:400;font-size:.8rem;" id="s1h-req">* 필수</span></h2>
+  </div>
+  <div class="sec-body">
+    <div class="pkg-grid">
+
+      <label class="pkg" id="pk1" onclick="pickPkg(this,'Basic — 1 Language $50')">
+        <input type="radio" name="package" value="Basic — 1 Language $50">
+        <span class="pkg-check">✓</span>
+        <div class="pkg-name" id="p1n">기본 (언어 1개)</div>
+        <div class="pkg-price">$50 <small id="p1u">/ 1회</small></div>
+        <div class="pkg-desc" id="p1d">언어 1개 · 도시 맞춤 제작 · QR 코드 포함 · 5~7일 납품</div>
+      </label>
+
+      <label class="pkg star" id="pk2" onclick="pickPkg(this,'Bilingual — 2 Languages $80')">
+        <input type="radio" name="package" value="Bilingual — 2 Languages $80">
+        <span class="pkg-badge" id="p2b">추천</span>
+        <span class="pkg-check">✓</span>
+        <div class="pkg-name" id="p2n">바이링궐 (언어 2개)</div>
+        <div class="pkg-price">$80 <small id="p2u">/ 1회</small></div>
+        <div class="pkg-desc" id="p2d">2개 언어 모두 포함 (예: 한국어 + 영어)</div>
+      </label>
+
+      <label class="pkg" id="pk3" onclick="pickPkg(this,'Annual Update $20/yr')">
+        <input type="radio" name="package" value="Annual Update $20/yr">
+        <span class="pkg-check">✓</span>
+        <div class="pkg-name" id="p3n">연간 업데이트</div>
+        <div class="pkg-price">$20 <small id="p3u">/ 년</small></div>
+        <div class="pkg-desc" id="p3d">기본 또는 바이링궐에 추가 · 콘텐츠 연간 업데이트</div>
+      </label>
+
+      <label class="pkg" id="pk4" onclick="pickPkg(this,'교단 패키지 — 협의')">
+        <input type="radio" name="package" value="교단 패키지 — 협의">
+        <span class="pkg-check">✓</span>
+        <div class="pkg-name" id="p4n">교단 패키지</div>
+        <div class="pkg-price" id="p4p">협의 <small id="p4u">/ 5개+</small></div>
+        <div class="pkg-desc" id="p4d">5개 이상 교회 단체 주문</div>
+      </label>
+
+    </div>
+    <div class="err" id="e-pkg">⚠ <span id="e-pkg-t">패키지를 선택해 주세요.</span></div>
+  </div>
+
+  <hr class="sec-divider">
+
+  <!-- ② 가이드 정보 -->
+  <div class="sec-head">
+    <span class="ico">🗺️</span>
+    <h2 id="s2h">가이드 제작 정보</h2>
+  </div>
+  <div class="sec-body">
+
+    <div class="field field-row">
+      <div>
+        <label class="lbl" for="city"><span id="f-city">도시</span> <span class="req">*</span></label>
+        <input type="text" id="city" name="city" placeholder="e.g. Dallas">
+        <div class="err" id="e-city">⚠ <span id="e-city-t">도시 이름을 입력해 주세요.</span></div>
+      </div>
+      <div>
+        <label class="lbl" for="state"><span id="f-state">주 (State)</span> <span class="req">*</span></label>
+        <select id="state" name="state">
+          <option value="">-- Select State --</option>
+          <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+          <option>California</option><option>Colorado</option><option>Connecticut</option>
+          <option>Delaware</option><option>Florida</option><option>Georgia</option>
+          <option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option>
+          <option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option>
+          <option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option>
+          <option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option>
+          <option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option>
+          <option>New Mexico</option><option>New York</option><option>North Carolina</option>
+          <option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option>
+          <option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+          <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+          <option>Vermont</option><option>Virginia</option><option>Washington</option>
+          <option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+          <option>──────────</option>
+          <option>Canada — BC</option><option>Canada — Ontario</option><option>Canada — Alberta</option>
+          <option>Other / International</option>
+        </select>
+        <div class="err" id="e-state">⚠ <span id="e-state-t">주를 선택해 주세요.</span></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lbl"><span id="f-lang">가이드 언어</span> <span class="req">*</span> <span class="opt" id="f-lang-h">(해당 항목 모두 선택)</span></label>
+      <div class="cb-wrap">
+        <label class="cb"><input type="checkbox" name="languages" value="English"> 🇺🇸 English</label>
+        <label class="cb"><input type="checkbox" name="languages" value="Korean 한국어"> 🇰🇷 한국어</label>
+        <label class="cb"><input type="checkbox" name="languages" value="Español 스페인어"> 🇪🇸 Español</label>
+        <label class="cb"><input type="checkbox" name="languages" value="Filipino 필리핀어"> 🇵🇭 Filipino</label>
+        <label class="cb"><input type="checkbox" name="languages" value="中文 중국어"> 🇨🇳 中文</label>
+        <label class="cb"><input type="checkbox" name="languages" value="Tiếng Việt 베트남어"> 🇻🇳 Việt</label>
+        <label class="cb"><input type="checkbox" name="languages" value="기타 Other" id="cb-other-chk" onchange="toggleOther(this)"> <span id="cb-other">기타</span></label>
+      </div>
+      <div id="other-lang-wrap" style="display:none; margin-top:10px;">
+        <input type="text" id="other-lang" name="other_language" placeholder="Type your language (e.g. Hindi, Amharic, Swahili...)" style="border-color:var(--lblue);">
+      </div>
+      <div class="err" id="e-lang">⚠ <span id="e-lang-t">언어를 최소 1개 선택해 주세요.</span></div>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="community"><span id="f-comm">주요 대상 커뮤니티</span> <span class="opt" id="f-comm-h">(선택)</span></label>
+      <input type="text" id="community" name="community" placeholder="e.g. Korean immigrants, Hispanic families, international students">
+    </div>
+
+  </div>
+
+  <hr class="sec-divider">
+
+  <!-- ③ 교회 정보 -->
+  <div class="sec-head">
+    <span class="ico">⛪</span>
+    <h2 id="s3h">교회 정보</h2>
+  </div>
+  <div class="sec-body">
+
+    <div class="field field-row">
+      <div>
+        <label class="lbl" for="church-ko"><span id="f-cko">교회 이름 (한글)</span> <span class="req">*</span></label>
+        <input type="text" id="church-ko" name="church_name_ko" placeholder="e.g. Dallas Love Church (Korean name)">
+        <div class="err" id="e-cko">⚠ <span id="e-cko-t">교회 이름을 입력해 주세요.</span></div>
+      </div>
+      <div>
+        <label class="lbl" for="church-en"><span id="f-cen">교회 이름 (영문)</span> <span class="opt" id="f-cen-h">(선택)</span></label>
+        <input type="text" id="church-en" name="church_name_en" placeholder="e.g. Dallas Love Church">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="address"><span id="f-addr">교회 주소</span> <span class="req">*</span></label>
+      <input type="text" id="address" name="church_address" placeholder="e.g. 1234 Main St, Dallas, TX 75201">
+      <div class="err" id="e-addr">⚠ <span id="e-addr-t">주소를 입력해 주세요.</span></div>
+    </div>
+
+    <div class="field field-row">
+      <div>
+        <label class="lbl" for="website"><span id="f-web">교회 웹사이트</span> <span class="opt" id="f-web-h">(선택)</span></label>
+        <input type="text" id="website" name="church_website" placeholder="https://yourchurch.org">
+      </div>
+      <div>
+        <label class="lbl" for="service"><span id="f-svc">주일 예배 시간</span> <span class="opt" id="f-svc-h">(선택)</span></label>
+        <input type="text" id="service" name="service_time" placeholder="e.g. Sunday 11am, 1pm (English)">
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="sec-divider">
+
+  <!-- ④ 담당자 정보 -->
+  <div class="sec-head">
+    <span class="ico">👤</span>
+    <h2 id="s4h">담당자 연락처</h2>
+  </div>
+  <div class="sec-body">
+
+    <div class="field field-row">
+      <div>
+        <label class="lbl" for="pastor"><span id="f-pastor">목사님 / 담당자 이름</span> <span class="req">*</span></label>
+        <input type="text" id="pastor" name="pastor_name" placeholder="e.g. Rev. John Smith">
+        <div class="err" id="e-pastor">⚠ <span id="e-pastor-t">이름을 입력해 주세요.</span></div>
+      </div>
+      <div>
+        <label class="lbl" for="phone"><span id="f-phone">전화번호</span> <span class="opt" id="f-phone-h">(선택)</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="+1-214-555-1234">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="email"><span id="f-email">이메일</span> <span class="req">*</span> <span class="opt" id="f-email-h">(납품 및 확인 이메일 발송)</span></label>
+      <input type="email" id="email" name="email" placeholder="pastor@yourchurch.org">
+      <div class="err" id="e-email">⚠ <span id="e-email-t">올바른 이메일을 입력해 주세요.</span></div>
+    </div>
+
+    <div class="field field-row">
+      <div>
+        <label class="lbl" for="referral"><span id="f-ref">어떻게 알게 되셨나요?</span> <span class="opt" id="f-ref-h">(선택)</span></label>
+        <select id="referral" name="referral">
+          <option value="">-- Select --</option>
+          <option id="rf1">교단 / 노회 소개</option>
+          <option id="rf2">목사님 지인 소개</option>
+          <option id="rf3">NWCP / Gary Irby</option>
+          <option id="rf4">인터넷 검색</option>
+          <option id="rf5">SNS (Instagram / Facebook)</option>
+          <option id="rf6">기타</option>
+        </select>
+      </div>
+      <div>
+        <label class="lbl" for="timeline"><span id="f-time">희망 납품 시기</span> <span class="opt" id="f-time-h">(선택)</span></label>
+        <select id="timeline" name="timeline">
+          <option value="">-- Select --</option>
+          <option id="tl1">최대한 빨리</option>
+          <option id="tl2">2주 이내</option>
+          <option id="tl3">한 달 이내</option>
+          <option id="tl4">시간 여유 있음</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="special"><span id="f-spec">특별 요청 사항</span> <span class="opt" id="f-spec-h">(선택 — 추가 섹션, 강조 내용 등)</span></label>
+      <textarea id="special" name="special_requests" placeholder="e.g. Add ministry team section, include specific hospital, emphasize school info, need 3 languages, etc."></textarea>
+    </div>
+
+    <!-- hidden: timestamp -->
+    <input type="hidden" name="submitted_at" id="ts">
+    <input type="hidden" name="botcheck" value="" style="display:none">
+
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-area">
+    <label class="agree">
+      <input type="checkbox" id="agree">
+      <span id="agree-t">납품 기간 5~7 영업일, 납품 후 7일 이내 1회 무료 수정 조건에 동의합니다.</span>
+    </label>
+
+    <button type="button" class="btn-submit" onclick="submit()" id="sbtn">
+      <span class="spinner" id="spin"></span>
+      <span id="sbtn-t">📨 주문 제출하기</span>
+    </button>
+
+    <div class="trust">
+      <div class="trust-i">📧 <span id="tr1">제출 즉시 확인 이메일 발송</span></div>
+      <div class="trust-i">🔄 <span id="tr2">7일 무료 수정</span></div>
+      <div class="trust-i">📱 <span id="tr3">앱스토어 없이 설치</span></div>
+    </div>
+
+    <div style="background:#f0f7ff;border:1px solid #c3daf9;border-radius:10px;padding:14px 18px;margin-top:16px;font-size:.82rem;color:#2c5f8a;line-height:1.7;">
+      💳 <strong id="pay-title">Payment</strong><br>
+      <span id="pay-body">After submitting, you will receive a payment invoice via email (Zelle, Venmo, or PayPal). Production begins upon payment confirmation.</span>
+    </div>
+
+    <p style="text-align:center;font-size:.73rem;color:var(--muted);margin-top:12px;">
+      <span id="contact-t">문의:</span>
+      <a href="mailto:kchurch911@gmail.com" style="color:var(--lblue);">kchurch911@gmail.com</a>
+      · <a href="https://hebronguide.com" style="color:var(--lblue);">hebronguide.com</a>
+    </p>
+  </div>
+
+</form>
+
+<!-- SUCCESS -->
+<div id="done">
+  <div class="ico">🎉</div>
+  <h2 id="done-h">주문이 접수되었습니다!</h2>
+  <p id="done-p">Paul Kim에게 이메일이 발송되었습니다.<br>곧 확인 후 연락드리겠습니다.</p>
+  <div class="done-box">
+    <strong id="done-next">다음 단계:</strong><br>
+    1. <span id="dn1">📧 Paul Kim이 이메일로 연락드려 결제 안내를 드립니다</span><br>
+    2. <span id="dn2">💳 결제 후 5~7 영업일 내에 맞춤 가이드를 제작합니다</span><br>
+    3. <span id="dn3">📱 완성된 앱 URL + QR 코드가 이메일로 납품됩니다</span><br>
+    4. <span id="dn4">🔄 납품 후 7일 이내 1회 수정 무료 제공</span>
+  </div>
+  <p style="font-size:.8rem;color:var(--muted);">
+    <span id="done-q">문의:</span>
+    <a href="mailto:kchurch911@gmail.com" style="color:var(--lblue);">kchurch911@gmail.com</a>
+  </p>
+</div>
+
+</div><!-- /card -->
+</div><!-- /wrap -->
+
+<footer>
+  © 2026 <strong>Hebron Guide</strong> ·
+  <a href="https://hebronguide.com">hebronguide.com</a> ·
+  Paul Kim ·
+  <a href="mailto:kchurch911@gmail.com">kchurch911@gmail.com</a>
+</footer>
+
+<script>
+// ═══════════════════════════════════════
+// ★ Paul, 여기 딱 한 줄만 바꾸면 됩니다!
+// web3forms.com 접속 → 이메일 입력 → API Key 복사 → 아래에 붙여넣기
+const WEB3FORMS_KEY = "2eb76a16-085c-4477-8f5a-8a8a4ec36af7";
+// ═══════════════════════════════════════
+
+let curLang = 'en';
+
+// 공통 필드 (영어 기반으로 번역)
+const LANGS = {
+  es: { name:"Español", flag:"🇪🇸",
+    hTitle:"Pedir tu App Guía de Ciudad",
+    hSub:"Una guía PWA personalizada para plantadores de iglesias y comunidades inmigrantes.\nSe instala con código QR — sin tienda de aplicaciones.",
+    s1h:"Selecciona tu Paquete", s1hReq:"* requerido",
+    p1n:"Básico (1 idioma)", p1u:"/ única vez", p1d:"1 idioma · Info ciudad personalizada · Código QR · Entrega 5–7 días",
+    p2b:"Recomendado", p2n:"Bilingüe (2 idiomas)", p2u:"/ única vez", p2d:"Ambos idiomas incluidos (ej: Español + Inglés)",
+    p3n:"Actualización Anual", p3u:"/ año", p3d:"Añadir al básico o bilingüe · Actualizaciones anuales",
+    p4n:"Paquete Denominacional", p4p:"Consultar", p4u:"/ 5+ iglesias", p4d:"Pedido grupal para 5+ iglesias",
+    s2h:"Detalles de la Guía", s2Sub:"Indícanos qué ciudad e idioma(s) necesitas.",
+    fCity:"Ciudad", fState:"Estado", fLang:"Idioma(s) de la Guía", fLangH:"(selecciona todos los que apliquen)",
+    fComm:"Comunidad objetivo", fCommH:"(opcional)",
+    fSpec:"Solicitudes especiales", fSpecH:"(opcional)",
+    s3h:"Información de la Iglesia",
+    fCko:"Nombre iglesia (Coreano)", fCen:"Nombre iglesia (Inglés)", fCenH:"(opcional)",
+    fAddr:"Dirección de la iglesia", fWeb:"Sitio web", fWebH:"(opcional)", fSvc:"Horario de cultos", fSvcH:"(opcional)",
+    s4h:"Información de contacto",
+    fPastor:"Pastor / Nombre de contacto", fPhone:"Teléfono", fPhoneH:"(opcional)",
+    fEmail:"Correo electrónico", fEmailH:"(para confirmación y entrega)",
+    fRef:"¿Cómo nos conociste?", fRefH:"(opcional)",
+    rf1:"Denominación / Presbiterio", rf2:"Referido por pastor", rf3:"NWCP / Gary Irby", rf4:"Búsqueda en internet", rf5:"Redes sociales", rf6:"Otro",
+    fTime:"Plazo preferido", fTimeH:"(opcional)",
+    tl1:"Lo antes posible", tl2:"En 2 semanas", tl3:"En un mes", tl4:"Sin prisa",
+    agreeT:"Acepto el plazo de entrega de 5–7 días hábiles y 1 revisión gratuita dentro de 7 días.",
+    sbtnT:"📨 Enviar Pedido", doneH:"¡Pedido Recibido!", doneP:"Tu pedido fue enviado a Paul Kim.\nNos pondremos en contacto pronto.",
+    dn1:"📧 Paul Kim te contactará con instrucciones de pago",
+    dn2:"💳 Tu guía personalizada estará lista en 5–7 días hábiles",
+    dn3:"📱 URL de la app + código QR entregados por email",
+    dn4:"🔄 Una revisión gratuita dentro de 7 días",
+    eCity:"Por favor ingresa la ciudad.", eState:"Por favor selecciona un estado.", eLang:"Por favor selecciona al menos un idioma.",
+    eCko:"Por favor ingresa el nombre de la iglesia.", eAddr:"Por favor ingresa la dirección.", ePastor:"Por favor ingresa tu nombre.", eEmail:"Por favor ingresa un email válido.",
+    cbOther:"Otro", contactT:"Contacto:", doneQ:"¿Preguntas?",
+    doneNext:"Próximos pasos:", sNextLabel:"Próximos pasos:",
+    tr1:"Confirmación inmediata por email", tr2:"Revisión gratuita 7 días", tr3:"Sin tienda de apps"
+  },
+  tl: { name:"Filipino", flag:"🇵🇭",
+    hTitle:"Umorder ng City Guide App",
+    hSub:"Isang custom na PWA settlement guide para sa mga church planter at immigrant communities.\nNag-i-install sa pamamagitan ng QR code — walang app store.",
+    s1h:"Piliin ang Iyong Package", s1hReq:"* kinakailangan",
+    p1n:"Básico (1 wika)", p1u:"/ isang beses", p1d:"1 wika · Custom na impormasyon ng lungsod · QR code · 5–7 araw",
+    p2b:"Inirerekomenda", p2n:"Bilinggwal (2 wika)", p2u:"/ isang beses", p2d:"Parehong wika kasama (hal: Filipino + Ingles)",
+    p3n:"Taunang Update", p3u:"/ taon", p3d:"Idagdag sa básico o bilinggwal · Taunang updates",
+    p4n:"Denomination Package", p4p:"Makipag-ugnayan", p4u:"/ 5+ simbahan", p4d:"Bulk order para sa 5+ simbahan",
+    s2h:"Detalye ng Gabay",
+    fCity:"Lungsod", fState:"Estado", fLang:"Wika ng Gabay", fLangH:"(piliin lahat ng naaangkop)",
+    fComm:"Target na Komunidad", fCommH:"(opsyonal)", fSpec:"Espesyal na Kahilingan", fSpecH:"(opsyonal)",
+    s3h:"Impormasyon ng Simbahan",
+    fCko:"Pangalan ng Simbahan (Korean)", fCen:"Pangalan ng Simbahan (Ingles)", fCenH:"(opsyonal)",
+    fAddr:"Address ng Simbahan", fWeb:"Website ng Simbahan", fWebH:"(opsyonal)", fSvc:"Oras ng Sunday Service", fSvcH:"(opsyonal)",
+    s4h:"Impormasyon ng Kontak",
+    fPastor:"Pastor / Pangalan ng Kontak", fPhone:"Numero ng Telepono", fPhoneH:"(opsyonal)",
+    fEmail:"Email Address", fEmailH:"(para sa kumpirmasyon at delivery)",
+    fRef:"Paano mo nalaman ang tungkol sa amin?", fRefH:"(opsyonal)",
+    rf1:"Denominasyon / Presbytery", rf2:"Referral ng Pastor", rf3:"NWCP / Gary Irby", rf4:"Paghahanap sa Internet", rf5:"Social Media", rf6:"Iba pa",
+    fTime:"Gustong Timeline", fTimeH:"(opsyonal)",
+    tl1:"Kaagad", tl2:"Sa loob ng 2 linggo", tl3:"Sa loob ng isang buwan", tl4:"Walang pagmamadali",
+    agreeT:"Sumasang-ayon ako sa delivery timeline na 5–7 araw at 1 libreng revision sa loob ng 7 araw.",
+    sbtnT:"📨 Isumite ang Order", doneH:"Natanggap ang Order!", doneP:"Napadala ang iyong order kay Paul Kim.\nMakikipag-ugnayan kami sa lalong madaling panahon.",
+    dn1:"📧 Makikipag-ugnayan si Paul Kim para sa mga tagubilin sa pagbabayad",
+    dn2:"💳 Ang iyong custom guide ay gagawin sa loob ng 5–7 araw ng trabaho",
+    dn3:"📱 App URL + QR code ihahatid sa email", dn4:"🔄 Isang libreng revision sa loob ng 7 araw",
+    eCity:"Mangyaring ilagay ang pangalan ng lungsod.", eState:"Mangyaring pumili ng estado.", eLang:"Mangyaring pumili ng kahit isang wika.",
+    eCko:"Mangyaring ilagay ang pangalan ng simbahan.", eAddr:"Mangyaring ilagay ang address.", ePastor:"Mangyaring ilagay ang iyong pangalan.", eEmail:"Mangyaring ilagay ang isang valid na email.",
+    cbOther:"Iba pa", contactT:"Makipag-ugnayan:", doneQ:"Mga Tanong?",
+    doneNext:"Mga Susunod na Hakbang:", sNextLabel:"Mga Susunod na Hakbang:",
+    tr1:"Agarang email confirmation", tr2:"Libreng revision 7 araw", tr3:"Walang app store"
+  },
+  zh: { name:"中文", flag:"🇨🇳",
+    hTitle:"订购城市定居指南App",
+    hSub:"为教会植堂者和移民社区定制的PWA安居指南。\n通过二维码安装 — 无需应用商店。",
+    s1h:"选择服务套餐", s1hReq:"* 必填",
+    p1n:"基础版（1种语言）", p1u:"/ 一次性", p1d:"1种语言 · 定制城市信息 · 二维码 · 5–7天交付",
+    p2b:"推荐", p2n:"双语版（2种语言）", p2u:"/ 一次性", p2d:"包含两种语言（例：中文 + 英文）",
+    p3n:"年度更新", p3u:"/ 年", p3d:"添加至基础版或双语版 · 年度内容更新",
+    p4n:"教会联合套餐", p4p:"洽谈", p4u:"/ 5+教会", p4d:"5个以上教会批量订购",
+    s2h:"指南详情",
+    fCity:"城市", fState:"州", fLang:"指南语言", fLangH:"（可多选）",
+    fComm:"目标社群", fCommH:"（选填）", fSpec:"特殊要求", fSpecH:"（选填）",
+    s3h:"教会信息",
+    fCko:"教会名称（韩文）", fCen:"教会名称（英文）", fCenH:"（选填）",
+    fAddr:"教会地址", fWeb:"教会网站", fWebH:"（选填）", fSvc:"主日崇拜时间", fSvcH:"（选填）",
+    s4h:"联系人信息",
+    fPastor:"牧师 / 联系人姓名", fPhone:"电话号码", fPhoneH:"（选填）",
+    fEmail:"电子邮件", fEmailH:"（用于确认和交付通知）",
+    fRef:"您如何得知我们？", fRefH:"（选填）",
+    rf1:"教区 / 会议推介", rf2:"牧师推荐", rf3:"NWCP / Gary Irby", rf4:"网络搜索", rf5:"社交媒体", rf6:"其他",
+    fTime:"希望交付时间", fTimeH:"（选填）",
+    tl1:"尽快", tl2:"两周内", tl3:"一个月内", tl4:"不急",
+    agreeT:"我同意5–7个工作日的交付时间及7天内1次免费修改的条款。",
+    sbtnT:"📨 提交订单", doneH:"订单已收到！", doneP:"您的订单已发送给Paul Kim。\n我们将尽快与您联系。",
+    dn1:"📧 Paul Kim将通过邮件联系您，提供付款说明",
+    dn2:"💳 付款后5–7个工作日内完成定制指南",
+    dn3:"📱 App网址 + 二维码将通过邮件发送", dn4:"🔄 交付后7天内提供1次免费修改",
+    eCity:"请输入城市名称。", eState:"请选择州。", eLang:"请至少选择一种语言。",
+    eCko:"请输入教会名称。", eAddr:"请输入教会地址。", ePastor:"请输入您的姓名。", eEmail:"请输入有效的电子邮件地址。",
+    cbOther:"其他", contactT:"联系：", doneQ:"有疑问？",
+    doneNext:"后续步骤：", sNextLabel:"后续步骤：",
+    tr1:"即时邮件确认", tr2:"7天免费修改", tr3:"无需应用商店"
+  },
+  vi: { name:"Tiếng Việt", flag:"🇻🇳",
+    hTitle:"Đặt Hàng App Hướng Dẫn Định Cư",
+    hSub:"Ứng dụng PWA hướng dẫn định cư tùy chỉnh cho các người trồng hội thánh và cộng đồng nhập cư.\nCài đặt qua mã QR — không cần cửa hàng ứng dụng.",
+    s1h:"Chọn Gói Dịch Vụ", s1hReq:"* bắt buộc",
+    p1n:"Cơ Bản (1 ngôn ngữ)", p1u:"/ một lần", p1d:"1 ngôn ngữ · Thông tin thành phố · Mã QR · Giao hàng 5–7 ngày",
+    p2b:"Khuyến nghị", p2n:"Song Ngữ (2 ngôn ngữ)", p2u:"/ một lần", p2d:"Bao gồm cả hai ngôn ngữ (VD: Tiếng Việt + Tiếng Anh)",
+    p3n:"Cập Nhật Hàng Năm", p3u:"/ năm", p3d:"Thêm vào gói cơ bản hoặc song ngữ · Cập nhật nội dung hàng năm",
+    p4n:"Gói Giáo Hội", p4p:"Liên hệ", p4u:"/ 5+ hội thánh", p4d:"Đặt hàng nhóm cho 5+ hội thánh",
+    s2h:"Chi Tiết Hướng Dẫn",
+    fCity:"Thành Phố", fState:"Tiểu Bang", fLang:"Ngôn Ngữ Hướng Dẫn", fLangH:"(chọn tất cả phù hợp)",
+    fComm:"Cộng Đồng Mục Tiêu", fCommH:"(tùy chọn)", fSpec:"Yêu Cầu Đặc Biệt", fSpecH:"(tùy chọn)",
+    s3h:"Thông Tin Hội Thánh",
+    fCko:"Tên Hội Thánh (Tiếng Hàn)", fCen:"Tên Hội Thánh (Tiếng Anh)", fCenH:"(tùy chọn)",
+    fAddr:"Địa Chỉ Hội Thánh", fWeb:"Website Hội Thánh", fWebH:"(tùy chọn)", fSvc:"Giờ Thờ Phượng Chủ Nhật", fSvcH:"(tùy chọn)",
+    s4h:"Thông Tin Liên Hệ",
+    fPastor:"Mục Sư / Tên Liên Hệ", fPhone:"Số Điện Thoại", fPhoneH:"(tùy chọn)",
+    fEmail:"Địa Chỉ Email", fEmailH:"(để xác nhận và giao hàng)",
+    fRef:"Bạn biết đến chúng tôi qua đâu?", fRefH:"(tùy chọn)",
+    rf1:"Giáo Hội / Hội Đồng Giới Thiệu", rf2:"Mục Sư Giới Thiệu", rf3:"NWCP / Gary Irby", rf4:"Tìm Kiếm Internet", rf5:"Mạng Xã Hội", rf6:"Khác",
+    fTime:"Thời Gian Mong Muốn", fTimeH:"(tùy chọn)",
+    tl1:"Càng sớm càng tốt", tl2:"Trong vòng 2 tuần", tl3:"Trong vòng 1 tháng", tl4:"Không gấp",
+    agreeT:"Tôi đồng ý với thời gian giao hàng 5–7 ngày làm việc và 1 lần sửa đổi miễn phí trong 7 ngày.",
+    sbtnT:"📨 Gửi Đơn Hàng", doneH:"Đã Nhận Đơn Hàng!", doneP:"Đơn hàng của bạn đã được gửi đến Paul Kim.\nChúng tôi sẽ liên hệ sớm.",
+    dn1:"📧 Paul Kim sẽ liên hệ với bạn về hướng dẫn thanh toán",
+    dn2:"💳 Hướng dẫn tùy chỉnh của bạn sẽ được tạo trong 5–7 ngày làm việc",
+    dn3:"📱 URL ứng dụng + mã QR sẽ được giao qua email", dn4:"🔄 Một lần sửa đổi miễn phí trong 7 ngày",
+    eCity:"Vui lòng nhập tên thành phố.", eState:"Vui lòng chọn tiểu bang.", eLang:"Vui lòng chọn ít nhất một ngôn ngữ.",
+    eCko:"Vui lòng nhập tên hội thánh.", eAddr:"Vui lòng nhập địa chỉ.", ePastor:"Vui lòng nhập tên của bạn.", eEmail:"Vui lòng nhập địa chỉ email hợp lệ.",
+    cbOther:"Khác", contactT:"Liên hệ:", doneQ:"Câu hỏi?",
+    doneNext:"Các Bước Tiếp Theo:", sNextLabel:"Các Bước Tiếp Theo:",
+    tr1:"Xác nhận email ngay lập tức", tr2:"Sửa đổi miễn phí 7 ngày", tr3:"Không cần cửa hàng ứng dụng"
+  },
+  hi: { name:"हिन्दी", flag:"🇮🇳",
+    hTitle:"सिटी गाइड ऐप ऑर्डर करें",
+    hSub:"चर्च प्लांटर्स और प्रवासी समुदायों के लिए कस्टम PWA सेटलमेंट गाइड।\nQR कोड से इंस्टॉल — ऐप स्टोर की जरूरत नहीं।",
+    s1h:"अपना पैकेज चुनें", s1hReq:"* आवश्यक",
+    p1n:"बेसिक (1 भाषा)", p1u:"/ एक बार", p1d:"1 भाषा · कस्टम सिटी जानकारी · QR कोड · 5–7 दिन में डिलीवरी",
+    p2b:"अनुशंसित", p2n:"द्विभाषी (2 भाषाएं)", p2u:"/ एक बार", p2d:"दोनों भाषाएं शामिल (उदा: हिन्दी + अंग्रेजी)",
+    p3n:"वार्षिक अपडेट", p3u:"/ वर्ष", p3d:"बेसिक या द्विभाषी में जोड़ें · वार्षिक सामग्री अपडेट",
+    p4n:"डेनोमिनेशन पैकेज", p4p:"संपर्क करें", p4u:"/ 5+ चर्च", p4d:"5+ चर्चों के लिए बल्क ऑर्डर",
+    s2h:"गाइड विवरण",
+    fCity:"शहर", fState:"राज्य", fLang:"गाइड भाषा(एं)", fLangH:"(सभी लागू को चुनें)",
+    fComm:"लक्षित समुदाय", fCommH:"(वैकल्पिक)", fSpec:"विशेष अनुरोध", fSpecH:"(वैकल्पिक)",
+    s3h:"चर्च की जानकारी",
+    fCko:"चर्च का नाम (कोरियाई)", fCen:"चर्च का नाम (अंग्रेजी)", fCenH:"(वैकल्पिक)",
+    fAddr:"चर्च का पता", fWeb:"चर्च की वेबसाइट", fWebH:"(वैकल्पिक)", fSvc:"रविवार सेवा का समय", fSvcH:"(वैकल्पिक)",
+    s4h:"संपर्क जानकारी",
+    fPastor:"पास्टर / संपर्क नाम", fPhone:"फोन नंबर", fPhoneH:"(वैकल्पिक)",
+    fEmail:"ईमेल पता", fEmailH:"(पुष्टि और डिलीवरी के लिए)",
+    fRef:"आपने हमारे बारे में कैसे जाना?", fRefH:"(वैकल्पिक)",
+    rf1:"डेनोमिनेशन / प्रेस्बिटेरी", rf2:"पास्टर रेफरल", rf3:"NWCP / Gary Irby", rf4:"इंटरनेट खोज", rf5:"सोशल मीडिया", rf6:"अन्य",
+    fTime:"पसंदीदा समयसीमा", fTimeH:"(वैकल्पिक)",
+    tl1:"जल्द से जल्द", tl2:"2 हफ्तों में", tl3:"एक महीने में", tl4:"कोई जल्दी नहीं",
+    agreeT:"मैं 5–7 कार्य दिवस डिलीवरी और 7 दिनों के भीतर 1 मुफ्त संशोधन की शर्तों से सहमत हूं।",
+    sbtnT:"📨 ऑर्डर सबमिट करें", doneH:"ऑर्डर प्राप्त हुआ!", doneP:"आपका ऑर्डर Paul Kim को भेज दिया गया है।\nहम जल्द ही संपर्क करेंगे।",
+    dn1:"📧 Paul Kim भुगतान निर्देशों के साथ संपर्क करेंगे",
+    dn2:"💳 आपकी कस्टम गाइड 5–7 कार्य दिवसों में बनाई जाएगी",
+    dn3:"📱 App URL + QR कोड ईमेल से डिलीवर किया जाएगा", dn4:"🔄 डिलीवरी के 7 दिनों के भीतर एक मुफ्त संशोधन",
+    eCity:"कृपया शहर का नाम दर्ज करें।", eState:"कृपया राज्य चुनें।", eLang:"कृपया कम से कम एक भाषा चुनें।",
+    eCko:"कृपया चर्च का नाम दर्ज करें।", eAddr:"कृपया पता दर्ज करें।", ePastor:"कृपया अपना नाम दर्ज करें।", eEmail:"कृपया एक वैध ईमेल दर्ज करें।",
+    cbOther:"अन्य", contactT:"संपर्क:", doneQ:"प्रश्न?",
+    doneNext:"अगले कदम:", sNextLabel:"अगले कदम:",
+    tr1:"तुरंत ईमेल पुष्टि", tr2:"7 दिन मुफ्त संशोधन", tr3:"ऐप स्टोर की जरूरत नहीं"
+  },
+  ru: { name:"Русский", flag:"🇷🇺",
+    hTitle:"Заказать Городское Руководство",
+    hSub:"Персонализированное PWA-руководство для церковных плантаторов и иммигрантских сообществ.\nУстанавливается через QR-код — без магазина приложений.",
+    s1h:"Выберите Пакет", s1hReq:"* обязательно",
+    p1n:"Базовый (1 язык)", p1u:"/ единоразово", p1d:"1 язык · Инфо о городе · QR-код · Доставка 5–7 дней",
+    p2b:"Рекомендуем", p2n:"Двуязычный (2 языка)", p2u:"/ единоразово", p2d:"Оба языка включены (напр: Русский + Английский)",
+    p3n:"Годовое Обновление", p3u:"/ год", p3d:"Добавить к базовому или двуязычному · Ежегодное обновление",
+    p4n:"Пакет для Деноминации", p4p:"Связаться", p4u:"/ 5+ церквей", p4d:"Групповой заказ для 5+ церквей",
+    s2h:"Детали Руководства",
+    fCity:"Город", fState:"Штат", fLang:"Язык(и) Руководства", fLangH:"(выберите все подходящие)",
+    fComm:"Целевое Сообщество", fCommH:"(необязательно)", fSpec:"Особые Пожелания", fSpecH:"(необязательно)",
+    s3h:"Информация о Церкви",
+    fCko:"Название Церкви (корейский)", fCen:"Название Церкви (английский)", fCenH:"(необязательно)",
+    fAddr:"Адрес Церкви", fWeb:"Веб-сайт Церкви", fWebH:"(необязательно)", fSvc:"Время Воскресного Служения", fSvcH:"(необязательно)",
+    s4h:"Контактная Информация",
+    fPastor:"Пастор / Контактное Лицо", fPhone:"Номер Телефона", fPhoneH:"(необязательно)",
+    fEmail:"Электронная Почта", fEmailH:"(для подтверждения и доставки)",
+    fRef:"Как вы о нас узнали?", fRefH:"(необязательно)",
+    rf1:"Деноминация / Пресвитерия", rf2:"Рекомендация Пастора", rf3:"NWCP / Gary Irby", rf4:"Интернет-поиск", rf5:"Социальные Сети", rf6:"Другое",
+    fTime:"Желаемые Сроки", fTimeH:"(необязательно)",
+    tl1:"Как можно скорее", tl2:"В течение 2 недель", tl3:"В течение месяца", tl4:"Не срочно",
+    agreeT:"Я согласен(на) со сроком доставки 5–7 рабочих дней и 1 бесплатной правкой в течение 7 дней.",
+    sbtnT:"📨 Отправить Заказ", doneH:"Заказ Получен!", doneP:"Ваш заказ отправлен Paul Kim.\nМы свяжемся с вами в ближайшее время.",
+    dn1:"📧 Paul Kim свяжется с вами с инструкциями по оплате",
+    dn2:"💳 Ваше персонализированное руководство будет готово за 5–7 рабочих дней",
+    dn3:"📱 URL приложения + QR-код будут доставлены по email", dn4:"🔄 Одна бесплатная правка в течение 7 дней после доставки",
+    eCity:"Пожалуйста, введите название города.", eState:"Пожалуйста, выберите штат.", eLang:"Пожалуйста, выберите хотя бы один язык.",
+    eCko:"Пожалуйста, введите название церкви.", eAddr:"Пожалуйста, введите адрес.", ePastor:"Пожалуйста, введите ваше имя.", eEmail:"Пожалуйста, введите действительный email.",
+    cbOther:"Другое", contactT:"Контакт:", doneQ:"Вопросы?",
+    doneNext:"Следующие Шаги:", sNextLabel:"Следующие Шаги:",
+    tr1:"Мгновенное подтверждение по email", tr2:"Бесплатная правка 7 дней", tr3:"Без магазина приложений"
+  }
+};
+
+const T = {
+  ko: {
+    hTitle:"도시 정착 가이드 앱 주문",
+    hSub:"교회 개척자와 이민 커뮤니티를 위한 맞춤형 앱을 주문하세요.\nQR 코드 하나로 설치 — 앱스토어 불필요.",
+    s1h:"서비스 패키지 선택", s1hReq:"* 필수",
+    p1n:"기본 (언어 1개)", p1u:"/ 1회", p1d:"언어 1개 · 도시 맞춤 제작 · QR 코드 포함 · 5~7일 납품",
+    p2b:"추천", p2n:"바이링궐 (언어 2개)", p2u:"/ 1회", p2d:"2개 언어 모두 포함 (예: 한국어 + 영어)",
+    p3n:"연간 업데이트", p3u:"/ 년", p3d:"기본 또는 바이링궐에 추가 · 콘텐츠 연간 업데이트",
+    p4n:"교단 패키지", p4p:"협의", p4u:"/ 5개+", p4d:"5개 이상 교회 단체 주문",
+    ePkg:"패키지를 선택해 주세요.",
+    s2h:"가이드 제작 정보",
+    fCity:"도시", fState:"주 (State)", fLang:"가이드 언어", fLangH:"(해당 항목 모두 선택)",
+    fComm:"주요 대상 커뮤니티", fCommH:"(선택)",
+    eCity:"도시 이름을 입력해 주세요.", eState:"주를 선택해 주세요.", eLang:"언어를 최소 1개 선택해 주세요.",
+    s3h:"교회 정보",
+    fCko:"교회 이름 (한글)", fCen:"교회 이름 (영문)", fCenH:"(선택)",
+    fAddr:"교회 주소", fWeb:"교회 웹사이트", fWebH:"(선택)",
+    fSvc:"주일 예배 시간", fSvcH:"(선택)",
+    eCko:"교회 이름을 입력해 주세요.", eAddr:"주소를 입력해 주세요.",
+    s4h:"담당자 연락처",
+    fPastor:"목사님 / 담당자 이름", fPhone:"전화번호", fPhoneH:"(선택)",
+    fEmail:"이메일", fEmailH:"(납품 및 확인 이메일 발송)",
+    fRef:"어떻게 알게 되셨나요?", fRefH:"(선택)",
+    rf1:"교단 / 노회 소개", rf2:"목사님 지인 소개", rf3:"NWCP / Gary Irby",
+    rf4:"인터넷 검색", rf5:"SNS (Instagram / Facebook)", rf6:"기타",
+    fTime:"희망 납품 시기", fTimeH:"(선택)",
+    tl1:"최대한 빨리", tl2:"2주 이내", tl3:"한 달 이내", tl4:"시간 여유 있음",
+    fSpec:"특별 요청 사항", fSpecH:"(선택 — 추가 섹션, 강조 내용 등)",
+    ePastor:"이름을 입력해 주세요.", eEmail:"올바른 이메일을 입력해 주세요.",
+    agreeT:"납품 기간 5~7 영업일, 납품 후 7일 이내 1회 무료 수정 조건에 동의합니다.",
+    sbtnT:"📨 주문 제출하기",
+    tr1:"제출 즉시 확인 이메일 발송", tr2:"7일 무료 수정", tr3:"앱스토어 없이 설치",
+    payTitle:"결제 안내", payBody:"주문 제출 후 Zelle, Venmo, 또는 PayPal로 청구서가 이메일로 발송됩니다. 결제 확인 후 제작을 시작합니다.",
+    contactT:"문의:",
+    doneH:"주문이 접수되었습니다!", doneP:"Paul Kim에게 이메일이 발송되었습니다.\n곧 확인 후 연락드리겠습니다.",
+    doneNext:"다음 단계:",
+    dn1:"📧 Paul Kim이 이메일로 연락드려 결제 안내를 드립니다",
+    dn2:"💳 결제 후 5~7 영업일 내에 맞춤 가이드를 제작합니다",
+    dn3:"📱 완성된 앱 URL + QR 코드가 이메일로 납품됩니다",
+    dn4:"🔄 납품 후 7일 이내 1회 수정 무료 제공",
+    doneQ:"문의:", cbOther:"기타"
+  },
+  en: {
+    hTitle:"Order Your City Guide App",
+    hSub:"A custom PWA settlement guide for church planters and immigrant communities.\nInstalls via QR code — no app store needed.",
+    s1h:"Select Your Package", s1hReq:"* required",
+    p1n:"Basic (1 Language)", p1u:"/ one-time", p1d:"1 language · Custom city info · QR code · 5–7 day delivery",
+    p2b:"Recommended", p2n:"Bilingual (2 Languages)", p2u:"/ one-time", p2d:"Both languages included (e.g., Korean + English)",
+    p3n:"Annual Update", p3u:"/ year", p3d:"Add to Basic or Bilingual · Annual content updates",
+    p4n:"Denomination Pack", p4p:"Contact Us", p4u:"/ 5+ churches", p4d:"Bulk order for 5+ churches",
+    ePkg:"Please select a package.",
+    s2h:"Guide Details",
+    fCity:"City", fState:"State", fLang:"Guide Language(s)", fLangH:"(select all that apply)",
+    fComm:"Target Community", fCommH:"(optional)",
+    eCity:"Please enter the city name.", eState:"Please select a state.", eLang:"Please select at least one language.",
+    s3h:"Church Information",
+    fCko:"Church Name (Korean)", fCen:"Church Name (English)", fCenH:"(optional)",
+    fAddr:"Church Address", fWeb:"Church Website", fWebH:"(optional)",
+    fSvc:"Sunday Service Times", fSvcH:"(optional)",
+    eCko:"Please enter the church name.", eAddr:"Please enter the church address.",
+    s4h:"Contact Information",
+    fPastor:"Pastor / Contact Name", fPhone:"Phone Number", fPhoneH:"(optional)",
+    fEmail:"Email Address", fEmailH:"(for order confirmation & delivery)",
+    fRef:"How did you hear about us?", fRefH:"(optional)",
+    rf1:"Denomination / Presbytery", rf2:"Pastor Referral", rf3:"NWCP / Gary Irby",
+    rf4:"Internet Search", rf5:"Social Media (Instagram / Facebook)", rf6:"Other",
+    fTime:"Preferred Timeline", fTimeH:"(optional)",
+    tl1:"As soon as possible", tl2:"Within 2 weeks", tl3:"Within a month", tl4:"No rush",
+    fSpec:"Special Requests", fSpecH:"(optional — extra sections, emphasis, etc.)",
+    ePastor:"Please enter your name.", eEmail:"Please enter a valid email address.",
+    agreeT:"I agree to the delivery timeline of 5–7 business days and 1 free revision within 7 days of delivery.",
+    sbtnT:"📨 Submit Order",
+    tr1:"Instant confirmation email", tr2:"7-day free revision", tr3:"No app store needed",
+    payTitle:"Payment", payBody:"After submitting, you will receive a payment invoice via email (Zelle, Venmo, or PayPal). Production begins upon payment confirmation.",
+    contactT:"Contact:",
+    doneH:"Order Received!", doneP:"Your order has been sent to Paul Kim.\nWe'll be in touch shortly.",
+    doneNext:"Next Steps:",
+    dn1:"📧 Paul Kim will contact you with payment instructions",
+    dn2:"💳 Your custom guide will be created within 5–7 business days of payment",
+    dn3:"📱 App URL + QR code delivered by email",
+    dn4:"🔄 One free revision within 7 days of delivery",
+    doneQ:"Questions:", cbOther:"Other"
+  }
+};
+
+function lang(l) {
+  curLang = l;
+  // 버튼 상태 업데이트
+  document.getElementById('ben').classList.toggle('on', l==='en');
+  // 드롭다운 버튼 표시 업데이트
+  const ddBtn = document.getElementById('dd-btn');
+  if (l === 'en') {
+    ddBtn.classList.remove('on');
+    ddBtn.innerHTML = '🌐 Language <span class="arrow">▼</span>';
+  } else {
+    const info = l==='ko' ? {flag:'🇰🇷',name:'한국어'} : LANGS[l] ? {flag:LANGS[l].flag,name:LANGS[l].name} : {flag:'🌐',name:l};
+    ddBtn.classList.add('on');
+    ddBtn.innerHTML = info.flag+' '+info.name+' <span class="arrow">▼</span>';
+  }
+  // 활성 메뉴 항목 표시
+  document.querySelectorAll('#dd-menu button').forEach(b => b.classList.remove('active'));
+  const activeBtn = document.querySelector(`#dd-menu button[onclick="pickLang('${l}')"]`);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  const t = l==='en' ? T['en'] : (l==='ko' ? T['ko'] : {...T['en'], ...LANGS[l]});
+  const s = (id, v) => { const el = document.getElementById(id); if(el) el.textContent = v; };
+  s('h-title', t.hTitle);
+  document.getElementById('h-sub').textContent = t.hSub;
+  s('s1h', t.s1h); s('s1h-req', t.s1hReq);
+  s('p1n',t.p1n); s('p1u',t.p1u); s('p1d',t.p1d);
+  s('p2b',t.p2b); s('p2n',t.p2n); s('p2u',t.p2u); s('p2d',t.p2d);
+  s('p3n',t.p3n); s('p3u',t.p3u); s('p3d',t.p3d);
+  s('p4n',t.p4n); document.getElementById('p4p').childNodes[0].textContent = t.p4p+' '; s('p4u',t.p4u); s('p4d',t.p4d);
+  s('e-pkg-t', t.ePkg);
+  s('s2h', t.s2h);
+  s('f-city',t.fCity); s('f-state',t.fState); s('f-lang',t.fLang); s('f-lang-h',t.fLangH);
+  s('f-comm',t.fComm); s('f-comm-h',t.fCommH);
+  s('e-city-t',t.eCity); s('e-state-t',t.eState); s('e-lang-t',t.eLang);
+  s('s3h', t.s3h);
+  s('f-cko',t.fCko); s('f-cen',t.fCen); s('f-cen-h',t.fCenH);
+  s('f-addr',t.fAddr); s('f-web',t.fWeb); s('f-web-h',t.fWebH);
+  s('f-svc',t.fSvc); s('f-svc-h',t.fSvcH);
+  s('e-cko-t',t.eCko); s('e-addr-t',t.eAddr);
+  s('s4h', t.s4h);
+  s('f-pastor',t.fPastor); s('f-phone',t.fPhone); s('f-phone-h',t.fPhoneH);
+  s('f-email',t.fEmail); s('f-email-h',t.fEmailH);
+  s('f-ref',t.fRef); s('f-ref-h',t.fRefH);
+  s('rf1',t.rf1); s('rf2',t.rf2); s('rf3',t.rf3); s('rf4',t.rf4); s('rf5',t.rf5); s('rf6',t.rf6);
+  s('f-time',t.fTime); s('f-time-h',t.fTimeH);
+  s('tl1',t.tl1); s('tl2',t.tl2); s('tl3',t.tl3); s('tl4',t.tl4);
+  s('f-spec',t.fSpec); s('f-spec-h',t.fSpecH);
+  s('e-pastor-t',t.ePastor); s('e-email-t',t.eEmail);
+  s('agree-t', t.agreeT);
+  s('sbtn-t', t.sbtnT);
+  s('tr1',t.tr1); s('tr2',t.tr2); s('tr3',t.tr3);
+  s('pay-title', t.payTitle); s('pay-body', t.payBody);
+  s('contact-t', t.contactT);
+  s('done-h', t.doneH); s('done-p', t.doneP);
+  s('done-next', t.doneNext);
+  s('dn1',t.dn1); s('dn2',t.dn2); s('dn3',t.dn3); s('dn4',t.dn4);
+  s('done-q', t.doneQ); s('cb-other', t.cbOther);
+}
+
+// ── 다국어 드롭다운 ──
+function toggleDD() {
+  const btn  = document.getElementById('dd-btn');
+  const menu = document.getElementById('dd-menu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('show');
+}
+function pickLang(l) {
+  lang(l);
+  document.getElementById('dd-menu').classList.remove('show');
+  document.getElementById('dd-btn').classList.remove('open');
+}
+// 드롭다운 바깥 클릭 시 닫기
+document.addEventListener('click', e => {
+  if (!document.getElementById('lang-dd').contains(e.target)) {
+    document.getElementById('dd-menu').classList.remove('show');
+    document.getElementById('dd-btn').classList.remove('open');
+  }
+});
+
+// 페이지 로드 시 영어로 시작
+window.addEventListener('DOMContentLoaded', () => lang('en'));
+
+function toggleOther(cb) {
+  document.getElementById('other-lang-wrap').style.display = cb.checked ? 'block' : 'none';
+  if (!cb.checked) document.getElementById('other-lang').value = '';
+}
+
+function pickPkg(el, val) {
+  document.querySelectorAll('.pkg').forEach(p => p.classList.remove('picked'));
+  el.classList.add('picked');
+  el.querySelector('input[type=radio]').checked = true;
+  document.getElementById('e-pkg').style.display = 'none';
+}
+
+function showErr(id, show) {
+  document.getElementById(id).style.display = show ? 'block' : 'none';
+}
+function markBad(id, bad) {
+  document.getElementById(id).classList.toggle('bad', bad);
+}
+
+function validate() {
+  let ok = true;
+  const t = T[curLang];
+
+  // Package
+  const pkg = document.querySelector('input[name="package"]:checked');
+  if (!pkg) { showErr('e-pkg', true); ok = false; } else showErr('e-pkg', false);
+
+  // City
+  const city = document.getElementById('city').value.trim();
+  markBad('city', !city); showErr('e-city', !city); if(!city) ok=false;
+
+  // State
+  const state = document.getElementById('state').value;
+  markBad('state', !state); showErr('e-state', !state); if(!state) ok=false;
+
+  // Language
+  const langs = document.querySelectorAll('input[name="languages"]:checked');
+  showErr('e-lang', !langs.length); if(!langs.length) ok=false;
+
+  // Church name
+  const cko = document.getElementById('church-ko').value.trim();
+  markBad('church-ko', !cko); showErr('e-cko', !cko); if(!cko) ok=false;
+
+  // Address
+  const addr = document.getElementById('address').value.trim();
+  markBad('address', !addr); showErr('e-addr', !addr); if(!addr) ok=false;
+
+  // Pastor
+  const pastor = document.getElementById('pastor').value.trim();
+  markBad('pastor', !pastor); showErr('e-pastor', !pastor); if(!pastor) ok=false;
+
+  // Email
+  const email = document.getElementById('email').value.trim();
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  markBad('email', !emailOk); showErr('e-email', !emailOk); if(!emailOk) ok=false;
+
+  // Agree
+  if (!document.getElementById('agree').checked) {
+    alert(curLang==='ko' ? '약관에 동의해 주세요.' : 'Please agree to the terms.');
+    ok = false;
+  }
+
+  return ok;
+}
+
+async function submit() {
+  if (!validate()) {
+    document.querySelector('.bad')?.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+
+  const btn  = document.getElementById('sbtn');
+  const spin = document.getElementById('spin');
+  btn.disabled = true;
+  spin.style.display = 'inline-block';
+  document.getElementById('sbtn-t').textContent = curLang==='ko' ? '제출 중...' : 'Submitting...';
+
+  // Timestamp
+  document.getElementById('ts').value = new Date().toLocaleString('ko-KR', {timeZone:'America/Los_Angeles'});
+
+  // Collect languages as comma-separated
+  const checkedLangs = [...document.querySelectorAll('input[name="languages"]:checked')].map(c=>c.value);
+  const otherLang = document.getElementById('other-lang').value.trim();
+  if (otherLang) checkedLangs.push(otherLang);
+  const langs = checkedLangs.join(', ');
+
+  // Build data object
+  const data = {
+    access_key: WEB3FORMS_KEY,
+    subject: '🆕 [Hebron Guide] 새 주문! — ' + document.getElementById('church-ko').value,
+    from_name: 'Hebron Guide Order',
+    botcheck: '',
+    // Order info
+    '📦_패키지': document.querySelector('input[name="package"]:checked')?.value || '',
+    '🗺️_도시': document.getElementById('city').value + ', ' + document.getElementById('state').value,
+    '🌐_언어': langs,
+    '👥_대상커뮤니티': document.getElementById('community').value || '(없음)',
+    '⛪_교회명_한글': document.getElementById('church-ko').value,
+    '⛪_교회명_영문': document.getElementById('church-en').value || '(없음)',
+    '📍_교회주소': document.getElementById('address').value,
+    '🌐_교회웹사이트': document.getElementById('website').value || '(없음)',
+    '🕐_예배시간': document.getElementById('service').value || '(없음)',
+    '👤_담당자': document.getElementById('pastor').value,
+    '📞_전화': document.getElementById('phone').value || '(없음)',
+    '📧_이메일': document.getElementById('email').value,
+    '📣_알게된경로': document.getElementById('referral').value || '(없음)',
+    '⏰_희망납품시기': document.getElementById('timeline').value || '(없음)',
+    '📝_특별요청': document.getElementById('special').value || '(없음)',
+    '🕒_제출시각': document.getElementById('ts').value,
+    '🌍_폼언어': curLang === 'ko' ? '한국어' : 'English'
+  };
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json', 'Accept':'application/json'},
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+
+    if (json.success) {
+      document.getElementById('oform').style.display = 'none';
+      document.getElementById('done').style.display = 'block';
+      window.scrollTo({top:0, behavior:'smooth'});
+    } else {
+      throw new Error(json.message);
+    }
+  } catch(e) {
+    alert(curLang==='ko'
+      ? '제출 중 오류가 발생했습니다. kchurch911@gmail.com 으로 직접 이메일 주세요.'
+      : 'Submission error. Please email kchurch911@gmail.com directly.');
+    btn.disabled = false;
+    spin.style.display = 'none';
+    document.getElementById('sbtn-t').textContent = T[curLang].sbtnT;
+  }
+}
+</script>
+</body>
+</html>
