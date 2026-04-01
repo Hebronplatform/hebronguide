@@ -557,7 +557,7 @@
       <span id="agree-t">납품 기간 5~7 영업일, 납품 후 7일 이내 1회 무료 수정 조건에 동의합니다.</span>
     </label>
 
-    <button type="button" class="btn-submit" onclick="submit()" id="sbtn">
+    <button type="button" class="btn-submit" onclick="submitOrder()" id="sbtn">
       <span class="spinner" id="spin"></span>
       <span id="sbtn-t">📨 주문 제출하기</span>
     </button>
@@ -1048,7 +1048,7 @@ function validate() {
   return ok;
 }
 
-async function submit() {
+async function submitOrder() {
   if (!validate()) {
     document.querySelector('.bad')?.scrollIntoView({behavior:'smooth', block:'center'});
     return;
