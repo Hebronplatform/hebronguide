@@ -370,15 +370,8 @@
         <div class="pkg-desc" id="p3d">기본 또는 바이링궐에 추가 · 콘텐츠 연간 업데이트</div>
       </label>
 
-      <label class="pkg" id="pk4" onclick="pickPkg(this,'교단 패키지 — 협의')">
-        <input type="radio" name="package" value="교단 패키지 — 협의">
-        <span class="pkg-check">✓</span>
-        <div class="pkg-name" id="p4n">교단 패키지</div>
-        <div class="pkg-price" id="p4p">협의 <small id="p4u">/ 5개+</small></div>
-        <div class="pkg-desc" id="p4d">5개 이상 교회 단체 주문</div>
-      </label>
-
     </div>
+    <p style="text-align:center;font-size:.78rem;color:#6b7280;margin:8px 0 4px;" id="pkg-network-note">Equipping multiple churches? Contact us about network pricing.</p>
     <div class="err" id="e-pkg">⚠ <span id="e-pkg-t">패키지를 선택해 주세요.</span></div>
   </div>
 
@@ -628,7 +621,7 @@ const LANGS = {
     p1n:"Básico (1 idioma)", p1u:"/ única vez", p1d:"1 idioma · Info ciudad personalizada · Código QR · Entrega 5–7 días",
     p2b:"Recomendado", p2n:"Bilingüe (2 idiomas)", p2u:"/ única vez", p2d:"Ambos idiomas incluidos (ej: Español + Inglés)",
     p3n:"Actualización Anual", p3u:"/ año", p3d:"Añadir al básico o bilingüe · Actualizaciones anuales",
-    p4n:"Paquete Denominacional", p4p:"Consultar", p4u:"/ 5+ iglesias", p4d:"Pedido grupal para 5+ iglesias",
+    pkgNetworkNote:"¿Equipando múltiples iglesias? Pregúntanos sobre precios para redes.",
     s2h:"Detalles de la Guía", s2Sub:"Indícanos qué ciudad e idioma(s) necesitas.",
     fCity:"Ciudad", fState:"Estado", fLang:"Idioma(s) de la Guía", fLangH:"(selecciona todos los que apliquen)",
     fComm:"Comunidad objetivo", fCommH:"(opcional)",
@@ -662,7 +655,7 @@ const LANGS = {
     p1n:"Básico (1 wika)", p1u:"/ isang beses", p1d:"1 wika · Custom na impormasyon ng lungsod · QR code · 5–7 araw",
     p2b:"Inirerekomenda", p2n:"Bilinggwal (2 wika)", p2u:"/ isang beses", p2d:"Parehong wika kasama (hal: Filipino + Ingles)",
     p3n:"Taunang Update", p3u:"/ taon", p3d:"Idagdag sa básico o bilinggwal · Taunang updates",
-    p4n:"Denomination Package", p4p:"Makipag-ugnayan", p4u:"/ 5+ simbahan", p4d:"Bulk order para sa 5+ simbahan",
+    pkgNetworkNote:"Nagbibigay ng gabay sa maraming simbahan? Makipag-ugnayan para sa network pricing.",
     s2h:"Detalye ng Gabay",
     fCity:"Lungsod", fState:"Estado", fLang:"Wika ng Gabay", fLangH:"(piliin lahat ng naaangkop)",
     fComm:"Target na Komunidad", fCommH:"(opsyonal)", fSpec:"Espesyal na Kahilingan", fSpecH:"(opsyonal)",
@@ -694,7 +687,7 @@ const LANGS = {
     p1n:"基础版（1种语言）", p1u:"/ 一次性", p1d:"1种语言 · 定制城市信息 · 二维码 · 5–7天交付",
     p2b:"推荐", p2n:"双语版（2种语言）", p2u:"/ 一次性", p2d:"包含两种语言（例：中文 + 英文）",
     p3n:"年度更新", p3u:"/ 年", p3d:"添加至基础版或双语版 · 年度内容更新",
-    p4n:"教会联合套餐", p4p:"洽谈", p4u:"/ 5+教会", p4d:"5个以上教会批量订购",
+    pkgNetworkNote:"为多个教会配备？请咨询网络定价。",
     s2h:"指南详情",
     fCity:"城市", fState:"州", fLang:"指南语言", fLangH:"（可多选）",
     fComm:"目标社群", fCommH:"（选填）", fSpec:"特殊要求", fSpecH:"（选填）",
@@ -726,7 +719,7 @@ const LANGS = {
     p1n:"Cơ Bản (1 ngôn ngữ)", p1u:"/ một lần", p1d:"1 ngôn ngữ · Thông tin thành phố · Mã QR · Giao hàng 5–7 ngày",
     p2b:"Khuyến nghị", p2n:"Song Ngữ (2 ngôn ngữ)", p2u:"/ một lần", p2d:"Bao gồm cả hai ngôn ngữ (VD: Tiếng Việt + Tiếng Anh)",
     p3n:"Cập Nhật Hàng Năm", p3u:"/ năm", p3d:"Thêm vào gói cơ bản hoặc song ngữ · Cập nhật nội dung hàng năm",
-    p4n:"Gói Giáo Hội", p4p:"Liên hệ", p4u:"/ 5+ hội thánh", p4d:"Đặt hàng nhóm cho 5+ hội thánh",
+    pkgNetworkNote:"Trang bị cho nhiều nhà thờ? Liên hệ để biết giá mạng lưới.",
     s2h:"Chi Tiết Hướng Dẫn",
     fCity:"Thành Phố", fState:"Tiểu Bang", fLang:"Ngôn Ngữ Hướng Dẫn", fLangH:"(chọn tất cả phù hợp)",
     fComm:"Cộng Đồng Mục Tiêu", fCommH:"(tùy chọn)", fSpec:"Yêu Cầu Đặc Biệt", fSpecH:"(tùy chọn)",
@@ -758,7 +751,7 @@ const LANGS = {
     p1n:"बेसिक (1 भाषा)", p1u:"/ एक बार", p1d:"1 भाषा · कस्टम सिटी जानकारी · QR कोड · 5–7 दिन में डिलीवरी",
     p2b:"अनुशंसित", p2n:"द्विभाषी (2 भाषाएं)", p2u:"/ एक बार", p2d:"दोनों भाषाएं शामिल (उदा: हिन्दी + अंग्रेजी)",
     p3n:"वार्षिक अपडेट", p3u:"/ वर्ष", p3d:"बेसिक या द्विभाषी में जोड़ें · वार्षिक सामग्री अपडेट",
-    p4n:"डेनोमिनेशन पैकेज", p4p:"संपर्क करें", p4u:"/ 5+ चर्च", p4d:"5+ चर्चों के लिए बल्क ऑर्डर",
+    pkgNetworkNote:"कई चर्चों को सुसज्जित करना चाहते हैं? नेटवर्क मूल्य निर्धारण के बारे में पूछें।",
     s2h:"गाइड विवरण",
     fCity:"शहर", fState:"राज्य", fLang:"गाइड भाषा(एं)", fLangH:"(सभी लागू को चुनें)",
     fComm:"लक्षित समुदाय", fCommH:"(वैकल्पिक)", fSpec:"विशेष अनुरोध", fSpecH:"(वैकल्पिक)",
@@ -790,7 +783,7 @@ const LANGS = {
     p1n:"Базовый (1 язык)", p1u:"/ единоразово", p1d:"1 язык · Инфо о городе · QR-код · Доставка 5–7 дней",
     p2b:"Рекомендуем", p2n:"Двуязычный (2 языка)", p2u:"/ единоразово", p2d:"Оба языка включены (напр: Русский + Английский)",
     p3n:"Годовое Обновление", p3u:"/ год", p3d:"Добавить к базовому или двуязычному · Ежегодное обновление",
-    p4n:"Пакет для Деноминации", p4p:"Связаться", p4u:"/ 5+ церквей", p4d:"Групповой заказ для 5+ церквей",
+    pkgNetworkNote:"Оснащаете несколько церквей? Узнайте о сетевых ценах.",
     s2h:"Детали Руководства",
     fCity:"Город", fState:"Штат", fLang:"Язык(и) Руководства", fLangH:"(выберите все подходящие)",
     fComm:"Целевое Сообщество", fCommH:"(необязательно)", fSpec:"Особые Пожелания", fSpecH:"(необязательно)",
@@ -825,7 +818,7 @@ const T = {
     p1n:"기본 (언어 1개)", p1u:"/ 1회", p1d:"언어 1개 · 도시 맞춤 제작 · QR 코드 포함 · 5~7일 납품",
     p2b:"추천", p2n:"바이링궐 (언어 2개)", p2u:"/ 1회", p2d:"2개 언어 모두 포함 (예: 한국어 + 영어)",
     p3n:"연간 업데이트", p3u:"/ 년", p3d:"기본 또는 바이링궐에 추가 · 콘텐츠 연간 업데이트",
-    p4n:"교단 패키지", p4p:"협의", p4u:"/ 5개+", p4d:"5개 이상 교회 단체 주문",
+    pkgNetworkNote:"여러 교회에 함께 도입하고 싶으신가요? 네트워크 가격에 대해 문의해 주세요.",
     ePkg:"패키지를 선택해 주세요.",
     s2h:"가이드 제작 정보",
     fCity:"도시", fState:"주 (State)", fLang:"가이드 언어", fLangH:"(해당 항목 모두 선택)",
@@ -866,7 +859,7 @@ const T = {
     p1n:"Basic (1 Language)", p1u:"/ one-time", p1d:"1 language · Custom city info · QR code · 5–7 day delivery",
     p2b:"Recommended", p2n:"Bilingual (2 Languages)", p2u:"/ one-time", p2d:"Both languages included (e.g., Korean + English)",
     p3n:"Annual Update", p3u:"/ year", p3d:"Add to Basic or Bilingual · Annual content updates",
-    p4n:"Denomination Pack", p4p:"Contact Us", p4u:"/ 5+ churches", p4d:"Bulk order for 5+ churches",
+    pkgNetworkNote:"Equipping multiple churches? Contact us about network pricing.",
     ePkg:"Please select a package.",
     s2h:"Guide Details",
     fCity:"City", fState:"State", fLang:"Guide Language(s)", fLangH:"(select all that apply)",
@@ -929,7 +922,7 @@ function lang(l) {
   s('p1n',t.p1n); s('p1u',t.p1u); s('p1d',t.p1d);
   s('p2b',t.p2b); s('p2n',t.p2n); s('p2u',t.p2u); s('p2d',t.p2d);
   s('p3n',t.p3n); s('p3u',t.p3u); s('p3d',t.p3d);
-  s('p4n',t.p4n); document.getElementById('p4p').childNodes[0].textContent = t.p4p+' '; s('p4u',t.p4u); s('p4d',t.p4d);
+  s('pkg-network-note', t.pkgNetworkNote);
   s('e-pkg-t', t.ePkg);
   s('s2h', t.s2h);
   s('f-city',t.fCity); s('f-state',t.fState); s('f-lang',t.fLang); s('f-lang-h',t.fLangH);
