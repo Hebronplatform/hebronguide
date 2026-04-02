@@ -509,25 +509,31 @@ function sTabGo(sectionId, btnEl, prefix, appId) {
     var el = document.getElementById(sectionId);
     if (!app || !el) return;
 
-    // el의 offsetTop을 app 컨테이너 기준으로 정확히 누적 계산
-    function getOffsetTopIn(child, container) {
-        var top = 0;
-        var node = child;
-        while (node && node !== container) {
-            top += node.offsetTop;
-            node = node.offsetParent;
-        }
-        return top;
+    // 숨겨진 부모 패널이 있으면 먼저 표시 (tab-edu-univ / tab-edu-lib 등)
+    var ancestor = el.parentElement;
+    while (ancestor && ancestor !== app) {
+        if (ancestor.style.display === 'none') ancestor.style.display = 'block';
+        ancestor = ancestor.parentElement;
     }
 
-    var elTop = getOffsetTopIn(el, app);
-    var headerEl = app.querySelector('.app-header');
-    var headerH = headerEl ? headerEl.offsetHeight : 0;
-    var tabH = tabbar ? tabbar.offsetHeight : 44;
-
-    // 섹션 상단이 탭바 바로 아래에 오도록 정확히 설정
-    var target = elTop - headerH - tabH;
-    app.scrollTo({ top: target, behavior: 'smooth' });
+    // DOM 렌더링 후 스크롤 (display 변경 직후 offsetTop이 0이 되는 문제 방지)
+    requestAnimationFrame(function() {
+        function getOffsetTopIn(child, container) {
+            var top = 0;
+            var node = child;
+            while (node && node !== container) {
+                top += node.offsetTop;
+                node = node.offsetParent;
+            }
+            return top;
+        }
+        var elTop = getOffsetTopIn(el, app);
+        var headerEl = app.querySelector('.app-header');
+        var headerH = headerEl ? headerEl.offsetHeight : 0;
+        var tabH = tabbar ? tabbar.offsetHeight : 44;
+        var target = elTop - headerH - tabH;
+        app.scrollTo({ top: target, behavior: 'smooth' });
+    });
 }
 </script>
 </head>
@@ -2655,14 +2661,14 @@ function artScrollTo(sectionId, btnEl) {
     </div>
     <div class="app-content">
 <div id="ed-tabbar" class="stab-bar" style="border-bottom:2px solid #1a3a1a;">
-<button class="stab-btn ed-tab active" onclick="sTabGo('ed-0',this,'ed','eduApp')" data-ko="소개" data-en="Intro">소개</button>
-<button class="stab-btn ed-tab " onclick="sTabGo('ed-1',this,'ed','eduApp')" data-ko="🏆 TOP 10" data-en="🏆 TOP 10">🏆 TOP 10</button>
-<button class="stab-btn ed-tab " onclick="sTabGo('ed-2',this,'ed','eduApp')" data-ko="🏛️ 4년제" data-en="🏛️ 4-Year">🏛️ 4년제</button>
-<button class="stab-btn ed-tab " onclick="sTabGo('ed-3',this,'ed','eduApp')" data-ko="🏫 커뮤니티" data-en="🏫 CC">🏫 커뮤니티</button>
-<button class="stab-btn ed-tab " onclick="sTabGo('ed-4',this,'ed','eduApp')" data-ko="🌐 온라인" data-en="🌐 Online">🌐 온라인</button>
-<button class="stab-btn ed-tab " onclick="sTabGo('ed-5',this,'ed','eduApp')" data-ko="📚 도서관" data-en="📚 Library">📚 도서관</button>
-<button class="stab-btn ed-tab " onclick="sTabGo('ed-6',this,'ed','eduApp')" data-ko="📚 주요관" data-en="📚 Branches">📚 주요관</button>
-<button class="stab-btn ed-tab " onclick="sTabGo('ed-7',this,'ed','eduApp')" data-ko="🆓 무료" data-en="🆓 Free">🆓 무료</button>
+<button class="stab-btn ed-tab active" onclick="showTab12('edu-univ');sTabGo('ed-0',this,'ed','eduApp')" data-ko="소개" data-en="Intro">소개</button>
+<button class="stab-btn ed-tab " onclick="showTab12('edu-univ');sTabGo('ed-1',this,'ed','eduApp')" data-ko="🏆 TOP 10" data-en="🏆 TOP 10">🏆 TOP 10</button>
+<button class="stab-btn ed-tab " onclick="showTab12('edu-univ');sTabGo('ed-2',this,'ed','eduApp')" data-ko="🏛️ 4년제" data-en="🏛️ 4-Year">🏛️ 4년제</button>
+<button class="stab-btn ed-tab " onclick="showTab12('edu-univ');sTabGo('ed-3',this,'ed','eduApp')" data-ko="🏫 커뮤니티" data-en="🏫 CC">🏫 커뮤니티</button>
+<button class="stab-btn ed-tab " onclick="showTab12('edu-univ');sTabGo('ed-4',this,'ed','eduApp')" data-ko="🌐 온라인" data-en="🌐 Online">🌐 온라인</button>
+<button class="stab-btn ed-tab " onclick="showTab12('edu-lib');sTabGo('ed-5',this,'ed','eduApp')" data-ko="📚 도서관" data-en="📚 Library">📚 도서관</button>
+<button class="stab-btn ed-tab " onclick="showTab12('edu-lib');sTabGo('ed-6',this,'ed','eduApp')" data-ko="📚 주요관" data-en="📚 Branches">📚 주요관</button>
+<button class="stab-btn ed-tab " onclick="showTab12('edu-lib');sTabGo('ed-7',this,'ed','eduApp')" data-ko="🆓 무료" data-en="🆓 Free">🆓 무료</button>
 </div>
 
 <div style="display:flex;gap:6px;margin-bottom:16px;">
