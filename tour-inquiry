@@ -2994,7 +2994,7 @@ function artScrollTo(sectionId, btnEl) {
 
   <!-- 관광 문의 팝업 버튼 -->
   <div style="margin:0 14px 18px;">
-    <button onclick="window.open('tour-inquiry.html','tourInquiry','width=560,height=820,scrollbars=yes,resizable=yes')"
+    <button onclick="window.open('PaulKim_TourGuide.html','tourInquiry','width=560,height=820,scrollbars=yes,resizable=yes')"
       style="width:100%;padding:13px;background:linear-gradient(135deg,#1a5276,#2980b9);color:white;border:none;border-radius:12px;font-size:0.88rem;font-weight:800;cursor:pointer;letter-spacing:0.3px;">
       📋 관광 문의 신청
     </button>
