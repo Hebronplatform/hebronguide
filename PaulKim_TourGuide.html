@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>폴킴 시애틀 투어 가이드 | Paul Kim Seattle Tour Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --navy: #1a3a6b;
+  --blue: #2563eb;
+  --lightblue: #eff6ff;
+  --border: #dbeafe;
+  --text: #1e293b;
+  --muted: #64748b;
+  --gold: #d97706;
+  --green: #059669;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+  background: #f8fafc;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* ── 언어 토글 ── */
+.lang-bar {
+  background: var(--navy);
+  text-align: right;
+  padding: 8px 24px;
+}
+.lang-btn {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 5px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.lang-btn:hover { background: rgba(255,255,255,0.25); }
+
+/* ── 히어로 ── */
+.hero {
+  background: linear-gradient(135deg, #0f2451 0%, #1a3a6b 50%, #1e4fa0 100%);
+  color: white;
+  padding: 60px 24px 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 30%, rgba(37,99,235,0.3) 0%, transparent 60%);
+}
+.hero-content { position: relative; max-width: 800px; margin: 0 auto; }
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 5px 16px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.hero h1 span { color: #93c5fd; }
+.hero-sub {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+.hero-tagline {
+  font-size: clamp(0.82rem, 1.5vw, 0.95rem);
+  opacity: 0.7;
+  margin-bottom: 32px;
+}
+.hero-cta {
+  display: inline-block;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 14px 36px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37,99,235,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.hero-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(37,99,235,0.5); }
+
+/* ── 레이아웃 ── */
+.container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+section { padding: 52px 0; }
+section + section { border-top: 1px solid #e2e8f0; }
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.section-desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+}
+
+/* ── 프로필 ── */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+@media(max-width:600px){ .profile-grid { grid-template-columns: 1fr; } }
+
+.profile-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+}
+.profile-main {
+  background: linear-gradient(135deg, var(--navy), #1e4fa0);
+  color: white;
+  border: none;
+}
+.profile-main .name { font-size: 1.5rem; font-weight: 900; margin-bottom: 4px; }
+.profile-main .title { font-size: 0.88rem; opacity: 0.85; margin-bottom: 16px; }
+.profile-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+.badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.badge {
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.diff-list { list-style: none; }
+.diff-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.88rem;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.diff-list li:last-child { border-bottom: none; }
+.diff-list .icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+
+/* ── 투어 탭 ── */
+.day-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.day-tab {
+  padding: 9px 22px;
+  border-radius: 99px;
+  border: 1.5px solid var(--border);
+  background: white;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all 0.18s;
+}
+.day-tab:hover { border-color: var(--blue); color: var(--navy); }
+.day-tab.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: white;
+  box-shadow: 0 2px 10px rgba(37,99,235,0.25);
+}
+.day-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+.badge-1day { background: #dbeafe; color: #1a4fa0; }
+.badge-2day { background: #d1fae5; color: #065f46; }
+.tour-card[data-days="2"] { border-color: #a7f3d0; }
+.tour-card[data-days="2"]:hover { border-color: #10b981; box-shadow: 0 4px 20px rgba(16,185,129,0.12); }
+.tour-card[data-days="2"].featured { background: linear-gradient(135deg, #ecfdf5, #fff); border-color: #10b981; }
+.day-itinerary {
+  margin-top: 8px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.day-itinerary-label {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 0.76rem;
+  margin-top: 5px;
+}
+
+/* ── 투어 패키지 ── */
+.tours-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+.tour-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  cursor: default;
+}
+.tour-card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 4px 20px rgba(37,99,235,0.1);
+}
+.tour-card.featured {
+  border-color: var(--blue);
+  background: linear-gradient(135deg, #eff6ff, #fff);
+}
+.tour-emoji { font-size: 1.8rem; margin-bottom: 10px; }
+.tour-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.tour-en { font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; }
+.tour-meta {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.tour-tag {
+  background: var(--lightblue);
+  color: var(--navy);
+  border-radius: 8px;
+  padding: 2px 9px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+.tour-desc { font-size: 0.82rem; color: #475569; line-height: 1.6; margin-bottom: 10px; }
+.tour-route {
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 8px 10px;
+  line-height: 1.6;
+}
+.tour-option {
+  font-size: 0.72rem;
+  color: var(--gold);
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* ── 가격표 ── */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.price-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+}
+.price-card.featured {
+  border-color: var(--blue);
+  background: var(--lightblue);
+}
+.price-group { font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.price-amount { font-size: 1.6rem; font-weight: 900; color: var(--blue); }
+.price-unit { font-size: 0.72rem; color: var(--muted); margin-top: 3px; }
+.price-note { font-size: 0.75rem; color: var(--muted); margin-top: 16px; line-height: 1.7; }
+
+/* ── 모듈/옵션 ── */
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+.addon-link { text-decoration: none; display: contents; }
+.addon-link .addon-item::after {
+  content: ' ▶';
+  font-size: 0.68rem;
+  color: var(--blue);
+  margin-left: 4px;
+}
+.addon-link .addon-item:hover { border-color: var(--blue); color: var(--navy); cursor: pointer; }
+.addon-item {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.82rem;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+/* ── 신청서 ── */
+.form-wrap {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+}
+@media(max-width:600px){ .form-wrap { padding: 22px; } }
+
+.form-section-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 24px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.form-section-title:first-child { margin-top: 0; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media(max-width:600px){ .form-row { grid-template-columns: 1fr; } }
+
+.form-group { margin-bottom: 14px; }
+.form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 5px;
+}
+.form-label .req { color: #ef4444; }
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  color: var(--text);
+  background: #fafbfc;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--blue);
+  background: white;
+}
+.form-textarea { resize: vertical; min-height: 90px; }
+
+/* 참여자 명단 */
+.participant-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+.participant-num {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 600;
+  min-width: 20px;
+}
+.add-participant {
+  background: none;
+  border: 1.5px dashed var(--blue);
+  color: var(--blue);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
+.add-participant:hover { background: var(--lightblue); }
+.remove-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px;
+  line-height: 1;
+}
+.remove-btn:hover { color: #ef4444; }
+
+/* 코스 선택 */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.course-check { display: none; }
+.course-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: #fafbfc;
+}
+.course-check:checked + .course-label {
+  border-color: var(--blue);
+  background: var(--lightblue);
+  color: var(--navy);
+  font-weight: 700;
+}
+
+/* 취소 정책 */
+.policy-box {
+  background: #fef9f0;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+  padding: 16px 18px;
+  font-size: 0.82rem;
+  color: #7c2d12;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.consent-row input[type=checkbox] { margin-top: 3px; flex-shrink: 0; }
+
+.submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.submit-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+
+/* ── 취소 정책 섹션 ── */
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.policy-item {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+.policy-timing { font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.policy-action { font-size: 0.78rem; color: var(--muted); }
+
+/* ── 푸터 ── */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  padding: 32px 24px;
+  font-size: 0.82rem;
+  line-height: 1.9;
+}
+footer strong { color: white; }
+footer a { color: #93c5fd; text-decoration: none; }
+
+/* ── 반응형 ── */
+@media(max-width:700px){
+  .profile-grid { grid-template-columns: 1fr; }
+  .tours-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- 언어 토글 -->
+<div class="lang-bar">
+  <button class="lang-btn" id="langBtn" onclick="toggleLang()">🌐 English</button>
+</div>
+
+<!-- 히어로 -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge" data-ko="🗺️ 프리미엄 맞춤형 단체 투어" data-en="🗺️ Premium Custom Group Tours">🗺️ 프리미엄 맞춤형 단체 투어</div>
+    <h1 data-ko="폴킴과 함께하는<br><span>시애틀 투어</span>" data-en="Seattle Tours<br>with <span>Paul Kim</span>">폴킴과 함께하는<br><span>시애틀 투어</span></h1>
+    <p class="hero-sub" data-ko="25년 시애틀 현지인 · 워싱턴 DC & 시애틀 공식 가이드 경력" data-en="25-Year Seattle Resident · Official Guide — Washington D.C. & Seattle">25년 시애틀 현지인 · 워싱턴 DC & 시애틀 공식 가이드 경력</p>
+    <p class="hero-tagline" data-ko="단순 관광이 아닌, 시애틀의 역사·문화·산업을 꿰뚫는 지식 기반 스토리텔링" data-en="Not just sightseeing — knowledge-based storytelling through Seattle's history, culture, and industry">단순 관광이 아닌, 시애틀의 역사·문화·산업을 꿰뚫는 지식 기반 스토리텔링</p>
+    <a href="#inquiry" class="hero-cta" data-ko="📋 투어 문의하기" data-en="📋 Inquire About a Tour">📋 투어 문의하기</a>
+  </div>
+</div>
+
+<!-- 가이드 프로필 -->
+<section>
+  <div class="container">
+    <div class="section-label" data-ko="GUIDE PROFILE" data-en="GUIDE PROFILE">GUIDE PROFILE</div>
+    <h2 class="section-title" data-ko="폴킴 가이드 소개" data-en="About Paul Kim">폴킴 가이드 소개</h2>
+    <p class="section-desc" data-ko="일반 가이드와 차별화된 프리미엄 경험" data-en="A premium experience that sets him apart from ordinary guides">일반 가이드와 차별화된 프리미엄 경험</p>
+
+    <div class="profile-grid">
+      <!-- 메인 프로필 -->
+      <div class="profile-card profile-main">
+        <div class="name" data-ko="폴킴 (Paul Kim)" data-en="Paul Kim">폴킴 (Paul Kim)</div>
+        <div class="title" data-ko="시애틀 프리미엄 투어 가이드" data-en="Seattle Premium Tour Guide">시애틀 프리미엄 투어 가이드</div>
+        <div class="profile-stat">📍 <span data-ko="시애틀 25년 거주 현지인" data-en="25-Year Seattle Resident">시애틀 25년 거주 현지인</span></div>
+        <div class="profile-stat">🗺️ <span data-ko="워싱턴 DC + 시애틀 공식 가이드 이력" data-en="Official Guide — Washington D.C. & Seattle">워싱턴 DC + 시애틀 공식 가이드 이력</span></div>
+        <div class="profile-stat">🌐 <span data-ko="한국어 · 영어 완전 이중언어" data-en="Full Bilingual — Korean & English">한국어 · 영어 완전 이중언어</span></div>
+        <div class="badge-row">
+          <span class="badge" data-ko="교회 단체" data-en="Church Groups">교회 단체</span>
+          <span class="badge" data-ko="기업·기관" data-en="Corporate">기업·기관</span>
+          <span class="badge" data-ko="가족·소그룹" data-en="Family">가족·소그룹</span>
+          <span class="badge" data-ko="시니어" data-en="Senior">시니어</span>
+        </div>
+      </div>
+
+      <!-- 차별화 -->
+      <div class="profile-card">
+        <div style="font-size:0.8rem;font-weight:700;color:var(--navy);margin-bottom:12px;" data-ko="차별화된 가이드 관광" data-en="A Distinctly Different Tour Experience">차별화된 가이드 관광</div>
+        <ul class="diff-list">
+          <li><span class="icon">🎓</span><span data-ko="깊이 있는 설명 — 강의처럼 깊고 여행처럼 재미있는 스토리텔링" data-en="In-Depth Explanations — As insightful as a lecture, as enjoyable as a journey">깊이 있는 설명 — 강의처럼 깊고 여행처럼 재미있는 스토리텔링</span></li>
+          <li><span class="icon">🏠</span><span data-ko="25년 거주 경험 — 관광 책자가 아닌 실제 생활 지식" data-en="25 Years Living Here — Real local knowledge, not a guidebook">25년 거주 경험 — 관광 책자가 아닌 실제 생활 지식</span></li>
+          <li><span class="icon">✏️</span><span data-ko="맞춤 설계 — 정해진 코스가 아닌 협의 후 완성" data-en="Custom Design — Negotiated routes, not fixed scripts">맞춤 설계 — 정해진 코스가 아닌 협의 후 완성</span></li>
+          <li><span class="icon">📖</span><span data-ko="스토리텔링 — 역사·산업·문화를 하나로 연결" data-en="Storytelling — History, industry, and culture woven together">스토리텔링 — 역사·산업·문화를 하나로 연결</span></li>
+          <li><span class="icon">👥</span><span data-ko="그룹 특화 — 연령·목적에 따라 완전히 다른 경험" data-en="Group Specialist — Entirely different experiences by age and purpose">그룹 특화 — 연령·목적에 따라 완전히 다른 경험</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 한 줄 브랜드 -->
+    <div style="background:linear-gradient(135deg,var(--navy),#1e4fa0);color:white;border-radius:16px;padding:24px 28px;text-align:center;">
+      <div style="font-size:0.75rem;opacity:0.7;letter-spacing:1px;margin-bottom:8px;" data-ko="PAUL KIM GUIDE" data-en="PAUL KIM GUIDE">PAUL KIM GUIDE</div>
+      <div style="font-size:1.05rem;font-weight:700;line-height:1.6;" data-ko="&ldquo;25년 시애틀 거주 현지인이 설계하고 동행하는,<br>당신 그룹만을 위한 맞춤 투어&rdquo;" data-en="&ldquo;A custom tour designed and led by a 25-year Seattle resident,<br>crafted exclusively for your group&rdquo;">"25년 시애틀 거주 현지인이 설계하고 동행하는,<br>당신 그룹만을 위한 맞춤 투어"</div>
+    </div>
+  </div>
+</section>
+
+<!-- 투어 패키지 -->
+<section style="background:white;">
+  <div class="container">
+    <div class="section-label" data-ko="TOUR PACKAGES" data-en="TOUR PACKAGES">TOUR PACKAGES</div>
+    <h2 class="section-title" data-ko="시그니처 투어 코스" data-en="Signature Tour Courses">시그니처 투어 코스</h2>
+    <p class="section-desc" data-ko="기본 코스를 바탕으로 협의를 통해 맞춤 설계합니다" data-en="Each tour is customized through consultation based on these signature courses">기본 코스를 바탕으로 협의를 통해 맞춤 설계합니다</p>
+
+    <!-- 1일 / 1박2일 탭 -->
+    <div class="day-tabs">
+      <button class="day-tab active" onclick="filterDays('all', this)" data-ko="🗺️ 전체 보기" data-en="🗺️ All Courses">🗺️ 전체 보기</button>
+      <button class="day-tab" onclick="filterDays('1', this)" data-ko="🌅 1일 코스 (당일)" data-en="🌅 1-Day Tours">🌅 1일 코스 (당일)</button>
+      <button class="day-tab" onclick="filterDays('2', this)" data-ko="🌙 1박2일 코스 (교외·자연)" data-en="🌙 Overnight Tours (2 Days)">🌙 1박2일 코스 (교외·자연)</button>
+    </div>
+
+    <div class="tours-grid">
+
+      <!-- 코스 1 -->
+      <div class="tour-card featured" data-days="1">
+        <div class="day-badge badge-1day" data-ko="1일 코스" data-en="1-Day Tour">1일 코스</div>
+        <div class="tour-emoji">🏙️</div>
+        <div class="tour-name" data-ko="도시 정수 투어" data-en="Classic Seattle Tour">도시 정수 투어</div>
+        <div class="tour-en">Classic Seattle</div>
+        <div class="tour-meta">
+          <span class="tour-tag" data-ko="8~9시간" data-en="8–9 hrs">8~9시간</span>
+          <span class="tour-tag" data-ko="첫 방문 추천" data-en="Recommended for 1st Visit">첫 방문 추천</span>
+        </div>
+        <div class="tour-desc" data-ko="시애틀 랜드마크를 완전 정복하는 정수 코스. 처음 시애틀을 방문하는 모든 그룹에 추천합니다." data-en="The essential course covering all of Seattle's landmarks. Recommended for any group visiting Seattle for the first time.">시애틀 랜드마크를 완전 정복하는 정수 코스. 처음 시애틀을 방문하는 모든 그룹에 추천합니다.</div>
+        <div class="tour-route" data-ko="파이크 플레이스 → 껌벽 (Post Alley) → 워터프런트 → 스페이스 니들 → 아마존 스피어스 → 케리 공원 → Capitol Hill 저녁" data-en="Pike Place Market → Gum Wall (Post Alley) → Waterfront → Space Needle → Amazon Spheres → Kerry Park → Capitol Hill Dinner">파이크 플레이스 → 껌벽 (Post Alley) → 워터프런트 → 스페이스 니들 → 아마존 스피어스 → 케리 공원 → Capitol Hill 저녁</div>
+      </div>
+
+      <!-- 코스 2 -->
+      <div class="tour-card" data-days="1">
+        <div class="day-badge badge-1day" data-ko="1일 코스" data-en="1-Day Tour">1일 코스</div>
+        <div class="tour-emoji">📖</div>
+        <div class="tour-name" data-ko="스토리 투어" data-en="Seattle Stories Tour">스토리 투어</div>
+        <div class="tour-en">Seattle Stories</div>
+        <div class="tour-meta">
+          <span class="tour-tag" data-ko="8~9시간" data-en="8–9 hrs">8~9시간</span>
+          <span class="tour-tag" data-ko="기업·기관" data-en="Corporate / Org">기업·기관</span>
+        </div>
+        <div class="tour-desc" data-ko="이소룡·지미 헨드릭스·커트 코베인의 현장, 아마존·스타벅스 창업지까지 — 시애틀의 이야기를 현장에서 듣습니다." data-en="From Bruce Lee and Jimi Hendrix to Amazon and Starbucks — hear Seattle's stories where they happened.">이소룡·지미 헨드릭스·커트 코베인의 현장, 아마존·스타벅스 창업지까지 — 시애틀의 이야기를 현장에서 듣습니다.</div>
+        <div class="tour-route" data-ko="Pioneer Square → Underground Tour → 원조 스타벅스 → 아마존 창업지 → MoPOP → Gas Works Park" data-en="Pioneer Square → Underground Tour → Original Starbucks → Amazon Founding Site → MoPOP → Gas Works Park">Pioneer Square → Underground Tour → 원조 스타벅스 → 아마존 창업지 → MoPOP → Gas Works Park</div>
+        <div class="tour-option" data-ko="★ 옵션: 이소룡 묘 · 지미 헨드릭스 묘 · 커트 코베인 벤치" data-en="★ Option: Bruce Lee's Grave · Jimi Hendrix's Grave · Kurt Cobain's Bench">★ 옵션: 이소룡 묘 · 지미 헨드릭스 묘 · 커트 코베인 벤치</div>
+      </div>
+
+      <!-- 코스 3 -->
+      <div class="tour-card" data-days="1">
+        <div class="day-badge badge-1day" data-ko="1일 코스" data-en="1-Day Tour">1일 코스</div>
+        <div class="tour-emoji">🏛️</div>
+        <div class="tour-name" data-ko="역사 투어" data-en="Seattle History Tour">역사 투어</div>
+        <div class="tour-en">Seattle History</div>
+        <div class="tour-meta">
+          <span class="tour-tag" data-ko="8~9시간" data-en="8–9 hrs">8~9시간</span>
+          <span class="tour-tag" data-ko="기관·학생" data-en="Org / Students">기관·학생</span>
+        </div>
+        <div class="tour-desc" data-ko="원주민 역사부터 골드러시, 이민 역사, 테크 혁명까지 — 시애틀 수천 년의 역사를 현장에서 체험합니다." data-en="From Native history and the Gold Rush to immigration and the tech revolution — thousands of years of Seattle history at the source.">원주민 역사부터 골드러시, 이민 역사, 테크 혁명까지 — 시애틀 수천 년의 역사를 현장에서 체험합니다.</div>
+        <div class="tour-route" data-ko="A. 통사: Pioneer Sq → Klondike Museum → ID → MoPOP → 이소룡 묘&#10;B. 원주민: Daybreak Star → Burke Museum → Chief Seattle 현장&#10;C. 테크: 아마존 → 보잉 → 마이크로소프트" data-en="A. Full History: Pioneer Sq → Klondike Museum → ID → MoPOP → Bruce Lee's Grave&#10;B. Native: Daybreak Star → Burke Museum → Chief Seattle Site&#10;C. Tech: Amazon → Boeing → Microsoft">A. 통사: Pioneer Sq → Klondike Museum → ID → MoPOP → 이소룡 묘
+B. 원주민: Daybreak Star → Burke Museum
+C. 테크: 아마존 → 보잉 → 마이크로소프트</div>
+      </div>
+
+      <!-- 코스 4 -->
+      <div class="tour-card" data-days="1">
+        <div class="day-badge badge-1day" data-ko="1일 코스" data-en="1-Day Tour">1일 코스</div>
+        <div class="tour-emoji">🌿</div>
+        <div class="tour-name" data-ko="자연 힐링 투어" data-en="Nature Healing Tour">자연 힐링 투어</div>
+        <div class="tour-en">Nature Healing</div>
+        <div class="tour-meta">
+          <span class="tour-tag" data-ko="7~8시간" data-en="7–8 hrs">7~8시간</span>
+          <span class="tour-tag" data-ko="힐링·수련" data-en="Healing / Retreat">힐링·수련</span>
+        </div>
+        <div class="tour-desc" data-ko="시애틀의 또 다른 얼굴, 숲과 바다. 걷고 쉬고 바라보는 시간으로 구성합니다." data-en="The other face of Seattle — forests and sea. A tour built around walking, resting, and taking in the scenery.">시애틀의 또 다른 얼굴, 숲과 바다. 걷고 쉬고 바라보는 시간으로 구성합니다.</div>
+        <div class="tour-route" data-ko="Discovery Park → Alki Beach → Green Lake → Arboretum → Kerry Park 황혼" data-en="Discovery Park → Alki Beach → Green Lake → Arboretum → Kerry Park Sunset">Discovery Park → Alki Beach → Green Lake → Arboretum → Kerry Park 황혼</div>
+      </div>
+
+      <!-- 코스 5 -->
+      <div class="tour-card featured" data-days="1">
+        <div class="day-badge badge-1day" data-ko="1일 코스" data-en="1-Day Tour">1일 코스</div>
+        <div class="tour-emoji">🌆</div>
+        <div class="tour-name" data-ko="자연 + 도시 콤보" data-en="Nature + City Combo">자연 + 도시 콤보</div>
+        <div class="tour-en">Best of Both</div>
+        <div class="tour-meta">
+          <span class="tour-tag" data-ko="9~10시간" data-en="9–10 hrs">9~10시간</span>
+          <span class="tour-tag" data-ko="단체 추천" data-en="Group Favorite">단체 추천</span>
+        </div>
+        <div class="tour-desc" data-ko="도시·자연·야경을 하루에 모두 담은 올인원 코스. 단체 관광의 정석입니다." data-en="City, nature, and night views all in one day. The definitive group tour.">도시·자연·야경을 하루에 모두 담은 올인원 코스. 단체 관광의 정석입니다.</div>
+        <div class="tour-route" data-ko="파이크 플레이스 → 점심 → Discovery Park → Alki Beach → Fremont → Kerry Park 야경" data-en="Pike Place Market → Lunch → Discovery Park → Alki Beach → Fremont → Kerry Park Night View">파이크 플레이스 → 점심 → Discovery Park → Alki Beach → Fremont → Kerry Park 야경</div>
+      </div>
+
+      <!-- 코스 7 -->
+      <div class="tour-card" data-days="1">
+        <div class="day-badge badge-1day" data-ko="1일 코스" data-en="1-Day Tour">1일 코스</div>
+        <div class="tour-emoji">👨‍👩‍👧</div>
+        <div class="tour-name" data-ko="가족 · 어린이 교육 투어" data-en="Family & Children's Tour">가족 · 어린이 교육 투어</div>
+        <div class="tour-en">Family & School</div>
+        <div class="tour-meta">
+          <span class="tour-tag" data-ko="7~8시간" data-en="7–8 hrs">7~8시간</span>
+          <span class="tour-tag" data-ko="가족·학교" data-en="Family / School">가족·학교</span>
+        </div>
+        <div class="tour-desc" data-ko="아이들이 집중하고 부모도 새로 배우는 교육형 투어. 퀴즈·탐험지도로 특별한 경험을 만듭니다." data-en="An educational tour where kids stay engaged and parents learn something new too. Quizzes and explorer maps make it special.">아이들이 집중하고 부모도 새로 배우는 교육형 투어. 퀴즈·탐험지도로 특별한 경험을 만듭니다.</div>
+        <div class="tour-route" data-ko="Pacific Science Center · Museum of Flight · Woodland Park Zoo · Seattle Aquarium · Chihuly Garden · Burke Museum 중 선택" data-en="Select from: Pacific Science Center · Museum of Flight · Woodland Park Zoo · Seattle Aquarium · Chihuly Garden · Burke Museum">Pacific Science Center · Museum of Flight · Woodland Park Zoo · Seattle Aquarium · Chihuly Garden · Burke Museum 중 선택</div>
+        <div class="tour-option" data-ko="★ 어린이 탐험 퀴즈 & 스티커 지도 제공" data-en="★ Children's Explorer Quiz & Sticker Map Included">★ 어린이 탐험 퀴즈 & 스티커 지도 제공</div>
+      </div>
+
+      <!-- 코스 8 -->
+      <div class="tour-card" data-days="1">
+        <div class="day-badge badge-1day" data-ko="1일 코스" data-en="1-Day Tour">1일 코스</div>
+        <div class="tour-emoji">👴</div>
+        <div class="tour-name" data-ko="시니어 투어" data-en="Senior Tour">시니어 투어</div>
+        <div class="tour-en">Senior Comfort Tour</div>
+        <div class="tour-meta">
+          <span class="tour-tag" data-ko="6~7시간" data-en="6–7 hrs">6~7시간</span>
+          <span class="tour-tag" data-ko="시니어 특화" data-en="Senior-Focused">시니어 특화</span>
+        </div>
+        <div class="tour-desc" data-ko="이동 거리 최소화, 착석 중심, 화장실 동선 확보. 편안하고 여유롭게 시애틀을 즐기는 코스입니다." data-en="Minimal walking, seated viewing, accessible restrooms along the route. A relaxed way to enjoy Seattle.">이동 거리 최소화, 착석 중심, 화장실 동선 확보. 편안하고 여유롭게 시애틀을 즐기는 코스입니다.</div>
+        <div class="tour-route" data-ko="파이크 플레이스(실내) → 워터프런트 카페 → 케리 공원(차량) → 점심 → 아마존 스피어스 → Capitol Hill 카페" data-en="Pike Place (indoor) → Waterfront Café → Kerry Park (by car) → Lunch → Amazon Spheres → Capitol Hill Café">파이크 플레이스(실내) → 워터프런트 카페 → 케리 공원(차량) → 점심 → 아마존 스피어스 → Capitol Hill 카페</div>
+      </div>
+
+      <!-- 코스 9 — 쇼핑 -->
+      <div class="tour-card" data-days="1">
+        <div class="day-badge badge-1day" data-ko="1일 코스" data-en="1-Day Tour">1일 코스</div>
+        <div class="tour-emoji">🛍️</div>
+        <div class="tour-name" data-ko="쇼핑 & 미식 투어" data-en="Shopping & Dining Tour">쇼핑 & 미식 투어</div>
+        <div class="tour-en">Shopping & Dining</div>
+        <div class="tour-meta">
+          <span class="tour-tag" data-ko="6~8시간" data-en="6–8 hrs">6~8시간</span>
+          <span class="tour-tag" data-ko="전 연령" data-en="All Ages">전 연령</span>
+        </div>
+        <div class="tour-desc" data-ko="시애틀 발상지 노드스트롬, 프리미엄 아울렛, 한인 마트까지 — 쇼핑과 맛집을 동시에 즐기는 코스입니다." data-en="From Nordstrom (founded in Seattle) and premium outlets to Korean markets — shopping and dining combined.">시애틀 발상지 노드스트롬, 프리미엄 아울렛, 한인 마트까지 — 쇼핑과 맛집을 동시에 즐기는 코스입니다.</div>
+        <div class="tour-route" data-ko="노드스트롬 플래그십 → 파이크 플레이스 아티산 쇼핑 → 벨뷰 스퀘어 or North Bend 프리미엄 아울렛 → 한인 맛집" data-en="Nordstrom Flagship → Pike Place Artisan Shopping → Bellevue Square or North Bend Premium Outlets → Korean Dining">노드스트롬 플래그십 → 파이크 플레이스 아티산 쇼핑 → 벨뷰 스퀘어 or North Bend 프리미엄 아울렛 → 한인 맛집</div>
+        <div class="tour-option" data-ko="★ 옵션: Uwajimaya · H-Mart · Costco 체험" data-en="★ Option: Uwajimaya · H-Mart · Costco Experience">★ 옵션: Uwajimaya · H-Mart · Costco 체험</div>
+      </div>
+
+
+      <!-- 1박2일 — 코스 A -->
+      <div class="tour-card featured" data-days="2">
+        <div class="day-badge badge-2day" data-ko="1박2일" data-en="Overnight · 2 Days">1박2일</div>
+        <div class="tour-emoji">🏔️</div>
+        <div class="tour-name" data-ko="레이니어 & 스노콸미 자연 투어" data-en="Rainier & Snoqualmie Nature Tour">레이니어 & 스노콸미 자연 투어</div>
+        <div class="tour-en">Mt. Rainier + Snoqualmie Falls</div>
+        <div class="tour-meta">
+          <span class="tour-tag" data-ko="1박2일" data-en="2 Days / 1 Night">1박2일</span>
+          <span class="tour-tag" data-ko="자연·힐링" data-en="Nature / Healing">자연·힐링</span>
+        </div>
+        <div class="tour-desc" data-ko="시애틀 시내와 대자연을 모두 담는 가장 인기 있는 1박2일 코스. 레이니어 만년설과 스노콸미 폭포를 함께 경험합니다." data-en="The most popular overnight itinerary combining downtown Seattle with the great outdoors — Rainier's glaciers and Snoqualmie Falls.">시애틀 시내와 대자연을 모두 담는 가장 인기 있는 1박2일 코스. 레이니어 만년설과 스노콸미 폭포를 함께 경험합니다.</div>
+        <div class="day-itinerary-label" data-ko="1일차" data-en="Day 1">1일차</div>
+        <div class="day-itinerary" data-ko="파이크 플레이스 → 스페이스 니들 → 아마존 스피어스 → Kerry Park 야경 → 숙박" data-en="Pike Place Market → Space Needle → Amazon Spheres → Kerry Park Night View → Hotel">파이크 플레이스 → 스페이스 니들 → 아마존 스피어스 → Kerry Park 야경 → 숙박</div>
+        <div class="day-itinerary-label" data-ko="2일차" data-en="Day 2">2일차</div>
+        <div class="day-itinerary" data-ko="스노콸미 폭포 → Mt. Rainier 국립공원 (Paradise) → 빙하 트레일 → 귀환" data-en="Snoqualmie Falls → Mt. Rainier NP (Paradise) → Glacier Trail → Return">스노콸미 폭포 → Mt. Rainier 국립공원 (Paradise) → 빙하 트레일 → 귀환</div>
+      </div>
+
+      <!-- 1박2일 — 코스 B -->
+      <div class="tour-card" data-days="2">
+        <div class="day-badge badge-2day" data-ko="1박2일" data-en="Overnight · 2 Days">1박2일</div>
+        <div class="tour-emoji">🌉</div>
+        <div class="tour-name" data-ko="디셉션패스 & 아일랜드 탐험" data-en="Deception Pass & Islands Tour">디셉션패스 & 아일랜드 탐험</div>
+        <div class="tour-en">Deception Pass + La Conner</div>
+        <div class="tour-meta">
+          <span class="tour-tag" data-ko="1박2일" data-en="2 Days / 1 Night">1박2일</span>
+          <span class="tour-tag" data-ko="절경·드라이브" data-en="Scenic Drive">절경·드라이브</span>
+        </div>
+        <div class="tour-desc" data-ko="워싱턴주 최고의 절경 다리 디셉션패스, 튤립 마을 라 콘너, 아나코르테스 항구까지 — 태평양 노스웨스트의 진수를 달립니다." data-en="Washington's most spectacular bridge at Deception Pass, the tulip village of La Conner, and Anacortes Harbor — the essence of the Pacific Northwest.">워싱턴주 최고의 절경 다리 디셉션패스, 튤립 마을 라 콘너, 아나코르테스 항구까지 — 태평양 노스웨스트의 진수를 달립니다.</div>
+        <div class="day-itinerary-label" data-ko="1일차" data-en="Day 1">1일차</div>
+        <div class="day-itinerary" data-ko="시애틀 시내 투어 (스토리 or 클래식 선택) → 에버렛 → 숙박" data-en="Seattle City Tour (Stories or Classic) → Everett → Hotel">시애틀 시내 투어 (스토리 or 클래식 선택) → 에버렛 → 숙박</div>
+        <div class="day-itinerary-label" data-ko="2일차" data-en="Day 2">2일차</div>
+        <div class="day-itinerary" data-ko="라 콘너 → 아나코르테스 → 디셉션패스 주립공원 → 옥하버 → 귀환" data-en="La Conner → Anacortes → Deception Pass State Park → Oak Harbor → Return">라 콘너 → 아나코르테스 → 디셉션패스 주립공원 → 옥하버 → 귀환</div>
+      </div>
+
+      <!-- 1박2일 — 코스 C -->
+      <div class="tour-card" data-days="2">
+        <div class="day-badge badge-2day" data-ko="1박2일" data-en="Overnight · 2 Days">1박2일</div>
+        <div class="tour-emoji">🏝️</div>
+        <div class="tour-name" data-ko="올림픽 반도 & 후안 데 푸카" data-en="Olympic Peninsula & Strait of Juan de Fuca">올림픽 반도 & 후안 데 푸카</div>
+        <div class="tour-en">Olympic Peninsula</div>
+        <div class="tour-meta">
+          <span class="tour-tag" data-ko="1박2일" data-en="2 Days / 1 Night">1박2일</span>
+          <span class="tour-tag" data-ko="국립공원" data-en="National Park">국립공원</span>
+        </div>
+        <div class="tour-desc" data-ko="페리를 타고 바다를 건너 올림픽 국립공원으로. 허리케인 리지의 산악 전망과 후안 데 푸카 해협의 석양이 압권입니다." data-en="Cross the water by ferry to Olympic National Park. The mountain views from Hurricane Ridge and sunset over the Strait of Juan de Fuca are unforgettable.">페리를 타고 바다를 건너 올림픽 국립공원으로. 허리케인 리지의 산악 전망과 후안 데 푸카 해협의 석양이 압권입니다.</div>
+        <div class="day-itinerary-label" data-ko="1일차" data-en="Day 1">1일차</div>
+        <div class="day-itinerary" data-ko="시애틀 시내 → Bainbridge 페리 → Port Angeles → 숙박" data-en="Seattle Downtown → Bainbridge Ferry → Port Angeles → Hotel">시애틀 시내 → Bainbridge 페리 → Port Angeles → 숙박</div>
+        <div class="day-itinerary-label" data-ko="2일차" data-en="Day 2">2일차</div>
+        <div class="day-itinerary" data-ko="허리케인 리지 (산악 전망) → 올림픽 국립공원 열대우림 → 후안 데 푸카 해협 석양 → 귀환" data-en="Hurricane Ridge (mountain views) → Hoh Rainforest → Strait of Juan de Fuca Sunset → Return">허리케인 리지 (산악 전망) → 올림픽 국립공원 열대우림 → 후안 데 푸카 해협 석양 → 귀환</div>
+      </div>
+
+    </div>
+
+    <!-- 애드온 옵션 -->
+    <div style="margin-top:28px;">
+      <div style="font-size:0.8rem;font-weight:700;color:var(--navy);margin-bottom:12px;" data-ko="➕ 어떤 코스에도 추가 가능한 옵션 블록" data-en="➕ Add-On Options Available with Any Course">➕ 어떤 코스에도 추가 가능한 옵션 블록</div>
+      <div class="addons-grid">
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=Kerry+Park+Seattle+night+view" target="_blank" rel="noopener"><div class="addon-item" data-ko="🌃 야경 케리 공원" data-en="🌃 Kerry Park Night View">🌃 야경 케리 공원</div></a>
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=Bruce+Lee+grave+Seattle" target="_blank" rel="noopener"><div class="addon-item" data-ko="🥋 이소룡 묘 성지순례" data-en="🥋 Bruce Lee's Grave">🥋 이소룡 묘 성지순례</div></a>
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=Jimi+Hendrix+grave+Seattle" target="_blank" rel="noopener"><div class="addon-item" data-ko="🎸 지미 헨드릭스 묘" data-en="🎸 Jimi Hendrix's Grave">🎸 지미 헨드릭스 묘</div></a>
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=Kurt+Cobain+memorial+Seattle" target="_blank" rel="noopener"><div class="addon-item" data-ko="🎤 커트 코베인 기념지" data-en="🎤 Kurt Cobain Memorial">🎤 커트 코베인 기념지</div></a>
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=Bainbridge+Island+ferry+Seattle" target="_blank" rel="noopener"><div class="addon-item" data-ko="⛴️ 페리 체험 (Bainbridge)" data-en="⛴️ Ferry (Bainbridge Island)">⛴️ 페리 체험 (Bainbridge)</div></a>
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=Boeing+factory+tour+Everett+Seattle" target="_blank" rel="noopener"><div class="addon-item" data-ko="✈️ 보잉 팩토리 투어" data-en="✈️ Boeing Factory Tour">✈️ 보잉 팩토리 투어</div></a>
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=Microsoft+campus+Redmond+tour" target="_blank" rel="noopener"><div class="addon-item" data-ko="💻 마이크로소프트 본사" data-en="💻 Microsoft Campus">💻 마이크로소프트 본사</div></a>
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=Tulalip+casino+resort+Washington" target="_blank" rel="noopener"><div class="addon-item" data-ko="🎰 Tulalip 카지노" data-en="🎰 Tulalip Casino Resort">🎰 Tulalip 카지노</div></a>
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=Korean+restaurants+Seattle" target="_blank" rel="noopener"><div class="addon-item" data-ko="🍜 한인 맛집 투어" data-en="🍜 Korean Restaurant Tour">🍜 한인 맛집 투어</div></a>
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=North+Bend+premium+outlets+Seattle" target="_blank" rel="noopener"><div class="addon-item" data-ko="🛍️ North Bend 아울렛" data-en="🛍️ North Bend Premium Outlets">🛍️ North Bend 아울렛</div></a>
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=UW+Suzzallo+Library+Seattle" target="_blank" rel="noopener"><div class="addon-item" data-ko="📚 UW 수잘로 도서관 (해리포터 도서관)" data-en="📚 UW Suzzallo Library (Harry Potter Library)">📚 UW 수잘로 도서관 (해리포터 도서관)</div></a>
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=Sleepless+in+Seattle+houseboat+Lake+Union" target="_blank" rel="noopener"><div class="addon-item" data-ko="🚢 수상 하우스 (잠 못 이루는 시애틀)" data-en="🚢 Houseboat — Sleepless in Seattle">🚢 수상 하우스 (잠 못 이루는 시애틀)</div></a>
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=Ballard+Locks+Seattle+salmon+ladder" target="_blank" rel="noopener"><div class="addon-item" data-ko="🐟 Ballard Locks (연어 사다리)" data-en="🐟 Ballard Locks (Salmon Ladder)">🐟 Ballard Locks (연어 사다리)</div></a>
+        <a class="addon-link" href="https://www.youtube.com/results?search_query=Fremont+Troll+Seattle" target="_blank" rel="noopener"><div class="addon-item" data-ko="👹 Fremont Troll & 프리몬트 산책" data-en="👹 Fremont Troll & Neighborhood Walk">👹 Fremont Troll & 프리몬트 산책</div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 가격 -->
+<section>
+  <div class="container">
+    <div class="section-label" data-ko="PRICING" data-en="PRICING">PRICING</div>
+    <h2 class="section-title" data-ko="투어 요금 안내" data-en="Tour Pricing">투어 요금 안내</h2>
+    <p class="section-desc" data-ko="문의 후 그룹 규모와 코스에 맞는 맞춤 견적을 드립니다" data-en="Contact us for a custom quote tailored to your group size and chosen course">문의 후 그룹 규모와 코스에 맞는 맞춤 견적을 드립니다</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-group" data-ko="소그룹 1~5명" data-en="Small Group 1–5">소그룹 1~5명</div>
+        <div class="price-amount">$200~250</div>
+        <div class="price-unit" data-ko="/ 일 (고정)" data-en="/ day (flat)">&frasl; 일 (고정)</div>
+      </div>
+      <div class="price-card featured">
+        <div class="price-group" data-ko="단체 6~15명" data-en="Group 6–15">단체 6~15명</div>
+        <div class="price-amount">$300~400</div>
+        <div class="price-unit" data-ko="/ 일 (고정)" data-en="/ day (flat)">&frasl; 일 (고정)</div>
+      </div>
+      <div class="price-card">
+        <div class="price-group" data-ko="단체 16명 이상" data-en="Group 16+">단체 16명 이상</div>
+        <div class="price-amount">$25~35</div>
+        <div class="price-unit" data-ko="/ 인 (인당)" data-en="/ person">&frasl; 인</div>
+      </div>
+      <div class="price-card">
+        <div class="price-group" data-ko="반일 코스 (4시간)" data-en="Half-Day (4 hrs)">반일 코스 (4시간)</div>
+        <div class="price-amount">60%</div>
+        <div class="price-unit" data-ko="위 요금 기준" data-en="of above rates" style="font-size:0.7rem;" >위 요금 기준</div>
+      </div>
+    </div>
+
+    <div class="price-note" style="background:white;border:1px solid var(--border);border-radius:12px;padding:16px 20px;">
+      <strong data-ko="포함 사항:" data-en="Included:">포함 사항:</strong>
+      <span data-ko=" 가이드비 · 한영 통역 · 맞춤 일정표 · 사전 자료 발송" data-en=" Guide fee · Korean–English interpretation · Custom itinerary · Pre-tour materials"> 가이드비 · 한영 통역 · 맞춤 일정표 · 사전 자료 발송</span><br>
+      <strong data-ko="별도 협의:" data-en="Not Included (discuss separately):">별도 협의:</strong>
+      <span data-ko=" 교통비 · 식비 · 입장료" data-en=" Transportation · Meals · Admission fees"> 교통비 · 식비 · 입장료</span><br>
+      <strong data-ko="팁:" data-en="Gratuity:">팁:</strong>
+      <span data-ko=" 자율 (참고 기준 $15~20/인)" data-en=" Discretionary (reference: $15–20/person)"> 자율 (참고 기준 $15~20/인)</span><br>
+      <strong data-ko="결제:" data-en="Payment:">결제:</strong>
+      <span data-ko=" Zelle · Venmo · Cash" data-en=" Zelle · Venmo · Cash"> Zelle · Venmo · Cash</span>
+    </div>
+  </div>
+</section>
+
+<!-- 취소 정책 -->
+<section style="background:white;">
+  <div class="container">
+    <div class="section-label" data-ko="CANCELLATION POLICY" data-en="CANCELLATION POLICY">CANCELLATION POLICY</div>
+    <h2 class="section-title" data-ko="취소 및 환불 정책" data-en="Cancellation & Refund Policy">취소 및 환불 정책</h2>
+    <div class="policy-grid">
+      <div class="policy-item">
+        <div style="font-size:1.5rem;margin-bottom:6px;">✅</div>
+        <div class="policy-timing" data-ko="7일 전 이상" data-en="7+ Days Before">7일 전 이상</div>
+        <div class="policy-action" data-ko="전액 환불" data-en="Full Refund">전액 환불</div>
+      </div>
+      <div class="policy-item">
+        <div style="font-size:1.5rem;margin-bottom:6px;">⚠️</div>
+        <div class="policy-timing" data-ko="3~6일 전" data-en="3–6 Days Before">3~6일 전</div>
+        <div class="policy-action" data-ko="예약금 환불 불가" data-en="Deposit Non-Refundable">예약금 환불 불가</div>
+      </div>
+      <div class="policy-item">
+        <div style="font-size:1.5rem;margin-bottom:6px;">🔶</div>
+        <div class="policy-timing" data-ko="2일 이내" data-en="Within 2 Days">2일 이내</div>
+        <div class="policy-action" data-ko="가이드비 50% 청구" data-en="50% Guide Fee Charged">가이드비 50% 청구</div>
+      </div>
+      <div class="policy-item">
+        <div style="font-size:1.5rem;margin-bottom:6px;">❌</div>
+        <div class="policy-timing" data-ko="당일 취소 / 노쇼" data-en="Same-Day / No-Show">당일 취소 / 노쇼</div>
+        <div class="policy-action" data-ko="가이드비 전액 청구" data-en="Full Guide Fee Charged">가이드비 전액 청구</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 투어 문의 신청서 -->
+<section id="inquiry">
+  <div class="container">
+    <div class="section-label" data-ko="TOUR INQUIRY" data-en="TOUR INQUIRY">TOUR INQUIRY</div>
+    <h2 class="section-title" data-ko="투어 문의 신청" data-en="Tour Inquiry Form">투어 문의 신청</h2>
+    <p class="section-desc" data-ko="신청 후 48시간 내에 맞춤 견적으로 회신드립니다" data-en="We'll respond with a custom quote within 48 hours of your inquiry">신청 후 48시간 내에 맞춤 견적으로 회신드립니다</p>
+
+    <div class="form-wrap">
+      <form onsubmit="submitForm(event)">
+
+        <!-- 1. 단체 정보 -->
+        <div class="form-section-title" data-ko="① 단체 기본 정보" data-en="① Group Information">① 단체 기본 정보</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label"><span data-ko="단체명 / 회사명" data-en="Group / Organization Name">단체명 / 회사명</span> <span class="req">*</span></label>
+            <input class="form-input" type="text" name="groupName" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span data-ko="담당자 이름" data-en="Contact Person">담당자 이름</span> <span class="req">*</span></label>
+            <input class="form-input" type="text" name="contactName" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label"><span data-ko="연락처 (전화)" data-en="Phone Number">연락처 (전화)</span> <span class="req">*</span></label>
+            <input class="form-input" type="tel" name="phone" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span data-ko="이메일" data-en="Email">이메일</span> <span class="req">*</span></label>
+            <input class="form-input" type="email" name="email" required>
+          </div>
+        </div>
+
+        <!-- 2. 투어 일정 -->
+        <div class="form-section-title" data-ko="② 투어 희망 일정" data-en="② Preferred Tour Date">② 투어 희망 일정</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label"><span data-ko="1순위 날짜" data-en="1st Choice Date">1순위 날짜</span> <span class="req">*</span></label>
+            <input class="form-input" type="date" name="date1" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-ko="2순위 날짜 (선택)" data-en="2nd Choice Date (optional)">2순위 날짜 (선택)</label>
+            <input class="form-input" type="date" name="date2">
+          </div>
+        </div>
+
+        <!-- 3. 인원 -->
+        <div class="form-section-title" data-ko="③ 참가 인원" data-en="③ Number of Participants">③ 참가 인원</div>
+        <div class="form-row" style="grid-template-columns:1fr 1fr 1fr;">
+          <div class="form-group">
+            <label class="form-label"><span data-ko="성인" data-en="Adults">성인</span> <span class="req">*</span></label>
+            <input class="form-input" type="number" name="adults" min="1" placeholder="0" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-ko="어린이" data-en="Children">어린이</label>
+            <input class="form-input" type="number" name="children" min="0" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-ko="시니어 (65+)" data-en="Seniors (65+)">시니어 (65+)</label>
+            <input class="form-input" type="number" name="seniors" min="0" placeholder="0">
+          </div>
+        </div>
+
+        <!-- 4. 단체 유형 -->
+        <div class="form-section-title" data-ko="④ 단체 유형" data-en="④ Group Type">④ 단체 유형</div>
+        <div class="form-group">
+          <select class="form-select" name="groupType">
+            <option value="" data-ko="선택해주세요" data-en="Please select">선택해주세요</option>
+            <option value="church" data-ko="교회 단체" data-en="Church Group">교회 단체</option>
+            <option value="corp" data-ko="기업 · 기관" data-en="Corporate / Organization">기업 · 기관</option>
+            <option value="family" data-ko="가족 · 소그룹" data-en="Family / Small Group">가족 · 소그룹</option>
+            <option value="senior" data-ko="시니어" data-en="Senior Group">시니어</option>
+            <option value="other" data-ko="기타" data-en="Other">기타</option>
+          </select>
+        </div>
+
+        <!-- 5. 코스 선택 -->
+        <div class="form-section-title" data-ko="⑤ 관심 코스 (복수 선택 가능)" data-en="⑤ Interested Courses (multiple OK)">⑤ 관심 코스 (복수 선택 가능)</div>
+        <div class="course-grid">
+          <label><input type="checkbox" class="course-check" name="course" value="classic"><label class="course-label" data-ko="🏙️ 도시 정수" data-en="🏙️ Classic Seattle">🏙️ 도시 정수</label></label>
+          <label><input type="checkbox" class="course-check" name="course" value="story"><label class="course-label" data-ko="📖 스토리" data-en="📖 Seattle Stories">📖 스토리</label></label>
+          <label><input type="checkbox" class="course-check" name="course" value="history"><label class="course-label" data-ko="🏛️ 역사" data-en="🏛️ History">🏛️ 역사</label></label>
+          <label><input type="checkbox" class="course-check" name="course" value="nature"><label class="course-label" data-ko="🌿 자연 힐링" data-en="🌿 Nature Healing">🌿 자연 힐링</label></label>
+          <label><input type="checkbox" class="course-check" name="course" value="combo"><label class="course-label" data-ko="🌆 자연+도시" data-en="🌆 Nature+City">🌆 자연+도시</label></label>
+<label><input type="checkbox" class="course-check" name="course" value="family"><label class="course-label" data-ko="👨‍👩‍👧 가족·어린이" data-en="👨‍👩‍👧 Family & Kids">👨‍👩‍👧 가족·어린이</label></label>
+          <label><input type="checkbox" class="course-check" name="course" value="senior"><label class="course-label" data-ko="👴 시니어" data-en="👴 Senior">👴 시니어</label></label>
+          <label><input type="checkbox" class="course-check" name="course" value="shopping"><label class="course-label" data-ko="🛍️ 쇼핑&미식" data-en="🛍️ Shopping & Dining">🛍️ 쇼핑&미식</label></label>
+        </div>
+        <div style="font-size:0.75rem;font-weight:700;color:#10b981;margin:10px 0 6px;letter-spacing:0.5px;" data-ko="🌙 1박2일 코스" data-en="🌙 Overnight (2-Day) Courses">🌙 1박2일 코스</div>
+        <div class="course-grid">
+          <label><input type="checkbox" class="course-check" name="course" value="rainier"><label class="course-label" data-ko="🏔️ 레이니어&스노콸미" data-en="🏔️ Rainier & Snoqualmie">🏔️ 레이니어&스노콸미</label></label>
+          <label><input type="checkbox" class="course-check" name="course" value="deception"><label class="course-label" data-ko="🌉 디셉션패스&아일랜드" data-en="🌉 Deception Pass">🌉 디셉션패스&아일랜드</label></label>
+          <label><input type="checkbox" class="course-check" name="course" value="olympic"><label class="course-label" data-ko="🏝️ 올림픽 반도" data-en="🏝️ Olympic Peninsula">🏝️ 올림픽 반도</label></label>
+        </div>
+
+        <!-- 6. 포함 희망 -->
+        <div class="form-section-title" data-ko="⑥ 포함 희망 사항" data-en="⑥ Desired Inclusions">⑥ 포함 희망 사항</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;cursor:pointer;"><input type="checkbox" name="include" value="transport"> <span data-ko="교통 (차량)" data-en="Transportation">교통 (차량)</span></label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;cursor:pointer;"><input type="checkbox" name="include" value="lunch"> <span data-ko="점심 식사" data-en="Lunch">점심 식사</span></label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;cursor:pointer;"><input type="checkbox" name="include" value="dinner"> <span data-ko="저녁 식사" data-en="Dinner">저녁 식사</span></label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;cursor:pointer;"><input type="checkbox" name="include" value="admission"> <span data-ko="입장료" data-en="Admission Fees">입장료</span></label>
+        </div>
+
+        <!-- 7. 참여자 명단 -->
+        <div class="form-section-title" data-ko="⑦ 참여자 명단" data-en="⑦ Participant List">⑦ 참여자 명단</div>
+        <div style="background:linear-gradient(135deg,#eff6ff,#fff);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;">
+          <div style="font-size:0.88rem;font-weight:700;color:var(--navy);margin-bottom:5px;" data-ko="🎁 시애틀 가이드를 선물로 보내드립니다" data-en="🎁 We'll Send Each Participant a Seattle Guide as a Gift">🎁 시애틀 가이드를 선물로 보내드립니다</div>
+          <div style="font-size:0.8rem;color:#475569;line-height:1.7;" data-ko="투어 오시기 전, 참여자 한 분 한 분께 시애틀 현지 가이드 앱을 선물로 발송해 드립니다. 병원·맛집·교통·쇼핑 등 시애틀 생활 정보가 담긴 앱으로, 도착 전부터 시애틀이 익숙해집니다." data-en="Before your tour, we'll send each participant our Seattle local guide app as a personal gift — covering hospitals, restaurants, transit, shopping, and more, so everyone feels at home in Seattle before they even arrive.">투어 오시기 전, 참여자 한 분 한 분께 시애틀 현지 가이드 앱을 선물로 발송해 드립니다. 병원·맛집·교통·쇼핑 등 시애틀 생활 정보가 담긴 앱으로, 도착 전부터 시애틀이 익숙해집니다.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:0.4fr 1fr 1.4fr 1fr auto;gap:6px;margin-bottom:6px;padding:0 2px;">
+          <span style="font-size:0.72rem;color:var(--muted);font-weight:600;">#</span>
+          <span style="font-size:0.72rem;color:var(--muted);font-weight:600;" data-ko="이름" data-en="Name">이름</span>
+          <span style="font-size:0.72rem;color:var(--muted);font-weight:600;" data-ko="이메일" data-en="Email">이메일</span>
+          <span style="font-size:0.72rem;color:var(--muted);font-weight:600;" data-ko="연령대" data-en="Age Group">연령대</span>
+          <span></span>
+        </div>
+        <div id="participantList">
+          <div class="participant-row" style="grid-template-columns:0.4fr 1fr 1.4fr 1fr auto;">
+            <span class="participant-num">1.</span>
+            <input class="form-input" type="text" placeholder="이름 / Name" style="margin-bottom:0;">
+            <input class="form-input" type="email" placeholder="이메일 / Email" style="margin-bottom:0;">
+            <select class="form-select" style="margin-bottom:0;font-size:0.8rem;">
+              <option value="" data-ko="연령대" data-en="Age">연령대</option>
+              <option value="10s" data-ko="10대 (2010년대생)" data-en="Teens (2010s)">10대</option>
+              <option value="20s" data-ko="20대 (2000년대생)" data-en="20s (2000s)">20대</option>
+              <option value="30s" data-ko="30대 (1990년대생)" data-en="30s (1990s)">30대</option>
+              <option value="40s" data-ko="40대 (1980년대생)" data-en="40s (1980s)">40대</option>
+              <option value="50s" data-ko="50대 (1970년대생)" data-en="50s (1970s)">50대</option>
+              <option value="60s" data-ko="60대 (1960년대생)" data-en="60s (1960s)">60대</option>
+              <option value="70s+" data-ko="70대 이상" data-en="70s+">70대+</option>
+            </select>
+            <button type="button" class="remove-btn" onclick="removeParticipant(this)" style="visibility:hidden;">✕</button>
+          </div>
+        </div>
+        <button type="button" class="add-participant" onclick="addParticipant()" data-ko="+ 참여자 추가" data-en="+ Add Participant">+ 참여자 추가</button>
+
+        <!-- 8. 특별 요청 -->
+        <div class="form-section-title" data-ko="⑧ 특별 요청 사항" data-en="⑧ Special Requests">⑧ 특별 요청 사항</div>
+        <div class="form-group">
+          <textarea class="form-textarea" name="requests" data-ko-placeholder="휠체어 필요, 음식 알레르기, 특별히 원하는 장소, 추가 옵션 등을 적어주세요." data-en-placeholder="Please note any wheelchair needs, dietary restrictions, specific places you'd like to visit, or other requests." placeholder="휠체어 필요, 음식 알레르기, 특별히 원하는 장소, 추가 옵션 등을 적어주세요."></textarea>
+        </div>
+
+        <!-- 9. 동의 -->
+        <div class="form-section-title" data-ko="⑨ 동의 및 확인" data-en="⑨ Consent & Confirmation">⑨ 동의 및 확인</div>
+        <div class="policy-box" data-ko="취소 정책: 7일 전 전액환불 · 3~6일 전 예약금 환불불가 · 2일 이내 50% 청구 · 당일/노쇼 전액 청구" data-en="Cancellation Policy: Full refund 7+ days before · Deposit non-refundable 3–6 days before · 50% fee within 2 days · Full fee for same-day cancellation or no-show">취소 정책: 7일 전 전액환불 · 3~6일 전 예약금 환불불가 · 2일 이내 50% 청구 · 당일/노쇼 전액 청구</div>
+        <div class="consent-row">
+          <input type="checkbox" id="consent1" required>
+          <label for="consent1" data-ko="위 취소 정책을 확인하고 동의합니다." data-en="I have read and agree to the cancellation policy above.">위 취소 정책을 확인하고 동의합니다.</label>
+        </div>
+
+        <button type="submit" class="submit-btn" data-ko="📋 문의 신청하기 — 48시간 내 회신" data-en="📋 Submit Inquiry — Response within 48 hours">📋 문의 신청하기 — 48시간 내 회신</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 푸터 -->
+<footer>
+  <strong>Paul Kim · 폴킴 시애틀 투어 가이드</strong><br>
+  <a href="mailto:kchurch911@gmail.com">kchurch911@gmail.com</a><br>
+  <span data-ko="사전 예약제 운영 · 한국어 · 영어 가이드 · 단체 규모 및 일정 맞춤 설계" data-en="By reservation only · Korean & English · Custom itinerary for every group size">사전 예약제 운영 · 한국어 · 영어 가이드 · 단체 규모 및 일정 맞춤 설계</span><br>
+  <span style="font-size:0.75rem;opacity:0.6;margin-top:6px;display:block;">© 2026 Paul Kim Seattle Tour Guide</span>
+</footer>
+
+<script>
+// ── 언어 토글 ──
+let lang = (navigator.language || 'ko').startsWith('ko') ? 'ko' : 'en';
+
+function applyLang(l) {
+  lang = l;
+  document.documentElement.lang = l;
+  document.getElementById('langBtn').textContent = l === 'ko' ? '🌐 English' : '🌐 한국어';
+
+  document.querySelectorAll('[data-ko][data-en]').forEach(el => {
+    const val = el.getAttribute('data-' + l);
+    if (!val) return;
+    if (val.includes('<br>') || val.includes('<span')) el.innerHTML = val;
+    else el.textContent = val;
+  });
+
+  // placeholder 업데이트
+  document.querySelectorAll('[data-ko-placeholder]').forEach(el => {
+    el.placeholder = el.getAttribute('data-' + l + '-placeholder') || '';
+  });
+
+  // select option 업데이트
+  document.querySelectorAll('select option[data-ko]').forEach(opt => {
+    opt.textContent = opt.getAttribute('data-' + l) || opt.textContent;
+  });
+}
+
+function toggleLang() {
+  applyLang(lang === 'ko' ? 'en' : 'ko');
+}
+
+// ── 참여자 추가 ──
+function addParticipant() {
+  const list = document.getElementById('participantList');
+  const rows = list.querySelectorAll('.participant-row');
+  const num = rows.length + 1;
+  const ko = lang === 'ko';
+  const div = document.createElement('div');
+  div.className = 'participant-row';
+  div.style.gridTemplateColumns = '0.4fr 1fr 1.4fr 1fr auto';
+  div.innerHTML = `
+    <span class="participant-num">${num}.</span>
+    <input class="form-input" type="text" placeholder="${ko ? '이름' : 'Name'}" style="margin-bottom:0;">
+    <input class="form-input" type="email" placeholder="${ko ? '이메일' : 'Email'}" style="margin-bottom:0;">
+    <select class="form-select" style="margin-bottom:0;font-size:0.8rem;">
+      <option value="">${ko ? '연령대' : 'Age'}</option>
+      <option value="10s">${ko ? '10대' : 'Teens'}</option>
+      <option value="20s">${ko ? '20대' : '20s'}</option>
+      <option value="30s">${ko ? '30대' : '30s'}</option>
+      <option value="40s">${ko ? '40대' : '40s'}</option>
+      <option value="50s">${ko ? '50대' : '50s'}</option>
+      <option value="60s">${ko ? '60대' : '60s'}</option>
+      <option value="70s+">${ko ? '70대+' : '70s+'}</option>
+    </select>
+    <button type="button" class="remove-btn" onclick="removeParticipant(this)">✕</button>
+  `;
+  list.appendChild(div);
+}
+
+function removeParticipant(btn) {
+  btn.closest('.participant-row').remove();
+  document.querySelectorAll('#participantList .participant-num').forEach((el, i) => {
+    el.textContent = (i + 1) + '.';
+  });
+}
+
+// ── 투어 탭 필터 ──
+function filterDays(days, btn) {
+  document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tour-card').forEach(card => {
+    if (days === 'all') {
+      card.style.display = '';
+    } else {
+      card.style.display = (card.dataset.days === days) ? '' : 'none';
+    }
+  });
+}
+
+// ── 폼 제출 ──
+async function submitForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const submitBtn = form.querySelector('.submit-btn');
+
+  // Collect participants
+  const participants = [];
+  document.querySelectorAll('#participantList .participant-row').forEach(row => {
+    const inputs = row.querySelectorAll('input, select');
+    const name = inputs[0]?.value?.trim();
+    const email = inputs[1]?.value?.trim();
+    const ageGroup = inputs[2]?.value;
+    if (name) participants.push({ name, email, ageGroup });
+  });
+
+  // Collect selected courses
+  const addOns = [...document.querySelectorAll('.course-check:checked')].map(c => c.value);
+
+  const payload = {
+    orgName:    form.groupName?.value || '',
+    orgContact: form.contactName?.value || '',
+    orgEmail:   form.email?.value || '',
+    tourDate:   form.date1?.value || '',
+    groupSize:  (parseInt(form.adults?.value||0) + parseInt(form.children?.value||0) + parseInt(form.seniors?.value||0)) || participants.length,
+    tourType:   addOns[0] || '',
+    addOns,
+    message:    form.requests?.value || '',
+    participants,
+  };
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = lang === 'ko' ? '⏳ 전송 중…' : '⏳ Sending…';
+
+  try {
+    const res = await fetch('https://railway-up-production-def1.up.railway.app/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      submitBtn.style.background = '#16a34a';
+      submitBtn.textContent = lang === 'ko'
+        ? `✅ 신청 완료! 접수번호: ${data.refNumber} — 48시간 내 회신드립니다`
+        : `✅ Submitted! Ref: ${data.refNumber} — We'll respond within 48 hours`;
+      form.reset();
+    } else {
+      throw new Error(data.error || 'Submit failed');
+    }
+  } catch (err) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = lang === 'ko' ? '📋 문의 신청하기 — 48시간 내 회신' : '📋 Submit Inquiry — Response within 48 hours';
+    // Fallback: open mailto if server not running
+    const subject = encodeURIComponent('시애틀 투어 문의 — ' + (payload.orgName || ''));
+    const body = encodeURIComponent(
+      '담당자: ' + payload.orgContact + '\n이메일: ' + payload.orgEmail +
+      '\n희망 날짜: ' + payload.tourDate + '\n인원: ' + payload.groupSize + '명\n메모: ' + payload.message
+    );
+    window.location.href = 'mailto:kchurch911@gmail.com?subject=' + subject + '&body=' + body;
+  }
+}
+
+// 초기 언어 적용
+applyLang(lang);
+</script>
+</body>
+</html>
