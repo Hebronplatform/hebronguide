@@ -395,9 +395,29 @@
         /* Footer */
         .footer-credit {
             text-align: center;
-            padding: 20px;
+            padding: 24px 20px;
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.85rem;
+        }
+        .footer-brand {
+            display: inline-block;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .footer-brand sup {
+            font-size: 0.55rem;
+            vertical-align: super;
+            opacity: 0.8;
+        }
+        .footer-tagline {
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            margin-top: 2px;
         }
 
         @media (max-width: 400px) {
@@ -625,7 +645,12 @@ function sTabGo(sectionId, btnEl, prefix, appId) {
         </div>
 
                 <div class="footer-credit">
-            <span data-ko="시애틀지구촌교회" data-en="GMC of Greater Seattle">시애틀지구촌교회</span> | <a href="http://www.ijiguchon.org" target="_blank" style="color:rgba(255,255,255,0.8);text-decoration:none;">ijiguchon.org</a> | Genesis 1314
+            <div class="footer-brand">⬡ HebronGuide<sup>™</sup></div><br>
+            <span style="font-size:0.78rem;font-style:italic;color:rgba(255,255,255,0.6);">Arrive. Connect. Belong.</span><br>
+            <div class="footer-tagline">Know Your City. Find Your People.</div>
+            <div style="margin-top:10px;font-size:0.75rem;">
+                © 2026 HebronGuide · <a href="https://hebronguide.com" target="_blank" style="color:rgba(255,255,255,0.75);text-decoration:none;">hebronguide.com</a>
+            </div>
         </div>
     </div>
 
