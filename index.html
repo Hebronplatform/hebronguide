@@ -2982,7 +2982,7 @@ function artScrollTo(sectionId, btnEl) {
   </div>
 
   <!-- 문의 박스 -->
-  <div style="margin:0 14px 16px;background:linear-gradient(135deg,#1a3a5c,#1a5276);border-radius:12px;padding:16px 18px;">
+  <div style="margin:0 14px 14px;background:linear-gradient(135deg,#1a3a5c,#1a5276);border-radius:12px;padding:16px 18px;">
     <div style="font-size:0.8rem;font-weight:800;color:#7ec8e3;margin-bottom:8px;">📞 단체 관광 문의</div>
     <div style="font-size:0.85rem;color:white;font-weight:700;margin-bottom:4px;">폴킴 (Paul Kim)</div>
     <div style="font-size:0.75rem;color:rgba(255,255,255,0.65);line-height:1.7;">
@@ -2993,8 +2993,102 @@ function artScrollTo(sectionId, btnEl) {
     </div>
   </div>
 
+  <!-- 단체관광 신청서 -->
+  <div style="margin:0 14px 18px;">
+    <div style="background:#f0f7ff;border-radius:12px;padding:16px 16px 18px;border:1px solid #c8e0f4;">
+      <div style="font-size:0.82rem;font-weight:800;color:#1a5276;margin-bottom:14px;">📋 단체 관광 신청서</div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;" id="tour-inquiry-form">
+        <div>
+          <label style="font-size:0.72rem;color:#1a5276;font-weight:700;display:block;margin-bottom:3px;">단체명 *</label>
+          <input id="tif-org" type="text" placeholder="예) 헤브론교회 · 삼성전자 · 외교부" style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #c8e0f4;font-size:0.8rem;outline:none;box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="font-size:0.72rem;color:#1a5276;font-weight:700;display:block;margin-bottom:3px;">담당자 이름 *</label>
+          <input id="tif-name" type="text" placeholder="이름을 입력해 주세요" style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #c8e0f4;font-size:0.8rem;outline:none;box-sizing:border-box;">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div>
+            <label style="font-size:0.72rem;color:#1a5276;font-weight:700;display:block;margin-bottom:3px;">연락처 *</label>
+            <input id="tif-phone" type="tel" placeholder="010-0000-0000" style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #c8e0f4;font-size:0.8rem;outline:none;box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="font-size:0.72rem;color:#1a5276;font-weight:700;display:block;margin-bottom:3px;">이메일</label>
+            <input id="tif-email" type="email" placeholder="이메일 주소" style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #c8e0f4;font-size:0.8rem;outline:none;box-sizing:border-box;">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div>
+            <label style="font-size:0.72rem;color:#1a5276;font-weight:700;display:block;margin-bottom:3px;">방문 예정일 *</label>
+            <input id="tif-date" type="date" style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #c8e0f4;font-size:0.8rem;outline:none;box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="font-size:0.72rem;color:#1a5276;font-weight:700;display:block;margin-bottom:3px;">단체 인원 *</label>
+            <input id="tif-size" type="number" placeholder="명" min="1" style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #c8e0f4;font-size:0.8rem;outline:none;box-sizing:border-box;">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:0.72rem;color:#1a5276;font-weight:700;display:block;margin-bottom:5px;">단체 유형</label>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;" id="tif-type-btns">
+            <button type="button" onclick="tifToggle(this)" style="padding:5px 12px;border-radius:20px;border:1.5px solid #2980b9;background:white;color:#1a5276;font-size:0.74rem;font-weight:700;cursor:pointer;">⛪ 교회 단체</button>
+            <button type="button" onclick="tifToggle(this)" style="padding:5px 12px;border-radius:20px;border:1.5px solid #2980b9;background:white;color:#1a5276;font-size:0.74rem;font-weight:700;cursor:pointer;">🏛️ 국가기관</button>
+            <button type="button" onclick="tifToggle(this)" style="padding:5px 12px;border-radius:20px;border:1.5px solid #2980b9;background:white;color:#1a5276;font-size:0.74rem;font-weight:700;cursor:pointer;">🏢 기업 단체</button>
+            <button type="button" onclick="tifToggle(this)" style="padding:5px 12px;border-radius:20px;border:1.5px solid #2980b9;background:white;color:#1a5276;font-size:0.74rem;font-weight:700;cursor:pointer;">👨‍👩‍👧 가족·소그룹</button>
+            <button type="button" onclick="tifToggle(this)" style="padding:5px 12px;border-radius:20px;border:1.5px solid #2980b9;background:white;color:#1a5276;font-size:0.74rem;font-weight:700;cursor:pointer;">기타</button>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:0.72rem;color:#1a5276;font-weight:700;display:block;margin-bottom:3px;">특별 요청 / 참고사항</label>
+          <textarea id="tif-note" rows="3" placeholder="희망 코스, 식사 제한, 이동 수단 등 자유롭게 적어주세요" style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #c8e0f4;font-size:0.8rem;outline:none;box-sizing:border-box;resize:vertical;"></textarea>
+        </div>
+        <button type="button" onclick="submitTourInquiry()" style="width:100%;padding:11px;background:linear-gradient(135deg,#1a5276,#2980b9);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:800;cursor:pointer;letter-spacing:0.3px;">✉️ 신청서 보내기</button>
+        <div style="font-size:0.7rem;color:#888;text-align:center;">제출 시 이메일 앱이 열리며 Trevel3927@gmail.com으로 전송됩니다</div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 </div>
+<script>
+function tifToggle(btn){
+  var active = btn.style.background === 'rgb(26, 82, 118)';
+  btn.style.background = active ? 'white' : '#1a5276';
+  btn.style.color = active ? '#1a5276' : 'white';
+}
+function submitTourInquiry(){
+  var org   = document.getElementById('tif-org').value.trim();
+  var name  = document.getElementById('tif-name').value.trim();
+  var phone = document.getElementById('tif-phone').value.trim();
+  var email = document.getElementById('tif-email').value.trim();
+  var date  = document.getElementById('tif-date').value;
+  var size  = document.getElementById('tif-size').value.trim();
+  var note  = document.getElementById('tif-note').value.trim();
+  if(!org||!name||!phone||!date||!size){
+    alert('필수 항목(*)을 모두 입력해 주세요.');
+    return;
+  }
+  var types = [];
+  document.querySelectorAll('#tif-type-btns button').forEach(function(b){
+    if(b.style.background==='rgb(26, 82, 118)') types.push(b.textContent.trim());
+  });
+  var body =
+    '[단체 관광 신청서]\n\n' +
+    '■ 단체명      : ' + org + '\n' +
+    '■ 담당자      : ' + name + '\n' +
+    '■ 연락처      : ' + phone + '\n' +
+    '■ 이메일      : ' + (email||'—') + '\n' +
+    '■ 방문 예정일  : ' + date + '\n' +
+    '■ 단체 인원   : ' + size + '명\n' +
+    '■ 단체 유형   : ' + (types.length?types.join(', '):'—') + '\n' +
+    '■ 요청사항    : ' + (note||'—') + '\n\n' +
+    '— HebronGuide 시애틀 단체관광 신청';
+  var mailto = 'mailto:Trevel3927@gmail.com' +
+    '?subject=' + encodeURIComponent('[단체관광 신청] ' + org + ' (' + date + ')') +
+    '&body='    + encodeURIComponent(body);
+  window.location.href = mailto;
+}
+</script>
     </div>
 
 <script>
