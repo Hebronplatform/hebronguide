@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한인교회 홈페이지 제작 | HebronGuide</title>
+<meta name="description" content="한인교회 맞춤 홈페이지 전문 제작. 한/영 이중언어, 모바일 최적화, 합리적인 가격.">
+<style>
+:root{
+  --navy:#0d1b3e; --blue:#1a2e6c; --gold:#d4a017; --gold2:#f0c040;
+  --gray:#6b7280; --bg:#f4f6fb; --white:#fff; --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif;
+     background:var(--bg);color:#1f2937;line-height:1.75;}
+
+/* 네비 */
+nav{position:sticky;top:0;z-index:100;
+    background:rgba(13,27,62,.97);backdrop-filter:blur(8px);
+    display:flex;justify-content:space-between;align-items:center;padding:14px 28px;}
+.logo{color:var(--gold2);font-weight:800;font-size:1rem;text-decoration:none;}
+.nav-links{display:flex;gap:22px;}
+.nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.84rem;transition:color .2s;}
+.nav-links a:hover{color:var(--gold2);}
+@media(max-width:580px){.nav-links{display:none;}}
+
+/* 히어로 */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1e3a8a 60%,#1e1b4b 100%);
+      color:white;text-align:center;padding:86px 20px 72px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(212,160,23,.14),transparent);}
+.hero-badge{display:inline-block;background:var(--gold);color:var(--navy);
+  font-size:.72rem;font-weight:800;padding:5px 16px;border-radius:20px;
+  margin-bottom:22px;letter-spacing:.06em;position:relative;}
+.hero h1{font-size:clamp(1.85rem,5vw,3rem);font-weight:900;line-height:1.25;
+         margin-bottom:16px;position:relative;}
+.hero h1 em{color:var(--gold2);font-style:normal;}
+.hero p{font-size:1rem;opacity:.85;max-width:540px;margin:0 auto 34px;position:relative;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;}
+.btn-gold{background:var(--gold);color:var(--navy);padding:14px 34px;
+  border-radius:10px;font-weight:800;font-size:.95rem;text-decoration:none;
+  transition:transform .15s;}
+.btn-ghost{background:rgba(255,255,255,.12);color:white;padding:14px 28px;
+  border-radius:10px;font-weight:600;font-size:.95rem;text-decoration:none;
+  border:1.5px solid rgba(255,255,255,.3);transition:background .15s;}
+.btn-gold:hover{transform:scale(1.04);}
+.btn-ghost:hover{background:rgba(255,255,255,.22);}
+
+/* 섹션 */
+section{padding:64px 20px;}
+.container{max-width:1080px;margin:0 auto;}
+.sec-title{text-align:center;margin-bottom:44px;}
+.sec-title h2{font-size:1.7rem;font-weight:900;color:var(--navy);margin-bottom:8px;}
+.sec-title p{color:var(--gray);font-size:.93rem;}
+
+/* 강점 */
+#why{background:var(--white);}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px;}
+.why-card{text-align:center;padding:28px 18px;border-radius:var(--r);
+  background:var(--bg);border:1.5px solid #e5e7eb;transition:transform .2s,box-shadow .2s;}
+.why-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08);}
+.why-icon{font-size:2rem;margin-bottom:10px;}
+.why-card h3{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:5px;}
+.why-card p{font-size:.83rem;color:var(--gray);}
+
+/* 플랜 */
+#plans{background:var(--bg);}
+.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px;}
+.plan-card{background:var(--white);border-radius:var(--r);border:2px solid #e5e7eb;
+  overflow:hidden;transition:transform .2s,box-shadow .2s;position:relative;}
+.plan-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.1);}
+.plan-card.pop{border-color:var(--gold);box-shadow:0 8px 28px rgba(212,160,23,.18);}
+.plan-card.prem{border-color:#7c3aed;}
+.ribbon{position:absolute;top:16px;right:-8px;font-size:.63rem;font-weight:800;
+  padding:4px 14px 4px 10px;border-radius:4px 0 0 4px;letter-spacing:.04em;}
+.ribbon.gold{background:var(--gold);color:var(--navy);}
+.ribbon.purple{background:#7c3aed;color:white;}
+
+.ph{padding:28px 26px 18px;text-align:center;}
+.ph0{background:linear-gradient(135deg,#f0f4ff,#dbeafe);}
+.ph1{background:linear-gradient(135deg,var(--navy),var(--blue));color:white;}
+.ph2{background:linear-gradient(135deg,#1e1b4b,#4c1d95);color:white;}
+.plan-icon{font-size:2rem;margin-bottom:8px;}
+.plan-name{font-size:1.15rem;font-weight:800;margin-bottom:2px;}
+.plan-sub{font-size:.76rem;opacity:.72;margin-bottom:14px;}
+.plan-price{font-size:2.4rem;font-weight:900;line-height:1;}
+.plan-price sup{font-size:.95rem;vertical-align:super;line-height:0;font-weight:500;}
+.plan-price sub{font-size:.78rem;font-weight:400;opacity:.75;}
+.plan-note{font-size:.73rem;opacity:.68;margin-top:4px;}
+.market-rate{font-size:.78rem;margin-bottom:4px;}
+.market-rate s{color:rgba(255,255,255,.55);font-weight:500;}
+.market-rate s.dark{color:#9ca3af;}
+.save-badge{display:inline-block;background:#dc2626;color:white;
+  font-size:.65rem;font-weight:800;padding:2px 8px;border-radius:10px;
+  margin-left:6px;vertical-align:middle;letter-spacing:.02em;}
+
+.pb{padding:20px 24px 26px;}
+.feat{list-style:none;margin-bottom:20px;}
+.feat li{padding:7px 0;font-size:.875rem;border-bottom:1px solid #f3f4f6;
+  display:flex;gap:8px;align-items:flex-start;}
+.feat li:last-child{border:none;}
+.y{color:#16a34a;font-weight:700;flex-shrink:0;margin-top:1px;}
+.n{color:#d1d5db;flex-shrink:0;margin-top:1px;}
+.s{color:var(--gold);font-weight:700;flex-shrink:0;margin-top:1px;}
+
+.btn-plan{display:block;text-align:center;padding:12px;border-radius:10px;
+  font-weight:700;font-size:.88rem;border:none;cursor:pointer;text-decoration:none;
+  transition:opacity .15s,transform .15s;}
+.btn-plan:hover{opacity:.87;transform:scale(1.02);}
+.bb{background:var(--blue);color:white;}
+.bf{background:var(--gold);color:var(--navy);}
+.bp{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:white;}
+
+/* 추가옵션 */
+.add-opts{margin-top:24px;background:var(--white);border-radius:var(--r);
+  padding:22px 26px;border:1.5px solid #e5e7eb;display:flex;flex-wrap:wrap;
+  gap:16px;align-items:center;}
+.add-opts .label{font-weight:800;color:var(--navy);font-size:.9rem;flex-shrink:0;}
+.opts-list{display:flex;flex-wrap:wrap;gap:10px;}
+.opt-tag{background:#f0f4ff;border:1px solid #bfdbfe;border-radius:8px;
+  padding:6px 13px;font-size:.8rem;color:var(--blue);font-weight:600;}
+
+/* 비교표 */
+#compare{background:var(--white);}
+.tbl-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:.84rem;}
+thead th{background:var(--navy);color:white;padding:13px 16px;
+  text-align:center;font-weight:700;}
+thead th:first-child{text-align:left;min-width:170px;}
+thead th.gold-h{background:#b7860f;}
+thead th.pur-h{background:#6d28d9;}
+tbody td{padding:11px 16px;border-bottom:1px solid #f3f4f6;text-align:center;}
+tbody td:first-child{text-align:left;font-weight:500;color:#374151;}
+tbody tr:nth-child(even) td{background:#fafafa;}
+tbody tr:hover td{background:#f0f4ff;}
+.y2{color:#16a34a;font-size:1.05rem;}
+.n2{color:#d1d5db;font-size:1.05rem;}
+.pr td{font-weight:800;background:#f8faff!important;}
+
+/* 프로세스 */
+#process{background:var(--bg);}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;}
+.step{background:var(--white);border-radius:var(--r);padding:24px 18px;
+  text-align:center;border:1.5px solid #e5e7eb;position:relative;}
+.snum{width:34px;height:34px;background:var(--blue);color:white;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.88rem;margin-bottom:10px;}
+.step h3{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:5px;}
+.step p{font-size:.8rem;color:var(--gray);}
+
+/* 문의폼 */
+#contact{background:linear-gradient(135deg,var(--navy),#1e3a8a);}
+#contact .sec-title h2{color:white;}
+#contact .sec-title p{color:rgba(255,255,255,.7);}
+.cg{display:grid;grid-template-columns:1fr 1.5fr;gap:36px;align-items:start;}
+@media(max-width:760px){.cg{grid-template-columns:1fr;}}
+
+.cinfo h3{color:var(--gold2);font-size:.95rem;font-weight:800;margin-bottom:12px;}
+.cinfo ul{list-style:none;}
+.cinfo li{color:rgba(255,255,255,.85);font-size:.86rem;padding:8px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);display:flex;gap:9px;}
+.cinfo li:last-child{border:none;}
+.tl{margin-top:26px;}
+.tl h3{color:var(--gold2);font-size:.95rem;font-weight:800;margin-bottom:10px;}
+.tl-row{display:flex;gap:10px;margin-bottom:9px;align-items:center;}
+.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.tl-row p{color:rgba(255,255,255,.8);font-size:.83rem;}
+
+.fcard{background:white;border-radius:var(--r);padding:30px 26px;}
+.fcard>h3{font-size:.95rem;font-weight:800;color:var(--navy);
+  padding-bottom:10px;border-bottom:2px solid var(--gold);margin-bottom:18px;}
+.fg{margin-bottom:13px;}
+.fg label{display:block;font-size:.79rem;font-weight:700;color:#374151;margin-bottom:4px;}
+.req{color:#dc2626;}
+.fg input,.fg select,.fg textarea{
+  width:100%;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:8px;
+  font-size:.875rem;font-family:inherit;background:#f9fafb;transition:border-color .15s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{
+  outline:none;border-color:var(--blue);background:white;}
+.fg textarea{resize:vertical;min-height:76px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+@media(max-width:460px){.frow{grid-template-columns:1fr;}}
+.fsep{font-size:.75rem;font-weight:700;color:var(--blue);
+  margin:16px 0 8px;padding:5px 0;border-bottom:1px solid #e5e7eb;letter-spacing:.04em;}
+.chk-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.chk{display:flex;align-items:center;gap:7px;font-size:.82rem;cursor:pointer;}
+.chk input{width:14px;height:14px;accent-color:var(--blue);}
+.btn-submit{width:100%;padding:14px;background:linear-gradient(135deg,var(--navy),var(--blue));
+  color:white;font-size:.95rem;font-weight:800;border:none;border-radius:10px;
+  cursor:pointer;margin-top:16px;transition:opacity .15s;}
+.btn-submit:hover{opacity:.87;}
+.fnote{font-size:.7rem;color:#9ca3af;text-align:center;margin-top:7px;}
+#ok{display:none;background:#dcfce7;border:1.5px solid #16a34a;border-radius:10px;
+  padding:18px;color:#15803d;font-weight:700;text-align:center;margin-top:14px;font-size:.92rem;}
+
+/* 푸터 */
+footer{background:#070f20;color:rgba(255,255,255,.45);
+  text-align:center;padding:28px 20px;font-size:.78rem;}
+footer a{color:var(--gold2);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<!-- 네비 -->
+<nav>
+  <a href="#" class="logo"><img src="hebronguide-logo-dark.svg" alt="HebronGuide" style="height:34px;width:auto;vertical-align:middle;"></a>
+  <div class="nav-links">
+    <a href="#why">특징</a>
+    <a href="#plans">가격</a>
+    <a href="#compare">비교</a>
+    <a href="#process">과정</a>
+    <a href="#contact">문의</a>
+  </div>
+</nav>
+
+<!-- 히어로 -->
+<div class="hero">
+  <div class="hero-badge">🏠 한인교회 홈페이지 전문 제작</div>
+  <h1>우리 교회 홈페이지,<br><em>이제 제대로</em> 만드세요</h1>
+  <p>한/영 이중언어 · 모바일 앱 설치 · 정착 가이드 연계<br>달라스 에덴교회 실제 적용 — 검증된 솔루션</p>
+  <div class="hero-btns">
+    <a href="#plans" class="btn-gold">📋 플랜 & 가격 보기</a>
+    <a href="#contact" class="btn-ghost">📩 무료 상담 신청</a>
+  </div>
+</div>
+
+<!-- 강점 -->
+<section id="why">
+  <div class="container">
+    <div class="sec-title">
+      <h2>왜 HebronGuide인가요?</h2>
+      <p>한인교회의 필요를 누구보다 잘 압니다</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🌐</div>
+        <h3>한/영 이중언어</h3>
+        <p>1세·1.5세·2세 모두 사용. 버튼 하나로 언어 전환.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📱</div>
+        <h3>모바일 앱처럼</h3>
+        <p>홈 화면에 설치하면 앱처럼 실행. 앱 개발 비용 불필요.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🗺</div>
+        <h3>정착 가이드 연계</h3>
+        <p>지역 생활정보 가이드와 연결. 새이민자 교회 등록에 효과적.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <h3>합리적인 가격</h3>
+        <p>일반 에이전시의 1/5 가격. 한인교회 맞춤 견적.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <h3>빠른 제작</h3>
+        <p>정보 제공 후 3~10 영업일 완성.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔧</div>
+        <h3>지속 지원</h3>
+        <p>오픈 후 수정 요청도 언제든 가능.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 플랜 -->
+<section id="plans">
+  <div class="container">
+    <div class="sec-title">
+      <h2>플랜 & 가격</h2>
+      <p>교회 규모와 필요에 맞는 플랜을 선택하세요</p>
+    </div>
+    <div class="plans-grid">
+
+      <!-- 스타터 -->
+      <div class="plan-card">
+        <div class="ph ph0">
+          <div class="plan-icon">🌐</div>
+          <div class="plan-name">스타터</div>
+          <div class="plan-sub">개척교회 · 소규모 교회</div>
+          <div class="market-rate"><s class="dark">미국 프리랜서 시세 $500~800</s></div>
+          <div class="plan-price"><sup>$</sup>199 <span class="save-badge">60% OFF</span></div>
+          <div class="plan-note">일회성 제작비 · 별도 월정액 없음</div>
+        </div>
+        <div class="pb">
+          <ul class="feat">
+            <li><span class="y">✓</span> 교회 홈페이지 (5페이지)</li>
+            <li><span class="y">✓</span> 한국어 / 영어 이중언어</li>
+            <li><span class="y">✓</span> 모바일 홈화면 설치</li>
+            <li><span class="y">✓</span> 예배안내 · 오시는 길 · 연락처</li>
+            <li><span class="y">✓</span> 구글맵 연동</li>
+            <li><span class="y">✓</span> 도메인 연결 지원</li>
+            <li><span class="n">✗</span> 정착 가이드 연계</li>
+            <li><span class="n">✗</span> 게시판 · 자료실</li>
+          </ul>
+          <a href="#contact" class="btn-plan bb" onclick="setPlan('스타터 ($199)')">스타터 플랜 문의</a>
+        </div>
+      </div>
+
+      <!-- 패키지 -->
+      <div class="plan-card pop">
+        <div class="ribbon gold">⭐ 인기</div>
+        <div class="ph ph1">
+          <div class="plan-icon">⛪</div>
+          <div class="plan-name">홈페이지 + 가이드</div>
+          <div class="plan-sub">새이민자 많은 교회 · 성장 교회</div>
+          <div class="market-rate"><s>미국 프리랜서 시세 $1,500~2,000</s></div>
+          <div class="plan-price"><sup>$</sup>349 <span class="save-badge">80% OFF</span></div>
+          <div class="plan-note">일회성 제작비 · 별도 월정액 없음</div>
+        </div>
+        <div class="pb">
+          <ul class="feat">
+            <li><span class="y">✓</span> 스타터 플랜 전체 포함</li>
+            <li><span class="y">✓</span> 맞춤형 도시 정착 가이드</li>
+            <li><span class="y">✓</span> 가이드 ↔ 홈페이지 연결</li>
+            <li><span class="y">✓</span> 생활정보 30+ 섹션</li>
+            <li><span class="y">✓</span> 새이민자 체크리스트</li>
+            <li><span class="y">✓</span> 맞춤 앱 아이콘 제작</li>
+            <li><span class="s">★</span> 에덴교회 실제 적용 사례</li>
+            <li><span class="n">✗</span> 게시판 · 직접 수정</li>
+          </ul>
+          <a href="#contact" class="btn-plan bf" onclick="setPlan('홈페이지+가이드 패키지 ($349)')">패키지 플랜 문의</a>
+        </div>
+      </div>
+
+      <!-- 프리미엄 -->
+      <div class="plan-card prem">
+        <div class="ribbon purple">풀패키지</div>
+        <div class="ph ph2">
+          <div class="plan-icon">✨</div>
+          <div class="plan-name">프리미엄</div>
+          <div class="plan-sub">교회 직접 관리 · 모든 기능</div>
+          <div class="market-rate"><s>미국 프리랜서 시세 $3,000~5,000</s></div>
+          <div class="plan-price"><sup>$</sup>649<sub>~</sub> <span class="save-badge">80% OFF</span></div>
+          <div class="plan-note">제작비 + 소액 월정액 별도</div>
+        </div>
+        <div class="pb">
+          <ul class="feat">
+            <li><span class="y">✓</span> 패키지 플랜 전체 포함</li>
+            <li><span class="y">✓</span> 교회 담당자가 직접 수정</li>
+            <li><span class="y">✓</span> 공지사항 · 게시판</li>
+            <li><span class="y">✓</span> 자료실 (주보 · 설교 자료)</li>
+            <li><span class="y">✓</span> 새가족 등록 폼</li>
+            <li><span class="y">✓</span> 유튜브 설교 영상 연동</li>
+            <li><span class="s">★</span> 담당자 사용 교육 포함</li>
+            <li><span class="s">★</span> 1개월 무료 유지보수</li>
+          </ul>
+          <a href="#contact" class="btn-plan bp" onclick="setPlan('프리미엄 ($649~)')">프리미엄 플랜 문의</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 추가옵션 -->
+    <div class="add-opts">
+      <span class="label">➕ 추가 옵션</span>
+      <div class="opts-list">
+        <span class="opt-tag">🌐 도메인 구매 대행 +$15</span>
+        <span class="opt-tag">📊 방문자 통계 설정 +$30</span>
+        <span class="opt-tag">💳 온라인 헌금 연동 +$100</span>
+        <span class="opt-tag">🔄 월 유지보수 $30/월</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 비교표 -->
+<section id="compare" style="background:white;">
+  <div class="container">
+    <div class="sec-title">
+      <h2>플랜 상세 비교</h2>
+      <p style="margin-top:6px;font-size:.82rem;color:#dc2626;font-weight:600;">
+        📊 미국 프리랜서 평균 시세 대비 60~80% 절감
+      </p>
+    </div>
+    <div style="background:#fef3c7;border:1.5px solid #fcd34d;border-radius:10px;
+      padding:12px 18px;margin-bottom:16px;font-size:.82rem;color:#78350f;">
+      💡 <strong>미국 프리랜서 시세 기준</strong> (Upwork·Fiverr·업계 평균):
+      기본 사이트 $500~800 · WordPress CMS $1,500~3,000 · 풀커스텀 $3,000~5,000+
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>기능</th>
+            <th>스타터<br><small>$199</small></th>
+            <th class="gold-h">홈+가이드 ⭐<br><small>$349</small></th>
+            <th class="pur-h">프리미엄<br><small>$649~</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>교회 홈페이지</td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>한/영 이중언어</td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>모바일 홈화면 설치</td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>구글맵 · 예배안내</td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>도메인 연결 지원</td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>유튜브 설교 연동</td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>맞춤형 정착 가이드</td><td><span class="n2">✗</span></td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>생활정보 30+ 섹션</td><td><span class="n2">✗</span></td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>새이민자 체크리스트</td><td><span class="n2">✗</span></td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>맞춤 앱 아이콘</td><td><span class="n2">✗</span></td><td><span class="y2">✓</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>교회 직접 수정</td><td><span class="n2">✗</span></td><td><span class="n2">✗</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>게시판 · 공지사항</td><td><span class="n2">✗</span></td><td><span class="n2">✗</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>자료실 · 파일 업로드</td><td><span class="n2">✗</span></td><td><span class="n2">✗</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>새가족 등록 폼</td><td><span class="n2">✗</span></td><td><span class="n2">✗</span></td><td><span class="y2">✓</span></td></tr>
+          <tr><td>담당자 교육</td><td><span class="n2">✗</span></td><td><span class="n2">✗</span></td><td><span class="y2">✓</span></td></tr>
+          <tr class="pr"><td>월 추가 비용</td><td>없음</td><td>없음</td><td>소액 월정액</td></tr>
+          <tr class="pr"><td>제작 기간</td><td>3~5일</td><td>5~7일</td><td>10~14일</td></tr>
+          <tr class="pr">
+            <td><strong>제작비</strong><br><span style="font-size:.68rem;color:#9ca3af;font-weight:400;">미국 시세 →</span></td>
+            <td>
+              <span style="font-size:.72rem;color:#9ca3af;text-decoration:line-through;display:block;">$500~800</span>
+              <strong style="color:#15803d;">$199</strong>
+            </td>
+            <td>
+              <span style="font-size:.72rem;color:#9ca3af;text-decoration:line-through;display:block;">$1,500~2,000</span>
+              <strong style="color:#92400e;">$349</strong>
+            </td>
+            <td>
+              <span style="font-size:.72rem;color:#9ca3af;text-decoration:line-through;display:block;">$3,000~5,000</span>
+              <strong style="color:#4c1d95;">$649~</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 프로세스 -->
+<section id="process">
+  <div class="container">
+    <div class="sec-title">
+      <h2>제작 프로세스</h2>
+      <p>상담부터 오픈까지 5단계</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="snum">1</div><h3>📩 무료 상담</h3><p>아래 폼 작성<br>24시간 내 연락</p></div>
+      <div class="step"><div class="snum">2</div><h3>📋 기획 확정</h3><p>교회 정보·메뉴<br>디자인 방향 결정</p></div>
+      <div class="step"><div class="snum">3</div><h3>🔨 제작</h3><p>3~14일<br>(플랜에 따라)</p></div>
+      <div class="step"><div class="snum">4</div><h3>👀 검토·수정</h3><p>시안 확인 후<br>2회 무료 수정</p></div>
+      <div class="step"><div class="snum">5</div><h3>🚀 오픈</h3><p>도메인 연결 후<br>라이브 공개</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 문의 폼 -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-title">
+      <h2>📩 무료 상담 & 기획 문의</h2>
+      <p>아래 내용을 작성해주시면 24시간 내 연락드립니다</p>
+    </div>
+    <div class="cg">
+
+      <div class="cinfo">
+        <h3>📋 문의 시 준비할 내용</h3>
+        <ul>
+          <li><span>⛪</span> 교회 이름 (한국어 / 영어)</li>
+          <li><span>📍</span> 교회 위치 (도시, 주)</li>
+          <li><span>👤</span> 담당자 성함 · 연락처</li>
+          <li><span>📦</span> 원하는 플랜</li>
+          <li><span>🌐</span> 원하는 도메인 이름</li>
+          <li><span>🎨</span> 로고 · 사진 보유 여부</li>
+          <li><span>▶️</span> 유튜브 채널 (있는 경우)</li>
+          <li><span>💬</span> 특별 요청사항</li>
+        </ul>
+        <div class="tl">
+          <h3>⏱ 제작 기간</h3>
+          <div class="tl-row"><div class="dot" style="background:#3b82f6;"></div><p>스타터 — <strong style="color:white;">3~5 영업일</strong></p></div>
+          <div class="tl-row"><div class="dot" style="background:var(--gold);"></div><p>홈+가이드 — <strong style="color:white;">5~7 영업일</strong></p></div>
+          <div class="tl-row"><div class="dot" style="background:#7c3aed;"></div><p>프리미엄 — <strong style="color:white;">10~14 영업일</strong></p></div>
+        </div>
+      </div>
+
+      <div class="fcard">
+        <h3>✏️ 교회 홈페이지 제작 기획 문의서</h3>
+        <form id="cForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="hidden" name="_subject" value="[HebronGuide] 교회 홈페이지 제작 문의">
+          <input type="hidden" name="선택플랜" id="hidPlan">
+
+          <div class="fsep">① 담당자 정보</div>
+          <div class="frow">
+            <div class="fg"><label>성함 <span class="req">*</span></label>
+              <input type="text" name="성함" placeholder="홍길동" required></div>
+            <div class="fg"><label>연락처 <span class="req">*</span></label>
+              <input type="tel" name="연락처" placeholder="214-000-0000" required></div>
+          </div>
+          <div class="fg"><label>이메일 <span class="req">*</span></label>
+            <input type="email" name="이메일" placeholder="pastor@church.com" required></div>
+
+          <div class="fsep">② 교회 정보</div>
+          <div class="frow">
+            <div class="fg"><label>교회 한국어 이름 <span class="req">*</span></label>
+              <input type="text" name="교회명_한" placeholder="○○교회" required></div>
+            <div class="fg"><label>교회 영어 이름</label>
+              <input type="text" name="교회명_영" placeholder="○○ Church"></div>
+          </div>
+          <div class="frow">
+            <div class="fg"><label>도시 / 주</label>
+              <input type="text" name="위치" placeholder="Carrollton, TX"></div>
+            <div class="fg"><label>교단</label>
+              <input type="text" name="교단" placeholder="침례교, 장로교…"></div>
+          </div>
+          <div class="fg"><label>교회 주소</label>
+            <input type="text" name="주소" placeholder="123 Main St, Carrollton, TX 75006"></div>
+          <div class="frow">
+            <div class="fg"><label>주일예배 시간</label>
+              <input type="text" name="주일예배" placeholder="오전 11:00 AM"></div>
+            <div class="fg"><label>수요/기타 예배</label>
+              <input type="text" name="기타예배" placeholder="수 오후 7:30 PM"></div>
+          </div>
+          <div class="fg"><label>유튜브 채널 URL</label>
+            <input type="url" name="유튜브" placeholder="https://youtube.com/@..."></div>
+
+          <div class="fsep">③ 플랜 선택</div>
+          <div class="fg"><label>희망 플랜 <span class="req">*</span></label>
+            <select name="플랜" id="planSel" required>
+              <option value="">-- 선택해주세요 --</option>
+              <option value="스타터 ($199)">🌐 스타터 — $199</option>
+              <option value="홈+가이드 패키지 ($349)">⛪ 홈+가이드 패키지 — $349</option>
+              <option value="프리미엄 ($649~)">✨ 프리미엄 — $649~</option>
+              <option value="상담 후 결정">💬 상담 후 결정</option>
+            </select>
+          </div>
+          <div class="frow">
+            <div class="fg"><label>원하는 도메인</label>
+              <input type="text" name="도메인" placeholder="edenchurch.org"></div>
+            <div class="fg"><label>오픈 희망 시기</label>
+              <select name="오픈시기">
+                <option>2주 이내</option>
+                <option>1개월 이내</option>
+                <option>2~3개월</option>
+                <option>미정</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="fsep">④ 보유 자료</div>
+          <div class="chk-grid" style="margin-bottom:13px;">
+            <label class="chk"><input type="checkbox" name="자료" value="로고"> 교회 로고</label>
+            <label class="chk"><input type="checkbox" name="자료" value="외관사진"> 교회 외관 사진</label>
+            <label class="chk"><input type="checkbox" name="자료" value="내부사진"> 교회 내부 사진</label>
+            <label class="chk"><input type="checkbox" name="자료" value="목사사진"> 담임목사 사진</label>
+            <label class="chk"><input type="checkbox" name="자료" value="유튜브"> 유튜브 채널</label>
+            <label class="chk"><input type="checkbox" name="자료" value="없음"> 없음</label>
+          </div>
+
+          <div class="fsep">⑤ 추가 요청사항</div>
+          <div class="fg">
+            <textarea name="요청사항" placeholder="원하는 기능, 참고 사이트 URL, 기타 요청을 자유롭게 적어주세요."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">📨 무료 상담 신청하기</button>
+          <p class="fnote">* 개인정보는 제작 상담 목적으로만 사용됩니다</p>
+        </form>
+        <div id="ok">🙏 문의가 접수되었습니다!<br>24시간 내에 연락드리겠습니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="hebronguide-logo-dark.svg" alt="HebronGuide" style="height:52px;width:auto;opacity:0.88;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;">
+  <p>📧 <a href="mailto:kchurch911@gmail.com">kchurch911@gmail.com</a>
+  &nbsp;|&nbsp; 실사례: <a href="https://kchurch911.github.io/seattleguide/dallas/" target="_blank">달라스 에덴교회 가이드 →</a></p>
+  <p style="margin-top:8px;font-size:.72rem;opacity:.5;">© 2026 HebronGuide · hebronguide.com</p>
+</footer>
+
+<script>
+function setPlan(val){
+  const s=document.getElementById('planSel');
+  for(let i=0;i<s.options.length;i++){if(s.options[i].value===val){s.selectedIndex=i;break;}}
+  document.getElementById('hidPlan').value=val;
+  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+}
+const form=document.getElementById('cForm');
+form.addEventListener('submit',async function(e){
+  const action=form.getAttribute('action');
+  if(action.includes('YOUR_FORM_ID')){
+    e.preventDefault();
+    const fd=new FormData(form);
+    const lines=[];
+    fd.forEach((v,k)=>{if(!k.startsWith('_'))lines.push(`${k}: ${v}`);});
+    window.location.href=`mailto:kchurch911@gmail.com?subject=[HebronGuide] 교회 홈페이지 제작 문의&body=${encodeURIComponent(lines.join('\n'))}`;
+    return;
+  }
+  e.preventDefault();
+  const res=await fetch(action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+  if(res.ok){form.style.display='none';document.getElementById('ok').style.display='block';}
+  else alert('전송 오류. kchurch911@gmail.com 으로 직접 문의해주세요.');
+});
+</script>
+</body>
+</html>
