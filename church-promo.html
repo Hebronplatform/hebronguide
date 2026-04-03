@@ -23,6 +23,11 @@ nav{position:sticky;top:0;z-index:100;
 .nav-links{display:flex;gap:22px;}
 .nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.84rem;transition:color .2s;}
 .nav-links a:hover{color:var(--gold2);}
+.lang-btn{background:rgba(255,255,255,.14);color:rgba(255,255,255,.85);
+  border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:4px 12px;
+  font-size:.78rem;cursor:pointer;font-weight:700;letter-spacing:.04em;
+  transition:background .2s;margin-left:4px;}
+.lang-btn:hover{background:rgba(255,255,255,.26);}
 @media(max-width:580px){.nav-links{display:none;}}
 
 /* 히어로 */
@@ -211,6 +216,7 @@ footer a{color:var(--gold2);text-decoration:none;}
     <a href="#compare">비교</a>
     <a href="#process">과정</a>
     <a href="#contact">문의</a>
+    <button id="langToggle" class="lang-btn" onclick="togglePromoLang()">EN</button>
   </div>
 </nav>
 
@@ -572,6 +578,106 @@ footer a{color:var(--gold2);text-decoration:none;}
 </footer>
 
 <script>
+// ── 브라우저 언어 자동 감지 & 전환 ──────────────────────
+const _pLang = (navigator.language||'en').toLowerCase().startsWith('ko') ? 'ko' : 'en';
+let promoLang = _pLang;
+
+function togglePromoLang(){
+  promoLang = promoLang==='ko' ? 'en' : 'ko';
+  applyPromoLang(promoLang);
+}
+
+function applyPromoLang(lang){
+  const en = lang==='en';
+  const btn = document.getElementById('langToggle');
+  if(btn) btn.textContent = en ? '한국어' : 'EN';
+
+  const s = (sel,ko,enT) => {
+    const el = document.querySelector(sel);
+    if(el) el.innerHTML = en ? enT : ko;
+  };
+  const sAll = (sel,koArr,enArr) => {
+    document.querySelectorAll(sel).forEach((el,i)=>{
+      const v = en ? enArr[i] : koArr[i];
+      if(v!==undefined) el.innerHTML = v;
+    });
+  };
+
+  // NAV
+  s('a[href="#why"]','특징','Why Us');
+  s('a[href="#plans"]','가격','Pricing');
+  s('a[href="#compare"]','비교','Compare');
+  s('a[href="#process"]','과정','Process');
+  s('a[href="#contact"]','문의','Contact');
+
+  // HERO
+  s('.hero-badge','🏠 한인교회 홈페이지 전문 제작','🏠 Church Website Specialists');
+  s('.hero h1','우리 교회 홈페이지,<br><em>이제 제대로</em> 만드세요','Your Church Website,<br><em>Done Right.</em>');
+  s('.hero p','한/영 이중언어 · 모바일 앱 설치 · 정착 가이드 연계<br>달라스 에덴교회 실제 적용 — 검증된 솔루션','Bilingual · Mobile installable · Settlement guide integrated<br>Proven with Eden Church, Dallas — a verified solution');
+  s('.btn-gold','📋 플랜 & 가격 보기','📋 View Plans & Pricing');
+  s('.btn-ghost','📩 무료 상담 신청','📩 Free Consultation');
+
+  // WHY
+  s('#why h2','왜 HebronGuide인가요?','Why HebronGuide?');
+  s('#why .sec-title p','한인교회의 필요를 누구보다 잘 압니다','We understand what churches truly need.');
+  sAll('.why-card h3',
+    ['한/영 이중언어','모바일 앱처럼','정착 가이드 연계','합리적인 가격','빠른 제작','지속 지원'],
+    ['Bilingual (KO/EN)','Feels Like an App','Settlement Guide','Affordable','Fast Delivery','Ongoing Support']);
+  sAll('.why-card p',
+    ['1세·1.5세·2세 모두 사용. 버튼 하나로 언어 전환.',
+     '홈 화면에 설치하면 앱처럼 실행. 앱 개발 비용 불필요.',
+     '지역 생활정보 가이드와 연결. 새이민자 교회 등록에 효과적.',
+     '일반 에이전시의 1/5 가격. 한인교회 맞춤 견적.',
+     '정보 제공 후 3~10 영업일 완성.',
+     '오픈 후 수정 요청도 언제든 가능.'],
+    ['1st, 1.5th & 2nd gen friendly. Switch language with one tap.',
+     'Install on the home screen — no App Store download needed.',
+     'Linked to local resource guides. Great for new member outreach.',
+     '1/5 the agency rate. Custom quotes for every church.',
+     'Delivered in 3–10 business days after content is received.',
+     'Request updates anytime after launch.']);
+
+  // PLANS
+  s('#plans h2','플랜 & 가격','Plans & Pricing');
+  s('#plans .sec-title p','교회 규모와 필요에 맞는 플랜을 선택하세요','Choose the plan that fits your church.');
+  sAll('.plan-name',['스타터','홈페이지 + 가이드','프리미엄'],['Starter','Home + Guide','Premium']);
+  sAll('.plan-sub',
+    ['개척교회 · 소규모 교회','새이민자 많은 교회 · 성장 교회','교회 직접 관리 · 모든 기능'],
+    ['New &amp; Small Churches','Growing &amp; Immigrant Churches','Self-Managed · Full Features']);
+  sAll('.plan-note',
+    ['일회성 제작비 · 별도 월정액 없음','일회성 제작비 · 별도 월정액 없음','제작비 + 소액 월정액 별도'],
+    ['One-time fee · No monthly subscription','One-time fee · No monthly subscription','Setup fee + small monthly fee']);
+  sAll('.btn-plan',
+    ['스타터 플랜 문의','패키지 플랜 문의','프리미엄 플랜 문의'],
+    ['Inquire — Starter','Inquire — Home+Guide','Inquire — Premium']);
+  sAll('.ribbon',['⭐ 인기','풀패키지'],['⭐ Popular','Full Package']);
+
+  // ADD-ONS
+  s('.add-opts .label','➕ 추가 옵션','➕ Add-ons');
+  sAll('.opt-tag',
+    ['🌐 도메인 구매 대행 +$15','📊 방문자 통계 설정 +$30','💳 온라인 헌금 연동 +$100','🔄 월 유지보수 $30/월'],
+    ['🌐 Domain registration +$15','📊 Analytics setup +$30','💳 Online giving integration +$100','🔄 Monthly maintenance $30/mo']);
+
+  // COMPARE
+  s('#compare h2','플랜 상세 비교','Detailed Plan Comparison');
+
+  // CONTACT
+  s('#contact h2','📩 무료 상담 & 기획 문의','📩 Request Your Church Website');
+  s('#contact .sec-title p','아래 내용을 작성해주시면 24시간 내 연락드립니다','Fill out the form below — we\'ll respond within 24 hours.');
+
+  // FOOTER
+  s('footer p:first-of-type',
+    '📧 <a href="mailto:kchurch911@gmail.com">kchurch911@gmail.com</a> &nbsp;|&nbsp; 실사례: <a href="https://kchurch911.github.io/seattleguide/dallas/" target="_blank">달라스 에덴교회 가이드 →</a>',
+    '📧 <a href="mailto:kchurch911@gmail.com">kchurch911@gmail.com</a> &nbsp;|&nbsp; Live demo: <a href="https://kchurch911.github.io/seattleguide/dallas/" target="_blank">Eden Church Dallas →</a>');
+
+  // FORM SUCCESS
+  s('#ok',
+    '🙏 문의가 접수되었습니다!<br>24시간 내에 연락드리겠습니다.',
+    '🙏 Your inquiry has been received!<br>We\'ll be in touch within 24 hours.');
+}
+
+window.addEventListener('DOMContentLoaded', ()=> { if(promoLang==='en') applyPromoLang('en'); });
+
 function setPlan(val){
   const s=document.getElementById('planSel');
   for(let i=0;i<s.options.length;i++){if(s.options[i].value===val){s.selectedIndex=i;break;}}
