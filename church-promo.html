@@ -28,6 +28,9 @@ nav{position:sticky;top:0;z-index:100;
   font-size:.78rem;cursor:pointer;font-weight:700;letter-spacing:.04em;
   transition:background .2s;margin-left:4px;}
 .lang-btn:hover{background:rgba(255,255,255,.26);}
+.back-btn{color:rgba(255,255,255,.55);font-size:.8rem;text-decoration:none;
+  padding:4px 10px;border-radius:8px;transition:color .2s, background .2s;white-space:nowrap;}
+.back-btn:hover{color:white;background:rgba(255,255,255,.1);}
 @media(max-width:580px){.nav-links{display:none;}}
 
 /* HERO */
@@ -204,6 +207,7 @@ footer a{color:var(--gold2);text-decoration:none;}
 
 <!-- NAV -->
 <nav>
+  <a href="javascript:window.close()" class="back-btn" title="Back to Guide">← Guide</a>
   <a href="mailto:kchurch911@gmail.com?subject=Church%20Guide%20Inquiry%20%7C%20%EA%B5%90%ED%9A%8C%20%EA%B0%80%EC%9D%B4%EB%93%9C%20%EC%A0%9C%EC%9E%91%20%EB%AC%B8%EC%9D%98&body=Hello%2C%20I%20discovered%20HebronGuide%20and%20would%20like%20to%20inquire%20about%20a%20guide%20for%20our%20church." class="logo"><img src="hebronguide-logo.svg" alt="HebronGuide" style="height:34px;width:auto;vertical-align:middle;"></a>
   <div class="nav-links">
     <a href="#why">Why Us</a>
