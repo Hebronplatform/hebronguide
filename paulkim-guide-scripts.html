@@ -1597,6 +1597,17 @@ function setLang(lang) {
   document.body.className = (classes + ' ' + lang).trim();
   document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
   document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+  // 영어 컨텐츠 없는 블록은 한국어 그대로 표시
+  if (lang === 'en') {
+    document.querySelectorAll('.ko').forEach(ko => {
+      const parent = ko.parentElement;
+      const hasEn = parent.querySelector('.en');
+      ko.style.display = hasEn ? '' : 'block';
+    });
+  } else {
+    document.querySelectorAll('.ko').forEach(ko => ko.style.display = '');
+  }
 }
 
 function setView(mode) {
