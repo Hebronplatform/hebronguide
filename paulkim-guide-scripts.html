@@ -399,6 +399,41 @@
     .dash-card-emoji { font-size: 1.1rem; }
     .dash-card-title { font-size: .78rem; }
   }
+
+  /* ── 메인 탭 바 ────────────────────────────────────────────────────────── */
+  .main-tab-bar {
+    position: fixed; top: var(--topbar-h); left: 0; right: 0; z-index: 98;
+    background: #143d7a; display: flex; padding: 0 16px;
+    border-bottom: 2px solid rgba(255,255,255,.14);
+    height: 34px; align-items: stretch;
+  }
+  .main-tab {
+    padding: 0 16px; color: rgba(255,255,255,.55);
+    background: transparent; border: none;
+    border-bottom: 3px solid transparent; margin-bottom: -2px;
+    cursor: pointer; font-size: .76rem; font-weight: 700;
+    white-space: nowrap; transition: color .15s;
+  }
+  .main-tab.active { color: white; border-bottom-color: #e67e22; }
+  .main-tab:hover:not(.active) { color: rgba(255,255,255,.85); }
+  /* 탭 바(34px) 추가로 인한 레이아웃 오프셋 보정 */
+  .sidebar { top: calc(var(--topbar-h) + 34px) !important; }
+  .layout  { margin-top: calc(var(--topbar-h) + 34px) !important; }
+
+  /* 드라이빙 노트 섹션 스타일 */
+  .dn-section-title {
+    font-size: .78rem; font-weight: 800; color: var(--blue);
+    letter-spacing: .8px; text-transform: uppercase;
+    padding: 6px 0 4px; margin: 18px 0 8px;
+    border-bottom: 2px solid var(--border);
+  }
+  .dn-card .card-title { color: #1a4fa0; }
+  .dn-card .card-sub   { font-size: .76rem; color: var(--muted); }
+  .dn-tip {
+    display: inline-block; font-size: .7rem; font-weight: 700;
+    background: #fff3cd; color: #856404; border-radius: 4px;
+    padding: 2px 7px; margin-bottom: 6px;
+  }
 </style>
 </head>
 <body>
@@ -470,10 +505,26 @@
   <a data-id="gifts" onclick="navTo('gifts')">🎁 선물 아이디어</a>
   <div class="sidebar-section">참고문헌</div>
   <a data-id="references" onclick="navTo('references')">📚 추천 도서 & 자료</a>
+  <!-- 드라이빙 노트 링크 (탭2) -->
+  <div class="sidebar-section" id="sb-dn" style="display:none;">드라이빙 노트</div>
+  <a data-id="dn-downtown" onclick="navTo('dn-downtown')" style="display:none;">🏙️ 다운타운 빌딩</a>
+  <a data-id="dn-stadiums" onclick="navTo('dn-stadiums')" style="display:none;">🏟️ 스포츠 경기장</a>
+  <a data-id="dn-waterfront" onclick="navTo('dn-waterfront')" style="display:none;">🌊 워터프런트</a>
+  <a data-id="dn-sc" onclick="navTo('dn-sc')" style="display:none;">🛸 시애틀 센터</a>
+  <a data-id="dn-slu" onclick="navTo('dn-slu')" style="display:none;">🌿 사우스 레이크 유니온</a>
+  <a data-id="dn-fremont" onclick="navTo('dn-fremont')" style="display:none;">🌉 프리몬트</a>
+  <a data-id="dn-others" onclick="navTo('dn-others')" style="display:none;">🎓 기타</a>
 </nav>
+
+<!-- 메인 탭 바 -->
+<div class="main-tab-bar">
+  <button class="main-tab active" id="mtab-scripts" onclick="setMainTab('scripts')">🗺️ 투어 스크립트</button>
+  <button class="main-tab" id="mtab-driving" onclick="setMainTab('driving')">🚗 드라이빙 노트</button>
+</div>
 
 <!-- MAIN -->
 <main class="main">
+<div id="content-scripts">
 
 <div class="edit-toolbar">
   <span>✏️ 편집 모드 — 텍스트를 클릭하여 직접 수정하세요</span>
@@ -1839,6 +1890,344 @@
   </div>
 </div>
 
+</div><!-- /content-scripts -->
+
+<!-- ===== 드라이빙 노트 ===== -->
+<div id="content-driving" style="display:none;">
+<div style="padding:18px;">
+
+<!-- 섹션 1: 다운타운 빌딩 -->
+<div class="dn-section-title" id="dn-downtown">🏙️ 다운타운 & SoDo — 주요 빌딩</div>
+
+<div class="card dn-card" id="dn-columbia">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">🏢 Columbia Center</div>
+    <div class="card-sub">76층 · 285m · 시애틀 최고층 · SkyView Observatory</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 Columbia Center — 4th Ave & Cherry St</div>
+      <span class="dn-tip">🚗 I-5 또는 다운타운 진입 시 정면으로 보임</span>
+      <div class="sum-content">오른쪽에 보이는 검은 유리 건물이 컬럼비아 센터입니다. 76층, 285미터 — 시애틀에서 제일 높아요. 1985년 완공 당시 미시시피강 서쪽에서 가장 높은 건물이었습니다. 꼭대기 SkyView 전망대에서 맑은 날엔 레이니어 산, 캐나다까지 보입니다.</div>
+      <div class="full-content">컬럼비아 센터는 1985년에 완공된 76층짜리 건물입니다. 높이 285미터로, 지금도 시애틀에서 가장 높아요. 완공 당시엔 미시시피강 서쪽 전체에서 가장 높은 건물이었고, 이는 9년간 유지됐습니다.<br><br>검은 유리 외관 때문에 날씨에 따라 인상이 완전히 달라져요. 맑은 날엔 반사가 강해서 눈부시고, 흐린 날엔 하늘과 구분이 안 될 정도로 어둡습니다. 시애틀 사람들은 이걸 보면서 날씨를 예측한다는 농담도 해요.<br><br>73층 SkyView Observatory에 올라가면 레이니어 산, 올림픽 반도, 퓨젯 사운드, 캐나다 밴쿠버 섬까지 360도로 보입니다. 스페이스 니들보다 높아서 오히려 스페이스 니들을 내려다볼 수 있어요.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 Columbia Center — 4th Ave & Cherry St</div>
+      <span class="dn-tip">🚗 Visible on approach via I-5 or downtown</span>
+      <div class="sum-content">That black glass tower on your right is Columbia Center — 76 floors, 285 meters. Seattle's tallest building, completed in 1985. The SkyView Observatory on the 73rd floor gives 360° views: Mount Rainier, the Olympic Peninsula, and on clear days, Vancouver Island in Canada.</div>
+      <div class="full-content">Columbia Center was completed in 1985 at 76 floors and 285 meters. When it opened, it was the tallest building west of the Mississippi River — a title it held for nine years. The black glass facade shifts dramatically with the weather. On clear days it reflects sunlight sharply; on overcast days it nearly disappears into the sky.<br><br>The SkyView Observatory on the 73rd floor is actually higher than the Space Needle's observation deck, meaning you can look down on the Space Needle from up there. On a clear day you see Mount Rainier, the Olympic Mountains, Puget Sound, and Vancouver Island. It's less crowded than the Space Needle and generally less expensive.</div>
+    </div></div>
+  </div>
+</div>
+
+<div class="card dn-card" id="dn-smith">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">🗼 Smith Tower</div>
+    <div class="card-sub">1914년 · 38층 · 흰 첨탑 · 소원의 의자</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 Smith Tower — 506 2nd Ave, Pioneer Square</div>
+      <span class="dn-tip">🚗 파이어니어 스퀘어 방향에서 흰 첨탑이 보임</span>
+      <div class="sum-content">흰 첨탑 건물이 스미스 타워입니다. 1914년 완공 당시 뉴욕 밖에서 가장 높은 건물이었어요. 꼭대기 중국식 룸의 소원의 의자에 앉으면 1년 안에 결혼한다는 전설이 있습니다.</div>
+      <div class="full-content">스미스 타워는 1914년에 완공됐어요. 38층, 145미터 — 당시 뉴욕 밖에서 가장 높은 건물이었습니다. 타자기 회사 사장인 L.C. 스미스가 지었는데, "시애틀도 마천루가 있어야 한다"는 신념이었다고 해요.<br><br>꼭대기에는 중국식 룸이 있습니다. 청나라 황후가 선물한 도자기들과 손으로 그린 천장으로 장식된 이 방 안에 "소원의 의자"가 있어요. 이 의자에 미혼 여성이 앉으면 1년 안에 결혼한다는 전설이 있어서, 지금도 웨딩 사진 촬영 명소로 유명합니다.<br><br>1970년대에 한동안 방치됐다가 개인 소유주에게 팔려서 완전히 복원됐어요. 지금은 루프탑 바가 운영되는데, 시애틀 도심 야경을 즐길 수 있는 숨은 명소입니다.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 Smith Tower — 506 2nd Ave, Pioneer Square</div>
+      <span class="dn-tip">🚗 White pyramid tower visible near Pioneer Square</span>
+      <div class="sum-content">That white tower with the pyramid top is Smith Tower, built 1914. When it opened, it was the tallest building outside New York — 38 floors, 145 meters. An old legend says any unmarried woman who sits in the Wishing Chair at the top will be married within a year.</div>
+      <div class="full-content">Smith Tower was completed in 1914 at 38 floors and 145 meters — the tallest building outside New York for decades. L.C. Smith, a typewriter magnate, built it to prove Seattle deserved a skyline.<br><br>At the top is the Chinese Room, decorated with hand-painted ceilings and porcelain pieces gifted by the Empress of China. Inside sits the legendary Wishing Chair. According to local lore, any unmarried woman who sits in it will be married within a year. It remains one of Seattle's most popular wedding photography locations.<br><br>The building fell into neglect in the 1970s before being fully restored by private owners. Today the rooftop bar is one of Seattle's most atmospheric nightlife spots, with sweeping views of downtown.</div>
+    </div></div>
+  </div>
+</div>
+
+<div class="card dn-card" id="dn-library">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">📚 Seattle Central Library</div>
+    <div class="card-sub">2004년 · 렘 콜하스 설계 · 유리 다이아몬드</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 Seattle Public Library — 1000 4th Ave</div>
+      <span class="dn-tip">🚗 4th Ave 주행 시 유리 다이아몬드 형태가 눈에 띔</span>
+      <div class="sum-content">저 기묘하게 생긴 유리 다이아몬드 건물이 시애틀 공립 도서관입니다. 2004년 완공, 네덜란드 건축가 렘 콜하스가 설계했어요. 짓기 전엔 시민 반대가 심했는데, 문을 열고 나서는 사진 찍으러 관광객이 줄을 섰습니다.</div>
+      <div class="full-content">시애틀 공립 도서관은 2004년에 렘 콜하스가 설계해서 완공됐습니다. 착공 전 시민들의 반대가 상당했어요 — "너무 이상하다", "도서관답지 않다"는 의견이 많았습니다.<br><br>막상 문을 열자 관광객이 몰려들기 시작했어요. 건물 자체를 보러 오는 사람들이 생겼고, 건축 잡지들이 앞다투어 특집으로 다뤘습니다. 지금은 세계 10대 혁신 건축물 중 하나로 꼽혀요.<br><br>내부의 빨간 에스컬레이터는 특히 사진 명소입니다. 책 수납 방식도 혁신적이에요 — "Book Spiral"이라는 나선형 구조로 서가를 배치해서, 한 층에서 내려오면서 자연스럽게 모든 섹션을 지나가게 됩니다.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 Seattle Public Library — 1000 4th Ave</div>
+      <span class="dn-tip">🚗 The angular glass diamond on 4th Ave</span>
+      <div class="sum-content">That angular glass building is the Seattle Central Library — designed by Dutch architect Rem Koolhaas, opened 2004. Before it was built, many residents opposed it. Once it opened, tourists started coming just to photograph it. It's now ranked among the top ten architectural innovations of the decade.</div>
+      <div class="full-content">The Seattle Central Library opened in 2004, designed by Rem Koolhaas of OMA. Before construction, Seattle residents launched campaigns against the design — they found it too radical for a public library. After opening, it became a global architectural landmark.<br><br>The interior features dramatic red escalators and a concept called the "Book Spiral" — shelving arranged in a continuous spiral so readers naturally pass through every section as they move through the building. No more separate floors for different categories — it's all one flowing sequence.<br><br>It's been featured in architecture magazines worldwide and is now a required stop on Seattle architecture tours.</div>
+    </div></div>
+  </div>
+</div>
+
+<div class="card dn-card" id="dn-kingst">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">🚂 King Street Station</div>
+    <div class="card-sub">1906년 · 베네치아 종탑 모델 · Amtrak 기차역</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 King Street Station — 303 S Jackson St</div>
+      <span class="dn-tip">🚗 스타디움 지구 바로 옆, 시계탑이 눈에 띔</span>
+      <div class="sum-content">저 이탈리아풍 시계탑 건물이 킹 스트리트 역입니다. 1906년에 지어진 Amtrak 기차역이에요. 시계탑은 이탈리아 베네치아 성 마르코 광장의 종탑을 모델로 만들었습니다. 2013년 복원 공사로 70년대에 가짜 천장으로 덮어놨던 화려한 원형 내부를 되찾았습니다.</div>
+      <div class="full-content">킹 스트리트 역은 1906년에 지어진 시애틀의 Amtrak 기차역입니다. 저 시계탑은 이탈리아 베네치아 산 마르코 광장의 종탑(캄파닐레)을 모델로 만들었어요. 당시 설계자들이 유럽을 여행하며 영감을 받아왔다고 합니다.<br><br>1970년대에 "현대화" 공사를 하면서 원래 화려한 석고 장식 천장을 가짜 드롭 천장으로 덮어버렸어요. 그리고 2013년, 복원 공사를 통해 그 가짜 천장을 뜯어냈더니 100년 묵은 원래 천장이 그대로 나왔습니다. 지금은 서부 미국에서 가장 아름다운 기차역 중 하나로 꼽혀요.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 King Street Station — 303 S Jackson St</div>
+      <span class="dn-tip">🚗 Next to stadiums, distinctive clock tower</span>
+      <div class="sum-content">That Italian-style building with the clock tower is King Street Station — Seattle's Amtrak terminal, built in 1906. The clock tower was modeled after the Campanile in Venice's Piazza San Marco. In 2013, restoration work removed a 1970s drop ceiling to reveal the original ornate plasterwork beneath.</div>
+      <div class="full-content">King Street Station opened in 1906 as Seattle's main train depot. The clock tower was modeled directly after the Campanile in Venice's Piazza San Marco — designers traveled to Europe for inspiration.<br><br>In the 1970s, during a misguided "modernization," workers installed a drop ceiling over the original ornate plasterwork. For decades, the historic grandeur was hidden above fluorescent lights and acoustic tiles. In 2013, a major restoration project removed the false ceiling to reveal the century-old original work intact underneath. It's now considered one of the most beautiful train stations in the American West.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 섹션 2: 스포츠 경기장 -->
+<div class="dn-section-title" id="dn-stadiums">🏟️ 스포츠 경기장 — Stadium District</div>
+
+<div class="card dn-card" id="dn-tmobile">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">⚾ T-Mobile Park</div>
+    <div class="card-sub">시애틀 매리너스 · 개폐식 지붕 · 천연잔디 · MLB 116승 기록</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 T-Mobile Park — 1st Ave S & Edgar Martinez Dr</div>
+      <span class="dn-tip">🚗 I-5 SoDo 구간에서 좌측으로 보임</span>
+      <div class="sum-content">저기 개폐식 지붕 야구장이 T-모바일 파크입니다. 시애틀 매리너스 홈구장이에요. 2001년 매리너스가 116승 — MLB 역대 공동 최다승 기록을 세운 구장입니다. 지붕 여닫는 데 10분 걸리고, 내부는 천연 잔디입니다.</div>
+      <div class="full-content">T-모바일 파크는 시애틀 매리너스의 홈구장으로, 1999년에 문을 열었습니다. 가장 큰 특징은 개폐식 지붕 — 시애틀의 비 때문에 만들었어요. 지붕을 완전히 여는 데 약 10분이 걸립니다.<br><br>천연 잔디를 유지하는 것도 자랑입니다. 지붕이 있는 구장에서 천연 잔디를 관리하려면 특수 조명 시스템이 필요해요.<br><br>2001년 매리너스는 116승을 기록했습니다 — 1906년 시카고 컵스와 공동으로 MLB 역대 최다승 타이 기록이에요. 하지만 그 해 플레이오프에서는 진출하고도 탈락했고, 그 이후로 포스트시즌에 오르지 못했습니다 — 2022년 시즌까지 약 21년간 가장 긴 포스트시즌 공백 기록 중 하나였어요.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 T-Mobile Park — 1st Ave S & Edgar Martinez Dr</div>
+      <span class="dn-tip">🚗 Visible on left from I-5 southbound, SoDo section</span>
+      <div class="sum-content">That retractable roof stadium is T-Mobile Park — home of the Seattle Mariners. The roof was built specifically because of Seattle's rain. In 2001, the Mariners won 116 games — tied for the all-time MLB record. Takes 10 minutes to fully open or close the roof. The field uses real grass.</div>
+      <div class="full-content">T-Mobile Park opened in 1999 as home of the Seattle Mariners. The retractable roof was engineered specifically for Seattle's famously rainy weather — it can open or close in about 10 minutes.<br><br>The stadium maintains real grass, unusual for a covered facility, requiring specialized grow lights.<br><br>In 2001, the Mariners went 116-46 — tied with the 1906 Chicago Cubs for the most wins in a single MLB season. Despite that historic record, they lost in the playoffs. What followed was one of baseball's most painful dry spells: the Mariners didn't return to the postseason for 21 years, until 2022.</div>
+    </div></div>
+  </div>
+</div>
+
+<div class="card dn-card" id="dn-lumen">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">🏈 Lumen Field</div>
+    <div class="card-sub">Seahawks · Sounders · 기네스 세계 최소음 경기장 · Beast Quake</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 Lumen Field — 800 Occidental Ave S</div>
+      <span class="dn-tip">🚗 T-Mobile Park 바로 옆</span>
+      <div class="sum-content">바로 옆이 루멘 필드입니다. 시애틀 시호크스 (미식축구)와 사운더스 (MLS 축구)의 홈구장이에요. 기네스 세계 기록 — 세계에서 가장 시끄러운 야외 경기장. 2011년 플레이오프에서 팬들의 함성이 진짜 지진계를 흔들었습니다. "Beast Quake"라고 부릅니다.</div>
+      <div class="full-content">루멘 필드는 시호크스와 사운더스의 홈구장으로 2002년에 완공됐습니다. 기네스 기록을 두 번 세운 세계에서 가장 시끄러운 야외 경기장이에요.<br><br>2011년 1월 NFC 와일드카드 게임에서 Marshawn Lynch가 67야드 터치다운 런을 성공시켰을 때, 팬들의 함성이 너무 커서 경기장 근처 지진계가 반응했습니다. 이를 "Beast Quake"라고 부릅니다.<br><br>경기장 설계 자체가 소음을 극대화하도록 만들어졌어요 — 지붕 구조가 관중석 소리를 아래 경기장 쪽으로 집중시킵니다. 원정팀 쿼터백이 팬 소음 때문에 다음 플레이 신호를 전달 못 하는 상황이 자주 일어나는 구장입니다.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 Lumen Field — 800 Occidental Ave S</div>
+      <span class="dn-tip">🚗 Right next to T-Mobile Park</span>
+      <div class="sum-content">Right next to T-Mobile Park is Lumen Field — home to the Seahawks (NFL) and Sounders (MLS). Guinness World Record for loudest outdoor stadium — set twice. In 2011, fan noise during a Marshawn Lynch 67-yard touchdown run was loud enough to register on a seismograph. Seattle fans call it the "Beast Quake."</div>
+      <div class="full-content">Lumen Field opened in 2002, home to both the Seahawks and Sounders. It holds the Guinness World Record for loudest outdoor stadium — a record set twice.<br><br>In January 2011, Marshawn Lynch ran 67 yards for a playoff touchdown. The crowd noise was so intense it registered on seismographs at the University of Washington. Seismologists confirmed the reading. Fans immediately named it the "Beast Quake."<br><br>The stadium's design deliberately channels noise downward toward the field. Visiting quarterbacks frequently can't communicate play calls due to crowd volume. It's considered one of the most intimidating home-field advantages in professional sports.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 섹션 3: 워터프런트 -->
+<div class="dn-section-title" id="dn-waterfront">🌊 워터프런트 — Elliott Bay</div>
+
+<div class="card dn-card" id="dn-greatwheel">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">🎡 Seattle Great Wheel</div>
+    <div class="card-sub">53m · 서해안 최대 대관람차 · 유리 바닥 · 24분 1바퀴</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 Great Wheel — Pier 57, Alaskan Way</div>
+      <span class="dn-tip">🚗 워터프런트 드라이브 시 바다 쪽으로 보임</span>
+      <div class="sum-content">저 빨간 대관람차가 시애틀 그레이트 휠입니다. 높이 53미터, 2012년 완공, 서해안에서 가장 큰 관람차예요. 24분에 한 바퀴 돌고, 곤돌라 바닥이 유리입니다. 저녁엔 LED 조명으로 색이 계속 바뀝니다.</div>
+      <div class="full-content">시애틀 그레이트 휠은 2012년에 Pier 57에 문을 열었습니다. 높이 53미터로 서해안에서 가장 큰 관람차예요. 총 42개 곤돌라가 있고, 한 바퀴 도는 데 약 24분이 걸립니다.<br><br>곤돌라 바닥이 투명 유리라서 발 아래로 바닷물을 볼 수 있어요. 맑은 날 꼭대기에서는 엘리엇 만, 올림픽 반도, 레이니어 산이 모두 보입니다. 저녁엔 LED 조명이 다양한 색으로 바뀌면서 워터프런트의 랜드마크가 됩니다.<br><br>VIP 곤돌라는 냉·난방이 되고 샴페인 서비스도 있어요. 프러포즈 명소로도 유명합니다.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 Great Wheel — Pier 57, Alaskan Way</div>
+      <span class="dn-tip">🚗 Visible from waterfront drive, facing Elliott Bay</span>
+      <div class="sum-content">That red Ferris wheel is the Seattle Great Wheel — 53 meters tall, West Coast's largest, opened 2012. One full rotation takes 24 minutes. Glass-floor gondolas let you look straight down at the water. At night, LED lights cycle through colors continuously.</div>
+      <div class="full-content">The Seattle Great Wheel opened in 2012 at Pier 57 — 53 meters tall, with 42 gondolas, taking 24 minutes per rotation. It's the largest Ferris wheel on the West Coast.<br><br>The gondola floors are transparent glass, so you're looking straight down at Elliott Bay as you ride. At the top on a clear day, you see the Olympic Mountains, Mount Rainier, and the Seattle skyline simultaneously.<br><br>VIP gondolas have climate control and champagne service. It's become one of Seattle's most popular proposal locations. At night, programmable LED lighting makes it the most visible landmark on the waterfront.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 섹션 4: 시애틀 센터 -->
+<div class="dn-section-title" id="dn-sc">🛸 시애틀 센터 & 사우스 레이크 유니온</div>
+
+<div class="card dn-card" id="dn-climatepledge">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">🏒 Climate Pledge Arena</div>
+    <div class="card-sub">NHL 시애틀 크라켄 · 1962 세계박람회 리모델링 · 탄소중립 경기장</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 Climate Pledge Arena — 334 1st Ave N, Seattle Center</div>
+      <span class="dn-tip">🚗 스페이스 니들 바로 옆 시애틀 센터 내</span>
+      <div class="sum-content">스페이스 니들 옆에 있는 저 경기장이 클라이밋 플레지 아리나입니다. 1962년 세계박람회 건물의 역사문화재 지붕은 보존하면서, 그 아래를 통째로 파내서 새 경기장을 만든 거예요. NHL 시애틀 크라켄의 홈구장이고, 빗물로 링크 얼음을 만드는 탄소중립 경기장입니다.</div>
+      <div class="full-content">클라이밋 플레지 아리나는 2021년에 문을 열었어요. 1962년 세계박람회 당시 지어진 콜로세움 건물을 개조한 것인데, 방법이 독특합니다. 역사문화재로 지정된 외부 지붕 구조물은 그대로 남겨두고, 그 아래 땅을 파내서 새 경기장을 지었어요 — 지붕이 떠 있는 형태입니다.<br><br>아마존이 후원하고, 목표는 세계 최초 탄소 중립 아레나예요. 경기장 지붕에서 빗물을 모아 아이스링크 얼음을 만들고, 무기물 냉매 시스템을 씁니다. 음식 쓰레기는 제로 매립지 원칙으로 처리해요.<br><br>크라켄은 2021년에 창단한 NHL 31번째 팀이에요. 팀 이름은 북태평양 바다 괴물에서 따왔습니다.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 Climate Pledge Arena — 334 1st Ave N, Seattle Center</div>
+      <span class="dn-tip">🚗 Inside Seattle Center, next to the Space Needle</span>
+      <div class="sum-content">That arena next to the Space Needle is Climate Pledge Arena — home of the NHL's Seattle Kraken. Engineers preserved the 1962 World's Fair historic roof, then excavated downward to build an entirely new arena underneath it. Amazon sponsors it. Goal: the world's first net-zero carbon arena. The ice is made from collected rainwater.</div>
+      <div class="full-content">Climate Pledge Arena opened in 2021. The original structure was a legacy building from the 1962 World's Fair — designated as a historic landmark. Engineers preserved the iconic roof shell and excavated downward to create an entirely new arena beneath it. The roof appears to float above the building.<br><br>Amazon sponsors the naming rights with a sustainability mission: the world's first net-zero carbon arena. The ice rink uses only rainwater collected from the roof. No fossil fuels are used in operations. Food waste follows a zero-landfill protocol.<br><br>The Kraken launched in 2021 as the NHL's 31st franchise. The name references the legendary sea monster of the North Pacific — fitting for the Pacific Northwest.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 섹션 5: 사우스 레이크 유니온 (SLU) -->
+<div class="dn-section-title" id="dn-slu">🌿 사우스 레이크 유니온 — Amazon & Gates</div>
+
+<div class="card dn-card" id="dn-amazon-hq">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">📦 Amazon HQ — Day 1 & Rufus 2.0</div>
+    <div class="card-sub">50,000명 근무 · 개 출근 허용 · Day 1 철학</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 Amazon HQ — Denny Triangle, South Lake Union</div>
+      <span class="dn-tip">🚗 Denny Way / Westlake Ave 주행 시 유리 건물군이 보임</span>
+      <div class="sum-content">저 현대식 유리 건물군이 아마존 본사입니다. 시애틀 캠퍼스에만 약 5만 명이 근무해요. 건물 이름 중에 "Day 1"이 있는데, 매일이 창업 첫날처럼 일해야 한다는 제프 베이조스의 철학입니다. 직원들이 개를 데리고 출근할 수 있고, 개 공원도 별도로 있습니다.</div>
+      <div class="full-content">아마존 본사 캠퍼스는 사우스 레이크 유니온 지역에 자리잡고 있어요. 시애틀 캠퍼스에만 약 5만 명이 일하고, 건물만 수십 채입니다.<br><br>"Day 1"이라는 건물 이름은 제프 베이조스의 핵심 경영 철학에서 나왔어요. "Day 1 = 스타트업처럼 긴장감 있게, 고객 집착, 빠른 실행." 반면 "Day 2 = 안주, 관료화, 쇠퇴의 시작." 베이조스는 "나는 항상 Day 1에 있고 싶다"고 했습니다.<br><br>아마존은 개 친화적 기업으로 유명해요 — 직원들이 개를 데리고 출근할 수 있고, 캠퍼스 내 개 공원도 있습니다. "Rufus"는 초창기 아마존 직원이 데리고 다니던 개 이름인데, 그 개 이름을 딴 건물도 있어요.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 Amazon HQ — Denny Triangle, South Lake Union</div>
+      <span class="dn-tip">🚗 Glass towers visible along Denny Way / Westlake Ave</span>
+      <div class="sum-content">Those glass towers are Amazon's headquarters — about 50,000 employees on this campus alone. One building is called "Day 1" — from Jeff Bezos's core philosophy: every day must feel like the first day of a startup, with urgency and customer obsession. "Day 2" means stagnation and decline. Employees can bring their dogs to work. There's even a dedicated dog park on campus.</div>
+      <div class="full-content">Amazon's Seattle headquarters spans the South Lake Union neighborhood — about 50,000 employees across dozens of buildings.<br><br>"Day 1" comes from Jeff Bezos's management philosophy. Day 1 means customer obsession, fast decision-making, startup urgency. Day 2, Bezos wrote, is "stasis, followed by irrelevance, followed by excruciating, painful decline, followed by death." He moved the "Day 1" sign from building to building as a physical reminder.<br><br>Amazon is famously dog-friendly. Employees have always been allowed to bring their dogs to work. The campus has dedicated dog parks. An early Amazon employee's dog named Rufus was so beloved that a building was named after him — "Rufus 2.0" is the current campus version of that tribute.</div>
+    </div></div>
+  </div>
+</div>
+
+<div class="card dn-card" id="dn-gates">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">🌍 Bill & Melinda Gates Foundation</div>
+    <div class="card-sub">세계 최대 민간 재단 · 연 7조원 기부 · 말라리아 박멸 프로젝트</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 Gates Foundation — 500 5th Ave N</div>
+      <span class="dn-tip">🚗 시애틀 센터 북쪽, 5th Ave N 주행 시</span>
+      <div class="sum-content">저 현대식 캠퍼스가 빌 & 멜린다 게이츠 재단 본부입니다. 세계 최대 민간 재단이에요. 연간 7조 원 이상을 말라리아 박멸, 교육 혁신, 농업 개발에 씁니다. 빌 게이츠가 이 동네 출신이라 여기에 세웠어요.</div>
+      <div class="full-content">빌 & 멜린다 게이츠 재단은 자산 규모로 세계 최대 민간 자선 재단입니다. 연간 기부 규모가 60억 달러(약 8조 원)가 넘어요.<br><br>가장 큰 성과 중 하나는 말라리아 퇴치입니다. 재단의 지원으로 말라리아 사망자가 크게 줄었고, 아프리카 일부 지역에서 말라리아가 사실상 근절됐습니다. 폴리오(소아마비) 박멸 프로젝트도 진행 중이에요.<br><br>빌 게이츠는 시애틀에서 자랐습니다. 지금도 메디나 호수가 저택에 살고 있어요. 방문자 센터가 무료 개방이라 누구나 들어가서 재단이 하는 일을 배울 수 있습니다.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 Gates Foundation — 500 5th Ave N</div>
+      <span class="dn-tip">🚗 North of Seattle Center, on 5th Ave N</span>
+      <div class="sum-content">That modern campus is the Bill & Melinda Gates Foundation headquarters — the world's largest private charitable foundation. Annual giving exceeds $6 billion. Major focus areas: malaria eradication, global health, education, and agricultural development. Bill Gates grew up in Seattle, which is why it's based here. The visitor center is free and open to the public.</div>
+      <div class="full-content">The Bill & Melinda Gates Foundation is the largest private charitable foundation in the world by assets. Annual charitable giving exceeds $6 billion — more than the entire foreign aid budget of many countries.<br><br>One of its most measurable achievements is in malaria reduction. Foundation-funded vaccine research and distribution programs have cut malaria deaths significantly. Polio eradication is another active mission — the foundation has committed over $4 billion to ending polio globally.<br><br>Bill Gates was born and raised in Seattle. He still lives in a lakeside mansion in nearby Medina. The foundation's visitor center on campus is free and open to the public, with exhibits on global health crises and how the foundation addresses them.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 섹션 6: 프리몬트 & 레이크 유니온 -->
+<div class="dn-section-title" id="dn-fremont">🌉 프리몬트 & 레이크 유니온</div>
+
+<div class="card dn-card" id="dn-aurora-bridge">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">🌁 Aurora Bridge (George Washington Memorial Bridge)</div>
+    <div class="card-sub">1932년 · 49m 높이 · 다리 아래 프리몬트 트롤</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 Aurora Bridge — Aurora Ave N (SR-99), Lake Union 북쪽</div>
+      <span class="dn-tip">🚗 SR-99 (Aurora Ave) 북쪽으로 레이크 유니온 가로지를 때</span>
+      <div class="sum-content">저 높은 다리가 오로라 브리지입니다. 공식 이름은 조지 워싱턴 메모리얼 브리지, 1932년 완공, 높이 49미터예요. 다리 북쪽 끝 아래에 프리몬트 트롤이 살고 있어요 — 폭스바겐 비틀을 한 손에 쥔 콘크리트 조각상입니다.</div>
+      <div class="full-content">오로라 브리지는 1932년에 완공됐습니다. 공식 이름은 조지 워싱턴 메모리얼 브리지. 레이크 유니온 북쪽을 가로지르며, 높이가 49미터예요.<br><br>다리 북쪽 끝 아래에 프리몬트 트롤이 있어요. 1990년, 지역 예술가 4명이 다리 아래 방치된 공간을 활용하자는 아이디어로 만들었습니다. 콘크리트로 만든 거대한 트롤이 왼손으로 실제 폭스바겐 비틀을 쥐고 있어요. 원래 차 트렁크 안에는 타임캡슐이 있었는데 지금은 없어졌다고 합니다. 프리몬트에서 가장 인기 있는 포토 스팟이에요.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 Aurora Bridge — Aurora Ave N (SR-99), north of Lake Union</div>
+      <span class="dn-tip">🚗 When crossing Lake Union on SR-99 northbound</span>
+      <div class="sum-content">That high bridge is the Aurora Bridge — officially the George Washington Memorial Bridge, built 1932, 49 meters above Lake Union. Underneath the north end lives the Fremont Troll — a massive concrete sculpture clutching a real Volkswagen Beetle in its left hand, installed in 1990 by four local artists.</div>
+      <div class="full-content">The Aurora Bridge (George Washington Memorial Bridge) was completed in 1932. At 49 meters above Lake Union, it's one of Seattle's most prominent structures.<br><br>In 1990, four local artists won a competition to transform the neglected space under the bridge's north end. They created a massive concrete troll that crawls from beneath the bridge, clutching a real Volkswagen Beetle in its left fist. The car originally had a time capsule in the trunk, though it reportedly disappeared at some point.<br><br>The Fremont Troll has become one of Seattle's most beloved public art installations — and a quintessential photo opportunity. Fremont itself is known as the "Center of the Universe," a nickname the neighborhood gave itself and takes half-seriously.</div>
+    </div></div>
+  </div>
+</div>
+
+<div class="card dn-card" id="dn-fremont-bridge">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">🟠 Fremont Bridge</div>
+    <div class="card-sub">기네스 기록 — 세계에서 가장 많이 열리는 도개교 · 연 35,000회</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 Fremont Bridge — Fremont Ave N & N Canal St</div>
+      <span class="dn-tip">🚗 Fremont 방향으로 레이크 워싱턴 운하 건널 때</span>
+      <div class="sum-content">저 주황색 다리가 프리몬트 브리지입니다. 세계에서 가장 많이 열리는 도개교 기네스 기록 보유 — 연간 약 35,000번 열립니다. 15분에 한 번꼴이에요. 1917년 완공됐는데, 같은 해 레이크 워싱턴 운하도 완공됐습니다. 배가 다니기 시작하면서 이렇게 자주 열리게 됐어요.</div>
+      <div class="full-content">프리몬트 브리지는 1917년에 완공됐어요. 같은 해에 레이크 워싱턴 운하가 개통됐는데, 이 운하가 퓨젯 사운드와 레이크 워싱턴을 연결하면서 배 통행이 폭발적으로 늘었습니다.<br><br>기네스 세계 기록 — 지금까지 세계에서 가장 많이 열린 도개교입니다. 연간 약 35,000번 열려요. 활발한 계절에는 하루에 100번 가까이 열릴 수도 있어요.<br><br>다리 조작실에 직원들이 24시간 교대로 근무하면서 배가 오면 다리를 올립니다. 운이 좋으면 지나가면서 다리가 올라가는 모습을 볼 수 있어요 — 기다려봐도 금세 지나갑니다.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 Fremont Bridge — Fremont Ave N & N Canal St</div>
+      <span class="dn-tip">🚗 Crossing the Lake Washington Ship Canal toward Fremont</span>
+      <div class="sum-content">That orange drawbridge is the Fremont Bridge — Guinness World Record holder for the most openings of any drawbridge: approximately 35,000 times per year. That's roughly once every 15 minutes during active hours. Built in 1917, the same year the Lake Washington Ship Canal opened. Boat traffic created the demand for constant openings.</div>
+      <div class="full-content">The Fremont Bridge was completed in 1917, coinciding with the opening of the Lake Washington Ship Canal — which connected Puget Sound to Lake Washington and created massive new boat traffic overnight.<br><br>The Guinness World Record for most drawbridge openings belongs to this bridge: approximately 35,000 openings per year. Bridge operators work in 24-hour rotating shifts to raise and lower the spans whenever a vessel approaches.<br><br>If you stop and watch for a minute, there's a reasonable chance you'll see it open. Boats range from kayaks to large sailboats with tall masts — anything too tall to pass under requires a full opening.</div>
+    </div></div>
+  </div>
+</div>
+
+<div class="card dn-card" id="dn-gasworks">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">🏭 Gas Works Park</div>
+    <div class="card-sub">1906~1956 석탄가스화 공장 터 · 철제 구조물 재활용 · 레이크 유니온 최고 뷰</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 Gas Works Park — 2101 N Northlake Way</div>
+      <span class="dn-tip">🚗 레이크 유니온 북쪽 해안도로에서 보임</span>
+      <div class="sum-content">레이크 유니온 위 언덕에 보이는 거대한 철제 구조물들 — 저게 가스웍스 파크입니다. 1906~1956년 석탄 가스화 공장이 있던 자리예요. 공장 폐쇄 후 땅이 오염됐는데, 철제 구조물이 너무 커서 철거가 힘들었어요. 그래서 그냥 페인트 칠해서 예술품으로 만들었습니다.</div>
+      <div class="full-content">가스웍스 파크는 1906년부터 1956년까지 석탄 가스화 공장이 있던 자리입니다. 공장이 문을 닫은 후 땅이 심각하게 오염됐고, 거대한 철제 구조물들을 철거하는 비용이 엄청났어요.<br><br>시에서 이 땅을 공원으로 만들기로 결정했고, 지역 주민들과 협의해서 철제 구조물을 그냥 남겨두기로 했습니다. 일부는 피크닉 쉼터로 개조하고, 일부는 페인트 칠해서 공공 예술 작품으로 만들었어요. 1975년에 공원이 문을 열었고, 지금은 미국에서 가장 성공적인 산업 유산 재활용 공원 중 하나로 꼽힙니다.<br><br>언덕 꼭대기에서 바라보는 레이크 유니온과 시애틀 스카이라인 뷰가 정말 아름다워요 — 시내에서 가장 멋진 무료 전망 중 하나입니다.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 Gas Works Park — 2101 N Northlake Way</div>
+      <span class="dn-tip">🚗 Visible from north shore of Lake Union</span>
+      <div class="sum-content">Those industrial towers on the hill above Lake Union are Gas Works Park — site of a coal gasification plant that ran from 1906 to 1956. After closure, the structures were too large and costly to remove. The city left them, painted them, and converted some into picnic shelters. It's now one of America's most celebrated examples of industrial heritage reuse. The hilltop has one of Seattle's best free skyline views.</div>
+      <div class="full-content">Gas Works Park occupies the site of a Seattle Gas Light Company plant that operated from 1906 to 1956 — gasifying coal to produce fuel for Seattle's lights and heat. After closure, the land was severely contaminated, and the industrial towers were prohibitively expensive to demolish.<br><br>Rather than a conventional park, landscape architect Richard Haag proposed keeping the industrial structures and integrating them creatively. Some towers were converted into covered picnic areas; others were left as sculptural landmarks. The park opened in 1975.<br><br>It's since become a textbook example of adaptive reuse — studied in landscape architecture programs worldwide. The view from the hilltop across Lake Union to the Seattle skyline is one of the city's best vantage points, entirely free.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 섹션 7: 기타 -->
+<div class="dn-section-title" id="dn-others">🎓 기타 랜드마크</div>
+
+<div class="card dn-card" id="dn-uw">
+  <div class="card-header" onclick="toggleCard(this)">
+    <div><div class="card-title">🎓 University of Washington (UW)</div>
+    <div class="card-sub">1861년 설립 · 4만7천명 · 의대·공학 상위 5위 · 벚꽃 명소</div></div>
+    <span class="card-arrow">▶</span>
+  </div>
+  <div class="card-body">
+    <div class="ko"><div class="script-block">
+      <div class="location">📍 University of Washington — 4001 E Stevens Way NE</div>
+      <span class="dn-tip">🚗 I-5 북쪽 또는 Montlake Bridge 건널 때 캠퍼스 보임</span>
+      <div class="sum-content">저 넓은 캠퍼스가 워싱턴 대학교입니다. 1861년 설립, 학생 수 4만 7천 명. 의대·공학이 전국 상위 5위 안에 들어요. 폴 앨런 (마이크로소프트 공동창업자)이 다닌 학교예요. 봄에는 캠퍼스 안 벚꽃이 가장 아름다운 시애틀 봄 풍경을 만들어냅니다.</div>
+      <div class="full-content">워싱턴 대학교는 1861년에 시애틀 다운타운에서 시작해서 지금 위치로 1895년에 이전했습니다. 학생 수 4만 7천 명, 교직원 포함하면 30만 명 이상이 UW와 연결돼 있어요.<br><br>의과대학은 전국 5위 안에 드는 명문입니다. 컴퓨터 공학, 법학, 국제관계학도 강해요. 폴 앨런이 마이크로소프트를 공동 창업하기 전에 다닌 학교이기도 합니다.<br><br>봄이 되면 캠퍼스 중앙 Quad에 요시노 벚나무들이 만개합니다. 이 광경이 시애틀에서 가장 아름다운 봄 사진 명소로 꼽혀요. 매년 수만 명이 벚꽃을 보러 캠퍼스를 방문합니다. 입장은 무료예요.</div>
+    </div></div>
+    <div class="en"><div class="script-block">
+      <div class="location">📍 University of Washington — 4001 E Stevens Way NE</div>
+      <span class="dn-tip">🚗 Campus visible from I-5 north or crossing Montlake Bridge</span>
+      <div class="sum-content">That vast campus is the University of Washington — UW. Founded 1861, 47,000 students. Medical school and engineering consistently rank in the national top five. Microsoft co-founder Paul Allen attended UW before dropping out. Every spring, the cherry trees in the central Quad create what many consider Seattle's most beautiful seasonal scenery.</div>
+      <div class="full-content">The University of Washington was founded in 1861 in downtown Seattle, relocating to its current campus in 1895. With 47,000 students and 300,000+ alumni, it's one of the largest public universities in the American West.<br><br>UW Medicine is ranked among the top five medical schools nationally. The Paul G. Allen School of Computer Science and Engineering consistently produces top tech talent — the Gates Foundation and Allen Institute both trace their origins to UW alumni.<br><br>Every spring, the cherry trees in the Central Quad erupt in pink — rows of Yoshino cherry trees creating one of Seattle's most photographed seasonal scenes. Tens of thousands of visitors come to campus just to walk among the blossoms. Entry is free and open to the public.</div>
+    </div></div>
+  </div>
+</div>
+
+</div><!-- /padding -->
+</div><!-- /content-driving -->
+
 </main>
 </div>
 
@@ -2284,6 +2673,23 @@ function navTo(id) {
 
 // ── 초기화: 저장된 내용 불러오기 ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', loadSavedEdits);
+
+// ── 메인 탭 전환 (투어 스크립트 ↔ 드라이빙 노트) ──────────────────────────────
+function setMainTab(tab) {
+  var isScripts = tab === 'scripts';
+  document.getElementById('content-scripts').style.display = isScripts ? '' : 'none';
+  document.getElementById('content-driving').style.display = isScripts ? 'none' : '';
+  document.getElementById('mtab-scripts').classList.toggle('active', isScripts);
+  document.getElementById('mtab-driving').classList.toggle('active', !isScripts);
+  // 사이드바 드라이빙 노트 섹션 표시/숨김
+  var dnEl = document.getElementById('sb-dn');
+  if (dnEl) dnEl.style.display = isScripts ? 'none' : '';
+  document.querySelectorAll('.sidebar a[data-id^="dn-"]').forEach(function(a) {
+    a.style.display = isScripts ? 'none' : '';
+  });
+  // 탭 전환 시 맨 위로 스크롤
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 </script>
 </body>
 </html>
