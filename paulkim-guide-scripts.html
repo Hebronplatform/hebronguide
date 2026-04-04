@@ -45,10 +45,10 @@
   .lang-toggle { display: flex; gap: 4px; }
   .view-toggle  { display: flex; gap: 4px; }
   .view-btn, .print-btn, .edit-btn {
-    padding: var(--btn-pad);
-    border-radius: 20px; border: 2px solid rgba(255,255,255,.4);
+    padding: 3px 9px;
+    border-radius: 14px; border: 1.5px solid rgba(255,255,255,.4);
     background: transparent; color: white; cursor: pointer;
-    font-size: var(--btn-fs); font-weight: 600;
+    font-size: .6rem; font-weight: 600;
     transition: all .2s; white-space: nowrap;
   }
   /* 언어 토글 버튼 */
@@ -1623,6 +1623,21 @@ function toggleCard(header) {
 function toggleLang() {
   var isEn = document.body.classList.contains('en');
   setLang(isEn ? 'ko' : 'en');
+
+  // 열린 카드가 없으면 첫 번째 카드를 자동으로 열어 언어 전환을 바로 확인할 수 있게 함
+  var openCards = document.querySelectorAll('.card-body.open');
+  if (openCards.length === 0) {
+    var firstHeader = document.querySelector('.card .card-header');
+    if (firstHeader && !firstHeader.nextElementSibling.classList.contains('open')) {
+      firstHeader.classList.add('open');
+      firstHeader.nextElementSibling.classList.add('open');
+      var topbarH = (document.querySelector('.topbar') || {offsetHeight: 56}).offsetHeight + 12;
+      requestAnimationFrame(function() {
+        var top = firstHeader.parentElement.getBoundingClientRect().top + window.pageYOffset - topbarH;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      });
+    }
+  }
 }
 
 function setLang(lang) {
