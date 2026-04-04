@@ -58,15 +58,12 @@
   .edit-btn.active  { background: #e74c3c; border-color: #e74c3c; }
 
   /* ── LAYOUT ──────────────────────────────────────────────────────────── */
-  .layout {
-    display: block;
-    margin-top: var(--topbar-h);
-    min-height: calc(100vh - var(--topbar-h));
-  }
+  .layout { display: block; }
 
   /* ── SIDEBAR ─────────────────────────────────────────────────────────── */
   .sidebar {
-    position: fixed; top: var(--topbar-h); left: 0; bottom: 0;
+    position: fixed;
+    top: var(--topbar-h); left: 0; bottom: 0;
     width: var(--sidebar-w);
     background: white; border-right: 1px solid var(--border);
     overflow-y: auto; padding: 12px 0; z-index: 90;
@@ -86,10 +83,14 @@
 
   /* ── MAIN ────────────────────────────────────────────────────────────── */
   .main {
-    margin-left: var(--sidebar-w);
+    position: fixed;
+    top: var(--topbar-h);
+    left: var(--sidebar-w);
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
     padding: clamp(14px, 2vw, 28px);
     box-sizing: border-box;
-    width: calc(100% - var(--sidebar-w));
   }
   /* 테이블 반응형 */
   .table-wrap { overflow-x: auto; width: 100%; }
@@ -279,9 +280,8 @@
     .topbar h1 { display: none; }
   }
   @media (max-width: 768px) {
-    :root { --sidebar-w: 0px; }
     .sidebar { display: none; }
-    .main  { margin-left: 0; width: 100%; }
+    .main  { left: 0; }
     .topbar { padding: 8px 12px; justify-content: flex-start; }
   }
   @media (max-width: 480px) {
