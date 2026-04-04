@@ -44,14 +44,26 @@
   .topbar-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
   .lang-toggle { display: flex; gap: 4px; }
   .view-toggle  { display: flex; gap: 4px; }
-  .lang-btn, .view-btn, .print-btn, .edit-btn {
+  .view-btn, .print-btn, .edit-btn {
     padding: var(--btn-pad);
     border-radius: 20px; border: 2px solid rgba(255,255,255,.4);
     background: transparent; color: white; cursor: pointer;
     font-size: var(--btn-fs); font-weight: 600;
     transition: all .2s; white-space: nowrap;
   }
-  .lang-btn.active  { background: white; color: var(--blue); border-color: white; }
+  /* 언어 토글 버튼 */
+  .lang-toggle-btn {
+    display: flex; align-items: center; gap: 5px;
+    padding: var(--btn-pad); border-radius: 20px;
+    border: 2px solid rgba(255,255,255,.4);
+    background: rgba(255,255,255,.12); color: white;
+    cursor: pointer; font-size: var(--btn-fs); font-weight: 600;
+    transition: background .2s; white-space: nowrap;
+  }
+  .lang-toggle-btn:hover { background: rgba(255,255,255,.25); }
+  .lang-ko, .lang-en { opacity: .45; transition: opacity .15s, font-weight .1s; }
+  .lang-ko.on, .lang-en.on { opacity: 1; font-weight: 800; }
+  .lang-sep { opacity: .35; font-weight: 300; }
   .view-btn.active  { background: #e67e22; border-color: #e67e22; }
   .print-btn        { font-weight: 400; }
   .print-btn:hover, .edit-btn:hover { background: rgba(255,255,255,.15); }
@@ -309,10 +321,11 @@
 <div class="topbar">
   <h1 onclick="navTo('top')" style="cursor:pointer;" title="홈으로">🗺️ 폴킴 투어 가이드 스크립트</h1>
   <div class="topbar-actions">
-    <div class="lang-toggle">
-      <button type="button" class="lang-btn active" onclick="setLang('ko')">한국어</button>
-      <button type="button" class="lang-btn" onclick="setLang('en')">English</button>
-    </div>
+    <button type="button" class="lang-toggle-btn" onclick="toggleLang()" id="langToggle" title="언어 전환 (한국어 ↔ English)">
+      <span class="lang-ko on" id="langKo">한국어</span>
+      <span class="lang-sep">↔</span>
+      <span class="lang-en" id="langEn">EN</span>
+    </button>
     <div class="view-toggle">
       <button type="button" class="view-btn active" id="viewFull" onclick="setView('full')">정상판</button>
       <button type="button" class="view-btn" id="viewSum" onclick="setView('sum')">요약판</button>
@@ -1607,11 +1620,22 @@ function toggleCard(header) {
   body.classList.toggle('open');
 }
 
+function toggleLang() {
+  var isEn = document.body.classList.contains('en');
+  setLang(isEn ? 'ko' : 'en');
+}
+
 function setLang(lang) {
   const classes = document.body.className.replace(/\bko\b|\ben\b/g, '').trim();
   document.body.className = (classes + ' ' + lang).trim();
-  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+  // 토글 버튼 표시 업데이트
+  var koSpan = document.getElementById('langKo');
+  var enSpan = document.getElementById('langEn');
+  if (koSpan && enSpan) {
+    koSpan.classList.toggle('on', lang === 'ko');
+    enSpan.classList.toggle('on', lang === 'en');
+  }
 
   // 영어 컨텐츠 없는 블록은 한국어 그대로 표시
   if (lang === 'en') {
