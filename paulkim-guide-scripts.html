@@ -58,7 +58,9 @@
   .edit-btn.active  { background: #e74c3c; border-color: #e74c3c; }
 
   /* ── LAYOUT ──────────────────────────────────────────────────────────── */
-  .layout { display: block; }
+  .layout {
+    margin-top: var(--topbar-h);
+  }
 
   /* ── SIDEBAR ─────────────────────────────────────────────────────────── */
   .sidebar {
@@ -83,14 +85,10 @@
 
   /* ── MAIN ────────────────────────────────────────────────────────────── */
   .main {
-    position: fixed;
-    top: var(--topbar-h);
-    left: var(--sidebar-w);
-    right: 0;
-    bottom: 0;
-    overflow-y: auto;
+    margin-left: var(--sidebar-w);
     padding: clamp(14px, 2vw, 28px);
-    box-sizing: border-box;
+    min-height: calc(100vh - var(--topbar-h));
+    background: var(--bg);
   }
   /* 테이블 반응형 */
   .table-wrap { overflow-x: auto; width: 100%; }
@@ -198,7 +196,7 @@
   /* SEARCH */
   .search-bar {
     position: sticky; top: 0; z-index: 50; background: var(--bg);
-    padding: 12px 0 8px;
+    padding: 8px 0;
   }
   .search-input {
     width: 100%; padding: 10px 16px; border-radius: 8px;
@@ -281,7 +279,7 @@
   }
   @media (max-width: 768px) {
     .sidebar { display: none; }
-    .main  { left: 0; }
+    .main { margin-left: 0; }
     .topbar { padding: 8px 12px; justify-content: flex-start; }
   }
   @media (max-width: 480px) {
