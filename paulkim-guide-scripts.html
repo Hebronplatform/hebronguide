@@ -22,7 +22,7 @@
     --btn-fs: .85rem;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { overflow-x: hidden; max-width: 100%; }
+  html { overflow-x: hidden; }
   body { font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
          background: var(--bg); color: var(--text); }
 
@@ -310,15 +310,15 @@
   <h1 onclick="navTo('top')" style="cursor:pointer;" title="홈으로">🗺️ 폴킴 투어 가이드 스크립트</h1>
   <div class="topbar-actions">
     <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
-      <button class="lang-btn" onclick="setLang('en')">English</button>
+      <button type="button" class="lang-btn active" onclick="setLang('ko')">한국어</button>
+      <button type="button" class="lang-btn" onclick="setLang('en')">English</button>
     </div>
     <div class="view-toggle">
-      <button class="view-btn active" id="viewFull" onclick="setView('full')">정상판</button>
-      <button class="view-btn" id="viewSum" onclick="setView('sum')">요약판</button>
+      <button type="button" class="view-btn active" id="viewFull" onclick="setView('full')">정상판</button>
+      <button type="button" class="view-btn" id="viewSum" onclick="setView('sum')">요약판</button>
     </div>
-    <button class="print-btn" onclick="window.print()">🖨️ 인쇄</button>
-    <button class="edit-btn" id="editBtn" onclick="toggleEditMode()">✏️ 편집</button>
+    <button type="button" class="print-btn" onclick="window.print()">🖨️ 인쇄</button>
+    <button type="button" class="edit-btn" id="editBtn" onclick="toggleEditMode()">✏️ 편집</button>
     <span class="save-indicator" id="saveIndicator"></span>
   </div>
 </div>
@@ -1643,17 +1643,22 @@ function searchContent(query) {
   });
 }
 
-// Sidebar active link on scroll
-const sections = document.querySelectorAll('[id]');
-const links = document.querySelectorAll('.sidebar a');
+// Sidebar active link on scroll — data-id 기반
+const sidebarLinks = document.querySelectorAll('.sidebar a[data-id]');
 window.addEventListener('scroll', () => {
+  var topbarEl2 = document.querySelector('.topbar');
+  var offset = topbarEl2 ? topbarEl2.offsetHeight + 20 : 80;
   let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 80) current = s.id;
+  sidebarLinks.forEach(l => {
+    var targetId = l.getAttribute('data-id');
+    var el = document.getElementById(targetId);
+    if (el && el.getBoundingClientRect().top <= offset) {
+      current = targetId;
+    }
   });
-  links.forEach(l => {
+  sidebarLinks.forEach(l => {
     l.classList.remove('active');
-    if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+    if (l.getAttribute('data-id') === current) l.classList.add('active');
   });
 });
 
@@ -1870,10 +1875,14 @@ function navTo(id) {
     cardBody.classList.add('open');
   }
 
-  // topbar 높이 감안해서 정확한 위치로 스크롤
-  var topbarH = 64;
-  var top = el.getBoundingClientRect().top + window.pageYOffset - topbarH;
-  window.scrollTo({ top: top, behavior: 'smooth' });
+  // topbar 실제 높이를 동적으로 읽어서 정확한 위치로 스크롤 (+12px 여백)
+  var topbarEl = document.querySelector('.topbar');
+  var topbarH = topbarEl ? topbarEl.offsetHeight + 12 : 68;
+  // requestAnimationFrame으로 레이아웃 확정 후 스크롤
+  requestAnimationFrame(function() {
+    var top = el.getBoundingClientRect().top + window.pageYOffset - topbarH;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  });
 }
 
 // ── 초기화: 저장된 내용 불러오기 ─────────────────────────────────────────────
