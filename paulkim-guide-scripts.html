@@ -1618,6 +1618,10 @@ function toggleCard(header) {
   header.classList.toggle('open');
   const body = header.nextElementSibling;
   body.classList.toggle('open');
+  // 카드가 열릴 때 현재 언어 상태를 즉시 적용
+  if (body.classList.contains('open')) {
+    applyLangToBody(body);
+  }
 }
 
 function toggleLang() {
@@ -1640,6 +1644,19 @@ function toggleLang() {
   }
 }
 
+// 특정 card-body 하나에 현재 언어 inline style 적용
+function applyLangToBody(cardBody) {
+  var isEn = document.body.classList.contains('en');
+  var ko = cardBody.querySelector('.ko');
+  var en = cardBody.querySelector('.en');
+  if (ko && en) {
+    ko.style.display = isEn ? 'none' : 'block';
+    en.style.display = isEn ? 'block' : 'none';
+  } else if (ko) {
+    ko.style.display = 'block'; // 영어 없으면 항상 한국어 표시
+  }
+}
+
 function setLang(lang) {
   const classes = document.body.className.replace(/\bko\b|\ben\b/g, '').trim();
   document.body.className = (classes + ' ' + lang).trim();
@@ -1652,16 +1669,17 @@ function setLang(lang) {
     enSpan.classList.toggle('on', lang === 'en');
   }
 
-  // 영어 컨텐츠 없는 블록은 한국어 그대로 표시
-  if (lang === 'en') {
-    document.querySelectorAll('.ko').forEach(ko => {
-      const parent = ko.parentElement;
-      const hasEn = parent.querySelector('.en');
-      ko.style.display = hasEn ? '' : 'block';
-    });
-  } else {
-    document.querySelectorAll('.ko').forEach(ko => ko.style.display = '');
-  }
+  // 모든 카드에 inline style로 언어 직접 적용 (CSS 의존 제거)
+  document.querySelectorAll('.card-body').forEach(function(cardBody) {
+    var ko = cardBody.querySelector('.ko');
+    var en = cardBody.querySelector('.en');
+    if (ko && en) {
+      ko.style.display = lang === 'en' ? 'none' : 'block';
+      en.style.display = lang === 'en' ? 'block' : 'none';
+    } else if (ko) {
+      ko.style.display = 'block';
+    }
+  });
 }
 
 function setView(mode) {
@@ -1906,12 +1924,13 @@ function navTo(id) {
   var el = document.getElementById(id);
   if (!el) return;
 
-  // 카드라면 자동으로 열기
+  // 카드라면 자동으로 열기 + 언어 상태 즉시 적용
   var cardHeader = el.querySelector('.card-header');
   var cardBody = el.querySelector('.card-body');
   if (cardHeader && cardBody && !cardBody.classList.contains('open')) {
     cardHeader.classList.add('open');
     cardBody.classList.add('open');
+    applyLangToBody(cardBody);
   }
 
   // topbar 실제 높이를 동적으로 읽어서 정확한 위치로 스크롤 (+12px 여백)
