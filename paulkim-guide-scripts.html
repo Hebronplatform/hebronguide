@@ -259,6 +259,18 @@
   .add-card-btn:hover { border-color: var(--blue); color: var(--blue); background: #eef2fa; }
   body.edit-mode .add-card-btn { display: block; }
 
+  /* ── 홈 고정 버튼 ───────────────────────────────────────────────────── */
+  .home-btn {
+    position: fixed; bottom: 24px; right: 24px; z-index: 200;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--blue); color: white;
+    border: none; cursor: pointer; font-size: 1.3rem;
+    box-shadow: 0 3px 12px rgba(0,0,0,.25);
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, transform .15s;
+  }
+  .home-btn:hover { background: #153d80; transform: scale(1.1); }
+
   @media print {
     .topbar, .sidebar, .search-bar, .edit-toolbar { display: none !important; }
     .main { margin-left: 0 !important; padding: 10px !important; width: 100% !important; }
@@ -290,6 +302,9 @@
 </head>
 <body>
 
+<!-- 홈 고정 버튼 -->
+<button class="home-btn" onclick="navTo('top')" title="처음으로">🏠</button>
+
 <!-- TOP BAR -->
 <div class="topbar">
   <h1 onclick="navTo('top')" style="cursor:pointer;" title="홈으로">🗺️ 폴킴 투어 가이드 스크립트</h1>
@@ -313,7 +328,6 @@
 
 <!-- SIDEBAR -->
 <nav class="sidebar">
-  <a data-id="top" onclick="navTo('top')" style="font-weight:700; color:#1a4fa0; padding:10px 14px 8px;">🏠 홈 (처음으로)</a>
   <div class="sidebar-section">투어 코스</div>
   <a data-id="tour1" onclick="navTo('tour1')">🏙️ 도시 정수</a>
   <a data-id="tour2" onclick="navTo('tour2')">📖 스토리</a>
