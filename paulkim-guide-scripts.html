@@ -139,11 +139,11 @@
   .card-body { display: none; padding: 18px; }
   .card-body.open { display: block; }
 
-  /* LANG CONTENT */
-  .ko { display: block; }
-  .en { display: none; }
-  body.en .ko { display: none; }
-  body.en .en { display: block; }
+  /* LANG CONTENT — .card-body 안에서만 적용 (body.en 충돌 방지) */
+  .card-body .ko { display: block; }
+  .card-body .en { display: none; }
+  body.en .card-body .ko { display: none; }
+  body.en .card-body .en { display: block; }
 
   /* SCRIPT BOX */
   .script-block {
