@@ -281,6 +281,50 @@
   .add-card-btn:hover { border-color: var(--blue); color: var(--blue); background: #eef2fa; }
   body.edit-mode .add-card-btn { display: block; }
 
+  /* ── 대시보드 ────────────────────────────────────────────────────────── */
+  .dash-section { margin-bottom: 32px; }
+  .dash-title {
+    font-size: 1.05rem; font-weight: 800; color: var(--blue);
+    border-bottom: 3px solid var(--blue); padding-bottom: 7px; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .dash-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 10px;
+  }
+  .dash-card {
+    background: white; border-radius: 10px; border: 1px solid var(--border);
+    padding: 13px 14px; cursor: pointer;
+    transition: transform .15s, box-shadow .15s, border-color .15s;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .dash-card:hover {
+    transform: translateY(-3px); box-shadow: 0 5px 18px rgba(26,79,160,.15);
+    border-color: var(--blue);
+  }
+  .dash-card:active { transform: translateY(-1px); }
+  .dash-card-top { display: flex; align-items: center; gap: 8px; }
+  .dash-card-emoji { font-size: 1.35rem; flex-shrink: 0; }
+  .dash-card-title { font-size: .83rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+  .dash-card-sub { font-size: .7rem; color: var(--muted); line-height: 1.4; }
+  .dash-card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 3px; }
+  .dash-tag { font-size: .62rem; font-weight: 700; padding: 1px 6px; border-radius: 8px; white-space: nowrap; }
+  .dash-tag-day { background: #dbeafe; color: #1e40af; }
+  .dash-tag-night { background: #d1fae5; color: #065f46; }
+  .dash-tag-hours { background: #fef3c7; color: #92400e; }
+
+  /* ── 햄버거 버튼 ─────────────────────────────────────────────────────── */
+  .hamburger-btn {
+    display: none;
+    background: rgba(255,255,255,.13); border: 1.5px solid rgba(255,255,255,.4);
+    color: white; border-radius: 8px; padding: 3px 10px;
+    font-size: 1.1rem; cursor: pointer; line-height: 1.4;
+    transition: background .2s;
+  }
+  .hamburger-btn:hover { background: rgba(255,255,255,.25); }
+
   /* ── 홈 고정 버튼 ───────────────────────────────────────────────────── */
   .home-btn {
     position: fixed; bottom: 24px; right: 24px; z-index: 200;
@@ -301,24 +345,59 @@
 
   /* ── 반응형 ──────────────────────────────────────────────────────────── */
   @media (max-width: 1280px) {
-    :root { --sidebar-w: 190px; --btn-pad: 4px 10px; --btn-fs: .8rem; }
+    :root { --sidebar-w: 190px; }
   }
   @media (max-width: 1100px) {
-    :root { --sidebar-w: 170px; --btn-pad: 4px 8px; --btn-fs: .78rem; }
+    :root { --sidebar-w: 170px; }
     .topbar { gap: 4px; padding: 6px 12px; }
   }
   @media (max-width: 960px) {
-    :root { --sidebar-w: 150px; --btn-pad: 3px 7px; --btn-fs: .75rem; }
-    .topbar h1 { display: none; }
+    :root { --sidebar-w: 150px; }
+    .topbar h1 { font-size: .95rem; }
   }
+
+  /* ── 태블릿 (iPad 포함) ── */
+  @media (max-width: 860px) {
+    :root { --sidebar-w: 130px; }
+    .topbar h1 { font-size: .88rem; }
+    .dash-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  }
+
+  /* ── 모바일 (768px 이하) ── */
   @media (max-width: 768px) {
-    .sidebar { display: none; }
+    /* 사이드바: 기본 숨김, 열릴 때 오버레이 슬라이드 */
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform .28s cubic-bezier(.4,0,.2,1);
+      z-index: 200;
+      width: 240px;
+      box-shadow: 4px 0 24px rgba(0,0,0,.18);
+    }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-overlay {
+      display: none; position: fixed; inset: 0; z-index: 195;
+      background: rgba(0,0,0,.35);
+    }
+    .sidebar-overlay.open { display: block; }
     .main { margin-left: 0; }
-    .topbar { padding: 8px 12px; justify-content: flex-start; }
+    .topbar { padding: 8px 12px; gap: 6px; }
+    .topbar h1 { font-size: .9rem; }
+    .hamburger-btn { display: inline-flex; align-items: center; }
+    .dash-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+    .home-btn { bottom: 16px; right: 16px; width: 44px; height: 44px; font-size: 1.1rem; }
   }
+
+  /* ── 소형 모바일 (480px 이하) ── */
   @media (max-width: 480px) {
-    .topbar { flex-direction: column; align-items: flex-start; }
-    .topbar-actions { width: 100%; }
+    .topbar { flex-wrap: wrap; padding: 7px 10px; }
+    .topbar h1 { font-size: .82rem; order: 2; flex: 1; }
+    .hamburger-btn { order: 1; }
+    .topbar-actions { width: 100%; order: 3; gap: 4px; }
+    .lang-toggle-btn, .view-btn, .print-btn, .edit-btn { font-size: .58rem; padding: 2px 7px; }
+    .dash-grid { grid-template-columns: 1fr 1fr; }
+    .dash-card { padding: 10px 11px; }
+    .dash-card-emoji { font-size: 1.1rem; }
+    .dash-card-title { font-size: .78rem; }
   }
 </style>
 </head>
@@ -329,6 +408,7 @@
 
 <!-- TOP BAR -->
 <div class="topbar">
+  <button type="button" class="hamburger-btn" onclick="toggleSidebar()" id="hamburgerBtn" title="메뉴">☰</button>
   <h1 onclick="navTo('top')" style="cursor:pointer;" title="홈으로">🗺️ 폴킴 투어 가이드 스크립트</h1>
   <div class="topbar-actions">
     <button type="button" class="lang-toggle-btn" onclick="toggleLang()" id="langToggle" title="언어 전환 (한국어 ↔ English)">
@@ -349,8 +429,11 @@
 <!-- LAYOUT -->
 <div class="layout">
 
+<!-- 모바일 사이드바 오버레이 -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
 <!-- SIDEBAR -->
-<nav class="sidebar">
+<nav class="sidebar" id="sidebar">
   <div class="sidebar-section">투어 코스</div>
   <a data-id="tour1" onclick="navTo('tour1')">🏙️ 도시 정수</a>
   <a data-id="tour2" onclick="navTo('tour2')">📖 스토리</a>
@@ -401,6 +484,143 @@
 
 <div class="search-bar">
   <input class="search-input" type="text" placeholder="🔍 검색 (예: 스타벅스, salmon, 골드러시...)" oninput="searchContent(this.value)">
+</div>
+
+<!-- ===== 대시보드 ===== -->
+<div class="dash-section" id="dashboard">
+  <div class="dash-title">🗺️ 투어 한눈에 보기 — 클릭하면 바로 이동</div>
+  <div class="dash-grid">
+
+    <div class="dash-card" onclick="navTo('tour1')" title="도시 정수 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🏙️</span>
+        <span class="dash-card-title">도시 정수<br>Classic Seattle</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">8~9h</span>
+      </div>
+      <div class="dash-card-sub">파이크 플레이스 · 껌벽 · 스페이스 니들 · 아마존 스피어스</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour2')" title="스토리 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">📖</span>
+        <span class="dash-card-title">스토리 투어<br>Seattle Stories</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">8~9h</span>
+      </div>
+      <div class="dash-card-sub">Pioneer Square · 원조 스타벅스 · 아마존 창업지 · MoPOP</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour3')" title="역사 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🏛️</span>
+        <span class="dash-card-title">역사 투어<br>Seattle History</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">8~9h</span>
+      </div>
+      <div class="dash-card-sub">원주민 역사 · 차이나타운 · 테크 혁명</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour4')" title="자연 힐링 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🌿</span>
+        <span class="dash-card-title">자연 힐링<br>Nature Healing</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">7~8h</span>
+      </div>
+      <div class="dash-card-sub">Discovery Park · Alki Beach · Green Lake · Kerry Park</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour5')" title="자연+도시 콤보">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🌆</span>
+        <span class="dash-card-title">자연+도시 콤보<br>Best of Both</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">9~10h</span>
+      </div>
+      <div class="dash-card-sub">파이크 플레이스 · Discovery Park · Fremont · Kerry Park</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour6')" title="가족·어린이 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">👨‍👩‍👧</span>
+        <span class="dash-card-title">가족·어린이<br>Family &amp; School</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">7~8h</span>
+      </div>
+      <div class="dash-card-sub">Pacific Science Center · Museum of Flight · Woodland Park Zoo</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour7')" title="시니어 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">👴</span>
+        <span class="dash-card-title">시니어 투어<br>Senior Comfort</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">6~7h</span>
+      </div>
+      <div class="dash-card-sub">파이크 플레이스(실내) · 워터프런트 카페 · 케리 공원</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour8')" title="쇼핑&미식 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🛍️</span>
+        <span class="dash-card-title">쇼핑 &amp; 미식<br>Shopping &amp; Dining</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">6~8h</span>
+      </div>
+      <div class="dash-card-sub">노드스트롬 · 파이크 플레이스 아티산 · 벨뷰 · 한인 맛집</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour9')" title="레이니어 1박2일">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🏔️</span>
+        <span class="dash-card-title">레이니어<br>1박2일</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-night">1박2일</span>
+      </div>
+      <div class="dash-card-sub">스노콸미 폭포 → 레이니어 Paradise</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour10')" title="디셉션패스 1박2일">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🌉</span>
+        <span class="dash-card-title">디셉션패스<br>1박2일</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-night">1박2일</span>
+      </div>
+      <div class="dash-card-sub">라 콘너 → 아나코르테스 → 디셉션패스</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour11')" title="올림픽 반도 1박2일">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🏝️</span>
+        <span class="dash-card-title">올림픽 반도<br>1박2일</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-night">1박2일</span>
+      </div>
+      <div class="dash-card-sub">Bainbridge 페리 → 허리케인 리지 → 열대우림</div>
+    </div>
+
+  </div>
 </div>
 
 <!-- ===== 투어 코스 ===== -->
@@ -1710,21 +1930,33 @@ function toggleCard(header) {
 
 function toggleLang() {
   var isEn = document.body.classList.contains('en');
-  setLang(isEn ? 'ko' : 'en');
+  var newLang = isEn ? 'ko' : 'en';
+  setLang(newLang);
 
-  // 열린 카드가 없으면 첫 번째 카드를 자동으로 열어 언어 전환을 바로 확인할 수 있게 함
+  // 열린 카드가 없으면 → 첫 번째 카드를 자동으로 열고 스크롤
   var openCards = document.querySelectorAll('.card-body.open');
   if (openCards.length === 0) {
-    var firstHeader = document.querySelector('.card .card-header');
-    if (firstHeader && !firstHeader.nextElementSibling.classList.contains('open')) {
-      firstHeader.classList.add('open');
-      firstHeader.nextElementSibling.classList.add('open');
-      var topbarH = (document.querySelector('.topbar') || {offsetHeight: 56}).offsetHeight + 12;
+    var firstCard = document.querySelector('.card');
+    if (firstCard) {
+      var firstHeader = firstCard.querySelector('.card-header');
+      var firstBody   = firstCard.querySelector('.card-body');
+      if (firstHeader && firstBody && !firstBody.classList.contains('open')) {
+        firstHeader.classList.add('open');
+        firstBody.classList.add('open');
+        // 열린 직후 현재 언어로 컨텐츠 표시 강제 적용
+        applyLangToBody(firstBody);
+      }
+      var topbarH = (document.querySelector('.topbar') || {offsetHeight: 56}).offsetHeight + 8;
       requestAnimationFrame(function() {
-        var top = firstHeader.parentElement.getBoundingClientRect().top + window.pageYOffset - topbarH;
-        window.scrollTo({ top: top, behavior: 'smooth' });
+        requestAnimationFrame(function() {
+          var top = firstCard.getBoundingClientRect().top + window.pageYOffset - topbarH;
+          window.scrollTo({ top: Math.max(0, top - 20), behavior: 'smooth' });
+        });
       });
     }
+  } else {
+    // 열린 카드가 있으면 각각 언어 재적용 (이미 setLang에서 처리되지만 안전하게)
+    openCards.forEach(function(cb) { applyLangToBody(cb); });
   }
 }
 
@@ -1994,7 +2226,28 @@ function showIndicator(msg) {
 }
 
 // ── 사이드바 스크롤 (URL 변경 없이) ───────────────────────────────────────────
+// ── 모바일 사이드바 토글 ──────────────────────────────────────────────────
+function toggleSidebar() {
+  var sidebar = document.getElementById('sidebar');
+  var overlay = document.getElementById('sidebarOverlay');
+  var isOpen = sidebar.classList.contains('open');
+  sidebar.classList.toggle('open', !isOpen);
+  if (overlay) overlay.classList.toggle('open', !isOpen);
+}
+
+function closeSidebarOnMobile() {
+  if (window.innerWidth <= 768) {
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (sidebar) sidebar.classList.remove('open');
+    if (overlay) overlay.classList.remove('open');
+  }
+}
+
 function navTo(id) {
+  // 모바일: 사이드바 닫기
+  closeSidebarOnMobile();
+
   // 사이드바 활성 표시
   document.querySelectorAll('.sidebar a').forEach(function(a) { a.classList.remove('active'); });
   var link = document.querySelector('.sidebar a[data-id="' + id + '"]');
@@ -2017,13 +2270,15 @@ function navTo(id) {
     applyLangToBody(cardBody);
   }
 
-  // topbar 실제 높이를 동적으로 읽어서 정확한 위치로 스크롤 (+12px 여백)
+  // topbar 실제 높이를 동적으로 읽어서 정확한 위치로 스크롤 (+8px 여백)
   var topbarEl = document.querySelector('.topbar');
-  var topbarH = topbarEl ? topbarEl.offsetHeight + 12 : 68;
-  // requestAnimationFrame으로 레이아웃 확정 후 스크롤
+  var topbarH = topbarEl ? topbarEl.offsetHeight + 8 : 64;
+  // requestAnimationFrame으로 레이아웃 확정 후 스크롤 (두 번 실행해 정밀도 향상)
   requestAnimationFrame(function() {
-    var top = el.getBoundingClientRect().top + window.pageYOffset - topbarH;
-    window.scrollTo({ top: top, behavior: 'smooth' });
+    requestAnimationFrame(function() {
+      var top = el.getBoundingClientRect().top + window.pageYOffset - topbarH;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
   });
 }
 
