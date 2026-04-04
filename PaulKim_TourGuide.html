@@ -531,7 +531,11 @@ footer a { color: #93c5fd; text-decoration: none; }
 <body>
 
 <!-- 언어 토글 -->
-<div class="lang-bar">
+<div class="lang-bar" style="display:flex;align-items:center;justify-content:space-between;">
+  <a href="https://hebronguide.com" style="color:rgba(255,255,255,0.65);font-size:0.78rem;text-decoration:none;transition:color .2s;"
+     onmouseover="this.style.color='rgba(255,255,255,0.95)'" onmouseout="this.style.color='rgba(255,255,255,0.65)'"
+     data-ko="← 헤브론 가이드 홈" data-en="← Hebron Guide Home">← 헤브론 가이드 홈
+  </a>
   <button class="lang-btn" id="langBtn" onclick="toggleLang()">🌐 English</button>
 </div>
 
@@ -942,6 +946,7 @@ C. 테크: 아마존 → 보잉 → 마이크로소프트</div>
           <select class="form-select" name="groupType">
             <option value="" data-ko="선택해주세요" data-en="Please select">선택해주세요</option>
             <option value="church" data-ko="교회 단체" data-en="Church Group">교회 단체</option>
+            <option value="mission" data-ko="선교팀 · 개척교회" data-en="Mission Team / Church Plant">선교팀 · 개척교회</option>
             <option value="corp" data-ko="기업 · 기관" data-en="Corporate / Organization">기업 · 기관</option>
             <option value="family" data-ko="가족 · 소그룹" data-en="Family / Small Group">가족 · 소그룹</option>
             <option value="senior" data-ko="시니어" data-en="Senior Group">시니어</option>
@@ -980,8 +985,11 @@ C. 테크: 아마존 → 보잉 → 마이크로소프트</div>
         <!-- 7. 참여자 명단 -->
         <div class="form-section-title" data-ko="⑦ 참여자 명단" data-en="⑦ Participant List">⑦ 참여자 명단</div>
         <div style="background:linear-gradient(135deg,#eff6ff,#fff);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;">
-          <div style="font-size:0.88rem;font-weight:700;color:var(--navy);margin-bottom:5px;" data-ko="🎁 시애틀 가이드를 선물로 보내드립니다" data-en="🎁 We'll Send Each Participant a Seattle Guide as a Gift">🎁 시애틀 가이드를 선물로 보내드립니다</div>
-          <div style="font-size:0.8rem;color:#475569;line-height:1.7;" data-ko="투어 오시기 전, 참여자 한 분 한 분께 시애틀 현지 가이드 앱을 선물로 발송해 드립니다. 병원·맛집·교통·쇼핑 등 시애틀 생활 정보가 담긴 앱으로, 도착 전부터 시애틀이 익숙해집니다." data-en="Before your tour, we'll send each participant our Seattle local guide app as a personal gift — covering hospitals, restaurants, transit, shopping, and more, so everyone feels at home in Seattle before they even arrive.">투어 오시기 전, 참여자 한 분 한 분께 시애틀 현지 가이드 앱을 선물로 발송해 드립니다. 병원·맛집·교통·쇼핑 등 시애틀 생활 정보가 담긴 앱으로, 도착 전부터 시애틀이 익숙해집니다.</div>
+          <div style="font-size:0.88rem;font-weight:700;color:var(--navy);margin-bottom:5px;" data-ko="🗺️ 투어 전 시애틀 사전 정보 안내" data-en="🗺️ Pre-Tour Seattle Info — Sent to Each Participant">🗺️ 투어 전 시애틀 사전 정보 안내</div>
+          <div style="font-size:0.8rem;color:#475569;line-height:1.75;" data-ko="투어 출발 전, 참여자 한 분 한 분께 시애틀 현지 생활 정보(Hebron Guide)를 개별 발송해 드립니다. 병원·맛집·교통·쇼핑 등 실전 정보를 미리 받아두시면 도착 첫날부터 시애틀이 훨씬 편해집니다." data-en="Before your tour, each participant will receive personalized Seattle local information via Hebron Guide — covering hospitals, restaurants, transit, and shopping. Arriving prepared makes the whole experience richer from day one.">투어 출발 전, 참여자 한 분 한 분께 시애틀 현지 생활 정보(Hebron Guide)를 개별 발송해 드립니다. 병원·맛집·교통·쇼핑 등 실전 정보를 미리 받아두시면 도착 첫날부터 시애틀이 훨씬 편해집니다.</div>
+          <div style="margin-top:8px;font-size:0.75rem;color:var(--blue);font-weight:600;">
+            <a href="https://hebronguide.com" target="_blank" style="color:var(--blue);text-decoration:none;" data-ko="→ hebronguide.com 에서 미리 둘러보기" data-en="→ Preview at hebronguide.com">→ hebronguide.com 에서 미리 둘러보기</a>
+          </div>
         </div>
         <div style="display:grid;grid-template-columns:0.4fr 1fr 1.4fr 1fr auto;gap:6px;margin-bottom:6px;padding:0 2px;">
           <span style="font-size:0.72rem;color:var(--muted);font-weight:600;">#</span>
@@ -1035,7 +1043,8 @@ C. 테크: 아마존 → 보잉 → 마이크로소프트</div>
   <strong>Paul Kim · 폴킴 시애틀 투어 가이드</strong><br>
   <a href="mailto:kchurch911@gmail.com">kchurch911@gmail.com</a><br>
   <span data-ko="사전 예약제 운영 · 한국어 · 영어 가이드 · 단체 규모 및 일정 맞춤 설계" data-en="By reservation only · Korean & English · Custom itinerary for every group size">사전 예약제 운영 · 한국어 · 영어 가이드 · 단체 규모 및 일정 맞춤 설계</span><br>
-  <span style="font-size:0.75rem;opacity:0.6;margin-top:6px;display:block;">© 2026 Paul Kim Seattle Tour Guide</span>
+  <a href="https://hebronguide.com" target="_blank" style="color:#93c5fd;font-size:0.82rem;text-decoration:none;">🗺️ Hebron Guide — hebronguide.com</a><br>
+  <span style="font-size:0.72rem;opacity:0.5;margin-top:8px;display:block;">© 2026 Paul Kim Seattle Tour Guide · Powered by Hebron Guide</span>
 </footer>
 
 <script>
