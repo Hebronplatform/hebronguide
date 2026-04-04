@@ -156,6 +156,16 @@
     font-size: .75rem; font-weight: 700; color: white; background: var(--teal);
     border-radius: 4px; padding: 2px 8px; display: inline-block; margin-bottom: 8px;
   }
+  .yt-btn {
+    display: inline-flex; align-items: center; gap: 2px;
+    margin-left: 6px; padding: 1px 6px; border-radius: 3px;
+    background: #ff0000; color: #fff !important;
+    font-size: .62rem; font-weight: 700; text-decoration: none !important;
+    vertical-align: middle; line-height: 1.5;
+    transition: background .15s, transform .1s;
+  }
+  .yt-btn:hover { background: #cc0000; transform: scale(1.08); }
+  @media print { .yt-btn { display: none !important; } }
 
   /* Q&A */
   .qa-q {
@@ -1613,6 +1623,80 @@
 </div>
 
 <script>
+// ── YouTube 링크 자동 삽입 ─────────────────────────────────────────────────────
+const ytMap = [
+  // Tour 1 — Classic Seattle
+  { key: '파이크 플레이스 마켓',   url: 'https://www.youtube.com/watch?v=TvfePq94NUg' },
+  { key: 'Pike Place Market',      url: 'https://www.youtube.com/watch?v=TvfePq94NUg' },
+  { key: '껌 벽',                 url: 'https://www.youtube.com/results?search_query=Gum+Wall+Seattle+Post+Alley' },
+  { key: 'Gum Wall',              url: 'https://www.youtube.com/results?search_query=Gum+Wall+Seattle+Post+Alley' },
+  { key: '스페이스 니들',          url: 'https://www.youtube.com/results?search_query=Space+Needle+Seattle+inside+tour+4K' },
+  { key: 'Space Needle',          url: 'https://www.youtube.com/results?search_query=Space+Needle+Seattle+inside+tour+4K' },
+  { key: '아마존 스피어스',         url: 'https://www.youtube.com/results?search_query=Amazon+Spheres+Seattle+inside+tour+plants' },
+  { key: 'Amazon Spheres',        url: 'https://www.youtube.com/results?search_query=Amazon+Spheres+Seattle+inside+tour+plants' },
+  { key: '케리 공원',             url: 'https://www.youtube.com/results?search_query=Kerry+Park+Seattle+skyline+sunset+Space+Needle' },
+  { key: 'Kerry Park',            url: 'https://www.youtube.com/results?search_query=Kerry+Park+Seattle+skyline+sunset+Space+Needle' },
+  // Tour 2 — Story Tour
+  { key: 'Pioneer Square',        url: 'https://www.youtube.com/results?search_query=Seattle+Underground+Tour+Pioneer+Square' },
+  { key: '원조 스타벅스',          url: 'https://www.youtube.com/results?search_query=First+Starbucks+Pike+Place+Seattle+1912' },
+  { key: 'Original Starbucks',    url: 'https://www.youtube.com/results?search_query=First+Starbucks+Pike+Place+Seattle+1912' },
+  { key: '아마존 창업지',          url: 'https://www.youtube.com/watch?v=RVVfJVj5z8s' },
+  { key: "Amazon's Origin",       url: 'https://www.youtube.com/watch?v=RVVfJVj5z8s' },
+  { key: 'MoPOP',                 url: 'https://www.youtube.com/results?search_query=MoPOP+Museum+of+Pop+Culture+Seattle+tour+inside' },
+  // Tour 3 — History
+  { key: '원주민 역사',            url: 'https://www.youtube.com/results?search_query=Duwamish+tribe+Seattle+Chief+Sealth+indigenous+history' },
+  { key: 'Indigenous History',    url: 'https://www.youtube.com/results?search_query=Duwamish+tribe+Seattle+Chief+Sealth+indigenous+history' },
+  { key: 'Daybreak Star',         url: 'https://www.youtube.com/results?search_query=Daybreak+Star+Cultural+Center+Seattle+Duwamish' },
+  { key: '차이나타운',             url: 'https://www.youtube.com/results?search_query=Seattle+Chinatown+International+District+history+Wing+Luke' },
+  { key: 'Chinatown',             url: 'https://www.youtube.com/results?search_query=Seattle+Chinatown+International+District+history+Wing+Luke' },
+  { key: '테크 혁명',             url: 'https://www.youtube.com/watch?v=LmW4JjR2-_8' },
+  { key: 'Tech Revolution',       url: 'https://www.youtube.com/watch?v=LmW4JjR2-_8' },
+  // Tour 4 — Nature Healing
+  { key: 'Discovery Park',        url: 'https://www.youtube.com/results?search_query=Discovery+Park+Seattle+lighthouse+nature+trail' },
+  { key: 'Alki Beach',            url: 'https://www.youtube.com/results?search_query=Alki+Beach+Seattle+West+Seattle+waterfront' },
+  { key: 'Green Lake',            url: 'https://www.youtube.com/results?search_query=Green+Lake+Seattle+park+walk+neighborhood' },
+  // Tour 5 — Nature + City
+  { key: 'Fremont',               url: 'https://www.youtube.com/results?search_query=Fremont+Troll+Seattle+neighborhood+Center+of+Universe' },
+  // Tour 6 — Family
+  { key: 'Pacific Science Center',url: 'https://www.youtube.com/results?search_query=Pacific+Science+Center+Seattle+inside+tour' },
+  // Tour 8 — Shopping
+  { key: '노드스트롬',            url: 'https://www.youtube.com/results?search_query=Nordstrom+flagship+store+Seattle+shopping' },
+  { key: 'Nordstrom',             url: 'https://www.youtube.com/results?search_query=Nordstrom+flagship+store+Seattle+shopping' },
+  // Tour 9 — Rainier
+  { key: '스노콸미 폭포',          url: 'https://www.youtube.com/results?search_query=Snoqualmie+Falls+Washington+Twin+Peaks+waterfall' },
+  { key: 'Snoqualmie Falls',      url: 'https://www.youtube.com/results?search_query=Snoqualmie+Falls+Washington+Twin+Peaks+waterfall' },
+  { key: '레이니어',              url: 'https://www.youtube.com/watch?v=Mj5hcoOqyiY' },
+  { key: 'Mt. Rainier',           url: 'https://www.youtube.com/watch?v=Mj5hcoOqyiY' },
+  // Tour 10 — Deception Pass
+  { key: '라 콘너',               url: 'https://www.youtube.com/results?search_query=Skagit+Valley+Tulip+Festival+La+Conner+Washington+spring' },
+  { key: 'La Conner',             url: 'https://www.youtube.com/results?search_query=Skagit+Valley+Tulip+Festival+La+Conner+Washington+spring' },
+  { key: '디셉션패스',            url: 'https://www.youtube.com/results?search_query=Deception+Pass+Bridge+Washington+State+hike+views' },
+  { key: 'Deception Pass',        url: 'https://www.youtube.com/results?search_query=Deception+Pass+Bridge+Washington+State+hike+views' },
+  // Tour 11 — Olympic
+  { key: '베인브리지',            url: 'https://www.youtube.com/results?search_query=Bainbridge+Island+Ferry+Seattle+day+trip+Puget+Sound' },
+  { key: 'Bainbridge Island',     url: 'https://www.youtube.com/results?search_query=Bainbridge+Island+Ferry+Seattle+day+trip+Puget+Sound' },
+  { key: '허리케인 리지',          url: 'https://www.youtube.com/watch?v=xdb57xEuMHo' },
+  { key: 'Hurricane Ridge',       url: 'https://www.youtube.com/watch?v=xdb57xEuMHo' },
+  { key: '후안 데 푸카',           url: 'https://www.youtube.com/results?search_query=Strait+Juan+de+Fuca+sunset+Olympic+Peninsula+Washington' },
+  { key: 'Strait of Juan de Fuca',url: 'https://www.youtube.com/results?search_query=Strait+Juan+de+Fuca+sunset+Olympic+Peninsula+Washington' },
+];
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.location').forEach(function(loc) {
+    var text = loc.textContent.replace(/📍\s*/, '').trim();
+    var found = ytMap.find(function(l) { return text.includes(l.key); });
+    if (found) {
+      var a = document.createElement('a');
+      a.href = found.url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.className = 'yt-btn';
+      a.title = 'YouTube에서 보기';
+      a.textContent = '▶ YT';
+      loc.appendChild(a);
+    }
+  });
+});
+
 // ── 기본 기능 ─────────────────────────────────────────────────────────────────
 function toggleCard(header) {
   header.classList.toggle('open');
