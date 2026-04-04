@@ -76,7 +76,7 @@
   }
   .sidebar a {
     display: block; padding: 7px 14px; font-size: .82rem;
-    color: var(--text); text-decoration: none;
+    color: var(--text); text-decoration: none; cursor: pointer;
     border-left: 3px solid transparent; transition: all .15s;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
@@ -314,41 +314,41 @@
 <!-- SIDEBAR -->
 <nav class="sidebar">
   <div class="sidebar-section">투어 코스</div>
-  <a href="javascript:void(0)" data-id="tour1" onclick="navTo('tour1')">🏙️ 도시 정수</a>
-  <a href="javascript:void(0)" data-id="tour2" onclick="navTo('tour2')">📖 스토리</a>
-  <a href="javascript:void(0)" data-id="tour3" onclick="navTo('tour3')">🏛️ 역사</a>
-  <a href="javascript:void(0)" data-id="tour4" onclick="navTo('tour4')">🌿 자연 힐링</a>
-  <a href="javascript:void(0)" data-id="tour5" onclick="navTo('tour5')">🌆 자연+도시</a>
-  <a href="javascript:void(0)" data-id="tour6" onclick="navTo('tour6')">👨‍👩‍👧 가족·어린이</a>
-  <a href="javascript:void(0)" data-id="tour7" onclick="navTo('tour7')">👴 시니어</a>
-  <a href="javascript:void(0)" data-id="tour8" onclick="navTo('tour8')">🛍️ 쇼핑&미식</a>
-  <a href="javascript:void(0)" data-id="tour9" onclick="navTo('tour9')">🏔️ 레이니어 1박2일</a>
-  <a href="javascript:void(0)" data-id="tour10" onclick="navTo('tour10')">🌉 디셉션패스 1박2일</a>
-  <a href="javascript:void(0)" data-id="tour11" onclick="navTo('tour11')">🏝️ 올림픽 1박2일</a>
+  <a data-id="tour1" onclick="navTo('tour1')">🏙️ 도시 정수</a>
+  <a data-id="tour2" onclick="navTo('tour2')">📖 스토리</a>
+  <a data-id="tour3" onclick="navTo('tour3')">🏛️ 역사</a>
+  <a data-id="tour4" onclick="navTo('tour4')">🌿 자연 힐링</a>
+  <a data-id="tour5" onclick="navTo('tour5')">🌆 자연+도시</a>
+  <a data-id="tour6" onclick="navTo('tour6')">👨‍👩‍👧 가족·어린이</a>
+  <a data-id="tour7" onclick="navTo('tour7')">👴 시니어</a>
+  <a data-id="tour8" onclick="navTo('tour8')">🛍️ 쇼핑&미식</a>
+  <a data-id="tour9" onclick="navTo('tour9')">🏔️ 레이니어 1박2일</a>
+  <a data-id="tour10" onclick="navTo('tour10')">🌉 디셉션패스 1박2일</a>
+  <a data-id="tour11" onclick="navTo('tour11')">🏝️ 올림픽 1박2일</a>
   <div class="sidebar-section">드라이빙</div>
-  <a href="javascript:void(0)" data-id="drive1" onclick="navTo('drive1')">☔ 비 이야기</a>
-  <a href="javascript:void(0)" data-id="drive2" onclick="navTo('drive2')">☕ 커피</a>
-  <a href="javascript:void(0)" data-id="drive3" onclick="navTo('drive3')">🎸 록 음악</a>
-  <a href="javascript:void(0)" data-id="drive4" onclick="navTo('drive4')">🦅 원주민</a>
-  <a href="javascript:void(0)" data-id="drive5" onclick="navTo('drive5')">🛳️ 골드러시</a>
-  <a href="javascript:void(0)" data-id="drive6" onclick="navTo('drive6')">✈️ 보잉</a>
-  <a href="javascript:void(0)" data-id="drive7" onclick="navTo('drive7')">🐟 연어</a>
-  <a href="javascript:void(0)" data-id="drive8" onclick="navTo('drive8')">🌋 화산</a>
-  <a href="javascript:void(0)" data-id="drive9" onclick="navTo('drive9')">💻 테크</a>
-  <a href="javascript:void(0)" data-id="drive10" onclick="navTo('drive10')">🌉 별명들</a>
-  <a href="javascript:void(0)" data-id="drive11" onclick="navTo('drive11')">🎬 영화</a>
+  <a data-id="drive1" onclick="navTo('drive1')">☔ 비 이야기</a>
+  <a data-id="drive2" onclick="navTo('drive2')">☕ 커피</a>
+  <a data-id="drive3" onclick="navTo('drive3')">🎸 록 음악</a>
+  <a data-id="drive4" onclick="navTo('drive4')">🦅 원주민</a>
+  <a data-id="drive5" onclick="navTo('drive5')">🛳️ 골드러시</a>
+  <a data-id="drive6" onclick="navTo('drive6')">✈️ 보잉</a>
+  <a data-id="drive7" onclick="navTo('drive7')">🐟 연어</a>
+  <a data-id="drive8" onclick="navTo('drive8')">🌋 화산</a>
+  <a data-id="drive9" onclick="navTo('drive9')">💻 테크</a>
+  <a data-id="drive10" onclick="navTo('drive10')">🌉 별명들</a>
+  <a data-id="drive11" onclick="navTo('drive11')">🎬 영화</a>
   <div class="sidebar-section">Q&A</div>
-  <a href="javascript:void(0)" data-id="qa-nature" onclick="navTo('qa-nature')">🌿 날씨·자연</a>
-  <a href="javascript:void(0)" data-id="qa-food" onclick="navTo('qa-food')">🍽️ 음식·쇼핑</a>
-  <a href="javascript:void(0)" data-id="qa-life" onclick="navTo('qa-life')">🏙️ 시애틀 생활</a>
-  <a href="javascript:void(0)" data-id="qa-history" onclick="navTo('qa-history')">🏛️ 역사·문화</a>
-  <a href="javascript:void(0)" data-id="qa-tour" onclick="navTo('qa-tour')">🧭 투어 관련</a>
+  <a data-id="qa-nature" onclick="navTo('qa-nature')">🌿 날씨·자연</a>
+  <a data-id="qa-food" onclick="navTo('qa-food')">🍽️ 음식·쇼핑</a>
+  <a data-id="qa-life" onclick="navTo('qa-life')">🏙️ 시애틀 생활</a>
+  <a data-id="qa-history" onclick="navTo('qa-history')">🏛️ 역사·문화</a>
+  <a data-id="qa-tour" onclick="navTo('qa-tour')">🧭 투어 관련</a>
   <div class="sidebar-section">퀴즈 & 연결</div>
-  <a href="javascript:void(0)" data-id="quiz" onclick="navTo('quiz')">🎯 흥미 유발 퀴즈</a>
-  <a href="javascript:void(0)" data-id="connect" onclick="navTo('connect')">🔗 역사↔현재 연결</a>
-  <a href="javascript:void(0)" data-id="gifts" onclick="navTo('gifts')">🎁 선물 아이디어</a>
+  <a data-id="quiz" onclick="navTo('quiz')">🎯 흥미 유발 퀴즈</a>
+  <a data-id="connect" onclick="navTo('connect')">🔗 역사↔현재 연결</a>
+  <a data-id="gifts" onclick="navTo('gifts')">🎁 선물 아이디어</a>
   <div class="sidebar-section">참고문헌</div>
-  <a href="javascript:void(0)" data-id="references" onclick="navTo('references')">📚 추천 도서 & 자료</a>
+  <a data-id="references" onclick="navTo('references')">📚 추천 도서 & 자료</a>
 </nav>
 
 <!-- MAIN -->
