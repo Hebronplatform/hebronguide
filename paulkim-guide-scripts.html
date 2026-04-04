@@ -1835,19 +1835,31 @@ function showIndicator(msg) {
 
 // ── 사이드바 스크롤 (URL 변경 없이) ───────────────────────────────────────────
 function navTo(id) {
-  if (id === 'top') {
-    var main = document.querySelector('main.main') || window;
-    if (main.scrollTo) main.scrollTo({ top: 0, behavior: 'smooth' });
-    else window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.querySelectorAll('.sidebar a').forEach(function(a) { a.classList.remove('active'); });
-    return;
-  }
-  var el = document.getElementById(id);
-  if (!el) return;
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // 사이드바 활성 표시
   document.querySelectorAll('.sidebar a').forEach(function(a) { a.classList.remove('active'); });
   var link = document.querySelector('.sidebar a[data-id="' + id + '"]');
   if (link) link.classList.add('active');
+
+  if (id === 'top') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+
+  var el = document.getElementById(id);
+  if (!el) return;
+
+  // 카드라면 자동으로 열기
+  var cardHeader = el.querySelector('.card-header');
+  var cardBody = el.querySelector('.card-body');
+  if (cardHeader && cardBody && !cardBody.classList.contains('open')) {
+    cardHeader.classList.add('open');
+    cardBody.classList.add('open');
+  }
+
+  // topbar 높이 감안해서 정확한 위치로 스크롤
+  var topbarH = 64;
+  var top = el.getBoundingClientRect().top + window.pageYOffset - topbarH;
+  window.scrollTo({ top: top, behavior: 'smooth' });
 }
 
 // ── 초기화: 저장된 내용 불러오기 ─────────────────────────────────────────────
