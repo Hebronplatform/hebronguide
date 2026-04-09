@@ -1043,13 +1043,13 @@ C. 테크: 아마존 → 보잉 → 마이크로소프트</div>
 <!-- 푸터 -->
 <footer>
   <strong data-ko="시애틀 투어 가이드" data-en="Seattle Tour Guide">시애틀 투어 가이드</strong><br>
-  <a href="mailto:kchurch911@gmail.com">kchurch911@gmail.com</a><br>
+  <a href="mailto:culture3927@gmail.com" style="color:#93c5fd;">culture3927@gmail.com</a><br>
   <span data-ko="사전 예약제 운영 · 한국어 · 영어 가이드 · 단체 규모 및 일정 맞춤 설계" data-en="By reservation only · Korean & English · Custom itinerary for every group size">사전 예약제 운영 · 한국어 · 영어 가이드 · 단체 규모 및 일정 맞춤 설계</span><br>
   <a href="https://hebronguide.com" target="_blank" style="color:#93c5fd;font-size:0.82rem;text-decoration:none;">🗺️ Hebron Guide — hebronguide.com</a><br>
   <span style="font-size:0.72rem;opacity:0.5;margin-top:8px;display:block;">© 2026 Seattle Tour Guide · Powered by Hebron Guide</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── 언어 토글 ──
 let lang = (navigator.language || 'ko').startsWith('ko') ? 'ko' : 'en';
 
@@ -1186,14 +1186,4 @@ async function submitForm(e) {
     const subject = encodeURIComponent('시애틀 투어 문의 — ' + (payload.orgName || ''));
     const body = encodeURIComponent(
       '담당자: ' + payload.orgContact + '\n이메일: ' + payload.orgEmail +
-      '\n희망 날짜: ' + payload.tourDate + '\n인원: ' + payload.groupSize + '명\n메모: ' + payload.message
-    );
-    window.location.href = 'mailto:kchurch911@gmail.com?subject=' + subject + '&body=' + body;
-  }
-}
-
-// 초기 언어 적용
-applyLang(lang);
-</script>
-</body>
-</html>
+      '\n희망 날짜: ' + payload.tourDate + '\n인원: 
