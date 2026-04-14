@@ -647,6 +647,11 @@ function sTabGo(sectionId, btnEl, prefix, appId) {
             </div>
         </div>
 
+                <div class="app-icon" onclick="openApp('tour')">
+                <div class="app-icon-emoji">🗺️</div>
+                <div class="app-icon-name" data-ko="폴킴<br>투어가이드" data-en="Paul Kim<br>Tour Guide">폴킴<br>투어가이드</div>
+            </div>
+
                 <div class="app-icon" onclick="openApp('church')">
                 <div class="app-icon-emoji">🤝</div>
                 <div class="app-icon-name" data-ko="정착<br>커뮤니티" data-en="Community<br>Hub">정착<br>커뮤니티</div>
@@ -999,6 +1004,122 @@ function sTabGo(sectionId, btnEl, prefix, appId) {
   };
 })();
 </script>
+</div>
+
+
+<div class="app-screen" id="tourApp">
+    <div style="background:linear-gradient(160deg,#0a2540 0%,#1a3a6c 55%,#1565c0 100%);padding:0;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:160px;height:160px;background:rgba(255,255,255,0.04);border-radius:50%;pointer-events:none;"></div>
+        <button onclick="closeApp('tour')" style="position:absolute;top:14px;left:14px;z-index:10;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;padding:6px 12px;border-radius:20px;font-size:0.78rem;cursor:pointer;" data-ko="← 홈으로" data-en="← Home">← 홈으로</button>
+        <div style="padding:50px 20px 24px;text-align:center;">
+            <div style="font-size:2.8rem;margin-bottom:10px;">🗺️</div>
+            <h1 style="font-size:1.5rem;font-weight:900;color:#fff;margin:0 0 6px;text-shadow:0 2px 8px rgba(0,0,0,0.4);" data-ko="시애틀 투어 가이드" data-en="Seattle Tour Guide">시애틀 투어 가이드</h1>
+            <p style="color:rgba(255,255,255,0.78);font-size:0.82rem;margin:0 0 16px;" data-ko="25년 거주 전문 가이드 · 한국어·영어 동시 진행" data-en="25-Year Local Expert · Bilingual Korean & English">25년 거주 전문 가이드 · 한국어·영어 동시 진행</p>
+            <a href="PaulKim_TourGuide.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:#ffd700;color:#0a2540;padding:10px 22px;border-radius:24px;font-weight:800;text-decoration:none;font-size:0.85rem;box-shadow:0 4px 12px rgba(255,215,0,0.3);" data-ko="📋 전체 상세 안내 & 신청서" data-en="📋 Full Details & Inquiry Form">📋 전체 상세 안내 & 신청서</a>
+        </div>
+    </div>
+    <div class="app-body">
+
+        <div class="content-card">
+            <h3 style="color:#0a2540;" data-ko="👤 폴킴 가이드 소개" data-en="👤 About Paul Kim">👤 폴킴 가이드 소개</h3>
+            <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:12px;">
+                <div style="min-width:64px;height:64px;background:linear-gradient(135deg,#1a3a6c,#1565c0);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;">👨</div>
+                <div>
+                    <div style="font-weight:800;font-size:1rem;color:#0a2540;margin-bottom:4px;">Paul Kim</div>
+                    <div style="font-size:0.78rem;color:#555;line-height:1.7;">
+                        <div data-ko="🏙️ 시애틀 25년 거주 현지 전문가" data-en="🏙️ 25-year Seattle resident & local expert">🏙️ 시애틀 25년 거주 현지 전문가</div>
+                        <div data-ko="📜 워싱턴 DC & 시애틀 공식 가이드 자격" data-en="📜 Official guide: Washington DC & Seattle">📜 워싱턴 DC & 시애틀 공식 가이드 자격</div>
+                        <div data-ko="🌐 한국어 · 영어 완전 이중 언어" data-en="🌐 Fully bilingual: Korean & English">🌐 한국어 · 영어 완전 이중 언어</div>
+                        <div data-ko="👥 교회 · 기업 · 가족 · 시니어 단체 전문" data-en="👥 Church, corporate, family & senior groups">👥 교회 · 기업 · 가족 · 시니어 단체 전문</div>
+                    </div>
+                </div>
+            </div>
+            <div style="background:#f0f6ff;border-radius:10px;padding:10px 14px;font-size:0.78rem;color:#1a3a6c;font-weight:700;text-align:center;" data-ko="단순한 명소 방문이 아닌 도시의 이야기가 담긴 깊이 있는 경험" data-en="Not just sightseeing — a deeper experience woven with the city's stories">🎯 "단순한 명소 방문이 아닌, 도시의 이야기가 담긴 깊이 있는 경험"</div>
+        </div>
+
+        <div class="content-card">
+            <h3 style="color:#0a2540;" data-ko="🗺️ 시그니처 투어 코스" data-en="🗺️ Signature Tour Courses">🗺️ 시그니처 투어 코스</h3>
+            <div style="font-size:0.75rem;font-weight:800;color:#1565c0;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;" data-ko="1일 코스 (7~10시간)" data-en="Day Tours (7-10 hours)">1일 코스 (7~10시간)</div>
+            <div style="display:grid;gap:7px;margin-bottom:14px;">
+                <div style="background:#f8fbff;border-radius:10px;padding:9px 12px;border-left:3px solid #1565c0;">
+                    <div style="font-weight:700;font-size:0.85rem;" data-ko="클래식 시애틀" data-en="Classic Seattle">클래식 시애틀</div>
+                    <div style="font-size:0.73rem;color:#666;margin-top:2px;" data-ko="파이크 플레이스 · 스페이스 니들 · 파이어니어 스퀘어 · 치나타운 · 시애틀 센터" data-en="Pike Place · Space Needle · Pioneer Square · Chinatown · Seattle Center">파이크 플레이스 · 스페이스 니들 · 파이어니어 스퀘어 · 치나타운 · 시애틀 센터</div>
+                </div>
+                <div style="background:#f8fbff;border-radius:10px;padding:9px 12px;border-left:3px solid #1565c0;">
+                    <div style="font-weight:700;font-size:0.85rem;" data-ko="역사 스토리텔링" data-en="History Storytelling">역사 스토리텔링</div>
+                    <div style="font-size:0.73rem;color:#666;margin-top:2px;" data-ko="보잉 · 아마존 · 마이크로소프트의 도시, 시애틀 산업 역사 심층 탐방" data-en="Boeing · Amazon · Microsoft — deep dive into Seattle's industrial history">보잉 · 아마존 · 마이크로소프트의 도시, 시애틀 산업 역사 심층 탐방</div>
+                </div>
+                <div style="background:#f8fbff;border-radius:10px;padding:9px 12px;border-left:3px solid #1565c0;">
+                    <div style="font-weight:700;font-size:0.85rem;" data-ko="자연 힐링 투어" data-en="Nature Healing Tour">자연 힐링 투어</div>
+                    <div style="font-size:0.73rem;color:#666;margin-top:2px;" data-ko="스노퀄미 폭포 · 마운트 레이니어 뷰포인트 · 올림픽 반도 해안" data-en="Snoqualmie Falls · Mt. Rainier viewpoints · Olympic Peninsula coast">스노퀄미 폭포 · 마운트 레이니어 뷰포인트 · 올림픽 반도 해안</div>
+                </div>
+                <div style="background:#f8fbff;border-radius:10px;padding:9px 12px;border-left:3px solid #1565c0;">
+                    <div style="font-weight:700;font-size:0.85rem;" data-ko="가족 교육 투어" data-en="Family Education Tour">가족 교육 투어</div>
+                    <div style="font-size:0.73rem;color:#666;margin-top:2px;" data-ko="과학 센터 · 어린이 박물관 · 워터프론트 · UW 캠퍼스" data-en="Science Center · Children's Museum · Waterfront · UW Campus">과학 센터 · 어린이 박물관 · 워터프론트 · UW 캠퍼스</div>
+                </div>
+            </div>
+            <div style="font-size:0.75rem;font-weight:800;color:#7b1fa2;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;" data-ko="1박2일 패키지" data-en="Overnight Packages">1박2일 패키지</div>
+            <div style="display:grid;gap:7px;">
+                <div style="background:#fdf6ff;border-radius:10px;padding:9px 12px;border-left:3px solid #7b1fa2;">
+                    <div style="font-weight:700;font-size:0.85rem;" data-ko="마운트 레이니어 완전 탐방" data-en="Full Mt. Rainier Exploration">마운트 레이니어 완전 탐방</div>
+                    <div style="font-size:0.73rem;color:#666;margin-top:2px;" data-ko="파라다이스 · 선라이즈 · 빙하 트레킹 · 에메랄드 리지" data-en="Paradise · Sunrise · Glacier hiking · Emerald Ridge">파라다이스 · 선라이즈 · 빙하 트레킹 · 에메랄드 리지</div>
+                </div>
+                <div style="background:#fdf6ff;border-radius:10px;padding:9px 12px;border-left:3px solid #7b1fa2;">
+                    <div style="font-weight:700;font-size:0.85rem;" data-ko="올림픽 반도 · 후안 데 푸카" data-en="Olympic Peninsula & Juan de Fuca">올림픽 반도 · 후안 데 푸카</div>
+                    <div style="font-size:0.73rem;color:#666;margin-top:2px;" data-ko="열대우림 · 허리케인 릿지 · 포트 타운센드 · 라베너" data-en="Rainforest · Hurricane Ridge · Port Townsend · Lavender">열대우림 · 허리케인 릿지 · 포트 타운센드 · 라베너</div>
+                </div>
+                <div style="background:#fdf6ff;border-radius:10px;padding:9px 12px;border-left:3px solid #7b1fa2;">
+                    <div style="font-weight:700;font-size:0.85rem;" data-ko="디셉션 패스 · 산 후안 아일랜드" data-en="Deception Pass & San Juan Islands">디셉션 패스 · 산 후안 아일랜드</div>
+                    <div style="font-size:0.73rem;color:#666;margin-top:2px;" data-ko="에브리트 · 벨링험 · 고래 관찰 · 라임 킬른" data-en="Everett · Bellingham · Whale watching · Lime Kiln">에브리트 · 벨링험 · 고래 관찰 · 라임 킬른</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h3 style="color:#0a2540;" data-ko="💰 투어 요금" data-en="💰 Pricing">💰 투어 요금</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+                <div style="background:#f0f6ff;border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:0.7rem;font-weight:700;color:#1565c0;margin-bottom:4px;" data-ko="소그룹 1~5명" data-en="Small Group 1–5">소그룹 1~5명</div>
+                    <div style="font-size:1.4rem;font-weight:900;color:#0a2540;">$200~250</div>
+                    <div style="font-size:0.66rem;color:#888;" data-ko="/ 일" data-en="/ day">/ 일</div>
+                </div>
+                <div style="background:#e8f4fd;border-radius:12px;padding:12px;text-align:center;border:2px solid #1565c0;">
+                    <div style="font-size:0.7rem;font-weight:700;color:#1565c0;margin-bottom:4px;" data-ko="단체 6~15명 ★" data-en="Group 6–15 ★">단체 6~15명 ★</div>
+                    <div style="font-size:1.4rem;font-weight:900;color:#0a2540;">$300~400</div>
+                    <div style="font-size:0.66rem;color:#888;" data-ko="/ 일" data-en="/ day">/ 일</div>
+                </div>
+                <div style="background:#f0f6ff;border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:0.7rem;font-weight:700;color:#1565c0;margin-bottom:4px;" data-ko="단체 16명 이상" data-en="Group 16+">단체 16명 이상</div>
+                    <div style="font-size:1.4rem;font-weight:900;color:#0a2540;">$25~35</div>
+                    <div style="font-size:0.66rem;color:#888;" data-ko="/ 인" data-en="/ person">/ 인</div>
+                </div>
+                <div style="background:#f0f6ff;border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:0.7rem;font-weight:700;color:#1565c0;margin-bottom:4px;" data-ko="반일 (4시간)" data-en="Half-Day (4hrs)">반일 (4시간)</div>
+                    <div style="font-size:1.4rem;font-weight:900;color:#0a2540;">60%</div>
+                    <div style="font-size:0.66rem;color:#888;" data-ko="위 요금 기준" data-en="of above">위 요금 기준</div>
+                </div>
+            </div>
+            <div style="background:#fff8e1;border-radius:10px;padding:10px 14px;font-size:0.75rem;color:#555;line-height:1.7;" data-ko="모든 코스는 그룹 구성·관심사에 맞게 맞춤 설계됩니다. 문의 후 48시간 내 맞춤 견적 제공." data-en="All tours customized to your group. Custom quote within 48 hours.">💡 모든 코스는 그룹 구성·관심사에 맞게 맞춤 설계됩니다. 문의 후 48시간 내 맞춤 견적 제공.</div>
+        </div>
+
+        <div class="content-card" style="border-left:4px solid #ef4444;">
+            <h3 style="color:#c62828;font-size:0.95rem;" data-ko="📋 취소 · 환불 정책" data-en="📋 Cancellation Policy">📋 취소 · 환불 정책</h3>
+            <div style="font-size:0.78rem;color:#444;line-height:1.85;">
+                <div>✅ <span data-ko="7일 전 이상: 전액 환불" data-en="7+ days before: Full refund">7일 전 이상: 전액 환불</span></div>
+                <div>⚠️ <span data-ko="3~6일 전: 50% 환불" data-en="3–6 days before: 50% refund">3~6일 전: 50% 환불</span></div>
+                <div>❌ <span data-ko="2일 이내: 환불 없음" data-en="Within 2 days: No refund">2일 이내: 환불 없음</span></div>
+                <div>🌧️ <span data-ko="기상 취소: 전액 환불 또는 일정 변경" data-en="Weather cancellation: Full refund or reschedule">기상 취소: 전액 환불 또는 일정 변경</span></div>
+            </div>
+        </div>
+
+        <div style="background:linear-gradient(135deg,#0a2540,#1565c0);border-radius:16px;padding:20px;text-align:center;margin-bottom:16px;">
+            <div style="font-size:1.5rem;margin-bottom:8px;">📬</div>
+            <h3 style="color:#ffd700;font-size:1rem;margin:0 0 8px;font-weight:900;" data-ko="투어 문의 & 예약" data-en="Tour Inquiry & Booking">투어 문의 & 예약</h3>
+            <p style="color:rgba(255,255,255,0.82);font-size:0.78rem;margin:0 0 14px;line-height:1.6;" data-ko="신청 후 48시간 내 맞춤 견적으로 회신드립니다. 교회 · 기업 · 가족 단체 모두 환영합니다." data-en="We respond with a custom quote within 48 hours. Church groups, corporate teams, and families all welcome.">신청 후 48시간 내 맞춤 견적으로 회신드립니다. 교회 · 기업 · 가족 단체 모두 환영합니다.</p>
+            <a href="PaulKim_TourGuide.html" target="_blank" style="display:inline-block;background:#ffd700;color:#0a2540;padding:12px 28px;border-radius:24px;font-weight:800;text-decoration:none;font-size:0.88rem;" data-ko="📋 투어 신청서 작성하기" data-en="📋 Fill Out Tour Inquiry Form">📋 투어 신청서 작성하기</a>
+        </div>
+
+    </div>
 </div>
 
 <div class="app-screen" id="churchApp">
@@ -5765,7 +5886,7 @@ function artScrollTo(sectionId, btnEl) {
     // ── 딥링크: 페이지 로드 시 URL 해시로 탭 자동 열기 ──────────────
     const _validApps = ['church','newcomer','links','health','job','korean',
         'transport','coffee','food','culture','art','edu',
-        'healing','history','sports','shopping'];
+        'healing','history','sports','shopping','tour'];
 
     window.addEventListener('DOMContentLoaded', function() {
         // 1) 브라우저 언어에 맞게 자동 적용
