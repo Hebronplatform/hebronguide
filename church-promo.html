@@ -221,14 +221,69 @@ footer a{color:var(--gold2);text-decoration:none;}
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">🏠 Church Website Specialists</div>
-  <h1>Your Church Website,<br><em>Done Right.</em></h1>
-  <p>Bilingual · Mobile installable · Settlement guide integrated<br>Proven with Eden Church, Dallas — a verified solution</p>
+  <div class="hero-badge">🏠 HebronGuide · 앱 사이트 제작</div>
+  <h1>당신의 커뮤니티를 위한<br><em>맞춤형 앱 사이트</em></h1>
+  <p>Your Community App · Bilingual · Mobile installable · Trusted</p>
+  <div style="display:inline-block;background:#dc2626;color:white;font-weight:800;font-size:.82rem;padding:7px 20px;border-radius:20px;margin-bottom:28px;letter-spacing:.04em;box-shadow:0 4px 12px rgba(220,38,38,.4);">
+    ⚠️ 앱 사이트 만들기 전에 무료상담 필수
+  </div>
   <div class="hero-btns">
-    <a href="#plans" class="btn-gold">📋 View Plans &amp; Pricing</a>
-    <a href="#contact" class="btn-ghost">📩 Free Consultation</a>
+    <a href="#tracks" class="btn-gold">📋 두 가지 트랙 보기</a>
+    <a href="#contact" class="btn-ghost">📩 무료상담 신청</a>
   </div>
 </div>
+
+<!-- TWO TRACKS -->
+<section id="tracks" style="background:white;padding:56px 20px;">
+  <div class="container">
+    <div class="sec-title">
+      <h2>두 가지 트랙</h2>
+      <p>교회와 비즈니스, 각자의 필요에 맞는 앱 사이트를 만들어드립니다.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:760px;margin:0 auto;">
+
+      <!-- Track 1: Church -->
+      <div style="border:2px solid #1a2e6c;border-radius:16px;overflow:hidden;">
+        <div style="background:linear-gradient(135deg,#0d1b3e,#1a2e6c,#2d3a8c);padding:32px 20px;color:white;text-align:center;">
+          <div style="font-size:2.4rem;margin-bottom:8px;">✝️</div>
+          <div style="font-size:1.2rem;font-weight:900;color:#ffd700;">교회 앱</div>
+          <div style="font-size:.8rem;opacity:.75;margin-top:4px;">Church App</div>
+        </div>
+        <div style="padding:22px 20px;background:#f8f9ff;">
+          <ul style="list-style:none;font-size:.84rem;color:#374151;margin-bottom:18px;">
+            <li style="padding:6px 0;border-bottom:1px solid #e5e7eb;">✓ 예배 시간 · 오시는 길</li>
+            <li style="padding:6px 0;border-bottom:1px solid #e5e7eb;">✓ 한국어 / 영어 2개 언어</li>
+            <li style="padding:6px 0;border-bottom:1px solid #e5e7eb;">✓ 정착 가이드 통합</li>
+            <li style="padding:6px 0;border-bottom:1px solid #e5e7eb;">✓ 유튜브 설교 연동</li>
+            <li style="padding:6px 0;">✓ 모바일 홈화면 설치</li>
+          </ul>
+          <a href="#contact" onclick="setTrack('교회 앱')" style="display:block;background:#1a2e6c;color:white;padding:11px;border-radius:10px;font-weight:700;text-decoration:none;font-size:.88rem;text-align:center;">교회 앱 무료상담 신청 →</a>
+        </div>
+      </div>
+
+      <!-- Track 2: Business -->
+      <div style="border:2px solid #15803d;border-radius:16px;overflow:hidden;">
+        <div style="background:linear-gradient(135deg,#052e16,#14532d,#166534);padding:32px 20px;color:white;text-align:center;">
+          <div style="font-size:2.4rem;margin-bottom:8px;">🏢</div>
+          <div style="font-size:1.2rem;font-weight:900;color:#6ee7b7;">비즈니스 앱</div>
+          <div style="font-size:.8rem;opacity:.75;margin-top:4px;">소상공인 · 기업 · 병원</div>
+        </div>
+        <div style="padding:22px 20px;background:#f0fdf4;">
+          <ul style="list-style:none;font-size:.84rem;color:#374151;margin-bottom:18px;">
+            <li style="padding:6px 0;border-bottom:1px solid #dcfce7;">✓ 소상공인 · 식당 · 마켓</li>
+            <li style="padding:6px 0;border-bottom:1px solid #dcfce7;">✓ 병원 · 클리닉 · 의원</li>
+            <li style="padding:6px 0;border-bottom:1px solid #dcfce7;">✓ 기업 · 스타트업</li>
+            <li style="padding:6px 0;border-bottom:1px solid #dcfce7;">✓ 한인 커뮤니티 광고 연계</li>
+            <li style="padding:6px 0;">✓ 모바일 홈화면 설치</li>
+          </ul>
+          <a href="#contact" onclick="setTrack('비즈니스 앱')" style="display:block;background:#15803d;color:white;padding:11px;border-radius:10px;font-weight:700;text-decoration:none;font-size:.88rem;text-align:center;">비즈니스 앱 무료상담 신청 →</a>
+        </div>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:22px;font-size:.82rem;color:#dc2626;font-weight:700;">⚠️ 두 트랙 모두 — 앱 사이트 만들기 전에 무료상담을 먼저 진행합니다</p>
+  </div>
+</section>
 
 <!-- WHY -->
 <section id="why">
@@ -444,7 +499,7 @@ footer a{color:var(--gold2);text-decoration:none;}
       <p>5 steps from consultation to launch</p>
     </div>
     <div class="steps">
-      <div class="step"><div class="snum">1</div><h3>📩 Consultation</h3><p>Fill out the form<br>We reply in 24 hrs</p></div>
+      <div class="step" style="border:2px solid #dc2626;"><div class="snum" style="background:#dc2626;">1</div><h3>📩 무료상담 <span style="font-size:.75rem;color:#dc2626;font-weight:800;">필수</span></h3><p>폼 작성 후 24시간 내 회신<br><span style="font-size:.74rem;color:#dc2626;">먼저 상담 후 제작 진행</span></p></div>
       <div class="step"><div class="snum">2</div><h3>📋 Planning</h3><p>Church info · menu<br>Design direction</p></div>
       <div class="step"><div class="snum">3</div><h3>🔨 Build</h3><p>3–14 days<br>(by plan)</p></div>
       <div class="step"><div class="snum">4</div><h3>👀 Review</h3><p>Review draft<br>2 free revisions</p></div>
@@ -457,8 +512,8 @@ footer a{color:var(--gold2);text-decoration:none;}
 <section id="contact">
   <div class="container">
     <div class="sec-title">
-      <h2>📩 Request Your Church Website</h2>
-      <p>Fill out the form below — we'll respond within 24 hours.</p>
+      <h2>📩 무료상담 신청</h2>
+      <p>폼을 작성하시면 24시간 내에 연락드립니다 · We'll respond within 24 hours.</p>
     </div>
     <div class="cg">
 
@@ -483,12 +538,22 @@ footer a{color:var(--gold2);text-decoration:none;}
       </div>
 
       <div class="fcard">
-        <h3>✏️ Church Website Inquiry Form</h3>
+        <h3>✏️ 무료상담 신청 폼</h3>
         <form id="cForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <input type="hidden" name="_subject" value="[HebronGuide] Church Website Inquiry · 교회 홈페이지 제작 문의">
+          <input type="hidden" name="_subject" value="[HebronGuide] 앱 사이트 무료상담 문의">
           <input type="hidden" name="Selected Plan" id="hidPlan">
 
-          <div class="fsep">① Contact Info</div>
+          <div class="fsep">① 트랙 선택 · Track</div>
+          <div class="fg">
+            <label>앱 트랙 선택 <span class="req">*</span></label>
+            <select name="Track" id="trackSel" required onchange="document.getElementById('hidPlan').value=this.value">
+              <option value="">-- 트랙을 선택하세요 --</option>
+              <option value="교회 앱 (Church App)">✝️ 교회 앱 — Church App</option>
+              <option value="비즈니스 앱 (소상공인·기업·병원)">🏢 비즈니스 앱 — 소상공인 · 기업 · 병원</option>
+            </select>
+          </div>
+
+          <div class="fsep">② Contact Info</div>
           <div class="frow">
             <div class="fg"><label>Name <span class="req">*</span></label>
               <input type="text" name="Name" placeholder="John Smith" required></div>
@@ -830,8 +895,15 @@ function applyPromoLang(lang){
 
 window.addEventListener('DOMContentLoaded', () => applyPromoLang('en'));
 
+function setTrack(val){
+  const s=document.getElementById('trackSel');
+  for(let i=0;i<s.options.length;i++){if(s.options[i].text.includes(val.replace('교회 앱','교회').replace('비즈니스 앱','비즈니스'))||s.options[i].value.includes(val)){s.selectedIndex=i;break;}}
+  document.getElementById('hidPlan').value=val;
+  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+}
 function setPlan(val){
   const s=document.getElementById('planSel');
+  if(!s) return;
   for(let i=0;i<s.options.length;i++){if(s.options[i].value===val){s.selectedIndex=i;break;}}
   document.getElementById('hidPlan').value=val;
   document.getElementById('contact').scrollIntoView({behavior:'smooth'});
