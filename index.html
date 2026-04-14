@@ -29,6 +29,9 @@
             box-sizing: border-box;
         }
 
+        html {
+            overflow-x: hidden;
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -117,6 +120,7 @@
             background: white;
             z-index: 9999;
             overflow-y: auto;
+            overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
         }
 
@@ -442,7 +446,7 @@
         }
 
         @media (min-width: 900px) {
-            body { display: flex; align-items: flex-start; justify-content: center; }
+            body { display: flex; align-items: flex-start; justify-content: center; overflow-x: hidden; }
             .home-screen {
                 max-width: 600px;
                 padding: 50px 36px 50px;
@@ -477,7 +481,14 @@
             .back-button { min-height: 44px; padding: 0 18px; }
             a { min-height: 44px; display: inline-flex; align-items: center; }
         }
-    </style>
+            /* 가로 오버플로우 방지 */
+        .app-screen img, .app-screen table, .app-screen pre {
+            max-width: 100%;
+        }
+        .app-body {
+            overflow-x: hidden;
+        }
+        </style>
 
 <style id="stab-global-css">
 .stab-bar {
@@ -605,7 +616,7 @@ function sTabGo(sectionId, btnEl, prefix, appId) {
             </div>
             <div class="app-icon" onclick="openApp('shopping')">
                 <div class="app-icon-emoji">🛒</div>
-                <div class="app-icon-name" data-ko="생활<br>쇼핑" data-en="Daily<br>Shopping">생활<br><span data-ko="쇼핑" data-en="Shopping"><span data-ko="쇼핑" data-en="Shopping"><span data-ko="쇼핑" data-en="Shopping">쇼핑</span></span></span></div>
+                <div class="app-icon-name" data-ko="생활<br>쇼핑" data-en="Daily<br>Shopping">생활<br>쇼핑</div>
             </div>
             <div class="app-icon" onclick="openApp('coffee')">
                 <div class="app-icon-emoji">☕</div>
