@@ -573,18 +573,14 @@ function sTabGo(sectionId, btnEl, prefix, appId) {
         <div class="page-title">
             <h1>🌏 <span data-ko="시애틀 가이드" data-en="Seattle Guide">시애틀 가이드</span></h1>
             <p data-ko="이민자 · 타주이사 · 거주자 · 관광객" data-en="Newcomers · Residents · Visitors · Expats">이민자 · 타주이사 · 거주자 · 관광객</p>
-            <p style="font-size:0.74rem;opacity:0.72;margin-top:4px;" data-ko="정착부터 도시생활 전체 · 16개 항목" data-en="Settlement to City Life · 16 Categories">정착부터 도시생활 전체 · 16개 항목</p>
+            <p style="font-size:0.74rem;opacity:0.72;margin-top:4px;" data-ko="정착부터 도시생활 전체 · 17개 항목" data-en="Settlement to City Life · 17 Categories">정착부터 도시생활 전체 · 17개 항목</p>
         </div>
 
-        <!-- About HebronGuide -->
-        <div style="background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:12px 16px;margin-bottom:14px;text-align:left;">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-                <span style="font-size:1.1rem;">ℹ️</span>
-                <span style="font-size:0.8rem;font-weight:800;color:rgba(255,255,255,0.95);" data-ko="이 가이드는 무엇인가요?" data-en="What is this guide?">이 가이드는 무엇인가요?</span>
-            </div>
-            <p style="font-size:0.75rem;color:rgba(255,255,255,0.78);margin:0;line-height:1.65;" data-ko="시애틀에 새로 오신 분들을 위해 만든 무료 정착 정보 가이드입니다. 비자·운전면허·의료·취업부터 맛집·문화까지, 실제 경험자들이 정리한 100가지 정착 정보를 담았습니다. 시애틀 지구촌교회 커뮤니티가 지원합니다." data-en="A free settlement guide for newcomers to Seattle. Covering visas, driver's licenses, healthcare, jobs, food, and culture — 100 practical tips curated by people who have been there. Supported by the GMC Seattle community.">시애틀에 새로 오신 분들을 위해 만든 무료 정착 정보 가이드입니다. 비자·운전면허·의료·취업부터 맛집·문화까지, 실제 경험자들이 정리한 100가지 정착 정보를 담았습니다. 시애틀 지구촌교회 커뮤니티가 지원합니다.</p>
-        </div>
         <div class="app-grid">
+            <div class="app-icon" onclick="openApp('about')">
+                <div class="app-icon-emoji">ℹ️</div>
+                <div class="app-icon-name" data-ko="가이드<br>안내" data-en="About<br>Guide">가이드<br>안내</div>
+            </div>
             <div class="app-icon" onclick="openApp('newcomer')">
                 <div class="app-icon-emoji">🏠</div>
                 <div class="app-icon-name" data-ko="새이민자<br>정착가이드" data-en="Newcomer<br>Guide">새이민자<br>정착가이드</div>
@@ -645,17 +641,15 @@ function sTabGo(sectionId, btnEl, prefix, appId) {
                 <div class="app-icon-emoji">⚾</div>
                 <div class="app-icon-name" data-ko="스포츠&<br>레저" data-en="Sports &<br>Recreation">스포츠&<br>레저</div>
             </div>
-        </div>
-
-                <div class="app-icon" onclick="openApp('tour')">
+            <div class="app-icon" onclick="openApp('tour')">
                 <div class="app-icon-emoji">🗺️</div>
                 <div class="app-icon-name" data-ko="시애틀<br>투어 안내" data-en="Seattle<br>Tour Info">시애틀<br>투어 안내</div>
             </div>
-
-                <div class="app-icon" onclick="openApp('church')">
+            <div class="app-icon" onclick="openApp('church')">
                 <div class="app-icon-emoji">🤝</div>
                 <div class="app-icon-name" data-ko="정착<br>커뮤니티" data-en="Community<br>Hub">정착<br>커뮤니티</div>
             </div>
+        </div>
             <div class="footer-credit">
             <img src="hebronguide-logo.svg" alt="HebronGuide" style="height:52px;width:auto;opacity:0.92;">
             <div style="margin-top:10px;font-size:0.75rem;color:rgba(255,255,255,0.45);">
@@ -670,6 +664,37 @@ function sTabGo(sectionId, btnEl, prefix, appId) {
     </div>
 
     <!-- App Screens -->
+<div class="app-screen" id="aboutApp">
+    <div style="background:linear-gradient(135deg,#1a237e,#283593);padding:0;position:relative;">
+        <button onclick="closeApp('about')" style="position:absolute;top:14px;left:14px;z-index:10;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;padding:6px 12px;border-radius:20px;font-size:0.78rem;cursor:pointer;" data-ko="← 홈으로" data-en="← Home">← 홈으로</button>
+        <div style="padding:50px 20px 24px;text-align:center;">
+            <div style="font-size:2.8rem;margin-bottom:10px;">ℹ️</div>
+            <h1 style="font-size:1.4rem;font-weight:900;color:#fff;margin:0 0 8px;" data-ko="이 가이드는 무엇인가요?" data-en="What is this guide?">이 가이드는 무엇인가요?</h1>
+        </div>
+    </div>
+    <div class="app-body">
+        <div class="content-card">
+            <p style="font-size:0.9rem;color:#222;line-height:1.8;" data-ko="시애틀에 새로 오신 분들을 위해 만든 무료 정착 정보 가이드입니다." data-en="A free settlement guide for newcomers to Seattle.">시애틀에 새로 오신 분들을 위해 만든 무료 정착 정보 가이드입니다.</p>
+            <p style="font-size:0.85rem;color:#444;line-height:1.8;margin-top:10px;" data-ko="비자·운전면허·의료·취업부터 맛집·문화까지, 실제 경험자들이 정리한 100가지 정착 정보를 담았습니다." data-en="Covering visas, driver's licenses, healthcare, jobs, food, and culture — 100 practical tips curated by people who have been there.">비자·운전면허·의료·취업부터 맛집·문화까지, 실제 경험자들이 정리한 100가지 정착 정보를 담았습니다.</p>
+            <p style="font-size:0.85rem;color:#444;line-height:1.8;margin-top:10px;" data-ko="시애틀 지구촌교회 커뮤니티가 지원합니다." data-en="Supported by the GMC Seattle community.">시애틀 지구촌교회 커뮤니티가 지원합니다.</p>
+        </div>
+        <div class="content-card" style="background:#f8fbff;">
+            <h3 style="font-size:0.9rem;color:#1a237e;" data-ko="📋 수록 항목 (17개)" data-en="📋 Categories (17)">📋 수록 항목 (17개)</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:0.8rem;color:#444;line-height:1.7;">
+                <div>🏠 새이민자 정착가이드</div><div>🚨 긴급·필수 링크</div>
+                <div>🏥 의료 &amp; 건강보험</div><div>💼 취업 &amp; 세금</div>
+                <div>🇰🇷 한인 커뮤니티</div><div>🚇 교통 &amp; 대중교통</div>
+                <div>🛒 생활 쇼핑</div><div>☕ 카페 &amp; 커피 50</div>
+                <div>🍽️ 맛집 &amp; 음식</div><div>🎸 음악 &amp; 문화</div>
+                <div>🎨 예술 &amp; 박물관</div><div>🎓 교육 &amp; 대학</div>
+                <div>🌲 자연 힐링·관광</div><div>🏛️ 역사 &amp; 건축물</div>
+                <div>⚾ 스포츠 &amp; 레저</div><div>🗺️ 시애틀 투어 안내</div>
+                <div>🤝 정착 커뮤니티</div><div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="app-screen" id="newcomerApp">
     <div class="app-header" style="background:linear-gradient(135deg,#1a1a4e,#2d3a8c);">
         <button class="back-button" onclick="closeApp('newcomer')" data-ko="← 홈으로" data-en="← Home">← 홈으로</button>
@@ -2850,7 +2875,7 @@ function artScrollTo(sectionId, btnEl) {
 
 </div>
 
-<div class="app-screen"id="eduApp">
+<div class="app-screen" id="eduApp">
     <div class="app-header" style="background:linear-gradient(135deg,#4d3c00,#7d6608);">
         <button class="back-button" onclick="closeApp('edu')" data-ko="← 홈으로" data-en="← Home">← 홈으로</button>
         <div class="app-title" data-ko="🎓 교육 · 대학 · 도서관" data-en="🎓 Education · Universities · Libraries">🎓 교육 · 대학 · 도서관</div>
@@ -5887,7 +5912,7 @@ function artScrollTo(sectionId, btnEl) {
     }
 
     // ── 딥링크: 페이지 로드 시 URL 해시로 탭 자동 열기 ──────────────
-    const _validApps = ['church','newcomer','links','health','job','korean',
+    const _validApps = ['about','church','newcomer','links','health','job','korean',
         'transport','coffee','food','culture','art','edu',
         'healing','history','sports','shopping','tour'];
 
