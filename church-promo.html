@@ -425,7 +425,7 @@ footer a{color:var(--gold2);text-decoration:none;}
             <li><span class="y">✓</span> 30+ local info sections</li>
             <li><span class="y">✓</span> New resident checklist</li>
             <li><span class="y">✓</span> Custom app icon</li>
-            <li><span class="s">★</span> Eden Church real case study</li>
+            <li><span class="s">★</span> Live example: hebronguide.com</li>
             <li><span class="n">✗</span> Board / self-editing</li>
           </ul>
           <a href="#contact" class="btn-plan bf" onclick="setPlan('Home+Guide Package ($349)')">Inquire — Home+Guide</a>
@@ -544,7 +544,7 @@ footer a{color:var(--gold2);text-decoration:none;}
       <p>5 steps from consultation to launch</p>
     </div>
     <div class="steps">
-      <div class="step"><div class="snum">1</div><h3>💬 무료상담</h3><p>폼 작성 후 24시간 내 회신<br><span style="font-size:.74rem;color:#6b7280;">편하게 이야기 나눠보세요</span></p></div>
+      <div class="step"><div class="snum">1</div><h3>💬 Free Consult</h3><p>Fill the form — reply within 24 hrs<br><span style="font-size:.74rem;color:#6b7280;">No pressure, just a conversation</span></p></div>
       <div class="step"><div class="snum">2</div><h3>📋 Planning</h3><p>Church info · menu<br>Design direction</p></div>
       <div class="step"><div class="snum">3</div><h3>🔨 Build</h3><p>3–14 days<br>(by plan)</p></div>
       <div class="step"><div class="snum">4</div><h3>👀 Review</h3><p>Review draft<br>2 free revisions</p></div>
@@ -557,8 +557,8 @@ footer a{color:var(--gold2);text-decoration:none;}
 <section id="contact">
   <div class="container">
     <div class="sec-title">
-      <h2>📩 무료상담 신청</h2>
-      <p>폼을 작성하시면 24시간 내에 연락드립니다 · We'll respond within 24 hours.</p>
+      <h2>📩 Get a Free Consultation</h2>
+      <p>Fill out the form and we'll respond within 24 hours.</p>
     </div>
     <div class="cg">
 
@@ -583,18 +583,18 @@ footer a{color:var(--gold2);text-decoration:none;}
       </div>
 
       <div class="fcard">
-        <h3>✏️ 무료상담 신청 폼</h3>
+        <h3>✏️ Start Here — It's Free</h3>
         <form id="cForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <input type="hidden" name="_subject" value="[HebronGuide] 앱 사이트 무료상담 문의">
+          <input type="hidden" name="_subject" value="[HebronGuide] New Church Inquiry">
           <input type="hidden" name="Selected Plan" id="hidPlan">
 
-          <div class="fsep">① 트랙 선택 · Track</div>
+          <div class="fsep">① What are you looking for?</div>
           <div class="fg">
-            <label>앱 트랙 선택 <span class="req">*</span></label>
+            <label>Service Type <span class="req">*</span></label>
             <select name="Track" id="trackSel" required onchange="document.getElementById('hidPlan').value=this.value">
-              <option value="">-- 트랙을 선택하세요 --</option>
-              <option value="교회 앱 (Church App)">✝️ 교회 앱 — Church App</option>
-              <option value="비즈니스 앱 (소상공인·기업·병원)">🏢 비즈니스 앱 — 소상공인 · 기업 · 병원</option>
+              <option value="">-- Select a service --</option>
+              <option value="Church App + Website">✝️ Church Website / App</option>
+              <option value="비즈니스 앱 (소상공인·기업·병원)">🏢 Business / Ministry App</option>
             </select>
           </div>
 
@@ -610,10 +610,10 @@ footer a{color:var(--gold2);text-decoration:none;}
 
           <div class="fsep">② Church Info</div>
           <div class="frow">
-            <div class="fg"><label>Church Korean Name <span class="req">*</span></label>
-              <input type="text" name="Church_Korean" placeholder="○○교회" required></div>
-            <div class="fg"><label>Church English Name</label>
-              <input type="text" name="Church_English" placeholder="○○ Church"></div>
+            <div class="fg"><label>Church Name <span class="req">*</span></label>
+              <input type="text" name="Church_Name" placeholder="Grace Community Church" required></div>
+            <div class="fg"><label>Church Name (Other Language)</label>
+              <input type="text" name="Church_Name_Alt" placeholder="은혜교회 / Iglesia Gracia"></div>
           </div>
           <div class="frow">
             <div class="fg"><label>City / State</label>
