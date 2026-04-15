@@ -102,24 +102,19 @@
 
   /* QR Section */
   .qr-section {
-    display: flex;
-    align-items: center;
-    gap: 28px;
     background: #f8faff;
     border: 1.5px solid #dbeafe;
     border-radius: 14px;
-    padding: 24px 28px;
+    padding: 22px 24px;
     margin-bottom: 24px;
+    text-align: center;
   }
-  .qr-section img {
-    width: 110px;
-    height: 110px;
-    flex-shrink: 0;
-    border-radius: 8px;
-  }
-  .qr-text h3 { font-size: 1rem; font-weight: 800; color: #1a4fa0; margin-bottom: 6px; }
-  .qr-text p { font-size: .82rem; color: #374151; line-height: 1.6; margin-bottom: 8px; }
-  .qr-url { font-size: .8rem; font-weight: 700; color: #2563eb; word-break: break-all; }
+  .qr-section .qr-intro { font-size: .82rem; color: #374151; margin-bottom: 16px; font-weight: 600; }
+  .qr-pair { display: flex; justify-content: center; gap: 28px; }
+  .qr-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .qr-item img { width: 108px; height: 108px; border-radius: 8px; border: 2px solid #dbeafe; }
+  .qr-label { font-size: .78rem; font-weight: 800; color: #1a4fa0; }
+  .qr-url { font-size: .72rem; font-weight: 700; color: #2563eb; }
 
   /* Footer */
   .footer {
@@ -185,11 +180,18 @@
     <p style="text-align:center;font-size:.78rem;color:#6b7280;margin-bottom:28px;">Equipping multiple churches? Ask us about network pricing.</p>
 
     <div class="qr-section">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fhebronguide.com%2Forder&color=1a4fa0&bgcolor=ffffff" alt="QR Code — hebronguide.com/order">
-      <div class="qr-text">
-        <h3>Place Your Order</h3>
-        <p>Scan the QR code or visit the link below to submit your order. Takes less than 3 minutes.</p>
-        <div class="qr-url">hebronguide.com/order</div>
+      <div class="qr-intro">📱 Scan to explore — or jump straight to ordering</div>
+      <div class="qr-pair">
+        <div class="qr-item">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=216x216&data=https%3A%2F%2Fhebronguide.com&color=1a4fa0&bgcolor=ffffff" alt="Live Sample Guide">
+          <div class="qr-label">🔍 Try the Live Guide</div>
+          <div class="qr-url">hebronguide.com</div>
+        </div>
+        <div class="qr-item">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=216x216&data=https%3A%2F%2Fhebronguide.com%2Forder&color=c0392b&bgcolor=ffffff" alt="Place Your Order">
+          <div class="qr-label">🛒 Place Your Order</div>
+          <div class="qr-url">hebronguide.com/order</div>
+        </div>
       </div>
     </div>
 

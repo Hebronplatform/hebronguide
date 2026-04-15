@@ -97,24 +97,19 @@
   .badge { display: inline-block; background: #2563eb; color: white; font-size: .65rem; font-weight: 700; padding: 2px 8px; border-radius: 99px; margin-bottom: 4px; }
 
   .qr-section {
-    display: flex;
-    align-items: center;
-    gap: 28px;
     background: #f8faff;
     border: 1.5px solid #dbeafe;
     border-radius: 14px;
-    padding: 24px 28px;
+    padding: 22px 24px;
     margin-bottom: 24px;
+    text-align: center;
   }
-  .qr-section img {
-    width: 110px;
-    height: 110px;
-    flex-shrink: 0;
-    border-radius: 8px;
-  }
-  .qr-text h3 { font-size: 1rem; font-weight: 800; color: #1a4fa0; margin-bottom: 6px; }
-  .qr-text p { font-size: .82rem; color: #374151; line-height: 1.6; margin-bottom: 8px; }
-  .qr-url { font-size: .8rem; font-weight: 700; color: #2563eb; word-break: break-all; }
+  .qr-section .qr-intro { font-size: .82rem; color: #374151; margin-bottom: 16px; font-weight: 600; }
+  .qr-pair { display: flex; justify-content: center; gap: 28px; }
+  .qr-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .qr-item img { width: 108px; height: 108px; border-radius: 8px; border: 2px solid #dbeafe; }
+  .qr-label { font-size: .78rem; font-weight: 800; color: #1a4fa0; }
+  .qr-url { font-size: .72rem; font-weight: 700; color: #2563eb; }
 
   .footer {
     background: #1e293b;
@@ -178,11 +173,18 @@
     <p style="text-align:center;font-size:.78rem;color:#6b7280;margin-bottom:28px;">여러 교회에 함께 도입하고 싶으신가요? 네트워크 가격에 대해 문의해 주세요.</p>
 
     <div class="qr-section">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fhebronguide.com%2Forder&color=1a4fa0&bgcolor=ffffff" alt="QR Code — hebronguide.com/order">
-      <div class="qr-text">
-        <h3>지금 바로 주문하세요</h3>
-        <p>QR 코드를 스캔하거나 아래 링크를 방문하세요. 3분이면 주문 완료!</p>
-        <div class="qr-url">hebronguide.com/order</div>
+      <div class="qr-intro">📱 먼저 체험해보고, 바로 주문까지</div>
+      <div class="qr-pair">
+        <div class="qr-item">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=216x216&data=https%3A%2F%2Fhebronguide.com&color=1a4fa0&bgcolor=ffffff" alt="샘플 가이드">
+          <div class="qr-label">🔍 샘플 가이드 체험</div>
+          <div class="qr-url">hebronguide.com</div>
+        </div>
+        <div class="qr-item">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=216x216&data=https%3A%2F%2Fhebronguide.com%2Forder&color=c0392b&bgcolor=ffffff" alt="주문하기">
+          <div class="qr-label">🛒 지금 바로 주문</div>
+          <div class="qr-url">hebronguide.com/order</div>
+        </div>
       </div>
     </div>
 
