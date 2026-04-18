@@ -298,6 +298,13 @@
   }
   .char-hint { text-align:right; font-size:.72rem; color:var(--muted); margin-top:3px; }
   .sec-head.guide-sec { background: linear-gradient(135deg, #EEF9F3, #EAF4FD); }
+  .sec-head.org-sec   { background: linear-gradient(135deg, #FEF9EE, #FFF3E0); }
+
+  /* Form type tabs */
+  .type-tabs { display:flex; margin-bottom:22px; border-radius:12px; overflow:hidden; border:2px solid var(--blue); }
+  .type-btn  { flex:1; padding:13px 10px; border:none; background:#fff; color:var(--blue); font-weight:700; font-size:.87rem; cursor:pointer; transition:background .2s,color .2s; line-height:1.3; }
+  .type-btn.active { background:var(--blue); color:#fff; }
+  .type-btn:hover:not(.active) { background:#f0f5ff; }
 
   /* Footer */
   footer {
@@ -361,6 +368,13 @@
   <input type="hidden" name="access_key" value="2eb76a16-085c-4477-8f5a-8a8a4ec36af7">
   <input type="hidden" name="subject"    value="🆕 [Hebron Guide] 새 주문이 들어왔습니다!">
   <input type="hidden" name="from_name"  value="Hebron Guide Order Form">
+
+  <!-- FORM TYPE TABS -->
+  <input type="hidden" name="form_type" id="form-type-val" value="church">
+  <div class="type-tabs">
+    <button type="button" class="type-btn active" onclick="setFormType('church')" id="tab-church">⛪ <span id="tab-church-label">교회용</span></button>
+    <button type="button" class="type-btn" onclick="setFormType('general')" id="tab-general">🏢 <span id="tab-general-label">일반·기관용</span></button>
+  </div>
 
   <!-- ① 패키지 선택 -->
   <div class="sec-head">
@@ -464,6 +478,9 @@
     </div>
 
   </div>
+
+  <!-- ★ 교회 전용 섹션 (교회용 탭) -->
+  <div class="church-only">
 
   <hr class="sec-divider">
 
@@ -584,6 +601,81 @@
     </div>
 
   </div>
+
+  </div><!-- /church-only -->
+
+  <!-- ★ 일반·기관 전용 섹션 (일반·기관용 탭) -->
+  <div class="general-only" style="display:none;">
+
+  <hr class="sec-divider">
+
+  <!-- ③' 기관 정보 -->
+  <div class="sec-head org-sec">
+    <span class="ico">🏢</span>
+    <h2 id="s3hg">기관 정보</h2>
+  </div>
+  <div class="sec-body">
+
+    <div class="field">
+      <label class="lbl" for="org-name"><span id="f-org-name">기관명 / 상호명</span> <span class="req">*</span></label>
+      <input type="text" id="org-name" name="org_name" placeholder="예: 시애틀한인상공회의소, 한인마트, 이민법무법인">
+      <div class="err" id="e-org-name">⚠ <span id="e-org-name-t">기관명을 입력해 주세요.</span></div>
+    </div>
+
+    <div class="field field-row">
+      <div>
+        <label class="lbl" for="org-type"><span id="f-org-type">업종 / 유형</span> <span class="req">*</span></label>
+        <select id="org-type" name="org_type">
+          <option value="">-- 선택 --</option>
+          <option id="ot1">식당 / 카페</option>
+          <option id="ot2">마트 / 식품점</option>
+          <option id="ot3">부동산</option>
+          <option id="ot4">보험</option>
+          <option id="ot5">CPA / 세무</option>
+          <option id="ot6">의료 / 치과 / 한의원</option>
+          <option id="ot7">교육 / 학원</option>
+          <option id="ot8">미용 / 스파</option>
+          <option id="ot9">법률 / 이민법</option>
+          <option id="ot10">비영리 단체</option>
+          <option id="ot11">커뮤니티 단체</option>
+          <option id="ot12">정부 / 공공기관</option>
+          <option id="ot13">기타</option>
+        </select>
+        <div class="err" id="e-org-type">⚠ <span id="e-org-type-t">업종을 선택해 주세요.</span></div>
+      </div>
+      <div>
+        <label class="lbl" for="org-addr"><span id="f-org-addr">주소</span> <span class="opt">(선택)</span></label>
+        <input type="text" id="org-addr" name="org_address" placeholder="e.g. 123 Main St, Seattle, WA">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="org-web"><span id="f-org-web">웹사이트</span> <span class="opt">(선택)</span></label>
+      <input type="text" id="org-web" name="org_website" placeholder="https://...">
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="org-tag"><span id="f-org-tag">한 줄 소개</span> <span class="opt" id="f-org-tag-h">(가이드에 표시, 50자 이내)</span></label>
+      <input type="text" id="org-tag" name="org_tagline" maxlength="50"
+             placeholder="예: 시애틀 한인을 위한 24시간 응급 이민법 서비스"
+             oninput="document.getElementById('org-tag-ct').textContent=this.value.length">
+      <div class="char-hint"><span id="org-tag-ct">0</span>/50</div>
+    </div>
+
+    <div class="field field-row">
+      <div>
+        <label class="lbl" for="org-sns"><span id="f-org-sns">SNS 링크</span> <span class="opt">(선택)</span></label>
+        <input type="text" id="org-sns" name="org_sns" placeholder="Instagram / Facebook URL">
+      </div>
+      <div>
+        <label class="lbl" for="org-yt"><span id="f-org-yt">YouTube</span> <span class="opt">(선택)</span></label>
+        <input type="text" id="org-yt" name="org_youtube" placeholder="YouTube channel URL">
+      </div>
+    </div>
+
+  </div>
+
+  </div><!-- /general-only -->
 
   <hr class="sec-divider">
 
@@ -716,6 +808,21 @@ const WEB3FORMS_KEY = "2eb76a16-085c-4477-8f5a-8a8a4ec36af7";
 // ═══════════════════════════════════════
 
 let curLang = 'en';
+let curFormType = 'church';
+
+function setFormType(type) {
+  curFormType = type;
+  document.getElementById('tab-church').classList.toggle('active', type === 'church');
+  document.getElementById('tab-general').classList.toggle('active', type === 'general');
+  document.querySelectorAll('.church-only').forEach(el => el.style.display = type === 'church' ? '' : 'none');
+  document.querySelectorAll('.general-only').forEach(el => el.style.display = type === 'general' ? '' : 'none');
+  document.getElementById('form-type-val').value = type;
+  const t = curLang === 'ko' ? T['ko'] : T['en'];
+  if (t.tabChurch) {
+    document.getElementById('tab-church-label').textContent = t.tabChurch;
+    document.getElementById('tab-general-label').textContent = t.tabGeneral;
+  }
+}
 
 // 공통 필드 (영어 기반으로 번역)
 const LANGS = {
@@ -967,7 +1074,17 @@ const T = {
     fSvc2:"정착 도움 프로그램", fSvc2H:"(해당 항목 모두 선택)",
     sv1:"공항 픽업", sv2:"임시 거처", sv3:"이민 서류 도움", sv4:"언어 지원",
     sv5:"취업 네트워크", sv6:"자녀 학교 정보", sv7:"소그룹 / 셀", sv8:"청년부 / 영어권",
-    fSns:"SNS 링크", fYoutube:"YouTube"
+    fSns:"SNS 링크", fYoutube:"YouTube",
+    tabChurch:"교회용", tabGeneral:"일반·기관용",
+    s3hg:"기관 정보",
+    fOrgName:"기관명 / 상호명", eOrgName:"기관명을 입력해 주세요.",
+    fOrgType:"업종 / 유형", eOrgType:"업종을 선택해 주세요.",
+    fOrgAddr:"주소", fOrgWeb:"웹사이트",
+    fOrgTag:"한 줄 소개", fOrgTagH:"(가이드에 표시, 50자 이내)",
+    fOrgSns:"SNS 링크", fOrgYt:"YouTube",
+    ot1:"식당 / 카페", ot2:"마트 / 식품점", ot3:"부동산", ot4:"보험", ot5:"CPA / 세무",
+    ot6:"의료 / 치과 / 한의원", ot7:"교육 / 학원", ot8:"미용 / 스파", ot9:"법률 / 이민법",
+    ot10:"비영리 단체", ot11:"커뮤니티 단체", ot12:"정부 / 공공기관", ot13:"기타"
   },
   en: {
     hTitle:"Order Your City Guide App",
@@ -1020,7 +1137,17 @@ const T = {
     fSvc2:"Settlement services offered", fSvc2H:"(select all that apply)",
     sv1:"Airport pickup", sv2:"Temporary housing", sv3:"Immigration docs help", sv4:"Language support",
     sv5:"Job network", sv6:"School info", sv7:"Small group / cell", sv8:"English ministry",
-    fSns:"SNS link", fYoutube:"YouTube"
+    fSns:"SNS link", fYoutube:"YouTube",
+    tabChurch:"For Churches", tabGeneral:"For Businesses & Orgs",
+    s3hg:"Organization Info",
+    fOrgName:"Organization / Business Name", eOrgName:"Please enter the organization name.",
+    fOrgType:"Type / Category", eOrgType:"Please select a category.",
+    fOrgAddr:"Address", fOrgWeb:"Website",
+    fOrgTag:"One-line description", fOrgTagH:"(shown in guide, max 50 chars)",
+    fOrgSns:"SNS link", fOrgYt:"YouTube",
+    ot1:"Restaurant / Café", ot2:"Grocery / Market", ot3:"Real Estate", ot4:"Insurance", ot5:"CPA / Tax",
+    ot6:"Medical / Dental", ot7:"Education / Tutoring", ot8:"Beauty / Spa", ot9:"Legal / Immigration Law",
+    ot10:"Nonprofit", ot11:"Community Organization", ot12:"Government / Public Agency", ot13:"Other"
   }
 };
 
@@ -1093,6 +1220,21 @@ function lang(l) {
   s('sv1',t.sv1); s('sv2',t.sv2); s('sv3',t.sv3); s('sv4',t.sv4);
   s('sv5',t.sv5); s('sv6',t.sv6); s('sv7',t.sv7); s('sv8',t.sv8);
   s('f-sns', t.fSns); s('f-youtube', t.fYoutube);
+  // tab labels
+  if (t.tabChurch) {
+    document.getElementById('tab-church-label').textContent = t.tabChurch;
+    document.getElementById('tab-general-label').textContent = t.tabGeneral;
+  }
+  // org section
+  s('s3hg', t.s3hg);
+  s('f-org-name', t.fOrgName); s('e-org-name-t', t.eOrgName);
+  s('f-org-type', t.fOrgType); s('e-org-type-t', t.eOrgType);
+  s('f-org-addr', t.fOrgAddr); s('f-org-web', t.fOrgWeb);
+  s('f-org-tag', t.fOrgTag); s('f-org-tag-h', t.fOrgTagH);
+  s('f-org-sns', t.fOrgSns); s('f-org-yt', t.fOrgYt);
+  s('ot1',t.ot1); s('ot2',t.ot2); s('ot3',t.ot3); s('ot4',t.ot4); s('ot5',t.ot5);
+  s('ot6',t.ot6); s('ot7',t.ot7); s('ot8',t.ot8); s('ot9',t.ot9);
+  s('ot10',t.ot10); s('ot11',t.ot11); s('ot12',t.ot12); s('ot13',t.ot13);
 }
 
 // ── 다국어 드롭다운 ──
@@ -1160,13 +1302,18 @@ function validate() {
   const langs = document.querySelectorAll('input[name="languages"]:checked');
   showErr('e-lang', !langs.length); if(!langs.length) ok=false;
 
-  // Church name
-  const cko = document.getElementById('church-ko').value.trim();
-  markBad('church-ko', !cko); showErr('e-cko', !cko); if(!cko) ok=false;
-
-  // Address
-  const addr = document.getElementById('address').value.trim();
-  markBad('address', !addr); showErr('e-addr', !addr); if(!addr) ok=false;
+  // Church / Org fields (type-dependent)
+  if (curFormType === 'church') {
+    const cko = document.getElementById('church-ko').value.trim();
+    markBad('church-ko', !cko); showErr('e-cko', !cko); if(!cko) ok=false;
+    const addr = document.getElementById('address').value.trim();
+    markBad('address', !addr); showErr('e-addr', !addr); if(!addr) ok=false;
+  } else {
+    const orgName = document.getElementById('org-name').value.trim();
+    markBad('org-name', !orgName); showErr('e-org-name', !orgName); if(!orgName) ok=false;
+    const orgType = document.getElementById('org-type').value;
+    markBad('org-type', !orgType); showErr('e-org-type', !orgType); if(!orgType) ok=false;
+  }
 
   // Pastor
   const pastor = document.getElementById('pastor').value.trim();
@@ -1208,21 +1355,35 @@ async function submitOrder() {
   const langs = checkedLangs.join(', ');
 
   // Build data object
+  const isChurch = curFormType === 'church';
+  const orgName = document.getElementById('org-name').value;
+  const churchNameKo = document.getElementById('church-ko').value;
+  const subjectName = isChurch ? (document.getElementById('church-en').value || churchNameKo) : orgName;
   const data = {
     access_key: WEB3FORMS_KEY,
-    subject: '🆕 [Hebron Guide] New Order — ' + (document.getElementById('church-en').value || document.getElementById('church-ko').value),
+    subject: (isChurch ? '⛪ [HebronGuide] 교회 주문 — ' : '🏢 [HebronGuide] 기관 주문 — ') + subjectName,
     from_name: 'Hebron Guide Order',
     botcheck: '',
-    // Order info
+    '📋 Form Type': isChurch ? 'Church / 교회용' : 'Business & Org / 일반·기관용',
     '📦 Package': document.querySelector('input[name="package"]:checked')?.value || '',
     '🗺️ City': document.getElementById('city').value + ', ' + document.getElementById('state').value,
     '🌐 Language(s)': langs,
     '👥 Target Community': document.getElementById('community').value || '(none)',
-    '⛪ Church Name (Korean)': document.getElementById('church-ko').value || '(none)',
-    '⛪ Church Name (English)': document.getElementById('church-en').value || '(none)',
-    '📍 Church Address': document.getElementById('address').value,
-    '🌐 Church Website': document.getElementById('website').value || '(none)',
-    '🕐 Service Time': document.getElementById('service').value || '(none)',
+    ...(isChurch ? {
+      '⛪ Church Name (KO)': churchNameKo || '(none)',
+      '⛪ Church Name (EN)': document.getElementById('church-en').value || '(none)',
+      '📍 Church Address': document.getElementById('address').value,
+      '🌐 Church Website': document.getElementById('website').value || '(none)',
+      '🕐 Service Time': document.getElementById('service').value || '(none)',
+    } : {
+      '🏢 Org Name': orgName || '(none)',
+      '🏷️ Org Type': document.getElementById('org-type').value || '(none)',
+      '📍 Org Address': document.getElementById('org-addr').value || '(none)',
+      '🌐 Org Website': document.getElementById('org-web').value || '(none)',
+      '💬 Org Tagline': document.getElementById('org-tag').value || '(none)',
+      '📱 Org SNS': document.getElementById('org-sns').value || '(none)',
+      '▶️ Org YouTube': document.getElementById('org-yt').value || '(none)',
+    }),
     '👤 Contact Person': document.getElementById('pastor').value,
     '📞 Phone': document.getElementById('phone').value || '(none)',
     '📧 Email': document.getElementById('email').value,
