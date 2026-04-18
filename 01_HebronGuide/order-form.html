@@ -822,6 +822,7 @@ function setFormType(type) {
     document.getElementById('tab-church-label').textContent = t.tabChurch;
     document.getElementById('tab-general-label').textContent = t.tabGeneral;
   }
+  s('f-pastor', curFormType === 'church' ? t.fPastor : t.fContact);
 }
 
 // 공통 필드 (영어 기반으로 번역)
@@ -1075,6 +1076,7 @@ const T = {
     sv1:"공항 픽업", sv2:"임시 거처", sv3:"이민 서류 도움", sv4:"언어 지원",
     sv5:"취업 네트워크", sv6:"자녀 학교 정보", sv7:"소그룹 / 셀", sv8:"청년부 / 영어권",
     fSns:"SNS 링크", fYoutube:"YouTube",
+    fContact:"담당자 이름",
     tabChurch:"교회용", tabGeneral:"일반·기관용",
     s3hg:"기관 정보",
     fOrgName:"기관명 / 상호명", eOrgName:"기관명을 입력해 주세요.",
@@ -1138,6 +1140,7 @@ const T = {
     sv1:"Airport pickup", sv2:"Temporary housing", sv3:"Immigration docs help", sv4:"Language support",
     sv5:"Job network", sv6:"School info", sv7:"Small group / cell", sv8:"English ministry",
     fSns:"SNS link", fYoutube:"YouTube",
+    fContact:"Contact Name",
     tabChurch:"For Churches", tabGeneral:"For Businesses & Orgs",
     s3hg:"Organization Info",
     fOrgName:"Organization / Business Name", eOrgName:"Please enter the organization name.",
@@ -1225,6 +1228,7 @@ function lang(l) {
     document.getElementById('tab-church-label').textContent = t.tabChurch;
     document.getElementById('tab-general-label').textContent = t.tabGeneral;
   }
+  s('f-pastor', curFormType === 'church' ? t.fPastor : t.fContact);
   // org section
   s('s3hg', t.s3hg);
   s('f-org-name', t.fOrgName); s('e-org-name-t', t.eOrgName);
