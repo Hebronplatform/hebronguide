@@ -1294,6 +1294,7 @@ body.en [data-ko].blk { display: none !important; }
   </div>
   <div class="tab-bar">
     <button class="tab-btn on" onclick="sTab(this,'ch-hc')"><span data-ko>가정교회</span><span data-en>House Church</span></button>
+    <button class="tab-btn" onclick="sTab(this,'ch-vision')"><span data-ko>가정교회 찾기</span><span data-en>Find HC</span></button>
     <button class="tab-btn" onclick="sTab(this,'ch-why')"><span data-ko>왜 교회?</span><span data-en>Why Church?</span></button>
     <button class="tab-btn" onclick="sTab(this,'ch-north')"><span data-ko>북부</span><span data-en>North</span></button>
     <button class="tab-btn" onclick="sTab(this,'ch-east')"><span data-ko>동부</span><span data-en>East</span></button>
@@ -1354,6 +1355,62 @@ body.en [data-ko].blk { display: none !important; }
         <div class="ccard-body"><span data-ko>📍 시애틀, WA | 국제가사원 네트워크</span><span data-en>📍 Seattle, WA | 국제가사원 Network</span></div>
       </div>
     </section>
+
+    <!-- 가정교회 찾기 탭 -->
+    <section id="ch-vision" style="display:none;">
+
+      <div class="ccard" style="border-left-color:#34d399;text-align:center;padding:28px 20px;">
+        <div style="font-size:2.2rem;margin-bottom:14px;">🏠</div>
+        <div style="font-size:1.05rem;font-weight:900;color:#fff;margin-bottom:10px;" data-ko>누군가의 거실에서 시작되는 교회</div>
+        <div style="font-size:1.05rem;font-weight:900;color:#fff;margin-bottom:10px;" data-en>A Church That Starts in Someone's Living Room</div>
+        <div style="font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:6px;" data-ko>신앙이 없어도 괜찮습니다.<br>밥 먹고, 이야기 나누고, 함께 사는 공동체입니다.</div>
+        <div style="font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:6px;" data-en>No faith required.<br>Share a meal, share life — that's all it is.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;">
+        <a href="http://www.ijiguchon.org" target="_blank" rel="noopener"
+           style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);border-radius:16px;padding:22px 16px;text-align:center;text-decoration:none;display:block;">
+          <div style="font-size:1.6rem;margin-bottom:10px;">🙋</div>
+          <div style="font-size:0.85rem;font-weight:800;color:#34d399;margin-bottom:4px;" data-ko>한번 가볼게요</div>
+          <div style="font-size:0.85rem;font-weight:800;color:#34d399;margin-bottom:4px;" data-en>I'll Check It Out</div>
+          <div style="font-size:0.7rem;color:rgba(255,255,255,0.35);" data-ko>부담 없이 →</div>
+          <div style="font-size:0.7rem;color:rgba(255,255,255,0.35);" data-en>No pressure →</div>
+        </a>
+        <a href="http://www.ijiguchon.org" target="_blank" rel="noopener"
+           style="background:rgba(192,132,252,0.1);border:1px solid rgba(192,132,252,0.3);border-radius:16px;padding:22px 16px;text-align:center;text-decoration:none;display:block;">
+          <div style="font-size:1.6rem;margin-bottom:10px;">💬</div>
+          <div style="font-size:0.85rem;font-weight:800;color:#C084FC;margin-bottom:4px;" data-ko>더 알고 싶어요</div>
+          <div style="font-size:0.85rem;font-weight:800;color:#C084FC;margin-bottom:4px;" data-en>Tell Me More</div>
+          <div style="font-size:0.7rem;color:rgba(255,255,255,0.35);" data-ko>편하게 →</div>
+          <div style="font-size:0.7rem;color:rgba(255,255,255,0.35);" data-en>Feel free →</div>
+        </a>
+      </div>
+
+      <!-- 교회 정보 -->
+      <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px;">
+
+        <a href="http://www.ijiguchon.org" target="_blank" rel="noopener"
+           style="display:flex;align-items:center;gap:14px;background:rgba(124,58,237,0.12);border:1px solid rgba(192,132,252,0.25);border-radius:14px;padding:14px 16px;text-decoration:none;">
+          <div style="font-size:1.8rem;flex-shrink:0;">⛪</div>
+          <div>
+            <div style="font-size:0.88rem;font-weight:800;color:#E9D5FF;margin-bottom:3px;">시애틀지구촌교회 (GMC Seattle)</div>
+            <div style="font-size:0.72rem;color:rgba(255,255,255,0.45);">📍 Lynnwood · 국제가사원 · Global Mission Network</div>
+          </div>
+          <div style="margin-left:auto;color:#C084FC;font-size:0.8rem;">→</div>
+        </a>
+
+        <div style="display:flex;align-items:center;gap:14px;background:rgba(124,58,237,0.08);border:1px solid rgba(192,132,252,0.18);border-radius:14px;padding:14px 16px;">
+          <div style="font-size:1.8rem;flex-shrink:0;">🏠</div>
+          <div>
+            <div style="font-size:0.88rem;font-weight:800;color:#E9D5FF;margin-bottom:3px;">시애틀우리교회</div>
+            <div style="font-size:0.72rem;color:rgba(255,255,255,0.45);">📍 시애틀, WA · 국제가사원 네트워크</div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
         <section id="ch-why" style="margin-top:28px;">
       <div class="ccard" style="border-left-color:#C084FC;">
         <div class="ccard-title" data-ko>💡 한인 교회가 정착에 핵심인 이유</div>
