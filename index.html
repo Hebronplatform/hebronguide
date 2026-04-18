@@ -5,22 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HebronGuide — 만남의 문 · 가정교회 목회자를 위한 도시 정착 가이드 플랫폼</title>
 <meta name="description" content="모든 이민자·이주자·방문자를 위한 맞춤형 도시 가이드. 낯선 도시에서 처음 만나는 교회의 문 — HebronGuide.">
-<meta name="theme-color" content="#1a2e6c">
+<meta name="theme-color" content="#04130a">
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --navy:   #0d1b3e;
-  --blue:   #1a2e6c;
+  --navy:   #052e14;
+  --blue:   #0a4a22;
   --gold:   #d4a017;
   --gold2:  #f0c840;
-  --teal:   #12b886;
-  --bg:     #070d1a;
-  --surface:#111827;
-  --border: rgba(255,255,255,0.08);
-  --text:   rgba(255,255,255,0.92);
-  --muted:  rgba(255,255,255,0.45);
+  --teal:   #22c55e;
+  --bg:     #04130a;
+  --surface:#091f10;
+  --border: rgba(255,255,255,0.09);
+  --text:   rgba(255,255,255,0.93);
+  --muted:  rgba(255,255,255,0.48);
   --r: 16px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,8 +61,8 @@ nav {
   text-align: center;
   padding: 60px 24px 48px;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 10%, rgba(26,46,108,0.6) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(212,160,23,0.08) 0%, transparent 60%);
+    radial-gradient(ellipse 80% 60% at 50% 10%, rgba(10,74,34,0.75) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(212,160,23,0.07) 0%, transparent 60%);
   position: relative; overflow: hidden;
 }
 .hero::before {
@@ -121,9 +121,9 @@ nav {
 
 /* ── STAT BAR ── */
 .stat-bar {
-  background: rgba(26,46,108,.35);
-  border-top: 1px solid rgba(26,46,108,.6);
-  border-bottom: 1px solid rgba(26,46,108,.6);
+  background: rgba(10,74,34,.3);
+  border-top: 1px solid rgba(10,74,34,.55);
+  border-bottom: 1px solid rgba(10,74,34,.55);
   padding: 24px 24px;
   display: flex; justify-content: center; flex-wrap: wrap; gap: 0;
 }
@@ -159,7 +159,7 @@ section { padding: 72px 24px; max-width: 900px; margin: 0 auto; }
 }
 .pain-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--blue), var(--gold));
+  background: linear-gradient(90deg, var(--teal), var(--gold));
 }
 .pain-q { font-size: 1.6rem; margin-bottom: 12px; }
 .pain-text { font-size: .88rem; color: var(--muted); line-height: 1.7; }
@@ -176,7 +176,7 @@ section { padding: 72px 24px; max-width: 900px; margin: 0 auto; }
 .step-row:last-child { border-bottom: none; }
 .step-num {
   width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
-  background: linear-gradient(135deg, var(--blue), rgba(26,46,108,.5));
+  background: linear-gradient(135deg, var(--blue), rgba(10,74,34,.5));
   border: 1.5px solid rgba(212,160,23,.35);
   display: flex; align-items: center; justify-content: center;
   font-size: 1.2rem;
@@ -193,8 +193,8 @@ section { padding: 72px 24px; max-width: 900px; margin: 0 auto; }
 
 /* ── VISION JOURNEY ── */
 .vision-wrap {
-  background: linear-gradient(135deg, rgba(26,46,108,.45), rgba(7,13,26,.8));
-  border: 1px solid rgba(26,46,108,.7);
+  background: linear-gradient(135deg, rgba(10,74,34,.5), rgba(4,19,10,.85));
+  border: 1px solid rgba(10,74,34,.7);
   border-radius: 22px; padding: 40px 32px; margin: 0 auto;
   max-width: 900px; text-align: center;
 }
@@ -282,8 +282,8 @@ a.city-card { cursor: pointer; }
 
 /* ── PERSUASION / PASTOR SECTION ── */
 .pastor-wrap {
-  background: linear-gradient(135deg, rgba(212,160,23,.12), rgba(212,160,23,.04));
-  border: 1px solid rgba(212,160,23,.3);
+  background: linear-gradient(135deg, rgba(10,74,34,.45), rgba(212,160,23,.06));
+  border: 1px solid rgba(34,197,94,.25);
   border-radius: 22px; padding: 44px 36px; text-align: center;
   max-width: 900px; margin: 0 auto;
 }
@@ -323,7 +323,7 @@ footer a:hover { color: var(--gold); }
 <nav>
   <div class="nav-logo">
     <svg width="28" height="28" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="64" height="64" rx="13" fill="#1a2e6c"/>
+      <rect x="0" y="0" width="64" height="64" rx="13" fill="#0a4a22"/>
       <circle cx="32" cy="32" r="28" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
       <polygon points="32,7 40,24 32,32 24,24" fill="#d4a017"/>
       <polygon points="32,57 40,40 32,32 24,40" fill="rgba(255,255,255,0.82)"/>
@@ -352,6 +352,15 @@ footer a:hover { color: var(--gold); }
     <a href="/01_HebronGuide/order-form.html" class="btn-ghost">✍️ 내 도시 가이드 주문</a>
   </div>
   <p class="hero-scroll">✝ 마태복음 28:18–20 · 시애틀에서 지구촌 땅 끝까지</p>
+</div>
+
+<!-- WAVE VISION -->
+<div style="background:linear-gradient(135deg,rgba(34,197,94,.12),rgba(212,160,23,.07));border-top:1px solid rgba(34,197,94,.2);border-bottom:1px solid rgba(34,197,94,.2);padding:28px 24px;text-align:center;">
+  <p style="font-size:clamp(.9rem,2.2vw,1.08rem);font-weight:700;color:rgba(255,255,255,.88);line-height:1.8;max-width:640px;margin:0 auto;">
+    가정교회가 물결을 일으키듯,<br>
+    HebronGuide도 도시마다 <em style="font-style:normal;color:#22c55e;">한 마음 한 방향</em>으로 퍼져나갑니다.<br>
+    <span style="color:var(--gold);font-weight:800;">하나님 나라가 이 땅에 확장되는 데 함께합니다.</span>
+  </p>
 </div>
 
 <!-- STAT BAR -->
@@ -625,7 +634,7 @@ footer a:hover { color: var(--gold); }
 <footer>
   <div style="margin-bottom:10px;">
     <svg width="24" height="24" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;opacity:.6;">
-      <rect x="0" y="0" width="64" height="64" rx="13" fill="#1a2e6c"/>
+      <rect x="0" y="0" width="64" height="64" rx="13" fill="#0a4a22"/>
       <polygon points="32,7 40,24 32,32 24,24" fill="#d4a017"/>
       <polygon points="32,57 40,40 32,32 24,40" fill="rgba(255,255,255,0.7)"/>
       <polygon points="57,32 40,40 32,32 40,24" fill="rgba(255,255,255,0.4)"/>
