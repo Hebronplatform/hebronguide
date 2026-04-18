@@ -577,11 +577,11 @@ body.en [data-ko].blk { display: none !important; }
       <span class="qa-btn-label" data-ko>내 주변</span>
       <span class="qa-btn-label" data-en>Near Me</span>
     </a>
-    <a class="qa-btn" href="tel:911">
+    <button class="qa-btn" onclick="if(/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)){location.href='tel:911';}else{openApp('emerg');}">
       <span class="qa-btn-icon">🚨</span>
       <span class="qa-btn-label" data-ko>긴급 911</span>
       <span class="qa-btn-label" data-en>Emergency</span>
-    </a>
+    </button>
     <button class="qa-btn" onclick="showInstallGuide()">
       <span class="qa-btn-icon">📲</span>
       <span class="qa-btn-label" data-ko>앱 설치</span>
