@@ -285,6 +285,20 @@
   .err { color: #E74C3C; font-size: .76rem; margin-top: 4px; display: none; }
   .bad { border-color: #E74C3C !important; }
 
+  /* Guide listing section */
+  .guide-banner {
+    background: linear-gradient(135deg, #EEF9F3, #EAF4FD);
+    border: 1px solid #B3D9C4;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: .82rem;
+    color: #1A5F3C;
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+  .char-hint { text-align:right; font-size:.72rem; color:var(--muted); margin-top:3px; }
+  .sec-head.guide-sec { background: linear-gradient(135deg, #EEF9F3, #EAF4FD); }
+
   /* Footer */
   footer {
     text-align: center;
@@ -482,7 +496,87 @@
 
   <hr class="sec-divider">
 
-  <!-- ④ 담당자 정보 -->
+  <!-- ④ 가이드 등재 정보 -->
+  <div class="sec-head guide-sec">
+    <span class="ico">📋</span>
+    <h2 id="sgh">가이드 등재 정보</h2>
+  </div>
+  <div class="sec-body">
+
+    <div class="guide-banner" id="guide-banner">
+      📌 <strong id="gb-title">가이드에 표시될 내용입니다</strong><br>
+      <span id="gb-body">아래 내용은 HebronGuide 한인교회 섹션에 직접 등재됩니다. 새로 오는 성도들이 가장 먼저 보게 됩니다.</span>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="g-tagline"><span id="f-tagline">교회 한 줄 소개</span> <span class="opt" id="f-tagline-h">(가이드에 표시, 50자 이내)</span></label>
+      <input type="text" id="g-tagline" name="guide_tagline" maxlength="50"
+             placeholder="예: 새 이민자를 가족으로 품는 따뜻한 한인 교회"
+             oninput="document.getElementById('tagline-ct').textContent=this.value.length">
+      <div class="char-hint"><span id="tagline-ct">0</span>/50</div>
+    </div>
+
+    <div class="field">
+      <label class="lbl"><span id="f-wlang">예배 언어</span> <span class="opt" id="f-wlang-h">(선택)</span></label>
+      <div class="cb-wrap">
+        <label class="cb"><input type="radio" name="worship_language" value="Korean only"> <span id="wl1">한국어만</span></label>
+        <label class="cb"><input type="radio" name="worship_language" value="English only"> <span id="wl2">영어만</span></label>
+        <label class="cb"><input type="radio" name="worship_language" value="Korean + English"> <span id="wl3">한영 이중언어</span></label>
+        <label class="cb"><input type="radio" name="worship_language" value="Other"> <span id="wl4">기타</span></label>
+      </div>
+    </div>
+
+    <div class="field field-row">
+      <div>
+        <label class="lbl" for="g-denom"><span id="f-denom">교단</span> <span class="opt" id="f-denom-h">(선택)</span></label>
+        <input type="text" id="g-denom" name="denomination" placeholder="e.g. PCA, SBC, UMC, 합동, 통합, 침례…">
+      </div>
+      <div>
+        <label class="lbl" for="g-founded"><span id="f-founded">설립 연도</span> <span class="opt">(선택)</span></label>
+        <input type="text" id="g-founded" name="founded_year" placeholder="e.g. 2018">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lbl"><span id="f-newc">새신자 담당자</span> <span class="opt" id="f-newc-h">(가이드에 표시 — 선택)</span></label>
+      <div class="field-row">
+        <input type="text" name="newcomer_contact_name" id="f-newc-name"
+               placeholder="이름 / Name">
+        <input type="tel" name="newcomer_contact_phone" id="f-newc-phone"
+               placeholder="연락처 / Phone">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lbl"><span id="f-svc2">정착 도움 프로그램</span> <span class="opt" id="f-svc2-h">(해당 항목 모두 선택)</span></label>
+      <div class="cb-wrap">
+        <label class="cb"><input type="checkbox" name="services" value="Airport pickup"> <span id="sv1">공항 픽업</span></label>
+        <label class="cb"><input type="checkbox" name="services" value="Temporary housing"> <span id="sv2">임시 거처</span></label>
+        <label class="cb"><input type="checkbox" name="services" value="Immigration docs help"> <span id="sv3">이민 서류 도움</span></label>
+        <label class="cb"><input type="checkbox" name="services" value="Language support"> <span id="sv4">언어 지원</span></label>
+        <label class="cb"><input type="checkbox" name="services" value="Job network"> <span id="sv5">취업 네트워크</span></label>
+        <label class="cb"><input type="checkbox" name="services" value="School info"> <span id="sv6">자녀 학교 정보</span></label>
+        <label class="cb"><input type="checkbox" name="services" value="Small group / cell"> <span id="sv7">소그룹 / 셀</span></label>
+        <label class="cb"><input type="checkbox" name="services" value="English ministry"> <span id="sv8">청년부 / 영어권</span></label>
+      </div>
+    </div>
+
+    <div class="field field-row">
+      <div>
+        <label class="lbl" for="g-sns"><span id="f-sns">SNS 링크</span> <span class="opt">(선택)</span></label>
+        <input type="text" id="g-sns" name="guide_sns" placeholder="Instagram / Facebook URL">
+      </div>
+      <div>
+        <label class="lbl" for="g-youtube"><span id="f-youtube">YouTube</span> <span class="opt">(선택)</span></label>
+        <input type="text" id="g-youtube" name="guide_youtube" placeholder="YouTube channel URL">
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="sec-divider">
+
+  <!-- ⑤ 담당자 정보 -->
   <div class="sec-head">
     <span class="ico">👤</span>
     <h2 id="s4h">담당자 연락처</h2>
@@ -850,7 +944,19 @@ const T = {
     dn2:"💳 결제 후 5~7 영업일 내에 맞춤 가이드를 제작합니다",
     dn3:"📱 완성된 앱 URL + QR 코드가 이메일로 납품됩니다",
     dn4:"🔄 납품 후 7일 이내 1회 수정 무료 제공",
-    doneQ:"문의:", cbOther:"기타"
+    doneQ:"문의:", cbOther:"기타",
+    sgh:"가이드 등재 정보",
+    gbTitle:"가이드에 표시될 내용입니다",
+    gbBody:"아래 내용은 HebronGuide 한인교회 섹션에 직접 등재됩니다. 새로 오는 성도들이 가장 먼저 보게 됩니다.",
+    fTagline:"교회 한 줄 소개", fTaglineH:"(가이드에 표시, 50자 이내)",
+    fWlang:"예배 언어", fWlangH:"(선택)",
+    wl1:"한국어만", wl2:"영어만", wl3:"한영 이중언어", wl4:"기타",
+    fDenom:"교단", fDenomH:"(선택)", fFounded:"설립 연도",
+    fNewc:"새신자 담당자", fNewcH:"(가이드에 표시 — 선택)",
+    fSvc2:"정착 도움 프로그램", fSvc2H:"(해당 항목 모두 선택)",
+    sv1:"공항 픽업", sv2:"임시 거처", sv3:"이민 서류 도움", sv4:"언어 지원",
+    sv5:"취업 네트워크", sv6:"자녀 학교 정보", sv7:"소그룹 / 셀", sv8:"청년부 / 영어권",
+    fSns:"SNS 링크", fYoutube:"YouTube"
   },
   en: {
     hTitle:"Order Your City Guide App",
@@ -891,7 +997,19 @@ const T = {
     dn2:"💳 Your custom guide will be created within 5–7 business days of payment",
     dn3:"📱 App URL + QR code delivered by email",
     dn4:"🔄 One free revision within 7 days of delivery",
-    doneQ:"Questions:", cbOther:"Other"
+    doneQ:"Questions:", cbOther:"Other",
+    sgh:"Guide Listing Info",
+    gbTitle:"This information will appear in the guide",
+    gbBody:"The details below are published directly in the HebronGuide Korean Church section — it's the first thing newcomers see.",
+    fTagline:"Church tagline", fTaglineH:"(shown in guide, max 50 chars)",
+    fWlang:"Worship language", fWlangH:"(optional)",
+    wl1:"Korean only", wl2:"English only", wl3:"Korean + English", wl4:"Other",
+    fDenom:"Denomination", fDenomH:"(optional)", fFounded:"Year founded",
+    fNewc:"Newcomer contact", fNewcH:"(shown in guide — optional)",
+    fSvc2:"Settlement services offered", fSvc2H:"(select all that apply)",
+    sv1:"Airport pickup", sv2:"Temporary housing", sv3:"Immigration docs help", sv4:"Language support",
+    sv5:"Job network", sv6:"School info", sv7:"Small group / cell", sv8:"English ministry",
+    fSns:"SNS link", fYoutube:"YouTube"
   }
 };
 
@@ -951,6 +1069,19 @@ function lang(l) {
   s('done-next', t.doneNext);
   s('dn1',t.dn1); s('dn2',t.dn2); s('dn3',t.dn3); s('dn4',t.dn4);
   s('done-q', t.doneQ); s('cb-other', t.cbOther);
+  // guide listing section
+  s('sgh', t.sgh);
+  s('gb-title', t.gbTitle); s('gb-body', t.gbBody);
+  s('f-tagline', t.fTagline); s('f-tagline-h', t.fTaglineH);
+  s('f-wlang', t.fWlang); s('f-wlang-h', t.fWlangH);
+  s('wl1',t.wl1); s('wl2',t.wl2); s('wl3',t.wl3); s('wl4',t.wl4);
+  s('f-denom', t.fDenom); s('f-denom-h', t.fDenomH);
+  s('f-founded', t.fFounded);
+  s('f-newc', t.fNewc); s('f-newc-h', t.fNewcH);
+  s('f-svc2', t.fSvc2); s('f-svc2-h', t.fSvc2H);
+  s('sv1',t.sv1); s('sv2',t.sv2); s('sv3',t.sv3); s('sv4',t.sv4);
+  s('sv5',t.sv5); s('sv6',t.sv6); s('sv7',t.sv7); s('sv8',t.sv8);
+  s('f-sns', t.fSns); s('f-youtube', t.fYoutube);
 }
 
 // ── 다국어 드롭다운 ──
@@ -973,8 +1104,11 @@ document.addEventListener('click', e => {
   }
 });
 
-// 페이지 로드 시 영어로 시작
-window.addEventListener('DOMContentLoaded', () => lang('en'));
+// 브라우저 언어 자동 감지 (한국어 브라우저 → 한국어, 그 외 → 영어)
+window.addEventListener('DOMContentLoaded', () => {
+  const nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  lang(nav.startsWith('ko') ? 'ko' : 'en');
+});
 
 function toggleOther(cb) {
   document.getElementById('other-lang-wrap').style.display = cb.checked ? 'block' : 'none';

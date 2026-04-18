@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HebronGuide — 목사 공유 키트</title>
+<meta name="description" content="HebronGuide 목사·교회 리더용 공유 키트 — 카카오톡·SNS·QR 포스터">
+<meta name="theme-color" content="#C9A227">
+<style>
+:root {
+  --bg:#0d1117; --card:#131b27; --gold:#C9A227; --teal:#34D399;
+  --purple:#A78BFA; --border:rgba(255,255,255,0.08);
+  --text:rgba(255,255,255,0.88); --muted:rgba(255,255,255,0.45);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;border:none;font-family:inherit;}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,#0a1628 0%,#0d1e3a 50%,#070d1a 100%);padding:36px 20px 28px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(201,162,39,0.13),transparent);pointer-events:none;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:3px;color:var(--gold);font-weight:800;margin-bottom:10px;text-transform:uppercase;}
+.hero-title{font-size:clamp(1.5rem,5vw,2.2rem);font-weight:900;letter-spacing:-1px;background:linear-gradient(120deg,#fff 40%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;}
+.hero-sub{font-size:0.85rem;color:var(--muted);line-height:1.7;max-width:420px;margin:0 auto;}
+
+/* CITY TABS */
+.city-bar{display:flex;overflow-x:auto;gap:0;padding:0;background:rgba(0,0,0,0.3);border-bottom:1px solid var(--border);scrollbar-width:none;}
+.city-bar::-webkit-scrollbar{display:none;}
+.city-tab{flex-shrink:0;padding:12px 18px;font-size:0.78rem;font-weight:700;color:var(--muted);border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;background:none;}
+.city-tab.on{color:var(--gold);border-bottom-color:var(--gold);}
+.city-tab .live-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block;margin-left:5px;vertical-align:middle;}
+
+/* WRAP */
+.wrap{max-width:660px;margin:0 auto;padding:24px 16px 80px;display:flex;flex-direction:column;gap:20px;}
+
+/* CITY PANEL */
+.city-panel{display:none;}
+.city-panel.on{display:flex;flex-direction:column;gap:20px;}
+
+/* LIVE BADGE */
+.live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);border-radius:20px;padding:5px 14px;font-size:0.72rem;font-weight:800;color:var(--teal);margin-bottom:4px;}
+
+/* COMING CARD */
+.coming-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px 24px;text-align:center;}
+.coming-emoji{font-size:3.5rem;margin-bottom:14px;}
+.coming-city{font-size:1.4rem;font-weight:900;margin-bottom:6px;}
+.coming-sub{font-size:0.85rem;color:var(--muted);line-height:1.7;margin-bottom:24px;}
+.coming-actions{display:flex;flex-direction:column;gap:10px;max-width:320px;margin:0 auto;}
+.btn-demo{padding:13px;border-radius:12px;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);color:var(--teal);font-size:0.88rem;font-weight:800;}
+.btn-order{padding:13px;border-radius:12px;background:var(--gold);color:#1a1a1a;font-size:0.88rem;font-weight:900;}
+.btn-order:hover{background:var(--gold-l);}
+
+/* SECTION CARD */
+.sec-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
+.sec-head{display:flex;align-items:center;gap:10px;padding:14px 20px;border-bottom:1px solid var(--border);}
+.sec-head-icon{font-size:1.3rem;}
+.sec-head-text h2{font-size:0.92rem;font-weight:900;}
+.sec-head-text p{font-size:0.7rem;color:var(--muted);margin-top:2px;}
+.sec-body{padding:18px 20px;}
+
+/* MSG TABS */
+.msg-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
+.msg-tab{padding:6px 13px;border-radius:20px;font-size:0.72rem;font-weight:700;background:rgba(255,255,255,0.06);color:var(--muted);transition:all .2s;}
+.msg-tab.on{background:var(--gold);color:#1a1a1a;}
+
+/* MSG BOX */
+.msg-box{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px;margin-bottom:12px;font-size:0.82rem;line-height:1.8;color:rgba(255,255,255,0.85);white-space:pre-wrap;word-break:keep-all;min-height:100px;}
+
+/* COPY BTN */
+.copy-btn{width:100%;padding:11px;border-radius:11px;background:rgba(201,162,39,0.15);border:1px solid rgba(201,162,39,0.3);color:var(--gold);font-size:0.83rem;font-weight:800;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.copy-btn.copied{background:rgba(52,211,153,0.2);border-color:rgba(52,211,153,0.4);color:var(--teal);}
+
+/* QR ROW */
+.qr-row{display:flex;gap:10px;flex-wrap:wrap;}
+.qr-box{flex:1;min-width:140px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px;text-align:center;}
+.qr-box img{width:110px;height:110px;border-radius:8px;background:#fff;padding:3px;margin-bottom:8px;}
+.qr-box-label{font-size:0.75rem;font-weight:800;margin-bottom:3px;}
+.qr-box-url{font-size:0.62rem;color:var(--gold);}
+
+/* ACTION ROW */
+.action-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.act-btn{padding:12px 10px;border-radius:12px;font-size:0.75rem;font-weight:800;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px;transition:transform .15s;}
+.act-btn:active{transform:scale(0.97);}
+.act-btn .ab-icon{font-size:1.3rem;}
+.ab-g{background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.25);color:var(--teal);}
+.ab-p{background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);color:#60A5FA;}
+.ab-f{background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.25);color:var(--gold);}
+.ab-o{background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.25);color:var(--purple);}
+
+/* TOAST */
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--teal);color:#fff;padding:10px 22px;border-radius:20px;font-size:0.85rem;font-weight:700;z-index:9999;transition:transform .3s;pointer-events:none;}
+#toast.show{transform:translateX(-50%) translateY(0);}
+
+@media(max-width:400px){.action-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">목사·교회 리더 전용 · Pastor Share Kit</div>
+  <div class="hero-title">HebronGuide 공유 키트</div>
+  <p class="hero-sub">도시를 선택하고 카카오톡·SNS·포스터로 확산하세요</p>
+</div>
+
+<!-- CITY TABS -->
+<div class="city-bar">
+  <button class="city-tab on" onclick="switchCity('seattle',this)">🌲 시애틀<span class="live-dot"></span></button>
+  <button class="city-tab" onclick="switchCity('dallas',this)">🤠 달라스</button>
+  <button class="city-tab" onclick="switchCity('newyork',this)">🗽 뉴욕·NJ</button>
+  <button class="city-tab" onclick="switchCity('nashville',this)">🎵 내슈빌</button>
+  <button class="city-tab" onclick="switchCity('la',this)">🌴 LA</button>
+  <button class="city-tab" onclick="switchCity('vancouver',this)">🍁 밴쿠버</button>
+  <button class="city-tab" onclick="switchCity('toronto',this)">🍁 토론토</button>
+</div>
+
+
+<!-- ══════════ SEATTLE (LIVE) ══════════ -->
+<div class="city-panel on" id="panel-seattle">
+<div class="wrap">
+
+  <!-- 상태 + 바로가기 -->
+  <div class="sec-card">
+    <div class="sec-body" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div class="live-badge">🟢 LIVE</div>
+        <div style="font-size:1.1rem;font-weight:900;margin-top:4px;">시애틀 가이드</div>
+        <div style="font-size:0.75rem;color:var(--muted);">hebronguide.com/01_HebronGuide/seattle/</div>
+      </div>
+      <a href="/01_HebronGuide/seattle/" target="_blank"
+        style="padding:11px 20px;border-radius:12px;background:var(--teal);color:#0d1117;font-weight:900;font-size:0.85rem;">
+        📱 가이드 열기
+      </a>
+    </div>
+  </div>
+
+  <!-- 카카오톡 공유 -->
+  <div class="sec-card">
+    <div class="sec-head">
+      <div class="sec-head-icon">💬</div>
+      <div class="sec-head-text"><h2>카카오톡 공유 메시지</h2><p>탭 선택 후 복사 → 붙여넣기</p></div>
+    </div>
+    <div class="sec-body">
+      <div class="msg-tabs">
+        <button class="msg-tab on" onclick="showTab('s','kt1',this)">교인 공유</button>
+        <button class="msg-tab" onclick="showTab('s','kt2',this)">새신자 환영</button>
+        <button class="msg-tab" onclick="showTab('s','kt3',this)">목사 소개</button>
+      </div>
+      <div id="s-kt1" class="msg-box">📱 [시애틀 정착 가이드 앱]
+
+시애틀에 새로 오신 분들께 공유해 주세요!
+
+✅ SSN · 운전면허 · 은행 · 보험
+🛒 H-Mart · 한인 식당 · 서비스
+🎓 학군 · 대학 · 유학생 안내
+🏥 병원 · 응급실 · 총영사관
+
+👉 hebronguide.com
+(앱 설치 불필요 · 완전 무료)
+
+— 우리 교회가 여러분의 정착을 돕겠습니다 ⛪</div>
+      <div id="s-kt2" class="msg-box" style="display:none;">⛪ [새신자 환영 안내]
+
+우리 교회에 오신 것을 환영합니다!
+시애틀 정착에 필요한 모든 정보를 모았습니다.
+
+📱 HebronGuide 시애틀 가이드
+👉 hebronguide.com
+
+홈 화면에 저장해 두시면 언제든 사용 가능합니다.
+모르시는 것이 있으면 언제든지 연락 주세요 🙏</div>
+      <div id="s-kt3" class="msg-box" style="display:none;">안녕하세요 목사님,
+
+시애틀 한인 정착 가이드 앱을 소개드립니다.
+
+새로 오시는 분들이 이 가이드를 통해
+병원·학교·DMV·한인 상권 정보를 바로 찾고
+자연스럽게 교회와 연결됩니다.
+
+📱 hebronguide.com (샘플 체험)
+✍️ 교회 등재 신청: hebronguide.com/order-form
+
+시애틀에서 지구촌 땅 끝까지 함께 하겠습니다 🙏</div>
+      <button class="copy-btn" onclick="copyActive('s','kt')">📋 메시지 복사</button>
+    </div>
+  </div>
+
+  <!-- SNS 캡션 -->
+  <div class="sec-card">
+    <div class="sec-head">
+      <div class="sec-head-icon">📸</div>
+      <div class="sec-head-text"><h2>SNS 캡션</h2><p>Instagram · Facebook</p></div>
+    </div>
+    <div class="sec-body">
+      <div class="msg-tabs">
+        <button class="msg-tab on" onclick="showTab('s','sn1',this)">Instagram 한글</button>
+        <button class="msg-tab" onclick="showTab('s','sn2',this)">Instagram 영어</button>
+        <button class="msg-tab" onclick="showTab('s','sn3',this)">Facebook</button>
+      </div>
+      <div id="s-sn1" class="msg-box">시애틀에 새로 오셨나요? 🌲
+
+SSN · 운전면허 · H-Mart · 병원까지
+한 번에 찾는 무료 정착 가이드!
+
+📱 hebronguide.com
+
+#시애틀 #시애틀한인 #시애틀이민 #정착가이드 #HebronGuide #린우드 #벨뷰</div>
+      <div id="s-sn2" class="msg-box" style="display:none;">Just moved to Seattle? 🌲
+
+Free Korean settlement guide —
+hospitals, schools, DMV, H-Mart & churches.
+No app needed. Just scan & go.
+
+📱 hebronguide.com
+
+#Seattle #SeattleKorean #KoreanAmerican #HebronGuide #Lynnwood #Bellevue</div>
+      <div id="s-sn3" class="msg-box" style="display:none;">📢 시애틀 한인 정착 가이드 출시!
+
+새로 오신 분 또는 주변에 새로 오신 분이 계시면 공유해 주세요.
+SSN · 운전면허 · 한인 마트 · 교회 · 학군까지 무료 제공.
+
+🔗 hebronguide.com
+이 글을 공유해서 도움이 필요한 분들께 전해주세요 🙏</div>
+      <button class="copy-btn" onclick="copyActive('s','sn')">📋 캡션 복사</button>
+    </div>
+  </div>
+
+  <!-- QR + 도구 -->
+  <div class="sec-card">
+    <div class="sec-head">
+      <div class="sec-head-icon">📲</div>
+      <div class="sec-head-text"><h2>QR 코드 &amp; 인쇄 도구</h2></div>
+    </div>
+    <div class="sec-body">
+      <div class="qr-row" style="margin-bottom:14px;">
+        <div class="qr-box">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fhebronguide.com%2F01_HebronGuide%2Fseattle%2F&color=0d1117&bgcolor=ffffff&qzone=1" alt="시애틀 가이드">
+          <div class="qr-box-label">🌲 시애틀 가이드</div>
+          <div class="qr-box-url">hebronguide.com/seattle</div>
+        </div>
+        <div class="qr-box">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fhebronguide.com%2F01_HebronGuide%2Forder-form.html&color=7c3aed&bgcolor=ffffff&qzone=1" alt="교회 등재">
+          <div class="qr-box-label">✍️ 교회 등재 신청</div>
+          <div class="qr-box-url">hebronguide.com/order-form</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <a class="act-btn ab-g" href="/01_HebronGuide/seattle/" target="_blank"><div class="ab-icon">📱</div>가이드 체험</a>
+        <a class="act-btn ab-p" href="/01_HebronGuide/poster.html" target="_blank"><div class="ab-icon">🖨️</div>A4 포스터 인쇄</a>
+        <a class="act-btn ab-f" href="/01_HebronGuide/flyer-ko.html" target="_blank"><div class="ab-icon">📄</div>개척자 플라이어</a>
+        <a class="act-btn ab-o" href="/01_HebronGuide/order-form.html" target="_blank"><div class="ab-icon">✍️</div>교회 등재 신청</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div><!-- /panel-seattle -->
+
+
+<!-- ══════════ COMING SOON CITIES ══════════ -->
+<div class="city-panel" id="panel-dallas">
+<div class="wrap">
+  <div class="coming-card">
+    <div class="coming-emoji">🤠</div>
+    <div class="coming-city">달라스 · Dallas</div>
+    <div class="coming-sub">
+      텍사스주 · 한인 10만+ · 캐롤튼 한인타운 · No State Tax<br><br>
+      달라스 가이드는 현재 제작 중입니다.<br>
+      시애틀 가이드를 샘플로 먼저 체험하시고,<br>달라스 가이드 제작을 신청해 주세요.
+    </div>
+    <div class="coming-actions">
+      <a class="btn-demo" href="/01_HebronGuide/seattle/" target="_blank">📱 시애틀 샘플 체험하기</a>
+      <a class="btn-order" href="/01_HebronGuide/order-form.html?city=Dallas&state=Texas" target="_blank">✍️ 달라스 가이드 신청하기</a>
+    </div>
+  </div>
+  <div class="sec-card">
+    <div class="sec-head"><div class="sec-head-icon">💬</div><div class="sec-head-text"><h2>카카오톡 공유 메시지</h2><p>달라스 목사님용</p></div></div>
+    <div class="sec-body">
+      <div class="msg-box">안녕하세요 목사님,
+
+달라스 한인 정착 가이드 앱을 준비 중입니다.
+
+시애틀에서 이미 운영 중인 가이드를 샘플로 먼저 체험해 보시고,
+달라스 버전 제작을 신청해 주세요.
+
+📱 샘플 체험: hebronguide.com
+✍️ 달라스 신청: hebronguide.com/order-form
+
+새로 오는 한인 성도들이 교회를 가장 먼저 만나게 됩니다 🙏</div>
+      <button class="copy-btn" onclick="copyBox(this)">📋 메시지 복사</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="city-panel" id="panel-newyork">
+<div class="wrap">
+  <div class="coming-card">
+    <div class="coming-emoji">🗽</div>
+    <div class="coming-city">뉴욕 · New York / NJ</div>
+    <div class="coming-sub">
+      플러싱 한인타운 · 뉴저지 팰리세이즈파크 · 최대 한인 커뮤니티<br><br>
+      뉴욕·NJ 가이드는 현재 제작 중입니다.<br>
+      시애틀 가이드를 샘플로 먼저 체험하시고,<br>뉴욕 가이드 제작을 신청해 주세요.
+    </div>
+    <div class="coming-actions">
+      <a class="btn-demo" href="/01_HebronGuide/seattle/" target="_blank">📱 시애틀 샘플 체험하기</a>
+      <a class="btn-order" href="/01_HebronGuide/order-form.html?city=New+York&state=New+York" target="_blank">✍️ 뉴욕 가이드 신청하기</a>
+    </div>
+  </div>
+  <div class="sec-card">
+    <div class="sec-head"><div class="sec-head-icon">💬</div><div class="sec-head-text"><h2>카카오톡 공유 메시지</h2><p>뉴욕·NJ 목사님용</p></div></div>
+    <div class="sec-body">
+      <div class="msg-box">안녕하세요 목사님,
+
+뉴욕·뉴저지 한인 정착 가이드 앱을 준비 중입니다.
+
+시애틀에서 이미 운영 중인 가이드를 샘플로 먼저 체험해 보시고,
+뉴욕 버전 제작을 신청해 주세요.
+
+📱 샘플 체험: hebronguide.com
+✍️ 뉴욕 신청: hebronguide.com/order-form
+
+플러싱·팰팍 새 이민자들이 교회를 첫 번째로 만나게 됩니다 🙏</div>
+      <button class="copy-btn" onclick="copyBox(this)">📋 메시지 복사</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="city-panel" id="panel-nashville">
+<div class="wrap">
+  <div class="coming-card">
+    <div class="coming-emoji">🎵</div>
+    <div class="coming-city">내슈빌 · Nashville</div>
+    <div class="coming-sub">
+      테네시주 · No State Tax · 빠르게 성장하는 한인 커뮤니티<br><br>
+      내슈빌 가이드는 현재 제작 중입니다.<br>
+      시애틀 가이드를 샘플로 먼저 체험하시고,<br>내슈빌 가이드 제작을 신청해 주세요.
+    </div>
+    <div class="coming-actions">
+      <a class="btn-demo" href="/01_HebronGuide/seattle/" target="_blank">📱 시애틀 샘플 체험하기</a>
+      <a class="btn-order" href="/01_HebronGuide/order-form.html?city=Nashville&state=Tennessee" target="_blank">✍️ 내슈빌 가이드 신청하기</a>
+    </div>
+  </div>
+  <div class="sec-card">
+    <div class="sec-head"><div class="sec-head-icon">💬</div><div class="sec-head-text"><h2>카카오톡 공유 메시지</h2><p>내슈빌 목사님용</p></div></div>
+    <div class="sec-body">
+      <div class="msg-box">안녕하세요 목사님,
+
+내슈빌 한인 정착 가이드 앱을 준비 중입니다.
+
+시애틀에서 이미 운영 중인 가이드를 샘플로 먼저 체험해 보시고,
+내슈빌 버전 제작을 신청해 주세요.
+
+📱 샘플 체험: hebronguide.com
+✍️ 내슈빌 신청: hebronguide.com/order-form
+
+새로 오는 한인 성도들이 교회를 가장 먼저 만나게 됩니다 🙏</div>
+      <button class="copy-btn" onclick="copyBox(this)">📋 메시지 복사</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="city-panel" id="panel-la">
+<div class="wrap">
+  <div class="coming-card">
+    <div class="coming-emoji">🌴</div>
+    <div class="coming-city">LA · Los Angeles</div>
+    <div class="coming-sub">
+      캘리포니아주 · 코리아타운 · 미국 최대 한인 밀집 지역<br><br>
+      LA 가이드는 현재 제작 중입니다.<br>
+      시애틀 가이드를 샘플로 먼저 체험하시고,<br>LA 가이드 제작을 신청해 주세요.
+    </div>
+    <div class="coming-actions">
+      <a class="btn-demo" href="/01_HebronGuide/seattle/" target="_blank">📱 시애틀 샘플 체험하기</a>
+      <a class="btn-order" href="/01_HebronGuide/order-form.html?city=Los+Angeles&state=California" target="_blank">✍️ LA 가이드 신청하기</a>
+    </div>
+  </div>
+  <div class="sec-card">
+    <div class="sec-head"><div class="sec-head-icon">💬</div><div class="sec-head-text"><h2>카카오톡 공유 메시지</h2><p>LA 목사님용</p></div></div>
+    <div class="sec-body">
+      <div class="msg-box">안녕하세요 목사님,
+
+LA·코리아타운 한인 정착 가이드 앱을 준비 중입니다.
+
+시애틀에서 이미 운영 중인 가이드를 샘플로 먼저 체험해 보시고,
+LA 버전 제작을 신청해 주세요.
+
+📱 샘플 체험: hebronguide.com
+✍️ LA 신청: hebronguide.com/order-form
+
+코리아타운에 새로 오는 분들이 교회를 가장 먼저 만나게 됩니다 🙏</div>
+      <button class="copy-btn" onclick="copyBox(this)">📋 메시지 복사</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="city-panel" id="panel-vancouver">
+<div class="wrap">
+  <div class="coming-card">
+    <div class="coming-emoji">🍁</div>
+    <div class="coming-city">밴쿠버 · Vancouver</div>
+    <div class="coming-sub">
+      캐나다 BC주 · 버나비·코퀴틀람 한인타운 · 유학생·이민자 급증<br><br>
+      밴쿠버 가이드는 현재 제작 중입니다.<br>
+      시애틀 가이드를 샘플로 먼저 체험하시고,<br>밴쿠버 가이드 제작을 신청해 주세요.
+    </div>
+    <div class="coming-actions">
+      <a class="btn-demo" href="/01_HebronGuide/seattle/" target="_blank">📱 시애틀 샘플 체험하기</a>
+      <a class="btn-order" href="/01_HebronGuide/order-form.html?city=Vancouver&state=Canada+-+BC" target="_blank">✍️ 밴쿠버 가이드 신청하기</a>
+    </div>
+  </div>
+  <div class="sec-card">
+    <div class="sec-head"><div class="sec-head-icon">💬</div><div class="sec-head-text"><h2>카카오톡 공유 메시지</h2><p>밴쿠버 목사님용</p></div></div>
+    <div class="sec-body">
+      <div class="msg-box">안녕하세요 목사님,
+
+밴쿠버 한인 정착 가이드 앱을 준비 중입니다.
+
+시애틀에서 이미 운영 중인 가이드를 샘플로 먼저 체험해 보시고,
+밴쿠버 버전 제작을 신청해 주세요.
+
+📱 샘플 체험: hebronguide.com
+✍️ 밴쿠버 신청: hebronguide.com/order-form
+
+버나비·코퀴틀람 새 이민자들이 교회를 가장 먼저 만나게 됩니다 🙏</div>
+      <button class="copy-btn" onclick="copyBox(this)">📋 메시지 복사</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="city-panel" id="panel-toronto">
+<div class="wrap">
+  <div class="coming-card">
+    <div class="coming-emoji">🍁</div>
+    <div class="coming-city">토론토 · Toronto</div>
+    <div class="coming-sub">
+      캐나다 온타리오주 · 노스욕 한인타운 · 캐나다 최대 한인 커뮤니티<br><br>
+      토론토 가이드는 현재 제작 중입니다.<br>
+      시애틀 가이드를 샘플로 먼저 체험하시고,<br>토론토 가이드 제작을 신청해 주세요.
+    </div>
+    <div class="coming-actions">
+      <a class="btn-demo" href="/01_HebronGuide/seattle/" target="_blank">📱 시애틀 샘플 체험하기</a>
+      <a class="btn-order" href="/01_HebronGuide/order-form.html?city=Toronto&state=Canada+-+Ontario" target="_blank">✍️ 토론토 가이드 신청하기</a>
+    </div>
+  </div>
+  <div class="sec-card">
+    <div class="sec-head"><div class="sec-head-icon">💬</div><div class="sec-head-text"><h2>카카오톡 공유 메시지</h2><p>토론토 목사님용</p></div></div>
+    <div class="sec-body">
+      <div class="msg-box">안녕하세요 목사님,
+
+토론토 한인 정착 가이드 앱을 준비 중입니다.
+
+시애틀에서 이미 운영 중인 가이드를 샘플로 먼저 체험해 보시고,
+토론토 버전 제작을 신청해 주세요.
+
+📱 샘플 체험: hebronguide.com
+✍️ 토론토 신청: hebronguide.com/order-form
+
+노스욕에 새로 오는 분들이 교회를 가장 먼저 만나게 됩니다 🙏</div>
+      <button class="copy-btn" onclick="copyBox(this)">📋 메시지 복사</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- FOOTER -->
+<div style="text-align:center;padding:20px;font-size:0.75rem;color:var(--muted);border-top:1px solid var(--border);">
+  <div style="font-size:0.85rem;font-weight:800;color:rgba(201,162,39,0.7);margin-bottom:6px;">HEBRON FAITH ECOSYSTEM</div>
+  <a href="https://hebronguide.com" style="color:rgba(201,162,39,0.6);">hebronguide.com</a> &nbsp;·&nbsp;
+  <a href="mailto:kchurch911@gmail.com" style="color:rgba(201,162,39,0.6);">kchurch911@gmail.com</a><br>
+  마 28:18–20 · 시애틀에서 지구촌 땅 끝까지
+</div>
+
+<div id="toast">✅ 복사되었습니다!</div>
+
+<script>
+// 도시 탭 전환
+function switchCity(id, btn) {
+  document.querySelectorAll('.city-panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.city-tab').forEach(b => b.classList.remove('on'));
+  document.getElementById('panel-' + id).classList.add('on');
+  btn.classList.add('on');
+}
+
+// 메시지 탭 전환
+const activeTabs = {};
+function showTab(city, key, btn) {
+  const prefix = city + '-';
+  const allIds = btn.closest('.sec-body').querySelectorAll('.msg-box');
+  allIds.forEach(el => el.style.display = 'none');
+  document.getElementById(city + '-' + key).style.display = 'block';
+  btn.closest('.msg-tabs').querySelectorAll('.msg-tab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  activeTabs[city] = key;
+}
+
+// 현재 탭 메시지 복사
+function copyActive(city, prefix) {
+  const activeKey = activeTabs[city] || (prefix + '1');
+  const id = city + '-' + activeKey;
+  const el = document.getElementById(id);
+  const text = el ? el.innerText.trim() : '';
+  copyText(text);
+}
+
+// 버튼 바로 위 msg-box 복사 (coming soon 도시)
+function copyBox(btn) {
+  const box = btn.previousElementSibling;
+  copyText(box ? box.innerText.trim() : '');
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => showToast());
+}
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// URL 파라미터로 도시 자동 선택
+const params = new URLSearchParams(location.search);
+const cityParam = params.get('city');
+if (cityParam) {
+  const map = { seattle:'seattle', dallas:'dallas', newyork:'newyork', 'new york':'newyork', nashville:'nashville', la:'la', 'los angeles':'la', vancouver:'vancouver', toronto:'toronto' };
+  const key = map[cityParam.toLowerCase()];
+  if (key) {
+    const btn = document.querySelector(`.city-tab[onclick*="${key}"]`);
+    if (btn) switchCity(key, btn);
+  }
+}
+
+// order-form URL 파라미터 자동 채우기 지원
+document.querySelectorAll('a[href*="order-form"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const url = new URL(a.href, location.origin);
+    const city = url.searchParams.get('city');
+    const state = url.searchParams.get('state');
+    if (city || state) {
+      sessionStorage.setItem('hg-prefill-city', city || '');
+      sessionStorage.setItem('hg-prefill-state', state || '');
+    }
+  });
+});
+</script>
+</body>
+</html>
