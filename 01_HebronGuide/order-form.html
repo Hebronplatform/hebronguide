@@ -165,13 +165,26 @@
     font-size: .65rem; font-weight: 700;
     padding: 2px 9px; border-radius: 10px;
   }
-  .pkg input[type=radio] { position: absolute; opacity: 0; pointer-events: none; }
+  .pkg input[type=radio],
+  .pkg input[type=checkbox] { position: absolute; opacity: 0; pointer-events: none; }
   .pkg-name  { font-weight: 700; font-size: .88rem; color: var(--blue); margin-bottom: 3px; }
   .pkg-price { font-size: 1.35rem; font-weight: 800; color: var(--lblue); }
   .pkg-price small { font-size: .75rem; font-weight: 400; color: var(--muted); }
   .pkg-desc  { font-size: .75rem; color: var(--muted); margin-top: 5px; line-height: 1.45; }
   .pkg-check { display: none; position: absolute; top: 8px; left: 10px; color: var(--lblue); font-size: .95rem; }
   .pkg.picked .pkg-check { display: block; }
+
+  /* Add-on package (연간 업데이트) */
+  .pkg-addon-row { margin-top: 10px; }
+  .pkg.addon { border-style: dashed; border-color: #B3D9C4; background: #F5FBF8; }
+  .pkg.addon:hover { border-color: var(--green); background: #EEF9F3; }
+  .pkg.addon.picked { border-style: solid; border-color: var(--green); background: #EEF9F3; }
+  .pkg.addon.picked .pkg-check { color: var(--green); }
+  .pkg-addon-label {
+    font-size: .7rem; font-weight: 700; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 6px; padding-left: 2px;
+  }
 
   /* Form fields */
   .field { margin-bottom: 18px; }
@@ -384,7 +397,7 @@
   <div class="sec-body">
     <div class="pkg-grid">
 
-      <label class="pkg" id="pk1" onclick="pickPkg(this,'Basic — 1 Language $50')">
+      <label class="pkg" id="pk1" onclick="pickPkg(this)">
         <input type="radio" name="package" value="Basic — 1 Language $50">
         <span class="pkg-check">✓</span>
         <div class="pkg-name" id="p1n">기본 (언어 1개)</div>
@@ -392,7 +405,7 @@
         <div class="pkg-desc" id="p1d">언어 1개 · 도시 맞춤 제작 · QR 코드 포함 · 5~7일 납품</div>
       </label>
 
-      <label class="pkg star" id="pk2" onclick="pickPkg(this,'Bilingual — 2 Languages $80')">
+      <label class="pkg star" id="pk2" onclick="pickPkg(this)">
         <input type="radio" name="package" value="Bilingual — 2 Languages $80">
         <span class="pkg-badge" id="p2b">추천</span>
         <span class="pkg-check">✓</span>
@@ -401,15 +414,25 @@
         <div class="pkg-desc" id="p2d">2개 언어 모두 포함 (예: 한국어 + 영어)</div>
       </label>
 
-      <label class="pkg" id="pk3" onclick="pickPkg(this,'Annual Update $20/yr')">
-        <input type="radio" name="package" value="Annual Update $20/yr">
+    </div>
+
+    <!-- 추가 옵션 (독립 선택 가능) -->
+    <div class="pkg-addon-row">
+      <div class="pkg-addon-label" id="addon-label">➕ 추가 옵션 (선택)</div>
+      <label class="pkg addon" id="pk3" onclick="toggleAddon(this)">
+        <input type="checkbox" name="annual_update" value="Annual Update $20/yr">
         <span class="pkg-check">✓</span>
         <div class="pkg-name" id="p3n">연간 업데이트</div>
         <div class="pkg-price">$20 <small id="p3u">/ 년</small></div>
         <div class="pkg-desc" id="p3d">기본 또는 바이링궐에 추가 · 콘텐츠 연간 업데이트</div>
       </label>
-
     </div>
+    <!-- Total price display -->
+    <div id="pkg-total-box" style="display:none; margin-top:12px; background:var(--light); border:1.5px solid var(--lblue); border-radius:10px; padding:12px 16px; display:none; align-items:center; justify-content:space-between; gap:8px;">
+      <span style="font-size:.82rem; color:var(--muted);" id="pkg-total-items"></span>
+      <span style="font-size:1.2rem; font-weight:800; color:var(--blue);" id="pkg-total-amount"></span>
+    </div>
+
     <p style="text-align:center;font-size:.78rem;color:#6b7280;margin:8px 0 4px;" id="pkg-network-note">Equipping multiple churches? Contact us about network pricing.</p>
     <div class="err" id="e-pkg">⚠ <span id="e-pkg-t">패키지를 선택해 주세요.</span></div>
   </div>
@@ -1288,11 +1311,48 @@ function toggleOther(cb) {
   if (!cb.checked) document.getElementById('other-lang').value = '';
 }
 
-function pickPkg(el, val) {
-  document.querySelectorAll('.pkg').forEach(p => p.classList.remove('picked'));
+function pickPkg(el) {
+  // Deselect only main packages (pk1, pk2), leave add-on (pk3) untouched
+  ['pk1','pk2'].forEach(id => {
+    const p = document.getElementById(id);
+    p.classList.remove('picked');
+    p.querySelector('input[type=radio]').checked = false;
+  });
   el.classList.add('picked');
   el.querySelector('input[type=radio]').checked = true;
   document.getElementById('e-pkg').style.display = 'none';
+  updateTotal();
+}
+
+function toggleAddon(el) {
+  el.classList.toggle('picked');
+  const cb = el.querySelector('input[type=checkbox]');
+  cb.checked = el.classList.contains('picked');
+  updateTotal();
+}
+
+function updateTotal() {
+  const mainInput = document.querySelector('input[name="package"]:checked');
+  const addonChecked = document.querySelector('input[name="annual_update"]:checked');
+  const box = document.getElementById('pkg-total-box');
+  if (!mainInput) { box.style.display = 'none'; return; }
+
+  const prices = { 'Basic — 1 Language $50': 50, 'Bilingual — 2 Languages $80': 80 };
+  const mainPrice = prices[mainInput.value] || 0;
+  const addonPrice = addonChecked ? 20 : 0;
+  const total = mainPrice + addonPrice;
+
+  const mainLabel = mainInput.closest('.pkg').querySelector('.pkg-name').textContent;
+  const t = T[curLang] || T['ko'];
+  const addonLabel = document.getElementById('p3n').textContent;
+  const items = addonChecked
+    ? `${mainLabel} + ${addonLabel}`
+    : mainLabel;
+
+  document.getElementById('pkg-total-items').textContent = items;
+  document.getElementById('pkg-total-amount').textContent =
+    addonChecked ? `$${mainPrice} + $20 = $${total}` : `$${total}`;
+  box.style.display = 'flex';
 }
 
 function showErr(id, show) {
@@ -1306,7 +1366,7 @@ function validate() {
   let ok = true;
   const t = T[curLang];
 
-  // Package
+  // Package — must select a main package (Basic or Bilingual); add-on is optional
   const pkg = document.querySelector('input[name="package"]:checked');
   if (!pkg) { showErr('e-pkg', true); ok = false; } else showErr('e-pkg', false);
 
@@ -1385,7 +1445,11 @@ async function submitOrder() {
     from_name: 'Hebron Guide Order',
     botcheck: '',
     '📋 Form Type': isChurch ? 'Church / 교회용' : 'Business & Org / 일반·기관용',
-    '📦 Package': document.querySelector('input[name="package"]:checked')?.value || '',
+    '📦 Package': (() => {
+      const main = document.querySelector('input[name="package"]:checked')?.value || '';
+      const addon = document.querySelector('input[name="annual_update"]:checked')?.value || '';
+      return addon ? main + ' + ' + addon : main;
+    })(),
     '🗺️ City': document.getElementById('city').value + ', ' + document.getElementById('state').value,
     '🌐 Language(s)': langs,
     '👥 Target Community': document.getElementById('community').value || '(none)',
