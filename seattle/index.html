@@ -391,6 +391,27 @@ body.en [data-ko].blk { display: none !important; }
 .qa-btn-icon { font-size: 1.3rem; line-height: 1; }
 .qa-btn-label { font-size: 0.62rem; font-weight: 700; color: rgba(255,255,255,0.6); text-align: center; letter-spacing: 0.02em; }
 
+/* PROGRAM MODALS */
+.prog-modal-bg{position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,0.72);backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;}
+.prog-modal-bg.open{opacity:1;pointer-events:all;}
+.prog-modal{background:#1a1030;border-radius:24px 24px 0 0;padding:0 0 40px;width:100%;max-width:480px;transform:translateY(100%);transition:transform .32s cubic-bezier(.32,0,.67,0);}
+.prog-modal-bg.open .prog-modal{transform:translateY(0);}
+.prog-modal-handle{width:40px;height:4px;background:rgba(255,255,255,0.18);border-radius:4px;margin:14px auto 0;}
+.prog-modal-head{padding:18px 20px 14px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.prog-modal-emoji{font-size:2rem;margin-bottom:8px;line-height:1;}
+.prog-modal-title{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:3px;}
+.prog-modal-sub{font-size:0.73rem;color:rgba(255,255,255,0.45);margin-top:2px;}
+.prog-modal-body{padding:16px 20px 14px;}
+.prog-modal-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:13px;font-size:0.82rem;color:rgba(255,255,255,0.72);line-height:1.65;}
+.prog-modal-row span:first-child{flex-shrink:0;font-size:1rem;margin-top:1px;}
+.prog-modal-row strong{color:#E9D5FF;}
+.prog-modal-btns{display:flex;flex-direction:column;gap:8px;padding:0 20px;}
+.prog-modal-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 16px;border-radius:14px;font-size:0.85rem;font-weight:800;text-decoration:none;transition:opacity .15s;}
+.prog-modal-btn:active{opacity:0.72;}
+.prog-pill{background:rgba(192,132,252,0.2);border:1px solid rgba(192,132,252,0.4);color:#E9D5FF;border-radius:20px;padding:5px 11px;font-size:0.71rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;-webkit-tap-highlight-color:transparent;}
+.prog-pill:hover{background:rgba(192,132,252,0.35);border-color:rgba(192,132,252,0.7);}
+.prog-pill:active{transform:scale(0.94);}
+
 /* SEARCH OVERLAY */
 #srch-overlay {
   position: fixed; inset: 0; z-index: 10000; background: #0d1117;
@@ -1351,14 +1372,14 @@ body.en [data-ko].blk { display: none !important; }
           </div>
           <div style="font-size:0.78rem;font-weight:700;color:#C084FC;margin-bottom:12px;">GMC Seattle · 워싱턴지구촌교회(파송) · 국제가사원 회원교회</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
-            <span style="background:rgba(192,132,252,0.2);border:1px solid rgba(192,132,252,0.4);color:#E9D5FF;border-radius:20px;padding:4px 10px;font-size:0.71rem;font-weight:700;" data-ko>🏠 가정교회 네트워크</span>
-            <span style="background:rgba(192,132,252,0.2);border:1px solid rgba(192,132,252,0.4);color:#E9D5FF;border-radius:20px;padding:4px 10px;font-size:0.71rem;font-weight:700;" data-en>🏠 House Church Network</span>
-            <span style="background:rgba(192,132,252,0.2);border:1px solid rgba(192,132,252,0.4);color:#E9D5FF;border-radius:20px;padding:4px 10px;font-size:0.71rem;font-weight:700;" data-ko>💬 무료 영어회화</span>
-            <span style="background:rgba(192,132,252,0.2);border:1px solid rgba(192,132,252,0.4);color:#E9D5FF;border-radius:20px;padding:4px 10px;font-size:0.71rem;font-weight:700;" data-en>💬 Free English Talk Time</span>
-            <span style="background:rgba(192,132,252,0.2);border:1px solid rgba(192,132,252,0.4);color:#E9D5FF;border-radius:20px;padding:4px 10px;font-size:0.71rem;font-weight:700;" data-ko>👨‍👩‍👧 가족행복학교 상담</span>
-            <span style="background:rgba(192,132,252,0.2);border:1px solid rgba(192,132,252,0.4);color:#E9D5FF;border-radius:20px;padding:4px 10px;font-size:0.71rem;font-weight:700;" data-en>👨‍👩‍👧 Family Counseling</span>
-            <span style="background:rgba(192,132,252,0.2);border:1px solid rgba(192,132,252,0.4);color:#E9D5FF;border-radius:20px;padding:4px 10px;font-size:0.71rem;font-weight:700;" data-ko>🤝 정착 소그룹</span>
-            <span style="background:rgba(192,132,252,0.2);border:1px solid rgba(192,132,252,0.4);color:#E9D5FF;border-radius:20px;padding:4px 10px;font-size:0.71rem;font-weight:700;" data-en>🤝 Settlement Small Groups</span>
+            <button class="prog-pill" onclick="openModal('hc')" data-ko>🏠 가정교회 네트워크</button>
+            <button class="prog-pill" onclick="openModal('hc')" data-en>🏠 House Church Network</button>
+            <button class="prog-pill" onclick="openModal('english')" data-ko>💬 영어 톡타임</button>
+            <button class="prog-pill" onclick="openModal('english')" data-en>💬 English Talk Time</button>
+            <button class="prog-pill" onclick="openModal('family')" data-ko>👨‍👩‍👧 가족행복학교 상담</button>
+            <button class="prog-pill" onclick="openModal('family')" data-en>👨‍👩‍👧 Family Happiness School</button>
+            <button class="prog-pill" onclick="openModal('settle')" data-ko>🤝 정착 소그룹</button>
+            <button class="prog-pill" onclick="openModal('settle')" data-en>🤝 Settlement Small Groups</button>
           </div>
           <div style="font-size:0.8rem;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:14px;padding:10px 12px;background:rgba(255,255,255,0.06);border-radius:10px;">
             <span data-ko>📍 린우드(Lynnwood). 시애틀 지역 새 이민자, 타지역 이주자, 유학생을 위한 <strong style="color:#E9D5FF;">가장 체계적인 정착 지원 프로그램</strong>을 운영합니다. 처음 시애틀에 오셨다면 꼭 한번 방문해 보세요.<br><br>
@@ -2220,6 +2241,113 @@ body.en [data-ko].blk { display: none !important; }
   </div>
 </div>
 
+<!-- ===== PROGRAM MODALS ===== -->
+
+<!-- 🏠 가정교회 네트워크 -->
+<div class="prog-modal-bg" id="modal-hc" onclick="if(event.target===this)closeModal('hc')">
+  <div class="prog-modal">
+    <div class="prog-modal-handle"></div>
+    <div class="prog-modal-head">
+      <div class="prog-modal-emoji">🏠</div>
+      <div class="prog-modal-title" data-ko>가정교회 네트워크</div>
+      <div class="prog-modal-title" data-en>House Church Network</div>
+      <div class="prog-modal-sub">시애틀지구촌교회 (GMC Seattle)</div>
+    </div>
+    <div class="prog-modal-body">
+      <div class="prog-modal-row"><span>🏘️</span><span data-ko>가정에서 모이는 소규모 교회 공동체입니다. 새 이민자·이주자·처음 교회를 접하는 분 누구나 환영합니다. 매주 정기 모임, 식사, 삶 나눔이 함께합니다.</span><span data-en>A small church community that meets in homes. Everyone is welcome — new immigrants, relocators, and those new to church. Weekly meetings include meals and life sharing.</span></div>
+      <div class="prog-modal-row"><span>📍</span><span>4900 168th St. SW, Lynnwood, WA 98037</span></div>
+      <div class="prog-modal-row"><span>📧</span><span>박보라 간사 &nbsp;·&nbsp; <strong>admin.gmcseattle@gmail.com</strong></span></div>
+    </div>
+    <div class="prog-modal-btns">
+      <a href="mailto:admin.gmcseattle@gmail.com" class="prog-modal-btn" style="background:#7C3AED;color:#fff;">
+        ✉️ <span data-ko>이메일로 문의하기</span><span data-en>Email Us</span>
+      </a>
+      <a href="http://www.ijiguchon.org" target="_blank" rel="noopener" class="prog-modal-btn" style="background:rgba(255,255,255,0.08);color:#E9D5FF;border:1px solid rgba(192,132,252,0.3);">
+        🔗 <span data-ko>교회 웹사이트</span><span data-en>Church Website</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- 💬 영어 톡타임 -->
+<div class="prog-modal-bg" id="modal-english" onclick="if(event.target===this)closeModal('english')">
+  <div class="prog-modal">
+    <div class="prog-modal-handle"></div>
+    <div class="prog-modal-head">
+      <div class="prog-modal-emoji">💬</div>
+      <div class="prog-modal-title" data-ko>영어 톡타임 (English Talk Time)</div>
+      <div class="prog-modal-title" data-en>English Talk Time</div>
+      <div class="prog-modal-sub" data-ko>시애틀지구촌교회 (GMC Seattle) · 무료</div>
+      <div class="prog-modal-sub" data-en>GMC Seattle · Free of Charge</div>
+    </div>
+    <div class="prog-modal-body">
+      <div class="prog-modal-row"><span>🗣️</span><span data-ko>한국인을 위한 <strong>무료 영어 회화 프로그램</strong>입니다. 원어민과 함께 일상 영어를 편안하게 연습할 수 있습니다. 영어 실력에 상관없이 누구나 참여 가능합니다.</span><span data-en>A <strong>free English conversation program</strong> for Korean speakers. Practice everyday English comfortably with native speakers — all levels welcome.</span></div>
+      <div class="prog-modal-row"><span>📍</span><span>4900 168th St. SW, Lynnwood, WA 98037</span></div>
+      <div class="prog-modal-row"><span>📞</span><span>425-350-0191</span></div>
+    </div>
+    <div class="prog-modal-btns">
+      <a href="https://drive.google.com/file/d/1btFiz4lipde4uKleISKz7oOgAXzeCXAz/view" target="_blank" rel="noopener" class="prog-modal-btn" style="background:#7C3AED;color:#fff;">
+        📄 <span data-ko>프로그램 안내지 보기</span><span data-en>View Program Flyer</span>
+      </a>
+      <a href="tel:+14253500191" class="prog-modal-btn" style="background:rgba(255,255,255,0.08);color:#E9D5FF;border:1px solid rgba(192,132,252,0.3);">
+        📞 <span data-ko>전화 문의</span><span data-en>Call Us</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- 👨‍👩‍👧 가족행복학교 -->
+<div class="prog-modal-bg" id="modal-family" onclick="if(event.target===this)closeModal('family')">
+  <div class="prog-modal">
+    <div class="prog-modal-handle"></div>
+    <div class="prog-modal-head">
+      <div class="prog-modal-emoji">👨‍👩‍👧</div>
+      <div class="prog-modal-title" data-ko>가족행복학교 상담</div>
+      <div class="prog-modal-title" data-en>Family Happiness School</div>
+      <div class="prog-modal-sub">시애틀지구촌교회 (GMC Seattle)</div>
+    </div>
+    <div class="prog-modal-body">
+      <div class="prog-modal-row"><span>💝</span><span data-ko>이민 생활 속 <strong>가정 회복과 행복</strong>을 위한 상담·교육 프로그램입니다. 부부 관계, 자녀 양육, 개인 심리 등 다양한 주제를 다룹니다.</span><span data-en>A counseling and education program for <strong>family healing and happiness</strong> in immigrant life. Topics include marriage, parenting, and personal wellbeing.</span></div>
+      <div class="prog-modal-row"><span>📍</span><span>4900 168th St. SW, Lynnwood, WA 98037</span></div>
+      <div class="prog-modal-row"><span>📞</span><span>425-350-0191</span></div>
+    </div>
+    <div class="prog-modal-btns">
+      <a href="tel:+14253500191" class="prog-modal-btn" style="background:#7C3AED;color:#fff;">
+        📞 <span data-ko>전화로 문의하기</span><span data-en>Call Us</span>
+      </a>
+      <a href="https://www.ijiguchon.org/chnet2/home/?type=sub&step1=8&sid=38&parent=0&code=board02&threadKey=11862&gfile=boardView&pagecnt=1&start=0&word=%B0%A1%C1%A4%C7%E0%BA%B9%C7%D0%B1%B3&categorysearch=" target="_blank" rel="noopener" class="prog-modal-btn" style="background:rgba(255,255,255,0.08);color:#E9D5FF;border:1px solid rgba(192,132,252,0.3);">
+        🔗 <span data-ko>상세 안내 보기</span><span data-en>Learn More</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- 🤝 정착 소그룹 -->
+<div class="prog-modal-bg" id="modal-settle" onclick="if(event.target===this)closeModal('settle')">
+  <div class="prog-modal">
+    <div class="prog-modal-handle"></div>
+    <div class="prog-modal-head">
+      <div class="prog-modal-emoji">🤝</div>
+      <div class="prog-modal-title" data-ko>정착 소그룹</div>
+      <div class="prog-modal-title" data-en>Settlement Small Groups</div>
+      <div class="prog-modal-sub">시애틀지구촌교회 (GMC Seattle)</div>
+    </div>
+    <div class="prog-modal-body">
+      <div class="prog-modal-row"><span>🌱</span><span data-ko>시애틀 생활 정보를 나누는 <strong>소규모 정착 모임</strong>입니다. 주거·취업·자녀 교육·생활 팁 등 먼저 경험한 이민자가 직접 안내합니다. 처음 시애틀에 오셨다면 꼭 연락해 보세요.</span><span data-en>A <strong>small settlement group</strong> for sharing life info in Seattle. Experienced immigrants guide you on housing, jobs, education, and daily tips. Highly recommended for newcomers.</span></div>
+      <div class="prog-modal-row"><span>📍</span><span>4900 168th St. SW, Lynnwood, WA 98037</span></div>
+      <div class="prog-modal-row"><span>📧</span><span>박보라 간사 &nbsp;·&nbsp; <strong>admin.gmcseattle@gmail.com</strong></span></div>
+    </div>
+    <div class="prog-modal-btns">
+      <a href="mailto:admin.gmcseattle@gmail.com" class="prog-modal-btn" style="background:#7C3AED;color:#fff;">
+        ✉️ <span data-ko>이메일로 문의하기</span><span data-en>Email Us</span>
+      </a>
+      <a href="http://www.ijiguchon.org" target="_blank" rel="noopener" class="prog-modal-btn" style="background:rgba(255,255,255,0.08);color:#E9D5FF;border:1px solid rgba(192,132,252,0.3);">
+        🔗 <span data-ko>교회 웹사이트</span><span data-en>Church Website</span>
+      </a>
+    </div>
+  </div>
+</div>
+
 <!-- ===== SEARCH OVERLAY ===== -->
 <div id="srch-overlay">
   <div class="srch-header">
@@ -2434,6 +2562,24 @@ function shareCopy() {
     });
   });
 }
+
+// ===== PROGRAM MODALS =====
+function openModal(id) {
+  const el = document.getElementById('modal-' + id);
+  if (!el) return;
+  el.style.display = 'flex';
+  requestAnimationFrame(() => el.classList.add('open'));
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  const el = document.getElementById('modal-' + id);
+  if (!el) return;
+  el.classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { if (!el.classList.contains('open')) el.style.display = 'none'; }, 280);
+}
+// 초기화: 모달 숨김
+document.querySelectorAll('.prog-modal-bg').forEach(m => m.style.display = 'none');
 
 // ===== VOICE SEARCH =====
 let voiceRec = null;
