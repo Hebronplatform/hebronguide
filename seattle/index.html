@@ -1338,7 +1338,7 @@ body.en [data-ko].blk { display: none !important; }
   </div>
   <div class="tab-bar">
     <button class="tab-btn on" onclick="sTab(this,'ch-hc')"><span data-ko>가정교회</span><span data-en>House Church</span></button>
-    <button class="tab-btn" onclick="sTab(this,'ch-vision')"><span data-ko>가정교회 찾기</span><span data-en>Find HC</span></button>
+    <button class="tab-btn" onclick="sTab(this,'ch-hc');setTimeout(()=>{document.getElementById('ch-church-list').scrollIntoView({behavior:'smooth',block:'start'})},80)"><span data-ko>가정교회 찾기</span><span data-en>Find HC</span></button>
     <button class="tab-btn" onclick="sTab(this,'ch-why')"><span data-ko>왜 교회?</span><span data-en>Why Church?</span></button>
   </div>
   <div class="app-content">
@@ -1354,7 +1354,7 @@ body.en [data-ko].blk { display: none !important; }
         <div class="ccard-body"><span data-ko>✅ <strong>즉각적 소속감</strong> — 소규모이기에 첫날부터 이름을 기억해준다<br>✅ <strong>실질적 돌봄</strong> — 이사, 병원 동행, 식사 나눔이 자연스럽게 일어난다<br>✅ <strong>언어 부담 없음</strong> — 소그룹에서 솔직하고 편한 대화 가능<br>✅ <strong>사랑의 관계</strong> — 가족 그 이상의 가족 관계를 누린다</span><span data-en>✅ <strong>Immediate belonging</strong> — Small size means they remember your name from day one<br>✅ <strong>Practical care</strong> — Help moving, hospital accompaniment, sharing meals happen naturally<br>✅ <strong>No language pressure</strong> — Honest, comfortable conversation in small groups<br>✅ <strong>Relationships of love</strong> — Experience a family bond that goes beyond family</span></div>
       </div>
 
-      <div class="sec-head" style="margin-top:24px;" data-ko>🏘️ 시애틀 지역 가정교회</div>
+      <div id="ch-church-list" class="sec-head" style="margin-top:24px;" data-ko>🏘️ 시애틀 지역 가정교회</div>
       <div class="sec-head" style="margin-top:24px;" data-en>🏘️ Seattle Area House Churches</div>
 
       <!-- 시애틀지구촌교회 FEATURED -->
