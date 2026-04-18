@@ -3,489 +3,474 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HebronGuide — 글로벌 한인 도시 정착 가이드</title>
-<meta name="description" content="미국·캐나다 한인 이민자·정착민을 위한 도시별 완전 가이드. 시애틀·달라스·뉴욕·LA·밴쿠버·토론토.">
-<meta name="theme-color" content="#C9A227">
+<title>HebronGuide — 만남의 문 · 가정교회 목회자를 위한 도시 정착 가이드 플랫폼</title>
+<meta name="description" content="모든 이민자·이주자·방문자를 위한 맞춤형 도시 가이드. 낯선 도시에서 처음 만나는 교회의 문 — HebronGuide.">
+<meta name="theme-color" content="#1a2e6c">
 <link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --bg: #070d1a;
-  --card: #0f1823;
-  --gold: #C9A227;
-  --gold-l: #f0d060;
-  --teal: #12b886;
+  --navy:   #0d1b3e;
+  --blue:   #1a2e6c;
+  --gold:   #d4a017;
+  --gold2:  #f0c840;
+  --teal:   #12b886;
+  --bg:     #070d1a;
+  --surface:#111827;
   --border: rgba(255,255,255,0.08);
-  --text: rgba(255,255,255,0.88);
-  --muted: rgba(255,255,255,0.38);
+  --text:   rgba(255,255,255,0.92);
+  --muted:  rgba(255,255,255,0.45);
+  --r: 16px;
 }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
-  font-family: -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-  background: var(--bg); color: var(--text);
-  min-height: 100vh; overflow-x: hidden;
+  font-family: 'Noto Sans KR', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 a { text-decoration: none; color: inherit; }
 
-/* HERO */
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(7,13,26,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-logo { display: flex; align-items: center; gap: 9px; }
+.nav-logo span { font-weight: 900; font-size: 1rem; letter-spacing: .02em; }
+.nav-cta {
+  background: var(--gold); color: #1a1a00;
+  font-weight: 800; font-size: .8rem;
+  padding: 9px 20px; border-radius: 24px;
+  letter-spacing: .02em;
+  transition: background .2s;
+}
+.nav-cta:hover { background: var(--gold2); }
+
+/* ── HERO ── */
 .hero {
-  background: linear-gradient(160deg, #0a1628 0%, #0d1e3a 50%, #070d1a 100%);
-  padding: 60px 24px 52px; text-align: center; position: relative; overflow: hidden;
+  min-height: 92vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 60px 24px 48px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 10%, rgba(26,46,108,0.6) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(212,160,23,0.08) 0%, transparent 60%);
+  position: relative; overflow: hidden;
 }
 .hero::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,162,39,0.12), transparent);
-  pointer-events: none;
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: .4;
 }
 .hero-eyebrow {
-  font-size: 0.65rem; letter-spacing: 4px; color: var(--gold);
-  font-weight: 800; margin-bottom: 16px; text-transform: uppercase;
+  font-size: .7rem; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px; justify-content: center;
 }
-.hero-logo {
-  font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 900; letter-spacing: -1px;
-  background: linear-gradient(120deg, #fff 40%, var(--gold) 100%);
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; flex: 1; max-width: 40px; height: 1px; background: rgba(212,160,23,.35);
+}
+.hero-h1 {
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 12px;
+  letter-spacing: -.01em;
+}
+.hero-h1 em {
+  font-style: normal;
+  background: linear-gradient(120deg, var(--gold), var(--gold2));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  margin-bottom: 8px;
 }
 .hero-sub {
-  font-size: clamp(0.85rem, 2vw, 1rem); color: var(--muted); line-height: 1.7;
-  max-width: 480px; margin: 0 auto 28px;
+  font-size: clamp(.9rem, 2.2vw, 1.1rem);
+  color: var(--muted);
+  max-width: 540px;
+  margin: 0 auto 32px;
+  line-height: 1.75;
 }
-.hero-mission {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(201,162,39,0.1); border: 1px solid rgba(201,162,39,0.25);
-  border-radius: 100px; padding: 8px 18px;
-  font-size: 0.75rem; color: var(--gold); font-weight: 700;
+.hero-btns {
+  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;
+}
+.btn-primary {
+  background: var(--gold); color: #1a1a00;
+  font-weight: 800; font-size: .92rem;
+  padding: 14px 28px; border-radius: 30px;
+  letter-spacing: .02em;
+  transition: background .2s, transform .15s;
+  box-shadow: 0 4px 20px rgba(212,160,23,.35);
+}
+.btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+.btn-ghost {
+  border: 1.5px solid rgba(255,255,255,.25); color: var(--text);
+  font-weight: 700; font-size: .88rem;
+  padding: 13px 26px; border-radius: 30px;
+  transition: border-color .2s, background .2s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.05); }
+.hero-scroll { font-size: .72rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
+/* ── STAT BAR ── */
+.stat-bar {
+  background: rgba(26,46,108,.35);
+  border-top: 1px solid rgba(26,46,108,.6);
+  border-bottom: 1px solid rgba(26,46,108,.6);
+  padding: 24px 24px;
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 0;
+}
+.stat-item {
+  flex: 1; min-width: 120px; max-width: 180px;
+  text-align: center; padding: 0 20px;
+  border-right: 1px solid var(--border);
+}
+.stat-item:last-child { border-right: none; }
+.stat-n { font-size: 1.8rem; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 5px; }
+.stat-l { font-size: .72rem; color: var(--muted); line-height: 1.4; }
+
+/* ── SECTIONS ── */
+section { padding: 72px 24px; max-width: 900px; margin: 0 auto; }
+.sec-eyebrow {
+  font-size: .65rem; letter-spacing: 3.5px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px;
+}
+.sec-title {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 900; line-height: 1.2; margin-bottom: 16px;
+}
+.sec-title em { font-style: normal; color: var(--gold); }
+.sec-body { font-size: .95rem; color: var(--muted); line-height: 1.8; max-width: 600px; }
+
+/* ── PAIN CARDS ── */
+.pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 36px; }
+.pain-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r); padding: 24px 22px;
+  position: relative; overflow: hidden;
+}
+.pain-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--gold));
+}
+.pain-q { font-size: 1.6rem; margin-bottom: 12px; }
+.pain-text { font-size: .88rem; color: var(--muted); line-height: 1.7; }
+.pain-text strong { color: rgba(255,255,255,.8); }
+
+/* ── HOW IT WORKS ── */
+.steps { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
+.step-row {
+  display: grid; grid-template-columns: 52px 1fr;
+  gap: 20px; align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.step-row:last-child { border-bottom: none; }
+.step-num {
+  width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--blue), rgba(26,46,108,.5));
+  border: 1.5px solid rgba(212,160,23,.35);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+.step-body {}
+.step-title { font-size: 1rem; font-weight: 800; margin-bottom: 5px; }
+.step-desc { font-size: .85rem; color: var(--muted); line-height: 1.65; }
+.step-tag {
+  display: inline-block; margin-top: 8px;
+  background: rgba(18,184,134,.15); border: 1px solid rgba(18,184,134,.3);
+  color: #4ecdc4; font-size: .7rem; font-weight: 700;
+  padding: 3px 10px; border-radius: 10px; letter-spacing: .5px;
 }
 
-/* CITIES */
-.section { max-width: 780px; margin: 0 auto; padding: 48px 20px; }
-.sec-label {
-  font-size: 0.62rem; letter-spacing: 3px; color: var(--gold);
-  font-weight: 800; text-transform: uppercase; margin-bottom: 18px;
+/* ── VISION JOURNEY ── */
+.vision-wrap {
+  background: linear-gradient(135deg, rgba(26,46,108,.45), rgba(7,13,26,.8));
+  border: 1px solid rgba(26,46,108,.7);
+  border-radius: 22px; padding: 40px 32px; margin: 0 auto;
+  max-width: 900px; text-align: center;
 }
+.vision-scripture {
+  font-size: .72rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.vision-title {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 900; line-height: 1.25; margin-bottom: 16px;
+}
+.vision-title em { font-style: normal; color: var(--gold); }
+.vision-body { font-size: .92rem; color: var(--muted); line-height: 1.8; margin-bottom: 28px; max-width: 540px; margin-left: auto; margin-right: auto; }
+.vision-stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 0; margin-bottom: 28px; }
+.v-stat { text-align: center; padding: 0 24px; border-right: 1px solid var(--border); }
+.v-stat:last-child { border-right: none; }
+.v-stat-n { font-size: 1.8rem; font-weight: 900; color: var(--gold); }
+.v-stat-l { font-size: .68rem; color: var(--muted); }
+.vision-flow { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; margin-bottom: 28px; }
+.v-city { font-size: .78rem; font-weight: 700; padding: 5px 12px; border-radius: 20px; background: rgba(255,255,255,.05); border: 1px solid var(--border); white-space: nowrap; }
+.v-city.live { background: rgba(18,184,134,.2); border-color: rgba(18,184,134,.5); color: #4ecdc4; }
+.v-arrow { color: var(--gold); opacity: .5; font-size: .9rem; }
+
+/* ── ECOSYSTEM ── */
+.eco-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px; padding: 36px 28px;
+  max-width: 900px; margin: 0 auto;
+}
+.eco-title { font-size: .72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; text-align: center; }
+.eco-flow {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px;
+}
+.eco-step { text-align: center; min-width: 80px; }
+.eco-dot {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(255,255,255,.05); border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+  margin: 0 auto 7px;
+  transition: border-color .2s;
+}
+.eco-dot.current {
+  background: rgba(18,184,134,.2); border-color: rgba(18,184,134,.7);
+  box-shadow: 0 0 16px rgba(18,184,134,.25);
+}
+.eco-step-label { font-size: .72rem; font-weight: 700; }
+.eco-step-prod { font-size: .62rem; color: var(--muted); margin-top: 2px; }
+.eco-arrow { color: rgba(212,160,23,.35); font-size: 1rem; }
+.eco-note { font-size: .78rem; color: var(--muted); text-align: center; margin-top: 18px; line-height: 1.65; }
+
+/* ── CITY GRID ── */
+.city-section { padding: 72px 24px; }
+.city-section-inner { max-width: 900px; margin: 0 auto; }
 .city-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 14px; margin-top: 32px;
 }
-@media (max-width: 560px) { .city-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 340px) { .city-grid { grid-template-columns: 1fr; } }
-
-/* ORDER PROMO */
-.promo-section { max-width: 780px; margin: 0 auto; padding: 0 20px 48px; }
-.promo-card {
-  background: linear-gradient(135deg, rgba(201,162,39,0.1), rgba(18,184,134,0.08));
-  border: 1px solid rgba(201,162,39,0.28);
-  border-radius: 22px; padding: 32px 28px; text-align: center;
-}
-.promo-icon { font-size: 2.4rem; margin-bottom: 10px; }
-.promo-title { font-size: clamp(1.1rem,3vw,1.4rem); font-weight: 900; margin-bottom: 8px; }
-.promo-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.7; max-width: 480px; margin: 0 auto 24px; }
-.promo-steps {
-  display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px;
-}
-.promo-step {
-  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-  border-radius: 12px; padding: 10px 14px; font-size: 0.72rem;
-  display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 90px;
-}
-.promo-step-ico { font-size: 1.3rem; }
-.promo-step-txt { color: var(--muted); font-weight: 600; }
-.promo-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.promo-btn {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 13px 24px; border-radius: 12px;
-  font-size: 0.85rem; font-weight: 800; cursor: pointer; text-decoration: none;
-  transition: transform .15s, box-shadow .15s;
-}
-.promo-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
-.promo-btn-primary {
-  background: linear-gradient(135deg, var(--gold), #b8880f);
-  color: #0a0f1a;
-}
-.promo-btn-secondary {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: var(--text);
-}
-
+@media (max-width: 600px) { .city-grid { grid-template-columns: 1fr 1fr; } }
 .city-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 20px; padding: 22px 20px; position: relative;
-  overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
-  display: flex; flex-direction: column; gap: 0;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 18px 16px;
+  position: relative; overflow: hidden;
+  transition: transform .2s, border-color .2s;
+  display: flex; flex-direction: column; gap: 6px;
 }
-.city-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.5); }
-.city-card.live { border-color: rgba(18,184,134,0.35); cursor: pointer; }
-.city-card.soon { opacity: 0.5; cursor: default; }
-.city-card-bar {
-  position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 20px 20px 0 0;
-}
+.city-card:hover { transform: translateY(-3px); border-color: rgba(212,160,23,.35); }
+.city-card-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
 .city-badge {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 0.6rem; font-weight: 800; letter-spacing: 1px;
-  padding: 3px 10px; border-radius: 8px; margin-bottom: 12px; width: fit-content;
+  font-size: .62rem; font-weight: 800; letter-spacing: 1px;
+  padding: 3px 9px; border-radius: 10px; align-self: flex-start;
+  margin-bottom: 4px;
 }
-.badge-live { background: rgba(18,184,134,0.18); color: var(--teal); }
-.badge-soon { background: rgba(255,255,255,0.06); color: var(--muted); }
-.city-name { font-size: 1.15rem; font-weight: 900; margin-bottom: 3px; }
-.city-name-ko { font-size: 0.72rem; color: var(--muted); margin-bottom: 10px; }
-.city-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
-.city-tag {
-  font-size: 0.6rem; padding: 2px 8px; border-radius: 7px;
-  background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.45); font-weight: 600;
-}
-.city-btn {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 14px; border-radius: 12px; font-size: 0.78rem; font-weight: 700;
-  margin-top: auto;
-}
-.city-btn-live { background: rgba(18,184,134,0.15); color: var(--teal); }
-.city-btn-soon { background: rgba(255,255,255,0.04); color: var(--muted); }
+.badge-live { background: rgba(18,184,134,.25); color: #4ecdc4; border: 1px solid rgba(18,184,134,.4); }
+.badge-soon { background: rgba(255,255,255,.06); color: var(--muted); border: 1px solid var(--border); }
+.city-name { font-size: 1.1rem; font-weight: 900; }
+.city-name-ko { font-size: .72rem; color: var(--muted); }
+.city-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.city-tag { font-size: .62rem; padding: 2px 8px; background: rgba(255,255,255,.06); border-radius: 8px; color: var(--muted); }
+.city-btn { font-size: .75rem; font-weight: 700; margin-top: 10px; }
+.city-btn-live { color: #4ecdc4; }
+.city-btn-soon { color: rgba(255,255,255,.25); }
+a.city-card { cursor: pointer; }
 
-/* GLOBAL VISION */
-.vision-section { max-width: 780px; margin: 0 auto; padding: 0 20px 48px; }
-.vision-card {
-  background: linear-gradient(160deg, #0a1628 0%, #0d1e3a 60%, #0a0f1a 100%);
-  border: 1px solid rgba(201,162,39,0.22);
-  border-radius: 22px; padding: 36px 28px; text-align: center; position: relative; overflow: hidden;
+/* ── PERSUASION / PASTOR SECTION ── */
+.pastor-wrap {
+  background: linear-gradient(135deg, rgba(212,160,23,.12), rgba(212,160,23,.04));
+  border: 1px solid rgba(212,160,23,.3);
+  border-radius: 22px; padding: 44px 36px; text-align: center;
+  max-width: 900px; margin: 0 auto;
 }
-.vision-card::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,162,39,0.08), transparent);
-  pointer-events: none;
+.pastor-quote {
+  font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+  font-weight: 900; line-height: 1.3; margin-bottom: 16px;
+  color: rgba(255,255,255,.95);
 }
-.vision-eyebrow {
-  font-size: 0.6rem; letter-spacing: 3px; color: var(--gold);
-  font-weight: 800; text-transform: uppercase; margin-bottom: 14px;
-}
-.vision-title {
-  font-size: clamp(1.3rem, 4vw, 1.9rem); font-weight: 900; line-height: 1.3;
-  margin-bottom: 10px; letter-spacing: -0.5px;
-}
-.vision-title em { color: var(--gold); font-style: normal; }
-.vision-sub {
-  font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.75;
-  max-width: 460px; margin: 0 auto 28px;
-}
-.vision-scripture {
-  display: inline-block;
-  font-size: 0.75rem; color: rgba(201,162,39,0.7);
-  border: 1px solid rgba(201,162,39,0.2);
-  border-radius: 20px; padding: 5px 18px; margin-bottom: 28px;
-  font-style: italic;
-}
-.vision-stats {
-  display: flex; justify-content: center; gap: 0;
-  flex-wrap: wrap; margin-bottom: 28px;
-}
-.vision-stat {
-  padding: 14px 20px; min-width: 100px;
-  border-right: 1px solid rgba(255,255,255,0.07);
-}
-.vision-stat:last-child { border-right: none; }
-.vision-stat-n { font-size: 1.5rem; font-weight: 900; color: var(--gold); }
-.vision-stat-l { font-size: 0.62rem; color: var(--muted); margin-top: 3px; font-weight: 600; letter-spacing: 0.05em; }
-.vision-cities {
-  display: flex; align-items: center; justify-content: center;
-  gap: 6px; flex-wrap: wrap; margin-bottom: 28px;
-}
-.vision-city-dot {
-  font-size: 0.68rem; font-weight: 700; padding: 4px 12px;
-  border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.5);
-}
-.vision-city-dot.live {
-  background: rgba(18,184,134,0.15); border-color: rgba(18,184,134,0.3);
-  color: var(--teal);
-}
-.vision-arrow { color: rgba(201,162,39,0.35); font-size: 0.7rem; }
-.vision-cta {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(201,162,39,0.12); border: 1px solid rgba(201,162,39,0.3);
-  border-radius: 12px; padding: 13px 24px; color: var(--gold);
-  font-size: 0.82rem; font-weight: 800; text-decoration: none;
-  transition: background 0.2s;
-}
-.vision-cta:hover { background: rgba(201,162,39,0.2); }
-
-/* ECOSYSTEM */
-.eco-section { max-width: 680px; margin: 0 auto; padding: 0 20px 48px; }
-.eco-card {
-  background: linear-gradient(135deg, rgba(201,162,39,0.07), rgba(31,71,136,0.1));
-  border: 1px solid rgba(201,162,39,0.18); border-radius: 20px;
-  padding: 28px 24px;
-}
-.eco-title { font-size: 1rem; font-weight: 900; margin-bottom: 4px; }
-.eco-sub { font-size: 0.78rem; color: var(--muted); margin-bottom: 22px; line-height: 1.6; }
-.eco-flow {
-  display: flex; align-items: center; gap: 0; overflow-x: auto;
-  scrollbar-width: none; padding-bottom: 4px;
-}
-.eco-flow::-webkit-scrollbar { display: none; }
-.eco-step { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 80px; }
-.eco-dot {
-  width: 48px; height: 48px; border-radius: 50%; display: flex;
-  align-items: center; justify-content: center; font-size: 1.2rem;
-  border: 1.5px solid rgba(255,255,255,0.1);
-}
-.eco-dot.current { border-color: var(--teal); background: rgba(18,184,134,0.15); }
-.eco-step-label { font-size: 0.65rem; font-weight: 800; text-align: center; white-space: nowrap; }
-.eco-step-prod { font-size: 0.58rem; color: var(--muted); text-align: center; white-space: nowrap; }
-.eco-arrow {
-  color: rgba(201,162,39,0.35); font-size: 0.75rem; flex-shrink: 0;
-  padding: 0 4px; margin-top: -18px;
+.pastor-quote em { font-style: normal; color: var(--gold); }
+.pastor-body { font-size: .92rem; color: var(--muted); line-height: 1.8; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.pastor-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.scarcity-note {
+  font-size: .75rem; color: rgba(212,160,23,.7);
+  margin-top: 16px; letter-spacing: .5px;
 }
 
-/* INSTALL BANNER */
-.install-banner {
-  max-width: 680px; margin: 0 auto; padding: 0 20px 60px;
-}
-.install-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 18px; padding: 20px;
-  display: flex; align-items: center; gap: 16px;
-}
-.install-icon { font-size: 2rem; flex-shrink: 0; }
-.install-text h3 { font-size: 0.9rem; font-weight: 800; margin-bottom: 3px; }
-.install-text p { font-size: 0.72rem; color: var(--muted); line-height: 1.5; }
-
-/* FOOTER */
+/* ── FOOTER ── */
 footer {
-  border-top: 1px solid var(--border); padding: 28px 20px;
-  text-align: center; font-size: 0.65rem; color: var(--muted); line-height: 2;
+  border-top: 1px solid var(--border);
+  padding: 32px 24px; text-align: center;
+  font-size: .72rem; color: var(--muted); line-height: 2;
 }
-footer a { color: rgba(201,162,39,0.6); }
+footer a { color: rgba(212,160,23,.6); }
+footer a:hover { color: var(--gold); }
 
+/* ── SECTION WRAPPER ── */
+.full-section { padding: 72px 24px; }
+
+/* ── SCROLL REVEAL (simple) ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="64" height="64" rx="13" fill="#1a2e6c"/>
+      <circle cx="32" cy="32" r="28" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+      <polygon points="32,7 40,24 32,32 24,24" fill="#d4a017"/>
+      <polygon points="32,57 40,40 32,32 24,40" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="57,32 40,40 32,32 40,24" fill="rgba(255,255,255,0.52)"/>
+      <polygon points="7,32 24,24 32,32 24,40" fill="rgba(255,255,255,0.52)"/>
+      <circle cx="32" cy="32" r="2.5" fill="rgba(255,255,255,0.95)"/>
+    </svg>
+    <span>HebronGuide</span>
+  </div>
+  <a href="/01_HebronGuide/order-form.html" class="nav-cta">🗺️ 가이드 주문</a>
+</nav>
+
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow">Hebron Faith Ecosystem · 만남의 문</div>
-  <div class="hero-logo">HebronGuide</div>
+  <p class="hero-eyebrow">Hebron Faith Ecosystem · 만남의 문</p>
+  <h1 class="hero-h1">
+    매주, 수십 명이<br>
+    <em>당신의 도시에 혼자</em> 도착합니다
+  </h1>
   <p class="hero-sub">
-    낯선 도시에서 처음 만나는 한인 정착 가이드<br>
-    미국·캐나다 이민자·유학생·이주자를 위한 도시별 완전 가이드
+    낯선 도시에서 처음 열어보는 정착 가이드.<br>
+    그 순간이 교회의 <strong style="color:rgba(255,255,255,.85);">첫 번째 만남</strong>이 됩니다.
   </p>
-  <div class="hero-mission">✝ 마 28:18–20 &nbsp;·&nbsp; 시애틀에서 지구촌 땅 끝까지</div>
+  <div class="hero-btns">
+    <a href="/01_HebronGuide/seattle/" class="btn-primary">🌲 시애틀 가이드 체험하기</a>
+    <a href="/01_HebronGuide/order-form.html" class="btn-ghost">✍️ 내 도시 가이드 주문</a>
+  </div>
+  <p class="hero-scroll">✝ 마태복음 28:18–20 · 시애틀에서 지구촌 땅 끝까지</p>
 </div>
 
-<!-- CITIES -->
-<div class="section">
-  <p class="sec-label">도시 가이드 선택</p>
-  <div class="city-grid">
-
-    <!-- SEATTLE — LIVE -->
-    <a class="city-card live" href="/01_HebronGuide/seattle/">
-      <div class="city-card-bar" style="background:linear-gradient(90deg,#12b886,#4ecdc4);"></div>
-      <span class="city-badge badge-live">🟢 LIVE</span>
-      <div class="city-name">Seattle</div>
-      <div class="city-name-ko">시애틀 · 워싱턴주</div>
-      <div class="city-tags">
-        <span class="city-tag">Amazon · MS</span>
-        <span class="city-tag">린우드 한인타운</span>
-        <span class="city-tag">No State Tax</span>
-      </div>
-      <div class="city-btn city-btn-live">가이드 열기 <span>→</span></div>
-    </a>
-
-    <!-- DALLAS — SOON -->
-    <div class="city-card soon">
-      <div class="city-card-bar" style="background:rgba(255,255,255,0.1);"></div>
-      <span class="city-badge badge-soon">준비 중</span>
-      <div class="city-name">Dallas</div>
-      <div class="city-name-ko">달라스 · 텍사스주</div>
-      <div class="city-tags">
-        <span class="city-tag">10만+ 한인</span>
-        <span class="city-tag">No State Tax</span>
-        <span class="city-tag">캐롤튼 한인타운</span>
-      </div>
-      <div class="city-btn city-btn-soon">Coming Soon <span>—</span></div>
-    </div>
-
-    <!-- NASHVILLE — SOON -->
-    <div class="city-card soon">
-      <div class="city-card-bar" style="background:rgba(255,255,255,0.1);"></div>
-      <span class="city-badge badge-soon">준비 중</span>
-      <div class="city-name">Nashville</div>
-      <div class="city-name-ko">내슈빌 · 테네시주</div>
-      <div class="city-tags">
-        <span class="city-tag">No State Tax</span>
-        <span class="city-tag">성장하는 한인 커뮤니티</span>
-      </div>
-      <div class="city-btn city-btn-soon">Coming Soon <span>—</span></div>
-    </div>
-
-    <!-- NEW YORK — SOON -->
-    <div class="city-card soon">
-      <div class="city-card-bar" style="background:rgba(255,255,255,0.1);"></div>
-      <span class="city-badge badge-soon">준비 중</span>
-      <div class="city-name">New York</div>
-      <div class="city-name-ko">뉴욕 · 뉴저지</div>
-      <div class="city-tags">
-        <span class="city-tag">플러싱 한인타운</span>
-        <span class="city-tag">최대 한인 커뮤니티</span>
-      </div>
-      <div class="city-btn city-btn-soon">Coming Soon <span>—</span></div>
-    </div>
-
-    <!-- LOS ANGELES — SOON -->
-    <div class="city-card soon">
-      <div class="city-card-bar" style="background:rgba(255,255,255,0.1);"></div>
-      <span class="city-badge badge-soon">준비 중</span>
-      <div class="city-name">Los Angeles</div>
-      <div class="city-name-ko">LA · 캘리포니아</div>
-      <div class="city-tags">
-        <span class="city-tag">코리아타운</span>
-        <span class="city-tag">최대 규모 한인 도시</span>
-      </div>
-      <div class="city-btn city-btn-soon">Coming Soon <span>—</span></div>
-    </div>
-
-    <!-- VANCOUVER — SOON -->
-    <div class="city-card soon">
-      <div class="city-card-bar" style="background:rgba(255,255,255,0.1);"></div>
-      <span class="city-badge badge-soon">준비 중</span>
-      <div class="city-name">Vancouver</div>
-      <div class="city-name-ko">밴쿠버 · BC 캐나다</div>
-      <div class="city-tags">
-        <span class="city-tag">🍁 캐나다</span>
-        <span class="city-tag">한인 이민자 급증</span>
-      </div>
-      <div class="city-btn city-btn-soon">Coming Soon <span>—</span></div>
-    </div>
-
-    <!-- TORONTO — SOON -->
-    <div class="city-card soon">
-      <div class="city-card-bar" style="background:rgba(255,255,255,0.1);"></div>
-      <span class="city-badge badge-soon">준비 중</span>
-      <div class="city-name">Toronto</div>
-      <div class="city-name-ko">토론토 · ON 캐나다</div>
-      <div class="city-tags">
-        <span class="city-tag">🍁 캐나다</span>
-        <span class="city-tag">노스욕 한인타운</span>
-      </div>
-      <div class="city-btn city-btn-soon">Coming Soon <span>—</span></div>
-    </div>
-
+<!-- STAT BAR -->
+<div class="stat-bar reveal">
+  <div class="stat-item">
+    <div class="stat-n">700만</div>
+    <div class="stat-l">해외 한인<br>디아스포라</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-n">180+</div>
+    <div class="stat-l">미·캐 한인<br>밀집 도시</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-n">매주</div>
+    <div class="stat-l">수십 명이<br>새로 도착</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-n">1</div>
+    <div class="stat-l">지금 LIVE<br>시애틀</div>
   </div>
 </div>
 
-<!-- ORDER PROMO -->
-<div class="promo-section">
-  <div class="promo-card">
-    <div class="promo-icon">🗺️</div>
-    <div class="promo-title">당신의 도시에 HebronGuide를 만드세요</div>
-    <p class="promo-sub">
-      교회 개척자와 이민 커뮤니티를 위한 맞춤형 도시 정착 가이드 앱.<br>
-      QR 코드 하나로 설치 — 앱스토어 불필요. 5~7일 납품.
-    </p>
-    <div class="promo-steps">
-      <div class="promo-step"><div class="promo-step-ico">📋</div><div class="promo-step-txt">주문 신청</div></div>
-      <div class="eco-arrow" style="align-self:center;margin-top:0;">›</div>
-      <div class="promo-step"><div class="promo-step-ico">⚙️</div><div class="promo-step-txt">맞춤 제작</div></div>
-      <div class="eco-arrow" style="align-self:center;margin-top:0;">›</div>
-      <div class="promo-step"><div class="promo-step-ico">📱</div><div class="promo-step-txt">QR 납품</div></div>
-      <div class="eco-arrow" style="align-self:center;margin-top:0;">›</div>
-      <div class="promo-step"><div class="promo-step-ico">🏘️</div><div class="promo-step-txt">커뮤니티 확산</div></div>
+<!-- PAIN / OPPORTUNITY -->
+<section class="reveal">
+  <p class="sec-eyebrow">목회자에게 드리는 질문</p>
+  <h2 class="sec-title">그들이 검색하는 그 순간,<br><em>당신 교회가 먼저 보입니까?</em></h2>
+  <p class="sec-body">
+    새 이주자들은 도착하자마자 실용적인 정보를 찾습니다.<br>
+    운전면허, SSN, 병원, 학교, 은행 — 그 검색의 끝에<br>
+    교회가 있다면 어떨까요?
+  </p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-q">🏥</div>
+      <p class="pain-text">"시애틀에서 한국어 되는 병원이 어디예요?" — <strong>그 대답을 당신 교회가 드립니다.</strong></p>
     </div>
-    <div class="promo-btns">
-      <a href="/01_HebronGuide/order-form.html" class="promo-btn promo-btn-primary">✍️ 가이드 주문하기</a>
-      <a href="/share-kit.html" class="promo-btn promo-btn-secondary">📦 목회자 셰어킷</a>
+    <div class="pain-card">
+      <div class="pain-q">🏠</div>
+      <p class="pain-text">"처음 이사왔는데 어디서 살아야 해요?" — <strong>가이드가 먼저 손을 내밉니다.</strong></p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-q">⛪</div>
+      <p class="pain-text">"근처에 한인 교회가 있나요?" — <strong>가정교회가 바로 거기 있습니다.</strong></p>
     </div>
   </div>
-</div>
+</section>
 
-<!-- GLOBAL VISION -->
-<div class="vision-section">
-  <div class="vision-card">
-    <div class="vision-eyebrow">Global Vision · 글로벌 비전</div>
-    <div class="vision-title">
-      <em>700만 해외 한인</em>이<br>낯선 도시에 도착합니다
-    </div>
-    <p class="vision-sub">
-      HebronGuide는 그 첫 날의 연락처가 됩니다.<br>
-      정착 정보를 찾다가 교회를 만나고,<br>
-      공동체 안에서 뿌리를 내립니다.
-    </p>
-    <div class="vision-scripture">✝ 마태복음 28:18–20 · 창세기 13:14–18</div>
-
-    <div class="vision-stats">
-      <div class="vision-stat">
-        <div class="vision-stat-n">700만</div>
-        <div class="vision-stat-l">해외 한인 디아스포라</div>
-      </div>
-      <div class="vision-stat">
-        <div class="vision-stat-n">180+</div>
-        <div class="vision-stat-l">한인 밀집 도시 (미·캐)</div>
-      </div>
-      <div class="vision-stat">
-        <div class="vision-stat-n">1</div>
-        <div class="vision-stat-l">현재 LIVE 도시</div>
-      </div>
-      <div class="vision-stat">
-        <div class="vision-stat-n">∞</div>
-        <div class="vision-stat-l">확장 가능한 도시</div>
+<!-- HOW IT WORKS -->
+<section class="reveal">
+  <p class="sec-eyebrow">어떻게 작동하나요</p>
+  <h2 class="sec-title">QR 코드 하나로<br><em>만남의 문이 열립니다</em></h2>
+  <div class="steps">
+    <div class="step-row">
+      <div class="step-num">🗺️</div>
+      <div class="step-body">
+        <div class="step-title">목회자가 도시 가이드를 주문합니다</div>
+        <p class="step-desc">도시 정보, 교회 정보, 가정교회 섹션을 맞춤 제작합니다. 5~7일 납품. Zelle·PayPal 결제.</p>
+        <span class="step-tag">$50~80 · 1회 제작</span>
       </div>
     </div>
-
-    <div class="vision-cities">
-      <span class="vision-city-dot live">🌲 시애틀 LIVE</span>
-      <span class="vision-arrow">›</span>
-      <span class="vision-city-dot">🤠 달라스</span>
-      <span class="vision-arrow">›</span>
-      <span class="vision-city-dot">🗽 뉴욕</span>
-      <span class="vision-arrow">›</span>
-      <span class="vision-city-dot">🌴 LA</span>
-      <span class="vision-arrow">›</span>
-      <span class="vision-city-dot">🍁 밴쿠버</span>
-      <span class="vision-arrow">›</span>
-      <span class="vision-city-dot">🍁 토론토</span>
-      <span class="vision-arrow">›</span>
-      <span class="vision-city-dot">🌐 땅 끝까지</span>
+    <div class="step-row">
+      <div class="step-num">📱</div>
+      <div class="step-body">
+        <div class="step-title">QR 코드로 새 이주자에게 전달합니다</div>
+        <p class="step-desc">공항, 한인 마트, SNS, 교회 현관 — 어디서든 QR 한 번으로 설치. 앱스토어 불필요.</p>
+        <span class="step-tag">설치 3초 · 스마트폰 홈 화면</span>
+      </div>
     </div>
-
-    <a href="/01_HebronGuide/order-form.html" class="vision-cta">
-      🗺️ 당신의 도시가 다음입니다 — 가이드 신청하기
-    </a>
+    <div class="step-row">
+      <div class="step-num">🏘️</div>
+      <div class="step-body">
+        <div class="step-title">정착 정보를 찾다가 교회를 만납니다</div>
+        <p class="step-desc">가이드 안에서 자연스럽게 가정교회를 발견합니다. 강요 없이, 필요 안에서 찾아오는 만남.</p>
+        <span class="step-tag">만남 → 교회 연결 → 공동체</span>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">♾️</div>
+      <div class="step-body">
+        <div class="step-title">가이드가 공동체를 통해 확산됩니다</div>
+        <p class="step-desc">먼저 온 사람이 새로 온 사람에게 보냅니다. 목회자 없이도 스스로 퍼져나가는 복음의 네트워크.</p>
+        <span class="step-tag">사람이 사람에게 · 재생산</span>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- ECOSYSTEM FLOW -->
-<div class="eco-section">
-  <div class="eco-card">
-    <p class="eco-title">🌱 Hebron Faith Ecosystem</p>
-    <p class="eco-sub">HebronGuide는 만남의 첫 문입니다 — 정착 정보를 찾다가 교회를 만나고, 공동체 안에서 제자로 세워집니다.</p>
+<!-- FAITH ECOSYSTEM -->
+<div class="full-section reveal">
+  <div class="eco-wrap">
+    <p class="eco-title">✝ Hebron Faith Ecosystem · 선교 사이클</p>
     <div class="eco-flow">
       <div class="eco-step">
         <div class="eco-dot current">🗺️</div>
-        <div class="eco-step-label">만남</div>
+        <div class="eco-step-label">만남의 문</div>
         <div class="eco-step-prod">HebronGuide</div>
       </div>
       <div class="eco-arrow">›</div>
       <div class="eco-step">
         <div class="eco-dot">⛪</div>
-        <div class="eco-step-label">교회 연결</div>
+        <div class="eco-step-label">목장의 문</div>
         <div class="eco-step-prod">HebronApp</div>
       </div>
       <div class="eco-arrow">›</div>
       <div class="eco-step">
         <div class="eco-dot">🙏</div>
-        <div class="eco-step-label">제자훈련</div>
+        <div class="eco-step-label">동행의 문</div>
         <div class="eco-step-prod">HebronAltar</div>
       </div>
       <div class="eco-arrow">›</div>
       <div class="eco-step">
         <div class="eco-dot">🌐</div>
-        <div class="eco-step-label">언어·선교</div>
+        <div class="eco-step-label">열방의 문</div>
         <div class="eco-step-prod">HebronLingua</div>
       </div>
       <div class="eco-arrow">›</div>
       <div class="eco-step">
         <div class="eco-dot">🎵</div>
-        <div class="eco-step-label">찬양 파송</div>
+        <div class="eco-step-label">찬양의 문</div>
         <div class="eco-step-prod">HebronStudio</div>
       </div>
       <div class="eco-arrow">›</div>
@@ -495,29 +480,172 @@ footer a { color: rgba(201,162,39,0.6); }
         <div class="eco-step-prod">KChurch911</div>
       </div>
     </div>
+    <p class="eco-note">HebronGuide는 Faith Ecosystem의 <strong style="color:rgba(255,255,255,.8);">첫 번째 문</strong>입니다.<br>낯선 도시에서 정착 정보를 찾다가 교회를 만나고, 공동체 안에서 제자로 세워집니다.</p>
   </div>
 </div>
 
-<!-- INSTALL BANNER -->
-<div class="install-banner">
-  <div class="install-card">
-    <div class="install-icon">📲</div>
-    <div class="install-text">
-      <h3>홈 화면에 설치하세요</h3>
-      <p>인터넷 없이도 사용 가능 · Safari → 공유 → 홈 화면에 추가<br>Chrome → ⋮ 메뉴 → 홈 화면에 추가</p>
+<!-- GLOBAL VISION -->
+<div class="full-section reveal">
+  <div class="vision-wrap">
+    <p class="vision-scripture">✝ 마태복음 28:18–20 · Genesis 13:14–18</p>
+    <h2 class="vision-title"><em>700만 해외 한인</em>이<br>낯선 도시에 도착합니다</h2>
+    <p class="vision-body">
+      HebronGuide는 그 첫 날의 연락처가 됩니다.<br>
+      정착 정보를 찾다가 교회를 만나고,<br>
+      공동체 안에서 뿌리를 내립니다.
+    </p>
+    <div class="vision-stats">
+      <div class="v-stat"><div class="v-stat-n">700만</div><div class="v-stat-l">해외 한인 디아스포라</div></div>
+      <div class="v-stat"><div class="v-stat-n">180+</div><div class="v-stat-l">한인 밀집 도시</div></div>
+      <div class="v-stat"><div class="v-stat-n">1</div><div class="v-stat-l">현재 LIVE 도시</div></div>
+      <div class="v-stat"><div class="v-stat-n">∞</div><div class="v-stat-l">확장 가능한 도시</div></div>
+    </div>
+    <div class="vision-flow">
+      <span class="v-city live">🌲 시애틀 LIVE</span>
+      <span class="v-arrow">›</span>
+      <span class="v-city">🤠 달라스</span>
+      <span class="v-arrow">›</span>
+      <span class="v-city">🗽 뉴욕</span>
+      <span class="v-arrow">›</span>
+      <span class="v-city">🌴 LA</span>
+      <span class="v-arrow">›</span>
+      <span class="v-city">🍁 밴쿠버</span>
+      <span class="v-arrow">›</span>
+      <span class="v-city">🍁 토론토</span>
+      <span class="v-arrow">›</span>
+      <span class="v-city">🌐 땅 끝까지</span>
     </div>
   </div>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <div style="font-size:0.8rem;font-weight:800;color:rgba(201,162,39,0.7);margin-bottom:8px;">HEBRON FAITH ECOSYSTEM</div>
-  <div>
-    <a href="https://kchurch911.com">KChurch911.com</a> &nbsp;·&nbsp;
-    HebronGuide &nbsp;·&nbsp; HebronApp &nbsp;·&nbsp; HebronAltar &nbsp;·&nbsp; HebronLingua &nbsp;·&nbsp; HebronStudio
+<!-- CITY GRID -->
+<div class="city-section reveal">
+  <div class="city-section-inner">
+    <p class="sec-eyebrow">도시 가이드</p>
+    <h2 class="sec-title" style="margin-bottom:0;">당신의 도시를 선택하세요</h2>
+    <div class="city-grid">
+
+      <a class="city-card" href="/01_HebronGuide/seattle/" style="border-color:rgba(18,184,134,.35);">
+        <div class="city-card-bar" style="background:linear-gradient(90deg,#12b886,#4ecdc4);"></div>
+        <span class="city-badge badge-live">🟢 LIVE</span>
+        <div class="city-name">Seattle</div>
+        <div class="city-name-ko">시애틀 · 워싱턴주</div>
+        <div class="city-tags">
+          <span class="city-tag">Amazon · MS</span>
+          <span class="city-tag">린우드 한인타운</span>
+          <span class="city-tag">No State Tax</span>
+        </div>
+        <div class="city-btn city-btn-live">가이드 열기 →</div>
+      </a>
+
+      <div class="city-card">
+        <div class="city-card-bar" style="background:rgba(255,255,255,0.07);"></div>
+        <span class="city-badge badge-soon">준비 중</span>
+        <div class="city-name">Dallas</div>
+        <div class="city-name-ko">달라스 · 텍사스주</div>
+        <div class="city-tags">
+          <span class="city-tag">10만+ 한인</span>
+          <span class="city-tag">No State Tax</span>
+        </div>
+        <div class="city-btn city-btn-soon">Coming Soon</div>
+      </div>
+
+      <div class="city-card">
+        <div class="city-card-bar" style="background:rgba(255,255,255,0.07);"></div>
+        <span class="city-badge badge-soon">준비 중</span>
+        <div class="city-name">New York</div>
+        <div class="city-name-ko">뉴욕 · 뉴저지</div>
+        <div class="city-tags">
+          <span class="city-tag">플러싱 한인타운</span>
+          <span class="city-tag">최대 한인 커뮤니티</span>
+        </div>
+        <div class="city-btn city-btn-soon">Coming Soon</div>
+      </div>
+
+      <div class="city-card">
+        <div class="city-card-bar" style="background:rgba(255,255,255,0.07);"></div>
+        <span class="city-badge badge-soon">준비 중</span>
+        <div class="city-name">Los Angeles</div>
+        <div class="city-name-ko">LA · 캘리포니아</div>
+        <div class="city-tags">
+          <span class="city-tag">코리아타운</span>
+          <span class="city-tag">최대 규모</span>
+        </div>
+        <div class="city-btn city-btn-soon">Coming Soon</div>
+      </div>
+
+      <div class="city-card">
+        <div class="city-card-bar" style="background:rgba(255,255,255,0.07);"></div>
+        <span class="city-badge badge-soon">준비 중</span>
+        <div class="city-name">Vancouver</div>
+        <div class="city-name-ko">밴쿠버 · BC 캐나다</div>
+        <div class="city-tags">
+          <span class="city-tag">🍁 캐나다</span>
+          <span class="city-tag">한인 이주 급증</span>
+        </div>
+        <div class="city-btn city-btn-soon">Coming Soon</div>
+      </div>
+
+      <div class="city-card">
+        <div class="city-card-bar" style="background:rgba(255,255,255,0.07);"></div>
+        <span class="city-badge badge-soon">준비 중</span>
+        <div class="city-name">Toronto</div>
+        <div class="city-name-ko">토론토 · ON 캐나다</div>
+        <div class="city-tags">
+          <span class="city-tag">🍁 캐나다</span>
+          <span class="city-tag">노스욕 한인타운</span>
+        </div>
+        <div class="city-btn city-btn-soon">Coming Soon</div>
+      </div>
+
+    </div>
   </div>
-  <div style="margin-top:8px;">시애틀에서 지구촌 땅 끝까지 &nbsp;·&nbsp; 마 28:18–20 &nbsp;·&nbsp; 창 13:14–18</div>
+</div>
+
+<!-- PASTOR CTA (설득 클로저) -->
+<div class="full-section reveal">
+  <div class="pastor-wrap">
+    <h2 class="pastor-quote">
+      목사님의 도시는<br><em>아직 준비가 안 되어 있습니다.</em><br>
+      당신이 첫 번째가 될 수 있습니다.
+    </h2>
+    <p class="pastor-body">
+      지금 이 순간에도 새 이주자들이 검색하고 있습니다.<br>
+      가이드 하나가 그들의 손을 먼저 잡습니다.<br>
+      그것이 가정교회의 문을 여는 방법입니다.
+    </p>
+    <div class="pastor-btns">
+      <a href="/01_HebronGuide/order-form.html" class="btn-primary">🗺️ 내 도시 가이드 주문하기</a>
+      <a href="/01_HebronGuide/seattle/" class="btn-ghost">시애틀 가이드 미리 보기</a>
+    </div>
+    <p class="scarcity-note">✦ 도시당 1개 교회 선착순 파트너십 · 5~7 영업일 납품</p>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:10px;">
+    <svg width="24" height="24" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;opacity:.6;">
+      <rect x="0" y="0" width="64" height="64" rx="13" fill="#1a2e6c"/>
+      <polygon points="32,7 40,24 32,32 24,24" fill="#d4a017"/>
+      <polygon points="32,57 40,40 32,32 24,40" fill="rgba(255,255,255,0.7)"/>
+      <polygon points="57,32 40,40 32,32 40,24" fill="rgba(255,255,255,0.4)"/>
+      <polygon points="7,32 24,24 32,32 24,40" fill="rgba(255,255,255,0.4)"/>
+      <circle cx="32" cy="32" r="2.5" fill="rgba(255,255,255,0.9)"/>
+    </svg>
+  </div>
+  © 2026 <strong>HebronGuide</strong> · <a href="mailto:kchurch911@gmail.com">kchurch911@gmail.com</a><br>
+  <a href="/01_HebronGuide/order-form.html">가이드 주문</a> ·
+  <a href="/01_HebronGuide/seattle/">시애틀 가이드</a> ·
+  <a href="/01_HebronGuide/share-kit.html">셰어킷</a> ·
+  <a href="/01_HebronGuide/webdesign/">웹사이트 제작</a>
 </footer>
 
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
