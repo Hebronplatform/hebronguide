@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HebronGuide — 한인 도시 정착 가이드</title>
-<meta name="description" content="미국 전역 한인 이민자·정착민을 위한 도시별 완전 가이드. 시애틀·달라스·뉴욕·내슈빌.">
+<title>HebronGuide — 글로벌 한인 도시 정착 가이드</title>
+<meta name="description" content="미국·캐나다 한인 이민자·정착민을 위한 도시별 완전 가이드. 시애틀·달라스·뉴욕·LA·밴쿠버·토론토.">
 <meta name="theme-color" content="#C9A227">
 <link rel="manifest" href="manifest.json">
 <style>
@@ -58,12 +58,56 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* CITIES */
-.section { max-width: 680px; margin: 0 auto; padding: 48px 20px; }
+.section { max-width: 780px; margin: 0 auto; padding: 48px 20px; }
 .sec-label {
   font-size: 0.62rem; letter-spacing: 3px; color: var(--gold);
   font-weight: 800; text-transform: uppercase; margin-bottom: 18px;
 }
-.city-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.city-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 560px) { .city-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 340px) { .city-grid { grid-template-columns: 1fr; } }
+
+/* ORDER PROMO */
+.promo-section { max-width: 780px; margin: 0 auto; padding: 0 20px 48px; }
+.promo-card {
+  background: linear-gradient(135deg, rgba(201,162,39,0.1), rgba(18,184,134,0.08));
+  border: 1px solid rgba(201,162,39,0.28);
+  border-radius: 22px; padding: 32px 28px; text-align: center;
+}
+.promo-icon { font-size: 2.4rem; margin-bottom: 10px; }
+.promo-title { font-size: clamp(1.1rem,3vw,1.4rem); font-weight: 900; margin-bottom: 8px; }
+.promo-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.7; max-width: 480px; margin: 0 auto 24px; }
+.promo-steps {
+  display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px;
+}
+.promo-step {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 12px; padding: 10px 14px; font-size: 0.72rem;
+  display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 90px;
+}
+.promo-step-ico { font-size: 1.3rem; }
+.promo-step-txt { color: var(--muted); font-weight: 600; }
+.promo-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.promo-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 13px 24px; border-radius: 12px;
+  font-size: 0.85rem; font-weight: 800; cursor: pointer; text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
+}
+.promo-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+.promo-btn-primary {
+  background: linear-gradient(135deg, var(--gold), #b8880f);
+  color: #0a0f1a;
+}
+.promo-btn-secondary {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text);
+}
 
 .city-card {
   background: var(--card); border: 1px solid var(--border);
@@ -147,9 +191,6 @@ footer {
 }
 footer a { color: rgba(201,162,39,0.6); }
 
-@media (max-width: 400px) {
-  .city-grid { grid-template-columns: 1fr; }
-}
 </style>
 </head>
 <body>
@@ -160,7 +201,7 @@ footer a { color: rgba(201,162,39,0.6); }
   <div class="hero-logo">HebronGuide</div>
   <p class="hero-sub">
     낯선 도시에서 처음 만나는 한인 정착 가이드<br>
-    이민자·유학생·이주자를 위한 도시별 완전 가이드
+    미국·캐나다 이민자·유학생·이주자를 위한 도시별 완전 가이드
   </p>
   <div class="hero-mission">✝ 마 28:18–20 &nbsp;·&nbsp; 시애틀에서 지구촌 땅 끝까지</div>
 </div>
@@ -224,6 +265,70 @@ footer a { color: rgba(201,162,39,0.6); }
       <div class="city-btn city-btn-soon">Coming Soon <span>—</span></div>
     </div>
 
+    <!-- LOS ANGELES — SOON -->
+    <div class="city-card soon">
+      <div class="city-card-bar" style="background:rgba(255,255,255,0.1);"></div>
+      <span class="city-badge badge-soon">준비 중</span>
+      <div class="city-name">Los Angeles</div>
+      <div class="city-name-ko">LA · 캘리포니아</div>
+      <div class="city-tags">
+        <span class="city-tag">코리아타운</span>
+        <span class="city-tag">최대 규모 한인 도시</span>
+      </div>
+      <div class="city-btn city-btn-soon">Coming Soon <span>—</span></div>
+    </div>
+
+    <!-- VANCOUVER — SOON -->
+    <div class="city-card soon">
+      <div class="city-card-bar" style="background:rgba(255,255,255,0.1);"></div>
+      <span class="city-badge badge-soon">준비 중</span>
+      <div class="city-name">Vancouver</div>
+      <div class="city-name-ko">밴쿠버 · BC 캐나다</div>
+      <div class="city-tags">
+        <span class="city-tag">🍁 캐나다</span>
+        <span class="city-tag">한인 이민자 급증</span>
+      </div>
+      <div class="city-btn city-btn-soon">Coming Soon <span>—</span></div>
+    </div>
+
+    <!-- TORONTO — SOON -->
+    <div class="city-card soon">
+      <div class="city-card-bar" style="background:rgba(255,255,255,0.1);"></div>
+      <span class="city-badge badge-soon">준비 중</span>
+      <div class="city-name">Toronto</div>
+      <div class="city-name-ko">토론토 · ON 캐나다</div>
+      <div class="city-tags">
+        <span class="city-tag">🍁 캐나다</span>
+        <span class="city-tag">노스욕 한인타운</span>
+      </div>
+      <div class="city-btn city-btn-soon">Coming Soon <span>—</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ORDER PROMO -->
+<div class="promo-section">
+  <div class="promo-card">
+    <div class="promo-icon">🗺️</div>
+    <div class="promo-title">당신의 도시에 HebronGuide를 만드세요</div>
+    <p class="promo-sub">
+      교회 개척자와 이민 커뮤니티를 위한 맞춤형 도시 정착 가이드 앱.<br>
+      QR 코드 하나로 설치 — 앱스토어 불필요. 5~7일 납품.
+    </p>
+    <div class="promo-steps">
+      <div class="promo-step"><div class="promo-step-ico">📋</div><div class="promo-step-txt">주문 신청</div></div>
+      <div class="eco-arrow" style="align-self:center;margin-top:0;">›</div>
+      <div class="promo-step"><div class="promo-step-ico">⚙️</div><div class="promo-step-txt">맞춤 제작</div></div>
+      <div class="eco-arrow" style="align-self:center;margin-top:0;">›</div>
+      <div class="promo-step"><div class="promo-step-ico">📱</div><div class="promo-step-txt">QR 납품</div></div>
+      <div class="eco-arrow" style="align-self:center;margin-top:0;">›</div>
+      <div class="promo-step"><div class="promo-step-ico">🏘️</div><div class="promo-step-txt">커뮤니티 확산</div></div>
+    </div>
+    <div class="promo-btns">
+      <a href="/01_HebronGuide/order-form.html" class="promo-btn promo-btn-primary">✍️ 가이드 주문하기</a>
+      <a href="/share-kit.html" class="promo-btn promo-btn-secondary">📦 목회자 셰어킷</a>
+    </div>
   </div>
 </div>
 
