@@ -315,7 +315,18 @@
 
 <!-- HEADER -->
 <header>
-  <a href="https://hebronguide.com" class="logo"><img src="hebronguide-logo.svg" alt="HebronGuide" style="height:36px;width:auto;vertical-align:middle;opacity:0.95;"></a>
+  <a href="https://hebronguide.com" class="logo" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+    <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="opacity:0.9;flex-shrink:0;">
+      <rect x="0" y="0" width="64" height="64" rx="13" fill="#1a2e6c"/>
+      <circle cx="32" cy="32" r="28" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+      <polygon points="32,7 40,24 32,32 24,24" fill="#d4a017"/>
+      <polygon points="32,57 40,40 32,32 24,40" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="57,32 40,40 32,32 40,24" fill="rgba(255,255,255,0.52)"/>
+      <polygon points="7,32 24,24 32,32 24,40" fill="rgba(255,255,255,0.52)"/>
+      <circle cx="32" cy="32" r="2.5" fill="rgba(255,255,255,0.95)"/>
+    </svg>
+    <span style="color:#fff;font-weight:800;font-size:1.1rem;letter-spacing:.02em;">HebronGuide</span>
+  </a>
   <div class="lang-row">
     <button class="lang-btn on" onclick="lang('en')" id="ben">English</button>
     <div class="lang-dropdown" id="lang-dd">
