@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>HebronGuide Nashville — 내쉬빌 한인 가이드</title>
+<meta name="description" content="내쉬빌·테네시 한인을 위한 정착·생활·커뮤니티 가이드 | HebronGuide">
+<meta name="theme-color" content="#C084FC">
+<style>
+:root{
+  --bg:#0d0814;--surface:#180d22;--accent:#C084FC;--accent2:#d8a8ff;
+  --text:rgba(255,255,255,0.93);--muted:rgba(255,255,255,0.45);--border:rgba(255,255,255,0.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;border:none;background:none;font-family:inherit;color:inherit;}
+#home{min-height:100vh;max-width:480px;margin:0 auto;padding:0 0 60px;}
+
+.status-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 20px 8px;}
+.status-lang{display:flex;gap:4px;background:rgba(255,255,255,0.08);border-radius:20px;padding:3px;}
+.slang{padding:3px 10px;border-radius:16px;font-size:0.7rem;font-weight:700;color:var(--muted);transition:all .2s;}
+.slang.on{background:var(--accent);color:#0e0816;}
+
+.city-switcher{display:flex;gap:6px;overflow-x:auto;padding:6px 16px 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.city-switcher::-webkit-scrollbar{display:none;}
+.cs-city{flex-shrink:0;padding:5px 12px;border-radius:20px;font-size:0.72rem;font-weight:700;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.45);transition:all .2s;white-space:nowrap;}
+.cs-city.active{background:rgba(192,132,252,0.15);border-color:var(--accent);color:var(--accent);}
+.cs-city:not(.active):hover{border-color:rgba(255,255,255,0.22);color:rgba(255,255,255,0.8);}
+
+.hero-card{margin:4px 16px 0;background:linear-gradient(135deg,#1a0a2e 0%,#2d1248 50%,#1a0a2e 100%);border-radius:20px;padding:26px 22px 20px;position:relative;overflow:hidden;}
+.hero-emoji{position:absolute;right:14px;top:10px;font-size:5rem;opacity:0.13;pointer-events:none;line-height:1;}
+.hero-back{font-size:0.75rem;color:rgba(255,255,255,0.55);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.hero-back a{color:var(--accent);font-weight:700;}
+.hero-city-label{font-size:0.68rem;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.5);margin-bottom:5px;}
+.hero-title{font-size:1.65rem;font-weight:900;line-height:1.15;margin-bottom:10px;letter-spacing:-0.3px;}
+.hero-title em{font-style:normal;color:var(--accent);}
+.hero-sub{font-size:0.8rem;color:rgba(255,255,255,0.7);margin-bottom:14px;line-height:1.5;}
+.hero-pills{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px;}
+.pill{background:rgba(255,255,255,0.12);border-radius:20px;padding:4px 10px;font-size:0.7rem;font-weight:600;}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.hst{background:rgba(255,255,255,0.09);border-radius:10px;padding:9px 6px;text-align:center;}
+.hst-n{font-size:1rem;font-weight:900;color:var(--accent);}
+.hst-l{font-size:0.6rem;color:rgba(255,255,255,0.6);margin-top:2px;line-height:1.3;}
+
+.cs-banner{margin:12px 16px;background:rgba(192,132,252,0.06);border:1px solid rgba(192,132,252,0.2);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;}
+.cs-banner-icon{font-size:1.6rem;flex-shrink:0;}
+.cs-title{font-size:0.8rem;font-weight:800;color:rgba(210,168,255,0.9);margin-bottom:3px;}
+.cs-sub{font-size:0.7rem;color:var(--muted);}
+
+.sec-label{padding:16px 20px 8px;font-size:0.65rem;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.3);}
+.app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 16px;}
+.app-icon{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:13px 6px;text-align:center;cursor:pointer;transition:all .2s;position:relative;}
+.app-icon:hover{background:rgba(255,255,255,0.08);transform:translateY(-2px);}
+.app-icon:active{transform:scale(0.95);}
+.ai-icon{font-size:1.5rem;margin-bottom:5px;}
+.ai-label{font-size:0.6rem;font-weight:700;color:var(--muted);line-height:1.3;}
+.soon-dot{position:absolute;top:6px;right:6px;width:5px;height:5px;background:rgba(192,132,252,0.6);border-radius:50%;}
+
+.city-footer{margin:20px 16px 10px;padding:18px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;text-align:center;}
+.cf-network{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px;}
+.cf-link{font-size:0.68rem;color:var(--muted);padding:3px 10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:10px;}
+.cf-link.active{color:var(--accent);border-color:rgba(192,132,252,0.3);background:rgba(192,132,252,0.08);}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(20,12,30,0.96);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:11px 20px;font-size:0.8rem;color:rgba(255,255,255,0.9);opacity:0;transition:all .3s;z-index:999;white-space:nowrap;backdrop-filter:blur(10px);}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+[data-en]{display:none;}body.en [data-ko]{display:none;}body.en [data-en]{display:unset;}
+</style>
+</head>
+<body>
+<div id="home">
+
+  <div class="status-bar">
+    <a href="../index.html" style="display:flex;align-items:center;gap:7px;">
+      <svg width="26" height="26" viewBox="0 0 64 64"><rect x="0" y="0" width="64" height="64" rx="13" fill="#0a4a22"/><polygon points="32,7 40,24 32,32 24,24" fill="#d4a017"/><polygon points="32,57 40,40 32,32 24,40" fill="rgba(255,255,255,0.82)"/><polygon points="57,32 40,40 32,32 40,24" fill="rgba(255,255,255,0.45)"/><polygon points="7,32 24,24 32,32 24,40" fill="rgba(255,255,255,0.45)"/><circle cx="32" cy="32" r="2.5" fill="rgba(255,255,255,0.95)"/></svg>
+      <span style="font-size:0.75rem;font-weight:800;color:rgba(255,255,255,0.55);">HebronGuide</span>
+    </a>
+    <div class="status-lang">
+      <button class="slang on" onclick="setLang('ko')">한국어</button>
+      <button class="slang" onclick="setLang('en')">English</button>
+    </div>
+  </div>
+
+  <div class="city-switcher">
+    <a class="cs-city" href="/seattle/">🌲 시애틀</a>
+    <a class="cs-city" href="/dallas/">⭐ 달라스</a>
+    <a class="cs-city" href="/sf/">🌉 SF</a>
+    <a class="cs-city" href="/newyork/">🗽 뉴욕</a>
+    <a class="cs-city active" href="/nashville/">🎵 내쉬빌</a>
+  </div>
+
+  <div class="hero-card">
+    <div class="hero-emoji">🎵</div>
+    <div class="hero-back"><a href="../index.html">← HebronGuide</a> › Nashville</div>
+    <div class="hero-city-label">NASHVILLE · TENNESSEE STATE</div>
+    <div class="hero-title">
+      <span data-ko>내쉬빌<br><em>한인 완전 가이드</em></span>
+      <span data-en>Nashville<br><em>Korean Life Guide</em></span>
+    </div>
+    <p class="hero-sub">
+      <span data-ko>음악의 도시 내쉬빌 한인을 위한 정착·생활·커뮤니티 가이드</span>
+      <span data-en>Settlement & life guide for Koreans in Nashville, Music City</span>
+    </p>
+    <div class="hero-pills">
+      <span class="pill">🎵 음악의 도시 Music City</span>
+      <span class="pill">🏥 헬스케어 산업 중심</span>
+      <span class="pill">🚫 No State Income Tax</span>
+      <span class="pill">📈 한인 이주 급증</span>
+    </div>
+    <div class="hero-stats">
+      <div class="hst"><div class="hst-n">1만+</div><div class="hst-l" data-ko>테네시 한인</div><div class="hst-l" data-en>Koreans in TN</div></div>
+      <div class="hst"><div class="hst-n">16</div><div class="hst-l" data-ko>가이드 섹션</div><div class="hst-l" data-en>Sections</div></div>
+      <div class="hst"><div class="hst-n">0%</div><div class="hst-l" data-ko>주 소득세</div><div class="hst-l" data-en>State Tax</div></div>
+      <div class="hst"><div class="hst-n">🚀</div><div class="hst-l" data-ko>급성장 도시</div><div class="hst-l" data-en>Fast Rising</div></div>
+    </div>
+  </div>
+
+  <div class="cs-banner">
+    <div class="cs-banner-icon">🚧</div>
+    <div>
+      <div class="cs-title" data-ko>내쉬빌 가이드 콘텐츠 준비 중</div>
+      <div class="cs-title" data-en>Nashville Guide — Content Coming Soon</div>
+      <div class="cs-sub" data-ko>섹션별로 순차 업데이트합니다. 곧 완성됩니다!</div>
+      <div class="cs-sub" data-en>Building section by section. Stay tuned!</div>
+    </div>
+  </div>
+
+  <div class="sec-label" data-ko>정착 & 생활</div>
+  <div class="sec-label" data-en>SETTLEMENT & LIFE</div>
+  <div class="app-grid">
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">📋</div><div class="ai-label" data-ko>정착가이드</div><div class="ai-label" data-en>Settle</div></div>
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">🏘️</div><div class="ai-label" data-ko>지역안내</div><div class="ai-label" data-en>Areas</div></div>
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">🛍️</div><div class="ai-label" data-ko>한인상권</div><div class="ai-label" data-en>K-Biz</div></div>
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">⛪</div><div class="ai-label" data-ko>한인교회</div><div class="ai-label" data-en>Church</div></div>
+  </div>
+  <div class="app-grid" style="margin-top:8px;">
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">🎓</div><div class="ai-label" data-ko>교육·학군</div><div class="ai-label" data-en>Education</div></div>
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">💼</div><div class="ai-label" data-ko>취업정보</div><div class="ai-label" data-en>Jobs</div></div>
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">🏥</div><div class="ai-label" data-ko>건강·병원</div><div class="ai-label" data-en>Health</div></div>
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">🚌</div><div class="ai-label" data-ko>교통</div><div class="ai-label" data-en>Transit</div></div>
+  </div>
+
+  <div class="sec-label" style="margin-top:14px;" data-ko>재정 & 안전</div>
+  <div class="sec-label" style="margin-top:14px;" data-en>FINANCE & SAFETY</div>
+  <div class="app-grid">
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">💰</div><div class="ai-label" data-ko>생활비</div><div class="ai-label" data-en>Cost</div></div>
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">🛡️</div><div class="ai-label" data-ko>안전정보</div><div class="ai-label" data-en>Safety</div></div>
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">👥</div><div class="ai-label" data-ko>커뮤니티</div><div class="ai-label" data-en>Community</div></div>
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">🚨</div><div class="ai-label" data-ko>긴급연락</div><div class="ai-label" data-en>SOS</div></div>
+  </div>
+
+  <div class="sec-label" style="margin-top:14px;" data-ko>라이프스타일</div>
+  <div class="sec-label" style="margin-top:14px;" data-en>LIFESTYLE</div>
+  <div class="app-grid">
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">☕</div><div class="ai-label" data-ko>카페·디저트</div><div class="ai-label" data-en>Cafes</div></div>
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">🍜</div><div class="ai-label" data-ko>한식당</div><div class="ai-label" data-en>K-Food</div></div>
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">🌿</div><div class="ai-label" data-ko>나들이·여가</div><div class="ai-label" data-en>Outdoors</div></div>
+    <div class="app-icon" onclick="showToast()"><div class="soon-dot"></div><div class="ai-icon">🌐</div><div class="ai-label" data-ko>글로벌 연결</div><div class="ai-label" data-en>Global</div></div>
+  </div>
+
+  <div class="city-footer">
+    <div style="font-size:0.75rem;font-weight:900;color:rgba(255,255,255,0.5);">🌐 HebronGuide Network</div>
+    <p style="font-size:0.68rem;color:var(--muted);margin:6px 0 0;" data-ko>미국·캐나다 한인 도시 가이드 네트워크</p>
+    <p style="font-size:0.68rem;color:var(--muted);margin:6px 0 0;" data-en>Korean City Guide Network — USA & Canada</p>
+    <div class="cf-network">
+      <a class="cf-link" href="/seattle/">🌲 시애틀</a>
+      <a class="cf-link" href="/dallas/">⭐ 달라스</a>
+      <a class="cf-link" href="/sf/">🌉 SF</a>
+      <a class="cf-link" href="/newyork/">🗽 뉴욕</a>
+      <a class="cf-link active" href="/nashville/">🎵 내쉬빌</a>
+    </div>
+    <p style="font-size:0.62rem;color:rgba(255,255,255,0.2);margin-top:14px;">© 2026 HebronGuide · <a href="mailto:kchurch911@gmail.com" style="color:rgba(192,132,252,0.4);">kchurch911@gmail.com</a></p>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">
+  <span data-ko>🚧 내쉬빌 가이드 준비 중입니다. 곧 완성됩니다!</span>
+  <span data-en>🚧 Nashville guide coming soon. Stay tuned!</span>
+</div>
+
+<script>
+function setLang(l){document.body.classList.toggle('en',l==='en');document.querySelectorAll('.slang').forEach(b=>b.classList.remove('on'));document.querySelector('.slang:'+(l==='ko'?'first':'last')+'-child').classList.add('on');}
+let _t;function showToast(){const t=document.getElementById('toast');t.classList.add('show');clearTimeout(_t);_t=setTimeout(()=>t.classList.remove('show'),2800);}
+</script>
+</body>
+</html>
