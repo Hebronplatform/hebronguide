@@ -6082,6 +6082,7 @@ document.addEventListener('DOMContentLoaded', () => {
   for (let i = 1; i <= CK_TOTAL; i++) updateCheckItem('c' + String(i).padStart(2, '0'));
   updateCheckProgress();
   loadWeather();
+  setInterval(loadWeather, 10 * 60 * 1000); // 10분마다 날씨 자동 갱신
 });
 
 // ===== SERVICE WORKER =====
