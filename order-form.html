@@ -634,37 +634,37 @@
 
   <!-- ③' 기관 정보 -->
   <div class="sec-head org-sec">
-    <span class="ico">🏢</span>
-    <h2 id="s3hg">기관 정보</h2>
+    <span class="ico">🤝</span>
+    <h2 id="s3hg">선교기관 정보</h2>
   </div>
   <div class="sec-body">
 
     <div class="field">
-      <label class="lbl" for="org-name"><span id="f-org-name">기관명 / 상호명</span> <span class="req">*</span></label>
-      <input type="text" id="org-name" name="org_name" placeholder="예: 시애틀한인상공회의소, 한인마트, 이민법무법인">
+      <label class="lbl" for="org-name"><span id="f-org-name">선교기관명</span> <span class="req">*</span></label>
+      <input type="text" id="org-name" name="org_name" placeholder="예: 시애틀한인선교회, 이민자사역원, 디아스포라네트워크">
       <div class="err" id="e-org-name">⚠ <span id="e-org-name-t">기관명을 입력해 주세요.</span></div>
     </div>
 
     <div class="field field-row">
       <div>
-        <label class="lbl" for="org-type"><span id="f-org-type">업종 / 유형</span> <span class="req">*</span></label>
+        <label class="lbl" for="org-type"><span id="f-org-type">기관 유형</span> <span class="req">*</span></label>
         <select id="org-type" name="org_type">
           <option value="">-- 선택 --</option>
-          <option id="ot1">식당 / 카페</option>
-          <option id="ot2">마트 / 식품점</option>
-          <option id="ot3">부동산</option>
-          <option id="ot4">보험</option>
-          <option id="ot5">CPA / 세무</option>
-          <option id="ot6">의료 / 치과 / 한의원</option>
-          <option id="ot7">교육 / 학원</option>
-          <option id="ot8">미용 / 스파</option>
-          <option id="ot9">법률 / 이민법</option>
+          <option id="ot1">선교단체</option>
+          <option id="ot2">이민자 사역</option>
+          <option id="ot3">교육 · 신학 사역</option>
+          <option id="ot4">의료 · 구제 사역</option>
+          <option id="ot5">청소년 · 청년 사역</option>
+          <option id="ot6">여성 · 가정 사역</option>
+          <option id="ot7">기도 사역</option>
+          <option id="ot8">훈련 · 제자도</option>
+          <option id="ot9">디아스포라 네트워크</option>
           <option id="ot10">비영리 단체</option>
-          <option id="ot11">커뮤니티 단체</option>
-          <option id="ot12">정부 / 공공기관</option>
+          <option id="ot11">한인 커뮤니티 단체</option>
+          <option id="ot12">신학교 · 훈련원</option>
           <option id="ot13">기타</option>
         </select>
-        <div class="err" id="e-org-type">⚠ <span id="e-org-type-t">업종을 선택해 주세요.</span></div>
+        <div class="err" id="e-org-type">⚠ <span id="e-org-type-t">기관 유형을 선택해 주세요.</span></div>
       </div>
       <div>
         <label class="lbl" for="org-addr"><span id="f-org-addr">주소</span> <span class="opt">(선택)</span></label>
@@ -1110,15 +1110,15 @@ const T = {
     fSns:"SNS 링크", fYoutube:"YouTube",
     fContact:"담당자 이름",
     tabChurch:"교회용", tabGeneral:"선교기관용",
-    s3hg:"기관 정보",
-    fOrgName:"기관명 / 상호명", eOrgName:"기관명을 입력해 주세요.",
-    fOrgType:"업종 / 유형", eOrgType:"업종을 선택해 주세요.",
+    s3hg:"선교기관 정보",
+    fOrgName:"선교기관명", eOrgName:"기관명을 입력해 주세요.",
+    fOrgType:"기관 유형", eOrgType:"기관 유형을 선택해 주세요.",
     fOrgAddr:"주소", fOrgWeb:"웹사이트",
     fOrgTag:"한 줄 소개", fOrgTagH:"(가이드에 표시, 50자 이내)",
     fOrgSns:"SNS 링크", fOrgYt:"YouTube",
-    ot1:"식당 / 카페", ot2:"마트 / 식품점", ot3:"부동산", ot4:"보험", ot5:"CPA / 세무",
-    ot6:"의료 / 치과 / 한의원", ot7:"교육 / 학원", ot8:"미용 / 스파", ot9:"법률 / 이민법",
-    ot10:"비영리 단체", ot11:"커뮤니티 단체", ot12:"정부 / 공공기관", ot13:"기타",
+    ot1:"선교단체", ot2:"이민자 사역", ot3:"교육 · 신학 사역", ot4:"의료 · 구제 사역", ot5:"청소년 · 청년 사역",
+    ot6:"여성 · 가정 사역", ot7:"기도 사역", ot8:"훈련 · 제자도", ot9:"디아스포라 네트워크",
+    ot10:"비영리 단체", ot11:"한인 커뮤니티 단체", ot12:"신학교 · 훈련원", ot13:"기타",
     wbTitle:"🌐 홈페이지가 없으신가요?",
     wbBody:"처음 만드시거나 새단장을 원하시는 분도 환영합니다.\nHebronGuide 팀이 함께합니다.",
     wbBtn:"✉️ 문의하기"
@@ -1177,15 +1177,15 @@ const T = {
     fSns:"SNS link", fYoutube:"YouTube",
     fContact:"Contact Name",
     tabChurch:"For Churches", tabGeneral:"For Mission Orgs",
-    s3hg:"Organization Info",
-    fOrgName:"Organization / Business Name", eOrgName:"Please enter the organization name.",
-    fOrgType:"Type / Category", eOrgType:"Please select a category.",
+    s3hg:"Mission Organization Info",
+    fOrgName:"Mission Org Name", eOrgName:"Please enter the organization name.",
+    fOrgType:"Organization Type", eOrgType:"Please select a type.",
     fOrgAddr:"Address", fOrgWeb:"Website",
     fOrgTag:"One-line description", fOrgTagH:"(shown in guide, max 50 chars)",
     fOrgSns:"SNS link", fOrgYt:"YouTube",
-    ot1:"Restaurant / Café", ot2:"Grocery / Market", ot3:"Real Estate", ot4:"Insurance", ot5:"CPA / Tax",
-    ot6:"Medical / Dental", ot7:"Education / Tutoring", ot8:"Beauty / Spa", ot9:"Legal / Immigration Law",
-    ot10:"Nonprofit", ot11:"Community Organization", ot12:"Government / Public Agency", ot13:"Other",
+    ot1:"Mission Organization", ot2:"Immigrant Ministry", ot3:"Education & Theological Ministry", ot4:"Medical & Relief Ministry", ot5:"Youth Ministry",
+    ot6:"Women & Family Ministry", ot7:"Prayer Ministry", ot8:"Training & Discipleship", ot9:"Diaspora Network",
+    ot10:"Nonprofit", ot11:"Korean Community Organization", ot12:"Seminary / Training Center", ot13:"Other",
     wbTitle:"🌐 Need a website?",
     wbBody:"Whether it's your first or a redesign — we're here to help.\nHebronGuide team has you covered.",
     wbBtn:"✉️ Contact Us"
