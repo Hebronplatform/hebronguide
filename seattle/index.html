@@ -5990,27 +5990,29 @@ async function loadWeather() {
     document.getElementById('w-icon').textContent = icon;
     document.getElementById('w-temp').textContent = `${tempF}°F / ${tempC}°C`;
     document.getElementById('w-desc').innerHTML = `<span data-ko>${desc.split(' ')[0]}</span><span data-en style="display:none;">${desc.split(' ').slice(1).join(' ')||desc}</span>`;
-    document.getElementById('w-detail').innerHTML = `💨 ${wind} mph<br><span id="seattle-clock" style="font-size:0.64rem;color:rgba(255,255,255,0.45);letter-spacing:0.01em;"></span>`;
+    document.getElementById('w-detail').innerHTML = `💨 ${wind} mph<br><span id="seattle-clock" style="font-size:0.64rem;color:rgba(255,255,255,0.45);letter-spacing:0.01em;display:block;"></span><span id="korea-clock" style="font-size:0.64rem;color:rgba(255,255,255,0.3);letter-spacing:0.01em;display:block;margin-top:1px;"></span>`;
     document.getElementById('weather-widget').style.display = 'flex';
     startSeattleClock();
   } catch(e) {}
 }
 
 function startSeattleClock() {
-  function tick() {
-    const el = document.getElementById('seattle-clock');
-    if (!el) return;
+  function fmt(tz) {
     const now = new Date();
-    const datePart = new Intl.DateTimeFormat('ko-KR', {
-      timeZone: 'America/Los_Angeles',
-      year: 'numeric', month: '2-digit', day: '2-digit'
+    const d = new Intl.DateTimeFormat('ko-KR', {
+      timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit'
     }).format(now);
-    const timePart = new Intl.DateTimeFormat('ko-KR', {
-      timeZone: 'America/Los_Angeles',
-      hour: '2-digit', minute: '2-digit', second: '2-digit',
-      hour12: false
+    const t = new Intl.DateTimeFormat('ko-KR', {
+      timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
     }).format(now);
-    el.textContent = `시애틀 ${datePart} ${timePart}`;
+    return `${d} ${t}`;
+  }
+  function tick() {
+    const s = document.getElementById('seattle-clock');
+    const k = document.getElementById('korea-clock');
+    if (!s || !k) return;
+    s.textContent = `🇺🇸 시애틀 ${fmt('America/Los_Angeles')}`;
+    k.textContent = `🇰🇷 한국  ${fmt('Asia/Seoul')}`;
   }
   tick();
   clearInterval(window._seattleClockTimer);
