@@ -21,6 +21,7 @@ import sys
 import time
 import requests
 from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 HTML_PATH = "seattle/index.html"
 CURRENT_YEAR = datetime.now().year
@@ -97,7 +98,7 @@ SKIP_DOMAINS = [
     "cdnjs.cloudflare.com", "api.open-meteo.com",
 ]
 
-def is_url_alive(url, timeout=12):
+def is_url_alive(url, timeout=7):
     headers = {"User-Agent": "Mozilla/5.0 (compatible; HebronGuideBot/1.0)"}
     try:
         r = requests.head(url, timeout=timeout, allow_redirects=True, headers=headers)
@@ -117,16 +118,21 @@ def extract_urls(html):
 
 
 def check_all_urls(html):
-    """전체 URL 점검 → {url: bool} 딕셔너리 반환."""
+    """전체 URL 병렬 점검 → {url: bool} 딕셔너리 반환 (20개 동시 처리)."""
     urls = extract_urls(html)
-    log(f"\n🔍 외부 링크 {len(urls)}개 점검 중...")
+    total = len(urls)
+    log(f"\n🔍 외부 링크 {total}개 병렬 점검 중 (20개 동시)...")
     results = {}
-    for i, url in enumerate(urls, 1):
-        alive = is_url_alive(url)
-        results[url] = alive
-        status = "✅" if alive else "❌"
-        log(f"  {status} [{i:>3}/{len(urls)}] {url[:70]}")
-        time.sleep(0.3)  # 서버 과부하 방지
+    completed = 0
+    with ThreadPoolExecutor(max_workers=20) as executor:
+        future_to_url = {executor.submit(is_url_alive, url): url for url in urls}
+        for future in as_completed(future_to_url):
+            url = future_to_url[future]
+            alive = future.result()
+            results[url] = alive
+            completed += 1
+            status = "✅" if alive else "❌"
+            log(f"  {status} [{completed:>3}/{total}] {url[:70]}")
     return results
 
 
