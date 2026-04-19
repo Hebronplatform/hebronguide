@@ -48,6 +48,7 @@ jobs:
             git config user.email "bot@hebronguide.com"
             git add seattle/index.html
             git commit -m "🤖 자동 업데이트: $(date +'%Y년') 연간 정보 갱신 [skip ci]"
+            git pull --rebase origin main   # 실행 중 생긴 충돌 방지
             git push
             echo "✅ 변경사항 자동 커밋 완료"
           else
