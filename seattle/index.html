@@ -657,7 +657,7 @@ body.en [data-ko].blk { display: none !important; }
   <div class="app-grid">
     <div class="app-icon" onclick="openApp('food')">
       <div class="app-icon-img ic-food">🍽️</div>
-      <div class="app-name"><span data-ko>맛집·카페</span><span data-en>Dining+Café</span></div>
+      <div class="app-name"><span data-ko>카페·맛집</span><span data-en>Café+Dining</span></div>
     </div>
     <div class="app-icon" onclick="openApp('nature')">
       <div class="app-icon-img ic-nature">🌲</div>
@@ -3097,11 +3097,18 @@ body.en [data-ko].blk { display: none !important; }
 <div class="app-overlay" id="app-food">
   <div class="app-header" style="background:linear-gradient(135deg,#2e1200,#1a0a00)">
     <button class="app-back" onclick="closeApp('food')">🏠</button>
-    <div class="app-header-title">🍽️ <span data-ko>맛집·카페</span><span data-en>Dining & Cafés</span></div>
+    <div class="app-header-title">☕🍽️ <span data-ko>카페·맛집</span><span data-en>Cafés & Dining</span></div>
     <div class="app-header-right"></div>
   </div>
   <div class="tab-bar" style="background:#1a0a00">
-    <button class="tab-btn on" onclick="sTab(this,'fd-korean')"><span data-ko>한식</span><span data-en>Korean Food</span></button>
+    <button class="tab-btn on" onclick="sTab(this,'cf-korean')"><span data-ko>☕ 한인카페</span><span data-en>☕ Korean Cafés</span></button>
+    <button class="tab-btn" onclick="sTab(this,'cf-seattle')"><span data-ko>시애틀 카페</span><span data-en>Seattle Cafés</span></button>
+    <button class="tab-btn" onclick="sTab(this,'cf-north')"><span data-ko>린우드 카페</span><span data-en>Lynnwood Cafés</span></button>
+    <button class="tab-btn" onclick="sTab(this,'cf-multi')"><span data-ko>다민족카페</span><span data-en>World Cafés</span></button>
+    <button class="tab-btn" onclick="sTab(this,'cf-dessert')"><span data-ko>디저트·버블티</span><span data-en>Desserts & Boba</span></button>
+    <button class="tab-btn" onclick="sTab(this,'cf-southeast')"><span data-ko>동남아·에티오피아</span><span data-en>SE Asian & Ethiopian</span></button>
+    <div style="width:1px;background:rgba(255,255,255,0.2);margin:6px 4px;flex-shrink:0;align-self:stretch;"></div>
+    <button class="tab-btn" onclick="sTab(this,'fd-korean')"><span data-ko>한식</span><span data-en>Korean Food</span></button>
     <button class="tab-btn" onclick="sTab(this,'fd-bites')"><span data-ko>치킨·분식</span><span data-en>Chicken & Snacks</span></button>
     <button class="tab-btn" onclick="sTab(this,'fd-buffet')"><span data-ko>뷔페</span><span data-en>Buffet</span></button>
     <button class="tab-btn" onclick="sTab(this,'fd-local')"><span data-ko>현지음식</span><span data-en>Local Eats</span></button>
@@ -3110,14 +3117,307 @@ body.en [data-ko].blk { display: none !important; }
     <button class="tab-btn" onclick="sTab(this,'fd-western')"><span data-ko>미식·서양</span><span data-en>American/Western</span></button>
     <button class="tab-btn" onclick="sTab(this,'fd-thai')"><span data-ko>동남아</span><span data-en>SE Asian</span></button>
     <button class="tab-btn" onclick="sTab(this,'fd-indian')"><span data-ko>인도·중동</span><span data-en>Indian</span></button>
-    <button class="tab-btn" onclick="sTab(this,'cf-korean')"><span data-ko>☕ 한인카페</span><span data-en>☕ Korean Cafés</span></button>
-    <button class="tab-btn" onclick="sTab(this,'cf-seattle')"><span data-ko>시애틀 카페</span><span data-en>Seattle Cafés</span></button>
-    <button class="tab-btn" onclick="sTab(this,'cf-north')"><span data-ko>린우드 카페</span><span data-en>Lynnwood Cafés</span></button>
-    <button class="tab-btn" onclick="sTab(this,'cf-multi')"><span data-ko>다민족카페</span><span data-en>World Cafés</span></button>
-    <button class="tab-btn" onclick="sTab(this,'cf-dessert')"><span data-ko>디저트·버블티</span><span data-en>Desserts & Boba</span></button>
-    <button class="tab-btn" onclick="sTab(this,'cf-southeast')"><span data-ko>동남아·에티오피아</span><span data-en>SE Asian & Ethiopian</span></button>
   </div>
   <div class="app-content">
+    <section id="cf-korean">
+      <div class="sec-head" data-ko>🇰🇷 한인 카페 & 베이커리</div>
+      <div class="sec-head" data-en>🇰🇷 Korean Cafés & Bakeries</div>
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Paris Baguette (Lynnwood · Bellevue)</div>
+        <div class="ccard-body"><span data-ko>한국식 베이커리 프랜차이즈. 케이크·빵·음료. 린우드·벨뷰 지점. 한국의 맛 그대로.</span><span data-en>Korean-style bakery franchise. Cakes, breads, drinks. Lynnwood & Bellevue locations. Tastes like Korea.</span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.parisbaguette.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 <span data-ko>공식 웹사이트</span><span data-en>Official Website</span></a>
+        </div>
+      </div>
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Café Bora (Seattle)</div>
+        <div class="ccard-body"><span data-ko>한국 감성 카페. 인스타그램 핫플. 꽃·분위기 좋은 인테리어. Capitol Hill 인근.</span><span data-en>Korean-aesthetic café. Instagram hotspot. Beautiful floral interior. Near Capitol Hill.</span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.cafebora.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 cafebora.com</a>
+        </div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title" data-ko>한인 운영 버블티·타피오카</div>
+        <div class="ccard-title" data-en>Korean-run Bubble Tea Shops</div>
+        <div class="ccard-body"><span data-ko>Tiger Sugar, Kung Fu Tea 등 아시안 버블티 체인. 린우드·벨뷰·U District 다수 위치.</span><span data-en>Tiger Sugar, Kung Fu Tea and other Asian bubble tea chains. Multiple locations in Lynnwood, Bellevue & U District.</span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:10px;">
+          <a href="https://www.tigersugar.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Tiger Sugar</a>
+          <a href="https://www.kungfutea.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Kung Fu Tea</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">🍵 Sip House · Bellevue (Factoria)</div>
+        <div class="ccard-body"><span data-ko>벨뷰 한인 감성 카페 1위. ⭐ 4.8 (Google, 380+ 리뷰). 아인슈페너·바닐라라떼·말차 시그니처 음료. 인테리어 세련, 스터디·미팅 공간으로 인기. 현지 한인이 가장 많이 찾는 이스트사이드 카페.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 996-8218 · 🕐 월~금 8am–7pm / 토~일 9am–7pm · 📍 4020 Factoria Blvd SE Ste B, Bellevue</span></span><span data-en>Bellevue's #1 Korean-aesthetic café. ⭐ 4.8 (Google, 380+ reviews). Signature einspänner, vanilla latte & matcha. Sleek interior, popular for study & meetings. Most-visited Eastside Korean café.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 996-8218 · 🕐 Mon–Fri 8am–7pm / Sat–Sun 9am–7pm · 📍 4020 Factoria Blvd SE Ste B, Bellevue</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.siphousecafe.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 siphousecafe.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">☕ Kafe Neo · Lynnwood</div>
+        <div class="ccard-body"><span data-ko>린우드 한인 카페 1위. ⭐ 4.7 (Google, 290+ 리뷰). 아인슈페너·크로플·버블라떼 시그니처. 감성적인 한국식 인테리어. 린우드 한인 밀집 지역 핵심 카페. 주말 인스타그램 인증샷 명소.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 775-7155 · 🕐 매일 9am–7pm · 📍 19019 33rd Ave W Ste A, Lynnwood</span></span><span data-en>Lynnwood's #1 Korean café. ⭐ 4.7 (Google, 290+ reviews). Signature einspänner, croffle & bubble latte. Korean-style aesthetic. Heart of Lynnwood's Korean community. Weekend Instagram hotspot.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 775-7155 · 🕐 Daily 9am–7pm · 📍 19019 33rd Ave W Ste A, Lynnwood</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.instagram.com/kafe.neo/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Instagram @kafe.neo</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">🍧 Snowy Village · Lynnwood / Bellevue</div>
+        <div class="ccard-body"><span data-ko>한국식 설빙·빙수 전문 디저트 카페. ⭐ 4.4 (Google). 딸기·망고·연유 눈꽃 빙수. 한국 여름 필수 디저트. 린우드·벨뷰 2개 지점. 한인 가족 외식 후 디저트 코스 단골.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 776-9900 (린우드) · 🕐 매일 12pm–10pm · 📍 린우드·벨뷰 지점</span></span><span data-en>Korean bingsu (shaved ice dessert) specialty café. ⭐ 4.4 (Google). Strawberry, mango & milk snow bingsu. Essential Korean summer dessert experience. Lynnwood & Bellevue locations. Post-dinner dessert staple for Korean families.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 776-9900 (Lynnwood) · 🕐 Daily 12pm–10pm · 📍 Lynnwood & Bellevue locations</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.snowyvillageusa.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 snowyvillageusa.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">☕ Gong Cha · 공차 (Lynnwood / Bellevue / Seattle)</div>
+        <div class="ccard-body"><span data-ko>대만 글로벌 버블티 프랜차이즈. 한국에서도 익숙한 공차. 당도·얼음 완전 조절 가능. ⭐ 4.3 (Google). 린우드·벨뷰·다운타운 등 다수 지점 운영.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 보통 11am–10pm · 📍 린우드·벨뷰·다운타운 등</span></span><span data-en>Taiwanese global bubble tea franchise, well-known in Korea. Fully customizable sugar & ice levels. ⭐ 4.3 (Google). Lynnwood, Bellevue & Downtown locations.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 Usually 11am–10pm · 📍 Lynnwood, Bellevue, Downtown & more</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://gongchausa.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 gongchausa.com</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="cf-top10" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🏆 카페 전체 TOP 10 — 현지 리뷰 기준</div>
+      <div class="sec-head" data-en>🏆 Café Overall TOP 10 — By Local Reviews</div>
+      <div class="ccard" style="border-left-color:#D97706;background:linear-gradient(135deg,rgba(45,26,0,0.15),rgba(45,26,0,0.08));">
+        <div class="ccard-title">🏆 시애틀 메트로 카페 TOP 10</div>
+        <div class="ccard-body">
+          <span data-ko>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">🥇 <strong>1위</strong> — Lighthouse Roasters (Fremont) ⭐ 4.7 · 1993년 핸드 로스팅 전통, 스페셜티 커피 시애틀 최고</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">🥈 <strong>2위</strong> — Victrola Coffee Roasters (Capitol Hill) ⭐ 4.4 · 2000년 창업 시애틀 대표 로스터리, 커피 투어 필수</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">🥉 <strong>3위</strong> — Sip House (Bellevue) ⭐ 4.8 · 한인 감성 벨뷰 카페 1위, 아인슈페너·말차 라떼</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">4위 — Fuji Bakery (International District) ⭐ 4.7 · 일본식 크루아상·크런치 도넛, 인스타 핫플</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">5위 — Kafe Neo (Lynnwood) ⭐ 4.7 · 린우드 한인카페 1위, 크로플·버블라떼 시그니처</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">6위 — Miro Tea (Ballard) ⭐ 4.4 · 세계 200종 루스리프 티, 차 애호가 성지</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">7위 — Panama Hotel Tea House (Int'l District) ⭐ 4.4 · 1910년대 역사 공간, 독보적 감성</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">8위 — Xing Fu Tang (Downtown) ⭐ 4.4 · 대만식 흑설탕 타피오카 버블티 원조</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">9위 — Broadcast Coffee Roasters (Capitol Hill) ⭐ 4.6 · 책임 소싱 스페셜티, 4개 지점</div>
+            <div style="padding:5px 0;">10위 — Analog Coffee (Capitol Hill) ⭐ 4.5 · 바이닐 레코드 감성, Herkimer 원두, 현지인 단골</div>
+          </span>
+          <span data-en>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">🥇 <strong>#1</strong> — Lighthouse Roasters (Fremont) ⭐ 4.7 · Hand-roasting since 1993, Seattle's finest specialty coffee</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">🥈 <strong>#2</strong> — Victrola Coffee Roasters (Capitol Hill) ⭐ 4.4 · Seattle's iconic roastery since 2000, top coffee tour stop</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">🥉 <strong>#3</strong> — Sip House (Bellevue) ⭐ 4.8 · #1 Korean-aesthetic café in Bellevue, signature einspänner & matcha</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">#4 — Fuji Bakery (International District) ⭐ 4.7 · Japanese-style croissants & crunchy donuts, Instagram sensation</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">#5 — Kafe Neo (Lynnwood) ⭐ 4.7 · #1 Korean café in Lynnwood, croffle & bubble latte signatures</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">#6 — Miro Tea (Ballard) ⭐ 4.4 · 200 global loose-leaf teas, essential for tea lovers</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">#7 — Panama Hotel Tea House (Int'l District) ⭐ 4.4 · Historic 1910s landmark, unmatched atmosphere</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">#8 — Xing Fu Tang (Downtown) ⭐ 4.4 · Original Taiwanese brown sugar tapioca boba</div>
+            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">#9 — Broadcast Coffee Roasters (Capitol Hill) ⭐ 4.6 · Responsibly sourced specialty, 4 locations</div>
+            <div style="padding:5px 0;">#10 — Analog Coffee (Capitol Hill) ⭐ 4.5 · Vinyl record vibe, Herkimer beans, beloved neighborhood café</div>
+          </span>
+        </div>
+      </div>
+    </section>
+    <section id="cf-seattle" style="margin-top:28px;">
+      <div class="sec-head" data-ko>☕ 시애틀 스페셜티 커피 명소</div>
+      <div class="sec-head" data-en>☕ Seattle Specialty Coffee Spots</div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Victrola Coffee Roasters · Capitol Hill</div>
+        <div class="ccard-body"><span data-ko>2000년 창업 시애틀 대표 로스터리 카페. 캐피틀힐 파이크 스트리트 플래그십. ⭐ 4.4 (Google). 스페셜티 원두 직접 로스팅. 커피 투어 추천 1순위.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (800) 575-5282 · 🕐 매일 7am–6pm · 📍 310 E Pike St, Capitol Hill</span></span><span data-en>Founded 2000, Seattle's iconic roastery café on Capitol Hill Pike St flagship. ⭐ 4.4 (Google). In-house specialty roasting. Top coffee tour pick.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (800) 575-5282 · 🕐 Daily 7am–6pm · 📍 310 E Pike St, Capitol Hill</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.victrolacoffee.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 victrolacoffee.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Lighthouse Roasters · Fremont</div>
+        <div class="ccard-body"><span data-ko>1993년 창업, 프리몬트 독립 로스터리. ⭐ 4.7 (Yelp, 352 리뷰). 빈티지 주철 로스터로 매일 핸드 로스팅. 정통 스페셜티 애호가 필수 방문.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 633-4775 · 🕐 평일 6:30am–7pm / 주말 7am–7pm · 📍 400 N 43rd St, Fremont</span></span><span data-en>Est. 1993, Fremont's independent roastery. ⭐ 4.7 (Yelp, 352 reviews). Daily hand-roasting on vintage cast-iron roaster. Must-visit for true specialty coffee lovers.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 633-4775 · 🕐 Weekdays 6:30am–7pm / Weekends 7am–7pm · 📍 400 N 43rd St, Fremont</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://lighthouseroasters.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 lighthouseroasters.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Broadcast Coffee Roasters · Capitol Hill / Leschi</div>
+        <div class="ccard-body"><span data-ko>시애틀 멀티 로케이션 스페셜티 로스터. ⭐ 4.6 (Tripadvisor). 책임감 있는 원두 소싱, 4개 매장 운영. 캐피틀힐 벨뷰 에비뉴 본점.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 467-4717 · 🕐 매일 6:30am–6pm · 📍 1623 Bellevue Ave, Capitol Hill</span></span><span data-en>Seattle multi-location specialty roaster. ⭐ 4.6 (Tripadvisor). Responsibly sourced beans, 4 café locations. Capitol Hill Bellevue Ave flagship.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 467-4717 · 🕐 Daily 6:30am–6pm · 📍 1623 Bellevue Ave, Capitol Hill</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://broadcastcoffeeroasters.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 broadcastcoffeeroasters.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Caffè Umbria · Pioneer Square</div>
+        <div class="ccard-body"><span data-ko>이탈리안 블렌드 스타일 시애틀 명소. 파이오니어 스퀘어 본점. 고풍스러운 분위기. 에스프레소 전통 방식 고집. 발라드·다운타운 추가 지점.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 624-5847 · 🕐 평일 6am–6pm / 토 7am–6pm / 일 8am–5pm · 📍 320 Occidental Ave S, Pioneer Square</span></span><span data-en>Italian-blend style Seattle landmark. Pioneer Square flagship. Classic atmosphere, traditional espresso craft. Also in Ballard & Downtown.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 624-5847 · 🕐 Weekdays 6am–6pm / Sat 7am–6pm / Sun 8am–5pm · 📍 320 Occidental Ave S, Pioneer Square</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://caffeumbria.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 caffeumbria.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Analog Coffee · Capitol Hill</div>
+        <div class="ccard-body"><span data-ko>캐피틀힐의 아늑한 동네 카페. Herkimer 원두 사용. 바이닐 레코드 감성 인테리어. 현지인 단골 맛집. ⭐ 4.5 (Google).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 390-7670 · 🕐 매일 7am–6pm · 📍 235 Summit Ave E, Capitol Hill</span></span><span data-en>Cozy neighborhood café on Capitol Hill. Herkimer beans. Vinyl record aesthetic. Local favorite hangout. ⭐ 4.5 (Google).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 390-7670 · 🕐 Daily 7am–6pm · 📍 235 Summit Ave E, Capitol Hill</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://analogcoffee.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 analogcoffee.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Caffe Vita · Capitol Hill / Fremont / Ballard</div>
+        <div class="ccard-body"><span data-ko>시애틀 인기 독립 로스터. 캐피틀힐·프리몬트·발라드 다수 지점. ⭐ 4.4 (Google). 다크 로스트 스타일. 넓고 편안한 공간. 오래 머물기 좋음.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 709-4440 · 🕐 매일 6am–9pm (지점별 상이) · 📍 여러 지점</span></span><span data-en>Popular Seattle independent roaster. Capitol Hill, Fremont & Ballard locations. ⭐ 4.4 (Google). Dark roast style. Spacious, relaxed spaces. Great for lingering.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 709-4440 · 🕐 Daily 6am–9pm (varies by location) · 📍 Multiple locations</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.caffevita.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 caffevita.com</a>
+        </div>
+      </div>
+    </section>
+    <section id="cf-north" style="margin-top:28px;">
+      <div class="sec-head" data-ko>☕ 린우드·스노호미시 카운티 카페</div>
+      <div class="sec-head" data-en>☕ Lynnwood & Snohomish County Cafés</div>
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title" data-ko>H-Mart 푸드코트 카페</div>
+        <div class="ccard-title" data-en>H-Mart Food Court Café</div>
+        <div class="ccard-body"><span data-ko>린우드 H-Mart 내 한국식 음료·빙수·간식. 장보기 후 쉬어가기 딱 좋음. 주말 가족 나들이 코스.</span><span data-en>Korean drinks, bingsu & snacks inside Lynnwood H-Mart. Perfect break after grocery shopping. Weekend family outing spot.</span></div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title" data-ko>Drive-Through Coffee 문화</div>
+        <div class="ccard-title" data-en>Drive-Through Coffee Culture</div>
+        <div class="ccard-body"><span data-ko>워싱턴주 특유의 드라이브스루 에스프레소 커피숍 문화. <a href="https://www.dutchbros.com" target="_blank" rel="noopener" style="color:#D97706;">Dutch Bros</a>, Starbucks 드라이브스루 곳곳. 차에서 바로 픽업.</span><span data-en>WA's unique drive-through espresso stand culture. <a href="https://www.dutchbros.com" target="_blank" rel="noopener" style="color:#D97706;">Dutch Bros</a>, Starbucks drive-throughs everywhere. Pick up without leaving your car.</span></div>
+      </div>
+    </section>
+
+    <!-- ═══ 다민족 카페 ═══ -->
+    <section id="cf-multi" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🌍 다민족 & 월드 카페</div>
+      <div class="sec-head" data-en>🌍 Multi-Ethnic & World Cafés</div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Panama Hotel Tea & Coffee House · International District</div>
+        <div class="ccard-body"><span data-ko>1910년대 일본계 미국인 역사 호텔 내 찻집. 시애틀 역사 문화유산. 세계 200여 종 루스리프 티 & 로컬 원두 커피. 독특한 감성 공간. ⭐ 4.4 (Tripadvisor).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 515-4000 · 🕐 월~금 9am–4pm · 📍 607 S Main St, International District</span></span><span data-en>Historic 1910s Japanese-American hotel teahouse. Seattle cultural landmark. 200+ loose-leaf teas & local coffee. Uniquely atmospheric. ⭐ 4.4 (Tripadvisor).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 515-4000 · 🕐 Mon–Fri 9am–4pm · 📍 607 S Main St, International District</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.panamahotelseattle.net/panama-tea-coffee" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Website</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Miro Tea · Ballard</div>
+        <div class="ccard-body"><span data-ko>2007년 창업, 발라드 독립 티 카페. 세계 200여 종 루스리프 고급 홍차·녹차·허브. ⭐ 4.4 (Yelp, 624 리뷰). 차를 좋아하는 분께 강력 추천.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 782-6832 · 🕐 평일 8am–8pm / 일 8am–6pm · 📍 5405 Ballard Ave NW, Ballard</span></span><span data-en>Est. 2007, Ballard independent tea café. 200+ premium loose-leaf teas & herbals from around the world. ⭐ 4.4 (Yelp, 624 reviews). Highly recommended for tea lovers.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 782-6832 · 🕐 Weekdays 8am–8pm / Sun 8am–6pm · 📍 5405 Ballard Ave NW, Ballard</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://mirotea.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 mirotea.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Caffe Vita · Capitol Hill / Fremont</div>
+        <div class="ccard-body"><span data-ko>시애틀 독립 로스터 중 이탈리안 에스프레소 전통 계승. 다양한 국적의 원두 블렌딩. 편안하고 넓은 공간. 다민족 커피 문화 체험 적합. ⭐ 4.4 (Google).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 709-4440 · 🕐 매일 6am–9pm · 📍 캐피틀힐·프리몬트 등 다수 지점</span></span><span data-en>Seattle independent roaster continuing Italian espresso tradition. Multi-origin bean blending. Spacious & welcoming. Great for experiencing multicultural coffee culture. ⭐ 4.4 (Google).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 709-4440 · 🕐 Daily 6am–9pm · 📍 Capitol Hill, Fremont & more</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.caffevita.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 caffevita.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Lighthouse Roasters · Fremont</div>
+        <div class="ccard-body"><span data-ko>아프리카·중남미·아시아 산지별 스페셜티 원두를 직접 핸드 로스팅. 세계 커피 산지 여행 같은 경험. 프리몬트 힙한 분위기. ⭐ 4.7 (Yelp).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 633-4775 · 🕐 평일 6:30am–7pm / 주말 7am–7pm · 📍 400 N 43rd St, Fremont</span></span><span data-en>Hand-roasts specialty single-origin beans from Africa, Latin America & Asia. Like a world coffee origin journey. Hip Fremont vibe. ⭐ 4.7 (Yelp).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 633-4775 · 🕐 Weekdays 6:30am–7pm / Weekends 7am–7pm · 📍 400 N 43rd St, Fremont</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://lighthouseroasters.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 lighthouseroasters.com</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 디저트·버블티 ═══ -->
+    <section id="cf-dessert" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🧁 디저트 카페 & 버블티</div>
+      <div class="sec-head" data-en>🧁 Dessert Cafés & Bubble Tea</div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Fuji Bakery · International District / Queen Anne</div>
+        <div class="ccard-body"><span data-ko>일본-프랑스 퓨전 베이커리. 수제 버터 크루아상 & 아시안 퓨전 페이스트리. 크런치 크림 도넛 (Frosted Flakes 코팅) 인스타 핫템. ⭐ 4.7 (Tripadvisor). 2개 지점.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 623-4050 · 🕐 월~금 7:30am–5pm / 일 7:30am–4pm · 📍 526 S King St, International District</span></span><span data-en>Japanese-French fusion bakery. Handcrafted butter croissants & Asian fusion pastries. Crunchy Cream Donut (Frosted Flakes coating) — Instagram must. ⭐ 4.7 (Tripadvisor). 2 locations.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 623-4050 · 🕐 Mon–Fri 7:30am–5pm / Sun 7:30am–4pm · 📍 526 S King St, International District</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.fujibakeryinc.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 fujibakeryinc.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Beard Papa's · Lynnwood (Alderwood Mall) / Uwajimaya Seoul</div>
+        <div class="ccard-body"><span data-ko>일본 원조 슈크림 프랜차이즈. 갓 구운 슈 껍질 + 바닐라 크림 필링. ⭐ 4.3 (Google). 린우드 앨더우드몰 지점 운영 중. 우와지마야 시애틀 내 소규모 매장도 있음.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 744-9000 · 🕐 월~금 10am–8pm · 📍 3301 184th St SW, Lynnwood (Alderwood Mall)</span></span><span data-en>Japanese original cream puff franchise. Freshly baked shells + vanilla cream filling. ⭐ 4.3 (Google). Lynnwood Alderwood Mall location open. Mini counter also inside Uwajimaya Seattle.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 744-9000 · 🕐 Mon–Fri 10am–8pm · 📍 3301 184th St SW, Lynnwood (Alderwood Mall)</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.beardpapas.com/locations" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 beardpapas.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Xing Fu Tang · Downtown Seattle</div>
+        <div class="ccard-body"><span data-ko>대만 유명 흑설탕 버블티 체인. 직접 만든 캐러멜 흑설탕 타피오카. ⭐ 4.4 (Google). 다운타운 4번가 위치. 버블티 좋아한다면 필수 방문.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 785-2622 · 🕐 월~목 11am–10pm / 금~토 11am–11pm / 일 11am–10pm · 📍 1905 4th Ave, Downtown</span></span><span data-en>Famous Taiwanese brown sugar bubble tea chain. House-made caramelized tapioca pearls. ⭐ 4.4 (Google). Downtown 4th Ave location. Must-try for boba fans.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 785-2622 · 🕐 Mon–Thu 11am–10pm / Fri–Sat 11am–11pm / Sun 11am–10pm · 📍 1905 4th Ave, Downtown</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.xingfutangwa.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 xingfutangwa.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Tiger Sugar · Kung Fu Tea · 체인 버블티</div>
+        <div class="ccard-body"><span data-ko>흑설탕 밀크티 원조 Tiger Sugar (린우드·벨뷰), Kung Fu Tea (U District·다운타운) — 아시안 버블티 체인 다수 운영 중. 가격 $6–10. 한국인 입맛에 잘 맞음.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 보통 11am–10pm · 📍 린우드·벨뷰·U District 등</span></span><span data-en>Brown sugar milk tea originator Tiger Sugar (Lynnwood/Bellevue) & Kung Fu Tea (U District/Downtown) — multiple Asian bubble tea chains. $6–10. Popular with Korean palates.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 Usually 11am–10pm · 📍 Lynnwood, Bellevue, U District & more</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:10px;">
+          <a href="https://www.tigersugar.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Tiger Sugar</a>
+          <a href="https://www.kungfutea.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Kung Fu Tea</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">Crumbl Cookies · 린우드 / 벨뷰 / 시애틀</div>
+        <div class="ccard-body"><span data-ko>미국 전국 인기 쿠키 체인. 매주 메뉴 로테이션 (분홍 설탕 쿠키 포함). 크고 두툼한 수제 쿠키. ⭐ 4.4 (Google). 주말 인기 많아 일찍 방문 추천.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 월~토 8am–10pm / 일 휴무 (지점별 상이) · 📍 린우드·벨뷰·타코마 등</span></span><span data-en>Nationwide popular cookie chain. Weekly rotating menu (incl. pink sugar cookie). Large, thick handmade cookies. ⭐ 4.4 (Google). Very busy on weekends — arrive early.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 Mon–Sat 8am–10pm / Sun closed (varies) · 📍 Lynnwood, Bellevue, Tacoma & more</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://crumblcookies.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 crumblcookies.com</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 동남아·에티오피아 카페 ═══ -->
+    <section id="cf-southeast" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🌏 동남아·에티오피아 & 아시안 티하우스</div>
+      <div class="sec-head" data-en>🌏 SE Asian, Ethiopian & Asian Teahouses</div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">🫘 Cafe Solstice · Capitol Hill</div>
+        <div class="ccard-body"><span data-ko>캐피틀힐 로컬 스페셜티 카페. ⭐ 4.5 (Yelp, 680+ 리뷰). 에티오피아·콜롬비아 싱글오리진 원두 직접 소싱. 넓고 아늑한 공간, 공부·작업 하기 좋음. 시애틀 현지인 진짜 단골 카페.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 325-6126 · 🕐 매일 6:30am–9pm · 📍 1400 E Union St, Capitol Hill</span></span><span data-en>Capitol Hill local specialty café. ⭐ 4.5 (Yelp, 680+ reviews). Directly sourced Ethiopian & Colombian single-origin beans. Spacious & cozy, great for study or work. True local neighborhood café.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 325-6126 · 🕐 Daily 6:30am–9pm · 📍 1400 E Union St, Capitol Hill</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://cafesolstice.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 cafesolstice.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">🫖 Minamoto Kitchoan · Bellevue (Bellevue Square)</div>
+        <div class="ccard-body"><span data-ko>일본 전통 화과자(와가시) 전문점. 계절 맞춤 수제 일본 과자·말차 음료. ⭐ 4.4 (Google). 벨뷰스퀘어 내 위치. 선물 세트 구입하기도 좋음. 일본 문화 감성 체험.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 452-1914 · 🕐 월~토 10am–9pm / 일 11am–7pm · 📍 301 Bellevue Square, Bellevue</span></span><span data-en>Japanese traditional wagashi confectionery. Seasonal handcrafted Japanese sweets & matcha drinks. ⭐ 4.4 (Google). Inside Bellevue Square. Great for gift sets. Japanese cultural experience.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 452-1914 · 🕐 Mon–Sat 10am–9pm / Sun 11am–7pm · 📍 301 Bellevue Square, Bellevue</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.kitchoan.com/en-us" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 kitchoan.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">🧋 Sharetea · 쉐어티 (Bellevue / Seattle / Lynnwood)</div>
+        <div class="ccard-body"><span data-ko>대만 유명 버블티 체인. 신선 과일 과육 사용. ⭐ 4.2 (Google). 타로·흑당·알로에 다양한 조합. 벨뷰·다운타운·린우드 다수 지점. 한국인 입맛에 맞는 당도 조절.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 보통 11am–10pm · 📍 벨뷰·시애틀·린우드 등</span></span><span data-en>Taiwan's popular bubble tea chain using fresh fruit. ⭐ 4.2 (Google). Taro, brown sugar & aloe varieties. Multiple Bellevue, Downtown & Lynnwood locations. Customizable sweetness for Korean palates.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 Usually 11am–10pm · 📍 Bellevue, Seattle, Lynnwood & more</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.1992sharetea.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 1992sharetea.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">☕ Kaffa Coffee & Wine Bar · International District</div>
+        <div class="ccard-body"><span data-ko>에티오피아 커피 세레모니 체험 카페. 전통 방식 직접 로스팅·추출 시연. ⭐ 4.3 (Google). 에티오피아 커피의 원산지 맛 그대로. 시애틀 다문화 커피 문화의 상징.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 682-1300 · 🕐 월~금 7am–7pm / 토~일 8am–7pm · 📍 325 5th Ave S, International District</span></span><span data-en>Ethiopian coffee ceremony experience café. Traditional in-house roasting & brewing demonstration. ⭐ 4.3 (Google). Authentic origin-country coffee flavors. Symbol of Seattle's multicultural coffee scene.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 682-1300 · 🕐 Mon–Fri 7am–7pm / Sat–Sun 8am–7pm · 📍 325 5th Ave S, International District</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://maps.google.com/?q=Kaffa+Coffee+Wine+Bar+Seattle" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Google Maps</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">🍵 Floating Leaves Tea · Ballard</div>
+        <div class="ccard-body"><span data-ko>발라드 대만·중국 고급 우롱차 전문 티하우스. ⭐ 4.7 (Yelp, 220+ 리뷰). 대만·중국 산지 프리미엄 우롱·보이차. 차 전문가 티 클래스 제공. 고요하고 명상적인 공간. 차 애호가 성지.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 529-4747 · 🕐 수~월 11am–6pm (화 휴무) · 📍 2213 NW Market St, Ballard</span></span><span data-en>Ballard's Taiwanese & Chinese premium oolong teahouse. ⭐ 4.7 (Yelp, 220+ reviews). Premium oolong & pu-erh from Taiwan & China. Tea classes available. Quiet, meditative space. Tea lover's sanctuary.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 529-4747 · 🕐 Wed–Mon 11am–6pm (closed Tue) · 📍 2213 NW Market St, Ballard</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.floatingleavestea.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 floatingleavestea.com</a>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#D97706;">
+        <div class="ccard-title">🍡 Tokido · Bellevue (Crossroads)</div>
+        <div class="ccard-body"><span data-ko>일본 빈타지 감성 말차 디저트 카페. ⭐ 4.5 (Google). 말차 소프트 아이스크림·타이야키 (붕어빵)·모찌도넛. 크로스로드 몰 내 위치. 한국 붕어빵 생각나는 일본식 디저트.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 614-9700 · 🕐 매일 11am–9pm · 📍 15600 NE 8th St, Bellevue (Crossroads)</span></span><span data-en>Japanese vintage-style matcha dessert café. ⭐ 4.5 (Google). Matcha soft serve, taiyaki (fish-shaped pastry) & mochi donuts. Inside Crossroads Mall. Japanese desserts reminiscent of Korean bungeo-ppang.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 614-9700 · 🕐 Daily 11am–9pm · 📍 15600 NE 8th St, Bellevue (Crossroads)</span></span></div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://maps.google.com/?q=Tokido+Bellevue+WA" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Google Maps</a>
+        </div>
+      </div>
+    </section>
+
     <section id="fd-korean">
 
       <!-- ══ 전체 TOP 10 ══ -->
@@ -4322,305 +4622,6 @@ body.en [data-ko].blk { display: none !important; }
         <div class="ccard-body"><span data-ko>UW 유니버시티 디스트릭트 인기 인도 레스토랑. ⭐ 4.3 (Yelp, 800+ 리뷰). 탄두리·커리·비리야니. 학생 가성비 점심 뷔페 $13. 저렴하고 양 많음. UW·시애틀 기술직 종사자 단골. $.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 548-9094 · 🕐 매일 11am–10pm · 📍 5517 Roosevelt Way NE, University District</span></span><span data-en>Popular Indian restaurant in the University District. ⭐ 4.3 (Yelp, 800+ reviews). Tandoori, curries & biryani. Student-friendly lunch buffet $13. Generous portions at low prices. Regular stop for UW students & tech workers. $.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 548-9094 · 🕐 Daily 11am–10pm · 📍 5517 Roosevelt Way NE, University District</span></span></div>
         <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
           <a href="https://maps.google.com/?q=Taste+of+India+Seattle+University+District" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Google Maps</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="cf-top10" style="margin-top:28px;">
-      <div class="sec-head" data-ko>🏆 카페 전체 TOP 10 — 현지 리뷰 기준</div>
-      <div class="sec-head" data-en>🏆 Café Overall TOP 10 — By Local Reviews</div>
-      <div class="ccard" style="border-left-color:#D97706;background:linear-gradient(135deg,rgba(45,26,0,0.15),rgba(45,26,0,0.08));">
-        <div class="ccard-title">🏆 시애틀 메트로 카페 TOP 10</div>
-        <div class="ccard-body">
-          <span data-ko>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">🥇 <strong>1위</strong> — Lighthouse Roasters (Fremont) ⭐ 4.7 · 1993년 핸드 로스팅 전통, 스페셜티 커피 시애틀 최고</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">🥈 <strong>2위</strong> — Victrola Coffee Roasters (Capitol Hill) ⭐ 4.4 · 2000년 창업 시애틀 대표 로스터리, 커피 투어 필수</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">🥉 <strong>3위</strong> — Sip House (Bellevue) ⭐ 4.8 · 한인 감성 벨뷰 카페 1위, 아인슈페너·말차 라떼</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">4위 — Fuji Bakery (International District) ⭐ 4.7 · 일본식 크루아상·크런치 도넛, 인스타 핫플</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">5위 — Kafe Neo (Lynnwood) ⭐ 4.7 · 린우드 한인카페 1위, 크로플·버블라떼 시그니처</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">6위 — Miro Tea (Ballard) ⭐ 4.4 · 세계 200종 루스리프 티, 차 애호가 성지</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">7위 — Panama Hotel Tea House (Int'l District) ⭐ 4.4 · 1910년대 역사 공간, 독보적 감성</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">8위 — Xing Fu Tang (Downtown) ⭐ 4.4 · 대만식 흑설탕 타피오카 버블티 원조</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">9위 — Broadcast Coffee Roasters (Capitol Hill) ⭐ 4.6 · 책임 소싱 스페셜티, 4개 지점</div>
-            <div style="padding:5px 0;">10위 — Analog Coffee (Capitol Hill) ⭐ 4.5 · 바이닐 레코드 감성, Herkimer 원두, 현지인 단골</div>
-          </span>
-          <span data-en>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">🥇 <strong>#1</strong> — Lighthouse Roasters (Fremont) ⭐ 4.7 · Hand-roasting since 1993, Seattle's finest specialty coffee</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">🥈 <strong>#2</strong> — Victrola Coffee Roasters (Capitol Hill) ⭐ 4.4 · Seattle's iconic roastery since 2000, top coffee tour stop</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">🥉 <strong>#3</strong> — Sip House (Bellevue) ⭐ 4.8 · #1 Korean-aesthetic café in Bellevue, signature einspänner & matcha</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">#4 — Fuji Bakery (International District) ⭐ 4.7 · Japanese-style croissants & crunchy donuts, Instagram sensation</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">#5 — Kafe Neo (Lynnwood) ⭐ 4.7 · #1 Korean café in Lynnwood, croffle & bubble latte signatures</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">#6 — Miro Tea (Ballard) ⭐ 4.4 · 200 global loose-leaf teas, essential for tea lovers</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">#7 — Panama Hotel Tea House (Int'l District) ⭐ 4.4 · Historic 1910s landmark, unmatched atmosphere</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">#8 — Xing Fu Tang (Downtown) ⭐ 4.4 · Original Taiwanese brown sugar tapioca boba</div>
-            <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.08);">#9 — Broadcast Coffee Roasters (Capitol Hill) ⭐ 4.6 · Responsibly sourced specialty, 4 locations</div>
-            <div style="padding:5px 0;">#10 — Analog Coffee (Capitol Hill) ⭐ 4.5 · Vinyl record vibe, Herkimer beans, beloved neighborhood café</div>
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <section id="cf-korean">
-      <div class="sec-head" data-ko>🇰🇷 한인 카페 & 베이커리</div>
-      <div class="sec-head" data-en>🇰🇷 Korean Cafés & Bakeries</div>
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Paris Baguette (Lynnwood · Bellevue)</div>
-        <div class="ccard-body"><span data-ko>한국식 베이커리 프랜차이즈. 케이크·빵·음료. 린우드·벨뷰 지점. 한국의 맛 그대로.</span><span data-en>Korean-style bakery franchise. Cakes, breads, drinks. Lynnwood & Bellevue locations. Tastes like Korea.</span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.parisbaguette.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 <span data-ko>공식 웹사이트</span><span data-en>Official Website</span></a>
-        </div>
-      </div>
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Café Bora (Seattle)</div>
-        <div class="ccard-body"><span data-ko>한국 감성 카페. 인스타그램 핫플. 꽃·분위기 좋은 인테리어. Capitol Hill 인근.</span><span data-en>Korean-aesthetic café. Instagram hotspot. Beautiful floral interior. Near Capitol Hill.</span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.cafebora.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 cafebora.com</a>
-        </div>
-      </div>
-      <div class="ccard">
-        <div class="ccard-title" data-ko>한인 운영 버블티·타피오카</div>
-        <div class="ccard-title" data-en>Korean-run Bubble Tea Shops</div>
-        <div class="ccard-body"><span data-ko>Tiger Sugar, Kung Fu Tea 등 아시안 버블티 체인. 린우드·벨뷰·U District 다수 위치.</span><span data-en>Tiger Sugar, Kung Fu Tea and other Asian bubble tea chains. Multiple locations in Lynnwood, Bellevue & U District.</span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:10px;">
-          <a href="https://www.tigersugar.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Tiger Sugar</a>
-          <a href="https://www.kungfutea.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Kung Fu Tea</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">🍵 Sip House · Bellevue (Factoria)</div>
-        <div class="ccard-body"><span data-ko>벨뷰 한인 감성 카페 1위. ⭐ 4.8 (Google, 380+ 리뷰). 아인슈페너·바닐라라떼·말차 시그니처 음료. 인테리어 세련, 스터디·미팅 공간으로 인기. 현지 한인이 가장 많이 찾는 이스트사이드 카페.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 996-8218 · 🕐 월~금 8am–7pm / 토~일 9am–7pm · 📍 4020 Factoria Blvd SE Ste B, Bellevue</span></span><span data-en>Bellevue's #1 Korean-aesthetic café. ⭐ 4.8 (Google, 380+ reviews). Signature einspänner, vanilla latte & matcha. Sleek interior, popular for study & meetings. Most-visited Eastside Korean café.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 996-8218 · 🕐 Mon–Fri 8am–7pm / Sat–Sun 9am–7pm · 📍 4020 Factoria Blvd SE Ste B, Bellevue</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.siphousecafe.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 siphousecafe.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">☕ Kafe Neo · Lynnwood</div>
-        <div class="ccard-body"><span data-ko>린우드 한인 카페 1위. ⭐ 4.7 (Google, 290+ 리뷰). 아인슈페너·크로플·버블라떼 시그니처. 감성적인 한국식 인테리어. 린우드 한인 밀집 지역 핵심 카페. 주말 인스타그램 인증샷 명소.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 775-7155 · 🕐 매일 9am–7pm · 📍 19019 33rd Ave W Ste A, Lynnwood</span></span><span data-en>Lynnwood's #1 Korean café. ⭐ 4.7 (Google, 290+ reviews). Signature einspänner, croffle & bubble latte. Korean-style aesthetic. Heart of Lynnwood's Korean community. Weekend Instagram hotspot.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 775-7155 · 🕐 Daily 9am–7pm · 📍 19019 33rd Ave W Ste A, Lynnwood</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.instagram.com/kafe.neo/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Instagram @kafe.neo</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">🍧 Snowy Village · Lynnwood / Bellevue</div>
-        <div class="ccard-body"><span data-ko>한국식 설빙·빙수 전문 디저트 카페. ⭐ 4.4 (Google). 딸기·망고·연유 눈꽃 빙수. 한국 여름 필수 디저트. 린우드·벨뷰 2개 지점. 한인 가족 외식 후 디저트 코스 단골.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 776-9900 (린우드) · 🕐 매일 12pm–10pm · 📍 린우드·벨뷰 지점</span></span><span data-en>Korean bingsu (shaved ice dessert) specialty café. ⭐ 4.4 (Google). Strawberry, mango & milk snow bingsu. Essential Korean summer dessert experience. Lynnwood & Bellevue locations. Post-dinner dessert staple for Korean families.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 776-9900 (Lynnwood) · 🕐 Daily 12pm–10pm · 📍 Lynnwood & Bellevue locations</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.snowyvillageusa.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 snowyvillageusa.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">☕ Gong Cha · 공차 (Lynnwood / Bellevue / Seattle)</div>
-        <div class="ccard-body"><span data-ko>대만 글로벌 버블티 프랜차이즈. 한국에서도 익숙한 공차. 당도·얼음 완전 조절 가능. ⭐ 4.3 (Google). 린우드·벨뷰·다운타운 등 다수 지점 운영.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 보통 11am–10pm · 📍 린우드·벨뷰·다운타운 등</span></span><span data-en>Taiwanese global bubble tea franchise, well-known in Korea. Fully customizable sugar & ice levels. ⭐ 4.3 (Google). Lynnwood, Bellevue & Downtown locations.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 Usually 11am–10pm · 📍 Lynnwood, Bellevue, Downtown & more</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://gongchausa.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 gongchausa.com</a>
-        </div>
-      </div>
-    </section>
-    <section id="cf-seattle" style="margin-top:28px;">
-      <div class="sec-head" data-ko>☕ 시애틀 스페셜티 커피 명소</div>
-      <div class="sec-head" data-en>☕ Seattle Specialty Coffee Spots</div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Victrola Coffee Roasters · Capitol Hill</div>
-        <div class="ccard-body"><span data-ko>2000년 창업 시애틀 대표 로스터리 카페. 캐피틀힐 파이크 스트리트 플래그십. ⭐ 4.4 (Google). 스페셜티 원두 직접 로스팅. 커피 투어 추천 1순위.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (800) 575-5282 · 🕐 매일 7am–6pm · 📍 310 E Pike St, Capitol Hill</span></span><span data-en>Founded 2000, Seattle's iconic roastery café on Capitol Hill Pike St flagship. ⭐ 4.4 (Google). In-house specialty roasting. Top coffee tour pick.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (800) 575-5282 · 🕐 Daily 7am–6pm · 📍 310 E Pike St, Capitol Hill</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.victrolacoffee.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 victrolacoffee.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Lighthouse Roasters · Fremont</div>
-        <div class="ccard-body"><span data-ko>1993년 창업, 프리몬트 독립 로스터리. ⭐ 4.7 (Yelp, 352 리뷰). 빈티지 주철 로스터로 매일 핸드 로스팅. 정통 스페셜티 애호가 필수 방문.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 633-4775 · 🕐 평일 6:30am–7pm / 주말 7am–7pm · 📍 400 N 43rd St, Fremont</span></span><span data-en>Est. 1993, Fremont's independent roastery. ⭐ 4.7 (Yelp, 352 reviews). Daily hand-roasting on vintage cast-iron roaster. Must-visit for true specialty coffee lovers.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 633-4775 · 🕐 Weekdays 6:30am–7pm / Weekends 7am–7pm · 📍 400 N 43rd St, Fremont</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://lighthouseroasters.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 lighthouseroasters.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Broadcast Coffee Roasters · Capitol Hill / Leschi</div>
-        <div class="ccard-body"><span data-ko>시애틀 멀티 로케이션 스페셜티 로스터. ⭐ 4.6 (Tripadvisor). 책임감 있는 원두 소싱, 4개 매장 운영. 캐피틀힐 벨뷰 에비뉴 본점.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 467-4717 · 🕐 매일 6:30am–6pm · 📍 1623 Bellevue Ave, Capitol Hill</span></span><span data-en>Seattle multi-location specialty roaster. ⭐ 4.6 (Tripadvisor). Responsibly sourced beans, 4 café locations. Capitol Hill Bellevue Ave flagship.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 467-4717 · 🕐 Daily 6:30am–6pm · 📍 1623 Bellevue Ave, Capitol Hill</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://broadcastcoffeeroasters.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 broadcastcoffeeroasters.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Caffè Umbria · Pioneer Square</div>
-        <div class="ccard-body"><span data-ko>이탈리안 블렌드 스타일 시애틀 명소. 파이오니어 스퀘어 본점. 고풍스러운 분위기. 에스프레소 전통 방식 고집. 발라드·다운타운 추가 지점.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 624-5847 · 🕐 평일 6am–6pm / 토 7am–6pm / 일 8am–5pm · 📍 320 Occidental Ave S, Pioneer Square</span></span><span data-en>Italian-blend style Seattle landmark. Pioneer Square flagship. Classic atmosphere, traditional espresso craft. Also in Ballard & Downtown.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 624-5847 · 🕐 Weekdays 6am–6pm / Sat 7am–6pm / Sun 8am–5pm · 📍 320 Occidental Ave S, Pioneer Square</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://caffeumbria.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 caffeumbria.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Analog Coffee · Capitol Hill</div>
-        <div class="ccard-body"><span data-ko>캐피틀힐의 아늑한 동네 카페. Herkimer 원두 사용. 바이닐 레코드 감성 인테리어. 현지인 단골 맛집. ⭐ 4.5 (Google).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 390-7670 · 🕐 매일 7am–6pm · 📍 235 Summit Ave E, Capitol Hill</span></span><span data-en>Cozy neighborhood café on Capitol Hill. Herkimer beans. Vinyl record aesthetic. Local favorite hangout. ⭐ 4.5 (Google).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 390-7670 · 🕐 Daily 7am–6pm · 📍 235 Summit Ave E, Capitol Hill</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://analogcoffee.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 analogcoffee.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Caffe Vita · Capitol Hill / Fremont / Ballard</div>
-        <div class="ccard-body"><span data-ko>시애틀 인기 독립 로스터. 캐피틀힐·프리몬트·발라드 다수 지점. ⭐ 4.4 (Google). 다크 로스트 스타일. 넓고 편안한 공간. 오래 머물기 좋음.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 709-4440 · 🕐 매일 6am–9pm (지점별 상이) · 📍 여러 지점</span></span><span data-en>Popular Seattle independent roaster. Capitol Hill, Fremont & Ballard locations. ⭐ 4.4 (Google). Dark roast style. Spacious, relaxed spaces. Great for lingering.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 709-4440 · 🕐 Daily 6am–9pm (varies by location) · 📍 Multiple locations</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.caffevita.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 caffevita.com</a>
-        </div>
-      </div>
-    </section>
-    <section id="cf-north" style="margin-top:28px;">
-      <div class="sec-head" data-ko>☕ 린우드·스노호미시 카운티 카페</div>
-      <div class="sec-head" data-en>☕ Lynnwood & Snohomish County Cafés</div>
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title" data-ko>H-Mart 푸드코트 카페</div>
-        <div class="ccard-title" data-en>H-Mart Food Court Café</div>
-        <div class="ccard-body"><span data-ko>린우드 H-Mart 내 한국식 음료·빙수·간식. 장보기 후 쉬어가기 딱 좋음. 주말 가족 나들이 코스.</span><span data-en>Korean drinks, bingsu & snacks inside Lynnwood H-Mart. Perfect break after grocery shopping. Weekend family outing spot.</span></div>
-      </div>
-      <div class="ccard">
-        <div class="ccard-title" data-ko>Drive-Through Coffee 문화</div>
-        <div class="ccard-title" data-en>Drive-Through Coffee Culture</div>
-        <div class="ccard-body"><span data-ko>워싱턴주 특유의 드라이브스루 에스프레소 커피숍 문화. <a href="https://www.dutchbros.com" target="_blank" rel="noopener" style="color:#D97706;">Dutch Bros</a>, Starbucks 드라이브스루 곳곳. 차에서 바로 픽업.</span><span data-en>WA's unique drive-through espresso stand culture. <a href="https://www.dutchbros.com" target="_blank" rel="noopener" style="color:#D97706;">Dutch Bros</a>, Starbucks drive-throughs everywhere. Pick up without leaving your car.</span></div>
-      </div>
-    </section>
-
-    <!-- ═══ 다민족 카페 ═══ -->
-    <section id="cf-multi" style="margin-top:28px;">
-      <div class="sec-head" data-ko>🌍 다민족 & 월드 카페</div>
-      <div class="sec-head" data-en>🌍 Multi-Ethnic & World Cafés</div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Panama Hotel Tea & Coffee House · International District</div>
-        <div class="ccard-body"><span data-ko>1910년대 일본계 미국인 역사 호텔 내 찻집. 시애틀 역사 문화유산. 세계 200여 종 루스리프 티 & 로컬 원두 커피. 독특한 감성 공간. ⭐ 4.4 (Tripadvisor).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 515-4000 · 🕐 월~금 9am–4pm · 📍 607 S Main St, International District</span></span><span data-en>Historic 1910s Japanese-American hotel teahouse. Seattle cultural landmark. 200+ loose-leaf teas & local coffee. Uniquely atmospheric. ⭐ 4.4 (Tripadvisor).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 515-4000 · 🕐 Mon–Fri 9am–4pm · 📍 607 S Main St, International District</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.panamahotelseattle.net/panama-tea-coffee" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Website</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Miro Tea · Ballard</div>
-        <div class="ccard-body"><span data-ko>2007년 창업, 발라드 독립 티 카페. 세계 200여 종 루스리프 고급 홍차·녹차·허브. ⭐ 4.4 (Yelp, 624 리뷰). 차를 좋아하는 분께 강력 추천.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 782-6832 · 🕐 평일 8am–8pm / 일 8am–6pm · 📍 5405 Ballard Ave NW, Ballard</span></span><span data-en>Est. 2007, Ballard independent tea café. 200+ premium loose-leaf teas & herbals from around the world. ⭐ 4.4 (Yelp, 624 reviews). Highly recommended for tea lovers.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 782-6832 · 🕐 Weekdays 8am–8pm / Sun 8am–6pm · 📍 5405 Ballard Ave NW, Ballard</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://mirotea.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 mirotea.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Caffe Vita · Capitol Hill / Fremont</div>
-        <div class="ccard-body"><span data-ko>시애틀 독립 로스터 중 이탈리안 에스프레소 전통 계승. 다양한 국적의 원두 블렌딩. 편안하고 넓은 공간. 다민족 커피 문화 체험 적합. ⭐ 4.4 (Google).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 709-4440 · 🕐 매일 6am–9pm · 📍 캐피틀힐·프리몬트 등 다수 지점</span></span><span data-en>Seattle independent roaster continuing Italian espresso tradition. Multi-origin bean blending. Spacious & welcoming. Great for experiencing multicultural coffee culture. ⭐ 4.4 (Google).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 709-4440 · 🕐 Daily 6am–9pm · 📍 Capitol Hill, Fremont & more</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.caffevita.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 caffevita.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Lighthouse Roasters · Fremont</div>
-        <div class="ccard-body"><span data-ko>아프리카·중남미·아시아 산지별 스페셜티 원두를 직접 핸드 로스팅. 세계 커피 산지 여행 같은 경험. 프리몬트 힙한 분위기. ⭐ 4.7 (Yelp).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 633-4775 · 🕐 평일 6:30am–7pm / 주말 7am–7pm · 📍 400 N 43rd St, Fremont</span></span><span data-en>Hand-roasts specialty single-origin beans from Africa, Latin America & Asia. Like a world coffee origin journey. Hip Fremont vibe. ⭐ 4.7 (Yelp).<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 633-4775 · 🕐 Weekdays 6:30am–7pm / Weekends 7am–7pm · 📍 400 N 43rd St, Fremont</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://lighthouseroasters.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 lighthouseroasters.com</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ 디저트·버블티 ═══ -->
-    <section id="cf-dessert" style="margin-top:28px;">
-      <div class="sec-head" data-ko>🧁 디저트 카페 & 버블티</div>
-      <div class="sec-head" data-en>🧁 Dessert Cafés & Bubble Tea</div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Fuji Bakery · International District / Queen Anne</div>
-        <div class="ccard-body"><span data-ko>일본-프랑스 퓨전 베이커리. 수제 버터 크루아상 & 아시안 퓨전 페이스트리. 크런치 크림 도넛 (Frosted Flakes 코팅) 인스타 핫템. ⭐ 4.7 (Tripadvisor). 2개 지점.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 623-4050 · 🕐 월~금 7:30am–5pm / 일 7:30am–4pm · 📍 526 S King St, International District</span></span><span data-en>Japanese-French fusion bakery. Handcrafted butter croissants & Asian fusion pastries. Crunchy Cream Donut (Frosted Flakes coating) — Instagram must. ⭐ 4.7 (Tripadvisor). 2 locations.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 623-4050 · 🕐 Mon–Fri 7:30am–5pm / Sun 7:30am–4pm · 📍 526 S King St, International District</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.fujibakeryinc.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 fujibakeryinc.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Beard Papa's · Lynnwood (Alderwood Mall) / Uwajimaya Seoul</div>
-        <div class="ccard-body"><span data-ko>일본 원조 슈크림 프랜차이즈. 갓 구운 슈 껍질 + 바닐라 크림 필링. ⭐ 4.3 (Google). 린우드 앨더우드몰 지점 운영 중. 우와지마야 시애틀 내 소규모 매장도 있음.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 744-9000 · 🕐 월~금 10am–8pm · 📍 3301 184th St SW, Lynnwood (Alderwood Mall)</span></span><span data-en>Japanese original cream puff franchise. Freshly baked shells + vanilla cream filling. ⭐ 4.3 (Google). Lynnwood Alderwood Mall location open. Mini counter also inside Uwajimaya Seattle.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 744-9000 · 🕐 Mon–Fri 10am–8pm · 📍 3301 184th St SW, Lynnwood (Alderwood Mall)</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.beardpapas.com/locations" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 beardpapas.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Xing Fu Tang · Downtown Seattle</div>
-        <div class="ccard-body"><span data-ko>대만 유명 흑설탕 버블티 체인. 직접 만든 캐러멜 흑설탕 타피오카. ⭐ 4.4 (Google). 다운타운 4번가 위치. 버블티 좋아한다면 필수 방문.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 785-2622 · 🕐 월~목 11am–10pm / 금~토 11am–11pm / 일 11am–10pm · 📍 1905 4th Ave, Downtown</span></span><span data-en>Famous Taiwanese brown sugar bubble tea chain. House-made caramelized tapioca pearls. ⭐ 4.4 (Google). Downtown 4th Ave location. Must-try for boba fans.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 785-2622 · 🕐 Mon–Thu 11am–10pm / Fri–Sat 11am–11pm / Sun 11am–10pm · 📍 1905 4th Ave, Downtown</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.xingfutangwa.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 xingfutangwa.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Tiger Sugar · Kung Fu Tea · 체인 버블티</div>
-        <div class="ccard-body"><span data-ko>흑설탕 밀크티 원조 Tiger Sugar (린우드·벨뷰), Kung Fu Tea (U District·다운타운) — 아시안 버블티 체인 다수 운영 중. 가격 $6–10. 한국인 입맛에 잘 맞음.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 보통 11am–10pm · 📍 린우드·벨뷰·U District 등</span></span><span data-en>Brown sugar milk tea originator Tiger Sugar (Lynnwood/Bellevue) & Kung Fu Tea (U District/Downtown) — multiple Asian bubble tea chains. $6–10. Popular with Korean palates.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 Usually 11am–10pm · 📍 Lynnwood, Bellevue, U District & more</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:10px;">
-          <a href="https://www.tigersugar.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Tiger Sugar</a>
-          <a href="https://www.kungfutea.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Kung Fu Tea</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">Crumbl Cookies · 린우드 / 벨뷰 / 시애틀</div>
-        <div class="ccard-body"><span data-ko>미국 전국 인기 쿠키 체인. 매주 메뉴 로테이션 (분홍 설탕 쿠키 포함). 크고 두툼한 수제 쿠키. ⭐ 4.4 (Google). 주말 인기 많아 일찍 방문 추천.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 월~토 8am–10pm / 일 휴무 (지점별 상이) · 📍 린우드·벨뷰·타코마 등</span></span><span data-en>Nationwide popular cookie chain. Weekly rotating menu (incl. pink sugar cookie). Large, thick handmade cookies. ⭐ 4.4 (Google). Very busy on weekends — arrive early.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 Mon–Sat 8am–10pm / Sun closed (varies) · 📍 Lynnwood, Bellevue, Tacoma & more</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://crumblcookies.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 crumblcookies.com</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ 동남아·에티오피아 카페 ═══ -->
-    <section id="cf-southeast" style="margin-top:28px;">
-      <div class="sec-head" data-ko>🌏 동남아·에티오피아 & 아시안 티하우스</div>
-      <div class="sec-head" data-en>🌏 SE Asian, Ethiopian & Asian Teahouses</div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">🫘 Cafe Solstice · Capitol Hill</div>
-        <div class="ccard-body"><span data-ko>캐피틀힐 로컬 스페셜티 카페. ⭐ 4.5 (Yelp, 680+ 리뷰). 에티오피아·콜롬비아 싱글오리진 원두 직접 소싱. 넓고 아늑한 공간, 공부·작업 하기 좋음. 시애틀 현지인 진짜 단골 카페.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 325-6126 · 🕐 매일 6:30am–9pm · 📍 1400 E Union St, Capitol Hill</span></span><span data-en>Capitol Hill local specialty café. ⭐ 4.5 (Yelp, 680+ reviews). Directly sourced Ethiopian & Colombian single-origin beans. Spacious & cozy, great for study or work. True local neighborhood café.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 325-6126 · 🕐 Daily 6:30am–9pm · 📍 1400 E Union St, Capitol Hill</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://cafesolstice.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 cafesolstice.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">🫖 Minamoto Kitchoan · Bellevue (Bellevue Square)</div>
-        <div class="ccard-body"><span data-ko>일본 전통 화과자(와가시) 전문점. 계절 맞춤 수제 일본 과자·말차 음료. ⭐ 4.4 (Google). 벨뷰스퀘어 내 위치. 선물 세트 구입하기도 좋음. 일본 문화 감성 체험.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 452-1914 · 🕐 월~토 10am–9pm / 일 11am–7pm · 📍 301 Bellevue Square, Bellevue</span></span><span data-en>Japanese traditional wagashi confectionery. Seasonal handcrafted Japanese sweets & matcha drinks. ⭐ 4.4 (Google). Inside Bellevue Square. Great for gift sets. Japanese cultural experience.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 452-1914 · 🕐 Mon–Sat 10am–9pm / Sun 11am–7pm · 📍 301 Bellevue Square, Bellevue</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.kitchoan.com/en-us" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 kitchoan.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">🧋 Sharetea · 쉐어티 (Bellevue / Seattle / Lynnwood)</div>
-        <div class="ccard-body"><span data-ko>대만 유명 버블티 체인. 신선 과일 과육 사용. ⭐ 4.2 (Google). 타로·흑당·알로에 다양한 조합. 벨뷰·다운타운·린우드 다수 지점. 한국인 입맛에 맞는 당도 조절.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 보통 11am–10pm · 📍 벨뷰·시애틀·린우드 등</span></span><span data-en>Taiwan's popular bubble tea chain using fresh fruit. ⭐ 4.2 (Google). Taro, brown sugar & aloe varieties. Multiple Bellevue, Downtown & Lynnwood locations. Customizable sweetness for Korean palates.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">🕐 Usually 11am–10pm · 📍 Bellevue, Seattle, Lynnwood & more</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.1992sharetea.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 1992sharetea.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">☕ Kaffa Coffee & Wine Bar · International District</div>
-        <div class="ccard-body"><span data-ko>에티오피아 커피 세레모니 체험 카페. 전통 방식 직접 로스팅·추출 시연. ⭐ 4.3 (Google). 에티오피아 커피의 원산지 맛 그대로. 시애틀 다문화 커피 문화의 상징.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 682-1300 · 🕐 월~금 7am–7pm / 토~일 8am–7pm · 📍 325 5th Ave S, International District</span></span><span data-en>Ethiopian coffee ceremony experience café. Traditional in-house roasting & brewing demonstration. ⭐ 4.3 (Google). Authentic origin-country coffee flavors. Symbol of Seattle's multicultural coffee scene.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 682-1300 · 🕐 Mon–Fri 7am–7pm / Sat–Sun 8am–7pm · 📍 325 5th Ave S, International District</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://maps.google.com/?q=Kaffa+Coffee+Wine+Bar+Seattle" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Google Maps</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">🍵 Floating Leaves Tea · Ballard</div>
-        <div class="ccard-body"><span data-ko>발라드 대만·중국 고급 우롱차 전문 티하우스. ⭐ 4.7 (Yelp, 220+ 리뷰). 대만·중국 산지 프리미엄 우롱·보이차. 차 전문가 티 클래스 제공. 고요하고 명상적인 공간. 차 애호가 성지.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 529-4747 · 🕐 수~월 11am–6pm (화 휴무) · 📍 2213 NW Market St, Ballard</span></span><span data-en>Ballard's Taiwanese & Chinese premium oolong teahouse. ⭐ 4.7 (Yelp, 220+ reviews). Premium oolong & pu-erh from Taiwan & China. Tea classes available. Quiet, meditative space. Tea lover's sanctuary.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (206) 529-4747 · 🕐 Wed–Mon 11am–6pm (closed Tue) · 📍 2213 NW Market St, Ballard</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://www.floatingleavestea.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 floatingleavestea.com</a>
-        </div>
-      </div>
-
-      <div class="ccard" style="border-left-color:#D97706;">
-        <div class="ccard-title">🍡 Tokido · Bellevue (Crossroads)</div>
-        <div class="ccard-body"><span data-ko>일본 빈타지 감성 말차 디저트 카페. ⭐ 4.5 (Google). 말차 소프트 아이스크림·타이야키 (붕어빵)·모찌도넛. 크로스로드 몰 내 위치. 한국 붕어빵 생각나는 일본식 디저트.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 614-9700 · 🕐 매일 11am–9pm · 📍 15600 NE 8th St, Bellevue (Crossroads)</span></span><span data-en>Japanese vintage-style matcha dessert café. ⭐ 4.5 (Google). Matcha soft serve, taiyaki (fish-shaped pastry) & mochi donuts. Inside Crossroads Mall. Japanese desserts reminiscent of Korean bungeo-ppang.<br><span style="color:rgba(255,255,255,0.5);font-size:0.78rem;">📞 (425) 614-9700 · 🕐 Daily 11am–9pm · 📍 15600 NE 8th St, Bellevue (Crossroads)</span></span></div>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="https://maps.google.com/?q=Tokido+Bellevue+WA" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Google Maps</a>
         </div>
       </div>
     </section>
