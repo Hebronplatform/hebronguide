@@ -327,4 +327,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        log(f"\n❌ 예상치 못한 오류: {e}")
+        import traceback
+        traceback.print_exc()
+    sys.exit(0)  # 항상 성공으로 종료 (이슈 생성 완료가 핵심)

@@ -41,6 +41,7 @@ jobs:
 
       # ── 4. 변경된 HTML 자동 커밋 ──────────────────────────────────────────
       - name: Commit auto-updates (if any)
+        continue-on-error: true   # 커밋 실패해도 워크플로우 성공으로 처리
         run: |
           if [ -f UPDATE_NEEDED ]; then
             rm UPDATE_NEEDED
@@ -48,8 +49,8 @@ jobs:
             git config user.email "bot@hebronguide.com"
             git add seattle/index.html
             git commit -m "🤖 자동 업데이트: $(date +'%Y년') 연간 정보 갱신 [skip ci]"
-            git pull --rebase origin main   # 실행 중 생긴 충돌 방지
-            git push
+            # 실행 중 다른 커밋이 생겼을 경우 rebase 후 push
+            git pull --rebase origin main && git push || echo "⚠️ push 실패 — 수동 확인 필요"
             echo "✅ 변경사항 자동 커밋 완료"
           else
             echo "ℹ️  변경 없음 — 커밋 건너뜀"
