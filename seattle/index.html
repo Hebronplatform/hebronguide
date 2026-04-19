@@ -3195,6 +3195,16 @@ function sTabGo(id, btn, prefix, appId) {
   if (el) el.style.display = 'block';
   document.querySelectorAll('.' + prefix + '-tab').forEach(function(b){ b.classList.remove('active'); });
   btn.classList.add('active');
+  // 탭 전환 시 콘텐츠 영역을 섹션 상단으로 정확히 스크롤
+  var app = appId ? document.getElementById(appId) : null;
+  var content = app ? app.querySelector('.app-content') : null;
+  if (content && el) {
+    var tabbar = content.querySelector('.stab-bar');
+    var tabH = tabbar ? tabbar.offsetHeight : 48;
+    var elTop = 0, node = el;
+    while (node && node !== content) { elTop += (node.offsetTop || 0); node = node.offsetParent; }
+    content.scrollTo({ top: elTop - tabH, behavior: 'smooth' });
+  }
 }
 function artScrollTo(sectionId, btnEl) {
   document.querySelectorAll('.art-tab-btn').forEach(function(b){ b.classList.remove('active'); });
