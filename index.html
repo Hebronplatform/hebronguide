@@ -506,7 +506,7 @@ footer a:hover { color: var(--gold); }
       <div class="city-name-ko"><span id="t-seattle-ko">시애틀 · 워싱턴주</span></div>
       <div class="city-tags">
         <span class="city-tag">Amazon · MS</span>
-        <span class="city-tag">린우드 한인타운</span>
+        <span class="city-tag" id="t-seattle-tag1">린우드 한인타운</span>
         <span class="city-tag">No State Tax</span>
       </div>
       <div class="city-btn city-btn-live"><span id="t-seattle-btn">가이드 열기 →</span></div>
@@ -517,7 +517,7 @@ footer a:hover { color: var(--gold); }
       <span class="city-badge" style="background:rgba(232,160,32,.15);color:#E8A020;border:1px solid rgba(232,160,32,.35);">⭐ PREVIEW</span>
       <div class="city-name">Dallas</div>
       <div class="city-name-ko"><span id="t-dallas-ko">달라스 · 텍사스주</span></div>
-      <div class="city-tags"><span class="city-tag">10만+ 한인</span><span class="city-tag">No State Tax</span><span class="city-tag">AT&amp;T · Toyota</span></div>
+      <div class="city-tags"><span class="city-tag" id="t-dallas-tag1">10만+ 한인</span><span class="city-tag">No State Tax</span><span class="city-tag">AT&amp;T · Toyota</span></div>
       <div class="city-btn" style="color:#E8A020;"><span id="t-dallas-btn">가이드 열기 →</span></div>
     </a>
 
@@ -526,7 +526,7 @@ footer a:hover { color: var(--gold); }
       <span class="city-badge" style="background:rgba(232,128,74,.15);color:#E8804A;border:1px solid rgba(232,128,74,.35);">🌉 PREVIEW</span>
       <div class="city-name">San Francisco</div>
       <div class="city-name-ko"><span id="t-sf-ko">샌프란시스코 · 캘리포니아</span></div>
-      <div class="city-tags"><span class="city-tag">15만+ 한인</span><span class="city-tag">Google · Apple</span><span class="city-tag">Bay Area</span></div>
+      <div class="city-tags"><span class="city-tag" id="t-sf-tag1">15만+ 한인</span><span class="city-tag">Google · Apple</span><span class="city-tag">Bay Area</span></div>
       <div class="city-btn" style="color:#E8804A;"><span id="t-sf-btn">가이드 열기 →</span></div>
     </a>
 
@@ -535,7 +535,7 @@ footer a:hover { color: var(--gold); }
       <span class="city-badge" style="background:rgba(96,165,250,.15);color:#60A5FA;border:1px solid rgba(96,165,250,.35);">🗽 PREVIEW</span>
       <div class="city-name">New York</div>
       <div class="city-name-ko"><span id="t-ny-ko">뉴욕 · 뉴저지</span></div>
-      <div class="city-tags"><span class="city-tag">25만+ 한인</span><span class="city-tag">플러싱 한인타운</span><span class="city-tag">월스트리트</span></div>
+      <div class="city-tags"><span class="city-tag" id="t-ny-tag1">25만+ 한인</span><span class="city-tag" id="t-ny-tag2">플러싱 한인타운</span><span class="city-tag" id="t-ny-tag3">월스트리트</span></div>
       <div class="city-btn" style="color:#60A5FA;"><span id="t-ny-btn">가이드 열기 →</span></div>
     </a>
 
@@ -544,7 +544,7 @@ footer a:hover { color: var(--gold); }
       <span class="city-badge" style="background:rgba(192,132,252,.15);color:#C084FC;border:1px solid rgba(192,132,252,.35);">🎵 PREVIEW</span>
       <div class="city-name">Nashville</div>
       <div class="city-name-ko"><span id="t-nashville-ko">내쉬빌 · 테네시주</span></div>
-      <div class="city-tags"><span class="city-tag">음악의 도시</span><span class="city-tag">No State Tax</span><span class="city-tag">이주 급증</span></div>
+      <div class="city-tags"><span class="city-tag" id="t-nashville-tag1">음악의 도시</span><span class="city-tag">No State Tax</span><span class="city-tag" id="t-nashville-tag2">이주 급증</span></div>
       <div class="city-btn" style="color:#C084FC;"><span id="t-nashville-btn">가이드 열기 →</span></div>
     </a>
 
@@ -553,7 +553,7 @@ footer a:hover { color: var(--gold); }
       <span class="city-badge badge-soon" id="t-badge-soon-la">준비 중</span>
       <div class="city-name">Los Angeles</div>
       <div class="city-name-ko"><span id="t-la-ko">LA · 캘리포니아</span></div>
-      <div class="city-tags"><span class="city-tag">코리아타운</span><span class="city-tag">최대 규모</span></div>
+      <div class="city-tags"><span class="city-tag" id="t-la-tag1">코리아타운</span><span class="city-tag" id="t-la-tag2">최대 규모</span></div>
       <div class="city-btn city-btn-soon"><span id="t-la-btn">Coming Soon</span></div>
     </div>
 
@@ -562,7 +562,7 @@ footer a:hover { color: var(--gold); }
       <span class="city-badge badge-soon" id="t-badge-soon-van">준비 중</span>
       <div class="city-name">Vancouver</div>
       <div class="city-name-ko"><span id="t-vancouver-ko">밴쿠버 · BC 캐나다</span></div>
-      <div class="city-tags"><span class="city-tag">🍁 캐나다</span><span class="city-tag">한인 이주 급증</span></div>
+      <div class="city-tags"><span class="city-tag" id="t-van-tag1">🍁 캐나다</span><span class="city-tag" id="t-van-tag2">한인 이주 급증</span></div>
       <div class="city-btn city-btn-soon"><span id="t-van-btn">Coming Soon</span></div>
     </div>
 
@@ -762,6 +762,13 @@ const T = {
     'badge-soon-van': '준비 중',
     'la-btn': 'Coming Soon',
     'van-btn': 'Coming Soon',
+    'seattle-tag1': '린우드 한인타운',
+    'dallas-tag1': '10만+ 한인',
+    'sf-tag1': '15만+ 한인',
+    'ny-tag1': '25만+ 한인', 'ny-tag2': '플러싱 한인타운', 'ny-tag3': '월스트리트',
+    'nashville-tag1': '음악의 도시', 'nashville-tag2': '이주 급증',
+    'la-tag1': '코리아타운', 'la-tag2': '최대 규모',
+    'van-tag1': '🍁 캐나다', 'van-tag2': '한인 이주 급증',
     // Pastor
     'pastor-title': '⛪ 목회자·교회 개척자이신가요?',
     'pastor-body': '당신의 도시에 HebronGuide를 만드세요.<br>가정교회가 도시마다 한 마음 한 방향으로. 큰 물결을 일으키듯<br><span style="color:var(--gold);font-weight:700;">하나님 나라가 이 땅에 확장되는 데 함께합니다.</span>',
@@ -929,6 +936,13 @@ const T = {
     'badge-soon-van': 'Coming Soon',
     'la-btn': 'Coming Soon',
     'van-btn': 'Coming Soon',
+    'seattle-tag1': 'Lynnwood Koreatown',
+    'dallas-tag1': '100K+ Koreans',
+    'sf-tag1': '150K+ Koreans',
+    'ny-tag1': '250K+ Koreans', 'ny-tag2': 'Flushing Koreatown', 'ny-tag3': 'Wall Street',
+    'nashville-tag1': 'Music City', 'nashville-tag2': 'Fast Growing',
+    'la-tag1': 'Koreatown', 'la-tag2': 'Largest Community',
+    'van-tag1': '🍁 Canada', 'van-tag2': 'Growing Korean Community',
     // Pastor
     'pastor-title': '⛪ Are you a pastor or church planter?',
     'pastor-body': 'Build a HebronGuide for your city.<br>Family churches, one heart, one direction in every city. Like a great wave rising —<br><span style="color:var(--gold);font-weight:700;">join us as the Kingdom of God expands across this land.</span>',
