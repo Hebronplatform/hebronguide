@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HebronGuide — 교회 도시 가이드 주문 | Church City Guide Order</title>
+<style>
+:root {
+  --blue:   #1F4E79;
+  --lblue:  #2E75B6;
+  --light:  #EDF5FF;
+  --accent: #C9A227;
+  --green:  #27AE60;
+  --border: #D5E3F0;
+  --gray:   #F7F9FC;
+  --text:   #1A1A2E;
+  --muted:  #6B7280;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  background: #EEF4FB;
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+header {
+  background: var(--blue);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.logo-wrap { display:flex; align-items:center; gap:8px; text-decoration:none; }
+.logo-text  { color:#fff; font-weight:800; font-size:1.1rem; letter-spacing:.02em; }
+.lang-row   { display:flex; gap:6px; align-items:center; }
+.lang-btn {
+  border: 1.5px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: .78rem;
+  font-weight: 600;
+  transition: background .2s;
+}
+.lang-btn.on, .lang-btn:hover { background: rgba(255,255,255,.35); }
+
+.lang-dropdown { position:relative; }
+.lang-dropdown-btn {
+  border: 1.5px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: .78rem;
+  font-weight: 600;
+  display:flex; align-items:center; gap:5px;
+  transition: background .2s;
+  white-space: nowrap;
+}
+.lang-dropdown-btn.on, .lang-dropdown-btn:hover { background: rgba(255,255,255,.35); }
+.lang-dropdown-btn .arrow { font-size:.6rem; transition:transform .2s; }
+.lang-dropdown-btn.open .arrow { transform:rotate(180deg); }
+.lang-menu {
+  display:none;
+  position:absolute;
+  top:calc(100% + 8px); right:0;
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 8px 28px rgba(0,0,0,.18);
+  overflow:hidden;
+  min-width:160px;
+  z-index:100;
+}
+.lang-menu.show { display:block; }
+.lang-menu button {
+  display:flex; align-items:center; gap:8px;
+  width:100%; padding:10px 16px;
+  background:none; border:none;
+  font-size:.85rem; font-weight:600;
+  color:var(--text); cursor:pointer;
+  text-align:left;
+  transition:background .15s;
+}
+.lang-menu button:hover { background:var(--light); }
+.lang-menu button.active { background:var(--light); color:var(--blue); }
+
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(135deg, #1F4E79, #2E75B6);
+  color: #fff;
+  text-align: center;
+  padding: 44px 20px 36px;
+}
+.hero h1 { font-size:clamp(1.3rem,4vw,1.95rem); font-weight:800; margin-bottom:12px; line-height:1.35; }
+.hero p  { font-size:.95rem; opacity:.88; max-width:520px; margin:0 auto 16px; line-height:1.65; }
+.hero .tag {
+  display:inline-block;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:20px;
+  padding:5px 18px;
+  font-size:.8rem;
+  font-style:italic;
+  color:rgba(255,255,255,.92);
+}
+
+/* ── Wrap ── */
+.wrap { max-width:660px; margin:28px auto 60px; padding:0 16px; }
+
+/* ── Value Prop Box ── */
+.value-box {
+  background: linear-gradient(135deg, #FFF8E7, #FFF3D0);
+  border: 1.5px solid #C9A227;
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+}
+.value-box-title { font-size:.92rem; font-weight:800; color:#7A5C00; margin-bottom:12px; }
+.value-box ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.value-box li { font-size:.88rem; line-height:1.55; color:var(--text); display:flex; align-items:flex-start; gap:10px; }
+.value-box li span.ico { font-size:1.05rem; flex-shrink:0; margin-top:1px; }
+
+/* ── Card ── */
+.card {
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 4px 24px rgba(31,78,121,.11);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+
+/* ── Section header ── */
+.sec-head {
+  background:var(--light);
+  border-bottom:1px solid var(--border);
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.sec-head .ico { font-size:1.2rem; }
+.sec-head h2 { font-size:.95rem; font-weight:700; color:var(--blue); }
+.sec-head.green-sec {
+  background: linear-gradient(135deg, #EEF9F3, #EAF4FD);
+  border-bottom-color:#A8D8C0;
+}
+.sec-head.green-sec h2 { color:#1A6640; }
+
+.sec-body { padding:22px 24px 26px; }
+@media(max-width:520px){ .sec-body{ padding:18px 16px 22px; } }
+
+.sec-divider { border:none; border-top:6px solid var(--gray); margin:0; }
+
+/* ── Packages ── */
+.pkg-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media(max-width:460px){ .pkg-grid{ grid-template-columns:1fr; } }
+
+.pkg-card {
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+  position: relative;
+}
+.pkg-card:hover { border-color:var(--lblue); box-shadow:0 2px 12px rgba(46,117,182,.12); }
+.pkg-card.selected { border-color:var(--blue); background:var(--light); box-shadow:0 3px 14px rgba(31,78,121,.15); }
+.pkg-card input[type="radio"] { position:absolute; opacity:0; pointer-events:none; }
+.pkg-badge {
+  position:absolute; top:-10px; right:14px;
+  background: var(--accent);
+  color:#fff; font-size:.68rem; font-weight:800;
+  padding:2px 10px; border-radius:10px;
+  white-space:nowrap;
+}
+.pkg-name { font-weight:800; font-size:.95rem; color:var(--blue); margin-bottom:4px; }
+.pkg-price { font-size:1.35rem; font-weight:900; color:var(--blue); }
+.pkg-unit  { font-size:.72rem; color:var(--muted); font-weight:600; }
+.pkg-desc  { font-size:.78rem; color:var(--muted); margin-top:8px; line-height:1.5; }
+
+.addon-box {
+  border: 2px dashed var(--green);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: background .2s;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.addon-box:hover { background:#F0FFF6; }
+.addon-box.selected { background:#EBF9F2; }
+.addon-box input[type="checkbox"] { margin-top:3px; width:16px; height:16px; accent-color:var(--green); flex-shrink:0; }
+.addon-label { font-weight:700; font-size:.88rem; color:#1A6640; }
+.addon-tag { font-size:.7rem; background:#E8F8EF; color:var(--green); font-weight:700; padding:1px 8px; border-radius:8px; margin-left:6px; }
+.addon-price { font-size:1.1rem; font-weight:800; color:var(--green); }
+.addon-unit  { font-size:.7rem; color:var(--muted); font-weight:600; }
+.addon-desc  { font-size:.76rem; color:var(--muted); margin-top:4px; line-height:1.5; }
+.addon-header { display:flex; align-items:center; flex-wrap:wrap; gap:4px; margin-bottom:2px; }
+
+.pkg-total-box {
+  display:none;
+  background: linear-gradient(135deg, #EDF5FF, #E0EEFF);
+  border: 2px solid var(--blue);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-top: 14px;
+}
+.pkg-total-box.show { display:block; }
+.pkg-total-items { font-size:.82rem; color:var(--blue); margin-bottom:8px; }
+.pkg-total-items li { padding:2px 0; display:flex; justify-content:space-between; }
+.pkg-total-amt { font-size:1.1rem; font-weight:900; color:var(--blue); border-top:1px solid var(--border); padding-top:8px; display:flex; justify-content:space-between; }
+
+.pkg-note { font-size:.78rem; color:var(--muted); margin-top:12px; line-height:1.55; font-style:italic; }
+
+/* ── Form fields ── */
+label { display:block; font-size:.82rem; font-weight:700; color:var(--text); margin-bottom:5px; }
+label .req { color:#E05252; margin-left:2px; }
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+  width:100%; padding:10px 13px;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  font-size:.88rem; color:var(--text);
+  background:#FAFCFF;
+  transition:border-color .2s, box-shadow .2s;
+  font-family:inherit;
+}
+input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus,
+select:focus, textarea:focus {
+  outline:none;
+  border-color:var(--lblue);
+  box-shadow:0 0 0 3px rgba(46,117,182,.12);
+  background:#fff;
+}
+textarea { resize:vertical; min-height:90px; }
+
+.field { margin-bottom:18px; }
+.field:last-child { margin-bottom:0; }
+
+.row-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media(max-width:460px){ .row-2{ grid-template-columns:1fr; } }
+
+.cb-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:6px; }
+@media(max-width:400px){ .cb-grid{ grid-template-columns:1fr; } }
+
+.cb-item { display:flex; align-items:center; gap:7px; font-size:.84rem; cursor:pointer; }
+.cb-item input { width:15px; height:15px; accent-color:var(--blue); flex-shrink:0; cursor:pointer; }
+
+.radio-group { display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:6px; }
+.radio-item { display:flex; align-items:center; gap:7px; font-size:.84rem; cursor:pointer; }
+.radio-item input { width:15px; height:15px; accent-color:var(--blue); flex-shrink:0; cursor:pointer; }
+
+.char-count { font-size:.72rem; color:var(--muted); text-align:right; margin-top:3px; }
+.char-count.warn { color:#E05252; }
+
+/* ── Guide listing banner ── */
+.listing-banner {
+  background: linear-gradient(135deg, #E8F5EE, #E0EFFD);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  display:flex; align-items:flex-start; gap:10px;
+}
+.listing-banner .pin { font-size:1.1rem; flex-shrink:0; margin-top:1px; }
+.listing-banner .lb-title { font-weight:800; font-size:.88rem; color:#1A6640; margin-bottom:3px; }
+.listing-banner .lb-body  { font-size:.8rem; color:var(--muted); line-height:1.5; }
+
+/* ── Submit area ── */
+.agree-row { display:flex; align-items:flex-start; gap:10px; font-size:.83rem; color:var(--muted); line-height:1.55; margin-bottom:16px; }
+.agree-row input { width:16px; height:16px; accent-color:var(--blue); flex-shrink:0; margin-top:2px; cursor:pointer; }
+
+.submit-btn {
+  width:100%; padding:15px;
+  background: linear-gradient(135deg, var(--blue), var(--lblue));
+  color:#fff; font-weight:800; font-size:1rem;
+  border:none; border-radius:12px;
+  cursor:pointer;
+  transition: opacity .2s, transform .15s;
+  letter-spacing:.02em;
+}
+.submit-btn:hover { opacity:.92; transform:translateY(-1px); }
+.submit-btn:active { transform:translateY(0); }
+.submit-btn:disabled { opacity:.55; cursor:not-allowed; transform:none; }
+
+.trust-row { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:14px; }
+.trust-badge {
+  display:inline-flex; align-items:center; gap:5px;
+  background:var(--gray); border:1px solid var(--border);
+  border-radius:20px; padding:4px 12px;
+  font-size:.74rem; font-weight:700; color:var(--muted);
+}
+
+.pay-box {
+  background: linear-gradient(135deg, #EDF5FF, #E6F0FA);
+  border:1.5px solid #B8D4EE;
+  border-radius:12px;
+  padding:14px 18px;
+  margin-top:18px;
+  font-size:.83rem; color:var(--blue);
+}
+.pay-box-title { font-weight:800; font-size:.9rem; margin-bottom:6px; }
+
+.contact-line { text-align:center; font-size:.78rem; color:var(--muted); margin-top:14px; }
+.contact-line a { color:var(--lblue); text-decoration:none; font-weight:600; }
+
+/* ── Error messages ── */
+.err { display:none; color:#E05252; font-size:.76rem; margin-top:4px; font-weight:600; }
+.err.show { display:block; }
+.field-err input, .field-err select, .field-err textarea { border-color:#E05252 !important; }
+
+/* ── Promo banner ── */
+.promo-banner {
+  background: linear-gradient(135deg, #1a2e6c, #2a4a9c);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-top: 20px;
+  color: #fff;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;
+}
+.promo-banner .pb-left h3 { font-size:1rem; font-weight:800; margin-bottom:5px; }
+.promo-banner .pb-left p  { font-size:.83rem; opacity:.85; line-height:1.5; }
+.promo-btn {
+  background: var(--accent);
+  color: #fff;
+  border:none; border-radius:10px;
+  padding:10px 20px;
+  font-size:.85rem; font-weight:800;
+  cursor:pointer; white-space:nowrap;
+  text-decoration:none; display:inline-block;
+  transition:opacity .2s;
+}
+.promo-btn:hover { opacity:.88; }
+
+/* ── Footer ── */
+footer {
+  text-align:center;
+  padding:20px;
+  font-size:.78rem;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+  margin-top:20px;
+}
+
+/* ── Done screen ── */
+#done { display:none; }
+#done .done-card {
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 4px 24px rgba(31,78,121,.11);
+  border:1px solid var(--border);
+  text-align:center;
+  padding:40px 24px 36px;
+}
+#done .done-emoji { font-size:3rem; margin-bottom:16px; }
+#done h2 { font-size:1.4rem; font-weight:800; color:var(--blue); margin-bottom:10px; }
+#done .done-sub { font-size:.9rem; color:var(--muted); margin-bottom:20px; line-height:1.6; }
+#done .done-box {
+  background:var(--light);
+  border:1.5px solid var(--border);
+  border-radius:12px;
+  padding:18px 20px;
+  text-align:left;
+  margin:0 auto;
+  max-width:420px;
+}
+#done .done-box h3 { font-size:.88rem; font-weight:800; color:var(--blue); margin-bottom:12px; }
+#done .done-box ol { padding-left:18px; display:flex; flex-direction:column; gap:10px; }
+#done .done-box li { font-size:.84rem; color:var(--text); line-height:1.55; }
+
+/* ── Spinner ── */
+.spinner {
+  display:inline-block; width:18px; height:18px;
+  border:2.5px solid rgba(255,255,255,.4);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin .7s linear infinite;
+  vertical-align:middle; margin-right:6px;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* ── Other lang input ── */
+#other-lang-wrap { margin-top:8px; display:none; }
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <a class="logo-wrap" href="https://hebronguide.com">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="17" cy="17" r="17" fill="#1F4E79"/>
+      <circle cx="17" cy="17" r="13" fill="#16406A"/>
+      <polygon points="17,5 19.2,14.8 29,17 19.2,19.2 17,29 14.8,19.2 5,17 14.8,14.8" fill="#C9A227"/>
+      <circle cx="17" cy="17" r="2.5" fill="#EDF5FF"/>
+    </svg>
+    <span class="logo-text">Hebron Guide</span>
+  </a>
+  <div class="lang-row">
+    <button class="lang-btn on" id="btn-en" onclick="lang('en')">English</button>
+    <div class="lang-dropdown">
+      <button class="lang-dropdown-btn" id="dd-btn" onclick="toggleDD()">
+        🌐 언어 <span class="arrow">▼</span>
+      </button>
+      <div class="lang-menu" id="lang-menu">
+        <button onclick="pickLang('ko')">🇰🇷 한국어</button>
+        <button onclick="pickLang('es')">🇪🇸 Español</button>
+        <button onclick="pickLang('tl')">🇵🇭 Filipino</button>
+        <button onclick="pickLang('zh')">🇨🇳 中文</button>
+        <button onclick="pickLang('vi')">🇻🇳 Tiếng Việt</button>
+        <button onclick="pickLang('hi')">🇮🇳 हिन्दी</button>
+        <button onclick="pickLang('ru')">🇷🇺 Русский</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <h1 id="h-title">For Less Than Two Dinner Plates —<br>A Living Church City Guide, Forever.</h1>
+  <p id="h-sub">Help newcomers find your church first. Installs via QR code — no app store needed.</p>
+  <span class="tag" id="h-tag">Serve · Connect · Belong</span>
+</div>
+
+<!-- ── Main form ── -->
+<div class="wrap" id="form-section">
+
+  <!-- Value Prop Box -->
+  <div class="value-box">
+    <div class="value-box-title" id="vp-title">✨ Why does your church need a city guide?</div>
+    <ul>
+      <li><span class="ico">⛪</span><span id="vp1">Newcomers find your church first — before Google, before Naver</span></li>
+      <li><span class="ico">📱</span><span id="vp2">One QR code. No app store. Installs in seconds.</span></li>
+      <li><span class="ico">🔄</span><span id="vp3">Just $20/yr keeps your guide alive and current</span></li>
+    </ul>
+  </div>
+
+  <!-- Form Card -->
+  <div class="card">
+
+    <!-- Hidden fields -->
+    <input type="hidden" name="form_type" value="church">
+    <input type="hidden" name="access_key" value="2eb76a16-085c-4477-8f5a-8a8a4ec36af7">
+    <input type="hidden" name="from_name" value="Hebron Guide Church Order">
+    <input type="hidden" id="f-submitted-at" name="submitted_at">
+    <input type="hidden" id="f-honeypot" name="botcheck" value="">
+
+    <!-- ① Package -->
+    <div class="sec-head">
+      <span class="ico">📦</span>
+      <h2><span class="sec-num">①</span> <span id="s1h">Select Package</span> <span class="req">*</span></h2>
+    </div>
+    <div class="sec-body">
+      <div class="pkg-grid">
+
+        <!-- Basic -->
+        <label class="pkg-card" id="pk1" onclick="pickPkg(this)">
+          <input type="radio" name="package" value="Basic — 1 Language $50" id="r-basic">
+          <div class="pkg-name" id="p1n">Basic (1 Language)</div>
+          <div><span class="pkg-price">$50</span> <span class="pkg-unit" id="p1u">/ one-time</span></div>
+          <div class="pkg-desc" id="p1d">1 language · Custom city guide · QR code · 5–7 day delivery</div>
+        </label>
+
+        <!-- Bilingual -->
+        <label class="pkg-card" id="pk2" onclick="pickPkg(this)">
+          <input type="radio" name="package" value="Bilingual — 2 Languages $80" id="r-bilingual">
+          <span class="pkg-badge" id="p2b">⭐ Recommended</span>
+          <div class="pkg-name" id="p2n">Bilingual (2 Languages)</div>
+          <div><span class="pkg-price">$80</span> <span class="pkg-unit" id="p2u">/ one-time</span></div>
+          <div class="pkg-desc" id="p2d">Both languages included (e.g. Korean + English)</div>
+        </label>
+      </div>
+
+      <!-- Add-on -->
+      <div style="margin-top:12px;margin-bottom:6px;font-size:.78rem;font-weight:700;color:var(--muted);" id="s1hReq">➕ <span id="addon-label-head">Add-on (Optional)</span></div>
+      <div class="addon-box" id="pk3" onclick="toggleAddon(this)">
+        <input type="checkbox" id="r-addon" name="addon" value="Annual Update $20/yr" onclick="event.stopPropagation()">
+        <div style="flex:1;">
+          <div class="addon-header">
+            <span class="addon-label" id="p3n">Annual Update</span>
+            <span class="addon-tag">+</span>
+            <span style="margin-left:auto;"><span class="addon-price">$20</span> <span class="addon-unit" id="p3u">/ yr</span></span>
+          </div>
+          <div class="addon-desc" id="p3d">Add to Basic or Bilingual · Annual content updates</div>
+        </div>
+      </div>
+
+      <!-- Total box -->
+      <div class="pkg-total-box" id="pkg-total-box">
+        <ul class="pkg-total-items" id="pkg-total-items"></ul>
+        <div class="pkg-total-amt">
+          <span id="total-label">Total</span>
+          <span id="pkg-total-num">$0</span>
+        </div>
+      </div>
+
+      <div class="err" id="e-pkg" id="ePkg">Please select a package.</div>
+      <p class="pkg-note" id="pkgNote">Equipping multiple churches? Contact us about network pricing.</p>
+    </div>
+
+    <hr class="sec-divider">
+
+    <!-- ② Guide Details -->
+    <div class="sec-head">
+      <span class="ico">🗺️</span>
+      <h2><span class="sec-num">②</span> <span id="s2h">Guide Details</span></h2>
+    </div>
+    <div class="sec-body">
+
+      <div class="row-2">
+        <div class="field" id="fld-city">
+          <label for="f-city"><span id="fCity">City</span> <span class="req">*</span></label>
+          <input type="text" id="f-city" name="city" placeholder="e.g. Dallas" autocomplete="off">
+          <span class="err" id="eCity">Required.</span>
+        </div>
+        <div class="field" id="fld-state">
+          <label for="f-state"><span id="fState">State / Province</span> <span class="req">*</span></label>
+          <select id="f-state" name="state">
+            <option value="" id="fStateH">— Select —</option>
+            <optgroup label="🇺🇸 United States">
+              <option>Alabama</option><option>Alaska</option><option>Arizona</option>
+              <option>Arkansas</option><option>California</option><option>Colorado</option>
+              <option>Connecticut</option><option>Delaware</option><option>Florida</option>
+              <option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+              <option>Illinois</option><option>Indiana</option><option>Iowa</option>
+              <option>Kansas</option><option>Kentucky</option><option>Louisiana</option>
+              <option>Maine</option><option>Maryland</option><option>Massachusetts</option>
+              <option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+              <option>Missouri</option><option>Montana</option><option>Nebraska</option>
+              <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option>
+              <option>New Mexico</option><option>New York</option><option>North Carolina</option>
+              <option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+              <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
+              <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option>
+              <option>Texas</option><option>Utah</option><option>Vermont</option>
+              <option>Virginia</option><option>Washington</option><option>West Virginia</option>
+              <option>Wisconsin</option><option>Wyoming</option>
+            </optgroup>
+            <optgroup label="🇨🇦 Canada">
+              <option>British Columbia</option><option>Ontario</option><option>Alberta</option>
+            </optgroup>
+            <optgroup label="🌐 Other">
+              <option>Other / International</option>
+            </optgroup>
+          </select>
+          <span class="err" id="eState">Required.</span>
+        </div>
+      </div>
+
+      <div class="field" id="fld-lang">
+        <label><span id="fLang">Guide Language(s)</span> <span class="req">*</span> <small id="fLangH" style="color:var(--muted);font-weight:400;">(select all that apply)</small></label>
+        <div class="cb-grid">
+          <label class="cb-item"><input type="checkbox" name="guide_lang" value="English"> 🇺🇸 English</label>
+          <label class="cb-item"><input type="checkbox" name="guide_lang" value="한국어"> 🇰🇷 한국어</label>
+          <label class="cb-item"><input type="checkbox" name="guide_lang" value="Español"> 🇪🇸 Español</label>
+          <label class="cb-item"><input type="checkbox" name="guide_lang" value="Filipino"> 🇵🇭 Filipino</label>
+          <label class="cb-item"><input type="checkbox" name="guide_lang" value="中文"> 🇨🇳 中文</label>
+          <label class="cb-item"><input type="checkbox" name="guide_lang" value="Tiếng Việt"> 🇻🇳 Việt</label>
+          <label class="cb-item">
+            <input type="checkbox" name="guide_lang" value="Other" onchange="toggleOther(this)"> <span id="cbOther">Other</span>
+          </label>
+        </div>
+        <div id="other-lang-wrap">
+          <input type="text" name="guide_lang_other" placeholder="Please specify language" style="margin-top:0;">
+        </div>
+        <span class="err" id="eLang">Please select at least one language.</span>
+      </div>
+
+      <div class="field">
+        <label for="f-comm"><span id="fComm">Target Community</span> <small id="fCommH" style="color:var(--muted);font-weight:400;">(optional)</small></label>
+        <input type="text" id="f-comm" name="target_community" placeholder="e.g. Korean immigrants, Hispanic families, international students">
+      </div>
+
+    </div>
+
+    <hr class="sec-divider">
+
+    <!-- ③ Church Information -->
+    <div class="sec-head">
+      <span class="ico">⛪</span>
+      <h2><span class="sec-num">③</span> <span id="s3h">Church Information</span></h2>
+    </div>
+    <div class="sec-body">
+
+      <div class="field" id="fld-cko">
+        <label for="f-cko"><span id="fCko">Church Name (Korean)</span> <span class="req">*</span></label>
+        <input type="text" id="f-cko" name="church_name_ko" placeholder="예: 헤브론교회">
+        <span class="err" id="eCko">Required.</span>
+      </div>
+
+      <div class="field">
+        <label for="f-cen"><span id="fCen">Church Name (English)</span> <small id="fCenH" style="color:var(--muted);font-weight:400;">(optional)</small></label>
+        <input type="text" id="f-cen" name="church_name_en" placeholder="e.g. Hebron Korean Church">
+      </div>
+
+      <div class="field" id="fld-addr">
+        <label for="f-addr"><span id="fAddr">Church Address</span> <span class="req">*</span></label>
+        <input type="text" id="f-addr" name="church_address" placeholder="123 Main St, City, State 00000">
+        <span class="err" id="eAddr">Required.</span>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label for="f-web"><span id="fWeb">Church Website</span> <small id="fWebH" style="color:var(--muted);font-weight:400;">(optional)</small></label>
+          <input type="text" id="f-web" name="church_website" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label for="f-svc"><span id="fSvc">Sunday Service Time</span> <small id="fSvcH" style="color:var(--muted);font-weight:400;">(optional)</small></label>
+          <input type="text" id="f-svc" name="sunday_service" placeholder="e.g. 11:00 AM">
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="sec-divider">
+
+    <!-- ④ Guide Listing Info -->
+    <div class="sec-head green-sec">
+      <span class="ico">📋</span>
+      <h2><span class="sec-num">④</span> <span id="sgh">Guide Listing Info</span></h2>
+    </div>
+    <div class="sec-body">
+
+      <div class="listing-banner">
+        <span class="pin">📌</span>
+        <div>
+          <div class="lb-title" id="gbTitle">This info will appear in the guide</div>
+          <div class="lb-body" id="gbBody">This info is published in the HebronGuide Korean Church section — it's the first thing newcomers see.</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="f-tagline"><span id="fTagline">Church Tagline</span> <small id="fTaglineH" style="color:var(--muted);font-weight:400;">(optional, max 50 chars)</small></label>
+        <input type="text" id="f-tagline" name="church_tagline" maxlength="50" placeholder="e.g. A warm Korean church that embraces newcomers as family" oninput="updateCharCount()">
+        <div class="char-count" id="char-count">0 / 50</div>
+      </div>
+
+      <div class="field">
+        <label id="fWlang"><span id="fWlangH">Worship Language</span></label>
+        <div class="radio-group">
+          <label class="radio-item"><input type="radio" name="worship_lang" value="Korean only"> <span id="wl1">Korean only</span></label>
+          <label class="radio-item"><input type="radio" name="worship_lang" value="English only"> <span id="wl2">English only</span></label>
+          <label class="radio-item"><input type="radio" name="worship_lang" value="Korean + English"> <span id="wl3">Korean + English bilingual</span></label>
+          <label class="radio-item"><input type="radio" name="worship_lang" value="Other"> <span id="wl4">Other</span></label>
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label for="f-denom"><span id="fDenom">Denomination</span> <small id="fDenomH" style="color:var(--muted);font-weight:400;">(optional)</small></label>
+          <input type="text" id="f-denom" name="denomination" placeholder="e.g. Presbyterian, Baptist">
+        </div>
+        <div class="field">
+          <label for="f-founded"><span id="fFounded">Year Founded</span> <small style="color:var(--muted);font-weight:400;">(optional)</small></label>
+          <input type="text" id="f-founded" name="founded_year" placeholder="e.g. 2005">
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label for="f-newc-name"><span id="fNewc">Newcomer Contact Name</span> <small id="fNewcH" style="color:var(--muted);font-weight:400;">(shown in guide, optional)</small></label>
+          <input type="text" id="f-newc-name" name="newcomer_contact_name" placeholder="e.g. 홍길동 / Gil-dong Hong">
+        </div>
+        <div class="field">
+          <label for="f-newc-phone">Newcomer Contact Phone <small style="color:var(--muted);font-weight:400;">(optional)</small></label>
+          <input type="text" id="f-newc-phone" name="newcomer_contact_phone" placeholder="e.g. (206) 555-0100">
+        </div>
+      </div>
+
+      <div class="field">
+        <label><span id="fSvc2">Settlement Services Offered</span> <small id="fSvc2H" style="color:var(--muted);font-weight:400;">(optional)</small></label>
+        <div class="cb-grid">
+          <label class="cb-item"><input type="checkbox" name="settlement" value="공항 픽업"> <span id="sv1">Airport pickup</span></label>
+          <label class="cb-item"><input type="checkbox" name="settlement" value="임시 거처"> <span id="sv2">Temporary housing</span></label>
+          <label class="cb-item"><input type="checkbox" name="settlement" value="이민 서류 도움"> <span id="sv3">Immigration document help</span></label>
+          <label class="cb-item"><input type="checkbox" name="settlement" value="언어 지원"> <span id="sv4">Language support</span></label>
+          <label class="cb-item"><input type="checkbox" name="settlement" value="취업 네트워크"> <span id="sv5">Job network</span></label>
+          <label class="cb-item"><input type="checkbox" name="settlement" value="자녀 학교 정보"> <span id="sv6">Children's school info</span></label>
+          <label class="cb-item"><input type="checkbox" name="settlement" value="소그룹(목장,셀)"> <span id="sv7">Small group / Cell group</span></label>
+          <label class="cb-item"><input type="checkbox" name="settlement" value="청년부/영어권"> <span id="sv8">Youth / English ministry</span></label>
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label for="f-sns"><span id="fSns">SNS Link</span> <small style="color:var(--muted);font-weight:400;">(optional)</small></label>
+          <input type="text" id="f-sns" name="sns_link" placeholder="https://instagram.com/...">
+        </div>
+        <div class="field">
+          <label for="f-yt"><span id="fYoutube">YouTube</span> <small style="color:var(--muted);font-weight:400;">(optional)</small></label>
+          <input type="text" id="f-yt" name="youtube_link" placeholder="https://youtube.com/...">
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="sec-divider">
+
+    <!-- ⑤ Contact Information -->
+    <div class="sec-head">
+      <span class="ico">👤</span>
+      <h2><span class="sec-num">⑤</span> <span id="s4h">Contact Information</span></h2>
+    </div>
+    <div class="sec-body">
+
+      <div class="field" id="fld-pastor">
+        <label for="f-pastor"><span id="fPastor">Pastor / Contact Name</span> <span class="req">*</span></label>
+        <input type="text" id="f-pastor" name="pastor_name" placeholder="e.g. Rev. John Kim / 김요한 목사">
+        <span class="err" id="ePastor">Required.</span>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label for="f-phone"><span id="fPhone">Phone</span> <small id="fPhoneH" style="color:var(--muted);font-weight:400;">(optional)</small></label>
+          <input type="tel" id="f-phone" name="phone" placeholder="(206) 555-0100">
+        </div>
+        <div class="field" id="fld-email">
+          <label for="f-email"><span id="fEmail">Email</span> <span class="req">*</span> <small id="fEmailH" style="color:var(--muted);font-weight:400;">(delivery & confirmation)</small></label>
+          <input type="email" id="f-email" name="email" placeholder="pastor@church.org">
+          <span class="err" id="eEmail">Valid email required.</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="f-ref"><span id="fRef">How did you hear about us?</span> <small id="fRefH" style="color:var(--muted);font-weight:400;">(optional)</small></label>
+        <select id="f-ref" name="referral">
+          <option value=""></option>
+          <option id="rf1o" value="">At a pastor conference</option>
+          <option id="rf2o" value="">Denomination / presbytery referral</option>
+          <option id="rf3o" value="">Pastor colleague referral</option>
+          <option id="rf4o" value="">Saw the Seattle guide</option>
+          <option id="rf5o" value="">Internet search</option>
+          <option id="rf6o" value="">Social media (Instagram / Facebook)</option>
+          <option id="rf7o" value="">Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="f-time"><span id="fTime">Preferred Timeline</span> <small id="fTimeH" style="color:var(--muted);font-weight:400;">(optional)</small></label>
+        <select id="f-time" name="timeline">
+          <option value=""></option>
+          <option id="tl1o">As soon as possible</option>
+          <option id="tl2o">Within 2 weeks</option>
+          <option id="tl3o">Within a month</option>
+          <option id="tl4o">No rush</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="f-spec"><span id="fSpec">Special Requests</span> <small id="fSpecH" style="color:var(--muted);font-weight:400;">(optional)</small></label>
+        <textarea id="f-spec" name="special_requests" placeholder="Any specific sections, features, or notes for your guide..."></textarea>
+      </div>
+
+      <!-- Agree -->
+      <div class="agree-row">
+        <input type="checkbox" id="f-agree">
+        <label for="f-agree" style="font-size:.83rem;color:var(--muted);cursor:pointer;" id="agreeT">
+          I agree to the 5–7 business day delivery timeline and one free revision within 7 days of delivery.
+        </label>
+      </div>
+      <span class="err" id="eAgree" style="display:none;margin-top:-10px;margin-bottom:12px;">Please check to agree.</span>
+
+      <!-- Submit -->
+      <button class="submit-btn" id="submit-btn" onclick="submitOrder()" id="sbtnT">
+        📨 Submit Order
+      </button>
+
+      <!-- Trust badges -->
+      <div class="trust-row">
+        <span class="trust-badge" id="tr1">✅ Confirmation email sent immediately</span>
+        <span class="trust-badge" id="tr2">🔄 Free revision within 7 days</span>
+        <span class="trust-badge" id="tr3">📱 No app store required</span>
+      </div>
+
+      <!-- Payment box -->
+      <div class="pay-box">
+        <div class="pay-box-title" id="payTitle">💳 Payment</div>
+        <p id="payBody">Invoice sent via Zelle or PayPal. Production begins upon payment.</p>
+      </div>
+
+      <div class="contact-line" id="contactT">
+        <a href="mailto:kchurch911@gmail.com">kchurch911@gmail.com</a> · <a href="https://hebronguide.com" target="_blank">hebronguide.com</a>
+      </div>
+
+    </div>
+  </div><!-- /card -->
+
+  <!-- Website promo banner -->
+  <div class="promo-banner">
+    <div class="pb-left">
+      <h3 id="promoh">🌐 Need a website?</h3>
+      <p id="promop">Whether first-time or a redesign — we're here.</p>
+    </div>
+    <a href="./webdesign/" class="promo-btn" id="promobtn">✉️ Contact Us</a>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- ── Done screen ── -->
+<div class="wrap" id="done">
+  <div class="done-card">
+    <div class="done-emoji">🎉</div>
+    <h2 id="doneH">Order Received!</h2>
+    <p class="done-sub" id="doneP">Your email has been sent to the HebronGuide team. We'll confirm and follow up shortly.</p>
+    <div class="done-box">
+      <h3 id="doneNext">Next Steps:</h3>
+      <ol>
+        <li id="dn1">📧 HebronGuide team will email you with payment instructions</li>
+        <li id="dn2">💳 Your custom guide will be built within 5–7 business days after payment</li>
+        <li id="dn3">📱 Completed app URL + QR code delivered by email</li>
+        <li id="dn4">🔄 One free revision within 7 days of delivery included</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 Hebron Guide · <a href="https://hebronguide.com" style="color:var(--lblue);text-decoration:none;">hebronguide.com</a> · <a href="mailto:kchurch911@gmail.com" style="color:var(--lblue);text-decoration:none;">kchurch911@gmail.com</a></footer>
+
+<script>
+const WEB3FORMS_KEY = "2eb76a16-085c-4477-8f5a-8a8a4ec36af7";
+let curLang = 'en';
+
+/* ── Translations ── */
+const T = {
+  en: {
+    hTitle: "For Less Than Two Dinner Plates —<br>A Living Church City Guide, Forever.",
+    hSub: "Help newcomers find your church first. Installs via QR code — no app store needed.",
+    tagline: "Serve · Connect · Belong",
+    vpTitle: "✨ Why does your church need a city guide?",
+    vp1: "Newcomers find your church first — before Google, before Naver",
+    vp2: "One QR code. No app store. Installs in seconds.",
+    vp3: "Just $20/yr keeps your guide alive and current",
+
+    s1h: "Select Package", s1hReq: "➕ Add-on (Optional)",
+    p1n: "Basic (1 Language)", p1u: "/ one-time",
+    p1d: "1 language · Custom city guide · QR code · 5–7 day delivery",
+    p2b: "⭐ Recommended",
+    p2n: "Bilingual (2 Languages)", p2u: "/ one-time",
+    p2d: "Both languages included (e.g. Korean + English)",
+    p3n: "Annual Update", p3u: "/ yr",
+    p3d: "Add to Basic or Bilingual · Annual content updates",
+    pkgNote: "Equipping multiple churches? Contact us about network pricing.",
+    ePkg: "Please select a package.",
+
+    s2h: "Guide Details",
+    fCity: "City", fState: "State / Province",
+    fLang: "Guide Language(s)", fLangH: "(select all that apply)",
+    fComm: "Target Community", fCommH: "(optional)",
+    eCity: "Required.", eState: "Required.", eLang: "Please select at least one language.",
+
+    s3h: "Church Information",
+    fCko: "Church Name (Korean)",
+    fCen: "Church Name (English)", fCenH: "(optional)",
+    fAddr: "Church Address",
+    fWeb: "Church Website", fWebH: "(optional)",
+    fSvc: "Sunday Service Time", fSvcH: "(optional)",
+    eCko: "Required.", eAddr: "Required.",
+
+    sgh: "Guide Listing Info",
+    gbTitle: "This info will appear in the guide",
+    gbBody: "This info is published in the HebronGuide Korean Church section — it's the first thing newcomers see.",
+    fTagline: "Church Tagline", fTaglineH: "(optional, max 50 chars)",
+    fWlang: "", fWlangH: "Worship Language",
+    wl1: "Korean only", wl2: "English only", wl3: "Korean + English bilingual", wl4: "Other",
+    fDenom: "Denomination", fDenomH: "(optional)", fFounded: "Year Founded",
+    fNewc: "Newcomer Contact Name", fNewcH: "(shown in guide, optional)",
+    fSvc2: "Settlement Services Offered", fSvc2H: "(optional)",
+    sv1: "Airport pickup", sv2: "Temporary housing",
+    sv3: "Immigration document help", sv4: "Language support",
+    sv5: "Job network", sv6: "Children's school info",
+    sv7: "Small group / Cell group", sv8: "Youth / English ministry",
+    fSns: "SNS Link", fYoutube: "YouTube",
+
+    s4h: "Contact Information",
+    fPastor: "Pastor / Contact Name",
+    fPhone: "Phone", fPhoneH: "(optional)",
+    fEmail: "Email", fEmailH: "(delivery & confirmation)",
+    fRef: "How did you hear about us?", fRefH: "(optional)",
+    rf1: "At a pastor conference",
+    rf2: "Denomination / presbytery referral",
+    rf3: "Pastor colleague referral",
+    rf4: "Saw the Seattle guide",
+    rf5: "Internet search",
+    rf6: "Social media (Instagram / Facebook)",
+    rf7: "Other",
+    fTime: "Preferred Timeline", fTimeH: "(optional)",
+    tl1: "As soon as possible", tl2: "Within 2 weeks",
+    tl3: "Within a month", tl4: "No rush",
+    fSpec: "Special Requests", fSpecH: "(optional)",
+    ePastor: "Required.", eEmail: "Valid email required.",
+
+    agreeT: "I agree to the 5–7 business day delivery timeline and one free revision within 7 days of delivery.",
+    sbtnT: "📨 Submit Order",
+    tr1: "✅ Confirmation email sent immediately",
+    tr2: "🔄 Free revision within 7 days",
+    tr3: "📱 No app store required",
+    payTitle: "💳 Payment",
+    payBody: "Invoice sent via Zelle or PayPal. Production begins upon payment.",
+    contactT: "",
+
+    doneH: "Order Received!",
+    doneP: "Your email has been sent to the HebronGuide team. We'll confirm and follow up shortly.",
+    doneNext: "Next Steps:",
+    dn1: "📧 HebronGuide team will email you with payment instructions",
+    dn2: "💳 Your custom guide will be built within 5–7 business days after payment",
+    dn3: "📱 Completed app URL + QR code delivered by email",
+    dn4: "🔄 One free revision within 7 days of delivery included",
+    doneQ: "",
+    cbOther: "Other",
+    promoh: "🌐 Need a website?",
+    promop: "Whether first-time or a redesign — we're here.",
+    promobtn: "✉️ Contact Us",
+    totalLabel: "Total",
+    addonLabelHead: "Add-on (Optional)"
+  },
+  ko: {
+    hTitle: "두 사람 저녁 한 끼 값으로,<br>평생 살아있는 교회 소개 도시 가이드",
+    hSub: "새로 오는 이민자·방문자가 교회를 가장 먼저 만나게 됩니다. QR 코드 하나로 설치 — 앱스토어 불필요.",
+    tagline: "섬기다 · 연결하다 · 뿌리내리다",
+    vpTitle: "✨ 왜 교회가 도시 가이드를 가져야 할까요?",
+    vp1: "새신자가 교회를 가장 먼저 찾게 됩니다 — 구글보다, 네이버보다 먼저",
+    vp2: "QR 코드 하나로 앱스토어 없이 바로 설치",
+    vp3: "연 $20로 콘텐츠 자동 갱신 · 항상 살아있는 가이드",
+
+    s1h: "패키지 선택", s1hReq: "➕ 추가 옵션 / Add-on (Optional)",
+    p1n: "기본 (언어 1개)", p1u: "/ 1회",
+    p1d: "언어 1개 · 도시 맞춤 제작 · QR 코드 포함 · 5~7일 납품",
+    p2b: "⭐ 추천",
+    p2n: "바이링궐 (언어 2개)", p2u: "/ 1회",
+    p2d: "2개 언어 포함 (예: 한국어 + 영어)",
+    p3n: "연간 업데이트", p3u: "/ 년",
+    p3d: "기본 또는 바이링궐에 추가 · 콘텐츠 연간 업데이트",
+    pkgNote: "여러 교회와 함께 도입하고 싶으신가요? 네트워크 할인에 대해 문의해 주세요.",
+    ePkg: "패키지를 선택해 주세요.",
+
+    s2h: "가이드 제작 정보",
+    fCity: "도시", fState: "주 / 지역",
+    fLang: "가이드 언어", fLangH: "(해당하는 것 모두 선택)",
+    fComm: "대상 커뮤니티", fCommH: "(선택)",
+    eCity: "필수 항목입니다.", eState: "필수 항목입니다.", eLang: "언어를 하나 이상 선택해 주세요.",
+
+    s3h: "교회 정보",
+    fCko: "교회명 (한국어)",
+    fCen: "교회명 (영어)", fCenH: "(선택)",
+    fAddr: "교회 주소",
+    fWeb: "교회 홈페이지", fWebH: "(선택)",
+    fSvc: "주일 예배 시간", fSvcH: "(선택)",
+    eCko: "필수 항목입니다.", eAddr: "필수 항목입니다.",
+
+    sgh: "가이드 등재 정보",
+    gbTitle: "📌 가이드에 표시될 내용입니다",
+    gbBody: "아래 내용은 HebronGuide 한인교회 섹션에 등재됩니다. 새로 오는 방문자들이 가장 먼저 보게 됩니다.",
+    fTagline: "교회 소개 한 줄", fTaglineH: "(선택, 최대 50자)",
+    fWlang: "", fWlangH: "예배 언어",
+    wl1: "한국어만", wl2: "영어만", wl3: "한영 이중언어", wl4: "기타",
+    fDenom: "교단", fDenomH: "(선택)", fFounded: "설립 연도",
+    fNewc: "새신자 담당자 이름", fNewcH: "(가이드에 표시, 선택)",
+    fSvc2: "정착 지원 서비스", fSvc2H: "(선택)",
+    sv1: "공항 픽업", sv2: "임시 거처",
+    sv3: "이민 서류 도움", sv4: "언어 지원",
+    sv5: "취업 네트워크", sv6: "자녀 학교 정보",
+    sv7: "소그룹 (목장, 셀)", sv8: "청년부 / 영어권",
+    fSns: "SNS 링크", fYoutube: "유튜브",
+
+    s4h: "담당자 연락처",
+    fPastor: "목사님 / 담당자 이름",
+    fPhone: "전화번호", fPhoneH: "(선택)",
+    fEmail: "이메일", fEmailH: "(납품 및 확인 이메일 발송)",
+    fRef: "어떻게 알게 되셨나요?", fRefH: "(선택)",
+    rf1: "목회자 컨퍼런스에서",
+    rf2: "교단 · 노회 소개",
+    rf3: "동역자 목사님 소개",
+    rf4: "시애틀 가이드를 보고 관심 생김",
+    rf5: "인터넷 검색",
+    rf6: "SNS (Instagram / Facebook)",
+    rf7: "기타",
+    fTime: "희망 납품 일정", fTimeH: "(선택)",
+    tl1: "최대한 빨리", tl2: "2주 이내",
+    tl3: "한 달 이내", tl4: "시간 여유 있음",
+    fSpec: "특별 요청사항", fSpecH: "(선택)",
+    ePastor: "필수 항목입니다.", eEmail: "올바른 이메일 주소를 입력해 주세요.",
+
+    agreeT: "납품 기간 5~7 영업일, 납품 후 7일 이내 1회 무료 수정 조건에 동의합니다.",
+    sbtnT: "📨 주문 제출하기",
+    tr1: "✅ 제출 즉시 확인 이메일 발송",
+    tr2: "🔄 7일 무료 수정",
+    tr3: "📱 앱스토어 없이 설치",
+    payTitle: "💳 결제 안내",
+    payBody: "Zelle 또는 PayPal로 청구서가 이메일로 발송됩니다. 결제 확인 후 제작을 시작합니다.",
+    contactT: "",
+
+    doneH: "주문이 접수되었습니다!",
+    doneP: "HebronGuide 팀에 이메일이 발송되었습니다. 곧 확인 후 연락드리겠습니다.",
+    doneNext: "다음 단계:",
+    dn1: "📧 HebronGuide 팀이 이메일로 연락드려 결제 안내를 드립니다",
+    dn2: "💳 결제 후 5~7 영업일 내에 맞춤 가이드를 제작합니다",
+    dn3: "📱 완성된 앱 URL + QR 코드가 이메일로 납품됩니다",
+    dn4: "🔄 납품 후 7일 이내 1회 수정 무료 제공",
+    doneQ: "",
+    cbOther: "기타",
+    promoh: "🌐 홈페이지가 없으신가요?",
+    promop: "처음 만드시거나 새단장을 원하시는 분도 환영합니다.",
+    promobtn: "✉️ 문의하기",
+    totalLabel: "합계",
+    addonLabelHead: "추가 옵션 (선택)"
+  }
+};
+
+/* Partial overrides for other languages — inherit en for missing keys */
+const LANGS = {
+  es: { hTitle: "Por menos que dos cenas —<br>Una guía de ciudad para tu iglesia, para siempre.", hSub: "Ayuda a los recién llegados a encontrar tu iglesia primero. Se instala con un código QR — sin necesidad de tienda de apps.", tagline: "Servir · Conectar · Pertenecer", vpTitle: "✨ ¿Por qué tu iglesia necesita una guía de ciudad?" },
+  tl: { hTitle: "Para sa Presyo ng Dalawang Hapunan —<br>Isang Gabay ng Lungsod para sa Inyong Simbahan, Magpakailanman.", hSub: "Tulungan ang mga bagong dating na mahanap muna ang inyong simbahan. I-install sa pamamagitan ng QR code — hindi kailangan ng app store.", tagline: "Maglingkod · Kumonekta · Makinabang" },
+  zh: { hTitle: "花两顿晚饭的钱，<br>为您的教会定制永久城市指南。", hSub: "帮助新移民第一时间找到您的教会。扫描二维码即可安装 — 无需应用商店。", tagline: "服务 · 连接 · 归属" },
+  vi: { hTitle: "Chỉ bằng hai bữa tối —<br>Tạo hướng dẫn thành phố cho nhà thờ của bạn, mãi mãi.", hSub: "Giúp người mới đến tìm nhà thờ của bạn trước tiên. Cài đặt bằng mã QR — không cần cửa hàng ứng dụng.", tagline: "Phục vụ · Kết nối · Thuộc về" },
+  hi: { hTitle: "केवल दो डिनर की कीमत में —<br>अपने चर्च के लिए स्थायी सिटी गाइड।", hSub: "नए आने वालों को पहले आपका चर्च मिले। QR कोड से इंस्टॉल करें — ऐप स्टोर की जरूरत नहीं।", tagline: "सेवा · जुड़ाव · अपनापन" },
+  ru: { hTitle: "За цену двух ужинов —<br>Городской гид для вашей церкви, навсегда.", hSub: "Пусть новоприбывшие находят вашу церковь первой. Установка по QR-коду — без магазина приложений.", tagline: "Служить · Соединять · Принадлежать" }
+};
+
+/* Build merged translation object for a given language code */
+function getT(l) {
+  if (l === 'en') return T.en;
+  if (l === 'ko') return T.ko;
+  const base = Object.assign({}, T.en, LANGS[l] || {});
+  return base;
+}
+
+/* ── lang() — apply translations ── */
+function lang(l) {
+  curLang = l;
+  const t = getT(l);
+
+  // Update active button state
+  document.getElementById('btn-en').classList.toggle('on', l === 'en');
+  document.querySelectorAll('#lang-menu button').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${l}'`));
+  });
+
+  // Hero
+  document.getElementById('h-title').innerHTML = t.hTitle;
+  setText('h-sub', t.hSub);
+  setText('h-tag', t.tagline);
+
+  // Value prop
+  setText('vp-title', t.vpTitle);
+  setText('vp1', t.vp1);
+  setText('vp2', t.vp2);
+  setText('vp3', t.vp3);
+
+  // Section 1
+  setText('s1h', t.s1h);
+  setText('addon-label-head', t.addonLabelHead);
+  setText('p1n', t.p1n); setText('p1u', t.p1u); setText('p1d', t.p1d);
+  setText('p2b', t.p2b); setText('p2n', t.p2n); setText('p2u', t.p2u); setText('p2d', t.p2d);
+  setText('p3n', t.p3n); setText('p3u', t.p3u); setText('p3d', t.p3d);
+  setText('pkgNote', t.pkgNote);
+  setText('e-pkg', t.ePkg);
+
+  // Section 2
+  setText('s2h', t.s2h);
+  setText('fCity', t.fCity); setText('fState', t.fState);
+  setText('fLang', t.fLang); setText('fLangH', t.fLangH);
+  setText('fComm', t.fComm); setText('fCommH', t.fCommH);
+  setText('eCity', t.eCity); setText('eState', t.eState); setText('eLang', t.eLang);
+
+  // Section 3
+  setText('s3h', t.s3h);
+  setText('fCko', t.fCko); setText('fCen', t.fCen); setText('fCenH', t.fCenH);
+  setText('fAddr', t.fAddr); setText('fWeb', t.fWeb); setText('fWebH', t.fWebH);
+  setText('fSvc', t.fSvc); setText('fSvcH', t.fSvcH);
+  setText('eCko', t.eCko); setText('eAddr', t.eAddr);
+
+  // Section 4 (guide listing)
+  setText('sgh', t.sgh);
+  setText('gbTitle', t.gbTitle); setText('gbBody', t.gbBody);
+  setText('fTagline', t.fTagline); setText('fTaglineH', t.fTaglineH);
+  setText('fWlangH', t.fWlangH);
+  setText('wl1', t.wl1); setText('wl2', t.wl2); setText('wl3', t.wl3); setText('wl4', t.wl4);
+  setText('fDenom', t.fDenom); setText('fDenomH', t.fDenomH); setText('fFounded', t.fFounded);
+  setText('fNewc', t.fNewc); setText('fNewcH', t.fNewcH);
+  setText('fSvc2', t.fSvc2); setText('fSvc2H', t.fSvc2H);
+  setText('sv1', t.sv1); setText('sv2', t.sv2); setText('sv3', t.sv3); setText('sv4', t.sv4);
+  setText('sv5', t.sv5); setText('sv6', t.sv6); setText('sv7', t.sv7); setText('sv8', t.sv8);
+  setText('fSns', t.fSns); setText('fYoutube', t.fYoutube);
+
+  // Section 5
+  setText('s4h', t.s4h);
+  setText('fPastor', t.fPastor);
+  setText('fPhone', t.fPhone); setText('fPhoneH', t.fPhoneH);
+  setText('fEmail', t.fEmail); setText('fEmailH', t.fEmailH);
+  setText('fRef', t.fRef); setText('fRefH', t.fRefH);
+  setText('fTime', t.fTime); setText('fTimeH', t.fTimeH);
+  setText('fSpec', t.fSpec); setText('fSpecH', t.fSpecH);
+  setText('ePastor', t.ePastor); setText('eEmail', t.eEmail);
+
+  // Referral options
+  setOpt('rf1o', t.rf1); setOpt('rf2o', t.rf2); setOpt('rf3o', t.rf3);
+  setOpt('rf4o', t.rf4); setOpt('rf5o', t.rf5); setOpt('rf6o', t.rf6); setOpt('rf7o', t.rf7);
+
+  // Timeline options
+  setOpt('tl1o', t.tl1); setOpt('tl2o', t.tl2); setOpt('tl3o', t.tl3); setOpt('tl4o', t.tl4);
+
+  // Submit
+  setText('agreeT', t.agreeT);
+  document.getElementById('submit-btn').textContent = t.sbtnT;
+  setText('tr1', t.tr1); setText('tr2', t.tr2); setText('tr3', t.tr3);
+  setText('payTitle', t.payTitle); setText('payBody', t.payBody);
+
+  // Done
+  setText('doneH', t.doneH); setText('doneP', t.doneP);
+  setText('doneNext', t.doneNext);
+  setText('dn1', t.dn1); setText('dn2', t.dn2); setText('dn3', t.dn3); setText('dn4', t.dn4);
+  setText('cbOther', t.cbOther);
+
+  // Promo
+  setText('promoh', t.promoh); setText('promop', t.promop); setText('promobtn', t.promobtn);
+
+  // Total label
+  updateTotal();
+
+  // Close dropdown
+  closeDD();
+}
+
+function setText(id, val) {
+  const el = document.getElementById(id);
+  if (el && val !== undefined) el.textContent = val;
+}
+function setOpt(id, val) {
+  const el = document.getElementById(id);
+  if (el && val !== undefined) { el.textContent = val; el.value = val; }
+}
+
+/* ── Dropdown ── */
+function toggleDD() {
+  const btn = document.getElementById('dd-btn');
+  const menu = document.getElementById('lang-menu');
+  const open = menu.classList.toggle('show');
+  btn.classList.toggle('open', open);
+}
+function closeDD() {
+  document.getElementById('lang-menu').classList.remove('show');
+  document.getElementById('dd-btn').classList.remove('open');
+}
+function pickLang(l) {
+  lang(l);
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.lang-dropdown')) closeDD();
+});
+
+/* ── Package selection ── */
+function pickPkg(el) {
+  ['pk1','pk2'].forEach(id => {
+    const c = document.getElementById(id);
+    c.classList.remove('selected');
+    c.querySelector('input[type="radio"]').checked = false;
+  });
+  el.classList.add('selected');
+  el.querySelector('input[type="radio"]').checked = true;
+  clearErr('e-pkg');
+  updateTotal();
+}
+
+/* ── Add-on toggle ── */
+function toggleAddon(el) {
+  const cb = document.getElementById('r-addon');
+  cb.checked = !cb.checked;
+  el.classList.toggle('selected', cb.checked);
+  updateTotal();
+}
+
+/* ── Total price ── */
+function updateTotal() {
+  const t = getT(curLang);
+  const basic = document.getElementById('r-basic').checked;
+  const bilingual = document.getElementById('r-bilingual').checked;
+  const addon = document.getElementById('r-addon').checked;
+
+  if (!basic && !bilingual) {
+    document.getElementById('pkg-total-box').classList.remove('show');
+    return;
+  }
+
+  const basePrice = bilingual ? 80 : 50;
+  const baseName = bilingual ? t.p2n : t.p1n;
+  const addPrice = addon ? 20 : 0;
+  const total = basePrice + addPrice;
+
+  const itemsEl = document.getElementById('pkg-total-items');
+  let html = `<li><span>${baseName}</span><span>$${basePrice}</span></li>`;
+  if (addon) html += `<li><span>${t.p3n}</span><span>+$${addPrice}/yr</span></li>`;
+  itemsEl.innerHTML = html;
+
+  document.getElementById('total-label').textContent = t.totalLabel || 'Total';
+  document.getElementById('pkg-total-num').textContent = addon ? `$${basePrice} + $${addPrice}/yr` : `$${total}`;
+  document.getElementById('pkg-total-box').classList.add('show');
+}
+
+/* ── Other language toggle ── */
+function toggleOther(cb) {
+  document.getElementById('other-lang-wrap').style.display = cb.checked ? 'block' : 'none';
+}
+
+/* ── Char count ── */
+function updateCharCount() {
+  const input = document.getElementById('f-tagline');
+  const count = document.getElementById('char-count');
+  const len = input.value.length;
+  count.textContent = `${len} / 50`;
+  count.classList.toggle('warn', len >= 45);
+}
+
+/* ── Validation ── */
+function clearErr(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove('show');
+}
+function showErr(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add('show');
+}
+
+function validate() {
+  let ok = true;
+
+  // Package
+  if (!document.getElementById('r-basic').checked && !document.getElementById('r-bilingual').checked) {
+    showErr('e-pkg'); ok = false;
+  }
+
+  // City
+  if (!document.getElementById('f-city').value.trim()) {
+    showErr('eCity'); document.getElementById('fld-city').classList.add('field-err'); ok = false;
+  } else { clearErr('eCity'); document.getElementById('fld-city').classList.remove('field-err'); }
+
+  // State
+  if (!document.getElementById('f-state').value) {
+    showErr('eState'); document.getElementById('fld-state').classList.add('field-err'); ok = false;
+  } else { clearErr('eState'); document.getElementById('fld-state').classList.remove('field-err'); }
+
+  // Language checkboxes
+  const langs = document.querySelectorAll('input[name="guide_lang"]:checked');
+  if (langs.length === 0) {
+    showErr('eLang'); document.getElementById('fld-lang').classList.add('field-err'); ok = false;
+  } else { clearErr('eLang'); document.getElementById('fld-lang').classList.remove('field-err'); }
+
+  // Church name KO
+  if (!document.getElementById('f-cko').value.trim()) {
+    showErr('eCko'); document.getElementById('fld-cko').classList.add('field-err'); ok = false;
+  } else { clearErr('eCko'); document.getElementById('fld-cko').classList.remove('field-err'); }
+
+  // Address
+  if (!document.getElementById('f-addr').value.trim()) {
+    showErr('eAddr'); document.getElementById('fld-addr').classList.add('field-err'); ok = false;
+  } else { clearErr('eAddr'); document.getElementById('fld-addr').classList.remove('field-err'); }
+
+  // Pastor
+  if (!document.getElementById('f-pastor').value.trim()) {
+    showErr('ePastor'); document.getElementById('fld-pastor').classList.add('field-err'); ok = false;
+  } else { clearErr('ePastor'); document.getElementById('fld-pastor').classList.remove('field-err'); }
+
+  // Email
+  const emailVal = document.getElementById('f-email').value.trim();
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+  if (!emailOk) {
+    showErr('eEmail'); document.getElementById('fld-email').classList.add('field-err'); ok = false;
+  } else { clearErr('eEmail'); document.getElementById('fld-email').classList.remove('field-err'); }
+
+  // Agree
+  if (!document.getElementById('f-agree').checked) {
+    document.getElementById('eAgree').style.display = 'block'; ok = false;
+  } else { document.getElementById('eAgree').style.display = 'none'; }
+
+  return ok;
+}
+
+/* ── Submit ── */
+async function submitOrder() {
+  if (!validate()) {
+    // Scroll to first error
+    const firstErr = document.querySelector('.err.show, .field-err');
+    if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Sending…';
+
+  // Set timestamp
+  document.getElementById('f-submitted-at').value = new Date().toISOString();
+
+  // Collect all fields
+  const churchName = document.getElementById('f-cko').value.trim();
+  const guideLangs = [...document.querySelectorAll('input[name="guide_lang"]:checked')].map(c => c.value).join(', ');
+  const otherLang = document.querySelector('input[name="guide_lang_other"]').value.trim();
+  const settlements = [...document.querySelectorAll('input[name="settlement"]:checked')].map(c => c.value).join(', ');
+  const worshipLang = document.querySelector('input[name="worship_lang"]:checked');
+
+  const pkg = document.getElementById('r-basic').checked ? document.getElementById('r-basic').value
+            : document.getElementById('r-bilingual').value;
+  const addonVal = document.getElementById('r-addon').checked ? document.getElementById('r-addon').value : '';
+
+  const payload = {
+    access_key: WEB3FORMS_KEY,
+    from_name: "Hebron Guide Church Order",
+    subject: `⛪ [HebronGuide] 교회 주문 — ${churchName}`,
+    form_type: "church",
+    package: pkg,
+    addon: addonVal,
+    city: document.getElementById('f-city').value.trim(),
+    state: document.getElementById('f-state').value,
+    guide_languages: guideLangs + (otherLang ? `, Other: ${otherLang}` : ''),
+    target_community: document.getElementById('f-comm').value.trim(),
+    church_name_ko: churchName,
+    church_name_en: document.getElementById('f-cen').value.trim(),
+    church_address: document.getElementById('f-addr').value.trim(),
+    church_website: document.getElementById('f-web').value.trim(),
+    sunday_service: document.getElementById('f-svc').value.trim(),
+    church_tagline: document.getElementById('f-tagline').value.trim(),
+    worship_language: worshipLang ? worshipLang.value : '',
+    denomination: document.getElementById('f-denom').value.trim(),
+    founded_year: document.getElementById('f-founded').value.trim(),
+    newcomer_contact_name: document.getElementById('f-newc-name').value.trim(),
+    newcomer_contact_phone: document.getElementById('f-newc-phone').value.trim(),
+    settlement_services: settlements,
+    sns_link: document.getElementById('f-sns').value.trim(),
+    youtube_link: document.getElementById('f-yt').value.trim(),
+    pastor_name: document.getElementById('f-pastor').value.trim(),
+    phone: document.getElementById('f-phone').value.trim(),
+    email: document.getElementById('f-email').value.trim(),
+    referral: document.getElementById('f-ref').value,
+    timeline: document.getElementById('f-time').value,
+    special_requests: document.getElementById('f-spec').value.trim(),
+    submitted_at: document.getElementById('f-submitted-at').value,
+    botcheck: document.getElementById('f-honeypot').value
+  };
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('form-section').style.display = 'none';
+      document.getElementById('done').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      btn.disabled = false;
+      btn.textContent = getT(curLang).sbtnT;
+      alert('Submission failed. Please try again or email kchurch911@gmail.com');
+    }
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = getT(curLang).sbtnT;
+    alert('Network error. Please check your connection and try again.');
+  }
+}
+
+/* ── Init ── */
+window.addEventListener('DOMContentLoaded', () => {
+  const nav = (navigator.language || 'en').toLowerCase();
+  lang(nav.startsWith('ko') ? 'ko' : 'en');
+});
+</script>
+</body>
+</html>
