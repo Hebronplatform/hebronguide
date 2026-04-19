@@ -39,19 +39,7 @@ jobs:
           # 선택: Google Places API 키가 있으면 업소 정보도 자동 검증
           GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
 
-      # ── 4. 변경된 HTML 자동 커밋 ──────────────────────────────────────────
-      - name: Commit auto-updates (if any)
-        continue-on-error: true   # 커밋 실패해도 워크플로우 성공으로 처리
-        run: |
-          if [ -f UPDATE_NEEDED ]; then
-            rm UPDATE_NEEDED
-            git config user.name  "HebronGuide Auto-Update Bot"
-            git config user.email "bot@hebronguide.com"
-            git add seattle/index.html
-            git commit -m "🤖 자동 업데이트: $(date +'%Y년') 연간 정보 갱신 [skip ci]"
-            # 실행 중 다른 커밋이 생겼을 경우 rebase 후 push
-            git pull --rebase origin main && git push || echo "⚠️ push 실패 — 수동 확인 필요"
-            echo "✅ 변경사항 자동 커밋 완료"
-          else
-            echo "ℹ️  변경 없음 — 커밋 건너뜀"
-          fi
+      # ── 4. 완료 확인 ──────────────────────────────────────────────────────────
+      # HTML 커밋은 스크립트 내부에서 GitHub API로 직접 처리 (git push 불필요)
+      - name: Done
+        run: echo "✅ 연간 업데이트 완료 — HTML 커밋은 GitHub API로 스크립트에서 처리됨"

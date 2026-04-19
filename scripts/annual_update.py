@@ -137,7 +137,62 @@ def check_all_urls(html):
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 3. GitHub Issue 자동 생성
+# 3. GitHub API 직접 커밋 (git push 없이 파일 업데이트)
+# ══════════════════════════════════════════════════════════════════════════════
+
+def commit_via_github_api(html_content):
+    """
+    git push 없이 GitHub Contents API로 직접 HTML 파일 커밋.
+    충돌·권한 오류 없이 안정적으로 작동.
+    """
+    import base64
+    token = os.environ.get("GITHUB_TOKEN")
+    repo  = os.environ.get("GITHUB_REPOSITORY")
+    if not token or not repo:
+        log("  ⚠️  GITHUB_TOKEN 없음 — API 커밋 불가")
+        return False
+
+    headers = {
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github.v3+json",
+    }
+    api_url = f"https://api.github.com/repos/{repo}/contents/{HTML_PATH}"
+
+    # 현재 파일의 SHA 조회 (업데이트에 필요)
+    try:
+        r = requests.get(api_url, headers=headers, timeout=15)
+        r.raise_for_status()
+        sha = r.json()["sha"]
+    except Exception as e:
+        log(f"  ⚠️  파일 SHA 조회 실패: {e}")
+        return False
+
+    # Base64 인코딩 후 PUT
+    content_b64 = base64.b64encode(html_content.encode("utf-8")).decode("ascii")
+    payload = {
+        "message": f"🤖 자동 업데이트: {CURRENT_YEAR}년 연간 정보 갱신 [skip ci]",
+        "content": content_b64,
+        "sha": sha,
+        "committer": {
+            "name": "HebronGuide Auto-Update Bot",
+            "email": "bot@hebronguide.com"
+        }
+    }
+    try:
+        r = requests.put(api_url, headers=headers, json=payload, timeout=30)
+        if r.status_code in (200, 201):
+            log(f"  ✅ GitHub API 커밋 성공: {r.json()['commit']['html_url']}")
+            return True
+        else:
+            log(f"  ⚠️  커밋 실패 {r.status_code}: {r.text[:200]}")
+            return False
+    except Exception as e:
+        log(f"  ⚠️  커밋 오류: {e}")
+        return False
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 4. GitHub Issue 자동 생성
 # ══════════════════════════════════════════════════════════════════════════════
 
 def create_github_issue(title, body):
@@ -304,14 +359,14 @@ def main():
 
     log(f"\n  결과: 정상 {sum(url_results.values())}개 / 불량 {len(dead_links)}개")
 
-    # ── ③ HTML 저장 ──────────────────────────────────────────────
+    # ── ③ HTML 변경 → GitHub API로 직접 커밋 (git push 불필요) ──
     if html_changed:
-        with open(HTML_PATH, "w", encoding="utf-8") as f:
-            f.write(html)
-        log(f"\n✅ HTML 자동 업데이트 저장 완료 ({len(auto_updated)}건)")
-        # GitHub Actions에 커밋 필요 신호
-        with open("UPDATE_NEEDED", "w") as f:
-            f.write("yes")
+        committed = commit_via_github_api(html)
+        if committed:
+            log(f"\n✅ GitHub API 커밋 완료 ({len(auto_updated)}건)")
+        else:
+            log(f"\n⚠️  GitHub API 커밋 실패 — 이슈에 기록됨")
+            auto_updated.append("⚠️ HTML 변경 감지됐으나 자동 커밋 실패 — 수동 확인 필요")
     else:
         log("\nℹ️  HTML 변경 없음")
 
