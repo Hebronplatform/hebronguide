@@ -640,8 +640,8 @@
   <div class="sec-body">
 
     <div class="field">
-      <label class="lbl" for="org-name"><span id="f-org-name">선교기관명</span> <span class="req">*</span></label>
-      <input type="text" id="org-name" name="org_name" placeholder="예: 시애틀한인선교회, 이민자사역원, 디아스포라네트워크">
+      <label class="lbl" for="org-name"><span id="f-org-name">기관명</span> <span class="req">*</span></label>
+      <input type="text" id="org-name" name="org_name" placeholder="예: 시애틀한인선교회, 이민자사역원, 디아스포라선교네트워크">
       <div class="err" id="e-org-name">⚠ <span id="e-org-name-t">기관명을 입력해 주세요.</span></div>
     </div>
 
@@ -680,7 +680,7 @@
     <div class="field">
       <label class="lbl" for="org-tag"><span id="f-org-tag">한 줄 소개</span> <span class="opt" id="f-org-tag-h">(가이드에 표시, 50자 이내)</span></label>
       <input type="text" id="org-tag" name="org_tagline" maxlength="50"
-             placeholder="예: 시애틀 한인을 위한 24시간 응급 이민법 서비스"
+             placeholder="예: 이민자 가정을 품는 정착 지원 · 디아스포라 사역"
              oninput="document.getElementById('org-tag-ct').textContent=this.value.length">
       <div class="char-hint"><span id="org-tag-ct">0</span>/50</div>
     </div>
@@ -1111,7 +1111,7 @@ const T = {
     fContact:"담당자 이름",
     tabChurch:"교회용", tabGeneral:"선교기관용",
     s3hg:"선교기관 정보",
-    fOrgName:"선교기관명", eOrgName:"기관명을 입력해 주세요.",
+    fOrgName:"기관명", eOrgName:"기관명을 입력해 주세요.",
     fOrgType:"기관 유형", eOrgType:"기관 유형을 선택해 주세요.",
     fOrgAddr:"주소", fOrgWeb:"웹사이트",
     fOrgTag:"한 줄 소개", fOrgTagH:"(가이드에 표시, 50자 이내)",
@@ -1178,7 +1178,7 @@ const T = {
     fContact:"Contact Name",
     tabChurch:"For Churches", tabGeneral:"For Mission Orgs",
     s3hg:"Mission Organization Info",
-    fOrgName:"Mission Org Name", eOrgName:"Please enter the organization name.",
+    fOrgName:"Organization Name", eOrgName:"Please enter the organization name.",
     fOrgType:"Organization Type", eOrgType:"Please select a type.",
     fOrgAddr:"Address", fOrgWeb:"Website",
     fOrgTag:"One-line description", fOrgTagH:"(shown in guide, max 50 chars)",
