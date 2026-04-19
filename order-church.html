@@ -920,7 +920,9 @@ const T = {
     promop: "Whether first-time or a redesign — we're here.",
     promobtn: "✉️ Contact Us",
     totalLabel: "Total",
-    addonLabelHead: "Add-on (Optional)"
+    addonLabelHead: "Add-on (Optional)",
+    ph_church_ko: "e.g. Hebron Church",
+    ph_newc_name: "Name / Gil-dong Hong"
   },
   ko: {
     hTitle: "두 사람 저녁 한 끼 값으로,<br>평생 살아있는 교회 소개 도시 가이드",
@@ -1011,7 +1013,9 @@ const T = {
     promop: "처음 만드시거나 새단장을 원하시는 분도 환영합니다.",
     promobtn: "✉️ 문의하기",
     totalLabel: "합계",
-    addonLabelHead: "추가 옵션 (선택)"
+    addonLabelHead: "추가 옵션 (선택)",
+    ph_church_ko: "예: 헤브론교회",
+    ph_newc_name: "이름 / Name"
   }
 };
 
@@ -1122,6 +1126,21 @@ function lang(l) {
 
   // Promo
   setText('promoh', t.promoh); setText('promop', t.promop); setText('promobtn', t.promobtn);
+
+  // Dropdown button label
+  const ddBtn = document.getElementById('dd-btn');
+  if (ddBtn) {
+    if (l === 'ko') {
+      ddBtn.innerHTML = '🌐 언어 <span class="arrow">▼</span>';
+    } else {
+      ddBtn.innerHTML = '🌐 Language <span class="arrow">▼</span>';
+    }
+  }
+
+  // Placeholder switching
+  const ph = (id, v) => { const el = document.getElementById(id); if (el && v) el.placeholder = v; };
+  ph('f-cko',       t.ph_church_ko);
+  ph('f-newc-name', t.ph_newc_name);
 
   // Total label
   updateTotal();
@@ -1294,7 +1313,7 @@ async function submitOrder() {
 
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Sending…';
+  btn.innerHTML = '<span class="spinner"></span> ' + (curLang === 'ko' ? '제출 중...' : 'Submitting...');
 
   // Set timestamp
   document.getElementById('f-submitted-at').value = new Date().toISOString();

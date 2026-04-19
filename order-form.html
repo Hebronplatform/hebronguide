@@ -1121,7 +1121,13 @@ const T = {
     ot10:"비영리 단체", ot11:"한인 커뮤니티 단체", ot12:"신학교 · 훈련원", ot13:"기타",
     wbTitle:"🌐 홈페이지가 없으신가요?",
     wbBody:"처음 만드시거나 새단장을 원하시는 분도 환영합니다.\nHebronGuide 팀이 함께합니다.",
-    wbBtn:"✉️ 문의하기"
+    wbBtn:"✉️ 문의하기",
+    ph_tagline:    '예: 새 이민자를 가족으로 품는 따뜻한 한인 교회',
+    ph_newc_name:  '이름 / Name',
+    ph_newc_phone: '연락처 / Phone',
+    ph_org_name:   '예: 시애틀한인선교회, 이민자사역원, 디아스포라선교네트워크',
+    ph_org_tag:    '예: 이민자 가정을 품는 정착 지원 · 디아스포라 사역',
+    selDefault:    '-- 선택 --'
   },
   en: {
     hTitle:"Order Your City Guide App",
@@ -1188,7 +1194,13 @@ const T = {
     ot10:"Nonprofit", ot11:"Korean Community Organization", ot12:"Seminary / Training Center", ot13:"Other",
     wbTitle:"🌐 Need a website?",
     wbBody:"Whether it's your first or a redesign — we're here to help.\nHebronGuide team has you covered.",
-    wbBtn:"✉️ Contact Us"
+    wbBtn:"✉️ Contact Us",
+    ph_tagline:    'e.g. A warm church embracing new immigrants as family',
+    ph_newc_name:  'Name',
+    ph_newc_phone: 'Phone',
+    ph_org_name:   'e.g. Seattle Korean Mission, Immigrant Ministry Center',
+    ph_org_tag:    'e.g. Settlement support & diaspora ministry for immigrant families',
+    selDefault:    '-- Select --'
   }
 };
 
@@ -1278,6 +1290,16 @@ function lang(l) {
   s('ot6',t.ot6); s('ot7',t.ot7); s('ot8',t.ot8); s('ot9',t.ot9);
   s('ot10',t.ot10); s('ot11',t.ot11); s('ot12',t.ot12); s('ot13',t.ot13);
   s('wb-title', t.wbTitle); s('wb-body', t.wbBody); s('wb-btn', t.wbBtn);
+  // placeholder switching
+  const ph = (id, v) => { const el = document.getElementById(id); if(el) el.placeholder = v; };
+  ph('g-tagline',   t.ph_tagline);
+  ph('f-newc-name', t.ph_newc_name);
+  ph('f-newc-phone',t.ph_newc_phone);
+  ph('org-name',    t.ph_org_name);
+  ph('org-tag',     t.ph_org_tag);
+  // select default option
+  const sel = document.getElementById('org-type');
+  if (sel && sel.options[0]) sel.options[0].text = t.selDefault || (l==='ko' ? '-- 선택 --' : '-- Select --');
 }
 
 // ── 다국어 드롭다운 ──

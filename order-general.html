@@ -645,7 +645,7 @@
     </div>
 
     <div class="field">
-      <label class="lbl" for="referral"><span id="f-ref">어떻게 알게 되셨나요? / How did you hear about us?</span> <span class="opt">(선택)</span></label>
+      <label class="lbl" for="referral"><span id="f-ref">어떻게 알게 되셨나요? / How did you hear about us?</span> <span class="opt" id="f-ref-h">(선택)</span></label>
       <select id="referral" name="referral">
         <option value="">-- 선택 / Select --</option>
         <option id="rf1">한인 커뮤니티 가이드 앱을 보고</option>
@@ -793,6 +793,10 @@ const T = {
     promoTxt:  '🌐 <strong id="promo-strong">홈페이지가 없으신가요?</strong> HebronGuide 웹사이트 제작 서비스로 전문적인 온라인 존재감을 만들어 드립니다.',
     promoLink: '✉️ 문의하기',
     totalLabel:'합계',
+    ph_org_name:     'e.g. Kim\'s Korean Market / 시애틀 법률 사무소',
+    ph_org_tagline:  '예: 새 이민자를 위한 한인 정착 가이드 서비스',
+    ph_contact_name: '담당자 이름',
+    ph_notes:        '등재 관련 특별 요청 또는 추가 안내가 필요한 사항을 적어 주세요.',
   },
   en: {
     title: 'Zero Ad Budget. City-wide Korean Community Reach.',
@@ -850,6 +854,10 @@ const T = {
     promoTxt:  '🌐 <strong id="promo-strong">Don\'t have a website?</strong> Let HebronGuide build a professional site for your organization.',
     promoLink: '✉️ Contact Us',
     totalLabel:'Total',
+    ph_org_name:     'e.g. Seattle Korean Market, Law Office, Restaurant...',
+    ph_org_tagline:  'e.g. Trusted Korean-American legal services since 2010',
+    ph_contact_name: 'Contact Name',
+    ph_notes:        'Any special requests or additional information for your listing.',
   }
 };
 
@@ -880,7 +888,8 @@ function setLang(l) {
   sid('vp3').textContent = t.vp3 || T.en.vp3;
 
   // Section headings
-  sid('s1h').innerHTML = t.s1h + ' <span style="color:var(--muted);font-weight:400;font-size:.8rem;">* 필수</span>';
+  const reqLabel = l === 'ko' ? '* 필수' : '* Required';
+  sid('s1h').innerHTML = t.s1h + ` <span style="color:var(--muted);font-weight:400;font-size:.8rem;">${reqLabel}</span>`;
   sid('s2h').textContent = t.s2h;
   sid('s3h').textContent = t.s3h;
   sid('s4h').textContent = t.s4h;
@@ -939,6 +948,20 @@ function setLang(l) {
   // Promo banner
   sid('promo-txt').innerHTML = t.promoTxt;
   sid('promo-link').textContent = t.promoLink;
+
+  // Placeholder switching
+  const ph = (id, v) => { const el = document.getElementById(id); if (el && v) el.placeholder = v; };
+  ph('org-name',     t.ph_org_name);
+  ph('org-tagline',  t.ph_org_tagline);
+  ph('contact-name', t.ph_contact_name);
+  ph('notes',        t.ph_notes);
+
+  // (선택) / (optional) on referral label
+  const fRefH = sid('f-ref-h'); if (fRefH) fRefH.textContent = l === 'ko' ? '(선택)' : '(optional)';
+
+  // Language dropdown button label
+  const ddBtn = document.getElementById('dd-btn');
+  if (ddBtn) ddBtn.innerHTML = (l === 'ko' ? '🌐 언어' : '🌐 Language') + ' <span class="arrow">▼</span>';
 
   // Lang button highlight
   sid('btn-en').classList.toggle('on', l === 'en');
@@ -1150,7 +1173,9 @@ async function submitOrder() {
     }
   } catch (err) {
     console.error(err);
-    alert('제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.\nSubmission failed. Please try again.');
+    alert(curLang === 'ko'
+      ? '제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.\n문의: kchurch911@gmail.com'
+      : 'Submission failed. Please try again or email kchurch911@gmail.com directly.');
     btn.disabled = false;
     spin.style.display = 'none';
     bTxt.style.display = 'inline';
