@@ -56,15 +56,29 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* HERO CARD */
 .hero-card {
   margin: 8px 16px 0;
-  background: linear-gradient(135deg, #0f4473 0%, #1e6bb5 50%, #0f6a8f 100%);
+  background:
+    url('https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=800&q=80')
+    center/cover no-repeat,
+    linear-gradient(135deg, #0f4473 0%, #1e6bb5 50%, #0f6a8f 100%);
   border-radius: 20px; padding: 28px 24px 22px;
   position: relative; overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.55);
+  min-height: 280px;
 }
+/* 다크 그라디언트 오버레이 — 텍스트 가독성 */
 .hero-card::before {
-  content: '🌲'; position: absolute; right: 16px; top: 12px;
-  font-size: 5rem; opacity: 0.12; pointer-events: none;
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(
+    170deg,
+    rgba(8,18,35,0.42) 0%,
+    rgba(8,25,50,0.60) 55%,
+    rgba(5,15,30,0.82) 100%
+  );
+  border-radius: 20px;
+  pointer-events: none; z-index: 0;
 }
+/* 내부 콘텐츠를 오버레이 위로 */
+.hero-card > * { position: relative; z-index: 1; }
 .hero-back {
   font-size: 0.75rem; color: rgba(255,255,255,0.6);
   margin-bottom: 14px; display: flex; align-items: center; gap: 6px;
