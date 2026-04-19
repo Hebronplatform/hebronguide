@@ -10,8 +10,8 @@
   "categories": ["lifestyle", "travel", "social"],
   "lang": "ko",
   "icons": [
-    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    { "src": "./icon-192.png?v=3", "sizes": "192x192", "type": "image/png" },
+    { "src": "./icon-512.png?v=3", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ],
   "shortcuts": [
     {
@@ -19,21 +19,21 @@
       "short_name": "체크리스트",
       "description": "정착 30일 체크리스트",
       "url": "./#check",
-      "icons": [{ "src": "./icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "./icon-192.png?v=3", "sizes": "192x192" }]
     },
     {
       "name": "한인 상권 검색",
       "short_name": "한인상권",
       "description": "한인 마트·식당·서비스",
       "url": "./#biz",
-      "icons": [{ "src": "./icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "./icon-192.png?v=3", "sizes": "192x192" }]
     },
     {
       "name": "정착 가이드",
       "short_name": "정착",
       "description": "SSN·면허·은행·보험",
       "url": "./#settle",
-      "icons": [{ "src": "./icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "./icon-192.png?v=3", "sizes": "192x192" }]
     }
   ]
 }
