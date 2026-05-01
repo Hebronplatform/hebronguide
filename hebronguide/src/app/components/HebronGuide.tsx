@@ -263,7 +263,7 @@ function CategoryItem({ label, pathKey, vb, active = false, onClick }: CategoryI
 /* ─────────────────────────────────────────
    SETTLE FIRST SECTION (홈 탭용)
 ───────────────────────────────────────── */
-function SettleFirstSection() {
+function SettleFirstSection({ onNavigate }: { onNavigate?: (tab: number) => void }) {
   const { t } = useI18n();
   return (
     <section className="flex flex-col gap-[20px]">
@@ -280,14 +280,14 @@ function SettleFirstSection() {
         </div>
       </div>
       <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-x-[12px] gap-y-[16px]">
-        <CategoryItem label={t("cat.visa")}    pathKey="p2ce24f80" vb="0 0 18.75 23.75" active />
-        <CategoryItem label={t("cat.housing")} pathKey="p3b345300" vb="0 0 18.75 21.12" />
-        <CategoryItem label={t("cat.schools")} pathKey="p193ae400" vb="0 0 24.9 20.34" />
-        <CategoryItem label={t("cat.license")} pathKey="p345dc3a0" vb="0 0 23.75 18.75" />
-        <CategoryItem label={t("cat.jobs")}    pathKey="p1da64f00" vb="0 0 23.75 21.875" />
-        <CategoryItem label={t("cat.health")}  pathKey="p3c213f80" vb="0 0 23.75 23.125" />
-        <CategoryItem label={t("cat.markets")} pathKey="p2de11280" vb="0 0 24.53 21.875" />
-        <CategoryItem label={t("cat.bank")}    pathKey="p3c662d00" vb="0 0 23.08 23.678" />
+        <CategoryItem label={t("cat.visa")}    pathKey="p2ce24f80" vb="0 0 18.75 23.75" active onClick={() => onNavigate?.(1)} />
+        <CategoryItem label={t("cat.housing")} pathKey="p3b345300" vb="0 0 18.75 21.12"        onClick={() => onNavigate?.(1)} />
+        <CategoryItem label={t("cat.schools")} pathKey="p193ae400" vb="0 0 24.9 20.34"         onClick={() => onNavigate?.(1)} />
+        <CategoryItem label={t("cat.license")} pathKey="p345dc3a0" vb="0 0 23.75 18.75"        onClick={() => onNavigate?.(1)} />
+        <CategoryItem label={t("cat.jobs")}    pathKey="p1da64f00" vb="0 0 23.75 21.875"       onClick={() => onNavigate?.(1)} />
+        <CategoryItem label={t("cat.health")}  pathKey="p3c213f80" vb="0 0 23.75 23.125"       onClick={() => onNavigate?.(1)} />
+        <CategoryItem label={t("cat.markets")} pathKey="p2de11280" vb="0 0 24.53 21.875"       onClick={() => onNavigate?.(3)} />
+        <CategoryItem label={t("cat.bank")}    pathKey="p3c662d00" vb="0 0 23.08 23.678"       onClick={() => onNavigate?.(1)} />
       </div>
     </section>
   );
@@ -548,14 +548,14 @@ function EmergencyRow({ emoji, title, number, desc }: { emoji: string; title: st
 /* ─────────────────────────────────────────
    TAB 1: 홈 SCREEN
 ───────────────────────────────────────── */
-function HomeScreen() {
+function HomeScreen({ onNavigate }: { onNavigate?: (tab: number) => void }) {
   return (
     <div className="flex flex-col gap-[28px] md:gap-[36px] px-[16px] md:px-[24px] lg:px-[32px] pt-[20px]" style={{ paddingBottom: 96 }}>
       <HeroCard />
       <SectionDivider />
       <QuickChips />
       <SectionDivider />
-      <SettleFirstSection />
+      <SettleFirstSection onNavigate={onNavigate} />
       <SectionDivider />
       <AnnouncementBanner />
       <SectionDivider />
@@ -1164,7 +1164,7 @@ export function HebronGuide() {
   const [activeNav, setActiveNav] = useState(0);
 
   const screens = [
-    <HomeScreen />,
+    <HomeScreen onNavigate={setActiveNav} />,
     <SettleScreen />,
     <ChurchScreen />,
     <DiningScreen />,
