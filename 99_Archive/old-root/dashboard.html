@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GuideKim Dashboard</title>
+<style>
+:root {
+  --navy:#0d1b3e; --blue:#1a2e6c; --gold:#d4a017;
+  --green:#15803d; --red:#dc2626; --purple:#7c3aed;
+  --gray:#6b7280; --bg:#f1f5f9; --white:#fff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: #1f2937; min-height: 100vh; }
+
+/* TOP BAR */
+.topbar {
+  background: var(--navy); color: white;
+  padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.topbar h1 { font-size: 1rem; font-weight: 800; color: #f0c040; }
+.topbar .sub { font-size: .72rem; opacity: .6; margin-top: 1px; }
+.btn-add {
+  background: var(--gold); color: var(--navy); border: none;
+  padding: 9px 20px; border-radius: 8px; font-weight: 800; font-size: .83rem;
+  cursor: pointer; white-space: nowrap;
+}
+.btn-add:hover { opacity: .9; }
+
+/* SUMMARY CARDS */
+.summary { display: flex; gap: 12px; padding: 20px 24px 0; flex-wrap: wrap; }
+.sum-card {
+  background: white; border-radius: 10px; padding: 14px 18px;
+  flex: 1; min-width: 130px; border-top: 3px solid var(--blue);
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.sum-card.green { border-color: var(--green); }
+.sum-card.gold  { border-color: var(--gold); }
+.sum-card.purple{ border-color: var(--purple); }
+.sum-val { font-size: 1.6rem; font-weight: 900; color: var(--navy); }
+.sum-label { font-size: .72rem; color: var(--gray); margin-top: 2px; }
+
+/* FILTER BAR */
+.filterbar { padding: 16px 24px 8px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.filter-btn {
+  padding: 5px 14px; border-radius: 20px; border: 1.5px solid #d1d5db;
+  background: white; font-size: .78rem; font-weight: 600; cursor: pointer; color: var(--gray);
+  transition: all .15s;
+}
+.filter-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+.filter-label { font-size: .75rem; color: var(--gray); margin-right: 4px; }
+
+/* PIPELINE */
+.pipeline { display: flex; gap: 12px; padding: 16px 24px 32px; overflow-x: auto; }
+.stage-col { min-width: 210px; flex-shrink: 0; }
+.stage-header {
+  font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;
+}
+.stage-count { background: #e5e7eb; color: var(--gray); padding: 1px 7px; border-radius: 10px; font-size: .68rem; }
+.stage-col.s0 .stage-header { color: #6b7280; }
+.stage-col.s1 .stage-header { color: #2563eb; }
+.stage-col.s2 .stage-header { color: #d97706; }
+.stage-col.s3 .stage-header { color: #7c3aed; }
+.stage-col.s4 .stage-header { color: #0891b2; }
+.stage-col.s5 .stage-header { color: var(--green); }
+.stage-col.s6 .stage-header { color: #be185d; }
+
+/* DEAL CARD */
+.deal-card {
+  background: white; border-radius: 10px; padding: 13px 14px;
+  margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.07);
+  border-left: 3px solid #e5e7eb; cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+  position: relative;
+}
+.deal-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.12); }
+.deal-card.src-gary  { border-left-color: #2563eb; }
+.deal-card.src-direct{ border-left-color: var(--green); }
+.deal-card.src-other { border-left-color: var(--gray); }
+
+.deal-name { font-size: .88rem; font-weight: 800; color: var(--navy); margin-bottom: 3px; }
+.deal-city { font-size: .75rem; color: var(--gray); margin-bottom: 6px; }
+.deal-meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.deal-amt { font-size: .8rem; font-weight: 700; color: var(--green); }
+.deal-tag {
+  font-size: .65rem; font-weight: 700; padding: 2px 7px; border-radius: 10px;
+}
+.tag-gary   { background: #dbeafe; color: #1d4ed8; }
+.tag-direct { background: #dcfce7; color: #15803d; }
+.tag-other  { background: #f3f4f6; color: #6b7280; }
+.tag-lang   { background: #fef3c7; color: #92400e; }
+.deal-date { font-size: .67rem; color: #9ca3af; margin-top: 5px; }
+.deal-note { font-size: .72rem; color: #6b7280; margin-top: 5px; font-style: italic; border-top: 1px solid #f3f4f6; padding-top: 5px; }
+.deal-actions { display: flex; gap: 4px; margin-top: 8px; }
+.btn-move {
+  flex: 1; padding: 5px 4px; border-radius: 6px; border: 1.5px solid #e5e7eb;
+  font-size: .68rem; font-weight: 700; cursor: pointer; background: white; color: var(--gray);
+  transition: all .15s;
+}
+.btn-move:hover { background: var(--blue); color: white; border-color: var(--blue); }
+.btn-del {
+  padding: 5px 8px; border-radius: 6px; border: 1.5px solid #fee2e2;
+  font-size: .68rem; cursor: pointer; background: white; color: var(--red);
+  transition: all .15s;
+}
+.btn-del:hover { background: var(--red); color: white; }
+
+/* EMPTY STAGE */
+.empty-stage {
+  border: 1.5px dashed #d1d5db; border-radius: 10px;
+  padding: 20px; text-align: center;
+  font-size: .75rem; color: #9ca3af;
+}
+
+/* MODAL */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.5); z-index: 200;
+  align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: white; border-radius: 14px; padding: 28px;
+  width: 92%; max-width: 480px; max-height: 90vh; overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+.modal h2 { font-size: 1.1rem; font-weight: 900; color: var(--navy); margin-bottom: 20px; }
+.fg { margin-bottom: 14px; }
+.fg label { display: block; font-size: .78rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+.fg input, .fg select, .fg textarea {
+  width: 100%; padding: 9px 12px; border: 1.5px solid #d1d5db; border-radius: 8px;
+  font-size: .85rem; font-family: inherit; color: #1f2937;
+  transition: border-color .15s;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+  outline: none; border-color: var(--blue);
+}
+.fg textarea { resize: vertical; min-height: 70px; }
+.frow { display: flex; gap: 10px; }
+.frow .fg { flex: 1; }
+.modal-btns { display: flex; gap: 10px; margin-top: 20px; }
+.btn-save {
+  flex: 1; background: var(--blue); color: white; border: none;
+  padding: 11px; border-radius: 8px; font-weight: 800; font-size: .9rem; cursor: pointer;
+}
+.btn-cancel {
+  padding: 11px 20px; border-radius: 8px; border: 1.5px solid #d1d5db;
+  background: white; font-weight: 700; font-size: .9rem; cursor: pointer; color: var(--gray);
+}
+
+/* EDIT MODAL */
+.edit-modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.5); z-index: 200;
+  align-items: center; justify-content: center;
+}
+.edit-modal-overlay.open { display: flex; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div>
+    <div class="topbar h1" style="color:#f0c040;font-size:1rem;font-weight:800;">⛪ GuideKim Dashboard</div>
+    <div class="sub">HebronGuide · 영업 파이프라인</div>
+  </div>
+  <button class="btn-add" onclick="openAddModal()">+ 교회 추가</button>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary" id="summaryBar"></div>
+
+<!-- FILTER -->
+<div class="filterbar">
+  <span class="filter-label">유입:</span>
+  <button class="filter-btn active" onclick="setFilter('all',this)">전체</button>
+  <button class="filter-btn" onclick="setFilter('gary',this)">🔵 Gary/NWBC</button>
+  <button class="filter-btn" onclick="setFilter('direct',this)">🟢 직접</button>
+  <button class="filter-btn" onclick="setFilter('other',this)">⚪ 기타</button>
+</div>
+
+<!-- PIPELINE -->
+<div class="pipeline" id="pipeline"></div>
+
+<!-- ADD MODAL -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <h2>✏️ 새 교회 추가</h2>
+    <div class="frow">
+      <div class="fg"><label>교회 이름 *</label>
+        <input id="f-name" placeholder="Grace Community Church" required></div>
+      <div class="fg"><label>도시 / 주 *</label>
+        <input id="f-city" placeholder="Portland, OR"></div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label>담당자</label>
+        <input id="f-contact" placeholder="Pastor John"></div>
+      <div class="fg"><label>연락처</label>
+        <input id="f-phone" placeholder="503-000-0000"></div>
+    </div>
+    <div class="fg"><label>이메일</label>
+      <input id="f-email" type="email" placeholder="pastor@church.com"></div>
+    <div class="frow">
+      <div class="fg"><label>플랜 / 금액</label>
+        <select id="f-plan">
+          <option value="50">가이드 Basic — $50</option>
+          <option value="80">가이드 Bilingual — $80</option>
+          <option value="199">Starter 웹사이트 — $199</option>
+          <option value="349" selected>Home+Guide — $349</option>
+          <option value="649">Premium — $649</option>
+          <option value="0">미정</option>
+        </select>
+      </div>
+      <div class="fg"><label>언어</label>
+        <select id="f-lang">
+          <option>EN</option>
+          <option>EN+ES</option>
+          <option>EN+KO</option>
+          <option>EN+TL</option>
+          <option>KO+EN</option>
+          <option>기타</option>
+        </select>
+      </div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label>유입 경로</label>
+        <select id="f-src">
+          <option value="gary">Gary / NWBC</option>
+          <option value="direct">직접 (Direct)</option>
+          <option value="other">기타</option>
+        </select>
+      </div>
+      <div class="fg"><label>단계</label>
+        <select id="f-stage">
+          <option value="0">Lead</option>
+          <option value="1">컨택</option>
+          <option value="2">관심</option>
+          <option value="3">주문</option>
+          <option value="4">제작중</option>
+          <option value="5">납품완료</option>
+          <option value="6">갱신</option>
+        </select>
+      </div>
+    </div>
+    <div class="fg"><label>메모</label>
+      <textarea id="f-note" placeholder="특이사항, 요청사항 등"></textarea>
+    </div>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeAddModal()">취소</button>
+      <button class="btn-save" onclick="saveDeal()">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="edit-modal-overlay" id="editModal">
+  <div class="modal">
+    <h2>✏️ 수정</h2>
+    <input type="hidden" id="ef-id">
+    <div class="frow">
+      <div class="fg"><label>교회 이름 *</label>
+        <input id="ef-name" required></div>
+      <div class="fg"><label>도시 / 주</label>
+        <input id="ef-city"></div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label>담당자</label>
+        <input id="ef-contact"></div>
+      <div class="fg"><label>연락처</label>
+        <input id="ef-phone"></div>
+    </div>
+    <div class="fg"><label>이메일</label>
+      <input id="ef-email" type="email"></div>
+    <div class="frow">
+      <div class="fg"><label>플랜 / 금액</label>
+        <select id="ef-plan">
+          <option value="50">가이드 Basic — $50</option>
+          <option value="80">가이드 Bilingual — $80</option>
+          <option value="199">Starter 웹사이트 — $199</option>
+          <option value="349">Home+Guide — $349</option>
+          <option value="649">Premium — $649</option>
+          <option value="0">미정</option>
+        </select>
+      </div>
+      <div class="fg"><label>언어</label>
+        <select id="ef-lang">
+          <option>EN</option>
+          <option>EN+ES</option>
+          <option>EN+KO</option>
+          <option>EN+TL</option>
+          <option>KO+EN</option>
+          <option>기타</option>
+        </select>
+      </div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label>유입 경로</label>
+        <select id="ef-src">
+          <option value="gary">Gary / NWBC</option>
+          <option value="direct">직접 (Direct)</option>
+          <option value="other">기타</option>
+        </select>
+      </div>
+      <div class="fg"><label>단계</label>
+        <select id="ef-stage">
+          <option value="0">Lead</option>
+          <option value="1">컨택</option>
+          <option value="2">관심</option>
+          <option value="3">주문</option>
+          <option value="4">제작중</option>
+          <option value="5">납품완료</option>
+          <option value="6">갱신</option>
+        </select>
+      </div>
+    </div>
+    <div class="fg"><label>메모</label>
+      <textarea id="ef-note"></textarea>
+    </div>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeEditModal()">취소</button>
+      <button class="btn-save" onclick="updateDeal()">저장</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STAGES = [
+  { label: 'Lead',    emoji: '📋' },
+  { label: '컨택',    emoji: '📧' },
+  { label: '관심',    emoji: '🤝' },
+  { label: '주문',    emoji: '💳' },
+  { label: '제작중',  emoji: '🔨' },
+  { label: '납품완료', emoji: '✅' },
+  { label: '갱신',    emoji: '🔄' },
+];
+
+let deals = JSON.parse(localStorage.getItem('guidekimDeals') || '[]');
+let activeFilter = 'all';
+
+function save() {
+  localStorage.setItem('guidekimDeals', JSON.stringify(deals));
+}
+
+function uid() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2);
+}
+
+function setFilter(f, btn) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function filtered() {
+  if (activeFilter === 'all') return deals;
+  return deals.filter(d => d.src === activeFilter);
+}
+
+function render() {
+  renderSummary();
+  renderPipeline();
+}
+
+function renderSummary() {
+  const list = filtered();
+  const total = list.reduce((s, d) => s + Number(d.plan), 0);
+  const delivered = list.filter(d => d.stage >= 5).reduce((s, d) => s + Number(d.plan), 0);
+  const gary = deals.filter(d => d.src === 'gary').length;
+
+  document.getElementById('summaryBar').innerHTML = `
+    <div class="sum-card">
+      <div class="sum-val">${list.length}</div>
+      <div class="sum-label">전체 교회</div>
+    </div>
+    <div class="sum-card gold">
+      <div class="sum-val">$${total.toLocaleString()}</div>
+      <div class="sum-label">파이프라인 총액</div>
+    </div>
+    <div class="sum-card green">
+      <div class="sum-val">$${delivered.toLocaleString()}</div>
+      <div class="sum-label">납품완료 수익</div>
+    </div>
+    <div class="sum-card purple">
+      <div class="sum-val">${gary}</div>
+      <div class="sum-label">Gary/NWBC 리드</div>
+    </div>
+  `;
+}
+
+function renderPipeline() {
+  const list = filtered();
+  const pipe = document.getElementById('pipeline');
+  pipe.innerHTML = '';
+
+  STAGES.forEach((st, si) => {
+    const stDeals = list.filter(d => d.stage === si);
+    const col = document.createElement('div');
+    col.className = `stage-col s${si}`;
+    col.innerHTML = `
+      <div class="stage-header">
+        ${st.emoji} ${st.label}
+        <span class="stage-count">${stDeals.length}</span>
+      </div>
+      <div class="stage-cards" id="sc-${si}"></div>
+      ${stDeals.length === 0 ? `<div class="empty-stage">비어있음</div>` : ''}
+    `;
+    pipe.appendChild(col);
+
+    const container = col.querySelector(`#sc-${si}`);
+    stDeals.forEach(d => {
+      container.appendChild(makeDealCard(d, si));
+    });
+  });
+}
+
+function makeDealCard(d, si) {
+  const el = document.createElement('div');
+  el.className = `deal-card src-${d.src}`;
+
+  const srcLabel = d.src === 'gary' ? '<span class="deal-tag tag-gary">Gary/NWBC</span>'
+    : d.src === 'direct' ? '<span class="deal-tag tag-direct">직접</span>'
+    : '<span class="deal-tag tag-other">기타</span>';
+
+  const prevBtn = si > 0
+    ? `<button class="btn-move" onclick="moveStage('${d.id}',-1)">◀ ${STAGES[si-1].label}</button>` : '';
+  const nextBtn = si < STAGES.length - 1
+    ? `<button class="btn-move" onclick="moveStage('${d.id}',1)">${STAGES[si+1].label} ▶</button>` : '';
+
+  el.innerHTML = `
+    <div class="deal-name">${d.name}</div>
+    <div class="deal-city">${d.city || '—'}</div>
+    <div class="deal-meta">
+      ${d.plan > 0 ? `<span class="deal-amt">$${Number(d.plan).toLocaleString()}</span>` : ''}
+      ${srcLabel}
+      <span class="deal-tag tag-lang">${d.lang}</span>
+    </div>
+    ${d.contact ? `<div class="deal-date">👤 ${d.contact}${d.phone ? ' · ' + d.phone : ''}</div>` : ''}
+    ${d.note ? `<div class="deal-note">${d.note}</div>` : ''}
+    <div class="deal-date">추가: ${d.created}</div>
+    <div class="deal-actions">
+      ${prevBtn}
+      <button class="btn-move" onclick="openEdit('${d.id}')">✏️</button>
+      ${nextBtn}
+      <button class="btn-del" onclick="deleteDeal('${d.id}')">🗑</button>
+    </div>
+  `;
+  return el;
+}
+
+function moveStage(id, delta) {
+  const d = deals.find(x => x.id === id);
+  if (!d) return;
+  d.stage = Math.max(0, Math.min(STAGES.length - 1, d.stage + delta));
+  save(); render();
+}
+
+function deleteDeal(id) {
+  if (!confirm('이 교회를 삭제할까요?')) return;
+  deals = deals.filter(x => x.id !== id);
+  save(); render();
+}
+
+/* ADD MODAL */
+function openAddModal() {
+  document.getElementById('addModal').classList.add('open');
+  document.getElementById('f-name').focus();
+}
+function closeAddModal() {
+  document.getElementById('addModal').classList.remove('open');
+}
+function saveDeal() {
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { alert('교회 이름을 입력해주세요.'); return; }
+  deals.push({
+    id: uid(),
+    name,
+    city:    document.getElementById('f-city').value.trim(),
+    contact: document.getElementById('f-contact').value.trim(),
+    phone:   document.getElementById('f-phone').value.trim(),
+    email:   document.getElementById('f-email').value.trim(),
+    plan:    document.getElementById('f-plan').value,
+    lang:    document.getElementById('f-lang').value,
+    src:     document.getElementById('f-src').value,
+    stage:   Number(document.getElementById('f-stage').value),
+    note:    document.getElementById('f-note').value.trim(),
+    created: new Date().toLocaleDateString('ko-KR'),
+  });
+  save(); render(); closeAddModal();
+  // reset
+  ['f-name','f-city','f-contact','f-phone','f-email','f-note'].forEach(id => document.getElementById(id).value = '');
+}
+
+/* EDIT MODAL */
+function openEdit(id) {
+  const d = deals.find(x => x.id === id);
+  if (!d) return;
+  document.getElementById('ef-id').value = d.id;
+  document.getElementById('ef-name').value = d.name;
+  document.getElementById('ef-city').value = d.city || '';
+  document.getElementById('ef-contact').value = d.contact || '';
+  document.getElementById('ef-phone').value = d.phone || '';
+  document.getElementById('ef-email').value = d.email || '';
+  document.getElementById('ef-plan').value = d.plan;
+  document.getElementById('ef-lang').value = d.lang;
+  document.getElementById('ef-src').value = d.src;
+  document.getElementById('ef-stage').value = d.stage;
+  document.getElementById('ef-note').value = d.note || '';
+  document.getElementById('editModal').classList.add('open');
+}
+function closeEditModal() {
+  document.getElementById('editModal').classList.remove('open');
+}
+function updateDeal() {
+  const id = document.getElementById('ef-id').value;
+  const d = deals.find(x => x.id === id);
+  if (!d) return;
+  d.name    = document.getElementById('ef-name').value.trim();
+  d.city    = document.getElementById('ef-city').value.trim();
+  d.contact = document.getElementById('ef-contact').value.trim();
+  d.phone   = document.getElementById('ef-phone').value.trim();
+  d.email   = document.getElementById('ef-email').value.trim();
+  d.plan    = document.getElementById('ef-plan').value;
+  d.lang    = document.getElementById('ef-lang').value;
+  d.src     = document.getElementById('ef-src').value;
+  d.stage   = Number(document.getElementById('ef-stage').value);
+  d.note    = document.getElementById('ef-note').value.trim();
+  save(); render(); closeEditModal();
+}
+
+// Close modal on overlay click
+document.getElementById('addModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAddModal();
+});
+document.getElementById('editModal').addEventListener('click', function(e) {
+  if (e.target === this) closeEditModal();
+});
+
+// Sample data on first load
+if (deals.length === 0) {
+  deals = [
+    {
+      id: uid(), name: '시애틀 지구촌교회', city: 'Lynnwood, WA',
+      contact: 'Paul Kim', phone: '', email: 'kchurch911@gmail.com',
+      plan: '80', lang: 'KO+EN', src: 'direct', stage: 5,
+      note: '1호 파트너 · hebronguide.com 라이브',
+      created: '2026-01-01',
+    },
+    {
+      id: uid(), name: 'Northwest Baptist #1', city: 'Tacoma, WA',
+      contact: '', phone: '', email: '',
+      plan: '349', lang: 'EN+ES', src: 'gary', stage: 0,
+      note: 'Gary Irby 교회 개척자 훈련 리드',
+      created: new Date().toLocaleDateString('ko-KR'),
+    },
+  ];
+  save();
+}
+
+render();
+</script>
+</body>
+</html>

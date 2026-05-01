@@ -1,0 +1,59 @@
+# HebronGuide — Cursor 차단 목록
+# 이 파일에 적힌 패턴은 Cursor AI가 절대 읽거나 학습 데이터로 보내지 않습니다.
+# 마지막 갱신: 2026-04-30
+
+# ── 환경변수·비밀 (절대 노출 금지) ───────────
+.env
+.env.*
+.env.local
+.env.production
+.env.development
+
+# ── 인증·키·토큰 ──────────────────────────
+secrets/
+*.key
+*.pem
+*.cert
+*.crt
+*.p12
+*.pfx
+*.keystore
+*.jks
+
+# ── Supabase 비밀 ─────────────────────────
+supabase/.env
+supabase/.env.*
+supabase/**/.env
+supabase/**/secrets.*
+
+# ── Vercel 비밀 ────────────────────────────
+.vercel/
+.vercel/.env*
+
+# ── 사역 기밀 (HebronGuide 정책) ──────────
+docs/PRIVATE_*.md
+docs/INTERNAL_*.md
+docs/CHURCH_*.md
+
+# ── 빌드 산출물 (불필요한 노이즈) ─────────
+dist/
+build/
+.next/
+node_modules/
+
+# ── OS·IDE 임시 파일 ──────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/.cursor.json
+
+# ── 폴 김 개인 자료 (절대 학습 X) ─────────
+**/박사논문*
+**/설교*
+**/사역*-PRIVATE*
+**/Personal-*
+
+# ── Git·시스템 ────────────────────────────
+.git/
+.git-credentials

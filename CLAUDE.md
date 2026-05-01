@@ -41,27 +41,76 @@ for url in urls:
 
 ## 🌐 프로젝트 개요
 
-- **사이트**: hebronguide.com (GitHub Pages)
-- **주요 파일**: `seattle/index.html` (단일 파일 PWA)
-- **배포**: `git push origin main` → GitHub Pages 자동 배포
-- **대상**: 시애틀 한인 커뮤니티
+- **사이트**: hebronguide.com (Vercel 배포)
+- **시애틀 (메인 모델, React 앱)**: `hebronguide/` — Vite + React 18 + TypeScript + Tailwind 4 + Supabase. 빌드 후 `hebronguide.com/seattle/` 경로로 서빙.
+- **타 도시 (단일 파일 PWA)**: `dallas/`, `la/`, `sf/`, `toronto/`, `vancouver/`, `nashville/`, `newyork/` — `template/index.html` 기반. 각각 `hebronguide.com/{city}/` 경로.
+- **글로벌 확산 전략**: 시애틀을 완전한 샘플로 완성한 뒤, 동일한 React 구조를 다른 도시에 그대로 복제 확장.
+- **배포**: `git push origin main` → Vercel 자동 배포
+- **대상**: 재외 한인 700만 (시애틀 → 북미 20개 도시 → 글로벌 확산)
+- **보관**: 옛 시애틀 단일 파일 PWA(2026-04-21 이전 버전)는 `99_Archive/2026-04-21_seattle-github-pages/seattle/`에 보존됨.
 
 ## 📁 파일 구조
 
 ```
-/
-├── seattle/
-│   ├── index.html      # 메인 PWA (모든 콘텐츠)
-│   ├── manifest.json   # PWA 매니페스트
-│   ├── sw.js           # 서비스 워커
-│   ├── icon-192.png    # 앱 아이콘 (나침반)
-│   └── icon-512.png    # 앱 아이콘 (나침반)
+01_HebronGuide/
+├── index.html                  # 루트 진입점
+├── CNAME / robots.txt          # 도메인 설정
+├── CLAUDE.md                   # 이 파일 (프로젝트 규칙)
+│
+├── hebronguide/                # ⭐ 시애틀 메인 React 앱 (Vite + Supabase)
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── App.tsx
+│   │   │   ├── routes.tsx
+│   │   │   ├── components/      # HebronGuide.tsx, AdminPage.tsx, Roadmap.tsx, ContextProvider 등
+│   │   │   └── data/defaults.ts
+│   │   ├── imports/             # SVG·이미지 자산
+│   │   ├── styles/              # theme.css, fonts.css
+│   │   └── main.tsx
+│   ├── api/ask.js              # Vercel Edge Function (AI 컨시어지)
+│   ├── utils/supabase/info.tsx # Supabase 연결 정보
+│   ├── supabase/functions/server  # Edge Function (콘텐츠 CMS)
+│   ├── public/                 # 정적 자산
+│   ├── package.json (pnpm)
+│   ├── vite.config.ts          # base: '/seattle/' 적용
+│   └── vercel.json
+│
+├── dallas/   sf/   la/   toronto/   vancouver/   nashville/   newyork/
+│   └── 각 도시별 단일 파일 PWA (template 기반, 향후 React로 점진 마이그레이션 예정)
+│
+├── template/
+│   ├── index.html              # 새 도시 추가용 단일 파일 PWA 템플릿 v2.0
+│   └── manifest.json
+│
 ├── scripts/
-│   └── annual_update.py  # 연간 자동 업데이트 스크립트
-└── .github/
-    └── workflows/
-        └── annual-update.yml  # GitHub Actions (매년 1/1 자동 실행)
+│   ├── annual_update.py        # 연간 URL·데이터 점검 (병렬 처리)
+│   └── export_to_word.py
+│
+├── 99_Archive/
+│   ├── 2026-04-21_seattle-github-pages/seattle/  # 옛 단일 파일 PWA 보존
+│   └── 2026-04-21_seattle-guide-index/
+│
+└── .github/workflows/          # GitHub Actions (자동화)
 ```
+
+## 🛡 보안 코드 위생 (2026-04-30 추가)
+
+### 절대 하지 말 것
+- 코드에 비밀번호·API 키·토큰 하드코딩 (예: `const PASSWORD = "hebron2025"`)
+- 연도가 박힌 식별자 무기한 사용 (예: hebron2025 → 매년 검토)
+- `.env`·`secrets/`·`*.key` 파일 git commit
+- Cursor·Claude Code 등 AI 도구에 비밀번호 평문 전송
+
+### 반드시 할 것
+- 모든 비밀은 `.env` 또는 Supabase secrets·Vercel env vars 사용
+- AI 도구 사용 시 `.cursorignore` + Privacy Mode 활성화
+- 관리자 비밀번호 90일마다 회전 (`docs/ADMIN_PASSWORD_ROTATION.md` 참조)
+- /admin·/api 안내 텍스트는 사역팀 검수 후 배포
+
+### AI 도구 데이터 송신 정책
+- HebronGuide 코드·일반 문서 → Cursor·Cowork OK
+- 신중: 시애틀지구촌교회 내부 재정·인사·상담 자료
+- 절대 X: 비밀번호·신용카드·SSN·여권·박사논문 미발표 핵심 논지
 
 ## 🎨 디자인 규칙
 
@@ -80,6 +129,216 @@ for url in urls:
 - 인구 통계: 재외동포청 기준 사용 (U.S. Census는 과소 집계됨)
 - 모든 업소 정보에는 반드시 공식 웹사이트 링크 포함
 - 링크 없이 텍스트 URL만 있는 항목은 발견 즉시 수정
+
+## 🧭 데이터 품질 3원칙 (Codex 기반)
+
+HebronGuide가 교차로·AI·일반 검색과 차별화되는 **"신뢰 인프라"**의 핵심.
+모든 콘텐츠는 다음 3단계 검증을 거쳐야 한다.
+
+### 검증 표시 체계
+
+| 표시 | 의미 |
+|------|------|
+| `✅ 검증됨` (녹색 체크) | 공식 사이트·직접 확인 완료 |
+| `🔗 웹사이트` (링크) | 사용자가 직접 최신 정보 확인 가능 |
+| (표시 없음 / `정보 확인 중`) | 아직 미검증 → **공개 보류** |
+
+### 5단계 운영 절차
+
+```
+1. AI가 공식 웹사이트 검색 → 1차 수집
+2. 전화번호·주소 개별 대조 확인 (직접 통화 또는 공식 페이지)
+3. ✅ 검증 완료 후 Admin 패널에서 입력
+4. 날짜 기록 → "마지막 확인: YYYY-MM-DD"
+5. annual_update.py → 연 1회 자동 점검 (매년 1월)
+```
+
+### 현지 언론 소스 원칙 (Local Media Source Rule)
+
+> **"광고를 낸 업소 = 실제 운영 중인 업소"**
+
+HebronGuide 데이터 수집 시 반드시 아래 현지 한인 언론·플랫폼을 1차 소스로 활용한다.
+
+#### 시애틀 한인 미디어 소스 계층
+
+| 우선순위 | 소스 | URL | 활용 방법 |
+|---|---|---|---|
+| ⭐ 1순위 | **kSeattle 업소록** | kseattle.com/업소록 | 광고 게재 업소 = 운영 확인 |
+| ⭐ 1순위 | **WowSeattle 업소록** | wowseattle.com/businesses | 주소·전화 직접 기재 |
+| ⭐ 1순위 | **시애틀N** | seattlen.com | 배너 광고 업소 = 운영 확인 |
+| 🔵 2순위 | **미주 한국일보** | koreatimes.com | 광고·칼럼 업소 |
+| 🔵 2순위 | **시애틀코리안데일리** | 검색으로 확인 | 지역 광고 업소 |
+| 🔵 2순위 | **기독일보 (교회)** | christiandaily.co.kr | 교회 정보 확인 |
+| 🟡 3순위 | **Google Maps** | maps.google.com | 영업시간·리뷰 보조 확인 |
+| 🟡 3순위 | **Yelp** | yelp.com | 업데이트 날짜 확인 필수 |
+
+#### 교회 디렉터리 소스
+
+| 소스 | URL | 범위 |
+|---|---|---|
+| **시애틀한인교회협의회** | 직접 연락 | 시애틀 전체 |
+| **서북미한인침례교협의회 (PNKBA)** | 직접 연락 | SBC·침례교 |
+| **KCMUSA 교회 찾기** | kcmusa.org | 미주 전체 |
+| **KAPC 총회** | kapc.org | 장로교 |
+| **국제가정교회사역원 (IHM)** | 직접 연락 | 가정교회 |
+
+#### 적용 방법
+```
+1. kSeattle·WowSeattle 업소록 → 업소 이름·전화·주소 1차 수집
+2. 해당 업소 공식 웹사이트 → 2차 대조 확인
+3. 필요시 직접 통화 → 최종 확인
+4. ✅ 표시 + "출처: kSeattle 업소록" + 확인 날짜 기록
+```
+
+### 미국 주류·타민족 소스 원칙 (Cross-Community Source Rule)
+
+> **"한인사회에 덜 알려졌지만, 미국 주류·타민족이 이미 잘 쓰는 자원을 발굴해 한인에게 소개한다"**
+
+#### 원칙의 배경
+한인 이민자는 한인 네트워크에만 의존하는 경향이 있음.  
+그러나 미국 정부·주류 사회·타민족 커뮤니티에는 **한인사회에 덜 알려진 무료·양질의 자원**이 많음.  
+HebronGuide는 이 정보 격차를 메우는 역할을 한다.
+
+#### 미국 주류 소스 계층
+
+| 카테고리 | 주류 소스 | 한인에게 덜 알려진 이유 |
+|---|---|---|
+| **공공 의료** | King County Public Health, Free Clinic of Greater Seattle | 영어 정보 위주 |
+| **법률 지원** | Northwest Justice Project, KCBA Pro Bono | 한인 접근성 낮음 |
+| **취업·직업훈련** | WorkSource WA, Goodwill Job Training | 한인 커뮤니티 미홍보 |
+| **식품 지원** | Food Lifeline, Northwest Harvest | 언어 장벽 |
+| **주거 지원** | King County Housing Authority, DESC | 영어 위주 |
+| **정신건강** | ACRS (아시안 전문), Crisis Connections 866-427-4747 | 한인 인지 낮음 |
+| **이민·법률** | PAIR Project, OneAmerica | 커뮤니티 홍보 부족 |
+| **소비자 보호** | WA Attorney General, BBB | 한인에 낯선 기관 |
+| **세금 무료신고** | VITA (Volunteer Income Tax Assistance) | 매년 1-4월 무료 |
+
+#### 타민족 커뮤니티 검증 소스
+
+| 소스 | 이유 |
+|---|---|
+| **Yelp 필리핀·중국·베트남 리뷰** | 같은 이민자 시각. 한국어 리뷰보다 더 많은 업소 커버 |
+| **Nextdoor (지역별)** | 현지 이웃 실시간 정보. 한인 밀집 지역 등록 후 모니터링 |
+| **Reddit r/Seattle** | 현지인 추천 서비스·병원·변호사 |
+| **City of Lynnwood 공식 사이트** | 무료 행사·서비스·주민 지원 프로그램 |
+| **King County 2-1-1** | 📞 211 전화 — 무료 생활 서비스 연결 (한국어 통역 가능) |
+
+#### 적용 방법
+```
+새 섹션 데이터 수집 시:
+1. 한인 미디어 소스 (kSeattle·WowSeattle) → 1차
+2. 미국 공공기관 공식 사이트 → 2차
+3. 주류 미디어·Yelp·Reddit → 보완
+4. 타민족 커뮤니티 리뷰 → 교차 확인
+5. "이것은 한인사회에 잘 안 알려진 자원입니다" 태그 추가
+```
+
+### 연간 업데이트 원칙 (Annual Freshness Guarantee)
+
+> **"신선하지 않은 정보는 없는 정보보다 위험하다"**
+
+#### 갱신 주기
+| 데이터 유형 | 갱신 주기 | 방법 |
+|---|---|---|
+| 공공기관 (SSA·DOL·영사관) | **연 1회** (1월) | 공식 웹사이트 대조 |
+| 한인 식당·카페 | **연 1회** (1월) | Google Maps + 직접 통화 |
+| 한인 병원·클리닉 | **연 1회** (1월) | 공식 웹사이트 + 통화 |
+| 대중교통 요금 | **요금 변경 시** | 공식 고시 모니터링 |
+| 비자·이민 정책 | **변경 시 즉시** | USCIS 공식 알림 구독 |
+
+#### annual_update.py 자동화 항목
+```python
+# scripts/annual_update.py — 매년 1월 GitHub Actions 자동 실행
+# 점검 항목:
+# 1. 모든 🔗 웹사이트 링크 HTTP 200 응답 확인
+# 2. Google Maps API로 업소 영업 여부 확인
+# 3. 전화번호 유효성 (국제 포맷 검증)
+# 4. 마지막 확인 날짜 1년 초과 항목 → 사역팀 알림 이메일 발송
+# 5. 보고서 생성 → GitHub Issue 자동 등록
+```
+
+#### 사역팀 연간 점검 체크리스트 (매년 1월 첫째 주)
+- [ ] annual_update.py 실행 결과 검토
+- [ ] 전화번호 직접 통화 확인 (공공기관)
+- [ ] 폐업·이전 업소 확인 후 즉시 "정보 확인 중" 처리
+- [ ] 새로운 한인 커뮤니티 자원 추가 검토
+- [ ] 요금·시간 변경 반영
+- [ ] `verified_at` 날짜 갱신
+- [ ] CLAUDE.md 변경 이력 기록
+
+### 차별화 핵심
+
+- 교차로·일반 디렉터리: 광고주 검증 우선 → 신뢰성 낮음
+- AI 검색 (ChatGPT 등): 환각 가능성 → 정확성 보장 X
+- **HebronGuide**: 사람이 검증 + 날짜 기록 + 연 1회 갱신 → **신뢰 인프라**
+
+### 운영 체크리스트
+
+새 항목 등재 시 사역팀이 체크할 것:
+- [ ] 공식 웹사이트 URL 확인했는가?
+- [ ] 전화번호 직접 통화 또는 공식 페이지 대조했는가?
+- [ ] 주소 Google Maps 좌표 일치 확인했는가?
+- [ ] 영업시간·서비스 변경 가능성 메모했는가?
+- [ ] `verified_at`, `verified_by` 필드 채웠는가?
+- [ ] 이해충돌 가능성(예: 사역팀원 운영 업소) 명시했는가?
+
+미검증 항목은 절대 공개 X — *"정보 없음"이 잘못된 정보보다 사역적*.
+
+## ⛪ 한인 교회 등재 4-Tier (가정교회 우선)
+
+운영 주체: **Global Mission Church of Greater Seattle (시애틀지구촌교회) — SBC + 가정교회 사역**
+
+폴 김 목사의 사역 신학(SBC + House Church Movement)을 따라 다음 우선순위로 한인 교회를 검증·등재한다.
+
+### 🥇 Tier 1 (최우선) — 가정교회 사역 한인 교회
+- **표시**: ⭐ "가정교회"
+- **공식 인증 기관**: **국제가정교회 사역원 (International House Church Ministry)**
+  - 본부: 휴스턴 서울 침례교회 (Seoul Baptist Church of Houston)
+  - 설립자: 최영기 목사
+  - 영문명: International House Church Ministry (IHM)
+- **검증 기준**:
+  - 국제가정교회 사역원 공식 인증 교회
+  - 가정교회 세미나 (House Church Seminar) 수료·인증
+  - 가정교회 3축 운영: **예배(LIFE Worship) + 목장(Mokjang) + 삶공부(Life Studies)**
+  - 신약교회 회복 사역 표방
+- **우선 노출**: 검색·필터에서 항상 최상단
+- **추천 표시**: "신약교회의 가정 단위 친밀한 공동체"
+
+### 🥈 Tier 2 — SBC·정통 보수 한인 교회
+- **표시**: ✅ "정통 교단"
+- **포함 교단**:
+  - SBC (Southern Baptist Convention)
+  - KSBC (Korean Southern Baptist Convention)
+  - KAPC (Korean American Presbyterian Church)
+  - PCA (Presbyterian Church in America)
+  - EPC, OPC 등 보수 장로교
+  - KEHC (Korean Evangelical Holiness Church)
+- **검증**: 교단 공식 디렉터리 등록 확인
+
+### 🥉 Tier 3 — 기타 정통 교단
+- **표시**: ✅ "검증됨"
+- **포함**: UMC (KAUMC), PCUSA, EFCA, CMA, AG 등
+- **검증**: 한인 교회 협의회 가입 + 사역팀 확인
+
+### 🏅 Tier 4 — 독립·무소속 교회
+- **표시**: 🔍 "사역팀 확인"
+- **검증**: 신학적 정통성 + 사역팀 사목적 직접 판단
+
+### 🚫 등재 X — 이단·사이비
+- 신천지 (HWPL·Mannam·국제WeLoveU 포함)
+- 통일교 (Family Federation for World Peace)
+- JMS (Christian Gospel Mission)
+- 하나님의교회 (WMSCOG)
+- 여호와의증인 / 몰몬교
+- 안식일교 (정통 시각에 따라 사역팀 판단)
+- 기타 사역팀 신학 검토 결과 의심 단체
+
+**원칙**: 의심 시 절대 등재 X. *"정보 없음이 잘못된 정보보다 사역적"*.
+
+### 신학적 근거
+- 사도행전 2:42-47 — 신약교회의 가정 단위 친밀한 공동체
+- 행 5:42, 20:20 — "집집마다 가르치며" (가정교회 신학적 토대)
+- 폴 김 목사의 SBC + 가정교회 사역 신학 표현
 
 ## 🔄 Git 커밋 규칙
 
@@ -108,6 +367,35 @@ for url in urls:
 ---
 
 ## 📚 변경 이력 및 교훈 (타 지역 반면교사)
+
+### 2026-04-30 | [전체] 현지 언론 소스 원칙 수립
+- **무엇을**: kSeattle·WowSeattle·시애틀N·한국일보·기독일보 등 현지 한인 언론을 데이터 1차 소스로 지정. 교회 디렉터리 소스(시애틀한인교회협의회·PNKBA·KCMUSA 등) 별도 명시. WowSeattle 업소록에서 검증된 업소 10개 추가.
+- **왜**: AI 검색만으로는 "그럴듯하지만 틀린" 정보가 생성됨. 광고를 낸 업소 = 실제 운영 중인 업소이므로, 현지 한인 언론 광고·업소록은 가장 신뢰할 수 있는 1차 소스.
+- **교훈**:
+  1. **광고 소스 = 운영 확인** — 한인 매거진·신문에 광고를 낸 업소는 결제를 했으므로 실제 운영 중임이 사실상 확인됨
+  2. **WowSeattle·kSeattle 업소록** — 주소·전화 직접 기재. 단순 검색보다 정확도 높음
+  3. **교회 정보는 교단 협의회 경유** — 교단 공식 디렉터리(KCMUSA, KAPC 등) 가 임의 검색보다 정확
+  4. **타 도시 확장 시 동일 원칙** — 달라스 → 달라스한인뉴스, LA → 라디오코리아·한국일보LA, 뉴욕 → 뉴욕한인회 업소록 사용
+
+### 2026-04-30 | [시애틀] AI 생성 데이터 검증 — 5건 오류 수정
+- **무엇을**: defaults.ts에 AI가 생성한 주소·전화·요금 데이터를 웹 검색으로 대조 검증. 5건 주요 오류 수정
+- **왜**: AI가 그럴듯하게 생성한 데이터에 오류 포함 — H-Mart 주소(4501 → 3301 184th St SW), SSA 주소(2201 6th Ave → 915 2nd Ave), 총영사관 주소(2033 6th Ave → 115 W Mercer St), Lynnwood DOL 주소(18918 → 18023 Hwy 99 N), 링크 요금($3.25 → $3.00). WorkSource Lynnwood 폐점 사실도 미반영.
+- **교훈**:
+  1. **AI 생성 주소·전화·요금은 항상 틀릴 수 있다** — 아무리 그럴듯해도 반드시 공식 사이트·전화 대조 필수
+  2. **"✅ 검증됨" 표시 체계** 도입 — 검증된 항목만 ✅ 표시, 나머지는 "정보 확인 중" 처리
+  3. **웹사이트 링크 의무화** — 모든 기관·업소에 공식 🔗 링크 포함해 사용자가 직접 최신 정보 확인 가능하게
+  4. **타 도시 확장 시 동일 원칙** — 달라스·LA 데이터 입력 시에도 AI 생성 데이터 그대로 게시 금지. 검증 후 ✅ 표시 필수
+  5. **KCSC(한인생활상담소)** 처럼 중요 자원이 누락될 수 있음 — 카테고리별 공식 기관 목록 먼저 작성 후 데이터 수집할 것
+
+### 2026-04-29 | [시애틀] React 마이그레이션 정합성 복구 (A안 채택)
+- **무엇을**: 시애틀 React 앱(`hebronguide/`)을 `hebronguide.com/seattle/` 경로로 서빙하도록 결정. CLAUDE.md의 "주요 파일"·"파일 구조" 섹션을 옛 단일 파일 PWA 구조에서 React + Supabase 구조로 갱신. 추가 패치(vite.config.ts의 `base: '/seattle/'`, PWA `start_url`/`scope` 변경, vercel.json rewrite 규칙 정합성 복구)는 별도 적용 예정.
+- **왜**: 4월 21일 시애틀이 단일 파일 PWA → React 앱으로 마이그레이션되었으나, CLAUDE.md와 vercel.json이 옛 구조(`seattle/index.html`)를 가리킨 채 8일간 stale 상태로 방치됨. 그 결과 `hebronguide.com/seattle` URL이 깨진 상태였음. 또한 글로벌 확산 비전(시애틀 → 20개 도시 → 글로벌)을 고려할 때, 시애틀만 루트(`/`)에 두면 다른 도시(`/dallas`, `/la` 등)와 URL 일관성이 깨져 향후 마이그레이션 비용이 폭증함.
+- **교훈**:
+  1. **URL 구조는 콘텐츠 구조를 반영해야 한다**: 도시별 가이드는 `/{city}/` 패턴으로 통일. 시애틀이 메인이라 해서 루트로 승격시키지 않음.
+  2. **CLAUDE.md는 코드 변경과 동시에 갱신**: 파일 이동·구조 변경 시 CLAUDE.md를 같은 커밋에 포함시킬 것. stale CLAUDE.md는 Claude Code/Cowork의 컨텍스트를 오염시킨다.
+  3. **PWA scope 격리 원칙**: 각 도시 PWA의 `scope`는 `/{city}/`로 격리하여 도시 간 캐시 충돌·간섭 방지.
+  4. **타 도시 확장 시 동일 패턴 적용**: 달라스·LA·뉴욕 등을 React로 이전할 때 `base: '/{city}/'`, `start_url: '/{city}/'`, `scope: '/{city}/'` 패턴을 그대로 복제할 것.
+  5. **archive 시 vercel.json·CLAUDE.md 동시 점검**: 폴더를 99_Archive로 이동시킬 때 해당 폴더를 참조하는 모든 설정·문서를 함께 갱신.
 
 ### 2026-04-19 | [시애틀] Figma 벤치마킹 — 전체 UI 디자인 시스템 업그레이드
 - **무엇을**: CSS `:root` 토큰 전면 재설계 (타입 스케일 6단계 `--ts-xs~2xl`, 서피스 레이어 3단계 `--surface-01~03`, 모션 이징 변수, 반경 토큰). 히어로 카드 그림자·오버레이·글로우 개선. 앱 아이콘 그리드 탭 타겟·그림자·live-dot 민트 글로우 추가. 콘텐츠 카드(`ccard`) glassmorphism 개선. 탭바 backdrop-filter 추가. 플로팅 네비 포화도 블러·스프링 이징 적용. QA 바 서피스 토큰 통합.

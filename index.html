@@ -1,1009 +1,646 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HebronGuide — 이주자·방문자·유학생을 위한 한인 도시 가이드</title>
-<meta name="description" content="새 이주자, 방문자, 관광객, 유학생을 위한 한인 도시 완전 가이드. 병원·마트·정착절차·학교 등록 — 한국어로 바로 찾기.">
-<meta name="theme-color" content="#04130a">
-<link rel="manifest" href="manifest.json">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg:     #0d2117;
-  --surface:#162e21;
-  --green:  #0a4a22;
-  --gold:   #d4a017;
-  --gold2:  #f0c840;
-  --lime:   #22c55e;
-  --border: rgba(255,255,255,0.09);
-  --text:   rgba(255,255,255,0.93);
-  --muted:  rgba(255,255,255,0.48);
-  --r: 16px;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Noto Sans KR', -apple-system, sans-serif; background: var(--bg); color: var(--text); }
-a { text-decoration: none; color: inherit; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-/* NAV */
-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(13,33,23,0.94); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 12px 24px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.nav-logo { display: flex; align-items: center; gap: 9px; font-weight: 900; font-size: 1rem; }
-.nav-links { display: flex; align-items: center; gap: 16px; }
-.nav-link { font-size: .8rem; color: var(--muted); font-weight: 600; transition: color .2s; }
-.nav-link:hover { color: var(--text); }
-.nav-cta { background: var(--gold); color: #1a1000; font-weight: 800; font-size: .8rem; padding: 8px 18px; border-radius: 22px; transition: background .2s; }
-.nav-cta:hover { background: var(--gold2); }
+  <!-- ── Primary SEO ────────────────────────────────────── -->
+  <title>HebronGuide — 재외 한인 도시별 정착·생활 가이드 | 헤브론가이드</title>
+  <meta name="description" content="HebronGuide는 시애틀·달라스·LA·뉴욕·SF·내슈빌·토론토·밴쿠버 등 재외 한인 700만을 위한 도시별 정착 가이드입니다. 한인 교회 네트워크가 검증한 신뢰할 수 있는 현지 정보. 시애틀지구촌교회 운영." />
+  <meta name="keywords" content="HebronGuide, 헤브론가이드, 재외 한인 가이드, 한인 정착 가이드, 한인 이민 가이드, 시애틀 한인, 달라스 한인, LA 한인, 뉴욕 한인, SF 한인, 토론토 한인, 밴쿠버 한인, 내슈빌 한인, Korean diaspora guide, Korean settlement guide" />
+  <meta name="author" content="시애틀지구촌교회 (Global Mission Church Seattle)" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <link rel="canonical" href="https://hebronguide.com/" />
 
-/* LANG TOGGLE */
-.lang-toggle { display:flex; gap:4px; align-items:center; }
-.lang-toggle-btn {
-  font-size:.72rem; font-weight:700; padding:5px 12px;
-  border-radius:16px; border:1.5px solid rgba(255,255,255,.2);
-  background:transparent; color:rgba(255,255,255,.45);
-  cursor:pointer; font-family:inherit; transition:all .2s;
-}
-.lang-toggle-btn.on {
-  background:rgba(212,160,23,.18); border-color:rgba(212,160,23,.55);
-  color:var(--gold2);
-}
+  <!-- ── 다국어 ───────────────────────────────────────── -->
+  <link rel="alternate" hreflang="ko" href="https://hebronguide.com/" />
+  <link rel="alternate" hreflang="en" href="https://hebronguide.com/?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://hebronguide.com/" />
 
-/* AUDIENCE TABS */
-.aud-tabs {
-  display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;
-  padding: 28px 20px 0;
-}
-.aud-tab {
-  cursor: pointer; padding: 10px 20px; border-radius: 28px;
-  font-size: .82rem; font-weight: 700; border: 1.5px solid var(--border);
-  background: transparent; color: var(--muted);
-  transition: all .22s; outline: none; font-family: inherit;
-}
-.aud-tab:hover { border-color: rgba(34,197,94,.35); color: rgba(255,255,255,.75); }
-.aud-tab.active {
-  background: rgba(34,197,94,.14); border-color: rgba(34,197,94,.6);
-  color: #4ade80; box-shadow: 0 0 18px rgba(34,197,94,.12);
-}
+  <!-- ── Open Graph ──────────────────────────────────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="HebronGuide" />
+  <meta property="og:title" content="HebronGuide — 재외 한인 700만을 위한 도시별 정착 가이드" />
+  <meta property="og:description" content="시애틀·달라스·LA·뉴욕·SF·토론토 등 재외 한인 도시별 정착·생활·교회 정보. 한인 교회 네트워크가 검증한 신뢰할 수 있는 가이드." />
+  <meta property="og:url" content="https://hebronguide.com/" />
+  <meta property="og:image" content="https://hebronguide.com/icon-512.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale:alternate" content="en_US" />
 
-/* HERO PANELS */
-.hero {
-  min-height: 76vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 36px 24px 48px;
-  background:
-    radial-gradient(ellipse 80% 55% at 50% 0%, rgba(10,74,34,0.8) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 40% at 15% 90%, rgba(34,197,94,0.06) 0%, transparent 55%);
-}
-.hero-panel { display: none; flex-direction: column; align-items: center; }
-.hero-panel.active { display: flex; }
-.hero-eyebrow {
-  font-size: .68rem; letter-spacing: 4px; text-transform: uppercase; color: var(--lime);
-  margin-bottom: 22px; display: flex; align-items: center; gap: 10px; justify-content: center;
-}
-.hero-eyebrow::before, .hero-eyebrow::after { content: ''; flex: 1; max-width: 36px; height: 1px; background: rgba(34,197,94,.3); }
-.hero-h1 { font-size: clamp(1.9rem, 5.5vw, 3.2rem); font-weight: 900; line-height: 1.18; margin-bottom: 10px; }
-.hero-h1 em { font-style: normal; background: linear-gradient(120deg,var(--gold),var(--gold2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.hero-tagline { font-size: clamp(.95rem, 2.2vw, 1.18rem); font-weight: 700; color: rgba(255,255,255,.7); margin-bottom: 10px; }
-.hero-sub { font-size: .9rem; color: var(--muted); max-width: 500px; margin: 0 auto 30px; line-height: 1.85; }
-.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px; }
-.btn-primary { background: var(--gold); color: #1a1000; font-weight: 800; font-size: .9rem; padding: 14px 28px; border-radius: 28px; box-shadow: 0 4px 20px rgba(212,160,23,.3); transition: background .2s, transform .15s; }
-.btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
-.btn-ghost { border: 1.5px solid rgba(255,255,255,.22); color: var(--text); font-weight: 700; font-size: .86rem; padding: 13px 24px; border-radius: 28px; transition: border-color .2s; }
-.btn-ghost:hover { border-color: rgba(255,255,255,.45); }
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HebronGuide — 재외 한인 도시별 정착 가이드" />
+  <meta name="twitter:description" content="시애틀·달라스·LA·뉴욕·SF·토론토 등 재외 한인 700만을 위한 도시별 정착 가이드." />
+  <meta name="twitter:image" content="https://hebronguide.com/icon-512.png" />
 
-/* QUICK LINKS per panel */
-.quick-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px; }
-.quick-link {
-  font-size: .74rem; font-weight: 700;
-  padding: 6px 14px; border-radius: 16px;
-  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
-  color: rgba(255,255,255,.7); cursor: pointer; transition: all .2s;
-}
-.quick-link:hover { background: rgba(212,160,23,.14); border-color: rgba(212,160,23,.4); color: var(--gold2); }
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" type="image/png" href="/icon-192.png" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
 
-/* NEED CARDS */
-.section { padding: 56px 24px; max-width: 920px; margin: 0 auto; }
-.sec-eyebrow { font-size: .62rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-.sec-title { font-size: clamp(1.3rem,3.5vw,1.9rem); font-weight: 900; margin-bottom: 6px; }
-.sec-sub { font-size: .88rem; color: var(--muted); margin-bottom: 28px; line-height: 1.75; }
+  <!-- Pretendard: 한·영 통합 모던 가변 폰트 (SF Pro Display 한국어 대응) -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 
-/* SCENARIO CARDS */
-.scenario-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 14px; }
-.scenario-card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r);
-  padding: 22px 20px; transition: border-color .2s, transform .2s;
-}
-.scenario-card:hover { border-color: rgba(212,160,23,.28); transform: translateY(-2px); }
-.sc-icon { font-size: 1.7rem; margin-bottom: 10px; }
-.sc-q { font-size: .82rem; font-weight: 700; color: rgba(255,255,255,.55); margin-bottom: 6px; }
-.sc-a { font-size: .9rem; font-weight: 800; margin-bottom: 6px; }
-.sc-desc { font-size: .8rem; color: var(--muted); line-height: 1.7; }
-.sc-link { font-size: .75rem; color: #4ade80; font-weight: 700; margin-top: 10px; display: inline-block; }
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "HebronGuide",
+    "alternateName": ["헤브론가이드", "Hebron Guide"],
+    "url": "https://hebronguide.com/",
+    "logo": "https://hebronguide.com/icon-512.png",
+    "description": "재외 한인 700만을 위한 도시별 정착·생활·커뮤니티 완전 가이드. 시애틀지구촌교회 운영.",
+    "founder": { "@type": "Organization", "name": "Global Mission Church Seattle (시애틀지구촌교회)" },
+    "areaServed": [
+      { "@type": "City", "name": "Seattle, WA, USA" },
+      { "@type": "City", "name": "Dallas, TX, USA" },
+      { "@type": "City", "name": "Los Angeles, CA, USA" },
+      { "@type": "City", "name": "San Francisco, CA, USA" },
+      { "@type": "City", "name": "New York, NY, USA" },
+      { "@type": "City", "name": "Nashville, TN, USA" },
+      { "@type": "City", "name": "Toronto, ON, Canada" },
+      { "@type": "City", "name": "Vancouver, BC, Canada" }
+    ],
+    "knowsLanguage": ["ko", "en", "es"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "HebronGuide",
+    "alternateName": "헤브론가이드",
+    "url": "https://hebronguide.com/",
+    "inLanguage": ["ko", "en", "es"],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://hebronguide.com/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
 
-/* CITIES */
-.city-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
-@media(max-width:600px){ .city-grid { grid-template-columns: 1fr 1fr; } }
-.city-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 18px 16px; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 6px; transition: transform .2s, border-color .2s; }
-a.city-card:hover { transform: translateY(-3px); border-color: rgba(212,160,23,.35); }
-.city-card-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-.city-badge { font-size: .62rem; font-weight: 800; letter-spacing: 1px; padding: 3px 9px; border-radius: 10px; align-self: flex-start; margin-bottom: 4px; }
-.badge-live { background: rgba(34,197,94,.2); color: #4ade80; border: 1px solid rgba(34,197,94,.4); }
-.badge-soon { background: rgba(255,255,255,.05); color: var(--muted); border: 1px solid var(--border); }
-.city-name { font-size: 1.05rem; font-weight: 900; }
-.city-name-ko { font-size: .72rem; color: var(--muted); }
-.city-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
-.city-tag { font-size: .62rem; padding: 2px 8px; background: rgba(255,255,255,.05); border-radius: 8px; color: var(--muted); }
-.city-btn { font-size: .75rem; font-weight: 700; margin-top: 10px; }
-.city-btn-live { color: #4ade80; }
-.city-btn-soon { color: rgba(255,255,255,.2); }
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       HebronGuide — Apple-inspired Design System v1.0
+       Typography: Pretendard Variable (한·영 통합)
+       Spacing: 8pt grid
+       Colors: Deep black with warm accents
+       Motion: Cubic-bezier(0.4, 0, 0.2, 1), 400-600ms
+       ═══════════════════════════════════════════════════════ */
 
-/* HOW IT WORKS */
-.steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 14px; counter-reset: steps; }
-.step-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 24px 20px; counter-increment: steps; position: relative; }
-.step-num { font-size: .65rem; font-weight: 800; letter-spacing: 2px; color: var(--gold); margin-bottom: 10px; }
-.step-title { font-size: .95rem; font-weight: 800; margin-bottom: 6px; }
-.step-desc { font-size: .8rem; color: var(--muted); line-height: 1.7; }
+    :root {
+      /* 색상 — Apple Dark Mode 기반 */
+      --bg-base:        #000000;
+      --bg-elevated:    #0a0a0c;
+      --bg-surface:     #1c1c1e;
+      --bg-surface-2:   #2c2c2e;
+      --bg-surface-3:   #3a3a3c;
 
-/* PASTOR CALLOUT */
-.pastor-callout {
-  background: linear-gradient(135deg, rgba(10,74,34,.55), rgba(212,160,23,.08));
-  border: 1px solid rgba(212,160,23,.25);
-  border-radius: 20px; padding: 32px 28px; text-align: center;
-  max-width: 700px; margin: 0 auto;
-}
-.pastor-callout-title { font-size: 1.1rem; font-weight: 900; margin-bottom: 10px; }
-.pastor-callout-body { font-size: .88rem; color: var(--muted); margin-bottom: 20px; line-height: 1.75; }
+      --text-primary:   #f5f5f7;
+      --text-secondary: #a1a1a6;
+      --text-tertiary:  #6e6e73;
 
-/* FOOTER */
-footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; font-size: .72rem; color: var(--muted); line-height: 2.2; }
-footer a { color: rgba(212,160,23,.6); }
-footer a:hover { color: var(--gold); }
+      --accent-gold:    #C9A227;
+      --accent-mint:    #6EE7B7;
+      --accent-warm:    #FF9F0A;
+      --accent-blue:    #0A84FF;
 
-/* REVEAL */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.visible { opacity: 1; transform: none; }
+      --separator:      rgba(255, 255, 255, 0.08);
+      --separator-bold: rgba(255, 255, 255, 0.16);
 
-/* DIVIDER */
-.divider { height: 1px; background: var(--border); max-width: 860px; margin: 0 auto; }
+      /* 타이포 — Apple HIG 스케일 */
+      --font-display: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+      --font-text:    'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
 
-@media(max-width:480px){
-  .aud-tab { font-size: .76rem; padding: 8px 14px; }
-}
-</style>
+      /* 간격 — 8pt 그리드 */
+      --space-1: 4px;  --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
+      --space-5: 20px; --space-6: 24px;  --space-8: 32px;  --space-10: 40px;
+      --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
+      --space-32: 128px; --space-40: 160px;
+
+      /* 모션 */
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --duration-fast: 200ms;
+      --duration-mid:  400ms;
+      --duration-slow: 600ms;
+
+      /* 반경 */
+      --radius-sm: 8px;   --radius-md: 16px;
+      --radius-lg: 24px;  --radius-xl: 32px;
+      --radius-2xl: 40px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: var(--font-text);
+      background: var(--bg-base);
+      color: var(--text-primary);
+      font-size: 17px;
+      line-height: 1.5;
+      letter-spacing: -0.022em;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── 스티키 네비게이션 (frosted glass) ─────────────── */
+    nav.topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      background: rgba(0, 0, 0, 0.72);
+      border-bottom: 0.5px solid var(--separator);
+      transition: background var(--duration-fast) var(--ease);
+    }
+    .topbar-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 var(--space-6);
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand {
+      font-family: var(--font-display); font-weight: 700; font-size: 20px;
+      letter-spacing: -0.5px; color: var(--text-primary); text-decoration: none;
+      display: flex; align-items: center; gap: var(--space-2);
+    }
+    .brand::before {
+      content: ""; width: 22px; height: 22px; border-radius: 6px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-warm));
+      box-shadow: 0 0 24px rgba(201, 162, 39, 0.4);
+    }
+    .topnav-links { display: flex; gap: var(--space-8); align-items: center; }
+    .topnav-links a {
+      font-size: 14px; font-weight: 500; color: var(--text-secondary);
+      text-decoration: none; transition: color var(--duration-fast) var(--ease);
+    }
+    .topnav-links a:hover { color: var(--text-primary); }
+    @media (max-width: 720px) { .topnav-links { display: none; } }
+
+    /* ── 히어로 섹션 ────────────────────────────────── */
+    .hero {
+      position: relative; padding: calc(var(--space-32) + 56px) var(--space-6) var(--space-24);
+      text-align: center; max-width: 1100px; margin: 0 auto;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ""; position: absolute; top: 20%; left: 50%; width: 800px; height: 800px;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(201, 162, 39, 0.15), transparent 60%);
+      filter: blur(80px); pointer-events: none; z-index: -1;
+    }
+    .hero::after {
+      content: ""; position: absolute; bottom: 10%; right: 0; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(110, 231, 183, 0.10), transparent 60%);
+      filter: blur(80px); pointer-events: none; z-index: -1;
+    }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      font-size: 13px; font-weight: 600; color: var(--accent-gold);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: var(--space-2) var(--space-4);
+      border: 1px solid rgba(201, 162, 39, 0.3);
+      border-radius: 100px; margin-bottom: var(--space-8);
+      background: rgba(201, 162, 39, 0.06);
+    }
+    .eyebrow::before { content: "✦"; font-size: 14px; }
+
+    .hero h1 {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(56px, 9vw, 120px); line-height: 0.95; letter-spacing: -0.05em;
+      margin-bottom: var(--space-8);
+      background: linear-gradient(180deg, #ffffff 0%, #c8c8cc 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: fadeInUp 1s var(--ease) both;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-warm) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      display: inline-block;
+    }
+
+    .hero .lead {
+      font-size: clamp(19px, 2.4vw, 28px); font-weight: 400; line-height: 1.4;
+      color: var(--text-secondary); letter-spacing: -0.01em;
+      max-width: 780px; margin: 0 auto var(--space-12);
+      animation: fadeInUp 1s var(--ease) 0.15s both;
+    }
+    .hero .lead strong { color: var(--accent-gold); font-weight: 600; }
+
+    .verse {
+      font-size: 14px; color: var(--text-tertiary); font-style: italic;
+      letter-spacing: 0; margin-bottom: var(--space-16);
+      animation: fadeInUp 1s var(--ease) 0.3s both;
+    }
+    .verse::before, .verse::after { content: " — "; opacity: 0.5; }
+
+    .cta-row {
+      display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap;
+      animation: fadeInUp 1s var(--ease) 0.45s both;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      padding: var(--space-4) var(--space-6); border-radius: 100px;
+      font-size: 16px; font-weight: 600; text-decoration: none;
+      transition: all var(--duration-fast) var(--ease);
+      border: none; cursor: pointer; letter-spacing: -0.01em;
+    }
+    .btn-primary {
+      background: var(--text-primary); color: var(--bg-base);
+      box-shadow: 0 8px 32px rgba(255, 255, 255, 0.12);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255, 255, 255, 0.2); }
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.06); color: var(--text-primary);
+      border: 1px solid var(--separator-bold);
+      backdrop-filter: blur(20px);
+    }
+    .btn-ghost:hover { background: rgba(255, 255, 255, 0.12); }
+    .btn .arrow { transition: transform var(--duration-fast) var(--ease); }
+    .btn:hover .arrow { transform: translateX(4px); }
+
+    /* ── 통계 행 ────────────────────────────────────── */
+    .stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2);
+      max-width: 1100px; margin: var(--space-16) auto 0; padding: 0 var(--space-6);
+      animation: fadeInUp 1s var(--ease) 0.6s both;
+    }
+    .stat {
+      padding: var(--space-8) var(--space-4); text-align: center;
+      border-right: 1px solid var(--separator);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-value {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.03em;
+      background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 12px; color: var(--text-tertiary); margin-top: var(--space-2);
+      font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    @media (max-width: 720px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border-right: none; }
+    }
+
+    /* ── 섹션 헤더 ────────────────────────────────────── */
+    section.cities-section {
+      padding: var(--space-32) var(--space-6) var(--space-24);
+      max-width: 1280px; margin: 0 auto;
+    }
+    .section-head { text-align: center; margin-bottom: var(--space-16); }
+    .section-head h2 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(36px, 5vw, 56px); letter-spacing: -0.04em;
+      line-height: 1.05; margin-bottom: var(--space-4);
+    }
+    .section-head p {
+      font-size: clamp(17px, 1.8vw, 21px); color: var(--text-secondary);
+      letter-spacing: -0.01em; max-width: 640px; margin: 0 auto;
+    }
+
+    /* ── 벤토 그리드 (Apple-style) ───────────────────── */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 220px;
+      gap: var(--space-4);
+    }
+    .city-card {
+      position: relative; overflow: hidden; border-radius: var(--radius-xl);
+      background: var(--bg-surface);
+      border: 1px solid var(--separator);
+      text-decoration: none; color: var(--text-primary);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: var(--space-8);
+      transition: transform var(--duration-mid) var(--ease-spring), border-color var(--duration-fast) var(--ease);
+      isolation: isolate;
+    }
+    .city-card::before {
+      content: ""; position: absolute; inset: 0;
+      background: var(--card-gradient, linear-gradient(135deg, rgba(255,255,255,0.04), transparent));
+      opacity: 0.9; z-index: -2;
+    }
+    .city-card::after {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(120% 80% at 80% 0%, rgba(255,255,255,0.08), transparent 50%);
+      z-index: -1;
+    }
+    .city-card:hover { transform: translateY(-6px); border-color: var(--separator-bold); }
+    .city-card:hover .city-card-arrow { transform: translate(4px, -4px); opacity: 1; }
+
+    .city-card-flag {
+      font-size: 36px; margin-bottom: var(--space-3);
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+    }
+    .city-card-name {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 28px; letter-spacing: -0.025em; line-height: 1.05;
+      margin-bottom: var(--space-1);
+    }
+    .city-card-sub {
+      font-size: 14px; color: var(--text-secondary); font-weight: 500;
+      margin-bottom: var(--space-4);
+    }
+    .city-card-meta {
+      display: flex; gap: var(--space-2); align-items: center;
+      font-size: 12px; color: var(--text-tertiary); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .city-card-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+    .city-card-arrow {
+      position: absolute; top: var(--space-6); right: var(--space-6);
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255, 255, 255, 0.08); color: var(--text-primary);
+      backdrop-filter: blur(10px);
+      transition: all var(--duration-fast) var(--ease); opacity: 0.7;
+    }
+
+    /* Featured (시애틀): 2x2 차지 */
+    .city-card.featured {
+      grid-column: span 2; grid-row: span 2;
+      --card-gradient: radial-gradient(120% 100% at 50% 100%, rgba(110, 231, 183, 0.20), transparent 60%),
+                       linear-gradient(135deg, rgba(201, 162, 39, 0.12), rgba(110, 231, 183, 0.06));
+      border-color: rgba(110, 231, 183, 0.25);
+    }
+    .city-card.featured .city-card-name { font-size: 56px; letter-spacing: -0.04em; }
+    .city-card.featured .city-card-sub { font-size: 18px; }
+    .city-card.featured .city-card-flag { font-size: 56px; }
+    .city-card.featured .badge-featured {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: linear-gradient(135deg, var(--accent-mint), var(--accent-gold));
+      color: var(--bg-base); padding: 4px 12px; border-radius: 100px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase; margin-bottom: var(--space-4); width: fit-content;
+    }
+
+    /* 도시별 색상 */
+    .city-card[data-city="dallas"]    { --card-gradient: linear-gradient(135deg, rgba(255, 159, 10, 0.10), transparent); }
+    .city-card[data-city="la"]        { --card-gradient: linear-gradient(135deg, rgba(255, 105, 180, 0.10), transparent); }
+    .city-card[data-city="sf"]        { --card-gradient: linear-gradient(135deg, rgba(10, 132, 255, 0.10), transparent); }
+    .city-card[data-city="newyork"]   { --card-gradient: linear-gradient(135deg, rgba(175, 82, 222, 0.10), transparent); }
+    .city-card[data-city="nashville"] { --card-gradient: linear-gradient(135deg, rgba(255, 214, 10, 0.10), transparent); }
+    .city-card[data-city="toronto"]   { --card-gradient: linear-gradient(135deg, rgba(255, 69, 58, 0.10), transparent); }
+    .city-card[data-city="vancouver"] { --card-gradient: linear-gradient(135deg, rgba(48, 209, 88, 0.10), transparent); }
+
+    @media (max-width: 980px) {
+      .bento { grid-template-columns: repeat(2, 1fr); }
+      .city-card.featured { grid-column: span 2; grid-row: span 2; }
+    }
+    @media (max-width: 560px) {
+      .bento { grid-template-columns: 1fr; grid-auto-rows: 180px; }
+      .city-card.featured { grid-column: span 1; grid-row: span 2; }
+      .city-card.featured .city-card-name { font-size: 40px; }
+    }
+
+    /* ── 철학(원칙) 섹션 ────────────────────────────── */
+    section.principles {
+      padding: var(--space-24) var(--space-6);
+      max-width: 1100px; margin: 0 auto;
+    }
+    .principles-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-6);
+    }
+    .principle {
+      padding: var(--space-8);
+      border-radius: var(--radius-lg);
+      background: var(--bg-elevated);
+      border: 1px solid var(--separator);
+    }
+    .principle-num {
+      font-family: var(--font-display); font-weight: 800; font-size: 14px;
+      color: var(--accent-gold); letter-spacing: 0.1em;
+      margin-bottom: var(--space-4); text-transform: uppercase;
+    }
+    .principle-title {
+      font-family: var(--font-display); font-weight: 700; font-size: 22px;
+      letter-spacing: -0.02em; margin-bottom: var(--space-3);
+    }
+    .principle-desc {
+      font-size: 15px; color: var(--text-secondary); line-height: 1.6;
+    }
+
+    /* ── 푸터 ──────────────────────────────────────────── */
+    footer {
+      padding: var(--space-16) var(--space-6) var(--space-12);
+      border-top: 1px solid var(--separator);
+      text-align: center; max-width: 1100px; margin: var(--space-16) auto 0;
+    }
+    footer .ministry {
+      font-size: 14px; color: var(--text-secondary); margin-bottom: var(--space-2);
+    }
+    footer .ministry strong { color: var(--text-primary); font-weight: 600; }
+    footer .roadmap {
+      font-size: 12px; color: var(--text-tertiary);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      margin-bottom: var(--space-8);
+    }
+    footer .copy {
+      font-size: 12px; color: var(--text-tertiary);
+      padding-top: var(--space-6); border-top: 1px solid var(--separator);
+    }
+
+    /* ── 애니메이션 ─────────────────────────────────── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* 스크롤 등장 — 도시 카드 stagger */
+    .city-card { animation: fadeInUp 0.8s var(--ease) both; }
+    .city-card:nth-child(1) { animation-delay: 0.0s; }
+    .city-card:nth-child(2) { animation-delay: 0.05s; }
+    .city-card:nth-child(3) { animation-delay: 0.10s; }
+    .city-card:nth-child(4) { animation-delay: 0.15s; }
+    .city-card:nth-child(5) { animation-delay: 0.20s; }
+    .city-card:nth-child(6) { animation-delay: 0.25s; }
+    .city-card:nth-child(7) { animation-delay: 0.30s; }
+    .city-card:nth-child(8) { animation-delay: 0.35s; }
+
+    /* 접근성 — 모션 감소 사용자 */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
 <body>
-
-<nav>
-  <div class="nav-logo">
-    <svg width="26" height="26" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="64" height="64" rx="13" fill="#0a4a22"/>
-      <circle cx="32" cy="32" r="28" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
-      <polygon points="32,7 40,24 32,32 24,24" fill="#d4a017"/>
-      <polygon points="32,57 40,40 32,32 24,40" fill="rgba(255,255,255,0.82)"/>
-      <polygon points="57,32 40,40 32,32 40,24" fill="rgba(255,255,255,0.48)"/>
-      <polygon points="7,32 24,24 32,32 24,40" fill="rgba(255,255,255,0.48)"/>
-      <circle cx="32" cy="32" r="2.5" fill="rgba(255,255,255,0.95)"/>
-    </svg>
-    HebronGuide
-  </div>
-  <div class="nav-links">
-    <a href="./pastor/index.html" class="nav-link" id="t-nav-pastor">목회자 가이드 →</a>
-    <div class="lang-toggle">
-      <button class="lang-toggle-btn on" id="btn-ko" onclick="setLang('ko')">한국어</button>
-      <button class="lang-toggle-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  <!-- 스티키 네비 -->
+  <nav class="topbar">
+    <div class="topbar-inner">
+      <a href="/" class="brand">HebronGuide</a>
+      <div class="topnav-links">
+        <a href="/seattle/">시애틀</a>
+        <a href="#cities">도시 목록</a>
+        <a href="#principles">원칙</a>
+        <a href="/seattle/" class="btn btn-ghost" style="padding: 6px 16px; font-size: 13px;">시작하기 <span class="arrow">→</span></a>
+      </div>
     </div>
-    <a href="./order-form.html" class="nav-cta" id="t-nav-order">주문하기</a>
-  </div>
-</nav>
+  </nav>
 
-<!-- AUDIENCE SELECTOR -->
-<div class="aud-tabs">
-  <button class="aud-tab active" onclick="setAud('newcomer')"><span id="t-tab-newcomer">🛬 새 이주자</span></button>
-  <button class="aud-tab" onclick="setAud('visitor')"><span id="t-tab-visitor">✈️ 방문자 · 관광객</span></button>
-  <button class="aud-tab" onclick="setAud('student')"><span id="t-tab-student">🎓 유학생</span></button>
-  <button class="aud-tab" onclick="setAud('settler')"><span id="t-tab-settler">🏘️ 정착민 · 비즈니스</span></button>
-</div>
-
-<!-- HERO -->
-<div class="hero">
-
-  <!-- NEWCOMER -->
-  <div class="hero-panel active" id="panel-newcomer">
-    <p class="hero-eyebrow" id="t-hero-eyebrow-newcomer">새 이주자를 위한 가이드</p>
-    <h1 class="hero-h1" id="t-hero-h1-newcomer">미국에 도착했는데,<br><em>뭘 먼저 해야 할지 모르겠어요.</em></h1>
-    <p class="hero-tagline" id="t-hero-tagline-newcomer">괜찮아요. 순서대로 알려드립니다.</p>
-    <p class="hero-sub" id="t-hero-sub-newcomer">
-      SSN → 운전면허 → 은행 → 보험 → 아이 학교 등록까지.<br>
-      처음 이주한 분들이 가장 먼저 막히는 것들을 순서대로 정리했습니다.
+  <!-- 히어로 -->
+  <section class="hero">
+    <span class="eyebrow">Korean Diaspora · 재외 한인 700만</span>
+    <h1>
+      새 도시,<br>
+      <span class="accent">첫날부터</span> 뿌리내리다.
+    </h1>
+    <p style="font-family:'Pretendard Variable',sans-serif;font-size:clamp(13px,1.4vw,16px);font-weight:600;letter-spacing:0.12em;color:rgba(201,162,39,0.7);text-transform:uppercase;margin-bottom:24px;animation:fadeInUp 1s ease 0.1s both;">Know your city. Find your people.</p>
+    <p class="lead">
+      한인 커뮤니티의 신뢰를 기반으로,<br>
+      검증된 현지 정보를 <strong>전 세계 한인 도시</strong>에서 만나세요.
     </p>
-    <div class="quick-links">
-      <span class="quick-link" id="t-ql-n1">✅ 정착 첫 달 체크리스트</span>
-      <span class="quick-link" id="t-ql-n2">🏥 한국어 되는 병원</span>
-      <span class="quick-link" id="t-ql-n3">🏦 은행 계좌 열기</span>
-      <span class="quick-link" id="t-ql-n4">🚗 운전면허 변환</span>
-      <span class="quick-link" id="t-ql-n5">🏫 자녀 학교 등록</span>
+<div class="cta-row">
+      <a href="/seattle/" class="btn btn-primary">시애틀 가이드 시작 <span class="arrow">→</span></a>
+      <a href="#cities" class="btn btn-ghost">전체 도시 보기</a>
     </div>
-    <div class="hero-btns">
-      <a href="./seattle/" class="btn-primary" id="t-btn-seattle-newcomer">🌲 시애틀 가이드 열기</a>
-      <a href="#cities" class="btn-ghost" id="t-btn-cities-newcomer">다른 도시 보기</a>
-    </div>
-  </div>
 
-  <!-- VISITOR / TOURIST -->
-  <div class="hero-panel" id="panel-visitor">
-    <p class="hero-eyebrow" id="t-hero-eyebrow-visitor">방문자 · 관광객을 위한 가이드</p>
-    <h1 class="hero-h1" id="t-hero-h1-visitor">시애틀에 왔는데,<br><em>현지인만 아는 곳이 궁금해요.</em></h1>
-    <p class="hero-tagline" id="t-hero-tagline-visitor">현지 한인이 직접 골라드립니다.</p>
-    <p class="hero-sub" id="t-hero-sub-visitor">
-      린우드 한인타운 맛집, 한국 마트, 파이크 플레이스부터 숨겨진 명소까지.<br>
-      짧은 여행도, 첫 방문도 — 아는 사람 옆에 있는 것처럼.
-    </p>
-    <div class="quick-links">
-      <span class="quick-link" id="t-ql-v1">🍜 현지인 추천 맛집</span>
-      <span class="quick-link" id="t-ql-v2">🛒 한국 마트 위치</span>
-      <span class="quick-link" id="t-ql-v3">📍 관광 명소 코스</span>
-      <span class="quick-link" id="t-ql-v4">⛪ 주일 예배 찾기</span>
-      <span class="quick-link" id="t-ql-v5">🚌 교통편 안내</span>
-    </div>
-    <div class="hero-btns">
-      <a href="./seattle/" class="btn-primary" id="t-btn-seattle-visitor">🌲 시애틀 가이드 열기</a>
-      <a href="#cities" class="btn-ghost" id="t-btn-cities-visitor">다른 도시 보기</a>
-    </div>
-  </div>
-
-  <!-- STUDENT -->
-  <div class="hero-panel" id="panel-student">
-    <p class="hero-eyebrow" id="t-hero-eyebrow-student">유학생을 위한 가이드</p>
-    <h1 class="hero-h1" id="t-hero-h1-student">미국 학교,<br><em>서류부터 막히는 게 한두 개가 아니에요.</em></h1>
-    <p class="hero-tagline" id="t-hero-tagline-student">먼저 겪은 선배가 알려드립니다.</p>
-    <p class="hero-sub" id="t-hero-sub-student">
-      등록 서류, ESL 배치, 저렴한 주거지, 아르바이트 규정까지.<br>
-      혼자 검색으로는 찾기 어려운 실질 정보를 한국어로 모았습니다.
-    </p>
-    <div class="quick-links">
-      <span class="quick-link" id="t-ql-s1">🏫 학교 등록 단계별 안내</span>
-      <span class="quick-link" id="t-ql-s2">📚 ESL 프로그램</span>
-      <span class="quick-link" id="t-ql-s3">🏠 유학생 주거 정보</span>
-      <span class="quick-link" id="t-ql-s4">💰 생활비 절약</span>
-      <span class="quick-link" id="t-ql-s5">🤝 한인 유학생 커뮤니티</span>
-    </div>
-    <div class="hero-btns">
-      <a href="./seattle/" class="btn-primary" id="t-btn-seattle-student">🌲 시애틀 가이드 열기</a>
-      <a href="#cities" class="btn-ghost" id="t-btn-cities-student">다른 도시 보기</a>
-    </div>
-  </div>
-
-  <!-- SETTLER / BUSINESS -->
-  <div class="hero-panel" id="panel-settler">
-    <p class="hero-eyebrow" id="t-hero-eyebrow-settler">정착민 · 비즈니스를 위한 가이드</p>
-    <h1 class="hero-h1" id="t-hero-h1-settler">살고 있어도<br><em>아직 모르는 정보가 있습니다.</em></h1>
-    <p class="hero-tagline" id="t-hero-tagline-settler">한인 커뮤니티 안에서 더 깊이 연결됩니다.</p>
-    <p class="hero-sub" id="t-hero-sub-settler">
-      신뢰할 수 있는 한인 전문가, 학군 이사 정보, 비즈니스 네트워크, 커뮤니티 행사.<br>
-      정착 이후의 삶을 더 풍요롭게 만드는 정보를 계속 업데이트합니다.
-    </p>
-    <div class="quick-links">
-      <span class="quick-link" id="t-ql-st1">🏢 한인 전문가 찾기</span>
-      <span class="quick-link" id="t-ql-st2">🏠 학군별 부동산</span>
-      <span class="quick-link" id="t-ql-st3">👥 한인 비즈니스 모임</span>
-      <span class="quick-link" id="t-ql-st4">⚖️ 법률 · 세무 안내</span>
-      <span class="quick-link" id="t-ql-st5">🌐 전문직 네트워크</span>
-    </div>
-    <div class="hero-btns">
-      <a href="./seattle/" class="btn-primary" id="t-btn-seattle-settler">🌲 시애틀 가이드 열기</a>
-      <a href="#cities" class="btn-ghost" id="t-btn-cities-settler">다른 도시 보기</a>
-    </div>
-  </div>
-
-</div><!-- /hero -->
-
-<div class="divider"></div>
-
-<!-- SCENARIO SECTION — changes per audience -->
-<div class="section reveal" id="scenario-section">
-
-  <!-- NEWCOMER SCENARIOS -->
-  <div class="aud-content active" id="sc-newcomer">
-    <p class="sec-eyebrow" id="t-sc-eyebrow-newcomer">새 이주자 필수 정보</p>
-    <h2 class="sec-title" id="t-sc-title-newcomer">"나만 이러는 건가" — 아닙니다.</h2>
-    <p class="sec-sub" id="t-sc-sub-newcomer">처음 이주한 분들이 가장 많이 막히는 순간들, 미리 준비하세요.</p>
-    <div class="scenario-grid">
-      <div class="scenario-card">
-        <div class="sc-icon">📋</div>
-        <div class="sc-q" id="t-sc-q1-n">"비행기 내리자마자 제일 먼저 뭘 해야 해요?"</div>
-        <div class="sc-a" id="t-sc-a1-n">정착 첫 달 — 6단계 체크리스트</div>
-        <div class="sc-desc" id="t-sc-d1-n">SSN → 운전면허 → 은행 → 보험 → 의사 → 학교. 놓치면 나중에 두 배 힘들어지는 항목들을 순서대로.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
+    <!-- 통계 -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">8</div>
+        <div class="stat-label">도시 가이드</div>
       </div>
-      <div class="scenario-card">
-        <div class="sc-icon">🏥</div>
-        <div class="sc-q" id="t-sc-q2-n">"갑자기 아픈데 어디 병원을 가야 하죠?"</div>
-        <div class="sc-a" id="t-sc-a2-n">한국어 되는 병원 · 치과 바로 찾기</div>
-        <div class="sc-desc" id="t-sc-d2-n">지역별 한인 의사, 한국어 가능 클리닉, 긴급 진료. 보험 없을 때 어떻게 할지도 포함.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
+      <div class="stat">
+        <div class="stat-value">700M+</div>
+        <div class="stat-label">재외 한인</div>
       </div>
-      <div class="scenario-card">
-        <div class="sc-icon">🏫</div>
-        <div class="sc-q" id="t-sc-q3-n">"학교 등록하러 갔더니 서류가 너무 많아요"</div>
-        <div class="sc-a" id="t-sc-a3-n">등록 서류 체크리스트 + ESL 배치 안내</div>
-        <div class="sc-desc" id="t-sc-d3-n">접종 기록, 주소 증명, ESL 배치 시험 — 학교 첫 방문 전에 챙겨야 할 것들을 한국어로 정리.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
+      <div class="stat">
+        <div class="stat-value">3</div>
+        <div class="stat-label">지원 언어</div>
       </div>
-      <div class="scenario-card">
-        <div class="sc-icon">⛪</div>
-        <div class="sc-q" id="t-sc-q4-n">"이 도시에 아는 사람이 아무도 없어요"</div>
-        <div class="sc-a" id="t-sc-a4-n">새 이주자 환영하는 한인 교회 · 공동체</div>
-        <div class="sc-desc" id="t-sc-d4-n">규모·지역·스타일별 교회 안내. 혼자 낯선 도시에서 공동체를 찾는 첫 걸음이 됩니다.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
+      <div class="stat">
+        <div class="stat-value">24/7</div>
+        <div class="stat-label">PWA 오프라인</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- VISITOR SCENARIOS -->
-  <div class="aud-content" id="sc-visitor" style="display:none;">
-    <p class="sec-eyebrow" id="t-sc-eyebrow-visitor">방문자 · 관광객 필수 정보</p>
-    <h2 class="sec-title" id="t-sc-title-visitor">현지인처럼 다니세요.</h2>
-    <p class="sec-sub" id="t-sc-sub-visitor">구글 검색으로는 안 나오는, 현지 한인이 직접 고른 정보입니다.</p>
-    <div class="scenario-grid">
-      <div class="scenario-card">
-        <div class="sc-icon">🍜</div>
-        <div class="sc-q" id="t-sc-q1-v">"관광지 말고 현지인이 실제 가는 한인 맛집은요?"</div>
-        <div class="sc-a" id="t-sc-a1-v">현지인 추천 한인 식당 &amp; 카페</div>
-        <div class="sc-desc" id="t-sc-d1-v">린우드 한인타운, 벨뷰 한인 상권 — 로컬들이 진짜 가는 식당, 카페, 분식집 큐레이션.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
-      </div>
-      <div class="scenario-card">
-        <div class="sc-icon">🛒</div>
-        <div class="sc-q" id="t-sc-q2-v">"한국 라면이랑 반찬 어디서 살 수 있어요?"</div>
-        <div class="sc-a" id="t-sc-a2-v">H마트 · 한아름 · 서울마켓 위치 안내</div>
-        <div class="sc-desc" id="t-sc-d2-v">숙소에서 가장 가까운 한국 마트를 바로 찾아드립니다. 영업시간, 주차 정보 포함.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
-      </div>
-      <div class="scenario-card">
-        <div class="sc-icon">📍</div>
-        <div class="sc-q" id="t-sc-q3-v">"시애틀에서 딱 하루, 어디 가면 좋아요?"</div>
-        <div class="sc-a" id="t-sc-a3-v">관광 명소 + 한인 추천 반나절 코스</div>
-        <div class="sc-desc" id="t-sc-d3-v">파이크 플레이스, 스페이스 니들 — 거기다 현지 한인이 안내하는 숨겨진 명소까지.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
-      </div>
-      <div class="scenario-card">
-        <div class="sc-icon">⛪</div>
-        <div class="sc-q" id="t-sc-q4-v">"여행 중에 주일 예배를 드리고 싶어요"</div>
-        <div class="sc-a" id="t-sc-a4-v">방문자 환영하는 한인 교회 안내</div>
-        <div class="sc-desc" id="t-sc-d4-v">처음 오는 분도 따뜻하게 환영하는 교회. 예배 시간, 위치, 주차 정보까지 한번에.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- STUDENT SCENARIOS -->
-  <div class="aud-content" id="sc-student" style="display:none;">
-    <p class="sec-eyebrow" id="t-sc-eyebrow-student">유학생 필수 정보</p>
-    <h2 class="sec-title" id="t-sc-title-student">혼자 헤매지 않아도 됩니다.</h2>
-    <p class="sec-sub" id="t-sc-sub-student">먼저 겪은 선배들의 경험을 그대로 담았습니다.</p>
-    <div class="scenario-grid">
-      <div class="scenario-card">
-        <div class="sc-icon">🏫</div>
-        <div class="sc-q" id="t-sc-q1-s">"학교 등록하러 갔더니 준비한 서류가 다 달라요"</div>
-        <div class="sc-a" id="t-sc-a1-s">공립학교 등록 서류 체크리스트 (한국어)</div>
-        <div class="sc-desc" id="t-sc-d1-s">접종 기록, 주소 증명, ESL 배치 시험 — 학교 행정실 첫 방문 전 반드시 확인할 것들.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
-      </div>
-      <div class="scenario-card">
-        <div class="sc-icon">📚</div>
-        <div class="sc-q" id="t-sc-q2-s">"영어가 약한데 미국 학교 수업이 너무 무서워요"</div>
-        <div class="sc-a" id="t-sc-a2-s">ESL / ELL 배치 과정 안내</div>
-        <div class="sc-desc" id="t-sc-d2-s">지역별 ESL 클래스, 무료 언어 지원, ELL 배치 절차 — 입학 전 알아두면 훨씬 덜 무섭습니다.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
-      </div>
-      <div class="scenario-card">
-        <div class="sc-icon">🏠</div>
-        <div class="sc-q" id="t-sc-q3-s">"학교 가까운 곳에 안전하고 저렴한 집을 찾고 싶어요"</div>
-        <div class="sc-a" id="t-sc-a3-s">학군별 주거 지역 · 렌트 정보</div>
-        <div class="sc-desc" id="t-sc-d3-s">학교까지 거리, 치안, 렌트 시세 — 유학생 가족이 실제 많이 사는 지역 중심으로 안내.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
-      </div>
-      <div class="scenario-card">
-        <div class="sc-icon">🤝</div>
-        <div class="sc-q" id="t-sc-q4-s">"같은 처지 한인 유학생을 어떻게 만날 수 있어요?"</div>
-        <div class="sc-a" id="t-sc-a4-s">유학생 커뮤니티 · 한인 교회 청년부</div>
-        <div class="sc-desc" id="t-sc-d4-s">혼자 고민하지 않아도 됩니다. 지역 한인 청년부, 유학생 모임 — 이미 있습니다.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- SETTLER SCENARIOS -->
-  <div class="aud-content" id="sc-settler" style="display:none;">
-    <p class="sec-eyebrow" id="t-sc-eyebrow-settler">정착민 · 비즈니스 정보</p>
-    <h2 class="sec-title" id="t-sc-title-settler">여기 살면서도 이걸 몰랐다니.</h2>
-    <p class="sec-sub" id="t-sc-sub-settler">한인 커뮤니티의 살아있는 정보를 계속 업데이트합니다.</p>
-    <div class="scenario-grid">
-      <div class="scenario-card">
-        <div class="sc-icon">🏢</div>
-        <div class="sc-q" id="t-sc-q1-st">"세금 보고·이민 관련 믿을 수 있는 한인 전문가가 있나요?"</div>
-        <div class="sc-a" id="t-sc-a1-st">한인 이민 변호사 · 세무사 · 공증인</div>
-        <div class="sc-desc" id="t-sc-d1-st">한국어로 소통되는 현지 전문가 목록. 비용 대비 믿을 수 있는 분들만 정리했습니다.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
-      </div>
-      <div class="scenario-card">
-        <div class="sc-icon">🏠</div>
-        <div class="sc-q" id="t-sc-q2-st">"더 좋은 학군으로 이사를 고민 중인데 어디가 좋아요?"</div>
-        <div class="sc-a" id="t-sc-a2-st">벨뷰 · 레드몬드 · 린우드 학군 비교</div>
-        <div class="sc-desc" id="t-sc-d2-st">학군 평가, 렌트·매매 시세, 통학 편의성 — 학군 이사를 고민 중인 가정을 위한 실질 정보.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
-      </div>
-      <div class="scenario-card">
-        <div class="sc-icon">👥</div>
-        <div class="sc-q" id="t-sc-q3-st">"한인 사업가들끼리 네트워킹하는 모임이 있나요?"</div>
-        <div class="sc-a" id="t-sc-a3-st">한인 상공인 모임 · 커뮤니티 행사</div>
-        <div class="sc-desc" id="t-sc-d3-st">지역 한인 상공회의소, 정기 모임, 행사 일정 — 비즈니스 파트너를 찾는 분들을 위해.</div>
-        <span class="sc-link"><span class="sc-link-text">가이드 열기 →</span></span>
-      </div>
-      <div class="scenario-card">
-        <div class="sc-icon">⛪</div>
-        <div class="sc-q" id="t-sc-q4-st">"새로 이주한 분들을 우리 교회로 연결하고 싶어요"</div>
-        <div class="sc-a" id="t-sc-a4-st">목회자 · 교회 파트너십 프로그램</div>
-        <div class="sc-desc" id="t-sc-d4-st">HebronGuide를 통해 새 이주자를 교회 공동체와 연결합니다. 함께 도시를 품는 방법.</div>
-        <a href="./pastor/index.html" class="sc-link"><span class="sc-link-text">가이드 열기 →</span></a>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /scenario section -->
-
-<div class="divider"></div>
-
-<!-- HOW IT WORKS -->
-<div class="section reveal">
-  <p class="sec-eyebrow" id="t-how-eyebrow">사용 방법</p>
-  <h2 class="sec-title" id="t-how-title">설치 없이, 3초면 됩니다</h2>
-  <p class="sec-sub" id="t-how-sub">앱스토어 불필요. QR 코드 하나로 스마트폰 홈 화면에 바로 설치됩니다.</p>
-  <div class="steps">
-    <div class="step-card">
-      <div class="step-num" id="t-step1-num">STEP 01</div>
-      <div class="step-title" id="t-step1-title">QR 스캔 또는 링크 클릭</div>
-      <p class="step-desc" id="t-step1-desc">교회·기관에서 배포한 QR을 스캔하거나, 이 페이지 링크를 클릭하세요.</p>
-    </div>
-    <div class="step-card">
-      <div class="step-num" id="t-step2-num">STEP 02</div>
-      <div class="step-title" id="t-step2-title">내 도시 가이드 열기</div>
-      <p class="step-desc" id="t-step2-desc">시애틀, 달라스, 뉴욕 — 내가 있는 도시의 가이드를 선택하세요.</p>
-    </div>
-    <div class="step-card">
-      <div class="step-num" id="t-step3-num">STEP 03</div>
-      <div class="step-title" id="t-step3-title">홈 화면에 추가</div>
-      <p class="step-desc" id="t-step3-desc">브라우저 "홈 화면에 추가" 버튼 한 번. 이제 앱처럼 바로 열립니다.</p>
-    </div>
-    <div class="step-card">
-      <div class="step-num" id="t-step4-num">STEP 04</div>
-      <div class="step-title" id="t-step4-title">필요할 때마다 바로 찾기</div>
-      <p class="step-desc" id="t-step4-desc">병원, 마트, 학교, 교회 — 필요한 순간에 바로. 완전 무료입니다.</p>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- CITIES -->
-<div class="section reveal" id="cities">
-  <p class="sec-eyebrow" id="t-cities-eyebrow">도시 선택</p>
-  <h2 class="sec-title" id="t-cities-title">당신의 도시를 선택하세요</h2>
-  <p class="sec-sub" id="t-cities-sub">미국·캐나다 주요 한인 밀집 도시별 완전 가이드</p>
-  <div class="city-grid">
-
-    <a class="city-card" href="./seattle/" style="border-color:rgba(34,197,94,.3);">
-      <div class="city-card-bar" style="background:linear-gradient(90deg,#22c55e,#4ade80);"></div>
-      <span class="city-badge badge-live">🟢 LIVE</span>
-      <div class="city-name">Seattle</div>
-      <div class="city-name-ko"><span id="t-seattle-ko">시애틀 · 워싱턴주</span></div>
-      <div class="city-tags">
-        <span class="city-tag">Amazon · MS</span>
-        <span class="city-tag" id="t-seattle-tag1">린우드 한인타운</span>
-        <span class="city-tag">No State Tax</span>
-      </div>
-      <div class="city-btn city-btn-live"><span id="t-seattle-btn">가이드 열기 →</span></div>
-    </a>
-
-    <a class="city-card" href="./dallas/" style="border-color:rgba(232,160,32,.25);">
-      <div class="city-card-bar" style="background:linear-gradient(90deg,#E8A020,#f0c060);"></div>
-      <span class="city-badge" style="background:rgba(232,160,32,.15);color:#E8A020;border:1px solid rgba(232,160,32,.35);">⭐ PREVIEW</span>
-      <div class="city-name">Dallas</div>
-      <div class="city-name-ko"><span id="t-dallas-ko">달라스 · 텍사스주</span></div>
-      <div class="city-tags"><span class="city-tag" id="t-dallas-tag1">10만+ 한인</span><span class="city-tag">No State Tax</span><span class="city-tag">AT&amp;T · Toyota</span></div>
-      <div class="city-btn" style="color:#E8A020;"><span id="t-dallas-btn">가이드 열기 →</span></div>
-    </a>
-
-    <a class="city-card" href="./sf/" style="border-color:rgba(232,128,74,.25);">
-      <div class="city-card-bar" style="background:linear-gradient(90deg,#E8804A,#f0a070);"></div>
-      <span class="city-badge" style="background:rgba(232,128,74,.15);color:#E8804A;border:1px solid rgba(232,128,74,.35);">🌉 PREVIEW</span>
-      <div class="city-name">San Francisco</div>
-      <div class="city-name-ko"><span id="t-sf-ko">샌프란시스코 · 캘리포니아</span></div>
-      <div class="city-tags"><span class="city-tag" id="t-sf-tag1">15만+ 한인</span><span class="city-tag">Google · Apple</span><span class="city-tag">Bay Area</span></div>
-      <div class="city-btn" style="color:#E8804A;"><span id="t-sf-btn">가이드 열기 →</span></div>
-    </a>
-
-    <a class="city-card" href="./newyork/" style="border-color:rgba(96,165,250,.25);">
-      <div class="city-card-bar" style="background:linear-gradient(90deg,#60A5FA,#93c5fd);"></div>
-      <span class="city-badge" style="background:rgba(96,165,250,.15);color:#60A5FA;border:1px solid rgba(96,165,250,.35);">🗽 PREVIEW</span>
-      <div class="city-name">New York</div>
-      <div class="city-name-ko"><span id="t-ny-ko">뉴욕 · 뉴저지</span></div>
-      <div class="city-tags"><span class="city-tag" id="t-ny-tag1">25만+ 한인</span><span class="city-tag" id="t-ny-tag2">플러싱 한인타운</span><span class="city-tag" id="t-ny-tag3">월스트리트</span></div>
-      <div class="city-btn" style="color:#60A5FA;"><span id="t-ny-btn">가이드 열기 →</span></div>
-    </a>
-
-    <a class="city-card" href="./nashville/" style="border-color:rgba(192,132,252,.25);">
-      <div class="city-card-bar" style="background:linear-gradient(90deg,#C084FC,#d8a8ff);"></div>
-      <span class="city-badge" style="background:rgba(192,132,252,.15);color:#C084FC;border:1px solid rgba(192,132,252,.35);">🎵 PREVIEW</span>
-      <div class="city-name">Nashville</div>
-      <div class="city-name-ko"><span id="t-nashville-ko">내쉬빌 · 테네시주</span></div>
-      <div class="city-tags"><span class="city-tag" id="t-nashville-tag1">음악의 도시</span><span class="city-tag">No State Tax</span><span class="city-tag" id="t-nashville-tag2">이주 급증</span></div>
-      <div class="city-btn" style="color:#C084FC;"><span id="t-nashville-btn">가이드 열기 →</span></div>
-    </a>
-
-    <div class="city-card">
-      <div class="city-card-bar" style="background:rgba(255,255,255,0.06);"></div>
-      <span class="city-badge badge-soon" id="t-badge-soon-la">준비 중</span>
-      <div class="city-name">Los Angeles</div>
-      <div class="city-name-ko"><span id="t-la-ko">LA · 캘리포니아</span></div>
-      <div class="city-tags"><span class="city-tag" id="t-la-tag1">코리아타운</span><span class="city-tag" id="t-la-tag2">최대 규모</span></div>
-      <div class="city-btn city-btn-soon"><span id="t-la-btn">Coming Soon</span></div>
+  <!-- 도시 벤토 그리드 -->
+  <section id="cities" class="cities-section">
+    <div class="section-head">
+      <h2>도시를 선택하세요</h2>
+      <p>각 도시는 그 곳에 거주하는 한인이 직접 검증한 정보로 구성됩니다.</p>
     </div>
 
-    <div class="city-card">
-      <div class="city-card-bar" style="background:rgba(255,255,255,0.06);"></div>
-      <span class="city-badge badge-soon" id="t-badge-soon-van">준비 중</span>
-      <div class="city-name">Vancouver</div>
-      <div class="city-name-ko"><span id="t-vancouver-ko">밴쿠버 · BC 캐나다</span></div>
-      <div class="city-tags"><span class="city-tag" id="t-van-tag1">🍁 캐나다</span><span class="city-tag" id="t-van-tag2">한인 이주 급증</span></div>
-      <div class="city-btn city-btn-soon"><span id="t-van-btn">Coming Soon</span></div>
+    <nav class="bento" aria-label="도시별 가이드">
+      <a href="/seattle/" class="city-card featured" data-city="seattle">
+        <div class="city-card-arrow">→</div>
+        <div class="city-card-flag">🏔️</div>
+        <span class="badge-featured">⭐ 메인 모델 · 완전판</span>
+        <h3 class="city-card-name">시애틀</h3>
+        <p class="city-card-sub">Seattle · Washington · USA</p>
+        <div class="city-card-meta">
+          <span>한인 16.5만</span><span class="dot"></span>
+          <span>커뮤니티 검증</span>
+        </div>
+      </a>
+
+      <a href="/dallas/" class="city-card" data-city="dallas">
+        <div class="city-card-arrow">→</div>
+        <div class="city-card-flag">🤠</div>
+        <h3 class="city-card-name">달라스</h3>
+        <p class="city-card-sub">Dallas · Texas</p>
+        <div class="city-card-meta"><span>한인 13만 명</span></div>
+      </a>
+
+      <a href="/la/" class="city-card" data-city="la">
+        <div class="city-card-arrow">→</div>
+        <div class="city-card-flag">🌴</div>
+        <h3 class="city-card-name">LA</h3>
+        <p class="city-card-sub">Los Angeles · California</p>
+        <div class="city-card-meta"><span>한인 60만 명</span></div>
+      </a>
+
+      <a href="/sf/" class="city-card" data-city="sf">
+        <div class="city-card-arrow">→</div>
+        <div class="city-card-flag">🌉</div>
+        <h3 class="city-card-name">샌프란시스코</h3>
+        <p class="city-card-sub">SF Bay Area</p>
+        <div class="city-card-meta"><span>한인 12만 명</span></div>
+      </a>
+
+      <a href="/newyork/" class="city-card" data-city="newyork">
+        <div class="city-card-arrow">→</div>
+        <div class="city-card-flag">🗽</div>
+        <h3 class="city-card-name">뉴욕</h3>
+        <p class="city-card-sub">New York · New Jersey</p>
+        <div class="city-card-meta"><span>한인 50만 명</span></div>
+      </a>
+
+      <a href="/nashville/" class="city-card" data-city="nashville">
+        <div class="city-card-arrow">→</div>
+        <div class="city-card-flag">🎸</div>
+        <h3 class="city-card-name">내슈빌</h3>
+        <p class="city-card-sub">Nashville · Tennessee</p>
+        <div class="city-card-meta"><span>한인 1.5만 명</span></div>
+      </a>
+
+      <a href="/toronto/" class="city-card" data-city="toronto">
+        <div class="city-card-arrow">→</div>
+        <div class="city-card-flag">🍁</div>
+        <h3 class="city-card-name">토론토</h3>
+        <p class="city-card-sub">Toronto · Ontario · Canada</p>
+        <div class="city-card-meta"><span>한인 9만 명</span></div>
+      </a>
+
+      <a href="/vancouver/" class="city-card" data-city="vancouver">
+        <div class="city-card-arrow">→</div>
+        <div class="city-card-flag">🏔️</div>
+        <h3 class="city-card-name">밴쿠버</h3>
+        <p class="city-card-sub">Vancouver · BC · Canada</p>
+        <div class="city-card-meta"><span>한인 7만 명</span></div>
+      </a>
+    </nav>
+  </section>
+
+  <!-- 사역 원칙 -->
+  <section id="principles" class="principles">
+    <div class="section-head">
+      <h2>다섯 가지 원칙</h2>
+      <p>광고로 살 수 없는 신뢰, 그것이 700만 디아스포라 플랫폼의 기준입니다.</p>
     </div>
 
-  </div>
-</div>
+    <div class="principles-grid">
+      <div class="principle">
+        <div class="principle-num">No. 01</div>
+        <h3 class="principle-title">정착자의 눈</h3>
+        <p class="principle-desc">관광객이 아닌, 그 도시에 살아본 한인이 직접 검증한 정보만 등재합니다.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">No. 02</div>
+        <h3 class="principle-title">도착 첫날부터</h3>
+        <p class="principle-desc">공항을 나선 그 순간부터 쓸 수 있도록, 0~3개월 / 3~12개월 / 1년+ 단계별 구조.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">No. 03</div>
+        <h3 class="principle-title">커뮤니티가 검증한다</h3>
+        <p class="principle-desc">현지 한인 커뮤니티가 직접 확인한 업소·연락처에 별도 검증 배지를 표시합니다.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">No. 04</div>
+        <h3 class="principle-title">투명성이 권위</h3>
+        <p class="principle-desc">모든 정보에 마지막 확인 날짜·확인 방법·이해충돌 여부를 명시합니다.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">No. 05</div>
+        <h3 class="principle-title">현지인과 함께</h3>
+        <p class="principle-desc">한인 문화를 영어권 현지인에게도 소개하는 다국어 콘텐츠를 병행합니다.</p>
+      </div>
+    </div>
+  </section>
 
-<div class="divider"></div>
-
-<!-- PASTOR CALLOUT -->
-<div class="section reveal">
-  <div class="pastor-callout">
-    <div class="pastor-callout-title" id="t-pastor-title">⛪ 목회자·교회 개척자이신가요?</div>
-    <p class="pastor-callout-body" id="t-pastor-body">
-      당신의 도시에 HebronGuide를 만드세요.<br>
-      가정교회가 도시마다 한 마음 한 방향으로. 큰 물결을 일으키듯<br>
-      <span style="color:var(--gold);font-weight:700;">하나님 나라가 이 땅에 확장되는 데 함께합니다.</span>
-    </p>
-    <a href="./pastor/index.html" class="btn-primary" id="t-pastor-btn">목회자 페이지로 →</a>
-  </div>
-</div>
-
-<footer>
-  <div style="margin-bottom:8px;">
-    <svg width="22" height="22" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;opacity:.55;">
-      <rect x="0" y="0" width="64" height="64" rx="13" fill="#0a4a22"/>
-      <polygon points="32,7 40,24 32,32 24,24" fill="#d4a017"/>
-      <polygon points="32,57 40,40 32,32 24,40" fill="rgba(255,255,255,0.7)"/>
-      <polygon points="57,32 40,40 32,32 40,24" fill="rgba(255,255,255,0.38)"/>
-      <polygon points="7,32 24,24 32,32 24,40" fill="rgba(255,255,255,0.38)"/>
-      <circle cx="32" cy="32" r="2.5" fill="rgba(255,255,255,0.9)"/>
-    </svg>
-  </div>
-  © 2026 <strong>HebronGuide</strong> · <a href="mailto:kchurch911@gmail.com">kchurch911@gmail.com</a><br>
-  <a href="./seattle/" id="t-footer-seattle">시애틀 가이드</a> ·
-  <a href="./order-form.html" id="t-footer-order">가이드 주문</a> ·
-  <a href="./pastor/index.html" id="t-footer-pastor">목회자 페이지</a> ·
-  <a href="./webdesign/" id="t-footer-webdesign">웹사이트 제작</a>
-</footer>
-
-<script>
-// ── Language toggle ──
-let curLang = 'ko';
-
-const T = {
-  ko: {
-    'nav-pastor': '목회자 가이드 →',
-    'nav-order': '주문하기',
-    'tab-newcomer': '🛬 새 이주자',
-    'tab-visitor': '✈️ 방문자 · 관광객',
-    'tab-student': '🎓 유학생',
-    'tab-settler': '🏘️ 정착민 · 비즈니스',
-    // Hero — Newcomer
-    'hero-eyebrow-newcomer': '새 이주자를 위한 가이드',
-    'hero-h1-newcomer': '미국에 도착했는데,<br><em>뭘 먼저 해야 할지 모르겠어요.</em>',
-    'hero-tagline-newcomer': '괜찮아요. 순서대로 알려드립니다.',
-    'hero-sub-newcomer': 'SSN → 운전면허 → 은행 → 보험 → 아이 학교 등록까지.<br>처음 이주한 분들이 가장 먼저 막히는 것들을 순서대로 정리했습니다.',
-    'ql-n1': '✅ 정착 첫 달 체크리스트',
-    'ql-n2': '🏥 한국어 되는 병원',
-    'ql-n3': '🏦 은행 계좌 열기',
-    'ql-n4': '🚗 운전면허 변환',
-    'ql-n5': '🏫 자녀 학교 등록',
-    'btn-seattle-newcomer': '🌲 시애틀 가이드 열기',
-    'btn-cities-newcomer': '다른 도시 보기',
-    // Hero — Visitor
-    'hero-eyebrow-visitor': '방문자 · 관광객을 위한 가이드',
-    'hero-h1-visitor': '시애틀에 왔는데,<br><em>현지인만 아는 곳이 궁금해요.</em>',
-    'hero-tagline-visitor': '현지 한인이 직접 골라드립니다.',
-    'hero-sub-visitor': '린우드 한인타운 맛집, 한국 마트, 파이크 플레이스부터 숨겨진 명소까지.<br>짧은 여행도, 첫 방문도 — 아는 사람 옆에 있는 것처럼.',
-    'ql-v1': '🍜 현지인 추천 맛집',
-    'ql-v2': '🛒 한국 마트 위치',
-    'ql-v3': '📍 관광 명소 코스',
-    'ql-v4': '⛪ 주일 예배 찾기',
-    'ql-v5': '🚌 교통편 안내',
-    'btn-seattle-visitor': '🌲 시애틀 가이드 열기',
-    'btn-cities-visitor': '다른 도시 보기',
-    // Hero — Student
-    'hero-eyebrow-student': '유학생을 위한 가이드',
-    'hero-h1-student': '미국 학교,<br><em>서류부터 막히는 게 한두 개가 아니에요.</em>',
-    'hero-tagline-student': '먼저 겪은 선배가 알려드립니다.',
-    'hero-sub-student': '등록 서류, ESL 배치, 저렴한 주거지, 아르바이트 규정까지.<br>혼자 검색으로는 찾기 어려운 실질 정보를 한국어로 모았습니다.',
-    'ql-s1': '🏫 학교 등록 단계별 안내',
-    'ql-s2': '📚 ESL 프로그램',
-    'ql-s3': '🏠 유학생 주거 정보',
-    'ql-s4': '💰 생활비 절약',
-    'ql-s5': '🤝 한인 유학생 커뮤니티',
-    'btn-seattle-student': '🌲 시애틀 가이드 열기',
-    'btn-cities-student': '다른 도시 보기',
-    // Hero — Settler
-    'hero-eyebrow-settler': '정착민 · 비즈니스를 위한 가이드',
-    'hero-h1-settler': '살고 있어도<br><em>아직 모르는 정보가 있습니다.</em>',
-    'hero-tagline-settler': '한인 커뮤니티 안에서 더 깊이 연결됩니다.',
-    'hero-sub-settler': '신뢰할 수 있는 한인 전문가, 학군 이사 정보, 비즈니스 네트워크, 커뮤니티 행사.<br>정착 이후의 삶을 더 풍요롭게 만드는 정보를 계속 업데이트합니다.',
-    'ql-st1': '🏢 한인 전문가 찾기',
-    'ql-st2': '🏠 학군별 부동산',
-    'ql-st3': '👥 한인 비즈니스 모임',
-    'ql-st4': '⚖️ 법률 · 세무 안내',
-    'ql-st5': '🌐 전문직 네트워크',
-    'btn-seattle-settler': '🌲 시애틀 가이드 열기',
-    'btn-cities-settler': '다른 도시 보기',
-    // Scenario — Newcomer
-    'sc-eyebrow-newcomer': '새 이주자 필수 정보',
-    'sc-title-newcomer': '"나만 이러는 건가" — 아닙니다.',
-    'sc-sub-newcomer': '처음 이주한 분들이 가장 많이 막히는 순간들, 미리 준비하세요.',
-    'sc-q1-n': '"비행기 내리자마자 제일 먼저 뭘 해야 해요?"',
-    'sc-a1-n': '정착 첫 달 — 6단계 체크리스트',
-    'sc-d1-n': 'SSN → 운전면허 → 은행 → 보험 → 의사 → 학교. 놓치면 나중에 두 배 힘들어지는 항목들을 순서대로.',
-    'sc-q2-n': '"갑자기 아픈데 어디 병원을 가야 하죠?"',
-    'sc-a2-n': '한국어 되는 병원 · 치과 바로 찾기',
-    'sc-d2-n': '지역별 한인 의사, 한국어 가능 클리닉, 긴급 진료. 보험 없을 때 어떻게 할지도 포함.',
-    'sc-q3-n': '"학교 등록하러 갔더니 서류가 너무 많아요"',
-    'sc-a3-n': '등록 서류 체크리스트 + ESL 배치 안내',
-    'sc-d3-n': '접종 기록, 주소 증명, ESL 배치 시험 — 학교 첫 방문 전에 챙겨야 할 것들을 한국어로 정리.',
-    'sc-q4-n': '"이 도시에 아는 사람이 아무도 없어요"',
-    'sc-a4-n': '새 이주자 환영하는 한인 교회 · 공동체',
-    'sc-d4-n': '규모·지역·스타일별 교회 안내. 혼자 낯선 도시에서 공동체를 찾는 첫 걸음이 됩니다.',
-    // Scenario — Visitor
-    'sc-eyebrow-visitor': '방문자 · 관광객 필수 정보',
-    'sc-title-visitor': '현지인처럼 다니세요.',
-    'sc-sub-visitor': '구글 검색으로는 안 나오는, 현지 한인이 직접 고른 정보입니다.',
-    'sc-q1-v': '"관광지 말고 현지인이 실제 가는 한인 맛집은요?"',
-    'sc-a1-v': '현지인 추천 한인 식당 &amp; 카페',
-    'sc-d1-v': '린우드 한인타운, 벨뷰 한인 상권 — 로컬들이 진짜 가는 식당, 카페, 분식집 큐레이션.',
-    'sc-q2-v': '"한국 라면이랑 반찬 어디서 살 수 있어요?"',
-    'sc-a2-v': 'H마트 · 한아름 · 서울마켓 위치 안내',
-    'sc-d2-v': '숙소에서 가장 가까운 한국 마트를 바로 찾아드립니다. 영업시간, 주차 정보 포함.',
-    'sc-q3-v': '"시애틀에서 딱 하루, 어디 가면 좋아요?"',
-    'sc-a3-v': '관광 명소 + 한인 추천 반나절 코스',
-    'sc-d3-v': '파이크 플레이스, 스페이스 니들 — 거기다 현지 한인이 안내하는 숨겨진 명소까지.',
-    'sc-q4-v': '"여행 중에 주일 예배를 드리고 싶어요"',
-    'sc-a4-v': '방문자 환영하는 한인 교회 안내',
-    'sc-d4-v': '처음 오는 분도 따뜻하게 환영하는 교회. 예배 시간, 위치, 주차 정보까지 한번에.',
-    // Scenario — Student
-    'sc-eyebrow-student': '유학생 필수 정보',
-    'sc-title-student': '혼자 헤매지 않아도 됩니다.',
-    'sc-sub-student': '먼저 겪은 선배들의 경험을 그대로 담았습니다.',
-    'sc-q1-s': '"학교 등록하러 갔더니 준비한 서류가 다 달라요"',
-    'sc-a1-s': '공립학교 등록 서류 체크리스트 (한국어)',
-    'sc-d1-s': '접종 기록, 주소 증명, ESL 배치 시험 — 학교 행정실 첫 방문 전 반드시 확인할 것들.',
-    'sc-q2-s': '"영어가 약한데 미국 학교 수업이 너무 무서워요"',
-    'sc-a2-s': 'ESL / ELL 배치 과정 안내',
-    'sc-d2-s': '지역별 ESL 클래스, 무료 언어 지원, ELL 배치 절차 — 입학 전 알아두면 훨씬 덜 무섭습니다.',
-    'sc-q3-s': '"학교 가까운 곳에 안전하고 저렴한 집을 찾고 싶어요"',
-    'sc-a3-s': '학군별 주거 지역 · 렌트 정보',
-    'sc-d3-s': '학교까지 거리, 치안, 렌트 시세 — 유학생 가족이 실제 많이 사는 지역 중심으로 안내.',
-    'sc-q4-s': '"같은 처지 한인 유학생을 어떻게 만날 수 있어요?"',
-    'sc-a4-s': '유학생 커뮤니티 · 한인 교회 청년부',
-    'sc-d4-s': '혼자 고민하지 않아도 됩니다. 지역 한인 청년부, 유학생 모임 — 이미 있습니다.',
-    // Scenario — Settler
-    'sc-eyebrow-settler': '정착민 · 비즈니스 정보',
-    'sc-title-settler': '여기 살면서도 이걸 몰랐다니.',
-    'sc-sub-settler': '한인 커뮤니티의 살아있는 정보를 계속 업데이트합니다.',
-    'sc-q1-st': '"세금 보고·이민 관련 믿을 수 있는 한인 전문가가 있나요?"',
-    'sc-a1-st': '한인 이민 변호사 · 세무사 · 공증인',
-    'sc-d1-st': '한국어로 소통되는 현지 전문가 목록. 비용 대비 믿을 수 있는 분들만 정리했습니다.',
-    'sc-q2-st': '"더 좋은 학군으로 이사를 고민 중인데 어디가 좋아요?"',
-    'sc-a2-st': '벨뷰 · 레드몬드 · 린우드 학군 비교',
-    'sc-d2-st': '학군 평가, 렌트·매매 시세, 통학 편의성 — 학군 이사를 고민 중인 가정을 위한 실질 정보.',
-    'sc-q3-st': '"한인 사업가들끼리 네트워킹하는 모임이 있나요?"',
-    'sc-a3-st': '한인 상공인 모임 · 커뮤니티 행사',
-    'sc-d3-st': '지역 한인 상공회의소, 정기 모임, 행사 일정 — 비즈니스 파트너를 찾는 분들을 위해.',
-    'sc-q4-st': '"새로 이주한 분들을 우리 교회로 연결하고 싶어요"',
-    'sc-a4-st': '목회자 · 교회 파트너십 프로그램',
-    'sc-d4-st': 'HebronGuide를 통해 새 이주자를 교회 공동체와 연결합니다. 함께 도시를 품는 방법.',
-    // How it works
-    'how-eyebrow': '사용 방법',
-    'how-title': '설치 없이, 3초면 됩니다',
-    'how-sub': '앱스토어 불필요. QR 코드 하나로 스마트폰 홈 화면에 바로 설치됩니다.',
-    'step1-num': 'STEP 01',
-    'step1-title': 'QR 스캔 또는 링크 클릭',
-    'step1-desc': '교회·기관에서 배포한 QR을 스캔하거나, 이 페이지 링크를 클릭하세요.',
-    'step2-num': 'STEP 02',
-    'step2-title': '내 도시 가이드 열기',
-    'step2-desc': '시애틀, 달라스, 뉴욕 — 내가 있는 도시의 가이드를 선택하세요.',
-    'step3-num': 'STEP 03',
-    'step3-title': '홈 화면에 추가',
-    'step3-desc': '브라우저 "홈 화면에 추가" 버튼 한 번. 이제 앱처럼 바로 열립니다.',
-    'step4-num': 'STEP 04',
-    'step4-title': '필요할 때마다 바로 찾기',
-    'step4-desc': '병원, 마트, 학교, 교회 — 필요한 순간에 바로. 완전 무료입니다.',
-    // Cities
-    'cities-eyebrow': '도시 선택',
-    'cities-title': '당신의 도시를 선택하세요',
-    'cities-sub': '미국·캐나다 주요 한인 밀집 도시별 완전 가이드',
-    'seattle-ko': '시애틀 · 워싱턴주',
-    'dallas-ko': '달라스 · 텍사스주',
-    'sf-ko': '샌프란시스코 · 캘리포니아',
-    'ny-ko': '뉴욕 · 뉴저지',
-    'nashville-ko': '내쉬빌 · 테네시주',
-    'la-ko': 'LA · 캘리포니아',
-    'vancouver-ko': '밴쿠버 · BC 캐나다',
-    'seattle-btn': '가이드 열기 →',
-    'dallas-btn': '가이드 열기 →',
-    'sf-btn': '가이드 열기 →',
-    'ny-btn': '가이드 열기 →',
-    'nashville-btn': '가이드 열기 →',
-    'badge-soon-la': '준비 중',
-    'badge-soon-van': '준비 중',
-    'la-btn': 'Coming Soon',
-    'van-btn': 'Coming Soon',
-    'seattle-tag1': '린우드 한인타운',
-    'dallas-tag1': '10만+ 한인',
-    'sf-tag1': '15만+ 한인',
-    'ny-tag1': '25만+ 한인', 'ny-tag2': '플러싱 한인타운', 'ny-tag3': '월스트리트',
-    'nashville-tag1': '음악의 도시', 'nashville-tag2': '이주 급증',
-    'la-tag1': '코리아타운', 'la-tag2': '최대 규모',
-    'van-tag1': '🍁 캐나다', 'van-tag2': '한인 이주 급증',
-    // Pastor
-    'pastor-title': '⛪ 목회자·교회 개척자이신가요?',
-    'pastor-body': '당신의 도시에 HebronGuide를 만드세요.<br>가정교회가 도시마다 한 마음 한 방향으로. 큰 물결을 일으키듯<br><span style="color:var(--gold);font-weight:700;">하나님 나라가 이 땅에 확장되는 데 함께합니다.</span>',
-    'pastor-btn': '목회자 페이지로 →',
-    // Footer
-    'footer-seattle': '시애틀 가이드',
-    'footer-order': '가이드 주문',
-    'footer-pastor': '목회자 페이지',
-    'footer-webdesign': '웹사이트 제작',
-    // sc-link shared
-    'sc-link': '가이드 열기 →'
-  },
-  en: {
-    'nav-pastor': 'Pastor Guide →',
-    'nav-order': 'Order Now',
-    'tab-newcomer': '🛬 New Arrival',
-    'tab-visitor': '✈️ Visitor · Tourist',
-    'tab-student': '🎓 International Student',
-    'tab-settler': '🏘️ Resident · Business',
-    // Hero — Newcomer
-    'hero-eyebrow-newcomer': 'Guide for New Arrivals',
-    'hero-h1-newcomer': 'Just arrived in the U.S. —<br><em>Not sure what to do first?</em>',
-    'hero-tagline-newcomer': "That's okay. We'll walk you through it, step by step.",
-    'hero-sub-newcomer': 'SSN → Driver\'s License → Bank → Insurance → School enrollment.<br>The things new arrivals get stuck on most — organized in order.',
-    'ql-n1': '✅ First Month Checklist',
-    'ql-n2': '🏥 Korean-Speaking Clinics',
-    'ql-n3': '🏦 Open a Bank Account',
-    'ql-n4': '🚗 License Transfer',
-    'ql-n5': '🏫 School Enrollment',
-    'btn-seattle-newcomer': '🌲 Open Seattle Guide',
-    'btn-cities-newcomer': 'See Other Cities',
-    // Hero — Visitor
-    'hero-eyebrow-visitor': 'Guide for Visitors & Tourists',
-    'hero-h1-visitor': 'In Seattle —<br><em>curious about the local hidden gems?</em>',
-    'hero-tagline-visitor': 'Curated by locals who actually live here.',
-    'hero-sub-visitor': 'Lynnwood Koreatown, Korean markets, Pike Place — plus the hidden spots only locals know.<br>Whether it\'s your first visit or a short trip — feel like you have a friend here.',
-    'ql-v1': '🍜 Local Recommended Restaurants',
-    'ql-v2': '🛒 Korean Grocery Locations',
-    'ql-v3': '📍 Sightseeing Routes',
-    'ql-v4': '⛪ Sunday Worship',
-    'ql-v5': '🚌 Transit Guide',
-    'btn-seattle-visitor': '🌲 Open Seattle Guide',
-    'btn-cities-visitor': 'See Other Cities',
-    // Hero — Student
-    'hero-eyebrow-student': 'Guide for International Students',
-    'hero-h1-student': 'American schools —<br><em>the paperwork alone is overwhelming.</em>',
-    'hero-tagline-student': "Seniors who've been through it share what they know.",
-    'hero-sub-student': 'Enrollment documents, ESL placement, affordable housing, work regulations.<br>Real, practical info in Korean — hard to find through searching alone.',
-    'ql-s1': '🏫 Step-by-Step Enrollment Guide',
-    'ql-s2': '📚 ESL Programs',
-    'ql-s3': '🏠 Student Housing Info',
-    'ql-s4': '💰 Saving on Living Costs',
-    'ql-s5': '🤝 Korean Student Community',
-    'btn-seattle-student': '🌲 Open Seattle Guide',
-    'btn-cities-student': 'See Other Cities',
-    // Hero — Settler
-    'hero-eyebrow-settler': 'Guide for Residents & Businesses',
-    'hero-h1-settler': 'Even long-time residents<br><em>still find things they didn\'t know.</em>',
-    'hero-tagline-settler': 'Connect deeper within the Korean community.',
-    'hero-sub-settler': 'Trusted Korean-speaking professionals, school district moves, business networks, community events.<br>We keep updating the info that makes life here richer.',
-    'ql-st1': '🏢 Find Korean Professionals',
-    'ql-st2': '🏠 Real Estate by School District',
-    'ql-st3': '👥 Korean Business Networking',
-    'ql-st4': '⚖️ Legal · Tax Guidance',
-    'ql-st5': '🌐 Professional Networks',
-    'btn-seattle-settler': '🌲 Open Seattle Guide',
-    'btn-cities-settler': 'See Other Cities',
-    // Scenario — Newcomer
-    'sc-eyebrow-newcomer': 'Essential Info for New Arrivals',
-    'sc-title-newcomer': '"Am I the only one struggling?" — You\'re not.',
-    'sc-sub-newcomer': 'The moments new arrivals get stuck on most. Get ready in advance.',
-    'sc-q1-n': '"What\'s the very first thing to do after landing?"',
-    'sc-a1-n': 'First Month — 6-Step Checklist',
-    'sc-d1-n': 'SSN → License → Bank → Insurance → Doctor → School. The items that hurt twice as much if you miss them — in order.',
-    'sc-q2-n': '"I got suddenly sick — which hospital should I go to?"',
-    'sc-a2-n': 'Korean-Speaking Hospitals & Clinics',
-    'sc-d2-n': 'Korean doctors by area, Korean-speaking clinics, urgent care. What to do without insurance — included.',
-    'sc-q3-n': '"I went to enroll my child in school and the documents were all wrong."',
-    'sc-a3-n': 'Enrollment Checklist + ESL Placement Guide',
-    'sc-d3-n': 'Vaccination records, proof of address, ESL placement test — what to prepare before your first visit to the school office, in Korean.',
-    'sc-q4-n': '"I don\'t know a single person in this city."',
-    'sc-a4-n': 'Korean Churches & Communities Welcoming Newcomers',
-    'sc-d4-n': 'Church guide by size, area, and style. Your first step to finding community in an unfamiliar city.',
-    // Scenario — Visitor
-    'sc-eyebrow-visitor': 'Essential Info for Visitors & Tourists',
-    'sc-title-visitor': 'Get around like a local.',
-    'sc-sub-visitor': 'Not what shows up on Google — info picked by Koreans who actually live here.',
-    'sc-q1-v': '"What Korean restaurants do locals actually go to — not the tourist spots?"',
-    'sc-a1-v': 'Local-Recommended Korean Restaurants & Cafés',
-    'sc-d1-v': 'Lynnwood Koreatown, Bellevue Korean district — the restaurants, cafés, and snack shops locals actually visit.',
-    'sc-q2-v': '"Where can I buy Korean ramen and side dishes?"',
-    'sc-a2-v': 'H Mart · Hanahreum · Seoul Market Locations',
-    'sc-d2-v': 'Find the nearest Korean grocery to your accommodation instantly. Business hours and parking info included.',
-    'sc-q3-v': '"I have just one day in Seattle — where should I go?"',
-    'sc-a3-v': 'Sightseeing + Korean Local Half-Day Route',
-    'sc-d3-v': 'Pike Place Market, Space Needle — plus hidden gems recommended by local Koreans.',
-    'sc-q4-v': '"I want to attend Sunday service while traveling."',
-    'sc-a4-v': 'Korean Churches Welcoming Visitors',
-    'sc-d4-v': 'Churches that warmly welcome first-time visitors. Service times, location, and parking info all in one place.',
-    // Scenario — Student
-    'sc-eyebrow-student': 'Essential Info for International Students',
-    'sc-title-student': "You don't have to figure it out alone.",
-    'sc-sub-student': "Real experiences from students who've been through it.",
-    'sc-q1-s': '"I went to enroll and the documents I prepared were all different."',
-    'sc-a1-s': 'Public School Enrollment Document Checklist (Korean)',
-    'sc-d1-s': 'Vaccination records, proof of address, ESL placement test — must-checks before your first visit to the school office.',
-    'sc-q2-s': '"My English is weak and American school classes feel overwhelming."',
-    'sc-a2-s': 'ESL / ELL Placement Process Guide',
-    'sc-d2-s': 'Local ESL classes, free language support, ELL placement procedure — knowing this before starting makes it far less scary.',
-    'sc-q3-s': '"I want to find a safe, affordable place near school."',
-    'sc-a3-s': 'Housing by School District · Rental Info',
-    'sc-d3-s': 'Distance to school, safety, rental prices — focused on areas where many Korean student families actually live.',
-    'sc-q4-s': '"How can I meet other Korean international students?"',
-    'sc-a4-s': 'Korean Student Community · Korean Church Youth Groups',
-    'sc-d4-s': "You don't have to worry alone. Local Korean youth groups, student meetups — they already exist.",
-    // Scenario — Settler
-    'sc-eyebrow-settler': 'Info for Residents & Businesses',
-    'sc-title-settler': '"I\'ve lived here and didn\'t even know this."',
-    'sc-sub-settler': 'We keep updating the living knowledge of the Korean community.',
-    'sc-q1-st': '"Is there a trusted Korean professional for taxes and immigration?"',
-    'sc-a1-st': 'Korean Immigration Attorneys · CPAs · Notaries',
-    'sc-d1-st': 'Korean-speaking local experts. Only those who are trustworthy for the price — organized.',
-    'sc-q2-st': '"I\'m thinking about moving to a better school district — where\'s good?"',
-    'sc-a2-st': 'Bellevue · Redmond · Lynnwood School District Comparison',
-    'sc-d2-st': 'School ratings, rent and home prices, commute convenience — practical info for families considering a school district move.',
-    'sc-q3-st': '"Is there a networking group for Korean business owners?"',
-    'sc-a3-st': 'Korean Business Owner Meetups · Community Events',
-    'sc-d3-st': 'Local Korean chamber of commerce, regular meetups, event schedules — for those looking for business partners.',
-    'sc-q4-st': '"I want to connect newly arrived people to our church."',
-    'sc-a4-st': 'Pastor · Church Partnership Program',
-    'sc-d4-st': 'HebronGuide connects new arrivals to church communities. How to embrace the city together.',
-    // How it works
-    'how-eyebrow': 'How It Works',
-    'how-title': 'No install needed. Ready in 3 seconds.',
-    'how-sub': 'No app store. One QR code installs it right to your smartphone home screen.',
-    'step1-num': 'STEP 01',
-    'step1-title': 'Scan QR or Click Link',
-    'step1-desc': 'Scan the QR from your church or organization, or click the link on this page.',
-    'step2-num': 'STEP 02',
-    'step2-title': 'Open Your City Guide',
-    'step2-desc': 'Seattle, Dallas, New York — select the guide for your city.',
-    'step3-num': 'STEP 03',
-    'step3-title': 'Add to Home Screen',
-    'step3-desc': 'Tap "Add to Home Screen" in your browser. Now it opens like an app.',
-    'step4-num': 'STEP 04',
-    'step4-title': 'Find What You Need, Instantly',
-    'step4-desc': 'Hospital, market, school, church — right when you need it. Completely free.',
-    // Cities
-    'cities-eyebrow': 'Choose Your City',
-    'cities-title': 'Select your city',
-    'cities-sub': 'Complete guides for major Korean communities across the U.S. and Canada',
-    'seattle-ko': 'Seattle · Washington',
-    'dallas-ko': 'Dallas · Texas',
-    'sf-ko': 'San Francisco · California',
-    'ny-ko': 'New York · New Jersey',
-    'nashville-ko': 'Nashville · Tennessee',
-    'la-ko': 'LA · California',
-    'vancouver-ko': 'Vancouver · BC Canada',
-    'seattle-btn': 'Open Guide →',
-    'dallas-btn': 'Open Guide →',
-    'sf-btn': 'Open Guide →',
-    'ny-btn': 'Open Guide →',
-    'nashville-btn': 'Open Guide →',
-    'badge-soon-la': 'Coming Soon',
-    'badge-soon-van': 'Coming Soon',
-    'la-btn': 'Coming Soon',
-    'van-btn': 'Coming Soon',
-    'seattle-tag1': 'Lynnwood Koreatown',
-    'dallas-tag1': '100K+ Koreans',
-    'sf-tag1': '150K+ Koreans',
-    'ny-tag1': '250K+ Koreans', 'ny-tag2': 'Flushing Koreatown', 'ny-tag3': 'Wall Street',
-    'nashville-tag1': 'Music City', 'nashville-tag2': 'Fast Growing',
-    'la-tag1': 'Koreatown', 'la-tag2': 'Largest Community',
-    'van-tag1': '🍁 Canada', 'van-tag2': 'Growing Korean Community',
-    // Pastor
-    'pastor-title': '⛪ Are you a pastor or church planter?',
-    'pastor-body': 'Build a HebronGuide for your city.<br>Family churches, one heart, one direction in every city. Like a great wave rising —<br><span style="color:var(--gold);font-weight:700;">join us as the Kingdom of God expands across this land.</span>',
-    'pastor-btn': 'Go to Pastor Page →',
-    // Footer
-    'footer-seattle': 'Seattle Guide',
-    'footer-order': 'Order Guide',
-    'footer-pastor': 'Pastor Page',
-    'footer-webdesign': 'Web Design',
-    // sc-link shared
-    'sc-link': 'Open Guide →'
-  }
-};
-
-function setLang(l) {
-  curLang = l;
-  document.getElementById('btn-ko').classList.toggle('on', l === 'ko');
-  document.getElementById('btn-en').classList.toggle('on', l === 'en');
-  document.documentElement.lang = l === 'ko' ? 'ko' : 'en';
-  const t = T[l];
-  // Update all keyed elements
-  Object.keys(t).forEach(k => {
-    const el = document.getElementById('t-' + k);
-    if (el) el.innerHTML = t[k];
-  });
-  // Update all sc-link-text spans (shared "가이드 열기 →" / "Open Guide →")
-  document.querySelectorAll('.sc-link-text').forEach(el => {
-    el.textContent = t['sc-link'];
-  });
-}
-
-// ── Audience tabs ──
-const AUD_IDS = ['newcomer','visitor','student','settler'];
-let curAud = 'newcomer';
-
-function setAud(id) {
-  curAud = id;
-  // toggle tab buttons
-  document.querySelectorAll('.aud-tab').forEach((btn,i) => {
-    btn.classList.toggle('active', AUD_IDS[i] === id);
-  });
-  // toggle hero panels
-  AUD_IDS.forEach(a => {
-    const p = document.getElementById('panel-'+a);
-    if (p) p.classList.toggle('active', a === id);
-  });
-  // toggle scenario cards
-  document.querySelectorAll('.aud-content').forEach(el => { el.style.display = 'none'; });
-  const sc = document.getElementById('sc-'+id);
-  if (sc) sc.style.display = '';
-}
-
-// ── Scroll reveal ──
-const obs = new IntersectionObserver(
-  es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }),
-  {threshold:.1}
-);
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-// ── Auto-detect: detect if user came via pastor link back-navigation ──
-// (Nothing needed here for now)
-</script>
+  <!-- 푸터 -->
+  <footer>
+    <p class="ministry">Operated by Global Mission Church Seattle</p>
+    <p class="roadmap">2026 시애틀 → 2027 북미 3대 도시 → 2030+ 글로벌</p>
+    <p class="copy">© 2026 HebronGuide · MIT License · 한인 커뮤니티 사역 목적의 자유 이용 가능</p>
+  </footer>
 </body>
 </html>

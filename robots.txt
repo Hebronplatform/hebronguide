@@ -1,4 +1,85 @@
+# HebronGuide — Search & AI Crawler Policy
+# Updated: 2026-04-29
+
+# ── 일반 크롤러 (전부 허용) ───────────────────────
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /99_Archive/
 
+# ── Google ─────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+
+User-agent: Googlebot-Image
+Allow: /
+
+# ── Google AI Overviews / Gemini 학습 데이터 ────
+User-agent: Google-Extended
+Allow: /
+
+# ── Bing / Microsoft Copilot ───────────────────
+User-agent: Bingbot
+Allow: /
+
+# ── Naver (한국 1위 검색엔진) ──────────────────
+User-agent: Yeti
+Allow: /
+
+# ── Daum / Kakao ──────────────────────────────
+User-agent: Daumoa
+Allow: /
+
+# ── Apple (Spotlight / Siri) ───────────────────
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# ── OpenAI ChatGPT 검색 ────────────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# ── Anthropic Claude ───────────────────────────
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# ── Perplexity AI ──────────────────────────────
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ── Common Crawl (LLM 학습 데이터) ─────────────
+User-agent: CCBot
+Allow: /
+
+# ── Meta AI ────────────────────────────────────
+User-agent: FacebookBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# ── DuckDuckGo ─────────────────────────────────
+User-agent: DuckDuckBot
+Allow: /
+
+# ── 검색 엔진 안내 ──────────────────────────────
 Sitemap: https://hebronguide.com/sitemap.xml

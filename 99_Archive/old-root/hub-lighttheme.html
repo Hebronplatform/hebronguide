@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HebronGuide — 전 세계 한인의 동행자</title>
+<meta name="description" content="전 세계 도시에서 살아가는 한인·이민자·유학생·여행자를 위한 정착·생활·커뮤니티 가이드 플랫폼">
+<style>
+  :root {
+    --green: #2D6A4F;
+    --green-light: #40916C;
+    --green-dark: #1B4332;
+    --gold: #E9A84C;
+    --gold-light: #F4C87E;
+    --cream: #F8F5F0;
+    --charcoal: #2C2C2C;
+    --muted: #6B7280;
+    --surface: #FFFFFF;
+    --surface2: #F3F4F6;
+    --border: #E5E7EB;
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', -apple-system, sans-serif; color: var(--charcoal); background: var(--cream); line-height: 1.7; }
+  a { text-decoration: none; color: inherit; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-size: 1.3rem; font-weight: 800; color: var(--green); letter-spacing: -0.5px; }
+  .logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; font-size: 0.9rem; font-weight: 500; color: var(--muted); }
+  .nav-links a:hover { color: var(--green); }
+  .lang-toggle {
+    display: flex; gap: 4px; background: var(--surface2); border-radius: 20px; padding: 4px;
+  }
+  .lang-btn {
+    padding: 4px 14px; border-radius: 16px; font-size: 0.8rem; font-weight: 600;
+    cursor: pointer; border: none; background: transparent; color: var(--muted); transition: all .2s;
+  }
+  .lang-btn.active { background: var(--green); color: white; }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 50%, var(--green-light) 100%);
+    color: white; text-align: center; padding: 100px 24px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-badge {
+    display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px; padding: 6px 18px; font-size: 0.82rem; font-weight: 600; margin-bottom: 24px;
+    letter-spacing: 0.5px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.2;
+    margin-bottom: 20px; letter-spacing: -1px;
+  }
+  .hero h1 .highlight { color: var(--gold-light); }
+  .hero p { font-size: clamp(1rem, 2.5vw, 1.2rem); opacity: 0.9; max-width: 620px; margin: 0 auto 36px; }
+  .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn { padding: 14px 28px; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; border: none; transition: all .2s; }
+  .btn-primary { background: var(--gold); color: var(--charcoal); }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.6); }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+  /* STATS */
+  .stats { background: white; border-bottom: 1px solid var(--border); }
+  .stats-inner { max-width: 1100px; margin: 0 auto; padding: 48px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 32px; text-align: center; }
+  .stat-num { font-size: 2.4rem; font-weight: 900; color: var(--green); line-height: 1; }
+  .stat-label { font-size: 0.9rem; color: var(--muted); margin-top: 6px; }
+
+  /* SECTION COMMON */
+  section { padding: 80px 24px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-badge {
+    display: inline-block; background: var(--green); color: white;
+    border-radius: 20px; padding: 5px 16px; font-size: 0.78rem; font-weight: 700;
+    margin-bottom: 16px; letter-spacing: 0.5px;
+  }
+  .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; letter-spacing: -0.5px; margin-bottom: 10px; }
+  .section-sub { color: var(--muted); font-size: 1rem; max-width: 560px; margin-bottom: 48px; }
+
+  /* DASHBOARD */
+  .dashboard { background: var(--cream); }
+  .priority-block { margin-bottom: 52px; }
+  .priority-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+  }
+  .priority-badge {
+    width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 900; flex-shrink: 0;
+  }
+  .p1 .priority-badge { background: var(--gold); color: white; }
+  .p2 .priority-badge { background: var(--green-light); color: white; }
+  .p3 .priority-badge { background: #6B7CFF; color: white; }
+  .p4 .priority-badge { background: #9CA3AF; color: white; }
+  .priority-label { font-size: 1.05rem; font-weight: 800; }
+  .priority-sub { font-size: 0.85rem; color: var(--muted); }
+  .city-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .city-card {
+    background: white; border-radius: var(--radius); padding: 18px 20px;
+    border: 1.5px solid var(--border); transition: all .2s; cursor: pointer;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .city-card:hover { border-color: var(--green); box-shadow: var(--shadow); transform: translateY(-2px); }
+  .city-card.live { border-color: var(--gold); background: linear-gradient(135deg, #FFFBF2, white); }
+  .city-card.live .city-name { color: var(--green-dark); }
+  .city-flag { font-size: 1.4rem; }
+  .city-name { font-size: 0.95rem; font-weight: 700; }
+  .city-name-ko { font-size: 0.8rem; color: var(--muted); }
+  .city-status {
+    font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+    display: inline-block; width: fit-content;
+  }
+  .status-live { background: #D1FAE5; color: #065F46; }
+  .status-soon { background: #FEF3C7; color: #92400E; }
+  .status-planned { background: var(--surface2); color: var(--muted); }
+
+  /* CITY CARD EXTRAS */
+  .city-pop { font-size: 0.74rem; color: var(--green); font-weight: 700; line-height: 1.3; }
+  .city-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .city-tag { font-size: 0.62rem; font-weight: 600; padding: 2px 7px; border-radius: 8px; background: var(--surface2); color: var(--muted); }
+  .city-card.live .city-tag { background: #ECFDF5; color: var(--green-dark); }
+
+  /* ROADMAP */
+  .roadmap { background: white; }
+  .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
+  .roadmap-card {
+    border-radius: var(--radius); padding: 32px; border: 2px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .roadmap-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  }
+  .year1::before { background: var(--gold); }
+  .year3::before { background: var(--green-light); }
+  .year5::before { background: #6B7CFF; }
+  .roadmap-year { font-size: 0.85rem; font-weight: 800; color: var(--muted); letter-spacing: 1px; margin-bottom: 8px; }
+  .roadmap-title { font-size: 1.3rem; font-weight: 900; margin-bottom: 6px; }
+  .roadmap-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 20px; }
+  .roadmap-cities { display: flex; flex-wrap: wrap; gap: 8px; }
+  .city-chip {
+    background: var(--surface2); border-radius: 20px; padding: 4px 12px;
+    font-size: 0.8rem; font-weight: 600; color: var(--charcoal);
+  }
+
+  /* BRAND STORY */
+  .brand-story { background: var(--green-dark); color: white; text-align: center; }
+  .brand-story .section-badge { background: rgba(255,255,255,0.15); }
+  .brand-story .section-title { color: white; }
+  .brand-quote {
+    max-width: 720px; margin: 0 auto 40px;
+    font-size: clamp(1.05rem, 2vw, 1.25rem); line-height: 1.8; opacity: 0.9;
+  }
+  .brand-quote strong { color: var(--gold-light); }
+  .meaning-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 800px; margin: 0 auto; }
+  .meaning-card {
+    background: rgba(255,255,255,0.08); border-radius: var(--radius);
+    padding: 24px; border: 1px solid rgba(255,255,255,0.12);
+  }
+  .meaning-icon { font-size: 2rem; margin-bottom: 10px; }
+  .meaning-word { font-size: 1.1rem; font-weight: 800; color: var(--gold-light); margin-bottom: 6px; }
+  .meaning-desc { font-size: 0.88rem; opacity: 0.8; }
+
+  /* DIASPORA MAP */
+  .diaspora { background: var(--cream); }
+  .axis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .axis-card {
+    background: white; border-radius: var(--radius); padding: 24px;
+    border: 1.5px solid var(--border); display: flex; gap: 16px;
+  }
+  .axis-icon { font-size: 2rem; flex-shrink: 0; }
+  .axis-title { font-size: 1rem; font-weight: 800; margin-bottom: 4px; }
+  .axis-cities { font-size: 0.85rem; color: var(--muted); }
+  .axis-coverage {
+    margin-top: 8px; font-size: 0.8rem; font-weight: 700;
+    color: var(--green); background: #D1FAE5; border-radius: 8px; padding: 2px 8px; display: inline-block;
+  }
+
+  /* MASTER PROMPT */
+  .master-prompt { background: white; }
+  .prompt-box {
+    background: #1E1E2E; border-radius: var(--radius); padding: 32px;
+    color: #CDD6F4; font-family: 'Courier New', monospace; font-size: 0.88rem;
+    line-height: 1.7; overflow-x: auto; position: relative;
+  }
+  .prompt-box .comment { color: #6C7086; }
+  .prompt-box .key { color: var(--gold-light); font-weight: 700; }
+  .prompt-box .val { color: #A6E3A1; }
+  .prompt-box .section-key { color: #89DCEB; }
+  .copy-btn {
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(255,255,255,0.1); color: white; border: none;
+    border-radius: var(--radius-sm); padding: 6px 14px; font-size: 0.8rem;
+    cursor: pointer; transition: all .2s;
+  }
+  .copy-btn:hover { background: rgba(255,255,255,0.2); }
+
+  /* FINAL CTA */
+  .final-cta { background: var(--gold); text-align: center; padding: 80px 24px; }
+  .final-cta h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 900; margin-bottom: 12px; color: var(--green-dark); }
+  .final-cta p { font-size: 1.05rem; color: var(--green-dark); opacity: 0.85; margin-bottom: 36px; }
+  .btn-green { background: var(--green-dark); color: white; }
+  .btn-green:hover { background: var(--green); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal); color: rgba(255,255,255,0.7);
+    padding: 48px 24px; text-align: center;
+  }
+  .footer-logo { font-size: 1.4rem; font-weight: 900; color: white; margin-bottom: 8px; }
+  .footer-logo span { color: var(--gold); }
+  .footer-tagline { font-size: 0.88rem; margin-bottom: 20px; }
+  .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; font-size: 0.85rem; margin-bottom: 24px; }
+  .footer-links a:hover { color: white; }
+  .footer-copy { font-size: 0.78rem; opacity: 0.5; }
+
+  /* LANG */
+  .en { display: none; }
+  body.en-mode .ko { display: none; }
+  body.en-mode .en { display: inline; }
+  section.en-mode .ko { display: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero { padding: 70px 20px 60px; }
+    section { padding: 60px 20px; }
+    .city-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  }
+  @media (max-width: 480px) {
+    .city-grid { grid-template-columns: 1fr 1fr; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .btn { width: 100%; max-width: 280px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Hebron<span>Guide</span></div>
+    <div class="nav-links">
+      <a href="#cities"><span class="ko">도시 가이드</span><span class="en">City Guides</span></a>
+      <a href="#roadmap"><span class="ko">로드맵</span><span class="en">Roadmap</span></a>
+      <a href="#story"><span class="ko">브랜드 스토리</span><span class="en">Our Story</span></a>
+      <a href="#prompt"><span class="ko">가이드 생성</span><span class="en">Generate Guide</span></a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('ko')">KO</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🌍 Global Korean Community Platform</div>
+  <h1>
+    <span class="ko">전 세계 한인의<br><span class="highlight">동행자</span></span>
+    <span class="en">The Companion for<br><span class="highlight">Koreans Worldwide</span></span>
+  </h1>
+  <p>
+    <span class="ko">이민자, 유학생, 여행자, 정착을 꿈꾸는 모든 한인을 위한<br>도시 생활·커뮤니티·정착 가이드 플랫폼</span>
+    <span class="en">City life, community & settlement guides for Korean immigrants, students, and travelers around the world</span>
+  </p>
+  <div class="hero-btns">
+    <a href="#cities" class="btn btn-primary">
+      <span class="ko">도시 가이드 보기</span>
+      <span class="en">Explore City Guides</span>
+    </a>
+    <a href="#story" class="btn btn-outline">
+      <span class="ko">HebronGuide란?</span>
+      <span class="en">About HebronGuide</span>
+    </a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">700만</div>
+      <div class="stat-label ko">전 세계 해외 한인</div>
+      <div class="stat-label en">Koreans Overseas</div>
+    </div>
+    <div>
+      <div class="stat-num">40+</div>
+      <div class="stat-label ko">커버 도시</div>
+      <div class="stat-label en">Cities Covered</div>
+    </div>
+    <div>
+      <div class="stat-num">75–80%</div>
+      <div class="stat-label ko">한인 디아스포라 커버율</div>
+      <div class="stat-label en">Diaspora Coverage</div>
+    </div>
+    <div>
+      <div class="stat-num">4개</div>
+      <div class="stat-label ko">대륙 · 영어권·비영어권</div>
+      <div class="stat-label en">Continents · Global</div>
+    </div>
+  </div>
+</div>
+
+<!-- CITY DASHBOARD -->
+<section class="dashboard" id="cities">
+  <div class="container">
+    <div class="section-badge">🗺️ GLOBAL DASHBOARD</div>
+    <h2 class="section-title">
+      <span class="ko">전 세계 HebronGuide 도시 현황</span>
+      <span class="en">HebronGuide Cities Worldwide</span>
+    </h2>
+    <p class="section-sub">
+      <span class="ko">한인 인구·이민 패턴·성장성을 기준으로 우선순위를 설정한 글로벌 도시 전략</span>
+      <span class="en">Global city strategy based on Korean population, immigration patterns, and growth potential</span>
+    </p>
+
+    <!-- 1차 핵심 시장 -->
+    <div class="priority-block p1">
+      <div class="priority-header">
+        <div class="priority-badge">🥇</div>
+        <div>
+          <div class="priority-label ko">1차 핵심 시장</div>
+          <div class="priority-label en">Tier 1 — Core Markets</div>
+          <div class="priority-sub ko">한인 55% 이상 — 즉시 구축</div>
+          <div class="priority-sub en">55%+ of Korean diaspora — Build now</div>
+        </div>
+      </div>
+      <div class="city-grid">
+        <!-- Seattle -->
+        <a href="seattle/index.html" class="city-card live">
+          <div class="city-flag">🇺🇸</div>
+          <div class="city-name">Seattle</div>
+          <div class="city-name-ko">시애틀</div>
+          <div class="city-pop ko">한인 약 5만명</div>
+          <div class="city-pop en">~50,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#Amazon·MS</span>
+            <span class="city-tag">#정착지원</span>
+            <span class="city-tag">#교회·교육</span>
+          </div>
+          <div class="city-status status-live">✓ LIVE</div>
+        </a>
+        <!-- Los Angeles -->
+        <a href="la/index.html" class="city-card live">
+          <div class="city-flag">🇺🇸</div>
+          <div class="city-name">Los Angeles</div>
+          <div class="city-name-ko">로스앤젤레스</div>
+          <div class="city-pop ko">한인 약 70만명</div>
+          <div class="city-pop en">~700,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#코리아타운</span>
+            <span class="city-tag">#최대규모</span>
+            <span class="city-tag">#K-Culture</span>
+          </div>
+          <div class="city-status status-live">✓ LIVE</div>
+        </a>
+        <!-- New York -->
+        <a href="newyork/index.html" class="city-card live">
+          <div class="city-flag">🇺🇸</div>
+          <div class="city-name">New York / NJ</div>
+          <div class="city-name-ko">뉴욕 / 뉴저지</div>
+          <div class="city-pop ko">한인 약 25만명</div>
+          <div class="city-pop en">~250,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#플러싱</span>
+            <span class="city-tag">#비즈니스</span>
+            <span class="city-tag">#유학생</span>
+          </div>
+          <div class="city-status status-live">✓ LIVE</div>
+        </a>
+        <!-- Dallas -->
+        <a href="dallas/index.html" class="city-card live">
+          <div class="city-flag">🇺🇸</div>
+          <div class="city-name">Dallas</div>
+          <div class="city-name-ko">달라스</div>
+          <div class="city-pop ko">한인 약 7만명</div>
+          <div class="city-pop en">~70,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#성장도시</span>
+            <span class="city-tag">#교회</span>
+            <span class="city-tag">#물가저렴</span>
+          </div>
+          <div class="city-status status-live">✓ LIVE</div>
+        </a>
+        <!-- Atlanta -->
+        <div class="city-card">
+          <div class="city-flag">🇺🇸</div>
+          <div class="city-name">Atlanta</div>
+          <div class="city-name-ko">애틀란타</div>
+          <div class="city-pop ko">한인 약 5만명</div>
+          <div class="city-pop en">~50,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#교회</span>
+            <span class="city-tag">#제조업</span>
+            <span class="city-tag">#한인마트</span>
+          </div>
+          <div class="city-status status-planned">Planned</div>
+        </div>
+        <!-- Chicago -->
+        <div class="city-card">
+          <div class="city-flag">🇺🇸</div>
+          <div class="city-name">Chicago</div>
+          <div class="city-name-ko">시카고</div>
+          <div class="city-pop ko">한인 약 4만명</div>
+          <div class="city-pop en">~40,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#중서부거점</span>
+            <span class="city-tag">#교육</span>
+            <span class="city-tag">#비즈니스</span>
+          </div>
+          <div class="city-status status-planned">Planned</div>
+        </div>
+        <!-- San Francisco -->
+        <a href="sf/index.html" class="city-card live">
+          <div class="city-flag">🇺🇸</div>
+          <div class="city-name">San Francisco Bay</div>
+          <div class="city-name-ko">샌프란시스코</div>
+          <div class="city-pop ko">한인 약 8만명</div>
+          <div class="city-pop en">~80,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#실리콘밸리</span>
+            <span class="city-tag">#IT</span>
+            <span class="city-tag">#유학생</span>
+          </div>
+          <div class="city-status status-live">✓ LIVE</div>
+        </a>
+        <!-- San Diego -->
+        <div class="city-card">
+          <div class="city-flag">🇺🇸</div>
+          <div class="city-name">San Diego</div>
+          <div class="city-name-ko">샌디에고</div>
+          <div class="city-pop ko">한인 약 3만명</div>
+          <div class="city-pop en">~30,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#군인가족</span>
+            <span class="city-tag">#날씨최고</span>
+            <span class="city-tag">#UCSD</span>
+          </div>
+          <div class="city-status status-planned">Planned</div>
+        </div>
+        <!-- Houston -->
+        <div class="city-card">
+          <div class="city-flag">🇺🇸</div>
+          <div class="city-name">Houston</div>
+          <div class="city-name-ko">휴스턴</div>
+          <div class="city-pop ko">한인 약 4만명</div>
+          <div class="city-pop en">~40,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#에너지</span>
+            <span class="city-tag">#의료·교회</span>
+            <span class="city-tag">#넓은집</span>
+          </div>
+          <div class="city-status status-planned">Planned</div>
+        </div>
+        <!-- Washington D.C. -->
+        <div class="city-card">
+          <div class="city-flag">🇺🇸</div>
+          <div class="city-name">Washington D.C.</div>
+          <div class="city-name-ko">워싱턴 D.C.</div>
+          <div class="city-pop ko">한인 약 10만명 (VA·MD 포함)</div>
+          <div class="city-pop en">~100,000 Koreans (incl. VA·MD)</div>
+          <div class="city-tags">
+            <span class="city-tag">#정부·군인</span>
+            <span class="city-tag">#유학생</span>
+            <span class="city-tag">#Annandale</span>
+          </div>
+          <div class="city-status status-planned">Planned</div>
+        </div>
+        <!-- Boston -->
+        <div class="city-card">
+          <div class="city-flag">🇺🇸</div>
+          <div class="city-name">Boston</div>
+          <div class="city-name-ko">보스턴</div>
+          <div class="city-pop ko">한인 약 2만명</div>
+          <div class="city-pop en">~20,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#Harvard·MIT</span>
+            <span class="city-tag">#의대생</span>
+            <span class="city-tag">#유학생도시</span>
+          </div>
+          <div class="city-status status-planned">Planned</div>
+        </div>
+        <!-- Vancouver -->
+        <a href="vancouver/index.html" class="city-card live">
+          <div class="city-flag">🇨🇦</div>
+          <div class="city-name">Vancouver</div>
+          <div class="city-name-ko">밴쿠버</div>
+          <div class="city-pop ko">한인 약 6만명</div>
+          <div class="city-pop en">~60,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#유학생</span>
+            <span class="city-tag">#이민이민</span>
+            <span class="city-tag">#K-Food</span>
+          </div>
+          <div class="city-status status-live">✓ LIVE</div>
+        </a>
+        <!-- Toronto -->
+        <div class="city-card">
+          <div class="city-flag">🇨🇦</div>
+          <div class="city-name">Toronto (GTA)</div>
+          <div class="city-name-ko">토론토</div>
+          <div class="city-pop ko">한인 약 10만명</div>
+          <div class="city-pop en">~100,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#캐나다최대</span>
+            <span class="city-tag">#이민</span>
+            <span class="city-tag">#교육</span>
+          </div>
+          <div class="city-status status-soon">Coming Soon</div>
+        </div>
+        <!-- Calgary -->
+        <div class="city-card">
+          <div class="city-flag">🇨🇦</div>
+          <div class="city-name">Calgary</div>
+          <div class="city-name-ko">캘거리</div>
+          <div class="city-pop ko">한인 약 1만명</div>
+          <div class="city-pop en">~10,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#에너지도시</span>
+            <span class="city-tag">#이민성장</span>
+          </div>
+          <div class="city-status status-planned">Planned</div>
+        </div>
+        <!-- Edmonton -->
+        <div class="city-card">
+          <div class="city-flag">🇨🇦</div>
+          <div class="city-name">Edmonton</div>
+          <div class="city-name-ko">에드먼턴</div>
+          <div class="city-pop ko">한인 약 5천명</div>
+          <div class="city-pop en">~5,000 Koreans</div>
+          <div class="city-tags">
+            <span class="city-tag">#간호사·의사</span>
+            <span class="city-tag">#이민</span>
+          </div>
+          <div class="city-status status-planned">Planned</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2차 성장 시장 -->
+    <div class="priority-block p2">
+      <div class="priority-header">
+        <div class="priority-badge">🥈</div>
+        <div>
+          <div class="priority-label ko">2차 성장 시장</div>
+          <div class="priority-label en">Tier 2 — Growth Markets</div>
+          <div class="priority-sub ko">젊은층·유학생·이민 증가 — 1~3년</div>
+          <div class="priority-sub en">Young professionals & students — 1–3 years</div>
+        </div>
+      </div>
+      <div class="city-grid">
+        <div class="city-card"><div class="city-flag">🇺🇸</div><div class="city-name">Austin</div><div class="city-name-ko">오스틴</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇺🇸</div><div class="city-name">Denver</div><div class="city-name-ko">덴버</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇺🇸</div><div class="city-name">Phoenix</div><div class="city-name-ko">피닉스</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇺🇸</div><div class="city-name">Portland</div><div class="city-name-ko">포틀랜드</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇺🇸</div><div class="city-name">Charlotte</div><div class="city-name-ko">샬럿</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇺🇸</div><div class="city-name">Orlando</div><div class="city-name-ko">올랜도</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇺🇸</div><div class="city-name">Nashville</div><div class="city-name-ko">내슈빌</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇨🇦</div><div class="city-name">Ottawa</div><div class="city-name-ko">오타와</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇨🇦</div><div class="city-name">Winnipeg</div><div class="city-name-ko">위니펙</div><div class="city-status status-planned">Planned</div></div>
+      </div>
+    </div>
+
+    <!-- 3차 영어권 글로벌 -->
+    <div class="priority-block p3">
+      <div class="priority-header">
+        <div class="priority-badge">🥉</div>
+        <div>
+          <div class="priority-label ko">3차 영어권 글로벌</div>
+          <div class="priority-label en">Tier 3 — English-speaking Global</div>
+          <div class="priority-sub ko">영국·호주·뉴질랜드·싱가포르 — 3~5년</div>
+          <div class="priority-sub en">UK · Australia · NZ · Singapore — 3–5 years</div>
+        </div>
+      </div>
+      <div class="city-grid">
+        <div class="city-card"><div class="city-flag">🇬🇧</div><div class="city-name">London</div><div class="city-name-ko">런던</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇦🇺</div><div class="city-name">Sydney</div><div class="city-name-ko">시드니</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇦🇺</div><div class="city-name">Melbourne</div><div class="city-name-ko">멜버른</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇦🇺</div><div class="city-name">Brisbane</div><div class="city-name-ko">브리즈번</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇳🇿</div><div class="city-name">Auckland</div><div class="city-name-ko">오클랜드</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇸🇬</div><div class="city-name">Singapore</div><div class="city-name-ko">싱가포르</div><div class="city-status status-planned">Planned</div></div>
+      </div>
+    </div>
+
+    <!-- 4차 한인 대도시 -->
+    <div class="priority-block p4">
+      <div class="priority-header">
+        <div class="priority-badge">🏅</div>
+        <div>
+          <div class="priority-label ko">4차 한인 대도시</div>
+          <div class="priority-label en">Tier 4 — Major Korean Diaspora Cities</div>
+          <div class="priority-sub ko">일본·유럽·아시아 — 선택적 확장</div>
+          <div class="priority-sub en">Japan · Europe · Asia — Selective expansion</div>
+        </div>
+      </div>
+      <div class="city-grid">
+        <div class="city-card"><div class="city-flag">🇯🇵</div><div class="city-name">Tokyo</div><div class="city-name-ko">도쿄</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇯🇵</div><div class="city-name">Osaka</div><div class="city-name-ko">오사카</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇩🇪</div><div class="city-name">Berlin</div><div class="city-name-ko">베를린</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇩🇪</div><div class="city-name">Frankfurt</div><div class="city-name-ko">프랑크푸르트</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇩🇪</div><div class="city-name">Munich</div><div class="city-name-ko">뮌헨</div><div class="city-status status-planned">Planned</div></div>
+        <div class="city-card"><div class="city-flag">🇫🇷</div><div class="city-name">Paris</div><div class="city-name-ko">파리</div><div class="city-status status-planned">Planned</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap" id="roadmap">
+  <div class="container">
+    <div class="section-badge">📅 ROADMAP</div>
+    <h2 class="section-title">
+      <span class="ko">글로벌 확장 로드맵</span>
+      <span class="en">Global Expansion Roadmap</span>
+    </h2>
+    <p class="section-sub">
+      <span class="ko">1년·3년·5년 단계별 전략으로 전 세계 한인 디아스포라 플랫폼을 완성합니다</span>
+      <span class="en">Completing the global Korean diaspora platform through 1, 3, and 5-year phases</span>
+    </p>
+    <div class="roadmap-grid">
+      <div class="roadmap-card year1">
+        <div class="roadmap-year">YEAR 1</div>
+        <div class="roadmap-title ko">Foundation</div>
+        <div class="roadmap-title en">Foundation</div>
+        <div class="roadmap-desc ko">북미 핵심 6대 도시 완성 — 전 세계 한인 55% 커버</div>
+        <div class="roadmap-desc en">Complete 6 core North American cities — 55% diaspora coverage</div>
+        <div class="roadmap-cities">
+          <span class="city-chip">🇺🇸 Seattle</span>
+          <span class="city-chip">🇺🇸 Dallas</span>
+          <span class="city-chip">🇨🇦 Vancouver</span>
+          <span class="city-chip">🇨🇦 Toronto</span>
+          <span class="city-chip">🇺🇸 Los Angeles</span>
+          <span class="city-chip">🇺🇸 New York / NJ</span>
+        </div>
+      </div>
+      <div class="roadmap-card year3">
+        <div class="roadmap-year">YEAR 3</div>
+        <div class="roadmap-title ko">Expansion</div>
+        <div class="roadmap-title en">Expansion</div>
+        <div class="roadmap-desc ko">북미 + 영어권 글로벌 도시 확장 — 추가 15% 커버</div>
+        <div class="roadmap-desc en">North America + English-speaking global cities — +15% coverage</div>
+        <div class="roadmap-cities">
+          <span class="city-chip">🇺🇸 Atlanta</span>
+          <span class="city-chip">🇺🇸 Chicago</span>
+          <span class="city-chip">🇺🇸 SF Bay</span>
+          <span class="city-chip">🇺🇸 Houston</span>
+          <span class="city-chip">🇺🇸 D.C.</span>
+          <span class="city-chip">🇨🇦 Calgary</span>
+          <span class="city-chip">🇬🇧 London</span>
+          <span class="city-chip">🇦🇺 Sydney</span>
+          <span class="city-chip">🇦🇺 Melbourne</span>
+        </div>
+      </div>
+      <div class="roadmap-card year5">
+        <div class="roadmap-year">YEAR 5</div>
+        <div class="roadmap-title ko">Global Leadership</div>
+        <div class="roadmap-title en">Global Leadership</div>
+        <div class="roadmap-desc ko">전 세계 한인 디아스포라 플랫폼 완성 — 75~80% 커버</div>
+        <div class="roadmap-desc en">Complete global Korean diaspora platform — 75–80% coverage</div>
+        <div class="roadmap-cities">
+          <span class="city-chip">🇸🇬 Singapore</span>
+          <span class="city-chip">🇳🇿 Auckland</span>
+          <span class="city-chip">🇯🇵 Tokyo</span>
+          <span class="city-chip">🇯🇵 Osaka</span>
+          <span class="city-chip">🇩🇪 Berlin</span>
+          <span class="city-chip">🇫🇷 Paris</span>
+          <span class="city-chip">🇩🇪 Munich</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND STORY -->
+<section class="brand-story" id="story">
+  <div class="container">
+    <div class="section-badge">✨ OUR STORY</div>
+    <h2 class="section-title" style="margin-bottom:28px;">
+      <span class="ko">HebronGuide란?</span>
+      <span class="en">What is HebronGuide?</span>
+    </h2>
+    <p class="brand-quote">
+      <span class="ko">
+        HebronGuide는 전 세계 도시에서 살아가는 <strong>한인·이민자·유학생·여행자</strong>를 위한<br>
+        정착·생활·커뮤니티 가이드 플랫폼입니다.<br><br>
+        우리는 도시를 단순한 장소가 아니라<br>
+        <strong>사람과 사람, 문화와 문화가 연결되는 공간</strong>으로 봅니다.<br><br>
+        <strong>Hebron</strong>은 "동행·연결·관계"를 의미합니다.<br>
+        HebronGuide는 전 세계 도시에서<br>
+        <strong>새로운 삶을 시작하는 사람들의 동행자</strong>가 되고자 합니다.
+      </span>
+      <span class="en">
+        HebronGuide is a settlement, life, and community guide platform for<br>
+        <strong>Korean immigrants, newcomers, students, families, and travelers</strong> worldwide.<br><br>
+        We see cities not just as places,<br>
+        but as <strong>spaces where people and cultures connect</strong>.<br><br>
+        <strong>Hebron</strong> means "companionship, connection, and relationship."<br>
+        HebronGuide aims to be the <strong>companion for those starting a new life</strong> in cities around the world.
+      </span>
+    </p>
+    <div class="meaning-grid">
+      <div class="meaning-card">
+        <div class="meaning-icon">🤝</div>
+        <div class="meaning-word ko">동행</div><div class="meaning-word en">Companionship</div>
+        <div class="meaning-desc ko">낯선 도시에서 혼자가 아닌, 함께 걷는 가이드</div>
+        <div class="meaning-desc en">A guide that walks with you in an unfamiliar city</div>
+      </div>
+      <div class="meaning-card">
+        <div class="meaning-icon">🔗</div>
+        <div class="meaning-word ko">연결</div><div class="meaning-word en">Connection</div>
+        <div class="meaning-desc ko">한인 커뮤니티, 교회, 정보를 하나로 연결</div>
+        <div class="meaning-desc en">Connecting Korean community, churches, and resources in one place</div>
+      </div>
+      <div class="meaning-card">
+        <div class="meaning-icon">💙</div>
+        <div class="meaning-word ko">관계</div><div class="meaning-word en">Relationship</div>
+        <div class="meaning-desc ko">도시 정보를 넘어 사람과 사람의 관계 형성</div>
+        <div class="meaning-desc en">Building relationships beyond city information</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIASPORA MAP -->
+<section class="diaspora" id="diaspora">
+  <div class="container">
+    <div class="section-badge">🗺️ DIASPORA COVERAGE</div>
+    <h2 class="section-title">
+      <span class="ko">한인 디아스포라 핵심 벨트</span>
+      <span class="en">Korean Diaspora Core Belts</span>
+    </h2>
+    <p class="section-sub">
+      <span class="ko">이 6개 축이 전 세계 한인의 80%를 커버하는 핵심 벨트입니다</span>
+      <span class="en">These 6 axes form the core belts covering 80% of Koreans worldwide</span>
+    </p>
+    <div class="axis-grid">
+      <div class="axis-card">
+        <div class="axis-icon">🌊</div>
+        <div>
+          <div class="axis-title ko">북미 서부 축</div>
+          <div class="axis-title en">North America — West</div>
+          <div class="axis-cities">LA → Seattle → Vancouver</div>
+          <div class="axis-coverage">~30% of diaspora</div>
+        </div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-icon">🗽</div>
+        <div>
+          <div class="axis-title ko">북미 동부 축</div>
+          <div class="axis-title en">North America — East</div>
+          <div class="axis-cities">NY/NJ → DC → Boston</div>
+          <div class="axis-coverage">~15% of diaspora</div>
+        </div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-icon">🍁</div>
+        <div>
+          <div class="axis-title ko">캐나다 삼각 축</div>
+          <div class="axis-title en">Canada Triangle</div>
+          <div class="axis-cities">Vancouver → Toronto → Calgary</div>
+          <div class="axis-coverage">~10% of diaspora</div>
+        </div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-icon">🌏</div>
+        <div>
+          <div class="axis-title ko">영어권 글로벌 축</div>
+          <div class="axis-title en">English-speaking Global</div>
+          <div class="axis-cities">London → Sydney → Melbourne → Auckland</div>
+          <div class="axis-coverage">~12% of diaspora</div>
+        </div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-icon">🌸</div>
+        <div>
+          <div class="axis-title ko">아시아 축</div>
+          <div class="axis-title en">Asia Axis</div>
+          <div class="axis-cities">Tokyo → Osaka → Singapore</div>
+          <div class="axis-coverage">~8% of diaspora</div>
+        </div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-icon">🏰</div>
+        <div>
+          <div class="axis-title ko">유럽 축</div>
+          <div class="axis-title en">European Axis</div>
+          <div class="axis-cities">Berlin → Frankfurt → Paris → Munich</div>
+          <div class="axis-coverage">~5% of diaspora</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MASTER PROMPT -->
+<section class="master-prompt" id="prompt">
+  <div class="container">
+    <div class="section-badge">🤖 AUTO-GENERATE</div>
+    <h2 class="section-title">
+      <span class="ko">HebronGuide 자동 생성 프롬프트</span>
+      <span class="en">HebronGuide Generation Prompts</span>
+    </h2>
+    <p class="section-sub">
+      <span class="ko">세 가지 프롬프트로 전 세계 모든 도시·민족의 HebronGuide를 Claude AI로 자동 생성하세요</span>
+      <span class="en">Three prompts to auto-generate HebronGuide for any city or diaspora community using Claude AI</span>
+    </p>
+
+    <!-- Prompt Tab Nav -->
+    <div style="display:flex;border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:24px;">
+      <button onclick="showPTab(0)" id="ptab0" style="flex:1;padding:13px 8px;font-size:0.82rem;font-weight:700;border:none;background:var(--green);color:white;cursor:pointer;transition:all .2s;border-right:1px solid var(--border);">
+        <span class="ko">🌐 한인 도시 가이드</span><span class="en">🌐 Korean City</span>
+      </button>
+      <button onclick="showPTab(1)" id="ptab1" style="flex:1;padding:13px 8px;font-size:0.82rem;font-weight:700;border:none;background:var(--surface2);color:var(--muted);cursor:pointer;transition:all .2s;border-right:1px solid var(--border);">
+        <span class="ko">🌍 민족·국가 가이드</span><span class="en">🌍 Ethnic–National</span>
+      </button>
+      <button onclick="showPTab(2)" id="ptab2" style="flex:1;padding:13px 8px;font-size:0.82rem;font-weight:700;border:none;background:var(--surface2);color:var(--muted);cursor:pointer;transition:all .2s;">
+        <span class="ko">📋 마스터 통합</span><span class="en">📋 Master All-in-One</span>
+      </button>
+    </div>
+
+    <!-- Tab 0: Korean City Guide -->
+    <div id="pcontent0">
+      <div class="prompt-box" id="masterPrompt">
+        <button class="copy-btn" onclick="copyPBox('masterPrompt')">📋 Copy</button>
+<span class="comment"># 🌐 HEBRONGUIDE — KOREAN CITY GUIDE GENERATOR</span>
+<span class="comment"># 이 프롬프트로 전 세계 한인 도시 가이드를 자동 생성합니다</span>
+
+<span class="key">City:</span>    <span class="val">[도시 이름 / City name]</span>
+<span class="key">Country:</span> <span class="val">[국가명 / Country]</span>
+<span class="key">Korean population:</span> <span class="val">[approximately X,000]</span>
+
+<span class="key">Instruction:</span>
+<span class="val">Generate a complete bilingual HebronGuide for Korean immigrants,
+newcomers, students, families, and travelers in this city.
+Use real business names, addresses, phone numbers, and websites.
+Korean-first, English-second bilingual structure throughout.</span>
+
+<span class="section-key">SECTIONS (16):</span>
+<span class="section-key">01. 정착가이드</span>  <span class="comment">— Housing, bank, ID, SIM, healthcare setup steps</span>
+<span class="section-key">02. 지역안내  </span>  <span class="comment">— Best neighborhoods, school zones, Korean clusters</span>
+<span class="section-key">03. 한인상권  </span>  <span class="comment">— Koreatown, H-Mart, Korean malls, Korean banks</span>
+<span class="section-key">04. 한인교회  </span>  <span class="comment">— Major churches, English Ministry, youth groups</span>
+<span class="section-key">05. 교육정보  </span>  <span class="comment">— Top school districts, universities, tutoring centers</span>
+<span class="section-key">06. 취업정보  </span>  <span class="comment">— Job market, Korean companies, resume/LinkedIn tips</span>
+<span class="section-key">07. 의료보험  </span>  <span class="comment">— Healthcare system, Korean doctors, insurance</span>
+<span class="section-key">08. 교통정보  </span>  <span class="comment">— Transit cards, driving, highways, airports</span>
+<span class="section-key">09. 생활비    </span>  <span class="comment">— Rent, groceries, taxes, utilities, cost index</span>
+<span class="section-key">10. 안전정보  </span>  <span class="comment">— Safe vs. caution areas, emergency tips</span>
+<span class="section-key">11. 커뮤니티  </span>  <span class="comment">— Korean orgs, Facebook, KakaoTalk, Naver Café</span>
+<span class="section-key">12. 긴급연락  </span>  <span class="comment">— 911/112, consulate, Korean legal aid</span>
+<span class="section-key">13. 카페 추천 </span>  <span class="comment">— Korean cafés, Paris Baguette, study spots</span>
+<span class="section-key">14. 맛집 안내 </span>  <span class="comment">— Korean BBQ, tofu, chicken, local food picks</span>
+<span class="section-key">15. 관광·나들이</span>  <span class="comment">— Day trips, national parks, local attractions</span>
+<span class="section-key">16. 글로벌    </span>  <span class="comment">— Cross-links to other HebronGuide cities</span>
+
+<span class="key">Output format:</span>
+<span class="val">HebronGuide SPA HTML — app-overlay sections, tab navigation,
+ccard/info-row components. Mobile-first. Bilingual data attributes.
+Include 🔗 official website links for each institution.</span>
+
+<span class="key">Web-building note:</span>
+<span class="val">Flag Korean churches/businesses without websites as
+"HebronGuide Web Partner opportunities" in section 16.</span>
+      </div>
+    </div>
+
+    <!-- Tab 1: Ethnic-National Guide -->
+    <div id="pcontent1" style="display:none;">
+      <div class="prompt-box" id="ethnicPrompt">
+        <button class="copy-btn" onclick="copyPBox('ethnicPrompt')">📋 Copy</button>
+<span class="comment"># 🌍 HEBRONGUIDE — ETHNIC-NATIONAL GUIDE GENERATOR (Advanced)</span>
+<span class="comment"># 모든 민족·국가 디아스포라를 위한 이중 언어 가이드 생성기</span>
+
+<span class="key">Target Diaspora:</span>  <span class="val">[국가/민족명 / Ethnic group name]</span>
+<span class="key">Native Language:</span>  <span class="val">[L1 언어 / e.g., Amharic, Tagalog, Hindi]</span>
+<span class="key">Host Country/City:</span> <span class="val">[정착 국가·도시]</span>
+
+<span class="section-key">━━ STEP 1. Ethnic-National Profile ━━</span>
+<span class="val">Cultural traits and core values:
+Religious composition (Christian/Muslim/Hindu/Buddhist/%):
+Family structure (nuclear / extended / collectivist):
+Community organization style (church-centered / clan / association):
+Language patterns in diaspora (L1 dominant / bilingual / L2 dominant):</span>
+
+<span class="section-key">━━ STEP 2. Diaspora Overview ━━</span>
+<span class="val">Total overseas population (global estimate):
+Top 5 destination countries + estimated numbers:
+Migration type (labor / refugee / student / skilled / family):
+Generational breakdown (1st / 1.5 / 2nd gen %):
+Key year of major migration wave:</span>
+
+<span class="section-key">━━ STEP 3. L1 Version (Native Language Guide) ━━</span>
+<span class="val">■ Welcome message in culturally appropriate tone
+■ Settlement guide (housing, jobs, healthcare, education)
+■ Faith centers (church / mosque / temple)
+■ Emergency contacts in host city
+■ Cultural adaptation tips specific to this group
+■ Immigration/visa basics for this nationality
+■ Key support organizations with contacts</span>
+
+<span class="section-key">━━ STEP 4. English Version ━━</span>
+<span class="val">Same structure as Step 3 — for global partners,
+churches, NGOs, and government liaisons.
+Include: "Is your organization listed? Request a website →"</span>
+
+<span class="section-key">━━ STEP 5. Web-Building Opportunities ━━</span>
+<span class="val">■ List 10 diaspora organizations likely needing websites
+■ Categorize: church / business / student / nonprofit / media
+■ Suggest website type + estimated budget range per category
+■ Identify partnership entry points for HebronGuide
+■ Note organizations with zero or outdated web presence</span>
+
+<span class="key">Output:</span>
+<span class="val">Bilingual L1 + English parallel structure.
+Customized to ethnic identity, faith, and migration context.
+Ready for HebronGuide mobile-first platform publishing.</span>
+      </div>
+    </div>
+
+    <!-- Tab 2: Master All-in-One Prompt -->
+    <div id="pcontent2" style="display:none;">
+      <div class="prompt-box" id="masterAllPrompt">
+        <button class="copy-btn" onclick="copyPBox('masterAllPrompt')">📋 Copy</button>
+<span class="comment"># 📋 HEBRONGUIDE GLOBAL MASTER PROMPT — ALL-IN-ONE DASHBOARD</span>
+<span class="comment"># 이 프롬프트 하나로 운영 매뉴얼 + 신청 페이지 + 글로벌 대시보드 + 가이드 생성기를 한번에 출력</span>
+
+<span class="val">You are generating a complete HebronGuide global system deployment.
+Produce the 4 components below in sequence.</span>
+
+<span class="section-key">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COMPONENT 1 — HEBRONGUIDE OPERATING MANUAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="val">Mission: Help diaspora communities settle, belong, and thrive.
+Write the 7 Core Operating Principles:
+  1. Help first, sell second  (Help → Trust → Website)
+  2. Bilingual always         (L1 native + English)
+  3. Real info only           (names, addresses, links)
+  4. Community-verified       (locals review content)
+  5. Faith-positive           (churches are community pillars)
+  6. Mobile-first             (all guides work on phone)
+  7. Web-building as mission  (support local digital presence)</span>
+
+<span class="section-key">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COMPONENT 2 — WEBSITE REQUEST PAGE (User-Facing)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="val">Create a friendly intake page with:
+■ Step 1: Add organization to HebronGuide community page (free)
+■ Step 2: Request a customized website (paid service)
+
+Website Request Questionnaire:
+  · Organization name & type (church / business / nonprofit / student group)
+  · City and community served
+  · Current online presence (none / social only / outdated site)
+  · Primary language of your community
+  · Contact person, email, phone
+  · Budget range (basic $500 / standard $1,500 / custom)
+  · Launch timeline (1 month / 3 months / flexible)
+  · Special features needed (Korean-English bilingual / booking / store)</span>
+
+<span class="section-key">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COMPONENT 3 — GLOBAL DIASPORA DASHBOARD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="val">Output a priority table of global diaspora communities:
+Tier 1 (Immediate): Korean, Chinese, Indian, Filipino, Mexican
+Tier 2 (Near-term): Vietnamese, Nigerian, Ethiopian, Brazilian, Pakistani
+Tier 3 (Planned):   Eastern European, SE Asian, Central Asian, Arab
+
+Table columns: Diaspora | Size | Top Cities | Language | Web Demand | Priority</span>
+
+<span class="section-key">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COMPONENT 4 — ETHNIC-NATIONAL GUIDE TEMPLATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="val">Target diaspora: [입력 / Enter ethnic group]
+Generate full L1 + English bilingual guide:
+Profile → Overview → Settlement → Faith Centers →
+Employment → Healthcare → Education → Web Opportunities
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL OUTPUT REQUIREMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Professional formatting, ready for deployment
+✓ Bilingual (L1 + English) throughout
+✓ Natural web-building opportunity identification
+✓ Mobile-first HebronGuide platform structure
+✓ Warm, community-serving tone — not sales-first</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2>
+      <span class="ko">다음 도시는 어디인가요?</span>
+      <span class="en">Which city is next?</span>
+    </h2>
+    <p>
+      <span class="ko">지금 시애틀 가이드를 먼저 확인하세요. 당신의 도시를 요청할 수도 있습니다.</span>
+      <span class="en">Start with the Seattle guide. You can also request your city.</span>
+    </p>
+    <div class="hero-btns">
+      <a href="seattle/index.html" class="btn btn-green">
+        <span class="ko">🏙️ 시애틀 가이드 보기</span>
+        <span class="en">🏙️ View Seattle Guide</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="margin-bottom:12px;">
+    <img src="assets/hebronguide-logo.svg" alt="HebronGuide" style="height:44px;max-width:260px;display:block;margin:0 auto;">
+  </div>
+  <div class="footer-tagline">
+    <span class="ko">전 세계 한인의 동행자 — 정착·생활·커뮤니티 가이드</span>
+    <span class="en">The Companion for Koreans Worldwide — Settlement, Life & Community Guide</span>
+  </div>
+
+  <!-- Business CTA -->
+  <div style="background:rgba(110,231,183,0.08);border:1px solid rgba(110,231,183,0.2);border-radius:16px;padding:24px;margin:24px 0;max-width:560px;margin-left:auto;margin-right:auto;text-align:left;">
+    <div style="font-size:0.9rem;font-weight:800;color:#6EE7B7;margin-bottom:8px;" class="ko">🏢 교회·비즈니스·기관 운영자 여러분께</div>
+    <div style="font-size:0.9rem;font-weight:800;color:#6EE7B7;margin-bottom:8px;" class="en">🏢 For Church, Business & Organization Leaders</div>
+    <div style="font-size:0.83rem;color:rgba(255,255,255,0.78);line-height:1.7;margin-bottom:14px;" class="ko">
+      HebronGuide를 통해 전 세계 한인 커뮤니티에 귀하의 이름을 알리세요.<br>
+      <strong style="color:white;">새 교회·비즈니스 창업 시 웹사이트 제작부터 온라인 브랜딩까지 함께 도와드립니다.</strong>
+    </div>
+    <div style="font-size:0.83rem;color:rgba(255,255,255,0.78);line-height:1.7;margin-bottom:14px;" class="en">
+      Let HebronGuide introduce your name to the Korean community worldwide.<br>
+      <strong style="color:white;">Launching a new church or business? We help with website creation and online branding.</strong>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="mailto:info@hebronguide.com" style="display:inline-block;background:#6EE7B7;color:#0d1117;border-radius:10px;padding:10px 20px;font-size:0.82rem;font-weight:800;" class="ko">웹사이트 제작 문의 →</a>
+      <a href="mailto:info@hebronguide.com" style="display:inline-block;background:#6EE7B7;color:#0d1117;border-radius:10px;padding:10px 20px;font-size:0.82rem;font-weight:800;" class="en">Website Creation Inquiry →</a>
+      <a href="mailto:info@hebronguide.com" style="display:inline-block;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);border-radius:10px;padding:10px 20px;font-size:0.82rem;font-weight:700;" class="ko">가이드 등록 신청</a>
+      <a href="mailto:info@hebronguide.com" style="display:inline-block;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);border-radius:10px;padding:10px 20px;font-size:0.82rem;font-weight:700;" class="en">List My Organization</a>
+    </div>
+  </div>
+
+  <div class="footer-links">
+    <a href="#cities"><span class="ko">도시 가이드</span><span class="en">City Guides</span></a>
+    <a href="#roadmap"><span class="ko">로드맵</span><span class="en">Roadmap</span></a>
+    <a href="#story"><span class="ko">브랜드 스토리</span><span class="en">Our Story</span></a>
+    <a href="#prompt"><span class="ko">가이드 생성</span><span class="en">Generate Guide</span></a>
+  </div>
+  <div class="footer-copy">© 2025 HebronGuide. All rights reserved. | hebronguide.com</div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.classList.toggle('en-mode', lang === 'en');
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    localStorage.setItem('hebron-lang', lang);
+  }
+
+  // Prompt tab system
+  function showPTab(n) {
+    for (let i = 0; i < 3; i++) {
+      const content = document.getElementById('pcontent' + i);
+      const btn = document.getElementById('ptab' + i);
+      if (content) content.style.display = i === n ? 'block' : 'none';
+      if (btn) {
+        btn.style.background = i === n ? 'var(--green)' : 'var(--surface2)';
+        btn.style.color = i === n ? 'white' : 'var(--muted)';
+      }
+    }
+  }
+
+  // Copy any prompt box by ID
+  function copyPBox(id) {
+    const box = document.getElementById(id);
+    if (!box) return;
+    const text = box.innerText.replace('📋 Copy', '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = box.querySelector('.copy-btn');
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => btn.textContent = '📋 Copy', 2000);
+    });
+  }
+
+  // Legacy alias
+  function copyPrompt() { copyPBox('masterPrompt'); }
+
+  // Restore language
+  const saved = localStorage.getItem('hebron-lang');
+  if (saved) setLang(saved);
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+</script>
+</body>
+</html>

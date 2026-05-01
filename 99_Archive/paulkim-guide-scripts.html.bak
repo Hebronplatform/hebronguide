@@ -1,0 +1,2289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>폴킴 투어 가이드 스크립트</title>
+<style>
+  :root {
+    --blue: #1a4fa0;
+    --teal: #2980b9;
+    --green: #27ae60;
+    --orange: #e67e22;
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --muted: #7f8c8d;
+    --border: #dde3ea;
+    /* 레이아웃 크기 변수 — 미디어쿼리에서 재정의 */
+    --sidebar-w: 220px;
+    --topbar-h: 56px;
+    --btn-pad: 5px 13px;
+    --btn-fs: .85rem;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { overflow-x: hidden; }
+  body { font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+         background: var(--bg); color: var(--text); }
+
+  /* ── TOP BAR ─────────────────────────────────────────────────────────── */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--blue); color: white;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 6px;
+    padding: 6px 16px; min-height: var(--topbar-h);
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  }
+  .topbar h1 {
+    font-size: clamp(.78rem, 1.2vw, 1rem);
+    font-weight: 700; white-space: nowrap;
+    flex-shrink: 1; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .topbar-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+  .lang-toggle { display: flex; gap: 4px; }
+  .view-toggle  { display: flex; gap: 4px; }
+  .view-btn, .print-btn, .edit-btn {
+    padding: 3px 9px;
+    border-radius: 14px; border: 1.5px solid rgba(255,255,255,.4);
+    background: transparent; color: white; cursor: pointer;
+    font-size: .6rem; font-weight: 600;
+    transition: all .2s; white-space: nowrap;
+  }
+  /* 언어 토글 버튼 */
+  .lang-toggle-btn {
+    display: flex; align-items: center; gap: 3px;
+    padding: 3px 9px; border-radius: 14px;
+    border: 1.5px solid rgba(255,255,255,.4);
+    background: rgba(255,255,255,.12); color: white;
+    cursor: pointer; font-size: .6rem; font-weight: 600;
+    transition: background .2s; white-space: nowrap;
+  }
+  .lang-toggle-btn:hover { background: rgba(255,255,255,.25); }
+  .lang-ko, .lang-en { opacity: .45; transition: opacity .15s, font-weight .1s; }
+  .lang-ko.on, .lang-en.on { opacity: 1; font-weight: 800; }
+  .lang-sep { opacity: .35; font-weight: 300; }
+  .view-btn.active  { background: #e67e22; border-color: #e67e22; }
+  .print-btn        { font-weight: 400; }
+  .print-btn:hover, .edit-btn:hover { background: rgba(255,255,255,.15); }
+  .edit-btn.active  { background: #e74c3c; border-color: #e74c3c; }
+
+  /* ── LAYOUT ──────────────────────────────────────────────────────────── */
+  .layout {
+    margin-top: var(--topbar-h);
+  }
+
+  /* ── SIDEBAR ─────────────────────────────────────────────────────────── */
+  .sidebar {
+    position: fixed;
+    top: var(--topbar-h); left: 0; bottom: 0;
+    width: var(--sidebar-w);
+    background: white; border-right: 1px solid var(--border);
+    overflow-y: auto; padding: 12px 0; z-index: 90;
+  }
+  .sidebar-section {
+    font-size: .7rem; font-weight: 700; color: var(--muted);
+    text-transform: uppercase; letter-spacing: .08em; padding: 14px 16px 4px;
+  }
+  .sidebar a {
+    display: block; padding: 7px 14px; font-size: .82rem;
+    color: var(--text); text-decoration: none; cursor: pointer;
+    border-left: 3px solid transparent; transition: all .15s;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .sidebar a:hover  { background: var(--bg); color: var(--blue); }
+  .sidebar a.active { border-left-color: var(--blue); background: #eef2fa; color: var(--blue); font-weight: 600; }
+
+  /* ── MAIN ────────────────────────────────────────────────────────────── */
+  .main {
+    margin-left: var(--sidebar-w);
+    padding: clamp(14px, 2vw, 28px);
+    min-height: calc(100vh - var(--topbar-h));
+    background: var(--bg);
+  }
+  /* 테이블 반응형 */
+  .table-wrap { overflow-x: auto; width: 100%; }
+  table { border-collapse: collapse; font-size: .85rem; width: 100%; }
+  table th, table td {
+    white-space: normal; word-break: break-word;
+    overflow-wrap: break-word; padding: 8px 10px;
+  }
+  /* 긴 텍스트 줄바꿈 */
+  .script-block, .qa-a, .qa-q, .full-content, .sum-content,
+  .card-sub, .connect-box, p { word-break: break-word; overflow-wrap: break-word; }
+
+  /* SECTION */
+  .section { margin-bottom: 40px; scroll-margin-top: 72px; }
+  .section-title {
+    font-size: 1.25rem; font-weight: 800; color: var(--blue);
+    border-bottom: 3px solid var(--blue); padding-bottom: 8px; margin-bottom: 18px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--card); border-radius: 12px; border: 1px solid var(--border);
+    margin-bottom: 14px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .card-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 18px; cursor: pointer; user-select: none;
+    border-bottom: 1px solid transparent; transition: background .15s;
+  }
+  .card-header:hover { background: var(--bg); }
+  .card-header.open { border-bottom-color: var(--border); background: #f8fafd; }
+  .card-title { font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .card-sub { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+  .card-arrow { font-size: .8rem; color: var(--muted); transition: transform .2s; }
+  .card-header.open .card-arrow { transform: rotate(90deg); }
+  .card-body { display: none; padding: 18px; }
+  .card-body.open { display: block; }
+
+  /* LANG CONTENT — .card-body 안에서만 적용 (body.en 충돌 방지) */
+  .card-body .ko { display: block; }
+  .card-body .en { display: none; }
+  body.en .card-body .ko { display: none; }
+  body.en .card-body .en { display: block; }
+
+  /* SCRIPT BOX */
+  .script-block {
+    background: #f8fafd; border-left: 4px solid var(--teal);
+    border-radius: 0 8px 8px 0; padding: 14px 16px; margin: 10px 0;
+    font-size: .9rem; line-height: 1.75;
+  }
+  .script-block strong { color: var(--blue); }
+  .script-block .location {
+    font-size: .75rem; font-weight: 700; color: white; background: var(--teal);
+    border-radius: 4px; padding: 2px 8px; display: inline-block; margin-bottom: 8px;
+  }
+  .yt-btn {
+    display: inline-flex; align-items: center; gap: 2px;
+    margin-left: 6px; padding: 1px 6px; border-radius: 3px;
+    background: #ff0000; color: #fff !important;
+    font-size: .62rem; font-weight: 700; text-decoration: none !important;
+    vertical-align: middle; line-height: 1.5;
+    transition: background .15s, transform .1s;
+  }
+  .yt-btn:hover { background: #cc0000; transform: scale(1.08); }
+  @media print { .yt-btn { display: none !important; } }
+
+  /* Q&A */
+  .qa-q {
+    background: #fff8e1; border-left: 4px solid var(--orange);
+    border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 8px;
+    font-weight: 700; font-size: .95rem;
+  }
+  .qa-a {
+    background: #f0faf4; border-left: 4px solid var(--green);
+    border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 16px;
+    font-size: .9rem; line-height: 1.75;
+  }
+
+  /* QUIZ */
+  .quiz-box {
+    background: #fff3cd; border: 2px solid var(--orange);
+    border-radius: 10px; padding: 14px 16px; margin: 10px 0;
+  }
+  .quiz-label { font-size: .7rem; font-weight: 700; color: var(--orange); text-transform: uppercase; margin-bottom: 6px; }
+  .quiz-q { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .quiz-reveal {
+    background: white; border-radius: 8px; padding: 12px;
+    margin-top: 10px; font-size: .88rem; line-height: 1.7;
+    border: 1px solid var(--border);
+  }
+  .reveal-label { font-size: .7rem; font-weight: 700; color: var(--green); text-transform: uppercase; margin-bottom: 4px; }
+
+  /* CONNECT */
+  .connect-box {
+    background: linear-gradient(135deg, #667eea15, #764ba215);
+    border: 1px solid #667eea40; border-radius: 10px; padding: 16px; margin: 10px 0;
+  }
+  .connect-hist { font-size: .78rem; font-weight: 700; color: #667eea; margin-bottom: 6px; }
+  .connect-now { font-size: .78rem; font-weight: 700; color: #764ba2; margin-bottom: 6px; margin-top: 10px; }
+
+  /* TABLE STYLES */
+  th { background: var(--blue); color: white; padding: 8px 12px; text-align: left; }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  tr:hover td { background: var(--bg); }
+
+  /* TAG */
+  .tag {
+    display: inline-block; padding: 2px 8px; border-radius: 12px;
+    font-size: .72rem; font-weight: 700; margin: 2px;
+  }
+  .tag-day { background: #dbeafe; color: #1e40af; }
+  .tag-night { background: #d1fae5; color: #065f46; }
+  .tag-hours { background: #fef3c7; color: #92400e; }
+
+  /* SEARCH */
+  .search-bar {
+    position: sticky; top: 0; z-index: 50; background: var(--bg);
+    padding: 8px 0;
+  }
+  .search-input {
+    width: 100%; padding: 10px 16px; border-radius: 8px;
+    border: 1px solid var(--border); font-size: .9rem;
+    background: white; color: var(--text);
+  }
+  .search-input:focus { outline: none; border-color: var(--blue); }
+
+  /* 요약/정상 토글 상태 */
+  .sum-content { display: none; }
+  .full-content { display: block; }
+  body.summary-mode .sum-content { display: block; }
+  body.summary-mode .full-content { display: none; }
+
+  .save-indicator {
+    font-size: .75rem; color: rgba(255,255,255,.85); padding: 0 6px;
+    opacity: 0; transition: opacity .5s;
+  }
+
+  .edit-toolbar {
+    display: none;
+    position: sticky; top: var(--topbar-h); z-index: 49;
+    background: #fff8e1; border-bottom: 2px solid var(--orange);
+    padding: 8px 16px; gap: 8px; align-items: center; flex-wrap: wrap;
+  }
+  body.edit-mode .edit-toolbar { display: flex; }
+  .edit-toolbar span { font-size: .83rem; font-weight: 700; color: #92400e; flex: 1; }
+  .edit-toolbar button {
+    padding: 5px 12px; border-radius: 8px; border: none; cursor: pointer;
+    font-size: .82rem; font-weight: 600;
+  }
+  .tb-save { background: var(--green); color: white; }
+  .tb-reset { background: #fee2e2; color: #b91c1c; }
+  .tb-export { background: var(--blue); color: white; }
+
+  body.edit-mode .card-body .ko,
+  body.edit-mode .card-body .en {
+    outline: 2px dashed #e74c3c30; border-radius: 4px; min-height: 30px;
+  }
+  body.edit-mode .card-body .ko:focus,
+  body.edit-mode .card-body .en:focus {
+    outline: 2px solid #e74c3c; background: #fff8f8;
+  }
+
+  .delete-card-btn {
+    display: none;
+    background: #fee2e2; color: #b91c1c; border: none; border-radius: 6px;
+    padding: 3px 8px; cursor: pointer; font-size: .72rem; font-weight: 700;
+    margin-left: 8px; flex-shrink: 0;
+  }
+  body.edit-mode .delete-card-btn { display: inline-block; }
+
+  .add-card-btn {
+    display: none;
+    width: 100%; padding: 12px; margin-bottom: 14px;
+    border: 2px dashed var(--border); background: transparent;
+    border-radius: 12px; cursor: pointer; color: var(--muted);
+    font-size: .88rem; font-weight: 600; transition: all .2s;
+  }
+  .add-card-btn:hover { border-color: var(--blue); color: var(--blue); background: #eef2fa; }
+  body.edit-mode .add-card-btn { display: block; }
+
+  /* ── 대시보드 ────────────────────────────────────────────────────────── */
+  .dash-section { margin-bottom: 32px; }
+  .dash-title {
+    font-size: 1.05rem; font-weight: 800; color: var(--blue);
+    border-bottom: 3px solid var(--blue); padding-bottom: 7px; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .dash-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 10px;
+  }
+  .dash-card {
+    background: white; border-radius: 10px; border: 1px solid var(--border);
+    padding: 13px 14px; cursor: pointer;
+    transition: transform .15s, box-shadow .15s, border-color .15s;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .dash-card:hover {
+    transform: translateY(-3px); box-shadow: 0 5px 18px rgba(26,79,160,.15);
+    border-color: var(--blue);
+  }
+  .dash-card:active { transform: translateY(-1px); }
+  .dash-card-top { display: flex; align-items: center; gap: 8px; }
+  .dash-card-emoji { font-size: 1.35rem; flex-shrink: 0; }
+  .dash-card-title { font-size: .83rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+  .dash-card-sub { font-size: .7rem; color: var(--muted); line-height: 1.4; }
+  .dash-card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 3px; }
+  .dash-tag { font-size: .62rem; font-weight: 700; padding: 1px 6px; border-radius: 8px; white-space: nowrap; }
+  .dash-tag-day { background: #dbeafe; color: #1e40af; }
+  .dash-tag-night { background: #d1fae5; color: #065f46; }
+  .dash-tag-hours { background: #fef3c7; color: #92400e; }
+
+  /* ── 햄버거 버튼 ─────────────────────────────────────────────────────── */
+  .hamburger-btn {
+    display: none;
+    background: rgba(255,255,255,.13); border: 1.5px solid rgba(255,255,255,.4);
+    color: white; border-radius: 8px; padding: 3px 10px;
+    font-size: 1.1rem; cursor: pointer; line-height: 1.4;
+    transition: background .2s;
+  }
+  .hamburger-btn:hover { background: rgba(255,255,255,.25); }
+
+  /* ── 홈 고정 버튼 ───────────────────────────────────────────────────── */
+  .home-btn {
+    position: fixed; bottom: 24px; right: 24px; z-index: 200;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--blue); color: white;
+    border: none; cursor: pointer; font-size: 1.3rem;
+    box-shadow: 0 3px 12px rgba(0,0,0,.25);
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, transform .15s;
+  }
+  .home-btn:hover { background: #153d80; transform: scale(1.1); }
+
+  @media print {
+    .topbar, .sidebar, .search-bar, .edit-toolbar { display: none !important; }
+    .main { margin-left: 0 !important; padding: 10px !important; width: 100% !important; }
+    .card-body { display: block !important; }
+  }
+
+  /* ── 반응형 ──────────────────────────────────────────────────────────── */
+  @media (max-width: 1280px) {
+    :root { --sidebar-w: 190px; }
+  }
+  @media (max-width: 1100px) {
+    :root { --sidebar-w: 170px; }
+    .topbar { gap: 4px; padding: 6px 12px; }
+  }
+  @media (max-width: 960px) {
+    :root { --sidebar-w: 150px; }
+    .topbar h1 { font-size: .95rem; }
+  }
+
+  /* ── 태블릿 (iPad 포함) ── */
+  @media (max-width: 860px) {
+    :root { --sidebar-w: 130px; }
+    .topbar h1 { font-size: .88rem; }
+    .dash-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  }
+
+  /* ── 모바일 (768px 이하) ── */
+  @media (max-width: 768px) {
+    /* 사이드바: 기본 숨김, 열릴 때 오버레이 슬라이드 */
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform .28s cubic-bezier(.4,0,.2,1);
+      z-index: 200;
+      width: 240px;
+      box-shadow: 4px 0 24px rgba(0,0,0,.18);
+    }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-overlay {
+      display: none; position: fixed; inset: 0; z-index: 195;
+      background: rgba(0,0,0,.35);
+    }
+    .sidebar-overlay.open { display: block; }
+    .main { margin-left: 0; }
+    .topbar { padding: 8px 12px; gap: 6px; }
+    .topbar h1 { font-size: .9rem; }
+    .hamburger-btn { display: inline-flex; align-items: center; }
+    .dash-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+    .home-btn { bottom: 16px; right: 16px; width: 44px; height: 44px; font-size: 1.1rem; }
+  }
+
+  /* ── 소형 모바일 (480px 이하) ── */
+  @media (max-width: 480px) {
+    .topbar { flex-wrap: wrap; padding: 7px 10px; }
+    .topbar h1 { font-size: .82rem; order: 2; flex: 1; }
+    .hamburger-btn { order: 1; }
+    .topbar-actions { width: 100%; order: 3; gap: 4px; }
+    .lang-toggle-btn, .view-btn, .print-btn, .edit-btn { font-size: .58rem; padding: 2px 7px; }
+    .dash-grid { grid-template-columns: 1fr 1fr; }
+    .dash-card { padding: 10px 11px; }
+    .dash-card-emoji { font-size: 1.1rem; }
+    .dash-card-title { font-size: .78rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 홈 고정 버튼 -->
+<button class="home-btn" onclick="navTo('top')" title="처음으로">🏠</button>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <button type="button" class="hamburger-btn" onclick="toggleSidebar()" id="hamburgerBtn" title="메뉴">☰</button>
+  <h1 onclick="navTo('top')" style="cursor:pointer;" title="홈으로">🗺️ 폴킴 투어 가이드 스크립트</h1>
+  <div class="topbar-actions">
+    <button type="button" class="lang-toggle-btn" onclick="toggleLang()" id="langToggle" title="언어 전환 (한국어 ↔ English)">
+      <span class="lang-ko on" id="langKo">한국어</span>
+      <span class="lang-sep">↔</span>
+      <span class="lang-en" id="langEn">EN</span>
+    </button>
+    <div class="view-toggle">
+      <button type="button" class="view-btn active" id="viewFull" onclick="setView('full')">정상판</button>
+      <button type="button" class="view-btn" id="viewSum" onclick="setView('sum')">요약판</button>
+    </div>
+    <button type="button" class="print-btn" onclick="window.print()">🖨️ 인쇄</button>
+    <button type="button" class="edit-btn" id="editBtn" onclick="toggleEditMode()">✏️ 편집</button>
+    <span class="save-indicator" id="saveIndicator"></span>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+<!-- 모바일 사이드바 오버레이 -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">투어 코스</div>
+  <a data-id="tour1" onclick="navTo('tour1')">🏙️ 도시 정수</a>
+  <a data-id="tour2" onclick="navTo('tour2')">📖 스토리</a>
+  <a data-id="tour3" onclick="navTo('tour3')">🏛️ 역사</a>
+  <a data-id="tour4" onclick="navTo('tour4')">🌿 자연 힐링</a>
+  <a data-id="tour5" onclick="navTo('tour5')">🌆 자연+도시</a>
+  <a data-id="tour6" onclick="navTo('tour6')">👨‍👩‍👧 가족·어린이</a>
+  <a data-id="tour7" onclick="navTo('tour7')">👴 시니어</a>
+  <a data-id="tour8" onclick="navTo('tour8')">🛍️ 쇼핑&미식</a>
+  <a data-id="tour9" onclick="navTo('tour9')">🏔️ 레이니어 1박2일</a>
+  <a data-id="tour10" onclick="navTo('tour10')">🌉 디셉션패스 1박2일</a>
+  <a data-id="tour11" onclick="navTo('tour11')">🏝️ 올림픽 1박2일</a>
+  <div class="sidebar-section">드라이빙</div>
+  <a data-id="drive1" onclick="navTo('drive1')">☔ 비 이야기</a>
+  <a data-id="drive2" onclick="navTo('drive2')">☕ 커피</a>
+  <a data-id="drive3" onclick="navTo('drive3')">🎸 록 음악</a>
+  <a data-id="drive4" onclick="navTo('drive4')">🦅 원주민</a>
+  <a data-id="drive5" onclick="navTo('drive5')">🛳️ 골드러시</a>
+  <a data-id="drive6" onclick="navTo('drive6')">✈️ 보잉</a>
+  <a data-id="drive7" onclick="navTo('drive7')">🐟 연어</a>
+  <a data-id="drive8" onclick="navTo('drive8')">🌋 화산</a>
+  <a data-id="drive9" onclick="navTo('drive9')">💻 테크</a>
+  <a data-id="drive10" onclick="navTo('drive10')">🌉 별명들</a>
+  <a data-id="drive11" onclick="navTo('drive11')">🎬 영화</a>
+  <div class="sidebar-section">Q&A</div>
+  <a data-id="qa-nature" onclick="navTo('qa-nature')">🌿 날씨·자연</a>
+  <a data-id="qa-food" onclick="navTo('qa-food')">🍽️ 음식·쇼핑</a>
+  <a data-id="qa-life" onclick="navTo('qa-life')">🏙️ 시애틀 생활</a>
+  <a data-id="qa-history" onclick="navTo('qa-history')">🏛️ 역사·문화</a>
+  <a data-id="qa-tour" onclick="navTo('qa-tour')">🧭 투어 관련</a>
+  <div class="sidebar-section">퀴즈 & 연결</div>
+  <a data-id="quiz" onclick="navTo('quiz')">🎯 흥미 유발 퀴즈</a>
+  <a data-id="connect" onclick="navTo('connect')">🔗 역사↔현재 연결</a>
+  <a data-id="gifts" onclick="navTo('gifts')">🎁 선물 아이디어</a>
+  <div class="sidebar-section">참고문헌</div>
+  <a data-id="references" onclick="navTo('references')">📚 추천 도서 & 자료</a>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<div class="edit-toolbar">
+  <span>✏️ 편집 모드 — 텍스트를 클릭하여 직접 수정하세요</span>
+  <button class="tb-save" onclick="saveEdits()">💾 저장</button>
+  <button class="tb-export" onclick="exportHtml()">📥 HTML 내보내기</button>
+  <button class="tb-reset" onclick="resetEdits()">↩️ 초기화</button>
+</div>
+
+<div class="search-bar">
+  <input class="search-input" type="text" placeholder="🔍 검색 (예: 스타벅스, salmon, 골드러시...)" oninput="searchContent(this.value)">
+</div>
+
+<!-- ===== 대시보드 ===== -->
+<div class="dash-section" id="dashboard">
+  <div class="dash-title">🗺️ 투어 한눈에 보기 — 클릭하면 바로 이동</div>
+  <div class="dash-grid">
+
+    <div class="dash-card" onclick="navTo('tour1')" title="도시 정수 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🏙️</span>
+        <span class="dash-card-title">도시 정수<br>Classic Seattle</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">8~9h</span>
+      </div>
+      <div class="dash-card-sub">파이크 플레이스 · 껌벽 · 스페이스 니들 · 아마존 스피어스</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour2')" title="스토리 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">📖</span>
+        <span class="dash-card-title">스토리 투어<br>Seattle Stories</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">8~9h</span>
+      </div>
+      <div class="dash-card-sub">Pioneer Square · 원조 스타벅스 · 아마존 창업지 · MoPOP</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour3')" title="역사 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🏛️</span>
+        <span class="dash-card-title">역사 투어<br>Seattle History</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">8~9h</span>
+      </div>
+      <div class="dash-card-sub">원주민 역사 · 차이나타운 · 테크 혁명</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour4')" title="자연 힐링 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🌿</span>
+        <span class="dash-card-title">자연 힐링<br>Nature Healing</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">7~8h</span>
+      </div>
+      <div class="dash-card-sub">Discovery Park · Alki Beach · Green Lake · Kerry Park</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour5')" title="자연+도시 콤보">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🌆</span>
+        <span class="dash-card-title">자연+도시 콤보<br>Best of Both</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">9~10h</span>
+      </div>
+      <div class="dash-card-sub">파이크 플레이스 · Discovery Park · Fremont · Kerry Park</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour6')" title="가족·어린이 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">👨‍👩‍👧</span>
+        <span class="dash-card-title">가족·어린이<br>Family &amp; School</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">7~8h</span>
+      </div>
+      <div class="dash-card-sub">Pacific Science Center · Museum of Flight · Woodland Park Zoo</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour7')" title="시니어 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">👴</span>
+        <span class="dash-card-title">시니어 투어<br>Senior Comfort</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">6~7h</span>
+      </div>
+      <div class="dash-card-sub">파이크 플레이스(실내) · 워터프런트 카페 · 케리 공원</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour8')" title="쇼핑&미식 투어">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🛍️</span>
+        <span class="dash-card-title">쇼핑 &amp; 미식<br>Shopping &amp; Dining</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-day">1일</span>
+        <span class="dash-tag dash-tag-hours">6~8h</span>
+      </div>
+      <div class="dash-card-sub">노드스트롬 · 파이크 플레이스 아티산 · 벨뷰 · 한인 맛집</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour9')" title="레이니어 1박2일">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🏔️</span>
+        <span class="dash-card-title">레이니어<br>1박2일</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-night">1박2일</span>
+      </div>
+      <div class="dash-card-sub">스노콸미 폭포 → 레이니어 Paradise</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour10')" title="디셉션패스 1박2일">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🌉</span>
+        <span class="dash-card-title">디셉션패스<br>1박2일</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-night">1박2일</span>
+      </div>
+      <div class="dash-card-sub">라 콘너 → 아나코르테스 → 디셉션패스</div>
+    </div>
+
+    <div class="dash-card" onclick="navTo('tour11')" title="올림픽 반도 1박2일">
+      <div class="dash-card-top">
+        <span class="dash-card-emoji">🏝️</span>
+        <span class="dash-card-title">올림픽 반도<br>1박2일</span>
+      </div>
+      <div class="dash-card-tags">
+        <span class="dash-tag dash-tag-night">1박2일</span>
+      </div>
+      <div class="dash-card-sub">Bainbridge 페리 → 허리케인 리지 → 열대우림</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== 투어 코스 ===== -->
+<div class="section" id="tour-section">
+  <div class="section-title">🗺️ 투어 코스 스크립트</div>
+
+  <!-- TOUR 1 -->
+  <div class="card" id="tour1">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div>
+        <div class="card-title">🏙️ 도시 정수 투어 — Classic Seattle</div>
+        <div class="card-sub">
+          <span class="tag tag-day">1일 코스</span>
+          <span class="tag tag-hours">8~9시간</span>
+          파이크 플레이스 → 껌벽 → 워터프런트 → 스페이스 니들 → 아마존 스피어스 → 케리 공원
+        </div>
+      </div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="script-block">
+          <div class="location">📍 파이크 플레이스 마켓</div>
+          <div class="sum-content">1907년에 문을 연 이 마켓은 미국에서 가장 오래된 파머스 마켓입니다. 중간 상인 없이 농부에게 직접 사고 싶었던 시민들의 작은 반란이 지금까지 이어진 겁니다. 저 생선 던지는 퍼포먼스는 1988년부터 시작됐어요.</div>
+          <div class="full-content">파이크 플레이스 마켓은 1907년 8월 17일, 시민들의 작은 반란으로 시작됐습니다. 당시 채소 한 단을 사려면 중간 상인을 두세 명 거쳐야 했고, 그러다 보니 가격이 세 배로 뛰었어요. 화가 난 시민들이 시의회에 청원을 넣었고, 농부가 직접 파는 시장이 탄생했습니다. 첫날 농부 열 명이 나왔는데 오전에 물건이 다 팔렸고, 군중이 너무 많아 경찰이 출동할 정도였어요.<br><br>입구에 있는 청동 돼지 '레이첼' — 1986년부터 자리를 지키는 저금통이에요. 동전을 넣으면 꿀꿀 소리가 나고, 그 돈은 마켓 내 저소득층 사업자와 사회복지 프로그램에 쓰입니다. 지금까지 모은 돈이 수십만 달러예요.<br><br>그리고 저 생선 던지는 분들 — 파이크 플레이스 피쉬 마켓. 1988년, 무거운 생선을 매일 들고 나르는 게 힘들어서 '그냥 던지자'고 시작했어요. 관광객들이 환호하자 퍼포먼스가 됐고, 지금은 하버드 비즈니스 스쿨에서 직장 문화 사례 연구로 쓰는 유명한 이야기가 됐습니다. 일을 즐기면 무엇이든 달라진다는 것, 이 마켓이 가장 잘 보여주고 있어요.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 껌 벽 (Post Alley)</div>
+          <div class="sum-content">1993년부터 시작됐어요. 근처 극장 손님들이 껌을 붙이기 시작했는데 청소해도 소용없자 시에서 포기했습니다. 막을 수 없으면 명물로 만들면 된다는 시애틀의 철학이에요.</div>
+          <div class="full-content">이 벽은 1993년에 시작됐어요. 바로 저쪽 '마켓 씨어터' 손님들이 줄 서면서 지루함에 껌을 붙이기 시작했습니다. 시에서 두 번이나 고압 세척기로 청소했지만, 청소한 날 저녁부터 사람들이 다시 붙이러 왔어요. 결국 포기하고 명물로 인정했습니다.<br><br>지금 이 벽에 붙은 껌이 몇 개인지 세어봤을까요? 수백만 개예요. 심지어 2015년에 한 번 완전 청소를 했는데 — 껌 무게가 약 1톤이나 됐대요. 그리고 청소 당일 저녁부터 다시 쌓이기 시작했습니다.<br><br>어떤 사람들은 껌에 소원을 써서 붙이고, 어떤 커플은 기념으로 하트 모양을 만들고, 어떤 아이들은 자기 껌으로 그림을 그려요. 막을 수 없는 인간의 창의성 — 이 벽이 그 증거입니다.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 스페이스 니들</div>
+          <div class="sum-content">1962년 세계박람회를 위해 400일 만에 지었습니다. 목표는 '21세기처럼 보이는 건물'. 60년이 지난 지금도 미래적으로 보이죠? 높이 184m, 시속 320km 바람에도 견딥니다.</div>
+          <div class="full-content">1962년 세계박람회를 위해 단 400일 만에 지어진 스페이스 니들. 설계자들에게 주어진 미션은 딱 하나였어요 — "21세기처럼 보여야 한다." 실제로 21세기가 되었을 때, 그리고 지금도 여전히 미래적으로 보인다는 게 놀랍죠?<br><br>높이는 184미터. 무게는 9,550톤인데, 그중 절반이 기초 콘크리트예요. 왜냐하면 이 지역이 지진대이거든요. 시속 320킬로미터 바람에도 견디게 설계됐고, 규모 9.1 지진에도 버틸 수 있습니다. 2018년에는 맨 위 전망 바닥을 유리로 교체해서 발아래 시애틀이 그대로 보입니다.<br><br>꼭대기에 회전 레스토랑이 있어요 — 47분에 한 바퀴 돕니다. 1962년에 열었을 때 미국 최초의 회전 레스토랑이었어요. 지금은 그냥 전망대만 올라가도 360도 파노라마가 펼쳐지는데, 맑은 날엔 레이니어 산, 올림픽 반도, 캐나다 밴쿠버 섬까지 보입니다.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 아마존 스피어스</div>
+          <div class="sum-content">아마존이 왜 유리 구형 건물을 지었을까요? "열대우림 속에서 일하면 창의력이 올라간다"는 철학으로, 4만 종 열대식물이 있는 사무실을 만든 겁니다.</div>
+          <div class="full-content">아마존 스피어스는 2018년 문을 열었어요. 세 개의 유리 구 안에 40,000여 종의 열대·아열대 식물이 살고 있습니다. 아마존 직원들의 일상적인 업무 공간이자 협업 장소예요. 지금 이 안에서 누군가가 프레젠테이션을 하고 있거나, 코드를 짜고 있거나, 회의를 하고 있을 거예요 — 열대우림 한가운데서요.<br><br>왜 이런 건물을 지었을까요? 제프 베이조스가 확신했던 것이 있어요 — 자연 속에 있으면 사람의 창의력이 올라간다는 것. 그래서 아마존은 단순한 사무실 대신, 직원들이 숲 속에 있는 것 같은 환경을 만들었습니다. 에콰도르 열대우림에서 온 나무, 마다가스카르에서 온 식물, 아마존 강 유역에서 가져온 수생식물까지 있어요.<br><br>건물 관리팀이 있어서 식물들의 습도, 온도, 물 공급을 24시간 모니터링합니다. 식물을 위한 IT 시스템이에요. 어떻게 보면 아마존다운 생각이죠 — 세상에서 가장 정교한 물류를 구축한 회사가 이번엔 실내 열대우림 물류를 만든 겁니다.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 케리 공원 (황금시간대)</div>
+          <div class="sum-content">시애틀 엽서 사진의 95%가 여기서 찍힙니다. 스페이스 니들 뒤로 레이니어 산이 보이는 구도 — 해질 무렵 하늘이 분홍빛으로 물들 때 비로소 'Emerald City'가 이해됩니다.</div>
+          <div class="full-content">케리 공원은 퀸 앤 언덕 위에 있는 작은 공원이에요. 사실 이름만 '공원'이지, 잔디밭 조금에 난간 하나가 전부입니다. 그런데 이 공원이 시애틀에서 가장 유명한 장소 중 하나예요. 왜냐면 여기서 찍히는 구도가 있거든요 — 스페이스 니들을 중심으로, 좌측엔 다운타운 고층 빌딩들, 우측엔 퓨젯 사운드, 그리고 맑은 날엔 배경에 레이니어 산. 시애틀 엽서의 95%가 이 구도에서 찍힌다고 해요.<br><br>가장 좋은 시간은 해 질 무렵이에요. 하늘이 분홍색, 보라색, 오렌지색으로 물들면서 도시가 황금빛으로 빛납니다. 시애틀 사람들이 이 도시를 'Emerald City(에메랄드 시티)'라고 부르는 이유가 그때 비로소 이해돼요.<br><br>혹시 레이니어 산이 보이나요? 구름이 없는 날엔 이 거대한 설산이 도시 뒤에 서 있어요. 높이가 4,392미터 — 후지산(3,776m)보다 훨씬 높은 화산이 저기 저렇게 서 있다는 게 믿어지세요? 오늘 이 도시를 이 공원에서 바라보면서, 각자 마음속에 이 순간을 담아두세요.</div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="script-block">
+          <div class="location">📍 Pike Place Market</div>
+          <div class="sum-content">Open since 1907, the oldest continuously operating farmers market in the US. Born as a citizens' revolt against middlemen. The fish-throwing performance started in 1988.</div>
+          <div class="full-content">Pike Place Market opened August 17, 1907 — the oldest continuously operating farmers market in the United States. It began as an act of rebellion. Seattle shoppers had to pass through two or three middlemen to buy vegetables, tripling the price by the time food reached the table. Citizens petitioned the city council. The answer: let farmers sell directly. On opening day, ten farmers showed up. By midmorning everything was sold. The crowd was so large police had to manage it.<br><br>The bronze pig at the entrance is Rachel — installed in 1986. Drop a coin in and she oinks. All donations fund the market's social services: food bank, medical clinic, senior center, and childcare for market workers. Rachel has raised over $200,000.<br><br>The fish throwers at Pike Place Fish started in 1988 — for purely practical reasons. Hauling 30-pound salmon all day was exhausting. Throwing was faster. Tourists started cheering. A performance was born. Now it's a Harvard Business School case study in workplace culture. The principle they teach: when you choose to enjoy your work, everything changes — for you and everyone watching.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Gum Wall (Post Alley)</div>
+          <div class="sum-content">Started in 1993 when theater-goers began sticking gum while waiting in line. The city cleaned it twice — people kept coming back. Seattle gave up and made it a landmark.</div>
+          <div class="full-content">This wall started in 1993 with bored theater-goers waiting in line for the Market Theater next door. Someone stuck their gum. Others followed. The city power-washed it twice. People came back the same evening and started again. So the city surrendered and called it a landmark.<br><br>A full cleanup was done in 2015 — they removed approximately one ton of gum. By the following morning, people had already begun restoring it. Some people write wishes on their gum before sticking it. Couples make heart shapes. Kids try to create art. It became a place of unexpected expression — chaotic, colorful, slightly gross, and somehow touching.<br><br>There's a philosophy here worth noticing: sometimes the most human things happen when people are just waiting, bored, and decide to leave a small mark on the world. This wall is what happens when millions of people do exactly that.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Space Needle</div>
+          <div class="sum-content">Built in 400 days for the 1962 World's Fair. One goal: look like the 21st century. Sixty years later, it still does. At 605 feet, it withstands winds up to 200 mph.</div>
+          <div class="full-content">The Space Needle was built in just 400 days for the 1962 World's Fair — and the designers had exactly one brief: make it look like the 21st century. It's remarkable that it still does, more than six decades later.<br><br>At 605 feet (184 meters), it weighs 9,550 tons — half of that is the foundation. This is earthquake country, and the structure is engineered to survive winds up to 200 mph and a 9.1-magnitude earthquake. In 2018, the observation deck floor was replaced with glass — so you can look straight down at the city below your feet.<br><br>At the top: a rotating restaurant called SkyCity that makes one full revolution every 47 minutes. When it opened in 1962, it was the first revolving restaurant in America. On a clear day from the top, you can see Mount Rainier, the Olympic Peninsula, and Vancouver Island in Canada — three different landscapes in one panorama.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Amazon Spheres</div>
+          <div class="sum-content">Three glass domes housing 40,000 tropical plant species — a working office for Amazon employees. Built on Jeff Bezos's belief that nature boosts creativity.</div>
+          <div class="full-content">The Amazon Spheres opened in 2018. Inside three glass domes live over 40,000 plant species from tropical and subtropical regions around the world — Ecuador, Madagascar, the Amazon River basin. Right now, Amazon employees are inside having meetings, writing code, giving presentations — surrounded by living rainforest.<br><br>Why build this? Jeff Bezos was convinced that immersion in nature unlocks human creativity in ways an ordinary office cannot. So instead of another glass tower, Amazon built a forest. The plants are maintained by a full-time horticultural team monitoring humidity, temperature, and irrigation 24 hours a day. There's an IT system built specifically for plant care — which feels very Amazon.<br><br>The company that built the world's most precise logistics network turned its attention to indoor tropical ecosystem logistics. The result is something that has no parallel anywhere in American corporate architecture.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Kerry Park — Golden Hour</div>
+          <div class="sum-content">Ninety-five percent of Seattle postcards are shot from here. Space Needle framed by Mount Rainier — at dusk, you finally understand why they call this the Emerald City.</div>
+          <div class="full-content">Kerry Park sits on Queen Anne Hill — technically just a strip of lawn with a railing. But it may be the single most photographed spot in the Pacific Northwest. The reason is one specific composition: the Space Needle centered in the frame, downtown towers to the left, Puget Sound to the right, and on clear days, Mount Rainier rising behind everything. Ninety-five percent of Seattle postcards come from exactly here.<br><br>The best time to be here is golden hour — the 30 minutes before sunset. The sky turns pink, orange, and violet. The city catches the light. The Sound glitters. Seattle becomes what its nickname promises: the Emerald City.<br><br>Is Rainier visible today? On clear days, this 14,411-foot active volcano stands behind the skyline as if placed there deliberately. That a city of skyscrapers and tech campuses exists in the shadow of a volcano — and that the combination is somehow beautiful rather than threatening — tells you something about Seattle's relationship with the natural world it's built inside.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOUR 2 -->
+  <div class="card" id="tour2">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div>
+        <div class="card-title">📖 스토리 투어 — Seattle Stories</div>
+        <div class="card-sub"><span class="tag tag-day">1일 코스</span><span class="tag tag-hours">8~9시간</span> Pioneer Square → 원조 스타벅스 → 아마존 창업지 → MoPOP</div>
+      </div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="script-block">
+          <div class="location">📍 Pioneer Square — 지하 도시</div>
+          <div class="sum-content">1851년 시작된 시애틀은 1889년 대화재로 전부 불탔습니다. 1년 만에 다시 지으면서 도로 자체를 통째로 들어올렸어요. 그래서 지금 발아래 '지하 도시'가 그대로 남아있습니다.</div>
+          <div class="full-content">1851년 11월, 첫 정착민들이 알키 비치에 발을 디뎠어요. 그로부터 37년 뒤인 1889년 6월 6일, 한 가구공장에서 불이 났습니다. 당시 시애틀 소방 호스는 물 압력이 너무 약해서 불을 못 껐어요. 결국 도시 전체 25블록이 전소됐습니다.<br><br>놀라운 건 그 다음이에요. 시애틀 사람들은 울지 않았어요. 다음 날부터 재건을 시작했습니다. 그런데 이번엔 똑같이 짓지 않았어요. 저지대였던 Pioneer Square는 조수가 차면 하수가 역류하는 문제가 있었거든요. 그래서 결정했습니다 — 도로 전체를 2층 높이로 올려서 새로 짓자고요.<br><br>그 결과, 옛 1층이 그대로 땅 아래 묻혔습니다. 지금도 '시애틀 지하 투어'를 하면 1889년 원래 시애틀 거리를 걸어볼 수 있어요. 120년 된 벽돌, 상점 터, 도로가 그대로 보존되어 있습니다. 불에 탄 도시를 포기하지 않고, 문자 그대로 새 도시를 그 위에 올린 겁니다.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 원조 스타벅스</div>
+          <div class="sum-content">1971년, 세 명의 교사가 커피 원두를 파는 가게로 시작했습니다. 지금의 글로벌 스타벅스를 만든 하워드 슐츠는 창업자가 아니라 나중에 합류한 사람이에요.</div>
+          <div class="full-content">1971년, 영문학 교사 제리 볼드윈, 역사 교사 제브 시글, 작가 고든 보커 — 세 친구가 이 가게를 열었습니다. 이름은 소설 『모비딕』에 나오는 커피 좋아하는 항해사 '스타벅'에서 따왔어요. 처음엔 커피를 마시는 곳이 아니었습니다. 고급 커피 원두를 팔고, 고객에게 집에서 직접 내려 마시는 법을 알려주는 가게였어요.<br><br>지금의 스타벅스를 만든 하워드 슐츠는 1982년에야 합류했어요. 이탈리아 밀라노를 여행하다가 에스프레소 바 문화에 충격을 받았습니다. '이걸 미국에 가져오면 어떨까?' 창업자들에게 제안했지만 처음엔 거절당했어요. 결국 슐츠는 독자적으로 카페를 열고, 1987년에 스타벅스를 통째로 사들였습니다. 나머지는 역사가 됐죠.<br><br>이 가게에서는 다른 스타벅스에서 볼 수 없는 옛날 갈색 로고를 쓰고, 여기서만 파는 한정판 굿즈가 있어요. 긴 줄은 명물입니다.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 아마존 창업지 (벨뷰 차고)</div>
+          <div class="sum-content">1994년 베이조스는 뉴욕 금융사를 그만두고 부인이 운전하는 차 안에서 사업계획서를 썼습니다. 처음 이름 후보는 '리라이언트', '매직', 그리고 최종적으로 세상에서 가장 큰 강 이름 — 아마존.</div>
+          <div class="full-content">1994년, 제프 베이조스는 뉴욕 헤지펀드 D.E. Shaw에서 잘나가는 부사장이었어요. 그러다 인터넷이 연간 2,300% 성장하고 있다는 데이터를 봤습니다. 그는 상사에게 인터넷 사업을 하겠다고 했고, 상사가 말했어요 — "이미 잘 되고 있는 사람한테 좋은 아이디어고, 아직 아무것도 없는 사람한테는 더 좋은 아이디어야."<br><br>베이조스는 결심했어요. 부인 맥킨지가 운전하고, 베이조스는 조수석에서 사업계획서를 써 내려갔습니다. 목적지: 시애틀. 처음 사명 후보는 'Relentless.com(끈질긴)', 그다음은 'Cadabra(마법)', 변호사가 "카다버(시체)?라고 들린다"며 반대했어요. 결국 세상에서 가장 큰 강 이름을 붙였습니다 — Amazon.<br><br>1994년 7월, 벨뷰의 차고 하나에서 시작했어요. 직원 세 명, 책상은 문짝으로 만들었고, 첫 번째 고객 주문이 들어왔을 때 모두가 차에 타고 UPS에 직접 배달하러 갔습니다. 그 차고에서 지금의 세계 최대 전자상거래 회사가 나온 겁니다.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 MoPOP (음악 대중문화 박물관)</div>
+          <div class="sum-content">지미 헨드릭스는 시애틀 출신이고, 커트 코베인은 여기서 그런지를 만들었어요. 비, 고립감, 싼 창고 — 그 조합이 1990년대 세계 음악을 바꿨습니다.</div>
+          <div class="full-content">MoPOP 건물 자체부터 독특해요. 건축가 프랭크 게리가 설계했는데, 기타 조각 100개를 녹여서 디자인했다고 합니다. 지미 헨드릭스를 기리기 위해 마이크로소프트 공동창업자 폴 앨런이 세운 박물관이에요. 폴 앨런은 시애틀 출신이고, 헨드릭스도 시애틀 출신입니다.<br><br>지미 헨드릭스 이야기를 잠깐 할게요. 1942년 이 도시 센트럴 디스트릭트에서 태어났어요. 가난했고, 기타를 살 돈이 없어서 처음엔 빗자루를 기타처럼 연주했다고 합니다. 결국 군에서 제대한 후 기타를 배워, 27세에 사망할 때까지 세계 최고의 기타리스트로 불렸습니다. 시애틀은 그를 낳았지만, 그가 살아있을 때는 제대로 인정하지 않았어요. 시애틀의 작은 부끄러움이기도 합니다.<br><br>1990년대 그런지 혁명 — 너바나, 펄 잼, 사운드가든. 왜 하필 시애틀이었을까요? 비 때문에 밖에 못 나가고, 도시가 '변방'이라 상업적 압박이 없었고, 1980년대 경기침체로 임대료가 싸서 청년들이 창고에 모여 연주했습니다. 소외된 청년들의 소리가 전 세계 소외된 청년들에게 닿았어요.</div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="script-block">
+          <div class="location">📍 Pioneer Square — Underground City</div>
+          <div class="sum-content">Seattle was born in 1851, burned completely in 1889, and was rebuilt in a year — with the streets raised two stories higher. The original city is still down there, underground.</div>
+          <div class="full-content">November 1851: the first settlers arrived at Alki Beach. June 6, 1889: a fire started in a cabinet shop. Seattle's water pressure was too weak to fight it. Twenty-five city blocks burned to the ground.<br><br>What happened next is the Seattle story. No grieving. The next day, rebuilding began — but not the same as before. Pioneer Square sat in a low-lying tidal zone where sewage backed up into the streets at high tide. Seattle's decision: raise the entire street level two full stories. Build new foundations. Build new ground floors. The old first floors became basements. The old basements became underground.<br><br>Today, Seattle Underground Tours walk you through the original 1889 streets — 120-year-old brick walls, shop footprints, original sidewalks preserved below the modern city. Seattle didn't just rebuild. It built a new city on top of the old one, literally. That stubbornness — refusing to accept what was lost — is foundational to how this city thinks.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Original Starbucks</div>
+          <div class="sum-content">Three teachers opened this store in 1971 — selling coffee beans, not drinks. Howard Schultz, who built the global empire, joined later and bought the company in 1987.</div>
+          <div class="full-content">In 1971, English teacher Jerry Baldwin, history teacher Zev Siegl, and writer Gordon Bowker opened a store to sell high-quality coffee beans — not beverages. They named it after Starbuck, the coffee-loving first mate in Moby-Dick. The idea was to teach people to brew great coffee at home.<br><br>Howard Schultz joined as marketing director in 1982. He traveled to Milan and was transformed by Italian espresso bar culture — the theater, the ritual, the community of it. He came back and proposed that Starbucks become a café. The founders refused. Schultz opened his own coffee bars instead. In 1987, he bought Starbucks outright from the founders for $3.8 million. The rest is coffee history.<br><br>This location carries the original brown logo — the one before the mermaid was cropped and cleaned up. The merchandise here is exclusive: mugs, tumblers, and coffee bags you can only get at this store. The line wraps around the corner every morning. It's worth the wait, if only to say you've been.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Amazon's Origin (Bellevue Garage)</div>
+          <div class="sum-content">In 1994, Bezos quit his Wall Street job. His wife drove while he wrote the business plan. Name candidates: Relentless, Cadabra, and finally — the world's largest river.</div>
+          <div class="full-content">In 1994, Jeff Bezos was a vice president at D.E. Shaw, one of Wall Street's most successful hedge funds. Then he read a statistic: the internet was growing at 2,300% per year. He told his boss he wanted to start an internet company. His boss replied: "That sounds like a great idea for someone who doesn't already have a good job."<br><br>Bezos made the decision anyway. His wife MacKenzie drove from New York to Seattle while Jeff wrote the business plan in the passenger seat. First name candidate: Relentless.com. Second: Cadabra — until a lawyer misheard it as "cadaver." Final choice: Amazon. The world's largest river, for a store with the world's largest selection.<br><br>July 1994: one garage in Bellevue, three employees, desks made from doors. When the first customer order came in, everyone piled into a car and drove to UPS themselves. The company that garage produced now employs over 1.5 million people worldwide. The door-desks became a company legend — a reminder that frugality and resourcefulness built this, not luxury.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 MoPOP (Museum of Pop Culture)</div>
+          <div class="sum-content">Jimi Hendrix was born in Seattle. Kurt Cobain brought grunge from here to the world. Rain, isolation, cheap warehouses — that combination changed music in the 1990s.</div>
+          <div class="full-content">The building itself is a statement. Architect Frank Gehry designed it by digitally fragmenting and reassembling guitar pieces — a visual tribute to Jimi Hendrix, Seattle's most famous musician. Microsoft co-founder Paul Allen, also from Seattle, built this museum to honor Hendrix.<br><br>Jimi Hendrix was born in 1942 in Seattle's Central District. His family was poor — he learned to play by practicing on a broom before he could afford a guitar. He died at 27, considered by many the greatest electric guitarist in history. Seattle didn't fully honor him while he was alive. The city is still making up for that.<br><br>The 1990s grunge revolution: Nirvana, Pearl Jam, Soundgarden, Alice in Chains — all from Seattle. Why here? The rain kept people indoors and introspective. The city was geographically distant from music industry centers, so commercial pressure was low. The economic recession of the 1980s left cheap warehouses where young bands could rehearse for almost nothing. The result: music that sounded like it had nothing to prove and nothing to lose. Every outsider in the world heard it and felt understood.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOUR 3 -->
+  <div class="card" id="tour3">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div>
+        <div class="card-title">🏛️ 역사 투어 — Seattle History</div>
+        <div class="card-sub"><span class="tag tag-day">1일 코스</span><span class="tag tag-hours">8~9시간</span> 원주민 역사 → 차이나타운 → 테크 혁명</div>
+      </div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="script-block">
+          <div class="location">📍 원주민 역사 — Daybreak Star</div>
+          <div class="sum-content">유럽인이 오기 전 드와미시족이 살았고, 시애틀이라는 이름은 추장 '시알스'에서 왔어요. 1854년 그의 연설 — "땅을 어떻게 사고팔 수 있는가? 하늘과 물의 반짝임을 어떻게 소유하는가?"</div>
+          <div class="full-content">제가 이 투어를 처음 시작할 때 한 가지 질문이 생겼어요. "내가 안내하는 이 땅이 원래 누구 땅이었을까?" 그게 여기, 드와미시족의 이야기로 이어졌습니다.<br><br>유럽인들이 오기 수천 년 전부터 드와미시족은 이 땅에서 살았어요. 그들은 퓨젯 사운드의 연어를 잡고, 삼나무로 집을 짓고, 이 도시의 일곱 언덕을 신성하게 여겼습니다. 그런데 1850년대 백인 정착민들이 오면서 그 모든 것이 달라졌어요.<br><br>1854년, 드와미시 추장 시알스는 워싱턴 준주 주지사에게 이런 말을 남겼습니다. <strong>"땅을 어떻게 사고팔 수 있는가? 하늘의 싱그러움과 물의 반짝임을 어떻게 소유할 수 있는가. 우리가 이 땅을 소유하는 것이 아니라, 우리가 이 땅에 속한 것이다."</strong><br><br>저는 이 말을 읽을 때마다 가슴이 먹먹해요. 지금 전 세계 환경운동의 정신이 150년 전 이 도시에서 이미 나왔거든요.<br><br>그런데 웃픈 이야기가 있어요. 이 추장이 자기 이름을 도시 이름으로 쓰는 걸 처음엔 반대했어요. 드와미시 문화에서는 죽은 사람의 이름을 부르면 영혼이 쉬지 못한다고 믿었거든요. 결국 "백인들이 매년 보상금을 내면 허락하겠다"고 했는데 — 그 약속은 한 번도 지켜진 적이 없습니다. 그 추장의 이름은 지금 이 도시 모든 주소와 우편번호에 들어가 있어요. 교훈: 약속은 반드시 지킵시다.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 차이나타운-인터내셔널 디스트릭트 (우리 이야기)</div>
+          <div class="sum-content">1880년대 중국인 강제 추방, 1942년 일본계 수용소. 그러나 그들은 돌아왔고 다시 지었습니다. 그리고 지금 이 자리에 우리 한인들도 있어요.</div>
+          <div class="full-content">제가 이 동네를 지나갈 때마다 마음이 복잡해요. 왜냐면 이건 그들의 이야기이기도 하고, 우리 이야기이기도 하거든요.<br><br>1880년대, 시애틀 백인 시민들이 중국인 이민자들을 강제로 배에 태워 추방했습니다. 철도를 놓고 가장 힘든 일을 했던 사람들이었어요. 그런데 일이 끝나니까 쫓아낸 겁니다. 1942년엔 진주만 공격 이후 일본계 미국인들 — 미국에서 태어난 사람들까지 — 수용소에 끌려갔어요. 집도, 사업도, 모든 것을 빼앗기고요.<br><br>그런데 그들은 돌아왔습니다. 다시 지었습니다. 지금도 여기 있어요. 이 동네 가게들, 식당들, 그 안에 흐르는 역사의 무게가 있어요.<br><br>한국 분들께 특별히 말씀드리고 싶은 게 있어요. 한인들도 1900년대 초부터 이 도시에 왔습니다. 농장에서 일했고, 차별 받았고, 그래도 자녀를 키우고 교회 세우고 뿌리를 내렸어요. 그 후손들이 지금 이 도시의 의사, 교수, 사업가가 됐습니다. 이 땅에 뿌려진 눈물이 열매가 된 거예요. 우리 중에도 그런 분들의 자녀가 있지 않으신가요?</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 테크 혁명 — 빌 게이츠·아마존·AI</div>
+          <div class="sum-content">1979년 마이크로소프트, 1994년 아마존, 지금은 AI 혁명. 세 번의 기술 혁명이 모두 이 도시에서 나왔습니다. 비가 만든 내면의 힘이 세상을 바꿨어요.</div>
+          <div class="full-content">빌 게이츠 이야기 재밌어요. 1968년, 게이츠는 시애틀 레이크사이드 고등학교 학생이었어요. 그 학교 어머니회에서 복권을 팔아 컴퓨터 시간을 구입했는데 — 그게 세계 최초로 컴퓨터를 가진 고등학교 중 하나가 된 겁니다. 당시 전 세계에서 컴퓨터를 만져본 10대가 몇 명이나 됐을까요? 게이츠는 그 극소수 중 하나였어요.<br><br>게이츠는 너무 컴퓨터에 빠져서 밤에 몰래 기숙사를 탈출해 학교 컴퓨터실에 들어갔다가 걸렸어요. 정학을 먹었죠. (웃음) 그런데 그 컴퓨터실 덕분에 세상이 바뀌었습니다. 여러분 자녀가 뭔가에 깊이 빠져 있다면 — 혹시 그게 다음 혁명의 씨앗일 수 있어요.<br><br>그리고 아마존의 제프 베이조스. 저는 가끔 벨뷰 차고를 지나치면서 생각해요 — "저 차고에서 세상이 쇼핑하는 방식이 바뀌었구나." 지금 시애틀은 마이크로소프트, 아마존, 구글, 메타, 애플이 모두 주요 오피스를 가지고 있는 도시예요. 전 세계에서 온 엔지니어들이 이 빗속에서 다음 세상을 만들고 있습니다.<br><br>교훈 한 가지 드릴게요 — 비 오는 날 집에 있지 말고, 뭔가를 만들어요. 시애틀이 그렇게 해서 세상을 바꿨거든요.</div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="script-block">
+          <div class="location">📍 Indigenous History — Daybreak Star</div>
+          <div class="sum-content">The Duwamish people lived here for thousands of years before Europeans arrived. Chief Sealth's 1854 words — "How can you buy or sell the sky?" — became a cornerstone of environmentalism.</div>
+          <div class="full-content">When I first started leading tours, a question kept nagging at me: whose land was this, before all of this? That question led me here, to the Duwamish story.<br><br>For thousands of years before European contact, the Duwamish people fished these waters, built cedar homes on these hills, and considered this land sacred. Then in the 1850s, settlers arrived — and everything changed within a single generation.<br><br>In 1854, Chief Sealth spoke to the territorial governor. His words: <strong>"How can you buy or sell the sky? The freshness of the air and the sparkle of the water — how do you own them? We do not own the land. We belong to it."</strong><br><br>I can't read those words without feeling something. The entire intellectual foundation of modern environmentalism — articulated 150 years ago, right here, by a man whose people had lived it for millennia.<br><br>Here's the bittersweet part: Chief Sealth initially refused to let the city use his name. In Duwamish culture, speaking the name of the dead disturbs their spirit. He eventually agreed — reportedly on the condition of an annual payment from the settlers. That payment was never made. His name now appears in every Seattle address, postcard, and souvenir. The city carries the name of a man whose final request was never honored. Lesson: keep your promises.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Chinatown-International District (Our Story Too)</div>
+          <div class="sum-content">Chinese forced expulsion in the 1880s. Japanese-American internment in 1942. They came back and rebuilt. Korean immigrants came too — and planted roots through tears.</div>
+          <div class="full-content">I feel something complicated every time I walk through this neighborhood. Because this is their story — and in many ways, it's our story too.<br><br>In the 1880s, Seattle's white residents forcibly loaded Chinese immigrants onto ships and expelled them. These were the men who had built the railroads — the hardest labor, in the worst conditions. When the work was done, they were driven out. In 1942, after Pearl Harbor, Japanese-American families — including people born in America — were sent to internment camps. They lost their homes, businesses, savings, and years they never got back.<br><br>They came back. They rebuilt. They are still here. The restaurants and shops in this neighborhood carry the weight of that history in ways you can feel if you know what to look for.<br><br>A word especially for our Korean guests: Koreans began arriving in Seattle as early as the 1900s. They worked farms, faced discrimination, built churches, and raised children. Their descendants are now doctors, professors, and business owners in this city. Seeds planted in tears became fruit. Some of you in this group may carry that history in your own families.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Tech Revolution — Gates, Amazon, AI</div>
+          <div class="sum-content">Microsoft 1979, Amazon 1994, now AI. Three technological revolutions, all from this city. The rain that drove people indoors may have changed the world.</div>
+          <div class="full-content">Bill Gates story — it's a good one. In 1968, Gates was a student at Lakeside School in Seattle. The school's mothers' club held a rummage sale and used the money to buy computer time for students. That made Lakeside one of the first high schools in the world with real computer access. Out of all the teenagers on earth at that moment, Gates was one of the almost none who had it.<br><br>He became so obsessed that he snuck out of the dorm at night to use the school's computer lab — and got caught. Suspended. (Laughter.) And yet that computer lab, that obsession, that suspension — that's where the world changed. If your child is deeply passionate about something, even something you don't understand yet: pay attention. It might be the seed of the next revolution.<br><br>Jeff Bezos. I drive past the Bellevue neighborhood sometimes and think: a single garage, three employees, desks made from doors — and from that, the way the entire world shops changed. Today, Microsoft, Amazon, Google, Meta, and Apple all have major operations in Seattle. Engineers from every country on earth are building the next world in this rain.<br><br>One lesson I always share here: on rainy days, don't just stay home. Build something. That's what Seattle did.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOURS 4-8 condensed -->
+  <div class="card" id="tour4">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🌿 자연 힐링 투어 — Nature Healing</div>
+      <div class="card-sub"><span class="tag tag-day">1일</span><span class="tag tag-hours">7~8시간</span> Discovery Park → Alki Beach → Green Lake → Kerry Park</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="script-block"><div class="location">📍 Discovery Park</div>
+          <div class="sum-content">도심에서 15분. 534에이커, 한때 군사기지였던 숲. 80종 이상 철새, 퓨젯 사운드 절벽 전망, 11km 트레일. 스마트폰 잠깐 내려놓으세요.</div>
+          <div class="full-content">도심에서 차로 15분이에요. 그런데 눈 깜짝할 사이에 완전히 다른 세계가 나타납니다. 534에이커 — 서울 여의도 공원의 두 배 크기 — 의 숲과 절벽과 해변이 도시 한 가운데 있어요.<br><br>이곳은 원래 1900년부터 1970년까지 미 육군 기지였어요. Fort Lawton이라고 불렸어요. 군이 떠난 후 시애틀 시가 인수해서 공원으로 바꿨습니다. 덕분에 이 넓은 땅이 개발되지 않고 원시림 상태로 남아있는 거예요.<br><br>80종 이상의 철새가 이 공원에서 쉬어가요. 흰머리 독수리(Bald Eagle)도 가끔 보입니다. 절벽에 서면 퓨젯 사운드와 올림픽 반도가 한눈에 보이고, 맑은 날엔 올림픽 산맥 위에 눈이 쌓인 게 보여요.<br><br>제가 이곳에 올 때마다 하는 것이 있어요. 입구에서 폰을 가방에 넣어요. 그리고 그냥 걷습니다. 30분만 걸어도 뭔가 달라져요. 생각이 정리되고, 숨이 깊어지고, 그동안 잊고 살았던 것들이 생각나기 시작해요.<br><br>오늘도 잠깐 폰을 가방에 넣어보실래요? 나무들이 할 말이 있는데, 우리가 폰 보느라 못 듣고 있거든요.</div>
+        </div>
+        <div class="script-block"><div class="location">📍 Alki Beach — 시애틀의 시작점</div>
+          <div class="sum-content">1851년 11월, 첫 정착민들이 폭풍 속에 이 해변에 발을 디뎠습니다. '뉴욕'이라 부르고 싶었던 그 꿈 — 저 맞은편 스카이라인이 바로 그 꿈이 이루어진 모습이에요.</div>
+          <div class="full-content">저는 이 해변을 걸을 때마다 1851년 11월의 장면을 상상해요.<br><br>25명의 정착민들이 배를 타고 왔어요. 폭풍우가 몰아쳤습니다. 배가 흔들리고, 비가 쏟아지고, 아이들이 울었어요. 그들이 발을 디딘 곳이 바로 이 모래사장이었어요. 그때 여기엔 나무와 비와 원주민들밖에 없었어요.<br><br>그 일행 중 한 여성이 울기 시작했대요. 이렇게 말하면서요 — "이게 뉴욕이야?" (웃음) 그 뒤로 정착민들은 이 새 집을 '알키(Alki)'라고 불렀어요. 스노콸미어로 '언젠가는'이라는 뜻이에요. 뉴욕이 되지 못했지만, 언젠가는 위대한 도시가 되겠다는 꿈이었죠.<br><br>지금 저기 맞은편을 보세요. 시애틀 스카이라인이 보이죠? 저 고층 빌딩들, 아마존 스피어스, 스페이스 니들 — 그게 바로 그 '언젠가는'이 이루어진 모습이에요. 170년 만에요.<br><br>교훈 — '언젠가는'을 포기하지 마세요. 폭풍우 속에서 시작해도, 뉴욕 같은 꿈이 없어도, '언젠가는'이라는 한 단어가 도시를 만들었어요.</div>
+        </div>
+        <div class="script-block"><div class="location">📍 Green Lake — 도시가 숨 쉬는 곳</div>
+          <div class="sum-content">시애틀 시민들이 가장 사랑하는 동네 호수. 매일 수천 명이 2.8마일 호숫가를 걷고 달립니다. 빡빡한 도시에서 모두가 느려지는 곳이에요.</div>
+          <div class="full-content">그린 레이크는 시애틀 사람들이 가장 사랑하는 동네예요. 2.8마일 — 약 4.5킬로미터 — 호숫가 길을 매일 수천 명이 걷고, 달리고, 자전거를 타고, 인라인 스케이트를 탑니다.<br><br>재밌는 게 있어요. 시애틀 사람들은 여기서 운동하면서도 절대 서두르지 않아요. 아마존 엔지니어가 일찍 나와 달리기를 하고, 옆에는 70대 할머니가 오리에게 빵 조각을 던지고, 그 옆에는 요가 하는 사람이 있어요. 모든 속도가 공존하는 곳이에요.<br><br>시 전체가 '빠르게'를 외치는 것 같은데, 여기 오면 모두가 자연스럽게 느려져요. 이 호수가 도시의 속도 조절기 역할을 하는 것 같아요.<br><br>가끔 저도 여기 혼자 와서 한 바퀴 걸어요. 투어 중에 생긴 생각들, 오늘 만난 사람들, 스쳐 지나간 이야기들 — 그런 것들을 정리하는 시간이에요. 오늘 이 투어 끝나고 여러분도 여기 한 바퀴 걸어보세요. 느린 걸음으로요.</div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="script-block"><div class="location">📍 Discovery Park</div>
+          <div class="sum-content">15 minutes from downtown: 534 acres of wilderness, once a military base. 80+ bird species, bluffs over Puget Sound, 11km of trails. Put your phone away — the trees have something to say.</div>
+          <div class="full-content">Fifteen minutes from downtown, and you're in a completely different world. Five hundred and thirty-four acres of old-growth forest, bluffs, and beaches — twice the size of Central Park — sitting inside the city limits.<br><br>This land was Fort Lawton, a US Army base from 1900 to 1974. When the military left, Seattle acquired it and turned it into a park. The result: one of the largest urban parks in America, left almost entirely undeveloped.<br><br>Over 80 migratory bird species rest here. Bald eagles occasionally hunt in the treetops. From the bluffs, you can see all of Puget Sound and the entire Olympic Peninsula — and on clear days, the snow-covered Olympic Mountains stretching behind it.<br><br>Every time I bring a group here, I ask everyone to put their phones away for 20 minutes. Just walk. Something happens in those 20 minutes — breathing deepens, thoughts loosen, faces soften. The forest does something to people that screens can't reach.<br><br>The trees have been here longer than the city. They'll be here when the city's changed completely. There's something worth listening to in that kind of quiet steadiness.</div>
+        </div>
+        <div class="script-block"><div class="location">📍 Alki Beach — Where Seattle Began</div>
+          <div class="sum-content">In November 1851, 25 settlers landed here in a storm. One woman cried: "This is New York?" They named it Alki — "by and by" in Chinook. That skyline across the water is "by and by" fulfilled.</div>
+          <div class="full-content">Every time I walk this beach, I try to imagine November 1851.<br><br>Twenty-five settlers arrived by boat in a storm — rain, wind, waves. They stepped onto this sand, looked around at dense forest and grey water, and someone reportedly started to cry. A woman said, in frustration: "They told us this would be like New York." (Laughter.)<br><br>The group decided to call their new home Alki — a word from Chinook jargon meaning "by and by." Not New York yet. Someday.<br><br>Now look across the water. That skyline — the skyscrapers, the Amazon Spheres, the Space Needle — that's "by and by." One hundred and seventy years later. Built from a beach landing in a storm by 25 people who had nothing but the audacity to try.<br><br>Seattle did eventually become the city they dreamed of — just not the one they imagined. It became something better and stranger and more specific.<br><br>The lesson I always take from this beach: the "by and by" you're working toward may not look like what you pictured. But it may be more interesting. Don't let the storm convince you to go home.</div>
+        </div>
+        <div class="script-block"><div class="location">📍 Green Lake — Where Seattle Breathes</div>
+          <div class="sum-content">Seattle's most beloved neighborhood lake. Thousands walk, run, and cycle the 2.8-mile path every day. In a city built for speed, this is where everyone slows down and becomes human again.</div>
+          <div class="full-content">Green Lake is the neighborhood where Seattle exhales. The 2.8-mile path around this lake is one of the most consistently used pieces of public space in the Pacific Northwest. Every morning, every evening — runners, cyclists, dog-walkers, elderly couples, young parents with strollers.<br><br>What I love about Green Lake is that it refuses to sort people by speed or status. An Amazon engineer in technical gear passes a grandmother feeding ducks. A meditation practitioner does slow tai chi while teenagers skateboard nearby. The lake accepts all of them at their own pace.<br><br>The whole city seems to be optimizing for something. But here, no one is optimizing. They're just walking around a lake. And somehow, that feels radical.<br><br>I come here alone sometimes after a long tour day — just one slow loop, watching the light change on the water. It's where I remember that the city isn't just the story I tell about it. It's also this: ordinary people, moving slowly, taking up space, being alive without any particular agenda.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="tour5">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🌆 자연 + 도시 콤보 — Best of Both</div>
+      <div class="card-sub"><span class="tag tag-day">1일</span><span class="tag tag-hours">9~10시간</span> 파이크 플레이스 → Discovery Park → Alki → Fremont → Kerry Park</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="script-block"><div class="location">📍 오프닝 멘트</div>
+          <div class="sum-content">도심에서 20분이면 숲과 바다, 반대쪽엔 설산 — 자연과 도시가 이렇게 가까운 도시는 없어요. 오늘 그 두 가지를 다 느껴봅시다.</div>
+          <div class="full-content">제가 시애틀을 처음 왔을 때 가장 놀란 게 있어요. 아마존 본사 앞에 서 있다가 고개를 들면 — 설산이 보여요. 미팅 끝나고 차 타고 20분 가면 바다가 나와요. 도시와 자연이 이렇게 가까운 곳이 세상에 또 있을까요?<br><br>뉴욕은 아무리 걸어도 도시예요. LA도, 시카고도 그래요. 시애틀은 달라요 — 한쪽엔 퓨젯 사운드, 한쪽엔 레이니어 화산, 그 사이에 도시가 있어요. 오늘 우리는 그 두 가지를 다 봅니다.<br><br>투어 끝에 제가 항상 묻는 게 있어요 — "오늘 어느 쪽이 더 마음에 닿으셨어요?" 어떤 분은 도시라 하고, 어떤 분은 자연이라 하는데, 그 대답이 각자의 내면을 보여주는 것 같아서 저는 늘 그 답이 궁금해요.</div>
+        </div>
+        <div class="script-block"><div class="location">📍 Fremont — 우주의 중심</div>
+          <div class="sum-content">자칭 '우주의 중심' — 표지판도 있어요. 6m 트롤 조각상, 소련제 레닌 동상, 건물 측면 로켓. 이상한 것들을 명물로 만든 시애틀 자유정신의 본거지.</div>
+          <div class="full-content">프리몬트 입구 표지판에 이렇게 적혀 있어요. <strong>"Fremont: Center of the Universe (Earth)."</strong> 진짜 표지판이에요. 처음엔 웃기는데, 돌아다니다 보면 진짜 그런 것 같기도 해요.<br><br>고가도로 밑에 6미터 콘크리트 트롤이 숨어 있어요. 손에 진짜 폭스바겐 비틀을 들고 있어요. 1990년에 범죄 많던 그 공간을 예술로 해결하자는 아이디어로 만들었어요. 트롤을 보러 사람들이 오기 시작하자 자연스럽게 문제가 사라졌어요. 예술이 치안을 해결한 거예요.<br><br>소련 붕괴 후 슬로바키아에서 가져온 레닌 동상도 있어요. 크리스마스엔 산타 옷, 핼러윈엔 드라큘라 망토를 입혀요. (웃음) 그리고 건물 측면엔 냉전 시대 로켓이 붙어 있는데, 어떻게 왔는지 경위가 불분명하다는 게 공식 설명이에요.<br><br>교훈 — 너무 진지하게 살지 마세요. 프리몬트는 이상한 것들을 전부 명물로 만들었어요. 이상하다는 건 사실 독특하다는 뜻이니까요.</div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="script-block"><div class="location">📍 Opening</div>
+          <div class="sum-content">Twenty minutes from downtown: ocean. The other direction: volcano. Only Seattle puts skyscrapers, Puget Sound, and snowcapped peaks in the same frame. Today we experience both sides.</div>
+          <div class="full-content">The first time I came to Seattle, I was standing in front of Amazon headquarters — glass towers, delivery trucks, tech workers everywhere. I looked up. Snow-capped mountain behind the skyline. Just there.<br><br>That's what surprises people. New York: walk all day, still city. LA: drive two hours, still sprawl. Seattle: leave downtown, drive 20 minutes — ocean. Or old-growth forest. Or the base of an active volcano. The city sits inside nature rather than on top of it.<br><br>Today we experience both. City stories and nature stories. And at the end I always ask: which one touched you more? The answers vary — and they always say something true about the person.</div>
+        </div>
+        <div class="script-block"><div class="location">📍 Fremont — Center of the Universe</div>
+          <div class="sum-content">The official sign says: "Center of the Universe (Earth)." A 6-meter troll under a bridge, a Soviet Lenin statue in seasonal costumes, a mystery rocket on a building. The spiritual home of Seattle's permission to be gloriously weird.</div>
+          <div class="full-content">Welcome to Fremont. The entrance sign reads: <strong>"Fremont: Center of the Universe (Earth)."</strong> Not a joke — that's the neighborhood's actual identity statement. Walk around for 20 minutes and you start to believe them.<br><br>Under the Aurora Bridge: a 6-meter concrete troll gripping a real Volkswagen Beetle. Built in 1990 after the area became a crime problem. Someone proposed art as a solution. Once people started coming to see the troll, the problems disappeared. Art solved what enforcement couldn't.<br><br>Around the corner: a Lenin statue from post-Soviet Slovakia, dressed as Santa in December, Dracula in October, and occasionally as a tourist. The neighborhood debates removing it but agrees on the costumes. (Laughter.) On a building side: a repurposed Cold War rocket whose exact origin remains officially "unclear."<br><br>The lesson: the neighborhoods that decide 'weird' is a competitive advantage tend to be the most interesting ones. Don't take yourself so seriously that you can't live next to a troll and call it the center of the universe.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="tour6">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">👨‍👩‍👧 가족·어린이 교육 투어 — Family & School</div>
+      <div class="card-sub"><span class="tag tag-day">1일</span><span class="tag tag-hours">7~8시간</span> Pacific Science Center · Museum of Flight · Woodland Park Zoo</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="script-block"><div class="location">📍 Pacific Science Center</div>
+          <div class="sum-content">1962년 세계박람회용으로 지어진 과학관. 살아있는 나비 온실, 공룡 화석, 손으로 만지는 과학 실험실. 아이가 '왜?'라고 묻는 순간이 과학의 시작이에요.</div>
+          <div class="full-content">퍼시픽 사이언스 센터는 1962년 세계박람회 때 '미국 과학관'으로 지어졌어요. 당시 미국과 소련이 우주 경쟁을 하던 시절이라, 미국이 과학 강국임을 보여주려는 의도가 있었죠.<br><br>지금은 특히 살아있는 나비 온실이 인기 많아요. 수십 종의 나비들이 실제로 날아다니고, 어깨에 앉기도 해요. 아이들 표정이 제일 예뻐요 — 눈이 동그래지거든요.<br><br>공룡 화석도 있고, 직접 조작하는 물리·화학 실험실도 있어요. 버튼 누르면 뭔가 되고, 잡아당기면 반응이 오고 — 몸으로 배우는 과학이에요.<br><br>아이들과 함께 오신 분들께 제가 항상 드리는 말이 있어요 — <strong>오늘 아이가 '왜?'라고 묻는 횟수를 세어보세요.</strong> 그 숫자가 많을수록 그 아이 안에 과학자, 탐험가, 혁신가가 살아있는 거예요. '왜?'를 막지 마세요. 그 질문 하나가 다음 세상을 만들 수 있어요.</div>
+        </div>
+        <div class="script-block"><div class="location">📍 아이들에게 직접 하는 말</div>
+          <div class="sum-content">"오늘 제일 많이 질문하는 사람이 진짜 탐험가예요. 질문 없는 사람은 없어요 — 질문하기 무서운 사람만 있을 뿐이에요."</div>
+          <div class="full-content">(아이들을 향해 직접)<br><br>"자, 여러분. 질문 있는 사람 손 들어봐요. (기다리기) 오, 벌써 손 드는 사람이 있네요 — 벌써 탐험가예요!<br><br>오늘 투어에서 제일 많이 질문하는 사람이 진짜 탐험가예요. '이게 뭐야?', '왜 그래?', '저건 어떻게 된 거야?' — 그런 질문 전부 다 해도 돼요. 바보 같은 질문은 없어요. 질문하기 무서운 사람만 있을 뿐이에요.<br><br>그리고 어른들도 마찬가지예요. 오늘 시애틀이 여러분한테 뭔가 물어볼 거예요 — '네가 원하는 게 뭐야?', '뭘 찾으러 여기 왔어?' 그 질문에 귀 기울여보세요.<br><br>자, 탐험 시작할까요?"</div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="script-block"><div class="location">📍 Pacific Science Center</div>
+          <div class="sum-content">Built for the 1962 World's Fair as America's science showcase. Living butterfly house, dinosaur fossils, hands-on labs. Count how many times your child asks 'why?' today — that number matters.</div>
+          <div class="full-content">Pacific Science Center was built for the 1962 World's Fair as the US Science Pavilion — a deliberate statement during the Space Race that America valued scientific curiosity. It became a permanent institution when the fair ended.<br><br>The living butterfly house is the most magical stop. Dozens of butterfly species fly freely through a warm greenhouse — landing on shoulders, hovering at eye level. I've watched adults who haven't shown visible wonder in years stand completely still in there, just watching.<br><br>Hands-on labs let kids actually do science — push, pull, experiment, fail, try again. Not read about it. Do it. That difference matters more than most educational theories acknowledge.<br><br>For parents here today: <strong>count how many times your child asks 'why?' during this visit.</strong> That number tells you something. Every 'why?' is a mind that hasn't stopped working yet. The worst thing we can do is answer too fast, or not answer at all. The second worst is to make the question feel unwelcome. 'Why?' built everything around us.</div>
+        </div>
+        <div class="script-block"><div class="location">📍 Directly to the Children</div>
+          <div class="sum-content">"The person who asks the most questions today is the real explorer. There are no stupid questions — only questions people are afraid to ask."</div>
+          <div class="full-content">(Turning directly to the children in the group)<br><br>"Okay, who has a question? Raise your hand. (Wait.) Already? You're already an explorer.<br><br>Here's the rule for today: the person who asks the most questions wins. 'What is that?' 'Why does it do that?' 'What happens if—?' All of those count. There is no such thing as a bad question. There are only questions people are too scared to ask out loud.<br><br>And adults — same rule applies to you. Seattle has a question for you too, if you're willing to listen: what are you looking for? What brought you here? Pay attention to what catches your eye today. Sometimes a place tells you something about yourself.<br><br>Ready? Let's explore."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="tour7">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">👴 시니어 투어 — Senior Comfort Tour</div>
+      <div class="card-sub"><span class="tag tag-day">1일</span><span class="tag tag-hours">6~7시간</span> 파이크 플레이스(실내) → 워터프런트 카페 → 케리 공원(차량)</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="script-block">
+          <div class="location">📍 오프닝</div>
+          <div class="sum-content">오늘은 서두르지 않습니다. 충분히 보고, 충분히 앉고, 충분히 쉽니다. 인생을 많이 사신 분들만 볼 수 있는 것들이 이 도시에 있어요.</div>
+          <div class="full-content">오늘 저는 특별한 분들을 모시고 나왔습니다. 인생을 오래 사신 분들이에요.<br><br>제가 처음 시애틀에 이민 왔을 때, 가장 걱정됐던 건 속도였어요. 다들 바쁘게 달리는데 나는 따라갈 수 있을까. 그런데 시간이 지나면서 알게 됐어요 — 달리는 사람은 지나쳐 버리는 것들을, 천천히 걷는 사람은 봅니다.<br><br>오늘 저희는 속도를 내지 않아요. 앉고 싶으면 앉고, 쉬고 싶으면 쉽니다. 화장실은 언제든지요. 걸어서 힘들면 차로 이동합니다. 중요한 건 경치가 아니에요 — 여러분이 이 도시를 어떻게 느끼시느냐가 오늘의 목표입니다.<br><br>저 개인적으로 어르신들 모시는 투어를 제일 좋아해요. 왜냐면 살아오신 이야기들이 있잖아요. 6·25도 알고, 산업화도 알고, 세상이 어떻게 바뀌었는지 직접 겪으신 분들이에요. 그 경험이 이 도시 위에 겹쳐지면, 젊은 사람들은 절대 못 느끼는 깊이가 나옵니다.<br><br>오늘 우리 함께 그 깊이를 느껴보겠습니다. 자, 천천히 출발합니다.<br><br><strong>교훈:</strong> 인생의 빠른 구간은 많은 걸 지나치게 합니다. 느린 구간이 오히려 가장 많이 보이는 때입니다.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 파이크 플레이스 (실내)</div>
+          <div class="sum-content">1907년 개장, 미국에서 가장 오래된 파머스 마켓. 저 상인 중 30~40년 일한 분들이 있어요. 변하지 않는 것의 가치를 아시는 분들과 함께 여기 서니 더 의미가 있습니다.</div>
+          <div class="full-content">자, 실내로 들어왔습니다. 따뜻하죠? 여기 앉으세요, 잠깐 이야기 들어보시겠어요?<br><br>이 마켓은 1907년에 열었어요. 올해로 100년이 훌쩍 넘었습니다. 시애틀이 아직 작은 항구 도시였을 때부터 여기 있었어요. 1차 세계대전도 여기서 봤고, 대공황도 겪었고, 2차 세계대전도 지나쳤어요. 지금도 똑같이 열려 있어요.<br><br>저기 저 상인 보이시죠? 꽃 파시는 분이요. 제 기억으로는 저분 25년 넘게 저 자리에 계세요. 매일 아침 새벽에 와서 꽃 다듬고, 손님 맞이하고, 저녁에 정리하고 집에 가세요. 매일매일. 25년 동안. 저는 그게 얼마나 대단한 건지 — 젊었을 때는 몰랐어요. 지금은 알아요.<br><br>한국에서 30년, 40년 한자리를 지키신 분들이 계시잖아요. 떡집도, 국밥집도, 세탁소도. 그분들이 없으면 동네가 무너져요. 파이크 플레이스도 마찬가지예요. 화려한 관광 명소처럼 보이지만, 사실은 한 자리를 수십 년 지킨 사람들이 만들어낸 공간이에요.<br><br>어르신들, 여러분이 지키신 자리들이 있잖아요. 가정이든, 일터든, 교회든. 그 자리를 지켜내셨기 때문에 지금 이 자리에 오실 수 있는 거예요. 저는 그게 자랑스럽습니다.<br><br><strong>교훈:</strong> 한 자리를 오래 지키는 것이 결국 역사가 됩니다. 세상에서 가장 위대한 일 중 하나는 자기 자리를 묵묵히 지키는 것입니다.</div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="script-block">
+          <div class="location">📍 Opening</div>
+          <div class="sum-content">Today we move at the pace of appreciation. We sit when we want, pause when something is beautiful. Those who've lived long enough to notice the details will see things here that younger eyes miss entirely.</div>
+          <div class="full-content">Today I have the privilege of guiding very special guests — people who have lived long, full lives.<br><br>When I first immigrated to Seattle, I was worried about keeping up. Everyone here moves fast. But over time I learned: the people running past miss things. The people walking slowly — they see everything.<br><br>Today we don't rush. We sit when we need to. We rest when we want to. Bathroom breaks whenever. If the walking is too much, we drive. What matters today isn't the sights — it's how you experience this city. That's our only goal.<br><br>I'll be honest: senior tours are my personal favorite. Because the people on them carry stories. They've lived through history — wars, migrations, entire eras of change. When that experience overlays itself on a city like Seattle, something happens that younger tourists simply cannot access: depth.<br><br>Let's go find that depth together. Slowly. Beautifully.<br><br><strong>Lesson:</strong> The fast sections of life make you cover a lot of ground. The slow sections are where you actually see it.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Pike Place Market (Indoor)</div>
+          <div class="sum-content">Opened in 1907 — America's oldest continuously operating farmers market. Some vendors have worked here 30-40 years. Sharing this spot with people who understand the value of endurance makes it more meaningful.</div>
+          <div class="full-content">Come inside, it's warm in here. Let's pause for a moment — I want to tell you about this place.<br><br>Pike Place Market opened in 1907. It was here when Seattle was still a small port town. It survived World War I, the Great Depression, World War II, the rise and fall of the Boeing economy. It's still here.<br><br>See that vendor over there — the one with the flowers? I believe she's been at that exact spot for over 25 years. Every morning, before dawn, she arranges flowers. Greets customers. Every single day. For 25 years. I didn't understand what that meant when I was young. Now I do.<br><br>In Korea, there are families who've run the same rice cake shop, the same soup restaurant, the same laundry for 30 or 40 years. Those people don't just run a business — they hold a neighborhood together. Pike Place is the same. Beneath the tourist energy is a foundation built by people who simply showed up, every day, for decades.<br><br>You have those places too — homes you held together, businesses you built, churches you served. You kept showing up. And because you did, you're here today.<br><br><strong>Lesson:</strong> Staying in one place faithfully, for a long time — that eventually becomes history. It may be the most quietly powerful thing a person can do.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="tour8">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🛍️ 쇼핑 & 미식 투어 — Shopping & Dining</div>
+      <div class="card-sub"><span class="tag tag-day">1일</span><span class="tag tag-hours">6~8시간</span> 노드스트롬 → 파이크 플레이스 아티산 → 벨뷰/아울렛 → 한인 맛집</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="script-block">
+          <div class="location">📍 노드스트롬 플래그십</div>
+          <div class="sum-content">1901년 시애틀에서 스웨덴 이민자 존 노드스트롬이 신발 가게로 시작. 알래스카 금광에서 번 돈으로 창업. 지금은 전국 100개 이상 매장의 대형 백화점 체인입니다.</div>
+          <div class="full-content">쇼핑 들어가기 전에 이 건물 이야기를 잠깐 할게요. 노드스트롬 — 들어보셨죠? 미국에서 제일 서비스 좋기로 유명한 백화점이에요.<br><br>창업자 존 노드스트롬은 스웨덴에서 16살에 미국에 왔어요. 영어도 못하고, 돈도 없고, 아는 사람도 없는 이민자였어요. 1898년, 알래스카에 금이 발견됐다는 소식을 듣고 클론다이크 골드러시에 뛰어들었어요. 2년 동안 손 발이 얼어가며 광산에서 일했는데 — 금은 별로 못 찾았어요. 하지만 돈은 모았어요. 1901년 그 돈으로 시애틀에 신발 가게를 열었습니다.<br><br>재미있는 게, 그 첫 번째 신발 가게 자리가 지금 이 건물에서 불과 몇 블록 떨어진 곳이에요. 작은 신발 가게가 100년 만에 미국 전역 100개 이상 매장을 가진 백화점이 됐어요.<br><br>그런데 제가 노드스트롬에서 정말 감동받은 건 서비스예요. 노드스트롬 직원 교육에서 가장 강조하는 건 하나예요 — "고객이 기억에 남는 경험을 하도록 하라." 물건 파는 게 아니라 경험을 파는 거예요.<br><br>유명한 일화가 있어요. 어떤 고객이 노드스트롬에서 타이어를 반품하겠다고 왔대요. 노드스트롬은 타이어를 판 적이 없는데도 — 환불해 줬다는 거예요. 사실 확인이 안 된 이야기지만, 그 이야기가 퍼질 만큼 노드스트롬 서비스 정신이 그런 거예요.<br><br>자유롭게 둘러보세요. 쇼핑 시작합니다!<br><br><strong>교훈:</strong> 금을 찾으러 갔다가 금을 못 찾아도, 그 과정에서 얻은 것으로 새 출발이 가능합니다. 실패한 것처럼 보이는 여정이 사실 다음 챕터의 씨앗이 되기도 해요.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 파이크 플레이스 아티산 & 한인 맛집</div>
+          <div class="sum-content">공장 제품이 아닌, 지역 장인이 직접 만든 꿀·잼·도자기들. 그리고 시애틀 한인 타운에서 진짜 한국 밥 한 끼. "집 밥이 생각날 때 오는 곳"입니다.</div>
+          <div class="full-content">쇼핑 다음은 먹는 거죠. (웃음)<br><br>파이크 플레이스 안에 아티산 존이 있어요. 대형 마트에서 파는 물건들이 아니에요. 워싱턴주 농가에서 직접 딴 꿀, 손으로 빚은 도자기, 지역 사진작가가 찍은 시애틀 사진, 직접 만든 향초와 잼. 전부 이 지역 사람들이 손으로 만든 거예요.<br><br>제가 좋아하는 말이 있어요 — "Made with hands, sold with story." 손으로 만든 건 항상 이야기가 있어요. 선물할 때 그 이야기를 같이 전하면 그게 진짜 선물이 되죠.<br><br>그리고 오늘 점심 또는 저녁은 한인 타운에서 먹겠습니다. 시애틀 한인 커뮤니티는 생각보다 큽니다. 한인 이민 역사가 100년이 넘어요. 1903년 하와이 사탕수수 농장 이민을 시작으로, 많은 분들이 미국 서부 해안을 따라 올라와서 여기 정착했어요.<br><br>지금 시애틀 한인 타운에 가면 — 삼겹살도 먹을 수 있고, 순두부도 있고, 한국 편의점도 있어요. 어머니 손맛은 아니지만... 시애틀에서 먹는 한국 밥은 나름의 위로가 돼요. 이역만리 타국에서 한국 말 들으면서 밥 먹는 것 자체가 선물이잖아요.<br><br>자, 배고프시죠? 이동합시다.<br><br><strong>교훈:</strong> 손으로 만든 것에는 혼이 담겨 있어요. 대량생산 시대에 사람의 손을 거친 것을 고르는 것은 — 그 사람의 시간과 정성을 존중하는 행위입니다.</div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="script-block">
+          <div class="location">📍 Nordstrom Flagship</div>
+          <div class="sum-content">Nordstrom started as a single shoe store in Seattle in 1901, founded by Swedish immigrant John Nordstrom with gold rush earnings. Now 100+ stores nationwide — the American dream in retail form.</div>
+          <div class="full-content">Before we shop, let me tell you the story of this building. Nordstrom — you know the name. Famously the best-service department store in America.<br><br>The founder, John Nordstrom, arrived in America from Sweden at age 16. No English, no money, no connections. In 1898, he heard about the Klondike Gold Rush and headed to Alaska. Two years of frozen hands and backbreaking labor. He found very little gold — but he saved money. In 1901, he used it to open a shoe store in Seattle.<br><br>That first shoe store was just a few blocks from where we're standing. One immigrant, one tiny shoe shop. A hundred years later: over 100 stores across the US, and one of the most recognizable names in American retail.<br><br>What moves me about Nordstrom isn't the merchandise — it's the service philosophy. Their entire training centers on one idea: give the customer a memorable experience. Not just a transaction — an experience.<br><br>There's a famous — possibly apocryphal — story: a customer once came to return tires. Nordstrom doesn't sell tires. They refunded him anyway. Whether it's true or not, the fact that people believe it says everything about the brand's reputation.<br><br>All right — let's shop!<br><br><strong>Lesson:</strong> Going for gold and not finding gold isn't failure — if you paid attention along the way, you built something better than you planned.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Pike Place Artisan &amp; Korean Dining</div>
+          <div class="sum-content">Handmade goods from local craftspeople — honey, ceramics, jams, photographs. Then a real Korean meal in Seattle's Koreatown, where a 100-year immigrant community still keeps the flavors of home alive.</div>
+          <div class="full-content">After shopping comes eating. Obviously. (Laughter.)<br><br>Inside Pike Place there's an artisan section. These aren't mass-produced goods. Washington state honey harvested by a single beekeeper. Hand-thrown ceramics. Photographs of Seattle taken by a local artist. Handmade candles and preserves. Every item here passed through someone's hands before it reached yours.<br><br>I love this phrase: "Made with hands, sold with story." When something is handmade, it always comes with a story. If you bring one of these home as a gift and share that story — it becomes a real gift, not just an object.<br><br>For lunch or dinner: we're heading to Korean Town. Seattle's Korean community is larger than most people expect. Korean immigration here stretches back over 100 years — beginning with the 1903 sugarcane plantation workers in Hawaii, many of whom eventually made their way up the Pacific coast to Seattle.<br><br>Today's Koreatown has Korean BBQ, soon tofu, bakeries, and even Korean convenience stores. It's not quite your mother's cooking — but eating Korean food in Seattle, surrounded by Korean language and faces, carries its own kind of comfort. When you're far from home, the taste of familiarity is its own gift.<br><br>Hungry? Let's go.<br><br><strong>Lesson:</strong> A handmade thing carries the maker's time and care inside it. Choosing something handmade is a quiet act of respect — for craft, for story, for the human hand.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1박2일 -->
+  <div class="card" id="tour9">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🏔️ 레이니어 & 스노콸미 — 1박2일</div>
+      <div class="card-sub"><span class="tag tag-night">1박2일</span> 1일: 시내+케리공원야경 / 2일: 스노콸미폭포→레이니어 Paradise</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="script-block">
+          <div class="location">📍 1일차 — 케리 공원 야경</div>
+          <div class="sum-content">오늘 밤 이 도시의 불빛을 마음에 담아두세요. 내일 우리는 자연 속으로 들어갑니다. 시애틀은 떠날 때 더 아름다워요 — 멀어질수록 레이니어 산이 더 크게 보이거든요.</div>
+          <div class="full-content">케리 공원에 왔습니다. 시애틀 전경이 다 보이는 곳이에요.<br><br>저는 게스트들을 이 공원에 처음 데려올 때마다 반응이 비슷해요. 다들 말을 잃어요. 스페이스 니들이 저쪽에 서 있고, 다운타운 빌딩들이 불을 켜고, 그 뒤로 퓨젯 사운드가 펼쳐지고, 날이 맑으면 저 끝에 레이니어 산이 은빛으로 빛나요.<br><br>제가 처음 여기 왔던 날 밤을 기억해요. 혼자였어요. 이민 온 지 얼마 안 됐을 때인데, 이 도시가 나를 받아줄지 아직 확신이 없었거든요. 그런데 여기 서서 이 야경을 보니까 — 뭔가 말로 표현 못 할 감정이 올라왔어요. '이 도시에서 뭔가 할 수 있겠구나'라는 느낌 같은 거요.<br><br>오늘 밤 이 빛들을 잘 보세요. 내일 아침 우리는 이 도시를 등지고 산으로 갑니다. 도시를 떠날 때 특이한 일이 일어나요 — 뒤를 돌아보면 시애틀이 더 예뻐 보여요. 그리고 앞을 보면 레이니어가 점점 커져요.<br><br>내일 어떤 하루가 기다리는지 미리 알려드릴게요. 스노콸미 폭포에서 시작해서, 레이니어 Paradise까지 올라갑니다. 해발 1,646미터. 거기서 보는 풍경은 — 설명을 못 해요. 직접 보셔야 해요.<br><br><strong>교훈:</strong> 어떤 풍경은 그 앞에 서야만 이해되는 게 있어요. 인생의 어떤 챕터도 — 멀어진 다음에 더 아름답게 보이기 시작합니다.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 2일차 — 스노콸미 폭포</div>
+          <div class="sum-content">높이 82미터, 나이아가라보다 높습니다. 드라마 '트윈 픽스' 촬영지이기도 하지만, 원주민 스노콸미족에게 이 폭포는 수천 년의 성소입니다. 저 물소리가 이 땅의 기억이에요.</div>
+          <div class="full-content">들리시죠? 주차장에서부터 들려요. 아직 폭포가 안 보이는데 소리가 먼저 옵니다. 그게 스노콸미 폭포예요.<br><br>높이 82미터. 나이아가라 폭포가 57미터니까 — 스노콸미가 더 높아요. 물론 수량은 나이아가라가 훨씬 많지만, 이 폭포만의 아름다움이 있어요. 울창한 숲 속에 숨어 있다가 갑자기 나타나거든요.<br><br>드라마 팬 분들은 알겠지만 '트윈 픽스' — 1990년대 데이비드 린치 감독의 미스터리 드라마 — 오프닝이 여기예요. 지금도 팬들이 전 세계에서 순례 오는 곳이에요.<br><br>그런데 저는 트윈 픽스보다 더 오래된 이야기를 드리고 싶어요. 스노콸미족 원주민들에게 이 폭포는 수천 년 동안 성소였어요. 폭포 소리 자체가 영적인 의미가 있었어요. 족장들이 이 앞에서 기도했고, 중요한 결정을 여기서 했어요. 드라마가 오기 훨씬 전부터 이 물은 흘렀고, 이 땅은 거룩했습니다.<br><br>폭포 앞에 잠깐 서볼게요. 아무 말 하지 말고, 그냥 소리를 들어보세요. 저 소리가 이 땅의 기억이에요. 수천 년치 비와 눈과 얼음이 녹아서 저 소리가 됐어요.<br><br><strong>교훈:</strong> 가장 오래된 것들이 가장 강하게 소리칩니다. 유행이 지나도 남아있는 것 — 그게 진짜예요.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 레이니어 — Paradise (해발 1,646m)</div>
+          <div class="sum-content">레이니어는 4,392미터 — 후지산보다 높고 지금도 활화산입니다. Paradise에 서면 구름이 발 아래 있어요. 두려움과 경외심이 동시에 오는 그 느낌 — 그게 살아있음입니다.</div>
+          <div class="full-content">올라왔습니다. Paradise입니다.<br><br>레이니어 산은 4,392미터. 후지산이 3,776미터니까 더 높아요. 지금도 활화산이에요. 마지막 대규모 분화가 150년 전이고, 지질학자들은 언제든 다시 폭발할 수 있다고 해요. 그 사실을 알고 지금 이 발밑을 봐요.<br><br>여름에 여기 오면 설원이 펼쳐져 있어요. 7월에도 눈이 있어요. 야생화들이 설원 가장자리에 피어나고, 사슴과 마멋이 돌아다녀요. 구름이 발 아래 있습니다. 진짜로요 — 구름이 아래에 있어요.<br><br>제가 처음 Paradise에 올라왔을 때 솔직히 말하면 — 무서웠어요. 이 산이 살아있다는 게, 이게 인간이 정복한 공간이 아니라는 게 느껴졌어요. 우리는 그냥 잠깐 방문하는 거예요.<br><br>원주민들은 이 산을 타코마(Tacoma) 또는 티호마(Tahoma)라고 불렀어요. '신들의 고향'이라는 뜻이에요. 백인 탐험가 조지 밴쿠버가 1792년 이 산을 보고 자기 친구 피터 레이니어 제독의 이름을 붙였어요. 그래서 미국 지도엔 레이니어지만 — 원래 이름은 타코마예요.<br><br>지금 서계신 이 자리에서 주위를 한 바퀴 돌아보세요. 360도 어디를 봐도 — 하늘이에요. 이 느낌, 오늘 집에 가져가세요.<br><br><strong>교훈:</strong> 이 산은 인간의 일정을 신경 쓰지 않아요. 우리가 그 압도적인 존재 앞에 겸손해질 때 — 비로소 진짜 자연을 만납니다. 창조주의 크기를 느끼는 것, 그게 예배의 시작입니다.</div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="script-block">
+          <div class="location">📍 Day 1 — Kerry Park Night View</div>
+          <div class="sum-content">Tonight, hold this city's lights in your memory. Tomorrow we leave for the wilderness. Seattle is most beautiful when you're leaving — because the further you go, the larger Mount Rainier grows.</div>
+          <div class="full-content">Kerry Park. Every time I bring guests here for the first time, the same thing happens: they stop talking. The Space Needle stands over there, the downtown lights are on, Puget Sound stretches beyond, and on a clear night, Mount Rainier glows silver at the far edge.<br><br>I remember the first night I came here alone. I'd just immigrated, and I wasn't sure yet if this city had room for me. Standing here, looking at these lights — something shifted. I felt, for the first time: I can build something here.<br><br>Take a good look tonight. Tomorrow morning we leave this city behind and head into the mountains. Something interesting happens when you leave Seattle — when you look back, the city looks more beautiful. And when you look forward, Rainier keeps getting larger.<br><br>Here's what tomorrow holds: Snoqualmie Falls first, then we drive up to Paradise on Mount Rainier — elevation 5,400 feet. The view up there is something I can't describe. You have to stand in it.<br><br><strong>Lesson:</strong> Some views can only be understood by standing before them. And some chapters of life only become beautiful after you've put distance between you and them.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Day 2 — Snoqualmie Falls</div>
+          <div class="sum-content">At 268 feet — taller than Niagara. Famous for Twin Peaks, but for the Snoqualmie people this has been sacred ground for thousands of years. That sound you hear is the memory of this land.</div>
+          <div class="full-content">You can hear it from the parking lot. Before you see it, you hear it. That's Snoqualmie Falls.<br><br>268 feet tall — taller than Niagara Falls. Niagara moves more water, but Snoqualmie has something Niagara doesn't: it appears suddenly, bursting out of deep forest, like it's been hiding there all along.<br><br>Twin Peaks fans will recognize this. David Lynch's 1990 mystery series opened with this image — and pilgrims still come from all over the world to stand at this railing. I think that's worth noting: a waterfall made a TV show iconic. The natural world keeps stealing the show.<br><br>But I want to give you the older story. For the Snoqualmie people, this place has been sacred for thousands of years. The sound of the water carried spiritual meaning. Tribal leaders came here to pray, to make decisions, to mark important transitions. Long before cameras were pointed at it, this water was holy.<br><br>Let's stand here quietly for a moment. No talking. Just listen. That sound you're hearing — it's thousands of years of rain, snow, and ice, all converging and falling. The land has a memory. This is what it sounds like.<br><br><strong>Lesson:</strong> The oldest things speak the loudest. What remains after every trend passes — that's what's real.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Mt. Rainier — Paradise (5,400 ft)</div>
+          <div class="sum-content">Rainier stands 14,411 feet — taller than Mt. Fuji, still an active volcano. At Paradise, clouds are beneath your feet. That simultaneous fear and awe — that's what it feels like to be truly alive.</div>
+          <div class="full-content">We made it. This is Paradise.<br><br>Mount Rainier: 14,411 feet. Higher than Mount Fuji (12,388 feet). Still an active volcano — geologists say it could erupt again. Last major eruption: about 150 years ago. Feel that under your feet differently now?<br><br>In summer, this area is still snowfield. Even in July. Wildflowers bloom at the edges of the snow, deer and marmots wander through, and the clouds — I want you to look down. The clouds are below us right now. We are above the clouds.<br><br>I'll be honest: the first time I came to Paradise, I was a little afraid. Not afraid of the mountain — afraid of how small I felt. This is not conquered terrain. This is borrowed space. We're just passing through.<br><br>The indigenous peoples called this mountain Tahoma or Tacoma — meaning "home of the gods." British explorer George Vancouver looked at it in 1792 and named it after his friend, Admiral Peter Rainier, who had never seen it. The American map calls it Rainier. The land remembers Tahoma.<br><br>Turn around slowly right where you're standing. 360 degrees. Every direction — sky. This feeling? Take it home.<br><br><strong>Lesson:</strong> This mountain doesn't care about our schedules. When we stand before something that overwhelming and allow ourselves to feel small — that's when we actually encounter the natural world. The beginning of worship is recognizing something so much larger than yourself that you fall silent.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="tour10">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🌉 디셉션패스 & 아일랜드 — 1박2일</div>
+      <div class="card-sub"><span class="tag tag-night">1박2일</span> 1일: 시내 / 2일: 라 콘너→아나코르테스→디셉션패스→옥하버</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="script-block">
+          <div class="location">📍 라 콘너 — 스케이짓 밸리 튤립 마을</div>
+          <div class="sum-content">매년 4월, 스케이짓 밸리 평야가 빨강·노랑·보라로 물듭니다. 워싱턴주 최대 꽃 축제. 튤립은 터키에서 시작해 네덜란드를 거쳐 여기까지 왔습니다.</div>
+          <div class="full-content">차 창문을 열어보세요. 냄새 맡아보셨어요? 봄이에요.<br><br>스케이짓 밸리에 왔습니다. 4월이면 이 평야가 통째로 색이 바뀌어요. 빨강, 노랑, 분홍, 보라, 하양 — 수백만 송이 튤립이 한꺼번에 피어나요. 네덜란드 암스테르담 근교 꽃밭이랑 비교해도 引지 않아요.<br><br>튤립 이야기를 잠깐 할게요. 튤립은 원래 터키예요. 오스만 제국 시대에 귀족들이 키웠어요. 16세기에 네덜란드로 전해졌고 — 그러면서 대사건이 하나 생겼어요. '튤립 버블'이라고 들어보셨어요? 1636년에 튤립 한 뿌리가 집 한 채 값이었어요. 세계 최초의 투기 버블이에요. 그다음 해에 가격이 폭락했고 — 네덜란드 경제가 흔들렸어요.<br><br>그 튤립이 대서양을 건너 미국으로 왔고, 지금 여기 스케이짓 밸리 농부들이 키우고 있어요. 꽃 한 송이 속에 수백 년 역사가 있어요.<br><br>여기 라 콘너(La Conner)라는 작은 마을에서 잠깐 내릴 거예요. 예쁜 갤러리들, 카페들이 있어요. 천천히 걸으면서 봐요. 튤립 사진 찍을 분들은 마음껏 찍으세요 — 이 꽃밭 사진은 어떤 필터도 필요 없어요.<br><br><strong>교훈:</strong> 튤립은 버블도 만들고, 위기도 만들고, 결국 꽃으로 남았어요. 가장 아름다운 것들은 긴 여정과 많은 이야기를 품고 있습니다.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 디셉션패스 다리</div>
+          <div class="sum-content">'속임의 길목'. 1792년 조지 밴쿠버 선장이 막힌 줄 알았다가 사실은 섬과 섬 사이 물길이었음을 발견. 지금은 워싱턴주에서 가장 방문객이 많은 주립공원입니다.</div>
+          <div class="full-content">자, 다리 위에 섰습니다. 아래를 보면 — 숨이 멎어요.<br><br>다리 높이가 180피트(약 55미터)예요. 아래로 태평양 바닷물이 빠르게 흘러요. 왼쪽은 퓨젯 사운드, 오른쪽은 스트레이트 오브 조지아. 이 좁은 해협을 통해 두 바다가 연결돼요.<br><br>'디셉션패스' — 이름이 왜 이렇게 됐냐면요. 1792년 조지 밴쿠버 선장이 배를 이끌고 이 해안을 탐험했어요. 이 해협에 왔는데, 처음엔 막힌 것 같았어요. 돌아가려고 했죠. 그런데 자세히 보니까 — 섬과 섬 사이 좁은 물길이었어요. '아, 속았다!' 그래서 Deception Pass(속임의 길목).<br><br>그런데 저는 이 이름이 참 의미심장하다고 생각해요. 막힌 것 같았는데 알고 보니 길이 있었어요. 속임이라고 했지만 사실 발견이잖아요.<br><br>여러분 인생에도 그런 순간 있지 않았나요? 완전히 막혔다고 생각했는데, 자세히 들여다보니까 — 좁지만 길이 있었던 순간. 그게 디셉션패스예요.<br><br>이 다리는 1935년에 지었어요. 대공황 때, 일자리 없는 청년들을 고용해서 만든 다리예요. 돈이 없던 시대에, 사람의 손으로 만든 다리가 지금도 이렇게 서 있어요.<br><br><strong>교훈:</strong> 막혀 보이는 곳에 종종 가장 극적인 통로가 있습니다. 포기 직전이 가장 가까운 지점일 수 있어요.</div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="script-block">
+          <div class="location">📍 La Conner — Skagit Valley Tulip Fields</div>
+          <div class="sum-content">Every April, this valley erupts in reds, yellows, and purples. Washington's largest flower festival. Tulips traveled from Turkey through the Netherlands across an ocean — and bloomed here.</div>
+          <div class="full-content">Open the window. Do you smell that? That's spring.<br><br>Welcome to Skagit Valley. In April, this entire valley changes color — red, yellow, pink, purple, white. Millions of tulips, simultaneously. It's comparable to the famous fields outside Amsterdam, and it's right here.<br><br>Quick tulip history: tulips originated in Turkey, cultivated by Ottoman nobility. They arrived in the Netherlands in the 16th century — and something remarkable happened. You may have heard of "Tulip Mania." In 1636, a single tulip bulb sold for the price of a house. It was the world's first speculative bubble. The following year, prices collapsed and rattled the Dutch economy.<br><br>That bulb crossed an ocean, reached American soil, and now Skagit Valley farmers grow them here, in this valley, every spring. A single flower carrying centuries of history.<br><br>We'll stop in the small town of La Conner — galleries, cafés, a beautiful waterfront. Take your time. For those who want photos: no filter required. This field is already post-processed by nature.<br><br><strong>Lesson:</strong> The tulip caused economic panic, survived collapse, crossed oceans — and ended up as a flower. The most beautiful things often carry the longest, most complicated stories.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Deception Pass Bridge</div>
+          <div class="sum-content">'The passage that deceives.' In 1792, Captain Vancouver thought it was a dead end — then discovered it was a channel between islands. Now Washington's most visited state park.</div>
+          <div class="full-content">We're standing on the bridge. Look down. Take your time.<br><br>180 feet below us, Pacific tidal water rushes through this narrow channel. To the left: Puget Sound. To the right: the Strait of Georgia. Two bodies of water connected through this one dramatic gap.<br><br>The name: In 1792, Captain George Vancouver was charting this coastline. He approached this channel and it looked like a dead end. He started to turn away. Then he looked again — and realized there was a narrow passage between two islands. "We were deceived!" Hence: Deception Pass.<br><br>Here's what I find meaningful about that name. What appeared to be a wall was actually a doorway. What felt like a dead end was actually passage. He called it deception — but really it was discovery.<br><br>Haven't you had moments like that? A situation that felt completely blocked — and then, if you looked closely enough, you found a narrow path through? That's Deception Pass.<br><br>This bridge was built in 1935, during the Great Depression. Unemployed young men, hired as emergency labor, built this structure by hand. In one of America's darkest economic periods, people built something that still stands 90 years later.<br><br><strong>Lesson:</strong> The most dramatic passages are often the ones that look impassable. The moment before you give up may be the moment closest to breakthrough.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="tour11">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🏝️ 올림픽 반도 & 후안 데 푸카 — 1박2일</div>
+      <div class="card-sub"><span class="tag tag-night">1박2일</span> 1일: Bainbridge 페리→Port Angeles / 2일: 허리케인 리지→열대우림→석양</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="script-block">
+          <div class="location">📍 베인브리지 아일랜드 페리</div>
+          <div class="sum-content">35분 페리. 시애틀 스카이라인이 멀어지면서 올림픽 반도가 가까워집니다. 퓨젯 사운드는 1만 5천 년 전 빙하가 만든 바다예요. 이 배 아래 물이 대륙 크기 얼음의 작품입니다.</div>
+          <div class="full-content">배 타러 왔습니다. 35분 항해예요. 서두르지 마세요 — 이게 투어의 일부입니다.<br><br>페리가 출발하면 시애틀 스카이라인을 뒤에서 볼 수 있어요. 스페이스 니들, 다운타운 빌딩들, 그리고 점점 작아지는 도시. 앞을 보면 올림픽 반도가 가까워져요. 도시에서 자연으로, 배 위에서 전환되는 순간이에요.<br><br>이 바다 이름이 퓨젯 사운드(Puget Sound)예요. 1788년 영국 탐험가 피터 퓨젯이 이 내해를 탐험한 후 그 이름이 붙었어요. 그런데 이 바다가 어떻게 생겼는지 아세요? 1만 5천 년 전, 대륙 크기의 빙하가 이 지형을 깎아서 만들었어요. 빙하가 녹으면서 이 자리에 물이 찼고, 그게 지금 우리가 항해하는 바다예요.<br><br>지금 이 배 안을 한 번 둘러보세요. 자전거 탄 사람들, 노트북 여는 출퇴근 직장인들, 커피 들고 바람 맞는 사람들. 시애틀 사람들에게 이 페리는 그냥 교통수단이에요. 매일 타는 거예요. 그런데 우리에게는 특별한 경험이에요.<br><br>제가 항상 하는 생각이 있어요 — 일상이 누군가에게는 여행이 된다는 것. 우리가 매일 지나치는 것들이 다른 사람 눈에는 기적처럼 보일 수 있다는 것. 그러니까 자기 일상을 낯선 눈으로 보는 연습이 필요해요.<br><br><strong>교훈:</strong> 누군가의 평범한 출퇴근길이 다른 사람에게는 잊지 못할 여행이 됩니다. 당신의 일상 속에도 기적이 숨어 있어요.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 허리케인 리지 (해발 1,676m)</div>
+          <div class="sum-content">구름 위에 있습니다. 맑은 날엔 캐나다 밴쿠버 아일랜드와 후안 데 푸카 해협이 내려다보입니다. 올림픽 국립공원은 유네스코 세계자연유산 — 지구에 이런 곳이 몇 안 남았어요.</div>
+          <div class="full-content">올라왔습니다. 허리케인 리지, 해발 1,676미터입니다.<br><br>왜 허리케인 리지냐고요? 바람이 엄청나게 강해요. 여기서 측정된 최고 풍속이 시속 200킬로미터예요. 허리케인 급이에요. 오늘은 그나마 잔잔한 날이에요. (웃음)<br><br>저 아래를 보세요. 구름이 있죠? 저 구름이 우리 발밑이에요. 구름 아래에 포트 앤젤레스 마을이 있고, 그 너머 파란 것이 후안 데 푸카 해협이에요. 맑은 날엔 저 건너 캐나다 밴쿠버 아일랜드가 보여요.<br><br>올림픽 국립공원 이야기를 드릴게요. 이 공원은 세계에서 가장 독특한 생태계 중 하나예요. 산꼭대기 만년설, 온대 열대우림, 그리고 태평양 해안 — 세 가지 완전히 다른 생태계가 한 공원 안에 있어요. 유네스코가 세계자연유산으로 지정한 이유가 그거예요.<br><br>제가 이 공원을 처음 왔을 때 길을 잃었어요. 진짜로요. 등산로 표지판을 잘못 읽어서 3시간을 엉뚱한 방향으로 걸었어요. 어두워지기 시작할 때 겨우 길을 찾았는데 — 그때 하늘에 별이 쏟아졌어요. 광해(光害)가 없으니까 별이 그냥 쏟아지는 거예요. 길을 잃었기 때문에 그 별을 봤어요. 제대로 갔으면 못 봤을 거예요.<br><br><strong>교훈:</strong> 가끔 길을 잃는 것이 가장 예상치 못한 아름다움으로 안내합니다. 계획에 없던 순간에 생애 최고의 장면이 기다리기도 해요.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 후안 데 푸카 해협 석양</div>
+          <div class="sum-content">이 해협 너머가 캐나다입니다. 석양이 지면 하늘이 오렌지와 보라로 물들고, 운이 좋으면 범고래 떼가 지나갑니다. 이보다 더 좋은 여행의 마지막 장면은 없어요.</div>
+          <div class="full-content">마지막입니다. 후안 데 푸카 해협의 석양 앞에 왔어요.<br><br>후안 데 푸카(Juan de Fuca) — 16세기 그리스계 스페인 탐험가의 이름이에요. 1592년 이 해협을 탐험했다고 기록에 남아 있어요. 그의 본명은 이오안니스 포카스(Ioannis Fokkas), 그리스 사람인데 스페인 선원으로 일했어요. 이민자였어요. 그가 탐험한 이 해협에 500년 후 그의 이름이 남아 있습니다.<br><br>저 너머가 캐나다예요. 국경선이 물 위에 있어요. 눈에는 안 보이지만 저 어딘가에서 미국이 끝나고 캐나다가 시작돼요.<br><br>운이 좋으면 — 오늘 운이 좋을 수도 있어요 — 범고래 떼가 지나가요. 흑백의 거대한 몸이 수면 위로 솟았다가 사라지는 장면. 이 해협은 범고래들의 주요 이동 경로예요. 그냥 우리가 그 경로 옆에 서 있는 거예요.<br><br>해가 지기 시작했어요. 하늘이 오렌지가 됐다가 보라가 됐다가 — 마지막엔 남색으로 바뀌어요. 첫 번째 별이 나올 때쯤 이 여행이 끝납니다.<br><br>저는 이 순간이 제일 좋아요. 손님들이 아무 말 안 하는 시간. 그냥 다들 보고 있는 시간. 말이 필요 없는 아름다움 앞에서 — 우리는 다 같은 사람이에요. 국적도, 나이도, 직업도 상관없이. 석양 앞에 서면 다 평등해지거든요.<br><br>오늘 함께해 주셔서 감사했습니다. 다시 시애틀로 돌아가요.<br><br><strong>교훈:</strong> 말이 필요 없는 아름다움이 있어요. 그 앞에서 우리는 모두 같은 사람입니다. 석양은 어떤 언어도 번역이 필요 없어요 — 그것이 하나님이 모든 사람에게 주신 공통 언어입니다.</div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="script-block">
+          <div class="location">📍 Bainbridge Island Ferry</div>
+          <div class="sum-content">35 minutes on water. Seattle's skyline shrinks behind you as the Olympic Peninsula rises ahead. Puget Sound was carved by glaciers 15,000 years ago — the water beneath this ferry is the work of continental ice.</div>
+          <div class="full-content">We're taking a ferry. 35 minutes on the water. Don't rush — this ride is part of the tour.<br><br>As we pull away, you'll see Seattle's skyline from behind: the Space Needle, the downtown towers, the city shrinking into the distance. Ahead of you, the Olympic Peninsula grows closer. It's the moment of transition — urban to wild, happening slowly on the water.<br><br>This body of water is Puget Sound, named after British explorer Peter Puget who charted it in 1788. But how did it form? About 15,000 years ago, glaciers the size of continents slowly ground down this landscape and carved these channels. When the ice melted, the sea moved in. That's what we're sailing on right now: the memory of an ice age.<br><br>Look around the ferry. Cyclists, commuters with laptops, people with coffee facing the wind. For Seattleites, this is just how they get to work. Ordinary. But for us — this is an experience we'll remember.<br><br>I think about this a lot: someone's daily commute is someone else's vacation. The things we pass by every day without noticing can be miracles to a fresh set of eyes. That's worth remembering when we go back to our own routines.<br><br><strong>Lesson:</strong> Your ordinary Tuesday might be someone else's once-in-a-lifetime. Look at your daily life with new eyes — the miracles don't disappear just because you've stopped noticing them.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Hurricane Ridge (5,500 ft)</div>
+          <div class="sum-content">We're above the clouds. On clear days, Vancouver Island and the Strait of Juan de Fuca are visible below. Olympic National Park is a UNESCO World Heritage Site — there are very few places left on earth like this.</div>
+          <div class="full-content">We've arrived. Hurricane Ridge — 5,500 feet above sea level.<br><br>Why "Hurricane"? The winds here can reach 125 mph. Category-level gusts. Today is actually calm for this ridge. (Laughter.)<br><br>Look down. See those clouds below us? That's not fog — those are actual clouds, and we're above them. Below those clouds is the town of Port Angeles. Beyond that, the blue you see is the Strait of Juan de Fuca. On a clear day, you can see Vancouver Island in Canada from here.<br><br>Olympic National Park is one of the most ecologically unusual places on earth. In a single park: glaciated mountain peaks, temperate rainforest, and Pacific coastline — three completely distinct ecosystems, side by side. That's why UNESCO designated it a World Heritage Site.<br><br>I have to confess: the first time I came here, I got lost. Genuinely. I misread the trail signs and walked three hours in the wrong direction. As it got dark, I finally found the path — and that's when the sky opened up. No light pollution out here. The stars don't just appear; they pour. I saw that sky because I got lost. If I'd gone the right way, I'd have been back at the trailhead before dark, and I would have missed it entirely.<br><br><strong>Lesson:</strong> Sometimes getting lost leads you to the most unexpected beauty. The unplanned moment is often where the best memories live.</div>
+        </div>
+        <div class="script-block">
+          <div class="location">📍 Strait of Juan de Fuca — Sunset</div>
+          <div class="sum-content">Beyond this water is Canada. At sunset the sky turns orange and violet. On lucky evenings, pods of orca pass through. There is no better final scene for a journey.</div>
+          <div class="full-content">This is the last stop. We're standing at the Strait of Juan de Fuca for sunset.<br><br>Juan de Fuca — the name belongs to a 16th-century Greek-Spanish explorer. His real name was Ioannis Fokkas, a Greek man who sailed under the Spanish flag. He explored this strait in 1592. An immigrant, in a word. Five hundred years later, his name is still on this water.<br><br>Across that water is Canada. The border runs somewhere out there — invisible on the surface, but real. Somewhere between here and the far shore, America ends and Canada begins.<br><br>If we're lucky tonight — and we might be — orcas will pass through. This strait is a major migration corridor for killer whale pods. A black-and-white body rising from the surface, then gone. We're just standing at the edge of their route, hoping to witness it.<br><br>The sun has started its descent. The sky will move from orange to violet to deep navy. When the first star appears, this journey is nearly over.<br><br>This is my favorite moment of every tour. When everyone stops talking. When the view does all the work. In front of beauty that needs no commentary, we are all the same people — regardless of nationality, age, or career. A sunset is the great equalizer. No translation required.<br><br>Thank you for spending these days with me. Let's head back to Seattle.<br><br><strong>Lesson:</strong> There is beauty that needs no words. Standing before it, we are all equal. The sunset speaks every language — it is the common tongue given to all of humanity, a reminder that the same Creator made all of us.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 드라이빙 스크립트 ===== -->
+<div class="section" id="driving-section">
+  <div class="section-title">🚗 드라이빙 스크립트 — 차 안 이야기</div>
+
+  <div class="card" id="drive1">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">☔ 왜 비가 많이 올까?</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko"><div class="script-block">
+        <div class="sum-content">시애틀 사람은 우산을 안 써요. 우산 든 사람 보이면 관광객 표시입니다. 사실 강수량은 뉴욕보다 적은데, 비가 자주 와서 연 150일 이상 흐려요. 올림픽 산맥이 만든 지형의 결과예요.</div>
+        <div class="full-content">제가 처음 시애틀에 왔을 때 한국에서 챙겨온 우산을 폈는데, 옆에 있던 시애틀 사람이 저를 보고 피식 웃었어요. 나중에야 알았죠 — 시애틀에서 우산 드는 건 관광객 인증입니다. (웃음)<br><br>진짜 시애틀 사람은 비가 와도 그냥 걸어요. 왜냐고요? 비가 어차피 조금씩 오거든요. 세차게 쏟아지는 게 아니라 안개처럼 살살 내려요. 우산을 폈다가 접었다가 하는 게 더 귀찮을 정도예요.<br><br>재미있는 사실 하나 — 시애틀의 연간 강수량이 뉴욕보다 적어요. 뉴욕이 1,150mm, 시애틀이 940mm. 그런데 왜 '비의 도시'냐고요? 비가 <em>자주</em> 오거든요. 연간 150일 이상 흐리거나 비가 와요. 조금씩, 꾸준히, 끈질기게.<br><br>이유는 지형이에요. 서쪽에 올림픽 산맥이 있어서 태평양에서 오는 습기를 막아요. 시애틀은 딱 그 경계선에 있습니다. 산 하나가 도시의 성격을 만든 거예요.<br><br>교훈 하나 드릴게요. 비가 많이 오면 사람들은 밖에 나가기 싫어하고, 집 안에 머물고, 생각하고, 뭔가를 만들기 시작해요. 시애틀의 커피 문화, 음악, 테크 산업 — 다 비가 만든 겁니다. 어두운 날씨가 세상을 바꾼 아이디어들을 낳았어요. 여러분 인생의 '비 오는 계절'이 사실 가장 창의적인 시간일 수 있어요.</div>
+      </div></div>
+      <div class="en"><div class="script-block">
+        <div class="sum-content">Real Seattleites don't carry umbrellas — spotting one marks a tourist. Seattle gets less annual rain than New York, but it's overcast 150+ days a year. The Olympic Mountains created this climate.</div>
+        <div class="full-content">When I first moved to Seattle, I opened my umbrella in a light drizzle — and a local gave me that look. The smile that says: tourist. I learned quickly. In Seattle, carrying an umbrella is an identity statement. It says you're not from here. (Laughter.)<br><br>Here's the thing about Seattle rain: it doesn't attack you. It just... exists. A constant fine mist, like someone who keeps texting instead of calling. You barely notice it until you're already wet. Seattleites have simply decided that getting slightly damp is not a problem worth solving.<br><br>The geography: the Olympic Mountains to the west block incoming Pacific moisture. Seattle sits right on the edge of that rain shadow — just enough to catch the drizzle but not the full storm. The result is more than 150 grey or drizzly days per year, even though the total annual rainfall is less than New York City's.<br><br>Here's what I find remarkable: that grey, persistent, stay-indoors weather produced Starbucks, grunge music, Amazon, and Microsoft. When you can't go outside, you stay in and build things. Every dark season in your life might be secretly your most creative one.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card" id="drive2">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">☕ 왜 커피숍이 이렇게 많을까?</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko"><div class="script-block">
+        <div class="sum-content">시내에만 스타벅스 200개, 독립 커피숍 수백 개. 비가 만든 문화예요. 그런데 시애틀 사람들은 스타벅스보다 동네 카페를 선호합니다. "스타벅스는 관광객 것."</div>
+        <div class="full-content">제가 시애틀에 살면서 제일 좋아하는 것 중 하나가 동네 카페예요. 창 밖에 비가 오고, 따뜻한 커피 한 잔 들고 앉아서 책 읽거나 사람들 구경하는 것 — 이게 시애틀 문화예요.<br><br>시내에 스타벅스 매장이 200개가 넘어요. 걷다 보면 블록 하나에 스타벅스가 두 개인 경우도 있어요. 그런데 웃긴 게, 시애틀 사람들은 스타벅스를 잘 안 가요. "스타벅스는 관광객 것"이라는 인식이 있거든요. 진짜 시애틀 커피는 동네 골목 작은 카페에 있어요. 바리스타가 얼굴 보면 주문 안 물어보고 그냥 만들어 주는 그런 곳이요.<br><br>스타벅스 이야기를 좀 더 하면 — 1971년 파이크 플레이스에서 세 명의 선생님이 커피 원두 파는 가게로 시작했어요. 지금은 전 세계 84개국, 매장 수 35,000개가 넘습니다. 아침에 일어나서 지구 어딘가에서 스타벅스 커피가 만들어지지 않는 시간이 없어요.<br><br>근데 여기서 교훈이 있어요. 스타벅스 초창기 창업자들은 "우리 커피숍 안 만들어, 원두만 팔아"라고 했어요. 변화를 거부했죠. 하워드 슐츠가 새 비전을 제시했을 때 거절했어요. 결국 슐츠가 회사를 사버렸습니다. 비전을 알아보지 못하면, 비전이 당신을 넘어가 버려요.</div>
+      </div></div>
+      <div class="en"><div class="script-block">
+        <div class="sum-content">200+ Starbucks downtown, hundreds of independent cafés. All born from rain culture. Locals prefer neighborhood spots — "Starbucks is for tourists."</div>
+        <div class="full-content">One of my favorite things about living in Seattle: on a grey afternoon, finding a small café, getting a coffee, sitting by the window, watching rain fall on the street. That's not tourism — that's the actual life here.<br><br>There are over 200 Starbucks in downtown Seattle. Some blocks have two. And yet real Seattleites almost never go there. "Starbucks is for tourists" — they say it completely sincerely. The real Seattle coffee experience is in the neighborhood spots, where the barista remembers you, knows your order, and hands it over before you've finished saying hello.<br><br>The Starbucks story: three teachers, a tiny store in 1971, selling coffee beans — not drinks. Today: 84 countries, 35,000 locations. At any given second, someone somewhere on earth is ordering a Starbucks.<br><br>The lesson worth remembering: the original Starbucks founders refused to change their model when Howard Schultz brought them a new vision. They turned him down. Schultz raised money and bought the whole company. When you can't see someone else's vision, sometimes the vision simply walks around you and moves forward without you.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card" id="drive3">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🎸 왜 시애틀에서 록 음악이 나왔나?</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko"><div class="script-block">
+        <div class="sum-content">1990년대 너바나, 펄 잼, 사운드가든 — 왜 시애틀이었나? ①끝자리 도시라 상업적 압박 없음 ②비 때문에 실내에서 기타 ③싼 창고. 소외된 커트 코베인의 외침에 전 세계 소외된 청년들이 반응했습니다.</div>
+        <div class="full-content">저는 음악을 좋아해서 이 이야기를 할 때 특히 신이 나요. 1991년, 너바나의 앨범 Nevermind가 나왔을 때 제가 처음 들었던 기억이 있어요. 뭔가 전혀 다른 소리였거든요. 다듬어지지 않고, 거칠고, 솔직한 소리. 그게 그런지(Grunge)였습니다.<br><br>왜 하필 시애틀이었을까요? 세 가지 이유예요.<br><br><strong>첫째, 변방이었어요.</strong> 1980년대 시애틀은 미국 음악 산업에서 완전히 외진 곳이었습니다. 레코드 회사 직원이 안 와요. 상업적 압박이 없으니까 음악이 팔리기 위해 예뻐질 필요가 없었어요. 순수하게 하고 싶은 말을 했습니다.<br><br><strong>둘째, 비.</strong> 10월부터 4월까지 밖에 나가기 싫잖아요. 방에서 기타를 쳐요. 연습하고 또 연습해요. 시간이 많고, 할 것도 없으면 음악이 깊어집니다.<br><br><strong>셋째, 빈 창고.</strong> 1980년대 시애틀 경제가 나빠서 임대료가 쌌어요. 청년들이 창고를 빌려서 매일 밤 연주했습니다.<br><br>커트 코베인 이야기를 잠깐 할게요. 그는 워싱턴주 애버딘이라는 작은 도시 출신이에요. 부모님이 이혼하고 어디에도 속하지 못한 채 시애틀에 왔어요. 소외되고, 화나고, 세상에 할 말이 가득한 청년이었습니다. 그가 지른 외침에 전 세계 소외된 청년들이 "나도 그래!"라고 반응했어요.<br><br>교훈 — 변방에 있다고 실망하지 마세요. 중심에서 멀리 있을수록 자기 목소리가 더 순수하게 나올 수 있어요. 세상을 바꾼 소리는 종종 아무도 주목하지 않는 곳에서 나왔습니다.</div>
+      </div></div>
+      <div class="en"><div class="script-block">
+        <div class="sum-content">Early 1990s: Nirvana, Pearl Jam, Soundgarden. Why Seattle? ①Far from industry pressure ②Rain kept them indoors with guitars ③Cheap warehouses. Kurt Cobain's outsider cry found every outsider in the world.</div>
+        <div class="full-content">I love telling this story because I love music — and this is one of the greatest music stories ever told. In 1991, Nirvana released Nevermind. I remember the first time I heard it. Something completely different: unpolished, raw, honest in a way that felt almost dangerous. That was grunge. And it came from right here.<br><br>Three reasons why Seattle:<br><br><strong>One: nobody was watching.</strong> In the 1980s, Seattle was completely off the music industry's radar. No label scouts. No A&R reps flying in from New York. With zero commercial pressure, music didn't need to be pretty or marketable. It could just be true.<br><br><strong>Two: the rain.</strong> October through April, you don't want to go outside. You pick up a guitar. You practice. Then you practice more. Long grey winters produced musicians with a lot of hours and a lot of things to say.<br><br><strong>Three: cheap warehouses.</strong> The 1980s recession left empty industrial buildings all over Seattle. Young bands rented them for almost nothing and played every night.<br><br>Kurt Cobain grew up in Aberdeen, a small town in Washington state. His parents divorced when he was nine. He never quite fit anywhere. He came to Seattle carrying all of that — the displacement, the anger, the feeling of not belonging. When he screamed it out, every alienated young person on earth heard themselves in it.<br><br>The lesson: being on the margins isn't a disadvantage. The further you are from the center, the more purely your own voice comes through. The sounds that changed the world usually started somewhere nobody was paying attention.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card" id="drive4">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🦅 원주민과 시애틀 이름의 기원</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko"><div class="script-block">
+        <div class="sum-content">시애틀 이름은 드와미시 추장 '시알스'에서 왔어요. 추장은 처음에 반대했고, 동의 조건으로 매년 보상금을 요구했지만 지켜진 적 없습니다. 지금도 드와미시족은 연방 정부 인정을 못 받고 있어요.</div>
+        <div class="full-content">자, 퀴즈 하나요. 시애틀이라는 이름은 어디서 왔을까요? (잠깐 쉬고) 드와미시족 추장 '시알스(Sealth)'의 이름입니다. 발음이 변해서 시애틀(Seattle)이 됐어요.<br><br>이 추장은 굉장히 지혜로운 분이었어요. 1854년에 남긴 연설이 지금도 인용됩니다. "땅은 팔 수 없다. 공기는 팔 수 없다. 우리는 땅을 소유한 것이 아니라, 땅에 속한 것이다." 이 말이 전 세계 환경운동의 철학적 기초가 됐어요.<br><br>그런데 정작 본인은 자기 이름이 도시 이름이 되는 걸 원하지 않았어요. 드와미시 문화에서는 죽은 사람의 이름을 부르면 그 영혼이 편히 쉬지 못한다고 믿거든요. 도시 사람들이 매일 그 이름을 부를 텐데, 그러면 영원히 쉬지 못하는 거잖아요.<br><br>결국 조건을 내걸었어요 — "내 이름을 써도 좋은데, 대신 매년 내 후손들에게 보상금을 내라." 그 약속은 단 한 번도 지켜진 적이 없습니다.<br><br>그리고 지금도 드와미시족은 미국 연방 정부로부터 공식 부족으로 인정을 받지 못하고 있어요. 이 도시에 이름을 준 사람들이, 이 나라에서 아직도 인정받지 못한 채 싸우고 있는 겁니다. 시애틀이라는 이름이 담긴 모든 엽서, 모든 주소, 모든 스타벅스 컵 — 그 안에 이 역사가 담겨 있어요.</div>
+      </div></div>
+      <div class="en"><div class="script-block">
+        <div class="sum-content">Seattle is named after Chief Sealth of the Duwamish. He opposed it — in his culture, saying a dead person's name disturbs their rest. He agreed on condition of annual payment. Never paid. The Duwamish still await federal recognition.</div>
+        <div class="full-content">Quick question for the group: where does the name Seattle come from? (Pause.) It comes from Chief Sealth — S-E-A-L-T-H — of the Duwamish people. The pronunciation shifted over time and became Seattle.<br><br>Chief Sealth left behind one of the most quoted speeches in American history. "The earth does not belong to us. We belong to the earth. You cannot own the freshness of the air or the sparkle of the water." These words became foundational to the global environmental movement — spoken in 1854, by a man whose people had lived this philosophy for thousands of years.<br><br>And yet: he didn't want his name on the city. In Duwamish culture, speaking the name of the dead disturbs the spirit's rest. If an entire city uses your name, every single day, forever — you never rest. He agreed, reportedly, only on the condition of an annual payment to his people. That payment was never made. Not once.<br><br>Today, the Duwamish Tribe still lacks federal recognition as a Native American tribe — which would give them land rights, healthcare access, and legal standing. The people whose chief named this city are still fighting to be officially acknowledged by the country that carries his name.<br><br>Every Seattle postcard, every coffee cup, every address label — it all carries a name that was borrowed without honoring the one who gave it. Worth knowing, as you enjoy this beautiful city.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card" id="drive5">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🛳️ 골드러시와 시애틀의 팽창</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko"><div class="script-block">
+        <div class="sum-content">1897년 7월 17일, 알래스카 금을 실은 배가 시애틀 항구에 들어오자 48시간 만에 전국에서 사람들이 몰렸어요. 금 캔 사람보다 장비를 판 시애틀 상인이 더 벌었습니다 — 아마존의 원형이에요.</div>
+        <div class="full-content">1897년 7월 17일 오전 6시. 포틀랜드 호라는 배가 시애틀 항구에 닻을 내렸어요. 갑판에 있던 사람들이 가방과 상자를 들고 내렸는데 — 그 안에 금이 가득 들어 있었습니다. 알래스카 클론다이크에서 캔 황금이었어요.<br><br>그 날 오후, 신문사 직원이 말 타고 거리를 달리며 외쳤습니다. "황금이다! 알래스카에서 황금이!" 다음 날 신문 1면 헤드라인: <strong>"황금! 황금! 황금!"</strong><br><br>48시간이 지나지 않아 전국에서 사람들이 시애틀로 몰려들었어요. 왜냐고요? 알래스카로 가는 배가 시애틀에서 출발하거든요. 시애틀이 골드러시의 관문이 된 겁니다. 당시 시애틀 시장도 시청 열쇠를 문에 걸어두고 알래스카로 떠났다는 이야기가 있어요. (웃음)<br><br>자 — 여기서 제일 재밌는 이야기가 나와요. 금을 캔 사람들은 얼마나 벌었을까요? 대부분 빈손으로 돌아왔어요. 알래스카는 혹독하게 추웠고, 금을 찾는 건 생각보다 훨씬 어려웠거든요.<br><br>반면 시애틀 상인들은 어마어마하게 벌었어요. 금 캐러 가는 사람들한테 장갑, 삽, 텐트, 음식을 팔았거든요. 성공하든 실패하든 장비는 필사야 했으니까요.<br><br>이게 지금 아마존하고 똑같지 않나요? 아마존은 물건을 파는 게 아니에요. 물건 파는 사람들에게 판매 플랫폼과 물류를 파는 겁니다. 장사꾼들에게 장비를 판 시애틀 상인의 DNA가 130년 후 아마존으로 이어진 거예요.<br><br>교훈: 금광을 찾으러 가지 말고, 금 캐러 가는 사람들에게 삽을 파세요.</div>
+      </div></div>
+      <div class="en"><div class="script-block">
+        <div class="sum-content">July 17, 1897: a ship carrying Klondike gold docked in Seattle. Within 48 hours the nation rushed here — Seattle was the gateway to Alaska. The merchants who sold shovels got richer than the miners. The Amazon model, 130 years early.</div>
+        <div class="full-content">July 17, 1897. 6am. The steamship Portland docked in Seattle Harbor. Passengers walked off carrying bags and boxes heavy with gold — Klondike gold from Alaska's Yukon Territory.<br><br>That afternoon, a newspaper boy rode through the streets on horseback shouting the news. Next morning's front page in massive type: <strong>GOLD! GOLD! GOLD!</strong><br><br>Within 48 hours, people were streaming into Seattle from across the country. Why Seattle? Because the boats to Alaska left from here. Seattle became the gateway — the last American city before the frontier. The city's own mayor reportedly hung the city hall keys on the door and left for Alaska himself. (Laughter.)<br><br>Now here's the best part of the story: how many of those gold seekers actually got rich? Almost none. Alaska was brutally cold. The gold was real but scarce and hard to reach. Most men came home with empty pockets, frostbitten fingers, and stories.<br><br>The people who actually got rich? The Seattle merchants. They sold shovels, picks, wool coats, canned food, tents — equipment that every gold seeker needed whether they found gold or not. Success or failure, the gear still had to be bought.<br><br>Sound familiar? That's the Amazon business model. Amazon doesn't just sell products — it sells the platform, the infrastructure, the logistics to every seller. In the gold rush, Seattle merchants sold the means of production to dreamers. In 2024, Amazon does exactly the same thing at global scale. The DNA of 1897 lives in every Amazon warehouse.<br><br>The lesson: don't go looking for the gold mine. Sell shovels to the people who are.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card" id="drive6">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">✈️ 보잉과 시애틀</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko"><div class="script-block">
+        <div class="sum-content">윌리엄 보잉이 1916년 호숫가 창고에서 비행기를 만들기 시작했어요. 1971년 직원 6만 명 해고 후 광고판이 나왔습니다: <strong>"마지막에 떠나는 사람, 불 꺼줘."</strong> 그래도 시애틀은 살아남았어요.</div>
+        <div class="full-content">윌리엄 보잉 이야기를 좋아해요. 1916년, 그는 목재와 천으로 비행기를 만들기 시작했어요. 장소는 레이크 유니언 호수 옆 창고 — 지금도 그 자리에 항공 박물관이 있어요. 당시엔 진짜 나무로 비행기 뼈대를 만들고 천을 씌웠습니다.<br><br>보잉은 2차 세계대전을 거치며 급성장했고, B-17 폭격기와 B-29를 만들면서 시애틀의 대표 기업이 됐어요. 전성기엔 시애틀 경제의 절반이 보잉이었습니다.<br><br>그러다 1971년에 충격이 왔어요. 항공 산업 불황과 경기침체가 겹치면서 보잉이 직원 6만 명을 해고했어요. 6만 명이요. 시애틀 인구의 상당수가 갑자기 직장을 잃은 겁니다. 도시 전체에 충격이 왔어요.<br><br>그때 어떤 사람이 시내 광고판에 이런 글을 붙였어요: <strong>"시애틀을 떠나는 마지막 사람 — 불 꺼줘 주세요."</strong><br><br>웃기죠? 근데 그게 얼마나 절망적인 상황인지도 느껴지죠? 이 광고판이 시애틀 역사에서 가장 유명한 문장 중 하나가 됐어요. 시애틀의 어두운 유머, 자조적인 위트가 담겨 있어요.<br><br>그런데 불은 꺼지지 않았어요. 1975년 마이크로소프트가 왔고, 1994년 아마존이 창고에서 시작했고, 스타벅스가 전 세계로 뻗어나갔어요. 교훈: 가장 어두운 밤이 지나야 새벽이 옵니다. 시애틀이 그 살아있는 증거예요.</div>
+      </div></div>
+      <div class="en"><div class="script-block">
+        <div class="sum-content">William Boeing built planes in a lakeside boathouse in 1916. In 1971, 60,000 workers were laid off. A billboard appeared: <strong>"Will the last person leaving Seattle please turn out the lights."</strong> The lights stayed on.</div>
+        <div class="full-content">I love this story. William Boeing — a timber man by trade — started building airplanes in 1916 in a boathouse on Lake Union. Wood frame, fabric skin. He and his friend George Conrad Westervelt built the first plane by hand in that building. You can visit the site today — it's a maritime heritage museum now.<br><br>Boeing grew through World War II, manufacturing the B-17 and B-29 bombers. By the 1960s, Boeing was Seattle. Half the city's economy ran through that company. If you worked in Seattle, chances were you knew someone at Boeing.<br><br>Then 1971 arrived. Aerospace industry collapse, recession, government contract cancellations. Boeing laid off 60,000 workers. Sixty thousand people. In a city that size, that's not just an economic statistic — that's neighbors, church members, your kids' friends' parents, all losing their jobs at once.<br><br>Someone put up a billboard on the highway out of town: <strong>"Will the last person leaving Seattle please turn out the lights."</strong><br><br>It's funny. And devastating. That combination — humor in the face of real pain — is very Seattle. The billboard became one of the most famous images in the city's history.<br><br>But the lights didn't go out. Microsoft came. Amazon came. Starbucks went global. The people who stayed rebuilt something different — and better. Sometimes a city, like a person, has to lose what it thought defined it before it discovers what it actually is.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card" id="drive7">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🐟 연어와 시애틀</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko"><div class="script-block">
+        <div class="sum-content">연어는 태어난 강의 냄새를 기억해 수백 킬로미터를 거슬러 돌아와 알을 낳고 죽습니다. 원주민들에게 연어는 음식이 아니라 '돌아옴'의 철학이었어요.</div>
+        <div class="full-content">파이크 플레이스 마켓에서 연어 보셨죠? 시애틀을 진짜 이해하려면 저 연어를 이해해야 해요.<br><br>연어의 일생이 놀라워요. 민물 강에서 태어나서, 바다로 내려가요. 태평양에서 2~5년을 삽니다. 그러다 어느 날 — 자기가 태어난 바로 그 강으로 돌아와요. 수백, 때로는 수천 킬로미터를 거슬러서요. 도중에 폭포도 뛰어 넘어요. 그리고 알을 낳고, 죽습니다.<br><br>어떻게 찾아올까요? 과학자들은 후각이라고 해요. 태어난 강의 물 냄새 — 정확히는 물 속 미네랄과 미생물의 화학적 구성을 기억해요. 같은 강의 지류도 구별할 정도로 정확해요. 수년간 태평양을 떠돌다가, 고향 냄새를 맡고 돌아오는 거예요.<br><br>드와미시 원주민들에게 연어는 단순한 음식이 아니었어요. 신성한 존재였습니다. '돌아오는 것' — 아무리 멀리 가도, 처음 시작한 곳으로 반드시 돌아온다는 것. 이게 이 땅의 철학이에요.<br><br>저는 이 이야기를 할 때마다 이런 질문이 생겨요. 나는 어디서 왔고, 어디로 돌아가야 할까? 여러분은 어떠세요? 아무리 멀리 가도 결국 내가 돌아가야 할 곳이 있다면 — 그곳이 어디인가요?</div>
+      </div></div>
+      <div class="en"><div class="script-block">
+        <div class="sum-content">Salmon are born in a river, migrate to the ocean for years, then return to the exact stream where they were born — guided by smell memory. To Indigenous peoples, the salmon embodied the philosophy of return.</div>
+        <div class="full-content">You saw the salmon at Pike Place Market. To really understand Seattle, you need to understand that fish.<br><br>A salmon's life is extraordinary. Born in a freshwater river. Migrates downstream to the ocean. Spends two to five years in the open Pacific — thousands of miles from home. Then one day, something pulls it back. It returns to the exact river, the exact tributary, the exact stretch of water where it was born. Hundreds, sometimes thousands of miles upstream. It leaps waterfalls. It fights the current. It arrives, spawns, and dies.<br><br>How does it find its way? Scientists say smell memory. The salmon memorizes the precise chemical signature of its birth water — the specific minerals, the specific microorganisms — and navigates back across an ocean using that memory alone. Accurate enough to distinguish between two branches of the same river.<br><br>To the Duwamish and other Indigenous peoples of this region, salmon were sacred. Not just food — sacred. The return of the salmon every year was a ceremony, a reminder that what goes out comes back. That no matter how far you travel, the beginning calls you home.<br><br>I think about this every time I tell it: where did I come from, and where am I supposed to return to? After all your travels, your career, your years of building — is there something you're being called back toward? The salmon doesn't ask whether it's worth it. It just goes home.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card" id="drive8">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🌋 화산 위에 세운 도시</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko"><div class="script-block">
+        <div class="sum-content">저 아름다운 레이니어 산이 활화산입니다. USGS가 '미국에서 가장 위험한 화산'이라 부르고, 폭발하면 시속 60km 라하르(화산 진흙)가 내려와요. 그래도 시애틀 사람들은 태연합니다.</div>
+        <div class="full-content">저기 레이니어 산 보이시죠? 저 눈 덮인 아름다운 산이요. 제가 이 투어에서 제일 즐기는 순간 중 하나가 이 장면이에요. 왜냐면 아직 말 안 했거든요 — 저게 활화산입니다. (잠깐 멈춤)<br><br>미국 지질조사국이 레이니어를 "미국에서 가장 위험한 화산"이라고 부릅니다. 왜 가장 위험하냐면, 높이가 4,392미터인데 정상부터 중턱까지 빙하로 덮여 있어요. 만약 폭발하면, 뜨거운 화산재와 용암이 빙하를 녹이면서 엄청난 양의 진흙과 돌이 섞인 홍수가 시속 60킬로미터로 산 아래로 내려와요. 이걸 '라하르(lahar)'라고 해요.<br><br>그 경로에 15만 명 이상이 살고 있어요. 타코마, 오번, 퓨얄럽 같은 도시들이요. 전문가들은 경보 발령 후 대피 시간이 30분밖에 안 된다고 해요.<br><br>제가 시애틀 사람들한테 물어봤어요. "무섭지 않아요?" 대부분 이렇게 답해요. "마지막 대규모 폭발이 1,000년 전이에요. 경보 시스템 있어요. 그리고..." 그리고 어깨 한번 으쓱. (웃음)<br><br>그게 시애틀 사람들이에요. 화산 옆에 살면서 아름답다고 감탄하는 사람들. 위험을 알면서도 여기서 사는 이유가 그 위험보다 이 아름다움이 더 크기 때문이에요. 우리 인생도 그렇지 않나요? 위험 없는 삶은 아름답지 않아요.</div>
+      </div></div>
+      <div class="en"><div class="script-block">
+        <div class="sum-content">That beautiful snow-capped mountain is an active volcano. The USGS calls it "America's most dangerous volcano." An eruption would send lahars — volcanic mudflows — at 40mph through valleys where 150,000+ people live. Seattleites respond with a shrug.</div>
+        <div class="full-content">See that gorgeous snow-capped mountain? Mount Rainier. One of my favorite moments on this tour is what happens next — because I haven't told you yet. That mountain is an active volcano. (Pause for effect.)<br><br>The United States Geological Survey officially calls Mount Rainier "one of the most dangerous volcanoes in the world." Here's why: it stands 14,411 feet high, and from summit to mid-slope, it's covered in glaciers — more glacier ice than any other mountain in the lower 48 states. If it erupts, the heat instantly melts those glaciers. That water mixes with volcanic rock and ash into a lahar — a volcanic mudflow — moving at 40 miles per hour down every valley leading away from the mountain.<br><br>The population in those valleys: over 150,000 people. Towns like Tacoma, Auburn, and Puyallup sit in the direct path. Scientists estimate that residents would have approximately 30 minutes to evacuate after an alarm is triggered.<br><br>I've asked Seattle locals: "Doesn't that scare you?" Most of them say: "Last major eruption was about 1,000 years ago. We have monitoring systems. And—" and then a shrug. (Laughter.)<br><br>That's the Seattle personality. Living next to a volcano and still calling it beautiful. Knowing the risk and choosing to stay because the beauty is worth it. There's something honest about that — a city that decided the reward of this view is worth the risk of what it's attached to. Isn't that true of most things worth having?</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card" id="drive9">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">💻 왜 시애틀이 테크 도시가 됐나?</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko"><div class="script-block">
+        <div class="sum-content">빌 게이츠는 1968년 시애틀 레이크사이드 고교에서 세계 최초로 컴퓨터를 만진 10대 중 하나였습니다. 그 경험이 마이크로소프트 → 아마존 → AI 혁명으로 이어졌어요. 비가 세상을 바꿨습니다.</div>
+        <div class="full-content">빌 게이츠 이야기 하나만 해도 투어 시간이 부족할 것 같아요. 핵심만 말할게요.<br><br>1968년, 빌 게이츠는 시애틀 레이크사이드 고등학교 13살 학생이었어요. 그 학교 어머니회가 바자회를 열어서 컴퓨터 대여 시간을 샀어요. 당시 전 세계에서 컴퓨터를 써본 10대가 몇 명이나 됐을까요? 거의 없었어요. 대학 연구소에나 있던 물건이거든요. 게이츠는 그 극소수 중 하나였습니다.<br><br>게이츠는 컴퓨터에 완전히 빠져들었어요. 밤에 기숙사를 몰래 빠져나와 컴퓨터실에 들어갔다가 정학을 먹기도 했어요. 그리고 하버드를 중퇴하고 폴 앨런과 함께 마이크로소프트를 만들었습니다.<br><br>마이크로소프트가 시애틀 경제를 바꿨어요. 그 성공이 아마존을 불러들였고, 아마존이 성공하자 구글, 메타, 애플, 엔비디아가 모두 시애틀에 오피스를 열었습니다. 지금 시애틀은 전 세계 AI 연구의 중심지 중 하나예요.<br><br>웃긴 이야기 하나 — 게이츠가 레이크사이드 고교를 다니던 시절, 같은 컴퓨터실에서 함께 컴퓨터를 쓰던 친구가 있었어요. 폴 앨런이에요. 두 명이 같은 컴퓨터실에서 만나지 않았다면 마이크로소프트는 없었을 수도 있어요. 어쩌면 우리 자녀들이 앉는 교실 한 칸이 세상을 바꿀 수도 있는 거예요.</div>
+      </div></div>
+      <div class="en"><div class="script-block">
+        <div class="sum-content">In 1968, Bill Gates was one of the only teenagers on earth with access to a computer — at Lakeside School in Seattle. That moment built Microsoft, which built the ecosystem that brought Amazon, and now AI. The rain kept him indoors. The rain changed the world.</div>
+        <div class="full-content">I could spend the whole tour just on Bill Gates, but let me give you the essential story.<br><br>1968. Bill Gates is 13, a student at Lakeside School in Seattle. The school mothers' club runs a rummage sale and uses the proceeds to buy time on a time-sharing computer. At that moment in history, how many teenagers anywhere on earth had regular access to a computer? Almost none. Computers lived in university research labs. Gates was one of a tiny handful of adolescents who could actually use one.<br><br>He became completely obsessed. He snuck out of the dorm at night to access the computer room, got suspended, and eventually dropped out of Harvard to start Microsoft with his Lakeside classmate Paul Allen — who was also in that computer room in 1968.<br><br>Think about that. Two boys in one computer room in Seattle. Without that room, no Microsoft. Without Microsoft, no ecosystem that attracted Amazon. Without Amazon and Microsoft together, Seattle doesn't become the tech capital it is today.<br><br>Microsoft's success reshaped Seattle's economy. That drew in Amazon. Amazon's success drew Google, Meta, Apple, and Nvidia. Seattle is now one of the world's centers for AI research and development. It all traces back to a single school room, a single mothers' club rummage sale, and a 13-year-old who couldn't stop.<br><br>The lesson I always take from this: you cannot know which room your child walks into will change everything. Pay attention to what ignites them — and give them access to it.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card" id="drive10">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🌉 시애틀의 별명들</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko"><div class="script-block">
+        <div class="sum-content"><strong>에메랄드 시티</strong>(상록수), <strong>레인 시티</strong>(비), <strong>시애틀 프리즈</strong>(친절하지만 안 친해짐), <strong>알래스카 관문</strong>. 제가 붙인 별명은 <strong>'가능성의 도시'</strong> — 꿈 가진 사람들이 뭔가를 찾는 곳.</div>
+        <div class="full-content">시애틀의 별명이 여러 개 있어요. 하나씩 설명해 드릴게요.<br><br><strong>에메랄드 시티(Emerald City)</strong> — 공식 별명이에요. 상록수 때문이에요. 소나무, 전나무, 삼나무 — 겨울에도 초록이에요. 겨울에 비가 와도 도시 전체가 초록빛을 유지해요. 정말 예뻐요.<br><br><strong>레인 시티(Rain City)</strong> — 설명이 필요 없죠. (웃음)<br><br><strong>시애틀 프리즈(Seattle Freeze)</strong> — 이건 시애틀 사람들 스스로 인정하는 거예요. 표면적으로 굉장히 친절해요. "하이~", "어떻게 지내세요~" 근데 거기서 더 이상 안 깊어져요. 실제로 시애틀에서 진짜 친구 사귀기가 다른 미국 도시보다 어렵다는 연구도 있어요. 저도 처음에 시애틀에 왔을 때 사람들이 왜 이렇게 친절한데 연락을 안 하는지 의아했어요. 나중에 알고보니 이게 문화였어요.<br><br><strong>알래스카 관문(Gateway to Alaska)</strong> — 골드러시 때부터 시작된 별명이에요. 지금도 알래스카 크루즈는 다 시애틀에서 출발해요.<br><br>제가 시애틀에 붙이고 싶은 별명은 — <strong>'가능성의 도시'</strong>예요. 1897년엔 황금 찾으러 온 사람들, 1990년대엔 음악 하러 온 사람들, 2000년대엔 창업하러 온 사람들 — 그리고 지금도 세계 각지에서 꿈 가진 사람들이 오고 있어요. 여러분도 어떤 의미에서 그 행렬에 합류한 거예요. 시애틀이 오늘 여러분에게 어떤 가능성을 보여줬으면 좋겠습니다.</div>
+      </div></div>
+      <div class="en"><div class="script-block">
+        <div class="sum-content"><strong>Emerald City</strong> (evergreens), <strong>Rain City</strong> (obvious), <strong>Seattle Freeze</strong> (polite but distant), <strong>Gateway to Alaska</strong> (since the Gold Rush). My personal nickname: <strong>City of Possible</strong> — where dreamers keep finding what they came for.</div>
+        <div class="full-content">Seattle has collected quite a few nicknames. Let me walk through them.<br><br><strong>The Emerald City</strong> — the official one. Those evergreen trees — Douglas fir, western red cedar, Sitka spruce — stay green all year. Even in the grey drizzle of December, the hillsides are vivid green. From the air, the city looks like it's set inside a forest. Which, honestly, it kind of is.<br><br><strong>Rain City</strong> — no explanation required. (Laughter.)<br><br><strong>The Seattle Freeze</strong> — this one Seattleites actually acknowledge themselves. The pattern: people are warm, friendly, great at small talk. But that warmth rarely deepens into actual friendship. Studies have found that Seattle consistently ranks among the hardest US cities to make real friends in. When I first arrived here, I was confused — people were so pleasant, but nobody followed up. Turns out this was the culture, not me. Once you understand it, you stop taking it personally.<br><br><strong>Gateway to Alaska</strong> — dating back to the 1897 Gold Rush. Today, nearly every Alaska cruise departs from Seattle's waterfront. The city has been the jumping-off point for the northern frontier for over a century.<br><br>My personal nickname for Seattle: <strong>The City of Possible</strong>. In 1897, people came looking for gold. In the 1990s, musicians came to be heard. In the 2000s, engineers came to build the future. People keep arriving here with something to prove and something to find — and they keep finding it. In some small way, you're part of that same story today.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card" id="drive11">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🎬 영화 속 시애틀</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko"><div class="script-block">
+        <div class="sum-content"><strong>잠 못 이루는 시애틀</strong>(1993) 이후 관광객 급증. <strong>그레이 아나토미, 트윈 픽스, 10 Things</strong> 모두 시애틀 배경. 할리우드가 시애틀을 '비+낭만+내면적인 사람들의 도시'로 쓰는 이유가 있어요.</div>
+        <div class="full-content">영화 이야기 나오면 시애틀 분들 눈이 반짝여요. 시애틀이 배경인 영화와 드라마가 정말 많거든요.<br><br><strong>잠 못 이루는 시애틀(Sleepless in Seattle, 1993)</strong> — 톰 행크스, 멕 라이언. 이 영화 하나가 시애틀 관광 산업을 완전히 바꿔놨어요. 개봉 후 스페이스 니들 방문객이 폭발적으로 늘었고, 하우스보트(수상 가옥)에 살고 싶다는 사람들이 몰려들었어요. 영화에 나온 유니온 레이크 하우스보트는 지금도 인기 포토 스팟이에요.<br><br>재밌는 건, 톰 행크스가 이 영화에서 살던 집이 실제로는 사람이 살고 있는 진짜 집이에요. 영화 팬들이 집 앞에서 사진 찍으러 오는 걸 집 주인이 처음엔 싫어했는데, 지금은 그냥 받아들였대요. (웃음)<br><br><strong>그레이 아나토미(Grey's Anatomy)</strong> — 세계적으로 유명한 의학 드라마인데 배경이 시애틀이에요. 실제 촬영은 LA에서 했지만, '시애틀 그레이스 병원'은 워싱턴대학교 의대 센터를 모델로 했어요. 이 드라마 때문에 UW 의대에 지원하는 외국 학생이 늘었다는 이야기도 있어요.<br><br><strong>트윈 픽스(Twin Peaks)</strong> — 데이비드 린치 감독의 작품. 스노콸미 폭포가 오프닝 장면으로 나와요. 내일 스노콸미 가시면 '아, 이 폭포!'라고 하실 거예요.<br><br>왜 할리우드는 시애틀을 이렇게 자주 쓸까요? '비 오고, 약간 우울하고, 그래서 낭만적이고, 사람들이 감정적으로 복잡한 도시.' 그 이미지가 딱 들어맞는 배경이거든요. 그리고 솔직히 — 맞아요.</div>
+      </div></div>
+      <div class="en"><div class="script-block">
+        <div class="sum-content"><strong>Sleepless in Seattle</strong> (1993) transformed Seattle tourism overnight. <strong>Grey's Anatomy, Twin Peaks, 10 Things I Hate About You</strong> — Hollywood repeatedly uses Seattle as shorthand for rain, romance, and emotional complexity. Accurate.</div>
+        <div class="full-content">People always light up when I get to the film section. Seattle has appeared in so many movies and TV shows — and always in the same role.<br><br><strong>Sleepless in Seattle (1993)</strong> — Tom Hanks, Meg Ryan. This single film reshaped Seattle's tourist identity. Space Needle visitor numbers jumped after the release. The houseboat on Lake Union where Hanks's character lived became one of the most photographed private residences in the city. It's an actual home with real residents — who've long since given up trying to keep fans off the dock. (Laughter.)<br><br><strong>Grey's Anatomy</strong> — one of the longest-running medical dramas in TV history, set at the fictional "Seattle Grace Hospital," modeled on UW Medical Center. Filmed entirely in LA — but the show gave Seattle a global reputation as a city of brilliant, emotionally complicated surgeons. Enrollment inquiries at UW Medical reportedly spiked after the show's peak years.<br><br><strong>Twin Peaks</strong> — David Lynch's landmark series opens with Snoqualmie Falls. If you're visiting the falls tomorrow, you'll recognize it immediately. That waterfall image became one of the most iconic opening sequences in television history.<br><br><strong>10 Things I Hate About You</strong> — filmed at Gas Works Park and Stadium High School in Tacoma. A modern Shakespeare adaptation, set against Seattle's industrial waterfront backdrop.<br><br>Why does Hollywood keep choosing Seattle? The shorthand works: rain, introspection, beauty with melancholy underneath. Characters in Seattle are allowed to feel things — complicated things. The city gives emotional permission that sunnier settings don't. And honestly? Having lived here, I can confirm: the shorthand is accurate.</div>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Q&A ===== -->
+<div class="section" id="qa-section">
+  <div class="section-title">❓ 예상 질문 & 답변</div>
+
+  <div id="qa-nature">
+    <h3 style="font-size:.95rem;color:var(--muted);margin:12px 0 8px;font-weight:700;">🌿 날씨 · 자연</h3>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-title">Q. 시애틀은 왜 비가 많이 오나요?</div>
+        <span class="card-arrow">▶</span>
+      </div>
+      <div class="card-body">
+        <div class="ko"><div class="qa-q">시애틀은 왜 이렇게 비가 많이 와요?</div><div class="qa-a">사실 오해가 있어요. 시애틀 연간 강수량은 뉴욕보다 적습니다. 뉴욕이 1,150mm, 시애틀은 940mm예요. 그런데 비가 <em>자주</em> 와요 — 연간 150일 이상. 조금씩, 오래오래.<br><br>이유는 지형이에요. 올림픽 산맥이 태평양 습기를 막는 경계선에 시애틀이 있거든요. 그래서 시애틀 사람들은 우산을 안 써요. 우산 들고 다니면 관광객 표시예요.</div></div>
+        <div class="en"><div class="qa-q">Why does Seattle get so much rain?</div><div class="qa-a">Seattle actually gets less annual rainfall than New York — 37 inches versus 45. But Seattle is overcast or drizzling more than 150 days a year. It rains gently, constantly, persistently.<br><br>The Olympic Mountains trap Pacific moisture — Seattle sits right on the edge of that rain shadow. That's why locals don't carry umbrellas. If you see someone with one in Seattle, they're probably visiting from out of town.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-title">Q. 레이니어 산이 보였다 안 보였다 해요</div>
+        <span class="card-arrow">▶</span>
+      </div>
+      <div class="card-body">
+        <div class="ko"><div class="qa-q">레이니어 산이 보였다 안 보였다 해요. 왜 그래요?</div><div class="qa-a">레이니어는 4,392미터 높이예요. 그 높이면 항상 구름 모자를 쓰고 있어요. 맑은 날에만 온전히 보이는데, 시애틀 사람들은 레이니어가 보이는 날을 <strong>"The Mountain is Out!"</strong>이라고 해요. 진짜 표현이에요. 뭔가 특별한 날처럼 기뻐해요. 오늘 보이면 운이 좋은 거예요.</div></div>
+        <div class="en"><div class="qa-q">Mount Rainier keeps appearing and disappearing. Why?</div><div class="qa-a">Rainier stands at 14,411 feet — it almost always wears a crown of clouds. Locals have a real expression for when it's visible: <strong>"The Mountain is Out!"</strong> They say it with genuine excitement, like something rare has appeared. If you can see it clearly today, you're lucky. Some residents go weeks without a clear view.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-title">Q. 지진은 안 나요?</div>
+        <span class="card-arrow">▶</span>
+      </div>
+      <div class="card-body">
+        <div class="ko"><div class="qa-q">지진은 안 나요? 무섭지 않아요?</div><div class="qa-a">솔직히 말할게요 — 시애틀은 지진 위험 지역이에요. 카스케이디아 섭입대라는 단층이 해안 밑에 있고, 2001년에 규모 6.8 지진이 있었어요.<br><br>하지만 시애틀 건물들은 내진 설계가 잘 되어 있고, 많은 가정이 비상식량과 물을 준비해요. 무서운 것 알면서도 아름다운 곳에 사는 거죠. 인생이 다 그런 것 같기도 해요.</div></div>
+        <div class="en"><div class="qa-q">Are there earthquakes here? Isn't that scary?</div><div class="qa-a">Honest answer: yes, Seattle is in an earthquake zone. The Cascadia Subduction Zone runs offshore. A 6.8 magnitude quake shook the city in 2001.<br><br>Seattle's buildings have strict seismic codes. Residents prepare — emergency kits, food and water. They know the risk and choose to live here beautifully anyway. Living with uncertainty while building something beautiful — that's very Seattle.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="qa-food">
+    <h3 style="font-size:.95rem;color:var(--muted);margin:16px 0 8px;font-weight:700;">🍽️ 음식 · 쇼핑</h3>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-title">Q. 꼭 먹어야 할 음식이 뭐예요?</div>
+        <span class="card-arrow">▶</span>
+      </div>
+      <div class="card-body">
+        <div class="ko"><div class="qa-q">시애틀 하면 꼭 먹어야 할 음식이 뭐예요?</div><div class="qa-a">다섯 가지예요.<br><br>① <strong>던저니스 크랩</strong> — 태평양 북서부 특산 게. 파이크 플레이스에서 바로 찐 것.<br>② <strong>클램 차우더</strong> — 사워도우 빵 그릇에 담아줘요.<br>③ <strong>킹 새먼</strong> — 신선도가 차원이 달라요.<br>④ <strong>시애틀식 테라야키</strong> — 다른 동네에서 못 먹어요.<br>⑤ <strong>커피</strong> — 당연히요.</div></div>
+        <div class="en"><div class="qa-q">What must I eat in Seattle?</div><div class="qa-a">Five things:<br><br>① <strong>Dungeness Crab</strong> — Pacific Northwest specialty, freshly steamed at Pike Place.<br>② <strong>Clam Chowder in Sourdough Bread Bowl</strong> — Pike Place Chowder wins national awards.<br>③ <strong>King Salmon</strong> — wild-caught Pacific salmon is an entirely different category.<br>④ <strong>Seattle-style Teriyaki</strong> — a uniquely Seattle evolution you can only get here.<br>⑤ <strong>Coffee</strong> — obviously.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-title">Q. 스타벅스 1호점이 진짜 1호점이에요?</div>
+        <span class="card-arrow">▶</span>
+      </div>
+      <div class="card-body">
+        <div class="ko"><div class="qa-q">스타벅스 1호점이 진짜 1호점이에요?</div><div class="qa-a">정확히는 '현존하는 가장 오래된 스타벅스'예요. 진짜 1호점은 파이크 플레이스 안쪽 다른 위치에 있었는데, 지금은 없어요. 현재 관광명소는 1977년에 이 자리로 옮겨온 거예요.<br><br>하지만 상징적으로는 원조예요. 안에 들어가면 옛날 갈색 로고를 쓰고 있고, 여기서만 파는 한정판 굿즈가 있어요.</div></div>
+        <div class="en"><div class="qa-q">Is that really the original Starbucks?</div><div class="qa-a">Technically, it's the 'oldest existing Starbucks.' The true first store was at a different spot inside Pike Place Market — that building no longer exists. The current location moved here in 1977.<br><br>But symbolically? It's the original. Inside, they use the classic brown logo. The merchandise here — mugs, tumblers, coffee bags — are exclusive to this location. Perfect gifts for coffee lovers.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="qa-life">
+    <h3 style="font-size:.95rem;color:var(--muted);margin:16px 0 8px;font-weight:700;">🏙️ 시애틀 생활</h3>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-title">Q. 시애틀 집값이 얼마나 비싸요?</div>
+        <span class="card-arrow">▶</span>
+      </div>
+      <div class="card-body">
+        <div class="ko"><div class="qa-q">시애틀 집값이 얼마나 비싸요?</div><div class="qa-a">엄청 비싸요. 시내 1베드룸 월세가 평균 2,500~3,000달러예요. 집 사려면 중간 가격이 약 7~8억 원이에요.<br><br>아마존, 마이크로소프트 직원들 연봉이 너무 높아요. 그 사람들이 집을 사고 임대를 하니까 가격이 올라갔죠. 시애틀 토박이들이 '아마존이 우리 동네를 망쳤다'고 말하는 이유예요.</div></div>
+        <div class="en"><div class="qa-q">How expensive is housing in Seattle?</div><div class="qa-a">Extremely expensive. A one-bedroom apartment averages $2,500 to $3,000 per month. The median home price is around $800,000 to $900,000.<br><br>Amazon and Microsoft salaries inflated everything. Many longtime Seattle residents say Amazon 'ruined' their neighborhoods. Technological revolution brought convenience to the world but displaced the communities that made Seattle worth living in.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-title">Q. 왜 친절한 것 같으면서 안 친해지나요? (Seattle Freeze)</div>
+        <span class="card-arrow">▶</span>
+      </div>
+      <div class="card-body">
+        <div class="ko"><div class="qa-q">시애틀 사람들은 왜 친절한 것 같으면서 실제론 안 친해지나요?</div><div class="qa-a">'시애틀 프리즈(Seattle Freeze)'라고 진짜 이름이 있는 현상이에요. 시애틀 사람들 스스로 인정해요.<br><br>표면적으로는 매우 정중하고 친절해요. 근데 거기서 더 이상 깊어지지 않아요. 시애틀 사람들은 관계의 질을 중요하게 생각해요. 천천히 진짜 친구가 되는 걸 선호하는 것 같아요. 한번 친해지면 아주 진실되게 대해줘요.</div></div>
+        <div class="en"><div class="qa-q">Why do Seattleites seem friendly but hard to get close to?</div><div class="qa-a">'The Seattle Freeze' — it has an actual name, and Seattleites acknowledge it themselves.<br><br>On the surface: extremely polite. Great small talk. But that warmth rarely deepens into real friendship. Seattleites value quality over quantity in relationships. They won't fake closeness. But once you earn a Seattleite's real friendship, it tends to be honest and lasting. The freeze is a long front door, not an empty house.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="qa-history">
+    <h3 style="font-size:.95rem;color:var(--muted);margin:16px 0 8px;font-weight:700;">🏛️ 역사 · 문화</h3>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-title">Q. 왜 시애틀이 진보적이에요?</div>
+        <span class="card-arrow">▶</span>
+      </div>
+      <div class="card-body">
+        <div class="ko"><div class="qa-q">시애틀은 왜 진보적이에요?</div><div class="qa-a">네 가지 이유예요.<br><br>① <strong>이민자 도시</strong> — 다양한 배경의 사람들이 섞여 살다 보니 다양성 수용도가 높아요.<br>② <strong>노동 운동</strong> — 1919년 미국 최초의 총파업 도시예요.<br>③ <strong>대학 문화</strong> — 워싱턴대(UW)가 도시 안에 있어요.<br>④ <strong>아이러니하게</strong> — 테크 부자들이 진보적 가치를 지지해요.<br><br>하지만 캐스케이드 산맥 동쪽은 완전히 다른 정치 문화가 있어요.</div></div>
+        <div class="en"><div class="qa-q">Why is Seattle considered progressive?</div><div class="qa-a">Four converging threads:<br><br>① <strong>Immigrant city</strong> — generations of mixing created broader cultural tolerance.<br>② <strong>Labor history</strong> — Seattle held America's first general strike in 1919.<br>③ <strong>University culture</strong> — UW is embedded in the city, sustaining an intellectual atmosphere.<br>④ <strong>Ironically</strong> — Seattle's tech billionaires tend to lean progressive.<br><br>That said, cross the Cascade Mountains east and the political culture shifts dramatically. The urban-rural divide here is one of the sharpest in America.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="qa-tour">
+    <h3 style="font-size:.95rem;color:var(--muted);margin:16px 0 8px;font-weight:700;">🧭 투어 관련</h3>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-title">Q. 팁은 얼마나 드려야 해요?</div>
+        <span class="card-arrow">▶</span>
+      </div>
+      <div class="card-body">
+        <div class="ko"><div class="qa-q">팁은 얼마나 드려야 해요?</div><div class="qa-a"><strong>식당</strong>: 세전 금액의 18~22% (기본 20%)<br><strong>카페·테이크아웃</strong>: 15~18%, 'No Tip'도 괜찮아요<br><strong>택시·우버</strong>: 15~20%<br><strong>호텔 청소</strong>: 하루 2~5달러, 침대 위에 놔두세요<br><strong>가이드팁</strong>: 1인당 20~50달러가 적당해요. 강제는 아니에요.<br><br>부담스러우면 솔직하게 말씀드려도 돼요. 저는 여러분이 편하게 즐기는 게 더 중요합니다.</div></div>
+        <div class="en"><div class="qa-q">How much should I tip?</div><div class="qa-a"><strong>Restaurants</strong>: 18–22% of pre-tax total (20% is standard)<br><strong>Cafés / counter service</strong>: 15–18%, or 'No Tip' is fine<br><strong>Rideshare / taxis</strong>: 15–20%<br><strong>Hotel housekeeping</strong>: $2–5/night on the bed when you check out<br><strong>Tour guides</strong>: $20–50 per person for a full day — never obligatory.<br><br>Personally, I care more about whether you genuinely enjoyed the day than the tip. If you did, that's the real reward.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-title">Q. 한국 음식점 있어요? 한국 마트는요?</div>
+        <span class="card-arrow">▶</span>
+      </div>
+      <div class="card-body">
+        <div class="ko"><div class="qa-q">한국 음식점이 있어요? 한국 마트는요?</div><div class="qa-a"><strong>한식당</strong>: 벨뷰와 라이드에 한인타운이 있어요. 한국 BBQ, 순두부, 갈비, 냉면 다 있어요.<br><strong>한인 마트</strong>: H마트(여러 지점), 한남체인. 한국 식재료 거의 다 있어요.<br><br>추천: 첫날은 꼭 신선한 해산물 드세요. 연어, 게, 클램 차우더 — 시애틀에서만 이 신선도로 먹을 수 있어요. 한식은 한인타운에서 언제든 드실 수 있어요.</div></div>
+        <div class="en"><div class="qa-q">Are there Korean restaurants? Korean grocery stores?</div><div class="qa-a"><strong>Korean restaurants</strong>: Korean communities in Bellevue and Lynnwood. Korean BBQ, sundubu, galbi — quality comparable to Seoul.<br><strong>Korean grocery</strong>: H Mart has multiple locations. Korean ingredients, noodles, snacks — no need to overpack.<br><br>My recommendation: first day, eat fresh Pacific Northwest seafood. Wild-caught salmon and Dungeness crab from this specific ocean is not something you'll find back home. Korean food is available all week.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 퀴즈 ===== -->
+<div class="section" id="quiz">
+  <div class="section-title">🎯 흥미 유발 퀴즈 & 반전 답변</div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">☕ 스타벅스 이름의 비밀</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="quiz-box">
+          <div class="quiz-label">🎯 퀴즈</div>
+          <div class="quiz-q">"스타벅스가 왜 스타벅스인지 아는 분?"</div>
+          <div class="quiz-reveal">
+            <div class="reveal-label">✅ 정답</div>
+            소설 '모비딕'에서 왔어요. 고래잡이 배의 일등 항해사 이름이 '스타벅'이에요.<br><br>
+            <strong>반전:</strong> 처음 이름 후보는 '피쿼드'(모비딕에 나오는 배 이름)였는데, 누군가 "그 배 결국 침몰하잖아요"라고 해서 바꿨어요. 그리고 지금도 relentless.com을 치면 아마존으로 연결돼요. 베이조스의 두 번째 이름 후보였거든요.
+          </div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="quiz-box">
+          <div class="quiz-label">🎯 QUIZ</div>
+          <div class="quiz-q">"Does anyone know why Starbucks is called Starbucks?"</div>
+          <div class="quiz-reveal">
+            <div class="reveal-label">✅ ANSWER</div>
+            It comes from Moby Dick — Starbuck is the first mate on the whaling ship.<br><br>
+            <strong>The twist:</strong> Their first choice was 'Pequod' — the ship's name. Someone pointed out: 'That ship sinks at the end.' Changed it. And try typing relentless.com right now — it still redirects to Amazon. That was Bezos's second name choice. He never let it go.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🎸 지미 헨드릭스의 첫 악기</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="quiz-box">
+          <div class="quiz-label">🎯 퀴즈</div>
+          <div class="quiz-q">"지미 헨드릭스가 어린 시절 기타를 살 돈이 없었어요. 뭘로 연습했을까요?"</div>
+          <div class="quiz-reveal">
+            <div class="reveal-label">✅ 정답</div>
+            <strong>빗자루</strong>요. 진짜예요. 빗자루를 기타처럼 들고 자는 것도 같이 잤어요. 왼손잡이인데 오른손 기타를 뒤집어서 쳤고요. 세계 3대 기타리스트가 빗자루로 시작했습니다.
+          </div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="quiz-box">
+          <div class="quiz-label">🎯 QUIZ</div>
+          <div class="quiz-q">"Jimi Hendrix was too poor for a guitar as a child. What did he practice with?"</div>
+          <div class="quiz-reveal">
+            <div class="reveal-label">✅ ANSWER</div>
+            <strong>A broom.</strong> Seriously. He carried it everywhere, slept with it. He was left-handed and played a right-handed guitar upside down because he couldn't afford a left-handed one. The man ranked among the three greatest guitarists in history started with a broom.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🔥 시애틀 대화재 원인</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="quiz-box">
+          <div class="quiz-label">🎯 퀴즈</div>
+          <div class="quiz-q">"1889년 시애틀 대화재 원인이 뭔지 아는 분?"</div>
+          <div class="quiz-reveal">
+            <div class="reveal-label">✅ 정답</div>
+            <strong>아교 냄비</strong>예요. 가구 가게 직원이 아교 냄비를 불에 올려놓고 자리를 비웠어요. 도시 전체가 불탔지만 — 사망자가 <strong>한 명도 없었어요</strong>. 그리고 시애틀은 1년도 안 돼서 더 좋은 도시로 다시 지었어요.
+          </div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="quiz-box">
+          <div class="quiz-label">🎯 QUIZ</div>
+          <div class="quiz-q">"The Great Seattle Fire of 1889 burned 25 city blocks. How did it start?"</div>
+          <div class="quiz-reveal">
+            <div class="reveal-label">✅ ANSWER</div>
+            <strong>A glue pot.</strong> A furniture worker left wood glue heating on a stove and walked away. The entire city burned — but <strong>zero people died</strong>. And Seattle rebuilt in under a year, this time better. Sometimes you need something to burn down before you can build what you actually want.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">☕ 커피를 더 많이 마시는 도시</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="quiz-box">
+          <div class="quiz-label">🎯 퀴즈</div>
+          <div class="quiz-q">"미국에서 1인당 커피를 가장 많이 마시는 도시가 어딜 것 같아요?"</div>
+          <div class="quiz-reveal">
+            <div class="reveal-label">✅ 정답</div>
+            시애틀이 아니에요. <strong>뉴욕이 1위</strong>예요. 시애틀은 양보다 <strong>질</strong>로 이겨요 — 스페셜티 커피 문화는 압도적 1위. 그리고 시애틀은 맑은 날보다 흐린 날 커피 판매량이 20% 올라요.
+          </div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="quiz-box">
+          <div class="quiz-label">🎯 QUIZ</div>
+          <div class="quiz-q">"Which American city drinks the most coffee per person — Seattle or New York?"</div>
+          <div class="quiz-reveal">
+            <div class="reveal-label">✅ ANSWER</div>
+            <strong>New York</strong>, actually. Seattle wins on specialty coffee — quality, not quantity. And Seattle's coffee sales increase by <strong>20% on overcast days</strong> versus sunny ones. The weather literally drives coffee consumption.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">💰 하워드 슐츠 투자 거절 수</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="quiz-box">
+          <div class="quiz-label">🎯 퀴즈</div>
+          <div class="quiz-q">"하워드 슐츠가 스타벅스 투자를 위해 242명에게 제안했어요. 몇 명이 거절했을까요?"</div>
+          <div class="quiz-reveal">
+            <div class="reveal-label">✅ 정답</div>
+            <strong>217명</strong>이 거절했어요. 거절 비율 89%. 1987년 인수 가격 380만 달러 → 현재 시가총액 약 1,000억 달러. <strong>약 2만 6천 배</strong> 차이예요.
+          </div>
+        </div>
+      </div>
+      <div class="en">
+        <div class="quiz-box">
+          <div class="quiz-label">🎯 QUIZ</div>
+          <div class="quiz-q">"Howard Schultz pitched 242 investors to build Starbucks. How many said no?"</div>
+          <div class="quiz-reveal">
+            <div class="reveal-label">✅ ANSWER</div>
+            <strong>217 said no</strong> — an 89% rejection rate. He bought the Starbucks brand in 1987 for $3.8 million. Today's market cap: ~$100 billion. That's a <strong>26,000x return</strong>. The 217 who said no never got to say "I believed in it from the beginning."
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 역사↔현재 연결 ===== -->
+<div class="section" id="connect">
+  <div class="section-title">🔗 역사 ↔ 현재 연결 스크립트</div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🌊 골드러시 → 지금 우리 삶</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="connect-box">
+          <div class="connect-hist">📜 1897년 역사</div>
+          전 재산 팔고, 가족 두고, 알지도 못하는 땅으로 갔어요. '금만 캐면 인생이 바뀐다'는 희망 하나로요. 대부분 빈손으로 돌아왔어요.
+          <div class="connect-now">🔗 오늘날 연결</div>
+          좋은 대학, 좋은 직장, 아파트 하나 — 골드러시는 끝난 게 아니에요. 우리 시대의 금광이 모양만 바뀐 거예요.<br><br>그리고 1897년에도 — 금 캔 사람보다 <strong>금 캐러 가는 사람에게 삽 판 사람</strong>이 더 잘 살았어요. 지금도 그 원리는 똑같아요.
+        </div>
+      </div>
+      <div class="en">
+        <div class="connect-box">
+          <div class="connect-hist">📜 1897 History</div>
+          People sold everything, left their families, traveled to unknown land — chasing gold. Most came back with nothing.
+          <div class="connect-now">🔗 Today's Connection</div>
+          Every generation has its gold rush — degrees, job titles, the right investment. The shape changes. The psychology doesn't.<br><br>And the principle holds: the people who got consistently wealthy weren't mining. <strong>They were selling shovels.</strong> In every era, ask yourself — am I chasing the gold, or selling the shovels?
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🔥 대화재 → 실패와 재건</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="connect-box">
+          <div class="connect-hist">📜 1889년 역사</div>
+          도시 전체가 불탔는데 다음 날부터 재건 계획을 세웠어요. 이번엔 나무 대신 벽돌로, 더 높게.
+          <div class="connect-now">🔗 오늘날 연결</div>
+          망하고 나서 다시 지은 게 처음 것보다 더 나은 경우가 많아요. 이혼 후 더 좋은 관계, 실패 후 더 좋은 사업, 해고 후 더 맞는 일.<br><br><strong>불은 나쁜 게 아닐 수 있어요. 문제는 불이 난 다음에 뭘 하느냐예요.</strong>
+        </div>
+      </div>
+      <div class="en">
+        <div class="connect-box">
+          <div class="connect-hist">📜 1889 History</div>
+          The day after the fire, residents were already drawing plans to rebuild — in brick, higher, better. The disaster forced improvements they'd been putting off for years.
+          <div class="connect-now">🔗 Today's Connection</div>
+          The relationship that ended and you learned what you actually needed. The job you lost that freed you to find the right one.<br><br><strong>Seattle didn't treat the fire as punishment. They treated it as demolition — clearing the way for what should have been built in the first place.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🐟 연어의 귀환 → 정체성과 뿌리</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="connect-box">
+          <div class="connect-hist">📜 자연의 역사</div>
+          연어는 수천 킬로미터 태평양을 헤엄치다 태어난 강의 냄새를 기억하고 돌아옵니다.
+          <div class="connect-now">🔗 오늘날 연결</div>
+          아무리 멀리 가도 '집 냄새'가 있잖아요. 어릴 때 먹던 음식 맛. 어머니 목소리. 고향 골목.<br><br><strong>뿌리는 지우는 게 아니에요. 들고 가는 거예요.</strong>
+        </div>
+      </div>
+      <div class="en">
+        <div class="connect-box">
+          <div class="connect-hist">📜 Nature's History</div>
+          Salmon swim thousands of miles through the open ocean and find the exact tributary where they were born — guided by the chemical memory of home.
+          <div class="connect-now">🔗 Today's Connection</div>
+          There's a smell, a taste, a sound from childhood — and no matter where you've traveled, it reaches something that doesn't change.<br><br><strong>Your roots aren't something you leave behind when you travel. They're something you carry. And sometimes you don't know how important they are until you're thousands of miles from them.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🌋 화산 옆 생활 → 불확실성과 현재</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="connect-box">
+          <div class="connect-hist">📜 지질의 역사</div>
+          시애틀 사람들은 활화산 옆에 살면서도 태연하게 일상을 삽니다.
+          <div class="connect-now">🔗 오늘날 연결</div>
+          완벽하게 안전한 곳은 없어요. 교통사고, 질병, 예상 못한 일들 — 레이니어가 특별한 게 아니라 눈에 보이는 불확실성일 뿐이에요.<br><br><strong>저 화산이 아름다운 건, 위험하기 때문이에요. 위험하지 않으면 그냥 언덕이에요.</strong>
+        </div>
+      </div>
+      <div class="en">
+        <div class="connect-box">
+          <div class="connect-hist">📜 Geological History</div>
+          Seattle residents live next to an active volcano and choose to stay, building beautiful lives in its shadow.
+          <div class="connect-now">🔗 Today's Connection</div>
+          Uncertainty exists everywhere. Rainier doesn't add danger — it just makes the existing uncertainty visible. Every morning, residents look at that mountain and choose: today is worth living here.<br><br><strong>The most beautiful things often carry risk. The danger doesn't cancel the beauty. In some ways, it creates it.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🌲 300년 된 나무 → 우리가 남기는 것</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">
+        <div class="connect-box">
+          <div class="connect-hist">📜 자연의 역사</div>
+          이 나무들이 씨앗이었을 때 — 조선 후기였어요. 그 씨앗이 자라서 지금 우리 머리 위에 있어요.
+          <div class="connect-now">🔗 오늘날 연결</div>
+          내가 지금 심는 씨앗은 뭘까? 300년 후에 누군가가 그늘에 앉을 나무. 내 자녀나 손자에게 남길 것.<br><br><strong>오늘 뭘 심고 싶으세요?</strong>
+        </div>
+      </div>
+      <div class="en">
+        <div class="connect-box">
+          <div class="connect-hist">📜 Nature's History</div>
+          Some of these trees are 200 to 300 years old. When they were seeds, your great-great-great-grandmother was alive.
+          <div class="connect-now">🔗 Today's Connection</div>
+          What seeds are you planting right now? The relationship you're tending that won't fully bloom for years. The habit your children will inherit without knowing where it came from.<br><br><strong>What do you want to be true — that someone standing in your shade, a generation from now, would be glad you planted?</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 선물 아이디어 ===== -->
+<div class="section" id="gifts">
+  <div class="section-title">🎁 퀴즈 선물 아이디어</div>
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">준비하기 쉬운 선물 목록</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap"><table>
+        <tr><th>선물 / Gift</th><th>가격</th><th>어디서</th><th>포인트</th></tr>
+        <tr><td>스타벅스 기프트카드 ($5)</td><td>$5</td><td>편의점</td><td>시애틀 상징</td></tr>
+        <tr><td>파이크 플레이스 마켓 스티커</td><td>$1~2</td><td>마켓 내</td><td>가볍고 귀여움</td></tr>
+        <tr><td>시애틀 엽서</td><td>$1~2</td><td>관광 상점</td><td>추억 선물</td></tr>
+        <tr><td>연어 모양 젤리/캔디</td><td>$2~3</td><td>H마트</td><td>웃음 유발</td></tr>
+        <tr><td>미니 스페이스 니들 키링</td><td>$3~5</td><td>기념품점</td><td>실용적</td></tr>
+        <tr><td>시애틀 커피 드립백 1개</td><td>$3~4</td><td>커피숍</td><td>먹을 수 있음</td></tr>
+        <tr><td>폴킴 투어 명함</td><td>무료</td><td>직접 제작</td><td>다음 투어 연결</td></tr>
+      </table></div>
+      <div style="margin-top:14px;padding:12px;background:#f0faf4;border-radius:8px;font-size:.88rem;line-height:1.7;">
+        <strong>💡 선물 주는 방식 팁</strong><br>
+        • 봉투에 넣어서 "시애틀 서프라이즈 패키지"로 포장<br>
+        • 아이들 → 스티커, 어른 → 기프트카드<br>
+        • 정답 외에도 "오늘 가장 재밌는 질문 한 사람"에게도 수여<br>
+        • 투어 마지막에 "오늘 가장 열심히 참여한 사람" 총상 시상
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 참고문헌 & 추천 도서 ===== -->
+<div class="section" id="references">
+  <div class="section-title">📚 참고문헌 & 추천 도서</div>
+  <p style="font-size:.85rem;color:var(--muted);margin-bottom:18px;">이 스크립트의 역사적 배경, 하나님 나라 관점, 시애틀 한인 이민사를 더 깊이 이해하기 위한 자료 목록입니다. Word 정리 시 각주와 참고문헌으로 활용하세요.</p>
+
+  <!-- 시애틀 역사 -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🏙️ 시애틀 역사 — 핵심 자료</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap"><table>
+        <tr><th>#</th><th>저자 / 제목</th><th>연도</th><th>연관 스크립트</th><th>한 줄 메모</th></tr>
+        <tr><td>1</td><td>Murray Morgan — <em>Skid Road: An Informal Portrait of Seattle</em></td><td>1951</td><td>Pioneer Square, 지하 도시</td><td>시애틀 초기 역사의 고전. 1889년 대화재와 재건 서술.</td></tr>
+        <tr><td>2</td><td>Roger Sale — <em>Seattle Past to Present</em></td><td>1976</td><td>도시 전반</td><td>시애틀 도시 발전사 종합. 학술적이지만 읽기 좋음.</td></tr>
+        <tr><td>3</td><td>Coll Thrush — <em>Native Seattle: Histories from the Crossing-Over Place</em></td><td>2007</td><td>원주민 역사, Daybreak Star</td><td>드와미시족과 도시화의 교차점. 시알스 추장 연설 맥락 필독.</td></tr>
+        <tr><td>4</td><td>Pierre Berton — <em>Klondike: The Last Great Gold Rush</em></td><td>1958</td><td>골드러시 스크립트</td><td>클론다이크 골드러시 전 과정. 시애틀 상인들의 역할 상세.</td></tr>
+        <tr><td>5</td><td>Walt Crowley — <em>National Trust Guide: Seattle</em></td><td>1998</td><td>건축, 파이크 플레이스</td><td>파이크 플레이스 마켓 역사 상세 기술.</td></tr>
+        <tr><td>6</td><td>Mark Yarm — <em>Everybody Loves Our Town: An Oral History of Grunge</em></td><td>2011</td><td>록 음악, MoPOP</td><td>너바나·펄 잼·사운드가든 당사자 인터뷰 모음. 그런지 시대 생생한 기록.</td></tr>
+        <tr><td>7</td><td>Charles R. Cross — <em>Heavier Than Heaven: A Biography of Kurt Cobain</em></td><td>2001</td><td>커트 코베인 스크립트</td><td>코베인 생애 가장 권위 있는 전기. 시애틀·애버딘 배경 상세.</td></tr>
+      </table></div>
+      <div style="margin-top:12px;padding:10px;background:#f0faf4;border-radius:8px;font-size:.83rem;">
+        <strong>📌 각주 예시 (Word 사용 시):</strong><br>
+        ¹ 시알스 추장의 1854년 연설은 실제로 Henry Smith가 1887년에 영어로 기록·출판한 것으로, 원문과 차이가 있을 수 있음. 원 연설의 정확한 내용에 대해서는 학술적 논쟁이 있음. Coll Thrush, <em>Native Seattle</em> (2007), pp. 23–31 참조.<br>
+        ² 파이크 플레이스 피쉬 마켓의 '생선 던지기'는 1986년경 시작되었으나, 퍼포먼스로 공식화된 것은 1988년으로 알려짐.
+      </div>
+    </div>
+  </div>
+
+  <!-- 시애틀 한인 이민사 -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🇰🇷 시애틀 한인 이민사 — 우리 이야기</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap"><table>
+        <tr><th>#</th><th>자료</th><th>연도</th><th>핵심 내용</th></tr>
+        <tr><td>1</td><td>Bong-Youn Choy — <em>Koreans in America</em></td><td>1979</td><td>미국 한인 이민 역사 종합. 초기 이민자 삶과 차별 기록.</td></tr>
+        <tr><td>2</td><td>Hyung-chan Kim — <em>The Korean Diaspora</em></td><td>1977</td><td>하와이·미 본토 한인 이민 1세대 연구.</td></tr>
+        <tr><td>3</td><td>Wing Luke Museum of the Asian Pacific American Experience (시애틀 소재)</td><td>상설</td><td>시애틀 아시아계 이민사 상설 전시. 한인 이민 섹션 포함. 실제 방문 추천.</td></tr>
+        <tr><td>4</td><td>SCIDpda (Chinatown-International District Preservation and Development Authority)</td><td>온라인</td><td>차이나타운-인터내셔널 디스트릭트 공식 역사 자료. scidpda.org</td></tr>
+        <tr><td>5</td><td>First Korean United Methodist Church of Seattle — 교회 기록</td><td>1904~</td><td>미 서부 최초 한인 교회 중 하나. 시애틀 한인 이민 신앙 공동체의 시작.</td></tr>
+        <tr><td>6</td><td>Ronald Takaki — <em>Strangers from a Different Shore: A History of Asian Americans</em></td><td>1989</td><td>중국·일본·한국·필리핀계 이민사 통합 서술. 차별과 저항의 역사.</td></tr>
+        <tr><td>7</td><td>Pyong Gap Min — <em>Caught in the Middle: Korean Communities in New York and Los Angeles</em></td><td>1996</td><td>1992 LA 폭동과 한인 커뮤니티. 미국 내 한인 정체성 연구.</td></tr>
+      </table></div>
+      <div style="margin-top:12px;padding:10px;background:#fff8e1;border-radius:8px;font-size:.83rem;">
+        <strong>📌 시애틀 한인 이민사 핵심 사실 (각주용):</strong><br>
+        • 한인의 미국 이민은 1903년 하와이 사탕수수 농장 노동자로 시작. 이후 캘리포니아·워싱턴주로 이동.<br>
+        • 시애틀 지역 한인 이민자들은 농장 노동, 어업, 캐너리(통조림 공장) 등에 종사. 혹독한 차별 속에서도 교회 중심으로 공동체 형성.<br>
+        • 1992년 LA 폭동 이후 한인 커뮤니티 정체성 재정립. 시애틀은 상대적으로 안정된 한인 커뮤니티 성장.<br>
+        • 현재 시애틀 광역권 한인 인구 약 5만~7만 명 추산. 벨뷰·페더럴웨이·렌턴 등에 집중.
+      </div>
+    </div>
+  </div>
+
+  <!-- 하나님 나라 관점 -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">✝️ 하나님 나라 관점 — 신학적 배경</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap"><table>
+        <tr><th>#</th><th>저자 / 제목</th><th>연도</th><th>핵심 메시지</th><th>투어 연결</th></tr>
+        <tr><td>1</td><td>N.T. Wright — <em>Surprised by Hope</em> (한국어: <em>하나님 나라 새로보기</em>)</td><td>2008</td><td>부활과 하나님 나라의 현재성. 이 땅의 역사가 영원과 연결됨.</td><td>역사 전체, 원주민 이야기</td></tr>
+        <tr><td>2</td><td>Abraham Kuyper — <em>Lectures on Calvinism</em> (Stone Lectures)</td><td>1898</td><td>"하나님의 주권이 미치지 않는 땅은 한 뼘도 없다." 문화·정치·예술 전 영역.</td><td>테크 혁명, 도시 역사</td></tr>
+        <tr><td>3</td><td>Tim Keller — <em>Center Church</em> (한국어판 있음)</td><td>2012</td><td>도시 복음 사역의 신학적 틀. 도시를 사랑하고 섬기는 선교.</td><td>시애틀 전반, 한인 이민</td></tr>
+        <tr><td>4</td><td>Tim Keller — <em>Every Good Endeavor</em> (한국어: <em>일과 영성</em>)</td><td>2012</td><td>일과 직업이 하나님 나라와 연결되는 방식. 노동의 신학.</td><td>골드러시, 테크 혁명</td></tr>
+        <tr><td>5</td><td>Andy Crouch — <em>Culture Making</em> (한국어: <em>컬처 메이킹</em>)</td><td>2008</td><td>문화를 비판하거나 소비하지 말고 창조하라. 창조 문화와 하나님 나라.</td><td>음악(그런지), 아마존·마이크로소프트</td></tr>
+        <tr><td>6</td><td>Richard Mouw — <em>When the Kings Come Marching In</em></td><td>2002</td><td>이사야 60장 묵상. 열방의 문화가 새 예루살렘으로 들어옴. 다양성과 하나님 나라.</td><td>이민자 공동체, 차이나타운</td></tr>
+        <tr><td>7</td><td>Lesslie Newbigin — <em>The Gospel in a Pluralist Society</em></td><td>1989</td><td>다원주의 사회에서 복음 증언. 세속 도시에서 하나님 나라 증거.</td><td>진보적 시애틀, 문화 다양성</td></tr>
+        <tr><td>8</td><td>Walter Brueggemann — <em>The Prophetic Imagination</em> (한국어: <em>예언자적 상상력</em>)</td><td>1978</td><td>제국의 논리에 맞서는 예언자적 대안 공동체. 권력과 약자.</td><td>원주민 역사, 이민자 차별</td></tr>
+      </table></div>
+      <div style="margin-top:12px;padding:10px;background:#eef2fa;border-radius:8px;font-size:.83rem;line-height:1.8;">
+        <strong>📌 하나님 나라 관점에서 본 시애틀 투어 — 신학적 성찰 포인트:</strong><br>
+        • <strong>원주민 이야기</strong> → 땅의 청지기직(Stewardship). 창 1:28, 시 24:1. "땅은 주님의 것"<br>
+        • <strong>이민자 역사</strong> → 나그네를 돌보라(출 22:21, 레 19:34). 이민자의 고통에 하나님이 임재하심.<br>
+        • <strong>골드러시·아마존</strong> → 탐심과 청지기직. 눅 12:15. "삶이 소유의 풍족함에 있지 않음."<br>
+        • <strong>음악·창조문화</strong> → 일반 은혜(Common Grace). 하나님이 모든 인류에게 창조 능력 부여.<br>
+        • <strong>연어의 귀환</strong> → 탕자의 귀환(눅 15). 본향으로 돌아오는 인간의 본능.<br>
+        • <strong>화산 위의 도시</strong> → 불확실성 속 신뢰. 시 46:2-3. "땅이 변하고 산이 흔들려도."
+      </div>
+    </div>
+  </div>
+
+  <!-- 온라인 자료 -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">🌐 온라인 자료 & 방문 추천 장소</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap"><table>
+        <tr><th>자료</th><th>URL / 위치</th><th>내용</th></tr>
+        <tr><td>HistoryLink.org</td><td>historylink.org</td><td>시애틀·워싱턴주 역사 무료 온라인 백과사전. 모든 주제 심층 자료.</td></tr>
+        <tr><td>Wing Luke Museum</td><td>시애틀 인터내셔널 디스트릭트 내</td><td>아시아계 미국인 역사 박물관. 한인 이민사 포함. 투어 전 방문 추천.</td></tr>
+        <tr><td>Seattle Underground Tour</td><td>Pioneer Square</td><td>1889년 지하 도시 실제 투어. 스크립트 검증에 최적.</td></tr>
+        <tr><td>Klondike Gold Rush NHP</td><td>Pioneer Square 내 국립공원</td><td>골드러시 역사 무료 전시. 사진·지도 자료 풍부.</td></tr>
+        <tr><td>Duwamish Tribe 공식 사이트</td><td>duwamishtribe.org</td><td>드와미시족 공식 입장, 연방 인정 투쟁 현황.</td></tr>
+        <tr><td>MoPOP 아카이브</td><td>mopop.org</td><td>지미 헨드릭스·그런지 음악 역사 디지털 아카이브.</td></tr>
+      </table></div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+// ── YouTube 링크 자동 삽입 ─────────────────────────────────────────────────────
+const ytMap = [
+  // Tour 1 — Classic Seattle
+  { key: '파이크 플레이스 마켓',   url: 'https://www.youtube.com/watch?v=TvfePq94NUg' },
+  { key: 'Pike Place Market',      url: 'https://www.youtube.com/watch?v=TvfePq94NUg' },
+  { key: '껌 벽',                 url: 'https://www.youtube.com/results?search_query=Gum+Wall+Seattle+Post+Alley' },
+  { key: 'Gum Wall',              url: 'https://www.youtube.com/results?search_query=Gum+Wall+Seattle+Post+Alley' },
+  { key: '스페이스 니들',          url: 'https://www.youtube.com/results?search_query=Space+Needle+Seattle+inside+tour+4K' },
+  { key: 'Space Needle',          url: 'https://www.youtube.com/results?search_query=Space+Needle+Seattle+inside+tour+4K' },
+  { key: '아마존 스피어스',         url: 'https://www.youtube.com/results?search_query=Amazon+Spheres+Seattle+inside+tour+plants' },
+  { key: 'Amazon Spheres',        url: 'https://www.youtube.com/results?search_query=Amazon+Spheres+Seattle+inside+tour+plants' },
+  { key: '케리 공원',             url: 'https://www.youtube.com/results?search_query=Kerry+Park+Seattle+skyline+sunset+Space+Needle' },
+  { key: 'Kerry Park',            url: 'https://www.youtube.com/results?search_query=Kerry+Park+Seattle+skyline+sunset+Space+Needle' },
+  // Tour 2 — Story Tour
+  { key: 'Pioneer Square',        url: 'https://www.youtube.com/results?search_query=Seattle+Underground+Tour+Pioneer+Square' },
+  { key: '원조 스타벅스',          url: 'https://www.youtube.com/results?search_query=First+Starbucks+Pike+Place+Seattle+1912' },
+  { key: 'Original Starbucks',    url: 'https://www.youtube.com/results?search_query=First+Starbucks+Pike+Place+Seattle+1912' },
+  { key: '아마존 창업지',          url: 'https://www.youtube.com/watch?v=RVVfJVj5z8s' },
+  { key: "Amazon's Origin",       url: 'https://www.youtube.com/watch?v=RVVfJVj5z8s' },
+  { key: 'MoPOP',                 url: 'https://www.youtube.com/results?search_query=MoPOP+Museum+of+Pop+Culture+Seattle+tour+inside' },
+  // Tour 3 — History
+  { key: '원주민 역사',            url: 'https://www.youtube.com/results?search_query=Duwamish+tribe+Seattle+Chief+Sealth+indigenous+history' },
+  { key: 'Indigenous History',    url: 'https://www.youtube.com/results?search_query=Duwamish+tribe+Seattle+Chief+Sealth+indigenous+history' },
+  { key: 'Daybreak Star',         url: 'https://www.youtube.com/results?search_query=Daybreak+Star+Cultural+Center+Seattle+Duwamish' },
+  { key: '차이나타운',             url: 'https://www.youtube.com/results?search_query=Seattle+Chinatown+International+District+history+Wing+Luke' },
+  { key: 'Chinatown',             url: 'https://www.youtube.com/results?search_query=Seattle+Chinatown+International+District+history+Wing+Luke' },
+  { key: '테크 혁명',             url: 'https://www.youtube.com/watch?v=LmW4JjR2-_8' },
+  { key: 'Tech Revolution',       url: 'https://www.youtube.com/watch?v=LmW4JjR2-_8' },
+  // Tour 4 — Nature Healing
+  { key: 'Discovery Park',        url: 'https://www.youtube.com/results?search_query=Discovery+Park+Seattle+lighthouse+nature+trail' },
+  { key: 'Alki Beach',            url: 'https://www.youtube.com/results?search_query=Alki+Beach+Seattle+West+Seattle+waterfront' },
+  { key: 'Green Lake',            url: 'https://www.youtube.com/results?search_query=Green+Lake+Seattle+park+walk+neighborhood' },
+  // Tour 5 — Nature + City
+  { key: 'Fremont',               url: 'https://www.youtube.com/results?search_query=Fremont+Troll+Seattle+neighborhood+Center+of+Universe' },
+  // Tour 6 — Family
+  { key: 'Pacific Science Center',url: 'https://www.youtube.com/results?search_query=Pacific+Science+Center+Seattle+inside+tour' },
+  // Tour 8 — Shopping
+  { key: '노드스트롬',            url: 'https://www.youtube.com/results?search_query=Nordstrom+flagship+store+Seattle+shopping' },
+  { key: 'Nordstrom',             url: 'https://www.youtube.com/results?search_query=Nordstrom+flagship+store+Seattle+shopping' },
+  // Tour 9 — Rainier
+  { key: '스노콸미 폭포',          url: 'https://www.youtube.com/results?search_query=Snoqualmie+Falls+Washington+Twin+Peaks+waterfall' },
+  { key: 'Snoqualmie Falls',      url: 'https://www.youtube.com/results?search_query=Snoqualmie+Falls+Washington+Twin+Peaks+waterfall' },
+  { key: '레이니어',              url: 'https://www.youtube.com/watch?v=Mj5hcoOqyiY' },
+  { key: 'Mt. Rainier',           url: 'https://www.youtube.com/watch?v=Mj5hcoOqyiY' },
+  // Tour 10 — Deception Pass
+  { key: '라 콘너',               url: 'https://www.youtube.com/results?search_query=Skagit+Valley+Tulip+Festival+La+Conner+Washington+spring' },
+  { key: 'La Conner',             url: 'https://www.youtube.com/results?search_query=Skagit+Valley+Tulip+Festival+La+Conner+Washington+spring' },
+  { key: '디셉션패스',            url: 'https://www.youtube.com/results?search_query=Deception+Pass+Bridge+Washington+State+hike+views' },
+  { key: 'Deception Pass',        url: 'https://www.youtube.com/results?search_query=Deception+Pass+Bridge+Washington+State+hike+views' },
+  // Tour 11 — Olympic
+  { key: '베인브리지',            url: 'https://www.youtube.com/results?search_query=Bainbridge+Island+Ferry+Seattle+day+trip+Puget+Sound' },
+  { key: 'Bainbridge Island',     url: 'https://www.youtube.com/results?search_query=Bainbridge+Island+Ferry+Seattle+day+trip+Puget+Sound' },
+  { key: '허리케인 리지',          url: 'https://www.youtube.com/watch?v=xdb57xEuMHo' },
+  { key: 'Hurricane Ridge',       url: 'https://www.youtube.com/watch?v=xdb57xEuMHo' },
+  { key: '후안 데 푸카',           url: 'https://www.youtube.com/results?search_query=Strait+Juan+de+Fuca+sunset+Olympic+Peninsula+Washington' },
+  { key: 'Strait of Juan de Fuca',url: 'https://www.youtube.com/results?search_query=Strait+Juan+de+Fuca+sunset+Olympic+Peninsula+Washington' },
+];
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.location').forEach(function(loc) {
+    var text = loc.textContent.replace(/📍\s*/, '').trim();
+    var found = ytMap.find(function(l) { return text.includes(l.key); });
+    if (found) {
+      var a = document.createElement('a');
+      a.href = found.url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.className = 'yt-btn';
+      a.title = 'YouTube에서 보기';
+      a.textContent = '▶ YT';
+      loc.appendChild(a);
+    }
+  });
+});
+
+// ── 기본 기능 ─────────────────────────────────────────────────────────────────
+function toggleCard(header) {
+  header.classList.toggle('open');
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+  // 카드가 열릴 때 현재 언어 상태를 즉시 적용
+  if (body.classList.contains('open')) {
+    applyLangToBody(body);
+  }
+}
+
+function toggleLang() {
+  var isEn = document.body.classList.contains('en');
+  var newLang = isEn ? 'ko' : 'en';
+  setLang(newLang);
+
+  // 열린 카드가 없으면 → 첫 번째 카드를 자동으로 열고 스크롤
+  var openCards = document.querySelectorAll('.card-body.open');
+  if (openCards.length === 0) {
+    var firstCard = document.querySelector('.card');
+    if (firstCard) {
+      var firstHeader = firstCard.querySelector('.card-header');
+      var firstBody   = firstCard.querySelector('.card-body');
+      if (firstHeader && firstBody && !firstBody.classList.contains('open')) {
+        firstHeader.classList.add('open');
+        firstBody.classList.add('open');
+        // 열린 직후 현재 언어로 컨텐츠 표시 강제 적용
+        applyLangToBody(firstBody);
+      }
+      var topbarH = (document.querySelector('.topbar') || {offsetHeight: 56}).offsetHeight + 8;
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          var top = firstCard.getBoundingClientRect().top + window.pageYOffset - topbarH;
+          window.scrollTo({ top: Math.max(0, top - 20), behavior: 'smooth' });
+        });
+      });
+    }
+  } else {
+    // 열린 카드가 있으면 각각 언어 재적용 (이미 setLang에서 처리되지만 안전하게)
+    openCards.forEach(function(cb) { applyLangToBody(cb); });
+  }
+}
+
+// 특정 card-body 하나에 현재 언어 inline style 적용
+function applyLangToBody(cardBody) {
+  var isEn = document.body.classList.contains('en');
+  var ko = cardBody.querySelector('.ko');
+  var en = cardBody.querySelector('.en');
+  if (ko && en) {
+    ko.style.display = isEn ? 'none' : 'block';
+    en.style.display = isEn ? 'block' : 'none';
+  } else if (ko) {
+    ko.style.display = 'block'; // 영어 없으면 항상 한국어 표시
+  }
+}
+
+function setLang(lang) {
+  const classes = document.body.className.replace(/\bko\b|\ben\b/g, '').trim();
+  document.body.className = (classes + ' ' + lang).trim();
+
+  // 토글 버튼 표시 업데이트
+  var koSpan = document.getElementById('langKo');
+  var enSpan = document.getElementById('langEn');
+  if (koSpan && enSpan) {
+    koSpan.classList.toggle('on', lang === 'ko');
+    enSpan.classList.toggle('on', lang === 'en');
+  }
+
+  // 모든 카드에 inline style로 언어 직접 적용 (CSS 의존 제거)
+  document.querySelectorAll('.card-body').forEach(function(cardBody) {
+    var ko = cardBody.querySelector('.ko');
+    var en = cardBody.querySelector('.en');
+    if (ko && en) {
+      ko.style.display = lang === 'en' ? 'none' : 'block';
+      en.style.display = lang === 'en' ? 'block' : 'none';
+    } else if (ko) {
+      ko.style.display = 'block';
+    }
+  });
+}
+
+function setView(mode) {
+  document.body.classList.toggle('summary-mode', mode === 'sum');
+  document.getElementById('viewFull').classList.toggle('active', mode === 'full');
+  document.getElementById('viewSum').classList.toggle('active', mode === 'sum');
+}
+
+function searchContent(query) {
+  if (!query) {
+    document.querySelectorAll('.card').forEach(c => c.style.display = '');
+    return;
+  }
+  query = query.toLowerCase();
+  document.querySelectorAll('.card').forEach(card => {
+    const text = card.textContent.toLowerCase();
+    card.style.display = text.includes(query) ? '' : 'none';
+  });
+}
+
+// Sidebar active link on scroll — data-id 기반
+const sidebarLinks = document.querySelectorAll('.sidebar a[data-id]');
+window.addEventListener('scroll', () => {
+  var topbarEl2 = document.querySelector('.topbar');
+  var offset = topbarEl2 ? topbarEl2.offsetHeight + 20 : 80;
+  let current = '';
+  sidebarLinks.forEach(l => {
+    var targetId = l.getAttribute('data-id');
+    var el = document.getElementById(targetId);
+    if (el && el.getBoundingClientRect().top <= offset) {
+      current = targetId;
+    }
+  });
+  sidebarLinks.forEach(l => {
+    l.classList.remove('active');
+    if (l.getAttribute('data-id') === current) l.classList.add('active');
+  });
+});
+
+// ── 편집 모드 ─────────────────────────────────────────────────────────────────
+let editMode = false;
+
+function toggleEditMode() {
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  document.getElementById('editBtn').classList.toggle('active', editMode);
+
+  if (editMode) {
+    // Make all content areas editable
+    document.querySelectorAll('.card-body .ko, .card-body .en').forEach(el => {
+      el.contentEditable = 'true';
+    });
+    // Add delete buttons to each card header
+    document.querySelectorAll('.card').forEach(card => {
+      if (!card.querySelector('.delete-card-btn')) {
+        const btn = document.createElement('button');
+        btn.className = 'delete-card-btn';
+        btn.textContent = '🗑️ 삭제';
+        btn.onclick = e => { e.stopPropagation(); deleteCard(card); };
+        card.querySelector('.card-header').appendChild(btn);
+      }
+    });
+    // Add "새 항목 추가" button at end of each section
+    document.querySelectorAll('.section').forEach(section => {
+      if (!section.querySelector('.add-card-btn')) {
+        const btn = document.createElement('button');
+        btn.className = 'add-card-btn';
+        btn.textContent = '＋ 새 항목 추가';
+        btn.onclick = () => addCard(section);
+        section.appendChild(btn);
+      }
+    });
+    showIndicator('✏️ 편집 모드 시작');
+  } else {
+    // Remove contenteditable
+    document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+    // Remove injected buttons
+    document.querySelectorAll('.delete-card-btn, .add-card-btn').forEach(btn => btn.remove());
+    saveEdits();
+  }
+}
+
+// ── 저장 / 불러오기 ───────────────────────────────────────────────────────────
+function saveEdits() {
+  const data = { cards: {}, extra: [] };
+
+  // Save named cards
+  document.querySelectorAll('.card[id]').forEach(card => {
+    const ko = card.querySelector('.card-body .ko');
+    const en = card.querySelector('.card-body .en');
+    data.cards[card.id] = {
+      ko: ko ? ko.innerHTML : '',
+      en: en ? en.innerHTML : ''
+    };
+  });
+
+  // Save custom (added) cards
+  document.querySelectorAll('.card[data-custom]').forEach(card => {
+    const section = card.closest('.section');
+    const title = card.querySelector('.card-title');
+    const ko = card.querySelector('.card-body .ko');
+    const en = card.querySelector('.card-body .en');
+    data.extra.push({
+      sectionId: section ? section.id : '',
+      title: title ? title.textContent.replace('✏️ ', '') : '',
+      ko: ko ? ko.innerHTML : '',
+      en: en ? en.innerHTML : ''
+    });
+  });
+
+  localStorage.setItem('paulkim-scripts-v1', JSON.stringify(data));
+  showIndicator('💾 저장됨 ✓');
+}
+
+function loadSavedEdits() {
+  const raw = localStorage.getItem('paulkim-scripts-v1');
+  if (!raw) return;
+  let data;
+  try { data = JSON.parse(raw); } catch(e) { return; }
+
+  // Restore named cards
+  Object.entries(data.cards || {}).forEach(([id, content]) => {
+    const card = document.getElementById(id);
+    if (!card) return;
+    const ko = card.querySelector('.card-body .ko');
+    const en = card.querySelector('.card-body .en');
+    if (ko && content.ko) ko.innerHTML = content.ko;
+    if (en && content.en) en.innerHTML = content.en;
+  });
+
+  // Restore custom cards
+  (data.extra || []).forEach(item => {
+    const section = document.getElementById(item.sectionId);
+    if (section) createCard(section, item.title, item.ko, item.en);
+  });
+
+  showIndicator('📂 저장된 내용 불러옴');
+}
+
+function resetEdits() {
+  if (confirm('모든 편집 내용을 초기화할까요?\n저장된 수정 사항과 추가된 항목이 모두 삭제됩니다.')) {
+    localStorage.removeItem('paulkim-scripts-v1');
+    location.reload();
+  }
+}
+
+// ── 카드 추가 / 삭제 ──────────────────────────────────────────────────────────
+function addCard(section) {
+  const title = prompt('새 항목 제목을 입력하세요:');
+  if (!title) return;
+  createCard(section, title,
+    '<div class="script-block">여기에 한국어 내용을 입력하세요.</div>',
+    '<div class="script-block">Enter English content here.</div>'
+  );
+  saveEdits();
+}
+
+function createCard(section, title, koHTML, enHTML) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.custom = '1';
+  card.innerHTML = `
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-title">✏️ ${title}</div></div>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="ko">${koHTML}</div>
+      <div class="en">${enHTML}</div>
+    </div>
+  `;
+  // Insert before add-button if present, else append
+  const addBtn = section.querySelector('.add-card-btn');
+  if (addBtn) section.insertBefore(card, addBtn);
+  else section.appendChild(card);
+
+  // If already in edit mode, wire it up
+  if (editMode) {
+    card.querySelectorAll('.card-body .ko, .card-body .en').forEach(el => {
+      el.contentEditable = 'true';
+    });
+    const btn = document.createElement('button');
+    btn.className = 'delete-card-btn';
+    btn.textContent = '🗑️ 삭제';
+    btn.onclick = e => { e.stopPropagation(); deleteCard(card); };
+    card.querySelector('.card-header').appendChild(btn);
+    // Auto-open new card
+    card.querySelector('.card-header').classList.add('open');
+    card.querySelector('.card-body').classList.add('open');
+  }
+}
+
+function deleteCard(card) {
+  if (confirm('이 항목을 삭제할까요?')) {
+    card.remove();
+    saveEdits();
+  }
+}
+
+// ── HTML 내보내기 ─────────────────────────────────────────────────────────────
+function exportHtml() {
+  // Temporarily exit edit mode UI for clean export
+  if (editMode) {
+    document.querySelectorAll('.delete-card-btn, .add-card-btn').forEach(b => b.style.display = 'none');
+  }
+  const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `paulkim-guide-${new Date().toISOString().slice(0,10)}.html`;
+  a.click();
+  URL.revokeObjectURL(url);
+  // Restore
+  if (editMode) {
+    document.querySelectorAll('.delete-card-btn, .add-card-btn').forEach(b => b.style.display = '');
+  }
+  showIndicator('📥 HTML 파일 저장됨');
+}
+
+// ── 유틸 ──────────────────────────────────────────────────────────────────────
+function showIndicator(msg) {
+  const el = document.getElementById('saveIndicator');
+  if (!el) return;
+  el.textContent = msg;
+  el.style.opacity = '1';
+  setTimeout(() => el.style.opacity = '0', 2500);
+}
+
+// ── 사이드바 스크롤 (URL 변경 없이) ───────────────────────────────────────────
+// ── 모바일 사이드바 토글 ──────────────────────────────────────────────────
+function toggleSidebar() {
+  var sidebar = document.getElementById('sidebar');
+  var overlay = document.getElementById('sidebarOverlay');
+  var isOpen = sidebar.classList.contains('open');
+  sidebar.classList.toggle('open', !isOpen);
+  if (overlay) overlay.classList.toggle('open', !isOpen);
+}
+
+function closeSidebarOnMobile() {
+  if (window.innerWidth <= 768) {
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (sidebar) sidebar.classList.remove('open');
+    if (overlay) overlay.classList.remove('open');
+  }
+}
+
+function navTo(id) {
+  // 모바일: 사이드바 닫기
+  closeSidebarOnMobile();
+
+  // 사이드바 활성 표시
+  document.querySelectorAll('.sidebar a').forEach(function(a) { a.classList.remove('active'); });
+  var link = document.querySelector('.sidebar a[data-id="' + id + '"]');
+  if (link) link.classList.add('active');
+
+  if (id === 'top') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+
+  var el = document.getElementById(id);
+  if (!el) return;
+
+  // 카드라면 자동으로 열기 + 언어 상태 즉시 적용
+  var cardHeader = el.querySelector('.card-header');
+  var cardBody = el.querySelector('.card-body');
+  if (cardHeader && cardBody && !cardBody.classList.contains('open')) {
+    cardHeader.classList.add('open');
+    cardBody.classList.add('open');
+    applyLangToBody(cardBody);
+  }
+
+  // topbar 실제 높이를 동적으로 읽어서 정확한 위치로 스크롤 (+8px 여백)
+  var topbarEl = document.querySelector('.topbar');
+  var topbarH = topbarEl ? topbarEl.offsetHeight + 8 : 64;
+  // requestAnimationFrame으로 레이아웃 확정 후 스크롤 (두 번 실행해 정밀도 향상)
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      var top = el.getBoundingClientRect().top + window.pageYOffset - topbarH;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+}
+
+// ── 초기화: 저장된 내용 불러오기 ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', loadSavedEdits);
+</script>
+</body>
+</html>

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HebronGuide — Settle anywhere. Trusted everywhere.</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <style>
+    /* ── Light Mode (DEFAULT) ─────────────────────────────────── */
+    :root, [data-theme="light"] {
+      --bg-base: #fafafa; --bg-elevated: #ffffff; --bg-surface: #f5f5f7; --bg-surface-2: #ebebed;
+      --text-1: #1d1d1f; --text-2: #515154; --text-3: #86868b;
+      --gold: #b8860b; --gold-bright: #d4a017; --mint: #34c759; --warm: #ff9500; --navy: #1a2e6c;
+      --sep: rgba(0,0,0,0.08); --sep-bold: rgba(0,0,0,0.16);
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+      --shadow-hover: 0 8px 16px rgba(0,0,0,0.08), 0 24px 48px rgba(0,0,0,0.12);
+      --hero-glow-1: rgba(212,160,23,0.10); --hero-glow-2: rgba(52,199,89,0.06);
+      --gradient-text: linear-gradient(180deg, #1d1d1f 0%, #515154 100%);
+      --primary-btn-bg: #1d1d1f; --primary-btn-fg: #ffffff;
+      --ghost-btn-bg: rgba(0,0,0,0.05); --nav-bg: rgba(255,255,255,0.78);
+    }
+
+    /* ── Dark Mode ────────────────────────────────────────────── */
+    [data-theme="dark"] {
+      --bg-base: #000000; --bg-elevated: #0a0a0c; --bg-surface: #1c1c1e; --bg-surface-2: #2c2c2e;
+      --text-1: #f5f5f7; --text-2: #a1a1a6; --text-3: #6e6e73;
+      --gold: #d4a017; --gold-bright: #ffc640; --mint: #6EE7B7; --warm: #ff9f0a;
+      --sep: rgba(255,255,255,0.08); --sep-bold: rgba(255,255,255,0.16);
+      --shadow-card: 0 2px 8px rgba(0,0,0,0.3), 0 16px 40px rgba(0,0,0,0.4);
+      --shadow-hover: 0 12px 32px rgba(0,0,0,0.5);
+      --hero-glow-1: rgba(212,160,23,0.20); --hero-glow-2: rgba(110,231,183,0.10);
+      --gradient-text: linear-gradient(180deg, #ffffff 0%, #c8c8cc 100%);
+      --primary-btn-bg: #ffffff; --primary-btn-fg: #000000;
+      --ghost-btn-bg: rgba(255,255,255,0.06); --nav-bg: rgba(0,0,0,0.72);
+    }
+
+    /* ── Auto: 시스템 설정 따라가기 ─────────────────────────────── */
+    @media (prefers-color-scheme: dark) {
+      [data-theme="auto"] {
+        --bg-base: #000000; --bg-elevated: #0a0a0c; --bg-surface: #1c1c1e; --bg-surface-2: #2c2c2e;
+        --text-1: #f5f5f7; --text-2: #a1a1a6; --text-3: #6e6e73;
+        --gold: #d4a017; --gold-bright: #ffc640; --mint: #6EE7B7;
+        --sep: rgba(255,255,255,0.08); --sep-bold: rgba(255,255,255,0.16);
+        --shadow-card: 0 2px 8px rgba(0,0,0,0.3), 0 16px 40px rgba(0,0,0,0.4);
+        --shadow-hover: 0 12px 32px rgba(0,0,0,0.5);
+        --hero-glow-1: rgba(212,160,23,0.20); --hero-glow-2: rgba(110,231,183,0.10);
+        --gradient-text: linear-gradient(180deg, #ffffff 0%, #c8c8cc 100%);
+        --primary-btn-bg: #ffffff; --primary-btn-fg: #000000;
+        --ghost-btn-bg: rgba(255,255,255,0.06); --nav-bg: rgba(0,0,0,0.72);
+      }
+    }
+
+    :root {
+      --font: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: var(--font); background: var(--bg-base); color: var(--text-1);
+      font-size: 16px; line-height: 1.4; letter-spacing: -0.022em;
+      -webkit-font-smoothing: antialiased; overflow: hidden;
+      transition: background 0.4s var(--ease), color 0.4s var(--ease);
+      display: flex; flex-direction: column;
+    }
+
+    /* i18n 가시성 */
+    [data-lang="en"] .ko, [data-lang="en"] .es,
+    [data-lang="ko"] .en, [data-lang="ko"] .es,
+    [data-lang="es"] .en, [data-lang="es"] .ko { display: none; }
+    [data-lang="en"] .en, [data-lang="ko"] .ko, [data-lang="es"] .es { display: inline; }
+
+    /* ═══ NAV (56px) ═══════════════════════════════════════ */
+    nav.top {
+      flex-shrink: 0; height: 56px;
+      backdrop-filter: saturate(180%) blur(20px); background: var(--nav-bg);
+      border-bottom: 0.5px solid var(--sep);
+      transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
+    }
+    .top-inner {
+      max-width: 1600px; margin: 0 auto; padding: 0 24px;
+      height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .brand {
+      font-weight: 700; font-size: 18px; letter-spacing: -0.025em;
+      color: var(--text-1); text-decoration: none;
+      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+    }
+    .brand .mark {
+      width: 30px; height: 30px;
+      filter: drop-shadow(0 0 14px rgba(212, 160, 23, 0.4));
+      animation: spinSlow 90s linear infinite;
+    }
+    @keyframes spinSlow { to { transform: rotate(360deg); } }
+
+    .nav-center {
+      flex: 1; display: flex; justify-content: center; align-items: center; gap: 28px;
+    }
+    .nav-link {
+      font-size: 13px; font-weight: 500; color: var(--text-2);
+      text-decoration: none; transition: color .15s; cursor: pointer;
+      background: none; border: none; font-family: var(--font); padding: 0;
+    }
+    .nav-link:hover { color: var(--text-1); }
+
+    .nav-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .ctrl-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px; border-radius: 100px;
+      background: var(--ghost-btn-bg); color: var(--text-1);
+      border: 1px solid var(--sep);
+      font-size: 12px; font-weight: 600; letter-spacing: -0.01em;
+      cursor: pointer; transition: all .15s; font-family: var(--font);
+    }
+    .ctrl-btn:hover { background: var(--bg-surface); border-color: var(--sep-bold); }
+
+    .nav-cta {
+      padding: 7px 14px; border-radius: 100px;
+      background: var(--primary-btn-bg); color: var(--primary-btn-fg);
+      font-size: 12px; font-weight: 700; text-decoration: none;
+      transition: transform .15s; letter-spacing: -0.01em;
+    }
+    .nav-cta:hover { transform: translateY(-1px); }
+    @media (max-width: 980px) { .nav-center { display: none; } }
+
+    /* ═══ COMPACT HERO (~120px) ═══════════════════════════ */
+    .hero {
+      flex-shrink: 0; position: relative; overflow: hidden;
+      padding: 28px 24px 20px;
+      max-width: 1600px; margin: 0 auto; width: 100%;
+    }
+    .hero::before {
+      content: ""; position: absolute; top: -100px; left: 50%; width: 700px; height: 400px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center, var(--hero-glow-1), transparent 60%);
+      filter: blur(60px); pointer-events: none; z-index: -1;
+    }
+    .hero-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .hero-text { flex: 1; }
+    h1 {
+      font-weight: 800; font-size: clamp(24px, 3.2vw, 38px);
+      line-height: 1.05; letter-spacing: -0.035em; margin-bottom: 6px;
+      background: var(--gradient-text);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    h1 .accent {
+      background: linear-gradient(135deg, var(--gold-bright) 0%, var(--warm) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lead {
+      font-size: clamp(13px, 1vw, 15px); color: var(--text-2);
+      max-width: 720px; line-height: 1.4; letter-spacing: -0.013em;
+    }
+
+    .hero-stats {
+      display: flex; gap: 16px; flex-shrink: 0;
+    }
+    .stat-mini {
+      text-align: right; padding-left: 16px; border-left: 1px solid var(--sep);
+    }
+    .stat-mini:first-child { border-left: none; padding-left: 0; }
+    .stat-mini-v { font-weight: 700; font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.025em; line-height: 1; color: var(--text-1); }
+    .stat-mini-l { font-size: 10px; color: var(--text-3); margin-top: 4px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    @media (max-width: 720px) {
+      .hero-stats { display: none; }
+      .hero { padding: 20px 16px 14px; }
+    }
+
+    /* 필터 바 */
+    .filter-bar {
+      display: flex; gap: 6px; align-items: center; margin-top: 14px;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .filter-chip {
+      flex-shrink: 0;
+      padding: 6px 14px; border-radius: 100px;
+      background: var(--bg-surface); border: 1px solid var(--sep);
+      color: var(--text-2); font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all .15s; font-family: var(--font); letter-spacing: -0.01em;
+    }
+    .filter-chip:hover { color: var(--text-1); border-color: var(--sep-bold); }
+    .filter-chip.active {
+      background: var(--text-1); color: var(--bg-base); border-color: var(--text-1);
+    }
+    .filter-spacer { flex: 1; }
+    .tagline-mini {
+      font-size: 11px; color: var(--text-3); letter-spacing: 0.16em;
+      text-transform: uppercase; font-weight: 600; flex-shrink: 0;
+    }
+    @media (max-width: 720px) { .tagline-mini { display: none; } }
+
+    /* ═══ MAIN: 4×2 도시 그리드 (남은 viewport 모두 차지) ═══ */
+    main.grid-area {
+      flex: 1; min-height: 0; overflow: hidden;
+      padding: 12px 24px 16px;
+      max-width: 1600px; margin: 0 auto; width: 100%;
+      display: flex;
+    }
+    .bento {
+      flex: 1; display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 12px; min-height: 0;
+    }
+    @media (max-width: 1100px) { .bento { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); } }
+    @media (max-width: 720px)  {
+      body { overflow: auto; }
+      .bento { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, minmax(120px, 1fr)); }
+      main.grid-area { overflow: visible; padding: 12px 16px; }
+    }
+
+    .city {
+      position: relative; overflow: hidden; border-radius: 20px;
+      background: var(--bg-surface); border: 1px solid var(--sep);
+      text-decoration: none; color: #fff;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 18px 20px;
+      transition: transform .3s var(--ease-spring), border-color .15s, box-shadow .25s var(--ease);
+      box-shadow: var(--shadow-card);
+      isolation: isolate;
+      min-height: 0;
+    }
+    /* 도시 배경 이미지 — 빠져드는 시각 매력 */
+    .city .city-img {
+      position: absolute; inset: 0; z-index: -3;
+      background-image: var(--bg-image);
+      background-size: cover; background-position: center;
+      transition: transform .8s var(--ease);
+      filter: saturate(0.95);
+    }
+    .city:hover .city-img { transform: scale(1.08); }
+    /* 어두운 그라디언트 오버레이 — 텍스트 가독성 */
+    .city::before {
+      content: ""; position: absolute; inset: 0; z-index: -2;
+      background: linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.85) 100%);
+    }
+    /* 도시별 컬러 틴트 — 호버 시 강화 */
+    .city::after {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: var(--ctint, linear-gradient(135deg, transparent, transparent));
+      opacity: 0; transition: opacity .3s var(--ease);
+      mix-blend-mode: overlay;
+    }
+    .city:hover::after { opacity: 1; }
+    .city:hover { transform: translateY(-3px); border-color: var(--sep-bold); box-shadow: var(--shadow-hover); }
+    .city:hover .arr-icon { opacity: 1; transform: translate(2px, -2px); background: rgba(255,255,255,0.2); }
+
+    .city-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .city-flag { font-size: 28px; line-height: 1; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
+    .arr-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.12); color: #fff;
+      transition: all .25s var(--ease); opacity: 0.7; font-size: 14px;
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+    }
+    .city-bottom { display: flex; flex-direction: column; gap: 2px; }
+    .city-name {
+      font-weight: 700; font-size: clamp(18px, 1.6vw, 22px); letter-spacing: -0.025em; line-height: 1.1;
+      color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    .city-sub { font-size: 11px; color: rgba(255,255,255,0.75); font-weight: 500; letter-spacing: 0.02em; }
+    .city-meta {
+      margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.15);
+      font-size: 10px; color: rgba(255,255,255,0.85); font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+
+    /* Featured = 사이즈 + 시각적 차별 */
+    .city.featured {
+      grid-column: span 2; grid-row: span 2;
+      border-color: rgba(212,160,23,0.4);
+      padding: 28px 32px;
+      box-shadow: 0 8px 24px rgba(212,160,23,0.15), var(--shadow-card);
+    }
+    .city.featured::before {
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.50) 50%, rgba(26,46,108,0.85) 100%);
+    }
+    .city.featured .city-flag { font-size: 56px; }
+    .city.featured .city-name { font-size: clamp(36px, 4vw, 56px); letter-spacing: -0.04em; }
+    .city.featured .city-sub { font-size: 14px; }
+    .city.featured .arr-icon { width: 40px; height: 40px; font-size: 18px; }
+    .city.featured .badge {
+      display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;
+      background: linear-gradient(135deg, var(--mint), var(--gold-bright));
+      color: #fff; padding: 5px 13px; border-radius: 100px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 8px; box-shadow: 0 4px 16px rgba(52,199,89,0.3);
+    }
+
+    /* 도시별 색 틴트 (호버 시 mix-blend-mode로 적용) */
+    .city[data-c="seattle"]   { --ctint: linear-gradient(135deg, rgba(52,199,89,0.3), rgba(212,160,23,0.2)); }
+    .city[data-c="dallas"]    { --ctint: linear-gradient(135deg, rgba(255,149,0,0.4), transparent); }
+    .city[data-c="la"]        { --ctint: linear-gradient(135deg, rgba(255,69,150,0.4), transparent); }
+    .city[data-c="sf"]        { --ctint: linear-gradient(135deg, rgba(0,122,255,0.4), transparent); }
+    .city[data-c="newyork"]   { --ctint: linear-gradient(135deg, rgba(175,82,222,0.4), transparent); }
+    .city[data-c="nashville"] { --ctint: linear-gradient(135deg, rgba(255,204,0,0.4), transparent); }
+    .city[data-c="toronto"]   { --ctint: linear-gradient(135deg, rgba(255,59,48,0.4), transparent); }
+    .city[data-c="vancouver"] { --ctint: linear-gradient(135deg, rgba(52,199,89,0.4), transparent); }
+
+    .city.hidden { display: none; }
+
+    /* ═══ FOOTER (40px) ═══════════════════════════════════ */
+    footer {
+      flex-shrink: 0; padding: 10px 24px;
+      border-top: 1px solid var(--sep); background: var(--bg-base);
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      font-size: 11px; color: var(--text-3);
+      max-width: 1600px; margin: 0 auto; width: 100%;
+    }
+    footer .left { display: flex; gap: 12px; align-items: center; }
+    footer a { color: var(--text-2); text-decoration: none; }
+    footer a:hover { color: var(--text-1); }
+    @media (max-width: 720px) { footer { flex-direction: column; padding: 12px 16px; text-align: center; } }
+
+    /* ═══ Modal (원칙) ═══════════════════════════════════ */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.5); backdrop-filter: blur(6px);
+      display: none; align-items: center; justify-content: center; padding: 24px;
+      animation: fadeBg 0.2s var(--ease);
+    }
+    [data-theme="light"] .modal-backdrop { background: rgba(0,0,0,0.4); }
+    .modal-backdrop.open { display: flex; }
+    @keyframes fadeBg { from { opacity: 0; } to { opacity: 1; } }
+    .modal {
+      background: var(--bg-elevated); border-radius: 24px; max-width: 720px; width: 100%;
+      padding: 32px 36px; max-height: 80vh; overflow-y: auto;
+      box-shadow: 0 32px 64px rgba(0,0,0,0.4);
+      animation: slideUp 0.3s var(--ease-spring);
+    }
+    @keyframes slideUp { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .modal h2 { font-size: 24px; font-weight: 700; letter-spacing: -0.03em; }
+    .modal-close {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--ghost-btn-bg); border: 1px solid var(--sep);
+      color: var(--text-1); font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .principle {
+      padding: 16px 0; border-top: 1px solid var(--sep);
+    }
+    .principle:first-child { border-top: none; }
+    .principle-num { font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 4px; }
+    .principle-t { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .principle-d { font-size: 14px; color: var(--text-2); line-height: 1.5; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV (56px) ═══════════════════════════════════════ -->
+<nav class="top">
+  <div class="top-inner">
+    <a href="/" class="brand">
+      <svg class="mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="64" height="64" rx="13" fill="#1a2e6c"/>
+        <circle cx="32" cy="32" r="28" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.6"/>
+        <polygon points="32,7 40,24 32,32 24,24" fill="#d4a017"/>
+        <polygon points="32,57 40,40 32,32 24,40" fill="rgba(255,255,255,0.82)"/>
+        <polygon points="57,32 40,40 32,32 40,24" fill="rgba(255,255,255,0.52)"/>
+        <polygon points="7,32 24,24 32,32 24,40"  fill="rgba(255,255,255,0.52)"/>
+        <circle cx="32" cy="32" r="2.8" fill="rgba(255,255,255,0.95)"/>
+      </svg>
+      HebronGuide
+    </a>
+    <div class="nav-center">
+      <button class="nav-link" id="openPrinciples"><span class="en">Principles</span><span class="ko">원칙</span><span class="es">Principios</span></button>
+      <a class="nav-link" href="#cities"><span class="en">All Cities</span><span class="ko">전체 도시</span><span class="es">Todas las ciudades</span></a>
+      <a class="nav-link" href="#"><span class="en">About</span><span class="ko">소개</span><span class="es">Acerca de</span></a>
+    </div>
+    <div class="nav-right">
+      <button id="themeBtn" class="ctrl-btn" aria-label="Theme">
+        <span id="themeIco">☀️</span><span id="themeLabel">Light</span>
+      </button>
+      <button id="langBtn" class="ctrl-btn" aria-label="Language">
+        🌐 <span id="langLabel">EN</span>
+      </button>
+      <a href="/seattle/" class="nav-cta">
+        <span class="en">Open Seattle →</span><span class="ko">시애틀 열기 →</span><span class="es">Abrir Seattle →</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO (~140px) ═══════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-row">
+    <div class="hero-text">
+      <h1>
+        <span class="en">Wherever you arrive, <span class="accent">feel like home.</span></span>
+        <span class="ko">어디에 도착하든, <span class="accent">첫날부터 내 도시.</span></span>
+        <span class="es">Donde llegues, <span class="accent">siéntete en casa.</span></span>
+      </h1>
+      <p class="lead">
+        <span class="en">For immigrants, migrants, tourists, and visitors — a pocket city guide verified by locals who actually live there. No ads. No tourist traps. Just trust.</span>
+        <span class="ko">이민자·이주자·관광객·방문자 모두를 위한 도시 가이드. 그곳에 사는 사람이 직접 검증한 정보. 광고 없이, 진짜만.</span>
+        <span class="es">Para inmigrantes, migrantes, turistas y visitantes — verificada por quienes realmente viven allí. Sin anuncios. Solo confianza.</span>
+      </p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-mini"><div class="stat-mini-v">8</div><div class="stat-mini-l"><span class="en">Cities</span><span class="ko">도시</span><span class="es">Ciudades</span></div></div>
+      <div class="stat-mini"><div class="stat-mini-v">7M+</div><div class="stat-mini-l"><span class="en">People</span><span class="ko">디아스포라</span><span class="es">Personas</span></div></div>
+      <div class="stat-mini"><div class="stat-mini-v">3</div><div class="stat-mini-l"><span class="en">Languages</span><span class="ko">언어</span><span class="es">Idiomas</span></div></div>
+    </div>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-chip active" data-filter="all"><span class="en">All</span><span class="ko">전체</span><span class="es">Todas</span></button>
+    <button class="filter-chip" data-filter="usa"><span class="en">🇺🇸 USA</span><span class="ko">🇺🇸 미국</span><span class="es">🇺🇸 EE.UU.</span></button>
+    <button class="filter-chip" data-filter="canada"><span class="en">🇨🇦 Canada</span><span class="ko">🇨🇦 캐나다</span><span class="es">🇨🇦 Canadá</span></button>
+    <button class="filter-chip" data-filter="featured">⭐ <span class="en">Featured</span><span class="ko">추천</span><span class="es">Destacadas</span></button>
+    <div class="filter-spacer"></div>
+    <span class="tagline-mini">Know your city · Find your people</span>
+  </div>
+</section>
+
+<!-- ═══ MAIN GRID (4×2 = 남은 viewport 모두) ═══════════ -->
+<main class="grid-area" id="cities">
+  <nav class="bento" aria-label="Cities">
+    <a href="04_seattle_inside.html" class="city featured" data-c="seattle" data-region="usa featured" style="--bg-image: url('https://images.unsplash.com/photo-1502175353174-a7a44e84da10?w=1600&q=80')">
+      <div class="city-img"></div>
+      <div class="city-top">
+        <span class="badge">⭐ <span class="en">Flagship</span><span class="ko">메인 모델</span><span class="es">Principal</span></span>
+        <span class="arr-icon">→</span>
+      </div>
+      <div class="city-bottom">
+        <span class="city-flag">🏔️</span>
+        <h3 class="city-name"><span class="en">Seattle</span><span class="ko">시애틀</span><span class="es">Seattle</span></h3>
+        <p class="city-sub">Washington · USA</p>
+        <div class="city-meta"><span class="en">165K Koreans · Locally Verified</span><span class="ko">한인 16.5만 · 현지 검증 완료</span><span class="es">165K coreanos · Verificado localmente</span></div>
+      </div>
+    </a>
+
+    <a href="/dallas/" class="city" data-c="dallas" data-region="usa" style="--bg-image: url('https://images.unsplash.com/photo-1545194445-dddb8f4487c6?w=800&q=80')">
+      <div class="city-img"></div>
+      <div class="city-top"><span class="city-flag">🤠</span><span class="arr-icon">→</span></div>
+      <div class="city-bottom">
+        <h3 class="city-name"><span class="en">Dallas</span><span class="ko">달라스</span><span class="es">Dallas</span></h3>
+        <p class="city-sub">Texas · USA</p>
+        <div class="city-meta">130K Koreans</div>
+      </div>
+    </a>
+
+    <a href="/la/" class="city" data-c="la" data-region="usa" style="--bg-image: url('https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=800&q=80')">
+      <div class="city-img"></div>
+      <div class="city-top"><span class="city-flag">🌴</span><span class="arr-icon">→</span></div>
+      <div class="city-bottom">
+        <h3 class="city-name"><span class="en">Los Angeles</span><span class="ko">LA</span><span class="es">Los Ángeles</span></h3>
+        <p class="city-sub">California · USA</p>
+        <div class="city-meta">600K Koreans</div>
+      </div>
+    </a>
+
+    <a href="/sf/" class="city" data-c="sf" data-region="usa" style="--bg-image: url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&q=80')">
+      <div class="city-img"></div>
+      <div class="city-top"><span class="city-flag">🌉</span><span class="arr-icon">→</span></div>
+      <div class="city-bottom">
+        <h3 class="city-name"><span class="en">San Francisco</span><span class="ko">샌프란시스코</span><span class="es">San Francisco</span></h3>
+        <p class="city-sub">SF Bay Area</p>
+        <div class="city-meta">120K Koreans</div>
+      </div>
+    </a>
+
+    <a href="/newyork/" class="city" data-c="newyork" data-region="usa" style="--bg-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&q=80')">
+      <div class="city-img"></div>
+      <div class="city-top"><span class="city-flag">🗽</span><span class="arr-icon">→</span></div>
+      <div class="city-bottom">
+        <h3 class="city-name"><span class="en">New York</span><span class="ko">뉴욕</span><span class="es">Nueva York</span></h3>
+        <p class="city-sub">NY · NJ · USA</p>
+        <div class="city-meta">500K Koreans</div>
+      </div>
+    </a>
+
+    <a href="/nashville/" class="city" data-c="nashville" data-region="usa" style="--bg-image: url('https://images.unsplash.com/photo-1545158539-1709b9c54fe1?w=800&q=80')">
+      <div class="city-img"></div>
+      <div class="city-top"><span class="city-flag">🎸</span><span class="arr-icon">→</span></div>
+      <div class="city-bottom">
+        <h3 class="city-name"><span class="en">Nashville</span><span class="ko">내슈빌</span><span class="es">Nashville</span></h3>
+        <p class="city-sub">Tennessee · USA</p>
+        <div class="city-meta">15K Koreans</div>
+      </div>
+    </a>
+
+    <a href="/toronto/" class="city" data-c="toronto" data-region="canada" style="--bg-image: url('https://images.unsplash.com/photo-1517090504586-fde19ea6066f?w=800&q=80')">
+      <div class="city-img"></div>
+      <div class="city-top"><span class="city-flag">🍁</span><span class="arr-icon">→</span></div>
+      <div class="city-bottom">
+        <h3 class="city-name"><span class="en">Toronto</span><span class="ko">토론토</span><span class="es">Toronto</span></h3>
+        <p class="city-sub">Ontario · Canada</p>
+        <div class="city-meta">90K Koreans</div>
+      </div>
+    </a>
+
+    <a href="/vancouver/" class="city" data-c="vancouver" data-region="canada" style="--bg-image: url('https://images.unsplash.com/photo-1559511260-66a654ae982a?w=800&q=80')">
+      <div class="city-img"></div>
+      <div class="city-top"><span class="city-flag">🏔️</span><span class="arr-icon">→</span></div>
+      <div class="city-bottom">
+        <h3 class="city-name"><span class="en">Vancouver</span><span class="ko">밴쿠버</span><span class="es">Vancouver</span></h3>
+        <p class="city-sub">BC · Canada</p>
+        <div class="city-meta">70K Koreans</div>
+      </div>
+    </a>
+  </nav>
+</main>
+
+<!-- ═══ FOOTER (40px) ═══════════════════════════════════ -->
+<footer>
+  <div class="left">
+    <span><strong style="color:var(--text-2)">© 2026 HebronGuide</strong></span>
+    <span>·</span>
+    <span class="en">Operated by Global Mission Church Seattle</span>
+    <span class="ko">운영: 시애틀지구촌교회</span>
+    <span class="es">Operado por Global Mission Church Seattle</span>
+  </div>
+  <div>
+    <span class="en">2026 Seattle → 2027 NA Top 3 → 2030+ Global</span>
+    <span class="ko">2026 시애틀 → 2027 북미 3대 → 2030+ 글로벌</span>
+    <span class="es">2026 Seattle → 2027 NA Top 3 → 2030+ Global</span>
+  </div>
+</footer>
+
+<!-- ═══ MODAL: 5 Principles ═══════════════════════════════ -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="modal">
+    <div class="modal-head">
+      <h2><span class="en">Five Principles</span><span class="ko">다섯 가지 원칙</span><span class="es">Cinco principios</span></h2>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="principle">
+      <div class="principle-num">No. 01</div>
+      <h3 class="principle-t"><span class="en">Settler's Eye</span><span class="ko">정착자의 눈</span><span class="es">Mirada del residente</span></h3>
+      <p class="principle-d"><span class="en">Verified by Koreans who actually live in the city — not tourists, not bloggers.</span><span class="ko">관광객이 아닌, 그 도시에 살아본 한인이 직접 검증한 정보만.</span><span class="es">Verificado por coreanos que realmente viven allí — no por turistas.</span></p>
+    </div>
+    <div class="principle">
+      <div class="principle-num">No. 02</div>
+      <h3 class="principle-t"><span class="en">Day-One Ready</span><span class="ko">도착 첫날부터</span><span class="es">Listo desde el día uno</span></h3>
+      <p class="principle-d"><span class="en">Structured for the journey: 0–3 months, 3–12 months, 1+ year.</span><span class="ko">단계별 정착 구조: 0~3개월 / 3~12개월 / 1년+.</span><span class="es">Estructurado: 0-3 meses, 3-12 meses, 1+ año.</span></p>
+    </div>
+    <div class="principle">
+      <div class="principle-num">No. 03</div>
+      <h3 class="principle-t"><span class="en">Locally Verified</span><span class="ko">현지가 검증한다</span><span class="es">Verificado localmente</span></h3>
+      <p class="principle-d"><span class="en">Every business and contact is double-checked by community networks.</span><span class="ko">한인 커뮤니티 네트워크가 이중으로 확인한 정보만.</span><span class="es">Cada negocio es verificado por redes comunitarias.</span></p>
+    </div>
+    <div class="principle">
+      <div class="principle-num">No. 04</div>
+      <h3 class="principle-t"><span class="en">Transparency = Authority</span><span class="ko">투명성이 권위</span><span class="es">Transparencia = autoridad</span></h3>
+      <p class="principle-d"><span class="en">Last verified date, verification method, and any conflict of interest are always disclosed.</span><span class="ko">마지막 확인 날짜·방법·이해충돌을 항상 명시.</span><span class="es">Fecha y método de verificación siempre divulgados.</span></p>
+    </div>
+    <div class="principle">
+      <div class="principle-num">No. 05</div>
+      <h3 class="principle-t"><span class="en">With Locals, Together</span><span class="ko">현지인과 함께</span><span class="es">Juntos con los locales</span></h3>
+      <p class="principle-d"><span class="en">Bilingual content invites English speakers and other immigrants into the same community.</span><span class="ko">영어권 현지인과 다른 이민자도 함께 하는 다국어 콘텐츠.</span><span class="es">Contenido multilingüe para anglohablantes y otros inmigrantes.</span></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ═══ Theme Toggle (Light → Dark → Auto) ═══
+  const themeBtn = document.getElementById('themeBtn');
+  const themeIco = document.getElementById('themeIco');
+  const themeLabel = document.getElementById('themeLabel');
+  const themeStates = [
+    { name: 'light', ico: '☀️', label: 'Light' },
+    { name: 'dark',  ico: '🌙', label: 'Dark'  },
+    { name: 'auto',  ico: '💻', label: 'Auto'  },
+  ];
+  let themeIdx = parseInt(localStorage.getItem('hg-theme-idx') || '0');
+  function applyTheme() {
+    const s = themeStates[themeIdx];
+    document.documentElement.setAttribute('data-theme', s.name);
+    themeIco.textContent = s.ico;
+    themeLabel.textContent = s.label;
+    localStorage.setItem('hg-theme-idx', themeIdx);
+  }
+  themeBtn.addEventListener('click', () => {
+    themeIdx = (themeIdx + 1) % themeStates.length;
+    applyTheme();
+  });
+  applyTheme();
+
+  // ═══ Language (EN → KO → ES) ═══
+  const langBtn = document.getElementById('langBtn');
+  const langLabel = document.getElementById('langLabel');
+  const langStates = ['en', 'ko', 'es'];
+  const langDisplay = { en: 'EN', ko: '한글', es: 'ES' };
+  let langIdx = langStates.indexOf(localStorage.getItem('hg-lang') || 'en');
+  if (langIdx < 0) langIdx = 0;
+  function applyLang() {
+    const l = langStates[langIdx];
+    document.documentElement.setAttribute('data-lang', l);
+    document.documentElement.setAttribute('lang', l);
+    langLabel.textContent = langDisplay[l];
+    localStorage.setItem('hg-lang', l);
+  }
+  langBtn.addEventListener('click', () => {
+    langIdx = (langIdx + 1) % langStates.length;
+    applyLang();
+  });
+  applyLang();
+
+  // ═══ Filter ═══
+  const filterChips = document.querySelectorAll('.filter-chip');
+  const cityCards = document.querySelectorAll('.city');
+  filterChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      filterChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const filter = chip.dataset.filter;
+      cityCards.forEach(card => {
+        const regions = (card.dataset.region || '').split(' ');
+        card.classList.toggle('hidden', filter !== 'all' && !regions.includes(filter));
+      });
+    });
+  });
+
+  // ═══ Modal ═══
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  document.getElementById('openPrinciples').addEventListener('click', () => modalBackdrop.classList.add('open'));
+  document.getElementById('modalClose').addEventListener('click', () => modalBackdrop.classList.remove('open'));
+  modalBackdrop.addEventListener('click', e => { if (e.target === modalBackdrop) modalBackdrop.classList.remove('open'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') modalBackdrop.classList.remove('open'); });
+</script>
+</body>
+</html>

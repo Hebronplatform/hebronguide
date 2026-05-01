@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hebron Guide — Flyer (Filipino)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .flyer {
+    width: 680px;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  }
+
+  .header {
+    background: linear-gradient(135deg, #1a4fa0 0%, #2563eb 100%);
+    color: white;
+    padding: 40px 48px 36px;
+    text-align: center;
+  }
+  .brand { font-size: .85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; opacity: .8; margin-bottom: 10px; }
+  .headline { font-size: 2.4rem; font-weight: 900; line-height: 1.2; margin-bottom: 12px; }
+  .subline { font-size: 1rem; opacity: .9; font-weight: 400; line-height: 1.5; }
+
+  .body { padding: 36px 48px; }
+
+  .desc {
+    font-size: .95rem;
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .feat {
+    background: #f8faff;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: .85rem;
+    color: #1e3a6e;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .feat-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+  .pricing-title {
+    text-align: center;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 14px;
+  }
+  .pricing {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .price-card {
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .price-card.featured {
+    border-color: #2563eb;
+    background: #eff6ff;
+  }
+  .price-label { font-size: .8rem; font-weight: 700; color: #374151; margin-bottom: 4px; }
+  .price-amt { font-size: 1.5rem; font-weight: 900; color: #1a4fa0; }
+  .price-note { font-size: .72rem; color: #6b7280; margin-top: 2px; }
+  .badge { display: inline-block; background: #2563eb; color: white; font-size: .65rem; font-weight: 700; padding: 2px 8px; border-radius: 99px; margin-bottom: 4px; }
+
+  .qr-section {
+    background: #f8faff;
+    border: 1.5px solid #dbeafe;
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .qr-section .qr-intro { font-size: .82rem; color: #374151; margin-bottom: 16px; font-weight: 600; }
+  .qr-pair { display: flex; justify-content: center; gap: 28px; }
+  .qr-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .qr-item img { width: 108px; height: 108px; border-radius: 8px; border: 2px solid #dbeafe; }
+  .qr-label { font-size: .78rem; font-weight: 800; color: #1a4fa0; }
+  .qr-url { font-size: .72rem; font-weight: 700; color: #2563eb; }
+
+  .footer {
+    background: #1e293b;
+    color: #94a3b8;
+    text-align: center;
+    padding: 18px 48px;
+    font-size: .75rem;
+    line-height: 1.7;
+  }
+  .footer strong { color: white; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .flyer { box-shadow: none; border-radius: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <div class="header">
+    <img src="hebronguide-logo.svg" alt="HebronGuide" style="height:44px;width:auto;opacity:0.95;display:block;margin:0 auto 8px;">
+    <div class="headline">Ang Iyong Lungsod,<br>Sa Iyong Wika.</div>
+    <div class="subline">Custom na App ng Gabay sa Lungsod — para sa inyong komunidad ng simbahan</div>
+  </div>
+
+  <div class="body">
+
+    <p class="desc">
+      Sa bagong lungsod, hindi ka nag-iisa — ang simbahan ang iyong unang tahanan.<br>
+      Gumagawa kami ng custom na gabay na may lokal na impormasyon —<br>
+      ospital, paaralan, DMV, tindahan, simbahan — sa <strong>inyong wika</strong>.<br>
+      <em style="font-size:.88rem;color:#555;">Sama-sama nating abutin ang bawat bagong dating.</em>
+    </p>
+
+    <div class="features">
+      <div class="feat"><span class="feat-icon">🌐</span><span>Filipino muna · kasama ang Ingles, Español, Korean, Chinese at iba pa</span></div>
+      <div class="feat"><span class="feat-icon">📱</span><span>Gumagana sa anumang telepono — walang app na kailangang i-download</span></div>
+      <div class="feat"><span class="feat-icon">🗺️</span><span>Ginawa para sa inyong lungsod — kahit saan sa US o Canada</span></div>
+      <div class="feat"><span class="feat-icon">⛪</span><span>Ang inyong simbahan — tahanan ng lahat, mula sa unang araw</span></div>
+    </div>
+
+    <div class="pricing-title">Presyo</div>
+    <div class="pricing">
+      <div class="price-card">
+        <div class="price-label">Basic</div>
+        <div class="price-amt">$50</div>
+        <div class="price-note">1 Wika</div>
+      </div>
+      <div class="price-card featured">
+        <div class="badge">Inirerekomenda</div>
+        <div class="price-label">Dalawang Wika</div>
+        <div class="price-amt">$80</div>
+        <div class="price-note">2 Wika</div>
+      </div>
+      <div class="price-card">
+        <div class="price-label">Taunang Update</div>
+        <div class="price-amt">$20</div>
+        <div class="price-note">bawat taon</div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:.78rem;color:#6b7280;margin-bottom:28px;">Nagbibigay ng gabay sa maraming simbahan? Makipag-ugnayan para sa network pricing.</p>
+
+    <div class="qr-section">
+      <div class="qr-intro">📱 Subukan muna — tapos mag-order na</div>
+      <div class="qr-pair">
+        <div class="qr-item">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=216x216&data=https%3A%2F%2Fhebronguide.com&color=1a4fa0&bgcolor=ffffff" alt="Sample Guide">
+          <div class="qr-label">🔍 Tingnan ang Sample</div>
+          <div class="qr-url">hebronguide.com</div>
+        </div>
+        <div class="qr-item">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=216x216&data=https%3A%2F%2Fhebronguide.com%2Forder&color=c0392b&bgcolor=ffffff" alt="Mag-order">
+          <div class="qr-label">🛒 Mag-order Na Ngayon</div>
+          <div class="qr-url">hebronguide.com/order</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <strong>Hebron Guide</strong> · hebronguide.com · Paul Kim · kchurch911@gmail.com<br>
+    Bayad sa pamamagitan ng Zelle, Venmo, o PayPal · Delivery sa loob ng 5–7 araw ng negosyo
+  </div>
+
+</div>
+</body>
+</html>

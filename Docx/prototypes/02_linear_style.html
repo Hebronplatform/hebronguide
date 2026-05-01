@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HebronGuide — Linear Style Prototype</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <style>
+    /* ═══ LINEAR-INSPIRED DESIGN ════════════════════════
+       특징: 사이안·보라 오로라 그라디언트, 샤프한 Inter,
+            네온 글로우 카드, 다크 + 채도 높은 액센트
+       ═══════════════════════════════════════════════════ */
+    :root {
+      --bg: #08080b;
+      --bg-elevated: #0f1014;
+      --surface: #16161d;
+      --surface-2: #1c1c25;
+      --text-1: #f7f8f8;
+      --text-2: #b4b8c5;
+      --text-3: #6b7080;
+      --accent-purple: #7c5cff;
+      --accent-blue:   #5e6ad2;
+      --accent-cyan:   #4cb5ff;
+      --accent-pink:   #ff66b3;
+      --accent-green:  #4ade80;
+      --border: rgba(255,255,255,0.08);
+      --border-strong: rgba(255,255,255,0.16);
+      --font: 'Pretendard Variable', 'Inter', -apple-system, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font); background: var(--bg); color: var(--text-1);
+      font-size: 16px; line-height: 1.5; letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased; overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* 배경 오로라 — Linear 시그니처 */
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124, 92, 255, 0.25), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 30%, rgba(76, 181, 255, 0.18), transparent 60%),
+        radial-gradient(ellipse 50% 30% at 20% 60%, rgba(255, 102, 179, 0.12), transparent 60%);
+      animation: aurora 20s ease-in-out infinite alternate;
+    }
+    body::after {
+      content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 100% 60% at 50% 0%, black 30%, transparent 70%);
+    }
+    @keyframes aurora {
+      0%   { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(-30px, 20px) scale(1.05); }
+      100% { transform: translate(20px, -10px) scale(1.02); }
+    }
+
+    /* 네비 */
+    nav.top {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      backdrop-filter: blur(24px) saturate(180%);
+      background: rgba(8, 8, 11, 0.7);
+      border-bottom: 1px solid var(--border);
+    }
+    .top-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 24px;
+      height: 60px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-weight: 700; font-size: 17px; letter-spacing: -0.02em;
+      color: var(--text-1); text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .logo-mark {
+      width: 26px; height: 26px; border-radius: 7px;
+      background: conic-gradient(from 180deg, var(--accent-purple), var(--accent-blue), var(--accent-cyan), var(--accent-purple));
+      box-shadow: 0 0 20px rgba(124, 92, 255, 0.6);
+      position: relative;
+    }
+    .logo-mark::after {
+      content: ""; position: absolute; inset: 4px;
+      background: var(--bg); border-radius: 4px;
+    }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--text-2);
+      text-decoration: none; transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--text-1); }
+    .nav-cta {
+      padding: 7px 14px; border-radius: 8px;
+      background: rgba(124, 92, 255, 0.15);
+      border: 1px solid rgba(124, 92, 255, 0.3);
+      color: var(--text-1) !important;
+      font-size: 13px; font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: rgba(124, 92, 255, 0.25); }
+    @media (max-width: 720px) { .nav-links { display: none; } .nav-cta { display: flex; } }
+
+    /* 히어로 */
+    .hero {
+      max-width: 1100px; margin: 0 auto;
+      padding: 200px 24px 120px; text-align: center;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500; color: var(--text-2);
+      padding: 6px 14px; border-radius: 100px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      margin-bottom: 32px;
+      backdrop-filter: blur(8px);
+    }
+    .pill::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 8px var(--accent-green);
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 88px); font-weight: 700;
+      line-height: 1.0; letter-spacing: -0.045em;
+      margin-bottom: 28px;
+    }
+    h1 .grad {
+      background: linear-gradient(120deg, #fff 0%, #c9b3ff 30%, #4cb5ff 70%, #fff 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: shimmer 8s linear infinite;
+    }
+    @keyframes shimmer { from { background-position: 0% 0%; } to { background-position: -200% 0%; } }
+
+    .hero p.lead {
+      font-size: clamp(17px, 2vw, 22px); color: var(--text-2);
+      max-width: 680px; margin: 0 auto 16px; line-height: 1.5;
+      letter-spacing: -0.015em;
+    }
+    .verse {
+      font-size: 13px; color: var(--text-3); font-style: italic;
+      margin-bottom: 48px;
+    }
+
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      transition: all .15s; border: none; cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      color: #fff; box-shadow: 0 4px 24px rgba(124, 92, 255, 0.4);
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(124, 92, 255, 0.6); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.04); color: var(--text-1);
+      border: 1px solid var(--border-strong); backdrop-filter: blur(12px);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--accent-purple); }
+    .arrow { transition: transform .15s; }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    /* 섹션 헤더 */
+    .section { max-width: 1280px; margin: 0 auto; padding: 80px 24px; }
+    .section-head { text-align: center; margin-bottom: 64px; }
+    .section-head h2 {
+      font-size: clamp(32px, 4.5vw, 56px); font-weight: 700;
+      letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 16px;
+    }
+    .section-head p {
+      font-size: 17px; color: var(--text-2); max-width: 600px; margin: 0 auto;
+    }
+
+    /* 도시 카드 그리드 — Linear 스타일 글로우 */
+    .cities {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .city {
+      position: relative; overflow: hidden;
+      padding: 28px 24px 24px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid var(--border);
+      text-decoration: none; color: var(--text-1);
+      display: flex; flex-direction: column; gap: 8px; min-height: 200px;
+      transition: all .25s cubic-bezier(0.4, 0, 0.2, 1);
+      isolation: isolate;
+    }
+    .city::before {
+      content: ""; position: absolute; inset: -1px; border-radius: 14px;
+      padding: 1px;
+      background: linear-gradient(135deg, transparent, var(--glow, rgba(124,92,255,0.4)), transparent);
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude; -webkit-mask-composite: xor;
+      opacity: 0; transition: opacity .25s; z-index: -1;
+    }
+    .city:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.18); }
+    .city:hover::before { opacity: 1; }
+
+    .city[data-c="seattle"]   { --glow: rgba(76, 181, 255, 0.6); }
+    .city[data-c="dallas"]    { --glow: rgba(255, 102, 179, 0.5); }
+    .city[data-c="la"]        { --glow: rgba(255, 159, 10, 0.5); }
+    .city[data-c="sf"]        { --glow: rgba(74, 222, 128, 0.5); }
+    .city[data-c="newyork"]   { --glow: rgba(124, 92, 255, 0.6); }
+    .city[data-c="nashville"] { --glow: rgba(255, 214, 10, 0.5); }
+    .city[data-c="toronto"]   { --glow: rgba(255, 69, 58, 0.5); }
+    .city[data-c="vancouver"] { --glow: rgba(48, 209, 88, 0.5); }
+
+    .city-flag { font-size: 28px; }
+    .city-name { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+    .city-loc { font-size: 13px; color: var(--text-3); margin-bottom: 12px; }
+    .city-pop {
+      margin-top: auto; padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-2); font-weight: 500;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .city-tag {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      padding: 3px 8px; border-radius: 100px;
+      background: rgba(124, 92, 255, 0.18); color: #b4a5ff;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .city.featured {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(124, 92, 255, 0.12) 0%, rgba(76, 181, 255, 0.06) 100%);
+      border-color: rgba(124, 92, 255, 0.3);
+    }
+    .city.featured .city-name { font-size: 32px; }
+    .city.featured .city-flag { font-size: 36px; }
+    @media (max-width: 720px) { .city.featured { grid-column: span 1; } }
+
+    /* 통계 — Linear 미니멀 */
+    .metrics {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: var(--border); border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border); margin: 80px auto 0; max-width: 900px;
+    }
+    .metric { padding: 24px; background: var(--bg-elevated); text-align: center; }
+    .metric-n {
+      font-size: 36px; font-weight: 700; letter-spacing: -0.03em;
+      background: linear-gradient(180deg, #fff 0%, #888 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .metric-l {
+      font-size: 11px; color: var(--text-3); margin-top: 4px;
+      letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600;
+    }
+    @media (max-width: 720px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+
+    /* 원칙 */
+    .principles {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px; background: var(--border); border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .principle { padding: 32px 28px; background: var(--bg-elevated); }
+    .principle-num {
+      font-family: 'Inter', monospace; font-size: 11px; font-weight: 700;
+      color: var(--accent-purple); letter-spacing: 0.1em; margin-bottom: 16px;
+    }
+    .principle-t { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .principle-d { font-size: 14px; color: var(--text-2); line-height: 1.55; }
+
+    footer {
+      max-width: 1280px; margin: 80px auto 0; padding: 48px 24px;
+      border-top: 1px solid var(--border); text-align: center;
+    }
+    footer p { font-size: 13px; color: var(--text-2); margin-bottom: 6px; }
+    footer .copy { font-size: 11px; color: var(--text-3); margin-top: 24px; letter-spacing: 0.04em; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero > * { animation: fadeUp .8s cubic-bezier(0.4,0,0.2,1) both; }
+    .hero > *:nth-child(2) { animation-delay: .1s; }
+    .hero > *:nth-child(3) { animation-delay: .2s; }
+    .hero > *:nth-child(4) { animation-delay: .3s; }
+    .hero > *:nth-child(5) { animation-delay: .4s; }
+  </style>
+</head>
+<body>
+  <nav class="top">
+    <div class="top-inner">
+      <a href="/" class="logo"><span class="logo-mark"></span> HebronGuide</a>
+      <div class="nav-links">
+        <a href="#cities">Cities</a>
+        <a href="#principles">Principles</a>
+        <a href="/seattle/" class="nav-cta">Open Seattle →</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <span class="pill">Korean Diaspora · 700M+</span>
+    <h1>
+      Settle anywhere.<br>
+      <span class="grad">Trusted everywhere.</span>
+    </h1>
+    <p class="lead">
+      교회 공동체의 신뢰를 기반으로 한, 검증된 도시별 한인 정착 가이드.<br>
+      시애틀 · 달라스 · LA · 뉴욕 · SF · 토론토 · 그리고 그 너머.
+    </p>
+    <p class="verse">— "산 위에 있는 동네가 숨겨지지 못할 것이요" 마태복음 5:14</p>
+    <div class="cta-row">
+      <a href="/seattle/" class="btn btn-primary">시애틀 가이드 시작 <span class="arrow">→</span></a>
+      <a href="#cities" class="btn btn-ghost">전체 도시 보기</a>
+    </div>
+  </section>
+
+  <section class="section" id="cities">
+    <div class="section-head">
+      <h2>도시별 가이드</h2>
+      <p>각 도시는 그곳에 거주하는 한인이 직접 검증한 정보로 구성됩니다.</p>
+    </div>
+
+    <div class="cities">
+      <a href="/seattle/" class="city featured" data-c="seattle">
+        <div class="city-flag">🏔️</div>
+        <div class="city-name">시애틀 — Seattle</div>
+        <div class="city-loc">Washington · USA</div>
+        <div class="city-pop"><span>한인 16.5만 명 · 시애틀지구촌교회 운영</span><span class="city-tag">⭐ Featured</span></div>
+      </a>
+      <a href="/dallas/" class="city" data-c="dallas">
+        <div class="city-flag">🤠</div>
+        <div class="city-name">달라스</div>
+        <div class="city-loc">Dallas · Texas</div>
+        <div class="city-pop"><span>한인 13만 명</span><span style="color: var(--text-3)">→</span></div>
+      </a>
+      <a href="/la/" class="city" data-c="la">
+        <div class="city-flag">🌴</div>
+        <div class="city-name">LA</div>
+        <div class="city-loc">Los Angeles · California</div>
+        <div class="city-pop"><span>한인 60만 명</span><span style="color: var(--text-3)">→</span></div>
+      </a>
+      <a href="/sf/" class="city" data-c="sf">
+        <div class="city-flag">🌉</div>
+        <div class="city-name">샌프란시스코</div>
+        <div class="city-loc">SF Bay Area</div>
+        <div class="city-pop"><span>한인 12만 명</span><span style="color: var(--text-3)">→</span></div>
+      </a>
+      <a href="/newyork/" class="city" data-c="newyork">
+        <div class="city-flag">🗽</div>
+        <div class="city-name">뉴욕</div>
+        <div class="city-loc">New York · New Jersey</div>
+        <div class="city-pop"><span>한인 50만 명</span><span style="color: var(--text-3)">→</span></div>
+      </a>
+      <a href="/nashville/" class="city" data-c="nashville">
+        <div class="city-flag">🎸</div>
+        <div class="city-name">내슈빌</div>
+        <div class="city-loc">Nashville · Tennessee</div>
+        <div class="city-pop"><span>한인 1.5만 명</span><span style="color: var(--text-3)">→</span></div>
+      </a>
+      <a href="/toronto/" class="city" data-c="toronto">
+        <div class="city-flag">🍁</div>
+        <div class="city-name">토론토</div>
+        <div class="city-loc">Toronto · Ontario</div>
+        <div class="city-pop"><span>한인 9만 명</span><span style="color: var(--text-3)">→</span></div>
+      </a>
+      <a href="/vancouver/" class="city" data-c="vancouver">
+        <div class="city-flag">🏔️</div>
+        <div class="city-name">밴쿠버</div>
+        <div class="city-loc">Vancouver · BC</div>
+        <div class="city-pop"><span>한인 7만 명</span><span style="color: var(--text-3)">→</span></div>
+      </a>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><div class="metric-n">8</div><div class="metric-l">Cities</div></div>
+      <div class="metric"><div class="metric-n">700M+</div><div class="metric-l">Diaspora</div></div>
+      <div class="metric"><div class="metric-n">3</div><div class="metric-l">Languages</div></div>
+      <div class="metric"><div class="metric-n">24/7</div><div class="metric-l">PWA Offline</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="principles">
+    <div class="section-head">
+      <h2>다섯 가지 원칙</h2>
+      <p>광고로 살 수 없는 신뢰가 700만 디아스포라 사역의 시작입니다.</p>
+    </div>
+    <div class="principles">
+      <div class="principle"><div class="principle-num">01 ─ EYE</div><h3 class="principle-t">정착자의 눈</h3><p class="principle-d">관광객이 아닌, 그 도시에 살아본 한인이 직접 검증한 정보만 등재합니다.</p></div>
+      <div class="principle"><div class="principle-num">02 ─ DAY-1</div><h3 class="principle-t">도착 첫날부터</h3><p class="principle-d">공항을 나선 그 순간부터 쓸 수 있도록, 단계별 정착 구조.</p></div>
+      <div class="principle"><div class="principle-num">03 ─ TRUST</div><h3 class="principle-t">교회가 신뢰 앵커</h3><p class="principle-d">파트너 한인 교회가 검증한 업소·연락처에 별도 배지를 표시합니다.</p></div>
+      <div class="principle"><div class="principle-num">04 ─ CLEAR</div><h3 class="principle-t">투명성이 권위</h3><p class="principle-d">마지막 확인 날짜·확인 방법·이해충돌 여부를 항상 명시합니다.</p></div>
+      <div class="principle"><div class="principle-num">05 ─ LOCAL</div><h3 class="principle-t">현지인과 함께</h3><p class="principle-d">한인 문화를 영어권 현지인에게도 소개하는 다국어 콘텐츠.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong style="color: var(--text-1);">시애틀지구촌교회</strong> (Global Mission Church Seattle)의 사역 도구</p>
+    <p style="color: var(--text-3); font-size: 12px;">2026 시애틀 → 2027 북미 3대 도시 → 2030+ 글로벌</p>
+    <p class="copy">© 2026 HebronGuide · MIT License</p>
+  </footer>
+</body>
+</html>

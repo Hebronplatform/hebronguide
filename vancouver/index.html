@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>HebronGuide Vancouver — 밴쿠버 한인 완전 가이드</title>
+<meta name="description" content="밴쿠버·브리티시컬럼비아 한인 이민자·유학생·정착민을 위한 정착·생활·커뮤니티 완전 가이드 | HebronGuide">
+<style>
+:root{--home-bg:#0d1117;--gold:#E9A84C;--muted:rgba(255,255,255,0.55);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:var(--home-bg);color:#f0f0f0;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}button{cursor:pointer;border:none;background:none;font-family:inherit;}
+#home{min-height:100vh;max-width:480px;margin:0 auto;padding:0 0 80px;}
+.status-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 20px 8px;font-size:0.75rem;color:var(--muted);}
+.status-lang{display:flex;gap:4px;background:rgba(255,255,255,0.08);border-radius:20px;padding:3px;}
+.slang{padding:3px 10px;border-radius:16px;font-size:0.7rem;font-weight:700;color:var(--muted);transition:all .2s;}
+.slang.on{background:var(--gold);color:#1a1a1a;}
+.hero-card{margin:8px 16px 0;background:linear-gradient(135deg,#001a1a 0%,#003333 50%,#00264d 100%);border-radius:20px;padding:28px 24px 22px;position:relative;overflow:hidden;}
+.hero-card::before{content:'🍁';position:absolute;right:16px;top:12px;font-size:5rem;opacity:0.12;pointer-events:none;}
+.hero-back{font-size:0.75rem;color:rgba(255,255,255,0.6);margin-bottom:14px;}
+.hero-back a{color:var(--gold);}
+.hero-city{font-size:0.7rem;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.6);margin-bottom:6px;}
+.hero-title{font-size:1.7rem;font-weight:900;line-height:1.15;margin-bottom:10px;letter-spacing:-0.5px;}
+.hero-title em{font-style:normal;color:#6EE7B7;}
+.hero-sub{font-size:0.82rem;color:rgba(255,255,255,0.75);line-height:1.5;margin-bottom:18px;}
+.hero-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
+.pill{background:rgba(255,255,255,0.12);border-radius:20px;padding:4px 10px;font-size:0.72rem;font-weight:600;}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.hst{background:rgba(255,255,255,0.1);border-radius:10px;padding:10px 8px;text-align:center;}
+.hst-n{font-size:1.1rem;font-weight:900;color:#6EE7B7;}
+.hst-l{font-size:0.65rem;color:rgba(255,255,255,0.7);margin-top:2px;line-height:1.3;}
+.sec-label{padding:20px 20px 10px;font-size:0.7rem;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.4);}
+.app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 16px;}
+.app-icon{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:transform .15s;}
+.app-icon:active{transform:scale(0.9);}
+.app-icon-img{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2rem;position:relative;}
+.live-dot{position:absolute;top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:#34D399;border:2px solid var(--home-bg);}
+.app-name{font-size:0.65rem;color:rgba(255,255,255,0.8);text-align:center;line-height:1.3;font-weight:500;word-break:keep-all;}
+.ic-1{background:linear-gradient(135deg,#1d4ed8,#3b82f6);}
+.ic-2{background:linear-gradient(135deg,#15803d,#22c55e);}
+.ic-3{background:linear-gradient(135deg,#b45309,#f59e0b);}
+.ic-4{background:linear-gradient(135deg,#7c3aed,#a855f7);}
+.ic-5{background:linear-gradient(135deg,#166534,#4ade80);}
+.ic-6{background:linear-gradient(135deg,#0369a1,#38bdf8);}
+.ic-7{background:linear-gradient(135deg,#155e75,#06b6d4);}
+.ic-8{background:linear-gradient(135deg,#0c4a6e,#0ea5e9);}
+.ic-9{background:linear-gradient(135deg,#9a3412,#f97316);}
+.ic-10{background:linear-gradient(135deg,#991b1b,#ef4444);}
+.ic-11{background:linear-gradient(135deg,#4c1d95,#8b5cf6);}
+.ic-12{background:linear-gradient(135deg,#7f1d1d,#dc2626);}
+.ic-13{background:linear-gradient(135deg,#78350f,#d97706);}
+.ic-14{background:linear-gradient(135deg,#7c2d12,#ea580c);}
+.ic-15{background:linear-gradient(135deg,#052e16,#16a34a);}
+.ic-16{background:linear-gradient(135deg,#1e1b4b,#6366f1);}
+.float-nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(28,33,40,0.92);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.12);border-radius:24px;padding:10px 24px;display:flex;gap:24px;z-index:9998;}
+.fn-btn{display:flex;flex-direction:column;align-items:center;gap:2px;color:rgba(255,255,255,0.5);font-size:0.65rem;}
+.fn-btn.on{color:var(--gold);}
+.fn-icon{font-size:1.2rem;}
+.app-overlay{position:fixed;inset:0;z-index:9999;display:none;flex-direction:column;transform:translateY(100%);transition:transform .3s cubic-bezier(0.32,0.72,0,1);}
+.app-overlay.open{display:flex;transform:translateY(0);}
+.app-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;position:sticky;top:0;z-index:10;}
+.app-back{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:white;}
+.app-header-title{font-size:1rem;font-weight:800;color:white;}
+.app-header-right{width:36px;}
+.tab-bar{display:flex;overflow-x:auto;gap:0;border-bottom:1px solid rgba(255,255,255,0.15);scrollbar-width:none;position:sticky;top:58px;z-index:9;background:inherit;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{flex-shrink:0;padding:10px 16px;font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.5);border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;}
+.tab-btn.on{color:white;border-bottom-color:white;}
+.app-content{flex:1;overflow-y:auto;padding:20px 16px 60px;}
+.app-content::-webkit-scrollbar{width:0;}
+.ccard{background:rgba(255,255,255,0.06);border-radius:14px;padding:18px;margin-bottom:12px;border-left:4px solid rgba(255,255,255,0.2);}
+.ccard-title{font-size:0.9rem;font-weight:800;margin-bottom:6px;}
+.ccard-body{font-size:0.83rem;line-height:1.65;color:rgba(255,255,255,0.8);}
+.ccard-body strong{color:white;}
+.sec-head{font-size:0.95rem;font-weight:900;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.info-row{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);align-items:flex-start;}
+.info-key{font-size:0.8rem;font-weight:700;color:rgba(255,255,255,0.5);min-width:90px;padding-top:1px;}
+.info-val{font-size:0.83rem;line-height:1.5;flex:1;}
+.tag-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
+.tag-item{background:rgba(255,255,255,0.08);border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.4;}
+.tag-item strong{display:block;font-size:0.88rem;margin-bottom:2px;}
+.num-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px;}
+.num-card{background:rgba(255,255,255,0.07);border-radius:12px;padding:14px;text-align:center;}
+.num-big{font-size:1.6rem;font-weight:900;}
+.num-label{font-size:0.7rem;color:rgba(255,255,255,0.6);margin-top:3px;}
+.step-list{display:flex;flex-direction:column;gap:10px;}
+.step-item{display:flex;gap:12px;align-items:flex-start;}
+.step-num{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:800;flex-shrink:0;margin-top:1px;}
+.step-text{font-size:0.83rem;line-height:1.55;flex:1;}
+.step-text strong{display:block;font-size:0.88rem;margin-bottom:2px;}
+.dtable{width:100%;border-collapse:collapse;}
+.dtable th{font-size:0.75rem;font-weight:700;color:rgba(255,255,255,0.5);text-align:left;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.1);}
+.dtable td{font-size:0.82rem;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);vertical-align:top;}
+.dtable td:first-child{color:rgba(255,255,255,0.6);min-width:80px;font-size:0.78rem;}
+[data-en]{display:none;}
+body.en [data-ko]{display:none!important;}
+body.en [data-en]{display:initial!important;}
+@media(min-width:520px){#home{max-width:520px;}}
+</style>
+</head>
+<body>
+<div id="home">
+  <div class="status-bar">
+    <span>🇨🇦 Vancouver · British Columbia</span>
+    <div class="status-lang">
+      <button class="slang on" onclick="setLang('ko')" data-ko>한국어</button>
+      <button class="slang" onclick="setLang('en')" data-en>English</button>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="hero-back"><a href="../index.html">← HebronGuide</a> › Vancouver</div>
+    <div class="hero-city">VANCOUVER · BRITISH COLUMBIA · CANADA</div>
+    <div class="hero-title">
+      <span data-ko>밴쿠버<br>한인 완전 가이드</span>
+      <span data-en>Vancouver<br><em>Korean Life Guide</em></span>
+    </div>
+    <p class="hero-sub">
+      <span data-ko>퍼시픽 림의 관문 — 캐나다 한인 최대 집결지, 코퀴틀람·버나비·리치몬드 완전 해부</span>
+      <span data-en>Gateway to the Pacific Rim — Canada's largest Korean hub: Coquitlam, Burnaby & Richmond fully covered</span>
+    </p>
+    <div class="hero-pills">
+      <span class="pill">🏥 공공 의료보험</span>
+      <span class="pill">🏘️ 코퀴틀람 한인타운</span>
+      <span class="pill">🎬 할리우드 노스</span>
+      <span class="pill">🍁 캐나다 이민 허브</span>
+    </div>
+    <div class="hero-stats">
+      <div class="hst"><div class="hst-n">10만+</div><div class="hst-l" data-ko>광역 밴쿠버 한인</div><div class="hst-l" data-en>Metro Vancouver Koreans</div></div>
+      <div class="hst"><div class="hst-n">16</div><div class="hst-l" data-ko>가이드 섹션</div><div class="hst-l" data-en>Sections</div></div>
+      <div class="hst"><div class="hst-n">0%</div><div class="hst-l" data-ko>주 소득세 없음*</div><div class="hst-l" data-en>No State Tax*</div></div>
+      <div class="hst"><div class="hst-n">CAD</div><div class="hst-l" data-ko>캐나다 달러</div><div class="hst-l" data-en>Canadian Dollar</div></div>
+    </div>
+  </div>
+
+  <div class="sec-label" data-ko>정착 & 생활</div><div class="sec-label" data-en>SETTLEMENT & LIFE</div>
+  <div class="app-grid">
+    <div class="app-icon" onclick="openApp('settle')"><div class="app-icon-img ic-1"><span>🏠</span><div class="live-dot"></div></div><div class="app-name"><span data-ko>정착가이드</span><span data-en>Settle</span></div></div>
+    <div class="app-icon" onclick="openApp('hood')"><div class="app-icon-img ic-2">🗺️</div><div class="app-name"><span data-ko>지역안내</span><span data-en>Areas</span></div></div>
+    <div class="app-icon" onclick="openApp('biz')"><div class="app-icon-img ic-3">🏪</div><div class="app-name"><span data-ko>한인상권</span><span data-en>K-Business</span></div></div>
+    <div class="app-icon" onclick="openApp('church')"><div class="app-icon-img ic-4">⛪</div><div class="app-name"><span data-ko>한인교회</span><span data-en>Churches</span></div></div>
+  </div>
+  <div class="app-grid" style="margin-top:14px;">
+    <div class="app-icon" onclick="openApp('edu')"><div class="app-icon-img ic-5">🎓</div><div class="app-name"><span data-ko>교육정보</span><span data-en>Education</span></div></div>
+    <div class="app-icon" onclick="openApp('jobs')"><div class="app-icon-img ic-6">💼</div><div class="app-name"><span data-ko>취업정보</span><span data-en>Jobs</span></div></div>
+    <div class="app-icon" onclick="openApp('health')"><div class="app-icon-img ic-7">🏥</div><div class="app-name"><span data-ko>공공의료</span><span data-en>Health</span></div></div>
+    <div class="app-icon" onclick="openApp('transit')"><div class="app-icon-img ic-8">🚇</div><div class="app-name"><span data-ko>교통안내</span><span data-en>Transit</span></div></div>
+  </div>
+  <div class="sec-label" style="margin-top:18px;" data-ko>재정 & 안전</div><div class="sec-label" style="margin-top:18px;" data-en>FINANCE & SAFETY</div>
+  <div class="app-grid">
+    <div class="app-icon" onclick="openApp('cost')"><div class="app-icon-img ic-9">💰</div><div class="app-name"><span data-ko>생활비</span><span data-en>Cost</span></div></div>
+    <div class="app-icon" onclick="openApp('safety')"><div class="app-icon-img ic-10">🛡️</div><div class="app-name"><span data-ko>안전정보</span><span data-en>Safety</span></div></div>
+    <div class="app-icon" onclick="openApp('comm')"><div class="app-icon-img ic-11">🤝</div><div class="app-name"><span data-ko>커뮤니티</span><span data-en>Community</span></div></div>
+    <div class="app-icon" onclick="openApp('emerg')"><div class="app-icon-img ic-12">🚨</div><div class="app-name"><span data-ko>긴급연락</span><span data-en>Emergency</span></div></div>
+  </div>
+  <div class="sec-label" style="margin-top:18px;" data-ko>라이프스타일</div><div class="sec-label" style="margin-top:18px;" data-en>LIFESTYLE</div>
+  <div class="app-grid">
+    <div class="app-icon" onclick="openApp('cafe')"><div class="app-icon-img ic-13">☕</div><div class="app-name"><span data-ko>카페 추천</span><span data-en>Cafés</span></div></div>
+    <div class="app-icon" onclick="openApp('food')"><div class="app-icon-img ic-14">🍽️</div><div class="app-name"><span data-ko>맛집 안내</span><span data-en>Dining</span></div></div>
+    <div class="app-icon" onclick="openApp('nature')"><div class="app-icon-img ic-15">🏔️</div><div class="app-name"><span data-ko>관광·나들이</span><span data-en>Explore</span></div></div>
+    <div class="app-icon" onclick="openApp('global')"><div class="app-icon-img ic-16">🌍</div><div class="app-name"><span data-ko>글로벌</span><span data-en>Global</span></div></div>
+  </div>
+
+  <!-- HebronGuide Footer -->
+  <div style="margin:32px 0 100px;padding:24px 16px 8px;border-top:1px solid rgba(255,255,255,0.07);">
+    <div style="text-align:center;margin-bottom:18px;">
+      <img src="../assets/hebronguide-logo.svg" alt="HebronGuide" style="height:38px;max-width:220px;display:block;margin:0 auto;">
+    </div>
+    <div style="background:rgba(110,231,183,0.07);border:1px solid rgba(110,231,183,0.15);border-radius:14px;padding:18px;margin-bottom:14px;">
+      <div style="font-size:0.8rem;font-weight:800;color:#6EE7B7;margin-bottom:8px;" data-ko>🏢 교회·비즈니스 운영자 여러분께</div>
+      <div style="font-size:0.8rem;font-weight:800;color:#6EE7B7;margin-bottom:8px;" data-en>🏢 For Church & Business Leaders</div>
+      <div style="font-size:0.77rem;color:rgba(255,255,255,0.7);line-height:1.65;" data-ko>귀하의 교회·비즈니스·기관을 HebronGuide를 통해 한인 커뮤니티에 알리세요. 새 비즈니스 창업·이전 시 웹사이트 제작을 함께 도와드립니다.</div>
+      <div style="font-size:0.77rem;color:rgba(255,255,255,0.7);line-height:1.65;" data-en>List your church, business, or organization on HebronGuide to reach the Korean community. We also help new businesses create their first website.</div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="mailto:info@hebronguide.com" style="display:inline-block;background:#6EE7B7;color:#0d1117;border-radius:9px;padding:8px 16px;font-size:0.75rem;font-weight:800;" data-ko>웹사이트 문의 →</a>
+        <a href="mailto:info@hebronguide.com" style="display:inline-block;background:#6EE7B7;color:#0d1117;border-radius:9px;padding:8px 16px;font-size:0.75rem;font-weight:800;" data-en>Website Inquiry →</a>
+        <a href="../index.html" style="display:inline-block;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border-radius:9px;padding:8px 14px;font-size:0.72rem;font-weight:700;" data-ko>← 도시 가이드</a>
+        <a href="../index.html" style="display:inline-block;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border-radius:9px;padding:8px 14px;font-size:0.72rem;font-weight:700;" data-en>← City Guides</a>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.65rem;color:rgba(255,255,255,0.2);">© 2025 HebronGuide · For informational purposes only</div>
+  </div>
+</div>
+
+<div class="float-nav" id="floatNav">
+  <div class="fn-btn on"><div class="fn-icon">🏠</div><span data-ko>홈</span><span data-en>Home</span></div>
+  <div class="fn-btn" onclick="openApp('settle')"><div class="fn-icon">📋</div><span data-ko>정착</span><span data-en>Settle</span></div>
+  <div class="fn-btn" onclick="openApp('jobs')"><div class="fn-icon">💼</div><span data-ko>취업</span><span data-en>Jobs</span></div>
+  <div class="fn-btn" onclick="openApp('emerg')"><div class="fn-icon">🚨</div>SOS</div>
+</div>
+
+<!-- 정착가이드 -->
+<div class="app-overlay" id="app-settle" style="background:linear-gradient(180deg,#001f2e,#003347);">
+  <div class="app-header" style="background:linear-gradient(135deg,#003347,#001f2e);">
+    <button class="app-back" onclick="closeApp('settle')">‹</button>
+    <div class="app-header-title">🏠 <span data-ko>정착가이드</span><span data-en>Settlement</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#001f2e;">
+    <button class="tab-btn on" onclick="sTab(this,'sv-week1')"><span data-ko>1주차</span><span data-en>Week 1</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sv-month1')"><span data-ko>1개월</span><span data-en>Month 1</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sv-msp')"><span data-ko>BC MSP</span><span data-en>BC MSP</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sv-top10')">TOP 10</button>
+  </div>
+  <div class="app-content">
+    <section id="sv-week1">
+      <div class="sec-head" data-ko>📅 밴쿠버 도착 첫 1주일</div>
+      <div class="sec-head" data-en>📅 First Week in Vancouver</div>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num" style="background:#6EE7B733;color:#6EE7B7;">1</div><div class="step-text"><strong data-ko>임시 숙소 — 코퀴틀람/버나비 권장</strong><strong data-en>Temporary housing — Coquitlam/Burnaby recommended</strong><span data-ko>한인 밀집 지역 중심. Airbnb·한인 단기임대 활용. Lougheed Town Centre 인근 최적.</span><span data-en>Near Korean concentration. Use Airbnb or Korean short-term rental. Near Lougheed Town Centre is ideal.</span></div></div>
+        <div class="step-item"><div class="step-num" style="background:#6EE7B733;color:#6EE7B7;">2</div><div class="step-text"><strong data-ko>Compass 카드 발급</strong><strong data-en>Get a Compass Card</strong><span data-ko>밴쿠버 광역 대중교통 통합 카드. SkyTrain·버스·SeaBus 모두 사용. 공항 도착 시 즉시 구매 가능.</span><span data-en>Metro Vancouver transit card. Works on SkyTrain, bus & SeaBus. Available at the airport on arrival.</span></div></div>
+        <div class="step-item"><div class="step-num" style="background:#6EE7B733;color:#6EE7B7;">3</div><div class="step-text"><strong data-ko>은행 계좌 — TD/RBC/Scotiabank 한인 지점</strong><strong data-en>Bank account — TD/RBC/Scotiabank Korean branch</strong><span data-ko>코퀴틀람 센트럴·버나비 한인 밀집 지역 지점 방문. TD 한인 직원 다수.</span><span data-en>Visit branches in Coquitlam Central or Burnaby Korean areas. TD has many Korean staff.</span></div></div>
+        <div class="step-item"><div class="step-num" style="background:#6EE7B733;color:#6EE7B7;">4</div><div class="step-text"><strong data-ko>H-Mart 방문 — 코퀴틀람 Lougheed</strong><strong data-en>Visit H-Mart — Coquitlam Lougheed</strong><span data-ko>광역 밴쿠버 최대 한인 마트. 코퀴틀람·버나비 정보 교류 허브. 버나비 H-Mart도 있음.</span><span data-en>Largest Korean market in Metro Vancouver. Community hub for Coquitlam & Burnaby. Also H-Mart Burnaby.</span></div></div>
+        <div class="step-item"><div class="step-num" style="background:#6EE7B733;color:#6EE7B7;">5</div><div class="step-text"><strong data-ko>⚠️ BC MSP 등록 — 도착 즉시 신청</strong><strong data-en>⚠️ Register for BC MSP — Apply immediately on arrival</strong><span data-ko>브리티시컬럼비아 공공 의료보험. 대기기간 없음 (2020년 대기기간 폐지). 영주권자·취업허가자·유학생 모두 신청 가능. 신청 후 Coverage 카드 수령까지 약 2주.</span><span data-en>British Columbia Medical Services Plan (public health insurance). No waiting period (eliminated 2020). Available to PR holders, work permit & study permit holders. ~2 weeks to receive coverage card after application.</span></div></div>
+        <div class="step-item"><div class="step-num" style="background:#6EE7B733;color:#6EE7B7;">6</div><div class="step-text"><strong data-ko>한인 교회 첫 방문</strong><strong data-en>First Korean church visit</strong><span data-ko>광역 밴쿠버 한인 교회 150개 이상. 주거·취업·학교·이민 정보의 핵심 네트워크.</span><span data-en>150+ Korean churches in Metro Vancouver. Core network for housing, jobs, school, and immigration info.</span></div></div>
+      </div>
+    </section>
+    <section id="sv-month1" style="margin-top:28px;">
+      <div class="sec-head" data-ko>📋 1개월 내 처리</div>
+      <div class="sec-head" data-en>📋 Within 1 Month</div>
+      <div class="ccard" style="border-left-color:#6EE7B7;"><div class="ccard-title" data-ko>🚗 BC 운전면허 취득</div><div class="ccard-title" data-en>🚗 Get BC Driver's License</div><div class="ccard-body"><span data-ko>ICBC 방문 (예약 권장). 한국 면허 소지자 → Knowledge Test 면제, Road Test만 필요. 한국어 Knowledge Test 가능. SkyTrain이 발달해 있어 초기엔 대중교통으로도 충분.</span><span data-en>Visit ICBC (appointment recommended). Korean license holders → Knowledge Test waived, Road Test only needed. Korean Knowledge Test available. SkyTrain is well-developed so public transit is sufficient initially.</span></div></div>
+      <div class="ccard" style="border-left-color:#6EE7B7;"><div class="ccard-title" data-ko>🏠 장기 주거지 — 밴쿠버 렌트 현실</div><div class="ccard-title" data-en>🏠 Long-term Housing — Vancouver Rent Reality</div><div class="ccard-body"><span data-ko>밴쿠버 다운타운 1BR CAD $2,800~3,500. 코퀴틀람 1BR CAD $2,000~2,600. 버나비 1BR CAD $2,200~2,800. 서리 1BR CAD $1,800~2,300. 한인 룸 쉐어 CAD $900~1,400 (초기 절약 방법).</span><span data-en>Vancouver Downtown 1BR CAD $2,800–3,500. Coquitlam 1BR CAD $2,000–2,600. Burnaby 1BR CAD $2,200–2,800. Surrey 1BR CAD $1,800–2,300. Korean room share CAD $900–1,400 (initial savings option).</span></div></div>
+      <div class="ccard" style="border-left-color:#6EE7B7;"><div class="ccard-title" data-ko>💡 캐나다 세금 구조 파악</div><div class="ccard-title" data-en>💡 Understand Canadian Tax Structure</div><div class="ccard-body"><span data-ko>• 연방 소득세: 15%~33% (누진세)<br>• BC 주 소득세: 5.06%~20.5% (누진세)<br>• 연봉 CAD $100K → 실효세율 약 30~35%<br>• GST 5% (연방) + PST 7% (BC) = 12% 소비세<br>• 식품·의약품 GST/PST 면제<br>한인 CPA 조기 상담 권장 (이민 신분에 따라 세금 처리 다름)</span><span data-en>• Federal income tax: 15%–33% (progressive)<br>• BC provincial income tax: 5.06%–20.5%<br>• Salary CAD $100K → effective rate ~30–35%<br>• GST 5% (federal) + PST 7% (BC) = 12% sales tax<br>• Food & medicine exempt from GST/PST<br>Early Korean CPA consultation recommended (tax handling varies by immigration status)</span></div></div>
+    </section>
+    <section id="sv-msp" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🏥 BC MSP — 공공 의료보험 완전 가이드</div>
+      <div class="sec-head" data-en>🏥 BC MSP — Public Health Insurance Complete Guide</div>
+      <div class="ccard" style="border-left-color:#6EE7B7;">
+        <div class="ccard-title" data-ko>BC MSP란?</div>
+        <div class="ccard-title" data-en>What is BC MSP?</div>
+        <div class="ccard-body"><span data-ko>브리티시컬럼비아 주의 공공 의료보험. <strong>GP 방문·입원·수술 모두 무료</strong> (세금으로 운영). 치과·안과·처방약은 별도 추가 보험 필요.<br><br>• 신청: Health Insurance BC (hibc.gov.bc.ca)<br>• 대상: 영주권자, 취업허가(6개월+), 학생비자(6개월+)<br>• 보험료: 2020년부터 무료 (기존 월 $75 폐지)<br>• 가족 모두 함께 신청 가능</span><span data-en>British Columbia's public health insurance. <strong>GP visits, hospitalization & surgeries all free</strong> (funded by taxes). Dental, vision & prescriptions require additional private insurance.<br><br>• Apply: Health Insurance BC (hibc.gov.bc.ca)<br>• Eligible: PR holders, work permit (6+ months), student visa (6+ months)<br>• Premium: Free since 2020 (previous $75/month premium abolished)<br>• Entire family can apply together</span></div>
+      </div>
+      <div class="ccard" style="border-left-color:#FBBF24;"><div class="ccard-title" data-ko>⚠️ 주의사항</div><div class="ccard-title" data-en>⚠️ Important Notes</div><div class="ccard-body"><span data-ko>• MSP 카드 수령 전 2주 공백 → 민간 여행보험 유지 권장<br>• 가정의(Family Doctor) 부족 — 새 환자 받는 GP 찾기 어려움<br>• Walk-in Clinic 적극 활용 (예약 불필요)<br>• 한인 의사 찾기: 한인 커뮤니티 추천 → 코퀴틀람·버나비 다수</span><span data-en>• ~2 week gap before MSP card arrives → keep private travel insurance<br>• Family Doctor shortage — hard to find GP accepting new patients<br>• Use Walk-in Clinics actively (no appointment needed)<br>• Finding Korean doctors: community referrals → many in Coquitlam & Burnaby</span></div></div>
+    </section>
+    <section id="sv-top10" style="margin-top:28px;">
+      <div class="sec-head">TOP 10 — <span data-ko>밴쿠버 정착 필수</span><span data-en>Vancouver Essentials</span></div>
+      <div class="tag-grid">
+        <div class="tag-item"><strong>🚇 Compass Card</strong><span data-ko>SkyTrain 교통 카드</span><span data-en>SkyTrain transit card</span></div>
+        <div class="tag-item"><strong>🏥 BC MSP</strong><span data-ko>공공 의료보험 등록</span><span data-en>Public health insurance</span></div>
+        <div class="tag-item"><strong>📊 한인 CPA</strong><span data-ko>캐나다 세금 필수</span><span data-en>Canadian tax essential</span></div>
+        <div class="tag-item"><strong>🍁 IRCC Portal</strong><span data-ko>이민 서류 관리</span><span data-en>Immigration document management</span></div>
+        <div class="tag-item"><strong>🚗 ICBC</strong><span data-ko>운전면허·보험</span><span data-en>Driver's license & insurance</span></div>
+        <div class="tag-item"><strong>💸 Wise</strong><span data-ko>한국 송금 최저비용</span><span data-en>Lowest-cost remittance</span></div>
+        <div class="tag-item"><strong>📱 Craigslist</strong><span data-ko>밴쿠버 렌트·구인</span><span data-en>Vancouver rent & jobs</span></div>
+        <div class="tag-item"><strong>🛒 H-Mart</strong><span data-ko>코퀴틀람·버나비</span><span data-en>Coquitlam & Burnaby</span></div>
+        <div class="tag-item"><strong>🏥 Walk-in Clinic</strong><span data-ko>예약 없이 의료 이용</span><span data-en>No-appointment medical care</span></div>
+        <div class="tag-item"><strong>📺 Naver Cafe</strong><span data-ko>밴쿠버 한인 카페</span><span data-en>Vancouver Korean community</span></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- 지역안내 -->
+<div class="app-overlay" id="app-hood" style="background:linear-gradient(180deg,#0a2e1a,#1a4d2e);">
+  <div class="app-header" style="background:linear-gradient(135deg,#1a4d2e,#0a2e1a);">
+    <button class="app-back" onclick="closeApp('hood')">‹</button>
+    <div class="app-header-title">🗺️ <span data-ko>지역안내</span><span data-en>Neighborhoods</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#0a2e1a;">
+    <button class="tab-btn on" onclick="sTab(this,'sh-coq')"><span data-ko>코퀴틀람</span><span data-en>Coquitlam</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sh-bur')"><span data-ko>버나비</span><span data-en>Burnaby</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sh-sub')"><span data-ko>교외</span><span data-en>Suburbs</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sh-compare')"><span data-ko>비교표</span><span data-en>Compare</span></button>
+  </div>
+  <div class="app-content">
+    <section id="sh-coq">
+      <div class="sec-head" data-ko>🏘️ 코퀴틀람 — 광역 밴쿠버 한인 최대 집결지</div>
+      <div class="sec-head" data-en>🏘️ Coquitlam — Metro Vancouver's Largest Korean Hub</div>
+      <div class="ccard" style="border-left-color:#4ADE80;"><div class="ccard-title">Coquitlam · 코퀴틀람 ⭐</div><div class="ccard-body"><span data-ko><strong>광역 밴쿠버 한인 인구 1위 도시.</strong> Lougheed Town Centre 주변 한인 밀집 상권. H-Mart·한인 식당·교회 집중. SkyTrain Millennium Line 접근 용이.<br>렌트: 1B CAD $2,000–2,600 / 2B CAD $2,600–3,200</span><span data-en><strong>Largest Korean population city in Metro Vancouver.</strong> Dense Korean commercial area around Lougheed Town Centre. H-Mart, Korean restaurants & churches concentrated here. Easy SkyTrain Millennium Line access.<br>Rent: 1B CAD $2,000–2,600 / 2B CAD $2,600–3,200</span></div></div>
+      <div class="ccard" style="border-left-color:#4ADE80;"><div class="ccard-title">Port Moody · 포트 무디</div><div class="ccard-body"><span data-ko>코퀴틀람 인접. 조용하고 자연환경 우수. 한인 가족 정착 증가. Inlet Centre SkyTrain 역 근처. 렌트 코퀴틀람보다 약간 낮음.</span><span data-en>Adjacent to Coquitlam. Quiet with excellent natural environment. Growing Korean family settlement. Near Inlet Centre SkyTrain station. Slightly lower rent than Coquitlam.</span></div></div>
+    </section>
+    <section id="sh-bur" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🏢 버나비 — SFU·메트로타운 중심</div>
+      <div class="sec-head" data-en>🏢 Burnaby — SFU & Metrotown Hub</div>
+      <div class="ccard" style="border-left-color:#60A5FA;"><div class="ccard-title">Burnaby · 버나비 ⭐</div><div class="ccard-body"><span data-ko>사이먼프레이저대(SFU) 위치. 메트로타운 쇼핑몰 중심 상권. H-Mart 버나비. 한인 학생·직장인 다수. SkyTrain Expo & Millennium Line 모두 통과.<br>렌트: 1B CAD $2,200–2,800 / 2B CAD $2,800–3,500</span><span data-en>Home to Simon Fraser University (SFU). Commercial center around Metrotown mall. H-Mart Burnaby. Many Korean students & professionals. Both SkyTrain Expo & Millennium Lines pass through.<br>Rent: 1B CAD $2,200–2,800 / 2B CAD $2,800–3,500</span></div></div>
+    </section>
+    <section id="sh-sub" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🌿 교외 지역 — 리치몬드·서리·노스밴쿠버</div>
+      <div class="sec-head" data-en>🌿 Suburbs — Richmond, Surrey & North Vancouver</div>
+      <div class="ccard" style="border-left-color:#A78BFA;"><div class="ccard-title">Richmond · 리치몬드</div><div class="ccard-body"><span data-ko>중국계 최다 지역. 한인도 다수 거주. 공항(YVR) 인접. 아시아 식재료 천국. 렌트 비교적 낮음.<br>렌트: 1B CAD $1,900–2,400</span><span data-en>Largest Chinese community. Many Koreans also here. Adjacent to YVR airport. Asian grocery paradise. Relatively lower rent.<br>Rent: 1B CAD $1,900–2,400</span></div></div>
+      <div class="ccard" style="border-left-color:#A78BFA;"><div class="ccard-title">Surrey · 서리</div><div class="ccard-body"><span data-ko>광역 밴쿠버 중 가장 저렴한 렌트. 한인 교회·마트 증가 중. SkyTrain King George 라인 종점. 가족 정착에 적합.<br>렌트: 1B CAD $1,800–2,300</span><span data-en>Lowest rent in Metro Vancouver. Growing Korean churches & stores. SkyTrain King George line terminus. Good for family settlement.<br>Rent: 1B CAD $1,800–2,300</span></div></div>
+      <div class="ccard" style="border-left-color:#A78BFA;"><div class="ccard-title">North Vancouver · 노스밴쿠버</div><div class="ccard-body"><span data-ko>자연환경 최고 (Grouse Mountain 인접). 아웃도어 라이프. SeaBus로 다운타운 연결. 한인 상권 적으나 조용한 가족 환경 선호자에게 인기.</span><span data-en>Best natural environment (near Grouse Mountain). Outdoor lifestyle. Connected to downtown by SeaBus. Few Korean businesses but popular for quiet family environment.</span></div></div>
+    </section>
+    <section id="sh-compare" style="margin-top:28px;">
+      <div class="sec-head" data-ko>📊 지역 비교표</div>
+      <div class="sec-head" data-en>📊 Area Comparison</div>
+      <table class="dtable">
+        <tr><th data-ko>지역</th><th data-en>Area</th><th data-ko>1BR 렌트</th><th data-en>1BR Rent</th><th data-ko>한인 수</th><th data-en>Koreans</th></tr>
+        <tr><td>코퀴틀람</td><td>$2,000–2,600</td><td data-ko>⭐ 최다</td><td data-en>⭐ Most</td></tr>
+        <tr><td>버나비</td><td>$2,200–2,800</td><td data-ko>많음</td><td data-en>Many</td></tr>
+        <tr><td>리치몬드</td><td>$1,900–2,400</td><td data-ko>중간</td><td data-en>Medium</td></tr>
+        <tr><td>서리</td><td>$1,800–2,300</td><td data-ko>증가 중</td><td data-en>Growing</td></tr>
+        <tr><td>다운타운</td><td>$2,800–3,500</td><td data-ko>적음</td><td data-en>Few</td></tr>
+      </table>
+    </section>
+  </div>
+</div>
+
+<!-- 한인상권 -->
+<div class="app-overlay" id="app-biz" style="background:linear-gradient(180deg,#1c1100,#2e1f00);">
+  <div class="app-header" style="background:linear-gradient(135deg,#2e1f00,#1c1100);">
+    <button class="app-back" onclick="closeApp('biz')">‹</button>
+    <div class="app-header-title">🏪 <span data-ko>한인상권</span><span data-en>K-Business</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#1c1100;">
+    <button class="tab-btn on" onclick="sTab(this,'sb-mart')"><span data-ko>마트·식재료</span><span data-en>Grocery</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sb-rest')"><span data-ko>식당</span><span data-en>Dining</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sb-service')"><span data-ko>서비스</span><span data-en>Services</span></button>
+  </div>
+  <div class="app-content">
+    <section id="sb-mart">
+      <div class="sec-head" data-ko>🛒 한인 마트 & 식재료</div>
+      <div class="sec-head" data-en>🛒 Korean Grocery & Supermarkets</div>
+      <div class="ccard" style="border-left-color:#F59E0B;"><div class="ccard-title">H-Mart Coquitlam (Lougheed)</div><div class="ccard-body"><span data-ko>광역 밴쿠버 최대 한인 마트. Lougheed Town Centre 인근. 한국 식재료 완벽 구비. 정보 교류 허브. 주말 매우 붐빔.</span><span data-en>Largest Korean supermarket in Metro Vancouver. Near Lougheed Town Centre. Complete Korean groceries. Community hub. Very busy on weekends.</span></div><div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);"><a href="https://www.hmart.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 <span data-ko>공식 웹사이트</span><span data-en>Official Website</span></a></div></div>
+      <div class="ccard" style="border-left-color:#F59E0B;"><div class="ccard-title">H-Mart Burnaby (Metrotown)</div><div class="ccard-body"><span data-ko>버나비 메트로타운 인근 H-Mart. SFU 학생·버나비 거주자 이용. 코퀴틀람보다 여유로운 편.</span><span data-en>H-Mart near Burnaby Metrotown. Used by SFU students & Burnaby residents. Generally less crowded than Coquitlam.</span></div><div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);"><a href="https://www.hmart.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 <span data-ko>공식 웹사이트</span><span data-en>Official Website</span></a></div></div>
+      <div class="ccard" style="border-left-color:#F59E0B;"><div class="ccard-title">Galleria Supermarket · 갤러리아</div><div class="ccard-body"><span data-ko>한인 식재료 전문. 코퀴틀람·버나비 각 지점. 한국 과자·라면·반찬 완비. H-Mart 대안으로 인기.</span><span data-en>Korean grocery specialist. Coquitlam & Burnaby locations. Full Korean snacks, ramen & side dishes. Popular H-Mart alternative.</span></div></div>
+    </section>
+    <section id="sb-rest" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🍽️ 한인 식당 거리</div>
+      <div class="sec-head" data-en>🍽️ Korean Restaurant Areas</div>
+      <div class="ccard" style="border-left-color:#F59E0B;"><div class="ccard-title" data-ko>코퀴틀람 Lougheed 상권</div><div class="ccard-title" data-en>Coquitlam Lougheed Commercial Area</div><div class="ccard-body"><span data-ko>한국식 삼겹살·치킨·분식·카페 밀집. 밴쿠버 최대 한인 외식 거리. H-Mart 인근 상가 집중.</span><span data-en>Dense Korean BBQ, fried chicken, snack food & cafés. Vancouver's largest Korean dining strip. Concentrated near H-Mart.</span></div></div>
+      <div class="ccard" style="border-left-color:#F59E0B;"><div class="ccard-title" data-ko>버나비 메트로타운 인근</div><div class="ccard-title" data-en>Burnaby near Metrotown</div><div class="ccard-body"><span data-ko>한인 식당·카페·노래방·PC방 분포. SFU 학생 수요 중심. 메트로타운 푸드코트 내 한식 코너도 있음.</span><span data-en>Korean restaurants, cafés, karaoke & PC rooms. Driven by SFU student demand. Korean food section in Metrotown food court too.</span></div></div>
+    </section>
+    <section id="sb-service" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🔧 한인 서비스업</div>
+      <div class="sec-head" data-en>🔧 Korean Service Businesses</div>
+      <div class="ccard" style="border-left-color:#F59E0B;"><div class="ccard-title" data-ko>한인 전문직 서비스</div><div class="ccard-title" data-en>Korean Professional Services</div><div class="ccard-body"><span data-ko>• 한인 CPA (캐나다 세금·이민 소득 전문)<br>• 한인 이민 변호사·컨설턴트 (코퀴틀람 다수)<br>• 한인 부동산 에이전트 (Presale 콘도 전문)<br>• 한인 의사·치과 (버나비·코퀴틀람)<br>• 한인 보험 브로커 (생명·자동차·주택)</span><span data-en>• Korean CPAs (Canadian tax & immigration income specialists)<br>• Korean immigration lawyers & consultants (many in Coquitlam)<br>• Korean real estate agents (presale condo specialists)<br>• Korean doctors & dentists (Burnaby & Coquitlam)<br>• Korean insurance brokers (life, auto & home)</span></div></div>
+    </section>
+  </div>
+</div>
+
+<!-- 한인교회 -->
+<div class="app-overlay" id="app-church" style="background:linear-gradient(180deg,#1a0a3e,#2d1a5e);">
+  <div class="app-header" style="background:linear-gradient(135deg,#2d1a5e,#1a0a3e);">
+    <button class="app-back" onclick="closeApp('church')">‹</button>
+    <div class="app-header-title">⛪ <span data-ko>한인교회</span><span data-en>Korean Churches</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#1a0a3e;">
+    <button class="tab-btn on" onclick="sTab(this,'vc-hc')"><span data-ko>가정교회</span><span data-en>House Church</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sc-main')"><span data-ko>주요 교회</span><span data-en>Major Churches</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sc-role')"><span data-ko>교회 역할</span><span data-en>Church Role</span></button>
+  </div>
+  <div class="app-content">
+    <section id="vc-hc">
+      <div class="ccard" style="border-left-color:#C084FC;">
+        <div class="ccard-title" data-ko>&#127968; 가정교회란?</div>
+        <div class="ccard-title" data-en>&#127968; What Is a House Church?</div>
+        <div class="ccard-body"><span data-ko>가정교회는 5~30명의 신자가 <strong>가정에서 모이는 소규모 예배 공동체</strong>입니다. 대형 교회의 대안이 아니라 <strong>보완재</strong>로서, 이민 생활의 고독을 채우는 가장 따뜻한 첫 번째 공동체가 될 수 있습니다.</span><span data-en>A house church is a <strong>small worship community of 5&#8211;30 believers meeting in a home</strong>. Not an alternative but a <strong>complement</strong> to large churches &#8212; it can be the warmest first community to fill the loneliness of immigrant life.</span></div>
+      </div>
+      <div class="ccard" style="border-left-color:#C084FC;">
+        <div class="ccard-title" data-ko>&#128161; 이민자에게 가정교회가 특별한 이유</div>
+        <div class="ccard-title" data-en>&#128161; Why House Church Is Special for Immigrants</div>
+        <div class="ccard-body"><span data-ko>&#9989; <strong>즉각적 소속감</strong> &#8212; 소규모이기에 첫날부터 이름을 기억해준다<br>&#9989; <strong>실질적 돌봄</strong> &#8212; 이사, 병원 동행, 식사 나눔이 자연스럽게 일어난다<br>&#9989; <strong>언어 부담 없음</strong> &#8212; 소그룹에서 솔직하고 편한 대화 가능<br>&#9989; <strong>유연한 일정</strong> &#8212; 주중&#183;주말 어디서나 모임 가능<br>&#9989; <strong>신앙 탐색 공간</strong> &#8212; 아직 교회가 낯선 분도 편안하게 참여 가능</span><span data-en>&#9989; <strong>Immediate belonging</strong> &#8212; Small size means they remember your name from day one<br>&#9989; <strong>Practical care</strong> &#8212; Help moving, hospital accompaniment, sharing meals happen naturally<br>&#9989; <strong>No language pressure</strong> &#8212; Honest, comfortable conversation in small groups<br>&#9989; <strong>Flexible schedule</strong> &#8212; Meetings possible any day of the week<br>&#9989; <strong>Faith exploration space</strong> &#8212; Comfortable even if church is still unfamiliar</span></div>
+      </div>
+      <div class="ccard" style="border-left-color:#C084FC;">
+        <div class="ccard-title" data-ko>&#128269; 밴쿠버 가정교회 찾는 법</div>
+        <div class="ccard-title" data-en>&#128269; How to Find a House Church in Vancouver</div>
+        <div class="ccard-body"><span data-ko>&#8226; <strong>한인 교회 새가족부</strong>에 &#8220;소그룹&#183;셀&#183;가정교회&#8221; 연결 문의<br>&#8226; <strong>카카오톡 오픈채팅</strong> &#8212; &#8220;밴쿠버 한인 모임&#8221; 검색<br>&#8226; <strong>네이버 카페</strong> &#8212; 한인 생활 카페에서 지역 소그룹 탐색<br>&#8226; 이미 아는 한인에게 직접 물어보기 &#8212; 가장 빠르고 확실한 방법<br>&#8226; 도착 전 SNS로 미리 연결해두면 첫 주에 바로 참여 가능</span><span data-en>&#8226; Ask the <strong>new member ministry</strong> at a Korean church for &#8220;small group / cell / house church&#8221; connections<br>&#8226; <strong>KakaoTalk open chat</strong> &#8212; search &#8220;Vancouver Korean community&#8221;<br>&#8226; <strong>Naver Caf&#233;</strong> &#8212; explore local small groups in Korean life caf&#233;s<br>&#8226; Ask a Korean you already know directly &#8212; fastest, most reliable method<br>&#8226; Connect via SNS before arrival so you can join in your first week</span></div>
+      </div>
+      <div class="ccard" style="border-left-color:#7C3AED;">
+        <div class="ccard-title" data-ko>&#128152; 가정교회는 어떤 교회인가요?</div>
+        <div class="ccard-title" data-en>&#128152; What Kind of Church Is a House Church?</div>
+        <div class="ccard-body"><span data-ko>가정교회는 신약교회를 추구하는 교회로서 처음 신앙의 문을 두드리는 분들에게 친화적인 교회입니다.</span><span data-en>A house church pursues the model of the New Testament church, making it a welcoming and accessible place for those opening the door of faith for the first time.</span></div>
+      </div>
+    </section>
+        <section id="sc-main" style="margin-top:28px;">
+      <div class="sec-head" data-ko>⛪ 광역 밴쿠버 주요 한인 교회</div>
+      <div class="sec-head" data-en>⛪ Major Korean Churches in Metro Vancouver</div>
+      <div class="ccard" style="border-left-color:#A78BFA;"><div class="ccard-title">밴쿠버 순복음교회</div><div class="ccard-body"><span data-ko>광역 밴쿠버 최대 한인 교회 중 하나. 버나비 위치. 한인 이민자 네트워크 핵심. 새가족 정착 지원 프로그램 활발.</span><span data-en>One of the largest Korean churches in Metro Vancouver. Located in Burnaby. Core Korean immigrant network. Active new member settlement support programs.</span></div></div>
+      <div class="ccard" style="border-left-color:#A78BFA;"><div class="ccard-title">밴쿠버 새누리교회</div><div class="ccard-body"><span data-ko>코퀴틀람 위치. 한인 1.5세·2세 영어권 사역 강함. 유학생·청년 커뮤니티 중심.</span><span data-en>Located in Coquitlam. Strong English-language ministry for 1.5 & 2nd generation Koreans. Focus on international students & young adults.</span></div></div>
+      <div class="ccard" style="border-left-color:#A78BFA;"><div class="ccard-title">밴쿠버 중앙장로교회</div><div class="ccard-body"><span data-ko>오랜 역사의 한인 장로교회. 밴쿠버 다운타운 인근. 한인 1세대 정착민 커뮤니티 기반. 이민 초기 네트워크로 유명.</span><span data-en>Long-established Korean Presbyterian church. Near Vancouver downtown. Korean 1st generation community base. Known as early immigration network.</span></div></div>
+      <div class="ccard" style="border-left-color:#A78BFA;"><div class="ccard-title" data-ko>기타 150+ 교회</div><div class="ccard-title" data-en>Other 150+ Churches</div><div class="ccard-body"><span data-ko>광역 밴쿠버 전역에 한인 교회 150개 이상. 서리·리치몬드·노스밴쿠버 각 지역별 한인 교회 존재. 도착 전 미리 연락해두면 첫 정착에 큰 도움.</span><span data-en>150+ Korean churches across Metro Vancouver. Korean churches exist in Surrey, Richmond & North Vancouver too. Contacting one before arrival greatly helps initial settlement.</span></div></div>
+    </section>
+    <section id="sc-role" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🤝 한인 교회의 실질적 역할</div>
+      <div class="sec-head" data-en>🤝 Practical Role of Korean Churches</div>
+      <div class="ccard" style="border-left-color:#A78BFA;"><div class="ccard-body"><span data-ko>• 주거 정보 — 새가족 단기 숙박 연결 교회 多<br>• 취업 네트워크 — 한인 직장 정보 공유<br>• 이민 법률 정보 — CPA·변호사 추천<br>• 자녀 교육 — 한국어 학교·학원 정보<br>• 심리적 지지 — 이민 스트레스 케어<br>• 커뮤니티 행사 — 한국 명절·문화 활동</span><span data-en>• Housing info — many churches connect new members to short-term housing<br>• Job networks — share Korean workplace opportunities<br>• Immigration legal info — CPA & lawyer referrals<br>• Children's education — Korean school & tutoring info<br>• Psychological support — immigration stress care<br>• Community events — Korean holidays & cultural activities</span></div></div>
+    </section>
+  </div>
+</div>
+
+<!-- 취업정보 -->
+<div class="app-overlay" id="app-jobs" style="background:linear-gradient(180deg,#001e3c,#003060);">
+  <div class="app-header" style="background:linear-gradient(135deg,#003060,#001e3c);">
+    <button class="app-back" onclick="closeApp('jobs')">‹</button>
+    <div class="app-header-title">💼 <span data-ko>취업정보</span><span data-en>Jobs & Careers</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#001e3c;">
+    <button class="tab-btn on" onclick="sTab(this,'sj-employers')"><span data-ko>주요 고용주</span><span data-en>Employers</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sj-sectors')"><span data-ko>산업</span><span data-en>Sectors</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sj-visa')"><span data-ko>비자·이민</span><span data-en>Visa</span></button>
+  </div>
+  <div class="app-content">
+    <section id="sj-employers">
+      <div class="sec-head" data-ko>🏢 밴쿠버 주요 고용주</div>
+      <div class="sec-head" data-en>🏢 Major Vancouver Employers</div>
+      <div class="ccard" style="border-left-color:#38BDF8;"><div class="ccard-title" data-ko>🎬 영화·미디어 산업 — "할리우드 노스"</div><div class="ccard-title" data-en>🎬 Film & Media — "Hollywood North"</div><div class="ccard-body"><span data-ko>밴쿠버는 북미 3위 영화 제작도시. Disney·Netflix·Amazon Studios 등 대형 스튜디오 밴쿠버 제작 거점. VFX·애니메이션·게임 분야 한인 전문인력 수요 높음.<br>주요: Sony Pictures Imageworks, Industrial Light & Magic, EA Games, Ubisoft Vancouver</span><span data-en>Vancouver is North America's 3rd largest film production city. Disney, Netflix & Amazon Studios have major Vancouver production bases. High demand for Korean professionals in VFX, animation & gaming.<br>Key: Sony Pictures Imageworks, Industrial Light & Magic, EA Games, Ubisoft Vancouver</span></div></div>
+      <div class="ccard" style="border-left-color:#38BDF8;"><div class="ccard-title" data-ko>💻 테크 허브</div><div class="ccard-title" data-en>💻 Tech Hub</div><div class="ccard-body"><span data-ko>아마존·구글·마이크로소프트·애플 모두 밴쿠버 대형 오피스 보유. 미국 비자 이슈로 캐나다에 팀 구성하는 경우 증가. 한인 IT 전문직 이민 많음.<br>기타: Slack, Hootsuite, Shopify (원격), SAP</span><span data-en>Amazon, Google, Microsoft & Apple all have large Vancouver offices. Growing trend of companies building Canada teams due to US visa issues. Many Korean IT professionals immigrating here.<br>Others: Slack, Hootsuite, Shopify (remote), SAP</span></div></div>
+      <div class="ccard" style="border-left-color:#38BDF8;"><div class="ccard-title" data-ko>🌲 자원·에너지·금융</div><div class="ccard-title" data-en>🌲 Resources, Energy & Finance</div><div class="ccard-body"><span data-ko>BC는 임업·광업·LNG 에너지 자원 강국. RBC·TD·BMO 등 대형 금융기관 본사 일부. 한인 금융권 취업 가능. 부동산 분야도 한인 활약 두드러짐.</span><span data-en>BC is a major resource province (forestry, mining, LNG energy). Some major bank headquarters (RBC, TD, BMO). Korean finance sector employment possible. Korean professionals also prominent in real estate.</span></div></div>
+    </section>
+    <section id="sj-sectors" style="margin-top:28px;">
+      <div class="sec-head" data-ko>📊 한인 주요 취업 분야</div>
+      <div class="sec-head" data-en>📊 Key Korean Employment Sectors</div>
+      <div class="tag-grid">
+        <div class="tag-item"><strong>💻 IT 개발</strong><span data-ko>아마존·구글 밴쿠버 오피스</span><span data-en>Amazon & Google Vancouver offices</span></div>
+        <div class="tag-item"><strong>🎬 VFX·게임</strong><span data-ko>할리우드 노스 수요</span><span data-en>Hollywood North demand</span></div>
+        <div class="tag-item"><strong>🏥 의료·간호</strong><span data-ko>BC 의료인력 부족</span><span data-en>BC healthcare shortage</span></div>
+        <div class="tag-item"><strong>🏠 부동산</strong><span data-ko>한인 에이전트 수요</span><span data-en>Korean agent demand</span></div>
+        <div class="tag-item"><strong>🎓 교육</strong><span data-ko>한국어 강사·학원</span><span data-en>Korean tutoring & schools</span></div>
+        <div class="tag-item"><strong>🍽️ 요식업</strong><span data-ko>한인 레스토랑 창업</span><span data-en>Korean restaurant business</span></div>
+        <div class="tag-item"><strong>📊 회계·세금</strong><span data-ko>한인 CPA 수요 높음</span><span data-en>High Korean CPA demand</span></div>
+        <div class="tag-item"><strong>🛒 한인 상권</strong><span data-ko>마트·서비스업</span><span data-en>Korean stores & services</span></div>
+      </div>
+    </section>
+    <section id="sj-visa" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🍁 캐나다 취업·이민 경로</div>
+      <div class="sec-head" data-en>🍁 Canadian Work & Immigration Pathways</div>
+      <div class="ccard" style="border-left-color:#6EE7B7;"><div class="ccard-title">Express Entry</div><div class="ccard-body"><span data-ko>캐나다 연방 영주권 주요 경로. 포인트 시스템(CRS). IT·의료·공학 직종 우대. 한인 IT 전문직 Express Entry 통한 영주권 취득 증가 중. 취업 오퍼 있으면 점수 가산.</span><span data-en>Canada's primary federal PR pathway. Point system (CRS). IT, healthcare & engineering occupations favored. Growing Korean IT professionals obtaining PR via Express Entry. Job offer gives bonus points.</span></div></div>
+      <div class="ccard" style="border-left-color:#6EE7B7;"><div class="ccard-title">BC PNP (Provincial Nominee Program)</div><div class="ccard-body"><span data-ko>BC 주 지명 이민 프로그램. Tech Pilot (IT 직종 최우대). BC에서 취업 후 주 정부 지명 → 영주권. Express Entry보다 빠른 경우 많음.</span><span data-en>BC Provincial Nominee Program. Tech Pilot (top priority for IT occupations). Get employed in BC → provincial nomination → PR. Often faster than Express Entry alone.</span></div></div>
+      <div class="ccard" style="border-left-color:#6EE7B7;"><div class="ccard-title">Open Work Permit (배우자)</div><div class="ccard-body"><span data-ko>취업허가자 배우자 → Open Work Permit 가능. 캐나다 적응 기간 동안 배우자도 합법적으로 취업 가능. 자녀 공립학교 무료 등록 가능.</span><span data-en>Spouse of work permit holder → Open Work Permit available. Spouse can legally work while adapting to Canada. Children can enroll in public school for free.</span></div></div>
+    </section>
+  </div>
+</div>
+
+<!-- 공공의료 -->
+<div class="app-overlay" id="app-health" style="background:linear-gradient(180deg,#0a2a2a,#1a4040);">
+  <div class="app-header" style="background:linear-gradient(135deg,#1a4040,#0a2a2a);">
+    <button class="app-back" onclick="closeApp('health')">‹</button>
+    <div class="app-header-title">🏥 <span data-ko>공공의료</span><span data-en>Healthcare</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#0a2a2a;">
+    <button class="tab-btn on" onclick="sTab(this,'sh2-msp')">BC MSP</button>
+    <button class="tab-btn" onclick="sTab(this,'sh2-doctor')"><span data-ko>의사 찾기</span><span data-en>Find Doctor</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sh2-private')"><span data-ko>민간보험</span><span data-en>Private</span></button>
+  </div>
+  <div class="app-content">
+    <section id="sh2-msp">
+      <div class="num-grid">
+        <div class="num-card"><div class="num-big" style="color:#6EE7B7;">$0</div><div class="num-label" data-ko>월 보험료 (2020~)</div><div class="num-label" data-en>Monthly Premium (since 2020)</div></div>
+        <div class="num-card"><div class="num-big" style="color:#6EE7B7;">무료</div><div class="num-label" data-ko>GP 방문·입원·수술</div><div class="num-label" data-en>GP, hospital & surgery</div></div>
+        <div class="num-card"><div class="num-big" style="color:#FBBF24;">별도</div><div class="num-label" data-ko>치과·안과·약</div><div class="num-label" data-en>Dental, vision & meds</div></div>
+        <div class="num-card"><div class="num-big" style="color:#6EE7B7;">즉시</div><div class="num-label" data-ko>대기기간 없음</div><div class="num-label" data-en>No waiting period</div></div>
+      </div>
+      <div class="ccard" style="border-left-color:#6EE7B7;"><div class="ccard-title" data-ko>BC MSP 적용 범위</div><div class="ccard-title" data-en>BC MSP Coverage</div><div class="ccard-body"><span data-ko>✅ 포함: GP(가정의) 방문, 전문의 진료, 입원, 수술, 응급실, 엑스레이, 혈액검사, 분만<br>❌ 미포함: 치과, 안과, 처방약, 물리치료, 구급차 (추가 민간보험 필요)</span><span data-en>✅ Included: GP visits, specialist consultations, hospitalization, surgery, emergency room, X-rays, blood tests, childbirth<br>❌ Not included: Dental, vision, prescriptions, physiotherapy, ambulance (additional private insurance needed)</span></div></div>
+    </section>
+    <section id="sh2-doctor" style="margin-top:28px;">
+      <div class="sec-head" data-ko>👨‍⚕️ 한인 의사 & 의료 서비스</div>
+      <div class="sec-head" data-en>👨‍⚕️ Korean Doctors & Medical Services</div>
+      <div class="ccard" style="border-left-color:#6EE7B7;"><div class="ccard-title" data-ko>한인 가정의(GP) 찾기</div><div class="ccard-title" data-en>Finding a Korean Family Doctor</div><div class="ccard-body"><span data-ko>• 코퀴틀람·버나비 한인 GP 다수<br>• 한인 교회·커뮤니티 추천으로 찾는 경우 많음<br>• Health Connect Registry (gov.bc.ca) 공식 신청 가능<br>• GP 없을 때: Walk-in Clinic 적극 이용 (예약 불필요)</span><span data-en>• Many Korean GPs in Coquitlam & Burnaby<br>• Often found through Korean church & community referrals<br>• Can apply officially via Health Connect Registry (gov.bc.ca)<br>• Without GP: use Walk-in Clinics freely (no appointment needed)</span></div></div>
+      <div class="ccard" style="border-left-color:#6EE7B7;"><div class="ccard-title" data-ko>긴급 의료</div><div class="ccard-title" data-en>Emergency Medical Care</div><div class="ccard-body"><span data-ko>• 응급실: 911 또는 직접 방문 (무료, MSP 적용)<br>• 비응급 야간: AfterHours Walk-in Clinic<br>• 의료 상담 전화: 811 (BC Nurse Line, 무료, 24시간)</span><span data-en>• Emergency room: call 911 or walk in directly (free, MSP covered)<br>• Non-emergency after hours: AfterHours Walk-in Clinic<br>• Medical advice phone: 811 (BC Nurse Line, free, 24/7)</span></div></div>
+    </section>
+    <section id="sh2-private" style="margin-top:28px;">
+      <div class="sec-head" data-ko>💊 추가 민간보험 (MSP 비적용 항목)</div>
+      <div class="sec-head" data-en>💊 Supplemental Private Insurance</div>
+      <div class="ccard" style="border-left-color:#FBBF24;"><div class="ccard-title" data-ko>Extended Health Benefits</div><div class="ccard-title" data-en>Extended Health Benefits</div><div class="ccard-body"><span data-ko>직장 통해 제공되는 경우 많음. 치과·안과·처방약·물리치료·심리치료 포함. 직장 없을 시 개인 구매 가능 (Sun Life, Manulife, Great-West Life 등).</span><span data-en>Often provided through employer. Covers dental, vision, prescriptions, physiotherapy & mental health. Can purchase individually if not employed (Sun Life, Manulife, Great-West Life, etc.).</span></div></div>
+    </section>
+  </div>
+</div>
+
+<!-- 생활비 -->
+<div class="app-overlay" id="app-cost" style="background:linear-gradient(180deg,#1c0a00,#2e1500);">
+  <div class="app-header" style="background:linear-gradient(135deg,#2e1500,#1c0a00);">
+    <button class="app-back" onclick="closeApp('cost')">‹</button>
+    <div class="app-header-title">💰 <span data-ko>생활비</span><span data-en>Cost of Living</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#1c0a00;">
+    <button class="tab-btn on" onclick="sTab(this,'sc2-rent')"><span data-ko>주거비</span><span data-en>Housing</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sc2-daily')"><span data-ko>생활비</span><span data-en>Daily</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sc2-compare')"><span data-ko>타도시 비교</span><span data-en>vs Other Cities</span></button>
+  </div>
+  <div class="app-content">
+    <section id="sc2-rent">
+      <div class="sec-head" data-ko>🏠 밴쿠버 주거비 현실</div>
+      <div class="sec-head" data-en>🏠 Vancouver Housing Cost Reality</div>
+      <div class="num-grid">
+        <div class="num-card"><div class="num-big" style="color:#F97316;">CAD $3,200</div><div class="num-label" data-ko>다운타운 1BR 평균</div><div class="num-label" data-en>Downtown 1BR avg</div></div>
+        <div class="num-card"><div class="num-big" style="color:#F97316;">CAD $2,300</div><div class="num-label" data-ko>코퀴틀람 1BR 평균</div><div class="num-label" data-en>Coquitlam 1BR avg</div></div>
+        <div class="num-card"><div class="num-big" style="color:#6EE7B7;">$0</div><div class="num-label" data-ko>공공 의료보험료</div><div class="num-label" data-en>Public health premium</div></div>
+        <div class="num-card"><div class="num-big" style="color:#FBBF24;">12%</div><div class="num-label" data-ko>GST+PST 소비세</div><div class="num-label" data-en>GST+PST sales tax</div></div>
+      </div>
+      <table class="dtable">
+        <tr><th data-ko>지역</th><th data-en>Area</th><th>1BR (CAD)</th><th>2BR (CAD)</th></tr>
+        <tr><td data-ko>다운타운</td><td data-en>Downtown</td><td>$2,800–3,500</td><td>$3,800–5,000</td></tr>
+        <tr><td data-ko>버나비</td><td data-en>Burnaby</td><td>$2,200–2,800</td><td>$3,000–3,800</td></tr>
+        <tr><td data-ko>코퀴틀람</td><td data-en>Coquitlam</td><td>$2,000–2,600</td><td>$2,600–3,300</td></tr>
+        <tr><td data-ko>리치몬드</td><td data-en>Richmond</td><td>$1,900–2,400</td><td>$2,500–3,200</td></tr>
+        <tr><td data-ko>서리</td><td data-en>Surrey</td><td>$1,800–2,300</td><td>$2,300–3,000</td></tr>
+      </table>
+    </section>
+    <section id="sc2-daily" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🛒 일상 생활비</div>
+      <div class="sec-head" data-en>🛒 Daily Living Costs</div>
+      <table class="dtable">
+        <tr><th data-ko>항목</th><th data-en>Item</th><th data-ko>금액 (CAD)</th><th data-en>Amount (CAD)</th></tr>
+        <tr><td data-ko>식사 (한식당)</td><td data-en>Korean restaurant meal</td><td>$15–25</td></tr>
+        <tr><td data-ko>Compass 월정기권</td><td data-en>Compass monthly pass</td><td>$109–136</td></tr>
+        <tr><td data-ko>주유 (리터)</td><td data-en>Gas (per liter)</td><td>$1.60–2.00</td></tr>
+        <tr><td data-ko>식료품 (월)</td><td data-en>Groceries (monthly)</td><td>$400–600</td></tr>
+        <tr><td data-ko>핸드폰 (월)</td><td data-en>Phone plan (monthly)</td><td>$45–80</td></tr>
+        <tr><td data-ko>공공의료보험</td><td data-en>Public health insurance</td><td>무료 / Free</td></tr>
+      </table>
+    </section>
+    <section id="sc2-compare" style="margin-top:28px;">
+      <div class="sec-head" data-ko>📊 타도시 대비 밴쿠버 생활비</div>
+      <div class="sec-head" data-en>📊 Vancouver vs Other Cities</div>
+      <div class="ccard" style="border-left-color:#6EE7B7;"><div class="ccard-body"><span data-ko>• <strong>vs 시애틀</strong>: 렌트 비슷, 의료비 밴쿠버 유리 (공공의료), 급여 시애틀 높음<br>• <strong>vs SF 베이에어리어</strong>: 렌트 밴쿠버 저렴, 급여도 SF가 높음<br>• <strong>vs 달라스</strong>: 렌트 달라스 저렴, 자동차 의존도 달라스 더 높음<br>• <strong>캐나다 달러</strong>: USD 대비 약 25% 저렴 → 한국 송금 시 환율 고려 필요</span><span data-en>• <strong>vs Seattle</strong>: Similar rent, Vancouver better for healthcare (public), Seattle higher salaries<br>• <strong>vs SF Bay Area</strong>: Vancouver cheaper rent, SF higher salaries<br>• <strong>vs Dallas</strong>: Dallas cheaper rent, Dallas more car-dependent<br>• <strong>Canadian Dollar</strong>: ~25% cheaper vs USD → consider exchange rate for Korea remittances</span></div></div>
+    </section>
+  </div>
+</div>
+
+<!-- 안전정보 -->
+<div class="app-overlay" id="app-safety" style="background:linear-gradient(180deg,#1a0000,#2e0000);">
+  <div class="app-header" style="background:linear-gradient(135deg,#2e0000,#1a0000);">
+    <button class="app-back" onclick="closeApp('safety')">‹</button>
+    <div class="app-header-title">🛡️ <span data-ko>안전정보</span><span data-en>Safety</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="app-content">
+    <div class="sec-head" data-ko>🛡️ 밴쿠버 안전 정보</div>
+    <div class="sec-head" data-en>🛡️ Vancouver Safety Information</div>
+    <div class="ccard" style="border-left-color:#EF4444;"><div class="ccard-title" data-ko>⚠️ Downtown Eastside (DTES) 주의</div><div class="ccard-title" data-en>⚠️ Downtown Eastside (DTES) Caution</div><div class="ccard-body"><span data-ko>밴쿠버 다운타운 이스트사이드는 북미에서 마약 문제가 가장 심각한 지역 중 하나. 관광·거주 비권장. 초행자는 반드시 피할 것.</span><span data-en>Vancouver's DTES is one of North America's most severe drug crisis areas. Not recommended for tourism or residence. First-time visitors must avoid this area.</span></div></div>
+    <div class="ccard" style="border-left-color:#6EE7B7;"><div class="ccard-title" data-ko>✅ 한인 거주 지역 안전도</div><div class="ccard-title" data-en>✅ Safety in Korean Residential Areas</div><div class="ccard-body"><span data-ko>코퀴틀람·버나비·리치몬드·서리 한인 밀집 지역은 매우 안전. 캐나다는 총기 소지 금지 (미국과 다름). 전반적으로 안전한 생활 환경.</span><span data-en>Korean concentration areas in Coquitlam, Burnaby, Richmond & Surrey are very safe. Canada bans handgun ownership (unlike the US). Overall very safe living environment.</span></div></div>
+    <div class="ccard" style="border-left-color:#FBBF24;"><div class="ccard-title" data-ko>🌧️ 밴쿠버 날씨 주의</div><div class="ccard-title" data-en>🌧️ Vancouver Weather Note</div><div class="ccard-body"><span data-ko>10월~4월 거의 매일 비. 야외 스포츠·활동 계획 시 주의. 우산·방수 재킷 필수. 겨울철 눈보다 비가 압도적으로 많음. 우울증 예방을 위한 커뮤니티 활동 참여 권장.</span><span data-en>Rain almost daily October–April. Plan outdoor activities carefully. Umbrella & waterproof jacket essential. Far more rain than snow in winter. Community activity participation recommended to prevent seasonal depression.</span></div></div>
+  </div>
+</div>
+
+<!-- 긴급연락 -->
+<div class="app-overlay" id="app-emerg" style="background:linear-gradient(180deg,#1a0000,#330000);">
+  <div class="app-header" style="background:linear-gradient(135deg,#330000,#1a0000);">
+    <button class="app-back" onclick="closeApp('emerg')">‹</button>
+    <div class="app-header-title">🚨 <span data-ko>긴급연락</span><span data-en>Emergency</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="app-content">
+    <div class="sec-head" data-ko>🚨 긴급 연락처</div>
+    <div class="sec-head" data-en>🚨 Emergency Contacts</div>
+    <div class="info-row"><div class="info-key">🚨 긴급</div><div class="info-val"><strong>911</strong> — <span data-ko>경찰·소방·구급</span><span data-en>Police·Fire·Ambulance</span></div></div>
+    <div class="info-row"><div class="info-key">🏥 의료상담</div><div class="info-val"><strong>811</strong> — BC Nurse Line <span data-ko>(24시간 무료)</span><span data-en>(24hr free)</span></div></div>
+    <div class="info-row"><div class="info-key">🇰🇷 영사관</div><div class="info-val"><strong>(604) 681-9581</strong><br><span data-ko>주밴쿠버 대한민국 총영사관<br>1600 – 1090 West Georgia St, Vancouver</span><span data-en>Consulate General of Korea in Vancouver<br>1600 – 1090 West Georgia St, Vancouver</span></div></div>
+    <div class="info-row"><div class="info-key">📞 영사 긴급</div><div class="info-val"><strong>(604) 499-0853</strong><br><span data-ko>영사 긴급전화 (근무시간 외)</span><span data-en>Consular emergency (after hours)</span></div></div>
+    <div class="info-row"><div class="info-key">🚔 비긴급</div><div class="info-val"><strong>(604) 717-3321</strong> — <span data-ko>VPD 비긴급</span><span data-en>VPD non-emergency</span></div></div>
+    <div class="info-row"><div class="info-key">🏥 BC MSP</div><div class="info-val"><strong>1-800-663-7100</strong><br>Health Insurance BC</div></div>
+    <div class="info-row"><div class="info-key">🍁 IRCC</div><div class="info-val"><strong>1-888-242-2100</strong><br><span data-ko>이민국 (Immigration Canada)</span><span data-en>Immigration, Refugees & Citizenship Canada</span></div></div>
+    <div class="ccard" style="margin-top:20px;border-left-color:#EF4444;"><div class="ccard-title" data-ko>⚠️ 긴급 시 영어로 위치 설명 방법</div><div class="ccard-title" data-en>⚠️ How to Describe Location in Emergency</div><div class="ccard-body"><span data-ko>"I need help at [교차로 이름] in [도시명]. I am Korean and need a Korean interpreter." 911은 한국어 통역 서비스 제공 가능.</span><span data-en>"I need help at [intersection name] in [city name]. I am Korean and need a Korean interpreter." 911 can provide Korean interpreter services.</span></div></div>
+  </div>
+</div>
+
+<!-- 교통안내 -->
+<div class="app-overlay" id="app-transit" style="background:linear-gradient(180deg,#001830,#002a4e);">
+  <div class="app-header" style="background:linear-gradient(135deg,#002a4e,#001830);">
+    <button class="app-back" onclick="closeApp('transit')">‹</button>
+    <div class="app-header-title">🚇 <span data-ko>교통안내</span><span data-en>Transit</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="app-content">
+    <div class="sec-head" data-ko>🚇 밴쿠버 교통 시스템</div>
+    <div class="sec-head" data-en>🚇 Vancouver Transit System</div>
+    <div class="ccard" style="border-left-color:#38BDF8;"><div class="ccard-title">SkyTrain</div><div class="ccard-body"><span data-ko>자동 무인 경전철. 3개 노선 (Expo·Millennium·Canada Line). 다운타운·버나비·코퀴틀람·리치몬드·서리 연결. <strong>공항(YVR) 직접 연결 (Canada Line)</strong>. Compass 카드 사용.</span><span data-en>Automated driverless light rail. 3 lines (Expo, Millennium & Canada Line). Connects Downtown, Burnaby, Coquitlam, Richmond & Surrey. <strong>Direct airport (YVR) connection (Canada Line)</strong>. Use Compass Card.</span></div></div>
+    <div class="ccard" style="border-left-color:#38BDF8;"><div class="ccard-title">SeaBus</div><div class="ccard-body"><span data-ko>다운타운 ↔ 노스밴쿠버 페리. Compass 카드 사용. 약 12분 소요. 경치 아름다워 관광 목적으로도 인기.</span><span data-en>Downtown ↔ North Vancouver ferry. Compass Card accepted. ~12 min crossing. Popular for sightseeing too due to beautiful scenery.</span></div></div>
+    <div class="ccard" style="border-left-color:#38BDF8;"><div class="ccard-title" data-ko>자동차</div><div class="ccard-title" data-en>Driving</div><div class="ccard-body"><span data-ko>SkyTrain 노선 외 지역은 차량 필요. 서리·노스밴쿠버 외곽은 특히 차 필요. 밴쿠버 다운타운 주차비 매우 비쌈 ($30–50/일). ICBC 자동차보험 필수 (민간 아닌 주 공기업).</span><span data-en>Car needed for areas outside SkyTrain lines. Especially necessary for outer Surrey & North Vancouver. Downtown Vancouver parking very expensive ($30–50/day). ICBC auto insurance mandatory (provincial crown corporation, not private).</span></div></div>
+    <div class="ccard" style="border-left-color:#6EE7B7;"><div class="ccard-title" data-ko>💡 교통 팁</div><div class="ccard-title" data-en>💡 Transit Tips</div><div class="ccard-body"><span data-ko>• Compass 카드 Concession (학생·노인) 할인 있음<br>• TransLink 앱: 실시간 스케줄·경로 안내<br>• West Coast Express: 코퀴틀람→다운타운 통근 열차 (러시아워)</span><span data-en>• Compass Card Concession (student & senior) discounts available<br>• TransLink app: real-time schedules & route guidance<br>• West Coast Express: Coquitlam→Downtown commuter rail (rush hours)</span></div></div>
+  </div>
+</div>
+
+<!-- 교육정보 -->
+<div class="app-overlay" id="app-edu" style="background:linear-gradient(180deg,#0a2000,#1a3800);">
+  <div class="app-header" style="background:linear-gradient(135deg,#1a3800,#0a2000);">
+    <button class="app-back" onclick="closeApp('edu')">‹</button>
+    <div class="app-header-title">🎓 <span data-ko>교육정보</span><span data-en>Education</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="app-content">
+    <div class="sec-head" data-ko>🎓 밴쿠버 교육 환경</div>
+    <div class="sec-head" data-en>🎓 Vancouver Education Environment</div>
+    <div class="ccard" style="border-left-color:#4ADE80;"><div class="ccard-title" data-ko>🏫 공립 학교 — 영주권·취업허가 자녀 무료</div><div class="ccard-title" data-en>🏫 Public Schools — Free for PR & Work Permit Children</div><div class="ccard-body"><span data-ko>취업허가·영주권자 자녀 → 공립 K-12 무료. 유학생 자녀는 국제학생 학비 적용. 학군: 코퀴틀람·버나비 우수 학군 평가 높음.</span><span data-en>Children of work permit & PR holders → free public K-12. International student children pay international fees. School districts: Coquitlam & Burnaby rated highly for good schools.</span></div></div>
+    <div class="ccard" style="border-left-color:#4ADE80;"><div class="ccard-title" data-ko>🏛️ 대학교</div><div class="ccard-title" data-en>🏛️ Universities</div><div class="ccard-body"><span data-ko>• <strong>UBC (University of British Columbia)</strong> — 캐나다 탑3. 밴쿠버 서쪽 Point Grey 위치<br>• <strong>SFU (Simon Fraser University)</strong> — 버나비 번나비산 위치. IT·경영 강세<br>• <strong>BCIT (BC Institute of Technology)</strong> — 실무 중심. 취업 직결 과정<br>• <strong>Langara College</strong> — 밴쿠버 남부. UBC 편입 과정 인기</span><span data-en>• <strong>UBC</strong> — Canada's top 3. Located at Point Grey, west Vancouver<br>• <strong>SFU</strong> — On Burnaby Mountain, Burnaby. Strong in IT & business<br>• <strong>BCIT</strong> — Hands-on focus. Directly career-linked programs<br>• <strong>Langara College</strong> — South Vancouver. Popular UBC transfer pathway</span></div></div>
+    <div class="ccard" style="border-left-color:#4ADE80;"><div class="ccard-title" data-ko>한국어 교육·한인 학원</div><div class="ccard-title" data-en>Korean Language Education & Korean Tutoring</div><div class="ccard-body"><span data-ko>코퀴틀람·버나비 한인 학원 다수 (수학·영어·SAT). 한인 교회 한국어 학교 활성. 2세를 위한 한국어 보존 교육 프로그램.</span><span data-en>Many Korean tutoring centers in Coquitlam & Burnaby (math, English, SAT). Active Korean language schools at Korean churches. Korean language preservation programs for 2nd generation.</span></div></div>
+  </div>
+</div>
+
+<!-- 커뮤니티 -->
+<div class="app-overlay" id="app-comm" style="background:linear-gradient(180deg,#1a0a3e,#2d1a5e);">
+  <div class="app-header" style="background:linear-gradient(135deg,#2d1a5e,#1a0a3e);">
+    <button class="app-back" onclick="closeApp('comm')">‹</button>
+    <div class="app-header-title">🤝 <span data-ko>커뮤니티</span><span data-en>Community</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="app-content">
+    <div class="sec-head" data-ko>🤝 밴쿠버 한인 커뮤니티</div>
+    <div class="sec-head" data-en>🤝 Vancouver Korean Community</div>
+    <div class="ccard" style="border-left-color:#A78BFA;"><div class="ccard-title" data-ko>온라인 커뮤니티</div><div class="ccard-title" data-en>Online Communities</div><div class="ccard-body"><span data-ko>• 네이버 카페 "밴쿠버 교민사회" — 생활 정보·구인구직<br>• 카카오톡 밴쿠버 한인 오픈채팅방 — 실시간 정보<br>• 밴쿠버 조선 (koreadaily 밴쿠버판) — 지역 한인 뉴스<br>• Facebook 밴쿠버 한인 그룹</span><span data-en>• Naver Cafe "밴쿠버 교민사회" — community info & jobs<br>• KakaoTalk Vancouver Korean open chat — real-time info<br>• Vancouver Chosun (koreadaily Vancouver edition) — local Korean news<br>• Facebook Vancouver Korean groups</span></div></div>
+    <div class="ccard" style="border-left-color:#A78BFA;"><div class="ccard-title" data-ko>한인 단체 & 기관</div><div class="ccard-title" data-en>Korean Organizations & Institutions</div><div class="ccard-body"><span data-ko>• 주밴쿠버 한국교육원 — 한국어 교육·한국문화 지원<br>• BC 한인상공회의소 — 한인 비즈니스 네트워크<br>• 한인회 — 지역별 (밴쿠버·코퀴틀람·버나비) 한인 친목<br>• 한국문화원 — 한국 문화 행사·전시</span><span data-en>• Korean Education Center Vancouver — Korean language & culture support<br>• BC Korean Chamber of Commerce — Korean business network<br>• Korean Association — local (Vancouver, Coquitlam, Burnaby) Korean community<br>• Korean Cultural Center — Korean cultural events & exhibitions</span></div></div>
+  </div>
+</div>
+
+<!-- 관광·나들이 -->
+<div class="app-overlay" id="app-nature" style="background:linear-gradient(180deg,#001a0a,#003318);">
+  <div class="app-header" style="background:linear-gradient(135deg,#003318,#001a0a);">
+    <button class="app-back" onclick="closeApp('nature')">‹</button>
+    <div class="app-header-title">🏔️ <span data-ko>관광·나들이</span><span data-en>Explore</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="app-content">
+    <div class="sec-head" data-ko>🏔️ 밴쿠버 주요 관광지</div>
+    <div class="sec-head" data-en>🏔️ Top Vancouver Attractions</div>
+    <div class="tag-grid">
+      <div class="tag-item"><strong>🌲 Stanley Park</strong><span data-ko>북미 최대 도심 공원</span><span data-en>Largest urban park in NA</span></div>
+      <div class="tag-item"><strong>⛷️ Whistler</strong><span data-ko>세계적 스키 리조트 (1.5h)</span><span data-en>World-class ski resort (1.5h)</span></div>
+      <div class="tag-item"><strong>🏔️ Grouse Mountain</strong><span data-ko>노스밴쿠버 스키·전망대</span><span data-en>North Van ski & viewpoint</span></div>
+      <div class="tag-item"><strong>🌊 Capilano 다리</strong><span data-ko>서스펜션 브리지 트레일</span><span data-en>Suspension bridge trail</span></div>
+      <div class="tag-item"><strong>🚢 Granville Island</strong><span data-ko>아트·마켓·음식</span><span data-en>Art, market & food</span></div>
+      <div class="tag-item"><strong>🐋 Victoria</strong><span data-ko>BC 주도 (페리 1.5h)</span><span data-en>BC capital (ferry 1.5h)</span></div>
+      <div class="tag-item"><strong>🏞️ Garibaldi Park</strong><span data-ko>여름 트레킹 명소</span><span data-en>Summer hiking destination</span></div>
+      <div class="tag-item"><strong>🌸 Queens Park</strong><span data-ko>뉴웨스트민스터 봄꽃</span><span data-en>New Westminster spring blooms</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 글로벌 -->
+<div class="app-overlay" id="app-global" style="background:linear-gradient(180deg,#0d0d2e,#1a1a4e);">
+  <div class="app-header" style="background:linear-gradient(135deg,#1a1a4e,#0d0d2e);">
+    <button class="app-back" onclick="closeApp('global')">‹</button>
+    <div class="app-header-title">🌍 <span data-ko>글로벌 HebronGuide</span><span data-en>Global HebronGuide</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="app-content">
+    <div class="sec-head" data-ko>🌍 전 세계 한인 도시 가이드</div>
+    <div class="sec-head" data-en>🌍 Korean City Guides Worldwide</div>
+    <div class="tag-grid">
+      <div class="tag-item" style="cursor:pointer;" onclick="location.href='../seattle/index.html'"><strong>🌲 Seattle</strong><span data-ko>시애틀 — LIVE</span><span data-en>Seattle — LIVE</span></div>
+      <div class="tag-item" style="cursor:pointer;" onclick="location.href='../dallas/index.html'"><strong>🤠 Dallas</strong><span data-ko>달라스 — LIVE</span><span data-en>Dallas — LIVE</span></div>
+      <div class="tag-item" style="cursor:pointer;" onclick="location.href='../sf/index.html'"><strong>🌉 SF Bay Area</strong><span data-ko>샌프란시스코 — LIVE</span><span data-en>SF Bay Area — LIVE</span></div>
+      <div class="tag-item"><strong>🍁 Vancouver</strong><span data-ko>밴쿠버 — 현재 페이지</span><span data-en>Vancouver — This page</span></div>
+      <div class="tag-item" style="cursor:pointer;" onclick="location.href='../la/index.html'"><strong>🌴 Los Angeles</strong><span data-ko>LA·OC — LIVE</span><span data-en>LA·OC — LIVE</span></div>
+      <div class="tag-item" style="cursor:pointer;" onclick="location.href='../newyork/index.html'"><strong>🗽 New York</strong><span data-ko>뉴욕·NJ — LIVE</span><span data-en>New York·NJ — LIVE</span></div>
+      <div class="tag-item"><strong>🏙️ Chicago</strong><span data-ko>시카고 — Coming Soon</span><span data-en>Chicago — Coming Soon</span></div>
+      <div class="tag-item"><strong>🦘 Sydney</strong><span data-ko>시드니 — Coming Soon</span><span data-en>Sydney — Coming Soon</span></div>
+    </div>
+    <div style="margin-top:24px;text-align:center;">
+      <a href="../index.html" style="display:inline-block;background:rgba(110,231,183,0.15);border:1px solid rgba(110,231,183,0.3);border-radius:12px;padding:12px 24px;color:#6EE7B7;font-weight:700;font-size:0.85rem;" data-ko>← HebronGuide 메인으로</a>
+      <a href="../index.html" style="display:inline-block;background:rgba(110,231,183,0.15);border:1px solid rgba(110,231,183,0.3);border-radius:12px;padding:12px 24px;color:#6EE7B7;font-weight:700;font-size:0.85rem;" data-en>← Back to HebronGuide</a>
+    </div>
+  </div>
+</div>
+
+<!-- ☕ 카페 -->
+<div class="app-overlay" id="app-cafe" style="background:linear-gradient(180deg,#1a1000,#2e2000);">
+  <div class="app-header" style="background:rgba(0,0,0,0.5);">
+    <button class="app-back" onclick="closeApp('cafe')">‹</button>
+    <div class="app-header-title">☕ <span data-ko>카페 추천</span><span data-en>Korean Cafés</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn on" onclick="sTab(this,'caf-kingsway')" data-ko>버나비·킹스웨이</button>
+    <button class="tab-btn on" onclick="sTab(this,'caf-kingsway')" data-en>Burnaby·Kingsway</button>
+    <button class="tab-btn" onclick="sTab(this,'caf-coq')" data-ko>코퀴틀람·노스로드</button>
+    <button class="tab-btn" onclick="sTab(this,'caf-coq')" data-en>Coquitlam·North Rd</button>
+    <button class="tab-btn" onclick="sTab(this,'caf-richmond')" data-ko>리치먼드·서리</button>
+    <button class="tab-btn" onclick="sTab(this,'caf-richmond')" data-en>Richmond·Surrey</button>
+  </div>
+  <div class="app-content">
+    <div id="caf-kingsway">
+      <div class="sec-head" data-ko>☕ 버나비 킹스웨이 — 한인 카페 밀집지</div>
+      <div class="sec-head" data-en>☕ Burnaby Kingsway — Korean Café Hub</div>
+      <div class="ccard">
+        <div class="ccard-title">Paris Baguette 파리바게뜨 — Burnaby</div>
+        <div class="ccard-body" data-ko>📍 <strong>4501 Kingsway, Burnaby</strong><br>한국식 카페 베이커리. 앙버터·크로플·크림빵 등 한국 트렌드 메뉴. 커피·케이크·도시락 세트. H-Mart 단지 내 위치로 장 보고 들르기 편리.</div>
+        <div class="ccard-body" data-en>📍 <strong>4501 Kingsway, Burnaby</strong><br>Korean-style café bakery. Anpan butter, croffle, cream bun and trending Korean items. Coffee, cakes, and lunch combos. Located in H-Mart complex — easy to grab after grocery shopping.</div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.parisbaguette.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 <span data-ko>공식 웹사이트</span><span data-en>Official Website</span></a>
+        </div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Tous les Jours 뚜레쥬르 — Burnaby Metrotown</div>
+        <div class="ccard-body" data-ko>📍 <strong>4800 Kingsway (Metropolis 인근), Burnaby</strong><br>한국식 베이커리 카페 체인. 아메리카노·라테와 곱게 구운 소금빵·단팥빵 인기. 메트로타운 쇼핑 후 디저트 코스로 제격.</div>
+        <div class="ccard-body" data-en>📍 <strong>Near 4800 Kingsway (Metropolis area), Burnaby</strong><br>Korean bakery café chain. Americano, latte, salt bread, and red bean bun are fan favorites. Perfect dessert stop after Metrotown shopping.</div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.tljus.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 <span data-ko>공식 웹사이트</span><span data-en>Official Website</span></a>
+        </div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Caffe Bene 카페베네 — Kingsway</div>
+        <div class="ccard-body" data-ko>📍 <strong>5973 Kingsway, Burnaby</strong><br>한국 대형 카페 체인 밴쿠버 지점. 와플·빙수·스무디가 인기. 넓은 좌석 — 공부·미팅 모두 OK. 무료 WiFi 제공.</div>
+        <div class="ccard-body" data-en>📍 <strong>5973 Kingsway, Burnaby</strong><br>Vancouver branch of major Korean café chain. Waffles, bingsu, and smoothies are popular. Spacious seating — great for studying or meetings. Free WiFi.</div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.caffebene.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 <span data-ko>공식 웹사이트</span><span data-en>Official Website</span></a>
+        </div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Hana Coffee 하나커피 — Kingsway</div>
+        <div class="ccard-body" data-ko>📍 <strong>6388 Kingsway, Burnaby</strong><br>한인 운영 독립 카페. 에스프레소 정성 드립·시즌 라테 메뉴. 조용하고 아늑한 분위기 — 혼자 오기 좋은 카페. 아이스 달고나 라테 추천.</div>
+        <div class="ccard-body" data-en>📍 <strong>6388 Kingsway, Burnaby</strong><br>Korean-owned independent café. Careful espresso drip and seasonal latte menu. Quiet and cozy — great for solo visits. Try the iced dalgona latte.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Moment Café 모먼트 카페 — Royal Oak</div>
+        <div class="ccard-body" data-ko>📍 <strong>Royal Oak Ave, Burnaby</strong><br>한인 커뮤니티 단골 로컬 카페. 아기자기한 인테리어·꾸덕한 크림 라테. 주말 웨이팅 있음. 케이크 퀄리티가 특히 높음.</div>
+        <div class="ccard-body" data-en>📍 <strong>Royal Oak Ave, Burnaby</strong><br>Local favourite among Korean community. Cozy interior with thick creamy lattes. Weekend wait times expected. Notably high-quality cakes.</div>
+      </div>
+    </div>
+    <div id="caf-coq" style="display:none;">
+      <div class="sec-head" data-ko>☕ 코퀴틀람 노스로드 — 한인 카페 거리</div>
+      <div class="sec-head" data-en>☕ Coquitlam North Rd — Korean Café Strip</div>
+      <div class="ccard">
+        <div class="ccard-title">Paris Baguette 파리바게뜨 — Coquitlam</div>
+        <div class="ccard-body" data-ko>📍 <strong>2970 Glen Dr, Coquitlam</strong> (H-Mart Coquitlam 단지)<br>코퀴틀람 H-Mart 내 입점. 한국식 크림빵·소금빵·케이크 전품목. 주차 편리. 장 보러 왔다가 들르는 단골 코스.</div>
+        <div class="ccard-body" data-en>📍 <strong>2970 Glen Dr, Coquitlam</strong> (H-Mart Coquitlam complex)<br>Located inside Coquitlam H-Mart. Full lineup of Korean cream buns, salt bread, and cakes. Easy parking. Popular stop while grocery shopping.</div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.parisbaguette.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 <span data-ko>공식 웹사이트</span><span data-en>Official Website</span></a>
+        </div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Café Aroma 카페 아로마 — Lougheed</div>
+        <div class="ccard-body" data-ko>📍 <strong>Lougheed Hwy, Coquitlam</strong><br>한인 단골 코퀴틀람 카페. 진한 에스프레소 베이스 음료 중심. 텀블러 할인 있음. 아침 일찍부터 오픈 — 출근 전 들리기 좋음.</div>
+        <div class="ccard-body" data-en>📍 <strong>Lougheed Hwy, Coquitlam</strong><br>Korean-community favourite in Coquitlam. Focused on strong espresso-based drinks. Tumbler discount available. Opens early — good pre-work stop.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">빙수·디저트 카페 — 노스로드 일대</div>
+        <div class="ccard-body" data-ko>노스로드(North Rd) 한인 상권 내 시즌별 빙수·팥빙수 전문점이 여름마다 등장. 코퀴틀람 한인 네이버 카페·인스타그램 검색으로 최신 오픈 정보 확인 권장.<br><br>🔍 검색어: <strong>"코퀴틀람 빙수" "Coquitlam Korean dessert"</strong></div>
+        <div class="ccard-body" data-en>Seasonal shaved ice (bingsu) shops pop up every summer along North Rd Korean commercial strip. Check the latest openings on Coquitlam Korean Naver Café or Instagram.<br><br>🔍 Search: <strong>"Coquitlam bingsu" "Coquitlam Korean dessert"</strong></div>
+      </div>
+    </div>
+    <div id="caf-richmond" style="display:none;">
+      <div class="sec-head" data-ko>☕ 리치먼드·서리 — 멀티컬처 카페</div>
+      <div class="sec-head" data-en>☕ Richmond·Surrey — Multicultural Cafés</div>
+      <div class="ccard">
+        <div class="ccard-title">Tous les Jours 뚜레쥬르 — Richmond</div>
+        <div class="ccard-body" data-ko>📍 <strong>3700 No. 3 Rd, Richmond</strong><br>한국·아시안 교민 밀집 리치먼드 중심부. 빵·케이크·음료 풀라인업. 아시안 쇼핑몰 인근 위치로 편의성 ◎.</div>
+        <div class="ccard-body" data-en>📍 <strong>3700 No. 3 Rd, Richmond</strong><br>Heart of Richmond's dense Korean-Asian community. Full lineup of bread, cakes, and drinks. Conveniently near Asian shopping centres.</div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.tljus.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 <span data-ko>공식 웹사이트</span><span data-en>Official Website</span></a>
+        </div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Caffe Arisu 카페 아리수 — Steveston</div>
+        <div class="ccard-body" data-ko>📍 <strong>Richmond 스티브스톤 빌리지</strong><br>한인 운영 소규모 카페. 조용한 어촌 마을 분위기에서 즐기는 핸드드립 커피. 드라이브 겸 나들이 코스로 인기.</div>
+        <div class="ccard-body" data-en>📍 <strong>Steveston Village, Richmond</strong><br>Small Korean-owned café in a quiet fishing village setting. Hand-drip coffee enjoyed in a serene coastal atmosphere. Popular as a drive and outing destination.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Surrey 한인 카페 — Guildford</div>
+        <div class="ccard-body" data-ko>서리(Surrey)의 한인 인구 증가로 길포드(Guildford) 일대에 한인 카페·빵집 신규 오픈 중. 서리 한인 단톡방·인스타그램(@surrey_korean) 참고 권장.<br><br>💡 <strong>팁:</strong> 서리는 한인 유입이 빠른 지역 — 새 가게 생기는 속도가 빠름.</div>
+        <div class="ccard-body" data-en>Surrey's growing Korean community has seen new Korean cafés opening around Guildford. Check Surrey Korean KakaoTalk group or Instagram (@surrey_korean) for latest openings.<br><br>💡 <strong>Tip:</strong> Surrey is a fast-growing Korean area — new shops open frequently.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🍽️ 맛집 -->
+<div class="app-overlay" id="app-food" style="background:linear-gradient(180deg,#200a00,#381500);">
+  <div class="app-header" style="background:rgba(0,0,0,0.5);">
+    <button class="app-back" onclick="closeApp('food')">‹</button>
+    <div class="app-header-title">🍽️ <span data-ko>밴쿠버 한인 맛집</span><span data-en>Vancouver K-Dining</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn on" onclick="sTab(this,'food-kbbq')" data-ko>한식·고기</button>
+    <button class="tab-btn on" onclick="sTab(this,'food-kbbq')" data-en>Korean·BBQ</button>
+    <button class="tab-btn" onclick="sTab(this,'food-chicken')" data-ko>치킨·분식</button>
+    <button class="tab-btn" onclick="sTab(this,'food-chicken')" data-en>Chicken·Snacks</button>
+    <button class="tab-btn" onclick="sTab(this,'food-richmond')" data-ko>리치먼드·아시안</button>
+    <button class="tab-btn" onclick="sTab(this,'food-richmond')" data-en>Richmond·Asian</button>
+    <button class="tab-btn" onclick="sTab(this,'food-local')" data-ko>캐나다 현지</button>
+    <button class="tab-btn" onclick="sTab(this,'food-local')" data-en>Local Canadian</button>
+  </div>
+  <div class="app-content">
+    <div id="food-kbbq">
+      <div class="sec-head" data-ko>🥩 버나비·코퀴틀람 한식·고기</div>
+      <div class="sec-head" data-en>🥩 Burnaby·Coquitlam Korean & BBQ</div>
+      <div class="ccard">
+        <div class="ccard-title">Gookgang 국강 한식당 — Burnaby</div>
+        <div class="ccard-body" data-ko>📍 <strong>6369 Kingsway, Burnaby</strong> ☎ 604-439-8833<br>밴쿠버 한인 최고 인기 한식당 중 하나. 순두부찌개·갈비탕·사골국밥. 런치 세트 $15~20. 웨이팅 있으므로 오픈 직후 방문 권장.</div>
+        <div class="ccard-body" data-en>📍 <strong>6369 Kingsway, Burnaby</strong> ☎ 604-439-8833<br>One of the most popular Korean restaurants in Vancouver. Soft tofu stew, galbi-tang, seolleongtang. Lunch set $15–20. Expect wait times — arrive at opening.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Tofu Village 두부마을 — Burnaby</div>
+        <div class="ccard-body" data-ko>📍 <strong>5929 Kingsway, Burnaby</strong> ☎ 604-439-1677<br>순두부 전문점. 직접 끓여 나오는 뚝배기 순두부찌개 $14~18. 반찬 정갈하고 양 푸짐. 아침 해장으로도 인기.</div>
+        <div class="ccard-body" data-en>📍 <strong>5929 Kingsway, Burnaby</strong> ☎ 604-439-1677<br>Soft tofu stew specialist. Stone pot soon tofu jjigae $14–18. Generous banchan and portions. Also popular for morning hangover cure.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Seoul Oven 서울 오븐 — Burnaby</div>
+        <div class="ccard-body" data-ko>📍 <strong>4501 Kingsway #105, Burnaby</strong> (H-Mart 단지)<br>삼겹살·갈비 한국식 고기구이. 환기 시스템 쾌적. 2인 세트 $60~80. 주말 저녁 예약 필수. AYCE(무한리필) 옵션도 있음.</div>
+        <div class="ccard-body" data-en>📍 <strong>4501 Kingsway #105, Burnaby</strong> (H-Mart complex)<br>Samgyeopsal & galbi Korean BBQ. Good ventilation. 2-person set $60–80. Reservations recommended on weekends. AYCE option available.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Arirang Restaurant 아리랑 — Coquitlam</div>
+        <div class="ccard-body" data-ko>📍 <strong>1163 The High St, Coquitlam</strong> ☎ 604-945-8882<br>코퀴틀람 한인타운 중심 한식당. 비빔밥·된장찌개·돌솥밥 등 가정식 메뉴. 현지 직장인 런치 단골. 주차 편리.</div>
+        <div class="ccard-body" data-en>📍 <strong>1163 The High St, Coquitlam</strong> ☎ 604-945-8882<br>Central Korean restaurant in Coquitlam. Bibimbap, doenjang jjigae, dolsot rice — home-style menu. Popular for local office lunch crowd. Ample parking.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Hanwoori 한우리 — Coquitlam</div>
+        <div class="ccard-body" data-ko>📍 <strong>3025 Lougheed Hwy, Coquitlam</strong><br>코퀴틀람 한인 단골 중식당·한식당. 부대찌개·김치찜·삼겹살. 가족 단위 방문 다수. 캐나다 연장자 이민자 단골 식당.</div>
+        <div class="ccard-body" data-en>📍 <strong>3025 Lougheed Hwy, Coquitlam</strong><br>Coquitlam Korean community favourite. Budae jjigae, kimchi braised pork, samgyeopsal. Family-friendly and popular among senior Korean immigrants.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Sura Korean Cuisine 수라 — Downtown Vancouver</div>
+        <div class="ccard-body" data-ko>📍 <strong>1518 Robson St, Vancouver</strong> ☎ 604-687-7872<br>다운타운 한식 파인다이닝급. 궁중 음식 컨셉. 비건 옵션 있음. 관광객·외국인도 많이 찾는 곳. 코스 메뉴 $50~80.</div>
+        <div class="ccard-body" data-en>📍 <strong>1518 Robson St, Vancouver</strong> ☎ 604-687-7872<br>Downtown Korean fine dining. Royal court cuisine concept. Vegan options available. Popular with tourists and non-Koreans. Course menu $50–80.</div>
+      </div>
+    </div>
+    <div id="food-chicken" style="display:none;">
+      <div class="sec-head" data-ko>🍗 한인 치킨·분식·야식</div>
+      <div class="sec-head" data-en>🍗 Korean Fried Chicken & Street Food</div>
+      <div class="ccard">
+        <div class="ccard-title">bb.q Chicken 비비큐 치킨 — Burnaby</div>
+        <div class="ccard-body" data-ko>📍 <strong>4501 Kingsway #110, Burnaby</strong><br>한국 대표 치킨 프랜차이즈. 황금올리브치킨·크리스피·뿌링클. 배달 가능 (UberEats·DoorDash). 2마리 세트 $38~45.</div>
+        <div class="ccard-body" data-en>📍 <strong>4501 Kingsway #110, Burnaby</strong><br>Korea's signature fried chicken franchise. Golden Olive, Crispy, and Cheese Bburinkle options. Delivery via UberEats/DoorDash. 2-bird combo $38–45.</div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://www.bbqchicken.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 <span data-ko>공식 웹사이트</span><span data-en>Official Website</span></a>
+        </div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Bonchon Chicken 본촌치킨 — Burnaby / Coquitlam</div>
+        <div class="ccard-body" data-ko>📍 <strong>Kingsway, Burnaby</strong> / <strong>North Rd, Coquitlam</strong><br>간장·마늘 소스로 유명한 미국계 한식 치킨 체인. 겉바속촉 식감이 특징. 맥주 함께하는 치맥 분위기 ◎.</div>
+        <div class="ccard-body" data-en>📍 <strong>Kingsway, Burnaby</strong> / <strong>North Rd, Coquitlam</strong><br>American-Korean chicken chain famous for soy-garlic sauce. Signature crispy-outside tender-inside texture. Great for chimaek (chicken + beer) vibe.</div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://bonchon.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 <span data-ko>공식 웹사이트</span><span data-en>Official Website</span></a>
+        </div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Kkochi 꼬치 — 꼬치구이 야식</div>
+        <div class="ccard-body" data-ko>버나비·코퀴틀람 한인 상권 내 꼬치구이 포장마차형 가게들. 어묵꼬치·닭꼬치·치즈감자. 저녁 10시 이후 야식 수요 많음.<br><br>📍 H-Mart Burnaby 인근 푸드코트 및 노점 참조.</div>
+        <div class="ccard-body" data-en>Skewer (kkochi) stalls in Burnaby/Coquitlam Korean commercial areas. Fish cake skewers, chicken skewers, cheese potato. High demand for late-night snacks after 10pm.<br><br>📍 See food court and stalls near H-Mart Burnaby.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">떡볶이·라면 — 분식집 찾기</div>
+        <div class="ccard-body" data-ko>밴쿠버 한인 분식집은 자주 오픈·클로즈가 반복됨. 최신 정보는 <strong>네이버 카페 "밴쿠버 코리안"</strong> 또는 인스타그램 #밴쿠버한식 검색 권장.<br><br>💡 <strong>H-Mart 푸드코트:</strong> 버나비·코퀴틀람 H-Mart 내 한식 푸드코트는 비교적 안정적으로 운영.</div>
+        <div class="ccard-body" data-en>Vancouver Korean snack shops (bunsik) open and close frequently. Check the latest on <strong>Naver Café "Vancouver Korean"</strong> or Instagram #밴쿠버한식.<br><br>💡 <strong>H-Mart Food Court:</strong> The Korean food courts inside Burnaby and Coquitlam H-Mart are relatively stable options.</div>
+      </div>
+    </div>
+    <div id="food-richmond" style="display:none;">
+      <div class="sec-head" data-ko>🌏 리치먼드·아시안 다이닝</div>
+      <div class="sec-head" data-en>🌏 Richmond Asian Dining Belt</div>
+      <div class="ccard">
+        <div class="ccard-title">리치먼드 한국 BBQ 거리</div>
+        <div class="ccard-body" data-ko>📍 <strong>No. 3 Rd, Richmond</strong> (Aberdeen Centre 인근)<br>리치먼드는 아시안(중국·한국·일본) 다이닝 최대 밀집 지역. 한국 BBQ 레스토랑 여럿 포진. 점심 런치 스페셜 $15~25, 저녁 1인 $30~50.<br><br>추천: <strong>Han Guk Gwan 한국관</strong> (3700 No.3 Rd 인근)</div>
+        <div class="ccard-body" data-en>📍 <strong>No. 3 Rd, Richmond</strong> (near Aberdeen Centre)<br>Richmond is Metro Vancouver's densest Asian dining area. Multiple Korean BBQ restaurants concentrated here. Lunch special $15–25, dinner $30–50 per person.<br><br>Rec: <strong>Han Guk Gwan</strong> (near 3700 No. 3 Rd)</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Aberdeen Centre 아버딘 센터 푸드코트</div>
+        <div class="ccard-body" data-ko>📍 <strong>4151 Hazelbridge Way, Richmond</strong><br>아시안 쇼핑몰 내 대형 푸드코트. 한식·중식·일식·타이 등 20여 개 스탠드. 런치 $10~15. 주말 매우 혼잡 — 평일 방문 권장.</div>
+        <div class="ccard-body" data-en>📍 <strong>4151 Hazelbridge Way, Richmond</strong><br>Large food court inside Asian shopping mall. 20+ stalls with Korean, Chinese, Japanese, and Thai options. Lunch $10–15. Very crowded weekends — try weekdays.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Guu Izakaya 구우 — 한인도 즐겨찾는 일식</div>
+        <div class="ccard-body" data-ko>📍 <strong>838 Thurlow St, Vancouver</strong> (다운타운) / Robson St 지점<br>일본식 이자카야이지만 한인 커뮤니티에서도 인기. 다코야키·야키토리·사케. 2인 $60~90. 예약 필수.</div>
+        <div class="ccard-body" data-en>📍 <strong>838 Thurlow St, Vancouver</strong> (Downtown) / Robson St branch<br>Japanese izakaya popular with Korean community too. Takoyaki, yakitori, sake. 2-person $60–90. Reservation recommended.</div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+          <a href="https://guu-izakaya.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 <span data-ko>공식 웹사이트</span><span data-en>Official Website</span></a>
+        </div>
+      </div>
+    </div>
+    <div id="food-local" style="display:none;">
+      <div class="sec-head" data-ko>🍁 캐나다 현지 음식 — 밴쿠버 명물</div>
+      <div class="sec-head" data-en>🍁 Local Canadian Eats — Vancouver Staples</div>
+      <div class="ccard">
+        <div class="ccard-title">Poutine 푸틴 — 캐나다 국민 음식</div>
+        <div class="ccard-body" data-ko>감자튀김 + 치즈커드 + 그레이비 소스의 캐나다 국민 야식. 밴쿠버 추천: <strong>Fritz European Fry House</strong> (718 Davie St).<br>💡 Smoke's Poutinerie 체인도 곳곳에 있음 — 가성비 ◎.</div>
+        <div class="ccard-body" data-en>Canada's iconic comfort food — fries + cheese curds + gravy. Vancouver recommendation: <strong>Fritz European Fry House</strong> (718 Davie St).<br>💡 Smoke's Poutinerie chain is also widely available — great value.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Fish & Chips — 항구도시 명물</div>
+        <div class="ccard-body" data-ko>밴쿠버는 항구도시 — 생선&칩스 퀄리티 높음.<br>추천: <strong>Go Fish</strong> (1505 W 1st Ave, 그랜빌 아일랜드 인근) — 대기줄 있지만 가치 있음. 피시타코도 인기. 야외 픽닉 분위기.</div>
+        <div class="ccard-body" data-en>Vancouver is a port city — fish & chips quality is high.<br>Rec: <strong>Go Fish</strong> (1505 W 1st Ave, near Granville Island) — worth the wait. Fish tacos also popular. Great outdoor picnic atmosphere.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Japadog 재패독 — 밴쿠버 핫도그의 진화</div>
+        <div class="ccard-body" data-ko>📍 <strong>530 Robson St, Vancouver</strong><br>일본풍 토핑의 핫도그. 데리야키 소스·마요·세아위드 토핑. 관광객 필수 경험. $9~14. 2009 오바마 대통령도 먹었다는 소문.</div>
+        <div class="ccard-body" data-en>📍 <strong>530 Robson St, Vancouver</strong><br>Hot dog with Japanese-style toppings: teriyaki, mayo, seaweed. Tourist must-try. $9–14. Reportedly enjoyed by President Obama in 2009.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Dim Sum 딤섬 — 리치먼드 명물</div>
+        <div class="ccard-body" data-ko>리치먼드의 딤섬은 홍콩·대만 본토급이라는 평가. 한인 가족 외식으로도 인기.<br>추천: <strong>Kirin Restaurant</strong> (3 곳) / <strong>Jade Seafood</strong> (Richmond) — 주말 런치 $25~35/인.</div>
+        <div class="ccard-body" data-en>Richmond dim sum is rated on par with Hong Kong and Taiwan. Popular for Korean family outings too.<br>Rec: <strong>Kirin Restaurant</strong> (3 locations) / <strong>Jade Seafood</strong> (Richmond) — Weekend lunch $25–35/person.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentApp = null;
+const lang = localStorage.getItem('hg-lang') || 'ko';
+if(lang === 'en') { document.body.classList.add('en'); document.querySelectorAll('.slang').forEach(b=>b.classList.toggle('on', b.onclick?.toString().includes("'en'"))); }
+
+function setLang(l) {
+  localStorage.setItem('hg-lang', l);
+  document.body.classList.toggle('en', l === 'en');
+  document.querySelectorAll('.slang').forEach(b => {
+    b.classList.toggle('on', b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + l + "'"));
+  });
+}
+
+// Café & Food overlays fully implemented above as static HTML.
+
+function openApp(id) {
+  const el = document.getElementById('app-' + id);
+  if(!el) return;
+  el.style.display = 'flex';
+  requestAnimationFrame(() => { el.style.transform = 'translateY(0)'; el.classList.add('open'); });
+  currentApp = id;
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('floatNav').style.display = 'none';
+  if(document.body.classList.contains('en')) el.querySelectorAll('[data-ko],[data-en]').forEach(e=>{
+    if(e.hasAttribute('data-ko')) e.style.display='none';
+    if(e.hasAttribute('data-en')) e.style.display='';
+  });
+}
+
+function closeApp(id) {
+  const el = document.getElementById('app-' + id);
+  if(!el) return;
+  el.classList.remove('open');
+  el.style.transform = 'translateY(100%)';
+  setTimeout(() => { el.style.display = 'none'; el.style.transform = ''; }, 300);
+  currentApp = null;
+  document.getElementById('home').style.display = 'block';
+  document.getElementById('floatNav').style.display = 'flex';
+}
+
+function sTab(btn, secId) {
+  const bar = btn.closest('.tab-bar');
+  bar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  const sec = document.getElementById(secId);
+  if(sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Swipe down to close
+let touchStartY = 0;
+document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
+document.addEventListener('touchend', e => {
+  if(currentApp && e.changedTouches[0].clientY - touchStartY > 80) closeApp(currentApp);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seattle — HebronGuide</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <style>
+    /* ── Light (default) ─────────────────────────────────── */
+    :root, [data-theme="light"] {
+      --bg-base: #fafafa; --bg-elevated: #fff; --bg-surface: #f5f5f7; --bg-surface-2: #ebebed;
+      --text-1: #1d1d1f; --text-2: #515154; --text-3: #86868b;
+      --gold: #b8860b; --gold-bright: #d4a017; --mint: #34c759; --warm: #ff9500; --navy: #1a2e6c;
+      --sep: rgba(0,0,0,0.08); --sep-bold: rgba(0,0,0,0.16);
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+      --shadow-hover: 0 8px 16px rgba(0,0,0,0.08), 0 24px 48px rgba(0,0,0,0.12);
+      --hero-glow: rgba(212,160,23,0.12);
+      --gradient-text: linear-gradient(180deg, #1d1d1f 0%, #515154 100%);
+      --primary-btn-bg: #1d1d1f; --primary-btn-fg: #ffffff;
+      --ghost-btn-bg: rgba(0,0,0,0.05); --nav-bg: rgba(255,255,255,0.78);
+      --phase-bg: rgba(0,0,0,0.02);
+    }
+    [data-theme="dark"] {
+      --bg-base: #000; --bg-elevated: #0a0a0c; --bg-surface: #1c1c1e; --bg-surface-2: #2c2c2e;
+      --text-1: #f5f5f7; --text-2: #a1a1a6; --text-3: #6e6e73;
+      --gold: #d4a017; --gold-bright: #ffc640; --mint: #6EE7B7;
+      --sep: rgba(255,255,255,0.08); --sep-bold: rgba(255,255,255,0.16);
+      --shadow-card: 0 2px 8px rgba(0,0,0,0.3), 0 16px 40px rgba(0,0,0,0.4);
+      --shadow-hover: 0 12px 32px rgba(0,0,0,0.5);
+      --hero-glow: rgba(212,160,23,0.20);
+      --gradient-text: linear-gradient(180deg, #fff 0%, #c8c8cc 100%);
+      --primary-btn-bg: #fff; --primary-btn-fg: #000;
+      --ghost-btn-bg: rgba(255,255,255,0.06); --nav-bg: rgba(0,0,0,0.72);
+      --phase-bg: rgba(255,255,255,0.02);
+    }
+    @media (prefers-color-scheme: dark) {
+      [data-theme="auto"] {
+        --bg-base: #000; --bg-elevated: #0a0a0c; --bg-surface: #1c1c1e; --bg-surface-2: #2c2c2e;
+        --text-1: #f5f5f7; --text-2: #a1a1a6; --text-3: #6e6e73;
+        --gold: #d4a017; --gold-bright: #ffc640; --mint: #6EE7B7;
+        --sep: rgba(255,255,255,0.08); --sep-bold: rgba(255,255,255,0.16);
+        --shadow-card: 0 2px 8px rgba(0,0,0,0.3), 0 16px 40px rgba(0,0,0,0.4);
+        --shadow-hover: 0 12px 32px rgba(0,0,0,0.5);
+        --hero-glow: rgba(212,160,23,0.20);
+        --gradient-text: linear-gradient(180deg, #fff 0%, #c8c8cc 100%);
+        --primary-btn-bg: #fff; --primary-btn-fg: #000;
+        --ghost-btn-bg: rgba(255,255,255,0.06); --nav-bg: rgba(0,0,0,0.72);
+        --phase-bg: rgba(255,255,255,0.02);
+      }
+    }
+    :root {
+      --font: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { min-height: 100vh; }
+    body {
+      font-family: var(--font); background: var(--bg-base); color: var(--text-1);
+      font-size: 16px; line-height: 1.5; letter-spacing: -0.022em;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.4s var(--ease), color 0.4s var(--ease);
+    }
+    [data-lang="en"] .ko, [data-lang="en"] .es,
+    [data-lang="ko"] .en, [data-lang="ko"] .es,
+    [data-lang="es"] .en, [data-lang="es"] .ko { display: none; }
+    [data-lang="en"] .en, [data-lang="ko"] .ko, [data-lang="es"] .es { display: inline; }
+
+    /* ═══ NAV (sticky) ═══════════════════════════════════════ */
+    nav.top {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(180%) blur(20px); background: var(--nav-bg);
+      border-bottom: 0.5px solid var(--sep);
+    }
+    .top-inner {
+      max-width: 1400px; margin: 0 auto; padding: 0 20px;
+      height: 56px; display: flex; align-items: center; gap: 12px;
+    }
+    .back-btn {
+      display: flex; align-items: center; gap: 6px; padding: 6px 12px;
+      border-radius: 100px; background: var(--ghost-btn-bg);
+      color: var(--text-1); text-decoration: none; font-size: 13px; font-weight: 600;
+      border: 1px solid var(--sep); flex-shrink: 0;
+      transition: all .15s;
+    }
+    .back-btn:hover { background: var(--bg-surface); }
+    .city-title-mini {
+      display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+      font-weight: 700; font-size: 17px; letter-spacing: -0.025em;
+    }
+    .city-title-mini .mark { width: 24px; height: 24px; }
+
+    /* 검색바 — 핵심 실용 요소 */
+    .search-wrap { flex: 1; max-width: 520px; margin: 0 auto; }
+    .search-box {
+      display: flex; align-items: center; gap: 8px; padding: 8px 16px;
+      background: var(--bg-surface); border: 1px solid var(--sep);
+      border-radius: 100px; transition: all .15s;
+    }
+    .search-box:focus-within { border-color: var(--gold-bright); background: var(--bg-elevated); box-shadow: 0 0 0 3px rgba(212,160,23,0.1); }
+    .search-icon { font-size: 14px; opacity: 0.6; }
+    .search-input {
+      flex: 1; background: transparent; border: none; outline: none;
+      font-family: var(--font); font-size: 14px; color: var(--text-1);
+      letter-spacing: -0.01em;
+    }
+    .search-input::placeholder { color: var(--text-3); }
+    .search-shortcut {
+      padding: 2px 6px; border-radius: 4px;
+      background: var(--ghost-btn-bg); border: 1px solid var(--sep);
+      font-size: 10px; color: var(--text-3); font-weight: 600;
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+    .ctrl-btn {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 6px 10px; border-radius: 100px;
+      background: var(--ghost-btn-bg); color: var(--text-1);
+      border: 1px solid var(--sep);
+      font-size: 12px; font-weight: 600; cursor: pointer;
+      font-family: var(--font); transition: all .15s;
+    }
+    .ctrl-btn:hover { background: var(--bg-surface); }
+    @media (max-width: 720px) { .city-title-mini { display: none; } .search-shortcut { display: none; } }
+
+    /* ═══ HERO (city overview) ═════════════════════════════ */
+    .city-hero {
+      position: relative; overflow: hidden;
+      max-width: 1400px; margin: 0 auto; padding: 24px 20px 16px;
+    }
+    .city-hero::before {
+      content: ""; position: absolute; top: -50px; left: 50%; width: 600px; height: 300px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center, var(--hero-glow), transparent 60%);
+      filter: blur(50px); pointer-events: none; z-index: -1;
+    }
+    .hero-row {
+      display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap;
+    }
+    .hero-text { flex: 1; min-width: 280px; }
+    .city-flag-big { font-size: 40px; line-height: 1; margin-bottom: 8px; }
+    h1 {
+      font-weight: 800; font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 6px;
+    }
+    h1 .accent {
+      background: linear-gradient(135deg, var(--gold-bright) 0%, var(--warm) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .city-subtitle { font-size: 14px; color: var(--text-2); letter-spacing: 0.02em; }
+    .city-tagline { font-size: 11px; color: var(--text-3); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin-top: 6px; }
+
+    /* 빠른 정보 카드 (날씨·환율·시계·인구) */
+    .quick-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; flex: 1; min-width: 280px; }
+    .qcard {
+      padding: 12px 14px; background: var(--bg-elevated); border: 1px solid var(--sep);
+      border-radius: 14px; box-shadow: var(--shadow-card);
+    }
+    .qcard-label { font-size: 10px; color: var(--text-3); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
+    .qcard-value { font-size: 18px; font-weight: 700; letter-spacing: -0.025em; line-height: 1; }
+    .qcard-trend { font-size: 11px; color: var(--mint); margin-top: 4px; font-weight: 600; }
+
+    /* ═══ JOURNEY TIMELINE ════════════════════════════════ */
+    .timeline-wrap {
+      max-width: 1400px; margin: 0 auto; padding: 8px 20px 0;
+    }
+    .timeline {
+      display: flex; gap: 0; align-items: stretch;
+      background: var(--phase-bg); border-radius: 14px; padding: 6px;
+      border: 1px solid var(--sep);
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .timeline::-webkit-scrollbar { display: none; }
+    .tl-step {
+      flex: 1; min-width: 100px;
+      padding: 8px 12px; border-radius: 10px; text-align: center;
+      font-size: 12px; font-weight: 600; color: var(--text-2);
+      cursor: pointer; transition: all .2s; background: transparent;
+      border: none; font-family: var(--font); letter-spacing: -0.01em;
+    }
+    .tl-step:hover { background: var(--bg-elevated); color: var(--text-1); }
+    .tl-step.active {
+      background: var(--bg-elevated); color: var(--text-1);
+      box-shadow: var(--shadow-card);
+    }
+    .tl-num { font-size: 10px; color: var(--gold); font-weight: 700; letter-spacing: 0.08em; }
+    .tl-name { display: block; margin-top: 2px; }
+
+    /* ═══ 24 SECTIONS DASHBOARD ════════════════════════════ */
+    .phases-area { max-width: 1400px; margin: 0 auto; padding: 16px 20px 32px; }
+
+    .phase {
+      margin-bottom: 20px;
+    }
+    .phase-head {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+      padding: 0 4px;
+    }
+    .phase-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+      background: var(--phase-color, var(--bg-surface));
+    }
+    .phase-meta { flex: 1; }
+    .phase-num { font-size: 10px; color: var(--text-3); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .phase-title { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; margin-top: 1px; }
+    .phase-count {
+      font-size: 11px; color: var(--text-3); font-weight: 500;
+      padding: 3px 9px; border-radius: 100px;
+      background: var(--bg-surface); border: 1px solid var(--sep);
+    }
+
+    .sections-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    }
+    @media (max-width: 980px) { .sections-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 640px) { .sections-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .section-card {
+      position: relative; padding: 16px; border-radius: 16px;
+      background: var(--bg-elevated); border: 1px solid var(--sep);
+      text-decoration: none; color: var(--text-1);
+      transition: transform .25s var(--ease-spring), border-color .15s, box-shadow .25s var(--ease);
+      box-shadow: var(--shadow-card);
+      display: flex; flex-direction: column; gap: 8px;
+      min-height: 110px;
+      isolation: isolate;
+    }
+    .section-card::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 16px;
+      background: var(--card-glow, transparent);
+      opacity: 0; transition: opacity .25s;
+    }
+    .section-card:hover { transform: translateY(-3px); border-color: var(--sep-bold); box-shadow: var(--shadow-hover); }
+    .section-card:hover::before { opacity: 0.5; }
+    .section-card:hover .sec-emoji { transform: scale(1.15); }
+
+    .sec-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .sec-emoji { font-size: 28px; line-height: 1; transition: transform .3s var(--ease-spring); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08)); }
+    .sec-badge {
+      font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 100px;
+      background: var(--bg-surface); color: var(--text-3); letter-spacing: 0.06em;
+      text-transform: uppercase; border: 1px solid var(--sep);
+    }
+    .sec-badge.verified {
+      background: linear-gradient(135deg, rgba(52,199,89,0.12), rgba(52,199,89,0.06));
+      color: var(--mint); border-color: rgba(52,199,89,0.25);
+    }
+    .sec-badge.verified::before { content: "✓ "; }
+    .sec-name {
+      font-size: 14px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.2;
+      margin-top: auto;
+    }
+    .sec-name .ko-sub {
+      display: block; font-size: 11px; color: var(--text-3); margin-top: 2px; font-weight: 500;
+    }
+    [data-lang="ko"] .sec-name .ko-sub { display: none; }
+    .sec-stats {
+      display: flex; gap: 6px; align-items: center; margin-top: 4px;
+      font-size: 11px; color: var(--text-2); font-weight: 600;
+    }
+    .sec-stats .num { color: var(--text-1); }
+    .sec-stats .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-3); opacity: 0.5; }
+
+    /* Phase 컬러 — 단계별 미묘한 차이 */
+    .phase[data-p="1"] .phase-icon { background: linear-gradient(135deg, rgba(255,159,10,0.15), rgba(255,159,10,0.05)); color: var(--warm); }
+    .phase[data-p="2"] .phase-icon { background: linear-gradient(135deg, rgba(0,122,255,0.15), rgba(0,122,255,0.05)); color: #0a84ff; }
+    .phase[data-p="3"] .phase-icon { background: linear-gradient(135deg, rgba(52,199,89,0.15), rgba(52,199,89,0.05)); color: var(--mint); }
+    .phase[data-p="4"] .phase-icon { background: linear-gradient(135deg, rgba(212,160,23,0.18), rgba(212,160,23,0.05)); color: var(--gold); }
+    .phase[data-p="5"] .phase-icon { background: linear-gradient(135deg, rgba(175,82,222,0.15), rgba(175,82,222,0.05)); color: #af52de; }
+    .phase[data-p="6"] .phase-icon { background: linear-gradient(135deg, rgba(255,69,150,0.15), rgba(255,69,150,0.05)); color: #ff4596; }
+
+    .phase[data-p="1"] .section-card::before { background: linear-gradient(135deg, rgba(255,159,10,0.04), transparent); }
+    .phase[data-p="2"] .section-card::before { background: linear-gradient(135deg, rgba(0,122,255,0.04), transparent); }
+    .phase[data-p="3"] .section-card::before { background: linear-gradient(135deg, rgba(52,199,89,0.04), transparent); }
+    .phase[data-p="4"] .section-card::before { background: linear-gradient(135deg, rgba(212,160,23,0.05), transparent); }
+    .phase[data-p="5"] .section-card::before { background: linear-gradient(135deg, rgba(175,82,222,0.04), transparent); }
+    .phase[data-p="6"] .section-card::before { background: linear-gradient(135deg, rgba(255,69,150,0.04), transparent); }
+
+    /* ═══ FLOATING AI CONCIERGE ═════════════════════════════ */
+    .concierge {
+      position: fixed; bottom: 20px; right: 20px; z-index: 80;
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px; border-radius: 100px;
+      background: var(--text-1); color: var(--bg-base);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+      cursor: pointer; transition: transform .15s; border: none;
+      font-family: var(--font); font-size: 13px; font-weight: 600;
+    }
+    .concierge:hover { transform: translateY(-2px); }
+    .concierge .ai-icon {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-bright), var(--warm));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+    }
+
+    /* ═══ FOOTER ═════════════════════════════════════════ */
+    footer {
+      max-width: 1400px; margin: 0 auto;
+      padding: 20px; border-top: 1px solid var(--sep);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px; color: var(--text-3); flex-wrap: wrap; gap: 12px;
+    }
+    footer a { color: var(--text-2); text-decoration: none; }
+    footer a:hover { color: var(--text-1); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ STICKY NAV ═══════════════════════════════════════ -->
+<nav class="top">
+  <div class="top-inner">
+    <a href="01_apple_style.html" class="back-btn">
+      <span>←</span>
+      <span class="en">Hub</span><span class="ko">홈</span><span class="es">Inicio</span>
+    </a>
+    <div class="city-title-mini">
+      <svg class="mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="64" height="64" rx="13" fill="#1a2e6c"/>
+        <circle cx="32" cy="32" r="28" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.6"/>
+        <polygon points="32,7 40,24 32,32 24,24" fill="#d4a017"/>
+        <polygon points="32,57 40,40 32,32 24,40" fill="rgba(255,255,255,0.82)"/>
+        <polygon points="57,32 40,40 32,32 40,24" fill="rgba(255,255,255,0.52)"/>
+        <polygon points="7,32 24,24 32,32 24,40"  fill="rgba(255,255,255,0.52)"/>
+        <circle cx="32" cy="32" r="2.8" fill="rgba(255,255,255,0.95)"/>
+      </svg>
+      <span>HebronGuide</span>
+    </div>
+
+    <div class="search-wrap">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input class="search-input" type="text"
+               placeholder="" id="searchInput" />
+        <span class="search-shortcut">⌘K</span>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <button id="themeBtn" class="ctrl-btn"><span id="themeIco">☀️</span><span id="themeLabel">Light</span></button>
+      <button id="langBtn" class="ctrl-btn">🌐 <span id="langLabel">EN</span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ CITY HERO ═══════════════════════════════════════ -->
+<section class="city-hero">
+  <div class="hero-row">
+    <div class="hero-text">
+      <div class="city-flag-big">🏔️</div>
+      <h1>
+        <span class="en">Welcome to <span class="accent">Seattle.</span></span>
+        <span class="ko">시애틀에 <span class="accent">오신 것을</span> 환영합니다.</span>
+        <span class="es">Bienvenidos a <span class="accent">Seattle.</span></span>
+      </h1>
+      <p class="city-subtitle">
+        <span class="en">Washington · USA · 165K Korean residents</span>
+        <span class="ko">워싱턴주 · 미국 · 한인 16만 5천 명</span>
+        <span class="es">Washington · EE.UU. · 165K residentes coreanos</span>
+      </p>
+      <p class="city-tagline">Know your city · Find your people</p>
+    </div>
+
+    <div class="quick-cards">
+      <div class="qcard">
+        <div class="qcard-label">
+          <span class="en">Weather</span><span class="ko">날씨</span><span class="es">Clima</span>
+        </div>
+        <div class="qcard-value">58°F</div>
+        <div class="qcard-trend">⛅ <span class="en">Cloudy</span><span class="ko">흐림</span><span class="es">Nublado</span></div>
+      </div>
+      <div class="qcard">
+        <div class="qcard-label">
+          <span class="en">Local Time</span><span class="ko">현지 시각</span><span class="es">Hora local</span>
+        </div>
+        <div class="qcard-value" id="seattleClock">9:23 AM</div>
+        <div class="qcard-trend">PDT · UTC-7</div>
+      </div>
+      <div class="qcard">
+        <div class="qcard-label">
+          <span class="en">Median Rent</span><span class="ko">평균 월세</span><span class="es">Alquiler</span>
+        </div>
+        <div class="qcard-value">$2,400</div>
+        <div class="qcard-trend">1BR · <span class="en">Bellevue</span><span class="ko">벨뷰</span><span class="es">Bellevue</span></div>
+      </div>
+      <div class="qcard">
+        <div class="qcard-label">
+          <span class="en">KRW Rate</span><span class="ko">환율</span><span class="es">Tipo cambio</span>
+        </div>
+        <div class="qcard-value">₩1,398</div>
+        <div class="qcard-trend">▲ +0.3%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEGMENT SELECTOR (4 청중) ═══════════════════════ -->
+<div class="timeline-wrap" style="padding-bottom: 8px;">
+  <div class="timeline" role="tablist" style="background: linear-gradient(135deg, rgba(212,160,23,0.06), rgba(52,199,89,0.04)); border-color: rgba(212,160,23,0.18);">
+    <button class="tl-step active" data-segment="all">
+      <div class="tl-num">FOR YOU</div>
+      <span class="tl-name"><span class="en">Anyone arriving</span><span class="ko">모두에게</span><span class="es">Para todos</span></span>
+    </button>
+    <button class="tl-step" data-segment="newcomer">
+      <div class="tl-num">🛬 SETTLING</div>
+      <span class="tl-name"><span class="en">Newcomer</span><span class="ko">이민자</span><span class="es">Inmigrante</span></span>
+    </button>
+    <button class="tl-step" data-segment="resident">
+      <div class="tl-num">🏠 LIVING</div>
+      <span class="tl-name"><span class="en">Resident</span><span class="ko">이주자</span><span class="es">Residente</span></span>
+    </button>
+    <button class="tl-step" data-segment="traveler">
+      <div class="tl-num">✈️ VISITING</div>
+      <span class="tl-name"><span class="en">Traveler</span><span class="ko">관광객</span><span class="es">Viajero</span></span>
+    </button>
+    <button class="tl-step" data-segment="returner">
+      <div class="tl-num">🌸 RETURNING</div>
+      <span class="tl-name"><span class="en">Returner</span><span class="ko">방문자</span><span class="es">Visitante</span></span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══ JOURNEY TIMELINE (정착 단계) ═════════════════════ -->
+<div class="timeline-wrap">
+  <div class="timeline" role="tablist">
+    <button class="tl-step active" data-phase="all">
+      <div class="tl-num">ALL</div>
+      <span class="tl-name"><span class="en">Overview</span><span class="ko">전체</span><span class="es">Todo</span></span>
+    </button>
+    <button class="tl-step" data-phase="1">
+      <div class="tl-num">PHASE 1</div>
+      <span class="tl-name"><span class="en">Day 1 — Week 1</span><span class="ko">도착 1주</span><span class="es">Día 1 — Semana 1</span></span>
+    </button>
+    <button class="tl-step" data-phase="2">
+      <div class="tl-num">PHASE 2</div>
+      <span class="tl-name"><span class="en">First Month</span><span class="ko">첫달 정착</span><span class="es">Primer mes</span></span>
+    </button>
+    <button class="tl-step" data-phase="3">
+      <div class="tl-num">PHASE 3</div>
+      <span class="tl-name"><span class="en">Daily Life</span><span class="ko">일상 생활</span><span class="es">Vida diaria</span></span>
+    </button>
+    <button class="tl-step" data-phase="4">
+      <div class="tl-num">PHASE 4</div>
+      <span class="tl-name"><span class="en">Community</span><span class="ko">커뮤니티</span><span class="es">Comunidad</span></span>
+    </button>
+    <button class="tl-step" data-phase="5">
+      <div class="tl-num">PHASE 5</div>
+      <span class="tl-name"><span class="en">Growth</span><span class="ko">성장</span><span class="es">Crecimiento</span></span>
+    </button>
+    <button class="tl-step" data-phase="6">
+      <div class="tl-num">PHASE 6</div>
+      <span class="tl-name"><span class="en">Explore</span><span class="ko">도시 탐방</span><span class="es">Explorar</span></span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══ 24 SECTIONS DASHBOARD ════════════════════════════ -->
+<main class="phases-area">
+
+  <!-- PHASE 1 — Arrival Week -->
+  <div class="phase" data-p="1">
+    <div class="phase-head">
+      <div class="phase-icon">✈️</div>
+      <div class="phase-meta">
+        <div class="phase-num">Phase 1 · Day 1 — Week 1</div>
+        <div class="phase-title"><span class="en">Arrival Week</span><span class="ko">도착 1주차</span><span class="es">Semana de llegada</span></div>
+      </div>
+      <div class="phase-count">4 sections</div>
+    </div>
+    <div class="sections-grid">
+      <a href="#airport" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">✈️</span><span class="sec-badge verified">8</span></div>
+        <div class="sec-name"><span class="en">Airport · Transport</span><span class="ko">공항 · 교통</span><span class="es">Aeropuerto</span><span class="ko-sub">SeaTac · Light Rail · Uber</span></div>
+        <div class="sec-stats"><span class="num">SeaTac</span><span class="dot"></span><span class="en">14 mi</span><span class="ko">23 km</span></div>
+      </a>
+      <a href="#stay" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🏠</span><span class="sec-badge verified">12</span></div>
+        <div class="sec-name"><span class="en">Temporary Stay</span><span class="ko">임시 숙소</span><span class="es">Alojamiento temporal</span><span class="ko-sub">Airbnb · 한인민박 · Hotels</span></div>
+        <div class="sec-stats"><span>$80~250</span><span class="dot"></span><span class="num">12</span> <span class="en">verified</span><span class="ko">검증됨</span></div>
+      </a>
+      <a href="#sim" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">📱</span><span class="sec-badge verified">5</span></div>
+        <div class="sec-name"><span class="en">SIM · Internet</span><span class="ko">SIM · 인터넷</span><span class="es">SIM · Internet</span><span class="ko-sub">T-Mobile · Mint · Spectrum</span></div>
+        <div class="sec-stats"><span>$20~80/mo</span></div>
+      </a>
+      <a href="#bank" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🏦</span><span class="sec-badge verified">7</span></div>
+        <div class="sec-name"><span class="en">Bank Account</span><span class="ko">은행 계좌</span><span class="es">Cuenta bancaria</span><span class="ko-sub">BOA · Chase · 한미은행</span></div>
+        <div class="sec-stats"><span class="en">7 Korean staff</span><span class="ko">한국어 직원 7곳</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- PHASE 2 — First Month -->
+  <div class="phase" data-p="2">
+    <div class="phase-head">
+      <div class="phase-icon">🏡</div>
+      <div class="phase-meta">
+        <div class="phase-num">Phase 2 · Month 1</div>
+        <div class="phase-title"><span class="en">First Month Settlement</span><span class="ko">첫달 정착</span><span class="es">Primer mes</span></div>
+      </div>
+      <div class="phase-count">4 sections</div>
+    </div>
+    <div class="sections-grid">
+      <a href="#housing" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🏡</span><span class="sec-badge verified">24</span></div>
+        <div class="sec-name"><span class="en">Long-term Housing</span><span class="ko">장기 주거</span><span class="es">Vivienda</span><span class="ko-sub">Apt · House · 한인 부동산</span></div>
+        <div class="sec-stats"><span class="num">24</span> <span class="en">listings</span><span class="ko">매물</span></div>
+      </a>
+      <a href="#license" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🚗</span><span class="sec-badge verified">3</span></div>
+        <div class="sec-name"><span class="en">Driver's License</span><span class="ko">운전면허</span><span class="es">Licencia</span><span class="ko-sub">DOL · Test guide · Korean</span></div>
+        <div class="sec-stats"><span class="en">2-week process</span><span class="ko">2주 소요</span></div>
+      </a>
+      <a href="#health" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🏥</span><span class="sec-badge verified">15</span></div>
+        <div class="sec-name"><span class="en">Health · Insurance</span><span class="ko">의료 · 보험</span><span class="es">Salud</span><span class="ko-sub">Korean clinics · Premera</span></div>
+        <div class="sec-stats"><span class="num">15</span> <span class="en">Korean clinics</span><span class="ko">한인 병원</span></div>
+      </a>
+      <a href="#docs" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">📋</span><span class="sec-badge verified">10</span></div>
+        <div class="sec-name"><span class="en">Visa · Documents</span><span class="ko">비자 · 서류</span><span class="es">Visa</span><span class="ko-sub">SSN · I-94 · Translation</span></div>
+        <div class="sec-stats"><span class="en">10 services</span><span class="ko">10개 서비스</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- PHASE 3 — Daily Life -->
+  <div class="phase" data-p="3">
+    <div class="phase-head">
+      <div class="phase-icon">🛒</div>
+      <div class="phase-meta">
+        <div class="phase-num">Phase 3 · Daily</div>
+        <div class="phase-title"><span class="en">Daily Life</span><span class="ko">일상 생활</span><span class="es">Vida diaria</span></div>
+      </div>
+      <div class="phase-count">4 sections</div>
+    </div>
+    <div class="sections-grid">
+      <a href="#mart" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🛒</span><span class="sec-badge verified">12</span></div>
+        <div class="sec-name"><span class="en">Korean Markets</span><span class="ko">한인 마트</span><span class="es">Mercados coreanos</span><span class="ko-sub">H Mart · Paldo · Galleria</span></div>
+        <div class="sec-stats"><span class="num">12</span> <span class="en">stores</span><span class="ko">개 매장</span></div>
+      </a>
+      <a href="#food" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🍱</span><span class="sec-badge verified">38</span></div>
+        <div class="sec-name"><span class="en">Korean Food</span><span class="ko">한식·식당</span><span class="es">Comida coreana</span><span class="ko-sub">BBQ · 분식 · 찜·탕 · 도시락</span></div>
+        <div class="sec-stats"><span class="num">38</span> <span class="en">restaurants</span><span class="ko">개 식당</span></div>
+      </a>
+      <a href="#cafe" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">☕</span><span class="sec-badge verified">22</span></div>
+        <div class="sec-name"><span class="en">Cafés · Bakery</span><span class="ko">카페 · 빵집</span><span class="es">Cafés</span><span class="ko-sub">파리바게뜨 · Tous · 로컬</span></div>
+        <div class="sec-stats"><span class="num">22</span> <span class="en">spots</span><span class="ko">개 매장</span></div>
+      </a>
+      <a href="#shopping" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🛍️</span><span class="sec-badge">18</span></div>
+        <div class="sec-name"><span class="en">Shopping · Daily</span><span class="ko">쇼핑 · 생필품</span><span class="es">Compras</span><span class="ko-sub">Costco · Target · 화장품</span></div>
+        <div class="sec-stats"><span class="num">18</span> <span class="en">stores</span><span class="ko">개</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- PHASE 4 — Korean Community -->
+  <div class="phase" data-p="4">
+    <div class="phase-head">
+      <div class="phase-icon">🤝</div>
+      <div class="phase-meta">
+        <div class="phase-num">Phase 4 · Community</div>
+        <div class="phase-title"><span class="en">Community</span><span class="ko">한인 커뮤니티</span><span class="es">Comunidad coreana</span></div>
+      </div>
+      <div class="phase-count">4 sections</div>
+    </div>
+    <div class="sections-grid">
+      <a href="#church" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">⛪</span><span class="sec-badge verified">28</span></div>
+        <div class="sec-name"><span class="en">Korean Churches</span><span class="ko">한인 교회</span><span class="es">Iglesias coreanas</span><span class="ko-sub">28 churches across denominations</span></div>
+        <div class="sec-stats"><span class="num">28</span> <span class="en">communities</span><span class="ko">곳</span></div>
+      </a>
+      <a href="#groups" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🤝</span><span class="sec-badge">15</span></div>
+        <div class="sec-name"><span class="en">Groups · Meetups</span><span class="ko">모임 · 동호회</span><span class="es">Grupos</span><span class="ko-sub">한인회 · 동창회 · 운동</span></div>
+        <div class="sec-stats"><span class="num">15</span> <span class="en">active groups</span><span class="ko">활동 중</span></div>
+      </a>
+      <a href="#events" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🎉</span><span class="sec-badge">월간</span></div>
+        <div class="sec-name"><span class="en">Events · Festivals</span><span class="ko">행사 · 축제</span><span class="es">Eventos</span><span class="ko-sub">Korean Day · 추석 · 설날</span></div>
+        <div class="sec-stats"><span class="en">Updated weekly</span><span class="ko">매주 업데이트</span></div>
+      </a>
+      <a href="#media" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">📰</span><span class="sec-badge">8</span></div>
+        <div class="sec-name"><span class="en">Korean Media</span><span class="ko">한인 미디어</span><span class="es">Medios coreanos</span><span class="ko-sub">한국일보 · 라디오 · 유튜브</span></div>
+        <div class="sec-stats"><span class="num">8</span> <span class="en">outlets</span><span class="ko">개 매체</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- PHASE 5 — Growth -->
+  <div class="phase" data-p="5">
+    <div class="phase-head">
+      <div class="phase-icon">🎓</div>
+      <div class="phase-meta">
+        <div class="phase-num">Phase 5 · Long-term</div>
+        <div class="phase-title"><span class="en">Growth · Career</span><span class="ko">성장 · 경력</span><span class="es">Crecimiento</span></div>
+      </div>
+      <div class="phase-count">4 sections</div>
+    </div>
+    <div class="sections-grid">
+      <a href="#schools" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🎓</span><span class="sec-badge verified">42</span></div>
+        <div class="sec-name"><span class="en">Schools · Education</span><span class="ko">학교 · 교육</span><span class="es">Escuelas</span><span class="ko-sub">K-12 · Univ · 한국학교</span></div>
+        <div class="sec-stats"><span class="num">42</span> <span class="en">schools</span><span class="ko">개</span></div>
+      </a>
+      <a href="#jobs" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">💼</span><span class="sec-badge">실시간</span></div>
+        <div class="sec-name"><span class="en">Jobs · Career</span><span class="ko">취업 · 직장</span><span class="es">Trabajo</span><span class="ko-sub">Tech · 한인기업 · LinkedIn</span></div>
+        <div class="sec-stats"><span class="en">Live job board</span><span class="ko">실시간 잡보드</span></div>
+      </a>
+      <a href="#tax" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">💰</span><span class="sec-badge verified">9</span></div>
+        <div class="sec-name"><span class="en">Tax · Finance</span><span class="ko">세금 · 재정</span><span class="es">Impuestos</span><span class="ko-sub">CPA · 세무사 · 가이드</span></div>
+        <div class="sec-stats"><span class="num">9</span> <span class="en">Korean CPAs</span><span class="ko">한인 회계사</span></div>
+      </a>
+      <a href="#learning" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">📚</span><span class="sec-badge">11</span></div>
+        <div class="sec-name"><span class="en">Lifelong Learning</span><span class="ko">평생 교육</span><span class="es">Educación continua</span><span class="ko-sub">ESL · 자격증 · 취미</span></div>
+        <div class="sec-stats"><span class="num">11</span> <span class="en">programs</span><span class="ko">개 프로그램</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- PHASE 6 — Explore -->
+  <div class="phase" data-p="6">
+    <div class="phase-head">
+      <div class="phase-icon">🏞️</div>
+      <div class="phase-meta">
+        <div class="phase-num">Phase 6 · Beyond</div>
+        <div class="phase-title"><span class="en">Explore the City</span><span class="ko">도시 탐방</span><span class="es">Explora la ciudad</span></div>
+      </div>
+      <div class="phase-count">4 sections</div>
+    </div>
+    <div class="sections-grid">
+      <a href="#nature" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🏞️</span><span class="sec-badge">25</span></div>
+        <div class="sec-name"><span class="en">Nature · Travel</span><span class="ko">자연 · 여행</span><span class="es">Naturaleza</span><span class="ko-sub">Mt Rainier · Olympic · 캠핑</span></div>
+        <div class="sec-stats"><span class="num">25</span> <span class="en">spots</span><span class="ko">곳</span></div>
+      </a>
+      <a href="#culture" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🎨</span><span class="sec-badge">19</span></div>
+        <div class="sec-name"><span class="en">Culture · Arts</span><span class="ko">문화 · 예술</span><span class="es">Cultura</span><span class="ko-sub">Museum · Theater · Music</span></div>
+        <div class="sec-stats"><span class="num">19</span> <span class="en">venues</span><span class="ko">곳</span></div>
+      </a>
+      <a href="#sports" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">⚽</span><span class="sec-badge">14</span></div>
+        <div class="sec-name"><span class="en">Sports · Recreation</span><span class="ko">스포츠 · 여가</span><span class="es">Deportes</span><span class="ko-sub">Mariners · Seahawks · Gym</span></div>
+        <div class="sec-stats"><span class="num">14</span> <span class="en">teams · gyms</span><span class="ko">팀·체육관</span></div>
+      </a>
+      <a href="#emergency" class="section-card">
+        <div class="sec-top"><span class="sec-emoji">🚨</span><span class="sec-badge verified">911</span></div>
+        <div class="sec-name"><span class="en">Emergency · Safety</span><span class="ko">긴급 · 안전</span><span class="es">Emergencia</span><span class="ko-sub">911 · 총영사관 · 한인 의사</span></div>
+        <div class="sec-stats"><span class="en">24/7 contacts</span><span class="ko">24시간 연락처</span></div>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══ AI 컨시어지 (Floating) ════════════════════════════ -->
+<button class="concierge" id="conciergeBtn">
+  <span class="ai-icon">✦</span>
+  <span class="en">Ask anything about Seattle</span>
+  <span class="ko">시애틀에 대해 무엇이든 물어보세요</span>
+  <span class="es">Pregunta cualquier cosa</span>
+</button>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════ -->
+<footer>
+  <div>
+    <strong style="color: var(--text-2)">© 2026 HebronGuide</strong>
+    · <span class="en">Operated by Global Mission Church Seattle</span>
+    <span class="ko">운영: 시애틀지구촌교회</span>
+    <span class="es">Operado por GMC Seattle</span>
+  </div>
+  <div>
+    <span class="en">Last verified: April 30, 2026</span>
+    <span class="ko">최종 검증: 2026년 4월 30일</span>
+    <span class="es">Última verificación: 30 abr 2026</span>
+  </div>
+</footer>
+
+<script>
+  // ═══ Theme ═══
+  const themeBtn = document.getElementById('themeBtn');
+  const themeIco = document.getElementById('themeIco');
+  const themeLabel = document.getElementById('themeLabel');
+  const themeStates = [
+    { name: 'light', ico: '☀️', label: 'Light' },
+    { name: 'dark',  ico: '🌙', label: 'Dark'  },
+    { name: 'auto',  ico: '💻', label: 'Auto'  },
+  ];
+  let themeIdx = parseInt(localStorage.getItem('hg-theme-idx') || '0');
+  function applyTheme() {
+    const s = themeStates[themeIdx];
+    document.documentElement.setAttribute('data-theme', s.name);
+    themeIco.textContent = s.ico;
+    themeLabel.textContent = s.label;
+    localStorage.setItem('hg-theme-idx', themeIdx);
+  }
+  themeBtn.addEventListener('click', () => {
+    themeIdx = (themeIdx + 1) % themeStates.length;
+    applyTheme();
+  });
+  applyTheme();
+
+  // ═══ Language ═══
+  const langBtn = document.getElementById('langBtn');
+  const langLabel = document.getElementById('langLabel');
+  const langStates = ['en', 'ko', 'es'];
+  const langDisplay = { en: 'EN', ko: '한글', es: 'ES' };
+  let langIdx = langStates.indexOf(localStorage.getItem('hg-lang') || 'en');
+  if (langIdx < 0) langIdx = 0;
+  function applyLang() {
+    const l = langStates[langIdx];
+    document.documentElement.setAttribute('data-lang', l);
+    document.documentElement.setAttribute('lang', l);
+    langLabel.textContent = langDisplay[l];
+    localStorage.setItem('hg-lang', l);
+    updateSearchPlaceholder();
+  }
+  langBtn.addEventListener('click', () => {
+    langIdx = (langIdx + 1) % langStates.length;
+    applyLang();
+  });
+
+  // 검색 placeholder 다국어
+  const searchInput = document.getElementById('searchInput');
+  function updateSearchPlaceholder() {
+    const l = langStates[langIdx];
+    searchInput.placeholder = {
+      en: 'Search Seattle  —  "Korean mart", "DMV", "schools"...',
+      ko: '시애틀 검색  —  "한인 마트", "운전면허", "학교"...',
+      es: 'Buscar Seattle  —  "mercado coreano", "licencia"...',
+    }[l];
+  }
+  applyLang();
+
+  // ═══ Phase Filter ═══
+  const tlSteps = document.querySelectorAll('.tl-step');
+  const phases = document.querySelectorAll('.phase');
+  tlSteps.forEach(step => {
+    step.addEventListener('click', () => {
+      tlSteps.forEach(s => s.classList.remove('active'));
+      step.classList.add('active');
+      const target = step.dataset.phase;
+      phases.forEach(p => {
+        p.style.display = (target === 'all' || p.dataset.p === target) ? '' : 'none';
+      });
+    });
+  });
+
+  // ═══ Search filter (live) ═══
+  searchInput.addEventListener('input', e => {
+    const q = e.target.value.toLowerCase().trim();
+    document.querySelectorAll('.section-card').forEach(card => {
+      const text = card.textContent.toLowerCase();
+      card.style.display = (!q || text.includes(q)) ? '' : 'none';
+    });
+  });
+
+  // ═══ ⌘K to focus search ═══
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault(); searchInput.focus();
+    }
+  });
+
+  // ═══ Live clock for Seattle ═══
+  function updateClock() {
+    const now = new Date();
+    const seattleTime = now.toLocaleTimeString('en-US', {
+      timeZone: 'America/Los_Angeles', hour: 'numeric', minute: '2-digit', hour12: true,
+    });
+    document.getElementById('seattleClock').textContent = seattleTime;
+  }
+  setInterval(updateClock, 30000); updateClock();
+
+  // ═══ Concierge ═══
+  document.getElementById('conciergeBtn').addEventListener('click', () => {
+    alert({
+      en: 'AI Concierge — coming soon!\n\nAsk: "Best Korean BBQ near Bellevue?" or "How do I get an SSN?"',
+      ko: 'AI 컨시어지 — 곧 출시됩니다!\n\n예: "벨뷰 근처 한식 BBQ?", "SSN 어떻게 받나요?"',
+      es: 'Concierge IA — ¡próximamente!\n\nPregunta: "¿Mejor BBQ coreano cerca de Bellevue?"',
+    }[langStates[langIdx]]);
+  });
+</script>
+</body>
+</html>
