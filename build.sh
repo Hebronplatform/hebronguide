@@ -32,10 +32,10 @@ for city in dallas la sf newyork nashville vancouver toronto; do
   fi
 done
 
-# 3. pnpm 설치 확인 (Vercel 환경)
-echo "🔍 pnpm 버전 확인..."
-pnpm --version || npm install -g pnpm@9
-pnpm --version
+# 3. pnpm 최신 버전 강제 설치 (Node.js 24 호환)
+echo "📦 pnpm 최신 버전 설치 중..."
+npm install -g pnpm@latest
+echo "✅ pnpm 버전: $(pnpm --version)"
 
 # 4. 시애틀 React 앱 빌드
 echo "⚛️  시애틀 React 앱 빌드 중..."
