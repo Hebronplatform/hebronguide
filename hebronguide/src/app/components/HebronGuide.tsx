@@ -591,7 +591,162 @@ function WeatherIcon() {
 }
 
 /* ─────────────────────────────────────────
-   HERO CARD (HD 영상 배경 + 라이브 데이터)
+   NEW HOME: CompactHeroNew
+───────────────────────────────────────── */
+function CompactHeroNew() {
+  const { lang } = useI18n();
+  return (
+    <div style={{
+      position: "relative", height: 180, overflow: "hidden",
+      borderRadius: "0 0 28px 28px",
+    }}>
+      <img src={imgHeroCard} alt="Seattle" style={{
+        width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%",
+        filter: "brightness(0.75) saturate(1.2)"
+      }} />
+      <video autoPlay muted loop playsInline style={{
+        position: "absolute", inset: 0, width: "100%", height: "100%",
+        objectFit: "cover", objectPosition: "center 35%",
+      }}>
+        <source src="https://videos.pexels.com/video-files/20017409/20017409-hd_1920_1080_24fps.mp4" type="video/mp4" />
+      </video>
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%)" }} />
+      <div style={{ position: "absolute", bottom: 20, left: 20, right: 20 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 24, color: "#fff",
+          letterSpacing: "-0.5px", textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
+          HebronGuide <span style={{ color: "#F2994A" }}>Seattle</span>
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 400, fontSize: 12, color: "rgba(255,255,255,0.8)", marginTop: 3 }}>
+          {lang === "ko" ? "도시를 알고, 사람을 찾다" : "Know your city. Find your people."}
+        </div>
+      </div>
+      <a href="https://www.earthcam.com/usa/washington/seattle/" target="_blank" rel="noopener noreferrer"
+        style={{ position: "absolute", top: 12, right: 12, display: "flex", alignItems: "center", gap: 5,
+          background: "rgba(0,0,0,0.45)", backdropFilter: "blur(8px)", borderRadius: 20, padding: "5px 10px",
+          textDecoration: "none", border: "1px solid rgba(255,255,255,0.2)" }}>
+        <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#FF3B30", display: "inline-block",
+          animation: "livepulse 1.5s infinite" }} />
+        <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "#fff" }}>LIVE CAM</span>
+      </a>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   NEW HOME: QuickMenuSection
+───────────────────────────────────────── */
+const QUICK_MENU = [
+  { emoji: "🛬", labelKo: "정착",   labelEn: "Settle",  color: "#F2994A", bg: "#FFF5EC", tab: 1 },
+  { emoji: "⛪", labelKo: "교회",   labelEn: "Church",  color: "#7C3AED", bg: "#F5F0FF", tab: 2 },
+  { emoji: "🍽️", labelKo: "맛집",  labelEn: "Food",    color: "#EF4444", bg: "#FFF0F0", tab: 3 },
+  { emoji: "🏥", labelKo: "의료",   labelEn: "Medical", color: "#2563EB", bg: "#EFF6FF", tab: 5 },
+  { emoji: "💼", labelKo: "취업",   labelEn: "Jobs",    color: "#059669", bg: "#ECFDF5", tab: 6 },
+  { emoji: "🆘", labelKo: "도움",   labelEn: "Help",    color: "#64748B", bg: "#F1F5F9", tab: 5 },
+];
+
+function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number) => void }) {
+  const { lang } = useI18n();
+  return (
+    <div style={{ padding: "20px 16px 8px" }}>
+      <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 15,
+        color: "#1B2A4A", marginBottom: 12, letterSpacing: "-0.3px" }}>
+        ⚡ {lang === "ko" ? "빠른 메뉴" : "Quick Menu"}
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
+        {QUICK_MENU.map((item, i) => (
+          <button key={i} onClick={() => onNavigate?.(item.tab)} style={{
+            background: "#fff", borderRadius: 16, padding: "14px 8px 10px",
+            display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+            border: `1px solid ${item.color}22`,
+            boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+            cursor: "pointer",
+            transition: "transform 0.15s, box-shadow 0.15s",
+          }}
+          onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.04)"; e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.12)"; }}
+          onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)"; }}
+          onTouchStart={e => { e.currentTarget.style.transform = "scale(0.97)"; }}
+          onTouchEnd={e => { e.currentTarget.style.transform = "scale(1)"; }}
+          >
+            <div style={{ width: 44, height: 44, borderRadius: 14, background: item.bg,
+              display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>
+              {item.emoji}
+            </div>
+            <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 12,
+              color: "#1B2A4A" }}>
+              {lang === "ko" ? item.labelKo : item.labelEn}
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   NEW HOME: SettlementEssentialsSection
+───────────────────────────────────────── */
+const SETTLE_STEPS = [
+  { num: "1", emoji: "📱", titleKo: "SIM 카드",    titleEn: "SIM Card",      descKo: "공항 T-Mobile\n$30/월",       descEn: "Airport T-Mobile\n$30/mo",      color: "#F2994A" },
+  { num: "2", emoji: "🏠", titleKo: "임시 숙소",    titleEn: "Housing",       descKo: "에어비앤비\n린우드 권장",        descEn: "Airbnb\nLynnwood area",         color: "#7C3AED" },
+  { num: "3", emoji: "🏦", titleKo: "은행 계좌",    titleEn: "Bank Account",  descKo: "Chase 추천\n여권만 OK",        descEn: "Chase preferred\nPassport only", color: "#2563EB" },
+  { num: "4", emoji: "🚗", titleKo: "운전면허",     titleEn: "Driver License", descKo: "한국어 필기\n가능",            descEn: "Korean test\navailable",         color: "#059669" },
+  { num: "5", emoji: "📋", titleKo: "SSN 신청",    titleEn: "Apply SSN",     descKo: "915 2nd Ave\n입국10일후",      descEn: "915 2nd Ave\n10 days after",    color: "#EF4444" },
+  { num: "6", emoji: "💊", titleKo: "건강보험",     titleEn: "Health Ins.",   descKo: "WA Apple Health\n무료 가능",   descEn: "WA Apple Health\nFree option",  color: "#64748B" },
+];
+
+function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number) => void }) {
+  const { lang } = useI18n();
+  return (
+    <div style={{ padding: "16px 0 8px" }}>
+      <div style={{ padding: "0 16px", marginBottom: 12, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 15,
+          color: "#1B2A4A", letterSpacing: "-0.3px" }}>
+          ✅ {lang === "ko" ? "정착 필수" : "Settlement Essentials"}
+        </div>
+        <button onClick={() => onNavigate?.(1)} style={{
+          background: "none", border: "none", fontFamily: "Manrope,sans-serif", fontWeight: 600,
+          fontSize: 12, color: "#F2994A", cursor: "pointer" }}>
+          {lang === "ko" ? "전체 보기 →" : "See all →"}
+        </button>
+      </div>
+      <div style={{ display: "flex", gap: 10, overflowX: "auto", paddingLeft: 16, paddingRight: 16,
+        paddingBottom: 4, scrollbarWidth: "none" }}
+        className="[&::-webkit-scrollbar]:hidden">
+        {SETTLE_STEPS.map((step, i) => (
+          <button key={i} onClick={() => onNavigate?.(1)} style={{
+            flexShrink: 0, width: 110, background: "#fff", borderRadius: 16, padding: "14px 12px",
+            display: "flex", flexDirection: "column", gap: 8,
+            border: `1px solid ${step.color}22`,
+            boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+            cursor: "pointer", textAlign: "left",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <div style={{ width: 24, height: 24, borderRadius: 8, background: step.color,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#fff" }}>
+                {step.num}
+              </div>
+              <span style={{ fontSize: 18 }}>{step.emoji}</span>
+            </div>
+            <div>
+              <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 12,
+                color: "#1B2A4A", marginBottom: 3 }}>
+                {lang === "ko" ? step.titleKo : step.titleEn}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "#64748B",
+                lineHeight: 1.4, whiteSpace: "pre-line" }}>
+                {lang === "ko" ? step.descKo : step.descEn}
+              </div>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   HERO CARD (HD 영상 배경 + 라이브 데이터) — 기존 유지 (홈에서 미사용)
 ───────────────────────────────────────── */
 // Pexels 무료 시애틀 HD 영상 (Pexels License — 상업적 무료 사용 가능)
 const SEATTLE_VIDEOS = [
@@ -1235,21 +1390,11 @@ function Top3NeighborhoodsSection() {
 ───────────────────────────────────────── */
 function HomeScreen({ onNavigate }: { onNavigate?: (tab: number) => void }) {
   return (
-    <div className="flex flex-col gap-[28px] md:gap-[36px] px-[16px] md:px-[24px] lg:px-[32px] pt-[20px]" style={{ paddingBottom: 96 }}>
-      <HeroCard />
-      <LiveDataBar />
-      <SectionDivider />
-      <QuickChips />
-      <SectionDivider />
-      <AppGrid onNavigate={onNavigate} />
-      <SectionDivider />
-      <SettleFirstSection onNavigate={onNavigate} />
-      <SectionDivider />
-      <Top3NeighborhoodsSection />
-      <SectionDivider />
-      <AnnouncementBanner />
-      <SectionDivider />
-      <LifestyleTipsSection />
+    <div style={{ background: "#F8FAFC", minHeight: "100vh", paddingBottom: 80 }}>
+      <CompactHeroNew />
+      <QuickMenuSection onNavigate={onNavigate} />
+      <div style={{ margin: "0 16px", height: 1, background: "#E2E8F0" }} />
+      <SettlementEssentialsSection onNavigate={onNavigate} />
     </div>
   );
 }
@@ -2036,17 +2181,17 @@ function BottomNav({ activeIndex, onChange }: BottomNavProps) {
         height: 76,
         left: "50%",
         transform: "translateX(-50%)",
-        background: "rgba(26,37,53,0.97)",
+        background: "rgba(255,255,255,0.97)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        borderTop: "1px solid rgba(255,255,255,0.10)",
-        boxShadow: "0 -4px 24px rgba(0,0,0,0.4)",
+        borderTop: "1px solid rgba(0,0,0,0.08)",
+        boxShadow: "0 -4px 24px rgba(0,0,0,0.08)",
       }}
     >
       {/* 오른쪽 페이드 — 더 있다는 힌트 */}
       <div style={{
         position: "absolute", right: 0, top: 0, bottom: 0, width: 32, zIndex: 1,
-        background: "linear-gradient(to right, transparent, rgba(26,37,53,0.95))",
+        background: "linear-gradient(to right, transparent, rgba(255,255,255,0.95))",
         pointerEvents: "none",
       }} />
       {/* 가로 스크롤 컨테이너 */}
@@ -2097,21 +2242,21 @@ function BottomNav({ activeIndex, onChange }: BottomNavProps) {
                     width: 24,
                     height: 2.5,
                     borderRadius: 2,
-                    background: MINT,
+                    background: "#F2994A",
                     transform: "translateX(-50%)",
                   }}
                 />
               )}
               <item.LucideIcon
                 size={24}
-                color={isActive ? MINT : "rgba(110,231,183,0.4)"}
+                color={isActive ? "#F2994A" : "#9CA3AF"}
                 strokeWidth={isActive ? 2.2 : 1.5}
               />
               <span style={{
                 fontFamily: "Manrope,sans-serif",
                 fontWeight: isActive ? 700 : 500,
                 fontSize: 10,
-                color: isActive ? MINT : "rgba(110,231,183,0.4)",
+                color: isActive ? "#F2994A" : "#9CA3AF",
                 whiteSpace: "nowrap",
                 letterSpacing: "-0.2px",
               }}>
