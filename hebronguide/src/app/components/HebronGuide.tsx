@@ -11,8 +11,15 @@
  * Text-2:      rgba(236,253,245,0.5)
  * Text-3:      rgba(236,253,245,0.6)
  *
- * Tab structure (v3):
- *   🏠 홈   | 🛬 정착  | ⛪ 교회  | 🍽️ 맛집  | 🌆 탐방  | 💼 취업  | 🎓 교육  | 💰 생활비  | 🆘 도움
+ * Tab structure (v4 — 6탭):
+ *   🏠 홈   | 🛬 정착  | ⛪ 교회  | 🍽️ 맛집  | 🌆 탐방  | 🆘 도움
+ * (취업·교육·생활비는 홈 앱 그리드에서 모달/오버레이로 접근)
+ *
+ * PWA 기능 (v4):
+ *   - 체크리스트 localStorage 저장
+ *   - InstallBanner (beforeinstallprompt)
+ *   - 오프라인 배너 (online/offline 이벤트)
+ *   - 로컬 알림 스케줄링 (Notification API)
  * ══════════════════════════════════════════════════════════
  */
 
@@ -32,9 +39,6 @@ import {
   UtensilsCrossed,
   Map,
   LifeBuoy,
-  Briefcase,
-  GraduationCap,
-  DollarSign,
 } from "lucide-react";
 
 /* ─────────────────────────────────────────
@@ -42,6 +46,236 @@ import {
 ───────────────────────────────────────── */
 const GOLD = "#C9A227";
 const MINT = "#6EE7B7";
+
+/* ─────────────────────────────────────────
+   HOOK: 온라인 상태 감지
+───────────────────────────────────────── */
+function useOnlineStatus() {
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  useEffect(() => {
+    const on = () => setIsOnline(true);
+    const off = () => setIsOnline(false);
+    window.addEventListener("online", on);
+    window.addEventListener("offline", off);
+    return () => {
+      window.removeEventListener("online", on);
+      window.removeEventListener("offline", off);
+    };
+  }, []);
+  return isOnline;
+}
+
+/* ─────────────────────────────────────────
+   HOOK: PWA 설치 프롬프트
+───────────────────────────────────────── */
+interface BeforeInstallPromptEvent extends Event {
+  prompt(): Promise<void>;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+}
+
+function useInstallPrompt() {
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [showBanner, setShowBanner] = useState(false);
+
+  useEffect(() => {
+    const dismissed = localStorage.getItem("hg_install_dismissed");
+    if (dismissed) return;
+
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e as BeforeInstallPromptEvent);
+      setShowBanner(true);
+    };
+    window.addEventListener("beforeinstallprompt", handler);
+    return () => window.removeEventListener("beforeinstallprompt", handler);
+  }, []);
+
+  const handleInstall = async () => {
+    if (!deferredPrompt) return;
+    await deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === "accepted") {
+      setShowBanner(false);
+      setDeferredPrompt(null);
+    }
+  };
+
+  const handleDismiss = () => {
+    setShowBanner(false);
+    localStorage.setItem("hg_install_dismissed", "1");
+  };
+
+  return { showBanner, handleInstall, handleDismiss };
+}
+
+/* ─────────────────────────────────────────
+   UTIL: 로컬 알림 스케줄링
+───────────────────────────────────────── */
+async function scheduleReminder(title: string, daysLater: number) {
+  if (!("Notification" in window)) {
+    alert("이 브라우저는 알림을 지원하지 않습니다.");
+    return;
+  }
+  if (Notification.permission !== "granted") {
+    const perm = await Notification.requestPermission();
+    if (perm !== "granted") return;
+  }
+  const ms = daysLater * 24 * 60 * 60 * 1000;
+  const reminders = JSON.parse(localStorage.getItem("hg_reminders") || "[]");
+  reminders.push({ title, fireAt: Date.now() + ms });
+  localStorage.setItem("hg_reminders", JSON.stringify(reminders));
+  new Notification("HebronGuide 알림 설정", {
+    body: `"${title}" — ${daysLater}일 후 알림을 받습니다`,
+    icon: "/icon-192.png",
+  });
+}
+
+/* ─────────────────────────────────────────
+   COMPONENT: 설치 배너 (PWA InstallBanner)
+───────────────────────────────────────── */
+function InstallBanner({ onInstall, onDismiss }: { onInstall: () => void; onDismiss: () => void }) {
+  return (
+    <div style={{
+      position: "fixed", top: 56, left: "50%", transform: "translateX(-50%)",
+      width: "calc(100% - 32px)", maxWidth: 398,
+      background: "linear-gradient(135deg, rgba(110,231,183,0.15), rgba(201,162,39,0.10))",
+      border: "1px solid rgba(110,231,183,0.25)",
+      borderRadius: 16, padding: "14px 16px",
+      display: "flex", alignItems: "center", gap: 12,
+      zIndex: 100, backdropFilter: "blur(20px)",
+      WebkitBackdropFilter: "blur(20px)",
+      boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+    }}>
+      <span style={{ fontSize: 28 }}>📱</span>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontWeight: 700, fontSize: 14, color: "#e6edf3", fontFamily: "Manrope,sans-serif" }}>홈 화면에 추가하기</div>
+        <div style={{ fontSize: 12, color: "rgba(230,237,243,0.6)", marginTop: 2, fontFamily: "Manrope,sans-serif" }}>
+          오프라인에서도 사용 가능 · 공항에서도 OK
+        </div>
+      </div>
+      <button onClick={onInstall} style={{
+        background: MINT, color: "#0d1117", border: "none",
+        borderRadius: 8, padding: "8px 14px", fontWeight: 700, fontSize: 13,
+        cursor: "pointer", fontFamily: "Manrope,sans-serif", flexShrink: 0,
+      }}>설치</button>
+      <button onClick={onDismiss} style={{
+        background: "none", border: "none", color: "rgba(230,237,243,0.4)",
+        fontSize: 20, cursor: "pointer", padding: 4, lineHeight: 1,
+      }}>×</button>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   COMPONENT: 오프라인 배너
+───────────────────────────────────────── */
+function OfflineBanner() {
+  return (
+    <div style={{
+      position: "fixed", bottom: 84, left: "50%", transform: "translateX(-50%)",
+      background: "rgba(34,197,94,0.15)", border: "1px solid rgba(34,197,94,0.3)",
+      borderRadius: 20, padding: "8px 16px",
+      fontSize: 12, fontWeight: 600, color: MINT,
+      zIndex: 90, backdropFilter: "blur(10px)",
+      WebkitBackdropFilter: "blur(10px)",
+      fontFamily: "Manrope,sans-serif",
+      whiteSpace: "nowrap",
+    }}>
+      📡 오프라인 모드 — 저장된 정보 사용 중
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   HOOK: 체크리스트 localStorage 상태
+───────────────────────────────────────── */
+function useChecklist(itemId: string) {
+  const key = `hg_checklist_${itemId}`;
+  const [isDone, setIsDone] = useState(() => localStorage.getItem(key) === "1");
+
+  const toggle = () => {
+    const next = !isDone;
+    setIsDone(next);
+    if (next) {
+      localStorage.setItem(key, "1");
+    } else {
+      localStorage.removeItem(key);
+    }
+  };
+
+  return { isDone, toggle };
+}
+
+/* ─────────────────────────────────────────
+   COMPONENT: 체크리스트 아이템
+───────────────────────────────────────── */
+interface ChecklistItemProps {
+  itemId: string;
+  title: string;
+  desc: string;
+  accentColor?: string;
+  showReminder?: boolean;
+}
+function ChecklistItem({ itemId, title, desc, accentColor = MINT, showReminder = false }: ChecklistItemProps) {
+  const { isDone, toggle } = useChecklist(itemId);
+  const [reminderSet, setReminderSet] = useState(false);
+
+  const handleReminder = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    await scheduleReminder(title, 30);
+    setReminderSet(true);
+  };
+
+  return (
+    <div
+      onClick={toggle}
+      style={{
+        display: "flex", gap: 12, alignItems: "flex-start",
+        padding: "14px 16px",
+        background: isDone ? "rgba(110,231,183,0.08)" : "rgba(255,255,255,0.04)",
+        borderRadius: 12,
+        border: isDone ? "1px solid rgba(110,231,183,0.2)" : "1px solid rgba(255,255,255,0.06)",
+        cursor: "pointer",
+        marginBottom: 10,
+        transition: "all 0.2s ease",
+      }}
+    >
+      {/* 체크박스 원형 */}
+      <div style={{
+        flexShrink: 0,
+        width: 24, height: 24, borderRadius: "50%",
+        background: isDone ? accentColor : "transparent",
+        border: isDone ? `none` : `2px solid rgba(255,255,255,0.25)`,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        marginTop: 1, transition: "all 0.2s ease",
+      }}>
+        {isDone && <span style={{ color: "#0d1117", fontSize: 13, fontWeight: 900, lineHeight: 1 }}>✓</span>}
+      </div>
+      <div style={{ flex: 1 }}>
+        <div style={{
+          fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13, color: "#ECFDF5",
+          textDecoration: isDone ? "line-through" : "none",
+          opacity: isDone ? 0.6 : 1, marginBottom: 3, transition: "all 0.2s ease",
+        }}>{title}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.65, color: "rgba(236,253,245,0.5)" }}>{desc}</div>
+        {showReminder && !isDone && (
+          <button
+            onClick={handleReminder}
+            style={{
+              marginTop: 8, background: reminderSet ? "rgba(110,231,183,0.15)" : "rgba(255,255,255,0.06)",
+              border: reminderSet ? `1px solid ${accentColor}44` : "1px solid rgba(255,255,255,0.1)",
+              borderRadius: 6, padding: "4px 10px", fontSize: 10, fontFamily: "Manrope,sans-serif",
+              fontWeight: 600, color: reminderSet ? accentColor : "rgba(236,253,245,0.5)",
+              cursor: "pointer",
+            }}
+          >
+            {reminderSet ? "✓ 알림 설정됨" : "🔔 30일 후 알림 받기"}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
 
 /* ─────────────────────────────────────────
    ICON COMPONENT
@@ -549,6 +783,77 @@ function EmergencyRow({ emoji, title, number, desc }: { emoji: string; title: st
    ═══════════════════════════════════════════ */
 
 /* ─────────────────────────────────────────
+   APP GRID (홈 스크린 앱 런처)
+───────────────────────────────────────── */
+interface AppGridItem {
+  emoji: string;
+  label: string;
+  labelEn: string;
+  tabIndex: number;
+  color: string;
+}
+
+const APP_GRID_ITEMS: AppGridItem[] = [
+  { emoji: "🛬", label: "정착 가이드",  labelEn: "Settlement",  tabIndex: 1, color: "#60A5FA" },
+  { emoji: "⛪", label: "교회 찾기",   labelEn: "Churches",    tabIndex: 2, color: "#C084FC" },
+  { emoji: "🍽️", label: "맛집·카페",  labelEn: "Dining",      tabIndex: 3, color: "#FB923C" },
+  { emoji: "🌆", label: "탐방·여행",   labelEn: "Explore",     tabIndex: 4, color: "#34D399" },
+  { emoji: "🆘", label: "도움·지원",   labelEn: "Help",        tabIndex: 5, color: "#F87171" },
+  { emoji: "💼", label: "취업 정보",   labelEn: "Jobs",        tabIndex: 6, color: "#FBBF24" },
+  { emoji: "🎓", label: "교육·학군",   labelEn: "Education",   tabIndex: 7, color: "#A78BFA" },
+  { emoji: "💰", label: "생활비",      labelEn: "Living Cost", tabIndex: 8, color: "#34D399" },
+];
+
+function AppGrid({ onNavigate }: { onNavigate?: (tab: number) => void }) {
+  const { lang } = useI18n();
+  return (
+    <section>
+      <div className="flex items-center gap-[10px] mb-4">
+        <div className="pl-[12px]" style={{ borderLeft: `3px solid ${MINT}` }}>
+          <h2 className="m-0" style={{ fontFamily: "'Noto Sans KR', sans-serif", fontWeight: 700, fontSize: 18, letterSpacing: "-0.5px", color: "#ECFDF5" }}>
+            {lang === "ko" ? "빠른 메뉴" : "Quick Access"}
+          </h2>
+        </div>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
+        {APP_GRID_ITEMS.map((item) => (
+          <button
+            key={item.tabIndex}
+            onClick={() => onNavigate?.(item.tabIndex < 6 ? item.tabIndex : 0)}
+            style={{
+              display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+              padding: "14px 8px",
+              background: "rgba(255,255,255,0.04)",
+              border: `1px solid ${item.color}22`,
+              borderRadius: 16, cursor: "pointer",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = `${item.color}14`; (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.05)"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.04)"; (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)"; }}
+          >
+            <div style={{
+              width: 44, height: 44, borderRadius: 14,
+              background: `${item.color}18`,
+              border: `1px solid ${item.color}33`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 20,
+            }}>
+              {item.emoji}
+            </div>
+            <span style={{
+              fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600, fontSize: 10,
+              color: "rgba(236,253,245,0.75)", textAlign: "center", lineHeight: 1.3,
+            }}>
+              {lang === "ko" ? item.label : item.labelEn}
+            </span>
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────
    TAB 1: 홈 SCREEN
 ───────────────────────────────────────── */
 function HomeScreen({ onNavigate }: { onNavigate?: (tab: number) => void }) {
@@ -557,6 +862,8 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number) => void }) {
       <HeroCard />
       <SectionDivider />
       <QuickChips />
+      <SectionDivider />
+      <AppGrid onNavigate={onNavigate} />
       <SectionDivider />
       <SettleFirstSection onNavigate={onNavigate} />
       <SectionDivider />
@@ -663,6 +970,14 @@ function SettleScreen() {
       ? [week1Ko, month1Ko, month3Ko, adminKo, financeKo][sub]
       : [week1En, month1En, month3En, adminEn, financeEn][sub]);
 
+  // 프로그레스 계산
+  const tabPrefix = ["w1", "m1", "m3", "adm", "fin"][sub];
+  const doneCount = items.filter((_, i) => localStorage.getItem(`hg_checklist_${tabPrefix}_${i}`) === "1").length;
+  const [, forceUpdate] = useState(0);
+
+  // 어드민 탭(index=3) 여부
+  const isAdminTab = sub === 3;
+
   return (
     <div style={{ paddingBottom: 96 }}>
       <ScreenHeader emoji="🛬" titleKo="정착 가이드" titleEn="Settlement Guide"
@@ -670,11 +985,41 @@ function SettleScreen() {
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5 px-4 md:px-6 lg:px-8">
-        <InfoCard title="" accentColor={accent}>
+        {/* 프로그레스 바 */}
+        <div style={{ marginBottom: 16 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+            <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, fontWeight: 600, color: "rgba(236,253,245,0.5)" }}>
+              {lang === "ko" ? "완료" : "Progress"}
+            </span>
+            <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, fontWeight: 700, color: accent }}>
+              {doneCount} / {items.length}
+            </span>
+          </div>
+          <div style={{ height: 6, borderRadius: 4, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
+            <div style={{
+              height: "100%",
+              width: `${items.length > 0 ? (doneCount / items.length) * 100 : 0}%`,
+              background: `linear-gradient(90deg, ${accent}, rgba(110,231,183,0.6))`,
+              borderRadius: 4,
+              transition: "width 0.4s ease",
+            }} />
+          </div>
+        </div>
+
+        {/* 체크리스트 아이템 */}
+        <div onClick={() => forceUpdate(n => n + 1)}>
           {items.map((item, i) => (
-            <StepItem key={i} num={i + 1} title={item.title} desc={item.desc} accentColor={accent} />
+            <ChecklistItem
+              key={`${sub}-${i}`}
+              itemId={`${tabPrefix}_${i}`}
+              title={item.title}
+              desc={item.desc}
+              accentColor={accent}
+              showReminder={isAdminTab}
+            />
           ))}
-        </InfoCard>
+        </div>
+
         {/* 팁 배너 */}
         <div style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>💡 {lang === "ko" ? "한인 커뮤니티 팁" : "Korean Community Tip"}</div>
@@ -1284,21 +1629,18 @@ function CostScreen() {
    ═══════════════════════════════════════════ */
 
 /* ─────────────────────────────────────────
-   BOTTOM NAVIGATION (9탭)
+   BOTTOM NAVIGATION (6탭 — v4)
 ───────────────────────────────────────── */
 const NAV_ITEMS: Array<{
-  labelKey: "nav.home" | "nav.settle" | "nav.church" | "nav.dining" | "nav.explore" | "nav.help" | "nav.jobs" | "nav.education" | "nav.cost";
+  labelKey: "nav.home" | "nav.settle" | "nav.church" | "nav.dining" | "nav.explore" | "nav.help";
   LucideIcon: React.ComponentType<{ size?: number; color?: string; strokeWidth?: number }>;
 }> = [
-  { labelKey: "nav.home",      LucideIcon: Home },
-  { labelKey: "nav.settle",    LucideIcon: Compass },
-  { labelKey: "nav.church",    LucideIcon: Church },
-  { labelKey: "nav.dining",    LucideIcon: UtensilsCrossed },
-  { labelKey: "nav.explore",   LucideIcon: Map },
-  { labelKey: "nav.jobs",      LucideIcon: Briefcase },
-  { labelKey: "nav.education", LucideIcon: GraduationCap },
-  { labelKey: "nav.cost",      LucideIcon: DollarSign },
-  { labelKey: "nav.help",      LucideIcon: LifeBuoy },
+  { labelKey: "nav.home",    LucideIcon: Home },
+  { labelKey: "nav.settle",  LucideIcon: Compass },
+  { labelKey: "nav.church",  LucideIcon: Church },
+  { labelKey: "nav.dining",  LucideIcon: UtensilsCrossed },
+  { labelKey: "nav.explore", LucideIcon: Map },
+  { labelKey: "nav.help",    LucideIcon: LifeBuoy },
 ];
 
 interface BottomNavProps {
@@ -1475,16 +1817,26 @@ function AppBar() {
 ───────────────────────────────────────── */
 export function HebronGuide() {
   const [activeNav, setActiveNav] = useState(0);
+  const isOnline = useOnlineStatus();
+  const { showBanner, handleInstall, handleDismiss } = useInstallPrompt();
 
+  // 앱 그리드에서 탭 범위 밖(6,7,8) 클릭 시 처리
+  // 6개 탭만 있으므로 취업·교육·생활비는 현재 홈 유지 (추후 모달 확장 예정)
+  const handleNavigate = (tab: number) => {
+    const maxTab = 5; // 6개 탭 (0~5)
+    if (tab <= maxTab) {
+      setActiveNav(tab);
+    }
+    // tab > 5: 취업(6)·교육(7)·생활비(8) — 추후 모달/오버레이로 구현 예정
+  };
+
+  // 6개 탭 스크린 (홈·정착·교회·맛집·탐방·도움)
   const screens = [
-    <HomeScreen onNavigate={setActiveNav} />,
+    <HomeScreen onNavigate={handleNavigate} />,
     <SettleScreen />,
     <ChurchScreen />,
     <DiningScreen />,
     <ExploreScreen />,
-    <JobsScreen />,
-    <EducationScreen />,
-    <CostScreen />,
     <HelpScreen />,
   ];
 
@@ -1494,10 +1846,21 @@ export function HebronGuide() {
       style={{ background: "#1a2535" }}
     >
       <AppBar />
-      <main className="flex-1 overflow-y-auto" style={{ paddingBottom: 72 }}>
-        {screens[activeNav]}
+
+      {/* PWA 설치 배너 */}
+      {showBanner && (
+        <InstallBanner onInstall={handleInstall} onDismiss={handleDismiss} />
+      )}
+
+      <main className="flex-1 overflow-y-auto" style={{ paddingBottom: 72, paddingTop: showBanner ? 72 : 0 }}>
+        {/* screens 범위 체크 (안전 장치) */}
+        {screens[Math.min(activeNav, screens.length - 1)]}
       </main>
-      <BottomNav activeIndex={activeNav} onChange={setActiveNav} />
+
+      {/* 오프라인 배너 */}
+      {!isOnline && <OfflineBanner />}
+
+      <BottomNav activeIndex={Math.min(activeNav, NAV_ITEMS.length - 1)} onChange={setActiveNav} />
     </div>
   );
 }
