@@ -22,6 +22,9 @@ export const translations = {
     "nav.dining":        "맛집",
     "nav.explore":       "탐방",
     "nav.help":          "도움",
+    "nav.jobs":          "취업",
+    "nav.education":     "교육",
+    "nav.cost":          "생활비",
 
     // Quick Chips
     "chip.all":          "전체",
@@ -87,6 +90,9 @@ export const translations = {
     "nav.dining":        "Dining",
     "nav.explore":       "Explore",
     "nav.help":          "Help",
+    "nav.jobs":          "Jobs",
+    "nav.education":     "Education",
+    "nav.cost":          "Living Cost",
 
     // Quick Chips
     "chip.all":          "All",
@@ -152,6 +158,9 @@ export const translations = {
     "nav.dining":        "Restaurantes",
     "nav.explore":       "Explorar",
     "nav.help":          "Ayuda",
+    "nav.jobs":          "Empleo",
+    "nav.education":     "Educación",
+    "nav.cost":          "Costo de Vida",
 
     // Quick Chips
     "chip.all":          "Todo",

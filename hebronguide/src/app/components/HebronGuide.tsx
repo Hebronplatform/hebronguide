@@ -11,8 +11,8 @@
  * Text-2:      rgba(236,253,245,0.5)
  * Text-3:      rgba(236,253,245,0.6)
  *
- * Tab structure (v2):
- *   🏠 홈   | 🛬 정착  | ⛪ 교회  | 🍽️ 맛집  | 🌆 탐방  | 🆘 도움
+ * Tab structure (v3):
+ *   🏠 홈   | 🛬 정착  | ⛪ 교회  | 🍽️ 맛집  | 🌆 탐방  | 💼 취업  | 🎓 교육  | 💰 생활비  | 🆘 도움
  * ══════════════════════════════════════════════════════════
  */
 
@@ -32,6 +32,9 @@ import {
   UtensilsCrossed,
   Map,
   LifeBuoy,
+  Briefcase,
+  GraduationCap,
+  DollarSign,
 } from "lucide-react";
 
 /* ─────────────────────────────────────────
@@ -1012,23 +1015,290 @@ function HelpScreen() {
   );
 }
 
+/* ─────────────────────────────────────────
+   TAB 7: 취업 SCREEN
+───────────────────────────────────────── */
+function JobsScreen() {
+  const { lang } = useI18n();
+  const { content: serverContent } = useContent();
+  const [sub, setSub] = useState(0);
+  const tabs = lang === "ko"
+    ? ["빅테크", "의료·항공", "자영업", "비자·네트워크"]
+    : ["Big Tech", "Healthcare & Aerospace", "Small Biz", "Visa & Network"];
+  const accent = "#FBBF24";
+
+  const defaultJobs = [
+    { emoji: "☁️", name: "Amazon", nameEn: "Amazon — Largest Seattle Employer",
+      desc: lang === "ko"
+        ? "✅ 시애틀 최대 고용주. South Lake Union 본사. SDE·PM·데이터사이언티스트·운영직. AWS 글로벌 본부. 한인 직원 수천 명. L3-L7 레벨. 연봉 $120K-$350K+ | 🔗 amazon.jobs"
+        : "✅ Seattle's largest employer. SLU HQ. SDE, PM, data scientist, operations. AWS global HQ. Thousands of Korean employees. L3-L7 levels. Salary $120K-$350K+ | 🔗 amazon.jobs",
+      tags: ["빅테크", "SDE", "H-1B"] },
+    { emoji: "🖥️", name: "Microsoft", nameEn: "Microsoft — Redmond HQ",
+      desc: lang === "ko"
+        ? "✅ 레드몬드 본사. Azure·Office·Xbox·Copilot. 한인 엔지니어 매우 많음. H-1B 스폰서 적극적. 연봉 $130K-$380K+ | 🔗 careers.microsoft.com"
+        : "✅ Redmond HQ. Azure, Office, Xbox, Copilot. Large Korean engineer community. Active H-1B sponsor. Salary $130K-$380K+ | 🔗 careers.microsoft.com",
+      tags: ["빅테크", "레드몬드", "비자지원"] },
+    { emoji: "🔍", name: "Google Seattle", nameEn: "Google — Kirkland & Seattle",
+      desc: lang === "ko"
+        ? "커클랜드·시애틀 캠퍼스. YouTube·검색·지도·AI. 최상위 보상 패키지. 경쟁 치열 | 🔗 careers.google.com"
+        : "Kirkland & Seattle campuses. YouTube, Search, Maps, AI. Top-tier compensation. Very competitive | 🔗 careers.google.com",
+      tags: ["빅테크", "커클랜드", "AI"] },
+  ];
+
+  const healthAerospace = [
+    { emoji: "✈️", name: "Boeing", nameEn: "Boeing — Aerospace",
+      desc: lang === "ko"
+        ? "에버렛·렌톤 위치. 에어로스페이스 엔지니어링. 기계·항공·전기 엔지니어 수요. 보안 허가 필요 | 🔗 boeing.com/careers"
+        : "Everett & Renton locations. Aerospace engineering. Mechanical, aero & electrical engineers needed. Security clearance required | 🔗 boeing.com/careers",
+      tags: ["항공", "엔지니어링", "에버렛"] },
+    { emoji: "🏥", name: "의료·바이오 취업", nameEn: "Healthcare & Biotech Jobs",
+      desc: lang === "ko"
+        ? "UW Medicine·Swedish·Kaiser·Virginia Mason. 간호사·의사·연구직. 워싱턴주 간호사 부족 → 비교적 취업 용이. 의료 비자 경로 있음 | 🔗 careers.uwmedicine.org"
+        : "UW Medicine, Swedish, Kaiser, Virginia Mason. Nurses, doctors, researchers. WA nurse shortage → easier hiring. Medical visa pathways available | 🔗 careers.uwmedicine.org",
+      tags: ["의료", "간호사", "바이오"] },
+  ];
+
+  const smallBiz = [
+    { emoji: "🍽️", name: "한인 자영업 가이드", nameEn: "Korean Small Business Guide",
+      desc: lang === "ko"
+        ? "린우드·페더럴웨이 중심. 진입 가능 업종: 한식당·BBQ·치킨, 미용실·네일, 세탁소, 편의점, 한인 부동산·보험, 한국 식품 유통. 초기 자본 $50K-$150K. 한인 상공회의소 멘토링 활용"
+        : "Lynnwood & Federal Way. Entry-possible: Korean restaurants, hair/nail salons, dry cleaning, convenience stores, real estate, insurance, food import. Capital $50K-$150K. Korean Chamber mentoring",
+      tags: ["자영업", "창업", "린우드"] },
+  ];
+
+  const visaNetwork = [
+    { emoji: "💼", name: "취업 비자 안내", nameEn: "Work Visa Guide",
+      desc: lang === "ko"
+        ? "• H-1B: 전문직. 스폰서 필요. 연 1회 추첨. Amazon·MS 적극 지원\n• L-1: 사내 이동 (한국 → 미국)\n• OPT/STEM OPT: 졸업 후 1-3년\n• EB-2/EB-3: 취업 영주권\n• E-2: 투자 비자 (자영업 창업)"
+        : "• H-1B: Specialty occupation, needs sponsor, annual lottery\n• L-1: Intracompany transfer (Korea → US)\n• OPT/STEM OPT: 1-3 years post-grad\n• EB-2/EB-3: Employment-based green card\n• E-2: Investment visa (self-employment)",
+      tags: ["H-1B", "비자", "영주권"] },
+    { emoji: "💡", name: "한인 취업 네트워크", nameEn: "Korean Job Networks",
+      desc: lang === "ko"
+        ? "• KAA (Korean American Association) — Amazon 내 한인 네트워크\n• KABA — 비즈니스 네트워크\n• UW·시애틀U 한인 동문 네트워크\n• LinkedIn 프로필 최적화 필수\n• LeetCode 코딩 인터뷰 준비 (빅테크)\n• 교회 소그룹 — 의외로 강력한 채용 연결"
+        : "• KAA — Korean network inside Amazon\n• KABA — Business network\n• UW/Seattle U Korean alumni\n• LinkedIn profile optimization essential\n• LeetCode coding interview prep (Big Tech)\n• Church small groups — powerful job connections",
+      tags: ["네트워크", "LinkedIn", "KAA"] },
+  ];
+
+  const allJobs = serverContent["jobs"] ? resolvePlaceItems(serverContent["jobs"], lang) : null;
+  const subData = allJobs
+    ? [allJobs.slice(0, 3), allJobs.slice(3, 5), allJobs.slice(5, 6), allJobs.slice(6)]
+    : [defaultJobs, healthAerospace, smallBiz, visaNetwork];
+  const content = subData[sub];
+
+  return (
+    <div style={{ paddingBottom: 96 }}>
+      <ScreenHeader emoji="💼" titleKo="취업 가이드" titleEn="Jobs & Career"
+        descKo="시애틀 한인 취업·창업·비자 완전 가이드" descEn="Complete guide to jobs, business & visas for Koreans in Seattle"
+        accentColor={accent} />
+      <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
+      <div className="pt-5 px-4 md:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+        </div>
+        <div style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>
+            💼 {lang === "ko" ? "취업 팁" : "Job Tip"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
+            {lang === "ko"
+              ? "카카오오픈채팅 '시애틀한인'에서 취업 정보·추천 공유 활발. WorkSource WA 무료 이력서·면접 코칭도 활용하세요."
+              : "KakaoTalk '시애틀한인' has active job info & referral sharing. Also use WorkSource WA for free resume & interview coaching."}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   TAB 8: 교육 SCREEN
+───────────────────────────────────────── */
+function EducationScreen() {
+  const { lang } = useI18n();
+  const { content: serverContent } = useContent();
+  const [sub, setSub] = useState(0);
+  const tabs = lang === "ko"
+    ? ["학군 순위", "대학교", "학원·ESL"]
+    : ["School Districts", "Universities", "Tutoring & ESL"];
+  const accent = "#A78BFA";
+
+  const districts = [
+    { emoji: "⭐", name: "Bellevue School District", nameEn: "Bellevue SD — WA #1",
+      desc: lang === "ko"
+        ? "✅ 워싱턴주 1위 학군 (Niche A+). 졸업률 92.5%. Newport HS·Interlake HS·Bellevue HS. AP·IB 과정 풍부. 한인 학생 비율 높음 | 🔗 bsd405.org"
+        : "✅ WA State #1 district (Niche A+). Graduation 92.5%. Newport, Interlake & Bellevue HS. Rich AP/IB programs. High Korean student population | 🔗 bsd405.org",
+      tags: ["벨뷰", "A+", "상위학군"] },
+    { emoji: "⭐", name: "Mercer Island SD", nameEn: "Mercer Island SD — WA #2",
+      desc: lang === "ko"
+        ? "✅ 워싱턴주 2위 학군 (Niche A+). 졸업률 97.2%. Mercer Island HS (전국 상위 1%). 고소득 전문직 가정 밀집 | 🔗 mercerislandschools.org"
+        : "✅ WA #2 district (Niche A+). Graduation 97.2%. Mercer Island HS (top 1% nationally). High-income professional families | 🔗 mercerislandschools.org",
+      tags: ["메르서아일랜드", "A+", "최상위"] },
+    { emoji: "⭐", name: "Lake Washington SD", nameEn: "Lake Washington SD — Redmond·Kirkland",
+      desc: lang === "ko"
+        ? "✅ 워싱턴주 상위 1% (Niche A+). 졸업률 95%. Redmond HS·Eastlake HS. MS 본사 인근. STEM 최강 | 🔗 lwsd.org"
+        : "✅ Top 1% in WA (Niche A+). Graduation 95%. Near Microsoft HQ. Exceptional STEM programs | 🔗 lwsd.org",
+      tags: ["레드몬드", "커클랜드", "STEM"] },
+    { emoji: "⭐", name: "Northshore SD", nameEn: "Northshore SD — Bothell·Woodinville",
+      desc: lang === "ko"
+        ? "✅ 워싱턴주 상위 5% (Niche A). 졸업률 96%. Inglemoor HS·Bothell HS. 한인 가족 최다 거주 학군 | 🔗 nsd.org"
+        : "✅ Top 5% in WA (Niche A). Graduation 96%. Inglemoor & Bothell HS. Highest Korean family concentration | 🔗 nsd.org",
+      tags: ["보텔", "우딘빌", "한인밀집"] },
+  ];
+
+  const universities = [
+    { emoji: "🎓", name: "University of Washington (UW)", nameEn: "UW — Public Ivy",
+      desc: lang === "ko"
+        ? "✅ 시애틀 소재. 워싱턴주 최고 대학. CS·의대·공대 세계적 수준. 한인 유학생·교수 다수. 주립 학비 $12,000/년 (in-state) | 🔗 uw.edu"
+        : "✅ Seattle. WA's top university. World-class CS, med & engineering. Many Korean students & faculty. In-state tuition $12,000/yr | 🔗 uw.edu",
+      tags: ["UW", "주립대", "CS"] },
+    { emoji: "🎓", name: "Seattle University (시애틀U)", nameEn: "Seattle University",
+      desc: lang === "ko"
+        ? "다운타운 소재. 예수회 대학. 법대·비즈니스·간호. 한인 유학생 커뮤니티 활발. 국제학생 장학금 있음 | 🔗 seattleu.edu"
+        : "Downtown. Jesuit university. Law, business & nursing. Active Korean student community. International scholarships available | 🔗 seattleu.edu",
+      tags: ["시애틀대", "법대", "다운타운"] },
+  ];
+
+  const tutoringEsl = [
+    { emoji: "📚", name: "한인 학원·과외", nameEn: "Korean Tutoring & Hagwon",
+      desc: lang === "ko"
+        ? "린우드·벨뷰 한인 학원 다수. SAT·ACT·수학·과학 전문. 한국어 가능 개인 과외 $60-100/시. 카카오오픈채팅 '시애틀한인' → 과외 찾기"
+        : "Many Korean tutoring centers in Lynnwood & Bellevue. SAT, ACT, math & science. Korean-speaking tutors $60-100/hr. KakaoTalk '시애틀한인' for tutor listings",
+      tags: ["학원", "SAT", "과외"] },
+    { emoji: "🌍", name: "국제학생 ESL·어학원", nameEn: "ESL & Language Schools",
+      desc: lang === "ko"
+        ? "✅ ELS Language Centers (시애틀). Kaplan International. 커뮤니티 칼리지 ESL 무료·저렴. Edmonds College ESL 추천 (린우드 인근) | 🔗 edcc.edu"
+        : "✅ ELS Language Centers (Seattle). Kaplan International. Community college ESL free/low-cost. Edmonds College ESL recommended (near Lynnwood) | 🔗 edcc.edu",
+      tags: ["ESL", "어학", "유학생"] },
+  ];
+
+  const allEdu = serverContent["education"] ? resolvePlaceItems(serverContent["education"], lang) : null;
+  const subData = allEdu
+    ? [allEdu.slice(0, 4), allEdu.slice(4, 6), allEdu.slice(6)]
+    : [districts, universities, tutoringEsl];
+  const content = subData[sub];
+
+  return (
+    <div style={{ paddingBottom: 96 }}>
+      <ScreenHeader emoji="🎓" titleKo="교육 가이드" titleEn="Education Guide"
+        descKo="시애틀 학군·대학·학원 완전 가이드" descEn="Complete guide to school districts, universities & tutoring in Seattle"
+        accentColor={accent} />
+      <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
+      <div className="pt-5 px-4 md:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+        </div>
+        <div style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>
+            🎓 {lang === "ko" ? "학군 선택 팁" : "School District Tip"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
+            {lang === "ko"
+              ? "학군은 거주 주소 기준으로 자동 배정됩니다. 집 구하기 전 반드시 학군을 먼저 확인하세요. Niche.com에서 학교별 상세 순위 확인 가능합니다."
+              : "School district is automatically assigned by home address. Always check the school district before renting. See detailed school rankings at Niche.com."}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   TAB 9: 생활비 SCREEN
+───────────────────────────────────────── */
+function CostScreen() {
+  const { lang } = useI18n();
+  const { content: serverContent } = useContent();
+  const [sub, setSub] = useState(0);
+  const tabs = lang === "ko"
+    ? ["렌트·주거", "세금·생활비", "교통·통신"]
+    : ["Rent & Housing", "Tax & Living", "Transport & Phone"];
+  const accent = "#34D399";
+
+  const rentHousing = [
+    { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
+      desc: lang === "ko"
+        ? "📍 린우드/페더럴웨이: 스튜디오 $1,300-1,700 | 1BR $1,700-2,100 | 2BR $2,100-2,600\n📍 벨뷰: 스튜디오 $1,800-2,300 | 1BR $2,200-2,900 | 2BR $2,800-3,500\n📍 시애틀 시내: 스튜디오 $1,700-2,200 | 1BR $2,100-2,800 | 2BR $2,500-3,200"
+        : "📍 Lynnwood/Federal Way: Studio $1,300-1,700 | 1BR $1,700-2,100 | 2BR $2,100-2,600\n📍 Bellevue: Studio $1,800-2,300 | 1BR $2,200-2,900 | 2BR $2,800-3,500\n📍 Downtown Seattle: Studio $1,700-2,200 | 1BR $2,100-2,800 | 2BR $2,500-3,200",
+      tags: ["렌트", "주거", "비교"] },
+  ];
+
+  const taxLiving = [
+    { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
+      desc: lang === "ko"
+        ? "✅ 워싱턴주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 시애틀 10.4%\n식료품·처방약: 세금 면제\n시애틀 최저시급: $20.76/시 (2026년)\n재산세: 주택 소유 시 연 $5,000-15,000"
+        : "✅ WA State has NO income tax! (major benefit)\nSales Tax: 10.4% in Seattle\nGroceries & prescription drugs: tax-exempt\nSeattle minimum wage: $20.76/hr (2026)\nProperty tax: ~$5,000-15,000/yr if you own",
+      tags: ["세금", "소득세없음", "최저시급"] },
+    { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
+      desc: lang === "ko"
+        ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 린우드): $1,800-2,000\n• 식료품: $300-500\n• 교통 (버스+ORCA): $100-130\n• 공과금 (전기·인터넷): $150-200\n• 외식·여가: $200-400\n⟹ 합계: 약 $2,550-3,230/월"
+        : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Lynnwood): $1,800-2,000\n• Groceries: $300-500\n• Transit (bus+ORCA): $100-130\n• Utilities (electric+internet): $150-200\n• Dining out & leisure: $200-400\n⟹ Total: ~$2,550-3,230/month",
+      tags: ["생활비", "월평균", "예산"] },
+  ];
+
+  const transportPhone = [
+    { emoji: "⛽", name: "교통·기름값", nameEn: "Transportation & Gas",
+      desc: lang === "ko"
+        ? "🚗 WA주 기름값: $3.80-4.50/갤런 (2026년)\n🚌 Metro 버스: $2.75/회 (ORCA)\n🚇 Link Light Rail: $2.00-3.50 (거리별)\n🅿️ 시애틀 다운타운 주차: $3-8/시간\n💡 린우드 거주 시 대부분 차량 필요"
+        : "🚗 WA gas: $3.80-4.50/gallon (2026)\n🚌 Metro bus: $2.75/ride (ORCA)\n🚇 Link Light Rail: $2.00-3.50 (distance-based)\n🅿️ Downtown Seattle parking: $3-8/hr\n💡 Car almost essential if living in Lynnwood",
+      tags: ["기름값", "주차", "교통비"] },
+    { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+      desc: lang === "ko"
+        ? "📱 휴대폰:\n• T-Mobile Prepaid: $30/월 (무제한 문자+통화+5GB)\n• Mint Mobile: $15/월 (온라인 3개월 선불)\n• Verizon 가족 플랜: $40-55/회선\n\n🌐 인터넷:\n• Xfinity: $40-80/월\n• CenturyLink/Lumen: $50-65/월\n• 기가 인터넷: $70-100/월"
+        : "📱 Phone:\n• T-Mobile Prepaid: $30/mo (unlimited)\n• Mint Mobile: $15/mo (3-month prepaid)\n• Verizon family plan: $40-55/line\n\n🌐 Internet:\n• Xfinity: $40-80/mo\n• CenturyLink/Lumen: $50-65/mo\n• Gigabit internet: $70-100/mo",
+      tags: ["통신비", "인터넷", "휴대폰"] },
+  ];
+
+  const allCost = serverContent["cost"] ? resolvePlaceItems(serverContent["cost"], lang) : null;
+  const subData = allCost
+    ? [allCost.slice(0, 1), allCost.slice(1, 3), allCost.slice(3)]
+    : [rentHousing, taxLiving, transportPhone];
+  const content = subData[sub];
+
+  return (
+    <div style={{ paddingBottom: 96 }}>
+      <ScreenHeader emoji="💰" titleKo="생활비 가이드" titleEn="Living Cost Guide"
+        descKo="렌트·세금·교통·통신비 완전 가이드" descEn="Complete guide to rent, taxes, transport & phone costs in Seattle"
+        accentColor={accent} />
+      <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
+      <div className="pt-5 px-4 md:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+        </div>
+        <div style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>
+            💰 {lang === "ko" ? "비용 절약 팁" : "Cost-saving Tip"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
+            {lang === "ko"
+              ? "워싱턴주는 소득세가 없어서 같은 연봉이라도 캘리포니아(13.3%)나 오리건(9.9%)보다 실수령액이 훨씬 높습니다. 린우드 거주 시 Link Light Rail로 시애틀 통근이 가능해 교통비도 절약됩니다."
+              : "WA has no income tax, so take-home pay is much higher than California (13.3%) or Oregon (9.9%) on the same salary. Living in Lynnwood and commuting via Link Light Rail also saves on transportation costs."}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════
    ── NAVIGATION & LAYOUT ───────────────────
    ═══════════════════════════════════════════ */
 
 /* ─────────────────────────────────────────
-   BOTTOM NAVIGATION (6탭)
+   BOTTOM NAVIGATION (9탭)
 ───────────────────────────────────────── */
 const NAV_ITEMS: Array<{
-  labelKey: "nav.home" | "nav.settle" | "nav.church" | "nav.dining" | "nav.explore" | "nav.help";
+  labelKey: "nav.home" | "nav.settle" | "nav.church" | "nav.dining" | "nav.explore" | "nav.help" | "nav.jobs" | "nav.education" | "nav.cost";
   LucideIcon: React.ComponentType<{ size?: number; color?: string; strokeWidth?: number }>;
 }> = [
-  { labelKey: "nav.home",    LucideIcon: Home },
-  { labelKey: "nav.settle",  LucideIcon: Compass },
-  { labelKey: "nav.church",  LucideIcon: Church },
-  { labelKey: "nav.dining",  LucideIcon: UtensilsCrossed },
-  { labelKey: "nav.explore", LucideIcon: Map },
-  { labelKey: "nav.help",    LucideIcon: LifeBuoy },
+  { labelKey: "nav.home",      LucideIcon: Home },
+  { labelKey: "nav.settle",    LucideIcon: Compass },
+  { labelKey: "nav.church",    LucideIcon: Church },
+  { labelKey: "nav.dining",    LucideIcon: UtensilsCrossed },
+  { labelKey: "nav.explore",   LucideIcon: Map },
+  { labelKey: "nav.jobs",      LucideIcon: Briefcase },
+  { labelKey: "nav.education", LucideIcon: GraduationCap },
+  { labelKey: "nav.cost",      LucideIcon: DollarSign },
+  { labelKey: "nav.help",      LucideIcon: LifeBuoy },
 ];
 
 interface BottomNavProps {
@@ -1039,53 +1309,90 @@ function BottomNav({ activeIndex, onChange }: BottomNavProps) {
   const { t } = useI18n();
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 flex items-center justify-around z-50 max-w-[430px] md:max-w-[768px] lg:max-w-[1200px]"
+      className="fixed bottom-0 left-0 right-0 z-50 max-w-[430px] md:max-w-[768px] lg:max-w-[1200px]"
       style={{
-        height: 68,
+        height: 76,
         left: "50%",
         transform: "translateX(-50%)",
-        background: "rgba(26,37,53,0.95)",
+        background: "rgba(26,37,53,0.97)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        borderTop: "1px solid rgba(255,255,255,0.08)",
-        boxShadow: "0 -4px 24px rgba(255,255,255,0.08)",
-        paddingLeft: 4,
-        paddingRight: 4,
+        borderTop: "1px solid rgba(255,255,255,0.10)",
+        boxShadow: "0 -4px 24px rgba(0,0,0,0.4)",
       }}
     >
-      {NAV_ITEMS.map((item, i) => {
-        const isActive = i === activeIndex;
-        return (
-          <button
-            key={i}
-            onClick={() => onChange(i)}
-            className="flex flex-col items-center gap-[3px] border-0 bg-transparent cursor-pointer relative transition-all duration-200 hover:scale-105 active:scale-95"
-            style={{ flex: 1, paddingTop: 8, paddingBottom: 6 }}
-          >
-            {isActive && (
-              <div
-                className="absolute top-0 left-1/2"
-                style={{ width: 20, height: 2, borderRadius: 1, background: MINT, transform: "translateX(-50%)" }}
+      {/* 가로 스크롤 컨테이너 */}
+      <div
+        style={{
+          display: "flex",
+          overflowX: "auto",
+          overflowY: "hidden",
+          height: "100%",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          paddingLeft: 4,
+          paddingRight: 4,
+        }}
+        className="[&::-webkit-scrollbar]:hidden"
+      >
+        {NAV_ITEMS.map((item, i) => {
+          const isActive = i === activeIndex;
+          return (
+            <button
+              key={i}
+              onClick={() => onChange(i)}
+              style={{
+                flexShrink: 0,
+                width: 72,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 4,
+                paddingTop: 8,
+                paddingBottom: 6,
+                border: "none",
+                background: "none",
+                cursor: "pointer",
+                position: "relative",
+                transition: "transform 0.15s ease",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.08)")}
+              onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
+            >
+              {isActive && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: "50%",
+                    width: 24,
+                    height: 2.5,
+                    borderRadius: 2,
+                    background: MINT,
+                    transform: "translateX(-50%)",
+                  }}
+                />
+              )}
+              <item.LucideIcon
+                size={24}
+                color={isActive ? MINT : "rgba(110,231,183,0.4)"}
+                strokeWidth={isActive ? 2.2 : 1.5}
               />
-            )}
-            <item.LucideIcon
-              size={19}
-              color={isActive ? MINT : "rgba(110,231,183,0.45)"}
-              strokeWidth={isActive ? 2.2 : 1.5}
-            />
-            <span style={{
-              fontFamily: "Manrope,sans-serif",
-              fontWeight: isActive ? 700 : 500,
-              fontSize: 9,
-              color: isActive ? MINT : "rgba(110,231,183,0.45)",
-              transition: "color 0.2s ease",
-              whiteSpace: "nowrap",
-            }}>
-              {t(item.labelKey)}
-            </span>
-          </button>
-        );
-      })}
+              <span style={{
+                fontFamily: "Manrope,sans-serif",
+                fontWeight: isActive ? 700 : 500,
+                fontSize: 10,
+                color: isActive ? MINT : "rgba(110,231,183,0.4)",
+                whiteSpace: "nowrap",
+                letterSpacing: "-0.2px",
+              }}>
+                {t(item.labelKey)}
+              </span>
+            </button>
+          );
+        })}
+      </div>
     </nav>
   );
 }
@@ -1169,6 +1476,9 @@ export function HebronGuide() {
     <ChurchScreen />,
     <DiningScreen />,
     <ExploreScreen />,
+    <JobsScreen />,
+    <EducationScreen />,
+    <CostScreen />,
     <HelpScreen />,
   ];
 
