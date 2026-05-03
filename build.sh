@@ -29,7 +29,13 @@ for city in dallas la sf newyork nashville vancouver toronto; do
   fi
 done
 
-# 3. 시애틀 React 앱 빌드
+# 3. pnpm 설치 확인 (Vercel 환경)
+if ! command -v pnpm &> /dev/null; then
+  echo "📦 pnpm 설치 중..."
+  npm install -g pnpm@9
+fi
+
+# 4. 시애틀 React 앱 빌드
 echo "⚛️  시애틀 React 앱 빌드 중..."
 cd hebronguide
 pnpm install --frozen-lockfile
