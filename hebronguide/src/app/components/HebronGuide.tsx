@@ -403,6 +403,8 @@ function useLiveData() {
   const [rateTime, setRateTime] = useState("");
   const [gas, setGas] = useState<number | null>(null);
   const [gasDate, setGasDate] = useState("");
+  const [rent, setRent] = useState<number | null>(null);
+  const [tempF, setTempF] = useState<number | null>(null);
 
   // 환율: Frankfurter API (무료·키 불필요·CORS OK) — 30분마다 갱신
   useEffect(() => {
@@ -419,15 +421,39 @@ function useLiveData() {
     return () => clearInterval(id);
   }, []);
 
-  // 기름값: GitHub Actions가 매일 새벽 갱신하는 JSON (EIA.gov 기반)
+  // live.json: GitHub Actions 매일 갱신 (기름값·환율·렌트·기온)
   useEffect(() => {
-    fetch("/data/live.json?t=" + Math.floor(Date.now() / 3_600_000)) // 1시간 캐시 무효화
+    fetch("/data/live.json?t=" + Math.floor(Date.now() / 3_600_000))
       .then(r => r.json())
-      .then(d => { setGas(d.gas_wa_regular); setGasDate(d.updated); })
-      .catch(() => { setGas(4.15); setGasDate(""); });
+      .then(d => {
+        setGas(d.gas_wa_regular ?? 4.15);
+        setGasDate(d.updated ?? "");
+        setRent(d.rent_seattle_1br ?? 2150);
+        setTempF(d.temp_f ?? null);
+      })
+      .catch(() => { setGas(4.15); setRent(2150); });
   }, []);
 
-  return { rate, rateTime, gas, gasDate };
+  // 실시간 기온 (Open-Meteo, 무료·키 불필요)
+  useEffect(() => {
+    const fetchTemp = async () => {
+      try {
+        const r = await fetch(
+          "https://api.open-meteo.com/v1/forecast" +
+          "?latitude=47.6062&longitude=-122.3321" +
+          "&current=temperature_2m&temperature_unit=fahrenheit" +
+          "&timezone=America/Los_Angeles"
+        );
+        const d = await r.json();
+        setTempF(Math.round(d.current.temperature_2m));
+      } catch {}
+    };
+    fetchTemp();
+    const id = setInterval(fetchTemp, 10 * 60 * 1000); // 10분마다
+    return () => clearInterval(id);
+  }, []);
+
+  return { rate, rateTime, gas, gasDate, rent, tempF };
 }
 
 /* ─────────────────────────────────────────
@@ -435,7 +461,7 @@ function useLiveData() {
 ───────────────────────────────────────── */
 function LiveDataBar() {
   const { lang } = useI18n();
-  const { rate, rateTime, gas, gasDate } = useLiveData();
+  const { rate, rateTime, gas, gasDate, rent, tempF } = useLiveData();
   const [seoulTime, setSeoulTime] = useState("");
   const [seattleTime, setSeattleTime] = useState("");
 
@@ -452,25 +478,39 @@ function LiveDataBar() {
 
   const items = [
     {
+      icon: "🌡️",
+      label: lang === "ko" ? "시애틀 기온" : "Seattle Temp",
+      value: tempF ? `${tempF}°F` : "…",
+      sub: lang === "ko" ? "실시간" : "Live",
+      color: "#F97316",
+    },
+    {
       icon: "💱",
       label: lang === "ko" ? "원/달러" : "KRW/USD",
       value: rate ? `₩${rate.toLocaleString()}` : "…",
-      sub: rateTime ? (lang === "ko" ? `${rateTime} 갱신` : `Updated ${rateTime}`) : "",
+      sub: rateTime ? (lang === "ko" ? `${rateTime} 갱신` : `${rateTime}`) : lang === "ko" ? "로딩 중" : "Loading",
       color: "#F2994A",
     },
     {
       icon: "⛽",
       label: lang === "ko" ? "WA 기름값" : "WA Gas",
-      value: gas ? `$${gas.toFixed(2)}/gal` : "…",
-      sub: gasDate ? (lang === "ko" ? `${gasDate} 기준` : `As of ${gasDate}`) : "",
+      value: gas ? `$${gas.toFixed(2)}` : "…",
+      sub: gasDate ? (lang === "ko" ? `${gasDate}` : `${gasDate}`) : "loading",
       color: "#60A5FA",
     },
     {
+      icon: "🏠",
+      label: lang === "ko" ? "시애틀 월세" : "Seattle Rent",
+      value: rent ? `$${rent.toLocaleString()}` : "…",
+      sub: lang === "ko" ? "1BR 중앙값" : "1BR median",
+      color: MINT,
+    },
+    {
       icon: "🕐",
-      label: lang === "ko" ? "시애틀·서울" : "Seattle·Seoul",
+      label: lang === "ko" ? "시애틀·서울" : "SEA·ICN",
       value: seattleTime || "…",
       sub: seoulTime ? `서울 ${seoulTime}` : "",
-      color: MINT,
+      color: "#C9A227",
     },
   ];
 
