@@ -591,100 +591,98 @@ function WeatherIcon() {
 }
 
 /* ─────────────────────────────────────────
-   HERO CARD (라이브 캠 + 정적 이미지 폴백)
+   HERO CARD (HD 영상 배경 + 라이브 데이터)
 ───────────────────────────────────────── */
-// EarthCam 시애틀 스페이스 니들 24/7 라이브 스트림 (YouTube)
-const LIVE_CAM_IDS = [
-  "wNN-XAaQ_tE",  // EarthCam Seattle Skyline & Space Needle (1순위)
-  "-wkCTxmWaiE",  // EarthCam Seattle Space Needle (2순위)
-  "rYYyZgLryUs",  // LIVE! Space Needle Cam (3순위)
+// Pexels 무료 시애틀 HD 영상 (Pexels License — 상업적 무료 사용 가능)
+const SEATTLE_VIDEOS = [
+  "https://videos.pexels.com/video-files/20017409/20017409-hd_1920_1080_24fps.mp4",  // Space Needle 스카이라인
+  "https://videos.pexels.com/video-files/2257258/2257258-hd_1920_1080_30fps.mp4",    // 시애틀 파노라마
+  "https://videos.pexels.com/video-files/29024579/29024579-hd_1920_1080_25fps.mp4",  // 스페이스 니들 석양
 ];
 
 function HeroCard() {
   const { t } = useI18n();
-  const [liveReady, setLiveReady] = useState(false);
-  const [camIdx, setCamIdx] = useState(0);
-  const isOnline = useOnlineStatus();
+  const [videoReady, setVideoReady] = useState(false);
+  const [vidIdx, setVidIdx] = useState(0);
 
-  // 오프라인이거나 캠 실패 시 다음 캠 시도
-  const handleIframeError = () => {
-    if (camIdx < LIVE_CAM_IDS.length - 1) setCamIdx(i => i + 1);
+  const handleVideoError = () => {
+    if (vidIdx < SEATTLE_VIDEOS.length - 1) setVidIdx(i => i + 1);
   };
 
-  const ytId = LIVE_CAM_IDS[camIdx];
-  const embedUrl =
-    `https://www.youtube-nocookie.com/embed/${ytId}` +
-    `?autoplay=1&mute=1&controls=0&playsinline=1&rel=0` +
-    `&showinfo=0&modestbranding=1&iv_load_policy=3&loop=1&playlist=${ytId}`;
-
   return (
-    <div className="relative w-full overflow-hidden" style={{ height: 480, borderRadius: 28, boxShadow: "0 32px 64px -12px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4)", background: "#0d1117" }}>
+    <div className="relative w-full overflow-hidden"
+      style={{ height: 480, borderRadius: 28, background: "#060d18",
+        boxShadow: "0 32px 64px -12px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4)" }}>
 
-      {/* 정적 이미지 폴백 (라이브 로딩 전 또는 오프라인) */}
+      {/* 정적 이미지 폴백 (영상 로딩 전) */}
       <img
-        src={imgHeroCard}
-        alt="시애틀 전경"
+        src={imgHeroCard} alt="시애틀 전경"
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectPosition: "center 40%", filter: "brightness(1.1) saturate(1.4)", transition: "opacity 1.5s ease", opacity: liveReady ? 0 : 1 }}
+        style={{ objectPosition: "center 40%", filter: "brightness(1.05) saturate(1.3)",
+          transition: "opacity 1.5s ease", opacity: videoReady ? 0 : 1 }}
       />
 
-      {/* YouTube 라이브 스트림 (온라인 시만) */}
-      {isOnline && (
-        <div className="absolute inset-0 overflow-hidden" style={{ opacity: liveReady ? 1 : 0, transition: "opacity 1.5s ease" }}>
-          <iframe
-            key={ytId}
-            src={embedUrl}
-            title="Seattle Live Cam"
-            style={{
-              position: "absolute",
-              top: "50%", left: "50%",
-              width: "177.78%",      /* 16:9 → 컨테이너 높이 기준 너비 */
-              height: "177.78%",
-              minWidth: "100%",
-              minHeight: "100%",
-              transform: "translate(-50%, -50%)",
-              border: "none",
-              pointerEvents: "none",
-            }}
-            allow="autoplay; encrypted-media"
-            onLoad={() => setTimeout(() => setLiveReady(true), 3000)}
-            onError={handleIframeError}
-          />
-        </div>
-      )}
+      {/* HD 영상 배경 (Pexels — autoplay, muted, loop) */}
+      <video
+        key={vidIdx}
+        autoPlay muted loop playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ objectPosition: "center 30%", transition: "opacity 1.5s ease",
+          opacity: videoReady ? 1 : 0 }}
+        onCanPlay={() => setVideoReady(true)}
+        onError={handleVideoError}
+      >
+        <source src={SEATTLE_VIDEOS[vidIdx]} type="video/mp4" />
+      </video>
 
-      {/* 🔴 LIVE 배지 */}
-      {liveReady && isOnline && (
-        <div style={{
-          position: "absolute", top: 16, right: 16,
+      {/* 실제 라이브 웹캠 링크 배지 */}
+      <a
+        href="https://www.earthcam.com/usa/washington/seattle/"
+        target="_blank" rel="noopener noreferrer"
+        style={{
+          position: "absolute", top: 14, right: 14, zIndex: 10,
           display: "flex", alignItems: "center", gap: 5,
-          background: "rgba(0,0,0,0.55)", backdropFilter: "blur(8px)",
-          borderRadius: 20, padding: "5px 10px",
-          border: "1px solid rgba(255,255,255,0.12)",
-        }}>
-          <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#FF3B30", display: "inline-block", animation: "pulse 1.5s infinite" }} />
-          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 10, color: "#fff", letterSpacing: 0.5 }}>LIVE</span>
-        </div>
-      )}
+          background: "rgba(0,0,0,0.55)", backdropFilter: "blur(10px)",
+          borderRadius: 20, padding: "5px 11px",
+          border: "1px solid rgba(255,255,255,0.15)",
+          textDecoration: "none",
+        }}
+      >
+        <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#FF3B30",
+          display: "inline-block", animation: "livepulse 1.5s infinite" }} />
+        <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10,
+          color: "#fff", letterSpacing: 0.5 }}>라이브 웹캠 →</span>
+      </a>
 
       {/* 그라디언트 오버레이 */}
-      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,50,140,0.08) 0%, transparent 40%, rgba(1,22,13,0.82) 100%)" }} />
+      <div className="absolute inset-0" style={{ background:
+        "linear-gradient(180deg, rgba(5,15,40,0.15) 0%, transparent 35%, rgba(2,14,8,0.85) 100%)" }} />
 
       {/* 텍스트 & 스탯 */}
       <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-[20px] p-[28px]">
         <div className="flex flex-col gap-[6px]">
-          <div className="self-start px-[10px] py-[3px] rounded-[10px]" style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.15)" }}>
-            <span className="uppercase tracking-[1.2px]" style={{ color: "#ECFDF5", fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 9 }}>{t("hero.badge")}</span>
+          <div className="self-start px-[10px] py-[3px] rounded-[10px]"
+            style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(6px)",
+              border: "1px solid rgba(255,255,255,0.15)" }}>
+            <span className="uppercase tracking-[1.2px]"
+              style={{ color: "#ECFDF5", fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 9 }}>
+              {t("hero.badge")}
+            </span>
           </div>
-          <h1 className="m-0 p-0" style={{ fontFamily: "'Noto Sans KR','WenQuanYi Zen Hei',sans-serif", fontWeight: 700, fontSize: 38, letterSpacing: "-1.5px", lineHeight: 1.18, color: "#FFFFFF", textShadow: "0 2px 16px rgba(0,0,0,0.6)" }}>
+          <h1 className="m-0 p-0" style={{ fontFamily: "'Noto Sans KR','WenQuanYi Zen Hei',sans-serif",
+            fontWeight: 700, fontSize: 38, letterSpacing: "-1.5px", lineHeight: 1.18,
+            color: "#FFFFFF", textShadow: "0 2px 16px rgba(0,0,0,0.7)" }}>
             {t("hero.title")}
           </h1>
-          <p className="m-0 uppercase tracking-[0.5px]" style={{ fontFamily: "Manrope,sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(209,250,229,0.65)" }}>
+          <p className="m-0 uppercase tracking-[0.5px]"
+            style={{ fontFamily: "Manrope,sans-serif", fontWeight: 300, fontSize: 12,
+              color: "rgba(209,250,229,0.65)" }}>
             {t("hero.sub")}
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-[10px]">
-          <a href="https://forecast.weather.gov/MapClick.php?CityName=Seattle&state=WA&site=SEW" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+          <a href="https://forecast.weather.gov/MapClick.php?CityName=Seattle&state=WA&site=SEW"
+            target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
             <StatCard label={t("stat.temp")} value="52°F" icon={<WeatherIcon />} />
           </a>
           <StatCard label={t("stat.pop")} value="762K" />
@@ -693,8 +691,7 @@ function HeroCard() {
         </div>
       </div>
 
-      {/* pulse 애니메이션 */}
-      <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }`}</style>
+      <style>{`@keyframes livepulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.8)} }`}</style>
     </div>
   );
 }
