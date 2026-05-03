@@ -38,12 +38,9 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useI18n } from "./I18nContext";
 import { useContent, resolvePlaceItems, resolveStepItems } from "./ContentContext";
 import {
-  Church,
   Home,
-  Compass,
-  UtensilsCrossed,
-  Map,
-  LifeBuoy,
+  Search,
+  Globe,
 } from "lucide-react";
 
 /* ─────────────────────────────────────────
@@ -1163,6 +1160,29 @@ function EmergencyRow({ emoji, title, number, desc }: { emoji: string; title: st
   );
 }
 
+/* ─────────────────────────────────────────
+   BACK BUTTON (섹션 화면 상단 홈 복귀)
+───────────────────────────────────────── */
+function BackToHomeButton({ onHome, lang }: { onHome?: () => void; lang: string }) {
+  if (!onHome) return null;
+  return (
+    <button
+      onClick={onHome}
+      style={{
+        display: "flex", alignItems: "center", gap: 6,
+        padding: "8px 16px",
+        background: "none", border: "none", cursor: "pointer",
+        fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600, fontSize: 13,
+        color: "rgba(236,253,245,0.55)",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        width: "100%",
+      }}
+    >
+      ← {lang === "ko" ? "홈으로" : "Home"}
+    </button>
+  );
+}
+
 /* ═══════════════════════════════════════════
    ── TAB SCREENS ───────────────────────────
    ═══════════════════════════════════════════ */
@@ -1402,7 +1422,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number) => void }) {
 /* ─────────────────────────────────────────
    TAB 2: 정착 SCREEN
 ───────────────────────────────────────── */
-function SettleScreen() {
+function SettleScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
@@ -1505,6 +1525,7 @@ function SettleScreen() {
 
   return (
     <div style={{ paddingBottom: 96 }}>
+      <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🛬" titleKo="정착 가이드" titleEn="Settlement Guide"
         descKo="이민·이주자를 위한 단계별 정착 안내" descEn="Step-by-step guide for immigrants & newcomers"
         accentColor={accent} />
@@ -1562,7 +1583,7 @@ function SettleScreen() {
 /* ─────────────────────────────────────────
    TAB 3: 교회 SCREEN
 ───────────────────────────────────────── */
-function ChurchScreen() {
+function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
@@ -1606,6 +1627,7 @@ function ChurchScreen() {
 
   return (
     <div style={{ paddingBottom: 96 }}>
+      <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="⛪" titleKo="한인 교회" titleEn="Korean Churches"
         descKo="정착 지원 · 영어수업 · 커뮤니티 네트워크" descEn="Settlement support · ESL classes · Community network"
         accentColor={accent} />
@@ -1653,7 +1675,7 @@ function ChurchScreen() {
 /* ─────────────────────────────────────────
    TAB 4: 맛집 SCREEN
 ───────────────────────────────────────── */
-function DiningScreen() {
+function DiningScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
@@ -1702,6 +1724,7 @@ function DiningScreen() {
 
   return (
     <div style={{ paddingBottom: 96 }}>
+      <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🍽️" titleKo="카페 · 맛집" titleEn="Café & Dining"
         descKo="시애틀 한인 카페·맛집·상권 완전 가이드" descEn="Complete guide to Seattle's Korean cafés, restaurants & business district"
         accentColor={accent} />
@@ -1726,7 +1749,7 @@ function DiningScreen() {
 /* ─────────────────────────────────────────
    TAB 5: 탐방 SCREEN
 ───────────────────────────────────────── */
-function ExploreScreen() {
+function ExploreScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
@@ -1779,6 +1802,7 @@ function ExploreScreen() {
 
   return (
     <div style={{ paddingBottom: 96 }}>
+      <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🌆" titleKo="탐방" titleEn="Explore Seattle"
         descKo="지역안내 · 자연 · 문화 · 스포츠" descEn="Areas · Nature · Culture · Sports"
         accentColor={accent} />
@@ -1795,7 +1819,7 @@ function ExploreScreen() {
 /* ─────────────────────────────────────────
    TAB 6: 도움 SCREEN
 ───────────────────────────────────────── */
-function HelpScreen() {
+function HelpScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
@@ -1825,6 +1849,7 @@ function HelpScreen() {
 
   return (
     <div style={{ paddingBottom: 96 }}>
+      <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🆘" titleKo="도움말" titleEn="Help & Emergency"
         descKo="긴급연락 · 커뮤니티 · 유용한 정보" descEn="Emergency contacts · Community · Useful resources"
         accentColor={accent} />
@@ -2156,31 +2181,76 @@ function CostScreen() {
 /* ─────────────────────────────────────────
    BOTTOM NAVIGATION (6탭 — v4)
 ───────────────────────────────────────── */
-const NAV_ITEMS: Array<{
-  labelKey: "nav.home" | "nav.settle" | "nav.church" | "nav.dining" | "nav.explore" | "nav.help";
-  LucideIcon: React.ComponentType<{ size?: number; color?: string; strokeWidth?: number }>;
-}> = [
-  { labelKey: "nav.home",    LucideIcon: Home },
-  { labelKey: "nav.settle",  LucideIcon: Compass },
-  { labelKey: "nav.church",  LucideIcon: Church },
-  { labelKey: "nav.dining",  LucideIcon: UtensilsCrossed },
-  { labelKey: "nav.explore", LucideIcon: Map },
-  { labelKey: "nav.help",    LucideIcon: LifeBuoy },
+/* ─────────────────────────────────────────
+   NAV ITEMS (3개로 축소)
+───────────────────────────────────────── */
+const NAV_ITEMS = [
+  { id: "home",   icon: Home,   labelKo: "홈",   labelEn: "Home"   },
+  { id: "search", icon: Search, labelKo: "검색",  labelEn: "Search" },
+  { id: "lang",   icon: Globe,  labelKo: "언어",  labelEn: "Language"},
 ];
 
+/* ─────────────────────────────────────────
+   DESKTOP SIDEBAR
+───────────────────────────────────────── */
+function DesktopSidebar({ activeTab, onNavigate }: { activeTab: number; onNavigate: (tab: number) => void }) {
+  const { lang } = useI18n();
+  return (
+    <aside className="hidden lg:flex lg:flex-col lg:fixed lg:left-0 lg:top-0 lg:bottom-0 lg:w-64 lg:border-r"
+      style={{ borderColor: "rgba(255,255,255,0.08)", background: "#1a2535", padding: "80px 16px 24px", zIndex: 30 }}>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 16, color: "#C9A227", marginBottom: 24, letterSpacing: "1px" }}>
+        HEBRONGUIDE
+      </div>
+      {QUICK_MENU.map((item, i) => (
+        <button key={i} onClick={() => onNavigate(item.tab)} style={{
+          width: "100%", textAlign: "left", display: "flex", alignItems: "center", gap: 12,
+          padding: "12px 14px", borderRadius: 12, border: "none", cursor: "pointer",
+          background: activeTab === item.tab ? "rgba(242,153,74,0.12)" : "transparent",
+          color: activeTab === item.tab ? "#F2994A" : "rgba(236,253,245,0.55)",
+          fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600, fontSize: 14,
+          marginBottom: 4, transition: "all 0.2s ease",
+        }}>
+          <span style={{ fontSize: 20 }}>{item.emoji}</span>
+          {lang === "ko" ? item.labelKo : item.labelEn}
+        </button>
+      ))}
+    </aside>
+  );
+}
+
+/* ─────────────────────────────────────────
+   BOTTOM NAV (3개 버튼)
+───────────────────────────────────────── */
 interface BottomNavProps {
   activeIndex: number;
   onChange: (i: number) => void;
+  onSearchToggle: () => void;
+  onLangCycle: () => void;
 }
-function BottomNav({ activeIndex, onChange }: BottomNavProps) {
-  const { t } = useI18n();
+function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle }: BottomNavProps) {
+  const { lang } = useI18n();
+
+  const handleClick = (id: string, i: number) => {
+    if (id === "home") {
+      onChange(0);
+    } else if (id === "search") {
+      onSearchToggle();
+    } else if (id === "lang") {
+      onLangCycle();
+    }
+  };
+
+  // 검색·언어 버튼은 활성 탭 표시 없음 (홈만 activeIndex=0 일치 시 활성)
+  const isActive = (id: string, i: number) => id === "home" && activeIndex === 0;
+
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-50 max-w-[430px] md:max-w-[768px] lg:max-w-[1200px]"
+      className="fixed bottom-0 z-50 max-w-[430px] md:max-w-[640px] lg:max-w-[960px] lg:ml-64"
       style={{
-        height: 76,
+        height: 72,
         left: "50%",
         transform: "translateX(-50%)",
+        width: "100%",
         background: "rgba(255,255,255,0.97)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
@@ -2188,35 +2258,16 @@ function BottomNav({ activeIndex, onChange }: BottomNavProps) {
         boxShadow: "0 -4px 24px rgba(0,0,0,0.08)",
       }}
     >
-      {/* 오른쪽 페이드 — 더 있다는 힌트 */}
-      <div style={{
-        position: "absolute", right: 0, top: 0, bottom: 0, width: 32, zIndex: 1,
-        background: "linear-gradient(to right, transparent, rgba(255,255,255,0.95))",
-        pointerEvents: "none",
-      }} />
-      {/* 가로 스크롤 컨테이너 */}
-      <div
-        style={{
-          display: "flex",
-          overflowX: "auto",
-          overflowY: "hidden",
-          height: "100%",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-          paddingLeft: 8,
-          paddingRight: 36,
-        }}
-        className="[&::-webkit-scrollbar]:hidden"
-      >
+      <div style={{ display: "flex", height: "100%", alignItems: "stretch" }}>
         {NAV_ITEMS.map((item, i) => {
-          const isActive = i === activeIndex;
+          const active = isActive(item.id, i);
+          const IconComp = item.icon;
           return (
             <button
-              key={i}
-              onClick={() => onChange(i)}
+              key={item.id}
+              onClick={() => handleClick(item.id, i)}
               style={{
-                flexShrink: 0,
-                width: 72,
+                flex: 1,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -2233,34 +2284,26 @@ function BottomNav({ activeIndex, onChange }: BottomNavProps) {
               onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.08)")}
               onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
             >
-              {isActive && (
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: "50%",
-                    width: 24,
-                    height: 2.5,
-                    borderRadius: 2,
-                    background: "#F2994A",
-                    transform: "translateX(-50%)",
-                  }}
-                />
+              {active && (
+                <div style={{
+                  position: "absolute", top: 0, left: "50%", width: 24, height: 2.5,
+                  borderRadius: 2, background: "#F2994A", transform: "translateX(-50%)",
+                }} />
               )}
-              <item.LucideIcon
+              <IconComp
                 size={24}
-                color={isActive ? "#F2994A" : "#9CA3AF"}
-                strokeWidth={isActive ? 2.2 : 1.5}
+                color={active ? "#F2994A" : "#9CA3AF"}
+                strokeWidth={active ? 2.2 : 1.5}
               />
               <span style={{
                 fontFamily: "Manrope,sans-serif",
-                fontWeight: isActive ? 700 : 500,
+                fontWeight: active ? 700 : 500,
                 fontSize: 10,
-                color: isActive ? "#F2994A" : "#9CA3AF",
+                color: active ? "#F2994A" : "#9CA3AF",
                 whiteSpace: "nowrap",
                 letterSpacing: "-0.2px",
               }}>
-                {t(item.labelKey)}
+                {lang === "ko" ? item.labelKo : item.labelEn}
               </span>
             </button>
           );
@@ -2342,50 +2385,96 @@ function AppBar() {
 ───────────────────────────────────────── */
 export function HebronGuide() {
   const [activeNav, setActiveNav] = useState(0);
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const isOnline = useOnlineStatus();
   const { showBanner, handleInstall, handleDismiss } = useInstallPrompt();
+  const { lang, setLang } = useI18n();
 
-  // 앱 그리드에서 탭 범위 밖(6,7,8) 클릭 시 처리
-  // 6개 탭만 있으므로 취업·교육·생활비는 현재 홈 유지 (추후 모달 확장 예정)
   const handleNavigate = (tab: number) => {
-    const maxTab = 5; // 6개 탭 (0~5)
+    const maxTab = 5; // 홈·정착·교회·맛집·탐방·도움
     if (tab <= maxTab) {
       setActiveNav(tab);
     }
-    // tab > 5: 취업(6)·교육(7)·생활비(8) — 추후 모달/오버레이로 구현 예정
+  };
+
+  const handleLangCycle = () => {
+    setLang(lang === "ko" ? "en" : lang === "en" ? "es" : "ko");
+  };
+
+  const handleSearchToggle = () => {
+    setShowSearch(prev => !prev);
+    if (showSearch) setSearchQuery("");
   };
 
   // 6개 탭 스크린 (홈·정착·교회·맛집·탐방·도움)
   const screens = [
     <HomeScreen onNavigate={handleNavigate} />,
-    <SettleScreen />,
-    <ChurchScreen />,
-    <DiningScreen />,
-    <ExploreScreen />,
-    <HelpScreen />,
+    <SettleScreen onHome={() => setActiveNav(0)} />,
+    <ChurchScreen onHome={() => setActiveNav(0)} />,
+    <DiningScreen onHome={() => setActiveNav(0)} />,
+    <ExploreScreen onHome={() => setActiveNav(0)} />,
+    <HelpScreen onHome={() => setActiveNav(0)} />,
   ];
 
   return (
-    <div
-      className="flex flex-col min-h-screen mx-auto relative max-w-[430px] md:max-w-[768px] lg:max-w-[1200px]"
-      style={{ background: "#1a2535" }}
-    >
-      <AppBar />
+    <div className="flex min-h-screen" style={{ background: "#1a2535" }}>
+      {/* 데스크탑 사이드바 */}
+      <DesktopSidebar activeTab={activeNav} onNavigate={handleNavigate} />
 
-      {/* PWA 설치 배너 */}
-      {showBanner && (
-        <InstallBanner onInstall={handleInstall} onDismiss={handleDismiss} />
-      )}
+      {/* 메인 콘텐츠 영역 */}
+      <div
+        className="flex flex-col min-h-screen mx-auto relative w-full max-w-[430px] md:max-w-[640px] lg:max-w-[960px] lg:ml-64"
+        style={{ background: "#1a2535" }}
+      >
+        <AppBar />
 
-      <main className="flex-1 overflow-y-auto" style={{ paddingBottom: 72, paddingTop: showBanner ? 72 : 0 }}>
-        {/* screens 범위 체크 (안전 장치) */}
-        {screens[Math.min(activeNav, screens.length - 1)]}
-      </main>
+        {/* 검색바 (슬라이드 인) */}
+        {showSearch && (
+          <div style={{
+            position: "fixed", top: 56, left: "50%", transform: "translateX(-50%)",
+            width: "100%", maxWidth: 430, zIndex: 200,
+            background: "#fff", padding: "8px 16px",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+            display: "flex", gap: 8, alignItems: "center",
+          }}>
+            <input
+              autoFocus
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              placeholder={lang === "ko" ? "맛집, 정착, 교회..." : "Food, settle, church..."}
+              style={{
+                flex: 1, border: "1px solid #E2E8F0", borderRadius: 12,
+                padding: "10px 14px", fontSize: 15, outline: "none",
+                fontFamily: "'Noto Sans KR', sans-serif",
+              }}
+            />
+            <button onClick={handleSearchToggle}
+              style={{ border: "none", background: "none", fontSize: 20, cursor: "pointer", color: "#64748B" }}>
+              ✕
+            </button>
+          </div>
+        )}
 
-      {/* 오프라인 배너 */}
-      {!isOnline && <OfflineBanner />}
+        {/* PWA 설치 배너 */}
+        {showBanner && (
+          <InstallBanner onInstall={handleInstall} onDismiss={handleDismiss} />
+        )}
 
-      <BottomNav activeIndex={Math.min(activeNav, NAV_ITEMS.length - 1)} onChange={setActiveNav} />
+        <main className="flex-1 overflow-y-auto" style={{ paddingBottom: 72, paddingTop: showBanner ? 72 : 0 }}>
+          {screens[Math.min(activeNav, screens.length - 1)]}
+        </main>
+
+        {/* 오프라인 배너 */}
+        {!isOnline && <OfflineBanner />}
+
+        <BottomNav
+          activeIndex={activeNav}
+          onChange={setActiveNav}
+          onSearchToggle={handleSearchToggle}
+          onLangCycle={handleLangCycle}
+        />
+      </div>
     </div>
   );
 }
