@@ -317,8 +317,9 @@
       text-decoration: none; color: var(--text-primary);
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: var(--space-8);
-      transition: transform var(--duration-mid) var(--ease-spring), border-color var(--duration-fast) var(--ease);
+      transition: transform var(--duration-mid) var(--ease-spring), border-color var(--duration-fast) var(--ease), box-shadow var(--duration-fast) var(--ease);
       isolation: isolate;
+      cursor: pointer;
     }
     .city-card::before {
       content: ""; position: absolute; inset: 0;
@@ -330,8 +331,9 @@
       background: radial-gradient(120% 80% at 80% 0%, rgba(255,255,255,0.08), transparent 50%);
       z-index: -1;
     }
-    .city-card:hover { transform: translateY(-6px); border-color: var(--separator-bold); }
-    .city-card:hover .city-card-arrow { transform: translate(4px, -4px); opacity: 1; }
+    .city-card:hover { transform: translateY(-6px); border-color: var(--separator-bold); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+    .city-card:hover .city-card-arrow { transform: translate(4px, -4px); opacity: 1; background: rgba(110,231,183,0.15); }
+    .city-card:active { transform: scale(0.98); }
 
     .city-card-flag {
       font-size: 36px; margin-bottom: var(--space-3);
