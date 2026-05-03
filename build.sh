@@ -32,16 +32,11 @@ for city in dallas la sf newyork nashville vancouver toronto; do
   fi
 done
 
-# 3. pnpm 최신 버전 강제 설치 (Node.js 24 호환)
-echo "📦 pnpm 최신 버전 설치 중..."
-npm install -g pnpm@latest
-echo "✅ pnpm 버전: $(pnpm --version)"
-
-# 4. 시애틀 React 앱 빌드
+# 3. 시애틀 React 앱 빌드 (npx pnpm@10으로 버전 고정)
 echo "⚛️  시애틀 React 앱 빌드 중..."
 cd hebronguide
-pnpm install --no-frozen-lockfile
-pnpm build
+npx --yes pnpm@10 install --no-frozen-lockfile
+npx --yes pnpm@10 build
 cd ..
 
 # 4. React 빌드 결과물을 public/seattle/로 복사
