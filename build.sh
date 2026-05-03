@@ -5,7 +5,11 @@
 
 set -e
 
+# 항상 스크립트가 있는 폴더(repo 루트)에서 실행
+cd "$(dirname "$0")"
+
 echo "🏗️  HebronGuide 통합 빌드 시작..."
+echo "📍 빌드 경로: $(pwd)"
 
 # 1. public/ 폴더 초기화
 rm -rf public
