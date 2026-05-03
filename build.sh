@@ -3,13 +3,12 @@
 # Vercel 배포 시 자동 실행됨
 # 결과물: public/ 폴더 (Vercel outputDirectory)
 
-set -e
-
-# 항상 스크립트가 있는 폴더(repo 루트)에서 실행
-cd "$(dirname "$0")"
+set -ex
 
 echo "🏗️  HebronGuide 통합 빌드 시작..."
-echo "📍 빌드 경로: $(pwd)"
+echo "📍 현재 경로: $(pwd)"
+echo "📂 파일 목록:"
+ls -la
 
 # 1. public/ 폴더 초기화
 rm -rf public
@@ -34,10 +33,9 @@ for city in dallas la sf newyork nashville vancouver toronto; do
 done
 
 # 3. pnpm 설치 확인 (Vercel 환경)
-if ! command -v pnpm &> /dev/null; then
-  echo "📦 pnpm 설치 중..."
-  npm install -g pnpm@9
-fi
+echo "🔍 pnpm 버전 확인..."
+pnpm --version || npm install -g pnpm@9
+pnpm --version
 
 # 4. 시애틀 React 앱 빌드
 echo "⚛️  시애틀 React 앱 빌드 중..."
