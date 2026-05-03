@@ -1321,6 +1321,12 @@ function BottomNav({ activeIndex, onChange }: BottomNavProps) {
         boxShadow: "0 -4px 24px rgba(0,0,0,0.4)",
       }}
     >
+      {/* 오른쪽 페이드 — 더 있다는 힌트 */}
+      <div style={{
+        position: "absolute", right: 0, top: 0, bottom: 0, width: 32, zIndex: 1,
+        background: "linear-gradient(to right, transparent, rgba(26,37,53,0.95))",
+        pointerEvents: "none",
+      }} />
       {/* 가로 스크롤 컨테이너 */}
       <div
         style={{
@@ -1330,8 +1336,8 @@ function BottomNav({ activeIndex, onChange }: BottomNavProps) {
           height: "100%",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
-          paddingLeft: 4,
-          paddingRight: 4,
+          paddingLeft: 8,
+          paddingRight: 36,
         }}
         className="[&::-webkit-scrollbar]:hidden"
       >
