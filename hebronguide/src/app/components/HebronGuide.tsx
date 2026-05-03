@@ -395,6 +395,120 @@ function DualClock() {
 /* ─────────────────────────────────────────
    SECTION DIVIDER
 ───────────────────────────────────────── */
+/* ─────────────────────────────────────────
+   실시간 데이터 훅 (환율·기름값)
+───────────────────────────────────────── */
+function useLiveData() {
+  const [rate, setRate] = useState<number | null>(null);
+  const [rateTime, setRateTime] = useState("");
+  const [gas, setGas] = useState<number | null>(null);
+  const [gasDate, setGasDate] = useState("");
+
+  // 환율: Frankfurter API (무료·키 불필요·CORS OK) — 30분마다 갱신
+  useEffect(() => {
+    const fetch환율 = async () => {
+      try {
+        const r = await fetch("https://api.frankfurter.app/latest?from=USD&to=KRW");
+        const d = await r.json();
+        setRate(Math.round(d.rates.KRW));
+        setRateTime(new Date().toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" }));
+      } catch { /* 네트워크 오류 시 조용히 무시 */ }
+    };
+    fetch환율();
+    const id = setInterval(fetch환율, 30 * 60 * 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  // 기름값: GitHub Actions가 매일 새벽 갱신하는 JSON (EIA.gov 기반)
+  useEffect(() => {
+    fetch("/data/live.json?t=" + Math.floor(Date.now() / 3_600_000)) // 1시간 캐시 무효화
+      .then(r => r.json())
+      .then(d => { setGas(d.gas_wa_regular); setGasDate(d.updated); })
+      .catch(() => { setGas(4.15); setGasDate(""); });
+  }, []);
+
+  return { rate, rateTime, gas, gasDate };
+}
+
+/* ─────────────────────────────────────────
+   LIVE DATA BAR (환율·기름값·시각)
+───────────────────────────────────────── */
+function LiveDataBar() {
+  const { lang } = useI18n();
+  const { rate, rateTime, gas, gasDate } = useLiveData();
+  const [seoulTime, setSeoulTime] = useState("");
+  const [seattleTime, setSeattleTime] = useState("");
+
+  useEffect(() => {
+    const tick = () => {
+      const now = new Date();
+      setSeattleTime(now.toLocaleTimeString("ko-KR", { timeZone: "America/Los_Angeles", hour: "2-digit", minute: "2-digit" }));
+      setSeoulTime(now.toLocaleTimeString("ko-KR", { timeZone: "Asia/Seoul", hour: "2-digit", minute: "2-digit" }));
+    };
+    tick();
+    const id = setInterval(tick, 10_000);
+    return () => clearInterval(id);
+  }, []);
+
+  const items = [
+    {
+      icon: "💱",
+      label: lang === "ko" ? "원/달러" : "KRW/USD",
+      value: rate ? `₩${rate.toLocaleString()}` : "…",
+      sub: rateTime ? (lang === "ko" ? `${rateTime} 갱신` : `Updated ${rateTime}`) : "",
+      color: "#F2994A",
+    },
+    {
+      icon: "⛽",
+      label: lang === "ko" ? "WA 기름값" : "WA Gas",
+      value: gas ? `$${gas.toFixed(2)}/gal` : "…",
+      sub: gasDate ? (lang === "ko" ? `${gasDate} 기준` : `As of ${gasDate}`) : "",
+      color: "#60A5FA",
+    },
+    {
+      icon: "🕐",
+      label: lang === "ko" ? "시애틀·서울" : "Seattle·Seoul",
+      value: seattleTime || "…",
+      sub: seoulTime ? `서울 ${seoulTime}` : "",
+      color: MINT,
+    },
+  ];
+
+  return (
+    <div style={{
+      display: "flex", gap: 8, overflowX: "auto",
+      scrollbarWidth: "none", paddingBottom: 2,
+    }}
+    className="[&::-webkit-scrollbar]:hidden"
+    >
+      {items.map((item, i) => (
+        <div key={i} style={{
+          flex: "0 0 auto", minWidth: 110,
+          background: "rgba(255,255,255,0.04)",
+          border: `1px solid ${item.color}30`,
+          borderRadius: 14, padding: "10px 12px",
+          display: "flex", flexDirection: "column", gap: 3,
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+            <span style={{ fontSize: 14 }}>{item.icon}</span>
+            <span style={{ fontSize: 10, color: "rgba(236,253,245,0.45)", fontFamily: "Manrope,sans-serif", fontWeight: 600 }}>
+              {item.label}
+            </span>
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 16, color: item.color, letterSpacing: "-0.3px" }}>
+            {item.value}
+          </div>
+          {item.sub && (
+            <div style={{ fontSize: 9, color: "rgba(236,253,245,0.35)", fontFamily: "Manrope,sans-serif" }}>
+              {item.sub}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function SectionDivider() {
   return (
     <div className="w-full h-px my-1" style={{
@@ -1012,6 +1126,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number) => void }) {
   return (
     <div className="flex flex-col gap-[28px] md:gap-[36px] px-[16px] md:px-[24px] lg:px-[32px] pt-[20px]" style={{ paddingBottom: 96 }}>
       <HeroCard />
+      <LiveDataBar />
       <SectionDivider />
       <QuickChips />
       <SectionDivider />
