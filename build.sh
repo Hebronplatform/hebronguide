@@ -40,7 +40,7 @@ pnpm --version
 # 4. 시애틀 React 앱 빌드
 echo "⚛️  시애틀 React 앱 빌드 중..."
 cd hebronguide
-pnpm install --frozen-lockfile
+pnpm install --no-frozen-lockfile
 pnpm build
 cd ..
 
