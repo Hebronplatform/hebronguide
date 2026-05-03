@@ -591,24 +591,95 @@ function WeatherIcon() {
 }
 
 /* ─────────────────────────────────────────
-   HERO CARD
+   HERO CARD (라이브 캠 + 정적 이미지 폴백)
 ───────────────────────────────────────── */
+// EarthCam 시애틀 스페이스 니들 24/7 라이브 스트림 (YouTube)
+const LIVE_CAM_IDS = [
+  "wNN-XAaQ_tE",  // EarthCam Seattle Skyline & Space Needle (1순위)
+  "-wkCTxmWaiE",  // EarthCam Seattle Space Needle (2순위)
+  "rYYyZgLryUs",  // LIVE! Space Needle Cam (3순위)
+];
+
 function HeroCard() {
   const { t } = useI18n();
+  const [liveReady, setLiveReady] = useState(false);
+  const [camIdx, setCamIdx] = useState(0);
+  const isOnline = useOnlineStatus();
+
+  // 오프라인이거나 캠 실패 시 다음 캠 시도
+  const handleIframeError = () => {
+    if (camIdx < LIVE_CAM_IDS.length - 1) setCamIdx(i => i + 1);
+  };
+
+  const ytId = LIVE_CAM_IDS[camIdx];
+  const embedUrl =
+    `https://www.youtube-nocookie.com/embed/${ytId}` +
+    `?autoplay=1&mute=1&controls=0&playsinline=1&rel=0` +
+    `&showinfo=0&modestbranding=1&iv_load_policy=3&loop=1&playlist=${ytId}`;
+
   return (
-    <div className="relative w-full overflow-hidden" style={{ height: 480, borderRadius: 28, boxShadow: "0 32px 64px -12px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4)" }}>
-      <img src={imgHeroCard} alt="시애틀 전경" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center 40%", filter: "brightness(1.2) saturate(1.6) hue-rotate(-30deg)" }} />
-      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,50,140,0.12) 0%, rgba(1,30,20,0.04) 45%, rgba(1,22,13,0.80) 100%)" }} />
-      <div className="absolute inset-x-0 top-0 h-40" style={{ background: "linear-gradient(180deg, rgba(10,60,180,0.22) 0%, transparent 100%)" }} />
+    <div className="relative w-full overflow-hidden" style={{ height: 480, borderRadius: 28, boxShadow: "0 32px 64px -12px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4)", background: "#0d1117" }}>
+
+      {/* 정적 이미지 폴백 (라이브 로딩 전 또는 오프라인) */}
+      <img
+        src={imgHeroCard}
+        alt="시애틀 전경"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ objectPosition: "center 40%", filter: "brightness(1.1) saturate(1.4)", transition: "opacity 1.5s ease", opacity: liveReady ? 0 : 1 }}
+      />
+
+      {/* YouTube 라이브 스트림 (온라인 시만) */}
+      {isOnline && (
+        <div className="absolute inset-0 overflow-hidden" style={{ opacity: liveReady ? 1 : 0, transition: "opacity 1.5s ease" }}>
+          <iframe
+            key={ytId}
+            src={embedUrl}
+            title="Seattle Live Cam"
+            style={{
+              position: "absolute",
+              top: "50%", left: "50%",
+              width: "177.78%",      /* 16:9 → 컨테이너 높이 기준 너비 */
+              height: "177.78%",
+              minWidth: "100%",
+              minHeight: "100%",
+              transform: "translate(-50%, -50%)",
+              border: "none",
+              pointerEvents: "none",
+            }}
+            allow="autoplay; encrypted-media"
+            onLoad={() => setTimeout(() => setLiveReady(true), 3000)}
+            onError={handleIframeError}
+          />
+        </div>
+      )}
+
+      {/* 🔴 LIVE 배지 */}
+      {liveReady && isOnline && (
+        <div style={{
+          position: "absolute", top: 16, right: 16,
+          display: "flex", alignItems: "center", gap: 5,
+          background: "rgba(0,0,0,0.55)", backdropFilter: "blur(8px)",
+          borderRadius: 20, padding: "5px 10px",
+          border: "1px solid rgba(255,255,255,0.12)",
+        }}>
+          <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#FF3B30", display: "inline-block", animation: "pulse 1.5s infinite" }} />
+          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 10, color: "#fff", letterSpacing: 0.5 }}>LIVE</span>
+        </div>
+      )}
+
+      {/* 그라디언트 오버레이 */}
+      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,50,140,0.08) 0%, transparent 40%, rgba(1,22,13,0.82) 100%)" }} />
+
+      {/* 텍스트 & 스탯 */}
       <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-[20px] p-[28px]">
         <div className="flex flex-col gap-[6px]">
           <div className="self-start px-[10px] py-[3px] rounded-[10px]" style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.15)" }}>
             <span className="uppercase tracking-[1.2px]" style={{ color: "#ECFDF5", fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 9 }}>{t("hero.badge")}</span>
           </div>
-          <h1 className="m-0 p-0" style={{ fontFamily: "'Noto Sans KR', 'WenQuanYi Zen Hei', sans-serif", fontWeight: 700, fontSize: 38, letterSpacing: "-1.5px", lineHeight: 1.18, color: "#FFFFFF", textShadow: "0 2px 12px rgba(0,0,0,0.4)" }}>
+          <h1 className="m-0 p-0" style={{ fontFamily: "'Noto Sans KR','WenQuanYi Zen Hei',sans-serif", fontWeight: 700, fontSize: 38, letterSpacing: "-1.5px", lineHeight: 1.18, color: "#FFFFFF", textShadow: "0 2px 16px rgba(0,0,0,0.6)" }}>
             {t("hero.title")}
           </h1>
-          <p className="m-0 uppercase tracking-[0.5px]" style={{ fontFamily: "Manrope,sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(209,250,229,0.65)", letterSpacing: "0.4px" }}>
+          <p className="m-0 uppercase tracking-[0.5px]" style={{ fontFamily: "Manrope,sans-serif", fontWeight: 300, fontSize: 12, color: "rgba(209,250,229,0.65)" }}>
             {t("hero.sub")}
           </p>
         </div>
@@ -621,6 +692,9 @@ function HeroCard() {
           <StatCard label={t("stat.community")} value="165K+" />
         </div>
       </div>
+
+      {/* pulse 애니메이션 */}
+      <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }`}</style>
     </div>
   );
 }
