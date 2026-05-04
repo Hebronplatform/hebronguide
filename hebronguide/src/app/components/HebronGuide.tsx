@@ -633,12 +633,12 @@ function CompactHeroNew() {
    NEW HOME: QuickMenuSection
 ───────────────────────────────────────── */
 const QUICK_MENU = [
-  { emoji: "🛬", labelKo: "정착",   labelEn: "Settle",  color: "#F2994A", bg: "#FFF5EC", tab: 1 },
-  { emoji: "⛪", labelKo: "교회",   labelEn: "Church",  color: "#7C3AED", bg: "#F5F0FF", tab: 2 },
-  { emoji: "🍽️", labelKo: "맛집",  labelEn: "Food",    color: "#EF4444", bg: "#FFF0F0", tab: 3 },
-  { emoji: "🏥", labelKo: "의료",   labelEn: "Medical", color: "#2563EB", bg: "#EFF6FF", tab: 5 },
-  { emoji: "💼", labelKo: "취업",   labelEn: "Jobs",    color: "#059669", bg: "#ECFDF5", tab: 6 },
-  { emoji: "🆘", labelKo: "도움",   labelEn: "Help",    color: "#64748B", bg: "#F1F5F9", tab: 5 },
+  { emoji: "🛬", labelKo: "정착",  labelEn: "Settle",    color: "#F2994A", bg: "#FFF5EC", tab: 1 },
+  { emoji: "⛪", labelKo: "교회",  labelEn: "Church",    color: "#7C3AED", bg: "#F5F0FF", tab: 2 },
+  { emoji: "🍽️", labelKo: "맛집", labelEn: "Food",      color: "#EF4444", bg: "#FFF0F0", tab: 3 },
+  { emoji: "💼", labelKo: "취업",  labelEn: "Jobs",      color: "#059669", bg: "#ECFDF5", tab: 6 },
+  { emoji: "🎓", labelKo: "교육",  labelEn: "Education", color: "#F59E0B", bg: "#FFFBEB", tab: 7 },
+  { emoji: "🆘", labelKo: "도움",  labelEn: "Help",      color: "#64748B", bg: "#F1F5F9", tab: 5 },
 ];
 
 function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number) => void }) {
@@ -1224,7 +1224,7 @@ function AppGrid({ onNavigate }: { onNavigate?: (tab: number) => void }) {
         {APP_GRID_ITEMS.map((item) => (
           <button
             key={item.tabIndex}
-            onClick={() => onNavigate?.(item.tabIndex < 6 ? item.tabIndex : 0)}
+            onClick={() => onNavigate?.(item.tabIndex)}
             style={{
               display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
               padding: "14px 8px",
@@ -1913,7 +1913,7 @@ function HelpScreen({ onHome }: { onHome?: () => void }) {
 /* ─────────────────────────────────────────
    TAB 7: 취업 SCREEN
 ───────────────────────────────────────── */
-function JobsScreen() {
+function JobsScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
@@ -1982,6 +1982,7 @@ function JobsScreen() {
 
   return (
     <div style={{ paddingBottom: 96 }}>
+      <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="💼" titleKo="취업 가이드" titleEn="Jobs & Career"
         descKo="시애틀 한인 취업·창업·비자 완전 가이드" descEn="Complete guide to jobs, business & visas for Koreans in Seattle"
         accentColor={accent} />
@@ -2008,7 +2009,7 @@ function JobsScreen() {
 /* ─────────────────────────────────────────
    TAB 8: 교육 SCREEN
 ───────────────────────────────────────── */
-function EducationScreen() {
+function EducationScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
@@ -2074,6 +2075,7 @@ function EducationScreen() {
 
   return (
     <div style={{ paddingBottom: 96 }}>
+      <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🎓" titleKo="교육 가이드" titleEn="Education Guide"
         descKo="시애틀 학군·대학·학원 완전 가이드" descEn="Complete guide to school districts, universities & tutoring in Seattle"
         accentColor={accent} />
@@ -2100,7 +2102,7 @@ function EducationScreen() {
 /* ─────────────────────────────────────────
    TAB 9: 생활비 SCREEN
 ───────────────────────────────────────── */
-function CostScreen() {
+function CostScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
@@ -2151,6 +2153,7 @@ function CostScreen() {
 
   return (
     <div style={{ paddingBottom: 96 }}>
+      <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="💰" titleKo="생활비 가이드" titleEn="Living Cost Guide"
         descKo="렌트·세금·교통·통신비 완전 가이드" descEn="Complete guide to rent, taxes, transport & phone costs in Seattle"
         accentColor={accent} />
@@ -2323,24 +2326,24 @@ function AppBar() {
       className="sticky top-0 z-40 flex items-center justify-between px-[20px] w-full max-w-[430px] md:max-w-[768px] lg:max-w-[1200px]"
       style={{
         height: 56,
-        background: "rgba(26,37,53,0.95)",
+        background: "rgba(255,255,255,0.97)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        borderBottom: "1px solid rgba(0,0,0,0.06)",
       }}
     >
       <div className="flex items-center gap-[10px]">
-        <div className="flex items-center justify-center overflow-hidden" style={{ width: 34, height: 34, borderRadius: 10, border: "1px solid rgba(110,231,183,0.25)", background: "rgba(110,231,183,0.1)", flexShrink: 0 }}>
+        <div className="flex items-center justify-center overflow-hidden" style={{ width: 34, height: 34, borderRadius: 10, border: "1px solid rgba(242,153,74,0.25)", background: "rgba(242,153,74,0.08)", flexShrink: 0 }}>
           <img src={logoImg} alt="HebronGuide Logo" style={{ width: 28, height: 28, objectFit: "contain" }}
             onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; const fb = e.currentTarget.nextElementSibling as HTMLElement; if (fb) fb.style.display = "block"; }} />
           <span style={{ fontSize: 16, display: "none" }}>🌲</span>
         </div>
         <div className="flex flex-col" style={{ lineHeight: 1 }}>
           <div>
-            <span style={{ fontFamily: "Manrope, sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "1.5px", color: GOLD }}>HEBRON</span>
-            <span style={{ fontFamily: "Manrope, sans-serif", fontWeight: 600, fontSize: 13, letterSpacing: "1.5px", color: "rgba(236,253,245,0.6)" }}>GUIDE</span>
+            <span style={{ fontFamily: "Manrope, sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "1.5px", color: "#F2994A" }}>HEBRON</span>
+            <span style={{ fontFamily: "Manrope, sans-serif", fontWeight: 600, fontSize: 13, letterSpacing: "1.5px", color: "#64748B" }}>GUIDE</span>
           </div>
-          <div style={{ fontFamily: "Manrope, sans-serif", fontWeight: 500, fontSize: 9, letterSpacing: "0.5px", color: MINT, marginTop: 2 }}>
+          <div style={{ fontFamily: "Manrope, sans-serif", fontWeight: 500, fontSize: 9, letterSpacing: "0.5px", color: "#059669", marginTop: 2 }}>
             {t("brand.sub")}
           </div>
         </div>
@@ -2348,7 +2351,7 @@ function AppBar() {
 
       <div className="flex items-center gap-[8px]">
         {/* 언어 토글: KO / EN / ES */}
-        <div className="flex items-center" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: 2, gap: 2 }}>
+        <div className="flex items-center" style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 10, padding: 2, gap: 2 }}>
           {(["en", "ko", "es"] as const).map((l) => (
             <button
               key={l}
@@ -2356,12 +2359,12 @@ function AppBar() {
               className="flex items-center justify-center border-0 cursor-pointer hover:scale-110 active:scale-95"
               style={{
                 height: 24, paddingLeft: 8, paddingRight: 8, borderRadius: 7,
-                background: lang === l ? `rgba(201,162,39,0.18)` : "transparent",
-                border: `1px solid ${lang === l ? "rgba(201,162,39,0.45)" : "transparent"}`,
+                background: lang === l ? `rgba(242,153,74,0.12)` : "transparent",
+                border: `1px solid ${lang === l ? "rgba(242,153,74,0.4)" : "transparent"}`,
                 transition: "all 0.2s ease",
               }}
             >
-              <span style={{ fontFamily: "Manrope, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: "0.5px", color: lang === l ? GOLD : "rgba(236,253,245,0.5)" }}>
+              <span style={{ fontFamily: "Manrope, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: "0.5px", color: lang === l ? "#F2994A" : "#94A3B8" }}>
                 {l.toUpperCase()}
               </span>
             </button>
@@ -2369,10 +2372,10 @@ function AppBar() {
         </div>
         <button
           className="flex items-center justify-center border-0 cursor-pointer hover:scale-110 active:scale-95 transition-transform duration-200"
-          style={{ width: 36, height: 36, borderRadius: 12, background: "rgba(110,231,183,0.08)", border: "1px solid rgba(110,231,183,0.2)" }}
+          style={{ width: 36, height: 36, borderRadius: 12, background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)" }}
         >
           <div style={{ width: 17, height: 17 }}>
-            <IconBox pathKey="p10cae140" vb="0 0 17.19 17.19" fill={MINT} />
+            <IconBox pathKey="p10cae140" vb="0 0 17.19 17.19" fill="#94A3B8" />
           </div>
         </button>
       </div>
@@ -2392,7 +2395,7 @@ export function HebronGuide() {
   const { lang, setLang } = useI18n();
 
   const handleNavigate = (tab: number) => {
-    const maxTab = 5; // 홈·정착·교회·맛집·탐방·도움
+    const maxTab = 8; // 홈·정착·교회·맛집·탐방·도움·취업·교육·생활비
     if (tab <= maxTab) {
       setActiveNav(tab);
     }
@@ -2407,25 +2410,49 @@ export function HebronGuide() {
     if (showSearch) setSearchQuery("");
   };
 
-  // 6개 탭 스크린 (홈·정착·교회·맛집·탐방·도움)
+  const SEARCH_MAP = [
+    { keywords: ["정착", "settle", "ssn", "은행", "bank", "면허", "license", "sim", "비자", "visa"], tab: 1 },
+    { keywords: ["교회", "church", "예배", "worship", "목장", "가정교회"], tab: 2 },
+    { keywords: ["맛집", "food", "카페", "cafe", "식당", "bbq", "한식", "coffee", "restaurant"], tab: 3 },
+    { keywords: ["탐방", "explore", "관광", "레이니어", "스페이스", "pike", "여행", "travel"], tab: 4 },
+    { keywords: ["도움", "help", "의료", "의사", "병원", "hospital", "법률", "legal", "emergency"], tab: 5 },
+    { keywords: ["취업", "jobs", "amazon", "microsoft", "구글", "google", "h1b", "h-1b", "직장", "career"], tab: 6 },
+    { keywords: ["교육", "education", "학교", "school", "대학", "university", "학군", "학원", "uw"], tab: 7 },
+    { keywords: ["생활비", "cost", "렌트", "rent", "기름", "gas", "세금", "tax", "월세"], tab: 8 },
+  ];
+
+  const handleSearch = (query: string) => {
+    const q = query.toLowerCase();
+    const match = SEARCH_MAP.find(item => item.keywords.some(kw => q.includes(kw)));
+    if (match) {
+      setActiveNav(match.tab);
+      setShowSearch(false);
+      setSearchQuery("");
+    }
+  };
+
+  // 9개 탭 스크린 (홈·정착·교회·맛집·탐방·도움·취업·교육·생활비)
   const screens = [
-    <HomeScreen onNavigate={handleNavigate} />,
-    <SettleScreen onHome={() => setActiveNav(0)} />,
-    <ChurchScreen onHome={() => setActiveNav(0)} />,
-    <DiningScreen onHome={() => setActiveNav(0)} />,
-    <ExploreScreen onHome={() => setActiveNav(0)} />,
-    <HelpScreen onHome={() => setActiveNav(0)} />,
+    <HomeScreen onNavigate={handleNavigate} />,           // 0
+    <SettleScreen onHome={() => setActiveNav(0)} />,       // 1
+    <ChurchScreen onHome={() => setActiveNav(0)} />,       // 2
+    <DiningScreen onHome={() => setActiveNav(0)} />,       // 3
+    <ExploreScreen onHome={() => setActiveNav(0)} />,      // 4
+    <HelpScreen onHome={() => setActiveNav(0)} />,         // 5
+    <JobsScreen onHome={() => setActiveNav(0)} />,         // 6
+    <EducationScreen onHome={() => setActiveNav(0)} />,    // 7
+    <CostScreen onHome={() => setActiveNav(0)} />,         // 8
   ];
 
   return (
-    <div className="flex min-h-screen" style={{ background: "#1a2535" }}>
+    <div className="flex min-h-screen" style={{ background: "#F8FAFC" }}>
       {/* 데스크탑 사이드바 */}
       <DesktopSidebar activeTab={activeNav} onNavigate={handleNavigate} />
 
       {/* 메인 콘텐츠 영역 */}
       <div
         className="flex flex-col min-h-screen mx-auto relative w-full max-w-[430px] md:max-w-[640px] lg:max-w-[960px] lg:ml-64"
-        style={{ background: "#1a2535" }}
+        style={{ background: "#F8FAFC" }}
       >
         <AppBar />
 
@@ -2442,13 +2469,20 @@ export function HebronGuide() {
               autoFocus
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              placeholder={lang === "ko" ? "맛집, 정착, 교회..." : "Food, settle, church..."}
+              onKeyDown={e => e.key === "Enter" && handleSearch(searchQuery)}
+              placeholder={lang === "ko" ? "맛집, 정착, 교회, 취업..." : "Food, settle, church, jobs..."}
               style={{
                 flex: 1, border: "1px solid #E2E8F0", borderRadius: 12,
                 padding: "10px 14px", fontSize: 15, outline: "none",
                 fontFamily: "'Noto Sans KR', sans-serif",
               }}
             />
+            <button onClick={() => handleSearch(searchQuery)}
+              style={{ border: "none", background: "#F2994A", borderRadius: 10, padding: "8px 14px",
+                fontSize: 13, fontWeight: 700, cursor: "pointer", color: "#fff",
+                fontFamily: "Manrope, sans-serif", whiteSpace: "nowrap" }}>
+              {lang === "ko" ? "검색" : "Search"}
+            </button>
             <button onClick={handleSearchToggle}
               style={{ border: "none", background: "none", fontSize: 20, cursor: "pointer", color: "#64748B" }}>
               ✕
