@@ -2985,70 +2985,181 @@ function EducationScreen({ onHome }: { onHome?: () => void }) {
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
   const tabs = lang === "ko"
-    ? ["학군 순위", "대학교", "학원·ESL"]
-    : ["School Districts", "Universities", "Tutoring & ESL"];
+    ? ["🏫 학군 순위", "🏛️ 지역 CC", "🎓 4년제 대학", "📝 대입 준비", "📚 학원·ESL"]
+    : ["🏫 School Districts", "🏛️ Community Colleges", "🎓 Universities", "📝 Admissions", "📚 Tutoring & ESL"];
   const accent = "#A78BFA";
 
+  /* ── Tab 0: 학군 순위 (30마일 광역권) ── */
   const districts = [
     { emoji: "⭐", name: "Bellevue School District", nameEn: "Bellevue SD — WA #1",
       desc: lang === "ko"
-        ? "✅ 워싱턴주 1위 학군 (Niche A+). 졸업률 92.5%. Newport HS·Interlake HS·Bellevue HS. AP·IB 과정 풍부. 한인 학생 비율 높음 | 🔗 bsd405.org"
-        : "✅ WA State #1 district (Niche A+). Graduation 92.5%. Newport, Interlake & Bellevue HS. Rich AP/IB programs. High Korean student population | 🔗 bsd405.org",
-      tags: ["벨뷰", "A+", "상위학군"] },
+        ? "✅ 워싱턴주 1위 학군 (Niche A+). 졸업률 92.5%. Newport HS·Interlake HS·Bellevue HS. AP·IB 과정 풍부. 한인 학생 비율 높음.\n📍 벨뷰·메디나·클라이드힐 포함 | 🔗 bsd405.org"
+        : "✅ WA State #1 district (Niche A+). Grad rate 92.5%. Newport, Interlake & Bellevue HS. Rich AP/IB programs. High Korean student ratio.\n📍 Covers Bellevue, Medina & Clyde Hill | 🔗 bsd405.org",
+      tags: ["벨뷰", "A+", "WA #1"] },
     { emoji: "⭐", name: "Mercer Island SD", nameEn: "Mercer Island SD — WA #2",
       desc: lang === "ko"
-        ? "✅ 워싱턴주 2위 학군 (Niche A+). 졸업률 97.2%. Mercer Island HS (전국 상위 1%). 고소득 전문직 가정 밀집 | 🔗 mercerislandschools.org"
-        : "✅ WA #2 district (Niche A+). Graduation 97.2%. Mercer Island HS (top 1% nationally). High-income professional families | 🔗 mercerislandschools.org",
-      tags: ["메르서아일랜드", "A+", "최상위"] },
+        ? "✅ 워싱턴주 2위 학군 (Niche A+). 졸업률 97.2%. Mercer Island HS (전국 상위 1%). 고소득 전문직 가정 밀집. 렌트 비쌈.\n📍 메르서아일랜드 단일 학군 | 🔗 mercerislandschools.org"
+        : "✅ WA #2 district (Niche A+). Grad rate 97.2%. Mercer Island HS (top 1% nationally). High-income professional community.\n📍 Mercer Island only | 🔗 mercerislandschools.org",
+      tags: ["메르서아일랜드", "A+", "WA #2"] },
     { emoji: "⭐", name: "Lake Washington SD", nameEn: "Lake Washington SD — Redmond·Kirkland",
       desc: lang === "ko"
-        ? "✅ 워싱턴주 상위 1% (Niche A+). 졸업률 95%. Redmond HS·Eastlake HS. MS 본사 인근. STEM 최강 | 🔗 lwsd.org"
-        : "✅ Top 1% in WA (Niche A+). Graduation 95%. Near Microsoft HQ. Exceptional STEM programs | 🔗 lwsd.org",
+        ? "✅ 워싱턴주 상위 1% (Niche A+). 졸업률 95%. Redmond HS·Eastlake HS·Juanita HS. MS·Google 본사 인근 STEM 최강.\n📍 레드몬드·커클랜드·켄모어 | 🔗 lwsd.org"
+        : "✅ Top 1% in WA (Niche A+). Grad rate 95%. Redmond, Eastlake & Juanita HS. Near Microsoft & Google HQ — exceptional STEM.\n📍 Redmond, Kirkland, Kenmore | 🔗 lwsd.org",
       tags: ["레드몬드", "커클랜드", "STEM"] },
     { emoji: "⭐", name: "Northshore SD", nameEn: "Northshore SD — Bothell·Woodinville",
       desc: lang === "ko"
-        ? "✅ 워싱턴주 상위 5% (Niche A). 졸업률 96%. Inglemoor HS·Bothell HS. 한인 가족 최다 거주 학군 | 🔗 nsd.org"
-        : "✅ Top 5% in WA (Niche A). Graduation 96%. Inglemoor & Bothell HS. Highest Korean family concentration | 🔗 nsd.org",
+        ? "✅ 워싱턴주 상위 5% (Niche A). 졸업률 96%. Inglemoor HS·Bothell HS·Woodinville HS. 한인 가족 최다 거주 학군. 린우드와 인접.\n📍 보텔·우딘빌·켄모어 | 🔗 nsd.org"
+        : "✅ Top 5% in WA (Niche A). Grad rate 96%. Inglemoor, Bothell & Woodinville HS. Highest Korean family concentration. Near Lynnwood.\n📍 Bothell, Woodinville, Kenmore | 🔗 nsd.org",
       tags: ["보텔", "우딘빌", "한인밀집"] },
+    { emoji: "🏫", name: "Edmonds SD", nameEn: "Edmonds SD — Lynnwood·Mountlake Terrace",
+      desc: lang === "ko"
+        ? "Niche A. 졸업률 89%. Mountlake Terrace HS·Lynnwood HS·Meadowdale HS. 한인 마트(H-Mart) 밀집 린우드 커버. 렌트 대비 학군 가성비 최고.\n📍 린우드·마운트레이크테라스·에드먼즈 | 🔗 edmonds.wednet.edu"
+        : "Niche A. Grad rate 89%. Mountlake Terrace, Lynnwood & Meadowdale HS. Covers Lynnwood H-Mart area. Best value vs. rent ratio.\n📍 Lynnwood, Mountlake Terrace, Edmonds | 🔗 edmonds.wednet.edu",
+      tags: ["린우드", "가성비", "한인밀집"] },
+    { emoji: "🏫", name: "Federal Way SD", nameEn: "Federal Way SD — 가성비 남부",
+      desc: lang === "ko"
+        ? "Niche B+. 졸업률 84%. 광역 시애틀 최저 렌트 지역. 페더럴웨이·오번·타코마 연결. 다문화 학교 환경. 통학 필요 시 I-5 이용.\n📍 페더럴웨이·오번 북부 | 🔗 fwps.org"
+        : "Niche B+. Grad rate 84%. Lowest rents in Greater Seattle. Federal Way, Auburn & Tacoma access. Diverse school environment.\n📍 Federal Way, north Auburn | 🔗 fwps.org",
+      tags: ["페더럴웨이", "저렴렌트", "남부"] },
   ];
 
+  /* ── Tab 1: 지역 커뮤니티 칼리지 (CC) ── */
+  const communityColleges = [
+    { emoji: "🏛️", name: "Edmonds College", nameEn: "Edmonds College — 린우드 (한인 추천 #1)",
+      desc: lang === "ko"
+        ? "✅ 린우드 소재. 한인 밀집 지역 내 CC. 4년제 편입 준비 최적. UW·WSU·Western 편입률 높음. ESL·IELTS·英語 프로그램 풍부. 학비 약 $4,500/학기 (주민). Running Start 파트너 학교.\n📍 20000 68th Ave W, Lynnwood | 🔗 edcc.edu"
+        : "✅ In Lynnwood — heart of Korean community. Best CC for 4-year transfer (UW, WSU, Western). Rich ESL & IELTS programs. Tuition ~$4,500/semester (resident). Running Start partner.\n📍 20000 68th Ave W, Lynnwood | 🔗 edcc.edu",
+      tags: ["린우드", "편입", "한인 #1"] },
+    { emoji: "🏛️", name: "Bellevue College", nameEn: "Bellevue College — 벨뷰 (기술·편입)",
+      desc: lang === "ko"
+        ? "✅ 워싱턴주 최대 CC. 학생 수 약 33,000명. 4년제 학사 학위 직접 수여 (별도 편입 불필요). IT·회계·간호·그래픽디자인 특화. 아시안 학생 비율 높음 (~35%). UW 편입 경쟁 치열.\n📍 3000 Landerholm Circle SE, Bellevue | 🔗 bellevuecollege.edu"
+        : "✅ WA's largest CC (~33,000 students). Offers 4-year bachelor's degrees directly. Specialized IT, accounting, nursing & graphic design. ~35% Asian students. Competitive UW transfer.\n📍 3000 Landerholm Circle SE, Bellevue | 🔗 bellevuecollege.edu",
+      tags: ["벨뷰", "최대규모", "4년제학위"] },
+    { emoji: "🏛️", name: "Seattle Central College", nameEn: "Seattle Central — 캐피톨힐 (예술·국제)",
+      desc: lang === "ko"
+        ? "시애틀 캐피톨힐 소재. 영화·요리·예술 특화. 국제학생 영어 집중 과정(IEP) 운영. 시내 접근성 최고. 학비 약 $4,300/학기 (주민).\n📍 1701 Broadway, Seattle | 🔗 seattlecentral.edu"
+        : "Capitol Hill, Seattle. Specialized film, culinary & fine arts. Intensive English Program (IEP) for international students. Best downtown access.\n📍 1701 Broadway, Seattle | 🔗 seattlecentral.edu",
+      tags: ["캐피톨힐", "예술", "국제학생"] },
+    { emoji: "🏛️", name: "Cascadia College", nameEn: "Cascadia College — 보텔 (UW 코이그레이트)",
+      desc: lang === "ko"
+        ? "✅ 보텔 소재. UW Bothell 캠퍼스와 부지 공유. UW Bothell 편입 보장 프로그램 (Running Start·DTA). 이공계·비즈니스 편입 경쟁률 낮음. 학비 약 $4,000/학기 (주민).\n📍 18345 Campus Way NE, Bothell | 🔗 cascadia.edu"
+        : "✅ Shares campus with UW Bothell. Guaranteed transfer pathway to UW Bothell (DTA). Lower competition for STEM & business transfer. Tuition ~$4,000/semester (resident).\n📍 18345 Campus Way NE, Bothell | 🔗 cascadia.edu",
+      tags: ["보텔", "UW편입보장", "이공계"] },
+    { emoji: "🏛️", name: "Shoreline Community College", nameEn: "Shoreline CC — 쇼어라인 (의료·기술)",
+      desc: lang === "ko"
+        ? "쇼어라인 소재. 의료 보조(Medical Assistant)·방사선사·간호 보조 특화. 직업 기술 빠른 취업 루트. 학비 약 $4,200/학기 (주민). 한인 학생 커뮤니티 소규모.\n📍 16101 Greenwood Ave N, Shoreline | 🔗 shoreline.edu"
+        : "Shoreline. Specialized medical assistant, radiologic tech & nursing assistant programs. Fast career path. Tuition ~$4,200/semester.\n📍 16101 Greenwood Ave N, Shoreline | 🔗 shoreline.edu",
+      tags: ["쇼어라인", "의료", "직업훈련"] },
+    { emoji: "💡", name: "CC → UW 편입 전략", nameEn: "CC → UW Transfer Pathway",
+      desc: lang === "ko"
+        ? "📋 편입 필수 조건:\n• GPA 3.5+ (경쟁 전공: CS·엔지니어링·비즈니스)\n• DTA(Direct Transfer Agreement) 이수\n• IGETC 또는 전공 전제 과목 완료\n\n🗓️ 편입 일정:\n• 1월 15일: UW 편입 지원 마감 (가을 학기)\n• 4월: 합격 통보\n• 매년 약 1,200명 CC 편입생 UW 합격\n\n💰 장학금: UW Transfer Scholarship (최대 $5,000/년). 🔗 admit.uw.edu/transfer"
+        : "📋 Transfer Requirements:\n• GPA 3.5+ (competitive majors: CS, engineering, business)\n• Direct Transfer Agreement (DTA) completion\n• Prerequisite courses for intended major\n\n🗓️ Timeline:\n• Jan 15: UW transfer application deadline (fall quarter)\n• April: Decision notifications\n• ~1,200 CC transfer students admitted to UW annually\n\n💰 UW Transfer Scholarship (up to $5,000/yr). 🔗 admit.uw.edu/transfer",
+      tags: ["편입전략", "GPA3.5+", "장학금"] },
+  ];
+
+  /* ── Tab 2: 4년제 대학 ── */
   const universities = [
-    { emoji: "🎓", name: "University of Washington (UW)", nameEn: "UW — Public Ivy",
+    { emoji: "🎓", name: "University of Washington (UW)", nameEn: "UW Seattle — Public Ivy · 세계 Top 30",
       desc: lang === "ko"
-        ? "✅ 시애틀 소재. 워싱턴주 최고 대학. CS·의대·공대 세계적 수준. 한인 유학생·교수 다수. 주립 학비 $12,000/년 (in-state) | 🔗 uw.edu"
-        : "✅ Seattle. WA's top university. World-class CS, med & engineering. Many Korean students & faculty. In-state tuition $12,000/yr | 🔗 uw.edu",
-      tags: ["UW", "주립대", "CS"] },
-    { emoji: "🎓", name: "Seattle University (시애틀U)", nameEn: "Seattle University",
+        ? "✅ 시애틀 소재. QS 세계 순위 59위 (2025). 워싱턴주 최고 명문. CS·의대·공대·경영·간호 세계적 수준.\n• 재학생: 약 53,000명 | 한인 학생 약 2,000+명\n• 주립 학비: ~$12,000/년 (in-state) | 국제: ~$40,000/년\n• 합격률: 48% (전체) / CS 전공 경쟁률 매우 높음\n• 한인 학생회(Korean Student Association) 활발 | 🔗 uw.edu"
+        : "✅ Seattle. QS World Rank #59 (2025). WA's flagship university. World-class CS, medicine, engineering, business & nursing.\n• ~53,000 students | ~2,000+ Korean students\n• In-state tuition: ~$12,000/yr | International: ~$40,000/yr\n• Acceptance rate: 48% | CS is highly competitive\n• Active Korean Student Association | 🔗 uw.edu",
+      tags: ["UW", "세계Top60", "CS·의대"] },
+    { emoji: "🎓", name: "UW Bothell", nameEn: "UW Bothell — 보텔 캠퍼스 (STEM·비즈니스)",
       desc: lang === "ko"
-        ? "다운타운 소재. 예수회 대학. 법대·비즈니스·간호. 한인 유학생 커뮤니티 활발. 국제학생 장학금 있음 | 🔗 seattleu.edu"
-        : "Downtown. Jesuit university. Law, business & nursing. Active Korean student community. International scholarships available | 🔗 seattleu.edu",
-      tags: ["시애틀대", "법대", "다운타운"] },
+        ? "✅ 보텔 소재. UW 3개 캠퍼스 중 하나. Cascadia College와 캠퍼스 공유. CS·엔지니어링·비즈니스 강점. UW Seattle보다 합격률 높음 (60%+). 한인 학생 다수. 주립 학비 ~$11,000/년.\n📍 18115 Campus Way NE, Bothell | 🔗 uwb.edu"
+        : "✅ Bothell. One of 3 UW campuses. Shares campus with Cascadia College. Strong CS, engineering & business. Higher acceptance rate than UW Seattle (60%+). Many Korean students.\n📍 18115 Campus Way NE, Bothell | 🔗 uwb.edu",
+      tags: ["UW보텔", "보텔", "높은합격률"] },
+    { emoji: "🎓", name: "Seattle University (시애틀U)", nameEn: "Seattle University — 예수회 명문",
+      desc: lang === "ko"
+        ? "✅ 시애틀 다운타운 소재. 예수회(Jesuit) 대학. 법대·비즈니스·간호·심리 강점. 한인 유학생 커뮤니티 활발. 국제학생 장학금(최대 $20,000/년) 있음. 학비 ~$52,000/년 (전액 장학금 가능).\n📍 901 12th Ave, Seattle | 🔗 seattleu.edu"
+        : "✅ Downtown Seattle. Jesuit university. Strong law, business, nursing & psychology. Active Korean student community. International scholarships up to $20,000/yr. Tuition ~$52,000/yr.\n📍 901 12th Ave, Seattle | 🔗 seattleu.edu",
+      tags: ["시애틀대", "예수회", "국제장학금"] },
+    { emoji: "🎓", name: "Western Washington University (WWU)", nameEn: "WWU — 벨링햄 (가성비 명문)",
+      desc: lang === "ko"
+        ? "벨링햄 소재 (시애틀 북쪽 80마일). Niche A-. 교육학·환경학·비즈니스 강점. 주립 학비 ~$8,800/년. 합격률 82% (비교적 진입 쉬움). 캐나다 밴쿠버 국경 인근.\n📍 516 High St, Bellingham | 🔗 wwu.edu"
+        : "Bellingham (80 miles north of Seattle). Niche A-. Strong education, environmental studies & business. In-state tuition ~$8,800/yr. Acceptance rate 82%.\n📍 516 High St, Bellingham | 🔗 wwu.edu",
+      tags: ["WWU", "벨링햄", "가성비"] },
+    { emoji: "🎓", name: "Washington State University (WSU)", nameEn: "WSU Pullman — 주립 2위",
+      desc: lang === "ko"
+        ? "풀먼 소재 (시애틀 동쪽 280마일). 공대·수의학·농업 전국 강자. 주립 학비 ~$12,600/년. WSU Everett 분교 (에버렛 — 시애틀 30마일권). 합격률 79%.\n📍 WSU Everett: 915 N Broadway, Everett | 🔗 wsu.edu"
+        : "Pullman (280 miles east). Strong engineering, veterinary medicine & agriculture. In-state tuition ~$12,600/yr. WSU Everett branch campus (30 miles from Seattle). Acceptance 79%.\n📍 WSU Everett: 915 N Broadway, Everett | 🔗 wsu.edu",
+      tags: ["WSU", "공대·수의학", "WSU에버렛"] },
   ];
 
+  /* ── Tab 3: 대입 준비 ── */
+  const admissions = [
+    { emoji: "🏃", name: "Running Start 프로그램", nameEn: "Running Start — 고교생 무료 CC 수강",
+      desc: lang === "ko"
+        ? "✅ 워싱턴주 공립 고교생 대상 무료 대학 수업 프로그램 (11-12학년). 커뮤니티 칼리지 학점을 고교·대학 이중 학점으로 인정. 완전 무료 (교재비만 자부담). 매년 약 24,000명 이용.\n\n💡 한인 가족에게 특히 유리:\n• 고교 재학 중 최대 2년치 대학 학점 취득 가능\n• Edmonds College·Bellevue College·Cascadia 참여\n• 지원: 재학 고교 카운슬러 통해 신청 | 🔗 sbctc.edu/running-start"
+        : "✅ Free college courses for WA public high school students (grades 11-12). Earn college AND high school credit simultaneously — completely free (only pay for books).\n\n💡 Especially valuable for Korean families:\n• Earn up to 2 years of college credit in high school\n• Participating schools: Edmonds, Bellevue, Cascadia colleges\n• Apply through your high school counselor | 🔗 sbctc.edu/running-start",
+      tags: ["무료", "이중학점", "11-12학년"] },
+    { emoji: "📝", name: "SAT·ACT 준비 센터 (광역 시애틀)", nameEn: "SAT/ACT Prep — Greater Seattle",
+      desc: lang === "ko"
+        ? "📍 한인 밀집 지역 주요 학원:\n• Score At The Top (벨뷰) — SAT/ACT 한국어 강의 가능\n• Ivy Way Academy (벨뷰·시애틀) — 한인 강사 다수, 대입 컨설팅 포함\n• Princeton Review (온라인+오프라인) — 표준화 시험 최강\n• Khan Academy — 무료 SAT 공식 연습 (College Board 협력)\n\n🎯 목표 점수 가이드:\nUW 합격선 SAT ~1200-1400 | CS전공 1400+\nBellevue College 입학 최소 요건 없음 (오픈 어드미션)"
+        : "📍 Korean tutoring centers in Greater Seattle:\n• Score At The Top (Bellevue) — Korean-speaking instructors available\n• Ivy Way Academy (Bellevue/Seattle) — Korean instructors, college consulting\n• Princeton Review — top SAT/ACT standard prep\n• Khan Academy — free official SAT practice (College Board partner)\n\n🎯 Target scores:\nUW SAT ~1200-1400 | CS major: 1400+\nBellevue College: open admission (no minimum)",
+      tags: ["SAT·ACT", "벨뷰학원", "무료Khan"] },
+    { emoji: "🏫", name: "광역 시애틀 명문 고등학교 TOP", nameEn: "Top High Schools — Greater Seattle",
+      desc: lang === "ko"
+        ? "📊 Niche 기준 상위 고교 (2025):\n1. International School (벨뷰 SD) — 전국 Top 1%, IB 디플로마, 경쟁 입시\n2. Newport High School (벨뷰 SD) — AP 과정 최다, 한인 학생 많음\n3. Interlake High School (벨뷰 SD) — STEM·로보틱스 강점\n4. Mercer Island HS — 소규모 명문, 전국 1%\n5. Redmond High School (LWSD) — MS 인근 STEM\n6. Inglemoor High School (Northshore SD) — 한인 가족 최다\n\n💡 한인에게 TIP: 학군은 거주 주소 자동 배정 → 집 구하기 전 학군 확인 필수!"
+        : "📊 Niche top high schools (2025):\n1. International School (Bellevue SD) — National top 1%, IB Diploma, competitive admission\n2. Newport High School (Bellevue SD) — Most AP courses, many Korean students\n3. Interlake High School (Bellevue SD) — STEM & robotics strength\n4. Mercer Island HS — Small elite school, national top 1%\n5. Redmond High School (LWSD) — Near Microsoft, strong STEM\n6. Inglemoor High School (Northshore SD) — Highest Korean family concentration\n\n💡 TIP: School district = home address. Check the district BEFORE renting!",
+      tags: ["명문고교", "IB", "Niche Top"] },
+    { emoji: "📋", name: "UW 합격 전략 (한인 학생 기준)", nameEn: "UW Admission Strategy for Korean Students",
+      desc: lang === "ko"
+        ? "📊 UW 합격 통계 (2024 입학생 기준):\n• 합격률: 전체 48% / CS전공 15% (매우 경쟁)\n• 평균 GPA: 3.82 (비가중) / SAT: 1280-1480\n• 지원 마감: 11월 15일 (가을 입학)\n• 조기 전형(EA) 없음 — 단일 일반 전형\n\n💡 한인 학생 전략:\n① AP·IB 과정 최대한 이수 (특히 CS·수학·과학)\n② 리더십 활동 (학생회·DECA·로보틱스)\n③ UW 인터뷰 없음 — 에세이 품질이 핵심\n④ 비교과: 독창적 프로젝트 or 커뮤니티 기여\n🔗 admit.uw.edu"
+        : "📊 UW Admission Stats (Class of 2024):\n• Acceptance: 48% overall / CS major 15% (very competitive)\n• Avg unweighted GPA: 3.82 / SAT: 1280-1480\n• Deadline: November 15 (fall quarter)\n• No Early Action — single round admissions\n\n💡 Strategy for Korean students:\n① Max AP/IB courses (especially CS, math, science)\n② Leadership (student council, DECA, robotics)\n③ No UW interview — essays are critical\n④ Extracurriculars: unique projects or community service\n🔗 admit.uw.edu",
+      tags: ["UW전략", "합격률48%", "에세이"] },
+    { emoji: "💰", name: "장학금·학비 지원 총정리", nameEn: "Financial Aid & Scholarships — Korean Students",
+      desc: lang === "ko"
+        ? "💵 주요 장학금:\n• FAFSA (연방 지원) — 영주권·시민권자 필수 신청 (10월 1일 오픈)\n• Washington College Grant (WCG) — 주 소득 기준 최대 $15,000/년\n• UW Husky Promise — 가구소득 $75,000 이하 학비 전액 (주민)\n• Korean American Scholarship Foundation (KASF) — 한인 2세 전용 🔗 kasf.org\n• 한인회 장학금 — 지역 한인회·교회 수시 공고\n\n📝 국제학생: FAFSA 대상 아님 → 각 학교 국제학생 장학금 별도 신청 필수"
+        : "💵 Key scholarships:\n• FAFSA (federal aid) — mandatory for PR/citizens (opens Oct 1)\n• Washington College Grant (WCG) — up to $15,000/yr based on income\n• UW Husky Promise — full tuition for households under $75,000 (residents)\n• Korean American Scholarship Foundation (KASF) — for 2nd-gen Koreans 🔗 kasf.org\n• Korean community scholarships — check local Korean associations & churches\n\n📝 International students: not FAFSA eligible → apply for each school's international scholarships separately",
+      tags: ["FAFSA", "KASF", "WCG장학금"] },
+  ];
+
+  /* ── Tab 4: 학원·ESL ── */
   const tutoringEsl = [
-    { emoji: "📚", name: "한인 학원·과외", nameEn: "Korean Tutoring & Hagwon",
+    { emoji: "📚", name: "한인 학원·과외 (린우드·벨뷰)", nameEn: "Korean Tutoring Centers — Lynnwood & Bellevue",
       desc: lang === "ko"
-        ? "린우드·벨뷰 한인 학원 다수. SAT·ACT·수학·과학 전문. 한국어 가능 개인 과외 $60-100/시. 카카오오픈채팅 '시애틀한인' → 과외 찾기"
-        : "Many Korean tutoring centers in Lynnwood & Bellevue. SAT, ACT, math & science. Korean-speaking tutors $60-100/hr. KakaoTalk '시애틀한인' for tutor listings",
-      tags: ["학원", "SAT", "과외"] },
-    { emoji: "🌍", name: "국제학생 ESL·어학원", nameEn: "ESL & Language Schools",
+        ? "린우드·벨뷰 한인 학원 다수 운영 중. SAT·ACT·AP수학·과학·영어 전문.\n\n주요 학원:\n• Ivy Way Academy (벨뷰) — 대입 컨설팅 포함, 한인 강사\n• Score At The Top (벨뷰) — 표준화 시험 특화\n• Mathnasium (린우드·벨뷰) — 수학 전문 프랜차이즈\n• 개인 과외: $60-100/시, 카카오오픈채팅 '시애틀한인' 검색"
+        : "Many Korean tutoring centers in Lynnwood & Bellevue. SAT, ACT, AP math, science & English.\n\nKey centers:\n• Ivy Way Academy (Bellevue) — includes college consulting, Korean instructors\n• Score At The Top (Bellevue) — standardized test specialists\n• Mathnasium (Lynnwood/Bellevue) — math franchise\n• Private tutors: $60-100/hr, search KakaoTalk '시애틀한인'",
+      tags: ["학원", "SAT·AP", "린우드·벨뷰"] },
+    { emoji: "🌍", name: "국제학생 ESL·어학원", nameEn: "ESL & English Language Schools",
       desc: lang === "ko"
-        ? "✅ ELS Language Centers (시애틀). Kaplan International. 커뮤니티 칼리지 ESL 무료·저렴. Edmonds College ESL 추천 (린우드 인근) | 🔗 edcc.edu"
-        : "✅ ELS Language Centers (Seattle). Kaplan International. Community college ESL free/low-cost. Edmonds College ESL recommended (near Lynnwood) | 🔗 edcc.edu",
-      tags: ["ESL", "어학", "유학생"] },
+        ? "✅ 추천 ESL 프로그램:\n• Edmonds College ESL/IEP — 린우드 소재, 한인 커뮤니티 인근, 저렴 | 🔗 edcc.edu\n• Seattle Central College IEP — 시내 소재, 국제 분위기\n• ELS Language Centers Seattle — 집중 영어 과정 (사설)\n• Kaplan International — IELTS·TOEFL 집중반\n• 무료: Public Library ESL — 킹카운티 도서관 무료 영어 수업"
+        : "✅ Recommended ESL programs:\n• Edmonds College ESL/IEP — Lynnwood, near Korean community, affordable | 🔗 edcc.edu\n• Seattle Central College IEP — downtown, international environment\n• ELS Language Centers Seattle — intensive private courses\n• Kaplan International — IELTS/TOEFL intensive\n• FREE: Public Library ESL — King County Library free English classes",
+      tags: ["ESL", "어학", "무료강좌"] },
+    { emoji: "👶", name: "유아·초등 교육 (프리스쿨·K-12)", nameEn: "Early Childhood & K-12 Resources",
+      desc: lang === "ko"
+        ? "🍼 프리스쿨 (Pre-K) 옵션:\n• ECEAP (Washington State) — 소득 기준 무료 프리스쿨 🔗 dcyf.wa.gov\n• Head Start — 연방 무료 프리스쿨 (소득 기준)\n• 한인 교회 운영 주일학교 겸 주중 프리스쿨 다수\n\n📚 K-12 지원:\n• 한국어-영어 이중언어 교육: Seattle Public Schools 일부 학교 운영\n• 무료 방과후 튜터링: Boys & Girls Club, YMCA after-school\n• 학교 급식 무료: 소득 기준 — USDA National School Lunch Program"
+        : "🍼 Pre-K options:\n• ECEAP (WA State) — free preschool by income 🔗 dcyf.wa.gov\n• Head Start — federal free preschool (income-based)\n• Several Korean churches operate weekday preschools\n\n📚 K-12 support:\n• Korean-English bilingual education: available in some Seattle Public Schools\n• Free after-school tutoring: Boys & Girls Club, YMCA\n• Free school meals: USDA National School Lunch Program (income-based)",
+      tags: ["프리스쿨", "무료K-12", "이중언어"] },
+    { emoji: "💼", name: "성인 교육·직업 훈련", nameEn: "Adult Education & Vocational Training",
+      desc: lang === "ko"
+        ? "✅ 성인 한인 이민자를 위한 교육 자원:\n• WorkSource WA — 무료 직업 훈련·이력서 코칭·취업 연결 🔗 worksourcewa.com\n• Goodwill Job Training — 무료 직업 기술 훈련 (컴퓨터·소매·의료)\n• Edmonds College 평생교육 — 저렴한 성인 직업 과정\n• ACRS (Asian Counseling & Referral Service) — 한국어 지원 취업 서비스\n• KCSC (한인생활상담소) — 한국어 취업 상담·이력서 도움 🔗 kcsc.org"
+        : "✅ Educational resources for adult Korean immigrants:\n• WorkSource WA — free job training, resume coaching & job placement 🔗 worksourcewa.com\n• Goodwill Job Training — free vocational skills (computer, retail, medical)\n• Edmonds College Continuing Education — affordable adult vocational courses\n• ACRS — employment services with Korean language support\n• KCSC (Korean Community Service Center) — Korean-language job counseling 🔗 kcsc.org",
+      tags: ["성인교육", "직업훈련", "무료"] },
   ];
 
   const allEdu = serverContent["education"] ? resolvePlaceItems(serverContent["education"], lang) : null;
   const subData = allEdu
-    ? [allEdu.slice(0, 4), allEdu.slice(4, 6), allEdu.slice(6)]
-    : [districts, universities, tutoringEsl];
+    ? [allEdu.slice(0, 6), allEdu.slice(6, 12), allEdu.slice(12, 17), allEdu.slice(17, 22), allEdu.slice(22)]
+    : [districts, communityColleges, universities, admissions, tutoringEsl];
   const content = subData[sub];
+
+  /* ── 탭별 하단 팁 ── */
+  const tips = [
+    { icon: "🏠", ko: "학군은 거주 주소 기준 자동 배정. 집 계약 전 반드시 학군 확인 (niche.com → School Districts). 한인 밀집 Northshore SD(보텔)·Edmonds SD(린우드)가 가성비 최고.", en: "School district is assigned by home address. Always check the district before signing a lease (niche.com → School Districts). Northshore SD (Bothell) & Edmonds SD (Lynnwood) offer the best value for Korean families." },
+    { icon: "🔄", ko: "CC → 4년제 편입 핵심: 첫 학기부터 DTA(편입 보장 협약) 과목 수강. GPA 3.5+를 유지하면 UW Seattle 편입 가능. 에드먼즈CC·캐스케이디아가 한인에게 최적.", en: "CC → 4-year transfer key: enroll in DTA (transfer agreement) courses from day one. Maintain GPA 3.5+ for UW Seattle transfer. Edmonds CC and Cascadia are top choices for Korean students." },
+    { icon: "🎓", ko: "UW는 11월 15일 마감 (한 번만 지원 가능). CS·엔지니어링은 UW Seattle 경쟁률이 높으니 UW Bothell을 함께 고려. 주립 학비 in-state가 국제보다 3배 저렴.", en: "UW deadline is Nov 15 (single round). CS & Engineering at UW Seattle are very competitive — consider UW Bothell. In-state tuition is 3× cheaper than international." },
+    { icon: "🏃", ko: "Running Start는 워싱턴주 공립 고교생만 대상 (11-12학년). 완전 무료 (교재비만). Edmonds College·Bellevue College·Cascadia 참여. 졸업 시 최대 2년치 학점 취득 가능.", en: "Running Start is for WA public HS students (grades 11-12) only. Completely free (books only). Participating: Edmonds, Bellevue & Cascadia. Earn up to 2 years of college credit before graduating." },
+    { icon: "💵", ko: "ESL은 커뮤니티 칼리지가 사설 어학원보다 훨씬 저렴 (1/3 가격). 킹카운티 공공도서관 ESL은 무료. 직업 훈련은 WorkSource WA를 먼저 확인 — 무료가 많음.", en: "Community college ESL is far cheaper than private language schools (1/3 the price). King County Library ESL is free. For job training, check WorkSource WA first — many programs are free." },
+  ];
+  const tip = tips[sub];
 
   return (
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🎓" titleKo="교육 가이드" titleEn="Education Guide"
-        descKo="시애틀 학군·대학·학원 완전 가이드" descEn="Complete guide to school districts, universities & tutoring in Seattle"
+        descKo="광역 시애틀 30마일권 — 학군·CC·대학·대입 완전 가이드" descEn="Greater Seattle 30-mile radius — School districts, CC, universities & admissions"
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5 px-4 md:px-6 lg:px-8">
@@ -3057,12 +3168,10 @@ function EducationScreen({ onHome }: { onHome?: () => void }) {
         </div>
         <div style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>
-            🎓 {lang === "ko" ? "학군 선택 팁" : "School District Tip"}
+            {tip.icon} {lang === "ko" ? "꼭 알아야 할 팁" : "Key Tip"}
           </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
-            {lang === "ko"
-              ? "학군은 거주 주소 기준으로 자동 배정됩니다. 집 구하기 전 반드시 학군을 먼저 확인하세요. Niche.com에서 학교별 상세 순위 확인 가능합니다."
-              : "School district is automatically assigned by home address. Always check the school district before renting. See detailed school rankings at Niche.com."}
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)", whiteSpace: "pre-line" }}>
+            {lang === "ko" ? tip.ko : tip.en}
           </div>
         </div>
       </div>
