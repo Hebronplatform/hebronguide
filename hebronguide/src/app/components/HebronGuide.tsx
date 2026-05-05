@@ -634,43 +634,66 @@ function CompactHeroNew() {
    NEW HOME: QuickMenuSection
 ───────────────────────────────────────── */
 const QUICK_MENU = [
-  { emoji: "🛬", labelKo: "정착",  labelEn: "Settle",    color: "#F2994A", bg: "#FFF5EC", tab: 1 },
-  { emoji: "⛪", labelKo: "교회",  labelEn: "Church",    color: "#7C3AED", bg: "#F5F0FF", tab: 2 },
-  { emoji: "🍽️", labelKo: "맛집", labelEn: "Food",      color: "#EF4444", bg: "#FFF0F0", tab: 3 },
-  { emoji: "💼", labelKo: "취업",  labelEn: "Jobs",      color: "#059669", bg: "#ECFDF5", tab: 6 },
-  { emoji: "🎓", labelKo: "교육",  labelEn: "Education", color: "#F59E0B", bg: "#FFFBEB", tab: 7 },
-  { emoji: "🆘", labelKo: "도움",  labelEn: "Help",      color: "#64748B", bg: "#F1F5F9", tab: 5 },
+  { emoji: "🛬", labelKo: "정착",   labelEn: "Settle",  color: "#F2994A", bg: "#FFF5EC", tab: 1 },
+  { emoji: "⛪", labelKo: "교회",   labelEn: "Church",  color: "#7C3AED", bg: "#F5F0FF", tab: 2 },
+  { emoji: "🍽️", labelKo: "맛집",  labelEn: "Food",    color: "#EF4444", bg: "#FFF0F0", tab: 3 },
+  { emoji: "💼", labelKo: "취업",   labelEn: "Jobs",    color: "#059669", bg: "#ECFDF5", tab: 6 },
+  { emoji: "🎓", labelKo: "교육",   labelEn: "Education",color:"#F59E0B", bg: "#FFFBEB", tab: 7 },
+  { emoji: "🆘", labelKo: "도움",   labelEn: "Help",    color: "#64748B", bg: "#F1F5F9", tab: 5 },
+  { emoji: "🌆", labelKo: "탐방",   labelEn: "Explore", color: "#0EA5E9", bg: "#F0F9FF", tab: 4 },
+  { emoji: "💰", labelKo: "생활비", labelEn: "Costs",   color: "#8B5CF6", bg: "#F5F3FF", tab: 8 },
+  { emoji: "🏘️", labelKo: "거주지", labelEn: "Areas",   color: "#10B981", bg: "#ECFDF5", tab: 1 },
 ];
 
 function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number) => void }) {
   const { lang } = useI18n();
   return (
-    <div style={{ padding: "20px 16px 8px" }}>
+    <div style={{ padding: "20px 16px 12px" }}>
       <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 15,
-        color: "#1B2A4A", marginBottom: 12, letterSpacing: "-0.3px" }}>
+        color: "#1B2A4A", marginBottom: 14, letterSpacing: "-0.3px" }}>
         ⚡ {lang === "ko" ? "빠른 메뉴" : "Quick Menu"}
       </div>
+      {/* 3×3 그리드 — 넓고 큰 카드 */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
         {QUICK_MENU.map((item, i) => (
           <button key={i} onClick={() => onNavigate?.(item.tab)} style={{
-            background: "#fff", borderRadius: 16, padding: "14px 8px 10px",
-            display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
-            border: `1px solid ${item.color}22`,
-            boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+            background: "#fff",
+            borderRadius: 20,
+            padding: "18px 8px 14px",
+            display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
+            border: `1.5px solid ${item.color}28`,
+            boxShadow: `0 3px 14px rgba(0,0,0,0.07), 0 0 0 0 ${item.color}`,
             cursor: "pointer",
-            transition: "transform 0.15s, box-shadow 0.15s",
+            transition: "transform 0.15s, box-shadow 0.15s, border-color 0.15s",
+            width: "100%",
           }}
-          onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.04)"; e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.12)"; }}
-          onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)"; }}
-          onTouchStart={e => { e.currentTarget.style.transform = "scale(0.97)"; }}
+          onMouseEnter={e => {
+            e.currentTarget.style.transform = "translateY(-3px) scale(1.02)";
+            e.currentTarget.style.boxShadow = `0 8px 24px rgba(0,0,0,0.12)`;
+            e.currentTarget.style.borderColor = item.color + "66";
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.transform = "translateY(0) scale(1)";
+            e.currentTarget.style.boxShadow = "0 3px 14px rgba(0,0,0,0.07)";
+            e.currentTarget.style.borderColor = item.color + "28";
+          }}
+          onTouchStart={e => { e.currentTarget.style.transform = "scale(0.96)"; }}
           onTouchEnd={e => { e.currentTarget.style.transform = "scale(1)"; }}
           >
-            <div style={{ width: 44, height: 44, borderRadius: 14, background: item.bg,
-              display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>
+            {/* 이모지 아이콘 박스 — 더 크게 */}
+            <div style={{
+              width: 52, height: 52, borderRadius: 16,
+              background: item.bg,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 26,
+              boxShadow: `0 2px 8px ${item.color}22`,
+            }}>
               {item.emoji}
             </div>
-            <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 12,
-              color: "#1B2A4A" }}>
+            <span style={{
+              fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13,
+              color: "#1B2A4A", letterSpacing: "-0.2px",
+            }}>
               {lang === "ko" ? item.labelKo : item.labelEn}
             </span>
           </button>
@@ -2189,11 +2212,12 @@ function CostScreen({ onHome }: { onHome?: () => void }) {
 /* ─────────────────────────────────────────
    NAV ITEMS (3개로 축소)
 ───────────────────────────────────────── */
-// 언어 토글은 상단 AppBar에만 — 하단은 핵심 3개만
+// 언어 토글은 상단 AppBar에만 — 하단은 핵심 4개
 const NAV_ITEMS = [
-  { id: "home",   icon: Home,          labelKo: "홈",   labelEn: "Home"  },
-  { id: "search", icon: Search,        labelKo: "검색",  labelEn: "Search"},
-  { id: "share",  icon: MessageCircle, labelKo: "공유",  labelEn: "Share" },
+  { id: "home",      icon: Home,          labelKo: "홈",   labelEn: "Home"      },
+  { id: "search",    icon: Search,        labelKo: "검색",  labelEn: "Search"    },
+  { id: "share",     icon: MessageCircle, labelKo: "나눔",  labelEn: "Share"     },
+  { id: "translate", icon: Globe,         labelKo: "통역",  labelEn: "Translate" },
 ];
 
 /* ─────────────────────────────────────────
@@ -2227,6 +2251,89 @@ function DesktopSidebar({ activeTab, onNavigate }: { activeTab: number; onNaviga
 /* ─────────────────────────────────────────
    BOTTOM NAV (3개 버튼)
 ───────────────────────────────────────── */
+/* ─────────────────────────────────────────
+   통역 모달
+───────────────────────────────────────── */
+function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string }) {
+  const [input, setInput] = useState("");
+  const [listening, setListening] = useState(false);
+  const [result, setResult] = useState("");
+
+  // Web Speech API 음성 인식
+  const startListen = () => {
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert(lang === "ko" ? "이 브라우저는 음성 인식을 지원하지 않아요." : "This browser doesn't support speech recognition.");
+      return;
+    }
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.interimResults = false;
+    recognition.onstart = () => setListening(true);
+    recognition.onend = () => setListening(false);
+    recognition.onresult = (e: any) => {
+      const text = e.results[0][0].transcript;
+      setInput(text);
+      // Google Translate로 번역 (링크 방식)
+      const url = `https://translate.google.com/?sl=en&tl=ko&text=${encodeURIComponent(text)}&op=translate`;
+      setResult(url);
+    };
+    recognition.start();
+  };
+
+  const openTranslate = (from: string, to: string) => {
+    const text = input || (lang === "ko" ? "번역할 내용을 입력하세요" : "Enter text to translate");
+    window.open(`https://translate.google.com/?sl=${from}&tl=${to}&text=${encodeURIComponent(text)}&op=translate`, "_blank");
+  };
+
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 300, background: "rgba(0,0,0,0.45)", backdropFilter: "blur(4px)", display: "flex", alignItems: "flex-end" }} onClick={onClose}>
+      <div style={{ width: "100%", maxWidth: 430, margin: "0 auto", background: "#fff", borderRadius: "24px 24px 0 0", padding: "24px 20px 40px", boxShadow: "0 -8px 40px rgba(0,0,0,0.15)" }} onClick={e => e.stopPropagation()}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+          <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 18, color: "#1B2A4A" }}>
+            🌐 {lang === "ko" ? "현장 통역" : "Live Translate"}
+          </div>
+          <button onClick={onClose} style={{ border: "none", background: "none", fontSize: 22, cursor: "pointer", color: "#9CA3AF" }}>✕</button>
+        </div>
+
+        {/* 음성 인식 버튼 */}
+        <button onClick={startListen} style={{
+          width: "100%", padding: "16px", borderRadius: 16, border: "none", cursor: "pointer",
+          background: listening ? "#FEE2E2" : "#F0FDF4",
+          display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+          marginBottom: 14,
+        }}>
+          <span style={{ fontSize: 28 }}>{listening ? "🔴" : "🎙️"}</span>
+          <div style={{ textAlign: "left" }}>
+            <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 14, color: listening ? "#EF4444" : "#059669" }}>
+              {listening ? (lang === "ko" ? "듣고 있어요..." : "Listening...") : (lang === "ko" ? "마이크로 영어 말하기" : "Speak English to mic")}
+            </div>
+            <div style={{ fontSize: 11, color: "#64748B", marginTop: 2 }}>
+              {lang === "ko" ? "→ 한국어로 자동 번역" : "→ Auto-translate to Korean"}
+            </div>
+          </div>
+        </button>
+
+        {/* 텍스트 입력 */}
+        <textarea value={input} onChange={e => setInput(e.target.value)} placeholder={lang === "ko" ? "또는 여기에 직접 입력..." : "Or type here..."} style={{ width: "100%", height: 80, border: "1px solid #E2E8F0", borderRadius: 12, padding: "10px 14px", fontSize: 14, outline: "none", fontFamily: "'Noto Sans KR',sans-serif", resize: "none", boxSizing: "border-box", marginBottom: 12 }} />
+
+        {/* 번역 방향 버튼 */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+          <button onClick={() => openTranslate("en", "ko")} style={{ padding: "12px", borderRadius: 12, border: "1px solid #E2E8F0", background: "#F8FAFC", cursor: "pointer", fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600, fontSize: 13, color: "#1B2A4A" }}>
+            🇺🇸 EN → 🇰🇷 KO
+          </button>
+          <button onClick={() => openTranslate("ko", "en")} style={{ padding: "12px", borderRadius: 12, border: "1px solid #E2E8F0", background: "#F8FAFC", cursor: "pointer", fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600, fontSize: 13, color: "#1B2A4A" }}>
+            🇰🇷 KO → 🇺🇸 EN
+          </button>
+        </div>
+        <div style={{ marginTop: 10, fontSize: 11, color: "#94A3B8", textAlign: "center" }}>
+          {lang === "ko" ? "Google Translate로 연결됩니다" : "Opens Google Translate"}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─────────────────────────────────────────
    상담·공유 모달
 ───────────────────────────────────────── */
@@ -2328,20 +2435,17 @@ interface BottomNavProps {
   onSearchToggle: () => void;
   onLangCycle: () => void;
   onShareToggle: () => void;
+  onTranslateToggle: () => void;
 }
-function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle, onShareToggle }: BottomNavProps) {
+function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle, onShareToggle, onTranslateToggle }: BottomNavProps) {
   const { lang } = useI18n();
 
   const handleClick = (id: string, i: number) => {
-    if (id === "home") {
-      onChange(0);
-    } else if (id === "search") {
-      onSearchToggle();
-    } else if (id === "share") {
-      onShareToggle();
-    } else if (id === "lang") {
-      onLangCycle();
-    }
+    if (id === "home") onChange(0);
+    else if (id === "search") onSearchToggle();
+    else if (id === "share") onShareToggle();
+    else if (id === "translate") onTranslateToggle();
+    else if (id === "lang") onLangCycle();
   };
 
   // 검색·언어 버튼은 활성 탭 표시 없음 (홈만 activeIndex=0 일치 시 활성)
@@ -2453,7 +2557,7 @@ function AppBar() {
       <div className="flex items-center gap-[8px]">
         {/* 언어 토글: KO / EN / ES */}
         <div className="flex items-center" style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 10, padding: 2, gap: 2 }}>
-          {(["en", "ko", "es"] as const).map((l) => (
+          {(["ko", "en"] as const).map((l) => (
             <button
               key={l}
               onClick={() => setLang(l)}
@@ -2485,6 +2589,7 @@ export function HebronGuide() {
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [showChat, setShowChat] = useState(false);
+  const [showTranslate, setShowTranslate] = useState(false);
   const isOnline = useOnlineStatus();
   const { showBanner, handleInstall, handleDismiss } = useInstallPrompt();
   const { lang, setLang } = useI18n();
@@ -2497,7 +2602,7 @@ export function HebronGuide() {
   };
 
   const handleLangCycle = () => {
-    setLang(lang === "ko" ? "en" : lang === "en" ? "es" : "ko");
+    setLang(lang === "ko" ? "en" : "ko");
   };
 
   const handleSearchToggle = () => {
@@ -2597,10 +2702,11 @@ export function HebronGuide() {
         {/* 오프라인 배너 */}
         {!isOnline && <OfflineBanner />}
 
-        {/* 상담·공유 모달 */}
-        {showChat && (
-          <ChatShareModal onClose={() => setShowChat(false)} lang={lang} />
-        )}
+        {/* 공유 모달 */}
+        {showChat && <ChatShareModal onClose={() => setShowChat(false)} lang={lang} />}
+
+        {/* 통역 모달 */}
+        {showTranslate && <TranslateModal onClose={() => setShowTranslate(false)} lang={lang} />}
 
         <BottomNav
           activeIndex={activeNav}
@@ -2608,6 +2714,7 @@ export function HebronGuide() {
           onSearchToggle={handleSearchToggle}
           onLangCycle={handleLangCycle}
           onShareToggle={() => setShowChat(prev => !prev)}
+          onTranslateToggle={() => setShowTranslate(prev => !prev)}
         />
       </div>
     </div>
