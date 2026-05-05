@@ -14,9 +14,9 @@ ls -la
 rm -rf public
 mkdir -p public
 
-# 2. 루트 정적 파일 복사 (허브·도시 단일 파일 PWA)
+# 2. 루트 정적 파일 복사
+# ⚠️ index.html은 복사 안 함 → vercel.json redirect(/ → /seattle/)가 작동하도록
 echo "📁 정적 파일 복사 중..."
-cp index.html      public/index.html
 cp robots.txt      public/robots.txt
 cp sitemap.xml     public/sitemap.xml
 cp llms.txt        public/llms.txt
