@@ -2722,40 +2722,57 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string }
 function ChatShareModal({ onClose, lang }: { onClose: () => void; lang: string }) {
   const appUrl = "https://hebronguide.com/seattle/";
   const shareText = lang === "ko"
-    ? "시애틀 한인 정착 가이드 앱! 추천해요 👍"
-    : "Korean settlement guide for Seattle! Check it out 👍";
+    ? "시애틀 한인 정착 가이드 — HebronGuide 👍"
+    : "Korean settlement guide for Seattle — HebronGuide 👍";
+
+  // 네이티브 공유 (iPhone/Android 기본 공유 시트 — WhatsApp·KakaoTalk·WeChat 등 자동 표시)
+  const handleNativeShare = () => {
+    if (navigator.share) {
+      navigator.share({ title: "HebronGuide Seattle", text: shareText, url: appUrl })
+        .catch(() => {});
+    } else {
+      navigator.clipboard?.writeText(appUrl);
+      alert(lang === "ko" ? "✅ 링크 복사됨!" : "✅ Link copied!");
+    }
+    onClose();
+  };
 
   const actions = [
     {
-      icon: "💬", label: lang === "ko" ? "카카오 오픈채팅" : "KakaoTalk",
-      desc: lang === "ko" ? "시애틀한인 커뮤니티 채팅방" : "Seattle Korean community chat",
-      color: "#FEE500",
-      href: "https://open.kakao.com/o/gSeattleKorean",
-    },
-    {
-      icon: "📱", label: lang === "ko" ? "앱 링크 공유" : "Share App Link",
-      desc: lang === "ko" ? "친구에게 이 앱을 소개하세요" : "Introduce this app to friends",
+      // 네이티브 공유 — 가장 글로벌 (사용자 폰에 설치된 모든 앱으로 공유 가능)
+      icon: "📤",
+      label: lang === "ko" ? "공유하기" : "Share",
+      desc: lang === "ko" ? "WhatsApp · KakaoTalk · WeChat · SMS · 이메일 등" : "WhatsApp · KakaoTalk · WeChat · SMS · Email & more",
       color: "#F2994A",
-      onClick: () => {
-        if (navigator.share) {
-          navigator.share({ title: "HebronGuide Seattle", text: shareText, url: appUrl });
-        } else {
-          navigator.clipboard.writeText(appUrl);
-          alert(lang === "ko" ? "링크 복사됨!" : "Link copied!");
-        }
-      },
+      onClick: handleNativeShare,
     },
     {
-      icon: "✉️", label: lang === "ko" ? "카카오스토리 공유" : "Share via KakaoStory",
-      desc: lang === "ko" ? "SNS에 정보 공유하기" : "Share on social media",
-      color: "#5B7FB6",
-      href: `https://story.kakao.com/share?url=${encodeURIComponent(appUrl)}`,
+      // WhatsApp — 글로벌 1위 메신저
+      icon: "💚",
+      label: "WhatsApp",
+      desc: lang === "ko" ? "전세계 20억+ 사용자" : "2B+ users worldwide",
+      color: "#25D366",
+      href: `https://wa.me/?text=${encodeURIComponent(shareText + "\n" + appUrl)}`,
     },
     {
-      icon: "📧", label: lang === "ko" ? "이메일로 공유" : "Share via Email",
-      desc: lang === "ko" ? "지인에게 이메일로 보내기" : "Send to friends via email",
+      // 이메일
+      icon: "📧",
+      label: lang === "ko" ? "이메일" : "Email",
+      desc: lang === "ko" ? "Gmail · Outlook · Apple Mail" : "Gmail · Outlook · Apple Mail",
       color: "#2563EB",
       href: `mailto:?subject=HebronGuide Seattle&body=${encodeURIComponent(shareText + "\n" + appUrl)}`,
+    },
+    {
+      // 링크 복사
+      icon: "🔗",
+      label: lang === "ko" ? "링크 복사" : "Copy Link",
+      desc: lang === "ko" ? "클립보드에 복사" : "Copy to clipboard",
+      color: "#64748B",
+      onClick: () => {
+        navigator.clipboard?.writeText(appUrl);
+        alert(lang === "ko" ? "✅ 링크 복사됨!" : "✅ Link copied!");
+        onClose();
+      },
     },
   ];
 
@@ -2773,7 +2790,7 @@ function ChatShareModal({ onClose, lang }: { onClose: () => void; lang: string }
       }} onClick={e => e.stopPropagation()}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
           <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 18, color: "#1B2A4A" }}>
-            🔗 {lang === "ko" ? "공유 & 커뮤니티" : "Share & Community"}
+            📤 {lang === "ko" ? "앱 공유하기" : "Share App"}
           </div>
           <button onClick={onClose} style={{ border: "none", background: "none", fontSize: 22, cursor: "pointer", color: "#9CA3AF" }}>✕</button>
         </div>
