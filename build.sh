@@ -20,7 +20,9 @@ cp icon-192.png public/apple-touch-icon-precomposed.png
 # 3. React 빌드
 echo "--- React Build ---"
 cd hebronguide
-npm install -g pnpm@10 --silent
+# Vercel에서 pnpm 사용하는 가장 안정적인 방법
+corepack enable
+corepack prepare pnpm@10 --activate
 pnpm install --frozen-lockfile
 pnpm build
 cd ..
