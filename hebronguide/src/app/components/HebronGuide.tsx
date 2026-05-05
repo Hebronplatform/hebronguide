@@ -649,29 +649,32 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number) => void }
   const { lang } = useI18n();
   return (
     <div style={{ padding: "20px 16px 12px" }}>
-      <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 15,
-        color: "#1B2A4A", marginBottom: 14, letterSpacing: "-0.3px" }}>
-        ⚡ {lang === "ko" ? "빠른 메뉴" : "Quick Menu"}
+      <div style={{
+        fontFamily: "-apple-system, 'SF Pro Display', 'Noto Sans KR', sans-serif",
+        fontWeight: 700, fontSize: 22, color: "#000",
+        letterSpacing: "-0.5px", marginBottom: 12,
+      }}>
+        {lang === "ko" ? "빠른 메뉴" : "Quick Menu"}
       </div>
       {/* 3×3 콤팩트 그리드 */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
         {QUICK_MENU.map((item, i) => (
           <button key={i} onClick={() => onNavigate?.(item.tab)} style={{
-            background: "#fff",
-            borderRadius: 14,
+            background: "#FFFFFF",
+            borderRadius: 12,
             padding: "10px 4px 8px",
             display: "flex", flexDirection: "column", alignItems: "center", gap: 5,
-            border: `1px solid ${item.color}22`,
-            boxShadow: "0 1px 6px rgba(0,0,0,0.06)",
+            border: "none",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
             cursor: "pointer",
             transition: "transform 0.12s ease, box-shadow 0.12s ease",
             width: "100%",
-            minHeight: 72,  /* Apple HIG 터치 타겟 확보 */
+            minHeight: 72,
           }}
           onTouchStart={e => { e.currentTarget.style.transform = "scale(0.94)"; e.currentTarget.style.background = item.bg; }}
-          onTouchEnd={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.background = "#fff"; }}
-          onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 4px 14px rgba(0,0,0,0.11)`; e.currentTarget.style.borderColor = item.color + "44"; }}
-          onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 1px 6px rgba(0,0,0,0.06)"; e.currentTarget.style.borderColor = item.color + "22"; }}
+          onTouchEnd={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.background = "#FFFFFF"; }}
+          onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 4px 14px rgba(0,0,0,0.12)"; }}
+          onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.1)"; }}
           >
             <div style={{
               width: 34, height: 34, borderRadius: 10,
@@ -682,7 +685,8 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number) => void }
               {item.emoji}
             </div>
             <span style={{
-              fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600,
+              fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Noto Sans KR', sans-serif",
+              fontWeight: 600,
               fontSize: 11, color: "#374151", letterSpacing: "-0.1px",
             }}>
               {lang === "ko" ? item.labelKo : item.labelEn}
@@ -711,12 +715,16 @@ function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number
   return (
     <div style={{ padding: "16px 0 8px" }}>
       <div style={{ padding: "0 16px", marginBottom: 12, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 15,
-          color: "#1B2A4A", letterSpacing: "-0.3px" }}>
-          ✅ {lang === "ko" ? "정착 필수" : "Settlement Essentials"}
+        <div style={{
+          fontFamily: "-apple-system, 'SF Pro Display', 'Noto Sans KR', sans-serif",
+          fontWeight: 700, fontSize: 22, color: "#000", letterSpacing: "-0.5px",
+        }}>
+          {lang === "ko" ? "정착 필수" : "Settlement Essentials"}
         </div>
         <button onClick={() => onNavigate?.(1)} style={{
-          background: "none", border: "none", fontFamily: "Manrope,sans-serif", fontWeight: 600,
+          background: "none", border: "none",
+          fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Noto Sans KR', sans-serif",
+          fontWeight: 600,
           fontSize: 12, color: "#F2994A", cursor: "pointer" }}>
           {lang === "ko" ? "전체 보기 →" : "See all →"}
         </button>
@@ -726,27 +734,32 @@ function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number
         padding: "0 16px" }}>
         {SETTLE_STEPS.map((step, i) => (
           <button key={i} onClick={() => onNavigate?.(1)} style={{
-            background: "#fff", borderRadius: 14, padding: "12px 8px",
+            background: "#FFFFFF", borderRadius: 12, padding: "12px 8px",
             display: "flex", flexDirection: "column", gap: 7,
-            border: `1px solid ${step.color}22`,
-            boxShadow: "0 2px 10px rgba(0,0,0,0.06)",
+            border: "none",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
             cursor: "pointer", textAlign: "left",
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
               <div style={{ width: 22, height: 22, borderRadius: 7, background: step.color,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#fff",
+                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif",
+                fontWeight: 800, fontSize: 11, color: "#fff",
                 flexShrink: 0 }}>
                 {step.num}
               </div>
               <span style={{ fontSize: 16 }}>{step.emoji}</span>
             </div>
             <div>
-              <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 11,
+              <div style={{
+                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Noto Sans KR', sans-serif",
+                fontWeight: 700, fontSize: 11,
                 color: "#1B2A4A", marginBottom: 2 }}>
                 {lang === "ko" ? step.titleKo : step.titleEn}
               </div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#64748B",
+              <div style={{
+                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif",
+                fontSize: 9, color: "#64748B",
                 lineHeight: 1.4, whiteSpace: "pre-line" }}>
                 {lang === "ko" ? step.descKo : step.descEn}
               </div>
@@ -1426,10 +1439,10 @@ function Top3NeighborhoodsSection() {
 ───────────────────────────────────────── */
 function HomeScreen({ onNavigate }: { onNavigate?: (tab: number) => void }) {
   return (
-    <div style={{ background: "#F8FAFC", minHeight: "100vh", paddingBottom: 80 }}>
+    <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: 80 }}>
       <CompactHeroNew />
       <QuickMenuSection onNavigate={onNavigate} />
-      <div style={{ margin: "0 16px", height: 1, background: "#E2E8F0" }} />
+      <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <SettlementEssentialsSection onNavigate={onNavigate} />
     </div>
   );
@@ -2450,11 +2463,11 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle, onShare
         left: "50%",
         transform: "translateX(-50%)",
         width: "100%",
-        background: "rgba(255,255,255,0.97)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        borderTop: "1px solid rgba(0,0,0,0.08)",
-        boxShadow: "0 -4px 24px rgba(0,0,0,0.08)",
+        background: "rgba(249,249,249,0.94)",
+        backdropFilter: "blur(20px) saturate(180%)",
+        WebkitBackdropFilter: "blur(20px) saturate(180%)",
+        borderTop: "0.5px solid rgba(0,0,0,0.18)",
+        boxShadow: "none",
       }}
     >
       <div style={{ display: "flex", height: "100%", alignItems: "stretch" }}>
@@ -2491,14 +2504,14 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle, onShare
               )}
               <IconComp
                 size={24}
-                color={active ? "#F2994A" : "#9CA3AF"}
+                color={active ? "#F2994A" : "#8E8E93"}
                 strokeWidth={active ? 2.2 : 1.5}
               />
               <span style={{
-                fontFamily: "Manrope,sans-serif",
+                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif",
                 fontWeight: active ? 700 : 500,
                 fontSize: 10,
-                color: active ? "#F2994A" : "#9CA3AF",
+                color: active ? "#F2994A" : "#8E8E93",
                 whiteSpace: "nowrap",
                 letterSpacing: "-0.2px",
               }}>
@@ -2522,10 +2535,10 @@ function AppBar() {
       className="sticky top-0 z-40 flex items-center justify-between px-[20px] w-full max-w-[430px] md:max-w-[768px] lg:max-w-[1200px]"
       style={{
         height: 56,
-        background: "rgba(255,255,255,0.97)",
-        backdropFilter: "blur(16px)",
-        WebkitBackdropFilter: "blur(16px)",
-        borderBottom: "1px solid rgba(0,0,0,0.06)",
+        background: "rgba(249,249,249,0.94)",
+        backdropFilter: "blur(20px) saturate(180%)",
+        WebkitBackdropFilter: "blur(20px) saturate(180%)",
+        borderBottom: "0.5px solid rgba(0,0,0,0.18)",
       }}
     >
       <div className="flex items-center gap-[10px]">
@@ -2536,10 +2549,10 @@ function AppBar() {
         </div>
         <div className="flex flex-col" style={{ lineHeight: 1 }}>
           <div>
-            <span style={{ fontFamily: "Manrope, sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "1.5px", color: "#F2994A" }}>HEBRON</span>
-            <span style={{ fontFamily: "Manrope, sans-serif", fontWeight: 600, fontSize: 13, letterSpacing: "1.5px", color: "#64748B" }}>GUIDE</span>
+            <span style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "1.5px", color: "#F2994A" }}>HEBRON</span>
+            <span style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 600, fontSize: 13, letterSpacing: "1.5px", color: "#64748B" }}>GUIDE</span>
           </div>
-          <div style={{ fontFamily: "Manrope, sans-serif", fontWeight: 500, fontSize: 9, letterSpacing: "0.5px", color: "#059669", marginTop: 2 }}>
+          <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 500, fontSize: 9, letterSpacing: "0.5px", color: "#059669", marginTop: 2 }}>
             {t("brand.sub")}
           </div>
         </div>
@@ -2560,7 +2573,7 @@ function AppBar() {
                 transition: "all 0.2s ease",
               }}
             >
-              <span style={{ fontFamily: "Manrope, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: "0.5px", color: lang === l ? "#F2994A" : "#94A3B8" }}>
+              <span style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: "0.5px", color: lang === l ? "#F2994A" : "#94A3B8" }}>
                 {l.toUpperCase()}
               </span>
             </button>
@@ -2636,7 +2649,7 @@ export function HebronGuide() {
   ];
 
   return (
-    <div className="flex min-h-screen" style={{ background: "#F8FAFC" }}>
+    <div className="flex min-h-screen" style={{ background: "#F2F2F7" }}>
       {/* 데스크탑 사이드바 */}
       <DesktopSidebar activeTab={activeNav} onNavigate={handleNavigate} />
 
