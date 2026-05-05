@@ -3132,35 +3132,31 @@ export function HebronGuide() {
                 </div>
               )}
 
-              {/* 구분선 */}
-              {q.length > 0 && <div style={{ height: 1, background: "#F1F5F9", margin: "0 16px" }} />}
-
-              {/* 외부 검색 — 항상 표시 */}
-              <div style={{ padding: "10px 14px 14px" }}>
-                <div style={{ fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700,
-                  color: "#94A3B8", letterSpacing: "0.5px", textTransform: "uppercase", marginBottom: 8 }}>
-                  {lang === "ko" ? "더 찾아보기" : "Search More"}
-                </div>
+              {/* 외부 검색 — 앱 내 결과 없을 때만 강조, 항상 하단에 작게 표시 */}
+              <div style={{ padding: q.length > 0 && internalMatches.length === 0 ? "12px 14px 16px" : "8px 14px 12px",
+                background: q.length > 0 && internalMatches.length === 0 ? "#FFF8F5" : "transparent",
+                borderTop: "1px solid #F1F5F9" }}>
+                {q.length > 0 && internalMatches.length === 0 && (
+                  <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 13, color: "#64748B", marginBottom: 10 }}>
+                    {lang === "ko" ? `"${searchQuery}" 앱 내 결과가 없어요. 외부에서 찾아볼게요:` : `No results in app for "${searchQuery}". Try:` }
+                  </div>
+                )}
                 <div style={{ display: "flex", gap: 8 }}>
                   <a href={googleUrl} target="_blank" rel="noopener noreferrer" style={{
-                    flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-                    padding: "10px 12px", borderRadius: 12, textDecoration: "none",
+                    flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
+                    padding: "9px 10px", borderRadius: 10, textDecoration: "none",
                     background: "#F8FAFC", border: "1px solid #E2E8F0",
                   }}>
-                    <span style={{ fontSize: 16 }}>🔍</span>
-                    <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#1B2A4A" }}>
-                      Google
-                    </span>
+                    <span style={{ fontSize: 14 }}>🔍</span>
+                    <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#374151" }}>Google</span>
                   </a>
                   <a href={perplexityUrl} target="_blank" rel="noopener noreferrer" style={{
-                    flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-                    padding: "10px 12px", borderRadius: 12, textDecoration: "none",
-                    background: "#F0F9FF", border: "1px solid #BAE6FD",
+                    flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
+                    padding: "9px 10px", borderRadius: 10, textDecoration: "none",
+                    background: "#EFF6FF", border: "1px solid #BFDBFE",
                   }}>
-                    <span style={{ fontSize: 16 }}>🤖</span>
-                    <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#0369A1" }}>
-                      Perplexity
-                    </span>
+                    <span style={{ fontSize: 14 }}>🤖</span>
+                    <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#1D4ED8" }}>Perplexity</span>
                   </a>
                 </div>
               </div>
