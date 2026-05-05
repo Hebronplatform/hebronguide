@@ -1464,6 +1464,7 @@ function EmergencyRow({ emoji, title, number, desc }: { emoji: string; title: st
 
 /* ─────────────────────────────────────────
    BACK BUTTON (섹션 화면 상단 홈 복귀)
+   — 언제 어디서든 홈으로 돌아올 수 있는 길
 ───────────────────────────────────────── */
 function BackToHomeButton({ onHome, lang }: { onHome?: () => void; lang: string }) {
   if (!onHome) return null;
@@ -1471,16 +1472,74 @@ function BackToHomeButton({ onHome, lang }: { onHome?: () => void; lang: string 
     <button
       onClick={onHome}
       style={{
-        display: "flex", alignItems: "center", gap: 6,
-        padding: "8px 16px",
-        background: "none", border: "none", cursor: "pointer",
-        fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600, fontSize: 13,
-        color: "rgba(236,253,245,0.55)",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        display: "flex", alignItems: "center", gap: 8,
+        padding: "10px 16px",
+        background: "rgba(242,153,74,0.08)",
+        border: "none",
+        borderBottom: "1px solid rgba(242,153,74,0.15)",
+        cursor: "pointer",
         width: "100%",
+        transition: "background 0.15s",
       }}
+      onMouseEnter={e => (e.currentTarget.style.background = "rgba(242,153,74,0.15)")}
+      onMouseLeave={e => (e.currentTarget.style.background = "rgba(242,153,74,0.08)")}
     >
-      ← {lang === "ko" ? "홈으로" : "Home"}
+      <div style={{
+        width: 28, height: 28, borderRadius: 8,
+        background: "rgba(242,153,74,0.2)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        fontSize: 14, flexShrink: 0,
+      }}>🏠</div>
+      <div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#F2994A" }}>
+          {lang === "ko" ? "← 홈으로" : "← Home"}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(242,153,74,0.6)", marginTop: 1 }}>
+          HebronGuide
+        </div>
+      </div>
+    </button>
+  );
+}
+
+/* ─────────────────────────────────────────
+   FLOATING HOME BUTTON
+   — 어느 탭에 있든 항상 홈으로 돌아올 수 있는 고정 버튼
+───────────────────────────────────────── */
+function FloatingHomeButton({ activeNav, onHome }: { activeNav: number; onHome: () => void }) {
+  if (activeNav === 0) return null; // 홈 화면에서는 숨김
+  return (
+    <button
+      onClick={onHome}
+      style={{
+        position: "fixed",
+        bottom: 90,        // 바텀 네비 위
+        right: 16,
+        zIndex: 200,
+        width: 44,
+        height: 44,
+        borderRadius: "50%",
+        background: "#F2994A",
+        border: "none",
+        boxShadow: "0 4px 16px rgba(242,153,74,0.45)",
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: 20,
+        transition: "transform 0.15s ease, box-shadow 0.15s ease",
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLElement).style.transform = "scale(1.1)";
+        (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 20px rgba(242,153,74,0.6)";
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLElement).style.transform = "scale(1)";
+        (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(242,153,74,0.45)";
+      }}
+      title="홈으로"
+    >
+      🏠
     </button>
   );
 }
@@ -3273,19 +3332,36 @@ function DesktopSidebar({ activeTab, onNavigate }: { activeTab: number; onNaviga
   return (
     <aside className="hidden lg:flex lg:flex-col lg:fixed lg:left-0 lg:top-0 lg:bottom-0 lg:w-64 lg:border-r"
       style={{ borderColor: "rgba(255,255,255,0.08)", background: "#1a2535", padding: "80px 16px 24px", zIndex: 30 }}>
-      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 16, color: "#C9A227", marginBottom: 24, letterSpacing: "1px" }}>
+      {/* 홈 버튼 — 항상 최상단 */}
+      <button onClick={() => onNavigate(0)} style={{
+        width: "100%", textAlign: "left", display: "flex", alignItems: "center", gap: 12,
+        padding: "12px 14px", borderRadius: 12, border: "none", cursor: "pointer",
+        background: activeTab === 0 ? "rgba(242,153,74,0.18)" : "rgba(242,153,74,0.06)",
+        color: activeTab === 0 ? "#F2994A" : "rgba(242,153,74,0.7)",
+        fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14,
+        marginBottom: 8, transition: "all 0.2s ease",
+        borderLeft: activeTab === 0 ? "3px solid #F2994A" : "3px solid transparent",
+      }}>
+        <span style={{ fontSize: 18 }}>🏠</span>
+        {lang === "ko" ? "홈" : "Home"}
+      </button>
+
+      <div style={{ height: 0.5, background: "rgba(255,255,255,0.08)", marginBottom: 8 }} />
+
+      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 16, color: "#C9A227", marginBottom: 16, letterSpacing: "1px", paddingLeft: 4 }}>
         HEBRONGUIDE
       </div>
       {QUICK_MENU.map((item, i) => (
         <button key={i} onClick={() => onNavigate(item.tab)} style={{
           width: "100%", textAlign: "left", display: "flex", alignItems: "center", gap: 12,
-          padding: "12px 14px", borderRadius: 12, border: "none", cursor: "pointer",
+          padding: "10px 14px", borderRadius: 12, border: "none", cursor: "pointer",
           background: activeTab === item.tab ? "rgba(242,153,74,0.12)" : "transparent",
           color: activeTab === item.tab ? "#F2994A" : "rgba(236,253,245,0.55)",
-          fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600, fontSize: 14,
-          marginBottom: 4, transition: "all 0.2s ease",
+          fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600, fontSize: 13,
+          marginBottom: 2, transition: "all 0.2s ease",
+          borderLeft: activeTab === item.tab ? "3px solid #F2994A" : "3px solid transparent",
         }}>
-          <span style={{ fontSize: 20 }}>{item.emoji}</span>
+          <span style={{ fontSize: 18 }}>{item.emoji}</span>
           {lang === "ko" ? item.labelKo : item.labelEn}
         </button>
       ))}
@@ -4561,6 +4637,9 @@ export function HebronGuide() {
 
         {/* 오프라인 배너 */}
         {!isOnline && <OfflineBanner />}
+
+        {/* 🏠 떠있는 홈 버튼 — 어느 탭에서든 항상 홈으로 */}
+        <FloatingHomeButton activeNav={activeNav} onHome={() => setActiveNav(0)} />
 
         {/* 공유 모달 */}
         {showChat && <ChatShareModal onClose={() => setShowChat(false)} lang={lang} activeNav={activeNav} />}
