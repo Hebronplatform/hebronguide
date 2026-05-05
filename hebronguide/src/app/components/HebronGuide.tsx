@@ -23,7 +23,7 @@
  * ══════════════════════════════════════════════════════════
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import svgPaths from "../../imports/svg-uguh2ql8id";
 // 2026 최신 시애틀 사진 (Unsplash — 무료 라이선스)
 const imgHeroCard = "https://images.unsplash.com/photo-1571842377564-5849a26c3fc2?w=1200&q=85";  // Seattle skyline 2024
@@ -2641,82 +2641,279 @@ function DesktopSidebar({ activeTab, onNavigate }: { activeTab: number; onNaviga
    BOTTOM NAV (3개 버튼)
 ───────────────────────────────────────── */
 /* ─────────────────────────────────────────
-   통역 모달
+   현장 통역 모달 — 양방향 음성 통역기
+   한국어 ↔ 영어 실시간 번역 + 음성 출력
 ───────────────────────────────────────── */
 function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string }) {
-  const [input, setInput] = useState("");
-  const [listening, setListening] = useState(false);
-  const [result, setResult] = useState("");
+  /* ── 지원 언어 목록 (한국어는 고정, 상대방 언어 선택 가능) ── */
+  const FOREIGN_LANGS = [
+    { code: "auto", label: "Auto-detect", labelKo: "자동 감지", flag: "🌐", speechLang: "", color: "#C9A227", bg: "linear-gradient(135deg,#3B2700,#92610A)", bgActive: "linear-gradient(135deg,#92610A,#C9A227)", glow: "rgba(201,162,39,0.6)" },
+    { code: "en",   label: "English",     labelKo: "영어",     flag: "🇺🇸", speechLang: "en-US", color: "#1D4ED8", bg: "linear-gradient(135deg,#1E3A5F,#1D4ED8)", bgActive: "linear-gradient(135deg,#1D4ED8,#3B82F6)", glow: "rgba(59,130,246,0.55)"  },
+    { code: "es",   label: "Español",     labelKo: "스페인어",  flag: "🇪🇸", speechLang: "es-ES", color: "#B91C1C", bg: "linear-gradient(135deg,#4C0519,#B91C1C)", bgActive: "linear-gradient(135deg,#B91C1C,#EF4444)", glow: "rgba(239,68,68,0.55)"    },
+    { code: "zh",   label: "中文",        labelKo: "중국어",    flag: "🇨🇳", speechLang: "zh-CN", color: "#B45309", bg: "linear-gradient(135deg,#431407,#B45309)", bgActive: "linear-gradient(135deg,#B45309,#F59E0B)", glow: "rgba(245,158,11,0.55)"  },
+    { code: "ja",   label: "日本語",      labelKo: "일본어",    flag: "🇯🇵", speechLang: "ja-JP", color: "#6D28D9", bg: "linear-gradient(135deg,#2E1065,#6D28D9)", bgActive: "linear-gradient(135deg,#6D28D9,#A78BFA)", glow: "rgba(167,139,250,0.55)" },
+    { code: "fr",   label: "Français",    labelKo: "프랑스어",  flag: "🇫🇷", speechLang: "fr-FR", color: "#0369A1", bg: "linear-gradient(135deg,#082F49,#0369A1)", bgActive: "linear-gradient(135deg,#0369A1,#38BDF8)", glow: "rgba(56,189,248,0.55)"  },
+    { code: "de",   label: "Deutsch",     labelKo: "독일어",    flag: "🇩🇪", speechLang: "de-DE", color: "#374151", bg: "linear-gradient(135deg,#111827,#374151)", bgActive: "linear-gradient(135deg,#374151,#6B7280)", glow: "rgba(107,114,128,0.55)" },
+    { code: "tl",   label: "Filipino",    labelKo: "필리핀어",  flag: "🇵🇭", speechLang: "tl-PH", color: "#0F766E", bg: "linear-gradient(135deg,#042F2E,#0F766E)", bgActive: "linear-gradient(135deg,#0F766E,#14B8A6)", glow: "rgba(20,184,166,0.55)"  },
+    { code: "vi",   label: "Tiếng Việt",  labelKo: "베트남어",  flag: "🇻🇳", speechLang: "vi-VN", color: "#166534", bg: "linear-gradient(135deg,#052E16,#166534)", bgActive: "linear-gradient(135deg,#166534,#22C55E)", glow: "rgba(34,197,94,0.55)"   },
+  ];
 
-  // Web Speech API 음성 인식
-  const startListen = () => {
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      alert(lang === "ko" ? "이 브라우저는 음성 인식을 지원하지 않아요." : "This browser doesn't support speech recognition.");
+  const [selIdx, setSelIdx]           = useState(0);  // 선택된 외국어 인덱스 (기본: 영어)
+  const [showLangPicker, setShowLangPicker] = useState(false);
+  const [original, setOriginal]       = useState("");
+  const [translated, setTranslated]   = useState("");
+  const [isListening, setIsListening] = useState(false);
+  const [isTranslating, setIsTranslating] = useState(false);
+  const [activeDir, setActiveDir]     = useState<"ko" | "foreign" | null>(null);
+  const [errMsg, setErrMsg]           = useState("");
+  const recognitionRef                = useRef<any>(null);
+  const foreign                       = FOREIGN_LANGS[selIdx];
+
+  /* 언어 변경 시 결과 초기화 */
+  const changeLang = (idx: number) => {
+    setSelIdx(idx); setShowLangPicker(false);
+    setOriginal(""); setTranslated(""); setErrMsg("");
+    recognitionRef.current?.stop();
+    setIsListening(false); setActiveDir(null);
+  };
+
+  /* MyMemory 무료 번역 API */
+  const translateText = async (text: string, from: string, to: string) => {
+    const res = await fetch(
+      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`
+    );
+    const data = await res.json();
+    if (data.responseStatus === 200) return data.responseData.translatedText as string;
+    throw new Error("fail");
+  };
+
+  /* 음성 출력 */
+  const speakText = (text: string, speechLang: string) => {
+    window.speechSynthesis.cancel();
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = speechLang; utt.rate = 0.88;
+    window.speechSynthesis.speak(utt);
+  };
+
+  /* 음성 인식 */
+  const startListening = (dir: "ko" | "foreign") => {
+    const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SR) {
+      setErrMsg(lang === "ko" ? "⚠️ Chrome 브라우저에서 지원됩니다." : "⚠️ Requires Chrome browser.");
       return;
     }
-    const recognition = new SpeechRecognition();
-    recognition.lang = "en-US";
-    recognition.interimResults = false;
-    recognition.onstart = () => setListening(true);
-    recognition.onend = () => setListening(false);
-    recognition.onresult = (e: any) => {
+    setOriginal(""); setTranslated(""); setErrMsg("");
+    setActiveDir(dir); setIsListening(true);
+
+    const rec = new SR();
+    rec.lang = dir === "ko" ? "ko-KR" : foreign.speechLang;
+    rec.interimResults = false;
+    recognitionRef.current = rec;
+
+    rec.onresult = async (e: any) => {
       const text = e.results[0][0].transcript;
-      setInput(text);
-      // Google Translate로 번역 (링크 방식)
-      const url = `https://translate.google.com/?sl=en&tl=ko&text=${encodeURIComponent(text)}&op=translate`;
-      setResult(url);
+      setOriginal(text);
+      setIsListening(false); setIsTranslating(true);
+      try {
+        let fromCode: string, toCode: string, toSpeech: string;
+        if (dir === "ko") {
+          // 한국어 → 외국어 (auto이면 MyMemory가 자동 감지)
+          fromCode = "ko";
+          toCode   = foreign.code === "auto" ? "en" : foreign.code;  // auto 시 영어로 출력
+          toSpeech = foreign.code === "auto" ? "en-US" : foreign.speechLang;
+        } else {
+          // 외국어 → 한국어 (auto이면 fromCode 생략 → MyMemory 자동 감지)
+          fromCode = foreign.code === "auto" ? "autodetect" : foreign.code;
+          toCode   = "ko";
+          toSpeech = "ko-KR";
+        }
+        // MyMemory auto-detect: langpair=autodetect|ko
+        const apiFrom = fromCode === "autodetect" ? "autodetect" : fromCode;
+        const result  = await translateText(text, apiFrom, toCode);
+        setTranslated(result);
+        setIsTranslating(false);
+        speakText(result, toSpeech);
+      } catch {
+        setIsTranslating(false);
+        setErrMsg(lang === "ko" ? "번역 오류. 인터넷 확인 후 재시도." : "Translation error. Check connection.");
+      }
     };
-    recognition.start();
+    rec.onerror = (e: any) => {
+      setIsListening(false); setActiveDir(null);
+      if (e.error !== "aborted")
+        setErrMsg(lang === "ko" ? "마이크 오류: " + e.error : "Mic error: " + e.error);
+    };
+    rec.onend = () => setIsListening(false);
+    rec.start();
   };
 
-  const openTranslate = (from: string, to: string) => {
-    const text = input || (lang === "ko" ? "번역할 내용을 입력하세요" : "Enter text to translate");
-    window.open(`https://translate.google.com/?sl=${from}&tl=${to}&text=${encodeURIComponent(text)}&op=translate`, "_blank");
-  };
+  const stopListening = () => { recognitionRef.current?.stop(); setIsListening(false); };
 
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 300, background: "rgba(0,0,0,0.45)", backdropFilter: "blur(4px)", display: "flex", alignItems: "flex-end" }} onClick={onClose}>
-      <div style={{ width: "100%", maxWidth: 430, margin: "0 auto", background: "#fff", borderRadius: "24px 24px 0 0", padding: "24px 20px 40px", boxShadow: "0 -8px 40px rgba(0,0,0,0.15)" }} onClick={e => e.stopPropagation()}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-          <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 18, color: "#1B2A4A" }}>
-            🌐 {lang === "ko" ? "현장 통역" : "Live Translate"}
-          </div>
-          <button onClick={onClose} style={{ border: "none", background: "none", fontSize: 22, cursor: "pointer", color: "#9CA3AF" }}>✕</button>
-        </div>
+    <div style={{ position: "fixed", inset: 0, zIndex: 300, background: "rgba(0,0,0,0.82)", backdropFilter: "blur(10px)", display: "flex", alignItems: "flex-end" }} onClick={onClose}>
+      <div style={{ width: "100%", maxWidth: 430, margin: "0 auto", background: "#0B1120", borderRadius: "24px 24px 0 0", overflow: "hidden", paddingBottom: "env(safe-area-inset-bottom,20px)" }} onClick={e => e.stopPropagation()}>
 
-        {/* 음성 인식 버튼 */}
-        <button onClick={startListen} style={{
-          width: "100%", padding: "16px", borderRadius: 16, border: "none", cursor: "pointer",
-          background: listening ? "#FEE2E2" : "#F0FDF4",
-          display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
-          marginBottom: 14,
-        }}>
-          <span style={{ fontSize: 28 }}>{listening ? "🔴" : "🎙️"}</span>
-          <div style={{ textAlign: "left" }}>
-            <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 14, color: listening ? "#EF4444" : "#059669" }}>
-              {listening ? (lang === "ko" ? "듣고 있어요..." : "Listening...") : (lang === "ko" ? "마이크로 영어 말하기" : "Speak English to mic")}
+        {/* ── 헤더 ── */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "20px 20px 14px" }}>
+          <div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 18, color: "#F8FAFC" }}>
+              🌐 {lang === "ko" ? "현장 통역" : "Live Interpreter"}
             </div>
-            <div style={{ fontSize: 11, color: "#64748B", marginTop: 2 }}>
-              {lang === "ko" ? "→ 한국어로 자동 번역" : "→ Auto-translate to Korean"}
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.38)", marginTop: 3 }}>
+              {lang === "ko" ? "말하면 자동 번역 + 음성 출력" : "Speak → instant translation + voice"}
             </div>
           </div>
-        </button>
+          <button onClick={onClose} style={{ border: "none", background: "rgba(255,255,255,0.09)", borderRadius: "50%", width: 34, height: 34, fontSize: 16, cursor: "pointer", color: "#94A3B8", flexShrink: 0 }}>✕</button>
+        </div>
 
-        {/* 텍스트 입력 */}
-        <textarea value={input} onChange={e => setInput(e.target.value)} placeholder={lang === "ko" ? "또는 여기에 직접 입력..." : "Or type here..."} style={{ width: "100%", height: 80, border: "1px solid #E2E8F0", borderRadius: 12, padding: "10px 14px", fontSize: 14, outline: "none", fontFamily: "'Noto Sans KR',sans-serif", resize: "none", boxSizing: "border-box", marginBottom: 12 }} />
+        {/* ── 언어 선택 바 (한국어 고정 | 외국어 선택) ── */}
+        <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 16px 12px" }}>
+          {/* 한국어 고정 뱃지 */}
+          <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 20, padding: "5px 12px" }}>
+            <span style={{ fontSize: 14 }}>🇰🇷</span>
+            <span style={{ color: "#F8FAFC", fontSize: 12, fontWeight: 600 }}>한국어</span>
+            <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 10, marginLeft: 2 }}>고정</span>
+          </div>
 
-        {/* 번역 방향 버튼 */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-          <button onClick={() => openTranslate("en", "ko")} style={{ padding: "12px", borderRadius: 12, border: "1px solid #E2E8F0", background: "#F8FAFC", cursor: "pointer", fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600, fontSize: 13, color: "#1B2A4A" }}>
-            🇺🇸 EN → 🇰🇷 KO
-          </button>
-          <button onClick={() => openTranslate("ko", "en")} style={{ padding: "12px", borderRadius: 12, border: "1px solid #E2E8F0", background: "#F8FAFC", cursor: "pointer", fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600, fontSize: 13, color: "#1B2A4A" }}>
-            🇰🇷 KO → 🇺🇸 EN
+          <div style={{ color: "rgba(255,255,255,0.3)", fontSize: 16 }}>⇌</div>
+
+          {/* 외국어 선택 버튼 */}
+          <button onClick={() => setShowLangPicker(p => !p)} style={{ display: "flex", alignItems: "center", gap: 6, background: `rgba(${foreign.color},0.12)`, border: `1px solid rgba(255,255,255,0.15)`, borderRadius: 20, padding: "5px 12px", cursor: "pointer", flex: 1 }}>
+            <span style={{ fontSize: 14 }}>{foreign.flag}</span>
+            <span style={{ color: "#F8FAFC", fontSize: 12, fontWeight: 600 }}>{lang === "ko" ? foreign.labelKo : foreign.label}</span>
+            <span style={{ color: "rgba(255,255,255,0.4)", fontSize: 10, marginLeft: "auto" }}>▾ {lang === "ko" ? "변경" : "change"}</span>
           </button>
         </div>
-        <div style={{ marginTop: 10, fontSize: 11, color: "#94A3B8", textAlign: "center" }}>
-          {lang === "ko" ? "Google Translate로 연결됩니다" : "Opens Google Translate"}
+
+        {/* ── 언어 선택 드롭다운 ── */}
+        {showLangPicker && (
+          <div style={{ margin: "0 16px 12px", background: "rgba(255,255,255,0.05)", borderRadius: 14, border: "1px solid rgba(255,255,255,0.08)", overflow: "hidden" }}>
+            {FOREIGN_LANGS.map((l, i) => (
+              <button key={l.code} onClick={() => changeLang(i)}
+                style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", border: "none", background: i === selIdx ? "rgba(255,255,255,0.1)" : "transparent", padding: "10px 14px", cursor: "pointer", borderBottom: i < FOREIGN_LANGS.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
+                <span style={{ fontSize: 18 }}>{l.flag}</span>
+                <span style={{ color: "#F8FAFC", fontSize: 13, fontWeight: i === selIdx ? 700 : 400 }}>{lang === "ko" ? l.labelKo : l.label}</span>
+                {i === selIdx && <span style={{ marginLeft: "auto", color: "#34D399", fontSize: 14 }}>✓</span>}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* ── 번역 결과 영역 ── */}
+        <div style={{ margin: "0 16px", minHeight: 140, background: "rgba(255,255,255,0.04)", borderRadius: 18, padding: "16px", border: "1px solid rgba(255,255,255,0.07)" }}>
+          {!original && !isListening && !isTranslating && !errMsg && (
+            <div style={{ textAlign: "center", paddingTop: 24 }}>
+              <div style={{ fontSize: 34, marginBottom: 8 }}>🎙️</div>
+              <div style={{ color: "rgba(255,255,255,0.28)", fontSize: 13, lineHeight: 1.7 }}>
+                {lang === "ko"
+                  ? `한국어 또는 ${foreign.labelKo}로 말하세요`
+                  : `Speak Korean or ${foreign.label}`}
+              </div>
+            </div>
+          )}
+
+          {isListening && (
+            <div style={{ textAlign: "center", paddingTop: 14 }}>
+              <div style={{ fontSize: 44, marginBottom: 8 }}>🎤</div>
+              <div style={{ color: activeDir === "ko" ? "#60A5FA" : "#34D399", fontWeight: 700, fontSize: 15 }}>
+                {activeDir === "ko" ? "한국어로 말하세요..." : foreign.code === "auto" ? "아무 언어로나 말하세요..." : `Speak in ${foreign.label}...`}
+              </div>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.32)", marginTop: 5 }}>
+                {activeDir === "ko"
+                  ? (foreign.code === "auto" ? "→ 자동 번역" : `→ ${lang === "ko" ? foreign.labelKo : foreign.label}로 번역`)
+                  : (foreign.code === "auto" ? "→ 언어 자동 감지 후 한국어 번역" : "→ 한국어로 번역됩니다")}
+              </div>
+              <button onClick={stopListening} style={{ marginTop: 12, border: "none", background: "rgba(248,113,113,0.15)", borderRadius: 20, padding: "5px 16px", color: "#F87171", fontSize: 12, cursor: "pointer", fontWeight: 600 }}>
+                ⏹ {lang === "ko" ? "중지" : "Stop"}
+              </button>
+            </div>
+          )}
+
+          {errMsg && <div style={{ color: "#F87171", fontSize: 13, textAlign: "center", paddingTop: 26, lineHeight: 1.5 }}>{errMsg}</div>}
+
+          {original && !isListening && (
+            <div>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.38)", marginBottom: 4 }}>
+                {activeDir === "ko" ? "🇰🇷 말한 내용" : `${foreign.flag} What was said`}
+              </div>
+              <div style={{ color: "rgba(255,255,255,0.65)", fontSize: 14, lineHeight: 1.55, paddingBottom: 10, borderBottom: "1px solid rgba(255,255,255,0.06)", marginBottom: 10 }}>
+                {original}
+              </div>
+              {isTranslating
+                ? <div style={{ color: "rgba(255,255,255,0.3)", fontSize: 13 }}>번역 중... ✦</div>
+                : translated && (
+                  <div>
+                    <div style={{ fontSize: 11, color: "#34D399", marginBottom: 5 }}>
+                      {activeDir === "ko" ? `${foreign.flag} ${lang === "ko" ? foreign.labelKo : foreign.label}` : "🇰🇷 한국어 번역"}
+                    </div>
+                    <div style={{ color: "#F8FAFC", fontSize: 22, fontWeight: 800, lineHeight: 1.38, fontFamily: "Manrope,sans-serif" }}>
+                      {translated}
+                    </div>
+                    <button onClick={() => speakText(translated, activeDir === "ko" ? foreign.speechLang : "ko-KR")}
+                      style={{ marginTop: 9, border: "none", background: "rgba(255,255,255,0.08)", borderRadius: 20, padding: "4px 14px", color: "rgba(255,255,255,0.5)", fontSize: 12, cursor: "pointer" }}>
+                      🔊 {lang === "ko" ? "다시 듣기" : "Replay"}
+                    </button>
+                  </div>
+                )
+              }
+            </div>
+          )}
+        </div>
+
+        {/* ── 두 개의 큰 버튼 ── */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, padding: "12px 16px 8px" }}>
+          {/* 한국어 버튼 (고정) */}
+          <button
+            onClick={() => isListening && activeDir === "ko" ? stopListening() : startListening("ko")}
+            disabled={isListening && activeDir === "foreign"}
+            style={{ border: "none", borderRadius: 18, cursor: "pointer",
+              background: isListening && activeDir === "ko"
+                ? "linear-gradient(135deg,#1D4ED8,#3B82F6)"
+                : "linear-gradient(135deg,#1E3A5F,#1D4ED8)",
+              padding: "18px 10px",
+              opacity: isListening && activeDir === "foreign" ? 0.35 : 1,
+              transition: "all 0.2s",
+              boxShadow: isListening && activeDir === "ko" ? "0 0 28px rgba(59,130,246,0.55)" : "none",
+            }}>
+            <div style={{ fontSize: 28, marginBottom: 4 }}>🇰🇷</div>
+            <div style={{ color: "#fff", fontWeight: 700, fontSize: 13, fontFamily: "Manrope,sans-serif", lineHeight: 1.3 }}>
+              {isListening && activeDir === "ko" ? "⏹ 중지" : "한국어로\n말하기"}
+            </div>
+            <div style={{ color: "rgba(255,255,255,0.42)", fontSize: 10, marginTop: 4 }}>
+              KO → {lang === "ko" ? foreign.labelKo : foreign.label}
+            </div>
+          </button>
+
+          {/* 외국어 버튼 (선택 가능) */}
+          <button
+            onClick={() => isListening && activeDir === "foreign" ? stopListening() : startListening("foreign")}
+            disabled={isListening && activeDir === "ko"}
+            style={{ border: "none", borderRadius: 18, cursor: "pointer",
+              background: isListening && activeDir === "foreign" ? foreign.bgActive : foreign.bg,
+              padding: "18px 10px",
+              opacity: isListening && activeDir === "ko" ? 0.35 : 1,
+              transition: "all 0.2s",
+              boxShadow: isListening && activeDir === "foreign" ? `0 0 28px ${foreign.glow}` : "none",
+            }}>
+            <div style={{ fontSize: 28, marginBottom: 4 }}>{foreign.flag}</div>
+            <div style={{ color: "#fff", fontWeight: 700, fontSize: 13, fontFamily: "Manrope,sans-serif", lineHeight: 1.3 }}>
+              {isListening && activeDir === "foreign" ? "⏹ Stop" : `Speak\n${foreign.label}`}
+            </div>
+            <div style={{ color: "rgba(255,255,255,0.42)", fontSize: 10, marginTop: 4 }}>
+              {lang === "ko" ? foreign.labelKo : foreign.label} → 한국어
+            </div>
+          </button>
+        </div>
+
+        {/* ── 팁 ── */}
+        <div style={{ padding: "6px 16px 16px" }}>
+          <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 12, padding: "8px 14px", textAlign: "center" }}>
+            <div style={{ color: "rgba(255,255,255,0.3)", fontSize: 11, lineHeight: 1.6 }}>
+              💡 {lang === "ko"
+                ? "상대방에게 화면을 보여주거나 스피커로 들려주세요\n식당 · 병원 · 상점 · 관공서 어디서나 사용 가능"
+                : "Show screen or use speaker · Works anywhere"}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2850,10 +3047,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle, onShare
     if (id === "home") onChange(0);
     else if (id === "search") onSearchToggle();
     else if (id === "share") onShareToggle();
-    else if (id === "translate") {
-      // 모달 없이 Google Translate 즉시 열기
-      window.open("https://translate.google.com/?sl=en&tl=ko&op=translate", "_blank");
-    }
+    else if (id === "translate") onTranslateToggle();
     else if (id === "lang") onLangCycle();
   };
 
