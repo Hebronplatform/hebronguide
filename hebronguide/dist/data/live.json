@@ -1,0 +1,7 @@
+{
+  "gas_wa_regular": 4.15,
+  "gas_wa_premium": 4.65,
+  "updated": "2026-05-03",
+  "source": "EIA.gov",
+  "note": "WA주 일반 휘발유 평균 ($/갤런) — GitHub Actions 매일 자동 갱신"
+}

@@ -6,8 +6,8 @@ node_modules/
 # Testing
 coverage/
 
-# Production
-dist/
+# Production (dist는 Vercel 배포용으로 git에 포함)
+# dist/
 build/
 
 # Misc
