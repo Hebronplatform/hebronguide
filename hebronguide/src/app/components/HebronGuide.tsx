@@ -1843,7 +1843,7 @@ function CityHubSection({ lang }: { lang: string }) {
               rel="noopener noreferrer"
               onClick={isDim ? (e) => e.preventDefault() : undefined}
               style={{
-                flexShrink: 0, width: 72,
+                flexShrink: 0, width: 76,
                 textDecoration: "none",
                 opacity: isDim ? 0.3 : 1,
                 cursor: isLive && !isCurrent ? "pointer" : "default",
@@ -1894,13 +1894,13 @@ function CityHubSection({ lang }: { lang: string }) {
                 )}
               </div>
 
-              {/* 도시 이름 */}
+              {/* 도시 이름 — 풀네임 표시 */}
               <div style={{
-                fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 10,
-                color: "#374151", textAlign: "center", lineHeight: 1.3,
-                whiteSpace: "nowrap",
+                fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 9.5,
+                color: "#374151", textAlign: "center", lineHeight: 1.25,
+                maxWidth: 72, wordBreak: "break-word",
               }}>
-                {lang === "ko" ? city.nameKo : city.nameEn.split(" ")[0]}
+                {lang === "ko" ? city.nameKo : city.nameEn}
               </div>
 
               {/* 상태 뱃지 */}
