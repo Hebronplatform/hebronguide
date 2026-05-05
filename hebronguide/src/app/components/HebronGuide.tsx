@@ -595,7 +595,7 @@ function CompactHeroNew() {
   const { lang } = useI18n();
   return (
     <div style={{
-      position: "relative", height: 180, overflow: "hidden",
+      position: "relative", height: "clamp(120px, 22dvh, 180px)", overflow: "hidden",
       borderRadius: "0 0 28px 28px",
     }}>
       <img src={imgHeroCard} alt="Seattle" style={{
@@ -653,46 +653,55 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number) => void }
         color: "#1B2A4A", marginBottom: 14, letterSpacing: "-0.3px" }}>
         ⚡ {lang === "ko" ? "빠른 메뉴" : "Quick Menu"}
       </div>
-      {/* 3×3 그리드 — 넓고 큰 카드 */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
+      {/* 3×3 그리드 — 화면 크기에 자동 맞춤 */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: "clamp(7px, 1.5vw, 12px)",
+      }}>
         {QUICK_MENU.map((item, i) => (
           <button key={i} onClick={() => onNavigate?.(item.tab)} style={{
             background: "#fff",
-            borderRadius: 20,
-            padding: "18px 8px 14px",
-            display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
+            borderRadius: "clamp(14px, 3vw, 20px)",
+            padding: "clamp(12px, 2.5dvh, 18px) 6px clamp(10px, 2dvh, 14px)",
+            display: "flex", flexDirection: "column", alignItems: "center",
+            gap: "clamp(5px, 1dvh, 8px)",
             border: `1.5px solid ${item.color}28`,
-            boxShadow: `0 3px 14px rgba(0,0,0,0.07), 0 0 0 0 ${item.color}`,
+            boxShadow: `0 2px 10px rgba(0,0,0,0.07)`,
             cursor: "pointer",
-            transition: "transform 0.15s, box-shadow 0.15s, border-color 0.15s",
+            transition: "transform 0.15s ease, box-shadow 0.15s ease",
             width: "100%",
           }}
           onMouseEnter={e => {
-            e.currentTarget.style.transform = "translateY(-3px) scale(1.02)";
-            e.currentTarget.style.boxShadow = `0 8px 24px rgba(0,0,0,0.12)`;
-            e.currentTarget.style.borderColor = item.color + "66";
+            e.currentTarget.style.transform = "translateY(-2px)";
+            e.currentTarget.style.boxShadow = `0 6px 20px rgba(0,0,0,0.13)`;
+            e.currentTarget.style.borderColor = item.color + "55";
           }}
           onMouseLeave={e => {
-            e.currentTarget.style.transform = "translateY(0) scale(1)";
-            e.currentTarget.style.boxShadow = "0 3px 14px rgba(0,0,0,0.07)";
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 2px 10px rgba(0,0,0,0.07)";
             e.currentTarget.style.borderColor = item.color + "28";
           }}
-          onTouchStart={e => { e.currentTarget.style.transform = "scale(0.96)"; }}
+          onTouchStart={e => { e.currentTarget.style.transform = "scale(0.95)"; }}
           onTouchEnd={e => { e.currentTarget.style.transform = "scale(1)"; }}
           >
-            {/* 이모지 아이콘 박스 — 더 크게 */}
+            {/* 아이콘 — 화면 높이 기준으로 자동 크기 조정 */}
             <div style={{
-              width: 52, height: 52, borderRadius: 16,
+              width: "clamp(40px, 6dvh, 54px)",
+              height: "clamp(40px, 6dvh, 54px)",
+              borderRadius: "clamp(12px, 2vw, 16px)",
               background: item.bg,
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 26,
-              boxShadow: `0 2px 8px ${item.color}22`,
+              fontSize: "clamp(20px, 3.5dvh, 27px)",
+              flexShrink: 0,
             }}>
               {item.emoji}
             </div>
             <span style={{
-              fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13,
+              fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700,
+              fontSize: "clamp(11px, 1.8vw, 13px)",
               color: "#1B2A4A", letterSpacing: "-0.2px",
+              lineHeight: 1.2,
             }}>
               {lang === "ko" ? item.labelKo : item.labelEn}
             </span>
