@@ -2,3 +2,4 @@
 # Archive node_modules (절대 커밋 불필요)
 99_Archive/**/node_modules/
 99_Archive/**/__pycache__/
+.github/workflows/
