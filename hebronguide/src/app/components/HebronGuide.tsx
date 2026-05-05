@@ -1916,8 +1916,8 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number) => void }) {
         <div style={{ fontFamily: "'Noto Sans KR', Manrope, sans-serif", fontSize: 13,
           color: "rgba(255,255,255,0.85)", lineHeight: 1.8, marginBottom: 14 }}>
           {lang === "ko"
-            ? "\"지식 없는 백성은 망하느니라\" (호 4:6)\n이민자·이주자·방문자가 무지(無知)로 손해 보지 않도록\n사명적으로 정보를 섬기는 플랫폼입니다."
-            : "\"My people are destroyed for lack of knowledge.\" (Hos 4:6)\nWe exist to ensure immigrants & newcomers never suffer\nfrom lack of information — a mission of service."}
+            ? "이민자·이주자·방문자가 정보의 부재로\n손해 보지 않도록 사명적으로 섬기는 플랫폼입니다."
+            : "We exist to ensure immigrants & newcomers\nnever suffer from lack of information — a mission of service."}
         </div>
 
         {/* 3축 가치 */}
