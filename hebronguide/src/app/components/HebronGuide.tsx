@@ -2189,11 +2189,11 @@ function CostScreen({ onHome }: { onHome?: () => void }) {
 /* ─────────────────────────────────────────
    NAV ITEMS (3개로 축소)
 ───────────────────────────────────────── */
+// 언어 토글은 상단 AppBar에만 — 하단은 핵심 3개만
 const NAV_ITEMS = [
-  { id: "home",   icon: Home,          labelKo: "홈",   labelEn: "Home"   },
-  { id: "search", icon: Search,        labelKo: "검색",  labelEn: "Search" },
-  { id: "share",  icon: MessageCircle, labelKo: "공유",  labelEn: "Share"  },
-  { id: "lang",   icon: Globe,         labelKo: "언어",  labelEn: "Language"},
+  { id: "home",   icon: Home,          labelKo: "홈",   labelEn: "Home"  },
+  { id: "search", icon: Search,        labelKo: "검색",  labelEn: "Search"},
+  { id: "share",  icon: MessageCircle, labelKo: "공유",  labelEn: "Share" },
 ];
 
 /* ─────────────────────────────────────────
@@ -2471,14 +2471,7 @@ function AppBar() {
             </button>
           ))}
         </div>
-        <button
-          className="flex items-center justify-center border-0 cursor-pointer hover:scale-110 active:scale-95 transition-transform duration-200"
-          style={{ width: 36, height: 36, borderRadius: 12, background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)" }}
-        >
-          <div style={{ width: 17, height: 17 }}>
-            <IconBox pathKey="p10cae140" vb="0 0 17.19 17.19" fill="#94A3B8" />
-          </div>
-        </button>
+        {/* 검색은 하단 바에서 처리 — 중복 제거 */}
       </div>
     </header>
   );
