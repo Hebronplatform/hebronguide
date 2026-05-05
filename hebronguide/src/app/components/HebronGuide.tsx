@@ -2503,8 +2503,8 @@ function HelpScreen({ onHome }: { onHome?: () => void }) {
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
   const tabs = lang === "ko"
-    ? ["긴급연락", "의료·병원", "커뮤니티", "유용한 링크"]
-    : ["Emergency", "Medical", "Community", "Useful Links"];
+    ? ["긴급연락", "의료·병원", "커뮤니티", "유용한 링크", "📋 무료자원"]
+    : ["Emergency", "Medical", "Community", "Useful Links", "📋 Free Resources"];
   const accent = "#F87171";
 
   const medicalItems = lang === "ko" ? [
@@ -2517,6 +2517,11 @@ function HelpScreen({ onHome }: { onHome?: () => void }) {
     { emoji: "🆘", name: "위기 상담 핫라인 (24시간)", nameEn: "Crisis Line 24/7", desc: "📞 866-427-4747 (24시간) | 한국어 통역 가능 | 정신건강·자살 예방 전문", tags: ["위기상담", "24시간", "무료"] },
     { emoji: "🚨", name: "응급실 — Swedish First Hill", nameEn: "Emergency Room — Swedish First Hill", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | 시애틀 중심부 응급실. 한국어 통역 요청 가능", tags: ["응급실", "응급", "시애틀"] },
     { emoji: "📞", name: "한국어 통역 서비스 (의료)", nameEn: "Korean Medical Interpreter", desc: "언어 라인 (Language Line): 📞 1-800-752-6096 | 병원·클리닉 방문 전 통역 예약 가능", tags: ["통역", "의료", "무료"] },
+    { emoji: "🏛️", name: "킹카운티 공중보건소 ✅ 검증됨", nameEn: "King County Public Health", desc: "무료·저비용 의료, WIC 영양 프로그램, 예방접종. 📞 206-296-4600 | 🔗 kingcounty.gov/health", tags: ["공공의료", "무료", "WIC"] },
+    { emoji: "🏥", name: "시애틀 무료 클리닉 ✅ 검증됨", nameEn: "Free Clinic of Greater Seattle", desc: "의료보험 없는 분을 위한 무료 의료 서비스. 📞 206-520-5000 | 🔗 freeclinic.net", tags: ["무료", "무보험", "의료"] },
+    { emoji: "🏥", name: "헬스포인트 (슬라이딩 스케일) ✅ 검증됨", nameEn: "HealthPoint Community Health Center", desc: "소득 기반 할인 진료. 한국어 통역 가능. 📞 1-800-440-1561 | 🔗 healthpointchc.org", tags: ["슬라이딩스케일", "한국어", "저비용"] },
+    { emoji: "🧠", name: "크라이시스 커넥션 (정신건강 24시간) ✅ 검증됨", nameEn: "Crisis Connections 24/7", desc: "정신건강 위기 24시간 무료. 한국어 통역 가능. 📞 866-427-4747 | 🔗 crisisconnections.org", tags: ["정신건강", "24시간", "무료"] },
+    { emoji: "🧠", name: "NAMI 워싱턴 (정신건강 지원) ✅ 검증됨", nameEn: "NAMI Washington", desc: "정신건강 정보·지원·교육. 📞 800-782-9264 | 🔗 namiwa.org", tags: ["정신건강", "지원", "무료"] },
   ] : [
     { emoji: "🏥", name: "Korean Family Medicine Clinic", nameEn: "닥터 김 클리닉 — Lynnwood", desc: "Korean-speaking physician. 📍 Lynnwood | 📞 (425) 744-9200", tags: ["Family Med", "Korean", "Lynnwood"] },
     { emoji: "🏥", name: "Swedish Medical Center", nameEn: "스웨디시 메디컬 센터", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | Korean interpreter ✅ | Full service incl. ER", tags: ["Hospital", "Seattle", "Interpreter"] },
@@ -2527,6 +2532,11 @@ function HelpScreen({ onHome }: { onHome?: () => void }) {
     { emoji: "🆘", name: "Crisis Line 24/7", nameEn: "위기 상담 핫라인", desc: "📞 866-427-4747 (24/7) | Korean interpreter available | Mental health & suicide prevention", tags: ["Crisis", "24/7", "Free"] },
     { emoji: "🚨", name: "Emergency Room — Swedish First Hill", nameEn: "응급실 — Swedish First Hill", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | Central Seattle ER. Korean interpreter on request", tags: ["ER", "Emergency", "Seattle"] },
     { emoji: "📞", name: "Korean Medical Interpreter Line", nameEn: "한국어 의료 통역", desc: "Language Line: 📞 1-800-752-6096 | Pre-book interpreter for clinic & hospital visits", tags: ["Interpreter", "Medical", "Free"] },
+    { emoji: "🏛️", name: "King County Public Health ✅ Verified", nameEn: "킹카운티 공중보건소", desc: "Free/low-cost healthcare, WIC nutrition, immunizations. 📞 206-296-4600 | 🔗 kingcounty.gov/health", tags: ["Public Health", "Free", "WIC"] },
+    { emoji: "🏥", name: "Free Clinic of Greater Seattle ✅ Verified", nameEn: "시애틀 무료 클리닉", desc: "Free medical care for uninsured residents. 📞 206-520-5000 | 🔗 freeclinic.net", tags: ["Free", "Uninsured", "Medical"] },
+    { emoji: "🏥", name: "HealthPoint Community Health Center ✅ Verified", nameEn: "헬스포인트", desc: "Sliding scale fees based on income. Korean interpreter available. 📞 1-800-440-1561 | 🔗 healthpointchc.org", tags: ["Sliding Scale", "Korean", "Low-cost"] },
+    { emoji: "🧠", name: "Crisis Connections 24/7 ✅ Verified", nameEn: "크라이시스 커넥션", desc: "Mental health crisis line 24/7. Korean interpreter available. 📞 866-427-4747 | 🔗 crisisconnections.org", tags: ["Mental Health", "24/7", "Free"] },
+    { emoji: "🧠", name: "NAMI Washington ✅ Verified", nameEn: "NAMI 워싱턴", desc: "Mental health information, support & education. 📞 800-782-9264 | 🔗 namiwa.org", tags: ["Mental Health", "Support", "Free"] },
   ];
 
   const defaultCommunityLinks = [
@@ -2535,6 +2545,8 @@ function HelpScreen({ onHome }: { onHome?: () => void }) {
     { emoji: "🏴", name: lang === "ko" ? "주 시애틀 대한민국 총영사관" : "Korean Consulate General Seattle", nameEn: "Korean Consulate", desc: lang === "ko" ? "여권·공증·사증. 주소: 2033 6th Ave #1125, Seattle. 전화: (206) 441-1011" : "Passport, notary & visa services. 2033 6th Ave #1125, Seattle. Tel: (206) 441-1011", tags: ["영사관", "여권", "공증"] },
     { emoji: "📰", name: lang === "ko" ? "미주 한국일보 시애틀판" : "Korea Times Seattle", nameEn: "Korean Newspaper", desc: lang === "ko" ? "시애틀 한인 지역 소식·구인광고·부동산·커뮤니티 정보" : "Seattle Korean community news, job listings, real estate & community information", tags: ["신문", "뉴스", "정보"] },
     { emoji: "👩‍💻", name: lang === "ko" ? "네이버 카페 — 시애틀한인생활" : "Naver Café — Seattle Korean Life", nameEn: "Naver Café", desc: lang === "ko" ? "정착 경험담·질문·정보 공유. 검색: 네이버 '시애틀한인생활'" : "Settlement experiences, Q&A & info sharing. Search: Naver '시애틀한인생활'", tags: ["네이버", "정보", "경험담"] },
+    { emoji: "📞", name: lang === "ko" ? "킹카운티 2-1-1 ✅ 검증됨" : "King County 2-1-1 ✅ Verified", nameEn: "2-1-1 Free Services Hotline", desc: lang === "ko" ? "전화 211 — 식품·주거·법률·의료 무료 서비스 연결. 한국어 통역 가능. 지금 바로 전화하세요!" : "Dial 211 — connects to ALL free services (food, housing, legal, medical). Korean interpreter available.", tags: ["211", "무료연결", "한국어"] },
+    { emoji: "🏛️", name: lang === "ko" ? "킹카운티 주거청 ✅ 검증됨" : "King County Housing Authority ✅ Verified", nameEn: "KCHA Affordable Housing", desc: lang === "ko" ? "저렴한 주거 대기자 명단. 📞 206-574-1100 | 🔗 kcha.org" : "Affordable housing waiting list. 📞 206-574-1100 | 🔗 kcha.org", tags: ["주거", "저렴", "공공"] },
   ];
 
   const defaultUsefulLinks = [
@@ -2543,6 +2555,8 @@ function HelpScreen({ onHome }: { onHome?: () => void }) {
     { emoji: "💼", name: lang === "ko" ? "WorkSource WA (무료 취업 지원)" : "WorkSource WA (Free Job Center)", nameEn: "Free Job Assistance", desc: lang === "ko" ? "이력서·면접 코칭·취업 연결. 무료. 시애틀·린우드·에베레트 센터 운영" : "Resume, interview coaching & job placement. Free. Seattle, Lynnwood & Everett centers", tags: ["취업", "무료", "이력서"] },
     { emoji: "🏫", name: lang === "ko" ? "시애틀 공립학교 등록 (SPS)" : "Seattle Public Schools Enrollment", nameEn: "SPS Enrollment", desc: lang === "ko" ? "공립학교 등록 안내. seattleschools.org | 한국어 지원 통역 서비스 있음" : "Public school enrollment guide. seattleschools.org | Korean language interpreter available", tags: ["학교", "공립", "한국어"] },
     { emoji: "🔒", name: lang === "ko" ? "법률 지원 (무료 법률 클리닉)" : "Free Legal Clinic", nameEn: "Free Legal Help", desc: lang === "ko" ? "이민·고용·집주인 분쟁. KCBA 법률 봉사. 한국어 지원 변호사 연결 가능" : "Immigration, employment & landlord disputes. KCBA legal aid. Korean-speaking attorney referrals", tags: ["법률", "무료", "이민"] },
+    { emoji: "🚌", name: lang === "ko" ? "킹카운티 메트로 버스 ✅ 검증됨" : "King County Metro Bus ✅ Verified", nameEn: "King County Metro", desc: lang === "ko" ? "시애틀 버스 시스템. 📞 206-553-3000 | 🔗 kingcounty.gov/metro" : "Seattle's bus system. 📞 206-553-3000 | 🔗 kingcounty.gov/metro", tags: ["버스", "대중교통", "시애틀"] },
+    { emoji: "💳", name: lang === "ko" ? "ORCA 카드 (대중교통 통합) ✅ 검증됨" : "ORCA Card (Integrated Transit) ✅ Verified", nameEn: "ORCA Transit Card", desc: lang === "ko" ? "버스·링크·페리·소더 통합 교통카드. 🔗 orca.com | H-Mart 고객서비스에서도 구매 가능" : "Integrated card for bus, Link, ferry & Sounder. 🔗 orca.com | Also available at H-Mart customer service", tags: ["ORCA", "교통카드", "링크"] },
   ];
 
   const communityLinks = serverContent["community"] ? resolvePlaceItems(serverContent["community"], lang) : defaultCommunityLinks;
@@ -2620,6 +2634,24 @@ function HelpScreen({ onHome }: { onHome?: () => void }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {communityLinks.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
+          {/* 211 팁 박스 */}
+          <a href="tel:211" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>
+            <div style={{ background: "linear-gradient(135deg, rgba(248,113,113,0.15), rgba(251,146,60,0.1))", border: "1px solid rgba(248,113,113,0.35)", borderRadius: 14, padding: "14px 16px", cursor: "pointer", transition: "background 0.15s" }}
+              onMouseEnter={e => (e.currentTarget.style.background = "linear-gradient(135deg,rgba(248,113,113,0.22),rgba(251,146,60,0.16))")}
+              onMouseLeave={e => (e.currentTarget.style.background = "linear-gradient(135deg,rgba(248,113,113,0.15),rgba(251,146,60,0.1))")}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: accent, marginBottom: 4 }}>
+                📞 {lang === "ko" ? "211 서비스 — 무료 생활 서비스 연결" : "211 Service — Free Resource Connection"}
+              </div>
+              <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 12, lineHeight: 1.7, color: "rgba(236,253,245,0.75)" }}>
+                {lang === "ko"
+                  ? "생활·의료·주거·법률 무료 서비스를 한 번에 연결해드립니다. 한국어 통역 가능. 지금 바로 전화하세요 → 211"
+                  : "Connects to ALL free services — food, medical, housing, legal. Korean interpreter available. Call 211 now."}
+              </div>
+              <div style={{ marginTop: 8, fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: accent }}>
+                📱 {lang === "ko" ? "탭하면 전화 연결 →" : "Tap to call →"} <span style={{ fontSize: 16 }}>211</span>
+              </div>
+            </div>
+          </a>
         </div>
       )}
 
@@ -2634,6 +2666,90 @@ function HelpScreen({ onHome }: { onHome?: () => void }) {
               {lang === "ko"
                 ? "이 가이드의 정보는 참고용입니다. 중요한 결정 전 반드시 전문가(변호사·의사·회계사)와 상담하세요."
                 : "Information in this guide is for reference only. Always consult a professional (attorney, doctor, accountant) before important decisions."}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {sub === 4 && (
+        <div className="pt-5 px-4 md:px-6 lg:px-8">
+          <div style={{ marginBottom: 12 }}>
+            <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13, color: accent, marginBottom: 4 }}>
+              📋 {lang === "ko" ? "한인 이민자가 모르는 미국 무료 자원" : "Free American Resources Korean Immigrants Often Don't Know"}
+            </div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", lineHeight: 1.5 }}>
+              {lang === "ko" ? "미국 주류 사회의 검증된 무료·저비용 서비스 모음. 한국어 통역 가능한 곳 우선 표시" : "Verified free & low-cost mainstream American services. Korean interpreter availability noted"}
+            </div>
+          </div>
+
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "rgba(236,253,245,0.45)", marginBottom: 8, marginTop: 4, letterSpacing: "0.05em" }}>
+            🍎 {lang === "ko" ? "식품 지원" : "FOOD ASSISTANCE"}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
+            <PlaceCard emoji="🌾" name={lang === "ko" ? "노스웨스트 하비스트 ✅ 검증됨" : "Northwest Harvest ✅ Verified"} nameEn={lang === "ko" ? "무료 푸드뱅크 네트워크" : "Free Food Bank Network"} desc={lang === "ko" ? "워싱턴주 전역 무료 푸드뱅크 네트워크. 📞 1-800-722-6924 | 🔗 northwestharvest.org" : "Free food bank network across Washington State. 📞 1-800-722-6924 | 🔗 northwestharvest.org"} tags={lang === "ko" ? ["푸드뱅크", "무료", "식품"] : ["Food Bank", "Free", "Food"]} accentColor={accent} />
+            <PlaceCard emoji="🥫" name={lang === "ko" ? "푸드 라이프라인 ✅ 검증됨" : "Food Lifeline ✅ Verified"} nameEn={lang === "ko" ? "긴급 식품 지원" : "Emergency Food Assistance"} desc={lang === "ko" ? "긴급 식품 지원 서비스. 📞 206-545-6600 | 🔗 foodlifeline.org" : "Emergency food assistance for families in need. 📞 206-545-6600 | 🔗 foodlifeline.org"} tags={lang === "ko" ? ["긴급식품", "무료", "가족"] : ["Emergency", "Free", "Family"]} accentColor={accent} />
+            <PlaceCard emoji="📞" name={lang === "ko" ? "킹카운티 2-1-1 ✅ 검증됨" : "King County 2-1-1 ✅ Verified"} nameEn={lang === "ko" ? "무료 서비스 연결 핫라인" : "Free Services Hotline"} desc={lang === "ko" ? "전화 211 — 식품·의료·주거·법률 무료 서비스 즉시 연결. 한국어 통역 가능" : "Dial 211 — connects to all free services (food, medical, housing, legal). Korean interpreter available"} tags={lang === "ko" ? ["211", "무료연결", "한국어"] : ["211", "Free", "Korean"]} accentColor={accent} />
+          </div>
+
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "rgba(236,253,245,0.45)", marginBottom: 8, letterSpacing: "0.05em" }}>
+            ⚖️ {lang === "ko" ? "법률 지원" : "LEGAL AID"}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
+            <PlaceCard emoji="⚖️" name={lang === "ko" ? "노스웨스트 저스티스 프로젝트 ✅ 검증됨" : "Northwest Justice Project ✅ Verified"} nameEn={lang === "ko" ? "무료 법률 지원" : "Free Legal Help"} desc={lang === "ko" ? "이민·고용·주거 무료 법률 지원. 📞 1-888-201-1014 | 🔗 nwjustice.org" : "Free immigration, employment & housing legal help. 📞 1-888-201-1014 | 🔗 nwjustice.org"} tags={lang === "ko" ? ["이민법률", "무료", "주거"] : ["Immigration", "Free", "Housing"]} accentColor={accent} />
+            <PlaceCard emoji="🏛️" name={lang === "ko" ? "KCBA 프로보노 ✅ 검증됨" : "KCBA Pro Bono ✅ Verified"} nameEn={lang === "ko" ? "무료 법률 상담" : "Free Legal Consultations"} desc={lang === "ko" ? "킹카운티 변호사협회 무료 법률 상담. 📞 206-267-7100" : "King County Bar Association free legal consultations. 📞 206-267-7100"} tags={lang === "ko" ? ["변호사", "무료", "상담"] : ["Attorney", "Free", "Consult"]} accentColor={accent} />
+          </div>
+
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "rgba(236,253,245,0.45)", marginBottom: 8, letterSpacing: "0.05em" }}>
+            💰 {lang === "ko" ? "세금·재정 지원" : "TAX & FINANCIAL ASSISTANCE"}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
+            <PlaceCard emoji="🧾" name={lang === "ko" ? "VITA 무료 세금 신고 ✅ 검증됨" : "VITA Free Tax Filing ✅ Verified"} nameEn={lang === "ko" ? "자원봉사 세금 지원 프로그램" : "Volunteer Income Tax Assistance"} desc={lang === "ko" ? "1월~4월 무료 세금 신고 서비스. 한인 이민자 대부분 모름! 🔗 vitataxhelp.org" : "Free tax filing Jan–April. Most Korean immigrants don't know about this! 🔗 vitataxhelp.org"} tags={lang === "ko" ? ["무료세금", "1~4월", "중요"] : ["Free Tax", "Jan-Apr", "Important"]} accentColor={accent} />
+          </div>
+
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "rgba(236,253,245,0.45)", marginBottom: 8, letterSpacing: "0.05em" }}>
+            🏠 {lang === "ko" ? "주거 지원" : "HOUSING ASSISTANCE"}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
+            <PlaceCard emoji="🏠" name={lang === "ko" ? "킹카운티 주거청 ✅ 검증됨" : "King County Housing Authority ✅ Verified"} nameEn={lang === "ko" ? "저렴한 공공주거" : "Affordable Public Housing"} desc={lang === "ko" ? "저렴한 주거 대기자 명단 신청. 📞 206-574-1100 | 🔗 kcha.org" : "Affordable housing waiting list applications. 📞 206-574-1100 | 🔗 kcha.org"} tags={lang === "ko" ? ["공공주거", "대기자", "저렴"] : ["Public Housing", "Waitlist", "Affordable"]} accentColor={accent} />
+          </div>
+
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "rgba(236,253,245,0.45)", marginBottom: 8, letterSpacing: "0.05em" }}>
+            🚌 {lang === "ko" ? "대중교통" : "TRANSPORTATION"}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
+            <PlaceCard emoji="🚌" name={lang === "ko" ? "킹카운티 메트로 ✅ 검증됨" : "King County Metro ✅ Verified"} nameEn={lang === "ko" ? "시애틀 버스 시스템" : "Seattle Bus System"} desc={lang === "ko" ? "시애틀 광역 버스 시스템. 📞 206-553-3000 | 🔗 kingcounty.gov/metro" : "Seattle regional bus system. 📞 206-553-3000 | 🔗 kingcounty.gov/metro"} tags={lang === "ko" ? ["버스", "대중교통", "시애틀"] : ["Bus", "Transit", "Seattle"]} accentColor={accent} />
+            <PlaceCard emoji="💳" name={lang === "ko" ? "ORCA 카드 ✅ 검증됨" : "ORCA Card ✅ Verified"} nameEn={lang === "ko" ? "대중교통 통합 카드" : "Integrated Transit Card"} desc={lang === "ko" ? "버스·링크 라이트레일·페리 통합. orca.com 또는 H-Mart 구매 가능 | 🔗 orca.com" : "Integrated bus, Link light rail & ferry card. Buy at orca.com or H-Mart | 🔗 orca.com"} tags={lang === "ko" ? ["ORCA", "링크", "페리"] : ["ORCA", "Link", "Ferry"]} accentColor={accent} />
+          </div>
+
+          <a href="tel:211" style={{ display: "block", marginTop: 8, textDecoration: "none" }}>
+            <div style={{ background: "linear-gradient(135deg, rgba(248,113,113,0.15), rgba(251,146,60,0.1))", border: "2px solid rgba(248,113,113,0.4)", borderRadius: 14, padding: "16px 18px", cursor: "pointer", transition: "background 0.15s" }}
+              onMouseEnter={e => (e.currentTarget.style.background = "linear-gradient(135deg,rgba(248,113,113,0.22),rgba(251,146,60,0.16))")}
+              onMouseLeave={e => (e.currentTarget.style.background = "linear-gradient(135deg,rgba(248,113,113,0.15),rgba(251,146,60,0.1))")}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: accent, marginBottom: 6 }}>
+                📞 {lang === "ko" ? "211 — 모든 무료 서비스를 한 번에" : "211 — Connect to All Free Services"}
+              </div>
+              <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 12, lineHeight: 1.7, color: "rgba(236,253,245,0.8)" }}>
+                {lang === "ko"
+                  ? "생활·의료·주거·법률 무료 연결 서비스. 한국어 통역 가능. 지금 바로 전화하세요"
+                  : "Connects to free food, medical, housing & legal services. Korean interpreter available. Call now."}
+              </div>
+              <div style={{ marginTop: 10, display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                <div style={{ background: accent, borderRadius: 8, padding: "5px 14px", fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#0d1117" }}>
+                  {lang === "ko" ? "📱 211 전화하기" : "📱 Call 211"}
+                </div>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)" }}>
+                  {lang === "ko" ? "✅ 검증됨 · 한국어 통역 가능" : "✅ Verified · Korean interpreter available"}
+                </span>
+              </div>
+            </div>
+          </a>
+
+          <div style={{ background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.18)", borderRadius: 14, padding: "14px 16px", marginTop: 12 }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>💡 {lang === "ko" ? "이 자원들을 모르셨나요?" : "Did You Know These Resources Existed?"}</div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
+              {lang === "ko"
+                ? "• VITA 무료 세금 신고 — 매년 수백 달러 절약 가능\n• 211 서비스 — 한 번의 전화로 모든 지원 연결\n• 무료 클리닉 — 보험 없어도 의료 서비스 이용 가능\n• NW 저스티스 — 이민 법률 무료 상담 가능"
+                : "• VITA free tax filing — save hundreds of dollars each year\n• 211 service — one call connects to all free resources\n• Free Clinic — medical care even without insurance\n• NW Justice — free immigration legal consultations"}
             </div>
           </div>
         </div>
@@ -2865,8 +2981,8 @@ function CostScreen({ onHome }: { onHome?: () => void }) {
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
   const tabs = lang === "ko"
-    ? ["렌트·주거", "세금·생활비", "교통·통신"]
-    : ["Rent & Housing", "Tax & Living", "Transport & Phone"];
+    ? ["렌트·주거", "세금·생활비", "교통·통신", "💡 알뜰생활"]
+    : ["Rent & Housing", "Tax & Living", "Transport & Phone", "💡 Smart Living"];
   const accent = "#34D399";
 
   const rentHousing = [
@@ -2903,10 +3019,72 @@ function CostScreen({ onHome }: { onHome?: () => void }) {
       tags: ["통신비", "인터넷", "휴대폰"] },
   ];
 
+  // ── 알뜰생활 탭 데이터 ──────────────────────────────────────────
+  const smartShoppingMarkets = [
+    { emoji: "🏪", name: "코스트코 (Costco)", nameEn: "Costco — Best Value Warehouse",
+      desc: lang === "ko"
+        ? "✅ 검증됨 | 연 멤버십 $65 → 평균 $300+ 절약\n📍 린우드: 4401 Auto Mall Dr | 📍 쇼어라인: 14905 1st Ave NE\n• 코스트코 주유소: 지역 최저가 (갤런당 10-20센트 저렴)\n• 한인 추천: 커클랜드 연어, 갈비, 대용량 쌀\n🔗 costco.com"
+        : "✅ Verified | Annual membership $65 → saves avg $300+/yr\n📍 Lynnwood: 4401 Auto Mall Dr | 📍 Shoreline: 14905 1st Ave NE\n• Costco Gas: area's cheapest gas (10-20 cents/gal cheaper)\n• Korean favorites: Kirkland salmon, short ribs, rice in bulk\n🔗 costco.com",
+      tags: ["코스트코", "창고형", "저렴"] },
+    { emoji: "🛒", name: "Grocery Outlet", nameEn: "Grocery Outlet — 30-70% Off",
+      desc: lang === "ko"
+        ? "✅ 검증됨 | 정가 대비 30-70% 할인\n• '보물찾기' 스타일 — 매주 다른 재고\n• 추천: 과자·음료·유제품·육류 마크다운\n• 시애틀 지역 여러 지점 운영\n🔗 groceryoutlet.com"
+        : "✅ Verified | 30-70% off regular grocery prices\n• 'Treasure hunt' style — stock changes weekly\n• Best for: snacks, beverages, dairy, meat markdowns\n• Multiple Seattle area locations\n🔗 groceryoutlet.com",
+      tags: ["할인마트", "식품", "절약"] },
+    { emoji: "🏬", name: "WinCo Foods", nameEn: "WinCo Foods — Lowest Prices",
+      desc: lang === "ko"
+        ? "✅ 검증됨 | 식료품 최저가 보장 (직원 소유 = 좋은 서비스)\n📍 린우드: 19500 Hwy 99 | 렌튼 | 에버렛\n• 벌크 빈 코너: 필요한 만큼만 구매 가능\n• ⚠️ 신용카드 불가 (직불카드·현금만)\n🔗 wincofoods.com"
+        : "✅ Verified | Consistently LOWEST prices for staples\n📍 Lynnwood: 19500 Hwy 99 | Renton | Everett\n• Employee-owned = better service\n• Bulk bins: buy exact amounts needed\n• ⚠️ No credit cards (debit/cash only)\n🔗 wincofoods.com",
+      tags: ["WinCo", "최저가", "벌크"] },
+    { emoji: "🥬", name: "99 Ranch Market (99랜치)", nameEn: "99 Ranch Market — Pan-Asian",
+      desc: lang === "ko"
+        ? "✅ 검증됨 | 중국·범아시안 슈퍼마켓\n📍 벨뷰: 14700 NE 20th St | 📍 에드먼즈: 23830 Hwy 99\n• 신선 해산물·두부·채소 H-Mart 대비 20-40% 저렴\n• 추천: 야채·허브·국수·냉동 만두\n🔗 99ranch.com"
+        : "✅ Verified | Chinese/Pan-Asian supermarket\n📍 Bellevue: 14700 NE 20th St | 📍 Edmonds: 23830 Hwy 99\n• Fresh seafood, tofu, produce 20-40% cheaper than H-Mart\n• Great for: vegetables, herbs, noodles, frozen dumplings\n🔗 99ranch.com",
+      tags: ["99랜치", "아시안마트", "저렴"] },
+    { emoji: "🐟", name: "우와지마야 (Uwajimaya)", nameEn: "Uwajimaya — Japanese/Asian",
+      desc: lang === "ko"
+        ? "✅ 검증됨 | 일본·아시안 슈퍼마켓 — 최고의 해산물 선택\n📍 벨뷰: 699 120th Ave NE | 📍 시애틀: 600 5th Ave S\n• 즉석 델리·일본 스낵·정통 재료\n• 일본 요리 재료·조미료 최다 구비\n🔗 uwajimaya.com"
+        : "✅ Verified | Japanese/Asian supermarket — best seafood selection\n📍 Bellevue: 699 120th Ave NE | 📍 Seattle: 600 5th Ave S\n• Hot deli, Japanese snacks, authentic ingredients\n• Best selection of Japanese cooking ingredients\n🔗 uwajimaya.com",
+      tags: ["우와지마야", "일본마트", "해산물"] },
+    { emoji: "🌿", name: "Trader Joe's", nameEn: "Trader Joe's — Quality at Low Price",
+      desc: lang === "ko"
+        ? "✅ 검증됨 | 고품질 자체 브랜드 제품 저렴하게\n• 유명 제품: $3 와인, 저렴한 견과류·말린과일, 냉동밀\n• 유기농·건강식품 저렴 | 시애틀 여러 지점\n• 한인에게 덜 알려진 알뜰 마트\n🔗 traderjoes.com"
+        : "✅ Verified | Quality private-label products at lower prices\n• Famous for: $3 wine, cheap nuts/dried fruit, frozen meals\n• Organic & health foods at low prices | Multiple Seattle locations\n• Great value overlooked by many Koreans\n🔗 traderjoes.com",
+      tags: ["TJ", "유기농", "가성비"] },
+    { emoji: "♻️", name: "Goodwill / 중고마켓", nameEn: "Goodwill & Second-Hand",
+      desc: lang === "ko"
+        ? "✅ 검증됨 | 중고의류 $3-15, 가구·가전\n• 벨뷰/커클랜드 굿윌: 명품 아이템 자주 등장\n• Facebook Marketplace & Buy Nothing 그룹: 무료 아이템 다수\n• 린우드·벨뷰·시애틀 여러 지점\n🔗 goodwillwa.org"
+        : "✅ Verified | Clothing $3-15, furniture, electronics\n• Bellevue/Kirkland locations often have designer items\n• Facebook Marketplace & Buy Nothing groups: many free items\n• Lynnwood, Bellevue, Seattle locations\n🔗 goodwillwa.org",
+      tags: ["중고", "굿윌", "무료"] },
+  ];
+
+  const ethnicEateries = [
+    { emoji: "🍜", name: "베트남 쌀국수 (Pho)", nameEn: "Vietnamese Pho",
+      desc: lang === "ko"
+        ? "거대한 한 그릇 $12-15, 엄청난 포만감\n• 인기 가게: Pho Bac (여러 지점), Green Leaf Vietnamese\n• \"김치찌개보다 저렴하고 양 2배\"\n• 한인에게 강력 추천하는 타민족 맛집\n📍 google.com/maps/search/pho+seattle"
+        : "Huge bowl $12-15, incredibly filling\n• Popular spots: Pho Bac (multiple), Green Leaf Vietnamese\n• \"Cheaper than Korean stew and twice the portion\"\n• Highly recommended for Korean immigrants\n📍 google.com/maps/search/pho+seattle",
+      tags: ["베트남", "포", "가성비"] },
+    { emoji: "🌮", name: "멕시칸 타코·부리토", nameEn: "Mexican Tacos & Burritos",
+      desc: lang === "ko"
+        ? "타코 $3-4개, 부리토 $10-12 (2인분 양)\n• 인기: El Camion (푸드트럭), Tacos Guaymas, Taqueria El Rinconcito\n• \"한국 분식보다 훨씬 배부릅니다\"\n📍 google.com/maps/search/taco+truck+seattle"
+        : "Tacos $3-4 each, burrito $10-12 (2 people's worth of food)\n• Popular: El Camion (food truck), Tacos Guaymas, Taqueria El Rinconcito\n• \"More filling than Korean snack food at the same price\"\n📍 google.com/maps/search/taco+truck+seattle",
+      tags: ["멕시칸", "타코", "저렴"] },
+    { emoji: "🍛", name: "인도 뷔페 (점심)", nameEn: "Indian Lunch Buffet",
+      desc: lang === "ko"
+        ? "무제한 점심 뷔페 $14-17\n• 인기: Vij's Railway Express, Taste of India\n• \"14달러에 무제한 — 인도 카레의 보물창고\"\n• 매일 바뀌는 다양한 카레·난·라이스\n📍 google.com/maps/search/indian+buffet+seattle"
+        : "Unlimited lunch buffet $14-17\n• Popular: Vij's Railway Express, Taste of India\n• \"Unlimited for $14 — treasure chest of Indian curry\"\n• Daily rotating curries, naan & rice\n📍 google.com/maps/search/indian+buffet+seattle",
+      tags: ["인도", "뷔페", "무제한"] },
+    { emoji: "🇪🇹", name: "에티오피아 음식", nameEn: "Ethiopian Restaurant",
+      desc: lang === "ko"
+        ? "$12-15, 엄청난 양, 공동 인제라 빵 (함께 먹는 문화)\n• 컬럼비아 시티 지역: Jebena Cafe, Cafe Selam\n• \"스페이스 니들 뷰 레스토랑의 1/5 가격\"\n• 독특한 향신료·채식 옵션 풍부\n📍 google.com/maps/search/ethiopian+restaurant+seattle"
+        : "$12-15, huge portions, communal injera bread\n• Columbia City area: Jebena Cafe, Cafe Selam\n• \"1/5 the price of a Space Needle view restaurant\"\n• Unique spices, abundant vegetarian options\n📍 google.com/maps/search/ethiopian+restaurant+seattle",
+      tags: ["에티오피아", "저렴", "컬럼비아시티"] },
+  ];
+
   const allCost = serverContent["cost"] ? resolvePlaceItems(serverContent["cost"], lang) : null;
   const subData = allCost
-    ? [allCost.slice(0, 1), allCost.slice(1, 3), allCost.slice(3)]
-    : [rentHousing, taxLiving, transportPhone];
+    ? [allCost.slice(0, 1), allCost.slice(1, 3), allCost.slice(3), [...smartShoppingMarkets, ...ethnicEateries]]
+    : [rentHousing, taxLiving, transportPhone, [...smartShoppingMarkets, ...ethnicEateries]];
   const content = subData[sub];
 
   return (
@@ -2917,19 +3095,103 @@ function CostScreen({ onHome }: { onHome?: () => void }) {
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5 px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
-        </div>
-        <div style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>
-            💰 {lang === "ko" ? "비용 절약 팁" : "Cost-saving Tip"}
-          </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
-            {lang === "ko"
-              ? "워싱턴주는 소득세가 없어서 같은 연봉이라도 캘리포니아(13.3%)나 오리건(9.9%)보다 실수령액이 훨씬 높습니다. 린우드 거주 시 Link Light Rail로 시애틀 통근이 가능해 교통비도 절약됩니다."
-              : "WA has no income tax, so take-home pay is much higher than California (13.3%) or Oregon (9.9%) on the same salary. Living in Lynnwood and commuting via Link Light Rail also saves on transportation costs."}
-          </div>
-        </div>
+        {sub !== 3 ? (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+            </div>
+            <div style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>
+                💰 {lang === "ko" ? "비용 절약 팁" : "Cost-saving Tip"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
+                {lang === "ko"
+                  ? "워싱턴주는 소득세가 없어서 같은 연봉이라도 캘리포니아(13.3%)나 오리건(9.9%)보다 실수령액이 훨씬 높습니다. 린우드 거주 시 Link Light Rail로 시애틀 통근이 가능해 교통비도 절약됩니다."
+                  : "WA has no income tax, so take-home pay is much higher than California (13.3%) or Oregon (9.9%) on the same salary. Living in Lynnwood and commuting via Link Light Rail also saves on transportation costs."}
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            {/* ── 섹션 1: 알뜰 쇼핑 마트 ── */}
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: accent, letterSpacing: "0.5px", marginBottom: 10, display: "flex", alignItems: "center", gap: 6 }}>
+              🛒 {lang === "ko" ? "알뜰 쇼핑 마트" : "Smart Shopping Markets"}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 20 }}>
+              {smartShoppingMarkets.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+            </div>
+
+            {/* ── 섹션 2: 타민족 인기 맛집 ── */}
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: accent, letterSpacing: "0.5px", marginBottom: 10, display: "flex", alignItems: "center", gap: 6 }}>
+              🌍 {lang === "ko" ? "타민족 인기 맛집" : "Popular Ethnic Eateries"}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 20 }}>
+              {ethnicEateries.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+            </div>
+
+            {/* ── 섹션 3: 절약 앱 & 무료자원 ── */}
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: accent, letterSpacing: "0.5px", marginBottom: 10, display: "flex", alignItems: "center", gap: 6 }}>
+              📱 {lang === "ko" ? "절약 앱 & 무료자원" : "Money-Saving Apps & Free Resources"}
+            </div>
+            <div style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)", borderRadius: 14, padding: "14px 16px", marginBottom: 12 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 8 }}>
+                📱 {lang === "ko" ? "돈 절약 앱" : "Apps to Save Money"}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+                {[
+                  { href: "https://www.gasbuddy.com", emoji: "⛽", label: "GasBuddy", sub: lang === "ko" ? "근처 최저 유가 찾기" : "Find cheapest gas nearby" },
+                  { href: "https://home.ibotta.com", emoji: "💸", label: "Ibotta", sub: lang === "ko" ? "식료품 캐시백 — 월 $20-50 절약" : "Grocery cashback — save $20-50/month" },
+                  { href: "https://www.fetchrewards.com", emoji: "🎁", label: "Fetch Rewards", sub: lang === "ko" ? "영수증 스캔 → 포인트 → 기프트카드" : "Scan receipts for points → gift cards" },
+                  { href: "https://www.offerup.com", emoji: "🔄", label: "OfferUp / Facebook Marketplace", sub: lang === "ko" ? "중고 사고팔기 — 무료 아이템도 많음" : "Buy/sell local — many free items" },
+                ].map((link, i) => (
+                  <a key={i} href={link.href} target="_blank" rel="noopener noreferrer"
+                    style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(52,211,153,0.15)" }}>
+                    <span style={{ fontSize: 16 }}>{link.emoji}</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>{link.label}</div>
+                      <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{link.sub}</div>
+                    </div>
+                    <span style={{ color: accent, fontSize: 14 }}>→</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)", borderRadius: 14, padding: "14px 16px", marginBottom: 8 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 8 }}>
+                🆓 {lang === "ko" ? "무료자원 — 꼭 활용하세요!" : "FREE Resources — Don't Miss These!"}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+                {[
+                  { href: "https://www.spl.org", emoji: "📚", label: lang === "ko" ? "시애틀 공공도서관 (SPL)" : "Seattle Public Library (SPL)", sub: lang === "ko" ? "무료 인터넷·eBook(Libby)·Kanopy 영화·언어학습(Mango — 무료!)" : "Free internet, eBooks (Libby), Kanopy movies, Mango Languages (free!)" },
+                  { href: "https://www.seattleartmuseum.org", emoji: "🎨", label: lang === "ko" ? "시애틀 미술관 (SAM)" : "Seattle Art Museum (SAM)", sub: lang === "ko" ? "매달 첫째 목요일 오후 5-9시 무료 입장" : "FREE first Thursday of every month, 5-9PM" },
+                  { href: "https://www.zoo.org", emoji: "🦁", label: lang === "ko" ? "우들랜드 파크 동물원" : "Woodland Park Zoo", sub: lang === "ko" ? "시애틀 거주자 할인 요금 적용" : "Reduced price for Seattle residents" },
+                  { href: "https://discoverpass.wa.gov", emoji: "🌲", label: lang === "ko" ? "Discover Pass ($30/년)" : "Discover Pass ($30/yr)", sub: lang === "ko" ? "워싱턴주 전체 주립공원·해변 무제한 입장" : "All WA state parks & beaches — unlimited access" },
+                  { href: "https://www.vitataxhelp.org", emoji: "📋", label: lang === "ko" ? "VITA 무료 세금신고" : "VITA Free Tax Filing", sub: lang === "ko" ? "소득 $60K 이하 — 1월~4월 무료 세금 신고 (vitataxhelp.org)" : "Income under $60K — FREE tax prep Jan-April (vitataxhelp.org)" },
+                ].map((link, i) => (
+                  <a key={i} href={link.href} target="_blank" rel="noopener noreferrer"
+                    style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(52,211,153,0.15)" }}>
+                    <span style={{ fontSize: 16 }}>{link.emoji}</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>{link.label}</div>
+                      <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{link.sub}</div>
+                    </div>
+                    <span style={{ color: accent, fontSize: 14 }}>→</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>
+                💡 {lang === "ko" ? "알뜰생활 철학" : "Smart Living Philosophy"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
+                {lang === "ko"
+                  ? "HebronGuide는 한인 커뮤니티를 넘어 다문화 미국 생활 전체를 가르칩니다. 베트남 쌀국수, 멕시칸 타코, 인도 뷔페 — 이민자들이 만든 음식이 이민자에게 가장 가성비가 좋습니다. 돈을 아끼면서 지혜로운 생활 🌎"
+                  : "HebronGuide teaches you to thrive in ALL of multicultural America, not just the Korean community. Vietnamese pho, Mexican tacos, Indian buffets — food made by immigrants offers the best value for immigrants. Smart frugal living 🌎"}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
@@ -3126,10 +3388,213 @@ function PhraseBook({ lang, speakFn }: { lang: string; speakFn: (text: string, l
 }
 
 /* ─────────────────────────────────────────
-   현장 통역 모달 — 양방향 음성 통역기
-   한국어 ↔ 영어 실시간 번역 + 음성 출력
+   음성 검색 탭 — 한국어로 말하면 찾아줌
 ───────────────────────────────────────── */
-function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string }) {
+const VS_APP_ROUTES = [
+  { kw:["식당","맛집","카페","음식","bbq","갈비","치킨","밥","커피"], tab:3, ko:"맛집", emoji:"🍽️" },
+  { kw:["정착","ssn","면허","운전","은행","계좌","비자","이민"],       tab:1, ko:"정착", emoji:"🛬" },
+  { kw:["교회","예배","목장","성경","신앙","가정교회"],                tab:2, ko:"교회", emoji:"⛪" },
+  { kw:["병원","의사","의료","약","치과","아파","보험","응급"],        tab:5, ko:"도움·의료", emoji:"🆘" },
+  { kw:["취업","일자리","채용","직장","알바","이력서","면접"],         tab:6, ko:"취업", emoji:"💼" },
+  { kw:["학교","교육","학원","대학","유학","학군"],                   tab:7, ko:"교육", emoji:"🎓" },
+  { kw:["생활비","렌트","월세","물가","환율","기름","코스트코","마트"], tab:8, ko:"생활비·쇼핑", emoji:"💰" },
+  { kw:["관광","여행","명소","스페이스니들","레이니어","폭포","페리"],  tab:4, ko:"관광", emoji:"🗺️" },
+];
+const VS_CITY_ROUTES = [
+  { kw:["달라스","texas","텍사스"],    url:"/dallas/",   name:"HebronGuide Dallas",     emoji:"🤠" },
+  { kw:["샌프란","sf","bay area"],    url:"/sf/",       name:"HebronGuide SF",          emoji:"🌉" },
+  { kw:["뉴욕","new york","ny"],      url:"/newyork/",  name:"HebronGuide New York",    emoji:"🗽" },
+  { kw:["내쉬빌","nashville"],        url:"/nashville/",name:"HebronGuide Nashville",   emoji:"🎵" },
+  { kw:["보스턴","boston"],           url:"/boston/",   name:"HebronGuide Boston",      emoji:"🦞" },
+  { kw:["LA","로스앤젤레스","엘에이"], url:"/la/",       name:"HebronGuide LA",          emoji:"🎬" },
+];
+// 가격비교 키워드
+const PRICE_COMPARE: Record<string, { items: {store:string;price:string;note:string}[] }> = {
+  "쌀":        { items:[{store:"H-Mart 20lb",price:"~$28",note:""},{store:"Costco 50lb",price:"~$45",note:"↓ lb당 40% 저렴"},{store:"99 Ranch 25lb",price:"~$22",note:"↓ lb당 25% 저렴"}] },
+  "우유":      { items:[{store:"H-Mart 1gal",price:"~$5.50",note:""},{store:"Costco 2gal",price:"~$7.99",note:"↓ 30% 저렴"},{store:"WinCo 1gal",price:"~$3.89",note:"↓ 30% 저렴"}] },
+  "계란":      { items:[{store:"H-Mart 12ea",price:"~$4.99",note:""},{store:"Costco 24ea",price:"~$7.49",note:"↓ 25% 저렴"},{store:"WinCo 12ea",price:"~$3.29",note:"↓ 35% 저렴"}] },
+  "기름값":    { items:[{store:"일반 주유소",price:"~$4.20/gal",note:""},{store:"Costco Gas",price:"~$3.90/gal",note:"↓ 30¢ 저렴"},{store:"GasBuddy 앱",price:"근처 최저가",note:"실시간 비교"}] },
+  "두부":      { items:[{store:"H-Mart",price:"~$2.49",note:""},{store:"99 Ranch",price:"~$1.79",note:"↓ 28% 저렴"},{store:"WinCo",price:"~$1.59",note:"↓ 36% 저렴"}] },
+};
+
+function VoiceSearchTab({ lang, onNavigate, onClose }: { lang:string; onNavigate:(tab:number)=>void; onClose:()=>void }) {
+  const [query,setQuery]           = useState("");
+  const [isListening,setIsListening] = useState(false);
+  const [result,setResult]         = useState<null|{type:string;[k:string]:any}>(null);
+  const [textMode,setTextMode]     = useState(false);
+  const [textInput,setTextInput]   = useState("");
+  const recognitionRef             = useRef<any>(null);
+
+  const detectIntent = (text:string) => {
+    const lo = text.toLowerCase().replace(/\s+/g,"");
+    // 가격비교
+    const priceKey = Object.keys(PRICE_COMPARE).find(k => lo.includes(k));
+    if (priceKey && (lo.includes("비교") || lo.includes("얼마") || lo.includes("가격") || lo.includes("싸")))
+      return { type:"price", key:priceKey, ...PRICE_COMPARE[priceKey] };
+    // 도시 라우팅
+    const city = VS_CITY_ROUTES.find(r => r.kw.some(k => lo.includes(k)));
+    if (city) return { type:"city", ...city };
+    // 앱 내 탭
+    const tab = VS_APP_ROUTES.find(r => r.kw.some(k => lo.includes(k)));
+    if (tab) return { type:"tab", ...tab };
+    return { type:"search", query:text };
+  };
+
+  const process = (text:string) => { setQuery(text); setResult(detectIntent(text)); };
+
+  const listen = () => {
+    const SR=(window as any).SpeechRecognition||(window as any).webkitSpeechRecognition;
+    if(!SR){alert(lang==="ko"?"Chrome 브라우저에서 사용해주세요":"Please use Chrome");return;}
+    setQuery("");setResult(null);setIsListening(true);
+    const rec=new SR(); rec.lang="ko-KR"; rec.interimResults=false; recognitionRef.current=rec;
+    rec.onresult=(e:any)=>{setIsListening(false);process(e.results[0][0].transcript);};
+    rec.onerror=()=>setIsListening(false);
+    rec.onend=()=>setIsListening(false);
+    rec.start();
+  };
+
+  const q = query||textInput;
+  const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(q+" Seattle WA")}`;
+  const aiUrl   = `https://www.perplexity.ai/search?q=${encodeURIComponent(q+" 시애틀")}`;
+
+  return (
+    <div style={{padding:"0 16px 16px"}}>
+      <div style={{textAlign:"center",marginBottom:14,fontSize:11,color:"rgba(255,255,255,0.4)",lineHeight:1.7}}>
+        {lang==="ko"?"한국어로 말하거나 입력하세요\n앱에서 찾거나 지도·AI로 연결합니다":"Speak or type in Korean — we'll route to the right place"}
+      </div>
+
+      {/* 마이크 */}
+      <button onClick={isListening?()=>{recognitionRef.current?.stop();setIsListening(false);}:listen}
+        style={{width:"100%",border:"none",borderRadius:18,cursor:"pointer",padding:"18px 16px",marginBottom:8,
+          background:isListening?"linear-gradient(135deg,#7C3AED,#A78BFA)":"linear-gradient(135deg,#1E3A5F,#1D4ED8)",
+          boxShadow:isListening?"0 0 24px rgba(124,58,237,0.5)":"none",transition:"all 0.2s"}}>
+        <div style={{fontSize:34,marginBottom:4}}>{isListening?"🔴":"🎤"}</div>
+        <div style={{fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:13,color:"#fff"}}>
+          {isListening?(lang==="ko"?"듣고 있어요... (탭해서 중지)":"Listening... tap to stop"):(lang==="ko"?"한국어로 말해서 검색":"Speak Korean to search")}
+        </div>
+        {!isListening&&<div style={{fontSize:10,color:"rgba(255,255,255,0.45)",marginTop:3}}>
+          {lang==="ko"?"\"맛집 찾아줘\" \"SSN 어디서\" \"쌀 가격 비교\"":"\"find restaurant\" \"SSN office\" \"rice price compare\""}
+        </div>}
+      </button>
+
+      {/* 텍스트 입력 */}
+      <button onClick={()=>setTextMode(p=>!p)}
+        style={{width:"100%",border:"1px solid rgba(255,255,255,0.1)",borderRadius:10,background:"rgba(255,255,255,0.04)",
+          padding:"8px",cursor:"pointer",color:"rgba(255,255,255,0.45)",fontSize:11,marginBottom:8}}>
+        ⌨️ {lang==="ko"?"직접 입력":"Type instead"}
+      </button>
+      {textMode&&(
+        <div style={{display:"flex",gap:7,marginBottom:10}}>
+          <input value={textInput} onChange={e=>setTextInput(e.target.value)}
+            onKeyDown={e=>{if(e.key==="Enter"&&textInput.trim())process(textInput.trim());}}
+            placeholder={lang==="ko"?"예: 린우드 한식당 찾아줘, 쌀 가격 비교":"e.g. find Korean restaurant Lynnwood"}
+            style={{flex:1,background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.15)",
+              borderRadius:10,padding:"9px 13px",color:"#F8FAFC",fontSize:12,outline:"none"}}/>
+          <button onClick={()=>{if(textInput.trim())process(textInput.trim());}}
+            style={{border:"none",borderRadius:10,background:"#1D4ED8",color:"#fff",padding:"0 14px",cursor:"pointer"}}>→</button>
+        </div>
+      )}
+
+      {/* 인식 결과 표시 */}
+      {q&&<div style={{marginBottom:10,background:"rgba(255,255,255,0.05)",borderRadius:10,padding:"8px 12px",
+        fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:13,color:"rgba(255,255,255,0.8)"}}>
+        🔎 "{q}"
+      </div>}
+
+      {/* 라우팅 결과 */}
+      {result&&(
+        <div style={{display:"flex",flexDirection:"column",gap:7}}>
+          {/* 가격 비교 */}
+          {result.type==="price"&&(
+            <div style={{background:"rgba(201,162,39,0.1)",border:"1px solid rgba(201,162,39,0.3)",borderRadius:14,padding:"12px 14px"}}>
+              <div style={{fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:13,color:"#C9A227",marginBottom:8}}>
+                💰 {q} {lang==="ko"?"가격 비교":"Price Comparison"}
+              </div>
+              {result.items.map((item:any,i:number)=>(
+                <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",
+                  padding:"7px 0",borderBottom:i<result.items.length-1?"1px solid rgba(255,255,255,0.06)":"none"}}>
+                  <div style={{fontFamily:"Manrope,sans-serif",fontSize:12,color:"#ECFDF5"}}>{item.store}</div>
+                  <div style={{textAlign:"right"}}>
+                    <div style={{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:13,color:i>0?"#6EE7B7":"#F87171"}}>{item.price}</div>
+                    {item.note&&<div style={{fontSize:9,color:"#6EE7B7"}}>{item.note}</div>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          {/* 앱 내 탭 이동 */}
+          {result.type==="tab"&&(
+            <button onClick={()=>{onNavigate(result.tab);onClose();}}
+              style={{width:"100%",border:"none",borderRadius:14,cursor:"pointer",padding:"13px 16px",
+                background:"linear-gradient(135deg,#059669,#10B981)",display:"flex",alignItems:"center",gap:10}}>
+              <span style={{fontSize:22}}>{result.emoji}</span>
+              <div style={{textAlign:"left",flex:1}}>
+                <div style={{fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:13,color:"#fff"}}>
+                  {lang==="ko"?`HebronGuide ${result.ko} 탭으로 이동`:`Go to ${result.ko} section`}
+                </div>
+                <div style={{fontSize:10,color:"rgba(255,255,255,0.7)",marginTop:2}}>{lang==="ko"?"앱 내에서 바로 찾기":"Find directly in app"}</div>
+              </div>
+              <span style={{color:"#fff",fontSize:16}}>→</span>
+            </button>
+          )}
+          {/* 도시 이동 */}
+          {result.type==="city"&&(
+            <a href={`https://hebronguide.com${result.url}`} target="_blank" rel="noopener noreferrer"
+              style={{display:"flex",alignItems:"center",gap:10,textDecoration:"none",
+                background:"linear-gradient(135deg,#7C3AED,#A78BFA)",borderRadius:14,padding:"13px 16px"}}>
+              <span style={{fontSize:22}}>{result.emoji}</span>
+              <div style={{flex:1}}>
+                <div style={{fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:13,color:"#fff"}}>{result.name}</div>
+                <div style={{fontSize:10,color:"rgba(255,255,255,0.7)",marginTop:2}}>{lang==="ko"?"해당 도시 가이드 열기":"Open city guide"}</div>
+              </div>
+              <span style={{color:"#fff",fontSize:16}}>→</span>
+            </a>
+          )}
+          {/* 외부 검색 (항상 표시) */}
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:7}}>
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer"
+              style={{display:"flex",flexDirection:"column",alignItems:"center",gap:4,textDecoration:"none",
+                background:"rgba(255,255,255,0.05)",border:"1px solid rgba(255,255,255,0.1)",borderRadius:12,padding:"10px"}}>
+              <span style={{fontSize:20}}>🗺️</span>
+              <span style={{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:11,color:"#ECFDF5"}}>Google Maps</span>
+              <span style={{fontSize:9,color:"rgba(255,255,255,0.4)"}}>지도에서 찾기</span>
+            </a>
+            <a href={aiUrl} target="_blank" rel="noopener noreferrer"
+              style={{display:"flex",flexDirection:"column",alignItems:"center",gap:4,textDecoration:"none",
+                background:"rgba(255,255,255,0.05)",border:"1px solid rgba(255,255,255,0.1)",borderRadius:12,padding:"10px"}}>
+              <span style={{fontSize:20}}>🤖</span>
+              <span style={{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:11,color:"#ECFDF5"}}>Perplexity AI</span>
+              <span style={{fontSize:9,color:"rgba(255,255,255,0.4)"}}>AI가 답해요</span>
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* 예시 문장 */}
+      {!q&&!isListening&&(
+        <div style={{marginTop:10}}>
+          <div style={{fontSize:10,color:"rgba(255,255,255,0.28)",marginBottom:6,textAlign:"center"}}>
+            {lang==="ko"?"💡 이렇게 말해보세요":"💡 Try these"}
+          </div>
+          {["린우드 한식당 찾아줘","SSN 어디서 신청해?","쌀 가격 비교","달라스 한인 교회","근처 타코 맛있는 곳"].map((ex,i)=>(
+            <button key={i} onClick={()=>process(ex)}
+              style={{display:"block",width:"100%",textAlign:"left",border:"none",
+                background:"rgba(255,255,255,0.04)",borderRadius:8,padding:"6px 11px",marginBottom:4,
+                color:"rgba(255,255,255,0.5)",fontSize:10,cursor:"pointer"}}>
+              "{ex}"
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   현장 통역 모달 — 3탭 (검색·통역·표현집)
+───────────────────────────────────────── */
+function TranslateModal({ onClose, lang, onNavigate }: { onClose:()=>void; lang:string; onNavigate?:(tab:number)=>void }) {
+  const [modalTab, setModalTab] = useState<"search"|"interpret"|"phrases">("search");
   /* ── 지원 언어 목록 (한국어는 고정, 상대방 언어 선택 가능) ── */
   const FOREIGN_LANGS = [
     { code: "auto", label: "Auto-detect", labelKo: "자동 감지", flag: "🌐", speechLang: "", color: "#C9A227", bg: "linear-gradient(135deg,#3B2700,#92610A)", bgActive: "linear-gradient(135deg,#92610A,#C9A227)", glow: "rgba(201,162,39,0.6)" },
@@ -3239,17 +3704,46 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string }
       <div style={{ width: "100%", maxWidth: 430, margin: "0 auto", background: "#0B1120", borderRadius: "24px 24px 0 0", overflow: "hidden", paddingBottom: "env(safe-area-inset-bottom,20px)" }} onClick={e => e.stopPropagation()}>
 
         {/* ── 헤더 ── */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "20px 20px 14px" }}>
-          <div>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 18, color: "#F8FAFC" }}>
-              🌐 {lang === "ko" ? "현장 통역" : "Live Interpreter"}
-            </div>
-            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.38)", marginTop: 3 }}>
-              {lang === "ko" ? "말하면 자동 번역 + 음성 출력" : "Speak → instant translation + voice"}
-            </div>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 20px 12px" }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 17, color: "#F8FAFC" }}>
+            {modalTab === "search"    ? "🔍 " + (lang === "ko" ? "음성 검색" : "Voice Search")
+             : modalTab === "interpret" ? "🌐 " + (lang === "ko" ? "현장 통역" : "Live Interpreter")
+             : "📚 " + (lang === "ko" ? "상황별 표현" : "Phrase Book")}
           </div>
-          <button onClick={onClose} style={{ border: "none", background: "rgba(255,255,255,0.09)", borderRadius: "50%", width: 34, height: 34, fontSize: 16, cursor: "pointer", color: "#94A3B8", flexShrink: 0 }}>✕</button>
+          <button onClick={onClose} style={{ border: "none", background: "rgba(255,255,255,0.09)", borderRadius: "50%", width: 34, height: 34, fontSize: 16, cursor: "pointer", color: "#94A3B8" }}>✕</button>
         </div>
+
+        {/* ── 3탭 선택 바 ── */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6, padding: "0 16px 14px" }}>
+          {(["search","interpret","phrases"] as const).map((t) => {
+            const labels: Record<string, {ko:string;en:string;icon:string}> = {
+              search:    {ko:"🔍 음성검색",  en:"🔍 Search",    icon:"🔍"},
+              interpret: {ko:"🌐 현장통역",  en:"🌐 Interpret",  icon:"🌐"},
+              phrases:   {ko:"📚 표현집",    en:"📚 Phrases",   icon:"📚"},
+            };
+            const active = modalTab === t;
+            return (
+              <button key={t} onClick={() => setModalTab(t)}
+                style={{ border: "none", borderRadius: 12, padding: "8px 6px", cursor: "pointer",
+                  background: active ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.05)",
+                  color: active ? "#F8FAFC" : "rgba(255,255,255,0.45)",
+                  fontFamily: "Manrope,sans-serif", fontWeight: active ? 700 : 500, fontSize: 11,
+                  borderBottom: active ? "2px solid #F2994A" : "2px solid transparent",
+                  transition: "all 0.15s" }}>
+                {lang === "ko" ? labels[t].ko : labels[t].en}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* ── 탭 콘텐츠 ── */}
+        {modalTab === "search" && (
+          <div style={{ maxHeight: "70dvh", overflowY: "auto" }}>
+            <VoiceSearchTab lang={lang} onNavigate={onNavigate ?? (() => {})} onClose={onClose} />
+          </div>
+        )}
+
+        {modalTab !== "search" && (<>
 
         {/* ── 언어 선택 바 (한국어 고정 | 외국어 선택) ── */}
         <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 16px 12px" }}>
@@ -3401,14 +3895,16 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string }
           </div>
         </div>
 
-        {/* ── 상황별 영어 표현집 ── */}
-        <PhraseBook lang={lang} speakFn={(text: string, speechLang: string) => {
-          window.speechSynthesis.cancel();
-          const utt = new SpeechSynthesisUtterance(text);
-          utt.lang = speechLang;
-          utt.rate = 0.85;
-          window.speechSynthesis.speak(utt);
-        }} />
+        {/* ── 상황별 영어 표현집 (표현집 탭에서만) ── */}
+        {modalTab === "phrases" && (
+          <PhraseBook lang={lang} speakFn={(text: string, speechLang: string) => {
+            window.speechSynthesis.cancel();
+            const utt = new SpeechSynthesisUtterance(text);
+            utt.lang = speechLang; utt.rate = 0.85;
+            window.speechSynthesis.speak(utt);
+          }} />
+        )}
+        </>) /* ── end modalTab !== "search" ── */}
       </div>
     </div>
   );
@@ -4024,7 +4520,8 @@ export function HebronGuide() {
         {showChat && <ChatShareModal onClose={() => setShowChat(false)} lang={lang} activeNav={activeNav} />}
 
         {/* 통역 모달 */}
-        {showTranslate && <TranslateModal onClose={() => setShowTranslate(false)} lang={lang} />}
+        {showTranslate && <TranslateModal onClose={() => setShowTranslate(false)} lang={lang}
+          onNavigate={(tab) => { setActiveNav(tab); setShowTranslate(false); }} />}
 
         <BottomNav
           activeIndex={activeNav}
