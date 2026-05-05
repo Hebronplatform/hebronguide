@@ -1456,8 +1456,8 @@ function SettleScreen({ onHome }: { onHome?: () => void }) {
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
   const tabs = lang === "ko"
-    ? ["1주차", "1개월", "3개월", "행정", "재정"]
-    : ["Week 1", "Month 1", "Month 3", "Admin", "Finance"];
+    ? ["1주차", "1개월", "3개월", "행정", "재정", "거주지"]
+    : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Areas"];
 
   const accent = "#60A5FA";
 
@@ -1536,16 +1536,36 @@ function SettleScreen({ onHome }: { onHome?: () => void }) {
     { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. Roth IRA best started after green card/citizenship" },
   ];
 
+  // 거주지 데이터 (탭 index 5)
+  const areasKo = [
+    { emoji: "🏘️", title: "린우드 (Lynnwood) — 한인 1번지", desc: "한인타운 중심. H-Mart·한식당·교회 밀집. 링크 라이트레일 직결 (2024 개통). 렌트 1BR $1,800–2,100 | 스튜디오 $1,300–1,600. Northshore SD (Niche A) — 한인 가족 최다 거주" },
+    { emoji: "💼", title: "벨뷰 (Bellevue) — 테크·최상위 학군", desc: "Bellevue SD — WA 1위 (Niche A+). Amazon·MS·Google 출퇴근 최적. 렌트 1BR $2,300–2,900 (프리미엄). 한인 전문직·가족 선호" },
+    { emoji: "🌲", title: "보텔·우딘빌 (Bothell) — 학군+자연", desc: "Northshore SD Niche A. 한인 가족 급성장 지역. 자연환경·조용한 주거. 렌트 1BR $1,900–2,300" },
+    { emoji: "💰", title: "페더럴웨이 (Federal Way) — 가성비", desc: "렌트 1BR $1,500–2,000 (저렴). 한인 마트·교회 다수. I-5 접근 편리. 넓은 한인 커뮤니티" },
+    { emoji: "🎓", title: "대학지구 (U-District) — 유학생", desc: "UW 인근. 한식당·카페 집중. 링크 라이트레일 최고 접근. 렌트 1BR $1,600–2,400. UW·Seattle U·Seattle Central 재학생 최다" },
+  ];
+  const areasEn = [
+    { emoji: "🏘️", title: "Lynnwood — Korean Hub #1", desc: "Heart of Koreatown. H-Mart, Korean restaurants & churches clustered. Link Light Rail direct (opened 2024). Rent 1BR $1,800–2,100 | Studio $1,300–1,600. Northshore SD (Niche A) — largest Korean family population" },
+    { emoji: "💼", title: "Bellevue — Tech & Top Schools", desc: "Bellevue SD — WA #1 (Niche A+). Best commute for Amazon/MS/Google. Rent 1BR $2,300–2,900 (premium). Preferred by Korean professionals & families" },
+    { emoji: "🌲", title: "Bothell — Schools + Nature", desc: "Northshore SD Niche A. Fast-growing Korean family area. Natural environment & quiet neighborhoods. Rent 1BR $1,900–2,300" },
+    { emoji: "💰", title: "Federal Way — Affordable", desc: "Rent 1BR $1,500–2,000 (affordable). Many Korean grocery stores & churches. Good I-5 access. Large Korean community" },
+    { emoji: "🎓", title: "U-District — Student Area", desc: "Near UW. Dense Korean restaurants & cafés. Best Link Light Rail access. Rent 1BR $1,600–2,400. Most UW & Seattle U students" },
+  ];
+
   const serverKeys = ["settle_week1", "settle_month1", "settle_month3", "settle_admin", "settle_finance"];
-  const serverData = serverContent[serverKeys[sub] as keyof typeof serverContent];
+  const serverData = sub < 5 ? serverContent[serverKeys[sub] as keyof typeof serverContent] : null;
   const items = serverData
     ? resolveStepItems(serverData, lang)
-    : (lang === "ko"
-      ? [week1Ko, month1Ko, month3Ko, adminKo, financeKo][sub]
-      : [week1En, month1En, month3En, adminEn, financeEn][sub]);
+    : sub < 5
+      ? (lang === "ko"
+        ? [week1Ko, month1Ko, month3Ko, adminKo, financeKo][sub]
+        : [week1En, month1En, month3En, adminEn, financeEn][sub])
+      : [];
+
+  const areaItems = lang === "ko" ? areasKo : areasEn;
 
   // 프로그레스 계산
-  const tabPrefix = ["w1", "m1", "m3", "adm", "fin"][sub];
+  const tabPrefix = ["w1", "m1", "m3", "adm", "fin", "area"][sub];
   const doneCount = items.filter((_, i) => localStorage.getItem(`hg_checklist_${tabPrefix}_${i}`) === "1").length;
   const [, forceUpdate] = useState(0);
 
@@ -1560,50 +1580,83 @@ function SettleScreen({ onHome }: { onHome?: () => void }) {
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5 px-4 md:px-6 lg:px-8">
-        {/* 프로그레스 바 */}
-        <div style={{ marginBottom: 16 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-            <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, fontWeight: 600, color: "rgba(236,253,245,0.5)" }}>
-              {lang === "ko" ? "완료" : "Progress"}
-            </span>
-            <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, fontWeight: 700, color: accent }}>
-              {doneCount} / {items.length}
-            </span>
-          </div>
-          <div style={{ height: 6, borderRadius: 4, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
-            <div style={{
-              height: "100%",
-              width: `${items.length > 0 ? (doneCount / items.length) * 100 : 0}%`,
-              background: `linear-gradient(90deg, ${accent}, rgba(110,231,183,0.6))`,
-              borderRadius: 4,
-              transition: "width 0.4s ease",
-            }} />
-          </div>
-        </div>
+        {/* 거주지 탭 */}
+        {sub === 5 ? (
+          <>
+            <div style={{ marginBottom: 12 }}>
+              <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13, color: accent, marginBottom: 4 }}>
+                🏘️ {lang === "ko" ? "시애틀 주요 거주지 가이드" : "Seattle Area Guide for Korean Residents"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", lineHeight: 1.5 }}>
+                {lang === "ko" ? "가족·학군·예산에 맞는 동네 찾기" : "Find the right neighborhood for your family, school, and budget"}
+              </div>
+            </div>
+            {areaItems.map((area, i) => (
+              <div key={i} style={{ background: "rgba(96,165,250,0.06)", border: "1px solid rgba(96,165,250,0.18)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                  <span style={{ fontSize: 20 }}>{area.emoji}</span>
+                  <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13, color: "#ECFDF5" }}>{area.title}</div>
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.65)" }}>{area.desc}</div>
+              </div>
+            ))}
+            <div style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 4 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>💡 {lang === "ko" ? "렌트 팁" : "Rent Tip"}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
+                {lang === "ko"
+                  ? "카카오오픈채팅 '시애틀한인' — 한인 룸메이트·렌탈 매물 정보 실시간 공유. WowSeattle 부동산 코너도 활용하세요."
+                  : "KakaoTalk Open Chat '시애틀한인' — real-time Korean roommate & rental listings. Also check WowSeattle real estate section."}
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            {/* 프로그레스 바 */}
+            <div style={{ marginBottom: 16 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, fontWeight: 600, color: "rgba(236,253,245,0.5)" }}>
+                  {lang === "ko" ? "완료" : "Progress"}
+                </span>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, fontWeight: 700, color: accent }}>
+                  {doneCount} / {items.length}
+                </span>
+              </div>
+              <div style={{ height: 6, borderRadius: 4, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
+                <div style={{
+                  height: "100%",
+                  width: `${items.length > 0 ? (doneCount / items.length) * 100 : 0}%`,
+                  background: `linear-gradient(90deg, ${accent}, rgba(110,231,183,0.6))`,
+                  borderRadius: 4,
+                  transition: "width 0.4s ease",
+                }} />
+              </div>
+            </div>
 
-        {/* 체크리스트 아이템 */}
-        <div onClick={() => forceUpdate(n => n + 1)}>
-          {items.map((item, i) => (
-            <ChecklistItem
-              key={`${sub}-${i}`}
-              itemId={`${tabPrefix}_${i}`}
-              title={item.title}
-              desc={item.desc}
-              accentColor={accent}
-              showReminder={isAdminTab}
-            />
-          ))}
-        </div>
+            {/* 체크리스트 아이템 */}
+            <div onClick={() => forceUpdate(n => n + 1)}>
+              {items.map((item, i) => (
+                <ChecklistItem
+                  key={`${sub}-${i}`}
+                  itemId={`${tabPrefix}_${i}`}
+                  title={item.title}
+                  desc={item.desc}
+                  accentColor={accent}
+                  showReminder={isAdminTab}
+                />
+              ))}
+            </div>
 
-        {/* 팁 배너 */}
-        <div style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>💡 {lang === "ko" ? "한인 커뮤니티 팁" : "Korean Community Tip"}</div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
-            {lang === "ko"
-              ? "카카오오픈채팅 '시애틀한인' 검색 — 실시간 정착 정보, 중고물품 거래, 룸메이트 구하기 등 활발하게 운영 중"
-              : "Search KakaoTalk Open Chat '시애틀한인' — active community for real-time settlement tips, used goods, and roommate search"}
-          </div>
-        </div>
+            {/* 팁 배너 */}
+            <div style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>💡 {lang === "ko" ? "한인 커뮤니티 팁" : "Korean Community Tip"}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
+                {lang === "ko"
+                  ? "카카오오픈채팅 '시애틀한인' 검색 — 실시간 정착 정보, 중고물품 거래, 룸메이트 구하기 등 활발하게 운영 중"
+                  : "Search KakaoTalk Open Chat '시애틀한인' — active community for real-time settlement tips, used goods, and roommate search"}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
@@ -1621,13 +1674,40 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     : ["About", "Churches", "Programs", "New Members"];
   const accent = "#C084FC";
 
-  const defaultChurches = [
-    { emoji: "⛪", name: "시애틀 연합감리교회", nameEn: "Seattle Korean UMC", desc: lang === "ko" ? "1965년 설립. 시애틀 한인 최초·최대 교회. 다운타운·벨뷰 등 다수 캠퍼스" : "Est. 1965. Oldest & largest Korean church in Seattle. Multiple campuses", tags: ["감리교", "다운타운", "다세대"] },
-    { emoji: "⛪", name: "에베소장로교회", nameEn: "Ephesus Korean Presbyterian", desc: lang === "ko" ? "Lynnwood 한인타운 중심. 청년·가족 중심 활발한 공동체. 한국어·영어 예배" : "Heart of Lynnwood Koreatown. Vibrant youth & family community", tags: ["장로교", "린우드", "청년"] },
-    { emoji: "⛪", name: "시애틀 한인침례교회", nameEn: "Seattle Korean Baptist", desc: lang === "ko" ? "Kirkland 소재. 영어권 2세 예배(EBF) 활발. 이민자 정착 지원 프로그램 운영" : "Located in Kirkland. Active English worship (EBF). Immigration support programs", tags: ["침례교", "커클랜드", "2세"] },
-    { emoji: "⛪", name: "시애틀 순복음교회", nameEn: "Seattle Full Gospel Church", desc: lang === "ko" ? "Lynnwood. 치유 사역·중보기도 중심. 새 이민자 생활 상담 사역" : "Lynnwood. Healing & intercessory prayer ministry. Newcomer life counseling", tags: ["순복음", "린우드", "새이민자"] },
-    { emoji: "⛪", name: "은혜와진리교회", nameEn: "Grace & Truth Church", desc: lang === "ko" ? "Bellevue 소재 청년·유학생 중심 교회. 영어 친화적 환경" : "Bellevue. Youth & international student focused. English-friendly environment", tags: ["벨뷰", "유학생", "청년"] },
-    { emoji: "⛪", name: "연어교회 (Salmon Church)", nameEn: "Salmon Church Seattle", desc: lang === "ko" ? "이민 2·3세 + 유학생 대상 영어 한인 교회. 현대적 예배 스타일" : "English-language Korean church for 2nd-3rd gen & international students", tags: ["영어예배", "2세", "현대"] },
+  // 교회 목록 — 시애틀지구촌교회 (Global Mission Church) 검증 완료
+  // 다른 교회는 검증 후 순차적으로 추가 예정
+  const defaultChurches = lang === "ko" ? [
+    {
+      emoji: "⭐", tier: 1,
+      name: "시애틀지구촌교회 (Global Mission Church)",
+      nameEn: "Global Mission Church of Greater Seattle",
+      desc: "✅ 검증됨 | SBC 소속 가정교회 사역 교회. 폴 김 목사.\n\n" +
+        "📍 Lynnwood, WA\n" +
+        "📞 새가족 문의 환영\n\n" +
+        "🏠 가정교회 3축 운영:\n" +
+        "  • 목장 (Mokjang) — 소그룹 공동체\n" +
+        "  • 삶공부 (Life Studies) — 제자훈련\n" +
+        "  • LIFE Worship — 주일 예배\n\n" +
+        "✨ 이민자·유학생·새가족 환영\n" +
+        "🔗 국제가정교회사역원(IHM) 인증",
+      tags: ["가정교회", "SBC", "린우드"],
+    },
+  ] : [
+    {
+      emoji: "⭐", tier: 1,
+      name: "Global Mission Church of Greater Seattle",
+      nameEn: "시애틀지구촌교회",
+      desc: "✅ Verified | SBC-affiliated House Church Ministry. Pastor Paul Kim.\n\n" +
+        "📍 Lynnwood, WA\n" +
+        "📞 New families welcome — contact us\n\n" +
+        "🏠 Three pillars of House Church:\n" +
+        "  • Mokjang — Small group community\n" +
+        "  • Life Studies — Discipleship training\n" +
+        "  • LIFE Worship — Sunday service\n\n" +
+        "✨ Open to immigrants, international students & newcomers\n" +
+        "🔗 IHM (Intl House Church Ministry) certified",
+      tags: ["House Church", "SBC", "Lynnwood"],
+    },
   ];
   const churches = serverContent["churches"]
     ? resolvePlaceItems(serverContent["churches"], lang)
@@ -1681,7 +1761,16 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         )}
         {sub === 1 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {churches.map((c, i) => <PlaceCard key={i} {...c} accentColor={accent} />)}
+            {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number }>).map((c, i) => (
+              <div key={i} style={c.tier === 1 ? { border: "1px solid rgba(201,162,39,0.55)", borderRadius: 16, background: "rgba(201,162,39,0.06)" } : {}}>
+                {c.tier === 1 && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px" }}>
+                    <span style={{ background: "rgba(201,162,39,0.18)", border: "1px solid rgba(201,162,39,0.45)", color: GOLD, borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>가정교회 ⭐</span>
+                  </div>
+                )}
+                <PlaceCard {...c} accentColor={c.tier === 1 ? GOLD : accent} />
+              </div>
+            ))}
           </div>
         )}
         {sub === 2 && (
@@ -1853,9 +1942,31 @@ function HelpScreen({ onHome }: { onHome?: () => void }) {
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
   const tabs = lang === "ko"
-    ? ["긴급연락", "커뮤니티", "유용한 링크"]
-    : ["Emergency", "Community", "Useful Links"];
+    ? ["긴급연락", "의료·병원", "커뮤니티", "유용한 링크"]
+    : ["Emergency", "Medical", "Community", "Useful Links"];
   const accent = "#F87171";
+
+  const medicalItems = lang === "ko" ? [
+    { emoji: "🏥", name: "닥터 김 클리닉 (한인 가정의학과)", nameEn: "Korean Family Medicine — Lynnwood", desc: "한국어 진료 가능. 📍 Lynnwood | 📞 (425) 744-9200", tags: ["가정의학", "한국어", "린우드"] },
+    { emoji: "🏥", name: "스웨디시 메디컬 센터", nameEn: "Swedish Medical Center — Capitol Hill", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | 한국어 통역 서비스 ✅ | 응급실 포함 전문 진료", tags: ["종합병원", "시애틀", "통역"] },
+    { emoji: "🏥", name: "UW 메디컬 센터", nameEn: "UW Medical Center", desc: "📍 1959 NE Pacific St, Seattle | 📞 (206) 598-3300 | 한국어 통역 ✅ | 워싱턴주 최대 학술병원", tags: ["대학병원", "시애틀", "통역"] },
+    { emoji: "🦷", name: "켄트 임플란트 치과", nameEn: "Kent Implant Dental", desc: "한인 치과. 📍 306 Washington Ave S, Kent | 📞 (253) 981-3816 ✅ | 임플란트 전문", tags: ["치과", "켄트", "임플란트"] },
+    { emoji: "🦷", name: "린우드 한인 치과 (다수)", nameEn: "Lynnwood Korean Dentists", desc: "린우드 지역 한인 치과 다수 운영. kSeattle·WowSeattle 업소록 참조 | 🔗 kseattle.com", tags: ["치과", "린우드", "한국어"] },
+    { emoji: "🧠", name: "ACRS 정신건강 (한국어 상담사)", nameEn: "Asian Counseling & Referral Service", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | 한국어 상담사 상주 ✅ | 슬라이딩 스케일 요금", tags: ["정신건강", "한국어", "상담"] },
+    { emoji: "🆘", name: "위기 상담 핫라인 (24시간)", nameEn: "Crisis Line 24/7", desc: "📞 866-427-4747 (24시간) | 한국어 통역 가능 | 정신건강·자살 예방 전문", tags: ["위기상담", "24시간", "무료"] },
+    { emoji: "🚨", name: "응급실 — Swedish First Hill", nameEn: "Emergency Room — Swedish First Hill", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | 시애틀 중심부 응급실. 한국어 통역 요청 가능", tags: ["응급실", "응급", "시애틀"] },
+    { emoji: "📞", name: "한국어 통역 서비스 (의료)", nameEn: "Korean Medical Interpreter", desc: "언어 라인 (Language Line): 📞 1-800-752-6096 | 병원·클리닉 방문 전 통역 예약 가능", tags: ["통역", "의료", "무료"] },
+  ] : [
+    { emoji: "🏥", name: "Korean Family Medicine Clinic", nameEn: "닥터 김 클리닉 — Lynnwood", desc: "Korean-speaking physician. 📍 Lynnwood | 📞 (425) 744-9200", tags: ["Family Med", "Korean", "Lynnwood"] },
+    { emoji: "🏥", name: "Swedish Medical Center", nameEn: "스웨디시 메디컬 센터", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | Korean interpreter ✅ | Full service incl. ER", tags: ["Hospital", "Seattle", "Interpreter"] },
+    { emoji: "🏥", name: "UW Medical Center", nameEn: "UW 메디컬 센터", desc: "📍 1959 NE Pacific St, Seattle | 📞 (206) 598-3300 | Korean interpreter ✅ | WA's largest academic medical center", tags: ["Hospital", "Seattle", "Interpreter"] },
+    { emoji: "🦷", name: "Kent Implant Dental", nameEn: "켄트 임플란트 치과", desc: "Korean dental clinic. 📍 306 Washington Ave S, Kent | 📞 (253) 981-3816 ✅ | Implant specialist", tags: ["Dental", "Kent", "Implant"] },
+    { emoji: "🦷", name: "Lynnwood Korean Dentists", nameEn: "린우드 한인 치과", desc: "Multiple Korean dental clinics in Lynnwood. See kSeattle & WowSeattle directory | 🔗 kseattle.com", tags: ["Dental", "Lynnwood", "Korean"] },
+    { emoji: "🧠", name: "ACRS Mental Health (Korean counselors)", nameEn: "Asian Counseling & Referral Service", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | Korean-speaking counselors ✅ | Sliding scale fees", tags: ["Mental Health", "Korean", "Counseling"] },
+    { emoji: "🆘", name: "Crisis Line 24/7", nameEn: "위기 상담 핫라인", desc: "📞 866-427-4747 (24/7) | Korean interpreter available | Mental health & suicide prevention", tags: ["Crisis", "24/7", "Free"] },
+    { emoji: "🚨", name: "Emergency Room — Swedish First Hill", nameEn: "응급실 — Swedish First Hill", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | Central Seattle ER. Korean interpreter on request", tags: ["ER", "Emergency", "Seattle"] },
+    { emoji: "📞", name: "Korean Medical Interpreter Line", nameEn: "한국어 의료 통역", desc: "Language Line: 📞 1-800-752-6096 | Pre-book interpreter for clinic & hospital visits", tags: ["Interpreter", "Medical", "Free"] },
+  ];
 
   const defaultCommunityLinks = [
     { emoji: "💬", name: lang === "ko" ? "카카오오픈채팅 — 시애틀한인" : "KakaoTalk — 시애틀한인", nameEn: "Kakao Open Chat", desc: lang === "ko" ? "시애틀 한인 최대 커뮤니티 채팅방. 정착 질문, 중고거래, 모임 공지" : "Largest Korean Seattle community chat. Settlement Q&A, used goods, event announcements", tags: ["카카오", "실시간", "커뮤니티"] },
@@ -1914,13 +2025,37 @@ function HelpScreen({ onHome }: { onHome?: () => void }) {
 
       {sub === 1 && (
         <div className="pt-5 px-4 md:px-6 lg:px-8">
+          <div style={{ marginBottom: 12 }}>
+            <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13, color: accent, marginBottom: 4 }}>
+              🏥 {lang === "ko" ? "한인 의료·병원 안내" : "Korean Medical & Hospital Guide"}
+            </div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", lineHeight: 1.5 }}>
+              {lang === "ko" ? "한국어 가능 의료기관 · 정신건강 · 응급 연락" : "Korean-speaking clinics · Mental health · Emergency contacts"}
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {medicalItems.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+          </div>
+          <div style={{ background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.18)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>⚠️ {lang === "ko" ? "의료 정보 안내" : "Medical Info Note"}</div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
+              {lang === "ko"
+                ? "전화번호·주소는 변경될 수 있습니다. 방문 전 반드시 공식 웹사이트 또는 전화로 확인하세요. 응급 상황 → 911"
+                : "Phone numbers & addresses may change. Always verify via official website or phone before visiting. Emergency → 911"}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {sub === 2 && (
+        <div className="pt-5 px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {communityLinks.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
         </div>
       )}
 
-      {sub === 2 && (
+      {sub === 3 && (
         <div className="pt-5 px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {usefulLinks.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
