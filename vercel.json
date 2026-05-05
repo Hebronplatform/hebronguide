@@ -3,11 +3,12 @@
   "outputDirectory": "public",
 
   "redirects": [
+    { "source": "/",                   "destination": "/seattle/", "permanent": false },
     { "source": "/seattle/index.html", "destination": "/seattle/", "permanent": true },
     { "source": "/dallas/index.html",  "destination": "/dallas/",  "permanent": true },
     { "source": "/sf/index.html",      "destination": "/sf/",      "permanent": true },
-    { "source": "/home",               "destination": "/",         "permanent": true },
-    { "source": "/guide",              "destination": "/",         "permanent": true }
+    { "source": "/home",               "destination": "/seattle/", "permanent": true },
+    { "source": "/guide",              "destination": "/seattle/", "permanent": true }
   ],
 
   "rewrites": [
