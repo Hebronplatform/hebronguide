@@ -2921,116 +2921,160 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string }
 }
 
 /* ─────────────────────────────────────────
-   상담·공유 모달
+   스마트 공유 모달 — 탭별 맞춤 메시지 + 멀티 SNS
 ───────────────────────────────────────── */
-function ChatShareModal({ onClose, lang }: { onClose: () => void; lang: string }) {
-  const appUrl = "https://hebronguide.com/seattle/";
-  const shareText = lang === "ko"
-    ? "시애틀 한인 정착 가이드 — HebronGuide 👍"
-    : "Korean settlement guide for Seattle — HebronGuide 👍";
 
-  // 네이티브 공유 (iPhone/Android 기본 공유 시트 — WhatsApp·KakaoTalk·WeChat 등 자동 표시)
-  const handleNativeShare = () => {
+// 탭별 공유 콘텐츠 정의
+const SHARE_CONTEXTS: Record<number, { emoji: string; labelKo: string; labelEn: string; textKo: string; textEn: string; tags: string }> = {
+  0: { emoji: "🏠", labelKo: "홈", labelEn: "Home",
+    textKo: "시애틀 한인 정착의 모든 것!\n맛집·정착·취업·교육·관광 정보가 한 앱에 다 있어요 👇",
+    textEn: "Everything for Korean life in Seattle!\nFood, settlement, jobs, schools & tourism — all in one app 👇",
+    tags: "#시애틀한인 #Seattle #HebronGuide" },
+  1: { emoji: "🛬", labelKo: "정착", labelEn: "Settlement",
+    textKo: "시애틀 정착 완벽 가이드 🛬\nSSN·운전면허·은행 계좌·학교 등록까지\n새로 오신 분들께 꼭 공유해 주세요 👇",
+    textEn: "Complete Seattle settlement guide 🛬\nSSN, driver's license, banking, school enrollment\nShare with newcomers 👇",
+    tags: "#시애틀정착 #이민정보 #HebronGuide" },
+  2: { emoji: "⛪", labelKo: "교회", labelEn: "Church",
+    textKo: "시애틀 한인교회 정보 ⛪\n가정교회 중심으로 검증된 교회 정보\n믿을 수 있는 커뮤니티를 찾고 계신다면 👇",
+    textEn: "Korean churches in Seattle ⛪\nVerified church info, house church communities\nLooking for a trusted community? 👇",
+    tags: "#시애틀한인교회 #가정교회 #HebronGuide" },
+  3: { emoji: "🍽️", labelKo: "맛집", labelEn: "Food",
+    textKo: "시애틀 한인 검증 맛집 TOP 5 🍽️\n150개 이상 중 엄선한 진짜 맛집\n여기는 정말 맛있어요! 👇",
+    textEn: "Seattle's top verified Korean restaurants 🍽️\nHandpicked from 150+ options\nThese are genuinely delicious! 👇",
+    tags: "#시애틀맛집 #한식 #KoreanFood #HebronGuide" },
+  4: { emoji: "🗺️", labelKo: "관광", labelEn: "Tourism",
+    textKo: "시애틀 관광 명소 완벽 정리 🗺️\n자연·문화·야경·액티비티 총망라\n시애틀 방문 계획이라면 꼭 보세요 👇",
+    textEn: "Seattle's best attractions 🗺️\nNature, culture, nightviews & activities\nMust-see before your Seattle trip 👇",
+    tags: "#시애틀관광 #Seattle #여행 #HebronGuide" },
+  5: { emoji: "🆘", labelKo: "도움·긴급", labelEn: "Help & Emergency",
+    textKo: "시애틀 한인 긴급 연락처 모음 🆘\n병원·총영사관·법률·가스누출 등\n셀폰에 저장해 두세요! 👇",
+    textEn: "Seattle emergency contacts for Koreans 🆘\nHospital, consulate, legal, utilities & more\nSave this now! 👇",
+    tags: "#시애틀응급 #한인정보 #HebronGuide" },
+  6: { emoji: "💼", labelKo: "취업", labelEn: "Jobs",
+    textKo: "시애틀 취업 정보 💼\n아마존·마이크로소프트·보잉·한인 업체\n취업 비자 경로까지 정리됐어요 👇",
+    textEn: "Seattle jobs for Koreans 💼\nAmazon, Microsoft, Boeing & Korean businesses\nVisa pathways included 👇",
+    tags: "#시애틀취업 #테크잡 #HebronGuide" },
+  7: { emoji: "🎓", labelKo: "교육", labelEn: "Education",
+    textKo: "시애틀 교육 정보 🎓\n공립학교·한국어학교·SAT·대학 진학\n자녀 교육 고민 중이시라면 👇",
+    textEn: "Seattle education guide 🎓\nPublic schools, Korean schools, SAT & college\nFor parents planning ahead 👇",
+    tags: "#시애틀교육 #한인학교 #HebronGuide" },
+  8: { emoji: "💰", labelKo: "생활비", labelEn: "Cost of Living",
+    textKo: "시애틀 실제 생활비 정보 💰\n렌트·기름값·환율·교통비 실시간 업데이트\n이사 전 꼭 확인하세요 👇",
+    textEn: "Real Seattle cost of living 💰\nRent, gas, exchange rate & transit — updated daily\nCheck before you move 👇",
+    tags: "#시애틀생활비 #렌트 #HebronGuide" },
+};
+
+function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void; lang: string; activeNav?: number }) {
+  const appUrl   = "https://hebronguide.com/seattle/";
+  const ctx      = SHARE_CONTEXTS[activeNav] ?? SHARE_CONTEXTS[0];
+  const bodyText = lang === "ko" ? ctx.textKo : ctx.textEn;
+  const fullMsg  = `${bodyText}\n\n📱 HebronGuide — hebronguide.com/seattle\n${ctx.tags}`;
+
+  const [copied, setCopied] = useState(false);
+
+  const copy = () => {
+    navigator.clipboard?.writeText(fullMsg + "\n" + appUrl).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    });
+  };
+
+  const nativeShare = () => {
     if (navigator.share) {
-      navigator.share({ title: "HebronGuide Seattle", text: shareText, url: appUrl })
-        .catch(() => {});
+      navigator.share({ title: `HebronGuide Seattle — ${lang === "ko" ? ctx.labelKo : ctx.labelEn}`, text: fullMsg, url: appUrl }).catch(() => {});
     } else {
-      navigator.clipboard?.writeText(appUrl);
-      alert(lang === "ko" ? "✅ 링크 복사됨!" : "✅ Link copied!");
+      copy();
     }
     onClose();
   };
 
-  const actions = [
-    {
-      // 네이티브 공유 — 가장 글로벌 (사용자 폰에 설치된 모든 앱으로 공유 가능)
-      icon: "📤",
-      label: lang === "ko" ? "공유하기" : "Share",
-      desc: lang === "ko" ? "WhatsApp · KakaoTalk · WeChat · SMS · 이메일 등" : "WhatsApp · KakaoTalk · WeChat · SMS · Email & more",
-      color: "#F2994A",
-      onClick: handleNativeShare,
-    },
-    {
-      // WhatsApp — 글로벌 1위 메신저
-      icon: "💚",
-      label: "WhatsApp",
-      desc: lang === "ko" ? "전세계 20억+ 사용자" : "2B+ users worldwide",
-      color: "#25D366",
-      href: `https://wa.me/?text=${encodeURIComponent(shareText + "\n" + appUrl)}`,
-    },
-    {
-      // 이메일
-      icon: "📧",
-      label: lang === "ko" ? "이메일" : "Email",
-      desc: lang === "ko" ? "Gmail · Outlook · Apple Mail" : "Gmail · Outlook · Apple Mail",
-      color: "#2563EB",
-      href: `mailto:?subject=HebronGuide Seattle&body=${encodeURIComponent(shareText + "\n" + appUrl)}`,
-    },
-    {
-      // 링크 복사
-      icon: "🔗",
-      label: lang === "ko" ? "링크 복사" : "Copy Link",
-      desc: lang === "ko" ? "클립보드에 복사" : "Copy to clipboard",
-      color: "#64748B",
-      onClick: () => {
-        navigator.clipboard?.writeText(appUrl);
-        alert(lang === "ko" ? "✅ 링크 복사됨!" : "✅ Link copied!");
-        onClose();
-      },
-    },
+  const encoded   = encodeURIComponent(fullMsg + "\n" + appUrl);
+  const encodedUrl = encodeURIComponent(appUrl);
+
+  // SNS 플랫폼 목록
+  const platforms = [
+    { icon: "📤", label: lang === "ko" ? "기본 공유" : "Share", sub: "iOS · Android 공유 시트", color: "#F2994A", bg: "#FFF5EC", action: nativeShare },
+    { icon: "💬", label: "카카오톡", sub: "KakaoTalk", color: "#FAE100", bg: "#FEFCE8",
+      href: `kakaotalk://msg/send?text=${encoded}`, fallback: `https://sharer.kakao.com/talk/friends/picker/link` },
+    { icon: "💚", label: "WhatsApp", sub: "글로벌 20억+", color: "#25D366", bg: "#F0FFF4",
+      href: `https://wa.me/?text=${encoded}` },
+    { icon: "📘", label: "Facebook", sub: "페이스북", color: "#1877F2", bg: "#EFF6FF",
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodeURIComponent(fullMsg)}` },
+    { icon: "🐦", label: "X (Twitter)", sub: "트위터", color: "#000000", bg: "#F9FAFB",
+      href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(bodyText + "\n" + ctx.tags)}&url=${encodedUrl}` },
+    { icon: "🟢", label: "LINE", sub: "라인", color: "#00B900", bg: "#F0FFF0",
+      href: `https://line.me/R/msg/text/?${encoded}` },
+    { icon: "📧", label: lang === "ko" ? "이메일" : "Email", sub: "Gmail · Outlook", color: "#2563EB", bg: "#EFF6FF",
+      href: `mailto:?subject=HebronGuide Seattle — ${ctx.labelKo}&body=${encodeURIComponent(fullMsg + "\n\n" + appUrl)}` },
+    { icon: "🔗", label: lang === "ko" ? "링크+메시지 복사" : "Copy", sub: lang === "ko" ? "클립보드 복사" : "Copy to clipboard", color: "#64748B", bg: "#F8FAFC", action: copy },
   ];
 
   return (
-    <div style={{
-      position: "fixed", inset: 0, zIndex: 300,
-      background: "rgba(0,0,0,0.45)", backdropFilter: "blur(4px)",
-      display: "flex", alignItems: "flex-end",
-    }} onClick={onClose}>
-      <div style={{
-        width: "100%", maxWidth: 430, margin: "0 auto",
-        background: "#fff", borderRadius: "24px 24px 0 0",
-        padding: "24px 20px 36px",
-        boxShadow: "0 -8px 40px rgba(0,0,0,0.15)",
-      }} onClick={e => e.stopPropagation()}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-          <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 18, color: "#1B2A4A" }}>
-            📤 {lang === "ko" ? "앱 공유하기" : "Share App"}
+    <div style={{ position: "fixed", inset: 0, zIndex: 300, background: "rgba(0,0,0,0.52)", backdropFilter: "blur(6px)", display: "flex", alignItems: "flex-end" }} onClick={onClose}>
+      <div style={{ width: "100%", maxWidth: 430, margin: "0 auto", background: "#fff", borderRadius: "24px 24px 0 0", paddingBottom: "env(safe-area-inset-bottom,16px)", boxShadow: "0 -8px 48px rgba(0,0,0,0.18)" }} onClick={e => e.stopPropagation()}>
+
+        {/* ── 헤더 ── */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 20px 0" }}>
+          <div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 17, color: "#1B2A4A" }}>
+              📤 {lang === "ko" ? "공유하기" : "Share"}
+            </div>
+            <div style={{ fontSize: 11, color: "#94A3B8", marginTop: 2 }}>
+              {ctx.emoji} {lang === "ko" ? ctx.labelKo : ctx.labelEn} {lang === "ko" ? "정보 공유" : "info"}
+            </div>
           </div>
-          <button onClick={onClose} style={{ border: "none", background: "none", fontSize: 22, cursor: "pointer", color: "#9CA3AF" }}>✕</button>
+          <button onClick={onClose} style={{ border: "none", background: "#F1F5F9", borderRadius: "50%", width: 32, height: 32, fontSize: 16, cursor: "pointer", color: "#64748B" }}>✕</button>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          {actions.map((a, i) => (
-            <a key={i}
-              href={a.href}
-              target={a.href ? "_blank" : undefined}
-              rel="noopener noreferrer"
-              onClick={a.onClick ? (e) => { e.preventDefault(); a.onClick!(); } : undefined}
-              style={{
-                display: "flex", alignItems: "center", gap: 14,
-                padding: "14px 16px", borderRadius: 14,
-                background: "#F8FAFC", border: "1px solid #E2E8F0",
-                textDecoration: "none", cursor: "pointer",
-              }}
-            >
-              <div style={{ width: 42, height: 42, borderRadius: 12, background: a.color + "22",
-                display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>
-                {a.icon}
-              </div>
-              <div>
-                <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 14, color: "#1B2A4A" }}>
-                  {a.label}
+
+        {/* ── 공유 미리보기 카드 ── */}
+        <div style={{ margin: "14px 16px 0", background: "linear-gradient(135deg,#F8FAFC,#EFF6FF)", border: "1px solid #E2E8F0", borderRadius: 14, padding: "14px 14px 10px" }}>
+          <div style={{ fontSize: 12, color: "#64748B", lineHeight: 1.65, whiteSpace: "pre-line" }}>
+            {bodyText}
+          </div>
+          <div style={{ marginTop: 8, paddingTop: 8, borderTop: "1px solid #E2E8F0", display: "flex", alignItems: "center", gap: 6 }}>
+            <div style={{ width: 20, height: 20, borderRadius: 5, background: "#1B2A4A", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11 }}>🧭</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#1B2A4A" }}>HebronGuide</div>
+            <div style={{ fontSize: 11, color: "#94A3B8" }}>hebronguide.com/seattle</div>
+          </div>
+          <div style={{ marginTop: 4, fontSize: 10, color: "#94A3B8" }}>{ctx.tags}</div>
+        </div>
+
+        {/* ── SNS 플랫폼 그리드 ── */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, padding: "14px 16px 8px" }}>
+          {platforms.map((p, i) => (
+            p.action ? (
+              <button key={i} onClick={p.action}
+                style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 12px", borderRadius: 12, border: `1px solid ${p.color}22`, background: p.bg, cursor: "pointer", textAlign: "left" }}>
+                <span style={{ fontSize: 20, flexShrink: 0 }}>{i === 7 && copied ? "✅" : p.icon}</span>
+                <div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#1B2A4A" }}>{i === 7 && copied ? (lang === "ko" ? "복사됨!" : "Copied!") : p.label}</div>
+                  <div style={{ fontSize: 10, color: "#94A3B8", marginTop: 1 }}>{p.sub}</div>
                 </div>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#64748B", marginTop: 2 }}>
-                  {a.desc}
+              </button>
+            ) : (
+              <a key={i} href={p.href} target="_blank" rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 12px", borderRadius: 12, border: `1px solid ${p.color}22`, background: p.bg, textDecoration: "none" }}>
+                <span style={{ fontSize: 20, flexShrink: 0 }}>{p.icon}</span>
+                <div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#1B2A4A" }}>{p.label}</div>
+                  <div style={{ fontSize: 10, color: "#94A3B8", marginTop: 1 }}>{p.sub}</div>
                 </div>
-              </div>
-            </a>
+              </a>
+            )
           ))}
+        </div>
+
+        {/* ── 하단 안내 ── */}
+        <div style={{ padding: "4px 16px 12px", textAlign: "center" }}>
+          <div style={{ fontSize: 10, color: "#CBD5E1" }}>
+            💡 {lang === "ko" ? "공유 시 HebronGuide 링크가 자동으로 포함됩니다" : "HebronGuide link is automatically included in every share"}
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
 
 interface BottomNavProps {
   activeIndex: number;
@@ -3398,7 +3442,7 @@ export function HebronGuide() {
         {!isOnline && <OfflineBanner />}
 
         {/* 공유 모달 */}
-        {showChat && <ChatShareModal onClose={() => setShowChat(false)} lang={lang} />}
+        {showChat && <ChatShareModal onClose={() => setShowChat(false)} lang={lang} activeNav={activeNav} />}
 
         {/* 통역 모달 */}
         {showTranslate && <TranslateModal onClose={() => setShowTranslate(false)} lang={lang} />}
