@@ -4136,11 +4136,9 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle, onShare
         transform: "translateX(-50%)",
         width: "100%",
         maxWidth: 430,
-        background: "rgba(249,249,249,0.94)",
-        backdropFilter: "blur(20px) saturate(180%)",
-        WebkitBackdropFilter: "blur(20px) saturate(180%)",
+        background: "#F9F9F9",
         borderTop: "0.5px solid rgba(0,0,0,0.18)",
-        boxShadow: "none",
+        boxShadow: "0 -1px 0 rgba(0,0,0,0.08)",
       }}
     >
       <div style={{ display: "flex", height: "100%", alignItems: "stretch" }}>
@@ -4208,9 +4206,7 @@ function AppBar() {
       className="sticky top-0 z-40 flex items-center justify-between px-[20px] w-full"
       style={{
         height: 56,
-        background: "rgba(249,249,249,0.94)",
-        backdropFilter: "blur(20px) saturate(180%)",
-        WebkitBackdropFilter: "blur(20px) saturate(180%)",
+        background: "#F9F9F9",
         borderBottom: "0.5px solid rgba(0,0,0,0.18)",
       }}
     >
