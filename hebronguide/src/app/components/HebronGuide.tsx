@@ -650,11 +650,11 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number) => void }
   return (
     <div style={{ padding: "20px 16px 12px" }}>
       <div style={{
-        fontFamily: "-apple-system, 'SF Pro Display', 'Noto Sans KR', sans-serif",
-        fontWeight: 700, fontSize: 22, color: "#000",
-        letterSpacing: "-0.5px", marginBottom: 12,
+        fontFamily: "'Noto Sans KR', sans-serif",
+        fontWeight: 700, fontSize: 15, color: "#1B2A4A",
+        letterSpacing: "-0.3px", marginBottom: 12,
       }}>
-        {lang === "ko" ? "빠른 메뉴" : "Quick Menu"}
+        ⚡ {lang === "ko" ? "빠른 메뉴" : "Quick Menu"}
       </div>
       {/* 3×3 콤팩트 그리드 */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
@@ -716,10 +716,10 @@ function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number
     <div style={{ padding: "16px 0 8px" }}>
       <div style={{ padding: "0 16px", marginBottom: 12, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{
-          fontFamily: "-apple-system, 'SF Pro Display', 'Noto Sans KR', sans-serif",
-          fontWeight: 700, fontSize: 22, color: "#000", letterSpacing: "-0.5px",
+          fontFamily: "'Noto Sans KR', sans-serif",
+          fontWeight: 700, fontSize: 15, color: "#1B2A4A", letterSpacing: "-0.3px",
         }}>
-          {lang === "ko" ? "정착 필수" : "Settlement Essentials"}
+          ✅ {lang === "ko" ? "정착 필수" : "Settlement Essentials"}
         </div>
         <button onClick={() => onNavigate?.(1)} style={{
           background: "none", border: "none",
