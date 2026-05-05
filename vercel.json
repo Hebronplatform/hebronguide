@@ -1,6 +1,15 @@
 {
   "buildCommand": "bash build.sh",
   "outputDirectory": "public",
+
+  "redirects": [
+    { "source": "/seattle/index.html", "destination": "/seattle/", "permanent": true },
+    { "source": "/dallas/index.html",  "destination": "/dallas/",  "permanent": true },
+    { "source": "/sf/index.html",      "destination": "/sf/",      "permanent": true },
+    { "source": "/home",               "destination": "/",         "permanent": true },
+    { "source": "/guide",              "destination": "/",         "permanent": true }
+  ],
+
   "rewrites": [
     { "source": "/seattle",        "destination": "/seattle/index.html" },
     { "source": "/seattle/(.*)",   "destination": "/seattle/index.html" },
@@ -21,11 +30,12 @@
     { "source": "/vancouver",      "destination": "/vancouver/index.html" },
     { "source": "/vancouver/(.*)", "destination": "/vancouver/index.html" }
   ],
+
   "headers": [
     {
       "source": "/(.*)/sw.js",
       "headers": [
-        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
+        { "key": "Cache-Control",          "value": "no-cache, no-store, must-revalidate" },
         { "key": "Service-Worker-Allowed", "value": "/" }
       ]
     },
@@ -33,8 +43,9 @@
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options",         "value": "DENY" },
-        { "key": "X-XSS-Protection",        "value": "1; mode=block" }
+        { "key": "X-Frame-Options",        "value": "DENY" },
+        { "key": "X-XSS-Protection",       "value": "1; mode=block" },
+        { "key": "X-Robots-Tag",           "value": "index, follow" }
       ]
     }
   ]
