@@ -1785,18 +1785,18 @@ const HEBRON_CITIES = [
   { emoji: "🏙️", nameKo: "시카고",     nameEn: "Chicago",       flag: "🇺🇸", url: "/chicago/",    status: "coming",  color: "#6B7280" },
 ];
 
-/* 도시별 그라디언트 — iOS 앱 아이콘 스타일 */
-const CITY_GRADIENTS: Record<string, string> = {
-  "Seattle":       "linear-gradient(145deg, #38BDF8, #0EA5E9)",
-  "Dallas":        "linear-gradient(145deg, #FCD34D, #F59E0B)",
-  "San Francisco": "linear-gradient(145deg, #C084FC, #8B5CF6)",
-  "New York":      "linear-gradient(145deg, #F87171, #EF4444)",
-  "Nashville":     "linear-gradient(145deg, #34D399, #10B981)",
-  "Boston":        "linear-gradient(145deg, #60A5FA, #3B82F6)",
-  "Los Angeles":   "linear-gradient(145deg, #FB923C, #F97316)",
-  "Toronto":       "linear-gradient(145deg, #F87171, #DC2626)",
-  "Vancouver":     "linear-gradient(145deg, #4ADE80, #16A34A)",
-  "Chicago":       "linear-gradient(145deg, #94A3B8, #64748B)",
+/* 도시별 디자인 — 항공 코드 + 그라디언트 (프로페셔널 스타일) */
+const CITY_DESIGN: Record<string, { code: string; gradient: string; textColor: string }> = {
+  "Seattle":       { code: "SEA", gradient: "linear-gradient(135deg, #1E3A8A, #2563EB)", textColor: "#BAE6FD" },
+  "Dallas":        { code: "DAL", gradient: "linear-gradient(135deg, #78350F, #D97706)", textColor: "#FEF3C7" },
+  "San Francisco": { code: "SFO", gradient: "linear-gradient(135deg, #4C1D95, #7C3AED)", textColor: "#EDE9FE" },
+  "New York":      { code: "NYC", gradient: "linear-gradient(135deg, #7F1D1D, #DC2626)", textColor: "#FEE2E2" },
+  "Nashville":     { code: "BNA", gradient: "linear-gradient(135deg, #064E3B, #059669)", textColor: "#D1FAE5" },
+  "Boston":        { code: "BOS", gradient: "linear-gradient(135deg, #1E3A8A, #1D4ED8)", textColor: "#DBEAFE" },
+  "Los Angeles":   { code: "LAX", gradient: "linear-gradient(135deg, #7C2D12, #EA580C)", textColor: "#FFEDD5" },
+  "Toronto":       { code: "TOR", gradient: "linear-gradient(135deg, #881337, #E11D48)", textColor: "#FFE4E6" },
+  "Vancouver":     { code: "YVR", gradient: "linear-gradient(135deg, #14532D, #16A34A)", textColor: "#DCFCE7" },
+  "Chicago":       { code: "CHI", gradient: "linear-gradient(135deg, #1E293B, #475569)", textColor: "#E2E8F0" },
 };
 
 function CityHubSection({ lang }: { lang: string }) {
@@ -1825,15 +1825,15 @@ function CityHubSection({ lang }: { lang: string }) {
         </a>
       </div>
 
-      {/* 아이콘 그리드 — iOS 앱 아이콘 스타일 */}
-      <div style={{ display: "flex", gap: 16, overflowX: "auto", padding: "4px 16px 8px", scrollbarWidth: "none" }}
+      {/* 도시 카드 — 항공 코드 + 그라디언트 (프로페셔널) */}
+      <div style={{ display: "flex", gap: 10, overflowX: "auto", padding: "4px 16px 8px", scrollbarWidth: "none" }}
         className="[&::-webkit-scrollbar]:hidden">
         {HEBRON_CITIES.map((city) => {
           const isCurrent = city.nameEn === currentCity;
           const isLive    = city.status === "live";
           const isSoon    = city.status === "soon";
           const isDim     = !isLive && !isSoon;
-          const gradient  = CITY_GRADIENTS[city.nameEn] ?? `linear-gradient(145deg, ${city.color}CC, ${city.color}88)`;
+          const design    = CITY_DESIGN[city.nameEn] ?? { code: city.nameEn.slice(0,3).toUpperCase(), gradient: `linear-gradient(135deg, ${city.color}99, ${city.color})`, textColor: "#fff" };
 
           return (
             <a
@@ -1843,39 +1843,53 @@ function CityHubSection({ lang }: { lang: string }) {
               rel="noopener noreferrer"
               onClick={isDim ? (e) => e.preventDefault() : undefined}
               style={{
-                flexShrink: 0, width: 64,
+                flexShrink: 0, width: 72,
                 textDecoration: "none",
-                opacity: isDim ? 0.35 : 1,
+                opacity: isDim ? 0.3 : 1,
                 cursor: isLive && !isCurrent ? "pointer" : "default",
-                display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+                display: "flex", flexDirection: "column", alignItems: "center", gap: 7,
                 transition: "transform 0.15s ease",
               }}
-              onMouseEnter={e => { if (isLive && !isCurrent) (e.currentTarget as HTMLElement).style.transform = "scale(1.08)"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "scale(1)"; }}
+              onMouseEnter={e => { if (isLive && !isCurrent) (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
             >
-              {/* iOS 앱 아이콘 — squircle + 그라디언트 */}
+              {/* 도시 코드 카드 — 항공 출발보드 느낌 */}
               <div style={{
-                width: 56, height: 56,
-                borderRadius: 14,   // iOS squircle 비율
-                background: isDim ? "rgba(0,0,0,0.08)" : gradient,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 26,
+                width: 60, height: 60,
+                borderRadius: 16,
+                background: isDim ? "#E5E7EB" : design.gradient,
+                display: "flex", flexDirection: "column",
+                alignItems: "center", justifyContent: "center", gap: 1,
                 boxShadow: isCurrent
-                  ? `0 4px 14px ${city.color}55`
-                  : isLive
-                  ? `0 2px 8px ${city.color}33`
-                  : "none",
-                border: isCurrent ? `2.5px solid ${city.color}` : "none",
+                  ? `0 4px 16px ${city.color}44`
+                  : isLive ? `0 2px 8px rgba(0,0,0,0.12)` : "none",
+                outline: isCurrent ? `2px solid ${city.color}` : "none",
+                outlineOffset: 2,
                 position: "relative",
               }}>
-                {city.emoji}
-                {/* 현재 도시 표시 점 */}
+                {/* 도시 코드 */}
+                <div style={{
+                  fontFamily: "Manrope, sans-serif",
+                  fontWeight: 900,
+                  fontSize: design.code.length > 3 ? 12 : 15,
+                  letterSpacing: "1px",
+                  color: isDim ? "#9CA3AF" : design.textColor,
+                  lineHeight: 1,
+                }}>
+                  {design.code}
+                </div>
+                {/* 국기 (작게) */}
+                <div style={{ fontSize: 10, lineHeight: 1, marginTop: 2, opacity: 0.85 }}>
+                  {city.flag}
+                </div>
+                {/* 현재 도시 표시 */}
                 {isCurrent && (
                   <div style={{
-                    position: "absolute", bottom: -6, left: "50%",
+                    position: "absolute", bottom: -5, left: "50%",
                     transform: "translateX(-50%)",
-                    width: 5, height: 5, borderRadius: "50%",
+                    width: 6, height: 6, borderRadius: "50%",
                     background: city.color,
+                    boxShadow: `0 0 6px ${city.color}`,
                   }} />
                 )}
               </div>
