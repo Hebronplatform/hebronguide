@@ -20,8 +20,9 @@ cp icon-192.png public/apple-touch-icon-precomposed.png
 # 3. React 빌드
 echo "--- React Build ---"
 cd hebronguide
-npm install --legacy-peer-deps
-npm run build
+npm install -g pnpm@10 --silent
+pnpm install --frozen-lockfile
+pnpm build
 cd ..
 
 # 4. 도시별 복사 (모두 같은 React 빌드 공유)
