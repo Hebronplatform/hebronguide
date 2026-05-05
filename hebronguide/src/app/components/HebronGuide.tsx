@@ -3399,12 +3399,13 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle, onShare
 
   return (
     <nav
-      className="fixed bottom-0 z-50 max-w-[430px] md:max-w-[640px] lg:max-w-[960px] lg:ml-64"
+      className="fixed bottom-0 z-50 lg:hidden"
       style={{
         height: 72,
         left: "50%",
         transform: "translateX(-50%)",
         width: "100%",
+        maxWidth: 430,
         background: "rgba(249,249,249,0.94)",
         backdropFilter: "blur(20px) saturate(180%)",
         WebkitBackdropFilter: "blur(20px) saturate(180%)",
@@ -3474,7 +3475,7 @@ function AppBar() {
   const { t, lang, setLang } = useI18n();
   return (
     <header
-      className="sticky top-0 z-40 flex items-center justify-between px-[20px] w-full max-w-[430px] md:max-w-[768px] lg:max-w-[1200px]"
+      className="sticky top-0 z-40 flex items-center justify-between px-[20px] w-full"
       style={{
         height: 56,
         background: "rgba(249,249,249,0.94)",
