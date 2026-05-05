@@ -2247,12 +2247,19 @@ function HelpScreen({ onHome }: { onHome?: () => void }) {
                 🚨 {lang === "ko" ? "생명이 위험한 긴급 상황 → 즉시 911 전화" : "Life-threatening emergency → Call 911 immediately"}
               </div>
             </div>
-            <EmergencyRow emoji="🚨" title={lang === "ko" ? "경찰·소방·구급 (긴급)" : "Police · Fire · Ambulance (Emergency)"} number="911" desc={lang === "ko" ? "생명·화재·범죄 — 즉시 전화. 한국어 통역 요청 가능" : "Life-threatening, fire, crime — call immediately. Korean interpreter available"} />
-            <EmergencyRow emoji="🚓" title={lang === "ko" ? "경찰 비긴급 신고" : "Police Non-Emergency"} number="206-625-5011" desc={lang === "ko" ? "긴급하지 않은 사건 신고 (도난·분실 등)" : "Non-urgent incidents (theft, lost property etc.)"} />
-            <EmergencyRow emoji="☎️" title={lang === "ko" ? "위기 상담 핫라인" : "Crisis Hotline"} number="988" desc={lang === "ko" ? "정신건강·자살 예방 24시간. 한국어 통역 가능" : "Mental health & suicide prevention 24/7. Korean interpreter available"} />
-            <EmergencyRow emoji="🏛️" title={lang === "ko" ? "한국 총영사관 긴급" : "Korean Consulate Emergency"} number="206-441-1011" desc={lang === "ko" ? "여권 분실·억류·사고. 근무시간 외 긴급 연락" : "Lost passport, detention, accident. After-hours emergency line"} />
-            <EmergencyRow emoji="🚗" title={lang === "ko" ? "도로 긴급 (AAA)" : "Roadside Emergency (AAA)"} number="800-222-4357" desc={lang === "ko" ? "차량 고장·견인. AAA 회원권 권장 ($60/년)" : "Vehicle breakdown & towing. AAA membership recommended ($60/yr)"} />
-            <EmergencyRow emoji="☁️" title={lang === "ko" ? "독 조절 센터" : "Poison Control Center"} number="800-222-1222" desc={lang === "ko" ? "약물·화학물질 중독 24시간 상담" : "Drug & chemical poisoning 24/7 consultation"} />
+            {/* 생명 긴급 */}
+            <EmergencyRow emoji="🚨" title={lang === "ko" ? "경찰·소방·구급 (생명 긴급)" : "Police · Fire · Ambulance"} number="911" desc={lang === "ko" ? "생명·화재·범죄 — 즉시 전화. 한국어 통역 요청 가능" : "Life-threatening, fire, crime. Korean interpreter available"} />
+            <EmergencyRow emoji="🏥" title={lang === "ko" ? "응급실 — Swedish First Hill" : "ER — Swedish First Hill"} number="206-386-6000" desc={lang === "ko" ? "📍 747 Broadway, Seattle | 24시간 응급실 | 한국어 통역 가능" : "📍 747 Broadway, Seattle | 24hr ER | Korean interpreter available"} />
+            <EmergencyRow emoji="☁️" title={lang === "ko" ? "독·약물 중독 (독 조절)" : "Poison Control"} number="800-222-1222" desc={lang === "ko" ? "약물·화학물질 중독 24시간 — 즉시 전화" : "Drug & chemical poisoning — call immediately"} />
+            <EmergencyRow emoji="☎️" title={lang === "ko" ? "정신건강 위기 (988)" : "Mental Health Crisis (988)"} number="988" desc={lang === "ko" ? "자살 예방·정신건강 위기 24시간. 한국어 통역 가능" : "Suicide prevention & mental health crisis 24/7. Korean interpreter"} />
+            {/* 한인 긴급 */}
+            <EmergencyRow emoji="🇰🇷" title={lang === "ko" ? "한국 총영사관 긴급" : "Korean Consulate Emergency"} number="206-947-8293" desc={lang === "ko" ? "여권 분실·억류·사고·사망 — 24시간 긴급 직통" : "Lost passport, detention, accident, death — 24hr direct line"} />
+            <EmergencyRow emoji="🗣️" title={lang === "ko" ? "한국어 통역 (Language Line)" : "Korean Interpreter (Language Line)"} number="800-752-6096" desc={lang === "ko" ? "병원·경찰서·법원에서 한국어 통역 연결 — 24시간" : "Korean interpreter for hospital, police, court — 24hrs"} />
+            {/* 생활 긴급 */}
+            <EmergencyRow emoji="🚓" title={lang === "ko" ? "경찰 비긴급 신고" : "Police Non-Emergency"} number="206-625-5011" desc={lang === "ko" ? "긴급하지 않은 사건 신고 (도난·분실·소음 등)" : "Non-urgent incidents (theft, lost property, noise etc.)"} />
+            <EmergencyRow emoji="🔥" title={lang === "ko" ? "가스 누출 — Puget Sound Energy" : "Gas Leak — Puget Sound Energy"} number="888-225-5773" desc={lang === "ko" ? "가스 냄새 즉시 신고. 건물 즉시 대피 후 전화" : "Smell gas? Evacuate immediately then call"} />
+            <EmergencyRow emoji="👩‍👧" title={lang === "ko" ? "가정폭력 핫라인" : "Domestic Violence Hotline"} number="800-799-7233" desc={lang === "ko" ? "가정폭력·학대 24시간 무료 — 한국어 통역 가능" : "Domestic violence & abuse 24/7 free — Korean interpreter"} />
+            <EmergencyRow emoji="🚗" title={lang === "ko" ? "도로 긴급 — AAA" : "Roadside Emergency — AAA"} number="800-222-4357" desc={lang === "ko" ? "차량 고장·견인·잠금. AAA 회원 $60/년 권장" : "Breakdown, towing, lockout. AAA membership $60/yr recommended"} />
           </div>
           {/* 안전 팁 */}
           <div style={{ margin: "16px 16px 0", background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.18)", borderRadius: 14, padding: "14px 16px" }}>
