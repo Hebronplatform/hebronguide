@@ -4325,7 +4325,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle, onShare
 /* ─────────────────────────────────────────
    TOP APP BAR
 ───────────────────────────────────────── */
-function AppBar() {
+function AppBar({ onHome }: { onHome?: () => void }) {
   const { t, lang, setLang } = useI18n();
   return (
     <header
@@ -4336,7 +4336,16 @@ function AppBar() {
         borderBottom: "0.5px solid rgba(0,0,0,0.18)",
       }}
     >
-      <div className="flex items-center gap-[10px]">
+      {/* 로고 + 앱 이름 — 클릭하면 홈으로 (표준 UX) */}
+      <button
+        onClick={onHome}
+        style={{ display: "flex", alignItems: "center", gap: 10, background: "none", border: "none",
+          cursor: onHome ? "pointer" : "default", padding: "4px 6px 4px 0", borderRadius: 10,
+          transition: "opacity 0.15s" }}
+        onMouseEnter={e => { if (onHome) (e.currentTarget as HTMLElement).style.opacity = "0.75"; }}
+        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
+        title={onHome ? "홈으로" : "HebronGuide"}
+      >
         <div className="flex items-center justify-center overflow-hidden" style={{ width: 34, height: 34, borderRadius: 10, border: "1px solid rgba(242,153,74,0.25)", background: "rgba(242,153,74,0.08)", flexShrink: 0 }}>
           <img src={logoImg} alt="HebronGuide Logo" style={{ width: 28, height: 28, objectFit: "contain" }}
             onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; const fb = e.currentTarget.nextElementSibling as HTMLElement; if (fb) fb.style.display = "block"; }} />
@@ -4351,7 +4360,7 @@ function AppBar() {
             {(() => { const p = window.location.pathname.split('/').filter(Boolean)[0]?.toUpperCase(); return (p && ['SEATTLE','DALLAS','SF','NEWYORK','NASHVILLE','BOSTON','LA','TORONTO','VANCOUVER'].includes(p)) ? (p === 'SF' ? 'SAN FRANCISCO' : p === 'NEWYORK' ? 'NEW YORK' : p) : 'SEATTLE'; })()}
           </div>
         </div>
-      </div>
+      </button>
 
       <div className="flex items-center gap-[8px]">
         {/* 언어 토글: KO / EN / ES */}
@@ -4488,7 +4497,7 @@ export function HebronGuide() {
         className="flex flex-col min-h-screen mx-auto relative w-full max-w-[430px] md:max-w-[640px] lg:max-w-[960px] lg:ml-64"
         style={{ background: "#1a2535" }}
       >
-        <AppBar />
+        <AppBar onHome={() => setActiveNav(0)} />
 
         {/* 검색바 (슬라이드 인) */}
         {showSearch && (() => {
