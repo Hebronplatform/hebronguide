@@ -653,55 +653,37 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number) => void }
         color: "#1B2A4A", marginBottom: 14, letterSpacing: "-0.3px" }}>
         ⚡ {lang === "ko" ? "빠른 메뉴" : "Quick Menu"}
       </div>
-      {/* 3×3 그리드 — 화면 크기에 자동 맞춤 */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: "clamp(7px, 1.5vw, 12px)",
-      }}>
+      {/* 3×3 콤팩트 그리드 */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
         {QUICK_MENU.map((item, i) => (
           <button key={i} onClick={() => onNavigate?.(item.tab)} style={{
             background: "#fff",
-            borderRadius: "clamp(14px, 3vw, 20px)",
-            padding: "clamp(12px, 2.5dvh, 18px) 6px clamp(10px, 2dvh, 14px)",
-            display: "flex", flexDirection: "column", alignItems: "center",
-            gap: "clamp(5px, 1dvh, 8px)",
-            border: `1.5px solid ${item.color}28`,
-            boxShadow: `0 2px 10px rgba(0,0,0,0.07)`,
+            borderRadius: 14,
+            padding: "10px 4px 8px",
+            display: "flex", flexDirection: "column", alignItems: "center", gap: 5,
+            border: `1px solid ${item.color}22`,
+            boxShadow: "0 1px 6px rgba(0,0,0,0.06)",
             cursor: "pointer",
-            transition: "transform 0.15s ease, box-shadow 0.15s ease",
+            transition: "transform 0.12s ease, box-shadow 0.12s ease",
             width: "100%",
+            minHeight: 72,  /* Apple HIG 터치 타겟 확보 */
           }}
-          onMouseEnter={e => {
-            e.currentTarget.style.transform = "translateY(-2px)";
-            e.currentTarget.style.boxShadow = `0 6px 20px rgba(0,0,0,0.13)`;
-            e.currentTarget.style.borderColor = item.color + "55";
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.transform = "translateY(0)";
-            e.currentTarget.style.boxShadow = "0 2px 10px rgba(0,0,0,0.07)";
-            e.currentTarget.style.borderColor = item.color + "28";
-          }}
-          onTouchStart={e => { e.currentTarget.style.transform = "scale(0.95)"; }}
-          onTouchEnd={e => { e.currentTarget.style.transform = "scale(1)"; }}
+          onTouchStart={e => { e.currentTarget.style.transform = "scale(0.94)"; e.currentTarget.style.background = item.bg; }}
+          onTouchEnd={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.background = "#fff"; }}
+          onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 4px 14px rgba(0,0,0,0.11)`; e.currentTarget.style.borderColor = item.color + "44"; }}
+          onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 1px 6px rgba(0,0,0,0.06)"; e.currentTarget.style.borderColor = item.color + "22"; }}
           >
-            {/* 아이콘 — 화면 높이 기준으로 자동 크기 조정 */}
             <div style={{
-              width: "clamp(40px, 6dvh, 54px)",
-              height: "clamp(40px, 6dvh, 54px)",
-              borderRadius: "clamp(12px, 2vw, 16px)",
+              width: 34, height: 34, borderRadius: 10,
               background: item.bg,
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: "clamp(20px, 3.5dvh, 27px)",
-              flexShrink: 0,
+              fontSize: 18,
             }}>
               {item.emoji}
             </div>
             <span style={{
-              fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700,
-              fontSize: "clamp(11px, 1.8vw, 13px)",
-              color: "#1B2A4A", letterSpacing: "-0.2px",
-              lineHeight: 1.2,
+              fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600,
+              fontSize: 11, color: "#374151", letterSpacing: "-0.1px",
             }}>
               {lang === "ko" ? item.labelKo : item.labelEn}
             </span>
