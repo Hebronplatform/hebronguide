@@ -4,6 +4,42 @@
 
 ---
 
+## 🏆 한인 인구 TOP 20 우선순위 (재외동포청 기준)
+
+| 순위 | 도시 | 추정 한인 | 상태 | URL |
+|---|---|---|---|---|
+| 1 | 🎬 **Los Angeles**, CA | ~220,000 | ⬜ QUEUED | /la/ |
+| 2 | 🗽 **New York** (NYC+NJ), NY | ~170,000 | 🟡 SOON | /newyork/ |
+| 3 | 🍑 **Atlanta** (Gwinnett), GA | ~90,000 | ⬜ QUEUED | /atlanta/ |
+| 4 | 🤠 **Dallas/Fort Worth**, TX | ~60,000 | 🟢 LIVE | /dallas/ |
+| 5 | 🌆 **Chicago**, IL | ~55,000 | ⬜ QUEUED | /chicago/ |
+| 6 | 🌲 **Seattle/Tacoma**, WA | ~35,000 | 🟢 LIVE | /seattle/ |
+| 7 | 🌉 **San Francisco Bay Area**, CA | ~30,000 | 🟢 LIVE | /sf/ |
+| 8 | 🏛️ **Washington DC** metro, VA/MD | ~25,000 | ⬜ QUEUED | /dc/ |
+| 9 | 🤠 **Houston**, TX | ~20,000 | ⬜ QUEUED | /houston/ |
+| 10 | 🔔 **Philadelphia** (NJ포함), PA | ~18,000 | ⬜ QUEUED | /philadelphia/ |
+| 11 | 🦞 **Boston**, MA | ~15,000 | 🟡 SOON | /boston/ |
+| 12 | 🏔️ **Denver/Aurora**, CO | ~12,000 | ⬜ QUEUED | /denver/ |
+| 13 | 🌾 **Minneapolis**, MN | ~10,000 | ⬜ QUEUED | /minneapolis/ |
+| 14 | 🌻 **Columbus**, OH | ~9,000 | ⬜ QUEUED | /columbus/ |
+| 15 | 🌹 **Portland**, OR | ~8,000 | ⬜ QUEUED | /portland/ |
+| 16 | 🎵 **Nashville**, TN | ~7,000 | 🟡 SOON | /nashville/ |
+| 17 | ☀️ **San Diego**, CA | ~7,000 | ⬜ QUEUED | /sandiego/ |
+| 18 | 🌵 **Phoenix/Tempe**, AZ | ~6,000 | ⬜ QUEUED | /phoenix/ |
+| 19 | 🌺 **Honolulu**, HI | ~6,000 | ⬜ QUEUED | /honolulu/ |
+| 20 | 🦀 **Baltimore**, MD | ~5,000 | ⬜ QUEUED | /baltimore/ |
+
+**해외 확장 (Top 5):**
+| 순위 | 도시 | 추정 한인 | URL |
+|---|---|---|---|
+| 1 | 🍁 **Toronto**, Canada | ~55,000 | /toronto/ |
+| 2 | 🌲 **Vancouver**, Canada | ~50,000 | /vancouver/ |
+| 3 | 🗼 **Tokyo**, Japan | ~40,000 | /tokyo/ |
+| 4 | 🇩🇪 **Frankfurt**, Germany | ~10,000 | /frankfurt/ |
+| 5 | 🇦🇺 **Sydney**, Australia | ~8,000 | /sydney/ |
+
+---
+
 ## 📊 현황 대시보드
 
 | 도시 | 단계 | 결제 | 파일 | 파트너 교회 | 목표 런치 |
