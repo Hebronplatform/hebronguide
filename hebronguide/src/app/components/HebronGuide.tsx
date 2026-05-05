@@ -1902,53 +1902,6 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number) => void }) {
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <CityHubSection lang={lang} />
 
-      {/* ── HebronGuide 사명 선언 ── */}
-      <div style={{ margin: "8px 16px 0", padding: "20px 18px", borderRadius: 16,
-        background: "linear-gradient(135deg, #1B2A4A 0%, #0F172A 100%)",
-        border: "1px solid rgba(201,162,39,0.2)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-          <span style={{ fontSize: 16 }}>✝️</span>
-          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12,
-            color: "#C9A227", letterSpacing: "0.5px" }}>
-            {lang === "ko" ? "HebronGuide 사명" : "HebronGuide Mission"}
-          </span>
-        </div>
-        <div style={{ fontFamily: "'Noto Sans KR', Manrope, sans-serif", fontSize: 13,
-          color: "rgba(255,255,255,0.85)", lineHeight: 1.8, marginBottom: 14 }}>
-          {lang === "ko"
-            ? "이민자·이주자·방문자가 정보의 부재로\n손해 보지 않도록 사명적으로 섬기는 플랫폼입니다."
-            : "We exist to ensure immigrants & newcomers\nnever suffer from lack of information — a mission of service."}
-        </div>
-
-        {/* 3축 가치 */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
-          {[
-            { emoji: "🏛️", titleKo: "미국 자원", titleEn: "US Systems", descKo: "공공자원\n최대 활용", descEn: "Max use of\npublic resources" },
-            { emoji: "🇰🇷", titleKo: "한인 커뮤니티", titleEn: "Korean Community", descKo: "검증된\n한인 정보", descEn: "Verified\nKorean info" },
-            { emoji: "🌍", titleKo: "타민족 발굴", titleEn: "Cross-Cultural", descKo: "더 좋은 것\n찾아드림", descEn: "Find the\nbest deals" },
-          ].map((v, i) => (
-            <div key={i} style={{ background: "rgba(255,255,255,0.06)", borderRadius: 12,
-              padding: "10px 8px", textAlign: "center" }}>
-              <div style={{ fontSize: 20, marginBottom: 4 }}>{v.emoji}</div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 9,
-                color: "#C9A227", marginBottom: 3, lineHeight: 1.3 }}>
-                {lang === "ko" ? v.titleKo : v.titleEn}
-              </div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9,
-                color: "rgba(255,255,255,0.5)", lineHeight: 1.5, whiteSpace: "pre-line" }}>
-                {lang === "ko" ? v.descKo : v.descEn}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ marginTop: 12, textAlign: "center", fontSize: 10,
-          color: "rgba(255,255,255,0.3)", fontFamily: "Manrope,sans-serif" }}>
-          {lang === "ko"
-            ? "도시를 알고, 사람을 찾다 — 헤브론 정신"
-            : "Know your city. Find your people. — The Hebron Spirit"}
-        </div>
-      </div>
     </div>
   );
 }
