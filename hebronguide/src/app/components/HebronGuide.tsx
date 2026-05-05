@@ -41,6 +41,7 @@ import {
   Home,
   Search,
   Globe,
+  MessageCircle,
 } from "lucide-react";
 
 /* ─────────────────────────────────────────
@@ -706,31 +707,32 @@ function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number
           {lang === "ko" ? "전체 보기 →" : "See all →"}
         </button>
       </div>
-      <div style={{ display: "flex", gap: 10, overflowX: "auto", paddingLeft: 16, paddingRight: 16,
-        paddingBottom: 4, scrollbarWidth: "none" }}
-        className="[&::-webkit-scrollbar]:hidden">
+      {/* 2×3 그리드 — 한 화면에 전부 */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8,
+        padding: "0 16px" }}>
         {SETTLE_STEPS.map((step, i) => (
           <button key={i} onClick={() => onNavigate?.(1)} style={{
-            flexShrink: 0, width: 110, background: "#fff", borderRadius: 16, padding: "14px 12px",
-            display: "flex", flexDirection: "column", gap: 8,
+            background: "#fff", borderRadius: 14, padding: "12px 8px",
+            display: "flex", flexDirection: "column", gap: 7,
             border: `1px solid ${step.color}22`,
-            boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.06)",
             cursor: "pointer", textAlign: "left",
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <div style={{ width: 24, height: 24, borderRadius: 8, background: step.color,
+            <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+              <div style={{ width: 22, height: 22, borderRadius: 7, background: step.color,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#fff" }}>
+                fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#fff",
+                flexShrink: 0 }}>
                 {step.num}
               </div>
-              <span style={{ fontSize: 18 }}>{step.emoji}</span>
+              <span style={{ fontSize: 16 }}>{step.emoji}</span>
             </div>
             <div>
-              <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 12,
-                color: "#1B2A4A", marginBottom: 3 }}>
+              <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 11,
+                color: "#1B2A4A", marginBottom: 2 }}>
                 {lang === "ko" ? step.titleKo : step.titleEn}
               </div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "#64748B",
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#64748B",
                 lineHeight: 1.4, whiteSpace: "pre-line" }}>
                 {lang === "ko" ? step.descKo : step.descEn}
               </div>
@@ -2188,9 +2190,10 @@ function CostScreen({ onHome }: { onHome?: () => void }) {
    NAV ITEMS (3개로 축소)
 ───────────────────────────────────────── */
 const NAV_ITEMS = [
-  { id: "home",   icon: Home,   labelKo: "홈",   labelEn: "Home"   },
-  { id: "search", icon: Search, labelKo: "검색",  labelEn: "Search" },
-  { id: "lang",   icon: Globe,  labelKo: "언어",  labelEn: "Language"},
+  { id: "home",   icon: Home,          labelKo: "홈",   labelEn: "Home"   },
+  { id: "search", icon: Search,        labelKo: "검색",  labelEn: "Search" },
+  { id: "share",  icon: MessageCircle, labelKo: "상담",  labelEn: "Chat"   },
+  { id: "lang",   icon: Globe,         labelKo: "언어",  labelEn: "Language"},
 ];
 
 /* ─────────────────────────────────────────
@@ -2224,13 +2227,109 @@ function DesktopSidebar({ activeTab, onNavigate }: { activeTab: number; onNaviga
 /* ─────────────────────────────────────────
    BOTTOM NAV (3개 버튼)
 ───────────────────────────────────────── */
+/* ─────────────────────────────────────────
+   상담·공유 모달
+───────────────────────────────────────── */
+function ChatShareModal({ onClose, lang }: { onClose: () => void; lang: string }) {
+  const appUrl = "https://hebronguide.com/seattle/";
+  const shareText = lang === "ko"
+    ? "시애틀 한인 정착 가이드 앱! 추천해요 👍"
+    : "Korean settlement guide for Seattle! Check it out 👍";
+
+  const actions = [
+    {
+      icon: "💬", label: lang === "ko" ? "카카오 오픈채팅" : "KakaoTalk",
+      desc: lang === "ko" ? "시애틀한인 커뮤니티 채팅방" : "Seattle Korean community chat",
+      color: "#FEE500",
+      href: "https://open.kakao.com/o/gSeattleKorean",
+    },
+    {
+      icon: "📱", label: lang === "ko" ? "앱 링크 공유" : "Share App Link",
+      desc: lang === "ko" ? "친구에게 이 앱을 소개하세요" : "Introduce this app to friends",
+      color: "#F2994A",
+      onClick: () => {
+        if (navigator.share) {
+          navigator.share({ title: "HebronGuide Seattle", text: shareText, url: appUrl });
+        } else {
+          navigator.clipboard.writeText(appUrl);
+          alert(lang === "ko" ? "링크 복사됨!" : "Link copied!");
+        }
+      },
+    },
+    {
+      icon: "✉️", label: lang === "ko" ? "카카오스토리 공유" : "Share via KakaoStory",
+      desc: lang === "ko" ? "SNS에 정보 공유하기" : "Share on social media",
+      color: "#5B7FB6",
+      href: `https://story.kakao.com/share?url=${encodeURIComponent(appUrl)}`,
+    },
+    {
+      icon: "📧", label: lang === "ko" ? "이메일로 공유" : "Share via Email",
+      desc: lang === "ko" ? "지인에게 이메일로 보내기" : "Send to friends via email",
+      color: "#2563EB",
+      href: `mailto:?subject=HebronGuide Seattle&body=${encodeURIComponent(shareText + "\n" + appUrl)}`,
+    },
+  ];
+
+  return (
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 300,
+      background: "rgba(0,0,0,0.45)", backdropFilter: "blur(4px)",
+      display: "flex", alignItems: "flex-end",
+    }} onClick={onClose}>
+      <div style={{
+        width: "100%", maxWidth: 430, margin: "0 auto",
+        background: "#fff", borderRadius: "24px 24px 0 0",
+        padding: "24px 20px 36px",
+        boxShadow: "0 -8px 40px rgba(0,0,0,0.15)",
+      }} onClick={e => e.stopPropagation()}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+          <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 18, color: "#1B2A4A" }}>
+            💬 {lang === "ko" ? "상담 & 공유" : "Chat & Share"}
+          </div>
+          <button onClick={onClose} style={{ border: "none", background: "none", fontSize: 22, cursor: "pointer", color: "#9CA3AF" }}>✕</button>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {actions.map((a, i) => (
+            <a key={i}
+              href={a.href}
+              target={a.href ? "_blank" : undefined}
+              rel="noopener noreferrer"
+              onClick={a.onClick ? (e) => { e.preventDefault(); a.onClick!(); } : undefined}
+              style={{
+                display: "flex", alignItems: "center", gap: 14,
+                padding: "14px 16px", borderRadius: 14,
+                background: "#F8FAFC", border: "1px solid #E2E8F0",
+                textDecoration: "none", cursor: "pointer",
+              }}
+            >
+              <div style={{ width: 42, height: 42, borderRadius: 12, background: a.color + "22",
+                display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>
+                {a.icon}
+              </div>
+              <div>
+                <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 14, color: "#1B2A4A" }}>
+                  {a.label}
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#64748B", marginTop: 2 }}>
+                  {a.desc}
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 interface BottomNavProps {
   activeIndex: number;
   onChange: (i: number) => void;
   onSearchToggle: () => void;
   onLangCycle: () => void;
+  onShareToggle: () => void;
 }
-function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle }: BottomNavProps) {
+function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle, onShareToggle }: BottomNavProps) {
   const { lang } = useI18n();
 
   const handleClick = (id: string, i: number) => {
@@ -2238,6 +2337,8 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle }: Botto
       onChange(0);
     } else if (id === "search") {
       onSearchToggle();
+    } else if (id === "share") {
+      onShareToggle();
     } else if (id === "lang") {
       onLangCycle();
     }
@@ -2390,6 +2491,7 @@ export function HebronGuide() {
   const [activeNav, setActiveNav] = useState(0);
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showChat, setShowChat] = useState(false);
   const isOnline = useOnlineStatus();
   const { showBanner, handleInstall, handleDismiss } = useInstallPrompt();
   const { lang, setLang } = useI18n();
@@ -2502,11 +2604,17 @@ export function HebronGuide() {
         {/* 오프라인 배너 */}
         {!isOnline && <OfflineBanner />}
 
+        {/* 상담·공유 모달 */}
+        {showChat && (
+          <ChatShareModal onClose={() => setShowChat(false)} lang={lang} />
+        )}
+
         <BottomNav
           activeIndex={activeNav}
           onChange={setActiveNav}
           onSearchToggle={handleSearchToggle}
           onLangCycle={handleLangCycle}
+          onShareToggle={() => setShowChat(prev => !prev)}
         />
       </div>
     </div>
