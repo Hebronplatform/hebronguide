@@ -2594,12 +2594,12 @@ function CostScreen({ onHome }: { onHome?: () => void }) {
 /* ─────────────────────────────────────────
    NAV ITEMS (3개로 축소)
 ───────────────────────────────────────── */
-// 언어 토글은 상단 AppBar에만 — 하단은 핵심 4개
+// 순서: 홈(기준점) → 검색(가장 자주) → 통역(긴급할 때) → 공유(가끔)
 const NAV_ITEMS = [
   { id: "home",      icon: Home,          labelKo: "홈",   labelEn: "Home"      },
   { id: "search",    icon: Search,        labelKo: "검색",  labelEn: "Search"    },
-  { id: "share",     icon: MessageCircle, labelKo: "공유",  labelEn: "Share"     },
   { id: "translate", icon: Globe,         labelKo: "통역",  labelEn: "Translate" },
+  { id: "share",     icon: MessageCircle, labelKo: "공유",  labelEn: "Share"     },
 ];
 
 /* ─────────────────────────────────────────
@@ -2843,7 +2843,10 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle, onShare
     if (id === "home") onChange(0);
     else if (id === "search") onSearchToggle();
     else if (id === "share") onShareToggle();
-    else if (id === "translate") onTranslateToggle();
+    else if (id === "translate") {
+      // 모달 없이 Google Translate 즉시 열기
+      window.open("https://translate.google.com/?sl=en&tl=ko&op=translate", "_blank");
+    }
     else if (id === "lang") onLangCycle();
   };
 
