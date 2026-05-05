@@ -1708,13 +1708,138 @@ function Top3NeighborhoodsSection() {
 /* ─────────────────────────────────────────
    TAB 1: 홈 SCREEN
 ───────────────────────────────────────── */
+/* ─────────────────────────────────────────
+   CITY HUB — 다른 도시 HebronGuide 연결
+───────────────────────────────────────── */
+const HEBRON_CITIES = [
+  { emoji: "🌲", nameKo: "시애틀",      nameEn: "Seattle",       flag: "🇺🇸", url: "/seattle/",    status: "live",    color: "#0EA5E9" },
+  { emoji: "🤠", nameKo: "달라스",      nameEn: "Dallas",        flag: "🇺🇸", url: "/dallas/",     status: "live",    color: "#F59E0B" },
+  { emoji: "🌉", nameKo: "샌프란시스코", nameEn: "San Francisco", flag: "🇺🇸", url: "/sf/",         status: "live",    color: "#8B5CF6" },
+  { emoji: "🗽", nameKo: "뉴욕",        nameEn: "New York",      flag: "🇺🇸", url: "/newyork/",    status: "soon",    color: "#EF4444" },
+  { emoji: "🎵", nameKo: "내쉬빌",      nameEn: "Nashville",     flag: "🇺🇸", url: "/nashville/",  status: "soon",    color: "#10B981" },
+  { emoji: "🦞", nameKo: "보스턴",      nameEn: "Boston",        flag: "🇺🇸", url: "/boston/",     status: "soon",    color: "#3B82F6" },
+  { emoji: "🎬", nameKo: "LA",          nameEn: "Los Angeles",   flag: "🇺🇸", url: "/la/",         status: "coming",  color: "#F97316" },
+  { emoji: "🍁", nameKo: "토론토",      nameEn: "Toronto",       flag: "🇨🇦", url: "/toronto/",    status: "coming",  color: "#DC2626" },
+  { emoji: "🌲", nameKo: "밴쿠버",      nameEn: "Vancouver",     flag: "🇨🇦", url: "/vancouver/",  status: "coming",  color: "#059669" },
+  { emoji: "🏙️", nameKo: "시카고",     nameEn: "Chicago",       flag: "🇺🇸", url: "/chicago/",    status: "coming",  color: "#6B7280" },
+];
+
+function CityHubSection({ lang }: { lang: string }) {
+  const liveOrSoon = HEBRON_CITIES.filter(c => c.status !== "coming" || c.nameEn === "Los Angeles");
+  const currentCity = "Seattle";
+
+  return (
+    <div style={{ padding: "20px 0 8px" }}>
+      {/* 헤더 */}
+      <div style={{ padding: "0 16px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2 }}>
+            <span style={{ fontSize: 16 }}>🌍</span>
+            <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A" }}>
+              {lang === "ko" ? "다른 도시 HebronGuide" : "HebronGuide Other Cities"}
+            </span>
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#64748B", paddingLeft: 22 }}>
+            {lang === "ko" ? "이사 예정 도시를 미리 탐색하세요" : "Explore your next city before you move"}
+          </div>
+        </div>
+        <a href="https://hebronguide.com" target="_blank" rel="noopener noreferrer"
+          style={{ fontSize: 11, color: "#F2994A", fontWeight: 700, fontFamily: "Manrope,sans-serif", textDecoration: "none" }}>
+          {lang === "ko" ? "전체 보기 →" : "All Cities →"}
+        </a>
+      </div>
+
+      {/* 도시 카드 가로 스크롤 */}
+      <div style={{ display: "flex", gap: 10, overflowX: "auto", padding: "0 16px 8px", scrollbarWidth: "none" }}
+        className="[&::-webkit-scrollbar]:hidden">
+        {HEBRON_CITIES.map((city) => {
+          const isCurrent = city.nameEn === currentCity;
+          const isLive    = city.status === "live";
+          const isSoon    = city.status === "soon";
+
+          return (
+            <a
+              key={city.nameEn}
+              href={isLive && !isCurrent ? `https://hebronguide.com${city.url}` : undefined}
+              target={isLive && !isCurrent ? "_blank" : undefined}
+              rel="noopener noreferrer"
+              onClick={!isLive ? (e) => e.preventDefault() : undefined}
+              style={{
+                flexShrink: 0, width: 100,
+                borderRadius: 16, overflow: "hidden",
+                textDecoration: "none",
+                border: isCurrent
+                  ? `2px solid ${city.color}`
+                  : "1.5px solid rgba(0,0,0,0.08)",
+                background: isCurrent
+                  ? `linear-gradient(135deg, ${city.color}15, ${city.color}08)`
+                  : "#fff",
+                opacity: !isLive && !isSoon ? 0.5 : 1,
+                cursor: isLive && !isCurrent ? "pointer" : "default",
+                transition: "transform 0.15s ease, box-shadow 0.15s ease",
+                boxShadow: isLive && !isCurrent ? "0 2px 8px rgba(0,0,0,0.08)" : "none",
+              }}
+              onMouseEnter={e => { if (isLive && !isCurrent) { (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 20px rgba(0,0,0,0.12)"; }}}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = isLive && !isCurrent ? "0 2px 8px rgba(0,0,0,0.08)" : "none"; }}
+            >
+              <div style={{ padding: "12px 10px 10px", textAlign: "center" }}>
+                <div style={{ fontSize: 28, marginBottom: 4 }}>{city.emoji}</div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#1B2A4A", lineHeight: 1.3 }}>
+                  {lang === "ko" ? city.nameKo : city.nameEn}
+                </div>
+                <div style={{ marginTop: 6 }}>
+                  {isCurrent ? (
+                    <span style={{ fontSize: 9, fontWeight: 700, color: city.color, background: `${city.color}18`, borderRadius: 20, padding: "2px 7px" }}>
+                      {lang === "ko" ? "현재" : "Now"}
+                    </span>
+                  ) : isLive ? (
+                    <span style={{ fontSize: 9, fontWeight: 700, color: "#059669", background: "#ECFDF5", borderRadius: 20, padding: "2px 7px" }}>
+                      {lang === "ko" ? "● 라이브" : "● Live"}
+                    </span>
+                  ) : isSoon ? (
+                    <span style={{ fontSize: 9, fontWeight: 700, color: "#F59E0B", background: "#FFFBEB", borderRadius: 20, padding: "2px 7px" }}>
+                      {lang === "ko" ? "준비 중" : "Soon"}
+                    </span>
+                  ) : (
+                    <span style={{ fontSize: 9, fontWeight: 600, color: "#94A3B8", background: "#F1F5F9", borderRadius: 20, padding: "2px 7px" }}>
+                      {lang === "ko" ? "예정" : "Coming"}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+
+      {/* 하단 안내 */}
+      <div style={{ padding: "4px 16px 8px" }}>
+        <div style={{ background: "linear-gradient(135deg, #F0FDF4, #EFF6FF)", borderRadius: 12, padding: "10px 14px", display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ fontSize: 14 }}>✈️</span>
+          <div style={{ fontSize: 11, color: "#374151", lineHeight: 1.5, fontFamily: "Manrope,sans-serif" }}>
+            <span style={{ fontWeight: 700 }}>
+              {lang === "ko" ? "이사·출장·방문 예정이신가요? " : "Moving, traveling, or visiting? "}
+            </span>
+            {lang === "ko"
+              ? "목적지 도시를 탭해서 미리 준비하세요."
+              : "Tap your destination city to prepare ahead."}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function HomeScreen({ onNavigate }: { onNavigate?: (tab: number) => void }) {
+  const { lang } = useI18n();
   return (
     <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: 80 }}>
       <CompactHeroNew />
       <QuickMenuSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <SettlementEssentialsSection onNavigate={onNavigate} />
+      <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
+      <CityHubSection lang={lang} />
     </div>
   );
 }
@@ -3668,6 +3793,51 @@ export function HebronGuide() {
                 <button onClick={handleSearchToggle}
                   style={{ border: "none", background: "none", fontSize: 20, cursor: "pointer", color: "#94A3B8", padding: 4 }}>✕</button>
               </div>
+
+              {/* 다른 도시 HebronGuide — 도시명 검색 시 */}
+              {(() => {
+                const cityMatch = HEBRON_CITIES.filter(c => c.nameEn !== "Seattle").find(c => {
+                  const qLow = q.toLowerCase();
+                  return (
+                    qLow.includes(c.nameKo.toLowerCase()) ||
+                    qLow.includes(c.nameEn.toLowerCase()) ||
+                    qLow.includes(c.nameEn.toLowerCase().split(" ")[0]) ||
+                    (c.nameEn === "San Francisco" && (qLow.includes("sf") || qLow.includes("샌프란") || qLow.includes("san francisco"))) ||
+                    (c.nameEn === "Dallas" && (qLow.includes("달라") || qLow.includes("텍사스") || qLow.includes("texas"))) ||
+                    (c.nameEn === "New York" && (qLow.includes("뉴욕") || qLow.includes("ny") || qLow.includes("new york"))) ||
+                    (c.nameEn === "Nashville" && (qLow.includes("내쉬") || qLow.includes("nashville"))) ||
+                    (c.nameEn === "Boston" && (qLow.includes("보스") || qLow.includes("boston"))) ||
+                    (c.nameEn === "Los Angeles" && (qLow.includes("la") || qLow.includes("엘에이") || qLow.includes("los angeles")))
+                  );
+                });
+                if (!cityMatch || q.length < 1) return null;
+                const isLive = cityMatch.status === "live";
+                return (
+                  <div style={{ margin: "8px 12px", borderRadius: 14, overflow: "hidden", border: `1.5px solid ${cityMatch.color}44`, background: `linear-gradient(135deg, ${cityMatch.color}08, ${cityMatch.color}04)` }}>
+                    <div style={{ padding: "12px 14px", display: "flex", alignItems: "center", gap: 12 }}>
+                      <div style={{ width: 44, height: 44, borderRadius: 12, background: `${cityMatch.color}18`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, flexShrink: 0 }}>
+                        {cityMatch.emoji}
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A" }}>
+                          HebronGuide {lang === "ko" ? cityMatch.nameKo : cityMatch.nameEn}
+                        </div>
+                        <div style={{ fontSize: 11, color: "#64748B", marginTop: 2 }}>
+                          {isLive
+                            ? (lang === "ko" ? "✅ 라이브 — 지금 바로 볼 수 있어요" : "✅ Live — available now")
+                            : (lang === "ko" ? "🔜 준비 중 — 곧 오픈합니다" : "🔜 Coming soon")}
+                        </div>
+                      </div>
+                      {isLive && (
+                        <a href={`https://hebronguide.com${cityMatch.url}`} target="_blank" rel="noopener noreferrer"
+                          style={{ flexShrink: 0, background: cityMatch.color, color: "#fff", border: "none", borderRadius: 20, padding: "6px 14px", fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, cursor: "pointer", textDecoration: "none" }}>
+                          {lang === "ko" ? "열기 →" : "Open →"}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* 앱 내 결과 */}
               {internalMatches.length > 0 && (
