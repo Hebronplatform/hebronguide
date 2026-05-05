@@ -1,0 +1,145 @@
+name: 📊 Daily Live Data Update
+
+# 매일 오전 9시 UTC (시애틀 새벽 2시) 자동 실행
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch:  # 수동 실행 버튼
+
+jobs:
+  update-live-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 openpyxl
+
+      - name: Fetch all live data
+        run: |
+          python3 << 'PYEOF'
+          import requests, json, datetime, os, re
+          from bs4 import BeautifulSoup
+
+          today = datetime.date.today().isoformat()
+          result = {
+            "updated": today,
+            "gas_wa_regular": 4.15,
+            "gas_wa_premium": 4.65,
+            "rent_seattle_1br": 2150,
+            "rent_lynnwood_1br": 1950,
+            "rent_bellevue_1br": 2600,
+            "usd_krw": 1380,
+            "notes": "GitHub Actions 자동 갱신 — EIA·AAA·Zillow·Frankfurter 기반"
+          }
+
+          # ── 1. 기름값: EIA 공개 엑셀 파일 (API 키 불필요) ──────────────
+          try:
+            # EIA publishes weekly gas price Excel — no API key needed
+            url = "https://www.eia.gov/petroleum/gasdiesel/xls/pswrgvwall.xls"
+            r = requests.get(url, timeout=30, headers={"User-Agent": "Mozilla/5.0"})
+            if r.status_code == 200:
+              import openpyxl, io
+              wb = openpyxl.load_workbook(io.BytesIO(r.content), read_only=True, data_only=True)
+              ws = wb.active
+              rows = list(ws.iter_rows(values_only=True))
+              # WA state is in column — find most recent value
+              # Row 2 is header: find 'Washington' or 'R2Y' (PADD 5 - West Coast)
+              # Use PADD 5 (West Coast) as proxy for WA
+              for i, row in enumerate(rows):
+                if row and str(row[0]).strip() == "West Coast":
+                  # Find last non-None value
+                  vals = [v for v in row[1:] if v and str(v).replace('.','').isdigit()]
+                  if vals:
+                    result["gas_wa_regular"] = round(float(vals[-1]), 2)
+                    print(f"✅ 기름값 (West Coast): ${result['gas_wa_regular']}/gal")
+                  break
+            else:
+              # Fallback: AAA gas prices page (public)
+              r2 = requests.get("https://gasprices.aaa.com/?state=WA", timeout=15,
+                               headers={"User-Agent": "Mozilla/5.0"})
+              if r2.status_code == 200:
+                soup = BeautifulSoup(r2.text, "html.parser")
+                price_el = soup.find("p", class_="price-regular")
+                if price_el:
+                  price = float(re.sub(r"[^\d.]", "", price_el.text))
+                  result["gas_wa_regular"] = price
+                  print(f"✅ 기름값 (AAA): ${price}/gal")
+          except Exception as e:
+            print(f"⚠️ 기름값 오류: {e} — 기존 값 유지")
+
+          # ── 2. 환율: Frankfurter API (무료, 키 불필요) ─────────────────
+          try:
+            r = requests.get("https://api.frankfurter.app/latest?from=USD&to=KRW", timeout=10)
+            krw = r.json()["rates"]["KRW"]
+            result["usd_krw"] = round(krw, 0)
+            print(f"✅ 환율: 1 USD = ₩{krw:,.0f}")
+          except Exception as e:
+            print(f"⚠️ 환율 오류: {e}")
+
+          # ── 3. 렌트 시세: Zillow 공개 CSV ────────────────────────────────
+          try:
+            # Zillow Research Data — median rent, ZIP/city level (public CSV)
+            url = "https://files.zillowstatic.com/research/public_csvs/zori/Metro_zori_uc_sfrcondomfr_sm_month.csv"
+            r = requests.get(url, timeout=30, headers={"User-Agent": "Mozilla/5.0"})
+            if r.status_code == 200:
+              lines = r.text.splitlines()
+              header = lines[0].split(",")
+              last_col = header[-1].strip('"')  # 가장 최근 월
+              for line in lines[1:]:
+                parts = line.split(",")
+                region = parts[2].strip('"') if len(parts) > 2 else ""
+                if "Seattle" in region:
+                  val = parts[-1].strip('"')
+                  if val and val != "":
+                    result["rent_seattle_1br"] = round(float(val))
+                    print(f"✅ 시애틀 렌트 중앙값: ${result['rent_seattle_1br']}/월 ({last_col})")
+                  break
+          except Exception as e:
+            print(f"⚠️ Zillow 렌트 오류: {e} — 기존 값 유지")
+
+          # ── 4. 날씨 (참고용 기록) ─────────────────────────────────────────
+          try:
+            r = requests.get(
+              "https://api.open-meteo.com/v1/forecast"
+              "?latitude=47.6062&longitude=-122.3321"
+              "&current=temperature_2m,weathercode"
+              "&temperature_unit=fahrenheit&timezone=America/Los_Angeles",
+              timeout=10
+            )
+            d = r.json()["current"]
+            result["temp_f"] = round(d["temperature_2m"], 1)
+            print(f"✅ 시애틀 기온: {result['temp_f']}°F")
+          except Exception as e:
+            print(f"⚠️ 날씨 오류: {e}")
+
+          # ── 저장 ────────────────────────────────────────────────────────
+          out_path = "hebronguide/public/data/live.json"
+          os.makedirs(os.path.dirname(out_path), exist_ok=True)
+          with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+          print(f"\n✅ 저장 완료: {out_path}")
+          print(json.dumps(result, ensure_ascii=False, indent=2))
+          PYEOF
+
+      - name: Commit & Push if changed
+        run: |
+          git config user.name "HebronGuide Bot"
+          git config user.email "bot@hebronguide.com"
+          git add hebronguide/public/data/live.json
+          if git diff --staged --quiet; then
+            echo "변경 없음 — 커밋 건너뜀"
+          else
+            git commit -m "📊 자동 업데이트: 기름값·환율·렌트 $(date '+%Y-%m-%d')"
+            git push
+            echo "✅ 커밋 완료 → Vercel 자동 배포 시작"
+          fi

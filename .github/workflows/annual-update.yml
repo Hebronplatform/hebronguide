@@ -1,0 +1,45 @@
+name: 🔄 Annual Content Auto-Update
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 매년 1월 1일 09:00 UTC (시애틀 기준 12월 31일 자정 또는 1월 1일 새벽 1시)
+# 수동 실행: GitHub → Actions → "Annual Content Auto-Update" → Run workflow
+# ──────────────────────────────────────────────────────────────────────────────
+on:
+  schedule:
+    - cron: '0 9 1 1 *'   # 매년 1월 1일 09:00 UTC
+  workflow_dispatch:        # 수동 실행 버튼
+
+jobs:
+  annual-update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # HTML 자동 커밋
+      issues: write     # GitHub Issue 자동 생성
+
+    steps:
+      # ── 1. 코드 체크아웃 ──────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Python 환경 설정 ───────────────────────────────────────────────
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      # ── 3. 자동 업데이트 스크립트 실행 ────────────────────────────────────
+      - name: Run annual update script
+        run: python scripts/annual_update.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          # 선택: Google Places API 키가 있으면 업소 정보도 자동 검증
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+
+      # ── 4. 완료 확인 ──────────────────────────────────────────────────────────
+      # HTML 커밋은 스크립트 내부에서 GitHub API로 직접 처리 (git push 불필요)
+      - name: Done
+        run: echo "✅ 연간 업데이트 완료 — HTML 커밋은 GitHub API로 스크립트에서 처리됨"
