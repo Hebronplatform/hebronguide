@@ -2068,11 +2068,28 @@ function SettleScreen({ onHome }: { onHome?: () => void }) {
               </div>
             ))}
             <div style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 4 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>💡 {lang === "ko" ? "렌트 팁" : "Rent Tip"}</div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
-                {lang === "ko"
-                  ? "카카오오픈채팅 '시애틀한인' — 한인 룸메이트·렌탈 매물 정보 실시간 공유. WowSeattle 부동산 코너도 활용하세요."
-                  : "KakaoTalk Open Chat '시애틀한인' — real-time Korean roommate & rental listings. Also check WowSeattle real estate section."}
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}>💡 {lang === "ko" ? "렌트 찾기" : "Find Rentals"}</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+                <a href="https://open.kakao.com/o/search/%EC%8B%9C%EC%95%A0%ED%8B%80%ED%95%9C%EC%9D%B8" target="_blank" rel="noopener noreferrer"
+                  style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
+                  <span style={{ fontSize: 16 }}>💬</span>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
+                      {lang === "ko" ? "카카오오픈채팅 '시애틀한인'" : "KakaoTalk Open Chat '시애틀한인'"}
+                    </div>
+                    <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "룸메이트·렌탈 실시간 정보" : "Roommate & rental listings"}</div>
+                  </div>
+                  <span style={{ color: accent, fontSize: 14 }}>→</span>
+                </a>
+                <a href="https://www.wowseattle.com/" target="_blank" rel="noopener noreferrer"
+                  style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
+                  <span style={{ fontSize: 16 }}>🏘️</span>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>WowSeattle</div>
+                    <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "한인 부동산·렌탈 정보" : "Korean real estate & rentals"}</div>
+                  </div>
+                  <span style={{ color: accent, fontSize: 14 }}>→</span>
+                </a>
               </div>
             </div>
           </>
@@ -2115,11 +2132,30 @@ function SettleScreen({ onHome }: { onHome?: () => void }) {
 
             {/* 팁 배너 */}
             <div style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>💡 {lang === "ko" ? "한인 커뮤니티 팁" : "Korean Community Tip"}</div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
-                {lang === "ko"
-                  ? "카카오오픈채팅 '시애틀한인' 검색 — 실시간 정착 정보, 중고물품 거래, 룸메이트 구하기 등 활발하게 운영 중"
-                  : "Search KakaoTalk Open Chat '시애틀한인' — active community for real-time settlement tips, used goods, and roommate search"}
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}>💡 {lang === "ko" ? "한인 커뮤니티 연결" : "Korean Community"}</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+                <a href="https://open.kakao.com/o/search/%EC%8B%9C%EC%95%A0%ED%8B%80%ED%95%9C%EC%9D%B8" target="_blank" rel="noopener noreferrer"
+                  style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
+                  <span style={{ fontSize: 16 }}>💬</span>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
+                      {lang === "ko" ? "카카오오픈채팅 '시애틀한인'" : "KakaoTalk '시애틀한인'"}
+                    </div>
+                    <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "정착정보·중고거래·룸메이트" : "Settlement tips, used goods, roommates"}</div>
+                  </div>
+                  <span style={{ color: accent, fontSize: 14 }}>→</span>
+                </a>
+                <a href="https://cafe.naver.com/seattlekorean" target="_blank" rel="noopener noreferrer"
+                  style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
+                  <span style={{ fontSize: 16 }}>🟢</span>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
+                      {lang === "ko" ? "네이버 카페 '시애틀한인생활'" : "Naver Café '시애틀한인생활'"}
+                    </div>
+                    <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "정착 경험담·질문·정보 공유" : "Settlement experiences & Q&A"}</div>
+                  </div>
+                  <span style={{ color: accent, fontSize: 14 }}>→</span>
+                </a>
               </div>
             </div>
           </>
@@ -2324,11 +2360,58 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
             {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
           <div style={{ background: "rgba(251,146,60,0.08)", border: "1px solid rgba(251,146,60,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>🗺️ {lang === "ko" ? "위치 찾기" : "Find Locations"}</div>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
-              {lang === "ko"
-                ? "Google Maps에서 'Korean restaurant Lynnwood WA' 또는 '한인 맛집 시애틀' 검색. Yelp 한국어 리뷰도 활용하세요."
-                : "Search 'Korean restaurant Lynnwood WA' on Google Maps or check Yelp for Korean reviews."}
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}>
+              🗺️ {lang === "ko" ? "지도에서 바로 찾기" : "Find on Map"}
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+              <a href="https://www.google.com/maps/search/Korean+restaurant+Lynnwood+WA"
+                target="_blank" rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none",
+                  background: "rgba(255,255,255,0.08)", borderRadius: 10, padding: "9px 12px",
+                  border: "1px solid rgba(251,146,60,0.2)", transition: "background 0.15s" }}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.14)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}>
+                <span style={{ fontSize: 16 }}>🗺️</span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
+                    Korean restaurant Lynnwood WA
+                  </div>
+                  <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>Google Maps</div>
+                </div>
+                <span style={{ color: accent, fontSize: 14 }}>→</span>
+              </a>
+              <a href="https://www.google.com/maps/search/%ED%95%9C%EC%9D%B8+%EB%A7%9B%EC%A7%91+%EC%8B%9C%EC%95%A0%ED%8B%80"
+                target="_blank" rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none",
+                  background: "rgba(255,255,255,0.08)", borderRadius: 10, padding: "9px 12px",
+                  border: "1px solid rgba(251,146,60,0.2)", transition: "background 0.15s" }}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.14)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}>
+                <span style={{ fontSize: 16 }}>🗺️</span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
+                    {lang === "ko" ? "한인 맛집 시애틀" : "Korean food Seattle"}
+                  </div>
+                  <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>Google Maps</div>
+                </div>
+                <span style={{ color: accent, fontSize: 14 }}>→</span>
+              </a>
+              <a href="https://www.yelp.com/search?find_desc=Korean+Restaurant&find_loc=Lynnwood%2C+WA"
+                target="_blank" rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none",
+                  background: "rgba(255,255,255,0.08)", borderRadius: 10, padding: "9px 12px",
+                  border: "1px solid rgba(251,146,60,0.2)", transition: "background 0.15s" }}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.14)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}>
+                <span style={{ fontSize: 16 }}>⭐</span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
+                    Korean Restaurant · Lynnwood
+                  </div>
+                  <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>Yelp {lang === "ko" ? "한국어 리뷰" : "Reviews"}</div>
+                </div>
+                <span style={{ color: accent, fontSize: 14 }}>→</span>
+              </a>
             </div>
           </div>
         </div>
@@ -2641,13 +2724,39 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
           {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
         </div>
         <div style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>
-            💼 {lang === "ko" ? "취업 팁" : "Job Tip"}
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}>
+            💼 {lang === "ko" ? "취업 바로 연결" : "Job Resources"}
           </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
-            {lang === "ko"
-              ? "카카오오픈채팅 '시애틀한인'에서 취업 정보·추천 공유 활발. WorkSource WA 무료 이력서·면접 코칭도 활용하세요."
-              : "KakaoTalk '시애틀한인' has active job info & referral sharing. Also use WorkSource WA for free resume & interview coaching."}
+          <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+            <a href="https://open.kakao.com/o/search/%EC%8B%9C%EC%95%A0%ED%8B%80%ED%95%9C%EC%9D%B8" target="_blank" rel="noopener noreferrer"
+              style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(251,191,36,0.2)" }}>
+              <span style={{ fontSize: 16 }}>💬</span>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
+                  {lang === "ko" ? "카카오오픈채팅 '시애틀한인'" : "KakaoTalk '시애틀한인'"}
+                </div>
+                <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "취업 정보·추천 실시간 공유" : "Live job info & referrals"}</div>
+              </div>
+              <span style={{ color: accent, fontSize: 14 }}>→</span>
+            </a>
+            <a href="https://worksourcewa.com/" target="_blank" rel="noopener noreferrer"
+              style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(251,191,36,0.2)" }}>
+              <span style={{ fontSize: 16 }}>🏢</span>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>WorkSource WA</div>
+                <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "무료 이력서·면접 코칭" : "Free resume & interview coaching"}</div>
+              </div>
+              <span style={{ color: accent, fontSize: 14 }}>→</span>
+            </a>
+            <a href="https://www.linkedin.com/jobs/search/?keywords=Korean&location=Seattle%2C+WA" target="_blank" rel="noopener noreferrer"
+              style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(251,191,36,0.2)" }}>
+              <span style={{ fontSize: 16 }}>💼</span>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>LinkedIn Jobs — Seattle</div>
+                <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "시애틀 한인 취업 공고" : "Seattle Korean job listings"}</div>
+              </div>
+              <span style={{ color: accent, fontSize: 14 }}>→</span>
+            </a>
           </div>
         </div>
       </div>
