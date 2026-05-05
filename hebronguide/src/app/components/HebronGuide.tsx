@@ -829,7 +829,7 @@ function CompactHeroNew() {
 const QUICK_MENU = [
   { emoji: "🛬", labelKo: "정착",   labelEn: "Settle",  color: "#F2994A", bg: "#FFF5EC", tab: 1 },
   { emoji: "🍽️", labelKo: "맛집",  labelEn: "Food",    color: "#EF4444", bg: "#FFF0F0", tab: 3 },
-  { emoji: "🗺️", labelKo: "관광·여행", labelEn: "Tourism", color: "#0EA5E9", bg: "#F0F9FF", tab: 4 },
+  { emoji: "🗺️", labelKo: "관광", labelEn: "Tourism", color: "#0EA5E9", bg: "#F0F9FF", tab: 4 },
   { emoji: "🏘️", labelKo: "거주지", labelEn: "Areas",   color: "#10B981", bg: "#F0FDF4", tab: 1 },
   { emoji: "💰", labelKo: "생활비", labelEn: "Costs",   color: "#8B5CF6", bg: "#F5F3FF", tab: 8 },
   { emoji: "💼", labelKo: "취업",   labelEn: "Jobs",    color: "#059669", bg: "#ECFDF5", tab: 6 },
@@ -1459,7 +1459,7 @@ const APP_GRID_ITEMS: AppGridItem[] = [
   { emoji: "🛬", label: "정착 가이드",  labelEn: "Settlement",  tabIndex: 1, color: "#60A5FA" },
   { emoji: "⛪", label: "교회 찾기",   labelEn: "Churches",    tabIndex: 2, color: "#C084FC" },
   { emoji: "🍽️", label: "맛집·카페",  labelEn: "Dining",      tabIndex: 3, color: "#FB923C" },
-  { emoji: "🗺️", label: "관광·여행",   labelEn: "Tourism",     tabIndex: 4, color: "#34D399" },
+  { emoji: "🗺️", label: "관광",   labelEn: "Tourism",     tabIndex: 4, color: "#34D399" },
   { emoji: "🆘", label: "도움·지원",   labelEn: "Help",        tabIndex: 5, color: "#F87171" },
   { emoji: "💼", label: "취업 정보",   labelEn: "Jobs",        tabIndex: 6, color: "#FBBF24" },
   { emoji: "🎓", label: "교육·학군",   labelEn: "Education",   tabIndex: 7, color: "#A78BFA" },
@@ -2159,7 +2159,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
   return (
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
-      <ScreenHeader emoji="🗺️" titleKo="관광·여행" titleEn="Tourism & Travel"
+      <ScreenHeader emoji="🗺️" titleKo="관광" titleEn="Tourism"
         descKo="지역안내 · 자연 · 문화 · 스포츠" descEn="Areas · Nature · Culture · Sports"
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
@@ -3006,7 +3006,7 @@ export function HebronGuide() {
         "백정","baekjeong","쏘문난집","so moon","이가네","yi's","wuju","갈비","설렁탕",
         "순두부","tofu","치킨","chicken","비빔밥","bibimbap","라면","ramen",
         "핫도그","hotdog","빙수","bingsu","크로플","k cafe","dabang","카카오","음식"] },
-    { tab: 4, labelKo: "관광·여행", labelEn: "Tourism",
+    { tab: 4, labelKo: "관광", labelEn: "Tourism",
       keywords: ["탐방","관광","여행","tourism","travel","explore","레이니어","rainier","스페이스니들","space needle",
         "파이크","pike","여행","travel","tourist","tourism","폭포","falls","스노퀄미",
         "snoqualmie","페리","ferry","베인브릿지","bainbridge","산","mountain","하이킹",
