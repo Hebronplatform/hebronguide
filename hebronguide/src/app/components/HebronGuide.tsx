@@ -164,7 +164,8 @@ const TOP5_RESTAURANTS: Top5Item[] = [
     phone: "(253) 815-8888", hours: "월화·목-일 11am-10pm (수 휴무)",
     rating: 4.3, ratingCount: "667+",
     why: "페더럴웨이 한인 커뮤니티 1위 BBQ, 수제 반찬 10종+, The Emerald Palate Top 3",
-    tip: "수요일 휴무. 인기 메뉴 갈비·불고기 조합 추천" },
+    tip: "수요일 휴무. 인기 메뉴 갈비·불고기 조합 추천",
+    website: "yelp.com/biz/so-moon-nan-jib-federal-way" },
   { rank: 3, emoji: "🔥", nameKo: "WuJu 코리안 BBQ", nameEn: "WuJu Korean BBQ",
     address: "19400 36th Ave W Ste 102, Lynnwood WA 98036",
     phone: "(425) 672-2650", hours: "화-목 11am-10pm, 금-토 11am-11pm, 일 11am-9pm (월 휴무)",
@@ -182,7 +183,8 @@ const TOP5_RESTAURANTS: Top5Item[] = [
     phone: "(425) 678-8276", hours: "월-목 8am-9pm, 금 8am-10pm, 토-일 11am-9pm",
     rating: 4.5, ratingCount: "126+",
     why: "H-Mart 린우드 바로 옆, 한국식 커피·빙수·크로플, 한인타운 카페 1순위",
-    tip: "H-Mart 쇼핑 후 들르기 딱 좋음" },
+    tip: "H-Mart 쇼핑 후 들르기 딱 좋음",
+    website: "yelp.com/biz/k-cafe-dabang-lynnwood" },
 ];
 
 const TOP5_SETTLE: Top5Item[] = [
@@ -236,7 +238,8 @@ const TOP5_EXPLORE: Top5Item[] = [
     address: "6820 Railroad Ave SE, Snoqualmie WA 98065",
     price: "무료",
     why: "시애틀 동쪽 30분, Twin Peaks 촬영지, 82m 폭포, 산책로·카페 조합 완벽한 당일치기",
-    tip: "주차 $5. 폭포 아래 전망대까지 15분 트레일 추천" },
+    tip: "주차 $5. 폭포 아래 전망대까지 15분 트레일 추천",
+    website: "snoqualmiefalls.com" },
   { rank: 5, emoji: "⛴️", nameKo: "베인브릿지 아일랜드 페리", nameEn: "Bainbridge Island Ferry",
     address: "Colman Dock, 801 Alaskan Way, Seattle WA 98104",
     price: "성인 편도 $9.25 (차 없이 승선)",
@@ -306,11 +309,26 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
                 <span style={{ fontSize: 9, color: "rgba(236,253,245,0.4)" }}>→ 지도</span>
               </a>
             )}
-            {item.phone && (
-              <a href={`tel:${item.phone}`} style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11, color: accentColor, fontWeight: 700, textDecoration: "none" }}>
-                <span>📞</span> {item.phone}
-              </a>
-            )}
+            {/* 링크 버튼 행 */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginTop: 6 }}>
+              {item.phone && (
+                <a href={`tel:${item.phone}`}
+                  style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
+                    background: `${accentColor}18`, border: `1px solid ${accentColor}33`, borderRadius: 20, padding: "3px 8px" }}>
+                  <span style={{ fontSize: 10 }}>📞</span>
+                  <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>전화</span>
+                </a>
+              )}
+              {item.website && (
+                <a href={item.website.startsWith("http") ? item.website : `https://${item.website}`}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
+                    background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.3)", borderRadius: 20, padding: "3px 8px" }}>
+                  <span style={{ fontSize: 10 }}>🌐</span>
+                  <span style={{ fontSize: 10, color: "#6EE7B7", fontWeight: 700 }}>공식 사이트</span>
+                </a>
+              )}
+            </div>
             {item.tip && (
               <div style={{ marginTop: 6, padding: "4px 8px", borderRadius: 6, background: "rgba(255,255,255,0.06)",
                 fontSize: 10, color: "rgba(236,253,245,0.55)", fontStyle: "italic" }}>
@@ -1344,34 +1362,59 @@ function StepItem({ num, title, desc, accentColor = MINT }: { num: number; title
 ───────────────────────────────────────── */
 // desc 텍스트에서 📍주소·📞전화를 추출해 Maps/전화 링크로 변환
 function renderDescWithLinks(desc: string, accentColor: string) {
-  const addrMatch = desc.match(/📍\s*([^|📞\n]+)/);
+  const addrMatch  = desc.match(/📍\s*([^|📞🔗\n]+)/);
   const phoneMatch = desc.match(/📞\s*([\d\s\-()+]+)/);
-  const addr = addrMatch ? addrMatch[1].trim() : null;
-  const phone = phoneMatch ? phoneMatch[1].trim() : null;
-  // 주소·전화 제거한 순수 텍스트
-  const cleanDesc = desc.replace(/📍[^|📞\n]+/g, "").replace(/📞[\d\s\-()+]+/g, "").replace(/\|\s*\|/g, "|").replace(/^\||\|$/g, "").trim();
+  // 🔗 뒤에 오는 URL 또는 도메인 감지 (공식 웹사이트)
+  const webMatch   = desc.match(/🔗\s*(https?:\/\/[\w\-\.\/\?=&%#]+|[\w\-]+\.[\w]{2,}[\w\/\-\.]*)/i);
+  const addr  = addrMatch  ? addrMatch[1].trim()  : null;
+  const phone = phoneMatch ? phoneMatch[1].trim()  : null;
+  const web   = webMatch   ? webMatch[1].trim()    : null;
+  const webHref = web ? (web.startsWith("http") ? web : `https://${web}`) : null;
+  // 아이콘들 제거한 순수 설명 텍스트
+  const cleanDesc = desc
+    .replace(/📍[^|📞🔗\n]+/g, "")
+    .replace(/📞[\d\s\-()+]+/g, "")
+    .replace(/🔗\s*(https?:\/\/[\w\-\.\/\?=&%#]+|[\w\-]+\.[\w]{2,}[\w\/\-\.]*)/ig, "")
+    .replace(/\|\s*\|/g, "|").replace(/^\|+|\|+$/g, "").trim();
   return (
     <div>
-      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.6, color: "rgba(236,253,245,0.6)", marginTop: 5 }}>
-        {cleanDesc}
-      </div>
-      {addr && (
-        <a href={`https://maps.google.com/?q=${encodeURIComponent(addr)}`}
-          target="_blank" rel="noopener noreferrer"
-          style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: 6, textDecoration: "none" }}>
-          <span style={{ fontSize: 12 }}>📍</span>
-          <span style={{ fontSize: 10, color: accentColor, fontWeight: 600, textDecoration: "underline" }}>
-            {addr.split(",")[0]}
-          </span>
-          <span style={{ fontSize: 9, background: `${accentColor}22`, color: accentColor, borderRadius: 4, padding: "1px 5px", fontWeight: 700 }}>지도</span>
-        </a>
+      {cleanDesc && (
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.6, color: "rgba(236,253,245,0.6)", marginTop: 5, whiteSpace: "pre-wrap" }}>
+          {cleanDesc}
+        </div>
       )}
-      {phone && (
-        <a href={`tel:${phone.replace(/\D/g, "")}`}
-          style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: addr ? 4 : 6, marginLeft: addr ? 10 : 0, textDecoration: "none" }}>
-          <span style={{ fontSize: 12 }}>📞</span>
-          <span style={{ fontSize: 10, color: accentColor, fontWeight: 600 }}>{phone}</span>
-        </a>
+      {/* 링크 버튼 행 */}
+      {(addr || phone || webHref) && (
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>
+          {addr && (
+            <a href={`https://maps.google.com/?q=${encodeURIComponent(addr)}`}
+              target="_blank" rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
+                background: `${accentColor}18`, border: `1px solid ${accentColor}33`,
+                borderRadius: 20, padding: "3px 10px" }}>
+              <span style={{ fontSize: 11 }}>📍</span>
+              <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>지도</span>
+            </a>
+          )}
+          {phone && (
+            <a href={`tel:${phone.replace(/\D/g, "")}`}
+              style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
+                background: `${accentColor}18`, border: `1px solid ${accentColor}33`,
+                borderRadius: 20, padding: "3px 10px" }}>
+              <span style={{ fontSize: 11 }}>📞</span>
+              <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>{phone.trim().replace(/^\(/, "").split(")")[0].trim()}</span>
+            </a>
+          )}
+          {webHref && (
+            <a href={webHref} target="_blank" rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
+                background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.3)",
+                borderRadius: 20, padding: "3px 10px" }}>
+              <span style={{ fontSize: 11 }}>🌐</span>
+              <span style={{ fontSize: 10, color: "#6EE7B7", fontWeight: 700 }}>공식 웹사이트</span>
+            </a>
+          )}
+        </div>
       )}
     </div>
   );
