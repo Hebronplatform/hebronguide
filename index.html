@@ -473,6 +473,14 @@
   </style>
 </head>
 <body>
+  <!-- ── 자동 리다이렉트: 시애틀 메인 앱으로 ── -->
+  <script>
+    // 루트(/) 접속 시 시애틀 React 앱으로 즉시 이동
+    // 쿼리스트링·해시 보존 (예: /?lang=en → /seattle/?lang=en)
+    var search = window.location.search;
+    var hash = window.location.hash;
+    window.location.replace('/seattle/' + search + hash);
+  </script>
   <!-- 스티키 네비 -->
   <nav class="topbar">
     <div class="topbar-inner">
