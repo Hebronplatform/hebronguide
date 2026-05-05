@@ -1986,15 +1986,15 @@ function SettleScreen({ onHome }: { onHome?: () => void }) {
   ];
 
   const adminKo = [
-    { title: "SSN 신청", desc: "사회보장청(SSA) 오피스 | 2201 6th Ave, Seattle | 전화: 800-772-1213" },
-    { title: "WA 운전면허 (DOL)", desc: "Lynnwood DOL: 18918 33rd Ave W | Everett DOL: 3601 Wetmore Ave" },
+    { title: "SSN 신청", desc: "사회보장청(SSA) 오피스 | 915 2nd Ave #3605, Seattle | 전화: 800-772-1213" },
+    { title: "WA 운전면허 (DOL)", desc: "Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave" },
     { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장" },
     { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트: uscis.gov | Lynnwood 이민 변호사 다수 활동" },
     { title: "시민권 신청 (N-400)", desc: "영주권 5년 후 신청 가능 | 영어·시민권 시험 준비 클래스 교회에서 운영" },
   ];
   const adminEn = [
-    { title: "SSN Application", desc: "Social Security Office | 2201 6th Ave, Seattle | Phone: 800-772-1213" },
-    { title: "WA Driver License (DOL)", desc: "Lynnwood DOL: 18918 33rd Ave W | Everett DOL: 3601 Wetmore Ave" },
+    { title: "SSN Application", desc: "Social Security Office | 915 2nd Ave #3605, Seattle | Phone: 800-772-1213" },
+    { title: "WA Driver License (DOL)", desc: "Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave" },
     { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended" },
     { title: "Green Card / Visa Renewal", desc: "USCIS official site: uscis.gov | Many immigration attorneys active in Lynnwood" },
     { title: "Citizenship (N-400)", desc: "Eligible 5 years after green card | English & civics prep classes at Korean churches" },
@@ -2625,7 +2625,7 @@ function HelpScreen({ onHome }: { onHome?: () => void }) {
   const defaultCommunityLinks = [
     { emoji: "💬", name: lang === "ko" ? "카카오오픈채팅 — 시애틀한인" : "KakaoTalk — 시애틀한인", nameEn: "Kakao Open Chat", desc: lang === "ko" ? "시애틀 한인 최대 커뮤니티 채팅방. 정착 질문, 중고거래, 모임 공지" : "Largest Korean Seattle community chat. Settlement Q&A, used goods, event announcements", tags: ["카카오", "실시간", "커뮤니티"] },
     { emoji: "🏛️", name: lang === "ko" ? "시애틀 한인회" : "Korean Association of Seattle", nameEn: "Korean Association", desc: lang === "ko" ? "공식 한인 단체. 각종 행사·지원 사업 운영. 전화: (206) 323-5050" : "Official Korean community organization. Events & support programs. Tel: (206) 323-5050", tags: ["공식", "한인회", "이벤트"] },
-    { emoji: "🏴", name: lang === "ko" ? "주 시애틀 대한민국 총영사관" : "Korean Consulate General Seattle", nameEn: "Korean Consulate", desc: lang === "ko" ? "여권·공증·사증. 주소: 2033 6th Ave #1125, Seattle. 전화: (206) 441-1011" : "Passport, notary & visa services. 2033 6th Ave #1125, Seattle. Tel: (206) 441-1011", tags: ["영사관", "여권", "공증"] },
+    { emoji: "🏴", name: lang === "ko" ? "주 시애틀 대한민국 총영사관" : "Korean Consulate General Seattle", nameEn: "Korean Consulate", desc: lang === "ko" ? "여권·공증·사증. 📍 115 W Mercer St, Seattle | 📞 (206) 441-1011 | 🔗 overseas.mofa.go.kr/us-seattle-ko" : "Passport, notary & visa services. 📍 115 W Mercer St, Seattle | 📞 (206) 441-1011 | 🔗 overseas.mofa.go.kr/us-seattle-ko", tags: ["영사관", "여권", "공증"] },
     { emoji: "📰", name: lang === "ko" ? "미주 한국일보 시애틀판" : "Korea Times Seattle", nameEn: "Korean Newspaper", desc: lang === "ko" ? "시애틀 한인 지역 소식·구인광고·부동산·커뮤니티 정보" : "Seattle Korean community news, job listings, real estate & community information", tags: ["신문", "뉴스", "정보"] },
     { emoji: "👩‍💻", name: lang === "ko" ? "네이버 카페 — 시애틀한인생활" : "Naver Café — Seattle Korean Life", nameEn: "Naver Café", desc: lang === "ko" ? "정착 경험담·질문·정보 공유. 검색: 네이버 '시애틀한인생활'" : "Settlement experiences, Q&A & info sharing. Search: Naver '시애틀한인생활'", tags: ["네이버", "정보", "경험담"] },
     { emoji: "📞", name: lang === "ko" ? "킹카운티 2-1-1 ✅ 검증됨" : "King County 2-1-1 ✅ Verified", nameEn: "2-1-1 Free Services Hotline", desc: lang === "ko" ? "전화 211 — 식품·주거·법률·의료 무료 서비스 연결. 한국어 통역 가능. 지금 바로 전화하세요!" : "Dial 211 — connects to ALL free services (food, housing, legal, medical). Korean interpreter available.", tags: ["211", "무료연결", "한국어"] },
