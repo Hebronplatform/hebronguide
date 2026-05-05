@@ -3633,7 +3633,7 @@ export function HebronGuide() {
       {/* 메인 콘텐츠 영역 */}
       <div
         className="flex flex-col min-h-screen mx-auto relative w-full max-w-[430px] md:max-w-[640px] lg:max-w-[960px] lg:ml-64"
-        style={{ background: "#F8FAFC" }}
+        style={{ background: "#1a2535" }}
       >
         <AppBar />
 
