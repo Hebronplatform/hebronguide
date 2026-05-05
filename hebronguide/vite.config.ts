@@ -26,7 +26,7 @@ const figmaCompatPlugin = {
 }
 
 export default defineConfig({
-  base: '/seattle/',
+  base: '/',
   plugins: [
     figmaCompatPlugin,
     react(),
@@ -35,15 +35,15 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icon-192.png', 'icon-512.png'],
       manifest: {
-        name: 'HebronGuide 시애틀',
+        name: 'HebronGuide',
         short_name: 'HebronGuide',
-        description: '재외 한인 정착 가이드 — 시애틀',
+        description: '재외 한인 정착 가이드 — 도시를 알고, 사람을 찾다',
         theme_color: '#F2994A',
         background_color: '#F8FAFC',
         display: 'standalone',
         orientation: 'portrait',
-        start_url: '/seattle/',
-        scope: '/seattle/',
+        start_url: '/',
+        scope: '/',
         lang: 'ko',
         icons: [
           {

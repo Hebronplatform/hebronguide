@@ -2,22 +2,31 @@
   "buildCommand": "bash build.sh",
   "outputDirectory": "public",
   "rewrites": [
-    { "source": "/seattle",      "destination": "/seattle/index.html" },
-    { "source": "/seattle/(.*)", "destination": "/seattle/index.html" },
-    { "source": "/dallas",       "destination": "/dallas/index.html" },
-    { "source": "/la",           "destination": "/la/index.html" },
-    { "source": "/sf",           "destination": "/sf/index.html" },
-    { "source": "/newyork",      "destination": "/newyork/index.html" },
-    { "source": "/nashville",    "destination": "/nashville/index.html" },
-    { "source": "/vancouver",    "destination": "/vancouver/index.html" },
-    { "source": "/toronto",      "destination": "/toronto/index.html" }
+    { "source": "/seattle",        "destination": "/seattle/index.html" },
+    { "source": "/seattle/(.*)",   "destination": "/seattle/index.html" },
+    { "source": "/dallas",         "destination": "/dallas/index.html" },
+    { "source": "/dallas/(.*)",    "destination": "/dallas/index.html" },
+    { "source": "/sf",             "destination": "/sf/index.html" },
+    { "source": "/sf/(.*)",        "destination": "/sf/index.html" },
+    { "source": "/newyork",        "destination": "/newyork/index.html" },
+    { "source": "/newyork/(.*)",   "destination": "/newyork/index.html" },
+    { "source": "/nashville",      "destination": "/nashville/index.html" },
+    { "source": "/nashville/(.*)", "destination": "/nashville/index.html" },
+    { "source": "/boston",         "destination": "/boston/index.html" },
+    { "source": "/boston/(.*)",    "destination": "/boston/index.html" },
+    { "source": "/la",             "destination": "/la/index.html" },
+    { "source": "/la/(.*)",        "destination": "/la/index.html" },
+    { "source": "/toronto",        "destination": "/toronto/index.html" },
+    { "source": "/toronto/(.*)",   "destination": "/toronto/index.html" },
+    { "source": "/vancouver",      "destination": "/vancouver/index.html" },
+    { "source": "/vancouver/(.*)", "destination": "/vancouver/index.html" }
   ],
   "headers": [
     {
-      "source": "/seattle/sw.js",
+      "source": "/(.*)/sw.js",
       "headers": [
         { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
-        { "key": "Service-Worker-Allowed", "value": "/seattle/" }
+        { "key": "Service-Worker-Allowed", "value": "/" }
       ]
     },
     {

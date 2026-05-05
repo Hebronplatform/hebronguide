@@ -844,15 +844,17 @@ function CompactHeroNew() {
 ───────────────────────────────────────── */
 // 탭 순서: 이민자·이주자·관광객·방문자 모두 포용 — 차별화 전략 반영
 // 1.정착(Day-1 핵심) 2.맛집(모두 공통) 3.탐방(관광·방문) 4.거주지(이민) 5.생활비(참고) 6.취업 7.교육 8.도움 9.교회(편의점처럼 자연스럽게)
+// Quick Menu 순서: 긴급성·사용빈도 기준 최적화
+// 정착(Day-1) → 맛집(공통) → 관광(방문객) → 도움(긴급) → 거주지 → 취업 → 교육 → 생활비 → 교회(자연스러운 연결)
 const QUICK_MENU = [
   { emoji: "🛬", labelKo: "정착",   labelEn: "Settle",  color: "#F2994A", bg: "#FFF5EC", tab: 1 },
   { emoji: "🍽️", labelKo: "맛집",  labelEn: "Food",    color: "#EF4444", bg: "#FFF0F0", tab: 3 },
-  { emoji: "🗺️", labelKo: "관광", labelEn: "Tourism", color: "#0EA5E9", bg: "#F0F9FF", tab: 4 },
+  { emoji: "🗺️", labelKo: "관광",  labelEn: "Tourism", color: "#0EA5E9", bg: "#F0F9FF", tab: 4 },
+  { emoji: "🆘", labelKo: "도움",   labelEn: "Help",    color: "#EF4444", bg: "#FFF5F5", tab: 5 },
   { emoji: "🏘️", labelKo: "거주지", labelEn: "Areas",   color: "#10B981", bg: "#F0FDF4", tab: 1 },
-  { emoji: "💰", labelKo: "생활비", labelEn: "Costs",   color: "#8B5CF6", bg: "#F5F3FF", tab: 8 },
   { emoji: "💼", labelKo: "취업",   labelEn: "Jobs",    color: "#059669", bg: "#ECFDF5", tab: 6 },
   { emoji: "🎓", labelKo: "교육",   labelEn: "Schools", color: "#F59E0B", bg: "#FFFBEB", tab: 7 },
-  { emoji: "🆘", labelKo: "도움",   labelEn: "Help",    color: "#64748B", bg: "#F1F5F9", tab: 5 },
+  { emoji: "💰", labelKo: "생활비", labelEn: "Costs",   color: "#8B5CF6", bg: "#F5F3FF", tab: 8 },
   { emoji: "⛪", labelKo: "교회",   labelEn: "Church",  color: "#7C3AED", bg: "#F5F0FF", tab: 2 },
 ];
 
@@ -4222,7 +4224,7 @@ function AppBar() {
             <span style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 600, fontSize: 13, letterSpacing: "1.5px", color: "#64748B" }}>GUIDE</span>
           </div>
           <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 600, fontSize: 9, letterSpacing: "1px", color: "#F2994A", marginTop: 2, opacity: 0.8 }}>
-            SEATTLE
+            {(() => { const p = window.location.pathname.split('/').filter(Boolean)[0]?.toUpperCase(); return (p && ['SEATTLE','DALLAS','SF','NEWYORK','NASHVILLE','BOSTON','LA','TORONTO','VANCOUVER'].includes(p)) ? (p === 'SF' ? 'SAN FRANCISCO' : p === 'NEWYORK' ? 'NEW YORK' : p) : 'SEATTLE'; })()}
           </div>
         </div>
       </div>

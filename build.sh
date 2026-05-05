@@ -23,26 +23,20 @@ cp llms.txt        public/llms.txt
 [ -f icon-192.png ] && cp icon-192.png public/
 [ -f icon-512.png ] && cp icon-512.png public/
 
-# 도시별 단일 파일 PWA 복사
-for city in dallas la sf newyork nashville vancouver toronto; do
-  if [ -d "$city" ]; then
-    mkdir -p public/$city
-    cp -r $city/* public/$city/
-    echo "  ✅ $city/ 복사 완료"
-  fi
-done
-
-# 3. 시애틀 React 앱 빌드 (npx pnpm@10으로 버전 고정)
-echo "⚛️  시애틀 React 앱 빌드 중..."
+# 3. React 앱 빌드 (모든 도시 공통 UI — base: '/')
+echo "⚛️  React 앱 빌드 중 (멀티시티)..."
 cd hebronguide
 npx --yes pnpm@10 install --no-frozen-lockfile
 npx --yes pnpm@10 build
 cd ..
 
-# 4. React 빌드 결과물을 public/seattle/로 복사
-echo "📦 시애틀 빌드 결과물 복사 중..."
-mkdir -p public/seattle
-cp -r hebronguide/dist/* public/seattle/
+# 4. React 빌드를 모든 활성 도시에 복사
+echo "📦 React 빌드를 모든 도시에 복사 중..."
+for city in seattle dallas sf newyork nashville boston la toronto vancouver; do
+  mkdir -p public/$city
+  cp -r hebronguide/dist/* public/$city/
+  echo "  ✅ $city/ React 빌드 완료"
+done
 
 echo "✅ 빌드 완료! public/ 폴더 준비됨"
 echo "📂 구조:"
