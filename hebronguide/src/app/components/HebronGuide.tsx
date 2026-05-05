@@ -42,6 +42,17 @@ import {
   Search,
   Globe,
   MessageCircle,
+  MapPin,
+  Utensils,
+  LifeBuoy,
+  Grid,
+  Church,
+  Map,
+  Briefcase,
+  GraduationCap,
+  DollarSign,
+  X,
+  Share2,
 } from "lucide-react";
 
 /* ─────────────────────────────────────────
@@ -1467,6 +1478,8 @@ function EmergencyRow({ emoji, title, number, desc }: { emoji: string; title: st
    — 언제 어디서든 홈으로 돌아올 수 있는 길
 ───────────────────────────────────────── */
 function BackToHomeButton({ onHome, lang }: { onHome?: () => void; lang: string }) {
+  // 하단 네비바에서 홈 이동 가능 — 별도 버튼 불필요 (공간 절약)
+  return null;
   if (!onHome) return null;
   return (
     <button
@@ -3416,10 +3429,11 @@ function CostScreen({ onHome }: { onHome?: () => void }) {
 ───────────────────────────────────────── */
 // 순서: 홈(기준점) → 검색(가장 자주) → 통역(긴급할 때) → 공유(가끔)
 const NAV_ITEMS = [
-  { id: "home",      icon: Home,          labelKo: "홈",   labelEn: "Home"      },
-  { id: "search",    icon: Search,        labelKo: "검색",  labelEn: "Search"    },
-  { id: "translate", icon: Globe,         labelKo: "통역",  labelEn: "Translate" },
-  { id: "share",     icon: MessageCircle, labelKo: "공유",  labelEn: "Share"     },
+  { id: "home",      icon: Home,          labelKo: "홈",   labelEn: "Home",   tab: 0 },
+  { id: "settle",    icon: MapPin,        labelKo: "정착",  labelEn: "Settle", tab: 1 },
+  { id: "food",      icon: Utensils,      labelKo: "맛집",  labelEn: "Food",   tab: 3 },
+  { id: "help",      icon: LifeBuoy,      labelKo: "도움",  labelEn: "Help",   tab: 5 },
+  { id: "more",      icon: Grid,          labelKo: "더보기", labelEn: "More",   tab: -1 },
 ];
 
 /* ─────────────────────────────────────────
@@ -4329,94 +4343,188 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
 }
 
 
+/* ─────────────────────────────────────────
+   더보기 시트 항목
+───────────────────────────────────────── */
+const MORE_SECTIONS = [
+  { icon: Church,       labelKo: "교회",   labelEn: "Church",  tab: 2,  color: "#7C3AED" },
+  { icon: Map,          labelKo: "관광",   labelEn: "Tourism", tab: 4,  color: "#0EA5E9" },
+  { icon: Briefcase,    labelKo: "취업",   labelEn: "Jobs",    tab: 6,  color: "#059669" },
+  { icon: GraduationCap,labelKo: "교육",   labelEn: "Schools", tab: 7,  color: "#F59E0B" },
+  { icon: DollarSign,   labelKo: "생활비", labelEn: "Costs",   tab: 8,  color: "#8B5CF6" },
+];
+
 interface BottomNavProps {
   activeIndex: number;
   onChange: (i: number) => void;
   onSearchToggle: () => void;
-  onLangCycle: () => void;
   onShareToggle: () => void;
   onTranslateToggle: () => void;
 }
-function BottomNav({ activeIndex, onChange, onSearchToggle, onLangCycle, onShareToggle, onTranslateToggle }: BottomNavProps) {
+function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTranslateToggle }: BottomNavProps) {
   const { lang } = useI18n();
+  const [showMore, setShowMore] = useState(false);
 
-  const handleClick = (id: string, i: number) => {
-    if (id === "home") onChange(0);
-    else if (id === "search") onSearchToggle();
-    else if (id === "share") onShareToggle();
-    else if (id === "translate") onTranslateToggle();
-    else if (id === "lang") onLangCycle();
+  const handleNavClick = (item: typeof NAV_ITEMS[0]) => {
+    if (item.id === "more") { setShowMore(prev => !prev); return; }
+    setShowMore(false);
+    onChange(item.tab);
   };
 
-  // 검색·언어 버튼은 활성 탭 표시 없음 (홈만 activeIndex=0 일치 시 활성)
-  const isActive = (id: string, i: number) => id === "home" && activeIndex === 0;
+  const handleMoreSection = (tab: number) => {
+    onChange(tab);
+    setShowMore(false);
+  };
+
+  const ACCENT = "#F2994A";
 
   return (
-    <nav
-      className="fixed bottom-0 z-50 lg:hidden"
-      style={{
-        height: 72,
-        left: "50%",
-        transform: "translateX(-50%)",
-        width: "100%",
-        maxWidth: 430,
-        background: "#F9F9F9",
-        borderTop: "0.5px solid rgba(0,0,0,0.18)",
-        boxShadow: "0 -1px 0 rgba(0,0,0,0.08)",
-      }}
-    >
-      <div style={{ display: "flex", height: "100%", alignItems: "stretch" }}>
-        {NAV_ITEMS.map((item, i) => {
-          const active = isActive(item.id, i);
-          const IconComp = item.icon;
-          return (
-            <button
-              key={item.id}
-              onClick={() => handleClick(item.id, i)}
-              style={{
-                flex: 1,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 4,
-                paddingTop: 8,
-                paddingBottom: 6,
-                border: "none",
-                background: "none",
-                cursor: "pointer",
-                position: "relative",
-                transition: "transform 0.15s ease",
-              }}
-              onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.08)")}
-              onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
-            >
-              {active && (
-                <div style={{
-                  position: "absolute", top: 0, left: "50%", width: 24, height: 2.5,
-                  borderRadius: 2, background: "#F2994A", transform: "translateX(-50%)",
-                }} />
-              )}
-              <IconComp
-                size={24}
-                color={active ? "#F2994A" : "#8E8E93"}
-                strokeWidth={active ? 2.2 : 1.5}
-              />
-              <span style={{
-                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif",
-                fontWeight: active ? 700 : 500,
-                fontSize: 10,
-                color: active ? "#F2994A" : "#8E8E93",
-                whiteSpace: "nowrap",
-                letterSpacing: "-0.2px",
-              }}>
-                {lang === "ko" ? item.labelKo : item.labelEn}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-    </nav>
+    <>
+      {/* 더보기 시트 — 반투명 오버레이 */}
+      {showMore && (
+        <div
+          className="fixed inset-0 z-40 lg:hidden"
+          style={{ background: "rgba(0,0,0,0.4)", backdropFilter: "blur(2px)" }}
+          onClick={() => setShowMore(false)}
+        />
+      )}
+
+      {/* 더보기 바텀 시트 */}
+      {showMore && (
+        <div
+          className="fixed z-50 lg:hidden"
+          style={{
+            bottom: 72, left: "50%", transform: "translateX(-50%)",
+            width: "100%", maxWidth: 430,
+            background: "#fff",
+            borderRadius: "20px 20px 0 0",
+            boxShadow: "0 -4px 32px rgba(0,0,0,0.18)",
+            padding: "16px 16px 12px",
+          }}
+        >
+          {/* 핸들 */}
+          <div style={{ width: 36, height: 4, borderRadius: 2, background: "#E5E7EB", margin: "0 auto 16px" }} />
+
+          {/* 섹션 버튼 그리드 */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 8, marginBottom: 16 }}>
+            {MORE_SECTIONS.map((s) => {
+              const isActive = activeIndex === s.tab;
+              const IconComp = s.icon;
+              return (
+                <button
+                  key={s.tab}
+                  onClick={() => handleMoreSection(s.tab)}
+                  style={{
+                    display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+                    padding: "10px 4px 8px", borderRadius: 14, border: "none", cursor: "pointer",
+                    background: isActive ? `${s.color}15` : "#F8FAFC",
+                    outline: isActive ? `1.5px solid ${s.color}40` : "none",
+                    transition: "all 0.15s ease",
+                  }}
+                >
+                  <div style={{
+                    width: 38, height: 38, borderRadius: 12,
+                    background: isActive ? s.color : `${s.color}18`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>
+                    <IconComp size={20} color={isActive ? "#fff" : s.color} strokeWidth={1.8} />
+                  </div>
+                  <span style={{
+                    fontSize: 10, fontWeight: 600,
+                    color: isActive ? s.color : "#374151",
+                    fontFamily: "-apple-system, 'Noto Sans KR', sans-serif",
+                  }}>
+                    {lang === "ko" ? s.labelKo : s.labelEn}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* 구분선 */}
+          <div style={{ height: 1, background: "#F1F5F9", marginBottom: 12 }} />
+
+          {/* 유틸 버튼 */}
+          <div style={{ display: "flex", gap: 8 }}>
+            {[
+              { icon: Search,       labelKo: "검색",  labelEn: "Search",    action: () => { onSearchToggle(); setShowMore(false); } },
+              { icon: Globe,        labelKo: "통역",  labelEn: "Translate", action: () => { onTranslateToggle(); setShowMore(false); } },
+              { icon: Share2,       labelKo: "공유",  labelEn: "Share",     action: () => { onShareToggle(); setShowMore(false); } },
+            ].map((u, i) => {
+              const IconComp = u.icon;
+              return (
+                <button
+                  key={i}
+                  onClick={u.action}
+                  style={{
+                    flex: 1, display: "flex", flexDirection: "column", alignItems: "center",
+                    gap: 5, padding: "10px 4px", borderRadius: 12, border: "none",
+                    background: "#F8FAFC", cursor: "pointer",
+                  }}
+                >
+                  <IconComp size={20} color="#6B7280" strokeWidth={1.8} />
+                  <span style={{ fontSize: 10, fontWeight: 600, color: "#6B7280",
+                    fontFamily: "-apple-system, 'Noto Sans KR', sans-serif" }}>
+                    {lang === "ko" ? u.labelKo : u.labelEn}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* 메인 하단 네비 */}
+      <nav
+        className="fixed bottom-0 z-50 lg:hidden"
+        style={{
+          height: 72,
+          left: "50%", transform: "translateX(-50%)",
+          width: "100%", maxWidth: 430,
+          background: "#F9F9F9",
+          borderTop: "0.5px solid rgba(0,0,0,0.18)",
+          boxShadow: "0 -1px 0 rgba(0,0,0,0.08)",
+        }}
+      >
+        <div style={{ display: "flex", height: "100%", alignItems: "stretch" }}>
+          {NAV_ITEMS.map((item) => {
+            const isActive = item.tab >= 0 ? activeIndex === item.tab : showMore;
+            const IconComp = item.icon;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item)}
+                style={{
+                  flex: 1, display: "flex", flexDirection: "column",
+                  alignItems: "center", justifyContent: "center",
+                  gap: 4, paddingTop: 8, paddingBottom: 6,
+                  border: "none", background: "none", cursor: "pointer",
+                  position: "relative", transition: "transform 0.1s ease",
+                }}
+                onTouchStart={e => (e.currentTarget.style.transform = "scale(0.92)")}
+                onTouchEnd={e => (e.currentTarget.style.transform = "scale(1)")}
+              >
+                {isActive && (
+                  <div style={{
+                    position: "absolute", top: 0, left: "50%", width: 28, height: 3,
+                    borderRadius: 2, background: ACCENT, transform: "translateX(-50%)",
+                  }} />
+                )}
+                <IconComp size={24} color={isActive ? ACCENT : "#8E8E93"} strokeWidth={isActive ? 2.2 : 1.5} />
+                <span style={{
+                  fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Noto Sans KR', sans-serif",
+                  fontWeight: isActive ? 700 : 500, fontSize: 10,
+                  color: isActive ? ACCENT : "#8E8E93",
+                  whiteSpace: "nowrap", letterSpacing: "-0.2px",
+                }}>
+                  {lang === "ko" ? item.labelKo : item.labelEn}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+    </>
   );
 }
 
@@ -4759,7 +4867,6 @@ export function HebronGuide() {
           activeIndex={activeNav}
           onChange={setActiveNav}
           onSearchToggle={handleSearchToggle}
-          onLangCycle={handleLangCycle}
           onShareToggle={() => setShowChat(prev => !prev)}
           onTranslateToggle={() => setShowTranslate(prev => !prev)}
         />
