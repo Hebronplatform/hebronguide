@@ -296,11 +296,19 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
               {item.why}
             </div>
             {item.address && (
-              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.4)" }}>📍 {item.address.split(",")[0]}</div>
+              <a href={`https://maps.google.com/?q=${encodeURIComponent(item.address)}`}
+                target="_blank" rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", gap: 4, textDecoration: "none", marginBottom: 4 }}>
+                <span style={{ fontSize: 12 }}>📍</span>
+                <span style={{ fontSize: 10, color: accentColor, fontWeight: 600, textDecoration: "underline" }}>
+                  {item.address.split(",")[0]}
+                </span>
+                <span style={{ fontSize: 9, color: "rgba(236,253,245,0.4)" }}>→ 지도</span>
+              </a>
             )}
             {item.phone && (
-              <a href={`tel:${item.phone}`} style={{ display: "block", fontSize: 11, color: accentColor, fontWeight: 700, marginTop: 4, textDecoration: "none" }}>
-                📞 {item.phone}
+              <a href={`tel:${item.phone}`} style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11, color: accentColor, fontWeight: 700, textDecoration: "none" }}>
+                <span>📞</span> {item.phone}
               </a>
             )}
             {item.tip && (
@@ -1334,6 +1342,41 @@ function StepItem({ num, title, desc, accentColor = MINT }: { num: number; title
 /* ─────────────────────────────────────────
    PLACE CARD (맛집·탐방 카드)
 ───────────────────────────────────────── */
+// desc 텍스트에서 📍주소·📞전화를 추출해 Maps/전화 링크로 변환
+function renderDescWithLinks(desc: string, accentColor: string) {
+  const addrMatch = desc.match(/📍\s*([^|📞\n]+)/);
+  const phoneMatch = desc.match(/📞\s*([\d\s\-()+]+)/);
+  const addr = addrMatch ? addrMatch[1].trim() : null;
+  const phone = phoneMatch ? phoneMatch[1].trim() : null;
+  // 주소·전화 제거한 순수 텍스트
+  const cleanDesc = desc.replace(/📍[^|📞\n]+/g, "").replace(/📞[\d\s\-()+]+/g, "").replace(/\|\s*\|/g, "|").replace(/^\||\|$/g, "").trim();
+  return (
+    <div>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.6, color: "rgba(236,253,245,0.6)", marginTop: 5 }}>
+        {cleanDesc}
+      </div>
+      {addr && (
+        <a href={`https://maps.google.com/?q=${encodeURIComponent(addr)}`}
+          target="_blank" rel="noopener noreferrer"
+          style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: 6, textDecoration: "none" }}>
+          <span style={{ fontSize: 12 }}>📍</span>
+          <span style={{ fontSize: 10, color: accentColor, fontWeight: 600, textDecoration: "underline" }}>
+            {addr.split(",")[0]}
+          </span>
+          <span style={{ fontSize: 9, background: `${accentColor}22`, color: accentColor, borderRadius: 4, padding: "1px 5px", fontWeight: 700 }}>지도</span>
+        </a>
+      )}
+      {phone && (
+        <a href={`tel:${phone.replace(/\D/g, "")}`}
+          style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: addr ? 4 : 6, marginLeft: addr ? 10 : 0, textDecoration: "none" }}>
+          <span style={{ fontSize: 12 }}>📞</span>
+          <span style={{ fontSize: 10, color: accentColor, fontWeight: 600 }}>{phone}</span>
+        </a>
+      )}
+    </div>
+  );
+}
+
 function PlaceCard({ emoji, name, nameEn, desc, tags, accentColor = MINT }: { emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; accentColor?: string }) {
   return (
     <div className="transition-all duration-200 hover:scale-[1.02] hover:border-opacity-20" style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: "14px 16px", border: "1px solid rgba(255,255,255,0.07)" }}>
@@ -1344,7 +1387,7 @@ function PlaceCard({ emoji, name, nameEn, desc, tags, accentColor = MINT }: { em
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 14, color: "#ECFDF5" }}>{name}</div>
           {nameEn && <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{nameEn}</div>}
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.6, color: "rgba(236,253,245,0.6)", marginTop: 5 }}>{desc}</div>
+          {renderDescWithLinks(desc, accentColor)}
           {tags && (
             <div className="flex flex-wrap gap-[5px] mt-[8px]">
               {tags.map((tag, i) => (
