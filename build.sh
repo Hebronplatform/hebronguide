@@ -22,6 +22,9 @@ cp sitemap.xml     public/sitemap.xml
 cp llms.txt        public/llms.txt
 [ -f icon-192.png ] && cp icon-192.png public/
 [ -f icon-512.png ] && cp icon-512.png public/
+# iPhone PWA 아이콘 — apple-touch-icon.png 이름으로 루트에 필수
+[ -f icon-192.png ] && cp icon-192.png public/apple-touch-icon.png
+[ -f icon-192.png ] && cp icon-192.png public/apple-touch-icon-precomposed.png
 
 # 3. React 앱 빌드 (모든 도시 공통 UI — base: '/')
 echo "⚛️  React 앱 빌드 중 (멀티시티)..."
