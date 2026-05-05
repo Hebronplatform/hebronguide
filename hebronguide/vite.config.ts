@@ -25,7 +25,7 @@ const figmaCompatPlugin = {
 }
 
 export default defineConfig({
-  base: '/',
+  base: '/seattle/',
   plugins: [
     figmaCompatPlugin,
     react(),

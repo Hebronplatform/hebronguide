@@ -41,14 +41,10 @@ for city in seattle dallas sf newyork nashville boston la toronto vancouver; do
   echo "  ✅ $city/ React 빌드 완료"
 done
 
-# 5. JS·CSS 에셋을 루트 /assets/에도 복사
-# (Vite base:'/' 설정으로 /assets/... 절대경로 사용 → 루트에도 필요)
-echo "📦 공유 에셋 루트 복사 중..."
-mkdir -p public/assets
-cp -r hebronguide/dist/assets/* public/assets/
+# 5. 공유 정적파일 루트 복사 (base:'/seattle/' 이므로 별도 assets 복사 불필요)
 cp hebronguide/dist/registerSW.js public/registerSW.js 2>/dev/null || true
 cp hebronguide/dist/manifest.webmanifest public/manifest.webmanifest 2>/dev/null || true
-echo "  ✅ /assets/ 루트 에셋 복사 완료"
+echo "  ✅ 루트 정적파일 복사 완료"
 
 echo "✅ 빌드 완료! public/ 폴더 준비됨"
 echo "📂 구조:"
