@@ -3939,46 +3939,53 @@ function TranslateModal({ onClose, lang, onNavigate }: { onClose:()=>void; lang:
 
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 300, background: "rgba(0,0,0,0.82)", backdropFilter: "blur(10px)", display: "flex", alignItems: "flex-end" }} onClick={onClose}>
-      <div style={{ width: "100%", maxWidth: 430, margin: "0 auto", background: "#0B1120", borderRadius: "24px 24px 0 0", overflow: "hidden", paddingBottom: "env(safe-area-inset-bottom,20px)" }} onClick={e => e.stopPropagation()}>
+      <div style={{ width: "100%", maxWidth: 430, margin: "0 auto", background: "#0B1120", borderRadius: "24px 24px 0 0", display: "flex", flexDirection: "column", maxHeight: "88dvh", paddingBottom: "env(safe-area-inset-bottom,0px)" }} onClick={e => e.stopPropagation()}>
 
-        {/* ── 헤더 ── */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 20px 12px" }}>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 17, color: "#F8FAFC" }}>
-            {modalTab === "search"    ? "🔍 " + (lang === "ko" ? "음성 검색" : "Voice Search")
-             : modalTab === "interpret" ? "🌐 " + (lang === "ko" ? "현장 통역" : "Live Interpreter")
-             : "📚 " + (lang === "ko" ? "상황별 표현" : "Phrase Book")}
+        {/* ── 핸들바 + 헤더 (항상 상단 고정) ── */}
+        <div style={{ flexShrink: 0, background: "#0B1120", borderRadius: "24px 24px 0 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+          {/* 핸들바 — "아래로 스와이프하면 닫힘" 시각적 힌트 */}
+          <div style={{ display: "flex", justifyContent: "center", paddingTop: 12, paddingBottom: 4 }}>
+            <div style={{ width: 40, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.2)" }} />
           </div>
-          <button onClick={onClose} style={{ border: "none", background: "rgba(255,255,255,0.09)", borderRadius: "50%", width: 34, height: 34, fontSize: 16, cursor: "pointer", color: "#94A3B8" }}>✕</button>
+
+          {/* 타이틀 + 닫기 */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 20px 12px" }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 17, color: "#F8FAFC" }}>
+              {modalTab === "search"    ? "🔍 " + (lang === "ko" ? "음성 검색" : "Voice Search")
+               : modalTab === "interpret" ? "🌐 " + (lang === "ko" ? "현장 통역" : "Live Interpreter")
+               : "📚 " + (lang === "ko" ? "상황별 표현" : "Phrase Book")}
+            </div>
+            <button onClick={onClose} style={{ border: "none", background: "rgba(255,255,255,0.09)", borderRadius: "50%", width: 36, height: 36, fontSize: 18, cursor: "pointer", color: "#94A3B8", display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
+          </div>
+
+          {/* ── 3탭 선택 바 ── */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6, padding: "0 16px 14px" }}>
+            {(["search","interpret","phrases"] as const).map((t) => {
+              const labels: Record<string, {ko:string;en:string}> = {
+                search:    {ko:"🔍 음성검색", en:"🔍 Search"},
+                interpret: {ko:"🌐 현장통역", en:"🌐 Interpret"},
+                phrases:   {ko:"📚 표현집",   en:"📚 Phrases"},
+              };
+              const active = modalTab === t;
+              return (
+                <button key={t} onClick={() => setModalTab(t)}
+                  style={{ border: "none", borderRadius: 12, padding: "8px 6px", cursor: "pointer",
+                    background: active ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.05)",
+                    color: active ? "#F8FAFC" : "rgba(255,255,255,0.45)",
+                    fontFamily: "Manrope,sans-serif", fontWeight: active ? 700 : 500, fontSize: 11,
+                    borderBottom: active ? "2px solid #F2994A" : "2px solid transparent",
+                    transition: "all 0.15s" }}>
+                  {lang === "ko" ? labels[t].ko : labels[t].en}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* ── 3탭 선택 바 ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6, padding: "0 16px 14px" }}>
-          {(["search","interpret","phrases"] as const).map((t) => {
-            const labels: Record<string, {ko:string;en:string;icon:string}> = {
-              search:    {ko:"🔍 음성검색",  en:"🔍 Search",    icon:"🔍"},
-              interpret: {ko:"🌐 현장통역",  en:"🌐 Interpret",  icon:"🌐"},
-              phrases:   {ko:"📚 표현집",    en:"📚 Phrases",   icon:"📚"},
-            };
-            const active = modalTab === t;
-            return (
-              <button key={t} onClick={() => setModalTab(t)}
-                style={{ border: "none", borderRadius: 12, padding: "8px 6px", cursor: "pointer",
-                  background: active ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.05)",
-                  color: active ? "#F8FAFC" : "rgba(255,255,255,0.45)",
-                  fontFamily: "Manrope,sans-serif", fontWeight: active ? 700 : 500, fontSize: 11,
-                  borderBottom: active ? "2px solid #F2994A" : "2px solid transparent",
-                  transition: "all 0.15s" }}>
-                {lang === "ko" ? labels[t].ko : labels[t].en}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* ── 탭 콘텐츠 ── */}
+        {/* ── 탭 콘텐츠 (스크롤 영역) ── */}
+        <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
         {modalTab === "search" && (
-          <div style={{ maxHeight: "70dvh", overflowY: "auto" }}>
-            <VoiceSearchTab lang={lang} onNavigate={onNavigate ?? (() => {})} onClose={onClose} />
-          </div>
+          <VoiceSearchTab lang={lang} onNavigate={onNavigate ?? (() => {})} onClose={onClose} />
         )}
 
         {modalTab !== "search" && (<>
@@ -4143,6 +4150,33 @@ function TranslateModal({ onClose, lang, onNavigate }: { onClose:()=>void; lang:
           }} />
         )}
         </>) /* ── end modalTab !== "search" ── */}
+        </div> {/* ── 스크롤 영역 끝 ── */}
+
+        {/* ── 하단 닫기 버튼 — 항상 표시, 엄지손가락 위치 ── */}
+        <div style={{
+          flexShrink: 0,
+          padding: "12px 16px",
+          paddingBottom: "calc(12px + env(safe-area-inset-bottom, 0px))",
+          borderTop: "1px solid rgba(255,255,255,0.08)",
+          background: "#0B1120",
+        }}>
+          <button
+            onClick={onClose}
+            style={{
+              width: "100%", padding: "14px", border: "none", borderRadius: 14,
+              background: "rgba(255,255,255,0.09)",
+              color: "#F8FAFC", fontSize: 15, fontWeight: 700,
+              fontFamily: "Manrope, sans-serif",
+              cursor: "pointer", letterSpacing: "-0.3px",
+              transition: "background 0.15s",
+            }}
+            onTouchStart={e => (e.currentTarget.style.background = "rgba(255,255,255,0.18)")}
+            onTouchEnd={e => (e.currentTarget.style.background = "rgba(255,255,255,0.09)")}
+          >
+            {lang === "ko" ? "✕  닫기" : "✕  Close"}
+          </button>
+        </div>
+
       </div>
     </div>
   );
