@@ -59,6 +59,34 @@ GSC → Coverage → Excluded → "Crawled, not indexed" 또는 "404" 항목 확
 
 ---
 
+## 🏙️ 도시 자동 생성 명령 (City Auto-Generation Trigger)
+
+> **트리거**: `"Generate HebronGuide for [City Name]"`  
+> **결과**: 5계층 구조의 완전한 도시 가이드 자동 생성·배포  
+> **상세 설계**: `docs/CITY_GENERATION_SYSTEM.md` 참조
+
+### 5계층 정보 아키텍처 (모든 도시 공통 구조)
+```
+Layer A: 미국 사회 시스템 (전국 공통)
+         행정·의료·교육·법·교통·세금·주거·취업·이민
+Layer B: 도시 시스템 (도시별)
+         개요·산업·주거시장·교통·치안·생활비
+Layer C: 한인 커뮤니티 시스템 (도시별)
+         한인구·밀집지·교회·마켓·단체·Korea Connectivity Score
+Layer D: 타민족 커뮤니티 시스템 (도시별)
+         중국·히스패닉·인도·필리핀·베트남 등
+Layer E: 지혜로운 생활 전략 (도시별)
+         생존가이드·30일플랜·가족/유학생/직장인 맞춤전략
+```
+
+### 생성 워크플로우
+```
+명령 입력 → 리서치(병렬 Agent) → 데이터 구조화 
+→ 코드 생성 → SEO 최적화 → git push → 라이브
+```
+
+---
+
 ## 🌟 HebronGuide 핵심 가치 — 모든 작업의 기준 (필독)
 
 > **"지식 없는 백성은 망하느니라"** (호세아 4:6)  
