@@ -6,24 +6,24 @@
   <!-- 메인 허브 -->
   <url>
     <loc>https://hebronguide.com/</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-05-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/?lang=es" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://hebronguide.com/" />
   </url>
 
-  <!-- 시애틀 (메인 React 앱) -->
+  <!-- ══ 라이브 도시 (Live Cities) ══ -->
+
+  <!-- 시애틀 — 플래그십 React 앱 -->
   <url>
     <loc>https://hebronguide.com/seattle/</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-05-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/seattle/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/seattle/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/seattle/?lang=es" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://hebronguide.com/seattle/" />
     <image:image>
       <image:loc>https://hebronguide.com/icon-512.png</image:loc>
@@ -31,60 +31,74 @@
     </image:image>
   </url>
 
-  <!-- 달라스 -->
+  <!-- 달라스 — Live -->
   <url>
     <loc>https://hebronguide.com/dallas/</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-05-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/dallas/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/dallas/?lang=en" />
   </url>
 
-  <!-- 샌프란시스코 -->
+  <!-- 샌프란시스코 베이에어리어 — Live -->
   <url>
     <loc>https://hebronguide.com/sf/</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-05-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/sf/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/sf/?lang=en" />
+  </url>
+
+  <!-- ══ 준비 중 도시 (Coming Soon) ══ -->
+
+  <!-- 뉴욕 -->
+  <url>
+    <loc>https://hebronguide.com/newyork/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 내쉬빌 -->
+  <url>
+    <loc>https://hebronguide.com/nashville/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 보스턴 -->
+  <url>
+    <loc>https://hebronguide.com/boston/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- 로스앤젤레스 -->
   <url>
     <loc>https://hebronguide.com/la/</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- 뉴욕 -->
-  <url>
-    <loc>https://hebronguide.com/newyork/</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- 내슈빌 -->
-  <url>
-    <loc>https://hebronguide.com/nashville/</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- 토론토 (캐나다) -->
   <url>
     <loc>https://hebronguide.com/toronto/</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- 밴쿠버 (캐나다) -->
   <url>
     <loc>https://hebronguide.com/vancouver/</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
