@@ -1684,8 +1684,8 @@ function SettleScreen({ onHome }: { onHome?: () => void }) {
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
   const tabs = lang === "ko"
-    ? ["1주차", "1개월", "3개월", "행정", "재정", "거주지"]
-    : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Areas"];
+    ? ["1주차", "1개월", "3개월", "행정", "재정", "거주지", "✅ 전체"]
+    : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Areas", "✅ All"];
 
   const accent = "#60A5FA";
 
@@ -1792,9 +1792,29 @@ function SettleScreen({ onHome }: { onHome?: () => void }) {
 
   const areaItems = lang === "ko" ? areasKo : areasEn;
 
+  // 전체 체크리스트 데이터 (탭 index 6)
+  const allPhases = lang === "ko"
+    ? [
+        { label: "🗓 1주차", prefix: "w1",  items: week1Ko  },
+        { label: "📅 1개월", prefix: "m1",  items: month1Ko },
+        { label: "🗒 3개월", prefix: "m3",  items: month3Ko },
+        { label: "🏛 행정",  prefix: "adm", items: adminKo  },
+        { label: "💰 재정",  prefix: "fin", items: financeKo },
+      ]
+    : [
+        { label: "🗓 Week 1",  prefix: "w1",  items: week1En  },
+        { label: "📅 Month 1", prefix: "m1",  items: month1En },
+        { label: "🗒 Month 3", prefix: "m3",  items: month3En },
+        { label: "🏛 Admin",   prefix: "adm", items: adminEn  },
+        { label: "💰 Finance", prefix: "fin", items: financeEn },
+      ];
+  const totalItems = allPhases.reduce((s, p) => s + p.items.length, 0);
+
   // 프로그레스 계산
-  const tabPrefix = ["w1", "m1", "m3", "adm", "fin", "area"][sub];
+  const tabPrefix = ["w1", "m1", "m3", "adm", "fin", "area"][sub] ?? "w1";
   const doneCount = items.filter((_, i) => localStorage.getItem(`hg_checklist_${tabPrefix}_${i}`) === "1").length;
+  const totalDone  = allPhases.reduce((s, p) =>
+    s + p.items.filter((_, i) => localStorage.getItem(`hg_checklist_${p.prefix}_${i}`) === "1").length, 0);
   const [, forceUpdate] = useState(0);
 
   // 어드민 탭(index=3) 여부
@@ -1812,8 +1832,55 @@ function SettleScreen({ onHome }: { onHome?: () => void }) {
           <Top5Banner items={TOP5_SETTLE} lang={lang} accentColor="#F2994A" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
-        {/* 거주지 탭 */}
-        {sub === 5 ? (
+
+        {/* ── 전체 체크리스트 탭 (index 6) ── */}
+        {sub === 6 ? (
+          <div onClick={() => forceUpdate(n => n + 1)}>
+            {/* 종합 진행률 */}
+            <div style={{ background: "linear-gradient(135deg,rgba(96,165,250,0.12),rgba(110,231,183,0.08))", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 16, padding: "16px 18px", marginBottom: 16 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#ECFDF5" }}>
+                  {lang === "ko" ? "🏁 전체 정착 현황" : "🏁 Overall Settlement Progress"}
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 16, color: accent }}>
+                  {totalDone} / {totalItems}
+                </div>
+              </div>
+              <div style={{ height: 10, borderRadius: 6, background: "rgba(255,255,255,0.08)", overflow: "hidden", marginBottom: 8 }}>
+                <div style={{ height: "100%", width: `${totalItems > 0 ? (totalDone / totalItems) * 100 : 0}%`, background: `linear-gradient(90deg,${accent},#6EE7B7)`, borderRadius: 6, transition: "width 0.5s ease" }} />
+              </div>
+              <div style={{ fontSize: 11, color: "rgba(236,253,245,0.5)" }}>
+                {totalDone === totalItems && totalItems > 0
+                  ? (lang === "ko" ? "🎉 모든 정착 단계 완료! 축하합니다!" : "🎉 All settlement steps complete! Congratulations!")
+                  : (lang === "ko" ? `${Math.round((totalDone / totalItems) * 100)}% 완료 — 계속 진행하세요 💪` : `${Math.round((totalDone / totalItems) * 100)}% done — keep going 💪`)}
+              </div>
+              <button onClick={(e) => { e.stopPropagation(); if (window.confirm(lang === "ko" ? "모든 체크리스트를 초기화할까요?" : "Reset all checklist items?")) { allPhases.forEach(p => p.items.forEach((_, i) => localStorage.removeItem(`hg_checklist_${p.prefix}_${i}`))); forceUpdate(n => n + 1); } }}
+                style={{ marginTop: 10, border: "none", background: "rgba(248,113,113,0.15)", borderRadius: 20, padding: "5px 14px", color: "#F87171", fontSize: 11, cursor: "pointer", fontWeight: 600 }}>
+                🔄 {lang === "ko" ? "전체 초기화" : "Reset All"}
+              </button>
+            </div>
+
+            {/* 페이즈별 체크리스트 */}
+            {allPhases.map((phase) => {
+              const pDone = phase.items.filter((_, i) => localStorage.getItem(`hg_checklist_${phase.prefix}_${i}`) === "1").length;
+              return (
+                <div key={phase.prefix} style={{ marginBottom: 14 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6, padding: "0 2px" }}>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: accent }}>{phase.label}</div>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: pDone === phase.items.length ? "#6EE7B7" : "rgba(236,253,245,0.4)", fontWeight: 600 }}>
+                      {pDone}/{phase.items.length} {pDone === phase.items.length ? "✓" : ""}
+                    </div>
+                  </div>
+                  {phase.items.map((item, i) => (
+                    <ChecklistItem key={`${phase.prefix}-${i}`} itemId={`${phase.prefix}_${i}`} title={item.title} desc={item.desc} accentColor={accent} showReminder={false} />
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+
+        ) : sub === 5 ? (
+        /* 거주지 탭 */
           <>
             <div style={{ marginBottom: 12 }}>
               <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13, color: accent, marginBottom: 4 }}>
@@ -2641,6 +2708,147 @@ function DesktopSidebar({ activeTab, onNavigate }: { activeTab: number; onNaviga
    BOTTOM NAV (3개 버튼)
 ───────────────────────────────────────── */
 /* ─────────────────────────────────────────
+   상황별 영어 표현집
+───────────────────────────────────────── */
+const PHRASE_BOOK = [
+  {
+    emoji: "🍽️", situKo: "식당에서 주문할 때", situEn: "Ordering at a restaurant",
+    phrases: [
+      { ko: "이거 주세요",                       en: "I'll have this one, please.",           pron: "아일 해브 디스 원, 플리즈" },
+      { ko: "맵지 않게 해주세요",                 en: "Can you make it not spicy, please?",    pron: "캔 유 메이킷 낫 스파이시, 플리즈?" },
+      { ko: "계산서 주세요",                      en: "Can I get the check, please?",          pron: "캔 아이 겟 더 첵, 플리즈?" },
+      { ko: "포장해 주세요",                      en: "Can I get this to go?",                 pron: "캔 아이 겟 디스 투 고?" },
+      { ko: "이거 알레르기가 있어요. 빼주세요",   en: "I'm allergic to this. Can you leave it out?", pron: "아임 얼러직 투 디스. 캔 유 리빗 아웃?" },
+      { ko: "물 더 주세요",                       en: "Could I have more water, please?",      pron: "쿠다이 해브 모어 워터, 플리즈?" },
+    ],
+  },
+  {
+    emoji: "🏥", situKo: "병원·응급실에서", situEn: "At the hospital / clinic",
+    phrases: [
+      { ko: "여기가 아파요",                      en: "It hurts here.",                        pron: "잇 허츠 히어" },
+      { ko: "숨쉬기가 힘들어요",                  en: "I'm having trouble breathing.",         pron: "아임 해빙 트러블 브리딩" },
+      { ko: "한국어 통역사 불러주세요",            en: "Can you get a Korean interpreter?",     pron: "캔 유 겟 어 코리안 인터프리터?" },
+      { ko: "이 약 처방받을 수 있나요?",           en: "Can I get a prescription for this?",   pron: "캔 아이 겟 어 프리스크립션 포 디스?" },
+      { ko: "보험이 있어요",                      en: "I have insurance.",                     pron: "아이 해브 인슈어런스" },
+      { ko: "언제부터 이 증상이 시작됐어요",       en: "This started about [3 days] ago.",      pron: "디스 스타티드 어바웃 쓰리 데이즈 어고" },
+    ],
+  },
+  {
+    emoji: "🗺️", situKo: "길 물어볼 때", situEn: "Asking for directions",
+    phrases: [
+      { ko: "여기 어떻게 가요?",                  en: "How do I get to [place]?",              pron: "하우 두 아이 겟 투 [플레이스]?" },
+      { ko: "걸어서 얼마나 걸려요?",              en: "How far is it on foot?",                pron: "하우 파 이즈 잇 온 풋?" },
+      { ko: "버스 어디서 타요?",                  en: "Where do I catch the bus?",             pron: "웨어 두 아이 캐치 더 버스?" },
+      { ko: "길을 잃었어요",                      en: "I'm lost.",                             pron: "아임 로스트" },
+      { ko: "지도에서 여기가 어디예요?",           en: "Can you show me where we are on the map?", pron: "캔 유 쇼우 미 웨어 위 아 온 더 맵?" },
+    ],
+  },
+  {
+    emoji: "🏠", situKo: "집 구할 때 (집주인·부동산)", situEn: "Finding housing",
+    phrases: [
+      { ko: "방 보러 왔어요",                     en: "I'm here to see the apartment.",        pron: "아임 히어 투 씨 디 아파트먼트" },
+      { ko: "한 달 렌트가 얼마예요?",              en: "How much is the monthly rent?",         pron: "하우 머치 이즈 더 먼쓸리 렌트?" },
+      { ko: "보증금은 얼마예요?",                 en: "How much is the security deposit?",     pron: "하우 머치 이즈 더 시큐리티 디파짓?" },
+      { ko: "언제부터 입주 가능해요?",             en: "When is it available to move in?",      pron: "웬 이즈 잇 어베일러블 투 무브 인?" },
+      { ko: "신용 이력이 없어요",                 en: "I don't have a credit history yet.",    pron: "아이 돈 해브 어 크레딧 히스토리 옛" },
+    ],
+  },
+  {
+    emoji: "🛒", situKo: "마트·쇼핑할 때", situEn: "Shopping / grocery store",
+    phrases: [
+      { ko: "이거 어디 있어요?",                  en: "Where can I find [item]?",              pron: "웨어 캔 아이 파인드 [아이템]?" },
+      { ko: "환불하고 싶어요",                    en: "I'd like to return this.",              pron: "아이드 라이크 투 리턴 디스" },
+      { ko: "영수증 주세요",                      en: "Can I have a receipt, please?",         pron: "캔 아이 해브 어 리씻, 플리즈?" },
+      { ko: "이거 세일 중인가요?",                en: "Is this on sale?",                      pron: "이즈 디스 온 세일?" },
+      { ko: "봉투 주세요",                        en: "Can I get a bag, please?",              pron: "캔 아이 겟 어 백, 플리즈?" },
+    ],
+  },
+  {
+    emoji: "🚗", situKo: "경찰 단속·교통위반", situEn: "Police traffic stop",
+    phrases: [
+      { ko: "면허증 여기 있습니다",               en: "Here is my driver's license.",          pron: "히어 이즈 마이 드라이버즈 라이선스" },
+      { ko: "한국에서 왔어요",                    en: "I'm from Korea.",                       pron: "아임 프롬 코리아" },
+      { ko: "영어가 서툴러요",                    en: "My English is limited.",                pron: "마이 잉글리쉬 이즈 리미티드" },
+      { ko: "제가 뭘 잘못했나요?",               en: "What did I do wrong?",                  pron: "왓 디드 아이 두 롱?" },
+      { ko: "통역사를 불러주세요",                en: "Please call an interpreter.",           pron: "플리즈 콜 언 인터프리터" },
+    ],
+  },
+  {
+    emoji: "💼", situKo: "직장 면접·직장에서", situEn: "Job interview / workplace",
+    phrases: [
+      { ko: "저는 한국에서 [직종]으로 일했어요",  en: "I worked as a [job title] in Korea.",   pron: "아이 워크트 애즈 어 [잡 타이틀] 인 코리아" },
+      { ko: "영어가 완벽하지 않아요",             en: "My English isn't perfect yet.",         pron: "마이 잉글리쉬 이즌트 퍼펙트 옛" },
+      { ko: "다시 한 번 말씀해 주시겠어요?",      en: "Could you please say that again?",      pron: "쿠쥬 플리즈 세이 댓 어겐?" },
+      { ko: "좀 더 천천히 말씀해 주세요",         en: "Could you speak a little slower, please?", pron: "쿠쥬 스피크 어 리틀 슬로워, 플리즈?" },
+      { ko: "언제 결과를 알 수 있나요?",          en: "When can I expect to hear back?",       pron: "웬 캔 아이 익스펙트 투 히어 백?" },
+    ],
+  },
+  {
+    emoji: "🏫", situKo: "학교·자녀 교육", situEn: "School / children's education",
+    phrases: [
+      { ko: "아이 등록하러 왔어요",               en: "I'm here to enroll my child.",          pron: "아임 히어 투 인롤 마이 차일드" },
+      { ko: "ESL 수업이 있나요?",                 en: "Is there an ESL class available?",      pron: "이즈 데어 언 이에스엘 클래스 어베일러블?" },
+      { ko: "방과 후 프로그램이 있나요?",         en: "Are there after-school programs?",      pron: "아 데어 애프터스쿨 프로그램스?" },
+      { ko: "선생님과 면담하고 싶어요",           en: "I'd like to schedule a meeting with the teacher.", pron: "아이드 라이크 투 스케줄 어 미팅 윗 더 티처" },
+      { ko: "한국어 통역사가 있나요?",            en: "Do you have a Korean interpreter?",     pron: "두 유 해브 어 코리안 인터프리터?" },
+    ],
+  },
+];
+
+function PhraseBook({ lang, speakFn }: { lang: string; speakFn: (text: string, lang: string) => void }) {
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
+
+  return (
+    <div style={{ padding: "0 16px 20px" }}>
+      {/* 헤더 */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, paddingTop: 4 }}>
+        <div style={{ height: 1, flex: 1, background: "rgba(255,255,255,0.08)" }} />
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "rgba(255,255,255,0.4)", whiteSpace: "nowrap" }}>
+          📚 {lang === "ko" ? "상황별 영어 표현집" : "Situation Phrases"}
+        </div>
+        <div style={{ height: 1, flex: 1, background: "rgba(255,255,255,0.08)" }} />
+      </div>
+
+      {/* 상황 카드 목록 */}
+      {PHRASE_BOOK.map((situ, si) => (
+        <div key={si} style={{ marginBottom: 8, borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.07)" }}>
+          {/* 상황 헤더 (토글) */}
+          <button onClick={() => setOpenIdx(openIdx === si ? null : si)}
+            style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 14px", border: "none", background: openIdx === si ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.04)", cursor: "pointer" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ fontSize: 18 }}>{situ.emoji}</span>
+              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13, color: "#F8FAFC" }}>
+                {lang === "ko" ? situ.situKo : situ.situEn}
+              </span>
+            </div>
+            <span style={{ color: "rgba(255,255,255,0.4)", fontSize: 14 }}>{openIdx === si ? "▲" : "▼"}</span>
+          </button>
+
+          {/* 문장 목록 */}
+          {openIdx === si && (
+            <div style={{ background: "rgba(0,0,0,0.2)" }}>
+              {situ.phrases.map((p, pi) => (
+                <div key={pi} style={{ padding: "10px 14px", borderTop: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "flex-start", gap: 10 }}>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)", marginBottom: 3 }}>{p.ko}</div>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 14, color: "#F8FAFC", lineHeight: 1.4 }}>{p.en}</div>
+                    <div style={{ fontSize: 10, color: "#C9A227", marginTop: 2 }}>{p.pron}</div>
+                  </div>
+                  <button onClick={() => speakFn(p.en, "en-US")}
+                    style={{ border: "none", background: "rgba(255,255,255,0.08)", borderRadius: 20, padding: "5px 10px", color: "rgba(255,255,255,0.5)", fontSize: 14, cursor: "pointer", flexShrink: 0, marginTop: 2 }}>
+                    🔊
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
    현장 통역 모달 — 양방향 음성 통역기
    한국어 ↔ 영어 실시간 번역 + 음성 출력
 ───────────────────────────────────────── */
@@ -2906,7 +3114,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string }
         </div>
 
         {/* ── 팁 ── */}
-        <div style={{ padding: "6px 16px 16px" }}>
+        <div style={{ padding: "6px 16px 6px" }}>
           <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 12, padding: "8px 14px", textAlign: "center" }}>
             <div style={{ color: "rgba(255,255,255,0.3)", fontSize: 11, lineHeight: 1.6 }}>
               💡 {lang === "ko"
@@ -2915,6 +3123,15 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string }
             </div>
           </div>
         </div>
+
+        {/* ── 상황별 영어 표현집 ── */}
+        <PhraseBook lang={lang} speakFn={(text: string, speechLang: string) => {
+          window.speechSynthesis.cancel();
+          const utt = new SpeechSynthesisUtterance(text);
+          utt.lang = speechLang;
+          utt.rate = 0.85;
+          window.speechSynthesis.speak(utt);
+        }} />
       </div>
     </div>
   );
