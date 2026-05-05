@@ -12,6 +12,10 @@
   ],
 
   "rewrites": [
+    { "source": "/assets/(.*)",    "destination": "/seattle/assets/$1" },
+    { "source": "/registerSW.js",  "destination": "/seattle/registerSW.js" },
+    { "source": "/sw.js",          "destination": "/seattle/sw.js" },
+    { "source": "/workbox-(.*)",   "destination": "/seattle/workbox-$1" },
     { "source": "/seattle",        "destination": "/seattle/index.html" },
     { "source": "/seattle/(.*)",   "destination": "/seattle/index.html" },
     { "source": "/dallas",         "destination": "/dallas/index.html" },
