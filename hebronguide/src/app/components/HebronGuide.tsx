@@ -2991,22 +2991,41 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
   const encoded   = encodeURIComponent(fullMsg + "\n" + appUrl);
   const encodedUrl = encodeURIComponent(appUrl);
 
+  // Instagram/TikTok: 텍스트 복사 후 앱 열기 (웹 직접 공유 불가)
+  const openWithCopy = (appUrl2: string) => {
+    navigator.clipboard?.writeText(fullMsg + "\n" + appUrl).then(() => {
+      window.open(appUrl2, "_blank");
+    }).catch(() => {
+      window.open(appUrl2, "_blank");
+    });
+  };
+
   // SNS 플랫폼 목록
   const platforms = [
-    { icon: "📤", label: lang === "ko" ? "기본 공유" : "Share", sub: "iOS · Android 공유 시트", color: "#F2994A", bg: "#FFF5EC", action: nativeShare },
-    { icon: "💬", label: "카카오톡", sub: "KakaoTalk", color: "#FAE100", bg: "#FEFCE8",
-      href: `kakaotalk://msg/send?text=${encoded}`, fallback: `https://sharer.kakao.com/talk/friends/picker/link` },
-    { icon: "💚", label: "WhatsApp", sub: "글로벌 20억+", color: "#25D366", bg: "#F0FFF4",
+    // 1행: 가장 자주 쓰는 것
+    { icon: "💬", label: "카카오톡", sub: lang === "ko" ? "한국인 필수" : "Korean #1", color: "#3A1D1D", bg: "#FEF9C3",
+      action: () => {
+        // 카카오톡 딥링크 → 실패 시 웹 공유
+        const kakaoUrl = `kakaotalk://msg/send?text=${encoded}`;
+        const fallback = `https://story.kakao.com/share?url=${encodedUrl}&text=${encodeURIComponent(fullMsg)}`;
+        try { window.location.href = kakaoUrl; setTimeout(() => window.open(fallback, "_blank"), 1500); }
+        catch { window.open(fallback, "_blank"); }
+      }
+    },
+    { icon: "💚", label: "WhatsApp", sub: lang === "ko" ? "글로벌 20억+" : "2B+ users", color: "#128C7E", bg: "#F0FFF4",
       href: `https://wa.me/?text=${encoded}` },
+    { icon: "📸", label: "Instagram", sub: lang === "ko" ? "텍스트 복사 후 앱 열기" : "Copy → paste in app", color: "#E1306C", bg: "#FFF0F5",
+      action: () => openWithCopy("https://www.instagram.com/") },
+    { icon: "🎵", label: "TikTok", sub: lang === "ko" ? "텍스트 복사 후 앱 열기" : "Copy → paste in app", color: "#010101", bg: "#F5F5F5",
+      action: () => openWithCopy("https://www.tiktok.com/") },
+    // 2행: 추가 채널
     { icon: "📘", label: "Facebook", sub: "페이스북", color: "#1877F2", bg: "#EFF6FF",
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodeURIComponent(fullMsg)}` },
-    { icon: "🐦", label: "X (Twitter)", sub: "트위터", color: "#000000", bg: "#F9FAFB",
+    { icon: "🐦", label: "X", sub: "트위터", color: "#000000", bg: "#F9FAFB",
       href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(bodyText + "\n" + ctx.tags)}&url=${encodedUrl}` },
-    { icon: "🟢", label: "LINE", sub: "라인", color: "#00B900", bg: "#F0FFF0",
-      href: `https://line.me/R/msg/text/?${encoded}` },
     { icon: "📧", label: lang === "ko" ? "이메일" : "Email", sub: "Gmail · Outlook", color: "#2563EB", bg: "#EFF6FF",
-      href: `mailto:?subject=HebronGuide Seattle — ${ctx.labelKo}&body=${encodeURIComponent(fullMsg + "\n\n" + appUrl)}` },
-    { icon: "🔗", label: lang === "ko" ? "링크+메시지 복사" : "Copy", sub: lang === "ko" ? "클립보드 복사" : "Copy to clipboard", color: "#64748B", bg: "#F8FAFC", action: copy },
+      href: `mailto:?subject=HebronGuide Seattle&body=${encodeURIComponent(fullMsg + "\n\n" + appUrl)}` },
+    { icon: "🔗", label: lang === "ko" ? "링크 복사" : "Copy Link", sub: lang === "ko" ? "클립보드" : "Clipboard", color: "#64748B", bg: "#F8FAFC", action: copy },
   ];
 
   return (
@@ -3039,33 +3058,53 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
           <div style={{ marginTop: 4, fontSize: 10, color: "#94A3B8" }}>{ctx.tags}</div>
         </div>
 
-        {/* ── SNS 플랫폼 그리드 ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, padding: "14px 16px 8px" }}>
-          {platforms.map((p, i) => (
-            p.action ? (
-              <button key={i} onClick={p.action}
-                style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 12px", borderRadius: 12, border: `1px solid ${p.color}22`, background: p.bg, cursor: "pointer", textAlign: "left" }}>
-                <span style={{ fontSize: 20, flexShrink: 0 }}>{i === 7 && copied ? "✅" : p.icon}</span>
-                <div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#1B2A4A" }}>{i === 7 && copied ? (lang === "ko" ? "복사됨!" : "Copied!") : p.label}</div>
-                  <div style={{ fontSize: 10, color: "#94A3B8", marginTop: 1 }}>{p.sub}</div>
+        {/* ── SNS 플랫폼 그리드 (4열 아이콘형) ── */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 6, padding: "14px 16px 6px" }}>
+          {platforms.map((p, i) => {
+            const isLast = i === platforms.length - 1;
+            const isInstagram = i === 2;
+            const isTikTok = i === 3;
+            const inner = (
+              <>
+                <div style={{ width: 46, height: 46, borderRadius: 14, background: p.bg, border: `1.5px solid ${p.color}40`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, marginBottom: 4 }}>
+                  {isLast && copied ? "✅" : p.icon}
                 </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "#1B2A4A", textAlign: "center", lineHeight: 1.2 }}>
+                  {isLast && copied ? (lang === "ko" ? "복사됨!" : "Copied!") : p.label}
+                </div>
+                {(isInstagram || isTikTok) && (
+                  <div style={{ fontSize: 8, color: "#F59E0B", fontWeight: 700, textAlign: "center", marginTop: 2 }}>
+                    복사→붙여넣기
+                  </div>
+                )}
+              </>
+            );
+            return p.action ? (
+              <button key={i} onClick={p.action}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "6px 2px", border: "none", background: "transparent", cursor: "pointer" }}>
+                {inner}
               </button>
             ) : (
-              <a key={i} href={p.href} target="_blank" rel="noopener noreferrer"
-                style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 12px", borderRadius: 12, border: `1px solid ${p.color}22`, background: p.bg, textDecoration: "none" }}>
-                <span style={{ fontSize: 20, flexShrink: 0 }}>{p.icon}</span>
-                <div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#1B2A4A" }}>{p.label}</div>
-                  <div style={{ fontSize: 10, color: "#94A3B8", marginTop: 1 }}>{p.sub}</div>
-                </div>
+              <a key={i} href={(p as any).href} target="_blank" rel="noopener noreferrer"
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "6px 2px", textDecoration: "none" }}>
+                {inner}
               </a>
-            )
-          ))}
+            );
+          })}
+        </div>
+
+        {/* ── 폰 기본 공유 큰 버튼 (카카오·문자·이메일 등 전부) ── */}
+        <div style={{ padding: "8px 16px 6px" }}>
+          <button onClick={nativeShare} style={{ width: "100%", border: "none", borderRadius: 14, background: "linear-gradient(135deg,#F2994A,#F59E0B)", padding: "13px 16px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+            <span style={{ fontSize: 18 }}>📤</span>
+            <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff" }}>
+              {lang === "ko" ? "폰 공유 시트 열기 (카카오·문자·이메일…)" : "Open share sheet (KakaoTalk, SMS, Mail…)"}
+            </span>
+          </button>
         </div>
 
         {/* ── 하단 안내 ── */}
-        <div style={{ padding: "4px 16px 12px", textAlign: "center" }}>
+        <div style={{ padding: "6px 16px 14px", textAlign: "center" }}>
           <div style={{ fontSize: 10, color: "#CBD5E1" }}>
             💡 {lang === "ko" ? "공유 시 HebronGuide 링크가 자동으로 포함됩니다" : "HebronGuide link is automatically included in every share"}
           </div>
