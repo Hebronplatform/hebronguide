@@ -847,18 +847,18 @@ function CompactHeroNew() {
 // Quick Menu 순서: 긴급성·사용빈도 기준 최적화
 // 정착(Day-1) → 맛집(공통) → 관광(방문객) → 도움(긴급) → 거주지 → 취업 → 교육 → 생활비 → 교회(자연스러운 연결)
 const QUICK_MENU = [
-  { emoji: "🛬", labelKo: "정착",   labelEn: "Settle",  color: "#F2994A", bg: "#FFF5EC", tab: 1 },
-  { emoji: "🍽️", labelKo: "맛집",  labelEn: "Food",    color: "#EF4444", bg: "#FFF0F0", tab: 3 },
-  { emoji: "🗺️", labelKo: "관광",  labelEn: "Tourism", color: "#0EA5E9", bg: "#F0F9FF", tab: 4 },
-  { emoji: "🆘", labelKo: "도움",   labelEn: "Help",    color: "#EF4444", bg: "#FFF5F5", tab: 5 },
-  { emoji: "🏘️", labelKo: "거주지", labelEn: "Areas",   color: "#10B981", bg: "#F0FDF4", tab: 1 },
-  { emoji: "💼", labelKo: "취업",   labelEn: "Jobs",    color: "#059669", bg: "#ECFDF5", tab: 6 },
-  { emoji: "🎓", labelKo: "교육",   labelEn: "Schools", color: "#F59E0B", bg: "#FFFBEB", tab: 7 },
-  { emoji: "💰", labelKo: "생활비", labelEn: "Costs",   color: "#8B5CF6", bg: "#F5F3FF", tab: 8 },
-  { emoji: "⛪", labelKo: "교회",   labelEn: "Church",  color: "#7C3AED", bg: "#F5F0FF", tab: 2 },
+  { emoji: "🛬", labelKo: "정착",   labelEn: "Settle",  color: "#F2994A", bg: "#FFF5EC", tab: 1, subTab: 0 },
+  { emoji: "🍽️", labelKo: "맛집",  labelEn: "Food",    color: "#EF4444", bg: "#FFF0F0", tab: 3, subTab: 0 },
+  { emoji: "🗺️", labelKo: "관광",  labelEn: "Tourism", color: "#0EA5E9", bg: "#F0F9FF", tab: 4, subTab: 0 },
+  { emoji: "🆘", labelKo: "도움",   labelEn: "Help",    color: "#EF4444", bg: "#FFF5F5", tab: 5, subTab: 0 },
+  { emoji: "🏘️", labelKo: "거주지", labelEn: "Areas",   color: "#10B981", bg: "#F0FDF4", tab: 1, subTab: 5 },
+  { emoji: "💼", labelKo: "취업",   labelEn: "Jobs",    color: "#059669", bg: "#ECFDF5", tab: 6, subTab: 0 },
+  { emoji: "🎓", labelKo: "교육",   labelEn: "Schools", color: "#F59E0B", bg: "#FFFBEB", tab: 7, subTab: 0 },
+  { emoji: "💰", labelKo: "생활비", labelEn: "Costs",   color: "#8B5CF6", bg: "#F5F3FF", tab: 8, subTab: 0 },
+  { emoji: "⛪", labelKo: "교회",   labelEn: "Church",  color: "#7C3AED", bg: "#F5F0FF", tab: 2, subTab: 0 },
 ];
 
-function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number) => void }) {
+function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
   return (
     <div style={{ padding: "20px 16px 12px" }}>
@@ -872,7 +872,7 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number) => void }
       {/* 3×3 콤팩트 그리드 */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
         {QUICK_MENU.map((item, i) => (
-          <button key={i} onClick={() => onNavigate?.(item.tab)} style={{
+          <button key={i} onClick={() => onNavigate?.(item.tab, item.subTab)} style={{
             background: "#FFFFFF",
             borderRadius: 12,
             padding: "10px 4px 8px",
@@ -1944,10 +1944,11 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number) => void }) {
 /* ─────────────────────────────────────────
    TAB 2: 정착 SCREEN
 ───────────────────────────────────────── */
-function SettleScreen({ onHome }: { onHome?: () => void }) {
+function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSub?: number }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
-  const [sub, setSub] = useState(0);
+  const [sub, setSub] = useState(initialSub);
+  useEffect(() => { setSub(initialSub); }, [initialSub]);
   const tabs = lang === "ko"
     ? ["1주차", "1개월", "3개월", "행정", "재정", "거주지", "✅ 전체"]
     : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Areas", "✅ All"];
@@ -4499,9 +4500,12 @@ export function HebronGuide() {
   const { showBanner, handleInstall, handleDismiss } = useInstallPrompt();
   const { lang, setLang } = useI18n();
 
-  const handleNavigate = (tab: number) => {
+  const [settleInitialSub, setSettleInitialSub] = useState(0);
+
+  const handleNavigate = (tab: number, subTab?: number) => {
     const maxTab = 8; // 홈·정착·교회·맛집·탐방·도움·취업·교육·생활비
     if (tab <= maxTab) {
+      if (tab === 1 && subTab !== undefined) setSettleInitialSub(subTab);
       setActiveNav(tab);
     }
   };
@@ -4574,7 +4578,7 @@ export function HebronGuide() {
   // 9개 탭 스크린 (홈·정착·교회·맛집·탐방·도움·취업·교육·생활비)
   const screens = [
     <HomeScreen onNavigate={handleNavigate} />,           // 0
-    <SettleScreen onHome={() => setActiveNav(0)} />,       // 1
+    <SettleScreen onHome={() => setActiveNav(0)} initialSub={settleInitialSub} />,  // 1
     <ChurchScreen onHome={() => setActiveNav(0)} />,       // 2
     <DiningScreen onHome={() => setActiveNav(0)} />,       // 3
     <ExploreScreen onHome={() => setActiveNav(0)} />,      // 4
