@@ -2355,7 +2355,7 @@ function CostScreen({ onHome }: { onHome?: () => void }) {
 const NAV_ITEMS = [
   { id: "home",      icon: Home,          labelKo: "홈",   labelEn: "Home"      },
   { id: "search",    icon: Search,        labelKo: "검색",  labelEn: "Search"    },
-  { id: "share",     icon: MessageCircle, labelKo: "나눔",  labelEn: "Share"     },
+  { id: "share",     icon: MessageCircle, labelKo: "공유",  labelEn: "Share"     },
   { id: "translate", icon: Globe,         labelKo: "통역",  labelEn: "Translate" },
 ];
 
