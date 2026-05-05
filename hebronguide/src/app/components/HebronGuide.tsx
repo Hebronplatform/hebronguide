@@ -2192,7 +2192,7 @@ function CostScreen({ onHome }: { onHome?: () => void }) {
 const NAV_ITEMS = [
   { id: "home",   icon: Home,          labelKo: "홈",   labelEn: "Home"   },
   { id: "search", icon: Search,        labelKo: "검색",  labelEn: "Search" },
-  { id: "share",  icon: MessageCircle, labelKo: "상담",  labelEn: "Chat"   },
+  { id: "share",  icon: MessageCircle, labelKo: "공유",  labelEn: "Share"  },
   { id: "lang",   icon: Globe,         labelKo: "언어",  labelEn: "Language"},
 ];
 
@@ -2284,7 +2284,7 @@ function ChatShareModal({ onClose, lang }: { onClose: () => void; lang: string }
       }} onClick={e => e.stopPropagation()}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
           <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 18, color: "#1B2A4A" }}>
-            💬 {lang === "ko" ? "상담 & 공유" : "Chat & Share"}
+            🔗 {lang === "ko" ? "공유 & 커뮤니티" : "Share & Community"}
           </div>
           <button onClick={onClose} style={{ border: "none", background: "none", fontSize: 22, cursor: "pointer", color: "#9CA3AF" }}>✕</button>
         </div>
