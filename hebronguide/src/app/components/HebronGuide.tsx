@@ -3116,7 +3116,7 @@ export function HebronGuide() {
                   }}>
                     <span style={{ fontSize: 16 }}>🤖</span>
                     <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#0369A1" }}>
-                      AI 검색
+                      Perplexity
                     </span>
                   </a>
                 </div>
