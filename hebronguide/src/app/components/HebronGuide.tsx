@@ -4647,9 +4647,6 @@ export function HebronGuide() {
         {/* 오프라인 배너 */}
         {!isOnline && <OfflineBanner />}
 
-        {/* 🏠 떠있는 홈 버튼 — 어느 탭에서든 항상 홈으로 */}
-        <FloatingHomeButton activeNav={activeNav} onHome={() => setActiveNav(0)} />
-
         {/* 공유 모달 */}
         {showChat && <ChatShareModal onClose={() => setShowChat(false)} lang={lang} activeNav={activeNav} />}
 
