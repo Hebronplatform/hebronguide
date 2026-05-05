@@ -1785,50 +1785,55 @@ const HEBRON_CITIES = [
   { emoji: "🏙️", nameKo: "시카고",     nameEn: "Chicago",       flag: "🇺🇸", url: "/chicago/",    status: "coming",  color: "#6B7280" },
 ];
 
+/* 도시별 그라디언트 — iOS 앱 아이콘 스타일 */
+const CITY_GRADIENTS: Record<string, string> = {
+  "Seattle":       "linear-gradient(145deg, #38BDF8, #0EA5E9)",
+  "Dallas":        "linear-gradient(145deg, #FCD34D, #F59E0B)",
+  "San Francisco": "linear-gradient(145deg, #C084FC, #8B5CF6)",
+  "New York":      "linear-gradient(145deg, #F87171, #EF4444)",
+  "Nashville":     "linear-gradient(145deg, #34D399, #10B981)",
+  "Boston":        "linear-gradient(145deg, #60A5FA, #3B82F6)",
+  "Los Angeles":   "linear-gradient(145deg, #FB923C, #F97316)",
+  "Toronto":       "linear-gradient(145deg, #F87171, #DC2626)",
+  "Vancouver":     "linear-gradient(145deg, #4ADE80, #16A34A)",
+  "Chicago":       "linear-gradient(145deg, #94A3B8, #64748B)",
+};
+
 function CityHubSection({ lang }: { lang: string }) {
   const currentCity = "Seattle";
 
   return (
-    /* 섹션 전체 — 다크 배경으로 위 Quick Menu와 명확히 구분 */
-    <div style={{
-      background: "linear-gradient(180deg, #1a2535 0%, #0F172A 100%)",
-      padding: "20px 0 24px",
-      marginTop: 8,
-    }}>
+    /* iOS 홈 화면처럼 — 배경은 홈과 동일하게, 아이콘만 컬러로 구별 */
+    <div style={{ padding: "20px 0 16px" }}>
+
       {/* 헤더 */}
-      <div style={{ padding: "0 16px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ padding: "0 16px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3 }}>
-            <span style={{ fontSize: 16 }}>🌍</span>
-            <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#F8FAFC" }}>
-              {lang === "ko" ? "다른 도시 HebronGuide" : "HebronGuide Other Cities"}
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2 }}>
+            <span style={{ fontSize: 15 }}>🌍</span>
+            <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A" }}>
+              {lang === "ko" ? "다른 도시 HebronGuide" : "HebronGuide Cities"}
             </span>
           </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.4)", paddingLeft: 22 }}>
-            {lang === "ko" ? "이사·출장·방문 예정 도시를 미리 탐색" : "Explore your next city before you move"}
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8", paddingLeft: 21 }}>
+            {lang === "ko" ? "이사·출장·방문 도시를 미리 탐색하세요" : "Explore your next city before you move"}
           </div>
         </div>
         <a href="https://hebronguide.com" target="_blank" rel="noopener noreferrer"
-          style={{ fontSize: 11, color: "#F2994A", fontWeight: 700, fontFamily: "Manrope,sans-serif", textDecoration: "none", opacity: 0.85 }}>
+          style={{ fontSize: 11, color: "#F2994A", fontWeight: 700, fontFamily: "Manrope,sans-serif", textDecoration: "none" }}>
           {lang === "ko" ? "전체 →" : "All →"}
         </a>
       </div>
 
-      {/* 도시 카드 가로 스크롤 — 각 도시 고유 컬러 */}
-      <div style={{ display: "flex", gap: 10, overflowX: "auto", padding: "0 16px 4px", scrollbarWidth: "none" }}
+      {/* 아이콘 그리드 — iOS 앱 아이콘 스타일 */}
+      <div style={{ display: "flex", gap: 16, overflowX: "auto", padding: "4px 16px 8px", scrollbarWidth: "none" }}
         className="[&::-webkit-scrollbar]:hidden">
         {HEBRON_CITIES.map((city) => {
           const isCurrent = city.nameEn === currentCity;
           const isLive    = city.status === "live";
           const isSoon    = city.status === "soon";
           const isDim     = !isLive && !isSoon;
-
-          /* 단색 배경 — 도시별 구별 */
-          const cardBg = isCurrent
-            ? city.color           // 현재 도시: 진한 단색
-            : isLive
-            ? city.color + "55"    // 라이브 도시: 반투명 단색
-            : "rgba(255,255,255,0.06)"; // 준비 중: 거의 투명
+          const gradient  = CITY_GRADIENTS[city.nameEn] ?? `linear-gradient(145deg, ${city.color}CC, ${city.color}88)`;
 
           return (
             <a
@@ -1838,68 +1843,70 @@ function CityHubSection({ lang }: { lang: string }) {
               rel="noopener noreferrer"
               onClick={isDim ? (e) => e.preventDefault() : undefined}
               style={{
-                flexShrink: 0, width: 90,
-                borderRadius: 16, overflow: "hidden",
+                flexShrink: 0, width: 64,
                 textDecoration: "none",
-                background: cardBg,
-                border: "none",
-                opacity: isDim ? 0.3 : 1,
+                opacity: isDim ? 0.35 : 1,
                 cursor: isLive && !isCurrent ? "pointer" : "default",
+                display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
                 transition: "transform 0.15s ease",
               }}
-              onMouseEnter={e => { if (isLive && !isCurrent) (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
+              onMouseEnter={e => { if (isLive && !isCurrent) (e.currentTarget as HTMLElement).style.transform = "scale(1.08)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "scale(1)"; }}
             >
-              <div style={{ padding: "11px 8px 10px", textAlign: "center" }}>
-                <div style={{ fontSize: 24, marginBottom: 4 }}>{city.emoji}</div>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10,
-                  color: isCurrent || isLive ? "#fff" : "rgba(255,255,255,0.45)",
-                  lineHeight: 1.3, marginBottom: 6 }}>
-                  {lang === "ko" ? city.nameKo : city.nameEn}
-                </div>
-                <div>
-                  {isCurrent ? (
-                    <span style={{ fontSize: 9, fontWeight: 800, color: "#fff",
-                      background: "rgba(255,255,255,0.25)", borderRadius: 20, padding: "2px 8px" }}>
-                      {lang === "ko" ? "현재 위치" : "You're here"}
-                    </span>
-                  ) : isLive ? (
-                    <span style={{ fontSize: 9, fontWeight: 700, color: "#fff",
-                      background: "rgba(255,255,255,0.2)", borderRadius: 20, padding: "2px 8px" }}>
-                      ● Live
-                    </span>
-                  ) : isSoon ? (
-                    <span style={{ fontSize: 9, fontWeight: 700, color: "#F59E0B",
-                      background: "rgba(245,158,11,0.2)", borderRadius: 20, padding: "2px 8px" }}>
-                      {lang === "ko" ? "준비 중" : "Soon"}
-                    </span>
-                  ) : (
-                    <span style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.3)",
-                      background: "rgba(255,255,255,0.06)", borderRadius: 20, padding: "2px 8px" }}>
-                      {lang === "ko" ? "예정" : "Coming"}
-                    </span>
-                  )}
-                </div>
+              {/* iOS 앱 아이콘 — squircle + 그라디언트 */}
+              <div style={{
+                width: 56, height: 56,
+                borderRadius: 14,   // iOS squircle 비율
+                background: isDim ? "rgba(0,0,0,0.08)" : gradient,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 26,
+                boxShadow: isCurrent
+                  ? `0 4px 14px ${city.color}55`
+                  : isLive
+                  ? `0 2px 8px ${city.color}33`
+                  : "none",
+                border: isCurrent ? `2.5px solid ${city.color}` : "none",
+                position: "relative",
+              }}>
+                {city.emoji}
+                {/* 현재 도시 표시 점 */}
+                {isCurrent && (
+                  <div style={{
+                    position: "absolute", bottom: -6, left: "50%",
+                    transform: "translateX(-50%)",
+                    width: 5, height: 5, borderRadius: "50%",
+                    background: city.color,
+                  }} />
+                )}
               </div>
+
+              {/* 도시 이름 */}
+              <div style={{
+                fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 10,
+                color: "#374151", textAlign: "center", lineHeight: 1.3,
+                whiteSpace: "nowrap",
+              }}>
+                {lang === "ko" ? city.nameKo : city.nameEn.split(" ")[0]}
+              </div>
+
+              {/* 상태 뱃지 */}
+              {isLive && !isCurrent && (
+                <div style={{ fontSize: 8, fontWeight: 700, color: "#059669",
+                  background: "#DCFCE7", borderRadius: 20, padding: "1px 6px",
+                  marginTop: -2 }}>
+                  Live
+                </div>
+              )}
+              {isSoon && (
+                <div style={{ fontSize: 8, fontWeight: 600, color: "#D97706",
+                  background: "#FEF3C7", borderRadius: 20, padding: "1px 6px",
+                  marginTop: -2 }}>
+                  Soon
+                </div>
+              )}
             </a>
           );
         })}
-      </div>
-
-      {/* 하단 안내 */}
-      <div style={{ padding: "12px 16px 0" }}>
-        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: 12, padding: "10px 14px",
-          display: "flex", alignItems: "center", gap: 8, border: "1px solid rgba(255,255,255,0.08)" }}>
-          <span style={{ fontSize: 14 }}>✈️</span>
-          <div style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", lineHeight: 1.5, fontFamily: "Manrope,sans-serif" }}>
-            <span style={{ fontWeight: 700, color: "rgba(255,255,255,0.75)" }}>
-              {lang === "ko" ? "이사·출장·방문 예정이신가요? " : "Moving, traveling, or visiting? "}
-            </span>
-            {lang === "ko"
-              ? "도시 카드를 탭해서 미리 준비하세요."
-              : "Tap a city card to prepare ahead."}
-          </div>
-        </div>
       </div>
     </div>
   );
