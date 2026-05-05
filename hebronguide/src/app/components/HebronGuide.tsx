@@ -3494,8 +3494,8 @@ function AppBar() {
             <span style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "1.5px", color: "#F2994A" }}>HEBRON</span>
             <span style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 600, fontSize: 13, letterSpacing: "1.5px", color: "#64748B" }}>GUIDE</span>
           </div>
-          <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 500, fontSize: 9, letterSpacing: "0.5px", color: "#059669", marginTop: 2 }}>
-            {t("brand.sub")}
+          <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 600, fontSize: 9, letterSpacing: "1px", color: "#F2994A", marginTop: 2, opacity: 0.8 }}>
+            SEATTLE
           </div>
         </div>
       </div>
