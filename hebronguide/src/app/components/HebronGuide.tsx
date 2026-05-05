@@ -134,6 +134,189 @@ async function scheduleReminder(title: string, daysLater: number) {
 }
 
 /* ─────────────────────────────────────────
+   TOP 5 데이터 타입 & 데이터 상수
+───────────────────────────────────────── */
+interface Top5Item {
+  rank: number;
+  emoji: string;
+  nameKo: string;
+  nameEn: string;
+  address?: string;
+  phone?: string;
+  hours?: string;
+  why: string;
+  tip?: string;
+  website?: string;
+  price?: string;
+  rating?: number;
+  ratingCount?: string;
+}
+
+const TOP5_RESTAURANTS: Top5Item[] = [
+  { rank: 1, emoji: "🍜", nameKo: "이가네 전통 설렁탕", nameEn: "Yi's Traditional Korean Beef Soup",
+    address: "31248 Pacific Hwy S Ste E, Federal Way WA 98003",
+    phone: "(253) 946-1101", hours: "매일 8:30am-9pm",
+    rating: 4.7, ratingCount: "635+",
+    why: "24시간 끓인 사골국물, Yelp 4.7성 635리뷰, 아침부터 영업하는 해장국 명소",
+    tip: "웨이팅 있을 수 있음. 아침 일찍 방문 추천", website: "yistraditional.com" },
+  { rank: 2, emoji: "🥩", nameKo: "쏘문난집", nameEn: "So Moon Nan Jib",
+    address: "33324 Pacific Hwy S, Federal Way WA 98003",
+    phone: "(253) 815-8888", hours: "월화·목-일 11am-10pm (수 휴무)",
+    rating: 4.3, ratingCount: "667+",
+    why: "페더럴웨이 한인 커뮤니티 1위 BBQ, 수제 반찬 10종+, The Emerald Palate Top 3",
+    tip: "수요일 휴무. 인기 메뉴 갈비·불고기 조합 추천" },
+  { rank: 3, emoji: "🔥", nameKo: "WuJu 코리안 BBQ", nameEn: "WuJu Korean BBQ",
+    address: "19400 36th Ave W Ste 102, Lynnwood WA 98036",
+    phone: "(425) 672-2650", hours: "화-목 11am-10pm, 금-토 11am-11pm, 일 11am-9pm (월 휴무)",
+    rating: 4.2, ratingCount: "256+",
+    why: "린우드 숨은 명소, 두꺼운 불고기 전문, 직원이 친절하게 도와줌, 테이크아웃 가능",
+    tip: "월요일 휴무. 사전 예약 추천", website: "wujukoreanbbq.com" },
+  { rank: 4, emoji: "🍖", nameKo: "백정 린우드", nameEn: "Baekjeong Korean BBQ",
+    address: "3000 184th St SW Ste 922, Lynnwood WA 98037",
+    phone: "(425) 490-6328", hours: "월-목 11:30am-10pm, 금 11:30am-11pm, 토 11am-11pm, 일 11am-10pm",
+    rating: 3.9, ratingCount: "464+",
+    why: "알더우드몰 내 LA 체인 정통 BBQ, 직원이 고기 직접 구워줌, 무제한 밑반찬",
+    tip: "알더우드몰 주차 무료. 웨이팅 앱 사용 가능", website: "baekjeongkbbq.com" },
+  { rank: 5, emoji: "☕", nameKo: "K Cafe Dabang", nameEn: "K Cafe Dabang",
+    address: "3333 184th St SW Ste X, Lynnwood WA 98037",
+    phone: "(425) 678-8276", hours: "월-목 8am-9pm, 금 8am-10pm, 토-일 11am-9pm",
+    rating: 4.5, ratingCount: "126+",
+    why: "H-Mart 린우드 바로 옆, 한국식 커피·빙수·크로플, 한인타운 카페 1순위",
+    tip: "H-Mart 쇼핑 후 들르기 딱 좋음" },
+];
+
+const TOP5_SETTLE: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "한인생활상담소 (KCSC)", nameEn: "Korean Community Service Center",
+    address: "19509 64th Ave W Ste 270, Lynnwood WA 98036",
+    phone: "(425) 776-2400", hours: "월-금 9:30am-4:30pm",
+    why: "1983년 설립, 이민 초기 모든 서비스 원스톱 한국어 상담 — 법률·취업·정신건강·식품지원",
+    tip: "방문 전 전화 예약 필수", website: "kcsc-seattle.org" },
+  { rank: 2, emoji: "🇰🇷", nameKo: "주시애틀 총영사관", nameEn: "Korean Consulate General",
+    address: "115 W Mercer St, Seattle WA 98119",
+    phone: "(206) 441-1011", hours: "월-금 8:30am-4pm (예약 필수)",
+    why: "여권·공증·재외국민등록 — 도미 직후 가장 먼저 방문해야 할 공관",
+    tip: "온라인 예약 필수 (매우 혼잡)", website: "overseas.mofa.go.kr/us-seattle-ko" },
+  { rank: 3, emoji: "🚗", nameKo: "ABC 운전면허 시험장 (한국어)", nameEn: "ABC Driving Test Center",
+    address: "19720 44th Ave W Ste J, Lynnwood WA 98036",
+    phone: "(425) 361-1750",
+    why: "한국어 필기시험 응시 가능 — 린우드 한인 최다 이용 DOL 공인 시험장. $35",
+    tip: "쇼어라인 지점도 운영: 16300 Aurora Ave N", website: "abcdrivingwa.com" },
+  { rank: 4, emoji: "🏥", nameKo: "ICHS 쇼어라인 클리닉", nameEn: "ICHS Shoreline Medical & Dental",
+    address: "16549 Aurora Ave N, Shoreline WA 98133",
+    phone: "(206) 533-2600", hours: "월-토 8am-5pm",
+    why: "한국어 구사 의사·치과의사 상주, 보험 없어도 소득 기준 진료 가능",
+    tip: "예약: (206) 788-3700. 벨뷰·국제지구 지점도 운영", website: "ichs.com" },
+  { rank: 5, emoji: "⚖️", nameKo: "북서부 이민권 프로젝트 (NWIRP)", nameEn: "Northwest Immigrant Rights Project",
+    address: "615 2nd Ave Ste 400, Seattle WA 98104",
+    phone: "(800) 445-5771", hours: "월-금 9am-5pm",
+    why: "이민 법률 무료 지원 — 영주권·비자·추방방어. 저소득 이민자 전문",
+    tip: "무료 전화 상담 가능. 한국어 서비스 요청 가능", website: "nwirp.org" },
+];
+
+const TOP5_EXPLORE: Top5Item[] = [
+  { rank: 1, emoji: "🗼", nameKo: "스페이스 니들", nameEn: "Space Needle",
+    address: "400 Broad St, Seattle WA 98109",
+    phone: "(206) 905-2100", hours: "매일 8am-10:30pm (시즌별 상이)",
+    price: "$49 / 콤보(치훌리) $69",
+    why: "시애틀 1번 랜드마크, 605ft 유리 전망대, 야경 최고, 한인 관광객 필수 방문",
+    tip: "금·토 야경 추천. 치훌리 콤보권이 개별 구매보다 $20 절약", website: "spaceneedle.com" },
+  { rank: 2, emoji: "🐟", nameKo: "파이크 플레이스 마켓", nameEn: "Pike Place Market",
+    address: "85 Pike St, Seattle WA 98101",
+    phone: "(206) 682-7453", hours: "매일 9am-6pm",
+    price: "입장 무료 (쇼핑·식사 별도)",
+    why: "100년 역사 시장, 생선 던지기 퍼포먼스, 오리지널 스타벅스 1호점, 도보 관광 최적",
+    tip: "평일 오전 9-11시 방문이 덜 혼잡. 지하 상가도 탐방", website: "pikeplacemarket.org" },
+  { rank: 3, emoji: "🏔️", nameKo: "마운트 레이니어", nameEn: "Mount Rainier National Park",
+    address: "Ashford, WA 98304 (니스콸리 입구)",
+    phone: "(360) 569-2211",
+    price: "$30/차량 (2026년 예약제 폐지)",
+    why: "시애틀 2시간 거리 만년설 화산, 야생화 Paradise 트레일, 장엄한 4,392m 설경",
+    tip: "오전 일찍 출발 권장. America the Beautiful 패스 있으면 무료", website: "nps.gov/mora" },
+  { rank: 4, emoji: "💧", nameKo: "스노퀄미 폭포", nameEn: "Snoqualmie Falls",
+    address: "6820 Railroad Ave SE, Snoqualmie WA 98065",
+    price: "무료",
+    why: "시애틀 동쪽 30분, Twin Peaks 촬영지, 82m 폭포, 산책로·카페 조합 완벽한 당일치기",
+    tip: "주차 $5. 폭포 아래 전망대까지 15분 트레일 추천" },
+  { rank: 5, emoji: "⛴️", nameKo: "베인브릿지 아일랜드 페리", nameEn: "Bainbridge Island Ferry",
+    address: "Colman Dock, 801 Alaskan Way, Seattle WA 98104",
+    price: "성인 편도 $9.25 (차 없이 승선)",
+    why: "35분 페리, 시애틀 스카이라인 뷰 최고, 올림픽 반도 문, 한인 커뮤니티 강력 추천",
+    tip: "편도만 탑승료 징수 (시애틀→베인브릿지 방향). 저녁 노을 뷰 최고", website: "wsdot.wa.gov/ferries" },
+];
+
+/* ─────────────────────────────────────────
+   COMPONENT: Top5Banner (가로 스크롤 카드)
+───────────────────────────────────────── */
+function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: string; accentColor: string }) {
+  return (
+    <div style={{ marginBottom: 24 }}>
+      <div style={{ padding: "0 16px", marginBottom: 12, display: "flex", alignItems: "center", gap: 6 }}>
+        <span style={{ fontSize: 16 }}>⭐</span>
+        <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 15, color: "#ECFDF5" }}>
+          {lang === "ko" ? "TOP 5 베스트 — 검증된 추천" : "TOP 5 Best — Verified Picks"}
+        </span>
+      </div>
+      <div
+        style={{ display: "flex", gap: 10, overflowX: "auto", paddingLeft: 16, paddingRight: 16, scrollbarWidth: "none" }}
+        className="[&::-webkit-scrollbar]:hidden"
+      >
+        {items.map((item, i) => (
+          <div key={i} style={{
+            flexShrink: 0, width: 220,
+            background: "rgba(255,255,255,0.05)", borderRadius: 16, padding: 14,
+            border: `1.5px solid ${accentColor}44`,
+            boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+              <div style={{
+                width: 28, height: 28, borderRadius: 8, background: accentColor,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff", flexShrink: 0,
+              }}>
+                {item.rank}
+              </div>
+              <span style={{ fontSize: 20 }}>{item.emoji}</span>
+              <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13,
+                color: "#ECFDF5", lineHeight: 1.3 }}>
+                {lang === "ko" ? item.nameKo : item.nameEn}
+              </span>
+            </div>
+            {item.rating && (
+              <div style={{ marginBottom: 6 }}>
+                <span style={{ fontSize: 11, color: "#F59E0B", fontWeight: 700 }}>
+                  {"★".repeat(Math.round(item.rating))} {item.rating}
+                </span>
+                {item.ratingCount && <span style={{ fontSize: 10, color: "rgba(236,253,245,0.4)" }}> ({item.ratingCount})</span>}
+              </div>
+            )}
+            {item.price && (
+              <div style={{ marginBottom: 6, fontSize: 11, color: accentColor, fontWeight: 700 }}>{item.price}</div>
+            )}
+            <div style={{ fontSize: 11, color: "rgba(236,253,245,0.65)", lineHeight: 1.5, marginBottom: 6 }}>
+              {item.why}
+            </div>
+            {item.address && (
+              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.4)" }}>📍 {item.address.split(",")[0]}</div>
+            )}
+            {item.phone && (
+              <a href={`tel:${item.phone}`} style={{ display: "block", fontSize: 11, color: accentColor, fontWeight: 700, marginTop: 4, textDecoration: "none" }}>
+                📞 {item.phone}
+              </a>
+            )}
+            {item.tip && (
+              <div style={{ marginTop: 6, padding: "4px 8px", borderRadius: 6, background: "rgba(255,255,255,0.06)",
+                fontSize: 10, color: "rgba(236,253,245,0.55)", fontStyle: "italic" }}>
+                💡 {item.tip}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
    COMPONENT: 설치 배너 (PWA InstallBanner)
 ───────────────────────────────────────── */
 function InstallBanner({ onInstall, onDismiss }: { onInstall: () => void; onDismiss: () => void }) {
@@ -633,16 +816,18 @@ function CompactHeroNew() {
 /* ─────────────────────────────────────────
    NEW HOME: QuickMenuSection
 ───────────────────────────────────────── */
+// 탭 순서: 이민자·이주자·관광객·방문자 모두 포용 — 차별화 전략 반영
+// 1.정착(Day-1 핵심) 2.맛집(모두 공통) 3.탐방(관광·방문) 4.거주지(이민) 5.생활비(참고) 6.취업 7.교육 8.도움 9.교회(편의점처럼 자연스럽게)
 const QUICK_MENU = [
   { emoji: "🛬", labelKo: "정착",   labelEn: "Settle",  color: "#F2994A", bg: "#FFF5EC", tab: 1 },
-  { emoji: "⛪", labelKo: "교회",   labelEn: "Church",  color: "#7C3AED", bg: "#F5F0FF", tab: 2 },
   { emoji: "🍽️", labelKo: "맛집",  labelEn: "Food",    color: "#EF4444", bg: "#FFF0F0", tab: 3 },
-  { emoji: "💼", labelKo: "취업",   labelEn: "Jobs",    color: "#059669", bg: "#ECFDF5", tab: 6 },
-  { emoji: "🎓", labelKo: "교육",   labelEn: "Education",color:"#F59E0B", bg: "#FFFBEB", tab: 7 },
-  { emoji: "🆘", labelKo: "도움",   labelEn: "Help",    color: "#64748B", bg: "#F1F5F9", tab: 5 },
   { emoji: "🌆", labelKo: "탐방",   labelEn: "Explore", color: "#0EA5E9", bg: "#F0F9FF", tab: 4 },
+  { emoji: "🏘️", labelKo: "거주지", labelEn: "Areas",   color: "#10B981", bg: "#F0FDF4", tab: 1 },
   { emoji: "💰", labelKo: "생활비", labelEn: "Costs",   color: "#8B5CF6", bg: "#F5F3FF", tab: 8 },
-  { emoji: "🏘️", labelKo: "거주지", labelEn: "Areas",   color: "#10B981", bg: "#ECFDF5", tab: 1 },
+  { emoji: "💼", labelKo: "취업",   labelEn: "Jobs",    color: "#059669", bg: "#ECFDF5", tab: 6 },
+  { emoji: "🎓", labelKo: "교육",   labelEn: "Schools", color: "#F59E0B", bg: "#FFFBEB", tab: 7 },
+  { emoji: "🆘", labelKo: "도움",   labelEn: "Help",    color: "#64748B", bg: "#F1F5F9", tab: 5 },
+  { emoji: "⛪", labelKo: "교회",   labelEn: "Church",  color: "#7C3AED", bg: "#F5F0FF", tab: 2 },
 ];
 
 function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number) => void }) {
@@ -1579,7 +1764,11 @@ function SettleScreen({ onHome }: { onHome?: () => void }) {
         descKo="이민·이주자를 위한 단계별 정착 안내" descEn="Step-by-step guide for immigrants & newcomers"
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
-      <div className="pt-5 px-4 md:px-6 lg:px-8">
+      <div className="pt-5">
+        {sub === 0 && (
+          <Top5Banner items={TOP5_SETTLE} lang={lang} accentColor="#F2994A" />
+        )}
+        <div className="px-4 md:px-6 lg:px-8">
         {/* 거주지 탭 */}
         {sub === 5 ? (
           <>
@@ -1657,6 +1846,7 @@ function SettleScreen({ onHome }: { onHome?: () => void }) {
             </div>
           </>
         )}
+        </div>
       </div>
     </div>
   );
@@ -1847,16 +2037,21 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
         descKo="시애틀 한인 카페·맛집·상권 완전 가이드" descEn="Complete guide to Seattle's Korean cafés, restaurants & business district"
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
-      <div className="pt-5 px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
-        </div>
-        <div style={{ background: "rgba(251,146,60,0.08)", border: "1px solid rgba(251,146,60,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>🗺️ {lang === "ko" ? "위치 찾기" : "Find Locations"}</div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
-            {lang === "ko"
-              ? "Google Maps에서 'Korean restaurant Lynnwood WA' 또는 '한인 맛집 시애틀' 검색. Yelp 한국어 리뷰도 활용하세요."
-              : "Search 'Korean restaurant Lynnwood WA' on Google Maps or check Yelp for Korean reviews."}
+      <div className="pt-5">
+        {sub === 1 && (
+          <Top5Banner items={TOP5_RESTAURANTS} lang={lang} accentColor="#EF4444" />
+        )}
+        <div className="px-4 md:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+          </div>
+          <div style={{ background: "rgba(251,146,60,0.08)", border: "1px solid rgba(251,146,60,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>🗺️ {lang === "ko" ? "위치 찾기" : "Find Locations"}</div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
+              {lang === "ko"
+                ? "Google Maps에서 'Korean restaurant Lynnwood WA' 또는 '한인 맛집 시애틀' 검색. Yelp 한국어 리뷰도 활용하세요."
+                : "Search 'Korean restaurant Lynnwood WA' on Google Maps or check Yelp for Korean reviews."}
+            </div>
           </div>
         </div>
       </div>
@@ -1925,9 +2120,14 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
         descKo="지역안내 · 자연 · 문화 · 스포츠" descEn="Areas · Nature · Culture · Sports"
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
-      <div className="pt-5 px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+      <div className="pt-5">
+        {sub === 0 && (
+          <Top5Banner items={TOP5_EXPLORE} lang={lang} accentColor="#0EA5E9" />
+        )}
+        <div className="px-4 md:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+          </div>
         </div>
       </div>
     </div>
