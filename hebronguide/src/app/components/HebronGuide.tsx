@@ -2950,23 +2950,58 @@ export function HebronGuide() {
   };
 
   const SEARCH_MAP = [
-    { keywords: ["정착", "settle", "ssn", "은행", "bank", "면허", "license", "sim", "비자", "visa"], tab: 1 },
-    { keywords: ["교회", "church", "예배", "worship", "목장", "가정교회"], tab: 2 },
-    { keywords: ["맛집", "food", "카페", "cafe", "식당", "bbq", "한식", "coffee", "restaurant"], tab: 3 },
-    { keywords: ["탐방", "explore", "관광", "레이니어", "스페이스", "pike", "여행", "travel"], tab: 4 },
-    { keywords: ["도움", "help", "의료", "의사", "병원", "hospital", "법률", "legal", "emergency"], tab: 5 },
-    { keywords: ["취업", "jobs", "amazon", "microsoft", "구글", "google", "h1b", "h-1b", "직장", "career"], tab: 6 },
-    { keywords: ["교육", "education", "학교", "school", "대학", "university", "학군", "학원", "uw"], tab: 7 },
-    { keywords: ["생활비", "cost", "렌트", "rent", "기름", "gas", "세금", "tax", "월세"], tab: 8 },
+    { tab: 1, labelKo: "정착", labelEn: "Settle",
+      keywords: ["정착","settle","ssn","은행","bank","면허","license","sim","비자","visa",
+        "i-94","i94","uscis","이민","immigration","주소","address","orca","교통",
+        "abc운전","abc driving","운전학교","kcsc","한인생활상담소","총영사관","consulate",
+        "여권","passport","공증","notary","재외국민","체류","거주","housing"] },
+    { tab: 2, labelKo: "교회", labelEn: "Church",
+      keywords: ["교회","church","예배","worship","목장","가정교회","house church",
+        "gmc","지구촌","global mission","성경","bible","목사","pastor","신앙","faith"] },
+    { tab: 3, labelKo: "맛집·카페", labelEn: "Food",
+      keywords: ["맛집","food","카페","cafe","식당","bbq","한식","coffee","restaurant",
+        "백정","baekjeong","쏘문난집","so moon","이가네","yi's","wuju","갈비","설렁탕",
+        "순두부","tofu","치킨","chicken","비빔밥","bibimbap","라면","ramen",
+        "핫도그","hotdog","빙수","bingsu","크로플","k cafe","dabang","카카오","음식"] },
+    { tab: 4, labelKo: "탐방·관광", labelEn: "Explore",
+      keywords: ["탐방","explore","관광","레이니어","rainier","스페이스니들","space needle",
+        "파이크","pike","여행","travel","tourist","tourism","폭포","falls","스노퀄미",
+        "snoqualmie","페리","ferry","베인브릿지","bainbridge","산","mountain","하이킹",
+        "hiking","자연","nature","공원","park","박물관","museum","시애틀센터"] },
+    { tab: 5, labelKo: "도움·의료", labelEn: "Help",
+      keywords: ["도움","help","의료","의사","병원","hospital","법률","legal","emergency",
+        "응급","치과","dentist","dental","치과의사","약국","pharmacy","보험","insurance",
+        "apple health","medicaid","정신건강","mental health","상담","counseling",
+        "ichs","swedish","acrs","nwirp","법무사","변호사","attorney","lawyer",
+        "911","위기","crisis","프라임덴탈","prime dental","커클랜드치과"] },
+    { tab: 6, labelKo: "취업", labelEn: "Jobs",
+      keywords: ["취업","jobs","amazon","microsoft","구글","google","h1b","h-1b",
+        "직장","career","worksource","이력서","resume","linkedin","opt","stem opt",
+        "boeing","자영업","창업","비자취업","스타트업","인턴","intern","채용"] },
+    { tab: 7, labelKo: "교육", labelEn: "Schools",
+      keywords: ["교육","education","학교","school","대학","university","학군","학원",
+        "uw","에드먼즈칼리지","edmonds","esl","영어","english class","벨뷰학군",
+        "bellevue sd","northshore","lake washington","tutoring","과외","sat","act"] },
+    { tab: 8, labelKo: "생활비", labelEn: "Costs",
+      keywords: ["생활비","cost","렌트","rent","기름","gas","세금","tax","월세",
+        "환율","exchange rate","물가","price","전기세","utilities","주차","parking",
+        "최저시급","minimum wage","팁","tip","shopping","쇼핑"] },
   ];
 
   const handleSearch = (query: string) => {
-    const q = query.toLowerCase();
-    const match = SEARCH_MAP.find(item => item.keywords.some(kw => q.includes(kw)));
+    const q = query.toLowerCase().replace(/\s/g, "");
+    const match = SEARCH_MAP.find(item =>
+      item.keywords.some(kw => q.includes(kw.replace(/\s/g, "")) || kw.replace(/\s/g, "").includes(q))
+    );
     if (match) {
       setActiveNav(match.tab);
       setShowSearch(false);
       setSearchQuery("");
+    } else {
+      // 결과 없을 때 피드백
+      alert(lang === "ko"
+        ? `"${query}" 검색 결과가 없어요.\n빠른 메뉴에서 직접 선택해보세요!`
+        : `No results for "${query}".\nTry selecting from Quick Menu!`);
     }
   };
 
