@@ -3031,38 +3031,99 @@ export function HebronGuide() {
         <AppBar />
 
         {/* 검색바 (슬라이드 인) */}
-        {showSearch && (
-          <div style={{
-            position: "fixed", top: 56, left: "50%", transform: "translateX(-50%)",
-            width: "100%", maxWidth: 430, zIndex: 200,
-            background: "#fff", padding: "8px 16px",
-            boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-            display: "flex", gap: 8, alignItems: "center",
-          }}>
-            <input
-              autoFocus
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              onKeyDown={e => e.key === "Enter" && handleSearch(searchQuery)}
-              placeholder={lang === "ko" ? "맛집, 정착, 교회, 취업..." : "Food, settle, church, jobs..."}
-              style={{
-                flex: 1, border: "1px solid #E2E8F0", borderRadius: 12,
-                padding: "10px 14px", fontSize: 15, outline: "none",
-                fontFamily: "'Noto Sans KR', sans-serif",
-              }}
-            />
-            <button onClick={() => handleSearch(searchQuery)}
-              style={{ border: "none", background: "#F2994A", borderRadius: 10, padding: "8px 14px",
-                fontSize: 13, fontWeight: 700, cursor: "pointer", color: "#fff",
-                fontFamily: "Manrope, sans-serif", whiteSpace: "nowrap" }}>
-              {lang === "ko" ? "검색" : "Search"}
-            </button>
-            <button onClick={handleSearchToggle}
-              style={{ border: "none", background: "none", fontSize: 20, cursor: "pointer", color: "#64748B" }}>
-              ✕
-            </button>
-          </div>
-        )}
+        {showSearch && (() => {
+          // 실시간 앱 내 검색 매칭
+          const q = searchQuery.toLowerCase().replace(/\s/g, "");
+          const internalMatches = q.length > 0
+            ? SEARCH_MAP.filter(item => item.keywords.some(kw => kw.replace(/\s/g,"").includes(q) || q.includes(kw.replace(/\s/g,""))))
+            : [];
+          const googleUrl = `https://www.google.com/search?q=${encodeURIComponent((searchQuery || "시애틀 한인") + " 시애틀 한인")}`;
+          const perplexityUrl = `https://www.perplexity.ai/search?q=${encodeURIComponent((searchQuery || "시애틀 한인 정보") + " 시애틀 한인")}`;
+
+          return (
+            <div style={{
+              position: "fixed", top: 56, left: "50%", transform: "translateX(-50%)",
+              width: "100%", maxWidth: 430, zIndex: 200,
+              background: "#fff", boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
+              borderRadius: "0 0 20px 20px",
+            }}>
+              {/* 검색 입력창 */}
+              <div style={{ padding: "10px 14px", display: "flex", gap: 8, alignItems: "center", borderBottom: "1px solid #F1F5F9" }}>
+                <span style={{ fontSize: 16, color: "#94A3B8" }}>🔍</span>
+                <input autoFocus value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  onKeyDown={e => e.key === "Enter" && handleSearch(searchQuery)}
+                  placeholder={lang === "ko" ? "백정, 치과, 비자, 스페이스니들..." : "Baekjeong, dentist, visa, Space Needle..."}
+                  style={{ flex: 1, border: "none", outline: "none", fontSize: 15,
+                    fontFamily: "'Noto Sans KR', sans-serif", background: "transparent" }}
+                />
+                <button onClick={handleSearchToggle}
+                  style={{ border: "none", background: "none", fontSize: 20, cursor: "pointer", color: "#94A3B8", padding: 4 }}>✕</button>
+              </div>
+
+              {/* 앱 내 결과 */}
+              {internalMatches.length > 0 && (
+                <div style={{ padding: "8px 0" }}>
+                  <div style={{ padding: "4px 16px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif",
+                    fontWeight: 700, color: "#94A3B8", letterSpacing: "0.5px", textTransform: "uppercase" }}>
+                    {lang === "ko" ? "앱 내 결과" : "In-App Results"}
+                  </div>
+                  {internalMatches.slice(0, 5).map((m, i) => (
+                    <button key={i} onClick={() => { setActiveNav(m.tab); setShowSearch(false); setSearchQuery(""); }}
+                      style={{ width: "100%", textAlign: "left", padding: "10px 16px", border: "none",
+                        background: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 10 }}
+                      onMouseEnter={e => (e.currentTarget.style.background = "#F8FAFC")}
+                      onMouseLeave={e => (e.currentTarget.style.background = "none")}>
+                      <span style={{ fontSize: 18 }}>{QUICK_MENU.find(qm => qm.tab === m.tab)?.emoji || "📌"}</span>
+                      <div>
+                        <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600, fontSize: 14, color: "#1B2A4A" }}>
+                          {lang === "ko" ? m.labelKo : m.labelEn}
+                        </div>
+                        <div style={{ fontSize: 11, color: "#94A3B8" }}>
+                          {lang === "ko" ? "탭으로 이동" : "Go to section"}
+                        </div>
+                      </div>
+                      <span style={{ marginLeft: "auto", color: "#F2994A", fontSize: 16 }}>→</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* 구분선 */}
+              {q.length > 0 && <div style={{ height: 1, background: "#F1F5F9", margin: "0 16px" }} />}
+
+              {/* 외부 검색 — 항상 표시 */}
+              <div style={{ padding: "10px 14px 14px" }}>
+                <div style={{ fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700,
+                  color: "#94A3B8", letterSpacing: "0.5px", textTransform: "uppercase", marginBottom: 8 }}>
+                  {lang === "ko" ? "더 찾아보기" : "Search More"}
+                </div>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <a href={googleUrl} target="_blank" rel="noopener noreferrer" style={{
+                    flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                    padding: "10px 12px", borderRadius: 12, textDecoration: "none",
+                    background: "#F8FAFC", border: "1px solid #E2E8F0",
+                  }}>
+                    <span style={{ fontSize: 16 }}>🔍</span>
+                    <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#1B2A4A" }}>
+                      Google
+                    </span>
+                  </a>
+                  <a href={perplexityUrl} target="_blank" rel="noopener noreferrer" style={{
+                    flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                    padding: "10px 12px", borderRadius: 12, textDecoration: "none",
+                    background: "#F0F9FF", border: "1px solid #BAE6FD",
+                  }}>
+                    <span style={{ fontSize: 16 }}>🤖</span>
+                    <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#0369A1" }}>
+                      AI 검색
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
         {/* PWA 설치 배너 */}
         {showBanner && (
