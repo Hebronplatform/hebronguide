@@ -118,18 +118,6 @@ export default defineConfig({
     chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
-        // 벤더 라이브러리 분리 → 브라우저 캐시 장기 활용
-        manualChunks: (id) => {
-          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
-            return 'react-core'
-          }
-          if (id.includes('node_modules/@supabase/')) {
-            return 'supabase'
-          }
-          if (id.includes('node_modules/')) {
-            return 'vendor'
-          }
-        },
         assetFileNames: 'assets/[name]-[hash][extname]',
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
