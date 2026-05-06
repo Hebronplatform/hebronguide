@@ -860,13 +860,16 @@ function CompactHeroNew() {
 const QUICK_MENU = [
   { emoji: "🛬", labelKo: "정착",   labelEn: "Settle",  color: "#F2994A", bg: "#FFF5EC", tab: 1, subTab: 0 },
   { emoji: "🍽️", labelKo: "맛집",  labelEn: "Food",    color: "#EF4444", bg: "#FFF0F0", tab: 3, subTab: 0 },
-  { emoji: "🗺️", labelKo: "관광",  labelEn: "Tourism", color: "#0EA5E9", bg: "#F0F9FF", tab: 4, subTab: 0 },
-  { emoji: "🆘", labelKo: "도움",   labelEn: "Help",    color: "#EF4444", bg: "#FFF5F5", tab: 5, subTab: 0 },
   { emoji: "🏘️", labelKo: "거주지", labelEn: "Areas",   color: "#10B981", bg: "#F0FDF4", tab: 1, subTab: 5 },
-  { emoji: "💼", labelKo: "취업",   labelEn: "Jobs",    color: "#059669", bg: "#ECFDF5", tab: 6, subTab: 0 },
-  { emoji: "🎓", labelKo: "교육",   labelEn: "Schools", color: "#F59E0B", bg: "#FFFBEB", tab: 7, subTab: 0 },
-  { emoji: "💰", labelKo: "생활비", labelEn: "Costs",   color: "#8B5CF6", bg: "#F5F3FF", tab: 8, subTab: 0 },
+  { emoji: "🏥", labelKo: "병원",   labelEn: "Medical", color: "#EC4899", bg: "#FDF2F8", tab: 5, subTab: 1 },
   { emoji: "⛪", labelKo: "교회",   labelEn: "Church",  color: "#7C3AED", bg: "#F5F0FF", tab: 2, subTab: 0 },
+  { emoji: "🚗", labelKo: "면허",   labelEn: "DMV",     color: "#3B82F6", bg: "#EFF6FF", tab: 1, subTab: 3 },
+  { emoji: "🛒", labelKo: "마트",   labelEn: "Market",  color: "#F59E0B", bg: "#FFFBEB", tab: 3, subTab: 2 },
+  { emoji: "💼", labelKo: "취업",   labelEn: "Jobs",    color: "#059669", bg: "#ECFDF5", tab: 6, subTab: 0 },
+  { emoji: "🎓", labelKo: "교육",   labelEn: "Schools", color: "#8B5CF6", bg: "#F5F3FF", tab: 7, subTab: 0 },
+  { emoji: "💰", labelKo: "생활비", labelEn: "Costs",   color: "#0EA5E9", bg: "#F0F9FF", tab: 8, subTab: 0 },
+  { emoji: "🗺️", labelKo: "관광",  labelEn: "Tourism", color: "#06B6D4", bg: "#ECFEFF", tab: 4, subTab: 0 },
+  { emoji: "🆘", labelKo: "도움",   labelEn: "Help",    color: "#DC2626", bg: "#FFF5F5", tab: 5, subTab: 0 },
 ];
 
 function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
