@@ -894,14 +894,14 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
           onTouchStart={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) el.style.transform = "scale(0.87)"; }}
           onTouchEnd={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) el.style.transform = "scale(1)"; }}
           >
-            {/* 60×60 squircle 아이콘 */}
+            {/* 60×60 squircle 아이콘 — 흰 배경, 이모티콘 꽉 채움 */}
             <div className="qm-icon" style={{
               width: 60, height: 60,
               borderRadius: 14,
-              background: `linear-gradient(150deg, ${item.color}ee 0%, ${item.color}99 100%)`,
-              boxShadow: `0 2px 8px ${item.color}40`,
+              background: "#FFFFFF",
+              boxShadow: `0 2px 8px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06)`,
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 30,
+              fontSize: 36,
               transition: "transform 0.12s ease",
               flexShrink: 0,
             }}>
