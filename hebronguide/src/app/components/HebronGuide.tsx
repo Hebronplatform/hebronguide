@@ -957,38 +957,35 @@ function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number
           {lang === "ko" ? "전체 보기 →" : "See all →"}
         </button>
       </div>
-      {/* 2×3 그리드 — 한 화면에 전부 */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8,
+      {/* 2열 그리드 — 여유있고 읽기 편하게 */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12,
         padding: "0 16px" }}>
         {SETTLE_STEPS.map((step, i) => (
           <button key={i} onClick={() => onNavigate?.(1)} style={{
-            background: "#FFFFFF", borderRadius: 12, padding: "12px 8px",
-            display: "flex", flexDirection: "column", gap: 7,
+            background: "#FFFFFF", borderRadius: 14, padding: "14px 14px",
+            display: "flex", flexDirection: "row", alignItems: "center", gap: 12,
             border: "none",
-            boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
             cursor: "pointer", textAlign: "left",
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-              <div style={{ width: 22, height: 22, borderRadius: 7, background: step.color,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif",
-                fontWeight: 800, fontSize: 11, color: "#fff",
-                flexShrink: 0 }}>
-                {step.num}
-              </div>
-              <span style={{ fontSize: 16 }}>{step.emoji}</span>
+            <div style={{
+              width: 44, height: 44, borderRadius: 12, background: step.color,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 22, flexShrink: 0,
+            }}>
+              {step.emoji}
             </div>
-            <div>
+            <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{
-                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Noto Sans KR', sans-serif",
-                fontWeight: 700, fontSize: 11,
-                color: "#1B2A4A", marginBottom: 2 }}>
+                fontFamily: "-apple-system, 'Noto Sans KR', sans-serif",
+                fontWeight: 700, fontSize: 13,
+                color: "#1B2A4A", marginBottom: 3 }}>
                 {lang === "ko" ? step.titleKo : step.titleEn}
               </div>
               <div style={{
-                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif",
-                fontSize: 9, color: "#64748B",
-                lineHeight: 1.4, whiteSpace: "pre-line" }}>
+                fontFamily: "-apple-system, sans-serif",
+                fontSize: 11, color: "#64748B",
+                lineHeight: 1.5, whiteSpace: "pre-line" }}>
                 {lang === "ko" ? step.descKo : step.descEn}
               </div>
             </div>
