@@ -872,46 +872,46 @@ const QUICK_MENU = [
 function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
   return (
-    <div style={{ padding: "20px 16px 12px" }}>
+    <div style={{ padding: "20px 16px 16px" }}>
       <div style={{
         fontFamily: "'Noto Sans KR', sans-serif",
         fontWeight: 700, fontSize: 15, color: "#1B2A4A",
-        letterSpacing: "-0.3px", marginBottom: 12,
+        letterSpacing: "-0.3px", marginBottom: 16,
       }}>
-        ⚡ {lang === "ko" ? "빠른 메뉴" : "Quick Menu"}
+        {lang === "ko" ? "바로 가기" : "Quick Access"}
       </div>
-      {/* 3×3 콤팩트 그리드 */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
+      {/* iPhone 스타일 4열 그리드 */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
         {QUICK_MENU.map((item, i) => (
           <button key={i} onClick={() => onNavigate?.(item.tab, item.subTab)} style={{
-            background: "#FFFFFF",
-            borderRadius: 12,
-            padding: "10px 4px 8px",
-            display: "flex", flexDirection: "column", alignItems: "center", gap: 5,
-            border: "none",
-            boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
-            cursor: "pointer",
-            transition: "transform 0.12s ease, box-shadow 0.12s ease",
-            width: "100%",
-            minHeight: 72,
+            background: "none", border: "none", cursor: "pointer",
+            display: "flex", flexDirection: "column", alignItems: "center", gap: 7,
+            padding: 0,
           }}
-          onTouchStart={e => { e.currentTarget.style.transform = "scale(0.94)"; e.currentTarget.style.background = item.bg; }}
-          onTouchEnd={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.background = "#FFFFFF"; }}
-          onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 4px 14px rgba(0,0,0,0.12)"; }}
-          onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.1)"; }}
+          onTouchStart={e => { (e.currentTarget.querySelector('.qm-icon') as HTMLElement)!.style.transform = "scale(0.88)"; }}
+          onTouchEnd={e => { (e.currentTarget.querySelector('.qm-icon') as HTMLElement)!.style.transform = "scale(1)"; }}
           >
-            <div style={{
-              width: 34, height: 34, borderRadius: 10,
-              background: item.bg,
+            {/* iOS 스타일 아이콘 */}
+            <div className="qm-icon" style={{
+              width: "100%",
+              aspectRatio: "1",
+              borderRadius: 18,
+              background: `linear-gradient(145deg, ${item.color}dd, ${item.color}88)`,
+              boxShadow: `0 4px 12px ${item.color}44`,
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 18,
+              fontSize: 28,
+              transition: "transform 0.12s ease",
             }}>
               {item.emoji}
             </div>
+            {/* 라벨 */}
             <span style={{
-              fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Noto Sans KR', sans-serif",
-              fontWeight: 600,
-              fontSize: 11, color: "#374151", letterSpacing: "-0.1px",
+              fontFamily: "-apple-system, 'Noto Sans KR', sans-serif",
+              fontWeight: 500, fontSize: 11,
+              color: "#3C3C43",
+              letterSpacing: "-0.1px",
+              textAlign: "center",
+              lineHeight: 1.2,
             }}>
               {lang === "ko" ? item.labelKo : item.labelEn}
             </span>
