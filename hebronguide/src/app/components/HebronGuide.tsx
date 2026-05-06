@@ -872,46 +872,47 @@ const QUICK_MENU = [
 function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
   return (
-    <div style={{ padding: "20px 16px 16px" }}>
+    <div style={{ padding: "20px 20px 16px" }}>
       <div style={{
         fontFamily: "'Noto Sans KR', sans-serif",
         fontWeight: 700, fontSize: 15, color: "#1B2A4A",
-        letterSpacing: "-0.3px", marginBottom: 16,
+        letterSpacing: "-0.3px", marginBottom: 18,
       }}>
         {lang === "ko" ? "바로 가기" : "Quick Access"}
       </div>
-      {/* iPhone 스타일 4열 그리드 */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+      {/* iPhone 홈 스크린 스타일 — 4열, 60px 아이콘 */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", rowGap: 20, columnGap: 8 }}>
         {QUICK_MENU.map((item, i) => (
           <button key={i} onClick={() => onNavigate?.(item.tab, item.subTab)} style={{
             background: "none", border: "none", cursor: "pointer",
-            display: "flex", flexDirection: "column", alignItems: "center", gap: 7,
-            padding: 0,
+            display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+            padding: 0, WebkitTapHighlightColor: "transparent",
           }}
-          onTouchStart={e => { (e.currentTarget.querySelector('.qm-icon') as HTMLElement)!.style.transform = "scale(0.88)"; }}
-          onTouchEnd={e => { (e.currentTarget.querySelector('.qm-icon') as HTMLElement)!.style.transform = "scale(1)"; }}
+          onTouchStart={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) el.style.transform = "scale(0.87)"; }}
+          onTouchEnd={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) el.style.transform = "scale(1)"; }}
           >
-            {/* iOS 스타일 아이콘 */}
+            {/* 60×60 squircle 아이콘 */}
             <div className="qm-icon" style={{
-              width: "100%",
-              aspectRatio: "1",
-              borderRadius: 18,
-              background: `linear-gradient(145deg, ${item.color}dd, ${item.color}88)`,
-              boxShadow: `0 4px 12px ${item.color}44`,
+              width: 60, height: 60,
+              borderRadius: 14,
+              background: `linear-gradient(150deg, ${item.color}ee 0%, ${item.color}99 100%)`,
+              boxShadow: `0 2px 8px ${item.color}40`,
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 28,
+              fontSize: 30,
               transition: "transform 0.12s ease",
+              flexShrink: 0,
             }}>
               {item.emoji}
             </div>
             {/* 라벨 */}
             <span style={{
-              fontFamily: "-apple-system, 'Noto Sans KR', sans-serif",
-              fontWeight: 500, fontSize: 11,
+              fontFamily: "-apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif",
+              fontWeight: 400, fontSize: 11,
               color: "#3C3C43",
               letterSpacing: "-0.1px",
               textAlign: "center",
-              lineHeight: 1.2,
+              lineHeight: 1.3,
+              width: "100%",
             }}>
               {lang === "ko" ? item.labelKo : item.labelEn}
             </span>
