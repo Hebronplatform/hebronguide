@@ -53,7 +53,27 @@ import {
   DollarSign,
   X,
   Share2,
+  Plane,
+  HeartPulse,
+  Car,
+  ShoppingCart,
 } from "lucide-react";
+
+/* Quick Menu 아이콘 맵 */
+const QM_ICON_MAP: Record<string, React.ComponentType<{size?: number; color?: string; strokeWidth?: number}>> = {
+  "plane-landing":  Plane,
+  "utensils":       Utensils,
+  "home":           Home,
+  "heart-pulse":    HeartPulse,
+  "church":         Church,
+  "car":            Car,
+  "shopping-cart":  ShoppingCart,
+  "briefcase":      Briefcase,
+  "graduation-cap": GraduationCap,
+  "dollar-sign":    DollarSign,
+  "map":            Map,
+  "life-buoy":      LifeBuoy,
+};
 
 /* ─────────────────────────────────────────
    TOKENS
@@ -858,18 +878,18 @@ function CompactHeroNew() {
 // Quick Menu 순서: 긴급성·사용빈도 기준 최적화
 // 정착(Day-1) → 맛집(공통) → 관광(방문객) → 도움(긴급) → 거주지 → 취업 → 교육 → 생활비 → 교회(자연스러운 연결)
 const QUICK_MENU = [
-  { emoji: "🛬", labelKo: "정착",   labelEn: "Settle",  color: "#F2994A", bg: "#FFF5EC", tab: 1, subTab: 0 },
-  { emoji: "🍽️", labelKo: "맛집",  labelEn: "Food",    color: "#EF4444", bg: "#FFF0F0", tab: 3, subTab: 0 },
-  { emoji: "🏘️", labelKo: "거주지", labelEn: "Areas",   color: "#10B981", bg: "#F0FDF4", tab: 1, subTab: 5 },
-  { emoji: "🏥", labelKo: "병원",   labelEn: "Medical", color: "#EC4899", bg: "#FDF2F8", tab: 5, subTab: 1 },
-  { emoji: "⛪", labelKo: "교회",   labelEn: "Church",  color: "#7C3AED", bg: "#F5F0FF", tab: 2, subTab: 0 },
-  { emoji: "🚗", labelKo: "면허",   labelEn: "DMV",     color: "#3B82F6", bg: "#EFF6FF", tab: 1, subTab: 3 },
-  { emoji: "🛒", labelKo: "마트",   labelEn: "Market",  color: "#F59E0B", bg: "#FFFBEB", tab: 3, subTab: 2 },
-  { emoji: "💼", labelKo: "취업",   labelEn: "Jobs",    color: "#059669", bg: "#ECFDF5", tab: 6, subTab: 0 },
-  { emoji: "🎓", labelKo: "교육",   labelEn: "Schools", color: "#8B5CF6", bg: "#F5F3FF", tab: 7, subTab: 0 },
-  { emoji: "💰", labelKo: "생활비", labelEn: "Costs",   color: "#0EA5E9", bg: "#F0F9FF", tab: 8, subTab: 0 },
-  { emoji: "🗺️", labelKo: "관광",  labelEn: "Tourism", color: "#06B6D4", bg: "#ECFEFF", tab: 4, subTab: 0 },
-  { emoji: "🆘", labelKo: "도움",   labelEn: "Help",    color: "#DC2626", bg: "#FFF5F5", tab: 5, subTab: 0 },
+  { icon: "plane-landing",  labelKo: "정착",   labelEn: "Settle",  color: "#F2994A", tab: 1, subTab: 0 },
+  { icon: "utensils",       labelKo: "맛집",   labelEn: "Food",    color: "#EF4444", tab: 3, subTab: 0 },
+  { icon: "home",           labelKo: "거주지",  labelEn: "Areas",   color: "#10B981", tab: 1, subTab: 5 },
+  { icon: "heart-pulse",    labelKo: "병원",   labelEn: "Medical", color: "#EC4899", tab: 5, subTab: 1 },
+  { icon: "church",         labelKo: "교회",   labelEn: "Church",  color: "#7C3AED", tab: 2, subTab: 0 },
+  { icon: "car",            labelKo: "면허",   labelEn: "DMV",     color: "#3B82F6", tab: 1, subTab: 3 },
+  { icon: "shopping-cart",  labelKo: "마트",   labelEn: "Market",  color: "#F59E0B", tab: 3, subTab: 2 },
+  { icon: "briefcase",      labelKo: "취업",   labelEn: "Jobs",    color: "#059669", tab: 6, subTab: 0 },
+  { icon: "graduation-cap", labelKo: "교육",   labelEn: "Schools", color: "#8B5CF6", tab: 7, subTab: 0 },
+  { icon: "dollar-sign",    labelKo: "생활비",  labelEn: "Costs",   color: "#0EA5E9", tab: 8, subTab: 0 },
+  { icon: "map",            labelKo: "관광",   labelEn: "Tourism", color: "#06B6D4", tab: 4, subTab: 0 },
+  { icon: "life-buoy",      labelKo: "도움",   labelEn: "Help",    color: "#DC2626", tab: 5, subTab: 0 },
 ];
 
 function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
@@ -894,19 +914,23 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
           onTouchStart={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) el.style.transform = "scale(0.87)"; }}
           onTouchEnd={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) el.style.transform = "scale(1)"; }}
           >
-            {/* 60×60 squircle 아이콘 — 흰 배경, 이모티콘 꽉 채움 */}
-            <div className="qm-icon" style={{
-              width: 60, height: 60,
-              borderRadius: 14,
-              background: "#FFFFFF",
-              boxShadow: `0 2px 8px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06)`,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 36,
-              transition: "transform 0.12s ease",
-              flexShrink: 0,
-            }}>
-              {item.emoji}
-            </div>
+            {/* 60×60 squircle — SVG 아이콘 꽉 채움 */}
+            {(() => {
+              const IconComp = QM_ICON_MAP[item.icon];
+              return (
+                <div className="qm-icon" style={{
+                  width: 60, height: 60,
+                  borderRadius: 14,
+                  background: item.color,
+                  boxShadow: `0 3px 10px ${item.color}55`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  transition: "transform 0.12s ease",
+                  flexShrink: 0,
+                }}>
+                  {IconComp && <IconComp size={30} color="#fff" strokeWidth={1.8} />}
+                </div>
+              );
+            })()}
             {/* 라벨 */}
             <span style={{
               fontFamily: "-apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif",
@@ -957,35 +981,35 @@ function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number
           {lang === "ko" ? "전체 보기 →" : "See all →"}
         </button>
       </div>
-      {/* 2열 그리드 — 여유있고 읽기 편하게 */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12,
+      {/* 2열 그리드 — 카드 간격 넓게, 내부는 꽉 차게 */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16,
         padding: "0 16px" }}>
         {SETTLE_STEPS.map((step, i) => (
           <button key={i} onClick={() => onNavigate?.(1)} style={{
-            background: "#FFFFFF", borderRadius: 14, padding: "14px 14px",
-            display: "flex", flexDirection: "row", alignItems: "center", gap: 12,
+            background: "#FFFFFF", borderRadius: 14, padding: "12px 10px",
+            display: "flex", flexDirection: "row", alignItems: "center", gap: 10,
             border: "none",
             boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
             cursor: "pointer", textAlign: "left",
           }}>
             <div style={{
-              width: 44, height: 44, borderRadius: 12, background: step.color,
+              width: 40, height: 40, borderRadius: 11, background: step.color,
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 22, flexShrink: 0,
+              fontSize: 20, flexShrink: 0,
             }}>
               {step.emoji}
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{
                 fontFamily: "-apple-system, 'Noto Sans KR', sans-serif",
-                fontWeight: 700, fontSize: 13,
-                color: "#1B2A4A", marginBottom: 3 }}>
+                fontWeight: 700, fontSize: 12,
+                color: "#1B2A4A", marginBottom: 2 }}>
                 {lang === "ko" ? step.titleKo : step.titleEn}
               </div>
               <div style={{
                 fontFamily: "-apple-system, sans-serif",
-                fontSize: 11, color: "#64748B",
-                lineHeight: 1.5, whiteSpace: "pre-line" }}>
+                fontSize: 10, color: "#64748B",
+                lineHeight: 1.4, whiteSpace: "pre-line" }}>
                 {lang === "ko" ? step.descKo : step.descEn}
               </div>
             </div>
