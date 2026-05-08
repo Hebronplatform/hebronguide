@@ -2119,28 +2119,28 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
 
   const month1Ko = [
     { title: "WA 운전면허 취득", desc: "필기시험(영어/한국어 선택) → 도로주행시험. Everett·Bellevue DOL 권장 (대기 적음)" },
-    { title: "건강보험 등록", desc: "직장 보험 없으면 Washington Apple Health (Medicaid) 또는 WA Healthplanfinder 마켓플레이스" },
+    { title: "건강보험 등록", desc: "직장 보험 없으면 Washington Apple Health (Medicaid) 또는 WA Healthplanfinder 마켓플레이스 | 🔗 wahealthplanfinder.org" },
     { title: "자녀 학교 등록", desc: "해당 학군 거주 증명 필수 (임대 계약서). 공립학교 무료, 영어 ESL 지원" },
-    { title: "중고차 구매 고려", desc: "대중교통 제한적 → 차량 필수. CARFAX 확인, 한인 딜러 활용 가능" },
+    { title: "중고차 구매 고려", desc: "대중교통 제한적 → 차량 필수. CARFAX 확인, 한인 딜러 활용 가능 | 🔗 carfax.com" },
     { title: "우편함 주소 확보", desc: "영구 주소 없으면 UPS Store 사서함 대안. 모든 행정 서류에 필요" },
   ];
   const month1En = [
     { title: "Get WA Driver License", desc: "Written test (English or Korean) → road test. Everett or Bellevue DOL recommended (shorter wait)" },
-    { title: "Enroll in health insurance", desc: "No employer plan? Try Washington Apple Health (Medicaid) or WA Healthplanfinder marketplace" },
+    { title: "Enroll in health insurance", desc: "No employer plan? Try Washington Apple Health (Medicaid) or WA Healthplanfinder marketplace | 🔗 wahealthplanfinder.org" },
     { title: "Enroll children in school", desc: "Proof of residency required (lease agreement). Public school is free; ESL support available" },
-    { title: "Consider buying a used car", desc: "Public transit is limited → car is essential. Check CARFAX; Korean dealers can help" },
+    { title: "Consider buying a used car", desc: "Public transit is limited → car is essential. Check CARFAX; Korean dealers can help | 🔗 carfax.com" },
     { title: "Secure a mailing address", desc: "No permanent address? Use UPS Store mailbox. Required for all government correspondence" },
   ];
 
   const month3Ko = [
-    { title: "신용카드 빌드 시작", desc: "Secured Card (Capital One, Discover it) 발급 → 6개월 후 일반 카드로 업그레이드" },
+    { title: "신용카드 빌드 시작", desc: "Secured Card (Capital One, Discover it) 발급 → 6개월 후 일반 카드로 업그레이드 | 🔗 capitalone.com" },
     { title: "세금 ID (ITIN) 신청", desc: "SSN 없는 비자 소지자. IRS Form W-7 작성. 한인 CPA 도움 권장" },
     { title: "비자 상태·기간 재확인", desc: "I-94 만료일 체크 (cbp.dhs.gov). 연장·전환 필요시 이민 변호사 상담" },
     { title: "장기 렌탈 계약", desc: "신용 이력 부족 → 더 큰 보증금 또는 한인 집주인 우선 탐색" },
     { title: "세금신고 준비 (연말)", desc: "한국 소득 있으면 FBAR/FATCA 申告 필요. 한인 회계사 상담 필수" },
   ];
   const month3En = [
-    { title: "Start building credit", desc: "Apply for Secured Card (Capital One, Discover it) → upgrade to regular card after 6 months" },
+    { title: "Start building credit", desc: "Apply for Secured Card (Capital One, Discover it) → upgrade to regular card after 6 months | 🔗 capitalone.com" },
     { title: "Apply for ITIN", desc: "For non-SSN visa holders. File IRS Form W-7. Korean CPA help recommended" },
     { title: "Recheck visa status & expiry", desc: "Check I-94 at cbp.dhs.gov. Consult immigration attorney for extension/change" },
     { title: "Sign long-term lease", desc: "Limited credit? Offer larger deposit or look for Korean landlords first" },
@@ -2148,30 +2148,30 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   ];
 
   const adminKo = [
-    { title: "SSN 신청", desc: "사회보장청(SSA) 오피스 | 915 2nd Ave #3605, Seattle | 전화: 800-772-1213" },
-    { title: "WA 운전면허 (DOL)", desc: "Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave" },
-    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장" },
+    { title: "SSN 신청", desc: "사회보장청(SSA) 오피스 | 915 2nd Ave #3605, Seattle | 전화: 800-772-1213 | 🔗 ssa.gov" },
+    { title: "WA 운전면허 (DOL)", desc: "Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
+    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
     { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트: uscis.gov | Lynnwood 이민 변호사 다수 활동" },
     { title: "시민권 신청 (N-400)", desc: "영주권 5년 후 신청 가능 | 영어·시민권 시험 준비 클래스 교회에서 운영" },
   ];
   const adminEn = [
-    { title: "SSN Application", desc: "Social Security Office | 915 2nd Ave #3605, Seattle | Phone: 800-772-1213" },
-    { title: "WA Driver License (DOL)", desc: "Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave" },
-    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended" },
+    { title: "SSN Application", desc: "Social Security Office | 915 2nd Ave #3605, Seattle | Phone: 800-772-1213 | 🔗 ssa.gov" },
+    { title: "WA Driver License (DOL)", desc: "Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
+    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
     { title: "Green Card / Visa Renewal", desc: "USCIS official site: uscis.gov | Many immigration attorneys active in Lynnwood" },
     { title: "Citizenship (N-400)", desc: "Eligible 5 years after green card | English & civics prep classes at Korean churches" },
   ];
 
   const financeKo = [
-    { title: "Chase Total Checking", desc: "한인 커뮤니티 추천 1위. 전국 ATM 많음. $500 개설 보너스 이벤트 자주 있음" },
-    { title: "WA Federal Credit Union", desc: "시애틀 한인 선호 신협. 자동차 대출 금리 경쟁력 있음" },
+    { title: "Chase Total Checking", desc: "한인 커뮤니티 추천 1위. 전국 ATM 많음. $500 개설 보너스 이벤트 자주 있음 | 🔗 chase.com" },
+    { title: "WA Federal Credit Union", desc: "시애틀 한인 선호 신협. 자동차 대출 금리 경쟁력 있음 | 🔗 wafederal.com" },
     { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver / Freedom → 2년 후 Chase Sapphire 목표" },
     { title: "WA 세금 특이사항", desc: "주 소득세 없음 (No State Income Tax). 판매세(Sales Tax) 약 10.2% (시애틀)" },
     { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. Roth IRA는 영주권·시민권 이후 장기 투자" },
   ];
   const financeEn = [
-    { title: "Chase Total Checking", desc: "#1 in Korean community. Many ATMs nationwide. Frequent $500 opening bonus offers" },
-    { title: "WA Federal Credit Union", desc: "Korean community favorite. Competitive auto loan rates" },
+    { title: "Chase Total Checking", desc: "#1 in Korean community. Many ATMs nationwide. Frequent $500 opening bonus offers | 🔗 chase.com" },
+    { title: "WA Federal Credit Union", desc: "Korean community favorite. Competitive auto loan rates | 🔗 wafederal.com" },
     { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
     { title: "WA tax highlights", desc: "No State Income Tax. Sales Tax ~10.2% in Seattle" },
     { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. Roth IRA best started after green card/citizenship" },
@@ -2484,7 +2484,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         "  • 삶공부 (Life Studies) — 제자훈련\n" +
         "  • LIFE Worship — 주일 예배\n\n" +
         "✨ 이민자·유학생·새가족 환영\n" +
-        "🔗 국제가정교회사역원(IHM) 인증",
+        "🔗 gmcseattle.org",
       tags: ["가정교회", "SBC", "린우드"],
     },
   ] : [
@@ -2500,7 +2500,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         "  • Life Studies — Discipleship training\n" +
         "  • LIFE Worship — Sunday service\n\n" +
         "✨ Open to immigrants, international students & newcomers\n" +
-        "🔗 IHM (Intl House Church Ministry) certified",
+        "🔗 gmcseattle.org",
       tags: ["House Church", "SBC", "Lynnwood"],
     },
   ];
@@ -2800,30 +2800,30 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
   const accent = "#F87171";
 
   const medicalItems = lang === "ko" ? [
-    { emoji: "🏥", name: "닥터 김 클리닉 (한인 가정의학과)", nameEn: "Korean Family Medicine — Lynnwood", desc: "한국어 진료 가능. 📍 Lynnwood | 📞 (425) 744-9200", tags: ["가정의학", "한국어", "린우드"] },
-    { emoji: "🏥", name: "스웨디시 메디컬 센터", nameEn: "Swedish Medical Center — Capitol Hill", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | 한국어 통역 서비스 ✅ | 응급실 포함 전문 진료", tags: ["종합병원", "시애틀", "통역"] },
-    { emoji: "🏥", name: "UW 메디컬 센터", nameEn: "UW Medical Center", desc: "📍 1959 NE Pacific St, Seattle | 📞 (206) 598-3300 | 한국어 통역 ✅ | 워싱턴주 최대 학술병원", tags: ["대학병원", "시애틀", "통역"] },
+    { emoji: "🏥", name: "닥터 김 클리닉 (한인 가정의학과)", nameEn: "Korean Family Medicine — Lynnwood", desc: "한국어 진료 가능. 📍 Lynnwood | 📞 (425) 744-9200 | 🔗 yelp.com/search?find_desc=Korean+doctor+lynnwood", tags: ["가정의학", "한국어", "린우드"] },
+    { emoji: "🏥", name: "스웨디시 메디컬 센터", nameEn: "Swedish Medical Center — Capitol Hill", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | 한국어 통역 서비스 ✅ | 응급실 포함 전문 진료 | 🔗 swedish.org", tags: ["종합병원", "시애틀", "통역"] },
+    { emoji: "🏥", name: "UW 메디컬 센터", nameEn: "UW Medical Center", desc: "📍 1959 NE Pacific St, Seattle | 📞 (206) 598-3300 | 한국어 통역 ✅ | 워싱턴주 최대 학술병원 | 🔗 uwmedicine.org", tags: ["대학병원", "시애틀", "통역"] },
     { emoji: "🦷", name: "켄트 임플란트 치과", nameEn: "Kent Implant Dental", desc: "한인 치과. 📍 306 Washington Ave S, Kent | 📞 (253) 981-3816 ✅ | 임플란트 전문", tags: ["치과", "켄트", "임플란트"] },
     { emoji: "🦷", name: "린우드 한인 치과 (다수)", nameEn: "Lynnwood Korean Dentists", desc: "린우드 지역 한인 치과 다수 운영. kSeattle·WowSeattle 업소록 참조 | 🔗 kseattle.com", tags: ["치과", "린우드", "한국어"] },
-    { emoji: "🧠", name: "ACRS 정신건강 (한국어 상담사)", nameEn: "Asian Counseling & Referral Service", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | 한국어 상담사 상주 ✅ | 슬라이딩 스케일 요금", tags: ["정신건강", "한국어", "상담"] },
+    { emoji: "🧠", name: "ACRS 정신건강 (한국어 상담사)", nameEn: "Asian Counseling & Referral Service", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | 한국어 상담사 상주 ✅ | 슬라이딩 스케일 요금 | 🔗 acrs.org", tags: ["정신건강", "한국어", "상담"] },
     { emoji: "🆘", name: "위기 상담 핫라인 (24시간)", nameEn: "Crisis Line 24/7", desc: "📞 866-427-4747 (24시간) | 한국어 통역 가능 | 정신건강·자살 예방 전문", tags: ["위기상담", "24시간", "무료"] },
     { emoji: "🚨", name: "응급실 — Swedish First Hill", nameEn: "Emergency Room — Swedish First Hill", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | 시애틀 중심부 응급실. 한국어 통역 요청 가능", tags: ["응급실", "응급", "시애틀"] },
-    { emoji: "📞", name: "한국어 통역 서비스 (의료)", nameEn: "Korean Medical Interpreter", desc: "언어 라인 (Language Line): 📞 1-800-752-6096 | 병원·클리닉 방문 전 통역 예약 가능", tags: ["통역", "의료", "무료"] },
+    { emoji: "📞", name: "한국어 통역 서비스 (의료)", nameEn: "Korean Medical Interpreter", desc: "언어 라인 (Language Line): 📞 1-800-752-6096 | 병원·클리닉 방문 전 통역 예약 가능 | 🔗 languageline.com", tags: ["통역", "의료", "무료"] },
     { emoji: "🏛️", name: "킹카운티 공중보건소 ✅ 검증됨", nameEn: "King County Public Health", desc: "무료·저비용 의료, WIC 영양 프로그램, 예방접종. 📞 206-296-4600 | 🔗 kingcounty.gov/health", tags: ["공공의료", "무료", "WIC"] },
     { emoji: "🏥", name: "시애틀 무료 클리닉 ✅ 검증됨", nameEn: "Free Clinic of Greater Seattle", desc: "의료보험 없는 분을 위한 무료 의료 서비스. 📞 206-520-5000 | 🔗 freeclinic.net", tags: ["무료", "무보험", "의료"] },
     { emoji: "🏥", name: "헬스포인트 (슬라이딩 스케일) ✅ 검증됨", nameEn: "HealthPoint Community Health Center", desc: "소득 기반 할인 진료. 한국어 통역 가능. 📞 1-800-440-1561 | 🔗 healthpointchc.org", tags: ["슬라이딩스케일", "한국어", "저비용"] },
     { emoji: "🧠", name: "크라이시스 커넥션 (정신건강 24시간) ✅ 검증됨", nameEn: "Crisis Connections 24/7", desc: "정신건강 위기 24시간 무료. 한국어 통역 가능. 📞 866-427-4747 | 🔗 crisisconnections.org", tags: ["정신건강", "24시간", "무료"] },
     { emoji: "🧠", name: "NAMI 워싱턴 (정신건강 지원) ✅ 검증됨", nameEn: "NAMI Washington", desc: "정신건강 정보·지원·교육. 📞 800-782-9264 | 🔗 namiwa.org", tags: ["정신건강", "지원", "무료"] },
   ] : [
-    { emoji: "🏥", name: "Korean Family Medicine Clinic", nameEn: "닥터 김 클리닉 — Lynnwood", desc: "Korean-speaking physician. 📍 Lynnwood | 📞 (425) 744-9200", tags: ["Family Med", "Korean", "Lynnwood"] },
-    { emoji: "🏥", name: "Swedish Medical Center", nameEn: "스웨디시 메디컬 센터", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | Korean interpreter ✅ | Full service incl. ER", tags: ["Hospital", "Seattle", "Interpreter"] },
-    { emoji: "🏥", name: "UW Medical Center", nameEn: "UW 메디컬 센터", desc: "📍 1959 NE Pacific St, Seattle | 📞 (206) 598-3300 | Korean interpreter ✅ | WA's largest academic medical center", tags: ["Hospital", "Seattle", "Interpreter"] },
+    { emoji: "🏥", name: "Korean Family Medicine Clinic", nameEn: "닥터 김 클리닉 — Lynnwood", desc: "Korean-speaking physician. 📍 Lynnwood | 📞 (425) 744-9200 | 🔗 yelp.com/search?find_desc=Korean+doctor+lynnwood", tags: ["Family Med", "Korean", "Lynnwood"] },
+    { emoji: "🏥", name: "Swedish Medical Center", nameEn: "스웨디시 메디컬 센터", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | Korean interpreter ✅ | Full service incl. ER | 🔗 swedish.org", tags: ["Hospital", "Seattle", "Interpreter"] },
+    { emoji: "🏥", name: "UW Medical Center", nameEn: "UW 메디컬 센터", desc: "📍 1959 NE Pacific St, Seattle | 📞 (206) 598-3300 | Korean interpreter ✅ | WA's largest academic medical center | 🔗 uwmedicine.org", tags: ["Hospital", "Seattle", "Interpreter"] },
     { emoji: "🦷", name: "Kent Implant Dental", nameEn: "켄트 임플란트 치과", desc: "Korean dental clinic. 📍 306 Washington Ave S, Kent | 📞 (253) 981-3816 ✅ | Implant specialist", tags: ["Dental", "Kent", "Implant"] },
     { emoji: "🦷", name: "Lynnwood Korean Dentists", nameEn: "린우드 한인 치과", desc: "Multiple Korean dental clinics in Lynnwood. See kSeattle & WowSeattle directory | 🔗 kseattle.com", tags: ["Dental", "Lynnwood", "Korean"] },
-    { emoji: "🧠", name: "ACRS Mental Health (Korean counselors)", nameEn: "Asian Counseling & Referral Service", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | Korean-speaking counselors ✅ | Sliding scale fees", tags: ["Mental Health", "Korean", "Counseling"] },
+    { emoji: "🧠", name: "ACRS Mental Health (Korean counselors)", nameEn: "Asian Counseling & Referral Service", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | Korean-speaking counselors ✅ | Sliding scale fees | 🔗 acrs.org", tags: ["Mental Health", "Korean", "Counseling"] },
     { emoji: "🆘", name: "Crisis Line 24/7", nameEn: "위기 상담 핫라인", desc: "📞 866-427-4747 (24/7) | Korean interpreter available | Mental health & suicide prevention", tags: ["Crisis", "24/7", "Free"] },
     { emoji: "🚨", name: "Emergency Room — Swedish First Hill", nameEn: "응급실 — Swedish First Hill", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | Central Seattle ER. Korean interpreter on request", tags: ["ER", "Emergency", "Seattle"] },
-    { emoji: "📞", name: "Korean Medical Interpreter Line", nameEn: "한국어 의료 통역", desc: "Language Line: 📞 1-800-752-6096 | Pre-book interpreter for clinic & hospital visits", tags: ["Interpreter", "Medical", "Free"] },
+    { emoji: "📞", name: "Korean Medical Interpreter Line", nameEn: "한국어 의료 통역", desc: "Language Line: 📞 1-800-752-6096 | Pre-book interpreter for clinic & hospital visits | 🔗 languageline.com", tags: ["Interpreter", "Medical", "Free"] },
     { emoji: "🏛️", name: "King County Public Health ✅ Verified", nameEn: "킹카운티 공중보건소", desc: "Free/low-cost healthcare, WIC nutrition, immunizations. 📞 206-296-4600 | 🔗 kingcounty.gov/health", tags: ["Public Health", "Free", "WIC"] },
     { emoji: "🏥", name: "Free Clinic of Greater Seattle ✅ Verified", nameEn: "시애틀 무료 클리닉", desc: "Free medical care for uninsured residents. 📞 206-520-5000 | 🔗 freeclinic.net", tags: ["Free", "Uninsured", "Medical"] },
     { emoji: "🏥", name: "HealthPoint Community Health Center ✅ Verified", nameEn: "헬스포인트", desc: "Sliding scale fees based on income. Korean interpreter available. 📞 1-800-440-1561 | 🔗 healthpointchc.org", tags: ["Sliding Scale", "Korean", "Low-cost"] },
@@ -2836,7 +2836,7 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
     { emoji: "🏛️", name: lang === "ko" ? "시애틀 한인회" : "Korean Association of Seattle", nameEn: "Korean Association", desc: lang === "ko" ? "공식 한인 단체. 각종 행사·지원 사업 운영. 전화: (206) 323-5050" : "Official Korean community organization. Events & support programs. Tel: (206) 323-5050", tags: ["공식", "한인회", "이벤트"] },
     { emoji: "🏴", name: lang === "ko" ? "주 시애틀 대한민국 총영사관" : "Korean Consulate General Seattle", nameEn: "Korean Consulate", desc: lang === "ko" ? "여권·공증·사증. 📍 115 W Mercer St, Seattle | 📞 (206) 441-1011 | 🔗 overseas.mofa.go.kr/us-seattle-ko" : "Passport, notary & visa services. 📍 115 W Mercer St, Seattle | 📞 (206) 441-1011 | 🔗 overseas.mofa.go.kr/us-seattle-ko", tags: ["영사관", "여권", "공증"] },
     { emoji: "📰", name: lang === "ko" ? "미주 한국일보 시애틀판" : "Korea Times Seattle", nameEn: "Korean Newspaper", desc: lang === "ko" ? "시애틀 한인 지역 소식·구인광고·부동산·커뮤니티 정보" : "Seattle Korean community news, job listings, real estate & community information", tags: ["신문", "뉴스", "정보"] },
-    { emoji: "👩‍💻", name: lang === "ko" ? "네이버 카페 — 시애틀한인생활" : "Naver Café — Seattle Korean Life", nameEn: "Naver Café", desc: lang === "ko" ? "정착 경험담·질문·정보 공유. 검색: 네이버 '시애틀한인생활'" : "Settlement experiences, Q&A & info sharing. Search: Naver '시애틀한인생활'", tags: ["네이버", "정보", "경험담"] },
+    { emoji: "👩‍💻", name: lang === "ko" ? "네이버 카페 — 시애틀한인생활" : "Naver Café — Seattle Korean Life", nameEn: "Naver Café", desc: lang === "ko" ? "정착 경험담·질문·정보 공유. 검색: 네이버 '시애틀한인생활' | 🔗 cafe.naver.com/seattlekorean" : "Settlement experiences, Q&A & info sharing. Search: Naver '시애틀한인생활' | 🔗 cafe.naver.com/seattlekorean", tags: ["네이버", "정보", "경험담"] },
     { emoji: "📞", name: lang === "ko" ? "킹카운티 2-1-1 ✅ 검증됨" : "King County 2-1-1 ✅ Verified", nameEn: "2-1-1 Free Services Hotline", desc: lang === "ko" ? "전화 211 — 식품·주거·법률·의료 무료 서비스 연결. 한국어 통역 가능. 지금 바로 전화하세요!" : "Dial 211 — connects to ALL free services (food, housing, legal, medical). Korean interpreter available.", tags: ["211", "무료연결", "한국어"] },
     { emoji: "🏛️", name: lang === "ko" ? "킹카운티 주거청 ✅ 검증됨" : "King County Housing Authority ✅ Verified", nameEn: "KCHA Affordable Housing", desc: lang === "ko" ? "저렴한 주거 대기자 명단. 📞 206-574-1100 | 🔗 kcha.org" : "Affordable housing waiting list. 📞 206-574-1100 | 🔗 kcha.org", tags: ["주거", "저렴", "공공"] },
   ];
@@ -3122,8 +3122,8 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                 tags: lang === "ko" ? ["도서관", "무료ESL", "LinkedIn Learning"] : ["Library", "Free ESL", "LinkedIn"] },
               { emoji: "🌍", name: lang === "ko" ? "다민족 커뮤니티 연결" : "Multicultural Community Connections",
                 desc: lang === "ko"
-                  ? "Korean American으로서 다양한 커뮤니티와 연결!\n• 중국계: Asia Pacific Cultural Center\n• 히스패닉: El Centro de la Raza (206) 957-4610\n• 필리핀계: Filipino Community of Seattle (206) 722-9372\n• 인도계: India Association of Western WA\n\n다민족 커뮤니티 연결 = 더 넓은 취업 네트워크 + 다양한 문화 경험"
-                  : "Connect across communities as Korean Americans!\n• Chinese-American: Asia Pacific Cultural Center\n• Hispanic: El Centro de la Raza (206) 957-4610\n• Filipino: Filipino Community of Seattle (206) 722-9372\n• Indian: India Association of Western WA\n\nCross-community = broader job network + richer cultural life",
+                  ? "Korean American으로서 다양한 커뮤니티와 연결!\n• 중국계: Asia Pacific Cultural Center 🔗 tacomaacc.org\n• 히스패닉: El Centro de la Raza (206) 957-4610\n• 필리핀계: Filipino Community of Seattle (206) 722-9372 🔗 fcswseattle.org\n• 인도계: India Association of Western WA 🔗 iawwa.org\n\n다민족 커뮤니티 연결 = 더 넓은 취업 네트워크 + 다양한 문화 경험"
+                  : "Connect across communities as Korean Americans!\n• Chinese-American: Asia Pacific Cultural Center 🔗 tacomaacc.org\n• Hispanic: El Centro de la Raza (206) 957-4610\n• Filipino: Filipino Community of Seattle (206) 722-9372 🔗 fcswseattle.org\n• Indian: India Association of Western WA 🔗 iawwa.org\n\nCross-community = broader job network + richer cultural life",
                 tags: lang === "ko" ? ["다민족", "커뮤니티", "교류"] : ["Multicultural", "Community", "Connection"] },
               { emoji: "🤝", name: lang === "ko" ? "지역사회 봉사·참여" : "Community Service & Volunteering",
                 desc: lang === "ko"
@@ -3132,8 +3132,8 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                 tags: lang === "ko" ? ["봉사", "커리어", "영주권"] : ["Volunteer", "Career", "Green Card"] },
               { emoji: "🏛️", name: lang === "ko" ? "미국 공공 혜택 — 모르면 손해" : "US Public Benefits — Don't Miss Out",
                 desc: lang === "ko"
-                  ? "영주권자·시민권자가 누릴 수 있는 공공자원:\n• WIC: 임산부·5세 미만 자녀 무료 식품 📞 206-296-4600\n• SNAP: 식품 지원 → dshs.wa.gov/benefits\n• WA Apple Health: 저소득 의료보험 무료\n• LIHEAP: 겨울 난방비 지원\n• WSHFC: 첫 집 구매자 지원 프로그램\n\n💡 합법 체류자도 일부 혜택 가능. dshs.wa.gov 확인!"
-                  : "Public benefits for green card holders & citizens:\n• WIC: free food for pregnant women & children under 5. 📞 206-296-4600\n• SNAP: food assistance → dshs.wa.gov/benefits\n• WA Apple Health: free health insurance (low-income)\n• LIHEAP: winter heating assistance\n• WSHFC: first-time homebuyer programs\n\n💡 Legal residents may qualify. Check dshs.wa.gov!",
+                  ? "영주권자·시민권자가 누릴 수 있는 공공자원:\n• WIC: 임산부·5세 미만 자녀 무료 식품 📞 206-296-4600\n• SNAP: 식품 지원 → dshs.wa.gov/benefits\n• WA Apple Health: 저소득 의료보험 무료\n• LIHEAP: 겨울 난방비 지원\n• WSHFC: 첫 집 구매자 지원 프로그램 🔗 wshfc.org\n\n💡 합법 체류자도 일부 혜택 가능. dshs.wa.gov 확인!"
+                  : "Public benefits for green card holders & citizens:\n• WIC: free food for pregnant women & children under 5. 📞 206-296-4600\n• SNAP: food assistance → dshs.wa.gov/benefits\n• WA Apple Health: free health insurance (low-income)\n• LIHEAP: winter heating assistance\n• WSHFC: first-time homebuyer programs 🔗 wshfc.org\n\n💡 Legal residents may qualify. Check dshs.wa.gov!",
                 tags: lang === "ko" ? ["공공혜택", "WIC", "SNAP"] : ["Public Benefits", "WIC", "SNAP"] },
               { emoji: "🗺️", name: lang === "ko" ? "시애틀 한인 문화 행사 캘린더" : "Seattle Korean Cultural Events",
                 desc: lang === "ko"
@@ -3194,8 +3194,8 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
   const smallBiz = [
     { emoji: "🍽️", name: "한인 자영업 가이드", nameEn: "Korean Small Business Guide",
       desc: lang === "ko"
-        ? "린우드·페더럴웨이 중심. 진입 가능 업종: 한식당·BBQ·치킨, 미용실·네일, 세탁소, 편의점, 한인 부동산·보험, 한국 식품 유통. 초기 자본 $50K-$150K. 한인 상공회의소 멘토링 활용"
-        : "Lynnwood & Federal Way. Entry-possible: Korean restaurants, hair/nail salons, dry cleaning, convenience stores, real estate, insurance, food import. Capital $50K-$150K. Korean Chamber mentoring",
+        ? "린우드·페더럴웨이 중심. 진입 가능 업종: 한식당·BBQ·치킨, 미용실·네일, 세탁소, 편의점, 한인 부동산·보험, 한국 식품 유통. 초기 자본 $50K-$150K. 한인 상공회의소 멘토링 활용 | 🔗 kachamber.com"
+        : "Lynnwood & Federal Way. Entry-possible: Korean restaurants, hair/nail salons, dry cleaning, convenience stores, real estate, insurance, food import. Capital $50K-$150K. Korean Chamber mentoring | 🔗 kachamber.com",
       tags: ["자영업", "창업", "린우드"] },
   ];
 
@@ -3207,8 +3207,8 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
       tags: ["H-1B", "비자", "영주권"] },
     { emoji: "💡", name: "한인 취업 네트워크", nameEn: "Korean Job Networks",
       desc: lang === "ko"
-        ? "• KAA (Korean American Association) — Amazon 내 한인 네트워크\n• KABA — 비즈니스 네트워크\n• UW·시애틀U 한인 동문 네트워크\n• LinkedIn 프로필 최적화 필수\n• LeetCode 코딩 인터뷰 준비 (빅테크)\n• 교회 소그룹 — 의외로 강력한 채용 연결"
-        : "• KAA — Korean network inside Amazon\n• KABA — Business network\n• UW/Seattle U Korean alumni\n• LinkedIn profile optimization essential\n• LeetCode coding interview prep (Big Tech)\n• Church small groups — powerful job connections",
+        ? "• KAA (Korean American Association) — Amazon 내 한인 네트워크\n• KABA — 비즈니스 네트워크\n• UW·시애틀U 한인 동문 네트워크\n• LinkedIn 프로필 최적화 필수 🔗 linkedin.com\n• LeetCode 코딩 인터뷰 준비 (빅테크) 🔗 leetcode.com\n• 교회 소그룹 — 의외로 강력한 채용 연결"
+        : "• KAA — Korean network inside Amazon\n• KABA — Business network\n• UW/Seattle U Korean alumni\n• LinkedIn profile optimization essential 🔗 linkedin.com\n• LeetCode coding interview prep (Big Tech) 🔗 leetcode.com\n• Church small groups — powerful job connections",
       tags: ["네트워크", "LinkedIn", "KAA"] },
   ];
 
@@ -3389,8 +3389,8 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       tags: ["무료", "이중학점", "11-12학년"] },
     { emoji: "📝", name: "SAT·ACT 준비 센터 (광역 시애틀)", nameEn: "SAT/ACT Prep — Greater Seattle",
       desc: lang === "ko"
-        ? "📍 한인 밀집 지역 주요 학원:\n• Score At The Top (벨뷰) — SAT/ACT 한국어 강의 가능\n• Ivy Way Academy (벨뷰·시애틀) — 한인 강사 다수, 대입 컨설팅 포함\n• Princeton Review (온라인+오프라인) — 표준화 시험 최강\n• Khan Academy — 무료 SAT 공식 연습 (College Board 협력)\n\n🎯 목표 점수 가이드:\nUW 합격선 SAT ~1200-1400 | CS전공 1400+\nBellevue College 입학 최소 요건 없음 (오픈 어드미션)"
-        : "📍 Korean tutoring centers in Greater Seattle:\n• Score At The Top (Bellevue) — Korean-speaking instructors available\n• Ivy Way Academy (Bellevue/Seattle) — Korean instructors, college consulting\n• Princeton Review — top SAT/ACT standard prep\n• Khan Academy — free official SAT practice (College Board partner)\n\n🎯 Target scores:\nUW SAT ~1200-1400 | CS major: 1400+\nBellevue College: open admission (no minimum)",
+        ? "📍 한인 밀집 지역 주요 학원:\n• Score At The Top (벨뷰) — SAT/ACT 한국어 강의 가능\n• Ivy Way Academy (벨뷰·시애틀) — 한인 강사 다수, 대입 컨설팅 포함\n• Princeton Review (온라인+오프라인) — 표준화 시험 최강\n• Khan Academy — 무료 SAT 공식 연습 (College Board 협력) 🔗 collegeboard.org\n\n🎯 목표 점수 가이드:\nUW 합격선 SAT ~1200-1400 | CS전공 1400+\nBellevue College 입학 최소 요건 없음 (오픈 어드미션)"
+        : "📍 Korean tutoring centers in Greater Seattle:\n• Score At The Top (Bellevue) — Korean-speaking instructors available\n• Ivy Way Academy (Bellevue/Seattle) — Korean instructors, college consulting\n• Princeton Review — top SAT/ACT standard prep\n• Khan Academy — free official SAT practice (College Board partner) 🔗 collegeboard.org\n\n🎯 Target scores:\nUW SAT ~1200-1400 | CS major: 1400+\nBellevue College: open admission (no minimum)",
       tags: ["SAT·ACT", "벨뷰학원", "무료Khan"] },
     { emoji: "🏫", name: "광역 시애틀 명문 고등학교 TOP", nameEn: "Top High Schools — Greater Seattle",
       desc: lang === "ko"
@@ -3399,13 +3399,13 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       tags: ["명문고교", "IB", "Niche Top"] },
     { emoji: "📋", name: "UW 합격 전략 (한인 학생 기준)", nameEn: "UW Admission Strategy for Korean Students",
       desc: lang === "ko"
-        ? "📊 UW 합격 통계 (2024 입학생 기준):\n• 합격률: 전체 48% / CS전공 15% (매우 경쟁)\n• 평균 GPA: 3.82 (비가중) / SAT: 1280-1480\n• 지원 마감: 11월 15일 (가을 입학)\n• 조기 전형(EA) 없음 — 단일 일반 전형\n\n💡 한인 학생 전략:\n① AP·IB 과정 최대한 이수 (특히 CS·수학·과학)\n② 리더십 활동 (학생회·DECA·로보틱스)\n③ UW 인터뷰 없음 — 에세이 품질이 핵심\n④ 비교과: 독창적 프로젝트 or 커뮤니티 기여\n🔗 admit.uw.edu"
-        : "📊 UW Admission Stats (Class of 2024):\n• Acceptance: 48% overall / CS major 15% (very competitive)\n• Avg unweighted GPA: 3.82 / SAT: 1280-1480\n• Deadline: November 15 (fall quarter)\n• No Early Action — single round admissions\n\n💡 Strategy for Korean students:\n① Max AP/IB courses (especially CS, math, science)\n② Leadership (student council, DECA, robotics)\n③ No UW interview — essays are critical\n④ Extracurriculars: unique projects or community service\n🔗 admit.uw.edu",
+        ? "📊 UW 합격 통계 (2024 입학생 기준):\n• 합격률: 전체 48% / CS전공 15% (매우 경쟁)\n• 평균 GPA: 3.82 (비가중) / SAT: 1280-1480\n• 지원 마감: 11월 15일 (가을 입학)\n• 조기 전형(EA) 없음 — 단일 일반 전형\n\n💡 한인 학생 전략:\n① AP·IB 과정 최대한 이수 (특히 CS·수학·과학)\n② 리더십 활동 (학생회·DECA·로보틱스)\n③ UW 인터뷰 없음 — 에세이 품질이 핵심\n④ 비교과: 독창적 프로젝트 or 커뮤니티 기여\n🔗 admit.uw.edu | Common App: 🔗 commonapp.org | 학교 검색: 🔗 niche.com"
+        : "📊 UW Admission Stats (Class of 2024):\n• Acceptance: 48% overall / CS major 15% (very competitive)\n• Avg unweighted GPA: 3.82 / SAT: 1280-1480\n• Deadline: November 15 (fall quarter)\n• No Early Action — single round admissions\n\n💡 Strategy for Korean students:\n① Max AP/IB courses (especially CS, math, science)\n② Leadership (student council, DECA, robotics)\n③ No UW interview — essays are critical\n④ Extracurriculars: unique projects or community service\n🔗 admit.uw.edu | Common App: 🔗 commonapp.org | School search: 🔗 niche.com",
       tags: ["UW전략", "합격률48%", "에세이"] },
     { emoji: "💰", name: "장학금·학비 지원 총정리", nameEn: "Financial Aid & Scholarships — Korean Students",
       desc: lang === "ko"
-        ? "💵 주요 장학금:\n• FAFSA (연방 지원) — 영주권·시민권자 필수 신청 (10월 1일 오픈)\n• Washington College Grant (WCG) — 주 소득 기준 최대 $15,000/년\n• UW Husky Promise — 가구소득 $75,000 이하 학비 전액 (주민)\n• Korean American Scholarship Foundation (KASF) — 한인 2세 전용 🔗 kasf.org\n• 한인회 장학금 — 지역 한인회·교회 수시 공고\n\n📝 국제학생: FAFSA 대상 아님 → 각 학교 국제학생 장학금 별도 신청 필수"
-        : "💵 Key scholarships:\n• FAFSA (federal aid) — mandatory for PR/citizens (opens Oct 1)\n• Washington College Grant (WCG) — up to $15,000/yr based on income\n• UW Husky Promise — full tuition for households under $75,000 (residents)\n• Korean American Scholarship Foundation (KASF) — for 2nd-gen Koreans 🔗 kasf.org\n• Korean community scholarships — check local Korean associations & churches\n\n📝 International students: not FAFSA eligible → apply for each school's international scholarships separately",
+        ? "💵 주요 장학금:\n• FAFSA (연방 지원) — 영주권·시민권자 필수 신청 (10월 1일 오픈) 🔗 studentaid.gov\n• Washington College Grant (WCG) — 주 소득 기준 최대 $15,000/년\n• UW Husky Promise — 가구소득 $75,000 이하 학비 전액 (주민)\n• Korean American Scholarship Foundation (KASF) — 한인 2세 전용 🔗 kasf.org\n• 한인회 장학금 — 지역 한인회·교회 수시 공고\n\n📝 국제학생: FAFSA 대상 아님 → 각 학교 국제학생 장학금 별도 신청 필수"
+        : "💵 Key scholarships:\n• FAFSA (federal aid) — mandatory for PR/citizens (opens Oct 1) 🔗 studentaid.gov\n• Washington College Grant (WCG) — up to $15,000/yr based on income\n• UW Husky Promise — full tuition for households under $75,000 (residents)\n• Korean American Scholarship Foundation (KASF) — for 2nd-gen Koreans 🔗 kasf.org\n• Korean community scholarships — check local Korean associations & churches\n\n📝 International students: not FAFSA eligible → apply for each school's international scholarships separately",
       tags: ["FAFSA", "KASF", "WCG장학금"] },
   ];
 
@@ -3423,13 +3423,13 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       tags: ["ESL", "어학", "무료강좌"] },
     { emoji: "👶", name: "유아·초등 교육 (프리스쿨·K-12)", nameEn: "Early Childhood & K-12 Resources",
       desc: lang === "ko"
-        ? "🍼 프리스쿨 (Pre-K) 옵션:\n• ECEAP (Washington State) — 소득 기준 무료 프리스쿨 🔗 dcyf.wa.gov\n• Head Start — 연방 무료 프리스쿨 (소득 기준)\n• 한인 교회 운영 주일학교 겸 주중 프리스쿨 다수\n\n📚 K-12 지원:\n• 한국어-영어 이중언어 교육: Seattle Public Schools 일부 학교 운영\n• 무료 방과후 튜터링: Boys & Girls Club, YMCA after-school\n• 학교 급식 무료: 소득 기준 — USDA National School Lunch Program"
-        : "🍼 Pre-K options:\n• ECEAP (WA State) — free preschool by income 🔗 dcyf.wa.gov\n• Head Start — federal free preschool (income-based)\n• Several Korean churches operate weekday preschools\n\n📚 K-12 support:\n• Korean-English bilingual education: available in some Seattle Public Schools\n• Free after-school tutoring: Boys & Girls Club, YMCA\n• Free school meals: USDA National School Lunch Program (income-based)",
+        ? "🍼 프리스쿨 (Pre-K) 옵션:\n• ECEAP (Washington State) — 소득 기준 무료 프리스쿨 🔗 dcyf.wa.gov\n• Head Start — 연방 무료 프리스쿨 (소득 기준) 🔗 acf.hhs.gov/ohs\n• 한인 교회 운영 주일학교 겸 주중 프리스쿨 다수\n\n📚 K-12 지원:\n• 한국어-영어 이중언어 교육: Seattle Public Schools 일부 학교 운영\n• 무료 방과후 튜터링: Boys & Girls Club 🔗 bgcs.org | YMCA 🔗 seattleymca.org\n• 학교 급식 무료: 소득 기준 — USDA National School Lunch Program"
+        : "🍼 Pre-K options:\n• ECEAP (WA State) — free preschool by income 🔗 dcyf.wa.gov\n• Head Start — federal free preschool (income-based) 🔗 acf.hhs.gov/ohs\n• Several Korean churches operate weekday preschools\n\n📚 K-12 support:\n• Korean-English bilingual education: available in some Seattle Public Schools\n• Free after-school tutoring: Boys & Girls Club 🔗 bgcs.org | YMCA 🔗 seattleymca.org\n• Free school meals: USDA National School Lunch Program (income-based)",
       tags: ["프리스쿨", "무료K-12", "이중언어"] },
     { emoji: "💼", name: "성인 교육·직업 훈련", nameEn: "Adult Education & Vocational Training",
       desc: lang === "ko"
-        ? "✅ 성인 한인 이민자를 위한 교육 자원:\n• WorkSource WA — 무료 직업 훈련·이력서 코칭·취업 연결 🔗 worksourcewa.com\n• Goodwill Job Training — 무료 직업 기술 훈련 (컴퓨터·소매·의료)\n• Edmonds College 평생교육 — 저렴한 성인 직업 과정\n• ACRS (Asian Counseling & Referral Service) — 한국어 지원 취업 서비스\n• KCSC (한인생활상담소) — 한국어 취업 상담·이력서 도움 🔗 kcsc.org"
-        : "✅ Educational resources for adult Korean immigrants:\n• WorkSource WA — free job training, resume coaching & job placement 🔗 worksourcewa.com\n• Goodwill Job Training — free vocational skills (computer, retail, medical)\n• Edmonds College Continuing Education — affordable adult vocational courses\n• ACRS — employment services with Korean language support\n• KCSC (Korean Community Service Center) — Korean-language job counseling 🔗 kcsc.org",
+        ? "✅ 성인 한인 이민자를 위한 교육 자원:\n• WorkSource WA — 무료 직업 훈련·이력서 코칭·취업 연결 🔗 worksourcewa.com\n• Goodwill Job Training — 무료 직업 기술 훈련 (컴퓨터·소매·의료) 🔗 goodwillwa.org\n• Edmonds College 평생교육 — 저렴한 성인 직업 과정\n• ACRS (Asian Counseling & Referral Service) — 한국어 지원 취업 서비스 🔗 acrs.org\n• KCSC (한인생활상담소) — 한국어 취업 상담·이력서 도움 🔗 kcsc-seattle.org"
+        : "✅ Educational resources for adult Korean immigrants:\n• WorkSource WA — free job training, resume coaching & job placement 🔗 worksourcewa.com\n• Goodwill Job Training — free vocational skills (computer, retail, medical) 🔗 goodwillwa.org\n• Edmonds College Continuing Education — affordable adult vocational courses\n• ACRS — employment services with Korean language support 🔗 acrs.org\n• KCSC (Korean Community Service Center) — Korean-language job counseling 🔗 kcsc-seattle.org",
       tags: ["성인교육", "직업훈련", "무료"] },
   ];
 
@@ -3540,13 +3540,13 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
   const transportPhone = [
     { emoji: "⛽", name: "교통·기름값", nameEn: "Transportation & Gas",
       desc: lang === "ko"
-        ? "🚗 WA주 기름값: $3.80-4.50/갤런 (2026년)\n🚌 Metro 버스: $2.75/회 (ORCA)\n🚇 Link Light Rail: $2.00-3.50 (거리별)\n🅿️ 시애틀 다운타운 주차: $3-8/시간\n💡 린우드 거주 시 대부분 차량 필요"
-        : "🚗 WA gas: $3.80-4.50/gallon (2026)\n🚌 Metro bus: $2.75/ride (ORCA)\n🚇 Link Light Rail: $2.00-3.50 (distance-based)\n🅿️ Downtown Seattle parking: $3-8/hr\n💡 Car almost essential if living in Lynnwood",
+        ? "🚗 WA주 기름값: $3.80-4.50/갤런 (2026년)\n🚌 Metro 버스: $2.75/회 (ORCA) 🔗 kingcounty.gov/metro\n🚇 Link Light Rail: $2.00-3.50 (거리별) 🔗 soundtransit.org\n🅿️ 시애틀 다운타운 주차: $3-8/시간\n💡 린우드 거주 시 대부분 차량 필요"
+        : "🚗 WA gas: $3.80-4.50/gallon (2026)\n🚌 Metro bus: $2.75/ride (ORCA) 🔗 kingcounty.gov/metro\n🚇 Link Light Rail: $2.00-3.50 (distance-based) 🔗 soundtransit.org\n🅿️ Downtown Seattle parking: $3-8/hr\n💡 Car almost essential if living in Lynnwood",
       tags: ["기름값", "주차", "교통비"] },
     { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
       desc: lang === "ko"
-        ? "📱 휴대폰:\n• T-Mobile Prepaid: $30/월 (무제한 문자+통화+5GB)\n• Mint Mobile: $15/월 (온라인 3개월 선불)\n• Verizon 가족 플랜: $40-55/회선\n\n🌐 인터넷:\n• Xfinity: $40-80/월\n• CenturyLink/Lumen: $50-65/월\n• 기가 인터넷: $70-100/월"
-        : "📱 Phone:\n• T-Mobile Prepaid: $30/mo (unlimited)\n• Mint Mobile: $15/mo (3-month prepaid)\n• Verizon family plan: $40-55/line\n\n🌐 Internet:\n• Xfinity: $40-80/mo\n• CenturyLink/Lumen: $50-65/mo\n• Gigabit internet: $70-100/mo",
+        ? "📱 휴대폰:\n• T-Mobile Prepaid: $30/월 (무제한 문자+통화+5GB) 🔗 t-mobile.com\n• Mint Mobile: $15/월 (온라인 3개월 선불) 🔗 mintmobile.com\n• AT&T: 🔗 att.com\n• Verizon 가족 플랜: $40-55/회선\n\n🌐 인터넷:\n• Xfinity: $40-80/월\n• CenturyLink/Lumen: $50-65/월\n• 기가 인터넷: $70-100/월"
+        : "📱 Phone:\n• T-Mobile Prepaid: $30/mo (unlimited) 🔗 t-mobile.com\n• Mint Mobile: $15/mo (3-month prepaid) 🔗 mintmobile.com\n• AT&T: 🔗 att.com\n• Verizon family plan: $40-55/line\n\n🌐 Internet:\n• Xfinity: $40-80/mo\n• CenturyLink/Lumen: $50-65/mo\n• Gigabit internet: $70-100/mo",
       tags: ["통신비", "인터넷", "휴대폰"] },
   ];
 
