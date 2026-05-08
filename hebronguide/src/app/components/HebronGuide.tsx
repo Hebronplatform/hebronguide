@@ -325,6 +325,267 @@ const TOP5_EXPLORE_SF: Top5Item[] = [
 ];
 
 /* ─────────────────────────────────────────
+   뉴욕 전용 데이터
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_NEWYORK: Top5Item[] = [
+  { rank: 1, emoji: "🍜", nameKo: "Kunjip Korean Restaurant — K-Town", nameEn: "Kunjip — Manhattan Koreatown",
+    address: "9 W 32nd St, New York NY 10001",
+    phone: "(212) 216-9487", hours: "24시간 영업",
+    rating: 4.1, ratingCount: "2000+",
+    why: "🍲 국물·한식\n맨해튼 한인타운 24시간 한식. 갈비탕·순두부·비빔밥. 한국 출장자·유학생 해장국 1순위. 뉴욕 한인타운 중심",
+    tip: "24시간 영업 — 야식·해장 모두 OK", website: "yelp.com/biz/kunjip-new-york" },
+  { rank: 2, emoji: "🥩", nameKo: "Jongro BBQ — K-Town", nameEn: "Jongro BBQ — Manhattan",
+    address: "22 W 32nd St 2nd Fl, New York NY 10001",
+    phone: "(212) 473-4700", hours: "매일 11am-1am",
+    rating: 4.0, ratingCount: "1800+",
+    why: "🥩 BBQ\n맨해튼 한인타운 대표 BBQ. 연기 없는 환기 시스템. 무제한 밑반찬. 뉴욕 직장인 회식 1순위",
+    tip: "2층 위치. 웨이팅 앱 등록 권장", website: "jongro-bbq.com" },
+  { rank: 3, emoji: "🍗", nameKo: "BonChon Chicken — 플러싱", nameEn: "BonChon Chicken — Flushing",
+    address: "40-10 Main St, Flushing NY 11354",
+    phone: "(718) 888-9700", hours: "매일 11am-11pm",
+    rating: 4.1, ratingCount: "900+",
+    why: "🍗 치킨\n한국식 2번 튀김 치킨. 바삭함 유지. 플러싱 한인타운 치맥 명소. 현지 한인 단골 많음",
+    tip: "플러싱 H-Mart 쇼핑 후 방문 추천", website: "bonchon.com" },
+  { rank: 4, emoji: "🥘", nameKo: "Pyeong Chang Tofu — 플러싱", nameEn: "Pyeong Chang Tofu House — Flushing",
+    address: "41-19 Union St, Flushing NY 11355",
+    phone: "(718) 539-8686", hours: "매일 10am-10pm",
+    rating: 4.3, ratingCount: "500+",
+    why: "🍲 국물·찌개\n플러싱 순두부 명가. 진한 육수·부드러운 두부. 해장국으로 최고. 반찬 정갈함",
+    tip: "점심 시간 웨이팅 있음. 평일 오전 방문 추천", website: "yelp.com/biz/pyeong-chang-tofu-house-flushing" },
+  { rank: 5, emoji: "☕", nameKo: "Paris Baguette — K-Town", nameEn: "Paris Baguette — Manhattan Koreatown",
+    address: "45 W 32nd St, New York NY 10001",
+    phone: "(212) 967-7900", hours: "매일 7am-10pm",
+    rating: 4.0, ratingCount: "400+",
+    why: "☕ 카페·베이커리\n한국식 베이커리·카페. 소금빵·크림빵·케이크. 맨해튼 한인타운 미팅 장소로 인기",
+    tip: "K-Town 중심부. 미팅·약속 장소로 최적", website: "parisbaguette.com" },
+];
+
+const TOP5_SETTLE_NEWYORK: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "뉴욕 한인회 (KANY)", nameEn: "Korean Association of New York",
+    address: "149 W 24th St 6th Fl, New York NY 10011",
+    phone: "(212) 807-0900", hours: "월-금 9am-5pm",
+    why: "뉴욕 최대 한인 커뮤니티 기관. 법률·취업·복지 연결. 한국어 서비스. 뉴욕 정착 첫 번째 방문지",
+    tip: "방문 전 전화 예약 권장", website: "kany.org" },
+  { rank: 2, emoji: "🏪", nameKo: "H-Mart 플러싱", nameEn: "H-Mart — Flushing Koreatown",
+    address: "136-20 Roosevelt Ave, Flushing NY 11354",
+    phone: "(718) 321-7628", hours: "매일 8am-10pm",
+    why: "뉴욕 최대 한인 마트. 플러싱 한인타운 중심. 한국 식품·반찬·생활용품 완비. 한인 커뮤니티 정보 게시판",
+    tip: "지하철 7호선 Flushing Main St역 도보 5분", website: "hmart.com" },
+  { rank: 3, emoji: "🚗", nameKo: "뉴욕 DMV — 운전면허", nameEn: "NY DMV — Driver License",
+    address: "11 Broadway, New York NY 10004",
+    phone: "(212) 645-5550", hours: "월-금 8:30am-4pm (예약 필수)",
+    why: "뉴욕은 지하철이 발달해 차 없어도 OK. 단 뉴저지·코네티컷 거주자는 해당 주 DMV 방문\n⚠️ 뉴욕시 내 운전은 주차비($30-80/일)·혼잡세($15) 감안",
+    tip: "🔗 dmv.ny.gov 예약 필수. 한국 면허 → 필기 면제 불가 (필기+실기 모두)", website: "dmv.ny.gov" },
+  { rank: 4, emoji: "🏥", nameKo: "CAMS (아시안 의료 서비스)", nameEn: "CAMS — Charles B. Wang Community Health Center",
+    address: "136-26 37th Ave, Flushing NY 11354",
+    phone: "(718) 886-1600", hours: "월-금 8am-5pm",
+    why: "플러싱 지역 아시안 커뮤니티 의료 센터. 한국어 통역 가능. 보험 없어도 슬라이딩 스케일 진료",
+    tip: "예약 우선. 플러싱 한인타운 인근", website: "cbwchc.org" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "주뉴욕 총영사관", nameEn: "Korean Consulate General — New York",
+    address: "460 Park Ave, New York NY 10022",
+    phone: "(646) 674-6000", hours: "월-금 9am-4pm (예약 필수)",
+    why: "여권·공증·재외국민 등록. 뉴욕·뉴저지·코네티컷·펜실베이니아 한인 담당",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/us-newyork-ko", website: "overseas.mofa.go.kr/us-newyork-ko" },
+];
+
+const TOP5_EXPLORE_NEWYORK: Top5Item[] = [
+  { rank: 1, emoji: "🗽", nameKo: "자유의 여신상 & 엘리스 섬", nameEn: "Statue of Liberty & Ellis Island",
+    address: "Liberty Island, New York NY 10004",
+    why: "미국 이민의 상징. 한인 이민자에게 특별한 의미. 엘리스 섬 이민 박물관 — 이민 역사 체험. 페리 왕복 $24",
+    tip: "statecruises.com 사전 예약 필수. 왕관 투어 최소 6개월 전 예약", website: "nps.gov/stli" },
+  { rank: 2, emoji: "🏙️", nameKo: "맨해튼 한인타운 (32nd St)", nameEn: "Manhattan Koreatown — 32nd Street",
+    address: "32nd St between Broadway & 5th Ave, New York NY 10001",
+    why: "뉴욕 한인 문화의 심장. 24시간 한식당·노래방·한국마트·스파 밀집. 한국 느낌 그대로",
+    tip: "지하철 N/Q/R/W 34th St-Herald Square역 도보 2분", website: "maps.google.com/?q=Koreatown+Manhattan+NYC" },
+  { rank: 3, emoji: "🌸", nameKo: "플러싱 한인타운 (퀸즈)", nameEn: "Flushing Koreatown — Queens",
+    address: "Main St & Roosevelt Ave, Flushing NY 11354",
+    why: "뉴욕 최대 한인·중국계 커뮤니티. H-Mart·한식당·한국 마트 밀집. 맨해튼보다 저렴하고 한국 느낌 진함",
+    tip: "지하철 7호선 종점 Flushing-Main St역. 주말 방문 추천", website: "maps.google.com/?q=Flushing+Koreatown+Queens" },
+  { rank: 4, emoji: "🎭", nameKo: "메트로폴리탄 미술관 (MET)", nameEn: "The Metropolitan Museum of Art",
+    address: "1000 5th Ave, New York NY 10028",
+    why: "세계 최대 미술관 중 하나. 한국관(Korea Gallery) 별도 운영. 권장 기부금 $30. 뉴욕 필수 코스",
+    tip: "뉴욕 거주자는 권장 기부금만 내면 됨 (무료 가능). 한국관 꼭 방문", website: "metmuseum.org" },
+  { rank: 5, emoji: "🌳", nameKo: "센트럴 파크", nameEn: "Central Park",
+    address: "Central Park, New York NY 10024",
+    why: "뉴욕의 허파. 843에이커 도심 공원. 한인 가족 주말 소풍·조깅·피크닉. 무료 입장",
+    tip: "주말 오전 한인 가족 모임 자주 열림. 자전거 대여 가능", website: "centralparknyc.org" },
+];
+
+/* ─────────────────────────────────────────
+   내쉬빌 전용 데이터
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_NASHVILLE: Top5Item[] = [
+  { rank: 1, emoji: "🥩", nameKo: "Honey B's Korean BBQ — 내쉬빌", nameEn: "Honey B's Korean BBQ — Nashville",
+    address: "2111 Gallatin Pike N, Madison TN 37115",
+    phone: "(615) 851-0041", hours: "화-일 11am-9pm (월 휴무)",
+    rating: 4.3, ratingCount: "300+",
+    why: "🥩 BBQ\n내쉬빌 한인 BBQ 1위. 갈비·삼겹살. 현지 한인 단골 다수. 테네시주 한인 커뮤니티 모임 장소",
+    tip: "월요일 휴무. 사전 예약 권장", website: "yelp.com/biz/honey-bs-korean-bbq-madison" },
+  { rank: 2, emoji: "🍜", nameKo: "Seoul Garden Korean Restaurant", nameEn: "Seoul Garden — Nashville",
+    address: "2155 Gallatin Pike N, Madison TN 37115",
+    phone: "(615) 852-1122", hours: "매일 11am-9:30pm",
+    rating: 4.1, ratingCount: "200+",
+    why: "🍲 국물·한식\n내쉬빌 오래된 한식당. 순두부·갈비탕·비빔밥. 한인 교민들의 '고향 밥집'. 가정식 느낌",
+    tip: "점심 세트 가성비 최고. 한국어 주문 가능", website: "yelp.com/biz/seoul-garden-madison" },
+  { rank: 3, emoji: "🍗", nameKo: "BonChon — 내쉬빌", nameEn: "BonChon — Nashville",
+    address: "2160 Hillsboro Village, Nashville TN 37212",
+    phone: "(615) 730-8111", hours: "매일 11am-10pm",
+    rating: 4.0, ratingCount: "400+",
+    why: "🍗 치킨\n내쉬빌 한국식 치킨 체인. 바삭한 2번 튀김. Hot Chicken의 도시에서 한국 치킨으로 승부",
+    tip: "내쉬빌 핫치킨 vs 한국치킨 비교해 보세요", website: "bonchon.com" },
+  { rank: 4, emoji: "🍱", nameKo: "조선각 (Josun Gak)", nameEn: "Josun Gak — Nashville",
+    address: "2153 Gallatin Pike N, Madison TN 37115",
+    phone: "(615) 855-0500", hours: "화-일 11am-9pm",
+    rating: 4.2, ratingCount: "150+",
+    why: "🍲 국물·한식\n매디슨 한인타운 정통 한식. 솥밥·된장찌개·나물 반찬. 전통 한국 분위기",
+    tip: "소규모 식당 — 웨이팅 있을 수 있음", website: "yelp.com/biz/josun-gak-nashville" },
+  { rank: 5, emoji: "☕", nameKo: "H-Mart 내쉬빌 푸드코트", nameEn: "H-Mart Nashville Food Court",
+    address: "545 Myatt Dr, Madison TN 37115",
+    phone: "(615) 800-6080", hours: "매일 9am-9pm",
+    rating: 4.0, ratingCount: "200+",
+    why: "☕ 카페·분식\n테네시주 최초 H-Mart 내 푸드코트. 떡볶이·순대·한국식 카페. 내쉬빌 한인의 쉼터",
+    tip: "H-Mart 쇼핑 후 필수 방문", website: "hmart.com" },
+];
+
+const TOP5_SETTLE_NASHVILLE: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "내쉬빌 한인회 (KAAN)", nameEn: "Korean Association of America — Nashville",
+    address: "545 Myatt Dr Ste 200, Madison TN 37115",
+    phone: "(615) 945-5500", hours: "월-금 9am-5pm",
+    why: "내쉬빌 한인 커뮤니티 허브. 정착 상담·법률 연결·한국어 서비스. 테네시주 한인 정착 첫 번째 방문지",
+    tip: "방문 전 전화 예약 권장", website: "kaannashville.org" },
+  { rank: 2, emoji: "🏪", nameKo: "H-Mart 매디슨 (테네시 최초)", nameEn: "H-Mart Madison — Tennessee's First",
+    address: "545 Myatt Dr, Madison TN 37115",
+    phone: "(615) 800-6080", hours: "매일 9am-9pm",
+    why: "테네시주 최초 H-Mart. 내쉬빌 한인 커뮤니티의 구심점. 한국 식품·생활용품 완비. 한인 공동체 네트워크 허브",
+    tip: "매디슨 지역 — 내쉬빌 북쪽 15분", website: "hmart.com" },
+  { rank: 3, emoji: "🚗", nameKo: "테네시 DDS — 운전면허", nameEn: "Tennessee DDS — Driver License",
+    address: "44 Vantage Way Ste 160, Nashville TN 37228",
+    phone: "(615) 251-5166", hours: "월-금 8am-4:30pm",
+    why: "테네시 이주 후 30일 내 면허 전환 의무 (다른 주보다 빠름!)\n⚠️ TN은 SSN 없어도 면허 신청 가능 (ITIN으로 가능)",
+    tip: "🔗 tn.gov/safety 온라인 예약. 한국 면허 → 필기 면제 가능 여부 확인 필요", website: "tn.gov/safety" },
+  { rank: 4, emoji: "🏥", nameKo: "Siloam Health — 이민자 의료", nameEn: "Siloam Health — Immigrant Medical",
+    address: "1014 Jefferson St, Nashville TN 37208",
+    phone: "(615) 322-0857", hours: "월-금 8am-5pm",
+    why: "보험 없는 이민자 전문 의료 기관. 한국어 통역 가능. 슬라이딩 스케일 요금. 내쉬빌 이민자 의료 1순위",
+    tip: "사전 예약 필수. 저소득 이민자 무료 진료 가능", website: "siloamhealth.org" },
+  { rank: 5, emoji: "⚖️", nameKo: "내쉬빌 이민 법률 서비스", nameEn: "Legal Aid Society — Nashville",
+    address: "300 Deaderick St Ste 1800, Nashville TN 37201",
+    phone: "(615) 244-6610", hours: "월-금 8am-4:30pm",
+    why: "테네시주 무료 법률 지원. 이민·주거·가족법. 한국어 통역 요청 가능. 저소득 이민자 우선",
+    tip: "CLEAR 핫라인: 1-800-342-1462 (무료)", website: "las.org" },
+];
+
+const TOP5_EXPLORE_NASHVILLE: Top5Item[] = [
+  { rank: 1, emoji: "🎵", nameKo: "내쉬빌 브로드웨이 & 뮤직 로우", nameEn: "Nashville Broadway & Music Row",
+    address: "Lower Broadway, Nashville TN 37201",
+    why: "컨트리 뮤직의 메카. 라이브 음악 바 100곳+. 무료 입장. 뮤직 로우 스튜디오 투어. 한인 가족 저녁 코스",
+    tip: "주차: Bridgestone Arena 주차장 ($15-20). 목요일 저녁부터 주말까지 가장 활기참", website: "visitmusiccity.com" },
+  { rank: 2, emoji: "🏛️", nameKo: "파르테논 신전 (센테니얼 공원)", nameEn: "Parthenon — Centennial Park",
+    address: "2600 West End Ave, Nashville TN 37203",
+    why: "그리스 파르테논 신전 실물 복제품. 세계 유일. 무료 공원. 내부 미술관 ($10). 한인 가족 사진 명소",
+    tip: "무료 입장 (공원). 내부 박물관 별도 $10. 주차 무료", website: "nashville.gov/parks/parthenon" },
+  { rank: 3, emoji: "🌊", nameKo: "허밋지 앤드류 잭슨 홈", nameEn: "The Hermitage — Andrew Jackson Home",
+    address: "4580 Rachel's Ln, Nashville TN 37076",
+    why: "미국 7대 대통령 앤드류 잭슨의 저택. 남부 역사·문화 체험. 아이들 역사 교육에 좋음",
+    tip: "입장료 $25 성인. 오디오 가이드 포함", website: "thehermitage.com" },
+  { rank: 4, emoji: "🌿", nameKo: "내쉬빌 한인 커뮤니티 파크", nameEn: "Shelby Bottoms Greenway — Korean Community",
+    address: "1900 Davidson St, Nashville TN 37206",
+    why: "내쉬빌 한인 가족 주말 모임 명소. 한강 분위기 산책로. 한인 교회 소풍·바비큐 자주 열림. 무료",
+    tip: "주말 오전 한인 조깅 모임 자주 있음. 주차 무료", website: "nashville.gov/parks/shelby-bottoms" },
+  { rank: 5, emoji: "🎢", nameKo: "오프리랜드 & 그랜드 올 오프리", nameEn: "Opryland & Grand Ole Opry",
+    address: "2800 Opryland Dr, Nashville TN 37214",
+    why: "내쉬빌 최대 명소. 그랜드 올 오프리 컨트리 뮤직 공연장. 오프리랜드 리조트 내 실내 가든 무료 입장",
+    tip: "오프리 공연 티켓 $45-150. 리조트 가든은 무료 관람 가능", website: "opry.com" },
+];
+
+/* ─────────────────────────────────────────
+   보스턴 전용 데이터
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_BOSTON: Top5Item[] = [
+  { rank: 1, emoji: "🥩", nameKo: "Koreana — 보스턴", nameEn: "Koreana Restaurant — Boston",
+    address: "154 Prospect St, Cambridge MA 02139",
+    phone: "(617) 576-8661", hours: "화-일 5pm-10pm (월 휴무)",
+    rating: 4.2, ratingCount: "600+",
+    why: "🥩 BBQ\n보스턴·케임브리지 한식 명가. 1993년 오픈. MIT·하버드 인근. 갈비·삼겹살·전골. 보스턴 한인 단골 1순위",
+    tip: "하버드 스퀘어 인근. 저녁만 영업. 예약 강력 권장", website: "koreanacambridge.com" },
+  { rank: 2, emoji: "🍜", nameKo: "Seoul Food Eatery — 올스턴", nameEn: "Seoul Food Eatery — Allston",
+    address: "90 Brighton Ave, Allston MA 02134",
+    phone: "(617) 208-4096", hours: "매일 11am-10pm",
+    rating: 4.3, ratingCount: "400+",
+    why: "🍲 국물·한식\n올스턴 한인타운 대표 식당. 떡볶이·부대찌개·비빔밥. 유학생 예산에 맞는 가성비. BU·하버드 학생 단골",
+    tip: "올스턴 한인 밀집 지역 중심. 가성비 최고", website: "yelp.com/biz/seoul-food-eatery-allston" },
+  { rank: 3, emoji: "🍗", nameKo: "BonChon — 보스턴", nameEn: "BonChon — Boston",
+    address: "25 School St, Boston MA 02108",
+    phone: "(617) 778-6268", hours: "매일 11am-10pm",
+    rating: 4.0, ratingCount: "700+",
+    why: "🍗 치킨\n보스턴 다운타운 한국 치킨. 바삭한 2번 튀김. 한인 유학생·직장인 인기 치맥 장소",
+    tip: "다운타운 크로싱 인근. 퇴근 후 치맥으로 최적", website: "bonchon.com" },
+  { rank: 4, emoji: "🥘", nameKo: "Buk Kyung — 올스턴", nameEn: "Buk Kyung Korean Restaurant — Allston",
+    address: "151 Brighton Ave, Allston MA 02134",
+    phone: "(617) 254-3100", hours: "매일 11am-11pm",
+    rating: 4.1, ratingCount: "350+",
+    why: "🍲 국물·한식\n올스턴 오래된 한식 맛집. 순두부·해장국·정식. 가정식 느낌. 보스턴 한인 유학생의 '엄마 밥 같은 맛'",
+    tip: "올스턴 한인 커뮤니티 중심. 점심 특선 추천", website: "yelp.com/biz/buk-kyung-allston" },
+  { rank: 5, emoji: "☕", nameKo: "H Mart Cafe — 올스턴", nameEn: "H Mart Food Court — Allston",
+    address: "35 Harvard Ave, Allston MA 02134",
+    phone: "(617) 254-0200", hours: "매일 8am-9pm",
+    rating: 4.0, ratingCount: "300+",
+    why: "☕ 카페·분식\nH-Mart 내 한국식 카페·푸드코트. 한국 분식·음료. 올스턴 한인 생활의 중심",
+    tip: "H-Mart 쇼핑 후 필수 방문. 주차 건물 내 유료", website: "hmart.com" },
+];
+
+const TOP5_SETTLE_BOSTON: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "보스턴 한인회 (KABI)", nameEn: "Korean Association of Boston Inc.",
+    address: "44 Harvard Ave, Allston MA 02134",
+    phone: "(617) 787-7686", hours: "월-금 9am-5pm",
+    why: "보스턴 한인 커뮤니티 허브. 법률·취업·정착 상담. 한국어 서비스. 올스턴·브라이튼 한인타운 중심",
+    tip: "방문 전 전화 예약 권장", website: "kabi.us" },
+  { rank: 2, emoji: "🏪", nameKo: "H-Mart 올스턴", nameEn: "H-Mart — Allston Korean Hub",
+    address: "35 Harvard Ave, Allston MA 02134",
+    phone: "(617) 254-0200", hours: "매일 8am-9pm",
+    why: "보스턴 한인타운 올스턴의 중심. 한국 식품·생활용품 완비. 한인 커뮤니티 정보 게시판. BU·하버드 유학생 1순위",
+    tip: "지하철 Green Line B Allston St역 도보 3분", website: "hmart.com" },
+  { rank: 3, emoji: "🚗", nameKo: "매사추세츠 RMV — 운전면허", nameEn: "Massachusetts RMV — Driver License",
+    address: "630 Washington St, Boston MA 02111",
+    phone: "(857) 368-8000", hours: "월-금 9am-5pm (예약 필수)",
+    why: "MA 이주 후 60일 내 면허 전환 의무. 한국 면허 소지자 → 필기 면제 불가 (필기+실기 응시)\n⚠️ MA는 필기 한국어 옵션 없음 (영어만)",
+    tip: "🔗 mass.gov/rmv 예약 필수. 매사추세츠는 90일 임시 체류자도 면허 필요", website: "mass.gov/rmv" },
+  { rank: 4, emoji: "🏥", nameKo: "MGH 매사추세츠 종합병원", nameEn: "Massachusetts General Hospital — Korean Services",
+    address: "55 Fruit St, Boston MA 02114",
+    phone: "(617) 726-2000", hours: "24시간 응급",
+    why: "보스턴 최고 대학병원. 한국어 통역 서비스 예약 가능. 하버드 의대 부속병원. 유학생·직장인 보험 연계",
+    tip: "비응급 예약: 🔗 massgeneral.org. 한국어 통역 사전 요청 필수", website: "massgeneral.org" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "주보스턴 총영사관", nameEn: "Korean Consulate General — Boston",
+    address: "One Gateway Center Ste 251, Newton MA 02458",
+    phone: "(617) 641-2830", hours: "월-금 9am-12pm, 1:30pm-4pm",
+    why: "여권·공증·재외국민 등록. 메인·NH·VT·MA·RI·CT 6개 주 담당. 보스턴 인근 한인 전담",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/us-boston-ko", website: "overseas.mofa.go.kr/us-boston-ko" },
+];
+
+const TOP5_EXPLORE_BOSTON: Top5Item[] = [
+  { rank: 1, emoji: "🎓", nameKo: "하버드·MIT 캠퍼스 투어", nameEn: "Harvard & MIT Campus Tour",
+    address: "Massachusetts Ave, Cambridge MA 02139",
+    why: "세계 최고 대학 캠퍼스 무료 개방. 한인 유학생 자녀 동기부여 여행. 입학처 투어 무료 신청 가능. MIT 미디어랩 전시",
+    tip: "하버드: 무료 가이드 투어 daily. MIT: 자유 입장. 케임브리지 중심 도보 이동 가능", website: "harvard.edu/visit" },
+  { rank: 2, emoji: "🦞", nameKo: "퀸시 마켓 & 패뉴일 홀", nameEn: "Quincy Market & Faneuil Hall",
+    address: "4 S Market St, Boston MA 02109",
+    why: "보스턴 최대 관광 명소. 랍스터 롤·클램차우더·해산물 명소. 퍼포머·야외 쇼핑. 미국 독립 역사 현장",
+    tip: "랍스터 롤 $25-35. 평일 오전 덜 붐빔. 무료 입장", website: "faneuilhallmarketplace.com" },
+  { rank: 3, emoji: "🌊", nameKo: "리비어 비치 (미국 최초 공공 해변)", nameEn: "Revere Beach — America's First Public Beach",
+    address: "Revere Beach Blvd, Revere MA 02151",
+    why: "미국 최초 공공 해변 (1896). 보스턴 지하철 직결. 여름 모래성 대회 유명. 한인 가족 여름 나들이",
+    tip: "지하철 Blue Line Revere Beach역 하차. 주차 무료. 여름 성수기 혼잡", website: "mass.gov/revere-beach" },
+  { rank: 4, emoji: "🏛️", nameKo: "보스턴 미술관 (MFA)", nameEn: "Museum of Fine Arts — Boston",
+    address: "465 Huntington Ave, Boston MA 02115",
+    why: "미국 4대 미술관. 아시아 컬렉션 최고 수준 — 한국·일본·중국 미술품 다수. 매주 수요일 오후 4시 이후 입장료 자유",
+    tip: "성인 $27. 수요일 오후 4시 이후 '자유 기부'. 연간회원권 $100 추천", website: "mfa.org" },
+  { rank: 5, emoji: "🏘️", nameKo: "올스턴·브라이튼 한인타운", nameEn: "Allston-Brighton — Boston Koreatown",
+    address: "Harvard Ave & Brighton Ave, Allston MA 02134",
+    why: "보스턴 한인 생활의 중심. H-Mart·한식당·한인 교회·노래방·PC방 밀집. 부동산 대비 한인 밀도 미 동부 최고",
+    tip: "지하철 Green Line B Warren St역. 하버드·BU·MIT 유학생 주거 1순위", website: "maps.google.com/?q=Koreatown+Allston+Boston" },
+];
+
+/* ─────────────────────────────────────────
    HOOK: 온라인 상태 감지
 ───────────────────────────────────────── */
 function useOnlineStatus() {
@@ -2416,6 +2677,24 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
     { title: "Covered California (건강보험)", desc: "CA 주 의료보험 마켓플레이스. 소득 기준 보조금 가능. 무보험도 Medi-Cal 신청 가능 | 🔗 coveredca.com" },
     { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트 | 산호세·SF 이민 변호사 다수 활동 | 🔗 uscis.gov" },
+  ] : citySlug === "newyork" ? [
+    { title: "SSN 신청", desc: "📍 SSA 맨해튼 오피스 | 123 W 125th St, New York NY | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "NY 운전면허 (DMV)", desc: "📍 11 Broadway, New York NY | 🔗 dmv.ny.gov 예약 필수\n⚠️ NY 이주 30일 내 면허 전환 의무. 한국 면허 소지자 필기+실기 모두 응시 필요" },
+    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
+    { title: "NY 건강보험 (NY State of Health)", desc: "뉴욕주 의료보험 마켓플레이스. 소득 기준 보조금 가능. Medicaid(NY Essential Plan) — 소득 $0-200% FPL 무료 | 🔗 nystateofhealth.ny.gov" },
+    { title: "영주권·비자 갱신", desc: "USCIS 뉴욕 오피스 | 맨해튼·플러싱 이민 변호사 다수 | 🔗 uscis.gov" },
+  ] : citySlug === "nashville" ? [
+    { title: "SSN 신청", desc: "📍 SSA 내쉬빌 오피스 | 801 Broadway Ste 1000, Nashville TN | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "TN 운전면허 (DDS)", desc: "📍 44 Vantage Way Ste 160, Nashville TN | 🔗 tn.gov/safety\n⚠️ TN 이주 30일 내 면허 전환 의무 (매우 빠름!). SSN 없어도 ITIN으로 신청 가능" },
+    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
+    { title: "TN 건강보험 (TennCare)", desc: "테네시주 Medicaid. 소득 기준 — 저소득 가정 우선. HealthCare.gov 마켓플레이스 병행 확인 | 🔗 tn.gov/tenncare" },
+    { title: "영주권·비자 갱신", desc: "USCIS 내쉬빌 오피스 | 내쉬빌 이민 변호사 다수 | 🔗 uscis.gov" },
+  ] : citySlug === "boston" ? [
+    { title: "SSN 신청", desc: "📍 SSA 보스턴 오피스 | 10 Causeway St Rm 148, Boston MA | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "MA 운전면허 (RMV)", desc: "📍 630 Washington St, Boston MA | 🔗 mass.gov/rmv 예약 필수\n⚠️ MA 이주 60일 내 면허 전환 의무. 유학생(F-1)도 유효 비자 기간 내 신청 가능" },
+    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
+    { title: "MA 건강보험 (Health Connector)", desc: "매사추세츠주 의료보험 마켓플레이스. 전국 최고 수준 보장. 소득 기준 보조금·무료 플랜 가능 | 🔗 mahealthconnector.org" },
+    { title: "영주권·비자 갱신", desc: "USCIS 보스턴 오피스 | 하버드·MIT 인근 이민 변호사 다수 | 🔗 uscis.gov" },
   ] : citySlug === "dallas" ? [
     { title: "SSN 신청", desc: "📍 Social Security Office | 1901 N Central Expy, McKinney TX | 📞 800-772-1213 | 🔗 ssa.gov" },
     { title: "텍사스 운전면허 (DPS)", desc: "📍 1149 E Belt Line Rd, Carrollton TX | 온라인 예약 필수! 🔗 appointments.dps.texas.gov\n⚠️ 텍사스 이주 후 90일 이내 전환 의무 | 🔗 dps.texas.gov" },
@@ -2435,6 +2714,24 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
     { title: "Covered California (Health Insurance)", desc: "CA state health insurance marketplace. Income-based subsidies available. Medi-Cal (Medicaid) available for low income | 🔗 coveredca.com" },
     { title: "Green Card / Visa Renewal", desc: "USCIS official site | Many immigration attorneys in San Jose & SF area | 🔗 uscis.gov" },
+  ] : citySlug === "newyork" ? [
+    { title: "SSN Application", desc: "📍 SSA Manhattan Office | 123 W 125th St, New York NY | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "New York Driver License (DMV)", desc: "📍 11 Broadway, New York NY | 🔗 dmv.ny.gov appointment required\n⚠️ Must transfer within 30 days of moving to NY. Korean license holders must take both written & road tests" },
+    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
+    { title: "NY Health Insurance (NY State of Health)", desc: "New York state health insurance marketplace. Income-based subsidies available. NY Essential Plan (Medicaid) — free for income $0–200% FPL | 🔗 nystateofhealth.ny.gov" },
+    { title: "Green Card / Visa Renewal", desc: "USCIS New York office | Many immigration attorneys in Manhattan & Flushing | 🔗 uscis.gov" },
+  ] : citySlug === "nashville" ? [
+    { title: "SSN Application", desc: "📍 SSA Nashville Office | 801 Broadway Ste 1000, Nashville TN | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "Tennessee Driver License (DDS)", desc: "📍 44 Vantage Way Ste 160, Nashville TN | 🔗 tn.gov/safety\n⚠️ Must transfer within 30 days of moving to TN (faster than most states!). ITIN accepted instead of SSN" },
+    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
+    { title: "TN Health Insurance (TennCare)", desc: "Tennessee Medicaid. Income-based — prioritizes low-income households. Also check HealthCare.gov marketplace | 🔗 tn.gov/tenncare" },
+    { title: "Green Card / Visa Renewal", desc: "USCIS Nashville office | Many immigration attorneys in Nashville | 🔗 uscis.gov" },
+  ] : citySlug === "boston" ? [
+    { title: "SSN Application", desc: "📍 SSA Boston Office | 10 Causeway St Rm 148, Boston MA | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "Massachusetts Driver License (RMV)", desc: "📍 630 Washington St, Boston MA | 🔗 mass.gov/rmv appointment required\n⚠️ Must transfer within 60 days of moving to MA. F-1 students eligible during valid visa period" },
+    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
+    { title: "MA Health Insurance (Health Connector)", desc: "Massachusetts health insurance marketplace. Among the best coverage in the US. Income-based subsidies & free plans available | 🔗 mahealthconnector.org" },
+    { title: "Green Card / Visa Renewal", desc: "USCIS Boston office | Many immigration attorneys near Harvard & MIT | 🔗 uscis.gov" },
   ] : citySlug === "dallas" ? [
     { title: "SSN Application", desc: "📍 Social Security Office | 1901 N Central Expy, McKinney TX | 📞 800-772-1213 | 🔗 ssa.gov" },
     { title: "Texas Driver License (DPS)", desc: "📍 1149 E Belt Line Rd, Carrollton TX | Online appointment required! 🔗 appointments.dps.texas.gov\n⚠️ Must transfer within 90 days of moving to Texas | 🔗 dps.texas.gov" },
@@ -2477,6 +2774,24 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "🌞", title: "서니베일 (Sunnyvale) — 가성비 테크", desc: "Google·LinkedIn·Yahoo 인근. 쿠퍼티노보다 렌트 저렴. 렌트 1BR $2,100–2,600. Sunnyvale SD. 한인 커뮤니티 성장 중. VTA 교통 양호" },
     { emoji: "🌉", title: "프리몬트 (Fremont) — 한인 급성장 지역", desc: "BART 직결 → SF·산호세 출퇴근 가능. 렌트 1BR $2,000–2,500 (상대적 저렴). Fremont USD (Niche A). 한인·중국계 혼합 거주. 테슬라 공장 인근" },
     { emoji: "🏙️", title: "밀피타스 (Milpitas) — 이민자 가성비", desc: "한인·베트남계 혼합. 렌트 1BR $1,900–2,400 (Bay Area 최저렴급). H-Mart 인근. Great Mall 쇼핑. 실리콘밸리 접근 편리. BART 신규 역 개통" },
+  ] : citySlug === "newyork" ? [
+    { emoji: "🌸", title: "플러싱 (Flushing, Queens) — 뉴욕 한인 1번지", desc: "퀸즈 최대 한인·중국계 타운. H-Mart·한식당·교회·노래방 집결. 맨해튼보다 저렴. 렌트 1BR $1,800–2,400. 지하철 7호선 직결. 뉴욕 한인 인구 최다" },
+    { emoji: "🏙️", title: "맨해튼 한인타운 (32nd St)", desc: "맨해튼 직장인 한인 선호. 한인타운 도보 거리. 렌트 1BR $2,800–4,000 (매우 비쌈). 출퇴근 최적. 지하철 N/Q/R/W·B/D/F/M 환승 허브" },
+    { emoji: "🌿", title: "포트리 (Fort Lee, NJ) — 뉴저지 한인타운", desc: "뉴저지 최대 한인타운. 맨해튼 허드슨강 건너편. 렌트 1BR $1,900–2,600 (뉴욕보다 저렴). 한식당·마트·교회 집결. 학군 우수 (Fort Lee School District)" },
+    { emoji: "🎓", title: "파라무스·버겐 카운티 (NJ) — 학군·가족", desc: "뉴저지 한인 가족 1순위. 우수 학군. 렌트 1BR $1,800–2,400. 한인 인구 밀집 (NJ 한인 30만+). 퇴근 시 버스·PATH로 맨해튼 접근" },
+    { emoji: "💰", title: "잭슨 하이츠 (Jackson Heights, Queens)", desc: "다민족 혼합. 렌트 1BR $1,600–2,200 (뉴욕 가성비). 한인·히스패닉·인도계 공존. 지하철 E/F/M/R·7호선. 한인 식당 증가 중" },
+  ] : citySlug === "nashville" ? [
+    { emoji: "🌆", title: "매디슨 (Madison) — 내쉬빌 한인 1번지", desc: "H-Mart·한인회·한식당 밀집. 내쉬빌 북쪽 15분. 렌트 1BR $1,300–1,700 (저렴). 한인 교회 다수. 안전한 주거 환경" },
+    { emoji: "🎵", title: "프랭클린 (Franklin) — 학군·부유층", desc: "내쉬빌 남쪽 20분. Williamson County SD — TN 최상위 학군. 렌트 1BR $1,600–2,200. 한인 가족 증가 중. 새 개발 지역으로 신축 주택 다수" },
+    { emoji: "🏘️", title: "안티오크 (Antioch) — 가성비", desc: "내쉬빌 동남쪽. 렌트 1BR $1,100–1,500 (TN 최저렴급). 다민족 지역. 한인·히스패닉 혼합. 공항(BNA) 인근. 출퇴근 I-24 이용" },
+    { emoji: "💼", title: "브렌트우드 (Brentwood) — 전문직", desc: "내쉬빌 남쪽 고급 주거지. 한인 의사·엔지니어 선호. 렌트 1BR $1,800–2,400. 우수 학군. 의료·테크 기업 밀집" },
+    { emoji: "🎓", title: "무어스빌 (Murfreesboro) — 대학 도시", desc: "MTSU(Middle Tennessee State Univ) 소재지. 한인 유학생 거주. 렌트 1BR $1,100–1,500 (저렴). 내쉬빌 동쪽 30분" },
+  ] : citySlug === "boston" ? [
+    { emoji: "🎓", title: "올스턴·브라이튼 (Allston/Brighton) — 한인 1번지", desc: "보스턴 최대 한인타운. H-Mart·한식당·한인 교회 밀집. BU·하버드·MIT 유학생 1순위. 렌트 1BR $1,900–2,600. Green Line B 직결" },
+    { emoji: "📚", title: "케임브리지 (Cambridge) — 하버드·MIT", desc: "하버드·MIT 주변. 한인 대학원생 다수. 렌트 1BR $2,200–3,000 (비쌈). Red Line 직결. 국제적 환경. 연구직·박사 과정 선호" },
+    { emoji: "🌊", title: "퀸시 (Quincy) — 가성비 한인 주거지", desc: "보스턴 남쪽 15분. Red Line 직결. 렌트 1BR $1,600–2,100 (상대적 저렴). 한인·중국계 혼합. Quincy SD 학군 우수. 한식당 증가 중" },
+    { emoji: "🏙️", title: "서머빌 (Somerville) — 젊은층 한인", desc: "보스턴 북쪽 인접. Tufts·MIT 근처. 렌트 1BR $1,900–2,500. 젊은 한인 전문직·유학생 선호. 식당·카페 활발. Green Line E 접근" },
+    { emoji: "💰", title: "몰든 (Malden) — 가성비 가족", desc: "보스턴 북쪽. Orange Line 직결. 렌트 1BR $1,600–2,000 (보스턴 대비 저렴). 한인·아시안 혼합. 학군 Malden SD. 한인 가족 증가 중" },
   ] : citySlug === "dallas" ? [
     { emoji: "🤠", title: "캐롤튼 (Carrollton) — 달라스 한인 1번지", desc: "달라스 최대 한인타운. H-Mart·한식당·한인 교회·노래방 밀집. Old Denton Rd·Belt Line 일대. 렌트 1BR $1,400–1,800 | 2BR $1,800–2,200. Carrollton-Farmers Branch ISD" },
     { emoji: "🎓", title: "플라노 (Plano) — 학군·전문직", desc: "플라노 독립 학군 (Plano ISD) — Texas 최상위급. 삼성·텍사스 인스트루먼트 본사 인근. 한인 IT·전문직 다수 거주. 렌트 1BR $1,600–2,100. 안전하고 정돈된 환경" },
@@ -2496,6 +2811,24 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "🌞", title: "Sunnyvale — Affordable Tech Hub", desc: "Near Google, LinkedIn, Yahoo. More affordable than Cupertino. Rent 1BR $2,100–2,600. Sunnyvale SD. Growing Korean community. Good VTA transit" },
     { emoji: "🌉", title: "Fremont — Fast-Growing Korean Area", desc: "Direct BART to SF & San Jose. Rent 1BR $2,000–2,500 (relatively affordable). Fremont USD (Niche A). Mixed Korean & Chinese community. Near Tesla factory" },
     { emoji: "🏙️", title: "Milpitas — Immigrant Value Pick", desc: "Mixed Korean & Vietnamese community. Rent 1BR $1,900–2,400 (Bay Area's most affordable). Near H-Mart & Great Mall. New BART station. Easy Silicon Valley access" },
+  ] : citySlug === "newyork" ? [
+    { emoji: "🌸", title: "Flushing, Queens — NYC Korean Hub #1", desc: "Queens' largest Korean & Chinese town. H-Mart, Korean restaurants, churches & karaoke. More affordable than Manhattan. Rent 1BR $1,800–2,400. Direct subway line 7. Most Korean residents in NYC" },
+    { emoji: "🏙️", title: "Manhattan Koreatown (32nd St)", desc: "Preferred by Manhattan-based Korean workers. Walking distance to Koreatown. Rent 1BR $2,800–4,000 (very expensive). Best commute. Subway N/Q/R/W · B/D/F/M transfer hub" },
+    { emoji: "🌿", title: "Fort Lee, NJ — New Jersey Koreatown", desc: "NJ's largest Koreatown. Across Hudson River from Manhattan. Rent 1BR $1,900–2,600 (cheaper than NYC). Korean restaurants, grocery & churches. Excellent schools (Fort Lee School District)" },
+    { emoji: "🎓", title: "Paramus & Bergen County, NJ — Schools & Families", desc: "NJ's #1 choice for Korean families. Top-ranked schools. Rent 1BR $1,800–2,400. Dense Korean population (NJ has 300K+ Koreans). Manhattan commute by bus or PATH" },
+    { emoji: "💰", title: "Jackson Heights, Queens — Affordable Pick", desc: "Multi-ethnic neighborhood. Rent 1BR $1,600–2,200 (NYC's most affordable). Korean, Hispanic & Indian communities. Subway E/F/M/R + line 7. Growing Korean restaurant scene" },
+  ] : citySlug === "nashville" ? [
+    { emoji: "🌆", title: "Madison — Nashville Korean Hub #1", desc: "H-Mart, Korean association & restaurants clustered. 15 min north of Nashville. Rent 1BR $1,300–1,700 (affordable). Many Korean churches. Safe residential environment" },
+    { emoji: "🎵", title: "Franklin — Schools & Upscale Living", desc: "20 min south of Nashville. Williamson County SD — TN's top-ranked schools. Rent 1BR $1,600–2,200. Growing Korean family population. New construction homes in developing area" },
+    { emoji: "🏘️", title: "Antioch — Affordable Option", desc: "Southeast Nashville. Rent 1BR $1,100–1,500 (TN's most affordable). Multi-ethnic area. Korean & Hispanic mix. Near BNA airport. Commute via I-24" },
+    { emoji: "💼", title: "Brentwood — Professionals", desc: "Upscale residential south of Nashville. Preferred by Korean doctors & engineers. Rent 1BR $1,800–2,400. Excellent schools. Dense medical & tech employers" },
+    { emoji: "🎓", title: "Murfreesboro — College Town", desc: "Home of MTSU (Middle Tennessee State Univ). Korean student population. Rent 1BR $1,100–1,500 (affordable). 30 min east of Nashville" },
+  ] : citySlug === "boston" ? [
+    { emoji: "🎓", title: "Allston/Brighton — Boston Korean Hub #1", desc: "Boston's largest Koreatown. H-Mart, Korean restaurants & churches. #1 for BU/Harvard/MIT students. Rent 1BR $1,900–2,600. Green Line B direct access" },
+    { emoji: "📚", title: "Cambridge — Harvard & MIT", desc: "Adjacent to Harvard & MIT. Many Korean grad students. Rent 1BR $2,200–3,000 (expensive). Red Line direct. International environment. Preferred by researchers & PhD students" },
+    { emoji: "🌊", title: "Quincy — Affordable Korean Neighborhood", desc: "15 min south of Boston. Red Line direct. Rent 1BR $1,600–2,100 (relatively affordable). Korean & Chinese mix. Good Quincy SD schools. Growing Korean restaurant scene" },
+    { emoji: "🏙️", title: "Somerville — Young Korean Professionals", desc: "Adjacent to Boston. Near Tufts & MIT. Rent 1BR $1,900–2,500. Preferred by young Korean professionals & students. Active dining & café scene. Green Line E access" },
+    { emoji: "💰", title: "Malden — Affordable for Families", desc: "North of Boston. Orange Line direct. Rent 1BR $1,600–2,000 (affordable vs Boston). Korean & Asian mix. Malden SD schools. Growing Korean family population" },
   ] : citySlug === "dallas" ? [
     { emoji: "🤠", title: "Carrollton — Dallas Korean Hub #1", desc: "DFW's largest Koreatown. H-Mart, Korean restaurants, churches & karaoke on Old Denton Rd/Belt Line. Rent 1BR $1,400–1,800 | 2BR $1,800–2,200. Carrollton-Farmers Branch ISD" },
     { emoji: "🎓", title: "Plano — Schools & Professionals", desc: "Plano ISD — top-ranked in Texas. Near Samsung & Texas Instruments HQ. Many Korean IT professionals. Rent 1BR $1,600–2,100. Safe, well-organized environment" },
@@ -2560,8 +2893,11 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
       <div className="pt-5">
         {sub === 0 && (
           <Top5Banner items={
-            useCityConfig().slug === "dallas" ? TOP5_SETTLE_DALLAS :
-            useCityConfig().slug === "sf"     ? TOP5_SETTLE_SF :
+            useCityConfig().slug === "dallas"   ? TOP5_SETTLE_DALLAS :
+            useCityConfig().slug === "sf"       ? TOP5_SETTLE_SF :
+            useCityConfig().slug === "newyork"  ? TOP5_SETTLE_NEWYORK :
+            useCityConfig().slug === "nashville"? TOP5_SETTLE_NASHVILLE :
+            useCityConfig().slug === "boston"   ? TOP5_SETTLE_BOSTON :
             TOP5_SETTLE
           } lang={lang} accentColor="#F2994A" />
         )}
@@ -3050,8 +3386,11 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
       <div className="pt-3">
         {sub === 1 && (
           <Top5Banner items={
-            useCityConfig().slug === "dallas" ? TOP5_RESTAURANTS_DALLAS :
-            useCityConfig().slug === "sf"     ? TOP5_RESTAURANTS_SF :
+            useCityConfig().slug === "dallas"   ? TOP5_RESTAURANTS_DALLAS :
+            useCityConfig().slug === "sf"       ? TOP5_RESTAURANTS_SF :
+            useCityConfig().slug === "newyork"  ? TOP5_RESTAURANTS_NEWYORK :
+            useCityConfig().slug === "nashville"? TOP5_RESTAURANTS_NASHVILLE :
+            useCityConfig().slug === "boston"   ? TOP5_RESTAURANTS_BOSTON :
             TOP5_RESTAURANTS
           } lang={lang} accentColor="#EF4444" />
         )}
@@ -3190,8 +3529,11 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
       <div className="pt-5">
         {sub === 0 && (
           <Top5Banner items={
-            useCityConfig().slug === "dallas" ? TOP5_EXPLORE_DALLAS :
-            useCityConfig().slug === "sf"     ? TOP5_EXPLORE_SF :
+            useCityConfig().slug === "dallas"   ? TOP5_EXPLORE_DALLAS :
+            useCityConfig().slug === "sf"       ? TOP5_EXPLORE_SF :
+            useCityConfig().slug === "newyork"  ? TOP5_EXPLORE_NEWYORK :
+            useCityConfig().slug === "nashville"? TOP5_EXPLORE_NASHVILLE :
+            useCityConfig().slug === "boston"   ? TOP5_EXPLORE_BOSTON :
             TOP5_EXPLORE
           } lang={lang} accentColor="#0EA5E9" />
         )}
