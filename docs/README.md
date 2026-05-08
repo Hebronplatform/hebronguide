@@ -24,7 +24,8 @@
 
 ### 📊 목표·전략
 - [`GOAL_SYSTEM.md`](GOAL_SYSTEM.md) — Alignify 목표 시스템 (From X → To Y → By When → Why)
-- [`DIASPORA_STRATEGY.md`](DIASPORA_STRATEGY.md) — BTS·디아스포라 확산 전략
+- [`EXPANSION_STRATEGY.md`](EXPANSION_STRATEGY.md) — **확산 전략**: BTS 도시 흐름 + 복음적·제자 만드는 교회 ⭐
+- [`DIASPORA_STRATEGY.md`](DIASPORA_STRATEGY.md) — 디아스포라 콘텐츠 전략 (BTS 모델)
 - [`REVENUE_STRATEGY.md`](REVENUE_STRATEGY.md) — 수익 모델 단계별 로드맵
 
 ### 🏙️ 도시 확장
@@ -47,7 +48,8 @@
 |---|---|
 | 새 작업 시작 전 | `EXECUTION_GUIDELINES.md` (6질문) |
 | 비전이 흔들릴 때 | `CORE_VISION.md` |
-| 새 도시 추가 | `EXECUTION_GUIDELINES.md` 영역 3 + `CITY_GENERATION_SYSTEM.md` |
+| 새 도시 진출 결정 | `EXPANSION_STRATEGY.md` (5질문) ⭐ |
+| 새 도시 코드 작업 | `EXECUTION_GUIDELINES.md` 영역 3 + `CITY_GENERATION_SYSTEM.md` |
 | 새 음식점 등재 | `EXECUTION_GUIDELINES.md` 영역 1·2 + `DINING_GUIDE.md` |
 | 수익 활동 검토 | `EXECUTION_GUIDELINES.md` 영역 6 + `REVENUE_STRATEGY.md` |
 | 새 교회 등재 | `EXECUTION_GUIDELINES.md` 영역 7 (4-Tier) |
