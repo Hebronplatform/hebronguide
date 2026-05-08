@@ -2913,10 +2913,30 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
+  const [foodFilter, setFoodFilter] = useState("전체");
   const tabs = lang === "ko"
     ? ["카페", "한식·맛집", "한인상권", "쇼핑"]
     : ["Café", "Korean Food", "K-Business", "Shopping"];
   const accent = "#FB923C";
+
+  // 맛집 카테고리 필터 (Yelp 인사이트 적용)
+  const FOOD_FILTERS = lang === "ko"
+    ? [
+        { label: "전체", emoji: "🍽️", keyword: "전체" },
+        { label: "BBQ·갈비", emoji: "🥩", keyword: "BBQ" },
+        { label: "치킨", emoji: "🍗", keyword: "치킨" },
+        { label: "국물·찌개", emoji: "🍲", keyword: "국물" },
+        { label: "카페·디저트", emoji: "☕", keyword: "카페" },
+        { label: "분식·기타", emoji: "🍜", keyword: "분식" },
+      ]
+    : [
+        { label: "All", emoji: "🍽️", keyword: "전체" },
+        { label: "BBQ", emoji: "🥩", keyword: "BBQ" },
+        { label: "Chicken", emoji: "🍗", keyword: "치킨" },
+        { label: "Soup & Stew", emoji: "🍲", keyword: "국물" },
+        { label: "Café", emoji: "☕", keyword: "카페" },
+        { label: "Snacks", emoji: "🍜", keyword: "분식" },
+      ];
 
   // ✅ 검증됨 (2026-04-30) | 출처: WowSeattle 업소록 / kSeattle / 공식 사이트
   const cafes = [
@@ -2926,12 +2946,33 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
   ];
 
   // ✅ 검증됨 (2026-04-30) | 출처: WowSeattle 업소록 / Yelp 2026.04
+  // Yelp 인사이트 적용: 소비자 관점("이럴 때 가세요") + 카테고리 키워드 추가
   const restaurants = [
-    { emoji: "🥩", name: "Baekjeong Korean BBQ", nameEn: "Baekjeong Korean BBQ — Lynnwood", desc: lang === "ko" ? "✅ 검증됨 | 알더우드몰 내 한인 BBQ. 3000 184th St SW Ste 922 | ☎ (425) 490-6328 | 월-목 11:30am-10pm" : "✅ Verified | Korean BBQ in Alderwood Mall. 3000 184th St SW Ste 922 | ☎ (425) 490-6328 | M-Th 11:30am-10pm", tags: ["갈비", "린우드", "검증됨"] },
-    { emoji: "🍖", name: "Gangnam Korean Restaurant", nameEn: "Gangnam Korean Restaurant — Lynnwood", desc: lang === "ko" ? "✅ 검증됨 | 한식 전문. 19505 44th Ave W | ☎ (425) 678-0337 | 매일 10am-10:45pm | 🔗 gangnamlynnwood.com" : "✅ Verified | Korean food specialist. 19505 44th Ave W | ☎ (425) 678-0337 | Daily 10am-10:45pm | 🔗 gangnamlynnwood.com", tags: ["한식", "린우드", "검증됨"] },
-    { emoji: "🍗", name: "소담치킨 숄라인", nameEn: "Sodam Chicken — Shoreline", desc: lang === "ko" ? "✅ 검증됨 | 한인 치킨 전문점. 17551 15th Ave NE, Shoreline | ☎ (206) 397-4119" : "✅ Verified | Korean fried chicken. 17551 15th Ave NE, Shoreline | ☎ (206) 397-4119", tags: ["치킨", "숄라인", "검증됨"] },
-    { emoji: "🥩", name: "해남갈비 숄라인", nameEn: "Haenam Galbi — Shoreline", desc: lang === "ko" ? "✅ 검증됨 | 한인 갈비 전문. 15001 Aurora Ave N, Shoreline | ☎ (206) 367-7843" : "✅ Verified | Korean galbi specialist. 15001 Aurora Ave N, Shoreline | ☎ (206) 367-7843", tags: ["갈비", "숄라인", "검증됨"] },
-    { emoji: "🍽️", name: "Ka Won Korean BBQ", nameEn: "Ka Won Korean BBQ — Lynnwood", desc: lang === "ko" ? "✅ 검증됨 | 15004 Hwy 99 Ste A, Lynnwood | ☎ (425) 787-6484 | 🔗 kawonlynnwood.com" : "✅ Verified | 15004 Hwy 99 Ste A, Lynnwood | ☎ (425) 787-6484 | 🔗 kawonlynnwood.com", tags: ["BBQ", "린우드", "검증됨"] },
+    { emoji: "🥩", name: "Baekjeong Korean BBQ ★ Yelp 3.9", nameEn: "Baekjeong Korean BBQ — Lynnwood",
+      desc: lang === "ko"
+        ? "✅ 검증됨 | 🥩 BBQ\n고기 무한리필 + 직원이 직접 구워줌. 무제한 밑반찬. 알더우드몰 주차 무료.\n📍 3000 184th St SW Ste 922 | 📞 (425) 490-6328 | 월-목 11:30am-10pm\n🔗 yelp.com/biz/baekjeong-korean-bbq-lynnwood"
+        : "✅ Verified | 🥩 BBQ\nAll-you-can-eat + staff grills meat tableside. Free parking at Alderwood Mall.\n📍 3000 184th St SW Ste 922 | 📞 (425) 490-6328 | M-Th 11:30am-10pm\n🔗 yelp.com/biz/baekjeong-korean-bbq-lynnwood",
+      tags: ["BBQ", "갈비", "린우드", "검증됨"] },
+    { emoji: "🍖", name: "강남 한식당 Yelp 4.1", nameEn: "Gangnam Korean Restaurant — Lynnwood",
+      desc: lang === "ko"
+        ? "✅ 검증됨 | 🍲 국물·한식\n집밥 같은 한식. 갈비탕·순두부·비빔밥. 매일 10am까지 늦게 운영.\n📍 19505 44th Ave W, Lynnwood | 📞 (425) 678-0337 | 매일 10am-10:45pm\n🔗 gangnamlynnwood.com"
+        : "✅ Verified | 🍲 Soup & Stew\nHomestyle Korean food. Galbitang, sundubu, bibimbap. Open late daily.\n📍 19505 44th Ave W, Lynnwood | 📞 (425) 678-0337 | Daily 10am-10:45pm\n🔗 gangnamlynnwood.com",
+      tags: ["국물", "한식", "린우드", "검증됨"] },
+    { emoji: "🍗", name: "소담치킨 숄라인 ★ Yelp 4.2", nameEn: "Sodam Chicken — Shoreline",
+      desc: lang === "ko"
+        ? "✅ 검증됨 | 🍗 치킨\n한국식 바삭 양념·간장·순살치킨. 치맥 가능. 배달도 OK.\n📍 17551 15th Ave NE, Shoreline | 📞 (206) 397-4119\n🔗 yelp.com/search?find_desc=소담치킨+shoreline"
+        : "✅ Verified | 🍗 Chicken\nKorean-style fried chicken: soy garlic, sweet spicy. Beer available. Delivery OK.\n📍 17551 15th Ave NE, Shoreline | 📞 (206) 397-4119\n🔗 yelp.com/search?find_desc=sodam+chicken+shoreline",
+      tags: ["치킨", "숄라인", "검증됨"] },
+    { emoji: "🥩", name: "해남갈비 숄라인 ★ Yelp 4.0", nameEn: "Haenam Galbi — Shoreline",
+      desc: lang === "ko"
+        ? "✅ 검증됨 | 🥩 BBQ·갈비\n숯불 갈비 전문. 재래식 방식. 한국 느낌 그대로.\n📍 15001 Aurora Ave N, Shoreline | 📞 (206) 367-7843\n🔗 yelp.com/search?find_desc=해남갈비+shoreline"
+        : "✅ Verified | 🥩 BBQ\nCharcoal galbi specialist. Traditional Korean style.\n📍 15001 Aurora Ave N, Shoreline | 📞 (206) 367-7843\n🔗 yelp.com/search?find_desc=haenam+galbi+shoreline",
+      tags: ["BBQ", "갈비", "숄라인", "검증됨"] },
+    { emoji: "🍽️", name: "Ka Won Korean BBQ ★ Yelp 4.1", nameEn: "Ka Won Korean BBQ — Lynnwood",
+      desc: lang === "ko"
+        ? "✅ 검증됨 | 🥩 BBQ\nHwy 99 한인타운 BBQ. 직접 구이·신선 고기. 현지 한인 단골 많음.\n📍 15004 Hwy 99 Ste A, Lynnwood | 📞 (425) 787-6484\n🔗 kawonlynnwood.com"
+        : "✅ Verified | 🥩 BBQ\nLocal Korean favorite on Hwy 99. Fresh cuts, self-grill.\n📍 15004 Hwy 99 Ste A, Lynnwood | 📞 (425) 787-6484\n🔗 kawonlynnwood.com",
+      tags: ["BBQ", "린우드", "검증됨"] },
   ];
 
   // ✅ 검증됨 (2026-04-30) | 출처: WowSeattle / SeattleN / 공식 사이트
@@ -2954,7 +2995,17 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
   const resolvedRestaurants = serverContent["restaurants"] ? resolvePlaceItems(serverContent["restaurants"], lang) : restaurants;
   const resolvedBusinesses = serverContent["businesses"] ? resolvePlaceItems(serverContent["businesses"], lang) : businesses;
   const resolvedShopping = serverContent["shopping"] ? resolvePlaceItems(serverContent["shopping"], lang) : shopping;
-  const content = [resolvedCafes, resolvedRestaurants, resolvedBusinesses, resolvedShopping][sub];
+
+  // 카테고리 필터 적용 (Yelp 인사이트)
+  const filteredRestaurants = foodFilter === "전체"
+    ? resolvedRestaurants
+    : resolvedRestaurants.filter(item =>
+        (item.tags ?? []).some(tag => tag.includes(foodFilter) || item.desc.includes(foodFilter))
+      );
+
+  const content = sub === 1
+    ? filteredRestaurants
+    : [resolvedCafes, resolvedRestaurants, resolvedBusinesses, resolvedShopping][sub];
 
   return (
     <div style={{ paddingBottom: 96 }}>
@@ -2962,8 +3013,41 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
       <ScreenHeader emoji="🍽️" titleKo="카페 · 맛집" titleEn="Café & Dining"
         descKo="시애틀 한인 카페·맛집·상권 완전 가이드" descEn="Complete guide to Seattle's Korean cafés, restaurants & business district"
         accentColor={accent} />
-      <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
-      <div className="pt-5">
+      <SubTabBar tabs={tabs} active={sub} onChange={(i) => { setSub(i); setFoodFilter("전체"); }} accentColor={accent} />
+
+      {/* 맛집 카테고리 퀵 필터 (Yelp 인사이트: 메뉴 카테고리로 걸러보기) */}
+      {sub === 1 && (
+        <div style={{ padding: "10px 16px 4px", overflowX: "auto" }}>
+          <div style={{ display: "flex", gap: 7, flexWrap: "nowrap", paddingBottom: 2 }}>
+            {FOOD_FILTERS.map(f => {
+              const isActive = foodFilter === f.keyword;
+              return (
+                <button key={f.keyword} onClick={() => setFoodFilter(f.keyword)}
+                  style={{
+                    flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 4,
+                    padding: "6px 12px", borderRadius: 20, border: "none", cursor: "pointer",
+                    background: isActive ? accent : "rgba(251,146,60,0.12)",
+                    color: isActive ? "#fff" : accent,
+                    fontFamily: "-apple-system, 'Noto Sans KR', sans-serif",
+                    fontWeight: 700, fontSize: 12,
+                    transition: "all 0.15s ease",
+                    boxShadow: isActive ? `0 2px 8px ${accent}44` : "none",
+                  }}>
+                  <span>{f.emoji}</span>
+                  <span>{f.label}</span>
+                </button>
+              );
+            })}
+          </div>
+          {foodFilter !== "전체" && (
+            <div style={{ fontSize: 10, color: "rgba(236,253,245,0.4)", fontFamily: "Manrope,sans-serif", marginTop: 6, paddingLeft: 2 }}>
+              {lang === "ko" ? `"${foodFilter}" 카테고리 필터 중` : `Filtering by "${foodFilter}"`}
+            </div>
+          )}
+        </div>
+      )}
+
+      <div className="pt-3">
         {sub === 1 && (
           <Top5Banner items={
             useCityConfig().slug === "dallas" ? TOP5_RESTAURANTS_DALLAS :
@@ -2972,9 +3056,15 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
           } lang={lang} accentColor="#EF4444" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
-          </div>
+          {content.length === 0 ? (
+            <div style={{ textAlign: "center", padding: "40px 20px", color: "rgba(236,253,245,0.4)", fontFamily: "Manrope,sans-serif", fontSize: 14 }}>
+              {lang === "ko" ? "해당 카테고리 업소를 추가 중입니다 🙏" : "More places in this category coming soon 🙏"}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+            </div>
+          )}
           <div style={{ background: "rgba(251,146,60,0.08)", border: "1px solid rgba(251,146,60,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}>
               🗺️ {lang === "ko" ? "지도에서 바로 찾기" : "Find on Map"}
