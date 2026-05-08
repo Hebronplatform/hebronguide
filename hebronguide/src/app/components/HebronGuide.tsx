@@ -673,6 +673,180 @@ const TOP5_EXPLORE_LA: Top5Item[] = [
 ];
 
 /* ─────────────────────────────────────────
+   토론토 전용 데이터 — 캐나다 최대 한인 커뮤니티
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_TORONTO: Top5Item[] = [
+  { rank: 1, emoji: "🥩", nameKo: "Owl of Minerva — 블루어 코리아타운", nameEn: "Owl of Minerva — Bloor Koreatown",
+    address: "596 Bloor St W, Toronto ON M6G 1K4",
+    phone: "(416) 534-4158", hours: "매일 11:30am-10pm",
+    rating: 4.2, ratingCount: "800+",
+    why: "🥩 BBQ·한식\n토론토 다운타운 한인타운 대표 식당. 1983년 창업. 갈비·불고기·순두부. 토론토 한인 교민의 '고향 맛집'",
+    tip: "블루어 코리아타운 중심. 지하철 Bathurst역 도보 5분", website: "yelp.com/biz/owl-of-minerva-toronto" },
+  { rank: 2, emoji: "🍲", nameKo: "New Seoul Restaurant — 노스욕", nameEn: "New Seoul Restaurant — North York",
+    address: "5324 Yonge St, North York ON M2N 5P9",
+    phone: "(416) 222-7090", hours: "화-일 11am-10pm (월 휴무)",
+    rating: 4.3, ratingCount: "400+",
+    why: "🍲 국물·한식\n노스욕 한인타운(핀치/욘지) 오래된 한식당. 갈비탕·설렁탕·비빔밥. 현지 교민들의 단골집",
+    tip: "지하철 North York Centre역 인근. 점심 세트 추천", website: "yelp.com/biz/new-seoul-restaurant-toronto" },
+  { rank: 3, emoji: "🍗", nameKo: "BonChon — 토론토", nameEn: "BonChon — Toronto",
+    address: "1033 Bay St, Toronto ON M5S 0A2",
+    phone: "(416) 921-3811", hours: "매일 11am-10pm",
+    rating: 4.0, ratingCount: "500+",
+    why: "🍗 치킨\n한국식 2번 튀김 치킨. 토론토 한인 유학생 인기. 다운타운 UofT 인근. 치맥 가능",
+    tip: "UofT·라이어슨 학생 단골. 저녁 웨이팅 있음", website: "bonchon.com" },
+  { rank: 4, emoji: "🥘", nameKo: "Korean Village Restaurant", nameEn: "Korean Village — Bloor Koreatown",
+    address: "628 Bloor St W, Toronto ON M6G 1K3",
+    phone: "(416) 536-0290", hours: "매일 12pm-10pm",
+    rating: 4.1, ratingCount: "600+",
+    why: "🍲 국물·한식\n블루어 코리아타운 한식·BBQ. 한인 커뮤니티 가족 외식 장소. 캐나다 토종 한식당 분위기",
+    tip: "BBQ+국물 둘 다 OK. 가족 식사 추천", website: "yelp.com/biz/korean-village-restaurant-toronto" },
+  { rank: 5, emoji: "☕", nameKo: "H-Mart 토론토 푸드코트", nameEn: "H-Mart Toronto Food Court",
+    address: "656 Bloor St W, Toronto ON M6G 1L2",
+    phone: "(416) 539-8686", hours: "매일 9am-9pm",
+    rating: 4.0, ratingCount: "300+",
+    why: "☕ 카페·분식\nH-Mart 내 한국식 카페·분식. 떡볶이·순대·한국 음료. 블루어 코리아타운 중심",
+    tip: "H-Mart 쇼핑 후 필수. 주차 건물 인근", website: "hmart.com" },
+];
+
+const TOP5_SETTLE_TORONTO: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "토론토 한인회 (KCAT)", nameEn: "Korean-Canadian Association of Toronto",
+    address: "656 Bloor St W, Toronto ON M6G 1K9",
+    phone: "(416) 762-8744", hours: "월-금 9am-5pm",
+    why: "토론토 한인 커뮤니티 허브. 이민·정착·법률·취업 상담. 한국어 서비스. 토론토 정착 첫 번째 방문지",
+    tip: "블루어 코리아타운 내 위치. 방문 전 전화 예약", website: "kcat.ca" },
+  { rank: 2, emoji: "🏪", nameKo: "H-Mart 블루어 (토론토 한인타운)", nameEn: "H-Mart — Bloor Koreatown Toronto",
+    address: "656 Bloor St W, Toronto ON M6G 1L2",
+    phone: "(416) 539-8686", hours: "매일 9am-9pm",
+    why: "토론토 코리아타운 중심 한인 마트. 한국 식품·생활용품 완비. 한인 커뮤니티 정보 게시판 활용",
+    tip: "지하철 Bathurst역 도보 5분. 주차 건물 인근", website: "hmart.com" },
+  { rank: 3, emoji: "🚗", nameKo: "온타리오 MTO — G 드라이버 라이선스", nameEn: "Ontario MTO — Driver's Licence (G)",
+    address: "온라인 예약 후 가까운 DriveTest 센터 방문",
+    phone: "(647) 776-0331",
+    why: "캐나다 온타리오 운전면허. G1(필기) → G2(도로) → G(완전) 3단계 시스템.\n⚠️ 한국 면허 소지자: G1 면제 가능 → G2 도로시험만 응시\n처음 1년: G1 제한 (고속도로 금지·동승자 필요)",
+    tip: "🔗 drivetest.ca 예약 필수. 한국 면허 지참 시 G1 면제 확인", website: "ontario.ca/driving" },
+  { rank: 4, emoji: "🏥", nameKo: "OHIP — 온타리오 무료 의료보험", nameEn: "OHIP — Ontario Health Insurance Plan",
+    address: "ServiceOntario 오피스 (가까운 지점 방문)",
+    phone: "(800) 268-6478",
+    why: "⭐ 캐나다 최대 혜택 — 온타리오 이주 3개월 후 모든 의료 무료!\n영주권자·시민권자 대상. 병원·응급실·가정의(Family Doctor) 무료\n⚠️ 처음 3개월 대기 기간 → 민간 의료보험 임시 가입 권장",
+    tip: "신청: ServiceOntario 방문 | 🔗 ontario.ca/ohip", website: "ontario.ca/ohip" },
+  { rank: 5, emoji: "🇨🇦", nameKo: "주토론토 총영사관", nameEn: "Korean Consulate General — Toronto",
+    address: "555 Avenue Rd, Toronto ON M4V 2J4",
+    phone: "(416) 920-3809", hours: "월-금 9am-12pm, 1:30pm-4pm",
+    why: "여권·공증·재외국민 등록. 온타리오·매니토바·사스캐처원 담당. 캐나다 영주권·시민권 후에도 방문 필요",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/ca-toronto-ko", website: "overseas.mofa.go.kr/ca-toronto-ko" },
+];
+
+const TOP5_EXPLORE_TORONTO: Top5Item[] = [
+  { rank: 1, emoji: "🏙️", nameKo: "블루어 코리아타운 (Bloor Koreatown)", nameEn: "Bloor Koreatown — Toronto's Korean Heart",
+    address: "Bloor St W & Christie St, Toronto ON M6G",
+    why: "토론토 다운타운 한인타운. 한식당·노래방·한국 마트·교회 밀집. 다운타운 접근성 최고. 한국 느낌 물씬",
+    tip: "지하철 Bathurst 또는 Christie역. 주말 활기참", website: "maps.google.com/?q=Koreatown+Toronto" },
+  { rank: 2, emoji: "🗼", nameKo: "CN 타워 & 온타리오 호수", nameEn: "CN Tower & Lake Ontario",
+    address: "290 Bremner Blvd, Toronto ON M5V 3L9",
+    why: "토론토 상징. CN 타워 높이 553m. 유리 바닥 전망대. 온타리오 호수 파노라마. 한인 가족 필수 코스",
+    tip: "입장료 CA$45. 저녁 야경 추천. Ripley's Aquarium 인근 함께", website: "cntower.ca" },
+  { rank: 3, emoji: "🏛️", nameKo: "로열 온타리오 뮤지엄 (ROM)", nameEn: "Royal Ontario Museum",
+    address: "100 Queens Park, Toronto ON M5S 2C6",
+    why: "캐나다 최대 박물관. 한국관(Korea Gallery) 상설 운영. 공룡·이집트·세계 문화재. 한인 가족 주말 코스",
+    tip: "성인 CA$28. 매주 수요일 오후 할인. 지하철 Museum역 직결", website: "rom.on.ca" },
+  { rank: 4, emoji: "🌊", nameKo: "나이아가라 폭포 (당일치기)", nameEn: "Niagara Falls — Day Trip",
+    address: "Niagara Falls, ON L2E",
+    why: "토론토에서 1.5시간. 세계 3대 폭포. 캐나다 쪽 전망이 더 아름다움. 한인 버스 투어 다수 운영",
+    tip: "GO Train 또는 한인 투어버스 이용. 무료 폭포 전망 + 유료 보트 투어(CA$30)", website: "niagarafallstourism.com" },
+  { rank: 5, emoji: "🍁", nameKo: "노스욕 핀치 한인타운", nameEn: "North York Finch — Korean Community Hub",
+    address: "Finch Ave W & Yonge St, North York ON M2N",
+    why: "토론토 최대 한인 밀집 지역. 핀치/욘지 한인 상권. 한식당·한국 마트·한인 교회·노래방·PC방 대규모 집결",
+    tip: "지하철 North York Centre역. 주말 방문 추천. 주차 무료 공간 많음", website: "maps.google.com/?q=Korean+Town+North+York+Toronto" },
+];
+
+/* ─────────────────────────────────────────
+   밴쿠버 전용 데이터 — 캐나다 서부 한인 허브
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_VANCOUVER: Top5Item[] = [
+  { rank: 1, emoji: "🥩", nameKo: "Jang Mo Jib — 코퀴틀람", nameEn: "Jang Mo Jib Korean Restaurant — Coquitlam",
+    address: "1163 Pinetree Way #130, Coquitlam BC V3B 8A9",
+    phone: "(604) 945-5323", hours: "매일 11:30am-10pm",
+    rating: 4.3, ratingCount: "500+",
+    why: "🥩 BBQ·한식\n코퀴틀람 한인타운 대표 한식당. 갈비·불고기·보쌈. 밴쿠버 한인 가족 단골. 정갈한 반찬",
+    tip: "코퀴틀람 한인타운 중심. 주말 예약 권장", website: "yelp.com/biz/jang-mo-jib-coquitlam" },
+  { rank: 2, emoji: "🍲", nameKo: "Sura Korean Cuisine — 밴쿠버 다운타운", nameEn: "Sura Korean Cuisine — Vancouver",
+    address: "4151 Hazelbridge Way #1880, Richmond BC V6X 4J7",
+    phone: "(604) 273-7872", hours: "매일 11am-10pm",
+    rating: 4.4, ratingCount: "600+",
+    why: "🍲 국물·한식\n리치몬드 한인 명가. 순두부·갈비탕·비빔밥. 한인 가족 외식 1순위. 신선한 재료와 정성스러운 반찬",
+    tip: "리치몬드 한인 쇼핑몰 내 위치. 주차 무료", website: "yelp.com/biz/sura-korean-cuisine-richmond" },
+  { rank: 3, emoji: "🍗", nameKo: "Chicken Together — 코퀴틀람", nameEn: "Chicken Together Korean Fried Chicken",
+    address: "1163 Pinetree Way #110, Coquitlam BC V3B 8A9",
+    phone: "(604) 945-7070", hours: "화-일 11:30am-9pm (월 휴무)",
+    rating: 4.2, ratingCount: "300+",
+    why: "🍗 치킨\n밴쿠버 한국식 치킨 명소. 바삭한 양념·간장 치킨. 코퀴틀람 한인타운 치맥 장소",
+    tip: "월요일 휴무. 배달도 가능", website: "yelp.com/biz/chicken-together-coquitlam" },
+  { rank: 4, emoji: "🥘", nameKo: "Damso Modern Korean — 다운타운", nameEn: "Damso Modern Korean — Downtown Vancouver",
+    address: "1180 Robson St, Vancouver BC V6E 1B2",
+    phone: "(604) 558-0858", hours: "매일 11:30am-10pm",
+    rating: 4.3, ratingCount: "800+",
+    why: "🍲 국물·한식\n밴쿠버 다운타운 현대식 한식. 순두부·비빔밥·갈비. 관광객·한인 모두 인기. 로브슨 쇼핑가 인근",
+    tip: "다운타운 쇼핑 후 방문 추천. 영어 메뉴 있음", website: "yelp.com/biz/damso-modern-korean-cuisine-vancouver" },
+  { rank: 5, emoji: "☕", nameKo: "H-Mart 코퀴틀람 푸드코트", nameEn: "H-Mart Coquitlam Food Court",
+    address: "1163 Pinetree Way, Coquitlam BC V3B 8A9",
+    phone: "(604) 945-2288", hours: "매일 9am-9pm",
+    rating: 4.1, ratingCount: "200+",
+    why: "☕ 카페·분식\n밴쿠버 최대 한인 마트 내 푸드코트. 한국 분식·카페. 코퀴틀람 한인 생활 중심",
+    tip: "H-Mart 쇼핑 후 필수 방문. 주차 무료", website: "hmart.com" },
+];
+
+const TOP5_SETTLE_VANCOUVER: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "밴쿠버 한인회 (KCAVA)", nameEn: "Korean Canadian Association of Vancouver Area",
+    address: "1163 Pinetree Way #200, Coquitlam BC V3B 8A9",
+    phone: "(604) 944-7803", hours: "월-금 9am-5pm",
+    why: "밴쿠버 한인 커뮤니티 허브. 이민·정착·법률·취업 상담. 한국어 서비스 완전 지원. 밴쿠버 정착 첫 번째 방문지",
+    tip: "코퀴틀람 한인타운 내 위치. 방문 전 전화 예약", website: "kcava.ca" },
+  { rank: 2, emoji: "🏪", nameKo: "H-Mart 코퀴틀람 (밴쿠버 한인 허브)", nameEn: "H-Mart — Coquitlam Korean Hub",
+    address: "1163 Pinetree Way, Coquitlam BC V3B 8A9",
+    phone: "(604) 945-2288", hours: "매일 9am-9pm",
+    why: "밴쿠버 최대 한인 마트. 코퀴틀람 한인타운 중심. 한국 식품·생활용품 완비. 한인 커뮤니티 정보 게시판",
+    tip: "주차 무료. Pinetree Way 한인 상권 함께 탐방", website: "hmart.com" },
+  { rank: 3, emoji: "🚗", nameKo: "ICBC — BC 드라이버 라이선스", nameEn: "ICBC — BC Driver's Licence",
+    address: "가까운 ICBC Driver Licensing Office",
+    phone: "(800) 950-1498",
+    why: "BC주 운전면허. 한국 면허 소지자 → 지식 시험(Knowledge Test) 면제!\n✅ BC는 한국과 교환 협정 → 도로주행시험만 응시\n⚠️ 90일 내 BC 면허로 전환 의무",
+    tip: "🔗 icbc.com 온라인 예약. 한국 면허 지참 시 지식시험 면제 확인 요청", website: "icbc.com" },
+  { rank: 4, emoji: "🏥", nameKo: "MSP — BC 무료 의료보험", nameEn: "MSP — BC Medical Services Plan",
+    address: "Health Insurance BC (온라인 신청 가능)",
+    phone: "(800) 663-7100",
+    why: "⭐ 캐나다 최대 혜택 — BC 이주 3개월 후 모든 의료 무료!\n영주권자·시민권자 대상. 가정의·응급실·수술 무료.\n⚠️ 처음 3개월 대기 → 임시 민간 의료보험 가입 권장",
+    tip: "온라인 신청: hibc.gov.bc.ca | 🔗 gov.bc.ca/msp", website: "gov.bc.ca/msp" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "주밴쿠버 총영사관", nameEn: "Korean Consulate General — Vancouver",
+    address: "1600-1090 W Georgia St, Vancouver BC V6E 3V7",
+    phone: "(604) 681-9581", hours: "월-금 9am-12pm, 1:30pm-4pm",
+    why: "여권·공증·재외국민 등록. BC·앨버타·사스캐처원·유콘·NWT 담당. 밴쿠버 다운타운 위치",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/ca-vancouver-ko", website: "overseas.mofa.go.kr/ca-vancouver-ko" },
+];
+
+const TOP5_EXPLORE_VANCOUVER: Top5Item[] = [
+  { rank: 1, emoji: "🏘️", nameKo: "코퀴틀람 한인타운 (Pinetree Way)", nameEn: "Coquitlam Koreatown — Pinetree Way",
+    address: "Pinetree Way & Lougheed Hwy, Coquitlam BC V3B",
+    why: "밴쿠버 최대 한인 밀집 지역. H-Mart·한식당·노래방·한인 교회·한국 마트 집결. 서울 느낌 그대로",
+    tip: "SkyTrain Coquitlam Central역 인근. 주차 무료 많음", website: "maps.google.com/?q=Koreatown+Coquitlam+BC" },
+  { rank: 2, emoji: "🏔️", nameKo: "스탠리 파크 (Stanley Park)", nameEn: "Stanley Park — Vancouver's Natural Gem",
+    address: "Stanley Park Dr, Vancouver BC V6G 1Z4",
+    why: "북미 최대 도심 공원. 총 길이 10km 시월 트레일. 바다·산·삼림 한눈에. 자전거 대여 가능. 한인 가족 주말 나들이 1순위",
+    tip: "무료 입장. 자전거 대여 CA$15/시간. 주차 CA$5/시간", website: "vancouver.ca/parks-recreation-culture/stanley-park" },
+  { rank: 3, emoji: "🌉", nameKo: "카필라노 서스펜션 브리지", nameEn: "Capilano Suspension Bridge",
+    address: "3735 Capilano Rd, North Vancouver BC V7R 4J1",
+    why: "높이 70m 출렁다리. 레인포레스트 트레킹. 밴쿠버 최고 액티비티. 사진 명소. 한인 가족 액티비티 1순위",
+    tip: "입장료 CA$65 성인. 밴쿠버 다운타운에서 셔틀버스 무료 운행", website: "capbridge.com" },
+  { rank: 4, emoji: "🌊", nameKo: "그랜빌 아일랜드 & 퍼블릭 마켓", nameEn: "Granville Island & Public Market",
+    address: "1661 Duranleau St, Vancouver BC V6H 3S3",
+    why: "밴쿠버 대표 관광지. 해산물·빵·치즈 등 로컬 마켓. 연갈매기 빵빵. 야외 공연. 무료 입장",
+    tip: "무료 입장. 주차 CA$5/시간 (버스 추천). 아쿠아버스로 바다 건너 접근 가능", website: "granvilleisland.com" },
+  { rank: 5, emoji: "⛷️", nameKo: "휘슬러 (Whistler) — 스키·여름 액티비티", nameEn: "Whistler — Skiing & Summer Activities",
+    address: "Whistler, BC V8E 0Z1 (밴쿠버에서 2시간)",
+    why: "북미 최대 스키 리조트. 겨울 스키·여름 하이킹·마운틴바이크. 밴쿠버 한인 가족 시즌 여행 1순위",
+    tip: "밴쿠버에서 Sea-to-Sky Hwy 2시간. 한인 투어버스 다수 운영. 숙박 사전 예약 필수", website: "whistler.com" },
+];
+
+/* ─────────────────────────────────────────
    HOOK: 온라인 상태 감지
 ───────────────────────────────────────── */
 function useOnlineStatus() {
@@ -2788,6 +2962,18 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 코리아타운 한인 CPA 다수 | 🔗 irs.gov/itin" },
     { title: "Covered California (건강보험)", desc: "CA 주 의료보험. 소득 기준 보조금 가능. Medi-Cal(무료 메디케이드)도 확인. LA 카운티 가입 지원 | 🔗 coveredca.com" },
     { title: "영주권·비자 갱신", desc: "USCIS LA 오피스 | 코리아타운·토랜스 이민 변호사 다수 | 🔗 uscis.gov" },
+  ] : citySlug === "toronto" ? [
+    { title: "SIN 신청 (캐나다 사회보험번호)", desc: "📍 Service Canada 오피스 방문 | 영주권·취업허가 후 즉시 신청\n🇨🇦 미국 SSN과 같은 역할. 취업·세금·은행 계좌 개설 모두 필요 | 🔗 canada.ca/sin" },
+    { title: "온타리오 운전면허 (G 시스템)", desc: "🔗 drivetest.ca 예약 필수\n한국 면허 소지자 → G1 필기 면제 가능! → G2 도로시험만\nG1: 고속도로 금지·동승자 필요 (1년) → G2 → G(완전)" },
+    { title: "OHIP 의료보험 신청", desc: "온타리오 무료 의료보험. 이주 후 3개월 대기 → 그 후 모든 의료 무료!\nServiceOntario 방문 신청. 대기 기간 민간 의료보험 임시 가입 권장 | 🔗 ontario.ca/ohip" },
+    { title: "캐나다 이민 (IRCC)", desc: "익스프레스 엔트리·주정부 이민(PNP)·유학·취업허가.\nUSCIS 대신 IRCC. 한인 이민 변호사 토론토 다수 활동 | 🔗 canada.ca/immigration" },
+    { title: "캐나다 은행 계좌 개설", desc: "RBC·TD·Scotiabank·CIBC 추천. SIN + 여권으로 개설 가능\n신용 이력 없어도 Secured Credit Card로 시작 | 🔗 rbc.com" },
+  ] : citySlug === "vancouver" ? [
+    { title: "SIN 신청 (캐나다 사회보험번호)", desc: "📍 Service Canada 오피스 방문 | 영주권·취업허가 후 즉시 신청\n🇨🇦 취업·세금·은행 계좌 모두 필요 | 🔗 canada.ca/sin" },
+    { title: "BC 운전면허 (ICBC)", desc: "🔗 icbc.com 온라인 예약\n✅ 한국 면허 소지자 지식 시험 면제! → 도로주행시험만 응시\n90일 내 BC 면허 전환 의무" },
+    { title: "MSP 의료보험 신청", desc: "BC 무료 의료보험. 이주 후 3개월 대기 → 그 후 모든 의료 무료!\n온라인 신청: hibc.gov.bc.ca | 대기 기간 민간 의료보험 임시 가입 권장 | 🔗 gov.bc.ca/msp" },
+    { title: "캐나다 이민 (IRCC)", desc: "BC PNP(주정부 이민)·테크파일럿·유학·취업허가. USCIS 대신 IRCC.\n밴쿠버 한인 이민 변호사 다수 활동 | 🔗 canada.ca/immigration" },
+    { title: "BC 은행 계좌 개설", desc: "RBC·TD·Scotiabank·CIBC·VanCity(밴쿠버 신협) 추천\nSIN + 여권으로 개설 가능. 신용 이력 없어도 Secured Card로 시작 | 🔗 rbc.com" },
   ] : citySlug === "dallas" ? [
     { title: "SSN 신청", desc: "📍 Social Security Office | 1901 N Central Expy, McKinney TX | 📞 800-772-1213 | 🔗 ssa.gov" },
     { title: "텍사스 운전면허 (DPS)", desc: "📍 1149 E Belt Line Rd, Carrollton TX | 온라인 예약 필수! 🔗 appointments.dps.texas.gov\n⚠️ 텍사스 이주 후 90일 이내 전환 의무 | 🔗 dps.texas.gov" },
@@ -2831,6 +3017,18 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Many Korean CPAs in Koreatown | 🔗 irs.gov/itin" },
     { title: "Covered California (Health Insurance)", desc: "CA state health insurance marketplace. Income-based subsidies available. Medi-Cal (free Medicaid) also available | 🔗 coveredca.com" },
     { title: "Green Card / Visa Renewal", desc: "USCIS LA office | Many immigration attorneys in Koreatown & Torrance | 🔗 uscis.gov" },
+  ] : citySlug === "toronto" ? [
+    { title: "SIN Application (Social Insurance Number)", desc: "📍 Visit Service Canada office | Apply immediately after PR/work permit\n🇨🇦 Canada's equivalent of SSN. Required for employment, taxes & banking | 🔗 canada.ca/sin" },
+    { title: "Ontario Driver's Licence (G System)", desc: "🔗 drivetest.ca appointment required\nKorean licence holders: G1 written test EXEMPT! → Road test only\nG1: No highway, need supervisor (1yr) → G2 → G (full)" },
+    { title: "OHIP Health Insurance", desc: "Ontario's FREE health insurance. 3-month wait after moving → then ALL healthcare is free!\nApply at ServiceOntario. Get temporary private insurance during wait | 🔗 ontario.ca/ohip" },
+    { title: "Canadian Immigration (IRCC)", desc: "Express Entry, Provincial Nominee Program (PNP), study/work permits.\nIRCC instead of USCIS. Many Korean immigration lawyers in Toronto | 🔗 canada.ca/immigration" },
+    { title: "Canadian Bank Account", desc: "RBC, TD, Scotiabank, CIBC recommended. SIN + passport sufficient to open\nNo credit history? Start with Secured Credit Card | 🔗 rbc.com" },
+  ] : citySlug === "vancouver" ? [
+    { title: "SIN Application (Social Insurance Number)", desc: "📍 Visit Service Canada office | Apply immediately after PR/work permit\n🇨🇦 Required for employment, taxes & banking in Canada | 🔗 canada.ca/sin" },
+    { title: "BC Driver's Licence (ICBC)", desc: "🔗 icbc.com online appointment\n✅ Korean licence holders: Knowledge test EXEMPT! → Road test only\nMust transfer to BC licence within 90 days of moving" },
+    { title: "MSP Health Insurance", desc: "BC's FREE health insurance. 3-month wait after moving → then ALL healthcare is free!\nApply online: hibc.gov.bc.ca | Get temporary private insurance during wait | 🔗 gov.bc.ca/msp" },
+    { title: "Canadian Immigration (IRCC)", desc: "BC PNP, Tech Pilot, study/work permits. IRCC instead of USCIS.\nMany Korean immigration lawyers in Vancouver | 🔗 canada.ca/immigration" },
+    { title: "BC Bank Account", desc: "RBC, TD, Scotiabank, CIBC, VanCity (Vancouver credit union) recommended\nSIN + passport to open. No credit history? Start with Secured Card | 🔗 rbc.com" },
   ] : citySlug === "dallas" ? [
     { title: "SSN Application", desc: "📍 Social Security Office | 1901 N Central Expy, McKinney TX | 📞 800-772-1213 | 🔗 ssa.gov" },
     { title: "Texas Driver License (DPS)", desc: "📍 1149 E Belt Line Rd, Carrollton TX | Online appointment required! 🔗 appointments.dps.texas.gov\n⚠️ Must transfer within 90 days of moving to Texas | 🔗 dps.texas.gov" },
@@ -2940,6 +3138,30 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "🌊", title: "Torrance — Tech & Auto Industry Koreans", desc: "Near Toyota & Honda North America HQ. Many Korean engineers & expats. Rent 1BR $1,900–2,500. Korean churches & grocery stores available. 15 min to LAX. Beach access nearby" },
     { emoji: "🌸", title: "Irvine (Orange County) — Best Schools", desc: "Rising Korean hub in OC. Irvine USD — top-ranked in CA. Near UCI. Surging Korean population. Rent 1BR $2,200–2,900. Clean, safe. Growing Korean restaurants & grocery scene" },
     { emoji: "💰", title: "Gardena — Affordable LA South", desc: "South LA. Rent 1BR $1,500–2,000 (affordable vs LA). Korean, Hispanic & African American mix. Multiple Korean churches & stores. Easy 110/405 freeway access. 30 min to Koreatown" },
+  ] : citySlug === "toronto" ? [
+    { emoji: "🏘️", title: "노스욕 핀치 (North York Finch) — 토론토 한인 1번지", desc: "욘지/핀치 한인 상권 최대. H-Mart·한식당·한인 교회·노래방 집결. 지하철 Yellow Line 직결. 렌트 1BR CA$2,000–2,600. 한인 인구 밀도 최고" },
+    { emoji: "🏙️", title: "블루어 코리아타운 (Bloor Koreatown)", desc: "다운타운 한인타운. 한식당·한국 마트·교회 밀집. 지하철 Bathurst·Christie역. 렌트 1BR CA$2,200–3,000 (비쌈). UofT·라이어슨 유학생 선호" },
+    { emoji: "🌿", title: "미시사가 (Mississauga) — 가성비 가족", desc: "토론토 서쪽. 렌트 1BR CA$1,700–2,200 (상대적 저렴). 한인 가족 증가 중. Peel District SD. 공항(YYZ) 인근. 자동차 필수 지역" },
+    { emoji: "💼", title: "마캄 (Markham) — 테크·학군", desc: "토론토 동북쪽. 아시안 밀집 지역. York Region District SD 우수. 한인·중국계 혼합. 렌트 1BR CA$1,800–2,400. 테크 기업 밀집" },
+    { emoji: "🎓", title: "스카버러 (Scarborough) — 가성비", desc: "토론토 동쪽. 렌트 1BR CA$1,600–2,100 (토론토 내 저렴). 한인·아시안·카리브 혼합. U of T Scarborough 캠퍼스 인근. 지하철 접근 가능" },
+  ] : citySlug === "vancouver" ? [
+    { emoji: "🍁", title: "코퀴틀람 (Coquitlam) — 밴쿠버 한인 1번지", desc: "밴쿠버 최대 한인 밀집. Pinetree Way 한인 상권. H-Mart·한식당·교회·노래방 집결. SkyTrain Evergreen Line 직결. 렌트 1BR CA$1,900–2,500" },
+    { emoji: "🌊", title: "버나비 (Burnaby) — 학군·SFU", desc: "SFU(사이먼프레이저대) 소재지. 한인 유학생 다수. SkyTrain 직결 (밴쿠버 20분). 렌트 1BR CA$1,800–2,400. 메트로타운 쇼핑 인근" },
+    { emoji: "🌸", title: "리치몬드 (Richmond) — 아시안 가성비", desc: "밴쿠버 남쪽. 아시안(중국·한국) 밀집. 렌트 1BR CA$1,800–2,300. YVR 공항 15분. Richmond SD 학군 우수. 한식당·한인 마트 다수" },
+    { emoji: "🏔️", title: "노스밴쿠버 (North Vancouver) — 자연·고급", desc: "산+바다 자연환경 최고. 한인 가족 선호. 렌트 1BR CA$2,100–2,800 (비쌈). Capilano·Lynn Valley. 밴쿠버 다운타운 SeaBus 30분" },
+    { emoji: "💰", title: "랭리·애버츠퍼드 (Langley/Abbotsford) — 가성비", desc: "밴쿠버 동쪽 외곽. 렌트 1BR CA$1,500–1,900 (저렴). 한인 가족 증가 중. 신축 주택 다수. 밴쿠버 출퇴근 1시간 (차 필수)" },
+  ] : citySlug === "toronto" ? [
+    { emoji: "🏘️", title: "North York Finch — Toronto Korean Hub #1", desc: "Largest Korean commercial strip at Yonge/Finch. H-Mart, Korean restaurants, churches & karaoke. TTC Yellow Line direct. Rent 1BR CA$2,000–2,600. Highest Korean density" },
+    { emoji: "🏙️", title: "Bloor Koreatown — Downtown", desc: "Downtown Koreatown. Korean restaurants, grocery & churches. TTC Bathurst/Christie stations. Rent 1BR CA$2,200–3,000 (pricey). Popular with UofT/Ryerson students" },
+    { emoji: "🌿", title: "Mississauga — Affordable for Families", desc: "West of Toronto. Rent 1BR CA$1,700–2,200 (more affordable). Growing Korean families. Peel District SD schools. Near YYZ airport. Car essential" },
+    { emoji: "💼", title: "Markham — Tech & Top Schools", desc: "Northeast of Toronto. Dense Asian community. Good York Region SD schools. Korean & Chinese mix. Rent 1BR CA$1,800–2,400. Tech company hub" },
+    { emoji: "🎓", title: "Scarborough — Affordable Toronto", desc: "East Toronto. Rent 1BR CA$1,600–2,100 (affordable within Toronto). Korean, Asian & Caribbean mix. Near U of T Scarborough campus. TTC accessible" },
+  ] : citySlug === "vancouver" ? [
+    { emoji: "🍁", title: "Coquitlam — Vancouver Korean Hub #1", desc: "Largest Korean concentration in Metro Vancouver. H-Mart, Korean restaurants & churches on Pinetree Way. SkyTrain Evergreen Line direct. Rent 1BR CA$1,900–2,500" },
+    { emoji: "🌊", title: "Burnaby — Schools & SFU", desc: "Home of SFU (Simon Fraser University). Many Korean students. SkyTrain direct (20 min to Vancouver). Rent 1BR CA$1,800–2,400. Near Metropolis shopping" },
+    { emoji: "🌸", title: "Richmond — Asian Value Pick", desc: "South of Vancouver. Dense Asian (Chinese & Korean) community. Rent 1BR CA$1,800–2,300. 15 min to YVR airport. Richmond SD schools. Growing Korean restaurant scene" },
+    { emoji: "🏔️", title: "North Vancouver — Nature & Premium", desc: "Best nature setting: mountains + ocean. Preferred by Korean families. Rent 1BR CA$2,100–2,800 (expensive). SeaBus to downtown 30 min" },
+    { emoji: "💰", title: "Langley/Abbotsford — Affordable Suburbs", desc: "East suburbs of Vancouver. Rent 1BR CA$1,500–1,900 (affordable). Growing Korean families. New construction. 1hr commute to Vancouver (car essential)" },
   ] : citySlug === "dallas" ? [
     { emoji: "🤠", title: "Carrollton — Dallas Korean Hub #1", desc: "DFW's largest Koreatown. H-Mart, Korean restaurants, churches & karaoke on Old Denton Rd/Belt Line. Rent 1BR $1,400–1,800 | 2BR $1,800–2,200. Carrollton-Farmers Branch ISD" },
     { emoji: "🎓", title: "Plano — Schools & Professionals", desc: "Plano ISD — top-ranked in Texas. Near Samsung & Texas Instruments HQ. Many Korean IT professionals. Rent 1BR $1,600–2,100. Safe, well-organized environment" },
@@ -3009,7 +3231,9 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "newyork"  ? TOP5_SETTLE_NEWYORK :
             useCityConfig().slug === "nashville"? TOP5_SETTLE_NASHVILLE :
             useCityConfig().slug === "boston"   ? TOP5_SETTLE_BOSTON :
-            useCityConfig().slug === "la"       ? TOP5_SETTLE_LA :
+            useCityConfig().slug === "la"        ? TOP5_SETTLE_LA :
+            useCityConfig().slug === "toronto"   ? TOP5_SETTLE_TORONTO :
+            useCityConfig().slug === "vancouver" ? TOP5_SETTLE_VANCOUVER :
             TOP5_SETTLE
           } lang={lang} accentColor="#F2994A" />
         )}
@@ -3503,7 +3727,9 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
             useCityConfig().slug === "newyork"  ? TOP5_RESTAURANTS_NEWYORK :
             useCityConfig().slug === "nashville"? TOP5_RESTAURANTS_NASHVILLE :
             useCityConfig().slug === "boston"   ? TOP5_RESTAURANTS_BOSTON :
-            useCityConfig().slug === "la"       ? TOP5_RESTAURANTS_LA :
+            useCityConfig().slug === "la"        ? TOP5_RESTAURANTS_LA :
+            useCityConfig().slug === "toronto"   ? TOP5_RESTAURANTS_TORONTO :
+            useCityConfig().slug === "vancouver" ? TOP5_RESTAURANTS_VANCOUVER :
             TOP5_RESTAURANTS
           } lang={lang} accentColor="#EF4444" />
         )}
@@ -3647,7 +3873,9 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
             useCityConfig().slug === "newyork"  ? TOP5_EXPLORE_NEWYORK :
             useCityConfig().slug === "nashville"? TOP5_EXPLORE_NASHVILLE :
             useCityConfig().slug === "boston"   ? TOP5_EXPLORE_BOSTON :
-            useCityConfig().slug === "la"       ? TOP5_EXPLORE_LA :
+            useCityConfig().slug === "la"        ? TOP5_EXPLORE_LA :
+            useCityConfig().slug === "toronto"   ? TOP5_EXPLORE_TORONTO :
+            useCityConfig().slug === "vancouver" ? TOP5_EXPLORE_VANCOUVER :
             TOP5_EXPLORE
           } lang={lang} accentColor="#0EA5E9" />
         )}
