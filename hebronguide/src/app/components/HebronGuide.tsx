@@ -238,6 +238,93 @@ const TOP5_EXPLORE_DALLAS: Top5Item[] = [
 ];
 
 /* ─────────────────────────────────────────
+   SF 베이에어리어 전용 데이터
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_SF: Top5Item[] = [
+  { rank: 1, emoji: "🍲", nameKo: "BCD 순두부 — 산타클라라", nameEn: "BCD Tofu House — Santa Clara",
+    address: "3842 El Camino Real, Santa Clara CA 95051",
+    phone: "(408) 246-8669", hours: "매일 11am-10pm",
+    rating: 4.2, ratingCount: "800+",
+    why: "베이에어리어 한인 1순위 순두부집. 24시간 영업. 진한 국물·매운 순두부찌개. LA·뉴욕에도 있는 검증된 체인",
+    tip: "해장으로도 최고. 새벽에도 영업", website: "bcdtofu.com" },
+  { rank: 2, emoji: "🥩", nameKo: "Jang Soo BBQ — 산타클라라", nameEn: "Jang Soo BBQ — Santa Clara",
+    address: "2980 Stevens Creek Blvd, Santa Clara CA 95050",
+    phone: "(408) 243-0880", hours: "월-목 11:30am-10pm, 금-일 11:30am-11pm",
+    rating: 4.3, ratingCount: "600+",
+    why: "산타클라라 한인타운 중심 숯불구이 BBQ. 갈비·삼겹살·냉면. 한인 직장인 점심 1순위",
+    tip: "주차 무료. 런치 세트 가성비 최고", website: "yelp.com/biz/jang-soo-bbq-santa-clara" },
+  { rank: 3, emoji: "🍜", nameKo: "Minjaelo Korean Food — 서니베일", nameEn: "Minjaelo — Sunnyvale",
+    address: "1072 E El Camino Real, Sunnyvale CA 94087",
+    phone: "(408) 736-7676", hours: "화-일 11am-9pm (월 휴무)",
+    rating: 4.4, ratingCount: "400+",
+    why: "서니베일 숨은 명소. 만두·비빔밥·갈비탕. 현지 한인들이 '진짜 한국 맛'이라 극찬",
+    tip: "만두와 된장찌개 조합 강추. 웨이팅 있을 수 있음", website: "yelp.com/biz/minjaelo-korean-food-sunnyvale" },
+  { rank: 4, emoji: "🫕", nameKo: "Bonjuk — 산타클라라 (한국죽)", nameEn: "Bonjuk Korean Porridge — Santa Clara",
+    address: "3174 Stevens Creek Blvd, San Jose CA 95117",
+    phone: "(408) 249-5888", hours: "매일 10am-9pm",
+    rating: 4.3, ratingCount: "300+",
+    why: "죽 전문점. 아플 때·해장·건강식. 전복죽·야채죽·버섯죽. 베이에어리어 한인 가족 추천",
+    tip: "포장 가능. 노인·아이도 OK", website: "bonjukusa.com" },
+  { rank: 5, emoji: "☕", nameKo: "H-Mart 산타클라라 푸드코트", nameEn: "H-Mart Santa Clara Food Court",
+    address: "3935 El Camino Real, Santa Clara CA 95051",
+    phone: "(408) 248-8880", hours: "매일 8am-10pm",
+    rating: 4.1, ratingCount: "500+",
+    why: "베이에어리어 최대 한인 마트 내 푸드코트. 떡볶이·순대·라면·김밥 한자리에. 쇼핑 후 필수 방문",
+    tip: "주말에는 매우 혼잡. 평일 오전 방문 추천", website: "hmart.com" },
+];
+
+const TOP5_SETTLE_SF: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "한인회 (KACBA — Bay Area)", nameEn: "Korean American Community of the Bay Area",
+    address: "2275 El Camino Real Ste 207, Santa Clara CA 95050",
+    phone: "(408) 247-7676", hours: "월-금 9am-5pm",
+    why: "베이에어리어 한인 커뮤니티 허브. 정착 초기 상담·취업·법률 연결·한국어 서비스",
+    tip: "방문 전 전화 예약 권장", website: "kacba.org" },
+  { rank: 2, emoji: "🏪", nameKo: "H-Mart 산타클라라", nameEn: "H-Mart Santa Clara — Korean Hub",
+    address: "3935 El Camino Real, Santa Clara CA 95051",
+    phone: "(408) 248-8880", hours: "매일 8am-10pm",
+    why: "베이에어리어 최대 한인 마트. 한국 식품·생활용품·한인 커뮤니티 정보 보드. 베이에어리어 한인 집결지",
+    tip: "한인 커뮤니티 정보 게시판 활용. 한국어 안내 가능", website: "hmart.com" },
+  { rank: 3, emoji: "🚗", nameKo: "캘리포니아 DMV — 드라이버 라이선스", nameEn: "California DMV — Driver License",
+    address: "1515 S 1st St, San Jose CA 95112",
+    phone: "(800) 777-0133", hours: "월-금 8am-5pm (예약 필수)",
+    why: "CA 이주 후 10일 내 DMV 방문 의무 (연방법). 한국 면허 지참 시 필기 면제 불가 — 필기·실기 모두 응시\n⚠️ CA는 WA와 달리 필기시험 한국어 선택 없음 (영어만)",
+    tip: "🔗 appointments.dmv.ca.gov 예약 필수. 현장 방문 시 3-4시간 대기", website: "dmv.ca.gov" },
+  { rank: 4, emoji: "🏥", nameKo: "NICOS (이민자 건강 서비스)", nameEn: "NICOS — National Immigrant Health Initiative",
+    address: "1 Daniel Burnham Ct Ste 322C, San Francisco CA 94109",
+    phone: "(415) 394-0204", hours: "월-금 9am-5pm",
+    why: "CA 이민자·무보험자 건강 서비스. 한국어 통역 가능. Covered California 등록 지원",
+    tip: "Covered California 등록 무료 지원. 소득 기준 Medi-Cal 가능", website: "nicos-health.org" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "주샌프란시스코 총영사관", nameEn: "Korean Consulate General — San Francisco",
+    address: "3500 Clay St, San Francisco CA 94118",
+    phone: "(415) 921-2251", hours: "월-금 9am-4pm (예약 필수)",
+    why: "여권·공증·재외국민 등록·병역 상담. 베이에어리어·태평양 서북부 한인 담당 공관",
+    tip: "온라인 예약 필수. 영사 민원: overseas.mofa.go.kr/us-sanfrancisco-ko", website: "overseas.mofa.go.kr/us-sanfrancisco-ko" },
+];
+
+const TOP5_EXPLORE_SF: Top5Item[] = [
+  { rank: 1, emoji: "🌉", nameKo: "골든게이트 브릿지", nameEn: "Golden Gate Bridge",
+    address: "Golden Gate Bridge, San Francisco CA 94129",
+    why: "세계 상징 대교. 도보·자전거 횡단 가능. 새벽 안개 속 사진이 압권. 맞은편 Marin Headlands 전망도 추천",
+    tip: "자전거 대여: 피셔맨스 워프 인근 ($30-40/day). 주차 혼잡 — Sausalito에서 페리로 접근 추천", website: "goldengate.org" },
+  { rank: 2, emoji: "🌁", nameKo: "피셔맨스 워프 & 알카트라즈", nameEn: "Fisherman's Wharf & Alcatraz",
+    address: "Pier 39, San Francisco CA 94133",
+    why: "SF 대표 명소. 씰(물개) 서식, 해산물 클램차우더, 게 요리. 알카트라즈 투어 ($45) — 한국어 오디오 가이드 제공",
+    tip: "알카트라즈 티켓 최소 2주 전 예약: alcatrazcruises.com", website: "pier39.com" },
+  { rank: 3, emoji: "💻", nameKo: "실리콘밸리 — Apple·Google 본사", nameEn: "Silicon Valley — Apple & Google HQ",
+    address: "Apple Park Visitor Center, One Apple Park Way, Cupertino CA 95014",
+    why: "세계 IT 중심지. Apple Park 방문자센터 무료. Google 본사(Googleplex) 외부 투어. 한인 IT 직장인 1000명+ 근무",
+    tip: "Apple Store에서 기념품 구매. Google 캠퍼스 자전거 투어($35)", website: "apple.com/retail/appleparkvisitorcenter" },
+  { rank: 4, emoji: "🌿", nameKo: "뮤어우즈 레드우드 숲", nameEn: "Muir Woods National Monument",
+    address: "1 Muir Woods Rd, Mill Valley CA 94941",
+    why: "수백 년 된 레드우드 삼나무 숲. SF에서 30분. 자연 속 트레킹. 한인 가족 주말 나들이 1순위",
+    tip: "예약 필수: recreation.gov ($9 주차 예약). 대중교통 가능 (Golden Gate Transit)", website: "nps.gov/muwo" },
+  { rank: 5, emoji: "🏘️", nameKo: "산타클라라 한인타운", nameEn: "Santa Clara — Bay Area Koreatown",
+    address: "El Camino Real & Lawrence Expy, Santa Clara CA 95050",
+    why: "베이에어리어 최대 한인 밀집 지역. H-Mart·한식당·한국 미용실·한국 교회 집결. '실리콘밸리의 한인 1번지'",
+    tip: "El Camino Real을 따라 산타클라라~서니베일 구간이 한인 상권 핵심", website: "maps.google.com/?q=Koreatown+Santa+Clara+CA" },
+];
+
+/* ─────────────────────────────────────────
    HOOK: 온라인 상태 감지
 ───────────────────────────────────────── */
 function useOnlineStatus() {
@@ -2323,7 +2410,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
 
   const citySlug = useCityConfig().slug;
 
-  const adminKo = citySlug === "dallas" ? [
+  const adminKo = citySlug === "sf" ? [
+    { title: "SSN 신청", desc: "📍 Social Security Office | 1750 Mission St, San Francisco CA | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "CA 운전면허 (DMV)", desc: "📍 1515 S 1st St, San Jose CA | 예약: appointments.dmv.ca.gov\n⚠️ CA 이주 10일 내 방문 의무. 필기시험 영어만 가능 (한국어 X). 한국 면허 소지자도 필기+실기 응시 필요 | 🔗 dmv.ca.gov" },
+    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
+    { title: "Covered California (건강보험)", desc: "CA 주 의료보험 마켓플레이스. 소득 기준 보조금 가능. 무보험도 Medi-Cal 신청 가능 | 🔗 coveredca.com" },
+    { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트 | 산호세·SF 이민 변호사 다수 활동 | 🔗 uscis.gov" },
+  ] : citySlug === "dallas" ? [
     { title: "SSN 신청", desc: "📍 Social Security Office | 1901 N Central Expy, McKinney TX | 📞 800-772-1213 | 🔗 ssa.gov" },
     { title: "텍사스 운전면허 (DPS)", desc: "📍 1149 E Belt Line Rd, Carrollton TX | 온라인 예약 필수! 🔗 appointments.dps.texas.gov\n⚠️ 텍사스 이주 후 90일 이내 전환 의무 | 🔗 dps.texas.gov" },
     { title: "차량 등록·검사", desc: "텍사스는 연 1회 차량 안전검사 필수 (Safety Inspection) → 카운티 Tax Office에서 등록\n검사소: Carrollton 인근 Firestone, Jiffy Lube 등 | 🔗 txdmv.gov" },
@@ -2336,7 +2429,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트: uscis.gov | Lynnwood 이민 변호사 다수 활동 | 🔗 uscis.gov" },
     { title: "시민권 신청 (N-400)", desc: "영주권 5년 후 신청 가능 | 영어·시민권 시험 준비 클래스 교회에서 운영" },
   ];
-  const adminEn = citySlug === "dallas" ? [
+  const adminEn = citySlug === "sf" ? [
+    { title: "SSN Application", desc: "📍 Social Security Office | 1750 Mission St, San Francisco CA | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "California Driver License (DMV)", desc: "📍 1515 S 1st St, San Jose CA | Book: appointments.dmv.ca.gov\n⚠️ Must visit within 10 days of moving to CA. Written test in English only. Korean license holders must take both written & road tests | 🔗 dmv.ca.gov" },
+    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
+    { title: "Covered California (Health Insurance)", desc: "CA state health insurance marketplace. Income-based subsidies available. Medi-Cal (Medicaid) available for low income | 🔗 coveredca.com" },
+    { title: "Green Card / Visa Renewal", desc: "USCIS official site | Many immigration attorneys in San Jose & SF area | 🔗 uscis.gov" },
+  ] : citySlug === "dallas" ? [
     { title: "SSN Application", desc: "📍 Social Security Office | 1901 N Central Expy, McKinney TX | 📞 800-772-1213 | 🔗 ssa.gov" },
     { title: "Texas Driver License (DPS)", desc: "📍 1149 E Belt Line Rd, Carrollton TX | Online appointment required! 🔗 appointments.dps.texas.gov\n⚠️ Must transfer within 90 days of moving to Texas | 🔗 dps.texas.gov" },
     { title: "Vehicle Registration & Inspection", desc: "Texas requires annual Safety Inspection → register at county Tax Office\nInspection locations: Firestone, Jiffy Lube near Carrollton | 🔗 txdmv.gov" },
@@ -2350,7 +2449,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "Citizenship (N-400)", desc: "Eligible 5 years after green card | English & civics prep classes at Korean churches" },
   ];
 
-  const financeKo = [
+  const financeKo = citySlug === "sf" ? [
+    { title: "Chase Total Checking", desc: "한인 커뮤니티 추천 1위. 전국 ATM 많음. $500 개설 보너스 이벤트 자주 있음 | 🔗 chase.com" },
+    { title: "CA 세금 주의 (중요!)", desc: "⚠️ 캘리포니아는 주 소득세 있음! (WA와 완전 다름)\nCA 주 소득세: 소득 구간에 따라 1%~13.3%\n판매세(Sales Tax): 약 9.25% (산타클라라 카운티)\n→ 연봉 협상 시 CA 세금 반드시 계산에 넣을 것!" },
+    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver / Freedom → 2년 후 Chase Sapphire 목표" },
+    { title: "Covered California (건강보험)", desc: "CA 주 의료보험 마켓플레이스. 연소득 기준 보조금(Premium Tax Credit) 가능. Medi-Cal(무료 메디케이드)도 확인 | 🔗 coveredca.com" },
+    { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. CA는 소득세 높으므로 세전 기여(Traditional 401K) 전략적으로 활용" },
+  ] : [
     { title: "Chase Total Checking", desc: "한인 커뮤니티 추천 1위. 전국 ATM 많음. $500 개설 보너스 이벤트 자주 있음 | 🔗 chase.com" },
     { title: "WA Federal Credit Union", desc: "시애틀 한인 선호 신협. 자동차 대출 금리 경쟁력 있음 | 🔗 wafederal.com" },
     { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver / Freedom → 2년 후 Chase Sapphire 목표" },
@@ -2366,7 +2471,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   ];
 
   // 거주지 데이터 (탭 index 5) — 도시별 분기
-  const areasKo = citySlug === "dallas" ? [
+  const areasKo = citySlug === "sf" ? [
+    { emoji: "💻", title: "산타클라라 (Santa Clara) — 한인 1번지", desc: "실리콘밸리 한인타운. H-Mart·한식당·교회 집결. El Camino Real 한인 상권. Apple·Intel·NVIDIA 인근. 렌트 1BR $2,300–2,800. Santa Clara USD (Niche A-)" },
+    { emoji: "🍎", title: "쿠퍼티노 (Cupertino) — Apple HQ·최상위 학군", desc: "Apple 본사 소재지. Cupertino Union SD + Fremont Union HSD — CA 최상위권. 한인 가족 1순위. 렌트 1BR $2,500–3,200 (프리미엄). 한인 비율 높음" },
+    { emoji: "🌞", title: "서니베일 (Sunnyvale) — 가성비 테크", desc: "Google·LinkedIn·Yahoo 인근. 쿠퍼티노보다 렌트 저렴. 렌트 1BR $2,100–2,600. Sunnyvale SD. 한인 커뮤니티 성장 중. VTA 교통 양호" },
+    { emoji: "🌉", title: "프리몬트 (Fremont) — 한인 급성장 지역", desc: "BART 직결 → SF·산호세 출퇴근 가능. 렌트 1BR $2,000–2,500 (상대적 저렴). Fremont USD (Niche A). 한인·중국계 혼합 거주. 테슬라 공장 인근" },
+    { emoji: "🏙️", title: "밀피타스 (Milpitas) — 이민자 가성비", desc: "한인·베트남계 혼합. 렌트 1BR $1,900–2,400 (Bay Area 최저렴급). H-Mart 인근. Great Mall 쇼핑. 실리콘밸리 접근 편리. BART 신규 역 개통" },
+  ] : citySlug === "dallas" ? [
     { emoji: "🤠", title: "캐롤튼 (Carrollton) — 달라스 한인 1번지", desc: "달라스 최대 한인타운. H-Mart·한식당·한인 교회·노래방 밀집. Old Denton Rd·Belt Line 일대. 렌트 1BR $1,400–1,800 | 2BR $1,800–2,200. Carrollton-Farmers Branch ISD" },
     { emoji: "🎓", title: "플라노 (Plano) — 학군·전문직", desc: "플라노 독립 학군 (Plano ISD) — Texas 최상위급. 삼성·텍사스 인스트루먼트 본사 인근. 한인 IT·전문직 다수 거주. 렌트 1BR $1,600–2,100. 안전하고 정돈된 환경" },
     { emoji: "🏢", title: "리처드슨 (Richardson) — 테크 코리도어", desc: "AT&T·Ericsson·Samsung 반도체 본사 인근. 시티라인 개발로 급성장. UT Dallas 인접. 렌트 1BR $1,400–1,900. 한인 유학생·직장인 인기" },
@@ -2379,7 +2490,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "💰", title: "페더럴웨이 (Federal Way) — 가성비", desc: "렌트 1BR $1,500–2,000 (저렴). 한인 마트·교회 다수. I-5 접근 편리. 넓은 한인 커뮤니티" },
     { emoji: "🎓", title: "대학지구 (U-District) — 유학생", desc: "UW 인근. 한식당·카페 집중. 링크 라이트레일 최고 접근. 렌트 1BR $1,600–2,400. UW·Seattle U·Seattle Central 재학생 최다" },
   ];
-  const areasEn = citySlug === "dallas" ? [
+  const areasEn = citySlug === "sf" ? [
+    { emoji: "💻", title: "Santa Clara — Bay Area Korean Hub #1", desc: "Silicon Valley's Koreatown. H-Mart, Korean restaurants & churches on El Camino Real. Near Apple, Intel, NVIDIA. Rent 1BR $2,300–2,800. Santa Clara USD (Niche A-)" },
+    { emoji: "🍎", title: "Cupertino — Apple HQ & Top Schools", desc: "Home of Apple HQ. Cupertino Union SD + Fremont Union HSD — among CA's best. #1 choice for Korean families. Rent 1BR $2,500–3,200 (premium). High Korean population" },
+    { emoji: "🌞", title: "Sunnyvale — Affordable Tech Hub", desc: "Near Google, LinkedIn, Yahoo. More affordable than Cupertino. Rent 1BR $2,100–2,600. Sunnyvale SD. Growing Korean community. Good VTA transit" },
+    { emoji: "🌉", title: "Fremont — Fast-Growing Korean Area", desc: "Direct BART to SF & San Jose. Rent 1BR $2,000–2,500 (relatively affordable). Fremont USD (Niche A). Mixed Korean & Chinese community. Near Tesla factory" },
+    { emoji: "🏙️", title: "Milpitas — Immigrant Value Pick", desc: "Mixed Korean & Vietnamese community. Rent 1BR $1,900–2,400 (Bay Area's most affordable). Near H-Mart & Great Mall. New BART station. Easy Silicon Valley access" },
+  ] : citySlug === "dallas" ? [
     { emoji: "🤠", title: "Carrollton — Dallas Korean Hub #1", desc: "DFW's largest Koreatown. H-Mart, Korean restaurants, churches & karaoke on Old Denton Rd/Belt Line. Rent 1BR $1,400–1,800 | 2BR $1,800–2,200. Carrollton-Farmers Branch ISD" },
     { emoji: "🎓", title: "Plano — Schools & Professionals", desc: "Plano ISD — top-ranked in Texas. Near Samsung & Texas Instruments HQ. Many Korean IT professionals. Rent 1BR $1,600–2,100. Safe, well-organized environment" },
     { emoji: "🏢", title: "Richardson — Tech Corridor", desc: "Near AT&T, Ericsson & Samsung Semiconductor. Fast-growing Cityline development. Adjacent to UT Dallas. Rent 1BR $1,400–1,900. Popular with Korean students & tech workers" },
@@ -2442,7 +2559,11 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5">
         {sub === 0 && (
-          <Top5Banner items={useCityConfig().slug === "dallas" ? TOP5_SETTLE_DALLAS : TOP5_SETTLE} lang={lang} accentColor="#F2994A" />
+          <Top5Banner items={
+            useCityConfig().slug === "dallas" ? TOP5_SETTLE_DALLAS :
+            useCityConfig().slug === "sf"     ? TOP5_SETTLE_SF :
+            TOP5_SETTLE
+          } lang={lang} accentColor="#F2994A" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
 
@@ -2844,7 +2965,11 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5">
         {sub === 1 && (
-          <Top5Banner items={useCityConfig().slug === "dallas" ? TOP5_RESTAURANTS_DALLAS : TOP5_RESTAURANTS} lang={lang} accentColor="#EF4444" />
+          <Top5Banner items={
+            useCityConfig().slug === "dallas" ? TOP5_RESTAURANTS_DALLAS :
+            useCityConfig().slug === "sf"     ? TOP5_RESTAURANTS_SF :
+            TOP5_RESTAURANTS
+          } lang={lang} accentColor="#EF4444" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -2974,7 +3099,11 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5">
         {sub === 0 && (
-          <Top5Banner items={useCityConfig().slug === "dallas" ? TOP5_EXPLORE_DALLAS : TOP5_EXPLORE} lang={lang} accentColor="#0EA5E9" />
+          <Top5Banner items={
+            useCityConfig().slug === "dallas" ? TOP5_EXPLORE_DALLAS :
+            useCityConfig().slug === "sf"     ? TOP5_EXPLORE_SF :
+            TOP5_EXPLORE
+          } lang={lang} accentColor="#0EA5E9" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
