@@ -1762,7 +1762,7 @@ function Top3NeighborhoodsSection() {
           🏘️ {lang === "ko" ? "살기 좋은 동네 Top 3" : "Best Neighborhoods Top 3"}
         </div>
         <div style={{ fontSize: 12, color: "rgba(230,237,243,0.5)", marginTop: 4 }}>
-          {lang === "ko" ? "2026년 한인 이민자 추천 기준" : "2026 picks for Korean immigrants"}
+          {lang === "ko" ? "2026년 Korean American 추천 기준" : "2026 picks for Korean Americans"}
         </div>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -1988,7 +1988,91 @@ function CityHubSection({ lang }: { lang: string }) {
   );
 }
 
-function HomeScreen({ onNavigate }: { onNavigate?: (tab: number) => void }) {
+/* ─────────────────────────────────────────
+   HOME: Korean American 여정 섹션
+───────────────────────────────────────── */
+function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
+  const { lang } = useI18n();
+  const steps = lang === "ko"
+    ? [
+        { emoji: "🛬", label: "정착", sub: "Day 1~3개월", color: "#F2994A", tab: 1, subTab: 0 },
+        { emoji: "🏘️", label: "적응", sub: "3개월~1년", color: "#10B981", tab: 1, subTab: 3 },
+        { emoji: "🇺🇸", label: "Korean American", sub: "1년+", color: "#3B82F6", tab: 5, subTab: 6 },
+      ]
+    : [
+        { emoji: "🛬", label: "Settle", sub: "Day 1–3 months", color: "#F2994A", tab: 1, subTab: 0 },
+        { emoji: "🏘️", label: "Adapt", sub: "3–12 months", color: "#10B981", tab: 1, subTab: 3 },
+        { emoji: "🇺🇸", label: "Korean American", sub: "Year 1+", color: "#3B82F6", tab: 5, subTab: 6 },
+      ];
+
+  return (
+    <div style={{ padding: "20px 16px 8px" }}>
+      {/* 헤더 */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
+        <div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A", letterSpacing: "-0.2px" }}>
+            {lang === "ko" ? "🇺🇸 Korean American 여정" : "🇺🇸 Your Korean American Journey"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8", marginTop: 2 }}>
+            {lang === "ko" ? "이민자에서 당당한 미국 사회의 구성원으로" : "From newcomer to full participant in American society"}
+          </div>
+        </div>
+      </div>
+
+      {/* 3단계 여정 */}
+      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+        {steps.map((step, i) => (
+          <div key={i} style={{ display: "flex", alignItems: "center", flex: i === 2 ? "1.2" : "1", gap: 0 }}>
+            <button
+              onClick={() => onNavigate?.(step.tab, step.subTab)}
+              style={{
+                flex: 1, background: "#fff", border: `1.5px solid ${step.color}33`,
+                borderRadius: 14, padding: "12px 8px",
+                display: "flex", flexDirection: "column", alignItems: "center", gap: 5,
+                cursor: "pointer", WebkitTapHighlightColor: "transparent",
+                boxShadow: `0 2px 8px ${step.color}18`,
+                transition: "transform 0.12s ease",
+              }}
+              onTouchStart={e => { (e.currentTarget as HTMLElement).style.transform = "scale(0.95)"; }}
+              onTouchEnd={e => { (e.currentTarget as HTMLElement).style.transform = "scale(1)"; }}
+            >
+              <span style={{ fontSize: 22 }}>{step.emoji}</span>
+              <div style={{
+                fontFamily: "-apple-system, 'Noto Sans KR', sans-serif",
+                fontWeight: 700, fontSize: 11, color: step.color, letterSpacing: "-0.2px", textAlign: "center",
+              }}>{step.label}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#94A3B8", textAlign: "center" }}>
+                {step.sub}
+              </div>
+            </button>
+            {i < steps.length - 1 && (
+              <div style={{ width: 16, textAlign: "center", color: "#CBD5E1", fontSize: 14, fontWeight: 700, flexShrink: 0 }}>›</div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* 하단 태그라인 */}
+      <div style={{
+        marginTop: 12, padding: "10px 14px",
+        background: "linear-gradient(135deg, rgba(59,130,246,0.07), rgba(16,185,129,0.06))",
+        borderRadius: 12, border: "1px solid rgba(59,130,246,0.12)",
+        display: "flex", alignItems: "center", gap: 10,
+      }}>
+        <span style={{ fontSize: 16 }}>💡</span>
+        <div style={{
+          fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#475569", lineHeight: 1.5, flex: 1,
+        }}>
+          {lang === "ko"
+            ? "HebronGuide는 정착 가이드를 넘어 미국 사회의 Korean American으로 성장하는 전 여정을 함께합니다."
+            : "HebronGuide walks with you from Day 1 through your full journey as a Korean American — not just settlement."}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
   return (
     <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: 80 }}>
@@ -1997,8 +2081,9 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number) => void }) {
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <SettlementEssentialsSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
+      <KoreanAmericanJourneySection onNavigate={onNavigate} />
+      <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <CityHubSection lang={lang} />
-
     </div>
   );
 }
@@ -2152,7 +2237,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🛬" titleKo="정착 가이드" titleEn="Settlement Guide"
-        descKo="이민·이주자를 위한 단계별 정착 안내" descEn="Step-by-step guide for immigrants & newcomers"
+        descKo="정착부터 Korean American으로 — 단계별 완전 안내" descEn="From Day 1 to Korean American — your complete step-by-step guide"
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5">
@@ -4471,13 +4556,13 @@ function TranslateModal({ onClose, lang, onNavigate }: { onClose:()=>void; lang:
 // 탭별 공유 콘텐츠 정의
 const SHARE_CONTEXTS: Record<number, { emoji: string; labelKo: string; labelEn: string; textKo: string; textEn: string; tags: string }> = {
   0: { emoji: "🏠", labelKo: "홈", labelEn: "Home",
-    textKo: "시애틀 한인 정착의 모든 것!\n맛집·정착·취업·교육·관광 정보가 한 앱에 다 있어요 👇",
-    textEn: "Everything for Korean life in Seattle!\nFood, settlement, jobs, schools & tourism — all in one app 👇",
-    tags: "#시애틀한인 #Seattle #HebronGuide" },
+    textKo: "시애틀 Korean American 플랫폼 🇺🇸\n정착부터 투표·법률·한국학교·다민족 커뮤니티까지\n이민자에서 Korean American으로 — 함께 성장해요 👇",
+    textEn: "Seattle Korean American Platform 🇺🇸\nFrom settlement to voting, legal aid, Korean schools & multicultural community\nGrow from newcomer to Korean American — together 👇",
+    tags: "#KoreanAmerican #시애틀한인 #HebronGuide" },
   1: { emoji: "🛬", labelKo: "정착", labelEn: "Settlement",
-    textKo: "시애틀 정착 완벽 가이드 🛬\nSSN·운전면허·은행 계좌·학교 등록까지\n새로 오신 분들께 꼭 공유해 주세요 👇",
-    textEn: "Complete Seattle settlement guide 🛬\nSSN, driver's license, banking, school enrollment\nShare with newcomers 👇",
-    tags: "#시애틀정착 #이민정보 #HebronGuide" },
+    textKo: "시애틀 정착 완벽 가이드 🛬\nSSN·운전면허·비자·세금·법률·한국학교까지\n새로 오신 분들께 꼭 공유해 주세요 👇",
+    textEn: "Complete Seattle Korean American guide 🛬\nSSN, license, visa, taxes, legal aid, Korean schools\nShare with every new arrival 👇",
+    tags: "#시애틀정착 #KoreanAmerican #HebronGuide" },
   2: { emoji: "⛪", labelKo: "교회", labelEn: "Church",
     textKo: "시애틀 한인교회 정보 ⛪\n가정교회 중심으로 검증된 교회 정보\n믿을 수 있는 커뮤니티를 찾고 계신다면 👇",
     textEn: "Korean churches in Seattle ⛪\nVerified church info, house church communities\nLooking for a trusted community? 👇",
