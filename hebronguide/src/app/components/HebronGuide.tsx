@@ -586,6 +586,93 @@ const TOP5_EXPLORE_BOSTON: Top5Item[] = [
 ];
 
 /* ─────────────────────────────────────────
+   LA 전용 데이터 — 미국 최대 한인 커뮤니티 50만+
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_LA: Top5Item[] = [
+  { rank: 1, emoji: "🥩", nameKo: "Park's BBQ — 코리아타운", nameEn: "Park's BBQ — Koreatown LA",
+    address: "955 S Vermont Ave, Los Angeles CA 90006",
+    phone: "(213) 380-1717", hours: "매일 11:30am-10pm",
+    rating: 4.4, ratingCount: "5000+",
+    why: "🥩 BBQ\n미국 최고 한인 BBQ 중 하나. NY Times·Bon Appétit 극찬. 숯불 갈비. LA 방문 시 반드시 가야 할 곳",
+    tip: "웨이팅 필수. 오픈 30분 전 도착 권장", website: "parksbbqla.com" },
+  { rank: 2, emoji: "🍲", nameKo: "Sun Nong Dan — 갈비탕 명가", nameEn: "Sun Nong Dan — Koreatown",
+    address: "3470 W 6th St #8, Los Angeles CA 90020",
+    phone: "(213) 365-0303", hours: "매일 11am-2am",
+    rating: 4.5, ratingCount: "3000+",
+    why: "🍲 국물·한식\n24시간 갈비탕 명가. LA 타임스 선정 LA 최고 식당. 한인 해장 1순위",
+    tip: "새벽 영업. 줄 서서 먹는 가치 있음", website: "sunnongdan.com" },
+  { rank: 3, emoji: "🥘", nameKo: "BCD 순두부 — 24시간", nameEn: "BCD Tofu House — 24h Koreatown",
+    address: "3575 Wilshire Blvd, Los Angeles CA 90010",
+    phone: "(213) 382-6677", hours: "24시간 영업",
+    rating: 4.1, ratingCount: "2000+",
+    why: "🍲 국물·찌개\n24시간 순두부찌개. 코리아타운 한복판. 해장·야식·혼밥 모두 OK",
+    tip: "24시간 영업. 혼밥도 편함", website: "bcdtofu.com" },
+  { rank: 4, emoji: "🍖", nameKo: "Soowon Galbi — 수원식 왕갈비", nameEn: "Soowon Galbi — Koreatown",
+    address: "856 S Vermont Ave, Los Angeles CA 90005",
+    phone: "(213) 365-9292", hours: "매일 11am-12am",
+    rating: 4.2, ratingCount: "1500+",
+    why: "🥩 BBQ·갈비\n수원식 왕갈비 전문. 진한 양념. LA 한인 2세도 즐겨 찾는 클래식",
+    tip: "웨이팅 있지만 회전 빠름", website: "yelp.com/biz/soowon-galbi-los-angeles" },
+  { rank: 5, emoji: "☕", nameKo: "Café Bora — 코리아타운 카페", nameEn: "Café Bora — Koreatown LA",
+    address: "3580 Wilshire Blvd #115, Los Angeles CA 90010",
+    phone: "(213) 387-2672", hours: "매일 9am-10pm",
+    rating: 4.5, ratingCount: "1000+",
+    why: "☕ 카페·디저트\n흑임자 라떼·말차 크림 케이크. 인스타 감성 최고. LA 한인 카페 1순위",
+    tip: "주말 웨이팅. 평일 오전 방문 권장", website: "cafebora.com" },
+];
+
+const TOP5_SETTLE_LA: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "한인 연합회 (KAFLA)", nameEn: "Korean American Federation of LA",
+    address: "981 S Western Ave Ste 201, Los Angeles CA 90006",
+    phone: "(213) 380-1840", hours: "월-금 9am-5pm",
+    why: "LA 최대 한인 커뮤니티 기관. 법률·취업·이민·복지 연결. 코리아타운 중심. LA 한인 정착 첫 번째 방문지",
+    tip: "방문 전 전화 예약 권장", website: "kafla.org" },
+  { rank: 2, emoji: "🏪", nameKo: "H-Mart 코리아타운", nameEn: "H-Mart — Koreatown LA",
+    address: "3255 W Olympic Blvd, Los Angeles CA 90006",
+    phone: "(323) 732-3000", hours: "매일 8am-10pm",
+    why: "LA 코리아타운 한인 마트. 한국 식품·반찬·생활용품 완비. 내부 푸드코트 운영. LA 한인 생활 중심",
+    tip: "주차 무료. 주말 매우 혼잡 — 평일 방문 권장", website: "hmart.com" },
+  { rank: 3, emoji: "🚗", nameKo: "캘리포니아 DMV — 코리아타운", nameEn: "California DMV — Koreatown Area",
+    address: "3100 W 6th St, Los Angeles CA 90020",
+    phone: "(800) 777-0133", hours: "월-금 8am-5pm (예약 필수)",
+    why: "코리아타운 인근 DMV. CA 이주 10일 내 방문 의무.\n⚠️ 필기시험 영어만. 한국 면허 소지자도 필기+실기 모두 응시 필요",
+    tip: "🔗 appointments.dmv.ca.gov 예약 필수", website: "dmv.ca.gov" },
+  { rank: 4, emoji: "🏥", nameKo: "KYCC (한인 청소년 커뮤니티 센터)", nameEn: "Korean Youth & Community Center",
+    address: "1000 S Westmoreland Ave, Los Angeles CA 90006",
+    phone: "(213) 365-7400", hours: "월-금 9am-6pm",
+    why: "한인 이민 가정 종합 서비스. 의료·정신건강·청소년·취업. 한국어 완전 지원. 무료 서비스 다수",
+    tip: "소득 기준 의료 지원 가능", website: "kyccla.org" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "주로스앤젤레스 총영사관", nameEn: "Korean Consulate General — LA",
+    address: "3435 Wilshire Blvd Ste 500, Los Angeles CA 90010",
+    phone: "(213) 385-9300", hours: "월-금 9am-4pm (예약 필수)",
+    why: "여권·공증·재외국민 등록·병역 상담. CA·NV·AZ·HI 4개 주 담당. 코리아타운 도보 이동 가능",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/us-losangeles-ko", website: "overseas.mofa.go.kr/us-losangeles-ko" },
+];
+
+const TOP5_EXPLORE_LA: Top5Item[] = [
+  { rank: 1, emoji: "🏘️", nameKo: "코리아타운 — 세계 최대 한인타운", nameEn: "Koreatown LA — World's Largest Koreatown",
+    address: "Wilshire Blvd & Western Ave, Los Angeles CA 90005",
+    why: "전 세계 최대 한인 집결지. 한식당·노래방·PC방·마트·교회 모두 도보 거리. 24시간 도시. 서울 느낌 그대로",
+    tip: "메트로 Purple Line Wilshire/Western역. 야간에도 활발", website: "maps.google.com/?q=Koreatown+Los+Angeles" },
+  { rank: 2, emoji: "🌟", nameKo: "할리우드 & 명예의 거리", nameEn: "Hollywood & Walk of Fame",
+    address: "Hollywood Blvd, Hollywood CA 90028",
+    why: "세계 엔터테인먼트 수도. BTS·블랙핑크 K-pop 스타 발자국도 있음. TCL Chinese Theatre·유니버설 스튜디오 인근",
+    tip: "Walk of Fame 무료. 유니버설 스튜디오 $110+", website: "walkoffame.com" },
+  { rank: 3, emoji: "🏖️", nameKo: "산타모니카·베니스 비치", nameEn: "Santa Monica & Venice Beach",
+    address: "Ocean Ave & Colorado Ave, Santa Monica CA 90401",
+    why: "LA 대표 해변. 산타모니카 부두·야자수·자전거. 베니스 비치 스트리트 퍼포머. 한인 가족 주말 나들이 1순위",
+    tip: "메트로 E Line Santa Monica역. 자전거 대여 가능", website: "santamonica.com" },
+  { rank: 4, emoji: "🌌", nameKo: "그리피스 천문대", nameEn: "Griffith Observatory",
+    address: "2800 E Observatory Rd, Los Angeles CA 90027",
+    why: "LA 최고 전망 명소. 코리아타운·다운타운·헐리우드 사인 한눈에. 무료 입장. 영화 '라라랜드' 촬영지",
+    tip: "무료 입장. 주차 혼잡 → 셔틀 이용 권장. 일몰 1시간 전 도착", website: "griffithobservatory.org" },
+  { rank: 5, emoji: "🎨", nameKo: "게티 센터 (무료 미술관)", nameEn: "Getty Center — Free World-Class Museum",
+    address: "1200 Getty Center Dr, Los Angeles CA 90049",
+    why: "세계 수준 미술관 무료 입장. LA 전망 최고. 정원·건축 자체가 예술. 한인 가족 문화 나들이",
+    tip: "무료 입장 (주차만 $20). 주말 사전 예약 권장", website: "getty.edu" },
+];
+
+/* ─────────────────────────────────────────
    HOOK: 온라인 상태 감지
 ───────────────────────────────────────── */
 function useOnlineStatus() {
@@ -2695,6 +2782,12 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
     { title: "MA 건강보험 (Health Connector)", desc: "매사추세츠주 의료보험 마켓플레이스. 전국 최고 수준 보장. 소득 기준 보조금·무료 플랜 가능 | 🔗 mahealthconnector.org" },
     { title: "영주권·비자 갱신", desc: "USCIS 보스턴 오피스 | 하버드·MIT 인근 이민 변호사 다수 | 🔗 uscis.gov" },
+  ] : citySlug === "la" ? [
+    { title: "SSN 신청", desc: "📍 SSA LA 오피스 | 3415 S Figueroa St, Los Angeles CA | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "CA 운전면허 (DMV)", desc: "📍 3100 W 6th St, Los Angeles CA (코리아타운 인근) | 🔗 appointments.dmv.ca.gov 예약 필수\n⚠️ CA 이주 10일 내 방문 의무. 필기 영어만. 한국 면허 소지자 필기+실기 모두 응시" },
+    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 코리아타운 한인 CPA 다수 | 🔗 irs.gov/itin" },
+    { title: "Covered California (건강보험)", desc: "CA 주 의료보험. 소득 기준 보조금 가능. Medi-Cal(무료 메디케이드)도 확인. LA 카운티 가입 지원 | 🔗 coveredca.com" },
+    { title: "영주권·비자 갱신", desc: "USCIS LA 오피스 | 코리아타운·토랜스 이민 변호사 다수 | 🔗 uscis.gov" },
   ] : citySlug === "dallas" ? [
     { title: "SSN 신청", desc: "📍 Social Security Office | 1901 N Central Expy, McKinney TX | 📞 800-772-1213 | 🔗 ssa.gov" },
     { title: "텍사스 운전면허 (DPS)", desc: "📍 1149 E Belt Line Rd, Carrollton TX | 온라인 예약 필수! 🔗 appointments.dps.texas.gov\n⚠️ 텍사스 이주 후 90일 이내 전환 의무 | 🔗 dps.texas.gov" },
@@ -2732,6 +2825,12 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
     { title: "MA Health Insurance (Health Connector)", desc: "Massachusetts health insurance marketplace. Among the best coverage in the US. Income-based subsidies & free plans available | 🔗 mahealthconnector.org" },
     { title: "Green Card / Visa Renewal", desc: "USCIS Boston office | Many immigration attorneys near Harvard & MIT | 🔗 uscis.gov" },
+  ] : citySlug === "la" ? [
+    { title: "SSN Application", desc: "📍 SSA LA Office | 3415 S Figueroa St, Los Angeles CA | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "California Driver License (DMV)", desc: "📍 3100 W 6th St, Los Angeles CA (near Koreatown) | 🔗 appointments.dmv.ca.gov — appointment required\n⚠️ Must visit within 10 days of moving to CA. Written test English only. Korean license holders must take both written & road tests" },
+    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Many Korean CPAs in Koreatown | 🔗 irs.gov/itin" },
+    { title: "Covered California (Health Insurance)", desc: "CA state health insurance marketplace. Income-based subsidies available. Medi-Cal (free Medicaid) also available | 🔗 coveredca.com" },
+    { title: "Green Card / Visa Renewal", desc: "USCIS LA office | Many immigration attorneys in Koreatown & Torrance | 🔗 uscis.gov" },
   ] : citySlug === "dallas" ? [
     { title: "SSN Application", desc: "📍 Social Security Office | 1901 N Central Expy, McKinney TX | 📞 800-772-1213 | 🔗 ssa.gov" },
     { title: "Texas Driver License (DPS)", desc: "📍 1149 E Belt Line Rd, Carrollton TX | Online appointment required! 🔗 appointments.dps.texas.gov\n⚠️ Must transfer within 90 days of moving to Texas | 🔗 dps.texas.gov" },
@@ -2792,6 +2891,12 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "🌊", title: "퀸시 (Quincy) — 가성비 한인 주거지", desc: "보스턴 남쪽 15분. Red Line 직결. 렌트 1BR $1,600–2,100 (상대적 저렴). 한인·중국계 혼합. Quincy SD 학군 우수. 한식당 증가 중" },
     { emoji: "🏙️", title: "서머빌 (Somerville) — 젊은층 한인", desc: "보스턴 북쪽 인접. Tufts·MIT 근처. 렌트 1BR $1,900–2,500. 젊은 한인 전문직·유학생 선호. 식당·카페 활발. Green Line E 접근" },
     { emoji: "💰", title: "몰든 (Malden) — 가성비 가족", desc: "보스턴 북쪽. Orange Line 직결. 렌트 1BR $1,600–2,000 (보스턴 대비 저렴). 한인·아시안 혼합. 학군 Malden SD. 한인 가족 증가 중" },
+  ] : citySlug === "la" ? [
+    { emoji: "🏘️", title: "코리아타운 (Koreatown) — LA 한인 1번지", desc: "세계 최대 한인타운. 한식당·노래방·PC방·마트·교회 모두 도보. 24시간 도시. 렌트 1BR $1,800–2,500. 메트로 Purple Line 직결. 서울 느낌 그대로" },
+    { emoji: "🍊", title: "세리토스 (Cerritos) — 학군·가족 1순위", desc: "LA 카운티 한인 가족 최선호. ABC Unified SD — CA 최상위 학군. 한인 인구 밀집. 렌트 1BR $1,800–2,300. H-Mart·한식당 다수. 안전하고 조용한 환경" },
+    { emoji: "🌊", title: "토랜스 (Torrance) — 테크·자동차 한인", desc: "토요타·혼다 북미 본사 인근. 한인 엔지니어·주재원 다수. 렌트 1BR $1,900–2,500. 한인 교회·마트 충분. 공항(LAX) 15분. 바다도 가까움" },
+    { emoji: "🌸", title: "어바인 (Irvine, OC) — 학군 최강", desc: "오렌지 카운티 한인 신흥 강자. Irvine USD — CA 최상위. UCI 인근. 한인 인구 급증. 렌트 1BR $2,200–2,900. 깨끗하고 안전. 한식당·마트 증가 중" },
+    { emoji: "💰", title: "가디나·하와이언 가든스 (Gardena) — 가성비", desc: "LA 남부. 렌트 1BR $1,500–2,000 (LA 대비 저렴). 한인·히스패닉·흑인 혼합. 한국 마트·교회 다수. 110·405 고속도로 인접. 코리아타운 30분" },
   ] : citySlug === "dallas" ? [
     { emoji: "🤠", title: "캐롤튼 (Carrollton) — 달라스 한인 1번지", desc: "달라스 최대 한인타운. H-Mart·한식당·한인 교회·노래방 밀집. Old Denton Rd·Belt Line 일대. 렌트 1BR $1,400–1,800 | 2BR $1,800–2,200. Carrollton-Farmers Branch ISD" },
     { emoji: "🎓", title: "플라노 (Plano) — 학군·전문직", desc: "플라노 독립 학군 (Plano ISD) — Texas 최상위급. 삼성·텍사스 인스트루먼트 본사 인근. 한인 IT·전문직 다수 거주. 렌트 1BR $1,600–2,100. 안전하고 정돈된 환경" },
@@ -2829,6 +2934,12 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "🌊", title: "Quincy — Affordable Korean Neighborhood", desc: "15 min south of Boston. Red Line direct. Rent 1BR $1,600–2,100 (relatively affordable). Korean & Chinese mix. Good Quincy SD schools. Growing Korean restaurant scene" },
     { emoji: "🏙️", title: "Somerville — Young Korean Professionals", desc: "Adjacent to Boston. Near Tufts & MIT. Rent 1BR $1,900–2,500. Preferred by young Korean professionals & students. Active dining & café scene. Green Line E access" },
     { emoji: "💰", title: "Malden — Affordable for Families", desc: "North of Boston. Orange Line direct. Rent 1BR $1,600–2,000 (affordable vs Boston). Korean & Asian mix. Malden SD schools. Growing Korean family population" },
+  ] : citySlug === "la" ? [
+    { emoji: "🏘️", title: "Koreatown — LA Korean Hub #1 (World's Largest)", desc: "World's largest Koreatown. Korean restaurants, karaoke, PC cafés, grocery & churches all walkable. 24-hour city. Rent 1BR $1,800–2,500. Metro Purple Line direct. Feels like Seoul" },
+    { emoji: "🍊", title: "Cerritos — Top Schools & Korean Families", desc: "#1 choice for Korean families in LA County. ABC Unified SD — among CA's best schools. Dense Korean population. Rent 1BR $1,800–2,300. Multiple H-Marts & Korean restaurants. Safe, quiet environment" },
+    { emoji: "🌊", title: "Torrance — Tech & Auto Industry Koreans", desc: "Near Toyota & Honda North America HQ. Many Korean engineers & expats. Rent 1BR $1,900–2,500. Korean churches & grocery stores available. 15 min to LAX. Beach access nearby" },
+    { emoji: "🌸", title: "Irvine (Orange County) — Best Schools", desc: "Rising Korean hub in OC. Irvine USD — top-ranked in CA. Near UCI. Surging Korean population. Rent 1BR $2,200–2,900. Clean, safe. Growing Korean restaurants & grocery scene" },
+    { emoji: "💰", title: "Gardena — Affordable LA South", desc: "South LA. Rent 1BR $1,500–2,000 (affordable vs LA). Korean, Hispanic & African American mix. Multiple Korean churches & stores. Easy 110/405 freeway access. 30 min to Koreatown" },
   ] : citySlug === "dallas" ? [
     { emoji: "🤠", title: "Carrollton — Dallas Korean Hub #1", desc: "DFW's largest Koreatown. H-Mart, Korean restaurants, churches & karaoke on Old Denton Rd/Belt Line. Rent 1BR $1,400–1,800 | 2BR $1,800–2,200. Carrollton-Farmers Branch ISD" },
     { emoji: "🎓", title: "Plano — Schools & Professionals", desc: "Plano ISD — top-ranked in Texas. Near Samsung & Texas Instruments HQ. Many Korean IT professionals. Rent 1BR $1,600–2,100. Safe, well-organized environment" },
@@ -2898,6 +3009,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "newyork"  ? TOP5_SETTLE_NEWYORK :
             useCityConfig().slug === "nashville"? TOP5_SETTLE_NASHVILLE :
             useCityConfig().slug === "boston"   ? TOP5_SETTLE_BOSTON :
+            useCityConfig().slug === "la"       ? TOP5_SETTLE_LA :
             TOP5_SETTLE
           } lang={lang} accentColor="#F2994A" />
         )}
@@ -3391,6 +3503,7 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
             useCityConfig().slug === "newyork"  ? TOP5_RESTAURANTS_NEWYORK :
             useCityConfig().slug === "nashville"? TOP5_RESTAURANTS_NASHVILLE :
             useCityConfig().slug === "boston"   ? TOP5_RESTAURANTS_BOSTON :
+            useCityConfig().slug === "la"       ? TOP5_RESTAURANTS_LA :
             TOP5_RESTAURANTS
           } lang={lang} accentColor="#EF4444" />
         )}
@@ -3534,6 +3647,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
             useCityConfig().slug === "newyork"  ? TOP5_EXPLORE_NEWYORK :
             useCityConfig().slug === "nashville"? TOP5_EXPLORE_NASHVILLE :
             useCityConfig().slug === "boston"   ? TOP5_EXPLORE_BOSTON :
+            useCityConfig().slug === "la"       ? TOP5_EXPLORE_LA :
             TOP5_EXPLORE
           } lang={lang} accentColor="#0EA5E9" />
         )}
