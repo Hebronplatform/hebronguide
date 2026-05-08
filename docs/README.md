@@ -16,11 +16,12 @@
 
 ## 📚 영역별 상세 문서
 
-### 🎯 비전·가치
+### 🎯 비전·가치·선교 신학
 - [`CORE_VISION.md`](CORE_VISION.md) — 황금률(마7:12) + 지혜·순결(마10:16) + 3기둥
+- [`MISSIONAL_THEOLOGY.md`](MISSIONAL_THEOLOGY.md) — **선교 신학 ⭐**: 4가지 견해 통합 + 송영 자세 + 종교기업 함정 경고
 - [`CORE_VALUES.md`](CORE_VALUES.md) — 정보 섬김의 3축 (미국자원/한인커뮤니티/타민족)
 - [`OPERATING_PRINCIPLES.md`](OPERATING_PRINCIPLES.md) — Chick-fil-A 7원칙
-- [`EXECUTION_GUIDELINES.md`](EXECUTION_GUIDELINES.md) — 일상 실행 규칙
+- [`EXECUTION_GUIDELINES.md`](EXECUTION_GUIDELINES.md) — 일상 실행 규칙 (9질문 프레임)
 
 ### 📊 목표·전략
 - [`GOAL_SYSTEM.md`](GOAL_SYSTEM.md) — Alignify 목표 시스템 (From X → To Y → By When → Why)
