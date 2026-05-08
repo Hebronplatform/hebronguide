@@ -3526,7 +3526,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="⛪" titleKo="한인 교회" titleEn="Korean Churches"
-        descKo="정착 지원 · 영어수업 · 커뮤니티 네트워크" descEn="Settlement support · ESL classes · Community network"
+        descKo={`${useCityConfig().nameKo} — 정착 지원 · 영어수업 · 커뮤니티 네트워크`}
+        descEn={`${useCityConfig().nameEn} — Settlement support · ESL classes · Community`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5 px-4 md:px-6 lg:px-8">
@@ -3863,7 +3864,8 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🗺️" titleKo="관광" titleEn="Tourism"
-        descKo="지역안내 · 자연 · 문화 · 스포츠" descEn="Areas · Nature · Culture · Sports"
+        descKo={`${useCityConfig().nameKo} — 지역안내 · 자연 · 문화 · 스포츠`}
+        descEn={`${useCityConfig().nameEn} — Areas, Nature, Culture & Sports`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5">
@@ -3962,7 +3964,8 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🆘" titleKo="도움말" titleEn="Help & Emergency"
-        descKo="긴급연락 · 커뮤니티 · 유용한 정보" descEn="Emergency contacts · Community · Useful resources"
+        descKo={`${useCityConfig().nameKo} — 긴급연락 · 커뮤니티 · 무료 자원`}
+        descEn={`${useCityConfig().nameEn} — Emergency contacts · Community · Free resources`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
 
@@ -4326,7 +4329,8 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="💼" titleKo="취업 가이드" titleEn="Jobs & Career"
-        descKo="시애틀 한인 취업·창업·비자 완전 가이드" descEn="Complete guide to jobs, business & visas for Koreans in Seattle"
+        descKo={`${useCityConfig().nameKo} 한인 취업·창업·비자 완전 가이드`}
+        descEn={`Complete guide to jobs, business & visas for Koreans in ${useCityConfig().nameEn}`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5 px-4 md:px-6 lg:px-8">
@@ -4727,7 +4731,8 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="💰" titleKo="생활비 가이드" titleEn="Living Cost Guide"
-        descKo="렌트·세금·교통·통신비 완전 가이드" descEn="Complete guide to rent, taxes, transport & phone costs in Seattle"
+        descKo={`${useCityConfig().nameKo} 렌트·세금·교통·통신비 완전 가이드`}
+        descEn={`Complete guide to rent, taxes, transport & phone costs in ${useCityConfig().nameEn}`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5 px-4 md:px-6 lg:px-8">
@@ -5658,52 +5663,55 @@ function TranslateModal({ onClose, lang, onNavigate }: { onClose:()=>void; lang:
    스마트 공유 모달 — 탭별 맞춤 메시지 + 멀티 SNS
 ───────────────────────────────────────── */
 
-// 탭별 공유 콘텐츠 정의
-const SHARE_CONTEXTS: Record<number, { emoji: string; labelKo: string; labelEn: string; textKo: string; textEn: string; tags: string }> = {
-  0: { emoji: "🏠", labelKo: "홈", labelEn: "Home",
-    textKo: "시애틀 Korean American 플랫폼 🇺🇸\n정착부터 투표·법률·한국학교·다민족 커뮤니티까지\n이민자에서 Korean American으로 — 함께 성장해요 👇",
-    textEn: "Seattle Korean American Platform 🇺🇸\nFrom settlement to voting, legal aid, Korean schools & multicultural community\nGrow from newcomer to Korean American — together 👇",
-    tags: "#KoreanAmerican #시애틀한인 #HebronGuide" },
-  1: { emoji: "🛬", labelKo: "정착", labelEn: "Settlement",
-    textKo: "시애틀 정착 완벽 가이드 🛬\nSSN·운전면허·비자·세금·법률·한국학교까지\n새로 오신 분들께 꼭 공유해 주세요 👇",
-    textEn: "Complete Seattle Korean American guide 🛬\nSSN, license, visa, taxes, legal aid, Korean schools\nShare with every new arrival 👇",
-    tags: "#시애틀정착 #KoreanAmerican #HebronGuide" },
-  2: { emoji: "⛪", labelKo: "교회", labelEn: "Church",
-    textKo: "시애틀 한인교회 정보 ⛪\n가정교회 중심으로 검증된 교회 정보\n믿을 수 있는 커뮤니티를 찾고 계신다면 👇",
-    textEn: "Korean churches in Seattle ⛪\nVerified church info, house church communities\nLooking for a trusted community? 👇",
-    tags: "#시애틀한인교회 #가정교회 #HebronGuide" },
-  3: { emoji: "🍽️", labelKo: "맛집", labelEn: "Food",
-    textKo: "시애틀 한인 검증 맛집 TOP 5 🍽️\n150개 이상 중 엄선한 진짜 맛집\n여기는 정말 맛있어요! 👇",
-    textEn: "Seattle's top verified Korean restaurants 🍽️\nHandpicked from 150+ options\nThese are genuinely delicious! 👇",
-    tags: "#시애틀맛집 #한식 #KoreanFood #HebronGuide" },
-  4: { emoji: "🗺️", labelKo: "관광", labelEn: "Tourism",
-    textKo: "시애틀 관광 명소 완벽 정리 🗺️\n자연·문화·야경·액티비티 총망라\n시애틀 방문 계획이라면 꼭 보세요 👇",
-    textEn: "Seattle's best attractions 🗺️\nNature, culture, nightviews & activities\nMust-see before your Seattle trip 👇",
-    tags: "#시애틀관광 #Seattle #여행 #HebronGuide" },
-  5: { emoji: "🆘", labelKo: "도움·긴급", labelEn: "Help & Emergency",
-    textKo: "시애틀 한인 긴급 연락처 모음 🆘\n병원·총영사관·법률·가스누출 등\n셀폰에 저장해 두세요! 👇",
-    textEn: "Seattle emergency contacts for Koreans 🆘\nHospital, consulate, legal, utilities & more\nSave this now! 👇",
-    tags: "#시애틀응급 #한인정보 #HebronGuide" },
-  6: { emoji: "💼", labelKo: "취업", labelEn: "Jobs",
-    textKo: "시애틀 취업 정보 💼\n아마존·마이크로소프트·보잉·한인 업체\n취업 비자 경로까지 정리됐어요 👇",
-    textEn: "Seattle jobs for Koreans 💼\nAmazon, Microsoft, Boeing & Korean businesses\nVisa pathways included 👇",
-    tags: "#시애틀취업 #테크잡 #HebronGuide" },
-  7: { emoji: "🎓", labelKo: "교육", labelEn: "Education",
-    textKo: "시애틀 교육 정보 🎓\n공립학교·한국어학교·SAT·대학 진학\n자녀 교육 고민 중이시라면 👇",
-    textEn: "Seattle education guide 🎓\nPublic schools, Korean schools, SAT & college\nFor parents planning ahead 👇",
-    tags: "#시애틀교육 #한인학교 #HebronGuide" },
-  8: { emoji: "💰", labelKo: "생활비", labelEn: "Cost of Living",
-    textKo: "시애틀 실제 생활비 정보 💰\n렌트·기름값·환율·교통비 실시간 업데이트\n이사 전 꼭 확인하세요 👇",
-    textEn: "Real Seattle cost of living 💰\nRent, gas, exchange rate & transit — updated daily\nCheck before you move 👇",
-    tags: "#시애틀생활비 #렌트 #HebronGuide" },
-};
+// 탭별 공유 콘텐츠 — 도시명 동적 생성 (시애틀을 기준 템플릿으로 모든 도시에 적용)
+function getShareContexts(cityKo: string, cityEn: string, slug: string) {
+  return {
+    0: { emoji: "🏠", labelKo: "홈", labelEn: "Home",
+      textKo: `${cityKo} Korean American 플랫폼 🇺🇸\n정착부터 투표·법률·한국학교·다민족 커뮤니티까지\n이민자에서 Korean American으로 — 함께 성장해요 👇`,
+      textEn: `${cityEn} Korean American Platform 🇺🇸\nFrom settlement to voting, legal aid, Korean schools & multicultural community\nGrow from newcomer to Korean American — together 👇`,
+      tags: `#KoreanAmerican #${slug}한인 #HebronGuide` },
+    1: { emoji: "🛬", labelKo: "정착", labelEn: "Settlement",
+      textKo: `${cityKo} 정착 완벽 가이드 🛬\nSSN·운전면허·비자·세금·법률·한국학교까지\n새로 오신 분들께 꼭 공유해 주세요 👇`,
+      textEn: `Complete ${cityEn} Korean American guide 🛬\nSSN, license, visa, taxes, legal aid, Korean schools\nShare with every new arrival 👇`,
+      tags: `#${slug}정착 #KoreanAmerican #HebronGuide` },
+    2: { emoji: "⛪", labelKo: "교회", labelEn: "Church",
+      textKo: `${cityKo} 한인교회 정보 ⛪\n가정교회 중심으로 검증된 교회 정보\n믿을 수 있는 커뮤니티를 찾고 계신다면 👇`,
+      textEn: `Korean churches in ${cityEn} ⛪\nVerified church info, house church communities\nLooking for a trusted community? 👇`,
+      tags: `#${slug}한인교회 #가정교회 #HebronGuide` },
+    3: { emoji: "🍽️", labelKo: "맛집", labelEn: "Food",
+      textKo: `${cityKo} 한인 검증 맛집 TOP 5 🍽️\n수백 곳 중 엄선한 진짜 맛집\n여기는 정말 맛있어요! 👇`,
+      textEn: `${cityEn}'s top verified Korean restaurants 🍽️\nHandpicked from hundreds of options\nThese are genuinely delicious! 👇`,
+      tags: `#${slug}맛집 #한식 #KoreanFood #HebronGuide` },
+    4: { emoji: "🗺️", labelKo: "관광", labelEn: "Tourism",
+      textKo: `${cityKo} 관광 명소 완벽 정리 🗺️\n자연·문화·야경·액티비티 총망라\n${cityKo} 방문 계획이라면 꼭 보세요 👇`,
+      textEn: `${cityEn}'s best attractions 🗺️\nNature, culture, nightviews & activities\nMust-see before your ${cityEn} trip 👇`,
+      tags: `#${slug}관광 #KoreanAmerican #HebronGuide` },
+    5: { emoji: "🆘", labelKo: "도움·긴급", labelEn: "Help & Emergency",
+      textKo: `${cityKo} 한인 긴급 연락처 모음 🆘\n병원·총영사관·법률·커뮤니티 자원\n셀폰에 저장해 두세요! 👇`,
+      textEn: `${cityEn} emergency contacts for Koreans 🆘\nHospital, consulate, legal & community resources\nSave this now! 👇`,
+      tags: `#${slug}응급 #한인정보 #HebronGuide` },
+    6: { emoji: "💼", labelKo: "취업", labelEn: "Jobs",
+      textKo: `${cityKo} 한인 취업 정보 💼\n주요 고용주·한인 업체·취업 비자 경로\n취업 준비 중이시라면 👇`,
+      textEn: `${cityEn} jobs for Koreans 💼\nMajor employers, Korean businesses & visa pathways\nFor job seekers 👇`,
+      tags: `#${slug}취업 #테크잡 #HebronGuide` },
+    7: { emoji: "🎓", labelKo: "교육", labelEn: "Education",
+      textKo: `${cityKo} 교육 정보 🎓\n공립학교·한국어학교·대학 진학\n자녀 교육 고민 중이시라면 👇`,
+      textEn: `${cityEn} education guide 🎓\nPublic schools, Korean schools & college prep\nFor parents planning ahead 👇`,
+      tags: `#${slug}교육 #한인학교 #HebronGuide` },
+    8: { emoji: "💰", labelKo: "생활비", labelEn: "Cost of Living",
+      textKo: `${cityKo} 실제 생활비 정보 💰\n렌트·세금·교통·통신비 완전 가이드\n이사 전 꼭 확인하세요 👇`,
+      textEn: `Real ${cityEn} cost of living 💰\nRent, taxes, transport & phone costs guide\nCheck before you move 👇`,
+      tags: `#${slug}생활비 #렌트 #HebronGuide` },
+  };
+}
 
 function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void; lang: string; activeNav?: number }) {
-  const shareCity = useCityConfig();
-  const appUrl   = `https://hebronguide.com/${shareCity.slug}/`;
-  const ctx      = SHARE_CONTEXTS[activeNav] ?? SHARE_CONTEXTS[0];
-  const bodyText = lang === "ko" ? ctx.textKo : ctx.textEn;
-  const fullMsg  = `${bodyText}\n\n📱 HebronGuide ${shareCity.nameKo} — hebronguide.com/${shareCity.slug}\n${ctx.tags}`;
+  const shareCity    = useCityConfig();
+  const appUrl       = `https://hebronguide.com/${shareCity.slug}/`;
+  const SHARE_CTX    = getShareContexts(shareCity.nameKo, shareCity.nameEn, shareCity.slug);
+  const ctx          = SHARE_CTX[activeNav] ?? SHARE_CTX[0];
+  const bodyText     = lang === "ko" ? ctx.textKo : ctx.textEn;
+  const fullMsg      = `${bodyText}\n\n📱 HebronGuide ${shareCity.nameKo} — hebronguide.com/${shareCity.slug}\n${ctx.tags}`;
 
   const [copied, setCopied] = useState(false);
 
