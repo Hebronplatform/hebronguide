@@ -4748,16 +4748,23 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
    더보기 시트 항목
 ───────────────────────────────────────── */
 const MORE_SECTIONS = [
-  { icon: Church,       labelKo: "교회",   labelEn: "Church",  tab: 2,  color: "#7C3AED" },
-  { icon: Map,          labelKo: "관광",   labelEn: "Tourism", tab: 4,  color: "#0EA5E9" },
-  { icon: Briefcase,    labelKo: "취업",   labelEn: "Jobs",    tab: 6,  color: "#059669" },
-  { icon: GraduationCap,labelKo: "교육",   labelEn: "Schools", tab: 7,  color: "#F59E0B" },
-  { icon: DollarSign,   labelKo: "생활비", labelEn: "Costs",   tab: 8,  color: "#8B5CF6" },
+  /* ── 1행: 메인 섹션 ── */
+  { icon: Church,       labelKo: "교회",      labelEn: "Church",       tab: 2, subTab: 0, color: "#7C3AED" },
+  { icon: Map,          labelKo: "관광",      labelEn: "Tourism",      tab: 4, subTab: 0, color: "#0EA5E9" },
+  { icon: Briefcase,    labelKo: "취업",      labelEn: "Jobs",         tab: 6, subTab: 0, color: "#059669" },
+  { icon: GraduationCap,labelKo: "교육",      labelEn: "Schools",      tab: 7, subTab: 0, color: "#F59E0B" },
+  { icon: DollarSign,   labelKo: "생활비",    labelEn: "Costs",        tab: 8, subTab: 0, color: "#8B5CF6" },
+  /* ── 2행: 빠른 접근 (새 탭) ── */
+  { icon: FileText,     labelKo: "비자·이민", labelEn: "Visa",         tab: 1, subTab: 7, color: "#6366F1" },
+  { icon: Receipt,      labelKo: "세금신고",  labelEn: "Taxes",        tab: 8, subTab: 4, color: "#F97316" },
+  { icon: Scale,        labelKo: "법률상담",  labelEn: "Legal",        tab: 5, subTab: 5, color: "#64748B" },
+  { icon: BookOpen,     labelKo: "한국학교",  labelEn: "K-School",     tab: 7, subTab: 5, color: "#BE185D" },
+  { icon: Vote,         labelKo: "Korean Am.", labelEn: "Korean Am.",  tab: 5, subTab: 6, color: "#2563EB" },
 ];
 
 interface BottomNavProps {
   activeIndex: number;
-  onChange: (i: number) => void;
+  onChange: (i: number, subTab?: number) => void;
   onSearchToggle: () => void;
   onShareToggle: () => void;
   onTranslateToggle: () => void;
@@ -4772,8 +4779,8 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
     onChange(item.tab);
   };
 
-  const handleMoreSection = (tab: number) => {
-    onChange(tab);
+  const handleMoreSection = (tab: number, subTab?: number) => {
+    onChange(tab, subTab);
     setShowMore(false);
   };
 
@@ -4807,41 +4814,53 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
           {/* 핸들 */}
           <div style={{ width: 36, height: 4, borderRadius: 2, background: "#E5E7EB", margin: "0 auto 16px" }} />
 
-          {/* 섹션 버튼 그리드 */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 8, marginBottom: 16 }}>
-            {MORE_SECTIONS.map((s) => {
-              const isActive = activeIndex === s.tab;
-              const IconComp = s.icon;
-              return (
-                <button
-                  key={s.tab}
-                  onClick={() => handleMoreSection(s.tab)}
-                  style={{
-                    display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
-                    padding: "10px 4px 8px", borderRadius: 14, border: "none", cursor: "pointer",
-                    background: isActive ? `${s.color}15` : "#F8FAFC",
-                    outline: isActive ? `1.5px solid ${s.color}40` : "none",
-                    transition: "all 0.15s ease",
-                  }}
-                >
-                  <div style={{
-                    width: 38, height: 38, borderRadius: 12,
-                    background: isActive ? s.color : `${s.color}18`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                  }}>
-                    <IconComp size={20} color={isActive ? "#fff" : s.color} strokeWidth={1.8} />
-                  </div>
-                  <span style={{
-                    fontSize: 10, fontWeight: 600,
-                    color: isActive ? s.color : "#374151",
-                    fontFamily: "-apple-system, 'Noto Sans KR', sans-serif",
-                  }}>
-                    {lang === "ko" ? s.labelKo : s.labelEn}
+          {/* 섹션 버튼 그리드 — 2행 */}
+          {[MORE_SECTIONS.slice(0, 5), MORE_SECTIONS.slice(5)].map((row, rowIdx) => (
+            <div key={rowIdx} style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 8, marginBottom: rowIdx === 0 ? 8 : 16 }}>
+              {rowIdx === 1 && (
+                /* 2행 라벨 */
+                <div style={{ gridColumn: "1 / -1", marginBottom: 2, paddingLeft: 2 }}>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: "#94A3B8", letterSpacing: "0.5px",
+                    fontFamily: "Manrope, sans-serif" }}>
+                    {lang === "ko" ? "⚡ 빠른 접근" : "⚡ QUICK ACCESS"}
                   </span>
-                </button>
-              );
-            })}
-          </div>
+                </div>
+              )}
+              {row.map((s) => {
+                const isActive = activeIndex === s.tab;
+                const IconComp = s.icon;
+                return (
+                  <button
+                    key={`${s.tab}-${s.subTab}`}
+                    onClick={() => handleMoreSection(s.tab, s.subTab)}
+                    style={{
+                      display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+                      padding: "10px 4px 8px", borderRadius: 14, border: "none", cursor: "pointer",
+                      background: isActive ? `${s.color}15` : "#F8FAFC",
+                      outline: isActive ? `1.5px solid ${s.color}40` : "none",
+                      transition: "all 0.15s ease",
+                    }}
+                  >
+                    <div style={{
+                      width: 38, height: 38, borderRadius: 12,
+                      background: isActive ? s.color : `${s.color}18`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>
+                      <IconComp size={20} color={isActive ? "#fff" : s.color} strokeWidth={1.8} />
+                    </div>
+                    <span style={{
+                      fontSize: 10, fontWeight: 600,
+                      color: isActive ? s.color : "#374151",
+                      fontFamily: "-apple-system, 'Noto Sans KR', sans-serif",
+                      textAlign: "center", lineHeight: 1.2,
+                    }}>
+                      {lang === "ko" ? s.labelKo : s.labelEn}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          ))}
 
           {/* 구분선 */}
           <div style={{ height: 1, background: "#F1F5F9", marginBottom: 12 }} />
@@ -5035,12 +5054,36 @@ export function HebronGuide() {
     if (showSearch) setSearchQuery("");
   };
 
-  const SEARCH_MAP = [
+  // subTab 포함 검색 맵 — 구체적 키워드일수록 앞에 배치 (선순위 매칭)
+  const SEARCH_MAP: Array<{ tab: number; subTab?: number; labelKo: string; labelEn: string; keywords: string[] }> = [
+    /* ── subTab 전용 (구체적 키워드 → 정확한 탭으로 바로 이동) ── */
+    { tab: 1, subTab: 7, labelKo: "비자·이민", labelEn: "Visa/Immigration",
+      keywords: ["비자","visa","이민","immigration","영주권","green card","그린카드","i-94","i94",
+        "uscis","h1b","h-1b","f1","f-1","o-1","e-2","l-1","eb","j-1","opt","stem opt",
+        "유학비자","취업비자","투자비자","주재원비자","이민변호사","체류기간","ds-2019","i-20",
+        "비자연장","비자전환","change of status","extension","체류연장"] },
+    { tab: 8, subTab: 4, labelKo: "세금신고", labelEn: "Tax Filing",
+      keywords: ["vita","세금신고","tax filing","tax return","itin","w-7","fbar","fatca",
+        "한인cpa","cpa","세무사","세금환급","tax refund","eitc","income tax",
+        "fincen","해외계좌","foreign account","소득신고","확정신고","세금캘린더"] },
+    { tab: 5, subTab: 5, labelKo: "법률상담", labelEn: "Legal Help",
+      keywords: ["nwirp","법률상담","legal help","무료법률","free legal","추방","deportation",
+        "daca","변호사","attorney","lawyer","oneamerica","nw justice","임차인","tenant",
+        "퇴거","eviction","이민사기","notario","법무사","kcba","pro bono"] },
+    { tab: 7, subTab: 5, labelKo: "한국학교", labelEn: "Korean School",
+      keywords: ["한국학교","korean school","토요학교","saturday school","topik","한국어교육",
+        "ap korean","naks","태권도","taekwondo","한국무용","k-pop dance","한국어학원",
+        "주말학교","woorischool","한국어수업"] },
+    { tab: 5, subTab: 6, labelKo: "Korean American", labelEn: "Korean American",
+      keywords: ["korean american","투표","voting","voter","유권자등록","시민권","citizenship",
+        "도서관","library","kcls","봉사","volunteer","다민족","multicultural","wic","snap",
+        "공공혜택","public benefits","211","지역사회","community"] },
+    /* ── 메인 탭 (일반 키워드) ── */
     { tab: 1, labelKo: "정착", labelEn: "Settle",
-      keywords: ["정착","settle","ssn","은행","bank","면허","license","sim","비자","visa",
-        "i-94","i94","uscis","이민","immigration","주소","address","orca","교통",
-        "abc운전","abc driving","운전학교","kcsc","한인생활상담소","총영사관","consulate",
-        "여권","passport","공증","notary","재외국민","체류","거주","housing"] },
+      keywords: ["정착","settle","ssn","은행","bank","면허","license","sim","주소","address",
+        "orca","교통","abc운전","abc driving","운전학교","kcsc","한인생활상담소",
+        "총영사관","consulate","여권","passport","공증","notary","재외국민","거주","housing",
+        "운전면허","dol","건강보험","학교등록","신용카드","credit"] },
     { tab: 2, labelKo: "교회", labelEn: "Church",
       keywords: ["교회","church","예배","worship","목장","가정교회","house church",
         "gmc","지구촌","global mission","성경","bible","목사","pastor","신앙","faith"] },
@@ -5048,43 +5091,46 @@ export function HebronGuide() {
       keywords: ["맛집","food","카페","cafe","식당","bbq","한식","coffee","restaurant",
         "백정","baekjeong","쏘문난집","so moon","이가네","yi's","wuju","갈비","설렁탕",
         "순두부","tofu","치킨","chicken","비빔밥","bibimbap","라면","ramen",
-        "핫도그","hotdog","빙수","bingsu","크로플","k cafe","dabang","카카오","음식"] },
+        "핫도그","hotdog","빙수","bingsu","크로플","k cafe","dabang","음식","h-mart","hmart"] },
     { tab: 4, labelKo: "관광", labelEn: "Tourism",
-      keywords: ["탐방","관광","여행","tourism","travel","explore","레이니어","rainier","스페이스니들","space needle",
-        "파이크","pike","여행","travel","tourist","tourism","폭포","falls","스노퀄미",
-        "snoqualmie","페리","ferry","베인브릿지","bainbridge","산","mountain","하이킹",
-        "hiking","자연","nature","공원","park","박물관","museum","시애틀센터"] },
+      keywords: ["탐방","관광","여행","tourism","travel","explore","레이니어","rainier",
+        "스페이스니들","space needle","파이크","pike","폭포","falls","스노퀄미","snoqualmie",
+        "페리","ferry","베인브릿지","bainbridge","산","mountain","하이킹","hiking",
+        "자연","nature","공원","park","박물관","museum","시애틀센터"] },
     { tab: 5, labelKo: "도움·의료", labelEn: "Help",
-      keywords: ["도움","help","의료","의사","병원","hospital","법률","legal","emergency",
-        "응급","치과","dentist","dental","치과의사","약국","pharmacy","보험","insurance",
-        "apple health","medicaid","정신건강","mental health","상담","counseling",
-        "ichs","swedish","acrs","nwirp","법무사","변호사","attorney","lawyer",
-        "911","위기","crisis","프라임덴탈","prime dental","커클랜드치과"] },
+      keywords: ["도움","help","의료","의사","병원","hospital","emergency","응급","치과",
+        "dentist","dental","약국","pharmacy","보험","insurance","apple health","medicaid",
+        "정신건강","mental health","상담","counseling","ichs","swedish","acrs",
+        "911","위기","crisis","무료클리닉","free clinic"] },
     { tab: 6, labelKo: "취업", labelEn: "Jobs",
-      keywords: ["취업","jobs","amazon","microsoft","구글","google","h1b","h-1b",
-        "직장","career","worksource","이력서","resume","linkedin","opt","stem opt",
-        "boeing","자영업","창업","비자취업","스타트업","인턴","intern","채용"] },
+      keywords: ["취업","jobs","amazon","microsoft","구글","google","직장","career",
+        "worksource","이력서","resume","linkedin","boeing","자영업","창업","인턴","intern","채용"] },
     { tab: 7, labelKo: "교육", labelEn: "Schools",
       keywords: ["교육","education","학교","school","대학","university","학군","학원",
         "uw","에드먼즈칼리지","edmonds","esl","영어","english class","벨뷰학군",
-        "bellevue sd","northshore","lake washington","tutoring","과외","sat","act"] },
+        "bellevue sd","northshore","lake washington","tutoring","과외","sat","act",
+        "running start","community college","cc","편입"] },
     { tab: 8, labelKo: "생활비", labelEn: "Costs",
       keywords: ["생활비","cost","렌트","rent","기름","gas","세금","tax","월세",
         "환율","exchange rate","물가","price","전기세","utilities","주차","parking",
-        "최저시급","minimum wage","팁","tip","shopping","쇼핑"] },
+        "최저시급","minimum wage","팁","tip","shopping","쇼핑","costco","알뜰"] },
   ];
 
   const handleSearch = (query: string) => {
     const q = query.toLowerCase().replace(/\s/g, "");
+    if (!q) return;
+    // subTab 있는 항목을 우선 매칭 (더 구체적인 결과)
     const match = SEARCH_MAP.find(item =>
-      item.keywords.some(kw => q.includes(kw.replace(/\s/g, "")) || kw.replace(/\s/g, "").includes(q))
+      item.keywords.some(kw => {
+        const k = kw.replace(/\s/g, "");
+        return q.includes(k) || k.includes(q);
+      })
     );
     if (match) {
-      setActiveNav(match.tab);
+      handleNavigate(match.tab, match.subTab);
       setShowSearch(false);
       setSearchQuery("");
     } else {
-      // 결과 없을 때 피드백
       alert(lang === "ko"
         ? `"${query}" 검색 결과가 없어요.\n빠른 메뉴에서 직접 선택해보세요!`
         : `No results for "${query}".\nTry selecting from Quick Menu!`);
