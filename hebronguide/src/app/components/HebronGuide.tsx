@@ -2075,7 +2075,7 @@ function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: numbe
 function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
   return (
-    <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: 80 }}>
+    <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
       <CompactHeroNew />
       <QuickMenuSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
@@ -4795,7 +4795,8 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
         <div
           className="fixed z-50 lg:hidden"
           style={{
-            bottom: 72, left: "50%", transform: "translateX(-50%)",
+            bottom: "calc(56px + env(safe-area-inset-bottom, 0px))",
+            left: "50%", transform: "translateX(-50%)",
             width: "100%", maxWidth: 430,
             background: "#fff",
             borderRadius: "20px 20px 0 0",
@@ -4875,11 +4876,11 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
         </div>
       )}
 
-      {/* 메인 하단 네비 */}
+      {/* 메인 하단 네비 — iPhone safe area 대응 */}
       <nav
         className="fixed bottom-0 z-50 lg:hidden"
         style={{
-          height: 72,
+          paddingBottom: "env(safe-area-inset-bottom, 0px)",
           left: "50%", transform: "translateX(-50%)",
           width: "100%", maxWidth: 430,
           background: "#F9F9F9",
@@ -4887,7 +4888,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
           boxShadow: "0 -1px 0 rgba(0,0,0,0.08)",
         }}
       >
-        <div style={{ display: "flex", height: "100%", alignItems: "stretch" }}>
+        <div style={{ display: "flex", height: 56, alignItems: "stretch" }}>
           {NAV_ITEMS.map((item) => {
             const isActive = item.tab >= 0 ? activeIndex === item.tab : showMore;
             const IconComp = item.icon;
