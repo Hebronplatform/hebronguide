@@ -27,6 +27,7 @@
 - [`EXPANSION_STRATEGY.md`](EXPANSION_STRATEGY.md) — **확산 전략 (WHERE)**: BTS 도시 흐름 + 복음적·제자 만드는 교회 ⭐
 - [`EVENT_PLAYBOOK.md`](EVENT_PLAYBOOK.md) — **이벤트 플레이북 (WHEN)**: 월드컵·올림픽 활용 6단계 ⭐
 - [`POSTER_QR_STRATEGY.md`](POSTER_QR_STRATEGY.md) — **포스터·QR·3개 언어 (HOW SPREAD)**: 셀폰에 즉시 설치 ⭐
+- [`AI_WORKFORCE_STRATEGY.md`](AI_WORKFORCE_STRATEGY.md) — **AI 파트너 직원 (HOW SCALE)**: 1인 기업의 무한 확장 ⭐
 - [`DIASPORA_STRATEGY.md`](DIASPORA_STRATEGY.md) — 디아스포라 콘텐츠 전략 (BTS 모델)
 - [`REVENUE_STRATEGY.md`](REVENUE_STRATEGY.md) — 수익 모델 단계별 로드맵
 

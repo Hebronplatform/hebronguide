@@ -28,6 +28,9 @@ done
 # 4. 루트 공유 파일
 cp hebronguide/dist/registerSW.js       public/registerSW.js       2>/dev/null || true
 cp hebronguide/dist/manifest.webmanifest public/manifest.webmanifest 2>/dev/null || true
+cp hebronguide/dist/ad-request.html     public/ad-request.html     2>/dev/null || true
+
+# 5. API 함수는 Vercel이 자동 라우팅 (hebronguide/api/*.js → /api/*)
 
 echo "=== Deploy Complete ==="
 ls public/

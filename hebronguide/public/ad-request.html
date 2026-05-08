@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>광고 신청 — HebronGuide AI 광고 자동 생성</title>
+<meta name="description" content="HebronGuide에 광고를 신청하세요. AI가 한·영·스 3개 언어 광고를 24시간 안에 자동 생성합니다." />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, 'Noto Sans KR', sans-serif;
+    background: linear-gradient(135deg, #1a2535 0%, #0d1117 100%);
+    color: #ECFDF5; min-height: 100vh; padding: 24px 16px;
+  }
+  .container { max-width: 580px; margin: 0 auto; }
+  .header {
+    text-align: center; margin-bottom: 32px;
+    padding-bottom: 24px; border-bottom: 1px solid rgba(201,162,39,0.2);
+  }
+  h1 { font-size: 24px; color: #C9A227; margin-bottom: 8px; }
+  .subtitle { font-size: 13px; color: rgba(236,253,245,0.6); line-height: 1.6; }
+  .ai-badge {
+    display: inline-block; background: rgba(110,231,183,0.15);
+    border: 1px solid rgba(110,231,183,0.3); color: #6EE7B7;
+    padding: 4px 12px; border-radius: 16px; font-size: 11px;
+    font-weight: 700; margin-bottom: 12px;
+  }
+  .form-section {
+    background: rgba(255,255,255,0.04); border-radius: 14px;
+    padding: 20px; margin-bottom: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .form-section h3 {
+    font-size: 14px; color: #C9A227; margin-bottom: 12px;
+    padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  label { display: block; font-size: 12px; color: rgba(236,253,245,0.7); margin-bottom: 4px; margin-top: 12px; font-weight: 600; }
+  input, select, textarea {
+    width: 100%; padding: 10px 12px;
+    background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; color: #ECFDF5; font-size: 13px;
+    font-family: inherit;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none; border-color: #6EE7B7;
+  }
+  textarea { resize: vertical; min-height: 60px; }
+  .pricing {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    margin-top: 8px;
+  }
+  .pricing label {
+    margin: 0; padding: 12px 8px; text-align: center; cursor: pointer;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px; transition: all 0.15s;
+  }
+  .pricing input { display: none; }
+  .pricing input:checked + .price-card {
+    background: rgba(201,162,39,0.15); border-color: #C9A227; color: #C9A227;
+  }
+  .price-amount { font-size: 18px; font-weight: 800; }
+  .price-period { font-size: 10px; opacity: 0.6; }
+  button {
+    width: 100%; padding: 14px;
+    background: linear-gradient(135deg, #C9A227, #B8901C);
+    border: none; border-radius: 12px; color: #fff;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+    margin-top: 16px;
+    box-shadow: 0 4px 16px rgba(201,162,39,0.3);
+  }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  button:hover:not(:disabled) { transform: translateY(-1px); }
+  .result {
+    background: rgba(110,231,183,0.08); border: 1px solid rgba(110,231,183,0.3);
+    border-radius: 12px; padding: 16px; margin-top: 16px;
+  }
+  .result h3 { color: #6EE7B7; font-size: 14px; margin-bottom: 12px; }
+  .ad-preview {
+    background: rgba(0,0,0,0.4); padding: 12px; border-radius: 8px;
+    margin: 8px 0; font-size: 12px; line-height: 1.6;
+  }
+  .lang-tag {
+    display: inline-block; background: rgba(201,162,39,0.2); color: #C9A227;
+    padding: 2px 8px; border-radius: 6px; font-size: 10px; font-weight: 700;
+    margin-right: 6px;
+  }
+  .qr-section { text-align: center; margin: 16px 0; }
+  .qr-section img { max-width: 200px; border-radius: 8px; background: white; padding: 8px; }
+  .error { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #F87171; padding: 12px; border-radius: 8px; margin-top: 12px; font-size: 12px; }
+  .footer { text-align: center; margin-top: 32px; font-size: 11px; color: rgba(236,253,245,0.4); }
+  .footer a { color: #6EE7B7; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <span class="ai-badge">⚡ AI 자동 생성</span>
+    <h1>HebronGuide 광고 신청</h1>
+    <div class="subtitle">
+      AI가 한·영·스 3개 언어 광고를 자동 생성합니다.<br>
+      폴 김 목사 검수 후 24시간 내 게시됩니다.
+    </div>
+  </div>
+
+  <form id="adForm">
+
+    <div class="form-section">
+      <h3>📍 업소 정보</h3>
+
+      <label>업소명 *</label>
+      <input type="text" name="businessName" required placeholder="예: 강남 한식당" />
+
+      <label>업소 종류 *</label>
+      <select name="businessType" required>
+        <option value="">선택하세요</option>
+        <option value="한식당">한식당 (BBQ·찌개·분식 등)</option>
+        <option value="카페">카페·베이커리</option>
+        <option value="한인 마트">한인 마트·식료품</option>
+        <option value="교회">한인 교회·사역 단체</option>
+        <option value="의료">한인 병원·치과·한의원</option>
+        <option value="법률·세무">법률·세무·이민 서비스</option>
+        <option value="부동산">부동산·렌탈</option>
+        <option value="미용">미용실·뷰티 살롱</option>
+        <option value="교육">한국학교·태권도·학원</option>
+        <option value="기타">기타 한인 비즈니스</option>
+      </select>
+
+      <label>도시 *</label>
+      <select name="city" required>
+        <option value="">선택하세요</option>
+        <option value="seattle">시애틀 (Seattle)</option>
+        <option value="dallas">달라스 (Dallas)</option>
+        <option value="sf">샌프란시스코 (SF Bay)</option>
+        <option value="newyork">뉴욕 (New York)</option>
+        <option value="boston">보스턴 (Boston)</option>
+        <option value="la">로스앤젤레스 (LA)</option>
+        <option value="toronto">토론토 (Toronto)</option>
+        <option value="vancouver">밴쿠버 (Vancouver)</option>
+        <option value="houston">휴스턴 (Houston)</option>
+        <option value="atlanta">애틀랜타 (Atlanta)</option>
+        <option value="philadelphia">필라델피아 (Philadelphia)</option>
+        <option value="kansascity">캔자스시티 (Kansas City)</option>
+        <option value="miami">마이애미 (Miami)</option>
+        <option value="mexicocity">멕시코시티 (Mexico City)</option>
+        <option value="nashville">내쉬빌 (Nashville)</option>
+      </select>
+
+      <label>주소</label>
+      <input type="text" name="address" placeholder="3000 184th St SW, Lynnwood WA" />
+
+      <label>전화</label>
+      <input type="tel" name="phone" placeholder="(425) 776-0858" />
+
+      <label>웹사이트</label>
+      <input type="url" name="website" placeholder="https://example.com" />
+    </div>
+
+    <div class="form-section">
+      <h3>🎯 광고 정보</h3>
+
+      <label>광고 목적 *</label>
+      <select name="adGoal" required>
+        <option value="">선택하세요</option>
+        <option value="신규 고객 유치">신규 고객 유치 (일반 홍보)</option>
+        <option value="할인·프로모션">할인·프로모션 행사</option>
+        <option value="신메뉴·신상품">신메뉴·신상품 출시</option>
+        <option value="월드컵 환영">월드컵 환영 행사 (2026 6-7월)</option>
+        <option value="광복절 캠페인">광복절·한국 명절 캠페인</option>
+        <option value="신규 오픈">신규 오픈 알림</option>
+        <option value="이전·확장">이전·확장 안내</option>
+      </select>
+
+      <label>광고 기간 *</label>
+      <select name="adDuration" required>
+        <option value="1주">1주 ($25)</option>
+        <option value="1개월" selected>1개월 ($50) — 추천</option>
+        <option value="3개월">3개월 ($120, 20% 할인)</option>
+        <option value="월드컵 시즌">월드컵 시즌 (6/1-7/26, $80)</option>
+      </select>
+
+      <label>예산 *</label>
+      <div class="pricing">
+        <label>
+          <input type="radio" name="budget" value="$50/월" checked />
+          <div class="price-card">
+            <div class="price-amount">$50</div>
+            <div class="price-period">월간 기본</div>
+          </div>
+        </label>
+        <label>
+          <input type="radio" name="budget" value="$100/월" />
+          <div class="price-card">
+            <div class="price-amount">$100</div>
+            <div class="price-period">월간 프리미엄</div>
+          </div>
+        </label>
+        <label>
+          <input type="radio" name="budget" value="$200/월" />
+          <div class="price-card">
+            <div class="price-amount">$200</div>
+            <div class="price-period">월간 골드</div>
+          </div>
+        </label>
+      </div>
+
+      <label>이 업소만의 강점 *</label>
+      <textarea name="uniqueValue" required placeholder="예: 30년 전통, 직원이 직접 굽는 갈비, 무제한 밑반찬, 알더우드몰 주차 무료"></textarea>
+    </div>
+
+    <button type="submit" id="submitBtn">⚡ AI 광고 자동 생성 시작</button>
+  </form>
+
+  <div id="result"></div>
+
+  <div class="footer">
+    HebronGuide LLC (설립 진행 중) · 폴 김 목사 운영<br>
+    문의: <a href="mailto:gmc.hc300@gmail.com">gmc.hc300@gmail.com</a> · <a href="https://hebronguide.com">hebronguide.com</a><br><br>
+    📜 모든 광고는 HebronGuide 윤리 가이드라인(마10:16 지혜+순결)을 따릅니다.<br>
+    AI 자동 생성 후 폴 김 목사 검수 → 게시
+  </div>
+
+</div>
+
+<script>
+const form = document.getElementById('adForm');
+const submitBtn = document.getElementById('submitBtn');
+const resultDiv = document.getElementById('result');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData);
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = '⚡ AI가 광고를 생성 중...';
+  resultDiv.innerHTML = '';
+
+  try {
+    const res = await fetch('/api/ad-generator', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+
+    if (!result.success) {
+      resultDiv.innerHTML = `<div class="error">
+        <strong>⚠️ 오류:</strong> ${result.error || result.message || '알 수 없는 오류'}
+        ${result.issues ? '<ul>' + result.issues.map(i => `<li>${i}</li>`).join('') + '</ul>' : ''}
+      </div>`;
+      return;
+    }
+
+    const ad = result.generated;
+    resultDiv.innerHTML = `
+      <div class="result">
+        <h3>✅ AI 광고 생성 완료!</h3>
+
+        <div class="ad-preview">
+          <span class="lang-tag">한국어</span>
+          <strong>${ad.headline_ko || ''}</strong><br>
+          ${ad.copy_ko || ''}
+        </div>
+
+        <div class="ad-preview">
+          <span class="lang-tag">English</span>
+          <strong>${ad.headline_en || ''}</strong><br>
+          ${ad.copy_en || ''}
+        </div>
+
+        <div class="ad-preview">
+          <span class="lang-tag">Español</span>
+          <strong>${ad.headline_es || ''}</strong><br>
+          ${ad.copy_es || ''}
+        </div>
+
+        <div class="qr-section">
+          <p style="font-size:12px;color:rgba(236,253,245,0.7);margin-bottom:8px;">QR 코드 (자동 생성):</p>
+          <img src="${result.qr.qrImageUrl}" alt="QR Code" />
+          <p style="font-size:10px;color:rgba(236,253,245,0.5);margin-top:8px;">
+            ${result.qr.url}
+          </p>
+        </div>
+
+        <div style="background:rgba(0,0,0,0.3);padding:12px;border-radius:8px;font-size:11px;color:rgba(236,253,245,0.7);">
+          📌 <strong>다음 단계:</strong><br>
+          1. 폴 김 목사가 24시간 안에 검수합니다<br>
+          2. 승인 후 ${data.city} 페이지에 게시됩니다<br>
+          3. 결제 안내 이메일이 ${data.website || '광고주'}로 발송됩니다<br>
+          4. 광고 ID: <code>${result.adId}</code>
+        </div>
+      </div>
+    `;
+
+    submitBtn.textContent = '✅ 신청 완료';
+
+  } catch (error) {
+    resultDiv.innerHTML = `<div class="error"><strong>⚠️ 네트워크 오류:</strong> ${error.message}</div>`;
+    submitBtn.disabled = false;
+    submitBtn.textContent = '⚡ AI 광고 자동 생성 시작';
+  }
+});
+</script>
+</body>
+</html>
