@@ -3,3 +3,9 @@
 99_Archive/**/node_modules/
 99_Archive/**/__pycache__/
 .github/workflows/
+
+.vercel
+.env*.local
+
+# Vercel build output (build.sh가 dist/에서 복사 — Vercel이 자동 생성)
+public/

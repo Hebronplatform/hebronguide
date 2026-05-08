@@ -25,8 +25,18 @@
 
 import { useState, useEffect, useRef } from "react";
 import svgPaths from "../../imports/svg-uguh2ql8id";
-// 2026 최신 시애틀 사진 (Unsplash — 무료 라이선스)
-const imgHeroCard = "https://images.unsplash.com/photo-1571842377564-5849a26c3fc2?w=1200&q=85";  // Seattle skyline 2024
+// 2026 시애틀 히어로 사진 6장 — 2시간마다 교체 (Unsplash 무료 라이선스)
+const HERO_PHOTOS = [
+  "https://images.unsplash.com/photo-1571842377564-5849a26c3fc2?w=1200&q=85",  // Seattle skyline 야경
+  "https://images.unsplash.com/photo-1525466760727-1d8be8721154?w=1200&q=85",  // Space Needle 낮
+  "https://images.unsplash.com/photo-1546587348-d12660c30c50?w=1200&q=85",     // Pike Place Market
+  "https://images.unsplash.com/photo-1519021228607-ef6e4c22a821?w=1200&q=85",  // Seattle 항구 & 선셋
+  "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85",  // PNW 자연 + 시애틀
+  "https://images.unsplash.com/photo-1559521783-1d1599583485?w=1200&q=85",     // Seattle 거리 활기
+];
+// 2시간 단위로 사진 교체 (하루 12 슬롯 → 6장 × 2)
+const heroPhotoIdx = Math.floor(new Date().getHours() / 2) % HERO_PHOTOS.length;
+const imgHeroCard = HERO_PHOTOS[heroPhotoIdx];
 const imgCoffee = "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80";
 const imgLifestyle = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80";
 // 동네 Top 3 사진
@@ -57,6 +67,12 @@ import {
   HeartPulse,
   Car,
   ShoppingCart,
+  FileText,
+  Scale,
+  BookOpen,
+  Receipt,
+  Vote,
+  LibraryBig,
 } from "lucide-react";
 
 /* Quick Menu 아이콘 맵 */
@@ -73,6 +89,10 @@ const QM_ICON_MAP: Record<string, React.ComponentType<{size?: number; color?: st
   "dollar-sign":    DollarSign,
   "map":            Map,
   "life-buoy":      LifeBuoy,
+  "file-text":      FileText,
+  "scale":          Scale,
+  "book-open":      BookOpen,
+  "receipt":        Receipt,
 };
 
 /* ─────────────────────────────────────────
@@ -890,6 +910,10 @@ const QUICK_MENU = [
   { icon: "dollar-sign",    labelKo: "생활비",  labelEn: "Costs",   color: "#0EA5E9", tab: 8, subTab: 0 },
   { icon: "map",            labelKo: "관광",   labelEn: "Tourism", color: "#06B6D4", tab: 4, subTab: 0 },
   { icon: "life-buoy",      labelKo: "도움",   labelEn: "Help",    color: "#DC2626", tab: 5, subTab: 0 },
+  { icon: "file-text",      labelKo: "비자·이민", labelEn: "Visa",    color: "#6366F1", tab: 1, subTab: 7 },
+  { icon: "receipt",        labelKo: "세금신고", labelEn: "Taxes",   color: "#F97316", tab: 8, subTab: 4 },
+  { icon: "scale",          labelKo: "법률상담", labelEn: "Legal",   color: "#64748B", tab: 5, subTab: 5 },
+  { icon: "book-open",      labelKo: "한국학교", labelEn: "K-School",color: "#BE185D", tab: 7, subTab: 5 },
 ];
 
 function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
@@ -1988,8 +2012,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   const [sub, setSub] = useState(initialSub);
   useEffect(() => { setSub(initialSub); }, [initialSub]);
   const tabs = lang === "ko"
-    ? ["1주차", "1개월", "3개월", "행정", "재정", "거주지", "✅ 전체"]
-    : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Areas", "✅ All"];
+    ? ["1주차", "1개월", "3개월", "행정", "재정", "거주지", "✅ 전체", "🛂 비자·이민"]
+    : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Areas", "✅ All", "🛂 Visa/Immigration"];
 
   const accent = "#60A5FA";
 
@@ -2136,6 +2160,52 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
           <Top5Banner items={TOP5_SETTLE} lang={lang} accentColor="#F2994A" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
+
+        {/* ── 비자·이민 탭 (index 7) ── */}
+        {sub === 7 && (
+          <div>
+            {[
+              { emoji: "🛂", name: lang === "ko" ? "비자 종류 한눈에 보기" : "Visa Types Overview",
+                desc: lang === "ko"
+                  ? "✅ 주요 비자 유형:\n• F-1 (학생비자) — 대학/어학원 재학 중. OPT·CPT 취업 가능\n• J-1 (교환방문) — 인턴십·연구원·교환학생. DS-2019 필요\n• H-1B (전문직) — 매년 4월 추첨. 스폰서 고용주 필요. 연봉 $60K+\n• O-1 (특기자) — 뛰어난 능력 증명 필요. 추첨 없음\n• L-1 (주재원) — 다국적기업 전근. A(관리직)/B(전문직)\n• E-2 (투자자) — 투자금 $100K+ 권장. 한미조약 혜택\n• EB-3/EB-5 (영주권) — 취업이민/투자이민. 우선순위 날짜 확인 필수"
+                  : "✅ Key visa types:\n• F-1 (Student) — enrolled in university/language school. OPT/CPT work authorized\n• J-1 (Exchange Visitor) — intern, researcher, exchange student. DS-2019 required\n• H-1B (Specialty Occupation) — lottery every April. Employer sponsor required\n• O-1 (Extraordinary Ability) — no lottery. Must prove exceptional talent\n• L-1 (Intracompany) — transfer within multinational. A (managers) / B (specialists)\n• E-2 (Treaty Investor) — ~$100K+ investment. Korea-US treaty benefit\n• EB-3/EB-5 (Green Card) — employment/investor immigration. Check priority dates",
+                tags: lang === "ko" ? ["비자유형", "F-1", "H-1B"] : ["Visa Types", "F-1", "H-1B"] },
+              { emoji: "📋", name: lang === "ko" ? "I-94 체류 기간 확인 (필수!)" : "Check I-94 Stay Duration (Critical!)",
+                desc: lang === "ko"
+                  ? "✅ 반드시 해야 할 일:\n1. cbp.dhs.gov/i94 접속\n2. 여권 정보 입력 → 현재 I-94 조회\n3. '입국 허가 만료일' 확인 (비자 만료일과 다를 수 있음!)\n4. D/S = Duration of Status (학생·교환방문 비자는 I-20/DS-2019 기간)\n\n⚠️ 비자 스티커 날짜 ≠ 체류 허용 기간. I-94 날짜가 실제 체류 기한!"
+                  : "✅ Must do:\n1. Go to cbp.dhs.gov/i94\n2. Enter passport info → view current I-94\n3. Check 'Admitted Until Date' (different from visa expiry date!)\n4. D/S = Duration of Status (F-1/J-1 holders: see your I-20/DS-2019)\n\n⚠️ Visa stamp date ≠ allowed stay period. I-94 date is your real deadline!",
+                tags: lang === "ko" ? ["I-94", "체류기간", "필수확인"] : ["I-94", "Stay Duration", "Critical"] },
+              { emoji: "📅", name: lang === "ko" ? "비자 연장·전환 절차" : "Visa Extension & Change of Status",
+                desc: lang === "ko"
+                  ? "⚠️ 만료 최소 6개월 전 준비 시작!\n\n연장 (Extension of Stay):\n• USCIS Form I-539 (비취업비자) 또는 I-129 (취업비자)\n• 처리 기간: 3-12개월 (프리미엄 프로세싱: $2,805, 15영업일)\n• 만료 전 신청 시 '합법 체류 유지' (Maintenance of Status)\n\n전환 (Change of Status):\n• F-1 → H-1B: OPT 중 스폰서 확보 → 4월 추첨 → 10월 시작\n• B-1/B-2 → F-1: I-539 신청. 학교 입학 허가서 필요\n\n📞 USCIS 콜센터: 1-800-375-5283 (한국어 통역 요청 가능)"
+                  : "⚠️ Start preparing at least 6 months before expiry!\n\nExtension of Stay:\n• USCIS Form I-539 (non-employment) or I-129 (employment)\n• Processing: 3-12 months (Premium: $2,805, 15 business days)\n• Filing before expiry maintains lawful stay\n\nChange of Status:\n• F-1 → H-1B: secure sponsor during OPT → April lottery → Oct start\n• B-1/B-2 → F-1: file I-539. School acceptance letter required\n\n📞 USCIS: 1-800-375-5283 (Korean interpreter available)",
+                tags: lang === "ko" ? ["비자연장", "I-539", "USCIS"] : ["Extension", "I-539", "USCIS"] },
+              { emoji: "🏠", name: lang === "ko" ? "영주권 (그린카드) 경로" : "Green Card Pathways",
+                desc: lang === "ko"
+                  ? "✅ 주요 영주권 취득 경로:\n\n취업이민 (EB):\n• EB-1A: 특기자 (자기청원 가능)\n• EB-1C: 다국적기업 관리자 (L-1A 후 전환)\n• EB-2 NIW: 국익면제 (자기청원, 연구·의료 분야 유리)\n• EB-3: 전문직/숙련직 (스폰서 필요, 대기 길 수 있음)\n• EB-5: 투자이민 (미국 내 $800K~$1.05M 투자)\n\n가족이민:\n• IR-1/CR-1: 미국 시민권자 배우자\n• F-2A: 영주권자 배우자·미성년 자녀 (대기 있음)\n\n💡 현재 우선순위 날짜: travel.state.gov → Visa Bulletin 확인"
+                  : "✅ Main green card pathways:\n\nEmployment-Based:\n• EB-1A: Extraordinary ability (self-petition possible)\n• EB-1C: Multinational manager (L-1A → EB-1C)\n• EB-2 NIW: National Interest Waiver (self-petition, great for researchers)\n• EB-3: Professionals/skilled workers (sponsor required, wait times vary)\n• EB-5: Investor ($800K–$1.05M investment in the US)\n\nFamily-Based:\n• IR-1/CR-1: Spouse of US citizen\n• F-2A: Spouse/minor children of LPR (wait time applies)\n\n💡 Check current priority dates: travel.state.gov → Visa Bulletin",
+                tags: lang === "ko" ? ["영주권", "EB", "그린카드"] : ["Green Card", "EB", "NIW"] },
+              { emoji: "⚖️", name: lang === "ko" ? "무료 이민 법률 지원 (시애틀)" : "Free Immigration Legal Help (Seattle)",
+                desc: lang === "ko"
+                  ? "✅ 시애틀 무료/저비용 이민 법률 기관:\n\n• NWIRP (북서부 이민권 프로젝트): 📞 800-445-5771 | nwirp.org — 영주권·추방방어·DACA 무료\n• OneAmerica: 425-251-0900 | weareoneamerica.org — 시민권 지원·이민자 권익 옹호\n• PAIR Project: pairproject.org — 망명 신청자 무료 법률\n• NW Justice Project: 206-464-1519 — 저소득 이민자 무료 법률 (민사 한정)\n• KCSC (한인생활상담소): 425-776-2400 — 한국어 이민 초기 상담\n\n⚠️ 비전문가나 노타리오 (notario)에게 이민 서류 맡기지 마세요!"
+                  : "✅ Free/low-cost immigration legal resources in Seattle:\n\n• NWIRP: 📞 800-445-5771 | nwirp.org — green card, deportation defense, DACA\n• OneAmerica: 425-251-0900 | weareoneamerica.org — citizenship, immigrant rights\n• PAIR Project: pairproject.org — free legal help for asylum seekers\n• NW Justice Project: 206-464-1519 — free civil legal aid for low-income\n• KCSC: 425-776-2400 — Korean-language immigration consultation\n\n⚠️ Never use unlicensed notarios for immigration documents!",
+                tags: lang === "ko" ? ["무료법률", "NWIRP", "이민상담"] : ["Free Legal", "NWIRP", "Immigration"] },
+              { emoji: "🇰🇷", name: lang === "ko" ? "주시애틀 총영사관 서비스" : "Korean Consulate General Seattle",
+                desc: lang === "ko"
+                  ? "✅ 검증됨 | 📍 115 W Mercer St, Seattle | 📞 (206) 441-1011\n영업시간: 월-금 8:30am-4pm (예약 필수)\n\n주요 서비스:\n• 여권 발급·갱신 (온라인 예약 필수)\n• 공증·영사 확인 (서류 제출 시 한국어 공증)\n• 재외국민 등록 (도미 직후 필수!)\n• 국적·병역 상담\n• 비자 관련 한국 본국 서류 안내\n\n🔗 overseas.mofa.go.kr/us-seattle-ko\n💡 민원24(mw.go.kr)로 한국 서류 온라인 발급 후 영사 확인 절차 단축 가능"
+                  : "✅ Verified | 📍 115 W Mercer St, Seattle | 📞 (206) 441-1011\nHours: Mon-Fri 8:30am-4pm (appointment required)\n\nKey services:\n• Passport issuance & renewal (online appointment required)\n• Notarization & consular certification\n• Overseas Korean registration (do this right after arrival!)\n• Nationality & military service consultation\n• Korean document guidance for visa applications\n\n🔗 overseas.mofa.go.kr/us-seattle-ko",
+                tags: lang === "ko" ? ["총영사관", "여권", "공증"] : ["Consulate", "Passport", "Notary"] },
+            ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+            <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#818CF8", marginBottom: 4 }}>🛂 {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
+                {lang === "ko"
+                  ? "• 도착 즉시: cbp.dhs.gov/i94 에서 I-94 확인\n• 재외국민 등록: 영사관 방문 (무료, 도착 3개월 내)\n• 비자 만료 6개월 전: 이민 변호사 상담 시작\n• USCIS 사건 조회: egov.uscis.gov (영수증 번호로 조회)"
+                  : "• On arrival: check I-94 at cbp.dhs.gov/i94\n• Register as overseas Korean: visit consulate (free, within 3 months)\n• 6 months before visa expiry: consult immigration attorney\n• Track USCIS case: egov.uscis.gov (use receipt number)"}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* ── 전체 체크리스트 탭 (index 6) ── */}
         {sub === 6 ? (
@@ -2634,13 +2704,14 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
 /* ─────────────────────────────────────────
    TAB 6: 도움 SCREEN
 ───────────────────────────────────────── */
-function HelpScreen({ onHome }: { onHome?: () => void }) {
+function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSub?: number }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
-  const [sub, setSub] = useState(0);
+  const [sub, setSub] = useState(initialSub);
+  useEffect(() => { setSub(initialSub); }, [initialSub]);
   const tabs = lang === "ko"
-    ? ["긴급연락", "의료·병원", "커뮤니티", "유용한 링크", "📋 무료자원"]
-    : ["Emergency", "Medical", "Community", "Useful Links", "📋 Free Resources"];
+    ? ["긴급연락", "의료·병원", "커뮤니티", "유용한 링크", "📋 무료자원", "⚖️ 법률", "🇺🇸 Korean American"]
+    : ["Emergency", "Medical", "Community", "Useful Links", "📋 Free Resources", "⚖️ Legal", "🇺🇸 Korean American"];
   const accent = "#F87171";
 
   const medicalItems = lang === "ko" ? [
@@ -2890,6 +2961,104 @@ function HelpScreen({ onHome }: { onHome?: () => void }) {
           </div>
         </div>
       )}
+
+      {/* ── ⚖️ 법률 탭 (index 5) ── */}
+      {sub === 5 && (
+        <div className="pt-5 px-4 md:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {[
+              { emoji: "⚖️", name: lang === "ko" ? "NWIRP — 북서부 이민권 프로젝트 ✅" : "NWIRP — NW Immigrant Rights Project ✅",
+                desc: lang === "ko"
+                  ? "시애틀 최대 이민 법률 무료 기관. 영주권·추방방어·DACA·망명 전문.\n📍 615 2nd Ave Ste 400, Seattle | 📞 800-445-5771 | 🔗 nwirp.org\n무료 법률 (저소득 이민자 우선). 한국어 통역 요청 가능"
+                  : "Seattle's largest free immigration legal org. Green card, deportation defense, DACA, asylum.\n📍 615 2nd Ave Ste 400, Seattle | 📞 800-445-5771 | 🔗 nwirp.org\nFree legal services (low-income priority). Korean interpreter available",
+                tags: lang === "ko" ? ["무료법률", "이민", "추방방어"] : ["Free Legal", "Immigration", "Deportation"] },
+              { emoji: "🏛️", name: lang === "ko" ? "NW 저스티스 프로젝트 ✅" : "Northwest Justice Project ✅",
+                desc: lang === "ko"
+                  ? "저소득 WA 주민 무료 민사 법률. 이민·주거·가족법 포함.\n📞 206-464-1519 | 🔗 nwjustice.org\nCLEAR 핫라인: 1-888-201-1014 (한국어 포함 다국어)"
+                  : "Free civil legal services for low-income WA residents. Immigration, housing, family law.\n📞 206-464-1519 | 🔗 nwjustice.org\nCLEAR hotline: 1-888-201-1014 (multilingual incl. Korean)",
+                tags: lang === "ko" ? ["무료법률", "저소득", "민사"] : ["Free Legal", "Low Income", "Civil"] },
+              { emoji: "🌍", name: lang === "ko" ? "OneAmerica — 이민자 권익 ✅" : "OneAmerica — Immigrant Rights ✅",
+                desc: lang === "ko"
+                  ? "WA주 최대 이민자 권익 단체. 시민권 신청 지원·DACA·워크퍼밋.\n📞 425-251-0900 | 🔗 weareoneamerica.org\n시민권 클래스 무료 운영"
+                  : "WA's largest immigrant advocacy org. Citizenship, DACA, work permits.\n📞 425-251-0900 | 🔗 weareoneamerica.org\nFree Citizenship Classes",
+                tags: lang === "ko" ? ["시민권", "DACA", "권익옹호"] : ["Citizenship", "DACA", "Advocacy"] },
+              { emoji: "👨‍⚖️", name: lang === "ko" ? "KCBA 무료 법률 상담 (킹카운티 변호사회)" : "KCBA Free Legal Clinic (King County Bar)",
+                desc: lang === "ko"
+                  ? "킹카운티 변호사협회 프로보노. 월 1회 무료 법률 클리닉.\n📞 206-267-7010 | 🔗 kcba.org/For-the-Public\n이민·고용·주거·가족법 상담. 사전 예약 필수"
+                  : "King County Bar Association pro bono. Monthly free legal clinic.\n📞 206-267-7010 | 🔗 kcba.org/For-the-Public\nImmigration, employment, housing, family law. Appointment required",
+                tags: lang === "ko" ? ["프로보노", "법률클리닉", "변호사"] : ["Pro Bono", "Legal Clinic", "Attorney"] },
+              { emoji: "🏠", name: lang === "ko" ? "임차인 유니온 (Tenants Union WA)" : "Tenants Union of WA — Renter Rights",
+                desc: lang === "ko"
+                  ? "임차인 권리 보호. 부당 퇴거·보증금·임대료 분쟁 대응.\n📞 206-723-0500 | 🔗 tenantsunion.org\n워크샵·법률 상담 제공"
+                  : "Tenant rights protection. Eviction, security deposit, rent increase disputes.\n📞 206-723-0500 | 🔗 tenantsunion.org\nWorkshops & legal consultation available",
+                tags: lang === "ko" ? ["임차인권리", "퇴거방어", "보증금"] : ["Tenant Rights", "Eviction", "Deposit"] },
+              { emoji: "🚨", name: lang === "ko" ? "이민 사기 신고 — WA 법무장관실" : "Report Immigration Fraud — WA AG",
+                desc: lang === "ko"
+                  ? "노타리오(Notario) 사기 신고. 이민 사기는 중범죄.\n📞 1-800-551-4636 | 🔗 atg.wa.gov\n한국어 통역 가능.\n\n⚠️ 이민 서류는 변호사(Attorney) 또는 BIA 공인 대리인에게만!"
+                  : "Report notario fraud. Immigration fraud is a serious crime.\n📞 1-800-551-4636 | 🔗 atg.wa.gov\nKorean interpreter available.\n\n⚠️ Only use licensed attorneys or BIA-accredited reps for immigration docs!",
+                tags: lang === "ko" ? ["이민사기", "신고", "보호"] : ["Immigration Fraud", "Report", "Protection"] },
+            ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+          </div>
+          <div style={{ background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 12 }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>⚖️ {lang === "ko" ? "긴급 법률 도움 받는 법" : "How to Get Emergency Legal Help"}</div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
+              {lang === "ko"
+                ? "1. 이민 긴급 → NWIRP: 800-445-5771\n2. 민사 법률 → NW Justice CLEAR: 1-888-201-1014\n3. 시민권 → OneAmerica: 425-251-0900\n4. 임차인 분쟁 → Tenants Union: 206-723-0500\n5. 한국어 상담 → KCSC: 425-776-2400"
+                : "1. Immigration emergency → NWIRP: 800-445-5771\n2. Civil legal → NW Justice CLEAR: 1-888-201-1014\n3. Citizenship → OneAmerica: 425-251-0900\n4. Tenant dispute → Tenants Union: 206-723-0500\n5. Korean-language → KCSC: 425-776-2400"}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── 🇺🇸 Korean American 탭 (index 6) ── */}
+      {sub === 6 && (
+        <div className="pt-5 px-4 md:px-6 lg:px-8">
+          <div style={{ background: "linear-gradient(135deg, rgba(59,130,246,0.12), rgba(239,68,68,0.08))", border: "1px solid rgba(59,130,246,0.2)", borderRadius: 16, padding: "16px 18px", marginBottom: 16 }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#ECFDF5", marginBottom: 6 }}>
+              🇺🇸 {lang === "ko" ? "Korean American으로 살기" : "Living as Korean American"}
+            </div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, lineHeight: 1.7, color: "rgba(236,253,245,0.7)" }}>
+              {lang === "ko"
+                ? "이민자를 넘어 미국 사회의 당당한 구성원으로. 투표권·공공자원·지역사회 참여로 더 강한 커뮤니티를 만들어 갑니다."
+                : "Beyond being immigrants — becoming full participants in American society. Voting, public resources & community engagement build a stronger Korean American community."}
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {[
+              { emoji: "🗳️", name: lang === "ko" ? "투표·시민 참여 — 내 한 표가 바꾼다" : "Voting & Civic Participation",
+                desc: lang === "ko"
+                  ? "✅ 시민권자 의무이자 권리!\n유권자 등록: 🔗 myvote.wa.gov\n• WA주 — 우편 투표 100%! 선거 전 자동 발송\n• 등록 마감: 선거일 8일 전\n• 한국어 안내: King County Elections 📞 206-296-8683\n\n시민권 후 첫 번째 할 일 = 유권자 등록!"
+                  : "✅ Your right AND responsibility as a citizen!\nVoter registration: 🔗 myvote.wa.gov\n• WA State — 100% mail-in ballots!\n• Registration deadline: 8 days before election\n• Korean language info: King County Elections 📞 206-296-8683\n\nFirst thing after citizenship = register to vote!",
+                tags: lang === "ko" ? ["투표", "시민참여", "유권자등록"] : ["Voting", "Civic", "Voter Registration"] },
+              { emoji: "📚", name: lang === "ko" ? "킹카운티 도서관 — 무료 자원의 보고" : "King County Library — Free Resource Hub",
+                desc: lang === "ko"
+                  ? "✅ 도서관 카드 하나로 수백만 달러 가치!\n무료 서비스:\n• ESL 영어 수업 무료\n• 시민권 시험 준비 자료\n• 취업·이력서 워크샵\n• 한국어 도서·잡지·DVD\n• 인터넷·프린터 무료\n• LinkedIn Learning 무제한\n📞 425-462-9600 | 🔗 kcls.org"
+                  : "✅ One library card = millions in free resources!\nFree services:\n• ESL English classes\n• Citizenship test prep\n• Job search & resume workshops\n• Korean books, magazines & DVDs\n• Free internet & printing\n• Unlimited LinkedIn Learning\n📞 425-462-9600 | 🔗 kcls.org",
+                tags: lang === "ko" ? ["도서관", "무료ESL", "LinkedIn Learning"] : ["Library", "Free ESL", "LinkedIn"] },
+              { emoji: "🌍", name: lang === "ko" ? "다민족 커뮤니티 연결" : "Multicultural Community Connections",
+                desc: lang === "ko"
+                  ? "Korean American으로서 다양한 커뮤니티와 연결!\n• 중국계: Asia Pacific Cultural Center\n• 히스패닉: El Centro de la Raza (206) 957-4610\n• 필리핀계: Filipino Community of Seattle (206) 722-9372\n• 인도계: India Association of Western WA\n\n다민족 커뮤니티 연결 = 더 넓은 취업 네트워크 + 다양한 문화 경험"
+                  : "Connect across communities as Korean Americans!\n• Chinese-American: Asia Pacific Cultural Center\n• Hispanic: El Centro de la Raza (206) 957-4610\n• Filipino: Filipino Community of Seattle (206) 722-9372\n• Indian: India Association of Western WA\n\nCross-community = broader job network + richer cultural life",
+                tags: lang === "ko" ? ["다민족", "커뮤니티", "교류"] : ["Multicultural", "Community", "Connection"] },
+              { emoji: "🤝", name: lang === "ko" ? "지역사회 봉사·참여" : "Community Service & Volunteering",
+                desc: lang === "ko"
+                  ? "✅ 봉사는 커리어·네트워크·영주권에도 도움!\n• United Way of King County: unitedwaykc.org\n• Food Lifeline: foodlifeline.org — 식품 은행 봉사\n• Habitat for Humanity: habitatskc.org\n• KCSC (한인생활상담소): 봉사자 상시 모집\n\n봉사 시간 기록: volunteerheroes.org"
+                  : "✅ Volunteering helps career, networking & green card!\n• United Way of King County: unitedwaykc.org\n• Food Lifeline: foodlifeline.org — food bank\n• Habitat for Humanity: habitatskc.org\n• KCSC: always recruiting Korean-speaking volunteers\n\nLog volunteer hours: volunteerheroes.org",
+                tags: lang === "ko" ? ["봉사", "커리어", "영주권"] : ["Volunteer", "Career", "Green Card"] },
+              { emoji: "🏛️", name: lang === "ko" ? "미국 공공 혜택 — 모르면 손해" : "US Public Benefits — Don't Miss Out",
+                desc: lang === "ko"
+                  ? "영주권자·시민권자가 누릴 수 있는 공공자원:\n• WIC: 임산부·5세 미만 자녀 무료 식품 📞 206-296-4600\n• SNAP: 식품 지원 → dshs.wa.gov/benefits\n• WA Apple Health: 저소득 의료보험 무료\n• LIHEAP: 겨울 난방비 지원\n• WSHFC: 첫 집 구매자 지원 프로그램\n\n💡 합법 체류자도 일부 혜택 가능. dshs.wa.gov 확인!"
+                  : "Public benefits for green card holders & citizens:\n• WIC: free food for pregnant women & children under 5. 📞 206-296-4600\n• SNAP: food assistance → dshs.wa.gov/benefits\n• WA Apple Health: free health insurance (low-income)\n• LIHEAP: winter heating assistance\n• WSHFC: first-time homebuyer programs\n\n💡 Legal residents may qualify. Check dshs.wa.gov!",
+                tags: lang === "ko" ? ["공공혜택", "WIC", "SNAP"] : ["Public Benefits", "WIC", "SNAP"] },
+              { emoji: "🗺️", name: lang === "ko" ? "시애틀 한인 문화 행사 캘린더" : "Seattle Korean Cultural Events",
+                desc: lang === "ko"
+                  ? "✅ 연간 주요 한인 행사:\n• 설날 행사: 한인회 & 지역 교회 (1-2월)\n• 한국 문화의 날: 봄 (벨뷰·시애틀)\n• 코리안 페스티벌: 여름 (린우드 H-Mart)\n• 추석 행사: 가을 (9-10월)\n• 광복절: 8월 15일 (총영사관 주관)\n\n최신 정보: seattlekorean.org | KakaoTalk '시애틀한인'"
+                  : "✅ Annual Korean community events:\n• Lunar New Year: Korean Association & churches (Jan-Feb)\n• Korean Culture Day: spring (Bellevue & Seattle)\n• Korean Festival: summer (Lynnwood H-Mart)\n• Chuseok Celebration: fall (Sep-Oct)\n• Independence Day: Aug 15 (Consulate General)\n\nStay updated: seattlekorean.org | KakaoTalk '시애틀한인'",
+                tags: lang === "ko" ? ["한인행사", "문화", "커뮤니티"] : ["Korean Events", "Culture", "Community"] },
+            ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -3019,13 +3188,14 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
 /* ─────────────────────────────────────────
    TAB 8: 교육 SCREEN
 ───────────────────────────────────────── */
-function EducationScreen({ onHome }: { onHome?: () => void }) {
+function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSub?: number }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
-  const [sub, setSub] = useState(0);
+  const [sub, setSub] = useState(initialSub);
+  useEffect(() => { setSub(initialSub); }, [initialSub]);
   const tabs = lang === "ko"
-    ? ["🏫 학군 순위", "🏛️ 지역 CC", "🎓 4년제 대학", "📝 대입 준비", "📚 학원·ESL"]
-    : ["🏫 School Districts", "🏛️ Community Colleges", "🎓 Universities", "📝 Admissions", "📚 Tutoring & ESL"];
+    ? ["🏫 학군 순위", "🏛️ 지역 CC", "🎓 4년제 대학", "📝 대입 준비", "📚 학원·ESL", "🇰🇷 한국학교"]
+    : ["🏫 School Districts", "🏛️ Community Colleges", "🎓 Universities", "📝 Admissions", "📚 Tutoring & ESL", "🇰🇷 Korean School"];
   const accent = "#A78BFA";
 
   /* ── Tab 0: 학군 순위 (30마일 광역권) ── */
@@ -3178,11 +3348,40 @@ function EducationScreen({ onHome }: { onHome?: () => void }) {
       tags: ["성인교육", "직업훈련", "무료"] },
   ];
 
+  /* ── 한국학교 데이터 ── */
+  const koreanSchools = [
+    { emoji: "🇰🇷", name: lang === "ko" ? "시애틀한국학교 (Seattle Korean School)" : "Seattle Korean School",
+      desc: lang === "ko"
+        ? "✅ WA주 최대 한국학교. 한인 2세·1.5세 한국어 교육.\n📅 매주 토요일 오전\n과정: 유치부·초등부·중등부·고등부·성인반\nTOPIK(한국어능력시험) 준비 반 운영\n🔗 seattlekoreanschool.org"
+        : "✅ Largest Korean school in WA. Education for 2nd/1.5-gen Koreans.\n📅 Every Saturday morning\nPrograms: preschool, elementary, middle, high school, adult\nTOPIK (Korean Proficiency Test) prep available\n🔗 seattlekoreanschool.org",
+      tags: lang === "ko" ? ["한국학교", "토요한글", "TOPIK"] : ["Korean School", "Saturday", "TOPIK"] },
+    { emoji: "📖", name: lang === "ko" ? "교회 부설 한국학교 (주요 교회)" : "Church-Based Korean Schools",
+      desc: lang === "ko"
+        ? "많은 한인 교회가 자체 한국학교 운영:\n• 시애틀지구촌교회 (GMC): 주일학교 겸 한국어 교육\n• 벨뷰 지역 교회: 토요 한국학교 다수\n• 린우드 지역 교회: 한국어·역사·문화 병행\n\n장점: 교회 멤버십으로 학비 할인·무료"
+        : "Many Korean churches run their own Korean schools:\n• Global Mission Church (GMC): Sunday school + Korean\n• Bellevue Korean churches: multiple Saturday programs\n• Lynnwood Korean churches: language, history & culture\n\nBenefit: Discounted or free tuition for members",
+      tags: lang === "ko" ? ["교회한국학교", "주일학교", "무료"] : ["Church School", "Sunday School", "Free"] },
+    { emoji: "📊", name: lang === "ko" ? "재미한국학교 서북미협의회 (NAKS-PNW)" : "Korean Schools of America — PNW (NAKS)",
+      desc: lang === "ko"
+        ? "WA·OR·ID 한국학교 총괄 협의회. 전체 회원 학교 목록·등록 정보.\n🔗 nakspnw.org\n\n• 매년 봄 한국어 말하기·글쓰기 대회\n• 여름 집중 한국어 캠프 (1-2주)\n• 학교 찾기: nakspnw.org → 지역별 필터"
+        : "Regional council for Korean schools in WA, OR & ID.\n🔗 nakspnw.org\n\n• Annual Korean speech & writing competition\n• Summer intensive Korean camps (1-2 weeks)\n• Find a school: nakspnw.org → filter by area",
+      tags: lang === "ko" ? ["서북미협의회", "NAKS", "한국어대회"] : ["NAKS-PNW", "Korean Schools", "Competition"] },
+    { emoji: "🥋", name: lang === "ko" ? "한국 문화·예술 교육 프로그램" : "Korean Culture & Arts Programs",
+      desc: lang === "ko"
+        ? "한국어 외 문화 교육 옵션:\n\n🥋 태권도: 린우드·페더럴웨이 한인 도장 다수. 주 2-3회, 월 $80-150\n🎵 가야금·장구: 교회·문화센터 클래스\n🎭 한국 전통 무용: Seattle Korean Dance Group\n💃 K-pop 댄스: 린우드·벨뷰 학원 다수\n\n정보: kSeattle.com 또는 카카오오픈채팅 '시애틀한인'"
+        : "Cultural education beyond language:\n\n🥋 Taekwondo: Multiple Korean dojangs in Lynnwood & Federal Way. 2-3x/week, $80-150/month\n🎵 Gayageum & Janggu: church & cultural center classes\n🎭 Traditional Korean Dance: Seattle Korean Dance Group\n💃 K-pop Dance: studios in Lynnwood & Bellevue\n\nInfo: kSeattle.com or KakaoTalk '시애틀한인'",
+      tags: lang === "ko" ? ["태권도", "한국무용", "K-pop"] : ["Taekwondo", "Korean Dance", "K-pop"] },
+    { emoji: "🎓", name: lang === "ko" ? "AP 한국어 — 대입 활용법" : "AP Korean — College Application Value",
+      desc: lang === "ko"
+        ? "✅ 한국어 AP 시험은 대입에서 큰 강점!\n• SAT Subject Test 대체 가능\n• 대학 학점 인정 (4-8학점 절약, 약 $2,000-4,000 상당)\n• Native Speaker 전형 별도 — 한국어 원어민에게 유리\n• TOPIK 점수도 일부 대학에서 어학 능력 증빙으로 인정\n\n시험 등록: collegeboard.org | 매년 5월 시험"
+        : "✅ AP Korean is a major advantage for college apps!\n• Can substitute for SAT Subject Test\n• College credit recognition (4-8 credits, worth $2,000-4,000)\n• Native Speaker track available — advantage for heritage speakers\n• TOPIK scores accepted by some universities as language proficiency\n\nRegister: collegeboard.org | Exam in May each year",
+      tags: lang === "ko" ? ["AP한국어", "대입", "학점인정"] : ["AP Korean", "College", "Credit"] },
+  ];
+
   const allEdu = serverContent["education"] ? resolvePlaceItems(serverContent["education"], lang) : null;
   const subData = allEdu
-    ? [allEdu.slice(0, 6), allEdu.slice(6, 12), allEdu.slice(12, 17), allEdu.slice(17, 22), allEdu.slice(22)]
-    : [districts, communityColleges, universities, admissions, tutoringEsl];
-  const content = subData[sub];
+    ? [allEdu.slice(0, 6), allEdu.slice(6, 12), allEdu.slice(12, 17), allEdu.slice(17, 22), allEdu.slice(22, 27), allEdu.slice(27)]
+    : [districts, communityColleges, universities, admissions, tutoringEsl, koreanSchools];
+  const content = subData[sub] ?? [];
 
   /* ── 탭별 하단 팁 ── */
   const tips = [
@@ -3191,6 +3390,7 @@ function EducationScreen({ onHome }: { onHome?: () => void }) {
     { icon: "🎓", ko: "UW는 11월 15일 마감 (한 번만 지원 가능). CS·엔지니어링은 UW Seattle 경쟁률이 높으니 UW Bothell을 함께 고려. 주립 학비 in-state가 국제보다 3배 저렴.", en: "UW deadline is Nov 15 (single round). CS & Engineering at UW Seattle are very competitive — consider UW Bothell. In-state tuition is 3× cheaper than international." },
     { icon: "🏃", ko: "Running Start는 워싱턴주 공립 고교생만 대상 (11-12학년). 완전 무료 (교재비만). Edmonds College·Bellevue College·Cascadia 참여. 졸업 시 최대 2년치 학점 취득 가능.", en: "Running Start is for WA public HS students (grades 11-12) only. Completely free (books only). Participating: Edmonds, Bellevue & Cascadia. Earn up to 2 years of college credit before graduating." },
     { icon: "💵", ko: "ESL은 커뮤니티 칼리지가 사설 어학원보다 훨씬 저렴 (1/3 가격). 킹카운티 공공도서관 ESL은 무료. 직업 훈련은 WorkSource WA를 먼저 확인 — 무료가 많음.", en: "Community college ESL is far cheaper than private language schools (1/3 the price). King County Library ESL is free. For job training, check WorkSource WA first — many programs are free." },
+    { icon: "🇰🇷", ko: "한국학교 등록은 이른 봄(2-3월)에 마감되는 경우가 많습니다. 자녀의 한국어 교육은 빠를수록 좋습니다 — 5세 전 시작이 가장 효과적. nakspnw.org에서 가까운 학교 검색!", en: "Korean school enrollment often closes in early spring (Feb-Mar). Starting Korean language education early is most effective — before age 5 is ideal. Find a nearby school at nakspnw.org!" },
   ];
   const tip = tips[sub];
 
@@ -3221,13 +3421,14 @@ function EducationScreen({ onHome }: { onHome?: () => void }) {
 /* ─────────────────────────────────────────
    TAB 9: 생활비 SCREEN
 ───────────────────────────────────────── */
-function CostScreen({ onHome }: { onHome?: () => void }) {
+function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSub?: number }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
-  const [sub, setSub] = useState(0);
+  const [sub, setSub] = useState(initialSub);
+  useEffect(() => { setSub(initialSub); }, [initialSub]);
   const tabs = lang === "ko"
-    ? ["렌트·주거", "세금·생활비", "교통·통신", "💡 알뜰생활"]
-    : ["Rent & Housing", "Tax & Living", "Transport & Phone", "💡 Smart Living"];
+    ? ["렌트·주거", "세금·생활비", "교통·통신", "💡 알뜰생활", "📋 세금신고"]
+    : ["Rent & Housing", "Tax & Living", "Transport & Phone", "💡 Smart Living", "📋 Tax Filing"];
   const accent = "#34D399";
 
   const rentHousing = [
@@ -3340,7 +3541,7 @@ function CostScreen({ onHome }: { onHome?: () => void }) {
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5 px-4 md:px-6 lg:px-8">
-        {sub !== 3 ? (
+        {sub !== 3 && sub !== 4 ? (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
@@ -3356,7 +3557,7 @@ function CostScreen({ onHome }: { onHome?: () => void }) {
               </div>
             </div>
           </>
-        ) : (
+        ) : sub === 3 ? (
           <>
             {/* ── 섹션 1: 알뜰 쇼핑 마트 ── */}
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: accent, letterSpacing: "0.5px", marginBottom: 10, display: "flex", alignItems: "center", gap: 6 }}>
@@ -3433,6 +3634,62 @@ function CostScreen({ onHome }: { onHome?: () => void }) {
                 {lang === "ko"
                   ? "HebronGuide는 한인 커뮤니티를 넘어 다문화 미국 생활 전체를 가르칩니다. 베트남 쌀국수, 멕시칸 타코, 인도 뷔페 — 이민자들이 만든 음식이 이민자에게 가장 가성비가 좋습니다. 돈을 아끼면서 지혜로운 생활 🌎"
                   : "HebronGuide teaches you to thrive in ALL of multicultural America, not just the Korean community. Vietnamese pho, Mexican tacos, Indian buffets — food made by immigrants offers the best value for immigrants. Smart frugal living 🌎"}
+              </div>
+            </div>
+          </>
+        ) : (
+          /* ── 세금신고 탭 (index 4) ── */
+          <>
+            <div style={{ background: "linear-gradient(135deg, rgba(249,115,22,0.12), rgba(52,211,153,0.08))", border: "1px solid rgba(249,115,22,0.2)", borderRadius: 16, padding: "16px 18px", marginBottom: 16 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#ECFDF5", marginBottom: 6 }}>
+                📋 {lang === "ko" ? "세금신고 완전 가이드" : "Complete Tax Filing Guide"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, lineHeight: 1.7, color: "rgba(236,253,245,0.7)" }}>
+                {lang === "ko"
+                  ? "✅ WA주는 소득세 없음! 하지만 연방 세금(IRS)은 신고 필수. 한인 이민자들이 모르는 세금 혜택과 무료 신고 방법을 알려드립니다."
+                  : "✅ WA has no state income tax! But federal taxes (IRS) are required. Here's what Korean immigrants often don't know about tax benefits and free filing options."}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {[
+                { emoji: "🆓", name: lang === "ko" ? "VITA 무료 세금신고 ✅ 검증됨" : "VITA Free Tax Filing ✅ Verified",
+                  desc: lang === "ko"
+                    ? "소득 $67,000 이하 무료 세금 신고! IRS 공인 자원봉사자 지원.\n📅 매년 1월 말 ~ 4월 15일\n🔗 vitataxhelp.org 또는 IRS.gov/VITA\n\n시애틀 지역 VITA 위치:\n• 킹카운티 도서관 여러 지점\n• KCSC (한인생활상담소) 확인\n📞 211 전화 → 가까운 VITA 위치 안내"
+                    : "FREE tax prep for income under $67,000! IRS-certified volunteers.\n📅 Late January – April 15 each year\n🔗 vitataxhelp.org or IRS.gov/VITA\n\nVITA locations in Seattle area:\n• Multiple King County Library branches\n• Check KCSC (Korean Community Service Center)\n📞 Call 211 → nearest VITA location",
+                  tags: lang === "ko" ? ["무료세금신고", "VITA", "중요"] : ["Free Tax Filing", "VITA", "Important"] },
+                { emoji: "🆔", name: lang === "ko" ? "ITIN (개인납세자번호) 신청" : "ITIN Application (Individual Taxpayer ID)",
+                  desc: lang === "ko"
+                    ? "SSN 없어도 세금 신고 가능! IRS Form W-7 제출.\n\n필요한 경우:\n• F-1 학생비자 (SSN 없는 경우)\n• 워킹홀리데이·J-1\n• E-2 투자비자\n• 비거주외국인 소득 있는 경우\n\n처리기간: 7-11주\n한인 CPA 도움 강력 권장\n📞 IRS: 1-800-829-1040"
+                    : "You can file taxes even without an SSN! Submit IRS Form W-7.\n\nNeeded when:\n• F-1 student (no SSN)\n• J-1 exchange visitor\n• E-2 investor visa\n• Non-resident alien with US income\n\nProcessing: 7-11 weeks\nStrongly recommend Korean CPA assistance\n📞 IRS: 1-800-829-1040",
+                  tags: lang === "ko" ? ["ITIN", "W-7", "SSN없이"] : ["ITIN", "W-7", "No SSN"] },
+                { emoji: "🏠", name: lang === "ko" ? "한국 소득·해외계좌 신고 (FBAR/FATCA)" : "Foreign Income & Account Reporting (FBAR/FATCA)",
+                  desc: lang === "ko"
+                    ? "⚠️ 반드시 확인! 한국 소득 또는 해외 계좌 있으면:\n\nFBAR (FinCEN 114):\n• 해외 금융계좌 합계 $10,000 초과 시 매년 신고\n• bsaefiling.fincen.treas.gov (무료, 온라인)\n• 미신고 시 벌금 $10,000~\n\nFATCA (Form 8938):\n• 해외 금융자산 독신 $50K / 부부 $100K 초과 시\n\n💡 한인 CPA (IRS Enrolled Agent) 상담 필수!"
+                    : "⚠️ Must check if you have Korean income or overseas accounts!\n\nFBAR (FinCEN 114):\n• File annually if total foreign accounts exceed $10,000\n• bsaefiling.fincen.treas.gov (free, online)\n• Penalty for non-filing: $10,000+\n\nFATCA (Form 8938):\n• Single: $50K / Married: $100K in foreign assets\n\n💡 Must consult Korean CPA (IRS Enrolled Agent)!",
+                  tags: lang === "ko" ? ["FBAR", "FATCA", "해외계좌"] : ["FBAR", "FATCA", "Foreign Assets"] },
+                { emoji: "💰", name: lang === "ko" ? "이민자 세금 혜택 — 모르면 손해" : "Tax Credits for Immigrants — Don't Miss Out",
+                  desc: lang === "ko"
+                    ? "✅ 많은 한인 이민자가 놓치는 세금 환급:\n\n• Earned Income Tax Credit (EITC): 저소득 근로자 최대 $7,430 환급\n• Child Tax Credit: 자녀 1인당 최대 $2,000\n• Child & Dependent Care Credit: 보육비 최대 35% 환급\n• American Opportunity Credit: 대학 학비 최대 $2,500 환급\n• Education credits: 등록금 세금 공제\n\n💡 VITA에서 무료로 이 모든 혜택 신청 가능!"
+                    : "✅ Tax refunds many Korean immigrants miss:\n\n• Earned Income Tax Credit (EITC): up to $7,430 refund for low-income workers\n• Child Tax Credit: up to $2,000 per child\n• Child & Dependent Care Credit: up to 35% of childcare costs\n• American Opportunity Credit: up to $2,500 for college tuition\n• Education credits: tuition deductions\n\n💡 All of these can be claimed FREE at VITA!",
+                  tags: lang === "ko" ? ["세금혜택", "환급", "EITC"] : ["Tax Credits", "Refund", "EITC"] },
+                { emoji: "👨‍💼", name: lang === "ko" ? "시애틀 한인 CPA·세무사 추천" : "Korean CPAs & Tax Accountants in Seattle",
+                  desc: lang === "ko"
+                    ? "복잡한 세금 상황은 전문가에게!\n\n한인 CPA 찾기:\n• kSeattle.com 업소록 → '회계사' 검색\n• WowSeattle 업소록 → 회계·세금 카테고리\n• 카카오오픈채팅 '시애틀한인' 추천 요청\n\n비용 기준 (참고용):\n• 개인 기본 세금신고: $150-300\n• 자영업자: $300-600\n• FBAR/FATCA 포함: $400-800\n\n💡 H&R Block·TurboTax보다 한인 CPA가 이민자 상황에 더 정통"
+                    : "Complex tax situations? Go to a professional!\n\nFind Korean CPAs:\n• kSeattle.com directory → search 'accountant'\n• WowSeattle directory → accounting & tax category\n• Ask in KakaoTalk '시애틀한인'\n\nTypical fees (reference only):\n• Basic personal return: $150-300\n• Self-employed: $300-600\n• With FBAR/FATCA: $400-800\n\n💡 Korean CPAs are more knowledgeable about immigrant tax situations than H&R Block or TurboTax",
+                  tags: lang === "ko" ? ["한인CPA", "세무사", "전문가"] : ["Korean CPA", "Tax Pro", "Accountant"] },
+                { emoji: "📅", name: lang === "ko" ? "세금 신고 캘린더" : "Tax Filing Calendar",
+                  desc: lang === "ko"
+                    ? "✅ 연간 세금 일정:\n\n• 1월 초: W-2·1099 양식 수령 시작\n• 1월 말~4월: VITA 무료 세금신고 운영\n• 4월 15일: 연방 세금신고 마감\n• 4월 15일: FBAR 마감 (FincEN 114)\n• 4월 15일 연장 신청 가능: Form 4868 (10월 15일까지 연장)\n\n• 분기별 예납세 (자영업): 4/15, 6/15, 9/15, 1/15\n\n💡 WA주 소득세 없으므로 주세 신고 불필요!"
+                    : "✅ Annual tax calendar:\n\n• Early January: W-2 & 1099 forms arrive\n• Late Jan–April: VITA free tax filing open\n• April 15: Federal tax filing deadline\n• April 15: FBAR deadline (FinCEN 114)\n• Extension available: Form 4868 (extends to Oct 15)\n\n• Quarterly estimated taxes (self-employed): 4/15, 6/15, 9/15, 1/15\n\n💡 No WA state income tax return needed!",
+                  tags: lang === "ko" ? ["세금일정", "4월15일", "연장신청"] : ["Tax Calendar", "April 15", "Extension"] },
+              ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+            </div>
+            <div style={{ background: "rgba(249,115,22,0.07)", border: "1px solid rgba(249,115,22,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 12 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#FB923C", marginBottom: 4 }}>💡 {lang === "ko" ? "세금신고 핵심 원칙" : "Key Tax Filing Principles"}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
+                {lang === "ko"
+                  ? "1. 소득이 있으면 신고 — 금액 작아도 의무\n2. VITA 무료 신고 먼저 확인 ($67K 이하)\n3. 해외 계좌 $10K+ → FBAR 별도 신고 필수\n4. 연장 신청은 납부 연장 아님 — 세금은 4/15까지 납부\n5. 복잡한 상황 → 반드시 한인 CPA 상담"
+                  : "1. File if you have income — even small amounts are required\n2. Check VITA free filing first (under $67K)\n3. Foreign accounts $10K+ → FBAR filing required separately\n4. Extension ≠ payment extension — taxes still due by 4/15\n5. Complex situation → consult Korean CPA"}
               </div>
             </div>
           </>
@@ -4668,11 +4925,17 @@ export function HebronGuide() {
   const { lang, setLang } = useI18n();
 
   const [settleInitialSub, setSettleInitialSub] = useState(0);
+  const [helpInitialSub, setHelpInitialSub] = useState(0);
+  const [eduInitialSub, setEduInitialSub] = useState(0);
+  const [costInitialSub, setCostInitialSub] = useState(0);
 
   const handleNavigate = (tab: number, subTab?: number) => {
     const maxTab = 8; // 홈·정착·교회·맛집·탐방·도움·취업·교육·생활비
     if (tab <= maxTab) {
       if (tab === 1 && subTab !== undefined) setSettleInitialSub(subTab);
+      if (tab === 5 && subTab !== undefined) setHelpInitialSub(subTab);
+      if (tab === 7 && subTab !== undefined) setEduInitialSub(subTab);
+      if (tab === 8 && subTab !== undefined) setCostInitialSub(subTab);
       setActiveNav(tab);
     }
   };
@@ -4744,15 +5007,15 @@ export function HebronGuide() {
 
   // 9개 탭 스크린 (홈·정착·교회·맛집·탐방·도움·취업·교육·생활비)
   const screens = [
-    <HomeScreen onNavigate={handleNavigate} />,           // 0
-    <SettleScreen onHome={() => setActiveNav(0)} initialSub={settleInitialSub} />,  // 1
-    <ChurchScreen onHome={() => setActiveNav(0)} />,       // 2
-    <DiningScreen onHome={() => setActiveNav(0)} />,       // 3
-    <ExploreScreen onHome={() => setActiveNav(0)} />,      // 4
-    <HelpScreen onHome={() => setActiveNav(0)} />,         // 5
-    <JobsScreen onHome={() => setActiveNav(0)} />,         // 6
-    <EducationScreen onHome={() => setActiveNav(0)} />,    // 7
-    <CostScreen onHome={() => setActiveNav(0)} />,         // 8
+    <HomeScreen onNavigate={handleNavigate} />,                                        // 0
+    <SettleScreen onHome={() => setActiveNav(0)} initialSub={settleInitialSub} />,     // 1
+    <ChurchScreen onHome={() => setActiveNav(0)} />,                                   // 2
+    <DiningScreen onHome={() => setActiveNav(0)} />,                                   // 3
+    <ExploreScreen onHome={() => setActiveNav(0)} />,                                  // 4
+    <HelpScreen onHome={() => setActiveNav(0)} initialSub={helpInitialSub} />,         // 5
+    <JobsScreen onHome={() => setActiveNav(0)} />,                                     // 6
+    <EducationScreen onHome={() => setActiveNav(0)} initialSub={eduInitialSub} />,     // 7
+    <CostScreen onHome={() => setActiveNav(0)} initialSub={costInitialSub} />,         // 8
   ];
 
   return (
