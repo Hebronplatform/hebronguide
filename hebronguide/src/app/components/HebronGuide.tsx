@@ -2772,6 +2772,107 @@ function CityHubSection({ lang }: { lang: string }) {
 }
 
 /* ─────────────────────────────────────────
+   HOME: 한인 문화 캘린더 (BTS 디아스포라 전략)
+   김구 「나의 소원」 비전 + Korean American 정체성 강화
+───────────────────────────────────────── */
+const KOREAN_HOLIDAYS = [
+  { date: "1-2월", emoji: "🌙", titleKo: "설날", titleEn: "Lunar New Year", descKo: "한인 가족 모임 1순위. 한복·세배·떡국", descEn: "#1 Korean family gathering. Hanbok, bowing, tteokguk" },
+  { date: "3/1",   emoji: "🇰🇷", titleKo: "삼일절",  titleEn: "Korean Independence Movement Day", descKo: "1919년 3·1 독립운동 기념", descEn: "March 1st Movement (1919) Memorial" },
+  { date: "5/5",   emoji: "👶", titleKo: "어린이날", titleEn: "Children's Day (Korea)", descKo: "한국 가정의 자녀 축하 행사", descEn: "Korean family celebration for children" },
+  { date: "5/8",   emoji: "🌷", titleKo: "어버이날", titleEn: "Parents' Day (Korea)", descKo: "부모님께 카네이션·감사 인사", descEn: "Carnations and gratitude to parents" },
+  { date: "8/15",  emoji: "🇰🇷", titleKo: "광복절",  titleEn: "Korean Liberation Day", descKo: "⭐ 한인 정체성 핵심일. 일제 해방 기념 (1945)", descEn: "⭐ Korean identity day. Liberation from Japan (1945)" },
+  { date: "9-10월", emoji: "🍂", titleKo: "추석",     titleEn: "Chuseok (Korean Thanksgiving)", descKo: "한인 가족 모임 1순위. 송편·차례", descEn: "#1 Korean family gathering. Songpyeon, ancestor rites" },
+  { date: "10/9",  emoji: "📖", titleKo: "한글날",   titleEn: "Hangul Day", descKo: "⭐ 한국어 자긍심. 세종대왕 한글 창제(1446)", descEn: "⭐ Korean language pride. King Sejong's Hangul (1446)" },
+];
+
+function KoreanCultureCalendarSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
+  const { lang } = useI18n();
+
+  // 김구 인용 (한국어/영어)
+  const kimGuQuoteKo = "오직 한없이 가지고 싶은 것은 높은 문화의 힘이다.";
+  const kimGuQuoteEn = "What I want most of all is the power of culture.";
+
+  return (
+    <div style={{ padding: "20px 16px 8px" }}>
+      {/* 김구 인용 카드 */}
+      <div style={{
+        background: "linear-gradient(135deg, rgba(220,38,38,0.08), rgba(59,130,246,0.06))",
+        border: "1.5px solid rgba(220,38,38,0.18)",
+        borderRadius: 14, padding: "14px 16px", marginBottom: 16,
+        position: "relative", overflow: "hidden",
+      }}>
+        <div style={{
+          position: "absolute", top: -10, right: -10, fontSize: 60, opacity: 0.06,
+          fontWeight: 900, fontFamily: "'Noto Serif KR', serif",
+        }}>🇰🇷</div>
+        <div style={{
+          fontFamily: "'Noto Serif KR', 'Noto Sans KR', serif",
+          fontWeight: 600, fontSize: 13, color: "#1B2A4A",
+          lineHeight: 1.6, marginBottom: 8, position: "relative",
+        }}>
+          <span style={{ fontSize: 18, color: "#DC2626", marginRight: 4 }}>"</span>
+          {lang === "ko" ? kimGuQuoteKo : kimGuQuoteEn}
+          <span style={{ fontSize: 18, color: "#DC2626", marginLeft: 2 }}>"</span>
+        </div>
+        <div style={{
+          fontFamily: "Manrope, sans-serif", fontSize: 11, color: "#64748B",
+          textAlign: "right", fontStyle: "italic",
+        }}>
+          — {lang === "ko" ? "김구 「나의 소원」 (1947)" : "Kim Gu, 'My Wish' (1947)"}
+        </div>
+      </div>
+
+      {/* 한인 문화 캘린더 */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+        <div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A" }}>
+            🇰🇷 {lang === "ko" ? "한인 문화 캘린더" : "Korean Cultural Calendar"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8", marginTop: 2 }}>
+            {lang === "ko" ? "재외 한인 700만이 함께 기억하는 날" : "Days remembered by 7M Korean diaspora"}
+          </div>
+        </div>
+      </div>
+
+      {/* 캘린더 가로 스크롤 */}
+      <div style={{
+        display: "flex", gap: 10, overflowX: "auto",
+        padding: "4px 4px 8px", scrollbarWidth: "none",
+      }} className="[&::-webkit-scrollbar]:hidden">
+        {KOREAN_HOLIDAYS.map((h, i) => (
+          <div key={i} style={{
+            flexShrink: 0, width: 130, padding: "12px 10px",
+            background: "#fff", borderRadius: 12,
+            border: "1px solid rgba(0,0,0,0.08)",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
+              <span style={{ fontSize: 18 }}>{h.emoji}</span>
+              <span style={{
+                fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10,
+                color: "#DC2626", letterSpacing: "0.3px",
+              }}>{h.date}</span>
+            </div>
+            <div style={{
+              fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13,
+              color: "#1B2A4A", marginBottom: 3, lineHeight: 1.3,
+            }}>
+              {lang === "ko" ? h.titleKo : h.titleEn}
+            </div>
+            <div style={{
+              fontFamily: "Manrope,sans-serif", fontSize: 10, color: "#64748B",
+              lineHeight: 1.4,
+            }}>
+              {lang === "ko" ? h.descKo : h.descEn}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
    HOME: Korean American 여정 섹션
 ───────────────────────────────────────── */
 function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
@@ -2865,6 +2966,8 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <SettlementEssentialsSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <KoreanAmericanJourneySection onNavigate={onNavigate} />
+      <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
+      <KoreanCultureCalendarSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <CityHubSection lang={lang} />
     </div>
