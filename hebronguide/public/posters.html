@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HebronGuide 포스터 인쇄소 — 17개 도시 일괄 생성</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans KR', -apple-system, sans-serif;
+    background: #1a2535; color: #ECFDF5; padding: 24px 16px;
+  }
+  .controls {
+    max-width: 800px; margin: 0 auto 24px;
+    background: rgba(255,255,255,0.05); border-radius: 14px; padding: 20px;
+    border: 1px solid rgba(201,162,39,0.2);
+  }
+  h1 { color: #C9A227; font-size: 20px; margin-bottom: 8px; }
+  .subtitle { font-size: 13px; color: rgba(236,253,245,0.6); margin-bottom: 16px; line-height: 1.5; }
+  button {
+    background: #C9A227; color: #fff; border: none; padding: 10px 20px;
+    border-radius: 10px; font-weight: 700; cursor: pointer;
+    margin-right: 8px; margin-bottom: 8px;
+  }
+  button.secondary { background: rgba(255,255,255,0.1); color: #ECFDF5; }
+  button:hover { opacity: 0.9; }
+  .city-checkbox { display: inline-flex; align-items: center; gap: 6px; margin-right: 12px; margin-bottom: 8px; font-size: 12px; cursor: pointer; }
+  .city-checkbox input { cursor: pointer; }
+  .poster-grid {
+    display: grid; grid-template-columns: 1fr; gap: 24px;
+    max-width: 800px; margin: 0 auto;
+  }
+
+  /* 포스터 — A4 비율 (210x297mm) */
+  .poster {
+    width: 100%; max-width: 595px; aspect-ratio: 210/297;
+    background: linear-gradient(135deg, #1a2535 0%, #0d1117 100%);
+    border-radius: 20px; padding: 40px 32px; color: #fff;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+    page-break-after: always;
+    margin: 0 auto;
+  }
+  .poster::before {
+    content: ''; position: absolute; top: -50px; right: -50px;
+    width: 250px; height: 250px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,162,39,0.15), transparent);
+  }
+  .poster::after {
+    content: ''; position: absolute; bottom: -80px; left: -80px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(110,231,183,0.08), transparent);
+  }
+  .city-flag { font-size: 40px; margin-bottom: 8px; }
+  .city-name {
+    font-family: 'Manrope', sans-serif; font-weight: 900;
+    font-size: 36px; color: #C9A227; letterspacing: -1px;
+    line-height: 1; margin-bottom: 4px;
+  }
+  .city-name-en { font-size: 18px; color: rgba(236,253,245,0.7); margin-bottom: 24px; }
+  .tagline {
+    font-size: 16px; line-height: 1.5; color: #ECFDF5;
+    margin-bottom: 4px; font-weight: 600;
+  }
+  .tagline-secondary {
+    font-size: 12px; line-height: 1.4; color: rgba(236,253,245,0.6);
+    margin-bottom: 24px;
+  }
+
+  .features {
+    background: rgba(255,255,255,0.05); border-radius: 12px;
+    padding: 16px; margin-bottom: 24px;
+    border: 1px solid rgba(201,162,39,0.15);
+  }
+  .features h3 { font-size: 13px; color: #C9A227; margin-bottom: 10px; font-weight: 700; }
+  .features ul { list-style: none; }
+  .features li { font-size: 11px; color: rgba(236,253,245,0.85); margin-bottom: 5px; line-height: 1.5; }
+
+  .qr-section {
+    text-align: center; padding: 16px; background: rgba(255,255,255,0.03);
+    border-radius: 12px; border: 1px solid rgba(110,231,183,0.2);
+  }
+  .qr-code { width: 140px; height: 140px; margin: 0 auto 8px; background: white; padding: 8px; border-radius: 8px; }
+  .qr-code img { width: 100%; height: 100%; }
+  .scan-text {
+    font-size: 11px; color: rgba(236,253,245,0.85); line-height: 1.7;
+    margin-bottom: 4px;
+  }
+  .url { font-size: 10px; color: #6EE7B7; font-weight: 700; letter-spacing: 0.3px; }
+
+  .footer {
+    margin-top: 16px; text-align: center;
+    font-size: 9px; color: rgba(236,253,245,0.4);
+    border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px;
+  }
+
+  /* World Cup 호스트 도시 강조 */
+  .poster.world-cup::before {
+    background: radial-gradient(circle, rgba(220,38,38,0.2), transparent);
+  }
+  .world-cup-badge {
+    position: absolute; top: 20px; right: 20px;
+    background: linear-gradient(135deg, #DC2626, #2563EB);
+    padding: 6px 12px; border-radius: 20px;
+    font-size: 10px; font-weight: 800; letter-spacing: 0.5px;
+    color: white;
+  }
+
+  /* 인쇄 시 */
+  @media print {
+    body { background: white; padding: 0; }
+    .controls { display: none; }
+    .poster { box-shadow: none; margin: 0; max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <h1>🎨 HebronGuide 포스터 인쇄소</h1>
+  <p class="subtitle">
+    17개 도시 포스터를 한 번에 생성·인쇄합니다. QR 코드는 도시별 추적 URL로 자동 생성.<br>
+    <strong>인쇄 방법:</strong> 원하는 도시 선택 → "포스터 생성" → 브라우저 인쇄(Ctrl+P) → "PDF로 저장"
+  </p>
+
+  <div style="margin: 16px 0;">
+    <strong style="color: #C9A227; font-size: 12px;">⚽ 월드컵 호스트 (16개):</strong>
+    <div id="cityCheckboxes" style="margin-top: 8px;"></div>
+  </div>
+
+  <div style="margin-top: 12px;">
+    <button onclick="selectAll()">전체 선택</button>
+    <button onclick="selectWorldCup()" class="secondary">월드컵 16개</button>
+    <button onclick="generatePosters()">⚡ 포스터 생성</button>
+    <button onclick="window.print()" class="secondary">🖨️ 인쇄 (PDF 저장)</button>
+  </div>
+</div>
+
+<div class="poster-grid" id="posterGrid"></div>
+
+<script>
+const CITIES = [
+  { slug: "seattle",     ko: "시애틀",      en: "Seattle",        flag: "🌲", color: "#0EA5E9", wc: true,  tag: "도시를 알고, 사람을 찾다" },
+  { slug: "dallas",      ko: "달라스",      en: "Dallas",         flag: "🤠", color: "#F59E0B", wc: true,  tag: "텍사스에서 뿌리내리다" },
+  { slug: "sf",          ko: "샌프란시스코", en: "San Francisco",  flag: "🌉", color: "#8B5CF6", wc: true,  tag: "베이에서 시작하는 새 출발" },
+  { slug: "newyork",     ko: "뉴욕",       en: "New York",        flag: "🗽", color: "#EF4444", wc: true,  tag: "뉴욕에서 찾는 나의 자리" },
+  { slug: "boston",      ko: "보스턴",     en: "Boston",         flag: "🏛️", color: "#3B82F6", wc: true,  tag: "역사의 도시, 새 역사를 쓰다" },
+  { slug: "la",          ko: "로스앤젤레스", en: "Los Angeles",    flag: "🌴", color: "#F97316", wc: true,  tag: "환대의 중심, LA" },
+  { slug: "toronto",     ko: "토론토",     en: "Toronto",        flag: "🍁", color: "#06B6D4", wc: true,  tag: "캐나다에서 한인으로" },
+  { slug: "vancouver",   ko: "밴쿠버",     en: "Vancouver",      flag: "🏔️", color: "#22C55E", wc: true,  tag: "태평양의 관문에서" },
+  { slug: "houston",     ko: "휴스턴",     en: "Houston",        flag: "🚀", color: "#EA580C", wc: true,  tag: "텍사스 남부의 활력" },
+  { slug: "atlanta",     ko: "애틀랜타",   en: "Atlanta",         flag: "🍑", color: "#16A34A", wc: true,  tag: "남부의 한인 허브" },
+  { slug: "kansascity",  ko: "캔자스시티", en: "Kansas City",     flag: "🏈", color: "#9333EA", wc: true,  tag: "중부의 새 지평" },
+  { slug: "philadelphia",ko: "필라델피아", en: "Philadelphia",   flag: "🔔", color: "#0891B2", wc: true,  tag: "역사의 도시에서 시작하다" },
+  { slug: "miami",       ko: "마이애미",   en: "Miami",          flag: "🌴", color: "#EC4899", wc: true,  tag: "햇살 아래 새 출발" },
+  { slug: "mexicocity",  ko: "멕시코시티", en: "Mexico City",     flag: "🌋", color: "#DC2626", wc: true,  tag: "Donde lo antiguo se encuentra con lo moderno" },
+  { slug: "guadalajara", ko: "과달라하라", en: "Guadalajara",     flag: "🎺", color: "#F59E0B", wc: true,  tag: "La capital cultural de México" },
+  { slug: "monterrey",   ko: "몬테레이",   en: "Monterrey",      flag: "⛰️", color: "#0EA5E9", wc: true,  tag: "산으로 둘러싸인 산업도시" },
+  { slug: "nashville",   ko: "내쉬빌",     en: "Nashville",      flag: "🎵", color: "#10B981", wc: false, tag: "뮤직시티에서의 새 출발" },
+];
+
+// 체크박스 렌더링
+const cb = document.getElementById('cityCheckboxes');
+CITIES.forEach((c, i) => {
+  cb.innerHTML += `<label class="city-checkbox">
+    <input type="checkbox" data-city="${c.slug}" ${c.wc ? 'checked' : ''} />
+    ${c.flag} ${c.ko}${c.wc ? ' ⚽' : ''}
+  </label>`;
+});
+
+function selectAll() {
+  document.querySelectorAll('input[data-city]').forEach(el => el.checked = true);
+}
+function selectWorldCup() {
+  document.querySelectorAll('input[data-city]').forEach(el => {
+    const slug = el.dataset.city;
+    const city = CITIES.find(c => c.slug === slug);
+    el.checked = city.wc;
+  });
+}
+
+function getQRUrl(slug) {
+  const trackUrl = `https://hebronguide.com/${slug}/?ref=poster_v1`;
+  return `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(trackUrl)}`;
+}
+
+function generatePosters() {
+  const selected = Array.from(document.querySelectorAll('input[data-city]:checked'))
+    .map(el => CITIES.find(c => c.slug === el.dataset.city));
+
+  const grid = document.getElementById('posterGrid');
+  grid.innerHTML = '';
+
+  if (selected.length === 0) {
+    grid.innerHTML = '<p style="text-align:center;color:#94A3B8;">도시를 선택해 주세요.</p>';
+    return;
+  }
+
+  selected.forEach(c => {
+    const trackUrl = `hebronguide.com/${c.slug}/`;
+    grid.innerHTML += `
+      <div class="poster ${c.wc ? 'world-cup' : ''}">
+        ${c.wc ? '<div class="world-cup-badge">⚽ FIFA World Cup 2026</div>' : ''}
+
+        <div>
+          <div class="city-flag">${c.flag}</div>
+          <div class="city-name" style="color: ${c.color}">${c.ko}</div>
+          <div class="city-name-en">HebronGuide ${c.en}</div>
+
+          <div class="tagline">${c.tag}</div>
+          <div class="tagline-secondary">
+            🇰🇷 한인 정착부터 Korean American까지<br>
+            🇺🇸 Korean Settlement Guide<br>
+            🇲🇽 Guía de Asentamiento Coreano
+          </div>
+
+          <div class="features">
+            <h3>✅ 검증된 정보 한 곳에</h3>
+            <ul>
+              <li>🍽️ 한식당·카페 검증 TOP 5</li>
+              <li>🏛️ 정착·면허·세금·이민 정보</li>
+              <li>⛪ 한인 교회 (가정교회 우선 큐레이션)</li>
+              <li>🗺️ 한인타운·관광·생활비 가이드</li>
+              <li>📞 응급·법률·의료 연락처</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="qr-section">
+            <div class="qr-code">
+              <img src="${getQRUrl(c.slug)}" alt="QR Code" />
+            </div>
+            <div class="scan-text">📱 셀폰 카메라로 스캔하세요</div>
+            <div class="scan-text" style="font-size:9px;">📱 Scan with phone · 📱 Escanea con tu teléfono</div>
+            <div class="url">${trackUrl}</div>
+          </div>
+
+          <div class="footer">
+            HebronGuide · 한인 정착의 신뢰 인프라<br>
+            운영: Global Mission Church of Greater Seattle · 폴 김 목사<br>
+            ${c.wc ? '⚽ Welcome World Cup 2026 visitors!' : ''}
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  // 자동 스크롤
+  setTimeout(() => grid.scrollIntoView({ behavior: 'smooth' }), 100);
+}
+
+// 초기 월드컵 호스트로 미리 생성
+window.addEventListener('load', () => generatePosters());
+</script>
+</body>
+</html>

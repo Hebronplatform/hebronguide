@@ -116,6 +116,7 @@ interface CityConfig {
   state: string;            // 주/지역
   taglineKo: string;
   taglineEn: string;
+  taglineEs?: string;
 }
 
 const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
@@ -124,33 +125,36 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
     heroVideo: "https://videos.pexels.com/video-files/20017409/20017409-hd_1920_1080_24fps.mp4",
     population: "15만+", state: "Washington",
     taglineKo: "도시를 알고, 사람을 찾다", taglineEn: "Know your city. Find your people.",
+    taglineEs: "Conoce tu ciudad. Encuentra tu gente.",
   },
   dallas: {
     slug: "dallas", nameKo: "달라스", nameEn: "Dallas", color: "#F59E0B",
     heroVideo: "https://videos.pexels.com/video-files/3214424/3214424-hd_1920_1080_30fps.mp4",
     population: "10만+", state: "Texas",
     taglineKo: "텍사스에서 뿌리내리다", taglineEn: "Put down roots in Texas.",
+    taglineEs: "Echa raíces en Texas.",
   },
   sf: {
     slug: "sf", nameKo: "샌프란시스코", nameEn: "San Francisco", color: "#8B5CF6",
     heroVideo: "https://videos.pexels.com/video-files/3571264/3571264-hd_1920_1080_30fps.mp4",
     population: "8만+", state: "California",
     taglineKo: "베이에서 시작하는 새 출발", taglineEn: "A new start by the Bay.",
+    taglineEs: "Un nuevo comienzo junto a la Bahía.",
   },
-  newyork:   { slug: "newyork",   nameKo: "뉴욕",     nameEn: "New York",   color: "#EF4444", heroVideo: "", population: "15만+", state: "New York",    taglineKo: "뉴욕에서 찾는 나의 자리",  taglineEn: "Find your place in New York."    },
-  nashville: { slug: "nashville", nameKo: "내쉬빌",   nameEn: "Nashville",  color: "#10B981", heroVideo: "", population: "2만+",  state: "Tennessee",  taglineKo: "뮤직시티에서의 새 출발",  taglineEn: "New start in Music City."       },
-  boston:    { slug: "boston",    nameKo: "보스턴",   nameEn: "Boston",     color: "#3B82F6", heroVideo: "", population: "3만+",  state: "Massachusetts", taglineKo: "역사의 도시, 새 역사를 쓰다", taglineEn: "Write your story in Boston." },
-  la:        { slug: "la",        nameKo: "LA",       nameEn: "Los Angeles",color: "#F97316", heroVideo: "", population: "50만+", state: "California",  taglineKo: "가장 큰 한인 커뮤니티",   taglineEn: "The largest Korean community." },
-  toronto:   { slug: "toronto",   nameKo: "토론토",   nameEn: "Toronto",    color: "#06B6D4", heroVideo: "", population: "10만+", state: "Ontario",    taglineKo: "캐나다에서 한인으로",       taglineEn: "Korean in Canada."              },
-  vancouver: { slug: "vancouver", nameKo: "밴쿠버",   nameEn: "Vancouver",  color: "#22C55E", heroVideo: "", population: "8만+",  state: "B.C.",       taglineKo: "태평양의 관문에서",         taglineEn: "Gateway to the Pacific."        },
-  houston:    { slug: "houston",    nameKo: "휴스턴",    nameEn: "Houston",      color: "#EA580C", heroVideo: "", population: "2.5만+", state: "Texas",       taglineKo: "텍사스 남부의 활력",         taglineEn: "Vibrant heart of South Texas." },
-  atlanta:    { slug: "atlanta",    nameKo: "애틀랜타",  nameEn: "Atlanta",      color: "#16A34A", heroVideo: "", population: "10만+",  state: "Georgia",     taglineKo: "남부의 한인 허브",           taglineEn: "Korean hub of the South." },
-  kansascity: { slug: "kansascity", nameKo: "캔자스시티", nameEn: "Kansas City",  color: "#9333EA", heroVideo: "", population: "3천+",   state: "Missouri",    taglineKo: "중부의 새 지평",             taglineEn: "New horizons in the Heartland." },
-  philadelphia:{ slug: "philadelphia", nameKo: "필라델피아", nameEn: "Philadelphia", color: "#0891B2", heroVideo: "", population: "3만+", state: "Pennsylvania", taglineKo: "역사의 도시에서 시작하다",   taglineEn: "Start your story in the City of Brotherly Love." },
-  miami:      { slug: "miami",      nameKo: "마이애미",  nameEn: "Miami",        color: "#EC4899", heroVideo: "", population: "5천+",   state: "Florida",     taglineKo: "햇살 아래 새 출발",           taglineEn: "Fresh start under the sun." },
-  mexicocity: { slug: "mexicocity", nameKo: "멕시코시티", nameEn: "Mexico City",  color: "#DC2626", heroVideo: "", population: "1만+",   state: "Mexico",      taglineKo: "고대와 현대가 만나는 곳",     taglineEn: "Where ancient meets modern." },
-  guadalajara:{ slug: "guadalajara",nameKo: "과달라하라", nameEn: "Guadalajara",  color: "#F59E0B", heroVideo: "", population: "2천+",   state: "Mexico",      taglineKo: "멕시코의 문화 수도",          taglineEn: "Mexico's cultural capital." },
-  monterrey:  { slug: "monterrey",  nameKo: "몬테레이",  nameEn: "Monterrey",    color: "#0EA5E9", heroVideo: "", population: "1천+",   state: "Mexico",      taglineKo: "산으로 둘러싸인 산업도시",    taglineEn: "Industrial city in the mountains." },
+  newyork:   { slug: "newyork",   nameKo: "뉴욕",     nameEn: "New York",   color: "#EF4444", heroVideo: "", population: "15만+", state: "New York",    taglineKo: "뉴욕에서 찾는 나의 자리",  taglineEn: "Find your place in New York.",   taglineEs: "Encuentra tu lugar en Nueva York."    },
+  nashville: { slug: "nashville", nameKo: "내쉬빌",   nameEn: "Nashville",  color: "#10B981", heroVideo: "", population: "2만+",  state: "Tennessee",  taglineKo: "뮤직시티에서의 새 출발",  taglineEn: "New start in Music City.",       taglineEs: "Nuevo comienzo en la ciudad de la música."       },
+  boston:    { slug: "boston",    nameKo: "보스턴",   nameEn: "Boston",     color: "#3B82F6", heroVideo: "", population: "3만+",  state: "Massachusetts", taglineKo: "역사의 도시, 새 역사를 쓰다", taglineEn: "Write your story in Boston.", taglineEs: "Escribe tu historia en Boston." },
+  la:        { slug: "la",        nameKo: "LA",       nameEn: "Los Angeles",color: "#F97316", heroVideo: "", population: "50만+", state: "California",  taglineKo: "가장 큰 한인 커뮤니티",   taglineEn: "The largest Korean community.",  taglineEs: "La comunidad coreana más grande." },
+  toronto:   { slug: "toronto",   nameKo: "토론토",   nameEn: "Toronto",    color: "#06B6D4", heroVideo: "", population: "10만+", state: "Ontario",    taglineKo: "캐나다에서 한인으로",       taglineEn: "Korean in Canada.",              taglineEs: "Coreano en Canadá."              },
+  vancouver: { slug: "vancouver", nameKo: "밴쿠버",   nameEn: "Vancouver",  color: "#22C55E", heroVideo: "", population: "8만+",  state: "B.C.",       taglineKo: "태평양의 관문에서",         taglineEn: "Gateway to the Pacific.",        taglineEs: "Puerta al Pacífico."        },
+  houston:    { slug: "houston",    nameKo: "휴스턴",    nameEn: "Houston",      color: "#EA580C", heroVideo: "", population: "2.5만+", state: "Texas",       taglineKo: "텍사스 남부의 활력",         taglineEn: "Vibrant heart of South Texas.",  taglineEs: "Corazón vibrante del sur de Texas." },
+  atlanta:    { slug: "atlanta",    nameKo: "애틀랜타",  nameEn: "Atlanta",      color: "#16A34A", heroVideo: "", population: "10만+",  state: "Georgia",     taglineKo: "남부의 한인 허브",           taglineEn: "Korean hub of the South.",       taglineEs: "Hub coreano del Sur." },
+  kansascity: { slug: "kansascity", nameKo: "캔자스시티", nameEn: "Kansas City",  color: "#9333EA", heroVideo: "", population: "3천+",   state: "Missouri",    taglineKo: "중부의 새 지평",             taglineEn: "New horizons in the Heartland.", taglineEs: "Nuevos horizontes en el corazón de EE.UU." },
+  philadelphia:{ slug: "philadelphia", nameKo: "필라델피아", nameEn: "Philadelphia", color: "#0891B2", heroVideo: "", population: "3만+", state: "Pennsylvania", taglineKo: "역사의 도시에서 시작하다",   taglineEn: "Start your story in the City of Brotherly Love.", taglineEs: "Comienza tu historia en la Ciudad del Amor Fraternal." },
+  miami:      { slug: "miami",      nameKo: "마이애미",  nameEn: "Miami",        color: "#EC4899", heroVideo: "", population: "5천+",   state: "Florida",     taglineKo: "햇살 아래 새 출발",           taglineEn: "Fresh start under the sun.",     taglineEs: "Nuevo comienzo bajo el sol." },
+  mexicocity: { slug: "mexicocity", nameKo: "멕시코시티", nameEn: "Mexico City",  color: "#DC2626", heroVideo: "", population: "1만+",   state: "Mexico",      taglineKo: "고대와 현대가 만나는 곳",     taglineEn: "Where ancient meets modern.",    taglineEs: "Donde lo antiguo se encuentra con lo moderno." },
+  guadalajara:{ slug: "guadalajara",nameKo: "과달라하라", nameEn: "Guadalajara",  color: "#F59E0B", heroVideo: "", population: "2천+",   state: "Mexico",      taglineKo: "멕시코의 문화 수도",          taglineEn: "Mexico's cultural capital.",     taglineEs: "La capital cultural de México." },
+  monterrey:  { slug: "monterrey",  nameKo: "몬테레이",  nameEn: "Monterrey",    color: "#0EA5E9", heroVideo: "", population: "1천+",   state: "Mexico",      taglineKo: "산으로 둘러싸인 산업도시",    taglineEn: "Industrial city in the mountains.", taglineEs: "Ciudad industrial entre montañas." },
 };
 
 function useCityConfig(): CityConfig {
@@ -2366,6 +2370,8 @@ function WorldCupBanner() {
         }}>
           {lang === "ko"
             ? `${city.nameKo}에 오신 것을 환영합니다! 🎉`
+            : lang === "es"
+            ? `¡Bienvenido a ${city.nameEn}! 🎉`
             : `Welcome to ${city.nameEn}! 🎉`}
         </div>
         <div style={{
@@ -2374,6 +2380,8 @@ function WorldCupBanner() {
         }}>
           {lang === "ko"
             ? "월드컵 응원하러 오신 분들께 — 한식당·교통·환전 정보를 한눈에"
+            : lang === "es"
+            ? "Comida coreana, transporte e información esencial — todo en un solo lugar"
             : "Korean food, transit, and essential info — all in one place"}
         </div>
       </div>
@@ -2414,7 +2422,7 @@ function CompactHeroNew() {
           HebronGuide <span style={{ color: city.color }}>{lang === "ko" ? city.nameKo : city.nameEn}</span>
         </div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 400, fontSize: 12, color: "rgba(255,255,255,0.8)", marginTop: 3 }}>
-          {lang === "ko" ? city.taglineKo : city.taglineEn}
+          {lang === "ko" ? city.taglineKo : lang === "es" ? (city.taglineEs ?? city.taglineEn) : city.taglineEn}
         </div>
       </div>
       {/* LIVE CAM 버튼 */}
@@ -3547,13 +3555,13 @@ function CityHubSection({ lang }: { lang: string }) {
    디아스포라가 함께 기억하는 보편적 가치 — 환대·연결·기억
 ───────────────────────────────────────── */
 const KOREAN_HOLIDAYS = [
-  { date: "1-2월", emoji: "🌙", titleKo: "설날", titleEn: "Lunar New Year", descKo: "한인 가족 모임 1순위. 한복·세배·떡국", descEn: "#1 Korean family gathering. Hanbok, bowing, tteokguk" },
-  { date: "3/1",   emoji: "🇰🇷", titleKo: "삼일절",  titleEn: "Korean Independence Movement Day", descKo: "1919년 3·1 독립운동 기념", descEn: "March 1st Movement (1919) Memorial" },
-  { date: "5/5",   emoji: "👶", titleKo: "어린이날", titleEn: "Children's Day (Korea)", descKo: "한국 가정의 자녀 축하 행사", descEn: "Korean family celebration for children" },
-  { date: "5/8",   emoji: "🌷", titleKo: "어버이날", titleEn: "Parents' Day (Korea)", descKo: "부모님께 카네이션·감사 인사", descEn: "Carnations and gratitude to parents" },
-  { date: "8/15",  emoji: "🇰🇷", titleKo: "광복절",  titleEn: "Korean Liberation Day", descKo: "⭐ 한인 정체성 핵심일. 일제 해방 기념 (1945)", descEn: "⭐ Korean identity day. Liberation from Japan (1945)" },
-  { date: "9-10월", emoji: "🍂", titleKo: "추석",     titleEn: "Chuseok (Korean Thanksgiving)", descKo: "한인 가족 모임 1순위. 송편·차례", descEn: "#1 Korean family gathering. Songpyeon, ancestor rites" },
-  { date: "10/9",  emoji: "📖", titleKo: "한글날",   titleEn: "Hangul Day", descKo: "⭐ 한국어 자긍심. 세종대왕 한글 창제(1446)", descEn: "⭐ Korean language pride. King Sejong's Hangul (1446)" },
+  { date: "1-2월", emoji: "🌙", titleKo: "설날", titleEn: "Lunar New Year", titleEs: "Año Nuevo Lunar Coreano", descKo: "한인 가족 모임 1순위. 한복·세배·떡국", descEn: "#1 Korean family gathering. Hanbok, bowing, tteokguk", descEs: "Reunión familiar coreana #1. Hanbok, reverencias, tteokguk" },
+  { date: "3/1",   emoji: "🇰🇷", titleKo: "삼일절",  titleEn: "Korean Independence Movement Day", titleEs: "Día del Movimiento de Independencia Coreana", descKo: "1919년 3·1 독립운동 기념", descEn: "March 1st Movement (1919) Memorial", descEs: "Conmemoración del Movimiento del 1 de marzo (1919)" },
+  { date: "5/5",   emoji: "👶", titleKo: "어린이날", titleEn: "Children's Day (Korea)", titleEs: "Día del Niño (Corea)", descKo: "한국 가정의 자녀 축하 행사", descEn: "Korean family celebration for children", descEs: "Celebración familiar coreana para los niños" },
+  { date: "5/8",   emoji: "🌷", titleKo: "어버이날", titleEn: "Parents' Day (Korea)", titleEs: "Día de los Padres (Corea)", descKo: "부모님께 카네이션·감사 인사", descEn: "Carnations and gratitude to parents", descEs: "Claveles y gratitud para los padres" },
+  { date: "8/15",  emoji: "🇰🇷", titleKo: "광복절",  titleEn: "Korean Liberation Day", titleEs: "Día de la Liberación de Corea", descKo: "⭐ 한인 정체성 핵심일. 일제 해방 기념 (1945)", descEn: "⭐ Korean identity day. Liberation from Japan (1945)", descEs: "⭐ Día clave de la identidad coreana. Liberación de Japón (1945)" },
+  { date: "9-10월", emoji: "🍂", titleKo: "추석",     titleEn: "Chuseok (Korean Thanksgiving)", titleEs: "Chuseok (Acción de Gracias Coreana)", descKo: "한인 가족 모임 1순위. 송편·차례", descEn: "#1 Korean family gathering. Songpyeon, ancestor rites", descEs: "Reunión familiar coreana #1. Songpyeon, ritos a los ancestros" },
+  { date: "10/9",  emoji: "📖", titleKo: "한글날",   titleEn: "Hangul Day", titleEs: "Día del Hangul", descKo: "⭐ 한국어 자긍심. 세종대왕 한글 창제(1446)", descEn: "⭐ Korean language pride. King Sejong's Hangul (1446)", descEs: "⭐ Orgullo del idioma coreano. El Hangul del Rey Sejong (1446)" },
 ];
 
 function KoreanCultureCalendarSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
@@ -3565,10 +3573,10 @@ function KoreanCultureCalendarSection({ onNavigate }: { onNavigate?: (tab: numbe
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
         <div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A" }}>
-            🇰🇷 {lang === "ko" ? "한인 문화 캘린더" : "Korean Cultural Calendar"}
+            🇰🇷 {lang === "ko" ? "한인 문화 캘린더" : lang === "es" ? "Calendario Cultural Coreano" : "Korean Cultural Calendar"}
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8", marginTop: 2 }}>
-            {lang === "ko" ? "함께 기억하고 함께 나누는 날들" : "Days to remember & celebrate together"}
+            {lang === "ko" ? "함께 기억하고 함께 나누는 날들" : lang === "es" ? "Días para recordar y celebrar juntos" : "Days to remember & celebrate together"}
           </div>
         </div>
       </div>
@@ -3596,13 +3604,13 @@ function KoreanCultureCalendarSection({ onNavigate }: { onNavigate?: (tab: numbe
               fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13,
               color: "#1B2A4A", marginBottom: 3, lineHeight: 1.3,
             }}>
-              {lang === "ko" ? h.titleKo : h.titleEn}
+              {lang === "ko" ? h.titleKo : lang === "es" ? (h.titleEs ?? h.titleEn) : h.titleEn}
             </div>
             <div style={{
               fontFamily: "Manrope,sans-serif", fontSize: 10, color: "#64748B",
               lineHeight: 1.4,
             }}>
-              {lang === "ko" ? h.descKo : h.descEn}
+              {lang === "ko" ? h.descKo : lang === "es" ? (h.descEs ?? h.descEn) : h.descEn}
             </div>
           </div>
         ))}
@@ -3622,6 +3630,12 @@ function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: numbe
         { emoji: "🏘️", label: "적응", sub: "3개월~1년", color: "#10B981", tab: 1, subTab: 3 },
         { emoji: "🇺🇸", label: "Korean American", sub: "1년+", color: "#3B82F6", tab: 5, subTab: 6 },
       ]
+    : lang === "es"
+    ? [
+        { emoji: "🛬", label: "Asentarse", sub: "Día 1–3 meses", color: "#F2994A", tab: 1, subTab: 0 },
+        { emoji: "🏘️", label: "Adaptarse", sub: "3–12 meses", color: "#10B981", tab: 1, subTab: 3 },
+        { emoji: "🇺🇸", label: "Korean American", sub: "Año 1+", color: "#3B82F6", tab: 5, subTab: 6 },
+      ]
     : [
         { emoji: "🛬", label: "Settle", sub: "Day 1–3 months", color: "#F2994A", tab: 1, subTab: 0 },
         { emoji: "🏘️", label: "Adapt", sub: "3–12 months", color: "#10B981", tab: 1, subTab: 3 },
@@ -3634,10 +3648,10 @@ function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: numbe
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
         <div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A", letterSpacing: "-0.2px" }}>
-            {lang === "ko" ? "🇺🇸 Korean American 여정" : "🇺🇸 Your Korean American Journey"}
+            {lang === "ko" ? "🇺🇸 Korean American 여정" : lang === "es" ? "🇺🇸 Tu camino Korean American" : "🇺🇸 Your Korean American Journey"}
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8", marginTop: 2 }}>
-            {lang === "ko" ? "이민자에서 당당한 미국 사회의 구성원으로" : "From newcomer to full participant in American society"}
+            {lang === "ko" ? "이민자에서 당당한 미국 사회의 구성원으로" : lang === "es" ? "De recién llegado a participante pleno en la sociedad estadounidense" : "From newcomer to full participant in American society"}
           </div>
         </div>
       </div>
@@ -3688,6 +3702,8 @@ function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: numbe
         }}>
           {lang === "ko"
             ? "HebronGuide는 정착 가이드를 넘어 미국 사회의 Korean American으로 성장하는 전 여정을 함께합니다."
+            : lang === "es"
+            ? "HebronGuide te acompaña desde el primer día en todo tu camino como Korean American — no solo en el asentamiento."
             : "HebronGuide walks with you from Day 1 through your full journey as a Korean American — not just settlement."}
         </div>
       </div>
@@ -6873,6 +6889,23 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
               );
             })}
           </div>
+
+          {/* 광고 신청 — 파트너 비즈니스용 (Soft CTA) */}
+          <a href="/ad-request.html" target="_blank" rel="noopener noreferrer"
+            onClick={() => setShowMore(false)}
+            style={{
+              display: "block", marginTop: 12, padding: "10px 14px",
+              background: "linear-gradient(135deg, rgba(201,162,39,0.12), rgba(110,231,183,0.08))",
+              border: "1px solid rgba(201,162,39,0.25)", borderRadius: 12,
+              textDecoration: "none", textAlign: "center",
+            }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#C9A227", letterSpacing: "0.3px", marginBottom: 2 }}>
+              📣 {lang === "ko" ? "광고 신청 — 파트너 비즈니스" : "Advertise — Partner Business"}
+            </div>
+            <div style={{ fontSize: 10, color: "#6B7280", fontFamily: "Manrope, sans-serif" }}>
+              {lang === "ko" ? "AI가 한·영·스 3개 언어 광고 자동 생성 (24시간)" : "AI generates 3-language ads in 24 hours"}
+            </div>
+          </a>
         </div>
       )}
 
@@ -6973,7 +7006,7 @@ function AppBar({ onHome }: { onHome?: () => void }) {
       <div className="flex items-center gap-[8px]">
         {/* 언어 토글: KO / EN / ES */}
         <div className="flex items-center" style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 10, padding: 2, gap: 2 }}>
-          {(["ko", "en"] as const).map((l) => (
+          {(["ko", "en", "es"] as const).map((l) => (
             <button
               key={l}
               onClick={() => setLang(l)}
@@ -7017,6 +7050,8 @@ export function HebronGuide() {
     const cityEn = city.nameEn;
     document.title = lang === "ko"
       ? `${cityKo} 한인 정착 가이드 — HebronGuide ${cityKo}`
+      : lang === "es"
+      ? `Guía de Asentamiento Coreano en ${cityEn} — HebronGuide ${cityEn}`
       : `Korean Settlement Guide ${cityEn} — HebronGuide ${cityEn}`;
   }, [lang, city]);
 
@@ -7037,7 +7072,7 @@ export function HebronGuide() {
   };
 
   const handleLangCycle = () => {
-    setLang(lang === "ko" ? "en" : "ko");
+    setLang(lang === "ko" ? "en" : lang === "en" ? "es" : "ko");
   };
 
   const handleSearchToggle = () => {

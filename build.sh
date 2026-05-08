@@ -61,6 +61,7 @@ done
 cp hebronguide/dist/registerSW.js       public/registerSW.js       2>/dev/null || true
 cp hebronguide/dist/manifest.webmanifest public/manifest.webmanifest 2>/dev/null || true
 cp hebronguide/dist/ad-request.html     public/ad-request.html     2>/dev/null || true
+cp hebronguide/dist/posters.html        public/posters.html        2>/dev/null || true
 
 # 6. API 함수는 Vercel이 자동 라우팅 (hebronguide/api/*.js → /api/*)
 
