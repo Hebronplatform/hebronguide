@@ -306,11 +306,64 @@ HYBE 공식 발표 모니터링
 
 ---
 
+## 🚌 도시별 월드컵 무료 교통 (수집 중)
+
+월드컵 호스트 도시는 보통 무료 셔틀·확장 교통편을 제공합니다.  
+HebronGuide는 이를 적극 활용해 사용자에게 환대 정보 제공.
+
+### 시애틀 (Lumen Field)
+- **King County 무료 워터프론트 셔틀** (5/21 ~ 9/7)
+- 노선: Space Needle ↔ Pike Place ↔ Pioneer Square ↔ Lumen Field ↔ ChinaTown-ID
+- 운행: 10am-10pm, 15분 간격 (경기일 10분)
+- 출처: [kSeattle.com 2026-05-07](https://www.kseattle.com/뉴스/시애틀-워싱턴-뉴스/?uid=935053)
+- ✅ 시애틀 TOP5_EXPLORE 1순위로 적용 완료
+
+### 다른 호스트 도시 (수집 필요)
+- LA (SoFi Stadium): TBD
+- 뉴욕/뉴저지 (MetLife): TBD
+- 댈러스 (AT&T Stadium): TBD
+- 보스턴 (Gillette/Foxborough): TBD
+- SF 베이 (Levi's): TBD
+- 휴스턴 (NRG): TBD
+- 애틀랜타 (Mercedes-Benz): TBD
+- 캔자스시티 (Arrowhead): TBD
+- 필라델피아 (Lincoln Financial): TBD
+- 마이애미 (Hard Rock): TBD
+- 토론토 (BMO Field): TBD
+- 밴쿠버 (BC Place): TBD
+- 멕시코시티 (Estadio Azteca): TBD
+- 과달라하라 (Estadio Akron): TBD
+- 몬테레이 (Estadio BBVA): TBD
+
+→ 각 도시 한인 미디어·교통 당국 정보 수집 후 추가
+
+---
+
+## 📰 한인 미디어 정보 활용 원칙
+
+월드컵·이벤트 정보를 한인 미디어에서 발견 시:
+
+1. **즉시 검증** — 공식 출처 (King County, Stadium 공식 등) 교차 확인
+2. **시즌 한정 게시** — `isSeasonActive()` 헬퍼로 자동 노출/숨김
+3. **출처 명시** — 데이터 소스 기록 (kSeattle, WowSeattle 등)
+4. **9개 도시 균등** — 시애틀만 풍부하지 않게 다른 도시도 정보 수집
+
+### 자동 게시 시스템 (Phase 2)
+```
+한인 미디어 RSS 피드 모니터링 →
+관련 키워드(월드컵·셔틀·교통·한인 행사) 자동 감지 →
+폴 김 목사 슬랙 알림 →
+검수 후 도시별 콘텐츠 자동 추가
+```
+
+---
+
 ## 📝 변경 이력
 
 | 날짜 | 변경 |
 |---|---|
 | 2026-05-08 (v1) | 초안 — 2026 월드컵 즉각 활용 + 글로벌 이벤트 6단계 표준 |
+| **2026-05-08 (v2)** | **시애틀 무료 워터프론트 셔틀 적용 (kSeattle.com 출처) + 한인 미디어 활용 원칙 추가** |
 
 ---
 

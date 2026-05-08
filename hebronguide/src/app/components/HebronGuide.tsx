@@ -1719,7 +1719,18 @@ const TOP5_SETTLE: Top5Item[] = [
     tip: "무료 전화 상담 가능. 한국어 서비스 요청 가능", website: "nwirp.org" },
 ];
 
-const TOP5_EXPLORE: Top5Item[] = [
+// 시애틀 월드컵 시즌 한정 정보 (5/21 ~ 9/7) — kSeattle.com 2026-05-07 기사 기반
+// 시즌 종료 후 자동으로 사라지도록 isWaterfrontShuttleActive() 체크
+const SEATTLE_SHUTTLE_PERIOD = {
+  startDate: new Date("2026-05-21"),
+  endDate:   new Date("2026-09-07"),
+};
+function isSeattleShuttleActive(): boolean {
+  const now = new Date();
+  return now >= SEATTLE_SHUTTLE_PERIOD.startDate && now <= SEATTLE_SHUTTLE_PERIOD.endDate;
+}
+
+const TOP5_EXPLORE_SEATTLE_BASE: Top5Item[] = [
   { rank: 1, emoji: "🗼", nameKo: "스페이스 니들", nameEn: "Space Needle",
     address: "400 Broad St, Seattle WA 98109",
     phone: "(206) 905-2100", hours: "매일 8am-10:30pm (시즌별 상이)",
@@ -1750,6 +1761,22 @@ const TOP5_EXPLORE: Top5Item[] = [
     why: "35분 페리, 시애틀 스카이라인 뷰 최고, 올림픽 반도 문, 한인 커뮤니티 강력 추천",
     tip: "편도만 탑승료 징수 (시애틀→베인브릿지 방향). 저녁 노을 뷰 최고", website: "wsdot.wa.gov/ferries" },
 ];
+
+// 시애틀 월드컵 시즌(5/21~9/7) 한정 — 무료 워터프론트 셔틀 1순위 노출
+const SEATTLE_WATERFRONT_SHUTTLE: Top5Item = {
+  rank: 1, emoji: "🚐", nameKo: "⚽ 무료 워터프론트 셔틀 (월드컵 한정)", nameEn: "Free Waterfront Shuttle — World Cup Edition",
+  address: "Space Needle ↔ Pike Place ↔ Pioneer Square ↔ Lumen Field ↔ ChinaTown-ID",
+  price: "완전 무료 (King County 운영)",
+  hours: "매일 10am-10pm · 15분 간격 (경기일 10분 간격)",
+  why: "🏆 2026 월드컵 D-30. 5/21~9/7 한정 운행. 스페이스니들·파이크플레이스·파이오니어스퀘어·루멘필드·차이나타운/인터내셔널 디스트릭트 모두 연결. 한인 식품점 인근 ID 정류장 추가. 한인 관광객·정착자·월드컵 응원단 모두에게 보물",
+  tip: "월드컵 경기일(루멘필드)은 10분 간격. 차이나타운 정류장에서 한인 마트·맛집 도보 5-10분. 주차 걱정 ❌",
+  website: "kingcounty.gov/metro",
+};
+
+// 시애틀 TOP5 EXPLORE — 시즌별 동적 (월드컵 시즌이면 셔틀 1순위, 아니면 기본 5개)
+const TOP5_EXPLORE: Top5Item[] = isSeattleShuttleActive()
+  ? [SEATTLE_WATERFRONT_SHUTTLE, ...TOP5_EXPLORE_SEATTLE_BASE.slice(0, 4).map((x, i) => ({ ...x, rank: i + 2 }))]
+  : TOP5_EXPLORE_SEATTLE_BASE;
 
 /* ─────────────────────────────────────────
    COMPONENT: Top5Banner (가로 스크롤 카드)
