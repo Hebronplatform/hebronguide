@@ -658,9 +658,9 @@ const TOP5_SETTLE_LA: Top5Item[] = [
 ];
 
 const TOP5_EXPLORE_LA: Top5Item[] = [
-  { rank: 1, emoji: "🏘️", nameKo: "코리아타운 — 세계 최대 한인타운", nameEn: "Koreatown LA — World's Largest Koreatown",
+  { rank: 1, emoji: "🏘️", nameKo: "코리아타운 — 미주 한인 환대의 중심", nameEn: "Koreatown LA — Heart of Korean American Hospitality",
     address: "Wilshire Blvd & Western Ave, Los Angeles CA 90005",
-    why: "전 세계 최대 한인 집결지. 한식당·노래방·PC방·마트·교회 모두 도보 거리. 24시간 도시. 서울 느낌 그대로",
+    why: "미주 한인 디아스포라가 다민족과 함께 살아가는 곳. 한식당·노래방·마트·교회 도보 거리. 24시간 활기. 한국 음식·문화 관심 있는 모두를 환영",
     tip: "메트로 Purple Line Wilshire/Western역. 야간에도 활발", website: "maps.google.com/?q=Koreatown+Los+Angeles" },
   { rank: 2, emoji: "🌟", nameKo: "할리우드 & 명예의 거리", nameEn: "Hollywood & Walk of Fame",
     address: "Hollywood Blvd, Hollywood CA 90028",
@@ -3976,7 +3976,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "🏙️", title: "Somerville — Young Korean Professionals", desc: "Adjacent to Boston. Near Tufts & MIT. Rent 1BR $1,900–2,500. Preferred by young Korean professionals & students. Active dining & café scene. Green Line E access" },
     { emoji: "💰", title: "Malden — Affordable for Families", desc: "North of Boston. Orange Line direct. Rent 1BR $1,600–2,000 (affordable vs Boston). Korean & Asian mix. Malden SD schools. Growing Korean family population" },
   ] : citySlug === "la" ? [
-    { emoji: "🏘️", title: "Koreatown — LA Korean Hub #1 (World's Largest)", desc: "World's largest Koreatown. Korean restaurants, karaoke, PC cafés, grocery & churches all walkable. 24-hour city. Rent 1BR $1,800–2,500. Metro Purple Line direct. Feels like Seoul" },
+    { emoji: "🏘️", title: "Koreatown — Heart of Korean American Hospitality", desc: "Korean American diaspora living alongside diverse communities. Korean restaurants, karaoke, grocery & churches walkable. 24-hour vibrant. Rent 1BR $1,800–2,500. Metro Purple Line. All welcome." },
     { emoji: "🍊", title: "Cerritos — Top Schools & Korean Families", desc: "#1 choice for Korean families in LA County. ABC Unified SD — among CA's best schools. Dense Korean population. Rent 1BR $1,800–2,300. Multiple H-Marts & Korean restaurants. Safe, quiet environment" },
     { emoji: "🌊", title: "Torrance — Tech & Auto Industry Koreans", desc: "Near Toyota & Honda North America HQ. Many Korean engineers & expats. Rent 1BR $1,900–2,500. Korean churches & grocery stores available. 15 min to LAX. Beach access nearby" },
     { emoji: "🌸", title: "Irvine (Orange County) — Best Schools", desc: "Rising Korean hub in OC. Irvine USD — top-ranked in CA. Near UCI. Surging Korean population. Rent 1BR $2,200–2,900. Clean, safe. Growing Korean restaurants & grocery scene" },
