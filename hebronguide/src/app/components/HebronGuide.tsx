@@ -3683,7 +3683,8 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🍽️" titleKo="카페 · 맛집" titleEn="Café & Dining"
-        descKo="시애틀 한인 카페·맛집·상권 완전 가이드" descEn="Complete guide to Seattle's Korean cafés, restaurants & business district"
+        descKo={`${useCityConfig().nameKo} 한인 카페·맛집·상권 완전 가이드`}
+        descEn={`Complete guide to ${useCityConfig().nameEn}'s Korean cafés, restaurants & district`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={(i) => { setSub(i); setFoodFilter("전체"); }} accentColor={accent} />
 
@@ -4586,7 +4587,8 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🎓" titleKo="교육 가이드" titleEn="Education Guide"
-        descKo="광역 시애틀 30마일권 — 학군·CC·대학·대입 완전 가이드" descEn="Greater Seattle 30-mile radius — School districts, CC, universities & admissions"
+        descKo={`${useCityConfig().nameKo} 광역권 — 학군·CC·대학·대입 완전 가이드`}
+        descEn={`Greater ${useCityConfig().nameEn} — School districts, CC, universities & admissions`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5 px-4 md:px-6 lg:px-8">
@@ -5697,10 +5699,11 @@ const SHARE_CONTEXTS: Record<number, { emoji: string; labelKo: string; labelEn: 
 };
 
 function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void; lang: string; activeNav?: number }) {
-  const appUrl   = "https://hebronguide.com/seattle/";
+  const shareCity = useCityConfig();
+  const appUrl   = `https://hebronguide.com/${shareCity.slug}/`;
   const ctx      = SHARE_CONTEXTS[activeNav] ?? SHARE_CONTEXTS[0];
   const bodyText = lang === "ko" ? ctx.textKo : ctx.textEn;
-  const fullMsg  = `${bodyText}\n\n📱 HebronGuide — hebronguide.com/seattle\n${ctx.tags}`;
+  const fullMsg  = `${bodyText}\n\n📱 HebronGuide ${shareCity.nameKo} — hebronguide.com/${shareCity.slug}\n${ctx.tags}`;
 
   const [copied, setCopied] = useState(false);
 
@@ -5713,7 +5716,7 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
 
   const nativeShare = () => {
     if (navigator.share) {
-      navigator.share({ title: `HebronGuide Seattle — ${lang === "ko" ? ctx.labelKo : ctx.labelEn}`, text: fullMsg, url: appUrl }).catch(() => {});
+      navigator.share({ title: `HebronGuide ${shareCity.nameKo} — ${lang === "ko" ? ctx.labelKo : ctx.labelEn}`, text: fullMsg, url: appUrl }).catch(() => {});
     } else {
       copy();
     }
@@ -6131,6 +6134,16 @@ export function HebronGuide() {
   const isOnline = useOnlineStatus();
   const { showBanner, handleInstall, handleDismiss } = useInstallPrompt();
   const { lang, setLang } = useI18n();
+  const city = useCityConfig();
+
+  // document.title 도시별 동적 업데이트
+  useEffect(() => {
+    const cityKo = city.nameKo;
+    const cityEn = city.nameEn;
+    document.title = lang === "ko"
+      ? `${cityKo} 한인 정착 가이드 — HebronGuide ${cityKo}`
+      : `Korean Settlement Guide ${cityEn} — HebronGuide ${cityEn}`;
+  }, [lang, city]);
 
   const [settleInitialSub, setSettleInitialSub] = useState(0);
   const [helpInitialSub, setHelpInitialSub] = useState(0);
