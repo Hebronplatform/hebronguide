@@ -350,18 +350,33 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
               {item.why}
             </div>
             {item.address && (
-              <a href={`https://maps.google.com/?q=${encodeURIComponent(item.address)}`}
-                target="_blank" rel="noopener noreferrer"
-                style={{ display: "flex", alignItems: "center", gap: 4, textDecoration: "none", marginBottom: 4 }}>
-                <span style={{ fontSize: 12 }}>📍</span>
-                <span style={{ fontSize: 10, color: accentColor, fontWeight: 600, textDecoration: "underline" }}>
-                  {item.address.split(",")[0]}
-                </span>
-                <span style={{ fontSize: 9, color: "rgba(236,253,245,0.4)" }}>→ 지도</span>
-              </a>
+              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginBottom: 6 }}>
+                📍 {item.address.split(",")[0]}
+              </div>
             )}
             {/* 링크 버튼 행 */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginTop: 6 }}>
+              {/* Google Maps */}
+              {item.address && (
+                <a href={`https://maps.google.com/?q=${encodeURIComponent(item.address)}`}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
+                    background: `${accentColor}18`, border: `1px solid ${accentColor}33`, borderRadius: 20, padding: "3px 8px" }}>
+                  <span style={{ fontSize: 10 }}>📍</span>
+                  <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>Google Maps</span>
+                </a>
+              )}
+              {/* Apple Maps */}
+              {item.address && (
+                <a href={`https://maps.apple.com/?q=${encodeURIComponent(item.address)}`}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
+                    background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.3)", borderRadius: 20, padding: "3px 8px" }}>
+                  <span style={{ fontSize: 10 }}>🍎</span>
+                  <span style={{ fontSize: 10, color: "#60A5FA", fontWeight: 700 }}>Apple Maps</span>
+                </a>
+              )}
+              {/* 전화 */}
               {item.phone && (
                 <a href={`tel:${item.phone}`}
                   style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
@@ -370,6 +385,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
                   <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>전화</span>
                 </a>
               )}
+              {/* 공식 웹사이트 */}
               {item.website && (
                 <a href={item.website.startsWith("http") ? item.website : `https://${item.website}`}
                   target="_blank" rel="noopener noreferrer"
@@ -1423,6 +1439,7 @@ function StepItem({ num, title, desc, accentColor = MINT }: { num: number; title
    PLACE CARD (맛집·탐방 카드)
 ───────────────────────────────────────── */
 // desc 텍스트에서 📍주소·📞전화를 추출해 Maps/전화 링크로 변환
+// 지도: Google Maps (범용) + Apple Maps (iPhone 네이티브) 동시 제공
 function renderDescWithLinks(desc: string, accentColor: string) {
   const addrMatch  = desc.match(/📍\s*([^|📞🔗\n]+)/);
   const phoneMatch = desc.match(/📞\s*([\d\s\-()+]+)/);
@@ -1432,12 +1449,18 @@ function renderDescWithLinks(desc: string, accentColor: string) {
   const phone = phoneMatch ? phoneMatch[1].trim()  : null;
   const web   = webMatch   ? webMatch[1].trim()    : null;
   const webHref = web ? (web.startsWith("http") ? web : `https://${web}`) : null;
+
+  // 지도 URL 생성
+  const googleMapsUrl = addr ? `https://maps.google.com/?q=${encodeURIComponent(addr)}` : null;
+  const appleMapsUrl  = addr ? `https://maps.apple.com/?q=${encodeURIComponent(addr)}` : null;
+
   // 아이콘들 제거한 순수 설명 텍스트
   const cleanDesc = desc
     .replace(/📍[^|📞🔗\n]+/g, "")
     .replace(/📞[\d\s\-()+]+/g, "")
     .replace(/🔗\s*(https?:\/\/[\w\-\.\/\?=&%#]+|[\w\-]+\.[\w]{2,}[\w\/\-\.]*)/ig, "")
     .replace(/\|\s*\|/g, "|").replace(/^\|+|\|+$/g, "").trim();
+
   return (
     <div>
       {cleanDesc && (
@@ -1448,16 +1471,30 @@ function renderDescWithLinks(desc: string, accentColor: string) {
       {/* 링크 버튼 행 */}
       {(addr || phone || webHref) && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>
-          {addr && (
-            <a href={`https://maps.google.com/?q=${encodeURIComponent(addr)}`}
-              target="_blank" rel="noopener noreferrer"
+
+          {/* Google Maps 버튼 */}
+          {googleMapsUrl && (
+            <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer"
               style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
                 background: `${accentColor}18`, border: `1px solid ${accentColor}33`,
                 borderRadius: 20, padding: "3px 10px" }}>
               <span style={{ fontSize: 11 }}>📍</span>
-              <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>지도</span>
+              <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>Google Maps</span>
             </a>
           )}
+
+          {/* Apple Maps 버튼 — iPhone 네이티브로 열림 */}
+          {appleMapsUrl && (
+            <a href={appleMapsUrl} target="_blank" rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
+                background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.3)",
+                borderRadius: 20, padding: "3px 10px" }}>
+              <span style={{ fontSize: 11 }}>🍎</span>
+              <span style={{ fontSize: 10, color: "#60A5FA", fontWeight: 700 }}>Apple Maps</span>
+            </a>
+          )}
+
+          {/* 전화 버튼 */}
           {phone && (
             <a href={`tel:${phone.replace(/\D/g, "")}`}
               style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
@@ -1467,6 +1504,8 @@ function renderDescWithLinks(desc: string, accentColor: string) {
               <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>{phone.trim().replace(/^\(/, "").split(")")[0].trim()}</span>
             </a>
           )}
+
+          {/* 공식 웹사이트 버튼 */}
           {webHref && (
             <a href={webHref} target="_blank" rel="noopener noreferrer"
               style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
