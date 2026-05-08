@@ -102,6 +102,142 @@ const GOLD = "#C9A227";
 const MINT = "#6EE7B7";
 
 /* ─────────────────────────────────────────
+   CITY CONFIG — 도시별 설정
+───────────────────────────────────────── */
+type CitySlug = "seattle" | "dallas" | "sf" | "newyork" | "nashville" | "boston" | "la" | "toronto" | "vancouver";
+
+interface CityConfig {
+  slug: CitySlug;
+  nameKo: string;
+  nameEn: string;
+  color: string;
+  heroVideo: string;
+  population: string;       // 한인 인구
+  state: string;            // 주/지역
+  taglineKo: string;
+  taglineEn: string;
+}
+
+const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
+  seattle: {
+    slug: "seattle", nameKo: "시애틀", nameEn: "Seattle", color: "#0EA5E9",
+    heroVideo: "https://videos.pexels.com/video-files/20017409/20017409-hd_1920_1080_24fps.mp4",
+    population: "15만+", state: "Washington",
+    taglineKo: "도시를 알고, 사람을 찾다", taglineEn: "Know your city. Find your people.",
+  },
+  dallas: {
+    slug: "dallas", nameKo: "달라스", nameEn: "Dallas", color: "#F59E0B",
+    heroVideo: "https://videos.pexels.com/video-files/3214424/3214424-hd_1920_1080_30fps.mp4",
+    population: "10만+", state: "Texas",
+    taglineKo: "텍사스에서 뿌리내리다", taglineEn: "Put down roots in Texas.",
+  },
+  sf: {
+    slug: "sf", nameKo: "샌프란시스코", nameEn: "San Francisco", color: "#8B5CF6",
+    heroVideo: "https://videos.pexels.com/video-files/3571264/3571264-hd_1920_1080_30fps.mp4",
+    population: "8만+", state: "California",
+    taglineKo: "베이에서 시작하는 새 출발", taglineEn: "A new start by the Bay.",
+  },
+  newyork:   { slug: "newyork",   nameKo: "뉴욕",     nameEn: "New York",   color: "#EF4444", heroVideo: "", population: "15만+", state: "New York",    taglineKo: "뉴욕에서 찾는 나의 자리",  taglineEn: "Find your place in New York."    },
+  nashville: { slug: "nashville", nameKo: "내쉬빌",   nameEn: "Nashville",  color: "#10B981", heroVideo: "", population: "2만+",  state: "Tennessee",  taglineKo: "뮤직시티에서의 새 출발",  taglineEn: "New start in Music City."       },
+  boston:    { slug: "boston",    nameKo: "보스턴",   nameEn: "Boston",     color: "#3B82F6", heroVideo: "", population: "3만+",  state: "Massachusetts", taglineKo: "역사의 도시, 새 역사를 쓰다", taglineEn: "Write your story in Boston." },
+  la:        { slug: "la",        nameKo: "LA",       nameEn: "Los Angeles",color: "#F97316", heroVideo: "", population: "50만+", state: "California",  taglineKo: "가장 큰 한인 커뮤니티",   taglineEn: "The largest Korean community." },
+  toronto:   { slug: "toronto",   nameKo: "토론토",   nameEn: "Toronto",    color: "#06B6D4", heroVideo: "", population: "10만+", state: "Ontario",    taglineKo: "캐나다에서 한인으로",       taglineEn: "Korean in Canada."              },
+  vancouver: { slug: "vancouver", nameKo: "밴쿠버",   nameEn: "Vancouver",  color: "#22C55E", heroVideo: "", population: "8만+",  state: "B.C.",       taglineKo: "태평양의 관문에서",         taglineEn: "Gateway to the Pacific."        },
+};
+
+function useCityConfig(): CityConfig {
+  const slug = (window.location.pathname.split("/").filter(Boolean)[0] || "seattle").toLowerCase() as CitySlug;
+  return CITY_CONFIGS[slug] ?? CITY_CONFIGS.seattle;
+}
+
+/* ─────────────────────────────────────────
+   DALLAS 전용 데이터
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_DALLAS: Top5Item[] = [
+  { rank: 1, emoji: "🍜", nameKo: "Jang Fried Chicken (장통닭)", nameEn: "Jang Korean Fried Chicken — Carrollton",
+    address: "2625 Old Denton Rd Ste 510, Carrollton TX 75007",
+    phone: "(972) 245-0088", hours: "월-일 11am-9pm",
+    rating: 4.5, ratingCount: "300+",
+    why: "캐롤튼 한인타운 중심. H-Mart 인근. 바삭한 양념치킨·간장치킨으로 달라스 한인 1순위",
+    tip: "H-Mart 쇼핑 후 함께 방문 추천", website: "yelp.com/biz/jang-fried-chicken-carrollton" },
+  { rank: 2, emoji: "🥩", nameKo: "Gen Korean BBQ — 프리스코", nameEn: "Gen Korean BBQ House — Frisco",
+    address: "3232 Preston Rd Ste 100, Frisco TX 75034",
+    phone: "(469) 252-0900", hours: "일-목 11am-11pm, 금-토 11am-12am",
+    rating: 4.2, ratingCount: "1200+",
+    why: "달라스 최대 한국식 AYCE BBQ 체인. 무제한 고기+반찬. 한인·현지인 모두 즐기는 인기 스팟",
+    tip: "웨이팅 필수. 앱 예약 권장", website: "genkoreanbbq.com" },
+  { rank: 3, emoji: "🍱", nameKo: "Tous Les Jours (뚜레쥬르) — 캐롤튼", nameEn: "Tous Les Jours Korean Bakery",
+    address: "2625 Old Denton Rd Ste 118, Carrollton TX 75007",
+    phone: "(972) 242-8870", hours: "매일 7am-9pm",
+    rating: 4.4, ratingCount: "400+",
+    why: "H-Mart 단지 내 한국 베이커리. 소금빵·크림치즈 소보로·케이크. 달라스 한인 카페 1순위",
+    tip: "아침 일찍 방문 — 인기 빵 빨리 소진됨", website: "tljus.com" },
+  { rank: 4, emoji: "🍛", nameKo: "Korea House — 캐롤튼", nameEn: "Korea House — Carrollton",
+    address: "2540 Old Denton Rd Ste 104, Carrollton TX 75006",
+    phone: "(972) 245-4477", hours: "월-토 11am-9pm, 일 11am-8pm",
+    rating: 4.1, ratingCount: "500+",
+    why: "30년 달라스 한식 대표 식당. 순두부·갈비탕·된장찌개. 현지 한인들의 '고향 밥집'",
+    tip: "점심 특선 가성비 최고 ($12 이하)", website: "yelp.com/biz/korea-house-carrollton" },
+  { rank: 5, emoji: "☕", nameKo: "Cafe Bora — 플라노", nameEn: "Cafe Bora — Plano",
+    address: "4001 W Park Blvd Ste 200, Plano TX 75093",
+    phone: "(972) 517-1111", hours: "월-목 10am-9pm, 금-일 10am-10pm",
+    rating: 4.3, ratingCount: "200+",
+    why: "달라스 한인 카페 문화. 흑임자 라떼·녹차 케이크·한국식 디저트. 인스타 감성 가득",
+    tip: "플라노 한인 주거 밀집 지역 인근", website: "yelp.com/biz/cafe-bora-plano" },
+];
+
+const TOP5_SETTLE_DALLAS: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "한인회 (KCS — Korean Community Services)", nameEn: "Korean Community Services of North Texas",
+    address: "2625 Old Denton Rd Ste 124, Carrollton TX 75007",
+    phone: "(972) 245-6767", hours: "월-금 9am-5pm",
+    why: "달라스 최대 한인 커뮤니티 센터. 이민 초기 상담·취업 지원·한국어 서비스. 정착 첫 번째 방문지",
+    tip: "방문 전 전화 예약 권장", website: "kcsnorthtexas.org" },
+  { rank: 2, emoji: "🏪", nameKo: "H-Mart 캐롤튼", nameEn: "H-Mart Carrollton — Korean Town Hub",
+    address: "2625 Old Denton Rd, Carrollton TX 75007",
+    phone: "(972) 395-8880", hours: "매일 8am-10pm",
+    why: "달라스 한인타운 허브. 한국 식품·반찬·전자제품·의류. 한인 커뮤니티 정보 보드 활용",
+    tip: "내부 푸드코트 운영. 한국어 안내 가능", website: "hmart.com" },
+  { rank: 3, emoji: "🚗", nameKo: "텍사스 DPS — 운전면허", nameEn: "Texas DPS — Driver License",
+    address: "1149 E Belt Line Rd, Carrollton TX 75006",
+    phone: "(214) 861-4040", hours: "월-금 8am-5pm (예약 필수)",
+    why: "텍사스 이사 후 90일 내 면허 전환 필수. 온라인 예약 강력 권장. 한국 면허 지참 시 도로주행 면제 가능",
+    tip: "appointments.dps.texas.gov 예약 필수 — 현장 방문 불가", website: "dps.texas.gov" },
+  { rank: 4, emoji: "🏥", nameKo: "ICMS (달라스 한인 의료 서비스)", nameEn: "Korean Medical Services — Carrollton",
+    address: "2540 Old Denton Rd, Carrollton TX 75006",
+    phone: "(972) 245-7788", hours: "월-금 9am-5pm",
+    why: "한국어 진료 가능 가정의학과. 한인 밀집 캐롤튼 지역. 보험 없어도 슬라이딩 스케일 진료 가능",
+    tip: "예약 우선. 한국어 간호사 상주", website: "yelp.com/search?find_desc=Korean+doctor+Carrollton+TX" },
+  { rank: 5, emoji: "⚖️", nameKo: "North Texas 이민 법률 지원", nameEn: "Refugee & Immigration Services — Dallas",
+    address: "5787 S Hampton Rd Ste 360, Dallas TX 75232",
+    phone: "(214) 631-4357", hours: "월-금 9am-5pm",
+    why: "달라스 저소득 이민자 무료 법률 지원. 영주권·추방방어·망명 전문. 한국어 통역 요청 가능",
+    tip: "사전 예약 필수. Texas RioGrande Legal Aid도 활용 가능", website: "catholiccharitiesdallas.org" },
+];
+
+const TOP5_EXPLORE_DALLAS: Top5Item[] = [
+  { rank: 1, emoji: "🤠", nameKo: "캐롤튼 한인타운 (Korean Belt)", nameEn: "Carrollton Koreatown — Korean Belt",
+    address: "Old Denton Rd & Josey Lane, Carrollton TX 75007",
+    why: "달라스 최대 한인 밀집 지역. H-Mart·한식당·한국 미용실·PC방·노래방 집결. '달라스의 한인 1번지'",
+    tip: "Old Denton Rd 따라 걸으면 한국 느낌 그대로", website: "maps.google.com/?q=Koreatown+Carrollton+TX" },
+  { rank: 2, emoji: "🌆", nameKo: "댈러스 다운타운 & Reunion Tower", nameEn: "Dallas Downtown & Reunion Tower",
+    address: "300 Reunion Blvd E, Dallas TX 75207",
+    why: "달라스 상징 전망대. 높이 171m, 360도 파노라마 뷰. 야경이 특히 아름다움",
+    tip: "GeO-Deck 입장 $26. 저녁 예약 추천", website: "reuniontower.com" },
+  { rank: 3, emoji: "🏈", nameKo: "AT&T Stadium — 카우보이스 성지", nameEn: "AT&T Stadium — Dallas Cowboys",
+    address: "1 AT&T Way, Arlington TX 76011",
+    why: "NFL 달라스 카우보이스 홈구장. 세계 최대 경기장 중 하나. 투어·게임 관람 모두 추천",
+    tip: "경기 없는 날 스타디움 투어 $25", website: "attstadium.com" },
+  { rank: 4, emoji: "🎨", nameKo: "Dallas Museum of Art", nameEn: "Dallas Museum of Art",
+    address: "1717 N Harwood St, Dallas TX 75201",
+    why: "세계 수준 미술관. 상설 전시 무료 입장. Arts District 내 위치 — 주변 산책도 좋음",
+    tip: "상설 컬렉션 무료. 특별전 별도 요금", website: "dma.org" },
+  { rank: 5, emoji: "🌿", nameKo: "White Rock Lake Park", nameEn: "White Rock Lake Park",
+    address: "8300 E Lawther Dr, Dallas TX 75218",
+    why: "달라스 도심 속 자연 공원. 호수 둘레 11km 걷기·자전거. 가족 소풍·한인 커뮤니티 모임 장소",
+    tip: "무료 입장. 주말 아침 한인 산책 모임 자주 열림", website: "maps.google.com/?q=White+Rock+Lake+Dallas" },
+];
+
+/* ─────────────────────────────────────────
    HOOK: 온라인 상태 감지
 ───────────────────────────────────────── */
 function useOnlineStatus() {
@@ -855,43 +991,63 @@ function WeatherIcon() {
 }
 
 /* ─────────────────────────────────────────
-   NEW HOME: CompactHeroNew
+   NEW HOME: CompactHeroNew — 도시별 자동 적용
 ───────────────────────────────────────── */
+// 도시별 LIVE CAM URL
+const CITY_LIVECAM: Partial<Record<CitySlug, string>> = {
+  seattle:  "https://www.earthcam.com/usa/washington/seattle/",
+  dallas:   "https://www.earthcam.com/usa/texas/dallas/",
+  sf:       "https://www.earthcam.com/usa/california/sanfrancisco/",
+  newyork:  "https://www.earthcam.com/usa/newyork/timessquare/",
+};
+
 function CompactHeroNew() {
   const { lang } = useI18n();
+  const city = useCityConfig();
+  const liveCamUrl = CITY_LIVECAM[city.slug];
+
   return (
     <div style={{
       position: "relative", height: "clamp(120px, 22dvh, 180px)", overflow: "hidden",
       borderRadius: "0 0 28px 28px",
     }}>
-      <img src={imgHeroCard} alt="Seattle" style={{
+      {/* 정적 이미지 폴백 */}
+      <img src={imgHeroCard} alt={city.nameEn} style={{
         width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%",
         filter: "brightness(0.75) saturate(1.2)"
       }} />
-      <video autoPlay muted loop playsInline style={{
-        position: "absolute", inset: 0, width: "100%", height: "100%",
-        objectFit: "cover", objectPosition: "center 35%",
-      }}>
-        <source src="https://videos.pexels.com/video-files/20017409/20017409-hd_1920_1080_24fps.mp4" type="video/mp4" />
-      </video>
+      {/* 도시별 배경 영상 */}
+      {city.heroVideo && (
+        <video autoPlay muted loop playsInline style={{
+          position: "absolute", inset: 0, width: "100%", height: "100%",
+          objectFit: "cover", objectPosition: "center 35%",
+        }}>
+          <source src={city.heroVideo} type="video/mp4" />
+        </video>
+      )}
+      {/* 그라디언트 오버레이 */}
       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%)" }} />
-      <div style={{ position: "absolute", bottom: 20, left: 20, right: 20 }}>
+      {/* 도시명 + 태그라인 */}
+      <div style={{ position: "absolute", bottom: 20, left: 20, right: 60 }}>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 24, color: "#fff",
           letterSpacing: "-0.5px", textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
-          HebronGuide <span style={{ color: "#F2994A" }}>Seattle</span>
+          HebronGuide <span style={{ color: city.color }}>{lang === "ko" ? city.nameKo : city.nameEn}</span>
         </div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 400, fontSize: 12, color: "rgba(255,255,255,0.8)", marginTop: 3 }}>
-          {lang === "ko" ? "도시를 알고, 사람을 찾다" : "Know your city. Find your people."}
+          {lang === "ko" ? city.taglineKo : city.taglineEn}
         </div>
       </div>
-      <a href="https://www.earthcam.com/usa/washington/seattle/" target="_blank" rel="noopener noreferrer"
-        style={{ position: "absolute", top: 12, right: 12, display: "flex", alignItems: "center", gap: 5,
-          background: "rgba(0,0,0,0.45)", backdropFilter: "blur(8px)", borderRadius: 20, padding: "5px 10px",
-          textDecoration: "none", border: "1px solid rgba(255,255,255,0.2)" }}>
-        <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#FF3B30", display: "inline-block",
-          animation: "livepulse 1.5s infinite" }} />
-        <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "#fff" }}>LIVE CAM</span>
-      </a>
+      {/* LIVE CAM 버튼 */}
+      {liveCamUrl && (
+        <a href={liveCamUrl} target="_blank" rel="noopener noreferrer"
+          style={{ position: "absolute", top: 12, right: 12, display: "flex", alignItems: "center", gap: 5,
+            background: "rgba(0,0,0,0.45)", backdropFilter: "blur(8px)", borderRadius: 20, padding: "5px 10px",
+            textDecoration: "none", border: "1px solid rgba(255,255,255,0.2)" }}>
+          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#FF3B30", display: "inline-block",
+            animation: "livepulse 1.5s infinite" }} />
+          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "#fff" }}>LIVE CAM</span>
+        </a>
+      )}
     </div>
   );
 }
@@ -1879,7 +2035,8 @@ const CITY_DESIGN: Record<string, { code: string; gradient: string; textColor: s
 };
 
 function CityHubSection({ lang }: { lang: string }) {
-  const currentCity = "Seattle";
+  const city = useCityConfig();
+  const currentCity = city.nameEn === "San Francisco" ? "San Francisco" : city.nameEn;
 
   return (
     /* iOS 홈 화면처럼 — 배경은 홈과 동일하게, 아이콘만 컬러로 구별 */
@@ -2164,18 +2321,32 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "Prepare for tax season", desc: "Korea income? FBAR/FATCA filing required. Korean accountant consultation essential" },
   ];
 
-  const adminKo = [
-    { title: "SSN 신청", desc: "사회보장청(SSA) 오피스 | 915 2nd Ave #3605, Seattle | 전화: 800-772-1213 | 🔗 ssa.gov" },
+  const citySlug = useCityConfig().slug;
+
+  const adminKo = citySlug === "dallas" ? [
+    { title: "SSN 신청", desc: "📍 Social Security Office | 1901 N Central Expy, McKinney TX | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "텍사스 운전면허 (DPS)", desc: "📍 1149 E Belt Line Rd, Carrollton TX | 온라인 예약 필수! 🔗 appointments.dps.texas.gov\n⚠️ 텍사스 이주 후 90일 이내 전환 의무 | 🔗 dps.texas.gov" },
+    { title: "차량 등록·검사", desc: "텍사스는 연 1회 차량 안전검사 필수 (Safety Inspection) → 카운티 Tax Office에서 등록\n검사소: Carrollton 인근 Firestone, Jiffy Lube 등 | 🔗 txdmv.gov" },
+    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
+    { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트: uscis.gov | 달라스·캐롤튼 이민 변호사 다수 활동 | 🔗 uscis.gov" },
+  ] : [
+    { title: "SSN 신청", desc: "사회보장청(SSA) 오피스 | 📍 915 2nd Ave #3605, Seattle | 📞 800-772-1213 | 🔗 ssa.gov" },
     { title: "WA 운전면허 (DOL)", desc: "Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
     { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
-    { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트: uscis.gov | Lynnwood 이민 변호사 다수 활동" },
+    { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트: uscis.gov | Lynnwood 이민 변호사 다수 활동 | 🔗 uscis.gov" },
     { title: "시민권 신청 (N-400)", desc: "영주권 5년 후 신청 가능 | 영어·시민권 시험 준비 클래스 교회에서 운영" },
   ];
-  const adminEn = [
-    { title: "SSN Application", desc: "Social Security Office | 915 2nd Ave #3605, Seattle | Phone: 800-772-1213 | 🔗 ssa.gov" },
+  const adminEn = citySlug === "dallas" ? [
+    { title: "SSN Application", desc: "📍 Social Security Office | 1901 N Central Expy, McKinney TX | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "Texas Driver License (DPS)", desc: "📍 1149 E Belt Line Rd, Carrollton TX | Online appointment required! 🔗 appointments.dps.texas.gov\n⚠️ Must transfer within 90 days of moving to Texas | 🔗 dps.texas.gov" },
+    { title: "Vehicle Registration & Inspection", desc: "Texas requires annual Safety Inspection → register at county Tax Office\nInspection locations: Firestone, Jiffy Lube near Carrollton | 🔗 txdmv.gov" },
+    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
+    { title: "Green Card / Visa Renewal", desc: "USCIS official site | Many immigration attorneys in Dallas/Carrollton area | 🔗 uscis.gov" },
+  ] : [
+    { title: "SSN Application", desc: "Social Security Office | 📍 915 2nd Ave #3605, Seattle | 📞 800-772-1213 | 🔗 ssa.gov" },
     { title: "WA Driver License (DOL)", desc: "Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
     { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
-    { title: "Green Card / Visa Renewal", desc: "USCIS official site: uscis.gov | Many immigration attorneys active in Lynnwood" },
+    { title: "Green Card / Visa Renewal", desc: "USCIS official site: uscis.gov | Many immigration attorneys active in Lynnwood | 🔗 uscis.gov" },
     { title: "Citizenship (N-400)", desc: "Eligible 5 years after green card | English & civics prep classes at Korean churches" },
   ];
 
@@ -2194,15 +2365,27 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. Roth IRA best started after green card/citizenship" },
   ];
 
-  // 거주지 데이터 (탭 index 5)
-  const areasKo = [
+  // 거주지 데이터 (탭 index 5) — 도시별 분기
+  const areasKo = citySlug === "dallas" ? [
+    { emoji: "🤠", title: "캐롤튼 (Carrollton) — 달라스 한인 1번지", desc: "달라스 최대 한인타운. H-Mart·한식당·한인 교회·노래방 밀집. Old Denton Rd·Belt Line 일대. 렌트 1BR $1,400–1,800 | 2BR $1,800–2,200. Carrollton-Farmers Branch ISD" },
+    { emoji: "🎓", title: "플라노 (Plano) — 학군·전문직", desc: "플라노 독립 학군 (Plano ISD) — Texas 최상위급. 삼성·텍사스 인스트루먼트 본사 인근. 한인 IT·전문직 다수 거주. 렌트 1BR $1,600–2,100. 안전하고 정돈된 환경" },
+    { emoji: "🏢", title: "리처드슨 (Richardson) — 테크 코리도어", desc: "AT&T·Ericsson·Samsung 반도체 본사 인근. 시티라인 개발로 급성장. UT Dallas 인접. 렌트 1BR $1,400–1,900. 한인 유학생·직장인 인기" },
+    { emoji: "💰", title: "어빙 (Irving) — 가성비 DFW 공항", desc: "DFW 공항 바로 옆. 렌트 1BR $1,200–1,600 (저렴). 한인 커뮤니티 성장 중. Las Colinas 업무지구 인근. 출장·이동 잦은 분께 추천" },
+    { emoji: "🌿", title: "맥키니·프리스코 (McKinney/Frisco) — 신흥 한인 주거지", desc: "DFW 북부 급성장 신도시. 좋은 학군 (Frisco ISD). 한인 가족 이주 증가. 신축 주택 다수. 렌트 1BR $1,500–2,000. 통근 30–45분" },
+  ] : [
     { emoji: "🏘️", title: "린우드 (Lynnwood) — 한인 1번지", desc: "한인타운 중심. H-Mart·한식당·교회 밀집. 링크 라이트레일 직결 (2024 개통). 렌트 1BR $1,800–2,100 | 스튜디오 $1,300–1,600. Northshore SD (Niche A) — 한인 가족 최다 거주" },
     { emoji: "💼", title: "벨뷰 (Bellevue) — 테크·최상위 학군", desc: "Bellevue SD — WA 1위 (Niche A+). Amazon·MS·Google 출퇴근 최적. 렌트 1BR $2,300–2,900 (프리미엄). 한인 전문직·가족 선호" },
     { emoji: "🌲", title: "보텔·우딘빌 (Bothell) — 학군+자연", desc: "Northshore SD Niche A. 한인 가족 급성장 지역. 자연환경·조용한 주거. 렌트 1BR $1,900–2,300" },
     { emoji: "💰", title: "페더럴웨이 (Federal Way) — 가성비", desc: "렌트 1BR $1,500–2,000 (저렴). 한인 마트·교회 다수. I-5 접근 편리. 넓은 한인 커뮤니티" },
     { emoji: "🎓", title: "대학지구 (U-District) — 유학생", desc: "UW 인근. 한식당·카페 집중. 링크 라이트레일 최고 접근. 렌트 1BR $1,600–2,400. UW·Seattle U·Seattle Central 재학생 최다" },
   ];
-  const areasEn = [
+  const areasEn = citySlug === "dallas" ? [
+    { emoji: "🤠", title: "Carrollton — Dallas Korean Hub #1", desc: "DFW's largest Koreatown. H-Mart, Korean restaurants, churches & karaoke on Old Denton Rd/Belt Line. Rent 1BR $1,400–1,800 | 2BR $1,800–2,200. Carrollton-Farmers Branch ISD" },
+    { emoji: "🎓", title: "Plano — Schools & Professionals", desc: "Plano ISD — top-ranked in Texas. Near Samsung & Texas Instruments HQ. Many Korean IT professionals. Rent 1BR $1,600–2,100. Safe, well-organized environment" },
+    { emoji: "🏢", title: "Richardson — Tech Corridor", desc: "Near AT&T, Ericsson & Samsung Semiconductor. Fast-growing Cityline development. Adjacent to UT Dallas. Rent 1BR $1,400–1,900. Popular with Korean students & tech workers" },
+    { emoji: "💰", title: "Irving — Affordable + DFW Airport", desc: "Right next to DFW Airport. Rent 1BR $1,200–1,600 (affordable). Growing Korean community. Near Las Colinas business district. Great for frequent travelers" },
+    { emoji: "🌿", title: "McKinney/Frisco — New Korean Suburbs", desc: "Fast-growing new suburbs in north DFW. Excellent Frisco ISD schools. Increasing Korean family population. New construction homes. Rent 1BR $1,500–2,000. 30–45 min commute" },
+  ] : [
     { emoji: "🏘️", title: "Lynnwood — Korean Hub #1", desc: "Heart of Koreatown. H-Mart, Korean restaurants & churches clustered. Link Light Rail direct (opened 2024). Rent 1BR $1,800–2,100 | Studio $1,300–1,600. Northshore SD (Niche A) — largest Korean family population" },
     { emoji: "💼", title: "Bellevue — Tech & Top Schools", desc: "Bellevue SD — WA #1 (Niche A+). Best commute for Amazon/MS/Google. Rent 1BR $2,300–2,900 (premium). Preferred by Korean professionals & families" },
     { emoji: "🌲", title: "Bothell — Schools + Nature", desc: "Northshore SD Niche A. Fast-growing Korean family area. Natural environment & quiet neighborhoods. Rent 1BR $1,900–2,300" },
@@ -2259,7 +2442,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5">
         {sub === 0 && (
-          <Top5Banner items={TOP5_SETTLE} lang={lang} accentColor="#F2994A" />
+          <Top5Banner items={useCityConfig().slug === "dallas" ? TOP5_SETTLE_DALLAS : TOP5_SETTLE} lang={lang} accentColor="#F2994A" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
 
@@ -2661,7 +2844,7 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5">
         {sub === 1 && (
-          <Top5Banner items={TOP5_RESTAURANTS} lang={lang} accentColor="#EF4444" />
+          <Top5Banner items={useCityConfig().slug === "dallas" ? TOP5_RESTAURANTS_DALLAS : TOP5_RESTAURANTS} lang={lang} accentColor="#EF4444" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -2791,7 +2974,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5">
         {sub === 0 && (
-          <Top5Banner items={TOP5_EXPLORE} lang={lang} accentColor="#0EA5E9" />
+          <Top5Banner items={useCityConfig().slug === "dallas" ? TOP5_EXPLORE_DALLAS : TOP5_EXPLORE} lang={lang} accentColor="#0EA5E9" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
