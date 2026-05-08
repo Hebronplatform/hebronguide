@@ -19,7 +19,7 @@ cp icon-192.png  public/apple-touch-icon-precomposed.png
 
 # 3. 도시별 배포 (미리 빌드된 dist/ 사용)
 echo "--- Deploying to cities ---"
-for city in seattle dallas sf newyork nashville boston la toronto vancouver; do
+for city in seattle dallas sf newyork nashville boston la toronto vancouver houston atlanta kansascity philadelphia miami mexicocity guadalajara monterrey; do
   mkdir -p public/$city
   cp -r hebronguide/dist/* public/$city/
   echo "  OK: $city"

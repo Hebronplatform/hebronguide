@@ -33,7 +33,23 @@
     { "source": "/toronto",        "destination": "/toronto/index.html" },
     { "source": "/toronto/(.*)",   "destination": "/toronto/index.html" },
     { "source": "/vancouver",      "destination": "/vancouver/index.html" },
-    { "source": "/vancouver/(.*)", "destination": "/vancouver/index.html" }
+    { "source": "/vancouver/(.*)", "destination": "/vancouver/index.html" },
+    { "source": "/houston",        "destination": "/houston/index.html" },
+    { "source": "/houston/(.*)",   "destination": "/houston/index.html" },
+    { "source": "/atlanta",        "destination": "/atlanta/index.html" },
+    { "source": "/atlanta/(.*)",   "destination": "/atlanta/index.html" },
+    { "source": "/kansascity",     "destination": "/kansascity/index.html" },
+    { "source": "/kansascity/(.*)","destination": "/kansascity/index.html" },
+    { "source": "/philadelphia",   "destination": "/philadelphia/index.html" },
+    { "source": "/philadelphia/(.*)","destination": "/philadelphia/index.html" },
+    { "source": "/miami",          "destination": "/miami/index.html" },
+    { "source": "/miami/(.*)",     "destination": "/miami/index.html" },
+    { "source": "/mexicocity",     "destination": "/mexicocity/index.html" },
+    { "source": "/mexicocity/(.*)","destination": "/mexicocity/index.html" },
+    { "source": "/guadalajara",    "destination": "/guadalajara/index.html" },
+    { "source": "/guadalajara/(.*)","destination": "/guadalajara/index.html" },
+    { "source": "/monterrey",      "destination": "/monterrey/index.html" },
+    { "source": "/monterrey/(.*)", "destination": "/monterrey/index.html" }
   ],
 
   "headers": [

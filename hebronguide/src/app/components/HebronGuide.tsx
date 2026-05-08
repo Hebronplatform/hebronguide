@@ -104,7 +104,7 @@ const MINT = "#6EE7B7";
 /* ─────────────────────────────────────────
    CITY CONFIG — 도시별 설정
 ───────────────────────────────────────── */
-type CitySlug = "seattle" | "dallas" | "sf" | "newyork" | "nashville" | "boston" | "la" | "toronto" | "vancouver";
+type CitySlug = "seattle" | "dallas" | "sf" | "newyork" | "nashville" | "boston" | "la" | "toronto" | "vancouver" | "houston" | "atlanta" | "kansascity" | "philadelphia" | "miami" | "mexicocity" | "guadalajara" | "monterrey";
 
 interface CityConfig {
   slug: CitySlug;
@@ -143,6 +143,14 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   la:        { slug: "la",        nameKo: "LA",       nameEn: "Los Angeles",color: "#F97316", heroVideo: "", population: "50만+", state: "California",  taglineKo: "가장 큰 한인 커뮤니티",   taglineEn: "The largest Korean community." },
   toronto:   { slug: "toronto",   nameKo: "토론토",   nameEn: "Toronto",    color: "#06B6D4", heroVideo: "", population: "10만+", state: "Ontario",    taglineKo: "캐나다에서 한인으로",       taglineEn: "Korean in Canada."              },
   vancouver: { slug: "vancouver", nameKo: "밴쿠버",   nameEn: "Vancouver",  color: "#22C55E", heroVideo: "", population: "8만+",  state: "B.C.",       taglineKo: "태평양의 관문에서",         taglineEn: "Gateway to the Pacific."        },
+  houston:    { slug: "houston",    nameKo: "휴스턴",    nameEn: "Houston",      color: "#EA580C", heroVideo: "", population: "2.5만+", state: "Texas",       taglineKo: "텍사스 남부의 활력",         taglineEn: "Vibrant heart of South Texas." },
+  atlanta:    { slug: "atlanta",    nameKo: "애틀랜타",  nameEn: "Atlanta",      color: "#16A34A", heroVideo: "", population: "10만+",  state: "Georgia",     taglineKo: "남부의 한인 허브",           taglineEn: "Korean hub of the South." },
+  kansascity: { slug: "kansascity", nameKo: "캔자스시티", nameEn: "Kansas City",  color: "#9333EA", heroVideo: "", population: "3천+",   state: "Missouri",    taglineKo: "중부의 새 지평",             taglineEn: "New horizons in the Heartland." },
+  philadelphia:{ slug: "philadelphia", nameKo: "필라델피아", nameEn: "Philadelphia", color: "#0891B2", heroVideo: "", population: "3만+", state: "Pennsylvania", taglineKo: "역사의 도시에서 시작하다",   taglineEn: "Start your story in the City of Brotherly Love." },
+  miami:      { slug: "miami",      nameKo: "마이애미",  nameEn: "Miami",        color: "#EC4899", heroVideo: "", population: "5천+",   state: "Florida",     taglineKo: "햇살 아래 새 출발",           taglineEn: "Fresh start under the sun." },
+  mexicocity: { slug: "mexicocity", nameKo: "멕시코시티", nameEn: "Mexico City",  color: "#DC2626", heroVideo: "", population: "1만+",   state: "Mexico",      taglineKo: "고대와 현대가 만나는 곳",     taglineEn: "Where ancient meets modern." },
+  guadalajara:{ slug: "guadalajara",nameKo: "과달라하라", nameEn: "Guadalajara",  color: "#F59E0B", heroVideo: "", population: "2천+",   state: "Mexico",      taglineKo: "멕시코의 문화 수도",          taglineEn: "Mexico's cultural capital." },
+  monterrey:  { slug: "monterrey",  nameKo: "몬테레이",  nameEn: "Monterrey",    color: "#0EA5E9", heroVideo: "", population: "1천+",   state: "Mexico",      taglineKo: "산으로 둘러싸인 산업도시",    taglineEn: "Industrial city in the mountains." },
 };
 
 function useCityConfig(): CityConfig {
@@ -844,6 +852,702 @@ const TOP5_EXPLORE_VANCOUVER: Top5Item[] = [
     address: "Whistler, BC V8E 0Z1 (밴쿠버에서 2시간)",
     why: "북미 최대 스키 리조트. 겨울 스키·여름 하이킹·마운틴바이크. 밴쿠버 한인 가족 시즌 여행 1순위",
     tip: "밴쿠버에서 Sea-to-Sky Hwy 2시간. 한인 투어버스 다수 운영. 숙박 사전 예약 필수", website: "whistler.com" },
+];
+
+/* ─────────────────────────────────────────
+   HOUSTON 전용 데이터 (월드컵 2026 — IHM 본부)
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_HOUSTON: Top5Item[] = [
+  { rank: 1, emoji: "🥩", nameKo: "Korea Garden — Spring Branch", nameEn: "Korea Garden — Spring Branch",
+    address: "9501 Long Point Rd, Houston TX 77055",
+    phone: "(713) 467-0555", hours: "매일 11am-10pm",
+    rating: 4.2, ratingCount: "500+",
+    why: "🥩 BBQ\n휴스턴 한인타운(Spring Branch) 대표 BBQ. 갈비·불고기·반찬 풍성. 텍사스 한인 가족 모임 1순위",
+    tip: "Long Point Rd 한인 상권 중심. 주차 무료", website: "yelp.com/biz/korea-garden-houston" },
+  { rank: 2, emoji: "🍲", nameKo: "Hankook Garden — 한식 명가", nameEn: "Hankook Garden — Houston",
+    address: "1810 Blalock Rd, Houston TX 77080",
+    phone: "(713) 461-7787", hours: "매일 11am-10pm",
+    rating: 4.3, ratingCount: "400+",
+    why: "🍲 국물·한식\n순두부·갈비탕·해물파전. 휴스턴 한인 교민의 '고향 밥집'. 30년 전통",
+    tip: "H-Mart 인근. 점심 특선 가성비 최고", website: "yelp.com/biz/hankook-garden-houston" },
+  { rank: 3, emoji: "🍗", nameKo: "BonChon — 휴스턴", nameEn: "BonChon — Houston",
+    address: "9889 Bellaire Blvd #320, Houston TX 77036",
+    phone: "(713) 270-7177", hours: "매일 11am-10pm",
+    rating: 4.0, ratingCount: "300+",
+    why: "🍗 치킨\n한국식 2번 튀김 치킨. Bellaire 차이나타운 인근. 치맥 가능",
+    tip: "Bellaire 아시안 상권 중심", website: "bonchon.com" },
+  { rank: 4, emoji: "🥘", nameKo: "Tofu Village", nameEn: "Tofu Village — Spring Branch",
+    address: "9888 Bellaire Blvd #146, Houston TX 77036",
+    phone: "(713) 270-9988", hours: "매일 11am-10pm",
+    rating: 4.2, ratingCount: "350+",
+    why: "🍲 국물·찌개\n순두부 전문. 진한 국물·반찬 정갈. 한인 교민 단골",
+    tip: "점심 시간 웨이팅 있음", website: "yelp.com/biz/tofu-village-houston" },
+  { rank: 5, emoji: "☕", nameKo: "H-Mart 휴스턴 푸드코트", nameEn: "H-Mart Houston Food Court",
+    address: "1302 Blalock Rd, Houston TX 77055",
+    phone: "(713) 932-1110", hours: "매일 8am-10pm",
+    rating: 4.1, ratingCount: "400+",
+    why: "☕ 카페·분식\nH-Mart 내 한국식 푸드코트. 떡볶이·김밥·분식. 휴스턴 한인 모임 장소",
+    tip: "쇼핑 후 필수. 주차 무료", website: "hmart.com" },
+];
+
+const TOP5_SETTLE_HOUSTON: Top5Item[] = [
+  { rank: 1, emoji: "⭐", nameKo: "서울침례교회 (IHM 본부)", nameEn: "Seoul Baptist Church of Houston — IHM HQ",
+    address: "10100 Pearl Ridge Way, Houston TX 77043",
+    phone: "(713) 461-0700", hours: "주일예배·평일 사역",
+    why: "⭐ 국제가정교회사역원(IHM) 본부. 최영기 목사 설립. 가정교회 운동 글로벌 거점. 휴스턴 한인 정착 영적 중심",
+    tip: "주일 예배 + 가정교회 모임 참여 가능", website: "seoulchurch.com" },
+  { rank: 2, emoji: "🏛️", nameKo: "한인회 (Korean American Association)", nameEn: "Korean American Association of Greater Houston",
+    address: "1815 Augusta Dr Ste 304, Houston TX 77057",
+    phone: "(713) 789-1500", hours: "월-금 9am-5pm",
+    why: "휴스턴 한인 커뮤니티 허브. 정착·법률·취업 상담. 한국어 서비스",
+    tip: "방문 전 전화 예약", website: "kaagh.org" },
+  { rank: 3, emoji: "🏪", nameKo: "H-Mart 휴스턴 (Spring Branch)", nameEn: "H-Mart — Houston Spring Branch",
+    address: "1302 Blalock Rd, Houston TX 77055",
+    phone: "(713) 932-1110", hours: "매일 8am-10pm",
+    why: "휴스턴 한인 마트 1위. 한국 식품·반찬·생활용품. 한인 정보 보드 활용",
+    tip: "주차 무료. 한국어 안내 가능", website: "hmart.com" },
+  { rank: 4, emoji: "🚗", nameKo: "Texas DPS — 운전면허", nameEn: "Texas DPS — Driver License",
+    address: "12220 S Gessner Rd, Houston TX 77071",
+    phone: "(713) 595-1300", hours: "월-금 8am-5pm (예약 필수)",
+    why: "휴스턴 DPS. TX 이주 90일 내 면허 전환 의무. 한국 면허 지참 시 일부 면제 가능",
+    tip: "🔗 appointments.dps.texas.gov 예약 필수", website: "dps.texas.gov" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "주휴스턴 총영사관", nameEn: "Korean Consulate General — Houston",
+    address: "1990 Post Oak Blvd Ste 1250, Houston TX 77056",
+    phone: "(713) 961-0186", hours: "월-금 9am-12pm, 1:30pm-4pm",
+    why: "여권·공증·재외국민 등록. 텍사스·오클라호마·아칸소·루이지애나 담당",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/us-houston-ko", website: "overseas.mofa.go.kr/us-houston-ko" },
+];
+
+const TOP5_EXPLORE_HOUSTON: Top5Item[] = [
+  { rank: 1, emoji: "🏘️", nameKo: "Spring Branch 한인타운 (Long Point Rd)", nameEn: "Spring Branch Koreatown",
+    address: "Long Point Rd & Blalock Rd, Houston TX 77055",
+    why: "휴스턴 최대 한인 밀집. H-Mart·한식당·한인 교회·노래방 집결",
+    tip: "Long Point Rd 따라 한인 상권 형성", website: "maps.google.com/?q=Koreatown+Spring+Branch+Houston" },
+  { rank: 2, emoji: "🚀", nameKo: "NASA 우주센터 (Space Center Houston)", nameEn: "Space Center Houston",
+    address: "1601 E NASA Pkwy, Houston TX 77058",
+    why: "NASA 존슨 우주센터. 아폴로 11호 관제실·우주 비행사 훈련시설. 휴스턴 1위 명소",
+    tip: "입장료 $30. 주말 사전 예약 권장", website: "spacecenter.org" },
+  { rank: 3, emoji: "🏈", nameKo: "NRG Stadium (월드컵 경기장)", nameEn: "NRG Stadium — World Cup 2026",
+    address: "1 NRG Pkwy, Houston TX 77054",
+    why: "휴스턴 텍산스 홈구장. 2026 월드컵 미국 호스트 도시. 7경기 개최",
+    tip: "월드컵 기간 주차·교통 혼잡 — 미리 계획", website: "nrgpark.com" },
+  { rank: 4, emoji: "🌃", nameKo: "다운타운 휴스턴 & Discovery Green", nameEn: "Downtown Houston & Discovery Green",
+    address: "1500 McKinney St, Houston TX 77010",
+    why: "휴스턴 도심 공원. 야외 행사·산책. 박물관 지구 인근",
+    tip: "무료 입장. 주말 행사 자주 열림", website: "discoverygreen.com" },
+  { rank: 5, emoji: "🏛️", nameKo: "Houston Museum District", nameEn: "Houston Museum District",
+    address: "1001 Bissonnet St, Houston TX 77005",
+    why: "미술관·과학관·자연사 박물관 19개 집결. 일부 무료. 한인 가족 문화 코스",
+    tip: "MFA Houston·자연사박물관 추천. 일부 무료요일 활용", website: "houmuseum.org" },
+];
+
+/* ─────────────────────────────────────────
+   ATLANTA 전용 데이터 (월드컵 2026)
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_ATLANTA: Top5Item[] = [
+  { rank: 1, emoji: "🥩", nameKo: "Iron Age Korean BBQ — Duluth", nameEn: "Iron Age Korean BBQ — Duluth",
+    address: "3505 Pleasant Hill Rd, Duluth GA 30096",
+    phone: "(770) 232-9988", hours: "매일 11am-12am",
+    rating: 4.1, ratingCount: "1500+",
+    why: "🥩 BBQ\n애틀랜타 듀럴스 한인타운 AYCE BBQ. 무한리필. 한인·현지인 모두 인기",
+    tip: "Pleasant Hill Rd 한인 상권 중심", website: "ironagekoreanbbq.com" },
+  { rank: 2, emoji: "🍲", nameKo: "Sa Rit Gol — 한식 명가", nameEn: "Sa Rit Gol Korean Restaurant",
+    address: "5270 Buford Hwy NE Ste C5, Doraville GA 30340",
+    phone: "(770) 936-9292", hours: "매일 11am-10pm",
+    rating: 4.4, ratingCount: "600+",
+    why: "🍲 국물·한식\n도라빌 한인타운 정통 한식. 갈비탕·순두부·비빔밥. 30년 전통",
+    tip: "Buford Hwy 한인 상권. 점심 가성비", website: "yelp.com/biz/sa-rit-gol-doraville" },
+  { rank: 3, emoji: "🍗", nameKo: "Mom's Touch — 애틀랜타", nameEn: "Mom's Touch — Atlanta",
+    address: "3473 Old Norcross Rd, Duluth GA 30096",
+    phone: "(770) 232-7000", hours: "매일 11am-10pm",
+    rating: 4.2, ratingCount: "400+",
+    why: "🍗 치킨\n한국 인기 치킨 체인 미국 진출. 싸이순살·치즈볼. 듀럴스 한인타운",
+    tip: "한국 본토 메뉴 그대로", website: "momstouchusa.com" },
+  { rank: 4, emoji: "🥘", nameKo: "Hae Woon Dae Korean BBQ", nameEn: "Hae Woon Dae — Doraville",
+    address: "5805 Buford Hwy NE, Doraville GA 30340",
+    phone: "(770) 451-7957", hours: "매일 11am-2am",
+    rating: 4.0, ratingCount: "500+",
+    why: "🥩 BBQ·갈비\n애틀랜타 24시 BBQ 명소. 갈비·삼겹살. 야식·해장 OK",
+    tip: "새벽 영업. 한인 단골 많음", website: "yelp.com/biz/hae-woon-dae-doraville" },
+  { rank: 5, emoji: "☕", nameKo: "Paris Baguette — Duluth", nameEn: "Paris Baguette — Duluth",
+    address: "3505 Pleasant Hill Rd Ste C5, Duluth GA 30096",
+    phone: "(678) 380-5060", hours: "매일 7am-10pm",
+    rating: 4.1, ratingCount: "300+",
+    why: "☕ 카페·베이커리\n한국식 베이커리·카페. 소금빵·크림빵·케이크. 한인 미팅 장소",
+    tip: "주말 사람 많음. 평일 추천", website: "parisbaguette.com" },
+];
+
+const TOP5_SETTLE_ATLANTA: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "한인회 (KAAA)", nameEn: "Korean American Association of Atlanta",
+    address: "5900 Brook Hollow Pkwy, Norcross GA 30071",
+    phone: "(770) 446-9466", hours: "월-금 9am-5pm",
+    why: "애틀랜타 한인 커뮤니티 허브. 정착·법률·취업 상담. 한국어 서비스 완전 지원",
+    tip: "방문 전 전화 예약", website: "kaaatlanta.org" },
+  { rank: 2, emoji: "🏪", nameKo: "H-Mart 듀럴스", nameEn: "H-Mart — Duluth",
+    address: "2700 Pleasant Hill Rd, Duluth GA 30096",
+    phone: "(770) 622-1100", hours: "매일 8am-10pm",
+    why: "애틀랜타 최대 한인 마트. 듀럴스 한인타운 중심. 한국 식품·생활용품 완비",
+    tip: "주차 무료. 푸드코트 운영", website: "hmart.com" },
+  { rank: 3, emoji: "🚗", nameKo: "조지아 DDS — 운전면허", nameEn: "Georgia DDS — Driver License",
+    address: "5318 Buford Hwy NE, Doraville GA 30340",
+    phone: "(678) 413-8400", hours: "월-금 8am-5pm",
+    why: "GA 이주 30일 내 면허 전환 의무. 한국 면허 지참 시 일부 면제 가능",
+    tip: "🔗 dds.georgia.gov 예약 필수", website: "dds.georgia.gov" },
+  { rank: 4, emoji: "🏥", nameKo: "Center for Pan Asian Community Services (CPACS)", nameEn: "CPACS — Center for Pan Asian Community Services",
+    address: "3510 Shallowford Rd NE, Atlanta GA 30341",
+    phone: "(770) 936-0969", hours: "월-금 9am-5pm",
+    why: "애틀랜타 아시안 이민자 종합 서비스. 한국어 통역. 의료·법률·취업 연결",
+    tip: "무료 서비스 다수. 사전 예약 권장", website: "cpacs.org" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "주애틀랜타 총영사관", nameEn: "Korean Consulate General — Atlanta",
+    address: "229 Peachtree St NE Ste 500, Atlanta GA 30303",
+    phone: "(404) 522-1611", hours: "월-금 9am-12pm, 1:30pm-4pm",
+    why: "여권·공증·재외국민 등록. 조지아·앨라배마·테네시·노스캐롤라이나·사우스캐롤라이나·미시시피 담당",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/us-atlanta-ko", website: "overseas.mofa.go.kr/us-atlanta-ko" },
+];
+
+const TOP5_EXPLORE_ATLANTA: Top5Item[] = [
+  { rank: 1, emoji: "🏘️", nameKo: "듀럴스·도라빌 한인타운 (Buford Hwy)", nameEn: "Duluth & Doraville Koreatown",
+    address: "Buford Hwy NE & Pleasant Hill Rd, Atlanta GA",
+    why: "애틀랜타 최대 한인 밀집. H-Mart·한식당·한인 교회·노래방 집결. 미국 동남부 한인 1번지",
+    tip: "Buford Hwy 따라 다민족 식당가 — 베트남·중국·라티노 식당도 함께", website: "maps.google.com/?q=Koreatown+Duluth+Atlanta" },
+  { rank: 2, emoji: "🥤", nameKo: "World of Coca-Cola", nameEn: "World of Coca-Cola",
+    address: "121 Baker St NW, Atlanta GA 30313",
+    why: "코카콜라 본사 박물관. 200+ 음료 시음. 가족·외국인 인기. 다운타운 도보 거리",
+    tip: "입장료 $20. 조지아 아쿠아리움과 함께 코스", website: "worldofcoca-cola.com" },
+  { rank: 3, emoji: "🏈", nameKo: "Mercedes-Benz Stadium (월드컵 경기장)", nameEn: "Mercedes-Benz Stadium — World Cup 2026",
+    address: "1 AMB Dr NW, Atlanta GA 30313",
+    why: "애틀랜타 팰컨스 홈구장. 2026 월드컵 미국 호스트. 8경기 개최",
+    tip: "월드컵 기간 다운타운 호텔 사전 예약 필수", website: "mercedesbenzstadium.com" },
+  { rank: 4, emoji: "🌳", nameKo: "Stone Mountain Park", nameEn: "Stone Mountain Park",
+    address: "1000 Robert E Lee Blvd, Stone Mountain GA 30083",
+    why: "거대한 단일 화강암 산. 케이블카·레이저쇼·하이킹. 한인 가족 주말 나들이 1순위",
+    tip: "주차 $20. 시즌 패스 $40. 정상 케이블카 별도", website: "stonemountainpark.com" },
+  { rank: 5, emoji: "🏞️", nameKo: "Atlantic Station & Piedmont Park", nameEn: "Atlantic Station & Piedmont Park",
+    address: "1380 Atlantic Dr NW, Atlanta GA 30363",
+    why: "쇼핑·식사·산책 모두 가능. 다운타운 인근. 한인 가족 주말 코스",
+    tip: "Piedmont Park 무료. 주말 행사 자주", website: "atlanticstation.com" },
+];
+
+/* ─────────────────────────────────────────
+   KANSAS CITY 전용 데이터 (월드컵 2026)
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_KANSASCITY: Top5Item[] = [
+  { rank: 1, emoji: "🍲", nameKo: "Hong Hwa Korean Restaurant", nameEn: "Hong Hwa Korean Restaurant",
+    address: "8336 W 135th St, Overland Park KS 66223",
+    phone: "(913) 851-9133", hours: "매일 11am-10pm",
+    rating: 4.0, ratingCount: "200+",
+    why: "🍲 국물·한식\n캔자스시티 (오버랜드파크) 한식. 갈비탕·비빔밥. 한인 교민 단골",
+    tip: "오버랜드파크 한인 상권 중심", website: "yelp.com/biz/hong-hwa-overland-park" },
+  { rank: 2, emoji: "🥩", nameKo: "Choga Korean BBQ", nameEn: "Choga Korean BBQ — Overland Park",
+    address: "10665 W 87th St, Overland Park KS 66214",
+    hours: "매일 11am-10pm",
+    rating: 4.1, ratingCount: "150+",
+    why: "🥩 BBQ\n캔자스시티 한인 BBQ. 갈비·삼겹살. 가족 모임 장소",
+    tip: "주말 웨이팅 있음", website: "yelp.com/search?find_desc=Korean+BBQ&find_loc=Overland+Park+KS" },
+  { rank: 3, emoji: "🍗", nameKo: "한국식 치킨 (Yelp 검색)", nameEn: "Korean Fried Chicken — Kansas City",
+    address: "Overland Park / Kansas City 지역",
+    hours: "매장별 상이",
+    rating: 4.0, ratingCount: "—",
+    why: "🍗 치킨\n캔자스시티 지역 한국식 치킨 옵션. Yelp에서 최신 평점 확인",
+    tip: "Yelp 검색으로 최신 정보", website: "yelp.com/search?find_desc=Korean+chicken&find_loc=Kansas+City+MO" },
+  { rank: 4, emoji: "🥘", nameKo: "Mr. K's Cafe", nameEn: "Mr. K's Cafe — Korean",
+    address: "Overland Park KS 지역",
+    hours: "매일 11am-9pm",
+    rating: 4.0, ratingCount: "100+",
+    why: "🥘 분식·한식\n캔자스시티 한국식 캐주얼. 김밥·라면·덮밥",
+    tip: "Yelp에서 영업시간 확인", website: "yelp.com/search?find_desc=Mr+K&find_loc=Overland+Park+KS" },
+  { rank: 5, emoji: "🏪", nameKo: "Chinatown Food Market (한국식품)", nameEn: "Asian Market — Kansas City Korean Foods",
+    address: "10336 Mastin St, Overland Park KS 66212",
+    hours: "매일 9am-9pm",
+    rating: 4.0, ratingCount: "100+",
+    why: "🏪 마트·식료품\n캔자스시티 아시안 마트. 한국 식품 일부 취급. 한인 교민 활용",
+    tip: "H-Mart 미진출 지역 — 아시안 마트 활용", website: "yelp.com/search?find_desc=Korean+market&find_loc=Overland+Park+KS" },
+];
+
+const TOP5_SETTLE_KANSASCITY: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "Korean American Association of Kansas City", nameEn: "Korean American Association of Greater Kansas City",
+    address: "Overland Park / Kansas City 지역",
+    hours: "월-금 (전화 확인)",
+    why: "캔자스시티 한인회. 정착·법률·취업 상담",
+    tip: "전화로 사전 예약", website: "google.com/search?q=Korean+American+Association+Kansas+City" },
+  { rank: 2, emoji: "🏪", nameKo: "아시안 마트 (한국식품)", nameEn: "Asian Markets — Korean Foods",
+    address: "Overland Park KS 지역",
+    hours: "매장별 상이",
+    why: "캔자스시티 한국 식품 공급. H-Mart 미진출. 아시안 마트로 대체",
+    tip: "Chinatown Food Market·888 International 등", website: "yelp.com/search?find_desc=Korean+market&find_loc=Kansas+City+MO" },
+  { rank: 3, emoji: "🚗", nameKo: "Missouri DOR — 운전면허", nameEn: "Missouri DOR — Driver License",
+    address: "Kansas City MO (가까운 지점)",
+    hours: "월-금 8am-5pm",
+    why: "MO 이주 30일 내 면허 전환 의무. KS 거주 시 별도 KS DMV",
+    tip: "🔗 dor.mo.gov 예약 권장", website: "dor.mo.gov" },
+  { rank: 4, emoji: "⛪", nameKo: "한인 교회 (캔자스시티)", nameEn: "Korean Churches — Kansas City",
+    address: "Overland Park / Kansas City 지역",
+    hours: "주일 예배",
+    why: "캔자스시티 한인 교회 — 정착 영적·실용 지원. 한인 커뮤니티 첫 연결",
+    tip: "지역 한인회·구글 검색 활용", website: "google.com/search?q=Korean+church+Kansas+City" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "총영사관 (시카고 관할)", nameEn: "Korean Consulate — Chicago (Jurisdiction)",
+    address: "455 N Cityfront Plaza Dr Ste 2700, Chicago IL 60611",
+    phone: "(312) 822-9485", hours: "월-금 9am-12pm, 1:30pm-4pm",
+    why: "캔자스시티는 시카고 총영사관 관할. 여권·공증·재외국민 등록",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/us-chicago-ko", website: "overseas.mofa.go.kr/us-chicago-ko" },
+];
+
+const TOP5_EXPLORE_KANSASCITY: Top5Item[] = [
+  { rank: 1, emoji: "🏈", nameKo: "Arrowhead Stadium (월드컵 경기장)", nameEn: "Arrowhead Stadium — World Cup 2026",
+    address: "1 Arrowhead Dr, Kansas City MO 64129",
+    why: "NFL 캔자스시티 치프스 홈구장. 2026 월드컵 미국 호스트. 6경기 개최",
+    tip: "월드컵 기간 호텔·교통 사전 계획 필수", website: "chiefs.com" },
+  { rank: 2, emoji: "🍖", nameKo: "Kansas City BBQ (현지 명물)", nameEn: "Kansas City BBQ — Local Specialty",
+    address: "Joe's KC BBQ: 3002 W 47th Ave, Kansas City KS 66103",
+    why: "캔자스시티 BBQ — 미국 4대 BBQ 도시. Joe's KC·Q39·Arthur Bryant's 추천",
+    tip: "현지 한인도 즐기는 명물. 점심 추천", website: "joeskc.com" },
+  { rank: 3, emoji: "🌆", nameKo: "Country Club Plaza", nameEn: "Country Club Plaza — Spanish-style District",
+    address: "4750 Broadway St, Kansas City MO 64112",
+    why: "스페인풍 야외 쇼핑·식사 단지. 캔자스시티 1위 명소. 야경·분수·산책",
+    tip: "주말 행사 자주. 무료 입장", website: "countryclubplaza.com" },
+  { rank: 4, emoji: "🎨", nameKo: "Nelson-Atkins Museum of Art", nameEn: "Nelson-Atkins Museum of Art",
+    address: "4525 Oak St, Kansas City MO 64111",
+    why: "세계 수준 미술관. 동양·서양 미술 컬렉션. 무료 입장",
+    tip: "셔틀콕 조형물 인증샷 명소", website: "nelson-atkins.org" },
+  { rank: 5, emoji: "🌳", nameKo: "Loose Park & 분수 광장", nameEn: "Loose Park",
+    address: "5200 Wornall Rd, Kansas City MO 64112",
+    why: "캔자스시티 도심 공원. 장미정원·산책로. 한인 가족 주말 나들이",
+    tip: "무료 입장. Country Club Plaza 인근", website: "kcparks.org" },
+];
+
+/* ─────────────────────────────────────────
+   PHILADELPHIA 전용 데이터 (월드컵 2026)
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_PHILADELPHIA: Top5Item[] = [
+  { rank: 1, emoji: "🥩", nameKo: "Kim's Restaurant — 필라델피아 한식", nameEn: "Kim's Restaurant — Philadelphia",
+    address: "5955 N 5th St, Philadelphia PA 19120",
+    phone: "(215) 927-4550", hours: "매일 11am-10pm",
+    rating: 4.2, ratingCount: "300+",
+    why: "🥩 BBQ·한식\n필라델피아 Olney 한인타운 정통 한식. 갈비·불고기·반찬",
+    tip: "5th St 한인 상권 중심", website: "yelp.com/biz/kims-restaurant-philadelphia" },
+  { rank: 2, emoji: "🍲", nameKo: "Cho Sun Ok — 한식당", nameEn: "Cho Sun Ok Korean Restaurant",
+    address: "Cheltenham PA 지역",
+    hours: "매일 11am-10pm",
+    rating: 4.1, ratingCount: "200+",
+    why: "🍲 국물·한식\n필라델피아 첼튼햄 한인 단골. 순두부·갈비탕",
+    tip: "Cheltenham 한인 상권", website: "yelp.com/search?find_desc=Cho+Sun+Ok&find_loc=Philadelphia+PA" },
+  { rank: 3, emoji: "🍗", nameKo: "BonChon — 필라델피아", nameEn: "BonChon — Philadelphia",
+    address: "Center City Philadelphia PA",
+    hours: "매일 11am-10pm",
+    rating: 4.0, ratingCount: "300+",
+    why: "🍗 치킨\n필라델피아 한국식 치킨. 다운타운 접근성",
+    tip: "Center City 위치", website: "bonchon.com" },
+  { rank: 4, emoji: "🥘", nameKo: "Korean Restaurants — Cheltenham", nameEn: "Korean Restaurants — Cheltenham Area",
+    address: "Cheltenham PA / North Philadelphia",
+    hours: "매장별 상이",
+    rating: 4.0, ratingCount: "—",
+    why: "🥘 한식·분식\n필라델피아 첼튼햄 한인 식당가. 다양한 한식 옵션",
+    tip: "Yelp에서 최신 평점 확인", website: "yelp.com/search?find_desc=Korean&find_loc=Cheltenham+PA" },
+  { rank: 5, emoji: "🏪", nameKo: "H-Mart 첼튼햄 (필라델피아)", nameEn: "H-Mart — Cheltenham",
+    address: "7050 Terwood Rd, Elkins Park PA 19027",
+    phone: "(215) 663-1010", hours: "매일 8am-10pm",
+    rating: 4.3, ratingCount: "500+",
+    why: "🏪 마트·푸드코트\n필라델피아 H-Mart. 푸드코트 한식 분식. 한인 모임 장소",
+    tip: "주차 무료", website: "hmart.com" },
+];
+
+const TOP5_SETTLE_PHILADELPHIA: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "Korean Community Development Services Center", nameEn: "KCDSC — Philadelphia",
+    address: "6055 N 5th St, Philadelphia PA 19120",
+    phone: "(215) 224-2380", hours: "월-금 9am-5pm",
+    why: "필라델피아 한인 정착 지원. 법률·취업·교육 상담. 한국어 서비스",
+    tip: "방문 전 전화 예약", website: "kcdsc.org" },
+  { rank: 2, emoji: "🏪", nameKo: "H-Mart Elkins Park (Cheltenham)", nameEn: "H-Mart — Elkins Park",
+    address: "7050 Terwood Rd, Elkins Park PA 19027",
+    phone: "(215) 663-1010", hours: "매일 8am-10pm",
+    why: "필라델피아 한인 마트 1위. 한국 식품·생활용품 완비",
+    tip: "주차 무료. 푸드코트 활용", website: "hmart.com" },
+  { rank: 3, emoji: "🚗", nameKo: "PennDOT — 운전면허", nameEn: "PennDOT — Driver License",
+    address: "Philadelphia PA (가까운 지점)",
+    hours: "월-금 8:30am-4:15pm",
+    why: "PA 이주 60일 내 면허 전환 의무. 한국 면허 지참 시 일부 면제",
+    tip: "🔗 dmv.pa.gov 예약 권장", website: "dmv.pa.gov" },
+  { rank: 4, emoji: "⛪", nameKo: "한인 교회 (필라델피아)", nameEn: "Korean Churches — Philadelphia",
+    address: "Cheltenham / Olney 지역",
+    hours: "주일 예배",
+    why: "필라델피아 한인 교회 — 정착 영적·실용 지원",
+    tip: "지역 한인회·구글 검색 활용", website: "google.com/search?q=Korean+church+Philadelphia" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "주뉴욕 총영사관 (필라델피아 관할)", nameEn: "Korean Consulate General — New York",
+    address: "335 E 45th St, New York NY 10017",
+    phone: "(646) 674-6000", hours: "월-금 9am-12pm, 1:30pm-4pm",
+    why: "필라델피아는 뉴욕 총영사관 관할. 여권·공증·재외국민 등록",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/us-newyork-ko", website: "overseas.mofa.go.kr/us-newyork-ko" },
+];
+
+const TOP5_EXPLORE_PHILADELPHIA: Top5Item[] = [
+  { rank: 1, emoji: "🏘️", nameKo: "Cheltenham·Olney 한인타운", nameEn: "Cheltenham & Olney Koreatown",
+    address: "5th St & Cheltenham Ave, Philadelphia PA",
+    why: "필라델피아 한인 밀집 지역. H-Mart·한식당·한인 교회. 도심 북부",
+    tip: "5th St 따라 한인 상권", website: "maps.google.com/?q=Koreatown+Cheltenham+Philadelphia" },
+  { rank: 2, emoji: "🔔", nameKo: "Independence Hall & Liberty Bell", nameEn: "Independence Hall & Liberty Bell",
+    address: "520 Chestnut St, Philadelphia PA 19106",
+    why: "미국 독립선언 장소. 자유의 종. 미국 역사 1순위. 무료 입장",
+    tip: "성수기 사전 예약 필수", website: "nps.gov/inde" },
+  { rank: 3, emoji: "🏈", nameKo: "Lincoln Financial Field (월드컵 경기장)", nameEn: "Lincoln Financial Field — World Cup 2026",
+    address: "1 Lincoln Financial Field Way, Philadelphia PA 19148",
+    why: "필라델피아 이글스 홈구장. 2026 월드컵 미국 호스트. 6경기 개최",
+    tip: "월드컵 기간 다운타운 호텔 사전 예약", website: "lincolnfinancialfield.com" },
+  { rank: 4, emoji: "🎨", nameKo: "Philadelphia Museum of Art", nameEn: "Philadelphia Museum of Art",
+    address: "2600 Benjamin Franklin Pkwy, Philadelphia PA 19130",
+    why: "록키 계단으로 유명. 미국 3대 미술관. 한인 관광 1순위",
+    tip: "입장료 $30. 일부 무료 요일 활용", website: "philamuseum.org" },
+  { rank: 5, emoji: "🥖", nameKo: "Reading Terminal Market", nameEn: "Reading Terminal Market",
+    address: "51 N 12th St, Philadelphia PA 19107",
+    why: "필라델피아 100년 전통 실내 마켓. 필리 치즈스테이크·디저트·다양한 음식",
+    tip: "월-토 영업. 무료 입장", website: "readingterminalmarket.org" },
+];
+
+/* ─────────────────────────────────────────
+   MIAMI 전용 데이터 (월드컵 2026)
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_MIAMI: Top5Item[] = [
+  { rank: 1, emoji: "🥩", nameKo: "Gen Korean BBQ — Miami", nameEn: "Gen Korean BBQ — Miami",
+    address: "Doral / Aventura 지역, Miami FL",
+    hours: "매일 11am-11pm",
+    rating: 4.0, ratingCount: "500+",
+    why: "🥩 BBQ\n마이애미 한국식 AYCE BBQ. 한인·라티노·현지인 모두 인기",
+    tip: "주말 웨이팅. 앱 예약 권장", website: "genkoreanbbq.com" },
+  { rank: 2, emoji: "🍲", nameKo: "Korean Restaurants — Aventura", nameEn: "Korean Restaurants — Aventura/Doral",
+    address: "Aventura / Doral, Miami FL",
+    hours: "매장별 상이",
+    rating: 4.0, ratingCount: "—",
+    why: "🍲 한식\n마이애미 한식당 — Aventura·Doral 인근. 순두부·비빔밥·갈비탕",
+    tip: "Yelp에서 최신 평점 확인", website: "yelp.com/search?find_desc=Korean&find_loc=Miami+FL" },
+  { rank: 3, emoji: "🍗", nameKo: "BonChon — Miami", nameEn: "BonChon — Miami",
+    address: "Miami FL (다수 지점)",
+    hours: "매일 11am-10pm",
+    rating: 4.0, ratingCount: "300+",
+    why: "🍗 치킨\n마이애미 한국식 치킨. 다수 지점. 치맥 가능",
+    tip: "Doral·Aventura 지점 인기", website: "bonchon.com" },
+  { rank: 4, emoji: "🥘", nameKo: "Maru Korean BBQ", nameEn: "Maru Korean BBQ — Miami",
+    address: "Miami FL 지역",
+    hours: "매일 11am-10pm",
+    rating: 4.1, ratingCount: "200+",
+    why: "🥩 BBQ·갈비\n마이애미 한식 BBQ. 한인 가족 모임 장소",
+    tip: "Yelp에서 최신 정보 확인", website: "yelp.com/search?find_desc=Maru+Korean+BBQ&find_loc=Miami+FL" },
+  { rank: 5, emoji: "🏪", nameKo: "Asian Market (한국식품)", nameEn: "Asian Markets — Korean Foods Miami",
+    address: "Aventura / Doral 지역",
+    hours: "매장별 상이",
+    rating: 4.0, ratingCount: "—",
+    why: "🏪 마트·식료품\n마이애미 한국 식품 — H-Mart 미진출. 아시안 마트 활용",
+    tip: "Yelp 검색으로 최신 정보", website: "yelp.com/search?find_desc=Korean+market&find_loc=Miami+FL" },
+];
+
+const TOP5_SETTLE_MIAMI: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "Korean American Association of South Florida", nameEn: "Korean American Association — South Florida",
+    address: "Miami FL 지역",
+    hours: "월-금 (전화 확인)",
+    why: "마이애미 한인회. 정착·법률·취업 상담. 한인 커뮤니티 첫 연결",
+    tip: "전화로 사전 예약", website: "google.com/search?q=Korean+American+Association+South+Florida" },
+  { rank: 2, emoji: "🏪", nameKo: "Asian Markets (한국식품)", nameEn: "Asian Markets — Korean Foods",
+    address: "Aventura / Doral, Miami FL",
+    hours: "매장별 상이",
+    why: "마이애미 한국 식품 공급. H-Mart 미진출. 아시안 마트로 대체",
+    tip: "Yelp 검색 활용", website: "yelp.com/search?find_desc=Korean+market&find_loc=Miami+FL" },
+  { rank: 3, emoji: "🚗", nameKo: "Florida DHSMV — 운전면허", nameEn: "Florida DHSMV — Driver License",
+    address: "Miami FL (가까운 지점)",
+    hours: "월-금 8am-5pm",
+    why: "FL 이주 30일 내 면허 전환 의무. 한국 면허 지참 시 일부 면제",
+    tip: "🔗 flhsmv.gov 예약 필수", website: "flhsmv.gov" },
+  { rank: 4, emoji: "⛪", nameKo: "한인 교회 (마이애미)", nameEn: "Korean Churches — Miami",
+    address: "Miami FL 지역",
+    hours: "주일 예배",
+    why: "마이애미 한인 교회 — 정착 영적·실용 지원",
+    tip: "지역 한인회·구글 검색 활용", website: "google.com/search?q=Korean+church+Miami" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "주애틀랜타 총영사관 (마이애미 관할)", nameEn: "Korean Consulate — Atlanta (Jurisdiction)",
+    address: "229 Peachtree St NE Ste 500, Atlanta GA 30303",
+    phone: "(404) 522-1611", hours: "월-금 9am-12pm, 1:30pm-4pm",
+    why: "마이애미는 애틀랜타 총영사관 관할. 여권·공증·재외국민 등록",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/us-atlanta-ko", website: "overseas.mofa.go.kr/us-atlanta-ko" },
+];
+
+const TOP5_EXPLORE_MIAMI: Top5Item[] = [
+  { rank: 1, emoji: "🏖️", nameKo: "South Beach (Miami Beach)", nameEn: "South Beach — Miami Beach",
+    address: "Ocean Dr, Miami Beach FL 33139",
+    why: "마이애미 대표 해변. 아르데코 거리·야자수·해변. 한인 관광 1순위",
+    tip: "주차 어려움 — 우버 권장", website: "miamibeachfl.gov" },
+  { rank: 2, emoji: "🏈", nameKo: "Hard Rock Stadium (월드컵 경기장)", nameEn: "Hard Rock Stadium — World Cup 2026",
+    address: "347 Don Shula Dr, Miami Gardens FL 33056",
+    why: "마이애미 돌핀스 홈구장. 2026 월드컵 미국 호스트. 7경기 개최",
+    tip: "월드컵 기간 호텔·교통 사전 계획", website: "hardrockstadium.com" },
+  { rank: 3, emoji: "🎨", nameKo: "Wynwood Walls", nameEn: "Wynwood Walls",
+    address: "266 NW 26th St, Miami FL 33127",
+    why: "세계적 그래피티·스트릿 아트 거리. 인스타 명소. 카페·갤러리",
+    tip: "입장료 $12. 야경 추천", website: "thewynwoodwalls.com" },
+  { rank: 4, emoji: "🌴", nameKo: "Little Havana (Calle Ocho)", nameEn: "Little Havana — Calle Ocho",
+    address: "SW 8th St, Miami FL 33135",
+    why: "쿠바 이민자 문화 거리. 시가·라티노 음식·살사. 마이애미 정체성",
+    tip: "Versailles 레스토랑 명물", website: "visitlittlehavana.com" },
+  { rank: 5, emoji: "🐊", nameKo: "Everglades National Park", nameEn: "Everglades National Park",
+    address: "40001 State Road 9336, Homestead FL 33034",
+    why: "악어 서식지·습지 국립공원. 에어보트 투어. 한인 가족 액티비티",
+    tip: "마이애미에서 1시간. 입장료 $30/차량", website: "nps.gov/ever" },
+];
+
+/* ─────────────────────────────────────────
+   MEXICO CITY 전용 데이터 (월드컵 2026)
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_MEXICOCITY: Top5Item[] = [
+  { rank: 1, emoji: "🥩", nameKo: "Restaurante Hangang — Zona Rosa", nameEn: "Restaurante Hangang — Zona Rosa",
+    address: "Florencia 38, Juárez, 06600 Ciudad de México, CDMX, Mexico",
+    phone: "+52 55 5208 1300", hours: "Lun-Dom 12pm-10pm",
+    rating: 4.3, ratingCount: "500+",
+    why: "🥩 BBQ\n멕시코시티 Zona Rosa 한인타운 대표 BBQ. 갈비·삼겹살. 한인·멕시코인 모두 인기",
+    tip: "Zona Rosa 한인 상권 중심. Metro Insurgentes역", website: "yelp.com/biz/hangang-mexico-city" },
+  { rank: 2, emoji: "🍲", nameKo: "Biwon — 한식당 Zona Rosa", nameEn: "Biwon Korean Restaurant — Zona Rosa",
+    address: "Zona Rosa, Ciudad de México, CDMX",
+    hours: "Lun-Dom 12pm-10pm",
+    rating: 4.2, ratingCount: "300+",
+    why: "🍲 국물·한식\nZona Rosa 한인타운 정통 한식. 순두부·비빔밥·갈비탕",
+    tip: "한국어 메뉴 가능. Metro Insurgentes", website: "yelp.com/search?find_desc=Korean&find_loc=Zona+Rosa+Mexico+City" },
+  { rank: 3, emoji: "🍗", nameKo: "Korean Fried Chicken — CDMX", nameEn: "Korean Fried Chicken — Mexico City",
+    address: "Zona Rosa / Polanco, CDMX",
+    hours: "Lun-Dom 12pm-10pm",
+    rating: 4.1, ratingCount: "200+",
+    why: "🍗 치킨\n멕시코시티 한국식 치킨. 한인·멕시코 청년 인기",
+    tip: "Yelp에서 최신 정보 확인", website: "yelp.com/search?find_desc=Korean+chicken&find_loc=Mexico+City" },
+  { rank: 4, emoji: "🥘", nameKo: "Korean BBQ — Polanco", nameEn: "Korean BBQ Restaurants — Polanco",
+    address: "Polanco, Ciudad de México",
+    hours: "Lun-Dom 12pm-11pm",
+    rating: 4.1, ratingCount: "—",
+    why: "🥩 BBQ·고급 한식\nPolanco 한식당. 고급 한식·BBQ 옵션",
+    tip: "Polanco는 멕시코시티 고급 상권", website: "yelp.com/search?find_desc=Korean+BBQ&find_loc=Polanco+Mexico+City" },
+  { rank: 5, emoji: "🏪", nameKo: "한국 식품점 (Zona Rosa)", nameEn: "Korean Markets — Zona Rosa",
+    address: "Zona Rosa, Ciudad de México",
+    hours: "Lun-Dom 9am-9pm",
+    rating: 4.0, ratingCount: "—",
+    why: "🏪 마트·식료품\n멕시코시티 한국 식품점. Zona Rosa 집결",
+    tip: "Yelp·Google 검색으로 최신 정보", website: "google.com/maps/search/Korean+market+Zona+Rosa+Mexico+City" },
+];
+
+const TOP5_SETTLE_MEXICOCITY: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "Asociación Coreana de México", nameEn: "Korean Association of Mexico",
+    address: "Ciudad de México, CDMX",
+    hours: "Lun-Vie 9am-5pm",
+    why: "멕시코 한인회. 정착·법률·취업 상담. 한국어·스페인어 서비스",
+    tip: "방문 전 전화 예약", website: "google.com/search?q=Asociacion+Coreana+Mexico" },
+  { rank: 2, emoji: "🏪", nameKo: "한국 식품점 (Zona Rosa)", nameEn: "Korean Markets — Zona Rosa",
+    address: "Zona Rosa, Ciudad de México",
+    hours: "Lun-Dom 9am-9pm",
+    why: "Zona Rosa 한인타운 한국 식품점 집결. 한인 정착 필수",
+    tip: "Metro Insurgentes 도보 거리", website: "google.com/maps/search/Korean+market+Zona+Rosa" },
+  { rank: 3, emoji: "🚗", nameKo: "Licencia de Conducir CDMX", nameEn: "Mexico City Driver License",
+    address: "CDMX 운전면허국",
+    hours: "Lun-Vie 8am-5pm",
+    why: "멕시코시티 운전면허. 한국 면허 지참 시 일부 면제 가능",
+    tip: "🔗 cdmx.gob.mx 예약 권장", website: "cdmx.gob.mx" },
+  { rank: 4, emoji: "⛪", nameKo: "한인 교회 (멕시코시티)", nameEn: "Korean Churches — Mexico City",
+    address: "Zona Rosa / Polanco 지역",
+    hours: "주일 예배",
+    why: "멕시코시티 한인 교회. 정착 영적·실용 지원",
+    tip: "한인회·구글 검색 활용", website: "google.com/search?q=Korean+church+Mexico+City" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "주멕시코 대한민국 대사관", nameEn: "Korean Embassy — Mexico",
+    address: "Lope de Armendáriz 110, Lomas Virreyes, 11000 CDMX, Mexico",
+    phone: "+52 55 5202 9866", hours: "Lun-Vie 9am-12pm, 2pm-4pm",
+    why: "여권·공증·재외국민 등록. 멕시코 전체 담당",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/mx-ko", website: "overseas.mofa.go.kr/mx-ko" },
+];
+
+const TOP5_EXPLORE_MEXICOCITY: Top5Item[] = [
+  { rank: 1, emoji: "🏘️", nameKo: "Zona Rosa 한인타운", nameEn: "Zona Rosa Koreatown",
+    address: "Zona Rosa, Ciudad de México, CDMX",
+    why: "멕시코시티 한인 밀집 — 한식당·한국 식품점·한인 교회 집결. 라틴아메리카 한인 1번지",
+    tip: "Metro Insurgentes역 도보. 한국어·스페인어 모두 통함", website: "maps.google.com/?q=Zona+Rosa+Koreatown+Mexico+City" },
+  { rank: 2, emoji: "🏛️", nameKo: "Centro Histórico & Zócalo", nameEn: "Historic Center & Zócalo",
+    address: "Plaza de la Constitución, Centro, CDMX",
+    why: "멕시코시티 도심 광장. 메트로폴리탄 대성당·국립궁전. 유네스코 세계유산",
+    tip: "주말 행사 자주. Metro Zócalo역", website: "cdmx.gob.mx" },
+  { rank: 3, emoji: "🏟️", nameKo: "Estadio Azteca (월드컵 개막전)", nameEn: "Estadio Azteca — World Cup 2026 Opener",
+    address: "Calz. de Tlalpan 3465, Sta. Úrsula Coapa, 04650 CDMX",
+    why: "1970·1986·2026 세 번 월드컵 개최 유일 경기장. 2026 월드컵 개막전 개최",
+    tip: "월드컵 기간 사전 예약 필수", website: "estadioazteca.com.mx" },
+  { rank: 4, emoji: "🏜️", nameKo: "Teotihuacán 피라미드", nameEn: "Teotihuacán Pyramids",
+    address: "Teotihuacán, Estado de México",
+    why: "고대 메소아메리카 도시. 태양·달의 피라미드. 멕시코시티 1시간",
+    tip: "입장료 $90 MXN. 일출 투어 추천", website: "teotihuacan.inah.gob.mx" },
+  { rank: 5, emoji: "🌳", nameKo: "Bosque de Chapultepec", nameEn: "Chapultepec Park & Castle",
+    address: "Bosque de Chapultepec, CDMX",
+    why: "멕시코시티 도심 공원. 차풀테펙성·국립인류학박물관. 가족 나들이",
+    tip: "박물관 입장료 별도. Metro Chapultepec", website: "chapultepec.org.mx" },
+];
+
+/* ─────────────────────────────────────────
+   GUADALAJARA 전용 데이터 (월드컵 2026)
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_GUADALAJARA: Top5Item[] = [
+  { rank: 1, emoji: "🥩", nameKo: "Korean BBQ — Guadalajara", nameEn: "Korean BBQ — Guadalajara",
+    address: "Zona Providencia, Guadalajara, Jalisco",
+    hours: "Lun-Dom 1pm-10pm",
+    rating: 4.0, ratingCount: "150+",
+    why: "🥩 BBQ\n과달라하라 한국식 BBQ. 한인·현지인 모두 인기",
+    tip: "Yelp에서 최신 평점 확인", website: "yelp.com/search?find_desc=Korean+BBQ&find_loc=Guadalajara" },
+  { rank: 2, emoji: "🍲", nameKo: "Sambok Korean Restaurant", nameEn: "Sambok Korean Restaurant — Guadalajara",
+    address: "Guadalajara, Jalisco",
+    hours: "Lun-Dom 12pm-10pm",
+    rating: 4.1, ratingCount: "100+",
+    why: "🍲 한식\n과달라하라 정통 한식. 비빔밥·순두부·갈비탕",
+    tip: "한인 교민·현지 한류팬 단골", website: "yelp.com/search?find_desc=Sambok&find_loc=Guadalajara" },
+  { rank: 3, emoji: "🍗", nameKo: "Korean Chicken — Guadalajara", nameEn: "Korean Chicken — Guadalajara",
+    address: "Zona Providencia / Chapalita",
+    hours: "Lun-Dom 12pm-10pm",
+    rating: 4.0, ratingCount: "—",
+    why: "🍗 치킨\n과달라하라 한국식 치킨. 한류 영향 인기",
+    tip: "Yelp 검색으로 최신 정보", website: "yelp.com/search?find_desc=Korean+chicken&find_loc=Guadalajara" },
+  { rank: 4, emoji: "🥘", nameKo: "Korean Restaurants — Chapalita", nameEn: "Korean Restaurants — Chapalita Area",
+    address: "Chapalita, Guadalajara, Jalisco",
+    hours: "매장별 상이",
+    rating: 4.0, ratingCount: "—",
+    why: "🥘 한식\n과달라하라 한식당가. Chapalita 인근 다수",
+    tip: "Yelp·Google 검색", website: "google.com/maps/search/Korean+restaurant+Guadalajara" },
+  { rank: 5, emoji: "🏪", nameKo: "Asian Market — Guadalajara", nameEn: "Asian Market — Guadalajara",
+    address: "Guadalajara, Jalisco",
+    hours: "매장별 상이",
+    rating: 4.0, ratingCount: "—",
+    why: "🏪 마트·식료품\n과달라하라 아시안 마트. 한국 식품 일부 취급",
+    tip: "Yelp 검색 활용", website: "google.com/maps/search/Korean+market+Guadalajara" },
+];
+
+const TOP5_SETTLE_GUADALAJARA: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "Asociación Coreana — Guadalajara", nameEn: "Korean Association — Guadalajara",
+    address: "Guadalajara, Jalisco",
+    hours: "Lun-Vie (전화 확인)",
+    why: "과달라하라 한인회. 정착·법률·취업 상담. 한국어 서비스",
+    tip: "전화 사전 예약", website: "google.com/search?q=Korean+Association+Guadalajara" },
+  { rank: 2, emoji: "🏪", nameKo: "Asian Markets (한국식품)", nameEn: "Asian Markets — Korean Foods",
+    address: "Guadalajara, Jalisco",
+    hours: "매장별 상이",
+    why: "과달라하라 한국 식품. 아시안 마트 활용",
+    tip: "Yelp·Google 검색", website: "google.com/maps/search/Korean+market+Guadalajara" },
+  { rank: 3, emoji: "🚗", nameKo: "Licencia de Conducir — Jalisco", nameEn: "Jalisco Driver License",
+    address: "Guadalajara, Jalisco",
+    hours: "Lun-Vie 8am-3pm",
+    why: "할리스코주 운전면허. 한국 면허 지참 시 일부 면제",
+    tip: "🔗 jalisco.gob.mx 확인", website: "jalisco.gob.mx" },
+  { rank: 4, emoji: "⛪", nameKo: "한인 교회 (과달라하라)", nameEn: "Korean Churches — Guadalajara",
+    address: "Guadalajara, Jalisco",
+    hours: "주일 예배",
+    why: "과달라하라 한인 교회. 정착 영적·실용 지원",
+    tip: "한인회·구글 검색 활용", website: "google.com/search?q=Korean+church+Guadalajara" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "주멕시코 대한민국 대사관", nameEn: "Korean Embassy — Mexico",
+    address: "Lope de Armendáriz 110, Lomas Virreyes, 11000 CDMX, Mexico",
+    phone: "+52 55 5202 9866", hours: "Lun-Vie 9am-12pm, 2pm-4pm",
+    why: "과달라하라는 멕시코시티 대사관 관할. 여권·공증·재외국민 등록",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/mx-ko", website: "overseas.mofa.go.kr/mx-ko" },
+];
+
+const TOP5_EXPLORE_GUADALAJARA: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "Centro Histórico Guadalajara", nameEn: "Guadalajara Historic Center",
+    address: "Centro, Guadalajara, Jalisco",
+    why: "과달라하라 도심. 대성당·국립극장·정부청사. 멕시코 문화 수도",
+    tip: "주말 거리 공연·시장. 도보 관광", website: "visitguadalajara.com" },
+  { rank: 2, emoji: "🏟️", nameKo: "Estadio Akron (월드컵 경기장)", nameEn: "Estadio Akron — World Cup 2026",
+    address: "Av. Vallarta 8200, Zapopan, Jalisco",
+    why: "Chivas 홈구장. 2026 월드컵 멕시코 호스트. 4경기 개최",
+    tip: "월드컵 기간 호텔 사전 예약", website: "chivasdecorazon.com.mx" },
+  { rank: 3, emoji: "🥃", nameKo: "Tequila 마을 (Pueblo Mágico)", nameEn: "Tequila Town — Pueblo Mágico",
+    address: "Tequila, Jalisco",
+    why: "데킬라 발상지 마을. 아가베 농장·증류소 투어. 과달라하라 1시간",
+    tip: "Jose Cuervo·Sauza 투어 추천", website: "visitmexico.com/tequila" },
+  { rank: 4, emoji: "🎨", nameKo: "Tlaquepaque & Tonalá", nameEn: "Tlaquepaque & Tonalá Artisan Towns",
+    address: "Tlaquepaque, Jalisco",
+    why: "수공예 마을. 도자기·유리공예·가죽. 멕시코 전통 쇼핑",
+    tip: "주말 활기. 카페·갤러리", website: "visitmexico.com/tlaquepaque" },
+  { rank: 5, emoji: "🌊", nameKo: "Lago de Chapala", nameEn: "Lake Chapala",
+    address: "Chapala, Jalisco",
+    why: "멕시코 최대 호수. 과달라하라 1시간. 한인·외국인 은퇴자 마을",
+    tip: "Ajijic 마을 외국인 커뮤니티", website: "visitmexico.com/chapala" },
+];
+
+/* ─────────────────────────────────────────
+   MONTERREY 전용 데이터 (월드컵 2026)
+───────────────────────────────────────── */
+const TOP5_RESTAURANTS_MONTERREY: Top5Item[] = [
+  { rank: 1, emoji: "🥩", nameKo: "Korean BBQ — Monterrey", nameEn: "Korean BBQ — Monterrey",
+    address: "San Pedro Garza García, Nuevo León",
+    hours: "Lun-Dom 1pm-10pm",
+    rating: 4.0, ratingCount: "100+",
+    why: "🥩 BBQ\n몬테레이 한국식 BBQ. 한인·현지인 인기",
+    tip: "San Pedro 고급 상권. Yelp 확인", website: "yelp.com/search?find_desc=Korean+BBQ&find_loc=Monterrey" },
+  { rank: 2, emoji: "🍲", nameKo: "Korean Restaurants — San Pedro", nameEn: "Korean Restaurants — San Pedro",
+    address: "San Pedro Garza García, Nuevo León",
+    hours: "Lun-Dom 12pm-10pm",
+    rating: 4.1, ratingCount: "—",
+    why: "🍲 한식\n몬테레이 한식당. 비빔밥·순두부·갈비탕",
+    tip: "Yelp 검색으로 최신 정보", website: "yelp.com/search?find_desc=Korean&find_loc=San+Pedro+Monterrey" },
+  { rank: 3, emoji: "🍗", nameKo: "Korean Chicken — Monterrey", nameEn: "Korean Chicken — Monterrey",
+    address: "Monterrey, Nuevo León",
+    hours: "Lun-Dom 12pm-10pm",
+    rating: 4.0, ratingCount: "—",
+    why: "🍗 치킨\n몬테레이 한국식 치킨. 한류 영향",
+    tip: "Yelp 검색", website: "yelp.com/search?find_desc=Korean+chicken&find_loc=Monterrey" },
+  { rank: 4, emoji: "🥘", nameKo: "Asian Restaurants — Monterrey", nameEn: "Asian Restaurants — Monterrey",
+    address: "San Pedro / Monterrey 도심",
+    hours: "매장별 상이",
+    rating: 4.0, ratingCount: "—",
+    why: "🥘 아시안·한식\n몬테레이 아시안 식당가. 한식 옵션 일부",
+    tip: "Yelp·Google 검색", website: "google.com/maps/search/Korean+restaurant+Monterrey" },
+  { rank: 5, emoji: "🏪", nameKo: "Asian Market — Monterrey", nameEn: "Asian Market — Monterrey",
+    address: "Monterrey, Nuevo León",
+    hours: "매장별 상이",
+    rating: 4.0, ratingCount: "—",
+    why: "🏪 마트·식료품\n몬테레이 아시안 마트. 한국 식품 일부",
+    tip: "Yelp·Google 검색", website: "google.com/maps/search/Korean+market+Monterrey" },
+];
+
+const TOP5_SETTLE_MONTERREY: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "Asociación Coreana — Monterrey", nameEn: "Korean Association — Monterrey",
+    address: "Monterrey, Nuevo León",
+    hours: "Lun-Vie (전화 확인)",
+    why: "몬테레이 한인회. 정착 상담. 한국 기업 주재원 다수",
+    tip: "전화 사전 예약", website: "google.com/search?q=Korean+Association+Monterrey" },
+  { rank: 2, emoji: "🏭", nameKo: "Korean Companies (현대·기아·삼성)", nameEn: "Korean Corporations — Monterrey",
+    address: "Apodaca / Pesquería, Nuevo León",
+    hours: "월-금 9am-6pm",
+    why: "기아·현대 공장 인근. 몬테레이 한인 주재원 다수. 한인 커뮤니티 핵심",
+    tip: "Pesquería 기아 공장 인근 한인 주거", website: "google.com/search?q=Kia+Hyundai+Monterrey" },
+  { rank: 3, emoji: "🚗", nameKo: "Licencia de Conducir — Nuevo León", nameEn: "Nuevo León Driver License",
+    address: "Monterrey, Nuevo León",
+    hours: "Lun-Vie 8am-3pm",
+    why: "누에보레온주 운전면허. 한국 면허 지참 시 일부 면제",
+    tip: "🔗 nl.gob.mx 확인", website: "nl.gob.mx" },
+  { rank: 4, emoji: "⛪", nameKo: "한인 교회 (몬테레이)", nameEn: "Korean Churches — Monterrey",
+    address: "San Pedro / Monterrey",
+    hours: "주일 예배",
+    why: "몬테레이 한인 교회. 한인 주재원 가족 중심",
+    tip: "한인회·구글 검색", website: "google.com/search?q=Korean+church+Monterrey" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "주멕시코 대한민국 대사관", nameEn: "Korean Embassy — Mexico",
+    address: "Lope de Armendáriz 110, Lomas Virreyes, 11000 CDMX, Mexico",
+    phone: "+52 55 5202 9866", hours: "Lun-Vie 9am-12pm, 2pm-4pm",
+    why: "몬테레이는 멕시코시티 대사관 관할. 여권·공증·재외국민 등록",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/mx-ko", website: "overseas.mofa.go.kr/mx-ko" },
+];
+
+const TOP5_EXPLORE_MONTERREY: Top5Item[] = [
+  { rank: 1, emoji: "🏔️", nameKo: "Cerro de la Silla", nameEn: "Cerro de la Silla — Saddle Mountain",
+    address: "Monterrey, Nuevo León",
+    why: "몬테레이 상징 산. 안장 모양 봉우리. 도시 어디서나 보임",
+    tip: "전망대·하이킹 코스", website: "visitmexico.com/monterrey" },
+  { rank: 2, emoji: "🏟️", nameKo: "Estadio BBVA (월드컵 경기장)", nameEn: "Estadio BBVA — World Cup 2026",
+    address: "Av. Pablo Livas 2011, Guadalupe, Nuevo León",
+    why: "Rayados 홈구장. 2026 월드컵 멕시코 호스트. 4경기 개최",
+    tip: "월드컵 기간 호텔 사전 예약", website: "rayados.com" },
+  { rank: 3, emoji: "🌊", nameKo: "Parque Fundidora", nameEn: "Parque Fundidora",
+    address: "Av. Fundidora, Monterrey, Nuevo León",
+    why: "옛 제철소 부지 도심 공원. 박물관·산책로·자전거. 가족 나들이 1순위",
+    tip: "무료 입장. 주말 행사 자주", website: "parquefundidora.org" },
+  { rank: 4, emoji: "🏛️", nameKo: "Macroplaza & Barrio Antiguo", nameEn: "Macroplaza & Barrio Antiguo",
+    address: "Centro, Monterrey, Nuevo León",
+    why: "세계 최대 광장 중 하나. 대성당·박물관 집결. 야간 바·식당가 Barrio Antiguo",
+    tip: "도보 관광. 주말 야간 활기", website: "visitmexico.com/monterrey" },
+  { rank: 5, emoji: "🏞️", nameKo: "Grutas de García & Chipinque", nameEn: "García Caves & Chipinque Park",
+    address: "García / San Pedro, Nuevo León",
+    why: "동굴 탐험·산악 공원. 몬테레이 1시간. 한인 가족 액티비티",
+    tip: "Chipinque 무료. Grutas 입장료", website: "visitmexico.com/monterrey" },
 ];
 
 /* ─────────────────────────────────────────
@@ -1617,7 +2321,9 @@ const CITY_LIVECAM: Partial<Record<CitySlug, string>> = {
 const WORLD_CUP_2026 = {
   startDate: new Date("2026-06-01"),  // 1주일 전부터 노출
   endDate:   new Date("2026-07-26"),  // 1주일 후까지 유지
-  hostCities: ["seattle", "la", "newyork", "dallas", "sf", "boston", "toronto", "vancouver"] as CitySlug[],
+  hostCities: ["seattle", "la", "newyork", "dallas", "sf", "boston", "toronto", "vancouver",
+               "houston", "atlanta", "kansascity", "philadelphia", "miami",
+               "mexicocity", "guadalajara", "monterrey"] as CitySlug[],
 };
 
 function isWorldCupActive(slug: CitySlug): boolean {
@@ -3371,6 +4077,14 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "la"        ? TOP5_SETTLE_LA :
             useCityConfig().slug === "toronto"   ? TOP5_SETTLE_TORONTO :
             useCityConfig().slug === "vancouver" ? TOP5_SETTLE_VANCOUVER :
+            useCityConfig().slug === "houston"   ? TOP5_SETTLE_HOUSTON :
+            useCityConfig().slug === "atlanta"   ? TOP5_SETTLE_ATLANTA :
+            useCityConfig().slug === "kansascity"? TOP5_SETTLE_KANSASCITY :
+            useCityConfig().slug === "philadelphia" ? TOP5_SETTLE_PHILADELPHIA :
+            useCityConfig().slug === "miami"     ? TOP5_SETTLE_MIAMI :
+            useCityConfig().slug === "mexicocity"? TOP5_SETTLE_MEXICOCITY :
+            useCityConfig().slug === "guadalajara"? TOP5_SETTLE_GUADALAJARA :
+            useCityConfig().slug === "monterrey" ? TOP5_SETTLE_MONTERREY :
             TOP5_SETTLE
           } lang={lang} accentColor="#F2994A" />
         )}
@@ -3869,6 +4583,14 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
             useCityConfig().slug === "la"        ? TOP5_RESTAURANTS_LA :
             useCityConfig().slug === "toronto"   ? TOP5_RESTAURANTS_TORONTO :
             useCityConfig().slug === "vancouver" ? TOP5_RESTAURANTS_VANCOUVER :
+            useCityConfig().slug === "houston"   ? TOP5_RESTAURANTS_HOUSTON :
+            useCityConfig().slug === "atlanta"   ? TOP5_RESTAURANTS_ATLANTA :
+            useCityConfig().slug === "kansascity"? TOP5_RESTAURANTS_KANSASCITY :
+            useCityConfig().slug === "philadelphia" ? TOP5_RESTAURANTS_PHILADELPHIA :
+            useCityConfig().slug === "miami"     ? TOP5_RESTAURANTS_MIAMI :
+            useCityConfig().slug === "mexicocity"? TOP5_RESTAURANTS_MEXICOCITY :
+            useCityConfig().slug === "guadalajara"? TOP5_RESTAURANTS_GUADALAJARA :
+            useCityConfig().slug === "monterrey" ? TOP5_RESTAURANTS_MONTERREY :
             TOP5_RESTAURANTS
           } lang={lang} accentColor="#EF4444" />
         )}
@@ -4016,6 +4738,14 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
             useCityConfig().slug === "la"        ? TOP5_EXPLORE_LA :
             useCityConfig().slug === "toronto"   ? TOP5_EXPLORE_TORONTO :
             useCityConfig().slug === "vancouver" ? TOP5_EXPLORE_VANCOUVER :
+            useCityConfig().slug === "houston"   ? TOP5_EXPLORE_HOUSTON :
+            useCityConfig().slug === "atlanta"   ? TOP5_EXPLORE_ATLANTA :
+            useCityConfig().slug === "kansascity"? TOP5_EXPLORE_KANSASCITY :
+            useCityConfig().slug === "philadelphia" ? TOP5_EXPLORE_PHILADELPHIA :
+            useCityConfig().slug === "miami"     ? TOP5_EXPLORE_MIAMI :
+            useCityConfig().slug === "mexicocity"? TOP5_EXPLORE_MEXICOCITY :
+            useCityConfig().slug === "guadalajara"? TOP5_EXPLORE_GUADALAJARA :
+            useCityConfig().slug === "monterrey" ? TOP5_EXPLORE_MONTERREY :
             TOP5_EXPLORE
           } lang={lang} accentColor="#0EA5E9" />
         )}
