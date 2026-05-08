@@ -1610,6 +1610,71 @@ const CITY_LIVECAM: Partial<Record<CitySlug, string>> = {
   newyork:  "https://www.earthcam.com/usa/newyork/timessquare/",
 };
 
+/* ─────────────────────────────────────────
+   2026 FIFA 월드컵 환영 배너
+   2026/6/11 ~ 2026/7/19 — 호스트 도시 11개 중 8개가 HebronGuide 도시
+───────────────────────────────────────── */
+const WORLD_CUP_2026 = {
+  startDate: new Date("2026-06-01"),  // 1주일 전부터 노출
+  endDate:   new Date("2026-07-26"),  // 1주일 후까지 유지
+  hostCities: ["seattle", "la", "newyork", "dallas", "sf", "boston", "toronto", "vancouver"] as CitySlug[],
+};
+
+function isWorldCupActive(slug: CitySlug): boolean {
+  if (!WORLD_CUP_2026.hostCities.includes(slug)) return false;
+  const now = new Date();
+  return now >= WORLD_CUP_2026.startDate && now <= WORLD_CUP_2026.endDate;
+}
+
+function WorldCupBanner() {
+  const { lang } = useI18n();
+  const city = useCityConfig();
+
+  if (!isWorldCupActive(city.slug)) return null;
+
+  return (
+    <div style={{
+      margin: "12px 16px 0",
+      background: "linear-gradient(135deg, #DC2626, #2563EB)",
+      borderRadius: 14, padding: "14px 16px",
+      boxShadow: "0 4px 16px rgba(220,38,38,0.25)",
+      position: "relative", overflow: "hidden",
+    }}>
+      {/* 배경 장식 */}
+      <div style={{
+        position: "absolute", top: -20, right: -10, fontSize: 80,
+        opacity: 0.12, fontWeight: 900,
+      }}>⚽</div>
+
+      <div style={{ position: "relative" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
+          <span style={{ fontSize: 18 }}>🏆</span>
+          <span style={{
+            fontFamily: "Manrope, sans-serif", fontWeight: 800, fontSize: 11,
+            color: "#fff", letterSpacing: "1px", opacity: 0.9,
+          }}>FIFA WORLD CUP 2026</span>
+        </div>
+        <div style={{
+          fontFamily: "'Noto Sans KR', sans-serif", fontWeight: 800, fontSize: 16,
+          color: "#fff", lineHeight: 1.3, marginBottom: 4,
+        }}>
+          {lang === "ko"
+            ? `${city.nameKo}에 오신 것을 환영합니다! 🎉`
+            : `Welcome to ${city.nameEn}! 🎉`}
+        </div>
+        <div style={{
+          fontFamily: "Manrope, sans-serif", fontSize: 12, color: "rgba(255,255,255,0.92)",
+          lineHeight: 1.5,
+        }}>
+          {lang === "ko"
+            ? "월드컵 응원하러 오신 분들께 — 한식당·교통·환전 정보를 한눈에"
+            : "Korean food, transit, and essential info — all in one place"}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CompactHeroNew() {
   const { lang } = useI18n();
   const city = useCityConfig();
@@ -2929,6 +2994,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
   return (
     <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
       <CompactHeroNew />
+      <WorldCupBanner />
       <QuickMenuSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <SettlementEssentialsSection onNavigate={onNavigate} />

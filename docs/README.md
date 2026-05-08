@@ -24,7 +24,8 @@
 
 ### 📊 목표·전략
 - [`GOAL_SYSTEM.md`](GOAL_SYSTEM.md) — Alignify 목표 시스템 (From X → To Y → By When → Why)
-- [`EXPANSION_STRATEGY.md`](EXPANSION_STRATEGY.md) — **확산 전략**: BTS 도시 흐름 + 복음적·제자 만드는 교회 ⭐
+- [`EXPANSION_STRATEGY.md`](EXPANSION_STRATEGY.md) — **확산 전략 (WHERE)**: BTS 도시 흐름 + 복음적·제자 만드는 교회 ⭐
+- [`EVENT_PLAYBOOK.md`](EVENT_PLAYBOOK.md) — **이벤트 플레이북 (WHEN)**: 월드컵·올림픽 활용 6단계 ⭐
 - [`DIASPORA_STRATEGY.md`](DIASPORA_STRATEGY.md) — 디아스포라 콘텐츠 전략 (BTS 모델)
 - [`REVENUE_STRATEGY.md`](REVENUE_STRATEGY.md) — 수익 모델 단계별 로드맵
 
