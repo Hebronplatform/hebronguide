@@ -366,16 +366,6 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
                   <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>Google Maps</span>
                 </a>
               )}
-              {/* Apple Maps */}
-              {item.address && (
-                <a href={`https://maps.apple.com/?q=${encodeURIComponent(item.address)}`}
-                  target="_blank" rel="noopener noreferrer"
-                  style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
-                    background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.3)", borderRadius: 20, padding: "3px 8px" }}>
-                  <span style={{ fontSize: 10 }}>🍎</span>
-                  <span style={{ fontSize: 10, color: "#60A5FA", fontWeight: 700 }}>Apple Maps</span>
-                </a>
-              )}
               {/* 전화 */}
               {item.phone && (
                 <a href={`tel:${item.phone}`}
@@ -1450,9 +1440,8 @@ function renderDescWithLinks(desc: string, accentColor: string) {
   const web   = webMatch   ? webMatch[1].trim()    : null;
   const webHref = web ? (web.startsWith("http") ? web : `https://${web}`) : null;
 
-  // 지도 URL 생성
+  // 지도 URL — Google Maps (범용, 한인 업소 정보 가장 풍부)
   const googleMapsUrl = addr ? `https://maps.google.com/?q=${encodeURIComponent(addr)}` : null;
-  const appleMapsUrl  = addr ? `https://maps.apple.com/?q=${encodeURIComponent(addr)}` : null;
 
   // 아이콘들 제거한 순수 설명 텍스트
   const cleanDesc = desc
@@ -1480,17 +1469,6 @@ function renderDescWithLinks(desc: string, accentColor: string) {
                 borderRadius: 20, padding: "3px 10px" }}>
               <span style={{ fontSize: 11 }}>📍</span>
               <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>Google Maps</span>
-            </a>
-          )}
-
-          {/* Apple Maps 버튼 — iPhone 네이티브로 열림 */}
-          {appleMapsUrl && (
-            <a href={appleMapsUrl} target="_blank" rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
-                background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.3)",
-                borderRadius: 20, padding: "3px 10px" }}>
-              <span style={{ fontSize: 11 }}>🍎</span>
-              <span style={{ fontSize: 10, color: "#60A5FA", fontWeight: 700 }}>Apple Maps</span>
             </a>
           )}
 
