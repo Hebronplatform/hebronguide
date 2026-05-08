@@ -2772,8 +2772,8 @@ function CityHubSection({ lang }: { lang: string }) {
 }
 
 /* ─────────────────────────────────────────
-   HOME: 한인 문화 캘린더 (BTS 디아스포라 전략)
-   김구 「나의 소원」 비전 + Korean American 정체성 강화
+   HOME: 한인 문화 캘린더
+   디아스포라가 함께 기억하는 보편적 가치 — 환대·연결·기억
 ───────────────────────────────────────── */
 const KOREAN_HOLIDAYS = [
   { date: "1-2월", emoji: "🌙", titleKo: "설날", titleEn: "Lunar New Year", descKo: "한인 가족 모임 1순위. 한복·세배·떡국", descEn: "#1 Korean family gathering. Hanbok, bowing, tteokguk" },
@@ -2788,40 +2788,8 @@ const KOREAN_HOLIDAYS = [
 function KoreanCultureCalendarSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
 
-  // 김구 인용 (한국어/영어)
-  const kimGuQuoteKo = "오직 한없이 가지고 싶은 것은 높은 문화의 힘이다.";
-  const kimGuQuoteEn = "What I want most of all is the power of culture.";
-
   return (
     <div style={{ padding: "20px 16px 8px" }}>
-      {/* 김구 인용 카드 */}
-      <div style={{
-        background: "linear-gradient(135deg, rgba(220,38,38,0.08), rgba(59,130,246,0.06))",
-        border: "1.5px solid rgba(220,38,38,0.18)",
-        borderRadius: 14, padding: "14px 16px", marginBottom: 16,
-        position: "relative", overflow: "hidden",
-      }}>
-        <div style={{
-          position: "absolute", top: -10, right: -10, fontSize: 60, opacity: 0.06,
-          fontWeight: 900, fontFamily: "'Noto Serif KR', serif",
-        }}>🇰🇷</div>
-        <div style={{
-          fontFamily: "'Noto Serif KR', 'Noto Sans KR', serif",
-          fontWeight: 600, fontSize: 13, color: "#1B2A4A",
-          lineHeight: 1.6, marginBottom: 8, position: "relative",
-        }}>
-          <span style={{ fontSize: 18, color: "#DC2626", marginRight: 4 }}>"</span>
-          {lang === "ko" ? kimGuQuoteKo : kimGuQuoteEn}
-          <span style={{ fontSize: 18, color: "#DC2626", marginLeft: 2 }}>"</span>
-        </div>
-        <div style={{
-          fontFamily: "Manrope, sans-serif", fontSize: 11, color: "#64748B",
-          textAlign: "right", fontStyle: "italic",
-        }}>
-          — {lang === "ko" ? "김구 「나의 소원」 (1947)" : "Kim Gu, 'My Wish' (1947)"}
-        </div>
-      </div>
-
       {/* 한인 문화 캘린더 */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
         <div>
@@ -2829,7 +2797,7 @@ function KoreanCultureCalendarSection({ onNavigate }: { onNavigate?: (tab: numbe
             🇰🇷 {lang === "ko" ? "한인 문화 캘린더" : "Korean Cultural Calendar"}
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8", marginTop: 2 }}>
-            {lang === "ko" ? "재외 한인 700만이 함께 기억하는 날" : "Days remembered by 7M Korean diaspora"}
+            {lang === "ko" ? "함께 기억하고 함께 나누는 날들" : "Days to remember & celebrate together"}
           </div>
         </div>
       </div>
