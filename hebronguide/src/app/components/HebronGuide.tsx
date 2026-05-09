@@ -3095,7 +3095,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       tagKo: "한국어 현지 가이드", tagEn: "Korean-speaking Local Guide",
       userKo: "도시 깊이 알고 싶으세요?", userEn: "Want to explore like a local?",
       providerKo: "가이드 등록 → 시간당 $40-80", providerEn: "Become a guide → $40-80/hr",
-      tab: 4, subTab: 0,
+      tab: 4, subTab: 4,
     },
   ];
 
@@ -5653,8 +5653,8 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
   const tabs = lang === "ko"
-    ? ["지역안내", "자연·여행", "문화·예술", "스포츠"]
-    : ["Areas", "Nature", "Culture & Art", "Sports"];
+    ? ["지역안내", "자연·여행", "문화·예술", "스포츠", "🧭 헤브론관광"]
+    : ["Areas", "Nature", "Culture & Art", "Sports", "🧭 Hebron Tour"];
   const accent = "#34D399";
 
   const areas = [
@@ -5737,14 +5737,128 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
-          {/* 관광 탭 — 헤브론 관광가이드 서비스 카드 */}
-          <HebronServiceCard
-            icon="🧭" color="#06B6D4" lang={lang}
-            titleKo="헤브론 관광가이드 — 한국어 현지 가이드"
-            titleEn="Hebron Tour Guide — Korean-speaking Local Guide"
-            descKo="이 도시에 살아본 한인이 안내합니다. 맛집·숨은 명소·한인 커뮤니티까지. 교회 검증 가이드."
-            descEn="Guided by Koreans who actually lived here. Hidden gems, Korean spots & local culture. Church-verified."
-          />
+          {/* 헤브론관광 서브탭 (sub 4) */}
+          {sub === 4 && (
+            <div style={{ paddingTop: 4 }}>
+
+              {/* 헤더 비전 */}
+              <div style={{ background: "linear-gradient(135deg, rgba(6,182,212,0.18), rgba(52,211,153,0.08))", border: "1px solid rgba(6,182,212,0.35)", borderRadius: 20, padding: "20px 18px", marginBottom: 14 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 18, color: "#ECFDF5", marginBottom: 6 }}>
+                  🧭 Hebron 관광
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 13, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, marginBottom: 14 }}>
+                  {lang === "ko"
+                    ? "이 도시에서 살고 섬겨온 목회자·전도사가 직접 안내합니다.\n관광지만 아닌 — 진짜 현지의 맛집, 숨은 명소, 한인 커뮤니티까지.\n한국어로, 따뜻하게, 진심으로."
+                    : "Pastors and evangelists who lived and served in this city guide you.\nNot just tourist spots — real local food, hidden gems & Korean community.\nIn Korean. With warmth. With heart."}
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
+                  {[
+                    { n: lang === "ko" ? "목회자·전도사" : "Pastor Guides", d: lang === "ko" ? "교회 검증 가이드" : "Church-verified" },
+                    { n: lang === "ko" ? "한국어 투어" : "Korean Tour", d: lang === "ko" ? "44개+ 도시" : "44+ cities" },
+                    { n: lang === "ko" ? "커미션 15%" : "15% Commission", d: lang === "ko" ? "HebronGuide 수익" : "HebronGuide revenue" },
+                  ].map((s, i) => (
+                    <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#06B6D4" }}>{s.n}</div>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.55)", marginTop: 2 }}>{s.d}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* 왜 목회자·전도사 가이드인가 */}
+              <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 16, padding: "16px", marginBottom: 12 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#06B6D4", marginBottom: 12 }}>
+                  ✝️ {lang === "ko" ? "왜 목회자·전도사 가이드인가?" : "Why Pastor & Evangelist Guides?"}
+                </div>
+                {[
+                  { icon: "🏙️", ko: "이 도시를 가장 깊이 아는 사람들", en: "The people who know this city most deeply" },
+                  { icon: "🤝", ko: "돈보다 사람을 먼저 생각하는 동기", en: "Motivated by people, not just profit" },
+                  { icon: "🍽️", ko: "한인 맛집·커뮤니티 인맥 최고", en: "Best Korean food & community connections" },
+                  { icon: "🗣️", ko: "한국어·영어 + 도시 이야기 전달 탁월", en: "Fluent in Korean, English & the city's story" },
+                  { icon: "💼", ko: "목회자 부업 = 존엄한 수입·사역 연장", en: "Dignified side income & natural extension of ministry" },
+                  { icon: "🌱", ko: "투어 자체가 환대 사역", en: "Every tour is an act of hospitality ministry" },
+                ].map((item, i) => (
+                  <div key={i} style={{ display: "flex", gap: 10, padding: "8px 0", borderBottom: i < 5 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
+                    <span style={{ fontSize: 16, flexShrink: 0 }}>{item.icon}</span>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.5 }}>
+                      {lang === "ko" ? item.ko : item.en}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* 투어 패키지 예시 */}
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#06B6D4", marginBottom: 10 }}>
+                🗺️ {lang === "ko" ? "투어 패키지 예시" : "Sample Tour Packages"}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 14 }}>
+                {[
+                  { emoji: "🛬", nameKo: "정착자 첫 도시 투어 (3시간)", nameEn: "New Settler City Orientation (3hrs)", descKo: "공항 픽업 → 한인타운 → H-Mart → 주요 정착지 소개 → 교회 자연스러운 소개", descEn: "Airport pickup → Koreatown → H-Mart → Settlement key spots → Natural church intro", priceKo: "$80/인", priceEn: "$80/person" },
+                  { emoji: "🌆", nameKo: "도시 핵심 탐방 (4시간)", nameEn: "City Essential Tour (4hrs)", descKo: "현지인만 아는 맛집·명소·한인 커뮤니티 허브 탐방. 관광안내소엔 없는 코스", descEn: "Hidden local gems, food spots & Korean community hubs. Off the tourist trail.", priceKo: "$100/인", priceEn: "$100/person" },
+                  { emoji: "🏔️", nameKo: "당일치기 자연 투어 (8시간)", nameEn: "Day Trip Nature Tour (8hrs)", descKo: "국립공원·폭포·해변 등 당일 드라이브 투어. 한국어 설명 + 현지 맛집 포함", descEn: "National park, waterfall or beach day trip with Korean commentary & local lunch", priceKo: "$150/인 (2인 이상)", priceEn: "$150/person (2+ guests)" },
+                  { emoji: "✝️", nameKo: "월드컵 응원 + 도시 투어 (2026)", nameEn: "World Cup Fan + City Tour (2026)", descKo: "경기 전날·당일 한인 응원 투어. 한식당 → 한인 팬 모임 → 경기장 도우미", descEn: "Pre/match day Korean fan tour. Korean restaurant → fan gathering → stadium guide", priceKo: "$120/인", priceEn: "$120/person" },
+                ].map((pkg, i) => (
+                  <div key={i} style={{ background: "rgba(6,182,212,0.08)", border: "1px solid rgba(6,182,212,0.2)", borderRadius: 14, padding: "14px 16px" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <span style={{ fontSize: 18 }}>{pkg.emoji}</span>
+                        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#ECFDF5" }}>
+                          {lang === "ko" ? pkg.nameKo : pkg.nameEn}
+                        </div>
+                      </div>
+                      <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#06B6D4", flexShrink: 0, marginLeft: 8 }}>
+                        {lang === "ko" ? pkg.priceKo : pkg.priceEn}
+                      </span>
+                    </div>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.65)", lineHeight: 1.6, paddingLeft: 26 }}>
+                      {lang === "ko" ? pkg.descKo : pkg.descEn}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* 가이드 수익 모델 */}
+              <div style={{ background: "rgba(201,162,39,0.08)", border: "1px solid rgba(201,162,39,0.25)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#C9A227", marginBottom: 10 }}>
+                  💰 {lang === "ko" ? "목회자·전도사 예상 부업 수익" : "Pastor/Evangelist Side Income Estimate"}
+                </div>
+                {[
+                  lang === "ko" ? "주 2회 투어 × $100/회 = 월 $800+" : "2 tours/week × $100/tour = $800+/month",
+                  lang === "ko" ? "HebronGuide 15% 커미션 → 가이드 85% 수령" : "HebronGuide 15% commission → guide keeps 85%",
+                  lang === "ko" ? "시간 자유로움 — 목회 일정에 맞게 운영" : "Flexible schedule — fits around ministry commitments",
+                  lang === "ko" ? "투어 자체가 선교·환대 사역의 연장" : "Every tour extends your hospitality ministry naturally",
+                ].map((item, i) => (
+                  <div key={i} style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, paddingLeft: 4 }}>
+                    ✓ {item}
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA 2개 */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <a href="mailto:gmc.hc300@gmail.com?subject=Hebron 관광 가이드 등록 신청"
+                  style={{ display: "block", textDecoration: "none" }}>
+                  <div style={{ background: "linear-gradient(135deg, #06B6D4, #0891B2)", borderRadius: 14, padding: "14px 20px", textAlign: "center", boxShadow: "0 4px 20px rgba(6,182,212,0.35)" }}>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 3 }}>
+                      🧭 {lang === "ko" ? "가이드 등록 신청 (목회자·전도사)" : "Register as Guide (Pastors & Evangelists)"}
+                    </div>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)" }}>
+                      gmc.hc300@gmail.com
+                    </div>
+                  </div>
+                </a>
+                <a href="mailto:gmc.hc300@gmail.com?subject=Hebron 관광 투어 예약 문의"
+                  style={{ display: "block", textDecoration: "none" }}>
+                  <div style={{ background: "rgba(6,182,212,0.1)", border: "1px solid rgba(6,182,212,0.4)", borderRadius: 14, padding: "12px 20px", textAlign: "center" }}>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#06B6D4" }}>
+                      {lang === "ko" ? "투어 예약 문의 →" : "Book a Tour →"}
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+            </div>
+          )}
         </div>
       </div>
     </div>
