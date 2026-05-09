@@ -6,6 +6,21 @@
 
 ---
 
+## 📎 연결 문서 (목사님께 먼저 보내는 링크)
+
+| 문서 | URL | 용도 |
+|---|---|---|
+| **목회자 소개 페이지** | **[hebronguide.com/pastor.html](https://hebronguide.com/pastor.html)** | ← 목사님께 줌 전에 먼저 공유 |
+| HebronGuide 앱 | [hebronguide.com/seattle](https://hebronguide.com/seattle) | 실제 앱 체험 |
+| 사업계획서 | `docs/PEOPLE_CONNECT_BIZPLAN.md` | 전체 플랫폼 비전 |
+
+> **사용 순서:**
+> 1. 목사님께 `hebronguide.com/pastor.html` 먼저 공유
+> 2. 목사님이 페이지를 보고 관심 생기면 → 줌 미팅 요청
+> 3. 줌 미팅에서 이 플레이북의 스크립트 사용
+
+---
+
 ## 핵심 원리
 
 ```
