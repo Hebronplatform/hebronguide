@@ -6498,6 +6498,342 @@ function getCityJobData(slug: string, lang: string) {
                    : "• KAAFNY — Korean finance professionals NYC\n• Flushing Korean Chamber of Commerce\n• KITA New York branch\n• Korea Society network", tags: ["KAAFNY","KITA","뉴욕"] },
       ],
     },
+    // ── 추가 12개 도시 취업 데이터 ──────────────────────────────────
+    atlanta: {
+      main: [
+        { emoji: "✈️", name: "Delta Air Lines", nameEn: "Delta Air Lines — World HQ",
+          desc: ko ? "✅ 애틀랜타 최대 고용주. 항공·물류·IT. 한인 직원 상당수. 하츠필드잭슨 공항 연계. 연봉 $60K-$200K | 🔗 delta.com/careers"
+                   : "✅ Atlanta's largest employer. Aviation, logistics, IT. Korean employees present. ATL airport-connected. $60K-$200K | 🔗 delta.com/careers", tags: ["델타","항공","물류"] },
+        { emoji: "🏥", name: ko ? "에모리 & 피드몬트 의료" : "Emory & Piedmont Healthcare",
+          desc: ko ? "에모리대 의료센터·피드몬트 헬스. 한국어 가능 의료인 수요. 간호사·의사·연구직. 연봉 $65K-$280K | 🔗 emoryhealthcare.org/careers"
+                   : "Emory University Medical Center & Piedmont Health. Korean-speaking medical professionals needed. $65K-$280K | 🔗 emoryhealthcare.org/careers", tags: ["에모리","의료","간호사"] },
+        { emoji: "💻", name: ko ? "애틀랜타 테크 클러스터" : "Atlanta Tech Cluster",
+          desc: ko ? "Google·Microsoft·NCR·IBM·Salesforce 애틀랜타 오피스. 핀테크 허브로 급성장. 한인 IT 전문가 취업 활발. 연봉 $90K-$280K"
+                   : "Google, Microsoft, NCR, IBM, Salesforce Atlanta offices. Fintech hub rapidly growing. Active Korean IT professional hiring. $90K-$280K", tags: ["구글","NCR","핀테크"] },
+      ],
+      sector: [
+        { emoji: "🎬", name: ko ? "영화·미디어 산업" : "Film & Media Industry",
+          desc: ko ? "'할리우드 사우스' — CNN·Turner·Netflix·Disney+ 애틀랜타 스튜디오. 한국 드라마·K-콘텐츠 제작 수요 증가. 프로덕션 한인 취업 기회 | 🔗 georgia.org/film"
+                   : "'Hollywood South' — CNN, Turner, Netflix, Disney+ Atlanta studios. Korean drama/K-content production growing. Production Korean job opportunities | 🔗 georgia.org/film", tags: ["영화","CNN","K콘텐츠"] },
+      ],
+      biz: [
+        { emoji: "🍽️", name: ko ? "둘루스·스와니 한인 자영업" : "Duluth/Suwanee Korean Small Business",
+          desc: ko ? "귀넷카운티 최대 한인 상권. 한식당·BBQ, H-Mart 중심 상권. GA 식료품 판매세 면제. 초기 자본 $50K-$150K | 🔗 gwinnettcoc.com"
+                   : "Gwinnett County's largest Korean commercial district. Korean restaurants, H-Mart area. GA grocery tax exempt. Capital $50K-$150K | 🔗 gwinnettcoc.com", tags: ["둘루스","자영업","귀넷"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "애틀랜타 취업 비자 안내" : "Atlanta Work Visa Guide",
+          desc: ko ? "• H-1B: IT·의료·공학 스폰서\n• OPT/STEM: 조지아 주립대·에모리\n• E-2: GA 투자 비자 (식당·서비스업)\n• EB-2/EB-3: 의료·IT 영주권\n💡 GA: 소득세 5.49% (단계적 인하 예정)"
+                   : "• H-1B: IT, medical, engineering sponsors\n• OPT/STEM: Georgia State, Emory\n• E-2: GA investment visa (food service)\n• EB-2/EB-3: Medical/IT green card\n💡 GA income tax 5.49% (phasing down)", tags: ["H-1B","에모리","애틀랜타"] },
+        { emoji: "💡", name: ko ? "애틀랜타 한인 취업 네트워크" : "Atlanta Korean Job Networks",
+          desc: ko ? "• KAGC (Korean American Grocers Association)\n• 애틀랜타 한인 상공회의소\n• 둘루스·스와니 한인 카카오 커뮤니티\n• LinkedIn 애틀랜타 한인 그룹"
+                   : "• KAGC Korean American Grocers Association\n• Atlanta Korean Chamber of Commerce\n• Duluth/Suwanee Korean KakaoTalk community\n• LinkedIn Atlanta Korean group", tags: ["KAGC","상공회의소","애틀랜타"] },
+      ],
+    },
+    boston: {
+      main: [
+        { emoji: "🧬", name: ko ? "바이오텍·제약 클러스터" : "Biotech & Pharma Cluster",
+          desc: ko ? "Moderna·Vertex·Biogen·Sanofi 보스턴 R&D 본부. 세계 최고 바이오텍 허브. 한인 연구원·박사 취업 활발. 연봉 $100K-$350K | 🔗 massbio.org"
+                   : "Moderna, Vertex, Biogen, Sanofi Boston R&D HQ. World's top biotech hub. Active Korean researcher/PhD hiring. $100K-$350K | 🔗 massbio.org", tags: ["바이오","제약","Moderna"] },
+        { emoji: "🎓", name: ko ? "대학·연구기관 취업" : "Universities & Research",
+          desc: ko ? "하버드·MIT·BU·Northeastern·Tufts. 연구직·포닥·행정직. 한인 연구자 밀집. 학교 소속 H-1B 스폰서 적극. 연봉 $55K-$180K"
+                   : "Harvard, MIT, BU, Northeastern, Tufts. Research, postdoc, admin roles. Dense Korean researcher community. Active H-1B sponsor. $55K-$180K", tags: ["하버드","MIT","연구직"] },
+        { emoji: "🏦", name: ko ? "금융·자산운용" : "Finance & Asset Management",
+          desc: ko ? "State Street·Fidelity·Wellington Management 보스턴 본부. 자산운용 세계 허브. 금융 분석·퀀트·컴플라이언스. 연봉 $80K-$300K"
+                   : "State Street, Fidelity, Wellington Management Boston HQ. Global asset management hub. Finance analysts, quants, compliance. $80K-$300K", tags: ["금융","Fidelity","자산운용"] },
+      ],
+      sector: [
+        { emoji: "🖥️", name: ko ? "MIT 테크 스타트업 생태계" : "MIT/Harvard Tech Startup Ecosystem",
+          desc: ko ? "켄달스퀘어 — 세계 최고 스타트업 밀도. MIT·하버드 창업자 네트워크. 한인 스타트업 창업 기회. VC 접근 용이 | 🔗 kendallsquare.org"
+                   : "Kendall Square — world's densest startup hub. MIT/Harvard founder networks. Korean startup opportunities. VC access strong | 🔗 kendallsquare.org", tags: ["스타트업","켄달","MIT"] },
+      ],
+      biz: [
+        { emoji: "🍜", name: ko ? "올스턴·브라이턴 한인 자영업" : "Allston/Brighton Korean Small Business",
+          desc: ko ? "BU·하버드 학생 대상 한인 식당·카페. 유학생·연구자 고객 안정적. MA 식료품 판매세 없음. 초기 자본 $60K-$160K"
+                   : "Korean restaurants/cafes serving BU/Harvard students. Stable international student/researcher clientele. MA grocery tax-free. Capital $60K-$160K", tags: ["올스턴","유학생","카페"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "보스턴 취업 비자 안내" : "Boston Work Visa Guide",
+          desc: ko ? "• H-1B: 바이오텍·대학 스폰서 강함\n• OPT/STEM: 졸업 후 1-3년 (MIT·하버드·BU)\n• J-1: 연구원·포닥 경로\n• EB-1A: 탁월한 연구자 자기청원\n• EB-2 NIW: 연구·바이오 분야 유리\n💡 MA 소득세 5% (단일, 비교적 낮음)"
+                   : "• H-1B: Biotech/university strong sponsors\n• OPT/STEM: 1-3 years (MIT/Harvard/BU)\n• J-1: Researcher/postdoc pathway\n• EB-1A: Extraordinary researcher self-petition\n• EB-2 NIW: Research/biotech favorable\n💡 MA flat 5% income tax (relatively low)", tags: ["H-1B","EB-1A","바이오"] },
+        { emoji: "💡", name: ko ? "보스턴 한인 취업 네트워크" : "Boston Korean Job Networks",
+          desc: ko ? "• KABA (Korean American Bar Association) 보스턴\n• 보스턴코리아(bostonkorea.com) 구인구직\n• MIT·하버드 한인 학생회 알럼나이\n• LinkedIn 보스턴 한인 그룹"
+                   : "• KABA Boston chapter\n• BostonKorea.com job listings\n• MIT/Harvard Korean alumni networks\n• LinkedIn Boston Korean group", tags: ["KABA","보스턴코리아","MIT"] },
+      ],
+    },
+    nashville: {
+      main: [
+        { emoji: "🏥", name: ko ? "HCA Healthcare — 세계 최대 병원 그룹" : "HCA Healthcare — World's Largest",
+          desc: ko ? "✅ 내쉬빌 본사. 세계 최대 사립병원 그룹. 간호사·의사·행정직. 한인 의료인 취업 기회. 연봉 $60K-$250K | 🔗 hcahealthcare.com/careers"
+                   : "✅ Nashville HQ. World's largest for-profit hospital. Nurses, doctors, admin. Korean healthcare professionals welcome. $60K-$250K | 🔗 hcahealthcare.com/careers", tags: ["HCA","의료","간호사"] },
+        { emoji: "☁️", name: ko ? "Oracle Health·IT 클러스터" : "Oracle Health & IT Cluster",
+          desc: ko ? "Oracle Health(구 Cerner) 내쉬빌 오피스. Amazon·Asurion·Community Health Systems IT. 테크 취업 급성장 중. 연봉 $80K-$220K"
+                   : "Oracle Health (formerly Cerner) Nashville office. Amazon, Asurion, Community Health Systems IT. Tech hiring rapidly growing. $80K-$220K", tags: ["Oracle","IT","테크"] },
+        { emoji: "🎵", name: ko ? "음악·엔터테인먼트 산업" : "Music & Entertainment Industry",
+          desc: ko ? "'뮤직시티' — BMG·Warner Music·Sony Music Nashville. 음악 제작·마케팅·법률. K-팝 협업 프로젝트 증가. 연봉 $45K-$150K"
+                   : "'Music City' — BMG, Warner Music, Sony Music Nashville. Music production, marketing, legal. K-pop collaboration projects growing. $45K-$150K", tags: ["음악","엔터테인먼트","K팝"] },
+      ],
+      sector: [
+        { emoji: "🚗", name: ko ? "자동차·제조업" : "Automotive & Manufacturing",
+          desc: ko ? "Bridgestone Americas(본사)·Nissan North America·GM 부품 공장. 엔지니어링·생산관리·물류. 한국계 부품사 Hyundai Mobis 등. 연봉 $60K-$160K"
+                   : "Bridgestone Americas (HQ), Nissan North America, GM parts plants. Engineering, production, logistics. Korean parts companies like Hyundai Mobis. $60K-$160K", tags: ["자동차","Bridgestone","제조"] },
+      ],
+      biz: [
+        { emoji: "🍽️", name: ko ? "내쉬빌 한인 자영업" : "Nashville Korean Small Business",
+          desc: ko ? "쿨스프링스·프랭클린 중심 한인 상권. 한식당·BBQ 수요 증가. TN 소득세 없음 → 자영업 유리. H-Mart 진출로 상권 활성화 중. 초기 자본 $50K-$130K"
+                   : "Cool Springs/Franklin Korean commercial area. Korean restaurant/BBQ demand growing. No TN income tax → business-friendly. H-Mart expanding the market. Capital $50K-$130K", tags: ["쿨스프링스","자영업","TN"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "내쉬빌 취업 비자 안내" : "Nashville Work Visa Guide",
+          desc: ko ? "• H-1B: HCA·Oracle·Vanderbilt 스폰서\n• OPT: Vanderbilt·Belmont·Middle Tennessee 졸업생\n• E-2: TN 투자 비자 (소득세 없어 창업 인기)\n• EB-3: 의료·제조 영주권\n💡 TN 소득세 없음 — 실수령액 높음"
+                   : "• H-1B: HCA, Oracle, Vanderbilt sponsors\n• OPT: Vanderbilt, Belmont, MTSU grads\n• E-2: TN investment visa (popular, no income tax)\n• EB-3: Medical/manufacturing green card\n💡 No TN income tax — high take-home pay", tags: ["HCA","Vanderbilt","TN"] },
+        { emoji: "💡", name: ko ? "내쉬빌 한인 취업 네트워크" : "Nashville Korean Job Networks",
+          desc: ko ? "• 내쉬빌 한인회 취업 정보\n• Korean American Chamber Nashville\n• Vanderbilt 한인 학생회 알럼나이\n• LinkedIn 내쉬빌 한인 그룹"
+                   : "• Nashville Korean Association job info\n• Korean American Chamber Nashville\n• Vanderbilt Korean alumni network\n• LinkedIn Nashville Korean group", tags: ["한인회","Vanderbilt","내쉬빌"] },
+      ],
+    },
+    toronto: {
+      main: [
+        { emoji: "🏦", name: ko ? "캐나다 5대 은행 취업" : "Canada's Big Five Banks",
+          desc: ko ? "RBC·TD·BMO·Scotiabank·CIBC 토론토 본부. 금융분석·IT·리스크관리. 한인 금융인 밀집. 연봉 CAD $65K-$200K | 🔗 rbc.com/careers"
+                   : "RBC, TD, BMO, Scotiabank, CIBC Toronto HQ. Finance analysis, IT, risk management. Dense Korean finance professionals. CAD $65K-$200K | 🔗 rbc.com/careers", tags: ["RBC","금융","Bay Street"] },
+        { emoji: "💻", name: ko ? "토론토 테크 허브" : "Toronto Tech Hub",
+          desc: ko ? "구글·아마존·마이크로소프트·Shopify 토론토 R&D. '실리콘 노스' 급성장. AI·머신러닝 분야 한인 엔지니어 취업 활발. 연봉 CAD $90K-$300K"
+                   : "Google, Amazon, Microsoft, Shopify Toronto R&D. 'Silicon North' rapidly growing. Active Korean engineer hiring in AI/ML. CAD $90K-$300K", tags: ["구글","Shopify","AI"] },
+        { emoji: "🎬", name: ko ? "영화·미디어 산업" : "Film & Media Industry",
+          desc: ko ? "토론토 국제영화제(TIFF) 도시. 한국 영화·드라마 캐나다 제작 증가. CBC·Bell Media·Rogers 미디어. 영화제작·VFX 한인 취업 가능"
+                   : "Toronto International Film Festival (TIFF) city. Korean film/drama Canada production increasing. CBC, Bell Media, Rogers Media. Film production/VFX Korean hiring", tags: ["TIFF","CBC","영화"] },
+      ],
+      sector: [
+        { emoji: "🏥", name: ko ? "의료·바이오텍 취업" : "Healthcare & Biotech",
+          desc: ko ? "University Health Network·Sunnybrook·SickKids. 의료·연구·바이오텍. 한국어 가능 의료인 수요. OHIP 무료 의료 혜택. 연봉 CAD $60K-$250K"
+                   : "University Health Network, Sunnybrook, SickKids. Healthcare, research, biotech. Korean-speaking medical professionals needed. Free OHIP healthcare benefit. CAD $60K-$250K", tags: ["UHN","의료","OHIP"] },
+      ],
+      biz: [
+        { emoji: "🍽️", name: ko ? "노스요크 한인 자영업" : "North York Korean Small Business",
+          desc: ko ? "욘지-핀치 중심 한인 상권. 한식당·BBQ, H-Mart 중심. 한인 고객층 탄탄. CAD 최저시급 $17.20 감안한 인건비 계획 필수. 초기 자본 CAD $80K-$200K"
+                   : "Yonge-Finch area Korean commercial hub. Korean food, H-Mart area. Solid Korean customer base. Must plan for CAD $17.20/hr min wage. Capital CAD $80K-$200K", tags: ["노스요크","자영업","H-Mart"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "토론토 취업 비자·이민 안내" : "Toronto Work Visa & Immigration",
+          desc: ko ? "• LMIA: 고용주 노동시장평가 (취업비자)\n• Express Entry: CRS 점수 기반 영주권 — 빠른 경로\n• Ontario PNP: 온타리오 주정부 이민 (테크 우선)\n• PGWP: 캐나다 대학 졸업 후 취업허가\n• 가족초청: 시민권자·영주권자 배우자\n💡 캐나다 이민 문호 2025-2027 확대 중"
+                   : "• LMIA: Labour Market Impact Assessment\n• Express Entry: CRS score-based PR — fast path\n• Ontario PNP: Provincial nominee (tech priority)\n• PGWP: Post-grad work permit (Canadian grads)\n• Family sponsorship: Citizen/PR spouse\n💡 Canada immigration expanding 2025-2027", tags: ["Express Entry","LMIA","PGWP"] },
+        { emoji: "💡", name: ko ? "토론토 한인 취업 네트워크" : "Toronto Korean Job Networks",
+          desc: ko ? "• KACC (Korean Canadian Chamber of Commerce)\n• 캐나다 한국일보 구인구직 koreatimes.net\n• Toronto Korean Business Association\n• LinkedIn 토론토 한인 그룹"
+                   : "• KACC Korean Canadian Chamber of Commerce\n• Korea Times Canada job listings koreatimes.net\n• Toronto Korean Business Association\n• LinkedIn Toronto Korean group", tags: ["KACC","한국일보","토론토"] },
+      ],
+    },
+    vancouver: {
+      main: [
+        { emoji: "💻", name: ko ? "아마존·마이크로소프트 밴쿠버" : "Amazon & Microsoft Vancouver",
+          desc: ko ? "✅ 아마존 밴쿠버 오피스(게임·AWS). 마이크로소프트 밴쿠버. 구글·Electronic Arts·D-Wave. 한인 SDE 취업 활발. 연봉 CAD $100K-$320K"
+                   : "✅ Amazon Vancouver (Gaming/AWS). Microsoft Vancouver. Google, Electronic Arts, D-Wave. Active Korean SDE hiring. CAD $100K-$320K", tags: ["아마존","Microsoft","EA"] },
+        { emoji: "🎨", name: ko ? "VFX·게임·애니메이션 산업" : "VFX, Gaming & Animation",
+          desc: ko ? "Industrial Light & Magic·Weta Digital·EA·Relic Entertainment 밴쿠버. 한인 아티스트·프로그래머 취업. 마블·DC 영화 VFX. 연봉 CAD $60K-$180K"
+                   : "ILM, Weta Digital, EA, Relic Entertainment Vancouver. Korean artists/programmers hiring. Marvel/DC VFX films. CAD $60K-$180K", tags: ["VFX","게임","ILM"] },
+        { emoji: "🏗️", name: ko ? "건설·부동산 개발" : "Construction & Real Estate",
+          desc: ko ? "밴쿠버 부동산 개발 지속. 한국계 건설·개발사 다수 활동. 건축사·엔지니어·부동산 에이전트. 밴쿠버 집값 높아 중개 커미션 높음. 연봉 CAD $60K-$200K+"
+                   : "Vancouver real estate development ongoing. Many Korean construction/development firms. Architects, engineers, realtors. High property prices = high commissions. CAD $60K-$200K+", tags: ["건설","부동산","개발"] },
+      ],
+      sector: [
+        { emoji: "🌲", name: ko ? "천연자원·임업·광업" : "Natural Resources & Mining",
+          desc: ko ? "BC주 전통 산업 — 임업·광업·가스. 환경 엔지니어·지질학자 수요. 한인 자원공학 엔지니어 취업 가능. 연봉 CAD $80K-$180K"
+                   : "BC's traditional industries — forestry, mining, gas. Environmental engineers, geologists needed. Korean resource engineers welcome. CAD $80K-$180K", tags: ["BC","천연자원","엔지니어"] },
+      ],
+      biz: [
+        { emoji: "🍜", name: ko ? "버나비·코퀴틀람 한인 자영업" : "Burnaby/Coquitlam Korean Small Business",
+          desc: ko ? "버나비·코퀴틀람 중심 한인 상권. 한식당·BBQ, H-Mart 중심. 밴쿠버 높은 물가 = 높은 매출 가능. BC 최저시급 $17.40 계획 필수. 초기 자본 CAD $80K-$200K"
+                   : "Burnaby/Coquitlam Korean commercial area. Korean food, H-Mart hub. Vancouver high cost of living = high revenue potential. BC min $17.40/hr. Capital CAD $80K-$200K", tags: ["버나비","자영업","H-Mart"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "밴쿠버 취업 비자·이민 안내" : "Vancouver Work Visa & Immigration",
+          desc: ko ? "• LMIA: 고용주 노동시장평가\n• Express Entry + BC PNP: 테크·헬스케어 우선\n• PGWP: UBC·SFU·BCIT 졸업 후 취업허가\n• IEC (워킹홀리데이): 30세 이하 한국인\n• 스타트업 비자: 캐나다 투자사 지원 필요\n💡 BC주 테크·헬스케어 이민 문호 2025 확대"
+                   : "• LMIA: Labour Market Impact Assessment\n• Express Entry + BC PNP: Tech/healthcare priority\n• PGWP: UBC/SFU/BCIT post-grad permit\n• IEC (Working Holiday): Koreans under 30\n• Startup Visa: Requires Canadian VC support\n💡 BC tech/healthcare immigration expanding 2025", tags: ["Express Entry","BC PNP","IEC"] },
+        { emoji: "💡", name: ko ? "밴쿠버 한인 취업 네트워크" : "Vancouver Korean Job Networks",
+          desc: ko ? "• 밴쿠버 조선일보 구인구직 vanchosun.com\n• BC주 한인회 취업 서비스\n• SFU·UBC 한인 학생회 알럼나이\n• LinkedIn 밴쿠버 한인 그룹"
+                   : "• Vancouver Chosun job listings vanchosun.com\n• BC Korean Association employment service\n• SFU/UBC Korean alumni networks\n• LinkedIn Vancouver Korean group", tags: ["밴조선","UBC","밴쿠버"] },
+      ],
+    },
+    philadelphia: {
+      main: [
+        { emoji: "🏥", name: ko ? "필라델피아 의료 클러스터" : "Philadelphia Medical Cluster",
+          desc: ko ? "Penn Medicine·Jefferson Health·Temple University Hospital. 미국 최대 의료 집적 도시 중 하나. 한인 의료인 취업 기회 풍부. 연봉 $65K-$300K | 🔗 upenn.edu/careers"
+                   : "Penn Medicine, Jefferson Health, Temple University Hospital. One of US's densest medical hubs. Abundant Korean medical professional opportunities. $65K-$300K | 🔗 upenn.edu/careers", tags: ["Penn","Jefferson","의료"] },
+        { emoji: "💊", name: ko ? "제약·바이오텍 취업" : "Pharma & Biotech",
+          desc: ko ? "GSK(GlaxoSmithKline)·Merck 필라 인근 본부. 얀센(J&J)·Incyte·Syneos Health. 한인 연구직·임상직 취업. 연봉 $85K-$280K"
+                   : "GSK, Merck near Philadelphia HQ. Janssen (J&J), Incyte, Syneos Health. Korean research/clinical positions. $85K-$280K", tags: ["GSK","Merck","제약"] },
+        { emoji: "📡", name: ko ? "Comcast 및 테크 취업" : "Comcast & Tech",
+          desc: ko ? "Comcast 세계 본부 필라. SAP·Siemens·Urban Outfitters IT. 테크 인프라 성장 중. 연봉 $75K-$220K | 🔗 comcastcareers.com"
+                   : "Comcast World HQ in Philly. SAP, Siemens, Urban Outfitters IT. Growing tech infrastructure. $75K-$220K | 🔗 comcastcareers.com", tags: ["Comcast","SAP","테크"] },
+      ],
+      sector: [
+        { emoji: "🎓", name: ko ? "대학·교육 기관" : "Universities & Education",
+          desc: ko ? "UPenn·Drexel·Temple·Villanova·LaSalle. 연구직·포닥·행정직. 한인 연구자 상당수. J-1·H-1B 스폰서 강함. 연봉 $50K-$180K"
+                   : "UPenn, Drexel, Temple, Villanova, LaSalle. Research, postdoc, admin. Korean researchers present. Strong J-1/H-1B sponsorship. $50K-$180K", tags: ["UPenn","Drexel","연구"] },
+      ],
+      biz: [
+        { emoji: "🍽️", name: ko ? "어퍼다비·체리힐 한인 자영업" : "Upper Darby/Cherry Hill Korean Business",
+          desc: ko ? "어퍼다비(PA)·체리힐(NJ) 한인 상권. H-Mart 에지스턴 인근. 의료 종사자 고객 안정적. PA 소득세 3.07% (낮음). 초기 자본 $50K-$150K"
+                   : "Upper Darby (PA) & Cherry Hill (NJ) Korean area. H-Mart Edgemont nearby. Stable medical professional clientele. PA 3.07% income tax (low). Capital $50K-$150K", tags: ["어퍼다비","체리힐","H-Mart"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "필라델피아 취업 비자 안내" : "Philadelphia Work Visa Guide",
+          desc: ko ? "• H-1B: 의료·제약·Comcast 스폰서\n• J-1: UPenn·Drexel 연구원 경로\n• OPT/STEM: 드렉셀·UPenn 졸업생\n• EB-1A: 탁월한 연구자 (제약 분야)\n• EB-2 NIW: 의료·연구 분야 유리\n• PA 소득세 3.07% (전국 최저 수준)"
+                   : "• H-1B: Medical, pharma, Comcast sponsors\n• J-1: UPenn/Drexel researcher pathway\n• OPT/STEM: Drexel/UPenn graduates\n• EB-1A: Extraordinary pharma researchers\n• EB-2 NIW: Medical/research favorable\n• PA 3.07% income tax (among nation's lowest)", tags: ["H-1B","UPenn","제약"] },
+        { emoji: "💡", name: ko ? "필라델피아 한인 취업 네트워크" : "Philadelphia Korean Job Networks",
+          desc: ko ? "• 주간필라(koreanphila.com) 구인구직\n• KACP (Korean American Chamber Philadelphia)\n• UPenn·Drexel 한인 학생회 알럼나이\n• 뉴저지 한인 커뮤니티 네트워크"
+                   : "• Jugan Phila (koreanphila.com) job listings\n• KACP Korean American Chamber Philadelphia\n• UPenn/Drexel Korean alumni networks\n• New Jersey Korean community network", tags: ["주간필라","KACP","필라"] },
+      ],
+    },
+    kansascity: {
+      main: [
+        { emoji: "🏥", name: ko ? "의료·헬스케어 취업" : "Healthcare",
+          desc: ko ? "University of Kansas Health System·Saint Luke's·Children's Mercy. 의료 취업 KC 최대. 한인 의료인 취업 기회. 연봉 $60K-$250K"
+                   : "University of Kansas Health, Saint Luke's, Children's Mercy. KC's largest job sector. Korean medical professionals welcome. $60K-$250K", tags: ["의료","KU Health","간호"] },
+        { emoji: "💻", name: ko ? "오라클 헬스·테크 클러스터" : "Oracle Health & Tech",
+          desc: ko ? "Oracle Health(구 Cerner) KC 본부. Sprint/T-Mobile(오버랜드파크). H&R Block HQ. IT 개발·데이터분석. 연봉 $70K-$200K"
+                   : "Oracle Health (Cerner) KC HQ. Sprint/T-Mobile (Overland Park). H&R Block HQ. IT development, data analysis. $70K-$200K", tags: ["Oracle","T-Mobile","IT"] },
+        { emoji: "🚗", name: ko ? "자동차·제조업" : "Automotive & Manufacturing",
+          desc: ko ? "Ford KC 조립공장·GM·Harley-Davidson. 한국계 현대모비스 등 부품사. 엔지니어링·생산관리. 연봉 $60K-$160K"
+                   : "Ford KC Assembly, GM, Harley-Davidson. Korean suppliers like Hyundai Mobis. Engineering, production management. $60K-$160K", tags: ["Ford","GM","제조"] },
+      ],
+      sector: [
+        { emoji: "🌾", name: ko ? "농업·식품 산업" : "Agriculture & Food Industry",
+          desc: ko ? "KC 광역권 식품 가공 허브 — Cargill·Tyson·Sysco. 식품 엔지니어·공급망. 한인 식품업계 취업 가능. 연봉 $55K-$140K"
+                   : "KC metro food processing hub — Cargill, Tyson, Sysco. Food engineers, supply chain. Korean food industry professionals welcome. $55K-$140K", tags: ["식품","Cargill","농업"] },
+      ],
+      biz: [
+        { emoji: "🍽️", name: ko ? "오버랜드파크 한인 자영업" : "Overland Park Korean Small Business",
+          desc: ko ? "오버랜드파크(KS) 중심 한인 상권. H-Mart KC 오픈으로 상권 활성화. KS 식료품 판매세 면제(2025~). MO/KS 소득세 4-5% 낮음. 초기 자본 $40K-$120K"
+                   : "Overland Park (KS) Korean commercial area. H-Mart KC opened, boosting market. KS grocery tax-free from 2025. MO/KS income tax 4-5% low. Capital $40K-$120K", tags: ["오버랜드파크","H-Mart","KS"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "캔자스시티 취업 비자 안내" : "Kansas City Work Visa Guide",
+          desc: ko ? "• H-1B: Oracle·병원·IT 스폰서\n• OPT: KU·UMKC·Kansas State 졸업생\n• E-2: MO/KS 투자 비자 (식품·서비스 창업)\n• EB-3: 의료·제조 영주권\n💡 KC 생활비 전국 최저 수준 — 실질 구매력 높음"
+                   : "• H-1B: Oracle, hospital, IT sponsors\n• OPT: KU, UMKC, Kansas State grads\n• E-2: MO/KS investment visa (food/service startups)\n• EB-3: Medical/manufacturing green card\n💡 KC lowest cost of living nationally — high purchasing power", tags: ["Oracle","KU","KC"] },
+        { emoji: "💡", name: ko ? "캔자스시티 한인 취업 네트워크" : "KC Korean Job Networks",
+          desc: ko ? "• KC Korean Journal 구인구직 kckoreanjournal.com\n• 캔자스시티 한인회\n• KU·UMKC 한인 학생회\n• LinkedIn KC 한인 그룹"
+                   : "• KC Korean Journal jobs kckoreanjournal.com\n• Kansas City Korean Association\n• KU/UMKC Korean student organizations\n• LinkedIn KC Korean group", tags: ["KC Journal","한인회","KC"] },
+      ],
+    },
+    miami: {
+      main: [
+        { emoji: "🏦", name: ko ? "국제금융·라틴아메리카 비즈니스" : "International Finance & Latin America",
+          desc: ko ? "Citigroup·HSBC·Banco Santander 마이애미 라틴아메리카 본부. 한국어+스페인어 이중언어 금융인 수요. 연봉 $70K-$250K"
+                   : "Citigroup, HSBC, Banco Santander Latin America HQ. Korean+Spanish bilingual finance professionals needed. $70K-$250K", tags: ["금융","라틴아메리카","이중언어"] },
+        { emoji: "🏥", name: ko ? "Baptist Health·헬스케어" : "Baptist Health & Healthcare",
+          desc: ko ? "Baptist Health·Jackson Health·Nicklaus Children's. FL 한인 의료인 취업. FL 소득세 없음 → 실수령액 높음. 연봉 $60K-$250K"
+                   : "Baptist Health, Jackson Health, Nicklaus Children's. FL Korean medical professional hiring. No FL income tax → high take-home. $60K-$250K", tags: ["Baptist","FL","의료"] },
+        { emoji: "🚢", name: ko ? "해운·물류·관광 산업" : "Shipping, Logistics & Tourism",
+          desc: ko ? "Royal Caribbean·Carnival·Norwegian 마이애미 본부. 세계 최대 크루즈 항구. 한인 해운·물류·관광 취업. 스페인어 가능 시 우대. 연봉 $50K-$180K"
+                   : "Royal Caribbean, Carnival, Norwegian Miami HQ. World's largest cruise port. Korean shipping/logistics/tourism hiring. Spanish preferred. $50K-$180K", tags: ["크루즈","물류","Royal Caribbean"] },
+      ],
+      sector: [
+        { emoji: "🏗️", name: ko ? "부동산·건설 개발" : "Real Estate & Construction",
+          desc: ko ? "마이애미 부동산 붐 지속. 한인 부동산 에이전트·개발사 활동. 국제 투자자(브라질·아르헨·한국) 대상 서비스. FL 소득세 없음 → 커미션 전액 수령. 연봉 $60K-$300K+"
+                   : "Miami real estate boom ongoing. Korean realtors/developers active. Serving international investors (Brazil, Argentina, Korea). No FL tax → keep full commission. $60K-$300K+", tags: ["부동산","개발","FL"] },
+      ],
+      biz: [
+        { emoji: "🍽️", name: ko ? "도랄·켄달 한인 자영업" : "Doral/Kendall Korean Small Business",
+          desc: ko ? "도랄(한인·라틴 커뮤니티 혼합) 중심 상권. 스페인어 가능 시 사업 확장 유리. FL 소득세 없음 + 판매세 7%. 허리케인 보험 비용 고려 필수. 초기 자본 $60K-$160K"
+                   : "Doral (Korean-Latin mixed community) commercial area. Spanish advantage for business expansion. No FL income tax, 7% sales tax. Must budget hurricane insurance. Capital $60K-$160K", tags: ["도랄","스페인어","FL"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "마이애미 취업 비자 안내" : "Miami Work Visa Guide",
+          desc: ko ? "• H-1B: 의료·금융·물류 스폰서\n• E-2: FL 투자 비자 (한국인 인기 — 소득세 없음)\n• EB-5: 투자 이민 ($800K~) 마이애미 인기\n• TN: 멕시코 국경 인접 — 캐나다·멕시코 전문직\n💡 스페인어 = 마이애미 최대 취업 경쟁력"
+                   : "• H-1B: Medical, finance, logistics sponsors\n• E-2: FL investment visa (popular for Koreans, no income tax)\n• EB-5: Investment immigration ($800K+) popular in Miami\n• TN: Near Mexico border — Canadian/Mexican professionals\n💡 Spanish = Miami's strongest career advantage", tags: ["E-2","EB-5","스페인어"] },
+        { emoji: "💡", name: ko ? "마이애미 한인 취업 네트워크" : "Miami Korean Job Networks",
+          desc: ko ? "• 마이애미 한인 상공회의소\n• 미주중앙일보 마이애미 구인구직\n• 도랄 한인 카카오 커뮤니티\n• LinkedIn 마이애미 한인 그룹"
+                   : "• Miami Korean Chamber of Commerce\n• Korea Daily Miami job listings\n• Doral Korean KakaoTalk community\n• LinkedIn Miami Korean group", tags: ["한인회","중앙일보","마이애미"] },
+      ],
+    },
+    mexicocity: {
+      main: [
+        { emoji: "🇰🇷", name: ko ? "한국 기업 멕시코 법인 취업" : "Korean Companies in Mexico",
+          desc: ko ? "삼성전자·LG전자·현대·기아 멕시코 법인. 한국어+스페인어 이중언어 우대. 주재원 기회. 연봉 MXN $600K-$2M (현지 기준) | 🔗 samsung.com/mx"
+                   : "Samsung, LG, Hyundai, Kia Mexico subsidiaries. Korean+Spanish bilingual preferred. Expat opportunities. MXN $600K-$2M (local standard) | 🔗 samsung.com/mx", tags: ["삼성","LG","한국기업"] },
+        { emoji: "💼", name: ko ? "다국적기업·금융 취업" : "Multinationals & Finance",
+          desc: ko ? "BBVA·Citibanamex·Bimbo·América Móvil. 한국인 전문가 금융·마케팅·IT 부문. 영어+스페인어 필수. 연봉 USD $30K-$100K (달러 환산)"
+                   : "BBVA, Citibanamex, Bimbo, América Móvil. Korean professionals in finance, marketing, IT. English+Spanish essential. USD $30K-$100K equivalent", tags: ["BBVA","다국적","스페인어"] },
+        { emoji: "🏭", name: ko ? "제조업·무역 취업" : "Manufacturing & Trade",
+          desc: ko ? "멕시코 제조업 허브 — 자동차·전자·식품. 한국계 현대모비스·LS Cable 현지 공장. USMCA(미-멕-캐 협정) 활용 무역. 연봉 MXN $400K-$1.5M"
+                   : "Mexico manufacturing hub — auto, electronics, food. Korean Hyundai Mobis, LS Cable local plants. USMCA trade opportunities. MXN $400K-$1.5M", tags: ["제조업","USMCA","무역"] },
+      ],
+      sector: [
+        { emoji: "🌮", name: ko ? "스타트업·테크 생태계" : "Startup & Tech Ecosystem",
+          desc: ko ? "폴랑코·산타페 스타트업 클러스터. Kavak·Konfío 등 멕시코 유니콘. 원격근무 비자(디지털 노마드) 가능. 연봉 USD $20K-$80K (생활비 저렴 = 높은 실질 소득)"
+                   : "Polanco/Santa Fe startup cluster. Kavak, Konfío and other Mexican unicorns. Remote work visa (digital nomad) available. USD $20K-$80K (low cost of living = high real income)", tags: ["스타트업","디지털노마드","폴랑코"] },
+      ],
+      biz: [
+        { emoji: "🍜", name: ko ? "폴랑코 한인 자영업" : "Polanco Korean Small Business",
+          desc: ko ? "폴랑코 외교·비즈니스 구역 한인 식당. 주재원·외교관 고객 안정적. 멕시코 IVA(부가세) 16% 감안. 사업 등록(RFC) 필수 — 현지 회계사 도움. 초기 자본 USD $20K-$60K"
+                   : "Polanco diplomatic/business area Korean restaurants. Stable expat/diplomat clientele. Mexico IVA (VAT) 16%. RFC registration required — local accountant essential. Capital USD $20K-$60K", tags: ["폴랑코","주재원","RFC"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "멕시코 취업·거주 비자 안내" : "Mexico Work & Residence Visa",
+          desc: ko ? "• FM3 (Residente Temporal): 1년 체류 + 취업 가능\n• Residente Permanente: 4년 후 영주권\n• 디지털 노마드 비자: 원격근무 월 $1,620+ 필요\n• USMCA TN 비자: 전문직 미국·캐나다·멕시코 이동\n⚠️ RFC (납세자 번호) 등록 필수 — 현지 회계사 상담"
+                   : "• FM3 (Residente Temporal): 1-year stay + work\n• Residente Permanente: Permanent after 4 years\n• Digital nomad visa: Remote work $1,620+/month required\n• USMCA TN visa: Professional mobility US/Canada/Mexico\n⚠️ RFC (tax ID) registration required — consult local accountant", tags: ["FM3","RFC","디지털노마드"] },
+        { emoji: "💡", name: ko ? "멕시코시티 한인 취업 네트워크" : "Mexico City Korean Job Networks",
+          desc: ko ? "• 한국 대사관(주멕시코) 한인 커뮤니티\n• Kotra 멕시코시티 사무소\n• 멕시코 한인 상공회의소\n• LinkedIn 멕시코시티 한인 그룹"
+                   : "• Korean Embassy Mexico City Korean community\n• KOTRA Mexico City office\n• Mexican Korean Chamber of Commerce\n• LinkedIn Mexico City Korean group", tags: ["KOTRA","대사관","멕시코"] },
+      ],
+    },
+    guadalajara: {
+      main: [
+        { emoji: "💻", name: ko ? "실리콘밸리 사무소·테크 기업" : "Tech Companies & Silicon Valley Offices",
+          desc: ko ? "Intel·HP·Oracle·IBM 과달라하라 오피스. '멕시코 실리콘밸리' 별칭. IT·소프트웨어 개발자 수요. 영어+스페인어 필수. 연봉 MXN $400K-$1.5M"
+                   : "Intel, HP, Oracle, IBM Guadalajara offices. 'Mexico's Silicon Valley' nickname. IT/software developer demand. English+Spanish essential. MXN $400K-$1.5M", tags: ["Intel","HP","IT"] },
+        { emoji: "🇰🇷", name: ko ? "한국 제조·전자기업" : "Korean Manufacturing & Electronics",
+          desc: ko ? "LG전자·삼성 부품사·한국 자동차 부품사 할리스코주 공장. 한국어+스페인어 엔지니어·관리자. 주재원 기회. 연봉 USD $25K-$70K"
+                   : "LG, Samsung suppliers, Korean auto parts factories in Jalisco state. Korean+Spanish engineers/managers. Expat opportunities. USD $25K-$70K", tags: ["LG","한국기업","할리스코"] },
+      ],
+      sector: [
+        { emoji: "🎮", name: ko ? "게임·미디어·창작 산업" : "Gaming, Media & Creative",
+          desc: ko ? "과달라하라 문화 도시 — 애니메이션·게임·영화 산업 성장. 멕시코 창작 인재 허브. 스타트업 생태계 활발"
+                   : "Guadalajara cultural city — animation, gaming, film industry growing. Mexican creative talent hub. Active startup ecosystem", tags: ["게임","미디어","창작"] },
+      ],
+      biz: [
+        { emoji: "🍜", name: ko ? "과달라하라 한인 자영업" : "Guadalajara Korean Small Business",
+          desc: ko ? "소규모 한인 커뮤니티 중심 상권. 한식당·코리안 BBQ 수요 증가. 멕시코 제2도시 = 성장 잠재력. 초기 자본 USD $15K-$50K (멕시코시티 대비 저렴)"
+                   : "Small Korean community commercial area. Korean food/BBQ demand growing. Mexico's 2nd city = growth potential. Capital USD $15K-$50K (cheaper than Mexico City)", tags: ["과달라하라","한식당","성장"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "과달라하라 취업·거주 비자" : "Guadalajara Work Visa",
+          desc: ko ? "멕시코시티와 동일 비자 시스템:\n• FM3 (Residente Temporal): 취업 가능\n• RFC 납세자 번호 등록 필수\n• 한국 기업 주재원: 본사 파견 서류로 간소화\n💡 멕시코 생활비 저렴 — 달러 수입 시 높은 실질 소득"
+                   : "Same visa system as Mexico City:\n• FM3 (Residente Temporal): Work permitted\n• RFC tax ID registration required\n• Korean company expats: Simplified with HQ dispatch\n💡 Low Mexico cost of living — high real income with USD earnings", tags: ["FM3","주재원","과달라하라"] },
+        { emoji: "💡", name: ko ? "과달라하라 한인 네트워크" : "Guadalajara Korean Network",
+          desc: ko ? "• 과달라하라 한인회\n• 주멕시코 한국 대사관 연결\n• KOTRA 멕시코시티 → 과달라하라 지원\n• LinkedIn 과달라하라 한인 그룹"
+                   : "• Guadalajara Korean Association\n• Korean Embassy Mexico City connection\n• KOTRA Mexico City → Guadalajara support\n• LinkedIn Guadalajara Korean group", tags: ["한인회","KOTRA","과달라하라"] },
+      ],
+    },
+    monterrey: {
+      main: [
+        { emoji: "🏭", name: ko ? "중공업·철강·시멘트" : "Heavy Industry, Steel & Cement",
+          desc: ko ? "CEMEX·Ternium·Vitro 본부 몬테레이. 북미 최대 공업 도시 중 하나. 한국계 POSCO·현대제철 협력사. 엔지니어링·제조관리. 연봉 MXN $500K-$1.8M"
+                   : "CEMEX, Ternium, Vitro HQ Monterrey. One of North America's largest industrial cities. Korean POSCO/Hyundai Steel partners. Engineering, manufacturing management. MXN $500K-$1.8M", tags: ["CEMEX","철강","중공업"] },
+        { emoji: "🚗", name: ko ? "자동차·한국 부품사" : "Automotive & Korean Suppliers",
+          desc: ko ? "현대·기아 멕시코 공장 인근 부품 클러스터. 현대모비스·현대트랜시스·한국타이어 몬테레이 공장. 한국어 엔지니어 수요. 주재원 기회. 연봉 USD $30K-$80K"
+                   : "Hyundai/Kia Mexico plant parts cluster. Hyundai Mobis, Hyundai Transys, Hankook Tire Monterrey plants. Korean engineers needed. Expat opportunities. USD $30K-$80K", tags: ["현대","기아","자동차"] },
+      ],
+      sector: [
+        { emoji: "📦", name: ko ? "물류·유통 산업" : "Logistics & Distribution",
+          desc: ko ? "미국-멕시코 국경 물류 허브. USMCA 혜택으로 물류 급성장. 한국 물류기업(CJ대한통운 등) 멕시코 확장. 공급망 관리자 수요"
+                   : "US-Mexico border logistics hub. USMCA-driven logistics boom. Korean logistics firms (CJ Logistics etc.) expanding in Mexico. Supply chain managers needed", tags: ["물류","USMCA","CJ"] },
+      ],
+      biz: [
+        { emoji: "🍜", name: ko ? "몬테레이 한인 자영업" : "Monterrey Korean Small Business",
+          desc: ko ? "소규모 한인 커뮤니티. 주재원 대상 한식당 수요. 공업도시 = 높은 구매력. 멕시코 3대 도시 성장 지속. 초기 자본 USD $15K-$45K"
+                   : "Small Korean community. Korean food demand from expats. Industrial city = high purchasing power. Mexico's 3rd city continuing growth. Capital USD $15K-$45K", tags: ["몬테레이","주재원","공업"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "몬테레이 취업·거주 비자" : "Monterrey Work Visa",
+          desc: ko ? "멕시코 공통 비자 시스템 적용:\n• FM3: 주재원·취업 비자\n• RFC 필수 등록\n• USMCA TN: 전문직 멕시코→미국·캐나다\n💡 누에보레온주 — 멕시코에서 가장 경제적으로 발전한 주"
+                   : "Mexico standard visa system:\n• FM3: Expat/work permit\n• RFC mandatory registration\n• USMCA TN: Professional Mexico→US/Canada\n💡 Nuevo León — Mexico's most economically advanced state", tags: ["FM3","USMCA","누에보레온"] },
+        { emoji: "💡", name: ko ? "몬테레이 한인 네트워크" : "Monterrey Korean Network",
+          desc: ko ? "• 몬테레이 한인회\n• 주멕시코 한국 대사관 연결\n• 한국 제조기업 사내 한인 커뮤니티\n• LinkedIn 몬테레이 한인 그룹"
+                   : "• Monterrey Korean Association\n• Korean Embassy Mexico City connection\n• Korean manufacturing company internal community\n• LinkedIn Monterrey Korean group", tags: ["한인회","제조기업","몬테레이"] },
+      ],
+    },
     houston: {
       main: [
         { emoji: "⚡", name: ko ? "에너지·석유화학" : "Energy & Petrochemicals",
@@ -6765,6 +7101,64 @@ function getCityDistrictData(slug: string, lang: string) {
       { emoji: "⭐", name: "Burnaby School District 41", nameEn: "SD41 Burnaby — UBC Neighbor",
         desc: ko ? "✅ 버나비 관할. UBC 인근. Burnaby North HS·Burnaby Mountain HS. 한인·중국계 혼합. 아시안 친화적 환경.\n📍 버나비·밴쿠버 동부 | 🔗 burnabyschools.ca"
                  : "✅ Burnaby near UBC. Burnaby North & Mountain HS. Korean & Chinese mixed. Asian-friendly environment.\n📍 Burnaby, east Vancouver | 🔗 burnabyschools.ca", tags: ["버나비","UBC","아시안"] },
+    ],
+    // ── 추가 6개 도시 학군 ──────────────────────────────────────
+    atlanta: [
+      { emoji: "⭐", name: "Gwinnett County Public Schools", nameEn: "GCPS — Duluth/Suwanee",
+        desc: ko ? "✅ 귀넷카운티. GA 최대 학군·한인 밀집. Niche A. Duluth HS·Peachtree Ridge HS. 한인 학생 비율 높음.\n📍 둘루스·스와니·로렌스빌 | 🔗 gcpsk12.org"
+                 : "✅ Gwinnett County. GA's largest. Niche A. Duluth HS, Peachtree Ridge HS. High Korean student ratio.\n📍 Duluth, Suwanee, Lawrenceville | 🔗 gcpsk12.org", tags: ["귀넷","둘루스","한인밀집"] },
+      { emoji: "⭐", name: "Forsyth County Schools", nameEn: "Forsyth County — GA Top",
+        desc: ko ? "✅ GA 최상위 학군 (Niche A+). 졸업률 97%. Lambert HS·South Forsyth HS.\n📍 커밍·볼그라운드 | 🔗 forsyth.k12.ga.us"
+                 : "✅ GA's top district (Niche A+). 97% grad rate. Lambert HS, South Forsyth HS.\n📍 Cumming, Ball Ground | 🔗 forsyth.k12.ga.us", tags: ["포사이스","A+","GA"] },
+      { emoji: "🏫", name: "Fulton County — Johns Creek", nameEn: "Fulton — North Atlanta",
+        desc: ko ? "존스크릭·알파레타. Northview HS·Johns Creek HS 명문. 부유한 북부 애틀랜타.\n📍 존스크릭·알파레타 | 🔗 fultonschools.org"
+                 : "Johns Creek, Alpharetta. Northview HS, Johns Creek HS prestigious. Affluent north Atlanta.\n📍 Johns Creek, Alpharetta | 🔗 fultonschools.org", tags: ["존스크릭","알파레타","풀턴"] },
+    ],
+    nashville: [
+      { emoji: "⭐", name: "Williamson County Schools", nameEn: "Williamson County — TN #1",
+        desc: ko ? "✅ TN 최상위 학군 (Niche A+). 졸업률 96%. Franklin·Brentwood. Brentwood HS·Franklin HS 전국 상위권.\n📍 프랭클린·브렌트우드·쿨스프링스 | 🔗 wcs.edu"
+                 : "✅ TN's top district (Niche A+). 96% grad rate. Brentwood HS, Franklin HS nationally ranked.\n📍 Franklin, Brentwood, Cool Springs | 🔗 wcs.edu", tags: ["윌리엄슨","TN1위","A+"] },
+      { emoji: "🏫", name: "Rutherford County Schools", nameEn: "Rutherford — Murfreesboro",
+        desc: ko ? "머프리즈버로·스미르나. 내쉬빌 외곽 성장 학군. Niche B+. 렌트 저렴. MTSU 인근.\n📍 머프리즈버로·라 베르그네 | 🔗 rcschools.net"
+                 : "Murfreesboro, Smyrna. Growing Nashville suburb. Niche B+. Affordable rent. Near MTSU.\n📍 Murfreesboro, La Vergne | 🔗 rcschools.net", tags: ["러더포드","머프리즈버로","저렴"] },
+    ],
+    boston: [
+      { emoji: "⭐", name: "Newton Public Schools", nameEn: "Newton — MA #1",
+        desc: ko ? "✅ MA 최상위 학군 (Niche A+). Newton North HS·South HS 전국 Top 50. 한인 가족 유입. IB·AP 풍부.\n📍 뉴턴 전역 | 🔗 newtonma.gov/school"
+                 : "✅ MA's top district (Niche A+). Newton North & South HS top 50 nationally. Korean family influx. Rich IB/AP.\n📍 Newton (citywide) | 🔗 newtonma.gov/school", tags: ["뉴턴","MA1위","A+"] },
+      { emoji: "⭐", name: "Lexington Public Schools", nameEn: "Lexington — MA Top 3",
+        desc: ko ? "✅ Niche A+. 렉싱턴 HS 전국 상위 1%. 아시안 학생 30%+. MIT·하버드 진학률 높음.\n📍 렉싱턴 전역 | 🔗 lexingtonma.org/schools"
+                 : "✅ Niche A+. Lexington HS top 1% nationally. 30%+ Asian students. High MIT/Harvard placement.\n📍 Lexington | 🔗 lexingtonma.org/schools", tags: ["렉싱턴","MIT","아시안30%"] },
+      { emoji: "🏫", name: "Quincy Public Schools", nameEn: "Quincy — Affordable Boston",
+        desc: ko ? "퀸시. 보스턴 남쪽 20분. 한인·아시안 커뮤니티. 렌트 저렴. 지하철(레드라인) 통근. Niche B+.\n📍 퀸시 전역 | 🔗 quincypublicschools.com"
+                 : "Quincy. 20min south of Boston. Korean/Asian community. Affordable rent. Red Line subway. Niche B+.\n📍 Quincy | 🔗 quincypublicschools.com", tags: ["퀸시","레드라인","저렴"] },
+    ],
+    philadelphia: [
+      { emoji: "⭐", name: "Lower Merion School District", nameEn: "Lower Merion — PA #1",
+        desc: ko ? "✅ PA 최상위 학군 (Niche A+). 아이비리그 진학률 최상. 한인 전문직 가족 선호.\n📍 아르드모어·발라신우드·하버포드 | 🔗 lmsd.org"
+                 : "✅ PA's top district (Niche A+). Top Ivy League placement. Korean professional families prefer.\n📍 Ardmore, Bala Cynwyd, Haverford | 🔗 lmsd.org", tags: ["Lower Merion","PA1위","아이비리그"] },
+      { emoji: "⭐", name: "Cherry Hill School District (NJ)", nameEn: "Cherry Hill — Affordable Top",
+        desc: ko ? "✅ NJ 체리힐. Niche A. 한인 커뮤니티 강함. Cherry Hill East·West HS. PA보다 렌트 저렴. PATCO 필라 직통.\n📍 체리힐·NJ | 🔗 chclc.org"
+                 : "✅ Cherry Hill NJ. Niche A. Strong Korean community. Cherry Hill East/West HS. Cheaper than PA. PATCO direct to Philly.\n📍 Cherry Hill, NJ | 🔗 chclc.org", tags: ["체리힐","NJ","PATCO"] },
+    ],
+    kansascity: [
+      { emoji: "⭐", name: "Shawnee Mission USD (KS)", nameEn: "Shawnee Mission — KS Top",
+        desc: ko ? "✅ KS 최상위 학군 (Niche A). 오버랜드파크·리우드. Shawnee Mission East HS. 한인 가족 밀집 인근.\n📍 오버랜드파크·리우드·미션힐스 | 🔗 smsd.org"
+                 : "✅ KS top district (Niche A). Overland Park & Leawood. Shawnee Mission East HS. Near Korean families.\n📍 Overland Park, Leawood | 🔗 smsd.org", tags: ["Shawnee Mission","오버랜드파크","KS"] },
+      { emoji: "⭐", name: "Blue Valley USD (KS)", nameEn: "Blue Valley — KS #1",
+        desc: ko ? "✅ KS 1위 학군 (Niche A+). 졸업률 98%. Blue Valley HS·Northwest HS. 오버랜드파크 남쪽.\n📍 오버랜드파크 남부·스틸웰 | 🔗 bluevalleyk12.org"
+                 : "✅ KS #1 district (Niche A+). 98% grad rate. Blue Valley HS, Northwest HS. South Overland Park.\n📍 South Overland Park, Stilwell | 🔗 bluevalleyk12.org", tags: ["Blue Valley","KS1위","A+"] },
+    ],
+    miami: [
+      { emoji: "⭐", name: "Coral Gables — Miami-Dade", nameEn: "Coral Gables — Top Miami",
+        desc: ko ? "✅ 마이애미데이드 최상위. Coral Gables Senior HS (Niche A+). 한인·라틴 혼합 커뮤니티.\n📍 코랄게이블스 | 🔗 dadeschools.net"
+                 : "✅ Miami-Dade top area. Coral Gables Senior HS (Niche A+). Korean-Latin mixed community.\n📍 Coral Gables | 🔗 dadeschools.net", tags: ["Coral Gables","A+","마이애미U"] },
+      { emoji: "🏫", name: "Doral Area — Korean Hub", nameEn: "Doral — Korean Community",
+        desc: ko ? "한인 밀집 도랄. 이중언어(한국어·스페인어) 환경. 마이애미 서쪽 교외. 렌트 합리적.\n📍 도랄·웨스트 마이애미 | 🔗 dadeschools.net"
+                 : "Korean hub in Doral. Bilingual (Korean/Spanish) environment. Western Miami suburb. Reasonable rent.\n📍 Doral, West Miami | 🔗 dadeschools.net", tags: ["도랄","이중언어","스페인어"] },
+      { emoji: "🏫", name: "Broward County — Fort Lauderdale", nameEn: "Broward County",
+        desc: ko ? "마이애미 북쪽. 렌트 저렴. Tri-Rail 통근 가능. 성장하는 한인 커뮤니티.\n📍 포트로더데일·홀리우드·펨브로크 | 🔗 browardschools.com"
+                 : "North of Miami. Lower rent. Tri-Rail commute. Growing Korean community.\n📍 Fort Lauderdale, Hollywood, Pembroke | 🔗 browardschools.com", tags: ["브로워드","포트로더데일","저렴"] },
     ],
   };
   return DATA[slug] ?? [
