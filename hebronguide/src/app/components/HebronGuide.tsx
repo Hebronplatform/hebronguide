@@ -1778,6 +1778,192 @@ const TOP5_EXPLORE: Top5Item[] = isSeattleShuttleActive()
   ? [SEATTLE_WATERFRONT_SHUTTLE, ...TOP5_EXPLORE_SEATTLE_BASE.slice(0, 4).map((x, i) => ({ ...x, rank: i + 2 }))]
   : TOP5_EXPLORE_SEATTLE_BASE;
 
+// ─────────────────────────────────────────────────────────────────────────────
+//  월드컵 2026 — 글로벌 호스트 도시 경기장 교통 시스템 (6/1 ~ 7/26 한정)
+//  각 도시 TOP5 탐방 1순위에 경기장 교통 정보 자동 삽입 → 시즌 후 자동 복원
+//  기존 isWorldCupActive(slug) + WORLD_CUP_2026 상수 활용 (아래 2500번대 라인)
+//  Source: FIFA 2026 공식 대중교통 가이드 + 각 도시 교통공사 공지
+// ─────────────────────────────────────────────────────────────────────────────
+const WC_TRANSIT: Record<string, Top5Item> = {
+  la: {
+    rank: 1, emoji: "🚇",
+    nameKo: "⚽ LA Metro C Line → SoFi Stadium (월드컵 개막전 도시)",
+    nameEn: "LA Metro C Line → SoFi Stadium — World Cup 2026 Opener",
+    address: "SoFi Stadium, 1000 S Prairie Ave, Inglewood CA 90301",
+    price: "$1.75 (TAP Card — 경기일 증편 운행)",
+    hours: "경기 시작 3시간 전 ~ 종료 후 1시간",
+    why: "🏆 2026 월드컵 개막전(6/11) 포함 8경기 LA 개최. Metro C Line(구 Green Line) → Hollywood Park/Kia Forum역 → 도보 5분. 코리아타운(Wilshire/Western역)에서 직접 환승. 주차 없이 경기장 직행",
+    tip: "TAP Card 충전 후 탑승. 코리아타운 → Expo/Vermont역 환승 → C Line. 경기일 최소 2시간 전 출발 권장",
+    website: "metro.net",
+  },
+  newyork: {
+    rank: 1, emoji: "🚆",
+    nameKo: "⚽ NJ Transit → MetLife Stadium (결승전 특별열차)",
+    nameEn: "NJ Transit → MetLife Stadium — World Cup Final 2026",
+    address: "MetLife Stadium, 1 MetLife Stadium Dr, East Rutherford NJ 07073",
+    price: "왕복 ~$20 (특별 운행 티켓)",
+    hours: "Penn Station 출발 경기 4시간 전 ~ 종료 후 운행",
+    why: "🏆 2026 월드컵 결승전(7/19) 포함 8경기 뉴욕 개최. Penn Station → Secaucus → MetLife Stadium 직행. 플러싱 한인타운 → 7 Train → 타임스스퀘어 → Penn Station 환승. 경기일 주차 극혼잡 — 열차가 유일한 선택",
+    tip: "NJ Transit 사전 예약 필수 (njtransit.com). 플러싱(Flushing) → Ride-share로 Penn Station 이동도 OK. 최소 3시간 전 출발",
+    website: "njtransit.com",
+  },
+  dallas: {
+    rank: 1, emoji: "🚂",
+    nameKo: "⚽ TRE 열차 + 무료 셔틀 → AT&T Stadium (달라스 월드컵)",
+    nameEn: "TRE Train + Free Shuttle → AT&T Stadium — World Cup 2026",
+    address: "AT&T Stadium, 1 AT&T Way, Arlington TX 76011",
+    price: "TRE $2.50 + 셔틀 무료 (경기일)",
+    hours: "경기 전 2시간 ~ 종료 후 2시간",
+    why: "🏆 2026 월드컵 6경기 달라스 개최. Trinity Railway Express(TRE): 달라스 유니언 스테이션 → CentrePort/DFW공항역 → 경기장 무료 셔틀 연결. 캐롤튼 한인타운 → DART → 유니언스테이션 → TRE 환승",
+    tip: "TRE + 셔틀 조합이 주차($50+)보다 훨씬 편함. 경기 2시간 전 출발 권장",
+    website: "trinityrailwayexpress.org",
+  },
+  sf: {
+    rank: 1, emoji: "🚆",
+    nameKo: "⚽ Caltrain + VTA 셔틀 → Levi's Stadium (베이에어리어 월드컵)",
+    nameEn: "Caltrain + VTA Shuttle → Levi's Stadium — World Cup 2026",
+    address: "Levi's Stadium, 4900 Marie P DeBartolo Way, Santa Clara CA 95054",
+    price: "Caltrain $5-10 + VTA 셔틀 무료 (경기일)",
+    hours: "SF 출발 경기 3시간 전 ~ 종료 후 2시간",
+    why: "🏆 2026 월드컵 6경기 베이에어리어(산타클라라) 개최. SF 4th & King → Caltrain → Great America역 → VTA 무료 셔틀. 산타클라라 H-Mart(한인타운) 인근에서 VTA 직접 접근도 가능",
+    tip: "Clipper Card 사용. 경기일 Caltrain 증편 운행. 주차 $50+, 열차가 훨씬 경제적",
+    website: "caltrain.com",
+  },
+  boston: {
+    rank: 1, emoji: "🚆",
+    nameKo: "⚽ MBTA 게임데이 특별열차 → Gillette Stadium (보스턴 월드컵)",
+    nameEn: "MBTA Game Day Train → Gillette Stadium — World Cup 2026",
+    address: "Gillette Stadium, 1 Patriot Pl, Foxborough MA 02035",
+    price: "왕복 $20-25 (특별 운행 티켓)",
+    hours: "South Station 출발 경기 3시간 전 ~ 종료 후",
+    why: "🏆 2026 월드컵 6경기 보스턴(폭스버러) 개최. MBTA 게임데이 직행열차: South Station → Foxborough 직통 (~1시간). 보스턴 한인 밀집 지역(퀸시·캠브리지) → Red Line → South Station 환승",
+    tip: "MBTA 게임데이 열차 온라인 사전 구매 필수 (mbta.com). 퀸시 한인타운 → Red Line 직통",
+    website: "mbta.com",
+  },
+  houston: {
+    rank: 1, emoji: "🚇",
+    nameKo: "⚽ METRORail Red Line + 셔틀 → NRG Stadium (IHM 본부 도시)",
+    nameEn: "METRORail + Shuttle → NRG Stadium — World Cup 2026",
+    address: "NRG Stadium, One NRG Park, Houston TX 77054",
+    price: "$1.25 (Q Card) + 셔틀 무료",
+    hours: "경기 전 2시간 ~ 종료 후 1시간",
+    why: "🏆 2026 월드컵 7경기 휴스턴 개최 (IHM 가정교회 운동 본부 도시). METRORail Red Line → Memorial Hermann/Houston Zoo역 → NRG Park 셔틀. 휴스턴 한인타운(Beltway 8/Sugar Land)에서 버스·환승 가능",
+    tip: "경기일 NRG 주변 I-610 극혼잡. Q Card 미리 충전. METRORail + 셔틀 조합 강력 권장",
+    website: "ridemetro.org",
+  },
+  atlanta: {
+    rank: 1, emoji: "🚇",
+    nameKo: "⚽ MARTA → Mercedes-Benz Stadium (애틀랜타 월드컵 직통)",
+    nameEn: "MARTA → Mercedes-Benz Stadium — World Cup 2026",
+    address: "Mercedes-Benz Stadium, 1 AMB Dr NW, Atlanta GA 30313",
+    price: "$2.50 (Breeze Card 정기 요금)",
+    hours: "경기일 연장 운행",
+    why: "🏆 2026 월드컵 8경기 애틀랜타 개최. MARTA Red/Gold Line → GWCC/CNN Center역 → 도보 7분. 한인타운(둘루스·노크로스) → MARTA Doraville역 → Red Line 직통. 주차 없이 경기장 직행 가능",
+    tip: "경기일 MARTA 증편. Breeze Card 충전 후 탑승. Doraville역(한인 밀집) → Red Line 직통 → GWCC",
+    website: "itsmarta.com",
+  },
+  kansascity: {
+    rank: 1, emoji: "🚌",
+    nameKo: "⚽ 다운타운 셔틀 → Arrowhead Stadium (캔자스시티 월드컵)",
+    nameEn: "Downtown Shuttle → Arrowhead Stadium — World Cup 2026",
+    address: "Arrowhead Stadium, 1 Arrowhead Dr, Kansas City MO 64129",
+    price: "왕복 $10-15 (예상, 특별 운행)",
+    hours: "경기 전 3시간 ~ 종료 후 2시간",
+    why: "🏆 2026 월드컵 6경기 캔자스시티 개최. KC Metro 특별 셔틀: Power & Light 다운타운 → Arrowhead. 경기일 I-70 고속도로 극혼잡 예상 — 셔틀이 최선 선택",
+    tip: "경기일 최소 3시간 전 이동 권장. RideKC 앱에서 셔틀 정보 확인. 다운타운 주차 후 셔틀 환승도 OK",
+    website: "ridekc.org",
+  },
+  philadelphia: {
+    rank: 1, emoji: "🚇",
+    nameKo: "⚽ SEPTA Broad St Line → Lincoln Financial Field (직통 지하철)",
+    nameEn: "SEPTA Broad St Line → Lincoln Financial Field — World Cup 2026",
+    address: "Lincoln Financial Field, 1 Lincoln Financial Field Way, Philadelphia PA 19148",
+    price: "$2.50 (SEPTA Key Card 정기 요금)",
+    hours: "경기일 정상 + 증편 운행",
+    why: "🏆 2026 월드컵 6경기 필라델피아 개최. SEPTA Broad Street Line(지하철) → AT&T Station(Pattison) → 도보 5분. 필라델피아 한인 밀집 지역에서 Broad St Line 직통. 주차 $30-50 절약",
+    tip: "경기일 SEPTA Broad St Line 증편 운행. SEPTA Key Card 충전 후 탑승",
+    website: "septa.org",
+  },
+  miami: {
+    rank: 1, emoji: "🚆",
+    nameKo: "⚽ Brightline + 셔틀 → Hard Rock Stadium (마이애미 월드컵)",
+    nameEn: "Brightline + Shuttle → Hard Rock Stadium — World Cup 2026",
+    address: "Hard Rock Stadium, 347 Don Shula Dr, Miami Gardens FL 33056",
+    price: "Brightline $10-15 + 셔틀",
+    hours: "경기 전 3시간 ~ 종료 후 2시간",
+    why: "🏆 2026 월드컵 7경기 마이애미 개최 (3위 결정전 포함). Brightline(Aventura역) + 경기일 셔틀 연계. 다운타운 MiamiCentral → Aventura → 셔틀. 도랄(Doral) 한인 밀집 지역에서 접근 가능",
+    tip: "경기일 Brightline 사전 예약 (gobrightline.com). 마이애미 한인타운(Doral) → 셔틀 또는 Uber 조합",
+    website: "gobrightline.com",
+  },
+  mexicocity: {
+    rank: 1, emoji: "🚇",
+    nameKo: "⚽ Metro 2호선 + 트렌 리헤로 → 아즈텍 경기장 (개막전 도시)",
+    nameEn: "Metro Línea 2 + Tren Ligero → Estadio Azteca — World Cup 2026 Opener",
+    address: "Estadio Azteca, Calzada de Tlalpan 3465, Ciudad de México 09000",
+    price: "MXN 5페소 (Metro 정기 요금, 약 $0.30)",
+    hours: "경기일 05:00 ~ 자정 (연장 운행)",
+    why: "🏆 2026 월드컵 개막전(6/11) 포함 3경기 멕시코시티 개최. 아즈텍은 1970·1986·2026 세 번 월드컵 개최 유일 경기장. Metro 2호선 → Tasqueña역 → Tren Ligero → Estadio Azteca역 직통",
+    tip: "경기일 Metro 극혼잡 → 2시간 전 출발. 한인 밀집 지역(Zona Rosa) → Metro 직통. 현금 5페소 준비",
+    website: "metro.cdmx.gob.mx",
+  },
+  guadalajara: {
+    rank: 1, emoji: "🚇",
+    nameKo: "⚽ 트렌 에레크트리코 → 아크론 경기장 (과달라하라 월드컵)",
+    nameEn: "Tren Eléctrico → Estadio Akron — World Cup 2026",
+    address: "Estadio Akron, Av. de las Rosas 2501, Zapopan, Jalisco 45134",
+    price: "MXN 9페소 (경전철 요금)",
+    hours: "경기일 특별 연장 운행",
+    why: "🏆 2026 월드컵 6경기 과달라하라 개최. 트렌 에레크트리코(경전철) Línea 1 → Estadio Akron 인근 + 셔틀. 과달라하라 한인 교회 커뮤니티에서 대중교통 접근 가능",
+    tip: "경기일 대중교통 증편. 경기 3시간 전 출발 권장. Uber도 대안",
+    website: "sistematransporte.jalisco.gob.mx",
+  },
+  monterrey: {
+    rank: 1, emoji: "🚇",
+    nameKo: "⚽ 메트로 1·2호선 + 셔틀 → BBVA 경기장 (몬테레이 월드컵)",
+    nameEn: "Metro + Shuttle → Estadio BBVA — World Cup 2026",
+    address: "Estadio BBVA, Av. Pablo Livas 2011, Guadalupe, Nuevo León 67130",
+    price: "MXN 5페소 (Metro 요금)",
+    hours: "경기일 특별 운행",
+    why: "🏆 2026 월드컵 6경기 몬테레이 개최. 몬테레이 Metro 1·2호선 + 경기장 셔틀. 몬테레이 한인 주재원 커뮤니티(현대·기아·POSCO 등) 거주 지역에서 접근 가능",
+    tip: "경기일 Metro 증편. 경기 2시간 전 이동 권장. 주재원 차량 공유도 OK",
+    website: "metrorrey.gob.mx",
+  },
+  toronto: {
+    rank: 1, emoji: "🚇",
+    nameKo: "⚽ TTC + GO Train → BMO Field (토론토 월드컵 교통)",
+    nameEn: "TTC + GO Train → BMO Field — World Cup 2026",
+    address: "BMO Field, 170 Princes' Blvd, Toronto ON M6K 3C3",
+    price: "CA$3.30 (PRESTO Card 정기 요금)",
+    hours: "경기일 정상 + 증편 운행",
+    why: "🏆 2026 월드컵 6경기 토론토 개최. GO Train Lakeshore → Exhibition 역 → BMO Field 도보 5분. TTC: 코리아타운(Bathurst역) → 블루어 라인 → Exhibition 방향 환승. 한인타운 직통 연결",
+    tip: "PRESTO Card 사용. 코리아타운(Bathurst역) → TTC 블루어 라인 → Exhibition. 경기일 GO Train 증편",
+    website: "gotransit.com",
+  },
+  vancouver: {
+    rank: 1, emoji: "🚇",
+    nameKo: "⚽ SkyTrain → BC Place (밴쿠버 월드컵 완벽 교통)",
+    nameEn: "SkyTrain → BC Place — World Cup 2026",
+    address: "BC Place, 777 Pacific Blvd, Vancouver BC V6B 4Y8",
+    price: "CA$3.15-4.45 (거리별 Compass Card)",
+    hours: "경기일 자정까지 연장 운행",
+    why: "🏆 2026 월드컵 6경기 밴쿠버 개최. SkyTrain Expo/Millennium Line → Stadium-Chinatown역 → 도보 7분. 한인타운(코퀴틀람·버나비) → Millennium Line 직통. 북미 최고 수준 대중교통 경기장 접근성",
+    tip: "Compass Card 사용. 코퀴틀람 한인타운 → Millennium Line → Stadium-Chinatown 직통. 경기일 SkyTrain 자정 연장",
+    website: "translink.ca",
+  },
+};
+
+// 월드컵 시즌(6/1~7/26) 한정 — 해당 도시 경기장 교통 정보 1순위 자동 삽입
+// isWorldCupActive(slug): 기존 WORLD_CUP_2026 상수 활용 (파일 하단에 정의됨)
+// 시즌 종료 후 자동 복원 (코드 수정 없음)
+function withWorldCupTransit(slug: CitySlug, items: Top5Item[]): Top5Item[] {
+  // NOTE: isWorldCupActive(slug)는 이 파일 하단 ~2551번째 라인에 정의됨
+  // 빌드 시 호이스팅으로 정상 참조됨 (function declaration)
+  if (!isWorldCupActive(slug)) return items;
+  const wcItem = WC_TRANSIT[slug];
+  if (!wcItem) return items;
+  return [wcItem, ...items.slice(0, 4).map((x, i) => ({ ...x, rank: i + 2 }))];
+}
+
 /* ─────────────────────────────────────────
    COMPONENT: Top5Banner (가로 스크롤 카드)
 ───────────────────────────────────────── */
@@ -4772,25 +4958,29 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5">
         {sub === 0 && (
-          <Top5Banner items={
-            useCityConfig().slug === "dallas"   ? TOP5_EXPLORE_DALLAS :
-            useCityConfig().slug === "sf"       ? TOP5_EXPLORE_SF :
-            useCityConfig().slug === "newyork"  ? TOP5_EXPLORE_NEWYORK :
-            useCityConfig().slug === "nashville"? TOP5_EXPLORE_NASHVILLE :
-            useCityConfig().slug === "boston"   ? TOP5_EXPLORE_BOSTON :
-            useCityConfig().slug === "la"        ? TOP5_EXPLORE_LA :
-            useCityConfig().slug === "toronto"   ? TOP5_EXPLORE_TORONTO :
-            useCityConfig().slug === "vancouver" ? TOP5_EXPLORE_VANCOUVER :
-            useCityConfig().slug === "houston"   ? TOP5_EXPLORE_HOUSTON :
-            useCityConfig().slug === "atlanta"   ? TOP5_EXPLORE_ATLANTA :
-            useCityConfig().slug === "kansascity"? TOP5_EXPLORE_KANSASCITY :
-            useCityConfig().slug === "philadelphia" ? TOP5_EXPLORE_PHILADELPHIA :
-            useCityConfig().slug === "miami"     ? TOP5_EXPLORE_MIAMI :
-            useCityConfig().slug === "mexicocity"? TOP5_EXPLORE_MEXICOCITY :
-            useCityConfig().slug === "guadalajara"? TOP5_EXPLORE_GUADALAJARA :
-            useCityConfig().slug === "monterrey" ? TOP5_EXPLORE_MONTERREY :
-            TOP5_EXPLORE
-          } lang={lang} accentColor="#0EA5E9" />
+          <Top5Banner items={(() => {
+            const slug = useCityConfig().slug;
+            const base =
+              slug === "dallas"       ? TOP5_EXPLORE_DALLAS :
+              slug === "sf"           ? TOP5_EXPLORE_SF :
+              slug === "newyork"      ? TOP5_EXPLORE_NEWYORK :
+              slug === "nashville"    ? TOP5_EXPLORE_NASHVILLE :
+              slug === "boston"       ? TOP5_EXPLORE_BOSTON :
+              slug === "la"           ? TOP5_EXPLORE_LA :
+              slug === "toronto"      ? TOP5_EXPLORE_TORONTO :
+              slug === "vancouver"    ? TOP5_EXPLORE_VANCOUVER :
+              slug === "houston"      ? TOP5_EXPLORE_HOUSTON :
+              slug === "atlanta"      ? TOP5_EXPLORE_ATLANTA :
+              slug === "kansascity"   ? TOP5_EXPLORE_KANSASCITY :
+              slug === "philadelphia" ? TOP5_EXPLORE_PHILADELPHIA :
+              slug === "miami"        ? TOP5_EXPLORE_MIAMI :
+              slug === "mexicocity"   ? TOP5_EXPLORE_MEXICOCITY :
+              slug === "guadalajara"  ? TOP5_EXPLORE_GUADALAJARA :
+              slug === "monterrey"    ? TOP5_EXPLORE_MONTERREY :
+              TOP5_EXPLORE; // seattle — 자체적으로 isSeattleShuttleActive() 적용됨
+            // 월드컵 시즌(6/11~7/19): 시애틀 외 모든 WC 호스트 도시에 교통 정보 1순위 삽입
+            return slug === "seattle" ? base : withWorldCupTransit(slug, base);
+          })()} lang={lang} accentColor="#0EA5E9" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
