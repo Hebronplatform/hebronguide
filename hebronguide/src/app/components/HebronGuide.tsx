@@ -3138,7 +3138,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
             🔗 {ko ? "헤브론 연결 서비스" : "Hebron Connect Services"}
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", marginTop: 2 }}>
-            {ko ? "한인이 한인을 섬깁니다" : "Koreans serving Koreans"}
+            {ko ? "한인이 한인을 섬깁니다. 한인은 미국인과 다민족도 섬깁니다." : "Koreans serve Koreans — and Americans, Hispanics & every neighbor."}
           </div>
         </div>
         <button
