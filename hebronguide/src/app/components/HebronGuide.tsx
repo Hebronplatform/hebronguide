@@ -2391,29 +2391,58 @@ function useLiveData() {
 ───────────────────────────────────────── */
 function LiveDataBar() {
   const { lang } = useI18n();
+  const city = useCityConfig();
   const { rate, rateTime, gas, gasDate, rent, tempF } = useLiveData();
   const [seoulTime, setSeoulTime] = useState("");
-  const [seattleTime, setSeattleTime] = useState("");
+  const [cityTime, setCityTime] = useState("");
+
+  // 도시별 타임존 매핑
+  const CITY_TIMEZONE: Record<string, string> = {
+    seattle: "America/Los_Angeles", dallas: "America/Chicago",
+    sf: "America/Los_Angeles", newyork: "America/New_York",
+    nashville: "America/Chicago", boston: "America/New_York",
+    la: "America/Los_Angeles", toronto: "America/Toronto",
+    vancouver: "America/Vancouver", houston: "America/Chicago",
+    atlanta: "America/New_York", kansascity: "America/Chicago",
+    philadelphia: "America/New_York", miami: "America/New_York",
+    mexicocity: "America/Mexico_City", guadalajara: "America/Mexico_City",
+    monterrey: "America/Monterrey",
+  };
+
+  // 도시별 시간 코드 (표시용)
+  const CITY_TZ_CODE: Record<string, string> = {
+    seattle: "SEA", dallas: "DAL", sf: "SFO", newyork: "NYC",
+    nashville: "BNA", boston: "BOS", la: "LAX", toronto: "YYZ",
+    vancouver: "YVR", houston: "HOU", atlanta: "ATL", kansascity: "MCI",
+    philadelphia: "PHL", miami: "MIA", mexicocity: "MEX",
+    guadalajara: "GDL", monterrey: "MTY",
+  };
+
+  const isSeattle = city.slug === "seattle";
+  const timezone = CITY_TIMEZONE[city.slug] ?? "America/Los_Angeles";
+  const tzCode = CITY_TZ_CODE[city.slug] ?? "LOC";
 
   useEffect(() => {
     const tick = () => {
       const now = new Date();
-      setSeattleTime(now.toLocaleTimeString("ko-KR", { timeZone: "America/Los_Angeles", hour: "2-digit", minute: "2-digit" }));
+      setCityTime(now.toLocaleTimeString("ko-KR", { timeZone: timezone, hour: "2-digit", minute: "2-digit" }));
       setSeoulTime(now.toLocaleTimeString("ko-KR", { timeZone: "Asia/Seoul", hour: "2-digit", minute: "2-digit" }));
     };
     tick();
     const id = setInterval(tick, 10_000);
     return () => clearInterval(id);
-  }, []);
+  }, [timezone]);
 
   const items = [
-    {
+    // 기온: 시애틀 전용 (실시간 WA 날씨 API)
+    ...(isSeattle && tempF ? [{
       icon: "🌡️",
       label: lang === "ko" ? "시애틀 기온" : "Seattle Temp",
-      value: tempF ? `${tempF}°F` : "…",
+      value: `${tempF}°F`,
       sub: lang === "ko" ? "실시간" : "Live",
       color: "#F97316",
-    },
+    }] : []),
+    // 환율: 전 도시 공통 (한인 이민자 모두에게 유용)
     {
       icon: "💱",
       label: lang === "ko" ? "원/달러" : "KRW/USD",
@@ -2421,24 +2450,27 @@ function LiveDataBar() {
       sub: rateTime ? (lang === "ko" ? `${rateTime} 갱신` : `${rateTime}`) : lang === "ko" ? "로딩 중" : "Loading",
       color: "#F2994A",
     },
-    {
+    // 기름값: 시애틀/WA 전용
+    ...(isSeattle ? [{
       icon: "⛽",
       label: lang === "ko" ? "WA 기름값" : "WA Gas",
       value: gas ? `$${gas.toFixed(2)}` : "…",
-      sub: gasDate ? (lang === "ko" ? `${gasDate}` : `${gasDate}`) : "loading",
+      sub: gasDate || "loading",
       color: "#60A5FA",
-    },
-    {
+    }] : []),
+    // 월세: 시애틀 전용 (다른 도시는 데이터 없음)
+    ...(isSeattle && rent ? [{
       icon: "🏠",
       label: lang === "ko" ? "시애틀 월세" : "Seattle Rent",
-      value: rent ? `$${rent.toLocaleString()}` : "…",
+      value: `$${rent.toLocaleString()}`,
       sub: lang === "ko" ? "1BR 중앙값" : "1BR median",
       color: MINT,
-    },
+    }] : []),
+    // 현지 시각 vs 서울: 전 도시 공통
     {
       icon: "🕐",
-      label: lang === "ko" ? "시애틀·서울" : "SEA·ICN",
-      value: seattleTime || "…",
+      label: lang === "ko" ? `${city.nameKo}·서울` : `${tzCode}·ICN`,
+      value: cityTime || "…",
       sub: seoulTime ? `서울 ${seoulTime}` : "",
       color: "#C9A227",
     },
@@ -2740,17 +2772,84 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
 /* ─────────────────────────────────────────
    NEW HOME: SettlementEssentialsSection
 ───────────────────────────────────────── */
-const SETTLE_STEPS = [
-  { num: "1", emoji: "📱", titleKo: "SIM 카드",    titleEn: "SIM Card",      descKo: "공항 T-Mobile\n$30/월",       descEn: "Airport T-Mobile\n$30/mo",      color: "#F2994A" },
-  { num: "2", emoji: "🏠", titleKo: "임시 숙소",    titleEn: "Housing",       descKo: "에어비앤비\n린우드 권장",        descEn: "Airbnb\nLynnwood area",         color: "#7C3AED" },
-  { num: "3", emoji: "🏦", titleKo: "은행 계좌",    titleEn: "Bank Account",  descKo: "Chase 추천\n여권만 OK",        descEn: "Chase preferred\nPassport only", color: "#2563EB" },
-  { num: "4", emoji: "🚗", titleKo: "운전면허",     titleEn: "Driver License", descKo: "한국어 필기\n가능",            descEn: "Korean test\navailable",         color: "#059669" },
-  { num: "5", emoji: "📋", titleKo: "SSN 신청",    titleEn: "Apply SSN",     descKo: "915 2nd Ave\n입국10일후",      descEn: "915 2nd Ave\n10 days after",    color: "#EF4444" },
-  { num: "6", emoji: "💊", titleKo: "건강보험",     titleEn: "Health Ins.",   descKo: "WA Apple Health\n무료 가능",   descEn: "WA Apple Health\nFree option",  color: "#64748B" },
-];
+// 정착 퀵카드 — 도시·주(州)별 맞춤 정보
+function getSettleSteps(citySlug: string) {
+  // 건강보험: 주(州)별 Medicaid 명칭
+  const healthInsKo: Record<string, string> = {
+    seattle: "WA Apple Health\n무료 가능",
+    sf: "Medi-Cal\n무보험자 포함",
+    la: "Medi-Cal\n무보험자 포함",
+    boston: "MassHealth\n전주민 의무",
+    newyork: "Medicaid NY\n소득기준 가능",
+    toronto: "OHIP\n3개월후 무료",
+    vancouver: "MSP\n3개월후 무료",
+    dallas: "TML Health\n소득기준 확인",
+    houston: "Texas Medicaid\n조건 제한적",
+    atlanta: "Georgia Medicaid\n조건 확인",
+    nashville: "TennCare\n조건 확인",
+    philadelphia: "PA Medicaid\n소득기준 가능",
+    miami: "Florida Medicaid\n조건 확인",
+    mexicocity: "IMSS/ISSSTE\n사립병원 권장",
+  };
+  const healthInsEn: Record<string, string> = {
+    seattle: "WA Apple Health\nFree option",
+    sf: "Medi-Cal\nIncludes undocumented",
+    la: "Medi-Cal\nIncludes undocumented",
+    boston: "MassHealth\nAll residents",
+    newyork: "Medicaid NY\nIncome-based",
+    toronto: "OHIP — Free\nafter 3 months",
+    vancouver: "MSP — Free\nafter 3 months",
+    dallas: "TML Health\nCheck eligibility",
+    houston: "Texas Medicaid\nLimited eligibility",
+    atlanta: "GA Medicaid\nCheck eligibility",
+    nashville: "TennCare\nCheck eligibility",
+    philadelphia: "PA Medicaid\nIncome-based",
+    miami: "FL Medicaid\nCheck eligibility",
+    mexicocity: "Private insurance\nrecommended",
+  };
+  // 임시 숙소: 도시별 추천 지역
+  const housingKo: Record<string, string> = {
+    seattle: "에어비앤비\n린우드 권장",
+    dallas: "에어비앤비\n캐롤튼 권장",
+    sf: "에어비앤비\n산타클라라 권장",
+    newyork: "에어비앤비\n플러싱(NJ) 권장",
+    nashville: "에어비앤비\nAntioch 권장",
+    boston: "에어비앤비\n올스턴 권장",
+    la: "에어비앤비\n코리아타운 권장",
+    toronto: "에어비앤비\n노스욕 권장",
+    vancouver: "에어비앤비\n코퀴틀람 권장",
+    houston: "에어비앤비\nBellaire 권장",
+    atlanta: "에어비앤비\nDuluth 권장",
+    mexicocity: "에어비앤비\nZona Rosa 권장",
+  };
+  const housingEn: Record<string, string> = {
+    seattle: "Airbnb\nLynnwood area",
+    dallas: "Airbnb\nCarrollton area",
+    sf: "Airbnb\nSanta Clara area",
+    newyork: "Airbnb\nFlushing/Fort Lee",
+    nashville: "Airbnb\nAntioch area",
+    boston: "Airbnb\nAllston area",
+    la: "Airbnb\nKoreatown area",
+    toronto: "Airbnb\nNorth York area",
+    vancouver: "Airbnb\nCoquitlam area",
+    houston: "Airbnb\nBellaire area",
+    atlanta: "Airbnb\nDuluth/Gwinnett",
+    mexicocity: "Airbnb\nZona Rosa area",
+  };
+  return [
+    { num: "1", emoji: "📱", titleKo: "SIM 카드",  titleEn: "SIM Card",       descKo: "공항 T-Mobile\n$30/월",       descEn: "Airport T-Mobile\n$30/mo",                                  color: "#F2994A" },
+    { num: "2", emoji: "🏠", titleKo: "임시 숙소", titleEn: "Housing",         descKo: housingKo[citySlug] ?? "에어비앤비\n한인타운 권장", descEn: housingEn[citySlug] ?? "Airbnb\nKoreatown area", color: "#7C3AED" },
+    { num: "3", emoji: "🏦", titleKo: "은행 계좌", titleEn: "Bank Account",    descKo: "Chase 추천\n여권만 OK",       descEn: "Chase preferred\nPassport only",                             color: "#2563EB" },
+    { num: "4", emoji: "🚗", titleKo: "운전면허", titleEn: "Driver License",   descKo: "한국어 필기\n가능",           descEn: "Korean test\navailable",                                     color: "#059669" },
+    { num: "5", emoji: "📋", titleKo: "SSN 신청", titleEn: "Apply SSN",        descKo: "사회보장국\n입국10일후",       descEn: "Social Security\n10 days after",                             color: "#EF4444" },
+    { num: "6", emoji: "💊", titleKo: "건강보험", titleEn: "Health Ins.",       descKo: healthInsKo[citySlug] ?? "건강보험\n소득기준 확인", descEn: healthInsEn[citySlug] ?? "Health insurance\nCheck eligibility", color: "#64748B" },
+  ];
+}
 
 function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number) => void }) {
   const { lang } = useI18n();
+  const city = useCityConfig();
+  const SETTLE_STEPS = getSettleSteps(city.slug); // 도시별 맞춤 정착 카드
   return (
     <div style={{ padding: "16px 0 8px" }}>
       <div style={{ padding: "0 16px", marginBottom: 12, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -4995,9 +5094,33 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
 /* ─────────────────────────────────────────
    TAB 6: 도움 SCREEN
 ───────────────────────────────────────── */
+// 도시별 커뮤니티 링크 & 유용한 링크 — 시애틀 전용 제거
+const CITY_CONSULATE: Record<string, { ko: string; en: string; phone: string; url: string }> = {
+  seattle:      { ko: "주시애틀 대한민국 총영사관", en: "Korean Consulate General Seattle",      phone: "(206) 441-1011", url: "overseas.mofa.go.kr/us-seattle-ko" },
+  dallas:       { ko: "주달라스 대한민국 출장소",   en: "Korean Consulate Branch Dallas",        phone: "(214) 750-9090", url: "overseas.mofa.go.kr/us-dallas-ko" },
+  sf:           { ko: "주샌프란시스코 총영사관",    en: "Korean Consulate General San Francisco", phone: "(415) 921-2251", url: "overseas.mofa.go.kr/us-sanfrancisco-ko" },
+  newyork:      { ko: "주뉴욕 대한민국 총영사관",   en: "Korean Consulate General New York",     phone: "(646) 674-6000", url: "overseas.mofa.go.kr/us-newyork-ko" },
+  nashville:    { ko: "주애틀랜타 총영사관 (관할)", en: "Korean Consulate General Atlanta",      phone: "(404) 522-1611", url: "overseas.mofa.go.kr/us-atlanta-ko" },
+  boston:       { ko: "주보스턴 대한민국 총영사관", en: "Korean Consulate General Boston",       phone: "(617) 641-2830", url: "overseas.mofa.go.kr/us-boston-ko" },
+  la:           { ko: "주LA 대한민국 총영사관",    en: "Korean Consulate General Los Angeles",   phone: "(213) 385-9300", url: "overseas.mofa.go.kr/us-losangeles-ko" },
+  toronto:      { ko: "주토론토 대한민국 총영사관", en: "Korean Consulate General Toronto",      phone: "(416) 920-3809", url: "overseas.mofa.go.kr/ca-toronto-ko" },
+  vancouver:    { ko: "주밴쿠버 대한민국 총영사관", en: "Korean Consulate General Vancouver",    phone: "(604) 681-9581", url: "overseas.mofa.go.kr/ca-vancouver-ko" },
+  houston:      { ko: "주휴스턴 대한민국 총영사관", en: "Korean Consulate General Houston",      phone: "(713) 961-0186", url: "overseas.mofa.go.kr/us-houston-ko" },
+  atlanta:      { ko: "주애틀랜타 대한민국 총영사관", en: "Korean Consulate General Atlanta",   phone: "(404) 522-1611", url: "overseas.mofa.go.kr/us-atlanta-ko" },
+  kansascity:   { ko: "주시카고 총영사관 (관할)",  en: "Korean Consulate General Chicago",       phone: "(312) 822-9485", url: "overseas.mofa.go.kr/us-chicago-ko" },
+  philadelphia: { ko: "주필라델피아 대한민국 출장소", en: "Korean Consulate Branch Philadelphia", phone: "(215) 923-9655", url: "overseas.mofa.go.kr/us-philadelphia-ko" },
+  miami:        { ko: "주마이애미 총영사관",        en: "Korean Consulate General Miami",        phone: "(305) 379-8530", url: "overseas.mofa.go.kr/us-miami-ko" },
+  mexicocity:   { ko: "주멕시코 대한민국 대사관",  en: "Korean Embassy Mexico City",             phone: "+52-55-5202-9866", url: "overseas.mofa.go.kr/mx-ko" },
+  guadalajara:  { ko: "주멕시코 대한민국 대사관",  en: "Korean Embassy Mexico City",             phone: "+52-55-5202-9866", url: "overseas.mofa.go.kr/mx-ko" },
+  monterrey:    { ko: "주멕시코 대한민국 대사관",  en: "Korean Embassy Mexico City",             phone: "+52-55-5202-9866", url: "overseas.mofa.go.kr/mx-ko" },
+};
+
 function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSub?: number }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
+  const city = useCityConfig();
+  const isSeattle = city.slug === "seattle";
+  const consulate = CITY_CONSULATE[city.slug] ?? CITY_CONSULATE.seattle;
   const [sub, setSub] = useState(initialSub);
   useEffect(() => { setSub(initialSub); }, [initialSub]);
   const tabs = lang === "ko"
@@ -5038,23 +5161,79 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
   ];
 
   const defaultCommunityLinks = [
-    { emoji: "💬", name: lang === "ko" ? "카카오오픈채팅 — 시애틀한인" : "KakaoTalk — 시애틀한인", nameEn: "Kakao Open Chat", desc: lang === "ko" ? "시애틀 한인 최대 커뮤니티 채팅방. 정착 질문, 중고거래, 모임 공지" : "Largest Korean Seattle community chat. Settlement Q&A, used goods, event announcements", tags: ["카카오", "실시간", "커뮤니티"] },
-    { emoji: "🏛️", name: lang === "ko" ? "시애틀 한인회" : "Korean Association of Seattle", nameEn: "Korean Association", desc: lang === "ko" ? "공식 한인 단체. 각종 행사·지원 사업 운영. 전화: (206) 323-5050" : "Official Korean community organization. Events & support programs. Tel: (206) 323-5050", tags: ["공식", "한인회", "이벤트"] },
-    { emoji: "🏴", name: lang === "ko" ? "주 시애틀 대한민국 총영사관" : "Korean Consulate General Seattle", nameEn: "Korean Consulate", desc: lang === "ko" ? "여권·공증·사증. 📍 115 W Mercer St, Seattle | 📞 (206) 441-1011 | 🔗 overseas.mofa.go.kr/us-seattle-ko" : "Passport, notary & visa services. 📍 115 W Mercer St, Seattle | 📞 (206) 441-1011 | 🔗 overseas.mofa.go.kr/us-seattle-ko", tags: ["영사관", "여권", "공증"] },
-    { emoji: "📰", name: lang === "ko" ? "미주 한국일보 시애틀판" : "Korea Times Seattle", nameEn: "Korean Newspaper", desc: lang === "ko" ? "시애틀 한인 지역 소식·구인광고·부동산·커뮤니티 정보" : "Seattle Korean community news, job listings, real estate & community information", tags: ["신문", "뉴스", "정보"] },
-    { emoji: "👩‍💻", name: lang === "ko" ? "네이버 카페 — 시애틀한인생활" : "Naver Café — Seattle Korean Life", nameEn: "Naver Café", desc: lang === "ko" ? "정착 경험담·질문·정보 공유. 검색: 네이버 '시애틀한인생활' | 🔗 cafe.naver.com/seattlekorean" : "Settlement experiences, Q&A & info sharing. Search: Naver '시애틀한인생활' | 🔗 cafe.naver.com/seattlekorean", tags: ["네이버", "정보", "경험담"] },
-    { emoji: "📞", name: lang === "ko" ? "킹카운티 2-1-1 ✅ 검증됨" : "King County 2-1-1 ✅ Verified", nameEn: "2-1-1 Free Services Hotline", desc: lang === "ko" ? "전화 211 — 식품·주거·법률·의료 무료 서비스 연결. 한국어 통역 가능. 지금 바로 전화하세요!" : "Dial 211 — connects to ALL free services (food, housing, legal, medical). Korean interpreter available.", tags: ["211", "무료연결", "한국어"] },
-    { emoji: "🏛️", name: lang === "ko" ? "킹카운티 주거청 ✅ 검증됨" : "King County Housing Authority ✅ Verified", nameEn: "KCHA Affordable Housing", desc: lang === "ko" ? "저렴한 주거 대기자 명단. 📞 206-574-1100 | 🔗 kcha.org" : "Affordable housing waiting list. 📞 206-574-1100 | 🔗 kcha.org", tags: ["주거", "저렴", "공공"] },
+    // 영사관: 전 도시 공통 (도시별 주소·전화 자동 적용)
+    { emoji: "🏴", name: lang === "ko" ? consulate.ko : consulate.en, nameEn: consulate.en,
+      desc: lang === "ko"
+        ? `여권·공증·사증·재외국민등록. 📞 ${consulate.phone} | 🔗 ${consulate.url}`
+        : `Passport, notary, visa & overseas registration. 📞 ${consulate.phone} | 🔗 ${consulate.url}`,
+      tags: ["영사관", "여권", "공증"] },
+    // 211 전화: 미국·캐나다 공통 서비스
+    { emoji: "📞", name: lang === "ko" ? "2-1-1 무료 서비스 연결" : "2-1-1 Free Services Hotline", nameEn: "2-1-1 Hotline",
+      desc: lang === "ko"
+        ? `전화 211 — 식품·주거·법률·의료 무료 서비스 연결. 한국어 통역 가능. ${city.nameKo} 지역 서비스 안내.`
+        : `Dial 211 — connects to free services (food, housing, legal, medical). Korean interpreter available. ${city.nameEn} area.`,
+      tags: ["211", "무료", "한국어"] },
+    // 시애틀 전용 커뮤니티 링크
+    ...(isSeattle ? [
+      { emoji: "💬", name: lang === "ko" ? "카카오오픈채팅 — 시애틀한인" : "KakaoTalk — Seattle Korean", nameEn: "Kakao Open Chat",
+        desc: lang === "ko" ? "시애틀 한인 최대 커뮤니티 채팅방. 정착 질문, 중고거래, 모임 공지" : "Largest Korean Seattle community chat. Settlement Q&A, used goods, event announcements",
+        tags: ["카카오", "실시간", "커뮤니티"] },
+      { emoji: "🏛️", name: lang === "ko" ? "시애틀 한인회" : "Korean Association of Seattle", nameEn: "Korean Association",
+        desc: lang === "ko" ? "공식 한인 단체. 각종 행사·지원 사업 운영. 전화: (206) 323-5050" : "Official Korean community organization. Events & support programs. Tel: (206) 323-5050",
+        tags: ["공식", "한인회", "이벤트"] },
+      { emoji: "👩‍💻", name: lang === "ko" ? "네이버 카페 — 시애틀한인생활" : "Naver Café — Seattle Korean Life", nameEn: "Naver Café",
+        desc: lang === "ko" ? "정착 경험담·질문·정보 공유. 검색: 네이버 '시애틀한인생활'" : "Settlement experiences, Q&A & info sharing. Search: Naver '시애틀한인생활'",
+        tags: ["네이버", "정보", "경험담"] },
+      { emoji: "📰", name: lang === "ko" ? "미주 한국일보 시애틀판" : "Korea Times Seattle", nameEn: "Korean Newspaper",
+        desc: lang === "ko" ? "시애틀 한인 지역 소식·구인광고·부동산·커뮤니티 정보" : "Seattle Korean community news, job listings, real estate & community",
+        tags: ["신문", "뉴스", "정보"] },
+      { emoji: "🏛️", name: lang === "ko" ? "킹카운티 주거청" : "King County Housing Authority", nameEn: "KCHA Affordable Housing",
+        desc: lang === "ko" ? "저렴한 주거 대기자 명단. 📞 206-574-1100 | 🔗 kcha.org" : "Affordable housing waiting list. 📞 206-574-1100 | 🔗 kcha.org",
+        tags: ["주거", "저렴", "공공"] },
+    ] : []),
   ];
 
+  // 미국·캐나다 공통 무료 법률 클리닉
+  const freeLegalLink = { emoji: "🔒",
+    name: lang === "ko" ? "무료 법률 클리닉 (이민·고용)" : "Free Legal Clinic (Immigration & Employment)", nameEn: "Free Legal Help",
+    desc: lang === "ko"
+      ? `이민·고용·집주인 분쟁. 한국어 지원 변호사 연결 가능. 311 또는 Legal Aid 검색: ${city.nameKo}`
+      : `Immigration, employment & landlord disputes. Korean-speaking attorney referrals. Search Legal Aid: ${city.nameEn}`,
+    tags: ["법률", "무료", "이민"] };
+
   const defaultUsefulLinks = [
-    { emoji: "🏥", name: lang === "ko" ? "WA Apple Health (무료 의료보험)" : "WA Apple Health (Free Health Insurance)", nameEn: "Washington Medicaid", desc: lang === "ko" ? "저소득층 무료 건강보험. 신청: wahealthplanfinder.org | 전화: 1-855-923-4633" : "Free health insurance for low-income. Apply: wahealthplanfinder.org | Tel: 1-855-923-4633", tags: ["보험", "무료", "의료"] },
-    { emoji: "🚌", name: lang === "ko" ? "ORCA 카드 (대중교통 통합 카드)" : "ORCA Card (Transit Card)", nameEn: "Public Transit Pass", desc: lang === "ko" ? "버스·링크 라이트레일·페리 통합 카드. orca.com 또는 H-Mart에서 구매" : "Integrated card for bus, Link light rail & ferry. Get at orca.com or H-Mart customer service", tags: ["대중교통", "버스", "링크"] },
-    { emoji: "💼", name: lang === "ko" ? "WorkSource WA (무료 취업 지원)" : "WorkSource WA (Free Job Center)", nameEn: "Free Job Assistance", desc: lang === "ko" ? "이력서·면접 코칭·취업 연결. 무료. 시애틀·린우드·에베레트 센터 운영" : "Resume, interview coaching & job placement. Free. Seattle, Lynnwood & Everett centers", tags: ["취업", "무료", "이력서"] },
-    { emoji: "🏫", name: lang === "ko" ? "시애틀 공립학교 등록 (SPS)" : "Seattle Public Schools Enrollment", nameEn: "SPS Enrollment", desc: lang === "ko" ? "공립학교 등록 안내. seattleschools.org | 한국어 지원 통역 서비스 있음" : "Public school enrollment guide. seattleschools.org | Korean language interpreter available", tags: ["학교", "공립", "한국어"] },
-    { emoji: "🔒", name: lang === "ko" ? "법률 지원 (무료 법률 클리닉)" : "Free Legal Clinic", nameEn: "Free Legal Help", desc: lang === "ko" ? "이민·고용·집주인 분쟁. KCBA 법률 봉사. 한국어 지원 변호사 연결 가능" : "Immigration, employment & landlord disputes. KCBA legal aid. Korean-speaking attorney referrals", tags: ["법률", "무료", "이민"] },
-    { emoji: "🚌", name: lang === "ko" ? "킹카운티 메트로 버스 ✅ 검증됨" : "King County Metro Bus ✅ Verified", nameEn: "King County Metro", desc: lang === "ko" ? "시애틀 버스 시스템. 📞 206-553-3000 | 🔗 kingcounty.gov/metro" : "Seattle's bus system. 📞 206-553-3000 | 🔗 kingcounty.gov/metro", tags: ["버스", "대중교통", "시애틀"] },
-    { emoji: "💳", name: lang === "ko" ? "ORCA 카드 (대중교통 통합) ✅ 검증됨" : "ORCA Card (Integrated Transit) ✅ Verified", nameEn: "ORCA Transit Card", desc: lang === "ko" ? "버스·링크·페리·소더 통합 교통카드. 🔗 orca.com | H-Mart 고객서비스에서도 구매 가능" : "Integrated card for bus, Link, ferry & Sounder. 🔗 orca.com | Also available at H-Mart customer service", tags: ["ORCA", "교통카드", "링크"] },
+    // WA 전용: Apple Health, ORCA, WorkSource, SPS
+    ...(isSeattle ? [
+      { emoji: "🏥", name: lang === "ko" ? "WA Apple Health (무료 의료보험)" : "WA Apple Health (Free Health Insurance)", nameEn: "Washington Medicaid",
+        desc: lang === "ko" ? "저소득층 무료 건강보험. 신청: wahealthplanfinder.org | 📞 1-855-923-4633" : "Free health insurance for low-income. Apply: wahealthplanfinder.org | 📞 1-855-923-4633",
+        tags: ["보험", "무료", "의료"] },
+      { emoji: "🚌", name: lang === "ko" ? "ORCA 카드 + 킹카운티 메트로" : "ORCA Card + King County Metro", nameEn: "Seattle Transit",
+        desc: lang === "ko" ? "버스·Link·페리 통합 카드. orca.com | 📞 206-553-3000 | H-Mart에서 구매 가능" : "Bus, Link & ferry pass. orca.com | 📞 206-553-3000 | Available at H-Mart",
+        tags: ["ORCA", "대중교통", "링크"] },
+      { emoji: "💼", name: lang === "ko" ? "WorkSource WA (무료 취업 지원)" : "WorkSource WA (Free Job Center)", nameEn: "Free Job Assistance",
+        desc: lang === "ko" ? "이력서·면접 코칭·취업 연결. 무료. 시애틀·린우드·에베레트" : "Free resume coaching & job placement. Seattle, Lynnwood & Everett centers",
+        tags: ["취업", "무료", "이력서"] },
+      { emoji: "🏫", name: lang === "ko" ? "시애틀 공립학교 등록 (SPS)" : "Seattle Public Schools Enrollment", nameEn: "SPS Enrollment",
+        desc: lang === "ko" ? "공립학교 등록: seattleschools.org | 한국어 통역 서비스 있음" : "School enrollment: seattleschools.org | Korean interpreter available",
+        tags: ["학교", "공립", "한국어"] },
+    ] : [
+      // 비시애틀: 도시별 건강보험 안내 (주별로 다름)
+      { emoji: "🏥",
+        name: lang === "ko" ? `${city.nameKo} 건강보험 안내` : `${city.nameEn} Health Insurance Guide`, nameEn: "Health Insurance",
+        desc: lang === "ko"
+          ? `healthcare.gov 에서 소득 기준 보험 확인. 또는 211 전화 → 건강보험 연결. ${["sf","la","boston","newyork","philadelphia"].includes(city.slug) ? "주(州) Medicaid 적극 활용 가능." : ["toronto","vancouver"].includes(city.slug) ? "공적 의료보험 (OHIP/MSP): 3개월 후 무료 적용." : "Medicaid 소득 기준 확인 필수."}`
+          : `Check eligibility at healthcare.gov or dial 211 for insurance help. ${["sf","la","boston","newyork","philadelphia"].includes(city.slug) ? "State Medicaid strongly recommended." : ["toronto","vancouver"].includes(city.slug) ? "Public health insurance (OHIP/MSP): free after 3 months." : "Check Medicaid income requirements."}`,
+        tags: ["보험", "의료", "Medicaid"] },
+      // 무료 취업 지원 (도시별)
+      { emoji: "💼",
+        name: lang === "ko" ? "무료 취업 지원 서비스" : "Free Employment Services", nameEn: "Job Assistance",
+        desc: lang === "ko"
+          ? `${city.nameKo} 지역 무료 취업 코칭. 이력서·면접 준비. 211 전화 또는 한인 교회 취업 사역 연결`
+          : `Free job coaching in ${city.nameEn}. Resume & interview prep. Dial 211 or contact Korean church employment ministry`,
+        tags: ["취업", "무료", "이력서"] },
+    ]),
+    // 전 도시 공통: 무료 법률
+    freeLegalLink,
   ];
 
   const communityLinks = serverContent["community"] ? resolvePlaceItems(serverContent["community"], lang) : defaultCommunityLinks;
