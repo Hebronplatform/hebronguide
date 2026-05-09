@@ -10582,6 +10582,19 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
               ],
             },
             {
+              emoji: "🎨", label: ko ? "헤브론 디자인" : "Hebron Design", color: "#06B6D4",
+              services: [
+                { icon: "🖼️", name: ko ? "헤브론 로고디자인" : "Hebron Logo Design", price: ko ? "$80-300/건" : "$80-300/project", desc: ko ? "식당·가게·교회·단체 로고. 한인 전문 디자이너" : "Restaurant, store, church & org logos. Korean professional designers" },
+                { icon: "📱", name: ko ? "헤브론 SNS디자인" : "Hebron Social Design", price: ko ? "$30-80/건" : "$30-80/set", desc: ko ? "인스타·페이스북·카카오 게시물·배너 디자인" : "Instagram, Facebook & KakaoTalk post & banner design" },
+                { icon: "🖨️", name: ko ? "헤브론 인쇄물디자인" : "Hebron Print Design", price: ko ? "$50-200/건" : "$50-200/project", desc: ko ? "명함·브로셔·전단지·메뉴판·초대장 디자인" : "Business cards, brochures, flyers, menus & invitations" },
+                { icon: "⛪", name: ko ? "헤브론 교회디자인" : "Hebron Church Design", price: ko ? "$30-100/건" : "$30-100/project", desc: ko ? "주보·포스터·설교 PPT·유튜브 썸네일. 교회 특화" : "Church bulletin, posters, sermon PPT & YouTube thumbnails" },
+                { icon: "🎬", name: ko ? "헤브론 영상편집" : "Hebron VideoEdit", price: ko ? "$50-200/분" : "$50-200/min", desc: ko ? "유튜브·릴스·틱톡·교회 행사 영상 편집. 자막 3개 언어" : "YouTube, Reels, TikTok & church event video editing. 3-language subtitles" },
+                { icon: "🏡", name: ko ? "헤브론 인테리어 상담" : "Hebron Interior Consult", price: ko ? "$60-150/시간" : "$60-150/hr", desc: ko ? "가정·소규모 상업공간 인테리어 컨설팅. 3D 시뮬레이션" : "Home & small business interior consulting. 3D simulation" },
+                { icon: "📷", name: ko ? "헤브론 사진편집" : "Hebron PhotoEdit", price: ko ? "$20-60/건" : "$20-60/set", desc: ko ? "포토샵 리터칭·배경제거·증명사진·제품사진 보정" : "Photoshop retouching, background removal & product photo editing" },
+                { icon: "🎁", name: ko ? "헤브론 패키지디자인" : "Hebron Package Design", price: ko ? "$100-400/건" : "$100-400/project", desc: ko ? "식품·제품 패키지·라벨 디자인. 3개 언어 적용" : "Food & product packaging & label design. 3-language ready" },
+              ],
+            },
+            {
               emoji: "💈", label: ko ? "뷰티·웰니스" : "Beauty & Wellness", color: "#F472B6",
               services: [
                 { icon: "💇", name: ko ? "헤브론 방문헤어" : "Hebron HairHome", price: ko ? "$40-100/회" : "$40-100/visit", desc: ko ? "방문 헤어컷·염색·파마. 한인 미용사 자격 보유" : "Mobile haircut, color & perm. Korean licensed stylists" },
