@@ -5861,9 +5861,92 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
 /* ─────────────────────────────────────────
    TAB 8: 교육 SCREEN
 ───────────────────────────────────────── */
+// 도시별 학군 데이터 (Niche.com 기준, 2025-2026)
+function getCityDistrictData(slug: string, lang: string) {
+  const ko = lang === "ko";
+  const DATA: Record<string, any[]> = {
+    dallas: [
+      { emoji: "⭐", name: "Plano ISD", nameEn: "Plano ISD — TX Top",
+        desc: ko ? "✅ 텍사스 상위 1% 학군 (Niche A+). 한인 학생 비율 높음. 졸업률 97%. AP·IB 과정 풍부. 달라스 북부 최고 학군.\n📍 플레이노·앨런·프리스코 인근 | 🔗 pisd.edu"
+                 : "✅ TX Top 1% (Niche A+). High Korean student ratio. 97% grad rate. Rich AP/IB programs. Best district north of Dallas.\n📍 Plano, Allen, Frisco area | 🔗 pisd.edu", tags: ["플레이노","A+","텍사스"] },
+      { emoji: "⭐", name: "Frisco ISD", nameEn: "Frisco ISD — Fastest Growing",
+        desc: ko ? "✅ 텍사스 최고 성장 학군 (Niche A+). 신설 학교 다수. STEM 특화. 한인 가족 최다 유입 지역. 달라스 북부.\n📍 프리스코·맥키니 | 🔗 friscoisd.org"
+                 : "✅ TX's fastest-growing top district (Niche A+). Many new schools. STEM focus. Highest Korean family influx. North Dallas.\n📍 Frisco, McKinney | 🔗 friscoisd.org", tags: ["프리스코","성장","STEM"] },
+      { emoji: "⭐", name: "Lewisville ISD / Carrollton-Farmers Branch ISD", nameEn: "CFBISD — Koreatown District",
+        desc: ko ? "✅ 캐롤튼 코리아타운 관할 학군. 한인 학생 비율 최고. Korean Immersion 프로그램 운영. Niche A-.\n📍 캐롤튼·파머스브랜치 | 🔗 cfbisd.edu"
+                 : "✅ Covers Carrollton Koreatown. Highest Korean student ratio. Korean Immersion program available. Niche A-.\n📍 Carrollton, Farmers Branch | 🔗 cfbisd.edu", tags: ["캐롤튼","코리아타운","한국어"] },
+      { emoji: "🏫", name: "Richardson ISD", nameEn: "Richardson ISD — 다양성",
+        desc: ko ? "Niche A. 달라스 동북부. 다문화 환경. J.J. Pearce HS 명문. 한인 가족 증가 추세. 주거비 대비 학군 가성비 좋음.\n📍 리차드슨·갈랜드 | 🔗 risd.org"
+                 : "Niche A. NE Dallas. Diverse community. J.J. Pearce HS prestigious. Growing Korean families. Good value vs rent.\n📍 Richardson, Garland | 🔗 risd.org", tags: ["리차드슨","다양성","가성비"] },
+    ],
+    la: [
+      { emoji: "⭐", name: "Cerritos / ABC USD", nameEn: "ABC Unified — Cerritos",
+        desc: ko ? "✅ 한인 최다 거주 LA 남부 학군 (Niche A+). Cerritos HS·Whitney HS 전국 명문. SAT 평균 1350+. 한인 학생 30%+.\n📍 세리토스·아르테시아·레이크우드 | 🔗 abcusd.us"
+                 : "✅ Top LA south district with highest Korean population (Niche A+). Cerritos & Whitney HS nationally ranked. SAT avg 1350+. 30%+ Korean students.\n📍 Cerritos, Artesia, Lakewood | 🔗 abcusd.us", tags: ["세리토스","한인밀집","A+"] },
+      { emoji: "⭐", name: "Torrance USD", nameEn: "Torrance USD — 남가주 명문",
+        desc: ko ? "✅ Niche A+. 토랜스·파로스버디스. West HS·South HS·North HS. 한인 가족 많음. LA 해변 인근 학군.\n📍 토랜스·레돈도비치 | 🔗 torrance.k12.ca.us"
+                 : "✅ Niche A+. Torrance, Palos Verdes area. West/South/North HS. Many Korean families. Near LA beaches.\n📍 Torrance, Redondo Beach | 🔗 torrance.k12.ca.us", tags: ["토랜스","해변","한인"] },
+      { emoji: "⭐", name: "Diamond Bar / Walnut Valley USD", nameEn: "Walnut Valley USD",
+        desc: ko ? "✅ 다이아몬드바 소재. Diamond Bar HS (전국 상위 3%). 한인·중국계 밀집. Niche A+. UC 진학률 매우 높음.\n📍 다이아몬드바·월넛 | 🔗 wvusd.k12.ca.us"
+                 : "✅ Diamond Bar. Diamond Bar HS (top 3% nationally). Dense Korean & Chinese population. Niche A+. Very high UC admission rate.\n📍 Diamond Bar, Walnut | 🔗 wvusd.k12.ca.us", tags: ["다이아몬드바","UC진학","A+"] },
+    ],
+    newyork: [
+      { emoji: "⭐", name: "Fort Lee School District (NJ)", nameEn: "Fort Lee — #1 Korean NJ",
+        desc: ko ? "✅ NJ 포트리. 한인 학생 최고 비율. 포트리 HS 전국 상위 1%. Niche A+. 직접 학교 등록 가능.\n📍 포트리·NJ | 🔗 fortlee.k12.nj.us"
+                 : "✅ Fort Lee NJ. Highest Korean student ratio in NJ. Fort Lee HS top 1% nationally. Niche A+. Direct enrollment available.\n📍 Fort Lee, NJ | 🔗 fortlee.k12.nj.us", tags: ["포트리","NJ","한인밀집"] },
+      { emoji: "⭐", name: "Palisades Park School District (NJ)", nameEn: "Palisades Park — Korean Community",
+        desc: ko ? "✅ NJ 팰리세이즈파크. 한인 인구 75%+. 소규모 학군 (학생 수 적어 밀착 교육). 커뮤니티 매우 강함.\n📍 팰리세이즈파크·NJ | 🔗 ppsd.org"
+                 : "✅ Palisades Park NJ. 75%+ Korean population. Small district = personalized education. Very strong community.\n📍 Palisades Park, NJ | 🔗 ppsd.org", tags: ["팰리세이즈파크","한인75%","NJ"] },
+      { emoji: "🏫", name: "Special High Schools — NYC (스타이브센트 등)", nameEn: "NYC Specialized HS",
+        desc: ko ? "스타이브센트 HS·브롱스과학 HS·브루클린테크 HS. 입학시험(SHSAT) 필수. 한인 학생 강세. 무료 입학·최상위 대학 진학률.\n📍 뉴욕시 | 🔗 schools.nyc.gov/enrollment/high-school"
+                 : "Stuyvesant, Bronx Science, Brooklyn Tech. SHSAT exam required. Korean students excel. Free + top college placement rates.\n📍 New York City | 🔗 schools.nyc.gov/enrollment/high-school", tags: ["스타이브센트","SHSAT","공립명문"] },
+    ],
+    houston: [
+      { emoji: "⭐", name: "Fort Bend ISD", nameEn: "Fort Bend ISD — Sugar Land",
+        desc: ko ? "✅ Sugar Land 관할. 텍사스 최다양성 학군 (Niche A+). 한인 학생 비율 높음. 졸업률 97%. 아시안 학생 35%+.\n📍 슈거랜드·미주리시티·포트벤드카운티 | 🔗 fortbendisd.com"
+                 : "✅ Covers Sugar Land. TX's most diverse top district (Niche A+). High Korean student ratio. 97% grad rate. 35%+ Asian students.\n📍 Sugar Land, Missouri City | 🔗 fortbendisd.com", tags: ["슈거랜드","다양성","A+"] },
+      { emoji: "⭐", name: "Katy ISD", nameEn: "Katy ISD — 서부 휴스턴",
+        desc: ko ? "✅ 휴스턴 서부. Niche A+. 졸업률 97.5%. Seven Lakes HS·Cinco Ranch HS 명문. 한인 가족 유입 증가.\n📍 케이티·에너지코리도 서부 | 🔗 katyisd.org"
+                 : "✅ West Houston. Niche A+. 97.5% grad rate. Seven Lakes & Cinco Ranch HS. Growing Korean family influx.\n📍 Katy, west Energy Corridor | 🔗 katyisd.org", tags: ["케이티","서부휴스턴","A+"] },
+    ],
+    sf: [
+      { emoji: "⭐", name: "Cupertino Union / Fremont Union HSD", nameEn: "Fremont Union — Cupertino",
+        desc: ko ? "✅ 쿠퍼티노. Apple 본사 학군. Lynbrook HS·Monta Vista HS 전국 상위 1%. 한인·중국계 밀집. Niche A+.\n📍 쿠퍼티노·새너제이 서부 | 🔗 fuhsd.org"
+                 : "✅ Cupertino. Apple HQ school district. Lynbrook & Monta Vista HS top 1% nationally. Korean & Chinese dense. Niche A+.\n📍 Cupertino, west San Jose | 🔗 fuhsd.org", tags: ["쿠퍼티노","Apple","A+"] },
+      { emoji: "⭐", name: "Palo Alto USD", nameEn: "Palo Alto USD — Stanford Neighbor",
+        desc: ko ? "✅ 스탠포드 인근. Palo Alto HS·Gunn HS 전국 명문. Niche A+. 주거비 극히 높음 → 접근 어려움.\n📍 팔로알토·알로스알토스 | 🔗 pausd.org"
+                 : "✅ Near Stanford. Palo Alto & Gunn HS nationally elite. Niche A+. Extremely high housing costs → difficult access.\n📍 Palo Alto, Los Altos | 🔗 pausd.org", tags: ["팔로알토","스탠포드","A+"] },
+    ],
+    toronto: [
+      { emoji: "⭐", name: "York Region District School Board", nameEn: "York Region DSB — Markham",
+        desc: ko ? "✅ 마크햄·리치몬드힐 관할. 캐나다 최고 수준 학군 중 하나. 한인·중국계 밀집. Ontario A+ 수준. 졸업률 95%+.\n📍 마크햄·리치몬드힐·손힐 | 🔗 yrdsb.ca"
+                 : "✅ Covers Markham, Richmond Hill. One of Canada's top districts. Dense Korean & Chinese community. Ontario A+ level.\n📍 Markham, Richmond Hill, Thornhill | 🔗 yrdsb.ca", tags: ["마크햄","한인밀집","캐나다"] },
+      { emoji: "⭐", name: "Toronto Catholic/Public DSB — North York", nameEn: "TDSB North York — Korean Hub",
+        desc: ko ? "✅ 노스욕(North York) 관할. 한인 교회·상권 밀집 지역. 한국어 Heritage Language 프로그램 운영.\n📍 노스욕·실버링 | 🔗 tdsb.on.ca"
+                 : "✅ North York — Korean church & business hub. Korean Heritage Language program available.\n📍 North York, Silverring | 🔗 tdsb.on.ca", tags: ["노스욕","한국어Heritage","토론토"] },
+    ],
+    vancouver: [
+      { emoji: "⭐", name: "Coquitlam School District 43", nameEn: "SD43 Coquitlam — Korean Hub",
+        desc: ko ? "✅ 코퀴틀람 관할. 한인 밀집 최고 지역. 학교 수준 우수. BC 주 상위 학군. 한인 학부모 네트워크 강함.\n📍 코퀴틀람·포트무디·포트코퀴틀람 | 🔗 sd43.bc.ca"
+                 : "✅ Coquitlam — highest Korean density. Excellent schools. Top BC district. Strong Korean parent network.\n📍 Coquitlam, Port Moody, Port Coquitlam | 🔗 sd43.bc.ca", tags: ["코퀴틀람","한인밀집","BC"] },
+      { emoji: "⭐", name: "Burnaby School District 41", nameEn: "SD41 Burnaby — UBC Neighbor",
+        desc: ko ? "✅ 버나비 관할. UBC 인근. Burnaby North HS·Burnaby Mountain HS. 한인·중국계 혼합. 아시안 친화적 환경.\n📍 버나비·밴쿠버 동부 | 🔗 burnabyschools.ca"
+                 : "✅ Burnaby near UBC. Burnaby North & Mountain HS. Korean & Chinese mixed. Asian-friendly environment.\n📍 Burnaby, east Vancouver | 🔗 burnabyschools.ca", tags: ["버나비","UBC","아시안"] },
+    ],
+  };
+  return DATA[slug] ?? [
+    { emoji: "🏫", name: ko ? `${slug} 지역 학군 안내` : `${slug} School Districts`,
+      desc: ko ? "Niche.com에서 지역 학군 순위 확인. 한인 커뮤니티에 추천 학군 문의. 211 전화 → 교육 서비스 연결."
+               : "Check district rankings at Niche.com. Ask Korean community for recommendations. Dial 211 for education services.",
+      tags: ["학군","Niche","211"] },
+  ];
+}
+
 function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSub?: number }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
+  const city = useCityConfig();
+  const isSeattle = city.slug === "seattle";
   const [sub, setSub] = useState(initialSub);
   useEffect(() => { setSub(initialSub); }, [initialSub]);
   const tabs = lang === "ko"
@@ -5871,8 +5954,9 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
     : ["🏫 School Districts", "🏛️ Community Colleges", "🎓 Universities", "📝 Admissions", "📚 Tutoring & ESL", "🇰🇷 Korean School"];
   const accent = "#A78BFA";
 
-  /* ── Tab 0: 학군 순위 (30마일 광역권) ── */
-  const districts = [
+  /* ── Tab 0: 학군 순위 — 도시별 자동 적용 ── */
+  const cityDistricts = getCityDistrictData(city.slug, lang);
+  const districts = isSeattle ? [
     { emoji: "⭐", name: "Bellevue School District", nameEn: "Bellevue SD — WA #1",
       desc: lang === "ko"
         ? "✅ 워싱턴주 1위 학군 (Niche A+). 졸업률 92.5%. Newport HS·Interlake HS·Bellevue HS. AP·IB 과정 풍부. 한인 학생 비율 높음.\n📍 벨뷰·메디나·클라이드힐 포함 | 🔗 bsd405.org"
@@ -5903,7 +5987,7 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
         ? "Niche B+. 졸업률 84%. 광역 시애틀 최저 렌트 지역. 페더럴웨이·오번·타코마 연결. 다문화 학교 환경. 통학 필요 시 I-5 이용.\n📍 페더럴웨이·오번 북부 | 🔗 fwps.org"
         : "Niche B+. Grad rate 84%. Lowest rents in Greater Seattle. Federal Way, Auburn & Tacoma access. Diverse school environment.\n📍 Federal Way, north Auburn | 🔗 fwps.org",
       tags: ["페더럴웨이", "저렴렌트", "남부"] },
-  ];
+  ] : cityDistricts; // 비시애틀: 도시별 학군 데이터 자동 적용
 
   /* ── Tab 1: 지역 커뮤니티 칼리지 (CC) ── */
   const communityColleges = [
