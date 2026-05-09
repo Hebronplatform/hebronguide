@@ -83,6 +83,10 @@ import {
   Receipt,
   Vote,
   LibraryBig,
+  Users,
+  Heart,
+  Star,
+  Network,
 } from "lucide-react";
 
 /* Quick Menu 아이콘 맵 */
@@ -103,6 +107,8 @@ const QM_ICON_MAP: Record<string, React.ComponentType<{size?: number; color?: st
   "scale":          Scale,
   "book-open":      BookOpen,
   "receipt":        Receipt,
+  "users":          Users,
+  "heart":          Heart,
 };
 
 /* ─────────────────────────────────────────
@@ -2965,6 +2971,7 @@ const QUICK_MENU = [
   { icon: "receipt",        labelKo: "세금신고", labelEn: "Taxes",   color: "#F97316", tab: 8, subTab: 4 },
   { icon: "scale",          labelKo: "법률상담", labelEn: "Legal",   color: "#64748B", tab: 5, subTab: 5 },
   { icon: "book-open",      labelKo: "한국학교", labelEn: "K-School",color: "#BE185D", tab: 7, subTab: 5 },
+  { icon: "users",          labelKo: "사람연결", labelEn: "Connect", color: "#C9A227", tab: 9, subTab: 0 },
 ];
 
 function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
@@ -7324,6 +7331,267 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
   );
 }
 
+/* ═══════════════════════════════════════════════════════
+   TAB 10: 사람 연결 SCREEN — Hebron Connect Platform
+   ═══════════════════════════════════════════════════════ */
+function ConnectScreen({ onHome }: { onHome?: () => void }) {
+  const { lang } = useI18n();
+  const city = useCityConfig();
+  const [sub, setSub] = useState(0);
+
+  const ko = lang === "ko";
+  const tabs = ko
+    ? ["🚗 라이드", "🏠 스테이", "📚 튜터", "🤝 커뮤니티", "💍 매칭", "⛪ 네트워크"]
+    : ["🚗 Ride", "🏠 Stay", "📚 Tutor", "🤝 Connect", "💍 Match", "⛪ Network"];
+  const accent = "#C9A227";
+
+  const SERVICES = [
+    {
+      id: "ride", icon: "🚗", color: "#3B82F6",
+      titleKo: "헤브론 라이드", titleEn: "Hebron Ride",
+      taglineKo: "교회 검증 드라이버와 함께하는 한국어 이동 서비스",
+      taglineEn: "Korean-speaking rides with church-verified drivers",
+      stepsKo: ["교인 드라이버 등록 & 교회 검증", "라이드 요청 매칭 (한국어)", "이동 + 도시 정보 나눔"],
+      stepsEn: ["Church-verified driver registration", "Ride request matching (Korean)", "Travel + city info sharing"],
+      benchmarkName: "BlaBlaCar",
+      benchmarkData: ko ? "1억 회원 · 26개국 · $1.6B 기업가치 · 커뮤니티 신뢰 모델" : "100M users · 26 countries · $1.6B valuation · community trust model",
+      benchmarkLesson: ko ? "신뢰가 플랫폼의 핵심 — 검증된 드라이버 커뮤니티가 성공 비결" : "Trust is the platform — verified driver community is the key",
+      hebronKo: "교회 검증 = Airbnb Superhost 이상의 신뢰. 한국어 + 공항 픽업 특화. 목사님 추천 드라이버.",
+      hebronEn: "Church verification = trust beyond Airbnb Superhost. Korean + airport pickup specialty. Pastor-recommended drivers.",
+      revenueKo: "드라이버 수익의 15% 수수료 | 공항픽업 $35-55 | 월정기권 $120",
+      revenueEn: "15% commission on driver earnings | Airport pickup $35-55 | Monthly pass $120",
+      statusKo: "파일럿 준비 중",  statusEn: "Pilot in preparation",
+      statusColor: "#F59E0B",
+    },
+    {
+      id: "stay", icon: "🏠", color: "#F59E0B",
+      titleKo: "헤브론 스테이", titleEn: "Hebron Stay",
+      taglineKo: "방 하나가 아닙니다. 정착의 시작입니다",
+      taglineEn: "Not just a room. The beginning of belonging.",
+      stepsKo: ["파트너 교회 호스트 등록 & 검증", "단기 거주 매칭 (1주-3개월)", "방 + 정착 오리엔테이션 + 교회 소개"],
+      stepsEn: ["Partner church host registration & verification", "Short-term stay matching (1 week – 3 months)", "Room + settlement orientation + church introduction"],
+      benchmarkName: "Airbnb + Homestay.com",
+      benchmarkData: ko ? "Airbnb: $99억 매출 · 700만 숙소 | Homestay.com: 문화 몰입 + 가정 거주 모델" : "Airbnb: $9.9B revenue · 7M listings | Homestay.com: cultural immersion + family stay model",
+      benchmarkLesson: ko ? "Airbnb Superhost 신뢰 시스템 + Homestay 문화 교류 = 헤브론 스테이의 기반" : "Airbnb Superhost trust + Homestay cultural exchange = Hebron Stay foundation",
+      hebronKo: "교회 검증 호스트 = 최강 신뢰. 정착 안내 포함. '방+사람+정보' 패키지.",
+      hebronEn: "Church-verified host = ultimate trust. Settlement guidance included. 'Room + people + info' package.",
+      revenueKo: "호스트 수입의 12% 수수료 | 1주 패키지 $300-500 | 1개월 $800-1,200",
+      revenueEn: "12% commission on host income | 1-week package $300-500 | 1 month $800-1,200",
+      statusKo: "파트너 호스트 모집 중", statusEn: "Recruiting partner hosts",
+      statusColor: "#F59E0B",
+    },
+    {
+      id: "tutor", icon: "📚", color: "#10B981",
+      titleKo: "헤브론 튜터", titleEn: "Hebron Tutor",
+      taglineKo: "검증된 한인 튜터. 교회 신뢰 + 학력 검증",
+      taglineEn: "Verified Korean tutors. Church trust + academic credentials.",
+      stepsKo: ["튜터 등록 (교회 검증 + 학력 확인 + 배경조사)", "학생-튜터 매칭 (온라인 17개 도시 가능)", "수업 진행 → 15% 커미션"],
+      stepsEn: ["Tutor registration (church + academic + background check)", "Student-tutor matching (online across 17 cities)", "Sessions → 15% commission"],
+      benchmarkName: "Wyzant",
+      benchmarkData: ko ? "250만 학생 · 8만 명 튜터 · $8,000만 매출 · 25% 수수료 · 튜터 검증 시스템" : "2.5M students · 80K tutors · $80M revenue · 25% commission · tutor verification system",
+      benchmarkLesson: ko ? "배경조사 + 리뷰 시스템 + 투명한 가격 = 학부모 신뢰의 핵심" : "Background check + reviews + transparent pricing = key to parent trust",
+      hebronKo: "교회 검증이 배경조사를 대체. 한국어 과외 특화. 한국 교과서·SAT·AP 전문.",
+      hebronEn: "Church verification replaces background checks. Korean tutoring specialty. Korean curriculum, SAT, AP focused.",
+      revenueKo: "튜터 수입의 15% 수수료 | 시급 $35-80 → HebronGuide $5-12/시간 | 월 매칭 100쌍 → $72,000/년",
+      revenueEn: "15% commission | $35-80/hr tutor rate → HebronGuide $5-12/hr | 100 active pairs → $72K/yr",
+      statusKo: "베타 튜터 모집 중", statusEn: "Recruiting beta tutors",
+      statusColor: "#10B981",
+    },
+    {
+      id: "community", icon: "🤝", color: "#8B5CF6",
+      titleKo: "헤브론 커넥트", titleEn: "Hebron Connect",
+      taglineKo: "친구·멘토·기도파트너·동업자 — 모든 연결의 시작",
+      taglineEn: "Friend · Mentor · Prayer Partner · Business — all connections start here.",
+      stepsKo: ["교인 프로필 등록 (교회 검증)", "연결 유형 선택 (친구/멘토/기도/비즈니스)", "도시 간 매칭 → 만남"],
+      stepsEn: ["Church-verified profile registration", "Select connection type (friend/mentor/prayer/business)", "Cross-city matching → meeting"],
+      benchmarkName: "Meetup + Bumble BFF + Nextdoor",
+      benchmarkData: ko ? "Meetup: 5,000만 회원 · Bumble BFF: 4,000만 MAU · Nextdoor: $2.1B 기업가치 (위치 검증)" : "Meetup: 50M users · Bumble BFF: 40M MAU · Nextdoor: $2.1B valuation (location-verified)",
+      benchmarkLesson: ko ? "공통 관심사 + 검증된 신원 + 오프라인 만남 연결 = 성공적 커뮤니티 플랫폼" : "Shared interests + verified identity + offline meeting connection = successful community platform",
+      hebronKo: "교회 검증 = Nextdoor 이웃 인증 이상. 17개 도시 크로스 매칭. 다목적 연결.",
+      hebronEn: "Church verification > Nextdoor neighbor verification. 17-city cross matching. Multi-purpose connection.",
+      revenueKo: "프리미엄 구독 $15/월 | 이벤트 주최 $10/회 | 비즈니스 연결 $30/매칭",
+      revenueEn: "Premium subscription $15/mo | Event hosting $10/event | Business connection $30/match",
+      statusKo: "개발 중 — 2026년 하반기 출시", statusEn: "In development — H2 2026 launch",
+      statusColor: "#8B5CF6",
+    },
+    {
+      id: "matching", icon: "💍", color: "#EC4899",
+      titleKo: "헤브론 매칭", titleEn: "Hebron Matching",
+      taglineKo: "목사님이 보증하는 언약 관계의 시작",
+      taglineEn: "Covenant relationships, endorsed by your pastor.",
+      stepsKo: ["교인 등록 + 목사님 추천서", "신앙·가치관·수준 기반 매칭", "목사님 연결 → 자연스러운 교제"],
+      stepsEn: ["Church registration + pastor endorsement", "Faith, values & lifestyle matching", "Pastor introduction → natural courtship"],
+      benchmarkName: "Hinge + 선우결혼정보",
+      benchmarkData: ko ? "Hinge: $4억 매출 '삭제되도록 설계' · 선우: 한국 1위 $1,000-3,000/건 · DUO America: LA·NY 운영" : "Hinge: $400M revenue 'designed to be deleted' · 선우: Korea #1 $1,000-3,000/match · DUO America: LA & NY",
+      benchmarkLesson: ko ? "진지한 관계 지향 + 전문 매칭 = 프리미엄 가치. 미국 내 신앙 기반 한인 매칭 공백 확인됨" : "Intentional relationship focus + professional matching = premium value. Faith-based Korean matching gap confirmed in US market",
+      hebronKo: "목사님 추천 = 선우 매니저 이상. 투명한 가격. 신앙 검증. 선우/듀오 비용의 1/5.",
+      hebronEn: "Pastor endorsement > professional matchmaker. Transparent pricing. Faith verified. 1/5 the cost of 선우/듀오.",
+      revenueKo: "월 구독 $25-35 | 프리미엄 매칭 $150-300/건 | 파트너 교회 네트워크로 확장",
+      revenueEn: "Monthly subscription $25-35 | Premium match $150-300/match | Scale through partner church network",
+      statusKo: "파트너 교회 모집 중 — 먼저 연락주세요", statusEn: "Recruiting partner churches — contact us first",
+      statusColor: "#EC4899",
+    },
+    {
+      id: "network", icon: "⛪", color: "#C9A227",
+      titleKo: "헤브론 네트워크", titleEn: "Hebron Network",
+      taglineKo: "목사님·선교사님이 연결되면 모든 것이 가능합니다",
+      taglineEn: "When pastors and missionaries connect, everything becomes possible.",
+      stepsKo: ["목사님/선교사님 파트너 등록", "도시·국가별 거점 네트워크 구축", "교인 크로스시티 연결 + 전 서비스 활성화"],
+      stepsEn: ["Pastor/missionary partner registration", "Build hub network by city & country", "Cross-city member connection + activate all services"],
+      benchmarkName: "Acts 29 + KWMA + Lausanne",
+      benchmarkData: ko ? "Acts 29: 700개+ 교회 30개국 · KWMA: 한국 선교사 22,000명 · Lausanne: 200개국 글로벌 협력" : "Acts 29: 700+ churches 30 countries · KWMA: 22,000 Korean missionaries · Lausanne: 200-country global collaboration",
+      benchmarkLesson: ko ? "신학적 정체성 + 실용적 도구 + 동료 책임감 = 지속가능한 교회 네트워크" : "Theological identity + practical tools + peer accountability = sustainable church network",
+      hebronKo: "디아스포라 특화 + 디지털 퍼스트 + 목사-선교사 통합 네트워크. 다른 서비스 모두의 신뢰 기반.",
+      hebronEn: "Diaspora-specific + digital-first + unified pastor-missionary network. Trust foundation for all other services.",
+      revenueKo: "네트워크 참여 무료 | 교회 프리미엄 프로필 $50/월 | 매칭 서비스 수익의 일부 교회 쉐어",
+      revenueEn: "Network participation free | Church premium profile $50/mo | Share of matching revenue with churches",
+      statusKo: "지금 바로 시작 — 목사님께 연락주세요", statusEn: "Starting now — contact us",
+      statusColor: "#C9A227",
+    },
+  ];
+
+  const svc = SERVICES[sub];
+
+  return (
+    <div style={{ paddingBottom: 96 }}>
+      <BackToHomeButton onHome={onHome} lang={lang} />
+      <ScreenHeader emoji="🤝" titleKo="사람 연결" titleEn="Hebron Connect"
+        descKo={`${city.nameKo} — 라이드·스테이·튜터·커뮤니티·매칭·목회자 네트워크`}
+        descEn={`${city.nameEn} — Rides · Stay · Tutor · Community · Matching · Pastor Network`}
+        accentColor={accent} />
+
+      {/* 비전 배너 */}
+      <div style={{ margin: "0 16px 4px", background: "linear-gradient(135deg, rgba(201,162,39,0.15), rgba(110,231,183,0.08))", border: "1px solid rgba(201,162,39,0.3)", borderRadius: 14, padding: "12px 16px" }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: accent, marginBottom: 3 }}>
+          ✨ {ko ? "HebronGuide 사람 연결 플랫폼" : "HebronGuide People Connect Platform"}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.7)", lineHeight: 1.6 }}>
+          {ko
+            ? "\"내가 나그네 되었을 때 너희가 영접하였다\" (마25:35) — 목사님·선교사님 신뢰 네트워크 위에 세워진 한인 디아스포라 연결 플랫폼"
+            : "\"I was a stranger and you welcomed me\" (Matt 25:35) — Korean diaspora connection platform built on pastor & missionary trust network"}
+        </div>
+      </div>
+
+      <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={svc.color} />
+
+      <div style={{ padding: "16px 16px 0" }}>
+
+        {/* 서비스 헤더 */}
+        <div style={{ background: `linear-gradient(135deg, ${svc.color}22, ${svc.color}0a)`, border: `1px solid ${svc.color}40`, borderRadius: 20, padding: "20px 18px", marginBottom: 12 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+            <span style={{ fontSize: 28 }}>{svc.icon}</span>
+            <div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 18, color: "#ECFDF5" }}>
+                {ko ? svc.titleKo : svc.titleEn}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: svc.color, fontWeight: 600, marginTop: 2 }}>
+                {ko ? svc.taglineKo : svc.taglineEn}
+              </div>
+            </div>
+          </div>
+          {/* 상태 배지 */}
+          <span style={{ background: `${svc.statusColor}25`, border: `1px solid ${svc.statusColor}60`, color: svc.statusColor, borderRadius: 20, padding: "4px 12px", fontFamily: "Manrope,sans-serif", fontSize: 10, fontWeight: 700 }}>
+            ⚡ {ko ? svc.statusKo : svc.statusEn}
+          </span>
+        </div>
+
+        {/* 어떻게 작동하나요 */}
+        <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 14, padding: "14px 16px", marginBottom: 12 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: svc.color, marginBottom: 10, letterSpacing: "0.5px" }}>
+            📋 {ko ? "어떻게 작동하나요?" : "How It Works"}
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {(ko ? svc.stepsKo : svc.stepsEn).map((step, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                <div style={{ width: 22, height: 22, borderRadius: "50%", background: `${svc.color}30`, border: `1.5px solid ${svc.color}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 10, color: svc.color }}>{i + 1}</span>
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.85)", lineHeight: 1.5, paddingTop: 2 }}>{step}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 벤치마크 */}
+        <div style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 12 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 10, color: "rgba(236,253,245,0.5)", marginBottom: 6, letterSpacing: "0.5px" }}>
+            📊 {ko ? "벤치마크" : "BENCHMARK"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#ECFDF5", marginBottom: 4 }}>
+            {svc.benchmarkName}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.6)", lineHeight: 1.6, marginBottom: 6 }}>
+            {ko ? svc.benchmarkData : svc.benchmarkData}
+          </div>
+          <div style={{ background: "rgba(201,162,39,0.1)", borderLeft: "3px solid #C9A227", padding: "6px 10px", borderRadius: "0 6px 6px 0" }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "#C9A227", lineHeight: 1.6 }}>
+              💡 {ko ? svc.benchmarkLesson : svc.benchmarkLesson}
+            </div>
+          </div>
+        </div>
+
+        {/* 헤브론 차별성 */}
+        <div style={{ background: `linear-gradient(135deg, ${svc.color}15, rgba(110,231,183,0.08))`, border: `1px solid ${svc.color}35`, borderRadius: 14, padding: "14px 16px", marginBottom: 12 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 10, color: svc.color, marginBottom: 6, letterSpacing: "0.5px" }}>
+            ✝️ {ko ? "헤브론 고유성 — 왜 다른가?" : "HEBRON DIFFERENCE — Why unique?"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.85)", lineHeight: 1.7 }}>
+            {ko ? svc.hebronKo : svc.hebronEn}
+          </div>
+        </div>
+
+        {/* 수익 모델 */}
+        <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 14, padding: "14px 16px", marginBottom: 16 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 10, color: "rgba(236,253,245,0.5)", marginBottom: 6, letterSpacing: "0.5px" }}>
+            💰 {ko ? "수익 모델" : "REVENUE MODEL"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.75)", lineHeight: 1.8 }}>
+            {ko ? svc.revenueKo : svc.revenueEn}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <a href="mailto:gmc.hc300@gmail.com?subject=HebronGuide Connect 파트너 문의"
+          style={{ display: "block", textDecoration: "none" }}>
+          <div style={{ background: `linear-gradient(135deg, ${svc.color}, ${svc.color}cc)`, borderRadius: 14, padding: "14px 20px", textAlign: "center", boxShadow: `0 4px 20px ${svc.color}40`, cursor: "pointer" }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff" }}>
+              {sub === 5
+                ? (ko ? "⛪ 목사님·선교사님 — 파트너 문의" : "⛪ Pastor/Missionary — Partner Inquiry")
+                : (ko ? `🚀 ${svc.titleKo} 관심 등록` : `🚀 Register Interest — ${svc.titleEn}`)}
+            </div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)", marginTop: 3 }}>
+              gmc.hc300@gmail.com
+            </div>
+          </div>
+        </a>
+
+        {/* 전체 서비스 통합 수익 미리보기 */}
+        {sub === 0 && (
+          <div style={{ marginTop: 16, background: "rgba(201,162,39,0.08)", border: "1px solid rgba(201,162,39,0.2)", borderRadius: 14, padding: "14px 16px" }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: accent, marginBottom: 8 }}>
+              📈 {ko ? "전체 플랫폼 수익 예측" : "Platform Revenue Projection"}
+            </div>
+            {[
+              { yr: ko ? "1년차" : "Year 1", rev: "$400K-600K",  note: ko ? "라이드·튜터 파일럿" : "Ride & tutor pilot" },
+              { yr: ko ? "2년차" : "Year 2", rev: "$1.2M-1.8M", note: ko ? "스테이·커뮤니티 확장" : "Stay & community expansion" },
+              { yr: ko ? "3년차" : "Year 3", rev: "$3M-5M",     note: ko ? "매칭·네트워크 전국화" : "Matching & network national" },
+            ].map((r, i) => (
+              <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "6px 0", borderBottom: i < 2 ? "1px solid rgba(201,162,39,0.1)" : "none" }}>
+                <div>
+                  <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>{r.yr}</span>
+                  <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.5)", marginLeft: 8 }}>{r.note}</span>
+                </div>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: accent }}>{r.rev}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+      </div>
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════
    ── NAVIGATION & LAYOUT ───────────────────
    ═══════════════════════════════════════════ */
@@ -7543,6 +7811,7 @@ const VS_APP_ROUTES = [
   { kw:["취업","일자리","채용","직장","알바","이력서","면접"],         tab:6, ko:"취업", emoji:"💼" },
   { kw:["학교","교육","학원","대학","유학","학군"],                   tab:7, ko:"교육", emoji:"🎓" },
   { kw:["생활비","렌트","월세","물가","환율","기름","코스트코","마트"], tab:8, ko:"생활비·쇼핑", emoji:"💰" },
+  { kw:["사람","연결","라이드","스테이","튜터","매칭","결혼","커뮤니티","네트워크","목사","선교사","ride","stay","tutor","match","connect","network","pastor","missionary"], tab:9, ko:"사람연결·헤브론커넥트", emoji:"🤝" },
   { kw:["관광","여행","명소","스페이스니들","레이니어","폭포","페리"],  tab:4, ko:"관광", emoji:"🗺️" },
 ];
 const VS_CITY_ROUTES = [
@@ -8608,7 +8877,7 @@ export function HebronGuide() {
   const [costInitialSub, setCostInitialSub] = useState(0);
 
   const handleNavigate = (tab: number, subTab?: number) => {
-    const maxTab = 8; // 홈·정착·교회·맛집·탐방·도움·취업·교육·생활비
+    const maxTab = 9; // 홈·정착·교회·맛집·탐방·도움·취업·교육·생활비·사람연결
     if (tab <= maxTab) {
       if (tab === 1 && subTab !== undefined) setSettleInitialSub(subTab);
       if (tab === 5 && subTab !== undefined) setHelpInitialSub(subTab);
@@ -8710,7 +8979,7 @@ export function HebronGuide() {
     }
   };
 
-  // 9개 탭 스크린 (홈·정착·교회·맛집·탐방·도움·취업·교육·생활비)
+  // 10개 탭 스크린 (홈·정착·교회·맛집·탐방·도움·취업·교육·생활비·사람연결)
   const screens = [
     <HomeScreen onNavigate={handleNavigate} />,                                        // 0
     <SettleScreen onHome={() => setActiveNav(0)} initialSub={settleInitialSub} />,     // 1
@@ -8721,6 +8990,7 @@ export function HebronGuide() {
     <JobsScreen onHome={() => setActiveNav(0)} />,                                     // 6
     <EducationScreen onHome={() => setActiveNav(0)} initialSub={eduInitialSub} />,     // 7
     <CostScreen onHome={() => setActiveNav(0)} initialSub={costInitialSub} />,         // 8
+    <ConnectScreen onHome={() => setActiveNav(0)} />,                                  // 9
   ];
 
   return (
