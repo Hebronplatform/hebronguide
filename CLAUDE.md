@@ -369,8 +369,8 @@ HebronGuide는 정치적 좌파도 우파도 아니다.
 | 매체 | URL | 등급 | 비고 |
 |---|---|---|---|
 | **연합뉴스** | en.yna.co.kr | ✅ | 국가기간통신사. DC·NY·LA 등 6개 도시 특파원. **팩트 신뢰도 최상** |
-| **KBS America** | kbsworldi.com | ✅ | 2004년 개국. LA 독자 편집국. 미주 한인 뉴스 제작 |
-| **SBS International** | lalasbs.com | ✅ | LA 기반. 미주 로컬 뉴스팀 별도. 정치색 적음 |
+| **KBS America** | kbswa.com (시애틀) / kbsworldi.com | ✅ | **시애틀·LA·ATL·CHI 4개 도시 지국**. 시애틀 전용 kbswa.com (세금·법률·소상공인) |
+| **SBS International** | lalasbs.com | ✅ | **이민 정책 특화** + K타운 성공노트 + 이브닝뉴스 YouTube(무료, 평일 매일) |
 | **미주조선일보** | chosundaily.com | ⚠️ | 1920년 조선일보 계열. LA 편집국. 보수 성향 → 사실 정보만 |
 | MBC America | mbc-america.com | ⚠️ | LA 기반. 미주 뉴스 제작. 진보 성향 → 사실 정보만 |
 | ~~세계일보~~ | — | 🚫 | **통일교(이단) 계열. 인용·취재·연계 전면 금지** |
