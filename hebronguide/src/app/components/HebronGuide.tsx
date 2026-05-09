@@ -120,7 +120,23 @@ const MINT = "#6EE7B7";
 /* ─────────────────────────────────────────
    CITY CONFIG — 도시별 설정
 ───────────────────────────────────────── */
-type CitySlug = "seattle" | "dallas" | "sf" | "newyork" | "nashville" | "boston" | "la" | "toronto" | "vancouver" | "houston" | "atlanta" | "kansascity" | "philadelphia" | "miami" | "mexicocity" | "guadalajara" | "monterrey";
+// 현재 17개 + 확장 27개 = 총 44개 도시 (계속 성장 중)
+// 작은 도시일수록 HebronGuide가 더 필요합니다 — 외롭기 때문입니다
+type CitySlug =
+  // 북미 (기존 17)
+  "seattle" | "dallas" | "sf" | "newyork" | "nashville" | "boston" | "la" |
+  "toronto" | "vancouver" | "houston" | "atlanta" | "kansascity" | "philadelphia" |
+  "miami" | "mexicocity" | "guadalajara" | "monterrey" |
+  // 북미 확장 (Tier A)
+  "chicago" | "dc" | "sandiego" | "honolulu" | "portland" | "denver" |
+  // 북미 확장 (Tier B-C)
+  "calgary" | "phoenix" | "charlotte" | "columbus" | "raleigh" | "minneapolis" |
+  "fayetteville" | "killeen" | "anchorage" | "tucson" | "winnipeg" | "edmonton" | "ottawa" |
+  // 국제 (Tier A)
+  "sydney" | "melbourne" | "saopaulo" | "london" | "auckland" |
+  // 국제 (Tier B-C)
+  "singapore" | "bangkok" | "hochiminh" | "dubai" | "frankfurt" | "paris" |
+  "perth" | "brisbane" | "berlin";
 
 interface CityConfig {
   slug: CitySlug;
@@ -171,6 +187,49 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   mexicocity: { slug: "mexicocity", nameKo: "멕시코시티", nameEn: "Mexico City",  color: "#DC2626", heroVideo: "", population: "1만+",   state: "Mexico",      taglineKo: "고대와 현대가 만나는 곳",     taglineEn: "Where ancient meets modern.",    taglineEs: "Donde lo antiguo se encuentra con lo moderno." },
   guadalajara:{ slug: "guadalajara",nameKo: "과달라하라", nameEn: "Guadalajara",  color: "#F59E0B", heroVideo: "", population: "2천+",   state: "Mexico",      taglineKo: "멕시코의 문화 수도",          taglineEn: "Mexico's cultural capital.",     taglineEs: "La capital cultural de México." },
   monterrey:  { slug: "monterrey",  nameKo: "몬테레이",  nameEn: "Monterrey",    color: "#0EA5E9", heroVideo: "", population: "1천+",   state: "Mexico",      taglineKo: "산으로 둘러싸인 산업도시",    taglineEn: "Industrial city in the mountains.", taglineEs: "Ciudad industrial entre montañas." },
+
+  // ── 북미 확장 Tier A (Isolation: 2-3) ──────────────────────────────────
+  chicago:    { slug: "chicago",    nameKo: "시카고",    nameEn: "Chicago",      color: "#1D4ED8", heroVideo: "", population: "6.2만+", state: "Illinois",    taglineKo: "바람의 도시, 우리의 집",       taglineEn: "City of Winds, Home of Ours.",   taglineEs: "Ciudad de los Vientos, nuestro hogar." },
+  dc:         { slug: "dc",         nameKo: "워싱턴 DC", nameEn: "Washington DC",color: "#DC2626", heroVideo: "", population: "9.3만+", state: "Virginia/MD", taglineKo: "나라의 심장에서",             taglineEn: "At the Heart of the Nation.",    taglineEs: "En el corazón de la nación." },
+  sandiego:   { slug: "sandiego",   nameKo: "샌디에고",  nameEn: "San Diego",    color: "#0891B2", heroVideo: "", population: "2.5만+", state: "California",  taglineKo: "태평양이 품은 도시",          taglineEn: "The City the Pacific Holds.",    taglineEs: "La ciudad que abraza el Pacífico." },
+  honolulu:   { slug: "honolulu",   nameKo: "호놀룰루",  nameEn: "Honolulu",     color: "#10B981", heroVideo: "", population: "2.3만+", state: "Hawaii",      taglineKo: "섬 위의 한인",               taglineEn: "Koreans on the Island.",         taglineEs: "Coreanos en la isla." },
+  portland:   { slug: "portland",   nameKo: "포틀랜드",  nameEn: "Portland",     color: "#BE185D", heroVideo: "", population: "1만+",   state: "Oregon",      taglineKo: "장미 도시의 한인들",          taglineEn: "Koreans in the Rose City.",      taglineEs: "Coreanos en la Ciudad de las Rosas." },
+  denver:     { slug: "denver",     nameKo: "덴버",      nameEn: "Denver",       color: "#92400E", heroVideo: "", population: "1.5만+", state: "Colorado",    taglineKo: "산을 바라보며",              taglineEn: "Looking Out to the Mountains.",  taglineEs: "Con vista a las montañas." },
+
+  // ── 북미 확장 Tier B (Isolation: 3-4) ──────────────────────────────────
+  calgary:    { slug: "calgary",    nameKo: "캘거리",    nameEn: "Calgary",      color: "#D97706", heroVideo: "", population: "1.3만+", state: "Alberta",     taglineKo: "알버타의 한인",              taglineEn: "Koreans of Alberta.",            taglineEs: "Coreanos de Alberta." },
+  edmonton:   { slug: "edmonton",   nameKo: "에드먼턴",  nameEn: "Edmonton",     color: "#059669", heroVideo: "", population: "8천+",   state: "Alberta",     taglineKo: "북쪽 평원의 한인",           taglineEn: "Koreans on the Northern Plains.", taglineEs: "Coreanos en las llanuras del norte." },
+  ottawa:     { slug: "ottawa",     nameKo: "오타와",    nameEn: "Ottawa",       color: "#DC2626", heroVideo: "", population: "5천+",   state: "Ontario",     taglineKo: "수도의 조용한 한인",          taglineEn: "Quiet Koreans in the Capital.",  taglineEs: "Coreanos tranquilos en la capital." },
+  winnipeg:   { slug: "winnipeg",   nameKo: "위니펙",    nameEn: "Winnipeg",     color: "#7C3AED", heroVideo: "", population: "4천+",   state: "Manitoba",    taglineKo: "가장 고립된 캐나다 한인",     taglineEn: "Canada's Most Isolated Korean Community.", taglineEs: "La comunidad coreana más aislada de Canadá." },
+  phoenix:    { slug: "phoenix",    nameKo: "피닉스",    nameEn: "Phoenix",      color: "#EA580C", heroVideo: "", population: "1.2만+", state: "Arizona",     taglineKo: "사막 속의 한인",             taglineEn: "Koreans in the Desert.",         taglineEs: "Coreanos en el desierto." },
+  charlotte:  { slug: "charlotte",  nameKo: "샬럿",      nameEn: "Charlotte",    color: "#0EA5E9", heroVideo: "", population: "1.5만+", state: "N. Carolina", taglineKo: "남부의 성장하는 한인 도시",    taglineEn: "The South's Growing Korean City.", taglineEs: "La creciente ciudad coreana del Sur." },
+  raleigh:    { slug: "raleigh",    nameKo: "롤리",      nameEn: "Raleigh",      color: "#2563EB", heroVideo: "", population: "1만+",   state: "N. Carolina", taglineKo: "연구 삼각지의 한인",          taglineEn: "Koreans in the Research Triangle.", taglineEs: "Coreanos en el Triángulo de Investigación." },
+  columbus:   { slug: "columbus",   nameKo: "콜럼버스",  nameEn: "Columbus",     color: "#B91C1C", heroVideo: "", population: "1.2만+", state: "Ohio",        taglineKo: "오하이오 한인의 도시",         taglineEn: "Home of Ohio's Korean Community.", taglineEs: "Hogar de la comunidad coreana de Ohio." },
+  minneapolis:{ slug: "minneapolis",nameKo: "미니애폴리스",nameEn: "Minneapolis",  color: "#7C3AED", heroVideo: "", population: "8천+",   state: "Minnesota",   taglineKo: "호수 도시의 한인",           taglineEn: "Koreans in the Lake City.",      taglineEs: "Coreanos en la ciudad de los lagos." },
+  tucson:     { slug: "tucson",     nameKo: "투손",      nameEn: "Tucson",       color: "#CA8A04", heroVideo: "", population: "3천+",   state: "Arizona",     taglineKo: "사막의 대학 도시",           taglineEn: "Desert University City.",        taglineEs: "Ciudad universitaria del desierto." },
+
+  // ── 북미 소도시·군사도시 Tier C (Isolation: 4-5) ─────────────────────────
+  fayetteville:{ slug: "fayetteville",nameKo: "페이엣빌", nameEn: "Fayetteville", color: "#15803D", heroVideo: "", population: "5천+",  state: "N. Carolina", taglineKo: "부대 옆 한인 가족들",         taglineEn: "Korean Families Near the Base.",  taglineEs: "Familias coreanas cerca de la base." },
+  killeen:    { slug: "killeen",    nameKo: "킬린",      nameEn: "Killeen",      color: "#854D0E", heroVideo: "", population: "4천+",   state: "Texas",       taglineKo: "포트 카바조스 한인 가족",      taglineEn: "Korean Families at Fort Cavazos.", taglineEs: "Familias coreanas en Fort Cavazos." },
+  anchorage:  { slug: "anchorage",  nameKo: "앵커리지",  nameEn: "Anchorage",    color: "#0F766E", heroVideo: "", population: "5천+",   state: "Alaska",      taglineKo: "가장 북쪽의 한인 도시",        taglineEn: "America's Northernmost Korean City.", taglineEs: "La ciudad coreana más al norte." },
+
+  // ── 국제 확장 Tier A ────────────────────────────────────────────────────
+  sydney:     { slug: "sydney",     nameKo: "시드니",    nameEn: "Sydney",       color: "#0284C7", heroVideo: "", population: "7만+",   state: "N.S.W.",      taglineKo: "남반구의 한국",              taglineEn: "Korea in the Southern Hemisphere.", taglineEs: "Corea en el hemisferio sur." },
+  melbourne:  { slug: "melbourne",  nameKo: "멜버른",    nameEn: "Melbourne",    color: "#9333EA", heroVideo: "", population: "3만+",   state: "Victoria",    taglineKo: "카페 도시의 한인",           taglineEn: "Koreans in the Coffee City.",     taglineEs: "Coreanos en la ciudad del café." },
+  brisbane:   { slug: "brisbane",   nameKo: "브리즈번",  nameEn: "Brisbane",     color: "#CA8A04", heroVideo: "", population: "1.8만+", state: "Queensland",  taglineKo: "선샤인 스테이트의 한인",       taglineEn: "Koreans in the Sunshine State.",  taglineEs: "Coreanos en el Estado del Sol." },
+  perth:      { slug: "perth",      nameKo: "퍼스",      nameEn: "Perth",        color: "#0891B2", heroVideo: "", population: "1.2만+", state: "W. Australia",taglineKo: "가장 외진 한인 도시",         taglineEn: "The World's Most Remote Korean City.", taglineEs: "La ciudad coreana más remota del mundo." },
+  auckland:   { slug: "auckland",   nameKo: "오클랜드",  nameEn: "Auckland",     color: "#16A34A", heroVideo: "", population: "2.5만+", state: "New Zealand", taglineKo: "키위와 함께",               taglineEn: "Together with the Kiwis.",       taglineEs: "Junto con los kiwis." },
+  saopaulo:   { slug: "saopaulo",   nameKo: "상파울루",  nameEn: "São Paulo",    color: "#DC2626", heroVideo: "", population: "5만+",   state: "Brazil",      taglineKo: "남미 한인의 심장",           taglineEn: "Heart of Korean South America.",  taglineEs: "El corazón del sudamérica coreana." },
+  london:     { slug: "london",     nameKo: "런던",      nameEn: "London",       color: "#1E40AF", heroVideo: "", population: "4.5만+", state: "England",     taglineKo: "안개 속의 한인",             taglineEn: "Koreans in the Fog.",            taglineEs: "Coreanos en la niebla." },
+
+  // ── 국제 확장 Tier B-C ──────────────────────────────────────────────────
+  singapore:  { slug: "singapore",  nameKo: "싱가포르",  nameEn: "Singapore",    color: "#DC2626", heroVideo: "", population: "2.2만+", state: "Singapore",   taglineKo: "도시국가의 한인",            taglineEn: "Koreans in the City-State.",     taglineEs: "Coreanos en la ciudad-estado." },
+  bangkok:    { slug: "bangkok",    nameKo: "방콕",      nameEn: "Bangkok",      color: "#9333EA", heroVideo: "", population: "2만+",   state: "Thailand",    taglineKo: "황금 도시의 한인",           taglineEn: "Koreans in the Golden City.",    taglineEs: "Coreanos en la ciudad dorada." },
+  hochiminh:  { slug: "hochiminh",  nameKo: "호치민",    nameEn: "Ho Chi Minh City", color: "#BE185D", heroVideo: "", population: "6만+", state: "Vietnam",    taglineKo: "비즈니스 한인의 도시",        taglineEn: "City of Business Koreans.",      taglineEs: "Ciudad de los coreanos de negocios." },
+  dubai:      { slug: "dubai",      nameKo: "두바이",    nameEn: "Dubai",        color: "#CA8A04", heroVideo: "", population: "8천+",   state: "UAE",         taglineKo: "사막의 황금 도시 한인",        taglineEn: "Koreans in the Desert Gold City.", taglineEs: "Coreanos en la ciudad dorada del desierto." },
+  frankfurt:  { slug: "frankfurt",  nameKo: "프랑크푸르트",nameEn: "Frankfurt",   color: "#1D4ED8", heroVideo: "", population: "7천+",   state: "Germany",     taglineKo: "유럽 금융의 중심에서",         taglineEn: "At Europe's Financial Core.",    taglineEs: "En el núcleo financiero de Europa." },
+  berlin:     { slug: "berlin",     nameKo: "베를린",    nameEn: "Berlin",       color: "#374151", heroVideo: "", population: "5천+",   state: "Germany",     taglineKo: "장벽을 넘어선 한인",          taglineEn: "Koreans Beyond the Wall.",       taglineEs: "Coreanos más allá del muro." },
+  paris:      { slug: "paris",      nameKo: "파리",      nameEn: "Paris",        color: "#7C3AED", heroVideo: "", population: "1.5만+", state: "France",      taglineKo: "빛의 도시의 한인",           taglineEn: "Koreans in the City of Light.",  taglineEs: "Coreanos en la Ciudad de la Luz." },
 };
 
 function useCityConfig(): CityConfig {
@@ -4900,8 +4959,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
   const tabs = lang === "ko"
-    ? ["소개", "교회 목록", "프로그램", "새가족"]
-    : ["About", "Churches", "Programs", "New Members"];
+    ? ["소개", "교회 목록", "프로그램", "새가족", "🏆 허브교회"]
+    : ["About", "Churches", "Programs", "New Members", "🏆 Hub Church"];
   const accent = "#C084FC";
 
   // 교회 목록 — 시애틀지구촌교회 (Global Mission Church) 검증 완료
@@ -5016,6 +5075,104 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             ))}
           </InfoCard>
         )}
+
+        {/* ── TAB 5: 허브교회 네트워크 ── */}
+        {sub === 4 && (
+          <div style={{ paddingBottom: 8 }}>
+
+            {/* 비전 배너 */}
+            <div style={{ background: "linear-gradient(135deg, rgba(201,162,39,0.18), rgba(192,132,252,0.1))", border: "1px solid rgba(201,162,39,0.35)", borderRadius: 18, padding: "18px 16px", marginBottom: 14 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#C9A227", marginBottom: 8 }}>
+                🏆 {lang === "ko" ? "헤브론 허브교회 네트워크" : "Hebron Hub Church Network"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, marginBottom: 10 }}>
+                {lang === "ko"
+                  ? "전 세계 한인 교회의 약 10%만이 진정으로 복음적이며, 순수하게 제자 만드는 데 헌신된 교회입니다. HebronGuide는 이 교회들과 전략적으로 연대하여 새로운 이민자들을 연결합니다."
+                  : "Only about 10% of Korean diaspora churches are truly evangelical and purely committed to making disciples. HebronGuide strategically partners with these churches to connect new immigrants."}
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
+                {[
+                  { n: lang === "ko" ? "도시당 12개" : "12 per city", d: lang === "ko" ? "선별된 허브교회" : "Curated hub churches" },
+                  { n: lang === "ko" ? "새가족 연결" : "New arrivals", d: lang === "ko" ? "허브교회로 직접 안내" : "Directed to hub churches" },
+                  { n: lang === "ko" ? "전 세계" : "Worldwide", d: lang === "ko" ? "목사·선교사 네트워크" : "Pastor & missionary network" },
+                ].map((s, i) => (
+                  <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#C9A227" }}>{s.n}</div>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.6)", marginTop: 3, lineHeight: 1.4 }}>{s.d}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 선별 기준 6가지 */}
+            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(192,132,252,0.2)", borderRadius: 14, padding: "16px", marginBottom: 12 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: accent, marginBottom: 12 }}>
+                📋 {lang === "ko" ? "허브교회 선별 기준 6가지" : "6 Hub Church Selection Criteria"}
+              </div>
+              {[
+                { n: lang === "ko" ? "복음적 (Evangelical)" : "Evangelical", d: lang === "ko" ? "오직 성경·오직 믿음·오직 은혜 — 사회복음 X" : "Scripture alone, faith alone, grace alone — not social gospel", icon: "📖" },
+                { n: lang === "ko" ? "순수한 동기" : "Pure Motivation", d: lang === "ko" ? "교회 성장 수치가 아닌 영혼 구원이 목적" : "Purpose is soul salvation, not church growth numbers", icon: "🕊️" },
+                { n: lang === "ko" ? "제자 만드는 열정" : "Discipleship Passion", d: lang === "ko" ? "마28:19 '제자를 삼으라' — 삶공부·목장 등 체계적 사역" : "Matt 28:19 'make disciples' — structured life study & small groups", icon: "🔥" },
+                { n: lang === "ko" ? "헌신" : "Commitment", d: lang === "ko" ? "계절적이 아닌 지속적·일관된 사역" : "Consistent, year-round ministry, not seasonal", icon: "⚓" },
+                { n: lang === "ko" ? "이민자 환영" : "Immigrant Welcoming", d: lang === "ko" ? "새 이민자의 문화·언어·정서적 필요를 이해" : "Understands cultural, linguistic & emotional needs of new immigrants", icon: "🤝" },
+                { n: lang === "ko" ? "HebronGuide 파트너십" : "HebronGuide Partnership", d: lang === "ko" ? "새가족 연결 수락·환영 약속·공동체 책임" : "Accepts new arrivals, welcomes them, holds community accountability", icon: "✅" },
+              ].map((c, i) => (
+                <div key={i} style={{ display: "flex", gap: 10, marginBottom: i < 5 ? 10 : 0, paddingBottom: i < 5 ? 10 : 0, borderBottom: i < 5 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
+                  <span style={{ fontSize: 16, flexShrink: 0, marginTop: 1 }}>{c.icon}</span>
+                  <div>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>{c.n}</div>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.6)", lineHeight: 1.5, marginTop: 2 }}>{c.d}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 허브교회가 받는 것 */}
+            <div style={{ background: "rgba(201,162,39,0.08)", border: "1px solid rgba(201,162,39,0.25)", borderRadius: 14, padding: "14px 16px", marginBottom: 12 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#C9A227", marginBottom: 10 }}>
+                🎁 {lang === "ko" ? "허브교회가 받는 것" : "What Hub Churches Receive"}
+              </div>
+              {[
+                lang === "ko" ? "🏠 새 이민자가 도착하기 전에 미리 연락 — 환영 준비 가능" : "🏠 Pre-arrival notice for new immigrants — prepare welcome",
+                lang === "ko" ? "📱 HebronGuide 앱에 '허브교회' 금색 배지 표시" : "📱 Gold 'Hub Church' badge displayed on HebronGuide app",
+                lang === "ko" ? "🌐 전국·전 세계 목회자 네트워크 참여" : "🌐 National & global pastor network membership",
+                lang === "ko" ? "📊 도시 내 한인 이민자 정착 현황 데이터 공유" : "📊 City-level Korean immigrant settlement data sharing",
+                lang === "ko" ? "🤝 17개+ 도시 파트너 교회와 교인 교류·연결" : "🤝 Member exchange & connection with 17+ partner churches",
+              ].map((item, i) => (
+                <div key={i} style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, marginBottom: 4 }}>
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            {/* 도시별 목표 */}
+            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: accent, marginBottom: 8 }}>
+                🗺️ {lang === "ko" ? "도시별 12개 허브교회 목표" : "12 Hub Churches Per City Goal"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.7)", lineHeight: 1.8 }}>
+                {lang === "ko"
+                  ? "• 대도시 (LA·NY·달라스): 12개 교회 — 지역별 균형 배치\n• 중소도시 (시애틀·애틀랜타): 12개 이하 — 도시 전체 커버\n• 소도시·군사도시: 3-5개 교회 — 외로운 한인을 위한 등불\n\n새 이민자는 거주지에서 가장 가까운 허브교회로 자동 연결됩니다."
+                  : "• Major cities (LA, NY, Dallas): 12 churches — balanced regional coverage\n• Mid cities (Seattle, Atlanta): up to 12 — city-wide coverage\n• Small & military cities: 3-5 churches — a light for lonely Koreans\n\nNew immigrants automatically connected to nearest hub church."}
+              </div>
+            </div>
+
+            {/* CTA */}
+            <a href="mailto:gmc.hc300@gmail.com?subject=HebronGuide 허브교회 신청"
+              style={{ display: "block", textDecoration: "none" }}>
+              <div style={{ background: "linear-gradient(135deg, #C9A227, #B8901C)", borderRadius: 14, padding: "16px 20px", textAlign: "center", boxShadow: "0 4px 20px rgba(201,162,39,0.4)" }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 4 }}>
+                  🏆 {lang === "ko" ? "허브교회 신청 — 목사님께 연락주세요" : "Apply as Hub Church — Contact Pastor Paul Kim"}
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)" }}>
+                  gmc.hc300@gmail.com · www.ijiguchon.org
+                </div>
+              </div>
+            </a>
+
+          </div>
+        )}
+
       </div>
     </div>
   );
@@ -7603,12 +7760,15 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
    NAV ITEMS (3개로 축소)
 ───────────────────────────────────────── */
 // 순서: 홈(기준점) → 검색(가장 자주) → 통역(긴급할 때) → 공유(가끔)
+// 하단 네비 5탭: 홈·정착·맛집·도움·연결
+// "연결" = HebronGuide의 핵심 차별화 — 사람 간 연결 플랫폼
+// "더보기" 제거 → Quick Menu(홈 탭)가 전체 탭 탐색 역할 대체
 const NAV_ITEMS = [
-  { id: "home",      icon: Home,          labelKo: "홈",   labelEn: "Home",   tab: 0 },
-  { id: "settle",    icon: MapPin,        labelKo: "정착",  labelEn: "Settle", tab: 1 },
-  { id: "food",      icon: Utensils,      labelKo: "맛집",  labelEn: "Food",   tab: 3 },
-  { id: "help",      icon: LifeBuoy,      labelKo: "도움",  labelEn: "Help",   tab: 5 },
-  { id: "more",      icon: Grid,          labelKo: "더보기", labelEn: "More",   tab: -1 },
+  { id: "home",      icon: Home,          labelKo: "홈",   labelEn: "Home",    tab: 0 },
+  { id: "settle",    icon: MapPin,        labelKo: "정착",  labelEn: "Settle",  tab: 1 },
+  { id: "food",      icon: Utensils,      labelKo: "맛집",  labelEn: "Food",    tab: 3 },
+  { id: "help",      icon: LifeBuoy,      labelKo: "도움",  labelEn: "Help",    tab: 5 },
+  { id: "connect",   icon: Users,         labelKo: "연결",  labelEn: "Connect", tab: 9 },
 ];
 
 /* ─────────────────────────────────────────

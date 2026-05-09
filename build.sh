@@ -20,25 +20,68 @@ cp icon-192.png  public/apple-touch-icon-precomposed.png
 
 # 3. 도시별 메타데이터 정의 (한국어명·영어명·주/지역)
 declare -A CITY_KO=(
-  ["seattle"]="시애틀"     ["dallas"]="달라스"      ["sf"]="샌프란시스코"
-  ["newyork"]="뉴욕"       ["nashville"]="내쉬빌"   ["boston"]="보스턴"
-  ["la"]="로스앤젤레스"     ["toronto"]="토론토"     ["vancouver"]="밴쿠버"
-  ["houston"]="휴스턴"     ["atlanta"]="애틀랜타"   ["kansascity"]="캔자스시티"
-  ["philadelphia"]="필라델피아" ["miami"]="마이애미" ["mexicocity"]="멕시코시티"
-  ["guadalajara"]="과달라하라"  ["monterrey"]="몬테레이"
+  # 기존 17개 도시
+  ["seattle"]="시애틀"       ["dallas"]="달라스"        ["sf"]="샌프란시스코"
+  ["newyork"]="뉴욕"         ["nashville"]="내쉬빌"     ["boston"]="보스턴"
+  ["la"]="로스앤젤레스"       ["toronto"]="토론토"       ["vancouver"]="밴쿠버"
+  ["houston"]="휴스턴"       ["atlanta"]="애틀랜타"     ["kansascity"]="캔자스시티"
+  ["philadelphia"]="필라델피아" ["miami"]="마이애미"     ["mexicocity"]="멕시코시티"
+  ["guadalajara"]="과달라하라" ["monterrey"]="몬테레이"
+  # 북미 확장 Tier A
+  ["chicago"]="시카고"        ["dc"]="워싱턴 DC"         ["sandiego"]="샌디에고"
+  ["honolulu"]="호놀룰루"     ["portland"]="포틀랜드"    ["denver"]="덴버"
+  # 북미 확장 Tier B-C
+  ["calgary"]="캘거리"        ["edmonton"]="에드먼턴"    ["ottawa"]="오타와"
+  ["winnipeg"]="위니펙"       ["phoenix"]="피닉스"       ["charlotte"]="샬럿"
+  ["raleigh"]="롤리"          ["columbus"]="콜럼버스"    ["minneapolis"]="미니애폴리스"
+  ["tucson"]="투손"           ["fayetteville"]="페이엣빌" ["killeen"]="킬린"
+  ["anchorage"]="앵커리지"
+  # 국제 확장 Tier A
+  ["sydney"]="시드니"         ["melbourne"]="멜버른"     ["brisbane"]="브리즈번"
+  ["perth"]="퍼스"            ["auckland"]="오클랜드"    ["saopaulo"]="상파울루"
+  ["london"]="런던"
+  # 국제 확장 Tier B-C
+  ["singapore"]="싱가포르"    ["bangkok"]="방콕"         ["hochiminh"]="호치민"
+  ["dubai"]="두바이"          ["frankfurt"]="프랑크푸르트" ["berlin"]="베를린"
+  ["paris"]="파리"
 )
 declare -A CITY_EN=(
-  ["seattle"]="Seattle"    ["dallas"]="Dallas"      ["sf"]="San Francisco"
-  ["newyork"]="New York"   ["nashville"]="Nashville" ["boston"]="Boston"
-  ["la"]="Los Angeles"     ["toronto"]="Toronto"    ["vancouver"]="Vancouver"
-  ["houston"]="Houston"    ["atlanta"]="Atlanta"    ["kansascity"]="Kansas City"
-  ["philadelphia"]="Philadelphia" ["miami"]="Miami" ["mexicocity"]="Mexico City"
+  # 기존 17개 도시
+  ["seattle"]="Seattle"       ["dallas"]="Dallas"          ["sf"]="San Francisco"
+  ["newyork"]="New York"      ["nashville"]="Nashville"    ["boston"]="Boston"
+  ["la"]="Los Angeles"        ["toronto"]="Toronto"        ["vancouver"]="Vancouver"
+  ["houston"]="Houston"       ["atlanta"]="Atlanta"        ["kansascity"]="Kansas City"
+  ["philadelphia"]="Philadelphia" ["miami"]="Miami"        ["mexicocity"]="Mexico City"
   ["guadalajara"]="Guadalajara"   ["monterrey"]="Monterrey"
+  # 북미 확장 Tier A
+  ["chicago"]="Chicago"       ["dc"]="Washington DC"       ["sandiego"]="San Diego"
+  ["honolulu"]="Honolulu"     ["portland"]="Portland"      ["denver"]="Denver"
+  # 북미 확장 Tier B-C
+  ["calgary"]="Calgary"       ["edmonton"]="Edmonton"      ["ottawa"]="Ottawa"
+  ["winnipeg"]="Winnipeg"     ["phoenix"]="Phoenix"        ["charlotte"]="Charlotte"
+  ["raleigh"]="Raleigh"       ["columbus"]="Columbus"      ["minneapolis"]="Minneapolis"
+  ["tucson"]="Tucson"         ["fayetteville"]="Fayetteville" ["killeen"]="Killeen"
+  ["anchorage"]="Anchorage"
+  # 국제 확장 Tier A
+  ["sydney"]="Sydney"         ["melbourne"]="Melbourne"    ["brisbane"]="Brisbane"
+  ["perth"]="Perth"           ["auckland"]="Auckland"      ["saopaulo"]="Sao Paulo"
+  ["london"]="London"
+  # 국제 확장 Tier B-C
+  ["singapore"]="Singapore"   ["bangkok"]="Bangkok"        ["hochiminh"]="Ho Chi Minh City"
+  ["dubai"]="Dubai"           ["frankfurt"]="Frankfurt"    ["berlin"]="Berlin"
+  ["paris"]="Paris"
 )
 
 # 4. 도시별 배포 (미리 빌드된 dist/ 사용 + index.html 메타데이터 치환)
 echo "--- Deploying to cities (with city-specific SEO) ---"
-for city in seattle dallas sf newyork nashville boston la toronto vancouver houston atlanta kansascity philadelphia miami mexicocity guadalajara monterrey; do
+for city in \
+  seattle dallas sf newyork nashville boston la toronto vancouver houston atlanta \
+  kansascity philadelphia miami mexicocity guadalajara monterrey \
+  chicago dc sandiego honolulu portland denver \
+  calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
+  tucson fayetteville killeen anchorage \
+  sydney melbourne brisbane perth auckland saopaulo london \
+  singapore bangkok hochiminh dubai frankfurt berlin paris; do
   mkdir -p public/$city
   cp -r hebronguide/dist/* public/$city/
 
@@ -65,5 +108,5 @@ cp hebronguide/dist/posters.html        public/posters.html        2>/dev/null |
 
 # 6. API 함수는 Vercel이 자동 라우팅 (hebronguide/api/*.js → /api/*)
 
-echo "=== Deploy Complete — 17 cities with city-specific SEO ==="
+echo "=== Deploy Complete — 44 cities with city-specific SEO (계속 성장 중) ==="
 ls public/
