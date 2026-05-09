@@ -77,13 +77,33 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        // JS/CSS는 빌드 시 hash가 바뀌므로 캐싱 OK
+        // HTML·SW·workbox 파일은 항상 네트워크에서 최신본 확인
+        globPatterns: ['**/*.{js,css,ico,png,svg,woff2}'],
         navigateFallback: null,
-        // 새 SW 즉시 활성화 — 구 캐시 충돌 방지
+
+        // 새 SW 즉시 활성화 — 대기 없이 바로 교체
         skipWaiting: true,
         clientsClaim: true,
         cleanupOutdatedCaches: true,
+
+        // SW 내부에서 SKIP_WAITING 메시지 처리
+        // (main.tsx의 UpdateBanner와 연동)
+        additionalManifestEntries: [],
+
         runtimeCaching: [
+          // HTML 페이지: 항상 네트워크 우선 → 구 캐시 fallback
+          {
+            urlPattern: /\/index\.html$/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'html-cache',
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 }, // 1일만 캐시
+              cacheableResponse: { statuses: [0, 200] },
+              networkTimeoutSeconds: 3,
+            },
+          },
+          // 구글 폰트: 장기 캐시 (거의 바뀌지 않음)
           {
             urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\/.*/i,
             handler: 'CacheFirst',
@@ -93,6 +113,7 @@ export default defineConfig({
               cacheableResponse: { statuses: [0, 200] },
             },
           },
+          // 날씨 API: 네트워크 우선, 10분 캐시
           {
             urlPattern: /^https:\/\/api\.open-meteo\.com\/.*/i,
             handler: 'NetworkFirst',
@@ -102,9 +123,20 @@ export default defineConfig({
               cacheableResponse: { statuses: [0, 200] },
             },
           },
+          // 번역 API: 캐시 없음 (항상 네트워크)
           {
             urlPattern: /^https:\/\/api\.mymemory\.translated\.net\/.*/i,
             handler: 'NetworkOnly',
+          },
+          // Unsplash 이미지: 하루 캐시
+          {
+            urlPattern: /^https:\/\/images\.unsplash\.com\/.*/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'image-cache',
+              expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 * 24 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
           },
         ],
       },
