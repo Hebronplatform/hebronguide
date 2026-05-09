@@ -4959,6 +4959,15 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               </div>
             </div>
 
+            {/* 스토리라인 1번: Week1(sub 0) — 공항 도착 직후 라이드 카드 */}
+            {sub === 0 && <HebronServiceCard
+              icon="🚗" color="#3B82F6" lang={lang}
+              titleKo="헤브론 라이드 — 공항에서 내리는 순간부터"
+              titleEn="Hebron Ride — From the Moment You Land"
+              descKo="짐 가득, 아이 손 잡고, 낯선 공항. 한국어로 반겨주는 교회 검증 드라이버가 기다립니다."
+              descEn="Bags full, kids in hand, unfamiliar airport. A church-verified Korean-speaking driver is waiting for you."
+            />}
+
             {/* 체크리스트 아이템 */}
             <div onClick={() => forceUpdate(n => n + 1)}>
               {items.map((item, i) => (
@@ -5195,7 +5204,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 lang === "ko" ? "📱 HebronGuide 앱에 '허브교회' 금색 배지 표시" : "📱 Gold 'Hub Church' badge displayed on HebronGuide app",
                 lang === "ko" ? "🌐 전국·전 세계 목회자 네트워크 참여" : "🌐 National & global pastor network membership",
                 lang === "ko" ? "📊 도시 내 한인 이민자 정착 현황 데이터 공유" : "📊 City-level Korean immigrant settlement data sharing",
-                lang === "ko" ? "🤝 17개+ 도시 파트너 교회와 교인 교류·연결" : "🤝 Member exchange & connection with 17+ partner churches",
+                lang === "ko" ? "🤝 44개+ 도시 파트너 교회와 교인 교류·연결 (계속 확장 중)" : "🤝 Member exchange & connection with 44+ partner cities (continuously expanding)",
               ].map((item, i) => (
                 <div key={i} style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, marginBottom: 4 }}>
                   {item}
@@ -7414,14 +7423,6 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                           : `In ${city.nameEn}, use VITA free tax filing (under $67K). A Costco membership ($65/yr) saves $300+/year, and Mint Mobile ($15/mo) keeps phone costs low.`}
               </div>
             </div>
-            {/* 교통 탭(sub 2)에 헤브론 라이드 서비스 카드 */}
-            {sub === 2 && <HebronServiceCard
-              icon="🚗" color="#3B82F6" lang={lang}
-              titleKo="헤브론 라이드 — 교회 검증 한인 드라이버"
-              titleEn="Hebron Ride — Church-Verified Korean Drivers"
-              descKo="공항 픽업부터 일상 이동까지 한국어로. 교회 검증 드라이버 = 가장 안심되는 이동."
-              descEn="Airport pickups to daily rides in Korean. Church-verified drivers — the most trusted rides."
-            />}
           </>
         ) : sub === 3 ? (
           <>
