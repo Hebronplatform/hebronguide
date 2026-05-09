@@ -10564,12 +10564,27 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
               ],
             },
             {
-              emoji: "🍳", label: ko ? "푸드 서비스" : "Food Services", color: "#F59E0B",
+              emoji: "🍽️", label: ko ? "헤브론 케이터링" : "Hebron Catering", color: "#EF4444",
               services: [
+                { icon: "🍽️", name: ko ? "헤브론 케이터링" : "Hebron Catering", price: ko ? "$15-30/인" : "$15-30/person", desc: ko ? "교회행사·돌잔치·생일·기업 행사. 한식·미식·히스패닉 요리 제공" : "Church events, birthdays & corporate. Korean, American & Hispanic menus" },
+                { icon: "🥩", name: ko ? "헤브론 바비큐" : "Hebron BBQ Catering", price: ko ? "$20-40/인" : "$20-40/person", desc: ko ? "야외 바비큐 파티 케이터링. 그릴·숯·도구 일체 지참. 한국식 BBQ 특화" : "Outdoor BBQ party catering. Full grill setup. Korean BBQ specialty" },
+                { icon: "🥗", name: ko ? "헤브론 뷔페" : "Hebron Buffet Setup", price: ko ? "$25-50/인" : "$25-50/person", desc: ko ? "소규모 뷔페 세팅·서빙·정리까지. 20-100인 행사 가능" : "Full buffet setup, serving & cleanup. 20-100 person events" },
+                { icon: "🎂", name: ko ? "헤브론 디저트테이블" : "Hebron Dessert Table", price: ko ? "$150-400/행사" : "$150-400/event", desc: ko ? "웨딩·파티·돌잔치 디저트 테이블 세팅. 한국식 떡·과자 포함 가능" : "Wedding, party & dol dessert table setup. Korean rice cakes & sweets available" },
                 { icon: "🍱", name: ko ? "헤브론 홈쿡" : "Hebron HomeCook", price: ko ? "$50-150/회" : "$50-150/visit", desc: ko ? "가정식 요리사 방문. 한식·미식·히스패닉 요리" : "Personal chef home visits. Korean, American & Hispanic cuisine" },
                 { icon: "🍞", name: ko ? "헤브론 베이킹" : "Hebron BakeShare", price: ko ? "$20-80/주문" : "$20-80/order", desc: ko ? "집에서 만든 빵·케이크·쿠키 주문 제작" : "Homemade bread, cakes & cookies. Custom orders" },
                 { icon: "🥡", name: ko ? "헤브론 밀프렙" : "Hebron MealPrep", price: ko ? "$80-200/주" : "$80-200/week", desc: ko ? "주간 식단 준비 서비스. 한식·다이어트식 맞춤" : "Weekly meal prep service. Korean diet & custom nutrition" },
                 { icon: "🍣", name: ko ? "헤브론 한식박스" : "Hebron KfoodBox", price: ko ? "$30-60/박스" : "$30-60/box", desc: ko ? "한국 가정식 도시락 박스. 미국인·히스패닉 이웃도 주문 가능" : "Korean homestyle lunchbox. Open to American & Hispanic neighbors too" },
+              ],
+            },
+            {
+              emoji: "🌸", label: ko ? "헤브론 꽃꽂이·플로럴" : "Hebron Floral", color: "#A855F7",
+              services: [
+                { icon: "💐", name: ko ? "헤브론 꽃꽂이" : "Hebron Floral Design", price: ko ? "$50-200/작품" : "$50-200/arrangement", desc: ko ? "가정·행사·선물용 꽃꽂이. 한국식·서양식·이케바나 스타일" : "Home, event & gift floral arrangements. Korean, Western & Ikebana styles" },
+                { icon: "👰", name: ko ? "헤브론 웨딩플라워" : "Hebron Wedding Flowers", price: ko ? "$300-1,500/행사" : "$300-1,500/event", desc: ko ? "웨딩 부케·센터피스·아치·테이블 꽃장식. 사전 상담 포함" : "Wedding bouquets, centerpieces, arches & table florals. Consultation included" },
+                { icon: "⛪", name: ko ? "헤브론 교회꽃장식" : "Hebron Church Flowers", price: ko ? "$80-300/주" : "$80-300/week", desc: ko ? "교회 주간 꽃 장식·특별 행사 플로럴 데코. 허브교회 파트너 할인" : "Weekly church flowers & special event floral decor. Hub church partner discount" },
+                { icon: "🎁", name: ko ? "헤브론 꽃다발 배달" : "Hebron Flower Delivery", price: ko ? "$40-120/배달" : "$40-120/delivery", desc: ko ? "당일 꽃다발 제작·배달. 한국어·영어·스페인어 메시지 카드 포함" : "Same-day bouquet arrangement & delivery. Message cards in KO/EN/ES" },
+                { icon: "🌱", name: ko ? "헤브론 화분케어" : "Hebron Plant Care", price: ko ? "$15-30/회" : "$15-30/visit", desc: ko ? "실내 화분 관리·물주기·분갈이. 여행 중 반려식물 케어" : "Indoor plant maintenance, watering & repotting. Plant sitting while traveling" },
+                { icon: "🌿", name: ko ? "헤브론 화환·조화" : "Hebron Wreath & Silk", price: ko ? "$60-200/작품" : "$60-200/piece", desc: ko ? "현관 화환·리스·계절 장식. 조화로 오래 유지. 주문 제작" : "Door wreaths, seasonal décor & silk flower arrangements. Custom orders" },
               ],
             },
             {
