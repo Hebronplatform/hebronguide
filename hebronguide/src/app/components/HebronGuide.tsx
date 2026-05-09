@@ -10321,10 +10321,9 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
   const [sub, setSub] = useState(0);
 
   const ko = lang === "ko";
-  // 네트워크(목사·선교사)는 교회 탭 > 허브교회로 통합 — 여기서는 5개 생활 서비스만
   const tabs = ko
-    ? ["🚗 라이드", "🏠 스테이", "📚 튜터", "🤝 커뮤니티", "💍 매칭"]
-    : ["🚗 Ride", "🏠 Stay", "📚 Tutor", "🤝 Connect", "💍 Match"];
+    ? ["🚗 라이드", "🏠 스테이", "📚 튜터", "🤝 커뮤니티", "💍 매칭", "🛠️ 기그"]
+    : ["🚗 Ride", "🏠 Stay", "📚 Tutor", "🤝 Connect", "💍 Match", "🛠️ Gig"];
   const accent = "#C9A227";
 
   const SERVICES = [
@@ -10528,6 +10527,158 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
             </div>
           </div>
         </a>
+
+        {/* Hebron Gig — 이웃 서비스 마켓플레이스 */}
+        {sub === 5 && (() => {
+          const GIG_CATS = [
+            {
+              emoji: "🏠", label: ko ? "홈 서비스" : "Home Services", color: "#3B82F6",
+              services: [
+                { icon: "🧹", name: ko ? "헤브론 청소" : "Hebron Clean", price: ko ? "$60-150/회" : "$60-150/visit", desc: ko ? "가정·사무실 청소. 한인·미국인·히스패닉 제공자 연결" : "Home & office cleaning. Korean, American & Hispanic providers" },
+                { icon: "🔧", name: ko ? "헤브론 핸디맨" : "Hebron HandyFix", price: ko ? "$40-80/시간" : "$40-80/hr", desc: ko ? "소규모 집수리·설치. 검증된 이웃이 직접 방문" : "Minor repairs & installations by verified neighbors" },
+                { icon: "⚡", name: ko ? "헤브론 전기수리" : "Hebron ElecFix", price: ko ? "$60-120/시간" : "$60-120/hr", desc: ko ? "콘센트·조명·스위치 교체. 면허 소지자 매칭" : "Outlet, lighting & switch replacement. Licensed professionals" },
+                { icon: "🚿", name: ko ? "헤브론 배관수리" : "Hebron PlumbFix", price: ko ? "$60-120/시간" : "$60-120/hr", desc: ko ? "누수·막힘·수도꼭지 교체" : "Leaks, clogs & faucet replacement" },
+                { icon: "🎨", name: ko ? "헤브론 페인팅" : "Hebron PaintCrew", price: ko ? "$200-800/방" : "$200-800/room", desc: ko ? "내부·외부 페인팅. 다국어 팀 가능" : "Interior & exterior painting. Multilingual team available" },
+                { icon: "🌿", name: ko ? "헤브론 잔디조경" : "Hebron YardCrew", price: ko ? "$50-200/회" : "$50-200/visit", desc: ko ? "잔디깎기·조경·낙엽청소" : "Lawn mowing, landscaping & leaf cleanup" },
+                { icon: "📦", name: ko ? "헤브론 이사도우미" : "Hebron MoveHelp", price: ko ? "$25-40/시간/인" : "$25-40/hr/person", desc: ko ? "짐 나르기·가구 조립. 시간제 일당 도우미" : "Moving assistance & furniture assembly. Hourly day labor" },
+                { icon: "❄️", name: ko ? "헤브론 눈치우기" : "Hebron SnowClear", price: ko ? "$40-120/회" : "$40-120/visit", desc: ko ? "진입로·보도·주차장 제설 서비스" : "Driveway, sidewalk & parking lot snow removal" },
+                { icon: "🏡", name: ko ? "헤브론 정리정돈" : "Hebron StorageHelp", price: ko ? "$30-60/시간" : "$30-60/hr", desc: ko ? "집 정리·수납 최적화. 단기 이민자 짐정리 도움" : "Home organization & storage optimization" },
+              ],
+            },
+            {
+              emoji: "👶", label: ko ? "케어 서비스" : "Care Services", color: "#EC4899",
+              services: [
+                { icon: "👶", name: ko ? "헤브론 베이비시팅" : "Hebron BabyCare", price: ko ? "$18-25/시간" : "$18-25/hr", desc: ko ? "검증된 이웃이 아이를 돌봅니다. 한·영·스 가능" : "Verified neighbors care for your children. KO/EN/ES" },
+                { icon: "🐕", name: ko ? "헤브론 강아지 보기" : "Hebron PetSit", price: ko ? "$20-40/일" : "$20-40/day", desc: ko ? "반려동물 위탁·방문 돌봄. 강아지·고양이" : "Pet boarding & drop-in visits. Dogs & cats" },
+                { icon: "🦮", name: ko ? "헤브론 강아지 산책" : "Hebron DogWalk", price: ko ? "$15-25/회 (30분)" : "$15-25/visit (30min)", desc: ko ? "동네 이웃이 매일 산책 서비스. 앱 GPS 추적" : "Neighborhood dog walking with GPS tracking" },
+                { icon: "👴", name: ko ? "헤브론 노인돌봄" : "Hebron ElderCare", price: ko ? "$20-30/시간" : "$20-30/hr", desc: ko ? "병원 동행·말벗·생활 도움. 한국어 가능 케어기버" : "Hospital visits, companionship & daily assistance. Korean-speaking caregivers" },
+              ],
+            },
+            {
+              emoji: "💻", label: ko ? "테크 서비스" : "Tech Services", color: "#8B5CF6",
+              services: [
+                { icon: "💻", name: ko ? "헤브론 컴퓨터수리" : "Hebron TechFix", price: ko ? "$60-120/시간" : "$60-120/hr", desc: ko ? "PC·맥·노트북 수리·바이러스 제거·속도개선" : "PC/Mac repair, virus removal & performance optimization" },
+                { icon: "📱", name: ko ? "헤브론 폰수리" : "Hebron PhoneFix", price: ko ? "$40-80/건" : "$40-80/job", desc: ko ? "아이폰·안드로이드 액정·배터리 교체" : "iPhone & Android screen/battery replacement" },
+                { icon: "🌐", name: ko ? "헤브론 웹사이트" : "Hebron WebBuild", price: ko ? "$200-800/프로젝트" : "$200-800/project", desc: ko ? "소규모 식당·가게 웹사이트 제작. 3개 언어 대응" : "Small business website creation in 3 languages" },
+                { icon: "🏠", name: ko ? "헤브론 스마트홈" : "Hebron SmartHome", price: ko ? "$50-150/시간" : "$50-150/hr", desc: ko ? "스마트 조명·보안카메라·AI 스피커 설치" : "Smart lights, security cameras & AI speaker setup" },
+              ],
+            },
+            {
+              emoji: "🍳", label: ko ? "푸드 서비스" : "Food Services", color: "#F59E0B",
+              services: [
+                { icon: "🍱", name: ko ? "헤브론 홈쿡" : "Hebron HomeCook", price: ko ? "$50-150/회" : "$50-150/visit", desc: ko ? "가정식 요리사 방문. 한식·미식·히스패닉 요리" : "Personal chef home visits. Korean, American & Hispanic cuisine" },
+                { icon: "🍞", name: ko ? "헤브론 베이킹" : "Hebron BakeShare", price: ko ? "$20-80/주문" : "$20-80/order", desc: ko ? "집에서 만든 빵·케이크·쿠키 주문 제작" : "Homemade bread, cakes & cookies. Custom orders" },
+                { icon: "🥡", name: ko ? "헤브론 밀프렙" : "Hebron MealPrep", price: ko ? "$80-200/주" : "$80-200/week", desc: ko ? "주간 식단 준비 서비스. 한식·다이어트식 맞춤" : "Weekly meal prep service. Korean diet & custom nutrition" },
+                { icon: "🍣", name: ko ? "헤브론 한식박스" : "Hebron KfoodBox", price: ko ? "$30-60/박스" : "$30-60/box", desc: ko ? "한국 가정식 도시락 박스. 미국인·히스패닉 이웃도 주문 가능" : "Korean homestyle lunchbox. Open to American & Hispanic neighbors too" },
+              ],
+            },
+            {
+              emoji: "📚", label: ko ? "교육 서비스" : "Education Services", color: "#10B981",
+              services: [
+                { icon: "📐", name: ko ? "헤브론 학과튜터" : "Hebron TutorAce", price: ko ? "$30-60/시간" : "$30-60/hr", desc: ko ? "수학·과학·영어·SAT·AP 한인 검증 튜터" : "Math, science, English, SAT & AP verified tutors" },
+                { icon: "🎵", name: ko ? "헤브론 음악레슨" : "Hebron MusicLearn", price: ko ? "$30-60/시간" : "$30-60/hr", desc: ko ? "피아노·기타·바이올린·성악 1:1 레슨" : "Piano, guitar, violin & voice 1-on-1 lessons" },
+                { icon: "🗣️", name: ko ? "헤브론 언어코칭" : "Hebron LangBridge", price: ko ? "$25-50/시간" : "$25-50/hr", desc: ko ? "영어·한국어·스페인어 회화 코칭. 이민자 특화" : "English, Korean & Spanish conversation coaching. Immigrant-focused" },
+                { icon: "🚗", name: ko ? "헤브론 운전코치" : "Hebron DriveCoach", price: ko ? "$30-50/시간" : "$30-50/hr", desc: ko ? "운전면허 취득 전 연습. 한국어·스페인어 코치 가능" : "Pre-license driving practice. Korean/Spanish coaches available" },
+              ],
+            },
+            {
+              emoji: "💈", label: ko ? "뷰티·웰니스" : "Beauty & Wellness", color: "#F472B6",
+              services: [
+                { icon: "💇", name: ko ? "헤브론 방문헤어" : "Hebron HairHome", price: ko ? "$40-100/회" : "$40-100/visit", desc: ko ? "방문 헤어컷·염색·파마. 한인 미용사 자격 보유" : "Mobile haircut, color & perm. Korean licensed stylists" },
+                { icon: "💅", name: ko ? "헤브론 네일" : "Hebron NailPro", price: ko ? "$30-70/회" : "$30-70/visit", desc: ko ? "방문 네일아트·젤·아크릴" : "Mobile nail art, gel & acrylic" },
+                { icon: "💪", name: ko ? "헤브론 개인PT" : "Hebron FitCoach", price: ko ? "$40-80/시간" : "$40-80/hr", desc: ko ? "방문 개인 트레이닝. 한인·히스패닉 트레이너" : "Mobile personal training. Korean & Hispanic trainers" },
+              ],
+            },
+            {
+              emoji: "🔧", label: ko ? "전문 서비스" : "Professional Services", color: "#6B7280",
+              services: [
+                { icon: "💬", name: ko ? "헤브론 상담" : "Hebron CounselCare", price: ko ? "$60-120/시간" : "$60-120/hr", desc: ko ? "이민 생활 스트레스·가족 상담. 한국어 상담사" : "Immigration stress & family counseling. Korean-speaking counselors" },
+                { icon: "📊", name: ko ? "헤브론 세금도움" : "Hebron TaxHelp", price: ko ? "$80-200/건" : "$80-200/filing", desc: ko ? "개인·소규모 사업 세금 신고 도움. 한인 CPA 연결" : "Personal & small business tax filing. Korean CPA connection" },
+                { icon: "🌐", name: ko ? "헤브론 번역통역" : "Hebron TranslateNow", price: ko ? "$30-60/시간" : "$30-60/hr", desc: ko ? "한↔영↔스 번역·통역. 병원·법원·행정 동행 가능" : "KO↔EN↔ES translation. Hospital, court & government accompaniment" },
+                { icon: "📸", name: ko ? "헤브론 사진촬영" : "Hebron PhotoShoot", price: ko ? "$100-300/시간" : "$100-300/hr", desc: ko ? "가족사진·이력서 증명사진·소셜미디어 콘텐츠" : "Family photos, headshots & social media content" },
+                { icon: "🏃", name: ko ? "헤브론 심부름" : "Hebron ErrandRun", price: ko ? "$20-40/시간" : "$20-40/hr", desc: ko ? "마트 쇼핑·약국·우체국·병원 대행. 다국어 가능" : "Grocery, pharmacy, post office & clinic errands. Multilingual" },
+              ],
+            },
+          ];
+
+          return (
+            <div style={{ paddingBottom: 16 }}>
+              {/* Hebron Gig 헤더 */}
+              <div style={{ background: "linear-gradient(135deg, rgba(251,146,60,0.15), rgba(139,92,246,0.1))", border: "1px solid rgba(251,146,60,0.3)", borderRadius: 20, padding: "18px 18px", marginBottom: 14 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 18, color: "#ECFDF5", marginBottom: 4 }}>
+                  🛠️ {ko ? "헤브론 기그 (Hebron Gig)" : "Hebron Gig — Neighbor Marketplace"}
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(251,146,60,0.9)", fontWeight: 700, marginBottom: 8 }}>
+                  {ko ? "이웃이 이웃을 섬긴다 — 한인·미국인·히스패닉" : "Neighbors serving neighbors — Korean · American · Hispanic"}
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.65)", lineHeight: 1.6, marginBottom: 10 }}>
+                  {ko
+                    ? "재능과 기술로 돈 버세요. 청소·수리·요리·돌봄·튜터... 집에서 할 수 있는 모든 것. HebronGuide가 연결하고, 수익의 85%는 당신 것입니다."
+                    : "Earn money with your skills. Cleaning, repairs, cooking, care, tutoring... anything you can do from home. HebronGuide connects — you keep 85%."}
+                </div>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  {[
+                    { icon: "🌍", label: ko ? "3개 언어 자동통역" : "3-Language Auto Translation" },
+                    { icon: "💰", label: ko ? "수익의 85% 본인 몫" : "85% Revenue to Provider" },
+                    { icon: "🤝", label: ko ? "이웃 신뢰 기반" : "Community Trust-Based" },
+                  ].map((b, i) => (
+                    <span key={i} style={{ background: "rgba(251,146,60,0.12)", border: "1px solid rgba(251,146,60,0.3)", borderRadius: 20, padding: "4px 10px", fontFamily: "Manrope,sans-serif", fontSize: 10, fontWeight: 700, color: "#FB923C" }}>
+                      {b.icon} {b.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* 서비스 카테고리별 목록 */}
+              {GIG_CATS.map((cat, ci) => (
+                <div key={ci} style={{ marginBottom: 14 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
+                    <span style={{ fontSize: 14 }}>{cat.emoji}</span>
+                    <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: cat.color }}>{cat.label}</span>
+                    <div style={{ flex: 1, height: 1, background: `${cat.color}30` }} />
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+                    {cat.services.map((svc, si) => (
+                      <a key={si}
+                        href={`mailto:gmc.hc300@gmail.com?subject=Hebron Gig 제공자 등록 — ${svc.name}`}
+                        style={{ textDecoration: "none" }}>
+                        <div style={{ background: "rgba(255,255,255,0.04)", border: `1px solid ${cat.color}25`, borderRadius: 12, padding: "10px 11px", cursor: "pointer", transition: "all 0.15s" }}
+                          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = `${cat.color}15`; }}
+                          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)"; }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 4 }}>
+                            <span style={{ fontSize: 14 }}>{svc.icon}</span>
+                            <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 10, color: "#ECFDF5", lineHeight: 1.2 }}>{svc.name}</span>
+                          </div>
+                          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: cat.color, marginBottom: 3 }}>{svc.price}</div>
+                          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.5)", lineHeight: 1.4 }}>{svc.desc}</div>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))}
+
+              {/* 등록 CTA */}
+              <div style={{ background: "linear-gradient(135deg, rgba(251,146,60,0.2), rgba(139,92,246,0.15))", border: "1px solid rgba(251,146,60,0.4)", borderRadius: 16, padding: "16px 18px", marginTop: 4 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#ECFDF5", marginBottom: 6 }}>
+                  {ko ? "🚀 제공자·클라이언트 모두 환영합니다" : "🚀 Providers & Clients Both Welcome"}
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.7)", lineHeight: 1.6, marginBottom: 10 }}>
+                  {ko
+                    ? "한국어·영어·스페인어 모두 가능합니다. 어떤 서비스든 관심 있으시면 이메일로 문의해 주세요."
+                    : "Korean, English & Spanish all supported. Interested in any service? Contact us by email."}
+                </div>
+                <a href="mailto:gmc.hc300@gmail.com?subject=Hebron Gig 관심 등록"
+                  style={{ display: "block", textDecoration: "none", background: "linear-gradient(135deg, #FB923C, #8B5CF6)", borderRadius: 12, padding: "12px 20px", textAlign: "center" }}>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff" }}>
+                    {ko ? "📩 Hebron Gig 등록하기" : "📩 Register for Hebron Gig"}
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.8)", marginTop: 2 }}>gmc.hc300@gmail.com</div>
+                </a>
+              </div>
+            </div>
+          );
+        })()}
 
         {/* 전체 서비스 통합 수익 미리보기 */}
         {sub === 0 && (
