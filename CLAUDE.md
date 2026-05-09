@@ -280,31 +280,38 @@ hebronguide.com 도메인 1번 등록 완료
 
 ## 📰 도시별 한인 미디어 참조 소스
 
-> **정본**: [`docs/EVENT_PLAYBOOK.md`](docs/EVENT_PLAYBOOK.md) — "도시별 한인 미디어 참조 소스 & 취재 원칙" 섹션
+> **정본(전체 목록)**: [`docs/EVENT_PLAYBOOK.md`](docs/EVENT_PLAYBOOK.md) — "도시별 한인 미디어 참조 소스" 섹션  
+> 🔍 웹 검색 에이전트로 실제 확인된 매체만 등재 (2026-05-08 기준)
 
-### 공식 참조 매체 (도시별)
+### 주요 참조 매체 요약 (도시별)
 
-**🏙️ 시애틀**
-
-| 매체 | URL | 주요 활용 |
+| 도시 | 1순위 매체 | URL |
 |---|---|---|
-| 시애틀 한국일보 | seattlekdaily.com | 공식 한인 사회·교민 행사 |
-| 시애틀 N | seattlen.com | 업소·이민·생활 정보 |
-| WOW Seattle | wowseattle.com | 이벤트·맛집·공지 |
-| kSeattle | kseattle.com | 월드컵·지역 이벤트 |
-
-**🗽 뉴욕 / 뉴저지**
-
-| 매체 | URL | 주요 활용 |
-|---|---|---|
-| byeon.com | byeon.com | NJ·NY 한인 사회·교민 생활·지역 정보 |
-
-**🌏 전국 & 한국**
-
-| 매체 | URL | 주요 활용 |
-|---|---|---|
-| 데일리 인사이트 | dailyinsight.co.kr | 이민 정책·미국 사회 시사 |
-| BIGKinds | bigkinds.or.kr | 한국발 각 도시 관련 기사 검색 |
+| 시애틀 | 시애틀 한국일보 | seattlekdaily.com |
+| 시애틀 | WOW Seattle | wowseattle.com |
+| 달라스 | News Korea Texas | newskoreatexas.com |
+| 달라스 | DK NET 라디오 | dalkora.com |
+| SF 베이 | 미주중앙일보 SF | sf.koreadaily.com |
+| SF 베이 | SFKorean.com | sfkorean.com |
+| 뉴욕/NJ | **byeon.com** ⭐ | byeon.com |
+| 뉴욕/NJ | 미주중앙일보 NY | ny.koreadaily.com |
+| 내쉬빌 | 테네시 한인 네트워크 | tnkn.fun |
+| 보스턴 | 보스톤코리아 | bostonkorea.com |
+| LA | 미주중앙일보 | koreadaily.com |
+| LA | Radio Korea | radiokorea.com |
+| 토론토 | 캐나다 한국일보 | koreatimes.net |
+| 토론토 | 교차로 (KCR News) | kcrnews.com |
+| 밴쿠버 | 밴조선 | vanchosun.com |
+| 휴스턴 | KOAM Journal | koamjournal.com |
+| 애틀랜타 | 미주중앙일보 ATL | atlanta.koreadaily.com |
+| 애틀랜타 | K News Atlanta | knewsatlanta.com |
+| 캔자스시티 | KC Korean Journal | kckoreanjournal.com |
+| 필라델피아 | 주간필라 | koreanphila.com |
+| 마이애미 | 한인회 경로 | floridakorean.org |
+| 멕시코 전역 | Hanin Sinmun | (URL 미확인, 총영사관 경로) |
+| **전국** | 미주중앙일보 | koreadaily.com |
+| **전국** | Radio Korea | radiokorea.com |
+| **전국** | BIGKinds | bigkinds.or.kr |
 
 ### 취재·인용 3원칙 (Claude Code 자동 준수)
 

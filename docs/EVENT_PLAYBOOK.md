@@ -341,37 +341,183 @@ HebronGuide는 이를 적극 활용해 사용자에게 환대 정보 제공.
 
 ## 📰 도시별 한인 미디어 참조 소스 & 취재 원칙
 
-> 📌 **퍼플렉시티 AI 활용**: 아래 매체들을 검색 소스로 설정 → 여러 기사 취합·요약 → HebronGuide 표현으로 응용 후 반영
+> 📌 **퍼플렉시티 AI 활용**: 아래 매체들을 검색 소스로 설정 → 여러 기사 취합·요약 → HebronGuide 표현으로 응용 후 반영  
+> 🔍 **조사 방법**: 웹 검색 에이전트로 실제 확인된 매체만 등재 (2026-05-08 기준). 폐간·폐쇄 제외.
 
 ---
 
-### 🏙️ 시애틀 (Seattle)
+### 🏙️ 시애틀 (Seattle, WA)
 
-| 매체 | URL | 특징 | 주요 활용 |
-|---|---|---|---|
-| **시애틀 한국일보** | seattlekdaily.com | 시애틀 최대 일간지. 공식 한인 사회 소식 | 정착·교민 행사·한인 단체 |
-| **시애틀 N** | seattlen.com | 시애틀 지역 뉴스·광고·커뮤니티 | 업소·이민·생활 정보 |
-| **WOW Seattle** | wowseattle.com | 시애틀 교민 종합 정보 포털 | 이벤트·맛집·공지 |
-| **kSeattle** | kseattle.com | 시애틀 한인 커뮤니티 뉴스 | 월드컵·지역 행사 (기존 출처) |
+| 매체 | URL | 특징 |
+|---|---|---|
+| 시애틀 한국일보 | seattlekdaily.com | 시애틀 최대 일간지. 공식 한인 사회 소식 |
+| 시애틀 N | seattlen.com | 지역 뉴스·광고·커뮤니티 |
+| WOW Seattle | wowseattle.com | 교민 종합 정보 포털 |
+| kSeattle | kseattle.com | 한인 커뮤니티 뉴스·이벤트 |
+
+---
+
+### 🤠 달라스 (Dallas, TX)
+
+| 매체 | URL | 특징 |
+|---|---|---|
+| News Korea Texas | newskoreatexas.com | 인터넷 TV(NewkoLive) 겸영 |
+| Korea Times Texas | koreatimestx.com | 포트워스·달라스 기반 |
+| 주간포커스 텍사스 | issuu.com/weeklyfocus | 앱 있음 |
+| DK NET 달라스 코리안 라디오 | dalkora.com | KKDA AM 730, 한국어 24시간 방송 |
+
+---
+
+### 💻 SF 베이에어리어 (San Francisco Bay Area, CA)
+
+| 매체 | URL | 특징 |
+|---|---|---|
+| 미주중앙일보 SF | sf.koreadaily.com | 미주중앙일보 SF 지국 |
+| SF Korea Daily | sfkoreadaily.com | 독립 전자신문 |
+| 한미 라디오 AM 1120 | hanmiradio.com | 북가주 한인 라디오 |
+| SFKorean.com | sfkorean.com | 구인/구직·생활정보 포털 |
+| Korea Portal SF | sf.koreaportal.com | 한인 커뮤니티 포털 |
 
 ---
 
 ### 🗽 뉴욕 / 뉴저지 (New York / New Jersey)
 
-| 매체 | URL | 특징 | 주요 활용 |
-|---|---|---|---|
-| **byeon.com** | byeon.com | 뉴저지 기반 한인 커뮤니티 미디어 | NJ·NY 한인 사회·교민 생활·지역 정보 |
+| 매체 | URL | 특징 |
+|---|---|---|
+| byeon.com ⭐ | byeon.com | **NJ 기반** 한인 커뮤니티 미디어 (1차 참조) |
+| 미주중앙일보 NY | ny.koreadaily.com | 전국 최대 한인지 NY판 |
+| 미주한국일보 | koreatimes.com | 1969년 창간, 미주 대표 일간지 |
+| Radio Korea NY | nyradiokorea.com | WNYZ-LD 87.7 FM |
+| AM 1660 K-Radio | am1660.com | NY·NJ·CT 커버 |
 
-> ℹ️ MetLife Stadium(월드컵 결승전 7/19)이 뉴저지 소재 → byeon.com이 NJ 한인 교통·이벤트 정보 1차 참조 소스
+> ℹ️ MetLife Stadium(월드컵 결승전 7/19)이 뉴저지 소재 → byeon.com이 NJ 한인 교통·이벤트 정보 1차 참조
 
 ---
 
-### 🌏 전국 & 한국 (National & Korea)
+### 🎵 내쉬빌 (Nashville, TN)
 
-| 매체 | URL | 특징 | 주요 활용 |
-|---|---|---|---|
-| **데일리 인사이트** | dailyinsight.co.kr | 재미 한인 시각 시사 분석 | 이민 정책·미국 사회 이슈 |
-| **BIGKinds** | bigkinds.or.kr | 한국 주요 언론 통합 검색 엔진 | 한국발 각 도시 관련 기사 |
+| 매체 | URL | 특징 |
+|---|---|---|
+| 테네시 한인 네트워크 (TNKN) | tnkn.fun | 내쉬빌·멤피스·녹스빌 등 TN 전역 커버 |
+| 내쉬빌 한인회 | korean.net/~nashvillekorean | 공식 한인회 |
+
+> ℹ️ 내쉬빌 전용 한인 신문·방송 없음. TNKN이 테네시 전체 커버하는 유일 온라인 커뮤니티.
+
+---
+
+### 🦞 보스턴 (Boston, MA)
+
+| 매체 | URL | 특징 |
+|---|---|---|
+| 보스톤코리아 | bostonkorea.com | 2005년 창간. 뉴잉글랜드 최대·유일 한인지 |
+
+---
+
+### 🌴 LA (Los Angeles, CA)
+
+| 매체 | URL | 특징 |
+|---|---|---|
+| 미주중앙일보 | koreadaily.com | **미주 최대 한인 일간지 본사** (LA) |
+| 미주한국일보 | koreatimes.com | LA 본사. 1969년 창간 |
+| 코리아타운데일리 | koreatowndaily.com | Sports Seoul USA 발행 |
+| Radio Korea (라디오코리아) | radiokorea.com | KMPC AM 1540, 1989년~. 유튜브 라이브 |
+
+---
+
+### 🍁 토론토 (Toronto, ON — Canada)
+
+| 매체 | URL | 특징 |
+|---|---|---|
+| 캐나다 한국일보 | koreatimes.net | 캐나다 최대 한인 일간지 |
+| 토론토 중앙일보 | cktimes.net | 온타리오·GTA 커버 |
+| Global Korean Post | globalkorean.ca | 연방·주정부 뉴스 직접 보도 |
+| 토론토 교차로 (KCR News) | kcrnews.com | 1997년~. 생활정보 포털 |
+| 캐나다코리안뉴스 | cknnews.net | 온라인 뉴스 |
+
+---
+
+### 🌲 밴쿠버 (Vancouver, BC — Canada)
+
+| 매체 | URL | 특징 |
+|---|---|---|
+| 밴쿠버 조선일보 (밴조선) | vanchosun.com | 캐나다 최대 한인 신문 |
+| 밴쿠버 중앙일보 | joinsmediacanada.com | 조인스미디어 캐나다 |
+| Canada Express | canadaexpress.com | 밴쿠버 한인 대표 신문 |
+| CHMB AM 1320 | am1320.com | 다국어 방송 (한국어 시간대 포함) |
+
+---
+
+### 🛢️ 휴스턴 (Houston, TX)
+
+| 매체 | URL | 특징 |
+|---|---|---|
+| Korean Journal Houston | kjhou.com | 주간지 (2024년까지 발행 확인) |
+| KOAM Journal | koamjournal.com | 휴스턴 한인 커뮤니티 저널 |
+| 교차로 휴스턴 | kyocharohouston.com | 생활정보·업소록 포털 |
+
+---
+
+### 🍑 애틀랜타 (Atlanta, GA)
+
+| 매체 | URL | 특징 |
+|---|---|---|
+| 미주중앙일보 애틀랜타 | atlanta.koreadaily.com | 미주중앙일보 애틀랜타 지국 (Duluth) |
+| 애틀랜타 중앙일보 | atlantajoongang.com | 독립 지역 신문 |
+| K News Atlanta | knewsatlanta.com | 동남부 6개 주 커버 |
+| Atlanta Chosun Today | atlantachosuntoday.com | 온라인 |
+
+---
+
+### 🏈 캔자스시티 (Kansas City, MO)
+
+| 매체 | URL | 특징 |
+|---|---|---|
+| Kansas City Korean Journal | kckoreanjournal.com | 2010년~. 월간. 14개+ 현지 업소 배포 |
+| 캔자스시티 한인회 | kckorean.org | 공식 한인회 |
+
+---
+
+### 🔔 필라델피아 (Philadelphia, PA)
+
+| 매체 | URL | 특징 |
+|---|---|---|
+| 주간필라 (Korean Phila Times) | koreanphila.com | 1999년 창간. 25년+. 2만 부 배포 |
+| 한국일보 필라델피아 | koreatimesphila.com | 한국일보 필라델피아판 |
+| 필라인 (Philain) | philain.com | PA·NJ·DE 한인 생활정보 포털 |
+
+---
+
+### 🌊 마이애미 (Miami, FL)
+
+| 매체 | URL | 특징 |
+|---|---|---|
+| 플로리다 한인회 | floridakorean.org | Korean Assoc. of West Florida |
+
+> ℹ️ 마이애미 한인 커뮤니티 소규모. 전용 활성 신문·방송 미확인. 한인회 경로가 더 실용적.
+
+---
+
+### 🌮 멕시코시티·과달라하라·몬테레이 (Mexico)
+
+| 도시 | 매체 | 특징 |
+|---|---|---|
+| 멕시코시티 | Hanin Sinmun (한인신문) | 멕시코 유일 한인 신문 (1990년대~). URL 미확인 |
+| 과달라하라 | 확인된 한인 미디어 없음 | 한인회 통해 취재 경로 확보 권장 |
+| 몬테레이 | 확인된 한인 미디어 없음 | 현대·기아·POSCO 주재원 커뮤니티 비공개 운영 |
+
+> ℹ️ 멕시코 한인 약 12,000명 추산. 주재 한국 총영사관 (멕시코시티) 취재 경로 권장.
+
+---
+
+### 🌏 전국 플랫폼 & 한국 (National & Korea)
+
+| 매체 | URL | 특징 |
+|---|---|---|
+| **미주중앙일보** | koreadaily.com | LA 본사. NY·SF·Atlanta·DC 지국 (`도시.koreadaily.com`) |
+| **미주한국일보** | koreatimes.com | LA 본사. 미주 전역 배포 |
+| **Radio Korea** | radiokorea.com | LA AM 1540. 앱·유튜브 라이브 → 전국 청취 |
+| **데일리 인사이트** | dailyinsight.co.kr | 재미 한인 시각 시사 분석 |
+| **BIGKinds** | bigkinds.or.kr | 한국 주요 언론 통합 검색 엔진 |
 
 ---
 
@@ -440,7 +586,9 @@ HebronGuide 표현으로 완전히 재작성
 | 2026-05-08 (v2) | 시애틀 무료 워터프론트 셔틀 적용 (kSeattle.com 출처) + 한인 미디어 활용 원칙 추가 |
 | 2026-05-08 (v3) | 15개 월드컵 호스트 도시 경기장 교통 시스템 전면 적용 — WC_TRANSIT 자동 삽입 (6/1~7/26 한정) |
 | 2026-05-08 (v4) | 한인 미디어 참조 소스 6개 공식 등록 + 취재·인용 3원칙 정립 |
-| **2026-05-08 (v5)** | **byeon.com (NJ) 추가 — 도시별 미디어 구조로 재편 (시애틀·뉴욕NJ·전국)** |
+| 2026-05-08 (v5) | byeon.com (NJ) 추가 — 도시별 미디어 구조로 재편 |
+| **2026-05-08 (v6)** | **17개 도시 전체 한인 미디어 전수 조사 완료 — 웹 검색 에이전트 활용** |
+| | 달라스·SF·NY·보스턴·LA·토론토·밴쿠버·휴스턴·애틀랜타·KC·필라·마이애미·멕시코 |
 | | LA→Metro C Line, NY→NJ Transit, Dallas→TRE, SF→Caltrain, Boston→MBTA, |
 | | Houston→METRORail, Atlanta→MARTA, KC→셔틀, Philly→SEPTA, Miami→Brightline, |
 | | Mexico City→Metro+Tren Ligero, Guadalajara→경전철, Monterrey→Metro, |
