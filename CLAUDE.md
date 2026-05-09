@@ -364,6 +364,32 @@ HebronGuide는 정치적 좌파도 우파도 아니다.
 
 > 📖 **상세 평가 근거 & 전체 목록**: [`docs/EVENT_PLAYBOOK.md`](docs/EVENT_PLAYBOOK.md)
 
+### 🇺🇸 영문 로컬 미디어 — 도시별 1순위 (무료·공영 우선)
+
+| 도시 | 1순위 (무료·공영) | 보완 (유료·일간지) |
+|---|---|---|
+| 시애틀 | KUOW kuow.org ✅ | Seattle Times seattletimes.com ✅ |
+| 달라스 | KERA keranews.org ✅ | Dallas Morning News dallasnews.com ✅ |
+| SF 베이 | KQED kqed.org ✅ | SF Chronicle sfchronicle.com ✅ |
+| 뉴욕/NJ | WNYC wnyc.org ✅ | NJ.com nj.com ✅ |
+| 내쉬빌 | WPLN wpln.org ✅ | The Tennessean tennessean.com ✅ |
+| 보스턴 | WBUR wbur.org ✅ | Boston.com boston.com ✅ |
+| LA | LAist laist.com ✅ | LA Times latimes.com ✅ |
+| 토론토 | CBC cbc.ca/toronto ✅ | Globe and Mail theglobeandmail.com ✅ |
+| 밴쿠버 | CBC cbc.ca/bc ✅ | The Tyee thetyee.ca ✅ |
+| 휴스턴 | Houston Public Media houstonpublicmedia.org ✅ | Houston Chronicle houstonchronicle.com ✅ |
+| 애틀랜타 | WABE wabe.org ✅ | AJC ajc.com ✅ |
+| 캔자스시티 | KCUR kcur.org ✅ | KC Star kansascity.com ✅ |
+| 필라델피아 | WHYY whyy.org ✅ | Philadelphia Inquirer inquirer.com ✅ |
+| 마이애미 | WLRN wlrn.org ✅ | Miami Herald miamiherald.com ✅ |
+| 멕시코 3개 도시 | Mexico News Daily mexiconewsdaily.com ✅ | — |
+
+> **NPR/PBS 공영 계열 우선** — 비당파·무료·공익 취재 원칙  
+> **진보 성향 일간지** (NYT·Globe·LA Times 등) → 사설·칼럼 제외, **사실 정보만 추출**  
+> 📖 상세: [`docs/EVENT_PLAYBOOK.md`](docs/EVENT_PLAYBOOK.md)
+
+---
+
 ### 취재·인용 3원칙 (Claude Code 자동 준수)
 
 ```

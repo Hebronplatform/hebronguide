@@ -522,6 +522,209 @@ HebronGuide는 이를 적극 활용해 사용자에게 환대 정보 제공.
 
 ---
 
+### 🇺🇸 도시별 영문 로컬 미디어 — 품질 평가 완료 (2026-05-08)
+
+> 🔍 조사: AllSides · Ad Fontes Media · Pulitzer.org · Wikipedia 교차 확인  
+> **전제**: 모든 영문 미디어도 아래 "성경적 세계관 분별 원칙" 필터를 먼저 통과한 후 사용
+
+---
+
+#### 품질 기준 (한인 미디어와 동일)
+
+```
+✅ 정론지급: 자체 취재 기자단 + 10년+ + 퓰리처 또는 공신력 있는 수상
+            공영 NPR/PBS 계열 포함 (비당파·공익 취재 원칙)
+⚠️ 지역 신뢰: 원본 취재 + 5년+ + 소규모 독립/비영리 언론
+❌ 제외:     와이어 서비스 집합 | 클릭베이트 | 극단 편향 | 운영 불명확
+```
+
+---
+
+#### 🏙️ 시애틀 (Seattle, WA)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| The Seattle Times | seattletimes.com | ✅ | 중도 | 1891년·퓰리처 10회·시애틀 정통 일간지 |
+| KUOW 94.9 FM | kuow.org | ✅ | 좌중도 | 1952년·NPR 계열·무료·SPJ 수상 20회+ |
+| Cascade PBS / Crosscut | crosscut.com | ✅ | 중도진보 | 2007년·비영리·무료·심층 지역 보도 |
+| The Stranger | thestranger.com | ⚠️ | 진보 | 1991년·대안 주간지·무료·문화·정치 |
+
+---
+
+#### 🤠 달라스 (Dallas, TX)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| The Dallas Morning News | dallasnews.com | ✅ | 중도 | 1885년·퓰리처 10회·**2026년 수상** |
+| Fort Worth Star-Telegram | star-telegram.com | ✅ | 중도보수 | 1906년·퓰리처 이력·DFW 서부 커버 |
+| KERA 90.1 FM | keranews.org | ✅ | 중도 | 1949년·NPR 계열·무료·텍사스 이민 보도 |
+| Fort Worth Report | fortworthreport.org | ⚠️ | 비당파 | 2021년·무료·독립 비영리 |
+
+---
+
+#### 💻 SF 베이에어리어 (San Francisco Bay Area, CA)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| San Francisco Chronicle | sfchronicle.com | ✅ | 진보 | 1865년·퓰리처 다수·**2026년 수상** |
+| KQED 88.5 FM | kqed.org | ✅ | 중도진보 | 1954년·NPR/PBS·무료 |
+| SF Standard | sfstandard.com | ⚠️ | 중도 | 2022년·신생 독립·무료 |
+
+> ⚠️ SF Chronicle 정치 성향 진보 강함 → **사실 정보만 추출, 사설·칼럼 주의**
+
+---
+
+#### 🗽 뉴욕 / 뉴저지 (New York / New Jersey)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| WNYC 93.9 FM | wnyc.org | ✅ | 중도진보 | 1924년·NPR·무료·피바디 수상·NY/NJ 커버 |
+| NJ.com / The Star-Ledger | nj.com | ✅ | 중도진보 | 1832년·퓰리처 이력·NJ 한인 밀집 지역 커버 |
+| New York Times | nytimes.com | ✅ | 중도진보 | 1851년·퓰리처 135회+ *(유료·성향 주의)* |
+| New Jersey Monitor | newjerseymonitor.com | ⚠️ | 비당파 | 2021년·무료·독립 비영리 |
+| Gothamist | gothamist.com | ⚠️ | 진보 | 2003년·무료·WNYC 계열·뉴욕 생활 |
+
+> ℹ️ NJ.com은 팰리세이즈파크 등 NJ 한인 밀집 지역 커버. MetLife Stadium(결승전) 정보 1차 참조
+
+---
+
+#### 🎵 내쉬빌 (Nashville, TN)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| The Tennessean | tennessean.com | ✅ | 중도 | 1907년·퓰리처 이력·TN 주 대표 |
+| WPLN 90.3 FM | wpln.org | ✅ | 중도 | NPR 계열·무료·TN 이민 이슈 강점 |
+| Nashville Banner | nashvillebanner.com | ⚠️ | 비당파 | 2024년 재창간·무료·Tennessee 4th Estate Award |
+
+---
+
+#### 🦞 보스턴 (Boston, MA)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| WBUR 90.9 FM | wbur.org | ✅ | 중도진보 | 1950년·NPR·무료·피바디 수상 |
+| The Boston Globe | bostonglobe.com | ✅ | 진보 | 1872년·퓰리처 25회+ *(유료·성향 주의)* |
+| Boston.com | boston.com | ✅ | 중도진보 | Globe 계열·무료 기사 다수 |
+
+> ⚠️ Boston Globe 진보 성향 강함 → **교통·생활·행사 정보 위주 활용, 사설 제외**
+
+---
+
+#### 🌴 LA (Los Angeles, CA)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| LAist / KPCC 89.3 FM | laist.com | ✅ | 중도 | 1925년·NPR/공영·무료·이민 정책 강점 |
+| KCRW 89.9 FM | kcrw.com | ✅ | 중도진보 | 1945년·NPR·무료 |
+| Los Angeles Times | latimes.com | ✅ | 중도진보 | 1881년·퓰리처 44회 *(유료·성향 주의)* |
+
+> ✅ **LAist는 무료+이민 정책 심층 보도** → LA 1순위 참조
+
+---
+
+#### 🍁 토론토 (Toronto, ON — Canada)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| CBC Toronto | cbc.ca/toronto | ✅ | 중도 | 1936년·국가 공영·무료·캐나다 이민청 정책 |
+| The Globe and Mail | theglobeandmail.com | ✅ | 중도 | 1844년·AllSides Center·캐나다 기자상 다수 |
+| Toronto Star | thestar.com | ✅ | 중도진보 | 1892년·캐나다 기자상·생활 정보 풍부 |
+
+> ✅ **CBC는 무료+이민 정책 가장 포괄적** → 토론토 1순위
+
+---
+
+#### 🌲 밴쿠버 (Vancouver, BC — Canada)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| CBC Vancouver | cbc.ca/bc | ✅ | 중도 | 1936년·국가 공영·무료 |
+| The Tyee | thetyee.ca | ✅ | 중도진보 | 2003년·무료·NNA 결선·Webster Award·이민 정책 강점 |
+| Vancouver Sun | vancouversun.com | ✅ | 중도보수 | 1912년·NNA 수상·BC 주류 일간지 |
+| Daily Hive | dailyhive.com | ⚠️ | 중도 | 2008년·무료·밴쿠버 생활·이벤트 정보 |
+
+---
+
+#### 🛢️ 휴스턴 (Houston, TX)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| Houston Chronicle | houstonchronicle.com | ✅ | 중도 | 1901년·퓰리처 2015·2022년·이민자 도시 생활 정보 |
+| Houston Public Media KUHF | houstonpublicmedia.org | ✅ | 중도 | 1950년·NPR/PBS·무료·텍사스 이민 보도 |
+
+> ⚠️ Houston Landing(비영리) 2025년 5월 폐업 → **목록에서 제외**
+
+---
+
+#### 🍑 애틀랜타 (Atlanta, GA)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| WABE 90.1 FM | wabe.org | ✅ | 중도 | 1948년·NPR/PBS·무료·Atlanta Press Club 수상 |
+| Atlanta Journal-Constitution | ajc.com | ✅ | 중도진보 | 1868년·퓰리처 다수·**2026년 디지털 전용 전환** |
+
+> ℹ️ AJC 2026년부터 프린트 종료, 디지털 전용 운영
+
+---
+
+#### 🏈 캔자스시티 (Kansas City, MO)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| KCUR 89.3 FM | kcur.org | ✅ | 중도 | 1957년·NPR·무료·Midwest Newsroom 이민 보도 |
+| The Kansas City Star | kansascity.com | ✅ | 중도진보 | 1880년·퓰리처 8회 *(2026년 언론 독립성 논란 주시)* |
+
+---
+
+#### 🔔 필라델피아 (Philadelphia, PA)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| WHYY 90.9 FM | whyy.org | ✅ | 중도 | 1954년·NPR/PBS·무료 |
+| The Philadelphia Inquirer | inquirer.com | ✅ | 중도진보 | 1829년·미국 3번째 역사·퓰리처 20회+ |
+| Billy Penn at WHYY | billypenn.com | ⚠️ | 중도 | 2014년·WHYY 계열·무료 |
+
+---
+
+#### 🌊 마이애미 (Miami, FL)
+
+| 매체 | URL | 등급 | 성향 | 핵심 |
+|---|---|---|---|---|
+| WLRN 91.3 FM | wlrn.org | ✅ | 중도 | NPR/PBS·무료·**IRE 최우수상 + 퓰리처 finalist 2026** |
+| Miami Herald | miamiherald.com | ✅ | 중도진보 | 1903년·퓰리처 24회·남미 이민 보도 탁월 |
+
+---
+
+#### 🌮 멕시코 3개 도시 (Mexico — 영어 미디어)
+
+| 매체 | URL | 도시 | 등급 | 핵심 |
+|---|---|---|---|---|
+| Mexico News Daily | mexiconewsdaily.com | 전국 | ✅ | 2014년·광고 없음·100만+ 독자·expat 1순위 영어 매체 |
+| The Guadalajara Reporter | theguadalajarareporter.net | 과달라하라 | ⚠️ | 1963년·영어 주간지·유일한 과달라하라 전용 영어 매체 |
+| Mexico Today (Reforma 계열) | mexicotoday.com | 전국 | ⚠️ | El Norte·Reforma 스페인어 모기업 신뢰도 높음 |
+
+> ℹ️ 멕시코 3개 도시 영어 미디어 극히 제한적. **Mexico News Daily가 사실상 유일한 정론급 영어 매체**
+
+---
+
+#### 📌 영문 미디어 활용 핵심 원칙
+
+```
+1. NPR/PBS 공영 계열 우선 — 비당파·무료·공익 취재 원칙
+   (KUOW·KERA·KQED·WNYC·WBUR·LAist·CBC·WABE·KCUR·WHYY·WLRN)
+
+2. 일간지 퓰리처 수상 매체 — 사실 정보 신뢰도 높음
+   단, 진보 성향 매체(Globe·NYT·LA Times)는 사설·칼럼 제외, 사실 정보만 추출
+
+3. 성경적 세계관 필터 필수 — 아래 전제 적용
+   좌우 어느 진영 매체도 세계관 필터 없이 사용 금지
+
+4. 무료 기사 우선 — 유료 매체는 무료 기사 한도 내 활용
+   Seattle Times·Boston Globe·NY Times → 월 무료 한도 내 사용
+```
+
+---
+
 ### 🔑 전제 — 성경적 세계관 분별이 먼저다
 
 > 📖 **정본**: [`docs/CORE_VISION.md`](CORE_VISION.md) — "성경적 세계관 미디어 분별 원칙"
@@ -605,7 +808,9 @@ HebronGuide 표현으로 완전히 재작성
 | 2026-05-08 (v5) | byeon.com (NJ) 추가 — 도시별 미디어 구조로 재편 |
 | 2026-05-08 (v6) | 17개 도시 전체 한인 미디어 전수 조사 완료 |
 | 2026-05-08 (v7) | 미디어 품질 4대 기준 수립 + 등급 평가 적용 — ❌ 9개 포털·카피 매체 제거 |
-| **2026-05-08 (v8)** | **성경적 세계관 분별 원칙 전제 추가 — 취재 전 성경 필터 적용 의무화** |
+| 2026-05-08 (v8) | 성경적 세계관 분별 원칙 전제 추가 |
+| **2026-05-08 (v9)** | **17개 도시 영문 로컬 미디어 품질 평가 완료 — NPR/PBS 공영 계열 우선 선정** |
+| | AllSides·Ad Fontes·Pulitzer.org 교차 확인. 퓰리처 수상 일간지 + 공영 NPR 계열 위주 |
 | | 제거: wowseattle, kseattle, newskoreatexas, sfkorean, tnkn.fun, |
 | | koamjournal, kyocharohouston, philain, dailyinsight.co.kr |
 | | LA→Metro C Line, NY→NJ Transit, Dallas→TRE, SF→Caltrain, Boston→MBTA, |
