@@ -5934,24 +5934,168 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
         ? `전화 211 — 식품·주거·법률·의료 무료 서비스 연결. 한국어 통역 가능. ${city.nameKo} 지역 서비스 안내.`
         : `Dial 211 — connects to free services (food, housing, legal, medical). Korean interpreter available. ${city.nameEn} area.`,
       tags: ["211", "무료", "한국어"] },
-    // 시애틀 전용 커뮤니티 링크
-    ...(isSeattle ? [
-      { emoji: "💬", name: lang === "ko" ? "카카오오픈채팅 — 시애틀한인" : "KakaoTalk — Seattle Korean", nameEn: "Kakao Open Chat",
-        desc: lang === "ko" ? "시애틀 한인 최대 커뮤니티 채팅방. 정착 질문, 중고거래, 모임 공지" : "Largest Korean Seattle community chat. Settlement Q&A, used goods, event announcements",
-        tags: ["카카오", "실시간", "커뮤니티"] },
-      { emoji: "🏛️", name: lang === "ko" ? "시애틀 한인회" : "Korean Association of Seattle", nameEn: "Korean Association",
-        desc: lang === "ko" ? "공식 한인 단체. 각종 행사·지원 사업 운영. 전화: (206) 323-5050" : "Official Korean community organization. Events & support programs. Tel: (206) 323-5050",
-        tags: ["공식", "한인회", "이벤트"] },
-      { emoji: "👩‍💻", name: lang === "ko" ? "네이버 카페 — 시애틀한인생활" : "Naver Café — Seattle Korean Life", nameEn: "Naver Café",
-        desc: lang === "ko" ? "정착 경험담·질문·정보 공유. 검색: 네이버 '시애틀한인생활'" : "Settlement experiences, Q&A & info sharing. Search: Naver '시애틀한인생활'",
-        tags: ["네이버", "정보", "경험담"] },
-      { emoji: "📰", name: lang === "ko" ? "미주 한국일보 시애틀판" : "Korea Times Seattle", nameEn: "Korean Newspaper",
-        desc: lang === "ko" ? "시애틀 한인 지역 소식·구인광고·부동산·커뮤니티 정보" : "Seattle Korean community news, job listings, real estate & community",
-        tags: ["신문", "뉴스", "정보"] },
-      { emoji: "🏛️", name: lang === "ko" ? "킹카운티 주거청" : "King County Housing Authority", nameEn: "KCHA Affordable Housing",
-        desc: lang === "ko" ? "저렴한 주거 대기자 명단. 📞 206-574-1100 | 🔗 kcha.org" : "Affordable housing waiting list. 📞 206-574-1100 | 🔗 kcha.org",
-        tags: ["주거", "저렴", "공공"] },
-    ] : []),
+    // 도시별 커뮤니티 링크
+    ...(() => {
+      const slug = city.slug;
+      const ko = lang === "ko";
+      // 공통: 미주중앙일보·한국일보 전국판
+      const national = [
+        { emoji: "📰", name: ko ? "미주중앙일보" : "Korea Daily", nameEn: "Korea Daily",
+          desc: ko ? "전국 한인 신문. 구인광고·부동산·커뮤니티. 🔗 koreadaily.com" : "National Korean newspaper. Jobs, real estate, community. 🔗 koreadaily.com",
+          tags: ["중앙일보", "전국", "정보"] },
+        { emoji: "📻", name: ko ? "라디오코리아" : "Radio Korea", nameEn: "Radio Korea",
+          desc: ko ? "전국 한인 라디오. 생활정보·뉴스. 🔗 radiokorea.com" : "National Korean radio. Life info & news. 🔗 radiokorea.com",
+          tags: ["라디오코리아", "뉴스", "생활"] },
+      ];
+      if (slug === "seattle") return [
+        { emoji: "💬", name: ko ? "카카오오픈채팅 — 시애틀한인" : "KakaoTalk — Seattle Korean", nameEn: "Kakao Open Chat",
+          desc: ko ? "시애틀 한인 최대 커뮤니티 채팅방. 정착 질문, 중고거래, 모임 공지" : "Largest Korean Seattle community chat. Settlement Q&A, used goods, events",
+          tags: ["카카오", "실시간", "커뮤니티"] },
+        { emoji: "🏛️", name: ko ? "시애틀 한인회" : "Korean Association of Seattle",
+          desc: ko ? "공식 한인 단체. 📞 (206) 323-5050" : "Official Korean community org. 📞 (206) 323-5050",
+          tags: ["공식", "한인회", "이벤트"] },
+        { emoji: "📰", name: ko ? "시애틀 한국일보" : "Korea Times Seattle",
+          desc: ko ? "지역 소식·구인·부동산. 🔗 seattlekdaily.com" : "Local news, jobs, real estate. 🔗 seattlekdaily.com",
+          tags: ["신문", "뉴스", "정보"] },
+        { emoji: "🏛️", name: ko ? "킹카운티 주거청" : "King County Housing Authority",
+          desc: ko ? "저렴한 주거 대기자 명단. 📞 206-574-1100 | 🔗 kcha.org" : "Affordable housing waitlist. 📞 206-574-1100 | 🔗 kcha.org",
+          tags: ["주거", "저렴", "공공"] },
+      ];
+      if (slug === "dallas") return [
+        { emoji: "📰", name: ko ? "코리아타임스 텍사스" : "Korea Times Texas",
+          desc: ko ? "달라스·텍사스 한인 소식·구인. 🔗 koreatimestx.com" : "Dallas/Texas Korean news & jobs. 🔗 koreatimestx.com", tags: ["달라스","신문","텍사스"] },
+        { emoji: "📻", name: ko ? "DK NET 라디오 AM 730" : "DK NET Radio AM 730",
+          desc: ko ? "달라스 한인 라디오. 생활정보·뉴스. 🔗 dalkora.com" : "Dallas Korean radio. Life info & news. 🔗 dalkora.com", tags: ["라디오","달라스","AM730"] },
+        { emoji: "🏛️", name: ko ? "달라스 한인회" : "Korean Association of Dallas",
+          desc: ko ? "달라스·포트워스 공식 한인 단체. 행사·지원 사업" : "Official Korean organization Dallas-Fort Worth. Events & support", tags: ["한인회","달라스","공식"] },
+        { emoji: "🏪", name: ko ? "캐롤튼 한인타운" : "Carrollton Koreatown",
+          desc: ko ? "H-Mart 캐롤튼 인근. 한인 식당·마트·업소 밀집. 정착 1순위 지역" : "Near H-Mart Carrollton. Dense Korean restaurants, markets & businesses", tags: ["캐롤튼","H-Mart","한인타운"] },
+      ];
+      if (slug === "la") return [
+        { emoji: "📰", name: ko ? "미주중앙일보 LA" : "Korea Daily LA",
+          desc: ko ? "LA 한인 최대 일간지. 구인·부동산·지역뉴스. 🔗 koreadaily.com" : "LA's largest Korean daily. Jobs, real estate, local news. 🔗 koreadaily.com", tags: ["중앙일보","LA","일간지"] },
+        { emoji: "📻", name: ko ? "라디오코리아 LA" : "Radio Korea LA",
+          desc: ko ? "LA 한인 라디오. 생활정보·한인뉴스. 🔗 radiokorea.com" : "LA Korean radio. Life info & Korean news. 🔗 radiokorea.com", tags: ["라디오","LA","생활"] },
+        { emoji: "🏛️", name: ko ? "LA 한인회 (KAC)" : "Korean American Coalition LA",
+          desc: ko ? "LA 한인 권익 단체. 시민 교육·권익 옹호. 🔗 kacla.org" : "Korean American advocacy in LA. Civic education & rights. 🔗 kacla.org", tags: ["KAC","한인권익","LA"] },
+        { emoji: "🏪", name: ko ? "코리아타운 (Wilshire/Olympic)" : "LA Koreatown",
+          desc: ko ? "미국 최대 한인타운. 한식당·H-Mart·한인 업소 밀집. 32번 Metro 버스" : "Largest US Koreatown. Korean restaurants, H-Mart, businesses. Metro Bus 32", tags: ["코리아타운","H-Mart","Wilshire"] },
+      ];
+      if (slug === "newyork") return [
+        { emoji: "📰", name: ko ? "뉴욕중앙일보" : "Korea Daily New York",
+          desc: ko ? "뉴욕·NJ 한인 일간지. 구인·부동산·지역소식. 🔗 ny.koreadaily.com" : "NY/NJ Korean daily. Jobs, real estate, local news. 🔗 ny.koreadaily.com", tags: ["뉴욕중앙","NY","일간지"] },
+        { emoji: "📻", name: ko ? "라디오코리아 NY" : "Radio Korea NY",
+          desc: ko ? "뉴욕 한인 라디오. 🔗 nyradiokorea.com" : "NY Korean radio. 🔗 nyradiokorea.com", tags: ["라디오","NY","뉴욕"] },
+        { emoji: "🏛️", name: ko ? "플러싱 한인회 (퀸스)" : "Korean Association Queens",
+          desc: ko ? "플러싱 공식 한인 단체. 뉴이민자 정착 지원. #7 지하철 플러싱역" : "Official Korean org in Flushing. New immigrant support. #7 Train Flushing station", tags: ["플러싱","퀸스","한인회"] },
+        { emoji: "🏛️", name: ko ? "팰리세이즈파크 한인회 (NJ)" : "Korean Association Palisades Park",
+          desc: ko ? "NJ 한인 밀집 지역 한인회. 팰리세이즈파크·포트리 커뮤니티" : "Korean community org in NJ. Palisades Park & Fort Lee community", tags: ["팰리세이즈파크","NJ","한인회"] },
+      ];
+      if (slug === "sf") return [
+        { emoji: "📻", name: ko ? "한미 라디오 AM 1120" : "Hanmi Radio AM 1120",
+          desc: ko ? "SF 베이 한인 라디오. 생활정보·지역뉴스. 🔗 hanmiradio.com" : "SF Bay Korean radio. Life info & local news. 🔗 hanmiradio.com", tags: ["한미라디오","SF","AM1120"] },
+        { emoji: "📰", name: ko ? "SF 한국일보" : "SF Korea Daily",
+          desc: ko ? "SF 베이 한인 소식·구인·부동산. 🔗 sfkoreadaily.com" : "SF Bay Korean news, jobs & real estate. 🔗 sfkoreadaily.com", tags: ["SF한국일보","베이","뉴스"] },
+        { emoji: "🏛️", name: ko ? "프리몬트 한인회" : "Korean Association Fremont",
+          desc: ko ? "프리몬트 공식 한인 단체. 베이 한인 커뮤니티 정착 지원" : "Official Korean org in Fremont. Bay Area Korean community support", tags: ["프리몬트","한인회","SF베이"] },
+        { emoji: "🏪", name: ko ? "프리몬트 한인타운" : "Fremont Koreatown",
+          desc: ko ? "H-Mart 프리몬트. 한인 식당·마트·업소 밀집. BART 연결" : "H-Mart Fremont. Korean restaurants, markets & businesses. BART connected", tags: ["프리몬트","H-Mart","BART"] },
+      ];
+      if (slug === "boston") return [
+        { emoji: "📰", name: ko ? "보스톤코리아" : "Boston Korea",
+          desc: ko ? "보스턴 한인 신문·온라인. 구인·커뮤니티·생활정보. 🔗 bostonkorea.com" : "Boston Korean newspaper/online. Jobs, community & life info. 🔗 bostonkorea.com", tags: ["보스톤코리아","Boston","신문"] },
+        { emoji: "🏛️", name: ko ? "보스턴 한인회" : "Korean Association of Boston",
+          desc: ko ? "보스턴 공식 한인 단체. 이민자·유학생 지원" : "Official Korean org in Boston. Immigrant & student support", tags: ["한인회","보스턴","공식"] },
+        { emoji: "🎓", name: ko ? "MIT·하버드 한인 학생회" : "MIT/Harvard Korean Student Assoc.",
+          desc: ko ? "MIT KSAA·하버드 KSA. 알럼나이 네트워크 매우 강함. 취업·멘토링 연결" : "MIT KSAA, Harvard KSA. Very strong alumni network. Jobs & mentoring connections", tags: ["MIT","하버드","학생회"] },
+        { emoji: "🏪", name: ko ? "올스턴 한인타운" : "Allston Koreatown",
+          desc: ko ? "BU·하버드 인근 한인 식당·카페 밀집. 유학생 커뮤니티 허브. Green Line 접근" : "Korean restaurants/cafes near BU/Harvard. Student community hub. Green Line access", tags: ["올스턴","유학생","Green Line"] },
+      ];
+      if (slug === "nashville") return [
+        { emoji: "🏛️", name: ko ? "내쉬빌 한인회" : "Korean Association of Nashville",
+          desc: ko ? "내쉬빌 공식 한인 단체. 이민자 정착 지원·커뮤니티 행사" : "Official Korean org in Nashville. Immigrant support & community events", tags: ["한인회","내쉬빌","공식"] },
+        { emoji: "📰", name: ko ? "미주중앙일보 테네시" : "Korea Daily Tennessee",
+          desc: ko ? "테네시 한인 소식. 🔗 koreadaily.com 내쉬빌 지역" : "Tennessee Korean news. 🔗 koreadaily.com Nashville section", tags: ["중앙일보","테네시","뉴스"] },
+        { emoji: "🏪", name: ko ? "쿨스프링스·안티오크 한인타운" : "Cool Springs/Antioch Koreatown",
+          desc: ko ? "내쉬빌 한인 밀집 지역. H-Mart 진출. 한식당·마트·교회 성장 중" : "Nashville Korean hub. H-Mart now open. Korean restaurants, markets & churches growing", tags: ["쿨스프링스","안티오크","H-Mart"] },
+        ...national.slice(0,1),
+      ];
+      if (slug === "toronto") return [
+        { emoji: "📰", name: ko ? "캐나다 한국일보" : "Korea Times Canada",
+          desc: ko ? "캐나다 최대 한인 일간지. 구인·부동산·커뮤니티. 🔗 koreatimes.net" : "Canada's largest Korean daily. Jobs, real estate, community. 🔗 koreatimes.net", tags: ["캐나다한국일보","Toronto","일간지"] },
+        { emoji: "📰", name: ko ? "토론토 중앙일보" : "Korea Times Toronto",
+          desc: ko ? "토론토 한인 주요 신문. 🔗 cktimes.net" : "Major Korean newspaper in Toronto. 🔗 cktimes.net", tags: ["토론토중앙","Toronto","신문"] },
+        { emoji: "🏛️", name: ko ? "토론토 한인회" : "Korean Canadian Cultural Association",
+          desc: ko ? "토론토 공식 한인 단체. 이민자 정착 지원·문화 행사" : "Official Korean org in Toronto. Immigrant support & cultural events", tags: ["한인회","토론토","공식"] },
+        { emoji: "🏪", name: ko ? "노스요크 한인타운 (욘지·핀치)" : "North York Koreatown",
+          desc: ko ? "욘지-핀치 TTC 지하철 연결. H-Mart·한식당·한인 업소 밀집. 한인 정착 1순위" : "Yonge-Finch TTC subway connected. H-Mart, Korean restaurants & businesses. Top Korean settlement area", tags: ["노스요크","욘지핀치","H-Mart"] },
+      ];
+      if (slug === "vancouver") return [
+        { emoji: "📰", name: ko ? "밴쿠버 조선일보" : "Vancouver Chosun",
+          desc: ko ? "밴쿠버 한인 신문. 구인·부동산·커뮤니티. 🔗 vanchosun.com" : "Vancouver Korean newspaper. Jobs, real estate, community. 🔗 vanchosun.com", tags: ["밴조선","Vancouver","신문"] },
+        { emoji: "📰", name: ko ? "밴쿠버 중앙일보" : "Vancouver Korea Daily",
+          desc: ko ? "밴쿠버 한인 신문. 🔗 joinsmediacanada.com" : "Vancouver Korean newspaper. 🔗 joinsmediacanada.com", tags: ["밴쿠버중앙","Vancouver","신문"] },
+        { emoji: "🏛️", name: ko ? "BC 한인회" : "Korean Community Services of BC",
+          desc: ko ? "BC주 공식 한인 단체. 이민·정착·복지 서비스" : "Official Korean org in BC. Immigration, settlement & welfare services", tags: ["BC한인회","밴쿠버","공식"] },
+        { emoji: "🏪", name: ko ? "버나비 한인타운" : "Burnaby Koreatown",
+          desc: ko ? "H-Mart 버나비. SkyTrain 연결. 한인 식당·마트·업소 밀집. BC 한인 정착 1순위" : "H-Mart Burnaby. SkyTrain connected. Korean restaurants, markets & businesses. BC Korean #1 settlement", tags: ["버나비","SkyTrain","H-Mart"] },
+      ];
+      if (slug === "houston") return [
+        { emoji: "📰", name: ko ? "한인 저널 휴스턴" : "Korean Journal Houston",
+          desc: ko ? "휴스턴 한인 지역 신문. 구인·부동산·커뮤니티. 🔗 kjhou.com" : "Houston Korean community newspaper. Jobs, real estate, community. 🔗 kjhou.com", tags: ["한인저널","휴스턴","신문"] },
+        { emoji: "🏛️", name: ko ? "휴스턴 한인회 (GKHCA)" : "Greater Korean Houston Community Assoc.",
+          desc: ko ? "휴스턴 광역 공식 한인 단체. 이민자 지원·커뮤니티 행사" : "Official Korean org Greater Houston. Immigrant support & community events", tags: ["GKHCA","휴스턴","한인회"] },
+        { emoji: "🏪", name: ko ? "벨에어 한인타운 (Bellaire Blvd)" : "Bellaire Blvd Koreatown",
+          desc: ko ? "비공식 휴스턴 한인타운. H-Mart 인근. 한식당·마트·교회 밀집" : "Unofficial Houston Koreatown. Near H-Mart. Korean restaurants, markets & churches", tags: ["벨에어","Bellaire","H-Mart"] },
+        ...national.slice(0,1),
+      ];
+      if (slug === "atlanta") return [
+        { emoji: "📰", name: ko ? "미주중앙일보 애틀랜타" : "Korea Daily Atlanta",
+          desc: ko ? "애틀랜타 한인 소식. 🔗 atlanta.koreadaily.com" : "Atlanta Korean news. 🔗 atlanta.koreadaily.com", tags: ["중앙일보","애틀랜타","신문"] },
+        { emoji: "📰", name: ko ? "애틀랜타 중앙일보" : "Atlanta Joongang",
+          desc: ko ? "애틀랜타 한인 신문. 구인·부동산·커뮤니티. 🔗 atlantajoongang.com" : "Atlanta Korean newspaper. Jobs, real estate, community. 🔗 atlantajoongang.com", tags: ["애틀랜타중앙","신문","구인"] },
+        { emoji: "🏛️", name: ko ? "애틀랜타 한인회" : "Korean Association of Atlanta",
+          desc: ko ? "조지아 공식 한인 단체. 이민자 정착 지원. 귀넷카운티 중심" : "Official Korean org in Georgia. Immigrant settlement support. Gwinnett County focus", tags: ["한인회","애틀랜타","귀넷"] },
+        { emoji: "🏪", name: ko ? "둘루스·스와니 한인타운" : "Duluth/Suwanee Koreatown",
+          desc: ko ? "귀넷카운티 한인 밀집. H-Mart·한식당·교회 밀집. 남부 최대 한인타운" : "Gwinnett County Korean hub. H-Mart, Korean restaurants & churches. South's largest Koreatown", tags: ["둘루스","스와니","귀넷"] },
+      ];
+      if (slug === "kansascity") return [
+        { emoji: "📰", name: ko ? "KC 한인 저널" : "KC Korean Journal",
+          desc: ko ? "캔자스시티 한인 소식. 🔗 kckoreanjournal.com" : "Kansas City Korean news. 🔗 kckoreanjournal.com", tags: ["KC저널","캔자스시티","신문"] },
+        { emoji: "🏛️", name: ko ? "캔자스시티 한인회" : "Korean Association of Kansas City",
+          desc: ko ? "KC 공식 한인 단체. 이민자 지원·커뮤니티 행사" : "Official Korean org in KC. Immigrant support & community events", tags: ["한인회","KC","공식"] },
+        { emoji: "🏪", name: ko ? "오버랜드파크 H-Mart" : "H-Mart Overland Park",
+          desc: ko ? "KC 한인 거점. H-Mart 오버랜드파크. 한식당·마트 주변 한인 상권" : "KC Korean hub. H-Mart Overland Park. Korean restaurants & businesses nearby", tags: ["오버랜드파크","H-Mart","KS"] },
+        ...national.slice(0,1),
+      ];
+      if (slug === "philadelphia") return [
+        { emoji: "📰", name: ko ? "주간필라" : "Jugan Phila",
+          desc: ko ? "필라델피아 한인 주간지. 구인·부동산·커뮤니티. 🔗 koreanphila.com" : "Philadelphia Korean weekly. Jobs, real estate, community. 🔗 koreanphila.com", tags: ["주간필라","필라","신문"] },
+        { emoji: "🏛️", name: ko ? "필라델피아 한인회" : "Korean American Association of Philadelphia",
+          desc: ko ? "필라 공식 한인 단체. 이민자 정착 지원" : "Official Korean org in Philadelphia. Immigrant settlement support", tags: ["한인회","필라","공식"] },
+        { emoji: "🏪", name: ko ? "어퍼다비·체리힐 한인타운" : "Upper Darby/Cherry Hill Koreatown",
+          desc: ko ? "H-Mart 에지스턴 인근. 한인 식당·마트·교회. NJ 체리힐도 한인 밀집" : "Near H-Mart Edgemont. Korean restaurants, markets & churches. NJ Cherry Hill also Korean hub", tags: ["어퍼다비","체리힐","H-Mart"] },
+        ...national.slice(0,1),
+      ];
+      if (slug === "miami") return [
+        { emoji: "🏛️", name: ko ? "마이애미 한인회" : "Korean Association of Miami",
+          desc: ko ? "마이애미 공식 한인 단체. 이민자 지원·커뮤니티 행사" : "Official Korean org in Miami. Immigrant support & community events", tags: ["한인회","마이애미","공식"] },
+        { emoji: "🏪", name: ko ? "도랄 한인 커뮤니티" : "Doral Korean Community",
+          desc: ko ? "마이애미 한인 밀집 지역. 한식당·마트. 히스패닉-한인 혼합 커뮤니티" : "Miami Korean community hub. Korean restaurants, markets. Korean-Hispanic mixed community", tags: ["도랄","마이애미","한인"] },
+        ...national,
+      ];
+      if (slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey") return [
+        { emoji: "🏛️", name: ko ? `${city.nameKo} 한인회` : `Korean Association ${city.nameEn}`,
+          desc: ko ? `${city.nameKo} 한인 단체. 주한국 대사관·KOTRA 연결. 한인 네트워크 참여` : `Korean community in ${city.nameEn}. Connected to Korean Embassy & KOTRA`, tags: ["한인회","멕시코","공식"] },
+        { emoji: "🏛️", name: ko ? "KOTRA 멕시코시티" : "KOTRA Mexico City",
+          desc: ko ? "대한무역투자진흥공사 멕시코 사무소. 한인 창업·투자·무역 지원. 🔗 kotra.or.kr" : "Korea Trade-Investment Promotion Agency Mexico. Korean startup, investment & trade support. 🔗 kotra.or.kr", tags: ["KOTRA","멕시코","무역"] },
+        { emoji: "📻", name: ko ? "KBS 월드 라디오 (한국어)" : "KBS World Radio Korean",
+          desc: ko ? "해외 한인 대상 한국어 방송. 뉴스·문화·정보. 🔗 world.kbs.co.kr" : "Korean broadcasting for overseas Koreans. News, culture & info. 🔗 world.kbs.co.kr", tags: ["KBS","라디오","한국어"] },
+        ...national.slice(0,1),
+      ];
+      // 기타 도시 기본값
+      return national;
+    })(),
   ];
 
   // 미국·캐나다 공통 무료 법률 클리닉
