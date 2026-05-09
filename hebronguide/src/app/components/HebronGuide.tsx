@@ -6177,6 +6177,550 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
 }
 
 /* ─────────────────────────────────────────
+   TAB 9: 생활비 — 도시별 데이터
+───────────────────────────────────────── */
+function getCityCostData(slug: string, lang: string) {
+  const ko = lang === "ko";
+  type CostItem = { emoji: string; name: string; nameEn?: string; desc: string; tags: string[] };
+  type CostData = { rentHousing: CostItem[]; taxLiving: CostItem[]; transportPhone: CostItem[] };
+
+  const DATA: Record<string, CostData> = {
+    seattle: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
+          desc: ko
+            ? "📍 린우드/페더럴웨이: 스튜디오 $1,300-1,700 | 1BR $1,700-2,100 | 2BR $2,100-2,600\n📍 벨뷰: 스튜디오 $1,800-2,300 | 1BR $2,200-2,900 | 2BR $2,800-3,500\n📍 시애틀 시내: 스튜디오 $1,700-2,200 | 1BR $2,100-2,800 | 2BR $2,500-3,200"
+            : "📍 Lynnwood/Federal Way: Studio $1,300-1,700 | 1BR $1,700-2,100 | 2BR $2,100-2,600\n📍 Bellevue: Studio $1,800-2,300 | 1BR $2,200-2,900 | 2BR $2,800-3,500\n📍 Downtown Seattle: Studio $1,700-2,200 | 1BR $2,100-2,800 | 2BR $2,500-3,200",
+          tags: ["렌트", "주거", "비교"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
+          desc: ko
+            ? "✅ 워싱턴주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 시애틀 10.4%\n식료품·처방약: 세금 면제\n시애틀 최저시급: $20.76/시 (2026년)\n재산세: 주택 소유 시 연 $5,000-15,000"
+            : "✅ WA State has NO income tax! (major benefit)\nSales Tax: 10.4% in Seattle\nGroceries & prescription drugs: tax-exempt\nSeattle minimum wage: $20.76/hr (2026)\nProperty tax: ~$5,000-15,000/yr if you own",
+          tags: ["세금", "소득세없음", "최저시급"] },
+        { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 린우드): $1,800-2,000\n• 식료품: $300-500\n• 교통 (버스+ORCA): $100-130\n• 공과금 (전기·인터넷): $150-200\n• 외식·여가: $200-400\n⟹ 합계: 약 $2,550-3,230/월"
+            : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Lynnwood): $1,800-2,000\n• Groceries: $300-500\n• Transit (bus+ORCA): $100-130\n• Utilities (electric+internet): $150-200\n• Dining out & leisure: $200-400\n⟹ Total: ~$2,550-3,230/month",
+          tags: ["생활비", "월평균", "예산"] },
+      ],
+      transportPhone: [
+        { emoji: "⛽", name: "교통·기름값", nameEn: "Transportation & Gas",
+          desc: ko
+            ? "🚗 WA주 기름값: $3.80-4.50/갤런 (2026년)\n🚌 Metro 버스: $2.75/회 (ORCA) 🔗 kingcounty.gov/metro\n🚇 Link Light Rail: $2.00-3.50 (거리별) 🔗 soundtransit.org\n🅿️ 시애틀 다운타운 주차: $3-8/시간\n💡 린우드 거주 시 대부분 차량 필요"
+            : "🚗 WA gas: $3.80-4.50/gallon (2026)\n🚌 Metro bus: $2.75/ride (ORCA) 🔗 kingcounty.gov/metro\n🚇 Link Light Rail: $2.00-3.50 (distance-based) 🔗 soundtransit.org\n🅿️ Downtown Seattle parking: $3-8/hr\n💡 Car almost essential if living in Lynnwood",
+          tags: ["기름값", "주차", "교통비"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 휴대폰:\n• T-Mobile Prepaid: $30/월 (무제한 문자+통화+5GB) 🔗 t-mobile.com\n• Mint Mobile: $15/월 (온라인 3개월 선불) 🔗 mintmobile.com\n• AT&T: 🔗 att.com\n• Verizon 가족 플랜: $40-55/회선\n\n🌐 인터넷:\n• Xfinity: $40-80/월\n• CenturyLink/Lumen: $50-65/월\n• 기가 인터넷: $70-100/월"
+            : "📱 Phone:\n• T-Mobile Prepaid: $30/mo (unlimited) 🔗 t-mobile.com\n• Mint Mobile: $15/mo (3-month prepaid) 🔗 mintmobile.com\n• AT&T: 🔗 att.com\n• Verizon family plan: $40-55/line\n\n🌐 Internet:\n• Xfinity: $40-80/mo\n• CenturyLink/Lumen: $50-65/mo\n• Gigabit internet: $70-100/mo",
+          tags: ["통신비", "인터넷", "휴대폰"] },
+      ],
+    },
+    dallas: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
+          desc: ko
+            ? "📍 캐롤튼/플라노(한인 밀집): 스튜디오 $1,100-1,400 | 1BR $1,400-1,700 | 2BR $1,700-2,100\n📍 알링턴/어빙: 스튜디오 $1,000-1,300 | 1BR $1,200-1,600 | 2BR $1,600-2,000\n📍 달라스 시내: 스튜디오 $1,300-1,700 | 1BR $1,600-2,200 | 2BR $2,000-2,700"
+            : "📍 Carrollton/Plano (Korean hub): Studio $1,100-1,400 | 1BR $1,400-1,700 | 2BR $1,700-2,100\n📍 Arlington/Irving: Studio $1,000-1,300 | 1BR $1,200-1,600 | 2BR $1,600-2,000\n📍 Downtown Dallas: Studio $1,300-1,700 | 1BR $1,600-2,200 | 2BR $2,000-2,700",
+          tags: ["렌트", "달라스", "비교"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
+          desc: ko
+            ? "✅ 텍사스주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 달라스 8.25%\n식료품·처방약: 세금 면제\n텍사스 최저시급: $7.25/시 (연방 기준)\n재산세: 집값 대비 높음 (약 1.8-2.5%/년)"
+            : "✅ Texas has NO state income tax! (major benefit)\nSales Tax: 8.25% in Dallas\nGroceries & prescription drugs: tax-exempt\nTexas minimum wage: $7.25/hr (federal rate)\nProperty tax: relatively high (~1.8-2.5%/yr)",
+          tags: ["세금", "소득세없음", "텍사스"] },
+        { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 캐롤튼): $1,400-1,700\n• 식료품: $300-450\n• 교통 (DART+차량): $80-120 + 기름값\n• 공과금 (전기·인터넷): $120-180\n• 외식·여가: $200-350\n⟹ 합계: 약 $2,100-2,800/월"
+            : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Carrollton): $1,400-1,700\n• Groceries: $300-450\n• Transport (DART+car): $80-120 + gas\n• Utilities (electric+internet): $120-180\n• Dining out & leisure: $200-350\n⟹ Total: ~$2,100-2,800/month",
+          tags: ["생활비", "월평균", "달라스"] },
+      ],
+      transportPhone: [
+        { emoji: "⛽", name: "교통·기름값", nameEn: "Transportation & Gas",
+          desc: ko
+            ? "🚗 TX주 기름값: $2.80-3.40/갤런 (2026년) — 전국 최저 수준\n🚌 DART 버스·전철: $2.50/회 🔗 dart.org\n🚗 달라스는 차량 필수 도시 (대중교통 범위 제한)\n🛣️ I-35, I-635, Hwy 121 고속도로 발달\n💡 캐롤튼·플라노 거주 시 차량 필수"
+            : "🚗 TX gas: $2.80-3.40/gallon (2026) — among nation's cheapest\n🚌 DART bus/rail: $2.50/ride 🔗 dart.org\n🚗 Dallas is a car-required city (limited transit coverage)\n🛣️ Extensive freeways — I-35, I-635, Hwy 121\n💡 Car essential if living in Carrollton or Plano",
+          tags: ["기름값", "DART", "달라스교통"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 전국 통신사 동일 — T-Mobile·AT&T·Verizon 경쟁 치열\n• T-Mobile Prepaid: $30/월 (무제한)\n• AT&T 달라스 커버리지 우수\n🌐 인터넷:\n• AT&T Fiber (달라스 우수): $55-80/월\n• Spectrum: $50-70/월\n• Xfinity: $40-80/월"
+            : "📱 National carriers same — T-Mobile, AT&T, Verizon all competitive\n• T-Mobile Prepaid: $30/mo (unlimited)\n• AT&T has excellent Dallas coverage\n🌐 Internet:\n• AT&T Fiber (great Dallas coverage): $55-80/mo\n• Spectrum: $50-70/mo\n• Xfinity: $40-80/mo",
+          tags: ["통신비", "AT&T", "인터넷"] },
+      ],
+    },
+    la: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
+          desc: ko
+            ? "📍 코리아타운/윌셔(한인 밀집): 스튜디오 $1,800-2,300 | 1BR $2,200-2,800 | 2BR $2,800-3,500\n📍 토런스/가디나: 스튜디오 $1,600-2,000 | 1BR $1,900-2,400 | 2BR $2,400-3,000\n📍 어바인: 스튜디오 $2,000-2,500 | 1BR $2,400-3,000 | 2BR $3,000-3,800"
+            : "📍 Koreatown/Wilshire (Korean hub): Studio $1,800-2,300 | 1BR $2,200-2,800 | 2BR $2,800-3,500\n📍 Torrance/Gardena: Studio $1,600-2,000 | 1BR $1,900-2,400 | 2BR $2,400-3,000\n📍 Irvine: Studio $2,000-2,500 | 1BR $2,400-3,000 | 2BR $3,000-3,800",
+          tags: ["렌트", "LA", "코리아타운"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
+          desc: ko
+            ? "⚠️ 캘리포니아 소득세 최고 13.3%!\n판매세(Sales Tax): LA카운티 10.25%\n식료품: 세금 면제 / 조리된 음식: 과세\nCA 최저시급: $17.00/시 (계속 인상 중)\n\n💡 같은 연봉이라도 WA·TX보다 실수령액이 크게 낮음\n⚠️ 소득이 높을수록 세금 부담 체감이 매우 큼"
+            : "⚠️ California income tax up to 13.3%!\nSales Tax: 10.25% in LA County\nGroceries: tax-exempt / Prepared food: taxed\nCA minimum wage: $17.00/hr (rising)\n\n💡 Same salary means much less take-home vs WA or TX\n⚠️ High earners feel the tax burden most severely",
+          tags: ["소득세", "캘리포니아", "세금"] },
+        { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 토런스): $1,900-2,400\n• 식료품: $350-500\n• 교통 (Metro+차량): $100-150 + 기름값\n• 공과금: $120-200\n• 외식·여가: $250-450\n⟹ 합계: 약 $2,720-3,700/월"
+            : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Torrance): $1,900-2,400\n• Groceries: $350-500\n• Transit (Metro+car): $100-150 + gas\n• Utilities: $120-200\n• Dining out & leisure: $250-450\n⟹ Total: ~$2,720-3,700/month",
+          tags: ["생활비", "LA", "월평균"] },
+      ],
+      transportPhone: [
+        { emoji: "⛽", name: "교통·기름값", nameEn: "Transportation & Gas",
+          desc: ko
+            ? "🚗 CA주 기름값: $4.20-5.00/갤런 (2026년) — 전국 최고 수준\n🚌 Metro 버스·전철: $1.75/회 (TAP 카드) 🔗 metro.net\n🚇 Metro Rail (A·B·C·D·E·L 라인)\n🚗 LA는 차량 필수 (한인 밀집지역 대중교통 부족)\n💡 코리아타운 → Metro B·D 라인 접근 가능"
+            : "🚗 CA gas: $4.20-5.00/gallon (2026) — nation's highest\n🚌 Metro bus/rail: $1.75/ride (TAP card) 🔗 metro.net\n🚇 Metro Rail (A, B, C, D, E, L lines)\n🚗 LA is car-required (limited transit in Korean areas)\n💡 Koreatown has Metro B & D Line access",
+          tags: ["기름값", "Metro", "LA교통"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 전국 통신사 경쟁 (T-Mobile·AT&T·Verizon 우수 커버리지)\n• T-Mobile Prepaid: $30/월 (무제한)\n• Metro by T-Mobile: $25/월\n🌐 인터넷:\n• Spectrum (LA 주요): $50-70/월\n• AT&T Fiber: $55-80/월"
+            : "📱 Major carriers competitive (T-Mobile, AT&T, Verizon all strong)\n• T-Mobile Prepaid: $30/mo (unlimited)\n• Metro by T-Mobile: $25/mo\n🌐 Internet:\n• Spectrum (LA's primary): $50-70/mo\n• AT&T Fiber: $55-80/mo",
+          tags: ["통신비", "Spectrum", "인터넷"] },
+      ],
+    },
+    newyork: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
+          desc: ko
+            ? "📍 플러싱(퀸스, 한인 밀집): 스튜디오 $1,800-2,300 | 1BR $2,100-2,700 | 2BR $2,600-3,400\n📍 팰리세이즈파크/포트리(NJ): 스튜디오 $1,600-2,000 | 1BR $1,900-2,500 | 2BR $2,400-3,100\n📍 맨해튼 미드타운: 스튜디오 $2,800-3,600 | 1BR $3,500-4,500 | 2BR $4,500-6,000"
+            : "📍 Flushing (Queens, Korean hub): Studio $1,800-2,300 | 1BR $2,100-2,700 | 2BR $2,600-3,400\n📍 Palisades Park/Fort Lee (NJ): Studio $1,600-2,000 | 1BR $1,900-2,500 | 2BR $2,400-3,100\n📍 Manhattan Midtown: Studio $2,800-3,600 | 1BR $3,500-4,500 | 2BR $4,500-6,000",
+          tags: ["렌트", "뉴욕", "플러싱"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
+          desc: ko
+            ? "⚠️ NY주 소득세: 4-10.9% (누진)\n⚠️ NYC 시 소득세: 3.08-3.88% 추가!\n판매세: NYC 8.875%\n의류·식료품 ($110 이하): 면세\n뉴욕 최저시급: $16.50/시 (NYC)\nNJ 소득세: 1.4-10.75% (팰리세이즈 거주 시)\n\n💡 NJ 거주 + NY 근무 시 세금 복잡 — 반드시 CPA 상담"
+            : "⚠️ NY State income tax: 4-10.9% (progressive)\n⚠️ NYC City income tax: 3.08-3.88% additional!\nSales Tax: 8.875% in NYC\nClothing & groceries (under $110): tax-exempt\nNY minimum wage: $16.50/hr (NYC)\nNJ income tax: 1.4-10.75% (if living in Palisades)\n\n💡 Living in NJ, working in NY = complex taxes — CPA essential",
+          tags: ["소득세", "뉴욕", "뉴저지"] },
+        { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 플러싱): $2,100-2,700\n• 식료품: $350-500\n• 교통 (지하철·버스): $132 (30일 무제한)\n• 공과금: $150-250\n• 외식·여가: $300-500\n⟹ 합계: 약 $3,030-4,080/월"
+            : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Flushing): $2,100-2,700\n• Groceries: $350-500\n• Transit (subway/bus): $132 (30-day unlimited)\n• Utilities: $150-250\n• Dining out & leisure: $300-500\n⟹ Total: ~$3,030-4,080/month",
+          tags: ["생활비", "뉴욕", "월평균"] },
+      ],
+      transportPhone: [
+        { emoji: "🚇", name: "교통·지하철", nameEn: "Transportation & Subway",
+          desc: ko
+            ? "🚇 MTA 지하철: $2.90/회 (OMNY 탭) 🔗 mta.info\n🚌 MTA 버스: $2.90/회 (30일 무제한: $132)\n🚂 NJ Transit: NJ ↔ NY 통근 필수 🔗 njtransit.com\n🚗 뉴욕에서 차량 불필요 (주차비·보험 매우 비쌈)\n💡 플러싱 → 맨해튼 #7 지하철 직통 40분"
+            : "🚇 MTA Subway: $2.90/ride (OMNY tap) 🔗 mta.info\n🚌 MTA Bus: $2.90/ride (30-day unlimited: $132)\n🚂 NJ Transit: Essential for NJ ↔ NY commute 🔗 njtransit.com\n🚗 Car unnecessary in NYC (parking & insurance very expensive)\n💡 Flushing to Manhattan via #7 train: 40 min direct",
+          tags: ["지하철", "MTA", "뉴욕교통"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 뉴욕 = 전국 최강 커버리지\n• T-Mobile·Verizon·AT&T 모두 5G 우수\n• Mint Mobile: $15/월 (온라인 선불)\n🌐 인터넷:\n• Optimum (퀸스·NJ): $40-70/월\n• Verizon Fios (파이버): $50-80/월\n• Spectrum: $50-70/월"
+            : "📱 NYC = Best coverage in the nation\n• T-Mobile, Verizon, AT&T all excellent 5G\n• Mint Mobile: $15/mo (online prepaid)\n🌐 Internet:\n• Optimum (Queens & NJ): $40-70/mo\n• Verizon Fios (fiber): $50-80/mo\n• Spectrum: $50-70/mo",
+          tags: ["통신비", "Fios", "뉴욕인터넷"] },
+      ],
+    },
+    houston: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
+          desc: ko
+            ? "📍 슈가랜드/미주리시티(한인 밀집): 스튜디오 $1,100-1,400 | 1BR $1,300-1,700 | 2BR $1,700-2,100\n📍 클리어레이크/피어랜드: 스튜디오 $1,000-1,300 | 1BR $1,200-1,600 | 2BR $1,600-2,000\n📍 휴스턴 업타운/갤러리아: 스튜디오 $1,400-1,800 | 1BR $1,700-2,200 | 2BR $2,100-2,700"
+            : "📍 Sugar Land/Missouri City (Korean hub): Studio $1,100-1,400 | 1BR $1,300-1,700 | 2BR $1,700-2,100\n📍 Clear Lake/Pearland: Studio $1,000-1,300 | 1BR $1,200-1,600 | 2BR $1,600-2,000\n📍 Houston Uptown/Galleria: Studio $1,400-1,800 | 1BR $1,700-2,200 | 2BR $2,100-2,700",
+          tags: ["렌트", "휴스턴", "비교"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
+          desc: ko
+            ? "✅ 텍사스주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 휴스턴 8.25%\n식료품·처방약: 세금 면제\n텍사스 최저시급: $7.25/시 (연방 기준)\n재산세: 집값 대비 높음 (약 2.0-2.5%/년)\n\n💡 에너지 도시 — 석유·가스 업계 급여 매우 높음"
+            : "✅ Texas has NO state income tax! (major benefit)\nSales Tax: 8.25% in Houston\nGroceries & prescription drugs: tax-exempt\nTexas minimum wage: $7.25/hr (federal rate)\nProperty tax: relatively high (~2.0-2.5%/yr)\n\n💡 Energy city — oil & gas industry salaries very high",
+          tags: ["소득세없음", "텍사스", "세금"] },
+        { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 슈가랜드): $1,300-1,700\n• 식료품: $280-400\n• 교통 (차량 필수 + 기름): $100-180\n• 공과금 ⚠️ 여름 에어컨 비용 높음: $130-200\n• 외식·여가: $200-350\n⟹ 합계: 약 $2,010-2,830/월"
+            : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Sugar Land): $1,300-1,700\n• Groceries: $280-400\n• Transport (car required + gas): $100-180\n• Utilities ⚠️ AC bills high in summer: $130-200\n• Dining out & leisure: $200-350\n⟹ Total: ~$2,010-2,830/month",
+          tags: ["생활비", "휴스턴", "월평균"] },
+      ],
+      transportPhone: [
+        { emoji: "⛽", name: "교통·기름값", nameEn: "Transportation & Gas",
+          desc: ko
+            ? "🚗 TX주 기름값: $2.80-3.40/갤런 (2026년) — 전국 최저 수준\n🚌 Metro 버스·경전철: $1.25/회 🔗 ridemetro.org\n🚗 휴스턴은 차량 필수 도시\n🛣️ I-10, I-45, I-610, Beltway 8 거대한 고속도로망\n⚠️ 홍수·폭우 시 교통 마비 주의"
+            : "🚗 TX gas: $2.80-3.40/gallon (2026) — nation's cheapest\n🚌 Metro bus/light rail: $1.25/ride 🔗 ridemetro.org\n🚗 Houston is car-required city (limited transit)\n🛣️ Massive freeway system — I-10, I-45, I-610, Beltway 8\n⚠️ Watch for flooding & storms",
+          tags: ["기름값", "Metro", "휴스턴교통"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 전국 통신사 경쟁 우수\n• AT&T: 텍사스 본고장 — 최강 커버리지\n• T-Mobile: 휴스턴 5G 우수\n🌐 인터넷:\n• Comcast Xfinity: $40-80/월\n• AT&T Fiber: $55-80/월"
+            : "📱 National carriers all competitive\n• AT&T: Texas hometown — strongest coverage\n• T-Mobile: Excellent Houston 5G\n🌐 Internet:\n• Comcast Xfinity: $40-80/mo\n• AT&T Fiber: $55-80/mo",
+          tags: ["통신비", "AT&T", "휴스턴인터넷"] },
+      ],
+    },
+    sf: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
+          desc: ko
+            ? "📍 프리몬트(한인 밀집): 스튜디오 $1,800-2,200 | 1BR $2,100-2,600 | 2BR $2,600-3,300\n📍 산호세: 스튜디오 $1,900-2,400 | 1BR $2,200-2,800 | 2BR $2,800-3,600\n📍 SF 시내: 스튜디오 $2,200-2,800 | 1BR $2,800-3,600 | 2BR $3,600-4,800"
+            : "📍 Fremont (Korean hub): Studio $1,800-2,200 | 1BR $2,100-2,600 | 2BR $2,600-3,300\n📍 San Jose: Studio $1,900-2,400 | 1BR $2,200-2,800 | 2BR $2,800-3,600\n📍 SF Downtown: Studio $2,200-2,800 | 1BR $2,800-3,600 | 2BR $3,600-4,800",
+          tags: ["렌트", "SF베이", "프리몬트"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
+          desc: ko
+            ? "⚠️ 캘리포니아 소득세 최고 13.3%!\n판매세: SF 8.625% / 산호세 9.375% / 프리몬트 10.75%\n식료품: 면세 / 조리 음식: 과세\nCA 최저시급: $17.00/시\n\n💡 실리콘밸리 테크 급여가 높아 실수령액은 높지만 세금 부담도 큼"
+            : "⚠️ California income tax up to 13.3%!\nSales Tax: SF 8.625% / San Jose 9.375% / Fremont 10.75%\nGroceries: tax-exempt / Prepared food: taxed\nCA minimum wage: $17.00/hr\n\n💡 Silicon Valley tech salaries offset high taxes — but the burden is real",
+          tags: ["소득세", "캘리포니아", "실리콘밸리"] },
+        { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 프리몬트): $2,100-2,600\n• 식료품: $400-600\n• 교통 (BART+자전거): $120-180\n• 공과금: $150-250\n• 외식·여가: $300-500\n⟹ 합계: 약 $3,070-4,130/월"
+            : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Fremont): $2,100-2,600\n• Groceries: $400-600\n• Transit (BART+bike): $120-180\n• Utilities: $150-250\n• Dining out & leisure: $300-500\n⟹ Total: ~$3,070-4,130/month",
+          tags: ["생활비", "SF베이", "월평균"] },
+      ],
+      transportPhone: [
+        { emoji: "🚇", name: "교통·BART", nameEn: "Transportation & BART",
+          desc: ko
+            ? "🚗 CA주 기름값: $4.20-5.00/갤런 (2026년) — 전국 최고\n🚇 BART: $2.65-7.00 (거리별) 🔗 bart.gov\n🚌 Caltrain (SF-산호세 통근): $3-13 🔗 caltrain.com\n🚌 VTA (산타클라라): $2.50/회\n💡 프리몬트 → SF BART 직통 50-60분 / 빅테크 셔틀버스 운행"
+            : "🚗 CA gas: $4.20-5.00/gallon (2026) — nation's highest\n🚇 BART: $2.65-7.00 (distance-based) 🔗 bart.gov\n🚌 Caltrain (SF to San Jose commute): $3-13 🔗 caltrain.com\n🚌 VTA (Santa Clara): $2.50/ride\n💡 Fremont to SF via BART: 50-60 min direct / Big tech shuttles operate",
+          tags: ["BART", "Caltrain", "SF교통"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 실리콘밸리 최강 커버리지\n• T-Mobile·Verizon·AT&T 모두 5G 우수\n🌐 인터넷:\n• Comcast Xfinity: $40-80/월\n• AT&T Fiber: $55-80/월\n• Astound Broadband: $40-60/월"
+            : "📱 Silicon Valley = Top-tier coverage nationwide\n• T-Mobile, Verizon, AT&T all excellent 5G\n🌐 Internet:\n• Comcast Xfinity: $40-80/mo\n• AT&T Fiber: $55-80/mo\n• Astound Broadband: $40-60/mo",
+          tags: ["통신비", "Xfinity", "SF인터넷"] },
+      ],
+    },
+    toronto: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준, CAD)", nameEn: "Rent Prices — 2026 (CAD)",
+          desc: ko
+            ? "📍 노스요크/스카버러(한인 밀집): 스튜디오 CAD $1,800-2,200 | 1BR CAD $2,000-2,600 | 2BR CAD $2,600-3,200\n📍 미시사가: 스튜디오 CAD $1,700-2,100 | 1BR CAD $1,900-2,400 | 2BR CAD $2,400-3,000\n📍 다운타운 토론토: 스튜디오 CAD $2,200-2,800 | 1BR CAD $2,600-3,400 | 2BR CAD $3,200-4,200"
+            : "📍 North York/Scarborough (Korean hub): Studio CAD $1,800-2,200 | 1BR CAD $2,000-2,600 | 2BR CAD $2,600-3,200\n📍 Mississauga: Studio CAD $1,700-2,100 | 1BR CAD $1,900-2,400 | 2BR CAD $2,400-3,000\n📍 Downtown Toronto: Studio CAD $2,200-2,800 | 1BR CAD $2,600-3,400 | 2BR CAD $3,200-4,200",
+          tags: ["렌트", "토론토", "노스요크"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보 (캐나다)", nameEn: "Tax Information (Canada)",
+          desc: ko
+            ? "연방 소득세: 15-33% (누진)\n온타리오주 소득세: 5.05-13.16% (추가)\nHST (부가세): 13% (연방 5% + 온타리오 8%)\n기본 식료품: HST 면제\n최저시급: 온타리오 $17.20/시 (2024)\n\n💡 OHIP (온타리오 의료보험) — 3개월 대기 후 무료 의료"
+            : "Federal income tax: 15-33% (progressive)\nOntario provincial tax: 5.05-13.16% (additional)\nHST (consumption tax): 13% (Federal 5% + Ontario 8%)\nBasic groceries: HST-exempt\nMin wage: Ontario $17.20/hr (2024)\n\n💡 OHIP (Ontario Health Insurance) — free healthcare after 3-month wait",
+          tags: ["캐나다세금", "OHIP", "HST"] },
+        { emoji: "🛒", name: "생활비 평균 (CAD)", nameEn: "Average Monthly Expenses (CAD)",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비 (CAD):\n• 렌트 (1BR 노스요크): CAD $2,000-2,600\n• 식료품: CAD $400-600\n• 교통 (TTC): CAD $156/월 (정기권)\n• 공과금: CAD $100-180\n• 외식·여가: CAD $200-400\n⟹ 합계: 약 CAD $2,856-3,936/월\n💡 CAD/USD 환율 약 0.74 (2026년 기준)"
+            : "📊 Estimated monthly expenses (CAD):\n• Rent (1BR North York): CAD $2,000-2,600\n• Groceries: CAD $400-600\n• Transit (TTC): CAD $156/mo (pass)\n• Utilities: CAD $100-180\n• Dining out & leisure: CAD $200-400\n⟹ Total: ~CAD $2,856-3,936/month\n💡 CAD/USD rate ~0.74 (2026)",
+          tags: ["생활비", "토론토", "캐나다달러"] },
+      ],
+      transportPhone: [
+        { emoji: "🚇", name: "교통·TTC 지하철", nameEn: "Transit — TTC Subway",
+          desc: ko
+            ? "🚇 TTC 지하철: CAD $3.25/회 (PRESTO 카드) 🔗 ttc.ca\n🚌 TTC 버스: CAD $3.25/회 (30일 정기권: CAD $156)\n🚂 GO Transit (광역 통근) 🔗 gotransit.com\n🚗 다운타운 주차 비쌈 — 대중교통 권장\n💡 노스요크(욘지·핀치역) = 지하철 연결 핵심 한인지역"
+            : "🚇 TTC Subway: CAD $3.25/ride (PRESTO card) 🔗 ttc.ca\n🚌 TTC Bus: CAD $3.25/ride (30-day pass: CAD $156)\n🚂 GO Transit (regional commuting) 🔗 gotransit.com\n🚗 Downtown parking very expensive — transit recommended\n💡 North York (Yonge & Finch station) = subway-connected Korean hub",
+          tags: ["TTC", "지하철", "토론토교통"] },
+        { emoji: "📱", name: "통신비 (캐나다)", nameEn: "Phone & Internet (Canada)",
+          desc: ko
+            ? "📱 캐나다 통신비 비쌈! (미국보다 약 30-50% 높음)\n• Rogers: 무제한 $65-85/월\n• Public Mobile (저렴): $40-55/월\n🌐 인터넷:\n• Rogers: CAD $55-80/월\n• Bell Fibe: CAD $60-80/월\n💡 알뜰 통신 (Public Mobile·Fido·Koodo) 강력 추천"
+            : "📱 Canada mobile plans are expensive! (30-50% higher than US)\n• Rogers: unlimited $65-85/mo\n• Public Mobile (budget): $40-55/mo\n🌐 Internet:\n• Rogers: CAD $55-80/mo\n• Bell Fibe: CAD $60-80/mo\n💡 Budget MVNOs (Public Mobile, Fido, Koodo) highly recommended",
+          tags: ["통신비", "Rogers", "캐나다인터넷"] },
+      ],
+    },
+    vancouver: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준, CAD)", nameEn: "Rent Prices — 2026 (CAD)",
+          desc: ko
+            ? "📍 버나비(한인 밀집): 스튜디오 CAD $1,900-2,300 | 1BR CAD $2,200-2,700 | 2BR CAD $2,800-3,400\n📍 코퀴틀람: 스튜디오 CAD $1,700-2,100 | 1BR CAD $1,900-2,400 | 2BR CAD $2,400-3,000\n📍 밴쿠버 시내: 스튜디오 CAD $2,200-2,800 | 1BR CAD $2,700-3,500 | 2BR CAD $3,400-4,500"
+            : "📍 Burnaby (Korean hub): Studio CAD $1,900-2,300 | 1BR CAD $2,200-2,700 | 2BR CAD $2,800-3,400\n📍 Coquitlam: Studio CAD $1,700-2,100 | 1BR CAD $1,900-2,400 | 2BR CAD $2,400-3,000\n📍 Downtown Vancouver: Studio CAD $2,200-2,800 | 1BR CAD $2,700-3,500 | 2BR CAD $3,400-4,500",
+          tags: ["렌트", "밴쿠버", "버나비"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보 (BC주)", nameEn: "Tax Information (BC)",
+          desc: ko
+            ? "연방 소득세: 15-33% (누진)\nBC주 소득세: 5.06-20.5% (추가)\nGST + PST: 식료품 면세 / 기타 12%\n최저시급: BC $17.40/시 (2024)\n\n💡 BC Care Card — 3개월 대기 후 무료 의료 (OHIP 유사)\n💡 밴쿠버 = 북미 최고 생활 수준 + 높은 주거 비용"
+            : "Federal income tax: 15-33% (progressive)\nBC provincial tax: 5.06-20.5% (additional)\nGST + PST: groceries tax-free / others 12%\nMin wage: BC $17.40/hr (2024)\n\n💡 BC Care Card — free healthcare after 3-month wait (similar to OHIP)\n💡 Vancouver = top North American livability + high housing costs",
+          tags: ["BC세금", "캐나다", "의료보험"] },
+        { emoji: "🛒", name: "생활비 평균 (CAD)", nameEn: "Average Monthly Expenses (CAD)",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비 (CAD):\n• 렌트 (1BR 버나비): CAD $2,200-2,700\n• 식료품: CAD $400-600\n• 교통 (TransLink): CAD $124/월 (2존 정기권)\n• 공과금: CAD $80-150\n• 외식·여가: CAD $200-400\n⟹ 합계: 약 CAD $3,004-3,974/월"
+            : "📊 Estimated monthly expenses (CAD):\n• Rent (1BR Burnaby): CAD $2,200-2,700\n• Groceries: CAD $400-600\n• Transit (TransLink): CAD $124/mo (2-zone pass)\n• Utilities: CAD $80-150\n• Dining out & leisure: CAD $200-400\n⟹ Total: ~CAD $3,004-3,974/month",
+          tags: ["생활비", "밴쿠버", "캐나다달러"] },
+      ],
+      transportPhone: [
+        { emoji: "🚇", name: "교통·SkyTrain", nameEn: "Transit — SkyTrain",
+          desc: ko
+            ? "🚇 SkyTrain: CAD $3.15/회 (Compass 카드) 🔗 translink.ca\n🚌 버스: CAD $3.15/회 (월 정기권 CAD $124)\n💡 버나비 → 밴쿠버 SkyTrain 20-30분\n🚲 자전거 친화 도시 (사이클 레인 발달)\n🚗 다운타운 주차 비쌈"
+            : "🚇 SkyTrain (light rail): CAD $3.15/ride (Compass card) 🔗 translink.ca\n🚌 Bus: CAD $3.15/ride (monthly pass: CAD $124)\n💡 Burnaby to Vancouver via SkyTrain: 20-30 min\n🚲 Bike-friendly city with extensive cycle lanes\n🚗 Downtown parking very expensive",
+          tags: ["SkyTrain", "TransLink", "밴쿠버교통"] },
+        { emoji: "📱", name: "통신비 (캐나다)", nameEn: "Phone & Internet (Canada)",
+          desc: ko
+            ? "📱 캐나다 통신비 비쌈 — 알뜰 요금제 활용!\n• Telus: BC 최강 커버리지 (무제한 $65-80/월)\n• Koodo (Telus 계열 알뜰): $40-55/월\n🌐 인터넷:\n• Telus PureFibre: CAD $60-80/월 (BC 최고)\n• Shaw/Rogers: CAD $55-75/월"
+            : "📱 Canada plans expensive — budget MVNOs recommended!\n• Telus: Best BC coverage (unlimited $65-80/mo)\n• Koodo (Telus budget brand): $40-55/mo\n🌐 Internet:\n• Telus PureFibre: CAD $60-80/mo (BC's best)\n• Shaw/Rogers: CAD $55-75/mo",
+          tags: ["통신비", "Telus", "밴쿠버인터넷"] },
+      ],
+    },
+    boston: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
+          desc: ko
+            ? "📍 올스턴/브라이턴(한인 밀집): 스튜디오 $1,800-2,200 | 1BR $2,100-2,600 | 2BR $2,600-3,200\n📍 퀸시/밀턴: 스튜디오 $1,700-2,100 | 1BR $1,900-2,400 | 2BR $2,400-3,000\n📍 보스턴 시내: 스튜디오 $2,200-2,800 | 1BR $2,600-3,400 | 2BR $3,200-4,200"
+            : "📍 Allston/Brighton (Korean hub): Studio $1,800-2,200 | 1BR $2,100-2,600 | 2BR $2,600-3,200\n📍 Quincy/Milton: Studio $1,700-2,100 | 1BR $1,900-2,400 | 2BR $2,400-3,000\n📍 Downtown Boston: Studio $2,200-2,800 | 1BR $2,600-3,400 | 2BR $3,200-4,200",
+          tags: ["렌트", "보스턴", "올스턴"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
+          desc: ko
+            ? "MA주 소득세: 5% (단일세율, 비교적 낮음)\n판매세: 6.25%\n식료품·처방약: 세금 면제\nMA 최저시급: $15.00/시\n\n💡 상대적으로 낮은 소득세 + 교육도시 (하버드·MIT·BU 등)\n⚠️ 의료·생활비 물가는 높은 편"
+            : "MA income tax: 5% (flat rate, relatively low)\nSales Tax: 6.25%\nGroceries & prescription drugs: tax-exempt\nMA minimum wage: $15.00/hr\n\n💡 Relatively low income tax + education hub (Harvard, MIT, BU, etc.)\n⚠️ Healthcare & living costs are high",
+          tags: ["소득세", "매사추세츠", "세금"] },
+        { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 올스턴): $2,100-2,600\n• 식료품: $350-500\n• 교통 (MBTA): $90/월 (무제한 CharlieCard)\n• 공과금: $120-200\n• 외식·여가: $250-400\n⟹ 합계: 약 $2,910-3,790/월"
+            : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Allston): $2,100-2,600\n• Groceries: $350-500\n• Transit (MBTA): $90/mo (unlimited CharlieCard)\n• Utilities: $120-200\n• Dining out & leisure: $250-400\n⟹ Total: ~$2,910-3,790/month",
+          tags: ["생활비", "보스턴", "월평균"] },
+      ],
+      transportPhone: [
+        { emoji: "🚇", name: "교통·MBTA (The T)", nameEn: "Transit — MBTA (The T)",
+          desc: ko
+            ? "🚇 MBTA 지하철(The T): $2.40/회 🔗 mbta.com\n🚌 버스: $1.70/회 (무제한 월정기권: $90)\n🚂 Commuter Rail: 퀸시 → 보스턴 통근 필수\n💡 올스턴 → 다운타운 B·C·D 라인 20-30분\n🚗 시내 주차 매우 비쌈"
+            : "🚇 MBTA Subway (The T): $2.40/ride 🔗 mbta.com\n🚌 Bus: $1.70/ride (unlimited monthly: $90)\n🚂 Commuter Rail: Quincy to Boston commuting essential\n💡 Allston to downtown via B/C/D lines: 20-30 min\n🚗 Downtown parking very expensive",
+          tags: ["MBTA", "지하철", "보스턴교통"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 대학도시 특성상 전국 통신사 우수 커버리지\n• T-Mobile: 보스턴 5G 우수\n• Verizon: 가장 안정적\n🌐 인터넷:\n• Comcast Xfinity: $40-80/월\n• Verizon Fios (일부 지역): $50-80/월\n• RCN (올스턴 지역): $40-65/월"
+            : "📱 Major carriers excellent (university city)\n• T-Mobile: Great Boston 5G\n• Verizon: Most reliable\n🌐 Internet:\n• Comcast Xfinity: $40-80/mo\n• Verizon Fios (select areas): $50-80/mo\n• RCN (Allston area): $40-65/mo",
+          tags: ["통신비", "Xfinity", "보스턴인터넷"] },
+      ],
+    },
+    nashville: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
+          desc: ko
+            ? "📍 쿨스프링스/프랭클린(한인 거주): 스튜디오 $1,300-1,600 | 1BR $1,500-1,900 | 2BR $1,900-2,400\n📍 안티오크: 스튜디오 $1,100-1,400 | 1BR $1,300-1,700 | 2BR $1,700-2,100\n📍 내쉬빌 시내: 스튜디오 $1,600-2,100 | 1BR $1,900-2,500 | 2BR $2,400-3,100"
+            : "📍 Cool Springs/Franklin (Korean area): Studio $1,300-1,600 | 1BR $1,500-1,900 | 2BR $1,900-2,400\n📍 Antioch: Studio $1,100-1,400 | 1BR $1,300-1,700 | 2BR $1,700-2,100\n📍 Downtown Nashville: Studio $1,600-2,100 | 1BR $1,900-2,500 | 2BR $2,400-3,100",
+          tags: ["렌트", "내쉬빌", "프랭클린"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
+          desc: ko
+            ? "✅ 테네시주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 내쉬빌 9.25% (TN 7% + 지방 2.25%)\n⚠️ 식료품 판매세: 4% (다른 주보다 높음)\nTN 최저시급: $7.25/시 (연방 기준)\n\n💡 텍사스와 마찬가지로 소득세 0% — 미국에서 가장 세금 낮은 주 중 하나"
+            : "✅ Tennessee has NO state income tax!\nSales Tax: Nashville 9.25% (TN 7% + local 2.25%)\n⚠️ Grocery sales tax: 4% (higher than most states)\nTN minimum wage: $7.25/hr (federal rate)\n\n💡 Like Texas — 0% income tax makes TN one of the lowest-tax states in US",
+          tags: ["소득세없음", "테네시", "세금"] },
+        { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 쿨스프링스): $1,500-1,900\n• 식료품: $280-400\n• 교통 (차량 필수): $100-160 + 기름값\n• 공과금 (전기·인터넷): $120-180\n• 외식·여가: $200-350\n⟹ 합계: 약 $2,200-2,990/월"
+            : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Cool Springs): $1,500-1,900\n• Groceries: $280-400\n• Transport (car required): $100-160 + gas\n• Utilities (electric+internet): $120-180\n• Dining out & leisure: $200-350\n⟹ Total: ~$2,200-2,990/month",
+          tags: ["생활비", "내쉬빌", "월평균"] },
+      ],
+      transportPhone: [
+        { emoji: "⛽", name: "교통·기름값", nameEn: "Transportation & Gas",
+          desc: ko
+            ? "🚗 TN주 기름값: $2.90-3.50/갤런 (2026년)\n🚌 WeGo 버스: $2.00/회 🔗 wegotransit.com\n🚗 내쉬빌은 차량 필수 도시\n🛣️ I-65, I-24, I-40 방사형 고속도로\n💡 쿨스프링스·프랭클린 거주 시 차량 필수"
+            : "🚗 TN gas: $2.90-3.50/gallon (2026)\n🚌 WeGo Bus: $2.00/ride 🔗 wegotransit.com\n🚗 Nashville is car-required city\n🛣️ I-65, I-24, I-40 radial freeways\n💡 Car essential for Cool Springs/Franklin residents",
+          tags: ["기름값", "WeGo", "내쉬빌교통"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 전국 통신사 서비스\n• T-Mobile: $30/월 (선불)\n• AT&T: 테네시 커버리지 우수\n🌐 인터넷:\n• Xfinity: $40-70/월\n• AT&T Fiber (일부 지역): $55-80/월"
+            : "📱 Major carriers available\n• T-Mobile: $30/mo (prepaid)\n• AT&T: Excellent Tennessee coverage\n🌐 Internet:\n• Xfinity: $40-70/mo\n• AT&T Fiber (select areas): $55-80/mo",
+          tags: ["통신비", "AT&T", "내쉬빌인터넷"] },
+      ],
+    },
+    atlanta: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
+          desc: ko
+            ? "📍 둘루스/스와니(한인 밀집, 귀넷카운티): 스튜디오 $1,200-1,500 | 1BR $1,400-1,800 | 2BR $1,800-2,300\n📍 샌디스프링스: 스튜디오 $1,400-1,800 | 1BR $1,600-2,100 | 2BR $2,100-2,700\n📍 애틀랜타 버클헤드: 스튜디오 $1,600-2,100 | 1BR $2,000-2,600 | 2BR $2,500-3,200"
+            : "📍 Duluth/Suwanee (Korean hub, Gwinnett Co.): Studio $1,200-1,500 | 1BR $1,400-1,800 | 2BR $1,800-2,300\n📍 Sandy Springs: Studio $1,400-1,800 | 1BR $1,600-2,100 | 2BR $2,100-2,700\n📍 Atlanta Buckhead: Studio $1,600-2,100 | 1BR $2,000-2,600 | 2BR $2,500-3,200",
+          tags: ["렌트", "애틀랜타", "둘루스"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
+          desc: ko
+            ? "GA주 소득세: 5.49% (2024) → 단계적 인하 예정\n판매세: 귀넷카운티 8% / 풀턴카운티 8.9%\n식료품 판매세: 면제 (GA 주요 장점!)\nGA 최저시급: $7.25/시 (연방 기준)\n\n💡 비교적 낮은 생활비 + 대규모 한인 커뮤니티 (둘루스·스와니)"
+            : "GA income tax: 5.49% (2024, gradually reducing)\nSales Tax: Gwinnett Co 8% / Fulton Co 8.9%\nGrocery sales tax: EXEMPT (GA major benefit!)\nGA minimum wage: $7.25/hr (federal rate)\n\n💡 Relatively low cost of living + large Korean community (Duluth/Suwanee)",
+          tags: ["GA소득세", "귀넷카운티", "세금"] },
+        { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 둘루스): $1,400-1,800\n• 식료품: $280-400\n• 교통 (차량 필수): $100-160 + 기름값\n• 공과금: $120-200\n• 외식·여가: $200-350\n⟹ 합계: 약 $2,100-2,910/월"
+            : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Duluth): $1,400-1,800\n• Groceries: $280-400\n• Transport (car required): $100-160 + gas\n• Utilities: $120-200\n• Dining out & leisure: $200-350\n⟹ Total: ~$2,100-2,910/month",
+          tags: ["생활비", "애틀랜타", "월평균"] },
+      ],
+      transportPhone: [
+        { emoji: "⛽", name: "교통·기름값", nameEn: "Transportation & Gas",
+          desc: ko
+            ? "🚗 GA주 기름값: $3.00-3.60/갤런 (2026년)\n🚇 MARTA 지하철: $2.50/회 (Breeze 카드) 🔗 itsmarta.com\n🚗 둘루스·스와니는 차량 필수 (대중교통 미도달)\n💡 ATL 공항 → 도심 MARTA 25분 ($2.50) — 편리!"
+            : "🚗 GA gas: $3.00-3.60/gallon (2026)\n🚇 MARTA Subway: $2.50/ride (Breeze card) 🔗 itsmarta.com\n🚗 Duluth/Suwanee: car required (no transit coverage)\n💡 ATL Airport to downtown via MARTA: 25 min ($2.50) — convenient!",
+          tags: ["기름값", "MARTA", "애틀랜타교통"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 전국 통신사 우수 커버리지\n• AT&T: 조지아 커버리지 강함\n• T-Mobile: 애틀랜타 5G 우수\n🌐 인터넷:\n• Xfinity: $40-80/월 (귀넷카운티 주요)\n• AT&T Fiber: $55-80/월\n• Google Fiber (일부 지역)"
+            : "📱 Major carriers excellent coverage\n• AT&T: Strong Georgia coverage\n• T-Mobile: Great Atlanta 5G\n🌐 Internet:\n• Xfinity: $40-80/mo (Gwinnett Co primary)\n• AT&T Fiber: $55-80/mo\n• Google Fiber (select areas)",
+          tags: ["통신비", "Xfinity", "애틀랜타인터넷"] },
+      ],
+    },
+    miami: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
+          desc: ko
+            ? "📍 도랄/켄달(한인 거주): 스튜디오 $1,800-2,200 | 1BR $2,000-2,600 | 2BR $2,600-3,200\n📍 마이애미 비치: 스튜디오 $2,200-2,800 | 1BR $2,600-3,400 | 2BR $3,400-4,500\n📍 마이애미 다운타운: 스튜디오 $2,000-2,500 | 1BR $2,300-3,000 | 2BR $2,900-3,800"
+            : "📍 Doral/Kendall (Korean area): Studio $1,800-2,200 | 1BR $2,000-2,600 | 2BR $2,600-3,200\n📍 Miami Beach: Studio $2,200-2,800 | 1BR $2,600-3,400 | 2BR $3,400-4,500\n📍 Downtown Miami: Studio $2,000-2,500 | 1BR $2,300-3,000 | 2BR $2,900-3,800",
+          tags: ["렌트", "마이애미", "도랄"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
+          desc: ko
+            ? "✅ 플로리다주 소득세 없음!\n판매세: 마이애미데이드카운티 7.0%\n식료품·처방약: 세금 면제\nFL 최저시급: $12.00/시 (2024)\n\n💡 텍사스·테네시와 함께 무소득세 주 (세금 부담 낮음)\n⚠️ 허리케인 보험·홍수 보험 비용 높음"
+            : "✅ Florida has NO state income tax!\nSales Tax: Miami-Dade County 7.0%\nGroceries & prescription drugs: tax-exempt\nFL minimum wage: $12.00/hr (2024)\n\n💡 Zero income tax alongside Texas & Tennessee\n⚠️ Hurricane and flood insurance costs are high",
+          tags: ["소득세없음", "플로리다", "세금"] },
+        { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 도랄): $2,000-2,600\n• 식료품: $300-450\n• 교통 (차량 필수 + 기름): $100-160\n• 공과금 (에어컨 상시): $150-250\n• 외식·여가: $250-400\n⟹ 합계: 약 $2,800-3,860/월"
+            : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Doral): $2,000-2,600\n• Groceries: $300-450\n• Transport (car required + gas): $100-160\n• Utilities (AC always running): $150-250\n• Dining out & leisure: $250-400\n⟹ Total: ~$2,800-3,860/month",
+          tags: ["생활비", "마이애미", "월평균"] },
+      ],
+      transportPhone: [
+        { emoji: "⛽", name: "교통·기름값", nameEn: "Transportation & Gas",
+          desc: ko
+            ? "🚗 FL주 기름값: $3.20-3.80/갤런 (2026년)\n🚇 Miami-Dade Metrorail: $2.25/회 🔗 miamidade.gov/transit\n🚗 마이애미는 차량 필수 (도랄·켄달 대중교통 부족)\n🚂 Tri-Rail: 마이애미 → 포트로더데일 통근 가능"
+            : "🚗 FL gas: $3.20-3.80/gallon (2026)\n🚇 Miami-Dade Metrorail: $2.25/ride 🔗 miamidade.gov/transit\n🚗 Miami is car-required (Doral/Kendall limited transit)\n🚂 Tri-Rail commuter train (Miami to Fort Lauderdale)",
+          tags: ["기름값", "Metrorail", "마이애미교통"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 플로리다 통신 경쟁 우수\n• T-Mobile: 마이애미 5G 우수\n• AT&T: FL 커버리지 강함\n🌐 인터넷:\n• Comcast Xfinity: $40-80/월\n• AT&T Fiber: $55-80/월"
+            : "📱 Florida carrier competition strong\n• T-Mobile: Great Miami 5G\n• AT&T: Strong FL coverage\n🌐 Internet:\n• Comcast Xfinity: $40-80/mo\n• AT&T Fiber: $55-80/mo",
+          tags: ["통신비", "Xfinity", "마이애미인터넷"] },
+      ],
+    },
+    philadelphia: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
+          desc: ko
+            ? "📍 어퍼다비/체리힐NJ(한인 거주): 스튜디오 $1,200-1,600 | 1BR $1,500-1,900 | 2BR $1,900-2,400\n📍 노리스타운: 스튜디오 $1,100-1,400 | 1BR $1,300-1,700 | 2BR $1,700-2,200\n📍 필라델피아 시내: 스튜디오 $1,600-2,100 | 1BR $1,900-2,500 | 2BR $2,400-3,200"
+            : "📍 Upper Darby/Cherry Hill NJ (Korean area): Studio $1,200-1,600 | 1BR $1,500-1,900 | 2BR $1,900-2,400\n📍 Norristown: Studio $1,100-1,400 | 1BR $1,300-1,700 | 2BR $1,700-2,200\n📍 Downtown Philly: Studio $1,600-2,100 | 1BR $1,900-2,500 | 2BR $2,400-3,200",
+          tags: ["렌트", "필라델피아", "뉴저지"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
+          desc: ko
+            ? "PA주 소득세: 3.07% (낮음!)\n판매세: PA 6% / 필라델피아市 8%\n식료품·처방약: 세금 면제\nPA 최저시급: $7.25/시 (연방 기준)\n필라 시내 근무자 임금세: 거주자 3.75% (추가)\n\n💡 NJ 거주 + 필라 근무 시 NJ 세금 적용 — 복잡할 수 있음"
+            : "PA income tax: 3.07% (relatively low!)\nSales Tax: PA 6% / Philadelphia City 8%\nGroceries & prescription drugs: tax-exempt\nPA minimum wage: $7.25/hr (federal)\nPhiladelphia wage tax (city workers, residents): 3.75% additional\n\n💡 NJ residents working in Philly — NJ taxes apply (can get complex)",
+          tags: ["PA소득세", "필라델피아", "세금"] },
+        { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 어퍼다비): $1,500-1,900\n• 식료품: $300-430\n• 교통 (SEPTA): $96/월 (무제한)\n• 공과금: $120-200\n• 외식·여가: $200-350\n⟹ 합계: 약 $2,216-2,880/월"
+            : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Upper Darby): $1,500-1,900\n• Groceries: $300-430\n• Transit (SEPTA): $96/mo (unlimited)\n• Utilities: $120-200\n• Dining out & leisure: $200-350\n⟹ Total: ~$2,216-2,880/month",
+          tags: ["생활비", "필라델피아", "월평균"] },
+      ],
+      transportPhone: [
+        { emoji: "🚇", name: "교통·SEPTA", nameEn: "Transit — SEPTA",
+          desc: ko
+            ? "🚇 SEPTA 지하철: $2.50/회 🔗 septa.org\n🚌 버스: $2.50/회 (월정기권 $96)\n🚂 Regional Rail (NJ ↔ 필라 통근)\n💡 체리힐(NJ) → 필라 PATCO 전철 25분\n🚗 교외 지역은 차량 필요"
+            : "🚇 SEPTA Subway: $2.50/ride 🔗 septa.org\n🚌 Bus: $2.50/ride (monthly unlimited: $96)\n🚂 Regional Rail (NJ to Philly commuting)\n💡 Cherry Hill (NJ) to Philly via PATCO: 25 min\n🚗 Car needed for suburban areas",
+          tags: ["SEPTA", "지하철", "필라교통"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 전국 통신사 우수 커버리지\n• T-Mobile·Verizon 모두 강함\n🌐 인터넷:\n• Comcast Xfinity (본사 필라): $40-80/월 — 최강 커버리지\n• Verizon Fios: $50-80/월"
+            : "📱 Major carriers strong coverage\n• T-Mobile & Verizon both strong\n🌐 Internet:\n• Comcast Xfinity (HQ in Philly): $40-80/mo — best coverage\n• Verizon Fios: $50-80/mo",
+          tags: ["통신비", "Xfinity", "필라인터넷"] },
+      ],
+    },
+    kansascity: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
+          desc: ko
+            ? "📍 오버랜드파크(KS, 한인 거주): 스튜디오 $900-1,200 | 1BR $1,100-1,500 | 2BR $1,400-1,900\n📍 리우드/리우드KS: 스튜디오 $800-1,100 | 1BR $1,000-1,400 | 2BR $1,300-1,700\n📍 KC 다운타운(MO): 스튜디오 $1,100-1,500 | 1BR $1,300-1,800 | 2BR $1,700-2,300"
+            : "📍 Overland Park (KS, Korean area): Studio $900-1,200 | 1BR $1,100-1,500 | 2BR $1,400-1,900\n📍 Lenexa/Leawood (KS): Studio $800-1,100 | 1BR $1,000-1,400 | 2BR $1,300-1,700\n📍 Downtown KC (MO): Studio $1,100-1,500 | 1BR $1,300-1,800 | 2BR $1,700-2,300",
+          tags: ["렌트", "캔자스시티", "오버랜드파크"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
+          desc: ko
+            ? "MO주 소득세: 4.95% / KS주 소득세: 5.7%\n(거주 주에 따라 다름 — 중요!)\n판매세: MO 8.35% / KS 8.7%\n식료품 판매세: MO 면세 / KS 0% (2025년 완전 면세)\n최저시급: MO $12.30 / KS $7.25/시\n\n💡 미주리·캔자스 주 경계 도시 — 거주지 선택이 세금에 중요"
+            : "MO income tax: 4.95% / KS income tax: 5.7%\n(Depends on which side of the border you live — important!)\nSales Tax: MO 8.35% / KS 8.7%\nGrocery tax: MO exempt / KS 0% (fully exempt from 2025)\nMin wage: MO $12.30 / KS $7.25/hr\n\n💡 Straddling MO-KS border — your residence state matters for taxes",
+          tags: ["MO세금", "KS세금", "캔자스시티"] },
+        { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 오버랜드파크): $1,100-1,500\n• 식료품: $250-380\n• 교통 (차량 필수): $80-130 + 기름값\n• 공과금: $100-170\n• 외식·여가: $180-300\n⟹ 합계: 약 $1,710-2,480/월\n\n💡 미국에서 가장 저렴한 주요 도시 중 하나!"
+            : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Overland Park): $1,100-1,500\n• Groceries: $250-380\n• Transport (car required): $80-130 + gas\n• Utilities: $100-170\n• Dining out & leisure: $180-300\n⟹ Total: ~$1,710-2,480/month\n\n💡 One of the most affordable major metros in the US!",
+          tags: ["생활비", "캔자스시티", "저렴"] },
+      ],
+      transportPhone: [
+        { emoji: "⛽", name: "교통·기름값", nameEn: "Transportation & Gas",
+          desc: ko
+            ? "🚗 MO/KS 기름값: $2.90-3.50/갤런 (2026년)\n🚌 RideKC 버스: $1.50/회 🔗 ridekc.org\n🚗 KC는 차량 필수 도시\n🛣️ I-35, I-70, US-69 방사형 고속도로\n💡 무료 KC Streetcar (다운타운 2마일 구간 무료!)"
+            : "🚗 MO/KS gas: $2.90-3.50/gallon (2026)\n🚌 RideKC Bus: $1.50/ride 🔗 ridekc.org\n🚗 Kansas City is car-required city\n🛣️ I-35, I-70, US-69 radial freeways\n💡 FREE KC Streetcar (downtown 2-mile loop — free!)",
+          tags: ["기름값", "RideKC", "KC교통"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 전국 통신사 서비스\n• T-Mobile: KC 5G 커버리지 우수\n🌐 인터넷:\n• Spectrum: $50-70/월 (KC 주요)\n• Google Fiber KC: $70-100/월 (기가 인터넷)"
+            : "📱 National carriers all available\n• T-Mobile: Good KC 5G\n🌐 Internet:\n• Spectrum: $50-70/mo (KC's primary)\n• Google Fiber KC: $70-100/mo (gigabit)",
+          tags: ["통신비", "Spectrum", "KC인터넷"] },
+      ],
+    },
+    mexicocity: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준, MXN/USD)", nameEn: "Rent Prices — 2026 (MXN/USD)",
+          desc: ko
+            ? "📍 폴랑코/산타페(한인 밀집): 스튜디오 MXN $12,000-18,000 | 1BR MXN $16,000-24,000\n📍 콜로니아 나폴레스: 스튜디오 MXN $10,000-14,000 | 1BR MXN $13,000-20,000\n💡 USD 기준 약 $600-1,300 (환율: 1 USD ≈ MXN 18-19)\n북미에서 가장 저렴한 한인 거점 도시!"
+            : "📍 Polanco/Santa Fe (Korean hub): Studio MXN $12,000-18,000 | 1BR MXN $16,000-24,000\n📍 Colonia Nápoles: Studio MXN $10,000-14,000 | 1BR MXN $13,000-20,000\n💡 USD equivalent: ~$600-1,300 (rate: 1 USD ≈ MXN 18-19)\nMost affordable Korean hub city in North America!",
+          tags: ["렌트", "멕시코시티", "폴랑코"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보 (멕시코)", nameEn: "Tax Information (Mexico)",
+          desc: ko
+            ? "연방 ISR (소득세): 1.92-35% (누진)\nIVA (부가가치세): 16% (식료품·의약품 면세)\n멕시코 최저임금: MXN 248/일 (2024년)\n\n💡 외국 취업자 RFC (납세자 등록) 필수\n💡 한인 CPA 또는 현지 회계사 상담 필수"
+            : "Federal ISR (income tax): 1.92-35% (progressive)\nIVA (value-added tax): 16% (groceries & meds exempt)\nMexico minimum wage: MXN 248/day (2024)\n\n💡 Foreign workers must register RFC (taxpayer ID)\n💡 Korean or local CPA consultation essential",
+          tags: ["멕시코세금", "ISR", "RFC"] },
+        { emoji: "🛒", name: "생활비 평균 (USD 기준)", nameEn: "Average Monthly Expenses (USD)",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비 (USD):\n• 렌트 (1BR 폴랑코): $800-1,300\n• 식료품: $150-250\n• 교통 (메트로+버스): $15-30\n• 공과금: $50-100\n• 외식·여가: $200-400\n⟹ 합계: 약 $1,215-2,080/월\n\n💡 북미에서 가장 저렴한 한인 거점!"
+            : "📊 Estimated monthly expenses (USD basis):\n• Rent (1BR Polanco): $800-1,300\n• Groceries: $150-250\n• Transit (Metro+bus): $15-30\n• Utilities: $50-100\n• Dining out & leisure: $200-400\n⟹ Total: ~$1,215-2,080/month\n\n💡 Most affordable Korean hub city in North America!",
+          tags: ["생활비", "멕시코시티", "저렴"] },
+      ],
+      transportPhone: [
+        { emoji: "🚇", name: "교통·Metro & Metrobús", nameEn: "Transit — Metro & Metrobús",
+          desc: ko
+            ? "🚇 멕시코시티 메트로: MXN $5/회 (~$0.28) 🔗 metro.cdmx.gob.mx\n🚌 Metrobús: MXN $6/회 (~$0.33)\n🚗 Uber/DiDi: 매우 저렴 (평균 $3-6/회)\n⚠️ 주중 시내 차량 운행 제한 (Hoy No Circula)\n💡 폴랑코 ↔ 도심 메트로 7호선 20분"
+            : "🚇 Mexico City Metro: MXN $5/ride (~$0.28) 🔗 metro.cdmx.gob.mx\n🚌 Metrobús: MXN $6/ride (~$0.33)\n🚗 Uber/DiDi: Very cheap (avg $3-6/trip)\n⚠️ Weekday downtown driving restrictions (Hoy No Circula)\n💡 Polanco to downtown via Metro Line 7: 20 min",
+          tags: ["멕시코Metro", "Uber", "멕시코교통"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 멕시코 통신 (Telcel 최강)\n• Telcel: 멕시코 최대 커버리지 (MXN 250/월 선불)\n• Movistar: MXN 200-300/월\n🌐 인터넷:\n• Telmex/Infinitum: MXN $400-700/월 ($22-39)\n💡 현지 SIM이 한국 로밍보다 훨씬 저렴"
+            : "📱 Mexico telecom (Telcel is dominant)\n• Telcel: Mexico's largest network (MXN 250/mo prepaid)\n• Movistar: MXN 200-300/mo\n🌐 Internet:\n• Telmex/Infinitum: MXN $400-700/mo ($22-39)\n💡 Local SIM is much cheaper than Korean carrier roaming",
+          tags: ["통신비", "Telcel", "멕시코인터넷"] },
+      ],
+    },
+  };
+
+  // 나머지 도시 (guadalajara, monterrey 등) 공통 fallback
+  const generic: CostData = {
+    rentHousing: [
+      { emoji: "🏠", name: ko ? "렌트 시세 — 정보 업데이트 중" : "Rent Prices — Info Being Updated",
+        desc: ko
+          ? "📊 이 도시의 렌트 정보를 업데이트 중입니다.\n\n일반 참고:\n• 스튜디오: $1,000-2,000\n• 1BR: $1,200-2,500\n• 2BR: $1,600-3,200\n\n💡 Zillow·Apartments.com에서 현재 시세를 확인하세요\n🔗 zillow.com | apartments.com"
+          : "📊 Rent data for this city is being updated.\n\nGeneral reference:\n• Studio: $1,000-2,000\n• 1BR: $1,200-2,500\n• 2BR: $1,600-3,200\n\n💡 Check current rates at Zillow or Apartments.com\n🔗 zillow.com | apartments.com",
+        tags: ko ? ["렌트", "업데이트중"] : ["Rent", "Updating"] },
+    ],
+    taxLiving: [
+      { emoji: "💵", name: ko ? "세금 정보" : "Tax Information",
+        desc: ko
+          ? "각 도시·주의 세금 정보를 업데이트 중입니다.\n\n공통 적용:\n• 연방 소득세: 10-37% (누진)\n• FBAR: 해외계좌 $10,000 초과 시 신고 필수\n• VITA 무료 세금신고: 소득 $67,000 이하\n\n💡 현지 한인 CPA에게 개인 상황 맞춤 상담을 받으세요"
+          : "Tax information for this city is being updated.\n\nUniversal US rules:\n• Federal income tax: 10-37% (progressive)\n• FBAR: Required if foreign accounts exceed $10,000\n• VITA free tax filing: Income under $67,000\n\n💡 Consult a local Korean CPA for your specific situation",
+        tags: ko ? ["세금", "연방세", "VITA"] : ["Tax", "Federal", "VITA"] },
+      { emoji: "🛒", name: ko ? "생활비 정보 업데이트 중" : "Cost of Living — Being Updated",
+        desc: ko
+          ? "이 도시의 상세 생활비 정보를 준비 중입니다.\n\n💡 도시별 생활비 비교: numbeo.com/cost-of-living/"
+          : "Detailed cost of living data for this city is being prepared.\n\n💡 Compare city costs: numbeo.com/cost-of-living/",
+        tags: ko ? ["생활비", "업데이트중"] : ["Living Cost", "Updating"] },
+    ],
+    transportPhone: [
+      { emoji: "⛽", name: ko ? "교통 정보 업데이트 중" : "Transport Info — Being Updated",
+        desc: ko
+          ? "이 도시의 교통 정보를 업데이트 중입니다.\n\n💡 Google Maps로 대중교통·차량 경로 확인\n🔗 maps.google.com"
+          : "Transport data for this city is being updated.\n\n💡 Use Google Maps to check public transit and driving routes\n🔗 maps.google.com",
+        tags: ko ? ["교통", "업데이트중"] : ["Transit", "Updating"] },
+      { emoji: "📱", name: ko ? "통신비" : "Phone & Internet",
+        desc: ko
+          ? "📱 전국 통신사는 모든 도시에서 사용 가능:\n• T-Mobile Prepaid: $30/월 (무제한)\n• Mint Mobile: $15/월 (3개월 선불)\n• AT&T·Verizon: 정규 요금제\n🌐 인터넷은 도시별 공급자 확인 필요"
+          : "📱 National carriers available in all cities:\n• T-Mobile Prepaid: $30/mo (unlimited)\n• Mint Mobile: $15/mo (3-month prepaid)\n• AT&T & Verizon: regular plans\n🌐 Internet providers vary by city",
+        tags: ko ? ["통신비", "T-Mobile", "인터넷"] : ["Phone", "T-Mobile", "Internet"] },
+    ],
+  };
+
+  return DATA[slug] || generic;
+}
+
+/* ─────────────────────────────────────────
    TAB 9: 생활비 SCREEN
 ───────────────────────────────────────── */
 function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSub?: number }) {
@@ -6184,44 +6728,14 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(initialSub);
   useEffect(() => { setSub(initialSub); }, [initialSub]);
+  const city = useCityConfig();
+  const isSeattle = city.slug === "seattle";
   const tabs = lang === "ko"
     ? ["렌트·주거", "세금·생활비", "교통·통신", "💡 알뜰생활", "📋 세금신고"]
     : ["Rent & Housing", "Tax & Living", "Transport & Phone", "💡 Smart Living", "📋 Tax Filing"];
   const accent = "#34D399";
 
-  const rentHousing = [
-    { emoji: "🏠", name: "렌트 시세 (2026년 기준)", nameEn: "Rent Prices — 2026",
-      desc: lang === "ko"
-        ? "📍 린우드/페더럴웨이: 스튜디오 $1,300-1,700 | 1BR $1,700-2,100 | 2BR $2,100-2,600\n📍 벨뷰: 스튜디오 $1,800-2,300 | 1BR $2,200-2,900 | 2BR $2,800-3,500\n📍 시애틀 시내: 스튜디오 $1,700-2,200 | 1BR $2,100-2,800 | 2BR $2,500-3,200"
-        : "📍 Lynnwood/Federal Way: Studio $1,300-1,700 | 1BR $1,700-2,100 | 2BR $2,100-2,600\n📍 Bellevue: Studio $1,800-2,300 | 1BR $2,200-2,900 | 2BR $2,800-3,500\n📍 Downtown Seattle: Studio $1,700-2,200 | 1BR $2,100-2,800 | 2BR $2,500-3,200",
-      tags: ["렌트", "주거", "비교"] },
-  ];
-
-  const taxLiving = [
-    { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
-      desc: lang === "ko"
-        ? "✅ 워싱턴주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 시애틀 10.4%\n식료품·처방약: 세금 면제\n시애틀 최저시급: $20.76/시 (2026년)\n재산세: 주택 소유 시 연 $5,000-15,000"
-        : "✅ WA State has NO income tax! (major benefit)\nSales Tax: 10.4% in Seattle\nGroceries & prescription drugs: tax-exempt\nSeattle minimum wage: $20.76/hr (2026)\nProperty tax: ~$5,000-15,000/yr if you own",
-      tags: ["세금", "소득세없음", "최저시급"] },
-    { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
-      desc: lang === "ko"
-        ? "📊 독신 기준 월 예상 생활비:\n• 렌트 (1BR 린우드): $1,800-2,000\n• 식료품: $300-500\n• 교통 (버스+ORCA): $100-130\n• 공과금 (전기·인터넷): $150-200\n• 외식·여가: $200-400\n⟹ 합계: 약 $2,550-3,230/월"
-        : "📊 Estimated monthly expenses (single person):\n• Rent (1BR Lynnwood): $1,800-2,000\n• Groceries: $300-500\n• Transit (bus+ORCA): $100-130\n• Utilities (electric+internet): $150-200\n• Dining out & leisure: $200-400\n⟹ Total: ~$2,550-3,230/month",
-      tags: ["생활비", "월평균", "예산"] },
-  ];
-
-  const transportPhone = [
-    { emoji: "⛽", name: "교통·기름값", nameEn: "Transportation & Gas",
-      desc: lang === "ko"
-        ? "🚗 WA주 기름값: $3.80-4.50/갤런 (2026년)\n🚌 Metro 버스: $2.75/회 (ORCA) 🔗 kingcounty.gov/metro\n🚇 Link Light Rail: $2.00-3.50 (거리별) 🔗 soundtransit.org\n🅿️ 시애틀 다운타운 주차: $3-8/시간\n💡 린우드 거주 시 대부분 차량 필요"
-        : "🚗 WA gas: $3.80-4.50/gallon (2026)\n🚌 Metro bus: $2.75/ride (ORCA) 🔗 kingcounty.gov/metro\n🚇 Link Light Rail: $2.00-3.50 (distance-based) 🔗 soundtransit.org\n🅿️ Downtown Seattle parking: $3-8/hr\n💡 Car almost essential if living in Lynnwood",
-      tags: ["기름값", "주차", "교통비"] },
-    { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
-      desc: lang === "ko"
-        ? "📱 휴대폰:\n• T-Mobile Prepaid: $30/월 (무제한 문자+통화+5GB) 🔗 t-mobile.com\n• Mint Mobile: $15/월 (온라인 3개월 선불) 🔗 mintmobile.com\n• AT&T: 🔗 att.com\n• Verizon 가족 플랜: $40-55/회선\n\n🌐 인터넷:\n• Xfinity: $40-80/월\n• CenturyLink/Lumen: $50-65/월\n• 기가 인터넷: $70-100/월"
-        : "📱 Phone:\n• T-Mobile Prepaid: $30/mo (unlimited) 🔗 t-mobile.com\n• Mint Mobile: $15/mo (3-month prepaid) 🔗 mintmobile.com\n• AT&T: 🔗 att.com\n• Verizon family plan: $40-55/line\n\n🌐 Internet:\n• Xfinity: $40-80/mo\n• CenturyLink/Lumen: $50-65/mo\n• Gigabit internet: $70-100/mo",
-      tags: ["통신비", "인터넷", "휴대폰"] },
-  ];
+  const { rentHousing, taxLiving, transportPhone } = getCityCostData(city.slug, lang);
 
   // ── 알뜰생활 탭 데이터 ──────────────────────────────────────────
   const smartShoppingMarkets = [
@@ -6295,8 +6809,8 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="💰" titleKo="생활비 가이드" titleEn="Living Cost Guide"
-        descKo={`${useCityConfig().nameKo} 렌트·세금·교통·통신비 완전 가이드`}
-        descEn={`Complete guide to rent, taxes, transport & phone costs in ${useCityConfig().nameEn}`}
+        descKo={`${city.nameKo} 렌트·세금·교통·통신비 완전 가이드`}
+        descEn={`Complete guide to rent, taxes, transport & phone costs in ${city.nameEn}`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5 px-4 md:px-6 lg:px-8">
@@ -6311,8 +6825,24 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
               </div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
                 {lang === "ko"
-                  ? "워싱턴주는 소득세가 없어서 같은 연봉이라도 캘리포니아(13.3%)나 오리건(9.9%)보다 실수령액이 훨씬 높습니다. 린우드 거주 시 Link Light Rail로 시애틀 통근이 가능해 교통비도 절약됩니다."
-                  : "WA has no income tax, so take-home pay is much higher than California (13.3%) or Oregon (9.9%) on the same salary. Living in Lynnwood and commuting via Link Light Rail also saves on transportation costs."}
+                  ? isSeattle
+                    ? "워싱턴주는 소득세가 없어서 같은 연봉이라도 캘리포니아(13.3%)나 오리건(9.9%)보다 실수령액이 훨씬 높습니다. 린우드 거주 시 Link Light Rail로 시애틀 통근이 가능해 교통비도 절약됩니다."
+                    : city.slug === "dallas" || city.slug === "houston" || city.slug === "nashville" || city.slug === "miami"
+                      ? `${city.nameKo}이 있는 주는 소득세가 없어 같은 연봉이라도 실수령액이 높습니다. VITA 무료 세금신고($67K 이하)와 Costco 멤버십을 적극 활용하세요.`
+                      : city.slug === "toronto" || city.slug === "vancouver"
+                        ? `캐나다는 OHIP/BC Care Card로 무료 의료 혜택을 받을 수 있습니다. 알뜰 통신(Public Mobile·Koodo)과 Costco 멤버십으로 생활비를 절약하세요.`
+                        : city.slug === "mexicocity"
+                          ? "멕시코시티는 북미에서 가장 저렴한 한인 거점 도시입니다. Uber/DiDi를 적극 활용하고, 현지 SIM으로 통신비를 크게 절약하세요."
+                          : `${city.nameKo}에서 VITA 무료 세금신고($67K 이하)를 꼭 활용하세요. Costco 멤버십($65/년)으로 연 $300+ 절약이 가능하며, Mint Mobile ($15/월)로 통신비도 줄일 수 있습니다.`
+                  : isSeattle
+                    ? "WA has no income tax, so take-home pay is much higher than California (13.3%) or Oregon (9.9%) on the same salary. Living in Lynnwood and commuting via Link Light Rail also saves on transportation costs."
+                    : city.slug === "dallas" || city.slug === "houston" || city.slug === "nashville" || city.slug === "miami"
+                      ? `${city.nameEn}'s state has no income tax — great for take-home pay. Use VITA free tax filing (under $67K) and a Costco membership to maximize savings.`
+                      : city.slug === "toronto" || city.slug === "vancouver"
+                        ? "Canada offers free healthcare (OHIP/BC Care Card) after a 3-month wait. Use budget carriers (Public Mobile, Koodo) and a Costco membership to reduce monthly costs."
+                        : city.slug === "mexicocity"
+                          ? "Mexico City is the most affordable Korean hub city in North America. Use Uber/DiDi frequently and get a local SIM to dramatically cut phone costs."
+                          : `In ${city.nameEn}, use VITA free tax filing (under $67K). A Costco membership ($65/yr) saves $300+/year, and Mint Mobile ($15/mo) keeps phone costs low.`}
               </div>
             </div>
           </>
@@ -6367,11 +6897,19 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                 {[
-                  { href: "https://www.spl.org", emoji: "📚", label: lang === "ko" ? "시애틀 공공도서관 (SPL)" : "Seattle Public Library (SPL)", sub: lang === "ko" ? "무료 인터넷·eBook(Libby)·Kanopy 영화·언어학습(Mango — 무료!)" : "Free internet, eBooks (Libby), Kanopy movies, Mango Languages (free!)" },
-                  { href: "https://www.seattleartmuseum.org", emoji: "🎨", label: lang === "ko" ? "시애틀 미술관 (SAM)" : "Seattle Art Museum (SAM)", sub: lang === "ko" ? "매달 첫째 목요일 오후 5-9시 무료 입장" : "FREE first Thursday of every month, 5-9PM" },
-                  { href: "https://www.zoo.org", emoji: "🦁", label: lang === "ko" ? "우들랜드 파크 동물원" : "Woodland Park Zoo", sub: lang === "ko" ? "시애틀 거주자 할인 요금 적용" : "Reduced price for Seattle residents" },
-                  { href: "https://discoverpass.wa.gov", emoji: "🌲", label: lang === "ko" ? "Discover Pass ($30/년)" : "Discover Pass ($30/yr)", sub: lang === "ko" ? "워싱턴주 전체 주립공원·해변 무제한 입장" : "All WA state parks & beaches — unlimited access" },
-                  { href: "https://www.vitataxhelp.org", emoji: "📋", label: lang === "ko" ? "VITA 무료 세금신고" : "VITA Free Tax Filing", sub: lang === "ko" ? "소득 $60K 이하 — 1월~4월 무료 세금 신고 (vitataxhelp.org)" : "Income under $60K — FREE tax prep Jan-April (vitataxhelp.org)" },
+                  // 시애틀 전용 자원
+                  ...(isSeattle ? [
+                    { href: "https://www.spl.org", emoji: "📚", label: lang === "ko" ? "시애틀 공공도서관 (SPL)" : "Seattle Public Library (SPL)", sub: lang === "ko" ? "무료 인터넷·eBook(Libby)·Kanopy 영화·언어학습(Mango — 무료!)" : "Free internet, eBooks (Libby), Kanopy movies, Mango Languages (free!)" },
+                    { href: "https://www.seattleartmuseum.org", emoji: "🎨", label: lang === "ko" ? "시애틀 미술관 (SAM)" : "Seattle Art Museum (SAM)", sub: lang === "ko" ? "매달 첫째 목요일 오후 5-9시 무료 입장" : "FREE first Thursday of every month, 5-9PM" },
+                    { href: "https://www.zoo.org", emoji: "🦁", label: lang === "ko" ? "우들랜드 파크 동물원" : "Woodland Park Zoo", sub: lang === "ko" ? "시애틀 거주자 할인 요금 적용" : "Reduced price for Seattle residents" },
+                    { href: "https://discoverpass.wa.gov", emoji: "🌲", label: lang === "ko" ? "Discover Pass ($30/년)" : "Discover Pass ($30/yr)", sub: lang === "ko" ? "워싱턴주 전체 주립공원·해변 무제한 입장" : "All WA state parks & beaches — unlimited access" },
+                  ] : [
+                    // 전 도시 공통 자원 (도시명 삽입)
+                    { href: "https://www.numbeo.com/cost-of-living/", emoji: "📊", label: "Numbeo", sub: lang === "ko" ? `${city.nameKo} 도시 생활비 실시간 비교` : `Live cost of living comparison for ${city.nameEn}` },
+                    { href: "https://www.gasbuddy.com", emoji: "⛽", label: "GasBuddy", sub: lang === "ko" ? "근처 최저 유가 실시간 찾기" : "Find cheapest gas nearby in real time" },
+                  ]),
+                  // 전 도시 공통
+                  { href: "https://www.vitataxhelp.org", emoji: "📋", label: lang === "ko" ? "VITA 무료 세금신고" : "VITA Free Tax Filing", sub: lang === "ko" ? "소득 $67K 이하 — 1월~4월 무료 세금 신고" : "Income under $67K — FREE tax prep Jan-April" },
                 ].map((link, i) => (
                   <a key={i} href={link.href} target="_blank" rel="noopener noreferrer"
                     style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(52,211,153,0.15)" }}>
@@ -6405,16 +6943,24 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
               </div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, lineHeight: 1.7, color: "rgba(236,253,245,0.7)" }}>
                 {lang === "ko"
-                  ? "✅ WA주는 소득세 없음! 하지만 연방 세금(IRS)은 신고 필수. 한인 이민자들이 모르는 세금 혜택과 무료 신고 방법을 알려드립니다."
-                  : "✅ WA has no state income tax! But federal taxes (IRS) are required. Here's what Korean immigrants often don't know about tax benefits and free filing options."}
+                  ? isSeattle
+                    ? "✅ WA주는 소득세 없음! 하지만 연방 세금(IRS)은 신고 필수. 한인 이민자들이 모르는 세금 혜택과 무료 신고 방법을 알려드립니다."
+                    : city.slug === "dallas" || city.slug === "houston" || city.slug === "nashville" || city.slug === "miami"
+                      ? `✅ ${city.nameKo}이 속한 주는 소득세 없음! 하지만 연방 세금(IRS)은 신고 필수. 한인 이민자들이 모르는 세금 혜택과 무료 신고 방법을 알려드립니다.`
+                      : `연방 세금(IRS)은 모든 미국 거주자 신고 필수입니다. ${city.nameKo}의 주 소득세와 연방세를 함께 신고해야 합니다. 한인 이민자 전용 세금 혜택을 꼭 확인하세요.`
+                  : isSeattle
+                    ? "✅ WA has no state income tax! But federal taxes (IRS) are required. Here's what Korean immigrants often don't know about tax benefits and free filing options."
+                    : city.slug === "dallas" || city.slug === "houston" || city.slug === "nashville" || city.slug === "miami"
+                      ? `✅ ${city.nameEn}'s state has no income tax! But federal taxes (IRS) are required. Here's what Korean immigrants often don't know about tax benefits and free filing options.`
+                      : `Federal taxes (IRS) are required for all US residents. In ${city.nameEn}, you'll file both state and federal taxes. Make sure to claim all Korean immigrant tax benefits below.`}
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {[
                 { emoji: "🆓", name: lang === "ko" ? "VITA 무료 세금신고 ✅ 검증됨" : "VITA Free Tax Filing ✅ Verified",
                   desc: lang === "ko"
-                    ? "소득 $67,000 이하 무료 세금 신고! IRS 공인 자원봉사자 지원.\n📅 매년 1월 말 ~ 4월 15일\n🔗 vitataxhelp.org 또는 IRS.gov/VITA\n\n시애틀 지역 VITA 위치:\n• 킹카운티 도서관 여러 지점\n• KCSC (한인생활상담소) 확인\n📞 211 전화 → 가까운 VITA 위치 안내"
-                    : "FREE tax prep for income under $67,000! IRS-certified volunteers.\n📅 Late January – April 15 each year\n🔗 vitataxhelp.org or IRS.gov/VITA\n\nVITA locations in Seattle area:\n• Multiple King County Library branches\n• Check KCSC (Korean Community Service Center)\n📞 Call 211 → nearest VITA location",
+                    ? `소득 $67,000 이하 무료 세금 신고! IRS 공인 자원봉사자 지원.\n📅 매년 1월 말 ~ 4월 15일\n🔗 vitataxhelp.org 또는 IRS.gov/VITA\n\n${city.nameKo} 지역 VITA 위치:\n• 가까운 공공도서관 지점 확인\n• 현지 한인 커뮤니티 센터 확인\n📞 211 전화 → 가까운 VITA 위치 안내`
+                    : `FREE tax prep for income under $67,000! IRS-certified volunteers.\n📅 Late January – April 15 each year\n🔗 vitataxhelp.org or IRS.gov/VITA\n\nVITA locations in ${city.nameEn}:\n• Check local public library branches\n• Check Korean community centers nearby\n📞 Call 211 → nearest VITA location`,
                   tags: lang === "ko" ? ["무료세금신고", "VITA", "중요"] : ["Free Tax Filing", "VITA", "Important"] },
                 { emoji: "🆔", name: lang === "ko" ? "ITIN (개인납세자번호) 신청" : "ITIN Application (Individual Taxpayer ID)",
                   desc: lang === "ko"
@@ -6431,15 +6977,15 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                     ? "✅ 많은 한인 이민자가 놓치는 세금 환급:\n\n• Earned Income Tax Credit (EITC): 저소득 근로자 최대 $7,430 환급\n• Child Tax Credit: 자녀 1인당 최대 $2,000\n• Child & Dependent Care Credit: 보육비 최대 35% 환급\n• American Opportunity Credit: 대학 학비 최대 $2,500 환급\n• Education credits: 등록금 세금 공제\n\n💡 VITA에서 무료로 이 모든 혜택 신청 가능!"
                     : "✅ Tax refunds many Korean immigrants miss:\n\n• Earned Income Tax Credit (EITC): up to $7,430 refund for low-income workers\n• Child Tax Credit: up to $2,000 per child\n• Child & Dependent Care Credit: up to 35% of childcare costs\n• American Opportunity Credit: up to $2,500 for college tuition\n• Education credits: tuition deductions\n\n💡 All of these can be claimed FREE at VITA!",
                   tags: lang === "ko" ? ["세금혜택", "환급", "EITC"] : ["Tax Credits", "Refund", "EITC"] },
-                { emoji: "👨‍💼", name: lang === "ko" ? "시애틀 한인 CPA·세무사 추천" : "Korean CPAs & Tax Accountants in Seattle",
+                { emoji: "👨‍💼", name: lang === "ko" ? `${city.nameKo} 한인 CPA·세무사 찾기` : `Korean CPAs & Tax Accountants in ${city.nameEn}`,
                   desc: lang === "ko"
-                    ? "복잡한 세금 상황은 전문가에게!\n\n한인 CPA 찾기:\n• kSeattle.com 업소록 → '회계사' 검색\n• WowSeattle 업소록 → 회계·세금 카테고리\n• 카카오오픈채팅 '시애틀한인' 추천 요청\n\n비용 기준 (참고용):\n• 개인 기본 세금신고: $150-300\n• 자영업자: $300-600\n• FBAR/FATCA 포함: $400-800\n\n💡 H&R Block·TurboTax보다 한인 CPA가 이민자 상황에 더 정통"
-                    : "Complex tax situations? Go to a professional!\n\nFind Korean CPAs:\n• kSeattle.com directory → search 'accountant'\n• WowSeattle directory → accounting & tax category\n• Ask in KakaoTalk '시애틀한인'\n\nTypical fees (reference only):\n• Basic personal return: $150-300\n• Self-employed: $300-600\n• With FBAR/FATCA: $400-800\n\n💡 Korean CPAs are more knowledgeable about immigrant tax situations than H&R Block or TurboTax",
+                    ? `복잡한 세금 상황은 전문가에게!\n\n${city.nameKo} 한인 CPA 찾기:\n• 미주한국일보 (koreatimes.com) 업소록 → '회계사' 검색\n• 미주중앙일보 (koreadaily.com) 업소록 → 세금·회계\n• 카카오오픈채팅 '${city.nameKo}한인' 추천 요청\n\n비용 기준 (참고용):\n• 개인 기본 세금신고: $150-300\n• 자영업자: $300-600\n• FBAR/FATCA 포함: $400-800\n\n💡 H&R Block·TurboTax보다 한인 CPA가 이민자 상황에 더 정통`
+                    : `Complex tax situations? Go to a professional!\n\nFind Korean CPAs in ${city.nameEn}:\n• Korea Times (koreatimes.com) directory → 'accountant'\n• Korea Daily (koreadaily.com) directory → tax & accounting\n• Ask in KakaoTalk '${city.nameKo}한인'\n\nTypical fees (reference only):\n• Basic personal return: $150-300\n• Self-employed: $300-600\n• With FBAR/FATCA: $400-800\n\n💡 Korean CPAs are more knowledgeable about immigrant tax situations than H&R Block or TurboTax`,
                   tags: lang === "ko" ? ["한인CPA", "세무사", "전문가"] : ["Korean CPA", "Tax Pro", "Accountant"] },
                 { emoji: "📅", name: lang === "ko" ? "세금 신고 캘린더" : "Tax Filing Calendar",
                   desc: lang === "ko"
-                    ? "✅ 연간 세금 일정:\n\n• 1월 초: W-2·1099 양식 수령 시작\n• 1월 말~4월: VITA 무료 세금신고 운영\n• 4월 15일: 연방 세금신고 마감\n• 4월 15일: FBAR 마감 (FincEN 114)\n• 4월 15일 연장 신청 가능: Form 4868 (10월 15일까지 연장)\n\n• 분기별 예납세 (자영업): 4/15, 6/15, 9/15, 1/15\n\n💡 WA주 소득세 없으므로 주세 신고 불필요!"
-                    : "✅ Annual tax calendar:\n\n• Early January: W-2 & 1099 forms arrive\n• Late Jan–April: VITA free tax filing open\n• April 15: Federal tax filing deadline\n• April 15: FBAR deadline (FinCEN 114)\n• Extension available: Form 4868 (extends to Oct 15)\n\n• Quarterly estimated taxes (self-employed): 4/15, 6/15, 9/15, 1/15\n\n💡 No WA state income tax return needed!",
+                    ? `✅ 연간 세금 일정:\n\n• 1월 초: W-2·1099 양식 수령 시작\n• 1월 말~4월: VITA 무료 세금신고 운영\n• 4월 15일: 연방 세금신고 마감\n• 4월 15일: FBAR 마감 (FincEN 114)\n• 4월 15일 연장 신청 가능: Form 4868 (10월 15일까지 연장)\n\n• 분기별 예납세 (자영업): 4/15, 6/15, 9/15, 1/15\n\n${(isSeattle || city.slug === "dallas" || city.slug === "houston" || city.slug === "nashville" || city.slug === "miami") ? "💡 이 주는 소득세 없으므로 주세 신고 불필요!" : `💡 ${city.nameKo} 주 소득세 신고도 4월 15일 마감!`}`
+                    : `✅ Annual tax calendar:\n\n• Early January: W-2 & 1099 forms arrive\n• Late Jan–April: VITA free tax filing open\n• April 15: Federal tax filing deadline\n• April 15: FBAR deadline (FinCEN 114)\n• Extension available: Form 4868 (extends to Oct 15)\n\n• Quarterly estimated taxes (self-employed): 4/15, 6/15, 9/15, 1/15\n\n${(isSeattle || city.slug === "dallas" || city.slug === "houston" || city.slug === "nashville" || city.slug === "miami") ? "💡 No state income tax return needed in this state!" : `💡 ${city.nameEn} state income tax also due April 15!`}`,
                   tags: lang === "ko" ? ["세금일정", "4월15일", "연장신청"] : ["Tax Calendar", "April 15", "Extension"] },
               ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             </div>

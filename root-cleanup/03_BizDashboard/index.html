@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>홈페이지 제작 사업 자동 대시보드</title>
+<style>
+  :root {
+    --primary: #1a56db;
+    --primary-dark: #1e429f;
+    --success: #057a55;
+    --warning: #c27803;
+    --danger: #c81e1e;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --radius: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--gray-100);
+    color: var(--gray-800);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── Header ── */
+  header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1a56db 100%);
+    color: white;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  }
+  header h1 { font-size: 1.5rem; font-weight: 700; }
+  header p  { font-size: .85rem; opacity: .85; margin-top: 4px; }
+
+  .header-controls {
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  }
+  .control-box {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .control-box label { font-size: .75rem; opacity: .8; margin-bottom: 4px; }
+  .control-box input, .control-box select {
+    background: rgba(255,255,255,.9);
+    border: none; border-radius: 4px;
+    padding: 4px 8px; font-size: .9rem; font-weight: 600;
+    color: var(--gray-800); text-align: center; width: 100px;
+  }
+
+  .badge-tier {
+    background: #fde68a; color: #92400e;
+    font-size: .8rem; font-weight: 700;
+    padding: 4px 10px; border-radius: 999px;
+  }
+
+  /* ── Layout ── */
+  main { max-width: 1400px; margin: 0 auto; padding: 24px; }
+
+  .section-title {
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::before {
+    content: '';
+    display: inline-block; width: 4px; height: 18px;
+    background: var(--primary); border-radius: 2px;
+  }
+
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    margin-bottom: 24px;
+  }
+
+  /* ── KPI Row ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .kpi {
+    background: white;
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    border-left: 4px solid var(--primary);
+  }
+  .kpi.green  { border-left-color: var(--success); }
+  .kpi.yellow { border-left-color: var(--warning); }
+  .kpi.red    { border-left-color: var(--danger); }
+  .kpi-label { font-size: .78rem; color: var(--gray-600); margin-bottom: 4px; }
+  .kpi-value { font-size: 1.5rem; font-weight: 700; color: var(--gray-900); }
+  .kpi-sub   { font-size: .75rem; color: var(--gray-600); margin-top: 2px; }
+
+  /* ── Tables ── */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--gray-800); color: white;
+    padding: 9px 12px; text-align: left;
+    font-size: .8rem; white-space: nowrap;
+  }
+  td { padding: 8px 12px; font-size: .82rem; border-bottom: 1px solid var(--gray-200); }
+  tr:hover td { background: var(--gray-50); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .grade-A { color: var(--success);  font-weight: 700; }
+  .grade-B { color: var(--warning);  font-weight: 700; }
+  .grade-C { color: var(--danger);   font-weight: 700; }
+
+  /* ── Bar Chart ── */
+  .bar-chart { display: flex; flex-direction: column; gap: 8px; }
+  .bar-row { display: flex; align-items: center; gap: 10px; }
+  .bar-label { width: 180px; font-size: .8rem; color: var(--gray-700); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bar-track { flex: 1; height: 22px; background: var(--gray-200); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #1a56db, #3b82f6);
+              display: flex; align-items: center; padding-left: 6px;
+              color: white; font-size: .75rem; font-weight: 600;
+              transition: width .4s; }
+  .bar-val { width: 80px; text-align: right; font-size: .8rem; font-weight: 600; color: var(--gray-700); }
+
+  /* ── Estimator ── */
+  .estimator-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  @media(max-width:700px){ .estimator-grid { grid-template-columns: 1fr; } }
+  .form-group { margin-bottom: 12px; }
+  .form-group label { display: block; font-size: .82rem; font-weight: 600; color: var(--gray-700); margin-bottom: 4px; }
+  .form-group input, .form-group select {
+    width: 100%; padding: 8px 10px; border: 1px solid var(--gray-300); border-radius: 6px;
+    font-size: .88rem; color: var(--gray-800);
+  }
+  .btn {
+    background: var(--primary); color: white; border: none;
+    padding: 10px 20px; border-radius: 6px; font-size: .9rem; font-weight: 600;
+    cursor: pointer; transition: background .2s;
+  }
+  .btn:hover { background: var(--primary-dark); }
+  .estimate-result {
+    background: var(--gray-50); border: 1px solid var(--gray-200);
+    border-radius: 8px; padding: 16px;
+  }
+  .estimate-result h4 { font-size: 1rem; margin-bottom: 12px; color: var(--gray-800); }
+  .result-row {
+    display: flex; justify-content: space-between;
+    padding: 5px 0; border-bottom: 1px solid var(--gray-200);
+    font-size: .85rem;
+  }
+  .result-row:last-child { border-bottom: none; font-weight: 700; }
+  .result-val { font-variant-numeric: tabular-nums; font-weight: 600; }
+
+  /* ── Career table ── */
+  .career-row-active td { background: #eff6ff; font-weight: 700; }
+
+  /* ── Tabs ── */
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab {
+    padding: 8px 18px; border-radius: 6px; border: 1px solid var(--gray-300);
+    background: white; cursor: pointer; font-size: .85rem; font-weight: 600;
+    color: var(--gray-600); transition: all .2s;
+  }
+  .tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── Revenue Forecast ── */
+  .forecast-inputs {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  /* ── Next Action ── */
+  .next-action {
+    background: linear-gradient(135deg, #1e3a8a, #1a56db);
+    color: white; border-radius: var(--radius); padding: 20px 24px;
+    margin-top: 24px;
+  }
+  .next-action h3 { margin-bottom: 12px; font-size: 1rem; }
+  .next-action ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .next-action li::before { content: '▷ '; font-size: .8rem; opacity: .7; }
+  .next-action li { font-size: .88rem; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media(max-width:900px){ .two-col { grid-template-columns: 1fr; } }
+
+  /* ── Benchmark ── */
+  .bm-filters {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .bm-filter-btn {
+    padding: 5px 14px; border-radius: 999px;
+    border: 1px solid var(--gray-300); background: white;
+    font-size: .78rem; font-weight: 600; cursor: pointer;
+    color: var(--gray-600); transition: all .2s;
+  }
+  .bm-filter-btn.active { background: var(--gray-800); color: white; border-color: var(--gray-800); }
+  .bm-filter-btn.kr  { border-color: #dc2626; color: #dc2626; }
+  .bm-filter-btn.kr.active  { background: #dc2626; color: white; }
+  .bm-filter-btn.us  { border-color: #2563eb; color: #2563eb; }
+  .bm-filter-btn.us.active  { background: #2563eb; color: white; }
+  .bm-filter-btn.gl  { border-color: #7c3aed; color: #7c3aed; }
+  .bm-filter-btn.gl.active  { background: #7c3aed; color: white; }
+
+  .bm-table th { font-size: .75rem; white-space: nowrap; background: #111827; }
+  .bm-table td { font-size: .78rem; vertical-align: top; }
+  .region-badge {
+    display: inline-block; font-size: .65rem; font-weight: 700;
+    padding: 2px 6px; border-radius: 3px; white-space: nowrap;
+  }
+  .rb-us { background: #dbeafe; color: #1e40af; }
+  .rb-kr { background: #fee2e2; color: #991b1b; }
+  .rb-gl { background: #ede9fe; color: #5b21b6; }
+  .rb-ch { background: #d1fae5; color: #065f46; }
+
+  .stars { color: #f59e0b; letter-spacing: -1px; font-size: .8rem; }
+  .stars-empty { color: #d1d5db; }
+
+  .bm-company-name { font-weight: 700; color: #111827; }
+  .bm-tagline { font-size: .72rem; color: #6b7280; margin-top: 1px; }
+
+  .strength-tag {
+    display: inline-block; font-size: .68rem; padding: 2px 6px;
+    background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0;
+    border-radius: 3px; margin: 1px;
+  }
+  .weakness-tag {
+    display: inline-block; font-size: .68rem; padding: 2px 6px;
+    background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa;
+    border-radius: 3px; margin: 1px;
+  }
+
+  .bm-insight-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+    gap: 14px; margin-bottom: 20px;
+  }
+  .bm-insight {
+    background: white; border-radius: 8px; padding: 14px;
+    border-left: 4px solid #6366f1;
+    box-shadow: 0 1px 4px rgba(0,0,0,.07);
+  }
+  .bm-insight.red  { border-left-color: #ef4444; }
+  .bm-insight.green{ border-left-color: #10b981; }
+  .bm-insight.blue { border-left-color: #3b82f6; }
+  .bm-insight.yel  { border-left-color: #f59e0b; }
+  .bm-insight-label { font-size: .72rem; color: #6b7280; margin-bottom: 4px; }
+  .bm-insight-val   { font-size: 1.2rem; font-weight: 700; color: #111827; }
+  .bm-insight-sub   { font-size: .72rem; color: #6b7280; margin-top: 2px; }
+
+  .my-pos-row td { background: #eff6ff !important; font-weight: 600; }
+  .my-pos-row .bm-company-name::after {
+    content: ' ← 내 포지션';
+    font-size: .68rem; color: #1d4ed8; font-weight: 700;
+  }
+
+  /* ── Info callout ── */
+  .info-callout {
+    background: #eff6ff; border-left: 4px solid #3b82f6;
+    border-radius: 0 8px 8px 0; padding: 10px 14px;
+    font-size: .82rem; color: #1e40af; margin-bottom: 16px;
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .info-callout strong { font-weight: 700; }
+
+  /* ── Grade legend ── */
+  .grade-legend {
+    display: flex; gap: 16px; align-items: center;
+    background: #f9fafb; border: 1px solid #e5e7eb;
+    border-radius: 8px; padding: 8px 14px;
+    font-size: .78rem; margin-bottom: 12px; flex-wrap: wrap;
+  }
+  .grade-legend span { font-weight: 700; margin-right: 3px; }
+  .gl-title { font-weight: 700; color: #374151; margin-right: 4px; }
+
+  /* ── Tooltip ── */
+  .tip {
+    position: relative; display: inline-flex;
+    align-items: center; justify-content: center;
+    width: 15px; height: 15px; border-radius: 50%;
+    background: #d1d5db; color: #374151;
+    font-size: .65rem; font-weight: 700; cursor: help;
+    margin-left: 3px; vertical-align: middle; flex-shrink: 0;
+  }
+  .tip::after {
+    content: attr(data-tip);
+    position: absolute; bottom: calc(100% + 6px); left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937; color: #f9fafb;
+    font-size: .75rem; font-weight: 400;
+    padding: 6px 10px; border-radius: 6px;
+    white-space: nowrap; max-width: 260px; white-space: pre-wrap;
+    pointer-events: none; opacity: 0;
+    transition: opacity .2s; z-index: 50; text-align: left;
+    line-height: 1.5;
+  }
+  .tip:hover::after { opacity: 1; }
+
+  /* ── Editable hint ── */
+  .edit-hint {
+    font-size: .72rem; color: #6b7280;
+    background: #f3f4f6; border: 1px dashed #d1d5db;
+    border-radius: 4px; padding: 2px 7px;
+    display: inline-flex; align-items: center; gap: 3px;
+  }
+
+  /* ── Tab description bar ── */
+  .tab-desc {
+    background: white; border: 1px solid #e5e7eb;
+    border-radius: 8px; padding: 10px 16px;
+    margin-bottom: 20px; font-size: .83rem; color: #374151;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .tab-desc-icon { font-size: 1.1rem; }
+  .tab-desc b { color: #1f2937; }
+
+  /* ── Glossary floating button ── */
+  #glossaryBtn {
+    position: fixed; bottom: 24px; right: 24px; z-index: 90;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: #1f2937; color: white; border: none;
+    font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    transition: all .2s;
+  }
+  #glossaryBtn:hover { background: #374151; transform: scale(1.08); }
+
+  #glossaryPanel {
+    position: fixed; bottom: 78px; right: 24px; z-index: 90;
+    width: 300px; background: white; border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.18);
+    border: 1px solid #e5e7eb; overflow: hidden;
+    display: none;
+  }
+  #glossaryPanel.open { display: block; }
+  .glossary-header {
+    background: #1f2937; color: white; padding: 12px 16px;
+    font-size: .88rem; font-weight: 700;
+  }
+  .glossary-body { padding: 12px; max-height: 380px; overflow-y: auto; }
+  .glossary-item { margin-bottom: 10px; }
+  .glossary-term { font-size: .82rem; font-weight: 700; color: #111827; }
+  .glossary-def  { font-size: .78rem; color: #6b7280; margin-top: 1px; }
+
+  /* ── Control box help ── */
+  .ctrl-help { font-size: .68rem; opacity: .65; margin-top: 3px; text-align: center; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════ HEADER ══════════════════════════ -->
+<header>
+  <div>
+    <h1>홈페이지 제작 사업 자동 대시보드</h1>
+    <p>경력 연수를 바꾸면 모든 가격·수익이 자동으로 재계산됩니다 · USD 기준</p>
+  </div>
+  <div class="header-controls">
+    <div class="control-box">
+      <label>내 경력 연수 ✏️</label>
+      <input type="number" id="yearsExp" value="5" min="1" max="20" onchange="recalcAll()">
+      <div class="ctrl-help">숫자 바꾸면 전체 재계산</div>
+    </div>
+    <div class="control-box">
+      <label>시간당 단가 (자동)</label>
+      <input type="text" id="baseHourly" readonly>
+      <div class="ctrl-help">경력에 따라 자동 적용</div>
+    </div>
+    <div class="control-box">
+      <label>가격 전략 포지션</label>
+      <select id="tierSelect" onchange="recalcAll()">
+        <option value="1.0">보수적 — 시장가 수준</option>
+        <option value="1.1" selected>중상위 ↓ — 시장가 +10%</option>
+        <option value="1.2">중상위 ↑ — 시장가 +20%</option>
+        <option value="1.3">프리미엄 — 시장가 +30%</option>
+      </select>
+      <div class="ctrl-help">내 포지션에 맞게 선택</div>
+    </div>
+    <span class="badge-tier" id="tierBadge">Upper-Mid</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ══ TABS ══ -->
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('tab-kpi',this)">📊 KPI 요약</div>
+  <div class="tab" onclick="switchTab('tab-services',this)">📋 서비스 가격표</div>
+  <div class="tab" onclick="switchTab('tab-estimate',this)">🧮 견적 생성기</div>
+  <div class="tab" onclick="switchTab('tab-forecast',this)">📈 매출 예측</div>
+  <div class="tab" onclick="switchTab('tab-career',this)">🚀 경력별 가격 변화</div>
+  <div class="tab" onclick="switchTab('tab-packages',this)">📦 패키지 비교</div>
+  <div class="tab" onclick="switchTab('tab-benchmark',this)" style="background:#fef3c7;border-color:#f59e0b;color:#92400e">🔍 경쟁사 30 벤치마킹</div>
+</div>
+<div class="tab-desc" id="tabDesc">
+  <span class="tab-desc-icon">📊</span>
+  <span id="tabDescText"><b>KPI 요약</b> — 현재 경력 기준 핵심 가격 지표와 서비스별 순수익 차트입니다.</span>
+</div>
+
+<!-- ══════════════ TAB 1: KPI ══════════════ -->
+<div id="tab-kpi" class="tab-panel active">
+  <div class="info-callout">
+    💡 <div><strong>이 탭은 무엇인가요?</strong> 현재 설정한 경력·가격 전략 기준으로 핵심 지표를 한눈에 보여줍니다.
+    상단 헤더에서 <strong>경력 연수</strong>나 <strong>가격 전략</strong>을 바꾸면 아래 숫자가 즉시 바뀝니다.</div>
+  </div>
+  <div class="kpi-grid" id="kpiGrid"></div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="section-title">서비스별 순수익 (Bar Chart)</div>
+      <div class="bar-chart" id="barChart"></div>
+    </div>
+    <div class="card">
+      <div class="section-title">원가 구조 분석 (평균 프로젝트 기준)</div>
+      <div class="table-wrap">
+        <table id="costTable">
+          <thead><tr><th>항목</th><th>월 비용</th><th>프로젝트 배분</th><th>비중</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 2: SERVICES ══════════════ -->
+<div id="tab-services" class="tab-panel">
+  <div class="card">
+    <div class="section-title">서비스 카테고리별 가격 & 수익 분석</div>
+    <div class="info-callout">
+      💡 <div><strong>작업시간</strong>과 <strong>원가($)</strong> 셀은 직접 클릭해서 수정할 수 있습니다.
+      입력하면 순수익·등급이 즉시 재계산됩니다.
+      시장가는 미국/캐나다 프리랜서 기준 (Upwork · Clutch · TopTal)입니다.</div>
+    </div>
+    <div class="grade-legend">
+      <span class="gl-title">수익성 등급 기준:</span>
+      <span class="grade-A">A등급</span> 순수익률 45% 이상 &nbsp;|&nbsp;
+      <span class="grade-B">B등급</span> 35~44% &nbsp;|&nbsp;
+      <span class="grade-C">C등급</span> 34% 이하
+      <span style="margin-left:8px;color:#6b7280">· A가 가장 수익성 높음</span>
+    </div>
+    <div class="table-wrap">
+      <table id="servicesTable">
+        <thead>
+          <tr>
+            <th>서비스</th>
+            <th>난이도<span class="tip" data-tip="별 1개=쉬움, 5개=복잡">?</span></th>
+            <th>포함 기능</th>
+            <th class="num">시장가 범위<span class="tip" data-tip="미국/캐나다 시장의 저가~고가 범위">?</span></th>
+            <th class="num">시장가 중간값</th>
+            <th class="num">작업 시간 ✏️<span class="tip" data-tip="클릭해서 실제 작업시간 입력 가능">?</span></th>
+            <th class="num">권장 판매가<span class="tip" data-tip="시장가 중간값 × 선택한 가격 전략 배율">?</span></th>
+            <th class="num">원가 ✏️<span class="tip" data-tip="도구·호스팅·외주 등 실비. 클릭해서 수정 가능">?</span></th>
+            <th class="num">순수익<span class="tip" data-tip="판매가 − 원가 = 내 손에 남는 금액">?</span></th>
+            <th class="num">순수익률<span class="tip" data-tip="순수익 ÷ 판매가. 높을수록 효율적">?</span></th>
+            <th class="num">시간당 수익<span class="tip" data-tip="순수익 ÷ 작업시간. 내 시간의 가치">?</span></th>
+            <th>등급</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 3: ESTIMATOR ══════════════ -->
+<div id="tab-estimate" class="tab-panel">
+  <div class="info-callout">
+    💡 <div><strong>사용 방법:</strong> 왼쪽에서 고객 유형·서비스·페이지 수를 선택하면,
+    오른쪽에 <strong>견적서가 자동 생성</strong>됩니다. 고객에게 그대로 보여줄 수 있는 형태입니다.</div>
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <div class="section-title">견적 조건 입력</div>
+      <div class="form-group">
+        <label>고객 유형 <span style="font-weight:400;color:#6b7280;font-size:.78rem">(교회는 10% 할인 적용)</span></label>
+        <select id="estClientType">
+          <option value="church">교회 (Church)</option>
+          <option value="business">기업 (Business)</option>
+          <option value="nonprofit">비영리 (Nonprofit)</option>
+          <option value="startup">스타트업 (Startup)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>서비스 유형</label>
+        <select id="estService">
+          <option value="0">교회 홈페이지 제작</option>
+          <option value="1">기업 홈페이지 제작</option>
+          <option value="2">리뉴얼 제작</option>
+          <option value="3">유지보수 (월)</option>
+          <option value="4">도메인/호스팅 대행</option>
+          <option value="5">SSL/보안 관리</option>
+          <option value="6">영상/미디어 관리</option>
+          <option value="7">WMS/CRM 구축</option>
+          <option value="8">브랜드 디자인</option>
+          <option value="9">콘텐츠 제작</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>페이지 수 (개)</label>
+        <input type="number" id="estPages" value="5" min="1" max="50" oninput="generateEstimate()">
+      </div>
+      <div class="form-group">
+        <label>언어 수 (다국어)</label>
+        <select id="estLang" onchange="generateEstimate()">
+          <option value="1">1개 언어</option>
+          <option value="2">2개 언어 (+20%)</option>
+          <option value="3">3개 언어 (+40%)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>추가 옵션 <span style="font-weight:400;color:#6b7280;font-size:.78rem">(선택 시 가격에 자동 추가)</span></label>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px;">
+          <label style="font-weight:normal;display:flex;gap:10px;align-items:center;padding:7px 10px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;cursor:pointer;">
+            <input type="checkbox" id="optEcommerce" onchange="generateEstimate()">
+            <span>🛒 E-Commerce (쇼핑 기능)</span>
+            <span style="margin-left:auto;font-weight:700;color:#1a56db">+$400</span>
+          </label>
+          <label style="font-weight:normal;display:flex;gap:10px;align-items:center;padding:7px 10px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;cursor:pointer;">
+            <input type="checkbox" id="optSEO" onchange="generateEstimate()">
+            <span>🔍 SEO 최적화 (구글 검색 노출)</span>
+            <span style="margin-left:auto;font-weight:700;color:#1a56db">+$200</span>
+          </label>
+          <label style="font-weight:normal;display:flex;gap:10px;align-items:center;padding:7px 10px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;cursor:pointer;">
+            <input type="checkbox" id="optAnimation" onchange="generateEstimate()">
+            <span>✨ 애니메이션/인터랙션</span>
+            <span style="margin-left:auto;font-weight:700;color:#1a56db">+$300</span>
+          </label>
+          <label style="font-weight:normal;display:flex;gap:10px;align-items:center;padding:7px 10px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;cursor:pointer;">
+            <input type="checkbox" id="optMaintenance" onchange="generateEstimate()">
+            <span>🔧 6개월 유지보수 포함</span>
+            <span style="margin-left:auto;font-weight:700;color:#1a56db">+$600</span>
+          </label>
+        </div>
+      </div>
+      <button class="btn" style="width:100%;margin-top:4px" onclick="generateEstimate()">📄 견적서 자동 생성</button>
+    </div>
+    <div class="card">
+      <div class="section-title">견적 결과 <span style="font-size:.78rem;font-weight:400;color:#6b7280">— 조건 바꾸면 실시간 업데이트</span></div>
+      <div class="estimate-result" id="estimateResult">
+        <p style="color:#6b7280;font-size:.85rem;text-align:center;padding:20px 0;">
+          ← 왼쪽에서 조건을 선택하면<br>여기에 견적서가 자동으로 나타납니다
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 4: FORECAST ══════════════ -->
+<div id="tab-forecast" class="tab-panel">
+  <div class="info-callout">
+    💡 <div><strong>사용 방법:</strong> 서비스별로 <strong>한 달에 몇 건 받을지</strong> 숫자를 입력하세요.
+    연간 매출·순수익이 자동으로 계산됩니다.
+    <strong>MRR</strong>(매월 반복 수익) · <strong>ARR</strong>(연간 반복 수익)은 유지보수·호스팅 같은 구독형 서비스의 안정 수익입니다.</div>
+  </div>
+  <div class="card">
+    <div class="section-title">연간 매출 / 순익 예측</div>
+    <div class="forecast-inputs" id="forecastInputs"></div>
+    <div class="table-wrap">
+      <table id="forecastTable">
+        <thead>
+          <tr>
+            <th>서비스</th>
+            <th class="num">월 프로젝트 수</th>
+            <th class="num">평균 판매가</th>
+            <th class="num">월 매출</th>
+            <th class="num">연 매출</th>
+            <th class="num">평균 순수익률</th>
+            <th class="num">연 순수익</th>
+            <th>반복수익</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot id="forecastFoot"></tfoot>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-title">월별 매출 예측 <span style="font-size:.78rem;font-weight:400;color:#6b7280">— 계절 수요를 반영한 추정치</span></div>
+    <div class="bar-chart" id="monthlyBar"></div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 5: CAREER ══════════════ -->
+<div id="tab-career" class="tab-panel">
+  <div class="info-callout">
+    💡 <div><strong>현재 내 경력(파란 행)</strong>을 기준으로 앞으로 경력이 쌓일수록 가격이 어떻게 올라가는지 보여줍니다.
+    상단 헤더에서 경력 연수를 바꾸면 파란 행이 이동합니다.</div>
+  </div>
+  <div class="card">
+    <div class="section-title">경력 증가에 따른 가격 변화표</div>
+    <div class="table-wrap">
+      <table id="careerTable">
+        <thead>
+          <tr>
+            <th>경력</th>
+            <th>시간당 단가</th>
+            <th>시장가 배율</th>
+            <th>교회 홈페이지</th>
+            <th>기업 홈페이지</th>
+            <th>WMS/CRM</th>
+            <th>유지보수(월)</th>
+            <th>연 예상 수익 (프로젝트 2개/월)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 6: PACKAGES ══════════════ -->
+<div id="tab-packages" class="tab-panel">
+  <div class="info-callout">
+    💡 <div><strong>고객에게 제안할 패키지 3종</strong>입니다. 기본은 소규모 교회·단체, 표준은 중형 기관, 프리미엄은 기업/대형 기관 대상입니다.
+    아래 <strong>고객 유형별 할인율</strong>도 자동 반영됩니다.</div>
+  </div>
+  <div class="card">
+    <div class="section-title">서비스 패키지 비교표 (기본 / 표준 / 프리미엄)</div>
+    <div class="table-wrap">
+      <table id="packageTable">
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th style="background:#374151">🟢 기본 (Starter)</th>
+            <th style="background:#1a56db">⭐ 표준 (Standard)</th>
+            <th style="background:#5521b5">💎 프리미엄 (Premium)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <div class="section-title">고객 유형별 가격 차등</div>
+      <div class="table-wrap">
+        <table id="clientDiscountTable">
+          <thead><tr><th>고객 유형</th><th>할인율</th><th>기본가 적용</th><th>표준가 적용</th><th>프리미엄 적용</th><th>비고</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="section-title">마진 시뮬레이터</div>
+      <div class="table-wrap">
+        <table id="marginTable">
+          <thead><tr><th>판매가</th><th>원가</th><th>마진율</th><th>순수익</th><th>등급</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB 7: BENCHMARK ══════════════ -->
+<div id="tab-benchmark" class="tab-panel">
+
+  <div class="info-callout">
+    🔍 <div><strong>미국 · 한국 · 글로벌 30개 회사 벤치마킹</strong> — 경쟁사의 가격·강점·약점을 분석해 내 포지션을 확인하고 차별화 전략을 수립하세요.
+    <strong>파란 행</strong>이 현재 내 포지션입니다. 필터로 지역·유형별 비교가 가능합니다.</div>
+  </div>
+
+  <!-- ── 시장 인사이트 ── -->
+  <div class="bm-insight-grid" id="bmInsightGrid">
+    <div class="bm-insight blue"><div class="bm-insight-label">글로벌 웹디자인 시장 규모</div><div class="bm-insight-val">$56.2B</div><div class="bm-insight-sub">2025년 기준 · 연 8.5% 성장</div></div>
+    <div class="bm-insight green"><div class="bm-insight-label">교회 전문 플랫폼 최저가</div><div class="bm-insight-val">$19/mo</div><div class="bm-insight-sub">Tithely · 가성비 1위</div></div>
+    <div class="bm-insight yel"><div class="bm-insight-label">한국 아임웹 누적 사이트</div><div class="bm-insight-val">100만+</div><div class="bm-insight-sub">거래액 7조원 돌파 (2025)</div></div>
+    <div class="bm-insight red"><div class="bm-insight-label">커스텀 에이전시 평균가</div><div class="bm-insight-val">$6K~$30K</div><div class="bm-insight-sub">WebFX 등 · 납기 8~16주</div></div>
+    <div class="bm-insight"><div class="bm-insight-label">모바일 트래픽 비율</div><div class="bm-insight-val">63%</div><div class="bm-insight-sub">모바일 퍼스트 설계 필수</div></div>
+    <div class="bm-insight green"><div class="bm-insight-label">내 경쟁 우위 포지션</div><div class="bm-insight-val">Upper-Mid</div><div class="bm-insight-sub">커스텀 + 교회 전문 결합</div></div>
+  </div>
+
+  <!-- ── 필터 ── -->
+  <div class="card" style="padding:16px 20px;margin-bottom:16px;">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <span style="font-size:.82rem;font-weight:700;color:#374151">지역 필터:</span>
+      <div class="bm-filters" id="bmFilters">
+        <button class="bm-filter-btn active" onclick="filterBm('all',this)">전체 30개</button>
+        <button class="bm-filter-btn us" onclick="filterBm('us',this)">🇺🇸 미국 (14)</button>
+        <button class="bm-filter-btn kr" onclick="filterBm('kr',this)">🇰🇷 한국 (7)</button>
+        <button class="bm-filter-btn gl" onclick="filterBm('gl',this)">🌍 글로벌 (9)</button>
+      </div>
+      <span style="font-size:.82rem;font-weight:700;color:#374151;margin-left:8px">유형 필터:</span>
+      <div class="bm-filters">
+        <button class="bm-filter-btn active" onclick="filterBmType('all',this)">전체</button>
+        <button class="bm-filter-btn" onclick="filterBmType('church',this)" style="border-color:#059669;color:#059669">⛪ 교회 전문</button>
+        <button class="bm-filter-btn" onclick="filterBmType('builder',this)" style="border-color:#7c3aed;color:#7c3aed">🔧 빌더 플랫폼</button>
+        <button class="bm-filter-btn" onclick="filterBmType('agency',this)" style="border-color:#b45309;color:#b45309">🏢 에이전시</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 메인 비교표 ── -->
+  <div class="card">
+    <div class="section-title">30개 회사 상세 비교표</div>
+    <div style="font-size:.75rem;color:#6b7280;margin-bottom:10px">★★★★★ = 최고 / ★★★★☆ = 우수 / ★★★☆☆ = 보통 / ★★☆☆☆ = 미흡 / ★☆☆☆☆ = 취약</div>
+    <div class="table-wrap">
+      <table class="bm-table" id="bmTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>회사명</th>
+            <th>지역</th>
+            <th>유형</th>
+            <th>가격대<span class="tip" data-tip="월 기준 USD. 연간 구독 시 할인 적용 전 기준">?</span></th>
+            <th>주요 고객</th>
+            <th>강점 키워드</th>
+            <th>약점 키워드</th>
+            <th>디자인<span class="tip" data-tip="템플릿 퀄리티 및 커스텀 자유도">?</span></th>
+            <th>교회 적합<span class="tip" data-tip="교회·비영리 특화 기능 보유 여부">?</span></th>
+            <th>가성비</th>
+            <th>기술스택</th>
+            <th>납기</th>
+            <th>USP (핵심 차별점)</th>
+          </tr>
+        </thead>
+        <tbody id="bmTbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 차별화 전략 ── -->
+  <div class="two-col">
+    <div class="card">
+      <div class="section-title">내 포지션 vs 경쟁사 갭 분석</div>
+      <div class="info-callout" style="margin-bottom:12px">
+        💡 <div>빨간 태그 = 경쟁사 약점 → <strong>내가 채울 수 있는 기회</strong></div>
+      </div>
+      <div id="gapAnalysis"></div>
+    </div>
+    <div class="card">
+      <div class="section-title">2025-2026 차별화 전략 포인트</div>
+      <div id="strategyPoints"></div>
+    </div>
+  </div>
+
+</div>
+<!-- ══ GLOSSARY BUTTON ══ -->
+<button id="glossaryBtn" onclick="toggleGlossary()" title="용어 설명">?</button>
+<div id="glossaryPanel">
+  <div class="glossary-header">📖 용어 설명</div>
+  <div class="glossary-body">
+    <div class="glossary-item">
+      <div class="glossary-term">시장가 (Market Rate)</div>
+      <div class="glossary-def">미국/캐나다 프리랜서 플랫폼(Upwork, Clutch 등) 기준 실거래 가격 범위입니다.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="glossary-term">권장 판매가</div>
+      <div class="glossary-def">시장가 중간값 × 선택한 포지션 배율로 자동 계산되는 내 추천 판매 가격입니다.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="glossary-term">원가 (Cost)</div>
+      <div class="glossary-def">프로젝트에 드는 실비용 (도메인·호스팅·툴 구독·외주비 등)입니다. 직접 수정 가능합니다.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="glossary-term">순수익 (Net Profit)</div>
+      <div class="glossary-def">판매가 − 원가. 내 손에 실제로 남는 금액입니다.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="glossary-term">순수익률 (%)</div>
+      <div class="glossary-def">순수익 ÷ 판매가 × 100. 높을수록 효율적인 서비스입니다. 35% 이상이 목표입니다.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="glossary-term">시간당 수익 ($/hr)</div>
+      <div class="glossary-def">순수익 ÷ 작업시간. 내 시간 1시간이 얼마를 버는지 나타냅니다.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="glossary-term">MRR (Monthly Recurring Revenue)</div>
+      <div class="glossary-def">매월 안정적으로 들어오는 반복 수익. 유지보수·호스팅 대행 등 구독형 서비스에서 발생합니다.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="glossary-term">ARR (Annual Recurring Revenue)</div>
+      <div class="glossary-def">MRR × 12. 연간 반복 수익 총액입니다. 사업 안정성의 핵심 지표입니다.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="glossary-term">포지션 티어 / 가격 전략</div>
+      <div class="glossary-def">시장가 대비 내 가격 위치입니다. ×1.0=시장가 수준, ×1.3=프리미엄 30% 가산.</div>
+    </div>
+    <div class="glossary-item">
+      <div class="glossary-term">등급 A / B / C</div>
+      <div class="glossary-def">A = 순수익률 45%↑ (우수) / B = 35~44% (양호) / C = 34%↓ (재검토 필요).</div>
+    </div>
+    <div class="glossary-item">
+      <div class="glossary-term">WMS / CRM</div>
+      <div class="glossary-def">WMS = 웹사이트 관리 시스템, CRM = 고객 관계 관리 시스템. 회원·예약·데이터를 관리하는 백엔드 시스템입니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NEXT ACTION ══ -->
+<div class="next-action" id="nextAction">
+  <h3>📌 다음 입력 필요 항목</h3>
+  <ul>
+    <li>각 서비스의 실제 작업 시간 (현재: 추정값 사용 중)</li>
+    <li>각 서비스의 실제 원가 (도구/외주 포함)</li>
+    <li>[매출 예측 탭] 월별 예상 프로젝트 수 입력</li>
+    <li>[견적 생성기 탭] 고객 유형과 서비스 선택 후 견적 생성</li>
+    <li>경력 값 변경 → 전체 가격 자동 재계산 확인</li>
+  </ul>
+</div>
+
+</main>
+
+<!-- ══════════════════════════ SCRIPT ══════════════════════════ -->
+<script>
+// ─── Master Data ───
+const SERVICES_BASE = [
+  {
+    name: "교회 홈페이지 제작",
+    diff: 2,
+    features: "반응형, 예배 안내, 설교 영상, 구글맵, 소개",
+    marketLow: 800, marketHigh: 2500,
+    hours: 30, cost: 120, recurring: false,
+    clientType: "church"
+  },
+  {
+    name: "기업 홈페이지 제작",
+    diff: 3,
+    features: "반응형, 서비스 소개, 문의폼, SEO, 블로그",
+    marketLow: 1500, marketHigh: 5000,
+    hours: 45, cost: 200, recurring: false,
+    clientType: "business"
+  },
+  {
+    name: "리뉴얼 제작",
+    diff: 3,
+    features: "기존 사이트 분석, 재설계, 콘텐츠 이전",
+    marketLow: 1200, marketHigh: 4000,
+    hours: 40, cost: 180, recurring: false,
+    clientType: "all"
+  },
+  {
+    name: "유지보수 (월)",
+    diff: 1,
+    features: "콘텐츠 업데이트, 보안 패치, 백업, 소통",
+    marketLow: 100, marketHigh: 500,
+    hours: 6, cost: 30, recurring: true,
+    clientType: "all"
+  },
+  {
+    name: "도메인/호스팅 대행",
+    diff: 1,
+    features: "도메인 등록, DNS 설정, 호스팅 관리",
+    marketLow: 80, marketHigh: 300,
+    hours: 3, cost: 40, recurring: true,
+    clientType: "all"
+  },
+  {
+    name: "SSL/보안 관리",
+    diff: 2,
+    features: "SSL 설치, 방화벽, 취약점 점검",
+    marketLow: 150, marketHigh: 600,
+    hours: 5, cost: 25, recurring: false,
+    clientType: "all"
+  },
+  {
+    name: "영상/미디어 관리",
+    diff: 2,
+    features: "Vimeo/YouTube 연동, 미디어 라이브러리",
+    marketLow: 200, marketHigh: 800,
+    hours: 8, cost: 50, recurring: false,
+    clientType: "all"
+  },
+  {
+    name: "WMS/CRM 구축",
+    diff: 5,
+    features: "회원 관리, 예약 시스템, 데이터 연동, 관리자",
+    marketLow: 3000, marketHigh: 12000,
+    hours: 120, cost: 400, recurring: false,
+    clientType: "business"
+  },
+  {
+    name: "브랜드 디자인",
+    diff: 3,
+    features: "로고, 컬러 팔레트, 폰트, 브랜드 가이드",
+    marketLow: 800, marketHigh: 3000,
+    hours: 25, cost: 80, recurring: false,
+    clientType: "all"
+  },
+  {
+    name: "콘텐츠 제작",
+    diff: 2,
+    features: "카피라이팅, 배너, SNS 소재, 블로그 포스트",
+    marketLow: 300, marketHigh: 1500,
+    hours: 15, cost: 60, recurring: false,
+    clientType: "all"
+  }
+];
+
+// 각 구간의 min년도에서 hourly[0]이 적용되도록 설계 (5년→$40, 7년→$60, 10년→$80)
+const CAREER_BRACKETS = [
+  { min: 1, max: 4,  label: "1~4년",  multiplier: [0.8, 1.0], hourly: [25, 40] },
+  { min: 5, max: 6,  label: "5~6년",  multiplier: [1.1, 1.3], hourly: [40, 60] },
+  { min: 7, max: 9,  label: "7~9년",  multiplier: [1.2, 1.4], hourly: [60, 80] },
+  { min: 10, max: 20, label: "10년+", multiplier: [1.4, 1.8], hourly: [80, 120] },
+];
+
+const COST_STRUCTURE = [
+  { item: "도메인 (avg)",          monthly: 2,   projectShare: 1 },
+  { item: "호스팅 (Firebase/Vercel)", monthly: 15, projectShare: 8 },
+  { item: "미디어 (Vimeo)",         monthly: 20,  projectShare: 10 },
+  { item: "Adobe/Figma",            monthly: 60,  projectShare: 20 },
+  { item: "SSL 인증서",              monthly: 5,   projectShare: 3 },
+  { item: "인건비 (나)",             monthly: 0,   projectShare: 0, dynamic: true },
+  { item: "외주 (선택)",             monthly: 0,   projectShare: 0, optional: true },
+];
+
+const CLIENT_DISCOUNTS = [
+  { type: "교회 (Church)",         disc: 0.10, note: "커뮤니티 관계·포트폴리오" },
+  { type: "기업 (Business)",       disc: 0.00, note: "정가 적용" },
+  { type: "비영리 (Nonprofit)",    disc: 0.15, note: "사회 공헌·레퍼런스" },
+  { type: "스타트업 (Startup)",    disc: 0.05, note: "성장 파트너십 고려" },
+];
+
+// ─── Utility ───
+const $ = id => document.getElementById(id);
+const usd = n => '$' + Math.round(n).toLocaleString();
+const pct = n => (n * 100).toFixed(1) + '%';
+
+function getCareerBracket(years) {
+  for (const b of CAREER_BRACKETS) {
+    if (years >= b.min && years <= b.max) return b;
+  }
+  if (years > 10) return { multiplier: [1.4, 1.8], hourly: [80, 120], label: "10년+" };
+  return CAREER_BRACKETS[0];
+}
+
+function getHourlyRate(years) {
+  const b = getCareerBracket(years);
+  const t = Math.min(Math.max((years - b.min) / Math.max(b.max - b.min, 1), 0), 1);
+  return Math.round(b.hourly[0] + (b.hourly[1] - b.hourly[0]) * t);
+}
+
+function getMultiplier(years, tierMult) {
+  const b = getCareerBracket(years);
+  const base = (b.multiplier[0] + b.multiplier[1]) / 2;
+  return base * (tierMult / 1.2); // normalize around 1.2
+}
+
+function calcService(svc, years, tierMult) {
+  const marketMid = (svc.marketLow + svc.marketHigh) / 2;
+  const hourly = getHourlyRate(years);
+  const m = parseFloat(tierMult);
+  const sellPrice = Math.round(marketMid * m);
+  const laborCost = svc.hours * hourly * 0.3; // time cost allocation
+  const totalCost = svc.cost + laborCost;
+  const profit = sellPrice - totalCost;
+  const profitRate = profit / sellPrice;
+  const profitPerHr = profit / svc.hours;
+  const grade = profitRate >= 0.45 ? 'A' : profitRate >= 0.35 ? 'B' : 'C';
+  return { marketMid, sellPrice, totalCost, profit, profitRate, profitPerHr, grade };
+}
+
+function gradeHTML(g) {
+  return `<span class="grade-${g}">${g}</span>`;
+}
+
+// ─── Main Recalc ───
+function recalcAll() {
+  const years = parseInt($('yearsExp').value) || 5;
+  const tierMult = parseFloat($('tierSelect').value) || 1.1;
+  const hourly = getHourlyRate(years);
+  const bracket = getCareerBracket(years);
+
+  $('baseHourly').value = `$${hourly}/hr`;
+
+  const tierLabels = { 1.0: "Mid Tier", 1.1: "Upper-Mid ↓", 1.2: "Upper-Mid ↑", 1.3: "Premium Edge" };
+  $('tierBadge').textContent = tierLabels[tierMult] || "Upper-Mid";
+
+  renderKPI(years, tierMult, hourly);
+  renderServicesTable(years, tierMult, hourly);
+  renderBarChart(years, tierMult);
+  renderCostTable(hourly);
+  renderCareerTable(tierMult);
+  renderPackageTable(years, tierMult);
+  renderClientDiscountTable(years, tierMult);
+  renderMarginTable(years, tierMult);
+  renderForecast(years, tierMult);
+  generateEstimate();
+}
+
+// ─── KPI ───
+function renderKPI(years, tierMult, hourly) {
+  const church = calcService(SERVICES_BASE[0], years, tierMult);
+  const biz    = calcService(SERVICES_BASE[1], years, tierMult);
+  const wms    = calcService(SERVICES_BASE[7], years, tierMult);
+  const maint  = calcService(SERVICES_BASE[3], years, tierMult);
+
+  const kpis = [
+    { label: "시간당 단가", val: `$${hourly}/hr`, sub: `${years}년 경력 기준`, cls: '' },
+    { label: "교회 홈 권장가", val: usd(church.sellPrice), sub: `순수익 ${usd(church.profit)}`, cls: 'green' },
+    { label: "기업 홈 권장가", val: usd(biz.sellPrice), sub: `순수익 ${usd(biz.profit)}`, cls: 'green' },
+    { label: "WMS/CRM 권장가", val: usd(wms.sellPrice), sub: `순수익 ${usd(wms.profit)}`, cls: 'yellow' },
+    { label: "유지보수 (월)", val: usd(maint.sellPrice), sub: `MRR 기준`, cls: '' },
+    { label: "평균 순수익률", val: pct((church.profitRate + biz.profitRate + wms.profitRate) / 3), sub: "주요 서비스 평균", cls: 'green' },
+  ];
+
+  $('kpiGrid').innerHTML = kpis.map(k => `
+    <div class="kpi ${k.cls}">
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-value">${k.val}</div>
+      <div class="kpi-sub">${k.sub}</div>
+    </div>
+  `).join('');
+}
+
+// ─── Services Table ───
+function renderServicesTable(years, tierMult, hourly) {
+  const tbody = document.querySelector('#servicesTable tbody');
+  const diffStars = d => '★'.repeat(d) + '☆'.repeat(5 - d);
+
+  tbody.innerHTML = SERVICES_BASE.map((s, i) => {
+    const c = calcService(s, years, tierMult);
+    return `<tr>
+      <td><strong>${s.name}</strong></td>
+      <td title="${s.diff}/5">${diffStars(s.diff)}</td>
+      <td style="max-width:200px;font-size:.78rem;color:#6b7280">${s.features}</td>
+      <td class="num" style="color:#6b7280">${usd(s.marketLow)}–${usd(s.marketHigh)}</td>
+      <td class="num">${usd(c.marketMid)}</td>
+      <td class="num">
+        <input type="number" value="${s.hours}" min="1" max="500" style="width:60px;border:1px solid #d1d5db;border-radius:4px;padding:2px 4px;text-align:right;"
+          onchange="SERVICES_BASE[${i}].hours=${this ? 'this.value' : 0};recalcAll()" id="hrs_${i}">
+      </td>
+      <td class="num"><strong>${usd(c.sellPrice)}</strong></td>
+      <td class="num">
+        <input type="number" value="${s.cost}" min="0" max="9999" style="width:65px;border:1px solid #d1d5db;border-radius:4px;padding:2px 4px;text-align:right;"
+          onchange="SERVICES_BASE[${i}].cost=parseInt(this.value)||0;recalcAll()" id="cost_${i}">
+      </td>
+      <td class="num" style="color:#057a55;font-weight:600">${usd(c.profit)}</td>
+      <td class="num">${pct(c.profitRate)}</td>
+      <td class="num">${usd(c.profitPerHr)}/hr</td>
+      <td>${gradeHTML(c.grade)}</td>
+    </tr>`;
+  }).join('');
+
+  // fix inline onchange
+  SERVICES_BASE.forEach((s, i) => {
+    const hrsEl = document.getElementById(`hrs_${i}`);
+    const costEl = document.getElementById(`cost_${i}`);
+    if (hrsEl) hrsEl.onchange = function() { SERVICES_BASE[i].hours = parseInt(this.value) || 1; recalcAll(); };
+    if (costEl) costEl.onchange = function() { SERVICES_BASE[i].cost = parseInt(this.value) || 0; recalcAll(); };
+  });
+}
+
+// ─── Bar Chart ───
+function renderBarChart(years, tierMult) {
+  const data = SERVICES_BASE.map(s => {
+    const c = calcService(s, years, tierMult);
+    return { name: s.name, profit: c.profit, grade: c.grade };
+  }).sort((a, b) => b.profit - a.profit);
+
+  const max = data[0].profit;
+  $('barChart').innerHTML = data.map(d => `
+    <div class="bar-row">
+      <div class="bar-label" title="${d.name}">${d.name}</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${Math.max(5,(d.profit/max)*100)}%">${usd(d.profit)}</div>
+      </div>
+      <div class="bar-val">${gradeHTML(d.grade)}</div>
+    </div>
+  `).join('');
+}
+
+// ─── Cost Table ───
+function renderCostTable(hourly) {
+  const avgHours = 30; // avg project hours
+  const laborCost = avgHours * hourly * 0.3;
+
+  const rows = [
+    ...COST_STRUCTURE.filter(c => !c.dynamic && !c.optional),
+    { item: "인건비 (내 시간)", monthly: 0, projectShare: Math.round(laborCost) },
+    { item: "외주 (없으면 $0)", monthly: 0, projectShare: 0 },
+  ];
+
+  const total = rows.reduce((s, r) => s + r.projectShare, 0);
+  const tbody = document.querySelector('#costTable tbody');
+  tbody.innerHTML = rows.map(r => `<tr>
+    <td>${r.item}</td>
+    <td class="num">${r.monthly > 0 ? usd(r.monthly) + '/mo' : '–'}</td>
+    <td class="num">${usd(r.projectShare)}</td>
+    <td class="num">${total > 0 ? pct(r.projectShare / total) : '–'}</td>
+  </tr>`).join('') + `<tr style="background:#f3f4f6;font-weight:700">
+    <td>합계</td><td></td><td class="num">${usd(total)}</td><td class="num">100%</td>
+  </tr>`;
+}
+
+// ─── Career Table ───
+function renderCareerTable(tierMult) {
+  const currentYears = parseInt($('yearsExp').value) || 5;
+  const tbody = document.querySelector('#careerTable tbody');
+  const points = [1, 2, 3, 5, 7, 10, 12, 15];
+
+  tbody.innerHTML = points.map(y => {
+    const hr = getHourlyRate(y);
+    const b = getCareerBracket(y);
+    const church = calcService(SERVICES_BASE[0], y, tierMult);
+    const biz    = calcService(SERVICES_BASE[1], y, tierMult);
+    const wms    = calcService(SERVICES_BASE[7], y, tierMult);
+    const maint  = calcService(SERVICES_BASE[3], y, tierMult);
+    const avgProj = (church.sellPrice + biz.sellPrice) / 2;
+    const annualEst = avgProj * 2 * 12;
+    const active = y === currentYears || (y < currentYears && points[points.indexOf(y) + 1] > currentYears);
+    const isCur = Math.abs(y - currentYears) <= 1 && y <= currentYears;
+
+    return `<tr class="${isCur ? 'career-row-active' : ''}">
+      <td>${y}년 ${isCur ? '← 현재' : ''}</td>
+      <td class="num"><strong>$${hr}/hr</strong></td>
+      <td class="num">×${((b.multiplier[0]+b.multiplier[1])/2*parseFloat(tierMult)/1.2).toFixed(2)}</td>
+      <td class="num">${usd(church.sellPrice)}</td>
+      <td class="num">${usd(biz.sellPrice)}</td>
+      <td class="num">${usd(wms.sellPrice)}</td>
+      <td class="num">${usd(maint.sellPrice)}/mo</td>
+      <td class="num">${usd(annualEst)}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ─── Package Table ───
+function renderPackageTable(years, tierMult) {
+  const churchSell = calcService(SERVICES_BASE[0], years, tierMult).sellPrice;
+  const bizSell    = calcService(SERVICES_BASE[1], years, tierMult).sellPrice;
+  const wms        = calcService(SERVICES_BASE[7], years, tierMult).sellPrice;
+  const maint      = calcService(SERVICES_BASE[3], years, tierMult).sellPrice;
+  const brand      = calcService(SERVICES_BASE[8], years, tierMult).sellPrice;
+  const content    = calcService(SERVICES_BASE[9], years, tierMult).sellPrice;
+
+  const starter  = Math.round(churchSell * 0.8);
+  const standard = churchSell;
+  const premium  = Math.round(bizSell + brand * 0.5 + maint * 3);
+
+  const rows = [
+    ["대상 고객",       "소규모 교회/단체", "중형 교회/중소기업", "대형 교회/기업"],
+    ["페이지 수",       "최대 5페이지",    "최대 10페이지",    "15페이지+"],
+    ["반응형 디자인",    "✅", "✅", "✅"],
+    ["커스텀 디자인",    "기본 템플릿", "세미 커스텀", "완전 커스텀"],
+    ["다국어",          "–", "2개 언어", "3개 언어+"],
+    ["SEO 최적화",      "기본", "표준", "고급"],
+    ["브랜드 디자인",    "–", "로고 포함", "풀 브랜드 가이드"],
+    ["콘텐츠 작성",     "–", "기본 카피", "전체 콘텐츠"],
+    ["유지보수",        "–", "3개월 무료", "6개월 무료"],
+    ["CMS 교육",       "1시간", "2시간", "4시간"],
+    ["납기 기간",       "2~3주", "3~5주", "6~10주"],
+    ["💰 판매가",
+      `<strong style="color:#057a55">${usd(starter)}</strong>`,
+      `<strong style="color:#1a56db">${usd(standard)}</strong>`,
+      `<strong style="color:#5521b5">${usd(premium)}</strong>`
+    ],
+  ];
+
+  const tbody = document.querySelector('#packageTable tbody');
+  tbody.innerHTML = rows.map(r => `<tr>
+    <td><strong>${r[0]}</strong></td>
+    <td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td>
+  </tr>`).join('');
+}
+
+// ─── Client Discount Table ───
+function renderClientDiscountTable(years, tierMult) {
+  const base  = calcService(SERVICES_BASE[1], years, tierMult).sellPrice;
+  const tbody = document.querySelector('#clientDiscountTable tbody');
+
+  // Packages for base: starter = 0.8 * church, standard = church, premium = 1.5 * church
+  const starter  = calcService(SERVICES_BASE[0], years, tierMult).sellPrice * 0.8;
+  const standard = calcService(SERVICES_BASE[0], years, tierMult).sellPrice;
+  const prem     = calcService(SERVICES_BASE[1], years, tierMult).sellPrice * 1.1;
+
+  tbody.innerHTML = CLIENT_DISCOUNTS.map(c => `<tr>
+    <td>${c.type}</td>
+    <td class="num">${c.disc > 0 ? '-' + pct(c.disc) : '정가'}</td>
+    <td class="num">${usd(starter * (1 - c.disc))}</td>
+    <td class="num">${usd(standard * (1 - c.disc))}</td>
+    <td class="num">${usd(prem * (1 - c.disc))}</td>
+    <td style="font-size:.78rem;color:#6b7280">${c.note}</td>
+  </tr>`).join('');
+}
+
+// ─── Margin Table ───
+function renderMarginTable(years, tierMult) {
+  const svc = SERVICES_BASE[0]; // church site as example
+  const hourly = getHourlyRate(years);
+  const tbody = document.querySelector('#marginTable tbody');
+
+  const prices = [500, 800, 1200, 1600, 2000, 2500, 3000];
+  const baseCost = svc.cost + svc.hours * hourly * 0.3;
+
+  tbody.innerHTML = prices.map(p => {
+    const profit = p - baseCost;
+    const rate = profit / p;
+    const grade = rate >= 0.45 ? 'A' : rate >= 0.35 ? 'B' : 'C';
+    return `<tr>
+      <td class="num">${usd(p)}</td>
+      <td class="num">${usd(Math.round(baseCost))}</td>
+      <td class="num">${pct(Math.max(0, rate))}</td>
+      <td class="num">${usd(Math.max(0, profit))}</td>
+      <td>${gradeHTML(grade)}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ─── Forecast ───
+const forecastMonthly = [0.3, 0.5, 0, 2, 1, 0.5, 0.3, 0.2, 0, 0.3];
+
+function renderForecast(years, tierMult) {
+  const inputsDiv = $('forecastInputs');
+  const tbody = document.querySelector('#forecastTable tbody');
+  const tfoot = $('forecastFoot');
+
+  // Build inputs if not done
+  if (!inputsDiv.dataset.built) {
+    inputsDiv.dataset.built = "1";
+    inputsDiv.innerHTML = SERVICES_BASE.map((s, i) => `
+      <div class="form-group">
+        <label>${s.name} (월 건수)</label>
+        <input type="number" id="fc_${i}" value="${forecastMonthly[i]}" min="0" max="20" step="0.1"
+          onchange="forecastMonthly[${i}]=parseFloat(this.value)||0; renderForecast(${years},${tierMult})"
+          style="width:100%;padding:6px;border:1px solid #d1d5db;border-radius:4px;">
+      </div>
+    `).join('');
+
+    // Fix onchange references
+    SERVICES_BASE.forEach((_, i) => {
+      const el = document.getElementById(`fc_${i}`);
+      if (el) el.onchange = function() {
+        forecastMonthly[i] = parseFloat(this.value) || 0;
+        const y = parseInt($('yearsExp').value) || 5;
+        const t = parseFloat($('tierSelect').value) || 1.1;
+        renderForecast(y, t);
+      };
+    });
+  }
+
+  let totalMonthly = 0, totalAnnual = 0, totalProfit = 0, totalMRR = 0;
+
+  tbody.innerHTML = SERVICES_BASE.map((s, i) => {
+    const c  = calcService(s, years, tierMult);
+    const qty = forecastMonthly[i] || 0;
+    const monthly = c.sellPrice * qty;
+    const annual  = monthly * 12;
+    const annualP = annual * c.profitRate;
+    totalMonthly += monthly;
+    totalAnnual  += annual;
+    totalProfit  += annualP;
+    if (s.recurring) totalMRR += monthly;
+    return `<tr>
+      <td>${s.name}</td>
+      <td class="num">${qty}</td>
+      <td class="num">${usd(c.sellPrice)}</td>
+      <td class="num">${usd(monthly)}</td>
+      <td class="num">${usd(annual)}</td>
+      <td class="num">${pct(c.profitRate)}</td>
+      <td class="num" style="color:#057a55">${usd(annualP)}</td>
+      <td>${s.recurring ? '<span style="color:#057a55;font-weight:700">MRR ✓</span>' : '–'}</td>
+    </tr>`;
+  }).join('');
+
+  const avgProfit = totalAnnual > 0 ? totalProfit / totalAnnual : 0;
+  tfoot.innerHTML = `<tr style="background:#1f2937;color:white;font-weight:700">
+    <td>합계 / 평균</td>
+    <td></td><td></td>
+    <td class="num">${usd(totalMonthly)}/mo</td>
+    <td class="num">${usd(totalAnnual)}/yr</td>
+    <td class="num">${pct(avgProfit)}</td>
+    <td class="num">${usd(totalProfit)}/yr</td>
+    <td>MRR: ${usd(totalMRR)}<br>ARR: ${usd(totalMRR * 12)}</td>
+  </tr>`;
+
+  // Monthly bar
+  const months = ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"];
+  const seasonality = [0.85,0.9,1.0,1.05,1.1,1.2,1.0,0.8,0.95,1.1,1.2,1.3];
+  const barMax = totalMonthly * 1.3;
+  $('monthlyBar').innerHTML = months.map((m, i) => {
+    const val = totalMonthly * seasonality[i];
+    return `<div class="bar-row">
+      <div class="bar-label">${m}</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${Math.max(2,(val/barMax)*100)}%">${usd(val)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── Estimator ───
+function generateEstimate() {
+  const years  = parseInt($('yearsExp').value) || 5;
+  const tierMult = parseFloat($('tierSelect').value) || 1.1;
+  const clientType = $('estClientType').value;
+  const svcIdx = parseInt($('estService').value);
+  const pages  = parseInt($('estPages').value) || 5;
+  const langs  = parseInt($('estLang').value) || 1;
+  const optEc  = $('optEcommerce').checked;
+  const optSEO = $('optSEO').checked;
+  const optAni = $('optAnimation').checked;
+  const optMnt = $('optMaintenance').checked;
+
+  const svc = SERVICES_BASE[svcIdx];
+  const c   = calcService(svc, years, tierMult);
+  const discount = CLIENT_DISCOUNTS.find(d => {
+    if (clientType === 'church')    return d.type.includes('교회');
+    if (clientType === 'nonprofit') return d.type.includes('비영리');
+    if (clientType === 'startup')   return d.type.includes('스타트업');
+    return d.type.includes('기업');
+  })?.disc || 0;
+
+  const pageAdj = Math.max(1, pages / 5);
+  let sell  = Math.round(c.sellPrice * pageAdj * (langs === 2 ? 1.2 : langs === 3 ? 1.4 : 1));
+  let hours = Math.round(svc.hours * pageAdj * (langs === 2 ? 1.15 : langs === 3 ? 1.35 : 1));
+  let addons = 0;
+  const addonList = [];
+  if (optEc)  { addons += 400; addonList.push("E-Commerce: +$400"); }
+  if (optSEO) { addons += 200; addonList.push("SEO: +$200"); }
+  if (optAni) { addons += 300; addonList.push("애니메이션: +$300"); }
+  if (optMnt) { addons += 600; addonList.push("유지보수 6mo: +$600"); }
+
+  const subtotal   = sell + addons;
+  const discAmt    = Math.round(subtotal * discount);
+  const finalPrice = subtotal - discAmt;
+  const cost       = Math.round(c.totalCost * pageAdj + addons * 0.3);
+  const profit     = finalPrice - cost;
+  const profitRate = profit / finalPrice;
+  const grade      = profitRate >= 0.45 ? 'A' : profitRate >= 0.35 ? 'B' : 'C';
+
+  const clientNames = { church: '교회', business: '기업', nonprofit: '비영리', startup: '스타트업' };
+
+  $('estimateResult').innerHTML = `
+    <h4>📋 견적서 — ${clientNames[clientType]} / ${svc.name}</h4>
+    <div class="result-row"><span>서비스</span><span class="result-val">${svc.name}</span></div>
+    <div class="result-row"><span>페이지 수</span><span class="result-val">${pages}페이지</span></div>
+    <div class="result-row"><span>언어</span><span class="result-val">${langs}개 언어</span></div>
+    <div class="result-row"><span>예상 작업 시간</span><span class="result-val">${hours}시간</span></div>
+    <div class="result-row"><span>기본 서비스가</span><span class="result-val">${usd(sell)}</span></div>
+    ${addonList.length ? `<div class="result-row"><span>옵션 추가</span><span class="result-val">+${usd(addons)}</span></div>` : ''}
+    ${discount > 0 ? `<div class="result-row"><span>${clientNames[clientType]} 할인 (-${(discount*100).toFixed(0)}%)</span><span class="result-val" style="color:#c81e1e">-${usd(discAmt)}</span></div>` : ''}
+    <div class="result-row" style="font-size:1rem;padding-top:8px"><span>✅ 최종 판매가</span><span class="result-val" style="color:#1a56db;font-size:1.1rem">${usd(finalPrice)}</span></div>
+    <div class="result-row"><span>예상 원가</span><span class="result-val">${usd(cost)}</span></div>
+    <div class="result-row"><span>순수익</span><span class="result-val" style="color:#057a55">${usd(profit)}</span></div>
+    <div class="result-row"><span>순수익률</span><span class="result-val">${pct(profitRate)}</span></div>
+    <div class="result-row"><span>수익성 등급</span><span class="result-val">${gradeHTML(grade)}</span></div>
+    ${addonList.length ? `<div style="font-size:.78rem;color:#6b7280;margin-top:8px">${addonList.join(' | ')}</div>` : ''}
+  `;
+}
+
+// ─── Tabs ───
+const TAB_DESCS = {
+  'tab-kpi':      { icon:'📊', text:'<b>KPI 요약</b> — 현재 경력 기준 핵심 가격 지표와 서비스별 순수익 차트입니다.' },
+  'tab-services': { icon:'📋', text:'<b>서비스 가격표</b> — 10개 서비스의 시장가·권장가·원가·수익을 비교합니다. 작업시간·원가 셀은 직접 수정 가능합니다.' },
+  'tab-estimate': { icon:'🧮', text:'<b>견적 생성기</b> — 고객 유형과 조건을 선택하면 견적서가 자동으로 계산됩니다.' },
+  'tab-forecast': { icon:'📈', text:'<b>매출 예측</b> — 월별 프로젝트 수를 입력하면 연간 매출·순수익·반복 수익(MRR/ARR)을 예측합니다.' },
+  'tab-career':   { icon:'🚀', text:'<b>경력별 가격 변화</b> — 경력이 쌓일수록 단가와 판매가가 어떻게 올라가는지 보여줍니다. 현재 경력 행이 파란색입니다.' },
+  'tab-packages':  { icon:'📦', text:'<b>패키지 비교</b> — 고객에게 제안할 기본·표준·프리미엄 3종 패키지와 고객 유형별 할인율입니다.' },
+  'tab-benchmark': { icon:'🔍', text:'<b>경쟁사 30 벤치마킹</b> — 미국·한국·글로벌 30개 회사의 가격·강점·약점을 분석하고 내 차별화 전략을 도출합니다.' },
+};
+
+function switchTab(id, el) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  $(id).classList.add('active');
+  el.classList.add('active');
+  const d = TAB_DESCS[id];
+  if (d) {
+    $('tabDesc').querySelector('.tab-desc-icon').textContent = d.icon;
+    $('tabDescText').innerHTML = d.text;
+  }
+}
+
+function toggleGlossary() {
+  document.getElementById('glossaryPanel').classList.toggle('open');
+}
+
+// ══════════════════════════════════════════════
+// BENCHMARK DATA — 30개 회사
+// ══════════════════════════════════════════════
+const BM_DATA = [
+  // ── 🇺🇸 미국 교회 전문 (8)
+  {
+    no:1, region:'us', type:'church',
+    name:'Tithely', tagline:'교회 올인원 최저가',
+    price:'$19~$119/mo', client:'중소형 교회',
+    strengths:['문자헌금(Text-to-Give)','최저가 올인원','ChMS 통합','UX 직관적'],
+    weaknesses:['디자인 템플릿 부족','대형교회 한계'],
+    design:4, church:5, value:5,
+    stack:'Cloud SaaS · Stripe · ACH', lead:'1~2주',
+    usp:'가장 저렴한 교회 올인원 (헌금+웹+앱+ChMS)',
+    url:'get.tithe.ly'
+  },
+  {
+    no:2, region:'us', type:'church',
+    name:'Subsplash', tagline:'스트리밍 특화 교회 플랫폼',
+    price:'$249+/mo', client:'중대형 교회',
+    strengths:['라이브스트리밍 최강','암호화폐 헌금','5TB 스토리지','AI 도구'],
+    weaknesses:['소형교회 가격 부담','커스텀 제한','마이그레이션 어려움'],
+    design:4, church:5, value:3,
+    stack:'Cloud · 자체 스트리밍 인프라', lead:'2~4주',
+    usp:'라이브스트리밍+앱+헌금 완전 통합 플랫폼',
+    url:'subsplash.com'
+  },
+  {
+    no:3, region:'us', type:'church',
+    name:'Nucleus', tagline:'아름다운 교회 웹사이트',
+    price:'$99~$199/mo', client:'모든 교회',
+    strengths:['디자인 기본값 우수','방문자 온보딩 특화','PrayerFlow','고객지원 최상'],
+    weaknesses:['중간 가격대','소규모 교회엔 비쌈'],
+    design:5, church:5, value:3,
+    stack:'Cloud SaaS · Next.js · API 통합', lead:'1~3주',
+    usp:'방문자를 교인으로 전환하는 "Next Steps" 시스템',
+    url:'nucleus.church'
+  },
+  {
+    no:4, region:'us', type:'church',
+    name:'ShareFaith', tagline:'10만+ 신앙 디자인 자산',
+    price:'$29~$97/mo', client:'교회·선교단체',
+    strengths:['10만+ 신앙 그래픽','설교 슬라이드','소셜 콘텐츠','번들 가성비'],
+    weaknesses:['스토리지 제한 불만','비기술자 러닝커브','마이그레이션 어려움'],
+    design:4, church:5, value:4,
+    stack:'Cloud SaaS · Adobe 통합', lead:'2~6주',
+    usp:'교회 전용 디지털 자산 라이브러리 최대 보유',
+    url:'sharefaith.com'
+  },
+  {
+    no:5, region:'us', type:'church',
+    name:'Ministry Designs', tagline:'교회 웹 전문 에이전시형',
+    price:'$57~$97/mo', client:'교회·사역단체',
+    strengths:['교회 전문 디자인','드래그앤드롭','헌금 통합','전담 지원'],
+    weaknesses:['범용 빌더 대비 고가','기능 제한'],
+    design:4, church:5, value:3,
+    stack:'자체 CMS · Cloud 호스팅', lead:'2~4주',
+    usp:'교회 전문 디자이너 팀의 완성형 웹 솔루션',
+    url:'ministrydesigns.com'
+  },
+  {
+    no:6, region:'us', type:'church',
+    name:'Ekklesia360', tagline:'교회 전략적 웹 파트너',
+    price:'$100~$300/mo', client:'중대형 교회',
+    strengths:['전략 컨설팅 포함','SEO 특화','CMS 유연','미디어 통합'],
+    weaknesses:['고가','소형 교회 부적합'],
+    design:4, church:5, value:2,
+    stack:'WordPress · 자체 CMS', lead:'4~8주',
+    usp:'웹사이트 + 교회 성장 전략 통합 컨설팅',
+    url:'ekklesia360.com'
+  },
+  {
+    no:7, region:'us', type:'church',
+    name:'Clover Sites', tagline:'간편 교회 웹빌더',
+    price:'$29~$59/mo', client:'소형 교회',
+    strengths:['매우 쉬운 사용','교회 템플릿','저렴한 가격','빠른 세팅'],
+    weaknesses:['커스텀 극히 제한','마이그레이션 락인','기능 단순'],
+    design:3, church:4, value:4,
+    stack:'자체 SaaS', lead:'1주',
+    usp:'코딩 없이 1시간 내 교회 웹사이트 완성',
+    url:'cloversites.com'
+  },
+  {
+    no:8, region:'us', type:'church',
+    name:'Breeze ChMS', tagline:'교회 관리 + 웹 통합',
+    price:'$72/mo', client:'소중형 교회',
+    strengths:['회원관리 강력','출석추적','헌금관리','저렴한 ChMS'],
+    weaknesses:['웹빌더 기능 약함','디자인 평범'],
+    design:2, church:5, value:4,
+    stack:'Cloud SaaS · Stripe', lead:'1~2주',
+    usp:'교인 데이터 관리(ChMS) + 웹사이트 원스톱',
+    url:'breezechms.com'
+  },
+
+  // ── 🇺🇸 미국 범용 빌더·에이전시 (6)
+  {
+    no:9, region:'us', type:'builder',
+    name:'Wix', tagline:'세계 1위 웹빌더 (2억+ 사이트)',
+    price:'$17~$159/mo', client:'소상공인·교회·개인',
+    strengths:['AI 빌더','앱마켓 800+','교회 템플릿','헌금 도구','가장 쉬운 UX'],
+    weaknesses:['고급 기능 고가','트랜잭션 수수료','SEO 제한적'],
+    design:4, church:4, value:4,
+    stack:'자체 플랫폼 · AWS · REST API', lead:'1~3주',
+    usp:'세계 최다 사용자 · AI 지원 드래그앤드롭 빌더',
+    url:'wix.com'
+  },
+  {
+    no:10, region:'us', type:'builder',
+    name:'Squarespace', tagline:'디자인 최강 올인원',
+    price:'$12~$38/mo', client:'크리에이터·소기업·비영리',
+    strengths:['템플릿 디자인 최고수준','올인원 호스팅','분석도구','이메일마케팅'],
+    weaknesses:['커스텀 제한','교회 특화 기능 약함','가격 경쟁력 낮음'],
+    design:5, church:3, value:3,
+    stack:'자체 플랫폼 · AWS CDN', lead:'1~4주',
+    usp:'프리미엄 미니멀 디자인 + 올인원 커머스',
+    url:'squarespace.com'
+  },
+  {
+    no:11, region:'us', type:'builder',
+    name:'Webflow', tagline:'코드 생성 노코드 빌더',
+    price:'$14~$212/mo', client:'디자이너·에이전시·기업',
+    strengths:['픽셀퍼펙트 디자인','코드 export','CMS 강력','에이전시 협업'],
+    weaknesses:['러닝커브 높음','초보자 비추','교회 기능 없음'],
+    design:5, church:2, value:3,
+    stack:'React · AWS · Fastly CDN', lead:'4~8주',
+    usp:'디자이너가 직접 만드는 프로덕션 퀄리티 웹사이트',
+    url:'webflow.com'
+  },
+  {
+    no:12, region:'us', type:'builder',
+    name:'Framer', tagline:'AI 웹빌더 신흥강자',
+    price:'$15~$50/mo', client:'스타트업·마케터·디자이너',
+    strengths:['AI 섹션 생성','초고속 빌드','인터랙션 강력','모던 디자인'],
+    weaknesses:['eCommerce 없음','CMS 제한','교회 기능 없음','신생 생태계'],
+    design:5, church:1, value:4,
+    stack:'React · Vercel CDN · AI', lead:'1~3주',
+    usp:'AI로 랜딩페이지를 분 단위로 생성',
+    url:'framer.com'
+  },
+  {
+    no:13, region:'us', type:'builder',
+    name:'WordPress.com', tagline:'블로그·콘텐츠 강자',
+    price:'$4~$45/mo', client:'블로거·소기업·비영리',
+    strengths:['생태계 최대','SEO 강력','플러그인 무한','저렴'],
+    weaknesses:['자유도 제한(호스팅형)','교회 특화 없음','느린 속도 우려'],
+    design:3, church:3, value:5,
+    stack:'PHP · MySQL · Jetpack CDN', lead:'1~2주',
+    usp:'세계 최대 CMS 생태계 · 컨텐츠 마케팅 최강',
+    url:'wordpress.com'
+  },
+  {
+    no:14, region:'us', type:'agency',
+    name:'WebFX', tagline:'매출 중심 커스텀 에이전시',
+    price:'$6,000~$30,000+', client:'중소기업·eCommerce',
+    strengths:['데이터 기반 설계','SEO·마케팅 통합','30일 급속납품','기술 다양'],
+    weaknesses:['고가','교회 미특화','고객 개입 필요'],
+    design:5, church:2, value:2,
+    stack:'WordPress · React · PHP · 커스텀', lead:'8~16주',
+    usp:'ROI 중심 웹 디자인 + 디지털 마케팅 원스톱',
+    url:'webfx.com'
+  },
+
+  // ── 🇰🇷 한국 (7)
+  {
+    no:15, region:'kr', type:'builder',
+    name:'아임웹 (Imweb)', tagline:'한국 노코드 빌더 1위',
+    price:'₩16,000~₩24,000/mo (~$12~18)', client:'중소기업·쇼핑몰·개인',
+    strengths:['네이버페이·카카오페이 연동','쇼핑몰+홈페이지 통합','AWS 인프라','100만 사이트'],
+    weaknesses:['해외 SEO 약함','영문 지원 미흡','고급 커스텀 한계'],
+    design:4, church:2, value:5,
+    stack:'자체 SaaS · AWS · REST API', lead:'1~2주',
+    usp:'한국 결제 완벽 통합 · 쇼핑몰+홈페이지 올인원',
+    url:'imweb.me'
+  },
+  {
+    no:16, region:'kr', type:'builder',
+    name:'카페24 (Cafe24)', tagline:'한국 이커머스 인프라 강자',
+    price:'무료+옵션 과금 (~$0~50)', client:'온라인 쇼핑몰·브랜드',
+    strengths:['이커머스 기능 최강','글로벌 진출 지원','결제 통합','무료 기본 플랜'],
+    weaknesses:['디자인 자유도 낮음','홈페이지 목적엔 아임웹이 우세','복잡한 설정'],
+    design:3, church:1, value:4,
+    stack:'자체 플랫폼 · CDN · API', lead:'1~3주',
+    usp:'한국 쇼핑몰 시장 점유율 1위 · 해외배송 통합',
+    url:'cafe24.com'
+  },
+  {
+    no:17, region:'kr', type:'builder',
+    name:'식스샵 (Sixshop)', tagline:'1인 쇼핑몰 특화',
+    price:'₩29,000/mo (~$21)', client:'소규모 쇼핑몰·1인기업',
+    strengths:['초간단 쇼핑몰 개설','부가수수료 없음','모바일 최적화','저렴'],
+    weaknesses:['기능 단순','대규모 확장 한계','디자인 템플릿 적음'],
+    design:3, church:1, value:5,
+    stack:'자체 SaaS · 클라우드', lead:'수일',
+    usp:'수수료 없는 가장 간단한 1인 쇼핑몰 솔루션',
+    url:'sixshop.com'
+  },
+  {
+    no:18, region:'kr', type:'builder',
+    name:'고도몰 (Godo)', tagline:'한국 오픈소스 쇼핑몰',
+    price:'₩30,000+/mo (~$22+)', client:'중소형 쇼핑몰',
+    strengths:['소스코드 제공','완전 커스텀 가능','오랜 신뢰도','PG 연동 다양'],
+    weaknesses:['구형 UI/UX','설치형 복잡','모바일 최적화 부족'],
+    design:2, church:1, value:3,
+    stack:'PHP · MySQL · 설치형', lead:'2~4주',
+    usp:'소스 공개 완전 커스텀 가능한 한국형 쇼핑몰',
+    url:'godo.co.kr'
+  },
+  {
+    no:19, region:'kr', type:'builder',
+    name:'네이버 모두 (Modoo)', tagline:'무료 홈페이지 빌더',
+    price:'무료 (Free)', client:'소상공인·지역상권',
+    strengths:['완전 무료','네이버 검색 노출 우수','쉬운 사용','모바일 최적화'],
+    weaknesses:['광고 표시 강제','커스텀 불가','기능 매우 제한'],
+    design:2, church:2, value:5,
+    stack:'네이버 클라우드 · PHP', lead:'수시간',
+    usp:'네이버 검색 연동 완전 무료 홈페이지',
+    url:'modoo.at'
+  },
+  {
+    no:20, region:'kr', type:'agency',
+    name:'크몽 프리랜서', tagline:'한국 프리랜서 마켓 1위',
+    price:'₩300,000~₩5,000,000 (~$220~$3,700)', client:'스타트업·소기업·교회',
+    strengths:['가격 경쟁력 최강','다양한 전문가','빠른 매칭','포트폴리오 검증'],
+    weaknesses:['품질 편차 큼','유지보수 불안정','소통 리스크','A/S 불확실'],
+    design:3, church:3, value:5,
+    stack:'WordPress · 아임웹 · 다양', lead:'2~6주',
+    usp:'최저가 프리랜서 매칭 · 포트폴리오 비교 후 선택',
+    url:'kmong.com'
+  },
+  {
+    no:21, region:'kr', type:'agency',
+    name:'한국 교회 전문 에이전시', tagline:'교회 특화 국내 에이전시',
+    price:'₩1,000,000~₩8,000,000 (~$740~$6,000)', client:'한국 교회',
+    strengths:['한국어 완벽 지원','교회 문화 이해','현장 미팅 가능','AS 안정'],
+    weaknesses:['규모 작음','기술력 편차','글로벌 경쟁력 부족'],
+    design:3, church:5, value:3,
+    stack:'WordPress · 자체 CMS', lead:'4~8주',
+    usp:'한국 교회 문화 이해 + 현지 언어 완벽 지원',
+    url:'—'
+  },
+
+  // ── 🌍 글로벌 (9)
+  {
+    no:22, region:'gl', type:'builder',
+    name:'Duda', tagline:'에이전시 특화 화이트라벨 플랫폼',
+    price:'$25~$199/mo', client:'웹 에이전시·리셀러',
+    strengths:['화이트라벨 가능','다중 사이트 관리','팀 협업','AI 콘텐츠'],
+    weaknesses:['단일 사이트엔 비쌈','교회 기능 없음','생태계 제한'],
+    design:4, church:2, value:3,
+    stack:'Cloud SaaS · AWS · AI', lead:'1~3주',
+    usp:'에이전시가 고객 사이트를 자기 브랜드로 납품 가능',
+    url:'duda.co'
+  },
+  {
+    no:23, region:'gl', type:'builder',
+    name:'Elementor (이스라엘)', tagline:'WordPress 비주얼 빌더 1위',
+    price:'$59~$399/yr', client:'워드프레스 사용자·에이전시',
+    strengths:['WordPress 최강 빌더','템플릿 1,500+','WooCommerce 통합','팝업 빌더'],
+    weaknesses:['WordPress 종속','속도 이슈 우려','연간 결제만'],
+    design:5, church:3, value:4,
+    stack:'WordPress · PHP · React 위젯', lead:'2~6주',
+    usp:'WordPress에서 가장 자유로운 드래그앤드롭 페이지빌더',
+    url:'elementor.com'
+  },
+  {
+    no:24, region:'gl', type:'builder',
+    name:'Hostinger Builder (리투아니아)', tagline:'가성비 세계 최강 호스팅',
+    price:'$1.99~$8/mo', client:'입문자·소상공인',
+    strengths:['초저가','AI 웹빌더 포함','Kodee AI 어시스턴트','모바일 편집'],
+    weaknesses:['고급 기능 약함','eCommerce 제한','지원 품질 편차'],
+    design:3, church:2, value:5,
+    stack:'자체 플랫폼 · AI (Horizons)', lead:'수일',
+    usp:'월 $2 미만의 AI 웹빌더 포함 가성비 세계 1위',
+    url:'hostinger.com'
+  },
+  {
+    no:25, region:'gl', type:'builder',
+    name:'Jimdo (독일)', tagline:'AI 10분 웹사이트 완성',
+    price:'$11~$21/mo', client:'초보자·지역 소기업',
+    strengths:['10분 사이트 완성','AI 자동화','ADA 준수','유럽 GDPR 최적화'],
+    weaknesses:['커스텀 거의 불가','블로그 기능 약함','장기 성장 한계'],
+    design:3, church:2, value:4,
+    stack:'자체 SaaS · AI Dolphin', lead:'수시간~수일',
+    usp:'AI가 10분 만에 완성하는 초간단 비즈니스 웹사이트',
+    url:'jimdo.com'
+  },
+  {
+    no:26, region:'gl', type:'builder',
+    name:'Strikingly (중국/미국)', tagline:'원페이지 사이트 특화',
+    price:'$8~$49/mo', client:'프리랜서·스타트업·이벤트',
+    strengths:['원페이지 특화','초간단 UI','글로벌 CDN','다국어 지원'],
+    weaknesses:['멀티페이지 제한','SEO 약함','기능 단순'],
+    design:3, church:2, value:4,
+    stack:'자체 SaaS · CloudFlare CDN', lead:'수시간',
+    usp:'가장 빠른 원페이지 랜딩사이트 빌더',
+    url:'strikingly.com'
+  },
+  {
+    no:27, region:'gl', type:'builder',
+    name:'Weebly / Square (미국/글로벌)', tagline:'간편 쇼핑몰 통합',
+    price:'$10~$26/mo', client:'소매업자·소기업',
+    strengths:['Square 결제 통합','쇼핑몰 연동','쉬운 UX','오프라인 연동'],
+    weaknesses:['개발 속도 느림','기능 구식화','교회 기능 없음'],
+    design:3, church:2, value:4,
+    stack:'자체 SaaS · Square API', lead:'1~2주',
+    usp:'오프라인 Square POS + 온라인 쇼핑몰 원스톱',
+    url:'weebly.com'
+  },
+  {
+    no:28, region:'gl', type:'builder',
+    name:'Ionos / 1&1 (독일)', tagline:'유럽 최대 호스팅 기반 빌더',
+    price:'$1~$10/mo', client:'중소기업·유럽 시장',
+    strengths:['초저가','독일 데이터센터','GDPR 완벽','AI 어시스턴트'],
+    weaknesses:['디자인 평범','고급 기능 부족','글로벌 인지도 낮음'],
+    design:2, church:2, value:5,
+    stack:'자체 SaaS · 유럽 IDC', lead:'수일',
+    usp:'유럽 GDPR 완벽 준수 · 독일 데이터센터 초저가',
+    url:'ionos.com'
+  },
+  {
+    no:29, region:'gl', type:'builder',
+    name:'GoDaddy Builder (미국/글로벌)', tagline:'도메인+웹빌더 원스톱',
+    price:'$9.99~$20.99/mo', client:'소상공인·초보자',
+    strengths:['도메인 연동 최강','7일 완성','예약 시스템','이메일마케팅'],
+    weaknesses:['디자인 커스텀 약함','갱신가 높음','고급 기능 부족'],
+    design:3, church:2, value:3,
+    stack:'자체 SaaS · AI Builder', lead:'1~2주',
+    usp:'도메인 등록부터 웹사이트까지 한 번에 7일 완성',
+    url:'godaddy.com'
+  },
+  {
+    no:30, region:'gl', type:'agency',
+    name:'Upwork 프리랜서 (글로벌)', tagline:'글로벌 프리랜서 마켓',
+    price:'$500~$15,000+', client:'전 세계 기업·교회·단체',
+    strengths:['무한 전문가 풀','가격 협상 가능','리뷰 시스템','다국어 가능'],
+    weaknesses:['품질 불균일','시간 소요','커뮤니케이션 리스크','수수료'],
+    design:4, church:3, value:4,
+    stack:'WordPress · React · 커스텀', lead:'4~12주',
+    usp:'전 세계 최저가 ~ 최고급까지 모든 수준의 개발자 접근',
+    url:'upwork.com'
+  },
+];
+
+let bmRegionFilter = 'all';
+let bmTypeFilter   = 'all';
+
+function renderBenchmark() {
+  const tbody = document.getElementById('bmTbody');
+  if (!tbody) return;
+
+  const filtered = BM_DATA.filter(c => {
+    const regionOk = bmRegionFilter === 'all' || c.region === bmRegionFilter;
+    const typeOk   = bmTypeFilter   === 'all' || c.type   === bmTypeFilter;
+    return regionOk && typeOk;
+  });
+
+  const regionLabel = { us:'🇺🇸 미국', kr:'🇰🇷 한국', gl:'🌍 글로벌' };
+  const regionClass = { us:'rb-us', kr:'rb-kr', gl:'rb-gl' };
+  const typeLabel   = { church:'⛪ 교회전문', builder:'🔧 빌더', agency:'🏢 에이전시' };
+
+  const stars = n => '★'.repeat(n) + '☆'.repeat(5-n);
+
+  tbody.innerHTML = filtered.map(c => {
+    const isMe = (c.no === 30); // Upwork as market comparison — highlight "my" row differently
+    return `<tr class="${isMe ? '' : ''}">
+      <td style="color:#9ca3af;font-size:.72rem">${c.no}</td>
+      <td>
+        <div class="bm-company-name">${c.name}</div>
+        <div class="bm-tagline">${c.tagline}</div>
+        <div style="margin-top:3px"><a href="https://${c.url}" target="_blank" style="font-size:.68rem;color:#3b82f6">${c.url}</a></div>
+      </td>
+      <td><span class="region-badge ${regionClass[c.region]}">${regionLabel[c.region]}</span></td>
+      <td style="font-size:.75rem">${typeLabel[c.type]}</td>
+      <td class="num" style="font-weight:600;color:#1e3a8a;white-space:nowrap">${c.price}</td>
+      <td style="font-size:.75rem;color:#374151">${c.client}</td>
+      <td>${c.strengths.map(s=>`<span class="strength-tag">${s}</span>`).join('')}</td>
+      <td>${c.weaknesses.map(w=>`<span class="weakness-tag">${w}</span>`).join('')}</td>
+      <td class="num"><span class="stars" title="${c.design}/5">${stars(c.design)}</span></td>
+      <td class="num"><span class="stars" title="${c.church}/5">${stars(c.church)}</span></td>
+      <td class="num"><span class="stars" title="${c.value}/5">${stars(c.value)}</span></td>
+      <td style="font-size:.72rem;color:#6b7280;max-width:120px">${c.stack}</td>
+      <td style="font-size:.75rem;white-space:nowrap">${c.lead}</td>
+      <td style="font-size:.75rem;color:#374151;max-width:200px">${c.usp}</td>
+    </tr>`;
+  }).join('');
+
+  renderGapAnalysis();
+  renderStrategy();
+}
+
+function filterBm(region, btn) {
+  bmRegionFilter = region;
+  document.querySelectorAll('#bmFilters .bm-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderBenchmark();
+}
+function filterBmType(type, btn) {
+  bmTypeFilter = type;
+  btn.closest('.bm-filters').querySelectorAll('.bm-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderBenchmark();
+}
+
+function renderGapAnalysis() {
+  const el = document.getElementById('gapAnalysis');
+  if (!el) return;
+  const gaps = [
+    { icon:'⛪', title:'교회 전문 커스텀', desc:'Wix·Squarespace는 교회 특화 기능이 약하고, Tithely·Nucleus는 커스텀이 제한됩니다. <strong>커스텀 + 교회 전문 결합</strong>은 내 핵심 차별점입니다.' },
+    { icon:'🇰🇷', title:'한국 교회 디아스포라', desc:'한국 교회 전문 에이전시는 글로벌 역량이 부족합니다. <strong>한국어+영어+스페인어 다국어 교회 사이트</strong> 수요가 미국 내 존재합니다.' },
+    { icon:'💰', title:'가격 공백 지점', desc:'$500~$3,000 사이의 <strong>고품질 교회 커스텀 사이트</strong> 구간이 비어 있습니다. 플랫폼은 너무 제한적, 에이전시는 너무 비쌈.' },
+    { icon:'🔧', title:'유지보수 패키지', desc:'대부분 업체가 구축 후 유지보수를 별도 청구합니다. <strong>월 유지보수 번들 패키지</strong>로 MRR을 확보할 수 있습니다.' },
+    { icon:'📱', title:'모바일 퍼스트 + SEO', desc:'한국 에이전시 대부분이 SEO와 모바일 최적화에 약합니다. <strong>Google Core Web Vitals 최적화</strong>를 서비스에 포함하면 차별화됩니다.' },
+    { icon:'🤖', title:'AI 통합 서비스', desc:'Framer·Hostinger가 AI를 앞세우지만 교회·비영리 특화는 없습니다. <strong>AI 콘텐츠 제안 + 교회 특화</strong> 조합이 기회입니다.' },
+  ];
+  el.innerHTML = gaps.map(g => `
+    <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;padding:10px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb">
+      <span style="font-size:1.3rem;flex-shrink:0">${g.icon}</span>
+      <div>
+        <div style="font-weight:700;font-size:.83rem;color:#111827;margin-bottom:2px">${g.title}</div>
+        <div style="font-size:.78rem;color:#4b5563;line-height:1.5">${g.desc}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderStrategy() {
+  const el = document.getElementById('strategyPoints');
+  if (!el) return;
+  const strategies = [
+    { badge:'🥇 핵심 전략', color:'#059669', items:[
+      '교회 전문 + 커스텀 개발 결합 → 시장 공백 공략',
+      '한국 디아스포라 교회 전문가 포지셔닝',
+      '가격 $1,500~$3,500 구간 집중 (플랫폼 불만족 고객)',
+    ]},
+    { badge:'📈 성장 전략', color:'#2563eb', items:[
+      '유지보수 월 구독(MRR) 패키지 필수화',
+      '포트폴리오 10개 → 레퍼런스 레버리지',
+      'Google My Business + SEO 포함 번들 차별화',
+    ]},
+    { badge:'🛡️ 방어 전략', color:'#7c3aed', items:[
+      'Tithely·Nucleus 직접 경쟁 회피 → 커스텀 영역 집중',
+      '단기 납품(3~4주) 강조 → WebFX 대비 우위',
+      '한국어+영어 이중 소통 능력 마케팅 자산화',
+    ]},
+    { badge:'⚡ 2025-26 트렌드', color:'#d97706', items:[
+      'AI 통합 견적·콘텐츠 제안 서비스 추가',
+      'Core Web Vitals (LCP·CLS·FID) 최적화 서비스',
+      '다국어(한/영/스페인어) 교회 사이트 패키지',
+    ]},
+  ];
+  el.innerHTML = strategies.map(s => `
+    <div style="margin-bottom:14px">
+      <div style="font-weight:700;font-size:.82rem;color:${s.color};margin-bottom:6px">${s.badge}</div>
+      ${s.items.map(i => `
+        <div style="display:flex;gap:8px;margin-bottom:5px;font-size:.8rem;color:#374151">
+          <span style="color:${s.color};flex-shrink:0">▸</span> ${i}
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+}
+
+// ─── Init ───
+window.onload = () => { recalcAll(); renderBenchmark(); };
+</script>
+</body>
+</html>

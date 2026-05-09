@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HebronGuide — 목회자·교회 개척자를 위한 도시 정착 가이드 플랫폼</title>
+<meta name="description" content="가정교회 목회자를 위한 도시 정착 가이드 주문 플랫폼. 낯선 도시에서 첫 번째로 손을 내밉니다.">
+<meta name="theme-color" content="#04130a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:     #04130a;
+  --surface:#091f10;
+  --green:  #0a4a22;
+  --gold:   #d4a017;
+  --gold2:  #f0c840;
+  --lime:   #22c55e;
+  --border: rgba(255,255,255,0.09);
+  --text:   rgba(255,255,255,0.93);
+  --muted:  rgba(255,255,255,0.48);
+  --r: 16px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans KR', -apple-system, sans-serif; background: var(--bg); color: var(--text); }
+a { text-decoration: none; color: inherit; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(4,19,10,.94); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;
+}
+.nav-logo { display: flex; align-items: center; gap: 9px; font-weight: 900; font-size: 1rem; }
+.nav-back { font-size: .78rem; color: var(--muted); font-weight: 600; }
+.nav-back:hover { color: var(--text); }
+.nav-cta { background: var(--gold); color: #1a1000; font-weight: 800; font-size: .8rem; padding: 8px 18px; border-radius: 22px; }
+
+/* HERO */
+.hero {
+  min-height: 88vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 60px 24px 48px;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 0%, rgba(10,74,34,.85) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 35% at 90% 85%, rgba(212,160,23,.07) 0%, transparent 55%);
+}
+.hero-eyebrow { font-size: .68rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; display: flex; align-items: center; gap: 10px; justify-content: center; }
+.hero-eyebrow::before, .hero-eyebrow::after { content: ''; flex: 1; max-width: 36px; height: 1px; background: rgba(212,160,23,.3); }
+.hero-h1 { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900; line-height: 1.15; margin-bottom: 12px; }
+.hero-h1 em { font-style: normal; background: linear-gradient(120deg,var(--gold),var(--gold2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-sub { font-size: clamp(.9rem,2.2vw,1.1rem); color: var(--muted); max-width: 520px; margin: 0 auto 32px; line-height: 1.8; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 36px; }
+.btn-primary { background: var(--gold); color: #1a1000; font-weight: 800; font-size: .92rem; padding: 14px 28px; border-radius: 28px; box-shadow: 0 4px 20px rgba(212,160,23,.3); transition: background .2s, transform .15s; }
+.btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+.btn-ghost { border: 1.5px solid rgba(255,255,255,.22); color: var(--text); font-weight: 700; font-size: .86rem; padding: 13px 24px; border-radius: 28px; transition: border-color .2s; }
+.btn-ghost:hover { border-color: rgba(255,255,255,.45); }
+.hero-scripture { font-size: .7rem; color: rgba(255,255,255,.28); letter-spacing: 1.5px; }
+
+/* STAT BAR */
+.stat-bar { background: rgba(10,74,34,.28); border-top: 1px solid rgba(10,74,34,.55); border-bottom: 1px solid rgba(10,74,34,.55); padding: 22px 24px; display: flex; justify-content: center; flex-wrap: wrap; gap: 0; }
+.stat-item { flex: 1; min-width: 110px; max-width: 170px; text-align: center; padding: 0 18px; border-right: 1px solid var(--border); }
+.stat-item:last-child { border-right: none; }
+.stat-n { font-size: 1.75rem; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+.stat-l { font-size: .7rem; color: var(--muted); line-height: 1.4; }
+
+/* WAVE */
+.wave-bar { background: linear-gradient(135deg,rgba(34,197,94,.1),rgba(212,160,23,.06)); border-top: 1px solid rgba(34,197,94,.18); border-bottom: 1px solid rgba(34,197,94,.18); padding: 26px 24px; text-align: center; }
+.wave-bar p { font-size: clamp(.88rem,2vw,1.05rem); font-weight: 700; color: rgba(255,255,255,.85); line-height: 1.85; max-width: 600px; margin: 0 auto; }
+
+/* SECTIONS */
+.section { padding: 64px 24px; max-width: 880px; margin: 0 auto; }
+.sec-eyebrow { font-size: .62rem; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.sec-title { font-size: clamp(1.4rem,4vw,2.1rem); font-weight: 900; line-height: 1.2; margin-bottom: 14px; }
+.sec-title em { font-style: normal; color: var(--lime); }
+.sec-body { font-size: .93rem; color: var(--muted); line-height: 1.8; max-width: 580px; }
+
+/* PAIN CARDS */
+.pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 14px; margin-top: 32px; }
+.pain-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 22px 20px; position: relative; overflow: hidden; }
+.pain-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--lime), var(--gold)); }
+.pain-q { font-size: 1.5rem; margin-bottom: 10px; }
+.pain-text { font-size: .86rem; color: var(--muted); line-height: 1.7; }
+.pain-text strong { color: rgba(255,255,255,.82); }
+
+/* STEPS */
+.steps { display: flex; flex-direction: column; gap: 0; margin-top: 36px; }
+.step-row { display: grid; grid-template-columns: 50px 1fr; gap: 18px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+.step-row:last-child { border-bottom: none; }
+.step-num { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--green), rgba(10,74,34,.4)); border: 1.5px solid rgba(212,160,23,.3); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+.step-title { font-size: .98rem; font-weight: 800; margin-bottom: 5px; }
+.step-desc { font-size: .84rem; color: var(--muted); line-height: 1.65; }
+.step-tag { display: inline-block; margin-top: 8px; background: rgba(34,197,94,.12); border: 1px solid rgba(34,197,94,.28); color: #4ade80; font-size: .68rem; font-weight: 700; padding: 3px 10px; border-radius: 10px; }
+
+/* ECOSYSTEM */
+.eco-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 36px 28px; }
+.eco-eyebrow { font-size: .62rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; text-align: center; }
+.eco-flow { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; }
+.eco-step { text-align: center; min-width: 78px; }
+.eco-dot { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.04); border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin: 0 auto 7px; }
+.eco-dot.current { background: rgba(34,197,94,.18); border-color: rgba(34,197,94,.65); box-shadow: 0 0 14px rgba(34,197,94,.2); }
+.eco-step-label { font-size: .7rem; font-weight: 700; }
+.eco-step-prod { font-size: .6rem; color: var(--muted); margin-top: 2px; }
+.eco-arrow { color: rgba(212,160,23,.3); font-size: .95rem; }
+.eco-note { font-size: .78rem; color: var(--muted); text-align: center; margin-top: 18px; line-height: 1.7; }
+
+/* VISION */
+.vision-wrap { background: linear-gradient(135deg, rgba(10,74,34,.5), rgba(4,19,10,.85)); border: 1px solid rgba(10,74,34,.65); border-radius: 22px; padding: 40px 32px; text-align: center; }
+.vision-scripture { font-size: .7rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; }
+.vision-title { font-size: clamp(1.35rem,3.5vw,2rem); font-weight: 900; line-height: 1.25; margin-bottom: 14px; }
+.vision-title em { font-style: normal; color: var(--gold); }
+.vision-body { font-size: .9rem; color: var(--muted); line-height: 1.85; margin-bottom: 26px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.v-stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 0; margin-bottom: 24px; }
+.v-stat { text-align: center; padding: 0 22px; border-right: 1px solid var(--border); }
+.v-stat:last-child { border-right: none; }
+.v-stat-n { font-size: 1.7rem; font-weight: 900; color: var(--gold); }
+.v-stat-l { font-size: .66rem; color: var(--muted); }
+.v-flow { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; }
+.v-city { font-size: .76rem; font-weight: 700; padding: 5px 11px; border-radius: 18px; background: rgba(255,255,255,.04); border: 1px solid var(--border); }
+.v-city.live { background: rgba(34,197,94,.18); border-color: rgba(34,197,94,.45); color: #4ade80; }
+.v-arrow { color: rgba(212,160,23,.4); }
+
+/* FINAL CTA */
+.cta-wrap { background: linear-gradient(135deg, rgba(10,74,34,.5), rgba(212,160,23,.07)); border: 1px solid rgba(212,160,23,.28); border-radius: 22px; padding: 48px 36px; text-align: center; }
+.cta-title { font-size: clamp(1.3rem,3.8vw,2rem); font-weight: 900; line-height: 1.25; margin-bottom: 14px; }
+.cta-title em { font-style: normal; color: var(--gold); }
+.cta-body { font-size: .92rem; color: var(--muted); line-height: 1.85; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.cta-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.scarcity { font-size: .73rem; color: rgba(212,160,23,.65); margin-top: 14px; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; font-size: .72rem; color: var(--muted); line-height: 2.2; }
+footer a { color: rgba(212,160,23,.6); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <svg width="26" height="26" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="64" height="64" rx="13" fill="#0a4a22"/>
+      <circle cx="32" cy="32" r="28" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+      <polygon points="32,7 40,24 32,32 24,24" fill="#d4a017"/>
+      <polygon points="32,57 40,40 32,32 24,40" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="57,32 40,40 32,32 40,24" fill="rgba(255,255,255,0.48)"/>
+      <polygon points="7,32 24,24 32,32 24,40" fill="rgba(255,255,255,0.48)"/>
+      <circle cx="32" cy="32" r="2.5" fill="rgba(255,255,255,0.95)"/>
+    </svg>
+    HebronGuide
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <a href="../index.html" class="nav-back">← 일반 가이드</a>
+    <a href="../order-form.html" class="nav-cta">🗺️ 가이드 주문</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">목회자 · 교회 개척자를 위한 플랫폼</p>
+  <h1 class="hero-h1">
+    매주, 수십 명이<br>
+    <em>당신의 도시에 혼자</em> 도착합니다
+  </h1>
+  <p class="hero-sub">
+    낯선 도시에서 처음 열어보는 정착 가이드.<br>
+    그 순간이 당신 교회의 <strong style="color:rgba(255,255,255,.85);">첫 번째 만남</strong>이 됩니다.
+  </p>
+  <div class="hero-btns">
+    <a href="../order-form.html" class="btn-primary">🗺️ 내 도시 가이드 주문하기</a>
+    <a href="../seattle/" class="btn-ghost">시애틀 가이드 미리 보기</a>
+  </div>
+  <p class="hero-scripture">✝ 마태복음 28:18–20 · 시애틀에서 지구촌 땅 끝까지</p>
+</div>
+
+<!-- WAVE VISION -->
+<div class="wave-bar reveal">
+  <p>
+    가정교회가 물결을 일으키듯,<br>
+    HebronGuide도 도시마다 <em style="font-style:normal;color:#22c55e;">한 마음 한 방향</em>으로 퍼져나갑니다.<br>
+    <span style="color:var(--gold);font-weight:800;">하나님 나라가 이 땅에 확장되는 데 함께합니다.</span>
+  </p>
+</div>
+
+<!-- STAT BAR -->
+<div class="stat-bar reveal">
+  <div class="stat-item"><div class="stat-n">700만</div><div class="stat-l">해외 한인<br>디아스포라</div></div>
+  <div class="stat-item"><div class="stat-n">180+</div><div class="stat-l">미·캐 한인<br>밀집 도시</div></div>
+  <div class="stat-item"><div class="stat-n">매주</div><div class="stat-l">수십 명<br>새로 도착</div></div>
+  <div class="stat-item"><div class="stat-n">1</div><div class="stat-l">지금 LIVE<br>시애틀</div></div>
+</div>
+
+<!-- PAIN -->
+<section class="section reveal">
+  <p class="sec-eyebrow">목회자에게 드리는 질문</p>
+  <h2 class="sec-title">그들이 검색하는 그 순간,<br><em>당신 교회가 먼저 보입니까?</em></h2>
+  <p class="sec-body">새 이주자들은 도착하자마자 실용적인 정보를 찾습니다. 운전면허, SSN, 병원, 학교 — 그 검색의 끝에 교회가 있다면 어떨까요?</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-q">🏥</div>
+      <p class="pain-text">"한국어 되는 병원이 어디예요?" — <strong>그 대답을 당신 교회가 드립니다.</strong></p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-q">🏠</div>
+      <p class="pain-text">"처음 이사왔는데 어디서 살아야 해요?" — <strong>가이드가 먼저 손을 내밉니다.</strong></p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-q">⛪</div>
+      <p class="pain-text">"근처에 한인 교회가 있나요?" — <strong>가정교회가 바로 거기 있습니다.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section reveal">
+  <p class="sec-eyebrow">어떻게 작동하나요</p>
+  <h2 class="sec-title">QR 코드 하나로<br><em>만남의 문이 열립니다</em></h2>
+  <div class="steps">
+    <div class="step-row">
+      <div class="step-num">🗺️</div>
+      <div>
+        <div class="step-title">목사님이 도시 가이드를 주문합니다</div>
+        <p class="step-desc">도시 정보, 교회 정보, 가정교회 섹션을 맞춤 제작합니다. 5~7일 납품.</p>
+        <span class="step-tag">$50~80 · 1회 제작 · Zelle·PayPal</span>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">📱</div>
+      <div>
+        <div class="step-title">QR 코드로 새 이주자에게 전달합니다</div>
+        <p class="step-desc">공항, 한인 마트, SNS, 교회 현관 어디서든 QR 한 번으로 설치. 앱스토어 불필요.</p>
+        <span class="step-tag">설치 3초 · 홈 화면 아이콘</span>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">🏘️</div>
+      <div>
+        <div class="step-title">정착 정보를 찾다가 교회를 만납니다</div>
+        <p class="step-desc">가이드 안에서 자연스럽게 가정교회를 발견합니다. 강요 없이, 필요 안에서 찾아오는 만남.</p>
+        <span class="step-tag">만남 → 교회 연결 → 공동체</span>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">♾️</div>
+      <div>
+        <div class="step-title">가이드가 공동체를 통해 확산됩니다</div>
+        <p class="step-desc">먼저 온 사람이 새로 온 사람에게 보냅니다. 스스로 퍼져나가는 복음의 네트워크.</p>
+        <span class="step-tag">사람이 사람에게 · 재생산</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECOSYSTEM -->
+<div class="section reveal">
+  <div class="eco-wrap">
+    <p class="eco-eyebrow">✝ Hebron Faith Ecosystem · 선교 사이클</p>
+    <div class="eco-flow">
+      <div class="eco-step"><div class="eco-dot current">🗺️</div><div class="eco-step-label">만남의 문</div><div class="eco-step-prod">HebronGuide</div></div>
+      <div class="eco-arrow">›</div>
+      <div class="eco-step"><div class="eco-dot">⛪</div><div class="eco-step-label">목장의 문</div><div class="eco-step-prod">HebronApp</div></div>
+      <div class="eco-arrow">›</div>
+      <div class="eco-step"><div class="eco-dot">🙏</div><div class="eco-step-label">동행의 문</div><div class="eco-step-prod">HebronAltar</div></div>
+      <div class="eco-arrow">›</div>
+      <div class="eco-step"><div class="eco-dot">🌐</div><div class="eco-step-label">열방의 문</div><div class="eco-step-prod">HebronLingua</div></div>
+      <div class="eco-arrow">›</div>
+      <div class="eco-step"><div class="eco-dot">🎵</div><div class="eco-step-label">찬양의 문</div><div class="eco-step-prod">HebronStudio</div></div>
+      <div class="eco-arrow">›</div>
+      <div class="eco-step"><div class="eco-dot">👑</div><div class="eco-step-label">재생산</div><div class="eco-step-prod">KChurch911</div></div>
+    </div>
+    <p class="eco-note">HebronGuide는 Faith Ecosystem의 <strong style="color:rgba(255,255,255,.82);">첫 번째 문</strong>입니다.<br>낯선 도시에서 정착 정보를 찾다가 교회를 만나고, 공동체 안에서 제자로 세워집니다.</p>
+  </div>
+</div>
+
+<!-- NETWORK PARTNERSHIP -->
+<div class="section reveal">
+  <p class="sec-eyebrow">파트너십 네트워크</p>
+  <h2 class="sec-title">연결된 교회들이<br><em>함께 도시를 품습니다</em></h2>
+  <p class="sec-body" style="margin-bottom:28px;">
+    HebronGuide는 독립적으로 운영되는 도시 가이드이면서,<br>
+    동시에 아래 네트워크 및 교단과 회원교회로 협력합니다.
+  </p>
+  <div class="pain-grid">
+    <div class="pain-card" style="border-color:rgba(212,160,23,.55);">
+      <div class="pain-q">⛪</div>
+      <p class="pain-text" style="text-align:left;">
+        <strong style="color:var(--gold);">시애틀지구촌교회</strong><br>
+        <span style="font-size:.8rem;color:var(--muted);font-weight:400;">GMC Seattle</span><br><br>
+        HebronGuide 시애틀 사역의 <strong>출발점</strong>이 됩니다.
+      </p>
+    </div>
+    <div class="pain-card" style="border-color:rgba(255,255,255,.15);">
+      <div class="pain-q">⛪</div>
+      <p class="pain-text" style="text-align:left;">
+        <strong style="color:rgba(255,255,255,.85);">워싱턴지구촌교회</strong><br>
+        <span style="font-size:.8rem;color:var(--muted);font-weight:400;">파송교회</span><br><br>
+        시애틀지구촌교회(GMC Seattle)의 <strong>파송교회</strong>. HebronGuide 시애틀 사역이 탄생하게 된 배경 교회입니다.
+      </p>
+    </div>
+    <div class="pain-card" style="border-color:rgba(255,255,255,.15);">
+      <div class="pain-q">🤝</div>
+      <p class="pain-text" style="text-align:left;">
+        <strong style="color:rgba(255,255,255,.85);">한국지구촌교회</strong><br>
+        <span style="font-size:.8rem;color:var(--muted);font-weight:400;">협력교회</span><br><br>
+        HebronGuide 시애틀과 <strong>협력 관계</strong>에 있는 한국 본부 교회. 디아스포라 한인 사역의 뿌리입니다.
+      </p>
+    </div>
+    <div class="pain-card" style="border-color:rgba(34,197,94,.35);">
+      <div class="pain-q">🌐</div>
+      <p class="pain-text" style="text-align:left;">
+        <strong style="color:var(--lime);">GMN</strong><br>
+        <span style="font-size:.8rem;color:var(--muted);font-weight:400;">Global Mission Network</span><br><br>
+        열방을 향한 선교 <strong>회원교회 네트워크</strong>. HebronGuide는 GMN 회원교회로서 도시 확장 방향을 함께합니다.
+      </p>
+    </div>
+    <div class="pain-card" style="border-color:rgba(59,130,246,.35);">
+      <div class="pain-q">🏛️</div>
+      <p class="pain-text" style="text-align:left;">
+        <strong style="color:#93C5FD;">Northwest Baptist Convention, SBC</strong><br>
+        <span style="font-size:.8rem;color:var(--muted);font-weight:400;">교단 소속</span><br><br>
+        미국 남침례교단(SBC) 산하 북서부 지역 컨벤션. 시애틀지구촌교회의 <strong>교단 소속</strong> 네트워크입니다.
+      </p>
+    </div>
+    <div class="pain-card" style="border-color:rgba(59,130,246,.25);">
+      <div class="pain-q">🫱</div>
+      <p class="pain-text" style="text-align:left;">
+        <strong style="color:#93C5FD;">Pugetsound Baptist Association</strong><br>
+        <span style="font-size:.8rem;color:var(--muted);font-weight:400;">지역 교회 협의체</span><br><br>
+        퓨젓사운드 지역 침례교 교회 <strong>협력 네트워크</strong>. NBC SBC 산하 지역 연합 기구입니다.
+      </p>
+    </div>
+    <div class="pain-card" style="border-color:rgba(255,255,255,.15);">
+      <div class="pain-q">⛪</div>
+      <p class="pain-text" style="text-align:left;">
+        <strong style="color:rgba(255,255,255,.85);">서북미한인침례교회</strong><br>
+        <span style="font-size:.8rem;color:var(--muted);font-weight:400;">한인 교단 회원</span><br><br>
+        북미 서부 한인 침례교 교회 <strong>회원</strong>. 서북미 지역 한인 교계 협력 네트워크의 일원입니다.
+      </p>
+    </div>
+    <div class="pain-card" style="border-color:rgba(212,160,23,.35);">
+      <div class="pain-q">🏠</div>
+      <p class="pain-text" style="text-align:left;">
+        <strong style="color:var(--gold);">국제가사원</strong><br>
+        <span style="font-size:.8rem;color:var(--muted);font-weight:400;">국제가정교회 사역원</span><br><br>
+        시애틀지구촌교회를 포함한 전 세계 가정교회 <strong>회원교회 네트워크</strong>. HebronGuide는 이 네트워크와 함께 도시 정착 사역을 연결합니다.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- GLOBAL VISION -->
+<div class="section reveal">
+  <div class="vision-wrap">
+    <p class="vision-scripture">✝ 마태복음 28:18–20 · Genesis 13:14–18</p>
+    <h2 class="vision-title"><em>700만 해외 한인</em>이<br>낯선 도시에 도착합니다</h2>
+    <p class="vision-body">HebronGuide는 그 첫 날의 연락처가 됩니다.<br>정착 정보를 찾다가 교회를 만나고,<br>공동체 안에서 뿌리를 내립니다.</p>
+    <div class="v-stats">
+      <div class="v-stat"><div class="v-stat-n">700만</div><div class="v-stat-l">해외 한인 디아스포라</div></div>
+      <div class="v-stat"><div class="v-stat-n">180+</div><div class="v-stat-l">한인 밀집 도시</div></div>
+      <div class="v-stat"><div class="v-stat-n">1</div><div class="v-stat-l">현재 LIVE 도시</div></div>
+      <div class="v-stat"><div class="v-stat-n">∞</div><div class="v-stat-l">확장 가능한 도시</div></div>
+    </div>
+    <div class="v-flow">
+      <span class="v-city live">🌲 시애틀 LIVE</span>
+      <span class="v-arrow">›</span>
+      <span class="v-city">⭐ 달라스</span>
+      <span class="v-arrow">›</span>
+      <span class="v-city">🌉 샌프란시스코</span>
+      <span class="v-arrow">›</span>
+      <span class="v-city">🗽 뉴욕</span>
+      <span class="v-arrow">›</span>
+      <span class="v-city">🎵 내쉬빌</span>
+      <span class="v-arrow">›</span>
+      <span class="v-city">🌐 땅 끝까지</span>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="section reveal">
+  <div class="cta-wrap">
+    <h2 class="cta-title">
+      목사님의 도시는<br><em>아직 준비가 안 되어 있습니다.</em><br>
+      당신이 첫 번째가 될 수 있습니다.
+    </h2>
+    <p class="cta-body">
+      지금 이 순간에도 새 이주자들이 검색하고 있습니다.<br>
+      가이드 하나가 그들의 손을 먼저 잡습니다.<br>
+      그것이 가정교회의 문을 여는 방법입니다.
+    </p>
+    <div class="cta-btns">
+      <a href="../order-form.html" class="btn-primary">🗺️ 내 도시 가이드 주문하기</a>
+      <a href="../seattle/" class="btn-ghost">시애틀 가이드 미리 보기</a>
+    </div>
+    <p class="scarcity">✦ 도시당 1개 교회 선착순 파트너십 · 5~7 영업일 납품</p>
+  </div>
+</div>
+
+<footer>
+  © 2026 <strong>HebronGuide</strong> · <a href="mailto:kchurch911@gmail.com">kchurch911@gmail.com</a><br>
+  <a href="../index.html">일반 가이드</a> ·
+  <a href="../order-form.html">가이드 주문</a> ·
+  <a href="../seattle/">시애틀 가이드</a> ·
+  <a href="../share-kit.html">셰어킷</a>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

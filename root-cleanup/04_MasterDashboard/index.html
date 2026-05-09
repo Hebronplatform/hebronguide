@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hebron Website · 종합 운영 대시보드</title>
+<style>
+  :root {
+    --nav-h: 56px;
+    --primary: #1a56db;
+    --primary-dark: #1e3a8a;
+    --accent:  #6c63ff;
+    --success: #057a55;
+    --dark:    #0f1117;
+    --surface: #1a1d27;
+    --border:  #2e3250;
+    --text:    #e8eaf6;
+    --muted:   #7c83a8;
+    --yellow:  #fbbf24;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; overflow: hidden; font-family: 'Segoe UI', -apple-system, sans-serif; }
+
+  /* ──────────── TOP NAV ──────────── */
+  #topnav {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: linear-gradient(90deg, #0f1117 0%, #1a1d27 60%, #1e3a8a 100%);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center;
+    padding: 0 20px; gap: 16px; z-index: 200;
+    box-shadow: 0 2px 12px rgba(0,0,0,.4);
+  }
+
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    flex-shrink: 0; margin-right: 8px;
+  }
+  .brand-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, #6c63ff, #1a56db);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .brand-text { font-size: .95rem; font-weight: 700; color: #fff; line-height: 1.2; }
+  .brand-sub  { font-size: .68rem; color: var(--muted); }
+
+  /* divider */
+  .sep { width: 1px; height: 28px; background: var(--border); flex-shrink: 0; }
+
+  /* tab buttons */
+  .app-tabs { display: flex; gap: 4px; flex: 1; }
+  .app-tab {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 7px; border: none;
+    background: transparent; color: var(--muted);
+    font-size: .84rem; font-weight: 600; cursor: pointer;
+    transition: all .2s; white-space: nowrap;
+  }
+  .app-tab:hover { background: rgba(255,255,255,.07); color: #fff; }
+  .app-tab.active {
+    background: rgba(108,99,255,.25);
+    color: #a5b4fc;
+    border: 1px solid rgba(108,99,255,.4);
+  }
+  .app-tab .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-guide { background: #6c63ff; }
+  .dot-biz   { background: #1a56db; }
+
+  /* right controls */
+  .nav-right {
+    margin-left: auto; display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+  }
+  .badge {
+    font-size: .72rem; font-weight: 700; padding: 3px 9px;
+    border-radius: 999px; white-space: nowrap;
+  }
+  .badge-exp  { background: rgba(251,191,36,.15); color: #fbbf24; border: 1px solid rgba(251,191,36,.3); }
+  .badge-rate { background: rgba(5,122,85,.15);   color: #34d399; border: 1px solid rgba(5,122,85,.3); }
+  .badge-pos  { background: rgba(26,86,219,.2);   color: #93c5fd; border: 1px solid rgba(26,86,219,.4); }
+
+  /* ──────────── SPLIT LAYOUT ──────────── */
+  #workspace {
+    position: fixed;
+    top: var(--nav-h); left: 0; right: 0; bottom: 0;
+    display: flex;
+  }
+
+  /* single-frame mode */
+  .frame-wrap {
+    flex: 1; display: flex; flex-direction: column;
+    transition: all .3s;
+    overflow: hidden;
+  }
+  .frame-wrap.hidden { display: none; }
+
+  .frame-label {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 16px; font-size: .76rem; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .frame-label.guide-label {
+    background: #0f1117; color: #a5b4fc;
+    border-bottom: 2px solid #6c63ff;
+  }
+  .frame-label.biz-label {
+    background: #1e3a8a; color: #bfdbfe;
+    border-bottom: 2px solid #3b82f6;
+  }
+
+  iframe {
+    flex: 1; border: none; width: 100%; height: 100%;
+    display: block;
+  }
+
+  /* split divider */
+  #divider {
+    width: 4px; background: var(--border);
+    cursor: col-resize; flex-shrink: 0;
+    position: relative; transition: background .2s;
+    display: none;
+  }
+  #divider:hover, #divider.dragging { background: #6c63ff; }
+  #divider::after {
+    content: '⋮⋮';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    color: #4b5563; font-size: 14px; letter-spacing: -2px;
+  }
+
+  /* ──────────── VIEW MODE BUTTONS ──────────── */
+  .view-btns { display: flex; gap: 2px; background: rgba(255,255,255,.05); border-radius: 6px; padding: 2px; }
+  .view-btn {
+    padding: 4px 10px; border-radius: 4px; border: none;
+    background: transparent; color: var(--muted);
+    font-size: .75rem; cursor: pointer; transition: all .2s;
+  }
+  .view-btn.active, .view-btn:hover {
+    background: rgba(255,255,255,.1); color: #fff;
+  }
+  .view-btn.active { background: rgba(108,99,255,.3); color: #c4b5fd; }
+
+  /* ──────────── TOAST ──────────── */
+  #toast {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: #1f2937; color: #f9fafb;
+    padding: 10px 20px; border-radius: 8px; font-size: .85rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,.4);
+    opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 999;
+    white-space: nowrap;
+  }
+  #toast.show { opacity: 1; }
+
+  /* ──────────── OVERLAY (home) ──────────── */
+  #homeOverlay {
+    position: fixed; inset: 0; top: var(--nav-h);
+    background: #0a0e1a;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 32px;
+    transition: opacity .3s;
+  }
+  #homeOverlay.hidden { display: none; }
+
+  .home-title {
+    text-align: center;
+    color: #e8eaf6;
+  }
+  .home-title h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 6px; }
+  .home-title p  { color: var(--muted); font-size: .9rem; }
+
+  .home-cards {
+    display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+    max-width: 800px; padding: 0 20px;
+  }
+  .home-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px 32px;
+    cursor: pointer; transition: all .25s;
+    text-align: center; min-width: 220px; max-width: 280px; flex: 1;
+  }
+  .home-card:hover {
+    border-color: #6c63ff;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(108,99,255,.2);
+  }
+  .home-card.biz:hover {
+    border-color: #1a56db;
+    box-shadow: 0 12px 32px rgba(26,86,219,.2);
+  }
+  .home-card-icon { font-size: 3rem; margin-bottom: 14px; }
+  .home-card h3   { font-size: 1.05rem; font-weight: 700; color: #f9fafb; margin-bottom: 6px; }
+  .home-card p    { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+  .home-card .tag {
+    display: inline-block; margin-top: 12px;
+    font-size: .72rem; font-weight: 700; padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .tag-guide { background: rgba(108,99,255,.2); color: #a5b4fc; }
+  .tag-biz   { background: rgba(26,86,219,.2);  color: #93c5fd; }
+
+  .home-split-btn {
+    background: linear-gradient(135deg, rgba(108,99,255,.2), rgba(26,86,219,.2));
+    border: 1px solid rgba(108,99,255,.3);
+    border-radius: 10px; padding: 14px 32px;
+    color: #c4b5fd; font-size: .88rem; font-weight: 600;
+    cursor: pointer; transition: all .2s;
+  }
+  .home-split-btn:hover {
+    background: linear-gradient(135deg, rgba(108,99,255,.35), rgba(26,86,219,.35));
+    transform: translateY(-2px);
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ TOP NAV ══════════════════ -->
+<nav id="topnav">
+  <div class="brand">
+    <div class="brand-icon">🌐</div>
+    <div>
+      <div class="brand-text">Hebron Website</div>
+      <div class="brand-sub">종합 운영 대시보드</div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="app-tabs">
+    <button class="app-tab" id="btn-home" onclick="showHome()">
+      <span>🏠</span> 홈
+    </button>
+    <button class="app-tab" id="btn-guide" onclick="showView('guide')">
+      <span class="dot dot-guide"></span> 마스터 가이드
+    </button>
+    <button class="app-tab" id="btn-biz" onclick="showView('biz')">
+      <span class="dot dot-biz"></span> 사업 대시보드
+    </button>
+    <button class="app-tab" id="btn-split" onclick="showView('split')">
+      <span>⊞</span> 화면 분할
+    </button>
+  </div>
+
+  <div class="nav-right">
+    <span class="badge badge-exp" id="navExp">경력 5년</span>
+    <span class="badge badge-rate" id="navRate">$40/hr</span>
+    <span class="badge badge-pos">Upper-Mid</span>
+  </div>
+</nav>
+
+<!-- ══════════════════ HOME OVERLAY ══════════════════ -->
+<div id="homeOverlay">
+  <div class="home-title">
+    <h2>무엇을 작업하시겠습니까?</h2>
+    <p>아래 도구를 선택하거나 화면 분할로 동시에 사용하세요.</p>
+  </div>
+
+  <div class="home-cards">
+    <div class="home-card" onclick="showView('guide')">
+      <div class="home-card-icon">📚</div>
+      <h3>홈페이지 제작<br>마스터 가이드</h3>
+      <p>기획부터 런칭까지 단계별 학습 가이드.<br>A to Z 실전 제작 노하우.</p>
+      <span class="tag tag-guide">학습 / 노하우</span>
+    </div>
+    <div class="home-card biz" onclick="showView('biz')">
+      <div class="home-card-icon">💼</div>
+      <h3>사업 자동<br>가격 대시보드</h3>
+      <p>경력 기반 자동 가격 산출.<br>견적·수익·매출 예측 통합 관리.</p>
+      <span class="tag tag-biz">사업 / 가격 계산</span>
+    </div>
+  </div>
+
+  <button class="home-split-btn" onclick="showView('split')">
+    ⊞ &nbsp;화면 분할 — 두 도구 동시 보기
+  </button>
+</div>
+
+<!-- ══════════════════ WORKSPACE ══════════════════ -->
+<div id="workspace">
+  <!-- 마스터 가이드 frame -->
+  <div class="frame-wrap hidden" id="wrap-guide">
+    <div class="frame-label guide-label">
+      <span class="dot dot-guide"></span> 홈페이지 제작 마스터 가이드
+    </div>
+    <iframe id="frame-guide" src="../02_HomePage/index.html" title="마스터 가이드"></iframe>
+  </div>
+
+  <!-- split divider -->
+  <div id="divider"></div>
+
+  <!-- 사업 대시보드 frame -->
+  <div class="frame-wrap hidden" id="wrap-biz">
+    <div class="frame-label biz-label">
+      <span class="dot dot-biz"></span> 홈페이지 제작 사업 자동 대시보드
+    </div>
+    <iframe id="frame-biz" src="../03_BizDashboard/index.html" title="사업 대시보드"
+      onload="syncBizState()"></iframe>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- ══════════════════ SCRIPT ══════════════════ -->
+<script>
+let currentMode = 'home'; // 'home' | 'guide' | 'biz' | 'split'
+
+// ─── View Switching ───
+function showHome() {
+  currentMode = 'home';
+  document.getElementById('homeOverlay').classList.remove('hidden');
+  document.getElementById('wrap-guide').classList.add('hidden');
+  document.getElementById('wrap-biz').classList.add('hidden');
+  document.getElementById('divider').style.display = 'none';
+  setActiveTab('btn-home');
+}
+
+function showView(mode) {
+  currentMode = mode;
+  const overlay  = document.getElementById('homeOverlay');
+  const wrapG    = document.getElementById('wrap-guide');
+  const wrapB    = document.getElementById('wrap-biz');
+  const divider  = document.getElementById('divider');
+
+  overlay.classList.add('hidden');
+
+  if (mode === 'guide') {
+    wrapG.classList.remove('hidden');
+    wrapB.classList.add('hidden');
+    divider.style.display = 'none';
+    setActiveTab('btn-guide');
+    toast('마스터 가이드 열림');
+  } else if (mode === 'biz') {
+    wrapG.classList.add('hidden');
+    wrapB.classList.remove('hidden');
+    divider.style.display = 'none';
+    setActiveTab('btn-biz');
+    toast('사업 대시보드 열림');
+  } else if (mode === 'split') {
+    wrapG.classList.remove('hidden');
+    wrapB.classList.remove('hidden');
+    divider.style.display = 'block';
+    setActiveTab('btn-split');
+    toast('화면 분할 모드');
+    initDivider();
+  }
+}
+
+function setActiveTab(id) {
+  document.querySelectorAll('.app-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById(id)?.classList.add('active');
+}
+
+// ─── Sync biz dashboard state badges ───
+function syncBizState() {
+  try {
+    const bizDoc = document.getElementById('frame-biz').contentDocument;
+    const expEl  = bizDoc?.getElementById('yearsExp');
+    const hrEl   = bizDoc?.getElementById('baseHourly');
+    if (expEl) document.getElementById('navExp').textContent  = `경력 ${expEl.value}년`;
+    if (hrEl)  document.getElementById('navRate').textContent = hrEl.value;
+  } catch(e) { /* cross-origin guard */ }
+}
+
+// Periodically sync badges from biz iframe
+setInterval(() => {
+  if (currentMode === 'biz' || currentMode === 'split') syncBizState();
+}, 2000);
+
+// ─── Toast ───
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ─── Drag-to-resize divider ───
+function initDivider() {
+  const divider  = document.getElementById('divider');
+  const wrapG    = document.getElementById('wrap-guide');
+  const wrapB    = document.getElementById('wrap-biz');
+  const workspace = document.getElementById('workspace');
+
+  if (divider.dataset.init) return;
+  divider.dataset.init = '1';
+
+  // Set initial 50/50
+  wrapG.style.flex = '1';
+  wrapB.style.flex = '1';
+
+  let dragging = false, startX = 0, startGW = 0;
+
+  divider.addEventListener('mousedown', e => {
+    dragging = true;
+    startX   = e.clientX;
+    startGW  = wrapG.getBoundingClientRect().width;
+    divider.classList.add('dragging');
+    // Prevent iframe swallowing events
+    document.querySelectorAll('iframe').forEach(f => f.style.pointerEvents = 'none');
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const totalW = workspace.getBoundingClientRect().width - 4;
+    const newGW  = Math.min(Math.max(startGW + (e.clientX - startX), 200), totalW - 200);
+    const pct    = (newGW / totalW) * 100;
+    wrapG.style.flex = `0 0 ${pct}%`;
+    wrapB.style.flex = `0 0 ${100 - pct}%`;
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    divider.classList.remove('dragging');
+    document.querySelectorAll('iframe').forEach(f => f.style.pointerEvents = '');
+  });
+}
+
+// ─── Keyboard shortcuts ───
+document.addEventListener('keydown', e => {
+  if (e.altKey) {
+    if (e.key === '1') showHome();
+    if (e.key === '2') showView('guide');
+    if (e.key === '3') showView('biz');
+    if (e.key === '4') showView('split');
+  }
+});
+</script>
+</body>
+</html>
