@@ -337,7 +337,7 @@ HebronGuide는 정치적 좌파도 우파도 아니다.
 | 도시 | 매체 | URL | 등급 |
 |---|---|---|---|
 | **전국** | 미주중앙일보 (9개 지역판) | koreadaily.com | ✅ |
-| **전국** | 미주한국일보 | koreatimes.com | ✅ |
+| **전국** | 미주한국일보 (9개 지역판 + 영어판) | koreatimes.com | ✅ |
 | **전국** | Radio Korea | radiokorea.com | ✅ |
 | **전국** | BIGKinds | bigkinds.or.kr | ✅ |
 | 시애틀 | 시애틀 한국일보 | seattlekdaily.com | ⚠️ |
