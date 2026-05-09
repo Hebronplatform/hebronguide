@@ -5537,9 +5537,204 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
 /* ─────────────────────────────────────────
    TAB 7: 취업 SCREEN
 ───────────────────────────────────────── */
+// 도시별 주요 고용주 데이터
+function getCityJobData(slug: string, lang: string) {
+  const ko = lang === "ko";
+  const DATA: Record<string, { main: any[]; sector: any[]; biz: any[]; visa: any[] }> = {
+    seattle: {
+      main: [
+        { emoji: "☁️", name: "Amazon", nameEn: "Amazon — Largest Seattle Employer",
+          desc: ko ? "✅ 시애틀 최대 고용주. SLU 본사. SDE·PM·데이터사이언티스트. AWS 글로벌 본부. 한인 직원 수천 명. 연봉 $120K-$350K+ | 🔗 amazon.jobs"
+                   : "✅ Seattle's largest employer. SLU HQ. SDE, PM, data scientist, AWS HQ. Thousands of Korean employees. Salary $120K-$350K+ | 🔗 amazon.jobs", tags: ["빅테크","SDE","H-1B"] },
+        { emoji: "🖥️", name: "Microsoft", nameEn: "Microsoft — Redmond HQ",
+          desc: ko ? "✅ 레드몬드 본사. Azure·Office·Copilot. 한인 엔지니어 많음. H-1B 스폰서 적극. 연봉 $130K-$380K+ | 🔗 careers.microsoft.com"
+                   : "✅ Redmond HQ. Azure, Office, Copilot. Large Korean engineer community. Active H-1B sponsor. $130K-$380K+ | 🔗 careers.microsoft.com", tags: ["빅테크","레드몬드","비자지원"] },
+        { emoji: "✈️", name: "Boeing", nameEn: "Boeing — Aerospace",
+          desc: ko ? "에버렛·렌톤. 에어로스페이스 엔지니어링. 기계·항공·전기 엔지니어 수요. 보안 허가 필요 | 🔗 boeing.com/careers"
+                   : "Everett & Renton. Aerospace engineering. Mechanical, aero & electrical engineers. Security clearance needed | 🔗 boeing.com/careers", tags: ["항공","엔지니어링","에버렛"] },
+      ],
+      sector: [
+        { emoji: "🏥", name: ko ? "의료·바이오 취업" : "Healthcare & Biotech",
+          desc: ko ? "UW Medicine·Swedish·Kaiser·Virginia Mason. 간호사·의사·연구직. WA 간호사 부족 → 취업 용이. 의료 비자 경로 | 🔗 careers.uwmedicine.org"
+                   : "UW Medicine, Swedish, Kaiser, Virginia Mason. Nurses, doctors, researchers. WA nurse shortage → easier hiring | 🔗 careers.uwmedicine.org", tags: ["의료","간호사","바이오"] },
+      ],
+      biz: [
+        { emoji: "🍽️", name: ko ? "한인 자영업 가이드" : "Korean Small Business Guide",
+          desc: ko ? "린우드·페더럴웨이 중심. 한식당·BBQ, 미용실·네일, 세탁소, 한인 부동산·보험. 초기 자본 $50K-$150K. 한인 상공회의소 멘토링 | 🔗 kachamber.com"
+                   : "Lynnwood & Federal Way. Korean restaurants, hair/nail salons, laundry, real estate, insurance. Capital $50K-$150K. Korean Chamber mentoring | 🔗 kachamber.com", tags: ["자영업","창업","린우드"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "취업 비자 안내" : "Work Visa Guide",
+          desc: ko ? "• H-1B: 전문직. Amazon·MS 적극 지원\n• L-1: 사내 이동 (한국→미국)\n• OPT/STEM OPT: 졸업 후 1-3년\n• EB-2/EB-3: 취업 영주권\n• E-2: 투자 비자"
+                   : "• H-1B: Specialty occupation, Amazon/MS sponsor\n• L-1: Intracompany transfer\n• OPT/STEM OPT: 1-3 years post-grad\n• EB-2/EB-3: Employment green card\n• E-2: Investment visa", tags: ["H-1B","비자","영주권"] },
+        { emoji: "💡", name: ko ? "시애틀 한인 취업 네트워크" : "Seattle Korean Job Networks",
+          desc: ko ? "• KAA — Amazon 내 한인 네트워크\n• KABA — 비즈니스 네트워크\n• UW·시애틀U 한인 동문\n• 교회 소그룹 — 강력한 채용 연결"
+                   : "• KAA — Korean network inside Amazon\n• KABA — Business network\n• UW/Seattle U Korean alumni\n• Church small groups — powerful job connections", tags: ["네트워크","KAA","동문"] },
+      ],
+    },
+    dallas: {
+      main: [
+        { emoji: "📡", name: "AT&T", nameEn: "AT&T — Dallas HQ",
+          desc: ko ? "달라스 본사. 통신·IT·미디어. 한인 엔지니어·PM 다수. H-1B 스폰서. 연봉 $80K-$200K+ | 🔗 att.jobs"
+                   : "Dallas HQ. Telecom, IT & media. Korean engineers & PMs. H-1B sponsor. $80K-$200K+ | 🔗 att.jobs", tags: ["통신","IT","H-1B"] },
+        { emoji: "💻", name: "Texas Instruments", nameEn: "Texas Instruments — Semiconductor",
+          desc: ko ? "달라스 본사. 반도체·아날로그 IC. 한인 반도체 엔지니어 많음. 연봉 $100K-$280K+ | 🔗 ti.com/careers"
+                   : "Dallas HQ. Semiconductor & analog IC. Many Korean semiconductor engineers. $100K-$280K+ | 🔗 ti.com/careers", tags: ["반도체","엔지니어링","달라스"] },
+        { emoji: "✈️", name: "American Airlines", nameEn: "American Airlines — Fort Worth HQ",
+          desc: ko ? "포트워스 본사. 항공·물류·IT. 한인 파일럿·IT 직군 진출 가능. 연봉 $60K-$180K | 🔗 jobs.aa.com"
+                   : "Fort Worth HQ. Aviation, logistics & IT. Korean pilots & IT roles available. $60K-$180K | 🔗 jobs.aa.com", tags: ["항공","물류","포트워스"] },
+      ],
+      sector: [
+        { emoji: "🏦", name: ko ? "금융·부동산 취업" : "Finance & Real Estate",
+          desc: ko ? "달라스 금융 허브: Goldman Sachs, JP Morgan, Bank of America 달라스 오피스. 한인 금융·회계 전문가 수요. 공인회계사(CPA) 취업 용이 | 🔗 glassdoor.com"
+                   : "Dallas finance hub: Goldman Sachs, JP Morgan, BofA offices. Korean finance & accounting professionals in demand. CPA jobs accessible | 🔗 glassdoor.com", tags: ["금융","회계","CPA"] },
+      ],
+      biz: [
+        { emoji: "🍽️", name: ko ? "캐롤튼·플레이노 한인 자영업" : "Korean Small Business — Carrollton & Plano",
+          desc: ko ? "캐롤튼 한인타운(Royal Lane) + 플레이노. 한식당·BBQ·치킨, 미용실·네일, 한인 마트, 부동산·보험. 텍사스 소득세 없음 → 수익성 높음. 초기 자본 $40K-$120K"
+                   : "Carrollton Koreatown (Royal Lane) + Plano. Korean food, hair/nail, Korean market, real estate & insurance. No Texas income tax → higher profitability. Capital $40K-$120K", tags: ["자영업","캐롤튼","텍사스"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "텍사스 취업 비자 안내" : "Texas Work Visa Guide",
+          desc: ko ? "• H-1B: AT&T·TI 등 적극 스폰서\n• TN 비자: 캐나다·멕시코 국적자\n• E-2: 한국인 창업 투자 비자 (텍사스 인기)\n• EB-5: 투자 이민 (텍사스 EB-5 센터)\n⚠️ 텍사스는 이민 단속 강화 — 비자 관리 철저히"
+                   : "• H-1B: AT&T, TI active sponsors\n• TN Visa: Canadian/Mexican nationals\n• E-2: Korean investor visa (popular in TX)\n• EB-5: Investment immigration\n⚠️ Texas immigration enforcement strong — manage visa carefully", tags: ["H-1B","E-2","텍사스"] },
+        { emoji: "💡", name: ko ? "달라스 한인 취업 네트워크" : "Dallas Korean Job Networks",
+          desc: ko ? "• KASBA (Korean American Small Business Assoc. DFW)\n• 달라스 한인 상공회의소\n• 플레이노 한인 커뮤니티 취업 소모임\n• LinkedIn + 교회 소그룹 연결"
+                   : "• KASBA (Korean American Small Business Assoc. DFW)\n• Dallas Korean Chamber of Commerce\n• Plano Korean community job meetups\n• LinkedIn + church small groups", tags: ["네트워크","KASBA","달라스"] },
+      ],
+    },
+    la: {
+      main: [
+        { emoji: "🎬", name: ko ? "엔터테인먼트·미디어" : "Entertainment & Media",
+          desc: ko ? "LA = 세계 엔터테인먼트 수도. Netflix·Disney·Warner·Universal. 한인 콘텐츠 수요 폭증 (K드라마·K팝). 작가·프로듀서·번역·마케팅 직군 | 🔗 entertainmentcareers.net"
+                   : "LA = world entertainment capital. Netflix, Disney, Warner, Universal. Korean content demand surging. Writers, producers, translators, marketing | 🔗 entertainmentcareers.net", tags: ["엔터테인먼트","미디어","K콘텐츠"] },
+        { emoji: "🏥", name: ko ? "LA 의료·간호 취업" : "LA Healthcare & Nursing",
+          desc: ko ? "Cedars-Sinai·UCLA·USC Medical. 한국어 가능 의료인 수요 높음. 간호사 부족 → 취업 용이. 한인 의사·간호사 협회(KAMA, KANA) 네트워크 활용 | 🔗 cedars-sinai.org/careers"
+                   : "Cedars-Sinai, UCLA, USC Medical. Korean-speaking healthcare workers in demand. Nurse shortage → easier hiring. KAMA, KANA network | 🔗 cedars-sinai.org/careers", tags: ["의료","간호","한국어"] },
+        { emoji: "💻", name: ko ? "LA 테크·스타트업" : "LA Tech & Startups",
+          desc: ko ? "실리콘비치(Silicon Beach): Snap·Hulu·SpaceX·LA 스타트업. 게임(Riot Games·Blizzard). 한인 테크 커뮤니티 활성 | 🔗 built.in/los-angeles"
+                   : "Silicon Beach: Snap, Hulu, SpaceX, LA startups. Gaming (Riot Games, Blizzard). Active Korean tech community | 🔗 built.in/los-angeles", tags: ["테크","스타트업","게임"] },
+      ],
+      sector: [
+        { emoji: "🏦", name: ko ? "한인 금융·은행권" : "Korean Banks & Finance",
+          desc: ko ? "한미은행(Hanmi Bank)·우리아메리카은행·신한아메리카 코리아타운 본사. 한인 금융 허브. 한국어 필수 직군 다수. 연봉 $55K-$150K | 🔗 hanmi.com/careers"
+                   : "Hanmi Bank, Woori America, Shinhan America — Koreatown HQ. Korean finance hub. Korean-required positions. $55K-$150K | 🔗 hanmi.com/careers", tags: ["은행","한미은행","금융"] },
+      ],
+      biz: [
+        { emoji: "🏪", name: ko ? "LA 코리아타운 자영업" : "Koreatown Small Business",
+          desc: ko ? "미주 최대 코리아타운. 한식당·BBQ·치킨, 노래방·PC방, 미용실·네일, 부동산·보험·여행사. 임대료 높으나 유동인구 최다. 초기 자본 $80K-$250K"
+                   : "Largest US Koreatown. Korean food, karaoke, beauty, real estate, insurance, travel. High rent but highest foot traffic. Capital $80K-$250K", tags: ["코리아타운","자영업","창업"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "CA 취업 비자 안내" : "California Work Visa Guide",
+          desc: ko ? "• H-1B: 엔터테인먼트·테크 회사 스폰서\n• O-1: 특출한 능력 비자 (예술·영화·K팝)\n• EB-1A: 탁월 능력 영주권\n• E-2: 투자 비자 (한인 자영업 인기)\n• Medi-Cal: 무보험 이민자도 의료 지원 ✅"
+                   : "• H-1B: Entertainment & tech company sponsors\n• O-1: Extraordinary ability (arts, film, K-pop)\n• EB-1A: Extraordinary ability green card\n• E-2: Investment visa (popular for Korean business)\n• Medi-Cal: Healthcare for undocumented immigrants ✅", tags: ["H-1B","O-1","California"] },
+        { emoji: "💡", name: ko ? "LA 한인 취업 네트워크" : "LA Korean Job Networks",
+          desc: ko ? "• KAGRO — 한인 기업인 협회\n• KCCD (Korean Community Center) 취업 프로그램\n• 코리아타운 한인 교회 취업 소그룹\n• K-Town 스타트업 네트워크"
+                   : "• KAGRO — Korean businesspeople association\n• KCCD (Korean Community Center) job programs\n• Koreatown church job small groups\n• K-Town startup network", tags: ["KAGRO","네트워크","코리아타운"] },
+      ],
+    },
+    newyork: {
+      main: [
+        { emoji: "🏦", name: ko ? "월스트리트 금융권" : "Wall Street Finance",
+          desc: ko ? "Goldman Sachs·JP Morgan·Citi·Morgan Stanley. 한인 금융 전문가 최다 집중. 연봉 $100K-$500K+. CFA·MBA 우대 | 🔗 glassdoor.com/finance"
+                   : "Goldman Sachs, JP Morgan, Citi, Morgan Stanley. Highest concentration of Korean finance professionals. $100K-$500K+. CFA/MBA preferred | 🔗 glassdoor.com/finance", tags: ["금융","월스트리트","CFA"] },
+        { emoji: "🏥", name: ko ? "의료·제약 취업" : "Healthcare & Pharma",
+          desc: ko ? "NYU Langone·NewYork-Presbyterian·Columbia Medical. 한국어 의료인 수요. NJ 제약(Johnson & Johnson, Merck). 의사·연구직 영주권 경로 | 🔗 nyu.edu/careers"
+                   : "NYU Langone, NewYork-Presbyterian, Columbia Medical. Korean-speaking healthcare in demand. NJ pharma (J&J, Merck). Doctor/researcher green card pathways | 🔗 nyu.edu/careers", tags: ["의료","제약","NJ"] },
+        { emoji: "💻", name: ko ? "뉴욕 테크·스타트업" : "NYC Tech & Startups",
+          desc: ko ? "Google NYC·Amazon NYC·Meta NYC. 실리콘앨리(Silicon Alley). 한인 테크 커뮤니티 성장 중. 연봉 $130K-$400K+ | 🔗 built.in/new-york"
+                   : "Google NYC, Amazon NYC, Meta NYC. Silicon Alley. Growing Korean tech community. $130K-$400K+ | 🔗 built.in/new-york", tags: ["테크","스타트업","맨하탄"] },
+      ],
+      sector: [
+        { emoji: "⚖️", name: ko ? "법률·컨설팅" : "Law & Consulting",
+          desc: ko ? "대형 로펌(빅로 Big Law) + 한인 이민법 전문. McKinsey·BCG·Bain 컨설팅. 한국어 가능 변호사·컨설턴트 수요. JD·MBA 거의 필수"
+                   : "Big Law firms + Korean immigration law specialists. McKinsey, BCG, Bain consulting. Korean-speaking attorneys & consultants in demand. JD/MBA nearly required", tags: ["법률","컨설팅","빅로"] },
+      ],
+      biz: [
+        { emoji: "🏪", name: ko ? "플러싱·포트리 한인 자영업" : "Flushing & Fort Lee Korean Business",
+          desc: ko ? "플러싱(Queens) + 포트리(NJ) + 팰리세이즈파크(NJ). 한식당·마트·뷰티·무역. 뉴욕 최고 유동인구. 임대료 높음. 초기 자본 $100K-$300K"
+                   : "Flushing (Queens) + Fort Lee (NJ) + Palisades Park (NJ). Korean food, market, beauty, trade. Highest foot traffic. High rent. Capital $100K-$300K", tags: ["플러싱","포트리","NJ"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "뉴욕 취업 비자 안내" : "NYC Work Visa Guide",
+          desc: ko ? "• H-1B: 금융·테크 회사 스폰서\n• O-1: 탁월 능력 (예술·비즈니스)\n• EB-1A/EB-2 NIW: 연구·의료 영주권\n• TN: 캐나다·멕시코 전문직\n• NYC Care: 무보험 이민자 의료 지원 ✅"
+                   : "• H-1B: Finance & tech company sponsors\n• O-1: Extraordinary ability\n• EB-1A/EB-2 NIW: Research & medical green card\n• TN: Canadian/Mexican professionals\n• NYC Care: Healthcare for undocumented ✅", tags: ["H-1B","뉴욕","영주권"] },
+        { emoji: "💡", name: ko ? "뉴욕 한인 취업 네트워크" : "NYC Korean Job Networks",
+          desc: ko ? "• KAAFNY — 뉴욕 한인 금융인 협회\n• 플러싱 한인 상공회의소\n• 한국무역협회 뉴욕 지부(KITA)\n• 코리아소사이어티(Korea Society) 네트워크"
+                   : "• KAAFNY — Korean finance professionals NYC\n• Flushing Korean Chamber of Commerce\n• KITA New York branch\n• Korea Society network", tags: ["KAAFNY","KITA","뉴욕"] },
+      ],
+    },
+    houston: {
+      main: [
+        { emoji: "⚡", name: ko ? "에너지·석유화학" : "Energy & Petrochemicals",
+          desc: ko ? "ExxonMobil·Chevron·Shell·BP 휴스턴 오피스. 에너지 엔지니어·지질학자·데이터분석가. 한인 에너지 전문가 다수. 연봉 $90K-$250K | 🔗 exxonmobil.com/careers"
+                   : "ExxonMobil, Chevron, Shell, BP Houston offices. Energy engineers, geologists, data analysts. Korean energy professionals. $90K-$250K | 🔗 exxonmobil.com/careers", tags: ["에너지","엔지니어링","오일"] },
+        { emoji: "🚀", name: ko ? "NASA·항공우주" : "NASA & Aerospace",
+          desc: ko ? "NASA Johnson Space Center 인근. Boeing·Lockheed Martin·SpaceX 휴스턴 오피스. 한인 항공우주 엔지니어 취업 가능. 보안 허가 필요 | 🔗 nasajobs.nasa.gov"
+                   : "Near NASA Johnson Space Center. Boeing, Lockheed, SpaceX Houston. Korean aerospace engineers welcomed. Security clearance needed | 🔗 nasajobs.nasa.gov", tags: ["NASA","항공우주","우주"] },
+        { emoji: "🏥", name: ko ? "Texas Medical Center 취업" : "Texas Medical Center Jobs",
+          desc: ko ? "세계 최대 의료 단지(TMC). MD Anderson·Methodist·Baylor. 한국어 가능 의료인 수요. 간호사 부족 → 취업 용이. 연봉 $70K-$250K | 🔗 tmc.edu"
+                   : "World's largest medical complex (TMC). MD Anderson, Methodist, Baylor. Korean-speaking healthcare demand. Nurse shortage → accessible. $70K-$250K | 🔗 tmc.edu", tags: ["의료","TMC","간호사"] },
+      ],
+      sector: [
+        { emoji: "🔧", name: ko ? "한인 엔지니어링 기업" : "Korean Engineering Companies",
+          desc: ko ? "GS건설·삼성엔지니어링·현대건설 휴스턴 프로젝트. 한국어+영어 능통자 우대. 해외 플랜트 프로젝트 참여 기회 | 🔗 linkedin.com"
+                   : "GS Engineering, Samsung Engineering, Hyundai Construction Houston projects. Korean+English bilingual preferred. Overseas plant project opportunities | 🔗 linkedin.com", tags: ["건설","엔지니어링","한국기업"] },
+      ],
+      biz: [
+        { emoji: "🍽️", name: ko ? "Bellaire 한인 자영업" : "Bellaire Korean Small Business",
+          desc: ko ? "Bellaire Blvd 비공식 한인타운. 한식당·BBQ, H-Mart 주변 상권. 텍사스 소득세 없음. 에너지 산업 고소득층 고객. 초기 자본 $50K-$150K"
+                   : "Bellaire Blvd informal Koreatown. Korean food, H-Mart area. No Texas income tax. High-income energy sector customers. Capital $50K-$150K", tags: ["Bellaire","자영업","창업"] },
+      ],
+      visa: [
+        { emoji: "💼", name: ko ? "휴스턴 취업 비자 안내" : "Houston Work Visa Guide",
+          desc: ko ? "• H-1B: 에너지·의료 분야 스폰서\n• TN: 캐나다·멕시코 엔지니어\n• E-2: 텍사스 투자 비자 (창업 인기)\n• EB-2/EB-3: 의료·엔지니어 영주권\n⚠️ 텍사스 반이민 정책 — 서류 관리 철저히"
+                   : "• H-1B: Energy & medical company sponsors\n• TN: Canadian/Mexican engineers\n• E-2: Texas investment visa (popular for startups)\n• EB-2/EB-3: Medical & engineering green card\n⚠️ Texas anti-immigration policy — manage documents carefully", tags: ["H-1B","에너지","텍사스"] },
+        { emoji: "💡", name: ko ? "휴스턴 한인 취업 네트워크" : "Houston Korean Job Networks",
+          desc: ko ? "• Greater Houston Korean American Chamber\n• IHM(가정교회) 휴스턴 한인 취업 네트워크\n• Bellaire 한인 소모임\n• LinkedIn + 교회 연결"
+                   : "• Greater Houston Korean American Chamber\n• IHM Houston Korean job network\n• Bellaire Korean meetups\n• LinkedIn + church connections", tags: ["GHKACC","IHM","휴스턴"] },
+      ],
+    },
+  };
+
+  // 기본값: 범용 데이터 (데이터 없는 도시)
+  const generic = {
+    main: [
+      { emoji: "💻", name: ko ? `${slug} 테크·IT 취업` : `${slug} Tech & IT Jobs`,
+        desc: ko ? "LinkedIn·Indeed·Glassdoor에서 현지 한인 취업 정보 검색. 211 전화 → 취업 서비스 연결. 한인 교회 취업 소그룹 활용"
+                 : "Search local Korean job info on LinkedIn, Indeed, Glassdoor. Dial 211 for job services. Use Korean church job small groups", tags: ["IT","취업","링크드인"] },
+      { emoji: "🏥", name: ko ? "의료·간호 취업" : "Healthcare & Nursing",
+        desc: ko ? "한국어 가능 의료인 수요 전국적. 211 전화 또는 지역 병원 인사팀 문의. 한인 의사·간호사 협회 네트워크 활용"
+                 : "Korean-speaking healthcare workers needed nationwide. Dial 211 or contact hospital HR. Korean medical professional associations", tags: ["의료","간호","한국어"] },
+    ],
+    sector: [
+      { emoji: "🏦", name: ko ? "금융·세무 취업" : "Finance & Accounting",
+        desc: ko ? "CPA·공인회계사 전국 수요 강함. 한국어+영어 이중언어 세무사 특히 수요. 한인 교포 고객 대상 세무·회계 서비스 창업 가능"
+                 : "CPA demand strong nationwide. Korean-English bilingual tax professionals especially needed. Korean community tax/accounting services", tags: ["CPA","세무","회계"] },
+    ],
+    biz: [
+      { emoji: "🍽️", name: ko ? "한인 자영업 안내" : "Korean Small Business Guide",
+        desc: ko ? "한인 밀집 지역 자영업: 한식당·미용실·부동산·보험. E-2 투자 비자로 창업 가능. 한인 상공회의소 멘토링 활용. 초기 자본 $50K-$200K"
+                 : "Korean small business near community: Korean food, beauty, real estate, insurance. E-2 investor visa for startup. Korean Chamber mentoring. Capital $50K-$200K", tags: ["자영업","창업","E-2"] },
+    ],
+    visa: [
+      { emoji: "💼", name: ko ? "취업 비자 기본 안내" : "Work Visa Basics",
+        desc: ko ? "• H-1B: 전문직 스폰서 필요\n• L-1: 사내 이동 (한국→미국)\n• OPT/STEM OPT: 유학 후 1-3년\n• EB-2/EB-3: 취업 영주권\n• E-2: 한국인 투자 비자"
+                 : "• H-1B: Specialty occupation, needs sponsor\n• L-1: Intracompany transfer Korea→US\n• OPT/STEM OPT: 1-3 years post-study\n• EB-2/EB-3: Employment green card\n• E-2: Korean investor visa", tags: ["H-1B","비자","영주권"] },
+      { emoji: "💡", name: ko ? "한인 취업 네트워크" : "Korean Job Networks",
+        desc: ko ? "• 한인 상공회의소 지역 지부\n• LinkedIn 한인 그룹 검색\n• 한인 교회 취업 소그룹\n• 211 전화 → 취업 서비스 연결"
+                 : "• Local Korean Chamber of Commerce\n• Search Korean groups on LinkedIn\n• Korean church job small groups\n• Dial 211 for employment services", tags: ["네트워크","취업","커뮤니티"] },
+    ],
+  };
+
+  return DATA[slug] ?? generic;
+}
+
 function JobsScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
+  const city = useCityConfig();
   const [sub, setSub] = useState(0);
   const tabs = lang === "ko"
     ? ["빅테크", "의료·항공", "자영업", "비자·네트워크"]
@@ -5598,10 +5793,12 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
       tags: ["네트워크", "LinkedIn", "KAA"] },
   ];
 
+  // 도시별 취업 데이터 적용
+  const cityJobData = getCityJobData(city.slug, lang);
   const allJobs = serverContent["jobs"] ? resolvePlaceItems(serverContent["jobs"], lang) : null;
   const subData = allJobs
     ? [allJobs.slice(0, 3), allJobs.slice(3, 5), allJobs.slice(5, 6), allJobs.slice(6)]
-    : [defaultJobs, healthAerospace, smallBiz, visaNetwork];
+    : [cityJobData.main, cityJobData.sector, cityJobData.biz, cityJobData.visa];
   const content = subData[sub];
 
   return (
@@ -5621,6 +5818,8 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
             💼 {lang === "ko" ? "취업 바로 연결" : "Job Resources"}
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+            {/* 시애틀 전용: 카카오챗 + WorkSource WA */}
+            {city.slug === "seattle" && (<>
             <a href="https://open.kakao.com/o/search/%EC%8B%9C%EC%95%A0%ED%8B%80%ED%95%9C%EC%9D%B8" target="_blank" rel="noopener noreferrer"
               style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(251,191,36,0.2)" }}>
               <span style={{ fontSize: 16 }}>💬</span>
@@ -5641,12 +5840,14 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
               </div>
               <span style={{ color: accent, fontSize: 14 }}>→</span>
             </a>
-            <a href="https://www.linkedin.com/jobs/search/?keywords=Korean&location=Seattle%2C+WA" target="_blank" rel="noopener noreferrer"
+            </>)}
+            {/* 전 도시 공통: LinkedIn + Indeed */}
+            <a href={`https://www.linkedin.com/jobs/search/?keywords=Korean&location=${encodeURIComponent(city.nameEn)}`} target="_blank" rel="noopener noreferrer"
               style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(251,191,36,0.2)" }}>
               <span style={{ fontSize: 16 }}>💼</span>
               <div style={{ flex: 1 }}>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>LinkedIn Jobs — Seattle</div>
-                <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "시애틀 한인 취업 공고" : "Seattle Korean job listings"}</div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>LinkedIn Jobs — {city.nameEn}</div>
+                <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? `${city.nameKo} 한인 취업 공고` : `${city.nameEn} Korean job listings`}</div>
               </div>
               <span style={{ color: accent, fontSize: 14 }}>→</span>
             </a>
