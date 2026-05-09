@@ -3218,8 +3218,8 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.55)", marginTop: 2, lineHeight: 1.5 }}>
             {ko
-              ? "모든 연결은 자연스럽게 교회와 공동체로 이어집니다 — \"나그네를 영접하였다\" 마25:35"
-              : "Every connection naturally leads to church & community — \"I was a stranger and you welcomed me\" Matt 25:35"}
+              ? "모든 연결은 자연스럽게 지역 공동체를 살리는 방향으로 흐를 것입니다 — 마25:35"
+              : "Every connection naturally flows toward reviving the local community — Matt 25:35"}
           </div>
         </div>
       </div>
