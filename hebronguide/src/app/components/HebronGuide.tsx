@@ -3030,7 +3030,7 @@ const QUICK_MENU = [
   { icon: "receipt",        labelKo: "세금신고", labelEn: "Taxes",   color: "#F97316", tab: 8, subTab: 4 },
   { icon: "scale",          labelKo: "법률상담", labelEn: "Legal",   color: "#64748B", tab: 5, subTab: 5 },
   { icon: "book-open",      labelKo: "한국학교", labelEn: "K-School",color: "#BE185D", tab: 7, subTab: 5 },
-  { icon: "users",          labelKo: "사람연결", labelEn: "Connect", color: "#C9A227", tab: 9, subTab: 0 },
+  // 사람연결(tab 9)은 하단 네비 "연결" 탭으로 접근 — Quick Menu 중복 제거 → 정확히 16개
 ];
 
 function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
@@ -5156,23 +5156,6 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   : "• Major cities (LA, NY, Dallas): 12 churches — balanced regional coverage\n• Mid cities (Seattle, Atlanta): up to 12 — city-wide coverage\n• Small & military cities: 3-5 churches — a light for lonely Koreans\n\nNew immigrants automatically connected to nearest hub church."}
               </div>
             </div>
-
-            {/* pastor.html 소개 페이지 버튼 */}
-            <a href="https://hebronguide.com/pastor.html"
-              target="_blank" rel="noopener noreferrer"
-              style={{ display: "block", textDecoration: "none", marginBottom: 10 }}>
-              <div style={{ background: "rgba(201,162,39,0.1)", border: "1px solid rgba(201,162,39,0.4)", borderRadius: 14, padding: "14px 20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#C9A227", marginBottom: 3 }}>
-                    📄 {lang === "ko" ? "목회자 파트너십 소개 페이지" : "Pastor Partnership Page"}
-                  </div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.6)" }}>
-                    {lang === "ko" ? "목사님께 먼저 보내는 링크 — hebronguide.com/pastor.html" : "Share this with pastors first — hebronguide.com/pastor.html"}
-                  </div>
-                </div>
-                <span style={{ color: "#C9A227", fontSize: 18, marginLeft: 12 }}>→</span>
-              </div>
-            </a>
 
             {/* CTA */}
             <a href="mailto:gmc.hc300@gmail.com?subject=HebronGuide 허브교회 신청"
@@ -7514,9 +7497,10 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
   const [sub, setSub] = useState(0);
 
   const ko = lang === "ko";
+  // 네트워크(목사·선교사)는 교회 탭 > 허브교회로 통합 — 여기서는 5개 생활 서비스만
   const tabs = ko
-    ? ["🚗 라이드", "🏠 스테이", "📚 튜터", "🤝 커뮤니티", "💍 매칭", "⛪ 네트워크"]
-    : ["🚗 Ride", "🏠 Stay", "📚 Tutor", "🤝 Connect", "💍 Match", "⛪ Network"];
+    ? ["🚗 라이드", "🏠 스테이", "📚 튜터", "🤝 커뮤니티", "💍 매칭"]
+    : ["🚗 Ride", "🏠 Stay", "📚 Tutor", "🤝 Connect", "💍 Match"];
   const accent = "#C9A227";
 
   const SERVICES = [
@@ -7605,23 +7589,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
       statusKo: "파트너 교회 모집 중 — 먼저 연락주세요", statusEn: "Recruiting partner churches — contact us first",
       statusColor: "#EC4899",
     },
-    {
-      id: "network", icon: "⛪", color: "#C9A227",
-      titleKo: "헤브론 네트워크", titleEn: "Hebron Network",
-      taglineKo: "목사님·선교사님이 연결되면 모든 것이 가능합니다",
-      taglineEn: "When pastors and missionaries connect, everything becomes possible.",
-      stepsKo: ["목사님/선교사님 파트너 등록", "도시·국가별 거점 네트워크 구축", "교인 크로스시티 연결 + 전 서비스 활성화"],
-      stepsEn: ["Pastor/missionary partner registration", "Build hub network by city & country", "Cross-city member connection + activate all services"],
-      benchmarkName: "Acts 29 + KWMA + Lausanne",
-      benchmarkData: ko ? "Acts 29: 700개+ 교회 30개국 · KWMA: 한국 선교사 22,000명 · Lausanne: 200개국 글로벌 협력" : "Acts 29: 700+ churches 30 countries · KWMA: 22,000 Korean missionaries · Lausanne: 200-country global collaboration",
-      benchmarkLesson: ko ? "신학적 정체성 + 실용적 도구 + 동료 책임감 = 지속가능한 교회 네트워크" : "Theological identity + practical tools + peer accountability = sustainable church network",
-      hebronKo: "디아스포라 특화 + 디지털 퍼스트 + 목사-선교사 통합 네트워크. 다른 서비스 모두의 신뢰 기반.",
-      hebronEn: "Diaspora-specific + digital-first + unified pastor-missionary network. Trust foundation for all other services.",
-      revenueKo: "네트워크 참여 무료 | 교회 프리미엄 프로필 $50/월 | 매칭 서비스 수익의 일부 교회 쉐어",
-      revenueEn: "Network participation free | Church premium profile $50/mo | Share of matching revenue with churches",
-      statusKo: "지금 바로 시작 — 목사님께 연락주세요", statusEn: "Starting now — contact us",
-      statusColor: "#C9A227",
-    },
+    // ⛪ 네트워크(목사·선교사)는 교회 탭 > 허브교회 서브탭으로 통합
   ];
 
   const svc = SERVICES[sub];
@@ -7630,8 +7598,8 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🤝" titleKo="사람 연결" titleEn="Hebron Connect"
-        descKo={`${city.nameKo} — 라이드·스테이·튜터·커뮤니티·매칭·목회자 네트워크`}
-        descEn={`${city.nameEn} — Rides · Stay · Tutor · Community · Matching · Pastor Network`}
+        descKo={`${city.nameKo} — 라이드·스테이·튜터·커뮤니티·매칭`}
+        descEn={`${city.nameEn} — Rides · Stay · Tutor · Community · Matching`}
         accentColor={accent} />
 
       {/* 비전 배너 */}
@@ -7729,9 +7697,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
           style={{ display: "block", textDecoration: "none" }}>
           <div style={{ background: `linear-gradient(135deg, ${svc.color}, ${svc.color}cc)`, borderRadius: 14, padding: "14px 20px", textAlign: "center", boxShadow: `0 4px 20px ${svc.color}40`, cursor: "pointer" }}>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff" }}>
-              {sub === 5
-                ? (ko ? "⛪ 목사님·선교사님 — 파트너 문의" : "⛪ Pastor/Missionary — Partner Inquiry")
-                : (ko ? `🚀 ${svc.titleKo} 관심 등록` : `🚀 Register Interest — ${svc.titleEn}`)}
+              {ko ? `🚀 ${svc.titleKo} 관심 등록` : `🚀 Register Interest — ${svc.titleEn}`}
             </div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)", marginTop: 3 }}>
               gmc.hc300@gmail.com
