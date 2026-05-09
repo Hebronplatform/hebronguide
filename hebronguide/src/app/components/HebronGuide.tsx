@@ -4626,30 +4626,324 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
 
   const accent = "#60A5FA";
 
-  const week1Ko = [
+  // ── 도시별 정착 1주차 데이터 ──
+  const week1Ko = citySlug === "dallas" ? [
+    { title: "임시 거주지 확보", desc: "한인 민박, 에어비앤비, 단기 렌탈. 캐롤튼·올드덴튼 한인타운(H-Mart 인근) 권장" },
+    { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통 가능. 선불폰부터 시작" },
+    { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 McKinney SSA 오피스 방문" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명 준비. Chase, Prosperity Bank, Wells Fargo 방문" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '달라스한인', H-Mart 커뮤니티 보드, 캐롤튼 한인 교회 방문" },
+  ] : citySlug === "sf" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 산호세·프리몬트·산타클라라 한인 밀집 지역 권장" },
+    { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통. 선불폰부터 시작" },
+    { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 SF 미션 스트리트 SSA 오피스" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명 준비. Chase, Bank of America, Hanmi Bank 방문" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 'SF베이한인', H-Mart 커뮤니티 보드, 산호세 한인 교회 방문" },
+  ] : citySlug === "newyork" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 플러싱(Queens) 또는 포트리(NJ) 한인타운 인근 권장" },
+    { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통. 선불폰부터 시작" },
+    { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 맨해튼 125번가 SSA 오피스" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명. Chase, Citibank, Hanmi Bank, Shinhan Bank America 방문" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '뉴욕한인', 플러싱 H-Mart 보드, 플러싱·포트리 한인 교회" },
+  ] : citySlug === "la" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 코리아타운·세리토스·토랜스 한인 밀집 지역 권장" },
+    { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통. 선불폰부터 시작" },
+    { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 LA 피게로아 SSA 오피스" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명. Chase, Hanmi Bank, Open Bank, Bank of Hope 방문" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 'LA한인', 코리아타운 H-Mart 보드, 코리아타운 한인 교회" },
+  ] : citySlug === "houston" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 슈거랜드·케이티·미미사 한인 밀집 지역 권장" },
+    { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통. 선불폰부터 시작" },
+    { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 휴스턴 다운타운 SSA 오피스" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명. Chase, Wells Fargo, Texas Capital Bank 방문" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '휴스턴한인', H-Mart 커뮤니티 보드, 슈거랜드 한인 교회" },
+  ] : citySlug === "boston" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 올스턴·퀸시 한인 밀집 지역 권장 (BU·하버드 인근)" },
+    { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통. 선불폰부터 시작" },
+    { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 보스턴 코즈웨이 SSA 오피스" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명. Chase, Bank of America, Citizens Bank 방문" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '보스턴한인', 올스턴 H-Mart 보드, 올스턴 한인 교회" },
+  ] : citySlug === "nashville" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 매디슨·H-Mart 인근 권장 (한인타운 중심)" },
+    { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통. 선불폰부터 시작" },
+    { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 내쉬빌 브로드웨이 SSA 오피스" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명. Chase, Avenue Bank, Wells Fargo 방문" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '내쉬빌한인', 매디슨 H-Mart 보드, 내쉬빌 한인 교회" },
+  ] : citySlug === "toronto" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 노스욕·핀치 한인타운(Yonge/Finch) 인근 권장" },
+    { title: "휴대폰 개통", desc: "TELUS, Rogers, Koodo Mobile. SIM 카드 + 여권으로 개통" },
+    { title: "SIN 신청 (캐나다 사회보험번호)", desc: "영주권·취업허가 후 즉시 Service Canada 오피스 방문 신청" },
+    { title: "은행 계좌 개설", desc: "RBC, TD, Scotiabank, CIBC. SIN+여권으로 개설. 한인 직원 있는 지점 찾기" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '토론토한인', 노스욕 H-Mart 보드, 노스욕 한인 교회" },
+  ] : citySlug === "vancouver" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 코퀴틀람·버나비 한인 밀집 지역 권장" },
+    { title: "휴대폰 개통", desc: "TELUS, Rogers, Fido. SIM 카드 + 여권으로 개통" },
+    { title: "SIN 신청 (캐나다 사회보험번호)", desc: "영주권·취업허가 후 즉시 Service Canada 오피스 방문 신청" },
+    { title: "은행 계좌 개설", desc: "RBC, TD, Scotiabank, VanCity 신협. SIN+여권으로 개설" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '밴쿠버한인', 코퀴틀람 H-Mart 보드, 코퀴틀람 한인 교회" },
+  ] : citySlug === "atlanta" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 둘루스·스와니·존스크릭 한인 밀집 지역 권장" },
+    { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통. 선불폰부터 시작" },
+    { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 애틀랜타 피치트리 SSA 오피스" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명. Chase, Wells Fargo, SunTrust/Truist 방문" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '애틀랜타한인', 둘루스 H-Mart 보드, 둘루스 한인 교회" },
+  ] : citySlug === "philadelphia" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 어퍼다비(PA) 또는 체리힐(NJ) 한인 밀집 지역 권장" },
+    { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통. 선불폰부터 시작" },
+    { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 필라델피아 마켓스트리트 SSA 오피스" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명. Chase, Citizens Bank, PNC Bank 방문" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '필라델피아한인', 어퍼다비 H-Mart 보드, 어퍼다비 한인 교회" },
+  ] : citySlug === "kansascity" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 오버랜드파크·H-Mart 인근 권장 (KS 쪽)" },
+    { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통. 선불폰부터 시작" },
+    { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 캔자스시티 메인 SSA 오피스" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명. Chase, Commerce Bank, UMB Bank 방문" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 'KC한인', 오버랜드파크 H-Mart 보드, KC 한인 교회" },
+  ] : citySlug === "miami" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 도랄·코랄게이블스 한인 밀집 지역 권장" },
+    { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통. 선불폰부터 시작" },
+    { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 마이애미 SW 1번가 SSA 오피스" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명. Chase, Bank of America, Regions Bank 방문" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '마이애미한인', 도랄 한인 커뮤니티, 도랄 한인 교회" },
+  ] : citySlug === "mexicocity" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·호텔. 폴랑코·소나로사(Zona Rosa) 인근 권장. 한인 밀집·안전한 구역" },
+    { title: "휴대폰 개통", desc: "Telcel·Movistar·AT&T Mexico. 여권으로 개통. Telcel 커버리지 최강" },
+    { title: "RFC 등록 (납세자 번호)", desc: "멕시코 취업·사업 필수. SAT 온라인(sat.gob.mx) 또는 현지 회계사 도움으로 등록" },
+    { title: "은행 계좌 개설", desc: "BBVA·Banamex/Citibanamex·Santander. 여권+RFC+주소 증명. 사립 은행 권장" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '멕시코한인', 한국 대사관 한인 커뮤니티, KOTRA 멕시코시티" },
+  ] : citySlug === "guadalajara" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·호텔. 차풀테펙·사폴로판·프로비덴시아 권장 (안전한 외국인 거주 지구)" },
+    { title: "휴대폰 개통", desc: "Telcel·Movistar·AT&T Mexico. 여권으로 개통. Telcel 커버리지 최강" },
+    { title: "RFC 등록 (납세자 번호)", desc: "멕시코 취업·사업 필수. SAT 온라인(sat.gob.mx) 또는 현지 회계사 도움" },
+    { title: "은행 계좌 개설", desc: "BBVA·Santander·Citibanamex. 여권+RFC+주소 증명" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '과달라하라한인', 과달라하라 한인회, KOTRA 멕시코시티 연락" },
+  ] : citySlug === "monterrey" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·호텔. 산페드로가르사가르시아·미티에라 한인 주재원 밀집 지역 권장" },
+    { title: "휴대폰 개통", desc: "Telcel·Movistar·AT&T Mexico. 주재원의 경우 법인 계약폰 이용 가능" },
+    { title: "RFC 등록 (납세자 번호)", desc: "멕시코 취업·사업 필수. 주재원은 현지 회사 HR 통해 처리 가능" },
+    { title: "은행 계좌 개설", desc: "Banorte·BBVA·Santander. 주재원은 법인 계좌 연동 가능. 여권+RFC+주소 증명" },
+    { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '몬테레이한인', 몬테레이 한인회, 현대·기아·POSCO 주재원 단체" },
+  ] : [
+    // seattle default
     { title: "임시 거주지 확보", desc: "한인 민박, 에어비앤비, 단기 렌탈로 시작. H-Mart·Lynnwood 한인타운 인근 권장" },
     { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통 가능. 선불폰부터 시작" },
-    { title: "SSN (사회보장번호) 신청", desc: "고용 비자 소지자 입국 10일 후 신청. SSA 오피스 방문 (시애틀 다운타운)" },
+    { title: "SSN (사회보장번호) 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 915 2nd Ave #3605, Seattle SSA 오피스" },
     { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명 준비. Chase, Wells Fargo, WA Federal 방문" },
     { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '시애틀한인', H-Mart 커뮤니티 보드, 교회 방문" },
   ];
-  const week1En = [
+
+  const week1En = citySlug === "dallas" ? [
+    { title: "Secure temporary housing", desc: "Korean homestay, Airbnb or short-term rental. Near Carrollton/Old Denton Korean H-Mart area recommended" },
+    { title: "Activate phone", desc: "T-Mobile, AT&T, Mint Mobile. Passport + visa sufficient. Prepaid is fine to start" },
+    { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. Visit McKinney SSA office" },
+    { title: "Prepare bank account", desc: "Bring passport, visa, address proof. Visit Chase, Prosperity Bank, or Wells Fargo" },
+    { title: "Connect to Korean community", desc: "KakaoTalk '달라스한인', H-Mart community board, Korean churches in Carrollton" },
+  ] : citySlug === "sf" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. San Jose, Fremont, Santa Clara Korean hub areas recommended" },
+    { title: "Activate phone", desc: "T-Mobile, AT&T, Mint Mobile. Passport + visa sufficient. Prepaid is fine" },
+    { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. Visit SF Mission St SSA office" },
+    { title: "Prepare bank account", desc: "Bring passport, visa, address proof. Chase, Bank of America, Hanmi Bank" },
+    { title: "Connect to Korean community", desc: "KakaoTalk 'SF베이한인', H-Mart community board, Korean churches in San Jose" },
+  ] : citySlug === "newyork" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. Near Flushing (Queens) or Fort Lee (NJ) Koreatown recommended" },
+    { title: "Activate phone", desc: "T-Mobile, AT&T, Mint Mobile. Passport + visa sufficient. Prepaid is fine" },
+    { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. Visit Manhattan 125th St SSA office" },
+    { title: "Prepare bank account", desc: "Bring passport, visa, address proof. Chase, Citibank, Hanmi Bank, Shinhan Bank America" },
+    { title: "Connect to Korean community", desc: "KakaoTalk '뉴욕한인', Flushing H-Mart board, Korean churches in Flushing/Fort Lee" },
+  ] : citySlug === "la" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. Koreatown, Cerritos, or Torrance Korean areas recommended" },
+    { title: "Activate phone", desc: "T-Mobile, AT&T, Mint Mobile. Passport + visa sufficient. Prepaid is fine" },
+    { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. Visit LA Figueroa St SSA office" },
+    { title: "Prepare bank account", desc: "Bring passport, visa, address proof. Chase, Hanmi Bank, Open Bank, Bank of Hope" },
+    { title: "Connect to Korean community", desc: "KakaoTalk 'LA한인', Koreatown H-Mart board, Korean churches in Koreatown" },
+  ] : citySlug === "houston" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. Sugar Land, Katy, or Missouri City Korean areas recommended" },
+    { title: "Activate phone", desc: "T-Mobile, AT&T, Mint Mobile. Passport + visa sufficient. Prepaid is fine" },
+    { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. Visit Houston downtown SSA office" },
+    { title: "Prepare bank account", desc: "Bring passport, visa, address proof. Chase, Wells Fargo, Texas Capital Bank" },
+    { title: "Connect to Korean community", desc: "KakaoTalk '휴스턴한인', H-Mart community board, Korean churches in Sugar Land" },
+  ] : citySlug === "boston" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. Allston or Quincy Korean areas recommended (near BU/Harvard)" },
+    { title: "Activate phone", desc: "T-Mobile, AT&T, Mint Mobile. Passport + visa sufficient. Prepaid is fine" },
+    { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. Visit Boston Causeway St SSA office" },
+    { title: "Prepare bank account", desc: "Bring passport, visa, address proof. Chase, Bank of America, Citizens Bank" },
+    { title: "Connect to Korean community", desc: "KakaoTalk '보스턴한인', Allston H-Mart board, Korean churches in Allston" },
+  ] : citySlug === "nashville" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. Madison (near H-Mart) area recommended — heart of Korean community" },
+    { title: "Activate phone", desc: "T-Mobile, AT&T, Mint Mobile. Passport + visa sufficient. Prepaid is fine" },
+    { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. Visit Nashville Broadway SSA office" },
+    { title: "Prepare bank account", desc: "Bring passport, visa, address proof. Chase, Wells Fargo, or local Nashville bank" },
+    { title: "Connect to Korean community", desc: "KakaoTalk '내쉬빌한인', Madison H-Mart board, Korean churches in Madison" },
+  ] : citySlug === "toronto" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. North York/Finch Korean hub (Yonge & Finch) recommended" },
+    { title: "Activate phone", desc: "TELUS, Rogers, or Koodo Mobile. SIM card with passport" },
+    { title: "Apply for SIN (Social Insurance Number)", desc: "Apply immediately after PR/work permit. Visit Service Canada office in person" },
+    { title: "Open bank account", desc: "RBC, TD, Scotiabank, CIBC. SIN + passport to open. Find branch with Korean staff" },
+    { title: "Connect to Korean community", desc: "KakaoTalk '토론토한인', North York H-Mart board, Korean churches in North York" },
+  ] : citySlug === "vancouver" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. Coquitlam or Burnaby Korean areas recommended" },
+    { title: "Activate phone", desc: "TELUS, Rogers, or Fido. SIM card with passport" },
+    { title: "Apply for SIN (Social Insurance Number)", desc: "Apply immediately after PR/work permit. Visit Service Canada office in person" },
+    { title: "Open bank account", desc: "RBC, TD, Scotiabank, or VanCity. SIN + passport to open" },
+    { title: "Connect to Korean community", desc: "KakaoTalk '밴쿠버한인', Coquitlam H-Mart board, Korean churches in Coquitlam" },
+  ] : citySlug === "atlanta" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. Duluth, Suwanee, or Johns Creek Korean areas recommended" },
+    { title: "Activate phone", desc: "T-Mobile, AT&T, Mint Mobile. Passport + visa sufficient. Prepaid is fine" },
+    { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. Visit Atlanta Peachtree St SSA office" },
+    { title: "Prepare bank account", desc: "Bring passport, visa, address proof. Chase, Wells Fargo, or Truist Bank" },
+    { title: "Connect to Korean community", desc: "KakaoTalk '애틀랜타한인', Duluth H-Mart board, Korean churches in Duluth" },
+  ] : citySlug === "philadelphia" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. Upper Darby (PA) or Cherry Hill (NJ) Korean areas recommended" },
+    { title: "Activate phone", desc: "T-Mobile, AT&T, Mint Mobile. Passport + visa sufficient. Prepaid is fine" },
+    { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. Visit Philadelphia Market St SSA office" },
+    { title: "Prepare bank account", desc: "Bring passport, visa, address proof. Chase, Citizens Bank, or PNC Bank" },
+    { title: "Connect to Korean community", desc: "KakaoTalk '필라델피아한인', Upper Darby H-Mart board, Korean churches in Upper Darby" },
+  ] : citySlug === "kansascity" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. Overland Park (near H-Mart, KS side) recommended" },
+    { title: "Activate phone", desc: "T-Mobile, AT&T, Mint Mobile. Passport + visa sufficient. Prepaid is fine" },
+    { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. Visit Kansas City main SSA office" },
+    { title: "Prepare bank account", desc: "Bring passport, visa, address proof. Chase, Commerce Bank, or UMB Bank" },
+    { title: "Connect to Korean community", desc: "KakaoTalk 'KC한인', Overland Park H-Mart board, Korean churches in Overland Park" },
+  ] : citySlug === "miami" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. Doral or Coral Gables Korean areas recommended" },
+    { title: "Activate phone", desc: "T-Mobile, AT&T, Mint Mobile. Passport + visa sufficient. Prepaid is fine" },
+    { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. Visit Miami SW 1st Ave SSA office" },
+    { title: "Prepare bank account", desc: "Bring passport, visa, address proof. Chase, Bank of America, or Regions Bank" },
+    { title: "Connect to Korean community", desc: "KakaoTalk '마이애미한인', Doral Korean community, Korean churches in Doral" },
+  ] : citySlug === "mexicocity" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or hotel. Near Polanco or Zona Rosa recommended — safe international district" },
+    { title: "Activate phone", desc: "Telcel, Movistar, or AT&T Mexico. Telcel has best coverage in Mexico" },
+    { title: "Register RFC (Mexican Tax ID)", desc: "Required for work & banking in Mexico. Register at sat.gob.mx or through a local accountant (contador)" },
+    { title: "Open bank account", desc: "BBVA, Citibanamex, or Santander. Passport + RFC + address proof required" },
+    { title: "Connect to Korean community", desc: "KakaoTalk '멕시코한인', Korean Embassy Mexico City community, KOTRA Mexico City office" },
+  ] : citySlug === "guadalajara" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or hotel. Chapalita, Zapopan, or Providencia recommended — safe expat-friendly areas" },
+    { title: "Activate phone", desc: "Telcel, Movistar, or AT&T Mexico. Telcel has best coverage in Guadalajara" },
+    { title: "Register RFC (Mexican Tax ID)", desc: "Required for work & banking in Mexico. Register at sat.gob.mx or through a local accountant" },
+    { title: "Open bank account", desc: "BBVA, Santander, or Citibanamex. Passport + RFC + address proof required" },
+    { title: "Connect to Korean community", desc: "KakaoTalk '과달라하라한인', Guadalajara Korean Association, KOTRA Mexico City contact" },
+  ] : citySlug === "monterrey" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or hotel. San Pedro Garza García or Mitiera (expat-preferred gated communities) recommended" },
+    { title: "Activate phone", desc: "Telcel, Movistar, or AT&T Mexico. Expats often use company-provided corporate phones" },
+    { title: "Register RFC (Mexican Tax ID)", desc: "Required for work & banking. Expats: coordinate with company HR for assistance" },
+    { title: "Open bank account", desc: "Banorte, BBVA, or Santander. Corporate account linkage available for expats" },
+    { title: "Connect to Korean community", desc: "KakaoTalk '몬테레이한인', Monterrey Korean Association, Hyundai/Kia/POSCO expat groups" },
+  ] : [
+    // seattle default
     { title: "Secure temporary housing", desc: "Korean homestay, Airbnb, or short-term rental. Near H-Mart or Lynnwood Koreatown recommended" },
     { title: "Activate phone", desc: "T-Mobile, AT&T, or Mint Mobile. Passport + visa sufficient. Prepaid is fine to start" },
-    { title: "Apply for SSN", desc: "For work visa holders: apply 10 days after arrival. Visit SSA office in Downtown Seattle" },
+    { title: "Apply for SSN", desc: "For work visa holders: apply 10 days after arrival. Visit SSA office at 915 2nd Ave #3605, Seattle" },
     { title: "Prepare to open bank account", desc: "Bring passport, visa, address proof. Visit Chase, Wells Fargo, or WA Federal" },
     { title: "Connect to Korean community", desc: "KakaoTalk Open Chat '시애틀한인', H-Mart community board, visit a Korean church" },
   ];
 
-  const month1Ko = [
-    { title: "WA 운전면허 취득", desc: "필기시험(영어/한국어 선택) → 도로주행시험. Everett·Bellevue DOL 권장 (대기 적음)" },
+  // ── 도시별 정착 1개월 데이터 ──
+  const month1Ko = citySlug === "toronto" || citySlug === "vancouver" ? [
+    { title: "운전면허 전환", desc: citySlug === "toronto" ? "온타리오 G 시스템. 한국 면허 소지자 → G1 필기 면제 가능! drivetest.ca 예약 필수" : "BC ICBC. ✅ 한국 면허 → 지식 시험 면제! 도로주행만. 90일 내 전환 의무. icbc.com" },
+    { title: "의료보험 신청", desc: citySlug === "toronto" ? "OHIP 온타리오 무료 의료보험. 3개월 대기 → 그 후 무료. 대기 중 민간 보험 임시 가입 권장 | 🔗 ontario.ca/ohip" : "BC MSP 무료 의료보험. 3개월 대기 → 그 후 무료. 대기 중 민간 보험 임시 가입 | 🔗 hibc.gov.bc.ca" },
+    { title: "자녀 학교 등록", desc: "거주 증명(임대 계약서) 필수. 공립학교 무료. ESL 지원 가능" },
+    { title: "중고차 구매 고려", desc: "대중교통 괜찮지만 교외 이동 시 차량 유용. CARFAX 확인, 한인 딜러 활용" },
+    { title: "캐나다 신용 빌드 시작", desc: "Secured Credit Card로 시작. 캐나다 신용은 미국과 별개로 쌓아야 함" },
+  ] : citySlug === "mexicocity" || citySlug === "guadalajara" || citySlug === "monterrey" ? [
+    { title: "멕시코 운전면허 취득", desc: "SEMOVI (멕시코 교통부). 여권·RFC·주소 증명으로 신청. 필기시험(스페인어) 필수. 시험 없이 한국 면허 전환 불가" },
+    { title: "의료보험 가입", desc: "IMSS(사회보험) 등록 또는 사립 의료보험. 주재원은 회사 단체보험 활용. IMSS 공립 병원보다 사립병원 추천" },
+    { title: "자녀 학교 등록", desc: "국제학교(ASF·ASM 등) 또는 한국학교. 서류: 여권+학교기록+예방접종 증명" },
+    { title: "차량 구매·렌탈", desc: "대중교통 불편한 지역 多. Uber·DiDi 대안. 차량 구매 시 멕시코 법인 차량등록 절차 확인" },
+    { title: "수돗물 대책 마련", desc: "수돗물 절대 음용 금지! 생수 정기 구매 또는 정수기(Garrafón 서비스) 계약 필수" },
+  ] : citySlug === "sf" || citySlug === "la" ? [
+    { title: "캘리포니아 운전면허 (CA DMV)", desc: "⚠️ 이주 10일 내 방문 의무! 필기 영어만 가능 (한국어 시험 없음). 한국 면허 소지자도 필기+실기 응시. 예약 필수: appointments.dmv.ca.gov" },
+    { title: "건강보험 등록 (Covered California)", desc: "CA 주 의료보험 마켓플레이스. 소득 기준 보조금 가능. Medi-Cal(무료) 확인 | 🔗 coveredca.com" },
+    { title: "자녀 학교 등록", desc: "거주 증명(임대 계약서) 필수. 공립학교 무료. ESL 지원 가능" },
+    { title: "중고차 구매 고려", desc: "대중교통 제한적 → 차량 필수 (LA는 더욱). CARFAX 확인, 한인 딜러 활용 | 🔗 carfax.com" },
+    { title: "우편함 주소 확보", desc: "영구 주소 없으면 UPS Store 사서함 대안. 모든 행정 서류에 필요" },
+  ] : citySlug === "newyork" ? [
+    { title: "뉴욕 운전면허 (NY DMV)", desc: "이주 30일 내 전환 의무. 한국 면허 소지자 필기+실기 응시 필요. 예약 필수: dmv.ny.gov | 필기 영어만 (한국어 없음)" },
+    { title: "건강보험 등록 (NY State of Health)", desc: "뉴욕주 마켓플레이스. NY Essential Plan — 소득 $0-200% FPL 무료. Medicaid 확인 | 🔗 nystateofhealth.ny.gov" },
+    { title: "자녀 학교 등록", desc: "거주 증명(임대 계약서) 필수. 공립학교 무료. ESL 지원 가능" },
+    { title: "대중교통 정기권", desc: "OMNY 카드 (NYC 지하철·버스) 또는 NJ Transit Monthly Pass. 뉴욕은 차 없이도 생활 가능!" },
+    { title: "우편함 주소 확보", desc: "영구 주소 없으면 UPS Store 사서함 대안. 모든 행정 서류에 필요" },
+  ] : citySlug === "boston" ? [
+    { title: "매사추세츠 운전면허 (MA RMV)", desc: "이주 60일 내 전환 의무. 한국 면허 소지자 필기+실기 응시. 예약 필수: mass.gov/rmv | 필기 영어만 (한국어 없음)" },
+    { title: "건강보험 등록 (Health Connector)", desc: "MA 전국 최고 보장 수준. 소득 기준 보조금·무료 플랜. 🔗 mahealthconnector.org" },
+    { title: "자녀 학교 등록", desc: "거주 증명(임대 계약서) 필수. 공립학교 무료. ESL 지원 가능" },
+    { title: "중고차 구매 고려", desc: "T(지하철)로 시내 OK, 교외는 차 필요. CARFAX 확인, 한인 딜러 활용" },
+    { title: "우편함 주소 확보", desc: "영구 주소 없으면 UPS Store 사서함 대안" },
+  ] : citySlug === "nashville" || citySlug === "dallas" || citySlug === "houston" || citySlug === "atlanta" || citySlug === "kansascity" || citySlug === "miami" ? [
+    { title: "운전면허 취득 (DPS/DDS/DDS/DDS/DMV/DHSMV)", desc:
+        citySlug === "nashville" ? "TN DDS. 이주 30일 내 전환 (매우 빠름!). 필기 영어만. SSN 없어도 ITIN으로 신청 가능. tn.gov/safety" :
+        citySlug === "dallas" || citySlug === "houston" ? "TX DPS. 이주 90일 내 전환. 필기 영어만. 예약 필수: appointments.dps.texas.gov" :
+        citySlug === "atlanta" ? "GA DDS. 이주 30일 내 전환. 필기 영어만. dds.georgia.gov 예약 필수" :
+        citySlug === "kansascity" ? "KS DMV (오버랜드파크) 또는 MO DMV. 이주 90일 내 전환. ksrevenue.gov/dovehicle.html" :
+        "FL DHSMV. 이주 30일 내 전환. 필기 영어·스페인어 가능 (한국어 없음). flhsmv.gov 예약 필수" },
+    { title: "건강보험 등록 (HealthCare.gov)", desc: "연방 마켓플레이스. 소득 기준 프리미엄 세액공제 가능. Medicaid 자격 별도 확인 | 🔗 healthcare.gov" },
+    { title: "자녀 학교 등록", desc: "거주 증명(임대 계약서) 필수. 공립학교 무료. ESL 지원 가능" },
+    { title: "중고차 구매 고려", desc: "남부·중부 도시는 차량 필수! 대중교통 매우 제한적. CARFAX 확인, 한인 딜러 활용" },
+    { title: "우편함 주소 확보", desc: "영구 주소 없으면 UPS Store 사서함 대안. 모든 행정 서류에 필요" },
+  ] : citySlug === "philadelphia" ? [
+    { title: "펜실베이니아 운전면허 (PA DMV)", desc: "이주 60일 내 전환. 필기 영어만 (한국어 없음). dmv.pa.gov 예약 필수" },
+    { title: "건강보험 등록 (Pennie — PA 마켓플레이스)", desc: "PA 주 의료보험 마켓플레이스. 소득 기준 보조금. Medicaid(PA Medical Assistance) 확인 | 🔗 pennie.com" },
+    { title: "자녀 학교 등록", desc: "거주 증명(임대 계약서) 필수. 공립학교 무료. ESL 지원" },
+    { title: "중고차 구매 고려", desc: "SEPTA(지하철·버스)로 시내 OK, 교외는 차 필요. CARFAX 확인" },
+    { title: "우편함 주소 확보", desc: "영구 주소 없으면 UPS Store 사서함 대안" },
+  ] : [
+    // seattle default
+    { title: "WA 운전면허 취득", desc: "✅ 한국어 필기시험 가능! 영어·한국어 선택. → 도로주행시험. Everett·Bellevue DOL 권장 | 🔗 dol.wa.gov" },
     { title: "건강보험 등록", desc: "직장 보험 없으면 Washington Apple Health (Medicaid) 또는 WA Healthplanfinder 마켓플레이스 | 🔗 wahealthplanfinder.org" },
     { title: "자녀 학교 등록", desc: "해당 학군 거주 증명 필수 (임대 계약서). 공립학교 무료, 영어 ESL 지원" },
     { title: "중고차 구매 고려", desc: "대중교통 제한적 → 차량 필수. CARFAX 확인, 한인 딜러 활용 가능 | 🔗 carfax.com" },
     { title: "우편함 주소 확보", desc: "영구 주소 없으면 UPS Store 사서함 대안. 모든 행정 서류에 필요" },
   ];
-  const month1En = [
-    { title: "Get WA Driver License", desc: "Written test (English or Korean) → road test. Everett or Bellevue DOL recommended (shorter wait)" },
+
+  const month1En = citySlug === "toronto" || citySlug === "vancouver" ? [
+    { title: "Transfer Driver's Licence", desc: citySlug === "toronto" ? "Ontario G system. Korean licence holders may skip G1 written test! drivetest.ca appointment required" : "BC ICBC. ✅ Korean licence: Knowledge test EXEMPT! Road test only. Must transfer within 90 days. icbc.com" },
+    { title: "Apply for Health Insurance", desc: citySlug === "toronto" ? "OHIP — free Ontario health insurance. 3-month wait then ALL care is free. Get temporary private insurance during wait | 🔗 ontario.ca/ohip" : "BC MSP — free health insurance. 3-month wait then ALL care is free. Temporary private insurance during wait | 🔗 hibc.gov.bc.ca" },
+    { title: "Enroll children in school", desc: "Proof of residency required (lease). Public school free. ESL support available" },
+    { title: "Consider buying a used car", desc: "Transit is decent but suburbs need a car. Check CARFAX; Korean dealers available" },
+    { title: "Start building Canadian credit", desc: "Begin with Secured Credit Card. Canadian credit is separate from US — build from scratch" },
+  ] : citySlug === "mexicocity" || citySlug === "guadalajara" || citySlug === "monterrey" ? [
+    { title: "Get Mexican Driver's Licence (SEMOVI)", desc: "Apply via SEMOVI with passport, RFC, address proof. Written test in Spanish required. Korean licence cannot be directly transferred" },
+    { title: "Enroll in health insurance", desc: "IMSS (social security) or private health insurance. Expats: use company group insurance. Private hospitals recommended over IMSS" },
+    { title: "Enroll children in school", desc: "International school (ASF/ASM) or Korean school. Documents: passport + school records + vaccination proof" },
+    { title: "Vehicle or rideshare plan", desc: "Many areas have limited transit. Uber/DiDi are good alternatives. Vehicle purchase requires Mexican registration procedure" },
+    { title: "Set up bottled water supply", desc: "NEVER drink tap water! Buy bottled water regularly or subscribe to Garrafón (water delivery) service" },
+  ] : citySlug === "sf" || citySlug === "la" ? [
+    { title: "Get CA Driver's License (CA DMV)", desc: "⚠️ Must visit within 10 days of moving to CA! Written test in English only (no Korean). Korean licence holders must take both written & road tests. Book: appointments.dmv.ca.gov" },
+    { title: "Enroll in health insurance (Covered California)", desc: "CA state health marketplace. Income-based subsidies available. Medi-Cal (free Medicaid) also available | 🔗 coveredca.com" },
+    { title: "Enroll children in school", desc: "Proof of residency required (lease agreement). Public school free. ESL support available" },
+    { title: "Consider buying a used car", desc: "Transit is very limited → car is essential (especially in LA). Check CARFAX; Korean dealers available" },
+    { title: "Secure a mailing address", desc: "No permanent address? UPS Store mailbox as alternative. Required for all official mail" },
+  ] : citySlug === "newyork" ? [
+    { title: "Get NY Driver's License (NY DMV)", desc: "Must transfer within 30 days of moving. Korean licence holders must take both written & road tests. Appointment: dmv.ny.gov | Written test in English only" },
+    { title: "Enroll in health insurance (NY State of Health)", desc: "NY marketplace. NY Essential Plan — free for income $0-200% FPL. Check Medicaid | 🔗 nystateofhealth.ny.gov" },
+    { title: "Enroll children in school", desc: "Proof of residency required (lease). Public school free. ESL support available" },
+    { title: "Get a transit pass", desc: "OMNY card (NYC subway & bus) or NJ Transit Monthly Pass. NYC is very liveable without a car!" },
+    { title: "Secure a mailing address", desc: "No permanent address? UPS Store mailbox as alternative" },
+  ] : citySlug === "boston" ? [
+    { title: "Get MA Driver's License (MA RMV)", desc: "Must transfer within 60 days of moving. Korean licence holders must take both written & road tests. Appointment: mass.gov/rmv | English only" },
+    { title: "Enroll in health insurance (Health Connector)", desc: "MA has the best coverage in the US. Income-based subsidies & free plans available | 🔗 mahealthconnector.org" },
+    { title: "Enroll children in school", desc: "Proof of residency required (lease). Public school free. ESL support available" },
+    { title: "Consider a used car", desc: "T (subway) covers the city; suburbs need a car. Check CARFAX; Korean dealers available" },
+    { title: "Secure a mailing address", desc: "No permanent address? UPS Store mailbox as alternative" },
+  ] : citySlug === "nashville" || citySlug === "dallas" || citySlug === "houston" || citySlug === "atlanta" || citySlug === "kansascity" || citySlug === "miami" ? [
+    { title: "Get Driver's License",
+      desc: citySlug === "nashville" ? "TN DDS. Must transfer within 30 days (very fast!). English only. ITIN accepted instead of SSN. tn.gov/safety" :
+            citySlug === "dallas" || citySlug === "houston" ? "TX DPS. Must transfer within 90 days. English only. Appointment required: appointments.dps.texas.gov" :
+            citySlug === "atlanta" ? "GA DDS. Must transfer within 30 days. English only. Appointment: dds.georgia.gov" :
+            citySlug === "kansascity" ? "KS DMV (Overland Park) or MO DMV. Must transfer within 90 days. ksrevenue.gov" :
+            "FL DHSMV. Must transfer within 30 days. English or Spanish (no Korean). Appointment: flhsmv.gov" },
+    { title: "Enroll in health insurance (HealthCare.gov)", desc: "Federal marketplace. Income-based Premium Tax Credits available. Check Medicaid eligibility separately | 🔗 healthcare.gov" },
+    { title: "Enroll children in school", desc: "Proof of residency required (lease). Public school free. ESL support available" },
+    { title: "Buy a used car", desc: "Southern & midwestern cities require a car — public transit very limited. Check CARFAX; Korean dealers available" },
+    { title: "Secure a mailing address", desc: "No permanent address? UPS Store mailbox as alternative. Required for all official mail" },
+  ] : citySlug === "philadelphia" ? [
+    { title: "Get PA Driver's License (PA DMV)", desc: "Must transfer within 60 days of moving. English only (no Korean). Appointment: dmv.pa.gov" },
+    { title: "Enroll in health insurance (Pennie — PA Marketplace)", desc: "Pennsylvania health marketplace. Income-based subsidies. PA Medical Assistance (Medicaid) available | 🔗 pennie.com" },
+    { title: "Enroll children in school", desc: "Proof of residency required (lease). Public school free. ESL support available" },
+    { title: "Consider a used car", desc: "SEPTA covers the city; suburbs need a car. Check CARFAX" },
+    { title: "Secure a mailing address", desc: "No permanent address? UPS Store mailbox as alternative" },
+  ] : [
+    // seattle default
+    { title: "Get WA Driver License", desc: "✅ Written test available in Korean! (English or Korean choice) → road test. Everett or Bellevue DOL recommended | 🔗 dol.wa.gov" },
     { title: "Enroll in health insurance", desc: "No employer plan? Try Washington Apple Health (Medicaid) or WA Healthplanfinder marketplace | 🔗 wahealthplanfinder.org" },
     { title: "Enroll children in school", desc: "Proof of residency required (lease agreement). Public school is free; ESL support available" },
     { title: "Consider buying a used car", desc: "Public transit is limited → car is essential. Check CARFAX; Korean dealers can help | 🔗 carfax.com" },
@@ -4721,12 +5015,61 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "차량 등록·검사", desc: "텍사스는 연 1회 차량 안전검사 필수 (Safety Inspection) → 카운티 Tax Office에서 등록\n검사소: Carrollton 인근 Firestone, Jiffy Lube 등 | 🔗 txdmv.gov" },
     { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
     { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트: uscis.gov | 달라스·캐롤튼 이민 변호사 다수 활동 | 🔗 uscis.gov" },
-  ] : [
-    { title: "SSN 신청", desc: "사회보장청(SSA) 오피스 | 📍 915 2nd Ave #3605, Seattle | 📞 800-772-1213 | 🔗 ssa.gov" },
-    { title: "WA 운전면허 (DOL)", desc: "Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
+  ] : citySlug === "houston" ? [
+    { title: "SSN 신청", desc: "📍 Social Security Office | 2505 Murworth Dr, Houston TX | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "텍사스 운전면허 (DPS)", desc: "📍 6900 Rankin Rd, Houston TX | 온라인 예약 필수! 🔗 appointments.dps.texas.gov\n⚠️ 텍사스 이주 90일 이내 전환 의무 | 🔗 dps.texas.gov" },
+    { title: "차량 등록·검사", desc: "텍사스 연 1회 차량 안전검사 필수 → Harris County Tax Office에서 등록 | 🔗 txdmv.gov" },
     { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
-    { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트: uscis.gov | Lynnwood 이민 변호사 다수 활동 | 🔗 uscis.gov" },
-    { title: "시민권 신청 (N-400)", desc: "영주권 5년 후 신청 가능 | 영어·시민권 시험 준비 클래스 교회에서 운영" },
+    { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트: uscis.gov | 휴스턴·슈거랜드 이민 변호사 다수 활동 | 🔗 uscis.gov" },
+  ] : citySlug === "atlanta" ? [
+    { title: "SSN 신청", desc: "📍 Social Security Office | 401 W Peachtree St NW, Atlanta GA | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "조지아 운전면허 (GA DDS)", desc: "📍 2801 Camp Creek Pkwy, College Park GA | 예약 필수 🔗 dds.georgia.gov\n⚠️ 이주 30일 이내 전환 의무. 한국 면허 소지자 필기+실기 응시" },
+    { title: "차량 등록", desc: "귀넷·풀턴·클레이튼 카운티 세금청(Tax Commissioner) 방문. 조지아 연 1회 등록세 납부 | 🔗 mvd.dor.ga.gov" },
+    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
+    { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트: uscis.gov | 둘루스·스와니·존스크릭 이민 변호사 다수 활동 | 🔗 uscis.gov" },
+  ] : citySlug === "philadelphia" ? [
+    { title: "SSN 신청", desc: "📍 Social Security Office | 1101 Market St, Philadelphia PA | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "펜실베이니아 운전면허 (PA DMV)", desc: "📍 2415 N 5th St, Philadelphia PA | 예약 필수 🔗 dmv.pa.gov\n⚠️ 이주 60일 이내 전환 의무. 한국 면허 소지자 필기+실기 응시" },
+    { title: "Pennie — PA 건강보험", desc: "펜실베이니아 주 의료보험 마켓플레이스. 소득 기준 보조금. Medicaid(PA Medical Assistance) 확인 | 🔗 pennie.com" },
+    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
+    { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트: uscis.gov | 어퍼다비·체리힐 이민 변호사 다수 활동 | 🔗 uscis.gov" },
+  ] : citySlug === "kansascity" ? [
+    { title: "SSN 신청", desc: "📍 Social Security Office | 2400 Troost Ave, Kansas City MO | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "KS/MO 운전면허", desc: "KS: 오버랜드파크 DMV 📍 6000 Lamar Ave, Mission KS | 🔗 ksrevenue.gov\nMO: 📍 2251 Fenton Business Park Ct | 🔗 dor.mo.gov\n⚠️ 이주 90일 이내 전환 의무" },
+    { title: "HealthCare.gov 건강보험", desc: "KS·MO 모두 연방 마켓플레이스 사용. 소득 기준 보조금 가능. Medicaid(KanCare/MO HealthNet) 별도 확인 | 🔗 healthcare.gov" },
+    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
+    { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트: uscis.gov | 오버랜드파크 이민 변호사 활동 | 🔗 uscis.gov" },
+  ] : citySlug === "miami" ? [
+    { title: "SSN 신청", desc: "📍 Social Security Office | 51 SW 1st Ave, Miami FL | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "플로리다 운전면허 (FL DHSMV)", desc: "📍 5975 NW 7th Ave, Miami FL | 예약 필수 🔗 flhsmv.gov\n⚠️ 이주 30일 이내 전환 의무. 한국 면허 소지자 필기+실기 응시. 영어·스페인어 선택 가능" },
+    { title: "HealthCare.gov 건강보험", desc: "FL은 연방 마켓플레이스 사용. 소득 기준 보조금. FL Medicaid 별도 확인 | 🔗 healthcare.gov" },
+    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
+    { title: "영주권·비자 갱신", desc: "USCIS 공식 사이트: uscis.gov | 도랄·마이애미 이민 변호사 다수 활동 | 🔗 uscis.gov" },
+  ] : citySlug === "mexicocity" ? [
+    { title: "RFC 등록 (납세자 번호)", desc: "멕시코 취업·사업 필수. 📍 SAT 오피스 방문 또는 sat.gob.mx 온라인 등록\n현지 회계사(Contador) 도움 강력 권장 | 📞 한국 대사관: 55-5202-9866" },
+    { title: "멕시코 운전면허 (SEMOVI)", desc: "📍 SEMOVI 오피스 방문. 여권·RFC·주소 증명 필요. 필기시험 스페인어\n한국 면허 직접 전환 불가. Semovi.cdmx.gob.mx" },
+    { title: "FM3/Residente Temporal 비자", desc: "취업·장기 체류 필수. INM(이민청) 방문 또는 대사관 신청\n현지 이민 변호사 도움 권장 | 🔗 www.gob.mx/inm" },
+    { title: "IMSS 또는 사립 의료보험", desc: "주재원: 회사 단체보험. 독립: IMSS(사회보험) 또는 사립 보험 가입\n사립 병원 이용 시 사립 보험 필수 | 🔗 imss.gob.mx" },
+    { title: "한국 대사관 등록", desc: "장기 체류자는 재외국민 등록 권장. 여권 갱신·영사 서비스. 📞 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko" },
+  ] : citySlug === "guadalajara" ? [
+    { title: "RFC 등록 (납세자 번호)", desc: "멕시코 취업·사업 필수. sat.gob.mx 온라인 또는 과달라하라 SAT 오피스 방문\n현지 회계사 도움 권장 | 📞 한국 대사관(CDMX): 55-5202-9866" },
+    { title: "할리스코주 운전면허 (SEMOVI Jalisco)", desc: "📍 할리스코주 SEMOVI 오피스. 여권·RFC 필요. 필기시험 스페인어\n🔗 jalisco.gob.mx" },
+    { title: "FM3/Residente Temporal 비자", desc: "취업·장기 체류 필수. 과달라하라 INM 오피스 방문\n현지 이민 변호사 도움 권장 | 🔗 www.gob.mx/inm" },
+    { title: "IMSS 또는 사립 의료보험", desc: "주재원: 회사 단체보험. 독립: IMSS 또는 사립 보험 가입 | 🔗 imss.gob.mx" },
+    { title: "한국 대사관 등록 (CDMX)", desc: "장기 체류자 재외국민 등록. 과달라하라 → 멕시코시티 대사관 관할\n📞 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko" },
+  ] : citySlug === "monterrey" ? [
+    { title: "RFC 등록 (납세자 번호)", desc: "멕시코 취업·사업 필수. 주재원은 회사 HR 통해 처리 가능\n개인: sat.gob.mx 또는 누에보레온주 SAT 오피스 | 📞 한국 대사관: 55-5202-9866" },
+    { title: "누에보레온주 운전면허 (SEMOVI NL)", desc: "📍 누에보레온주 SEMOVI 오피스. 여권·RFC 필요\n주재원은 법인 차량 운전 별도 규정 확인 | 🔗 nl.gob.mx" },
+    { title: "FM3/Residente Temporal 비자", desc: "취업·장기 체류 필수. 주재원: 본사 파견 서류로 간소화 가능\n몬테레이 INM 오피스 방문 | 🔗 www.gob.mx/inm" },
+    { title: "IMSS 또는 회사 단체보험", desc: "주재원: 회사 단체보험(Christus Muguerza 등 사립 연계). IMSS보다 사립 병원 권장" },
+    { title: "한국 대사관 등록 (CDMX)", desc: "장기 체류자 재외국민 등록. 몬테레이 → 멕시코시티 대사관 관할\n📞 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko" },
+  ] : [
+    // seattle default
+    { title: "SSN 신청", desc: "사회보장청(SSA) 오피스 | 📍 915 2nd Ave #3605, Seattle WA | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "WA 운전면허 (DOL)", desc: "✅ 한국어 필기 가능! Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
+    { title: "WA Healthplanfinder (건강보험)", desc: "WA 주 마켓플레이스. Washington Apple Health (Medicaid) 소득 기준 무료. 🔗 wahealthplanfinder.org" },
+    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
+    { title: "영주권·비자 갱신 + 시민권", desc: "USCIS: uscis.gov | 린우드·벨뷰 이민 변호사 다수 활동\n시민권(N-400): 영주권 5년 후. 한인 교회 시민권 클래스 운영" },
   ];
   const adminEn = citySlug === "sf" ? [
     { title: "SSN Application", desc: "📍 Social Security Office | 1750 Mission St, San Francisco CA | 📞 800-772-1213 | 🔗 ssa.gov" },
@@ -4773,36 +5116,214 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   ] : citySlug === "dallas" ? [
     { title: "SSN Application", desc: "📍 Social Security Office | 1901 N Central Expy, McKinney TX | 📞 800-772-1213 | 🔗 ssa.gov" },
     { title: "Texas Driver License (DPS)", desc: "📍 1149 E Belt Line Rd, Carrollton TX | Online appointment required! 🔗 appointments.dps.texas.gov\n⚠️ Must transfer within 90 days of moving to Texas | 🔗 dps.texas.gov" },
-    { title: "Vehicle Registration & Inspection", desc: "Texas requires annual Safety Inspection → register at county Tax Office\nInspection locations: Firestone, Jiffy Lube near Carrollton | 🔗 txdmv.gov" },
+    { title: "Vehicle Registration & Inspection", desc: "Texas requires annual Safety Inspection → register at county Tax Office\nInspection: Firestone, Jiffy Lube near Carrollton | 🔗 txdmv.gov" },
     { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
     { title: "Green Card / Visa Renewal", desc: "USCIS official site | Many immigration attorneys in Dallas/Carrollton area | 🔗 uscis.gov" },
-  ] : [
-    { title: "SSN Application", desc: "Social Security Office | 📍 915 2nd Ave #3605, Seattle | 📞 800-772-1213 | 🔗 ssa.gov" },
-    { title: "WA Driver License (DOL)", desc: "Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
+  ] : citySlug === "houston" ? [
+    { title: "SSN Application", desc: "📍 Social Security Office | 2505 Murworth Dr, Houston TX | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "Texas Driver License (DPS)", desc: "📍 6900 Rankin Rd, Houston TX | Online appointment required! 🔗 appointments.dps.texas.gov\n⚠️ Must transfer within 90 days of moving to Texas | 🔗 dps.texas.gov" },
+    { title: "Vehicle Registration & Inspection", desc: "Texas annual Safety Inspection required → register at Harris County Tax Office | 🔗 txdmv.gov" },
     { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
-    { title: "Green Card / Visa Renewal", desc: "USCIS official site: uscis.gov | Many immigration attorneys active in Lynnwood | 🔗 uscis.gov" },
-    { title: "Citizenship (N-400)", desc: "Eligible 5 years after green card | English & civics prep classes at Korean churches" },
+    { title: "Green Card / Visa Renewal", desc: "USCIS official site | Many immigration attorneys in Houston/Sugar Land area | 🔗 uscis.gov" },
+  ] : citySlug === "atlanta" ? [
+    { title: "SSN Application", desc: "📍 Social Security Office | 401 W Peachtree St NW, Atlanta GA | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "Georgia Driver License (GA DDS)", desc: "📍 2801 Camp Creek Pkwy, College Park GA | Appointment: dds.georgia.gov\n⚠️ Must transfer within 30 days of moving to GA. Korean licence holders must take written & road tests" },
+    { title: "Vehicle Registration", desc: "Visit Gwinnett or Fulton County Tax Commissioner. Annual Georgia registration fee. 🔗 mvd.dor.ga.gov" },
+    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
+    { title: "Green Card / Visa Renewal", desc: "USCIS official site | Many immigration attorneys in Duluth/Suwanee/Johns Creek | 🔗 uscis.gov" },
+  ] : citySlug === "philadelphia" ? [
+    { title: "SSN Application", desc: "📍 Social Security Office | 1101 Market St, Philadelphia PA | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "Pennsylvania Driver License (PA DMV)", desc: "📍 2415 N 5th St, Philadelphia PA | Appointment: dmv.pa.gov\n⚠️ Must transfer within 60 days. Korean licence holders must take both written & road tests" },
+    { title: "Pennie — PA Health Insurance Marketplace", desc: "Pennsylvania state marketplace. Income-based subsidies. PA Medical Assistance (Medicaid) available | 🔗 pennie.com" },
+    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
+    { title: "Green Card / Visa Renewal", desc: "USCIS official site | Immigration attorneys in Upper Darby & Cherry Hill | 🔗 uscis.gov" },
+  ] : citySlug === "kansascity" ? [
+    { title: "SSN Application", desc: "📍 Social Security Office | 2400 Troost Ave, Kansas City MO | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "KS or MO Driver License", desc: "KS: Overland Park DMV 📍 6000 Lamar Ave, Mission KS | 🔗 ksrevenue.gov\nMO: 🔗 dor.mo.gov\n⚠️ Must transfer within 90 days of moving" },
+    { title: "HealthCare.gov Health Insurance", desc: "Both KS & MO use federal marketplace. Income-based subsidies. KanCare/MO HealthNet (Medicaid) separate | 🔗 healthcare.gov" },
+    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
+    { title: "Green Card / Visa Renewal", desc: "USCIS official site | Immigration attorneys in Overland Park area | 🔗 uscis.gov" },
+  ] : citySlug === "miami" ? [
+    { title: "SSN Application", desc: "📍 Social Security Office | 51 SW 1st Ave, Miami FL | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "Florida Driver License (FL DHSMV)", desc: "📍 5975 NW 7th Ave, Miami FL | Appointment: flhsmv.gov\n⚠️ Must transfer within 30 days. Korean licence holders must take written & road tests. English or Spanish available" },
+    { title: "HealthCare.gov Health Insurance", desc: "FL uses federal marketplace. Income-based subsidies. FL Medicaid separate check | 🔗 healthcare.gov" },
+    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
+    { title: "Green Card / Visa Renewal", desc: "USCIS official site | Many immigration attorneys in Doral/Miami area | 🔗 uscis.gov" },
+  ] : citySlug === "mexicocity" ? [
+    { title: "RFC Registration (Mexican Tax ID)", desc: "Required for work & banking in Mexico. 📍 SAT office visit or sat.gob.mx online registration\nLocal accountant (contador) help strongly recommended | 📞 Korean Embassy: 55-5202-9866" },
+    { title: "Mexican Driver's Licence (SEMOVI CDMX)", desc: "📍 SEMOVI office. Passport + RFC + address proof. Written test in Spanish required\nKorean licence cannot be directly transferred | 🔗 semovi.cdmx.gob.mx" },
+    { title: "FM3 / Residente Temporal Visa", desc: "Required for work & long-term stay. Visit INM (immigration authority)\nLocal immigration lawyer recommended | 🔗 www.gob.mx/inm" },
+    { title: "IMSS or Private Health Insurance", desc: "Expats: company group insurance. Independent: IMSS social insurance or private plan\nPrivate insurance required for private hospitals | 🔗 imss.gob.mx" },
+    { title: "Korean Embassy Registration", desc: "Overseas Korean registration recommended for long-term residents. Passport renewal & consular services\n📞 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko" },
+  ] : citySlug === "guadalajara" ? [
+    { title: "RFC Registration (Mexican Tax ID)", desc: "Required for work & banking. sat.gob.mx online or Guadalajara SAT office\nLocal accountant help recommended | 📞 Korean Embassy (CDMX): 55-5202-9866" },
+    { title: "Jalisco State Driver's Licence (SEMOVI Jalisco)", desc: "📍 SEMOVI Jalisco office. Passport + RFC required. Written test in Spanish\n🔗 jalisco.gob.mx" },
+    { title: "FM3 / Residente Temporal Visa", desc: "Required for work & long-term stay. Visit Guadalajara INM office\nLocal immigration lawyer recommended | 🔗 www.gob.mx/inm" },
+    { title: "IMSS or Private Health Insurance", desc: "Expats: company group insurance. Independent: IMSS or private plan | 🔗 imss.gob.mx" },
+    { title: "Korean Embassy Registration (CDMX)", desc: "Guadalajara is under Korean Embassy Mexico City jurisdiction\n📞 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko" },
+  ] : citySlug === "monterrey" ? [
+    { title: "RFC Registration (Mexican Tax ID)", desc: "Required for work & banking. Expats: company HR can assist\nIndividual: sat.gob.mx or Nuevo León SAT office | 📞 Korean Embassy: 55-5202-9866" },
+    { title: "Nuevo León Driver's Licence (SEMOVI NL)", desc: "📍 SEMOVI Nuevo León office. Passport + RFC required\nExpats in company vehicles: check corporate vehicle regulations | 🔗 nl.gob.mx" },
+    { title: "FM3 / Residente Temporal Visa", desc: "Required for work & long-term stay. Expats: company dispatch paperwork can simplify\nVisit Monterrey INM office | 🔗 www.gob.mx/inm" },
+    { title: "IMSS or Company Group Insurance", desc: "Expats: company group insurance (linked to Christus Muguerza etc.). Private hospitals strongly recommended over IMSS" },
+    { title: "Korean Embassy Registration (CDMX)", desc: "Monterrey is under Korean Embassy Mexico City jurisdiction\n📞 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko" },
+  ] : [
+    // seattle default
+    { title: "SSN Application", desc: "Social Security Office | 📍 915 2nd Ave #3605, Seattle WA | 📞 800-772-1213 | 🔗 ssa.gov" },
+    { title: "WA Driver License (DOL)", desc: "✅ Written test available in Korean! Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
+    { title: "WA Healthplanfinder (Health Insurance)", desc: "WA state marketplace. Washington Apple Health (Medicaid) — income-based free. 🔗 wahealthplanfinder.org" },
+    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
+    { title: "Green Card / Visa Renewal + Citizenship", desc: "USCIS: uscis.gov | Immigration attorneys in Lynnwood & Bellevue\nCitizenship (N-400): Eligible 5 years after green card. Korean churches offer civics prep classes" },
   ];
 
-  const financeKo = citySlug === "sf" ? [
-    { title: "Chase Total Checking", desc: "한인 커뮤니티 추천 1위. 전국 ATM 많음. $500 개설 보너스 이벤트 자주 있음 | 🔗 chase.com" },
-    { title: "CA 세금 주의 (중요!)", desc: "⚠️ 캘리포니아는 주 소득세 있음! (WA와 완전 다름)\nCA 주 소득세: 소득 구간에 따라 1%~13.3%\n판매세(Sales Tax): 약 9.25% (산타클라라 카운티)\n→ 연봉 협상 시 CA 세금 반드시 계산에 넣을 것!" },
-    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver / Freedom → 2년 후 Chase Sapphire 목표" },
-    { title: "Covered California (건강보험)", desc: "CA 주 의료보험 마켓플레이스. 연소득 기준 보조금(Premium Tax Credit) 가능. Medi-Cal(무료 메디케이드)도 확인 | 🔗 coveredca.com" },
-    { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. CA는 소득세 높으므로 세전 기여(Traditional 401K) 전략적으로 활용" },
+  const financeKo = citySlug === "sf" || citySlug === "la" ? [
+    { title: "Chase Total Checking", desc: "한인 커뮤니티 추천 1위. 전국 ATM 많음. $500 개설 보너스 | 🔗 chase.com" },
+    { title: "Hanmi Bank / Open Bank", desc: "한인 커뮤니티 은행. 한국어 서비스. 코리아타운·산호세 지점 다수 | 🔗 hanmi.com" },
+    { title: "⚠️ CA 세금 주의 (매우 중요!)", desc: "캘리포니아 주 소득세: 1%~13.3% (누진, 전국 최고!)\n판매세(Sales Tax): 약 9.25% (산타클라라) / 10.25% (LA)\n→ 연봉 협상 시 반드시 CA 세금 포함하여 계산!" },
+    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
+    { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. CA 소득세 높으므로 세전 기여(Traditional 401K) 전략 활용" },
+  ] : citySlug === "newyork" ? [
+    { title: "Chase Total Checking / Citibank", desc: "한인 커뮤니티 추천. 뉴욕 전역 ATM 풍부 | 🔗 chase.com | 🔗 citibank.com" },
+    { title: "Shinhan Bank America (신한은행)", desc: "뉴욕 플러싱 한인 은행. 한국어 서비스. 한국→미국 송금 유리 | 🔗 shinhanbank.com" },
+    { title: "NY 세금 안내", desc: "연방 소득세 + 뉴욕주 소득세(4%~10.9%) + 뉴욕시 소득세(3.078%~3.876%) 3중 과세!\n판매세: 뉴욕시 8.875%\n→ 맨해튼 거주 시 총 세 부담 매우 높음" },
+    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
+    { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. NY는 세 부담이 높으므로 세전 기여 전략 적극 활용" },
+  ] : citySlug === "dallas" || citySlug === "houston" ? [
+    { title: "Chase Total Checking / Wells Fargo", desc: "한인 커뮤니티 추천. 텍사스 전역 ATM 풍부 | 🔗 chase.com" },
+    { title: "Prosperity Bank / Comerica Bank", desc: "텍사스 지역 은행. 한인 딜러·사업체 활용도 높음" },
+    { title: "✅ 텍사스 세금 혜택 (매우 유리!)", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 8.25% (텍사스 최고)\n재산세: 높음 (주택 소유 시 연 $5,000-15,000+)\n→ 연봉 대비 실수령액이 CA·NY보다 훨씬 높음!" },
+    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
+    { title: "은퇴 계좌 (401K/IRA)", desc: "소득세 없음 → Roth IRA 매우 유리! 세후 기여 후 복리 성장" },
+  ] : citySlug === "toronto" || citySlug === "vancouver" ? [
+    { title: "RBC / TD / Scotiabank", desc: "캐나다 5대 은행. 한인 직원 있는 지점 찾기. SIN + 여권으로 개설 | 🔗 rbc.com | 🔗 td.com" },
+    { title: citySlug === "toronto" ? "Hanmi Bank Toronto 없음 → Simplii / EQ Bank" : "VanCity 신협 (밴쿠버 추천)", desc: citySlug === "toronto" ? "Simplii Financial(CIBC 계열): 수수료 없는 온라인 뱅킹. EQ Bank: 이자율 높은 저축계좌" : "VanCity: 밴쿠버 최대 신협. 친환경·지역사회 중심. 수수료 낮음 | 🔗 vancity.com" },
+    { title: "캐나다 세금 안내", desc: citySlug === "toronto" ? "연방 소득세(15%~33%) + 온타리오 주 소득세(5.05%~13.16%)\n캐나다 HST(판매세): 온타리오 13%\n→ 의료보험 무료 (OHIP) = 세금 많지만 혜택도 큼!" : "연방 소득세(15%~33%) + BC 주 소득세(5.06%~20.5%)\n캐나다 GST+PST(판매세): BC 5%+7%=12%\n→ 의료보험 무료 (MSP) = 세금 많지만 혜택 큼!" },
+    { title: "캐나다 신용 빌드 시작", desc: "미국 신용 이력은 캐나다에서 인정 안 됨! Secured Credit Card로 캐나다 신용 별도 구축" },
+    { title: "RRSP / TFSA (캐나다 은퇴·저축)", desc: "RRSP: 세전 소득 공제 (한국 연금 IRP와 유사). TFSA: 세후 기여, 운용 수익 비과세. 두 계좌 모두 최대한 활용!" },
+  ] : citySlug === "mexicocity" || citySlug === "guadalajara" || citySlug === "monterrey" ? [
+    { title: "BBVA México / Santander / Citibanamex", desc: "멕시코 주요 은행. 여권+RFC+주소 증명으로 개설. ATM 수수료 주의 | 🔗 bbva.mx" },
+    { title: "Banorte (멕시코 토종 은행)", desc: "멕시코 최대 국내 은행. 몬테레이 본부. 주재원에게도 친숙 | 🔗 banorte.com" },
+    { title: "멕시코 세금 안내", desc: "연방 ISR (소득세): 1.92%~35% (누진)\nIVA (부가가치세): 16% (식료품·의약품 면세)\nRFC 없으면 취업·사업·은행 계좌 불가!\n→ 현지 회계사(contador) 상담 필수" },
+    { title: "한국→멕시코 송금", desc: "Wise (구TransferWise): 환율 유리, 수수료 낮음 | 🔗 wise.com\n웨스턴유니온·MoneyGram도 가능하지만 환율 불리" },
+    { title: "신용 빌드 (멕시코)", desc: "멕시코 신용 이력은 미국·캐나다 신용과 별개.\n첫 신용카드: 주거래 은행(BBVA 등) Secured 카드로 시작" },
+  ] : citySlug === "boston" ? [
+    { title: "Chase Total Checking / Citizens Bank", desc: "한인 커뮤니티 추천. 보스턴 전역 ATM | 🔗 chase.com | 🔗 citizensbank.com" },
+    { title: "MA 세금 안내", desc: "매사추세츠 주 소득세: 5% (단일세율, 비교적 단순)\n판매세(Sales Tax): 6.25% (MA는 의류·식품 면세)\n→ 의료보험 강제 가입 의무 있음 (MA 전국 최고 수준)" },
+    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
+    { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. 의료보험 비용 고려하여 재정 계획 수립" },
+    { title: "MBTA 교통 카드 (CharlieCard)", desc: "보스턴 지하철·버스 통합 카드. 월정기권 $90. 학생 50% 할인 | 🔗 mbta.com" },
+  ] : citySlug === "nashville" ? [
+    { title: "Chase Total Checking / Avenue Bank", desc: "내쉬빌 한인 커뮤니티 추천. 전국 ATM 풍부 | 🔗 chase.com" },
+    { title: "✅ 테네시 세금 혜택", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 9.25% (식료품 포함 — TN은 식료품 세금 있음)\n→ 텍사스와 함께 세금 가장 유리한 주 중 하나" },
+    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
+    { title: "은퇴 계좌 (401K/IRA)", desc: "소득세 없음 → Roth IRA 매우 유리! 세후 기여 후 복리 성장" },
+    { title: "내쉬빌 한인 CPA 네트워크", desc: "내쉬빌 한인회·교회 통해 한인 CPA 연결. 세금 신고·FBAR·FATCA 상담" },
+  ] : citySlug === "atlanta" ? [
+    { title: "Chase Total Checking / Wells Fargo", desc: "한인 커뮤니티 추천. 애틀랜타 전역 ATM | 🔗 chase.com" },
+    { title: "SunTrust → Truist Bank", desc: "남부 지역 주요 은행. 스와니·존스크릭 지점 다수" },
+    { title: "조지아 세금 안내", desc: "GA 주 소득세: 5.75% (비교적 낮음)\n판매세(Sales Tax): 귀넷 카운티 7%\n→ 텍사스·TN보다 높지만 NY·CA보다 훨씬 낮음" },
+    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
+    { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. GA 소득세 낮음 → Roth IRA 고려" },
+  ] : citySlug === "philadelphia" ? [
+    { title: "Chase Total Checking / PNC Bank", desc: "한인 커뮤니티 추천. 필라델피아 전역 ATM | 🔗 chase.com | 🔗 pnc.com" },
+    { title: "PA 세금 안내", desc: "PA 주 소득세: 3.07% (전국 낮은 편)\n판매세(Sales Tax): 8% (필라델피아시 추가 2%)\n필라델피아시 임금세: 3.79% (거주자) 추가!\n→ 도시 거주 시 임금세 부담 있음" },
+    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
+    { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. PA는 401K 기여 시 PA 소득세도 공제됨" },
+    { title: "필라 한인 CPA 네트워크", desc: "필라델피아 한인회·교회 통해 한인 CPA 연결. FBAR·FATCA·PA 세금 상담" },
+  ] : citySlug === "kansascity" ? [
+    { title: "Chase Total Checking / Commerce Bank", desc: "한인 커뮤니티 추천. KC 전역 ATM | 🔗 chase.com | 🔗 commercebank.com" },
+    { title: "UMB Bank (KC 지역 은행)", desc: "캔자스시티 토종 은행. 지역 사업체·한인 딜러 활용도 높음 | 🔗 umb.com" },
+    { title: "KS/MO 세금 안내", desc: "KS 주 소득세: 3.1%~5.7%\nMO 주 소득세: 0%~4.95%\n판매세: KS 9.5% / MO 8.1% (오버랜드파크)\n→ 오버랜드파크(KS) vs KC(MO) 거주지에 따라 세금 다름!" },
+    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
+    { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. KC 한인 CPA 한인회·교회 통해 연결" },
+  ] : citySlug === "miami" ? [
+    { title: "Chase Total Checking / Bank of America", desc: "한인 커뮤니티 추천. 마이애미 전역 ATM 풍부 | 🔗 chase.com" },
+    { title: "✅ 플로리다 세금 혜택", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 7% (마이애미데이드 카운티)\n→ 히스패닉 비즈니스 환경 + 세금 혜택 = 라틴아메리카 한인 사업 허브" },
+    { title: "스페인어 뱅킹 환경", desc: "도랄 지역 은행은 스페인어 주 언어. 한인 직원 있는 지점 미리 확인 권장" },
+    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
+    { title: "은퇴 계좌 (401K/IRA)", desc: "소득세 없음 → Roth IRA 매우 유리! 마이애미 한인 CPA 한인회 통해 연결" },
   ] : [
+    // seattle default
     { title: "Chase Total Checking", desc: "한인 커뮤니티 추천 1위. 전국 ATM 많음. $500 개설 보너스 이벤트 자주 있음 | 🔗 chase.com" },
-    { title: "WA Federal Credit Union", desc: "시애틀 한인 선호 신협. 자동차 대출 금리 경쟁력 있음 | 🔗 wafederal.com" },
-    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver / Freedom → 2년 후 Chase Sapphire 목표" },
-    { title: "WA 세금 특이사항", desc: "주 소득세 없음 (No State Income Tax). 판매세(Sales Tax) 약 10.2% (시애틀)" },
-    { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. Roth IRA는 영주권·시민권 이후 장기 투자" },
+    { title: "WA Federal Credit Union (시애틀 전용)", desc: "시애틀 한인 선호 신협. 자동차 대출 금리 경쟁력 있음 | 🔗 wafederal.com" },
+    { title: "✅ WA 세금 혜택", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 약 10.25% (시애틀)\n→ 연봉 대비 실수령액이 CA·NY보다 훨씬 높음!" },
+    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
+    { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. 소득세 없음 → Roth IRA 전략도 유리" },
   ];
-  const financeEn = [
-    { title: "Chase Total Checking", desc: "#1 in Korean community. Many ATMs nationwide. Frequent $500 opening bonus offers | 🔗 chase.com" },
-    { title: "WA Federal Credit Union", desc: "Korean community favorite. Competitive auto loan rates | 🔗 wafederal.com" },
+
+  const financeEn = citySlug === "sf" || citySlug === "la" ? [
+    { title: "Chase Total Checking", desc: "#1 in Korean community. Nationwide ATMs. Frequent $500 opening bonus | 🔗 chase.com" },
+    { title: "Hanmi Bank / Open Bank", desc: "Korean community banks. Korean-language service. Many branches in Koreatown & San Jose | 🔗 hanmi.com" },
+    { title: "⚠️ California Tax Warning (Critical!)", desc: "CA state income tax: 1%–13.3% (highest in the US!)\nSales Tax: ~9.25% (Santa Clara) / 10.25% (LA)\n→ Always factor CA taxes into salary negotiations!" },
     { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
-    { title: "WA tax highlights", desc: "No State Income Tax. Sales Tax ~10.2% in Seattle" },
-    { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. Roth IRA best started after green card/citizenship" },
+    { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. High CA taxes → prioritize Traditional 401K (pre-tax contributions)" },
+  ] : citySlug === "newyork" ? [
+    { title: "Chase Total Checking / Citibank", desc: "Korean community recommended. Abundant ATMs in NYC | 🔗 chase.com | 🔗 citibank.com" },
+    { title: "Shinhan Bank America", desc: "Korean bank in Flushing. Korean-language service. Competitive Korea-US wire transfers | 🔗 shinhanbank.com" },
+    { title: "NY Tax Warning — Triple Taxation!", desc: "Federal income tax + NY State income tax (4%–10.9%) + NYC income tax (3.078%–3.876%)\nSales Tax: 8.875% in NYC\n→ Manhattan residents pay among the highest taxes in the US" },
+    { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
+    { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. High NY taxes → pre-tax 401K contributions strategically important" },
+  ] : citySlug === "dallas" || citySlug === "houston" ? [
+    { title: "Chase Total Checking / Wells Fargo", desc: "Korean community recommended. Abundant ATMs in Texas | 🔗 chase.com" },
+    { title: "Prosperity Bank / Comerica Bank", desc: "Texas regional banks. Good for Korean dealers and small businesses" },
+    { title: "✅ Texas Tax Advantage (Major Benefit!)", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: 8.25% (Texas max)\nProperty Tax: High if you own ($5,000-15,000+/yr)\n→ Take-home pay much higher vs CA or NY!" },
+    { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
+    { title: "Retirement accounts (401K/IRA)", desc: "No state income tax → Roth IRA is very attractive! After-tax contributions grow tax-free" },
+  ] : citySlug === "toronto" || citySlug === "vancouver" ? [
+    { title: "RBC / TD / Scotiabank", desc: "Canada's Big 5 banks. Find branches with Korean staff. SIN + passport to open | 🔗 rbc.com | 🔗 td.com" },
+    { title: citySlug === "toronto" ? "Simplii Financial / EQ Bank" : "VanCity Credit Union (Vancouver)", desc: citySlug === "toronto" ? "Simplii Financial (CIBC subsidiary): fee-free online banking. EQ Bank: high-interest savings account" : "VanCity: Vancouver's largest credit union. Lower fees, community-focused | 🔗 vancity.com" },
+    { title: "Canadian Tax Overview", desc: citySlug === "toronto" ? "Federal income tax (15%–33%) + Ontario provincial tax (5.05%–13.16%)\nOntario HST: 13%\n→ More tax than US, but FREE healthcare (OHIP) makes up for it!" : "Federal income tax (15%–33%) + BC provincial tax (5.06%–20.5%)\nBC GST+PST: 5%+7%=12%\n→ More tax than US, but FREE healthcare (MSP) included!" },
+    { title: "Building Canadian Credit", desc: "US credit history is NOT recognized in Canada! Start fresh with a Secured Credit Card at your Canadian bank" },
+    { title: "RRSP / TFSA (Canadian Retirement & Savings)", desc: "RRSP: Pre-tax deduction (similar to US Traditional IRA). TFSA: After-tax, all growth TAX-FREE. Max both accounts!" },
+  ] : citySlug === "mexicocity" || citySlug === "guadalajara" || citySlug === "monterrey" ? [
+    { title: "BBVA México / Santander / Citibanamex", desc: "Mexico's major banks. Passport + RFC + address proof required. Watch ATM fees | 🔗 bbva.mx" },
+    { title: "Banorte (Mexico's Largest Domestic Bank)", desc: "Mexico's biggest domestic bank. HQ in Monterrey. Good for business accounts | 🔗 banorte.com" },
+    { title: "Mexico Tax Overview", desc: "Federal ISR (income tax): 1.92%–35% (progressive)\nIVA (VAT): 16% (groceries & meds exempt)\nNo RFC = no job, no bank account, no business!\n→ Hire a local contador (accountant) — essential" },
+    { title: "Korea→Mexico Money Transfer", desc: "Wise (formerly TransferWise): best exchange rates, low fees | 🔗 wise.com\nWestern Union/MoneyGram also available but less favorable rates" },
+    { title: "Building Mexican Credit", desc: "Mexican credit history is separate from US/Canadian credit. Start with a Secured Card at your primary bank (BBVA etc.)" },
+  ] : citySlug === "nashville" ? [
+    { title: "Chase Total Checking / Wells Fargo", desc: "Korean community recommended. Nashville-area ATMs | 🔗 chase.com" },
+    { title: "✅ Tennessee Tax Advantage", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: 9.25% (food is taxed in TN — bring snacks from KY!)\n→ Among the most tax-friendly states along with Texas" },
+    { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
+    { title: "Retirement accounts (401K/IRA)", desc: "No state income tax → Roth IRA is very attractive! After-tax contributions compound tax-free" },
+    { title: "Nashville Korean CPA Network", desc: "Connect through Nashville Korean Association or Korean churches for Korean-speaking CPAs. FBAR, FATCA, TN tax consultation" },
+  ] : citySlug === "boston" ? [
+    { title: "Chase Total Checking / Citizens Bank", desc: "Korean community recommended. Boston-area ATMs | 🔗 chase.com | 🔗 citizensbank.com" },
+    { title: "Massachusetts Tax Overview", desc: "MA state income tax: 5% (flat rate, relatively simple)\nSales Tax: 6.25% (MA exempts clothing & groceries)\n→ Mandatory health insurance in MA — world-class coverage" },
+    { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
+    { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. Factor in health insurance costs in financial planning" },
+    { title: "MBTA CharlieCard (Transit)", desc: "Boston subway & bus card. Monthly pass $90. Student 50% discount | 🔗 mbta.com" },
+  ] : citySlug === "atlanta" ? [
+    { title: "Chase Total Checking / Truist Bank", desc: "Korean community recommended. Atlanta-area ATMs | 🔗 chase.com" },
+    { title: "Georgia Tax Overview", desc: "GA state income tax: 5.75% (relatively low)\nSales Tax: 7% (Gwinnett County)\n→ Much lower tax burden than NY/CA; slightly higher than TX/TN" },
+    { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
+    { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. Lower GA tax → Roth IRA is a good option" },
+    { title: "Atlanta Korean CPA Network", desc: "Connect through Duluth/Suwanee Korean Association or Korean churches. FBAR, FATCA, GA tax consultation" },
+  ] : citySlug === "philadelphia" ? [
+    { title: "Chase Total Checking / PNC Bank", desc: "Korean community recommended. Philadelphia-area ATMs | 🔗 chase.com | 🔗 pnc.com" },
+    { title: "Pennsylvania Tax Overview", desc: "PA state income tax: 3.07% (low nationally)\nSales Tax: 8% (Philadelphia adds 2% city tax)\nPhiladelphia wage tax: 3.79% (residents) on top!\n→ City wage tax is a significant extra burden for city residents" },
+    { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
+    { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. PA 401K contributions also deductible from PA state taxes" },
+    { title: "Philadelphia Korean CPA Network", desc: "Connect through Korean Association or churches. FBAR, FATCA, PA tax consultation" },
+  ] : citySlug === "kansascity" ? [
+    { title: "Chase Total Checking / Commerce Bank", desc: "Korean community recommended. KC-area ATMs | 🔗 chase.com | 🔗 commercebank.com" },
+    { title: "KS vs MO Tax Comparison", desc: "KS state income tax: 3.1%–5.7%\nMO state income tax: 0%–4.95%\nSales Tax: KS 9.5% / MO 8.1% (Overland Park)\n→ Your tax rate differs significantly by which state side you live on!" },
+    { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
+    { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. KC Korean CPA available through Korean Association" },
+    { title: "UMB Bank (KC Regional)", desc: "Kansas City's hometown bank. Good for local business banking | 🔗 umb.com" },
+  ] : citySlug === "miami" ? [
+    { title: "Chase Total Checking / Bank of America", desc: "Korean community recommended. Miami-area ATMs abundant | 🔗 chase.com" },
+    { title: "✅ Florida Tax Advantage", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: 7% (Miami-Dade County)\n→ Hispanic business culture + tax advantage = Latin America Korean business hub" },
+    { title: "Spanish-language Banking Environment", desc: "Doral area banks operate primarily in Spanish. Find branches with Korean or English staff in advance" },
+    { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
+    { title: "Retirement accounts (401K/IRA)", desc: "No state income tax → Roth IRA very attractive! Miami Korean CPA through Korean Association" },
+  ] : [
+    // seattle default
+    { title: "Chase Total Checking", desc: "#1 in Korean community. Many ATMs nationwide. Frequent $500 opening bonus | 🔗 chase.com" },
+    { title: "WA Federal Credit Union (Seattle only)", desc: "Seattle Korean community favorite. Competitive auto loan rates | 🔗 wafederal.com" },
+    { title: "✅ Washington State Tax Advantage", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: ~10.25% in Seattle\n→ Take-home pay much higher vs CA or NY!" },
+    { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
+    { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. No state income tax → Roth IRA also attractive in WA" },
   ];
 
   // 거주지 데이터 (탭 index 5) — 도시별 분기
@@ -6189,12 +6710,212 @@ const CITY_CONSULATE: Record<string, { ko: string; en: string; phone: string; ur
   monterrey:    { ko: "주멕시코 대한민국 대사관",  en: "Korean Embassy Mexico City",             phone: "+52-55-5202-9866", url: "overseas.mofa.go.kr/mx-ko" },
 };
 
+/* ─────────────────────────────────────────
+   도시별 긴급 연락처 데이터
+   출처: 각 도시 공식 응급 / 경찰 / 가스회사 정보
+───────────────────────────────────────── */
+function getCityEmergencyData(slug: string, lang: string) {
+  const ko = lang === "ko";
+  type EmData = { erName: string; erPhone: string; erAddr: string; policeNE: string; gasName: string; gasPhone: string; consulatePhone: string; safetyTips: string; safetyTipsEn: string };
+  const D: Record<string, EmData> = {
+    seattle: {
+      erName: ko ? "응급실 — Swedish First Hill" : "ER — Swedish First Hill",
+      erPhone: "206-386-6000",
+      erAddr: ko ? "📍 747 Broadway, Seattle | 24시간 ER | 한국어 통역 가능" : "📍 747 Broadway, Seattle | 24hr ER | Korean interpreter",
+      policeNE: "206-625-5011",
+      gasName: ko ? "가스 누출 — Puget Sound Energy" : "Gas Leak — Puget Sound Energy",
+      gasPhone: "888-225-5773",
+      consulatePhone: "206-947-8293",
+      safetyTips: "• 다운타운 파이오니어 스퀘어·3rd Ave 야간 주의\n• 차량 내 귀중품 절대 방치 금지\n• 자전거·차량 반드시 잠금\n• 홈리스 밀집 지역 (SODO, 3rd Ave) 인지",
+      safetyTipsEn: "• Avoid Pioneer Square & 3rd Ave at night\n• Never leave valuables in car\n• Always lock bikes & vehicles\n• Be aware of high homeless areas (SODO, 3rd Ave)",
+    },
+    dallas: {
+      erName: ko ? "응급실 — Baylor Scott & White (Dallas)" : "ER — Baylor Scott & White Dallas",
+      erPhone: "214-820-3151",
+      erAddr: ko ? "📍 3500 Gaston Ave, Dallas TX | 24시간 ER" : "📍 3500 Gaston Ave, Dallas TX | 24hr ER",
+      policeNE: "214-744-4444",
+      gasName: ko ? "가스 누출 — Atmos Energy" : "Gas Leak — Atmos Energy",
+      gasPhone: "866-322-8667",
+      consulatePhone: "713-961-0186",
+      safetyTips: "• 딥엘름(Deep Ellum) 야간 주의 (취객 밀집)\n• 차량 잠금 철저 — 달라스 차량 절도 많음\n• 남쪽 달라스 일부 지역 야간 주의\n• 폭염 시 차량 내 절대 방치 금지 (어린이·반려동물)",
+      safetyTipsEn: "• Avoid Deep Ellum late at night (heavy foot traffic)\n• Lock vehicles — Dallas has high car theft rates\n• Some South Dallas neighborhoods — caution at night\n• Never leave children/pets in cars during extreme heat",
+    },
+    sf: {
+      erName: ko ? "응급실 — UCSF Medical Center" : "ER — UCSF Medical Center",
+      erPhone: "415-476-1000",
+      erAddr: ko ? "📍 505 Parnassus Ave, San Francisco | 24시간 ER" : "📍 505 Parnassus Ave, San Francisco | 24hr ER",
+      policeNE: "415-553-0123",
+      gasName: ko ? "가스 누출 — PG&E" : "Gas Leak — Pacific Gas & Electric (PG&E)",
+      gasPhone: "800-743-5000",
+      consulatePhone: "415-921-2251",
+      safetyTips: "• 텐더로인(Tenderloin)·SOMA 일부 야간 주의\n• 차량 내 가방·짐 절대 방치 금지 (차 유리 깨기 빈번)\n• 바트(BART) 야간 이용 시 주의\n• 지진 대비: 물·식량 72시간분 준비 권장",
+      safetyTipsEn: "• Avoid Tenderloin & parts of SoMa at night\n• NEVER leave bags/luggage in car (car break-ins very common)\n• Be cautious on BART late at night\n• Earthquake prep: keep 72hr water & food supplies",
+    },
+    newyork: {
+      erName: ko ? "응급실 — NewYork-Presbyterian/Weill Cornell" : "ER — NewYork-Presbyterian/Weill Cornell",
+      erPhone: "212-746-5454",
+      erAddr: ko ? "📍 525 E 68th St, New York NY | 24시간 ER" : "📍 525 E 68th St, New York NY | 24hr ER",
+      policeNE: "212-374-5000",
+      gasName: ko ? "가스 누출 — Con Edison" : "Gas Leak — Con Edison",
+      gasPhone: "800-752-6633",
+      consulatePhone: "646-674-6000",
+      safetyTips: "• 타임스퀘어·지하철역 소매치기 주의\n• 지하철 야간 이용 시 앞쪽 칸·사람 많은 칸 선택\n• 플러싱 야간 주차 주의 (차량 절도)\n• 투어리스트 사기 조심 (가짜 CD, 가짜 기부)\n• NJ 포트리 운전 시 조지워싱턴브리지 혼잡 인지",
+      safetyTipsEn: "• Watch for pickpockets at Times Square & subway stations\n• Take front/crowded subway cars late at night\n• Be careful of tourist scams (fake CDs, fake charity)\n• Watch for car theft in Flushing parking areas\n• Expect heavy traffic at George Washington Bridge from NJ",
+    },
+    la: {
+      erName: ko ? "응급실 — Cedars-Sinai Medical Center" : "ER — Cedars-Sinai Medical Center",
+      erPhone: "310-423-3277",
+      erAddr: ko ? "📍 8700 Beverly Blvd, Los Angeles CA | 24시간 ER" : "📍 8700 Beverly Blvd, Los Angeles CA | 24hr ER",
+      policeNE: "877-275-5273",
+      gasName: ko ? "가스 누출 — SoCalGas" : "Gas Leak — Southern California Gas (SoCalGas)",
+      gasPhone: "800-427-2200",
+      consulatePhone: "213-385-9300",
+      safetyTips: "• 차량 내 귀중품 절대 방치 금지 (LA 차량 절도 전국 최고)\n• 스키드로우(Skid Row) 지역 주의\n• 코리아타운 야간 주차 주의\n• 산불 시즌 (10-12월) 대피 경보 주의\n• 도로 교통 매우 혼잡 — 내비 필수",
+      safetyTipsEn: "• NEVER leave valuables in car (LA has highest car break-in rates)\n• Avoid Skid Row area\n• Watch for car theft in Koreatown at night\n• Wildfire season (Oct-Dec) — monitor evacuation alerts\n• Traffic is extreme — always use navigation",
+    },
+    houston: {
+      erName: ko ? "응급실 — Houston Methodist Hospital" : "ER — Houston Methodist Hospital",
+      erPhone: "713-790-3333",
+      erAddr: ko ? "📍 6565 Fannin St, Houston TX | 24시간 ER" : "📍 6565 Fannin St, Houston TX | 24hr ER",
+      policeNE: "713-884-3131",
+      gasName: ko ? "가스 누출 — CenterPoint Energy" : "Gas Leak — CenterPoint Energy",
+      gasPhone: "800-332-7143",
+      consulatePhone: "713-961-0186",
+      safetyTips: "• 허리케인 시즌 (6-11월) 대비 — 비상 식량·물 준비\n• 차량 내 귀중품 절대 방치 (폭염+절도 이중 위험)\n• 일부 북부 휴스턴 야간 주의\n• 홍수 위험 — 저지대 거주 시 홍수 보험 필수\n• 미드타운 바 주변 야간 주의",
+      safetyTipsEn: "• Hurricane season (Jun-Nov) — keep emergency supplies\n• Never leave valuables in car (heat + theft double risk)\n• Some north Houston areas — caution at night\n• Flood risk — flood insurance essential in low-lying areas\n• Watch around Midtown bars late at night",
+    },
+    boston: {
+      erName: ko ? "응급실 — Massachusetts General Hospital" : "ER — Massachusetts General Hospital",
+      erPhone: "617-726-2000",
+      erAddr: ko ? "📍 55 Fruit St, Boston MA | 24시간 ER" : "📍 55 Fruit St, Boston MA | 24hr ER",
+      policeNE: "617-343-4683",
+      gasName: ko ? "가스 누출 — National Grid" : "Gas Leak — National Grid",
+      gasPhone: "800-233-5325",
+      consulatePhone: "617-641-2830",
+      safetyTips: "• 겨울 폭설 시 주차 금지 구역 철저 확인 (견인 많음)\n• 올스턴 파티 야간 주의 (취객)\n• 자전거 도난 매우 빈번 — 이중 잠금 필수\n• 지하철(T) 야간 운행 제한 (자정 이후 버스 전환)\n• 블랙아이스 주의 (겨울 보행·운전 위험)",
+      safetyTipsEn: "• Check winter parking ban zones strictly (towing is common)\n• Allston party nights — watch for heavy pedestrians\n• Bike theft very common — always use double locks\n• T (subway) has limited late-night service (bus after midnight)\n• Watch for black ice in winter (walking & driving)",
+    },
+    nashville: {
+      erName: ko ? "응급실 — Vanderbilt University Medical Center" : "ER — Vanderbilt University Medical Center",
+      erPhone: "615-322-5000",
+      erAddr: ko ? "📍 1211 Medical Center Dr, Nashville TN | 24시간 ER" : "📍 1211 Medical Center Dr, Nashville TN | 24hr ER",
+      policeNE: "615-862-8600",
+      gasName: ko ? "가스 누출 — Piedmont Natural Gas" : "Gas Leak — Piedmont Natural Gas",
+      gasPhone: "800-752-7504",
+      consulatePhone: "312-822-9485",
+      safetyTips: "• 브로드웨이 스트립 야간 주의 (음주 보행자 매우 많음)\n• 차량 내 귀중품 절대 방치 (컨트리 뮤직 관광 지역)\n• 토네이도 시즌 (봄·가을) 기상 경보 앱 필수\n• 일부 노스 내쉬빌 야간 주의\n• I-40·I-65 고속도로 러시아워 극혼잡",
+      safetyTipsEn: "• Broadway Strip at night — lots of drunk pedestrians\n• Never leave valuables in car near tourist areas\n• Tornado season (spring & fall) — weather alert app essential\n• Some North Nashville neighborhoods — caution at night\n• I-40/I-65 rush hours are extremely congested",
+    },
+    toronto: {
+      erName: ko ? "응급실 — Toronto General Hospital" : "ER — Toronto General Hospital",
+      erPhone: "416-340-3111",
+      erAddr: ko ? "📍 200 Elizabeth St, Toronto ON | 24시간 ER" : "📍 200 Elizabeth St, Toronto ON | 24hr ER",
+      policeNE: "416-808-2222",
+      gasName: ko ? "가스 누출 — Enbridge Gas" : "Gas Leak — Enbridge Gas",
+      gasPhone: "877-362-7434",
+      consulatePhone: "416-920-3809",
+      safetyTips: "• 다운타운 얀스트리트(Yonge) 야간 소매치기 주의\n• TTC 지하철 야간 이용 시 사람 많은 칸 선택\n• 겨울 블랙아이스 운전·보행 주의\n• 제인·핀치(Jane & Finch) 지역 주의\n• 자전거 도난 빈번 — 이중 잠금 필수",
+      safetyTipsEn: "• Watch for pickpockets on Yonge St at night\n• Take busy subway cars on TTC late at night\n• Black ice danger in winter (driving & walking)\n• Jane & Finch area — use caution\n• Bike theft very common — double lock always",
+    },
+    vancouver: {
+      erName: ko ? "응급실 — Vancouver General Hospital" : "ER — Vancouver General Hospital",
+      erPhone: "604-875-4111",
+      erAddr: ko ? "📍 899 W 12th Ave, Vancouver BC | 24시간 ER" : "📍 899 W 12th Ave, Vancouver BC | 24hr ER",
+      policeNE: "604-717-3321",
+      gasName: ko ? "가스 누출 — FortisBC" : "Gas Leak — FortisBC",
+      gasPhone: "888-224-2710",
+      consulatePhone: "604-681-9581",
+      safetyTips: "• 이스트 헤이스팅스(East Hastings/DTES) 주의 — 마약 밀집\n• 차량 유리 파손 절도 빈번 — 짐 절대 방치 금지\n• 야간 캐스케이드 산악 지역 운전 주의\n• 겨울 체인/스노우 타이어 필수 (산악 통행)\n• 지진 다발 지역 — 비상 키트 72시간분 준비",
+      safetyTipsEn: "• East Hastings (DTES) — avoid this area (drug activity)\n• Car break-ins common — never leave bags visible\n• Mountain driving at night requires caution\n• Snow chains/winter tires required for mountain passes\n• Earthquake-prone — keep 72hr emergency kit",
+    },
+    atlanta: {
+      erName: ko ? "응급실 — Emory University Hospital" : "ER — Emory University Hospital",
+      erPhone: "404-712-2000",
+      erAddr: ko ? "📍 1364 Clifton Rd NE, Atlanta GA | 24시간 ER" : "📍 1364 Clifton Rd NE, Atlanta GA | 24hr ER",
+      policeNE: "404-614-6544",
+      gasName: ko ? "가스 누출 — Atlanta Gas Light" : "Gas Leak — Atlanta Gas Light",
+      gasPhone: "770-907-4231",
+      consulatePhone: "404-522-1611",
+      safetyTips: "• 다운타운 센테니얼 파크 주변 야간 주의\n• 차량 내 귀중품 절대 방치 (애틀랜타 차량 절도 높음)\n• 일부 남부 애틀랜타 야간 주의\n• 교통 극혼잡 (I-285·I-75·I-85 스파게티 정션)\n• 여름 폭염·겨울 아이스 스톰 시 운전 주의",
+      safetyTipsEn: "• Centennial Park area — caution at night\n• NEVER leave valuables in car (Atlanta has high theft rates)\n• Some south Atlanta areas — caution at night\n• Extreme traffic congestion (I-285/I-75/I-85 Spaghetti Junction)\n• Watch for summer heat & winter ice storms",
+    },
+    philadelphia: {
+      erName: ko ? "응급실 — Jefferson University Hospital" : "ER — Jefferson University Hospital",
+      erPhone: "215-955-6000",
+      erAddr: ko ? "📍 111 S 11th St, Philadelphia PA | 24시간 ER" : "📍 111 S 11th St, Philadelphia PA | 24hr ER",
+      policeNE: "215-686-3010",
+      gasName: ko ? "가스 누출 — Philadelphia Gas Works" : "Gas Leak — Philadelphia Gas Works (PGW)",
+      gasPhone: "215-235-1212",
+      consulatePhone: "215-222-8500",
+      safetyTips: "• 노스 필라(North Philly) 일부 지역 야간 주의\n• 차량 내 귀중품 절대 방치\n• SEPTA 야간 이용 시 주의\n• 겨울 폭설 후 주차 공간 분쟁 주의 (의자로 자리 표시 관습)\n• 켄싱턴(Kensington) 지역 접근 금지",
+      safetyTipsEn: "• Some North Philly neighborhoods — caution at night\n• Never leave valuables in car\n• SEPTA transit — be cautious late at night\n• After winter snowstorm: respect 'saved' parking space customs\n• Kensington area — avoid (high drug activity)",
+    },
+    kansascity: {
+      erName: ko ? "응급실 — KU Medical Center" : "ER — University of Kansas Medical Center",
+      erPhone: "913-588-5000",
+      erAddr: ko ? "📍 3901 Rainbow Blvd, Kansas City KS | 24시간 ER" : "📍 3901 Rainbow Blvd, Kansas City KS | 24hr ER",
+      policeNE: "816-234-5111",
+      gasName: ko ? "가스 누출 — Spire Gas" : "Gas Leak — Spire Gas",
+      gasPhone: "800-582-1234",
+      consulatePhone: "312-822-9485",
+      safetyTips: "• 노스이스트 캔자스시티 일부 야간 주의\n• 차량 내 귀중품 방치 금지\n• 겨울 토네이도·아이스 스톰 기상 경보 필수\n• 다운타운 엔터테인먼트 구역 야간 주의 (취객)\n• I-70·I-435 러시아워 혼잡",
+      safetyTipsEn: "• Some northeast KC neighborhoods — caution at night\n• Never leave valuables in car\n• Winter tornado & ice storm weather alerts essential\n• Downtown entertainment district — watch for drunk pedestrians at night\n• I-70/I-435 rush hour congestion",
+    },
+    miami: {
+      erName: ko ? "응급실 — Jackson Memorial Hospital" : "ER — Jackson Memorial Hospital",
+      erPhone: "305-585-1111",
+      erAddr: ko ? "📍 1611 NW 12th Ave, Miami FL | 24시간 ER" : "📍 1611 NW 12th Ave, Miami FL | 24hr ER",
+      policeNE: "305-476-5423",
+      gasName: ko ? "가스 누출 — TECO Peoples Gas" : "Gas Leak — TECO Peoples Gas",
+      gasPhone: "877-832-6747",
+      consulatePhone: "305-372-1555",
+      safetyTips: "• 차량 내 귀중품 절대 방치 (마이애미 차 절도 매우 높음)\n• 오버타운(Overtown) 지역 야간 주의\n• 허리케인 시즌 (6-11월) — 대피 경보 즉시 대응\n• 바다·운하 수질 오염 주의 (피부 노출 후 샤워 필수)\n• 사기성 관광 서비스 주의",
+      safetyTipsEn: "• NEVER leave valuables in car (Miami has very high theft rates)\n• Overtown area — avoid at night\n• Hurricane season (Jun-Nov) — respond immediately to evacuation orders\n• Ocean/canal water quality concerns — shower after water exposure\n• Watch for tourist scams",
+    },
+    mexicocity: {
+      erName: ko ? "응급실 — Hospital Ángeles Pedregal (사립)" : "ER — Hospital Ángeles Pedregal (Private)",
+      erPhone: "55-5652-3011",
+      erAddr: ko ? "📍 Camino a Santa Teresa 1055, Ciudad de México | 24시간 ER (사립 추천)" : "📍 Camino a Santa Teresa 1055, Mexico City | 24hr ER (private recommended)",
+      policeNE: "55-5242-5100",
+      gasName: ko ? "가스 누출 — Gas Natural Fenosa" : "Gas Leak — Gas Natural Fenosa",
+      gasPhone: "800-622-2400",
+      consulatePhone: "55-5202-9866",
+      safetyTips: "• 테피토(Tepito)·이스타팔라파 지역 접근 주의\n• 길거리 택시 탑승 금지 → Uber·DiDi만 이용\n• 지진 다발 지역 — 비상 키트 필수, 지진 경보 앱 설치\n• 수돗물 절대 음용 금지 (생수 구매 필수)\n• 소매치기 주의 (지하철·시장)\n• 현지 의료는 사립병원 이용 권장",
+      safetyTipsEn: "• Avoid Tepito & Iztapalapa areas\n• NEVER take street taxis — use Uber/DiDi only\n• Earthquake zone — keep emergency kit, install quake alert app\n• Tap water not safe to drink — always buy bottled water\n• Watch for pickpockets (subway & markets)\n• Use private hospitals for medical care",
+    },
+    guadalajara: {
+      erName: ko ? "응급실 — Hospital Country 2000 (사립)" : "ER — Hospital Country 2000 (Private)",
+      erPhone: "33-3641-3100",
+      erAddr: ko ? "📍 Av. Naciones Unidas 8765, Zapopan | 24시간 ER (사립 추천)" : "📍 Av. Naciones Unidas 8765, Zapopan | 24hr ER (private recommended)",
+      policeNE: "33-3668-0800",
+      gasName: ko ? "가스 누출 — GDN (Gas de Jalisco)" : "Gas Leak — GDN (Gas de Jalisco)",
+      gasPhone: "800-010-0010",
+      consulatePhone: "55-5202-9866",
+      safetyTips: "• 낯선 외곽 지역 야간 이동 자제\n• Uber·DiDi만 이용 (길거리 택시 탑승 금지)\n• 수돗물 절대 음용 금지 (생수 필수)\n• 소매치기 주의 (버스·시장)\n• 아크론 경기장 주변 경기일 혼잡 주의\n• 현지 의료는 사립병원 이용 권장",
+      safetyTipsEn: "• Avoid unfamiliar outskirt areas at night\n• Use only Uber/DiDi — never take street taxis\n• Tap water not safe — always drink bottled water\n• Watch for pickpockets on buses & at markets\n• Heavy crowds near Akron Stadium on match days\n• Use private hospitals for medical care",
+    },
+    monterrey: {
+      erName: ko ? "응급실 — Christus Muguerza Alta Especialidad" : "ER — Christus Muguerza Alta Especialidad",
+      erPhone: "81-8399-3400",
+      erAddr: ko ? "📍 Av. Hidalgo 2525 Pte., Monterrey NL | 24시간 ER" : "📍 Av. Hidalgo 2525 Pte., Monterrey NL | 24hr ER",
+      policeNE: "81-8342-5700",
+      gasName: ko ? "가스 누출 — Naturgas" : "Gas Leak — Naturgas Monterrey",
+      gasPhone: "81-8333-5000",
+      consulatePhone: "55-5202-9866",
+      safetyTips: "• 낯선 지역 야간 단독 이동 자제\n• Uber·DiDi만 이용 (길거리 택시 탑승 금지)\n• 수돗물 절대 음용 금지\n• 주재원 거주 단지(콘도·게이트) 외출 시 보안 확인\n• 여름 폭염 (최고 42°C) — 수분 보충 필수\n• 현지 의료는 사립병원 (Christus Muguerza) 이용 권장",
+      safetyTipsEn: "• Avoid solo travel in unfamiliar areas at night\n• Use only Uber/DiDi — no street taxis\n• Tap water not safe — always drink bottled\n• Check security at expat compounds/gated communities\n• Extreme summer heat (42°C) — stay hydrated\n• Use private hospitals (Christus Muguerza) for medical care",
+    },
+  };
+  return D[slug] ?? D.seattle;
+}
+
 function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSub?: number }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
   const city = useCityConfig();
   const isSeattle = city.slug === "seattle";
   const consulate = CITY_CONSULATE[city.slug] ?? CITY_CONSULATE.seattle;
+  const em = getCityEmergencyData(city.slug, lang);
   const [sub, setSub] = useState(initialSub);
   useEffect(() => { setSub(initialSub); }, [initialSub]);
   const tabs = lang === "ko"
@@ -6477,25 +7198,23 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
             </div>
             {/* 생명 긴급 */}
             <EmergencyRow emoji="🚨" title={lang === "ko" ? "경찰·소방·구급 (생명 긴급)" : "Police · Fire · Ambulance"} number="911" desc={lang === "ko" ? "생명·화재·범죄 — 즉시 전화. 한국어 통역 요청 가능" : "Life-threatening, fire, crime. Korean interpreter available"} />
-            <EmergencyRow emoji="🏥" title={lang === "ko" ? "응급실 — Swedish First Hill" : "ER — Swedish First Hill"} number="206-386-6000" desc={lang === "ko" ? "📍 747 Broadway, Seattle | 24시간 응급실 | 한국어 통역 가능" : "📍 747 Broadway, Seattle | 24hr ER | Korean interpreter available"} />
-            <EmergencyRow emoji="☁️" title={lang === "ko" ? "독·약물 중독 (독 조절)" : "Poison Control"} number="800-222-1222" desc={lang === "ko" ? "약물·화학물질 중독 24시간 — 즉시 전화" : "Drug & chemical poisoning — call immediately"} />
+            <EmergencyRow emoji="🏥" title={em.erName} number={em.erPhone} desc={em.erAddr} />
+            <EmergencyRow emoji="☁️" title={lang === "ko" ? "독·약물 중독" : "Poison Control"} number="800-222-1222" desc={lang === "ko" ? "약물·화학물질 중독 24시간 — 즉시 전화" : "Drug & chemical poisoning — call immediately"} />
             <EmergencyRow emoji="☎️" title={lang === "ko" ? "정신건강 위기 (988)" : "Mental Health Crisis (988)"} number="988" desc={lang === "ko" ? "자살 예방·정신건강 위기 24시간. 한국어 통역 가능" : "Suicide prevention & mental health crisis 24/7. Korean interpreter"} />
             {/* 한인 긴급 */}
-            <EmergencyRow emoji="🇰🇷" title={lang === "ko" ? "한국 총영사관 긴급" : "Korean Consulate Emergency"} number="206-947-8293" desc={lang === "ko" ? "여권 분실·억류·사고·사망 — 24시간 긴급 직통" : "Lost passport, detention, accident, death — 24hr direct line"} />
+            <EmergencyRow emoji="🇰🇷" title={lang === "ko" ? "한국 영사관 긴급" : "Korean Consulate Emergency"} number={em.consulatePhone} desc={lang === "ko" ? "여권 분실·억류·사고·사망 — 24시간 긴급 직통" : "Lost passport, detention, accident, death — 24hr direct line"} />
             <EmergencyRow emoji="🗣️" title={lang === "ko" ? "한국어 통역 (Language Line)" : "Korean Interpreter (Language Line)"} number="800-752-6096" desc={lang === "ko" ? "병원·경찰서·법원에서 한국어 통역 연결 — 24시간" : "Korean interpreter for hospital, police, court — 24hrs"} />
             {/* 생활 긴급 */}
-            <EmergencyRow emoji="🚓" title={lang === "ko" ? "경찰 비긴급 신고" : "Police Non-Emergency"} number="206-625-5011" desc={lang === "ko" ? "긴급하지 않은 사건 신고 (도난·분실·소음 등)" : "Non-urgent incidents (theft, lost property, noise etc.)"} />
-            <EmergencyRow emoji="🔥" title={lang === "ko" ? "가스 누출 — Puget Sound Energy" : "Gas Leak — Puget Sound Energy"} number="888-225-5773" desc={lang === "ko" ? "가스 냄새 즉시 신고. 건물 즉시 대피 후 전화" : "Smell gas? Evacuate immediately then call"} />
+            <EmergencyRow emoji="🚓" title={lang === "ko" ? "경찰 비긴급 신고" : "Police Non-Emergency"} number={em.policeNE} desc={lang === "ko" ? "긴급하지 않은 사건 신고 (도난·분실·소음 등)" : "Non-urgent incidents (theft, lost property, noise etc.)"} />
+            <EmergencyRow emoji="🔥" title={em.gasName} number={em.gasPhone} desc={lang === "ko" ? "가스 냄새 즉시 신고. 건물 즉시 대피 후 전화" : "Smell gas? Evacuate immediately then call"} />
             <EmergencyRow emoji="👩‍👧" title={lang === "ko" ? "가정폭력 핫라인" : "Domestic Violence Hotline"} number="800-799-7233" desc={lang === "ko" ? "가정폭력·학대 24시간 무료 — 한국어 통역 가능" : "Domestic violence & abuse 24/7 free — Korean interpreter"} />
             <EmergencyRow emoji="🚗" title={lang === "ko" ? "도로 긴급 — AAA" : "Roadside Emergency — AAA"} number="800-222-4357" desc={lang === "ko" ? "차량 고장·견인·잠금. AAA 회원 $60/년 권장" : "Breakdown, towing, lockout. AAA membership $60/yr recommended"} />
           </div>
-          {/* 안전 팁 */}
+          {/* 안전 팁 — 도시별 */}
           <div style={{ margin: "16px 16px 0", background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.18)", borderRadius: 14, padding: "14px 16px" }}>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 6 }}>💡 {lang === "ko" ? "시애틀 안전 팁" : "Seattle Safety Tips"}</div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 6 }}>💡 {lang === "ko" ? `${city.nameKo} 안전 팁` : `${city.nameEn} Safety Tips`}</div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
-              {lang === "ko"
-                ? "• 다운타운 파이오니어 스퀘어·3rd Ave 야간 주의\n• 차량 내 귀중품 절대 방치 금지\n• 자전거·차량 반드시 잠금\n• 홈리스 밀집 지역 (SODO, 3rd Ave) 인지"
-                : "• Avoid Pioneer Square & 3rd Ave downtown at night\n• Never leave valuables visible in car\n• Always lock bikes & vehicles\n• Be aware of high homeless population areas (SODO, 3rd Ave)"}
+              {lang === "ko" ? em.safetyTips : em.safetyTipsEn}
             </div>
           </div>
         </div>
@@ -6723,100 +7442,335 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
         </div>
       )}
 
-      {/* ── ⚖️ 법률 탭 (index 5) ── */}
+      {/* ── ⚖️ 법률 탭 (index 5) — 도시별 분리 ── */}
       {sub === 5 && (
         <div className="pt-5 px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {[
-              { emoji: "⚖️", name: lang === "ko" ? "NWIRP — 북서부 이민권 프로젝트 ✅" : "NWIRP — NW Immigrant Rights Project ✅",
-                desc: lang === "ko"
-                  ? "시애틀 최대 이민 법률 무료 기관. 영주권·추방방어·DACA·망명 전문.\n📍 615 2nd Ave Ste 400, Seattle | 📞 800-445-5771 | 🔗 nwirp.org\n무료 법률 (저소득 이민자 우선). 한국어 통역 요청 가능"
-                  : "Seattle's largest free immigration legal org. Green card, deportation defense, DACA, asylum.\n📍 615 2nd Ave Ste 400, Seattle | 📞 800-445-5771 | 🔗 nwirp.org\nFree legal services (low-income priority). Korean interpreter available",
-                tags: lang === "ko" ? ["무료법률", "이민", "추방방어"] : ["Free Legal", "Immigration", "Deportation"] },
-              { emoji: "🏛️", name: lang === "ko" ? "NW 저스티스 프로젝트 ✅" : "Northwest Justice Project ✅",
-                desc: lang === "ko"
-                  ? "저소득 WA 주민 무료 민사 법률. 이민·주거·가족법 포함.\n📞 206-464-1519 | 🔗 nwjustice.org\nCLEAR 핫라인: 1-888-201-1014 (한국어 포함 다국어)"
-                  : "Free civil legal services for low-income WA residents. Immigration, housing, family law.\n📞 206-464-1519 | 🔗 nwjustice.org\nCLEAR hotline: 1-888-201-1014 (multilingual incl. Korean)",
-                tags: lang === "ko" ? ["무료법률", "저소득", "민사"] : ["Free Legal", "Low Income", "Civil"] },
-              { emoji: "🌍", name: lang === "ko" ? "OneAmerica — 이민자 권익 ✅" : "OneAmerica — Immigrant Rights ✅",
-                desc: lang === "ko"
-                  ? "WA주 최대 이민자 권익 단체. 시민권 신청 지원·DACA·워크퍼밋.\n📞 425-251-0900 | 🔗 weareoneamerica.org\n시민권 클래스 무료 운영"
-                  : "WA's largest immigrant advocacy org. Citizenship, DACA, work permits.\n📞 425-251-0900 | 🔗 weareoneamerica.org\nFree Citizenship Classes",
-                tags: lang === "ko" ? ["시민권", "DACA", "권익옹호"] : ["Citizenship", "DACA", "Advocacy"] },
-              { emoji: "👨‍⚖️", name: lang === "ko" ? "KCBA 무료 법률 상담 (킹카운티 변호사회)" : "KCBA Free Legal Clinic (King County Bar)",
-                desc: lang === "ko"
-                  ? "킹카운티 변호사협회 프로보노. 월 1회 무료 법률 클리닉.\n📞 206-267-7010 | 🔗 kcba.org/For-the-Public\n이민·고용·주거·가족법 상담. 사전 예약 필수"
-                  : "King County Bar Association pro bono. Monthly free legal clinic.\n📞 206-267-7010 | 🔗 kcba.org/For-the-Public\nImmigration, employment, housing, family law. Appointment required",
-                tags: lang === "ko" ? ["프로보노", "법률클리닉", "변호사"] : ["Pro Bono", "Legal Clinic", "Attorney"] },
-              { emoji: "🏠", name: lang === "ko" ? "임차인 유니온 (Tenants Union WA)" : "Tenants Union of WA — Renter Rights",
-                desc: lang === "ko"
-                  ? "임차인 권리 보호. 부당 퇴거·보증금·임대료 분쟁 대응.\n📞 206-723-0500 | 🔗 tenantsunion.org\n워크샵·법률 상담 제공"
-                  : "Tenant rights protection. Eviction, security deposit, rent increase disputes.\n📞 206-723-0500 | 🔗 tenantsunion.org\nWorkshops & legal consultation available",
-                tags: lang === "ko" ? ["임차인권리", "퇴거방어", "보증금"] : ["Tenant Rights", "Eviction", "Deposit"] },
-              { emoji: "🚨", name: lang === "ko" ? "이민 사기 신고 — WA 법무장관실" : "Report Immigration Fraud — WA AG",
-                desc: lang === "ko"
-                  ? "노타리오(Notario) 사기 신고. 이민 사기는 중범죄.\n📞 1-800-551-4636 | 🔗 atg.wa.gov\n한국어 통역 가능.\n\n⚠️ 이민 서류는 변호사(Attorney) 또는 BIA 공인 대리인에게만!"
-                  : "Report notario fraud. Immigration fraud is a serious crime.\n📞 1-800-551-4636 | 🔗 atg.wa.gov\nKorean interpreter available.\n\n⚠️ Only use licensed attorneys or BIA-accredited reps for immigration docs!",
-                tags: lang === "ko" ? ["이민사기", "신고", "보호"] : ["Immigration Fraud", "Report", "Protection"] },
-            ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+            {((): Array<{emoji:string;name:string;desc:string;tags:string[]}> => {
+              const ko = lang === "ko";
+              const slug = city.slug;
+              // 전국 공통 — 이민 사기 경고 + Language Line
+              const universal = [
+                { emoji: "🚨", name: ko ? "⚠️ 이민 사기 주의 (전국)" : "⚠️ Beware Immigration Fraud (Nationwide)",
+                  desc: ko ? "노타리오(Notario) 사기 신고 → 연방 FTC: reportfraud.ftc.gov\n이민 사기는 중범죄!\n⚠️ 이민 서류는 반드시 변호사(Attorney) 또는 BIA 공인 대리인에게만!\n한국어 상담 → Language Line: 800-752-6096"
+                           : "Report Notario fraud → FTC: reportfraud.ftc.gov\nImmigration fraud is a serious crime!\n⚠️ Only use licensed attorneys or BIA-accredited reps!\nKorean hotline → Language Line: 800-752-6096",
+                  tags: ko ? ["이민사기","신고","보호"] : ["Immigration Fraud","Report","Protection"] },
+              ];
+              if (slug === "seattle") return [
+                { emoji: "⚖️", name: ko ? "NWIRP — 북서부 이민권 프로젝트 ✅" : "NWIRP — NW Immigrant Rights Project ✅",
+                  desc: ko ? "시애틀 최대 이민 법률 무료 기관. 영주권·추방방어·DACA·망명.\n📍 615 2nd Ave Ste 400, Seattle | 📞 800-445-5771 | 🔗 nwirp.org\n무료 (저소득 우선). 한국어 통역 가능"
+                           : "Seattle's largest free immigration legal org. Green card, deportation defense, DACA, asylum.\n📍 615 2nd Ave Ste 400, Seattle | 📞 800-445-5771 | 🔗 nwirp.org\nFree (low-income priority). Korean interpreter available",
+                  tags: ko ? ["무료법률","이민","추방방어"] : ["Free Legal","Immigration","Deportation"] },
+                { emoji: "🏛️", name: ko ? "NW 저스티스 프로젝트 ✅" : "Northwest Justice Project ✅",
+                  desc: ko ? "저소득 WA 주민 무료 민사 법률. CLEAR 핫라인: 1-888-201-1014\n🔗 nwjustice.org"
+                           : "Free civil legal services for low-income WA residents. CLEAR hotline: 1-888-201-1014\n🔗 nwjustice.org",
+                  tags: ko ? ["무료법률","저소득","민사"] : ["Free Legal","Low Income","Civil"] },
+                { emoji: "🌍", name: ko ? "OneAmerica — 이민자 권익" : "OneAmerica — Immigrant Rights",
+                  desc: ko ? "WA주 최대 이민자 권익 단체. 시민권·DACA·워크퍼밋.\n📞 425-251-0900 | 🔗 weareoneamerica.org"
+                           : "WA's largest immigrant advocacy org. Citizenship, DACA, work permits.\n📞 425-251-0900 | 🔗 weareoneamerica.org",
+                  tags: ko ? ["시민권","DACA","권익"] : ["Citizenship","DACA","Advocacy"] },
+                { emoji: "👨‍⚖️", name: ko ? "KCBA 무료 법률 (킹카운티 변호사회)" : "KCBA Free Legal Clinic (King County Bar)",
+                  desc: ko ? "킹카운티 변호사협회 프로보노. 월 1회 무료 클리닉.\n📞 206-267-7010 | 🔗 kcba.org"
+                           : "King County Bar pro bono. Monthly free clinic.\n📞 206-267-7010 | 🔗 kcba.org",
+                  tags: ko ? ["프로보노","법률클리닉"] : ["Pro Bono","Legal Clinic"] },
+                { emoji: "🏠", name: ko ? "임차인 유니온 WA" : "Tenants Union of WA",
+                  desc: ko ? "임차인 권리 보호. 부당 퇴거·보증금 분쟁.\n📞 206-723-0500 | 🔗 tenantsunion.org"
+                           : "Tenant rights. Eviction & security deposit disputes.\n📞 206-723-0500 | 🔗 tenantsunion.org",
+                  tags: ko ? ["임차인권리","퇴거방어"] : ["Tenant Rights","Eviction"] },
+                ...universal,
+              ];
+              if (slug === "dallas" || slug === "houston") return [
+                { emoji: "⚖️", name: ko ? "Lone Star Legal Aid ✅" : "Lone Star Legal Aid ✅",
+                  desc: ko ? "텍사스 최대 무료 법률 기관. 이민·주거·가족법.\n📞 713-652-0077 | 🔗 lonestarlegal.org\n한국어 통역 요청 가능"
+                           : "Texas's largest free legal org. Immigration, housing, family law.\n📞 713-652-0077 | 🔗 lonestarlegal.org\nKorean interpreter available",
+                  tags: ko ? ["무료법률","텍사스","이민"] : ["Free Legal","Texas","Immigration"] },
+                { emoji: "🌍", name: ko ? "RAICES Texas — 이민자 권익" : "RAICES Texas — Immigrant Rights",
+                  desc: ko ? "텍사스 최대 이민자 권익 단체. 추방 방어·망명·가족 분리.\n📞 210-226-7722 | 🔗 raicestexas.org"
+                           : "Texas's largest immigrant advocacy org. Deportation defense, asylum, family separation.\n📞 210-226-7722 | 🔗 raicestexas.org",
+                  tags: ko ? ["이민","추방방어","텍사스"] : ["Immigration","Deportation","Texas"] },
+                { emoji: "🏠", name: ko ? "텍사스 임차인 권리" : "Texas Tenant Rights",
+                  desc: ko ? "텍사스는 임차인 보호법이 약함. 퇴거 통보 후 3일 내 이사 의무!\n Texas RioGrande Legal Aid: 956-996-8752 | 🔗 trla.org"
+                           : "Texas has weak tenant protections. Must vacate within 3 days of eviction notice!\nTexas RioGrande Legal Aid: 956-996-8752 | 🔗 trla.org",
+                  tags: ko ? ["임차인권리","퇴거","텍사스"] : ["Tenant Rights","Eviction","Texas"] },
+                ...universal,
+              ];
+              if (slug === "sf" || slug === "la") return [
+                { emoji: "⚖️", name: ko ? slug === "sf" ? "Asian Law Caucus — 아시안 법률 지원" : "CHIRLA — 이민자 권리연합 ✅" : slug === "sf" ? "Asian Law Caucus ✅" : "CHIRLA — Coalition for Immigrant Rights ✅",
+                  desc: ko ? slug === "sf" ? "아시안 이민자 전문 무료 법률. 이민·고용·주거법.\n📍 55 Columbus Ave, SF | 📞 415-896-1701 | 🔗 asianlawcaucus.org" : "LA 최대 이민자 권익 단체. 추방 방어·DACA·시민권.\n📞 213-353-1333 | 🔗 chirla.org"
+                           : slug === "sf" ? "Free legal services for Asian immigrants. Immigration, employment, housing.\n📍 55 Columbus Ave, SF | 📞 415-896-1701 | 🔗 asianlawcaucus.org" : "LA's largest immigrant rights org. Deportation defense, DACA, citizenship.\n📞 213-353-1333 | 🔗 chirla.org",
+                  tags: ko ? ["무료법률","아시안","이민"] : ["Free Legal","Asian","Immigration"] },
+                { emoji: "🏛️", name: ko ? "Bay Area Legal Aid / Inner City Law Center" : "Bay Area Legal Aid / Inner City Law",
+                  desc: ko ? slug === "sf" ? "저소득 주민 무료 민사 법률. 주거·임차인 보호 특화.\n📞 415-982-1300 | 🔗 baylegal.org" : "저소득 LA 주민 무료 법률. 임차인 보호·노숙자 법률.\n📞 213-891-2880 | 🔗 innercitylaw.org"
+                           : slug === "sf" ? "Free civil legal for low-income residents. Housing & tenant protection focus.\n📞 415-982-1300 | 🔗 baylegal.org" : "Free legal for low-income LA residents. Tenant protection, homeless rights.\n📞 213-891-2880 | 🔗 innercitylaw.org",
+                  tags: ko ? ["무료법률","저소득","주거"] : ["Free Legal","Low Income","Housing"] },
+                { emoji: "🏠", name: ko ? "CA 임차인 권리 (강력 보호)" : "California Tenant Rights (Strong Protection)",
+                  desc: ko ? "CA는 전국 최강 임차인 보호법!\n• AB 1482: 연 임대료 인상 5%+CPI 상한\n• 퇴거 60일 전 사전 통보 의무\n📞 CA 세입자 핫라인: 415-703-8654"
+                           : "CA has the strongest tenant protection laws in the US!\n• AB 1482: Annual rent increase cap: 5%+CPI\n• 60-day eviction notice required\n📞 CA Tenant Hotline: 415-703-8654",
+                  tags: ko ? ["임차인권리","CA법","임대료"] : ["Tenant Rights","CA Law","Rent Cap"] },
+                ...universal,
+              ];
+              if (slug === "newyork") return [
+                { emoji: "⚖️", name: ko ? "NYLAG — 뉴욕 법률 지원 그룹 ✅" : "NYLAG — New York Legal Assistance Group ✅",
+                  desc: ko ? "뉴욕 최대 무료 법률 기관. 이민·주거·가족법·소비자 보호.\n📞 212-613-5000 | 🔗 nylag.org\n한국어 통역 가능"
+                           : "NYC's largest free legal org. Immigration, housing, family law, consumer protection.\n📞 212-613-5000 | 🔗 nylag.org\nKorean interpreter available",
+                  tags: ko ? ["무료법률","뉴욕","이민"] : ["Free Legal","NYC","Immigration"] },
+                { emoji: "🌍", name: ko ? "NYIC — 뉴욕 이민자연합" : "NYIC — New York Immigration Coalition",
+                  desc: ko ? "뉴욕 최대 이민자 권익 단체. 시민권·DACA·추방 방어.\n📞 212-627-2227 | 🔗 thenyic.org"
+                           : "NYC's largest immigrant advocacy coalition. Citizenship, DACA, deportation defense.\n📞 212-627-2227 | 🔗 thenyic.org",
+                  tags: ko ? ["시민권","DACA","뉴욕"] : ["Citizenship","DACA","NYC"] },
+                { emoji: "🏠", name: ko ? "NYC 임차인 권리 (강력 보호)" : "NYC Tenant Rights (Very Strong)",
+                  desc: ko ? "뉴욕 임차인 보호법 매우 강력!\n• Rent Stabilization: 임대료 상한 적용 아파트 多\n• 퇴거 소송: Housing Court 전 중재 가능\n📞 NYC 임차인 핫라인: 212-979-0611"
+                           : "NYC has very strong tenant protection laws!\n• Rent Stabilization: Many apartments have rent caps\n• Eviction cases go through Housing Court\n📞 NYC Tenant Hotline: 212-979-0611",
+                  tags: ko ? ["임차인권리","렌트안정","뉴욕"] : ["Tenant Rights","Rent Stabilization","NYC"] },
+                ...universal,
+              ];
+              if (slug === "boston") return [
+                { emoji: "⚖️", name: ko ? "GBLS — 그레이터 보스턴 법률 서비스 ✅" : "GBLS — Greater Boston Legal Services ✅",
+                  desc: ko ? "보스턴 최대 무료 법률 기관. 이민·주거·가족법.\n📞 617-603-1700 | 🔗 gbls.org\n한국어 통역 가능"
+                           : "Boston's largest free legal org. Immigration, housing, family law.\n📞 617-603-1700 | 🔗 gbls.org\nKorean interpreter available",
+                  tags: ko ? ["무료법률","보스턴","이민"] : ["Free Legal","Boston","Immigration"] },
+                { emoji: "🌍", name: ko ? "PAIR Project — 망명·추방 전문" : "PAIR Project — Asylum & Deportation Defense",
+                  desc: ko ? "보스턴 망명 신청자·추방 위기 이민자 전문 무료 법률.\n📞 617-742-9296 | 🔗 pairproject.org"
+                           : "Free legal defense for asylum seekers & deportation cases in Boston.\n📞 617-742-9296 | 🔗 pairproject.org",
+                  tags: ko ? ["망명","추방방어","보스턴"] : ["Asylum","Deportation","Boston"] },
+                { emoji: "🏠", name: ko ? "MA 임차인 권리" : "Massachusetts Tenant Rights",
+                  desc: ko ? "MA 임차인 보호 비교적 강함.\n• 퇴거 최소 30일 전 통보 의무\n• 보증금 이자 연 5% 반환 의무\n📞 617-492-0543 (MTTA)"
+                           : "MA has relatively strong tenant protections.\n• Minimum 30-day eviction notice required\n• Security deposit must earn 5% interest\n📞 617-492-0543 (MTTA)",
+                  tags: ko ? ["임차인권리","MA법","보증금"] : ["Tenant Rights","MA Law","Deposit"] },
+                ...universal,
+              ];
+              if (slug === "nashville") return [
+                { emoji: "⚖️", name: ko ? "Legal Aid Society of Middle TN ✅" : "Legal Aid Society of Middle Tennessee ✅",
+                  desc: ko ? "내쉬빌 최대 무료 법률 기관. 이민·주거·가족법.\n📞 615-780-7100 | 🔗 las.org\n한국어 통역 가능"
+                           : "Nashville's largest free legal org. Immigration, housing, family law.\n📞 615-780-7100 | 🔗 las.org\nKorean interpreter available",
+                  tags: ko ? ["무료법률","내쉬빌","이민"] : ["Free Legal","Nashville","Immigration"] },
+                { emoji: "🌍", name: ko ? "TIRRC — 테네시 이민자 권익연합" : "TIRRC — TN Immigrant & Refugee Rights Coalition",
+                  desc: ko ? "테네시 최대 이민자 권익 단체. DACA·추방 방어·시민권.\n📞 615-833-0384 | 🔗 tnimmigrant.org"
+                           : "TN's largest immigrant rights org. DACA, deportation defense, citizenship.\n📞 615-833-0384 | 🔗 tnimmigrant.org",
+                  tags: ko ? ["DACA","추방방어","TN"] : ["DACA","Deportation","TN"] },
+                { emoji: "🏠", name: ko ? "TN 임차인 권리 (주의 필요)" : "Tennessee Tenant Rights (Caution Needed)",
+                  desc: ko ? "테네시는 임차인 보호법이 약함!\n• 퇴거 통보 후 14일 이내 퇴거 의무\n• 임대료 인상 제한 없음\n📞 Internal-tenant disputes → Legal Aid: 615-780-7100"
+                           : "Tennessee has weak tenant protections!\n• Must vacate within 14 days of eviction notice\n• No rent control or increase limits\n📞 Tenant disputes → Legal Aid: 615-780-7100",
+                  tags: ko ? ["임차인권리","TN법","주의"] : ["Tenant Rights","TN Law","Caution"] },
+                ...universal,
+              ];
+              if (slug === "toronto") return [
+                { emoji: "⚖️", name: ko ? "Legal Aid Ontario ✅" : "Legal Aid Ontario ✅",
+                  desc: ko ? "온타리오 무료 법률 서비스. 이민·형사·가족법.\n📞 1-800-668-8258 | 🔗 legalaid.on.ca\n한국어 통역 가능"
+                           : "Ontario's free legal services. Immigration, criminal, family law.\n📞 1-800-668-8258 | 🔗 legalaid.on.ca\nKorean interpreter available",
+                  tags: ko ? ["무료법률","온타리오","이민"] : ["Free Legal","Ontario","Immigration"] },
+                { emoji: "🏠", name: ko ? "LTB — 임대차 재판소 (ON)" : "Landlord & Tenant Board (Ontario)",
+                  desc: ko ? "온타리오 임대차 분쟁 공식 기관.\n• 임대료 인상 연간 가이드라인 적용\n• 퇴거: LTB 심리 필수 (집주인 임의 퇴거 불가)\n📞 416-645-8080 | 🔗 tribunalsontario.ca/ltb"
+                           : "Ontario's official landlord-tenant dispute body.\n• Annual rent increase guideline applies\n• Eviction requires LTB hearing (no self-eviction)\n📞 416-645-8080 | 🔗 tribunalsontario.ca/ltb",
+                  tags: ko ? ["임차인권리","LTB","온타리오"] : ["Tenant Rights","LTB","Ontario"] },
+                { emoji: "🇰🇷", name: ko ? "KCWA — 한인교민회·법률 지원" : "KCWA — Korean Canadian Women's Association",
+                  desc: ko ? "토론토 한인 여성·가족 법률 지원. 가정폭력·이민·정착.\n📞 416-340-1234 | 🔗 kcwa.net"
+                           : "Toronto Korean legal support for women & families. Domestic violence, immigration, settlement.\n📞 416-340-1234 | 🔗 kcwa.net",
+                  tags: ko ? ["한인법률","가정폭력","토론토"] : ["Korean Legal","Domestic Violence","Toronto"] },
+                ...universal,
+              ];
+              if (slug === "vancouver") return [
+                { emoji: "⚖️", name: ko ? "Legal Aid BC ✅" : "Legal Aid BC ✅",
+                  desc: ko ? "BC 무료 법률 서비스. 이민·가족법·형사.\n📞 604-408-2172 | 🔗 legalaid.bc.ca\n한국어 통역 가능"
+                           : "BC free legal services. Immigration, family law, criminal.\n📞 604-408-2172 | 🔗 legalaid.bc.ca\nKorean interpreter available",
+                  tags: ko ? ["무료법률","BC","이민"] : ["Free Legal","BC","Immigration"] },
+                { emoji: "🏠", name: ko ? "BC 임대차 분쟁 해결 지부" : "BC Residential Tenancy Branch (RTB)",
+                  desc: ko ? "BC 임대차 분쟁 공식 기관.\n• 임대료 인상: 연간 가이드라인 (2024년 3.5%)\n• 퇴거: RTB 심리 필수\n📞 604-660-1020 | 🔗 gov.bc.ca/tenancy"
+                           : "BC's official tenancy dispute body.\n• Rent increase: annual guideline (3.5% in 2024)\n• Eviction requires RTB hearing\n📞 604-660-1020 | 🔗 gov.bc.ca/tenancy",
+                  tags: ko ? ["임차인권리","RTB","BC"] : ["Tenant Rights","RTB","BC"] },
+                { emoji: "🌍", name: ko ? "DIVERSEcity — 이민자 정착 법률" : "DIVERSEcity Community Resources",
+                  desc: ko ? "서리·버나비 이민자 법률·정착 지원. 한국어 서비스.\n📞 604-597-0205 | 🔗 dcrs.ca"
+                           : "Surrey & Burnaby immigrant legal & settlement support. Korean services available.\n📞 604-597-0205 | 🔗 dcrs.ca",
+                  tags: ko ? ["이민법률","정착","밴쿠버"] : ["Immigration Legal","Settlement","Vancouver"] },
+                ...universal,
+              ];
+              if (slug === "atlanta") return [
+                { emoji: "⚖️", name: ko ? "Atlanta Volunteer Lawyers Foundation ✅" : "Atlanta Volunteer Lawyers Foundation ✅",
+                  desc: ko ? "애틀랜타 무료 법률 서비스. 이민·주거·가족법.\n📞 404-521-0790 | 🔗 avlf.org\n한국어 통역 가능"
+                           : "Atlanta free legal services. Immigration, housing, family law.\n📞 404-521-0790 | 🔗 avlf.org\nKorean interpreter available",
+                  tags: ko ? ["무료법률","애틀랜타","이민"] : ["Free Legal","Atlanta","Immigration"] },
+                { emoji: "🌍", name: ko ? "GALEO — 조지아 이민자 권익" : "GALEO — GA Latino Alliance for Human Rights",
+                  desc: ko ? "조지아 이민자 권익 단체. DACA·추방 방어·시민권.\n📞 770-457-0020 | 🔗 galeo.org"
+                           : "GA immigrant rights org. DACA, deportation defense, citizenship.\n📞 770-457-0020 | 🔗 galeo.org",
+                  tags: ko ? ["DACA","추방방어","GA"] : ["DACA","Deportation","GA"] },
+                { emoji: "🏠", name: ko ? "GA 임차인 권리 (주의 필요)" : "Georgia Tenant Rights (Caution Needed)",
+                  desc: ko ? "조지아는 임차인 보호법이 약함!\n• 퇴거 60일 전 서면 통보 필요\n• 임대료 인상 제한 없음\n분쟁 → Atlanta Legal Aid: 404-524-5811"
+                           : "Georgia has weak tenant protection laws!\n• 60-day written notice before eviction required\n• No rent control or increase limits\nDisputes → Atlanta Legal Aid: 404-524-5811",
+                  tags: ko ? ["임차인권리","GA법","주의"] : ["Tenant Rights","GA Law","Caution"] },
+                ...universal,
+              ];
+              if (slug === "philadelphia") return [
+                { emoji: "⚖️", name: ko ? "Philadelphia Legal Assistance ✅" : "Philadelphia Legal Assistance ✅",
+                  desc: ko ? "필라델피아 최대 무료 법률 기관. 이민·주거·가족법.\n📞 215-981-3800 | 🔗 philalegal.org\n한국어 통역 가능"
+                           : "Philadelphia's largest free legal org. Immigration, housing, family law.\n📞 215-981-3800 | 🔗 philalegal.org\nKorean interpreter available",
+                  tags: ko ? ["무료법률","필라델피아","이민"] : ["Free Legal","Philadelphia","Immigration"] },
+                { emoji: "🌍", name: ko ? "HIAS Pennsylvania — 이민자 법률" : "HIAS Pennsylvania — Immigrant Legal Services",
+                  desc: ko ? "망명·추방 방어·DACA 전문. 유대계 기관이지만 모든 이민자 지원.\n📞 267-238-3255 | 🔗 hiaspa.org"
+                           : "Asylum, deportation defense, DACA. Jewish org but serves all immigrants.\n📞 267-238-3255 | 🔗 hiaspa.org",
+                  tags: ko ? ["망명","추방방어","필라"] : ["Asylum","Deportation","Philly"] },
+                { emoji: "🏠", name: ko ? "PA 임차인 권리" : "Pennsylvania Tenant Rights",
+                  desc: ko ? "PA 임차인 보호 보통 수준.\n• 퇴거: 법원 절차 필수\n• 임대료 인상 제한 없음\n분쟁 → Philly Tenant Union: 215-832-0780"
+                           : "PA has moderate tenant protections.\n• Eviction requires court process\n• No rent increase limits\nDisputes → Philly Tenant Union: 215-832-0780",
+                  tags: ko ? ["임차인권리","PA법"] : ["Tenant Rights","PA Law"] },
+                ...universal,
+              ];
+              if (slug === "kansascity") return [
+                { emoji: "⚖️", name: ko ? "Legal Aid of Western Missouri ✅" : "Legal Aid of Western Missouri ✅",
+                  desc: ko ? "캔자스시티 무료 법률 서비스. 이민·주거·가족법.\n📞 816-474-6750 | 🔗 lawmo.org\n한국어 통역 가능"
+                           : "Kansas City free legal services. Immigration, housing, family law.\n📞 816-474-6750 | 🔗 lawmo.org\nKorean interpreter available",
+                  tags: ko ? ["무료법률","KC","이민"] : ["Free Legal","KC","Immigration"] },
+                { emoji: "🏠", name: ko ? "KS/MO 임차인 권리" : "KS / MO Tenant Rights",
+                  desc: ko ? "KS·MO 모두 임차인 보호법 약함!\n• MO: 퇴거 통보 후 5일 이내 퇴거\n• KS: 법원 명령 없으면 퇴거 불가\n분쟁 → Legal Aid Western MO: 816-474-6750"
+                           : "Both KS & MO have weak tenant protection!\n• MO: Must vacate 5 days after eviction notice\n• KS: Court order required before eviction\nDisputes → Legal Aid: 816-474-6750",
+                  tags: ko ? ["임차인권리","MO법","KC"] : ["Tenant Rights","MO Law","KC"] },
+                ...universal,
+              ];
+              if (slug === "miami") return [
+                { emoji: "⚖️", name: ko ? "Legal Services of Greater Miami ✅" : "Legal Services of Greater Miami ✅",
+                  desc: ko ? "마이애미 최대 무료 법률 기관. 이민·주거·가족법.\n📞 305-576-0080 | 🔗 lsgmi.org\n한국어·스페인어 통역 가능"
+                           : "Miami's largest free legal org. Immigration, housing, family law.\n📞 305-576-0080 | 🔗 lsgmi.org\nKorean & Spanish interpreter available",
+                  tags: ko ? ["무료법률","마이애미","이민"] : ["Free Legal","Miami","Immigration"] },
+                { emoji: "🌍", name: ko ? "Americans for Immigrant Justice ✅" : "Americans for Immigrant Justice ✅",
+                  desc: ko ? "마이애미 이민자 법률 전문. 망명·추방 방어·DACA.\n📞 305-573-1106 | 🔗 aijustice.org"
+                           : "Miami immigration legal specialist. Asylum, deportation defense, DACA.\n📞 305-573-1106 | 🔗 aijustice.org",
+                  tags: ko ? ["망명","추방방어","FL"] : ["Asylum","Deportation","FL"] },
+                { emoji: "🏠", name: ko ? "FL 임차인 권리 (약함 주의)" : "Florida Tenant Rights (Weak — Caution)",
+                  desc: ko ? "플로리다 임차인 보호법 약함!\n• 퇴거: 통보 후 3일 이내 퇴거 or 법원 절차\n• 임대료 인상 제한 없음\n분췰 → Legal Services Miami: 305-576-0080"
+                           : "Florida has weak tenant protection laws!\n• Eviction: 3 days after notice or court process\n• No rent increase limits in FL\nDisputes → Legal Services Miami: 305-576-0080",
+                  tags: ko ? ["임차인권리","FL법","주의"] : ["Tenant Rights","FL Law","Caution"] },
+                ...universal,
+              ];
+              // Mexico cities
+              if (slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey") return [
+                { emoji: "⚖️", name: ko ? "주멕시코 한국 대사관 — 법률 정보" : "Korean Embassy Mexico — Legal Info",
+                  desc: ko ? "법률 분쟁·사기 피해 시 한국 대사관 영사팀 1차 연락.\n📞 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko\n현지 한인 변호사 네트워크 소개 가능"
+                           : "For legal disputes or fraud, contact Korean Embassy consular team first.\n📞 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko\nCan connect to local Korean-speaking lawyers",
+                  tags: ko ? ["대사관","법률","멕시코"] : ["Embassy","Legal","Mexico"] },
+                { emoji: "🏠", name: ko ? "멕시코 임차인 권리 (PROFECO)" : "Mexico Tenant Rights (PROFECO)",
+                  desc: ko ? "멕시코 소비자보호청(PROFECO) — 임대 분쟁·사기 신고.\n📞 55-5568-8722 | 🔗 profeco.gob.mx\n임대 계약서 반드시 공증(Notario Público) 권장"
+                           : "PROFECO (Consumer Protection) — rental disputes & fraud reports.\n📞 55-5568-8722 | 🔗 profeco.gob.mx\nStrongly recommend having lease notarized (Notario Público)",
+                  tags: ko ? ["임차인권리","PROFECO","멕시코"] : ["Tenant Rights","PROFECO","Mexico"] },
+                { emoji: "🌍", name: ko ? "멕시코 이민법 (INM — 이민청)" : "Mexico Immigration Law (INM)",
+                  desc: ko ? "비자·체류 문제 → INM (Instituto Nacional de Migración).\n📞 800-004-6264 | 🔗 www.gob.mx/inm\n현지 이민 변호사(abogado de migración) 상담 권장"
+                           : "Visa & residency issues → INM (National Migration Institute).\n📞 800-004-6264 | 🔗 www.gob.mx/inm\nConsult local immigration lawyer (abogado de migración)",
+                  tags: ko ? ["INM","비자","멕시코이민"] : ["INM","Visa","Mexico Immigration"] },
+                ...universal,
+              ];
+              // default (should not reach here)
+              return universal;
+            })().map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
           <div style={{ background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 12 }}>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>⚖️ {lang === "ko" ? "긴급 법률 도움 받는 법" : "How to Get Emergency Legal Help"}</div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>⚖️ {lang === "ko" ? "법률 도움 받는 첫 단계" : "First Step to Get Legal Help"}</div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
               {lang === "ko"
-                ? "1. 이민 긴급 → NWIRP: 800-445-5771\n2. 민사 법률 → NW Justice CLEAR: 1-888-201-1014\n3. 시민권 → OneAmerica: 425-251-0900\n4. 임차인 분쟁 → Tenants Union: 206-723-0500\n5. 한국어 상담 → KCSC: 425-776-2400"
-                : "1. Immigration emergency → NWIRP: 800-445-5771\n2. Civil legal → NW Justice CLEAR: 1-888-201-1014\n3. Citizenship → OneAmerica: 425-251-0900\n4. Tenant dispute → Tenants Union: 206-723-0500\n5. Korean-language → KCSC: 425-776-2400"}
+                ? `1. 이민 긴급 → 위 무료 법률 기관 전화\n2. 한국어 통역 필요 → Language Line: 800-752-6096\n3. 이민 사기 신고 → FTC: reportfraud.ftc.gov\n4. 멕시코 거주 → 한국 대사관: 55-5202-9866\n5. 캐나다 거주 → Legal Aid 해당 주 연락`
+                : `1. Immigration emergency → call free legal org above\n2. Korean interpreter needed → Language Line: 800-752-6096\n3. Report immigration fraud → FTC: reportfraud.ftc.gov\n4. Mexico residents → Korean Embassy: 55-5202-9866\n5. Canada residents → contact provincial Legal Aid`}
             </div>
           </div>
         </div>
       )}
 
-      {/* ── 🇺🇸 Korean American 탭 (index 6) ── */}
+      {/* ── 🇺🇸 Korean American / Korean Diaspora 탭 (index 6) — 도시별 분리 ── */}
       {sub === 6 && (
         <div className="pt-5 px-4 md:px-6 lg:px-8">
           <div style={{ background: "linear-gradient(135deg, rgba(59,130,246,0.12), rgba(239,68,68,0.08))", border: "1px solid rgba(59,130,246,0.2)", borderRadius: 16, padding: "16px 18px", marginBottom: 16 }}>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#ECFDF5", marginBottom: 6 }}>
-              🇺🇸 {lang === "ko" ? "Korean American으로 살기" : "Living as Korean American"}
+              {city.slug === "toronto" || city.slug === "vancouver" ? "🍁" : city.slug === "mexicocity" || city.slug === "guadalajara" || city.slug === "monterrey" ? "🇲🇽" : "🇺🇸"} {lang === "ko" ? `${city.nameKo} 한인으로 살기` : `Living as a Korean in ${city.nameEn}`}
             </div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, lineHeight: 1.7, color: "rgba(236,253,245,0.7)" }}>
-              {lang === "ko"
-                ? "이민자를 넘어 미국 사회의 당당한 구성원으로. 투표권·공공자원·지역사회 참여로 더 강한 커뮤니티를 만들어 갑니다."
-                : "Beyond being immigrants — becoming full participants in American society. Voting, public resources & community engagement build a stronger Korean American community."}
+              {lang === "ko" ? `이민자를 넘어 ${city.nameKo} 사회의 당당한 구성원으로. 투표권·공공자원·지역사회 참여로 더 강한 한인 커뮤니티를 만들어 갑니다.` : `Beyond being immigrants — becoming full participants in ${city.nameEn} society. Civic engagement, public resources & community build a stronger Korean diaspora.`}
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {[
-              { emoji: "🗳️", name: lang === "ko" ? "투표·시민 참여 — 내 한 표가 바꾼다" : "Voting & Civic Participation",
-                desc: lang === "ko"
-                  ? "✅ 시민권자 의무이자 권리!\n유권자 등록: 🔗 myvote.wa.gov\n• WA주 — 우편 투표 100%! 선거 전 자동 발송\n• 등록 마감: 선거일 8일 전\n• 한국어 안내: King County Elections 📞 206-296-8683\n\n시민권 후 첫 번째 할 일 = 유권자 등록!"
-                  : "✅ Your right AND responsibility as a citizen!\nVoter registration: 🔗 myvote.wa.gov\n• WA State — 100% mail-in ballots!\n• Registration deadline: 8 days before election\n• Korean language info: King County Elections 📞 206-296-8683\n\nFirst thing after citizenship = register to vote!",
-                tags: lang === "ko" ? ["투표", "시민참여", "유권자등록"] : ["Voting", "Civic", "Voter Registration"] },
-              { emoji: "📚", name: lang === "ko" ? "킹카운티 도서관 — 무료 자원의 보고" : "King County Library — Free Resource Hub",
-                desc: lang === "ko"
-                  ? "✅ 도서관 카드 하나로 수백만 달러 가치!\n무료 서비스:\n• ESL 영어 수업 무료\n• 시민권 시험 준비 자료\n• 취업·이력서 워크샵\n• 한국어 도서·잡지·DVD\n• 인터넷·프린터 무료\n• LinkedIn Learning 무제한\n📞 425-462-9600 | 🔗 kcls.org"
-                  : "✅ One library card = millions in free resources!\nFree services:\n• ESL English classes\n• Citizenship test prep\n• Job search & resume workshops\n• Korean books, magazines & DVDs\n• Free internet & printing\n• Unlimited LinkedIn Learning\n📞 425-462-9600 | 🔗 kcls.org",
-                tags: lang === "ko" ? ["도서관", "무료ESL", "LinkedIn Learning"] : ["Library", "Free ESL", "LinkedIn"] },
-              { emoji: "🌍", name: lang === "ko" ? "다민족 커뮤니티 연결" : "Multicultural Community Connections",
-                desc: lang === "ko"
-                  ? "Korean American으로서 다양한 커뮤니티와 연결!\n• 중국계: Asia Pacific Cultural Center 🔗 tacomaacc.org\n• 히스패닉: El Centro de la Raza (206) 957-4610\n• 필리핀계: Filipino Community of Seattle (206) 722-9372 🔗 fcswseattle.org\n• 인도계: India Association of Western WA 🔗 iawwa.org\n\n다민족 커뮤니티 연결 = 더 넓은 취업 네트워크 + 다양한 문화 경험"
-                  : "Connect across communities as Korean Americans!\n• Chinese-American: Asia Pacific Cultural Center 🔗 tacomaacc.org\n• Hispanic: El Centro de la Raza (206) 957-4610\n• Filipino: Filipino Community of Seattle (206) 722-9372 🔗 fcswseattle.org\n• Indian: India Association of Western WA 🔗 iawwa.org\n\nCross-community = broader job network + richer cultural life",
-                tags: lang === "ko" ? ["다민족", "커뮤니티", "교류"] : ["Multicultural", "Community", "Connection"] },
-              { emoji: "🤝", name: lang === "ko" ? "지역사회 봉사·참여" : "Community Service & Volunteering",
-                desc: lang === "ko"
-                  ? "✅ 봉사는 커리어·네트워크·영주권에도 도움!\n• United Way of King County: unitedwaykc.org\n• Food Lifeline: foodlifeline.org — 식품 은행 봉사\n• Habitat for Humanity: habitatskc.org\n• KCSC (한인생활상담소): 봉사자 상시 모집\n\n봉사 시간 기록: volunteerheroes.org"
-                  : "✅ Volunteering helps career, networking & green card!\n• United Way of King County: unitedwaykc.org\n• Food Lifeline: foodlifeline.org — food bank\n• Habitat for Humanity: habitatskc.org\n• KCSC: always recruiting Korean-speaking volunteers\n\nLog volunteer hours: volunteerheroes.org",
-                tags: lang === "ko" ? ["봉사", "커리어", "영주권"] : ["Volunteer", "Career", "Green Card"] },
-              { emoji: "🏛️", name: lang === "ko" ? "미국 공공 혜택 — 모르면 손해" : "US Public Benefits — Don't Miss Out",
-                desc: lang === "ko"
-                  ? "영주권자·시민권자가 누릴 수 있는 공공자원:\n• WIC: 임산부·5세 미만 자녀 무료 식품 📞 206-296-4600\n• SNAP: 식품 지원 → dshs.wa.gov/benefits\n• WA Apple Health: 저소득 의료보험 무료\n• LIHEAP: 겨울 난방비 지원\n• WSHFC: 첫 집 구매자 지원 프로그램 🔗 wshfc.org\n\n💡 합법 체류자도 일부 혜택 가능. dshs.wa.gov 확인!"
-                  : "Public benefits for green card holders & citizens:\n• WIC: free food for pregnant women & children under 5. 📞 206-296-4600\n• SNAP: food assistance → dshs.wa.gov/benefits\n• WA Apple Health: free health insurance (low-income)\n• LIHEAP: winter heating assistance\n• WSHFC: first-time homebuyer programs 🔗 wshfc.org\n\n💡 Legal residents may qualify. Check dshs.wa.gov!",
-                tags: lang === "ko" ? ["공공혜택", "WIC", "SNAP"] : ["Public Benefits", "WIC", "SNAP"] },
-              { emoji: "🗺️", name: lang === "ko" ? "시애틀 한인 문화 행사 캘린더" : "Seattle Korean Cultural Events",
-                desc: lang === "ko"
-                  ? "✅ 연간 주요 한인 행사:\n• 설날 행사: 한인회 & 지역 교회 (1-2월)\n• 한국 문화의 날: 봄 (벨뷰·시애틀)\n• 코리안 페스티벌: 여름 (린우드 H-Mart)\n• 추석 행사: 가을 (9-10월)\n• 광복절: 8월 15일 (총영사관 주관)\n\n최신 정보: seattlekorean.org | KakaoTalk '시애틀한인'"
-                  : "✅ Annual Korean community events:\n• Lunar New Year: Korean Association & churches (Jan-Feb)\n• Korean Culture Day: spring (Bellevue & Seattle)\n• Korean Festival: summer (Lynnwood H-Mart)\n• Chuseok Celebration: fall (Sep-Oct)\n• Independence Day: Aug 15 (Consulate General)\n\nStay updated: seattlekorean.org | KakaoTalk '시애틀한인'",
-                tags: lang === "ko" ? ["한인행사", "문화", "커뮤니티"] : ["Korean Events", "Culture", "Community"] },
-            ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+            {((): Array<{emoji:string;name:string;desc:string;tags:string[]}> => {
+              const ko = lang === "ko";
+              const slug = city.slug;
+              type KAItem = {emoji:string;name:string;desc:string;tags:string[]};
+              // ── 투표 정보 (도시별) ──
+              const votingCard: KAItem = slug === "toronto" ? {
+                emoji: "🗳️", name: ko ? "선거 참여 (캐나다 연방·온타리오 주)" : "Voting (Federal & Ontario Provincial)",
+                desc: ko ? "✅ 캐나다 시민권자 의무이자 권리!\n연방 유권자 등록: 🔗 elections.ca\n온타리오 주 선거: 🔗 elections.on.ca\n• 온타인 우편 투표 가능\n• 한국어 안내 요청 가능\n\n시민권 후 첫 번째 = 유권자 등록!"
+                           : "✅ Your right & duty as a Canadian citizen!\nFederal: 🔗 elections.ca\nOntario: 🔗 elections.on.ca\n• Mail-in voting available\n• Korean interpretation available\n\nFirst after citizenship = voter registration!",
+                tags: ko ? ["투표","캐나다","온타리오"] : ["Voting","Canada","Ontario"],
+              } : slug === "vancouver" ? {
+                emoji: "🗳️", name: ko ? "선거 참여 (캐나다 연방·BC 주)" : "Voting (Federal & BC Provincial)",
+                desc: ko ? "✅ 캐나다 시민권자 의무이자 권리!\n연방: 🔗 elections.ca\nBC 주: 🔗 elections.bc.ca\n• 우편 투표 가능\n• 한국어 안내 요청 가능"
+                         : "✅ Your right & duty as a Canadian citizen!\nFederal: 🔗 elections.ca\nBC: 🔗 elections.bc.ca\n• Mail-in voting available\n• Korean interpretation available",
+                tags: ko ? ["투표","캐나다","BC"] : ["Voting","Canada","BC"],
+              } : slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey" ? {
+                emoji: "🏛️", name: ko ? "영사 서비스 & 재외국민 등록" : "Consular Services & Overseas Korean Registration",
+                desc: ko ? "장기 체류자 → 재외국민 등록 강력 권장!\n• 여권 갱신\n• 병역·선거 관련 공문 수령\n• 긴급 귀국 지원\n📞 주멕시코 한국 대사관: 55-5202-9866\n🔗 overseas.mofa.go.kr/mx-ko"
+                         : "Long-term residents → overseas Korean registration strongly recommended!\n• Passport renewal\n• Official notices (military, voting)\n• Emergency repatriation support\n📞 Korean Embassy Mexico: 55-5202-9866\n🔗 overseas.mofa.go.kr/mx-ko",
+                tags: ko ? ["재외국민","대사관","영사서비스"] : ["Overseas Korean","Embassy","Consular"],
+              } : slug === "newyork" ? {
+                emoji: "🗳️", name: ko ? "투표·시민 참여 (뉴욕/뉴저지)" : "Voting & Civic Participation (NY/NJ)",
+                desc: ko ? "✅ 시민권자 의무이자 권리!\nNY 유권자 등록: 🔗 vote.nyc\nNJ 유권자 등록: 🔗 vote.nj.gov\n• NJ: 우편 투표 가능\n• 한국어 투표 안내 가능 (플러싱)\n📞 NY 한국어 선거 정보: NAKASEC 📞 888-508-5500"
+                           : "✅ Your right & duty as a US citizen!\nNY Registration: 🔗 vote.nyc\nNJ Registration: 🔗 vote.nj.gov\n• NJ: mail-in voting available\n• Korean voting guides available in Flushing\n📞 Korean election info: NAKASEC 📞 888-508-5500",
+                tags: ko ? ["투표","뉴욕","뉴저지"] : ["Voting","NY","NJ"],
+              } : slug === "la" ? {
+                emoji: "🗳️", name: ko ? "투표·시민 참여 (캘리포니아)" : "Voting & Civic Participation (California)",
+                desc: ko ? "✅ 시민권자 의무이자 권리!\nCA 유권자 등록: 🔗 registertovote.ca.gov\n• CA: 우편 투표 100%! 자동 발송\n• 등록 마감: 선거일 15일 전\n• 한국어 투표 안내: KAGC 📞 213-477-5353\n• KoreanVoter.org 무료 시민권 지원"
+                           : "✅ Your right & duty as a US citizen!\nCA voter registration: 🔗 registertovote.ca.gov\n• CA: 100% mail-in ballots! Auto-mailed\n• Registration deadline: 15 days before election\n• Korean voting guide: KAGC 📞 213-477-5353",
+                tags: ko ? ["투표","캘리포니아","LA"] : ["Voting","California","LA"],
+              } : {
+                // US cities default voting
+                emoji: "🗳️", name: ko ? "투표·시민 참여 — 내 한 표가 바꾼다" : "Voting & Civic Participation",
+                desc: ko ? `✅ 시민권자 의무이자 권리!\n유권자 등록: 🔗 vote.gov (전국 통합)\n한국어 투표 정보: NAKASEC 📞 888-508-5500\n\n${slug === "seattle" ? "• WA주 — 우편 투표 100%! 자동 발송\n• King County Elections 📞 206-296-8683" : slug === "dallas" || slug === "houston" ? "• 텍사스: 투표소 방문 또는 부재자 투표\n• vote.texas.gov" : slug === "nashville" ? "• TN: 투표소 방문 필수 (우편 투표 제한적)\n• sos.tn.gov/elections" : slug === "boston" ? "• MA: 우편 투표 가능\n• vote.gov/states/massachusetts" : slug === "atlanta" ? "• GA: 부재자 투표 사전 신청 필요\n• mvp.sos.ga.gov" : slug === "philadelphia" ? "• PA: 우편 투표 가능\n• vote.pa.gov" : slug === "kansascity" ? "• KS/MO: 부재자 투표 가능\n• vote.gov" : "• FL: 우편 투표 사전 신청\n• dos.fl.gov/elections"}\n\n시민권 후 첫 번째 = 유권자 등록!`
+                           : `✅ Your right & duty as a US citizen!\nVoter registration: 🔗 vote.gov (nationwide)\nKorean voting info: NAKASEC 📞 888-508-5500\n\n${slug === "seattle" ? "• WA: 100% mail-in ballots! Auto-mailed\n• King County Elections 📞 206-296-8683" : slug === "dallas" || slug === "houston" ? "• Texas: in-person or absentee voting\n• vote.texas.gov" : slug === "nashville" ? "• TN: in-person voting required (limited mail)\n• sos.tn.gov/elections" : slug === "boston" ? "• MA: mail-in voting available\n• vote.gov/states/massachusetts" : slug === "atlanta" ? "• GA: absentee ballot application required\n• mvp.sos.ga.gov" : slug === "philadelphia" ? "• PA: mail-in voting available\n• vote.pa.gov" : slug === "kansascity" ? "• KS/MO: absentee voting available\n• vote.gov" : "• FL: absentee ballot advance application\n• dos.fl.gov/elections"}\n\nFirst after citizenship = register to vote!`,
+                tags: ko ? ["투표","시민참여","유권자등록"] : ["Voting","Civic","Voter Registration"],
+              };
+              // ── 도서관 (도시별) ──
+              const libraryCard: KAItem = slug === "toronto" ? {
+                emoji: "📚", name: ko ? "토론토 공립 도서관 (TPL)" : "Toronto Public Library (TPL)",
+                desc: ko ? "✅ 무료 도서관 카드로 수백만 달러 자원!\n• ESL 영어 수업 무료\n• 시민권 시험 준비 자료\n• 한국어 도서·잡지\n• 인터넷·프린터 무료\n• LinkedIn Learning 무제한\n📞 416-393-7131 | 🔗 torontopubliclibrary.ca"
+                           : "✅ Free library card = millions in resources!\n• Free ESL classes\n• Citizenship test prep\n• Korean books & magazines\n• Free internet & printing\n• Unlimited LinkedIn Learning\n📞 416-393-7131 | 🔗 torontopubliclibrary.ca",
+                tags: ko ? ["도서관","무료ESL","TPL"] : ["Library","Free ESL","TPL"],
+              } : slug === "vancouver" ? {
+                emoji: "📚", name: ko ? "밴쿠버 공립 도서관 (VPL)" : "Vancouver Public Library (VPL)",
+                desc: ko ? "✅ 무료 도서관 카드!\n• ESL 영어 수업 무료\n• 한국어 도서·잡지\n• 인터넷·프린터 무료\n• LinkedIn Learning 무제한\n• 코퀴틀람: Coquitlam Public Library\n📞 604-331-3603 | 🔗 vpl.ca"
+                           : "✅ Free library card!\n• Free ESL classes\n• Korean books & magazines\n• Free internet & printing\n• Unlimited LinkedIn Learning\n• Coquitlam: Coquitlam Public Library\n📞 604-331-3603 | 🔗 vpl.ca",
+                tags: ko ? ["도서관","무료ESL","VPL"] : ["Library","Free ESL","VPL"],
+              } : slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey" ? {
+                emoji: "📚", name: ko ? "한국문화원 멕시코 & 스페인어 학습" : "Korean Cultural Center Mexico & Spanish Study",
+                desc: ko ? "주멕시코 한국문화원 — 한국어·문화 행사.\n📍 멕시코시티 폴랑코 | 🔗 mexico.korean-culture.org\n\n스페인어 학습 무료 자원:\n• Duolingo (무료 앱)\n• Coursera 스페인어 강좌\n• 현지 어학원 (Academia de Idiomas)"
+                           : "Korean Cultural Center Mexico — Korean language & cultural events.\n📍 Polanco, Mexico City | 🔗 mexico.korean-culture.org\n\nFree Spanish learning resources:\n• Duolingo (free app)\n• Coursera Spanish courses\n• Local language schools (Academia de Idiomas)",
+                tags: ko ? ["한국문화원","스페인어","멕시코"] : ["Korean Cultural Center","Spanish","Mexico"],
+              } : {
+                // US cities library — city-specific
+                emoji: "📚",
+                name: ko ? `${slug === "seattle" ? "킹카운티 도서관" : slug === "dallas" ? "달라스 공립 도서관" : slug === "sf" ? "샌프란시스코 공립 도서관" : slug === "newyork" ? "뉴욕 공립 도서관 (NYPL)" : slug === "la" ? "LA 공립 도서관 (LAPL)" : slug === "houston" ? "휴스턴 공립 도서관 (HPL)" : slug === "boston" ? "보스턴 공립 도서관 (BPL)" : slug === "nashville" ? "내쉬빌 공립 도서관 (NPL)" : slug === "atlanta" ? "풀턴·귀넷 카운티 도서관" : slug === "philadelphia" ? "필라델피아 자유 도서관 (FLP)" : slug === "kansascity" ? "캔자스시티 공립 도서관 (KCPL)" : "마이애미데이드 공립 도서관"} — 무료 자원` : `${slug === "seattle" ? "King County Library (KCLS)" : slug === "dallas" ? "Dallas Public Library" : slug === "sf" ? "San Francisco Public Library" : slug === "newyork" ? "New York Public Library (NYPL)" : slug === "la" ? "LA Public Library (LAPL)" : slug === "houston" ? "Houston Public Library (HPL)" : slug === "boston" ? "Boston Public Library (BPL)" : slug === "nashville" ? "Nashville Public Library (NPL)" : slug === "atlanta" ? "Fulton & Gwinnett County Libraries" : slug === "philadelphia" ? "Free Library of Philadelphia (FLP)" : slug === "kansascity" ? "Kansas City Public Library (KCPL)" : "Miami-Dade Public Library"} — Free Resources`,
+                desc: ko ? `✅ 무료 도서관 카드로 수백만 달러 자원!\n• ESL 영어 수업 무료\n• 시민권 시험 준비 자료\n• 취업·이력서 워크샵\n• 한국어 도서·잡지\n• 인터넷·프린터 무료\n• LinkedIn Learning 무제한\n🔗 ${slug === "seattle" ? "kcls.org" : slug === "dallas" ? "dpl.lib.tx.us" : slug === "sf" ? "sfpl.org" : slug === "newyork" ? "nypl.org" : slug === "la" ? "lapl.org" : slug === "houston" ? "houstonlibrary.org" : slug === "boston" ? "bpl.org" : slug === "nashville" ? "library.nashville.org" : slug === "atlanta" ? "fulcolibrary.org | gwinnettpl.org" : slug === "philadelphia" ? "freelibrary.org" : slug === "kansascity" ? "kclibrary.org" : "mdpls.org"}`
+                           : `✅ Free library card = millions in resources!\n• Free ESL classes\n• Citizenship test prep\n• Job search & resume workshops\n• Korean books & magazines\n• Free internet & printing\n• Unlimited LinkedIn Learning\n🔗 ${slug === "seattle" ? "kcls.org" : slug === "dallas" ? "dpl.lib.tx.us" : slug === "sf" ? "sfpl.org" : slug === "newyork" ? "nypl.org" : slug === "la" ? "lapl.org" : slug === "houston" ? "houstonlibrary.org" : slug === "boston" ? "bpl.org" : slug === "nashville" ? "library.nashville.org" : slug === "atlanta" ? "fulcolibrary.org | gwinnettpl.org" : slug === "philadelphia" ? "freelibrary.org" : slug === "kansascity" ? "kclibrary.org" : "mdpls.org"}`,
+                tags: ko ? ["도서관","무료ESL","취업"] : ["Library","Free ESL","Jobs"],
+              };
+              // ── 공공혜택 (도시·국가별) ──
+              const benefitsCard: KAItem = slug === "toronto" || slug === "vancouver" ? {
+                emoji: "🏛️", name: ko ? "캐나다 공공 혜택 총정리" : "Canadian Public Benefits Overview",
+                desc: ko ? "영주권자·시민권자가 누릴 수 있는 캐나다 자원:\n• CCB: 자녀 양육 보조금 (월 최대 CA$619/자녀)\n• GST/HST 크레딧: 저소득 가정 세금 환급\n• CPP: 캐나다 연금 플랜 (의무 기여)\n• OAS: 65세 이상 노령 보조금\n• 의료보험: OHIP/MSP 무료 (3개월 후)\n🔗 canada.ca/benefits"
+                           : "Public benefits available to PR holders & citizens:\n• CCB: Child benefit (up to CA$619/child/month)\n• GST/HST Credit: Tax rebate for low-income\n• CPP: Canada Pension Plan (mandatory contribution)\n• OAS: Old Age Security (65+)\n• Healthcare: Free OHIP/MSP (after 3 months)\n🔗 canada.ca/benefits",
+                tags: ko ? ["캐나다혜택","CCB","OHIP"] : ["Canada Benefits","CCB","OHIP"],
+              } : slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey" ? {
+                emoji: "🏛️", name: ko ? "멕시코 이민자 지원 제도" : "Mexico Immigrant Support Programs",
+                desc: ko ? "멕시코 체류자·영주권자 혜택:\n• IMSS: 사회보험 (의료·은퇴 포함)\n• INFONAVIT: 주택 구매 지원 펀드\n• SAR: 은퇴 저축 계좌 시스템\n• 외국인 = IMSS 가입 가능 (취업 시 의무)\n⚠️ 주재원은 한국 국민연금 납부 유지 고려\n🔗 imss.gob.mx"
+                           : "Benefits for residents & permanent residents in Mexico:\n• IMSS: Social insurance (healthcare + retirement)\n• INFONAVIT: Housing purchase support fund\n• SAR: Retirement savings system\n• Foreigners can enroll in IMSS when employed\n⚠️ Expats: consider maintaining Korean National Pension\n🔗 imss.gob.mx",
+                tags: ko ? ["IMSS","멕시코혜택","주재원"] : ["IMSS","Mexico Benefits","Expats"],
+              } : {
+                emoji: "🏛️", name: ko ? "미국 공공 혜택 — 모르면 손해" : "US Public Benefits — Don't Miss Out",
+                desc: ko ? `영주권자·시민권자 공공자원:\n• WIC: 임산부·5세 미만 무료 식품 📞 800-942-3678\n• SNAP: 식품 지원 → benefits.gov\n• ${slug === "seattle" ? "WA Apple Health" : slug === "sf" || slug === "la" ? "Medi-Cal" : slug === "newyork" ? "NY Medicaid/Essential Plan" : slug === "boston" ? "MassHealth" : slug === "nashville" ? "TennCare (저소득)" : slug === "dallas" || slug === "houston" ? "TX Medicaid (저소득)" : slug === "atlanta" ? "GA Medicaid (저소득)" : slug === "philadelphia" ? "PA Medical Assistance" : slug === "kansascity" ? "KanCare/MO HealthNet" : "FL Medicaid"}: 저소득 의료보험\n• LIHEAP: 난방·냉방비 지원\n• 첫 집 구매자 지원 프로그램: 해당 주 HFA\n💡 합법 체류자도 일부 혜택 가능. benefits.gov 확인!`
+                           : `Benefits for PR holders & citizens:\n• WIC: free food for pregnant/children under 5 📞 800-942-3678\n• SNAP: food assistance → benefits.gov\n• ${slug === "seattle" ? "WA Apple Health" : slug === "sf" || slug === "la" ? "Medi-Cal" : slug === "newyork" ? "NY Medicaid/Essential Plan" : slug === "boston" ? "MassHealth" : slug === "nashville" ? "TennCare (low-income)" : slug === "dallas" || slug === "houston" ? "TX Medicaid (low-income)" : slug === "atlanta" ? "GA Medicaid (low-income)" : slug === "philadelphia" ? "PA Medical Assistance" : slug === "kansascity" ? "KanCare/MO HealthNet" : "FL Medicaid"}: low-income healthcare\n• LIHEAP: heating/cooling cost assistance\n• First-time homebuyer programs: state HFA\n💡 Legal residents may also qualify. Check benefits.gov!`,
+                tags: ko ? ["공공혜택","WIC","SNAP"] : ["Public Benefits","WIC","SNAP"],
+              };
+              // ── 한인 문화 행사 (도시별) ──
+              const eventsCard: KAItem = {
+                emoji: "🗺️",
+                name: ko ? `${city.nameKo} 한인 문화 행사 캘린더` : `${city.nameEn} Korean Cultural Events`,
+                desc: ko ? `✅ 연간 주요 한인 행사:\n• 설날 행사: 한인회 & 지역 교회 (1-2월)\n• 광복절: 8월 15일 (총영사관/대사관 주관)\n• 추석 행사: 가을 (9-10월)\n${slug === "seattle" ? "• 코리안 페스티벌: 여름 (린우드 H-Mart)\n🔗 seattlekorean.org" : slug === "dallas" ? "• DFW 한인 문화 축제: 여름 (캐롤튼)\n🔗 달라스한인회 카카오" : slug === "sf" ? "• 베이에리어 코리아 페스티벌: 여름 (산호세)\n🔗 sfbaykorean.org" : slug === "newyork" ? "• 코리아 퍼레이드: 봄 (맨해튼 6번가)\n🔗 koreanparade.org" : slug === "la" ? "• LA 한인 축제: 9월 (코리아타운)\n🔗 lakoreanfestival.com" : slug === "houston" ? "• 휴스턴 코리아 페스티벌: 봄 (슈거랜드)\n🔗 houstonkorean.net" : slug === "boston" ? "• 보스턴 코리아: 문화 행사 상시\n🔗 bostonkorea.com" : slug === "nashville" ? "• 내쉬빌 코리아 페스티벌: 여름\n🔗 내쉬빌한인회 카카오" : slug === "toronto" ? "• 토론토 코리아 페스티벌: 여름 (노스욕)\n🔗 koreafestivaltoronto.com" : slug === "vancouver" ? "• 코퀴틀람 코리안 페스티벌: 여름\n🔗 밴쿠버한인회" : slug === "atlanta" ? "• 애틀랜타 코리아 페스티벌: 여름 (둘루스)\n🔗 atlantakorean.org" : slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey" ? "• 한국 문화의 날 (주멕시코 한국문화원)\n🔗 mexico.korean-culture.org" : "🔗 지역 한인회 카카오 단톡방"}`
+                           : `✅ Annual Korean community events:\n• Lunar New Year: Korean Association & churches (Jan-Feb)\n• Independence Day: Aug 15 (Consulate/Embassy)\n• Chuseok: fall (Sep-Oct)\n${slug === "seattle" ? "• Korean Festival: summer (Lynnwood H-Mart)\n🔗 seattlekorean.org" : slug === "dallas" ? "• DFW Korean Cultural Festival: summer (Carrollton)\n🔗 Dallas Korean Association KakaoTalk" : slug === "sf" ? "• Bay Area Korea Festival: summer (San Jose)\n🔗 sfbaykorean.org" : slug === "newyork" ? "• Korea Parade: spring (Manhattan 6th Ave)\n🔗 koreanparade.org" : slug === "la" ? "• LA Korean Festival: September (Koreatown)\n🔗 lakoreanfestival.com" : slug === "houston" ? "• Houston Korea Festival: spring (Sugar Land)\n🔗 houstonkorean.net" : slug === "boston" ? "• Boston Korea: cultural events year-round\n🔗 bostonkorea.com" : slug === "nashville" ? "• Nashville Korea Festival: summer\n🔗 Nashville Korean Association KakaoTalk" : slug === "toronto" ? "• Toronto Korea Festival: summer (North York)\n🔗 koreafestivaltoronto.com" : slug === "vancouver" ? "• Coquitlam Korean Festival: summer\n🔗 Vancouver Korean Association" : slug === "atlanta" ? "• Atlanta Korea Festival: summer (Duluth)\n🔗 atlantakorean.org" : slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey" ? "• Korea Cultural Day (Korean Cultural Center Mexico)\n🔗 mexico.korean-culture.org" : "🔗 Local Korean Association KakaoTalk"}`,
+                tags: ko ? ["한인행사","문화","커뮤니티"] : ["Korean Events","Culture","Community"],
+              };
+              return [votingCard, libraryCard, benefitsCard, eventsCard];
+            })().map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
         </div>
       )}
