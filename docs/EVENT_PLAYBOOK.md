@@ -339,20 +339,39 @@ HebronGuide는 이를 적극 활용해 사용자에게 환대 정보 제공.
 
 ---
 
-## 📰 시애틀 한인 미디어 참조 소스 & 취재 원칙
+## 📰 도시별 한인 미디어 참조 소스 & 취재 원칙
 
-### 공식 참조 미디어 목록 (시애틀 한인 사회 지역 정보)
+> 📌 **퍼플렉시티 AI 활용**: 아래 매체들을 검색 소스로 설정 → 여러 기사 취합·요약 → HebronGuide 표현으로 응용 후 반영
+
+---
+
+### 🏙️ 시애틀 (Seattle)
 
 | 매체 | URL | 특징 | 주요 활용 |
 |---|---|---|---|
 | **시애틀 한국일보** | seattlekdaily.com | 시애틀 최대 일간지. 공식 한인 사회 소식 | 정착·교민 행사·한인 단체 |
 | **시애틀 N** | seattlen.com | 시애틀 지역 뉴스·광고·커뮤니티 | 업소·이민·생활 정보 |
 | **WOW Seattle** | wowseattle.com | 시애틀 교민 종합 정보 포털 | 이벤트·맛집·공지 |
-| **데일리 인사이트** | dailyinsight.co.kr | 재미 한인 시각 시사 분석 | 이민 정책·미국 사회 이슈 |
-| **BIGKinds** | bigkinds.or.kr | 한국 주요 언론 통합 검색 엔진 | 한국발 시애틀 관련 기사 |
 | **kSeattle** | kseattle.com | 시애틀 한인 커뮤니티 뉴스 | 월드컵·지역 행사 (기존 출처) |
 
-> 📌 **퍼플렉시티 AI 활용**: 위 매체들을 검색 소스로 설정하여 여러 기사를 한 번에 취합·요약 → 내용 응용 후 HebronGuide 반영
+---
+
+### 🗽 뉴욕 / 뉴저지 (New York / New Jersey)
+
+| 매체 | URL | 특징 | 주요 활용 |
+|---|---|---|---|
+| **byeon.com** | byeon.com | 뉴저지 기반 한인 커뮤니티 미디어 | NJ·NY 한인 사회·교민 생활·지역 정보 |
+
+> ℹ️ MetLife Stadium(월드컵 결승전 7/19)이 뉴저지 소재 → byeon.com이 NJ 한인 교통·이벤트 정보 1차 참조 소스
+
+---
+
+### 🌏 전국 & 한국 (National & Korea)
+
+| 매체 | URL | 특징 | 주요 활용 |
+|---|---|---|---|
+| **데일리 인사이트** | dailyinsight.co.kr | 재미 한인 시각 시사 분석 | 이민 정책·미국 사회 이슈 |
+| **BIGKinds** | bigkinds.or.kr | 한국 주요 언론 통합 검색 엔진 | 한국발 각 도시 관련 기사 |
 
 ---
 
@@ -420,9 +439,8 @@ HebronGuide 표현으로 완전히 재작성
 | 2026-05-08 (v1) | 초안 — 2026 월드컵 즉각 활용 + 글로벌 이벤트 6단계 표준 |
 | 2026-05-08 (v2) | 시애틀 무료 워터프론트 셔틀 적용 (kSeattle.com 출처) + 한인 미디어 활용 원칙 추가 |
 | 2026-05-08 (v3) | 15개 월드컵 호스트 도시 경기장 교통 시스템 전면 적용 — WC_TRANSIT 자동 삽입 (6/1~7/26 한정) |
-| **2026-05-08 (v4)** | **한인 미디어 참조 소스 6개 공식 등록 + 취재·인용 3원칙 정립 (폴 김 목사 지시)** |
-| | seattlekdaily.com · seattlen.com · wowseattle.com · dailyinsight.co.kr · bigkinds.or.kr · kseattle.com |
-| | 단일 기사 인용 시 출처 명시 / 3개+ 취합 시 응용 작성 / 퍼플렉시티 AI 활용 권장 |
+| 2026-05-08 (v4) | 한인 미디어 참조 소스 6개 공식 등록 + 취재·인용 3원칙 정립 |
+| **2026-05-08 (v5)** | **byeon.com (NJ) 추가 — 도시별 미디어 구조로 재편 (시애틀·뉴욕NJ·전국)** |
 | | LA→Metro C Line, NY→NJ Transit, Dallas→TRE, SF→Caltrain, Boston→MBTA, |
 | | Houston→METRORail, Atlanta→MARTA, KC→셔틀, Philly→SEPTA, Miami→Brightline, |
 | | Mexico City→Metro+Tren Ligero, Guadalajara→경전철, Monterrey→Metro, |

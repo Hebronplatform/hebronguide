@@ -278,20 +278,33 @@ hebronguide.com 도메인 1번 등록 완료
 
 ---
 
-## 📰 시애틀 한인 미디어 참조 소스
+## 📰 도시별 한인 미디어 참조 소스
 
-> **정본**: [`docs/EVENT_PLAYBOOK.md`](docs/EVENT_PLAYBOOK.md) — "시애틀 한인 미디어 참조 소스 & 취재 원칙" 섹션
+> **정본**: [`docs/EVENT_PLAYBOOK.md`](docs/EVENT_PLAYBOOK.md) — "도시별 한인 미디어 참조 소스 & 취재 원칙" 섹션
 
-### 공식 참조 매체 (시애틀 한인 사회 & 지역 정보)
+### 공식 참조 매체 (도시별)
+
+**🏙️ 시애틀**
 
 | 매체 | URL | 주요 활용 |
 |---|---|---|
 | 시애틀 한국일보 | seattlekdaily.com | 공식 한인 사회·교민 행사 |
 | 시애틀 N | seattlen.com | 업소·이민·생활 정보 |
 | WOW Seattle | wowseattle.com | 이벤트·맛집·공지 |
-| 데일리 인사이트 | dailyinsight.co.kr | 이민 정책·미국 사회 시사 |
-| BIGKinds | bigkinds.or.kr | 한국발 시애틀 관련 기사 검색 |
 | kSeattle | kseattle.com | 월드컵·지역 이벤트 |
+
+**🗽 뉴욕 / 뉴저지**
+
+| 매체 | URL | 주요 활용 |
+|---|---|---|
+| byeon.com | byeon.com | NJ·NY 한인 사회·교민 생활·지역 정보 |
+
+**🌏 전국 & 한국**
+
+| 매체 | URL | 주요 활용 |
+|---|---|---|
+| 데일리 인사이트 | dailyinsight.co.kr | 이민 정책·미국 사회 시사 |
+| BIGKinds | bigkinds.or.kr | 한국발 각 도시 관련 기사 검색 |
 
 ### 취재·인용 3원칙 (Claude Code 자동 준수)
 
