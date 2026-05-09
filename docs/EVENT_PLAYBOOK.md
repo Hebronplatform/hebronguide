@@ -341,183 +341,184 @@ HebronGuide는 이를 적극 활용해 사용자에게 환대 정보 제공.
 
 ## 📰 도시별 한인 미디어 참조 소스 & 취재 원칙
 
-> 📌 **퍼플렉시티 AI 활용**: 아래 매체들을 검색 소스로 설정 → 여러 기사 취합·요약 → HebronGuide 표현으로 응용 후 반영  
-> 🔍 **조사 방법**: 웹 검색 에이전트로 실제 확인된 매체만 등재 (2026-05-08 기준). 폐간·폐쇄 제외.
+> 🔍 **조사**: 웹 검색 에이전트 심층 평가 완료 (2026-05-08)  
+> 📌 **퍼플렉시티 AI 활용**: 아래 ✅/⚠️ 매체를 검색 소스로 지정 → 기사 취합·요약 → HebronGuide 표현으로 재작성
+
+---
+
+### ⚖️ 미디어 품질 평가 4대 기준
+
+| 기준 | 설명 | 배점 |
+|---|---|---|
+| **① 독자 취재** | 자체 기자가 현장 취재·원본 기사 생산 (타 매체 복사 ❌) | 40점 |
+| **② 발행 지속성** | 5년+ 꾸준한 발행 (비정기·단명 제외) | 25점 |
+| **③ 편집 독립성** | 광고주·특정 단체로부터 독립된 편집 판단 | 20점 |
+| **④ 공신력** | 공식 기관 등록·ISSN·언론계 수상·타 언론 인용 | 15점 |
+
+```
+✅ 정론지급  (70점+): 자체 편집국 + 10년+ + 공신력 확인
+⚠️ 지역 신뢰 (45-69점): 원본 취재 시도 + 5년+ + 소규모 운영
+❌ 제외      (44점-): 포털·생활정보·타 매체 복사·운영 불명확
+```
+
+---
+
+### 🌐 전국 플랫폼 — 모든 도시 공통 1차 참조
+
+| 매체 | URL | 등급 | 근거 |
+|---|---|---|---|
+| **미주중앙일보** | koreadaily.com | ✅ | 1974년 창간, 최전성기 22만 부, LA·NY·ATL 직영 편집국, 미주 최대 |
+| **미주한국일보** | koreatimes.com | ✅ | 1969년 LA 창간(미주 최초 한국어 신문), 14개 지국, LA타임스 협력 이력 |
+| **Radio Korea** | radiokorea.com | ✅ | 1989년 창간, AM 1540 50kW, 2001년 종합 미디어 그룹화, 자체 뉴스 제작 |
+| **BIGKinds** | bigkinds.or.kr | ✅ | 한국언론진흥재단 운영, 100개+ 언론사 협약, 공공 미디어 아카이브 |
+
+> ℹ️ 미주중앙일보 지국: `ny.koreadaily.com` / `atlanta.koreadaily.com` 등 도시별 접근 가능
 
 ---
 
 ### 🏙️ 시애틀 (Seattle, WA)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| 시애틀 한국일보 | seattlekdaily.com | 시애틀 최대 일간지. 공식 한인 사회 소식 |
-| 시애틀 N | seattlen.com | 지역 뉴스·광고·커뮤니티 |
-| WOW Seattle | wowseattle.com | 교민 종합 정보 포털 |
-| kSeattle | kseattle.com | 한인 커뮤니티 뉴스·이벤트 |
+| 매체 | URL | 등급 | 근거 |
+|---|---|---|---|
+| 시애틀 한국일보 | seattlekdaily.com | ⚠️ | 편집부·사진공모전 운영 확인, 지역 취재 시도. 창간 연도·기자 수 공식 정보 미확인 |
+| 시애틀 N | seattlen.com | ⚠️ | 2013년 창간, 2021년 리뉴얼. 자체 뉴스 섹션 운영하나 포털 성격 혼재 |
+| ~~WOW Seattle~~ | ~~wowseattle.com~~ | ❌ | 부동산·업소록 포털, 뉴스는 타 매체 링크 집합. 자체 취재 기자 없음 |
+| ~~kSeattle~~ | ~~kseattle.com~~ | ❌ | 구인·업소록·게시판 위주 생활정보 포털. 편집국 없음 |
 
 ---
 
 ### 🤠 달라스 (Dallas, TX)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| News Korea Texas | newskoreatexas.com | 인터넷 TV(NewkoLive) 겸영 |
-| Korea Times Texas | koreatimestx.com | 포트워스·달라스 기반 |
-| 주간포커스 텍사스 | issuu.com/weeklyfocus | 앱 있음 |
-| DK NET 달라스 코리안 라디오 | dalkora.com | KKDA AM 730, 한국어 24시간 방송 |
+| 매체 | URL | 등급 | 근거 |
+|---|---|---|---|
+| Korea Times Texas | koreatimestx.com | ⚠️ | "바른 언론의 이정표" 표방, 자체 기자(이메일 확인), 텍사스 정치·경제 원본 취재 |
+| DK NET 달라스 라디오 | dalkora.com | ⚠️ | AM 730 KKDA, DK 미디어그룹 산하, 뉴스·시사 자체 제작. 지역 대표 방송 |
+| ~~News Korea Texas~~ | ~~newskoreatexas.com~~ | ❌ | 실체·편집국·창간 이력 불명확. koreadaily 계열과 혼재 의심 |
 
 ---
 
 ### 💻 SF 베이에어리어 (San Francisco Bay Area, CA)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| 미주중앙일보 SF | sf.koreadaily.com | 미주중앙일보 SF 지국 |
-| SF Korea Daily | sfkoreadaily.com | 독립 전자신문 |
-| 한미 라디오 AM 1120 | hanmiradio.com | 북가주 한인 라디오 |
-| SFKorean.com | sfkorean.com | 구인/구직·생활정보 포털 |
-| Korea Portal SF | sf.koreaportal.com | 한인 커뮤니티 포털 |
+| 매체 | URL | 등급 | 근거 |
+|---|---|---|---|
+| 한미 라디오 AM 1120 | hanmiradio.com | ✅ | 1990년 창간, 북가주 최초·유일 한인 방송국, 35년+ 역사, 24시간 생방송 |
+| SF Korea Daily | sfkoreadaily.com | ⚠️ | 독립 전자신문, 자체 에디토리얼 섹션 일부 확인. 편집 독립 여부 불완전 |
+| ~~미주중앙일보 SF~~ | ~~sf.koreadaily.com~~ | — | 2018년 SF 지국 폐쇄 후 LA 본사 콘텐츠 리디렉션. `koreadaily.com` 사용 |
+| ~~SFKorean.com~~ | ~~sfkorean.com~~ | ❌ | 구인/구직·부동산 포털. 편집 기능 없음 |
 
 ---
 
 ### 🗽 뉴욕 / 뉴저지 (New York / New Jersey)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| byeon.com ⭐ | byeon.com | **NJ 기반** 한인 커뮤니티 미디어 (1차 참조) |
-| 미주중앙일보 NY | ny.koreadaily.com | 전국 최대 한인지 NY판 |
-| 미주한국일보 | koreatimes.com | 1969년 창간, 미주 대표 일간지 |
-| Radio Korea NY | nyradiokorea.com | WNYZ-LD 87.7 FM |
-| AM 1660 K-Radio | am1660.com | NY·NJ·CT 커버 |
+| 매체 | URL | 등급 | 근거 |
+|---|---|---|---|
+| 뉴욕중앙일보 | ny.koreadaily.com | ✅ | 미주중앙일보 NY 직영 편집국. 동부 최대 한인 일간지 중 하나 |
+| Radio Korea NY | nyradiokorea.com | ✅ | 1997년 AM 930 개국, FM 87.7 전환, 24시간 자체 뉴스·시사 제작. 25만 청취권 |
+| byeon.com | byeon.com | ⚠️ | 미 의회도서관 ISSN(3068-4919) 공식 부여. 해외 한인·AAPI 이슈 취재. NJ 기반 |
+| AM 1660 K-Radio | am1660.com | ⚠️ | 2015년~ NY·NJ·CT 광역 방송. 자체 편집국 구조 미확인이나 지역 정보 제공 |
 
-> ℹ️ MetLife Stadium(월드컵 결승전 7/19)이 뉴저지 소재 → byeon.com이 NJ 한인 교통·이벤트 정보 1차 참조
+> ℹ️ MetLife Stadium(월드컵 결승전 7/19) 뉴저지 소재 → byeon.com이 NJ 이벤트 정보 1차 참조
 
 ---
 
 ### 🎵 내쉬빌 (Nashville, TN)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| 테네시 한인 네트워크 (TNKN) | tnkn.fun | 내쉬빌·멤피스·녹스빌 등 TN 전역 커버 |
-| 내쉬빌 한인회 | korean.net/~nashvillekorean | 공식 한인회 |
-
-> ℹ️ 내쉬빌 전용 한인 신문·방송 없음. TNKN이 테네시 전체 커버하는 유일 온라인 커뮤니티.
+> ⚠️ **내쉬빌 전용 한인 언론 없음.** 취재는 전국 플랫폼(koreadaily.com·koreatimes.com) + 내쉬빌 한인회 공식 경로 활용.
 
 ---
 
 ### 🦞 보스턴 (Boston, MA)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| 보스톤코리아 | bostonkorea.com | 2005년 창간. 뉴잉글랜드 최대·유일 한인지 |
+| 매체 | URL | 등급 | 근거 |
+|---|---|---|---|
+| 보스톤코리아 | bostonkorea.com | ✅ | 2005년 창간, NBC 뉴스 보도("Boston's last Korean-language newspaper"), 직원 5명 자체 편집. 뉴잉글랜드 유일 한인지 |
 
 ---
 
 ### 🌴 LA (Los Angeles, CA)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| 미주중앙일보 | koreadaily.com | **미주 최대 한인 일간지 본사** (LA) |
-| 미주한국일보 | koreatimes.com | LA 본사. 1969년 창간 |
-| 코리아타운데일리 | koreatowndaily.com | Sports Seoul USA 발행 |
-| Radio Korea (라디오코리아) | radiokorea.com | KMPC AM 1540, 1989년~. 유튜브 라이브 |
+| 매체 | URL | 등급 | 근거 |
+|---|---|---|---|
+| 미주중앙일보 | koreadaily.com | ✅ | (전국 플랫폼 참조) |
+| 미주한국일보 | koreatimes.com | ✅ | (전국 플랫폼 참조) |
+| Radio Korea | radiokorea.com | ✅ | (전국 플랫폼 참조) |
+| 코리아타운데일리 | koreatowndaily.com | ⚠️ | Sports Seoul USA 산하, 로컬 뉴스 + 한국 연예 혼합. 자체 취재 일부 확인 |
 
 ---
 
 ### 🍁 토론토 (Toronto, ON — Canada)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| 캐나다 한국일보 | koreatimes.net | 캐나다 최대 한인 일간지 |
-| 토론토 중앙일보 | cktimes.net | 온타리오·GTA 커버 |
-| Global Korean Post | globalkorean.ca | 연방·주정부 뉴스 직접 보도 |
-| 토론토 교차로 (KCR News) | kcrnews.com | 1997년~. 생활정보 포털 |
-| 캐나다코리안뉴스 | cknnews.net | 온라인 뉴스 |
+| 매체 | URL | 등급 | 근거 |
+|---|---|---|---|
+| 캐나다 한국일보 | koreatimes.net | ✅ | 1971년 창간, 캐나다 최대 한인 일간지, 토론토 총영사관 공식 등록 언론 |
+| 토론토 중앙일보 | cktimes.net | ✅ | 중앙일보 캐나다 법인, 일간 발행, 토론토 총영사관 공식 등록 언론 |
+| Global Korean Post | globalkorean.ca | ⚠️ | 연방·온타리오주 정부 현장 취재 최초 한인 미디어. 자체 취재 의지 확인 |
+| 토론토 교차로 KCR News | kcrnews.com | ⚠️ | 1997년~, 생활정보 기반이나 로컬 뉴스 병행. Canada KCR News Corp. 법인 운영 |
+| 캐나다코리안뉴스 | cknnews.net | ⚠️ | 독립 온라인 언론, "정확·신속" 표방. 규모 소형, 자체 취재 부분 확인 |
 
 ---
 
 ### 🌲 밴쿠버 (Vancouver, BC — Canada)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| 밴쿠버 조선일보 (밴조선) | vanchosun.com | 캐나다 최대 한인 신문 |
-| 밴쿠버 중앙일보 | joinsmediacanada.com | 조인스미디어 캐나다 |
-| Canada Express | canadaexpress.com | 밴쿠버 한인 대표 신문 |
-| CHMB AM 1320 | am1320.com | 다국어 방송 (한국어 시간대 포함) |
+| 매체 | URL | 등급 | 근거 |
+|---|---|---|---|
+| 밴쿠버 조선일보 | vanchosun.com | ✅ | **1986년 창간, 40년+ 역사**, 서부 캐나다 최대 한인 신문. 자체 편집국·YouTube 운영 |
+| 밴쿠버 중앙일보 | joinsmediacanada.com | ✅ | 조인스미디어 캐나다 법인, 일간 발행, Issuu 정기 발행본 확인 |
+| Canada Express | canadaexpress.com | ⚠️ | Postmedia(캐나다 최대 미디어)와 한국어 재인쇄 협약. 자체 취재보다 현지화 번역 위주 |
 
 ---
 
 ### 🛢️ 휴스턴 (Houston, TX)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| Korean Journal Houston | kjhou.com | 주간지 (2024년까지 발행 확인) |
-| KOAM Journal | koamjournal.com | 휴스턴 한인 커뮤니티 저널 |
-| 교차로 휴스턴 | kyocharohouston.com | 생활정보·업소록 포털 |
+| 매체 | URL | 등급 | 근거 |
+|---|---|---|---|
+| Korean Journal Houston | kjhou.com | ✅ | **1982년 창간, 44년 역사**, 텍사스 한인 대표 주간지. 휴스턴·오스틴·샌안토니오 배포. 자체 편집국 |
+| ~~KOAM Journal~~ | ~~koamjournal.com~~ | ❌ | 창간·편집국 독립 여부 미확인. 운영 실태 불명확 |
+| ~~교차로 휴스턴~~ | ~~kyocharohouston.com~~ | ❌ | 교차로 계열 생활정보지. 업소록·부동산 포털, 자체 취재 없음 |
 
 ---
 
 ### 🍑 애틀랜타 (Atlanta, GA)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| 미주중앙일보 애틀랜타 | atlanta.koreadaily.com | 미주중앙일보 애틀랜타 지국 (Duluth) |
-| 애틀랜타 중앙일보 | atlantajoongang.com | 독립 지역 신문 |
-| K News Atlanta | knewsatlanta.com | 동남부 6개 주 커버 |
-| Atlanta Chosun Today | atlantachosuntoday.com | 온라인 |
+| 매체 | URL | 등급 | 근거 |
+|---|---|---|---|
+| 미주중앙일보 애틀랜타 | atlanta.koreadaily.com | ✅ | 미주중앙일보 8개 지국 중 하나. 지역 자체 편집국·취재 기자 보유 |
+| 애틀랜타 중앙일보 | atlantajoongang.com | ✅ | 한국 중앙일보 계열 애틀랜타판, 주 6회 발행, 동남부 자체 취재 기자 보유 |
+| K News Atlanta | knewsatlanta.com | ⚠️ | "신속·정확·간결·심층" 표방, 자체 취재 의지 확인. 동남부 6개 주 커버. 규모 소형 |
+| Atlanta Chosun Today | atlantachosuntoday.com | ⚠️ | 조선일보 브랜드 활용 지역 매체, 지역 한인 뉴스 제공 확인. 편집 규모 불명확 |
 
 ---
 
 ### 🏈 캔자스시티 (Kansas City, MO)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| Kansas City Korean Journal | kckoreanjournal.com | 2010년~. 월간. 14개+ 현지 업소 배포 |
-| 캔자스시티 한인회 | kckorean.org | 공식 한인회 |
+| 매체 | URL | 등급 | 근거 |
+|---|---|---|---|
+| KC Korean Journal | kckoreanjournal.com | ⚠️ | 2010년~, **15년+ 지속**, 월간, 영한 이중 언어, 14개+ 지역 배포망 보유 |
+
+> ℹ️ 소규모 도시 특성상 전국 플랫폼(koreadaily.com) 보완 활용 필수
 
 ---
 
 ### 🔔 필라델피아 (Philadelphia, PA)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| 주간필라 (Korean Phila Times) | koreanphila.com | 1999년 창간. 25년+. 2만 부 배포 |
-| 한국일보 필라델피아 | koreatimesphila.com | 한국일보 필라델피아판 |
-| 필라인 (Philain) | philain.com | PA·NJ·DE 한인 생활정보 포털 |
+| 매체 | URL | 등급 | 근거 |
+|---|---|---|---|
+| 주간필라 | koreanphila.com | ✅ | **1999년 창간, 25년+ 역사**, 필라델피아 유일 한인 신문, 2만 부 배포, 자체 취재 |
+| 한국일보 필라델피아 | koreatimesphila.com | ⚠️ | 미주한국일보 필라델피아 지국형, 지역 자체 취재 확인. 독립 편집국 규모 미확인 |
+| ~~필라인~~ | ~~philain.com~~ | ❌ | PA·NJ·DE 생활정보 포털. 편집·취재 기능 없음 |
 
 ---
 
 ### 🌊 마이애미 (Miami, FL)
 
-| 매체 | URL | 특징 |
-|---|---|---|
-| 플로리다 한인회 | floridakorean.org | Korean Assoc. of West Florida |
-
-> ℹ️ 마이애미 한인 커뮤니티 소규모. 전용 활성 신문·방송 미확인. 한인회 경로가 더 실용적.
+> ⚠️ **마이애미 전용 한인 언론 없음.** 전국 플랫폼 + 플로리다 한인회(floridakorean.org) 공식 경로 활용.
 
 ---
 
-### 🌮 멕시코시티·과달라하라·몬테레이 (Mexico)
+### 🌮 멕시코 3개 도시 (Mexico City / Guadalajara / Monterrey)
 
-| 도시 | 매체 | 특징 |
-|---|---|---|
-| 멕시코시티 | Hanin Sinmun (한인신문) | 멕시코 유일 한인 신문 (1990년대~). URL 미확인 |
-| 과달라하라 | 확인된 한인 미디어 없음 | 한인회 통해 취재 경로 확보 권장 |
-| 몬테레이 | 확인된 한인 미디어 없음 | 현대·기아·POSCO 주재원 커뮤니티 비공개 운영 |
-
-> ℹ️ 멕시코 한인 약 12,000명 추산. 주재 한국 총영사관 (멕시코시티) 취재 경로 권장.
-
----
-
-### 🌏 전국 플랫폼 & 한국 (National & Korea)
-
-| 매체 | URL | 특징 |
-|---|---|---|
-| **미주중앙일보** | koreadaily.com | LA 본사. NY·SF·Atlanta·DC 지국 (`도시.koreadaily.com`) |
-| **미주한국일보** | koreatimes.com | LA 본사. 미주 전역 배포 |
-| **Radio Korea** | radiokorea.com | LA AM 1540. 앱·유튜브 라이브 → 전국 청취 |
-| **데일리 인사이트** | dailyinsight.co.kr | 재미 한인 시각 시사 분석 |
-| **BIGKinds** | bigkinds.or.kr | 한국 주요 언론 통합 검색 엔진 |
+> ⚠️ **확인된 활성 한인 언론 없음.** 멕시코시티 Hanin Sinmun(한인신문, 1990년대~) 존재하나 URL 미확인.  
+> 취재 경로: 주멕시코 대한민국 대사관 / 한인 총영사관 / 주재원 기업(현대·기아·POSCO) 커뮤니티 직접 접촉 권장.
 
 ---
 
@@ -587,8 +588,10 @@ HebronGuide 표현으로 완전히 재작성
 | 2026-05-08 (v3) | 15개 월드컵 호스트 도시 경기장 교통 시스템 전면 적용 — WC_TRANSIT 자동 삽입 (6/1~7/26 한정) |
 | 2026-05-08 (v4) | 한인 미디어 참조 소스 6개 공식 등록 + 취재·인용 3원칙 정립 |
 | 2026-05-08 (v5) | byeon.com (NJ) 추가 — 도시별 미디어 구조로 재편 |
-| **2026-05-08 (v6)** | **17개 도시 전체 한인 미디어 전수 조사 완료 — 웹 검색 에이전트 활용** |
-| | 달라스·SF·NY·보스턴·LA·토론토·밴쿠버·휴스턴·애틀랜타·KC·필라·마이애미·멕시코 |
+| 2026-05-08 (v6) | 17개 도시 전체 한인 미디어 전수 조사 완료 |
+| **2026-05-08 (v7)** | **미디어 품질 4대 기준 수립 + 등급 평가 적용 — ❌ 9개 포털·카피 매체 제거** |
+| | 제거: wowseattle, kseattle, newskoreatexas, sfkorean, tnkn.fun, |
+| | koamjournal, kyocharohouston, philain, dailyinsight.co.kr |
 | | LA→Metro C Line, NY→NJ Transit, Dallas→TRE, SF→Caltrain, Boston→MBTA, |
 | | Houston→METRORail, Atlanta→MARTA, KC→셔틀, Philly→SEPTA, Miami→Brightline, |
 | | Mexico City→Metro+Tren Ligero, Guadalajara→경전철, Monterrey→Metro, |
