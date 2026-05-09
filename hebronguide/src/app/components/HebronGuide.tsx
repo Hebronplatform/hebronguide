@@ -3042,6 +3042,152 @@ const QUICK_MENU = [
   { icon: "book-open",      labelKo: "한국학교",  labelEn: "K-School",color: "#BE185D", tab: 7, subTab: 5 },
 ];
 
+/* ─────────────────────────────────────────
+   홈 화면 서비스 광고 섹션
+   한인 간 연결 · 커미션 수익 모델
+───────────────────────────────────────── */
+function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (tab: number, subTab?: number) => void }) {
+  const ko = lang === "ko";
+  const SERVICES = [
+    {
+      icon: "🚗", color: "#3B82F6",
+      nameKo: "헤브론 라이드", nameEn: "Hebron Ride",
+      tagKo: "공항 픽업 · 일상 이동", tagEn: "Airport · Daily Rides",
+      userKo: "한국어 드라이버 필요하세요?", userEn: "Need a Korean-speaking driver?",
+      providerKo: "드라이버 등록 → 시간당 $35-55", providerEn: "Register as driver → $35-55/hr",
+      tab: 1, subTab: 0,
+    },
+    {
+      icon: "🏠", color: "#10B981",
+      nameKo: "헤브론 스테이", nameEn: "Hebron Stay",
+      tagKo: "단기 숙박 · 정착 지원", tagEn: "Short-term · Settlement",
+      userKo: "검증된 한인 가정에서 시작", userEn: "Start in a verified Korean home",
+      providerKo: "방 있으신 분 → 월 $800-1,200", providerEn: "Have a spare room? → $800-1,200/mo",
+      tab: 1, subTab: 5,
+    },
+    {
+      icon: "📚", color: "#8B5CF6",
+      nameKo: "헤브론 튜터", nameEn: "Hebron Tutor",
+      tagKo: "수학 · SAT · 한국어", tagEn: "Math · SAT · Korean",
+      userKo: "검증된 한인 튜터 찾기", userEn: "Find a verified Korean tutor",
+      providerKo: "튜터 등록 → 시간당 $35-80", providerEn: "Register as tutor → $35-80/hr",
+      tab: 7, subTab: 0,
+    },
+    {
+      icon: "🤝", color: "#F59E0B",
+      nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
+      tagKo: "친구 · 멘토 · 기도파트너", tagEn: "Friends · Mentors · Prayer",
+      userKo: "44개 도시 한인 연결", userEn: "Connect across 44 cities",
+      providerKo: "멘토 등록 → 월 $150-300", providerEn: "Become a mentor → $150-300/mo",
+      tab: 5, subTab: 2,
+    },
+    {
+      icon: "💍", color: "#EC4899",
+      nameKo: "헤브론 매칭", nameEn: "Hebron Match",
+      tagKo: "목사님 보증 · 언약 관계", tagEn: "Pastor-endorsed · Covenant",
+      userKo: "신앙·가치관 기반 만남", userEn: "Faith & values-based matching",
+      providerKo: "선우/듀오 비용의 1/5", providerEn: "1/5 the cost of Korean agencies",
+      tab: 2, subTab: 4,
+    },
+  ];
+
+  return (
+    <div style={{ padding: "20px 16px 16px", background: "#1a2535" }}>
+      {/* 섹션 헤더 */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
+        <div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 15, color: "#ECFDF5", letterSpacing: "-0.3px" }}>
+            🔗 {ko ? "헤브론 연결 서비스" : "Hebron Connect Services"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", marginTop: 2 }}>
+            {ko ? "한인 간 연결 · HebronGuide 커미션 수익" : "Korean-to-Korean · Commission-based"}
+          </div>
+        </div>
+        <a href="mailto:gmc.hc300@gmail.com?subject=헤브론 서비스 문의"
+          style={{ background: "rgba(201,162,39,0.15)", border: "1px solid rgba(201,162,39,0.4)", color: "#C9A227", borderRadius: 20, padding: "5px 12px", fontSize: 10, fontWeight: 800, textDecoration: "none" }}>
+          {ko ? "문의 →" : "Inquire →"}
+        </a>
+      </div>
+
+      {/* 서비스 카드 가로 스크롤 */}
+      <div style={{ display: "flex", gap: 10, overflowX: "auto", paddingBottom: 6, scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
+        {SERVICES.map((svc, i) => (
+          <a key={i}
+            href={`mailto:gmc.hc300@gmail.com?subject=${svc.nameEn} 관심 등록`}
+            style={{ textDecoration: "none", flexShrink: 0, width: 200, scrollSnapAlign: "start" }}>
+            <div style={{
+              background: `linear-gradient(160deg, ${svc.color}20, ${svc.color}08)`,
+              border: `1px solid ${svc.color}45`,
+              borderRadius: 16, padding: "16px 14px",
+              height: "100%",
+              transition: "all 0.2s",
+            }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLElement).style.borderColor = `${svc.color}80`; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ""; (e.currentTarget as HTMLElement).style.borderColor = `${svc.color}45`; }}>
+
+              {/* 아이콘 + 이름 */}
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                <span style={{ fontSize: 22 }}>{svc.icon}</span>
+                <div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#ECFDF5" }}>
+                    {ko ? svc.nameKo : svc.nameEn}
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: svc.color, fontWeight: 600, marginTop: 1 }}>
+                    {ko ? svc.tagKo : svc.tagEn}
+                  </div>
+                </div>
+              </div>
+
+              {/* 구분선 */}
+              <div style={{ height: 1, background: `${svc.color}25`, marginBottom: 10 }} />
+
+              {/* 사용자 / 제공자 */}
+              <div style={{ marginBottom: 6 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.45)", marginBottom: 3, letterSpacing: "0.3px" }}>
+                  {ko ? "필요하신 분" : "USERS"}
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, fontWeight: 700, color: "#ECFDF5", lineHeight: 1.4 }}>
+                  {ko ? svc.userKo : svc.userEn}
+                </div>
+              </div>
+              <div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.45)", marginBottom: 3, letterSpacing: "0.3px" }}>
+                  {ko ? "제공하실 분" : "PROVIDERS"}
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, fontWeight: 700, color: svc.color, lineHeight: 1.4 }}>
+                  {ko ? svc.providerKo : svc.providerEn}
+                </div>
+              </div>
+
+              {/* CTA */}
+              <div style={{ marginTop: 12, background: `${svc.color}18`, borderRadius: 8, padding: "7px 10px", textAlign: "center" }}>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: svc.color }}>
+                  {ko ? "관심 등록 →" : "Register Interest →"}
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {/* 하단 커미션 안내 */}
+      <div style={{ marginTop: 12, background: "rgba(201,162,39,0.08)", border: "1px solid rgba(201,162,39,0.2)", borderRadius: 10, padding: "10px 14px", display: "flex", alignItems: "center", gap: 10 }}>
+        <span style={{ fontSize: 16 }}>💰</span>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#C9A227" }}>
+            {ko ? "HebronGuide 커미션 수익 모델" : "HebronGuide Commission Model"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.55)", marginTop: 2, lineHeight: 1.5 }}>
+            {ko
+              ? "라이드·스테이·튜터 15% · 커넥트 $15/월 · 매칭 $25-35/월 · 교회 검증 신뢰 = 프리미엄 수익"
+              : "Ride·Stay·Tutor 15% · Connect $15/mo · Match $25-35/mo · Church trust = premium earnings"}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
   return (
@@ -4402,6 +4548,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <CompactHeroNew />
       <WorldCupBanner />
       <QuickMenuSection onNavigate={onNavigate} />
+      <HebronServicesAd lang={lang} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <SettlementEssentialsSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
