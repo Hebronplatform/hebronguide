@@ -468,6 +468,32 @@ function getCityDemographics(slug: string, lang: string): CityDemographics {
       strategicNote: "스페인어 완전 지배 도시. 한·스 2개 언어 전략. 폴랑코 외교·비즈니스 구역 한인 집중. 중남미 선교·비즈니스 허브로 전략적 가치 높음.",
       strategicNoteEn: "Spanish-dominant city. Korean+Spanish 2-language strategy. Polanco diplomatic/business district Korean concentration. High strategic value as Latin America mission/business hub.",
     },
+    guadalajara: {
+      metroPopulation: "530만", koreanPopulation: "2천+", koreanPercent: "0.04%",
+      topLanguages: ["스페인어", "나후아틀어", "영어", "한국어"],
+      ethnicComposition: [
+        { group: ko ? "메스티소(혼혈)" : "Mestizo", pct: "66%" },
+        { group: ko ? "원주민" : "Indigenous", pct: "18%" },
+        { group: ko ? "백인" : "White", pct: "12%" },
+        { group: ko ? "기타" : "Other", pct: "4%" },
+      ],
+      diversityScore: ko ? "라틴 특화" : "Latin-dominant",
+      strategicNote: "멕시코 실리콘밸리. Intel·IBM·Oracle 오피스. 한인 주재원·테크 인력 중심. 문화·창작 산업 강세. 스페인어 필수.",
+      strategicNoteEn: "Mexico's Silicon Valley. Intel, IBM, Oracle offices. Korean expat/tech worker hub. Strong culture/creative industry. Spanish essential.",
+    },
+    monterrey: {
+      metroPopulation: "530만", koreanPopulation: "1천+", koreanPercent: "0.02%",
+      topLanguages: ["스페인어", "영어", "한국어"],
+      ethnicComposition: [
+        { group: ko ? "메스티소(혼혈)" : "Mestizo", pct: "65%" },
+        { group: ko ? "백인(레히오)" : "White (Regio)", pct: "25%" },
+        { group: ko ? "원주민" : "Indigenous", pct: "7%" },
+        { group: ko ? "기타" : "Other", pct: "3%" },
+      ],
+      diversityScore: ko ? "산업 특화" : "Industrial-focused",
+      strategicNote: "북미 최대 산업도시 중 하나. 현대·기아·POSCO·한국타이어 공장. 주재원 중심 소규모 한인 커뮤니티. 높은 구매력.",
+      strategicNoteEn: "One of North America's largest industrial cities. Hyundai, Kia, POSCO, Hankook Tire plants. Small but high-purchasing-power Korean expat community.",
+    },
   };
 
   const generic: CityDemographics = {
@@ -7591,6 +7617,40 @@ function getCityDistrictData(slug: string, lang: string) {
         desc: ko ? "마이애미 북쪽. 렌트 저렴. Tri-Rail 통근 가능. 성장하는 한인 커뮤니티.\n📍 포트로더데일·홀리우드·펨브로크 | 🔗 browardschools.com"
                  : "North of Miami. Lower rent. Tri-Rail commute. Growing Korean community.\n📍 Fort Lauderdale, Hollywood, Pembroke | 🔗 browardschools.com", tags: ["브로워드","포트로더데일","저렴"] },
     ],
+    // ── 멕시코 3개 도시 — 멕시코 교육 시스템 안내 ──────────────
+    mexicocity: [
+      { emoji: "⭐", name: ko ? "코리안 스쿨 멕시코 (한국학교)" : "Korean School of Mexico",
+        desc: ko ? "✅ 공식 확인 | 재멕시코 한국 교육원 산하 한국학교. 주재원 자녀·한인 2세 교육.\n📍 멕시코시티 폴랑코 인근\n✨ 한국어·한국 교육과정 + 현지 스페인어 교육 병행\n🔗 overseas.mofa.go.kr/mx-ko (대사관 → 교육정보)"
+                 : "✅ Verified | Korean school under Korean Education Center Mexico. For expat children & 2nd gen Koreans.\n📍 Near Polanco, Mexico City\n✨ Korean curriculum + local Spanish education\n🔗 overseas.mofa.go.kr/mx-ko", tags: ["한국학교","폴랑코","주재원자녀"] },
+      { emoji: "⭐", name: ko ? "The American School Foundation (ASF)" : "American School Foundation — Mexico City",
+        desc: ko ? "✅ 1888년 설립. 외교관·주재원 자녀 선호 1순위. IB·AP 과정 운영. 영어·스페인어 이중언어.\n📍 Bondojito 215, Condesa, CDMX\n💡 비용: 연 USD $15,000-25,000 (주재원 법인 지원 多)\n🔗 asf.edu.mx"
+                 : "✅ Est. 1888. #1 choice for diplomat/expat families. IB & AP programs. English-Spanish bilingual.\n📍 Bondojito 215, Condesa, CDMX\n💡 Tuition: USD $15,000-25,000/yr (often covered by employers)\n🔗 asf.edu.mx", tags: ["ASF","IB","영어교육"] },
+      { emoji: "🏫", name: ko ? "멕시코 공립 교육 시스템 (SEP)" : "Mexico Public Schools (SEP System)",
+        desc: ko ? "SEP(연방교육부) 관할 공립학교. 한인 장기 거주자·로컬 이민자에게 무상 제공.\n⚠️ 수업 100% 스페인어 — 스페인어 없으면 매우 어려움\n💡 초반 1-3개월: 개인 스페인어 튜터 병행 권장\n🔗 sep.gob.mx"
+                 : "SEP (Federal Education Ministry) public schools. Free for long-term Korean residents.\n⚠️ All classes in Spanish — very difficult without Spanish\n💡 First 1-3 months: private Spanish tutor recommended alongside\n🔗 sep.gob.mx", tags: ["SEP","공립","스페인어"] },
+    ],
+    guadalajara: [
+      { emoji: "⭐", name: ko ? "American School Foundation of Guadalajara" : "American School — Guadalajara (ASFG)",
+        desc: ko ? "✅ 공식 사이트 확인 | 과달라하라 외국인 자녀 1순위 국제학교. IB·AP 과정. 영어·스페인어 이중언어.\n📍 Colomos 2100, Providencia, Guadalajara\n💡 비용: 연 USD $12,000-20,000\n🔗 asfg.edu.mx"
+                 : "✅ Verified | #1 international school for expat children in Guadalajara. IB & AP programs. English-Spanish bilingual.\n📍 Colomos 2100, Providencia, Guadalajara\n💡 Tuition: USD $12,000-20,000/yr\n🔗 asfg.edu.mx", tags: ["ASFG","IB","국제학교"] },
+      { emoji: "⭐", name: ko ? "한국학교·한글학교 (과달라하라)" : "Korean Language School — Guadalajara",
+        desc: ko ? "재멕시코 한국 교육원 연계 한글학교. 주말 한국어 수업 (토요일).\n📍 과달라하라 한인회 연락 → 위치 확인\n✨ 주재원 자녀 한국어 유지·한국 교육과정 보완\n🔗 멕시코시티 대사관: overseas.mofa.go.kr/mx-ko"
+                 : "Korean Language School linked with Korean Education Center Mexico. Weekend Korean classes (Saturdays).\n📍 Contact Guadalajara Korean Association for location\n✨ Maintains Korean language for expat children\n🔗 Korean Embassy Mexico: overseas.mofa.go.kr/mx-ko", tags: ["한글학교","한국어","주재원자녀"] },
+      { emoji: "🏫", name: ko ? "ITESO·UdeG — 명문 사립·공립대학" : "ITESO & UdeG — Top Universities",
+        desc: ko ? "ITESO (이에수이타 계열, 명문 사립) & 과달라하라 국립대(UdeG, 멕시코 3위).\n✨ 스페인어 유창 시 입학 가능. 학비 저렴 (UdeG 공립 연 $200 수준).\n💡 한인 유학생·장기 거주자 대학 옵션\n🔗 iteso.mx | udg.mx"
+                 : "ITESO (Jesuit private, prestigious) & Univ. of Guadalajara (UdeG, Mexico's #3).\n✨ Admission with Spanish fluency. Low tuition (UdeG public: ~$200/yr).\n💡 Good university option for Korean long-term residents\n🔗 iteso.mx | udg.mx", tags: ["ITESO","UdeG","대학교"] },
+    ],
+    monterrey: [
+      { emoji: "⭐", name: ko ? "The American School of Monterrey (ASM)" : "American School of Monterrey (ASM)",
+        desc: ko ? "✅ 공식 사이트 확인 | 몬테레이 외국인 자녀 1순위 국제학교. IB·AP. 한인 주재원 자녀 다수.\n📍 Alfonso Reyes 4111, Monterrey NL\n💡 비용: 연 USD $12,000-22,000 (현대·기아 등 법인 지원)\n🔗 asm.edu.mx"
+                 : "✅ Verified | #1 international school for expat children in Monterrey. IB & AP. Many Korean expat children.\n📍 Alfonso Reyes 4111, Monterrey NL\n💡 Tuition: USD $12,000-22,000/yr (Hyundai, Kia etc. often cover)\n🔗 asm.edu.mx", tags: ["ASM","IB","국제학교"] },
+      { emoji: "⭐", name: ko ? "한국학교·한글학교 (몬테레이)" : "Korean Language School — Monterrey",
+        desc: ko ? "재멕시코 한국 교육원 연계 한글학교. 주말 한국어 수업.\n📍 몬테레이 한인회 연락 → 위치 확인\n✨ 현대·기아·POSCO 주재원 자녀 한국어 유지\n🔗 멕시코시티 대사관: overseas.mofa.go.kr/mx-ko"
+                 : "Korean Language School linked with Korean Education Center Mexico. Weekend Korean classes.\n📍 Contact Monterrey Korean Association for location\n✨ Korean language maintenance for Hyundai/Kia/POSCO expat children\n🔗 Korean Embassy Mexico: overseas.mofa.go.kr/mx-ko", tags: ["한글학교","한국어","주재원자녀"] },
+      { emoji: "🏫", name: ko ? "ITESM (테크 드 몬테레이) — 멕시코 최상위 명문대" : "Tec de Monterrey — Mexico's Top Private University",
+        desc: ko ? "✅ 멕시코 사립 1위 (ITESM). 몬테레이 본교. 공학·경영 세계적 수준. 영어 트랙 과정.\n📍 Av. Eugenio Garza Sada 2501, Monterrey\n💡 학비: 연 USD $8,000-15,000 (멕시코 사립 기준 비쌈)\n🔗 tec.mx"
+                 : "✅ Mexico's #1 private university (ITESM). Monterrey main campus. World-class engineering & business. English-track programs available.\n📍 Av. Eugenio Garza Sada 2501, Monterrey\n💡 Tuition: USD $8,000-15,000/yr\n🔗 tec.mx", tags: ["Tec de Monterrey","명문대","공학"] },
+    ],
   };
   return DATA[slug] ?? [
     { emoji: "🏫", name: ko ? `${slug} 지역 학군 안내` : `${slug} School Districts`,
@@ -8348,9 +8408,74 @@ function getCityCostData(slug: string, lang: string) {
           tags: ["통신비", "Telcel", "멕시코인터넷"] },
       ],
     },
+    guadalajara: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준, MXN/USD)", nameEn: "Rent Prices — 2026 (MXN/USD)",
+          desc: ko
+            ? "📍 사폴로판·차풀테펙(한인 밀집): 스튜디오 MXN $8,000-12,000 | 1BR MXN $11,000-18,000\n📍 사포판·마테라·테키살로판: 1BR MXN $10,000-16,000\n💡 USD 기준 약 $450-950 (환율: 1 USD ≈ MXN 18-19)\n멕시코시티보다 20-30% 저렴! 삶의 질 높은 도시"
+            : "📍 Zapopan/Chapalita (Korean hub): Studio MXN $8,000-12,000 | 1BR MXN $11,000-18,000\n📍 Zapopan, Matera, Tequesquite: 1BR MXN $10,000-16,000\n💡 USD: ~$450-950 (rate: 1 USD ≈ MXN 18-19)\n20-30% cheaper than Mexico City! High quality of life",
+          tags: ["렌트", "과달라하라", "저렴"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보 (멕시코 공통)", nameEn: "Tax Information (Mexico — same as CDMX)",
+          desc: ko
+            ? "멕시코 전국 동일 세율:\n연방 ISR (소득세): 1.92-35% (누진)\nIVA (부가가치세): 16% (식료품·의약품 면세)\n\n💡 RFC (납세자 등록) 필수 — 현지 회계사 상담\n💡 과달라하라 생활비는 멕시코시티 대비 20% 저렴"
+            : "Mexico uniform tax rates:\nFederal ISR (income tax): 1.92-35% (progressive)\nIVA (VAT): 16% (groceries & meds exempt)\n\n💡 RFC (taxpayer ID) required — consult local accountant\n💡 Guadalajara cost of living ~20% cheaper than Mexico City",
+          tags: ["멕시코세금", "ISR", "과달라하라"] },
+        { emoji: "🛒", name: "생활비 평균 (USD 기준)", nameEn: "Average Monthly Expenses (USD)",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비 (USD):\n• 렌트 (1BR 사폴로판): $600-1,000\n• 식료품: $120-200\n• 교통 (버스+Uber): $30-60\n• 공과금: $40-80\n• 외식·여가: $150-300\n⟹ 합계: 약 $940-1,640/월\n\n💡 멕시코 최고 삶의 질 도시 중 하나 (기후·문화)"
+            : "📊 Estimated monthly expenses (USD):\n• Rent (1BR Zapopan): $600-1,000\n• Groceries: $120-200\n• Transit (bus+Uber): $30-60\n• Utilities: $40-80\n• Dining out & leisure: $150-300\n⟹ Total: ~$940-1,640/month\n\n💡 One of Mexico's highest quality-of-life cities (climate & culture)",
+          tags: ["생활비", "과달라하라", "저렴"] },
+      ],
+      transportPhone: [
+        { emoji: "🚌", name: "교통 — 트렌 에레크트리코 & 버스", nameEn: "Transit — Tren Eléctrico & Bus",
+          desc: ko
+            ? "🚋 트렌 에레크트리코(경전철): MXN $9/회 — 주요 노선 🔗 sistematransporte.jalisco.gob.mx\n🚌 Macrobús (BRT): MXN $9/회\n🚗 Uber/DiDi: 매우 저렴 (평균 $2-5/회)\n💡 과달라하라 시내 중심부는 도보·자전거도 가능\n⚽ 월드컵 경기일: 아크론 경기장 → 트렌 에레크트리코 직통"
+            : "🚋 Tren Eléctrico (light rail): MXN $9/ride 🔗 sistematransporte.jalisco.gob.mx\n🚌 Macrobús (BRT): MXN $9/ride\n🚗 Uber/DiDi: Very cheap (avg $2-5/trip)\n💡 City center walkable & bike-friendly\n⚽ World Cup day: Akron Stadium via Tren Eléctrico direct",
+          tags: ["과달라하라교통", "TrenElectrico", "Uber"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 Telcel (멕시코 최대 커버리지): MXN $250/월 선불\n• Movistar: MXN $200-300/월\n🌐 인터넷:\n• Izzi/Megacable: MXN $350-600/월 ($20-33)\n💡 멕시코 전국 동일 통신사 — 과달라하라도 Telcel 최강"
+            : "📱 Telcel (Mexico's largest coverage): MXN $250/mo prepaid\n• Movistar: MXN $200-300/mo\n🌐 Internet:\n• Izzi/Megacable: MXN $350-600/mo ($20-33)\n💡 Same carriers nationwide — Telcel is best in Guadalajara too",
+          tags: ["통신비", "Telcel", "과달라하라"] },
+      ],
+    },
+    monterrey: {
+      rentHousing: [
+        { emoji: "🏠", name: "렌트 시세 (2026년 기준, MXN/USD)", nameEn: "Rent Prices — 2026 (MXN/USD)",
+          desc: ko
+            ? "📍 산페드로가르사가르시아·미티에라(고급지구): 스튜디오 MXN $12,000-18,000 | 1BR MXN $15,000-24,000\n📍 미라 · 에르모사(한인 주재원 거주지): 1BR MXN $10,000-16,000\n💡 USD 기준 약 $550-1,300\n💡 주재원 수당 지급 시 생활비 부담 크게 완화"
+            : "📍 San Pedro Garza García/Mitiera (premium): Studio MXN $12,000-18,000 | 1BR MXN $15,000-24,000\n📍 Mira/Hermosa (Korean expat area): 1BR MXN $10,000-16,000\n💡 USD equivalent: ~$550-1,300\n💡 Expat allowances significantly reduce cost burden",
+          tags: ["렌트", "몬테레이", "주재원"] },
+      ],
+      taxLiving: [
+        { emoji: "💵", name: "세금 정보 (멕시코 공통)", nameEn: "Tax Information (Mexico — same nationwide)",
+          desc: ko
+            ? "멕시코 전국 동일 세율:\n연방 ISR (소득세): 1.92-35% (누진)\nIVA (부가가치세): 16% (식료품·의약품 면세)\n\n💡 주재원의 경우 한국 본사와 세금 처리 협의 필수\n💡 RFC (납세자 등록) 필수"
+            : "Mexico uniform tax rates:\nFederal ISR (income tax): 1.92-35% (progressive)\nIVA (VAT): 16% (groceries & meds exempt)\n\n💡 Expats must coordinate tax treatment with Korean HQ\n💡 RFC (taxpayer ID) registration required",
+          tags: ["멕시코세금", "ISR", "주재원"] },
+        { emoji: "🛒", name: "생활비 평균 (USD 기준)", nameEn: "Average Monthly Expenses (USD)",
+          desc: ko
+            ? "📊 독신 기준 월 예상 생활비 (USD):\n• 렌트 (1BR 산페드로): $800-1,300\n• 식료품: $150-250\n• 교통 (Metro+Uber): $30-60\n• 공과금: $50-100\n• 외식·여가: $150-300\n⟹ 합계: 약 $1,180-2,010/월\n\n💡 주재원 수당 포함 시 실제 부담 더 낮음"
+            : "📊 Estimated monthly expenses (USD):\n• Rent (1BR San Pedro): $800-1,300\n• Groceries: $150-250\n• Transit (Metro+Uber): $30-60\n• Utilities: $50-100\n• Dining out & leisure: $150-300\n⟹ Total: ~$1,180-2,010/month\n\n💡 Actual burden lower with expat allowances",
+          tags: ["생활비", "몬테레이", "주재원"] },
+      ],
+      transportPhone: [
+        { emoji: "🚇", name: "교통 — Metro Rey & Ecovía", nameEn: "Transit — Metro Rey & Ecovía",
+          desc: ko
+            ? "🚇 몬테레이 메트로(Metro Rey): MXN $5/회 🔗 metrorrey.gob.mx\n🚌 Ecovía (BRT): MXN $5/회\n🚗 Uber/DiDi: 저렴 (평균 $3-7/회)\n🏎️ 차량 필수: 교외 한인 주재원 거주지 → 대중교통 불편\n⚽ 월드컵 경기일: BBVA 경기장 → 메트로+셔틀"
+            : "🚇 Monterrey Metro (Metro Rey): MXN $5/ride 🔗 metrorrey.gob.mx\n🚌 Ecovía (BRT): MXN $5/ride\n🚗 Uber/DiDi: Affordable (avg $3-7/trip)\n🏎️ Car essential: Suburban Korean expat areas poorly served by transit\n⚽ World Cup day: BBVA Stadium via Metro+shuttle",
+          tags: ["몬테레이교통", "MetroRey", "차량필수"] },
+        { emoji: "📱", name: "통신비", nameEn: "Phone & Internet",
+          desc: ko
+            ? "📱 Telcel (멕시코 최대 커버리지): MXN $250/월 선불\n🌐 인터넷:\n• Telmex/Infinitum: MXN $400-700/월 ($22-39)\n• Megacable: MXN $350-600/월\n💡 주재원 법인폰 사용 시 회사 계약으로 처리"
+            : "📱 Telcel (Mexico's largest coverage): MXN $250/mo prepaid\n🌐 Internet:\n• Telmex/Infinitum: MXN $400-700/mo ($22-39)\n• Megacable: MXN $350-600/mo\n💡 Expats usually use company-contracted corporate phones",
+          tags: ["통신비", "Telcel", "몬테레이"] },
+      ],
+    },
   };
-
-  // 나머지 도시 (guadalajara, monterrey 등) 공통 fallback
+  // 나머지 도시 공통 fallback
   const generic: CostData = {
     rentHousing: [
       { emoji: "🏠", name: ko ? "렌트 시세 — 정보 업데이트 중" : "Rent Prices — Info Being Updated",
