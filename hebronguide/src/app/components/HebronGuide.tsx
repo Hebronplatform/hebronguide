@@ -10631,26 +10631,55 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
 
           return (
             <div style={{ paddingBottom: 16 }}>
-              {/* Hebron Gig 헤더 */}
-              <div style={{ background: "linear-gradient(135deg, rgba(251,146,60,0.15), rgba(139,92,246,0.1))", border: "1px solid rgba(251,146,60,0.3)", borderRadius: 20, padding: "18px 18px", marginBottom: 14 }}>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 18, color: "#ECFDF5", marginBottom: 4 }}>
+              {/* Hebron Gig 비전 헤더 */}
+              <div style={{ background: "linear-gradient(135deg, rgba(251,146,60,0.18), rgba(139,92,246,0.12))", border: "1px solid rgba(251,146,60,0.35)", borderRadius: 20, padding: "20px 18px", marginBottom: 14 }}>
+                {/* 핵심 비전 문구 */}
+                <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: 12, padding: "12px 14px", marginBottom: 14, borderLeft: "3px solid #FB923C" }}>
+                  <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: ko ? 12 : 11, color: "rgba(236,253,245,0.9)", lineHeight: 1.7, fontStyle: "italic" }}>
+                    {ko
+                      ? "\"Hebron은 각자 은사와 재능과 열정을 가진 분들이\n스스로 키워가고 만들어가는 글로벌 커뮤니티입니다.\""
+                      : "\"Hebron is a global community grown and built by people\nwho each bring their own gifts, talents, and passion.\""}
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(251,146,60,0.7)", marginTop: 6, textAlign: "right" }}>
+                    — {ko ? "폴 김 목사" : "Pastor Paul Kim"}
+                  </div>
+                </div>
+
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 17, color: "#ECFDF5", marginBottom: 4 }}>
                   🛠️ {ko ? "헤브론 기그 (Hebron Gig)" : "Hebron Gig — Neighbor Marketplace"}
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(251,146,60,0.9)", fontWeight: 700, marginBottom: 8 }}>
-                  {ko ? "이웃이 이웃을 섬긴다 — 한인·미국인·히스패닉" : "Neighbors serving neighbors — Korean · American · Hispanic"}
+                  {ko ? "이웃이 이웃을 섬긴다 — 한인 · 미국인 · 히스패닉" : "Neighbors serving neighbors — Korean · American · Hispanic"}
                 </div>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.65)", lineHeight: 1.6, marginBottom: 10 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.65)", lineHeight: 1.6, marginBottom: 12 }}>
                   {ko
-                    ? "재능과 기술로 돈 버세요. 청소·수리·요리·돌봄·튜터... 집에서 할 수 있는 모든 것. HebronGuide가 연결하고, 수익의 85%는 당신 것입니다."
-                    : "Earn money with your skills. Cleaning, repairs, cooking, care, tutoring... anything you can do from home. HebronGuide connects — you keep 85%."}
+                    ? "은사와 재능과 열정이 있는 분이라면 누구든 등록하세요.\n청소·케이터링·꽃꽂이·디자인·수리·돌봄·요리...\nHebronGuide가 연결하고, 수익의 85%는 당신 것입니다."
+                    : "Anyone with gifts, talents & passion can register.\nCleaning, catering, floral, design, repairs, care, cooking...\nHebronGuide connects — you keep 85% of every job."}
                 </div>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+
+                {/* 은사·재능·열정 3축 */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6, marginBottom: 12 }}>
                   {[
-                    { icon: "🌍", label: ko ? "3개 언어 자동통역" : "3-Language Auto Translation" },
-                    { icon: "💰", label: ko ? "수익의 85% 본인 몫" : "85% Revenue to Provider" },
-                    { icon: "🤝", label: ko ? "이웃 신뢰 기반" : "Community Trust-Based" },
+                    { icon: "✨", ko: "은사", en: "Spiritual Gift", sub: ko ? "하나님이 주신 것" : "God-given" },
+                    { icon: "🎯", ko: "재능", en: "Talent", sub: ko ? "갈고닦은 능력" : "Cultivated skill" },
+                    { icon: "🔥", ko: "열정", en: "Passion", sub: ko ? "사랑하기에 하는 것" : "What you love" },
+                  ].map((p, i) => (
+                    <div key={i} style={{ background: "rgba(251,146,60,0.1)", border: "1px solid rgba(251,146,60,0.2)", borderRadius: 10, padding: "8px 6px", textAlign: "center" }}>
+                      <div style={{ fontSize: 16, marginBottom: 2 }}>{p.icon}</div>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#FB923C" }}>{ko ? p.ko : p.en}</div>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.45)", marginTop: 1 }}>{p.sub}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                  {[
+                    { icon: "🌍", label: ko ? "한·영·스 3개 언어" : "KO · EN · ES Languages" },
+                    { icon: "💰", label: ko ? "수익의 85% 본인 몫" : "85% Revenue to You" },
+                    { icon: "🤝", label: ko ? "커뮤니티 신뢰 기반" : "Community Trust" },
+                    { icon: "🌐", label: ko ? "글로벌 확장 중" : "Going Global" },
                   ].map((b, i) => (
-                    <span key={i} style={{ background: "rgba(251,146,60,0.12)", border: "1px solid rgba(251,146,60,0.3)", borderRadius: 20, padding: "4px 10px", fontFamily: "Manrope,sans-serif", fontSize: 10, fontWeight: 700, color: "#FB923C" }}>
+                    <span key={i} style={{ background: "rgba(251,146,60,0.12)", border: "1px solid rgba(251,146,60,0.25)", borderRadius: 20, padding: "4px 9px", fontFamily: "Manrope,sans-serif", fontSize: 9, fontWeight: 700, color: "#FB923C" }}>
                       {b.icon} {b.label}
                     </span>
                   ))}
