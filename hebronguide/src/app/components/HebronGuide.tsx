@@ -10715,20 +10715,60 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                 </div>
               ))}
 
+              {/* 섬김 원칙 — "본인의 이름을 걸고" */}
+              <div style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 10, color: "rgba(251,146,60,0.8)", letterSpacing: "0.5px", marginBottom: 10 }}>
+                  🏛️ {ko ? "헤브론 섬김의 원칙" : "HEBRON PRINCIPLES"}
+                </div>
+                {[
+                  {
+                    icon: "🌍",
+                    title: ko ? "사회를 섬깁니다" : "We Serve Society",
+                    desc: ko ? "한인만이 아닙니다. 미국인·히스패닉·모든 이웃을 섬깁니다." : "Not just Koreans. We serve American, Hispanic & every neighbor.",
+                  },
+                  {
+                    icon: "🏷️",
+                    title: ko ? "본인의 이름을 걸고" : "Under Your Own Name",
+                    desc: ko ? "서비스도, 책임도, 신뢰도 — 내 이름으로. 익명 뒤에 숨지 않습니다." : "Service, responsibility & trust — under your name. No hiding behind anonymity.",
+                  },
+                  {
+                    icon: "🔗",
+                    title: ko ? "헤브론은 연결고리" : "Hebron Is the Bridge",
+                    desc: ko ? "Hebron은 주인공이 아닙니다. 당신과 이웃을 잇는 다리입니다." : "Hebron is not the hero. It's the bridge between you and your neighbors.",
+                  },
+                ].map((p, i) => (
+                  <div key={i} style={{ display: "flex", gap: 10, paddingBottom: i < 2 ? 10 : 0, marginBottom: i < 2 ? 10 : 0, borderBottom: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
+                    <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>{p.icon}</span>
+                    <div>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#ECFDF5", marginBottom: 2 }}>{p.title}</div>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.55)", lineHeight: 1.5 }}>{p.desc}</div>
+                    </div>
+                  </div>
+                ))}
+                {/* 제공자 서약 */}
+                <div style={{ marginTop: 12, background: "rgba(251,146,60,0.08)", borderLeft: "3px solid #FB923C", borderRadius: "0 8px 8px 0", padding: "8px 12px" }}>
+                  <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 10, color: "rgba(251,146,60,0.9)", lineHeight: 1.7, fontStyle: "italic" }}>
+                    {ko
+                      ? "\"나는 내 은사와 재능과 열정으로,\n내 이름을 걸고, 이웃과 사회를 섬깁니다.\""
+                      : "\"I serve my neighbors and society\nwith my gifts, talents & passion — under my own name.\""}
+                  </div>
+                </div>
+              </div>
+
               {/* 등록 CTA */}
-              <div style={{ background: "linear-gradient(135deg, rgba(251,146,60,0.2), rgba(139,92,246,0.15))", border: "1px solid rgba(251,146,60,0.4)", borderRadius: 16, padding: "16px 18px", marginTop: 4 }}>
+              <div style={{ background: "linear-gradient(135deg, rgba(251,146,60,0.2), rgba(139,92,246,0.15))", border: "1px solid rgba(251,146,60,0.4)", borderRadius: 16, padding: "16px 18px" }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#ECFDF5", marginBottom: 6 }}>
                   {ko ? "🚀 제공자·클라이언트 모두 환영합니다" : "🚀 Providers & Clients Both Welcome"}
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.7)", lineHeight: 1.6, marginBottom: 10 }}>
                   {ko
-                    ? "한국어·영어·스페인어 모두 가능합니다. 어떤 서비스든 관심 있으시면 이메일로 문의해 주세요."
-                    : "Korean, English & Spanish all supported. Interested in any service? Contact us by email."}
+                    ? "한국어·영어·스페인어 모두 가능합니다. 은사와 재능이 있으시면 이름을 걸고 시작하세요."
+                    : "Korean, English & Spanish supported. Have gifts & talents? Start serving under your own name."}
                 </div>
-                <a href="mailto:gmc.hc300@gmail.com?subject=Hebron Gig 관심 등록"
+                <a href="mailto:gmc.hc300@gmail.com?subject=Hebron Gig 제공자 등록"
                   style={{ display: "block", textDecoration: "none", background: "linear-gradient(135deg, #FB923C, #8B5CF6)", borderRadius: 12, padding: "12px 20px", textAlign: "center" }}>
                   <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff" }}>
-                    {ko ? "📩 Hebron Gig 등록하기" : "📩 Register for Hebron Gig"}
+                    {ko ? "📩 내 이름으로 등록하기" : "📩 Register Under My Name"}
                   </div>
                   <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.8)", marginTop: 2 }}>gmc.hc300@gmail.com</div>
                 </a>
