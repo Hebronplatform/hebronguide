@@ -5622,7 +5622,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             })}
           </div>
 
-        ) : sub === 5 ? (
+        ) : sub === 7 ? null /* 비자·이민 탭은 위 {sub===7 && ...} 에서 처리 */ : sub === 5 ? (
         /* 거주지 탭 */
           <>
             <div style={{ marginBottom: 12 }}>
