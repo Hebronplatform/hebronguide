@@ -5157,6 +5157,23 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               </div>
             </div>
 
+            {/* pastor.html 소개 페이지 버튼 */}
+            <a href="https://hebronguide.com/pastor.html"
+              target="_blank" rel="noopener noreferrer"
+              style={{ display: "block", textDecoration: "none", marginBottom: 10 }}>
+              <div style={{ background: "rgba(201,162,39,0.1)", border: "1px solid rgba(201,162,39,0.4)", borderRadius: 14, padding: "14px 20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#C9A227", marginBottom: 3 }}>
+                    📄 {lang === "ko" ? "목회자 파트너십 소개 페이지" : "Pastor Partnership Page"}
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.6)" }}>
+                    {lang === "ko" ? "목사님께 먼저 보내는 링크 — hebronguide.com/pastor.html" : "Share this with pastors first — hebronguide.com/pastor.html"}
+                  </div>
+                </div>
+                <span style={{ color: "#C9A227", fontSize: 18, marginLeft: 12 }}>→</span>
+              </div>
+            </a>
+
             {/* CTA */}
             <a href="mailto:gmc.hc300@gmail.com?subject=HebronGuide 허브교회 신청"
               style={{ display: "block", textDecoration: "none" }}>
