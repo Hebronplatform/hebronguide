@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>HebronGuide 목회자 파트너십 — 허브교회 네트워크</title>
+<meta name="description" content="전 세계 한인 이민자를 교회로 연결하는 HebronGuide 목회자 파트너십. 44개 도시 허브교회 네트워크에 함께해 주세요." />
+<meta property="og:title" content="HebronGuide 목회자 파트너십" />
+<meta property="og:description" content="새 이민자가 도착하기 전에 먼저 연락이 옵니다. 허브교회 네트워크에 함께해 주세요." />
+<meta property="og:image" content="https://hebronguide.com/icon-512.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Noto+Sans+KR:wght@400;700;900&family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #0a1628;
+  --navy2: #0f1e35;
+  --card: rgba(255,255,255,0.04);
+  --gold: #C9A227;
+  --gold2: #e8c050;
+  --mint: #6EE7B7;
+  --text: #ECFDF5;
+  --text2: rgba(236,253,245,0.7);
+  --text3: rgba(236,253,245,0.45);
+  --border: rgba(255,255,255,0.08);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans KR', 'Manrope', sans-serif;
+  background: var(--navy);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 24px;
+  background: rgba(10,22,40,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 800; color: var(--gold); text-decoration: none; }
+.nav-cta {
+  background: var(--gold); color: #000; border: none; padding: 8px 18px;
+  border-radius: 20px; font-size: 12px; font-weight: 800; cursor: pointer;
+  text-decoration: none; transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--gold2); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 120px 24px 80px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,162,39,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(110,231,183,0.06) 0%, transparent 60%),
+    var(--navy);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A227' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(201,162,39,0.15); border: 1px solid rgba(201,162,39,0.4);
+  color: var(--gold); padding: 6px 16px; border-radius: 20px;
+  font-size: 11px; font-weight: 800; letter-spacing: 1px;
+  margin-bottom: 24px; text-transform: uppercase;
+}
+.hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px, 6vw, 56px);
+  font-weight: 800; color: var(--text);
+  line-height: 1.15; margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+.hero h1 span { color: var(--gold); }
+.hero-sub {
+  font-size: clamp(14px, 2.5vw, 18px);
+  color: var(--text2); max-width: 600px;
+  line-height: 1.7; margin-bottom: 12px;
+}
+.hero-verse {
+  font-size: 13px; color: var(--gold);
+  font-style: italic; margin-bottom: 40px; opacity: 0.85;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), #b8901c);
+  color: #000; font-weight: 800; font-size: 14px;
+  padding: 14px 32px; border-radius: 50px; text-decoration: none;
+  box-shadow: 0 4px 20px rgba(201,162,39,0.4);
+  transition: all 0.2s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,162,39,0.5); }
+.btn-secondary {
+  background: transparent; color: var(--text2); font-weight: 700; font-size: 14px;
+  padding: 14px 32px; border-radius: 50px; text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── STATS BAR ── */
+.stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1px; background: var(--border);
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.stat-item {
+  background: var(--navy2); padding: 24px 20px; text-align: center;
+}
+.stat-n { font-family: 'Cinzel', serif; font-size: 28px; font-weight: 800; color: var(--gold); }
+.stat-d { font-size: 11px; color: var(--text3); margin-top: 4px; letter-spacing: 0.5px; }
+
+/* ── SECTIONS ── */
+section { padding: 80px 24px; max-width: 960px; margin: 0 auto; }
+.section-label {
+  font-size: 11px; font-weight: 800; color: var(--gold); letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 12px;
+}
+h2 {
+  font-family: 'Cinzel', serif; font-size: clamp(22px, 4vw, 36px);
+  font-weight: 800; color: var(--text); line-height: 1.25;
+  margin-bottom: 16px;
+}
+h2 span { color: var(--gold); }
+.section-desc { font-size: 15px; color: var(--text2); max-width: 600px; line-height: 1.8; margin-bottom: 48px; }
+
+/* ── CARDS ── */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 18px; padding: 24px;
+  transition: all 0.2s;
+}
+.card:hover { border-color: rgba(201,162,39,0.3); background: rgba(201,162,39,0.05); transform: translateY(-2px); }
+.card-icon { font-size: 28px; margin-bottom: 12px; }
+.card h3 { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+.card p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+/* ── PROBLEM SECTION ── */
+.problem-block {
+  background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(201,162,39,0.05));
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: 20px; padding: 36px; margin-bottom: 16px;
+}
+.problem-quote {
+  font-size: clamp(18px, 3vw, 26px); font-weight: 800; color: var(--text);
+  line-height: 1.4; margin-bottom: 12px;
+}
+.problem-sub { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+/* ── FLOW ── */
+.flow { display: flex; flex-direction: column; gap: 0; }
+.flow-item {
+  display: flex; gap: 20px; align-items: flex-start;
+  padding: 24px; background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; margin-bottom: 8px; position: relative;
+}
+.flow-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), #b8901c);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 14px; color: #000; flex-shrink: 0;
+}
+.flow-content h3 { font-size: 14px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+.flow-content p { font-size: 12px; color: var(--text2); line-height: 1.6; }
+.flow-arrow {
+  text-align: center; color: var(--gold); font-size: 18px;
+  margin: -4px 0; opacity: 0.5;
+}
+
+/* ── JOURNEY ── */
+.journey {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px; margin-bottom: 32px;
+}
+.journey-step {
+  text-align: center; padding: 20px 12px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; position: relative;
+}
+.journey-step.highlight { border-color: rgba(201,162,39,0.5); background: rgba(201,162,39,0.08); }
+.journey-emoji { font-size: 24px; margin-bottom: 8px; }
+.journey-label { font-size: 11px; font-weight: 800; color: var(--gold); }
+.journey-sub { font-size: 10px; color: var(--text3); margin-top: 4px; }
+
+/* ── GROWTH STRATEGY ── */
+.growth-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
+.growth-step {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px; text-align: center;
+}
+.growth-step.active { border-color: rgba(201,162,39,0.4); background: rgba(201,162,39,0.08); }
+.growth-n { font-family: 'Cinzel', serif; font-size: 32px; font-weight: 800; color: var(--gold); }
+.growth-label { font-size: 11px; color: var(--text3); margin-top: 4px; }
+.growth-detail { font-size: 12px; color: var(--text2); margin-top: 6px; line-height: 1.5; }
+
+/* ── BENEFIT LIST ── */
+.benefit-list { display: flex; flex-direction: column; gap: 12px; }
+.benefit-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 18px; background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.benefit-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.benefit-text h4 { font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 3px; }
+.benefit-text p { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+/* ── PASTOR PROFILE ── */
+.pastor-card {
+  display: flex; gap: 24px; align-items: flex-start;
+  background: linear-gradient(135deg, rgba(201,162,39,0.1), rgba(110,231,183,0.05));
+  border: 1px solid rgba(201,162,39,0.3);
+  border-radius: 20px; padding: 32px;
+}
+.pastor-avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), #b8901c);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px; flex-shrink: 0;
+}
+.pastor-info h3 { font-size: 18px; font-weight: 900; color: var(--text); margin-bottom: 4px; }
+.pastor-info .title { font-size: 12px; color: var(--gold); margin-bottom: 12px; }
+.pastor-info p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+/* ── COVENANT ── */
+.covenant {
+  background: rgba(0,0,0,0.3); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px; font-family: 'Manrope', monospace;
+  font-size: 12px; color: var(--text2); line-height: 1.9;
+}
+.covenant-title { font-weight: 800; font-size: 14px; color: var(--gold); margin-bottom: 16px; }
+
+/* ── CTA SECTION ── */
+.cta-section {
+  text-align: center; padding: 80px 24px;
+  background: linear-gradient(180deg, transparent, rgba(201,162,39,0.06), transparent);
+}
+.cta-section h2 { margin-bottom: 16px; }
+.cta-section p { font-size: 15px; color: var(--text2); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+.cta-contact {
+  display: inline-flex; flex-direction: column; gap: 8px; align-items: center;
+  background: rgba(201,162,39,0.1); border: 1px solid rgba(201,162,39,0.3);
+  border-radius: 20px; padding: 28px 40px; margin-bottom: 24px;
+}
+.cta-contact .label { font-size: 11px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; }
+.cta-contact .email { font-size: 18px; font-weight: 800; color: var(--gold); text-decoration: none; }
+.cta-contact .email:hover { color: var(--gold2); }
+.cta-contact .site { font-size: 13px; color: var(--text2); text-decoration: none; }
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: var(--border); max-width: 960px; margin: 0 auto; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center; padding: 40px 24px;
+  font-size: 12px; color: var(--text3); border-top: 1px solid var(--border);
+}
+footer a { color: var(--mint); text-decoration: none; }
+
+/* ── CITY GRID ── */
+.city-grid {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px;
+}
+.city-pill {
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 11px; color: var(--text2);
+}
+.city-pill.active { background: rgba(201,162,39,0.12); border-color: rgba(201,162,39,0.35); color: var(--gold); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  nav { padding: 12px 16px; }
+  .nav-logo { font-size: 16px; }
+  section { padding: 60px 16px; }
+  .pastor-card { flex-direction: column; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://hebronguide.com" class="nav-logo">HebronGuide</a>
+  <a href="mailto:gmc.hc300@gmail.com?subject=허브교회 파트너십 문의" class="nav-cta">파트너 문의</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">⛪ 목회자 파트너십</div>
+  <h1>새 이민자가 도착하기 전에<br /><span>교회가 먼저 알게 됩니다</span></h1>
+  <p class="hero-sub">
+    전 세계 44개 도시 한인 이민자를 교회로 연결하는<br />
+    HebronGuide 허브교회 네트워크에 함께해 주세요.
+  </p>
+  <p class="hero-verse">"내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35</p>
+  <div class="hero-btns">
+    <a href="mailto:gmc.hc300@gmail.com?subject=허브교회 파트너십 문의" class="btn-primary">⛪ 허브교회 신청하기</a>
+    <a href="https://hebronguide.com/seattle" class="btn-secondary">앱 체험하기 →</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item"><div class="stat-n">44</div><div class="stat-d">커버 도시</div></div>
+  <div class="stat-item"><div class="stat-n">730만</div><div class="stat-d">전 세계 재외동포</div></div>
+  <div class="stat-item"><div class="stat-n">3개월</div><div class="stat-d">도시 네트워크 완성</div></div>
+  <div class="stat-item"><div class="stat-n">12개</div><div class="stat-d">도시당 허브교회 목표</div></div>
+  <div class="stat-item"><div class="stat-n">무료</div><div class="stat-d">교회 참여 비용</div></div>
+</div>
+
+<!-- PROBLEM -->
+<section>
+  <div class="section-label">문제 인식</div>
+  <h2>새 이민자가 <span>교회를 찾지 못하고</span><br />포기합니다</h2>
+
+  <div class="problem-block" style="margin-bottom:16px;">
+    <div class="problem-quote">"한국에서는 교회를 나갔는데<br />미국에 와서 어디 가야 할지 몰라요."</div>
+    <div class="problem-sub">— 새 이민자들의 가장 흔한 이야기</div>
+  </div>
+  <div class="problem-block">
+    <div class="problem-quote" style="font-size:clamp(15px,2.5vw,20px);">
+      도시에 좋은 교회가 있어도<br />
+      새 이민자와 교회 사이에<br />
+      <span style="color:#ef4444;">연결하는 사람이 없습니다.</span>
+    </div>
+    <div class="problem-sub" style="margin-top:12px;">
+      공항에서 내려 짐을 풀고, 아는 사람 하나 없이 구글에 '한인교회'를 검색합니다.<br />
+      낯선 곳에 혼자 방문하기 두렵습니다. 그래서 포기합니다.
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOLUTION -->
+<section>
+  <div class="section-label">HebronGuide 해결책</div>
+  <h2>도착하기 <span>전에</span> 교회가<br />먼저 알고 기다립니다</h2>
+  <p class="section-desc">
+    HebronGuide는 이민자가 새 도시에 도착하기 전,<br />
+    허브교회에 미리 알림을 보냅니다.<br />
+    교회는 이름을 알고 환영을 준비합니다.
+  </p>
+
+  <div class="flow">
+    <div class="flow-item">
+      <div class="flow-num">1</div>
+      <div class="flow-content">
+        <h3>이민자가 HebronGuide 앱을 사용합니다</h3>
+        <p>공항에서 내리기 전부터 — 정착 정보, 지역 안내, 교회 연결. 44개 도시 한국어 가이드.</p>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-item">
+      <div class="flow-num">2</div>
+      <div class="flow-content">
+        <h3>HebronGuide가 가장 가까운 허브교회에 알립니다</h3>
+        <p>"곧 새 가족이 오십니다. 이름: ○○○. 도착일: ○월 ○일. 미리 연락해 주세요."</p>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-item">
+      <div class="flow-num">3</div>
+      <div class="flow-content">
+        <h3>교회가 먼저 연락합니다</h3>
+        <p>"○○님, 저는 ○○교회 담당 목사입니다. 오시면 함께 식사해요." 첫 주일부터 이름 아는 사람이 있습니다.</p>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-item" style="border-color:rgba(201,162,39,0.4); background:rgba(201,162,39,0.06);">
+      <div class="flow-num">4</div>
+      <div class="flow-content">
+        <h3>🏠 목장·소그룹으로 연결됩니다</h3>
+        <p>정착 정보에서 시작해 → 공동체로 → 자연스럽게 신앙으로. 억지 전도 없이.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- THE PRODUCT -->
+<section>
+  <div class="section-label">상품 소개</div>
+  <h2>이미 작동하고 있는<br /><span>실제 앱입니다</span></h2>
+  <p class="section-desc">
+    HebronGuide는 계획이 아닙니다.<br />
+    지금 이 순간에도 한인 이민자들이 사용하는 실제 플랫폼입니다.
+  </p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🛬</div>
+      <h3>정착 가이드</h3>
+      <p>공항에서 내리는 순간부터 — 운전면허, 은행, 병원, 학교. 한국어로, 도시별로.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⛪</div>
+      <h3>교회 연결</h3>
+      <p>Tier 1 가정교회부터 SBC 정통 교회까지. 검증된 교회만. 이단 자동 차단.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤝</div>
+      <h3>사람 연결</h3>
+      <p>라이드, 단기 숙박, 튜터, 커뮤니티 매칭. 교회 검증 기반 신뢰 플랫폼.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌍</div>
+      <h3>44개 도시</h3>
+      <p>시애틀·달라스·뉴욕·LA·토론토·시드니·런던·싱가포르... 전 세계 한인 있는 곳.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <h3>PWA 앱</h3>
+      <p>설치 없이 스마트폰 홈화면에. 한국어·영어·스페인어 3개 언어. 오프라인 지원.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔒</div>
+      <h3>검증 시스템</h3>
+      <p>모든 정보 공식 출처 확인. 이단·사이비 자동 차단. 목사님 신뢰 보증.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:24px; text-align:center;">
+    <a href="https://hebronguide.com/seattle" class="btn-primary" style="display:inline-block;">
+      📱 앱 직접 체험하기 → hebronguide.com
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VISION JOURNEY -->
+<section>
+  <div class="section-label">큰 그림</div>
+  <h2>정착에서 <span>그리스도까지</span><br />자연스러운 여정</h2>
+  <p class="section-desc">
+    HebronGuide는 정착 앱이 아닙니다.<br />
+    신앙 생태계의 첫 관문입니다.
+  </p>
+
+  <div class="journey">
+    <div class="journey-step">
+      <div class="journey-emoji">🛬</div>
+      <div class="journey-label">도시 가이드</div>
+      <div class="journey-sub">정착 정보</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-emoji">🌆</div>
+      <div class="journey-label">도시 연결</div>
+      <div class="journey-sub">44개 도시</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-emoji">🤝</div>
+      <div class="journey-label">사람 연결</div>
+      <div class="journey-sub">커뮤니티</div>
+    </div>
+    <div class="journey-step highlight">
+      <div class="journey-emoji">⛪</div>
+      <div class="journey-label">교회 연결</div>
+      <div class="journey-sub">허브교회</div>
+    </div>
+    <div class="journey-step" style="border-color:rgba(110,231,183,0.4); background:rgba(110,231,183,0.06);">
+      <div class="journey-emoji">✝️</div>
+      <div class="journey-label" style="color:#6EE7B7;">그리스도</div>
+      <div class="journey-sub">자연스럽게</div>
+    </div>
+  </div>
+
+  <div style="background:rgba(201,162,39,0.08); border:1px solid rgba(201,162,39,0.25); border-radius:16px; padding:24px; font-size:14px; color:var(--text2); line-height:1.8;">
+    <strong style="color:var(--gold);">HebronGuide의 역할:</strong><br />
+    직접 전도하지 않습니다. 억지로 교회로 밀어 넣지 않습니다.<br />
+    다만 이민자가 가장 힘든 순간에 옆에 있습니다.<br />
+    그리고 그 손을 <strong style="color:var(--text);">목사님 손에 연결</strong>합니다.<br />
+    나머지는 목사님이 하십니다.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- NETWORK GROWTH -->
+<section>
+  <div class="section-label">네트워크 전략</div>
+  <h2>예수님이 쓰신<br /><span>배가 전략</span></h2>
+  <p class="section-desc">
+    안드레가 베드로를 소개했습니다 (요 1:41).<br />
+    4번의 줌 미팅으로 12개 허브교회가 완성됩니다.
+  </p>
+
+  <div class="growth-steps">
+    <div class="growth-step active">
+      <div class="growth-n">1</div>
+      <div class="growth-label">1차 줌</div>
+      <div class="growth-detail">도시 대표 목사님 1:1<br />신뢰 형성</div>
+    </div>
+    <div class="growth-step active">
+      <div class="growth-n">3</div>
+      <div class="growth-label">2차 줌</div>
+      <div class="growth-detail">2명 소개받아<br />1:3 미팅</div>
+    </div>
+    <div class="growth-step active">
+      <div class="growth-n">9</div>
+      <div class="growth-label">3차 줌</div>
+      <div class="growth-detail">각자 2명 소개<br />1:9 미팅</div>
+    </div>
+    <div class="growth-step" style="border-color:rgba(201,162,39,0.5); background:rgba(201,162,39,0.1);">
+      <div class="growth-n" style="color:var(--gold2);">12</div>
+      <div class="growth-label">4차 줌 출범식</div>
+      <div class="growth-detail">✅ 허브교회<br />네트워크 완성</div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px; text-align:center; font-size:13px; color:var(--text3);">
+    총 4번의 줌 미팅 · 약 3개월 · 목사님 투자 시간 6시간
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BENEFITS -->
+<section>
+  <div class="section-label">허브교회 혜택</div>
+  <h2>교회가 <span>받는 것</span></h2>
+  <p class="section-desc">허브교회 참여는 완전 무료입니다. 오히려 받는 것이 있습니다.</p>
+
+  <div class="benefit-list">
+    <div class="benefit-item">
+      <div class="benefit-icon">🔔</div>
+      <div class="benefit-text">
+        <h4>새가족 사전 알림</h4>
+        <p>새 이민자가 도착하기 전에 미리 알림이 옵니다. 이름, 도착일, 상황을 알고 환영을 준비할 수 있습니다. 더 이상 낯선 얼굴이 갑자기 오지 않습니다.</p>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">🏆</div>
+      <div class="benefit-text">
+        <h4>허브교회 금색 배지</h4>
+        <p>HebronGuide 앱에 허브교회 배지가 표시됩니다. 이민자들이 도시 교회 목록에서 가장 신뢰하는 교회로 인식합니다.</p>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">🌐</div>
+      <div class="benefit-text">
+        <h4>전국·전 세계 목회자 네트워크</h4>
+        <p>44개 도시 허브교회 목사님들과 연결됩니다. 교인이 다른 도시로 이사할 때 그 도시 허브교회로 연결됩니다. 양 한 마리도 잃지 않습니다.</p>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">🚗</div>
+      <div class="benefit-text">
+        <h4>사람 연결 플랫폼 우선 적용</h4>
+        <p>라이드, 단기 숙박, 튜터, 커뮤니티 매칭 — 교인들이 허브교회 검증을 통해 플랫폼에 참여합니다. 교인에게 부업·봉사 기회가 됩니다.</p>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">📊</div>
+      <div class="benefit-text">
+        <h4>도시 한인 정착 데이터</h4>
+        <p>해당 도시 한인 이민자 현황, 인구 분포, 정착 필요 트렌드를 공유합니다. 사역 방향 설정에 도움이 됩니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMMITMENT -->
+<section>
+  <div class="section-label">교회가 드리는 것</div>
+  <h2>요청드리는 것은<br /><span>단 세 가지</span>입니다</h2>
+
+  <div class="card-grid" style="margin-bottom:24px;">
+    <div class="card" style="border-color:rgba(201,162,39,0.3); background:rgba(201,162,39,0.06);">
+      <div class="card-icon">⏰</div>
+      <h3>72시간 내 연락</h3>
+      <p>새가족 알림이 오면 72시간 안에 연락을 취해 주세요. 이 한 가지가 이민자의 첫 주일을 바꿉니다.</p>
+    </div>
+    <div class="card" style="border-color:rgba(201,162,39,0.3); background:rgba(201,162,39,0.06);">
+      <div class="card-icon">🤝</div>
+      <h3>첫 주일 개인 환영</h3>
+      <p>처음 오신 날 목사님이나 담당 성도가 개인적으로 환영해 주세요. 이름을 불러주는 것만으로 충분합니다.</p>
+    </div>
+    <div class="card" style="border-color:rgba(201,162,39,0.3); background:rgba(201,162,39,0.06);">
+      <div class="card-icon">🏠</div>
+      <h3>3개월 내 소그룹 연결</h3>
+      <p>목장·셀·구역 등 소그룹에 3개월 안에 연결해 주세요. 소그룹이 진짜 정착의 완성입니다.</p>
+    </div>
+  </div>
+
+  <div class="covenant">
+    <div class="covenant-title">📜 허브교회 파트너십 협약 (핵심 요약)</div>
+    교회는 받습니다: 새가족 사전 알림 · 배지 · 전국 네트워크 · 데이터<br />
+    교회는 드립니다: 72시간 내 연락 · 첫 주일 환영 · 3개월 소그룹 연결<br />
+    교회는 금합니다: 강제 등록 요구 · 타 교회 비방 · 이단 협력<br /><br />
+    <span style="color:var(--gold);">참여 비용: 없음 · 탈퇴: 언제든지</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CITIES -->
+<section>
+  <div class="section-label">현재 커버 도시</div>
+  <h2>44개 도시에서<br /><span>함께 시작합니다</span></h2>
+  <p class="section-desc">
+    작은 도시일수록 HebronGuide가 더 필요합니다.<br />
+    외롭기 때문입니다.
+  </p>
+
+  <div style="margin-bottom:16px; font-size:12px; font-weight:700; color:var(--text3);">🇺🇸 미국</div>
+  <div class="city-grid">
+    <span class="city-pill active">시애틀</span><span class="city-pill active">달라스</span>
+    <span class="city-pill active">LA</span><span class="city-pill active">뉴욕</span>
+    <span class="city-pill active">휴스턴</span><span class="city-pill active">애틀랜타</span>
+    <span class="city-pill active">SF베이</span><span class="city-pill active">보스턴</span>
+    <span class="city-pill active">내쉬빌</span><span class="city-pill active">필라델피아</span>
+    <span class="city-pill active">마이애미</span><span class="city-pill active">캔자스시티</span>
+    <span class="city-pill">시카고</span><span class="city-pill">워싱턴DC</span>
+    <span class="city-pill">샌디에고</span><span class="city-pill">호놀룰루</span>
+    <span class="city-pill">포틀랜드</span><span class="city-pill">덴버</span>
+    <span class="city-pill">피닉스</span><span class="city-pill">샬럿</span>
+    <span class="city-pill">롤리</span><span class="city-pill">콜럼버스</span>
+    <span class="city-pill">미니애폴리스</span><span class="city-pill">페이엣빌 ⭐</span>
+    <span class="city-pill">킬린 ⭐</span><span class="city-pill">앵커리지 ⭐</span>
+  </div>
+  <div style="margin-top:16px; margin-bottom:16px; font-size:12px; font-weight:700; color:var(--text3);">🇨🇦 캐나다</div>
+  <div class="city-grid">
+    <span class="city-pill active">토론토</span><span class="city-pill active">밴쿠버</span>
+    <span class="city-pill">캘거리</span><span class="city-pill">에드먼턴</span>
+    <span class="city-pill">오타와</span><span class="city-pill">위니펙 ⭐</span>
+  </div>
+  <div style="margin-top:16px; margin-bottom:16px; font-size:12px; font-weight:700; color:var(--text3);">🌍 국제</div>
+  <div class="city-grid">
+    <span class="city-pill">시드니</span><span class="city-pill">멜버른</span>
+    <span class="city-pill">브리즈번</span><span class="city-pill">퍼스 ⭐</span>
+    <span class="city-pill">오클랜드</span><span class="city-pill">런던</span>
+    <span class="city-pill">상파울루</span><span class="city-pill">싱가포르</span>
+    <span class="city-pill">방콕</span><span class="city-pill">호치민</span>
+    <span class="city-pill">두바이 ⭐</span><span class="city-pill">프랑크푸르트</span>
+    <span class="city-pill">파리</span><span class="city-pill">베를린</span>
+    <span class="city-pill active">멕시코시티</span>
+  </div>
+  <div style="margin-top:12px; font-size:11px; color:var(--text3);">
+    ⭐ 소도시·군사도시 — 가장 외로운 한인들이 있는 곳 · 금색 = 콘텐츠 완성 도시
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PASTOR -->
+<section>
+  <div class="section-label">만든 사람</div>
+  <h2>목사님이 <span>목사님을 위해</span><br />만들었습니다</h2>
+
+  <div class="pastor-card">
+    <div class="pastor-avatar">🙏</div>
+    <div class="pastor-info">
+      <h3>폴 김 목사 (Paul Kim)</h3>
+      <div class="title">시애틀지구촌교회 담임 · HebronGuide 설립자</div>
+      <p>
+        이민자로 미국에 와서 직접 경험했습니다 — 교회를 찾지 못해 방황하는 것을.<br /><br />
+        시애틀지구촌교회(SBC 소속 가정교회)를 섬기면서<br />
+        새로 오는 분들마다 같은 어려움을 겪는 것을 보았습니다.<br /><br />
+        HebronGuide는 그 문제를 해결하려는 한 목사의 응답입니다.<br />
+        팔지 않습니다. 내 교인을 뺏어가지 않습니다.<br />
+        그냥 모든 도시의 좋은 목사님들과 함께<br />
+        <strong style="color:var(--gold);">이민자들을 섬기고 싶습니다.</strong>
+      </p>
+      <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="mailto:gmc.hc300@gmail.com" style="color:var(--mint); font-size:12px; font-weight:700; text-decoration:none;">✉️ gmc.hc300@gmail.com</a>
+        <a href="https://www.ijiguchon.org" style="color:var(--mint); font-size:12px; font-weight:700; text-decoration:none;">🌐 www.ijiguchon.org</a>
+        <a href="https://hebronguide.com" style="color:var(--mint); font-size:12px; font-weight:700; text-decoration:none;">📱 hebronguide.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="section-label" style="text-align:center;">함께 시작합시다</div>
+  <h2>부담 없이<br /><span>먼저 이야기 나눠요</span></h2>
+  <p>팔거나 강요하지 않습니다.<br />30분 줌으로 먼저 이야기 나누고<br />결정하셔도 충분합니다.</p>
+
+  <div class="cta-contact">
+    <div class="label">연락처</div>
+    <a href="mailto:gmc.hc300@gmail.com?subject=허브교회 파트너십 문의" class="email">gmc.hc300@gmail.com</a>
+    <a href="https://www.ijiguchon.org" class="site">www.ijiguchon.org</a>
+  </div>
+
+  <div>
+    <a href="mailto:gmc.hc300@gmail.com?subject=허브교회 파트너십 문의" class="btn-primary" style="display:inline-block; margin-bottom:12px;">
+      ⛪ 파트너십 문의하기
+    </a>
+  </div>
+  <div style="font-size:12px; color:var(--text3); margin-top:8px;">
+    참여 비용 없음 · 언제든 탈퇴 가능 · 30분 줌으로 시작
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="font-family:'Cinzel',serif; font-size:16px; color:var(--gold); margin-bottom:8px;">HebronGuide</div>
+  <div style="margin-bottom:8px;">
+    <a href="https://hebronguide.com">hebronguide.com</a> ·
+    <a href="https://www.ijiguchon.org">시애틀지구촌교회</a> ·
+    <a href="mailto:gmc.hc300@gmail.com">gmc.hc300@gmail.com</a>
+  </div>
+  <div style="margin-bottom:12px; font-style:italic; color:var(--gold); opacity:0.7;">
+    "내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35
+  </div>
+  <div>© 2026 HebronGuide · 시애틀지구촌교회 폴 김 목사</div>
+</footer>
+
+</body>
+</html>
