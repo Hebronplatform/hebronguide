@@ -8614,6 +8614,559 @@ function getCityDistrictData(slug: string, lang: string) {
   ];
 }
 
+/* ─────────────────────────────────────────
+   도시별 교육 데이터 — CC·대학·ESL·한국학교
+───────────────────────────────────────── */
+function getCityCC(slug: string, lang: string) {
+  const ko = lang === "ko";
+  type Item = { emoji: string; name: string; nameEn?: string; desc: string; tags: string[] };
+  const D: Record<string, Item[]> = {
+    seattle: [
+      { emoji: "🏛️", name: "Edmonds College", nameEn: "Edmonds College — 린우드 (한인 추천 #1)",
+        desc: ko ? "✅ 린우드 소재. 4년제 편입 최적. UW·WSU 편입률 높음. ESL 풍부. 학비 ~$4,500/학기.\n📍 20000 68th Ave W, Lynnwood | 🔗 edcc.edu"
+                 : "✅ Lynnwood — Korean community hub. Best CC for UW transfer. Rich ESL programs. Tuition ~$4,500/semester.\n📍 20000 68th Ave W, Lynnwood | 🔗 edcc.edu",
+        tags: ["린우드","편입","한인#1"] },
+      { emoji: "🏛️", name: "Bellevue College", nameEn: "Bellevue College — 벨뷰",
+        desc: ko ? "✅ WA 최대 CC. 4년제 학사 직접 수여 가능. IT·회계·간호 특화. 아시안 35%+.\n📍 3000 Landerholm Cir SE, Bellevue | 🔗 bellevuecollege.edu"
+                 : "✅ WA's largest CC. Can award bachelor's directly. IT, accounting, nursing. 35%+ Asian students.\n📍 3000 Landerholm Cir SE, Bellevue | 🔗 bellevuecollege.edu",
+        tags: ["벨뷰","4년제학위","최대규모"] },
+      { emoji: "🏛️", name: "Cascadia College", nameEn: "Cascadia — 보텔 (UW Bothell 인접)",
+        desc: ko ? "✅ UW Bothell 편입 보장 프로그램. 이공계·비즈니스. 학비 ~$4,000/학기.\n📍 18345 Campus Way NE, Bothell | 🔗 cascadia.edu"
+                 : "✅ Guaranteed UW Bothell transfer pathway. STEM & business. ~$4,000/semester.\n📍 18345 Campus Way NE, Bothell | 🔗 cascadia.edu",
+        tags: ["보텔","UW편입보장","이공계"] },
+    ],
+    dallas: [
+      { emoji: "🏛️", name: "Collin College (CC of Collin County)", nameEn: "Collin College — 프리스코·앨런",
+        desc: ko ? "✅ 달라스 북부 한인 밀집 지역 소재. 4년제 편입 최적. 학비 ~$3,200/학기 (TX 주민). 한인 학생 다수. STEM·비즈니스 강점.\n📍 프리스코·매키니·앨런 캠퍼스 | 🔗 collin.edu"
+                 : "✅ In Korean-dense north Dallas area. Best for 4-year transfer. Tuition ~$3,200/semester (TX resident). Many Korean students. Strong STEM & business.\n📍 Frisco, McKinney, Allen campuses | 🔗 collin.edu",
+        tags: ["프리스코","앨런","편입"] },
+      { emoji: "🏛️", name: "Brookhaven College (DCCCD)", nameEn: "Brookhaven College — 캐롤튼·파머스브랜치",
+        desc: ko ? "✅ 캐롤튼 한인타운 인근 CC. 달라스 카운티 커뮤니티 칼리지. ESL 프로그램 우수. 학비 ~$2,800/학기.\n📍 3939 Valley View Ln, Farmers Branch TX | 🔗 brookhavencollege.edu"
+                 : "✅ Near Carrollton Koreatown. Dallas County Community College. Strong ESL program. Tuition ~$2,800/semester.\n📍 3939 Valley View Ln, Farmers Branch TX | 🔗 brookhavencollege.edu",
+        tags: ["캐롤튼","ESL","달라스"] },
+      { emoji: "💡", name: ko ? "텍사스 이중학점제 (Dual Credit)" : "Texas Dual Credit Program",
+        desc: ko ? "✅ 텍사스 공립 고교생 CC 수업 무료 이중 학점 취득 가능 (WA Running Start 유사).\n• 고교 11-12학년 대상 · 완전 무료\n• Collin College, Brookhaven 참여\n🔗 tea.texas.gov/dual-credit"
+                 : "✅ TX public HS students can take CC courses for free (similar to WA Running Start).\n• For grades 11-12 · Completely free\n• Collin College, Brookhaven participating\n🔗 tea.texas.gov/dual-credit",
+        tags: ["이중학점","무료","11-12학년"] },
+    ],
+    sf: [
+      { emoji: "🏛️", name: "De Anza College", nameEn: "De Anza College — 쿠퍼티노 (한인 추천 #1)",
+        desc: ko ? "✅ 쿠퍼티노 소재. 베이에리어 최고 CC. UC 편입률 전국 1위. 한인·중국계 밀집. 학비 ~$46/학점 (CA 주민). CS·엔지니어링 편입 강점.\n📍 21250 Stevens Creek Blvd, Cupertino | 🔗 deanza.edu"
+                 : "✅ Cupertino. Bay Area's top CC. #1 UC transfer rate nationally. Dense Korean & Chinese community. ~$46/unit (CA resident). Strong CS & engineering transfer.\n📍 21250 Stevens Creek Blvd, Cupertino | 🔗 deanza.edu",
+        tags: ["쿠퍼티노","UC편입#1","CS"] },
+      { emoji: "🏛️", name: "Foothill College", nameEn: "Foothill College — 로스알토스힐스",
+        desc: ko ? "✅ De Anza 자매 학교. 의료·치과·의료기기 특화. UC·스탠포드 편입 경로. 학비 ~$46/학점.\n📍 12345 El Monte Rd, Los Altos Hills | 🔗 foothill.edu"
+                 : "✅ De Anza sister school. Specialized medical, dental & medical device programs. UC/Stanford transfer pathway. ~$46/unit.\n📍 12345 El Monte Rd, Los Altos Hills | 🔗 foothill.edu",
+        tags: ["로스알토스","의료","스탠포드편입"] },
+      { emoji: "💡", name: ko ? "CA IGETC — UC 편입 보장 과정" : "CA IGETC — Guaranteed UC Transfer",
+        desc: ko ? "✅ IGETC(Intersegmental General Education Transfer Curriculum) 이수 시 UC 편입 보장.\n• De Anza·Foothill 모두 IGETC 과목 제공\n• GPA 3.0+ 유지 + 전공 과목 완료 시 UC 보장\n🔗 assist.org (편입 과목 확인)"
+                 : "✅ Complete IGETC for guaranteed UC transfer.\n• De Anza & Foothill both offer IGETC courses\n• Maintain GPA 3.0+ + complete major prereqs for UC guarantee\n🔗 assist.org (check transfer courses)",
+        tags: ["IGETC","UC편입보장","GPA3.0"] },
+    ],
+    la: [
+      { emoji: "🏛️", name: "Santa Monica College (SMC)", nameEn: "Santa Monica College — UCLA 편입 #1",
+        desc: ko ? "✅ UCLA 편입생 가장 많이 배출하는 CC. 학비 ~$46/학점 (CA 주민). 미디어·영화·비즈니스 강점. 코리아타운 30분. 한인 학생 다수.\n📍 1900 Pico Blvd, Santa Monica | 🔗 smc.edu"
+                 : "✅ #1 source of UCLA transfer students. ~$46/unit (CA resident). Strong media, film & business. 30 min from Koreatown. Many Korean students.\n📍 1900 Pico Blvd, Santa Monica | 🔗 smc.edu",
+        tags: ["UCLA편입","미디어","코리아타운"] },
+      { emoji: "🏛️", name: "LA City College / East LA College", nameEn: "LACCD — 코리아타운·동LA",
+        desc: ko ? "✅ LA 시립 CC. 코리아타운 인근. 학비 ~$46/학점 (CA 주민). ESL·직업훈련 프로그램 풍부. 한인·히스패닉 밀집.\n📍 855 N Vermont Ave, Los Angeles | 🔗 lacitycollege.edu"
+                 : "✅ LA City College, near Koreatown. ~$46/unit (CA resident). Rich ESL & vocational programs. Dense Korean & Hispanic enrollment.\n📍 855 N Vermont Ave, Los Angeles | 🔗 lacitycollege.edu",
+        tags: ["코리아타운","ESL","LACCD"] },
+      { emoji: "💡", name: ko ? "CA ADT — UC 편입 보장" : "CA ADT — Associate Degree for Transfer",
+        desc: ko ? "CA ADT 취득 시 CSU 편입 보장. IGETC 이수 시 UC 편입 경쟁력 높음.\n• SMC, LACC 모두 ADT 제공\n🔗 assist.org"
+                 : "CA ADT grants guaranteed CSU transfer. IGETC completion gives UC transfer advantage.\n• SMC, LACC both offer ADT\n🔗 assist.org",
+        tags: ["ADT","UC편입","CSU"] },
+    ],
+    newyork: [
+      { emoji: "🏛️", name: "Queensborough CC (CUNY)", nameEn: "Queensborough CC — 플러싱 인근",
+        desc: ko ? "✅ 플러싱 한인 지역 가까운 CUNY 소속 CC. 학비 ~$4,800/년 (NY 시민). 4년제 CUNY 편입 보장. 한인·아시안 학생 다수.\n📍 222-05 56th Ave, Bayside NY | 🔗 qcc.cuny.edu"
+                 : "✅ CUNY CC near Flushing Korean area. ~$4,800/yr (NY resident). Guaranteed transfer to 4-year CUNY schools. Many Korean & Asian students.\n📍 222-05 56th Ave, Bayside NY | 🔗 qcc.cuny.edu",
+        tags: ["플러싱","CUNY","편입"] },
+      { emoji: "🏛️", name: "Bergen Community College (NJ)", nameEn: "Bergen CC — 포트리·팰리세이즈파크 인근",
+        desc: ko ? "✅ NJ 포트리·팰리세이즈파크 한인 최다 밀집 지역 CC. 학비 ~$5,600/년 (NJ 주민). 4년제 Rutgers·Montclair 편입 경로.\n📍 400 Paramus Rd, Paramus NJ | 🔗 bergen.edu"
+                 : "✅ CC in NJ's Korean-dense Fort Lee & Palisades Park area. ~$5,600/yr (NJ resident). Transfer to Rutgers, Montclair, etc.\n📍 400 Paramus Rd, Paramus NJ | 🔗 bergen.edu",
+        tags: ["포트리","팰리세이즈","CUNY편입"] },
+      { emoji: "🏛️", name: "Borough of Manhattan CC (BMCC)", nameEn: "BMCC — 맨해튼 다운타운",
+        desc: ko ? "CUNY 소속. 맨해튼 소재. 비즈니스·회계·IT 특화. 학비 ~$4,800/년 (NY 시민). 4년제 CUNY 편입 가능.\n📍 199 Chambers St, New York | 🔗 bmcc.cuny.edu"
+                 : "CUNY school in Manhattan. Business, accounting & IT focus. ~$4,800/yr. Transfer to 4-year CUNY schools.\n📍 199 Chambers St, New York | 🔗 bmcc.cuny.edu",
+        tags: ["맨해튼","BMCC","비즈니스"] },
+    ],
+    houston: [
+      { emoji: "🏛️", name: "Houston Community College (HCC)", nameEn: "HCC — 휴스턴 한인 커뮤니티 인근",
+        desc: ko ? "✅ 휴스턴 최대 CC. 슈거랜드·케이티 캠퍼스 있음. 학비 ~$2,000/학기 (TX 주민). ESL·간호·기술직 강점. 한인 학생 다수.\n📍 슈거랜드·케이티 캠퍼스 | 🔗 hccs.edu"
+                 : "✅ Houston's largest CC. Sugar Land & Katy campuses. ~$2,000/semester (TX resident). Strong ESL, nursing & tech programs. Many Korean students.\n📍 Sugar Land & Katy campuses | 🔗 hccs.edu",
+        tags: ["슈거랜드","케이티","ESL"] },
+      { emoji: "🏛️", name: "Lone Star College", nameEn: "Lone Star College — 북부 휴스턴",
+        desc: ko ? "✅ 휴스턴 북부 최대 CC 시스템. 케이티·우드랜즈 캠퍼스. 학비 ~$2,200/학기. 4년제 UH·TAMU 편입 경로. STEM 특화.\n📍 케이티·우드랜즈 캠퍼스 | 🔗 lonestar.edu"
+                 : "✅ Largest CC system in north Houston. Katy & Woodlands campuses. ~$2,200/semester. UH & TAMU transfer pathway. STEM focus.\n📍 Katy, Woodlands campuses | 🔗 lonestar.edu",
+        tags: ["케이티","TAMU편입","STEM"] },
+    ],
+    boston: [
+      { emoji: "🏛️", name: "Bunker Hill CC", nameEn: "Bunker Hill CC — 보스턴 (UMass 편입)",
+        desc: ko ? "✅ 보스턴 최대 CC. UMass Boston 편입 보장 과정 있음. ESL 프로그램 강함. 학비 ~$5,000/년 (MA 주민).\n📍 250 New Rutherford Ave, Boston | 🔗 bhcc.edu"
+                 : "✅ Boston's largest CC. UMass Boston guaranteed transfer program. Strong ESL. ~$5,000/yr (MA resident).\n📍 250 New Rutherford Ave, Boston | 🔗 bhcc.edu",
+        tags: ["보스턴","UMass편입","ESL"] },
+      { emoji: "🏛️", name: "Middlesex CC", nameEn: "Middlesex CC — 케임브리지·하버드 인근",
+        desc: ko ? "케임브리지·로웰 소재. 하버드·MIT 인근. 학비 ~$5,200/년. UMass·Northeastern 편입 경로.\n📍 591 Springs Rd, Bedford MA | 🔗 middlesex.mass.edu"
+                 : "Cambridge & Lowell. Near Harvard & MIT. ~$5,200/yr. UMass, Northeastern transfer options.\n📍 591 Springs Rd, Bedford MA | 🔗 middlesex.mass.edu",
+        tags: ["케임브리지","하버드인근","편입"] },
+    ],
+    nashville: [
+      { emoji: "🏛️", name: "Nashville State CC", nameEn: "Nashville State CC — 내쉬빌 중심",
+        desc: ko ? "✅ 내쉬빌 소재. MTSU·Vanderbilt 편입 경로. 학비 ~$2,100/학기 (TN 주민). ESL·기술직 특화.\n📍 120 White Bridge Pike, Nashville TN | 🔗 nscc.edu"
+                 : "✅ Nashville campus. MTSU & Vanderbilt transfer pathway. ~$2,100/semester (TN resident). ESL & tech programs.\n📍 120 White Bridge Pike, Nashville TN | 🔗 nscc.edu",
+        tags: ["내쉬빌","MTSU편입","ESL"] },
+      { emoji: "🏛️", name: "Volunteer State CC (VSCC)", nameEn: "Volunteer State CC — 매디슨 인근",
+        desc: ko ? "✅ 매디슨 근처 소재. 내쉬빌 한인 밀집 지역과 가까움. 학비 ~$2,000/학기. 간호·의료 보조 특화.\n📍 1480 Nashville Pike, Gallatin TN | 🔗 volstate.edu"
+                 : "✅ Near Madison (Nashville Korean hub). ~$2,000/semester. Nursing & medical assistant programs strong.\n📍 1480 Nashville Pike, Gallatin TN | 🔗 volstate.edu",
+        tags: ["매디슨","간호","의료보조"] },
+    ],
+    toronto: [
+      { emoji: "🏛️", name: "Seneca College", nameEn: "Seneca College — 노스욕 (한인 추천 #1)",
+        desc: ko ? "✅ 노스욕 핀치 소재. 한인타운 바로 옆. 비즈니스·IT·미디어 특화. 학비 CA$4,000-5,500/학기. 국제학생 장학금 있음.\n📍 1750 Finch Ave E, North York | 🔗 senecacollege.ca"
+                 : "✅ North York Finch — right next to Korean hub. Business, IT & media programs. CA$4,000-5,500/semester. International scholarships available.\n📍 1750 Finch Ave E, North York | 🔗 senecacollege.ca",
+        tags: ["노스욕","핀치","한인#1"] },
+      { emoji: "🏛️", name: "Centennial College / Humber College", nameEn: "Centennial & Humber — 편입 경로",
+        desc: ko ? "✅ Centennial: 스카버러 소재. IT·간호·비즈니스. Humber: 에토비코 소재. 항공·미디어·디자인.\n학비 CA$4,000-5,000/학기. Ryerson(TMU)·York 편입 경로.\n🔗 centennialcollege.ca | humber.ca"
+                 : "✅ Centennial: Scarborough, IT/nursing/business. Humber: Etobicoke, aviation/media/design.\nCA$4,000-5,000/semester. Transfer to TMU/York.\n🔗 centennialcollege.ca | humber.ca",
+        tags: ["스카버러","에토비코","편입"] },
+    ],
+    vancouver: [
+      { emoji: "🏛️", name: "Douglas College", nameEn: "Douglas College — 코퀴틀람 (한인 추천 #1)",
+        desc: ko ? "✅ 코퀴틀람 소재. 한인 밀집 지역 바로 옆. SFU·UBC 편입 경로. 학비 CA$6,000-8,000/학기 (국제). 의료·비즈니스·심리 강점.\n📍 700 Royal Ave, New Westminster BC | 🔗 douglascollege.ca"
+                 : "✅ New Westminster, near Coquitlam Korean hub. SFU & UBC transfer pathway. CA$6,000-8,000/semester (international). Strong nursing, business & psychology.\n📍 700 Royal Ave, New Westminster BC | 🔗 douglascollege.ca",
+        tags: ["코퀴틀람","SFU·UBC편입","한인#1"] },
+      { emoji: "🏛️", name: "Langara College", nameEn: "Langara College — 밴쿠버 시내 (UBC 편입)",
+        desc: ko ? "✅ 밴쿠버 시내 소재. UBC 편입 명문 루트. 학비 CA$7,000/학기 (국제). 비즈니스·언론·심리 강점.\n📍 100 W 49th Ave, Vancouver BC | 🔗 langara.ca"
+                 : "✅ Vancouver proper. Prestigious UBC transfer pathway. CA$7,000/semester (international). Business, journalism & psychology.\n📍 100 W 49th Ave, Vancouver BC | 🔗 langara.ca",
+        tags: ["밴쿠버","UBC편입","비즈니스"] },
+    ],
+    atlanta: [
+      { emoji: "🏛️", name: "Gwinnett Tech", nameEn: "Gwinnett Technical College — 둘루스 (한인 추천)",
+        desc: ko ? "✅ 둘루스·로렌스빌 소재. 한인 밀집 귀넷카운티 CC. 학비 ~$2,000/학기 (GA 주민). IT·의료보조·비즈니스 특화. 한인 학생 다수.\n📍 5150 Sugarloaf Pkwy, Lawrenceville GA | 🔗 gwinnetttech.edu"
+                 : "✅ Duluth/Lawrenceville — heart of Gwinnett Korean community. ~$2,000/semester (GA resident). IT, medical assistant & business. Many Korean students.\n📍 5150 Sugarloaf Pkwy, Lawrenceville GA | 🔗 gwinnetttech.edu",
+        tags: ["둘루스","귀넷","한인#1"] },
+      { emoji: "🏛️", name: "Georgia Perimeter College → GA State", nameEn: "Georgia State Perimeter College",
+        desc: ko ? "✅ GA State University 계열 CC. 5개 캠퍼스. 학비 ~$2,200/학기. GA State 편입 보장 과정. 스와니·둘루스 캠퍼스 한인 다수.\n📍 둘루스·에드워즈빌 등 | 🔗 gpc.edu"
+                 : "✅ GA State University's 2-year college. 5 campuses. ~$2,200/semester. Guaranteed GA State transfer. Many Koreans at Suwanee/Duluth campuses.\n📍 Duluth, Dunwoody + others | 🔗 gpc.edu",
+        tags: ["GA State편입","스와니","둘루스"] },
+    ],
+    philadelphia: [
+      { emoji: "🏛️", name: "Community College of Philadelphia (CCP)", nameEn: "Community College of Philadelphia",
+        desc: ko ? "✅ 필라 최대 CC. 어퍼다비·체리힐 한인 통학 가능. 학비 ~$4,400/년 (PA 주민). Temple·Drexel 편입 경로. ESL 우수.\n📍 1700 Spring Garden St, Philadelphia PA | 🔗 ccp.edu"
+                 : "✅ Philadelphia's largest CC. Commutable from Upper Darby & Cherry Hill. ~$4,400/yr (PA resident). Temple & Drexel transfer pathway. Strong ESL.\n📍 1700 Spring Garden St, Philadelphia PA | 🔗 ccp.edu",
+        tags: ["필라","Temple편입","ESL"] },
+      { emoji: "🏛️", name: "Camden County College (NJ)", nameEn: "Camden County College — 체리힐 (NJ)",
+        desc: ko ? "체리힐 인근 NJ CC. 학비 ~$4,200/년 (NJ 주민). Rutgers 편입 경로. 한인 체리힐 커뮤니티 통학 가능.\n📍 200 College Dr, Blackwood NJ | 🔗 camdencc.edu"
+                 : "Near Cherry Hill, NJ. ~$4,200/yr (NJ resident). Rutgers transfer pathway. Commutable for Korean Cherry Hill community.\n📍 200 College Dr, Blackwood NJ | 🔗 camdencc.edu",
+        tags: ["체리힐","Rutgers편입","NJ"] },
+    ],
+    kansascity: [
+      { emoji: "🏛️", name: "Johnson County CC (JCCC)", nameEn: "Johnson County CC — 오버랜드파크 (한인 추천)",
+        desc: ko ? "✅ 오버랜드파크 소재. 한인 H-Mart 인근. KS 최고 CC. 학비 ~$3,500/년 (KS 주민). KU·KSU 편입 경로. ESL 우수.\n📍 12345 College Blvd, Overland Park KS | 🔗 jccc.edu"
+                 : "✅ Overland Park — near Korean H-Mart. KS's best CC. ~$3,500/yr (KS resident). KU & KSU transfer pathway. Strong ESL.\n📍 12345 College Blvd, Overland Park KS | 🔗 jccc.edu",
+        tags: ["오버랜드파크","KU편입","한인#1"] },
+      { emoji: "🏛️", name: "Metropolitan CC (MCC)", nameEn: "Metropolitan CC — 캔자스시티 MO",
+        desc: ko ? "MO 캔자스시티 소재. UMKC 편입 경로. 학비 ~$3,000/년 (MO 주민). 비즈니스·IT·건강과학 특화.\n📍 3200 Broadway, Kansas City MO | 🔗 mcckc.edu"
+                 : "MO Kansas City. UMKC transfer pathway. ~$3,000/yr (MO resident). Business, IT & health sciences.\n📍 3200 Broadway, Kansas City MO | 🔗 mcckc.edu",
+        tags: ["UMKC편입","KC","MO"] },
+    ],
+    miami: [
+      { emoji: "🏛️", name: "Miami Dade College (MDC)", nameEn: "Miami Dade College — 미국 최대 CC",
+        desc: ko ? "✅ 미국 최대 CC 중 하나. 도랄·코랄게이블스 캠퍼스. 학비 ~$3,000/년 (FL 주민). FIU·UM 편입 경로. 한국어·ESL 강함. 스페인어 병행.\n📍 도랄 캠퍼스 포함 8개 캠퍼스 | 🔗 mdc.edu"
+                 : "✅ One of the US's largest CCs. Doral & Coral Gables campuses. ~$3,000/yr (FL resident). FIU & UM transfer pathway. Korean, ESL & Spanish programs.\n📍 8 campuses incl. Doral | 🔗 mdc.edu",
+        tags: ["도랄","FIU편입","스페인어"] },
+      { emoji: "🏛️", name: "Broward College", nameEn: "Broward College — 포트로더데일",
+        desc: ko ? "마이애미 북쪽. FL 주민 학비 ~$3,000/년. NSU·FAU 편입 경로. 한인 커뮤니티 성장 중.\n📍 포트로더데일·펨브로크파인스 | 🔗 broward.edu"
+                 : "North Miami. FL resident ~$3,000/yr. NSU & FAU transfer pathway. Growing Korean community.\n📍 Fort Lauderdale, Pembroke Pines | 🔗 broward.edu",
+        tags: ["포트로더데일","NSU편입","한인성장"] },
+    ],
+    mexicocity: [
+      { emoji: "🏛️", name: ko ? "UNAM (멕시코 국립 자치대학) — 전문학교·어학원" : "UNAM — Language Courses & Professional Programs",
+        desc: ko ? "✅ 멕시코 최대 국립대학. 스페인어 집중 과정 외국인 대상 운영 (CEPE).\n학비: 매우 저렴 (연 USD $1,000 미만)\n📍 Ciudad Universitaria, CDMX | 🔗 unam.mx/cepe"
+                 : "✅ Mexico's largest national university. Spanish intensive courses for foreigners (CEPE).\nVery affordable tuition (under USD $1,000/yr)\n📍 Ciudad Universitaria, CDMX | 🔗 unam.mx/cepe",
+        tags: ["UNAM","스페인어","저렴"] },
+      { emoji: "🏛️", name: ko ? "한국문화원 멕시코 — 한국어 강좌" : "Korean Cultural Center Mexico — Korean Language",
+        desc: ko ? "주멕시코 한국문화원 한국어 강좌. 현지인 대상. 한인 교류 기회.\n📍 폴랑코 인근 | 🔗 mexico.korean-culture.org"
+                 : "Korean Cultural Center Mexico Korean language courses. For locals. Korean community connection.\n📍 Near Polanco | 🔗 mexico.korean-culture.org",
+        tags: ["한국어강좌","문화원","폴랑코"] },
+      { emoji: "💡", name: ko ? "ITAM / IBERO — 멕시코 명문 사립대 단기 과정" : "ITAM / IBERO — Mexico Top Private Short Programs",
+        desc: ko ? "ITAM(경제·금융 최강)·IBERO(예수회 명문) 전문 과정. 비즈니스·스페인어·경영 단기 교육.\n🔗 itam.mx | ibero.mx"
+                 : "ITAM (top economics & finance) & IBERO (Jesuit) professional courses. Business, Spanish & management short programs.\n🔗 itam.mx | ibero.mx",
+        tags: ["ITAM","IBERO","단기과정"] },
+    ],
+    guadalajara: [
+      { emoji: "🏛️", name: ko ? "ITESO / UdeG — 과달라하라 명문대 강좌" : "ITESO & UdeG — Guadalajara University Courses",
+        desc: ko ? "ITESO (예수회 사립): 경영·공학·디자인 우수.\nUdeG (공립): 스페인어 집중 과정 외국인 대상. 학비 매우 저렴.\n🔗 iteso.mx | udg.mx"
+                 : "ITESO (Jesuit private): Strong business, engineering & design.\nUdeG (public): Spanish courses for foreigners. Very affordable.\n🔗 iteso.mx | udg.mx",
+        tags: ["ITESO","UdeG","스페인어"] },
+    ],
+    monterrey: [
+      { emoji: "🏛️", name: ko ? "Tec de Monterrey (ITESM) — 멕시코 1위 사립대" : "Tec de Monterrey — Mexico's Top Private University",
+        desc: ko ? "✅ 멕시코 사립 1위. 공학·경영·기술 세계적 수준. 영어 트랙 과정. 주재원 자녀 한인 학생 다수.\n학비: USD $8,000-15,000/년\n📍 Av. Eugenio Garza Sada 2501, Monterrey | 🔗 tec.mx"
+                 : "✅ Mexico's #1 private university. World-class engineering, business & tech. English-track programs. Many Korean expat children enrolled.\nTuition: USD $8,000-15,000/yr\n📍 Av. Eugenio Garza Sada 2501, Monterrey | 🔗 tec.mx",
+        tags: ["Tec","멕시코1위","영어트랙"] },
+      { emoji: "💡", name: ko ? "UDEM / UANL — 몬테레이 대학교 외국어 과정" : "UDEM & UANL — Monterrey University Language Programs",
+        desc: ko ? "UDEM (사립)·UANL (공립, 누에보레온주립대) 스페인어·외국어 과정.\n외국인 등록 가능. 학비 저렴.\n🔗 udem.edu.mx | uanl.mx"
+                 : "UDEM (private) & UANL (public, Nuevo León State Univ) Spanish & language programs.\nOpen to foreigners. Affordable tuition.\n🔗 udem.edu.mx | uanl.mx",
+        tags: ["UDEM","UANL","스페인어"] },
+    ],
+  };
+  return D[slug] ?? [
+    { emoji: "🏛️", name: ko ? "지역 커뮤니티 칼리지" : "Local Community College",
+      desc: ko ? "이 도시의 CC 정보를 수집 중입니다.\n💡 collegedata.com 또는 collegeboard.org에서 검색하세요."
+               : "CC information for this city is being collected.\n💡 Search at collegedata.com or collegeboard.org.",
+      tags: ["CC","편입","대학"] },
+  ];
+}
+
+function getCityKoreanSchool(slug: string, lang: string) {
+  const ko = lang === "ko";
+  type Item = { emoji: string; name: string; nameEn?: string; desc: string; tags: string[] };
+  const D: Record<string, Item[]> = {
+    seattle: [
+      { emoji: "🇰🇷", name: ko ? "시애틀한국학교" : "Seattle Korean School",
+        desc: ko ? "✅ WA주 최대 한국학교. 매주 토요일 오전. 유치~성인반 TOPIK 준비반 운영.\n🔗 seattlekoreanschool.org"
+                 : "✅ WA's largest Korean school. Every Saturday morning. Pre-K to adult, TOPIK prep.\n🔗 seattlekoreanschool.org",
+        tags: ["한국학교","토요한글","TOPIK"] },
+      { emoji: "📖", name: ko ? "교회 부설 한국학교" : "Church-Based Korean Schools",
+        desc: ko ? "많은 한인 교회가 자체 한국학교 운영. GMC 시애틀지구촌교회·벨뷰·린우드 지역 교회 토요 한국학교.\n🔗 ijiguchon.org"
+                 : "Many Korean churches run Saturday Korean schools. GMC, Bellevue & Lynnwood Korean churches.\n🔗 ijiguchon.org",
+        tags: ["교회한국학교","토요일","무료"] },
+      { emoji: "📊", name: ko ? "NAKS-PNW (서북미협의회)" : "NAKS-PNW — Korean Schools Regional Council",
+        desc: ko ? "WA·OR·ID 한국학교 협의회. 전체 학교 목록·말하기 대회·여름캠프.\n🔗 nakspnw.org"
+                 : "WA, OR & ID Korean school council. Full school list, speech competition, summer camp.\n🔗 nakspnw.org",
+        tags: ["서북미협의회","NAKS","한국어대회"] },
+    ],
+    dallas: [
+      { emoji: "🇰🇷", name: ko ? "달라스 한국학교" : "Dallas Korean School",
+        desc: ko ? "✅ 매주 토요일 오전. 캐롤튼·플레이노 캠퍼스. 유치~고등반 TOPIK 준비반.\n카카오채팅 '달라스한국학교' 또는 달라스한인회 문의."
+                 : "✅ Every Saturday morning. Carrollton & Plano campuses. Pre-K to HS, TOPIK prep.\nContact via Dallas Korean Association.",
+        tags: ["달라스","토요한글","TOPIK"] },
+      { emoji: "📖", name: ko ? "교회 부설 한국학교 (달라스)" : "Church Korean Schools — Dallas",
+        desc: ko ? "캐롤튼·프리스코·플레이노 지역 한인 교회에서 한국어 교육 운영. 한국제일침례교회·달라스새생명교회 등."
+                 : "Korean churches in Carrollton, Frisco & Plano offer Korean language classes. Korean First Baptist, Dallas New Life Church, etc.",
+        tags: ["달라스교회","한국어","무료"] },
+      { emoji: "🥋", name: ko ? "태권도·한국 문화 (달라스)" : "Taekwondo & Korean Culture — Dallas",
+        desc: ko ? "캐롤튼·프리스코 한인 태권도 도장 다수. 주 2-3회, 월 $80-150.\nK-pop 댄스·가야금 클래스: 한인회 문의."
+                 : "Multiple Korean Taekwondo dojangs in Carrollton & Frisco. 2-3x/week, $80-150/month.\nK-pop dance & Gayageum: contact Korean Association.",
+        tags: ["태권도","K-pop","달라스"] },
+    ],
+    sf: [
+      { emoji: "🇰🇷", name: ko ? "베이에리어 한국학교" : "Bay Area Korean School",
+        desc: ko ? "✅ 산호세·프리몬트·쿠퍼티노 지역 한국학교 여러 곳 운영. 매주 토요일. TOPIK 준비반.\n베이에리어한인회 문의."
+                 : "✅ Multiple Korean schools in San Jose, Fremont & Cupertino. Every Saturday. TOPIK prep.\nContact Bay Area Korean Association.",
+        tags: ["산호세","프리몬트","TOPIK"] },
+      { emoji: "📊", name: ko ? "NAKS 서부 (Korean Schools of America)" : "NAKS West — Korean Schools Association",
+        desc: ko ? "CA·NV·AZ 한국학교 협의회. 전체 학교 목록·대회 정보.\n🔗 naks.net"
+                 : "Korean school council for CA, NV & AZ. Full school list & competition info.\n🔗 naks.net",
+        tags: ["NAKS","CA","한국어대회"] },
+    ],
+    la: [
+      { emoji: "🇰🇷", name: ko ? "남가주 한국학교협의회" : "Korean Schools Association — Southern CA",
+        desc: ko ? "✅ 코리아타운·세리토스·토랜스 지역 한국학교 네트워크. 매주 토요일. TOPIK 준비반.\n🔗 naks.net (남가주 지부)"
+                 : "✅ Korean school network in Koreatown, Cerritos & Torrance. Every Saturday. TOPIK prep.\n🔗 naks.net (Southern CA chapter)",
+        tags: ["코리아타운","세리토스","TOPIK"] },
+      { emoji: "📖", name: ko ? "교회 부설 한국학교 (LA)" : "Church Korean Schools — LA",
+        desc: ko ? "나성영락교회·LA새누리교회 등 코리아타운·세리토스 한인 교회 한국학교.\nK-pop·태권도·가야금 문화 교육 병행."
+                 : "LA Youngnak, LA Saenuri & other Koreatown/Cerritos churches run Korean schools.\nK-pop, Taekwondo & Gayageum cultural education also available.",
+        tags: ["코리아타운교회","한국학교","문화"] },
+    ],
+    newyork: [
+      { emoji: "🇰🇷", name: ko ? "뉴욕·뉴저지 한국학교" : "New York & New Jersey Korean Schools",
+        desc: ko ? "✅ 플러싱·포트리·팰리세이즈파크 지역 한국학교 여러 곳. 매주 토요일.\n뉴욕한인회 또는 NAKS 동부 지부 문의.\n🔗 naks.net"
+                 : "✅ Multiple Korean schools in Flushing, Fort Lee & Palisades Park. Every Saturday.\nContact NANY or NAKS Eastern chapter.\n🔗 naks.net",
+        tags: ["플러싱","포트리","TOPIK"] },
+    ],
+    houston: [
+      { emoji: "🇰🇷", name: ko ? "휴스턴 한국학교" : "Houston Korean School",
+        desc: ko ? "✅ 슈거랜드·케이티 지역 한국학교. 매주 토요일. TOPIK 준비반.\n휴스턴한인회 문의 또는 한인 교회 탐색."
+                 : "✅ Korean schools in Sugar Land & Katy. Every Saturday. TOPIK prep.\nContact Houston Korean Association or local Korean churches.",
+        tags: ["슈거랜드","케이티","TOPIK"] },
+    ],
+    boston: [
+      { emoji: "🇰🇷", name: ko ? "보스턴 한국학교" : "Boston Korean School",
+        desc: ko ? "✅ 올스턴·퀸시 지역 한국학교. 매주 토요일. 하버드·MIT 유학생 자녀 다수.\n보스턴한인회 또는 한인 교회 문의."
+                 : "✅ Korean schools in Allston & Quincy. Every Saturday. Many Harvard/MIT student families.\nContact Boston Korean Association or local churches.",
+        tags: ["보스턴","올스턴","TOPIK"] },
+    ],
+    nashville: [
+      { emoji: "🇰🇷", name: ko ? "내쉬빌 한국학교" : "Nashville Korean School",
+        desc: ko ? "✅ 매디슨·쿨스프링스 지역 한국학교. 매주 토요일. 내쉬빌한인회 문의."
+                 : "✅ Korean schools in Madison & Cool Springs. Every Saturday. Contact Nashville Korean Association.",
+        tags: ["내쉬빌","매디슨","토요한글"] },
+    ],
+    toronto: [
+      { emoji: "🇰🇷", name: ko ? "토론토 한국학교 협의회" : "Korean Schools of Toronto",
+        desc: ko ? "✅ 노스욕·스카버러·미시사가 한국학교 여러 곳. 매주 토요일. TOPIK 준비반.\n🔗 토론토한인회 문의"
+                 : "✅ Multiple schools in North York, Scarborough & Mississauga. Every Saturday. TOPIK prep.\nContact Toronto Korean Association.",
+        tags: ["노스욕","스카버러","TOPIK"] },
+    ],
+    vancouver: [
+      { emoji: "🇰🇷", name: ko ? "밴쿠버 한국학교" : "Vancouver Korean School",
+        desc: ko ? "✅ 코퀴틀람·버나비·노스밴쿠버 한국학교 여러 곳. 매주 토요일. TOPIK 준비반.\n🔗 밴쿠버한인회 문의"
+                 : "✅ Multiple schools in Coquitlam, Burnaby & North Vancouver. Every Saturday. TOPIK prep.\nContact Vancouver Korean Association.",
+        tags: ["코퀴틀람","버나비","TOPIK"] },
+    ],
+    atlanta: [
+      { emoji: "🇰🇷", name: ko ? "애틀랜타 한국학교 협의회" : "Korean Schools of Atlanta",
+        desc: ko ? "✅ 둘루스·스와니·존스크릭 지역 한국학교 여러 곳. 매주 토요일. TOPIK 준비반.\n애틀랜타한인회 문의."
+                 : "✅ Multiple schools in Duluth, Suwanee & Johns Creek. Every Saturday. TOPIK prep.\nContact Atlanta Korean Association.",
+        tags: ["둘루스","스와니","TOPIK"] },
+    ],
+    philadelphia: [
+      { emoji: "🇰🇷", name: ko ? "필라델피아 한국학교" : "Philadelphia Korean School",
+        desc: ko ? "✅ 어퍼다비·체리힐 지역 한국학교. 매주 토요일.\n필라한인회 문의."
+                 : "✅ Korean schools in Upper Darby & Cherry Hill. Every Saturday.\nContact Philadelphia Korean Association.",
+        tags: ["어퍼다비","체리힐","토요한글"] },
+    ],
+    kansascity: [
+      { emoji: "🇰🇷", name: ko ? "캔자스시티 한국학교" : "Kansas City Korean School",
+        desc: ko ? "✅ 오버랜드파크 한국학교. 매주 토요일. KC한인회 문의."
+                 : "✅ Korean school in Overland Park. Every Saturday. Contact KC Korean Association.",
+        tags: ["오버랜드파크","KC","토요한글"] },
+    ],
+    miami: [
+      { emoji: "🇰🇷", name: ko ? "마이애미 한국학교" : "Miami Korean School",
+        desc: ko ? "✅ 도랄·코랄게이블스 지역 한국학교. 매주 토요일. 스페인어권 환경 속 한국어 교육.\n마이애미한인회 문의."
+                 : "✅ Korean schools in Doral & Coral Gables. Every Saturday. Korean education in Hispanic environment.\nContact Miami Korean Association.",
+        tags: ["도랄","한국학교","스페인어"] },
+    ],
+    mexicocity: [
+      { emoji: "🇰🇷", name: ko ? "멕시코시티 한국학교 (재멕동포용)" : "Korean School of Mexico City",
+        desc: ko ? "✅ 재멕시코 한국 교육원 산하 한국학교. 주재원 자녀·한인 2세 교육. 폴랑코 인근.\n📞 대사관 교육원: 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko"
+                 : "✅ Korean school under Korean Education Center Mexico. For expat children & 2nd-gen Koreans. Near Polanco.\n📞 Embassy Education Center: 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko",
+        tags: ["한국학교","주재원자녀","폴랑코"] },
+    ],
+    guadalajara: [
+      { emoji: "🇰🇷", name: ko ? "과달라하라 한글학교" : "Guadalajara Korean Language School",
+        desc: ko ? "재멕시코 한국 교육원 연계 한글학교. 주말 한국어 수업.\n과달라하라 한인회 연락 → 위치 확인."
+                 : "Korean Language School linked with Korean Education Center Mexico. Weekend classes.\nContact Guadalajara Korean Association for location.",
+        tags: ["한글학교","주재원자녀","과달라하라"] },
+    ],
+    monterrey: [
+      { emoji: "🇰🇷", name: ko ? "몬테레이 한글학교" : "Monterrey Korean Language School",
+        desc: ko ? "재멕시코 한국 교육원 연계 한글학교. 현대·기아·POSCO 주재원 자녀 대상. 주말 한국어 수업.\n몬테레이 한인회 문의."
+                 : "Korean Language School linked with Korean Education Center Mexico. For Hyundai/Kia/POSCO expat children. Weekend classes.\nContact Monterrey Korean Association.",
+        tags: ["한글학교","주재원자녀","몬테레이"] },
+    ],
+  };
+  return D[slug] ?? [
+    { emoji: "🇰🇷", name: ko ? "지역 한국학교" : "Local Korean School",
+      desc: ko ? "이 도시의 한국학교 정보를 수집 중입니다.\n💡 재외한국교육원 또는 naks.net에서 검색하세요."
+               : "Korean school info for this city is being collected.\n💡 Search at naks.net or contact the local Korean Education Center.",
+      tags: ["한국학교","토요한글","TOPIK"] },
+  ];
+}
+
+function getCityShoppingMarkets(slug: string, lang: string) {
+  const ko = lang === "ko";
+  type Item = { emoji: string; name: string; nameEn?: string; desc: string; tags: string[] };
+  // 국가·도시별 주요 마트 정보
+  const isMexico = slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey";
+  const isCanada = slug === "toronto" || slug === "vancouver";
+
+  const costcoAddr: Record<string, string> = {
+    seattle: ko ? "📍 린우드: 4401 Auto Mall Dr | 쇼어라인: 14905 1st Ave NE" : "📍 Lynnwood: 4401 Auto Mall Dr | Shoreline: 14905 1st Ave NE",
+    dallas: ko ? "📍 캐롤튼: 2120 Market Pl Dr | 프리스코: 2505 Preston Rd" : "📍 Carrollton: 2120 Market Pl Dr | Frisco: 2505 Preston Rd",
+    sf: ko ? "📍 마운틴뷰: 1600 N Shoreline Blvd | 산호세: 725 Blossom Hill Rd" : "📍 Mountain View: 1600 N Shoreline Blvd | San Jose: 725 Blossom Hill Rd",
+    la: ko ? "📍 세리토스: 12820 Towne Center Dr | 토랜스: 2640 Pacific Coast Hwy" : "📍 Cerritos: 12820 Towne Center Dr | Torrance: 2640 Pacific Coast Hwy",
+    newyork: ko ? "📍 브루클린: 976 3rd Ave | 퀸즈: 32-50 Vernon Blvd" : "📍 Brooklyn: 976 3rd Ave | Queens: 32-50 Vernon Blvd",
+    houston: ko ? "📍 슈거랜드: 4525 Hwy 6 S | 케이티: 2100 TX-99" : "📍 Sugar Land: 4525 Hwy 6 S | Katy: 2100 TX-99",
+    boston: ko ? "📍 워번: 75 Mystic Ave | 데덤: 575 Providence Hwy" : "📍 Woburn: 75 Mystic Ave | Dedham: 575 Providence Hwy",
+    nashville: ko ? "📍 안티오크: 320 Amsouth Bank Blvd | 브렌트우드: 206 Old Hickory Blvd" : "📍 Antioch: 320 Amsouth Bank Blvd | Brentwood: 206 Old Hickory Blvd",
+    toronto: ko ? "📍 노스요크: 1 Sunforest Dr | 에토비코: 900 Warden Ave" : "📍 North York: 1 Sunforest Dr | Etobicoke: 900 Warden Ave",
+    vancouver: ko ? "📍 버나비: 4500 Still Creek Dr | 코퀴틀람: 1650 Island Hwy E" : "📍 Burnaby: 4500 Still Creek Dr | Coquitlam: 1650 Island Hwy E",
+    atlanta: ko ? "📍 둘루스: 2150 Pleasant Hill Rd | 스와니: 2985 Lawrenceville Suwanee Rd" : "📍 Duluth: 2150 Pleasant Hill Rd | Suwanee: 2985 Lawrenceville Suwanee Rd",
+    philadelphia: ko ? "📍 어퍼다비: 1000 Cedar Ave | 체리힐: 2149 Rte 38" : "📍 Upper Darby: 1000 Cedar Ave | Cherry Hill: 2149 Rte 38",
+    kansascity: ko ? "📍 오버랜드파크: 6700 W 119th St" : "📍 Overland Park: 6700 W 119th St",
+    miami: ko ? "📍 도랄: 10600 NW 19th St | 켄달: 9005 SW 137th Ave" : "📍 Doral: 10600 NW 19th St | Kendall: 9005 SW 137th Ave",
+  };
+
+  if (isMexico) return [
+    { emoji: "🏪", name: ko ? "삼 (Sam's Club) / 코스트코" : "Sam's Club / Costco Mexico",
+      desc: ko ? "✅ 멕시코 코스트코·샘스클럽. 수입 식품·한국 라면·김치 구매 가능.\n📍 멕시코시티·과달라하라·몬테레이 각 지점\n연 멤버십 MXN $600-800"
+               : "✅ Costco & Sam's Club in Mexico. Import foods, Korean ramen & kimchi available.\n📍 Locations in CDMX, Guadalajara & Monterrey\nAnnual membership MXN $600-800",
+      tags: ["코스트코","수입식품","멕시코"] },
+    { emoji: "🥬", name: ko ? "H-Mart / KA Mart (한국 마트)" : "H-Mart / KA Mart — Korean Grocery",
+      desc: ko ? "멕시코시티·폴랑코 지역 한인 식품점. 한국 식재료·라면·김치·냉동식품.\n소규모 한인 마트 — 폴랑코 한인타운 주변 탐색."
+               : "Korean grocery stores in Mexico City Polanco area. Korean ingredients, ramen, kimchi, frozen foods.\nSmall Korean markets — explore around Polanco Koreatown.",
+      tags: ["한국마트","폴랑코","식재료"] },
+    { emoji: "🛒", name: ko ? "HEB / Walmart Mexico — 현지 대형마트" : "HEB / Walmart Mexico — Local Supermarkets",
+      desc: ko ? "멕시코 대형 마트 체인. 식료품·생활용품 저렴.\nChedraui·Soriana·Comercial Mexicana도 주요 선택지."
+               : "Mexico's major supermarket chains. Affordable groceries & everyday items.\nChedraui, Soriana & Comercial Mexicana also popular.",
+      tags: ["Walmart","HEB","멕시코마트"] },
+    { emoji: "🥩", name: ko ? "멕시칸 타코·길거리 음식" : "Mexican Tacos & Street Food",
+      desc: ko ? "타코 MXN $20-40개, 타말레 MXN $15-25. 멕시코 최고 가성비 식사.\n• 폴랑코: 고급 타코 레스토랑\n• 재래시장(Mercado): 현지 가격"
+               : "Tacos MXN $20-40 each, tamales MXN $15-25. Best value meal in Mexico.\n• Polanco: upscale taco restaurants\n• Mercado (market): local prices",
+      tags: ["타코","가성비","멕시코음식"] },
+  ];
+
+  if (isCanada) return [
+    { emoji: "🏪", name: ko ? "코스트코 (Costco Canada)" : "Costco Canada",
+      desc: ko ? `✅ 연 멤버십 CA$65 → 평균 CA$400+ 절약\n${costcoAddr[slug] ?? ""}\n한인 추천: 연어·쌀·Kirkland 제품 대용량`
+               : `✅ Annual membership CA$65 → saves avg CA$400+/yr\n${costcoAddr[slug] ?? ""}\nKorean favorites: salmon, rice, Kirkland bulk items`,
+      tags: ["코스트코","캐나다","창고형"] },
+    { emoji: "🥬", name: ko ? "T&T 슈퍼마켓 (아시안 마트)" : "T&T Supermarket — Pan-Asian",
+      desc: ko ? slug === "toronto"
+          ? "✅ 검증됨 | 캐나다 최대 아시안 마트. 노스욕·스카버러·미시사가 지점. 한국 식재료·김치·라면 구비.\n📍 노스욕: 4390 Steeles Ave E | 🔗 tntsupermarket.com"
+          : "✅ 검증됨 | 캐나다 최대 아시안 마트. 버나비·코퀴틀람 지점. 한국 식재료·김치·라면 구비.\n📍 버나비: 4800 Kingsway | 🔗 tntsupermarket.com"
+               : slug === "toronto"
+          ? "✅ Verified | Canada's largest Asian supermarket. North York, Scarborough & Mississauga locations. Korean ingredients, kimchi & ramen.\n📍 North York: 4390 Steeles Ave E | 🔗 tntsupermarket.com"
+          : "✅ Verified | Canada's largest Asian supermarket. Burnaby & Coquitlam locations. Korean ingredients, kimchi & ramen.\n📍 Burnaby: 4800 Kingsway | 🔗 tntsupermarket.com",
+      tags: ["T&T","아시안마트","한국식재료"] },
+    { emoji: "🛒", name: ko ? "No Frills / FreshCo — 알뜰 마트" : "No Frills / FreshCo — Budget Grocery",
+      desc: ko ? "캐나다 최저가 식료품 체인. 소박하지만 가격 최강.\n• No Frills: Loblaw 계열 알뜰 브랜드\n• FreshCo: Sobeys 계열 알뜰 브랜드"
+               : "Canada's budget grocery chains. No frills but lowest prices.\n• No Frills: Loblaw discount brand\n• FreshCo: Sobeys discount brand",
+      tags: ["NoFrills","저렴","캐나다마트"] },
+    { emoji: "♻️", name: ko ? "Value Village / Salvation Army 중고마켓" : "Value Village & Salvation Army — Second-Hand",
+      desc: ko ? "중고의류 CA$5-20, 가구·가전 저렴.\nFacebook Marketplace: 무료 아이템 다수 (Buy Nothing 그룹)."
+               : "Second-hand clothing CA$5-20, affordable furniture & appliances.\nFacebook Marketplace: Many free items (Buy Nothing groups).",
+      tags: ["중고","ValueVillage","무료"] },
+  ];
+
+  // US cities
+  const costco: Item = {
+    emoji: "🏪", name: ko ? "코스트코 (Costco)" : "Costco — Best Value Warehouse",
+    desc: ko ? `✅ 연 멤버십 $65 → 평균 $300+ 절약\n${costcoAddr[slug] ?? "📍 가까운 지점: google.com/maps/search/costco"}\n한인 추천: 쌀 대용량, Kirkland 연어, 갈비`
+             : `✅ Annual membership $65 → saves avg $300+/yr\n${costcoAddr[slug] ?? "📍 Nearest: google.com/maps/search/costco"}\nKorean favorites: bulk rice, Kirkland salmon, short ribs`,
+    tags: ["코스트코","창고형","저렴"],
+  };
+  const hMart: Item = {
+    emoji: "🥬", name: ko ? "H-Mart (한인 마트)" : "H-Mart — Korean Supermarket",
+    desc: ko ? `✅ 한인 마트 1위. 한국 식재료·김치·라면·냉동식품 총망라.\n📍 가까운 H-Mart: google.com/maps/search/h-mart+${slug.replace("newyork","new+york").replace("kansascity","kansas+city")}`
+             : `✅ #1 Korean supermarket. Korean ingredients, kimchi, ramen, frozen foods.\n📍 Nearest H-Mart: google.com/maps/search/h-mart+${slug.replace("newyork","new+york").replace("kansascity","kansas+city")}`,
+    tags: ["H-Mart","한국식재료","한인마트"],
+  };
+  const tj: Item = {
+    emoji: "🌿", name: ko ? "Trader Joe's" : "Trader Joe's — Quality at Low Price",
+    desc: ko ? `고품질 자체브랜드 저렴. 유기농·건강식품.\n📍 가까운 TJ: google.com/maps/search/trader+joes+${slug.replace("newyork","new+york").replace("kansascity","kansas+city")}`
+             : `Quality private-label products at lower prices. Organic & healthy options.\n📍 Nearest TJ: google.com/maps/search/trader+joes+${slug.replace("newyork","new+york").replace("kansascity","kansas+city")}`,
+    tags: ["TJ","유기농","가성비"],
+  };
+  const goodwill: Item = {
+    emoji: "♻️", name: ko ? "Goodwill & Facebook Marketplace" : "Goodwill & Facebook Marketplace",
+    desc: ko ? `중고의류 $3-15, 가구·가전. Facebook Marketplace & Buy Nothing 그룹: 무료 아이템 다수.\n📍 가까운 Goodwill: google.com/maps/search/goodwill+${slug}`
+             : `Clothing $3-15, furniture, appliances. Facebook Marketplace & Buy Nothing groups: many free items.\n📍 Nearest Goodwill: google.com/maps/search/goodwill+${slug}`,
+    tags: ["중고","굿윌","무료"],
+  };
+
+  // WA-specific: WinCo, Uwajimaya
+  if (slug === "seattle") return [
+    costco,
+    hMart,
+    { emoji: "🏬", name: "WinCo Foods", nameEn: "WinCo Foods — Lowest Prices",
+      desc: ko ? "✅ 식료품 최저가. 직원 소유 = 좋은 서비스.\n📍 린우드: 19500 Hwy 99 | 렌튼 | 에버렛\n⚠️ 신용카드 불가 (직불카드·현금만)"
+               : "✅ Consistently LOWEST grocery prices. Employee-owned.\n📍 Lynnwood: 19500 Hwy 99 | Renton | Everett\n⚠️ No credit cards (debit/cash only)",
+      tags: ["WinCo","최저가","벌크"] },
+    { emoji: "🥬", name: "99 Ranch Market", nameEn: "99 Ranch — Pan-Asian",
+      desc: ko ? "✅ 중국·범아시안 슈퍼마켓. H-Mart보다 채소·해산물 20-40% 저렴.\n📍 벨뷰: 14700 NE 20th St | 에드먼즈: 23830 Hwy 99"
+               : "✅ Chinese/Pan-Asian supermarket. Fresh produce & seafood 20-40% cheaper than H-Mart.\n📍 Bellevue: 14700 NE 20th St | Edmonds: 23830 Hwy 99",
+      tags: ["99랜치","아시안마트","저렴"] },
+    { emoji: "🐟", name: "우와지마야 (Uwajimaya)", nameEn: "Uwajimaya — Japanese/Asian",
+      desc: ko ? "✅ 일본·아시안 마트. 최고의 해산물 선택.\n📍 벨뷰: 699 120th Ave NE | 시애틀: 600 5th Ave S"
+               : "✅ Japanese/Asian supermarket — best seafood selection.\n📍 Bellevue: 699 120th Ave NE | Seattle: 600 5th Ave S",
+      tags: ["우와지마야","일본마트","해산물"] },
+    tj, goodwill,
+  ];
+
+  // CA (SF / LA): Ranch 99, 99 Ranch
+  if (slug === "sf" || slug === "la") return [
+    costco,
+    hMart,
+    { emoji: "🥬", name: "99 Ranch Market", nameEn: "99 Ranch — Pan-Asian",
+      desc: ko ? slug === "sf"
+          ? "✅ 아시안 마트. 신선 해산물·두부·채소 저렴.\n📍 프리몬트: 46822 Warm Springs Blvd | 밀피타스: 222 Barber Ln"
+          : "✅ LA 최대 아시안 마트 체인. 코리아타운 인근 지점 다수.\n📍 로울랜드하이츠: 1820 Nogales St | 에디슨: 18414 Colima Rd"
+               : slug === "sf"
+          ? "✅ Asian supermarket. Fresh seafood, tofu & produce at lower prices.\n📍 Fremont: 46822 Warm Springs Blvd | Milpitas: 222 Barber Ln"
+          : "✅ LA's largest Asian supermarket chain. Multiple locations near Koreatown.\n📍 Rowland Heights: 1820 Nogales St | Edison: 18414 Colima Rd",
+      tags: ["99랜치","아시안마트","저렴"] },
+    { emoji: "🛒", name: "Grocery Outlet", nameEn: "Grocery Outlet — 30-70% Off",
+      desc: ko ? "✅ 정가 대비 30-70% 할인. 매주 다른 재고 (보물찾기 스타일).\n식품·음료·유제품 마크다운 탁월."
+               : "✅ 30-70% off regular prices. 'Treasure hunt' style — stock changes weekly.\nBest for snacks, beverages & dairy markdowns.",
+      tags: ["할인마트","식품","절약"] },
+    tj, goodwill,
+  ];
+
+  // NYC / NJ
+  if (slug === "newyork") return [
+    costco,
+    hMart,
+    { emoji: "🥬", name: "Viet-Shan Mart / Kam Man Foods", nameEn: "Pan-Asian Markets — NYC",
+      desc: ko ? "플러싱 아시안 마트. H-Mart 대비 채소·해산물 저렴.\n📍 플러싱: 133-01 39th Ave | 맨해튼: 200 Canal St"
+               : "Flushing Asian markets. Cheaper fresh produce & seafood vs H-Mart.\n📍 Flushing: 133-01 39th Ave | Manhattan: 200 Canal St",
+      tags: ["플러싱","아시안마트","저렴"] },
+    { emoji: "🛒", name: "Associated Supermarkets / Stop & Shop", nameEn: "Local Supermarkets — NY/NJ",
+      desc: ko ? "NY·NJ 지역 슈퍼마켓 체인. 가격 중간, 편리한 위치.\nShopRite(NJ 가성비 최강)·Key Food·Associated."
+               : "NY/NJ local supermarket chains. Mid-range prices, convenient locations.\nShopRite (NJ best value), Key Food, Associated.",
+      tags: ["Stop&Shop","ShopRite","NYC"] },
+    tj, goodwill,
+  ];
+
+  // Default for other US cities
+  return [costco, hMart, tj,
+    { emoji: "🛒", name: ko ? "지역 할인 슈퍼마켓" : "Local Discount Supermarkets",
+      desc: ko ? `지역 대형 슈퍼마켓에서 식재료 저렴하게 구매:\n${
+        slug === "dallas" || slug === "houston" ? "• HEB, Kroger, Tom Thumb 추천\n• Tom Thumb: 일요일 한인 할인 많음" :
+        slug === "boston" ? "• Market Basket: 뉴잉글랜드 최저가\n• Star Market: 올스턴 한인 동네" :
+        slug === "nashville" ? "• Publix, Kroger, Aldi 추천\n• Aldi: 냉동식품 최저가" :
+        slug === "atlanta" ? "• Publix, Kroger, Aldi, Lidl 추천\n• Lidl: 유기농·수입 식품 저렴" :
+        slug === "philadelphia" ? "• Aldi, Wegmans, Giant 추천\n• Wegmans: 어퍼다비 한인 선호" :
+        slug === "kansascity" ? "• Price Chopper, Aldi, Walmart 추천" :
+        slug === "miami" ? "• Publix, Aldi, Winn-Dixie 추천\n• Latin 마켓: 채소·과일 저렴" : "• Walmart, Kroger, Aldi 추천"}\n📍 google.com/maps/search/supermarket+${slug}`
+             : `Local supermarkets for affordable groceries:\n${
+        slug === "dallas" || slug === "houston" ? "• HEB, Kroger, Tom Thumb recommended\n• Tom Thumb: Korean discounts on Sundays" :
+        slug === "boston" ? "• Market Basket: lowest prices in New England\n• Star Market: near Allston Korean area" :
+        slug === "nashville" ? "• Publix, Kroger, Aldi recommended\n• Aldi: best frozen food prices" :
+        slug === "atlanta" ? "• Publix, Kroger, Aldi, Lidl recommended\n• Lidl: affordable organic & imports" :
+        slug === "philadelphia" ? "• Aldi, Wegmans, Giant recommended\n• Wegmans: preferred by Upper Darby Koreans" :
+        slug === "kansascity" ? "• Price Chopper, Aldi, Walmart recommended" :
+        slug === "miami" ? "• Publix, Aldi, Winn-Dixie recommended\n• Latin markets: cheap produce & fruit" : "• Walmart, Kroger, Aldi recommended"}\n📍 google.com/maps/search/supermarket+${slug}`,
+      tags: ko ? ["슈퍼마켓","할인","식료품"] : ["Supermarket","Discount","Groceries"] },
+    goodwill,
+  ];
+}
+
+function getCityEthnicEateries(slug: string, lang: string) {
+  const ko = lang === "ko";
+  const city = slug === "newyork" ? "new+york" : slug === "kansascity" ? "kansas+city" : slug;
+  const isMexico = slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey";
+  const isCanada = slug === "toronto" || slug === "vancouver";
+
+  return [
+    { emoji: "🍜", name: ko ? "베트남 쌀국수 (Pho)" : "Vietnamese Pho",
+      desc: ko ? `거대한 한 그릇 $12-16 (멕시코·캐나다는 현지 화폐). 엄청난 포만감.\n📍 google.com/maps/search/pho+${city}`
+               : `Huge bowl $12-16 (local currency for Mexico/Canada). Incredibly filling.\n📍 google.com/maps/search/pho+${city}`,
+      tags: ko ? ["베트남","포","가성비"] : ["Vietnamese","Pho","Value"] },
+    { emoji: "🌮", name: ko ? (isMexico ? "정통 멕시칸 타코 (현지)" : "멕시칸 타코·부리토") : (isMexico ? "Authentic Mexican Tacos (Local)" : "Mexican Tacos & Burritos"),
+      desc: ko ? isMexico
+          ? "현지 타코 MXN $15-40개. 멕시코에서 가장 맛있는 타코!\n타케리아·재래시장(Mercado) 탐색 추천."
+          : `타코 $3-5개, 부리토 $10-12 (2인분 양).\n📍 google.com/maps/search/taco+truck+${city}`
+               : isMexico
+          ? "Local tacos MXN $15-40 each. Best tacos you'll ever have — you're IN Mexico!\nExplore local taquerias & mercados."
+          : `Tacos $3-5 each, burrito $10-12 (2 people worth).\n📍 google.com/maps/search/taco+truck+${city}`,
+      tags: ko ? ["멕시칸","타코","저렴"] : ["Mexican","Tacos","Budget"] },
+    { emoji: "🍛", name: ko ? "인도 뷔페 (점심)" : "Indian Lunch Buffet",
+      desc: ko ? `무제한 점심 뷔페 $14-18.\n📍 google.com/maps/search/indian+buffet+${city}`
+               : `Unlimited lunch buffet $14-18.\n📍 google.com/maps/search/indian+buffet+${city}`,
+      tags: ko ? ["인도","뷔페","무제한"] : ["Indian","Buffet","Unlimited"] },
+    { emoji: isCanada ? "🍁" : isMexico ? "🫔" : "🥙",
+      name: ko ? (isCanada ? "캐나다 중화 BBQ·딤섬" : isMexico ? "멕시칸 엔칠라다·포솔레" : "중동·지중해 식당") : (isCanada ? "Chinese BBQ & Dim Sum" : isMexico ? "Enchiladas & Pozole" : "Middle Eastern & Mediterranean"),
+      desc: ko ? isCanada
+          ? "캐나다 아시안 다양성! 광동식 딤섬·차슈 BBQ. 저렴하고 양 많음.\n📍 google.com/maps/search/dim+sum+" + city
+          : isMexico
+          ? "정통 멕시코 음식. 엔칠라다·포솔레·몰레 소스. 현지 레스토랑에서 USD $5-15에 즐기기."
+          : `샤와르마·팔라펠·훔무스. 상대적으로 저렴하고 양 많음.\n📍 google.com/maps/search/mediterranean+food+${city}`
+               : isCanada
+          ? "Canadian Asian diversity! Cantonese dim sum & char siu BBQ. Affordable & filling.\n📍 google.com/maps/search/dim+sum+" + city
+          : isMexico
+          ? "Authentic Mexican cuisine. Enchiladas, pozole & mole sauce. Enjoy for USD $5-15 at local restaurants."
+          : `Shawarma, falafel & hummus. Relatively affordable, generous portions.\n📍 google.com/maps/search/mediterranean+food+${city}`,
+      tags: ko ? (isCanada ? ["딤섬","BBQ","캐나다"] : isMexico ? ["엔칠라다","포솔레","멕시코음식"] : ["중동","샤와르마","저렴"]) : (isCanada ? ["DimSum","BBQ","Canada"] : isMexico ? ["Enchilada","Pozole","Mexican"] : ["Middle Eastern","Shawarma","Budget"]) },
+  ];
+}
+
 function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSub?: number }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
@@ -8806,10 +9359,14 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       tags: lang === "ko" ? ["AP한국어", "대입", "학점인정"] : ["AP Korean", "College", "Credit"] },
   ];
 
+  // 도시별 CC·한국학교 데이터 오버라이드 (시애틀 제외)
+  const cityCC = isSeattle ? communityColleges : getCityCC(city.slug, lang);
+  const cityKoreanSchools = isSeattle ? koreanSchools : getCityKoreanSchool(city.slug, lang);
+
   const allEdu = serverContent["education"] ? resolvePlaceItems(serverContent["education"], lang) : null;
   const subData = allEdu
     ? [allEdu.slice(0, 6), allEdu.slice(6, 12), allEdu.slice(12, 17), allEdu.slice(17, 22), allEdu.slice(22, 27), allEdu.slice(27)]
-    : [districts, communityColleges, universities, admissions, tutoringEsl, koreanSchools];
+    : [districts, cityCC, universities, admissions, tutoringEsl, cityKoreanSchools];
   const content = subData[sub] ?? [];
 
   /* ── 탭별 하단 팁 ── */
@@ -9485,7 +10042,11 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
   const { rentHousing, taxLiving, transportPhone } = getCityCostData(city.slug, lang);
 
   // ── 알뜰생활 탭 데이터 ──────────────────────────────────────────
-  const smartShoppingMarkets = [
+  // 도시별 쇼핑·다양한 식당 데이터 사용
+  const cityShoppingData = getCityShoppingMarkets(city.slug, lang);
+  const cityEthnics = getCityEthnicEateries(city.slug, lang);
+
+  const smartShoppingMarkets = city.slug === "seattle" ? [
     { emoji: "🏪", name: "코스트코 (Costco)", nameEn: "Costco — Best Value Warehouse",
       desc: lang === "ko"
         ? "✅ 검증됨 | 연 멤버십 $65 → 평균 $300+ 절약\n📍 린우드: 4401 Auto Mall Dr | 📍 쇼어라인: 14905 1st Ave NE\n• 코스트코 주유소: 지역 최저가 (갤런당 10-20센트 저렴)\n• 한인 추천: 커클랜드 연어, 갈비, 대용량 쌀\n🔗 costco.com"
@@ -9521,9 +10082,9 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
         ? "✅ 검증됨 | 중고의류 $3-15, 가구·가전\n• 벨뷰/커클랜드 굿윌: 명품 아이템 자주 등장\n• Facebook Marketplace & Buy Nothing 그룹: 무료 아이템 다수\n• 린우드·벨뷰·시애틀 여러 지점\n🔗 goodwillwa.org"
         : "✅ Verified | Clothing $3-15, furniture, electronics\n• Bellevue/Kirkland locations often have designer items\n• Facebook Marketplace & Buy Nothing groups: many free items\n• Lynnwood, Bellevue, Seattle locations\n🔗 goodwillwa.org",
       tags: ["중고", "굿윌", "무료"] },
-  ];
+  ] : cityShoppingData;
 
-  const ethnicEateries = [
+  const ethnicEateries = city.slug === "seattle" ? [
     { emoji: "🍜", name: "베트남 쌀국수 (Pho)", nameEn: "Vietnamese Pho",
       desc: lang === "ko"
         ? "거대한 한 그릇 $12-15, 엄청난 포만감\n• 인기 가게: Pho Bac (여러 지점), Green Leaf Vietnamese\n• \"김치찌개보다 저렴하고 양 2배\"\n• 한인에게 강력 추천하는 타민족 맛집\n📍 google.com/maps/search/pho+seattle"
@@ -9544,7 +10105,7 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
         ? "$12-15, 엄청난 양, 공동 인제라 빵 (함께 먹는 문화)\n• 컬럼비아 시티 지역: Jebena Cafe, Cafe Selam\n• \"스페이스 니들 뷰 레스토랑의 1/5 가격\"\n• 독특한 향신료·채식 옵션 풍부\n📍 google.com/maps/search/ethiopian+restaurant+seattle"
         : "$12-15, huge portions, communal injera bread\n• Columbia City area: Jebena Cafe, Cafe Selam\n• \"1/5 the price of a Space Needle view restaurant\"\n• Unique spices, abundant vegetarian options\n📍 google.com/maps/search/ethiopian+restaurant+seattle",
       tags: ["에티오피아", "저렴", "컬럼비아시티"] },
-  ];
+  ] : cityEthnics;
 
   const allCost = serverContent["cost"] ? resolvePlaceItems(serverContent["cost"], lang) : null;
   const subData = allCost
