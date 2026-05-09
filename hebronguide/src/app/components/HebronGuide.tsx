@@ -34,9 +34,19 @@ const HERO_PHOTOS = [
   "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85",  // PNW 자연 + 시애틀
   "https://images.unsplash.com/photo-1559521783-1d1599583485?w=1200&q=85",     // Seattle 거리 활기
 ];
+// 사진별 object-position — Space Needle(1번)은 꼭대기가 잘리지 않도록 위쪽 표시
+const HERO_PHOTO_POSITIONS = [
+  "center 40%",  // Seattle skyline 야경
+  "center 8%",   // Space Needle 낮 — 꼭대기 전체 표시
+  "center 45%",  // Pike Place Market
+  "center 40%",  // Seattle 항구 & 선셋
+  "center 35%",  // PNW 자연 + 시애틀
+  "center 40%",  // Seattle 거리 활기
+];
 // 2시간 단위로 사진 교체 (하루 12 슬롯 → 6장 × 2)
 const heroPhotoIdx = Math.floor(new Date().getHours() / 2) % HERO_PHOTOS.length;
 const imgHeroCard = HERO_PHOTOS[heroPhotoIdx];
+const heroPhotoPosition = HERO_PHOTO_POSITIONS[heroPhotoIdx];
 const imgCoffee = "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80";
 const imgLifestyle = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80";
 // 동네 Top 3 사진
@@ -160,6 +170,252 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
 function useCityConfig(): CityConfig {
   const slug = (window.location.pathname.split("/").filter(Boolean)[0] || "seattle").toLowerCase() as CitySlug;
   return CITY_CONFIGS[slug] ?? CITY_CONFIGS.seattle;
+}
+
+/* ─────────────────────────────────────────
+   도시별 인구·언어·민족 분포 통계
+   출처: US Census ACS 2023 / Stats Canada 2021 / INEGI 2020
+   전략 목적: 타겟 언어 우선순위 & 커뮤니티 전략 수립
+───────────────────────────────────────── */
+interface CityDemographics {
+  metroPopulation: string;    // 광역 인구
+  koreanPopulation: string;   // 한인 인구
+  koreanPercent: string;      // 전체 대비 한인 비율
+  topLanguages: string[];     // 주요 사용 언어 (순위순)
+  ethnicComposition: { group: string; pct: string }[]; // 주요 민족 구성
+  diversityScore: string;     // 다양성 지수 (높음/중간/낮음)
+  strategicNote: string;      // 전략 메모
+  strategicNoteEn: string;
+}
+
+function getCityDemographics(slug: string, lang: string): CityDemographics {
+  const ko = lang === "ko";
+  const DATA: Record<string, CityDemographics> = {
+    seattle: {
+      metroPopulation: "420만", koreanPopulation: "15만+", koreanPercent: "3.6%",
+      topLanguages: ["영어", "스페인어", "한국어", "베트남어", "중국어", "타갈로그어"],
+      ethnicComposition: [
+        { group: ko ? "백인" : "White", pct: "62%" },
+        { group: ko ? "아시안" : "Asian", pct: "16%" },
+        { group: ko ? "히스패닉" : "Hispanic", pct: "10%" },
+        { group: ko ? "흑인" : "Black", pct: "7%" },
+        { group: ko ? "기타" : "Other", pct: "5%" },
+      ],
+      diversityScore: ko ? "높음" : "High",
+      strategicNote: "아시안 중 한인 비율 1위. 3개 언어(한·영·스) 모두 유효. 빅테크 이민자 커뮤니티 강세.",
+      strategicNoteEn: "Highest Korean % among Asian cities. All 3 languages (KO/EN/ES) effective. Strong tech immigrant community.",
+    },
+    dallas: {
+      metroPopulation: "760만", koreanPopulation: "10만+", koreanPercent: "1.3%",
+      topLanguages: ["영어", "스페인어", "베트남어", "중국어", "한국어", "아랍어"],
+      ethnicComposition: [
+        { group: ko ? "백인" : "White", pct: "44%" },
+        { group: ko ? "히스패닉" : "Hispanic", pct: "29%" },
+        { group: ko ? "흑인" : "Black", pct: "16%" },
+        { group: ko ? "아시안" : "Asian", pct: "7%" },
+        { group: ko ? "기타" : "Other", pct: "4%" },
+      ],
+      diversityScore: ko ? "매우 높음" : "Very High",
+      strategicNote: "히스패닉 29% → 스페인어 콘텐츠 전략 필수. 한·영·스 3개 언어 모두 핵심. 캐롤튼 한인타운 집중.",
+      strategicNoteEn: "Hispanic 29% — Spanish content essential. All 3 languages core. Focus on Carrollton Korean hub.",
+    },
+    la: {
+      metroPopulation: "1,300만", koreanPopulation: "50만+", koreanPercent: "3.8%",
+      topLanguages: ["영어", "스페인어", "한국어", "중국어", "타갈로그어", "베트남어", "아르메니아어"],
+      ethnicComposition: [
+        { group: ko ? "히스패닉" : "Hispanic", pct: "49%" },
+        { group: ko ? "백인" : "White", pct: "29%" },
+        { group: ko ? "아시안" : "Asian", pct: "11%" },
+        { group: ko ? "흑인" : "Black", pct: "9%" },
+        { group: ko ? "기타" : "Other", pct: "2%" },
+      ],
+      diversityScore: ko ? "최고" : "Highest",
+      strategicNote: "북미 최대 한인 커뮤니티(50만). 히스패닉 49% → 스페인어 최우선. 코리아타운 자체가 미디어 플랫폼.",
+      strategicNoteEn: "Largest Korean community in North America (500K). Hispanic 49% — Spanish #1 priority. Koreatown is its own media platform.",
+    },
+    newyork: {
+      metroPopulation: "2,000만", koreanPopulation: "20만+", koreanPercent: "1.0%",
+      topLanguages: ["영어", "스페인어", "중국어", "한국어", "러시아어", "벵골어", "아랍어", "프랑스어"],
+      ethnicComposition: [
+        { group: ko ? "백인" : "White", pct: "42%" },
+        { group: ko ? "히스패닉" : "Hispanic", pct: "29%" },
+        { group: ko ? "흑인" : "Black", pct: "24%" },
+        { group: ko ? "아시안" : "Asian", pct: "14%" },
+        { group: ko ? "기타" : "Other", pct: "4%" },
+      ],
+      diversityScore: ko ? "세계 최고" : "World-class Diversity",
+      strategicNote: "세계 최다 언어 도시(800개+). NJ 한인(팰리세이즈파크) + 플러싱(퀸스) 이중 거점. 스페인어 필수.",
+      strategicNoteEn: "Most linguistically diverse city (800+ languages). Dual Korean hubs: Palisades Park (NJ) + Flushing (Queens). Spanish essential.",
+    },
+    houston: {
+      metroPopulation: "730만", koreanPopulation: "2.5만+", koreanPercent: "0.3%",
+      topLanguages: ["영어", "스페인어", "베트남어", "중국어", "아랍어", "힌디어", "한국어"],
+      ethnicComposition: [
+        { group: ko ? "히스패닉" : "Hispanic", pct: "44%" },
+        { group: ko ? "백인" : "White", pct: "34%" },
+        { group: ko ? "흑인" : "Black", pct: "17%" },
+        { group: ko ? "아시안" : "Asian", pct: "7%" },
+        { group: ko ? "기타" : "Other", pct: "2%" },
+      ],
+      diversityScore: ko ? "매우 높음" : "Very High",
+      strategicNote: "히스패닉 44% — 스페인어가 사실상 제2공용어. 한인 인구 상대적으로 적지만 에너지 업종 전문직 다수. NASA·의료센터 한인 집중.",
+      strategicNoteEn: "Hispanic 44% — Spanish is de facto 2nd language. Smaller Korean pop but many professionals in energy & medical sectors. NASA/Texas Medical Center Korean concentration.",
+    },
+    sf: {
+      metroPopulation: "770만", koreanPopulation: "8만+", koreanPercent: "1.0%",
+      topLanguages: ["영어", "스페인어", "중국어", "타갈로그어", "베트남어", "한국어", "힌디어"],
+      ethnicComposition: [
+        { group: ko ? "백인" : "White", pct: "40%" },
+        { group: ko ? "아시안" : "Asian", pct: "26%" },
+        { group: ko ? "히스패닉" : "Hispanic", pct: "23%" },
+        { group: ko ? "흑인" : "Black", pct: "7%" },
+        { group: ko ? "기타" : "Other", pct: "4%" },
+      ],
+      diversityScore: ko ? "높음" : "High",
+      strategicNote: "아시안 비율 전국 최고(26%). 실리콘밸리 테크 이민자 밀집 — 인도·중국·한국 순. 영어+한국어가 핵심 언어.",
+      strategicNoteEn: "Highest Asian % in US (26%). Silicon Valley tech immigrants — India/China/Korea top 3. English + Korean core languages.",
+    },
+    toronto: {
+      metroPopulation: "620만", koreanPopulation: "10만+", koreanPercent: "1.6%",
+      topLanguages: ["영어", "프랑스어", "광둥어", "만다린어", "펀자브어", "타밀어", "한국어", "이탈리아어"],
+      ethnicComposition: [
+        { group: ko ? "백인" : "White", pct: "47%" },
+        { group: ko ? "남아시안" : "South Asian", pct: "13%" },
+        { group: ko ? "중화계" : "Chinese", pct: "11%" },
+        { group: ko ? "흑인" : "Black", pct: "9%" },
+        { group: ko ? "필리핀계" : "Filipino", pct: "5%" },
+        { group: ko ? "한국계" : "Korean", pct: "2%" },
+      ],
+      diversityScore: ko ? "세계 최고" : "World-class Diversity",
+      strategicNote: "캐나다 최대 도시. 세계 최고 수준 다문화 도시. 영어+한국어 중심. 한인 2세 영어 세대 강세. 이민자 친화 정책 최강.",
+      strategicNoteEn: "Canada's largest city. World-class multicultural city. English+Korean core. Strong 2nd-gen Korean community. Best immigration-friendly policies.",
+    },
+    vancouver: {
+      metroPopulation: "260만", koreanPopulation: "8만+", koreanPercent: "3.1%",
+      topLanguages: ["영어", "광둥어", "만다린어", "한국어", "펀자브어", "프랑스어", "타갈로그어"],
+      ethnicComposition: [
+        { group: ko ? "백인" : "White", pct: "46%" },
+        { group: ko ? "중화계" : "Chinese", pct: "20%" },
+        { group: ko ? "남아시안" : "South Asian", pct: "12%" },
+        { group: ko ? "필리핀계" : "Filipino", pct: "4%" },
+        { group: ko ? "한국계" : "Korean", pct: "3%" },
+        { group: ko ? "기타" : "Other", pct: "15%" },
+      ],
+      diversityScore: ko ? "매우 높음" : "Very High",
+      strategicNote: "북미에서 한인 비율이 가장 높은 도시 중 하나(3.1%). 버나비 중심 한인타운 발달. 영어+한국어 핵심. 유학생·이민자 유입 지속.",
+      strategicNoteEn: "One of North America's highest Korean % cities (3.1%). Burnaby Korean hub well-developed. English+Korean core. Continuous student & immigrant influx.",
+    },
+    boston: {
+      metroPopulation: "480만", koreanPopulation: "3만+", koreanPercent: "0.6%",
+      topLanguages: ["영어", "스페인어", "포르투갈어", "중국어", "베트남어", "아이티 크레올어", "한국어"],
+      ethnicComposition: [
+        { group: ko ? "백인" : "White", pct: "73%" },
+        { group: ko ? "흑인" : "Black", pct: "9%" },
+        { group: ko ? "히스패닉" : "Hispanic", pct: "9%" },
+        { group: ko ? "아시안" : "Asian", pct: "9%" },
+        { group: ko ? "기타" : "Other", pct: "0%" },
+      ],
+      diversityScore: ko ? "중간" : "Moderate",
+      strategicNote: "교육도시 특성 — 한인 유학생 비율 높음(하버드·MIT·BU). 올스턴 집중. 포르투갈어권 브라질·포르투갈 커뮤니티 강세. 한·영 2개 언어 충분.",
+      strategicNoteEn: "Education city — high % Korean students (Harvard/MIT/BU). Allston focus. Strong Brazilian/Portuguese community. Korean+English sufficient.",
+    },
+    nashville: {
+      metroPopulation: "210만", koreanPopulation: "2만+", koreanPercent: "0.9%",
+      topLanguages: ["영어", "스페인어", "쿠르드어", "아랍어", "소말리아어", "한국어"],
+      ethnicComposition: [
+        { group: ko ? "백인" : "White", pct: "69%" },
+        { group: ko ? "흑인" : "Black", pct: "15%" },
+        { group: ko ? "히스패닉" : "Hispanic", pct: "11%" },
+        { group: ko ? "아시안" : "Asian", pct: "4%" },
+        { group: ko ? "기타" : "Other", pct: "1%" },
+      ],
+      diversityScore: ko ? "중간" : "Moderate",
+      strategicNote: "빠르게 성장하는 도시 — 한인 유입 증가세. 쿠르드 난민 커뮤니티 독특함. 한·영 2개 언어 중심. 교회 커뮤니티 중심의 한인 네트워크.",
+      strategicNoteEn: "Fastest growing US city — Korean influx rising. Unique Kurdish refugee community. Korean+English focus. Church-centered Korean network.",
+    },
+    atlanta: {
+      metroPopulation: "620만", koreanPopulation: "10만+", koreanPercent: "1.6%",
+      topLanguages: ["영어", "스페인어", "베트남어", "한국어", "아랍어", "포르투갈어"],
+      ethnicComposition: [
+        { group: ko ? "백인" : "White", pct: "51%" },
+        { group: ko ? "흑인" : "Black", pct: "32%" },
+        { group: ko ? "히스패닉" : "Hispanic", pct: "11%" },
+        { group: ko ? "아시안" : "Asian", pct: "5%" },
+        { group: ko ? "기타" : "Other", pct: "1%" },
+      ],
+      diversityScore: ko ? "높음" : "High",
+      strategicNote: "남부 최대 한인 커뮤니티. 흑인 문화 중심 도시 — 한흑 문화 교류 활발. 둘루스·스와니 교회 중심 네트워크 강함. 한·영 핵심.",
+      strategicNoteEn: "Largest Korean community in the South. Black culture hub — Korean-Black cultural exchange active. Strong church network in Duluth/Suwanee. Korean+English core.",
+    },
+    kansascity: {
+      metroPopulation: "220만", koreanPopulation: "3천+", koreanPercent: "0.1%",
+      topLanguages: ["영어", "스페인어", "베트남어", "아랍어", "소말리아어", "한국어"],
+      ethnicComposition: [
+        { group: ko ? "백인" : "White", pct: "73%" },
+        { group: ko ? "흑인" : "Black", pct: "12%" },
+        { group: ko ? "히스패닉" : "Hispanic", pct: "11%" },
+        { group: ko ? "아시안" : "Asian", pct: "3%" },
+        { group: ko ? "기타" : "Other", pct: "1%" },
+      ],
+      diversityScore: ko ? "낮음-중간" : "Low-Moderate",
+      strategicNote: "한인 인구 작지만 충성도 높은 소규모 커뮤니티. 한·영 2개 언어. 중서부 거점 — 주변 도시(오마하·워치타) 교두보 역할 가능.",
+      strategicNoteEn: "Small but loyal Korean community. Korean+English. Midwest hub — potential gateway to Omaha/Wichita.",
+    },
+    philadelphia: {
+      metroPopulation: "620만", koreanPopulation: "3만+", koreanPercent: "0.5%",
+      topLanguages: ["영어", "스페인어", "중국어", "베트남어", "러시아어", "한국어"],
+      ethnicComposition: [
+        { group: ko ? "백인" : "White", pct: "52%" },
+        { group: ko ? "흑인" : "Black", pct: "41%" },
+        { group: ko ? "히스패닉" : "Hispanic", pct: "15%" },
+        { group: ko ? "아시안" : "Asian", pct: "7%" },
+        { group: ko ? "기타" : "Other", pct: "1%" },
+      ],
+      diversityScore: ko ? "높음" : "High",
+      strategicNote: "흑인 비율 높은 역사 도시. 어퍼다비·체리힐NJ 한인 집중. 동부 대도시 중 생활비 저렴. 한·영 중심.",
+      strategicNoteEn: "Historic city with high Black %. Korean concentration in Upper Darby & Cherry Hill NJ. Most affordable East Coast major city. Korean+English focus.",
+    },
+    miami: {
+      metroPopulation: "610만", koreanPopulation: "5천+", koreanPercent: "0.1%",
+      topLanguages: ["스페인어", "영어", "아이티 크레올어", "포르투갈어", "프랑스어", "한국어"],
+      ethnicComposition: [
+        { group: ko ? "히스패닉" : "Hispanic", pct: "70%" },
+        { group: ko ? "흑인" : "Black", pct: "20%" },
+        { group: ko ? "백인" : "White", pct: "15%" },
+        { group: ko ? "아시안" : "Asian", pct: "2%" },
+        { group: ko ? "기타" : "Other", pct: "1%" },
+      ],
+      diversityScore: ko ? "히스패닉 특화" : "Hispanic-dominant",
+      strategicNote: "스페인어가 제1언어! 히스패닉 70% — 스페인어 없으면 전략 불가. 한인 인구 작음. 중남미 한인 허브 역할. 3개 언어(한·영·스) 모두 필수.",
+      strategicNoteEn: "Spanish is #1 language! Hispanic 70% — no Spanish = no strategy. Small Korean pop but Latin America Korean hub. All 3 languages (KO/EN/ES) essential.",
+    },
+    mexicocity: {
+      metroPopulation: "2,200만", koreanPopulation: "1만+", koreanPercent: "0.05%",
+      topLanguages: ["스페인어", "나후아틀어", "마야어", "믹스테카어", "사포텍어", "영어", "한국어"],
+      ethnicComposition: [
+        { group: ko ? "메스티소(혼혈)" : "Mestizo", pct: "62%" },
+        { group: ko ? "원주민" : "Indigenous", pct: "21%" },
+        { group: ko ? "백인" : "White", pct: "9%" },
+        { group: ko ? "아프리카계" : "Afro-Mexican", pct: "5%" },
+        { group: ko ? "기타" : "Other", pct: "3%" },
+      ],
+      diversityScore: ko ? "라틴 특화" : "Latin-dominant",
+      strategicNote: "스페인어 완전 지배 도시. 한·스 2개 언어 전략. 폴랑코 외교·비즈니스 구역 한인 집중. 중남미 선교·비즈니스 허브로 전략적 가치 높음.",
+      strategicNoteEn: "Spanish-dominant city. Korean+Spanish 2-language strategy. Polanco diplomatic/business district Korean concentration. High strategic value as Latin America mission/business hub.",
+    },
+  };
+
+  const generic: CityDemographics = {
+    metroPopulation: ko ? "데이터 수집 중" : "Data collecting",
+    koreanPopulation: ko ? "수집 중" : "Collecting",
+    koreanPercent: "—",
+    topLanguages: [ko ? "영어" : "English", ko ? "스페인어" : "Spanish"],
+    ethnicComposition: [],
+    diversityScore: ko ? "수집 중" : "Collecting",
+    strategicNote: "이 도시의 상세 인구통계를 업데이트 중입니다.",
+    strategicNoteEn: "Detailed demographic data for this city is being updated.",
+  };
+  return DATA[slug] || generic;
 }
 
 /* ─────────────────────────────────────────
@@ -2646,7 +2902,7 @@ function CompactHeroNew() {
     }}>
       {/* 정적 이미지 폴백 */}
       <img src={imgHeroCard} alt={city.nameEn} style={{
-        width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%",
+        width: "100%", height: "100%", objectFit: "cover", objectPosition: heroPhotoPosition,
         filter: "brightness(0.75) saturate(1.2)"
       }} />
       {/* 도시별 배경 영상 */}
@@ -2934,7 +3190,7 @@ function HeroCard() {
       <img
         src={imgHeroCard} alt="시애틀 전경"
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectPosition: "center 40%", filter: "brightness(1.05) saturate(1.3)",
+        style={{ objectPosition: heroPhotoPosition, filter: "brightness(1.05) saturate(1.3)",
           transition: "opacity 1.5s ease", opacity: videoReady ? 0 : 1 }}
       />
 
@@ -4649,14 +4905,14 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
       name: "시애틀지구촌교회 (Global Mission Church)",
       nameEn: "Global Mission Church of Greater Seattle",
       desc: "✅ 검증됨 | SBC 소속 가정교회 사역 교회. 폴 김 목사.\n\n" +
-        "📍 Lynnwood, WA\n" +
+        "📍 4900 168th St. SW., Lynnwood, WA 98037\n" +
         "📞 새가족 문의 환영\n\n" +
         "🏠 가정교회 3축 운영:\n" +
         "  • 목장 (Mokjang) — 소그룹 공동체\n" +
         "  • 삶공부 (Life Studies) — 제자훈련\n" +
         "  • LIFE Worship — 주일 예배\n\n" +
         "✨ 이민자·유학생·새가족 환영\n" +
-        "🔗 gmcseattle.org",
+        "🔗 www.ijiguchon.org",
       tags: ["가정교회", "SBC", "린우드"],
     },
   ] : [
@@ -4665,14 +4921,14 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
       name: "Global Mission Church of Greater Seattle",
       nameEn: "시애틀지구촌교회",
       desc: "✅ Verified | SBC-affiliated House Church Ministry. Pastor Paul Kim.\n\n" +
-        "📍 Lynnwood, WA\n" +
+        "📍 4900 168th St. SW., Lynnwood, WA 98037\n" +
         "📞 New families welcome — contact us\n\n" +
         "🏠 Three pillars of House Church:\n" +
         "  • Mokjang — Small group community\n" +
         "  • Life Studies — Discipleship training\n" +
         "  • LIFE Worship — Sunday service\n\n" +
         "✨ Open to immigrants, international students & newcomers\n" +
-        "🔗 gmcseattle.org",
+        "🔗 www.ijiguchon.org",
       tags: ["House Church", "SBC", "Lynnwood"],
     },
   ];
@@ -5243,8 +5499,8 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🆘" titleKo="도움말" titleEn="Help & Emergency"
-        descKo={`${useCityConfig().nameKo} — 긴급연락 · 커뮤니티 · 무료 자원`}
-        descEn={`${useCityConfig().nameEn} — Emergency contacts · Community · Free resources`}
+        descKo={`${city.nameKo} — 긴급연락 · 커뮤니티 · 무료 자원`}
+        descEn={`${city.nameEn} — Emergency contacts · Community · Free resources`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
 
@@ -5309,6 +5565,70 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
 
       {sub === 2 && (
         <div className="pt-5 px-4 md:px-6 lg:px-8">
+          {/* ── 도시 인구·언어·민족 통계 카드 ── */}
+          {(() => {
+            const demo = getCityDemographics(city.slug, lang);
+            return (
+              <div style={{ background: "linear-gradient(135deg, rgba(248,113,113,0.10), rgba(201,162,39,0.08))", border: "1px solid rgba(201,162,39,0.25)", borderRadius: 16, padding: "14px 16px", marginBottom: 16 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#C9A227", marginBottom: 10 }}>
+                  📊 {lang === "ko" ? `${city.nameKo} 인구·언어·민족 현황` : `${city.nameEn} — Population & Diversity`}
+                </div>
+                {/* 핵심 지표 3칸 */}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8, marginBottom: 10 }}>
+                  {[
+                    { label: lang === "ko" ? "광역 인구" : "Metro Pop.", value: demo.metroPopulation },
+                    { label: lang === "ko" ? "한인 인구" : "Korean Pop.", value: demo.koreanPopulation },
+                    { label: lang === "ko" ? "한인 비율" : "Korean %", value: demo.koreanPercent },
+                  ].map((s, i) => (
+                    <div key={i} style={{ background: "rgba(255,255,255,0.05)", borderRadius: 10, padding: "9px 8px", textAlign: "center" }}>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#ECFDF5" }}>{s.value}</div>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.5)", marginTop: 2 }}>{s.label}</div>
+                    </div>
+                  ))}
+                </div>
+                {/* 주요 언어 */}
+                <div style={{ marginBottom: 8 }}>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(236,253,245,0.6)", marginBottom: 5 }}>
+                    🗣️ {lang === "ko" ? "주요 사용 언어 (순위)" : "Top Languages (by use)"}
+                  </div>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
+                    {demo.topLanguages.map((l, i) => (
+                      <span key={i} style={{ background: i === 0 ? "rgba(201,162,39,0.25)" : i <= 2 ? "rgba(110,231,183,0.15)" : "rgba(255,255,255,0.07)", border: `1px solid ${i === 0 ? "rgba(201,162,39,0.5)" : "rgba(255,255,255,0.1)"}`, borderRadius: 20, padding: "3px 9px", fontFamily: "Manrope,sans-serif", fontSize: 10, fontWeight: i <= 2 ? 700 : 400, color: i === 0 ? "#C9A227" : "#ECFDF5" }}>
+                        {i + 1}. {l}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                {/* 민족 구성 */}
+                {demo.ethnicComposition.length > 0 && (
+                  <div style={{ marginBottom: 8 }}>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(236,253,245,0.6)", marginBottom: 5 }}>
+                      🌍 {lang === "ko" ? "민족 구성" : "Ethnic Composition"}
+                    </div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                      {demo.ethnicComposition.map((e, i) => (
+                        <span key={i} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 6, padding: "3px 8px", fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.8)" }}>
+                          {e.group} <strong style={{ color: "#6EE7B7" }}>{e.pct}</strong>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {/* 전략 메모 */}
+                <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: 8, padding: "8px 10px" }}>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 9, color: "#C9A227", marginBottom: 3, letterSpacing: "0.5px" }}>
+                    ⚡ {lang === "ko" ? "HebronGuide 전략 메모" : "HebronGuide Strategic Note"}
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, lineHeight: 1.7, color: "rgba(236,253,245,0.65)" }}>
+                    {lang === "ko" ? demo.strategicNote : demo.strategicNoteEn}
+                  </div>
+                </div>
+                <div style={{ marginTop: 6, fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.35)" }}>
+                  {lang === "ko" ? "출처: US Census ACS 2023 / Stats Canada 2021 / INEGI 2020 (근사치)" : "Sources: US Census ACS 2023 / Stats Canada 2021 / INEGI 2020 (estimates)"}
+                </div>
+              </div>
+            );
+          })()}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {communityLinks.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
@@ -6114,8 +6434,8 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       tags: lang === "ko" ? ["한국학교", "토요한글", "TOPIK"] : ["Korean School", "Saturday", "TOPIK"] },
     { emoji: "📖", name: lang === "ko" ? "교회 부설 한국학교 (주요 교회)" : "Church-Based Korean Schools",
       desc: lang === "ko"
-        ? "많은 한인 교회가 자체 한국학교 운영:\n• 시애틀지구촌교회 (GMC): 주일학교 겸 한국어 교육\n• 벨뷰 지역 교회: 토요 한국학교 다수\n• 린우드 지역 교회: 한국어·역사·문화 병행\n\n장점: 교회 멤버십으로 학비 할인·무료"
-        : "Many Korean churches run their own Korean schools:\n• Global Mission Church (GMC): Sunday school + Korean\n• Bellevue Korean churches: multiple Saturday programs\n• Lynnwood Korean churches: language, history & culture\n\nBenefit: Discounted or free tuition for members",
+        ? "많은 한인 교회가 자체 한국학교 운영:\n• 시애틀지구촌교회 (GMC): 주일학교 겸 한국어 교육 🔗 ijiguchon.org\n• 벨뷰 지역 교회: 토요 한국학교 다수\n• 린우드 지역 교회: 한국어·역사·문화 병행\n\n장점: 교회 멤버십으로 학비 할인·무료"
+        : "Many Korean churches run their own Korean schools:\n• Global Mission Church (GMC): Sunday school + Korean 🔗 ijiguchon.org\n• Bellevue Korean churches: multiple Saturday programs\n• Lynnwood Korean churches: language, history & culture\n\nBenefit: Discounted or free tuition for members",
       tags: lang === "ko" ? ["교회한국학교", "주일학교", "무료"] : ["Church School", "Sunday School", "Free"] },
     { emoji: "📊", name: lang === "ko" ? "재미한국학교 서북미협의회 (NAKS-PNW)" : "Korean Schools of America — PNW (NAKS)",
       desc: lang === "ko"
