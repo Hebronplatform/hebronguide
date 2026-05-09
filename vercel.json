@@ -2,6 +2,11 @@
   "buildCommand": "bash build.sh",
   "outputDirectory": "public",
 
+  "functions": {
+    "api/ad-generator.js": { "maxDuration": 30 },
+    "api/ask.js":          { "maxDuration": 30 }
+  },
+
   "redirects": [
     { "source": "/",                   "destination": "/seattle/", "permanent": false },
     { "source": "/seattle/index.html", "destination": "/seattle/", "permanent": true },
