@@ -87,6 +87,7 @@ import {
   Heart,
   Star,
   Network,
+  ShoppingBag,
 } from "lucide-react";
 
 /* Quick Menu 아이콘 맵 */
@@ -109,6 +110,7 @@ const QM_ICON_MAP: Record<string, React.ComponentType<{size?: number; color?: st
   "receipt":        Receipt,
   "users":          Users,
   "heart":          Heart,
+  "shopping-bag":   ShoppingBag,
 };
 
 /* ─────────────────────────────────────────
@@ -3062,10 +3064,10 @@ const QUICK_MENU = [
   { icon: "file-text",      labelKo: "비자·이민", labelEn: "Visa",    color: "#6366F1", tab: 1, subTab: 7 },
   { icon: "life-buoy",      labelKo: "도움",    labelEn: "Help",    color: "#DC2626", tab: 5, subTab: 0 },
   // Row 4: 심화 참고
-  { icon: "map",            labelKo: "관광",    labelEn: "Tourism", color: "#06B6D4", tab: 4,  subTab: 0 },
-  { icon: "receipt",        labelKo: "세금신고",  labelEn: "Taxes",   color: "#F97316", tab: 8,  subTab: 4 },
-  { icon: "scale",          labelKo: "법률상담",  labelEn: "Legal",   color: "#64748B", tab: 5,  subTab: 5 },
-  { icon: "book-open",      labelKo: "한국학교",  labelEn: "K-School",color: "#BE185D", tab: 7,  subTab: 5 },
+  { icon: "map",          labelKo: "관광",      labelEn: "Tourism", color: "#06B6D4", tab: 4,  subTab: 0 },
+  { icon: "receipt",      labelKo: "세금신고",   labelEn: "Taxes",   color: "#F97316", tab: 8,  subTab: 4 },
+  { icon: "scale",        labelKo: "법률상담",   labelEn: "Legal",   color: "#64748B", tab: 5,  subTab: 5 },
+  { icon: "shopping-bag", labelKo: "헤브론 스토어", labelEn: "Store", color: "#F2994A", tab: 10, subTab: 0 },
 ];
 
 /* ─────────────────────────────────────────
