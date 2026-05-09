@@ -3013,24 +3013,33 @@ function CompactHeroNew() {
 // 1.정착(Day-1 핵심) 2.맛집(모두 공통) 3.탐방(관광·방문) 4.거주지(이민) 5.생활비(참고) 6.취업 7.교육 8.도움 9.교회(편의점처럼 자연스럽게)
 // Quick Menu 순서: 긴급성·사용빈도 기준 최적화
 // 정착(Day-1) → 맛집(공통) → 관광(방문객) → 도움(긴급) → 거주지 → 취업 → 교육 → 생활비 → 교회(자연스러운 연결)
+// Quick Menu 16개 — 이민자 여정 순서로 배치
+// Row 1 (1-4):  도착 첫날 필수 — 정착·병원·거주지·면허
+// Row 2 (5-8):  핵심 생활 — 교회·맛집·취업·교육
+// Row 3 (9-12): 정보 참고 — 마트·생활비·비자·도움
+// Row 4 (13-16): 심화 — 관광·세금·법률·한국학교
+// 교회가 Row 2 첫 번째 = HebronGuide 방향(→교회→그리스도) 시각적으로 반영
 const QUICK_MENU = [
-  { icon: "plane-landing",  labelKo: "정착",   labelEn: "Settle",  color: "#F2994A", tab: 1, subTab: 0 },
-  { icon: "utensils",       labelKo: "맛집",   labelEn: "Food",    color: "#EF4444", tab: 3, subTab: 0 },
-  { icon: "home",           labelKo: "거주지",  labelEn: "Areas",   color: "#10B981", tab: 1, subTab: 5 },
-  { icon: "heart-pulse",    labelKo: "병원",   labelEn: "Medical", color: "#EC4899", tab: 5, subTab: 1 },
-  { icon: "church",         labelKo: "교회",   labelEn: "Church",  color: "#7C3AED", tab: 2, subTab: 0 },
-  { icon: "car",            labelKo: "면허",   labelEn: "DMV",     color: "#3B82F6", tab: 1, subTab: 3 },
-  { icon: "shopping-cart",  labelKo: "마트",   labelEn: "Market",  color: "#F59E0B", tab: 3, subTab: 2 },
-  { icon: "briefcase",      labelKo: "취업",   labelEn: "Jobs",    color: "#059669", tab: 6, subTab: 0 },
-  { icon: "graduation-cap", labelKo: "교육",   labelEn: "Schools", color: "#8B5CF6", tab: 7, subTab: 0 },
-  { icon: "dollar-sign",    labelKo: "생활비",  labelEn: "Costs",   color: "#0EA5E9", tab: 8, subTab: 0 },
-  { icon: "map",            labelKo: "관광",   labelEn: "Tourism", color: "#06B6D4", tab: 4, subTab: 0 },
-  { icon: "life-buoy",      labelKo: "도움",   labelEn: "Help",    color: "#DC2626", tab: 5, subTab: 0 },
+  // Row 1: 도착 첫날 필수
+  { icon: "plane-landing",  labelKo: "정착",    labelEn: "Settle",  color: "#F2994A", tab: 1, subTab: 0 },
+  { icon: "heart-pulse",    labelKo: "병원",    labelEn: "Medical", color: "#EC4899", tab: 5, subTab: 1 },
+  { icon: "home",           labelKo: "거주지",   labelEn: "Housing", color: "#10B981", tab: 1, subTab: 5 },
+  { icon: "car",            labelKo: "면허",    labelEn: "DMV",     color: "#3B82F6", tab: 1, subTab: 3 },
+  // Row 2: 핵심 생활
+  { icon: "church",         labelKo: "교회",    labelEn: "Church",  color: "#7C3AED", tab: 2, subTab: 0 },
+  { icon: "utensils",       labelKo: "맛집",    labelEn: "Food",    color: "#EF4444", tab: 3, subTab: 0 },
+  { icon: "briefcase",      labelKo: "취업",    labelEn: "Jobs",    color: "#059669", tab: 6, subTab: 0 },
+  { icon: "graduation-cap", labelKo: "교육",    labelEn: "Schools", color: "#8B5CF6", tab: 7, subTab: 0 },
+  // Row 3: 정보 참고
+  { icon: "shopping-cart",  labelKo: "마트",    labelEn: "Market",  color: "#F59E0B", tab: 3, subTab: 2 },
+  { icon: "dollar-sign",    labelKo: "생활비",   labelEn: "Costs",   color: "#0EA5E9", tab: 8, subTab: 0 },
   { icon: "file-text",      labelKo: "비자·이민", labelEn: "Visa",    color: "#6366F1", tab: 1, subTab: 7 },
-  { icon: "receipt",        labelKo: "세금신고", labelEn: "Taxes",   color: "#F97316", tab: 8, subTab: 4 },
-  { icon: "scale",          labelKo: "법률상담", labelEn: "Legal",   color: "#64748B", tab: 5, subTab: 5 },
-  { icon: "book-open",      labelKo: "한국학교", labelEn: "K-School",color: "#BE185D", tab: 7, subTab: 5 },
-  // 사람연결(tab 9)은 하단 네비 "연결" 탭으로 접근 — Quick Menu 중복 제거 → 정확히 16개
+  { icon: "life-buoy",      labelKo: "도움",    labelEn: "Help",    color: "#DC2626", tab: 5, subTab: 0 },
+  // Row 4: 심화 참고
+  { icon: "map",            labelKo: "관광",    labelEn: "Tourism", color: "#06B6D4", tab: 4, subTab: 0 },
+  { icon: "receipt",        labelKo: "세금신고",  labelEn: "Taxes",   color: "#F97316", tab: 8, subTab: 4 },
+  { icon: "scale",          labelKo: "법률상담",  labelEn: "Legal",   color: "#64748B", tab: 5, subTab: 5 },
+  { icon: "book-open",      labelKo: "한국학교",  labelEn: "K-School",color: "#BE185D", tab: 7, subTab: 5 },
 ];
 
 function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
@@ -3721,6 +3730,47 @@ function EmergencyRow({ emoji, title, number, desc }: { emoji: string; title: st
    BACK BUTTON (섹션 화면 상단 홈 복귀)
    — 언제 어디서든 홈으로 돌아올 수 있는 길
 ───────────────────────────────────────── */
+/* ─────────────────────────────────────────
+   헤브론 서비스 카드 — 각 탭에 자연스럽게 삽입
+   서비스들은 한 곳에 모으지 않고 맥락에 맞는 탭에 분산 배치
+───────────────────────────────────────── */
+function HebronServiceCard({ icon, titleKo, titleEn, descKo, descEn, color, lang }: {
+  icon: string; titleKo: string; titleEn: string;
+  descKo: string; descEn: string; color: string; lang: string;
+}) {
+  const ko = lang === "ko";
+  return (
+    <a href={`mailto:gmc.hc300@gmail.com?subject=HebronGuide ${titleEn} 관심 등록`}
+      style={{ display: "block", textDecoration: "none", marginTop: 16 }}>
+      <div style={{
+        background: `linear-gradient(135deg, ${color}12, ${color}06)`,
+        border: `1px solid ${color}35`,
+        borderRadius: 14, padding: "14px 16px",
+        display: "flex", alignItems: "center", gap: 12,
+        transition: "all 0.15s",
+      }}
+        onMouseEnter={e => (e.currentTarget.style.background = `linear-gradient(135deg, ${color}20, ${color}10)`)}
+        onMouseLeave={e => (e.currentTarget.style.background = `linear-gradient(135deg, ${color}12, ${color}06)`)}>
+        <span style={{ fontSize: 24, flexShrink: 0 }}>{icon}</span>
+        <div style={{ flex: 1 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3 }}>
+            <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#ECFDF5" }}>
+              {ko ? titleKo : titleEn}
+            </span>
+            <span style={{ background: `${color}25`, border: `1px solid ${color}50`, color: color, borderRadius: 10, padding: "1px 7px", fontSize: 9, fontWeight: 700 }}>
+              {ko ? "준비 중" : "Coming Soon"}
+            </span>
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.65)", lineHeight: 1.5 }}>
+            {ko ? descKo : descEn}
+          </div>
+        </div>
+        <span style={{ color: color, fontSize: 16, flexShrink: 0 }}>→</span>
+      </div>
+    </a>
+  );
+}
+
 function BackToHomeButton({ onHome, lang }: { onHome?: () => void; lang: string }) {
   // 하단 네비바에서 홈 이동 가능 — 별도 버튼 불필요 (공간 절약)
   return null;
@@ -4877,6 +4927,14 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 </a>
               </div>
             </div>
+            {/* 거주지 탭 — 헤브론 스테이 서비스 카드 */}
+            <HebronServiceCard
+              icon="🏠" color="#10B981" lang={lang}
+              titleKo="헤브론 스테이 — 교회 검증 단기 숙박"
+              titleEn="Hebron Stay — Church-Verified Short-Term Housing"
+              descKo="정착 첫 1-3개월. 검증된 한인 가정에서 시작. 방+정착 오리엔테이션+교회 소개 패키지."
+              descEn="First 1-3 months in a verified Korean home. Room + settlement orientation + church introduction."
+            />
           </>
         ) : (
           <>
@@ -5156,6 +5214,15 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   : "• Major cities (LA, NY, Dallas): 12 churches — balanced regional coverage\n• Mid cities (Seattle, Atlanta): up to 12 — city-wide coverage\n• Small & military cities: 3-5 churches — a light for lonely Koreans\n\nNew immigrants automatically connected to nearest hub church."}
               </div>
             </div>
+
+            {/* 허브교회 탭 — 헤브론 매칭 서비스 카드 */}
+            <HebronServiceCard
+              icon="💍" color="#EC4899" lang={lang}
+              titleKo="헤브론 매칭 — 목사님이 보증하는 언약 관계"
+              titleEn="Hebron Matching — Covenant Relationships, Pastor-Endorsed"
+              descKo="교인 검증 + 목사님 추천. 신앙·가치관 기반 매칭. 선우/듀오 비용의 1/5. 미국 내 유일한 신앙 기반 한인 매칭."
+              descEn="Church-verified + pastor endorsement. Faith & values-based matching. 1/5 the cost of Korean agencies. Only faith-based Korean matching in the US."
+            />
 
             {/* CTA */}
             <a href="mailto:gmc.hc300@gmail.com?subject=HebronGuide 허브교회 신청"
@@ -5796,6 +5863,14 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {communityLinks.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
+          {/* 커뮤니티 탭 — 헤브론 커뮤니티 매칭 서비스 카드 */}
+          <HebronServiceCard
+            icon="🤝" color="#8B5CF6" lang={lang}
+            titleKo="헤브론 커넥트 — 친구·멘토·기도파트너 매칭"
+            titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
+            descKo="교인 검증 프로필로 44개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
+            descEn="Connect with Koreans across 44 cities via church-verified profiles. Friends, mentors, prayer & business partners."
+          />
           {/* 211 팁 박스 */}
           <a href="tel:211" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>
             <div style={{ background: "linear-gradient(135deg, rgba(248,113,113,0.15), rgba(251,146,60,0.1))", border: "1px solid rgba(248,113,113,0.35)", borderRadius: 14, padding: "14px 16px", cursor: "pointer", transition: "background 0.15s" }}
@@ -6655,6 +6730,16 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
             {lang === "ko" ? tip.ko : tip.en}
           </div>
         </div>
+        {/* 교육 탭 — 헤브론 튜터 서비스 카드 */}
+        <div style={{ padding: "0 16px 8px" }}>
+          <HebronServiceCard
+            icon="📚" color="#8B5CF6" lang={lang}
+            titleKo="헤브론 튜터 — 교회 검증 한인 튜터"
+            titleEn="Hebron Tutor — Church-Verified Korean Tutors"
+            descKo="수학·SAT·AP·한국어 과외. 교회 검증 + 학력 이중 확인. 온라인으로 17개 도시 가능."
+            descEn="Math, SAT, AP, Korean tutoring. Church + academic dual verification. Online across 17+ cities."
+          />
+        </div>
       </div>
     </div>
   );
@@ -7329,6 +7414,14 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                           : `In ${city.nameEn}, use VITA free tax filing (under $67K). A Costco membership ($65/yr) saves $300+/year, and Mint Mobile ($15/mo) keeps phone costs low.`}
               </div>
             </div>
+            {/* 교통 탭(sub 2)에 헤브론 라이드 서비스 카드 */}
+            {sub === 2 && <HebronServiceCard
+              icon="🚗" color="#3B82F6" lang={lang}
+              titleKo="헤브론 라이드 — 교회 검증 한인 드라이버"
+              titleEn="Hebron Ride — Church-Verified Korean Drivers"
+              descKo="공항 픽업부터 일상 이동까지 한국어로. 교회 검증 드라이버 = 가장 안심되는 이동."
+              descEn="Airport pickups to daily rides in Korean. Church-verified drivers — the most trusted rides."
+            />}
           </>
         ) : sub === 3 ? (
           <>
@@ -7743,15 +7836,15 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
    NAV ITEMS (3개로 축소)
 ───────────────────────────────────────── */
 // 순서: 홈(기준점) → 검색(가장 자주) → 통역(긴급할 때) → 공유(가끔)
-// 하단 네비 5탭: 홈·정착·맛집·도움·연결
-// "연결" = HebronGuide의 핵심 차별화 — 사람 간 연결 플랫폼
-// "더보기" 제거 → Quick Menu(홈 탭)가 전체 탭 탐색 역할 대체
+// 하단 네비 5탭: 홈·정착·맛집·도움·더보기
+// 서비스(라이드·스테이·튜터·커뮤니티·매칭)는 각 탭에 자연스럽게 분산
+// 더보기 → 16개 Quick Menu 전체 접근
 const NAV_ITEMS = [
-  { id: "home",      icon: Home,          labelKo: "홈",   labelEn: "Home",    tab: 0 },
-  { id: "settle",    icon: MapPin,        labelKo: "정착",  labelEn: "Settle",  tab: 1 },
-  { id: "food",      icon: Utensils,      labelKo: "맛집",  labelEn: "Food",    tab: 3 },
-  { id: "help",      icon: LifeBuoy,      labelKo: "도움",  labelEn: "Help",    tab: 5 },
-  { id: "connect",   icon: Users,         labelKo: "연결",  labelEn: "Connect", tab: 9 },
+  { id: "home",      icon: Home,          labelKo: "홈",   labelEn: "Home",   tab: 0 },
+  { id: "settle",    icon: MapPin,        labelKo: "정착",  labelEn: "Settle", tab: 1 },
+  { id: "food",      icon: Utensils,      labelKo: "맛집",  labelEn: "Food",   tab: 3 },
+  { id: "help",      icon: LifeBuoy,      labelKo: "도움",  labelEn: "Help",   tab: 5 },
+  { id: "more",      icon: Grid,          labelKo: "더보기", labelEn: "More",   tab: -1 },
 ];
 
 /* ─────────────────────────────────────────
