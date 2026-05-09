@@ -3089,6 +3089,14 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       providerKo: "선우/듀오 비용의 1/5", providerEn: "1/5 the cost of Korean agencies",
       tab: 2, subTab: 4,
     },
+    {
+      icon: "🧭", color: "#06B6D4",
+      nameKo: "헤브론 관광가이드", nameEn: "Hebron Tour Guide",
+      tagKo: "한국어 현지 가이드", tagEn: "Korean-speaking Local Guide",
+      userKo: "도시 깊이 알고 싶으세요?", userEn: "Want to explore like a local?",
+      providerKo: "가이드 등록 → 시간당 $40-80", providerEn: "Become a guide → $40-80/hr",
+      tab: 4, subTab: 0,
+    },
   ];
 
   return (
@@ -3180,8 +3188,8 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.55)", marginTop: 2, lineHeight: 1.5 }}>
             {ko
-              ? "라이드·스테이·튜터 15% · 커넥트 $15/월 · 매칭 $25-35/월 · 교회 검증 신뢰 = 프리미엄 수익"
-              : "Ride·Stay·Tutor 15% · Connect $15/mo · Match $25-35/mo · Church trust = premium earnings"}
+              ? "라이드·스테이·튜터·관광가이드 15% · 커넥트 $15/월 · 매칭 $25-35/월 · 교회 검증 신뢰 = 프리미엄 수익"
+              : "Ride·Stay·Tutor·Tour Guide 15% · Connect $15/mo · Match $25-35/mo · Church trust = premium earnings"}
           </div>
         </div>
       </div>
@@ -5729,6 +5737,14 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
+          {/* 관광 탭 — 헤브론 관광가이드 서비스 카드 */}
+          <HebronServiceCard
+            icon="🧭" color="#06B6D4" lang={lang}
+            titleKo="헤브론 관광가이드 — 한국어 현지 가이드"
+            titleEn="Hebron Tour Guide — Korean-speaking Local Guide"
+            descKo="이 도시에 살아본 한인이 안내합니다. 맛집·숨은 명소·한인 커뮤니티까지. 교회 검증 가이드."
+            descEn="Guided by Koreans who actually lived here. Hidden gems, Korean spots & local culture. Church-verified."
+          />
         </div>
       </div>
     </div>
