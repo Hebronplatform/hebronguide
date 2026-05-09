@@ -10635,10 +10635,10 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
               <div style={{ background: "linear-gradient(135deg, rgba(251,146,60,0.18), rgba(139,92,246,0.12))", border: "1px solid rgba(251,146,60,0.35)", borderRadius: 20, padding: "20px 18px", marginBottom: 14 }}>
                 {/* 핵심 비전 문구 */}
                 <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: 12, padding: "12px 14px", marginBottom: 14, borderLeft: "3px solid #FB923C" }}>
-                  <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: ko ? 12 : 11, color: "rgba(236,253,245,0.9)", lineHeight: 1.7, fontStyle: "italic" }}>
+                  <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: ko ? 11 : 10, color: "rgba(236,253,245,0.9)", lineHeight: 1.8, fontStyle: "italic" }}>
                     {ko
-                      ? "\"Hebron은 각자 은사와 재능과 열정을 가진 분들이\n스스로 키워가고 만들어가는 글로벌 커뮤니티입니다.\""
-                      : "\"Hebron is a global community grown and built by people\nwho each bring their own gifts, talents, and passion.\""}
+                      ? "\"사람이 사람을 섬깁니다.\n목마른 이에게 냉수를 대접하듯.\n서비스도, 책임도 본인의 이름을 걸고 —\n헤브론은 연결고리가 된다.\""
+                      : "\"Person serving person —\nlike offering cold water to the thirsty.\nService and responsibility under your own name.\nHebron is simply the bridge.\""}
                   </div>
                   <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(251,146,60,0.7)", marginTop: 6, textAlign: "right" }}>
                     — {ko ? "폴 김 목사" : "Pastor Paul Kim"}
@@ -10722,9 +10722,9 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                 </div>
                 {[
                   {
-                    icon: "🌍",
-                    title: ko ? "사회를 섬깁니다" : "We Serve Society",
-                    desc: ko ? "한인만이 아닙니다. 미국인·히스패닉·모든 이웃을 섬깁니다." : "Not just Koreans. We serve American, Hispanic & every neighbor.",
+                    icon: "💧",
+                    title: ko ? "사람이 사람을 섬깁니다" : "Person Serving Person",
+                    desc: ko ? "목마른 이에게 냉수를 대접하듯. 지금 눈앞의 이 한 사람을 섬깁니다." : "Like offering cold water to the thirsty. Serving the one person right in front of you.",
                   },
                   {
                     icon: "🏷️",
@@ -10747,10 +10747,10 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                 ))}
                 {/* 제공자 서약 */}
                 <div style={{ marginTop: 12, background: "rgba(251,146,60,0.08)", borderLeft: "3px solid #FB923C", borderRadius: "0 8px 8px 0", padding: "8px 12px" }}>
-                  <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 10, color: "rgba(251,146,60,0.9)", lineHeight: 1.7, fontStyle: "italic" }}>
+                  <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 10, color: "rgba(251,146,60,0.9)", lineHeight: 1.8, fontStyle: "italic" }}>
                     {ko
-                      ? "\"나는 내 은사와 재능과 열정으로,\n내 이름을 걸고, 이웃과 사회를 섬깁니다.\""
-                      : "\"I serve my neighbors and society\nwith my gifts, talents & passion — under my own name.\""}
+                      ? "\"나는 내 은사와 재능과 열정으로,\n목마른 이에게 냉수를 건네듯,\n내 이름을 걸고 이웃을 섬깁니다.\""
+                      : "\"With my gifts, talents & passion —\nlike cold water to the thirsty —\nI serve my neighbor, under my own name.\""}
                   </div>
                 </div>
               </div>
