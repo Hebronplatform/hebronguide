@@ -3138,7 +3138,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
             🔗 {ko ? "헤브론 연결 서비스" : "Hebron Connect Services"}
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", marginTop: 2 }}>
-            {ko ? "사람이 사람을 섬깁니다. 목마른 이에게 생수를 권하듯." : "Person serving person — like offering living water."}
+            {ko ? "사람이 사람을 섬깁니다. 목마른 이에게 생수를 권하듯!" : "Person serving person — like offering living water!"}
           </div>
         </div>
         <button
@@ -3218,8 +3218,8 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.55)", marginTop: 2, lineHeight: 1.5 }}>
             {ko
-              ? "모든 연결은 지역 공동체를 살립니다. — 마25:35"
-              : "Every connection revives the local community. — Matt 25:35"}
+              ? "모든 연결은 개인과 공동체를 살립니다. — 마25:35"
+              : "Every connection revives the individual and community. — Matt 25:35"}
           </div>
         </div>
       </div>
@@ -11023,8 +11023,8 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: 12, padding: "12px 14px", marginBottom: 14, borderLeft: "3px solid #FB923C" }}>
                   <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: ko ? 11 : 10, color: "rgba(236,253,245,0.9)", lineHeight: 1.8, fontStyle: "italic" }}>
                     {ko
-                      ? "\"사람이 사람을 섬깁니다.\n목마른 이에게 생수를 권하듯.\n헤브론은 연결고리가 된다.\""
-                      : "\"Person serving person —\nlike offering living water.\nHebron is simply the bridge.\""}
+                      ? "\"사람이 사람을 섬깁니다.\n목마른 이에게 생수를 권하듯!\n헤브론은 연결고리가 된다.\""
+                      : "\"Person serving person —\nlike offering living water!\nHebron is simply the bridge.\""}
                   </div>
                   <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(251,146,60,0.7)", marginTop: 6, textAlign: "right" }}>
                     — {ko ? "폴 김 목사" : "Pastor Paul Kim"}
@@ -11110,7 +11110,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                   {
                     icon: "💧",
                     title: ko ? "사람이 사람을 섬깁니다" : "Person Serving Person",
-                    desc: ko ? "목마른 이에게 생수를 권하듯. 지금 눈앞의 이 한 사람을 섬깁니다." : "Like offering living water to the thirsty. Serving the one person right in front of you.",
+                    desc: ko ? "목마른 이에게 생수를 권하듯! 지금 눈앞의 이 한 사람을 섬깁니다." : "Like offering living water! Serving the one person right in front of you.",
                   },
                   {
                     icon: "🏷️",
@@ -11135,8 +11135,8 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ marginTop: 12, background: "rgba(251,146,60,0.08)", borderLeft: "3px solid #FB923C", borderRadius: "0 8px 8px 0", padding: "8px 12px" }}>
                   <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 10, color: "rgba(251,146,60,0.9)", lineHeight: 1.8, fontStyle: "italic" }}>
                     {ko
-                      ? "\"나는 내 은사와 재능과 열정으로,\n목마른 이에게 생수를 권하듯,\n이웃을 섬깁니다.\""
-                      : "\"With my gifts, talents & passion —\nlike offering living water —\nI serve my neighbor.\""}
+                      ? "\"나는 내 은사와 재능과 열정으로,\n목마른 이에게 생수를 권하듯!\n이웃을 섬깁니다.\""
+                      : "\"With my gifts, talents & passion —\nlike offering living water!\nI serve my neighbor.\""}
                   </div>
                 </div>
               </div>
