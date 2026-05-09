@@ -11023,8 +11023,8 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: 12, padding: "12px 14px", marginBottom: 14, borderLeft: "3px solid #FB923C" }}>
                   <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: ko ? 11 : 10, color: "rgba(236,253,245,0.9)", lineHeight: 1.8, fontStyle: "italic" }}>
                     {ko
-                      ? "\"사람이 사람을 섬깁니다.\n목마른 이에게 생수를 권하듯.\n서비스도, 책임도 본인의 이름을 걸고 —\n헤브론은 연결고리가 된다.\""
-                      : "\"Person serving person —\nlike offering living water.\nService and responsibility under your own name.\nHebron is simply the bridge.\""}
+                      ? "\"사람이 사람을 섬깁니다.\n목마른 이에게 생수를 권하듯.\n헤브론은 연결고리가 된다.\""
+                      : "\"Person serving person —\nlike offering living water.\nHebron is simply the bridge.\""}
                   </div>
                   <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(251,146,60,0.7)", marginTop: 6, textAlign: "right" }}>
                     — {ko ? "폴 김 목사" : "Pastor Paul Kim"}
@@ -11114,8 +11114,8 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                   },
                   {
                     icon: "🏷️",
-                    title: ko ? "본인의 이름을 걸고" : "Under Your Own Name",
-                    desc: ko ? "서비스도, 책임도, 신뢰도 — 내 이름으로. 익명 뒤에 숨지 않습니다." : "Service, responsibility & trust — under your name. No hiding behind anonymity.",
+                    title: ko ? "내 이름으로 섬깁니다" : "Serving With My Name",
+                    desc: ko ? "익명 뒤에 숨지 않습니다. 내 얼굴과 이름으로 이웃을 섬깁니다." : "No hiding behind anonymity. I serve my neighbors with my face and name.",
                   },
                   {
                     icon: "🔗",
@@ -11135,8 +11135,8 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ marginTop: 12, background: "rgba(251,146,60,0.08)", borderLeft: "3px solid #FB923C", borderRadius: "0 8px 8px 0", padding: "8px 12px" }}>
                   <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 10, color: "rgba(251,146,60,0.9)", lineHeight: 1.8, fontStyle: "italic" }}>
                     {ko
-                      ? "\"나는 내 은사와 재능과 열정으로,\n목마른 이에게 생수를 권하듯,\n내 이름을 걸고 이웃을 섬깁니다.\""
-                      : "\"With my gifts, talents & passion —\nlike offering living water —\nI serve my neighbor, under my own name.\""}
+                      ? "\"나는 내 은사와 재능과 열정으로,\n목마른 이에게 생수를 권하듯,\n이웃을 섬깁니다.\""
+                      : "\"With my gifts, talents & passion —\nlike offering living water —\nI serve my neighbor.\""}
                   </div>
                 </div>
               </div>
@@ -12406,8 +12406,8 @@ function AppBar({ onHome }: { onHome?: () => void }) {
       >
         <div className="flex items-center justify-center overflow-hidden" style={{ width: 34, height: 34, borderRadius: 10, border: "1px solid rgba(242,153,74,0.25)", background: "rgba(242,153,74,0.08)", flexShrink: 0 }}>
           <img src={logoImg} alt="HebronGuide Logo" style={{ width: 28, height: 28, objectFit: "contain" }}
-            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; const fb = e.currentTarget.nextElementSibling as HTMLElement; if (fb) fb.style.display = "block"; }} />
-          <span style={{ fontSize: 16, display: "none" }}>🌲</span>
+            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; const fb = e.currentTarget.nextElementSibling as HTMLElement; if (fb) fb.style.display = "flex"; }} />
+          <span style={{ display: "none", alignItems: "center", justifyContent: "center", width: 28, height: 28, fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#F2994A", letterSpacing: "-0.5px" }}>HG</span>
         </div>
         <div className="flex flex-col" style={{ lineHeight: 1 }}>
           <div>
