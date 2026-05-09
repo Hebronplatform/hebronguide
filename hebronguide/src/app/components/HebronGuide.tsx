@@ -4237,16 +4237,23 @@ function Top3NeighborhoodsSection() {
    CITY HUB — 다른 도시 HebronGuide 연결
 ───────────────────────────────────────── */
 const HEBRON_CITIES = [
-  { emoji: "🌲", nameKo: "시애틀",      nameEn: "Seattle",       flag: "🇺🇸", url: "/seattle/",    status: "live",    color: "#0EA5E9" },
-  { emoji: "🤠", nameKo: "달라스",      nameEn: "Dallas",        flag: "🇺🇸", url: "/dallas/",     status: "live",    color: "#F59E0B" },
-  { emoji: "🌉", nameKo: "샌프란시스코", nameEn: "San Francisco", flag: "🇺🇸", url: "/sf/",         status: "live",    color: "#8B5CF6" },
-  { emoji: "🗽", nameKo: "뉴욕",        nameEn: "New York",      flag: "🇺🇸", url: "/newyork/",    status: "soon",    color: "#EF4444" },
-  { emoji: "🎵", nameKo: "내쉬빌",      nameEn: "Nashville",     flag: "🇺🇸", url: "/nashville/",  status: "soon",    color: "#10B981" },
-  { emoji: "🦞", nameKo: "보스턴",      nameEn: "Boston",        flag: "🇺🇸", url: "/boston/",     status: "soon",    color: "#3B82F6" },
-  { emoji: "🎬", nameKo: "LA",          nameEn: "Los Angeles",   flag: "🇺🇸", url: "/la/",         status: "coming",  color: "#F97316" },
-  { emoji: "🍁", nameKo: "토론토",      nameEn: "Toronto",       flag: "🇨🇦", url: "/toronto/",    status: "coming",  color: "#DC2626" },
-  { emoji: "🌲", nameKo: "밴쿠버",      nameEn: "Vancouver",     flag: "🇨🇦", url: "/vancouver/",  status: "coming",  color: "#059669" },
-  { emoji: "🏙️", nameKo: "시카고",     nameEn: "Chicago",       flag: "🇺🇸", url: "/chicago/",    status: "coming",  color: "#6B7280" },
+  { emoji: "🌲", nameKo: "시애틀",       nameEn: "Seattle",       flag: "🇺🇸", url: "/seattle/",     status: "live", color: "#0EA5E9" },
+  { emoji: "🤠", nameKo: "달라스",       nameEn: "Dallas",        flag: "🇺🇸", url: "/dallas/",      status: "live", color: "#F59E0B" },
+  { emoji: "🌉", nameKo: "샌프란시스코", nameEn: "San Francisco", flag: "🇺🇸", url: "/sf/",          status: "live", color: "#8B5CF6" },
+  { emoji: "🗽", nameKo: "뉴욕",         nameEn: "New York",      flag: "🇺🇸", url: "/newyork/",     status: "live", color: "#EF4444" },
+  { emoji: "🎵", nameKo: "내쉬빌",       nameEn: "Nashville",     flag: "🇺🇸", url: "/nashville/",   status: "live", color: "#10B981" },
+  { emoji: "🦞", nameKo: "보스턴",       nameEn: "Boston",        flag: "🇺🇸", url: "/boston/",      status: "live", color: "#3B82F6" },
+  { emoji: "🎬", nameKo: "LA",           nameEn: "Los Angeles",   flag: "🇺🇸", url: "/la/",          status: "live", color: "#F97316" },
+  { emoji: "🍁", nameKo: "토론토",       nameEn: "Toronto",       flag: "🇨🇦", url: "/toronto/",     status: "live", color: "#DC2626" },
+  { emoji: "🌲", nameKo: "밴쿠버",       nameEn: "Vancouver",     flag: "🇨🇦", url: "/vancouver/",   status: "live", color: "#059669" },
+  { emoji: "🚀", nameKo: "휴스턴",       nameEn: "Houston",       flag: "🇺🇸", url: "/houston/",     status: "live", color: "#8B5CF6" },
+  { emoji: "🍑", nameKo: "애틀랜타",     nameEn: "Atlanta",       flag: "🇺🇸", url: "/atlanta/",     status: "live", color: "#F472B6" },
+  { emoji: "🏛️", nameKo: "필라델피아",  nameEn: "Philadelphia",  flag: "🇺🇸", url: "/philadelphia/",status: "live", color: "#60A5FA" },
+  { emoji: "🎷", nameKo: "캔자스시티",   nameEn: "Kansas City",   flag: "🇺🇸", url: "/kansascity/",  status: "live", color: "#34D399" },
+  { emoji: "🌴", nameKo: "마이애미",     nameEn: "Miami",         flag: "🇺🇸", url: "/miami/",       status: "live", color: "#FB923C" },
+  { emoji: "🌮", nameKo: "멕시코시티",   nameEn: "Mexico City",   flag: "🇲🇽", url: "/mexicocity/",  status: "live", color: "#A3E635" },
+  { emoji: "🌺", nameKo: "과달라하라",   nameEn: "Guadalajara",   flag: "🇲🇽", url: "/guadalajara/", status: "live", color: "#F87171" },
+  { emoji: "⛰️", nameKo: "몬테레이",    nameEn: "Monterrey",     flag: "🇲🇽", url: "/monterrey/",   status: "live", color: "#C084FC" },
 ];
 
 /* 도시별 디자인 — 항공 코드 + 그라디언트 (프로페셔널 스타일) */
@@ -4260,7 +4267,14 @@ const CITY_DESIGN: Record<string, { code: string; gradient: string; textColor: s
   "Los Angeles":   { code: "LAX", gradient: "linear-gradient(135deg, #7C2D12, #EA580C)", textColor: "#FFEDD5" },
   "Toronto":       { code: "TOR", gradient: "linear-gradient(135deg, #881337, #E11D48)", textColor: "#FFE4E6" },
   "Vancouver":     { code: "YVR", gradient: "linear-gradient(135deg, #14532D, #16A34A)", textColor: "#DCFCE7" },
-  "Chicago":       { code: "CHI", gradient: "linear-gradient(135deg, #1E293B, #475569)", textColor: "#E2E8F0" },
+  "Houston":       { code: "HOU", gradient: "linear-gradient(135deg, #2E1065, #7C3AED)", textColor: "#EDE9FE" },
+  "Atlanta":       { code: "ATL", gradient: "linear-gradient(135deg, #831843, #DB2777)", textColor: "#FCE7F3" },
+  "Philadelphia":  { code: "PHL", gradient: "linear-gradient(135deg, #1E3A8A, #3B82F6)", textColor: "#DBEAFE" },
+  "Kansas City":   { code: "MCI", gradient: "linear-gradient(135deg, #064E3B, #10B981)", textColor: "#D1FAE5" },
+  "Miami":         { code: "MIA", gradient: "linear-gradient(135deg, #7C2D12, #F97316)", textColor: "#FFEDD5" },
+  "Mexico City":   { code: "MEX", gradient: "linear-gradient(135deg, #365314, #65A30D)", textColor: "#ECFCCB" },
+  "Guadalajara":   { code: "GDL", gradient: "linear-gradient(135deg, #7F1D1D, #EF4444)", textColor: "#FEE2E2" },
+  "Monterrey":     { code: "MTY", gradient: "linear-gradient(135deg, #4A1D96, #A855F7)", textColor: "#F3E8FF" },
 };
 
 function CityHubSection({ lang }: { lang: string }) {
