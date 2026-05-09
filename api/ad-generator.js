@@ -29,29 +29,40 @@ module.exports = async function handler(req, res) {
       adDuration,
       budget,
       uniqueValue,
+      languages,  // 선택 언어 배열 ['ko','en','es'] — 없으면 전체 생성
     } = req.body
 
     if (!businessName || !businessType || !city || !adGoal) {
       return res.status(400).json({ error: '필수 항목 누락: businessName, businessType, city, adGoal' })
     }
 
+    // 선택 언어 결정 (기본값: 전체 3개)
+    const langs = Array.isArray(languages) && languages.length > 0
+      ? languages
+      : ['ko', 'en', 'es']
+
     const ethicalIssues = checkEthics({ businessName, adGoal, uniqueValue })
     if (ethicalIssues.length > 0) {
       return res.status(400).json({ error: 'Ethics check failed', issues: ethicalIssues })
     }
 
-    const systemPrompt = `You are HebronGuide's AI Ad Generator. Create compelling but truthful ad copy in 3 languages: Korean, English, Spanish.
+    // 선택 언어별 출력 필드 구성
+    const langFields = {
+      ko: `"copy_ko": "한국어 광고 카피 (2-3문장)",\n  "headline_ko": "짧은 헤드라인 (15자 이하)",`,
+      en: `"copy_en": "English ad copy (2-3 sentences)",\n  "headline_en": "Short headline (15 chars max)",`,
+      es: `"copy_es": "Copia de anuncio en español (2-3 oraciones)",\n  "headline_es": "Titular corto (15 caracteres)",`,
+    }
+    const langNames = { ko: 'Korean', en: 'English', es: 'Spanish' }
+    const selectedLangNames = langs.map(l => langNames[l]).join(', ')
+    const selectedFields = langs.map(l => langFields[l]).join('\n  ')
+
+    const systemPrompt = `You are HebronGuide's AI Ad Generator. Create compelling but truthful ad copy in the following language(s): ${selectedLangNames}.
 Follow HebronGuide's vision (마7:12 황금률 + 마10:16 지혜+순결). Never fabricate facts.
 Tone: warm, hospitable, trustworthy.
 
-Output JSON format ONLY:
+Output JSON format ONLY (include ONLY the requested languages):
 {
-  "copy_ko": "한국어 광고 카피",
-  "copy_en": "English ad copy",
-  "copy_es": "Copia de anuncio en español",
-  "headline_ko": "짧은 헤드라인 (15자 이하)",
-  "headline_en": "Short headline (15 chars max)",
-  "headline_es": "Titular corto (15 caracteres)",
+  ${selectedFields}
   "qr_url_suggestion": "hebronguide.com/[city]?ref=ad_[unique_id]",
   "recommended_placement": "Which tab (settle/dining/explore/etc)",
   "ethical_check": "Confirmation this ad respects HebronGuide values"
