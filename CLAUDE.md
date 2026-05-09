@@ -348,7 +348,7 @@ HebronGuide는 정치적 좌파도 우파도 아니다.
 | SF 베이 | SF Korea Daily | sfkoreadaily.com | ⚠️ |
 | 뉴욕/NJ | 뉴욕중앙일보 | ny.koreadaily.com | ✅ |
 | 뉴욕/NJ | Radio Korea NY | nyradiokorea.com | ✅ |
-| 뉴욕/NJ | byeon.com | byeon.com | ⚠️ |
+| 뉴욕/NJ | ~~byeon.com~~ | ~~byeon.com~~ | ❌ 실사 미달 |
 | 보스턴 | 보스톤코리아 | bostonkorea.com | ✅ |
 | LA | (전국 플랫폼 참조) | — | — |
 | 토론토 | 캐나다 한국일보 | koreatimes.net | ✅ |
