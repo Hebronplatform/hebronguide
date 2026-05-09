@@ -3065,7 +3065,7 @@ const QUICK_MENU = [
   { icon: "map",            labelKo: "관광",    labelEn: "Tourism", color: "#06B6D4", tab: 4,  subTab: 0 },
   { icon: "receipt",        labelKo: "세금신고",  labelEn: "Taxes",   color: "#F97316", tab: 8,  subTab: 4 },
   { icon: "scale",          labelKo: "법률상담",  labelEn: "Legal",   color: "#64748B", tab: 5,  subTab: 5 },
-  { icon: "shopping-bag",   labelKo: "헤브론 스토어", labelEn: "Store", color: "#F2994A", tab: 10, subTab: 0 },
+  { icon: "book-open",      labelKo: "한국학교",  labelEn: "K-School",color: "#BE185D", tab: 7,  subTab: 5 },
 ];
 
 /* ─────────────────────────────────────────
@@ -4608,6 +4608,25 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <KoreanCultureCalendarSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <CityHubSection lang={lang} />
+      {/* 헤브론 스토어 배너 */}
+      <div style={{ margin: "12px 16px 0", background: "linear-gradient(135deg, rgba(242,153,74,0.15), rgba(75,91,215,0.12))", border: "1px solid rgba(242,153,74,0.3)", borderRadius: 16, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12 }}>
+        <span style={{ fontSize: 28, flexShrink: 0 }}>🛒</span>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#ECFDF5", marginBottom: 2 }}>
+            {lang === "ko" ? "헤브론 스토어 오픈" : "Hebron Store Now Open"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.6)", lineHeight: 1.5 }}>
+            {lang === "ko"
+              ? "HebronLingua · 정착가이드 · 멤버십 직접 구매"
+              : "HebronLingua · Settlement guides · Membership"}
+          </div>
+        </div>
+        <button
+          onClick={() => onNavigate && onNavigate(10)}
+          style={{ background: "#F2994A", border: "none", borderRadius: 10, padding: "8px 14px", fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#fff", cursor: "pointer", flexShrink: 0 }}>
+          {lang === "ko" ? "보기 →" : "View →"}
+        </button>
+      </div>
     </div>
   );
 }
