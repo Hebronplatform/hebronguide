@@ -10372,7 +10372,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
       features: ko
         ? ["270개+ 레슨", "K-pop 표현 포함", "오프라인 사용", "3개 언어", "평생 이용"]
         : ["270+ lessons", "K-pop expressions", "Works offline", "3 languages", "Lifetime access"],
-      buyLink: "mailto:gmc.hc300@gmail.com?subject=HebronLingua Echo 구매 문의&body=이름:%0A이메일:%0A언어 선택(한국어/영어/스페인어):%0A결제 방법 문의",
+      buyLink: "mailto:hebronplatform@gmail.com?subject=HebronLingua Echo 구매 문의&body=이름:%0A이메일:%0A언어 선택(한국어/영어/스페인어):%0A결제 방법 문의",
       previewLink: "https://hebronguide.com",
       status: "live",
     },
@@ -10387,7 +10387,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
       features: ko
         ? ["Echo 앱 포함", "화상 코칭 10회", "맞춤 학습", "K-pop 분석", "한국 문화"]
         : ["Includes Echo", "10 video sessions", "Custom plan", "K-pop analysis", "Korean culture"],
-      buyLink: "mailto:gmc.hc300@gmail.com?subject=HebronLingua Pro 구매 문의&body=이름:%0A이메일:%0A선호 수업 시간:%0A현재 한국어 수준:",
+      buyLink: "mailto:hebronplatform@gmail.com?subject=HebronLingua Pro 구매 문의&body=이름:%0A이메일:%0A선호 수업 시간:%0A현재 한국어 수준:",
       status: "live",
     },
     // ── 정착 가이드 ──
@@ -10402,7 +10402,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
       features: ko
         ? ["17개 도시", "PDF 즉시 다운로드", "오프라인 사용", "긴급연락처 포함", "연 1회 업데이트"]
         : ["17 cities", "Instant PDF download", "Offline use", "Emergency contacts", "Annual updates"],
-      buyLink: "mailto:gmc.hc300@gmail.com?subject=Hebron 정착 가이드 PDF 구매&body=이름:%0A이메일:%0A도시:%0A",
+      buyLink: "mailto:hebronplatform@gmail.com?subject=Hebron 정착 가이드 PDF 구매&body=이름:%0A이메일:%0A도시:%0A",
       status: "live",
     },
     {
@@ -10416,7 +10416,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
       features: ko
         ? ["1개 도시 집중", "업소 검증 목록", "렌트 시세 지도", "교회 연락처", "전화 상담 1회"]
         : ["1 city focus", "Verified businesses", "Rent map", "Church contacts", "Phone consultation"],
-      buyLink: "mailto:gmc.hc300@gmail.com?subject=도시별 정착 키트 구매&body=이름:%0A이메일:%0A도시 선택:",
+      buyLink: "mailto:hebronplatform@gmail.com?subject=도시별 정착 키트 구매&body=이름:%0A이메일:%0A도시 선택:",
       status: "live",
     },
     // ── 신앙·큐티 ──
@@ -10432,7 +10432,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
       features: ko
         ? ["매일 큐티", "기도 기록", "목장 연동", "3개 언어", "오프라인"]
         : ["Daily devotional", "Prayer journal", "House church sync", "3 languages", "Offline"],
-      buyLink: "mailto:gmc.hc300@gmail.com?subject=HebronAltar 앱 접근 요청",
+      buyLink: "mailto:hebronplatform@gmail.com?subject=HebronAltar 앱 접근 요청",
       status: "live",
     },
     // ── Gig 제공자 ──
@@ -10447,7 +10447,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
       features: ko
         ? ["프로필 설정 가이드", "가격 책정 도구", "3개 언어 템플릿", "SNS 이미지", "첫 고객 전략"]
         : ["Profile setup guide", "Pricing worksheet", "3-language templates", "Social images", "First client strategy"],
-      buyLink: "mailto:gmc.hc300@gmail.com?subject=Gig 제공자 스타터 키트 구매&body=이름:%0A제공할 서비스:%0A도시:",
+      buyLink: "mailto:hebronplatform@gmail.com?subject=Gig 제공자 스타터 키트 구매&body=이름:%0A제공할 서비스:%0A도시:",
       status: "live",
     },
     // ── 커뮤니티 ──
@@ -10463,7 +10463,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
       features: ko
         ? ["가이드 무제한", "수수료 10%", "교회 우선 연결", "조기 접근", "월 상담 1회"]
         : ["Unlimited guides", "10% commission", "Church priority", "Early access", "Monthly consult"],
-      buyLink: "mailto:gmc.hc300@gmail.com?subject=Hebron 멤버십 가입 문의&body=이름:%0A이메일:%0A도시:",
+      buyLink: "mailto:hebronplatform@gmail.com?subject=Hebron 멤버십 가입 문의&body=이름:%0A이메일:%0A도시:",
       status: "live",
     },
     // ── 남미 특화 ──
@@ -10479,7 +10479,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
       features: ko
         ? ["스페인어 설명", "K-pop 표현 200개", "가사 분석", "Echo 30일 무료", "언어교환 커뮤니티"]
         : ["Spanish explanation", "200 K-pop expressions", "Lyrics analysis", "Echo 30-day free", "Language exchange"],
-      buyLink: "mailto:gmc.hc300@gmail.com?subject=K-pop 한국어 입문 (스페인어판) 구매&body=이름:%0A이메일:",
+      buyLink: "mailto:hebronplatform@gmail.com?subject=K-pop 한국어 입문 (스페인어판) 구매&body=이름:%0A이메일:",
       status: "live",
     },
   ];
@@ -10558,7 +10558,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
               </div>
             </div>
           </div>
-          <a href="mailto:gmc.hc300@gmail.com?subject=HebronLingua Echo 구매 문의&body=이름:%0A이메일:%0A언어 선택:"
+          <a href="mailto:hebronplatform@gmail.com?subject=HebronLingua Echo 구매 문의&body=이름:%0A이메일:%0A언어 선택:"
             style={{ display: "block", textDecoration: "none", marginTop: 12, background: "linear-gradient(135deg, #4B5BD7, #7C3AED)", borderRadius: 12, padding: "11px 16px", textAlign: "center" }}>
             <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff" }}>
               {ko ? "📩 지금 구매하기 — $9.99" : "📩 Buy Now — $9.99"}
@@ -10630,7 +10630,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
         </div>
 
         {/* 고객 지원 */}
-        <a href="mailto:gmc.hc300@gmail.com?subject=Hebron Store 문의"
+        <a href="mailto:hebronplatform@gmail.com?subject=Hebron Store 문의"
           style={{ display: "block", textDecoration: "none", background: "linear-gradient(135deg, rgba(242,153,74,0.15), rgba(242,153,74,0.08))", border: "1px solid rgba(242,153,74,0.3)", borderRadius: 12, padding: "12px 16px", textAlign: "center" }}>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: accent }}>
             💬 {ko ? "구매 전 문의하기" : "Questions before buying?"}
@@ -11083,7 +11083,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                     {cat.services.map((svc, si) => (
                       <a key={si}
-                        href={`mailto:gmc.hc300@gmail.com?subject=Hebron Gig 제공자 등록 — ${svc.name}`}
+                        href={`mailto:hebronplatform@gmail.com?subject=Hebron Gig 제공자 등록 — ${svc.name}`}
                         style={{ textDecoration: "none" }}>
                         <div style={{ background: "rgba(255,255,255,0.04)", border: `1px solid ${cat.color}25`, borderRadius: 12, padding: "10px 11px", cursor: "pointer", transition: "all 0.15s" }}
                           onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = `${cat.color}15`; }}
@@ -11151,7 +11151,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                     ? "한국어·영어·스페인어 모두 가능합니다. 은사와 재능이 있으시면 이름을 걸고 시작하세요."
                     : "Korean, English & Spanish supported. Have gifts & talents? Start serving under your own name."}
                 </div>
-                <a href="mailto:gmc.hc300@gmail.com?subject=Hebron Gig 제공자 등록"
+                <a href="mailto:hebronplatform@gmail.com?subject=Hebron Gig 제공자 등록"
                   style={{ display: "block", textDecoration: "none", background: "linear-gradient(135deg, #FB923C, #8B5CF6)", borderRadius: 12, padding: "12px 20px", textAlign: "center" }}>
                   <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff" }}>
                     {ko ? "📩 내 이름으로 등록하기" : "📩 Register Under My Name"}
