@@ -3062,10 +3062,10 @@ const QUICK_MENU = [
   { icon: "file-text",      labelKo: "비자·이민", labelEn: "Visa",    color: "#6366F1", tab: 1, subTab: 7 },
   { icon: "life-buoy",      labelKo: "도움",    labelEn: "Help",    color: "#DC2626", tab: 5, subTab: 0 },
   // Row 4: 심화 참고
-  { icon: "map",            labelKo: "관광",    labelEn: "Tourism", color: "#06B6D4", tab: 4, subTab: 0 },
-  { icon: "receipt",        labelKo: "세금신고",  labelEn: "Taxes",   color: "#F97316", tab: 8, subTab: 4 },
-  { icon: "scale",          labelKo: "법률상담",  labelEn: "Legal",   color: "#64748B", tab: 5, subTab: 5 },
-  { icon: "book-open",      labelKo: "한국학교",  labelEn: "K-School",color: "#BE185D", tab: 7, subTab: 5 },
+  { icon: "map",            labelKo: "관광",    labelEn: "Tourism", color: "#06B6D4", tab: 4,  subTab: 0 },
+  { icon: "receipt",        labelKo: "세금신고",  labelEn: "Taxes",   color: "#F97316", tab: 8,  subTab: 4 },
+  { icon: "scale",          labelKo: "법률상담",  labelEn: "Legal",   color: "#64748B", tab: 5,  subTab: 5 },
+  { icon: "shopping-bag",   labelKo: "헤브론 스토어", labelEn: "Store", color: "#F2994A", tab: 10, subTab: 0 },
 ];
 
 /* ─────────────────────────────────────────
@@ -10315,6 +10315,371 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
 /* ═══════════════════════════════════════════════════════
    TAB 10: 사람 연결 SCREEN — Hebron Connect Platform
    ═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   ── HEBRON STORE — 생태계 상품 플랫폼 ────
+   ═══════════════════════════════════════════ */
+function StoreScreen({ onHome }: { onHome?: () => void }) {
+  const { lang } = useI18n();
+  const ko = lang === "ko";
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [selectedProduct, setSelectedProduct] = useState<null | typeof STORE_PRODUCTS[0]>(null);
+  const accent = "#F2994A";
+
+  type Product = {
+    id: string; category: string; emoji: string;
+    nameKo: string; nameEn: string;
+    taglineKo: string; taglineEn: string;
+    descKo: string; descEn: string;
+    price: string; priceNote: string;
+    color: string; badge?: string;
+    features: string[];
+    buyLink: string; previewLink?: string;
+    status: "live" | "soon" | "free";
+  };
+
+  const STORE_PRODUCTS: Product[] = [
+    // ── 언어·교육 ──
+    {
+      id: "lingua-echo", category: "edu",
+      emoji: "🗣️", color: "#4B5BD7",
+      nameKo: "HebronLingua Echo", nameEn: "HebronLingua Echo",
+      taglineKo: "K-pop 가사를 직접 이해하는 한국어 학습", taglineEn: "Learn Korean through K-pop — understand lyrics directly",
+      descKo: "270개+ 한국어 레슨. 발음·문법·회화·K-pop 표현까지. 멕시코·남미 K-pop 팬들을 위한 한국어 학습 플랫폼.\n\n✅ 270개+ 대화형 레슨\n✅ 오프라인 작동 (인터넷 없이 사용 가능)\n✅ 한국어·영어·스페인어 3개 언어 지원\n✅ BTS·뉴진스·aespa 등 K-pop 표현 포함\n✅ 실생활 정착 한국어 특화",
+      descEn: "270+ Korean lessons covering pronunciation, grammar, conversation & K-pop expressions. Designed for Latin American K-pop fans.\n\n✅ 270+ interactive lessons\n✅ Works offline (no internet required)\n✅ Korean, English & Spanish supported\n✅ K-pop expressions (BTS, NewJeans, aespa)\n✅ Practical settlement Korean included",
+      price: "$9.99", priceNote: ko ? "평생 이용권 · 업데이트 포함" : "Lifetime access · Updates included",
+      badge: "🔥 베스트셀러",
+      features: ko
+        ? ["270개+ 레슨", "K-pop 표현 포함", "오프라인 사용", "3개 언어", "평생 이용"]
+        : ["270+ lessons", "K-pop expressions", "Works offline", "3 languages", "Lifetime access"],
+      buyLink: "mailto:gmc.hc300@gmail.com?subject=HebronLingua Echo 구매 문의&body=이름:%0A이메일:%0A언어 선택(한국어/영어/스페인어):%0A결제 방법 문의",
+      previewLink: "https://hebronguide.com",
+      status: "live",
+    },
+    {
+      id: "lingua-pro", category: "edu",
+      emoji: "🎓", color: "#4B5BD7",
+      nameKo: "HebronLingua Pro", nameEn: "HebronLingua Pro",
+      taglineKo: "1:1 화상 한국어 코칭 + Echo 앱 세트", taglineEn: "1-on-1 Korean video coaching + Echo app bundle",
+      descKo: "HebronLingua Echo 앱 + 한인 코치와 1:1 화상 수업 10회 패키지.\n\n✅ HebronLingua Echo 포함\n✅ 1:1 화상 코칭 10회 (60분씩)\n✅ 맞춤 학습 계획서 제공\n✅ K-pop 가사 분석 수업\n✅ 한국 문화·생활회화 특화",
+      descEn: "HebronLingua Echo app + 10 sessions of 1-on-1 video coaching with a Korean tutor.\n\n✅ Includes HebronLingua Echo\n✅ 10 x 60-min video coaching sessions\n✅ Personalized study plan\n✅ K-pop lyrics analysis class\n✅ Korean culture & daily conversation focus",
+      price: "$129", priceNote: ko ? "Echo 앱 포함 · 10회 코칭" : "Includes Echo app · 10 coaching sessions",
+      features: ko
+        ? ["Echo 앱 포함", "화상 코칭 10회", "맞춤 학습", "K-pop 분석", "한국 문화"]
+        : ["Includes Echo", "10 video sessions", "Custom plan", "K-pop analysis", "Korean culture"],
+      buyLink: "mailto:gmc.hc300@gmail.com?subject=HebronLingua Pro 구매 문의&body=이름:%0A이메일:%0A선호 수업 시간:%0A현재 한국어 수준:",
+      status: "live",
+    },
+    // ── 정착 가이드 ──
+    {
+      id: "settle-guide", category: "guide",
+      emoji: "📖", color: "#F2994A",
+      nameKo: "Hebron 정착 가이드 PDF", nameEn: "Hebron Settlement Guide PDF",
+      taglineKo: "17개 도시 한인 정착 완전 가이드 (PDF)", taglineEn: "Complete Korean immigrant settlement guide for 17 cities (PDF)",
+      descKo: "HebronGuide 앱의 모든 정착 정보를 오프라인 PDF로. 17개 도시별 운전면허·건강보험·SSA·학군·커뮤니티 정보 총정리.\n\n✅ 17개 도시 정착 정보\n✅ 도시별 DMV·SSA 주소·전화번호\n✅ 건강보험 마켓플레이스 가이드\n✅ 학군 순위 & 한국학교 정보\n✅ 긴급연락처 스티커 포함",
+      descEn: "All HebronGuide settlement info in offline PDF format. 17 cities covering DMV, health insurance, SSA, schools & community.\n\n✅ 17-city settlement info\n✅ City-specific DMV/SSA addresses & phones\n✅ Health insurance marketplace guide\n✅ School district rankings & Korean schools\n✅ Emergency contact sticker included",
+      price: "$4.99", priceNote: ko ? "즉시 다운로드 · PDF + 이미지" : "Instant download · PDF + images",
+      features: ko
+        ? ["17개 도시", "PDF 즉시 다운로드", "오프라인 사용", "긴급연락처 포함", "연 1회 업데이트"]
+        : ["17 cities", "Instant PDF download", "Offline use", "Emergency contacts", "Annual updates"],
+      buyLink: "mailto:gmc.hc300@gmail.com?subject=Hebron 정착 가이드 PDF 구매&body=이름:%0A이메일:%0A도시:%0A",
+      status: "live",
+    },
+    {
+      id: "city-guide", category: "guide",
+      emoji: "🏙️", color: "#F2994A",
+      nameKo: "도시별 맞춤 정착 키트", nameEn: "City-Specific Settlement Kit",
+      taglineKo: "내가 이사할 도시만 집중 공략 키트", taglineEn: "Deep-dive kit for your specific destination city",
+      descKo: "원하는 한 도시의 정착 정보를 완전 패키지로. HebronGuide 앱보다 더 깊은 현지 정보.\n\n✅ 1개 도시 집중 (선택)\n✅ 한인 업소 검증 목록\n✅ 학군별 렌트 시세 지도\n✅ 한인 교회·커뮤니티 연락처\n✅ 현지 한인 조언자 1회 전화 상담 포함",
+      descEn: "Full settlement package for your chosen city — deeper than the app.\n\n✅ 1 city deep-dive (your choice)\n✅ Verified Korean business list\n✅ School district + rent map\n✅ Korean church & community contacts\n✅ 1 consultation call with local Korean advisor",
+      price: "$19.99", priceNote: ko ? "도시 1개 선택 · 상담 포함" : "Choose 1 city · Consultation included",
+      features: ko
+        ? ["1개 도시 집중", "업소 검증 목록", "렌트 시세 지도", "교회 연락처", "전화 상담 1회"]
+        : ["1 city focus", "Verified businesses", "Rent map", "Church contacts", "Phone consultation"],
+      buyLink: "mailto:gmc.hc300@gmail.com?subject=도시별 정착 키트 구매&body=이름:%0A이메일:%0A도시 선택:",
+      status: "live",
+    },
+    // ── 신앙·큐티 ──
+    {
+      id: "altar", category: "faith",
+      emoji: "🕯️", color: "#9B51E0",
+      nameKo: "HebronAltar (묵상 앱)", nameEn: "HebronAltar (Devotional App)",
+      taglineKo: "매일 큐티·기도·신앙 성장 디지털 플랫폼", taglineEn: "Daily devotional, prayer & faith growth digital platform",
+      descKo: "HebronGuide 생태계의 신앙 앱. 매일 묵상·기도·말씀 읽기. 목장 소그룹 연동.\n\n✅ 매일 큐티 콘텐츠\n✅ 기도 기록 & 스트릭\n✅ 목장 소그룹 연동\n✅ 한국어·영어·스페인어\n✅ 오프라인 작동",
+      descEn: "The faith app in the HebronGuide ecosystem. Daily devotionals, prayer & Bible reading. House church group integration.\n\n✅ Daily devotional content\n✅ Prayer journal & streaks\n✅ House church group sync\n✅ Korean, English & Spanish\n✅ Works offline",
+      price: ko ? "무료" : "Free", priceNote: ko ? "기본 무료 · Pro $4.99/월" : "Free · Pro $4.99/mo",
+      badge: "✝️ 무료",
+      features: ko
+        ? ["매일 큐티", "기도 기록", "목장 연동", "3개 언어", "오프라인"]
+        : ["Daily devotional", "Prayer journal", "House church sync", "3 languages", "Offline"],
+      buyLink: "mailto:gmc.hc300@gmail.com?subject=HebronAltar 앱 접근 요청",
+      status: "live",
+    },
+    // ── Gig 제공자 ──
+    {
+      id: "gig-starter", category: "gig",
+      emoji: "🛠️", color: "#FB923C",
+      nameKo: "Hebron Gig 제공자 스타터 키트", nameEn: "Hebron Gig Provider Starter Kit",
+      taglineKo: "은사와 재능으로 이웃을 섬기는 첫 걸음", taglineEn: "Your first step to serving neighbors with your gifts & talents",
+      descKo: "Hebron Gig에 제공자로 등록하는 완전 가이드 + 마케팅 자료.\n\n✅ 제공자 프로필 설정 가이드\n✅ 서비스 가격 책정 워크시트\n✅ 한·영·스 3개 언어 서비스 소개 템플릿\n✅ 소셜미디어 홍보 이미지 키트\n✅ 첫 고객 유치 전략 가이드",
+      descEn: "Complete guide to becoming a Hebron Gig provider + marketing materials.\n\n✅ Provider profile setup guide\n✅ Service pricing worksheet\n✅ KO/EN/ES service introduction templates\n✅ Social media promo image kit\n✅ First client acquisition strategy",
+      price: "$14.99", priceNote: ko ? "디지털 키트 즉시 다운로드" : "Instant digital kit download",
+      features: ko
+        ? ["프로필 설정 가이드", "가격 책정 도구", "3개 언어 템플릿", "SNS 이미지", "첫 고객 전략"]
+        : ["Profile setup guide", "Pricing worksheet", "3-language templates", "Social images", "First client strategy"],
+      buyLink: "mailto:gmc.hc300@gmail.com?subject=Gig 제공자 스타터 키트 구매&body=이름:%0A제공할 서비스:%0A도시:",
+      status: "live",
+    },
+    // ── 커뮤니티 ──
+    {
+      id: "hebron-membership", category: "community",
+      emoji: "🏆", color: "#C9A227",
+      nameKo: "Hebron 커뮤니티 멤버십", nameEn: "Hebron Community Membership",
+      taglineKo: "허브교회 파트너 + Gig 우선 매칭 + 모든 가이드 무제한", taglineEn: "Hub church partner + Gig priority + all guides unlimited",
+      descKo: "HebronGuide 생태계 전체 이용 멤버십.\n\n✅ 모든 정착 가이드 PDF 무제한\n✅ Gig 서비스 수수료 15% → 10%\n✅ 허브교회 파트너 우선 연결\n✅ 신규 도시 조기 접근\n✅ 1:1 정착 상담 월 1회 무료",
+      descEn: "Full HebronGuide ecosystem membership.\n\n✅ All settlement guide PDFs unlimited\n✅ Gig commission 15% → 10%\n✅ Hub church partner priority connection\n✅ Early access to new cities\n✅ 1 free monthly settlement consultation",
+      price: "$9.99/월", priceNote: ko ? "월간 · 언제든 취소 가능" : "Monthly · Cancel anytime",
+      badge: "💎 멤버십",
+      features: ko
+        ? ["가이드 무제한", "수수료 10%", "교회 우선 연결", "조기 접근", "월 상담 1회"]
+        : ["Unlimited guides", "10% commission", "Church priority", "Early access", "Monthly consult"],
+      buyLink: "mailto:gmc.hc300@gmail.com?subject=Hebron 멤버십 가입 문의&body=이름:%0A이메일:%0A도시:",
+      status: "live",
+    },
+    // ── 남미 특화 ──
+    {
+      id: "latam-kpop", category: "latam",
+      emoji: "🎵", color: "#EF4444",
+      nameKo: "K-pop 팬을 위한 한국어 입문 (스페인어판)", nameEn: "Korean for K-pop Fans — Spanish Edition",
+      taglineKo: "BTS·뉴진스 가사를 직접 이해하는 첫 번째 한국어", taglineEn: "Your first Korean — understand BTS & NewJeans lyrics directly",
+      descKo: "멕시코·남미 K-pop 팬 전용 한국어 입문서 + HebronLingua Echo 30일 무료 체험.\n\n✅ 스페인어로 설명하는 한국어 발음\n✅ K-pop 필수 표현 200개\n✅ BTS·뉴진스·aespa 가사 분석\n✅ HebronLingua Echo 30일 무료\n✅ 멕시코시티 한인 언어 교환 커뮤니티 연결",
+      descEn: "Spanish-language Korean primer for Latin American K-pop fans + 30-day HebronLingua Echo trial.\n\n✅ Korean pronunciation explained in Spanish\n✅ 200 essential K-pop expressions\n✅ BTS, NewJeans & aespa lyrics analysis\n✅ HebronLingua Echo 30-day free trial\n✅ Mexico City Korean language exchange community",
+      price: "$6.99", priceNote: ko ? "PDF + Echo 30일 체험 포함" : "PDF + Echo 30-day trial included",
+      badge: "🌎 남미 특화",
+      features: ko
+        ? ["스페인어 설명", "K-pop 표현 200개", "가사 분석", "Echo 30일 무료", "언어교환 커뮤니티"]
+        : ["Spanish explanation", "200 K-pop expressions", "Lyrics analysis", "Echo 30-day free", "Language exchange"],
+      buyLink: "mailto:gmc.hc300@gmail.com?subject=K-pop 한국어 입문 (스페인어판) 구매&body=이름:%0A이메일:",
+      status: "live",
+    },
+  ];
+
+  const CATEGORIES = [
+    { id: "all",       emoji: "🌐", labelKo: "전체",   labelEn: "All" },
+    { id: "edu",       emoji: "🗣️", labelKo: "언어학습", labelEn: "Language" },
+    { id: "guide",     emoji: "📖", labelKo: "정착가이드", labelEn: "Guide" },
+    { id: "faith",     emoji: "✝️", labelKo: "신앙",   labelEn: "Faith" },
+    { id: "gig",       emoji: "🛠️", labelKo: "기그",   labelEn: "Gig" },
+    { id: "community", emoji: "🏆", labelKo: "멤버십", labelEn: "Membership" },
+    { id: "latam",     emoji: "🌎", labelKo: "남미특화", labelEn: "LatAm" },
+  ];
+
+  const filtered = activeCategory === "all" ? STORE_PRODUCTS : STORE_PRODUCTS.filter(p => p.category === activeCategory);
+
+  return (
+    <div style={{ paddingBottom: 96 }}>
+      <BackToHomeButton onHome={onHome} lang={lang} />
+      <ScreenHeader emoji="🛒" titleKo="헤브론 스토어" titleEn="Hebron Store"
+        descKo="생태계 상품 직접 구매 · 언어학습 · 정착가이드 · 멤버십"
+        descEn="Direct purchase · Language learning · Settlement guides · Membership"
+        accentColor={accent} />
+
+      <div className="pt-3 px-4 md:px-6">
+
+        {/* 스토어 비전 배너 */}
+        <div style={{ background: "linear-gradient(135deg, rgba(242,153,74,0.18), rgba(75,91,215,0.15))", border: "1px solid rgba(242,153,74,0.35)", borderRadius: 20, padding: "16px 18px", marginBottom: 14 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 15, color: "#ECFDF5", marginBottom: 4 }}>
+            🌐 {ko ? "헤브론 생태계 — 디지털 상품 직구 플랫폼" : "Hebron Ecosystem — Direct Digital Store"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.65)", lineHeight: 1.7 }}>
+            {ko
+              ? "HebronLingua·정착가이드·Gig 키트·멤버십까지.\n주문 → 이메일 확인 → 즉시 다운로드 또는 접근 링크 발송."
+              : "HebronLingua, settlement guides, Gig kits & membership.\nOrder → Email confirmation → Instant download or access link."}
+          </div>
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 8 }}>
+            {[
+              { icon: "⚡", label: ko ? "즉시 배송" : "Instant Delivery" },
+              { icon: "🌍", label: ko ? "한·영·스 지원" : "KO·EN·ES" },
+              { icon: "💳", label: ko ? "카카오페이·PayPal" : "KakaoPay · PayPal" },
+              { icon: "♾️", label: ko ? "평생 이용" : "Lifetime Access" },
+            ].map((b, i) => (
+              <span key={i} style={{ background: "rgba(242,153,74,0.12)", border: "1px solid rgba(242,153,74,0.25)", borderRadius: 20, padding: "3px 9px", fontFamily: "Manrope,sans-serif", fontSize: 9, fontWeight: 700, color: "#F2994A" }}>
+                {b.icon} {b.label}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* HebronLingua Echo 피처드 배너 */}
+        <div style={{ background: "linear-gradient(135deg, #1e1b4b, #2d2b7a)", border: "2px solid rgba(75,91,215,0.5)", borderRadius: 20, padding: "18px 18px", marginBottom: 14, position: "relative", overflow: "hidden" }}>
+          <div style={{ position: "absolute", top: -20, right: -20, fontSize: 80, opacity: 0.08 }}>🗣️</div>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+            <div style={{ fontSize: 36 }}>🗣️</div>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
+                <span style={{ background: "rgba(75,91,215,0.3)", border: "1px solid rgba(75,91,215,0.6)", color: "#818CF8", borderRadius: 20, padding: "2px 8px", fontFamily: "Manrope,sans-serif", fontSize: 9, fontWeight: 700 }}>🔥 FEATURED</span>
+                <span style={{ background: "rgba(239,68,68,0.2)", border: "1px solid rgba(239,68,68,0.4)", color: "#FCA5A5", borderRadius: 20, padding: "2px 8px", fontFamily: "Manrope,sans-serif", fontSize: 9, fontWeight: 700 }}>🌎 남미 특화</span>
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#ECFDF5", marginBottom: 3 }}>
+                HebronLingua Echo
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#818CF8", fontWeight: 600, marginBottom: 8 }}>
+                {ko ? "K-pop 가사를 직접 이해하는 한국어 학습 앱" : "Learn Korean through K-pop — understand lyrics directly"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.6)", lineHeight: 1.6, marginBottom: 10 }}>
+                {ko
+                  ? "270개+ 레슨 · 오프라인 작동 · BTS·뉴진스 가사 분석 포함\n멕시코·남미 K-pop 팬을 위한 한국어 입문 플랫폼"
+                  : "270+ lessons · Works offline · BTS & NewJeans lyrics included\nFor Latin American K-pop fans learning Korean"}
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 20, color: "#818CF8" }}>$9.99</span>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.4)", textDecoration: "line-through" }}>$29.99</span>
+                <span style={{ background: "rgba(239,68,68,0.25)", border: "1px solid rgba(239,68,68,0.4)", color: "#FCA5A5", borderRadius: 20, padding: "2px 8px", fontFamily: "Manrope,sans-serif", fontSize: 9, fontWeight: 700 }}>67% OFF</span>
+              </div>
+            </div>
+          </div>
+          <a href="mailto:gmc.hc300@gmail.com?subject=HebronLingua Echo 구매 문의&body=이름:%0A이메일:%0A언어 선택:"
+            style={{ display: "block", textDecoration: "none", marginTop: 12, background: "linear-gradient(135deg, #4B5BD7, #7C3AED)", borderRadius: 12, padding: "11px 16px", textAlign: "center" }}>
+            <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff" }}>
+              {ko ? "📩 지금 구매하기 — $9.99" : "📩 Buy Now — $9.99"}
+            </span>
+          </a>
+        </div>
+
+        {/* 카테고리 필터 */}
+        <div style={{ display: "flex", gap: 6, overflowX: "auto", paddingBottom: 4, marginBottom: 12, scrollbarWidth: "none" }} className="[&::-webkit-scrollbar]:hidden">
+          {CATEGORIES.map(cat => (
+            <button key={cat.id} onClick={() => setActiveCategory(cat.id)}
+              style={{ flexShrink: 0, background: activeCategory === cat.id ? "rgba(242,153,74,0.2)" : "rgba(255,255,255,0.05)", border: `1px solid ${activeCategory === cat.id ? "rgba(242,153,74,0.5)" : "rgba(255,255,255,0.1)"}`, borderRadius: 20, padding: "6px 12px", fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: activeCategory === cat.id ? "#F2994A" : "rgba(236,253,245,0.6)", cursor: "pointer" }}>
+              {cat.emoji} {ko ? cat.labelKo : cat.labelEn}
+            </button>
+          ))}
+        </div>
+
+        {/* 상품 그리드 */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 16 }}>
+          {filtered.map(p => (
+            <div key={p.id}
+              onClick={() => setSelectedProduct(p)}
+              style={{ background: `linear-gradient(135deg, ${p.color}18, ${p.color}08)`, border: `1px solid ${p.color}30`, borderRadius: 16, padding: "14px 12px", cursor: "pointer", position: "relative", overflow: "hidden", transition: "all 0.15s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}>
+              {/* 배지 */}
+              {p.badge && (
+                <div style={{ position: "absolute", top: 8, right: 8, background: `${p.color}30`, border: `1px solid ${p.color}50`, borderRadius: 20, padding: "2px 6px", fontFamily: "Manrope,sans-serif", fontSize: 8, fontWeight: 700, color: p.color }}>
+                  {p.badge}
+                </div>
+              )}
+              <div style={{ fontSize: 28, marginBottom: 6 }}>{p.emoji}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#ECFDF5", marginBottom: 3, lineHeight: 1.3 }}>
+                {ko ? p.nameKo : p.nameEn}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.5)", lineHeight: 1.4, marginBottom: 8 }}>
+                {ko ? p.taglineKo : p.taglineEn}
+              </div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: p.color }}>{p.price}</span>
+                <span style={{ background: `${p.color}25`, border: `1px solid ${p.color}40`, borderRadius: 20, padding: "3px 8px", fontFamily: "Manrope,sans-serif", fontSize: 8, fontWeight: 700, color: p.color }}>
+                  {p.status === "free" ? "FREE" : p.status === "soon" ? "SOON" : ko ? "구매" : "BUY"}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* 주문 방법 안내 */}
+        <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: accent, marginBottom: 10 }}>
+            🛒 {ko ? "주문 방법" : "How to Order"}
+          </div>
+          {[
+            { step: "1", icon: "📩", ko: "아래 상품 선택 → 이메일 주문서 자동 작성", en: "Select product below → Auto email order form" },
+            { step: "2", icon: "✉️", ko: "이름·이메일·결제 방법 입력 후 전송", en: "Enter name, email & payment method, then send" },
+            { step: "3", icon: "💳", ko: "결제: 카카오페이 · PayPal · Venmo · Zelle", en: "Payment: KakaoPay · PayPal · Venmo · Zelle" },
+            { step: "4", icon: "⚡", ko: "결제 확인 후 24시간 내 다운로드 링크 발송", en: "Download link sent within 24hrs of payment" },
+          ].map((s, i) => (
+            <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: i < 3 ? 8 : 0 }}>
+              <div style={{ width: 20, height: 20, borderRadius: "50%", background: "rgba(242,153,74,0.2)", border: "1px solid rgba(242,153,74,0.4)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 9, color: accent }}>{s.step}</span>
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.65)", lineHeight: 1.5, paddingTop: 2 }}>
+                {s.icon} {ko ? s.ko : s.en}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* 고객 지원 */}
+        <a href="mailto:gmc.hc300@gmail.com?subject=Hebron Store 문의"
+          style={{ display: "block", textDecoration: "none", background: "linear-gradient(135deg, rgba(242,153,74,0.15), rgba(242,153,74,0.08))", border: "1px solid rgba(242,153,74,0.3)", borderRadius: 12, padding: "12px 16px", textAlign: "center" }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: accent }}>
+            💬 {ko ? "구매 전 문의하기" : "Questions before buying?"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 2 }}>gmc.hc300@gmail.com</div>
+        </a>
+      </div>
+
+      {/* 상품 상세 모달 */}
+      {selectedProduct && (
+        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.8)", zIndex: 200, display: "flex", alignItems: "flex-end", justifyContent: "center" }}
+          onClick={() => setSelectedProduct(null)}>
+          <div style={{ background: "#1a2535", borderRadius: "24px 24px 0 0", padding: "24px 20px 40px", width: "100%", maxWidth: 430, maxHeight: "85vh", overflowY: "auto" }}
+            onClick={e => e.stopPropagation()}>
+            {/* 닫기 버튼 */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ fontSize: 32 }}>{selectedProduct.emoji}</span>
+                <div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 15, color: "#ECFDF5" }}>
+                    {ko ? selectedProduct.nameKo : selectedProduct.nameEn}
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 18, color: selectedProduct.color, marginTop: 2 }}>
+                    {selectedProduct.price}
+                  </div>
+                </div>
+              </div>
+              <button onClick={() => setSelectedProduct(null)}
+                style={{ background: "rgba(255,255,255,0.1)", border: "none", borderRadius: "50%", width: 32, height: 32, cursor: "pointer", fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 14, color: "#ECFDF5" }}>✕</button>
+            </div>
+
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: selectedProduct.color, fontWeight: 700, marginBottom: 4 }}>
+              {selectedProduct.priceNote}
+            </div>
+
+            {/* 설명 */}
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.75)", lineHeight: 1.8, marginBottom: 14, whiteSpace: "pre-line" }}>
+              {ko ? selectedProduct.descKo : selectedProduct.descEn}
+            </div>
+
+            {/* 주요 기능 */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16 }}>
+              {selectedProduct.features.map((f, i) => (
+                <span key={i} style={{ background: `${selectedProduct.color}20`, border: `1px solid ${selectedProduct.color}35`, borderRadius: 20, padding: "4px 10px", fontFamily: "Manrope,sans-serif", fontSize: 10, fontWeight: 700, color: selectedProduct.color }}>
+                  ✓ {f}
+                </span>
+              ))}
+            </div>
+
+            {/* 구매 버튼 */}
+            <a href={selectedProduct.buyLink}
+              style={{ display: "block", textDecoration: "none", background: `linear-gradient(135deg, ${selectedProduct.color}, ${selectedProduct.color}cc)`, borderRadius: 14, padding: "14px 20px", textAlign: "center", marginBottom: 8 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff" }}>
+                📩 {ko ? `${selectedProduct.price} 구매하기` : `Buy for ${selectedProduct.price}`}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.8)", marginTop: 2 }}>
+                {ko ? "이메일로 주문 → 24시간 내 발송" : "Email order → Delivered within 24hrs"}
+              </div>
+            </a>
+            <button onClick={() => setSelectedProduct(null)}
+              style={{ width: "100%", background: "transparent", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 12, padding: "10px", fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.5)", cursor: "pointer" }}>
+              {ko ? "닫기" : "Close"}
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ConnectScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const city = useCityConfig();
@@ -12194,7 +12559,7 @@ export function HebronGuide() {
     }
   };
 
-  // 10개 탭 스크린 (홈·정착·교회·맛집·탐방·도움·취업·교육·생활비·사람연결)
+  // 11개 탭 스크린 (홈·정착·교회·맛집·탐방·도움·취업·교육·생활비·사람연결·스토어)
   const screens = [
     <HomeScreen onNavigate={handleNavigate} />,                                        // 0
     <SettleScreen onHome={() => setActiveNav(0)} initialSub={settleInitialSub} />,     // 1
@@ -12206,6 +12571,7 @@ export function HebronGuide() {
     <EducationScreen onHome={() => setActiveNav(0)} initialSub={eduInitialSub} />,     // 7
     <CostScreen onHome={() => setActiveNav(0)} initialSub={costInitialSub} />,         // 8
     <ConnectScreen onHome={() => setActiveNav(0)} />,                                  // 9
+    <StoreScreen onHome={() => setActiveNav(0)} />,                                    // 10
   ];
 
   return (
