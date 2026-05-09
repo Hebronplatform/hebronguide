@@ -363,7 +363,12 @@ HebronGuide는 이를 적극 활용해 사용자에게 환대 정보 제공.
 | 날짜 | 변경 |
 |---|---|
 | 2026-05-08 (v1) | 초안 — 2026 월드컵 즉각 활용 + 글로벌 이벤트 6단계 표준 |
-| **2026-05-08 (v2)** | **시애틀 무료 워터프론트 셔틀 적용 (kSeattle.com 출처) + 한인 미디어 활용 원칙 추가** |
+| 2026-05-08 (v2) | 시애틀 무료 워터프론트 셔틀 적용 (kSeattle.com 출처) + 한인 미디어 활용 원칙 추가 |
+| **2026-05-08 (v3)** | **15개 월드컵 호스트 도시 경기장 교통 시스템 전면 적용 — WC_TRANSIT 자동 삽입 (6/1~7/26 한정)** |
+| | LA→Metro C Line, NY→NJ Transit, Dallas→TRE, SF→Caltrain, Boston→MBTA, |
+| | Houston→METRORail, Atlanta→MARTA, KC→셔틀, Philly→SEPTA, Miami→Brightline, |
+| | Mexico City→Metro+Tren Ligero, Guadalajara→경전철, Monterrey→Metro, |
+| | Toronto→GO Train, Vancouver→SkyTrain / 시즌 후 자동 복원 |
 
 ---
 
