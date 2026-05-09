@@ -3048,53 +3048,55 @@ const QUICK_MENU = [
 ───────────────────────────────────────── */
 function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (tab: number, subTab?: number) => void }) {
   const ko = lang === "ko";
+  // 커미션·퍼센트 표현 없음 — 내부 파트너십 (사용자에게 비노출)
+  // 목적: 관계를 통해 자연스럽게 교회로 연결
   const SERVICES = [
     {
       icon: "🚗", color: "#3B82F6",
       nameKo: "헤브론 라이드", nameEn: "Hebron Ride",
       tagKo: "공항 픽업 · 일상 이동", tagEn: "Airport · Daily Rides",
-      userKo: "한국어 드라이버 필요하세요?", userEn: "Need a Korean-speaking driver?",
-      providerKo: "드라이버 등록 → 시간당 $35-55", providerEn: "Register as driver → $35-55/hr",
+      userKo: "한국어로 맞이하는 첫 이동", userEn: "Your first ride, in Korean",
+      providerKo: "운전하며 섬기실 분 → 함께해요", providerEn: "Drive & serve → join us",
       tab: 1, subTab: 0,
     },
     {
       icon: "🏠", color: "#10B981",
       nameKo: "헤브론 스테이", nameEn: "Hebron Stay",
-      tagKo: "단기 숙박 · 정착 지원", tagEn: "Short-term · Settlement",
-      userKo: "검증된 한인 가정에서 시작", userEn: "Start in a verified Korean home",
-      providerKo: "방 있으신 분 → 월 $800-1,200", providerEn: "Have a spare room? → $800-1,200/mo",
+      tagKo: "단기 숙박 · 정착 동반", tagEn: "Short-term · Walk Together",
+      userKo: "한인 가정에서 시작하는 정착", userEn: "Begin your new life in a Korean home",
+      providerKo: "방을 나눠 섬기실 분 → 함께해요", providerEn: "Share your home → join us",
       tab: 1, subTab: 5,
     },
     {
       icon: "📚", color: "#8B5CF6",
       nameKo: "헤브론 튜터", nameEn: "Hebron Tutor",
       tagKo: "수학 · SAT · 한국어", tagEn: "Math · SAT · Korean",
-      userKo: "검증된 한인 튜터 찾기", userEn: "Find a verified Korean tutor",
-      providerKo: "튜터 등록 → 시간당 $35-80", providerEn: "Register as tutor → $35-80/hr",
+      userKo: "한인 선배가 직접 가르칩니다", userEn: "Learn from Korean community mentors",
+      providerKo: "가르치며 섬기실 분 → 함께해요", providerEn: "Teach & serve → join us",
       tab: 7, subTab: 0,
     },
     {
       icon: "🤝", color: "#F59E0B",
       nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
       tagKo: "친구 · 멘토 · 기도파트너", tagEn: "Friends · Mentors · Prayer",
-      userKo: "44개 도시 한인 연결", userEn: "Connect across 44 cities",
-      providerKo: "멘토 등록 → 월 $150-300", providerEn: "Become a mentor → $150-300/mo",
+      userKo: "44개 도시 한인을 만납니다", userEn: "Meet Koreans across 44 cities",
+      providerKo: "멘토로 섬기실 분 → 함께해요", providerEn: "Mentor & serve → join us",
       tab: 5, subTab: 2,
     },
     {
       icon: "💍", color: "#EC4899",
       nameKo: "헤브론 매칭", nameEn: "Hebron Match",
-      tagKo: "목사님 보증 · 언약 관계", tagEn: "Pastor-endorsed · Covenant",
-      userKo: "신앙·가치관 기반 만남", userEn: "Faith & values-based matching",
-      providerKo: "선우/듀오 비용의 1/5", providerEn: "1/5 the cost of Korean agencies",
+      tagKo: "신앙과 가치관으로 만남", tagEn: "Faith & Values-based Meeting",
+      userKo: "진지하고 따뜻한 만남을 원하시나요?", userEn: "Looking for a meaningful relationship?",
+      providerKo: "목사님과 함께하는 연결", providerEn: "Pastor-guided connection",
       tab: 2, subTab: 4,
     },
     {
       icon: "🧭", color: "#06B6D4",
-      nameKo: "헤브론 관광가이드", nameEn: "Hebron Tour Guide",
-      tagKo: "한국어 현지 가이드", tagEn: "Korean-speaking Local Guide",
-      userKo: "도시 깊이 알고 싶으세요?", userEn: "Want to explore like a local?",
-      providerKo: "가이드 등록 → 시간당 $40-80", providerEn: "Become a guide → $40-80/hr",
+      nameKo: "헤브론 관광", nameEn: "Hebron Tour",
+      tagKo: "한국어 현지 안내", tagEn: "Korean Local Guided Tour",
+      userKo: "이 도시를 깊이 경험하세요", userEn: "Experience this city like a local",
+      providerKo: "목회자·전도사 — 안내로 섬기기", providerEn: "Pastors & evangelists — guide & serve",
       tab: 4, subTab: 4,
     },
   ];
@@ -3108,7 +3110,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
             🔗 {ko ? "헤브론 연결 서비스" : "Hebron Connect Services"}
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", marginTop: 2 }}>
-            {ko ? "한인 간 연결 · HebronGuide 커미션 수익" : "Korean-to-Korean · Commission-based"}
+            {ko ? "한인이 한인을 섬깁니다" : "Koreans serving Koreans"}
           </div>
         </div>
         <button
@@ -3179,17 +3181,17 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
         ))}
       </div>
 
-      {/* 하단 커미션 안내 */}
+      {/* 하단 파트너십 메시지 */}
       <div style={{ marginTop: 12, background: "rgba(201,162,39,0.08)", border: "1px solid rgba(201,162,39,0.2)", borderRadius: 10, padding: "10px 14px", display: "flex", alignItems: "center", gap: 10 }}>
-        <span style={{ fontSize: 16 }}>💰</span>
+        <span style={{ fontSize: 16 }}>🙏</span>
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#C9A227" }}>
-            {ko ? "HebronGuide 커미션 수익 모델" : "HebronGuide Commission Model"}
+            {ko ? "함께 섬기는 파트너십" : "Ministry Partnership"}
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.55)", marginTop: 2, lineHeight: 1.5 }}>
             {ko
-              ? "라이드·스테이·튜터·관광가이드 15% · 커넥트 $15/월 · 매칭 $25-35/월 · 교회 검증 신뢰 = 프리미엄 수익"
-              : "Ride·Stay·Tutor·Tour Guide 15% · Connect $15/mo · Match $25-35/mo · Church trust = premium earnings"}
+              ? "모든 연결은 자연스럽게 교회와 공동체로 이어집니다 — \"나그네를 영접하였다\" 마25:35"
+              : "Every connection naturally leads to church & community — \"I was a stranger and you welcomed me\" Matt 25:35"}
           </div>
         </div>
       </div>
@@ -5086,10 +5088,10 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             {/* 거주지 탭 — 헤브론 스테이 서비스 카드 */}
             <HebronServiceCard
               icon="🏠" color="#10B981" lang={lang}
-              titleKo="헤브론 스테이 — 교회 검증 단기 숙박"
-              titleEn="Hebron Stay — Church-Verified Short-Term Housing"
-              descKo="정착 첫 1-3개월. 검증된 한인 가정에서 시작. 방+정착 오리엔테이션+교회 소개 패키지."
-              descEn="First 1-3 months in a verified Korean home. Room + settlement orientation + church introduction."
+              titleKo="헤브론 스테이 — 한인 가정에서 시작하는 정착"
+              titleEn="Hebron Stay — Begin Settlement in a Korean Home"
+              descKo="정착 첫 1-3개월. 따뜻한 한인 가정에서 시작합니다. 방 + 정착 안내 + 자연스러운 이웃 소개."
+              descEn="First 1-3 months with a warm Korean family. Room + settlement guidance + natural community introduction."
             />
           </>
         ) : (
@@ -5120,8 +5122,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               icon="🚗" color="#3B82F6" lang={lang}
               titleKo="헤브론 라이드 — 공항에서 내리는 순간부터"
               titleEn="Hebron Ride — From the Moment You Land"
-              descKo="짐 가득, 아이 손 잡고, 낯선 공항. 한국어로 반겨주는 교회 검증 드라이버가 기다립니다."
-              descEn="Bags full, kids in hand, unfamiliar airport. A church-verified Korean-speaking driver is waiting for you."
+              descKo="짐 가득, 아이 손 잡고, 낯선 공항. 한국어로 따뜻하게 맞이하는 한인 드라이버가 기다립니다."
+              descEn="Bags full, kids in hand, unfamiliar airport. A warm Korean-speaking driver is already waiting for you."
             />}
 
             {/* 체크리스트 아이템 */}
@@ -5386,7 +5388,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               titleKo="헤브론 매칭 — 목사님이 보증하는 언약 관계"
               titleEn="Hebron Matching — Covenant Relationships, Pastor-Endorsed"
               descKo="교인 검증 + 목사님 추천. 신앙·가치관 기반 매칭. 선우/듀오 비용의 1/5. 미국 내 유일한 신앙 기반 한인 매칭."
-              descEn="Church-verified + pastor endorsement. Faith & values-based matching. 1/5 the cost of Korean agencies. Only faith-based Korean matching in the US."
+              descEn="Pastor-guided, faith & values-based matching. Thoughtful, intentional, and affordable."
             />
 
             {/* CTA */}
@@ -5753,9 +5755,9 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                   {[
-                    { n: lang === "ko" ? "목회자·전도사" : "Pastor Guides", d: lang === "ko" ? "교회 검증 가이드" : "Church-verified" },
-                    { n: lang === "ko" ? "한국어 투어" : "Korean Tour", d: lang === "ko" ? "44개+ 도시" : "44+ cities" },
-                    { n: lang === "ko" ? "커미션 15%" : "15% Commission", d: lang === "ko" ? "HebronGuide 수익" : "HebronGuide revenue" },
+                    { n: lang === "ko" ? "목회자·전도사" : "Pastor Guides", d: lang === "ko" ? "현지를 가장 잘 아는 분" : "They know this city deepest" },
+                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "44개+ 도시" : "44+ cities" },
+                    { n: lang === "ko" ? "파트너 수입" : "Partner Income", d: lang === "ko" ? "함께 나눕니다" : "Shared together" },
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
                       <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#06B6D4" }}>{s.n}</div>
@@ -5820,13 +5822,13 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
               {/* 가이드 수익 모델 */}
               <div style={{ background: "rgba(201,162,39,0.08)", border: "1px solid rgba(201,162,39,0.25)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#C9A227", marginBottom: 10 }}>
-                  💰 {lang === "ko" ? "목회자·전도사 예상 부업 수익" : "Pastor/Evangelist Side Income Estimate"}
+                  🤝 {lang === "ko" ? "목회자·전도사 파트너 안내" : "Pastor/Evangelist Partner Guide"}
                 </div>
                 {[
-                  lang === "ko" ? "주 2회 투어 × $100/회 = 월 $800+" : "2 tours/week × $100/tour = $800+/month",
-                  lang === "ko" ? "HebronGuide 15% 커미션 → 가이드 85% 수령" : "HebronGuide 15% commission → guide keeps 85%",
+                  lang === "ko" ? "주 2회 투어 → 의미 있는 파트너 수입" : "2 tours/week → meaningful partner income",
+                  lang === "ko" ? "수입은 HebronGuide와 파트너가 함께 나눕니다" : "Income shared between HebronGuide and partners",
                   lang === "ko" ? "시간 자유로움 — 목회 일정에 맞게 운영" : "Flexible schedule — fits around ministry commitments",
-                  lang === "ko" ? "투어 자체가 선교·환대 사역의 연장" : "Every tour extends your hospitality ministry naturally",
+                  lang === "ko" ? "투어 자체가 선교·환대 사역의 연장입니다" : "Every tour naturally extends your hospitality ministry",
                 ].map((item, i) => (
                   <div key={i} style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, paddingLeft: 4 }}>
                     ✓ {item}
@@ -6156,7 +6158,7 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
             titleKo="헤브론 커넥트 — 친구·멘토·기도파트너 매칭"
             titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
             descKo="교인 검증 프로필로 44개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
-            descEn="Connect with Koreans across 44 cities via church-verified profiles. Friends, mentors, prayer & business partners."
+            descEn="Meet Koreans across 44 cities. Friends, mentors, prayer partners & business connections."
           />
           {/* 211 팁 박스 */}
           <a href="tel:211" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>
@@ -7021,10 +7023,10 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
         <div style={{ padding: "0 16px 8px" }}>
           <HebronServiceCard
             icon="📚" color="#8B5CF6" lang={lang}
-            titleKo="헤브론 튜터 — 교회 검증 한인 튜터"
-            titleEn="Hebron Tutor — Church-Verified Korean Tutors"
-            descKo="수학·SAT·AP·한국어 과외. 교회 검증 + 학력 이중 확인. 온라인으로 17개 도시 가능."
-            descEn="Math, SAT, AP, Korean tutoring. Church + academic dual verification. Online across 17+ cities."
+            titleKo="헤브론 튜터 — 한인 선배가 직접 가르칩니다"
+            titleEn="Hebron Tutor — Learn from Korean Community Mentors"
+            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 44개+ 도시 가능."
+            descEn="Math, SAT, AP, Korean tutoring. Carefully selected Korean tutors. Online across 44+ cities."
           />
         </div>
       </div>
@@ -7879,14 +7881,14 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
     {
       id: "ride", icon: "🚗", color: "#3B82F6",
       titleKo: "헤브론 라이드", titleEn: "Hebron Ride",
-      taglineKo: "교회 검증 드라이버와 함께하는 한국어 이동 서비스",
-      taglineEn: "Korean-speaking rides with church-verified drivers",
-      stepsKo: ["교인 드라이버 등록 & 교회 검증", "라이드 요청 매칭 (한국어)", "이동 + 도시 정보 나눔"],
-      stepsEn: ["Church-verified driver registration", "Ride request matching (Korean)", "Travel + city info sharing"],
+      taglineKo: "한국어로 따뜻하게 맞이하는 이동 서비스",
+      taglineEn: "Korean-speaking rides with warmth and care",
+      stepsKo: ["한인 드라이버 등록 & 확인", "라이드 요청 매칭 (한국어)", "이동 + 도시 정보 나눔"],
+      stepsEn: ["Korean driver registration & screening", "Ride request matching (Korean)", "Travel + city info sharing"],
       benchmarkName: "BlaBlaCar",
       benchmarkData: ko ? "1억 회원 · 26개국 · $1.6B 기업가치 · 커뮤니티 신뢰 모델" : "100M users · 26 countries · $1.6B valuation · community trust model",
       benchmarkLesson: ko ? "신뢰가 플랫폼의 핵심 — 검증된 드라이버 커뮤니티가 성공 비결" : "Trust is the platform — verified driver community is the key",
-      hebronKo: "교회 검증 = Airbnb Superhost 이상의 신뢰. 한국어 + 공항 픽업 특화. 목사님 추천 드라이버.",
+      hebronKo: "한인 커뮤니티의 신뢰. 한국어 + 공항 픽업 특화. 따뜻한 동포가 맞이합니다.",
       hebronEn: "Church verification = trust beyond Airbnb Superhost. Korean + airport pickup specialty. Pastor-recommended drivers.",
       revenueKo: "드라이버 수익의 15% 수수료 | 공항픽업 $35-55 | 월정기권 $120",
       revenueEn: "15% commission on driver earnings | Airport pickup $35-55 | Monthly pass $120",
@@ -7903,8 +7905,8 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
       benchmarkName: "Airbnb + Homestay.com",
       benchmarkData: ko ? "Airbnb: $99억 매출 · 700만 숙소 | Homestay.com: 문화 몰입 + 가정 거주 모델" : "Airbnb: $9.9B revenue · 7M listings | Homestay.com: cultural immersion + family stay model",
       benchmarkLesson: ko ? "Airbnb Superhost 신뢰 시스템 + Homestay 문화 교류 = 헤브론 스테이의 기반" : "Airbnb Superhost trust + Homestay cultural exchange = Hebron Stay foundation",
-      hebronKo: "교회 검증 호스트 = 최강 신뢰. 정착 안내 포함. '방+사람+정보' 패키지.",
-      hebronEn: "Church-verified host = ultimate trust. Settlement guidance included. 'Room + people + info' package.",
+      hebronKo: "따뜻한 한인 가정의 신뢰. 정착 안내 포함. '방+사람+이야기' 패키지.",
+      hebronEn: "Warm Korean family trust. Settlement guidance included. 'Room + people + stories' package.",
       revenueKo: "호스트 수입의 12% 수수료 | 1주 패키지 $300-500 | 1개월 $800-1,200",
       revenueEn: "12% commission on host income | 1-week package $300-500 | 1 month $800-1,200",
       statusKo: "파트너 호스트 모집 중", statusEn: "Recruiting partner hosts",
@@ -7915,12 +7917,12 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
       titleKo: "헤브론 튜터", titleEn: "Hebron Tutor",
       taglineKo: "검증된 한인 튜터. 교회 신뢰 + 학력 검증",
       taglineEn: "Verified Korean tutors. Church trust + academic credentials.",
-      stepsKo: ["튜터 등록 (교회 검증 + 학력 확인 + 배경조사)", "학생-튜터 매칭 (온라인 17개 도시 가능)", "수업 진행 → 15% 커미션"],
+      stepsKo: ["튜터 등록 (학력 확인 + 꼼꼼한 과정)", "학생-튜터 매칭 (온라인 44개+ 도시)", "수업 진행 → 파트너 수입"],
       stepsEn: ["Tutor registration (church + academic + background check)", "Student-tutor matching (online across 17 cities)", "Sessions → 15% commission"],
       benchmarkName: "Wyzant",
       benchmarkData: ko ? "250만 학생 · 8만 명 튜터 · $8,000만 매출 · 25% 수수료 · 튜터 검증 시스템" : "2.5M students · 80K tutors · $80M revenue · 25% commission · tutor verification system",
       benchmarkLesson: ko ? "배경조사 + 리뷰 시스템 + 투명한 가격 = 학부모 신뢰의 핵심" : "Background check + reviews + transparent pricing = key to parent trust",
-      hebronKo: "교회 검증이 배경조사를 대체. 한국어 과외 특화. 한국 교과서·SAT·AP 전문.",
+      hebronKo: "한인 커뮤니티 신뢰. 한국어 과외 특화. 한국 교과서·SAT·AP 전문.",
       hebronEn: "Church verification replaces background checks. Korean tutoring specialty. Korean curriculum, SAT, AP focused.",
       revenueKo: "튜터 수입의 15% 수수료 | 시급 $35-80 → HebronGuide $5-12/시간 | 월 매칭 100쌍 → $72,000/년",
       revenueEn: "15% commission | $35-80/hr tutor rate → HebronGuide $5-12/hr | 100 active pairs → $72K/yr",
@@ -7932,12 +7934,12 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
       titleKo: "헤브론 커넥트", titleEn: "Hebron Connect",
       taglineKo: "친구·멘토·기도파트너·동업자 — 모든 연결의 시작",
       taglineEn: "Friend · Mentor · Prayer Partner · Business — all connections start here.",
-      stepsKo: ["교인 프로필 등록 (교회 검증)", "연결 유형 선택 (친구/멘토/기도/비즈니스)", "도시 간 매칭 → 만남"],
-      stepsEn: ["Church-verified profile registration", "Select connection type (friend/mentor/prayer/business)", "Cross-city matching → meeting"],
+      stepsKo: ["프로필 등록 (커뮤니티 확인)", "연결 유형 선택 (친구/멘토/기도/비즈니스)", "도시 간 매칭 → 만남"],
+      stepsEn: ["Profile registration (community screening)", "Select connection type (friend/mentor/prayer/business)", "Cross-city matching → meeting"],
       benchmarkName: "Meetup + Bumble BFF + Nextdoor",
       benchmarkData: ko ? "Meetup: 5,000만 회원 · Bumble BFF: 4,000만 MAU · Nextdoor: $2.1B 기업가치 (위치 검증)" : "Meetup: 50M users · Bumble BFF: 40M MAU · Nextdoor: $2.1B valuation (location-verified)",
       benchmarkLesson: ko ? "공통 관심사 + 검증된 신원 + 오프라인 만남 연결 = 성공적 커뮤니티 플랫폼" : "Shared interests + verified identity + offline meeting connection = successful community platform",
-      hebronKo: "교회 검증 = Nextdoor 이웃 인증 이상. 17개 도시 크로스 매칭. 다목적 연결.",
+      hebronKo: "한인 커뮤니티 신뢰. 44개+ 도시 크로스 매칭. 다목적 연결.",
       hebronEn: "Church verification > Nextdoor neighbor verification. 17-city cross matching. Multi-purpose connection.",
       revenueKo: "프리미엄 구독 $15/월 | 이벤트 주최 $10/회 | 비즈니스 연결 $30/매칭",
       revenueEn: "Premium subscription $15/mo | Event hosting $10/event | Business connection $30/match",
