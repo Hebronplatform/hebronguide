@@ -3086,17 +3086,17 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
     {
       icon: "💍", color: "#EC4899",
       nameKo: "헤브론 매칭", nameEn: "Hebron Match",
-      tagKo: "신앙과 가치관으로 만남", tagEn: "Faith & Values-based Meeting",
-      userKo: "진지하고 따뜻한 만남을 원하시나요?", userEn: "Looking for a meaningful relationship?",
-      providerKo: "목사님과 함께하는 연결", providerEn: "Pastor-guided connection",
+      tagKo: "진지하고 따뜻한 만남", tagEn: "Thoughtful & Warm Connection",
+      userKo: "같은 가치관의 사람을 만나고 싶으세요?", userEn: "Looking to meet someone who shares your values?",
+      providerKo: "신중하게, 진심으로 연결합니다", providerEn: "Carefully and sincerely matched",
       tab: 2, subTab: 4,
     },
     {
       icon: "🧭", color: "#06B6D4",
       nameKo: "헤브론 관광", nameEn: "Hebron Tour",
-      tagKo: "한국어 현지 안내", tagEn: "Korean Local Guided Tour",
-      userKo: "이 도시를 깊이 경험하세요", userEn: "Experience this city like a local",
-      providerKo: "목회자·전도사 — 안내로 섬기기", providerEn: "Pastors & evangelists — guide & serve",
+      tagKo: "현지 한인이 직접 안내", tagEn: "Guided by Locals Who Lived Here",
+      userKo: "관광안내소엔 없는 진짜 이야기", userEn: "Real stories you won't find in tourist guides",
+      providerKo: "이 도시를 안내하고 싶으신 분 → 함께해요", providerEn: "Know this city well? → Join us",
       tab: 4, subTab: 4,
     },
   ];
@@ -5385,10 +5385,10 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* 허브교회 탭 — 헤브론 매칭 서비스 카드 */}
             <HebronServiceCard
               icon="💍" color="#EC4899" lang={lang}
-              titleKo="헤브론 매칭 — 목사님이 보증하는 언약 관계"
-              titleEn="Hebron Matching — Covenant Relationships, Pastor-Endorsed"
-              descKo="교인 검증 + 목사님 추천. 신앙·가치관 기반 매칭. 선우/듀오 비용의 1/5. 미국 내 유일한 신앙 기반 한인 매칭."
-              descEn="Pastor-guided, faith & values-based matching. Thoughtful, intentional, and affordable."
+              titleKo="헤브론 매칭 — 진지하고 따뜻한 만남"
+              titleEn="Hebron Match — Thoughtful & Meaningful Connection"
+              descKo="같은 가치관과 삶의 방향을 가진 분을 만납니다. 신중하게, 진심으로 연결합니다."
+              descEn="Meet someone who shares your values and direction in life. Connected thoughtfully and sincerely."
             />
 
             {/* CTA */}
@@ -5743,21 +5743,21 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
           {sub === 4 && (
             <div style={{ paddingTop: 4 }}>
 
-              {/* 헤더 비전 */}
+              {/* 헤더 — 경험 중심 (종교 언어 없음) */}
               <div style={{ background: "linear-gradient(135deg, rgba(6,182,212,0.18), rgba(52,211,153,0.08))", border: "1px solid rgba(6,182,212,0.35)", borderRadius: 20, padding: "20px 18px", marginBottom: 14 }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 18, color: "#ECFDF5", marginBottom: 6 }}>
                   🧭 Hebron 관광
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 13, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, marginBottom: 14 }}>
                   {lang === "ko"
-                    ? "이 도시에서 살고 섬겨온 목회자·전도사가 직접 안내합니다.\n관광지만 아닌 — 진짜 현지의 맛집, 숨은 명소, 한인 커뮤니티까지.\n한국어로, 따뜻하게, 진심으로."
-                    : "Pastors and evangelists who lived and served in this city guide you.\nNot just tourist spots — real local food, hidden gems & Korean community.\nIn Korean. With warmth. With heart."}
+                    ? "이 도시에서 오래 살아온 한인이 직접 안내합니다.\n관광안내소엔 없는 — 진짜 맛집, 숨은 명소, 한인 커뮤니티.\n한국어로, 따뜻하게, 진심으로."
+                    : "Guided by Koreans who actually lived here for years.\nReal restaurants, hidden gems & Korean community — not in tourist guides.\nIn Korean. With warmth. From the heart."}
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                   {[
-                    { n: lang === "ko" ? "목회자·전도사" : "Pastor Guides", d: lang === "ko" ? "현지를 가장 잘 아는 분" : "They know this city deepest" },
+                    { n: lang === "ko" ? "현지 한인" : "Local Korean", d: lang === "ko" ? "오래 살아온 분" : "Long-time residents" },
                     { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "44개+ 도시" : "44+ cities" },
-                    { n: lang === "ko" ? "파트너 수입" : "Partner Income", d: lang === "ko" ? "함께 나눕니다" : "Shared together" },
+                    { n: lang === "ko" ? "소규모 투어" : "Small Group", d: lang === "ko" ? "개인 맞춤" : "Personal touch" },
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
                       <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#06B6D4" }}>{s.n}</div>
@@ -5767,20 +5767,19 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                 </div>
               </div>
 
-              {/* 왜 목회자·전도사 가이드인가 */}
+              {/* 가이드 특징 — 경험 중심 */}
               <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 16, padding: "16px", marginBottom: 12 }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#06B6D4", marginBottom: 12 }}>
-                  ✝️ {lang === "ko" ? "왜 목회자·전도사 가이드인가?" : "Why Pastor & Evangelist Guides?"}
+                  ✨ {lang === "ko" ? "헤브론 가이드는 이런 분들입니다" : "What makes our guides special"}
                 </div>
                 {[
-                  { icon: "🏙️", ko: "이 도시를 가장 깊이 아는 사람들", en: "The people who know this city most deeply" },
-                  { icon: "🤝", ko: "돈보다 사람을 먼저 생각하는 동기", en: "Motivated by people, not just profit" },
-                  { icon: "🍽️", ko: "한인 맛집·커뮤니티 인맥 최고", en: "Best Korean food & community connections" },
-                  { icon: "🗣️", ko: "한국어·영어 + 도시 이야기 전달 탁월", en: "Fluent in Korean, English & the city's story" },
-                  { icon: "💼", ko: "목회자 부업 = 존엄한 수입·사역 연장", en: "Dignified side income & natural extension of ministry" },
-                  { icon: "🌱", ko: "투어 자체가 환대 사역", en: "Every tour is an act of hospitality ministry" },
+                  { icon: "🏙️", ko: "이 도시에서 수년간 살며 직접 경험한 분", en: "Lived in this city for years — they know it firsthand" },
+                  { icon: "🍽️", ko: "한인 맛집·숨은 명소 직접 알고 있는 분", en: "Know the real Korean spots & hidden gems personally" },
+                  { icon: "🗣️", ko: "한국어로 편안하게 이야기 나눌 수 있는 분", en: "Can comfortably share stories in Korean" },
+                  { icon: "🤝", ko: "도움이 되고 싶은 마음이 먼저인 분", en: "Motivated by genuinely wanting to help you" },
+                  { icon: "🌆", ko: "도시의 역사·문화·한인 커뮤니티 이야기 풍부한 분", en: "Rich in local history, culture & Korean community stories" },
                 ].map((item, i) => (
-                  <div key={i} style={{ display: "flex", gap: 10, padding: "8px 0", borderBottom: i < 5 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
+                  <div key={i} style={{ display: "flex", gap: 10, padding: "8px 0", borderBottom: i < 4 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
                     <span style={{ fontSize: 16, flexShrink: 0 }}>{item.icon}</span>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.5 }}>
                       {lang === "ko" ? item.ko : item.en}
@@ -5819,41 +5818,27 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                 ))}
               </div>
 
-              {/* 가이드 수익 모델 */}
-              <div style={{ background: "rgba(201,162,39,0.08)", border: "1px solid rgba(201,162,39,0.25)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#C9A227", marginBottom: 10 }}>
-                  🤝 {lang === "ko" ? "목회자·전도사 파트너 안내" : "Pastor/Evangelist Partner Guide"}
-                </div>
-                {[
-                  lang === "ko" ? "주 2회 투어 → 의미 있는 파트너 수입" : "2 tours/week → meaningful partner income",
-                  lang === "ko" ? "수입은 HebronGuide와 파트너가 함께 나눕니다" : "Income shared between HebronGuide and partners",
-                  lang === "ko" ? "시간 자유로움 — 목회 일정에 맞게 운영" : "Flexible schedule — fits around ministry commitments",
-                  lang === "ko" ? "투어 자체가 선교·환대 사역의 연장입니다" : "Every tour naturally extends your hospitality ministry",
-                ].map((item, i) => (
-                  <div key={i} style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, paddingLeft: 4 }}>
-                    ✓ {item}
-                  </div>
-                ))}
-              </div>
+              {/* 파트너 안내는 내부 문서로 — 사용자 화면엔 노출 안 함 */}
 
-              {/* CTA 2개 */}
+              {/* CTA — 투어 예약 (사용자용) 먼저, 가이드 등록 (파트너용) 뒤에 작게 */}
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                <a href="mailto:gmc.hc300@gmail.com?subject=Hebron 관광 가이드 등록 신청"
+                <a href="mailto:gmc.hc300@gmail.com?subject=Hebron 관광 투어 예약 문의"
                   style={{ display: "block", textDecoration: "none" }}>
                   <div style={{ background: "linear-gradient(135deg, #06B6D4, #0891B2)", borderRadius: 14, padding: "14px 20px", textAlign: "center", boxShadow: "0 4px 20px rgba(6,182,212,0.35)" }}>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 3 }}>
-                      🧭 {lang === "ko" ? "가이드 등록 신청 (목회자·전도사)" : "Register as Guide (Pastors & Evangelists)"}
+                      🧭 {lang === "ko" ? "투어 예약 문의하기" : "Book a Tour"}
                     </div>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)" }}>
                       gmc.hc300@gmail.com
                     </div>
                   </div>
                 </a>
-                <a href="mailto:gmc.hc300@gmail.com?subject=Hebron 관광 투어 예약 문의"
+                {/* 가이드 등록 — 작게, 파트너용 */}
+                <a href="mailto:gmc.hc300@gmail.com?subject=Hebron 관광 가이드 참여 문의"
                   style={{ display: "block", textDecoration: "none" }}>
-                  <div style={{ background: "rgba(6,182,212,0.1)", border: "1px solid rgba(6,182,212,0.4)", borderRadius: 14, padding: "12px 20px", textAlign: "center" }}>
-                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#06B6D4" }}>
-                      {lang === "ko" ? "투어 예약 문의 →" : "Book a Tour →"}
+                  <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, padding: "10px 16px", textAlign: "center" }}>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)" }}>
+                      {lang === "ko" ? "이 도시를 안내하고 싶으신 분 → 문의하기" : "Want to guide this city? → Contact us"}
                     </div>
                   </div>
                 </a>
@@ -7949,15 +7934,15 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
     {
       id: "matching", icon: "💍", color: "#EC4899",
       titleKo: "헤브론 매칭", titleEn: "Hebron Matching",
-      taglineKo: "목사님이 보증하는 언약 관계의 시작",
-      taglineEn: "Covenant relationships, endorsed by your pastor.",
-      stepsKo: ["교인 등록 + 목사님 추천서", "신앙·가치관·수준 기반 매칭", "목사님 연결 → 자연스러운 교제"],
-      stepsEn: ["Church registration + pastor endorsement", "Faith, values & lifestyle matching", "Pastor introduction → natural courtship"],
+      taglineKo: "진지하고 따뜻한 만남 — 신중하게 연결합니다",
+      taglineEn: "Thoughtful & warm connections — matched with care.",
+      stepsKo: ["프로필 등록 + 가치관 확인", "삶의 방향·관심사 기반 매칭", "신중한 소개 → 자연스러운 교제"],
+      stepsEn: ["Profile + values registration", "Life direction & interests-based matching", "Thoughtful introduction → natural relationship"],
       benchmarkName: "Hinge + 선우결혼정보",
       benchmarkData: ko ? "Hinge: $4억 매출 '삭제되도록 설계' · 선우: 한국 1위 $1,000-3,000/건 · DUO America: LA·NY 운영" : "Hinge: $400M revenue 'designed to be deleted' · 선우: Korea #1 $1,000-3,000/match · DUO America: LA & NY",
       benchmarkLesson: ko ? "진지한 관계 지향 + 전문 매칭 = 프리미엄 가치. 미국 내 신앙 기반 한인 매칭 공백 확인됨" : "Intentional relationship focus + professional matching = premium value. Faith-based Korean matching gap confirmed in US market",
-      hebronKo: "목사님 추천 = 선우 매니저 이상. 투명한 가격. 신앙 검증. 선우/듀오 비용의 1/5.",
-      hebronEn: "Pastor endorsement > professional matchmaker. Transparent pricing. Faith verified. 1/5 the cost of 선우/듀오.",
+      hebronKo: "한인 커뮤니티 신뢰. 투명한 과정. 진심으로 연결. 합리적인 비용.",
+      hebronEn: "Korean community trust. Transparent process. Genuine connection. Reasonable cost.",
       revenueKo: "월 구독 $25-35 | 프리미엄 매칭 $150-300/건 | 파트너 교회 네트워크로 확장",
       revenueEn: "Monthly subscription $25-35 | Premium match $150-300/match | Scale through partner church network",
       statusKo: "파트너 교회 모집 중 — 먼저 연락주세요", statusEn: "Recruiting partner churches — contact us first",
