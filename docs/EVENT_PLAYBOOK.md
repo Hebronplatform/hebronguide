@@ -367,12 +367,29 @@ HebronGuide는 이를 적극 활용해 사용자에게 환대 정보 제공.
 
 | 매체 | URL | 등급 | 근거 |
 |---|---|---|---|
-| **미주중앙일보** | koreadaily.com | ✅ | 1974년 창간, 최전성기 22만 부, LA·NY·ATL 직영 편집국, 미주 최대 |
+| **미주중앙일보** | koreadaily.com | ✅ | 1974년 창간, 최전성기 22만 부, **9개 지역판 네트워크**, 미주 최대 |
 | **미주한국일보** | koreatimes.com | ✅ | 1969년 LA 창간(미주 최초 한국어 신문), 14개 지국, LA타임스 협력 이력 |
 | **Radio Korea** | radiokorea.com | ✅ | 1989년 창간, AM 1540 50kW, 2001년 종합 미디어 그룹화, 자체 뉴스 제작 |
 | **BIGKinds** | bigkinds.or.kr | ✅ | 한국언론진흥재단 운영, 100개+ 언론사 협약, 공공 미디어 아카이브 |
 
-> ℹ️ 미주중앙일보 지국: `ny.koreadaily.com` / `atlanta.koreadaily.com` 등 도시별 접근 가능
+#### 📰 미주중앙일보 9개 지역판 전체 URL (2026-05-08 확인)
+
+> URL 패턴: `koreadaily.com/index_[코드]` — 한국 중앙일보(joongang.co.kr) 100% 자회사
+
+| 지역판 | URL | HebronGuide 도시 |
+|---|---|---|
+| **LA중앙일보** | koreadaily.com/index_LA | ✅ LA |
+| **뉴욕중앙일보** | koreadaily.com/index_NY | ✅ 뉴욕/NJ |
+| **애틀랜타중앙일보** | koreadaily.com/index_AT | ✅ 애틀랜타 |
+| **밴쿠버중앙일보** | koreadaily.com/index_VA | ✅ 밴쿠버 |
+| **토론토중앙일보** | koreadaily.com/index_TO | ✅ 토론토 |
+| 시카고중앙일보 | koreadaily.com/index_CH | — (HebronGuide 미포함) |
+| 워싱턴중앙일보 | koreadaily.com/index_DC | — (HebronGuide 미포함) |
+| 샌디에고중앙일보 | koreadaily.com/index_SD | — (HebronGuide 미포함) |
+| 한국중앙일보 | joongang.co.kr | — (한국 본사) |
+
+> ℹ️ HebronGuide 도시 중 **LA·뉴욕·애틀랜타·밴쿠버·토론토** 5개 도시에 독립 편집국 운영  
+> SF·보스턴·달라스·휴스턴·필라·마이애미 등은 전국판(koreadaily.com) 활용
 
 ---
 
@@ -412,7 +429,7 @@ HebronGuide는 이를 적극 활용해 사용자에게 환대 정보 제공.
 
 | 매체 | URL | 등급 | 근거 |
 |---|---|---|---|
-| 뉴욕중앙일보 | ny.koreadaily.com | ✅ | 미주중앙일보 NY 직영 편집국. 동부 최대 한인 일간지 중 하나 |
+| 뉴욕중앙일보 | koreadaily.com/index_NY | ✅ | 미주중앙일보 NY 직영 편집국. 동부 최대 한인 일간지 중 하나 |
 | Radio Korea NY | nyradiokorea.com | ✅ | 1997년 AM 930 개국, FM 87.7 전환, 24시간 자체 뉴스·시사 제작. 25만 청취권 |
 | AM 1660 K-Radio | am1660.com | ⚠️ | 2015년~ NY·NJ·CT 광역 방송. 자체 편집국 구조 미확인이나 지역 정보 제공 |
 | ~~byeon.com~~ | ~~byeon.com~~ | ❌ | **직접 실사(2026-05-08): 저널리즘 기준 미달 — 28/100점** |
@@ -501,7 +518,7 @@ HebronGuide는 이를 적극 활용해 사용자에게 환대 정보 제공.
 
 | 매체 | URL | 등급 | 근거 |
 |---|---|---|---|
-| 미주중앙일보 애틀랜타 | atlanta.koreadaily.com | ✅ | 미주중앙일보 8개 지국 중 하나. 지역 자체 편집국·취재 기자 보유 |
+| 미주중앙일보 애틀랜타 | koreadaily.com/index_AT | ✅ | 미주중앙일보 9개 지역판 중 하나. 지역 자체 편집국·취재 기자 보유 |
 | 애틀랜타 중앙일보 | atlantajoongang.com | ✅ | 한국 중앙일보 계열 애틀랜타판, 주 6회 발행, 동남부 자체 취재 기자 보유 |
 | K News Atlanta | knewsatlanta.com | ⚠️ | "신속·정확·간결·심층" 표방, 자체 취재 의지 확인. 동남부 6개 주 커버. 규모 소형 |
 | Atlanta Chosun Today | atlantachosuntoday.com | ⚠️ | 조선일보 브랜드 활용 지역 매체, 지역 한인 뉴스 제공 확인. 편집 규모 불명확 |
@@ -829,7 +846,9 @@ HebronGuide 표현으로 완전히 재작성
 | 2026-05-08 (v7) | 미디어 품질 4대 기준 수립 + 등급 평가 적용 — ❌ 9개 포털·카피 매체 제거 |
 | 2026-05-08 (v8) | 성경적 세계관 분별 원칙 전제 추가 |
 | 2026-05-08 (v9) | 17개 도시 영문 로컬 미디어 품질 평가 완료 |
-| **2026-05-08 (v10)** | **byeon.com 직접 실사 — ⚠️→❌ 하향. 저널리즘 기준 미달(28/100점)** |
+| 2026-05-08 (v10) | byeon.com 직접 실사 — ⚠️→❌ 하향. 저널리즘 기준 미달(28/100점) |
+| **2026-05-08 (v11)** | **미주중앙일보 9개 지역판 전체 URL 확인 — koreadaily.com/index_[코드] 패턴** |
+| | LA·NY·ATL·CHI·DC·SD·밴쿠버·토론토 + 한국중앙일보(joongang.co.kr 외부 링크) |
 | | 5개 기사 분석: 전 기사 기자명 없음, 원본 취재 5%, 보도자료 전달 위주 |
 | | AllSides·Ad Fontes·Pulitzer.org 교차 확인. 퓰리처 수상 일간지 + 공영 NPR 계열 위주 |
 | | 제거: wowseattle, kseattle, newskoreatexas, sfkorean, tnkn.fun, |
