@@ -3103,18 +3103,19 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
             {ko ? "한인 간 연결 · HebronGuide 커미션 수익" : "Korean-to-Korean · Commission-based"}
           </div>
         </div>
-        <a href="mailto:gmc.hc300@gmail.com?subject=헤브론 서비스 문의"
-          style={{ background: "rgba(201,162,39,0.15)", border: "1px solid rgba(201,162,39,0.4)", color: "#C9A227", borderRadius: 20, padding: "5px 12px", fontSize: 10, fontWeight: 800, textDecoration: "none" }}>
-          {ko ? "문의 →" : "Inquire →"}
-        </a>
+        <button
+          onClick={() => onNavigate?.(2, 4)}
+          style={{ background: "rgba(201,162,39,0.15)", border: "1px solid rgba(201,162,39,0.4)", color: "#C9A227", borderRadius: 20, padding: "5px 12px", fontSize: 10, fontWeight: 800, cursor: "pointer" }}>
+          {ko ? "파트너 신청 →" : "Partner →"}
+        </button>
       </div>
 
       {/* 서비스 카드 가로 스크롤 */}
       <div style={{ display: "flex", gap: 10, overflowX: "auto", paddingBottom: 6, scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
         {SERVICES.map((svc, i) => (
-          <a key={i}
-            href={`mailto:gmc.hc300@gmail.com?subject=${svc.nameEn} 관심 등록`}
-            style={{ textDecoration: "none", flexShrink: 0, width: 200, scrollSnapAlign: "start" }}>
+          <div key={i}
+            onClick={() => onNavigate?.(svc.tab, svc.subTab)}
+            style={{ flexShrink: 0, width: 200, scrollSnapAlign: "start", cursor: "pointer" }}>
             <div style={{
               background: `linear-gradient(160deg, ${svc.color}20, ${svc.color}08)`,
               border: `1px solid ${svc.color}45`,
@@ -3162,11 +3163,11 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
               {/* CTA */}
               <div style={{ marginTop: 12, background: `${svc.color}18`, borderRadius: 8, padding: "7px 10px", textAlign: "center" }}>
                 <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: svc.color }}>
-                  {ko ? "관심 등록 →" : "Register Interest →"}
+                  {ko ? "자세히 보기 →" : "Learn More →"}
                 </span>
               </div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
 
@@ -4548,7 +4549,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <CompactHeroNew />
       <WorldCupBanner />
       <QuickMenuSection onNavigate={onNavigate} />
-      <HebronServicesAd lang={lang} />
+      <HebronServicesAd lang={lang} onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <SettlementEssentialsSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
