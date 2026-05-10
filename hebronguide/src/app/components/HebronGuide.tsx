@@ -5842,8 +5842,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "시애틀지구촌교회 (Global Mission Church)" : "Global Mission Church of Greater Seattle",
         nameEn: ko ? "Global Mission Church of Greater Seattle" : "시애틀지구촌교회",
         desc: ko
-          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회 · SBC 소속. 김성수 목사.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 목장·삶공부·LIFE Worship 3축 운영\n✨ 이민자·유학생·새가족 환영\n🔗 www.ijiguchon.org"
-          : "✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Sungsoo Kim.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Mokjang · Life Studies · LIFE Worship\n✨ Open to immigrants & newcomers\n🔗 www.ijiguchon.org",
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회 · SBC 소속. 김성수 목사.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 주일연합예배 · 목장 · 삶 공부 — 세 축 네 기둥 기반 사역\n🔗 www.ijiguchon.org"
+          : "✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Sungsoo Kim.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday United Worship · Mokjang · Life Studies — Three-Axis, Four-Pillar Ministry\n🔗 www.ijiguchon.org",
         tags: ko ? ["가정교회", "IHM", "린우드"] : ["House Church", "IHM", "Lynnwood"],
       },
       {
@@ -5878,18 +5878,18 @@ function getCityChurches(slug: string, lang: string) {
     houston: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "서울침례교회 (IHM 본부)" : "Seoul Baptist Church of Houston — IHM HQ",
+        name: ko ? "휴스턴서울교회" : "Seoul Church of Houston",
         desc: ko
-          ? "✅ 검증됨 | 국제가사원(IHM) 본부 · 가정교회 운동 발상지.\n📍 Houston, TX\n🏠 목장·삶공부·Worship 3축 — 미국 가정교회 모(母)교회\n🔗 seoulchurch.com"
-          : "✅ Verified | IHM Global HQ · Birthplace of the Korean House Church Movement.\n📍 Houston, TX\n🏠 Mokjang · Life Studies · Worship — US Mother Church\n🔗 seoulchurch.com",
-        tags: ko ? ["가정교회", "IHM", "본부", "휴스턴"] : ["House Church", "IHM", "HQ", "Houston"],
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회.\n📍 Houston, TX\n✨ 담임: 이수관 목사"
+          : "✅ Verified | IHM (International House Church Ministries) member.\n📍 Houston, TX\n✨ Lead Pastor: Sukwan Lee",
+        tags: ko ? ["가정교회", "IHM", "휴스턴"] : ["House Church", "IHM", "Houston"],
       },
       {
         emoji: "⭐", tier: 1,
         name: "New Life Fellowship",
         desc: ko
-          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 Houston, TX\n📞 713-896-7755\n✨ 담임: 손영천 목사"
-          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Houston, TX\n📞 713-896-7755\n✨ Lead Pastor: Young Cheon Son",
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회.\n📍 Houston, TX\n✨ 담임: Eric Shin (신동일 목사)"
+          : "✅ Verified | IHM (International House Church Ministries) member.\n📍 Houston, TX\n✨ Lead Pastor: Eric Shin",
         tags: ko ? ["가정교회", "IHM", "휴스턴"] : ["House Church", "IHM", "Houston"],
       },
     ],
