@@ -5832,6 +5832,9 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
 function getCityChurches(slug: string, lang: string) {
   const ko = lang === "ko";
   type ChurchEntry = { emoji: string; tier?: number; name: string; nameEn?: string; desc: string; tags: string[] };
+  // 정책 (2026-05-10 폴 김 목사 정정):
+  //   국제가사원(IHM, housechurchministries.org) 회원 가정교회를 우선으로 등재.
+  //   미검증 / 비-IHM 교회는 제거 후 폴백 안내. 추가 IHM 교회 검증 시 재등재.
   const byCity: Record<string, ChurchEntry[]> = {
     seattle: [
       {
@@ -5839,71 +5842,37 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "시애틀지구촌교회 (Global Mission Church)" : "Global Mission Church of Greater Seattle",
         nameEn: ko ? "Global Mission Church of Greater Seattle" : "시애틀지구촌교회",
         desc: ko
-          ? "✅ 검증됨 | SBC 소속 가정교회 사역. 폴 김 목사.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 목장·삶공부·LIFE Worship 3축 운영\n✨ 이민자·유학생·새가족 환영\n🔗 www.ijiguchon.org"
-          : "✅ Verified | SBC-affiliated House Church Ministry. Pastor Paul Kim.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Mokjang · Life Studies · LIFE Worship\n✨ Open to immigrants & newcomers\n🔗 www.ijiguchon.org",
-        tags: ko ? ["가정교회", "SBC", "린우드"] : ["House Church", "SBC", "Lynnwood"],
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회 · SBC 소속. 폴 김 목사.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 목장·삶공부·LIFE Worship 3축 운영\n✨ 이민자·유학생·새가족 환영\n🔗 www.ijiguchon.org"
+          : "✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Paul Kim.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Mokjang · Life Studies · LIFE Worship\n✨ Open to immigrants & newcomers\n🔗 www.ijiguchon.org",
+        tags: ko ? ["가정교회", "IHM", "린우드"] : ["House Church", "IHM", "Lynnwood"],
       },
       {
         emoji: "⭐", tier: 1,
         name: ko ? "시애틀우리교회" : "Seattle Woori Church",
         desc: ko
-          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 시애틀, WA\n🏠 거실에서 시작되는 환대 공동체\n✨ 1세·2세 함께 — 부담 없이 첫 방문 환영"
-          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Seattle, WA\n🏠 Hospitality community starting in living rooms\n✨ 1st & 2nd gen together — no-pressure first visit",
-        tags: ko ? ["가정교회", "IHM", "시애틀"] : ["House Church", "IHM", "Seattle"],
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 Bellevue, WA\n🏠 거실에서 시작되는 환대 공동체\n✨ 1세·2세 함께 — 부담 없이 첫 방문 환영"
+          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Bellevue, WA\n🏠 Hospitality community starting in living rooms\n✨ 1st & 2nd gen together — no-pressure first visit",
+        tags: ko ? ["가정교회", "IHM", "벨뷰"] : ["House Church", "IHM", "Bellevue"],
       },
     ],
     dallas: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "달라스한인제일침례교회" : "Korean First Baptist Church of Dallas",
+        name: ko ? "마르게나스복음교회" : "Margenas Gospel Church",
         desc: ko
-          ? "✅ 공식 사이트 확인 | SBC 소속 한인 교회. 가정교회 사역 활성화.\n📍 2319 Luna Rd, Carrollton, TX 75006\n✨ 새가족 정착 상담 · ESL 수업 운영\n🔗 kfbcd.org"
-          : "✅ Verified | SBC-affiliated. Active house church ministry.\n📍 2319 Luna Rd, Carrollton, TX 75006\n✨ New family counseling · ESL classes\n🔗 kfbcd.org",
-        tags: ko ? ["가정교회", "SBC", "캐롤튼"] : ["House Church", "SBC", "Carrollton"],
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "달라스새생명교회" : "Dallas New Life Church",
-        desc: ko
-          ? "🔗 한인 복음주의 교회 | 가정교회 목장 시스템\n📍 달라스 메트로 지역\n✨ 이민자·유학생 특화 공동체"
-          : "🔗 Korean evangelical | House church system\n✨ Focused on immigrants & students",
-        tags: ko ? ["복음주의", "달라스"] : ["Evangelical", "Dallas"],
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 달라스 메트로 지역, TX\n📞 214-596-1776\n✨ 담임: 이의옹 목사"
+          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Dallas Metro, TX\n📞 214-596-1776\n✨ Lead Pastor: Eui Ong Lee",
+        tags: ko ? ["가정교회", "IHM", "달라스"] : ["House Church", "IHM", "Dallas"],
       },
     ],
     la: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "LA새누리교회" : "LA Saenuri Church",
+        name: ko ? "축복의동산교회 (OC)" : "Mountain of Blessing Church (OC)",
         desc: ko
-          ? "✅ 공식 사이트 확인 | SBC 소속. 가정교회 사역.\n📍 Koreatown, Los Angeles, CA\n✨ 한인 1·2세대 함께하는 다세대 교회\n🔗 saenurichurch.org"
-          : "✅ Verified | SBC-affiliated. House church ministry.\n📍 Koreatown, Los Angeles, CA\n✨ Multi-generational Korean American church\n🔗 saenurichurch.org",
-        tags: ko ? ["가정교회", "SBC", "코리아타운"] : ["House Church", "SBC", "Koreatown"],
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "나성영락교회" : "Youngnak Presbyterian Church of LA",
-        desc: ko
-          ? "🔗 LA 대표 한인 장로교회 | 1973년 설립\n📍 1721 W. Olympic Blvd., Los Angeles, CA\n✨ 한인 커뮤니티 중심 · ESL · 정착 지원\n🔗 youngnak.com"
-          : "🔗 Landmark Korean Presbyterian church | Est. 1973\n📍 1721 W. Olympic Blvd., Los Angeles, CA\n✨ ESL · settlement support\n🔗 youngnak.com",
-        tags: ko ? ["장로교", "올림픽", "LA"] : ["Presbyterian", "Olympic", "LA"],
-      },
-    ],
-    newyork: [
-      {
-        emoji: "⭐", tier: 1,
-        name: ko ? "뉴욕한인침례교회" : "Korean Baptist Church of New York",
-        desc: ko
-          ? "✅ 공식 사이트 확인 | SBC 소속 한인 교회. 맨해튼·플러싱 성도.\n📍 퀸즈 플러싱 지역\n✨ 이민자·유학생 환영 · 정착 네트워크\n🔗 kbcny.org"
-          : "✅ Verified | SBC-affiliated. Serving Manhattan & Flushing.\n📍 Flushing, Queens, NY\n✨ Immigrants & students welcome · settlement network\n🔗 kbcny.org",
-        tags: ko ? ["침례교", "SBC", "플러싱"] : ["Baptist", "SBC", "Flushing"],
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "뉴욕영락교회" : "Young Nak Presbyterian of NY",
-        desc: ko
-          ? "🔗 뉴욕 한인 정통 장로교회 | 플러싱 커뮤니티 중심\n📍 Flushing, Queens, NY\n✨ 한인 이민자 역사와 함께한 교회"
-          : "🔗 Historic Korean Presbyterian church | Flushing community hub\n✨ Rooted in Korean immigrant history",
-        tags: ko ? ["장로교", "플러싱"] : ["Presbyterian", "Flushing"],
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 Orange County (LA 메트로), CA\n📞 714-336-9939\n✨ 담임: 박준철 목사"
+          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Orange County (LA Metro), CA\n📞 714-336-9939\n✨ Lead Pastor: Jun Cheol Park",
+        tags: ko ? ["가정교회", "IHM", "OC"] : ["House Church", "IHM", "OC"],
       },
     ],
     houston: [
@@ -5911,221 +5880,49 @@ function getCityChurches(slug: string, lang: string) {
         emoji: "⭐", tier: 1,
         name: ko ? "서울침례교회 (IHM 본부)" : "Seoul Baptist Church of Houston — IHM HQ",
         desc: ko
-          ? "✅ 검증됨 | 가정교회 사역 국제 본부. 미국 전역 가정교회 네트워크 허브.\n📍 Houston, TX\n🏠 목장·삶공부·Worship 3축 운영\n🔗 seoulchurch.com"
-          : "✅ Verified | International House Church Ministry HQ. National network hub.\n📍 Houston, TX\n🏠 Mokjang · Life Studies · Worship\n🔗 seoulchurch.com",
-        tags: ko ? ["가정교회", "IHM", "SBC", "휴스턴"] : ["House Church", "IHM", "SBC", "Houston"],
+          ? "✅ 검증됨 | 국제가사원(IHM) 본부 · 가정교회 운동 발상지.\n📍 Houston, TX\n🏠 목장·삶공부·Worship 3축 — 미국 가정교회 모(母)교회\n🔗 seoulchurch.com"
+          : "✅ Verified | IHM Global HQ · Birthplace of the Korean House Church Movement.\n📍 Houston, TX\n🏠 Mokjang · Life Studies · Worship — US Mother Church\n🔗 seoulchurch.com",
+        tags: ko ? ["가정교회", "IHM", "본부", "휴스턴"] : ["House Church", "IHM", "HQ", "Houston"],
       },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "휴스턴한인침례교회" : "Korean Baptist Church of Houston",
-        desc: ko
-          ? "🔗 SBC 소속 | 한인 이민자 공동체 중심\n📍 Houston, TX\n✨ ESL · 정착 상담 · 직장인 네트워크"
-          : "🔗 SBC-affiliated | Korean immigrant community\n✨ ESL · settlement counseling · professional network",
-        tags: ko ? ["침례교", "SBC", "휴스턴"] : ["Baptist", "SBC", "Houston"],
-      },
-    ],
-    sf: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "베이지역한인침례교회" : "Korean Baptist Church of the Bay Area",
+        name: "New Life Fellowship",
         desc: ko
-          ? "✅ 공식 사이트 확인 | SBC 소속. 실리콘밸리 한인 이민자·테크워커 공동체.\n📍 San Jose / Fremont 지역\n✨ 테크 업계 한인 네트워크 특화"
-          : "✅ Verified | SBC-affiliated. Silicon Valley Korean tech worker community.\n📍 San Jose / Fremont area\n✨ Strong tech industry Korean network",
-        tags: ko ? ["침례교", "SBC", "산호세"] : ["Baptist", "SBC", "San Jose"],
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "실리콘밸리한인교회" : "Korean Church of Silicon Valley",
-        desc: ko
-          ? "🔗 복음주의 한인 교회 | 산호세·프리몬트 지역\n✨ IT 종사자·유학생·이민자 환영"
-          : "🔗 Evangelical Korean church | San Jose · Fremont\n✨ IT professionals, students & immigrants welcome",
-        tags: ko ? ["복음주의", "산호세", "프리몬트"] : ["Evangelical", "San Jose", "Fremont"],
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 Houston, TX\n📞 713-896-7755\n✨ 담임: 손영천 목사"
+          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Houston, TX\n📞 713-896-7755\n✨ Lead Pastor: Young Cheon Son",
+        tags: ko ? ["가정교회", "IHM", "휴스턴"] : ["House Church", "IHM", "Houston"],
       },
     ],
     toronto: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "토론토한인침례교회" : "Korean Baptist Church of Toronto",
+        name: ko ? "토론토생명교회" : "Toronto Life Church",
         desc: ko
-          ? "✅ 공식 사이트 확인 | SBC 계열 캐나다 교회. 가정교회 사역.\n📍 North York, Toronto, ON\n✨ 이민자·유학생·새가족 환영\n🔗 kbct.ca"
-          : "✅ Verified | SBC-affiliated Canadian church. House church ministry.\n📍 North York, Toronto, ON\n✨ Immigrants, students & newcomers welcome\n🔗 kbct.ca",
-        tags: ko ? ["가정교회", "SBC", "노스요크"] : ["House Church", "SBC", "North York"],
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "토론토한인장로교회" : "Korean Presbyterian Church of Toronto",
-        desc: ko
-          ? "🔗 정통 장로교 | 토론토 한인 이민자 역사 함께\n📍 토론토 핀치애브뉴 한인타운\n✨ 한국어·영어 예배 · ESL 운영"
-          : "🔗 Presbyterian | Historic Korean immigrant church\n📍 Toronto Koreatown (Finch Ave)\n✨ Korean & English services · ESL",
-        tags: ko ? ["장로교", "핀치", "토론토"] : ["Presbyterian", "Finch", "Toronto"],
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 Toronto, ON, Canada\n📞 416-992-9937\n✨ 담임: 정창은 목사"
+          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Toronto, ON, Canada\n📞 416-992-9937\n✨ Lead Pastor: Chang Eun Jung",
+        tags: ko ? ["가정교회", "IHM", "토론토"] : ["House Church", "IHM", "Toronto"],
       },
     ],
     vancouver: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "밴쿠버한인침례교회" : "Korean Baptist Church of Vancouver",
+        name: ko ? "벤쿠버교회 (MBC)" : "Vancouver Korean Church (MBC)",
         desc: ko
-          ? "✅ 공식 사이트 확인 | SBC 계열 캐나다 교회.\n📍 Burnaby, BC\n✨ 코퀴틀람·버나비 한인 공동체 중심\n🔗 kbcv.ca"
-          : "✅ Verified | SBC-affiliated Canadian church.\n📍 Burnaby, BC\n✨ Coquitlam · Burnaby Korean community hub\n🔗 kbcv.ca",
-        tags: ko ? ["침례교", "SBC", "버나비"] : ["Baptist", "SBC", "Burnaby"],
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "밴쿠버새생명교회" : "Vancouver New Life Church",
-        desc: ko
-          ? "🔗 복음주의 한인 교회 | 코퀴틀람·서리 지역\n✨ 이민자·유학생 특화 소그룹 운영"
-          : "🔗 Evangelical Korean church | Coquitlam · Surrey\n✨ Small groups for immigrants & students",
-        tags: ko ? ["복음주의", "코퀴틀람"] : ["Evangelical", "Coquitlam"],
-      },
-    ],
-    atlanta: [
-      {
-        emoji: "⭐", tier: 1,
-        name: ko ? "애틀랜타한인침례교회" : "Korean Baptist Church of Atlanta",
-        desc: ko
-          ? "✅ 공식 사이트 확인 | SBC 소속. 둘루스·스와니 한인 공동체.\n📍 Duluth, GA\n✨ 이민자 정착 지원 · ESL · 소그룹 운영\n🔗 kbcatlanta.org"
-          : "✅ Verified | SBC-affiliated. Duluth · Suwanee Korean community.\n📍 Duluth, GA\n✨ Settlement support · ESL · small groups\n🔗 kbcatlanta.org",
-        tags: ko ? ["침례교", "SBC", "둘루스"] : ["Baptist", "SBC", "Duluth"],
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "조지아한인장로교회" : "Korean Presbyterian Church of Georgia",
-        desc: ko
-          ? "🔗 정통 장로교 | 스와니·존스크릭 지역\n✨ 한인 이민자·2세 청년 공동체"
-          : "🔗 Presbyterian | Suwanee · Johns Creek area\n✨ 1st & 2nd gen Korean community",
-        tags: ko ? ["장로교", "스와니"] : ["Presbyterian", "Suwanee"],
-      },
-    ],
-    boston: [
-      {
-        emoji: "⭐", tier: 1,
-        name: ko ? "보스턴한인침례교회" : "Korean Baptist Church of Boston",
-        desc: ko
-          ? "✅ 공식 사이트 확인 | SBC 소속. 올스턴·캠브리지 한인 유학생·이민자.\n📍 Allston, MA\n✨ Harvard·MIT·BU 유학생 특화 소그룹"
-          : "✅ Verified | SBC-affiliated. Harvard · MIT · BU students.\n📍 Allston, MA\n✨ University student-focused small groups",
-        tags: ko ? ["침례교", "SBC", "올스턴"] : ["Baptist", "SBC", "Allston"],
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "뉴잉글랜드한인교회" : "Korean Church of New England",
-        desc: ko
-          ? "🔗 복음주의 | 보스턴 광역 한인 공동체\n✨ 의료계·학계 한인 전문직 네트워크"
-          : "🔗 Evangelical | Greater Boston Korean community\n✨ Medical & academic professional network",
-        tags: ko ? ["복음주의", "보스턴"] : ["Evangelical", "Boston"],
-      },
-    ],
-    nashville: [
-      {
-        emoji: "⭐", tier: 1,
-        name: ko ? "내쉬빌한인침례교회" : "Korean Baptist Church of Nashville",
-        desc: ko
-          ? "✅ 공식 사이트 확인 | SBC 소속. 내쉬빌 한인 성장 공동체.\n📍 Madison / Brentwood, TN\n✨ 정착 지원 · ESL · H-Mart 인근 한인 네트워크"
-          : "✅ Verified | SBC-affiliated. Growing Korean community in Nashville.\n📍 Madison / Brentwood, TN\n✨ Settlement support · ESL · H-Mart area network",
-        tags: ko ? ["침례교", "SBC", "매디슨"] : ["Baptist", "SBC", "Madison"],
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "테네시한인장로교회" : "Korean Presbyterian Church of Tennessee",
-        desc: ko
-          ? "🔗 정통 장로교 | 내쉬빌 한인 이민자 공동체\n✨ 한국어·영어 예배 운영"
-          : "🔗 Presbyterian | Nashville Korean immigrant community\n✨ Korean & English services",
-        tags: ko ? ["장로교", "내쉬빌"] : ["Presbyterian", "Nashville"],
-      },
-    ],
-    philadelphia: [
-      {
-        emoji: "⭐", tier: 1,
-        name: ko ? "필라델피아한인침례교회" : "Korean Baptist Church of Philadelphia",
-        desc: ko
-          ? "✅ 공식 사이트 확인 | SBC 소속. 어퍼다비·체리힐 한인 공동체.\n📍 Upper Darby, PA\n✨ 이민자 정착 지원 · 소그룹 운영"
-          : "✅ Verified | SBC-affiliated. Upper Darby · Cherry Hill Korean community.\n📍 Upper Darby, PA\n✨ Settlement support · small groups",
-        tags: ko ? ["침례교", "SBC", "어퍼다비"] : ["Baptist", "SBC", "Upper Darby"],
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "필라델피아한인장로교회" : "Korean Presbyterian Church of Philadelphia",
-        desc: ko
-          ? "🔗 정통 장로교 | 필라 한인 이민자 역사 함께\n✨ 한국어·영어 다세대 예배"
-          : "🔗 Presbyterian | Historic Korean immigrant church in Philly\n✨ Multi-generational Korean & English worship",
-        tags: ko ? ["장로교", "필라델피아"] : ["Presbyterian", "Philadelphia"],
-      },
-    ],
-    kansascity: [
-      {
-        emoji: "⭐", tier: 1,
-        name: ko ? "캔자스시티한인침례교회" : "Korean Baptist Church of Kansas City",
-        desc: ko
-          ? "✅ 공식 사이트 확인 | SBC 소속. 오버랜드파크 한인 공동체.\n📍 Overland Park, KS\n✨ 소그룹·ESL·정착 지원 운영"
-          : "✅ Verified | SBC-affiliated. Overland Park Korean community.\n📍 Overland Park, KS\n✨ Small groups · ESL · settlement support",
-        tags: ko ? ["침례교", "SBC", "오버랜드파크"] : ["Baptist", "SBC", "Overland Park"],
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "캔자스시티한인교회" : "Korean Church of Kansas City",
-        desc: ko
-          ? "🔗 복음주의 한인 교회 | KC 한인 커뮤니티\n✨ 한인회·H-Mart 인근 네트워크"
-          : "🔗 Evangelical Korean church | KC Korean community\n✨ Near Korean Association & H-Mart network",
-        tags: ko ? ["복음주의", "캔자스시티"] : ["Evangelical", "Kansas City"],
-      },
-    ],
-    miami: [
-      {
-        emoji: "⭐", tier: 1,
-        name: ko ? "마이애미한인침례교회" : "Korean Baptist Church of Miami",
-        desc: ko
-          ? "✅ 공식 사이트 확인 | SBC 소속. 도랄·코랄게이블스 한인 공동체.\n📍 Doral, FL\n✨ 히스패닉 문화권 속 한인 공동체 · 이중언어 예배"
-          : "✅ Verified | SBC-affiliated. Doral · Coral Gables Korean community.\n📍 Doral, FL\n✨ Bilingual worship in Hispanic-culture context",
-        tags: ko ? ["침례교", "SBC", "도랄"] : ["Baptist", "SBC", "Doral"],
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "마이애미한인장로교회" : "Korean Presbyterian Church of Miami",
-        desc: ko
-          ? "🔗 정통 장로교 | 마이애미 한인 공동체\n✨ 중남미 비즈니스 한인 네트워크"
-          : "🔗 Presbyterian | Miami Korean community\n✨ Latin America business Korean network",
-        tags: ko ? ["장로교", "마이애미"] : ["Presbyterian", "Miami"],
-      },
-    ],
-    mexicocity: [
-      {
-        emoji: "⭐", tier: 1,
-        name: ko ? "멕시코시티한인교회" : "Korean Church of Mexico City",
-        desc: ko
-          ? "🔍 검증 진행 중 | 멕시코시티 한인 공동체 중심 교회\n📍 멕시코시티 한인타운 (폴란코 인근)\n✨ 주재원·비즈니스 한인 공동체 · 스페인어·한국어 예배"
-          : "🔍 Verification in progress | Korean community church\n📍 Mexico City Koreatown (near Polanco)\n✨ Expat & business Koreans · Spanish-Korean bilingual",
-        tags: ko ? ["한인교회", "멕시코시티", "주재원"] : ["Korean Church", "Mexico City", "Expats"],
-      },
-    ],
-    guadalajara: [
-      {
-        emoji: "⭐", tier: 1,
-        name: ko ? "과달라하라한인교회" : "Korean Church of Guadalajara",
-        desc: ko
-          ? "🔍 검증 진행 중 | 과달라하라 한인 공동체 교회\n📍 과달라하라 한인 밀집 지역\n✨ 삼성·LG·현대 등 주재원 가족 중심"
-          : "🔍 Verification in progress | Korean community church\n📍 Korean district, Guadalajara\n✨ Samsung · LG · Hyundai expat families",
-        tags: ko ? ["한인교회", "과달라하라", "주재원"] : ["Korean Church", "Guadalajara", "Expats"],
-      },
-    ],
-    monterrey: [
-      {
-        emoji: "⭐", tier: 1,
-        name: ko ? "몬테레이한인교회" : "Korean Church of Monterrey",
-        desc: ko
-          ? "🔍 검증 진행 중 | 몬테레이 한인 공동체 교회\n📍 몬테레이 한인 비즈니스 지구\n✨ 제조업·무역업 한인 주재원 공동체"
-          : "🔍 Verification in progress | Korean community church\n📍 Korean business district, Monterrey\n✨ Manufacturing & trade Korean expat community",
-        tags: ko ? ["한인교회", "몬테레이", "주재원"] : ["Korean Church", "Monterrey", "Expats"],
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 Vancouver, BC, Canada\n📞 778-231-4734\n✨ 담임: 이민기 목사"
+          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Vancouver, BC, Canada\n📞 778-231-4734\n✨ Lead Pastor: Min Ki Lee",
+        tags: ko ? ["가정교회", "IHM", "밴쿠버"] : ["House Church", "IHM", "Vancouver"],
       },
     ],
   };
-  // 등록된 도시가 없으면 구글 검색 안내 카드
+  // IHM 미등재 도시 → 안내 카드 + IHM 디렉토리 직접 검색 링크
   return byCity[slug] ?? [
     {
-      emoji: "🔍",
-      name: ko ? `${slug.toUpperCase()} 지역 한인 교회` : `Korean Churches — ${slug.toUpperCase()}`,
+      emoji: "🏠",
+      name: ko ? `${slug.toUpperCase()} 지역 IHM 가정교회` : `IHM House Churches — ${slug.toUpperCase()}`,
       desc: ko
-        ? "이 지역 한인 교회 정보를 수집 중입니다.\n구글에서 '한인 교회 [도시명]' 검색 또는 현지 한인회에 문의하세요.\n✨ 좋은 교회 정보가 있으시면 알려주세요!"
-        : "Church info for this area coming soon.\nSearch 'Korean church [city]' on Google or contact local Korean Association.\n✨ Know a great church? Let us know!",
-      tags: ko ? ["한인교회", "정보수집중"] : ["Korean Church", "Coming Soon"],
+        ? "HebronGuide는 국제가사원(IHM) 회원 가정교회를 우선으로 등재합니다.\n이 지역 IHM 회원 교회 정보를 수집 중입니다.\n\n🌐 housechurchministries.org 에서 전 세계 IHM 가정교회를 직접 검색하실 수 있습니다.\n✨ 추가 IHM 회원 교회 정보가 있으시면 알려주세요."
+        : "HebronGuide prioritizes IHM (International House Church Ministries) member churches.\nIHM church info for this area is being collected.\n\n🌐 Search the global IHM directory at housechurchministries.org\n✨ Know an IHM church here? Let us know.",
+      tags: ko ? ["가정교회", "IHM", "디렉토리"] : ["House Church", "IHM", "Directory"],
     },
   ];
 }
