@@ -176,20 +176,20 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
     taglineKo: "베이에서 시작하는 새 출발", taglineEn: "A new start by the Bay.",
     taglineEs: "Un nuevo comienzo junto a la Bahía.",
   },
-  newyork:   { slug: "newyork",   nameKo: "뉴욕",     nameEn: "New York",   color: "#EF4444", heroVideo: "", population: "15만+", state: "New York",    taglineKo: "뉴욕에서 찾는 나의 자리",  taglineEn: "Find your place in New York.",   taglineEs: "Encuentra tu lugar en Nueva York."    },
-  nashville: { slug: "nashville", nameKo: "내쉬빌",   nameEn: "Nashville",  color: "#10B981", heroVideo: "", population: "2만+",  state: "Tennessee",  taglineKo: "뮤직시티에서의 새 출발",  taglineEn: "New start in Music City.",       taglineEs: "Nuevo comienzo en la ciudad de la música."       },
-  boston:    { slug: "boston",    nameKo: "보스턴",   nameEn: "Boston",     color: "#3B82F6", heroVideo: "", population: "3만+",  state: "Massachusetts", taglineKo: "역사의 도시, 새 역사를 쓰다", taglineEn: "Write your story in Boston.", taglineEs: "Escribe tu historia en Boston." },
-  la:        { slug: "la",        nameKo: "LA",       nameEn: "Los Angeles",color: "#F97316", heroVideo: "", population: "50만+", state: "California",  taglineKo: "가장 큰 한인 커뮤니티",   taglineEn: "The largest Korean community.",  taglineEs: "La comunidad coreana más grande." },
-  toronto:   { slug: "toronto",   nameKo: "토론토",   nameEn: "Toronto",    color: "#06B6D4", heroVideo: "", population: "10만+", state: "Ontario",    taglineKo: "캐나다에서 한인으로",       taglineEn: "Korean in Canada.",              taglineEs: "Coreano en Canadá."              },
-  vancouver: { slug: "vancouver", nameKo: "밴쿠버",   nameEn: "Vancouver",  color: "#22C55E", heroVideo: "", population: "8만+",  state: "B.C.",       taglineKo: "태평양의 관문에서",         taglineEn: "Gateway to the Pacific.",        taglineEs: "Puerta al Pacífico."        },
-  houston:    { slug: "houston",    nameKo: "휴스턴",    nameEn: "Houston",      color: "#EA580C", heroVideo: "", population: "2.5만+", state: "Texas",       taglineKo: "텍사스 남부의 활력",         taglineEn: "Vibrant heart of South Texas.",  taglineEs: "Corazón vibrante del sur de Texas." },
-  atlanta:    { slug: "atlanta",    nameKo: "애틀랜타",  nameEn: "Atlanta",      color: "#16A34A", heroVideo: "", population: "10만+",  state: "Georgia",     taglineKo: "남부의 한인 허브",           taglineEn: "Korean hub of the South.",       taglineEs: "Hub coreano del Sur." },
-  kansascity: { slug: "kansascity", nameKo: "캔자스시티", nameEn: "Kansas City",  color: "#9333EA", heroVideo: "", population: "3천+",   state: "Missouri",    taglineKo: "중부의 새 지평",             taglineEn: "New horizons in the Heartland.", taglineEs: "Nuevos horizontes en el corazón de EE.UU." },
-  philadelphia:{ slug: "philadelphia", nameKo: "필라델피아", nameEn: "Philadelphia", color: "#0891B2", heroVideo: "", population: "3만+", state: "Pennsylvania", taglineKo: "역사의 도시에서 시작하다",   taglineEn: "Start your story in the City of Brotherly Love.", taglineEs: "Comienza tu historia en la Ciudad del Amor Fraternal." },
-  miami:      { slug: "miami",      nameKo: "마이애미",  nameEn: "Miami",        color: "#EC4899", heroVideo: "", population: "5천+",   state: "Florida",     taglineKo: "햇살 아래 새 출발",           taglineEn: "Fresh start under the sun.",     taglineEs: "Nuevo comienzo bajo el sol." },
-  mexicocity: { slug: "mexicocity", nameKo: "멕시코시티", nameEn: "Mexico City",  color: "#DC2626", heroVideo: "", population: "1만+",   state: "Mexico",      taglineKo: "고대와 현대가 만나는 곳",     taglineEn: "Where ancient meets modern.",    taglineEs: "Donde lo antiguo se encuentra con lo moderno." },
-  guadalajara:{ slug: "guadalajara",nameKo: "과달라하라", nameEn: "Guadalajara",  color: "#F59E0B", heroVideo: "", population: "2천+",   state: "Mexico",      taglineKo: "멕시코의 문화 수도",          taglineEn: "Mexico's cultural capital.",     taglineEs: "La capital cultural de México." },
-  monterrey:  { slug: "monterrey",  nameKo: "몬테레이",  nameEn: "Monterrey",    color: "#0EA5E9", heroVideo: "", population: "1천+",   state: "Mexico",      taglineKo: "산으로 둘러싸인 산업도시",    taglineEn: "Industrial city in the mountains.", taglineEs: "Ciudad industrial entre montañas." },
+  newyork:   { slug: "newyork",   nameKo: "뉴욕",     nameEn: "New York",   color: "#EF4444", heroVideo: "https://videos.pexels.com/video-files/28855592/28855592-hd_1920_1080_30fps.mp4", population: "15만+", state: "New York",    taglineKo: "뉴욕에서 찾는 나의 자리",  taglineEn: "Find your place in New York.",   taglineEs: "Encuentra tu lugar en Nueva York."    },
+  nashville: { slug: "nashville", nameKo: "내쉬빌",   nameEn: "Nashville",  color: "#10B981", heroVideo: "https://videos.pexels.com/video-files/33469461/33469461-hd_1920_1080_30fps.mp4", population: "2만+",  state: "Tennessee",  taglineKo: "뮤직시티에서의 새 출발",  taglineEn: "New start in Music City.",       taglineEs: "Nuevo comienzo en la ciudad de la música."       },
+  boston:    { slug: "boston",    nameKo: "보스턴",   nameEn: "Boston",     color: "#3B82F6", heroVideo: "https://videos.pexels.com/video-files/36326781/36326781-hd_1920_1080_30fps.mp4", population: "3만+",  state: "Massachusetts", taglineKo: "역사의 도시, 새 역사를 쓰다", taglineEn: "Write your story in Boston.", taglineEs: "Escribe tu historia en Boston." },
+  la:        { slug: "la",        nameKo: "LA",       nameEn: "Los Angeles",color: "#F97316", heroVideo: "https://videos.pexels.com/video-files/30670671/30670671-hd_1920_1080_30fps.mp4", population: "50만+", state: "California",  taglineKo: "가장 큰 한인 커뮤니티",   taglineEn: "The largest Korean community.",  taglineEs: "La comunidad coreana más grande." },
+  toronto:   { slug: "toronto",   nameKo: "토론토",   nameEn: "Toronto",    color: "#06B6D4", heroVideo: "https://videos.pexels.com/video-files/20597195/20597195-hd_1920_1080_30fps.mp4", population: "10만+", state: "Ontario",    taglineKo: "캐나다에서 한인으로",       taglineEn: "Korean in Canada.",              taglineEs: "Coreano en Canadá."              },
+  vancouver: { slug: "vancouver", nameKo: "밴쿠버",   nameEn: "Vancouver",  color: "#22C55E", heroVideo: "https://videos.pexels.com/video-files/32805734/32805734-hd_1920_1080_30fps.mp4", population: "8만+",  state: "B.C.",       taglineKo: "태평양의 관문에서",         taglineEn: "Gateway to the Pacific.",        taglineEs: "Puerta al Pacífico."        },
+  houston:    { slug: "houston",    nameKo: "휴스턴",    nameEn: "Houston",      color: "#EA580C", heroVideo: "https://videos.pexels.com/video-files/32701339/32701339-hd_1920_1080_30fps.mp4", population: "2.5만+", state: "Texas",       taglineKo: "텍사스 남부의 활력",         taglineEn: "Vibrant heart of South Texas.",  taglineEs: "Corazón vibrante del sur de Texas." },
+  atlanta:    { slug: "atlanta",    nameKo: "애틀랜타",  nameEn: "Atlanta",      color: "#16A34A", heroVideo: "https://videos.pexels.com/video-files/33134800/33134800-hd_1920_1080_30fps.mp4", population: "10만+",  state: "Georgia",     taglineKo: "남부의 한인 허브",           taglineEn: "Korean hub of the South.",       taglineEs: "Hub coreano del Sur." },
+  kansascity: { slug: "kansascity", nameKo: "캔자스시티", nameEn: "Kansas City",  color: "#9333EA", heroVideo: "https://videos.pexels.com/video-files/29160030/29160030-hd_1920_1080_30fps.mp4", population: "3천+",   state: "Missouri",    taglineKo: "중부의 새 지평",             taglineEn: "New horizons in the Heartland.", taglineEs: "Nuevos horizontes en el corazón de EE.UU." },
+  philadelphia:{ slug: "philadelphia", nameKo: "필라델피아", nameEn: "Philadelphia", color: "#0891B2", heroVideo: "https://videos.pexels.com/video-files/37165310/37165310-hd_1920_1080_30fps.mp4", population: "3만+", state: "Pennsylvania", taglineKo: "역사의 도시에서 시작하다",   taglineEn: "Start your story in the City of Brotherly Love.", taglineEs: "Comienza tu historia en la Ciudad del Amor Fraternal." },
+  miami:      { slug: "miami",      nameKo: "마이애미",  nameEn: "Miami",        color: "#EC4899", heroVideo: "https://videos.pexels.com/video-files/31673932/31673932-hd_1920_1080_30fps.mp4", population: "5천+",   state: "Florida",     taglineKo: "햇살 아래 새 출발",           taglineEn: "Fresh start under the sun.",     taglineEs: "Nuevo comienzo bajo el sol." },
+  mexicocity: { slug: "mexicocity", nameKo: "멕시코시티", nameEn: "Mexico City",  color: "#DC2626", heroVideo: "https://videos.pexels.com/video-files/36000496/36000496-hd_1920_1080_30fps.mp4", population: "1만+",   state: "Mexico",      taglineKo: "고대와 현대가 만나는 곳",     taglineEn: "Where ancient meets modern.",    taglineEs: "Donde lo antiguo se encuentra con lo moderno." },
+  guadalajara:{ slug: "guadalajara",nameKo: "과달라하라", nameEn: "Guadalajara",  color: "#F59E0B", heroVideo: "https://videos.pexels.com/video-files/12096534/12096534-hd_1920_1080_30fps.mp4", population: "2천+",   state: "Mexico",      taglineKo: "멕시코의 문화 수도",          taglineEn: "Mexico's cultural capital.",     taglineEs: "La capital cultural de México." },
+  monterrey:  { slug: "monterrey",  nameKo: "몬테레이",  nameEn: "Monterrey",    color: "#0EA5E9", heroVideo: "https://videos.pexels.com/video-files/17742969/17742969-hd_1920_1080_30fps.mp4", population: "1천+",   state: "Mexico",      taglineKo: "산으로 둘러싸인 산업도시",    taglineEn: "Industrial city in the mountains.", taglineEs: "Ciudad industrial entre montañas." },
 
   // ── 북미 확장 Tier A (Isolation: 2-3) ──────────────────────────────────
   chicago:    { slug: "chicago",    nameKo: "시카고",    nameEn: "Chicago",      color: "#1D4ED8", heroVideo: "", population: "6.2만+", state: "Illinois",    taglineKo: "바람의 도시, 우리의 집",       taglineEn: "City of Winds, Home of Ours.",   taglineEs: "Ciudad de los Vientos, nuestro hogar." },
@@ -3009,12 +3009,14 @@ function CompactHeroNew() {
             filter: "brightness(0.75) saturate(1.2)"
           }} />
       )}
-      {/* 도시별 배경 영상 (시애틀·달라스·SF 등 보유 도시) */}
+      {/* 도시별 배경 영상 — 로드 실패 시 자동으로 사라져 도시 색 그라디언트가 보임 */}
       {city.heroVideo && (
-        <video autoPlay muted loop playsInline style={{
-          position: "absolute", inset: 0, width: "100%", height: "100%",
-          objectFit: "cover", objectPosition: "center 35%",
-        }}>
+        <video autoPlay muted loop playsInline
+          onError={(e) => { (e.currentTarget as HTMLVideoElement).style.display = 'none'; }}
+          style={{
+            position: "absolute", inset: 0, width: "100%", height: "100%",
+            objectFit: "cover", objectPosition: "center 35%",
+          }}>
           <source src={city.heroVideo} type="video/mp4" />
         </video>
       )}
