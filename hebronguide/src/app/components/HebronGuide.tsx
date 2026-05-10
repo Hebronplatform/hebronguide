@@ -5844,12 +5844,12 @@ function getCityChurches(slug: string, lang: string) {
         tags: ko ? ["가정교회", "SBC", "린우드"] : ["House Church", "SBC", "Lynnwood"],
       },
       {
-        emoji: "⛪", tier: 2,
-        name: ko ? "시애틀중앙장로교회" : "Seattle Central Presbyterian Church",
+        emoji: "⭐", tier: 1,
+        name: ko ? "시애틀우리교회" : "Seattle Woori Church",
         desc: ko
-          ? "🔗 정통 장로교 | 세대별 예배 운영 (한국어·영어)\n📍 시애틀 북부 지역\n✨ 한인 이민자 공동체 중심 교회"
-          : "🔗 Presbyterian | Korean & English generational services\n✨ Strong Korean immigrant community",
-        tags: ko ? ["장로교", "시애틀"] : ["Presbyterian", "Seattle"],
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 시애틀, WA\n🏠 거실에서 시작되는 환대 공동체\n✨ 1세·2세 함께 — 부담 없이 첫 방문 환영"
+          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Seattle, WA\n🏠 Hospitality community starting in living rooms\n✨ 1st & 2nd gen together — no-pressure first visit",
+        tags: ko ? ["가정교회", "IHM", "시애틀"] : ["House Church", "IHM", "Seattle"],
       },
     ],
     dallas: [
@@ -6309,15 +6309,28 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               descEn="Meet someone who shares your values and direction in life. Connected thoughtfully and sincerely."
             />
 
-            {/* CTA */}
-            <a href="mailto:HebronPlatform@gmail.com?subject=HebronGuide 허브교회 신청"
+            {/* CTA — mailto body에 자가 진단 양식 미리 채움 (4-Tier + 신앙 고백 + 환대 동행) */}
+            <a href={`mailto:HebronPlatform@gmail.com?subject=${encodeURIComponent(
+              lang === "ko"
+                ? "[HebronGuide] 허브교회 신청"
+                : "[HebronGuide] Hub Church Application"
+            )}&body=${encodeURIComponent(
+              lang === "ko"
+                ? `안녕하세요. {교회명} 담임목사 {성함}입니다.\nHebronGuide 허브교회로 등록을 신청합니다.\n\n=== 1. 기본 정보 ===\n- 교회명:\n- 담임목사 성함:\n- 도시 / 주:\n- 교단·소속 (예: SBC, 장로교 PCA, 가정교회 IHM):\n- 설립년도:\n- 교인 수 (대략):\n- 교회 공식 웹사이트:\n- 연락처 (이메일 / 전화):\n\n=== 2. 4-Tier 자가 분류 (해당하는 곳에 ✅) ===\n[ ] Tier 1 — 가정교회 (IHM 인증)\n[ ] Tier 2 — SBC·정통 보수\n[ ] Tier 3 — 기타 정통 교단 (장로·감리·성결·침례 등)\n[ ] Tier 4 — 독립·무소속\n\n=== 3. 복음 신앙 고백 (Y/N) ===\n[ ] 사도신경·니케아신경에 동의합니다.\n[ ] 성경 66권의 무오성을 믿습니다.\n[ ] 그리스도의 십자가 대속과 부활을 신앙고백합니다.\n\n=== 4. 허브교회 환대 동행 약속 (Y/N) ===\n[ ] 새 이민자 환대 동행자 역할에 동의합니다.\n[ ] 사역자·전문가 추천에 협력합니다.\n[ ] 분기별 영혼 점검 자가 진단에 참여합니다.\n\n=== 5. 추가 메시지 (자유 작성) ===\n\n\n— 검토 후 1-2주 내 결과 안내드립니다. 감사합니다.\n  www.ijiguchon.org · hebronguide.com\n  마 25:35 "내가 나그네 되었을 때 너희가 영접하였다"`
+                : `Hello. I am {Pastor Name}, lead pastor of {Church Name}.\nWe would like to apply as a HebronGuide Hub Church.\n\n=== 1. Basic Information ===\n- Church Name:\n- Lead Pastor:\n- City / State:\n- Denomination / Affiliation (e.g., SBC, PCA, IHM House Church):\n- Year Founded:\n- Approx. Members:\n- Official Website:\n- Contact (email / phone):\n\n=== 2. 4-Tier Self-Classification (✅ where applicable) ===\n[ ] Tier 1 — IHM-certified House Church\n[ ] Tier 2 — SBC / Conservative Evangelical\n[ ] Tier 3 — Other Orthodox Denominations (Presbyterian, Methodist, Holiness, Baptist, etc.)\n[ ] Tier 4 — Independent / Non-affiliated\n\n=== 3. Gospel Confession (Y/N) ===\n[ ] I affirm the Apostles' and Nicene Creeds.\n[ ] I affirm the inerrancy of the 66 books of Scripture.\n[ ] I confess Christ's substitutionary atonement and resurrection.\n\n=== 4. Hub Church Hospitality Commitment (Y/N) ===\n[ ] We agree to serve as hospitality companions for new immigrants.\n[ ] We commit to recommending qualified ministers and professionals.\n[ ] We will participate in quarterly soul-check self-assessment.\n\n=== 5. Additional Message (free-form) ===\n\n\n— Review will take 1-2 weeks. Thank you.\n  www.ijiguchon.org · hebronguide.com\n  Matthew 25:35 — "I was a stranger and you welcomed me."`
+            )}`}
               style={{ display: "block", textDecoration: "none" }}>
               <div style={{ background: "linear-gradient(135deg, #C9A227, #B8901C)", borderRadius: 14, padding: "16px 20px", textAlign: "center", boxShadow: "0 4px 20px rgba(201,162,39,0.4)" }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 4 }}>
-                  🏆 {lang === "ko" ? "허브교회 신청 — 목사님께 연락주세요" : "Apply as Hub Church — Contact Pastor Paul Kim"}
+                  🏆 {lang === "ko" ? "허브교회 신청 — 자가 진단 양식 자동 채움" : "Apply as Hub Church — Pre-filled Self-Assessment"}
                 </div>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)" }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.85)", marginBottom: 4 }}>
                   HebronPlatform@gmail.com · www.ijiguchon.org
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.65)" }}>
+                  {lang === "ko"
+                    ? "📋 4-Tier · 신앙 고백 · 환대 동행 약속 (1-2주 검토)"
+                    : "📋 4-Tier · Gospel Confession · Hospitality Commitment (1-2 wks)"}
                 </div>
               </div>
             </a>
