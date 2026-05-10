@@ -2988,18 +2988,28 @@ function CompactHeroNew() {
   const { lang } = useI18n();
   const city = useCityConfig();
   const liveCamUrl = CITY_LIVECAM[city.slug];
+  // 시애틀 기본 사진 사용 가능 도시 (현재는 시애틀만 — 다른 도시는 도시별 사진 큐레이션 후 추가)
+  const useSeattlePhotos = city.slug === "seattle";
 
   return (
     <div style={{
       position: "relative", height: "clamp(120px, 22dvh, 180px)", overflow: "hidden",
       borderRadius: "0 0 28px 28px",
+      // 도시별 사진/영상 없는 도시: 도시 색 그라디언트 + 깊이감
+      background: useSeattlePhotos || city.heroVideo
+        ? undefined
+        : `linear-gradient(135deg, ${city.color} 0%, ${city.color}dd 35%, #0b1326 100%)`,
     }}>
-      {/* 정적 이미지 폴백 */}
-      <img src={imgHeroCard} alt={city.nameEn} style={{
-        width: "100%", height: "100%", objectFit: "cover", objectPosition: heroPhotoPosition,
-        filter: "brightness(0.75) saturate(1.2)"
-      }} />
-      {/* 도시별 배경 영상 */}
+      {/* 시애틀: 정적 사진 6장 (2시간마다 교체) — 도시별 큐레이션 전까지 시애틀에만 적용 */}
+      {useSeattlePhotos && (
+        <img src={imgHeroCard} alt={city.nameEn}
+          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+          style={{
+            width: "100%", height: "100%", objectFit: "cover", objectPosition: heroPhotoPosition,
+            filter: "brightness(0.75) saturate(1.2)"
+          }} />
+      )}
+      {/* 도시별 배경 영상 (시애틀·달라스·SF 등 보유 도시) */}
       {city.heroVideo && (
         <video autoPlay muted loop playsInline style={{
           position: "absolute", inset: 0, width: "100%", height: "100%",
@@ -3008,8 +3018,21 @@ function CompactHeroNew() {
           <source src={city.heroVideo} type="video/mp4" />
         </video>
       )}
-      {/* 그라디언트 오버레이 */}
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%)" }} />
+      {/* 사진/영상 없는 도시: 큰 도시 이니셜 워터마크 (장식적) */}
+      {!useSeattlePhotos && !city.heroVideo && (
+        <div style={{
+          position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "flex-end",
+          paddingRight: 24, fontFamily: "Manrope,sans-serif", fontWeight: 900,
+          fontSize: 96, color: "rgba(255,255,255,0.08)", letterSpacing: "-4px",
+          userSelect: "none", pointerEvents: "none",
+        }}>
+          {city.nameEn.slice(0, 3).toUpperCase()}
+        </div>
+      )}
+      {/* 그라디언트 오버레이 (사진/영상 위에만) */}
+      {(useSeattlePhotos || city.heroVideo) && (
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%)" }} />
+      )}
       {/* 도시명 + 태그라인 */}
       <div style={{ position: "absolute", bottom: 20, left: 20, right: 60 }}>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 24, color: "#fff",
