@@ -1,0 +1,71 @@
+name: ✨ Feature Request
+description: 새 기능·개선 제안. 황금률에서 시작합니다.
+title: "[Feature] "
+labels: ["feature", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > *"내가 사용자라면 이걸 받고 싶을까?"* (Q0)
+        >
+        > 모든 새 기능은 황금률(마 7:12)에서 시작합니다.
+        > 📖 정본: [`docs/CORE_VISION.md`](../docs/CORE_VISION.md)
+
+  - type: textarea
+    id: q0
+    attributes:
+      label: Q0 — 내가 사용자라면 이걸 받고 싶은가?
+      placeholder: 예 — 새 도시에 도착한 한인 가족이 첫날 ___을 받고 싶을 것이다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: q9
+    attributes:
+      label: Q9 — 송영(Doxology)을 향하는가?
+      placeholder: 예 — 이 기능은 환대를 흘려보냄으로써 결과적으로 송영을 향한다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 어떤 사용자 문제를 해결하나요?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 제안하는 해결 방향
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: areas
+    attributes:
+      label: 영향 영역
+      options:
+        - label: 🔧 코드
+        - label: 📝 콘텐츠
+        - label: 🎨 UI/UX
+        - label: 💰 수익
+        - label: 🤝 관계
+
+  - type: textarea
+    id: hard_rules
+    attributes:
+      label: Hard Rules 점검 (CLAUDE.md)
+      placeholder: 예 — 직접 전도 ❌ / 검증 미통과 매칭 ❌ / Fair Housing 차별 ❌ 모두 통과
+    validations:
+      required: true
+
+  - type: textarea
+    id: success
+    attributes:
+      label: 출시 후 측정할 4가지 행복 신호
+      placeholder: |
+        ① 받았다 — 7d 재방문률
+        ② 신뢰 — 추천 발생률
+        ③ 환영 — 자유 응답 환대 키워드
+        ④ 자유 — 강요 없는 흐름 이탈 안 함

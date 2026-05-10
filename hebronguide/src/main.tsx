@@ -5,11 +5,11 @@ import './styles/index.css'
 
 /* ─────────────────────────────────────────
    PWA 자동 업데이트 시스템
-   Chrome + Safari + Firefox 모두 대응
-   배포 후 1분 이내 모든 사용자 자동 업데이트
+   환대 패턴 D-2 (자기 속도 존중) + 강요 없는 부드러운 알림
+   📖 _hebron_codex/00_ecosystem/HOSPITALITY_PATTERNS.md Layer 4 F-3
 ───────────────────────────────────────── */
 
-// Safari 감지
+// Safari 감지 (호환성 분기에만 사용)
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 function usePWAAutoUpdate() {
@@ -27,41 +27,14 @@ function usePWAAutoUpdate() {
       window.location.reload();
     });
 
-    const activateWaitingSW = async () => {
-      try {
-        const reg = await navigator.serviceWorker.getRegistration();
-        if (!reg?.waiting) return;
-
-        // Safari는 postMessage 후 즉시 reload 필요
-        reg.waiting.postMessage({ type: 'SKIP_WAITING' });
-
-        if (isSafari) {
-          // Safari: controllerchange 이벤트 불안정 → 0.5초 후 강제 reload
-          setTimeout(() => {
-            if (!refreshing) {
-              refreshing = true;
-              window.location.reload();
-            }
-          }, 500);
-        }
-      } catch (_) {}
-    };
-
     const initSW = async () => {
       try {
         const reg = await navigator.serviceWorker.getRegistration();
         if (!reg) return;
 
-        // 이미 대기 중인 SW → 즉시 활성화
-        if (reg.waiting) {
-          if (isSafari) {
-            // Safari: 사용자에게 배너 표시 (자동 reload 대신)
-            setUpdateReady(true);
-          } else {
-            // Chrome/Firefox: 자동 활성화
-            activateWaitingSW();
-          }
-        }
+        // 이미 대기 중인 SW → 모든 브라우저에서 사용자에게 배너 표시
+        // (자동 reload는 사용자 흐름을 끊음 — 환대 패턴 D-2 자기 속도 존중)
+        if (reg.waiting) setUpdateReady(true);
 
         // 새 SW 설치 감지
         reg.addEventListener('updatefound', () => {
@@ -70,11 +43,7 @@ function usePWAAutoUpdate() {
 
           newWorker.addEventListener('statechange', () => {
             if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              if (isSafari) {
-                setUpdateReady(true);
-              } else {
-                activateWaitingSW();
-              }
+              setUpdateReady(true);
             }
           });
         });
@@ -90,7 +59,7 @@ function usePWAAutoUpdate() {
 
     initSW();
 
-    // 탭 포커스 시 업데이트 확인 (사파리 탭 전환 포함)
+    // 탭 포커스 시 업데이트 확인
     const onVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
         navigator.serviceWorker.getRegistration()
@@ -99,7 +68,6 @@ function usePWAAutoUpdate() {
       }
     };
 
-    // visibilitychange: Safari에서 focus보다 더 신뢰성 높음
     document.addEventListener('visibilitychange', onVisibilityChange);
     window.addEventListener('focus', onVisibilityChange);
 
@@ -109,44 +77,119 @@ function usePWAAutoUpdate() {
     };
   }, []);
 
-  return { updateReady, activateUpdate: async () => {
-    const reg = await navigator.serviceWorker.getRegistration();
-    if (reg?.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
-    setTimeout(() => window.location.reload(), 300);
-  }};
+  return {
+    updateReady,
+    activateUpdate: async () => {
+      const reg = await navigator.serviceWorker.getRegistration();
+      if (reg?.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+      // Safari fallback — controllerchange 불안정
+      setTimeout(() => window.location.reload(), isSafari ? 500 : 300);
+    },
+    dismiss: () => setUpdateReady(false),
+  };
 }
 
-/* ─── 업데이트 배너 (주로 Safari용) ─── */
+/* ─── 업데이트 알림 배너 — 환대 어조, 사용자 자기 속도 ─── */
 function UpdateBanner() {
-  const { updateReady, activateUpdate } = usePWAAutoUpdate();
+  const { updateReady, activateUpdate, dismiss } = usePWAAutoUpdate();
+  const [busy, setBusy] = useState(false);
 
   if (!updateReady) return null;
 
+  const onApply = async () => {
+    setBusy(true);
+    await activateUpdate();
+  };
+
   return (
-    <div style={{
-      position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)',
-      zIndex: 9999, background: '#1a2535', border: '1px solid rgba(242,153,74,0.5)',
-      borderRadius: 14, padding: '12px 16px', display: 'flex', alignItems: 'center',
-      gap: 12, boxShadow: '0 4px 20px rgba(0,0,0,0.4)', minWidth: 280, maxWidth: 360,
-    }}>
-      <span style={{ fontSize: 18 }}>🔄</span>
-      <div style={{ flex: 1 }}>
+    <div
+      role="status"
+      aria-live="polite"
+      style={{
+        position: 'fixed',
+        bottom: 'calc(72px + env(safe-area-inset-bottom, 0px))',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 9999,
+        background: 'rgba(26,37,53,0.97)',
+        border: '1px solid rgba(110,231,183,0.35)',
+        borderRadius: 14,
+        padding: '12px 14px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+        boxShadow: '0 6px 24px rgba(0,0,0,0.35)',
+        minWidth: 280,
+        maxWidth: 'min(calc(100vw - 32px), 380px)',
+        backdropFilter: 'blur(8px)',
+      }}
+    >
+      <span style={{ fontSize: 18, lineHeight: 1 }}>🌿</span>
+      <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontFamily: 'Manrope,sans-serif', fontWeight: 800, fontSize: 12, color: '#ECFDF5' }}>
-          새 버전이 있습니다
+          새로운 정보가 도착했어요
         </div>
-        <div style={{ fontFamily: 'Manrope,sans-serif', fontSize: 10, color: 'rgba(236,253,245,0.6)', marginTop: 2 }}>
-          {isSafari ? '탭을 닫고 다시 열거나 업데이트를 누르세요' : '잠시 후 자동으로 업데이트됩니다'}
+        <div style={{ fontFamily: 'Manrope,sans-serif', fontSize: 10, color: 'rgba(236,253,245,0.6)', marginTop: 2, lineHeight: 1.4 }}>
+          잠시만 새로 고치면 최신 안내를 보실 수 있어요
         </div>
       </div>
-      <button onClick={activateUpdate} style={{
-        background: '#F2994A', border: 'none', borderRadius: 8, padding: '6px 12px',
-        fontFamily: 'Manrope,sans-serif', fontWeight: 800, fontSize: 11, color: '#fff', cursor: 'pointer',
-      }}>
-        업데이트
+      <button
+        onClick={dismiss}
+        aria-label="나중에"
+        style={{
+          background: 'transparent',
+          border: 'none',
+          padding: '6px 8px',
+          fontFamily: 'Manrope,sans-serif',
+          fontSize: 11,
+          color: 'rgba(236,253,245,0.45)',
+          cursor: 'pointer',
+        }}
+      >
+        나중에
+      </button>
+      <button
+        onClick={onApply}
+        disabled={busy}
+        style={{
+          background: 'linear-gradient(135deg, #6EE7B7, rgba(110,231,183,0.85))',
+          border: 'none',
+          borderRadius: 10,
+          padding: '7px 13px',
+          fontFamily: 'Manrope,sans-serif',
+          fontWeight: 800,
+          fontSize: 11,
+          color: '#0b1326',
+          cursor: busy ? 'wait' : 'pointer',
+          opacity: busy ? 0.6 : 1,
+          whiteSpace: 'nowrap',
+          transition: 'opacity 0.15s',
+        }}
+      >
+        {busy ? '적용 중...' : '지금 적용'}
       </button>
     </div>
   );
 }
+
+/* ─── 수동 리프레시 헬퍼 (더보기 시트에서 호출) ─── */
+// HebronGuide.tsx의 더보기 시트 "🔄 최신 정보" 버튼이 사용
+;(window as any).__hebronRefreshNow = async () => {
+  try {
+    if ('serviceWorker' in navigator) {
+      const reg = await navigator.serviceWorker.getRegistration();
+      if (reg) {
+        await reg.update().catch(() => {});
+        if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+      }
+    }
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      await Promise.all(keys.map(k => caches.delete(k)));
+    }
+  } catch (_) {}
+  setTimeout(() => window.location.reload(), 300);
+};
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

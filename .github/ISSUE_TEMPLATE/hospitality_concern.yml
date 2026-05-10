@@ -1,0 +1,63 @@
+name: 🛡️ 환대 위반 신고 (Hospitality Concern)
+description: 사용자가 거래되거나 환영받지 못했다고 느낀 경우 — 24시간 응답 의무.
+title: "[Hospitality] "
+labels: ["hospitality-concern", "p0", "needs-immediate-response"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > *"내가 나그네 되었을 때 너희가 영접하였다"* — 마 25:35
+        >
+        > 한 사람이라도 환대받지 못했다면, 우리가 정신을 잃었다는 신호입니다.
+        > **24시간 내 인격적 응답** 의무가 있습니다.
+
+  - type: dropdown
+    id: which
+    attributes:
+      label: 어떤 행복 신호가 깨졌나요?
+      options:
+        - ① 받았다 — 받고 싶었던 것을 받지 못함
+        - ② 신뢰 — 검증·정보 신뢰가 깨짐
+        - ③ 환영 — 거래된 느낌, 비인격적 응대
+        - ④ 자유 — 강요받음, 다크 패턴, 차별
+        - 둘 이상
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: 무엇이 일어났나요?
+      description: 사용자 자유 응답 인용 가능 (익명 처리)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: hard_rule
+    attributes:
+      label: Hard Rules 위반 여부
+      options:
+        - 위반 없음 (패턴 강화 필요)
+        - "❌ 직접 전도 / 성경 도배"
+        - "❌ 검증 안 된 정보"
+        - "❌ 데이터 판매 / 광고 위장"
+        - "❌ 민족주의 / 한국 우월주의"
+        - "❌ 일요일 상업 활동"
+        - "❌ Fair Housing 차별 광고"
+        - "❌ 검증 미통과 제공자 연결"
+        - "❌ 비인격적 응대"
+        - 기타
+
+  - type: textarea
+    id: action
+    attributes:
+      label: 즉시 회복 액션
+      description: 24시간 내 어떤 인격적 응답을 했는가? (또는 할 계획인가?)
+    validations:
+      required: true
+
+  - type: textarea
+    id: prevention
+    attributes:
+      label: 재발 방지
+      description: Hard Rule 추가 / 환대 패턴 강화 / 정본 갱신 필요?

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 정본 — Core Vision (영혼 위계)
+    url: https://github.com/Hebronplatform/hebronguide/blob/main/docs/CORE_VISION.md
+    about: 모든 결정은 송영 → 황금률 → 지혜·순결 → 세 기둥 위계 위에서 시작합니다.
+  - name: 환대 위반 신고
+    url: https://github.com/Hebronplatform/hebronguide/issues/new?template=hospitality_concern.yml
+    about: 사용자가 거래되거나 환영받지 못했다고 느낀 경우 — 24시간 응답 의무.

@@ -61,6 +61,7 @@ import {
   Home,
   Search,
   Globe,
+  RefreshCw,
   MessageCircle,
   MapPin,
   Utensils,
@@ -3127,6 +3128,14 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       providerKo: "이 도시를 안내하고 싶으신 분 → 함께해요", providerEn: "Know this city well? → Join us",
       tab: 4, subTab: 4,
     },
+    {
+      icon: "🏘️", color: "#2563EB",
+      nameKo: "헤브론 홈", nameEn: "Hebron Home",
+      tagKo: "부동산 · 렌트 · 정착 패키지", tagEn: "Realty · Rentals · Settlement",
+      userKo: "검증된 한인 라이선스 에이전트로 안내", userEn: "Korean-friendly licensed realtor matching",
+      providerKo: "에이전트·브로커 → 함께해요", providerEn: "Licensed agent & broker → join us",
+      tab: 1, subTab: 5,
+    },
   ];
 
   return (
@@ -3139,6 +3148,11 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", marginTop: 2 }}>
             {ko ? "사람이 사람을 섬깁니다. 목마른 이에게 생수를 권하듯!" : "Person serving person — like offering living water!"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "#6EE7B7", marginTop: 6, fontWeight: 700, letterSpacing: "-0.1px" }}>
+            🛡️ {ko
+              ? "신청 → 문서 검증 → 신원조회 후 연결 — 검증 안 된 제공자는 매칭하지 않습니다"
+              : "Application → Document Check → Background Check → Connect — unverified providers are never matched"}
           </div>
         </div>
         <button
@@ -3218,8 +3232,8 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.55)", marginTop: 2, lineHeight: 1.5 }}>
             {ko
-              ? "모든 연결은 개인과 공동체를 살립니다. — 마25:35"
-              : "Every connection revives the individual and community. — Matt 25:35"}
+              ? "모든 신뢰와 믿음의 관계는 개인과 공동체를 살립니다(마25:35)."
+              : "All relationships of trust and faith revive the individual and community (Matt 25:35)."}
           </div>
         </div>
       </div>
@@ -4639,6 +4653,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
 function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSub?: number }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
+  const citySlug = useCityConfig().slug;
   const [sub, setSub] = useState(initialSub);
   useEffect(() => { setSub(initialSub); }, [initialSub]);
   const tabs = lang === "ko"
@@ -4985,8 +5000,6 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "Sign long-term lease", desc: "Limited credit? Offer larger deposit or look for Korean landlords first" },
     { title: "Prepare for tax season", desc: "Korea income? FBAR/FATCA filing required. Korean accountant consultation essential" },
   ];
-
-  const citySlug = useCityConfig().slug;
 
   const adminKo = citySlug === "sf" ? [
     { title: "SSN 신청", desc: "📍 Social Security Office | 1750 Mission St, San Francisco CA | 📞 800-772-1213 | 🔗 ssa.gov" },
@@ -6167,8 +6180,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               </div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, marginBottom: 10 }}>
                 {lang === "ko"
-                  ? "전 세계 한인 교회의 약 10%만이 진정으로 복음적이며, 순수하게 제자 만드는 데 헌신된 교회입니다. HebronGuide는 이 교회들과 전략적으로 연대하여 새로운 이민자들을 연결합니다."
-                  : "Only about 10% of Korean diaspora churches are truly evangelical and purely committed to making disciples. HebronGuide strategically partners with these churches to connect new immigrants."}
+                  ? "HebronGuide는 각 도시 안에 성경대로 복음을 실천하는 교회들과 연대하여 새로운 이민자들을 연결합니다."
+                  : "In each city, HebronGuide partners with churches that practice the gospel according to Scripture, connecting newly arrived immigrants."}
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                 {[
@@ -11013,6 +11026,18 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                 { icon: "🏃", name: ko ? "헤브론 심부름" : "Hebron ErrandRun", price: ko ? "$20-40/시간" : "$20-40/hr", desc: ko ? "마트 쇼핑·약국·우체국·병원 대행. 다국어 가능" : "Grocery, pharmacy, post office & clinic errands. Multilingual" },
               ],
             },
+            {
+              emoji: "🏠", label: ko ? "정착·주거" : "Settlement & Housing", color: "#2563EB",
+              services: [
+                { icon: "🏘️", name: ko ? "헤브론 부동산매칭" : "Hebron HomeMatch", price: ko ? "거래별 (referral)" : "Per deal (referral)", desc: ko ? "매매·렌트 모두. 학군·교회·예산 기반 검증된 한인 라이선스 에이전트 매칭. 첫 미팅 동행" : "Buy or rent. School/church/budget-matched Korean licensed realtor. First meeting accompaniment" },
+                { icon: "🔑", name: ko ? "헤브론 렌트가이드" : "Hebron RentScout", price: ko ? "$50-100/건" : "$50-100/case", desc: ko ? "한인 친화 렌트 매물 큐레이션 + 영문 리스 한국어 요약·핵심 조항 설명" : "Korean-friendly rental curation + lease translation & key clause walkthrough" },
+                { icon: "🚛", name: ko ? "헤브론 정착패키지" : "Hebron MoveSettle", price: ko ? "$80-200/건" : "$80-200/package", desc: ko ? "이사 당일 도움 + 인터넷·전기·가스·우편 셋업 + 가구·식료품 첫 구매 동행" : "Move-in day help + internet/electric/gas/mail setup + furniture & groceries run" },
+                { icon: "💳", name: ko ? "헤브론 신용가이드" : "Hebron CreditGuide", price: ko ? "$40-80/시간" : "$40-80/hr", desc: ko ? "이민 첫 해 신용점수 빌드업 코칭 + 한인 모기지 브로커 연결 (매매 시)" : "Year-1 credit score coaching for immigrants + Korean mortgage broker referral" },
+              ],
+              note: ko
+                ? "⚠️ 부동산은 라이선스 에이전트 연결만 — 직접 중개 안 함. 거래 성사 시 합법적 추천 수수료(referral fee)."
+                : "⚠️ Realtor referrals only — no direct brokerage. Lawful referral fees on closed deals.",
+            },
           ];
 
           return (
@@ -11041,6 +11066,26 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                   {ko
                     ? "은사와 재능과 열정이 있는 분이라면 누구든 등록하세요.\n청소·케이터링·꽃꽂이·디자인·수리·돌봄·요리...\nHebronGuide가 연결하고, 수익의 85%는 당신 것입니다."
                     : "Anyone with gifts, talents & passion can register.\nCleaning, catering, floral, design, repairs, care, cooking...\nHebronGuide connects — you keep 85% of every job."}
+                </div>
+
+                {/* 검증 4단계 게이트 — 사용자 안전 우선 */}
+                <div style={{ background: "rgba(110,231,183,0.08)", border: "1px solid rgba(110,231,183,0.3)", borderRadius: 12, padding: "10px 12px", marginBottom: 12 }}>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#6EE7B7", marginBottom: 6, display: "flex", alignItems: "center", gap: 5 }}>
+                    🛡️ {ko ? "검증된 제공자만 연결합니다" : "Verified providers only"}
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 4 }}>
+                    {[
+                      { n: "1", ko: "신청", en: "Apply" },
+                      { n: "2", ko: "문서 검증", en: "Documents" },
+                      { n: "3", ko: "신원조회", en: "Background" },
+                      { n: "4", ko: "연결", en: "Connect" },
+                    ].map((g, i) => (
+                      <div key={i} style={{ background: "rgba(110,231,183,0.06)", border: "1px solid rgba(110,231,183,0.18)", borderRadius: 8, padding: "5px 4px", textAlign: "center" }}>
+                        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 11, color: "#6EE7B7" }}>{g.n}</div>
+                        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.7)", marginTop: 1 }}>{ko ? g.ko : g.en}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* 은사·재능·열정 3축 */}
@@ -12282,9 +12327,20 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
           {/* 유틸 버튼 */}
           <div style={{ display: "flex", gap: 8 }}>
             {[
-              { icon: Search,       labelKo: "검색",  labelEn: "Search",    action: () => { onSearchToggle(); setShowMore(false); } },
-              { icon: Globe,        labelKo: "통역",  labelEn: "Translate", action: () => { onTranslateToggle(); setShowMore(false); } },
-              { icon: Share2,       labelKo: "공유",  labelEn: "Share",     action: () => { onShareToggle(); setShowMore(false); } },
+              { icon: Search,       labelKo: "검색",       labelEn: "Search",    action: () => { onSearchToggle(); setShowMore(false); } },
+              { icon: Globe,        labelKo: "통역",       labelEn: "Translate", action: () => { onTranslateToggle(); setShowMore(false); } },
+              { icon: Share2,       labelKo: "공유",       labelEn: "Share",     action: () => { onShareToggle(); setShowMore(false); } },
+              { icon: RefreshCw,    labelKo: "최신 정보",  labelEn: "Refresh",   action: () => {
+                  setShowMore(false);
+                  // 환대 어조: 짧은 토스트 표시 후 캐시 비우고 새로고침
+                  const helper = (window as unknown as { __hebronRefreshNow?: () => Promise<void> }).__hebronRefreshNow;
+                  if (typeof helper === 'function') {
+                    helper();
+                  } else {
+                    // fallback — 헬퍼 미등록 환경
+                    window.location.reload();
+                  }
+                } },
             ].map((u, i) => {
               const IconComp = u.icon;
               return (

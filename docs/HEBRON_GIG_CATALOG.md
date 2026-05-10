@@ -133,6 +133,33 @@ HebronGuide 수수료: 15%  →  제공자 수령: 85%
 
 ---
 
+### 🏠 카테고리 9: 정착·주거 (Settlement & Housing)
+
+> **⚠️ 일반 긱과 운영 모델이 다름**
+> 부동산 중개는 주별 라이선스 필요 → HebronGuide는 **직접 중개 안 함**.
+> 검증된 한인 친화 라이선스 에이전트·브로커에 **고객 소개만** + 거래 성사 시 합법적 추천 수수료(referral fee).
+
+| 브랜드명 | 한국어 | 영어 | 스페인어 | 가격대 | 수요 |
+|---|---|---|---|---|---|
+| **Hebron HomeMatch** | 헤브론 부동산매칭 | Korean-Friendly Realtor Matching | Conexión con Agente Inmobiliario | 거래 별도 (referral fee) | ⭐⭐⭐⭐⭐ |
+| **Hebron RentScout** | 헤브론 렌트가이드 | Rental Search & Lease Review | Búsqueda y Revisión de Alquiler | $50-100/건 + referral | ⭐⭐⭐⭐⭐ |
+| **Hebron MoveSettle** | 헤브론 정착패키지 | Move-in & Setup Package | Mudanza y Servicios Iniciales | $80-200/건 | ⭐⭐⭐⭐ |
+| **Hebron CreditGuide** | 헤브론 신용가이드 | Credit & Mortgage Guidance | Guía de Crédito e Hipoteca | $40-80/시간 + referral | ⭐⭐⭐⭐ |
+
+**서비스 상세**
+
+- **Hebron HomeMatch** — 한인 가족이 새 도시에 도착하면 학군·교회 접근성·예산을 듣고 검증된 한인 라이선스 에이전트 1-2명 매칭. 첫 미팅 동행 가능. 거래 성사 시 에이전트가 자체 수수료에서 10-25% referral fee 지급.
+- **Hebron RentScout** — 한인 친화 렌트 매물 큐레이션 (학군·통근·한인 마트 거리). 영문 리스 계약서 한국어 요약·핵심 조항 설명 ($50-100/건). 큰 단지/관리회사 거래 시 referral.
+- **Hebron MoveSettle** — 이사 당일 도움 + 인터넷·전기·가스·우편 셋업 + 가구·기본 식료품 1차 구매 동행. 라이선스 불요, 일반 긱 모델.
+- **Hebron CreditGuide** — 이민 첫 해 신용점수 빌드업 1:1 코칭 ($40-80/시간) + 모기지 단계에서 한인 라이선스 모기지 브로커 연결 (성사 시 referral).
+
+**Hard Rules** (절대 금지)
+- ❌ 라이선스 없는 직접 중개·계약서 서명 대리·에스크로 취급
+- ❌ Fair Housing법 위반 소지 표현 ("한인만"·"기독교인만" 같은 차별 광고)
+- ❌ 검증 안 된 에이전트 추천 — 워싱턴 주 DOL Real Estate License 확인 필수
+
+---
+
 ## 🌍 다민족 연결 전략 — "이웃이 이웃을 섬긴다"
 
 ### 왜 다민족인가?
@@ -169,18 +196,26 @@ HebronGuide 수수료: 15%  →  제공자 수령: 85%
 | 히스패닉 청소부 | Hebron Clean 청소 서비스 | 한인·미국인 가정 청소 |
 | 한인 베이커 | Hebron BakeShare 한국 빵 | 미국·히스패닉 이웃에 판매 |
 
-### 신뢰 레이어 (Trust Layer)
+### 신뢰 레이어 (Trust Layer) — 헤브론 패스
 
 ```
 기존 TaskRabbit: 낯선 사람 → 신뢰 부족
-Hebron Gig:     이웃 + 허브교회 커뮤니티 → 신뢰 기반
-
-검증 단계:
-1. 앱 가입 + 신분증 확인
-2. 허브교회 커뮤니티 연결 시 우선 순위
-3. 첫 3회 서비스 후 검증 배지 부여
-4. 리뷰 3개 언어로 통합 표시
+Hebron Gig:     검증된 제공자 + 허브교회 커뮤니티 → 신뢰 기반
 ```
+
+**검증 없이 연결 안 함 (Hard Rule)** — 모든 제공자는 다음 4단계 게이트를 통과해야 등재·매칭됩니다.
+
+```
+Gate 1 · 신청        → 온라인 신청서 + 자기소개
+Gate 2 · 문서 검증   → 정부 발급 신분증·SSN/ITIN·카테고리별 라이선스
+Gate 3 · 신원 조회   → Checkr/Sterling 등 합법 백그라운드 체크
+Gate 4 · 연결 승인   → 운영팀 최종 승인 + 환대 서약
+```
+
+추가로 통과 후 받을 수 있는 신뢰 등급(Trust Tier 1-3): 교회 출석 → 사역 경력 → 선교사 인증.
+리뷰는 3개 언어로 자동 통합 표시.
+
+> 📖 **정본**: [`PEOPLE_CONNECT_BIZPLAN.md`](PEOPLE_CONNECT_BIZPLAN.md) — "헤브론 패스" 섹션 (필수 게이트 + 선택 등급 + 카테고리별 추가 요건)
 
 ---
 
@@ -201,6 +236,26 @@ Hebron Gig:     이웃 + 허브교회 커뮤니티 → 신뢰 기반
   → $80 × 15% × 500 = $6,000/월/도시
   → 5개 도시 × $6,000 = $30,000/월
 ```
+
+### 추천 수수료 (Referral Fee) — 카테고리 9 정착·주거 전용
+
+```
+부동산 매매 거래 — 평균 시애틀 $600,000
+  → 에이전트 측 커미션 3% = $18,000
+  → HebronGuide referral 15% = $2,700/건
+
+월 1건 성사 시 → $2,700/월
+연 10건 성사 시 → $27,000/년/도시
+
+렌트 거래 — 평균 월세 $2,200
+  → 에이전트 측 1개월 커미션 = $2,200
+  → HebronGuide referral 15% = $330/건
+```
+
+> 부동산은 거래 횟수가 적어도 1건 단가가 높아 수익 구조가 일반 긱과 완전히 다름.
+> 1년 10건 성사면 일반 긱 1년치 매출에 맞먹음.
+
+---
 
 ### 프리미엄 옵션 (Phase 2)
 

@@ -1,0 +1,92 @@
+name: 🙏 분기 영혼 점검 (Quarterly Spiritual Check)
+description: 분기별 자가 진단 — MISSIONAL_THEOLOGY 7가지 위험 신호 + 4가지 행복 신호.
+title: "[Spiritual Check] YYYY-Q?"
+labels: ["spiritual-check", "quarterly"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > *"우리가 송영(doxology) 없는 단순한 종교 기업으로 변질되고 있는가?"*
+        >
+        > 📖 정본: [`docs/MISSIONAL_THEOLOGY.md`](../docs/MISSIONAL_THEOLOGY.md)
+
+  - type: input
+    id: period
+    attributes:
+      label: 분기
+      placeholder: 예 — 2026-Q3
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: risks
+    attributes:
+      label: 7가지 위험 신호 자가 진단
+      options:
+        - label: 🚨 광고가 너무 자랑스럽다 (자기 영광)
+        - label: 🚨 KPI 숫자에 목숨 거는 자신을 발견
+        - label: 🚨 한국 우월주의가 콘텐츠에 스며듦
+        - label: 🚨 파트너 교회가 마케팅 채널처럼 느껴짐
+        - label: 🚨 일요일에도 일하고 싶은 충동
+        - label: 🚨 사역 기쁨보다 운영 부담이 큼
+        - label: 🚨 사용자를 '고객'으로만 보는 자신
+
+  - type: textarea
+    id: received
+    attributes:
+      label: ① 받았다 — 점수 + 자유 응답 5건
+    validations:
+      required: true
+
+  - type: textarea
+    id: trust
+    attributes:
+      label: ② 신뢰 — 점수 + 증거
+    validations:
+      required: true
+
+  - type: textarea
+    id: welcomed
+    attributes:
+      label: ③ 환영 — 점수 + 자유 응답
+      description: 가장 자주 깨지는 영역. 자유 응답의 환대 키워드 빈도가 핵심.
+    validations:
+      required: true
+
+  - type: textarea
+    id: free
+    attributes:
+      label: ④ 자유 — 점수 + 증거
+    validations:
+      required: true
+
+  - type: textarea
+    id: missional
+    attributes:
+      label: 4가지 선교 균형 점검
+      placeholder: |
+        - 좁은 선교: 파트너 교회 복음 선포 길을 가로막지 않았나?
+        - 참여 선교: 환대로 하나님 이야기에 참여했나?
+        - 상황 선교: 도시별 고유성 존중했나?
+        - 성례 선교: 일상 정보에 거룩함을 더했나?
+    validations:
+      required: true
+
+  - type: textarea
+    id: doxology
+    attributes:
+      label: 송영 점검 (가장 깊음)
+    validations:
+      required: true
+
+  - type: textarea
+    id: actions
+    attributes:
+      label: 다음 분기 액션
+    validations:
+      required: true
+
+  - type: textarea
+    id: prayer
+    attributes:
+      label: 분기 묵상 / 기도

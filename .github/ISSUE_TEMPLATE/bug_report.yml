@@ -1,0 +1,88 @@
+name: 🐛 Bug Report
+description: HebronGuide에서 무언가가 의도대로 작동하지 않습니다.
+title: "[Bug] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > *"정직과 진실"* — 잠 12:17
+        >
+        > 사용자가 본 것을 정직하게 기록해 주세요.
+
+  - type: dropdown
+    id: city
+    attributes:
+      label: 영향받은 도시
+      options:
+        - Seattle
+        - Dallas
+        - SF Bay Area
+        - New York
+        - Nashville
+        - Boston
+        - LA
+        - Toronto
+        - Vancouver
+        - Houston
+        - Atlanta
+        - Kansas City
+        - Philadelphia
+        - Miami
+        - Mexico City / Guadalajara / Monterrey
+        - 모든 도시 공통
+        - 헤브론 연결 서비스 / Hebron Gig
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 무엇이 일어났나요?
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 무엇이 일어났어야 했나요?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 재현 단계
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 심각도
+      options:
+        - 🚨 P0 — 사용자 안전·신뢰 위협 (검증 잘못 표시·결제·라이선스·데이터 노출)
+        - 🔴 P1 — 핵심 기능 작동 안 함
+        - 🟡 P2 — 일부 기능 작동 안 함
+        - 🟢 P3 — 작은 개선
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: hospitality
+    attributes:
+      label: 환대 영향 점검
+      options:
+        - label: ① 받았다 — 사용자가 받고 싶었던 것을 받지 못함
+        - label: ② 신뢰 — 정보 신뢰가 깨짐 (검증 표시 잘못 등)
+        - label: ③ 환영 — 거래된 느낌 / 비난 어조
+        - label: ④ 자유 — 강요·차단·자기 속도 침해
+
+  - type: textarea
+    id: env
+    attributes:
+      label: 환경
+      placeholder: |
+        - 브라우저 / OS / 디바이스
+        - 언어 (KO / EN / ES)
+        - URL / 시간대
