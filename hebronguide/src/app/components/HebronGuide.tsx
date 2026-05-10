@@ -5842,8 +5842,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "시애틀지구촌교회 (Global Mission Church)" : "Global Mission Church of Greater Seattle",
         nameEn: ko ? "Global Mission Church of Greater Seattle" : "시애틀지구촌교회",
         desc: ko
-          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회 · SBC 소속. 김성수 목사.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 세 축 네 기둥 기반 사역\n🔗 www.ijiguchon.org"
-          : "✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Sungsoo Kim.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Three-Axis, Four-Pillar Ministry\n🔗 www.ijiguchon.org",
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회 · SBC 소속. 김성수 목사.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 주일연합예배, 목장, 삶 공부 - 세축 네기둥\n🔗 www.ijiguchon.org"
+          : "✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Sungsoo Kim.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday United Worship, Mokjang, Life Studies - Three Axes, Four Pillars\n🔗 www.ijiguchon.org",
         tags: ko ? ["가정교회", "IHM", "린우드"] : ["House Church", "IHM", "Lynnwood"],
       },
       {
