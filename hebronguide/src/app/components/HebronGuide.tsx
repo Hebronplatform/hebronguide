@@ -146,7 +146,8 @@ interface CityConfig {
   nameKo: string;
   nameEn: string;
   color: string;
-  heroVideo: string;
+  heroVideo: string;          // 기본 단일 영상 (단순 경우)
+  heroVideos?: string[];      // 시간대별 교체용 영상 배열 (있으면 우선) — 4시간마다 순환
   population: string;       // 한인 인구
   state: string;            // 주/지역
   taglineKo: string;
@@ -157,7 +158,16 @@ interface CityConfig {
 const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   seattle: {
     slug: "seattle", nameKo: "시애틀", nameEn: "Seattle", color: "#0EA5E9",
-    heroVideo: "https://videos.pexels.com/video-files/20017409/20017409-hd_1920_1080_24fps.mp4",
+    // 5개 영상 4시간마다 교체 — 밝은 낮 위주로 선정 ("HebronGuide은 밝은 세상을 추구")
+    heroVideo: "https://videos.pexels.com/video-files/32971137/32971137-hd_1920_1080_30fps.mp4",
+    heroVideos: [
+      "https://videos.pexels.com/video-files/32971137/32971137-hd_1920_1080_30fps.mp4",  // 0-4시: 낮 항공 시애틀 스카이라인
+      "https://videos.pexels.com/video-files/29042800/29042800-hd_1920_1080_30fps.mp4",  // 4-8시: 일출 시애틀 + Space Needle
+      "https://videos.pexels.com/video-files/28638124/28638124-hd_1920_1080_30fps.mp4",  // 8-12시: 낮 항공 시애틀
+      "https://videos.pexels.com/video-files/33617069/33617069-hd_1920_1080_30fps.mp4",  // 12-16시: 활기찬 시애틀 워터프론트
+      "https://videos.pexels.com/video-files/20017409/20017409-hd_1920_1080_24fps.mp4",  // 16-20시: Kerry Park + Space Needle (저녁)
+      "https://videos.pexels.com/video-files/29024579/29024579-hd_1920_1080_30fps.mp4",  // 20-24시: 일몰 + Space Needle
+    ],
     population: "15만+", state: "Washington",
     taglineKo: "도시를 알고, 사람을 찾다", taglineEn: "Know your city. Find your people.",
     taglineEs: "Conoce tu ciudad. Encuentra tu gente.",
@@ -171,7 +181,16 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   },
   sf: {
     slug: "sf", nameKo: "샌프란시스코", nameEn: "San Francisco", color: "#8B5CF6",
-    heroVideo: "https://videos.pexels.com/video-files/3571264/3571264-hd_1920_1080_30fps.mp4",
+    // 5개 영상 4시간마다 교체 — Golden Gate·Bay·Cable Car 등 SF 상징 다양화
+    heroVideo: "https://videos.pexels.com/video-files/31679507/31679507-hd_1920_1080_30fps.mp4",
+    heroVideos: [
+      "https://videos.pexels.com/video-files/31679507/31679507-hd_1920_1080_30fps.mp4",  // 0-4시: Golden Gate Bridge fog timelapse ★
+      "https://videos.pexels.com/video-files/30846612/30846612-hd_1920_1080_30fps.mp4",  // 4-8시: Golden Gate aerial
+      "https://videos.pexels.com/video-files/29190919/29190919-hd_1920_1080_30fps.mp4",  // 8-12시: Cable car ride ★
+      "https://videos.pexels.com/video-files/19834290/19834290-hd_1920_1080_30fps.mp4",  // 12-16시: Bay Bridge + city aerial
+      "https://videos.pexels.com/video-files/3571264/3571264-hd_1920_1080_30fps.mp4",    // 16-20시: 기존 SF 영상
+      "https://videos.pexels.com/video-files/19834296/19834296-hd_1920_1080_30fps.mp4",  // 20-24시: SF dusk aerial
+    ],
     population: "8만+", state: "California",
     taglineKo: "베이에서 시작하는 새 출발", taglineEn: "A new start by the Bay.",
     taglineEs: "Un nuevo comienzo junto a la Bahía.",
@@ -2990,6 +3009,12 @@ function CompactHeroNew() {
   const liveCamUrl = CITY_LIVECAM[city.slug];
   // 시애틀 기본 사진 사용 가능 도시 (현재는 시애틀만 — 다른 도시는 도시별 사진 큐레이션 후 추가)
   const useSeattlePhotos = city.slug === "seattle";
+  // 시간대별 영상 선택 — heroVideos 배열이 있으면 4시간마다 교체, 없으면 단일 heroVideo
+  // 6 슬롯 × 4시간 = 24시간 한 사이클 ("HebronGuide은 밝은 세상을 추구")
+  const videoSlot = Math.floor(new Date().getHours() / 4) % 6;
+  const activeHeroVideo = (city.heroVideos && city.heroVideos.length > 0)
+    ? city.heroVideos[videoSlot % city.heroVideos.length]
+    : city.heroVideo;
 
   return (
     <div style={{
@@ -3009,15 +3034,15 @@ function CompactHeroNew() {
             filter: "brightness(0.75) saturate(1.2)"
           }} />
       )}
-      {/* 도시별 배경 영상 — 로드 실패 시 자동으로 사라져 도시 색 그라디언트가 보임 */}
-      {city.heroVideo && (
-        <video autoPlay muted loop playsInline
+      {/* 도시별 배경 영상 — heroVideos 시간대별 교체 + onError 자동 폴백 */}
+      {activeHeroVideo && (
+        <video key={activeHeroVideo} autoPlay muted loop playsInline
           onError={(e) => { (e.currentTarget as HTMLVideoElement).style.display = 'none'; }}
           style={{
             position: "absolute", inset: 0, width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center 35%",
           }}>
-          <source src={city.heroVideo} type="video/mp4" />
+          <source src={activeHeroVideo} type="video/mp4" />
         </video>
       )}
       {/* 사진/영상 없는 도시: 큰 도시 이니셜 워터마크 (장식적) */}
