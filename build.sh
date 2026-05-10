@@ -88,12 +88,20 @@ for city in \
   KO="${CITY_KO[$city]}"
   EN="${CITY_EN[$city]}"
 
-  # 도시별 title·description 치환 (sed) — 구분자 # 사용 (title 내 | 충돌 방지)
+  # 도시별 메타데이터 치환 (sed) — title·OG·Twitter·canonical·hreflang 모두 처리
+  # 주의: JS 번들 경로(/seattle/assets/...)는 상대경로라 도메인 기반 치환에 영향 없음
   sed -i.bak \
     -e "s#<title>시애틀 한인 정착 가이드#<title>${KO} 한인 정착 가이드#g" \
     -e "s#HebronGuide Seattle</title>#HebronGuide ${EN}</title>#g" \
     -e "s#시애틀 한인 이민자·유학생·이주자를 위한#${KO} 한인 이민자·유학생·이주자를 위한#g" \
     -e "s#HebronGuide Seattle 2026#HebronGuide ${EN} 2026#g" \
+    -e "s#HebronGuide 시애틀 — 시애틀 한인 정착·생활·교회 완전 가이드#HebronGuide ${KO} — ${KO} 한인 정착·생활·교회 완전 가이드#g" \
+    -e "s#HebronGuide 시애틀 — 한인 정착·교회·맛집 가이드#HebronGuide ${KO} — 한인 정착·교회·맛집 가이드#g" \
+    -e "s#시애틀 한인 16.5만이 검증한 정착 가이드. 시애틀지구촌교회가 운영하는 신뢰할 수 있는 한인 커뮤니티 플랫폼.#${KO} 한인 커뮤니티를 위한 정착 가이드. HebronGuide가 운영하는 신뢰할 수 있는 한인 플랫폼.#g" \
+    -e "s#시애틀 한인 16.5만이 검증한 정착 가이드. 시애틀지구촌교회 운영.#${KO} 한인 커뮤니티 정착 가이드. HebronGuide 운영.#g" \
+    -e "s#시애틀 한인 가이드#${KO} 한인 가이드#g" \
+    -e "s#\"HebronGuide 시애틀\"#\"HebronGuide ${KO}\"#g" \
+    -e "s#hebronguide.com/seattle/#hebronguide.com/${city}/#g" \
     public/$city/index.html
   rm -f public/$city/index.html.bak
 
