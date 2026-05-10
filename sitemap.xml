@@ -1,273 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- 메인 허브 -->
   <url>
     <loc>https://hebronguide.com/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://hebronguide.com/" />
   </url>
 
-  <!-- ══════════════════════════════════════════
-       17개 도시 — 전체 LIVE (2026-05-08 기준)
-       React Router basename 동적화로 전 도시 정상 작동
-  ══════════════════════════════════════════ -->
-
-  <!-- 🏙️ 시애틀 — 플래그십 -->
+  <!-- 시애틀 — 플래그십 -->
   <url>
     <loc>https://hebronguide.com/seattle/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/seattle/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/seattle/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/seattle/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://hebronguide.com/seattle/" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Seattle — 시애틀 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🌴 LA — 한인 최대 (50만+) -->
+  <!-- LA — 한인 최대 -->
   <url>
     <loc>https://hebronguide.com/la/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/la/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/la/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/la/?lang=es" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide LA — 로스앤젤레스 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🗽 뉴욕 — 월드컵 결승전 도시 -->
+  <!-- 뉴욕 -->
   <url>
     <loc>https://hebronguide.com/newyork/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/newyork/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/newyork/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/newyork/?lang=es" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide New York — 뉴욕 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🤠 달라스 -->
+  <!-- 달라스 -->
   <url>
     <loc>https://hebronguide.com/dallas/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/dallas/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/dallas/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/dallas/?lang=es" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Dallas — 달라스 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 💻 SF 베이에어리어 -->
+  <!-- SF 베이에어리어 -->
   <url>
     <loc>https://hebronguide.com/sf/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/sf/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/sf/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/sf/?lang=es" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide SF — 샌프란시스코 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🛢️ 휴스턴 — IHM 본부 -->
+  <!-- 휴스턴 -->
   <url>
     <loc>https://hebronguide.com/houston/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/houston/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/houston/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/houston/?lang=es" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Houston — 휴스턴 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🍑 애틀랜타 -->
+  <!-- 애틀랜타 -->
   <url>
     <loc>https://hebronguide.com/atlanta/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/atlanta/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/atlanta/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/atlanta/?lang=es" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Atlanta — 애틀랜타 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🍁 토론토 -->
+  <!-- 토론토 -->
   <url>
     <loc>https://hebronguide.com/toronto/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/toronto/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/toronto/?lang=en" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Toronto — 토론토 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🌲 밴쿠버 -->
+  <!-- 밴쿠버 -->
   <url>
     <loc>https://hebronguide.com/vancouver/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/vancouver/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/vancouver/?lang=en" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Vancouver — 밴쿠버 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🦞 보스턴 -->
+  <!-- 보스턴 -->
   <url>
     <loc>https://hebronguide.com/boston/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/boston/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/boston/?lang=en" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Boston — 보스턴 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🔔 필라델피아 -->
+  <!-- 필라델피아 -->
   <url>
     <loc>https://hebronguide.com/philadelphia/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/philadelphia/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/philadelphia/?lang=en" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Philadelphia — 필라델피아 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🌊 마이애미 -->
+  <!-- 마이애미 -->
   <url>
     <loc>https://hebronguide.com/miami/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/miami/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/miami/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/miami/?lang=es" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Miami — 마이애미 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🎵 내쉬빌 -->
+  <!-- 내쉬빌 -->
   <url>
     <loc>https://hebronguide.com/nashville/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/nashville/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/nashville/?lang=en" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Nashville — 내쉬빌 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🏈 캔자스시티 -->
+  <!-- 캔자스시티 -->
   <url>
     <loc>https://hebronguide.com/kansascity/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/kansascity/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/kansascity/?lang=en" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Kansas City — 캔자스시티 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🌮 멕시코시티 -->
+  <!-- 멕시코시티 -->
   <url>
     <loc>https://hebronguide.com/mexicocity/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/mexicocity/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/mexicocity/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/mexicocity/?lang=es" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Mexico City — 멕시코시티 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- 🌺 과달라하라 -->
+  <!-- 과달라하라 -->
   <url>
     <loc>https://hebronguide.com/guadalajara/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/guadalajara/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/guadalajara/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/guadalajara/?lang=es" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Guadalajara — 과달라하라 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
-  <!-- ⛰️ 몬테레이 -->
+  <!-- 몬테레이 -->
   <url>
     <loc>https://hebronguide.com/monterrey/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://hebronguide.com/monterrey/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hebronguide.com/monterrey/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hebronguide.com/monterrey/?lang=es" />
-    <image:image>
-      <image:loc>https://hebronguide.com/icon-512.png</image:loc>
-      <image:title>HebronGuide Monterrey — 몬테레이 한인 정착 가이드 2026</image:title>
-    </image:image>
   </url>
 
 </urlset>
