@@ -5842,16 +5842,16 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "시애틀지구촌교회 (Global Mission Church)" : "Global Mission Church of Greater Seattle",
         nameEn: ko ? "Global Mission Church of Greater Seattle" : "시애틀지구촌교회",
         desc: ko
-          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회 · SBC 소속. 폴 김 목사.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 목장·삶공부·LIFE Worship 3축 운영\n✨ 이민자·유학생·새가족 환영\n🔗 www.ijiguchon.org"
-          : "✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Paul Kim.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Mokjang · Life Studies · LIFE Worship\n✨ Open to immigrants & newcomers\n🔗 www.ijiguchon.org",
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회 · SBC 소속. 김성수 목사.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 목장·삶공부·LIFE Worship 3축 운영\n✨ 이민자·유학생·새가족 환영\n🔗 www.ijiguchon.org"
+          : "✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Sungsoo Kim.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Mokjang · Life Studies · LIFE Worship\n✨ Open to immigrants & newcomers\n🔗 www.ijiguchon.org",
         tags: ko ? ["가정교회", "IHM", "린우드"] : ["House Church", "IHM", "Lynnwood"],
       },
       {
         emoji: "⭐", tier: 1,
         name: ko ? "시애틀우리교회" : "Seattle Woori Church",
         desc: ko
-          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 Bellevue, WA\n🏠 거실에서 시작되는 환대 공동체\n✨ 1세·2세 함께 — 부담 없이 첫 방문 환영"
-          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Bellevue, WA\n🏠 Hospitality community starting in living rooms\n✨ 1st & 2nd gen together — no-pressure first visit",
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 Bellevue, WA\n✨ 담임: 최요환 목사\n🏠 거실에서 시작되는 환대 공동체"
+          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Bellevue, WA\n✨ Lead Pastor: Yohwan Choi\n🏠 Hospitality community starting in living rooms",
         tags: ko ? ["가정교회", "IHM", "벨뷰"] : ["House Church", "IHM", "Bellevue"],
       },
     ],
