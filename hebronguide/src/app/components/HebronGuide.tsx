@@ -6632,9 +6632,11 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
           })()} lang={lang} accentColor="#0EA5E9" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
-          </div>
+          {sub <= 3 && content && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+            </div>
+          )}
           {/* 헤브론관광 서브탭 (sub 4) */}
           {sub === 4 && (
             <div style={{ paddingTop: 4 }}>
@@ -7237,12 +7239,23 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
   const communityLinks = serverContent["community"] ? resolvePlaceItems(serverContent["community"], lang) : defaultCommunityLinks;
   const usefulLinks = serverContent["links"] ? resolvePlaceItems(serverContent["links"], lang) : defaultUsefulLinks;
 
+  // sub-tab별 동적 헤더 — 클릭한 메뉴(병원·도움·법률 등)에 맞춰 타이틀이 바뀌도록
+  const helpHeaders = [
+    { emoji: "🆘", titleKo: "긴급연락 + 안전", titleEn: "Emergency & Safety", descKo: `${city.nameKo} — 911 · 한국 영사관 · 24시간 위기 핫라인`, descEn: `${city.nameEn} — 911 · Korean Consulate · 24/7 crisis lines` },
+    { emoji: "🏥", titleKo: "의료·병원 안내", titleEn: "Medical & Hospital Guide", descKo: `${city.nameKo} — 한인 의료기관 · 정신건강 · 응급 진료`, descEn: `${city.nameEn} — Korean clinics · Mental health · ER access` },
+    { emoji: "🤝", titleKo: "한인 커뮤니티", titleEn: "Korean Community", descKo: `${city.nameKo} — 한인회 · 미디어 · 한인타운`, descEn: `${city.nameEn} — Associations · Media · Koreatowns` },
+    { emoji: "🔗", titleKo: "유용한 링크", titleEn: "Useful Links", descKo: `${city.nameKo} — 보험 · 취업 · 학교 · 무료 법률`, descEn: `${city.nameEn} — Insurance · Jobs · Schools · Free legal` },
+    { emoji: "📋", titleKo: "무료 자원 (모르면 손해)", titleEn: "Free Resources Most Don't Know", descKo: `${city.nameKo} — 푸드뱅크 · 무료 법률 · VITA · 211`, descEn: `${city.nameEn} — Food banks · Free legal · VITA · 211` },
+    { emoji: "⚖️", titleKo: "법률 지원", titleEn: "Legal Aid", descKo: `${city.nameKo} — 이민 · 노동 · 주거 · 무료 변호사`, descEn: `${city.nameEn} — Immigration · Labor · Housing · Free attorneys` },
+    { emoji: "🇺🇸", titleKo: "Korean American 자원", titleEn: "Korean American Resources", descKo: "정체성 · 시민권 · 문화 자원", descEn: "Identity · Citizenship · Culture" },
+  ];
+  const h = helpHeaders[sub] ?? helpHeaders[0];
+
   return (
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
-      <ScreenHeader emoji="🆘" titleKo="도움말" titleEn="Help & Emergency"
-        descKo={`${city.nameKo} — 긴급연락 · 커뮤니티 · 무료 자원`}
-        descEn={`${city.nameEn} — Emergency contacts · Community · Free resources`}
+      <ScreenHeader emoji={h.emoji} titleKo={h.titleKo} titleEn={h.titleEn}
+        descKo={h.descKo} descEn={h.descEn}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
 
@@ -10174,12 +10187,21 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
     : [rentHousing, livingOnly(taxLiving), transportPhone, [...smartShoppingMarkets, ...ethnicEateries]];
   const content = subData[sub];
 
+  // sub-tab별 동적 헤더 — 클릭한 메뉴(생활비·세금신고)에 맞춰 타이틀이 바뀌도록
+  const costHeaders = [
+    { emoji: "🏠", titleKo: "렌트·주거", titleEn: "Rent & Housing", descKo: `${city.nameKo} 렌트 시세 · 동네별 비교`, descEn: `${city.nameEn} rent prices · neighborhood comparison` },
+    { emoji: "🛒", titleKo: "월 생활비", titleEn: "Monthly Costs", descKo: `${city.nameKo} 식료품 · 공과금 · 평균 월 지출`, descEn: `${city.nameEn} groceries · utilities · monthly average` },
+    { emoji: "🚗", titleKo: "교통·통신", titleEn: "Transport & Phone", descKo: `${city.nameKo} 대중교통 · 기름값 · 휴대폰 · 인터넷`, descEn: `${city.nameEn} transit · gas · phone · internet` },
+    { emoji: "💡", titleKo: "알뜰생활", titleEn: "Smart Living", descKo: `${city.nameKo} 알뜰 마트 · 타민족 맛집 · 절약 앱`, descEn: `${city.nameEn} budget markets · ethnic eateries · saving apps` },
+    { emoji: "📋", titleKo: "세금신고", titleEn: "Tax Filing", descKo: `${city.nameKo} VITA 무료 · ITIN · FBAR · 한인 CPA`, descEn: `${city.nameEn} VITA free · ITIN · FBAR · Korean CPA` },
+  ];
+  const h = costHeaders[sub] ?? costHeaders[0];
+
   return (
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
-      <ScreenHeader emoji="💰" titleKo="생활비 가이드" titleEn="Living Cost Guide"
-        descKo={`${city.nameKo} 렌트·세금·교통·통신비 완전 가이드`}
-        descEn={`Complete guide to rent, taxes, transport & phone costs in ${city.nameEn}`}
+      <ScreenHeader emoji={h.emoji} titleKo={h.titleKo} titleEn={h.titleEn}
+        descKo={h.descKo} descEn={h.descEn}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5 px-4 md:px-6 lg:px-8">
