@@ -158,15 +158,24 @@ interface CityConfig {
 const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   seattle: {
     slug: "seattle", nameKo: "시애틀", nameEn: "Seattle", color: "#0EA5E9",
-    // 5개 영상 4시간마다 교체 — 밝은 낮 위주로 선정 ("HebronGuide은 밝은 세상을 추구")
+    // 12개 영상 2시간마다 교체 — Space Needle·Mt. Rainier·Puget Sound 페리 시그니처 다양화
     heroVideo: "https://videos.pexels.com/video-files/32971137/32971137-hd_1920_1080_30fps.mp4",
     heroVideos: [
-      "https://videos.pexels.com/video-files/32971137/32971137-hd_1920_1080_30fps.mp4",  // 0-4시: 낮 항공 시애틀 스카이라인
-      "https://videos.pexels.com/video-files/29042800/29042800-hd_1920_1080_30fps.mp4",  // 4-8시: 일출 시애틀 + Space Needle
-      "https://videos.pexels.com/video-files/28638124/28638124-hd_1920_1080_30fps.mp4",  // 8-12시: 낮 항공 시애틀
-      "https://videos.pexels.com/video-files/33617069/33617069-hd_1920_1080_30fps.mp4",  // 12-16시: 활기찬 시애틀 워터프론트
-      "https://videos.pexels.com/video-files/20017409/20017409-hd_1920_1080_24fps.mp4",  // 16-20시: Kerry Park + Space Needle (저녁)
-      "https://videos.pexels.com/video-files/29024579/29024579-hd_1920_1080_30fps.mp4",  // 20-24시: 일몰 + Space Needle
+      // Space Needle / 시애틀 스카이라인 (6)
+      "https://videos.pexels.com/video-files/32971137/32971137-hd_1920_1080_30fps.mp4",  // 낮 항공 시애틀 스카이라인
+      "https://videos.pexels.com/video-files/29042800/29042800-hd_1920_1080_30fps.mp4",  // 일출 + Space Needle
+      "https://videos.pexels.com/video-files/28638124/28638124-hd_1920_1080_30fps.mp4",  // 낮 항공 시애틀
+      "https://videos.pexels.com/video-files/33617069/33617069-hd_1920_1080_30fps.mp4",  // 활기찬 시애틀 워터프론트
+      "https://videos.pexels.com/video-files/20017409/20017409-hd_1920_1080_24fps.mp4",  // Kerry Park + Space Needle
+      "https://videos.pexels.com/video-files/29024579/29024579-hd_1920_1080_30fps.mp4",  // 일몰 + Space Needle
+      // Mt. Rainier 시그니처 (3) — Washington 명시 검증
+      "https://videos.pexels.com/video-files/29321826/29321826-hd_1920_1080_30fps.mp4",  // Mt. Rainier 가을 항공 ★
+      "https://videos.pexels.com/video-files/16109591/16109591-hd_1920_1080_30fps.mp4",  // Mt. Rainier 구름 타임랩스
+      "https://videos.pexels.com/video-files/28903920/28903920-hd_1920_1080_30fps.mp4",  // Mt. Rainier 국립공원 하이킹
+      // Puget Sound / 페리 시그니처 (3) — 바다 동적
+      "https://videos.pexels.com/video-files/37228020/37228020-hd_1920_1080_30fps.mp4",  // 페리에서 본 시애틀 스카이라인
+      "https://videos.pexels.com/video-files/28903704/28903704-hd_1920_1080_30fps.mp4",  // Puget Sound 페리 (Washington)
+      "https://videos.pexels.com/video-files/29024559/29024559-hd_1920_1080_30fps.mp4",  // Puget Sound 세일보트 + 시애틀
     ],
     population: "15만+", state: "Washington",
     taglineKo: "도시를 알고, 사람을 찾다", taglineEn: "Know your city. Find your people.",
@@ -3138,12 +3147,13 @@ function CompactHeroNew() {
   const liveCamUrl = CITY_LIVECAM[city.slug];
   // 시애틀 기본 사진 사용 가능 도시 (현재는 시애틀만 — 다른 도시는 도시별 사진 큐레이션 후 추가)
   const useSeattlePhotos = city.slug === "seattle";
-  // 시간대별 영상 선택 — heroVideos 배열이 있으면 4시간마다 교체, 없으면 단일 heroVideo
-  // 6 슬롯 × 4시간 = 24시간 한 사이클 ("HebronGuide은 밝은 세상을 추구")
-  const videoSlot = Math.floor(new Date().getHours() / 4) % 6;
-  const activeHeroVideo = (city.heroVideos && city.heroVideos.length > 0)
-    ? city.heroVideos[videoSlot % city.heroVideos.length]
-    : city.heroVideo;
+  // 시간대별 영상 선택 — heroVideos 배열 길이에 따라 24시간을 균등 분할 (12개 → 2h, 6개 → 4h, 3개 → 8h)
+  // 모든 영상이 골고루 노출됨 ("HebronGuide은 밝은 세상을 추구" + 다양한 시그니처 회전)
+  const heroVideosLen = city.heroVideos?.length ?? 0;
+  const videoSlot = heroVideosLen > 0
+    ? Math.floor(new Date().getHours() / (24 / heroVideosLen)) % heroVideosLen
+    : 0;
+  const activeHeroVideo = heroVideosLen > 0 ? city.heroVideos![videoSlot] : city.heroVideo;
 
   return (
     <div style={{
@@ -6953,13 +6963,10 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
     { emoji: "🦷", name: "켄트 임플란트 치과", nameEn: "Kent Implant Dental", desc: "한인 치과. 📍 306 Washington Ave S, Kent | 📞 (253) 981-3816 ✅ | 임플란트 전문", tags: ["치과", "켄트", "임플란트"] },
     { emoji: "🦷", name: "린우드 한인 치과 (다수)", nameEn: "Lynnwood Korean Dentists", desc: "린우드 지역 한인 치과 다수 운영. kSeattle·WowSeattle 업소록 참조 | 🔗 kseattle.com", tags: ["치과", "린우드", "한국어"] },
     { emoji: "🧠", name: "ACRS 정신건강 (한국어 상담사)", nameEn: "Asian Counseling & Referral Service", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | 한국어 상담사 상주 ✅ | 슬라이딩 스케일 요금 | 🔗 acrs.org", tags: ["정신건강", "한국어", "상담"] },
-    { emoji: "🆘", name: "위기 상담 핫라인 (24시간)", nameEn: "Crisis Line 24/7", desc: "📞 866-427-4747 (24시간) | 한국어 통역 가능 | 정신건강·자살 예방 전문", tags: ["위기상담", "24시간", "무료"] },
-    { emoji: "🚨", name: "응급실 — Swedish First Hill", nameEn: "Emergency Room — Swedish First Hill", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | 시애틀 중심부 응급실. 한국어 통역 요청 가능", tags: ["응급실", "응급", "시애틀"] },
-    { emoji: "📞", name: "한국어 통역 서비스 (의료)", nameEn: "Korean Medical Interpreter", desc: "언어 라인 (Language Line): 📞 1-800-752-6096 | 병원·클리닉 방문 전 통역 예약 가능 | 🔗 languageline.com", tags: ["통역", "의료", "무료"] },
+    // 응급 관련 항목(응급실·위기 핫라인·통역 라인)은 '긴급연락' 탭에 별도 노출 — 중복 제거 (2026-05-10)
     { emoji: "🏛️", name: "킹카운티 공중보건소 ✅ 검증됨", nameEn: "King County Public Health", desc: "무료·저비용 의료, WIC 영양 프로그램, 예방접종. 📞 206-296-4600 | 🔗 kingcounty.gov/health", tags: ["공공의료", "무료", "WIC"] },
     { emoji: "🏥", name: "시애틀 무료 클리닉 ✅ 검증됨", nameEn: "Free Clinic of Greater Seattle", desc: "의료보험 없는 분을 위한 무료 의료 서비스. 📞 206-520-5000 | 🔗 freeclinic.net", tags: ["무료", "무보험", "의료"] },
     { emoji: "🏥", name: "헬스포인트 (슬라이딩 스케일) ✅ 검증됨", nameEn: "HealthPoint Community Health Center", desc: "소득 기반 할인 진료. 한국어 통역 가능. 📞 1-800-440-1561 | 🔗 healthpointchc.org", tags: ["슬라이딩스케일", "한국어", "저비용"] },
-    { emoji: "🧠", name: "크라이시스 커넥션 (정신건강 24시간) ✅ 검증됨", nameEn: "Crisis Connections 24/7", desc: "정신건강 위기 24시간 무료. 한국어 통역 가능. 📞 866-427-4747 | 🔗 crisisconnections.org", tags: ["정신건강", "24시간", "무료"] },
     { emoji: "🧠", name: "NAMI 워싱턴 (정신건강 지원) ✅ 검증됨", nameEn: "NAMI Washington", desc: "정신건강 정보·지원·교육. 📞 800-782-9264 | 🔗 namiwa.org", tags: ["정신건강", "지원", "무료"] },
   ] : [
     { emoji: "🏥", name: "Korean Family Medicine Clinic", nameEn: "닥터 김 클리닉 — Lynnwood", desc: "Korean-speaking physician. 📍 Lynnwood | 📞 (425) 744-9200 | 🔗 yelp.com/search?find_desc=Korean+doctor+lynnwood", tags: ["Family Med", "Korean", "Lynnwood"] },
@@ -10058,8 +10065,8 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
   const city = useCityConfig();
   const isSeattle = city.slug === "seattle";
   const tabs = lang === "ko"
-    ? ["렌트·주거", "세금·생활비", "교통·통신", "💡 알뜰생활", "📋 세금신고"]
-    : ["Rent & Housing", "Tax & Living", "Transport & Phone", "💡 Smart Living", "📋 Tax Filing"];
+    ? ["렌트·주거", "생활비", "교통·통신", "💡 알뜰생활", "📋 세금신고"]
+    : ["Rent & Housing", "Monthly Costs", "Transport & Phone", "💡 Smart Living", "📋 Tax Filing"];
   const accent = "#34D399";
 
   const { rentHousing, taxLiving, transportPhone } = getCityCostData(city.slug, lang);
@@ -10131,9 +10138,11 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
   ] : cityEthnics;
 
   const allCost = serverContent["cost"] ? resolvePlaceItems(serverContent["cost"], lang) : null;
+  // 세금 카드 (emoji: "💵")는 별도 "📋 세금신고" 탭에서 전용 처리하므로 "생활비" 탭에서 제외 — 중복 방지
+  const livingOnly = <T extends { emoji: string }>(data: T[]): T[] => data.filter(c => c.emoji !== "💵");
   const subData = allCost
-    ? [allCost.slice(0, 1), allCost.slice(1, 3), allCost.slice(3), [...smartShoppingMarkets, ...ethnicEateries]]
-    : [rentHousing, taxLiving, transportPhone, [...smartShoppingMarkets, ...ethnicEateries]];
+    ? [allCost.slice(0, 1), livingOnly(allCost.slice(1, 3)), allCost.slice(3), [...smartShoppingMarkets, ...ethnicEateries]]
+    : [rentHousing, livingOnly(taxLiving), transportPhone, [...smartShoppingMarkets, ...ethnicEateries]];
   const content = subData[sub];
 
   return (
