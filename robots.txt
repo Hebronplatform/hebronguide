@@ -1,15 +1,54 @@
 # HebronGuide — Search & AI Crawler Policy
-# Updated: 2026-05-05
+# Updated: 2026-05-09
 
 # ── 일반 크롤러 ─────────────────────────────────
 User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
-Disallow: /99_Archive/
 
-# ── 구 GitHub Pages URL 차단 (옛날 URL 재인덱싱 방지) ──
-# 아래 경로들은 이제 사용하지 않음
+# ── 옛 산물·백업·디버그 자료 차단 (재인덱싱 방지) ──
+# 이미 GSC URL Removal로 즉시 차단을 동시에 진행해야 함
+Disallow: /99_Archive/
+Disallow: /Backup_Old/
+Disallow: /backup/
+Disallow: /backups/
+Disallow: /old/
+Disallow: /tmp/
+Disallow: /test/
+Disallow: /preview/
+Disallow: /prototypes/
+Disallow: /Docx/
+Disallow: /imports/
+Disallow: /SGuide_index/
+Disallow: /codex.html
+Disallow: /paulkim-guide-scripts.html
+Disallow: /PaulKim_TourGuide.html
+Disallow: /hub-lighttheme.html
+Disallow: /dashboard.html
+
+# ── 빌드 산물·소스 코드성 파일 차단 ──
+# JS/CSS 번들은 SEO에 의미 없음, raw 파일이 검색 결과에 노출되는 것 방지
+Disallow: /assets/
+Disallow: /*/assets/
+Disallow: /workbox-*.js
+Disallow: /*/workbox-*.js
+Disallow: /sw.js
+Disallow: /*/sw.js
+Disallow: /registerSW.js
+Disallow: /*/registerSW.js
+Disallow: /manifest.json
+Disallow: /*/manifest.json
+Disallow: /manifest.webmanifest
+Disallow: /*/manifest.webmanifest
+Disallow: /*.tsx$
+Disallow: /*.ts$
+Disallow: /*.jsx$
+Disallow: /*.map$
+Disallow: /node_modules/
+Disallow: /src/
+
+# ── 옛 URL 형식 (이전 도메인·구조에서 남은 캐시) ──
 Disallow: /seattle/static/
 Disallow: /seattle/manifest.json
 Disallow: /seattle/sw.js
