@@ -609,13 +609,7 @@ Key services:
 🔗 www.ijiguchon.org`:`✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Sungsoo Kim.
 📍 4900 168th St. SW., Lynnwood, WA 98037
 🏠 Sunday United Worship, Mokjang, Life Studies - Three Axes, Four Pillars
-🔗 www.ijiguchon.org`,tags:t?["가정교회","IHM","린우드"]:["House Church","IHM","Lynnwood"]},{emoji:"⭐",tier:1,name:t?"시애틀우리교회":"Seattle Woori Church",desc:t?`✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.
-📍 Bellevue, WA
-✨ 담임: 최요환 목사
-🏠 거실에서 시작되는 환대 공동체`:`✅ Verified | IHM (International House Church Ministries) member. House church ministry.
-📍 Bellevue, WA
-✨ Lead Pastor: Yohwan Choi
-🏠 Hospitality community starting in living rooms`,tags:t?["가정교회","IHM","벨뷰"]:["House Church","IHM","Bellevue"]}],dallas:[{emoji:"⭐",tier:1,name:t?"마르게나스복음교회":"Margenas Gospel Church",desc:t?`✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.
+🔗 www.ijiguchon.org`,tags:t?["가정교회","IHM","린우드"]:["House Church","IHM","Lynnwood"]}],dallas:[{emoji:"⭐",tier:1,name:t?"마르게나스복음교회":"Margenas Gospel Church",desc:t?`✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.
 📍 달라스 메트로 지역, TX
 📞 214-596-1776
 ✨ 담임: 이의옹 목사`:`✅ Verified | IHM (International House Church Ministries) member. House church ministry.

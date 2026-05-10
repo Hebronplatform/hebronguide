@@ -5985,14 +5985,7 @@ function getCityChurches(slug: string, lang: string) {
           : "✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Sungsoo Kim.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday United Worship, Mokjang, Life Studies - Three Axes, Four Pillars\n🔗 www.ijiguchon.org",
         tags: ko ? ["가정교회", "IHM", "린우드"] : ["House Church", "IHM", "Lynnwood"],
       },
-      {
-        emoji: "⭐", tier: 1,
-        name: ko ? "시애틀우리교회" : "Seattle Woori Church",
-        desc: ko
-          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 Bellevue, WA\n✨ 담임: 최요환 목사\n🏠 거실에서 시작되는 환대 공동체"
-          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Bellevue, WA\n✨ Lead Pastor: Yohwan Choi\n🏠 Hospitality community starting in living rooms",
-        tags: ko ? ["가정교회", "IHM", "벨뷰"] : ["House Church", "IHM", "Bellevue"],
-      },
+      // 시애틀우리교회 — 지금은 보류 (2026-05-10 폴 김 목사 지시). 추후 재검토 시 복원.
     ],
     dallas: [
       {
