@@ -3277,7 +3277,7 @@ const QUICK_MENU = [
   // Row 1: 도착 첫날 필수
   { icon: "plane-landing",  labelKo: "정착",    labelEn: "Settle",  color: "#F2994A", tab: 1, subTab: 0 },
   { icon: "heart-pulse",    labelKo: "병원",    labelEn: "Medical", color: "#EC4899", tab: 5, subTab: 1 },
-  { icon: "home",           labelKo: "거주지",   labelEn: "Housing", color: "#10B981", tab: 1, subTab: 5 },
+  { icon: "home",           labelKo: "주택",    labelEn: "Housing", color: "#10B981", tab: 1, subTab: 5 },
   { icon: "car",            labelKo: "면허",    labelEn: "DMV",     color: "#3B82F6", tab: 1, subTab: 3 },
   // Row 2: 핵심 생활
   { icon: "church",         labelKo: "교회",    labelEn: "Church",  color: "#7C3AED", tab: 2, subTab: 0 },
@@ -4882,8 +4882,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   const [sub, setSub] = useState(initialSub);
   useEffect(() => { setSub(initialSub); }, [initialSub]);
   const tabs = lang === "ko"
-    ? ["1주차", "1개월", "3개월", "행정", "재정", "거주지", "✅ 전체", "🛂 비자·이민"]
-    : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Areas", "✅ All", "🛂 Visa/Immigration"];
+    ? ["1주차", "1개월", "3개월", "행정", "재정", "주택", "✅ 전체", "🛂 비자·이민"]
+    : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Housing", "✅ All", "🛂 Visa/Immigration"];
 
   const accent = "#60A5FA";
 
@@ -5737,11 +5737,26 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   // 어드민 탭(index=3) 여부
   const isAdminTab = sub === 3;
 
+  // sub-tab별 동적 헤더 — 클릭한 메뉴(정착·주택·비자 등)에 맞춰 타이틀이 바뀌도록
+  const cityNameKo = useCityConfig().nameKo;
+  const cityNameEn = useCityConfig().nameEn;
+  const settleHeaders = [
+    { emoji: "🛬", titleKo: "1주차 — 도착 직후", titleEn: "Week 1 — Just Arrived", descKo: `${cityNameKo} 첫 7일 — 임시 거주·휴대폰·SSN·은행`, descEn: `${cityNameEn} first 7 days — temp housing · phone · SSN · bank` },
+    { emoji: "📅", titleKo: "1개월 정착", titleEn: "Month 1 Settlement", descKo: `${cityNameKo} 면허·정식 임대·차량·자녀 학교`, descEn: `${cityNameEn} license · lease · car · school enrollment` },
+    { emoji: "🏡", titleKo: "3개월 안정", titleEn: "Month 3 Stability", descKo: `${cityNameKo} 의료보험·가구·세금 ID·커뮤니티`, descEn: `${cityNameEn} health insurance · furniture · tax ID · community` },
+    { emoji: "📋", titleKo: "행정 절차", titleEn: "Admin Procedures", descKo: `${cityNameKo} 영주권·시민권·DMV·세금 신고`, descEn: `${cityNameEn} green card · citizenship · DMV · tax filing` },
+    { emoji: "💰", titleKo: "재정 시작", titleEn: "Finance Setup", descKo: `${cityNameKo} 은행·신용카드·크레딧·은퇴 계좌`, descEn: `${cityNameEn} banking · credit cards · score · retirement` },
+    { emoji: "🏘️", titleKo: "주택 가이드", titleEn: "Housing Guide", descKo: `${cityNameKo} 동네 비교 · 부동산 · 카운티별 가격 · 헤브론 홈`, descEn: `${cityNameEn} neighborhoods · realty · county pricing · Hebron Home` },
+    { emoji: "✅", titleKo: "전체 체크리스트", titleEn: "Complete Checklist", descKo: `${cityNameKo} 정착 모든 단계 한눈에`, descEn: `${cityNameEn} all settlement steps at a glance` },
+    { emoji: "🛂", titleKo: "비자·이민 가이드", titleEn: "Visa & Immigration", descKo: `${cityNameKo} F-1 · H-1B · 영주권 · 시민권 단계별`, descEn: `${cityNameEn} F-1 · H-1B · green card · citizenship` },
+  ];
+  const sh = settleHeaders[sub] ?? settleHeaders[0];
+
   return (
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
-      <ScreenHeader emoji="🛬" titleKo="정착 가이드" titleEn="Settlement Guide"
-        descKo="정착부터 Korean American으로 — 단계별 완전 안내" descEn="From Day 1 to Korean American — your complete step-by-step guide"
+      <ScreenHeader emoji={sh.emoji} titleKo={sh.titleKo} titleEn={sh.titleEn}
+        descKo={sh.descKo} descEn={sh.descEn}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5">
@@ -5861,14 +5876,24 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
           </div>
 
         ) : sub === 7 ? null /* 비자·이민 탭은 위 {sub===7 && ...} 에서 처리 */ : sub === 5 ? (
-        /* 거주지 탭 */
+        /* 주택 탭 — 동네 비교 · 부동산 · 카운티별 가격 · 헤브론 홈 */
           <>
-            <div style={{ marginBottom: 12 }}>
+            {/* 헤브론 홈 카드 (헤브론 연결 서비스 진입점) */}
+            <HebronServiceCard
+              icon="🏘️" color="#2563EB" lang={lang}
+              titleKo="헤브론 홈 — 검증된 한인 부동산 에이전트 연결"
+              titleEn="Hebron Home — Korean-friendly Licensed Realtor Match"
+              descKo="가정집·상업지·렌트·매매. 라이선스 검증된 한인 에이전트가 카운티별 시세·학군·이민자 특화 사항까지 안내합니다."
+              descEn="Residential · Commercial · Rent · Buy. License-verified Korean realtors guide county-level pricing, school zones, immigrant-specific concerns."
+            />
+
+            {/* 동네 가이드 */}
+            <div style={{ marginTop: 16, marginBottom: 12 }}>
               <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13, color: accent, marginBottom: 4 }}>
-                🏘️ {lang === "ko" ? "시애틀 주요 거주지 가이드" : "Seattle Area Guide for Korean Residents"}
+                🏘️ {lang === "ko" ? `${citySlug.toUpperCase()} 동네별 가이드` : `${citySlug.toUpperCase()} Neighborhood Guide`}
               </div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", lineHeight: 1.5 }}>
-                {lang === "ko" ? "가족·학군·예산에 맞는 동네 찾기" : "Find the right neighborhood for your family, school, and budget"}
+                {lang === "ko" ? "가족·학군·예산·통근 — 한 눈에 비교" : "Family · Schools · Budget · Commute — at a glance"}
               </div>
             </div>
             {areaItems.map((area, i) => (
@@ -5880,38 +5905,80 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.65)" }}>{area.desc}</div>
               </div>
             ))}
-            <div style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 4 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}>💡 {lang === "ko" ? "렌트 찾기" : "Find Rentals"}</div>
+
+            {/* 부동산 검색 — 가정집·상업지 분류 */}
+            <div style={{ background: "rgba(37,99,235,0.08)", border: "1px solid rgba(37,99,235,0.25)", borderRadius: 14, padding: "14px 16px", marginTop: 4 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#60A5FA", marginBottom: 10 }}>
+                🔍 {lang === "ko" ? "전문 부동산 검색 — 가정집 · 상업지 · 카운티 비교" : "Pro Real Estate Search — Residential · Commercial · By County"}
+              </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                <a href="https://open.kakao.com/o/search/%EC%8B%9C%EC%95%A0%ED%8B%80%ED%95%9C%EC%9D%B8" target="_blank" rel="noopener noreferrer"
+                {[
+                  { href: "https://www.zillow.com/", emoji: "🏠", label: "Zillow", sub: lang === "ko" ? "미국 1위 부동산 — 매매·렌트·시세 검색" : "#1 US real estate — buy, rent, price tracking" },
+                  { href: "https://www.redfin.com/", emoji: "🔴", label: "Redfin", sub: lang === "ko" ? "정확한 시세·중개 수수료 절감" : "Accurate pricing & lower commissions" },
+                  { href: "https://www.realtor.com/", emoji: "🏡", label: "Realtor.com", sub: lang === "ko" ? "MLS 공식 매물 — 가정집·상업지 분류" : "Official MLS listings — residential & commercial" },
+                  { href: "https://www.loopnet.com/", emoji: "🏢", label: "LoopNet", sub: lang === "ko" ? "상업용 부동산 전문 — 사무실·매장·창고" : "Commercial real estate — office, retail, warehouse" },
+                  { href: "https://www.apartments.com/", emoji: "🛏️", label: "Apartments.com", sub: lang === "ko" ? "렌트 전문 — 단지·가격 필터" : "Rentals — complex & price filters" },
+                ].map((link, i) => (
+                  <a key={i} href={link.href} target="_blank" rel="noopener noreferrer"
+                    style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(37,99,235,0.18)" }}>
+                    <span style={{ fontSize: 16 }}>{link.emoji}</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>{link.label}</div>
+                      <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{link.sub}</div>
+                    </div>
+                    <span style={{ color: "#60A5FA", fontSize: 14 }}>→</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* 한인 커뮤니티 부동산 (도시별) */}
+            <div style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 12 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}>
+                💬 {lang === "ko" ? "한인 커뮤니티 — 룸메이트·렌탈 실시간" : "Korean Community — Roommates & Rentals"}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+                <a href="https://open.kakao.com/o/search/" target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
                   <span style={{ fontSize: 16 }}>💬</span>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
-                      {lang === "ko" ? "카카오오픈채팅 '시애틀한인'" : "KakaoTalk Open Chat '시애틀한인'"}
+                      {lang === "ko" ? `카카오오픈채팅 '${citySlug === "seattle" ? "시애틀한인" : citySlug + "한인"}'` : `KakaoTalk '${citySlug} Korean'`}
                     </div>
                     <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "룸메이트·렌탈 실시간 정보" : "Roommate & rental listings"}</div>
                   </div>
                   <span style={{ color: accent, fontSize: 14 }}>→</span>
                 </a>
-                <a href="https://www.wowseattle.com/" target="_blank" rel="noopener noreferrer"
+                {citySlug === "seattle" && (
+                  <a href="https://www.wowseattle.com/" target="_blank" rel="noopener noreferrer"
+                    style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
+                    <span style={{ fontSize: 16 }}>🏘️</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>WowSeattle</div>
+                      <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "시애틀 한인 부동산·렌탈" : "Seattle Korean realty & rentals"}</div>
+                    </div>
+                    <span style={{ color: accent, fontSize: 14 }}>→</span>
+                  </a>
+                )}
+                <a href="https://www.koreadaily.com/" target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
-                  <span style={{ fontSize: 16 }}>🏘️</span>
+                  <span style={{ fontSize: 16 }}>📰</span>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>WowSeattle</div>
-                    <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "한인 부동산·렌탈 정보" : "Korean real estate & rentals"}</div>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>{lang === "ko" ? "미주중앙일보 부동산" : "Korea Daily Real Estate"}</div>
+                    <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "전국 한인 부동산 매물·구인" : "National Korean realty listings"}</div>
                   </div>
                   <span style={{ color: accent, fontSize: 14 }}>→</span>
                 </a>
               </div>
             </div>
-            {/* 거주지 탭 — 헤브론 스테이 서비스 카드 */}
+
+            {/* 헤브론 스테이 — 단기 임시 거주 (정착 첫 1-3개월) */}
             <HebronServiceCard
-              icon="🏠" color="#10B981" lang={lang}
-              titleKo="헤브론 스테이 — 한인 가정에서 시작하는 정착"
-              titleEn="Hebron Stay — Begin Settlement in a Korean Home"
-              descKo="정착 첫 1-3개월. 따뜻한 한인 가정에서 시작합니다. 방 + 정착 안내 + 자연스러운 이웃 소개."
-              descEn="First 1-3 months with a warm Korean family. Room + settlement guidance + natural community introduction."
+              icon="🛏️" color="#10B981" lang={lang}
+              titleKo="헤브론 스테이 — 단기 임시 거주 (1-3개월)"
+              titleEn="Hebron Stay — Short-term Bridge Housing (1-3 mo)"
+              descKo="정식 임대 전 한인 가정에서 시작. 방 + 정착 안내 + 자연스러운 이웃 소개."
+              descEn="Stay with a Korean family before signing a long-term lease. Room + guidance + community intro."
             />
           </>
         ) : (
