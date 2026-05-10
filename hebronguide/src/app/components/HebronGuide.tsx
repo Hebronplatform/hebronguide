@@ -195,14 +195,67 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
     taglineKo: "베이에서 시작하는 새 출발", taglineEn: "A new start by the Bay.",
     taglineEs: "Un nuevo comienzo junto a la Bahía.",
   },
-  newyork:   { slug: "newyork",   nameKo: "뉴욕",     nameEn: "New York",   color: "#EF4444", heroVideo: "https://videos.pexels.com/video-files/28855592/28855592-hd_1920_1080_30fps.mp4", population: "15만+", state: "New York",    taglineKo: "뉴욕에서 찾는 나의 자리",  taglineEn: "Find your place in New York.",   taglineEs: "Encuentra tu lugar en Nueva York."    },
+  newyork: {
+    slug: "newyork", nameKo: "뉴욕", nameEn: "New York", color: "#EF4444",
+    // 밝은 낮·랜드마크 중심 3영상 8시간마다 교체
+    heroVideo: "https://videos.pexels.com/video-files/28855592/28855592-hd_1920_1080_30fps.mp4",
+    heroVideos: [
+      "https://videos.pexels.com/video-files/28855592/28855592-hd_1920_1080_30fps.mp4",  // Stunning Manhattan Skyline
+      "https://videos.pexels.com/video-files/12122308/12122308-hd_1920_1080_30fps.mp4",  // Drone NYC Skyline (낮)
+      "https://videos.pexels.com/video-files/28962559/28962559-hd_1920_1080_30fps.mp4",  // Sunset NYC Aerial (golden)
+    ],
+    population: "15만+", state: "New York",
+    taglineKo: "뉴욕에서 찾는 나의 자리", taglineEn: "Find your place in New York.",
+    taglineEs: "Encuentra tu lugar en Nueva York.",
+  },
   nashville: { slug: "nashville", nameKo: "내쉬빌",   nameEn: "Nashville",  color: "#10B981", heroVideo: "https://videos.pexels.com/video-files/33469461/33469461-hd_1920_1080_30fps.mp4", population: "2만+",  state: "Tennessee",  taglineKo: "뮤직시티에서의 새 출발",  taglineEn: "New start in Music City.",       taglineEs: "Nuevo comienzo en la ciudad de la música."       },
   boston:    { slug: "boston",    nameKo: "보스턴",   nameEn: "Boston",     color: "#3B82F6", heroVideo: "https://videos.pexels.com/video-files/36326781/36326781-hd_1920_1080_30fps.mp4", population: "3만+",  state: "Massachusetts", taglineKo: "역사의 도시, 새 역사를 쓰다", taglineEn: "Write your story in Boston.", taglineEs: "Escribe tu historia en Boston." },
-  la:        { slug: "la",        nameKo: "LA",       nameEn: "Los Angeles",color: "#F97316", heroVideo: "https://videos.pexels.com/video-files/30670671/30670671-hd_1920_1080_30fps.mp4", population: "50만+", state: "California",  taglineKo: "가장 큰 한인 커뮤니티",   taglineEn: "The largest Korean community.",  taglineEs: "La comunidad coreana más grande." },
-  toronto:   { slug: "toronto",   nameKo: "토론토",   nameEn: "Toronto",    color: "#06B6D4", heroVideo: "https://videos.pexels.com/video-files/20597195/20597195-hd_1920_1080_30fps.mp4", population: "10만+", state: "Ontario",    taglineKo: "캐나다에서 한인으로",       taglineEn: "Korean in Canada.",              taglineEs: "Coreano en Canadá."              },
+  la: {
+    slug: "la", nameKo: "LA", nameEn: "Los Angeles", color: "#F97316",
+    // 밝은 낮·랜드마크 (Hollywood Sign·Santa Monica Pier·Downtown) 5영상 ~5시간마다 교체
+    heroVideo: "https://videos.pexels.com/video-files/30670671/30670671-hd_1920_1080_30fps.mp4",
+    heroVideos: [
+      "https://videos.pexels.com/video-files/30670671/30670671-hd_1920_1080_30fps.mp4",  // Aerial Downtown LA Skyline
+      "https://videos.pexels.com/video-files/11558523/11558523-hd_1920_1080_30fps.mp4",  // Hollywood Sign ★ Landmark
+      "https://videos.pexels.com/video-files/14274844/14274844-hd_1920_1080_30fps.mp4",  // Santa Monica Pier Sunset ★
+      "https://videos.pexels.com/video-files/30955305/30955305-hd_1920_1080_30fps.mp4",  // Downtown LA Skyline
+      "https://videos.pexels.com/video-files/7005445/7005445-hd_1920_1080_30fps.mp4",    // LA Dusk and Dawn
+    ],
+    population: "50만+", state: "California",
+    taglineKo: "가장 큰 한인 커뮤니티", taglineEn: "The largest Korean community.",
+    taglineEs: "La comunidad coreana más grande.",
+  },
+  toronto: {
+    slug: "toronto", nameKo: "토론토", nameEn: "Toronto", color: "#06B6D4",
+    // CN Tower 랜드마크 + 여름·낮 토론토 다운타운 5영상 ~5시간마다 교체
+    heroVideo: "https://videos.pexels.com/video-files/20597195/20597195-hd_1920_1080_30fps.mp4",
+    heroVideos: [
+      "https://videos.pexels.com/video-files/20597195/20597195-hd_1920_1080_30fps.mp4",  // CN Tower Toronto ★ Landmark
+      "https://videos.pexels.com/video-files/29844374/29844374-hd_1920_1080_30fps.mp4",  // Toronto Skyline Summer (밝은 여름)
+      "https://videos.pexels.com/video-files/13580749/13580749-hd_1920_1080_30fps.mp4",  // Drone Downtown + CN Tower
+      "https://videos.pexels.com/video-files/5021921/5021921-hd_1920_1080_30fps.mp4",    // Time-Lapse Downtown Toronto
+      "https://videos.pexels.com/video-files/27018635/27018635-hd_1920_1080_30fps.mp4",  // CN Tower Closeup ★
+    ],
+    population: "10만+", state: "Ontario",
+    taglineKo: "캐나다에서 한인으로", taglineEn: "Korean in Canada.",
+    taglineEs: "Coreano en Canadá.",
+  },
   vancouver: { slug: "vancouver", nameKo: "밴쿠버",   nameEn: "Vancouver",  color: "#22C55E", heroVideo: "https://videos.pexels.com/video-files/32805734/32805734-hd_1920_1080_30fps.mp4", population: "8만+",  state: "B.C.",       taglineKo: "태평양의 관문에서",         taglineEn: "Gateway to the Pacific.",        taglineEs: "Puerta al Pacífico."        },
   houston:    { slug: "houston",    nameKo: "휴스턴",    nameEn: "Houston",      color: "#EA580C", heroVideo: "https://videos.pexels.com/video-files/32701339/32701339-hd_1920_1080_30fps.mp4", population: "2.5만+", state: "Texas",       taglineKo: "텍사스 남부의 활력",         taglineEn: "Vibrant heart of South Texas.",  taglineEs: "Corazón vibrante del sur de Texas." },
-  atlanta:    { slug: "atlanta",    nameKo: "애틀랜타",  nameEn: "Atlanta",      color: "#16A34A", heroVideo: "https://videos.pexels.com/video-files/33134800/33134800-hd_1920_1080_30fps.mp4", population: "10만+",  state: "Georgia",     taglineKo: "남부의 한인 허브",           taglineEn: "Korean hub of the South.",       taglineEs: "Hub coreano del Sur." },
+  atlanta: {
+    slug: "atlanta", nameKo: "애틀랜타", nameEn: "Atlanta", color: "#16A34A",
+    // 낮 위주 애틀랜타 다운타운 4영상 6시간마다 교체 (default = 명시적 daytime 영상)
+    heroVideo: "https://videos.pexels.com/video-files/31302813/31302813-hd_1920_1080_30fps.mp4",
+    heroVideos: [
+      "https://videos.pexels.com/video-files/31302813/31302813-hd_1920_1080_30fps.mp4",  // Atlanta Skyline at Daytime ★ 명시적 낮
+      "https://videos.pexels.com/video-files/33134800/33134800-hd_1920_1080_30fps.mp4",  // Aerial Downtown Atlanta
+      "https://videos.pexels.com/video-files/31406771/31406771-hd_1920_1080_30fps.mp4",  // Iconic Atlanta Skyline
+      "https://videos.pexels.com/video-files/2818556/2818556-hd_1920_1080_30fps.mp4",    // Atlanta Cityscape
+    ],
+    population: "10만+", state: "Georgia",
+    taglineKo: "남부의 한인 허브", taglineEn: "Korean hub of the South.",
+    taglineEs: "Hub coreano del Sur.",
+  },
   kansascity: { slug: "kansascity", nameKo: "캔자스시티", nameEn: "Kansas City",  color: "#9333EA", heroVideo: "https://videos.pexels.com/video-files/29160030/29160030-hd_1920_1080_30fps.mp4", population: "3천+",   state: "Missouri",    taglineKo: "중부의 새 지평",             taglineEn: "New horizons in the Heartland.", taglineEs: "Nuevos horizontes en el corazón de EE.UU." },
   philadelphia:{ slug: "philadelphia", nameKo: "필라델피아", nameEn: "Philadelphia", color: "#0891B2", heroVideo: "https://videos.pexels.com/video-files/37165310/37165310-hd_1920_1080_30fps.mp4", population: "3만+", state: "Pennsylvania", taglineKo: "역사의 도시에서 시작하다",   taglineEn: "Start your story in the City of Brotherly Love.", taglineEs: "Comienza tu historia en la Ciudad del Amor Fraternal." },
   miami:      { slug: "miami",      nameKo: "마이애미",  nameEn: "Miami",        color: "#EC4899", heroVideo: "https://videos.pexels.com/video-files/31673932/31673932-hd_1920_1080_30fps.mp4", population: "5천+",   state: "Florida",     taglineKo: "햇살 아래 새 출발",           taglineEn: "Fresh start under the sun.",     taglineEs: "Nuevo comienzo bajo el sol." },
