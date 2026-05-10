@@ -183,7 +183,14 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   },
   dallas: {
     slug: "dallas", nameKo: "달라스", nameEn: "Dallas", color: "#F59E0B",
-    heroVideo: "https://videos.pexels.com/video-files/3214424/3214424-hd_1920_1080_30fps.mp4",
+    // 낮 다운타운 항공 + Reunion Tower 시그니처 4영상 6시간마다 교체 (모두 슬러그에 dallas 명시)
+    heroVideo: "https://videos.pexels.com/video-files/29941189/29941189-hd_1920_1080_30fps.mp4",
+    heroVideos: [
+      "https://videos.pexels.com/video-files/29941189/29941189-hd_1920_1080_30fps.mp4",  // Aerial Dallas City Skyline in Daytime ★ 시그니처
+      "https://videos.pexels.com/video-files/31419645/31419645-hd_1920_1080_30fps.mp4",  // Aerial Dallas Downtown Skyline
+      "https://videos.pexels.com/video-files/13432744/13432744-hd_1920_1080_30fps.mp4",  // Buildings in Dallas (낮 드론)
+      "https://videos.pexels.com/video-files/15613412/15613412-hd_1920_1080_30fps.mp4",  // Dallas Skyline at Sunset (golden hour)
+    ],
     population: "10만+", state: "Texas",
     taglineKo: "텍사스에서 뿌리내리다", taglineEn: "Put down roots in Texas.",
     taglineEs: "Echa raíces en Texas.",
@@ -206,11 +213,15 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   },
   newyork: {
     slug: "newyork", nameKo: "뉴욕", nameEn: "New York", color: "#EF4444",
-    // 밝은 낮·랜드마크 중심 3영상 8시간마다 교체
+    // 밝은 낮·랜드마크 시그니처 6영상 4시간마다 교체 (Manhattan·Brooklyn Bridge·water 다양화)
     heroVideo: "https://videos.pexels.com/video-files/28855592/28855592-hd_1920_1080_30fps.mp4",
     heroVideos: [
-      "https://videos.pexels.com/video-files/28855592/28855592-hd_1920_1080_30fps.mp4",  // Stunning Manhattan Skyline
+      "https://videos.pexels.com/video-files/28855592/28855592-hd_1920_1080_30fps.mp4",  // Stunning Manhattan Skyline ★
       "https://videos.pexels.com/video-files/12122308/12122308-hd_1920_1080_30fps.mp4",  // Drone NYC Skyline (낮)
+      "https://videos.pexels.com/video-files/5656146/5656146-hd_1920_1080_30fps.mp4",    // Brooklyn Bridge in New York (낮 드론) ★
+      "https://videos.pexels.com/video-files/5796436/5796436-hd_1920_1080_30fps.mp4",    // Aerial View NYC + bridges (clear day)
+      "https://videos.pexels.com/video-files/28608250/28608250-hd_1920_1080_30fps.mp4",  // NYC Skyline on a Clear Day ★
+      "https://videos.pexels.com/video-files/30037621/30037621-hd_1920_1080_30fps.mp4",  // NYC Skyline from the Water (워터택시 동적)
       "https://videos.pexels.com/video-files/28962559/28962559-hd_1920_1080_30fps.mp4",  // Sunset NYC Aerial (golden)
     ],
     population: "15만+", state: "New York",
@@ -274,7 +285,20 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
     taglineKo: "캐나다에서 한인으로", taglineEn: "Korean in Canada.",
     taglineEs: "Coreano en Canadá.",
   },
-  vancouver: { slug: "vancouver", nameKo: "밴쿠버",   nameEn: "Vancouver",  color: "#22C55E", heroVideo: "https://videos.pexels.com/video-files/32805734/32805734-hd_1920_1080_30fps.mp4", population: "8만+",  state: "B.C.",       taglineKo: "태평양의 관문에서",         taglineEn: "Gateway to the Pacific.",        taglineEs: "Puerta al Pacífico."        },
+  vancouver: {
+    slug: "vancouver", nameKo: "밴쿠버", nameEn: "Vancouver", color: "#22C55E",
+    // 낮 다운타운·산·항공 시그니처 5영상 ~5시간마다 교체 (Vancouver·Canada 명시 슬러그만)
+    heroVideo: "https://videos.pexels.com/video-files/32805734/32805734-hd_1920_1080_30fps.mp4",
+    heroVideos: [
+      "https://videos.pexels.com/video-files/32805734/32805734-hd_1920_1080_30fps.mp4",  // Aerial Vancouver's Iconic Skyline ★
+      "https://videos.pexels.com/video-files/4898681/4898681-hd_1920_1080_30fps.mp4",    // The Skyline of Vancouver Canada at Daytime (다운타운+산)
+      "https://videos.pexels.com/video-files/16015955/16015955-hd_1920_1080_30fps.mp4",  // Drone View Downtown Vancouver Canada
+      "https://videos.pexels.com/video-files/26599315/26599315-hd_1920_1080_30fps.mp4",  // Vancouver UBC Drone Shot
+      "https://videos.pexels.com/video-files/4265473/4265473-hd_1920_1080_30fps.mp4",    // Time Lapse Vancouver City (산·구름 동적)
+    ],
+    population: "8만+", state: "B.C.",
+    taglineKo: "태평양의 관문에서", taglineEn: "Gateway to the Pacific.", taglineEs: "Puerta al Pacífico."
+  },
   houston: {
     slug: "houston", nameKo: "휴스턴", nameEn: "Houston", color: "#EA580C",
     // 낮 다운타운 휴스턴 + Sunset 3영상 8시간마다
@@ -318,7 +342,19 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
     taglineKo: "역사의 도시에서 시작하다", taglineEn: "Start your story in the City of Brotherly Love.",
     taglineEs: "Comienza tu historia en la Ciudad del Amor Fraternal.",
   },
-  miami: { slug: "miami", nameKo: "마이애미", nameEn: "Miami", color: "#EC4899", heroVideo: "https://videos.pexels.com/video-files/31673932/31673932-hd_1920_1080_30fps.mp4", population: "5천+", state: "Florida", taglineKo: "햇살 아래 새 출발", taglineEn: "Fresh start under the sun.", taglineEs: "Nuevo comienzo bajo el sol." },
+  miami: {
+    slug: "miami", nameKo: "마이애미", nameEn: "Miami", color: "#EC4899",
+    // 햇살·해변·다운타운 시그니처 4영상 6시간마다 교체 (Miami 명시 슬러그만 — 야간 illuminated 영상 제외)
+    heroVideo: "https://videos.pexels.com/video-files/31673932/31673932-hd_1920_1080_30fps.mp4",
+    heroVideos: [
+      "https://videos.pexels.com/video-files/31673932/31673932-hd_1920_1080_30fps.mp4",  // 기존 — Miami Beach + Palm (검증)
+      "https://videos.pexels.com/video-files/30872154/30872154-hd_1920_1080_30fps.mp4",  // Stunning Aerial Miami Skyline 4K ★
+      "https://videos.pexels.com/video-files/4135118/4135118-hd_1920_1080_30fps.mp4",    // Aerial Coast + White Sand Beach (Miami)
+      "https://videos.pexels.com/video-files/6345016/6345016-hd_1920_1080_30fps.mp4",    // Buildings + Biscayne Bay (낮)
+    ],
+    population: "5천+", state: "Florida",
+    taglineKo: "햇살 아래 새 출발", taglineEn: "Fresh start under the sun.", taglineEs: "Nuevo comienzo bajo el sol."
+  },
   mexicocity: {
     slug: "mexicocity", nameKo: "멕시코시티", nameEn: "Mexico City", color: "#DC2626",
     // 낮 멕시코시티 스카이라인 + Bellas Artes·Angel of Independence 4영상 6시간마다
