@@ -6310,14 +6310,14 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             />
 
             {/* CTA */}
-            <a href="mailto:gmc.hc300@gmail.com?subject=HebronGuide 허브교회 신청"
+            <a href="mailto:HebronPlatform@gmail.com?subject=HebronGuide 허브교회 신청"
               style={{ display: "block", textDecoration: "none" }}>
               <div style={{ background: "linear-gradient(135deg, #C9A227, #B8901C)", borderRadius: 14, padding: "16px 20px", textAlign: "center", boxShadow: "0 4px 20px rgba(201,162,39,0.4)" }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 4 }}>
                   🏆 {lang === "ko" ? "허브교회 신청 — 목사님께 연락주세요" : "Apply as Hub Church — Contact Pastor Paul Kim"}
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)" }}>
-                  gmc.hc300@gmail.com · www.ijiguchon.org
+                  HebronPlatform@gmail.com · www.ijiguchon.org
                 </div>
               </div>
             </a>
