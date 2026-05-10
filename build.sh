@@ -73,7 +73,10 @@ declare -A CITY_EN=(
 )
 
 # 4. 도시별 배포 (미리 빌드된 dist/ 사용 + index.html 메타데이터 치환)
-echo "--- Deploying to cities (with city-specific SEO) ---"
+# og:updated_time — 매 배포마다 타임스탬프 갱신 → KakaoTalk·Slack·iMessage 캐시 무효화
+# 카카오는 이 값이 바뀌면 자동 재크롤하므로 44개+ 도시 글로벌 확장 시에도 캐시 문제 없음
+BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+echo "--- Deploying to cities (with city-specific SEO, build_time=$BUILD_TIME) ---"
 for city in \
   seattle dallas sf newyork nashville boston la toronto vancouver houston atlanta \
   kansascity philadelphia miami mexicocity guadalajara monterrey \
@@ -102,6 +105,7 @@ for city in \
     -e "s#시애틀 한인 가이드#${KO} 한인 가이드#g" \
     -e "s#\"HebronGuide 시애틀\"#\"HebronGuide ${KO}\"#g" \
     -e "s#hebronguide.com/seattle/#hebronguide.com/${city}/#g" \
+    -e "s#</head>#  <meta property=\"og:updated_time\" content=\"${BUILD_TIME}\" />\n  <meta name=\"build-city\" content=\"${city}\" />\n</head>#" \
     public/$city/index.html
   rm -f public/$city/index.html.bak
 
