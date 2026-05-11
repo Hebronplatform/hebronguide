@@ -28,13 +28,22 @@ export default async function handler(req) {
       businessName,    // 업소명
       businessType,    // 한식당·교회·마트 등
       city,            // 도시 (slug)
+      adReach,         // local·americas·global
       address,
       phone,
       website,
-      adGoal,          // 할인·신메뉴·이벤트
-      adDuration,      // 1주·1개월·3개월
-      budget,          // $50 / $100 / $200
-      uniqueValue,     // 이 업소만의 강점
+      adGoal,          // 광고 목적
+      adDuration,      // 기간
+      budget,          // 플랜+금액
+      adSeason,        // 시즌 배율
+      uniqueValue,     // 업소 강점
+      // 신규 타겟·전략 필드
+      target,          // 타겟 고객 (복수)
+      adCTA,           // 원하는 고객 행동
+      specialOffer,    // 특별 혜택
+      vibe,            // 업소 분위기 (복수)
+      expectedResults, // 기대 효과
+      expectedCustomers, // 월 목표 신규 고객 수
     } = await req.json()
 
     // 입력 검증
@@ -78,20 +87,39 @@ Output JSON format ONLY:
   "ethical_check": "Confirmation this ad respects HebronGuide values"
 }`
 
-    const userMessage = `Generate a 3-language ad for this business:
+    const userMessage = `Generate a highly targeted 3-language ad for this business:
 
-Business: ${businessName}
+=== BUSINESS INFO ===
+Name: ${businessName}
 Type: ${businessType}
-City: ${city}
+City: ${city} | Reach: ${adReach || 'local'}
 Address: ${address || 'Not provided'}
 Phone: ${phone || 'Not provided'}
 Website: ${website || 'Not provided'}
-Ad Goal: ${adGoal}
-Duration: ${adDuration || '1 month'}
-Budget: ${budget || '$50/month'}
-Unique Value: ${uniqueValue || 'Not specified'}
 
-Generate ad copy in Korean, English, and Spanish. Be warm, hospitable, and truthful.`
+=== AD STRATEGY ===
+Goal: ${adGoal}
+Target Customers: ${target || 'All'}
+Desired Customer Action (CTA): ${adCTA || 'Visit the store'}
+Special Offer / Promotion: ${specialOffer || 'None'}
+Business Atmosphere / Vibe: ${vibe || 'Casual'}
+What Makes This Business Unique: ${uniqueValue || 'Not specified'}
+
+=== EXPECTED RESULTS ===
+Expected Outcomes: ${expectedResults || 'Increase awareness'}
+Monthly New Customer Target: ${expectedCustomers || 'Not specified'}
+
+=== AD PLACEMENT ===
+Duration: ${adDuration || '1 month'}
+Budget / Plan: ${budget || '$50/month'}
+Season: ${adSeason === '1.5' ? 'World Cup / Olympics (peak)' : adSeason === '1.3' ? 'Korean Holiday (Lunar New Year / Chuseok)' : 'Regular season'}
+
+Generate targeted ad copy in Korean, English, and Spanish.
+- Speak directly to the target customers identified above
+- Lead with the special offer if provided
+- Use the atmosphere/vibe tone throughout
+- End with a clear CTA matching the desired action
+- Be warm, hospitable, and truthful`
 
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -158,8 +186,8 @@ Generate ad copy in Korean, English, and Spanish. Be warm, hospitable, and truth
         model: 'claude-sonnet-4-5',
       },
       humanReviewRequired: true,
-      reviewerEmail: 'gmc.hc300@gmail.com',
-      message: '광고가 생성되었습니다. 폴 김 목사 검수 후 게시됩니다 (보통 24시간 이내).',
+      reviewerEmail: 'hebronplatform@gmail.com',
+      message: '광고가 생성되었습니다. 대표 폴 김 검수 후 게시됩니다 (48시간 이내).',
     }
 
     return new Response(JSON.stringify(response), { headers: CORS })
