@@ -4314,7 +4314,7 @@ function HebronServiceCard({ icon, titleKo, titleEn, descKo, descEn, color, lang
 }) {
   const ko = lang === "ko";
   return (
-    <a href={`mailto:gmc.hc300@gmail.com?subject=HebronGuide ${titleEn} 관심 등록`}
+    <a href={`mailto:hebronplatform@gmail.com?subject=HebronGuide ${titleEn} 관심 등록`}
       style={{ display: "block", textDecoration: "none", marginTop: 16 }}>
       <div style={{
         background: `linear-gradient(135deg, ${color}12, ${color}06)`,
@@ -6341,7 +6341,7 @@ function getCityChurches(slug: string, lang: string) {
           ? "✅ 검증됨 | 국제가사원(IHM) 회원교회 · SBC 소속. 김성수 목사.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 주일연합예배, 목장, 삶 공부 - 세축 네기둥\n🔗 www.ijiguchon.org"
           : "✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Sungsoo Kim.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday United Worship, Mokjang, Life Studies - Three Axes, Four Pillars\n🔗 www.ijiguchon.org",
         tags: ko ? ["가정교회", "IHM", "린우드"] : ["House Church", "IHM", "Lynnwood"],
-        website: "https://www.ijiguchon.org", email: "gmc.hc300@gmail.com",
+        website: "https://www.ijiguchon.org", email: "hebronplatform@gmail.com",
       },
       // 시애틀우리교회 — 지금은 보류 (2026-05-10 폴 김 목사 지시). 추후 재검토 시 복원.
     ],
@@ -6652,7 +6652,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             />
 
             {/* CTA — mailto body에 자가 진단 양식 미리 채움 (4-Tier + 신앙 고백 + 환대 동행) */}
-            <a href={`mailto:HebronPlatform@gmail.com?subject=${encodeURIComponent(
+            <a href={`mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(
               lang === "ko"
                 ? "[HebronGuide] 허브교회 신청"
                 : "[HebronGuide] Hub Church Application"
@@ -6667,7 +6667,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   🏆 {lang === "ko" ? "허브교회 신청 — 자가 진단 양식 자동 채움" : "Apply as Hub Church — Pre-filled Self-Assessment"}
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.85)", marginBottom: 4 }}>
-                  HebronPlatform@gmail.com · www.ijiguchon.org
+                  hebronplatform@gmail.com · www.ijiguchon.org
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.65)" }}>
                   {lang === "ko"
@@ -7332,19 +7332,19 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
 
               {/* CTA — 투어 예약 (사용자용) 먼저, 가이드 등록 (파트너용) 뒤에 작게 */}
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                <a href="mailto:gmc.hc300@gmail.com?subject=Hebron 관광 투어 예약 문의"
+                <a href="mailto:hebronplatform@gmail.com?subject=Hebron 관광 투어 예약 문의"
                   style={{ display: "block", textDecoration: "none" }}>
                   <div style={{ background: "linear-gradient(135deg, #06B6D4, #0891B2)", borderRadius: 14, padding: "14px 20px", textAlign: "center", boxShadow: "0 4px 20px rgba(6,182,212,0.35)" }}>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 3 }}>
                       🧭 {lang === "ko" ? "투어 예약 문의하기" : "Book a Tour"}
                     </div>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)" }}>
-                      gmc.hc300@gmail.com
+                      hebronplatform@gmail.com
                     </div>
                   </div>
                 </a>
                 {/* 가이드 등록 — 작게, 파트너용 */}
-                <a href="mailto:gmc.hc300@gmail.com?subject=Hebron 관광 가이드 참여 문의"
+                <a href="mailto:hebronplatform@gmail.com?subject=Hebron 관광 가이드 참여 문의"
                   style={{ display: "block", textDecoration: "none" }}>
                   <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, padding: "10px 16px", textAlign: "center" }}>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)" }}>
@@ -11528,7 +11528,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
       features: ko
         ? ["30개 목회 실전 레슨", "4트랙 훈련", "5개 카테고리", "오프라인 사용", "평생 이용"]
         : ["30 Ministry lessons", "4-track training", "5 categories", "Works offline", "Lifetime access"],
-      buyLink: "mailto:HebronPlatform@gmail.com?subject=Echo Ministry English 구매 문의 ($97)&body=안녕하세요. Echo Ministry English 구매를 원합니다.%0A%0A이름:%0A이메일 (라이선스 키 수령):%0A",
+      buyLink: "mailto:hebronplatform@gmail.com?subject=Echo Ministry English 구매 문의 ($97)&body=안녕하세요. Echo Ministry English 구매를 원합니다.%0A%0A이름:%0A이메일 (라이선스 키 수령):%0A",
       previewLink: "https://hebronguide.com",
       status: "live",
     },
@@ -11791,7 +11791,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: accent }}>
             💬 {ko ? "구매 전 문의하기" : "Questions before buying?"}
           </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 2 }}>gmc.hc300@gmail.com</div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 2 }}>hebronplatform@gmail.com</div>
         </a>
       </div>
 
@@ -12058,14 +12058,14 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
         </div>
 
         {/* CTA */}
-        <a href="mailto:gmc.hc300@gmail.com?subject=HebronGuide Connect 파트너 문의"
+        <a href="mailto:hebronplatform@gmail.com?subject=HebronGuide Connect 파트너 문의"
           style={{ display: "block", textDecoration: "none" }}>
           <div style={{ background: `linear-gradient(135deg, ${svc.color}, ${svc.color}cc)`, borderRadius: 14, padding: "14px 20px", textAlign: "center", boxShadow: `0 4px 20px ${svc.color}40`, cursor: "pointer" }}>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff" }}>
               {ko ? `🚀 ${svc.titleKo} 관심 등록` : `🚀 Register Interest — ${svc.titleEn}`}
             </div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)", marginTop: 3 }}>
-              gmc.hc300@gmail.com
+              hebronplatform@gmail.com
             </div>
           </div>
         </a>
@@ -12344,7 +12344,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                   <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff" }}>
                     {ko ? "📩 내 이름으로 등록하기" : "📩 Register Under My Name"}
                   </div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.8)", marginTop: 2 }}>gmc.hc300@gmail.com</div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.8)", marginTop: 2 }}>hebronplatform@gmail.com</div>
                 </a>
               </div>
             </div>
