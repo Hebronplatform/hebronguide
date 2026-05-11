@@ -3532,14 +3532,18 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
   const { lang } = useI18n();
   const city = useCityConfig();
   const ko = lang === "ko";
-  const [wcDismissed, setWcDismissed] = useState(() => {
-    try { return localStorage.getItem("wc2026_dismissed") === "1"; } catch { return false; }
+  const [wcCollapsed, setWcCollapsed] = useState(() => {
+    try { return localStorage.getItem("wc2026_collapsed") === "1"; } catch { return false; }
   });
-  const showWC = isWorldCupActive(city.slug) && !wcDismissed;
+  const isWCCity = isWorldCupActive(city.slug);
 
-  const dismissWC = () => {
-    setWcDismissed(true);
-    try { localStorage.setItem("wc2026_dismissed", "1"); } catch {}
+  const collapseWC = () => {
+    setWcCollapsed(true);
+    try { localStorage.setItem("wc2026_collapsed", "1"); } catch {}
+  };
+  const expandWC = () => {
+    setWcCollapsed(false);
+    try { localStorage.removeItem("wc2026_collapsed"); } catch {}
   };
 
   // 여정 4단계 — 각 Row에 레이블
@@ -3589,46 +3593,64 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
         {ko ? "바로 가기" : "Quick Access"}
       </div>
 
-      {/* ── 월드컵 팝업 카드 (WC 개최 도시 + 기간 중만 표시) */}
-      {showWC && (
-        <div style={{
-          marginBottom: 16, borderRadius: 16, overflow: "hidden",
-          background: "linear-gradient(120deg, #C8102E 0%, #003087 100%)",
-          boxShadow: "0 4px 20px rgba(200,16,46,0.3)",
-          position: "relative",
-        }}>
-          {/* 배경 축구공 */}
-          <div style={{ position: "absolute", right: -8, top: -12, fontSize: 72, opacity: 0.12, userSelect: "none" }}>⚽</div>
-          <div style={{ padding: "12px 14px" }}>
-            <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 10, color: "rgba(255,255,255,0.7)", letterSpacing: "1.2px", textTransform: "uppercase", marginBottom: 3 }}>
-                  FIFA WORLD CUP 2026
+      {/* ── 월드컵 카드 (WC 개최 도시 + 기간 중만) — 펼침/접힘 토글 */}
+      {isWCCity && (
+        wcCollapsed ? (
+          /* 접힌 상태: 작은 칩 */
+          <button onClick={expandWC} style={{
+            marginBottom: 14, display: "flex", alignItems: "center", gap: 8,
+            background: "linear-gradient(90deg, #C8102E, #003087)",
+            border: "none", borderRadius: 20, padding: "7px 14px", cursor: "pointer",
+            boxShadow: "0 2px 10px rgba(200,16,46,0.25)",
+          }}>
+            <span style={{ fontSize: 16 }}>⚽</span>
+            <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#fff" }}>
+              {ko ? "FIFA 월드컵 2026 — 탭하여 열기" : "FIFA World Cup 2026 — Tap to expand"}
+            </span>
+            <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 14, color: "rgba(255,255,255,0.7)", marginLeft: 2 }}>›</span>
+          </button>
+        ) : (
+          /* 펼친 상태: 풀 카드 */
+          <div style={{
+            marginBottom: 16, borderRadius: 16, overflow: "hidden",
+            background: "linear-gradient(120deg, #C8102E 0%, #003087 100%)",
+            boxShadow: "0 4px 20px rgba(200,16,46,0.3)",
+            position: "relative",
+          }}>
+            <div style={{ position: "absolute", right: -8, top: -12, fontSize: 72, opacity: 0.12, userSelect: "none" }}>⚽</div>
+            <div style={{ padding: "12px 14px" }}>
+              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 10, color: "rgba(255,255,255,0.7)", letterSpacing: "1.2px", textTransform: "uppercase", marginBottom: 3 }}>
+                    FIFA WORLD CUP 2026
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#fff", lineHeight: 1.25, marginBottom: 6 }}>
+                    ⚽ {ko ? `${city.nameKo} 월드컵 경기장 & 교통 가이드` : `${city.nameEn} World Cup — Venues & Transit`}
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)", lineHeight: 1.5, marginBottom: 10 }}>
+                    {ko ? "경기 일정 · 경기장 교통 · 한식당 · 환전 정보" : "Match schedule · Stadium transit · Korean food · Exchange"}
+                  </div>
+                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                    <button onClick={() => onNavigate?.(4, 0)} style={{
+                      background: "#fff", border: "none", borderRadius: 20, cursor: "pointer",
+                      padding: "7px 16px",
+                      fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#C8102E",
+                    }}>
+                      {ko ? "탐방 가이드 보기 →" : "View Guide →"}
+                    </button>
+                  </div>
                 </div>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#fff", lineHeight: 1.25, marginBottom: 6 }}>
-                  ⚽ {ko ? `${city.nameKo} 월드컵 경기장 & 교통 가이드` : `${city.nameEn} World Cup — Venues & Transit`}
-                </div>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)", lineHeight: 1.5, marginBottom: 10 }}>
-                  {ko ? "경기 일정·경기장 교통·한식당·환전 정보" : "Match schedule · Stadium transit · Korean food · Exchange"}
-                </div>
-                <button onClick={() => onNavigate?.(4, 0)} style={{
-                  background: "#fff", border: "none", borderRadius: 20, cursor: "pointer",
-                  padding: "7px 16px", display: "inline-flex", alignItems: "center", gap: 6,
-                  fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#C8102E",
-                }}>
-                  {ko ? "탐방 가이드 보기 →" : "View Guide →"}
-                </button>
+                {/* 접기 버튼 */}
+                <button onClick={collapseWC} style={{
+                  background: "rgba(255,255,255,0.15)", border: "none", borderRadius: "50%",
+                  width: 28, height: 28, cursor: "pointer", display: "flex",
+                  alignItems: "center", justifyContent: "center", flexShrink: 0,
+                  fontFamily: "Manrope,sans-serif", fontSize: 14, color: "#fff",
+                }} title={ko ? "접기" : "Collapse"}>−</button>
               </div>
-              {/* 닫기 */}
-              <button onClick={dismissWC} style={{
-                background: "rgba(255,255,255,0.15)", border: "none", borderRadius: "50%",
-                width: 28, height: 28, cursor: "pointer", display: "flex",
-                alignItems: "center", justifyContent: "center", flexShrink: 0,
-                fontFamily: "Manrope,sans-serif", fontSize: 14, color: "#fff",
-              }}>✕</button>
             </div>
           </div>
-        </div>
+        )
       )}
 
       {/* ── 4단계 여정 순서 Quick Menu */}
@@ -4966,7 +4988,6 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
   return (
     <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
       <CompactHeroNew />
-      <WorldCupBanner />
       <QuickMenuSection onNavigate={onNavigate} />
       <HebronServicesAd lang={lang} onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
