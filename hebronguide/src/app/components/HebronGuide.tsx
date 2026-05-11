@@ -6588,6 +6588,240 @@ const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
 };
 
 /* ─────────────────────────────────────────
+   미국·세계 음식 문화 콘텐츠
+   한국 → 미국 → 세계 → 자연스러운 크리스천 문화
+───────────────────────────────────────── */
+function AmericaWorldContent({ lang, citySlug, accent }: { lang: string; citySlug: string; accent: string }) {
+  const ko = lang === "ko";
+  const [section, setSection] = useState(0);
+
+  const SECTIONS = [
+    { emoji: "🍔", labelKo: "미국 음식", labelEn: "American" },
+    { emoji: "☕", labelKo: "카페 주문", labelEn: "Café Orders" },
+    { emoji: "🌮", labelKo: "세계 음식", labelEn: "World Food" },
+    { emoji: "✝️", labelKo: "크리스천 문화", labelEn: "Christian Culture" },
+  ];
+
+  const DCard = ({ emoji, title, desc, phrase, phraseKo, tip }: {
+    emoji: string; title: string; desc: string;
+    phrase?: string; phraseKo?: string; tip?: string;
+  }) => (
+    <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: 14, padding: "14px", marginBottom: 10 }}>
+      <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 8 }}>
+        <span style={{ fontSize: 22, flexShrink: 0 }}>{emoji}</span>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#ECFDF5", lineHeight: 1.3 }}>{title}</div>
+      </div>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 13, color: "rgba(236,253,245,0.75)", lineHeight: 1.7, paddingLeft: 32 }}>{desc}</div>
+      {phrase && (
+        <div style={{ margin: "10px 0 0 32px", background: "rgba(201,162,39,0.12)", border: "1px solid rgba(201,162,39,0.3)", borderRadius: 10, padding: "10px 12px" }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#C9A227", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: 5 }}>💬 {ko ? "이렇게 말하세요" : "Say this"}</div>
+          <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, color: "#ECFDF5", fontWeight: 700, marginBottom: 3 }}>"{phrase}"</div>
+          {phraseKo && <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.55)" }}>{phraseKo}</div>}
+        </div>
+      )}
+      {tip && (
+        <div style={{ margin: "8px 0 0 32px", background: "rgba(56,189,248,0.08)", border: "1px solid rgba(56,189,248,0.2)", borderRadius: 10, padding: "8px 12px", display: "flex", gap: 6 }}>
+          <span style={{ fontSize: 14, flexShrink: 0 }}>💡</span>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.6 }}>{tip}</div>
+        </div>
+      )}
+    </div>
+  );
+
+  const renderAmerican = () => (
+    <div>
+      <div style={{ background: "rgba(251,146,60,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>
+          🍔 {ko ? "미국 음식 문화 입문" : "American Food Culture 101"}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "영어 메뉴가 두렵지 않아도 됩니다. 패턴을 알면 어디서든 당당하게 주문할 수 있습니다." : "Don't fear English menus. Once you know the patterns, you can order confidently anywhere."}
+        </div>
+      </div>
+
+      <DCard emoji="📋" title={ko ? "메뉴 읽는 법 — Appetizer → Entrée → Dessert" : "How to Read a Menu — Appetizer → Entrée → Dessert"}
+        desc={ko ? "미국 레스토랑 메뉴는 보통 3단계입니다. Appetizer(전채), Entrée/Main(메인), Dessert(디저트). Sides는 사이드 메뉴. 'Market Price'는 그날 시세 가격 = 물어보세요." : "US restaurant menus typically have 3 sections: Appetizer, Entrée/Main, Dessert. 'Sides' are side dishes. 'Market Price' means ask the server for today's price."}
+        tip={ko ? "모르는 메뉴는 'What do you recommend?' 한 마디면 해결됩니다." : "If unsure, 'What do you recommend?' solves everything."} />
+
+      <DCard emoji="🗣️" title={ko ? "주문 기본 표현 5가지" : "5 Essential Ordering Phrases"}
+        desc={ko ? "① 주문할게요: 'I'll have the [음식 이름], please.'\n② 빼 달라고: 'No onions, please.' / 'Can I get that without [재료]?'\n③ 포장: 'Can I get that to go?' / 'For here or to go?' 물으면 → 'To go, please.'\n④ 덜 익혀/잘 익혀: 'Medium rare / Medium / Well done'\n⑤ 물/리필: 'Can I get some water?' (보통 무료)" : "① Order: 'I'll have the [dish], please.'\n② Remove ingredient: 'No onions please.' / 'Without [item]?'\n③ Takeout: 'To go please.' (When asked 'For here or to go?')\n④ Meat doneness: 'Medium rare / Medium / Well done'\n⑤ Water/refills: 'Can I get some water?' (usually free)"}
+        phrase="I'll have the burger, medium, no onions. For here."
+        phraseKo={ko ? "버거 미디엄으로, 양파 빼고요. 여기서 먹을게요." : "Burger, medium, no onions. Dining in."} />
+
+      <DCard emoji="💵" title={ko ? "팁(Tip) 문화 — 미국의 필수 관습" : "Tipping Culture — An American Essential"}
+        desc={ko ? "미국 레스토랑에서 팁은 선택이 아닌 문화입니다. 웨이터/웨이트리스의 주수입이 팁에서 나옵니다. 기준: 보통 18-20%. 좋은 서비스 = 20%+. 카드 결제 시 영수증에 팁 줄이 있습니다." : "Tipping at US restaurants is a cultural norm, not optional. Servers rely on tips as their primary income. Standard: 18-20%. Great service: 20%+. Card receipts have a tip line."}
+        tip={ko ? "계산서(bill) 달라고 할 때: 'Can we get the check, please?' — 미국은 계산서를 먼저 안 가져오는 게 정상입니다." : "To ask for the bill: 'Can we get the check, please?' — Servers don't bring it automatically; it's considered rude to rush."} />
+
+      <DCard emoji="🍟" title={ko ? "패스트푸드 — 번호로 주문하기" : "Fast Food — Order by Number"}
+        desc={ko ? "McDonald's, Burger King, Wendy's 등은 번호 메뉴(#1, #2...)가 있어 쉽습니다. 'Number 1, please' 또는 터치스크린 키오스크 사용. 콤보(Combo/Value Meal)는 음료+감자튀김 세트." : "McDonald's, Burger King, Wendy's etc. have numbered meals (#1, #2...). Just say 'Number 1, please' or use touchscreen kiosks. 'Combo/Value Meal' = drink + fries included."}
+        phrase="Number 2 combo, large, Coke."
+        phraseKo={ko ? "2번 콤보, 라지 사이즈, 콜라로요." : "Value meal #2, large, Coke."} />
+
+      <DCard emoji="🥩" title={ko ? "미국 BBQ — 한국 BBQ와 다른 점" : "American BBQ — Different from Korean BBQ"}
+        desc={ko ? "미국 BBQ는 '직접 굽지 않고 오랫동안 훈연·조리한 고기'입니다. Brisket(소 가슴살), Pulled Pork(돼지 어깨), Ribs(갈비). Texas style: 소금·후추만. Carolina style: 식초 소스. 훈연 향이 강하고 부드럽습니다." : "American BBQ means slow-smoked meat, not grilling at the table. Brisket, Pulled Pork, Ribs. Texas: salt & pepper only. Carolina: vinegar sauce. Rich smoke flavor, very tender."}
+        tip={ko ? "한국 갈비를 좋아하면 미국 BBQ Ribs도 좋아할 가능성이 높습니다. 맛 구조가 비슷합니다." : "If you love Korean galbi, you'll likely enjoy American BBQ ribs too — similar flavor logic."} />
+
+      <DCard emoji="🥞" title={ko ? "미국식 아침 식사 — Brunch 문화" : "American Breakfast — The Brunch Culture"}
+        desc={ko ? "계란(스크램블/프라이/포치드), 팬케이크, 해시브라운, 베이컨 또는 소시지가 기본. Brunch는 주말 오전 10시-오후 2시 사이의 아침+점심 통합 문화. 대기 줄이 생기는 미국 주말 의식." : "Eggs (scrambled/fried/poached), pancakes, hash browns, bacon or sausage. Brunch is a weekend tradition from 10am-2pm combining breakfast + lunch. Lines form — it's a serious ritual."}
+        phrase="Can I get two eggs over easy, bacon, and hash browns?"
+        phraseKo={ko ? "계란 반숙 2개, 베이컨, 해시브라운으로 주세요." : "Two eggs over easy, bacon, and hash browns."} />
+
+      <DCard emoji="🫙" title={ko ? "알레르기·식단 제한 표현" : "Allergy & Dietary Restriction Phrases"}
+        desc={ko ? "미국 식당은 식이 제한에 매우 익숙합니다. 당당하게 말하세요." : "US restaurants are very accustomed to dietary restrictions. Speak up confidently."}
+        phrase="I'm allergic to nuts. Does this dish contain any?"
+        phraseKo={ko ? "견과류 알레르기가 있습니다. 이 요리에 들어있나요?" : "Nut allergy — does this contain any?"} />
+    </div>
+  );
+
+  const renderCafe = () => (
+    <div>
+      <div style={{ background: "rgba(251,146,60,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>
+          ☕ {ko ? "미국 카페 완전 정복" : "Master the American Café"}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "Starbucks 한 곳만 알아도 미국 어디서든 커피를 주문할 수 있습니다." : "Master Starbucks and you can order coffee anywhere in the US."}
+        </div>
+      </div>
+
+      <DCard emoji="📏" title={ko ? "Starbucks 사이즈 암기법" : "Starbucks Size Names — Memorize This"}
+        desc={ko ? "Tall = 미디엄(355ml) · Grande = 라지(473ml) · Venti = 엑스라지(591ml). 'Short'도 있지만 비공개 메뉴. 주의: 'Tall'이 제일 작습니다 — 헷갈리지 마세요!" : "Tall = Medium (12oz) · Grande = Large (16oz) · Venti = X-Large (20oz). 'Short' exists but isn't on the menu. Warning: 'Tall' is the SMALLEST — don't be fooled!"}
+        phrase="Can I get a Grande iced Americano, please?"
+        phraseKo={ko ? "그란데 아이스 아메리카노 주세요." : "Grande iced Americano, please."} />
+
+      <DCard emoji="🧊" title={ko ? "아이스 음료 주문법" : "Ordering Iced Drinks"}
+        desc={ko ? "미국 카페는 기본이 HOT입니다. 아이스로 원하면 반드시 'iced' 또는 'cold'를 앞에 붙이세요. Iced Latte, Iced Americano, Cold Brew (차갑게 우린 커피, 진함)." : "US cafés default to HOT. For cold drinks, always specify 'iced' or 'cold' upfront. Iced Latte, Iced Americano, Cold Brew (cold-steeped, stronger)."}
+        phrase="Can I get a venti cold brew, light ice?"
+        phraseKo={ko ? "벤티 콜드브루, 얼음 적게요." : "Venti cold brew, light ice."} />
+
+      <DCard emoji="🍵" title={ko ? "커피 외 음료 옵션" : "Non-Coffee Options"}
+        desc={ko ? "커피를 못 마시거나 싫다면: Chai Latte(홍차+우유), Matcha Latte(말차), Hot Chocolate, Steamers(우유+시럽). 'No caffeine, please' 또는 'decaf'를 요청하세요." : "Not a coffee person? Try Chai Latte (tea+milk), Matcha Latte, Hot Chocolate, or Steamers (milk+syrup). Say 'No caffeine please' or 'Can I get that decaf?'"}
+        phrase="Do you have anything without caffeine?"
+        phraseKo={ko ? "카페인 없는 음료가 있나요?" : "Anything caffeine-free?"} />
+
+      <DCard emoji="📱" title={ko ? "앱 주문 + 리워드" : "App Order + Rewards"}
+        desc={ko ? "Starbucks 앱 설치 시 Stars 적립 → 무료 음료. 앱으로 미리 주문하면 줄 안 서도 됩니다. Dunkin', Dutch Bros, Peet's도 앱 주문 가능." : "Download the Starbucks app to earn Stars → free drinks. Order ahead via app to skip the line. Dunkin', Dutch Bros, Peet's also have app ordering."}
+        tip={ko ? "'Birthday reward' — 앱 등록 후 생일달에 무료 음료 1잔 제공됩니다." : "Birthday reward: free drink during your birthday month after app registration."} />
+
+      <DCard emoji="🗣️" title={ko ? "이름 말하기 — 주문 후 이름 알려주기" : "Giving Your Name — The American Café Ritual"}
+        desc={ko ? "대부분 카페에서 주문 후 이름을 물어봅니다. 음료 완성 시 이름을 불러줍니다. 한국 이름이 어려우면 영어 이름이나 짧은 이름을 사용해도 됩니다." : "After ordering, the barista will ask for your name to call when ready. It's totally fine to use a simple English name if yours is hard to pronounce."}
+        phrase="My name is Paul." phraseKo={ko ? "(영어 이름 또는 한국 이름 그대로 사용 가능)" : "(Use English name or Korean name — both are fine)"} />
+    </div>
+  );
+
+  const renderWorld = () => (
+    <div>
+      <div style={{ background: "rgba(251,146,60,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>
+          🌮 {ko ? "다민족 음식 탐방 — 미국의 진짜 맛" : "Multicultural Food Explorer — The Real Taste of America"}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "미국은 세계 음식의 집합소입니다. 한국 음식에서 시작해 세계로 넓혀가는 것, 그게 진짜 미국 경험입니다." : "America is a world food hub. Starting with Korean comfort food and expanding outward — that's the real American experience."}
+        </div>
+      </div>
+
+      <DCard emoji="🌮" title={ko ? "멕시칸 음식 — 미국 제2의 음식 문화" : "Mexican Food — America's Second Food Culture"}
+        desc={ko ? "Taco: 토르티야에 고기+살사+사워크림. Burrito: 크고 둥글게 싼 것. Quesadilla: 치즈 녹인 납작 빵. Guacamole: 아보카도 소스 (보통 추가 요금). 한국 갈비와 비슷한 맛 구조 — Carne Asada(소 안심 구이) 추천." : "Taco: meat + salsa + sour cream in tortilla. Burrito: large wrapped roll. Quesadilla: flat bread with melted cheese. Guacamole: avocado sauce (usually extra). Carne Asada (grilled beef) is similar to Korean BBQ — try it!"}
+        phrase="One carne asada taco, please. And guacamole on the side."
+        phraseKo={ko ? "카르네 아사다 타코 하나, 과카몰레 따로요." : "Carne asada taco, guac on the side."} />
+
+      <DCard emoji="🍜" title={ko ? "베트남 음식 — 쌀국수 & 반미" : "Vietnamese Food — Pho & Bánh Mì"}
+        desc={ko ? "Pho(퍼): 쌀국수. 뜨거운 육수에 고기+숙주+바질. 한국 국물 음식 좋아하면 강추. Bánh Mì(반미): 바게트 샌드위치에 베트남 재료. 가성비 최고. Boba(버블티)는 베트남·대만 카페의 시그니처." : "Pho: rice noodle soup with broth, meat, bean sprouts & basil. If you love Korean soup, you'll love this. Bánh Mì: French baguette + Vietnamese fillings. Incredible value. Boba (bubble tea) is the signature of Vietnamese/Taiwanese cafés."}
+        phrase="One beef pho, please. And a Thai iced tea."
+        phraseKo={ko ? "소고기 쌀국수 하나, 태국 아이스티도요." : "Beef pho + Thai iced tea."} />
+
+      <DCard emoji="🍕" title={ko ? "이탈리안 — 피자만이 아닙니다" : "Italian — More Than Just Pizza"}
+        desc={ko ? "Pasta: Spaghetti(스파게티), Fettuccine(납작면), Penne(짧은 관형). 소스: Marinara(토마토), Alfredo(크림), Pesto(바질). 이탈리안 레스토랑 코스: Bread → Appetizer → Pasta/Main → Dessert. 빵은 주문 전 자동으로 나오는 경우 많고 무료입니다." : "Pasta types: Spaghetti, Fettuccine, Penne. Sauces: Marinara (tomato), Alfredo (cream), Pesto (basil). Course flow: Bread → Appetizer → Pasta/Main → Dessert. Bread arrives automatically and is free in most Italian restaurants."}
+        tip={ko ? "Olive Garden: 무제한 빵스틱(breadsticks) + 수프/샐러드 세트가 유명합니다. 미국 이탈리안의 상징." : "Olive Garden: Famous for unlimited breadsticks + soup/salad. The quintessential American-Italian experience."} />
+
+      <DCard emoji="🥢" title={ko ? "중국 음식 — 점심 딤섬 문화" : "Chinese Food — The Dim Sum Lunch Tradition"}
+        desc={ko ? "Dim Sum(딤섬): 주말 오전에 작은 요리들을 카트에 담아 돌며 선택. 만두, 새우롤, 찹쌀밥 등. 중국계 많은 도시(SF, NY, LA)에서 필수 경험. 일반 중식: 볶음밥, 마파두부, 쿵파오 치킨." : "Dim Sum: Weekend brunch where small dishes are wheeled around in carts. Dumplings, shrimp rolls, sticky rice. A must-experience in SF, NY, LA. Regular Chinese: fried rice, mapo tofu, kung pao chicken."}
+        phrase="Can we have a table for four? We'd like dim sum."
+        phraseKo={ko ? "4명인데요, 딤섬 먹으러 왔습니다." : "Table for four, here for dim sum."} />
+
+      <DCard emoji="🍛" title={ko ? "인도 음식 — 채식 천국" : "Indian Food — Vegetarian Paradise"}
+        desc={ko ? "Naan(난): 화덕 빵. Curry(커리): 다양한 향신료 소스. Butter Chicken(버터 치킨): 진하고 크리미. Tikka Masala: 매콤하고 토마토 향. 채식주의자에게 최고의 선택. 향신료 익숙해지면 중독됩니다." : "Naan: tandoor flatbread. Curry: various spice sauces. Butter Chicken: rich & creamy. Tikka Masala: spicy & tomato-based. The best choice for vegetarians. The spices become addictive."}
+        tip={ko ? "처음이라면 Butter Chicken + Naan 조합 추천. 한국 찌개처럼 밥에 비벼 먹어도 됩니다." : "For first-timers: Butter Chicken + Naan is the gateway combo. Eat it like bibimbap — mix with rice."} />
+
+      <DCard emoji="🏙️" title={ko ? `${citySlug === "seattle" ? "시애틀" : citySlug === "la" ? "LA" : citySlug === "newyork" ? "뉴욕" : "이 도시"}의 다민족 구역 탐방` : `Exploring ${citySlug === "seattle" ? "Seattle" : citySlug === "la" ? "LA" : citySlug === "newyork" ? "New York" : "This City"}'s Multicultural Districts`}
+        desc={
+          citySlug === "seattle" ? (ko ? "인터내셔널 디스트릭트(ID): 일본·중국·베트남·한인 상권 집결. 도보 탐방 가능. Pike Place: 세계 음식 노점. Little Ethiopia: Rainier Ave S 인근." : "International District (ID): Japanese, Chinese, Vietnamese & Korean shops. Walkable food tour. Pike Place: world food stalls. Little Ethiopia: near Rainier Ave S.")
+          : citySlug === "la" ? (ko ? "코리아타운 → 리틀 도쿄 → 차이나타운 → 리틀 에티오피아 → 피코-유니언(중미). LA는 세계 모든 음식이 있습니다." : "Koreatown → Little Tokyo → Chinatown → Little Ethiopia → Pico-Union (Central American). LA has every world cuisine.")
+          : citySlug === "newyork" ? (ko ? "플러싱(한인·중국) → 잭슨하이츠(인도·라틴) → 아서 애비뉴(이탈리안) → 선셋 파크(중국·멕시칸). 지하철로 세계 여행." : "Flushing (Korean+Chinese) → Jackson Heights (Indian+Latin) → Arthur Ave (Italian) → Sunset Park (Chinese+Mexican). World travel by subway.")
+          : citySlug === "houston" ? (ko ? "차이나타운(Bellaire) → 베트남 Eden Center → 멕시칸 East End → 미들이스턴 Hillcroft 구역." : "Chinatown (Bellaire) → Vietnamese Eden Center → Mexican East End → Middle Eastern Hillcroft district.")
+          : ko ? "이 도시의 에스닉 타운을 Google Maps에서 'Chinatown', 'Little Mexico', 'International District'로 검색해 탐방해 보세요." : "Search Google Maps for 'Chinatown', 'Little Mexico', 'International District' in this city to discover multicultural dining districts."
+        } />
+    </div>
+  );
+
+  const renderChristian = () => (
+    <div>
+      <div style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: "#A78BFA", marginBottom: 4 }}>
+          ✝️ {ko ? "미국의 크리스천 음식 문화" : "Christian Food Culture in America"}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "미국 음식 문화 깊은 곳에는 기독교 전통이 자연스럽게 녹아 있습니다. 음식을 통해 그 흔적을 발견할 수 있습니다." : "Deep in American food culture, Christian traditions flow naturally. You can discover those traces through food."}
+        </div>
+      </div>
+
+      <DCard emoji="🐔" title={ko ? "Chick-fil-A — 일요일에 문을 닫는 패스트푸드" : "Chick-fil-A — The Fast Food Chain Closed on Sundays"}
+        desc={ko ? "미국에서 가장 사랑받는 치킨 샌드위치 체인. 그런데 일요일에 전국 모든 지점이 문을 닫습니다. 창업자 S. Truett Cathy의 신앙 원칙: 직원들이 안식일에 쉬어야 한다는 성경적 믿음. 매출 1위임에도 53년째 고집하는 원칙. 이것이 '섬김의 리더십'의 미국적 표현입니다." : "America's most beloved chicken sandwich chain — yet every location is closed on Sundays nationwide. Founder S. Truett Cathy's faith principle: employees deserve a day of rest, rooted in biblical belief. They've held this since 1967, even as the #1 fast food chain by revenue. This is servant leadership in American business form."}
+        phrase="My pleasure."
+        phraseKo={ko ? "Chick-fil-A 직원의 인사말. 'Thank you'에 'You're welcome' 대신 'My pleasure'라고 합니다. 섬김의 문화." : "Chick-fil-A's signature response to 'Thank you' — 'My pleasure' instead of 'You're welcome.' A culture of service."} />
+
+      <DCard emoji="🙏" title={ko ? "식사 기도 (Saying Grace) — 미국 가정 문화" : "Saying Grace — An American Home Culture"}
+        desc={ko ? "미국 크리스천 가정에서는 식사 전 짧은 기도를 드립니다. 누군가의 가정에 초대받았을 때, 기도 시간이 있으면 자연스럽게 함께 고개를 숙이는 것이 예의입니다. '감사합니다'의 문화 — 한국 문화와 다르지 않습니다." : "Christian families in America pray briefly before meals. If invited to someone's home and they say grace, naturally bowing your head is respectful. A culture of gratitude — not so different from Korean values."}
+        tip={ko ? "식사 기도는 강요가 아닌 초대입니다. 함께하는 것만으로 충분히 예의 바릅니다." : "Saying grace is an invitation, not a requirement. Simply bowing your head is respectful enough."} />
+
+      <DCard emoji="🏪" title={ko ? "신앙 기반 비즈니스들 — 미국 곳곳에" : "Faith-Based Businesses — All Around America"}
+        desc={ko ? "Hobby Lobby(공예품 체인): 일요일 휴무, 직원 복지·보험 신앙 기반 운영. In-N-Out Burger: 컵 바닥에 성경 구절. Forever 21: 쇼핑백에 성경 구절. Tom's Shoes: 한 켤레 사면 한 켤레 기부. 미국 비즈니스 곳곳에 기독교 가치관이 자연스럽게 흐릅니다." : "Hobby Lobby (craft chain): Closed Sundays, faith-based employee benefits. In-N-Out Burger: Bible verses on the bottom of cups. Forever 21: Bible verses on shopping bags. TOMS Shoes: One bought, one donated. Christian values flow naturally through American business."}
+        tip={ko ? "In-N-Out 컵 바닥을 뒤집어 보세요 — 'John 3:16' 이 새겨져 있습니다." : "Flip your In-N-Out cup — 'John 3:16' is printed on the bottom."} />
+
+      <DCard emoji="⛪" title={ko ? "교회 + 음식 — 미국 커뮤니티의 연결고리" : "Church + Food — The American Community Connection"}
+        desc={ko ? "미국 교회는 대부분 예배 후 'Potluck'(각자 음식 가져와 나누기) 또는 'Fellowship Meal'(함께하는 식사)을 합니다. 이것이 공동체의 시작입니다. 한인 교회도 마찬가지 — 예배 후 함께 밥 먹는 문화가 가장 강력한 연결고리입니다." : "Most American churches hold a 'Potluck' (everyone brings food to share) or 'Fellowship Meal' after services. This is where community begins. Korean churches are the same — sharing a meal after worship is the strongest community bond."}
+        tip={ko ? "HebronGuide 교회 탭 → 근처 한인 가정교회를 찾아보세요. 첫날 밥 한 끼부터 시작됩니다." : "HebronGuide Church tab → find a nearby Korean home church. It starts with one shared meal."} />
+
+      <DCard emoji="🌿" title={ko ? "음식을 통한 환대 — 마태복음 25:35" : "Hospitality Through Food — Matthew 25:35"}
+        desc={ko ? "'내가 나그네 되었을 때 너희가 영접하였다' — 미국 한인 교회의 첫 환대는 항상 음식에서 시작됩니다. 모르는 도시에서 처음 한국 밥상을 받았을 때의 그 따뜻함, 그게 HebronGuide가 지향하는 것입니다." : "'I was a stranger and you welcomed me' (Matthew 25:35) — The first act of welcome in Korean-American churches is always food. The warmth of receiving a Korean meal in a strange new city — that's exactly what HebronGuide aims to be."}
+        tip={ko ? "음식은 언어보다 먼저 사람을 연결합니다. 이 문화가 당신을 환영합니다." : "Food connects people before language does. This culture welcomes you."} />
+    </div>
+  );
+
+  const RENDERERS = [renderAmerican, renderCafe, renderWorld, renderChristian];
+
+  return (
+    <div style={{ padding: "0 0 16px" }}>
+      {/* 섹션 탭 */}
+      <div style={{ overflowX: "auto", padding: "4px 12px 8px" }}>
+        <div style={{ display: "flex", gap: 6, minWidth: "max-content" }}>
+          {SECTIONS.map((s, i) => {
+            const active = section === i;
+            return (
+              <button key={i} onClick={() => setSection(i)} style={{
+                flexShrink: 0, display: "flex", alignItems: "center", gap: 5,
+                padding: "7px 14px", borderRadius: 20, border: "none", cursor: "pointer",
+                background: active ? accent : "rgba(251,146,60,0.1)",
+                color: active ? "#0d1117" : accent,
+                fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12,
+                transition: "all 0.18s cubic-bezier(0.16,1,0.3,1)",
+                boxShadow: active ? `0 2px 10px ${accent}44` : "none",
+              }}>
+                <span>{s.emoji}</span>
+                <span>{ko ? s.labelKo : s.labelEn}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <div style={{ padding: "0 14px" }}>
+        {RENDERERS[section]?.()}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
    TAB 4: 맛집 SCREEN
 ───────────────────────────────────────── */
 function DiningScreen({ onHome }: { onHome?: () => void }) {
@@ -6597,8 +6831,8 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
   const [sub, setSub] = useState(0);
   const [foodFilter, setFoodFilter] = useState("전체");
   const tabs = lang === "ko"
-    ? ["카페", "한식·맛집", "한인상권", "쇼핑"]
-    : ["Café", "Korean Food", "K-Business", "Shopping"];
+    ? ["카페", "한식·맛집", "🍔 미국·세계", "한인상권", "쇼핑"]
+    : ["Café", "Korean Food", "🍔 America & World", "K-Business", "Shopping"];
   const accent = "#FB923C";
 
   // 맛집 카테고리 필터 (Yelp 인사이트 적용)
@@ -6693,9 +6927,12 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
         (item.tags ?? []).some(tag => tag.includes(foodFilter) || item.desc.includes(foodFilter))
       );
 
-  const content = sub === 1
-    ? filteredRestaurants
-    : [resolvedCafes, resolvedRestaurants, resolvedBusinesses, resolvedShopping][sub];
+  // sub=2 is America & World (rendered separately); sub=3→businesses, sub=4→shopping
+  const content = sub === 1 ? filteredRestaurants
+    : sub === 0 ? resolvedCafes
+    : sub === 3 ? resolvedBusinesses
+    : sub === 4 ? resolvedShopping
+    : [];
 
   return (
     <div style={{ paddingBottom: 96 }}>
@@ -6743,72 +6980,23 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
           <Top5Banner items={CITY_RESTAURANT_TOP5_MAP[citySlug] ?? [] as Top5Item[]}
             lang={lang} accentColor="#EF4444" />
         )}
-        <div className="px-4 md:px-6 lg:px-8">
-          {content.length === 0 ? (
-            <div style={{ textAlign: "center", padding: "40px 20px", color: "rgba(236,253,245,0.4)", fontFamily: "Manrope,sans-serif", fontSize: 14 }}>
-              {lang === "ko" ? "해당 카테고리 업소를 추가 중입니다 🙏" : "More places in this category coming soon 🙏"}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
-            </div>
-          )}
-          <div style={{ background: "rgba(251,146,60,0.08)", border: "1px solid rgba(251,146,60,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}>
-              🗺️ {lang === "ko" ? "지도에서 바로 찾기" : "Find on Map"}
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-              <a href="https://www.google.com/maps/search/Korean+restaurant+Lynnwood+WA"
-                target="_blank" rel="noopener noreferrer"
-                style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none",
-                  background: "rgba(255,255,255,0.08)", borderRadius: 10, padding: "9px 12px",
-                  border: "1px solid rgba(251,146,60,0.2)", transition: "background 0.15s" }}
-                onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.14)")}
-                onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}>
-                <span style={{ fontSize: 16 }}>🗺️</span>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
-                    Korean restaurant Lynnwood WA
-                  </div>
-                  <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>Google Maps</div>
-                </div>
-                <span style={{ color: accent, fontSize: 14 }}>→</span>
-              </a>
-              <a href="https://www.google.com/maps/search/%ED%95%9C%EC%9D%B8+%EB%A7%9B%EC%A7%91+%EC%8B%9C%EC%95%A0%ED%8B%80"
-                target="_blank" rel="noopener noreferrer"
-                style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none",
-                  background: "rgba(255,255,255,0.08)", borderRadius: 10, padding: "9px 12px",
-                  border: "1px solid rgba(251,146,60,0.2)", transition: "background 0.15s" }}
-                onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.14)")}
-                onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}>
-                <span style={{ fontSize: 16 }}>🗺️</span>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
-                    {lang === "ko" ? "한인 맛집 시애틀" : "Korean food Seattle"}
-                  </div>
-                  <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>Google Maps</div>
-                </div>
-                <span style={{ color: accent, fontSize: 14 }}>→</span>
-              </a>
-              <a href="https://www.yelp.com/search?find_desc=Korean+Restaurant&find_loc=Lynnwood%2C+WA"
-                target="_blank" rel="noopener noreferrer"
-                style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none",
-                  background: "rgba(255,255,255,0.08)", borderRadius: 10, padding: "9px 12px",
-                  border: "1px solid rgba(251,146,60,0.2)", transition: "background 0.15s" }}
-                onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.14)")}
-                onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}>
-                <span style={{ fontSize: 16 }}>⭐</span>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
-                    Korean Restaurant · Lynnwood
-                  </div>
-                  <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>Yelp {lang === "ko" ? "한국어 리뷰" : "Reviews"}</div>
-                </div>
-                <span style={{ color: accent, fontSize: 14 }}>→</span>
-              </a>
-            </div>
+
+        {/* ── 미국·세계 문화 탭 ─────────────────── */}
+        {sub === 2 ? (
+          <AmericaWorldContent lang={lang} citySlug={citySlug} accent={accent} />
+        ) : (
+          <div className="px-4 md:px-6 lg:px-8">
+            {content.length === 0 ? (
+              <div style={{ textAlign: "center", padding: "40px 20px", color: "rgba(236,253,245,0.4)", fontFamily: "Manrope,sans-serif", fontSize: 14 }}>
+                {lang === "ko" ? "해당 카테고리 업소를 추가 중입니다 🙏" : "More places in this category coming soon 🙏"}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+              </div>
+            )}
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
