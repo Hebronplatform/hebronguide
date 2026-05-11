@@ -25,6 +25,47 @@
 
 import { useState, useEffect, useRef } from "react";
 import svgPaths from "../../imports/svg-uguh2ql8id";
+
+/**
+ * 새가족 신청 URL 빌더 — HebronGuide → HebronWorship 브리지.
+ *
+ * 기본: 정적 `/new-member.html` (mailto 방식, 현재 라이브)
+ * Worship 배포 후: `VITE_WORSHIP_BRIDGE_URL` env 설정 시 그쪽으로 라우팅.
+ *   예) VITE_WORSHIP_BRIDGE_URL=https://worship.hebronguide.com/new-members/register
+ *
+ * 경로의 첫 segment(seattle/dallas 등)를 city로 자동 전달.
+ */
+function buildNewMemberHref(opts: {
+  churchName: string
+  churchEmail?: string
+  churchWebsite?: string
+  churchId?: string
+  lang: string
+}) {
+  const env = (import.meta as any).env ?? {}
+  const worshipUrl: string | undefined = env.VITE_WORSHIP_BRIDGE_URL
+  const city = typeof location !== "undefined"
+    ? (location.pathname.split("/").filter(Boolean)[0] || "")
+    : ""
+
+  if (worshipUrl) {
+    const u = new URL(worshipUrl)
+    if (opts.churchId)   u.searchParams.set("church_id", opts.churchId)
+    u.searchParams.set("church", opts.churchName)
+    u.searchParams.set("lang",   opts.lang)
+    if (city) u.searchParams.set("city", city)
+    return u.toString()
+  }
+
+  // Fallback: 기존 정적 mailto 폼
+  const params = new URLSearchParams({
+    church:  opts.churchName,
+    email:   opts.churchEmail ?? "",
+    website: opts.churchWebsite ?? "",
+    lang:    opts.lang,
+  })
+  return `/new-member.html?${params.toString()}`
+}
 // 2026 시애틀 히어로 사진 6장 — 2시간마다 교체 (Unsplash 무료 라이선스)
 const HERO_PHOTOS = [
   "https://images.unsplash.com/photo-1571842377564-5849a26c3fc2?w=1200&q=85",  // Seattle skyline 야경
@@ -6318,7 +6359,12 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                     {c.tier === 1 && (c.website || c.email) && (
                       <div style={{ padding: "0 14px 14px 14px", display: "flex", gap: 8, flexWrap: "wrap" }}>
                         <a
-                          href={`/new-member.html?church=${encodeURIComponent(c.name)}&email=${encodeURIComponent(c.email ?? "")}&website=${encodeURIComponent(c.website ?? "")}&lang=${lang}`}
+                          href={buildNewMemberHref({
+                            churchName:    c.name,
+                            churchEmail:   c.email,
+                            churchWebsite: c.website,
+                            lang,
+                          })}
                           style={{
                             flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
                             background: "linear-gradient(135deg, rgba(201,162,39,0.9), rgba(184,144,28,0.9))",
@@ -6486,11 +6532,66 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
 }
 
 /* ─────────────────────────────────────────
+   TAB 4: 맛집 SCREEN — 헬퍼
+───────────────────────────────────────── */
+
+// TOP5Item → PlaceCard 포맷 변환 (도시별 맛집 탭 fallback용)
+function top5ToPlaceCards(items: Top5Item[], lang: string) {
+  return items.map(item => ({
+    emoji: item.emoji,
+    name: `${item.nameKo}${item.rating ? ` ★ Yelp ${item.rating}` : ""}`,
+    nameEn: item.nameEn,
+    desc: lang === "ko"
+      ? [
+          "✅ 검증됨",
+          item.address ? `📍 ${item.address}` : "",
+          item.phone ? `📞 ${item.phone}` : "",
+          item.hours ? `⏰ ${item.hours}` : "",
+          item.why,
+          item.tip ? `💡 ${item.tip}` : "",
+          item.website ? `🔗 ${item.website}` : "",
+        ].filter(Boolean).join("\n")
+      : [
+          "✅ Verified",
+          item.address ? `📍 ${item.address}` : "",
+          item.phone ? `📞 ${item.phone}` : "",
+          item.hours ? `⏰ ${item.hours}` : "",
+          item.why,
+          item.tip ? `💡 ${item.tip}` : "",
+          item.website ? `🔗 ${item.website}` : "",
+        ].filter(Boolean).join("\n"),
+    tags: ["검증됨"],
+  }));
+}
+
+// 도시 slug → 검증된 맛집 TOP5 목록 반환 (맛집 탭 카드용)
+const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
+  seattle:       TOP5_RESTAURANTS,
+  dallas:        TOP5_RESTAURANTS_DALLAS,
+  sf:            TOP5_RESTAURANTS_SF,
+  newyork:       TOP5_RESTAURANTS_NEWYORK,
+  nashville:     TOP5_RESTAURANTS_NASHVILLE,
+  boston:        TOP5_RESTAURANTS_BOSTON,
+  la:            TOP5_RESTAURANTS_LA,
+  toronto:       TOP5_RESTAURANTS_TORONTO,
+  vancouver:     TOP5_RESTAURANTS_VANCOUVER,
+  houston:       TOP5_RESTAURANTS_HOUSTON,
+  atlanta:       TOP5_RESTAURANTS_ATLANTA,
+  kansascity:    TOP5_RESTAURANTS_KANSASCITY,
+  philadelphia:  TOP5_RESTAURANTS_PHILADELPHIA,
+  miami:         TOP5_RESTAURANTS_MIAMI,
+  mexicocity:    TOP5_RESTAURANTS_MEXICOCITY,
+  guadalajara:   TOP5_RESTAURANTS_GUADALAJARA,
+  monterrey:     TOP5_RESTAURANTS_MONTERREY,
+};
+
+/* ─────────────────────────────────────────
    TAB 4: 맛집 SCREEN
 ───────────────────────────────────────── */
 function DiningScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
+  const citySlug = useCityConfig().slug;
   const [sub, setSub] = useState(0);
   const [foodFilter, setFoodFilter] = useState("전체");
   const tabs = lang === "ko"
@@ -6517,16 +6618,19 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
         { label: "Snacks", emoji: "🍜", keyword: "분식" },
       ];
 
-  // ✅ 검증됨 (2026-04-30) | 출처: WowSeattle 업소록 / kSeattle / 공식 사이트
-  const cafes = [
+  const isSeattle = citySlug === "seattle";
+
+  // ─── 시애틀 전용 카페 데이터 ✅ 검증됨 (2026-04-30)
+  // 타 도시는 serverContent 우선, 없으면 [] → "추가 중" UI 표시
+  const seattleCafes = [
     { emoji: "☕", name: "K-Cafe Dabang", nameEn: "K-Cafe Dabang — Lynnwood", desc: lang === "ko" ? "✅ 검증됨 | 한인타운 한국식 카페. 빙수·크로플. 3333 184th St SW Ste X | ☎ (425) 678-8276 | 월-목 8am-9pm" : "✅ Verified | Korean-style café. Bingsu & croffles. 3333 184th St SW Ste X | ☎ (425) 678-8276 | M-Th 8am-9pm", tags: ["린우드", "빙수", "검증됨"] },
     { emoji: "🍱", name: "Ko Hyang Zip (H-Mart)", nameEn: "Ko Hyang Zip — H-Mart Food Court", desc: lang === "ko" ? "✅ 검증됨 | H-Mart 내 한식 푸드코트. 분식·국밥·덮밥. 3301 184th St SW | ☎ (425) 582-2691 | 월-금 10am-8pm" : "✅ Verified | Korean food court inside H-Mart. 3301 184th St SW | ☎ (425) 582-2691 | M-F 10am-8pm", tags: ["H-Mart", "분식", "검증됨"] },
     { emoji: "🍵", name: "LUMI Dessert Cafe", nameEn: "LUMI Dessert Cafe", desc: lang === "ko" ? "한인 디저트 카페. 공식 사이트에서 위치·시간 확인 | 🔗 lumidessertcafe.com" : "Korean dessert café. Check address & hours at official site | 🔗 lumidessertcafe.com", tags: ["디저트", "카페", "확인중"] },
   ];
 
-  // ✅ 검증됨 (2026-04-30) | 출처: WowSeattle 업소록 / Yelp 2026.04
-  // Yelp 인사이트 적용: 소비자 관점("이럴 때 가세요") + 카테고리 키워드 추가
-  const restaurants = [
+  // ─── 시애틀 전용 맛집 데이터 ✅ 검증됨 (2026-04-30)
+  // 타 도시는 CITY_RESTAURANT_TOP5_MAP에서 해당 도시 TOP5를 PlaceCard 포맷으로 변환
+  const seattleRestaurants = [
     { emoji: "🥩", name: "Baekjeong Korean BBQ ★ Yelp 3.9", nameEn: "Baekjeong Korean BBQ — Lynnwood",
       desc: lang === "ko"
         ? "✅ 검증됨 | 🥩 BBQ\n고기 무한리필 + 직원이 직접 구워줌. 무제한 밑반찬. 알더우드몰 주차 무료.\n📍 3000 184th St SW Ste 922 | 📞 (425) 490-6328 | 월-목 11:30am-10pm\n🔗 yelp.com/biz/baekjeong-korean-bbq-lynnwood"
@@ -6554,8 +6658,8 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
       tags: ["BBQ", "린우드", "검증됨"] },
   ];
 
-  // ✅ 검증됨 (2026-04-30) | 출처: WowSeattle / SeattleN / 공식 사이트
-  const businesses = [
+  // ─── 시애틀 전용 한인상권 데이터 ✅ 검증됨 (2026-04-30)
+  const seattleBusinesses = [
     { emoji: "🏪", name: "H-Mart Lynnwood", nameEn: "H-Mart — Korean Supermarket", desc: lang === "ko" ? "✅ 검증됨 | 3301 184th St SW, Lynnwood | ☎ (425) 776-0858 | 매일 8am-9:30pm | 🔗 hmartus.com/lynnwood" : "✅ Verified | 3301 184th St SW, Lynnwood | ☎ (425) 776-0858 | Daily 8am-9:30pm | 🔗 hmartus.com/lynnwood", tags: ["마트", "린우드", "검증됨"] },
     { emoji: "🏦", name: "UniBank (유니뱅크)", nameEn: "UniBank — Korean-American Bank", desc: lang === "ko" ? "✅ 검증됨 | 한국계 은행. 19315 Highway 99, Lynnwood | ☎ (425) 275-9700 | 🔗 unibankusa.com" : "✅ Verified | Korean-American bank. 19315 Highway 99, Lynnwood | ☎ (425) 275-9700 | 🔗 unibankusa.com", tags: ["은행", "한국어", "검증됨"] },
     { emoji: "🏥", name: "천진 한의원", nameEn: "Chunjin Oriental Medicine — Federal Way", desc: lang === "ko" ? "✅ 검증됨 | 침술·한약. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058" : "✅ Verified | Acupuncture & herbal medicine. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058", tags: ["한의원", "페더럴웨이", "검증됨"] },
@@ -6563,17 +6667,22 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
     { emoji: "🔑", name: "한인 부동산", nameEn: "Korean Real Estate", desc: lang === "ko" ? "WowSeattle 검증 | 백수경 ☎ (206) 334-5454 | 박나리 ☎ (425) 246-1453 | 🔗 wowseattle.com" : "WowSeattle verified | Baik Sukyung ☎ (206) 334-5454 | Park Nari ☎ (425) 246-1453 | 🔗 wowseattle.com", tags: ["부동산", "렌탈", "검증됨"] },
   ];
 
-  const shopping = [
+  // ─── 시애틀 전용 쇼핑 데이터
+  const seattleShopping = [
     { emoji: "🛒", name: "H-Mart + Galleria", nameEn: "Lynnwood Korean Shopping Center", desc: lang === "ko" ? "H-Mart 옆 갤러리아 쇼핑몰. 한국 브랜드 의류·잡화·미용용품" : "Galleria mall next to H-Mart. Korean brand clothing, accessories & beauty products", tags: ["갤러리아", "한국브랜드", "쇼핑몰"] },
-    { emoji: "💄", name: "K-Beauty 스토어", nameEn: "K-Beauty Store", desc: lang === "ko" ? "TONYMOLY·이니스프리·클리오 미국 판매점. Lynnwood·Bellevue Bellevue 스퀘어" : "TONYMOLY, Innisfree, CLIO USA stores in Lynnwood & Bellevue Square", tags: ["뷰티", "K-Beauty", "스킨케어"] },
+    { emoji: "💄", name: "K-Beauty 스토어", nameEn: "K-Beauty Store", desc: lang === "ko" ? "TONYMOLY·이니스프리·클리오 미국 판매점. Lynnwood·Bellevue 스퀘어" : "TONYMOLY, Innisfree, CLIO USA stores in Lynnwood & Bellevue Square", tags: ["뷰티", "K-Beauty", "스킨케어"] },
     { emoji: "📚", name: "한국 서적·문화용품", nameEn: "Korean Books & Stationery", desc: lang === "ko" ? "한국 잡지·도서·문구. H-Mart 내 한국 서적 코너. 한국 드라마 DVD도" : "Korean magazines, books & stationery. Korean book section inside H-Mart", tags: ["서점", "문구", "도서"] },
     { emoji: "🧴", name: "한국 식재료 전문점", nameEn: "Korean Specialty Grocery", desc: lang === "ko" ? "H-Mart 외 소규모 한국 반찬·김치·떡 전문점. 린우드·페더럴웨이" : "Small-batch kimchi, banchan & tteok specialty shops beyond H-Mart", tags: ["반찬", "김치", "전문점"] },
   ];
 
-  const resolvedCafes = serverContent["cafes"] ? resolvePlaceItems(serverContent["cafes"], lang) : cafes;
-  const resolvedRestaurants = serverContent["restaurants"] ? resolvePlaceItems(serverContent["restaurants"], lang) : restaurants;
-  const resolvedBusinesses = serverContent["businesses"] ? resolvePlaceItems(serverContent["businesses"], lang) : businesses;
-  const resolvedShopping = serverContent["shopping"] ? resolvePlaceItems(serverContent["shopping"], lang) : shopping;
+  // ─── 도시별 맛집: serverContent 우선, 없으면 도시 고유 fallback
+  // 카페·상권·쇼핑은 시애틀만 상세 데이터, 타 도시는 [] → "추가 중" UI
+  const cityTop5Restaurants = top5ToPlaceCards(CITY_RESTAURANT_TOP5_MAP[citySlug] ?? [], lang);
+
+  const resolvedCafes      = serverContent["cafes"]       ? resolvePlaceItems(serverContent["cafes"], lang)       : (isSeattle ? seattleCafes      : []);
+  const resolvedRestaurants = serverContent["restaurants"] ? resolvePlaceItems(serverContent["restaurants"], lang) : (isSeattle ? seattleRestaurants : cityTop5Restaurants);
+  const resolvedBusinesses  = serverContent["businesses"]  ? resolvePlaceItems(serverContent["businesses"], lang)  : (isSeattle ? seattleBusinesses  : []);
+  const resolvedShopping    = serverContent["shopping"]    ? resolvePlaceItems(serverContent["shopping"], lang)    : (isSeattle ? seattleShopping    : []);
 
   // 카테고리 필터 적용 (Yelp 인사이트)
   const filteredRestaurants = foodFilter === "전체"
@@ -6591,7 +6700,7 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🍽️" titleKo="카페 · 맛집" titleEn="Café & Dining"
         descKo={`${useCityConfig().nameKo} 한인 카페·맛집·상권 완전 가이드`}
-        descEn={`Complete guide to ${useCityConfig().nameEn}'s Korean cafés, restaurants & district`}
+        descEn={`Complete guide to ${useCityConfig().nameEn} Korean cafés, restaurants & district`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={(i) => { setSub(i); setFoodFilter("전체"); }} accentColor={accent} />
 
@@ -6629,26 +6738,8 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
 
       <div className="pt-3">
         {sub === 1 && (
-          <Top5Banner items={
-            useCityConfig().slug === "dallas"   ? TOP5_RESTAURANTS_DALLAS :
-            useCityConfig().slug === "sf"       ? TOP5_RESTAURANTS_SF :
-            useCityConfig().slug === "newyork"  ? TOP5_RESTAURANTS_NEWYORK :
-            useCityConfig().slug === "nashville"? TOP5_RESTAURANTS_NASHVILLE :
-            useCityConfig().slug === "boston"   ? TOP5_RESTAURANTS_BOSTON :
-            useCityConfig().slug === "la"        ? TOP5_RESTAURANTS_LA :
-            useCityConfig().slug === "toronto"   ? TOP5_RESTAURANTS_TORONTO :
-            useCityConfig().slug === "vancouver" ? TOP5_RESTAURANTS_VANCOUVER :
-            useCityConfig().slug === "houston"   ? TOP5_RESTAURANTS_HOUSTON :
-            useCityConfig().slug === "atlanta"   ? TOP5_RESTAURANTS_ATLANTA :
-            useCityConfig().slug === "kansascity"? TOP5_RESTAURANTS_KANSASCITY :
-            useCityConfig().slug === "philadelphia" ? TOP5_RESTAURANTS_PHILADELPHIA :
-            useCityConfig().slug === "miami"     ? TOP5_RESTAURANTS_MIAMI :
-            useCityConfig().slug === "mexicocity"? TOP5_RESTAURANTS_MEXICOCITY :
-            useCityConfig().slug === "guadalajara"? TOP5_RESTAURANTS_GUADALAJARA :
-            useCityConfig().slug === "monterrey" ? TOP5_RESTAURANTS_MONTERREY :
-            useCityConfig().slug === "seattle"   ? TOP5_RESTAURANTS :
-            [] as Top5Item[]   // 미등록 도시 — 시애틀 데이터 노출 방지
-          } lang={lang} accentColor="#EF4444" />
+          <Top5Banner items={CITY_RESTAURANT_TOP5_MAP[citySlug] ?? [] as Top5Item[]}
+            lang={lang} accentColor="#EF4444" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
           {content.length === 0 ? (
