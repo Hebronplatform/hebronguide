@@ -6092,12 +6092,12 @@ function getCityChurches(slug: string, lang: string) {
     ],
     dallas: [
       {
-        emoji: "⭐", tier: 1,
-        name: ko ? "마르게나스복음교회" : "Margenas Gospel Church",
+        emoji: "⛪", tier: 2,
+        name: ko ? "에덴교회 (Eden Church Dallas)" : "Eden Church Dallas",
         desc: ko
-          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 달라스 메트로 지역, TX\n📞 214-596-1776\n✨ 담임: 이의옹 목사"
-          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Dallas Metro, TX\n📞 214-596-1776\n✨ Lead Pastor: Eui Ong Lee",
-        tags: ko ? ["가정교회", "IHM", "달라스"] : ["House Church", "IHM", "Dallas"],
+          ? "📍 달라스 메트로 지역, TX\n✨ 담임: 신종우 목사\n🔗 HebronGuide 달라스 연동 파트너"
+          : "📍 Dallas Metro, TX\n✨ Lead Pastor: Jong-woo Shin\n🔗 HebronGuide Dallas partner church",
+        tags: ko ? ["한인교회", "달라스"] : ["Korean Church", "Dallas"],
       },
     ],
     la: [
