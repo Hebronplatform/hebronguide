@@ -223,9 +223,9 @@ function checkEthics({ businessName, adGoal, uniqueValue }) {
     issues.push('직접 전도 메시지 금지 (HebronGuide는 환대로 빛나는 플랫폼)')
   }
 
-  // ❌ 이단
-  if (fullText.match(/(신천지|통일교|jms|만남|하나님의교회)/)) {
-    issues.push('이단·사이비 단체 광고 절대 금지')
+  // ❌ 가입·모집 주목적 (행위 기준 — 특정 단체명 열거 대신)
+  if (fullText.match(/(지금 당장 가입|회원 모집.*구원|구원.*등록|등록하면 축복)/)) {
+    issues.push('가입·모집이 주목적인 광고는 게재 기준에 맞지 않습니다')
   }
 
   // ❌ 차별
