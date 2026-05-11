@@ -306,6 +306,8 @@
           <option value="0.5">1주 (월 단가 × 0.5)</option>
           <option value="1" selected>1개월 — 추천</option>
           <option value="2.4">3개월 (20% 할인)</option>
+          <option value="4.5">6개월 (25% 할인)</option>
+          <option value="8.0">12개월 — 연간 (33% 할인)</option>
           <option value="2">월드컵 시즌 6/1–7/26</option>
         </select>
 
@@ -544,7 +546,15 @@ function updateSeasonUI() {
 }
 
 /* ─── 금액 계산 ─── */
-const DURATION_LABELS = { '0.5':'1주','1':'1개월','2.4':'3개월 (20% 할인)','2':'월드컵 시즌' };
+// duration value = 실효 배율 (할인 적용 후). months·discount는 표시용
+const DURATION_META = {
+  '0.5': { label:'1주',            months:0.5,  discount:0    },
+  '1':   { label:'1개월',          months:1,    discount:0    },
+  '2.4': { label:'3개월',          months:3,    discount:0.20 },
+  '4.5': { label:'6개월',          months:6,    discount:0.25 },
+  '8.0': { label:'12개월 (연간)',  months:12,   discount:0.33 },
+  '2':   { label:'월드컵 시즌',    months:2,    discount:0    },
+};
 
 function calcTotal() {
   const checked = document.querySelector('[name=budget]:checked');
@@ -555,27 +565,34 @@ function calcTotal() {
   const labelText = document.getElementById(`plan${idx}Label`)?.textContent || '';
   const monthly = parseInt(priceText.replace(/[^0-9]/g,''), 10);
   const durKey = dur.value;
+  const meta = DURATION_META[durKey] || { label:durKey, months:parseFloat(durKey), discount:0 };
   const season = parseFloat(document.querySelector('[name=adSeason]:checked')?.value || '1.0');
   const seasonLabel = SEASON_LABELS[String(season)] || '';
 
-  const months = durKey === '2.4' ? 3 : parseFloat(durKey);
-  const beforeDiscount = monthly * months;
-  const afterDuration = durKey === '2.4' ? Math.round(beforeDiscount * 0.8) : Math.round(beforeDiscount);
+  const beforeDiscount = monthly * meta.months;
+  const savedByDuration = Math.round(beforeDiscount * meta.discount);
+  const afterDuration = Math.round(beforeDiscount - savedByDuration);  // = monthly × parseFloat(durKey)
   const total = Math.round(afterDuration * season);
   const seasonExtra = total - afterDuration;
 
   document.getElementById('calcPlanDesc').textContent = `${labelText} ${priceText}/월`;
   document.getElementById('calcPlanAmt').textContent = priceText;
-  document.getElementById('calcDurationDesc').textContent = durKey === '2.4' ? '× 3개월 → 20% 할인' : `× ${DURATION_LABELS[durKey]||''}`;
-  document.getElementById('calcDiscountAmt').textContent = durKey === '2.4' ? `-$${beforeDiscount-afterDuration}` : '';
+
+  const discountText = meta.discount > 0
+    ? `× ${meta.months}개월  →  ${Math.round(meta.discount*100)}% 할인`
+    : `× ${meta.label}`;
+  document.getElementById('calcDurationDesc').textContent = discountText;
+  document.getElementById('calcDiscountAmt').textContent = meta.discount > 0 ? `-$${savedByDuration}` : '';
+
   const seasonRow = document.getElementById('calcSeasonRow');
   if (season !== 1.0 && seasonRow) {
     seasonRow.style.display = 'flex';
     document.getElementById('calcSeasonDesc').textContent = `🔥 ${seasonLabel}`;
     document.getElementById('calcSeasonAmt').textContent = `+$${seasonExtra}`;
   } else if (seasonRow) { seasonRow.style.display = 'none'; }
+
   document.getElementById('calcTotal').textContent = `$${total}`;
-  checked.value = `$${total} — ${labelText} × ${DURATION_LABELS[durKey]} × ${seasonLabel}`;
+  checked.value = `$${total} — ${labelText} × ${meta.label} × ${seasonLabel}`;
 }
 
 /* ─── 웹사이트 없음 ─── */
