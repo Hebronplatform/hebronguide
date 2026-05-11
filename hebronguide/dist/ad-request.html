@@ -106,8 +106,57 @@
     <div class="subtitle">한·영·스 3개 언어 광고 · 검수 후 48시간 내 게시<br>타겟에 맞는 광고를 4단계로 설정합니다</div>
   </div>
 
-  <!-- 스텝 인디케이터 -->
-  <div style="margin-bottom:6px;">
+  <!-- ═══ 사전 자격 확인 (진입 전 차단) ═══ -->
+  <div id="preCheck">
+    <div class="card" style="border-color:rgba(201,162,39,0.4);">
+      <div class="card-title">🚦 광고 신청 전 자격 확인</div>
+      <div style="font-size:11px; color:rgba(236,253,245,0.6); margin-bottom:14px; line-height:1.6;">
+        아래 항목을 먼저 확인해 주세요. 해당되는 경우 신청이 불가합니다.
+      </div>
+
+      <!-- 광고 게재 기준 — 내용·행위 기반 (법적 안전) -->
+      <div style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2); border-radius:10px; padding:12px 14px; margin-bottom:14px;">
+        <div style="font-size:11px; color:#F87171; font-weight:800; margin-bottom:8px;">🚫 다음 내용의 광고는 게재되지 않습니다</div>
+        <div style="font-size:10px; color:rgba(239,68,68,0.75); line-height:1.9;">
+          · 업소·단체의 실제 성격이나 목적을 숨기거나 다르게 표현한 광고<br>
+          · 검증 불가한 효능·효과·치유·구원을 주장하는 광고<br>
+          · 방문자 가입·등록·모집이 주목적인 광고<br>
+          · 허위·과장·오해를 유발하는 표현을 포함한 광고<br>
+          · 특정 집단에 대한 차별·혐오 표현을 포함한 광고<br>
+          · 도박·성인·유흥·불법 상품 및 서비스 광고<br>
+          · HebronGuide 커뮤니티 가치와 현저히 충돌하는 광고
+        </div>
+      </div>
+      <div style="background:rgba(201,162,39,0.06); border:1px solid rgba(201,162,39,0.2); border-radius:10px; padding:10px 14px; margin-bottom:14px; font-size:10px; color:rgba(201,162,39,0.7); line-height:1.7;">
+        📌 HebronGuide는 편집 재량권을 가진 비공개 선별 플랫폼입니다.<br>
+        모든 광고는 편집팀의 독립적 판단에 따라 게재 여부가 결정되며, 거절 시 환불됩니다.
+      </div>
+
+      <!-- 자격 체크 3가지 -->
+      <div style="font-size:11px; color:rgba(236,253,245,0.7); font-weight:700; margin-bottom:8px;">아래 모든 항목이 해당되어야 신청할 수 있습니다:</div>
+
+      <label class="check-item" style="margin-bottom:8px; border-radius:8px; align-items:flex-start;">
+        <input type="checkbox" id="preCheck1" style="width:16px;height:16px;accent-color:#6EE7B7;flex-shrink:0;margin-top:1px;" onchange="checkPreEligibility()" />
+        <span style="font-size:11px; line-height:1.5;">우리 업소는 위 광고 불가 업종에 해당하지 않습니다</span>
+      </label>
+      <label class="check-item" style="margin-bottom:8px; border-radius:8px; align-items:flex-start;">
+        <input type="checkbox" id="preCheck2" style="width:16px;height:16px;accent-color:#6EE7B7;flex-shrink:0;margin-top:1px;" onchange="checkPreEligibility()" />
+        <span style="font-size:11px; line-height:1.5;">광고 내용은 사실에 근거하며 과장·허위 표현이 없습니다</span>
+      </label>
+      <label class="check-item" style="margin-bottom:14px; border-radius:8px; align-items:flex-start;">
+        <input type="checkbox" id="preCheck3" style="width:16px;height:16px;accent-color:#6EE7B7;flex-shrink:0;margin-top:1px;" onchange="checkPreEligibility()" />
+        <span style="font-size:11px; line-height:1.5;">HebronGuide는 한인 커뮤니티를 위한 신뢰 플랫폼임을 이해합니다</span>
+      </label>
+
+      <button type="button" id="preCheckBtn" onclick="startForm()"
+        style="width:100%; padding:13px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:12px; color:rgba(236,253,245,0.4); font-size:14px; font-weight:700; cursor:not-allowed;" disabled>
+        모두 확인했습니다 — 신청 시작하기 →
+      </button>
+    </div>
+  </div>
+
+  <!-- 스텝 인디케이터 (사전 확인 통과 후 표시) -->
+  <div style="margin-bottom:6px; display:none;" id="stepWrapper">
     <div class="steps" id="stepIndicator">
       <div class="step-dot active" id="dot1">1</div>
       <div class="step-line" id="line1"></div>
@@ -125,7 +174,7 @@
     </div>
   </div>
 
-  <form id="adForm">
+  <form id="adForm" style="display:none;">
 
     <!-- ═══ STEP 1: 업소 정보 ═══ -->
     <div id="step1">
@@ -252,7 +301,7 @@
         </select>
 
         <label>특별 혜택 또는 프로모션 <span style="opacity:0.5;font-weight:400;">(있으면 입력)</span></label>
-        <input type="text" name="specialOffer" placeholder="예: 첫 방문 10% 할인 · 점심 세트 $12.99 · 무료 주차" />
+        <input type="text" name="specialOffer" placeholder="예: 첫 방문 10% 할인 · 점심 세트 $12.99 · 무료 주차" oninput="checkEthicsRealtime(this)" />
 
         <label>업소 분위기 <span style="opacity:0.5;font-weight:400;">(복수 선택)</span></label>
         <div class="tag-wrap">
@@ -265,7 +314,7 @@
         </div>
 
         <label>이 업소만의 강점 * <span style="opacity:0.5;font-weight:400;">(광고 카피의 핵심 소재)</span></label>
-        <textarea name="uniqueValue" required placeholder="예: 30년 전통 사골 국물 · 직원이 직접 구워줌 · 무제한 밑반찬 · 한국어 상담 가능"></textarea>
+        <textarea name="uniqueValue" required placeholder="예: 30년 전통 사골 국물 · 직원이 직접 구워줌 · 무제한 밑반찬 · 한국어 상담 가능" oninput="checkEthicsRealtime(this)"></textarea>
       </div>
       <div class="btn-row">
         <button type="button" class="btn-back" onclick="goStep(1)">← 이전</button>
@@ -377,12 +426,113 @@
       </div>
     </div>
 
-    <!-- ═══ STEP 4: 검토 + 생성 ═══ -->
+    <!-- ═══ STEP 4: 검토 + 계약 + 제출 ═══ -->
     <div id="step4" style="display:none;">
+
+      <!-- 신청 내용 요약 -->
       <div class="card">
         <div class="card-title">✅ 신청 내용 검토</div>
         <div id="summaryContent"></div>
       </div>
+
+      <!-- 게재 프로세스 -->
+      <div class="card">
+        <div class="card-title">📋 광고 게재 프로세스</div>
+        <div style="font-size:11px; color:rgba(236,253,245,0.65); line-height:2.0;">
+          <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:6px;">
+            <span style="background:#C9A227; color:#0d1117; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; flex-shrink:0;">1</span>
+            <span><strong>신청 접수</strong> — 신청서가 HebronGuide 검수팀에 전달됩니다</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:6px;">
+            <span style="background:#C9A227; color:#0d1117; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; flex-shrink:0;">2</span>
+            <span><strong>윤리 검수</strong> — HebronGuide 가이드라인(마10:16) 기준 48시간 내 검토</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:6px;">
+            <span style="background:#C9A227; color:#0d1117; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; flex-shrink:0;">3</span>
+            <span><strong>결제 요청</strong> — 승인 시 결제 안내 이메일 발송 (영수증 포함)</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:6px;">
+            <span style="background:#C9A227; color:#0d1117; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; flex-shrink:0;">4</span>
+            <span><strong>결제 확인</strong> — 결제 완료 확인 후에만 광고가 게시됩니다</span>
+          </div>
+          <div style="display:flex; gap:10px; align-items:flex-start;">
+            <span style="background:#6EE7B7; color:#0d1117; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; flex-shrink:0;">5</span>
+            <span><strong>게시 + 영수증</strong> — 광고 게시 즉시 공식 영수증 이메일 발송</span>
+          </div>
+        </div>
+        <div style="margin-top:12px; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2); border-radius:8px; padding:10px 12px; font-size:10px; color:rgba(239,68,68,0.8); line-height:1.8;">
+          ⚠️ <strong>결제 전 광고는 절대 게시되지 않습니다.</strong> 신청만으로 광고가 노출되지 않습니다.
+        </div>
+      </div>
+
+      <!-- 결제 방법 선택 -->
+      <div class="card">
+        <div class="card-title">💳 선호 결제 방법</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+          <label class="check-item" style="border-radius:8px;">
+            <input type="radio" name="paymentMethod" value="Zelle" style="width:14px;height:14px;accent-color:#C9A227;" checked />
+            <span>💸 Zelle</span>
+          </label>
+          <label class="check-item" style="border-radius:8px;">
+            <input type="radio" name="paymentMethod" value="PayPal" style="width:14px;height:14px;accent-color:#C9A227;" />
+            <span>🅿️ PayPal</span>
+          </label>
+          <label class="check-item" style="border-radius:8px;">
+            <input type="radio" name="paymentMethod" value="계좌이체" style="width:14px;height:14px;accent-color:#C9A227;" />
+            <span>🏦 계좌이체</span>
+          </label>
+          <label class="check-item" style="border-radius:8px;">
+            <input type="radio" name="paymentMethod" value="신용카드" style="width:14px;height:14px;accent-color:#C9A227;" />
+            <span>💳 신용카드</span>
+          </label>
+        </div>
+        <div style="font-size:10px; color:rgba(236,253,245,0.35); margin-top:8px;">결제 상세 안내는 검수 완료 이메일에 포함됩니다</div>
+      </div>
+
+      <!-- 계약 조건 동의 -->
+      <div class="card" style="border-color:rgba(201,162,39,0.3);">
+        <div class="card-title">📜 광고 게재 계약 조건</div>
+
+        <!-- 핵심 조항 -->
+        <div style="background:rgba(0,0,0,0.25); border-radius:10px; padding:12px; font-size:10px; color:rgba(236,253,245,0.6); line-height:1.9; margin-bottom:14px; max-height:180px; overflow-y:auto;">
+          <strong style="color:rgba(236,253,245,0.85);">광고 게재 약관 (HebronGuide LLC)</strong><br><br>
+          <strong>① 게재 조건</strong><br>
+          검수 승인 + 결제 완료 후 광고가 게시됩니다. 결제 없이 게시되지 않습니다.<br><br>
+          <strong>② 영수증 및 계약서</strong><br>
+          결제 완료 시 공식 영수증과 게재 확인서가 이메일로 발송됩니다.<br><br>
+          <strong>③ 계약 위반 및 즉시 중단 조항</strong><br>
+          다음 경우 사전 통보 없이 광고를 즉시 중단하며 환불하지 않습니다:<br>
+          · 허위·과장 광고 (검증 불가 주장 포함)<br>
+          · 이단·사이비 단체 (신천지·통일교·JMS 등)<br>
+          · 차별적 표현 (민족·인종·성별 등)<br>
+          · HebronGuide 윤리 가이드라인(마10:16) 위반<br><br>
+          <strong>④ 환불 정책</strong><br>
+          · 검수 거부 시: 전액 환불<br>
+          · 게시 후 광고주 사유 취소: 잔여 기간 50% 환불<br>
+          · 계약 위반 중단: 환불 없음<br><br>
+          <strong>⑤ 광고 내용 변경</strong><br>
+          기간 내 1회 무료 수정 요청 가능 (hebronplatform@gmail.com)<br><br>
+          <strong>⑥ 분쟁 해결</strong><br>
+          이메일 협의 우선. 해결 불가 시 Washington State 법률 적용.<br><br>
+          <strong>⑦ 광고 데이터</strong><br>
+          노출 수·클릭 수 월간 리포트 제공 (골드 플랜 이상).
+        </div>
+
+        <!-- 동의 체크박스들 -->
+        <label class="check-item" style="margin-bottom:8px; border-radius:8px; align-items:flex-start;">
+          <input type="checkbox" id="agreeTerms" name="agreeTerms" required style="width:16px;height:16px;accent-color:#C9A227;flex-shrink:0;margin-top:1px;" />
+          <span style="font-size:11px; line-height:1.5;">위 광고 게재 약관을 읽었으며 모두 동의합니다. 계약 위반 시 광고가 즉시 중단될 수 있음을 이해합니다.</span>
+        </label>
+        <label class="check-item" style="margin-bottom:8px; border-radius:8px; align-items:flex-start;">
+          <input type="checkbox" id="agreeEthics" name="agreeEthics" required style="width:16px;height:16px;accent-color:#C9A227;flex-shrink:0;margin-top:1px;" />
+          <span style="font-size:11px; line-height:1.5;">제출하는 광고 정보가 사실이며, HebronGuide 윤리 가이드라인(마10:16 지혜+순결)을 준수함을 확인합니다.</span>
+        </label>
+        <label class="check-item" style="border-radius:8px; align-items:flex-start;">
+          <input type="checkbox" id="agreePayment" name="agreePayment" required style="width:16px;height:16px;accent-color:#C9A227;flex-shrink:0;margin-top:1px;" />
+          <span style="font-size:11px; line-height:1.5;">결제 완료 후에만 광고가 게시됨을 이해하며, 결제 안내 이메일 수신에 동의합니다.</span>
+        </label>
+      </div>
+
       <div class="btn-row">
         <button type="button" class="btn-back" onclick="goStep(3)">← 이전</button>
         <button type="submit" class="btn-next" id="submitBtn">📩 광고 신청하기</button>
@@ -403,6 +553,64 @@
 </div>
 
 <script>
+/* ─── 사전 자격 확인 ─── */
+function checkPreEligibility() {
+  const all = ['preCheck1','preCheck2','preCheck3'].every(id => document.getElementById(id)?.checked);
+  const btn = document.getElementById('preCheckBtn');
+  if (all) {
+    btn.disabled = false;
+    btn.style.background = 'linear-gradient(135deg,#C9A227,#B8901C)';
+    btn.style.color = '#fff';
+    btn.style.cursor = 'pointer';
+    btn.style.borderColor = 'transparent';
+    btn.style.boxShadow = '0 4px 16px rgba(201,162,39,0.35)';
+  } else {
+    btn.disabled = true;
+    btn.style.background = 'rgba(255,255,255,0.08)';
+    btn.style.color = 'rgba(236,253,245,0.4)';
+    btn.style.cursor = 'not-allowed';
+    btn.style.borderColor = 'rgba(255,255,255,0.15)';
+    btn.style.boxShadow = 'none';
+  }
+}
+
+function startForm() {
+  document.getElementById('preCheck').style.display = 'none';
+  document.getElementById('stepWrapper').style.display = 'block';
+  document.getElementById('adForm').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ─── 실시간 금지어 감지 ─── */
+// 특정 단체명이 아닌 행위·표현 기준으로만 감지 (법적 안전)
+const BANNED_PATTERNS = [
+  { pattern: /100% 보장|절대 효과|완치 보장|기적 치유|무조건 효과/i, msg: '검증 불가한 효능·효과 표현은 사용할 수 없습니다' },
+  { pattern: /fifa 공식|bts 공식|nfl 공식|nba 공식/i, msg: '공인되지 않은 공식 파트너 표시는 사용할 수 없습니다' },
+  { pattern: /지금 당장 가입|회원 모집|등록하세요.*구원|구원.*등록/i, msg: '가입·모집이 주목적인 표현은 허용되지 않습니다' },
+  { pattern: /한국인만|한인 전용|외국인 출입금지|특정 민족만/i, msg: '특정 집단을 배제하는 표현은 허용되지 않습니다' },
+  { pattern: /도박|카지노|성인|유흥|총기|무기/i, msg: '해당 업종의 광고는 게재되지 않습니다' },
+];
+
+function checkEthicsRealtime(el) {
+  const val = el.value;
+  let warnEl = el.nextElementSibling;
+  if (!warnEl || !warnEl.classList.contains('ethics-warn')) {
+    warnEl = document.createElement('div');
+    warnEl.className = 'ethics-warn';
+    warnEl.style.cssText = 'font-size:10px;color:#F87171;margin-top:4px;padding:6px 10px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:6px;display:none;';
+    el.parentNode.insertBefore(warnEl, el.nextSibling);
+  }
+  const found = BANNED_PATTERNS.find(p => p.pattern.test(val));
+  if (found) {
+    warnEl.textContent = '⚠️ ' + found.msg;
+    warnEl.style.display = 'block';
+    el.style.borderColor = '#EF4444';
+  } else {
+    warnEl.style.display = 'none';
+    el.style.borderColor = '';
+  }
+}
+
 /* ─── 스텝 네비게이션 ─── */
 let currentStep = 1;
 

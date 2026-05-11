@@ -2296,7 +2296,7 @@ const TOP5_SETTLE: Top5Item[] = [
     phone: "(206) 533-2600", hours: "월-토 8am-5pm",
     why: "한국어 구사 의사·치과의사 상주, 보험 없어도 소득 기준 진료 가능",
     tip: "예약: (206) 788-3700. 벨뷰·국제지구 지점도 운영", website: "ichs.com" },
-  { rank: 5, emoji: "⚖️", nameKo: "북서부 이민권 프로젝트 (NWIRP)", nameEn: "Northwest Immigrant Rights Project",
+  { rank: 5, emoji: "⚖️", nameKo: "서북미 이민권 프로젝트 (NWIRP)", nameEn: "Northwest Immigrant Rights Project",
     address: "615 2nd Ave Ste 400, Seattle WA 98104",
     phone: "(800) 445-5771", hours: "월-금 9am-5pm",
     why: "이민 법률 무료 지원 — 영주권·비자·추방방어. 저소득 이민자 전문",
@@ -6058,7 +6058,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               { emoji: "⚖️", name: lang === "ko" ? `무료 이민 법률 지원${isSeattle ? " (시애틀)" : ""}` : `Free Immigration Legal Help${isSeattle ? " (Seattle)" : ""}`,
                 desc: lang === "ko"
                   ? isSeattle
-                    ? "✅ 시애틀 무료/저비용 이민 법률 기관:\n\n• NWIRP (북서부 이민권 프로젝트): 📞 800-445-5771 | nwirp.org — 영주권·추방방어·DACA 무료\n• OneAmerica: 425-251-0900 | weareoneamerica.org — 시민권 지원·이민자 권익 옹호\n• PAIR Project: pairproject.org — 망명 신청자 무료 법률\n• NW Justice Project: 206-464-1519 — 저소득 이민자 무료 법률 (민사 한정)\n• KCSC (한인생활상담소): 425-776-2400 — 한국어 이민 초기 상담\n\n⚠️ 비전문가나 노타리오 (notario)에게 이민 서류 맡기지 마세요!"
+                    ? "✅ 시애틀 무료/저비용 이민 법률 기관:\n\n• NWIRP (서북미 이민권 프로젝트): 📞 800-445-5771 | nwirp.org — 영주권·추방방어·DACA 무료\n• OneAmerica: 425-251-0900 | weareoneamerica.org — 시민권 지원·이민자 권익 옹호\n• PAIR Project: pairproject.org — 망명 신청자 무료 법률\n• NW Justice Project: 206-464-1519 — 저소득 이민자 무료 법률 (민사 한정)\n• KCSC (한인생활상담소): 425-776-2400 — 한국어 이민 초기 상담\n\n⚠️ 비전문가나 노타리오 (notario)에게 이민 서류 맡기지 마세요!"
                     : `✅ 전국 무료 이민 법률 자원:\n\n• ILRC (이민법률자원센터): ilrc.org — 전국 이민 법률 지원\n• Immigration Advocates Network: immigrationadvocates.org — 도시별 무료 이민 법률 기관 검색\n• USCIS 공식 무료 법률 기관 목록: uscis.gov/freelegalhelpoffers\n• National Immigration Law Center: nilc.org\n\n⚠️ 비전문가나 노타리오 (notario)에게 이민 서류 맡기지 마세요!`
                   : isSeattle
                     ? "✅ Free/low-cost immigration legal resources in Seattle:\n\n• NWIRP: 📞 800-445-5771 | nwirp.org — green card, deportation defense, DACA\n• OneAmerica: 425-251-0900 | weareoneamerica.org — citizenship, immigrant rights\n• PAIR Project: pairproject.org — free legal help for asylum seekers\n• NW Justice Project: 206-464-1519 — free civil legal aid for low-income\n• KCSC: 425-776-2400 — Korean-language immigration consultation\n\n⚠️ Never use unlicensed notarios for immigration documents!"
@@ -8151,7 +8151,7 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                   tags: ko ? ["이민사기","신고","보호"] : ["Immigration Fraud","Report","Protection"] },
               ];
               if (slug === "seattle") return [
-                { emoji: "⚖️", name: ko ? "NWIRP — 북서부 이민권 프로젝트 ✅" : "NWIRP — NW Immigrant Rights Project ✅",
+                { emoji: "⚖️", name: ko ? "NWIRP — 서북미 이민권 프로젝트 ✅" : "NWIRP — NW Immigrant Rights Project ✅",
                   desc: ko ? "시애틀 최대 이민 법률 무료 기관. 영주권·추방방어·DACA·망명.\n📍 615 2nd Ave Ste 400, Seattle | 📞 800-445-5771 | 🔗 nwirp.org\n무료 (저소득 우선). 한국어 통역 가능"
                            : "Seattle's largest free immigration legal org. Green card, deportation defense, DACA, asylum.\n📍 615 2nd Ave Ste 400, Seattle | 📞 800-445-5771 | 🔗 nwirp.org\nFree (low-income priority). Korean interpreter available",
                   tags: ko ? ["무료법률","이민","추방방어"] : ["Free Legal","Immigration","Deportation"] },
