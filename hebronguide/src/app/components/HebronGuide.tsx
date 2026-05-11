@@ -4885,6 +4885,9 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     ? ["1주차", "1개월", "3개월", "행정", "재정", "주택", "✅ 전체", "🛂 비자·이민"]
     : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Housing", "✅ All", "🛂 Visa/Immigration"];
 
+  const city = useCityConfig();
+  const isSeattle = citySlug === "seattle";
+  const consulate = CITY_CONSULATE[citySlug] ?? CITY_CONSULATE.seattle;
   const accent = "#60A5FA";
 
   // ── 도시별 정착 1주차 데이터 ──
@@ -4984,13 +4987,18 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "RFC 등록 (납세자 번호)", desc: "멕시코 취업·사업 필수. 주재원은 현지 회사 HR 통해 처리 가능" },
     { title: "은행 계좌 개설", desc: "Banorte·BBVA·Santander. 주재원은 법인 계좌 연동 가능. 여권+RFC+주소 증명" },
     { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '몬테레이한인', 몬테레이 한인회, 현대·기아·POSCO 주재원 단체" },
-  ] : [
-    // seattle default
+  ] : isSeattle ? [
     { title: "임시 거주지 확보", desc: "한인 민박, 에어비앤비, 단기 렌탈로 시작. H-Mart·Lynnwood 한인타운 인근 권장" },
     { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통 가능. 선불폰부터 시작" },
     { title: "SSN (사회보장번호) 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 915 2nd Ave #3605, Seattle SSA 오피스" },
     { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명 준비. Chase, Wells Fargo, WA Federal 방문" },
     { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '시애틀한인', H-Mart 커뮤니티 보드, 교회 방문" },
+  ] : [
+    { title: "임시 거주지 확보", desc: `한인 민박, 에어비앤비, 단기 렌탈로 시작. ${city.nameKo} 한인 커뮤니티 인근 권장` },
+    { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통 가능. 선불폰부터 시작" },
+    { title: "SSN (사회보장번호) 신청", desc: "고용 비자 소지자 입국 10일 후 신청. ssa.gov/locator 에서 가까운 SSA 오피스 찾기 | 📞 800-772-1213" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명 준비. Chase, Wells Fargo 방문" },
+    { title: `${city.nameKo} 한인 커뮤니티 연결`, desc: `카카오오픈채팅 또는 구글에서 '${city.nameKo} 한인' 검색. 지역 한인 교회·한인회 방문` },
   ];
 
   const week1En = citySlug === "dallas" ? [
@@ -5089,13 +5097,18 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "Register RFC (Mexican Tax ID)", desc: "Required for work & banking. Expats: coordinate with company HR for assistance" },
     { title: "Open bank account", desc: "Banorte, BBVA, or Santander. Corporate account linkage available for expats" },
     { title: "Connect to Korean community", desc: "KakaoTalk '몬테레이한인', Monterrey Korean Association, Hyundai/Kia/POSCO expat groups" },
-  ] : [
-    // seattle default
+  ] : isSeattle ? [
     { title: "Secure temporary housing", desc: "Korean homestay, Airbnb, or short-term rental. Near H-Mart or Lynnwood Koreatown recommended" },
     { title: "Activate phone", desc: "T-Mobile, AT&T, or Mint Mobile. Passport + visa sufficient. Prepaid is fine to start" },
     { title: "Apply for SSN", desc: "For work visa holders: apply 10 days after arrival. Visit SSA office at 915 2nd Ave #3605, Seattle" },
     { title: "Prepare to open bank account", desc: "Bring passport, visa, address proof. Visit Chase, Wells Fargo, or WA Federal" },
     { title: "Connect to Korean community", desc: "KakaoTalk Open Chat '시애틀한인', H-Mart community board, visit a Korean church" },
+  ] : [
+    { title: "Secure temporary housing", desc: `Korean homestay, Airbnb, or short-term rental. Near ${city.nameEn} Korean community area recommended` },
+    { title: "Activate phone", desc: "T-Mobile, AT&T, or Mint Mobile. Passport + visa sufficient. Prepaid is fine to start" },
+    { title: "Apply for SSN", desc: "For work visa holders: apply 10 days after arrival. Find your local SSA office: ssa.gov/locator | 📞 800-772-1213" },
+    { title: "Prepare to open bank account", desc: "Bring passport, visa, address proof. Visit Chase or Wells Fargo" },
+    { title: `Connect to ${city.nameEn} Korean community`, desc: `Search '${city.nameEn} Korean community' on KakaoTalk or Google. Visit a local Korean church or association` },
   ];
 
   // ── 도시별 정착 1개월 데이터 ──
@@ -5322,13 +5335,18 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "FM3/Residente Temporal 비자", desc: "취업·장기 체류 필수. 주재원: 본사 파견 서류로 간소화 가능\n몬테레이 INM 오피스 방문 | 🔗 www.gob.mx/inm" },
     { title: "IMSS 또는 회사 단체보험", desc: "주재원: 회사 단체보험(Christus Muguerza 등 사립 연계). IMSS보다 사립 병원 권장" },
     { title: "한국 대사관 등록 (CDMX)", desc: "장기 체류자 재외국민 등록. 몬테레이 → 멕시코시티 대사관 관할\n📞 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko" },
-  ] : [
-    // seattle default
+  ] : isSeattle ? [
     { title: "SSN 신청", desc: "사회보장청(SSA) 오피스 | 📍 915 2nd Ave #3605, Seattle WA | 📞 800-772-1213 | 🔗 ssa.gov" },
     { title: "WA 운전면허 (DOL)", desc: "✅ 한국어 필기 가능! Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
     { title: "WA Healthplanfinder (건강보험)", desc: "WA 주 마켓플레이스. Washington Apple Health (Medicaid) 소득 기준 무료. 🔗 wahealthplanfinder.org" },
     { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
     { title: "영주권·비자 갱신 + 시민권", desc: "USCIS: uscis.gov | 린우드·벨뷰 이민 변호사 다수 활동\n시민권(N-400): 영주권 5년 후. 한인 교회 시민권 클래스 운영" },
+  ] : [
+    { title: "SSN 신청", desc: `사회보장청(SSA) | 가까운 오피스: ssa.gov/locator | 📞 800-772-1213 | 고용 비자 소지자 입국 10일 후 신청` },
+    { title: `${city.nameKo} 운전면허 (DMV/DOL)`, desc: `해당 주 DMV 웹사이트에서 예약. 한국어 필기 가능 여부 사전 확인 | 🔗 usa.gov/driver-license` },
+    { title: "건강보험 (HealthCare.gov)", desc: "연방 마켓플레이스. 소득 기준 보조금 가능. Medicaid 별도 확인 | 🔗 healthcare.gov" },
+    { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
+    { title: "영주권·비자 갱신 + 시민권", desc: `USCIS: uscis.gov | 📞 1-800-375-5283\n지역 이민 변호사: immigrationadvocates.org\n시민권(N-400): 영주권 5년 후 신청 가능` },
   ];
   const adminEn = citySlug === "sf" ? [
     { title: "SSN Application", desc: "📍 Social Security Office | 1750 Mission St, San Francisco CA | 📞 800-772-1213 | 🔗 ssa.gov" },
@@ -5426,13 +5444,18 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "FM3 / Residente Temporal Visa", desc: "Required for work & long-term stay. Expats: company dispatch paperwork can simplify\nVisit Monterrey INM office | 🔗 www.gob.mx/inm" },
     { title: "IMSS or Company Group Insurance", desc: "Expats: company group insurance (linked to Christus Muguerza etc.). Private hospitals strongly recommended over IMSS" },
     { title: "Korean Embassy Registration (CDMX)", desc: "Monterrey is under Korean Embassy Mexico City jurisdiction\n📞 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko" },
-  ] : [
-    // seattle default
+  ] : isSeattle ? [
     { title: "SSN Application", desc: "Social Security Office | 📍 915 2nd Ave #3605, Seattle WA | 📞 800-772-1213 | 🔗 ssa.gov" },
     { title: "WA Driver License (DOL)", desc: "✅ Written test available in Korean! Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
     { title: "WA Healthplanfinder (Health Insurance)", desc: "WA state marketplace. Washington Apple Health (Medicaid) — income-based free. 🔗 wahealthplanfinder.org" },
     { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
     { title: "Green Card / Visa Renewal + Citizenship", desc: "USCIS: uscis.gov | Immigration attorneys in Lynnwood & Bellevue\nCitizenship (N-400): Eligible 5 years after green card. Korean churches offer civics prep classes" },
+  ] : [
+    { title: "SSN Application", desc: "Social Security office: ssa.gov/locator | 📞 800-772-1213 | Work visa holders: apply 10 days after arrival | 🔗 ssa.gov" },
+    { title: `${city.nameEn} Driver License (DMV)`, desc: `Check your state's DMV website for appointment. Verify Korean-language test availability in advance | 🔗 usa.gov/driver-license` },
+    { title: "Health Insurance (HealthCare.gov)", desc: "Federal marketplace. Income-based subsidies available. Also check Medicaid eligibility | 🔗 healthcare.gov" },
+    { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
+    { title: "Green Card / Visa Renewal + Citizenship", desc: `USCIS: uscis.gov | 📞 1-800-375-5283\nFind immigration attorneys: immigrationadvocates.org\nCitizenship (N-400): Eligible 5 years after green card` },
   ];
 
   const financeKo = citySlug === "sf" || citySlug === "la" ? [
@@ -5501,13 +5524,17 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "스페인어 뱅킹 환경", desc: "도랄 지역 은행은 스페인어 주 언어. 한인 직원 있는 지점 미리 확인 권장" },
     { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
     { title: "은퇴 계좌 (401K/IRA)", desc: "소득세 없음 → Roth IRA 매우 유리! 마이애미 한인 CPA 한인회 통해 연결" },
-  ] : [
-    // seattle default
+  ] : isSeattle ? [
     { title: "Chase Total Checking", desc: "한인 커뮤니티 추천 1위. 전국 ATM 많음. $500 개설 보너스 이벤트 자주 있음 | 🔗 chase.com" },
     { title: "WA Federal Credit Union (시애틀 전용)", desc: "시애틀 한인 선호 신협. 자동차 대출 금리 경쟁력 있음 | 🔗 wafederal.com" },
     { title: "✅ WA 세금 혜택", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 약 10.25% (시애틀)\n→ 연봉 대비 실수령액이 CA·NY보다 훨씬 높음!" },
     { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
     { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. 소득세 없음 → Roth IRA 전략도 유리" },
+  ] : [
+    { title: "Chase Total Checking", desc: "한인 커뮤니티 추천 1위. 전국 ATM 많음. $500 개설 보너스 이벤트 자주 있음 | 🔗 chase.com" },
+    { title: `${city.nameKo} 주 세금 확인`, desc: `주 소득세·판매세 사전 확인 필수. 연봉 협상 전 반드시 실수령액 계산 | 🔗 smartasset.com/taxes` },
+    { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
+    { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. 주 소득세 여부에 따라 Roth IRA 전략 조정" },
   ];
 
   const financeEn = citySlug === "sf" || citySlug === "la" ? [
@@ -5576,13 +5603,17 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "Spanish-language Banking Environment", desc: "Doral area banks operate primarily in Spanish. Find branches with Korean or English staff in advance" },
     { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
     { title: "Retirement accounts (401K/IRA)", desc: "No state income tax → Roth IRA very attractive! Miami Korean CPA through Korean Association" },
-  ] : [
-    // seattle default
+  ] : isSeattle ? [
     { title: "Chase Total Checking", desc: "#1 in Korean community. Many ATMs nationwide. Frequent $500 opening bonus | 🔗 chase.com" },
     { title: "WA Federal Credit Union (Seattle only)", desc: "Seattle Korean community favorite. Competitive auto loan rates | 🔗 wafederal.com" },
     { title: "✅ Washington State Tax Advantage", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: ~10.25% in Seattle\n→ Take-home pay much higher vs CA or NY!" },
     { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
     { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. No state income tax → Roth IRA also attractive in WA" },
+  ] : [
+    { title: "Chase Total Checking", desc: "#1 in Korean community. Many ATMs nationwide. Frequent $500 opening bonus | 🔗 chase.com" },
+    { title: `${city.nameEn} State Tax Check`, desc: `Confirm state income & sales tax before salary negotiation. Calculate your real take-home pay | 🔗 smartasset.com/taxes` },
+    { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
+    { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. Adjust Roth IRA strategy based on your state's income tax rate" },
   ];
 
   // 거주지 데이터 (탭 index 5) — 도시별 분기
@@ -5622,13 +5653,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "🏢", title: "리처드슨 (Richardson) — 테크 코리도어", desc: "AT&T·Ericsson·Samsung 반도체 본사 인근. 시티라인 개발로 급성장. UT Dallas 인접. 렌트 1BR $1,400–1,900. 한인 유학생·직장인 인기" },
     { emoji: "💰", title: "어빙 (Irving) — 가성비 DFW 공항", desc: "DFW 공항 바로 옆. 렌트 1BR $1,200–1,600 (저렴). 한인 커뮤니티 성장 중. Las Colinas 업무지구 인근. 출장·이동 잦은 분께 추천" },
     { emoji: "🌿", title: "맥키니·프리스코 (McKinney/Frisco) — 신흥 한인 주거지", desc: "DFW 북부 급성장 신도시. 좋은 학군 (Frisco ISD). 한인 가족 이주 증가. 신축 주택 다수. 렌트 1BR $1,500–2,000. 통근 30–45분" },
-  ] : [
+  ] : isSeattle ? [
     { emoji: "🏘️", title: "린우드 (Lynnwood) — 한인 1번지", desc: "한인타운 중심. H-Mart·한식당·교회 밀집. 링크 라이트레일 직결 (2024 개통). 렌트 1BR $1,800–2,100 | 스튜디오 $1,300–1,600. Northshore SD (Niche A) — 한인 가족 최다 거주" },
     { emoji: "💼", title: "벨뷰 (Bellevue) — 테크·최상위 학군", desc: "Bellevue SD — WA 1위 (Niche A+). Amazon·MS·Google 출퇴근 최적. 렌트 1BR $2,300–2,900 (프리미엄). 한인 전문직·가족 선호" },
     { emoji: "🌲", title: "보텔·우딘빌 (Bothell) — 학군+자연", desc: "Northshore SD Niche A. 한인 가족 급성장 지역. 자연환경·조용한 주거. 렌트 1BR $1,900–2,300" },
     { emoji: "💰", title: "페더럴웨이 (Federal Way) — 가성비", desc: "렌트 1BR $1,500–2,000 (저렴). 한인 마트·교회 다수. I-5 접근 편리. 넓은 한인 커뮤니티" },
     { emoji: "🎓", title: "대학지구 (U-District) — 유학생", desc: "UW 인근. 한식당·카페 집중. 링크 라이트레일 최고 접근. 렌트 1BR $1,600–2,400. UW·Seattle U·Seattle Central 재학생 최다" },
-  ];
+  ] : [];  // 미등록 도시 — 시애틀 주거지 데이터 노출 방지
   const areasEn = citySlug === "sf" ? [
     { emoji: "💻", title: "Santa Clara — Bay Area Korean Hub #1", desc: "Silicon Valley's Koreatown. H-Mart, Korean restaurants & churches on El Camino Real. Near Apple, Intel, NVIDIA. Rent 1BR $2,300–2,800. Santa Clara USD (Niche A-)" },
     { emoji: "🍎", title: "Cupertino — Apple HQ & Top Schools", desc: "Home of Apple HQ. Cupertino Union SD + Fremont Union HSD — among CA's best. #1 choice for Korean families. Rent 1BR $2,500–3,200 (premium). High Korean population" },
@@ -5689,13 +5720,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "🏢", title: "Richardson — Tech Corridor", desc: "Near AT&T, Ericsson & Samsung Semiconductor. Fast-growing Cityline development. Adjacent to UT Dallas. Rent 1BR $1,400–1,900. Popular with Korean students & tech workers" },
     { emoji: "💰", title: "Irving — Affordable + DFW Airport", desc: "Right next to DFW Airport. Rent 1BR $1,200–1,600 (affordable). Growing Korean community. Near Las Colinas business district. Great for frequent travelers" },
     { emoji: "🌿", title: "McKinney/Frisco — New Korean Suburbs", desc: "Fast-growing new suburbs in north DFW. Excellent Frisco ISD schools. Increasing Korean family population. New construction homes. Rent 1BR $1,500–2,000. 30–45 min commute" },
-  ] : [
+  ] : isSeattle ? [
     { emoji: "🏘️", title: "Lynnwood — Korean Hub #1", desc: "Heart of Koreatown. H-Mart, Korean restaurants & churches clustered. Link Light Rail direct (opened 2024). Rent 1BR $1,800–2,100 | Studio $1,300–1,600. Northshore SD (Niche A) — largest Korean family population" },
     { emoji: "💼", title: "Bellevue — Tech & Top Schools", desc: "Bellevue SD — WA #1 (Niche A+). Best commute for Amazon/MS/Google. Rent 1BR $2,300–2,900 (premium). Preferred by Korean professionals & families" },
     { emoji: "🌲", title: "Bothell — Schools + Nature", desc: "Northshore SD Niche A. Fast-growing Korean family area. Natural environment & quiet neighborhoods. Rent 1BR $1,900–2,300" },
     { emoji: "💰", title: "Federal Way — Affordable", desc: "Rent 1BR $1,500–2,000 (affordable). Many Korean grocery stores & churches. Good I-5 access. Large Korean community" },
     { emoji: "🎓", title: "U-District — Student Area", desc: "Near UW. Dense Korean restaurants & cafés. Best Link Light Rail access. Rent 1BR $1,600–2,400. Most UW & Seattle U students" },
-  ];
+  ] : [];  // Unregistered city — prevents Seattle housing data from showing
 
   const serverKeys = ["settle_week1", "settle_month1", "settle_month3", "settle_admin", "settle_finance"];
   const serverData = sub < 5 ? serverContent[serverKeys[sub] as keyof typeof serverContent] : null;
@@ -5808,15 +5839,19 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                   ? "✅ 주요 영주권 취득 경로:\n\n취업이민 (EB):\n• EB-1A: 특기자 (자기청원 가능)\n• EB-1C: 다국적기업 관리자 (L-1A 후 전환)\n• EB-2 NIW: 국익면제 (자기청원, 연구·의료 분야 유리)\n• EB-3: 전문직/숙련직 (스폰서 필요, 대기 길 수 있음)\n• EB-5: 투자이민 (미국 내 $800K~$1.05M 투자)\n\n가족이민:\n• IR-1/CR-1: 미국 시민권자 배우자\n• F-2A: 영주권자 배우자·미성년 자녀 (대기 있음)\n\n💡 현재 우선순위 날짜: travel.state.gov → Visa Bulletin 확인"
                   : "✅ Main green card pathways:\n\nEmployment-Based:\n• EB-1A: Extraordinary ability (self-petition possible)\n• EB-1C: Multinational manager (L-1A → EB-1C)\n• EB-2 NIW: National Interest Waiver (self-petition, great for researchers)\n• EB-3: Professionals/skilled workers (sponsor required, wait times vary)\n• EB-5: Investor ($800K–$1.05M investment in the US)\n\nFamily-Based:\n• IR-1/CR-1: Spouse of US citizen\n• F-2A: Spouse/minor children of LPR (wait time applies)\n\n💡 Check current priority dates: travel.state.gov → Visa Bulletin",
                 tags: lang === "ko" ? ["영주권", "EB", "그린카드"] : ["Green Card", "EB", "NIW"] },
-              { emoji: "⚖️", name: lang === "ko" ? "무료 이민 법률 지원 (시애틀)" : "Free Immigration Legal Help (Seattle)",
+              { emoji: "⚖️", name: lang === "ko" ? `무료 이민 법률 지원${isSeattle ? " (시애틀)" : ""}` : `Free Immigration Legal Help${isSeattle ? " (Seattle)" : ""}`,
                 desc: lang === "ko"
-                  ? "✅ 시애틀 무료/저비용 이민 법률 기관:\n\n• NWIRP (북서부 이민권 프로젝트): 📞 800-445-5771 | nwirp.org — 영주권·추방방어·DACA 무료\n• OneAmerica: 425-251-0900 | weareoneamerica.org — 시민권 지원·이민자 권익 옹호\n• PAIR Project: pairproject.org — 망명 신청자 무료 법률\n• NW Justice Project: 206-464-1519 — 저소득 이민자 무료 법률 (민사 한정)\n• KCSC (한인생활상담소): 425-776-2400 — 한국어 이민 초기 상담\n\n⚠️ 비전문가나 노타리오 (notario)에게 이민 서류 맡기지 마세요!"
-                  : "✅ Free/low-cost immigration legal resources in Seattle:\n\n• NWIRP: 📞 800-445-5771 | nwirp.org — green card, deportation defense, DACA\n• OneAmerica: 425-251-0900 | weareoneamerica.org — citizenship, immigrant rights\n• PAIR Project: pairproject.org — free legal help for asylum seekers\n• NW Justice Project: 206-464-1519 — free civil legal aid for low-income\n• KCSC: 425-776-2400 — Korean-language immigration consultation\n\n⚠️ Never use unlicensed notarios for immigration documents!",
-                tags: lang === "ko" ? ["무료법률", "NWIRP", "이민상담"] : ["Free Legal", "NWIRP", "Immigration"] },
-              { emoji: "🇰🇷", name: lang === "ko" ? "주시애틀 총영사관 서비스" : "Korean Consulate General Seattle",
+                  ? isSeattle
+                    ? "✅ 시애틀 무료/저비용 이민 법률 기관:\n\n• NWIRP (북서부 이민권 프로젝트): 📞 800-445-5771 | nwirp.org — 영주권·추방방어·DACA 무료\n• OneAmerica: 425-251-0900 | weareoneamerica.org — 시민권 지원·이민자 권익 옹호\n• PAIR Project: pairproject.org — 망명 신청자 무료 법률\n• NW Justice Project: 206-464-1519 — 저소득 이민자 무료 법률 (민사 한정)\n• KCSC (한인생활상담소): 425-776-2400 — 한국어 이민 초기 상담\n\n⚠️ 비전문가나 노타리오 (notario)에게 이민 서류 맡기지 마세요!"
+                    : `✅ 전국 무료 이민 법률 자원:\n\n• ILRC (이민법률자원센터): ilrc.org — 전국 이민 법률 지원\n• Immigration Advocates Network: immigrationadvocates.org — 도시별 무료 이민 법률 기관 검색\n• USCIS 공식 무료 법률 기관 목록: uscis.gov/freelegalhelpoffers\n• National Immigration Law Center: nilc.org\n\n⚠️ 비전문가나 노타리오 (notario)에게 이민 서류 맡기지 마세요!`
+                  : isSeattle
+                    ? "✅ Free/low-cost immigration legal resources in Seattle:\n\n• NWIRP: 📞 800-445-5771 | nwirp.org — green card, deportation defense, DACA\n• OneAmerica: 425-251-0900 | weareoneamerica.org — citizenship, immigrant rights\n• PAIR Project: pairproject.org — free legal help for asylum seekers\n• NW Justice Project: 206-464-1519 — free civil legal aid for low-income\n• KCSC: 425-776-2400 — Korean-language immigration consultation\n\n⚠️ Never use unlicensed notarios for immigration documents!"
+                    : `✅ National free immigration legal resources:\n\n• ILRC (Immigration Legal Resource Center): ilrc.org\n• Immigration Advocates Network: immigrationadvocates.org — search free legal aid by city\n• USCIS free legal services: uscis.gov/freelegalhelpoffers\n• National Immigration Law Center: nilc.org\n\n⚠️ Never use unlicensed notarios for immigration documents!`,
+                tags: lang === "ko" ? ["무료법률", "이민상담", "전국"] : ["Free Legal", "Immigration", "National"] },
+              { emoji: "🇰🇷", name: lang === "ko" ? `${consulate.ko} 서비스` : `${consulate.en} Services`,
                 desc: lang === "ko"
-                  ? "✅ 검증됨 | 📍 115 W Mercer St, Seattle | 📞 (206) 441-1011\n영업시간: 월-금 8:30am-4pm (예약 필수)\n\n주요 서비스:\n• 여권 발급·갱신 (온라인 예약 필수)\n• 공증·영사 확인 (서류 제출 시 한국어 공증)\n• 재외국민 등록 (도미 직후 필수!)\n• 국적·병역 상담\n• 비자 관련 한국 본국 서류 안내\n\n🔗 overseas.mofa.go.kr/us-seattle-ko\n💡 민원24(mw.go.kr)로 한국 서류 온라인 발급 후 영사 확인 절차 단축 가능"
-                  : "✅ Verified | 📍 115 W Mercer St, Seattle | 📞 (206) 441-1011\nHours: Mon-Fri 8:30am-4pm (appointment required)\n\nKey services:\n• Passport issuance & renewal (online appointment required)\n• Notarization & consular certification\n• Overseas Korean registration (do this right after arrival!)\n• Nationality & military service consultation\n• Korean document guidance for visa applications\n\n🔗 overseas.mofa.go.kr/us-seattle-ko",
+                  ? `✅ 검증됨 | 📞 ${consulate.phone}\n영업시간: 월-금 8:30am-4pm (예약 필수)\n\n주요 서비스:\n• 여권 발급·갱신 (온라인 예약 필수)\n• 공증·영사 확인\n• 재외국민 등록 (도미 직후 필수!)\n• 국적·병역 상담\n\n🔗 ${consulate.url}\n💡 민원24(mw.go.kr)로 한국 서류 온라인 발급 후 영사 확인 절차 단축 가능`
+                  : `✅ Verified | 📞 ${consulate.phone}\nHours: Mon-Fri 8:30am-4pm (appointment required)\n\nKey services:\n• Passport issuance & renewal\n• Notarization & consular certification\n• Overseas Korean registration (do right after arrival!)\n• Nationality & military service consultation\n\n🔗 ${consulate.url}`,
                 tags: lang === "ko" ? ["총영사관", "여권", "공증"] : ["Consulate", "Passport", "Notary"] },
             ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
