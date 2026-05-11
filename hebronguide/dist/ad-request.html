@@ -147,16 +147,21 @@
 
       <!-- 광고 노출 범위 -->
       <label>광고 노출 범위 *</label>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:4px;">
-        <label style="margin:0; padding:12px; cursor:pointer; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:10px; display:flex; flex-direction:column; gap:4px;" id="localLabel">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:4px;">
+        <label style="margin:0; padding:10px 8px; cursor:pointer; background:rgba(110,231,183,0.08); border:1px solid #6EE7B7; border-radius:10px; display:flex; flex-direction:column; gap:3px;" id="localLabel">
           <input type="radio" name="adReach" value="local" checked style="display:none;" onchange="updateReachUI()" />
-          <span style="font-size:13px; font-weight:800; color:#6EE7B7;">📍 로컬</span>
-          <span style="font-size:10px; color:rgba(236,253,245,0.55); line-height:1.5;">선택한 도시 사용자에게만<br>노출됩니다</span>
+          <span style="font-size:12px; font-weight:800; color:#6EE7B7;">📍 로컬</span>
+          <span style="font-size:9px; color:rgba(236,253,245,0.5); line-height:1.5;">해당 도시<br>맛집·교회·상권<br>목록에 게재</span>
         </label>
-        <label style="margin:0; padding:12px; cursor:pointer; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:10px; display:flex; flex-direction:column; gap:4px;" id="globalLabel">
+        <label style="margin:0; padding:10px 8px; cursor:pointer; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:10px; display:flex; flex-direction:column; gap:3px;" id="americasLabel">
+          <input type="radio" name="adReach" value="americas" style="display:none;" onchange="updateReachUI()" />
+          <span style="font-size:12px; font-weight:800; color:#60A5FA;">🌎 미주</span>
+          <span style="font-size:9px; color:rgba(236,253,245,0.5); line-height:1.5;">전 도시<br>미주 추천 섹션<br>별도 게재</span>
+        </label>
+        <label style="margin:0; padding:10px 8px; cursor:pointer; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:10px; display:flex; flex-direction:column; gap:3px;" id="globalLabel">
           <input type="radio" name="adReach" value="global" style="display:none;" onchange="updateReachUI()" />
-          <span style="font-size:13px; font-weight:800; color:#C9A227;">🌐 글로벌</span>
-          <span style="font-size:10px; color:rgba(236,253,245,0.55); line-height:1.5;">전체 도시 공통 노출<br>항공·전국 브랜드 전용</span>
+          <span style="font-size:12px; font-weight:800; color:#C9A227;">🌐 글로벌</span>
+          <span style="font-size:9px; color:rgba(236,253,245,0.5); line-height:1.5;">전 도시<br>최상단 배너<br>고정 게재</span>
         </label>
       </div>
 
@@ -207,42 +212,59 @@
       </select>
 
       <label>광고 기간 *</label>
-      <select name="adDuration" required>
-        <option value="1주">1주 ($25)</option>
-        <option value="1개월" selected>1개월 ($50) — 추천</option>
-        <option value="3개월">3개월 ($120, 20% 할인)</option>
-        <option value="월드컵 시즌">월드컵 시즌 (6/1-7/26, $80)</option>
+      <select name="adDuration" id="adDuration" required onchange="calcTotal()">
+        <option value="0.5">1주 (월 단가 × 0.5)</option>
+        <option value="1" selected>1개월 — 추천</option>
+        <option value="2.4">3개월 (20% 할인)</option>
+        <option value="2">월드컵 시즌 6/1–7/26</option>
       </select>
 
       <label>광고 플랜 *</label>
       <div class="pricing" id="pricingGrid">
         <label>
-          <input type="radio" name="budget" id="budget1" value="$50/월 — 로컬 기본" checked />
+          <input type="radio" name="budget" id="budget1" value="$50/월 — 로컬 기본" checked onchange="calcTotal()" />
           <div class="price-card">
             <div class="price-amount" id="plan1Price">$50</div>
-            <div style="font-size:9px; color:rgba(201,162,39,0.6);" id="plan1Per">/월</div>
+            <div style="font-size:9px; color:rgba(201,162,39,0.6);">/월</div>
             <div class="price-period" id="plan1Label">로컬 기본</div>
           </div>
         </label>
         <label>
-          <input type="radio" name="budget" id="budget2" value="$100/월 — 로컬 우선 노출" />
+          <input type="radio" name="budget" id="budget2" value="$100/월 — 로컬 우선" onchange="calcTotal()" />
           <div class="price-card">
             <div class="price-amount" id="plan2Price">$100</div>
-            <div style="font-size:9px; color:rgba(201,162,39,0.6);" id="plan2Per">/월</div>
+            <div style="font-size:9px; color:rgba(201,162,39,0.6);">/월</div>
             <div class="price-period" id="plan2Label">로컬 우선 노출</div>
           </div>
         </label>
         <label>
-          <input type="radio" name="budget" id="budget3" value="$200/월 — 로컬 골드" />
+          <input type="radio" name="budget" id="budget3" value="$200/월 — 로컬 골드" onchange="calcTotal()" />
           <div class="price-card">
             <div class="price-amount" id="plan3Price">$200</div>
-            <div style="font-size:9px; color:rgba(201,162,39,0.6);" id="plan3Per">/월</div>
+            <div style="font-size:9px; color:rgba(201,162,39,0.6);">/월</div>
             <div class="price-period" id="plan3Label">로컬 골드</div>
           </div>
         </label>
       </div>
       <div id="planNote" style="font-size:10px; color:rgba(236,253,245,0.4); margin-top:6px; line-height:1.5;">
-        📍 로컬: 해당 도시만 노출 · 🌐 글로벌 선택 시 가격이 달라집니다
+        📍 로컬: 해당 도시만 노출 · 범위 변경 시 가격이 달라집니다
+      </div>
+
+      <!-- 실시간 금액 계산 -->
+      <div id="priceCalc" style="margin-top:14px; background:rgba(201,162,39,0.1); border:1px solid rgba(201,162,39,0.35); border-radius:12px; padding:14px 16px;">
+        <div style="font-size:11px; color:#C9A227; font-weight:800; margin-bottom:10px; letter-spacing:0.3px;">📋 예상 광고비</div>
+        <div style="display:flex; justify-content:space-between; font-size:12px; color:rgba(236,253,245,0.7); margin-bottom:5px;">
+          <span id="calcPlanDesc">로컬 기본 $50/월</span>
+          <span id="calcPlanAmt">$50</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:12px; color:rgba(236,253,245,0.7); margin-bottom:10px;">
+          <span id="calcDurationDesc">× 1개월</span>
+          <span id="calcDiscountAmt"></span>
+        </div>
+        <div style="border-top:1px solid rgba(201,162,39,0.25); padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:13px; color:#ECFDF5; font-weight:800;">합계</span>
+          <span id="calcTotal" style="font-size:20px; color:#C9A227; font-weight:900;">$50</span>
+        </div>
       </div>
 
       <label>이 업소만의 강점 *</label>
@@ -265,45 +287,69 @@
 
 <script>
 const PLANS = {
-  local:  { prices: ['$50','$100','$200'], labels: ['로컬 기본','로컬 우선 노출','로컬 골드'],   values: ['$50/월 — 로컬 기본','$100/월 — 로컬 우선 노출','$200/월 — 로컬 골드'] },
-  global: { prices: ['$200','$350','$500'], labels: ['글로벌 기본','글로벌 프리미엄','글로벌 골드'], values: ['$200/월 — 글로벌 기본','$350/월 — 글로벌 프리미엄','$500/월 — 글로벌 골드'] },
+  local:    { prices: ['$50','$100','$200'],  labels: ['로컬 기본','로컬 우선 노출','로컬 골드'],     values: ['$50/월 — 로컬 기본','$100/월 — 로컬 우선','$200/월 — 로컬 골드'],       note: '📍 로컬: 선택한 1개 도시 사용자에게만 노출됩니다' },
+  americas: { prices: ['$150','$250','$400'], labels: ['미주 기본','미주 우선 노출','미주 골드'],     values: ['$150/월 — 미주 기본','$250/월 — 미주 우선','$400/월 — 미주 골드'],      note: '🌎 미주: 미국·캐나다·멕시코 전체 도시에 노출 · 한인 디아스포라 전체 도달' },
+  global:   { prices: ['$300','$500','$800'], labels: ['글로벌 기본','글로벌 프리미엄','글로벌 골드'], values: ['$300/월 — 글로벌 기본','$500/월 — 글로벌 프리미엄','$800/월 — 글로벌 골드'], note: '🌐 글로벌: 전 세계 도시 공통 노출 · 항공사·전국 브랜드·Hebron 서비스 전용' },
+};
+
+const REACH_STYLES = {
+  local:    { id: 'localLabel',    border: '#6EE7B7', bg: 'rgba(110,231,183,0.08)' },
+  americas: { id: 'americasLabel', border: '#60A5FA', bg: 'rgba(96,165,250,0.08)'  },
+  global:   { id: 'globalLabel',   border: '#C9A227', bg: 'rgba(201,162,39,0.12)'  },
 };
 
 function updateReachUI() {
-  const isGlobal = document.querySelector('input[name="adReach"][value="global"]').checked;
-  const plan = PLANS[isGlobal ? 'global' : 'local'];
-  const localLabel = document.getElementById('localLabel');
-  const globalLabel = document.getElementById('globalLabel');
+  const reach = document.querySelector('input[name="adReach"]:checked')?.value || 'local';
+  const plan = PLANS[reach];
   const citySelect = document.querySelector('select[name="city"]');
-  const note = document.getElementById('planNote');
 
-  // 노출 범위 카드 스타일
-  if (isGlobal) {
-    globalLabel.style.borderColor = '#C9A227'; globalLabel.style.background = 'rgba(201,162,39,0.12)';
-    localLabel.style.borderColor = 'rgba(255,255,255,0.1)'; localLabel.style.background = 'rgba(255,255,255,0.04)';
-    citySelect.disabled = true; citySelect.style.opacity = '0.35';
-    note.innerHTML = '🌐 글로벌: 전체 44개 도시 공통 노출 · 항공사·전국 브랜드·Hebron 서비스 전용';
-  } else {
-    localLabel.style.borderColor = '#6EE7B7'; localLabel.style.background = 'rgba(110,231,183,0.08)';
-    globalLabel.style.borderColor = 'rgba(255,255,255,0.1)'; globalLabel.style.background = 'rgba(255,255,255,0.04)';
-    citySelect.disabled = false; citySelect.style.opacity = '1';
-    note.innerHTML = '📍 로컬: 선택한 도시 사용자에게만 노출 · 글로벌 전환 시 가격이 달라집니다';
+  Object.values(REACH_STYLES).forEach(s => {
+    const el = document.getElementById(s.id);
+    if (el) { el.style.borderColor = 'rgba(255,255,255,0.1)'; el.style.background = 'rgba(255,255,255,0.04)'; }
+  });
+  const sel = REACH_STYLES[reach];
+  if (sel) {
+    const el = document.getElementById(sel.id);
+    if (el) { el.style.borderColor = sel.border; el.style.background = sel.bg; }
   }
 
-  // 플랜 가격·레이블·value 업데이트
+  citySelect.disabled = reach !== 'local';
+  citySelect.style.opacity = reach === 'local' ? '1' : '0.35';
+
   [1,2,3].forEach(i => {
     document.getElementById(`plan${i}Price`).textContent = plan.prices[i-1];
     document.getElementById(`plan${i}Label`).textContent = plan.labels[i-1];
     document.getElementById(`budget${i}`).value = plan.values[i-1];
   });
-  // 선택 초기화
   document.getElementById('budget1').checked = true;
+  document.getElementById('planNote').innerHTML = plan.note;
+  calcTotal();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('localLabel').style.borderColor = '#6EE7B7';
-  document.getElementById('localLabel').style.background = 'rgba(110,231,183,0.08)';
-});
+const DURATION_LABELS = { '0.5': '1주', '1': '1개월', '2.4': '3개월 (20% 할인)', '2': '월드컵 시즌' };
+
+function calcTotal() {
+  const checked = document.querySelector('input[name="budget"]:checked');
+  const dur = document.getElementById('adDuration');
+  if (!checked || !dur) return;
+  const idx = ['budget1','budget2','budget3'].indexOf(checked.id) + 1;
+  const priceText = document.getElementById(`plan${idx}Price`)?.textContent || '$0';
+  const labelText = document.getElementById(`plan${idx}Label`)?.textContent || '';
+  const monthly = parseInt(priceText.replace(/[^0-9]/g, ''), 10);
+  const key = dur.value;
+  const raw = monthly * (key === '2.4' ? 3 : parseFloat(key));
+  const total = key === '2.4' ? Math.round(raw * 0.8) : Math.round(raw);
+  document.getElementById('calcPlanDesc').textContent = `${labelText} ${priceText}/월`;
+  document.getElementById('calcPlanAmt').textContent = priceText;
+  document.getElementById('calcDurationDesc').textContent =
+    key === '2.4' ? '× 3개월  →  20% 할인 적용' : `× ${DURATION_LABELS[key] || ''}`;
+  document.getElementById('calcDiscountAmt').textContent =
+    key === '2.4' ? `-$${raw - total}` : '';
+  document.getElementById('calcTotal').textContent = `$${total}`;
+  checked.value = `$${total} — ${labelText} × ${DURATION_LABELS[key]}`;
+}
+
+document.addEventListener('DOMContentLoaded', calcTotal);
 
 function toggleNoWebsite(cb) {
   const input = document.getElementById('websiteInput');

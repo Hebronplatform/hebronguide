@@ -4983,12 +4983,79 @@ function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: numbe
   );
 }
 
+/* ─────────────────────────────────────────
+   광고 슬롯 시스템
+   글로벌: 최상단 배너 | 미주: 홈 추천 섹션 | 로컬: 각 탭 목록 내
+   실제 광고 데이터는 Supabase 연결 후 동적으로 교체 예정
+───────────────────────────────────────── */
+
+// 글로벌 광고 배너 — 모든 페이지 상단 고정 슬롯 ($300+)
+function GlobalAdBanner({ lang }: { lang: string }) {
+  const ko = lang === "ko";
+  // 광고 없을 때 → 자사 광고 문의 CTA 표시
+  return (
+    <a href="/ad-request.html" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "block" }}>
+      <div style={{
+        margin: "8px 16px 0",
+        background: "linear-gradient(90deg, rgba(201,162,39,0.08), rgba(201,162,39,0.04))",
+        border: "1px dashed rgba(201,162,39,0.3)",
+        borderRadius: 10, padding: "9px 14px",
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+      }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(201,162,39,0.7)" }}>
+          🌐 {ko ? "글로벌 광고 슬롯 — 전 도시 최상단 노출" : "Global Ad Slot — Shown across all cities"}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(201,162,39,0.5)", fontWeight: 700 }}>
+          {ko ? "광고 문의 →" : "Advertise →"}
+        </div>
+      </div>
+    </a>
+  );
+}
+
+// 미주 광고 섹션 — 홈 내 별도 카드 슬롯 ($150+)
+function AmericasAdSection({ lang }: { lang: string }) {
+  const ko = lang === "ko";
+  return (
+    <div style={{ padding: "16px 16px 0" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#60A5FA" }}>
+          🌎 {ko ? "미주 추천" : "Americas Picks"}
+        </div>
+        <a href="/ad-request.html" target="_blank" rel="noopener noreferrer"
+          style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(96,165,250,0.6)", textDecoration: "none", fontWeight: 700 }}>
+          {ko ? "광고 문의" : "Advertise"}
+        </a>
+      </div>
+      {/* 광고 없을 때 — 플레이스홀더 슬롯 */}
+      <div style={{
+        background: "rgba(96,165,250,0.06)", border: "1px dashed rgba(96,165,250,0.25)",
+        borderRadius: 12, padding: "14px 16px",
+        display: "flex", alignItems: "center", gap: 12,
+      }}>
+        <div style={{ width: 44, height: 44, borderRadius: 10, background: "rgba(96,165,250,0.12)", flexShrink: 0,
+          display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🌎</div>
+        <div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(96,165,250,0.7)", fontWeight: 700, marginBottom: 2 }}>
+            {ko ? "미주 추천 광고 슬롯" : "Americas Ad Slot"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(96,165,250,0.5)", lineHeight: 1.5 }}>
+            {ko ? "전 도시 미주 추천 섹션 · 한인 디아스포라 전체 도달" : "Shown in Americas section across all cities"}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
   return (
     <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
       <CompactHeroNew />
+      <GlobalAdBanner lang={lang} />
       <QuickMenuSection onNavigate={onNavigate} />
+      <AmericasAdSection lang={lang} />
       <HebronServicesAd lang={lang} onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <SettlementEssentialsSection onNavigate={onNavigate} />
