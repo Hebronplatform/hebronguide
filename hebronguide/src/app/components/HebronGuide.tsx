@@ -6209,6 +6209,22 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
       <div className="pt-5 px-4 md:px-6 lg:px-8">
         {sub === 0 && (
           <>
+            {/* 섬김의 정신 카드 */}
+            <div style={{ background: "rgba(192,132,252,0.07)", border: "1px solid rgba(192,132,252,0.22)", borderRadius: 16, padding: "18px 20px", marginBottom: 14 }}>
+              <div style={{ fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 800, color: "#C084FC", letterSpacing: "0.06em", marginBottom: 10, opacity: 0.85 }}>
+                {lang === "ko" ? "⛪ HebronGuide 교회 철학" : "⛪ HebronGuide Church Philosophy"}
+              </div>
+              <div style={{ fontSize: 13, color: "rgba(236,253,245,0.88)", lineHeight: 1.75, fontStyle: "italic", borderLeft: "3px solid rgba(192,132,252,0.4)", paddingLeft: 12, marginBottom: 10 }}>
+                {lang === "ko"
+                  ? "\"인자가 온 것은 섬김을 받으려 함이 아니라 도리어 섬기려 하고\"\n— 마가복음 10:45"
+                  : "\"The Son of Man came not to be served but to serve.\"\n— Mark 10:45"}
+              </div>
+              <div style={{ fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.7 }}>
+                {lang === "ko"
+                  ? "인생의 목적은 섬김에 있습니다. 예수님은 섬기러 오셨습니다. 섬기는 사람이 리더입니다.\nHebronGuide는 새 이민자를 섬기는 교회 공동체와 함께합니다."
+                  : "The purpose of life is in service. Jesus came to serve. The servant is the leader.\nHebronGuide partners with church communities that serve newcomers."}
+              </div>
+            </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[10px] mb-4">
               {[
                 { n: "50+", l: lang === "ko" ? "한인 교회" : "Korean Churches" },
