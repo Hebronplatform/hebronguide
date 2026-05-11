@@ -159,23 +159,19 @@
         </select>
 
         <label>광고 노출 범위 *</label>
-        <div class="reach-grid">
-          <label class="reach-card" id="localLabel">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px;">
+          <label class="reach-card" id="localLabel" style="border-color:#6EE7B7; background:rgba(110,231,183,0.08);">
             <input type="radio" name="adReach" value="local" checked style="display:none;" onchange="updateReachUI()" />
-            <span style="font-size:12px;font-weight:800;color:#6EE7B7;">📍 로컬</span>
-            <span style="font-size:9px;color:rgba(236,253,245,0.5);line-height:1.4;">해당 도시 목록<br>게재</span>
-          </label>
-          <label class="reach-card" id="americasLabel">
-            <input type="radio" name="adReach" value="americas" style="display:none;" onchange="updateReachUI()" />
-            <span style="font-size:12px;font-weight:800;color:#60A5FA;">🌎 미주</span>
-            <span style="font-size:9px;color:rgba(236,253,245,0.5);line-height:1.4;">전 도시 추천<br>섹션 게재</span>
+            <span style="font-size:13px;font-weight:800;color:#6EE7B7;">📍 도시 노출</span>
+            <span style="font-size:9px;color:rgba(236,253,245,0.55);line-height:1.5;margin-top:2px;">선택한 도시 페이지에만<br>표시됩니다</span>
           </label>
           <label class="reach-card" id="globalLabel">
             <input type="radio" name="adReach" value="global" style="display:none;" onchange="updateReachUI()" />
-            <span style="font-size:12px;font-weight:800;color:#C9A227;">🌐 글로벌</span>
-            <span style="font-size:9px;color:rgba(236,253,245,0.5);line-height:1.4;">전 도시 최상단<br>배너 고정</span>
+            <span style="font-size:13px;font-weight:800;color:#C9A227;">🌐 전체 노출</span>
+            <span style="font-size:9px;color:rgba(236,253,245,0.55);line-height:1.5;margin-top:2px;">전체 도시 최상단<br>배너에 고정됩니다</span>
           </label>
         </div>
+        <div id="cityNote" style="font-size:9px;color:rgba(236,253,245,0.35);margin-top:6px;">📍 도시 노출은 선택한 도시 방문자에게만 표시됩니다</div>
 
         <label>도시 *</label>
         <select name="city" id="citySelect" required>
@@ -710,7 +706,7 @@ function buildSummary() {
     ['업소명', get('businessName')],
     ['업소 종류', get('businessType')],
     ['도시', get('city') || '(전체 — 미주/글로벌)'],
-    ['노출 범위', {'local':'📍 로컬','americas':'🌎 미주','global':'🌐 글로벌'}[get('adReach')] || '—'],
+    ['노출 범위', {'local':'📍 도시 노출','global':'🌐 전체 노출'}[get('adReach')] || '—'],
     ['광고 목적', get('adGoal')],
     ['타겟 고객', getChecked('target')],
     ['원하는 행동', get('adCTA')],
@@ -732,20 +728,19 @@ function buildSummary() {
 }
 
 /* ─── 노출 범위 UI ─── */
+// 2단계: 도시 노출 vs 전체 노출
 const PLANS = {
-  local:    { prices:['$50','$100','$200'],  labels:['기본','우선 노출','🥇 골드'],   note:'📍 로컬: 해당 도시 사용자에게만 노출' },
-  americas: { prices:['$150','$250','$400'], labels:['기본','우선 노출','🥇 골드'],   note:'🌎 미주: 미국·캐나다·멕시코 전체 도시 노출' },
-  global:   { prices:['$300','$500','$800'], labels:['기본','우선 노출','🥇 골드'],   note:'🌐 글로벌: 전 세계 도시 최상단 배너 노출' },
+  local:  { prices:['$50','$100','$200'],  labels:['기본','우선 노출','🥇 골드'], note:'📍 도시 노출: 선택한 도시 페이지에만 표시됩니다' },
+  global: { prices:['$200','$350','$500'], labels:['기본','우선 노출','🥇 골드'], note:'🌐 전체 노출: 전체 도시 최상단 배너에 고정됩니다' },
 };
 const REACH_STYLES = {
-  local:    { id:'localLabel',    border:'#6EE7B7', bg:'rgba(110,231,183,0.08)' },
-  americas: { id:'americasLabel', border:'#60A5FA', bg:'rgba(96,165,250,0.08)'  },
-  global:   { id:'globalLabel',   border:'#C9A227', bg:'rgba(201,162,39,0.12)'  },
+  local:  { id:'localLabel',  border:'#6EE7B7', bg:'rgba(110,231,183,0.08)' },
+  global: { id:'globalLabel', border:'#C9A227', bg:'rgba(201,162,39,0.12)'  },
 };
 
 function updateReachUI() {
   const reach = document.querySelector('[name=adReach]:checked')?.value || 'local';
-  const plan = PLANS[reach];
+  const plan = PLANS[reach] || PLANS.local;
   const citySelect = document.getElementById('citySelect');
   const cityNote = document.getElementById('cityNote');
 
@@ -761,9 +756,9 @@ function updateReachUI() {
 
   citySelect.disabled = reach !== 'local';
   citySelect.style.opacity = reach === 'local' ? '1' : '0.35';
-  cityNote.textContent = reach === 'local' ? '📍 로컬 광고는 해당 도시 사용자에게만 노출됩니다' :
-    reach === 'americas' ? '🌎 미주 광고는 도시 선택 없이 전체 미주 도시에 노출됩니다' :
-    '🌐 글로벌 광고는 전 세계 모든 도시에 노출됩니다';
+  cityNote.textContent = reach === 'local'
+    ? '📍 선택한 도시 페이지를 방문하는 사용자에게만 표시됩니다'
+    : '🌐 HebronGuide 전체 도시 최상단에 노출됩니다 (인터넷 = 전 세계 접근 가능)';
 
   [1,2,3].forEach(i => {
     document.getElementById(`plan${i}Price`).textContent = plan.prices[i-1];
