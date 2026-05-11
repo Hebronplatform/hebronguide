@@ -187,7 +187,7 @@ Generate targeted ad copy in Korean, English, and Spanish.
       },
       humanReviewRequired: true,
       reviewerEmail: 'hebronplatform@gmail.com',
-      message: '광고가 생성되었습니다. 대표 폴 김 검수 후 게시됩니다 (48시간 이내).',
+      message: '광고가 생성되었습니다. HebronGuide 검수팀 확인 후 게시됩니다 (48시간 이내).',
     }
 
     return new Response(JSON.stringify(response), { headers: CORS })
