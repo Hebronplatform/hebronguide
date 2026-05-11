@@ -10492,16 +10492,16 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
     {
       id: "lingua-echo", category: "edu",
       emoji: "🗣️", color: "#4B5BD7",
-      nameKo: "HebronLingua Echo", nameEn: "HebronLingua Echo",
-      taglineKo: "K-pop 가사를 직접 이해하는 한국어 학습", taglineEn: "Learn Korean through K-pop — understand lyrics directly",
-      descKo: "270개+ 한국어 레슨. 발음·문법·회화·K-pop 표현까지. 멕시코·남미 K-pop 팬들을 위한 한국어 학습 플랫폼.\n\n✅ 270개+ 대화형 레슨\n✅ 오프라인 작동 (인터넷 없이 사용 가능)\n✅ 한국어·영어·스페인어 3개 언어 지원\n✅ BTS·뉴진스·aespa 등 K-pop 표현 포함\n✅ 실생활 정착 한국어 특화",
-      descEn: "270+ Korean lessons covering pronunciation, grammar, conversation & K-pop expressions. Designed for Latin American K-pop fans.\n\n✅ 270+ interactive lessons\n✅ Works offline (no internet required)\n✅ Korean, English & Spanish supported\n✅ K-pop expressions (BTS, NewJeans, aespa)\n✅ Practical settlement Korean included",
-      price: "$9.99", priceNote: ko ? "평생 이용권 · 업데이트 포함" : "Lifetime access · Updates included",
-      badge: "🔥 베스트셀러",
+      nameKo: "Echo — Ministry English", nameEn: "Echo — Ministry English",
+      taglineKo: "해외 목회자·선교사를 위한 실전 영어", taglineEn: "Real English for Korean Pastors & Missionaries",
+      descKo: "30개 목회 상황별 대화 레슨. 예배·심방·세례·선교·상담·설교 등 실제 사역에서 쓰는 영어를 4트랙으로 훈련합니다.\n\n✅ 30개 실전 Ministry English 레슨\n✅ 4트랙: 대화·어휘·미니스토리·Point of View\n✅ 오프라인 작동 (인터넷 없이 사용 가능)\n✅ Ministry·Mission·Biblical·Academic·Church-Life 5카테고리\n✅ 라이선스 키 1개 — 평생 이용",
+      descEn: "30 lessons covering real pastoral situations. Train with 4 tracks: Conversation, Vocabulary, Mini-Story & Point of View — for hospital visits, baptism, mission trips, conflict resolution, sermon prep & more.\n\n✅ 30 real Ministry English lessons\n✅ 4 tracks: Conversation · Vocabulary · Mini Story · POV\n✅ Works offline (no internet required)\n✅ 5 categories: Ministry, Mission, Biblical, Academic, Church Life\n✅ 1 license key — lifetime access",
+      price: "$97", priceNote: ko ? "평생 이용권 · 라이선스 키 이메일 발송" : "Lifetime access · License key sent by email",
+      badge: "🏆 목회자 추천",
       features: ko
-        ? ["270개+ 레슨", "K-pop 표현 포함", "오프라인 사용", "3개 언어", "평생 이용"]
-        : ["270+ lessons", "K-pop expressions", "Works offline", "3 languages", "Lifetime access"],
-      buyLink: "mailto:hebronplatform@gmail.com?subject=HebronLingua Echo 구매 문의&body=이름:%0A이메일:%0A언어 선택(한국어/영어/스페인어):%0A결제 방법 문의",
+        ? ["30개 목회 실전 레슨", "4트랙 훈련", "5개 카테고리", "오프라인 사용", "평생 이용"]
+        : ["30 Ministry lessons", "4-track training", "5 categories", "Works offline", "Lifetime access"],
+      buyLink: "mailto:HebronPlatform@gmail.com?subject=Echo Ministry English 구매 문의 ($97)&body=안녕하세요. Echo Ministry English 구매를 원합니다.%0A%0A이름:%0A이메일 (라이선스 키 수령):%0A",
       previewLink: "https://hebronguide.com",
       status: "live",
     },
@@ -10681,8 +10681,8 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
                   : "270+ lessons · Works offline · BTS & NewJeans lyrics included\nFor Latin American K-pop fans learning Korean"}
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 20, color: "#818CF8" }}>$9.99</span>
-                <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.4)", textDecoration: "line-through" }}>$29.99</span>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 20, color: "#818CF8" }}>$97</span>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.4)" }}>평생 이용 · 라이선스 키</span>
                 <span style={{ background: "rgba(239,68,68,0.25)", border: "1px solid rgba(239,68,68,0.4)", color: "#FCA5A5", borderRadius: 20, padding: "2px 8px", fontFamily: "Manrope,sans-serif", fontSize: 9, fontWeight: 700 }}>67% OFF</span>
               </div>
             </div>
