@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>새가족 신청 | HebronGuide</title>
+<meta name="description" content="HebronGuide 허브교회 새가족 신청">
+<style>
+:root {
+  --bg: #0d1117; --surface: rgba(255,255,255,0.04); --border: rgba(255,255,255,0.08);
+  --gold: #C9A227; --mint: #6EE7B7; --text: #ECFDF5; --muted: rgba(236,253,245,0.5); --r: 14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,'Noto Sans KR','Segoe UI',sans-serif;
+     background:var(--bg);color:var(--text);min-height:100vh;
+     display:flex;align-items:center;justify-content:center;padding:24px 16px;}
+.card{width:100%;max-width:480px;background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;overflow:hidden;}
+.card-head{padding:28px 24px 20px;
+  background:linear-gradient(135deg,rgba(201,162,39,0.12),rgba(13,17,23,0));}
+.logo{font-family:-apple-system,sans-serif;font-size:.75rem;font-weight:800;
+  color:var(--gold);letter-spacing:.08em;margin-bottom:16px;display:block;}
+.church-name{font-size:1.1rem;font-weight:900;margin-bottom:4px;}
+.subtitle{font-size:.8rem;color:var(--muted);line-height:1.6;}
+.verse{font-size:.75rem;color:var(--mint);opacity:.8;font-style:italic;margin-top:10px;}
+.form-body{padding:20px 24px 28px;}
+.fg{margin-bottom:14px;}
+.fg label{display:block;font-size:.75rem;font-weight:700;color:var(--muted);margin-bottom:5px;}
+.req{color:#f87171;}
+.fg input,.fg select,.fg textarea{
+  width:100%;padding:10px 12px;background:rgba(0,0,0,.3);
+  border:1px solid var(--border);border-radius:10px;
+  color:var(--text);font-size:.875rem;font-family:inherit;transition:border-color .15s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--gold);}
+.fg select option{background:#1a2535;}
+.fg textarea{resize:vertical;min-height:70px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:420px){.frow{grid-template-columns:1fr;}}
+.btn-submit{width:100%;padding:13px;
+  background:linear-gradient(135deg,var(--gold),#b8901c);
+  color:#0d1117;font-size:.92rem;font-weight:800;border:none;border-radius:12px;
+  cursor:pointer;margin-top:6px;transition:opacity .15s;}
+.btn-submit:hover{opacity:.88;}
+.note{font-size:.68rem;color:var(--muted);text-align:center;margin-top:8px;line-height:1.6;}
+#ok{display:none;text-align:center;padding:28px 10px;}
+#ok .ok-icon{font-size:3rem;margin-bottom:12px;}
+#ok h3{font-size:1.05rem;font-weight:900;color:var(--mint);margin-bottom:8px;}
+#ok p{font-size:.83rem;color:var(--muted);line-height:1.7;}
+#ok .ok-church{color:var(--gold);font-weight:700;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-head">
+    <span class="logo">✝ HebronGuide</span>
+    <div class="church-name" id="churchDisplay">허브교회 새가족 신청</div>
+    <div class="subtitle" id="subtitleDisplay">
+      교회를 방문하기 전에 미리 신청해 주세요.<br>담당자가 따뜻하게 맞이할 준비를 합니다.
+    </div>
+    <div class="verse">"내가 나그네 되었을 때 너희가 영접하였다" — 마 25:35</div>
+  </div>
+
+  <div class="form-body">
+    <form id="nmForm">
+      <input type="hidden" id="hidChurch">
+      <input type="hidden" id="hidEmail">
+
+      <div class="fg">
+        <label>성함 <span class="req">*</span></label>
+        <input type="text" id="fName" name="성함" placeholder="홍길동" required>
+      </div>
+
+      <div class="frow">
+        <div class="fg">
+          <label>연락처 <span class="req">*</span></label>
+          <input type="tel" id="fPhone" name="연락처" placeholder="010-0000-0000" required>
+        </div>
+        <div class="fg">
+          <label>이메일</label>
+          <input type="email" id="fEmail" name="이메일" placeholder="email@example.com">
+        </div>
+      </div>
+
+      <div class="fg">
+        <label>언어 선호도 <span class="req">*</span></label>
+        <select id="fLang" name="언어" required>
+          <option value="한국어">한국어 (Korean)</option>
+          <option value="영어">영어 (English)</option>
+          <option value="한국어+영어">한국어 + 영어 (Bilingual)</option>
+        </select>
+      </div>
+
+      <div class="frow">
+        <div class="fg">
+          <label>도착 / 이사 시기</label>
+          <input type="text" id="fArrived" name="도착시기" placeholder="2026년 4월">
+        </div>
+        <div class="fg">
+          <label>현재 도시</label>
+          <input type="text" id="fCity" name="거주도시" placeholder="시애틀, WA">
+        </div>
+      </div>
+
+      <div class="fg">
+        <label>가족 구성</label>
+        <select id="fFamily" name="가족구성">
+          <option value="혼자">혼자</option>
+          <option value="부부">부부</option>
+          <option value="자녀포함 가족">자녀 포함 가족</option>
+          <option value="기타">기타</option>
+        </select>
+      </div>
+
+      <div class="fg">
+        <label>교회에 기대하는 것 / 남기고 싶은 말</label>
+        <textarea id="fNote" name="메시지" placeholder="자유롭게 써주세요. 정착 과정에서 필요한 것, 궁금한 것, 기도 제목 등 편하게 적어주세요."></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit" id="btnSubmit">
+        🌿 새가족 신청하기
+      </button>
+      <p class="note">* 개인정보는 교회 새가족 안내 목적으로만 사용됩니다.</p>
+    </form>
+
+    <div id="ok">
+      <div class="ok-icon">🙏</div>
+      <h3>신청이 접수되었습니다!</h3>
+      <p>
+        <span class="ok-church" id="okChurch"></span>에<br>
+        새가족 신청이 전달되었습니다.<br><br>
+        담당자가 곧 연락드릴 것입니다.<br>
+        처음 방문하는 날, 따뜻하게 맞이하겠습니다. 🌿
+      </p>
+      <div style="margin-top:20px;">
+        <a href="javascript:history.back()"
+          style="color:var(--gold);font-weight:700;font-size:.83rem;text-decoration:none;">
+          ← 교회 목록으로 돌아가기
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// URL 파라미터에서 교회 정보 읽기
+const params = new URLSearchParams(location.search);
+const churchName = params.get('church') || '허브교회';
+const churchEmail = params.get('email') || '';
+const churchWebsite = params.get('website') || '';
+const lang = params.get('lang') || 'ko';
+
+// 언어 설정
+const isEn = lang === 'en';
+if (isEn) {
+  document.documentElement.lang = 'en';
+  document.title = 'New Member Registration | HebronGuide';
+  document.getElementById('churchDisplay').textContent = `${churchName} — New Member Registration`;
+  document.getElementById('subtitleDisplay').innerHTML =
+    'Register before your first visit.<br>Our team will be ready to welcome you warmly.';
+  document.querySelector('.verse').textContent = '"I was a stranger and you welcomed me." — Matt. 25:35';
+  document.querySelector('[placeholder="홍길동"]').placeholder = 'John Kim';
+  document.querySelector('[placeholder="010-0000-0000"]').placeholder = '206-000-0000';
+  document.querySelector('[placeholder="2026년 4월"]').placeholder = 'April 2026';
+  document.querySelector('[placeholder="시애틀, WA"]').placeholder = 'Seattle, WA';
+  document.querySelector('.btn-submit').textContent = '🌿 Register as New Member';
+  document.getElementById('fLang').innerHTML = `
+    <option value="Korean">Korean (한국어)</option>
+    <option value="English" selected>English (영어)</option>
+    <option value="Bilingual">Bilingual (한/영)</option>`;
+  document.getElementById('fFamily').innerHTML = `
+    <option value="Single">Single</option>
+    <option value="Couple">Couple</option>
+    <option value="Family with children">Family with children</option>
+    <option value="Other">Other</option>`;
+  document.querySelector('textarea').placeholder = 'Tell us anything — what you need, questions, or prayer requests.';
+  document.querySelector('.note').textContent = '* Your information is used only for new member follow-up.';
+} else {
+  document.getElementById('churchDisplay').textContent = `${churchName} — 새가족 신청`;
+}
+
+// hidden 필드 설정
+document.getElementById('hidChurch').value = churchName;
+document.getElementById('hidEmail').value = churchEmail;
+
+// 현재 도시 자동 채우기 (URL 경로에서)
+const pathCity = location.hostname === 'localhost'
+  ? 'seattle'
+  : location.pathname.split('/').filter(Boolean)[0] || 'seoul';
+const cityInput = document.getElementById('fCity');
+if (cityInput && !cityInput.value) cityInput.value = pathCity;
+
+// 폼 제출
+document.getElementById('nmForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('btnSubmit');
+  btn.disabled = true;
+  btn.textContent = isEn ? 'Sending...' : '전송 중...';
+
+  const fd = new FormData(this);
+  const lines = [
+    `교회: ${churchName}`,
+    '',
+  ];
+  fd.forEach((v, k) => { if (v && !k.startsWith('_')) lines.push(`${k}: ${v}`); });
+  lines.push('', `-- HebronGuide 새가족 신청 (hebronguide.com) --`);
+
+  const subject = isEn
+    ? `[HebronGuide] New Member Registration — ${fd.get('성함') || fd.get('이름') || ''}`
+    : `[HebronGuide] 새가족 신청 — ${fd.get('성함') || ''} (${churchName})`;
+
+  const toEmail = churchEmail || 'HebronPlatform@gmail.com';
+
+  // mailto 전송
+  window.location.href =
+    `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+
+  // 성공 화면 표시
+  setTimeout(() => {
+    document.getElementById('nmForm').style.display = 'none';
+    const ok = document.getElementById('ok');
+    ok.style.display = 'block';
+    document.getElementById('okChurch').textContent = churchName;
+  }, 800);
+});
+</script>
+</body>
+</html>

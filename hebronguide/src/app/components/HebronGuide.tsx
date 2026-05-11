@@ -6132,7 +6132,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
 ───────────────────────────────────────── */
 function getCityChurches(slug: string, lang: string) {
   const ko = lang === "ko";
-  type ChurchEntry = { emoji: string; tier?: number; name: string; nameEn?: string; desc: string; tags: string[] };
+  type ChurchEntry = { emoji: string; tier?: number; name: string; nameEn?: string; desc: string; tags: string[]; website?: string; email?: string; phone?: string; };
   // 정책 (2026-05-10 폴 김 목사 정정):
   //   국제가사원(IHM, housechurchministries.org) 회원 가정교회를 우선으로 등재.
   //   미검증 / 비-IHM 교회는 제거 후 폴백 안내. 추가 IHM 교회 검증 시 재등재.
@@ -6146,6 +6146,7 @@ function getCityChurches(slug: string, lang: string) {
           ? "✅ 검증됨 | 국제가사원(IHM) 회원교회 · SBC 소속. 김성수 목사.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 주일연합예배, 목장, 삶 공부 - 세축 네기둥\n🔗 www.ijiguchon.org"
           : "✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Sungsoo Kim.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday United Worship, Mokjang, Life Studies - Three Axes, Four Pillars\n🔗 www.ijiguchon.org",
         tags: ko ? ["가정교회", "IHM", "린우드"] : ["House Church", "IHM", "Lynnwood"],
+        website: "https://www.ijiguchon.org", email: "gmc.hc300@gmail.com",
       },
       // 시애틀우리교회 — 지금은 보류 (2026-05-10 폴 김 목사 지시). 추후 재검토 시 복원.
     ],
@@ -6215,6 +6216,7 @@ function getCityChurches(slug: string, lang: string) {
           ? "✅ 가정교회 · 한·영 이중언어 사역\n📍 3399 CSM Dr., San Mateo, CA 94402\n✨ 담임: 김태훈 목사\n🕐 1부 11:30am · 2부 1:30pm (영어예배)\n📞 650-571-9445\n📧 welcome.ncmc@gmail.com\n🔗 ncmission.org"
           : "✅ House Church · Korean-English Bilingual Ministry\n📍 3399 CSM Dr., San Mateo, CA 94402\n✨ Lead Pastor: Rev. Tae Kim\n🕐 1st 11:30am · 2nd 1:30pm (English service)\n📞 650-571-9445\n📧 welcome.ncmc@gmail.com\n🔗 ncmission.org",
         tags: ko ? ["가정교회", "한영이중언어", "샌마테오"] : ["House Church", "Bilingual", "San Mateo"],
+        website: "https://ncmission.org", email: "welcome.ncmc@gmail.com", phone: "650-571-9445",
       },
     ],
   };
@@ -6304,7 +6306,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
           churches.length === 0
             ? <ComingSoonCard lang={lang} accentColor={accent} />
             : <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number }>).map((c, i) => (
+                {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number; website?: string; email?: string; phone?: string; }>).map((c, i) => (
                   <div key={i} style={c.tier === 1 ? { border: "1px solid rgba(201,162,39,0.55)", borderRadius: 16, background: "rgba(201,162,39,0.06)" } : {}}>
                     {c.tier === 1 && (
                       <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px" }}>
@@ -6312,6 +6314,36 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                       </div>
                     )}
                     <PlaceCard {...c} accentColor={c.tier === 1 ? GOLD : accent} />
+                    {/* 새가족 신청 CTA — 허브교회(Tier 1)만 표시 */}
+                    {c.tier === 1 && (c.website || c.email) && (
+                      <div style={{ padding: "0 14px 14px 14px", display: "flex", gap: 8, flexWrap: "wrap" }}>
+                        <a
+                          href={`/new-member.html?church=${encodeURIComponent(c.name)}&email=${encodeURIComponent(c.email ?? "")}&website=${encodeURIComponent(c.website ?? "")}&lang=${lang}`}
+                          style={{
+                            flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                            background: "linear-gradient(135deg, rgba(201,162,39,0.9), rgba(184,144,28,0.9))",
+                            color: "#0d1117", borderRadius: 10, padding: "10px 16px",
+                            fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13,
+                            textDecoration: "none", transition: "opacity .15s",
+                          }}
+                        >
+                          🌿 {lang === "ko" ? "새가족 신청하기" : "Register as New Member"}
+                        </a>
+                        {c.website && (
+                          <a href={c.website} target="_blank" rel="noopener"
+                            style={{
+                              display: "flex", alignItems: "center", justifyContent: "center",
+                              background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
+                              color: "rgba(236,253,245,0.7)", borderRadius: 10, padding: "10px 14px",
+                              fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12,
+                              textDecoration: "none",
+                            }}
+                          >
+                            🔗 {lang === "ko" ? "홈페이지" : "Website"}
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
