@@ -23,7 +23,7 @@
  * ══════════════════════════════════════════════════════════
  */
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import svgPaths from "../../imports/svg-uguh2ql8id";
 
 /**
@@ -3356,6 +3356,8 @@ const QUICK_MENU = [
   { icon: "receipt",      labelKo: "세금신고",   labelEn: "Taxes",   color: "#F97316", tab: 8,  subTab: 4 },
   { icon: "scale",        labelKo: "법률상담",   labelEn: "Legal",   color: "#64748B", tab: 5,  subTab: 5 },
   { icon: "shopping-bag", labelKo: "헤브론 스토어", labelEn: "Store", color: "#F2994A", tab: 10, subTab: 0 },
+  // Row 5: 공항·도착 — Day 0 가이드
+  { icon: "plane-landing", labelKo: "공항·도착", labelEn: "Airport", color: "#38BDF8", tab: 11, subTab: 0 },
 ];
 
 /* ─────────────────────────────────────────
@@ -10678,6 +10680,478 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
 /* ═══════════════════════════════════════════════════════
    TAB 10: 사람 연결 SCREEN — Hebron Connect Platform
    ═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════
+   TAB 11: ✈️ 공항·도착 시뮬레이션
+   한국 출발 전 → 경유 → 입국 심사 → 세관 → 공항 출구 → 도시 도착
+   "처음 미국에 오는 그 사람 곁에 HebronGuide가 있다"
+   ═══════════════════════════════════════════════════════════════════ */
+function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
+  const { lang } = useI18n();
+  const [phase, setPhase] = useState(0);
+  const city = useCityConfig();
+  const ko = lang === "ko";
+  const accent = "#38BDF8";
+
+  const PHASES = [
+    { icon: "🇰🇷", labelKo: "출발 전",   labelEn: "Pre-Flight"  },
+    { icon: "✈️",  labelKo: "비행기",    labelEn: "In-Flight"   },
+    { icon: "🔄",  labelKo: "경유",      labelEn: "Transit"     },
+    { icon: "🛂",  labelKo: "입국심사",  labelEn: "Immigration" },
+    { icon: "🧳",  labelKo: "세관",      labelEn: "Customs"     },
+    { icon: "🚪",  labelKo: "공항 출구", labelEn: "Exit"        },
+    { icon: "🚗",  labelKo: "도시 이동", labelEn: "To City"     },
+  ];
+
+  // ── 공항 → 도시 이동 (도시별) ──────────────────────────────
+  const CITY_AIRPORT: Record<string, { airport: string; airportCode: string; transport: { icon: string; name: string; desc: string; price: string; time: string }[] }> = {
+    seattle: {
+      airport: "시애틀-타코마 국제공항", airportCode: "SEA",
+      transport: [
+        { icon: "🚆", name: "Link Light Rail", desc: ko ? "공항 지하 → 다운타운 시애틀 직행. 영어 불필요, 기계에서 티켓 구매" : "Airport basement → Downtown Seattle direct. Buy ticket at machine", price: "$3.50", time: "약 40분" },
+        { icon: "🚌", name: "Sound Transit 574", desc: ko ? "린우드·페더럴웨이 방향 버스. 한인타운 직행" : "Bus toward Lynnwood/Federal Way. Direct to Koreatown", price: "$3.50", time: "약 50분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "공항 Ground Transportation 층에서 호출. 앱 미리 설치" : "Hail from Ground Transportation level. Install app in advance", price: "$45-70", time: "약 35분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스. HebronGuide에서 예약" : "Korean-speaking pickup. Book via HebronGuide", price: "협의", time: "맞춤" },
+      ],
+    },
+    dallas: {
+      airport: "달라스/포트워스 국제공항", airportCode: "DFW",
+      transport: [
+        { icon: "🚆", name: "DART Orange Line", desc: ko ? "DFW Terminal A역 → 다운타운 달라스. 주황색 라인 탑승" : "DFW Terminal A → Downtown Dallas. Take Orange Line", price: "$2.50", time: "약 45분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "Ground Transportation에서 호출. 캐롤튼 방향 30분" : "Hail from Ground Transportation. 30 min to Carrollton Koreatown", price: "$35-55", time: "약 30분" },
+        { icon: "🚌", name: "Super Shuttle", desc: ko ? "공유 셔틀. 목적지 주소 미리 준비" : "Shared shuttle. Have destination address ready", price: "$25-40", time: "약 45분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    sf: {
+      airport: "샌프란시스코 국제공항", airportCode: "SFO",
+      transport: [
+        { icon: "🚆", name: "BART SFO Line", desc: ko ? "공항 국제선터미널 → Millbrae → SF 다운타운 직행" : "SFO International Terminal → Millbrae → SF Downtown direct", price: "$10.65", time: "약 30분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "Rideshare 전용 픽업 구역. 앱 필수" : "Designated rideshare pickup zone. App required", price: "$40-65", time: "약 25분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    newyork: {
+      airport: "JFK 국제공항 (뉴욕)", airportCode: "JFK",
+      transport: [
+        { icon: "🚆", name: "AirTrain + Subway E/J/Z", desc: ko ? "AirTrain → Jamaica역 → 지하철 E선 맨해튼. 가장 저렴" : "AirTrain → Jamaica → Subway E train to Manhattan. Cheapest option", price: "$9.75", time: "약 60분" },
+        { icon: "🚕", name: "Yellow Taxi", desc: ko ? "맨해튼 고정 요금 $70+통행료. 미터기 요금 협상 금지" : "Flat rate $70+tolls to Manhattan. Never negotiate the meter", price: "$70-90", time: "약 45분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "앱으로 호출. 플러싱 한인타운 40분" : "App-based. 40 min to Flushing Koreatown", price: "$55-80", time: "약 40분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    boston: {
+      airport: "로건 국제공항", airportCode: "BOS",
+      transport: [
+        { icon: "🚌", name: "Silver Line SL1 (무료)", desc: ko ? "공항 → South Station 직행. 무료! 보스턴에서 유일한 공항 무료 버스" : "Airport → South Station direct. FREE! Boston's only free airport bus", price: "무료", time: "약 20분" },
+        { icon: "🚆", name: "Blue Line + 환승", desc: ko ? "공항 셔틀 → Airport역 → Blue Line → 다운타운" : "Airport shuttle → Airport station → Blue Line → Downtown", price: "$2.90", time: "약 30분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "올스턴 한인타운 25분" : "25 min to Allston Koreatown", price: "$30-50", time: "약 25분" },
+      ],
+    },
+    la: {
+      airport: "로스앤젤레스 국제공항", airportCode: "LAX",
+      transport: [
+        { icon: "🚌", name: "LAX FlyAway Bus", desc: ko ? "공항 → Union Station → 코리아타운 직행. 예약 불필요" : "Airport → Union Station → Koreatown. No reservation needed", price: "$9.75", time: "약 50분" },
+        { icon: "🚆", name: "FlyAway + Metro K Line", desc: ko ? "예정 2025년 개통. Inglewood 경유" : "Planned 2025 opening. Via Inglewood", price: "미정", time: "약 45분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "코리아타운 20-30분. LAX Lot C 픽업 구역" : "20-30 min to Koreatown. Pickup at LAX Lot C", price: "$25-45", time: "약 25분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    toronto: {
+      airport: "토론토 피어슨 국제공항", airportCode: "YYZ",
+      transport: [
+        { icon: "🚆", name: "Union Pearson Express", desc: ko ? "공항 → 다운타운 Union Station 직행. 가장 빠름" : "Airport → Downtown Union Station direct. Fastest option", price: "CAD $12.35", time: "약 25분" },
+        { icon: "🚌", name: "TTC 900 Airport Express", desc: ko ? "Kipling역 연결 → 지하철 탑승" : "Connect to Kipling Station → Subway", price: "CAD $3.25", time: "약 45분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "노스욕 한인타운 20분. 다운타운 30분" : "20 min to North York Koreatown. 30 min to Downtown", price: "CAD $40-60", time: "약 25분" },
+      ],
+    },
+    vancouver: {
+      airport: "밴쿠버 국제공항", airportCode: "YVR",
+      transport: [
+        { icon: "🚆", name: "Canada Line SkyTrain", desc: ko ? "공항 → 다운타운 직행. 북미 최고 공항 지하철 중 하나" : "Airport → Downtown direct. One of North America's best airport trains", price: "CAD $4.45-10.50", time: "약 26분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "리치몬드 한인타운 10분. 다운타운 25분" : "10 min to Richmond Koreatown. 25 min to Downtown", price: "CAD $30-50", time: "약 15분" },
+      ],
+    },
+    houston: {
+      airport: "조지 부시 국제공항", airportCode: "IAH",
+      transport: [
+        { icon: "🚌", name: "METRO 102 Tidwell", desc: ko ? "공항 → 다운타운 버스. 저렴하지만 시간 소요" : "Airport → Downtown bus. Cheap but takes time", price: "$1.25", time: "약 70분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "스프링 브랜치 한인타운 30분" : "30 min to Spring Branch Koreatown", price: "$35-55", time: "약 30분" },
+        { icon: "🚕", name: "택시", desc: ko ? "다운타운 고정 요금. 목적지 미리 영어로 준비" : "Fixed rate to Downtown. Prepare destination in English", price: "$50-70", time: "약 35분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    atlanta: {
+      airport: "하츠필드-잭슨 애틀랜타 국제공항", airportCode: "ATL",
+      transport: [
+        { icon: "🚆", name: "MARTA Red/Gold Line", desc: ko ? "공항 → 다운타운 직행. 토큰 구매 또는 Breeze Card" : "Airport → Downtown direct. Buy token or Breeze Card", price: "$2.50", time: "약 20분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "듀럿스 한인타운 40분" : "40 min to Duluth Koreatown", price: "$40-65", time: "약 40분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    nashville: {
+      airport: "내쉬빌 국제공항", airportCode: "BNA",
+      transport: [
+        { icon: "🚌", name: "WeGo Bus 18X", desc: ko ? "공항 → 다운타운. 저렴하지만 배차 간격 큼" : "Airport → Downtown. Cheap but infrequent", price: "$2.00", time: "약 40분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "매디슨 한인타운 20분. 내쉬빌 교통 불편 → Uber 권장" : "20 min to Madison Koreatown. Nashville transit limited → Uber recommended", price: "$25-40", time: "약 20분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+  };
+
+  const cityAirport = CITY_AIRPORT[city.slug] ?? {
+    airport: ko ? `${city.nameKo} 국제공항` : `${city.nameEn} International Airport`,
+    airportCode: "—",
+    transport: [
+      { icon: "🚗", name: "Uber / Lyft", desc: ko ? "공항 Rideshare 픽업 구역에서 앱으로 호출" : "Hail from airport Rideshare pickup zone via app", price: "시세 참고", time: "목적지별 상이" },
+      { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스. HebronGuide에서 연결" : "Korean-speaking pickup via HebronGuide", price: "협의", time: "맞춤" },
+    ],
+  };
+
+  // ── 공통 UI 헬퍼 ─────────────────────────────────────────
+  const PhraseCard = ({ situation, english, korean }: { situation: string; english: string; korean: string }) => (
+    <div style={{ background: "rgba(201,162,39,0.12)", border: "1px solid rgba(201,162,39,0.35)", borderRadius: 12, padding: "12px 14px", marginTop: 10 }}>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "#C9A227", fontWeight: 700, marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+        💬 {situation}
+      </div>
+      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 14, color: "#ECFDF5", fontWeight: 700, marginBottom: 4 }}>
+        "{english}"
+      </div>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.6)" }}>
+        {korean}
+      </div>
+    </div>
+  );
+
+  const WarnBox = ({ text }: { text: string }) => (
+    <div style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.35)", borderRadius: 10, padding: "10px 12px", marginTop: 8, display: "flex", gap: 8, alignItems: "flex-start" }}>
+      <span style={{ fontSize: 16, flexShrink: 0 }}>⚠️</span>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.85)", lineHeight: 1.6 }}>{text}</div>
+    </div>
+  );
+
+  const TipBox = ({ text }: { text: string }) => (
+    <div style={{ background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.25)", borderRadius: 10, padding: "10px 12px", marginTop: 8, display: "flex", gap: 8, alignItems: "flex-start" }}>
+      <span style={{ fontSize: 16, flexShrink: 0 }}>💡</span>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.85)", lineHeight: 1.6 }}>{text}</div>
+    </div>
+  );
+
+  const StepCard = ({ num, title, children, critical }: { num: number; title: string; children: ReactNode; critical?: boolean }) => (
+    <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: 14, padding: "14px 14px 16px", marginBottom: 10, borderLeft: `3px solid ${critical ? "#EF4444" : accent}` }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+        <div style={{ width: 28, height: 28, borderRadius: "50%", background: critical ? "#EF4444" : accent, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#0d1117", fontWeight: 800 }}>{num}</span>
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#ECFDF5", lineHeight: 1.3 }}>{title}</div>
+        {critical && <span style={{ background: "#EF4444", color: "#fff", fontFamily: "Manrope,sans-serif", fontSize: 9, fontWeight: 800, padding: "2px 6px", borderRadius: 6, letterSpacing: "0.5px", flexShrink: 0 }}>필수</span>}
+      </div>
+      <div style={{ paddingLeft: 38 }}>{children}</div>
+    </div>
+  );
+
+  const BodyText = ({ children }: { children: ReactNode }) => (
+    <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 13, color: "rgba(236,253,245,0.8)", lineHeight: 1.7 }}>{children}</div>
+  );
+
+  // ── 단계별 컨텐츠 ─────────────────────────────────────────
+
+  const renderPhase0 = () => (
+    <div>
+      <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🇰🇷 한국 출발 전 체크리스트</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "비행기 타기 최소 2주 전에 확인하세요. 공항에서 당황하지 않으려면 여기서 시작합니다." : "Check at least 2 weeks before your flight. Preparation here prevents airport panic."}
+        </div>
+      </div>
+      <StepCard num={1} title={ko ? "여권 유효기간 확인 — 6개월 이상 남아야 합니다" : "Passport Validity — Must have 6+ months remaining"} critical>
+        <BodyText>{ko ? "미국 입국 시 여권 만료일이 입국 당일로부터 6개월 이상 남아야 합니다. 5개월 남았다면 지금 당장 여권 갱신하세요." : "Your passport must be valid for at least 6 months beyond your US entry date. Renew immediately if less than 6 months remain."}</BodyText>
+        <WarnBox text={ko ? "만료 6개월 미만 여권으로 미국 입국 시 공항에서 입국 거부될 수 있습니다." : "Passports with less than 6 months of validity may be denied entry at the US border."} />
+      </StepCard>
+      <StepCard num={2} title={ko ? "비자 또는 ESTA (비자면제) 확인" : "Visa or ESTA (Visa Waiver) Confirmation"} critical>
+        <BodyText>
+          {ko ? "한국 여권 소지자는 90일 이하 방문 시 ESTA 신청 가능 ($21). 유학생·취업자는 F-1·H-1B 등 해당 비자 필수. 비자 유효기간과 체류 허가 기간은 다릅니다." : "Korean passport holders can apply for ESTA ($21) for stays under 90 days. Students and workers need F-1, H-1B, or other visas. Note: visa validity ≠ authorized stay period."}
+        </BodyText>
+        <TipBox text={ko ? "ESTA는 출발 72시간 전까지 신청. 승인까지 보통 즉시~72시간. 여유 있게 신청하세요." : "Apply for ESTA at least 72 hours before departure. Approval is usually instant but can take up to 72 hours."} />
+      </StepCard>
+      <StepCard num={3} title={ko ? "항공권 경유 여부 확인 — 가장 중요!" : "Check Your Itinerary for Layovers — MOST IMPORTANT!"} critical>
+        <BodyText>{ko ? "인천에서 미국 목적지까지 직항이 없으면 중간 도시에서 경유합니다. 대표 경유 공항: 로스앤젤레스(LAX), 샌프란시스코(SFO), 시카고(ORD), 디트로이트(DTW), 달라스(DFW), 시애틀(SEA)." : "If there's no direct flight from Incheon to your destination, you'll have a layover. Common US transit hubs: LAX, SFO, ORD, DTW, DFW, SEA."}</BodyText>
+        <WarnBox text={ko ? "미국 경유 시 경유 공항에서 입국 심사를 받고, 짐을 찾아 다시 부쳐야 합니다. 연결 시간이 2시간 미만이면 매우 촉박합니다 — 항공사에 미리 확인하세요." : "When transiting through the US, you clear immigration at your first US airport and must collect then re-check your luggage. Less than 2 hours connection time is very tight — confirm with your airline."} />
+      </StepCard>
+      <StepCard num={4} title={ko ? "달러 환전 — 한국에서 하세요" : "Currency Exchange — Do It in Korea"}>
+        <BodyText>{ko ? "한국 시중은행 환율이 미국 공항보다 10-15% 유리합니다. 공항 환전소(Bureau de Change)는 수수료가 높아 손해입니다. 도착 초기 현금 $300-500 준비를 권장합니다." : "Korean bank exchange rates are 10-15% better than US airport kiosks. Airport exchange booths charge high fees. Recommend preparing $300-500 cash for first arrival."}</BodyText>
+        <TipBox text={ko ? "하나은행·신한은행 환율우대 쿠폰으로 최대 90% 우대 환율 적용 가능." : "Hana Bank & Shinhan Bank offer up to 90% fee waiver with exchange coupons."} />
+      </StepCard>
+      <StepCard num={5} title={ko ? "짐 무게·개수 제한 확인" : "Baggage Weight & Count Limits"}>
+        <BodyText>{ko ? "항공사마다 다릅니다. 일반적으로 이코노미: 위탁 수화물 23kg × 2개. 기내 수화물 10kg × 1개. 초과 시 공항에서 추가 요금이 발생합니다." : "Varies by airline. Economy class typically allows 2 checked bags (23kg each) + 1 carry-on (10kg). Excess baggage fees are charged at the airport."}</BodyText>
+      </StepCard>
+      <StepCard num={6} title={ko ? "미국 주소·연락처 미리 저장" : "Save Your US Address & Contacts in Advance"}>
+        <BodyText>{ko ? "입국 신고서에 미국 내 체류 주소(영문)를 써야 합니다. 학교 기숙사, 친척 집, 에어비앤비 주소를 영어로 메모장에 저장해 두세요. 학교 담당자, 집주인, 한인 교회 연락처도 함께 저장." : "You must write your US address (in English) on the customs declaration form. Save dorm, relative's home, or Airbnb address in English. Also save school contact, landlord, and Korean church contacts."}</BodyText>
+        <PhraseCard situation={ko ? "기내 신고서 주소 항목" : "Address field on customs form"} english="123 Lynnwood Ave, Lynnwood, WA 98036" korean={ko ? "예시 주소 — 실제 본인 주소를 영어로 저장하세요" : "Example — save your actual address in English"} />
+      </StepCard>
+      <StepCard num={7} title={ko ? "미국 SIM 카드 옵션 미리 알아보기" : "Research US SIM Card Options in Advance"}>
+        <BodyText>{ko ? "공항에서 구매 가능하지만 비쌉니다. 미리 알아두면 당황하지 않습니다. 추천: T-Mobile ($30/월, 무제한 데이터), AT&T Prepaid, Google Fi. 한국에서 이미 T-Mobile eSIM 구매도 가능합니다." : "Available at the airport but expensive. Good to know in advance. Recommended: T-Mobile ($30/month unlimited), AT&T Prepaid, Google Fi. You can pre-purchase T-Mobile eSIM in Korea."}</BodyText>
+      </StepCard>
+    </div>
+  );
+
+  const renderPhase1 = () => (
+    <div>
+      <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>✈️ {ko ? "비행기 안에서" : "On the Plane"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "착석 후 확인할 것들. 기내에서 미리 준비하면 공항에서 30분이 아낍니다." : "Things to check after boarding. Preparing in-flight saves 30 minutes at the airport."}
+        </div>
+      </div>
+      <StepCard num={1} title={ko ? "세관 신고서 (CBP Form 6059B) 작성" : "Customs Declaration Form (CBP Form 6059B)"} critical>
+        <BodyText>{ko ? "승무원이 나눠주는 종이 양식입니다. 가족 단위는 1장. 영어로 작성. 미국 내 체류 주소, 반입 물품 신고." : "Paper form distributed by flight attendants. One form per family. Fill in English. Write US stay address and declare any items."}</BodyText>
+        <WarnBox text={ko ? "$10,000 이상 현금·수표 소지 시 반드시 신고. 미신고 발각 시 전액 압류 가능." : "Declare cash or checks over $10,000. Failure to declare can result in full confiscation."} />
+        <TipBox text={ko ? "비행기에서 주지 않으면 공항 세관 구역에 비치되어 있습니다." : "If not given on the plane, forms are available in the customs area at the airport."} />
+      </StepCard>
+      <StepCard num={2} title={ko ? "연결편 정보 확인" : "Check Your Connecting Flight Info"}>
+        <BodyText>{ko ? "경유하는 경우, 다음 편 항공사·편명·출발 게이트를 기내 모니터나 좌석 포켓 서류에서 확인하세요. 경유지 공항에 도착하면 가장 먼저 안내판에서 게이트를 찾아야 합니다." : "If connecting, check your next flight's airline, flight number, and departure gate on the in-seat monitor or itinerary. When you land at the transit airport, first find your gate on the departure board."}</BodyText>
+        <PhraseCard situation={ko ? "승무원에게 질문" : "Ask a flight attendant"} english="Excuse me, what gate is my connecting flight to [city]?" korean={ko ? "[도시] 가는 연결편 게이트가 어디예요?" : "Where is my connecting gate?"} />
+      </StepCard>
+      <StepCard num={3} title={ko ? "기내 기본 영어 표현" : "Basic In-Flight English"}>
+        <PhraseCard situation={ko ? "식사 주문" : "Ordering food"} english="Chicken, please." korean={ko ? "닭고기로 주세요" : "Chicken please"} />
+        <PhraseCard situation={ko ? "음료 주문" : "Ordering drinks"} english="Water, please." korean={ko ? "물 주세요 (오렌지 주스만 아니어도 됩니다 😊)" : "Water please (you have more options than orange juice 😊)"} />
+        <PhraseCard situation={ko ? "담요 요청" : "Requesting blanket"} english="Can I have a blanket, please?" korean={ko ? "담요 하나 주시겠어요?" : "May I have a blanket?"} />
+        <PhraseCard situation={ko ? "화장실 위치" : "Restroom location"} english="Where is the restroom?" korean={ko ? "화장실이 어디예요?" : "Where is the bathroom?"} />
+      </StepCard>
+      <StepCard num={4} title={ko ? "시차 적응 팁" : "Jet Lag Tips"}>
+        <BodyText>{ko ? "인천→미국 서부 13-17시간, 동부 14-16시간. 미국 현지 시간에 맞춰 자고 일어나는 연습을 비행 중부터 시작하세요. 도착 첫날은 무리하지 마세요." : "ICN→US West Coast 13-17 hours, East Coast 14-16 hours. Start adjusting to US local time during the flight. Don't overdo it on arrival day."}</BodyText>
+      </StepCard>
+    </div>
+  );
+
+  const renderPhase2 = () => (
+    <div>
+      <div style={{ background: "rgba(239,68,68,0.1)", borderRadius: 14, padding: "14px 16px", marginBottom: 14, border: "1px solid rgba(239,68,68,0.3)" }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: "#EF4444", marginBottom: 4 }}>🔄 {ko ? "경유 — 이게 가장 당황스럽습니다" : "Transit — This Is the Most Confusing Part"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.7)", lineHeight: 1.6 }}>
+          {ko ? "미국에서 경유하면 경유 공항이 첫 입국지입니다. 입국 심사 + 짐 재수속을 경유지에서 해야 합니다. 당황하지 마세요 — 모든 사람이 같은 과정을 거칩니다." : "When transiting through the US, your transit airport is your point of entry. You clear immigration AND re-check luggage there. Don't panic — everyone goes through this."}
+        </div>
+      </div>
+      <StepCard num={1} title={ko ? "비행기에서 내리면 — 'Immigration' 표지판을 따라가세요" : "After Landing — Follow 'Immigration' Signs"} critical>
+        <BodyText>{ko ? "경유 공항에 도착하면 비행기에서 내려 'Immigration' 또는 'Passport Control' 표지판을 따라가세요. 다음 편 게이트를 먼저 찾으려 하지 마세요 — 입국 심사가 먼저입니다." : "After landing at your transit airport, exit the plane and follow 'Immigration' or 'Passport Control' signs. Don't look for your next gate first — immigration comes first."}</BodyText>
+      </StepCard>
+      <StepCard num={2} title={ko ? "입국 심사 (Immigration) 줄 서기" : "Stand in the Immigration Line"} critical>
+        <BodyText>{ko ? "'All Passports' 또는 'Visitors' 줄에 서세요. 미국 시민권자·영주권자 줄(US Citizens/Permanent Residents)에는 서지 마세요." : "Join the 'All Passports' or 'Visitors' line. Do not stand in the US Citizens / Permanent Residents line."}</BodyText>
+        <PhraseCard situation={ko ? "줄을 잘못 섰을 때" : "If you're in the wrong line"} english="Excuse me, I'm not a US citizen. Which line should I use?" korean={ko ? "저는 미국 시민이 아닌데, 어느 줄에 서야 하나요?" : "I'm not a US citizen — which line?"} />
+      </StepCard>
+      <StepCard num={3} title={ko ? "입국 심사 통과 후 — 수하물 수취대(Baggage Claim)" : "After Immigration — Baggage Claim"} critical>
+        <BodyText>{ko ? "입국 심사 후 반드시 수하물 수취대로 가서 짐을 찾아야 합니다. 짐 없이 연결편을 타면 짐은 목적지에 도착하지 않습니다." : "After clearing immigration, you MUST go to Baggage Claim and collect your luggage. If you board without collecting bags, they will not arrive at your destination."}</BodyText>
+        <WarnBox text={ko ? "많은 첫 방문자가 '짐은 최종 목적지로 자동으로 가는 줄 알았다'고 합니다. 미국 경유 시에는 반드시 짐을 찾아 다시 부쳐야 합니다." : "Many first-timers assume 'my bags go automatically to the final destination.' For US transits, you MUST collect and re-check your bags."} />
+      </StepCard>
+      <StepCard num={4} title={ko ? "세관 통과 후 짐 다시 부치기 (Re-Check)" : "Re-Check Bags After Customs"}>
+        <BodyText>{ko ? "세관 신고서 제출 후, 'Connecting Flights' 또는 'Baggage Re-Check' 표지판을 따라가세요. 같은 항공사면 짐을 다시 부칠 수 있습니다. 항공사가 다르면 새로 체크인해야 합니다." : "After submitting your customs form, follow 'Connecting Flights' or 'Baggage Re-Check' signs. Same airline: re-check your bags. Different airline: new check-in required."}</BodyText>
+      </StepCard>
+      <StepCard num={5} title={ko ? "게이트 찾기 — Departure Board 확인" : "Find Your Gate — Check Departure Board"}>
+        <BodyText>{ko ? "짐 부친 후 보안 검색(TSA)을 통과해 연결편 게이트로 이동합니다. 공항 안내판(Departure Board)에서 편명으로 게이트를 확인하세요." : "After re-checking bags, clear security (TSA) and head to your connecting gate. Find your gate number on the Departure Board using your flight number."}</BodyText>
+        <PhraseCard situation={ko ? "게이트를 모를 때" : "When you don't know your gate"} english="Excuse me, where is gate [B12]? My flight is [AA 1234]." korean={ko ? "[B12] 게이트가 어디예요? 제 항공편은 [AA 1234]예요." : "Where is gate B12? My flight is AA 1234."} />
+      </StepCard>
+      <StepCard num={6} title={ko ? "연결 시간이 너무 촉박하다면" : "If Your Connection Time Is Very Tight"}>
+        <BodyText>{ko ? "연결 시간이 1시간 미만으로 촉박하다면 즉시 항공사 직원에게 도움을 요청하세요. 출구에서 이름 적힌 표지판을 들고 기다리는 항공사 직원이 있을 수 있습니다." : "If you have less than 1 hour to connect, immediately ask an airline staff member for help. Some airlines have staff waiting at the gate with signs showing your name."}</BodyText>
+        <PhraseCard situation={ko ? "연결편 놓칠 것 같을 때" : "When you might miss your connection"} english="I have a very tight connection to [Dallas]. Can you help me?" korean={ko ? "[달라스] 연결편 시간이 너무 촉박합니다. 도와주실 수 있나요?" : "My connection to Dallas is very tight. Please help."} />
+        <TipBox text={ko ? "항공사 실수로 연결을 못 탔다면 항공사 카운터에서 무료 재발권을 받을 수 있습니다. 당황하지 말고 카운터로 가세요." : "If you miss your connection due to the airline's fault, go to the airline counter for a free rebooking. Stay calm and find the counter."} />
+      </StepCard>
+    </div>
+  );
+
+  const renderPhase3 = () => (
+    <div>
+      <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🛂 {ko ? "입국 심사 — Q&A 시뮬레이션" : "Immigration — Q&A Simulation"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "미리 연습하면 떨리지 않습니다. 심사관은 대부분 짧고 간단한 대답을 원합니다." : "Practice ahead and you won't be nervous. Officers usually want short, simple answers."}
+        </div>
+      </div>
+      <StepCard num={1} title={ko ? "줄 서기 — 반드시 'All Passports' 줄" : "Queue — Must Use 'All Passports' Line"} critical>
+        <BodyText>{ko ? "미국 시민권자·영주권자(US Citizens / Permanent Residents) 줄은 한국 여권으로 이용 불가. 'All Passports' 또는 'Non-Residents' 줄에 서세요." : "Do not use the US Citizens / Permanent Residents line with a Korean passport. Use the 'All Passports' or 'Non-Residents' line."}</BodyText>
+      </StepCard>
+      <StepCard num={2} title={ko ? "APC 키오스크 (자동 입국 심사기)" : "APC Kiosks (Automated Passport Control)"}>
+        <BodyText>{ko ? "많은 대형 공항에 APC 키오스크가 있어 한국어 지원 화면으로 직접 처리 가능합니다. 여권 스캔 → 질문 답변 → 사진 촬영 → 영수증 출력. 이 영수증을 심사관에게 제출합니다." : "Many major airports have APC kiosks with Korean language option. Scan passport → answer questions → photo taken → print receipt. Submit this receipt to the officer."}</BodyText>
+        <TipBox text={ko ? "한국어 버튼을 찾으세요. 없으면 영어로 진행해도 됩니다 — 질문이 단순합니다." : "Look for the Korean language button. If not available, proceed in English — the questions are simple."} />
+      </StepCard>
+      <StepCard num={3} title={ko ? "심사관 앞 — 여권과 신고서 제출" : "At the Officer's Booth — Hand Over Passport & Form"}>
+        <BodyText>{ko ? "여권, 입국 신고서, (있으면) 입국 서류(I-20 등)를 심사관에게 제출합니다. 말하기 전에 먼저 서류를 내미세요. 심사관이 먼저 말합니다." : "Hand over your passport, customs form, and supporting documents (I-20 etc.) to the officer. Let the officer speak first."}</BodyText>
+      </StepCard>
+      <StepCard num={4} title={ko ? "심사관 질문 — Q&A 시뮬레이션" : "Officer Questions — Q&A Simulation"} critical>
+        <PhraseCard situation={ko ? "Q: 방문 목적이 뭔가요?" : "Q: What is the purpose of your visit?"} english="I'm here to study. / I'm here for vacation. / I'm here to visit family." korean={ko ? "유학 목적 / 관광 / 가족 방문" : "Study / Tourism / Family visit"} />
+        <PhraseCard situation={ko ? "Q: 얼마나 머무를 예정인가요?" : "Q: How long are you staying?"} english="I'll be here for [4 years / 2 weeks / 1 month]." korean={ko ? "[4년 / 2주 / 1개월] 머물 예정입니다." : "I'll stay for..."} />
+        <PhraseCard situation={ko ? "Q: 미국 내 주소가 어디예요?" : "Q: Where will you be staying?"} english="I'll be staying at [123 Main St, Seattle, WA]." korean={ko ? "[주소]에 머물 예정입니다. 미리 영어 주소 저장 필수!" : "Have your address ready in English!"} />
+        <PhraseCard situation={ko ? "Q: 현금 얼마나 가지고 있어요?" : "Q: How much money are you carrying?"} english="I have about [$500 / $1,000] in cash." korean={ko ? "현금 약 [$금액] 가지고 있습니다." : "I have about $X in cash."} />
+        <WarnBox text={ko ? "짧고 정직하게 답하세요. 불필요하게 많은 설명은 오히려 의심을 살 수 있습니다. 모르는 단어가 나오면 'Could you repeat that?' 또는 'I don't understand.'라고 하세요." : "Answer briefly and honestly. Avoid over-explaining — it can seem suspicious. If you don't understand, say 'Could you repeat that?' or 'I don't understand.'"} />
+      </StepCard>
+      <StepCard num={5} title={ko ? "생체정보 — 지문 10개 + 사진 촬영" : "Biometrics — All 10 Fingerprints + Photo"}>
+        <BodyText>{ko ? "양손 손가락 10개 지문을 스캐너에 차례로 올려놓으라고 합니다. 카메라를 정면으로 바라보면 사진이 촬영됩니다. 처음이라 어색해도 심사관이 안내해 줍니다." : "You'll be asked to place all 10 fingers on the scanner one by one. Look straight at the camera for the photo. Officers will guide you through it."}</BodyText>
+      </StepCard>
+      <StepCard num={6} title={ko ? "I-94 (입국 허가 기록)" : "I-94 (Arrival/Departure Record)"}>
+        <BodyText>{ko ? "예전에는 종이였지만 지금은 자동 전산 처리됩니다. 입국 후 cbp.dhs.gov/I94에서 본인 입국 기록과 허가 체류 기간을 확인하세요." : "Previously paper-based, now automatically processed. After entry, verify your record and authorized stay period at cbp.dhs.gov/I94."}</BodyText>
+        <TipBox text={ko ? "체류 허가 기간은 비자 만료일과 다를 수 있습니다. I-94에 표시된 날짜가 실제 체류 가능 기한입니다." : "Authorized stay may differ from your visa expiration date. The date on your I-94 is your actual stay limit."} />
+      </StepCard>
+    </div>
+  );
+
+  const renderPhase4 = () => (
+    <div>
+      <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🧳 {ko ? "짐 찾기 + 세관" : "Baggage Claim + Customs"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "입국 심사 통과 후 수하물 수취대(Baggage Claim)로 이동합니다." : "After clearing immigration, head to Baggage Claim."}
+        </div>
+      </div>
+      <StepCard num={1} title={ko ? "Baggage Claim 안내판 확인" : "Check the Baggage Claim Board"}>
+        <BodyText>{ko ? "Baggage Claim 구역 입구의 전광판에서 본인 항공편 번호(예: KE 017)를 찾아 배정된 수취대(Carousel) 번호를 확인하세요." : "Find your flight number (e.g., KE 017) on the Baggage Claim board and note your assigned carousel number."}</BodyText>
+        <PhraseCard situation={ko ? "짐 찾는 위치 질문" : "Asking where to find luggage"} english="Excuse me, which carousel is for flight [KE 017]?" korean={ko ? "[KE 017] 편 짐은 몇 번 수취대에서 찾나요?" : "Which carousel for flight KE 017?"} />
+      </StepCard>
+      <StepCard num={2} title={ko ? "내 짐 확인 — 수하물 태그 대조" : "Identify Your Luggage — Check Baggage Tag"}>
+        <BodyText>{ko ? "공항에서 짐을 잃어버리거나 누군가 실수로 가져가는 일이 있습니다. 체크인 시 받은 수하물 태그(Baggage Claim Tag) 번호와 짐에 달린 태그를 대조하세요." : "Luggage mix-ups happen at airports. Compare the baggage claim tag number (from check-in) with the tag on the bag."}</BodyText>
+      </StepCard>
+      <StepCard num={3} title={ko ? "짐 분실 시 — 즉시 항공사 카운터" : "If Luggage Is Lost — Go to Airline Counter Immediately"}>
+        <BodyText>{ko ? "수취대에 짐이 나오지 않으면 배회하지 말고 즉시 항공사 카운터로 가서 수하물 분실 신고(Lost Luggage Report)를 합니다. 수하물 태그가 필요합니다." : "If your bag doesn't appear on the carousel, immediately go to the airline counter and file a Lost Luggage Report. You'll need your baggage tag."}</BodyText>
+        <PhraseCard situation={ko ? "짐 분실 신고" : "Filing a lost luggage report"} english="My luggage didn't arrive. I need to file a lost luggage report." korean={ko ? "제 짐이 나오지 않았습니다. 분실 신고를 하고 싶습니다." : "My bag didn't arrive. I need to file a report."} />
+      </StepCard>
+      <StepCard num={4} title={ko ? "세관 신고서 제출" : "Submit Customs Declaration Form"} critical>
+        <BodyText>{ko ? "짐을 찾은 후 세관 구역(Customs)으로 이동합니다. 기내에서 작성한 세관 신고서를 CBP 직원에게 제출합니다. 대부분 빠르게 통과됩니다." : "After collecting bags, move to the Customs area. Submit your customs declaration form to the CBP officer. Most people pass through quickly."}</BodyText>
+        <WarnBox text={ko ? "한국 음식 반입 주의: 육류(소·돼지·닭)는 원칙적으로 반입 금지. 멸치·건어물·해산물은 대부분 가능. 과일·채소·식물은 신고 필수. 신고하지 않으면 압류·벌금." : "Korean food caution: Raw meat (beef, pork, chicken) generally prohibited. Dried fish, anchovies, seafood usually allowed. Fresh fruit, vegetables, plants must be declared. Failure to declare → confiscation and fines."} />
+      </StepCard>
+      <StepCard num={5} title={ko ? "세관 검사 대상 되면 당황하지 마세요" : "If Selected for Inspection — Stay Calm"}>
+        <BodyText>{ko ? "무작위 선발 또는 신고 물품이 있는 경우 별도 검사실로 안내될 수 있습니다. 정직하게 협조하면 금방 끝납니다. 숨기는 게 더 큰 문제를 만듭니다." : "You may be directed to a secondary inspection room randomly or if you declared items. Cooperate honestly and it will be over quickly. Concealing items creates much bigger problems."}</BodyText>
+      </StepCard>
+    </div>
+  );
+
+  const renderPhase5 = () => (
+    <div>
+      <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🚪 {ko ? "공항 출구 — 드디어 미국 땅!" : "Airport Exit — You Made It to the USA!"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "세관 통과 후 공항 밖으로 나옵니다. 여기서부터가 진짜 시작입니다." : "After customs, you exit the airport. This is where your new journey really begins."}
+        </div>
+      </div>
+      <StepCard num={1} title={ko ? "인터넷 연결 — SIM 카드 또는 WiFi" : "Get Online — SIM Card or WiFi"} critical>
+        <BodyText>{ko ? "출구 나오기 전, 또는 직후에 인터넷을 연결하세요. 공항 WiFi(무료)를 임시로 사용하거나 SIM 카드 매장을 찾으세요. 주요 공항 T-Mobile·AT&T 매장이 도착 층에 있습니다." : "Connect to the internet before or right after exiting. Use free airport WiFi temporarily or find a SIM card store. T-Mobile and AT&T stores are in most major airports' arrivals area."}</BodyText>
+        <TipBox text={ko ? "T-Mobile Prepaid: $30/월 무제한 플랜. 한국 사용하던 eSIM 단말기라면 온라인 즉시 개통 가능." : "T-Mobile Prepaid: $30/month unlimited. If your phone supports eSIM, you can activate online immediately."} />
+      </StepCard>
+      <StepCard num={2} title={ko ? "가족·학교·교회에 도착 연락" : "Contact Family, School, or Church"}>
+        <BodyText>{ko ? "연락처에 저장된 학교 담당자, 집주인, 픽업 담당자에게 즉시 도착 문자를 보내세요. KakaoTalk이 있다면 가족에게도." : "Send an arrival text to your school contact, landlord, pickup driver, and family via KakaoTalk."}</BodyText>
+        <PhraseCard situation={ko ? "픽업 기사에게 문자" : "Text to pickup driver"} english="Hi, I just arrived at [SEA] airport. I'm at Terminal [S] Arrivals. My name is [name]." korean={ko ? "[SEA] 공항 도착했습니다. [S]터미널 도착층에 있습니다. 이름은 [이름]입니다." : "Just landed at SEA. At Terminal S Arrivals."} />
+      </StepCard>
+      <StepCard num={3} title={ko ? "픽업 확인 — 어디서 만나나요?" : "Pickup Confirmation — Where to Meet?"}>
+        <BodyText>{ko ? "대부분의 공항은 'Arrivals' 층 또는 'Ground Transportation' 구역에서 픽업합니다. Uber·Lyft는 전용 픽업 구역이 따로 있으며 앱에서 안내합니다." : "Most airports have pickups at the 'Arrivals' level or 'Ground Transportation' area. Uber and Lyft have designated pickup zones shown in the app."}</BodyText>
+      </StepCard>
+      <StepCard num={4} title={ko ? "공항 내 편의시설" : "Airport Amenities"}>
+        <BodyText>{ko ? "환전소(Bureau de Change) — 환율이 나쁘지만 긴급 시 이용. ATM — 수수료 있지만 사용 가능. 음식 — 패스트푸드·카페 있음. 아시안 음식은 드묾." : "Currency exchange kiosk — poor rates, emergency only. ATM — fee applies but usable. Food — fast food & cafés available. Asian food is rare at airports."}</BodyText>
+        <TipBox text={ko ? "배고프면 맥도날드나 서브웨이는 어느 공항에나 있습니다. 'Number 1, please' 또는 숫자 메뉴로 주문 가능합니다." : "For food, McDonald's and Subway are in almost every US airport. You can order by saying the number: 'Number 1, please.'"} />
+      </StepCard>
+      <StepCard num={5} title={ko ? "공항 안전 — 소지품 관리" : "Airport Safety — Watch Your Belongings"}>
+        <BodyText>{ko ? "여권, 지갑, 핸드폰은 항상 몸에 지니세요. 수화물에서 잠시 눈을 떼는 순간 도난 발생 가능. 낯선 사람의 짐 운반 부탁은 정중히 거절하세요." : "Keep your passport, wallet, and phone on your body at all times. Theft can occur the moment you look away from luggage. Politely decline requests from strangers to carry their items."}</BodyText>
+      </StepCard>
+    </div>
+  );
+
+  const renderPhase6 = () => (
+    <div>
+      <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>
+          🚗 {city.nameKo} — {cityAirport.airport} ({cityAirport.airportCode})
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? `${city.nameKo} 도착 후 한인타운까지 이동하는 방법입니다.` : `Transportation options from ${city.nameEn} airport to the Korean community.`}
+        </div>
+      </div>
+      {cityAirport.transport.map((t, i) => (
+        <StepCard key={i} num={i + 1} title={`${t.icon} ${t.name}`}>
+          <BodyText>{t.desc}</BodyText>
+          <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+            <div style={{ background: "rgba(201,162,39,0.15)", borderRadius: 8, padding: "6px 10px", fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#C9A227", fontWeight: 700 }}>
+              💰 {t.price}
+            </div>
+            <div style={{ background: "rgba(56,189,248,0.1)", borderRadius: 8, padding: "6px 10px", fontFamily: "Manrope,sans-serif", fontSize: 11, color: accent, fontWeight: 700 }}>
+              ⏱ {t.time}
+            </div>
+          </div>
+        </StepCard>
+      ))}
+      <StepCard num={cityAirport.transport.length + 1} title={ko ? "도착 첫날 밤 — 지금 당장 할 일" : "First Night Arrival — What To Do Right Now"}>
+        <BodyText>{ko ? `1. 짐 풀기\n2. 샤워 + 식사 (H-Mart 구내식당 또는 근처 한식당)\n3. 시차 적응 — 너무 자지 말고 현지 시간에 맞추기\n4. 내일 해야 할 일 메모 (SSN 신청, 은행 개설, 운전면허)` : `1. Unpack essentials\n2. Shower + eat (H-Mart food court or nearby Korean restaurant)\n3. Jet lag — try not to sleep too early, adjust to local time\n4. Note tomorrow's tasks (SSN application, bank account, driver's license)`}</BodyText>
+        <TipBox text={ko ? `HebronGuide ${city.nameKo} → '정착' 탭에서 Day 1~3개월 체크리스트를 확인하세요.` : `Check HebronGuide ${city.nameEn} → 'Settle' tab for the Day 1–3 month checklist.`} />
+      </StepCard>
+    </div>
+  );
+
+  const PHASE_RENDERERS = [renderPhase0, renderPhase1, renderPhase2, renderPhase3, renderPhase4, renderPhase5, renderPhase6];
+
+  return (
+    <div style={{ paddingBottom: 96, background: "#1a2535", minHeight: "100vh" }}>
+      <BackToHomeButton onHome={onHome} lang={lang} />
+      <ScreenHeader emoji="✈️" titleKo="공항·도착 시뮬레이션" titleEn="Airport Arrival Guide"
+        descKo={`한국 출발 전부터 ${city.nameKo} 도착까지 — 단계별 완전 가이드`}
+        descEn={`From Korea departure to ${city.nameEn} arrival — complete step-by-step guide`}
+        accentColor={accent} />
+
+      {/* 단계 탭 (가로 스크롤) */}
+      <div style={{ overflowX: "auto", paddingBottom: 2 }}>
+        <div style={{ display: "flex", padding: "0 12px", gap: 6, minWidth: "max-content" }}>
+          {PHASES.map((p, i) => {
+            const isActive = phase === i;
+            return (
+              <button key={i} onClick={() => setPhase(i)} style={{
+                flexShrink: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: 3,
+                padding: "10px 14px", borderRadius: 12, border: "none", cursor: "pointer",
+                background: isActive ? accent : "rgba(56,189,248,0.08)",
+                transition: "all 0.18s cubic-bezier(0.16,1,0.3,1)",
+                boxShadow: isActive ? `0 2px 12px ${accent}44` : "none",
+              }}>
+                <span style={{ fontSize: 18 }}>{p.icon}</span>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 10, color: isActive ? "#0d1117" : "rgba(56,189,248,0.8)", whiteSpace: "nowrap" }}>
+                  {ko ? p.labelKo : p.labelEn}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 단계 진행 바 */}
+      <div style={{ padding: "8px 16px 0" }}>
+        <div style={{ height: 3, background: "rgba(56,189,248,0.1)", borderRadius: 2, overflow: "hidden" }}>
+          <div style={{ height: "100%", width: `${((phase + 1) / PHASES.length) * 100}%`, background: accent, borderRadius: 2, transition: "width 0.3s ease" }} />
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(56,189,248,0.5)", marginTop: 4, textAlign: "right" }}>
+          {phase + 1} / {PHASES.length}
+        </div>
+      </div>
+
+      {/* 단계 콘텐츠 */}
+      <div style={{ padding: "12px 14px 0" }}>
+        {PHASE_RENDERERS[phase]?.()}
+      </div>
+
+      {/* 이전/다음 네비게이션 */}
+      <div style={{ display: "flex", gap: 10, padding: "16px 14px 0" }}>
+        {phase > 0 && (
+          <button onClick={() => setPhase(p => p - 1)} style={{
+            flex: 1, padding: "12px 0", borderRadius: 12, border: `1px solid ${accent}44`,
+            background: "transparent", color: accent, fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13, cursor: "pointer",
+          }}>
+            ← {ko ? PHASES[phase - 1].labelKo : PHASES[phase - 1].labelEn}
+          </button>
+        )}
+        {phase < PHASES.length - 1 && (
+          <button onClick={() => setPhase(p => p + 1)} style={{
+            flex: 1, padding: "12px 0", borderRadius: 12, border: "none",
+            background: accent, color: "#0d1117", fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, cursor: "pointer",
+            boxShadow: `0 4px 16px ${accent}44`,
+          }}>
+            {ko ? PHASES[phase + 1].labelKo : PHASES[phase + 1].labelEn} →
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════
    ── HEBRON STORE — 생태계 상품 플랫폼 ────
    ═══════════════════════════════════════════ */
@@ -12863,7 +13337,7 @@ export function HebronGuide() {
   const [costInitialSub, setCostInitialSub] = useState(0);
 
   const handleNavigate = (tab: number, subTab?: number) => {
-    const maxTab = 9; // 홈·정착·교회·맛집·탐방·도움·취업·교육·생활비·사람연결
+    const maxTab = 11; // 홈·정착·교회·맛집·탐방·도움·취업·교육·생활비·사람연결·스토어·공항도착
     if (tab <= maxTab) {
       if (tab === 1 && subTab !== undefined) setSettleInitialSub(subTab);
       if (tab === 5 && subTab !== undefined) setHelpInitialSub(subTab);
@@ -12978,6 +13452,7 @@ export function HebronGuide() {
     <CostScreen onHome={() => setActiveNav(0)} initialSub={costInitialSub} />,         // 8
     <ConnectScreen onHome={() => setActiveNav(0)} />,                                  // 9
     <StoreScreen onHome={() => setActiveNav(0)} />,                                    // 10
+    <ArrivalSimulationScreen onHome={() => setActiveNav(0)} />,                        // 11
   ];
 
   return (
