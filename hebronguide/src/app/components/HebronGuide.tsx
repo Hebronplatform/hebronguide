@@ -3329,35 +3329,33 @@ function CompactHeroNew() {
 // 1.정착(Day-1 핵심) 2.맛집(모두 공통) 3.탐방(관광·방문) 4.거주지(이민) 5.생활비(참고) 6.취업 7.교육 8.도움 9.교회(편의점처럼 자연스럽게)
 // Quick Menu 순서: 긴급성·사용빈도 기준 최적화
 // 정착(Day-1) → 맛집(공통) → 관광(방문객) → 도움(긴급) → 거주지 → 취업 → 교육 → 생활비 → 교회(자연스러운 연결)
-// Quick Menu 16개 — 이민자 여정 순서로 배치
-// Row 1 (1-4):  도착 첫날 필수 — 정착·병원·거주지·면허
-// Row 2 (5-8):  핵심 생활 — 교회·맛집·취업·교육
-// Row 3 (9-12): 정보 참고 — 마트·생활비·비자·도움
-// Row 4 (13-16): 심화 — 관광·세금·법률·한국학교
-// 교회가 Row 2 첫 번째 = HebronGuide 방향(→교회→그리스도) 시각적으로 반영
+// Quick Menu — 새 도시에 처음 온 사람의 실제 여정 순서
+// Phase A [Day 0]:  공항 → 비자·이민 → 정착 → 주택
+// Phase B [첫 주]:  병원 → 면허 → 마트 → 생활비
+// Phase C [생활]:   교회 → 맛집 → 취업 → 교육
+// Phase D [심화]:   관광 → 세금 → 법률 → 헤브론 스토어
+// 도움은 언제든 접근 가능하도록 Phase B에 배치
 const QUICK_MENU = [
-  // Row 1: 도착 첫날 필수
-  { icon: "plane-landing",  labelKo: "정착",    labelEn: "Settle",  color: "#F2994A", tab: 1, subTab: 0 },
-  { icon: "heart-pulse",    labelKo: "병원",    labelEn: "Medical", color: "#EC4899", tab: 5, subTab: 1 },
-  { icon: "home",           labelKo: "주택",    labelEn: "Housing", color: "#10B981", tab: 1, subTab: 5 },
-  { icon: "car",            labelKo: "면허",    labelEn: "DMV",     color: "#3B82F6", tab: 1, subTab: 3 },
-  // Row 2: 핵심 생활
-  { icon: "church",         labelKo: "교회",    labelEn: "Church",  color: "#7C3AED", tab: 2, subTab: 0 },
-  { icon: "utensils",       labelKo: "맛집",    labelEn: "Food",    color: "#EF4444", tab: 3, subTab: 0 },
-  { icon: "briefcase",      labelKo: "취업",    labelEn: "Jobs",    color: "#059669", tab: 6, subTab: 0 },
-  { icon: "graduation-cap", labelKo: "교육",    labelEn: "Schools", color: "#8B5CF6", tab: 7, subTab: 0 },
-  // Row 3: 정보 참고
-  { icon: "shopping-cart",  labelKo: "마트",    labelEn: "Market",  color: "#F59E0B", tab: 3, subTab: 2 },
-  { icon: "dollar-sign",    labelKo: "생활비",   labelEn: "Costs",   color: "#0EA5E9", tab: 8, subTab: 0 },
-  { icon: "file-text",      labelKo: "비자·이민", labelEn: "Visa",    color: "#6366F1", tab: 1, subTab: 7 },
-  { icon: "life-buoy",      labelKo: "도움",    labelEn: "Help",    color: "#DC2626", tab: 5, subTab: 0 },
-  // Row 4: 심화 참고
-  { icon: "map",          labelKo: "관광",      labelEn: "Tourism", color: "#06B6D4", tab: 4,  subTab: 0 },
-  { icon: "receipt",      labelKo: "세금신고",   labelEn: "Taxes",   color: "#F97316", tab: 8,  subTab: 4 },
-  { icon: "scale",        labelKo: "법률상담",   labelEn: "Legal",   color: "#64748B", tab: 5,  subTab: 5 },
-  { icon: "shopping-bag", labelKo: "헤브론 스토어", labelEn: "Store", color: "#F2994A", tab: 10, subTab: 0 },
-  // Row 5: 공항·도착 — Day 0 가이드
-  { icon: "plane-landing", labelKo: "공항·도착", labelEn: "Airport", color: "#38BDF8", tab: 11, subTab: 0 },
+  // Phase A: Day 0 — 도착·입국 (공항에서 나오는 순간부터)
+  { icon: "plane-landing", labelKo: "공항·도착", labelEn: "Airport",  color: "#38BDF8", tab: 11, subTab: 0 },
+  { icon: "file-text",     labelKo: "비자·이민", labelEn: "Visa/Immigration", color: "#6366F1", tab: 1,  subTab: 7 },
+  { icon: "users",         labelKo: "정착",      labelEn: "Settle",   color: "#F2994A", tab: 1,  subTab: 0 },
+  { icon: "home",          labelKo: "주택",      labelEn: "Housing",  color: "#10B981", tab: 1,  subTab: 5 },
+  // Phase B: 첫 주 — 생활 기반 구축
+  { icon: "heart-pulse",   labelKo: "병원",      labelEn: "Medical",  color: "#EC4899", tab: 5,  subTab: 1 },
+  { icon: "car",           labelKo: "면허",      labelEn: "DMV",      color: "#3B82F6", tab: 1,  subTab: 3 },
+  { icon: "shopping-cart", labelKo: "마트",      labelEn: "Market",   color: "#F59E0B", tab: 3,  subTab: 2 },
+  { icon: "life-buoy",     labelKo: "도움",      labelEn: "Help",     color: "#DC2626", tab: 5,  subTab: 0 },
+  // Phase C: 생활·커뮤니티 — 자연스러운 연결
+  { icon: "church",        labelKo: "교회",      labelEn: "Church",   color: "#7C3AED", tab: 2,  subTab: 0 },
+  { icon: "utensils",      labelKo: "맛집",      labelEn: "Food",     color: "#EF4444", tab: 3,  subTab: 0 },
+  { icon: "briefcase",     labelKo: "취업",      labelEn: "Jobs",     color: "#059669", tab: 6,  subTab: 0 },
+  { icon: "graduation-cap",labelKo: "교육",      labelEn: "Schools",  color: "#8B5CF6", tab: 7,  subTab: 0 },
+  // Phase D: 심화 — 정착 후 성장
+  { icon: "map",           labelKo: "관광",      labelEn: "Explore",  color: "#06B6D4", tab: 4,  subTab: 0 },
+  { icon: "dollar-sign",   labelKo: "생활비",    labelEn: "Costs",    color: "#0EA5E9", tab: 8,  subTab: 0 },
+  { icon: "receipt",       labelKo: "세금신고",  labelEn: "Taxes",    color: "#F97316", tab: 8,  subTab: 4 },
+  { icon: "shopping-bag",  labelKo: "헤브론 스토어", labelEn: "Store", color: "#F2994A", tab: 10, subTab: 0 },
 ];
 
 /* ─────────────────────────────────────────
@@ -3532,58 +3530,124 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
 
 function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
+  const city = useCityConfig();
+  const ko = lang === "ko";
+  const [wcDismissed, setWcDismissed] = useState(() => {
+    try { return localStorage.getItem("wc2026_dismissed") === "1"; } catch { return false; }
+  });
+  const showWC = isWorldCupActive(city.slug) && !wcDismissed;
+
+  const dismissWC = () => {
+    setWcDismissed(true);
+    try { localStorage.setItem("wc2026_dismissed", "1"); } catch {}
+  };
+
+  // 여정 4단계 — 각 Row에 레이블
+  const PHASES = [
+    { labelKo: "✈️ Day 0 — 도착·입국",   labelEn: "✈️ Day 0 — Arrival & Entry" },
+    { labelKo: "🏠 첫 주 — 생활 기반",    labelEn: "🏠 Week 1 — Essential Setup" },
+    { labelKo: "🌿 생활 · 커뮤니티",       labelEn: "🌿 Daily Life & Community" },
+    { labelKo: "📈 심화 · 성장",           labelEn: "📈 Growth & More" },
+  ];
+
+  const renderQMItem = (item: typeof QUICK_MENU[0], i: number) => {
+    const IconComp = QM_ICON_MAP[item.icon];
+    return (
+      <button key={i} onClick={() => onNavigate?.(item.tab, item.subTab)} style={{
+        background: "none", border: "none", cursor: "pointer",
+        display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+        padding: 0, WebkitTapHighlightColor: "transparent",
+      }}
+      onTouchStart={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) el.style.transform = "scale(0.87)"; }}
+      onTouchEnd={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) el.style.transform = "scale(1)"; }}>
+        <div className="qm-icon" style={{
+          width: 60, height: 60, borderRadius: 14, background: item.color,
+          boxShadow: `0 3px 10px ${item.color}55`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          transition: "transform 0.12s ease", flexShrink: 0,
+        }}>
+          {IconComp && <IconComp size={30} color="#fff" strokeWidth={1.8} />}
+        </div>
+        <span style={{
+          fontFamily: "-apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif",
+          fontWeight: 400, fontSize: 11, color: "#3C3C43",
+          letterSpacing: "-0.1px", textAlign: "center", lineHeight: 1.3, width: "100%",
+        }}>
+          {ko ? item.labelKo : item.labelEn}
+        </span>
+      </button>
+    );
+  };
+
   return (
     <div style={{ padding: "20px 20px 16px" }}>
       <div style={{
         fontFamily: "'Noto Sans KR', sans-serif",
         fontWeight: 700, fontSize: 15, color: "#1B2A4A",
-        letterSpacing: "-0.3px", marginBottom: 18,
+        letterSpacing: "-0.3px", marginBottom: 14,
       }}>
-        {lang === "ko" ? "바로 가기" : "Quick Access"}
+        {ko ? "바로 가기" : "Quick Access"}
       </div>
-      {/* iPhone 홈 스크린 스타일 — 4열, 60px 아이콘 */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", rowGap: 20, columnGap: 8 }}>
-        {QUICK_MENU.map((item, i) => (
-          <button key={i} onClick={() => onNavigate?.(item.tab, item.subTab)} style={{
-            background: "none", border: "none", cursor: "pointer",
-            display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
-            padding: 0, WebkitTapHighlightColor: "transparent",
-          }}
-          onTouchStart={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) el.style.transform = "scale(0.87)"; }}
-          onTouchEnd={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) el.style.transform = "scale(1)"; }}
-          >
-            {/* 60×60 squircle — SVG 아이콘 꽉 채움 */}
-            {(() => {
-              const IconComp = QM_ICON_MAP[item.icon];
-              return (
-                <div className="qm-icon" style={{
-                  width: 60, height: 60,
-                  borderRadius: 14,
-                  background: item.color,
-                  boxShadow: `0 3px 10px ${item.color}55`,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  transition: "transform 0.12s ease",
-                  flexShrink: 0,
-                }}>
-                  {IconComp && <IconComp size={30} color="#fff" strokeWidth={1.8} />}
+
+      {/* ── 월드컵 팝업 카드 (WC 개최 도시 + 기간 중만 표시) */}
+      {showWC && (
+        <div style={{
+          marginBottom: 16, borderRadius: 16, overflow: "hidden",
+          background: "linear-gradient(120deg, #C8102E 0%, #003087 100%)",
+          boxShadow: "0 4px 20px rgba(200,16,46,0.3)",
+          position: "relative",
+        }}>
+          {/* 배경 축구공 */}
+          <div style={{ position: "absolute", right: -8, top: -12, fontSize: 72, opacity: 0.12, userSelect: "none" }}>⚽</div>
+          <div style={{ padding: "12px 14px" }}>
+            <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 10, color: "rgba(255,255,255,0.7)", letterSpacing: "1.2px", textTransform: "uppercase", marginBottom: 3 }}>
+                  FIFA WORLD CUP 2026
                 </div>
-              );
-            })()}
-            {/* 라벨 */}
-            <span style={{
-              fontFamily: "-apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif",
-              fontWeight: 400, fontSize: 11,
-              color: "#3C3C43",
-              letterSpacing: "-0.1px",
-              textAlign: "center",
-              lineHeight: 1.3,
-              width: "100%",
-            }}>
-              {lang === "ko" ? item.labelKo : item.labelEn}
-            </span>
-          </button>
-        ))}
-      </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#fff", lineHeight: 1.25, marginBottom: 6 }}>
+                  ⚽ {ko ? `${city.nameKo} 월드컵 경기장 & 교통 가이드` : `${city.nameEn} World Cup — Venues & Transit`}
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)", lineHeight: 1.5, marginBottom: 10 }}>
+                  {ko ? "경기 일정·경기장 교통·한식당·환전 정보" : "Match schedule · Stadium transit · Korean food · Exchange"}
+                </div>
+                <button onClick={() => onNavigate?.(4, 0)} style={{
+                  background: "#fff", border: "none", borderRadius: 20, cursor: "pointer",
+                  padding: "7px 16px", display: "inline-flex", alignItems: "center", gap: 6,
+                  fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#C8102E",
+                }}>
+                  {ko ? "탐방 가이드 보기 →" : "View Guide →"}
+                </button>
+              </div>
+              {/* 닫기 */}
+              <button onClick={dismissWC} style={{
+                background: "rgba(255,255,255,0.15)", border: "none", borderRadius: "50%",
+                width: 28, height: 28, cursor: "pointer", display: "flex",
+                alignItems: "center", justifyContent: "center", flexShrink: 0,
+                fontFamily: "Manrope,sans-serif", fontSize: 14, color: "#fff",
+              }}>✕</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── 4단계 여정 순서 Quick Menu */}
+      {[0, 1, 2, 3].map(phase => (
+        <div key={phase} style={{ marginBottom: phase < 3 ? 18 : 0 }}>
+          {/* 단계 레이블 */}
+          <div style={{
+            fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10,
+            color: "#8E8E93", letterSpacing: "0.4px", textTransform: "uppercase",
+            marginBottom: 12, paddingLeft: 2,
+          }}>
+            {ko ? PHASES[phase].labelKo : PHASES[phase].labelEn}
+          </div>
+          {/* 4열 아이콘 그리드 */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", columnGap: 8 }}>
+            {QUICK_MENU.slice(phase * 4, phase * 4 + 4).map((item, i) => renderQMItem(item, i))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
