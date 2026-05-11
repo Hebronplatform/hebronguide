@@ -5778,7 +5778,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "mexicocity"? TOP5_SETTLE_MEXICOCITY :
             useCityConfig().slug === "guadalajara"? TOP5_SETTLE_GUADALAJARA :
             useCityConfig().slug === "monterrey" ? TOP5_SETTLE_MONTERREY :
-            TOP5_SETTLE
+            useCityConfig().slug === "seattle"   ? TOP5_SETTLE :
+            [] as Top5Item[]   // 미등록 도시 — 시애틀 데이터 노출 방지
           } lang={lang} accentColor="#F2994A" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
@@ -6170,7 +6171,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     ? ["소개", "교회 목록", "프로그램", "새가족", "🏆 허브교회"]
     : ["About", "Churches", "Programs", "New Members", "🏆 Hub Church"];
   const accent = "#C084FC";
-  const citySlug = useCityConfig().slug;
+  const city = useCityConfig();
+  const citySlug = city.slug;
 
   const defaultChurches = getCityChurches(citySlug, lang);
   const churches = serverContent["churches"]
@@ -6190,12 +6192,12 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     { title: "처음 방문 시 팁", desc: "대부분 교회는 방문자 환영. 미리 연락 없이 예배 시간에 방문해도 됩니다. 주차장 안내원이 도와드립니다" },
     { title: "예배 시간 (일반적)", desc: "주일 1부 8:00am · 2부 11:00am · 영어예배(EBF) 11:00am. 교회마다 다르니 홈페이지 확인" },
     { title: "새가족 등록 혜택", desc: "정착 상담 · 생활 정보 · 한인 네트워크 연결. 대부분 무료 제공" },
-    { title: "한인 교회 찾는 법", desc: "카카오 지도 '시애틀 한인 교회' 검색, 또는 워싱턴주 한인 교회 협회 홈페이지 참고" },
+    { title: "한인 교회 찾는 법", desc: `카카오 지도 또는 구글에서 '${city.nameKo} 한인 교회' 검색, 또는 지역 한인 교회 협회 홈페이지 참고` },
   ] : [
     { title: "Tips for first visit", desc: "Most churches warmly welcome visitors. No need to call ahead — just show up at service time. Parking attendants will help" },
     { title: "Typical service times", desc: "Sunday 1st: 8:00am · 2nd: 11:00am · English Service (EBF): 11:00am. Check each church website for details" },
     { title: "New member benefits", desc: "Settlement counseling · Life info · Korean network connection. Most services free" },
-    { title: "How to find Korean churches", desc: "Search '시애틀 한인 교회' on Kakao Maps, or visit WA Korean Church Association website" },
+    { title: "How to find Korean churches", desc: `Search '${city.nameEn} Korean Church' on Kakao Maps or Google, or contact your local Korean Church Association` },
   ];
 
   return (
@@ -6552,7 +6554,8 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
             useCityConfig().slug === "mexicocity"? TOP5_RESTAURANTS_MEXICOCITY :
             useCityConfig().slug === "guadalajara"? TOP5_RESTAURANTS_GUADALAJARA :
             useCityConfig().slug === "monterrey" ? TOP5_RESTAURANTS_MONTERREY :
-            TOP5_RESTAURANTS
+            useCityConfig().slug === "seattle"   ? TOP5_RESTAURANTS :
+            [] as Top5Item[]   // 미등록 도시 — 시애틀 데이터 노출 방지
           } lang={lang} accentColor="#EF4444" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
@@ -6709,7 +6712,8 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
               slug === "mexicocity"   ? TOP5_EXPLORE_MEXICOCITY :
               slug === "guadalajara"  ? TOP5_EXPLORE_GUADALAJARA :
               slug === "monterrey"    ? TOP5_EXPLORE_MONTERREY :
-              TOP5_EXPLORE; // seattle — 자체적으로 isSeattleShuttleActive() 적용됨
+              slug === "seattle"      ? TOP5_EXPLORE :   // seattle — isSeattleShuttleActive() 적용됨
+              [] as Top5Item[];  // 미등록 도시 — 시애틀 관광지 노출 방지
             // 월드컵 시즌(6/11~7/19): 시애틀 외 모든 WC 호스트 도시에 교통 정보 1순위 삽입
             return slug === "seattle" ? base : withWorldCupTransit(slug, base);
           })()} lang={lang} accentColor="#0EA5E9" />
@@ -7070,34 +7074,44 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
     : ["Emergency", "Medical", "Community", "Useful Links", "📋 Free Resources", "⚖️ Legal", "🇺🇸 Korean American"];
   const accent = "#F87171";
 
-  const medicalItems = lang === "ko" ? [
+  // 시애틀 전용 의료 항목 (시애틀 이외 도시에 노출 금지)
+  const medicalSeattle = lang === "ko" ? [
     { emoji: "🏥", name: "닥터 김 클리닉 (한인 가정의학과)", nameEn: "Korean Family Medicine — Lynnwood", desc: "한국어 진료 가능. 📍 Lynnwood | 📞 (425) 744-9200 | 🔗 yelp.com/search?find_desc=Korean+doctor+lynnwood", tags: ["가정의학", "한국어", "린우드"] },
-    { emoji: "🏥", name: "스웨디시 메디컬 센터", nameEn: "Swedish Medical Center — Capitol Hill", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | 한국어 통역 서비스 ✅ | 응급실 포함 전문 진료 | 🔗 swedish.org", tags: ["종합병원", "시애틀", "통역"] },
+    { emoji: "🏥", name: "스웨디시 메디컬 센터", nameEn: "Swedish Medical Center", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | 한국어 통역 ✅ | 응급실 포함 | 🔗 swedish.org", tags: ["종합병원", "시애틀", "통역"] },
     { emoji: "🏥", name: "UW 메디컬 센터", nameEn: "UW Medical Center", desc: "📍 1959 NE Pacific St, Seattle | 📞 (206) 598-3300 | 한국어 통역 ✅ | 워싱턴주 최대 학술병원 | 🔗 uwmedicine.org", tags: ["대학병원", "시애틀", "통역"] },
     { emoji: "🦷", name: "켄트 임플란트 치과", nameEn: "Kent Implant Dental", desc: "한인 치과. 📍 306 Washington Ave S, Kent | 📞 (253) 981-3816 ✅ | 임플란트 전문", tags: ["치과", "켄트", "임플란트"] },
-    { emoji: "🦷", name: "린우드 한인 치과 (다수)", nameEn: "Lynnwood Korean Dentists", desc: "린우드 지역 한인 치과 다수 운영. kSeattle·WowSeattle 업소록 참조 | 🔗 kseattle.com", tags: ["치과", "린우드", "한국어"] },
-    { emoji: "🧠", name: "ACRS 정신건강 (한국어 상담사)", nameEn: "Asian Counseling & Referral Service", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | 한국어 상담사 상주 ✅ | 슬라이딩 스케일 요금 | 🔗 acrs.org", tags: ["정신건강", "한국어", "상담"] },
-    // 응급 관련 항목(응급실·위기 핫라인·통역 라인)은 '긴급연락' 탭에 별도 노출 — 중복 제거 (2026-05-10)
-    { emoji: "🏛️", name: "킹카운티 공중보건소 ✅ 검증됨", nameEn: "King County Public Health", desc: "무료·저비용 의료, WIC 영양 프로그램, 예방접종. 📞 206-296-4600 | 🔗 kingcounty.gov/health", tags: ["공공의료", "무료", "WIC"] },
-    { emoji: "🏥", name: "시애틀 무료 클리닉 ✅ 검증됨", nameEn: "Free Clinic of Greater Seattle", desc: "의료보험 없는 분을 위한 무료 의료 서비스. 📞 206-520-5000 | 🔗 freeclinic.net", tags: ["무료", "무보험", "의료"] },
-    { emoji: "🏥", name: "헬스포인트 (슬라이딩 스케일) ✅ 검증됨", nameEn: "HealthPoint Community Health Center", desc: "소득 기반 할인 진료. 한국어 통역 가능. 📞 1-800-440-1561 | 🔗 healthpointchc.org", tags: ["슬라이딩스케일", "한국어", "저비용"] },
-    { emoji: "🧠", name: "NAMI 워싱턴 (정신건강 지원) ✅ 검증됨", nameEn: "NAMI Washington", desc: "정신건강 정보·지원·교육. 📞 800-782-9264 | 🔗 namiwa.org", tags: ["정신건강", "지원", "무료"] },
+    { emoji: "🦷", name: "린우드 한인 치과 (다수)", nameEn: "Lynnwood Korean Dentists", desc: "린우드 지역 한인 치과 다수. kSeattle·WowSeattle 업소록 참조 | 🔗 kseattle.com", tags: ["치과", "린우드", "한국어"] },
+    { emoji: "🧠", name: "ACRS 정신건강 (한국어 상담사)", nameEn: "ACRS", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | 한국어 상담사 상주 ✅ | 슬라이딩 스케일 | 🔗 acrs.org", tags: ["정신건강", "한국어", "상담"] },
+    { emoji: "🏛️", name: "킹카운티 공중보건소 ✅", nameEn: "King County Public Health", desc: "무료·저비용 의료, WIC 영양, 예방접종. 📞 206-296-4600 | 🔗 kingcounty.gov/health", tags: ["공공의료", "무료", "WIC"] },
+    { emoji: "🏥", name: "시애틀 무료 클리닉 ✅", nameEn: "Free Clinic of Greater Seattle", desc: "무보험자 무료 의료. 📞 206-520-5000 | 🔗 freeclinic.net", tags: ["무료", "무보험", "의료"] },
+    { emoji: "🏥", name: "헬스포인트 (슬라이딩 스케일) ✅", nameEn: "HealthPoint", desc: "소득 기반 할인 진료. 한국어 통역 가능. 📞 1-800-440-1561 | 🔗 healthpointchc.org", tags: ["슬라이딩스케일", "한국어", "저비용"] },
+    { emoji: "🧠", name: "NAMI 워싱턴 ✅", nameEn: "NAMI Washington", desc: "정신건강 정보·지원·교육. 📞 800-782-9264 | 🔗 namiwa.org", tags: ["정신건강", "지원", "무료"] },
   ] : [
-    { emoji: "🏥", name: "Korean Family Medicine Clinic", nameEn: "닥터 김 클리닉 — Lynnwood", desc: "Korean-speaking physician. 📍 Lynnwood | 📞 (425) 744-9200 | 🔗 yelp.com/search?find_desc=Korean+doctor+lynnwood", tags: ["Family Med", "Korean", "Lynnwood"] },
-    { emoji: "🏥", name: "Swedish Medical Center", nameEn: "스웨디시 메디컬 센터", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | Korean interpreter ✅ | Full service incl. ER | 🔗 swedish.org", tags: ["Hospital", "Seattle", "Interpreter"] },
-    { emoji: "🏥", name: "UW Medical Center", nameEn: "UW 메디컬 센터", desc: "📍 1959 NE Pacific St, Seattle | 📞 (206) 598-3300 | Korean interpreter ✅ | WA's largest academic medical center | 🔗 uwmedicine.org", tags: ["Hospital", "Seattle", "Interpreter"] },
-    { emoji: "🦷", name: "Kent Implant Dental", nameEn: "켄트 임플란트 치과", desc: "Korean dental clinic. 📍 306 Washington Ave S, Kent | 📞 (253) 981-3816 ✅ | Implant specialist", tags: ["Dental", "Kent", "Implant"] },
-    { emoji: "🦷", name: "Lynnwood Korean Dentists", nameEn: "린우드 한인 치과", desc: "Multiple Korean dental clinics in Lynnwood. See kSeattle & WowSeattle directory | 🔗 kseattle.com", tags: ["Dental", "Lynnwood", "Korean"] },
-    { emoji: "🧠", name: "ACRS Mental Health (Korean counselors)", nameEn: "Asian Counseling & Referral Service", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | Korean-speaking counselors ✅ | Sliding scale fees | 🔗 acrs.org", tags: ["Mental Health", "Korean", "Counseling"] },
-    { emoji: "🆘", name: "Crisis Line 24/7", nameEn: "위기 상담 핫라인", desc: "📞 866-427-4747 (24/7) | Korean interpreter available | Mental health & suicide prevention", tags: ["Crisis", "24/7", "Free"] },
-    { emoji: "🚨", name: "Emergency Room — Swedish First Hill", nameEn: "응급실 — Swedish First Hill", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | Central Seattle ER. Korean interpreter on request", tags: ["ER", "Emergency", "Seattle"] },
-    { emoji: "📞", name: "Korean Medical Interpreter Line", nameEn: "한국어 의료 통역", desc: "Language Line: 📞 1-800-752-6096 | Pre-book interpreter for clinic & hospital visits | 🔗 languageline.com", tags: ["Interpreter", "Medical", "Free"] },
-    { emoji: "🏛️", name: "King County Public Health ✅ Verified", nameEn: "킹카운티 공중보건소", desc: "Free/low-cost healthcare, WIC nutrition, immunizations. 📞 206-296-4600 | 🔗 kingcounty.gov/health", tags: ["Public Health", "Free", "WIC"] },
-    { emoji: "🏥", name: "Free Clinic of Greater Seattle ✅ Verified", nameEn: "시애틀 무료 클리닉", desc: "Free medical care for uninsured residents. 📞 206-520-5000 | 🔗 freeclinic.net", tags: ["Free", "Uninsured", "Medical"] },
-    { emoji: "🏥", name: "HealthPoint Community Health Center ✅ Verified", nameEn: "헬스포인트", desc: "Sliding scale fees based on income. Korean interpreter available. 📞 1-800-440-1561 | 🔗 healthpointchc.org", tags: ["Sliding Scale", "Korean", "Low-cost"] },
-    { emoji: "🧠", name: "Crisis Connections 24/7 ✅ Verified", nameEn: "크라이시스 커넥션", desc: "Mental health crisis line 24/7. Korean interpreter available. 📞 866-427-4747 | 🔗 crisisconnections.org", tags: ["Mental Health", "24/7", "Free"] },
-    { emoji: "🧠", name: "NAMI Washington ✅ Verified", nameEn: "NAMI 워싱턴", desc: "Mental health information, support & education. 📞 800-782-9264 | 🔗 namiwa.org", tags: ["Mental Health", "Support", "Free"] },
+    { emoji: "🏥", name: "Korean Family Medicine Clinic", desc: "Korean-speaking physician. 📍 Lynnwood | 📞 (425) 744-9200", tags: ["Family Med", "Korean", "Lynnwood"] },
+    { emoji: "🏥", name: "Swedish Medical Center", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | Korean interpreter ✅ | 🔗 swedish.org", tags: ["Hospital", "Seattle", "Interpreter"] },
+    { emoji: "🏥", name: "UW Medical Center", desc: "📍 1959 NE Pacific St, Seattle | 📞 (206) 598-3300 | Korean interpreter ✅ | 🔗 uwmedicine.org", tags: ["Hospital", "Seattle", "Interpreter"] },
+    { emoji: "🦷", name: "Kent Implant Dental", desc: "Korean dental clinic. 📍 306 Washington Ave S, Kent | 📞 (253) 981-3816 ✅", tags: ["Dental", "Kent", "Implant"] },
+    { emoji: "🦷", name: "Lynnwood Korean Dentists", desc: "Multiple Korean clinics in Lynnwood. See kseattle.com", tags: ["Dental", "Lynnwood", "Korean"] },
+    { emoji: "🧠", name: "ACRS Mental Health", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | Korean counselors ✅ | 🔗 acrs.org", tags: ["Mental Health", "Korean", "Counseling"] },
+    { emoji: "🏛️", name: "King County Public Health ✅", desc: "Free/low-cost care, WIC, immunizations. 📞 206-296-4600 | 🔗 kingcounty.gov/health", tags: ["Public Health", "Free", "WIC"] },
+    { emoji: "🏥", name: "Free Clinic of Greater Seattle ✅", desc: "Free medical care for uninsured. 📞 206-520-5000 | 🔗 freeclinic.net", tags: ["Free", "Uninsured", "Medical"] },
+    { emoji: "🏥", name: "HealthPoint Community Health ✅", desc: "Sliding scale fees. Korean interpreter available. 📞 1-800-440-1561 | 🔗 healthpointchc.org", tags: ["Sliding Scale", "Korean", "Low-cost"] },
+    { emoji: "🧠", name: "NAMI Washington ✅", desc: "Mental health info & support. 📞 800-782-9264 | 🔗 namiwa.org", tags: ["Mental Health", "Support", "Free"] },
   ];
+  // 전 도시 공통 의료 항목
+  const medicalUniversal = lang === "ko" ? [
+    { emoji: "🔍", name: `${city.nameKo} 한인 병원·클리닉`, nameEn: `Korean Clinics — ${city.nameEn}`, desc: `Yelp에서 "Korean doctor ${city.nameEn}"로 검색하거나 지역 한인 커뮤니티에 문의하세요.\nHebronGuide ${city.nameKo} 병원 정보 업데이트 중입니다.`, tags: ["병원", "한국어", "검색"] },
+    { emoji: "📞", name: "한국어 의료 통역 라인", nameEn: "Korean Medical Interpreter", desc: "Language Line: 📞 1-800-752-6096 | 병원·클리닉 방문 시 사전 통역 예약 | 🔗 languageline.com", tags: ["통역", "의료", "무료"] },
+    { emoji: "🆘", name: "위기 상담 핫라인 24/7", nameEn: "Crisis Line 24/7", desc: "📞 988 (자살 예방·정신건강 위기) | 한국어 통역 가능 | 24시간 무료", tags: ["위기", "정신건강", "무료"] },
+    { emoji: "🧠", name: "NAMI 전국 정신건강 지원", nameEn: "NAMI National", desc: "📞 1-800-950-6264 | 정신건강 정보·지원·교육 | 🔗 nami.org", tags: ["정신건강", "전국", "무료"] },
+  ] : [
+    { emoji: "🔍", name: `Korean Clinics — ${city.nameEn}`, desc: `Search "Korean doctor ${city.nameEn}" on Yelp or Google.\nHebronGuide ${city.nameEn} medical directory coming soon.`, tags: ["Medical", "Korean", "Search"] },
+    { emoji: "📞", name: "Korean Medical Interpreter Line", desc: "Language Line: 📞 1-800-752-6096 | Pre-book interpreter for clinic & hospital visits | 🔗 languageline.com", tags: ["Interpreter", "Medical", "Free"] },
+    { emoji: "🆘", name: "Crisis Line 24/7", desc: "📞 988 (suicide prevention & mental health) | Korean interpreter available | 24/7 free", tags: ["Crisis", "24/7", "Free"] },
+    { emoji: "🧠", name: "NAMI National", desc: "📞 1-800-950-6264 | Mental health information, support & education | 🔗 nami.org", tags: ["Mental Health", "National", "Free"] },
+  ];
+  // 도시에 맞는 의료 항목 결합
+  const medicalItems = isSeattle ? [...medicalSeattle, ...medicalUniversal.slice(1)] : medicalUniversal;
 
   const defaultCommunityLinks = [
     // 영사관: 전 도시 공통 (도시별 주소·전화 자동 적용)
