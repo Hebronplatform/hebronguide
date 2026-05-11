@@ -217,29 +217,32 @@
       <label>광고 플랜 *</label>
       <div class="pricing" id="pricingGrid">
         <label>
-          <input type="radio" name="budget" value="$50/월 — 로컬 기본" checked />
+          <input type="radio" name="budget" id="budget1" value="$50/월 — 로컬 기본" checked />
           <div class="price-card">
-            <div class="price-amount">$50</div>
+            <div class="price-amount" id="plan1Price">$50</div>
+            <div style="font-size:9px; color:rgba(201,162,39,0.6);" id="plan1Per">/월</div>
             <div class="price-period" id="plan1Label">로컬 기본</div>
           </div>
         </label>
         <label>
-          <input type="radio" name="budget" value="$100/월 — 로컬 프리미엄" />
+          <input type="radio" name="budget" id="budget2" value="$100/월 — 로컬 우선 노출" />
           <div class="price-card">
-            <div class="price-amount">$100</div>
+            <div class="price-amount" id="plan2Price">$100</div>
+            <div style="font-size:9px; color:rgba(201,162,39,0.6);" id="plan2Per">/월</div>
             <div class="price-period" id="plan2Label">로컬 우선 노출</div>
           </div>
         </label>
         <label>
-          <input type="radio" name="budget" value="$200/월 — 글로벌" />
+          <input type="radio" name="budget" id="budget3" value="$200/월 — 로컬 골드" />
           <div class="price-card">
-            <div class="price-amount">$200</div>
-            <div class="price-period" id="plan3Label">전국 브랜드</div>
+            <div class="price-amount" id="plan3Price">$200</div>
+            <div style="font-size:9px; color:rgba(201,162,39,0.6);" id="plan3Per">/월</div>
+            <div class="price-period" id="plan3Label">로컬 골드</div>
           </div>
         </label>
       </div>
       <div id="planNote" style="font-size:10px; color:rgba(236,253,245,0.4); margin-top:6px; line-height:1.5;">
-        📍 로컬: 해당 도시 사용자에게만 노출 · 🌐 글로벌($200): 전체 도시 공통 노출
+        📍 로컬: 해당 도시만 노출 · 🌐 글로벌 선택 시 가격이 달라집니다
       </div>
 
       <label>이 업소만의 강점 *</label>
@@ -261,41 +264,42 @@
 </div>
 
 <script>
+const PLANS = {
+  local:  { prices: ['$50','$100','$200'], labels: ['로컬 기본','로컬 우선 노출','로컬 골드'],   values: ['$50/월 — 로컬 기본','$100/월 — 로컬 우선 노출','$200/월 — 로컬 골드'] },
+  global: { prices: ['$200','$350','$500'], labels: ['글로벌 기본','글로벌 프리미엄','글로벌 골드'], values: ['$200/월 — 글로벌 기본','$350/월 — 글로벌 프리미엄','$500/월 — 글로벌 골드'] },
+};
+
 function updateReachUI() {
   const isGlobal = document.querySelector('input[name="adReach"][value="global"]').checked;
+  const plan = PLANS[isGlobal ? 'global' : 'local'];
   const localLabel = document.getElementById('localLabel');
   const globalLabel = document.getElementById('globalLabel');
   const citySelect = document.querySelector('select[name="city"]');
-  const p1 = document.getElementById('plan1Label');
-  const p2 = document.getElementById('plan2Label');
-  const p3 = document.getElementById('plan3Label');
   const note = document.getElementById('planNote');
 
+  // 노출 범위 카드 스타일
   if (isGlobal) {
-    globalLabel.style.borderColor = '#C9A227';
-    globalLabel.style.background = 'rgba(201,162,39,0.12)';
-    localLabel.style.borderColor = 'rgba(255,255,255,0.1)';
-    localLabel.style.background = 'rgba(255,255,255,0.04)';
-    citySelect.disabled = true;
-    citySelect.style.opacity = '0.35';
-    p1.textContent = '글로벌 기본';
-    p2.textContent = '글로벌 프리미엄';
-    p3.textContent = '글로벌 골드';
-    note.innerHTML = '🌐 글로벌: 전체 도시 공통 노출 · 항공사·전국 브랜드·Hebron 서비스 전용';
+    globalLabel.style.borderColor = '#C9A227'; globalLabel.style.background = 'rgba(201,162,39,0.12)';
+    localLabel.style.borderColor = 'rgba(255,255,255,0.1)'; localLabel.style.background = 'rgba(255,255,255,0.04)';
+    citySelect.disabled = true; citySelect.style.opacity = '0.35';
+    note.innerHTML = '🌐 글로벌: 전체 44개 도시 공통 노출 · 항공사·전국 브랜드·Hebron 서비스 전용';
   } else {
-    localLabel.style.borderColor = '#6EE7B7';
-    localLabel.style.background = 'rgba(110,231,183,0.08)';
-    globalLabel.style.borderColor = 'rgba(255,255,255,0.1)';
-    globalLabel.style.background = 'rgba(255,255,255,0.04)';
-    citySelect.disabled = false;
-    citySelect.style.opacity = '1';
-    p1.textContent = '로컬 기본';
-    p2.textContent = '로컬 우선 노출';
-    p3.textContent = '전국 브랜드';
-    note.innerHTML = '📍 로컬: 해당 도시 사용자에게만 노출 · 🌐 글로벌($200): 전체 도시 공통 노출';
+    localLabel.style.borderColor = '#6EE7B7'; localLabel.style.background = 'rgba(110,231,183,0.08)';
+    globalLabel.style.borderColor = 'rgba(255,255,255,0.1)'; globalLabel.style.background = 'rgba(255,255,255,0.04)';
+    citySelect.disabled = false; citySelect.style.opacity = '1';
+    note.innerHTML = '📍 로컬: 선택한 도시 사용자에게만 노출 · 글로벌 전환 시 가격이 달라집니다';
   }
+
+  // 플랜 가격·레이블·value 업데이트
+  [1,2,3].forEach(i => {
+    document.getElementById(`plan${i}Price`).textContent = plan.prices[i-1];
+    document.getElementById(`plan${i}Label`).textContent = plan.labels[i-1];
+    document.getElementById(`budget${i}`).value = plan.values[i-1];
+  });
+  // 선택 초기화
+  document.getElementById('budget1').checked = true;
 }
-// 초기 상태 적용
+
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('localLabel').style.borderColor = '#6EE7B7';
   document.getElementById('localLabel').style.background = 'rgba(110,231,183,0.08)';
