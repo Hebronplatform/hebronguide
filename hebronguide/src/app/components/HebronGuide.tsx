@@ -2510,7 +2510,28 @@ function withWorldCupTransit(slug: CitySlug, items: Top5Item[]): Top5Item[] {
 /* ─────────────────────────────────────────
    COMPONENT: Top5Banner (가로 스크롤 카드)
 ───────────────────────────────────────── */
+function ComingSoonCard({ lang, accentColor }: { lang: string; accentColor?: string }) {
+  return (
+    <div style={{
+      background: "rgba(255,255,255,0.03)", border: "1px dashed rgba(255,255,255,0.12)",
+      borderRadius: 16, padding: "28px 20px", textAlign: "center", marginBottom: 16,
+    }}>
+      <div style={{ fontSize: 28, marginBottom: 10 }}>🌿</div>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14,
+        color: accentColor ?? "rgba(236,253,245,0.7)", marginBottom: 6 }}>
+        {lang === "ko" ? "준비 중입니다" : "Coming Soon"}
+      </div>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.4)", lineHeight: 1.7 }}>
+        {lang === "ko"
+          ? "이 도시 콘텐츠를 정성껏 준비하고 있습니다.\n파트너 교회·검증된 업소 정보가 순차적으로 추가됩니다. 🙏"
+          : "We're carefully preparing content for this city.\nPartner churches & verified listings will be added soon. 🙏"}
+      </div>
+    </div>
+  );
+}
+
 function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: string; accentColor: string }) {
+  if (!items || items.length === 0) return <ComingSoonCard lang={lang} accentColor={accentColor} />;
   return (
     <div style={{ marginBottom: 24 }}>
       <div style={{ padding: "0 16px", marginBottom: 12, display: "flex", alignItems: "center", gap: 6 }}>
@@ -5932,7 +5953,9 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 {lang === "ko" ? "가족·학군·예산·통근 — 한 눈에 비교" : "Family · Schools · Budget · Commute — at a glance"}
               </div>
             </div>
-            {areaItems.map((area, i) => (
+            {areaItems.length === 0
+              ? <ComingSoonCard lang={lang} accentColor={accent} />
+              : areaItems.map((area, i) => (
               <div key={i} style={{ background: "rgba(96,165,250,0.06)", border: "1px solid rgba(96,165,250,0.18)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
                   <span style={{ fontSize: 20 }}>{area.emoji}</span>
@@ -6278,18 +6301,20 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
           </>
         )}
         {sub === 1 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number }>).map((c, i) => (
-              <div key={i} style={c.tier === 1 ? { border: "1px solid rgba(201,162,39,0.55)", borderRadius: 16, background: "rgba(201,162,39,0.06)" } : {}}>
-                {c.tier === 1 && (
-                  <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px" }}>
-                    <span style={{ background: "rgba(201,162,39,0.18)", border: "1px solid rgba(201,162,39,0.45)", color: GOLD, borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>가정교회 ⭐</span>
+          churches.length === 0
+            ? <ComingSoonCard lang={lang} accentColor={accent} />
+            : <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number }>).map((c, i) => (
+                  <div key={i} style={c.tier === 1 ? { border: "1px solid rgba(201,162,39,0.55)", borderRadius: 16, background: "rgba(201,162,39,0.06)" } : {}}>
+                    {c.tier === 1 && (
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px" }}>
+                        <span style={{ background: "rgba(201,162,39,0.18)", border: "1px solid rgba(201,162,39,0.45)", color: GOLD, borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>가정교회 ⭐</span>
+                      </div>
+                    )}
+                    <PlaceCard {...c} accentColor={c.tier === 1 ? GOLD : accent} />
                   </div>
-                )}
-                <PlaceCard {...c} accentColor={c.tier === 1 ? GOLD : accent} />
+                ))}
               </div>
-            ))}
-          </div>
         )}
         {sub === 2 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
