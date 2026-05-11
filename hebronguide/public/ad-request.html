@@ -106,57 +106,8 @@
     <div class="subtitle">한인 커뮤니티를 위한 광고 플랫폼<br>한·영·스 3개 언어 · 검수 후 48시간 내 게시</div>
   </div>
 
-  <!-- ═══ 사전 자격 확인 (진입 전 차단) ═══ -->
-  <div id="preCheck">
-    <div class="card" style="border-color:rgba(201,162,39,0.4);">
-      <div class="card-title">🚦 광고 신청 전 자격 확인</div>
-      <div style="font-size:11px; color:rgba(236,253,245,0.6); margin-bottom:14px; line-height:1.6;">
-        아래 항목을 먼저 확인해 주세요. 해당되는 경우 신청이 불가합니다.
-      </div>
-
-      <!-- 광고 게재 기준 — 내용·행위 기반 (법적 안전) -->
-      <div style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2); border-radius:10px; padding:12px 14px; margin-bottom:14px;">
-        <div style="font-size:11px; color:#F87171; font-weight:800; margin-bottom:8px;">🚫 다음 내용의 광고는 게재되지 않습니다</div>
-        <div style="font-size:10px; color:rgba(239,68,68,0.75); line-height:1.9;">
-          · 업소·단체의 실제 성격이나 목적을 숨기거나 다르게 표현한 광고<br>
-          · 검증 불가한 효능·효과·치유·구원을 주장하는 광고<br>
-          · 방문자 가입·등록·모집이 주목적인 광고<br>
-          · 허위·과장·오해를 유발하는 표현을 포함한 광고<br>
-          · 특정 집단에 대한 차별·혐오 표현을 포함한 광고<br>
-          · 도박·성인·유흥·불법 상품 및 서비스 광고<br>
-          · HebronGuide 커뮤니티 가치와 현저히 충돌하는 광고
-        </div>
-      </div>
-      <div style="background:rgba(201,162,39,0.06); border:1px solid rgba(201,162,39,0.2); border-radius:10px; padding:10px 14px; margin-bottom:14px; font-size:10px; color:rgba(201,162,39,0.7); line-height:1.7;">
-        📌 HebronGuide는 편집 재량권을 가진 비공개 선별 플랫폼입니다.<br>
-        모든 광고는 편집팀의 독립적 판단에 따라 게재 여부가 결정되며, 거절 시 환불됩니다.
-      </div>
-
-      <!-- 자격 체크 3가지 -->
-      <div style="font-size:11px; color:rgba(236,253,245,0.7); font-weight:700; margin-bottom:8px;">아래 모든 항목이 해당되어야 신청할 수 있습니다:</div>
-
-      <label class="check-item" style="margin-bottom:8px; border-radius:8px; align-items:flex-start;">
-        <input type="checkbox" id="preCheck1" style="width:16px;height:16px;accent-color:#6EE7B7;flex-shrink:0;margin-top:1px;" onchange="checkPreEligibility()" />
-        <span style="font-size:11px; line-height:1.5;">우리 업소는 위 광고 불가 업종에 해당하지 않습니다</span>
-      </label>
-      <label class="check-item" style="margin-bottom:8px; border-radius:8px; align-items:flex-start;">
-        <input type="checkbox" id="preCheck2" style="width:16px;height:16px;accent-color:#6EE7B7;flex-shrink:0;margin-top:1px;" onchange="checkPreEligibility()" />
-        <span style="font-size:11px; line-height:1.5;">광고 내용은 사실에 근거하며 과장·허위 표현이 없습니다</span>
-      </label>
-      <label class="check-item" style="margin-bottom:14px; border-radius:8px; align-items:flex-start;">
-        <input type="checkbox" id="preCheck3" style="width:16px;height:16px;accent-color:#6EE7B7;flex-shrink:0;margin-top:1px;" onchange="checkPreEligibility()" />
-        <span style="font-size:11px; line-height:1.5;">HebronGuide는 한인 커뮤니티를 위한 신뢰 플랫폼임을 이해합니다</span>
-      </label>
-
-      <button type="button" id="preCheckBtn" onclick="startForm()"
-        style="width:100%; padding:13px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:12px; color:rgba(236,253,245,0.4); font-size:14px; font-weight:700; cursor:not-allowed;" disabled>
-        모두 확인했습니다 — 신청 시작하기 →
-      </button>
-    </div>
-  </div>
-
-  <!-- 스텝 인디케이터 (사전 확인 통과 후 표시) -->
-  <div style="margin-bottom:6px; display:none;" id="stepWrapper">
+  <!-- 스텝 인디케이터 -->
+  <div style="margin-bottom:6px;" id="stepWrapper">
     <div class="steps" id="stepIndicator">
       <div class="step-dot active" id="dot1">1</div>
       <div class="step-line" id="line1"></div>
@@ -174,7 +125,7 @@
     </div>
   </div>
 
-  <form id="adForm" style="display:none;">
+  <form id="adForm">
 
     <!-- ═══ STEP 1: 업소 정보 ═══ -->
     <div id="step1">
@@ -552,40 +503,121 @@
 
   <div class="footer">
     HebronGuide LLC (설립 진행 중)<br>
-    문의: <a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a> · <a href="https://hebronguide.com">hebronguide.com</a><br>
-    📜 모든 광고는 HebronGuide 윤리 가이드라인(마10:16 지혜+순결)을 따릅니다.<br>
+    문의: <a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a> · <a href="https://hebronguide.com">hebronguide.com</a><br><br>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-bottom:10px;">
+      <a href="#terms" onclick="showLegal('terms')" style="color:rgba(236,253,245,0.45); text-decoration:none; font-size:10px;">이용약관</a>
+      <span style="color:rgba(236,253,245,0.2);">|</span>
+      <a href="#privacy" onclick="showLegal('privacy')" style="color:rgba(236,253,245,0.45); text-decoration:none; font-size:10px;">개인정보처리방침</a>
+      <span style="color:rgba(236,253,245,0.2);">|</span>
+      <a href="#nospam" onclick="showLegal('nospam')" style="color:rgba(236,253,245,0.45); text-decoration:none; font-size:10px;">이메일 무단수집거부</a>
+      <span style="color:rgba(236,253,245,0.2);">|</span>
+      <a href="#disclaimer" onclick="showLegal('disclaimer')" style="color:rgba(236,253,245,0.45); text-decoration:none; font-size:10px;">책임의 한계와 법적고지</a>
+      <span style="color:rgba(236,253,245,0.2);">|</span>
+      <a href="#adstandards" onclick="showLegal('adstandards')" style="color:rgba(236,253,245,0.45); text-decoration:none; font-size:10px;">광고 게재 기준</a>
+    </div>
+    📜 모든 광고는 HebronGuide 편집 기준(마10:16 지혜+순결)을 따릅니다.<br>
     HebronGuide 검수팀 확인 후 48시간 내 게시
+  </div>
+
+  <!-- 법적 문서 모달 -->
+  <div id="legalModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; overflow-y:auto; padding:20px;" onclick="closeLegal(event)">
+    <div style="max-width:560px; margin:40px auto; background:#1a2535; border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:24px; position:relative;">
+      <button onclick="closeLegal()" style="position:absolute; top:16px; right:16px; background:rgba(255,255,255,0.08); border:none; border-radius:50%; width:30px; height:30px; color:#ECFDF5; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
+      <div id="legalContent" style="font-size:12px; color:rgba(236,253,245,0.75); line-height:1.9;"></div>
+    </div>
   </div>
 
 </div>
 
 <script>
-/* ─── 사전 자격 확인 ─── */
-function checkPreEligibility() {
-  const all = ['preCheck1','preCheck2','preCheck3'].every(id => document.getElementById(id)?.checked);
-  const btn = document.getElementById('preCheckBtn');
-  if (all) {
-    btn.disabled = false;
-    btn.style.background = 'linear-gradient(135deg,#C9A227,#B8901C)';
-    btn.style.color = '#fff';
-    btn.style.cursor = 'pointer';
-    btn.style.borderColor = 'transparent';
-    btn.style.boxShadow = '0 4px 16px rgba(201,162,39,0.35)';
-  } else {
-    btn.disabled = true;
-    btn.style.background = 'rgba(255,255,255,0.08)';
-    btn.style.color = 'rgba(236,253,245,0.4)';
-    btn.style.cursor = 'not-allowed';
-    btn.style.borderColor = 'rgba(255,255,255,0.15)';
-    btn.style.boxShadow = 'none';
+/* ─── 법적 문서 모달 ─── */
+const LEGAL_DOCS = {
+  terms: {
+    title: '이용약관',
+    content: `<strong style="font-size:14px;color:#C9A227;">HebronGuide 광고 서비스 이용약관</strong><br><br>
+<strong>제1조 (목적)</strong><br>
+이 약관은 HebronGuide LLC(이하 "회사")가 제공하는 광고 게재 서비스 이용에 관한 기본 사항을 규정합니다.<br><br>
+<strong>제2조 (서비스 내용)</strong><br>
+회사는 한인 커뮤니티를 위한 디지털 광고 게재 서비스를 제공합니다. 광고는 한국어·영어·스페인어로 제작됩니다.<br><br>
+<strong>제3조 (계약 성립)</strong><br>
+광고 신청서 제출 → 검수팀 검토 → 결제 완료 후 계약이 성립합니다. 결제 전까지 광고는 게시되지 않습니다.<br><br>
+<strong>제4조 (광고 게재 기준)</strong><br>
+회사는 편집 재량권을 보유하며, 커뮤니티 가치와 충돌하는 광고는 게재를 거절할 수 있습니다. 거절 시 전액 환불합니다.<br><br>
+<strong>제5조 (환불 정책)</strong><br>
+검수 거절: 전액 환불 / 광고주 사유 취소: 잔여 기간 50% 환불 / 약관 위반 중단: 환불 없음<br><br>
+<strong>제6조 (면책)</strong><br>
+회사는 광고 내용의 사실 여부에 대한 책임을 지지 않습니다. 광고주가 제공한 정보의 정확성에 대한 책임은 광고주에게 있습니다.<br><br>
+<strong>제7조 (준거법)</strong><br>
+이 약관은 Washington State 법률에 따릅니다.`
+  },
+  privacy: {
+    title: '개인정보처리방침',
+    content: `<strong style="font-size:14px;color:#C9A227;">개인정보처리방침</strong><br><br>
+HebronGuide LLC는 광고 신청 과정에서 수집된 개인정보를 다음과 같이 처리합니다.<br><br>
+<strong>수집 항목</strong><br>
+업소명, 주소, 전화번호, 이메일, 웹사이트, 광고 관련 정보<br><br>
+<strong>수집 목적</strong><br>
+광고 검수 및 게재, 결제 안내, 광고 리포트 발송<br><br>
+<strong>보유 기간</strong><br>
+계약 종료 후 1년 / 법적 의무 보존 기간 준수<br><br>
+<strong>제3자 제공</strong><br>
+원칙적으로 제3자에게 제공하지 않습니다. 법적 요구 시 예외 적용.<br><br>
+<strong>파기</strong><br>
+보유 기간 종료 시 안전하게 파기합니다.<br><br>
+문의: <a href="mailto:hebronplatform@gmail.com" style="color:#6EE7B7;">hebronplatform@gmail.com</a>`
+  },
+  nospam: {
+    title: '이메일 무단수집거부',
+    content: `<strong style="font-size:14px;color:#C9A227;">이메일 무단수집거부</strong><br><br>
+본 사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 그 밖의 기술적 장치를 이용하여 무단으로 수집되는 것을 거부합니다.<br><br>
+이를 위반 시 정보통신망법에 의해 형사처벌을 받을 수 있습니다.<br><br>
+<em style="color:rgba(236,253,245,0.5);">※ 게시일: 2026년 1월 1일</em>`
+  },
+  disclaimer: {
+    title: '책임의 한계와 법적고지',
+    content: `<strong style="font-size:14px;color:#C9A227;">책임의 한계와 법적고지</strong><br><br>
+<strong>광고 내용 책임</strong><br>
+HebronGuide는 광고주가 제공한 정보를 바탕으로 광고를 제작합니다. 광고 내용의 사실 여부에 대한 최종 책임은 광고주에게 있습니다.<br><br>
+<strong>편집 재량권</strong><br>
+HebronGuide는 커뮤니티 가치 및 편집 기준에 따라 광고 게재 여부를 독립적으로 결정할 권리를 보유합니다.<br><br>
+<strong>서비스 중단</strong><br>
+기술적 문제, 천재지변 등 불가항력으로 인한 서비스 중단 시 책임을 지지 않습니다.<br><br>
+<strong>법적 고지</strong><br>
+본 서비스는 미국 Washington State 법률을 준거법으로 합니다. 분쟁 발생 시 이메일 협의를 우선합니다.`
+  },
+  adstandards: {
+    title: '광고 게재 기준',
+    content: `<strong style="font-size:14px;color:#C9A227;">광고 게재 기준</strong><br><br>
+HebronGuide는 한인 커뮤니티를 위한 신뢰 플랫폼으로서, 아래 기준에 따라 광고 게재 여부를 결정합니다.<br><br>
+<strong>✅ 게재 가능</strong><br>
+· 한인이 운영하는 업소<br>
+· 한인 커뮤니티를 주요 고객으로 섬기는 서비스<br>
+· 사실에 근거한 정직한 광고<br>
+· 커뮤니티의 정착·생활·문화에 도움이 되는 서비스<br><br>
+<strong>🚫 게재 불가 (내용 기준)</strong><br>
+· 업소·단체의 실제 성격을 숨기거나 다르게 표현한 광고<br>
+· 검증 불가한 효능·치유·구원을 주장하는 광고<br>
+· 가입·모집이 주목적인 광고<br>
+· 허위·과장·오해를 유발하는 표현<br>
+· 특정 집단에 대한 차별·혐오 표현<br>
+· 도박·성인·유흥·불법 상품<br><br>
+<em style="color:rgba(236,253,245,0.5);">HebronGuide는 편집 재량권을 가진 비공개 선별 플랫폼입니다.</em>`
   }
+};
+
+function showLegal(type) {
+  const doc = LEGAL_DOCS[type];
+  if (!doc) return;
+  document.getElementById('legalContent').innerHTML = doc.content;
+  document.getElementById('legalModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  event.preventDefault();
 }
 
-function startForm() {
-  document.getElementById('preCheck').style.display = 'none';
-  document.getElementById('stepWrapper').style.display = 'block';
-  document.getElementById('adForm').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function closeLegal(e) {
+  if (e && e.target !== document.getElementById('legalModal') && !e.currentTarget?.querySelector?.('button')) return;
+  document.getElementById('legalModal').style.display = 'none';
+  document.body.style.overflow = '';
 }
 
 /* ─── 실시간 금지어 감지 ─── */
