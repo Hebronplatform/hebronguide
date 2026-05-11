@@ -6150,12 +6150,12 @@ function getCityChurches(slug: string, lang: string) {
     ],
     sf: [
       {
-        emoji: "⛪", tier: 2,
-        name: ko ? "새누리 선교교회" : "Saenuri Mission Church",
+        emoji: "⭐", tier: 1,
+        name: ko ? "새누리선교교회 (NCMC)" : "New Community Mission Church (NCMC)",
         desc: ko
-          ? "📍 3399 CSM Dr., San Mateo, CA 94402\n✨ 담임: 김태 목사\n🕐 주일예배: 11:30am · 1:30pm\n📞 415-595-6629\n🔗 omission.org"
-          : "📍 3399 CSM Dr., San Mateo, CA 94402\n✨ Lead Pastor: Rev. Tae Kim\n🕐 Sunday: 11:30am · 1:30pm\n📞 415-595-6629\n🔗 omission.org",
-        tags: ko ? ["한인교회", "샌마테오"] : ["Korean Church", "San Mateo"],
+          ? "✅ 가정교회 · 한·영 이중언어 사역\n📍 3399 CSM Dr., San Mateo, CA 94402\n✨ 담임: 김태훈 목사\n🕐 1부 11:30am · 2부 1:30pm (영어예배)\n📞 650-571-9445\n📧 welcome.ncmc@gmail.com\n🔗 ncmission.org"
+          : "✅ House Church · Korean-English Bilingual Ministry\n📍 3399 CSM Dr., San Mateo, CA 94402\n✨ Lead Pastor: Rev. Tae Kim\n🕐 1st 11:30am · 2nd 1:30pm (English service)\n📞 650-571-9445\n📧 welcome.ncmc@gmail.com\n🔗 ncmission.org",
+        tags: ko ? ["가정교회", "한영이중언어", "샌마테오"] : ["House Church", "Bilingual", "San Mateo"],
       },
     ],
   };
