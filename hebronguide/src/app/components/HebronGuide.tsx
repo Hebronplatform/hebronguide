@@ -6159,17 +6159,7 @@ function getCityChurches(slug: string, lang: string) {
       },
     ],
   };
-  // IHM 미등재 도시 → 안내 카드 + IHM 디렉토리 직접 검색 링크
-  return byCity[slug] ?? [
-    {
-      emoji: "🏠",
-      name: ko ? `${slug.toUpperCase()} 지역 IHM 가정교회` : `IHM House Churches — ${slug.toUpperCase()}`,
-      desc: ko
-        ? "HebronGuide는 국제가사원(IHM) 회원 가정교회를 우선으로 등재합니다.\n이 지역 IHM 회원 교회 정보를 수집 중입니다.\n\n🌐 housechurchministries.org 에서 전 세계 IHM 가정교회를 직접 검색하실 수 있습니다.\n✨ 추가 IHM 회원 교회 정보가 있으시면 알려주세요."
-        : "HebronGuide prioritizes IHM (International House Church Ministries) member churches.\nIHM church info for this area is being collected.\n\n🌐 Search the global IHM directory at housechurchministries.org\n✨ Know an IHM church here? Let us know.",
-      tags: ko ? ["가정교회", "IHM", "디렉토리"] : ["House Church", "IHM", "Directory"],
-    },
-  ];
+  return byCity[slug] ?? [];
 }
 
 function ChurchScreen({ onHome }: { onHome?: () => void }) {
