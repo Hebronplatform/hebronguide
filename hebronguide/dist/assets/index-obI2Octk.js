@@ -639,7 +639,15 @@ Key services:
 ✨ 담임: 이민기 목사`:`✅ Verified | IHM (International House Church Ministries) member. House church ministry.
 📍 Vancouver, BC, Canada
 📞 778-231-4734
-✨ Lead Pastor: Min Ki Lee`,tags:t?["가정교회","IHM","밴쿠버"]:["House Church","IHM","Vancouver"]}]}[r]??[{emoji:"🏠",name:t?`${r.toUpperCase()} 지역 IHM 가정교회`:`IHM House Churches — ${r.toUpperCase()}`,desc:t?`HebronGuide는 국제가사원(IHM) 회원 가정교회를 우선으로 등재합니다.
+✨ Lead Pastor: Min Ki Lee`,tags:t?["가정교회","IHM","밴쿠버"]:["House Church","IHM","Vancouver"]}],sf:[{emoji:"⛪",tier:2,name:t?"새누리 선교교회":"Saenuri Mission Church",desc:t?`📍 3399 CSM Dr., San Mateo, CA 94402
+✨ 담임: 김태 목사
+🕐 주일예배: 11:30am · 1:30pm
+📞 415-595-6629
+🔗 omission.org`:`📍 3399 CSM Dr., San Mateo, CA 94402
+✨ Lead Pastor: Rev. Tae Kim
+🕐 Sunday: 11:30am · 1:30pm
+📞 415-595-6629
+🔗 omission.org`,tags:t?["한인교회","샌마테오"]:["Korean Church","San Mateo"]}]}[r]??[{emoji:"🏠",name:t?`${r.toUpperCase()} 지역 IHM 가정교회`:`IHM House Churches — ${r.toUpperCase()}`,desc:t?`HebronGuide는 국제가사원(IHM) 회원 가정교회를 우선으로 등재합니다.
 이 지역 IHM 회원 교회 정보를 수집 중입니다.
 
 🌐 housechurchministries.org 에서 전 세계 IHM 가정교회를 직접 검색하실 수 있습니다.

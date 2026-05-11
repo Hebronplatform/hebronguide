@@ -6148,6 +6148,16 @@ function getCityChurches(slug: string, lang: string) {
         tags: ko ? ["가정교회", "IHM", "밴쿠버"] : ["House Church", "IHM", "Vancouver"],
       },
     ],
+    sf: [
+      {
+        emoji: "⛪", tier: 2,
+        name: ko ? "새누리 선교교회" : "Saenuri Mission Church",
+        desc: ko
+          ? "📍 3399 CSM Dr., San Mateo, CA 94402\n✨ 담임: 김태 목사\n🕐 주일예배: 11:30am · 1:30pm\n📞 415-595-6629\n🔗 omission.org"
+          : "📍 3399 CSM Dr., San Mateo, CA 94402\n✨ Lead Pastor: Rev. Tae Kim\n🕐 Sunday: 11:30am · 1:30pm\n📞 415-595-6629\n🔗 omission.org",
+        tags: ko ? ["한인교회", "샌마테오"] : ["Korean Church", "San Mateo"],
+      },
+    ],
   };
   // IHM 미등재 도시 → 안내 카드 + IHM 디렉토리 직접 검색 링크
   return byCity[slug] ?? [
