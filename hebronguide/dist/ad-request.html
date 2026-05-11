@@ -103,7 +103,7 @@
 
   <div class="header">
     <h1>HebronGuide 광고 신청</h1>
-    <div class="subtitle">한·영·스 3개 언어 광고 · 검수 후 48시간 내 게시<br>타겟에 맞는 광고를 4단계로 설정합니다</div>
+    <div class="subtitle">한인 커뮤니티를 위한 광고 플랫폼<br>한·영·스 3개 언어 · 검수 후 48시간 내 게시</div>
   </div>
 
   <!-- ═══ 사전 자격 확인 (진입 전 차단) ═══ -->
@@ -184,20 +184,27 @@
         <label>업소명 *</label>
         <input type="text" name="businessName" required placeholder="예: 강남 한식당" />
 
-        <label>업소 종류 *</label>
+        <label>업소 종류 * <span style="opacity:0.5;font-weight:400;">한인 운영 또는 한인 커뮤니티를 위한 서비스</span></label>
         <select name="businessType" required>
           <option value="">선택하세요</option>
-          <option value="한식당">한식당 (BBQ·찌개·분식 등)</option>
-          <option value="카페">카페·베이커리</option>
-          <option value="한인 마트">한인 마트·식료품</option>
-          <option value="교회">한인 교회·사역 단체</option>
-          <option value="의료">한인 병원·치과·한의원</option>
-          <option value="법률·세무">법률·세무·이민 서비스</option>
-          <option value="부동산">부동산·렌탈</option>
-          <option value="미용">미용실·뷰티 살롱</option>
-          <option value="교육">한국학교·태권도·학원</option>
-          <option value="항공·여행">항공사·여행사</option>
-          <option value="기타">기타 한인 비즈니스</option>
+          <optgroup label="── 한인 업소">
+            <option value="한식당">한식당 (BBQ·찌개·분식 등)</option>
+            <option value="카페">카페·베이커리</option>
+            <option value="한인 마트">한인 마트·식료품</option>
+            <option value="교회">한인 교회·사역 단체</option>
+            <option value="미용">미용실·뷰티 살롱</option>
+            <option value="교육">한국학교·태권도·학원</option>
+            <option value="기타 한인">기타 한인 비즈니스</option>
+          </optgroup>
+          <optgroup label="── 한인 커뮤니티를 위한 서비스">
+            <option value="의료">병원·치과·한의원 (한국어 가능)</option>
+            <option value="법률·세무">법률·세무·이민 서비스</option>
+            <option value="부동산">부동산·렌탈</option>
+            <option value="항공·여행">항공사·여행사</option>
+            <option value="금융">은행·보험·금융 서비스</option>
+            <option value="대학·교육기관">대학·어학원·교육기관</option>
+            <option value="기타 커뮤니티">기타 — 한인 커뮤니티를 위한 서비스</option>
+          </optgroup>
         </select>
 
         <label>광고 노출 범위 *</label>
