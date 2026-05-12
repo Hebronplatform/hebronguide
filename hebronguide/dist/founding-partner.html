@@ -174,7 +174,7 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
 
   <!-- D-day -->
   <div class="d-day" id="ddayBadge">
-    마감: <strong id="ddayNum">D-???</strong> &nbsp;·&nbsp; 2026년 12월 30일
+    마감: <strong id="ddayNum">D-???</strong> &nbsp;·&nbsp; 2026년 10월 1일
   </div>
 </div>
 
@@ -426,7 +426,7 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
 
     <!-- 안내 -->
     <div class="discount-hint">
-      💡 신청서 제출 후 담당자가 개별 연락드립니다 · 프로모션 기간: 2026년 12월 30일까지
+      💡 신청서 제출 후 담당자가 개별 연락드립니다 · 프로모션 기간: 2026년 10월 1일까지
     </div>
 
     <!-- 동의 -->
@@ -454,7 +454,7 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
 <script>
 // SNS 공유
 const SHARE_URL = 'https://hebronguide.com/founding-partner.html';
-const SHARE_TEXT = '📱 HebronGuide 파트너 교회 모집 중 — 44개+ 도시 한인 이민자·이주자와 교회를 잇는 디지털 환대 플랫폼. 도시별 선착순 12개 · 2026년 12월 30일까지.';
+const SHARE_TEXT = '📱 HebronGuide 파트너 교회 모집 중 — 44개+ 도시 한인 이민자·이주자와 교회를 잇는 디지털 환대 플랫폼. 도시별 선착순 12개 · 2026년 10월 1일까지.';
 
 function shareKakao() {
   const msg = encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL);
@@ -515,9 +515,9 @@ function checkWebsite() {
 
 // D-day
 (function(){
-  const d = Math.max(0, Math.ceil((new Date("2026-12-30").getTime() - Date.now()) / 86400000));
+  const d = Math.max(0, Math.ceil((new Date("2026-10-01").getTime() - Date.now()) / 86400000));
   document.getElementById('ddayNum').textContent = 'D-' + d;
-  document.getElementById('ddayBadge').title = '2026년 12월 30일 마감';
+  document.getElementById('ddayBadge').title = '2026년 10월 1일 마감';
 })();
 
 // 도시 자동완성
