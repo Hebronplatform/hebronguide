@@ -5557,36 +5557,37 @@ function FoundingPartnerBanner({ lang, onNavigate }: { lang: string; onNavigate?
   const daysLeft = Math.max(0, Math.ceil((new Date("2026-12-31").getTime() - Date.now()) / 86400000));
   if (daysLeft === 0) return null;
   return (
-    <div style={{ margin: "12px 16px 0", background: "linear-gradient(135deg, #FFFBEB, #FEF3C7)", border: "1.5px solid #F59E0B", borderRadius: 14, padding: "11px 14px", display: "flex", alignItems: "center", gap: 10 }}>
-      <span style={{ fontSize: 22, flexShrink: 0 }}>🌟</span>
-      <div style={{ flex: 1 }}>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12.5, color: "#92400E", lineHeight: 1.3 }}>
-          {lang === "ko" ? "2026 창립 파트너 교회 모집 중 (IHM 인증 가정교회)" : "2026 Founding Partner — IHM House Churches"}
+    <a href="/founding-partner.html" style={{ textDecoration: "none", display: "block" }}>
+      <div style={{ margin: "12px 16px 0", background: "linear-gradient(135deg, #FEF3C7, #FDE68A)", border: "2px solid #F59E0B", borderRadius: 14, padding: "11px 14px", display: "flex", alignItems: "center", gap: 10, cursor: "pointer", boxShadow: "0 2px 12px rgba(245,158,11,0.25)" }}>
+        <span style={{ fontSize: 22, flexShrink: 0 }}>🌟</span>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12.5, color: "#78350F", lineHeight: 1.3 }}>
+            {lang === "ko" ? "2026 창립 파트너 교회 모집 중 (IHM 인증 가정교회)" : "2026 Founding Partner — IHM House Churches"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10.5, color: "#92400E", marginTop: 3, lineHeight: 1.6 }}>
+            {lang === "ko" ? (
+              <>
+                <span style={{ textDecoration: "line-through", opacity: 0.5 }}>등록비 $50</span>
+                {" "}면제 · <span style={{ textDecoration: "line-through", opacity: 0.5 }}>언어 2개 $60</span>
+                {" "}크레딧 · <strong style={{ color: "#78350F" }}>연$20만</strong> (총 $110 혜택) → 신청하기
+              </>
+            ) : (
+              <>
+                <span style={{ textDecoration: "line-through", opacity: 0.5 }}>$50 reg</span>
+                {" "}waived · <span style={{ textDecoration: "line-through", opacity: 0.5 }}>$60 lang</span>
+                {" "}credited · <strong style={{ color: "#78350F" }}>$20/yr</strong> → Apply Now
+              </>
+            )}
+          </div>
         </div>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10.5, color: "#B45309", marginTop: 3, lineHeight: 1.6 }}>
-          {lang === "ko" ? (
-            <>
-              <span style={{ textDecoration: "line-through", opacity: 0.55 }}>등록비 $50</span>
-              {" "}면제 · <span style={{ textDecoration: "line-through", opacity: 0.55 }}>언어 추가 2개 $60</span>
-              {" "}크레딧 제공{"\n"}
-              <strong style={{ color: "#92400E" }}>연회비 $20만</strong> 납부 (총 $110 혜택)
-            </>
-          ) : (
-            <>
-              <span style={{ textDecoration: "line-through", opacity: 0.55 }}>$50 reg</span>
-              {" "}waived · <span style={{ textDecoration: "line-through", opacity: 0.55 }}>2 lang × $30 = $60</span>
-              {" "}credited · <strong style={{ color: "#92400E" }}>$20/yr only</strong> ($110 value)
-            </>
-          )}
+        <div style={{ flexShrink: 0, textAlign: "center" }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#DC2626", background: "#FEE2E2", borderRadius: 8, padding: "3px 8px" }}>
+            D-{daysLeft}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#B45309", marginTop: 2 }}>12/31</div>
         </div>
       </div>
-      <div style={{ flexShrink: 0, textAlign: "center" }}>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#DC2626", background: "#FEE2E2", borderRadius: 8, padding: "3px 8px" }}>
-          D-{daysLeft}
-        </div>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#B45309", marginTop: 2 }}>12/31</div>
-      </div>
-    </div>
+    </a>
   );
 }
 
@@ -5610,13 +5611,13 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <CityHubSection lang={lang} />
       {/* 헤브론 스토어 배너 */}
-      <div style={{ margin: "12px 16px 0", background: "linear-gradient(135deg, rgba(242,153,74,0.15), rgba(75,91,215,0.12))", border: "1px solid rgba(242,153,74,0.3)", borderRadius: 16, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12 }}>
+      <div style={{ margin: "12px 16px 0", background: "linear-gradient(135deg, rgba(242,153,74,0.38), rgba(75,91,215,0.30))", border: "1.5px solid rgba(242,153,74,0.7)", borderRadius: 16, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12, boxShadow: "0 2px 12px rgba(242,153,74,0.18)" }}>
         <span style={{ fontSize: 28, flexShrink: 0 }}>🛒</span>
         <div style={{ flex: 1 }}>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#ECFDF5", marginBottom: 2 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff", marginBottom: 2 }}>
             {lang === "ko" ? "헤브론 스토어 오픈" : "Hebron Store Now Open"}
           </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.6)", lineHeight: 1.5 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.82)", lineHeight: 1.5 }}>
             {lang === "ko"
               ? "HebronLingua · 정착가이드 · 멤버십 직접 구매"
               : "HebronLingua · Settlement guides · Membership"}
@@ -5624,7 +5625,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
         </div>
         <button
           onClick={() => onNavigate && onNavigate(10)}
-          style={{ background: "#F2994A", border: "none", borderRadius: 10, padding: "8px 14px", fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#fff", cursor: "pointer", flexShrink: 0 }}>
+          style={{ background: "#F2994A", border: "none", borderRadius: 10, padding: "8px 14px", fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#fff", cursor: "pointer", flexShrink: 0, boxShadow: "0 2px 8px rgba(242,153,74,0.4)" }}>
           {lang === "ko" ? "보기 →" : "View →"}
         </button>
       </div>
@@ -6970,8 +6971,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
   const tabs = lang === "ko"
-    ? ["소개", "교회 목록", "프로그램", "새가족", "🏆 허브교회"]
-    : ["About", "Churches", "Programs", "New Members", "🏆 Hub Church"];
+    ? ["소개", "교회 목록", "프로그램", "새가족", "🏆 교회 네트워크"]
+    : ["About", "Churches", "Programs", "New Members", "🏆 Church Network"];
   const accent = "#C084FC";
   const city = useCityConfig();
   const citySlug = city.slug;
@@ -7115,7 +7116,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* 비전 배너 */}
             <div style={{ background: "linear-gradient(135deg, rgba(201,162,39,0.18), rgba(192,132,252,0.1))", border: "1px solid rgba(201,162,39,0.35)", borderRadius: 18, padding: "18px 16px", marginBottom: 14 }}>
               <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#C9A227", marginBottom: 8 }}>
-                🏆 {lang === "ko" ? "헤브론 허브교회 네트워크" : "Hebron Hub Church Network"}
+                🏆 {lang === "ko" ? "헤브론 교회 네트워크" : "Hebron Church Network"}
               </div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, marginBottom: 10 }}>
                 {lang === "ko"
@@ -7124,8 +7125,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                 {[
-                  { n: lang === "ko" ? "도시당 12개" : "12 per city", d: lang === "ko" ? "선별된 허브교회" : "Curated hub churches" },
-                  { n: lang === "ko" ? "새가족 연결" : "New arrivals", d: lang === "ko" ? "허브교회로 직접 안내" : "Directed to hub churches" },
+                  { n: lang === "ko" ? "도시당 12개" : "12 per city", d: lang === "ko" ? "선별된 헤브론 교회" : "Curated hub churches" },
+                  { n: lang === "ko" ? "새가족 연결" : "New arrivals", d: lang === "ko" ? "헤브론 교회 네트워크로 안내" : "Directed to hub churches" },
                   { n: lang === "ko" ? "전 세계" : "Worldwide", d: lang === "ko" ? "목사·선교사 네트워크" : "Pastor & missionary network" },
                 ].map((s, i) => (
                   <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
@@ -7139,7 +7140,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* 선별 기준 6가지 */}
             <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(192,132,252,0.2)", borderRadius: 14, padding: "16px", marginBottom: 12 }}>
               <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: accent, marginBottom: 12 }}>
-                📋 {lang === "ko" ? "허브교회 선별 기준 6가지" : "6 Hub Church Selection Criteria"}
+                📋 {lang === "ko" ? "헤브론 교회 네트워크 선별 기준 6가지" : "6 Hub Church Selection Criteria"}
               </div>
               {[
                 { n: lang === "ko" ? "복음적 (Evangelical)" : "Evangelical", d: lang === "ko" ? "오직 성경·오직 믿음·오직 은혜 — 사회복음 X" : "Scripture alone, faith alone, grace alone — not social gospel", icon: "📖" },
@@ -7159,14 +7160,14 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               ))}
             </div>
 
-            {/* 허브교회가 받는 것 */}
+            {/* 헤브론 교회 네트워크 혜택 */}
             <div style={{ background: "rgba(201,162,39,0.08)", border: "1px solid rgba(201,162,39,0.25)", borderRadius: 14, padding: "14px 16px", marginBottom: 12 }}>
               <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#C9A227", marginBottom: 10 }}>
-                🎁 {lang === "ko" ? "허브교회가 받는 것" : "What Hub Churches Receive"}
+                🎁 {lang === "ko" ? "헤브론 교회 네트워크 혜택" : "Hebron Church Network Benefits"}
               </div>
               {[
                 lang === "ko" ? "🏠 새 이민자가 도착하기 전에 미리 연락 — 환영 준비 가능" : "🏠 Pre-arrival notice for new immigrants — prepare welcome",
-                lang === "ko" ? "📱 HebronGuide 앱에 '허브교회' 금색 배지 표시" : "📱 Gold 'Hub Church' badge displayed on HebronGuide app",
+                lang === "ko" ? "📱 HebronGuide 앱에 '헤브론 교회 네트워크' 금색 배지 표시" : "📱 Gold 'Hebron Church Network' badge displayed on HebronGuide app",
                 lang === "ko" ? "🌐 전국·전 세계 목회자 네트워크 참여" : "🌐 National & global pastor network membership",
                 lang === "ko" ? "📊 도시 내 한인 이민자 정착 현황 데이터 공유" : "📊 City-level Korean immigrant settlement data sharing",
                 lang === "ko" ? "🤝 44개+ 도시 파트너 교회와 교인 교류·연결 (계속 확장 중)" : "🤝 Member exchange & connection with 44+ partner cities (continuously expanding)",
@@ -7180,11 +7181,11 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* 도시별 목표 */}
             <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
               <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: accent, marginBottom: 8 }}>
-                🗺️ {lang === "ko" ? "도시별 12개 허브교회 목표" : "12 Hub Churches Per City Goal"}
+                🗺️ {lang === "ko" ? "도시별 12개 헤브론 교회 네트워크 목표" : "12 Hebron Network Churches Per City"}
               </div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.7)", lineHeight: 1.8 }}>
                 {lang === "ko"
-                  ? "• 대도시 (LA·NY·달라스): 12개 교회 — 지역별 균형 배치\n• 중소도시 (시애틀·애틀랜타): 12개 이하 — 도시 전체 커버\n• 소도시·군사도시: 3-5개 교회 — 외로운 한인을 위한 등불\n\n새 이민자는 거주지에서 가장 가까운 허브교회로 자동 연결됩니다."
+                  ? "• 대도시 (LA·NY·달라스): 12개 교회 — 지역별 균형 배치\n• 중소도시 (시애틀·애틀랜타): 12개 이하 — 도시 전체 커버\n• 소도시·군사도시: 3-5개 교회 — 외로운 한인을 위한 등불\n\n새 이민자는 거주지에서 가장 가까운 헤브론 교회 네트워크로 자동 연결됩니다."
                   : "• Major cities (LA, NY, Dallas): 12 churches — balanced regional coverage\n• Mid cities (Seattle, Atlanta): up to 12 — city-wide coverage\n• Small & military cities: 3-5 churches — a light for lonely Koreans\n\nNew immigrants automatically connected to nearest hub church."}
               </div>
             </div>
@@ -7201,17 +7202,17 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* CTA — mailto body에 자가 진단 양식 미리 채움 (4-Tier + 신앙 고백 + 환대 동행) */}
             <a href={`mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(
               lang === "ko"
-                ? "[HebronGuide] 허브교회 신청"
-                : "[HebronGuide] Hub Church Application"
+                ? "[HebronGuide] 헤브론 교회 네트워크 신청"
+                : "[HebronGuide] Hebron Church Network Application"
             )}&body=${encodeURIComponent(
               lang === "ko"
-                ? `안녕하세요. {교회명} 담임목사 {성함}입니다.\nHebronGuide 허브교회로 등록을 신청합니다.\n\n=== 1. 기본 정보 ===\n- 교회명:\n- 담임목사 성함:\n- 도시 / 주:\n- 교단·소속 (예: SBC, 장로교 PCA, 가정교회 IHM):\n- 설립년도:\n- 교인 수 (대략):\n- 교회 공식 웹사이트:\n- 연락처 (이메일 / 전화):\n\n=== 2. 4-Tier 자가 분류 (해당하는 곳에 ✅) ===\n[ ] Tier 1 — 가정교회 (IHM 인증)\n[ ] Tier 2 — SBC·정통 보수\n[ ] Tier 3 — 기타 정통 교단 (장로·감리·성결·침례 등)\n[ ] Tier 4 — 독립·무소속\n\n=== 3. 복음 신앙 고백 (Y/N) ===\n[ ] 사도신경·니케아신경에 동의합니다.\n[ ] 성경 66권의 무오성을 믿습니다.\n[ ] 그리스도의 십자가 대속과 부활을 신앙고백합니다.\n\n=== 4. 허브교회 환대 동행 약속 (Y/N) ===\n[ ] 새 이민자 환대 동행자 역할에 동의합니다.\n[ ] 사역자·전문가 추천에 협력합니다.\n[ ] 분기별 영혼 점검 자가 진단에 참여합니다.\n\n=== 5. 추가 메시지 (자유 작성) ===\n\n\n— 검토 후 1-2주 내 결과 안내드립니다. 감사합니다.\n  www.ijiguchon.org · hebronguide.com\n  마 25:35 "내가 나그네 되었을 때 너희가 영접하였다"`
+                ? `안녕하세요. {교회명} 담임목사 {성함}입니다.\nHebronGuide 헤브론 교회 네트워크 등록을 신청합니다.\n\n=== 1. 기본 정보 ===\n- 교회명:\n- 담임목사 성함:\n- 도시 / 주:\n- 교단·소속 (예: SBC, 장로교 PCA, 가정교회 IHM):\n- 설립년도:\n- 교인 수 (대략):\n- 교회 공식 웹사이트:\n- 연락처 (이메일 / 전화):\n\n=== 2. 4-Tier 자가 분류 (해당하는 곳에 ✅) ===\n[ ] Tier 1 — 가정교회 (IHM 인증)\n[ ] Tier 2 — SBC·정통 보수\n[ ] Tier 3 — 기타 정통 교단 (장로·감리·성결·침례 등)\n[ ] Tier 4 — 독립·무소속\n\n=== 3. 복음 신앙 고백 (Y/N) ===\n[ ] 사도신경·니케아신경에 동의합니다.\n[ ] 성경 66권의 무오성을 믿습니다.\n[ ] 그리스도의 십자가 대속과 부활을 신앙고백합니다.\n\n=== 4. 헤브론 교회 네트워크 환대 동행 약속 (Y/N) ===\n[ ] 새 이민자 환대 동행자 역할에 동의합니다.\n[ ] 사역자·전문가 추천에 협력합니다.\n[ ] 분기별 영혼 점검 자가 진단에 참여합니다.\n\n=== 5. 추가 메시지 (자유 작성) ===\n\n\n— 검토 후 1-2주 내 결과 안내드립니다. 감사합니다.\n  www.ijiguchon.org · hebronguide.com\n  마 25:35 "내가 나그네 되었을 때 너희가 영접하였다"`
                 : `Hello. I am {Pastor Name}, lead pastor of {Church Name}.\nWe would like to apply as a HebronGuide Hub Church.\n\n=== 1. Basic Information ===\n- Church Name:\n- Lead Pastor:\n- City / State:\n- Denomination / Affiliation (e.g., SBC, PCA, IHM House Church):\n- Year Founded:\n- Approx. Members:\n- Official Website:\n- Contact (email / phone):\n\n=== 2. 4-Tier Self-Classification (✅ where applicable) ===\n[ ] Tier 1 — IHM-certified House Church\n[ ] Tier 2 — SBC / Conservative Evangelical\n[ ] Tier 3 — Other Orthodox Denominations (Presbyterian, Methodist, Holiness, Baptist, etc.)\n[ ] Tier 4 — Independent / Non-affiliated\n\n=== 3. Gospel Confession (Y/N) ===\n[ ] I affirm the Apostles' and Nicene Creeds.\n[ ] I affirm the inerrancy of the 66 books of Scripture.\n[ ] I confess Christ's substitutionary atonement and resurrection.\n\n=== 4. Hub Church Hospitality Commitment (Y/N) ===\n[ ] We agree to serve as hospitality companions for new immigrants.\n[ ] We commit to recommending qualified ministers and professionals.\n[ ] We will participate in quarterly soul-check self-assessment.\n\n=== 5. Additional Message (free-form) ===\n\n\n— Review will take 1-2 weeks. Thank you.\n  www.ijiguchon.org · hebronguide.com\n  Matthew 25:35 — "I was a stranger and you welcomed me."`
             )}`}
               style={{ display: "block", textDecoration: "none" }}>
               <div style={{ background: "linear-gradient(135deg, #C9A227, #B8901C)", borderRadius: 14, padding: "16px 20px", textAlign: "center", boxShadow: "0 4px 20px rgba(201,162,39,0.4)" }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 4 }}>
-                  🏆 {lang === "ko" ? "허브교회 신청 — 자가 진단 양식 자동 채움" : "Apply as Hub Church — Pre-filled Self-Assessment"}
+                  🏆 {lang === "ko" ? "헤브론 교회 네트워크 신청 — 자가 진단 양식 자동 채움" : "Apply for Hebron Church Network — Pre-filled Self-Assessment"}
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.85)", marginBottom: 4 }}>
                   hebronplatform@gmail.com · www.ijiguchon.org
@@ -12426,8 +12427,8 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
       id: "hebron-membership", category: "community",
       emoji: "🏆", color: "#C9A227",
       nameKo: "Hebron 커뮤니티 멤버십", nameEn: "Hebron Community Membership",
-      taglineKo: "허브교회 파트너 + Gig 우선 매칭 + 모든 가이드 무제한", taglineEn: "Hub church partner + Gig priority + all guides unlimited",
-      descKo: "HebronGuide 생태계 전체 이용 멤버십.\n\n✅ 모든 정착 가이드 PDF 무제한\n✅ Gig 서비스 수수료 15% → 10%\n✅ 허브교회 파트너 우선 연결\n✅ 신규 도시 조기 접근\n✅ 1:1 정착 상담 월 1회 무료",
+      taglineKo: "헤브론 교회 네트워크 파트너 + Gig 우선 매칭 + 모든 가이드 무제한", taglineEn: "Hebron Church Network partner + Gig priority + all guides unlimited",
+      descKo: "HebronGuide 생태계 전체 이용 멤버십.\n\n✅ 모든 정착 가이드 PDF 무제한\n✅ Gig 서비스 수수료 15% → 10%\n✅ 헤브론 교회 네트워크 우선 연결\n✅ 신규 도시 조기 접근\n✅ 1:1 정착 상담 월 1회 무료",
       descEn: "Full HebronGuide ecosystem membership.\n\n✅ All settlement guide PDFs unlimited\n✅ Gig commission 15% → 10%\n✅ Hub church partner priority connection\n✅ Early access to new cities\n✅ 1 free monthly settlement consultation",
       price: "$9.99/월", priceNote: ko ? "월간 · 언제든 취소 가능" : "Monthly · Cancel anytime",
       badge: "💎 멤버십",
@@ -12938,7 +12939,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
               services: [
                 { icon: "💐", name: ko ? "헤브론 꽃꽂이" : "Hebron Floral Design", price: ko ? "$50-200/작품" : "$50-200/arrangement", desc: ko ? "가정·행사·선물용 꽃꽂이. 한국식·서양식·이케바나 스타일" : "Home, event & gift floral arrangements. Korean, Western & Ikebana styles" },
                 { icon: "👰", name: ko ? "헤브론 웨딩플라워" : "Hebron Wedding Flowers", price: ko ? "$300-1,500/행사" : "$300-1,500/event", desc: ko ? "웨딩 부케·센터피스·아치·테이블 꽃장식. 사전 상담 포함" : "Wedding bouquets, centerpieces, arches & table florals. Consultation included" },
-                { icon: "⛪", name: ko ? "헤브론 교회꽃장식" : "Hebron Church Flowers", price: ko ? "$80-300/주" : "$80-300/week", desc: ko ? "교회 주간 꽃 장식·특별 행사 플로럴 데코. 허브교회 파트너 할인" : "Weekly church flowers & special event floral decor. Hub church partner discount" },
+                { icon: "⛪", name: ko ? "헤브론 교회꽃장식" : "Hebron Church Flowers", price: ko ? "$80-300/주" : "$80-300/week", desc: ko ? "교회 주간 꽃 장식·특별 행사 플로럴 데코. 헤브론 교회 네트워크 파트너 할인" : "Weekly church flowers & special event floral decor. Hebron Church Network partner discount" },
                 { icon: "🎁", name: ko ? "헤브론 꽃다발 배달" : "Hebron Flower Delivery", price: ko ? "$40-120/배달" : "$40-120/delivery", desc: ko ? "당일 꽃다발 제작·배달. 한국어·영어·스페인어 메시지 카드 포함" : "Same-day bouquet arrangement & delivery. Message cards in KO/EN/ES" },
                 { icon: "🌱", name: ko ? "헤브론 화분케어" : "Hebron Plant Care", price: ko ? "$15-30/회" : "$15-30/visit", desc: ko ? "실내 화분 관리·물주기·분갈이. 여행 중 반려식물 케어" : "Indoor plant maintenance, watering & repotting. Plant sitting while traveling" },
                 { icon: "🌿", name: ko ? "헤브론 화환·조화" : "Hebron Wreath & Silk", price: ko ? "$60-200/작품" : "$60-200/piece", desc: ko ? "현관 화환·리스·계절 장식. 조화로 오래 유지. 주문 제작" : "Door wreaths, seasonal décor & silk flower arrangements. Custom orders" },
