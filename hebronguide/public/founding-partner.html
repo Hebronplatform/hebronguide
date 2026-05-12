@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HebronGuide 파트너 교회 신청서 | HebronGuide</title>
-<meta name="description" content="HebronGuide 파트너 교회 신청서 — 등록비 면제, 언어 크레딧 $60, 연회비 $20. IHM 인증 가정교회 대상. 2026년 12월 30일까지.">
+<meta name="description" content="HebronGuide 파트너 교회 신청서 — 광고비 $50, 언어 크레딧 $60 지급, 첫 해 연회비 무료. IHM 인증 가정교회 대상. 2026년 12월 30일까지.">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -166,15 +166,14 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
   </div>
   <h1><span class="brand">HebronGuide</span><span>파트너 교회</span> 신청서</h1>
   <p class="hero-sub">
-    IHM 인증 가정교회만을 위한 특별 혜택
+    IHM 인증 가정교회 · 광고비 $50 + 언어 크레딧 $60 지급
   </p>
 
   <!-- 혜택 카드 -->
   <div class="benefit-cards">
     <div class="bc">
-      <span class="bc-original">기본 등록비 $50</span>
-      <div class="bc-val" style="color:var(--green);">$0</div>
-      <div class="bc-label">등록비 면제</div>
+      <div class="bc-val" style="color:#fff;">$50</div>
+      <div class="bc-label">기본 광고비</div>
     </div>
     <div class="bc">
       <span class="bc-original">언어 추가 $30 × 2</span>
@@ -182,8 +181,9 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
       <div class="bc-label">크레딧 지급</div>
     </div>
     <div class="bc">
-      <div class="bc-val" style="color:#fff;">$20</div>
-      <div class="bc-label">연회비만 납부</div>
+      <span class="bc-original">연회비 $20</span>
+      <div class="bc-val" style="color:var(--green);">선물 🎁</div>
+      <div class="bc-label">첫 해 무료</div>
     </div>
   </div>
 
@@ -423,8 +423,8 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
       <!-- 가격 요약 -->
       <div class="price-summary">
         <div class="price-row">
-          <span class="price-label">등록비</span>
-          <span><span class="price-value strike">$50</span> <span class="price-value green">→ $0 면제</span></span>
+          <span class="price-label">기본 광고비</span>
+          <span class="price-value">$50</span>
         </div>
         <div class="price-row" id="pr-en" style="display:none;">
           <span class="price-label">영어 추가</span>
@@ -435,11 +435,15 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
           <span><span class="price-value strike">$30</span> <span class="price-value green">크레딧</span></span>
         </div>
         <div class="price-row">
-          <span class="price-label">총 혜택</span>
-          <span class="price-value gold" id="totalCredit">$50 면제</span>
+          <span class="price-label">언어 크레딧 지급</span>
+          <span class="price-value gold" id="totalCredit">—</span>
         </div>
         <div class="price-row" style="border-top:1px solid rgba(201,162,39,.3);margin-top:6px;padding-top:10px;">
-          <span class="price-label" style="font-weight:800;color:#fff;">납부 금액 (연간)</span>
+          <span class="price-label" style="font-weight:800;color:#fff;">연회비 (첫 해)</span>
+          <span><span class="price-value strike">$20</span> <span class="price-value green">🎁 선물</span></span>
+        </div>
+        <div class="price-row">
+          <span class="price-label">연회비 (2년차~)</span>
           <span class="price-total">$20 / 년</span>
         </div>
         <div class="price-note">창립 파트너 혜택은 2026년 12월 30일까지 · 이후 가정교회도 정가 적용 · 연회비는 매년 자동 갱신</div>
@@ -498,7 +502,7 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
         <div class="agree-item">
           <input type="checkbox" id="agree3">
           <label for="agree3">
-            <strong>창립 파트너 서약에 동의합니다</strong> — 2026년 12월 30일까지 등록 완료 시 창립 파트너 배지가 영구 부여되며, 연회비 $20을 매년 납부합니다
+            <strong>창립 파트너 서약에 동의합니다</strong> — 기본 광고비 $50 납부, 언어 크레딧 $60 지급, 첫 해 연회비 $20 면제, 2년차부터 $20/년 납부합니다
           </label>
         </div>
         <div class="agree-item">
@@ -673,11 +677,11 @@ function updatePricing() {
   const esRow = document.getElementById('pr-es');
   if(enRow) enRow.style.display = selectedLangs.en ? 'flex' : 'none';
   if(esRow) esRow.style.display = selectedLangs.es ? 'flex' : 'none';
-  let credit = 50; // reg fee
+  let credit = 0;
   if (selectedLangs.en) credit += 30;
   if (selectedLangs.es) credit += 30;
   const tc = document.getElementById('totalCredit');
-  if(tc) tc.textContent = '$' + credit + ' 혜택';
+  if(tc) tc.textContent = credit > 0 ? '+$' + credit + ' 크레딧' : '—';
 }
 
 function buildReview() {
