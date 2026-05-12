@@ -2586,11 +2586,21 @@ interface BeforeInstallPromptEvent extends Event {
 function useInstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [showBanner, setShowBanner] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
     const dismissed = localStorage.getItem("hg_install_dismissed");
     if (dismissed) return;
+    const standalone = window.matchMedia("(display-mode: standalone)").matches
+      || (window.navigator as any).standalone === true;
+    if (standalone) return; // 이미 설치됨
 
+    const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+    if (ios) {
+      setIsIOS(true);
+      setShowBanner(true);
+      return;
+    }
     const handler = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
@@ -2601,6 +2611,7 @@ function useInstallPrompt() {
   }, []);
 
   const handleInstall = async () => {
+    if (isIOS) return; // iOS는 버튼 클릭 없음 — 안내만
     if (!deferredPrompt) return;
     await deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
@@ -2615,7 +2626,7 @@ function useInstallPrompt() {
     localStorage.setItem("hg_install_dismissed", "1");
   };
 
-  return { showBanner, handleInstall, handleDismiss };
+  return { showBanner, handleInstall, handleDismiss, isIOS };
 }
 
 /* ─────────────────────────────────────────
@@ -3092,7 +3103,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
 /* ─────────────────────────────────────────
    COMPONENT: 설치 배너 (PWA InstallBanner)
 ───────────────────────────────────────── */
-function InstallBanner({ onInstall, onDismiss }: { onInstall: () => void; onDismiss: () => void }) {
+function InstallBanner({ onInstall, onDismiss, isIOS }: { onInstall: () => void; onDismiss: () => void; isIOS: boolean }) {
   return (
     <div style={{
       position: "fixed", top: 56, left: "50%", transform: "translateX(-50%)",
@@ -3100,26 +3111,37 @@ function InstallBanner({ onInstall, onDismiss }: { onInstall: () => void; onDism
       background: "linear-gradient(135deg, rgba(110,231,183,0.15), rgba(201,162,39,0.10))",
       border: "1px solid rgba(110,231,183,0.25)",
       borderRadius: 16, padding: "14px 16px",
-      display: "flex", alignItems: "center", gap: 12,
+      display: "flex", alignItems: "flex-start", gap: 12,
       zIndex: 100, backdropFilter: "blur(20px)",
       WebkitBackdropFilter: "blur(20px)",
       boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
     }}>
-      <span style={{ fontSize: 28 }}>📱</span>
+      <span style={{ fontSize: 26, marginTop: 2 }}>📱</span>
       <div style={{ flex: 1 }}>
-        <div style={{ fontWeight: 700, fontSize: 14, color: "#e6edf3", fontFamily: "Manrope,sans-serif" }}>홈 화면에 추가하기</div>
-        <div style={{ fontSize: 12, color: "rgba(230,237,243,0.6)", marginTop: 2, fontFamily: "Manrope,sans-serif" }}>
-          오프라인에서도 사용 가능 · 공항에서도 OK
+        <div style={{ fontWeight: 700, fontSize: 14, color: "#e6edf3", fontFamily: "Manrope,sans-serif", marginBottom: 3 }}>
+          HebronGuide 앱으로 추가하기
         </div>
+        {isIOS ? (
+          <div style={{ fontSize: 12, color: "rgba(230,237,243,0.75)", fontFamily: "Manrope,sans-serif", lineHeight: 1.7 }}>
+            Safari 하단 <strong style={{ color: MINT }}>공유 버튼 ⬆️</strong> →<br/>
+            <strong style={{ color: MINT }}>"홈 화면에 추가"</strong> 탭 → 추가
+          </div>
+        ) : (
+          <div style={{ fontSize: 12, color: "rgba(230,237,243,0.6)", fontFamily: "Manrope,sans-serif", lineHeight: 1.6 }}>
+            한 번 탭으로 앱 설치 · 오프라인 OK · 공항에서도 사용 가능
+          </div>
+        )}
       </div>
-      <button onClick={onInstall} style={{
-        background: MINT, color: "#0d1117", border: "none",
-        borderRadius: 8, padding: "8px 14px", fontWeight: 700, fontSize: 13,
-        cursor: "pointer", fontFamily: "Manrope,sans-serif", flexShrink: 0,
-      }}>설치</button>
+      {!isIOS && (
+        <button onClick={onInstall} style={{
+          background: MINT, color: "#0d1117", border: "none",
+          borderRadius: 8, padding: "8px 14px", fontWeight: 700, fontSize: 13,
+          cursor: "pointer", fontFamily: "Manrope,sans-serif", flexShrink: 0, marginTop: 2,
+        }}>추가</button>
+      )}
       <button onClick={onDismiss} style={{
         background: "none", border: "none", color: "rgba(230,237,243,0.4)",
-        fontSize: 20, cursor: "pointer", padding: 4, lineHeight: 1,
+        fontSize: 20, cursor: "pointer", padding: 4, lineHeight: 1, flexShrink: 0,
       }}>×</button>
     </div>
   );
@@ -14472,7 +14494,7 @@ export function HebronGuide() {
   const [showChat, setShowChat] = useState(false);
   const [showTranslate, setShowTranslate] = useState(false);
   const isOnline = useOnlineStatus();
-  const { showBanner, handleInstall, handleDismiss } = useInstallPrompt();
+  const { showBanner, handleInstall, handleDismiss, isIOS } = useInstallPrompt();
   const { lang, setLang } = useI18n();
   const city = useCityConfig();
 
@@ -14761,7 +14783,7 @@ export function HebronGuide() {
 
         {/* PWA 설치 배너 */}
         {showBanner && (
-          <InstallBanner onInstall={handleInstall} onDismiss={handleDismiss} />
+          <InstallBanner onInstall={handleInstall} onDismiss={handleDismiss} isIOS={isIOS} />
         )}
 
         <main className="flex-1 overflow-y-auto" style={{ paddingBottom: 72, paddingTop: showBanner ? 72 : 0 }}>
