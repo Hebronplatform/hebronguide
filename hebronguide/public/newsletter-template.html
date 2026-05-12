@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>헤브론 소식 — 이메일 미리보기</title>
+  <style>
+    body { margin: 0; padding: 0; background: #f0f0f0; font-family: Arial, sans-serif; }
+    .preview-bar { background: #333; color: #fff; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 14px; }
+    .preview-label { font-weight: bold; letter-spacing: 0.5px; }
+    .copy-btn { background: #C9A227; color: #0d1117; border: none; border-radius: 6px; padding: 8px 18px; font-size: 13px; font-weight: bold; cursor: pointer; letter-spacing: 0.3px; }
+    .copy-btn:hover { background: #e0b830; }
+    .copy-success { color: #6EE7B7; font-size: 12px; margin-left: 10px; display: none; }
+    .outer-wrapper { background: #f0f0f0; padding: 32px 16px 48px; }
+    .email-shadow-wrap { max-width: 600px; margin: 0 auto; box-shadow: 0 4px 32px rgba(0,0,0,0.18); border-radius: 8px; overflow: hidden; }
+  </style>
+</head>
+<body>
+
+<!-- PREVIEW WRAPPER — for preview only, not part of email -->
+<div class="preview-bar">
+  <span class="preview-label">이메일 미리보기 — 헤브론 소식 Newsletter</span>
+  <span>
+    <button class="copy-btn" onclick="copyEmail()">복사하기</button>
+    <span class="copy-success" id="copy-success">복사 완료!</span>
+  </span>
+</div>
+
+<div class="outer-wrapper">
+  <div class="email-shadow-wrap">
+    <!-- EMAIL START — id="email-body" for copy -->
+    <div id="email-body">
+
+<!-- ============================================================
+     헤브론 소식 (HebronGuide Newsletter) — Email HTML
+     Table-based layout · Inline styles only · Max 600px
+     Compatible: Gmail · Outlook · Apple Mail
+     ============================================================ -->
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#0d1117;margin:0 auto;padding:0;">
+  <tr>
+    <td align="center" style="padding:0;">
+      <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background-color:#0d1117;margin:0 auto;">
+
+        <!-- ====================================================
+             1. HEADER
+             ==================================================== -->
+        <tr>
+          <td style="padding:36px 32px 28px 32px;text-align:center;border-bottom:2px solid #C9A227;background-color:#0d1117;">
+            <!-- Logo -->
+            <div style="font-family:Georgia,'Times New Roman',serif;font-size:28px;font-weight:bold;color:#C9A227;letter-spacing:3px;margin-bottom:6px;">
+              HebronGuide
+            </div>
+            <!-- Subtitle -->
+            <div style="font-family:Arial,sans-serif;font-size:17px;color:#ECFDF5;letter-spacing:2px;margin-bottom:12px;">
+              헤브론 소식
+            </div>
+            <!-- Issue + Date -->
+            <div style="font-family:Arial,sans-serif;font-size:12px;color:#888888;letter-spacing:1px;">
+              Vol.001 &nbsp;·&nbsp; 2026년 X월 X일
+            </div>
+          </td>
+        </tr>
+
+        <!-- ====================================================
+             2. HERO SECTION
+             ==================================================== -->
+        <tr>
+          <td style="background-color:#1a2030;padding:40px 32px 36px 32px;text-align:center;">
+            <!-- Hero Title -->
+            <div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:bold;color:#ECFDF5;line-height:1.35;margin-bottom:10px;">
+              이번 주 한인 이민자 소식
+            </div>
+            <!-- Hero Subtitle -->
+            <div style="font-family:Arial,sans-serif;font-size:14px;color:#888888;letter-spacing:1px;margin-bottom:20px;">
+              이민&nbsp;·&nbsp;비자&nbsp;·&nbsp;커뮤니티&nbsp;·&nbsp;신앙
+            </div>
+            <!-- Badge Pill -->
+            <div style="display:inline-block;">
+              <span style="background-color:#C9A227;color:#0d1117;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;padding:5px 14px;border-radius:20px;letter-spacing:0.8px;">
+                HebronGuide Weekly
+              </span>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ====================================================
+             3. MAIN CONTENT — ARTICLES
+             ==================================================== -->
+
+        <!-- Spacer -->
+        <tr>
+          <td style="background-color:#0d1117;padding:28px 32px 0 32px;">
+            <div style="font-family:Arial,sans-serif;font-size:12px;color:#888888;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;">
+              이번 주 주요 소식
+            </div>
+            <div style="height:1px;background-color:#222d3a;margin-bottom:20px;"></div>
+          </td>
+        </tr>
+
+        <!-- Article 1 — 이민·비자 -->
+        <tr>
+          <td style="padding:0 32px 20px 32px;background-color:#0d1117;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="background-color:#111827;border-left:4px solid #C9A227;padding:20px 20px 20px 20px;border-radius:4px;">
+                  <!-- Badge -->
+                  <div style="margin-bottom:10px;">
+                    <span style="background-color:rgba(201,162,39,0.15);color:#C9A227;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;padding:3px 10px;border-radius:12px;border:1px solid rgba(201,162,39,0.3);">
+                      &#128203; 이민·비자
+                    </span>
+                  </div>
+                  <!-- Headline -->
+                  <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:bold;color:#ECFDF5;line-height:1.4;margin-bottom:10px;">
+                    2026년 최신 H-1B 비자 추첨 결과 및 변경사항
+                  </div>
+                  <!-- Summary -->
+                  <div style="font-family:Arial,sans-serif;font-size:13px;color:#9cb3c9;line-height:1.7;margin-bottom:14px;">
+                    미국 이민국(USCIS)은 2026 회계연도 H-1B 추첨 결과를 발표하였으며, 올해는 신청 방식과 수수료 구조에 중요한 변화가 있었습니다. 한인 취업 비자 신청자들이 반드시 알아야 할 핵심 변경 사항과 다음 단계 준비 방법을 정리했습니다. 변호사 상담 전에 꼭 읽어보세요.
+                  </div>
+                  <!-- Link -->
+                  <a href="https://hebronguide.com/seattle/" style="font-family:Arial,sans-serif;font-size:13px;color:#C9A227;text-decoration:none;font-weight:bold;">
+                    자세히 보기 &#8594;
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Article 2 — 커뮤니티 -->
+        <tr>
+          <td style="padding:0 32px 20px 32px;background-color:#0d1117;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="background-color:#111827;border-left:4px solid #6EE7B7;padding:20px 20px 20px 20px;border-radius:4px;">
+                  <!-- Badge -->
+                  <div style="margin-bottom:10px;">
+                    <span style="background-color:rgba(110,231,183,0.12);color:#6EE7B7;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;padding:3px 10px;border-radius:12px;border:1px solid rgba(110,231,183,0.25);">
+                      &#127961; 커뮤니티
+                    </span>
+                  </div>
+                  <!-- Headline -->
+                  <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:bold;color:#ECFDF5;line-height:1.4;margin-bottom:10px;">
+                    시애틀 한인 커뮤니티 이번 주 행사
+                  </div>
+                  <!-- Summary -->
+                  <div style="font-family:Arial,sans-serif;font-size:13px;color:#9cb3c9;line-height:1.7;margin-bottom:14px;">
+                    이번 주 시애틀 지역 한인 커뮤니티에서는 다양한 행사와 모임이 예정되어 있습니다. 새로 이민 오신 분들을 위한 정착 안내 세미나, 한인 비즈니스 네트워킹 모임, 청소년 멘토링 프로그램 등이 열립니다. 함께하는 자리에서 든든한 이웃을 만나보세요.
+                  </div>
+                  <!-- Link -->
+                  <a href="https://hebronguide.com/seattle/" style="font-family:Arial,sans-serif;font-size:13px;color:#6EE7B7;text-decoration:none;font-weight:bold;">
+                    자세히 보기 &#8594;
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Article 3 — 교회·행사 -->
+        <tr>
+          <td style="padding:0 32px 28px 32px;background-color:#0d1117;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="background-color:#111827;border-left:4px solid #8B5CF6;padding:20px 20px 20px 20px;border-radius:4px;">
+                  <!-- Badge -->
+                  <div style="margin-bottom:10px;">
+                    <span style="background-color:rgba(139,92,246,0.12);color:#a78bfa;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;padding:3px 10px;border-radius:12px;border:1px solid rgba(139,92,246,0.25);">
+                      &#9962; 교회·행사
+                    </span>
+                  </div>
+                  <!-- Headline -->
+                  <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:bold;color:#ECFDF5;line-height:1.4;margin-bottom:10px;">
+                    파트너 교회 신규 등록 — 달라스 예닮교회
+                  </div>
+                  <!-- Summary -->
+                  <div style="font-family:Arial,sans-serif;font-size:13px;color:#9cb3c9;line-height:1.7;margin-bottom:14px;">
+                    텍사스 달라스에 위치한 예닮교회가 HebronGuide 파트너 교회로 새롭게 등록되었습니다. 예닮교회는 지역 한인 이민자와 유학생들을 위한 정착 지원 프로그램과 영어 예배를 함께 운영하고 있습니다. 달라스 지역에 새로 오신 분들에게 따뜻한 공동체가 되어줄 것입니다.
+                  </div>
+                  <!-- Link -->
+                  <a href="https://hebronguide.com/founding-partner.html" style="font-family:Arial,sans-serif;font-size:13px;color:#a78bfa;text-decoration:none;font-weight:bold;">
+                    자세히 보기 &#8594;
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ====================================================
+             4. 신앙 격려 SECTION
+             ==================================================== -->
+        <tr>
+          <td style="padding:0 32px 28px 32px;background-color:#0d1117;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="background-color:#111827;border:1px solid rgba(201,162,39,0.3);border-radius:6px;padding:28px 24px;text-align:center;">
+                  <!-- Section Label -->
+                  <div style="font-family:Arial,sans-serif;font-size:11px;color:#C9A227;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;">
+                    이주민을 향한 하나님의 마음
+                  </div>
+                  <!-- Bible Verse Box -->
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td style="background-color:rgba(201,162,39,0.10);border-left:3px solid #C9A227;border-right:3px solid #C9A227;padding:16px 20px;border-radius:2px;margin-bottom:16px;">
+                        <div style="font-family:Georgia,'Times New Roman',serif;font-size:16px;color:#ECFDF5;line-height:1.6;font-style:italic;">
+                          "내가 나그네 되었을 때 너희가 영접하였다"
+                        </div>
+                        <div style="font-family:Arial,sans-serif;font-size:12px;color:#C9A227;margin-top:8px;letter-spacing:0.5px;">
+                          — 마태복음 25:35
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- Encouragement -->
+                  <div style="font-family:Arial,sans-serif;font-size:13px;color:#9cb3c9;line-height:1.8;margin-top:18px;text-align:left;">
+                    낯선 땅에서의 하루하루가 결코 혼자가 아닙니다. 헤브론 공동체는 각자의 자리에서 서로를 영접하고 함께 뿌리를 내리는 사람들의 이야기입니다. 이번 주도 당신이 있는 그 자리가 하나님의 제단이 되기를 바랍니다.
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ====================================================
+             5. CTA SECTION
+             ==================================================== -->
+        <tr>
+          <td style="padding:0 32px 28px 32px;background-color:#0d1117;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="background-color:#111827;border-radius:6px;padding:28px 24px;text-align:center;">
+                  <!-- Heading -->
+                  <div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:bold;color:#ECFDF5;margin-bottom:8px;">
+                    HebronGuide 앱으로<br>더 자세한 정보를
+                  </div>
+                  <div style="font-family:Arial,sans-serif;font-size:13px;color:#888888;margin-bottom:22px;line-height:1.6;">
+                    교회, 업소, 행사, 이민 정보를 한 곳에서.<br>시애틀 한인 커뮤니티의 시작점.
+                  </div>
+                  <!-- Primary Button -->
+                  <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto 12px auto;">
+                    <tr>
+                      <td style="background-color:#C9A227;border-radius:6px;padding:0;">
+                        <a href="https://hebronguide.com/seattle/" style="display:inline-block;font-family:Arial,sans-serif;font-size:14px;font-weight:bold;color:#0d1117;text-decoration:none;padding:13px 32px;letter-spacing:0.5px;">
+                          앱 바로가기
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- Secondary Button -->
+                  <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;">
+                    <tr>
+                      <td style="border:1px solid #C9A227;border-radius:6px;padding:0;">
+                        <a href="https://hebronguide.com/founding-partner.html" style="display:inline-block;font-family:Arial,sans-serif;font-size:13px;font-weight:bold;color:#C9A227;text-decoration:none;padding:11px 28px;letter-spacing:0.3px;">
+                          파트너 교회 신청
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ====================================================
+             6. FOOTER
+             ==================================================== -->
+        <tr>
+          <td style="background-color:#080d13;padding:24px 32px 28px 32px;border-top:1px solid #1a2030;">
+            <!-- Footer Links -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="text-align:center;padding-bottom:12px;">
+                  <a href="https://hebronguide.com/" style="font-family:Arial,sans-serif;font-size:11px;color:#C9A227;text-decoration:none;margin:0 8px;">
+                    수신 거부
+                  </a>
+                  <span style="color:#333333;font-size:11px;">|</span>
+                  <a href="https://hebronguide.com/" style="font-family:Arial,sans-serif;font-size:11px;color:#C9A227;text-decoration:none;margin:0 8px;">
+                    개인정보처리방침
+                  </a>
+                  <span style="color:#333333;font-size:11px;">|</span>
+                  <a href="https://hebronguide.com/" style="font-family:Arial,sans-serif;font-size:11px;color:#C9A227;text-decoration:none;margin:0 8px;">
+                    HebronGuide
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:center;padding-bottom:8px;">
+                  <div style="font-family:Arial,sans-serif;font-size:11px;color:#555555;">
+                    &copy; 2026 HebronGuide &nbsp;·&nbsp; <a href="https://hebronguide.com" style="color:#888888;text-decoration:none;">hebronguide.com</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:center;">
+                  <div style="font-family:Arial,sans-serif;font-size:11px;color:#444444;line-height:1.6;">
+                    이 이메일은 뉴스레터 구독 신청자에게 발송됩니다.
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+    </div>
+    <!-- EMAIL END -->
+  </div>
+</div>
+
+<script>
+  function copyEmail() {
+    var emailHtml = document.getElementById('email-body').innerHTML;
+    // Extract only the table (email-proper portion) for copy
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(emailHtml, 'text/html');
+    var tableEl = doc.querySelector('table');
+    var htmlToCopy = tableEl ? tableEl.outerHTML : emailHtml;
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(htmlToCopy).then(function() {
+        showCopySuccess();
+      }).catch(function() {
+        fallbackCopy(htmlToCopy);
+      });
+    } else {
+      fallbackCopy(htmlToCopy);
+    }
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showCopySuccess();
+    } catch(e) {
+      alert('복사 실패: 수동으로 선택하여 복사해 주세요.');
+    }
+    document.body.removeChild(ta);
+  }
+
+  function showCopySuccess() {
+    var el = document.getElementById('copy-success');
+    el.style.display = 'inline';
+    setTimeout(function() { el.style.display = 'none'; }, 2500);
+  }
+</script>
+
+</body>
+</html>
