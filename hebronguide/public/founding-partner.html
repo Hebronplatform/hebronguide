@@ -137,14 +137,18 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
   </div>
 
   <!-- 가격 합계 -->
-  <div style="margin-bottom:8px;">
-    <span style="font-size:.82rem;text-decoration:line-through;opacity:.4;color:var(--muted);">정가 $130</span>
-    <span style="background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.35);color:#FCA5A5;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:12px;margin-left:8px;">🎁 $80 프로모션 혜택</span>
+  <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:10px;flex-wrap:wrap;">
+    <div style="text-align:center;">
+      <div style="font-size:.7rem;color:var(--muted);font-weight:600;margin-bottom:2px;">정가</div>
+      <div style="font-size:2rem;font-weight:900;font-family:'Cinzel',serif;text-decoration:line-through;color:rgba(252,165,165,.6);">$130</div>
+    </div>
+    <div style="font-size:1.8rem;color:var(--gold);font-weight:900;">→</div>
+    <div style="text-align:center;">
+      <div style="font-size:.7rem;color:var(--mint);font-weight:700;margin-bottom:2px;">🎁 $80 프로모션 혜택</div>
+      <div style="font-size:2.4rem;font-weight:900;font-family:'Cinzel',serif;color:#fff;">$50</div>
+    </div>
   </div>
-  <div class="price-block">
-    <span class="price-amount">$50</span>
-    <span class="price-period">· 프로모션</span>
-  </div>
+  <div style="font-size:.78rem;color:var(--muted);margin-bottom:4px;">· 프로모션 기간 한정</div>
   <div class="price-note" style="margin-bottom:10px;">
     <span>개척 교회는 상황에 따라 추가 혜택.</span>&nbsp;
     <span style="color:var(--gold);">또한 중견 교회의 기부금 환영합니다.</span>

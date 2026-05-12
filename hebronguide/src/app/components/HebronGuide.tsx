@@ -76,9 +76,14 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🌲 시애틀 — Space Needle + Mt. Rainier + 에메랄드 도시
   // (verified by photo agent 2026-05-11)
   seattle: [
-    { url: "https://images.unsplash.com/photo-1502175353174-a7a70e73b362?w=1200&q=90", pos: "center 25%", alt: "Seattle Space Needle blue sky" },
-    { url: "https://images.unsplash.com/photo-1542223616-9de9adb5e3e8?w=1200&q=90", pos: "center 35%", alt: "Seattle skyline aerial" },
-    { url: "https://images.unsplash.com/photo-1531335773500-23410807365a?w=1200&q=90", pos: "center 30%", alt: "Seattle Space Needle night" },
+    // 오전 세트 (0-11시) — 맑은 낮
+    { url: "https://images.unsplash.com/photo-1502175353174-a7a70e73b362?w=1200&q=90", pos: "center 25%", alt: "Seattle Space Needle blue sky", timeSet: "am" },
+    { url: "https://images.unsplash.com/photo-1622839497468-9e4a20007cf8?w=1200&q=90", pos: "center 30%", alt: "Seattle downtown clear day", timeSet: "am" },
+    { url: "https://images.unsplash.com/photo-1437809781432-a957377661ee?w=1200&q=90", pos: "center 35%", alt: "Seattle waterfront sunny", timeSet: "am" },
+    // 오후 세트 (12-23시) — 다른 분위기
+    { url: "https://images.unsplash.com/photo-1613525850352-52de526e2336?w=1200&q=90", pos: "center 28%", alt: "Seattle Space Needle afternoon", timeSet: "pm" },
+    { url: "https://images.unsplash.com/photo-1542223616-9de9adb5e3e8?w=1200&q=90", pos: "center 35%", alt: "Seattle skyline aerial", timeSet: "pm" },
+    { url: "https://images.unsplash.com/photo-1531335773500-23410807365a?w=1200&q=90", pos: "center 30%", alt: "Seattle Space Needle evening", timeSet: "pm" },
   ],
 
   // 🤠 달라스 — ✅ verified: aerial skyline + architecture
@@ -3686,7 +3691,15 @@ function CompactHeroNew() {
   // liveCamUrl removed — LIVE CAM 버튼 제거됨
 
   const slides = CITY_HERO_SLIDES[city.slug] ?? null;
-  const [slideIdx, setSlideIdx] = useState(0);
+
+  // 오전(0-11) → 0번부터, 오후(12-23) → 절반부터 시작
+  const initIdx = (() => {
+    if (!slides) return 0;
+    const h = new Date().getHours();
+    const half = Math.floor(slides.length / 2);
+    return h < 12 ? 0 : half;
+  })();
+  const [slideIdx, setSlideIdx] = useState(initIdx);
 
   // 5초마다 다음 슬라이드
   useEffect(() => {
@@ -3736,7 +3749,7 @@ function CompactHeroNew() {
               position: "absolute", inset: 0,
               width: "100%", height: "100%",
               objectFit: "cover", objectPosition: slide.pos,
-              filter: "brightness(0.88) saturate(1.25)",
+              filter: "brightness(1.05) saturate(1.3) contrast(1.05)",
               opacity: isActive ? 1 : 0,
               transition: `opacity 1.4s ease, transform ${isActive ? "0s" : "0s"}`,
               // Ken Burns: 활성 슬라이드만 줌 애니메이션
