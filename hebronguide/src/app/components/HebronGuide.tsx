@@ -6880,12 +6880,15 @@ function getCityChurches(slug: string, lang: string) {
     ],
     dallas: [
       {
-        emoji: "⛪", tier: 2,
-        name: ko ? "에덴교회 (Eden Church Dallas)" : "Eden Church Dallas",
+        emoji: "⭐", tier: 1,
+        name: ko ? "에덴교회 (Eden Church at the Field)" : "Eden Church at the Field — Carrollton",
+        nameEn: ko ? "Eden Church at the Field" : "에덴교회",
         desc: ko
-          ? "📍 달라스 메트로 지역, TX\n✨ 담임: 신종우 목사\n🔗 HebronGuide 달라스 연동 파트너"
-          : "📍 Dallas Metro, TX\n✨ Lead Pastor: Jong-woo Shin\n🔗 HebronGuide Dallas partner church",
-        tags: ko ? ["한인교회", "달라스"] : ["Korean Church", "Dallas"],
+          ? "✅ 검증됨 | 국제가사원(IHM) 달라스 가정교회\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n✨ 담임: 신종우 목사\n📞 214-629-3066\n📧 kfbcc@yahoo.com"
+          : "✅ Verified | IHM House Church — Dallas\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n✨ Lead Pastor: Jong-woo Shin\n📞 214-629-3066\n📧 kfbcc@yahoo.com",
+        tags: ko ? ["가정교회", "IHM", "캐롤튼"] : ["House Church", "IHM", "Carrollton"],
+        phone: "214-629-3066",
+        email: "kfbcc@yahoo.com",
       },
     ],
     la: [
