@@ -3344,7 +3344,7 @@ const QUICK_MENU = [
   // Phase B: 첫 주 — 생활 기반 구축
   { icon: "heart-pulse",   labelKo: "병원",      labelEn: "Medical",  color: "#EC4899", tab: 5,  subTab: 1 },
   { icon: "car",           labelKo: "면허",      labelEn: "DMV",      color: "#3B82F6", tab: 1,  subTab: 3 },
-  { icon: "shopping-cart", labelKo: "마트",      labelEn: "Market",   color: "#F59E0B", tab: 3,  subTab: 2 },
+  { icon: "shopping-cart", labelKo: "마트",      labelEn: "Market",   color: "#F59E0B", tab: 3,  subTab: 4 },
   { icon: "life-buoy",     labelKo: "도움",      labelEn: "Help",     color: "#DC2626", tab: 5,  subTab: 0 },
   // Phase C: 생활·커뮤니티 — 자연스러운 연결
   { icon: "church",        labelKo: "교회",      labelEn: "Church",   color: "#7C3AED", tab: 2,  subTab: 0 },
@@ -6806,6 +6806,183 @@ const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
    미국·세계 음식 문화 콘텐츠
    한국 → 미국 → 세계 → 자연스러운 크리스천 문화
 ───────────────────────────────────────── */
+/* ─────────────────────────────────────────
+   DINING: 마트 가이드 — 한인·미국·히스패닉
+   전국 체인 중심 (모든 도시 공통 적용)
+───────────────────────────────────────── */
+function GroceryMartContent({ lang, accent }: { lang: string; accent: string }) {
+  const ko = lang === "ko";
+  const [section, setSection] = useState(0);
+
+  const SECTIONS = [
+    { emoji: "🇰🇷", labelKo: "한인 마트", labelEn: "Korean Mart" },
+    { emoji: "🇺🇸", labelKo: "미국 마트", labelEn: "American Mart" },
+    { emoji: "🌮", labelKo: "히스패닉 마트", labelEn: "Hispanic Mart" },
+    { emoji: "🌏", labelKo: "아시안 마트", labelEn: "Asian Mart" },
+  ];
+
+  const MCard = ({ emoji, name, nameEn, desc, tip, website }: {
+    emoji: string; name: string; nameEn: string; desc: string; tip?: string; website?: string;
+  }) => (
+    <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: 14, padding: "14px", marginBottom: 10 }}>
+      <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 6 }}>
+        <span style={{ fontSize: 22, flexShrink: 0 }}>{emoji}</span>
+        <div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#ECFDF5", lineHeight: 1.3 }}>
+            {ko ? name : nameEn}
+          </div>
+        </div>
+      </div>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 13, color: "rgba(236,253,245,0.75)", lineHeight: 1.7, paddingLeft: 32 }}>{desc}</div>
+      {tip && (
+        <div style={{ margin: "8px 0 0 32px", background: "rgba(56,189,248,0.08)", border: "1px solid rgba(56,189,248,0.2)", borderRadius: 10, padding: "8px 12px", display: "flex", gap: 6 }}>
+          <span style={{ fontSize: 14, flexShrink: 0 }}>💡</span>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.6 }}>{tip}</div>
+        </div>
+      )}
+      {website && (
+        <div style={{ paddingLeft: 32, marginTop: 6 }}>
+          <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: accent }}>🔗 {website}</span>
+        </div>
+      )}
+    </div>
+  );
+
+  const renderKorean = () => (
+    <div>
+      <div style={{ background: "rgba(201,162,39,0.1)", borderRadius: 14, padding: "13px 15px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#C9A227", marginBottom: 3 }}>
+          🇰🇷 {ko ? "한인 이민자의 첫 번째 집 — 한인 마트" : "Korean Immigrant's Home Base — Korean Marts"}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "한국 식재료부터 반찬·푸드코트까지. 이민 첫날부터 갈 수 있는 곳." : "Korean ingredients, banchan, food courts. Go on Day 1."}
+        </div>
+      </div>
+      <MCard emoji="🏪" name="H-Mart (한아름)" nameEn="H-Mart — Korean Supermarket Chain"
+        desc={ko ? "미주 최대 한인 마트 체인. 전국 100개+ 매장. 한국 식재료·반찬·생활용품 완비. 내부 푸드코트에서 떡볶이·순대·김밥 즉석 식사. 한인 커뮤니티 정보 게시판 필수 확인." : "Largest Korean supermarket chain in North America. 100+ US locations. Full Korean groceries + food court with tteokbokki, kimbap, sundae. Check the community board for local info."}
+        tip={ko ? "앱 다운받으면 세일 정보 미리 확인 가능. 회원카드 만들면 포인트 적립." : "Download the app for sale previews. Loyalty card earns points."}
+        website="hmartus.com" />
+      <MCard emoji="🏬" name="Zion Market (지온마켓)" nameEn="Zion Market — West/South US"
+        desc={ko ? "캘리포니아·텍사스·조지아·뉴멕시코 중심. H-Mart보다 저렴한 편. 한국 식품 + 일부 아시안 식품 취급. 서부·남부 정착자라면 꼭 체크." : "Mainly CA, TX, GA, NM. Often cheaper than H-Mart. Korean + some Asian groceries. Essential for West/South settlers."}
+        website="zionmarket.com" />
+      <MCard emoji="🏪" name="한아름마트 (Hanahreum)" nameEn="Hanahreum Mart — East Coast"
+        desc={ko ? "버지니아·메릴랜드·노스캐롤라이나 중심. 동부 한인 커뮤니티 생활 거점. 한국 반찬·떡·나물 신선도 높음." : "Mainly VA, MD, NC. Hub for East Coast Korean communities. Fresh banchan, tteok, namul."}
+        website="hanaromart.com" />
+      <MCard emoji="🛒" name="한인 마트 없는 지역" nameEn="No Korean Mart Nearby?"
+        desc={ko ? "H-Mart 미진출 도시라면: ① 아시안 마트(99 Ranch 등)에서 일부 한국 식품 ② Weee! 앱 — 한국 식품 전문 온라인 배송 ③ Amazon Fresh — 한국 라면·소스 ④ Goldbelly — 한국 반찬 배송" : "No H-Mart in your city? ① Asian mart (99 Ranch) for Korean items ② Weee! app — Korean grocery delivery ③ Amazon Fresh — Korean ramen & sauces ④ Goldbelly — Korean banchan delivery"}
+        tip={ko ? "Weee! 앱(weee.com)은 한인 이민자가 가장 많이 쓰는 한국 식품 온라인 마트입니다." : "Weee! app (weee.com) is the most-used Korean grocery delivery service among Korean immigrants."} />
+    </div>
+  );
+
+  const renderAmerican = () => (
+    <div>
+      <div style={{ background: "rgba(59,130,246,0.1)", borderRadius: 14, padding: "13px 15px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#60A5FA", marginBottom: 3 }}>
+          🇺🇸 {ko ? "미국 마트 완전 정복 — 종류별 특징" : "American Supermarkets — Know Before You Go"}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "미국 마트는 한국처럼 하나가 아닙니다. 목적에 따라 골라서 가야 합니다." : "American grocery stores each have a specialty — choose based on your goal."}
+        </div>
+      </div>
+      <MCard emoji="🏆" name="Costco (코스트코)" nameEn="Costco — Membership Warehouse"
+        desc={ko ? "연회비 $65 (Gold Star 기준). 대용량·저가 핵심. 쌀·세제·기저귀·육류 압도적 가성비. 주유소도 가장 저렴. 한인 이민자 99% 가입. 첫 달 무료 체험 없음 — 처음부터 연회비." : "Annual $65 membership (Gold Star). Best value on bulk: rice, detergent, meat, diapers. Also cheapest gas. 99% of Korean immigrants have one. No free trial — pay from day 1."}
+        tip={ko ? "가입비는 카드로 내고 카드 캐시백(Costco Anywhere Visa 2~4%)으로 거의 본전. 1년 안에 본전 뽑음." : "Membership pays for itself. Costco Anywhere Visa gives 2–4% cashback on purchases."}
+        website="costco.com" />
+      <MCard emoji="🌿" name="Trader Joe's (트레이더조)" nameEn="Trader Joe's — Affordable Quality"
+        desc={ko ? "회원제 없음. 자체 브랜드(TJ's) 품질 높고 가격 합리적. 냉동식품·간편식 특히 강함. 유기농 야채 저렴. 와인 $3.99부터. 한국 라면·만두 취급 매장 있음." : "No membership. TJ's private label = high quality at low price. Excellent frozen & ready meals. Cheap organic produce. Wine from $3.99. Some stores carry Korean ramen & dumplings."}
+        tip={ko ? "Everything But the Bagel 시즈닝 → 달걀·아보카도·두부에 뿌리면 K-퓨전 완성." : "'Everything But the Bagel' seasoning works great on eggs, avocado, or tofu — Korean fusion hack."}
+        website="traderjoes.com" />
+      <MCard emoji="🌱" name="Whole Foods (홀푸즈)" nameEn="Whole Foods — Amazon Premium"
+        desc={ko ? "Amazon Prime 회원이면 할인 추가. 유기농·글루텐프리·비건 전문. 가격은 높지만 품질 보증. 한국 된장·고추장·두부 취급. 생선 신선도 높음." : "Amazon Prime members get extra discounts. Organic, gluten-free, vegan focus. Pricey but quality guaranteed. Carries Korean miso, gochujang & tofu. Fresh seafood."}
+        website="wholefoodsmarket.com" />
+      <MCard emoji="🛒" name="Safeway / Kroger / Publix / QFC" nameEn="Local Grocery Chains"
+        desc={ko ? "지역마다 다른 동네 마트 체인. 시애틀=QFC·Fred Meyer, 텍사스=HEB·Kroger, 동남부=Publix, 캘리포니아=Vons·Ralph's. 멤버십 카드(무료) 만들면 세일가 적용." : "Regional chains differ by area: Seattle=QFC/Fred Meyer, Texas=HEB/Kroger, Southeast=Publix, California=Vons/Ralph's. Free loyalty card unlocks sale prices."}
+        tip={ko ? "앱 다운받아 디지털 쿠폰 클립하면 계산대에서 자동 차감. 매주 수요일 새 세일." : "Download the app, clip digital coupons — they auto-apply at checkout. New sales every Wednesday."} />
+      <MCard emoji="🟡" name="Walmart / Target" nameEn="Walmart & Target — Everyday Essentials"
+        desc={ko ? "Walmart: 식품+생활용품 미국 최저가 보장. 야간 24시간 매장 많음. Target: Walmart보다 인테리어 깔끔, 의류+식품+가전 복합. 한국 라면·과자 취급 매장 증가 중." : "Walmart: Lowest prices in America, food + essentials + many open 24hrs. Target: Cleaner feel, clothing + food + electronics. Growing Korean ramen & snack selection."}
+        tip={ko ? "Walmart+($12.95/월)는 당일 배송+주유 할인. Target Circle(무료 앱)은 5% 캐시백." : "Walmart+ ($12.95/mo) = same-day delivery + gas discount. Target Circle (free app) = 5% cashback."} />
+    </div>
+  );
+
+  const renderHispanic = () => (
+    <div>
+      <div style={{ background: "rgba(16,185,129,0.1)", borderRadius: 14, padding: "13px 15px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#34D399", marginBottom: 3 }}>
+          🌮 {ko ? "히스패닉 마트 — 한인 이민자의 숨겨진 보물" : "Hispanic Markets — Korean Immigrants' Hidden Gem"}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "신선 야채·과일이 H-Mart보다 훨씬 저렴. 고수·고추·아보카도 등 한국 요리 재료도 풍부합니다." : "Fresh produce is often cheaper than H-Mart. Great for cilantro, chiles & avocados used in Korean cooking."}
+        </div>
+      </div>
+      <MCard emoji="🌵" name="El Rancho Supermercado" nameEn="El Rancho — Texas"
+        desc={ko ? "텍사스(달라스·오스틴·휴스턴 인근) 최대 멕시코 마트. 신선 야채·열대 과일·고기 저렴. 한인 커뮤니티 내에서도 야채 쇼핑 1순위. 토르티야·아보카도·망고 특히 저렴." : "Largest Mexican supermarket in Texas (Dallas, Austin, Houston area). Cheap fresh produce, tropical fruit & meat. Korean community's #1 produce destination. Great avocado, mango, tortillas."}
+        tip={ko ? "불닭볶음면+아보카도+엘란초 치즈 조합 → 한인 이민자 최애 K-Mex 야식." : "Buldak ramen + avocado + El Rancho cheese = Korean immigrant favorite K-Mex late-night snack."}
+        website="elrancho.com" />
+      <MCard emoji="🎪" name="Fiesta Mart" nameEn="Fiesta Mart — Texas"
+        desc={ko ? "텍사스 히스패닉 마트 2위. 아시안 섹션 있음 (한국 라면·소스 일부 취급). 신선 생선·새우 저렴. 달라스·휴스턴·오스틴 매장 다수." : "Texas's #2 Hispanic market. Has an Asian section with some Korean ramen & sauces. Cheap fresh fish & shrimp. Multiple locations in Dallas, Houston, Austin."}
+        website="fiestamart.com" />
+      <MCard emoji="🌴" name="Vallarta Supermarkets" nameEn="Vallarta — California"
+        desc={ko ? "캘리포니아(LA·SF 인근) 최대 멕시코 마트 체인. 신선 해산물·육류 저렴. 망고·파파야·타마린드 등 열대 과일 풍부. LA 한인 이민자가 가장 많이 찾는 히스패닉 마트." : "California's top Mexican market chain (LA, SF area). Cheap fresh seafood & meat. Tropical fruits: mango, papaya, tamarind. Most visited Hispanic mart by LA Korean immigrants."}
+        website="vallartasupermarkets.com" />
+      <MCard emoji="🎯" name="Northgate Market" nameEn="Northgate Market — Southern California"
+        desc={ko ? "남부 캘리포니아. 아시안 섹션 별도 운영. 한국 라면·간장·고추장 취급. 아보카도·과일 저렴. 신선 타코 코너도 인기." : "Southern California. Separate Asian section with Korean ramen, soy sauce & gochujang. Cheap avocados & fruit. Fresh taco bar also popular."}
+        website="northgatemarket.com" />
+      <MCard emoji="💡" name="히스패닉 마트 활용 팁" nameEn="Pro Tips for Hispanic Markets"
+        desc={ko ? "① 야채·과일은 히스패닉 마트가 H-Mart의 절반 가격인 경우 많음\n② 마늘·생강·고추·양파 — 한식 기본 재료 대량 구매 최적\n③ 신선 토르티야 → 김치 또는 불고기랩으로 활용\n④ 치폴레 페퍼(Chipotle) → 한국 찌개에 넣으면 깊은 맛\n⑤ 현금 선호 매장 많음 — 소액 현금 준비 권장" : "① Produce at Hispanic marts is often half the price of H-Mart\n② Garlic, ginger, chiles, onions — best place to buy in bulk for Korean cooking\n③ Fresh tortillas → great for kimchi wraps or bulgogi tacos\n④ Chipotle peppers → adds depth to Korean jjigae\n⑤ Many prefer cash — bring some small bills"} />
+    </div>
+  );
+
+  const renderAsian = () => (
+    <div>
+      <div style={{ background: "rgba(139,92,246,0.1)", borderRadius: 14, padding: "13px 15px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#A78BFA", marginBottom: 3 }}>
+          🌏 {ko ? "아시안 마트 — 한인 마트 없는 지역의 대안" : "Asian Marts — The Alternative When No H-Mart"}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "H-Mart 미진출 지역에서 한국 식품 조달 가능. 중국계 마트가 한국 식품 취급 폭 넓음." : "For areas without H-Mart. Chinese-run Asian markets often stock Korean items."}
+        </div>
+      </div>
+      <MCard emoji="🏪" name="99 Ranch Market" nameEn="99 Ranch Market — Pan-Asian"
+        desc={ko ? "전국 최대 아시안 마트 체인. 중국계 운영이지만 한국 라면·고추장·참기름·두부 등 한국 식품 폭넓게 취급. 생선·해산물 신선도 높음. 캘리포니아·텍사스·뉴욕 등 전국 50개+ 매장." : "Largest pan-Asian supermarket chain in the US. Chinese-owned but stocks Korean ramen, gochujang, sesame oil, tofu widely. Excellent fresh fish & seafood. 50+ locations in CA, TX, NY."}
+        tip={ko ? "한국 냉동식품(만두·떡볶이·순대)은 99 Ranch에서도 대부분 구매 가능." : "Most Korean frozen foods (mandu, tteokbokki, sundae) are available at 99 Ranch too."}
+        website="99ranch.com" />
+      <MCard emoji="🇯🇵" name="Uwajimaya (우와지마야)" nameEn="Uwajimaya — Pacific Northwest"
+        desc={ko ? "시애틀·포틀랜드·벨뷰 거점. 일본계 아시안 마트지만 한국 식품 코너 충실. 신선 회·생선 최고급. 일식·한식·중식 재료 원스톱 쇼핑. 시애틀 다운타운 차이나타운점 유명." : "Seattle, Portland & Bellevue locations. Japanese-run but strong Korean food section. Premium fresh sashimi & fish. One-stop for Japanese, Korean & Chinese ingredients. Famous Chinatown location in Seattle."}
+        website="uwajimaya.com" />
+      <MCard emoji="🏬" name="Hong Kong Supermarket / Super H Mart" nameEn="Hong Kong Supermarket / Super H Mart"
+        desc={ko ? "동부(뉴욕·NJ·MD) 중심 아시안 마트. 한국 식품 취급. 홍콩 마트는 중국계지만 한국 코너 있음. Super H Mart는 H-Mart 계열 대형 포맷." : "East Coast (NY, NJ, MD) based Asian markets. Both stock Korean items. Hong Kong Supermarket is Chinese-owned but has a Korean section. Super H Mart is a larger H-Mart format."}
+        website="hmart.com" />
+      <MCard emoji="📱" name="온라인 한국 식품 배송" nameEn="Online Korean Grocery Delivery"
+        desc={ko ? "Weee!(weee.com) — 한국 식품 전문 당일·익일 배송. 미주 한인 최애 앱. 한국 라면·김치·반찬·냉동식품. Amazon Fresh — 기본 한국 소스·라면. Goldbelly — 한국 반찬 전국 배송." : "Weee! (weee.com) — Korean grocery same/next-day delivery. #1 app for Korean immigrants. Ramen, kimchi, banchan, frozen foods. Amazon Fresh for basic Korean sauces. Goldbelly for banchan nationwide."}
+        tip={ko ? "Weee! 첫 주문 $20 할인 코드 있음 — 앱 가입 시 확인." : "Weee! often has a $20-off coupon for first orders — check on sign-up."} />
+    </div>
+  );
+
+  return (
+    <div style={{ padding: "0 16px 20px" }}>
+      {/* 섹션 탭 */}
+      <div style={{ display: "flex", gap: 8, overflowX: "auto", scrollbarWidth: "none", padding: "12px 0 14px" }}
+        className="[&::-webkit-scrollbar]:hidden">
+        {SECTIONS.map((s, i) => (
+          <button key={i} onClick={() => setSection(i)} style={{
+            flexShrink: 0, padding: "7px 14px", borderRadius: 20, border: "none", cursor: "pointer",
+            background: section === i ? accent : "rgba(251,146,60,0.1)",
+            color: section === i ? "#fff" : accent,
+            fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12,
+            transition: "all 0.15s ease",
+          }}>
+            {s.emoji} {ko ? s.labelKo : s.labelEn}
+          </button>
+        ))}
+      </div>
+      {section === 0 && renderKorean()}
+      {section === 1 && renderAmerican()}
+      {section === 2 && renderHispanic()}
+      {section === 3 && renderAsian()}
+    </div>
+  );
+}
+
 function AmericaWorldContent({ lang, citySlug, accent }: { lang: string; citySlug: string; accent: string }) {
   const ko = lang === "ko";
   const [section, setSection] = useState(0);
@@ -7046,8 +7223,8 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
   const [sub, setSub] = useState(0);
   const [foodFilter, setFoodFilter] = useState("전체");
   const tabs = lang === "ko"
-    ? ["카페", "한식·맛집", "🍔 미국·세계", "한인상권", "쇼핑"]
-    : ["Café", "Korean Food", "🍔 America & World", "K-Business", "Shopping"];
+    ? ["카페", "한식·맛집", "🍔 미국·세계", "한인상권", "🛒 마트"]
+    : ["Café", "Korean Food", "🍔 America & World", "K-Business", "🛒 Market"];
   const accent = "#FB923C";
 
   // 맛집 카테고리 필터 (Yelp 인사이트 적용)
@@ -7199,6 +7376,8 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
         {/* ── 미국·세계 문화 탭 ─────────────────── */}
         {sub === 2 ? (
           <AmericaWorldContent lang={lang} citySlug={citySlug} accent={accent} />
+        ) : sub === 4 ? (
+          <GroceryMartContent lang={lang} accent={accent} />
         ) : (
           <div className="px-4 md:px-6 lg:px-8">
             {content.length === 0 ? (
