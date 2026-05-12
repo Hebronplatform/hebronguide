@@ -5561,12 +5561,23 @@ function FoundingPartnerBanner({ lang, onNavigate }: { lang: string; onNavigate?
       <span style={{ fontSize: 22, flexShrink: 0 }}>🌟</span>
       <div style={{ flex: 1 }}>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12.5, color: "#92400E", lineHeight: 1.3 }}>
-          {lang === "ko" ? "2026 창립 파트너 교회 모집 중" : "2026 Founding Partner Churches Open"}
+          {lang === "ko" ? "2026 창립 파트너 교회 모집 중 (IHM 인증 가정교회)" : "2026 Founding Partner — IHM House Churches"}
         </div>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10.5, color: "#B45309", marginTop: 2, lineHeight: 1.5 }}>
-          {lang === "ko"
-            ? `등록비($50) 면제 · 연회비 $20 · 언어 추가 $30 · IHM 인증 가정교회`
-            : `Registration fee waived · $20/yr · +Language $30 · IHM-certified`}
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10.5, color: "#B45309", marginTop: 3, lineHeight: 1.6 }}>
+          {lang === "ko" ? (
+            <>
+              <span style={{ textDecoration: "line-through", opacity: 0.55 }}>등록비 $50</span>
+              {" "}면제 · <span style={{ textDecoration: "line-through", opacity: 0.55 }}>언어 추가 2개 $60</span>
+              {" "}크레딧 제공{"\n"}
+              <strong style={{ color: "#92400E" }}>연회비 $20만</strong> 납부 (총 $110 혜택)
+            </>
+          ) : (
+            <>
+              <span style={{ textDecoration: "line-through", opacity: 0.55 }}>$50 reg</span>
+              {" "}waived · <span style={{ textDecoration: "line-through", opacity: 0.55 }}>2 lang × $30 = $60</span>
+              {" "}credited · <strong style={{ color: "#92400E" }}>$20/yr only</strong> ($110 value)
+            </>
+          )}
         </div>
       </div>
       <div style={{ flexShrink: 0, textAlign: "center" }}>
