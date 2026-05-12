@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HebronGuide 파트너 교회 신청서 | HebronGuide</title>
-<meta name="description" content="HebronGuide 파트너 교회 신청서 — 광고비 $50, 언어 크레딧 $60 지급, 첫 해 연회비 무료. IHM 인증 가정교회 대상. 2026년 12월 30일까지.">
+<meta name="description" content="HebronGuide 파트너 교회 — 44개+ 도시, 한인 이민자와 교회를 잇는 디지털 환대 플랫폼. 지금 신청하세요.">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -27,200 +27,134 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .nav-back:hover{color:var(--gold);}
 
 /* HERO */
-.hero{text-align:center;padding:64px 24px 48px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.14),transparent);}
+.hero{text-align:center;padding:56px 24px 40px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.12),transparent);}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.4);color:#FCA5A5;font-size:.72rem;font-weight:800;padding:5px 16px;border-radius:20px;margin-bottom:16px;letter-spacing:.06em;}
 .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:#EF4444;animation:pulse 1.5s infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.2);}}
-h1{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:900;color:#fff;line-height:1.3;margin-bottom:10px;}
-h1 .brand{font-family:'Cinzel',serif;font-size:.55em;color:var(--gold);display:block;letter-spacing:.08em;margin-bottom:4px;font-weight:700;}
+h1{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;color:#fff;line-height:1.3;margin-bottom:10px;}
+h1 .brand{font-family:'Cinzel',serif;font-size:.52em;color:var(--gold);display:block;letter-spacing:.08em;margin-bottom:4px;font-weight:700;}
 h1 span{color:var(--gold);}
-.hero-sub{font-size:.95rem;color:var(--muted);margin-bottom:28px;line-height:1.8;}
+.hero-sub{font-size:.9rem;color:var(--muted);margin-bottom:32px;line-height:1.9;}
 
 /* 혜택 카드 */
-.benefit-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:680px;margin:0 auto 32px;}
-.bc{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:16px 14px;text-align:center;}
-.bc-val{font-size:1.3rem;font-weight:900;font-family:'Cinzel',serif;line-height:1.2;margin-bottom:4px;}
-.bc-label{font-size:.75rem;color:var(--muted);}
-.bc-original{font-size:.7rem;text-decoration:line-through;opacity:.45;display:block;margin-bottom:2px;}
+.benefit-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:640px;margin:0 auto 28px;}
+.bc{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:16px 12px;text-align:center;}
+.bc-icon{font-size:1.4rem;margin-bottom:6px;}
+.bc-title{font-size:.78rem;font-weight:800;color:#fff;margin-bottom:3px;}
+.bc-desc{font-size:.7rem;color:var(--muted);line-height:1.5;}
+
+/* 가격 */
+.price-block{display:inline-flex;align-items:baseline;gap:6px;margin-bottom:8px;}
+.price-amount{font-family:'Cinzel',serif;font-size:2rem;font-weight:900;color:#fff;}
+.price-period{font-size:.8rem;color:var(--muted);}
+.price-note{font-size:.75rem;color:var(--muted);margin-bottom:24px;}
+.price-note span{color:var(--gold);font-weight:700;}
+
+/* D-day */
 .d-day{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.3);border-radius:20px;padding:6px 18px;font-size:.82rem;font-weight:700;color:#FCA5A5;}
 .d-day strong{color:#EF4444;font-family:'Cinzel',serif;font-size:1rem;}
 
 /* 컨테이너 */
-.container{max-width:640px;margin:0 auto;padding:0 20px 80px;}
+.container{max-width:560px;margin:0 auto;padding:40px 20px 80px;}
 
-/* 스텝 바 */
-.steps-bar{display:flex;justify-content:center;gap:0;margin-bottom:36px;}
-.step-item{display:flex;flex-direction:column;align-items:center;flex:1;max-width:120px;}
-.step-item::after{content:'';position:absolute;top:14px;left:calc(50% + 16px);width:calc(100% - 32px);height:2px;background:var(--border);z-index:0;}
-.steps-bar{position:relative;}
-.step-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;border:2px solid var(--border2);background:var(--surface);color:var(--muted);transition:all .3s;position:relative;z-index:1;font-family:'Cinzel',serif;}
-.step-item.active .step-dot{background:var(--gold);border-color:var(--gold);color:#0d1117;}
-.step-item.done .step-dot{background:var(--green);border-color:var(--green);color:#fff;}
-.step-label{font-size:.65rem;color:var(--muted);margin-top:5px;text-align:center;white-space:nowrap;}
-.step-item.active .step-label{color:var(--gold);font-weight:700;}
+/* 폼 카드 */
+.form-card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:28px 24px;}
+.form-title{font-size:1rem;font-weight:800;color:#fff;margin-bottom:4px;}
+.form-sub{font-size:.8rem;color:var(--muted);margin-bottom:22px;}
 
-/* 폼 스텝 */
-.form-step{display:none;}
-.form-step.active{display:block;}
-
-/* 섹션 헤더 */
-.section-title{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:4px;}
-.section-sub{font-size:.82rem;color:var(--muted);margin-bottom:20px;}
-
-/* 입력 필드 */
-.field{margin-bottom:16px;}
-label{display:block;font-size:.82rem;font-weight:700;color:rgba(236,253,245,0.75);margin-bottom:6px;}
+/* 필드 */
+.field{margin-bottom:14px;}
+label{display:block;font-size:.8rem;font-weight:700;color:rgba(236,253,245,0.7);margin-bottom:5px;}
 label .req{color:var(--gold);margin-left:2px;}
-input,textarea,select{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;font-size:.9rem;color:var(--text);font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+input,textarea,select{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;font-size:.88rem;color:var(--text);font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none;}
 input:focus,textarea:focus,select:focus{border-color:var(--gold);}
-textarea{min-height:88px;resize:vertical;line-height:1.6;}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23666'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 @media(max-width:480px){.field-row{grid-template-columns:1fr;}}
-.hint{font-size:.75rem;color:var(--muted);margin-top:5px;}
-
-/* IHM 검증 옵션 */
-.verify-opts{display:flex;flex-direction:column;gap:10px;}
-.verify-opt{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1.5px solid var(--border2);border-radius:10px;padding:14px;cursor:pointer;transition:border-color .2s;}
-.verify-opt:has(input:checked){border-color:var(--gold);background:rgba(201,162,39,.06);}
-.verify-opt input[type=radio]{width:18px;height:18px;margin-top:1px;accent-color:var(--gold);flex-shrink:0;}
-.verify-opt-text .title{font-size:.88rem;font-weight:700;color:#fff;}
-.verify-opt-text .desc{font-size:.78rem;color:var(--muted);margin-top:3px;}
-
-/* 언어 선택 */
-.lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-.lang-card{border:1.5px solid var(--border2);border-radius:12px;padding:14px 12px;text-align:center;cursor:pointer;transition:all .2s;background:var(--surface);}
-.lang-card.selected{border-color:var(--gold);background:rgba(201,162,39,.08);}
-.lang-card.required{border-color:rgba(39,174,96,.5);background:rgba(39,174,96,.06);cursor:default;}
-.lang-flag{font-size:1.6rem;margin-bottom:6px;display:block;}
-.lang-name{font-size:.82rem;font-weight:700;color:#fff;margin-bottom:3px;}
-.lang-price{font-size:.72rem;}
-.lang-included{font-size:.7rem;color:var(--green);font-weight:700;}
-.lang-credit{font-size:.7rem;color:var(--gold);}
-.lang-strikethrough{text-decoration:line-through;opacity:.4;font-size:.7rem;}
-
-/* 가격 요약 */
-.price-summary{background:rgba(201,162,39,.07);border:1.5px solid rgba(201,162,39,.3);border-radius:14px;padding:18px 20px;margin-top:16px;}
-.price-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:.85rem;}
-.price-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,.06);}
-.price-label{color:var(--muted);}
-.price-value{font-weight:700;}
-.price-value.strike{text-decoration:line-through;opacity:.4;font-size:.78rem;}
-.price-value.green{color:var(--green);}
-.price-value.gold{color:var(--gold);}
-.price-total{font-size:1rem;font-weight:900;color:var(--gold);}
-.price-note{font-size:.72rem;color:var(--muted);margin-top:10px;text-align:center;}
-
-/* 체크박스 동의 */
-.agree-list{display:flex;flex-direction:column;gap:10px;}
-.agree-item{display:flex;gap:12px;align-items:flex-start;}
-.agree-item input[type=checkbox]{width:18px;height:18px;margin-top:2px;accent-color:var(--gold);flex-shrink:0;cursor:pointer;}
-.agree-item label{font-size:.83rem;color:rgba(236,253,245,.8);cursor:pointer;line-height:1.6;}
-.agree-item label strong{color:#fff;}
-.agree-item label a{color:var(--gold);text-decoration:none;}
-
-/* 신청 요약 */
-.review-section{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:18px;margin-bottom:14px;}
-.review-title{font-size:.75rem;font-weight:800;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;}
-.review-row{display:flex;justify-content:space-between;padding:5px 0;font-size:.83rem;border-bottom:1px solid rgba(255,255,255,.04);}
-.review-row:last-child{border-bottom:none;}
-.review-key{color:var(--muted);}
-.review-val{font-weight:700;text-align:right;max-width:60%;}
-
-/* 버튼 */
-.btn-group{display:flex;gap:10px;margin-top:24px;}
-.btn-back{flex:1;background:var(--surface2);border:1px solid var(--border2);color:var(--muted);padding:13px;border-radius:12px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s;}
-.btn-back:hover{border-color:var(--border2);color:#fff;}
-.btn-next{flex:2;background:linear-gradient(135deg,var(--gold),#d4a020);color:#0d1117;border:none;padding:13px;border-radius:12px;font-size:.95rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s;box-shadow:0 4px 16px rgba(201,162,39,.3);}
-.btn-next:hover{box-shadow:0 6px 24px rgba(201,162,39,.45);transform:translateY(-1px);}
-.btn-next:disabled{opacity:.45;cursor:not-allowed;transform:none;}
-.btn-submit{flex:2;background:linear-gradient(135deg,var(--green),#1a9e4c);color:#fff;border:none;padding:13px;border-radius:12px;font-size:.95rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s;box-shadow:0 4px 16px rgba(39,174,96,.3);}
-.btn-submit:hover{box-shadow:0 6px 24px rgba(39,174,96,.45);transform:translateY(-1px);}
-
-/* 성공 화면 */
-.success{display:none;text-align:center;padding:48px 20px;}
-.success.show{display:block;}
-.success-icon{font-size:4rem;margin-bottom:16px;}
-.success h2{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:8px;}
-.success p{color:var(--muted);margin-bottom:24px;line-height:1.8;}
-.success-email{background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.3);border-radius:10px;padding:12px 18px;font-size:.88rem;color:var(--gold);font-weight:700;display:inline-block;}
-
-/* 알림 */
-.error-msg{font-size:.78rem;color:#FCA5A5;margin-top:5px;display:none;}
+textarea{min-height:72px;resize:vertical;line-height:1.6;}
+.error-msg{font-size:.75rem;color:#FCA5A5;margin-top:4px;display:none;}
 .field.error input,.field.error select,.field.error textarea{border-color:#EF4444;}
 .field.error .error-msg{display:block;}
+
+/* 할인 안내 */
+.discount-hint{background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.25);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.78rem;color:rgba(236,253,245,.75);line-height:1.7;}
+.discount-hint strong{color:var(--gold);}
+
+/* 동의 */
+.agree-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;}
+.agree-item input[type=checkbox]{width:17px;height:17px;margin-top:2px;accent-color:var(--gold);flex-shrink:0;cursor:pointer;}
+.agree-item label{font-size:.8rem;color:rgba(236,253,245,.78);cursor:pointer;line-height:1.6;}
+
+/* 버튼 */
+.btn-submit{width:100%;background:linear-gradient(135deg,var(--gold),#d4a020);color:#0d1117;border:none;padding:14px;border-radius:12px;font-size:.95rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:20px;transition:all .2s;box-shadow:0 4px 16px rgba(201,162,39,.3);}
+.btn-submit:hover{box-shadow:0 6px 24px rgba(201,162,39,.45);transform:translateY(-1px);}
+.btn-submit:disabled{opacity:.45;cursor:not-allowed;transform:none;}
+
+/* 성공 */
+.success{display:none;text-align:center;padding:40px 20px;}
+.success.show{display:block;}
+.success-icon{font-size:3.5rem;margin-bottom:14px;}
+.success h2{font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:8px;}
+.success p{color:var(--muted);font-size:.88rem;line-height:1.8;}
+.success-email{background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.3);border-radius:10px;padding:10px 16px;font-size:.85rem;color:var(--gold);font-weight:700;display:inline-block;margin-top:12px;}
 </style>
 </head>
 <body>
-
 <nav>
-  <a href="/" class="logo">HebronGuide</a>
+  <a href="/seattle/" class="logo">HebronGuide</a>
   <a href="javascript:history.back()" class="nav-back">← 돌아가기</a>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">
-    <span class="dot"></span>
-    2026 창립 파트너 모집 중
-  </div>
+  <div class="hero-badge"><span class="dot"></span> 2026 파트너 교회 모집 중</div>
   <h1><span class="brand">HebronGuide</span><span>파트너 교회</span> 신청서</h1>
   <p class="hero-sub">
-    IHM 인증 가정교회 · 광고비 $50 + 언어 크레딧 $60 지급
+    44개+ 도시 · 한인 이민자, 이주자와 교회를 잇는 디지털 환대 플랫폼<br>
+    도착하기 전, 당신의 교회가 먼저 손을 내밀 수 있습니다
   </p>
 
   <!-- 혜택 카드 -->
   <div class="benefit-cards">
     <div class="bc">
-      <div class="bc-val" style="color:#fff;">$50</div>
-      <div class="bc-label">기본 광고비</div>
+      <div class="bc-icon">📱</div>
+      <div class="bc-title">HebronGuide 등재</div>
+      <div class="bc-desc">44개+ 도시 한인 이민자에게 교회 정보 노출</div>
     </div>
     <div class="bc">
-      <span class="bc-original">언어 추가 $30 × 2</span>
-      <div class="bc-val" style="color:var(--gold);">$60</div>
-      <div class="bc-label">크레딧 지급</div>
+      <div class="bc-icon">🌐</div>
+      <div class="bc-title">3개 언어 지원</div>
+      <div class="bc-desc">한국어 · 영어 · 스페인어 교회 프로필</div>
     </div>
     <div class="bc">
-      <span class="bc-original">연회비 $20</span>
-      <div class="bc-val" style="color:var(--green);">선물 🎁</div>
-      <div class="bc-label">첫 해 무료</div>
+      <div class="bc-icon">🤝</div>
+      <div class="bc-title">목회자 네트워크</div>
+      <div class="bc-desc">전국 파트너 교회와 교인 연결 · 교류</div>
     </div>
   </div>
 
+  <!-- 가격 -->
+  <div style="margin-bottom:6px;">
+    <span style="font-size:.85rem;text-decoration:line-through;opacity:.45;color:var(--muted);">정가 $130</span>
+    <span style="background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.35);color:#FCA5A5;font-size:.72rem;font-weight:800;padding:3px 10px;border-radius:12px;margin-left:8px;">🎁 $30 프로모션 할인</span>
+  </div>
+  <div class="price-block">
+    <span class="price-amount">$100</span>
+    <span class="price-period">/ 첫 해</span>
+  </div>
+  <div class="price-note">연관리비 포함 · <span>각 교회 상황에 따라 추가 혜택이 제공될 수 있습니다</span></div>
+
+  <!-- D-day -->
   <div class="d-day" id="ddayBadge">
     마감: <strong id="ddayNum">D-???</strong> &nbsp;·&nbsp; 2026년 12월 30일
   </div>
 </div>
 
+<!-- 신청 폼 -->
 <div class="container">
-
-  <!-- 스텝 바 -->
-  <div class="steps-bar" style="margin-bottom:32px;">
-    <div class="step-item active" id="si1">
-      <div class="step-dot">1</div>
-      <div class="step-label">교회 정보</div>
-    </div>
-    <div style="flex:1;height:2px;background:var(--border);margin-top:14px;max-width:60px;"></div>
-    <div class="step-item" id="si2">
-      <div class="step-dot">2</div>
-      <div class="step-label">담임목사</div>
-    </div>
-    <div style="flex:1;height:2px;background:var(--border);margin-top:14px;max-width:60px;"></div>
-    <div class="step-item" id="si3">
-      <div class="step-dot">3</div>
-      <div class="step-label">IHM 검증</div>
-    </div>
-    <div style="flex:1;height:2px;background:var(--border);margin-top:14px;max-width:60px;"></div>
-    <div class="step-item" id="si4">
-      <div class="step-dot">4</div>
-      <div class="step-label">확인 & 제출</div>
-    </div>
-  </div>
-
-  <!-- STEP 1: 교회 정보 -->
-  <div class="form-step active" id="step1">
-    <div class="section-title">교회 기본 정보</div>
-    <div class="section-sub">헤브론가이드에 등재될 교회 정보를 입력해 주세요</div>
+  <div class="form-card" id="formCard">
+    <div class="form-title">파트너 교회 신청</div>
+    <div class="form-sub">신청서 제출 후 1~2 영업일 내에 담당자가 연락드립니다</div>
 
     <div class="field" id="f-churchName">
       <label>교회명 <span class="req">*</span></label>
@@ -228,541 +162,134 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
       <div class="error-msg">교회명을 입력해 주세요</div>
     </div>
 
-    <div class="field-row">
-      <div class="field" id="f-city">
-        <label>도시 <span class="req">*</span></label>
-        <select id="city" onchange="autofillState()">
-          <option value="">도시 선택</option>
-          <optgroup label="🇺🇸 미국">
-            <option value="Seattle, WA">시애틀 (Seattle, WA)</option>
-            <option value="Dallas, TX">달라스 (Dallas, TX)</option>
-            <option value="San Francisco, CA">샌프란시스코 (SF, CA)</option>
-            <option value="New York, NY">뉴욕 (New York, NY)</option>
-            <option value="Nashville, TN">내슈빌 (Nashville, TN)</option>
-            <option value="Boston, MA">보스턴 (Boston, MA)</option>
-            <option value="Los Angeles, CA">로스앤젤레스 (LA, CA)</option>
-            <option value="Houston, TX">휴스턴 (Houston, TX)</option>
-            <option value="Atlanta, GA">애틀랜타 (Atlanta, GA)</option>
-            <option value="Chicago, IL">시카고 (Chicago, IL)</option>
-            <option value="Philadelphia, PA">필라델피아 (Philadelphia, PA)</option>
-            <option value="Miami, FL">마이애미 (Miami, FL)</option>
-            <option value="Kansas City, MO">캔자스시티 (Kansas City, MO)</option>
-            <option value="Washington, DC">워싱턴 D.C.</option>
-          </optgroup>
-          <optgroup label="🇨🇦 캐나다">
-            <option value="Toronto, ON">토론토 (Toronto, ON)</option>
-            <option value="Vancouver, BC">밴쿠버 (Vancouver, BC)</option>
-          </optgroup>
-          <optgroup label="🌎 기타">
-            <option value="OTHER">기타 (직접 입력)</option>
-          </optgroup>
-        </select>
-        <input type="text" id="cityOther" placeholder="도시명 직접 입력" style="display:none;margin-top:8px;">
-        <div class="error-msg">도시를 선택해 주세요</div>
-      </div>
-      <div class="field" id="f-state">
-        <label>주 / 지역 <span class="req">*</span></label>
-        <input type="text" id="state" placeholder="예: TX, BC, NSW…">
-        <div class="error-msg">주를 입력해 주세요</div>
-      </div>
-    </div>
-
-    <div class="field" id="f-country">
-      <label>국가 <span class="req">*</span></label>
-      <select id="country">
-        <option value="">국가 선택</option>
-        <option value="US">🇺🇸 미국 (USA)</option>
-        <option value="CA">🇨🇦 캐나다 (Canada)</option>
-        <option value="AU">🇦🇺 호주 (Australia)</option>
-        <option value="NZ">🇳🇿 뉴질랜드</option>
-        <option value="UK">🇬🇧 영국</option>
-        <option value="MX">🇲🇽 멕시코 (Mexico)</option>
-        <option value="BR">🇧🇷 브라질 (Brazil)</option>
-        <option value="OTHER">기타</option>
-      </select>
-      <div class="error-msg">국가를 선택해 주세요</div>
-    </div>
-
-    <div class="field">
-      <label>교회 주소</label>
-      <input type="text" id="address" placeholder="예: 1401 Carrollton Pkwy, Carrollton TX 75010">
-    </div>
-
-    <div class="field-row">
-      <div class="field">
-        <label>주일 출석 인원</label>
-        <select id="attendance">
-          <option value="">선택</option>
-          <option value="under20">20명 이하</option>
-          <option value="20-50">20~50명</option>
-          <option value="50-100">50~100명</option>
-          <option value="over100">100명 이상</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>목장 수</label>
-        <select id="cellGroups">
-          <option value="">선택</option>
-          <option value="1-3">1~3개</option>
-          <option value="4-7">4~7개</option>
-          <option value="8-15">8~15개</option>
-          <option value="over15">15개 이상</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>교회 웹사이트 (선택)</label>
-      <input type="url" id="website" placeholder="https://...">
-    </div>
-
-    <div class="btn-group">
-      <button class="btn-next" onclick="nextStep(1)">다음 — 담임목사 정보 →</button>
-    </div>
-  </div>
-
-  <!-- STEP 2: 담임목사 -->
-  <div class="form-step" id="step2">
-    <div class="section-title">담임목사 정보</div>
-    <div class="section-sub">파트너십 연락 및 인증에 사용됩니다</div>
-
     <div class="field" id="f-pastorName">
       <label>담임목사 성함 <span class="req">*</span></label>
       <input type="text" id="pastorName" placeholder="예: 김성수 목사">
       <div class="error-msg">담임목사 성함을 입력해 주세요</div>
     </div>
 
-    <div class="field" id="f-email">
-      <label>이메일 <span class="req">*</span></label>
-      <input type="email" id="email" placeholder="pastor@church.com">
-      <div class="error-msg">올바른 이메일을 입력해 주세요</div>
-    </div>
-
-    <div class="field" id="f-phone">
-      <label>연락처 전화 <span class="req">*</span></label>
-      <input type="tel" id="phone" placeholder="예: (214) 629-3066">
-      <div class="error-msg">연락처를 입력해 주세요</div>
+    <div class="field-row">
+      <div class="field" id="f-email">
+        <label>이메일 <span class="req">*</span></label>
+        <input type="email" id="email" placeholder="pastor@church.com">
+        <div class="error-msg">올바른 이메일을 입력해 주세요</div>
+      </div>
+      <div class="field" id="f-phone">
+        <label>전화번호 <span class="req">*</span></label>
+        <input type="tel" id="phone" placeholder="예: (214) 629-3066">
+        <div class="error-msg">전화번호를 입력해 주세요</div>
+      </div>
     </div>
 
     <div class="field">
-      <label>신청 동기 (선택)</label>
-      <textarea id="motivation" placeholder="창립 파트너로 신청하시는 이유나 비전을 간단히 적어주세요 (선택사항)"></textarea>
+      <label>교회 웹사이트 <span style="color:var(--muted);font-weight:400;">(선택)</span></label>
+      <input type="url" id="website" placeholder="https://..." oninput="checkWebsite()">
+      <div id="no-website-hint" style="display:none;margin-top:8px;background:rgba(110,231,183,.07);border:1px solid rgba(110,231,183,.25);border-radius:8px;padding:10px 14px;font-size:.78rem;color:var(--mint);line-height:1.7;">
+        🌐 웹사이트가 없으신가요? <strong>나누리(Nanuri)</strong>가 교회 홈페이지를 제작해 드립니다.<br>
+        <span style="color:var(--muted);">신청 후 담당자가 웹사이트 제작 안내도 함께 드립니다.</span>
+      </div>
     </div>
 
-    <div class="btn-group">
-      <button class="btn-back" onclick="prevStep(2)">← 이전</button>
-      <button class="btn-next" onclick="nextStep(2)">다음 — IHM 검증 →</button>
+    <!-- 안내 -->
+    <div class="discount-hint">
+      💡 신청서 제출 후 담당자가 개별 연락드립니다 · 프로모션 기간: 2026년 12월 30일까지
     </div>
+
+    <!-- 동의 -->
+    <div class="agree-item">
+      <input type="checkbox" id="agree1">
+      <label for="agree1">HebronGuide <a href="#" style="color:var(--gold);">이용약관</a> 및 <a href="#" style="color:var(--gold);">개인정보처리방침</a>에 동의합니다</label>
+    </div>
+    <div class="agree-item">
+      <input type="checkbox" id="agree2">
+      <label for="agree2">파트너 교회로서 새 이민자 환대 동행 역할에 협력합니다 <em style="color:var(--muted);">(마태복음 25:35)</em></label>
+    </div>
+
+    <button class="btn-submit" id="submitBtn" onclick="submitForm()">🌟 파트너 교회 신청하기</button>
   </div>
 
-  <!-- STEP 3: IHM 검증 + 언어 선택 -->
-  <div class="form-step" id="step3">
-    <div class="section-title">IHM 인증 검증</div>
-    <div class="section-sub">창립 파트너는 IHM(국제가사원) 인증 가정교회만 신청 가능합니다</div>
-
-    <div class="field" id="f-ihmVerify">
-      <label>인증 방법 선택 <span class="req">*</span></label>
-      <div class="verify-opts">
-        <label class="verify-opt">
-          <input type="radio" name="ihmVerify" value="certificate" onchange="updateVerifyDetail()">
-          <div class="verify-opt-text">
-            <div class="title">✅ IHM 인증서 보유</div>
-            <div class="desc">국제가사원(housechurchministries.org)에서 발급받은 인증서 번호 또는 등록 이메일</div>
-          </div>
-        </label>
-        <label class="verify-opt">
-          <input type="radio" name="ihmVerify" value="recommendation" onchange="updateVerifyDetail()">
-          <div class="verify-opt-text">
-            <div class="title">🤝 기존 등록 가정교회 2곳 추천</div>
-            <div class="desc">이미 HebronGuide에 등록된 IHM 가정교회 2곳의 담임목사로부터 추천을 받은 경우</div>
-          </div>
-        </label>
-      </div>
-      <div class="error-msg">인증 방법을 선택해 주세요</div>
-    </div>
-
-    <div class="field" id="ihmDetail" style="display:none;">
-      <label id="ihmDetailLabel">인증 정보 <span class="req">*</span></label>
-      <input type="text" id="ihmDetailInput" placeholder="">
-    </div>
-
-    <div class="field" id="ihmRef2" style="display:none;">
-      <label>추천 교회 2 <span class="req">*</span></label>
-      <input type="text" id="ihmRef2Input" placeholder="추천 교회명 / 담임목사명">
-    </div>
-
-    <!-- 언어 선택 -->
-    <div style="margin-top:28px;">
-      <div class="section-title">언어 선택</div>
-      <div class="section-sub">HebronGuide에서 교회 정보를 표시할 언어를 선택하세요<br>한국어는 기본 포함 · 영어/스페인어는 창립 파트너 크레딧으로 제공됩니다</div>
-
-      <div class="lang-grid">
-        <div class="lang-card required" id="lc-ko">
-          <span class="lang-flag">🇰🇷</span>
-          <div class="lang-name">한국어</div>
-          <div class="lang-included">✅ 기본 포함</div>
-        </div>
-        <div class="lang-card" id="lc-en" onclick="toggleLang('en')">
-          <span class="lang-flag">🇺🇸</span>
-          <div class="lang-name">영어</div>
-          <div class="lang-price">
-            <span class="lang-strikethrough">$30</span>
-            <span class="lang-credit" id="lc-en-price"> 크레딧 제공</span>
-          </div>
-        </div>
-        <div class="lang-card" id="lc-es" onclick="toggleLang('es')">
-          <span class="lang-flag">🇲🇽</span>
-          <div class="lang-name">스페인어</div>
-          <div class="lang-price">
-            <span class="lang-strikethrough">$30</span>
-            <span class="lang-credit" id="lc-es-price"> 크레딧 제공</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 가격 요약 -->
-      <div class="price-summary">
-        <div class="price-row">
-          <span class="price-label">기본 광고비</span>
-          <span class="price-value">$50</span>
-        </div>
-        <div class="price-row" id="pr-en" style="display:none;">
-          <span class="price-label">영어 추가</span>
-          <span><span class="price-value strike">$30</span> <span class="price-value green">크레딧</span></span>
-        </div>
-        <div class="price-row" id="pr-es" style="display:none;">
-          <span class="price-label">스페인어 추가</span>
-          <span><span class="price-value strike">$30</span> <span class="price-value green">크레딧</span></span>
-        </div>
-        <div class="price-row">
-          <span class="price-label">언어 크레딧 지급</span>
-          <span class="price-value gold" id="totalCredit">—</span>
-        </div>
-        <div class="price-row" style="border-top:1px solid rgba(201,162,39,.3);margin-top:6px;padding-top:10px;">
-          <span class="price-label" style="font-weight:800;color:#fff;">연회비 (첫 해)</span>
-          <span><span class="price-value strike">$20</span> <span class="price-value green">🎁 선물</span></span>
-        </div>
-        <div class="price-row">
-          <span class="price-label">연회비 (2년차~)</span>
-          <span class="price-total">$20 / 년</span>
-        </div>
-        <div class="price-note">창립 파트너 혜택은 2026년 12월 30일까지 · 이후 가정교회도 정가 적용 · 연회비는 매년 자동 갱신</div>
-      </div>
-    </div>
-
-    <div class="btn-group">
-      <button class="btn-back" onclick="prevStep(3)">← 이전</button>
-      <button class="btn-next" onclick="nextStep(3)">다음 — 최종 확인 →</button>
-    </div>
-  </div>
-
-  <!-- STEP 4: 확인 & 제출 -->
-  <div class="form-step" id="step4">
-    <div class="section-title">신청 내용 확인</div>
-    <div class="section-sub">제출 전 내용을 확인해 주세요</div>
-
-    <!-- 요약 카드 -->
-    <div class="review-section">
-      <div class="review-title">교회 정보</div>
-      <div class="review-row"><span class="review-key">교회명</span><span class="review-val" id="rv-churchName">—</span></div>
-      <div class="review-row"><span class="review-key">위치</span><span class="review-val" id="rv-location">—</span></div>
-      <div class="review-row"><span class="review-key">주일 출석</span><span class="review-val" id="rv-attendance">—</span></div>
-    </div>
-
-    <div class="review-section">
-      <div class="review-title">담임목사</div>
-      <div class="review-row"><span class="review-key">성함</span><span class="review-val" id="rv-pastor">—</span></div>
-      <div class="review-row"><span class="review-key">이메일</span><span class="review-val" id="rv-email">—</span></div>
-      <div class="review-row"><span class="review-key">전화</span><span class="review-val" id="rv-phone">—</span></div>
-    </div>
-
-    <div class="review-section">
-      <div class="review-title">IHM 검증 & 언어</div>
-      <div class="review-row"><span class="review-key">인증 방법</span><span class="review-val" id="rv-ihm">—</span></div>
-      <div class="review-row"><span class="review-key">선택 언어</span><span class="review-val" id="rv-langs">한국어</span></div>
-      <div class="review-row"><span class="review-key">연회비</span><span class="review-val" style="color:var(--gold);">$20 / 년</span></div>
-    </div>
-
-    <!-- 약관 동의 -->
-    <div style="margin-top:20px;margin-bottom:20px;">
-      <div class="section-title" style="font-size:.9rem;margin-bottom:12px;">동의 사항</div>
-      <div class="agree-list">
-        <div class="agree-item">
-          <input type="checkbox" id="agree1">
-          <label for="agree1">
-            <strong>헤브론 파트너십 원칙에 동의합니다</strong> — 교회 노출 순위는 재정이 아닌 신학적 검증 Tier로만 결정되며, 이단·사이비 교회는 등재되지 않습니다
-          </label>
-        </div>
-        <div class="agree-item">
-          <input type="checkbox" id="agree2">
-          <label for="agree2">
-            <strong>IHM 회원 가정교회임을 확인합니다</strong> — 국제가사원(housechurchministries.org) 인증 또는 추천을 통해 자격을 갖추었습니다
-          </label>
-        </div>
-        <div class="agree-item">
-          <input type="checkbox" id="agree3">
-          <label for="agree3">
-            <strong>창립 파트너 서약에 동의합니다</strong> — 기본 광고비 $50 납부, 언어 크레딧 $60 지급, 첫 해 연회비 $20 면제, 2년차부터 $20/년 납부합니다
-          </label>
-        </div>
-        <div class="agree-item">
-          <input type="checkbox" id="agree4">
-          <label for="agree4">
-            <a href="https://hebronguide.com/terms" target="_blank">이용약관</a> 및 <a href="https://hebronguide.com/privacy" target="_blank">개인정보처리방침</a>에 동의합니다
-          </label>
-        </div>
-      </div>
-    </div>
-
-    <!-- 안내 박스 -->
-    <div style="background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.25);border-radius:12px;padding:14px 16px;margin-bottom:20px;font-size:.82rem;color:var(--muted);line-height:1.7;">
-      📩 신청서 제출 후 <strong style="color:#fff;">hebronplatform@gmail.com</strong> 으로 확인 이메일이 발송됩니다.<br>
-      연회비 $20 결제 안내는 이메일을 통해 별도 안내드립니다. (7영업일 이내)
-    </div>
-
-    <div class="btn-group">
-      <button class="btn-back" onclick="prevStep(4)">← 이전</button>
-      <button class="btn-submit" id="submitBtn" onclick="submitForm()">🌟 창립 파트너 신청 완료</button>
-    </div>
-  </div>
-
-  <!-- 성공 화면 -->
-  <div class="success" id="successScreen">
-    <div class="success-icon">🌟</div>
-    <h2>신청이 완료됐습니다!</h2>
-    <p>
-      <strong id="successChurch"></strong><br>
-      창립 파트너 신청을 받았습니다.<br><br>
-      아래 이메일로 확인 메시지가 발송됩니다.<br>
-      연회비($20) 결제 안내는 7영업일 이내에 이메일로 드립니다.
-    </p>
+  <!-- 성공 -->
+  <div class="success" id="successBox">
+    <div class="success-icon">🙏</div>
+    <h2>신청이 접수되었습니다</h2>
+    <p>검토 후 1~2 영업일 내에 연락드리겠습니다.<br>소속 교단에 맞는 혜택도 함께 안내드립니다.</p>
     <div class="success-email" id="successEmail"></div>
-    <div style="margin-top:24px;font-size:.82rem;color:var(--muted);">
-      문의: <a href="mailto:hebronplatform@gmail.com" style="color:var(--gold);">hebronplatform@gmail.com</a>
-    </div>
   </div>
-
-</div><!-- /container -->
+</div>
 
 <script>
-// 도시 선택 → 주/국가 자동 채움
-const CITY_META = {
-  "Seattle, WA":        { state: "WA", country: "US" },
-  "Dallas, TX":         { state: "TX", country: "US" },
-  "San Francisco, CA":  { state: "CA", country: "US" },
-  "New York, NY":       { state: "NY", country: "US" },
-  "Nashville, TN":      { state: "TN", country: "US" },
-  "Boston, MA":         { state: "MA", country: "US" },
-  "Los Angeles, CA":    { state: "CA", country: "US" },
-  "Houston, TX":        { state: "TX", country: "US" },
-  "Atlanta, GA":        { state: "GA", country: "US" },
-  "Chicago, IL":        { state: "IL", country: "US" },
-  "Philadelphia, PA":   { state: "PA", country: "US" },
-  "Miami, FL":          { state: "FL", country: "US" },
-  "Kansas City, MO":    { state: "MO", country: "US" },
-  "Washington, DC":     { state: "DC", country: "US" },
-  "Toronto, ON":        { state: "ON", country: "CA" },
-  "Vancouver, BC":      { state: "BC", country: "CA" },
-};
-function autofillState() {
-  const val = document.getElementById('city').value;
-  const otherInput = document.getElementById('cityOther');
-  if (val === 'OTHER') {
-    otherInput.style.display = 'block';
-    document.getElementById('state').value = '';
-    document.getElementById('country').value = '';
-  } else {
-    otherInput.style.display = 'none';
-    const meta = CITY_META[val];
-    if (meta) {
-      document.getElementById('state').value = meta.state;
-      document.getElementById('country').value = meta.country;
-    }
-  }
+// 웹사이트 입력 감지
+function checkWebsite() {
+  const val = document.getElementById('website').value.trim();
+  const hint = document.getElementById('no-website-hint');
+  if (hint) hint.style.display = val === '' ? 'block' : 'none';
 }
 
-// D-day 계산
+// D-day
 (function(){
   const d = Math.max(0, Math.ceil((new Date("2026-12-30").getTime() - Date.now()) / 86400000));
   document.getElementById('ddayNum').textContent = 'D-' + d;
   document.getElementById('ddayBadge').title = '2026년 12월 30일 마감';
 })();
 
-let current = 1;
-const selectedLangs = { ko: true, en: false, es: false };
-
-function updateStepUI(step) {
-  for (let i = 1; i <= 4; i++) {
-    const si = document.getElementById('si' + i);
-    si.className = 'step-item' + (i === step ? ' active' : i < step ? ' done' : '');
-    si.querySelector('.step-dot').textContent = i < step ? '✓' : i;
-  }
-  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-  const el = document.getElementById('step' + step);
-  if (el) { el.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+// 도시 자동완성
+const CITY_META = {
+  "Seattle, WA":{state:"WA"},"Dallas, TX":{state:"TX"},"San Francisco, CA":{state:"CA"},
+  "New York, NY":{state:"NY"},"Nashville, TN":{state:"TN"},"Boston, MA":{state:"MA"},
+  "Los Angeles, CA":{state:"CA"},"Houston, TX":{state:"TX"},"Atlanta, GA":{state:"GA"},
+  "Chicago, IL":{state:"IL"},"Philadelphia, PA":{state:"PA"},"Miami, FL":{state:"FL"},
+  "Kansas City, MO":{state:"MO"},"Washington, DC":{state:"DC"},
+  "Toronto, ON":{state:"ON"},"Vancouver, BC":{state:"BC"},
+};
+function autofillState() {
+  const val = document.getElementById('city').value;
+  const other = document.getElementById('cityOther');
+  other.style.display = val === 'OTHER' ? 'block' : 'none';
+  const meta = CITY_META[val];
+  if (meta) document.getElementById('state').value = meta.state;
 }
 
-function validate(step) {
+// 유효성 검사
+function validate() {
   let ok = true;
-  const required = {
-    1: [['churchName','교회명'],['city','도시'],['state','주'],['country','국가']],
-    2: [['pastorName','담임목사 성함'],['email','이메일'],['phone','전화']],
-    3: [],
-    4: []
-  };
-  (required[step] || []).forEach(([id, label]) => {
-    const el = document.getElementById(id);
-    const field = document.getElementById('f-' + id);
-    if (!el.value.trim()) { if(field) field.classList.add('error'); ok = false; }
-    else { if(field) field.classList.remove('error'); }
+  const checks = [
+    {id:'churchName', el:'f-churchName', fn: v => v.trim().length > 0},
+    {id:'pastorName', el:'f-pastorName', fn: v => v.trim().length > 0},
+    {id:'email',      el:'f-email',      fn: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+    {id:'phone',      el:'f-phone',      fn: v => v.trim().length > 0},
+  ];
+  checks.forEach(({id, el, fn}) => {
+    const f = document.getElementById(el);
+    const v = document.getElementById(id).value;
+    if (!fn(v)) { f?.classList.add('error'); ok = false; }
+    else f?.classList.remove('error');
   });
-  if (step === 2) {
-    const email = document.getElementById('email');
-    const field = document.getElementById('f-email');
-    if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-      if(field) field.classList.add('error'); ok = false;
-    }
-  }
-  if (step === 3) {
-    const checked = document.querySelector('input[name=ihmVerify]:checked');
-    const field = document.getElementById('f-ihmVerify');
-    if (!checked) { if(field) field.classList.add('error'); ok = false; }
-    else { if(field) field.classList.remove('error'); }
+  if (!document.getElementById('agree1').checked || !document.getElementById('agree2').checked) {
+    alert('동의 항목을 모두 체크해 주세요.'); ok = false;
   }
   return ok;
 }
 
-function nextStep(from) {
-  if (!validate(from)) {
-    document.querySelector('#step' + from + ' .error-msg')?.closest?.('.field')?.scrollIntoView({behavior:'smooth',block:'center'});
-    return;
-  }
-  if (from === 3) buildReview();
-  current = from + 1;
-  updateStepUI(current);
-}
-
-function prevStep(from) {
-  current = from - 1;
-  updateStepUI(current);
-}
-
-function updateVerifyDetail() {
-  const val = document.querySelector('input[name=ihmVerify]:checked')?.value;
-  const detail = document.getElementById('ihmDetail');
-  const ref2 = document.getElementById('ihmRef2');
-  const lbl = document.getElementById('ihmDetailLabel');
-  const inp = document.getElementById('ihmDetailInput');
-  if (val === 'certificate') {
-    detail.style.display = 'block'; ref2.style.display = 'none';
-    lbl.innerHTML = 'IHM 인증서 번호 또는 등록 이메일 <span class="req">*</span>';
-    inp.placeholder = '예: IHM-2024-12345 또는 pastor@ihm.org';
-  } else if (val === 'recommendation') {
-    detail.style.display = 'block'; ref2.style.display = 'block';
-    lbl.innerHTML = '추천 교회 1 <span class="req">*</span>';
-    inp.placeholder = '추천 교회명 / 담임목사명';
-  } else {
-    detail.style.display = 'none'; ref2.style.display = 'none';
-  }
-}
-
-function toggleLang(lang) {
-  selectedLangs[lang] = !selectedLangs[lang];
-  document.getElementById('lc-' + lang).classList.toggle('selected', selectedLangs[lang]);
-  updatePricing();
-}
-
-function updatePricing() {
-  const enRow = document.getElementById('pr-en');
-  const esRow = document.getElementById('pr-es');
-  if(enRow) enRow.style.display = selectedLangs.en ? 'flex' : 'none';
-  if(esRow) esRow.style.display = selectedLangs.es ? 'flex' : 'none';
-  let credit = 0;
-  if (selectedLangs.en) credit += 30;
-  if (selectedLangs.es) credit += 30;
-  const tc = document.getElementById('totalCredit');
-  if(tc) tc.textContent = credit > 0 ? '+$' + credit + ' 크레딧' : '—';
-}
-
-function buildReview() {
-  const v = (id) => document.getElementById(id)?.value || '—';
-  const countryMap = {US:'미국',CA:'캐나다',AU:'호주',NZ:'뉴질랜드',UK:'영국',OTHER:'기타'};
-  document.getElementById('rv-churchName').textContent = v('churchName');
-  document.getElementById('rv-location').textContent = [v('city'), v('state'), countryMap[v('country')]||v('country')].filter(x=>x&&x!='—').join(', ');
-  const attMap = {'under20':'20명 이하','20-50':'20~50명','50-100':'50~100명','over100':'100명 이상'};
-  document.getElementById('rv-attendance').textContent = attMap[v('attendance')] || '미입력';
-  document.getElementById('rv-pastor').textContent = v('pastorName');
-  document.getElementById('rv-email').textContent = v('email');
-  document.getElementById('rv-phone').textContent = v('phone');
-  const ihmVal = document.querySelector('input[name=ihmVerify]:checked')?.value;
-  document.getElementById('rv-ihm').textContent = ihmVal === 'certificate' ? 'IHM 인증서' : ihmVal === 'recommendation' ? '기존 교회 추천 2곳' : '—';
-  const langs = ['🇰🇷 한국어'];
-  if (selectedLangs.en) langs.push('🇺🇸 영어');
-  if (selectedLangs.es) langs.push('🇲🇽 스페인어');
-  document.getElementById('rv-langs').textContent = langs.join(' · ');
-}
-
+// 제출
 function submitForm() {
-  const allAgreed = ['agree1','agree2','agree3','agree4'].every(id => document.getElementById(id)?.checked);
-  if (!allAgreed) {
-    alert('모든 동의 사항에 체크해 주세요.'); return;
-  }
-  const churchName = document.getElementById('churchName').value;
-  const email = document.getElementById('email').value;
-  const pastorName = document.getElementById('pastorName').value;
-  const city = document.getElementById('city').value;
-  const state = document.getElementById('state').value;
-  const country = document.getElementById('country').value;
-  const address = document.getElementById('address').value;
-  const phone = document.getElementById('phone').value;
-  const website = document.getElementById('website').value;
-  const attendance = document.getElementById('attendance').value;
-  const cellGroups = document.getElementById('cellGroups').value;
-  const motivation = document.getElementById('motivation').value;
-  const ihmMethod = document.querySelector('input[name=ihmVerify]:checked')?.value || '';
-  const ihmDetail = document.getElementById('ihmDetailInput').value;
-  const ihmRef2 = document.getElementById('ihmRef2Input').value;
-  const langs = ['한국어', ...(selectedLangs.en ? ['영어'] : []), ...(selectedLangs.es ? ['스페인어'] : [])];
+  if (!validate()) return;
+  const body = `[HebronGuide 파트너 교회 신청]
 
-  const body = `[2026 창립 파트너 교회 신청]
+교회명: ${document.getElementById('churchName').value}
+담임목사: ${document.getElementById('pastorName').value}
+이메일: ${document.getElementById('email').value}
+전화번호: ${document.getElementById('phone').value}
+웹사이트: ${document.getElementById('website').value.trim() || '없음 → 나누리 웹사이트 제작 안내 필요'}
 
-■ 교회 정보
-교회명: ${churchName}
-도시: ${city}, ${state}, ${country}
-주소: ${address || '미입력'}
-주일출석: ${attendance}
-목장수: ${cellGroups}
-웹사이트: ${website || '없음'}
+— hebronguide.com | 마 25:35`;
 
-■ 담임목사
-성함: ${pastorName}
-이메일: ${email}
-전화: ${phone}
-신청동기: ${motivation || '없음'}
+  const subject = `[HebronGuide] 파트너 교회 신청 — ${document.getElementById('churchName').value}`;
+  window.location.href = `mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-■ IHM 검증
-방법: ${ihmMethod === 'certificate' ? 'IHM 인증서' : '기존 교회 2곳 추천'}
-인증정보: ${ihmDetail}
-${ihmRef2 ? '추천교회2: ' + ihmRef2 : ''}
-
-■ 언어 선택
-${langs.join(', ')}
-
-■ 납부 금액
-연회비: $20 / 년
-`;
-
-  window.location.href = `mailto:hebronplatform@gmail.com?subject=[창립파트너신청] ${encodeURIComponent(churchName)}&body=${encodeURIComponent(body)}`;
-
-  // 성공 화면
-  setTimeout(() => {
-    document.querySelectorAll('.form-step').forEach(s => s.style.display = 'none');
-    document.querySelector('.steps-bar').style.display = 'none';
-    document.getElementById('successScreen').classList.add('show');
-    document.getElementById('successChurch').textContent = churchName;
-    document.getElementById('successEmail').textContent = email;
-    window.scrollTo({top:0, behavior:'smooth'});
-  }, 500);
+  document.getElementById('formCard').style.display = 'none';
+  const sb = document.getElementById('successBox');
+  sb.classList.add('show');
+  document.getElementById('successEmail').textContent = document.getElementById('email').value;
 }
 </script>
 </body>
