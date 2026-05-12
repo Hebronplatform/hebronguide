@@ -142,13 +142,23 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
     <span class="price-amount">$100</span>
     <span class="price-period">/ 첫 해</span>
   </div>
-  <div class="price-note">연관리비 포함 · <span>각 교회 상황에 따라 추가 혜택이 제공될 수 있습니다</span></div>
+  <div class="price-note">연관리비 포함 · <span>각 교회 상황에 따라 추가 혜택 제공될 수 있음</span></div>
   <div style="font-size:.72rem;color:rgba(252,165,165,.8);margin-bottom:16px;">※ 300개 교회 모집 완료 또는 도시별 12개 마감 시 프로모션 조기 종료됩니다</div>
 
   <!-- D-day -->
   <div class="d-day" id="ddayBadge">
     마감: <strong id="ddayNum">D-???</strong> &nbsp;·&nbsp; 2026년 12월 30일
   </div>
+</div>
+
+<!-- QR 체험 섹션 -->
+<div style="text-align:center;padding:32px 24px 8px;border-top:1px solid rgba(255,255,255,0.06);">
+  <div style="font-size:.72rem;font-weight:800;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:10px;">신청 전, 먼저 체험해 보세요</div>
+  <div style="display:inline-block;background:#fff;border-radius:16px;padding:12px;margin-bottom:12px;box-shadow:0 4px 24px rgba(201,162,39,.25);">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://hebronguide.com&color=0d1117&bgcolor=ffffff&margin=2" width="160" height="160" alt="HebronGuide QR" style="display:block;border-radius:8px;">
+  </div>
+  <div style="font-size:.88rem;font-weight:800;color:#fff;margin-bottom:4px;">📱 QR 스캔 → HebronGuide.com</div>
+  <div style="font-size:.75rem;color:var(--muted);">이민자의 눈으로 직접 확인하고 신청하세요</div>
 </div>
 
 <!-- 신청 폼 -->
@@ -159,7 +169,7 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
 
     <div class="field" id="f-churchName">
       <label>교회명 <span class="req">*</span></label>
-      <input type="text" id="churchName" placeholder="예: 시애틀사랑의교회">
+      <input type="text" id="churchName" placeholder="예: 시애틀지구촌교회">
       <div class="error-msg">교회명을 입력해 주세요</div>
     </div>
 
