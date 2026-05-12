@@ -15,8 +15,10 @@
   --green:#27AE60;--red:#EB5757;--r:14px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;background:var(--bg);}
 body{font-family:'Noto Sans KR',-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
+input:-webkit-autofill,input:-webkit-autofill:focus,select:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #1a2030 inset !important;-webkit-text-fill-color:var(--text) !important;}
+option,optgroup{background:var(--bg);color:var(--text);}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
@@ -163,21 +165,20 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
   </div>
   <h1>HebronGuide <span>파트너 교회</span><br>신청서</h1>
   <p class="hero-sub">
-    IHM 인증 가정교회만을 위한 특별 혜택<br>
-    주님 오실 때까지 함께 동서남북 하나님 나라를 세워갑니다
+    IHM 인증 가정교회만을 위한 특별 혜택
   </p>
 
   <!-- 혜택 카드 -->
   <div class="benefit-cards">
     <div class="bc">
-      <span class="bc-original">등록비 $50</span>
+      <span class="bc-original">기본 등록비 $50</span>
       <div class="bc-val" style="color:var(--green);">$0</div>
       <div class="bc-label">등록비 면제</div>
     </div>
     <div class="bc">
-      <span class="bc-original">언어 추가 $60</span>
-      <div class="bc-val" style="color:var(--gold);">크레딧</div>
-      <div class="bc-label">2개 언어 제공</div>
+      <span class="bc-original">언어 추가 $30 × 2</span>
+      <div class="bc-val" style="color:var(--gold);">$60</div>
+      <div class="bc-label">크레딧 지급</div>
     </div>
     <div class="bc">
       <div class="bc-val" style="color:#fff;">$20</div>
@@ -229,12 +230,38 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
     <div class="field-row">
       <div class="field" id="f-city">
         <label>도시 <span class="req">*</span></label>
-        <input type="text" id="city" placeholder="예: Carrollton">
-        <div class="error-msg">도시를 입력해 주세요</div>
+        <select id="city" onchange="autofillState()">
+          <option value="">도시 선택</option>
+          <optgroup label="🇺🇸 미국">
+            <option value="Seattle, WA">시애틀 (Seattle, WA)</option>
+            <option value="Dallas, TX">달라스 (Dallas, TX)</option>
+            <option value="San Francisco, CA">샌프란시스코 (SF, CA)</option>
+            <option value="New York, NY">뉴욕 (New York, NY)</option>
+            <option value="Nashville, TN">내슈빌 (Nashville, TN)</option>
+            <option value="Boston, MA">보스턴 (Boston, MA)</option>
+            <option value="Los Angeles, CA">로스앤젤레스 (LA, CA)</option>
+            <option value="Houston, TX">휴스턴 (Houston, TX)</option>
+            <option value="Atlanta, GA">애틀랜타 (Atlanta, GA)</option>
+            <option value="Chicago, IL">시카고 (Chicago, IL)</option>
+            <option value="Philadelphia, PA">필라델피아 (Philadelphia, PA)</option>
+            <option value="Miami, FL">마이애미 (Miami, FL)</option>
+            <option value="Kansas City, MO">캔자스시티 (Kansas City, MO)</option>
+            <option value="Washington, DC">워싱턴 D.C.</option>
+          </optgroup>
+          <optgroup label="🇨🇦 캐나다">
+            <option value="Toronto, ON">토론토 (Toronto, ON)</option>
+            <option value="Vancouver, BC">밴쿠버 (Vancouver, BC)</option>
+          </optgroup>
+          <optgroup label="🌎 기타">
+            <option value="OTHER">기타 (직접 입력)</option>
+          </optgroup>
+        </select>
+        <input type="text" id="cityOther" placeholder="도시명 직접 입력" style="display:none;margin-top:8px;">
+        <div class="error-msg">도시를 선택해 주세요</div>
       </div>
       <div class="field" id="f-state">
         <label>주 / 지역 <span class="req">*</span></label>
-        <input type="text" id="state" placeholder="예: TX">
+        <input type="text" id="state" placeholder="예: TX, BC, NSW…">
         <div class="error-msg">주를 입력해 주세요</div>
       </div>
     </div>
@@ -248,6 +275,8 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
         <option value="AU">🇦🇺 호주 (Australia)</option>
         <option value="NZ">🇳🇿 뉴질랜드</option>
         <option value="UK">🇬🇧 영국</option>
+        <option value="MX">🇲🇽 멕시코 (Mexico)</option>
+        <option value="BR">🇧🇷 브라질 (Brazil)</option>
         <option value="OTHER">기타</option>
       </select>
       <div class="error-msg">국가를 선택해 주세요</div>
@@ -511,6 +540,42 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 </div><!-- /container -->
 
 <script>
+// 도시 선택 → 주/국가 자동 채움
+const CITY_META = {
+  "Seattle, WA":        { state: "WA", country: "US" },
+  "Dallas, TX":         { state: "TX", country: "US" },
+  "San Francisco, CA":  { state: "CA", country: "US" },
+  "New York, NY":       { state: "NY", country: "US" },
+  "Nashville, TN":      { state: "TN", country: "US" },
+  "Boston, MA":         { state: "MA", country: "US" },
+  "Los Angeles, CA":    { state: "CA", country: "US" },
+  "Houston, TX":        { state: "TX", country: "US" },
+  "Atlanta, GA":        { state: "GA", country: "US" },
+  "Chicago, IL":        { state: "IL", country: "US" },
+  "Philadelphia, PA":   { state: "PA", country: "US" },
+  "Miami, FL":          { state: "FL", country: "US" },
+  "Kansas City, MO":    { state: "MO", country: "US" },
+  "Washington, DC":     { state: "DC", country: "US" },
+  "Toronto, ON":        { state: "ON", country: "CA" },
+  "Vancouver, BC":      { state: "BC", country: "CA" },
+};
+function autofillState() {
+  const val = document.getElementById('city').value;
+  const otherInput = document.getElementById('cityOther');
+  if (val === 'OTHER') {
+    otherInput.style.display = 'block';
+    document.getElementById('state').value = '';
+    document.getElementById('country').value = '';
+  } else {
+    otherInput.style.display = 'none';
+    const meta = CITY_META[val];
+    if (meta) {
+      document.getElementById('state').value = meta.state;
+      document.getElementById('country').value = meta.country;
+    }
+  }
+}
+
 // D-day 계산
 (function(){
   const d = Math.max(0, Math.ceil((new Date("2026-12-30").getTime() - Date.now()) / 86400000));
