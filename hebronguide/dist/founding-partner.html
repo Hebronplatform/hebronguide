@@ -502,7 +502,38 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
     <div class="success-icon">🙏</div>
     <h2>신청이 접수되었습니다</h2>
     <p>검토 후 1~2 영업일 내에 연락드리겠습니다.<br>소속 교단에 맞는 혜택도 함께 안내드립니다.</p>
-    <div style="margin-top:16px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.3);border-radius:12px;padding:14px 18px;text-align:left;">
+
+    <!-- ── 창립 파트너 배지 카드 ── -->
+    <div style="margin-top:28px;margin-bottom:4px;">
+      <div style="font-size:.64rem;font-weight:800;letter-spacing:.14em;color:rgba(201,162,39,.65);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px;">
+        <span style="flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(201,162,39,.3));"></span>
+        창립 파트너 배지 카드
+        <span style="flex:1;height:1px;background:linear-gradient(to left,transparent,rgba(201,162,39,.3));"></span>
+      </div>
+
+      <!-- Canvas 카드 -->
+      <div style="position:relative;display:inline-block;width:100%;max-width:340px;">
+        <canvas id="badgeCanvas" style="width:100%;border-radius:16px;display:block;box-shadow:0 12px 48px rgba(201,162,39,.35);"></canvas>
+        <div id="badgeLoading" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,17,23,.7);border-radius:16px;font-size:.82rem;color:var(--muted);">카드 생성 중...</div>
+      </div>
+
+      <!-- 액션 버튼 -->
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px;margin-bottom:8px;">
+        <button onclick="downloadBadge()" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold),#d4a020);color:#0d1117;border:none;padding:10px 22px;border-radius:50px;font-size:.82rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;box-shadow:0 4px 14px rgba(201,162,39,.35);">
+          ⬇&nbsp;카드 저장
+        </button>
+        <button onclick="shareBadgeKakao()" style="display:inline-flex;align-items:center;gap:6px;background:#FEE500;color:#3A1D1D;border:none;padding:10px 22px;border-radius:50px;font-size:.82rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">
+          💬&nbsp;카카오 공유
+        </button>
+        <button onclick="shareBadgeInstagram()" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;border:none;padding:10px 22px;border-radius:50px;font-size:.82rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">
+          📸&nbsp;인스타 공유
+        </button>
+      </div>
+      <p style="font-size:.7rem;color:rgba(236,253,245,.3);">카드를 저장해 SNS에 자랑해 주세요 🙌</p>
+    </div>
+
+    <!-- 결제 안내 -->
+    <div style="margin-top:20px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.3);border-radius:12px;padding:14px 18px;text-align:left;">
       <div style="font-size:.78rem;font-weight:800;color:var(--gold);margin-bottom:8px;">💳 등록비 $50 납부</div>
       <div style="font-size:.78rem;color:rgba(236,253,245,.75);line-height:2;">
         <strong style="color:var(--mint);">Zelle</strong> — hebronplatform@gmail.com<br>
@@ -708,13 +739,147 @@ function buildPartnerUI() {
 
 document.addEventListener('DOMContentLoaded', buildPartnerUI);
 
+// ── 배지 카드 (Canvas) ──────────────────────────────────────────
+function rrect(ctx, x, y, w, h, r, fill, stroke) {
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+  if(fill) ctx.fill();
+  if(stroke) ctx.stroke();
+}
+
+async function drawBadgeCard(churchName, city) {
+  await document.fonts.ready;
+  const canvas = document.getElementById('badgeCanvas');
+  if (!canvas) return;
+  const W = 1080, H = 1080;
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  const KR = '"Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif';
+
+  // 배경
+  ctx.fillStyle = '#0d1117';
+  ctx.fillRect(0,0,W,H);
+  const bg = ctx.createRadialGradient(W/2,H*0.38,0,W/2,H*0.38,W*0.62);
+  bg.addColorStop(0,'rgba(201,162,39,0.13)'); bg.addColorStop(1,'transparent');
+  ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+
+  // 상단 그라디언트 바
+  const tb = ctx.createLinearGradient(0,0,W,0);
+  tb.addColorStop(0,'#C9A227'); tb.addColorStop(0.5,'#6EE7B7'); tb.addColorStop(1,'#C9A227');
+  ctx.fillStyle = tb; ctx.fillRect(0,0,W,8);
+
+  // ✦
+  ctx.fillStyle = 'rgba(201,162,39,0.55)'; ctx.font = '38px serif';
+  ctx.textAlign = 'center'; ctx.fillText('✦',W/2,104);
+
+  // HEBRONGUIDE
+  ctx.fillStyle = '#C9A227';
+  ctx.font = `bold 56px Cinzel,"Times New Roman",serif`;
+  ctx.fillText('HEBRONGUIDE',W/2,176);
+
+  // 구분선
+  ctx.strokeStyle = 'rgba(201,162,39,0.28)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(W/2-160,202); ctx.lineTo(W/2+160,202); ctx.stroke();
+
+  // 창립 파트너 뱃지 필
+  ctx.fillStyle = 'rgba(201,162,39,0.14)';
+  rrect(ctx,W/2-120,220,240,52,26,true,false);
+  ctx.strokeStyle = 'rgba(201,162,39,0.45)'; ctx.lineWidth = 1.5;
+  rrect(ctx,W/2-120,220,240,52,26,false,true);
+  ctx.fillStyle = '#C9A227'; ctx.font = `bold 24px ${KR}`;
+  ctx.fillText('2026 창립 파트너',W/2,255);
+
+  // 교회명
+  ctx.fillStyle = '#ffffff';
+  const fz = churchName.length > 12 ? 60 : churchName.length > 8 ? 70 : 82;
+  ctx.font = `bold ${fz}px ${KR}`;
+  ctx.fillText(churchName,W/2,398);
+
+  // 도시
+  ctx.fillStyle = 'rgba(236,253,245,0.52)';
+  ctx.font = `38px ${KR}`;
+  ctx.fillText(city,W/2,466);
+
+  // 구분점
+  ctx.fillStyle = 'rgba(201,162,39,0.45)';
+  ctx.font = '26px serif'; ctx.fillText('· · ·',W/2,540);
+
+  // 성경 구절
+  ctx.fillStyle = 'rgba(236,253,245,0.42)';
+  ctx.font = `26px ${KR}`;
+  ctx.fillText('"내가 나그네 되었을 때 너희가 영접하였다"',W/2,616);
+  ctx.fillStyle = '#C9A227'; ctx.font = `bold 24px ${KR}`;
+  ctx.fillText('— 마태복음 25:35',W/2,660);
+
+  // 사명 문구
+  ctx.fillStyle = 'rgba(110,231,183,0.7)';
+  ctx.font = `24px ${KR}`;
+  ctx.fillText('이민자를 환대하는 교회 · 하나님 나라 창립 파트너',W/2,752);
+
+  // 하단 영역
+  const bb = ctx.createLinearGradient(0,820,0,H);
+  bb.addColorStop(0,'transparent'); bb.addColorStop(1,'rgba(201,162,39,0.07)');
+  ctx.fillStyle = bb; ctx.fillRect(0,820,W,H-820);
+
+  ctx.fillStyle = 'rgba(201,162,39,0.6)';
+  ctx.font = `28px Cinzel,"Times New Roman",serif`;
+  ctx.fillText('hebronguide.com',W/2,904);
+
+  ctx.fillStyle = 'rgba(236,253,245,0.22)';
+  ctx.font = `22px ${KR}`;
+  ctx.fillText('Soli Deo Gloria · 하나님께만 영광',W/2,948);
+
+  // 하단 바
+  ctx.fillStyle = tb; ctx.fillRect(0,H-8,W,8);
+
+  // 로딩 스피너 숨기기
+  const ld = document.getElementById('badgeLoading');
+  if(ld) ld.style.display = 'none';
+}
+
+function downloadBadge() {
+  const c = document.getElementById('badgeCanvas');
+  if(!c) return;
+  const a = document.createElement('a');
+  a.download = 'hebronguide-founding-partner.png';
+  a.href = c.toDataURL('image/png');
+  a.click();
+}
+
+function shareBadgeKakao() {
+  const txt = '우리 교회가 HebronGuide 2026 창립 파트너가 되었습니다 🙏\n' + SHARE_URL;
+  if(/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+    window.location.href = `kakaotalk://msg/send?msg=${encodeURIComponent(txt)}`;
+  } else {
+    navigator.clipboard?.writeText(SHARE_URL).then(()=>alert('링크가 복사됐습니다.\n카카오톡에 붙여넣기 하세요.'));
+  }
+}
+
+function shareBadgeInstagram() {
+  downloadBadge();
+  setTimeout(()=>{
+    alert('카드가 저장됐습니다! 🎉\n인스타그램 앱 → 스토리 또는 피드에 올려 주세요 🙌');
+    window.open('https://www.instagram.com','_blank');
+  },600);
+}
+
 // 제출
 function submitForm() {
   if (!validate()) return;
+  const churchName = document.getElementById('churchName').value;
+  const city = document.getElementById('city').value === '기타'
+    ? document.getElementById('cityOther').value
+    : document.getElementById('city').value;
+
   const body = `[HebronGuide 파트너 교회 신청]
 
-교회명: ${document.getElementById('churchName').value}
-도시: ${document.getElementById('city').value === '기타' ? document.getElementById('cityOther').value : document.getElementById('city').value}
+교회명: ${churchName}
+도시: ${city}
 담임목사: ${document.getElementById('pastorName').value}
 이메일: ${document.getElementById('email').value}
 전화번호: ${document.getElementById('phone').value}
@@ -722,13 +887,16 @@ function submitForm() {
 
 — hebronguide.com | 마 25:35`;
 
-  const subject = `[HebronGuide] 파트너 교회 신청 — ${document.getElementById('churchName').value}`;
+  const subject = `[HebronGuide] 파트너 교회 신청 — ${churchName}`;
   window.location.href = `mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
   document.getElementById('formCard').style.display = 'none';
   const sb = document.getElementById('successBox');
   sb.classList.add('show');
   document.getElementById('successEmail').textContent = document.getElementById('email').value;
+
+  // 배지 카드 생성
+  drawBadgeCard(churchName, city);
 }
 </script>
 
