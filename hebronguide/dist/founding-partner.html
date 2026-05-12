@@ -161,6 +161,56 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
   <div style="font-size:.75rem;color:var(--muted);">이민자의 눈으로 직접 확인하고 신청하세요</div>
 </div>
 
+<!-- SNS 공유 섹션 -->
+<div style="text-align:center;padding:24px 24px 32px;border-top:1px solid rgba(255,255,255,0.06);">
+  <div style="font-size:.72rem;font-weight:800;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:14px;">목회자에게 공유하기</div>
+  <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+
+    <!-- 카카오톡 -->
+    <button onclick="shareKakao()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
+      <div style="width:48px;height:48px;background:#FEE500;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;">💬</div>
+      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">카카오톡</span>
+    </button>
+
+    <!-- WhatsApp -->
+    <button onclick="shareWhatsApp()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
+      <div style="width:48px;height:48px;background:#25D366;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;">📱</div>
+      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">WhatsApp</span>
+    </button>
+
+    <!-- Facebook -->
+    <button onclick="shareFacebook()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
+      <div style="width:48px;height:48px;background:#1877F2;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;font-weight:900;font-family:Georgia,serif;">f</div>
+      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">Facebook</span>
+    </button>
+
+    <!-- X (Twitter) -->
+    <button onclick="shareX()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
+      <div style="width:48px;height:48px;background:#000;border:1px solid rgba(255,255,255,0.2);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;font-weight:900;font-family:Arial,sans-serif;">𝕏</div>
+      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">X</span>
+    </button>
+
+    <!-- Line -->
+    <button onclick="shareLine()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
+      <div style="width:48px;height:48px;background:#00B900;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;font-weight:900;font-family:Arial,sans-serif;">L</div>
+      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">Line</span>
+    </button>
+
+    <!-- SMS -->
+    <button onclick="shareSMS()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
+      <div style="width:48px;height:48px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;">✉️</div>
+      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">문자</span>
+    </button>
+
+    <!-- 링크 복사 -->
+    <button onclick="copyLink()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
+      <div style="width:48px;height:48px;background:rgba(201,162,39,0.15);border:1px solid rgba(201,162,39,0.4);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;">🔗</div>
+      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;" id="copyLabel">링크 복사</span>
+    </button>
+
+  </div>
+</div>
+
 <!-- 신청 폼 -->
 <div class="container">
   <div class="form-card" id="formCard">
@@ -241,7 +291,7 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
     <!-- 동의 -->
     <div class="agree-item">
       <input type="checkbox" id="agree1">
-      <label for="agree1">HebronGuide <a href="#" style="color:var(--gold);">이용약관</a> 및 <a href="#" style="color:var(--gold);">개인정보처리방침</a>에 동의합니다</label>
+      <label for="agree1">HebronGuide <a href="/terms.html" target="_blank" style="color:var(--gold);">이용약관</a> 및 <a href="/privacy.html" target="_blank" style="color:var(--gold);">개인정보처리방침</a>에 동의합니다</label>
     </div>
     <div class="agree-item">
       <input type="checkbox" id="agree2">
@@ -261,6 +311,42 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
 </div>
 
 <script>
+// SNS 공유
+const SHARE_URL = 'https://hebronguide.com/founding-partner.html';
+const SHARE_TEXT = '📱 HebronGuide 파트너 교회 모집 중 — 44개+ 도시 한인 이민자·이주자와 교회를 잇는 디지털 환대 플랫폼. 도시별 선착순 12개 · 2026년 12월 30일까지.';
+
+function shareKakao() {
+  const msg = encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL);
+  window.open('https://sharer.kakao.com/talk/friends/picker/link?app_key=KAKAO_APP_KEY&link_ver=4.0&template_id=0', '_blank');
+  // Fallback: 카카오 미설치 시 링크 복사
+  if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+    window.location.href = `kakaotalk://msg/send?msg=${msg}`;
+  } else {
+    navigator.clipboard?.writeText(SHARE_URL).then(() => alert('링크가 복사됐습니다. 카카오톡에 붙여넣기 하세요.'));
+  }
+}
+function shareWhatsApp() {
+  window.open(`https://wa.me/?text=${encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL)}`, '_blank');
+}
+function shareFacebook() {
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SHARE_URL)}`, '_blank');
+}
+function shareX() {
+  window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(SHARE_URL)}&text=${encodeURIComponent(SHARE_TEXT)}`, '_blank');
+}
+function shareLine() {
+  window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(SHARE_URL)}`, '_blank');
+}
+function shareSMS() {
+  window.location.href = `sms:?body=${encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL)}`;
+}
+function copyLink() {
+  navigator.clipboard?.writeText(SHARE_URL).then(() => {
+    const label = document.getElementById('copyLabel');
+    if (label) { label.textContent = '✅ 복사됨'; setTimeout(() => label.textContent = '링크 복사', 2000); }
+  });
+}
+
 // 도시 선택
 function checkCity() {
   const val = document.getElementById('city').value;

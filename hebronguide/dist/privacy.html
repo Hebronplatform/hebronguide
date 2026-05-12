@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>개인정보처리방침 | HebronGuide</title>
+<meta name="description" content="HebronGuide 개인정보처리방침 — 수집 항목, 목적, 보유 기간, 제3자 제공 여부를 안내합니다.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.07);
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);
+  --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;
+  --text:#ECFDF5;--muted:rgba(236,253,245,0.55);
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:var(--bg);}
+body{font-family:'Noto Sans KR',-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
+.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;letter-spacing:.02em;font-family:'Cinzel',serif;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:.8rem;transition:color .2s;display:flex;align-items:center;gap:6px;}
+.nav-back:hover{color:var(--gold);}
+
+/* HERO */
+.hero{text-align:center;padding:56px 24px 40px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.08),transparent);}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:.72rem;color:var(--gold);letter-spacing:.12em;font-weight:700;margin-bottom:14px;text-transform:uppercase;}
+h1{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:900;color:#fff;line-height:1.3;margin-bottom:12px;}
+.hero-sub{font-size:.85rem;color:var(--muted);max-width:480px;margin:0 auto;}
+.effective-date{display:inline-block;margin-top:16px;background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.2);border-radius:20px;padding:5px 18px;font-size:.75rem;color:var(--gold);font-weight:700;}
+
+/* CONTAINER */
+.container{max-width:680px;margin:0 auto;padding:40px 20px 80px;}
+
+/* TOC */
+.toc{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:20px 24px;margin-bottom:28px;}
+.toc-title{font-size:.78rem;font-weight:800;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;}
+.toc ol{padding-left:18px;display:flex;flex-direction:column;gap:4px;}
+.toc ol li a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:color .2s;}
+.toc ol li a:hover{color:var(--gold);}
+
+/* SECTION */
+.section{margin-bottom:20px;}
+.section-card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:28px 28px;}
+@media(max-width:480px){.section-card{padding:20px 16px;}}
+.section-num{font-family:'Cinzel',serif;font-size:.7rem;color:var(--gold);letter-spacing:.1em;font-weight:700;margin-bottom:6px;}
+.section-title{font-size:1rem;font-weight:800;color:#fff;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.section-body{font-size:.88rem;color:var(--muted);line-height:1.9;}
+.section-body strong{color:var(--text);font-weight:700;}
+.section-body p{margin-bottom:10px;}
+.section-body p:last-child{margin-bottom:0;}
+
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;margin-top:4px;}
+.data-table thead tr{background:rgba(255,255,255,0.04);}
+.data-table th{padding:10px 12px;font-size:.78rem;font-weight:800;color:var(--muted);text-align:left;border-bottom:1px solid var(--border2);}
+.data-table td{padding:10px 12px;font-size:.85rem;color:var(--muted);border-bottom:1px solid var(--border);vertical-align:top;}
+.data-table td:first-child{color:var(--text);font-weight:500;}
+.data-table tr:last-child td{border-bottom:none;}
+
+/* HIGHLIGHT BOX */
+.highlight-box{background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.2);border-radius:12px;padding:14px 18px;margin-top:12px;font-size:.85rem;color:rgba(236,253,245,.75);line-height:1.75;}
+.highlight-box strong{color:var(--mint);}
+
+/* CONTACT BOX */
+.contact-box{background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.22);border-radius:12px;padding:16px 20px;margin-top:12px;}
+.contact-box p{font-size:.85rem;color:rgba(236,253,245,.75);line-height:1.7;}
+.contact-box a{color:var(--gold);text-decoration:none;}
+.contact-box a:hover{text-decoration:underline;}
+
+/* FOOTER */
+footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padding:32px 24px;text-align:center;}
+.footer-logo{font-family:'Cinzel',serif;color:var(--gold);font-weight:900;font-size:.9rem;margin-bottom:10px;}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 20px;margin-bottom:12px;}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:.8rem;transition:color .2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-copy{font-size:.72rem;color:rgba(236,253,245,.3);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">HebronGuide</a>
+  <a href="javascript:history.back()" class="nav-back">← 돌아가기</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Privacy Policy</div>
+  <h1>개인정보처리방침</h1>
+  <p class="hero-sub">HebronGuide LLC는 이용자의 개인정보를 소중히 여기며<br>이 방침에 따라 투명하게 처리합니다.</p>
+  <div class="effective-date">시행일: 2026년 1월 1일</div>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#s1">수집하는 개인정보 항목</a></li>
+      <li><a href="#s2">개인정보 수집 목적</a></li>
+      <li><a href="#s3">개인정보 보유 및 이용 기간</a></li>
+      <li><a href="#s4">제3자 제공 여부</a></li>
+      <li><a href="#s5">이용자의 권리</a></li>
+      <li><a href="#s6">개인정보 보호 조치</a></li>
+      <li><a href="#s7">문의처</a></li>
+    </ol>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-card">
+      <div class="section-num">제1조</div>
+      <div class="section-title">수집하는 개인정보 항목</div>
+      <div class="section-body">
+        <p>HebronGuide는 파트너 교회 신청 시 아래 항목을 수집합니다.</p>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>수집 항목</th>
+              <th>필수 여부</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>교회 정보</td>
+              <td>교회명, 담임목사명, 도시·주</td>
+              <td>필수</td>
+            </tr>
+            <tr>
+              <td>연락처</td>
+              <td>이메일 주소, 전화번호</td>
+              <td>필수</td>
+            </tr>
+            <tr>
+              <td>온라인</td>
+              <td>교회 웹사이트 URL</td>
+              <td>선택</td>
+            </tr>
+            <tr>
+              <td>추가 정보</td>
+              <td>교단, 주일예배 시간, 담당자 메시지</td>
+              <td>선택</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="highlight-box">
+          <strong>일반 방문자</strong>에게는 별도의 개인정보를 수집하지 않습니다. 회원가입 없이 모든 정보를 열람할 수 있습니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s2">
+    <div class="section-card">
+      <div class="section-num">제2조</div>
+      <div class="section-title">개인정보 수집 목적</div>
+      <div class="section-body">
+        <p>수집한 개인정보는 다음 목적으로만 이용됩니다.</p>
+        <p>· <strong>파트너 교회 등록 및 플랫폼 게재</strong> — 신청 내용 검토 후 HebronGuide에 교회 정보를 게재합니다.</p>
+        <p>· <strong>서비스 운영 및 연락</strong> — 신청 처리, 승인/반려 안내, 서비스 관련 공지를 위해 연락합니다.</p>
+        <p>· <strong>정보 정확성 유지</strong> — 게재된 교회 정보의 정기 업데이트 확인을 위해 연락할 수 있습니다.</p>
+        <p>수집 목적 외 다른 용도로는 사용하지 않습니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s3">
+    <div class="section-card">
+      <div class="section-num">제3조</div>
+      <div class="section-title">개인정보 보유 및 이용 기간</div>
+      <div class="section-body">
+        <p>수집된 개인정보는 <strong>파트너 서비스 탈퇴 또는 등재 해제 요청 시까지</strong> 보유합니다.</p>
+        <p>탈퇴 요청 후에는 즉시 파기하며, 관련 법령이 별도의 보존 기간을 정한 경우 해당 기간 동안 보관 후 파기합니다.</p>
+        <table class="data-table" style="margin-top:10px;">
+          <thead>
+            <tr><th>보유 항목</th><th>보유 기간</th><th>근거</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>파트너 신청 정보</td><td>서비스 탈퇴 시까지</td><td>서비스 운영</td></tr>
+            <tr><td>이메일 수신 기록</td><td>탈퇴 후 즉시 파기</td><td>본인 동의</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s4">
+    <div class="section-card">
+      <div class="section-num">제4조</div>
+      <div class="section-title">제3자 제공 여부</div>
+      <div class="section-body">
+        <p>HebronGuide는 이용자의 개인정보를 <strong>제3자에게 제공하지 않습니다.</strong></p>
+        <p>단, 아래의 경우에는 예외로 합니다.</p>
+        <p>· 이용자가 사전에 동의한 경우</p>
+        <p>· 법령에 의거하여 수사기관 등이 요구하는 경우</p>
+        <div class="highlight-box">
+          개인정보는 <strong>광고·마케팅 목적으로 판매하거나 공유하지 않습니다.</strong> 이것은 HebronGuide의 핵심 원칙입니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s5">
+    <div class="section-card">
+      <div class="section-num">제5조</div>
+      <div class="section-title">이용자의 권리</div>
+      <div class="section-body">
+        <p>이용자는 언제든지 다음 권리를 행사할 수 있습니다.</p>
+        <p>· <strong>열람 요청</strong> — 본인에 관한 개인정보 처리 현황 확인</p>
+        <p>· <strong>정정 요청</strong> — 개인정보가 잘못 기재된 경우 수정 요청</p>
+        <p>· <strong>삭제 요청</strong> — 보유 중인 개인정보 삭제 요청 (탈퇴 처리 포함)</p>
+        <p>· <strong>처리 정지 요청</strong> — 개인정보 처리 일시 정지 요청</p>
+        <p>위 권리 행사는 아래 문의처로 이메일을 통해 요청하시면 지체 없이 처리합니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s6">
+    <div class="section-card">
+      <div class="section-num">제6조</div>
+      <div class="section-title">개인정보 보호 조치</div>
+      <div class="section-body">
+        <p>HebronGuide는 개인정보를 안전하게 관리하기 위해 다음 조치를 시행합니다.</p>
+        <p>· <strong>접근 제한</strong> — 개인정보 처리 담당자를 최소화하고 접근 권한을 관리합니다.</p>
+        <p>· <strong>암호화 저장</strong> — 개인정보는 암호화된 데이터베이스에 저장됩니다.</p>
+        <p>· <strong>보안 점검</strong> — 시스템 취약점을 정기적으로 점검합니다.</p>
+        <p>· <strong>API 키 비노출</strong> — 서비스 운영에 사용되는 인증 정보는 코드에 직접 포함하지 않습니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s7">
+    <div class="section-card">
+      <div class="section-num">제7조</div>
+      <div class="section-title">문의처</div>
+      <div class="section-body">
+        <p>개인정보 처리에 관한 문의, 열람·정정·삭제 요청은 아래로 연락해 주십시오.</p>
+        <div class="contact-box">
+          <p><strong>운영사</strong>: HebronGuide LLC</p>
+          <p><strong>이메일</strong>: <a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a></p>
+          <p><strong>응답 기간</strong>: 영업일 기준 3일 이내</p>
+        </div>
+        <p style="margin-top:14px;">본 방침은 <strong>2026년 1월 1일</strong>부터 시행됩니다. 내용이 변경될 경우 시행 7일 전 웹사이트를 통해 공지합니다.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">HebronGuide</div>
+  <div class="footer-links">
+    <a href="about.html">회사소개</a>
+    <a href="privacy.html">개인정보처리방침</a>
+    <a href="terms.html">이용약관</a>
+  </div>
+  <div class="footer-copy">© 2026 HebronGuide LLC. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
