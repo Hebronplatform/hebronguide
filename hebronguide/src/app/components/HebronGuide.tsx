@@ -5637,6 +5637,21 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <AmericasAdSection lang={lang} />
       <HebronServicesAd lang={lang} onNavigate={onNavigate} />
       <FoundingPartnerBanner lang={lang} onNavigate={onNavigate} />
+      {/* 뉴스레터 구독 배너 */}
+      <a href="/newsletter.html" style={{ textDecoration: "none", display: "block", margin: "10px 16px 0" }}>
+        <div style={{ background: "linear-gradient(135deg, rgba(110,231,183,0.12), rgba(201,162,39,0.08))", border: "1px solid rgba(110,231,183,0.3)", borderRadius: 14, padding: "12px 16px", display: "flex", alignItems: "center", gap: 12 }}>
+          <span style={{ fontSize: 24, flexShrink: 0 }}>📧</span>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#6EE7B7", marginBottom: 2 }}>
+              {lang === "ko" ? "헤브론 소식 뉴스레터" : "Hebron Newsletter"}
+            </div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.6)" }}>
+              {lang === "ko" ? "이민·비자·커뮤니티 주간 소식 무료 구독" : "Free weekly immigration & community news"}
+            </div>
+          </div>
+          <span style={{ fontSize: 16, color: "rgba(110,231,183,0.7)" }}>›</span>
+        </div>
+      </a>
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)", marginTop: 12 }} />
       <SettlementEssentialsSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
