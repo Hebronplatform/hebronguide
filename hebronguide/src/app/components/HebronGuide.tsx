@@ -76,9 +76,9 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🌲 시애틀 — Space Needle + Mt. Rainier + 에메랄드 도시
   // (verified by photo agent 2026-05-11)
   seattle: [
-    { url: "https://images.unsplash.com/photo-CK_MX9mBGRo?w=1200&q=90", pos: "center 25%", alt: "Seattle Space Needle blue sky" },
-    { url: "https://images.unsplash.com/photo-TXiBwX0kg-Q?w=1200&q=90", pos: "center 35%", alt: "Mt. Rainier snow-capped" },
-    { url: "https://images.unsplash.com/photo-hmxPcpX5Ltk?w=1200&q=90", pos: "center 30%", alt: "Seattle skyline Space Needle aerial" },
+    { url: "https://images.unsplash.com/photo-1502175353174-a7a70e73b362?w=1200&q=90", pos: "center 25%", alt: "Seattle Space Needle blue sky" },
+    { url: "https://images.unsplash.com/photo-1542223616-9de9adb5e3e8?w=1200&q=90", pos: "center 35%", alt: "Seattle skyline aerial" },
+    { url: "https://images.unsplash.com/photo-1531335773500-23410807365a?w=1200&q=90", pos: "center 30%", alt: "Seattle Space Needle night" },
   ],
 
   // 🤠 달라스 — ✅ verified: aerial skyline + architecture
