@@ -107,7 +107,7 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge"><span class="dot"></span> 2026 파트너 교회 모집 중</div>
+  <div class="hero-badge"><span class="dot"></span> 2026 파트너 교회 모집 중 · 목표 300개 · 도시별 선착순 12개</div>
   <h1><span class="brand">HebronGuide</span><span>파트너 교회</span> 신청서</h1>
   <p class="hero-sub">
     44개+ 도시 · 한인 이민자, 이주자와 교회를 잇는 디지털 환대 플랫폼<br>
@@ -143,6 +143,7 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
     <span class="price-period">/ 첫 해</span>
   </div>
   <div class="price-note">연관리비 포함 · <span>각 교회 상황에 따라 추가 혜택이 제공될 수 있습니다</span></div>
+  <div style="font-size:.72rem;color:rgba(252,165,165,.8);margin-bottom:16px;">※ 300개 교회 모집 완료 또는 도시별 12개 마감 시 프로모션 조기 종료됩니다</div>
 
   <!-- D-day -->
   <div class="d-day" id="ddayBadge">
@@ -160,6 +161,38 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
       <label>교회명 <span class="req">*</span></label>
       <input type="text" id="churchName" placeholder="예: 시애틀사랑의교회">
       <div class="error-msg">교회명을 입력해 주세요</div>
+    </div>
+
+    <div class="field" id="f-city">
+      <label>도시 <span class="req">*</span></label>
+      <select id="city" onchange="checkCity()">
+        <option value="">도시 선택</option>
+        <optgroup label="🇺🇸 미국">
+          <option value="시애틀, WA">시애틀 (Seattle, WA)</option>
+          <option value="달라스, TX">달라스 (Dallas, TX)</option>
+          <option value="샌프란시스코, CA">샌프란시스코 (San Francisco, CA)</option>
+          <option value="뉴욕, NY">뉴욕 (New York, NY)</option>
+          <option value="내슈빌, TN">내슈빌 (Nashville, TN)</option>
+          <option value="보스턴, MA">보스턴 (Boston, MA)</option>
+          <option value="로스앤젤레스, CA">로스앤젤레스 (Los Angeles, CA)</option>
+          <option value="휴스턴, TX">휴스턴 (Houston, TX)</option>
+          <option value="애틀랜타, GA">애틀랜타 (Atlanta, GA)</option>
+          <option value="시카고, IL">시카고 (Chicago, IL)</option>
+          <option value="필라델피아, PA">필라델피아 (Philadelphia, PA)</option>
+          <option value="마이애미, FL">마이애미 (Miami, FL)</option>
+          <option value="캔자스시티, MO">캔자스시티 (Kansas City, MO)</option>
+          <option value="워싱턴 D.C.">워싱턴 D.C.</option>
+        </optgroup>
+        <optgroup label="🇨🇦 캐나다">
+          <option value="토론토, ON">토론토 (Toronto, ON)</option>
+          <option value="밴쿠버, BC">밴쿠버 (Vancouver, BC)</option>
+        </optgroup>
+        <optgroup label="🌎 기타">
+          <option value="기타">기타 (직접 입력)</option>
+        </optgroup>
+      </select>
+      <input type="text" id="cityOther" placeholder="도시명 직접 입력" style="display:none;margin-top:8px;">
+      <div class="error-msg">도시를 선택해 주세요</div>
     </div>
 
     <div class="field" id="f-pastorName">
@@ -218,6 +251,13 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
 </div>
 
 <script>
+// 도시 선택
+function checkCity() {
+  const val = document.getElementById('city').value;
+  const other = document.getElementById('cityOther');
+  if (other) other.style.display = val === '기타' ? 'block' : 'none';
+}
+
 // 웹사이트 입력 감지
 function checkWebsite() {
   const val = document.getElementById('website').value.trim();
@@ -254,6 +294,7 @@ function validate() {
   let ok = true;
   const checks = [
     {id:'churchName', el:'f-churchName', fn: v => v.trim().length > 0},
+    {id:'city',       el:'f-city',       fn: v => v !== ''},
     {id:'pastorName', el:'f-pastorName', fn: v => v.trim().length > 0},
     {id:'email',      el:'f-email',      fn: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
     {id:'phone',      el:'f-phone',      fn: v => v.trim().length > 0},
@@ -276,6 +317,7 @@ function submitForm() {
   const body = `[HebronGuide 파트너 교회 신청]
 
 교회명: ${document.getElementById('churchName').value}
+도시: ${document.getElementById('city').value === '기타' ? document.getElementById('cityOther').value : document.getElementById('city').value}
 담임목사: ${document.getElementById('pastorName').value}
 이메일: ${document.getElementById('email').value}
 전화번호: ${document.getElementById('phone').value}
