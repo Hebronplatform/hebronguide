@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HebronGuide 파트너 교회 신청서 | HebronGuide</title>
-<meta name="description" content="HebronGuide 파트너 교회 신청서 — 등록비 면제, 언어 크레딧 $60, 연회비 $20. IHM 인증 가정교회 대상. 2026년 9월 20일까지.">
+<meta name="description" content="HebronGuide 파트너 교회 신청서 — 등록비 면제, 언어 크레딧 $60, 연회비 $20. IHM 인증 가정교회 대상. 2026년 12월 30일까지.">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -186,7 +186,7 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
   </div>
 
   <div class="d-day" id="ddayBadge">
-    마감: <strong id="ddayNum">D-???</strong> &nbsp;·&nbsp; 2026년 9월 20일
+    마감: <strong id="ddayNum">D-???</strong> &nbsp;·&nbsp; 2026년 12월 30일
   </div>
 </div>
 
@@ -412,7 +412,7 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
           <span class="price-label" style="font-weight:800;color:#fff;">납부 금액 (연간)</span>
           <span class="price-total">$20 / 년</span>
         </div>
-        <div class="price-note">창립 파트너 혜택은 2026년 9월 20일 목회자 컨퍼런스 종료 기준 · 이후 가정교회도 정가 적용 · 연회비는 매년 자동 갱신</div>
+        <div class="price-note">창립 파트너 혜택은 2026년 12월 30일까지 · 이후 가정교회도 정가 적용 · 연회비는 매년 자동 갱신</div>
       </div>
     </div>
 
@@ -468,7 +468,7 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
         <div class="agree-item">
           <input type="checkbox" id="agree3">
           <label for="agree3">
-            <strong>창립 파트너 서약에 동의합니다</strong> — 2026년 9월 20일까지 등록 완료 시 창립 파트너 배지가 영구 부여되며, 연회비 $20을 매년 납부합니다
+            <strong>창립 파트너 서약에 동의합니다</strong> — 2026년 12월 30일까지 등록 완료 시 창립 파트너 배지가 영구 부여되며, 연회비 $20을 매년 납부합니다
           </label>
         </div>
         <div class="agree-item">
@@ -513,9 +513,9 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 <script>
 // D-day 계산
 (function(){
-  const d = Math.max(0, Math.ceil((new Date("2026-09-20").getTime() - Date.now()) / 86400000));
+  const d = Math.max(0, Math.ceil((new Date("2026-12-30").getTime() - Date.now()) / 86400000));
   document.getElementById('ddayNum').textContent = 'D-' + d;
-  document.getElementById('ddayBadge').title = '2026년 9월 20일 마감 (목회자 컨퍼런스 종료)';
+  document.getElementById('ddayBadge').title = '2026년 12월 30일 마감';
 })();
 
 let current = 1;
