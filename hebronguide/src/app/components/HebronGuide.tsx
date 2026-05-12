@@ -67,25 +67,80 @@ function buildNewMemberHref(opts: {
   return `/new-member.html?${params.toString()}`
 }
 // 2026 시애틀 히어로 사진 6장 — 2시간마다 교체 (Unsplash 무료 라이선스)
+// ── 도시별 히어로 사진 슬라이드 (랜드마크 · 밝은 낮 사진)
+// 5초 crossfade + Ken Burns 줌 효과
+type HeroSlide = { url: string; pos: string; alt: string };
+const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
+  seattle: [
+    { url: "https://images.unsplash.com/photo-1574492698302-44d49f8d6dd1?w=1200&q=90", pos: "center 20%", alt: "Seattle Space Needle" },
+    { url: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=90", pos: "center 38%", alt: "Mt. Rainier" },
+    { url: "https://images.unsplash.com/photo-1546587348-d12660c30c50?w=1200&q=90", pos: "center 45%", alt: "Pike Place Market" },
+  ],
+  dallas: [
+    { url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=90", pos: "center 38%", alt: "Dallas Skyline" },
+    { url: "https://images.unsplash.com/photo-1545194445-dddb8f4487c6?w=1200&q=90", pos: "center 40%", alt: "Dallas Architecture" },
+  ],
+  sf: [
+    { url: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=1200&q=90", pos: "center 40%", alt: "Golden Gate Bridge" },
+    { url: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&q=90", pos: "center 35%", alt: "San Francisco Bay" },
+  ],
+  newyork: [
+    { url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&q=90", pos: "center 35%", alt: "New York Skyline" },
+    { url: "https://images.unsplash.com/photo-1476362555312-ab9e108a0b7e?w=1200&q=90", pos: "center 40%", alt: "Manhattan Bridge" },
+  ],
+  la: [
+    { url: "https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?w=1200&q=90", pos: "center 38%", alt: "Los Angeles Skyline" },
+    { url: "https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=1200&q=90", pos: "center 45%", alt: "Santa Monica Pier" },
+  ],
+  nashville: [
+    { url: "https://images.unsplash.com/photo-1545418776-b9e3deb98c88?w=1200&q=90", pos: "center 40%", alt: "Nashville Broadway" },
+    { url: "https://images.unsplash.com/photo-1559494007-9f5847c49d94?w=1200&q=90", pos: "center 40%", alt: "Nashville Skyline" },
+  ],
+  boston: [
+    { url: "https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=1200&q=90", pos: "center 38%", alt: "Boston Harbor" },
+    { url: "https://images.unsplash.com/photo-1569082219424-c43fc1038a96?w=1200&q=90", pos: "center 35%", alt: "Boston Skyline" },
+  ],
+  toronto: [
+    { url: "https://images.unsplash.com/photo-1503386974-0ce7e6ffdbe6?w=1200&q=90", pos: "center 28%", alt: "Toronto CN Tower" },
+    { url: "https://images.unsplash.com/photo-1517090504586-fde19ea6a0d4?w=1200&q=90", pos: "center 40%", alt: "Toronto Waterfront" },
+  ],
+  vancouver: [
+    { url: "https://images.unsplash.com/photo-1559521783-1d1599583485?w=1200&q=90", pos: "center 35%", alt: "Vancouver Mountains" },
+    { url: "https://images.unsplash.com/photo-1529511582893-2d7e684dd128?w=1200&q=90", pos: "center 40%", alt: "Vancouver Skyline" },
+  ],
+  houston: [
+    { url: "https://images.unsplash.com/photo-1553830591-fddf9a4cb508?w=1200&q=90", pos: "center 35%", alt: "Houston Skyline" },
+    { url: "https://images.unsplash.com/photo-1597523540826-a6a4b81b24e5?w=1200&q=90", pos: "center 40%", alt: "Houston Downtown" },
+  ],
+  atlanta: [
+    { url: "https://images.unsplash.com/photo-1598935898639-81586f7d2129?w=1200&q=90", pos: "center 38%", alt: "Atlanta Skyline" },
+    { url: "https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?w=1200&q=90", pos: "center 40%", alt: "Atlanta Downtown" },
+  ],
+  philadelphia: [
+    { url: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1200&q=90", pos: "center 35%", alt: "Philadelphia Skyline" },
+    { url: "https://images.unsplash.com/photo-1567591370429-07e42debd16e?w=1200&q=90", pos: "center 40%", alt: "Philadelphia City Hall" },
+  ],
+  miami: [
+    { url: "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?w=1200&q=90", pos: "center 45%", alt: "Miami South Beach" },
+    { url: "https://images.unsplash.com/photo-1516804553-95a2fb929bff?w=1200&q=90", pos: "center 38%", alt: "Miami Skyline" },
+  ],
+  mexicocity: [
+    { url: "https://images.unsplash.com/photo-1568428930483-5f7c0f31f8e0?w=1200&q=90", pos: "center 40%", alt: "Mexico City" },
+    { url: "https://images.unsplash.com/photo-1575368375879-95c5e55dd5f1?w=1200&q=90", pos: "center 40%", alt: "Mexico City Zocalo" },
+  ],
+  kansascity: [
+    { url: "https://images.unsplash.com/photo-1569949420225-75a53c1f2f7b?w=1200&q=90", pos: "center 38%", alt: "Kansas City" },
+  ],
+};
+
+// 하위 호환: HERO_PHOTOS/POSITIONS 유지 (line 3840 imgHeroCard 참조용)
 const HERO_PHOTOS = [
-  "https://images.unsplash.com/photo-1571842377564-5849a26c3fc2?w=1200&q=85",  // Seattle skyline 야경
-  "https://images.unsplash.com/photo-1525466760727-1d8be8721154?w=1200&q=85",  // Space Needle 낮
-  "https://images.unsplash.com/photo-1546587348-d12660c30c50?w=1200&q=85",     // Pike Place Market
-  "https://images.unsplash.com/photo-1519021228607-ef6e4c22a821?w=1200&q=85",  // Seattle 항구 & 선셋
-  "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85",  // PNW 자연 + 시애틀
-  "https://images.unsplash.com/photo-1559521783-1d1599583485?w=1200&q=85",     // Seattle 거리 활기
+  "https://images.unsplash.com/photo-1525466760727-1d8be8721154?w=1200&q=90",
+  "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=90",
+  "https://images.unsplash.com/photo-1546587348-d12660c30c50?w=1200&q=90",
 ];
-// 사진별 object-position — Space Needle(1번)은 꼭대기가 잘리지 않도록 위쪽 표시
-const HERO_PHOTO_POSITIONS = [
-  "center 40%",  // Seattle skyline 야경
-  "center 8%",   // Space Needle 낮 — 꼭대기 전체 표시
-  "center 45%",  // Pike Place Market
-  "center 40%",  // Seattle 항구 & 선셋
-  "center 35%",  // PNW 자연 + 시애틀
-  "center 40%",  // Seattle 거리 활기
-];
-// 2시간 단위로 사진 교체 (하루 12 슬롯 → 6장 × 2)
-const heroPhotoIdx = Math.floor(new Date().getHours() / 2) % HERO_PHOTOS.length;
+const HERO_PHOTO_POSITIONS = ["center 12%", "center 38%", "center 45%"];
+const heroPhotoIdx = Math.floor(new Date().getHours() / 4) % HERO_PHOTOS.length;
 const imgHeroCard = HERO_PHOTOS[heroPhotoIdx];
 const heroPhotoPosition = HERO_PHOTO_POSITIONS[heroPhotoIdx];
 const imgCoffee = "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80";
@@ -3243,38 +3298,75 @@ function CompactHeroNew() {
   const { lang } = useI18n();
   const city = useCityConfig();
   const liveCamUrl = CITY_LIVECAM[city.slug];
-  // 시애틀 기본 사진 사용 가능 도시 (현재는 시애틀만 — 다른 도시는 도시별 사진 큐레이션 후 추가)
-  const useSeattlePhotos = city.slug === "seattle";
-  // 시간대별 영상 선택 — heroVideos 배열 길이에 따라 24시간을 균등 분할 (12개 → 2h, 6개 → 4h, 3개 → 8h)
-  // 모든 영상이 골고루 노출됨 ("HebronGuide은 밝은 세상을 추구" + 다양한 시그니처 회전)
+
+  const slides = CITY_HERO_SLIDES[city.slug] ?? null;
+  const [slideIdx, setSlideIdx] = useState(0);
+
+  // 5초마다 다음 슬라이드
+  useEffect(() => {
+    if (!slides || slides.length <= 1) return;
+    const timer = setInterval(() => setSlideIdx(i => (i + 1) % slides.length), 5000);
+    return () => clearInterval(timer);
+  }, [slides]);
+
+  // 슬라이드 없는 도시: 기존 영상 폴백
   const heroVideosLen = city.heroVideos?.length ?? 0;
   const videoSlot = heroVideosLen > 0
-    ? Math.floor(new Date().getHours() / (24 / heroVideosLen)) % heroVideosLen
+    ? Math.floor(new Date().getHours() / Math.max(1, Math.floor(24 / heroVideosLen))) % heroVideosLen
     : 0;
-  const activeHeroVideo = heroVideosLen > 0 ? city.heroVideos![videoSlot] : city.heroVideo;
+  const activeHeroVideo = slides ? null
+    : heroVideosLen > 0 ? city.heroVideos![videoSlot]
+    : (city.heroVideo || null);
+
+  const hasMedia = !!(slides || activeHeroVideo);
 
   return (
     <div style={{
-      position: "relative", height: "clamp(120px, 22dvh, 180px)", overflow: "hidden",
+      position: "relative",
+      height: "clamp(140px, 24dvh, 200px)",
+      overflow: "hidden",
       borderRadius: "0 0 28px 28px",
-      // 도시별 사진/영상 없는 도시: 도시 색 그라디언트 + 깊이감
-      background: useSeattlePhotos || city.heroVideo
-        ? undefined
-        : `linear-gradient(135deg, ${city.color} 0%, ${city.color}dd 35%, #0b1326 100%)`,
+      background: hasMedia
+        ? `${city.color}66`
+        : `linear-gradient(135deg, ${city.color} 0%, ${city.color}cc 40%, #0b1326 100%)`,
     }}>
-      {/* 시애틀: 정적 사진 6장 (2시간마다 교체) — 도시별 큐레이션 전까지 시애틀에만 적용 */}
-      {useSeattlePhotos && (
-        <img src={imgHeroCard} alt={city.nameEn}
-          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
-          style={{
-            width: "100%", height: "100%", objectFit: "cover", objectPosition: heroPhotoPosition,
-            filter: "brightness(0.75) saturate(1.2)"
-          }} />
-      )}
-      {/* 도시별 배경 영상 — heroVideos 시간대별 교체 + onError 자동 폴백 */}
+
+      {/* ── Ken Burns 키프레임 */}
+      <style>{`
+        @keyframes kbIn  { from { transform:scale(1.0) translateX(0)   } to { transform:scale(1.08) translateX(-1.5%) } }
+        @keyframes kbOut { from { transform:scale(1.0) translateX(0)   } to { transform:scale(1.08) translateX( 1.5%) } }
+      `}</style>
+
+      {/* ── 사진 슬라이드 (도시별 랜드마크) */}
+      {slides && slides.map((slide, i) => {
+        const isActive = i === slideIdx;
+        return (
+          <img
+            key={i}
+            src={slide.url}
+            alt={slide.alt}
+            onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "0"; }}
+            style={{
+              position: "absolute", inset: 0,
+              width: "100%", height: "100%",
+              objectFit: "cover", objectPosition: slide.pos,
+              filter: "brightness(0.88) saturate(1.25)",
+              opacity: isActive ? 1 : 0,
+              transition: `opacity 1.4s ease, transform ${isActive ? "0s" : "0s"}`,
+              // Ken Burns: 활성 슬라이드만 줌 애니메이션
+              animation: isActive
+                ? `${i % 2 === 0 ? "kbIn" : "kbOut"} 6s ease-out forwards`
+                : "none",
+              zIndex: isActive ? 1 : 0,
+            }}
+          />
+        );
+      })}
+
+      {/* ── 영상 폴백 (사진 슬라이드 없는 도시) */}
       {activeHeroVideo && (
         <video key={activeHeroVideo} autoPlay muted loop playsInline
-          onError={(e) => { (e.currentTarget as HTMLVideoElement).style.display = 'none'; }}
+          onError={(e) => { (e.currentTarget as HTMLVideoElement).style.display = "none"; }}
           style={{
             position: "absolute", inset: 0, width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center 35%",
@@ -3282,39 +3374,65 @@ function CompactHeroNew() {
           <source src={activeHeroVideo} type="video/mp4" />
         </video>
       )}
-      {/* 사진/영상 없는 도시: 큰 도시 이니셜 워터마크 (장식적) */}
-      {!useSeattlePhotos && !city.heroVideo && (
+
+      {/* ── 사진/영상 없는 도시: 이니셜 워터마크 */}
+      {!hasMedia && (
         <div style={{
           position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "flex-end",
           paddingRight: 24, fontFamily: "Manrope,sans-serif", fontWeight: 900,
-          fontSize: 96, color: "rgba(255,255,255,0.08)", letterSpacing: "-4px",
+          fontSize: 96, color: "rgba(255,255,255,0.1)", letterSpacing: "-4px",
           userSelect: "none", pointerEvents: "none",
         }}>
           {city.nameEn.slice(0, 3).toUpperCase()}
         </div>
       )}
-      {/* 그라디언트 오버레이 (사진/영상 위에만) */}
-      {(useSeattlePhotos || city.heroVideo) && (
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%)" }} />
-      )}
-      {/* 도시명 + 태그라인 */}
-      <div style={{ position: "absolute", bottom: 20, left: 20, right: 60 }}>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 24, color: "#fff",
-          letterSpacing: "-0.5px", textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
+
+      {/* ── 그라디언트 오버레이 */}
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 2,
+        background: "linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.48) 100%)",
+      }} />
+
+      {/* ── 도시명 + 태그라인 */}
+      <div style={{ position: "absolute", bottom: 20, left: 20, right: 70, zIndex: 3 }}>
+        <div style={{
+          fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 24, color: "#fff",
+          letterSpacing: "-0.5px", textShadow: "0 1px 10px rgba(0,0,0,0.55)",
+        }}>
           HebronGuide <span style={{ color: city.color }}>{lang === "ko" ? city.nameKo : city.nameEn}</span>
         </div>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 400, fontSize: 12, color: "rgba(255,255,255,0.8)", marginTop: 3 }}>
+        <div style={{
+          fontFamily: "Manrope,sans-serif", fontWeight: 400, fontSize: 12,
+          color: "rgba(255,255,255,0.88)", marginTop: 3,
+        }}>
           {lang === "ko" ? city.taglineKo : lang === "es" ? (city.taglineEs ?? city.taglineEn) : city.taglineEn}
         </div>
       </div>
-      {/* LIVE CAM 버튼 */}
+
+      {/* ── 슬라이드 닷 인디케이터 */}
+      {slides && slides.length > 1 && (
+        <div style={{ position: "absolute", bottom: 10, right: 14, zIndex: 4, display: "flex", gap: 5, alignItems: "center" }}>
+          {slides.map((_, i) => (
+            <button key={i} onClick={() => setSlideIdx(i)} style={{
+              width: i === slideIdx ? 20 : 6, height: 6,
+              borderRadius: 3, border: "none", padding: 0, cursor: "pointer",
+              background: i === slideIdx ? "#fff" : "rgba(255,255,255,0.45)",
+              transition: "all 0.35s ease",
+            }} />
+          ))}
+        </div>
+      )}
+
+      {/* ── LIVE CAM 버튼 */}
       {liveCamUrl && (
-        <a href={liveCamUrl} target="_blank" rel="noopener noreferrer"
-          style={{ position: "absolute", top: 12, right: 12, display: "flex", alignItems: "center", gap: 5,
-            background: "rgba(0,0,0,0.45)", backdropFilter: "blur(8px)", borderRadius: 20, padding: "5px 10px",
-            textDecoration: "none", border: "1px solid rgba(255,255,255,0.2)" }}>
-          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#FF3B30", display: "inline-block",
-            animation: "livepulse 1.5s infinite" }} />
+        <a href={liveCamUrl} target="_blank" rel="noopener noreferrer" style={{
+          position: "absolute", top: 12, right: 12, zIndex: 4,
+          display: "flex", alignItems: "center", gap: 5,
+          background: "rgba(0,0,0,0.42)", backdropFilter: "blur(8px)",
+          borderRadius: 20, padding: "5px 10px",
+          textDecoration: "none", border: "1px solid rgba(255,255,255,0.2)",
+        }}>
+          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#FF3B30", display: "inline-block", animation: "livepulse 1.5s infinite" }} />
           <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "#fff" }}>LIVE CAM</span>
         </a>
       )}
