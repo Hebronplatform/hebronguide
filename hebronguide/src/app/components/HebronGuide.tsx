@@ -3749,7 +3749,7 @@ function CompactHeroNew() {
               position: "absolute", inset: 0,
               width: "100%", height: "100%",
               objectFit: "cover", objectPosition: slide.pos,
-              filter: "brightness(1.05) saturate(1.3) contrast(1.05)",
+              filter: "brightness(1.08) saturate(1.65) contrast(1.1)",
               opacity: isActive ? 1 : 0,
               transition: `opacity 1.4s ease, transform ${isActive ? "0s" : "0s"}`,
               // Ken Burns: 활성 슬라이드만 줌 애니메이션
@@ -3789,7 +3789,7 @@ function CompactHeroNew() {
       {/* ── 그라디언트 오버레이 */}
       <div style={{
         position: "absolute", inset: 0, zIndex: 2,
-        background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 42%, rgba(0,0,0,0.72) 100%)",
+        background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 38%, rgba(0,0,0,0.55) 100%)",
       }} />
 
       {/* ── 도시명 + 태그라인 */}
@@ -4088,8 +4088,8 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
       onMouseLeave={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) { el.style.transform = "scale(1)"; el.style.opacity = "1"; } }}>
         <div className="qm-icon" style={{
           width: 62, height: 62, borderRadius: 16,
-          background: `linear-gradient(145deg, ${item.color}f0, ${item.color}cc)`,
-          boxShadow: `0 4px 12px ${item.color}40, 0 1px 3px rgba(0,0,0,0.10)`,
+          background: item.color,
+          boxShadow: `0 5px 16px ${item.color}66, 0 1px 4px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.28)`,
           display: "flex", alignItems: "center", justifyContent: "center",
           transition: "transform 0.15s cubic-bezier(0.34,1.56,0.64,1), opacity 0.12s ease",
           flexShrink: 0,
@@ -4108,7 +4108,7 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
   };
 
   return (
-    <div style={{ padding: "20px 20px 16px" }}>
+    <div style={{ padding: "20px 20px 16px", background: "#fff" }}>
       <div style={{
         fontFamily: "-apple-system, 'SF Pro Display', 'Noto Sans KR', sans-serif",
         fontWeight: 800, fontSize: 17, color: "#1C1C1E",
