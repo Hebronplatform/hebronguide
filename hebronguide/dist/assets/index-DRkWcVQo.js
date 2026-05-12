@@ -631,15 +631,15 @@ Key services:
 🔗 www.ijiguchon.org`:`✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Sungsoo Kim.
 📍 4900 168th St. SW., Lynnwood, WA 98037
 🏠 Sunday United Worship, Mokjang, Life Studies - Three Axes, Four Pillars
-🔗 www.ijiguchon.org`,tags:t?["가정교회","IHM","린우드"]:["House Church","IHM","Lynnwood"],website:"https://www.ijiguchon.org",email:"hebronplatform@gmail.com"}],dallas:[{emoji:"⭐",tier:1,name:t?"에덴교회 (Eden Church at the Field)":"Eden Church at the Field — Carrollton",nameEn:t?"Eden Church at the Field":"에덴교회",desc:t?`✅ 검증됨 | 국제가사원(IHM) 달라스 가정교회
+🔗 www.ijiguchon.org`,tags:t?["가정교회","IHM","린우드"]:["House Church","IHM","Lynnwood"],website:"https://www.ijiguchon.org",email:"hebronplatform@gmail.com"}],dallas:[{emoji:"⛪",tier:2,name:t?"에덴교회 (Eden Church at the Field)":"Eden Church at the Field — Carrollton",nameEn:t?"Eden Church at the Field":"에덴교회",desc:t?`✅ 검증됨
 📍 1401 Carrollton Pkwy, Carrollton, TX 75010
 ✨ 담임: 신종우 목사
 📞 214-629-3066
-📧 kfbcc@yahoo.com`:`✅ Verified | IHM House Church — Dallas
+📧 kfbcc@yahoo.com`:`✅ Verified
 📍 1401 Carrollton Pkwy, Carrollton, TX 75010
 ✨ Lead Pastor: Jong-woo Shin
 📞 214-629-3066
-📧 kfbcc@yahoo.com`,tags:t?["가정교회","IHM","캐롤튼"]:["House Church","IHM","Carrollton"],phone:"214-629-3066",email:"kfbcc@yahoo.com"}],la:[{emoji:"⭐",tier:1,name:t?"축복의동산교회 (OC)":"Mountain of Blessing Church (OC)",desc:t?`✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.
+📧 kfbcc@yahoo.com`,tags:t?["한인교회","캐롤튼","달라스"]:["Korean Church","Carrollton","Dallas"],phone:"214-629-3066",email:"kfbcc@yahoo.com"}],la:[{emoji:"⭐",tier:1,name:t?"축복의동산교회 (OC)":"Mountain of Blessing Church (OC)",desc:t?`✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.
 📍 Orange County (LA 메트로), CA
 📞 714-336-9939
 ✨ 담임: 박준철 목사`:`✅ Verified | IHM (International House Church Ministries) member. House church ministry.
