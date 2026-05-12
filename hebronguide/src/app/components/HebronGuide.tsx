@@ -5563,10 +5563,10 @@ function FoundingPartnerBanner({ lang, onNavigate }: { lang: string; onNavigate?
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12.5, color: "#92400E", lineHeight: 1.3 }}>
           {lang === "ko" ? "2026 창립 파트너 교회 모집 중" : "2026 Founding Partner Churches Open"}
         </div>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10.5, color: "#B45309", marginTop: 2 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10.5, color: "#B45309", marginTop: 2, lineHeight: 1.5 }}>
           {lang === "ko"
-            ? `등록비($50) 면제 · 연회비 $20만 · IHM 인증 가정교회`
-            : `Registration fee waived · $20/yr · IHM-certified home churches`}
+            ? `등록비($50) 면제 · 연회비 $20 · 언어 추가 $30 · IHM 인증 가정교회`
+            : `Registration fee waived · $20/yr · +Language $30 · IHM-certified`}
         </div>
       </div>
       <div style={{ flexShrink: 0, textAlign: "center" }}>
