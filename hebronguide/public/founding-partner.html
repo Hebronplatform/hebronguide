@@ -311,6 +311,14 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
       <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">Threads</span>
     </button>
 
+    <!-- Telegram -->
+    <button onclick="shareTelegram()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
+      <div style="width:48px;height:48px;background:#2AABEE;border-radius:14px;display:flex;align-items:center;justify-content:center;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.012 9.482c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.155 13.48l-2.937-.918c-.638-.2-.651-.638.136-.943l11.47-4.42c.532-.194.997.13.738.049z"/></svg>
+      </div>
+      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">Telegram</span>
+    </button>
+
     <!-- Line -->
     <button onclick="shareLine()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
       <div style="width:48px;height:48px;background:#00B900;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;font-weight:900;font-family:Arial,sans-serif;">L</div>
@@ -478,6 +486,9 @@ function shareInstagram() {
     alert('링크가 복사됐습니다!\nInstagram 앱 → 스토리 또는 DM에 붙여넣기 하세요.');
   });
   setTimeout(() => { window.open('https://www.instagram.com', '_blank'); }, 500);
+}
+function shareTelegram() {
+  window.open(`https://t.me/share/url?url=${encodeURIComponent(SHARE_URL)}&text=${encodeURIComponent(SHARE_TEXT)}`, '_blank');
 }
 function shareThreads() {
   const text = encodeURIComponent(SHARE_TEXT + ' ' + SHARE_URL);
