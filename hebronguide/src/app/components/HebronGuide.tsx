@@ -69,67 +69,125 @@ function buildNewMemberHref(opts: {
 // 2026 시애틀 히어로 사진 6장 — 2시간마다 교체 (Unsplash 무료 라이선스)
 // ── 도시별 히어로 사진 슬라이드 (랜드마크 · 밝은 낮 사진)
 // 5초 crossfade + Ken Burns 줌 효과
+// 도시 테마 & 스토리를 사진으로 표현
 type HeroSlide = { url: string; pos: string; alt: string };
 const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
+
+  // 🌲 시애틀 — Space Needle + Mt. Rainier + 에메랄드 도시
+  // Kerry Park 뷰: 스페이스니들 + 도시 스카이라인 + 레이니어산 한 프레임
   seattle: [
-    { url: "https://images.unsplash.com/photo-1574492698302-44d49f8d6dd1?w=1200&q=90", pos: "center 20%", alt: "Seattle Space Needle" },
-    { url: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=90", pos: "center 38%", alt: "Mt. Rainier" },
+    { url: "https://images.unsplash.com/photo-1531474885958-91cfce8fc325?w=1200&q=90", pos: "center 30%", alt: "Seattle Space Needle panorama" },
+    { url: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=90", pos: "center 38%", alt: "Mt. Rainier & Seattle" },
     { url: "https://images.unsplash.com/photo-1546587348-d12660c30c50?w=1200&q=90", pos: "center 45%", alt: "Pike Place Market" },
   ],
+
+  // 🤠 달라스 — Big D, 텍사스 프라이드, Reunion Tower & 카우보이 정신
   dallas: [
-    { url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=90", pos: "center 38%", alt: "Dallas Skyline" },
-    { url: "https://images.unsplash.com/photo-1545194445-dddb8f4487c6?w=1200&q=90", pos: "center 40%", alt: "Dallas Architecture" },
+    { url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=90", pos: "center 38%", alt: "Dallas Reunion Tower Skyline" },
+    { url: "https://images.unsplash.com/photo-1549619856-ac562a3ed3a3?w=1200&q=90", pos: "center 40%", alt: "Dallas downtown" },
+    { url: "https://images.unsplash.com/photo-1605558862838-1c1a8e0adec4?w=1200&q=90", pos: "center 42%", alt: "Texas sunset" },
   ],
+
+  // 🌉 샌프란시스코 — 골든게이트 + 실리콘밸리 + 안개 & 언덕
   sf: [
-    { url: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=1200&q=90", pos: "center 40%", alt: "Golden Gate Bridge" },
-    { url: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&q=90", pos: "center 35%", alt: "San Francisco Bay" },
+    { url: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=1200&q=90", pos: "center 42%", alt: "Golden Gate Bridge" },
+    { url: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&q=90", pos: "center 35%", alt: "San Francisco Bay skyline" },
+    { url: "https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?w=1200&q=90", pos: "center 40%", alt: "San Francisco hills" },
   ],
+
+  // 🗽 뉴욕 — 맨해튼 스카이라인 + 브루클린 브릿지 + 에너지
   newyork: [
-    { url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&q=90", pos: "center 35%", alt: "New York Skyline" },
-    { url: "https://images.unsplash.com/photo-1476362555312-ab9e108a0b7e?w=1200&q=90", pos: "center 40%", alt: "Manhattan Bridge" },
+    { url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&q=90", pos: "center 35%", alt: "New York Manhattan skyline" },
+    { url: "https://images.unsplash.com/photo-1546436836-07a91091f160?w=1200&q=90", pos: "center 40%", alt: "Brooklyn Bridge" },
+    { url: "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=1200&q=90", pos: "center 38%", alt: "New York City" },
   ],
+
+  // 🌴 LA — 할리우드 사인 + 선셋 + 그리피스 파크
   la: [
-    { url: "https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?w=1200&q=90", pos: "center 38%", alt: "Los Angeles Skyline" },
-    { url: "https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=1200&q=90", pos: "center 45%", alt: "Santa Monica Pier" },
+    { url: "https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?w=1200&q=90", pos: "center 35%", alt: "Los Angeles skyline" },
+    { url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=1200&q=90", pos: "center 30%", alt: "Hollywood sign & hills" },
+    { url: "https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=1200&q=90", pos: "center 45%", alt: "Santa Monica beach pier" },
   ],
+
+  // 🎸 내쉬빌 — 브로드웨이 네온 + 컨트리 뮤직 + 파르테논
   nashville: [
-    { url: "https://images.unsplash.com/photo-1545418776-b9e3deb98c88?w=1200&q=90", pos: "center 40%", alt: "Nashville Broadway" },
-    { url: "https://images.unsplash.com/photo-1559494007-9f5847c49d94?w=1200&q=90", pos: "center 40%", alt: "Nashville Skyline" },
+    { url: "https://images.unsplash.com/photo-1545418776-b9e3deb98c88?w=1200&q=90", pos: "center 40%", alt: "Nashville Broadway neon" },
+    { url: "https://images.unsplash.com/photo-1559494007-9f5847c49d94?w=1200&q=90", pos: "center 38%", alt: "Nashville skyline" },
+    { url: "https://images.unsplash.com/photo-1633204339601-a37f025a55c3?w=1200&q=90", pos: "center 40%", alt: "Nashville Cumberland River" },
   ],
+
+  // 🦞 보스턴 — 자유의 길 + 하버 + 아이비리그 도시
   boston: [
-    { url: "https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=1200&q=90", pos: "center 38%", alt: "Boston Harbor" },
-    { url: "https://images.unsplash.com/photo-1569082219424-c43fc1038a96?w=1200&q=90", pos: "center 35%", alt: "Boston Skyline" },
+    { url: "https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=1200&q=90", pos: "center 38%", alt: "Boston harbor" },
+    { url: "https://images.unsplash.com/photo-1569082219424-c43fc1038a96?w=1200&q=90", pos: "center 35%", alt: "Boston skyline" },
+    { url: "https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?w=1200&q=90", pos: "center 40%", alt: "Boston historic district" },
   ],
+
+  // 🏙️ 토론토 — CN Tower + 다문화 + Lake Ontario
   toronto: [
-    { url: "https://images.unsplash.com/photo-1503386974-0ce7e6ffdbe6?w=1200&q=90", pos: "center 28%", alt: "Toronto CN Tower" },
-    { url: "https://images.unsplash.com/photo-1517090504586-fde19ea6a0d4?w=1200&q=90", pos: "center 40%", alt: "Toronto Waterfront" },
+    { url: "https://images.unsplash.com/photo-1503386974-0ce7e6ffdbe6?w=1200&q=90", pos: "center 25%", alt: "Toronto CN Tower" },
+    { url: "https://images.unsplash.com/photo-1517090504586-fde19ea6a0d4?w=1200&q=90", pos: "center 38%", alt: "Toronto waterfront" },
+    { url: "https://images.unsplash.com/photo-1604608672516-5b0d7a04e77e?w=1200&q=90", pos: "center 40%", alt: "Toronto skyline Lake Ontario" },
   ],
+
+  // 🏔️ 밴쿠버 — 산 + 바다 + 스탠리파크 + Lions Gate
   vancouver: [
-    { url: "https://images.unsplash.com/photo-1559521783-1d1599583485?w=1200&q=90", pos: "center 35%", alt: "Vancouver Mountains" },
-    { url: "https://images.unsplash.com/photo-1529511582893-2d7e684dd128?w=1200&q=90", pos: "center 40%", alt: "Vancouver Skyline" },
+    { url: "https://images.unsplash.com/photo-1559521783-1d1599583485?w=1200&q=90", pos: "center 30%", alt: "Vancouver mountains & skyline" },
+    { url: "https://images.unsplash.com/photo-1494587351196-bbf5f29cff42?w=1200&q=90", pos: "center 35%", alt: "Lions Gate Bridge Vancouver" },
+    { url: "https://images.unsplash.com/photo-1529511582893-2d7e684dd128?w=1200&q=90", pos: "center 40%", alt: "Vancouver Stanley Park" },
   ],
+
+  // 🚀 휴스턴 — NASA + 모던 스카이라인 + 다양성
   houston: [
-    { url: "https://images.unsplash.com/photo-1553830591-fddf9a4cb508?w=1200&q=90", pos: "center 35%", alt: "Houston Skyline" },
-    { url: "https://images.unsplash.com/photo-1597523540826-a6a4b81b24e5?w=1200&q=90", pos: "center 40%", alt: "Houston Downtown" },
+    { url: "https://images.unsplash.com/photo-1553830591-fddf9a4cb508?w=1200&q=90", pos: "center 35%", alt: "Houston skyline" },
+    { url: "https://images.unsplash.com/photo-1630839024898-23280f37e33b?w=1200&q=90", pos: "center 40%", alt: "Houston NASA Space Center" },
+    { url: "https://images.unsplash.com/photo-1597523540826-a6a4b81b24e5?w=1200&q=90", pos: "center 38%", alt: "Houston downtown" },
   ],
+
+  // 🍑 애틀랜타 — 시빌 라이츠 역사 + 모던 성장 + 조지아
   atlanta: [
-    { url: "https://images.unsplash.com/photo-1598935898639-81586f7d2129?w=1200&q=90", pos: "center 38%", alt: "Atlanta Skyline" },
-    { url: "https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?w=1200&q=90", pos: "center 40%", alt: "Atlanta Downtown" },
+    { url: "https://images.unsplash.com/photo-1598935898639-81586f7d2129?w=1200&q=90", pos: "center 35%", alt: "Atlanta skyline" },
+    { url: "https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?w=1200&q=90", pos: "center 40%", alt: "Atlanta downtown Centennial Park" },
+    { url: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=90", pos: "center 42%", alt: "Atlanta Georgia peach state" },
   ],
+
+  // 🔔 필라델피아 — 자유의 종 + Rocky 계단 + 역사 도시
   philadelphia: [
-    { url: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1200&q=90", pos: "center 35%", alt: "Philadelphia Skyline" },
-    { url: "https://images.unsplash.com/photo-1567591370429-07e42debd16e?w=1200&q=90", pos: "center 40%", alt: "Philadelphia City Hall" },
+    { url: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1200&q=90", pos: "center 35%", alt: "Philadelphia skyline" },
+    { url: "https://images.unsplash.com/photo-1567591370429-07e42debd16e?w=1200&q=90", pos: "center 38%", alt: "Philadelphia City Hall" },
+    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Philadelphia historic streets" },
   ],
+
+  // 🌊 마이애미 — South Beach + Art Deco + 열대 파라다이스
   miami: [
     { url: "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?w=1200&q=90", pos: "center 45%", alt: "Miami South Beach" },
-    { url: "https://images.unsplash.com/photo-1516804553-95a2fb929bff?w=1200&q=90", pos: "center 38%", alt: "Miami Skyline" },
+    { url: "https://images.unsplash.com/photo-1516804553-95a2fb929bff?w=1200&q=90", pos: "center 35%", alt: "Miami skyline bay" },
+    { url: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1200&q=90", pos: "center 50%", alt: "Miami tropical beach" },
   ],
+
+  // 🏛️ 멕시코시티 — 소칼로 + 벨라스 아르테스 + 바로크 문화
   mexicocity: [
-    { url: "https://images.unsplash.com/photo-1568428930483-5f7c0f31f8e0?w=1200&q=90", pos: "center 40%", alt: "Mexico City" },
-    { url: "https://images.unsplash.com/photo-1575368375879-95c5e55dd5f1?w=1200&q=90", pos: "center 40%", alt: "Mexico City Zocalo" },
+    { url: "https://images.unsplash.com/photo-1568428930483-5f7c0f31f8e0?w=1200&q=90", pos: "center 38%", alt: "Mexico City Zocalo" },
+    { url: "https://images.unsplash.com/photo-1575368375879-95c5e55dd5f1?w=1200&q=90", pos: "center 40%", alt: "Mexico City Palacio Bellas Artes" },
+    { url: "https://images.unsplash.com/photo-1518638150340-f706e86654de?w=1200&q=90", pos: "center 38%", alt: "Mexico City colorful streets" },
   ],
+
+  // 🎷 캔자스시티 — Country Club Plaza + 재즈 + 미드웨스트 심장
   kansascity: [
-    { url: "https://images.unsplash.com/photo-1569949420225-75a53c1f2f7b?w=1200&q=90", pos: "center 38%", alt: "Kansas City" },
+    { url: "https://images.unsplash.com/photo-1569949420225-75a53c1f2f7b?w=1200&q=90", pos: "center 38%", alt: "Kansas City skyline" },
+    { url: "https://images.unsplash.com/photo-1590845947376-2638caa89309?w=1200&q=90", pos: "center 40%", alt: "Kansas City plaza" },
+  ],
+
+  // 🌹 과달라하라 — 멕시코 문화 수도 + 테킬라 + 마리아치
+  guadalajara: [
+    { url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?w=1200&q=90", pos: "center 38%", alt: "Guadalajara cathedral" },
+    { url: "https://images.unsplash.com/photo-1519218547298-83e9e4c09a9e?w=1200&q=90", pos: "center 40%", alt: "Jalisco Mexico colorful" },
+  ],
+
+  // 🏔️ 몬테레이 — 세로 데 라 실라 + 산업 도시 + 비즈니스 허브
+  monterrey: [
+    { url: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1200&q=90", pos: "center 35%", alt: "Monterrey mountains" },
+    { url: "https://images.unsplash.com/photo-1604508533701-cf7a0cec7d50?w=1200&q=90", pos: "center 40%", alt: "Monterrey modern city" },
   ],
 };
 
@@ -3297,7 +3355,7 @@ function WorldCupBanner() {
 function CompactHeroNew() {
   const { lang } = useI18n();
   const city = useCityConfig();
-  const liveCamUrl = CITY_LIVECAM[city.slug];
+  // liveCamUrl removed — LIVE CAM 버튼 제거됨
 
   const slides = CITY_HERO_SLIDES[city.slug] ?? null;
   const [slideIdx, setSlideIdx] = useState(0);
@@ -3423,19 +3481,7 @@ function CompactHeroNew() {
         </div>
       )}
 
-      {/* ── LIVE CAM 버튼 */}
-      {liveCamUrl && (
-        <a href={liveCamUrl} target="_blank" rel="noopener noreferrer" style={{
-          position: "absolute", top: 12, right: 12, zIndex: 4,
-          display: "flex", alignItems: "center", gap: 5,
-          background: "rgba(0,0,0,0.42)", backdropFilter: "blur(8px)",
-          borderRadius: 20, padding: "5px 10px",
-          textDecoration: "none", border: "1px solid rgba(255,255,255,0.2)",
-        }}>
-          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#FF3B30", display: "inline-block", animation: "livepulse 1.5s infinite" }} />
-          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "#fff" }}>LIVE CAM</span>
-        </a>
-      )}
+      {/* LIVE CAM 제거됨 */}
     </div>
   );
 }
