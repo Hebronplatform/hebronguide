@@ -3722,7 +3722,7 @@ function CompactHeroNew() {
   return (
     <div style={{
       position: "relative",
-      height: "clamp(140px, 24dvh, 200px)",
+      height: "clamp(192px, 30dvh, 256px)",
       overflow: "hidden",
       borderRadius: "0 0 28px 28px",
       background: hasMedia
@@ -3789,20 +3789,33 @@ function CompactHeroNew() {
       {/* ── 그라디언트 오버레이 */}
       <div style={{
         position: "absolute", inset: 0, zIndex: 2,
-        background: "linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.48) 100%)",
+        background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 42%, rgba(0,0,0,0.72) 100%)",
       }} />
 
       {/* ── 도시명 + 태그라인 */}
-      <div style={{ position: "absolute", bottom: 20, left: 20, right: 70, zIndex: 3 }}>
+      <div style={{ position: "absolute", bottom: 18, left: 18, right: 72, zIndex: 3 }}>
         <div style={{
-          fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 24, color: "#fff",
-          letterSpacing: "-0.5px", textShadow: "0 1px 10px rgba(0,0,0,0.55)",
+          display: "inline-flex", alignItems: "center", gap: 5,
+          background: "rgba(0,0,0,0.28)", backdropFilter: "blur(10px) saturate(1.4)",
+          WebkitBackdropFilter: "blur(10px) saturate(1.4)",
+          border: "1px solid rgba(255,255,255,0.15)",
+          borderRadius: 99, padding: "3px 10px", marginBottom: 8,
+        }}>
+          <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6EE7B7", display: "inline-block", flexShrink: 0 }} />
+          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(255,255,255,0.92)", letterSpacing: "0.05em" }}>
+            LIVE · {lang === "ko" ? "44개 도시" : "44 Cities"}
+          </span>
+        </div>
+        <div style={{
+          fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 27, color: "#fff",
+          letterSpacing: "-0.6px", textShadow: "0 2px 20px rgba(0,0,0,0.65)", lineHeight: 1.15,
         }}>
           HebronGuide <span style={{ color: city.color }}>{lang === "ko" ? city.nameKo : city.nameEn}</span>
         </div>
         <div style={{
-          fontFamily: "Manrope,sans-serif", fontWeight: 400, fontSize: 12,
-          color: "rgba(255,255,255,0.88)", marginTop: 3,
+          fontFamily: "Manrope,sans-serif", fontWeight: 400, fontSize: 12.5,
+          color: "rgba(255,255,255,0.82)", marginTop: 5,
+          textShadow: "0 1px 8px rgba(0,0,0,0.5)",
         }}>
           {lang === "ko" ? city.taglineKo : lang === "es" ? (city.taglineEs ?? city.taglineEn) : city.taglineEn}
         </div>
@@ -3813,10 +3826,11 @@ function CompactHeroNew() {
         <div style={{ position: "absolute", bottom: 10, right: 14, zIndex: 4, display: "flex", gap: 5, alignItems: "center" }}>
           {slides.map((_, i) => (
             <button key={i} onClick={() => setSlideIdx(i)} style={{
-              width: i === slideIdx ? 20 : 6, height: 6,
-              borderRadius: 3, border: "none", padding: 0, cursor: "pointer",
-              background: i === slideIdx ? "#fff" : "rgba(255,255,255,0.45)",
-              transition: "all 0.35s ease",
+              width: i === slideIdx ? 22 : 5, height: 5,
+              borderRadius: 99, border: "none", padding: 0, cursor: "pointer",
+              background: i === slideIdx ? "#fff" : "rgba(255,255,255,0.32)",
+              transition: "all 0.4s cubic-bezier(0.34,1.56,0.64,1)",
+              boxShadow: i === slideIdx ? "0 1px 6px rgba(0,0,0,0.35)" : "none",
             }} />
           ))}
         </div>
@@ -4067,20 +4081,25 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
         display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
         padding: 0, WebkitTapHighlightColor: "transparent",
       }}
-      onTouchStart={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) el.style.transform = "scale(0.87)"; }}
-      onTouchEnd={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) el.style.transform = "scale(1)"; }}>
+      onTouchStart={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) { el.style.transform = "scale(0.86)"; el.style.opacity = "0.82"; } }}
+      onTouchEnd={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) { el.style.transform = "scale(1)"; el.style.opacity = "1"; } }}
+      onMouseDown={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) { el.style.transform = "scale(0.88)"; el.style.opacity = "0.82"; } }}
+      onMouseUp={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) { el.style.transform = "scale(1)"; el.style.opacity = "1"; } }}
+      onMouseLeave={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) { el.style.transform = "scale(1)"; el.style.opacity = "1"; } }}>
         <div className="qm-icon" style={{
-          width: 60, height: 60, borderRadius: 14, background: item.color,
-          boxShadow: `0 3px 10px ${item.color}55`,
+          width: 62, height: 62, borderRadius: 16,
+          background: `linear-gradient(145deg, ${item.color}f0, ${item.color}cc)`,
+          boxShadow: `0 4px 12px ${item.color}40, 0 1px 3px rgba(0,0,0,0.10)`,
           display: "flex", alignItems: "center", justifyContent: "center",
-          transition: "transform 0.12s ease", flexShrink: 0,
+          transition: "transform 0.15s cubic-bezier(0.34,1.56,0.64,1), opacity 0.12s ease",
+          flexShrink: 0,
         }}>
-          {IconComp && <IconComp size={30} color="#fff" strokeWidth={1.8} />}
+          {IconComp && <IconComp size={29} color="#fff" strokeWidth={1.7} />}
         </div>
         <span style={{
           fontFamily: "-apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif",
-          fontWeight: 400, fontSize: 11, color: "#3C3C43",
-          letterSpacing: "-0.1px", textAlign: "center", lineHeight: 1.3, width: "100%",
+          fontWeight: 500, fontSize: 11, color: "#1C1C1E",
+          letterSpacing: "-0.15px", textAlign: "center", lineHeight: 1.25, width: "100%",
         }}>
           {ko ? item.labelKo : item.labelEn}
         </span>
@@ -4091,9 +4110,9 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
   return (
     <div style={{ padding: "20px 20px 16px" }}>
       <div style={{
-        fontFamily: "'Noto Sans KR', sans-serif",
-        fontWeight: 700, fontSize: 15, color: "#1B2A4A",
-        letterSpacing: "-0.3px", marginBottom: 14,
+        fontFamily: "-apple-system, 'SF Pro Display', 'Noto Sans KR', sans-serif",
+        fontWeight: 800, fontSize: 17, color: "#1C1C1E",
+        letterSpacing: "-0.5px", marginBottom: 14,
       }}>
         {ko ? "바로 가기" : "Quick Access"}
       </div>
@@ -4163,9 +4182,9 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
         <div key={phase} style={{ marginBottom: phase < 3 ? 18 : 0 }}>
           {/* 단계 레이블 */}
           <div style={{
-            fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10,
-            color: "#8E8E93", letterSpacing: "0.4px", textTransform: "uppercase",
-            marginBottom: 12, paddingLeft: 2,
+            fontFamily: "-apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif",
+            fontWeight: 600, fontSize: 11, color: "#8E8E93",
+            letterSpacing: "0.2px", marginBottom: 12, paddingLeft: 2,
           }}>
             {ko ? PHASES[phase].labelKo : PHASES[phase].labelEn}
           </div>
@@ -5565,18 +5584,20 @@ function HebronFlywheelBar({ lang }: { lang: string }) {
     { emoji: "🌐", value: "3", label: lang === "ko" ? "개 언어" : "Languages" },
   ];
   return (
-    <div style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
-      <div style={{ display: "flex", overflowX: "auto", scrollbarWidth: "none", padding: "0 8px" }}
+    <div style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+      <div style={{ display: "flex", overflowX: "auto", scrollbarWidth: "none", padding: "0 6px" }}
         className="[&::-webkit-scrollbar]:hidden">
         {stats.map((s, i) => (
           <div key={i} style={{
-            flexShrink: 0, display: "flex", alignItems: "center", gap: 5,
-            padding: "9px 14px",
-            borderRight: i < stats.length - 1 ? "1px solid rgba(0,0,0,0.07)" : "none",
+            flexShrink: 0, display: "flex", alignItems: "center", gap: 6,
+            padding: "10px 16px",
+            borderRight: i < stats.length - 1 ? "1px solid rgba(0,0,0,0.06)" : "none",
           }}>
-            <span style={{ fontSize: 13 }}>{s.emoji}</span>
-            <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A" }}>{s.value}</span>
-            <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#64748B" }}>{s.label}</span>
+            <span style={{ fontSize: 14 }}>{s.emoji}</span>
+            <div>
+              <span style={{ fontFamily: "-apple-system,'SF Pro Display',Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1C1C1E", letterSpacing: "-0.3px" }}>{s.value}</span>
+              <span style={{ fontFamily: "-apple-system,'SF Pro Text',Manrope,sans-serif", fontSize: 11, color: "#8E8E93", marginLeft: 3 }}>{s.label}</span>
+            </div>
           </div>
         ))}
       </div>
