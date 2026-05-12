@@ -1,4 +1,4 @@
-/**
+﻿/**
  * HebronGuide - Seattle 정착 가이드 PWA
  *
  * ══ DESIGN SYSTEM ══════════════════════════════════════════
@@ -116,71 +116,71 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
   // 🎸 내쉬빌 — ✅ fixed: was tropical beach, now Nashville skyline + Broadway
   nashville: [
-    { url: "https://images.unsplash.com/photo-74eAz9wyr-0?w=1200&q=90", pos: "center 38%", alt: "Nashville city skyline water" },
-    { url: "https://images.unsplash.com/photo-GmoaEH48m8c?w=1200&q=90", pos: "center 40%", alt: "Nashville Nissan Stadium skyline" },
+    { url: "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=1200&q=90", pos: "center 38%", alt: "Nashville city skyline water" },
+    { url: "https://images.unsplash.com/photo-1616198814651-e71f960c3180?w=1200&q=90", pos: "center 40%", alt: "Nashville Nissan Stadium skyline" },
     { url: "https://images.unsplash.com/photo-1633204339601-a37f025a55c3?w=1200&q=90", pos: "center 40%", alt: "Nashville Cumberland River night" },
   ],
 
   // 🦞 보스턴 — ✅ fixed: was US Capitol(!), now actual Boston harbor + skyline
   boston: [
-    { url: "https://images.unsplash.com/photo-8nA_iHrxHIo?w=1200&q=90", pos: "center 38%", alt: "Boston harbor cityscape" },
-    { url: "https://images.unsplash.com/photo-SFsKWydc7qY?w=1200&q=90", pos: "center 35%", alt: "Boston skyline clear day" },
+    { url: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=1200&q=90", pos: "center 38%", alt: "Boston harbor cityscape" },
+    { url: "https://images.unsplash.com/photo-1536514498073-50e69d39c6cf?w=1200&q=90", pos: "center 35%", alt: "Boston skyline clear day" },
     { url: "https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?w=1200&q=90", pos: "center 40%", alt: "Boston historic Beacon Hill" },
   ],
 
   // 🏙️ 토론토 — ✅ fixed CN Tower (was 404), + Lake Ontario waterfront
   toronto: [
-    { url: "https://images.unsplash.com/photo-xlStTtoNq_k?w=1200&q=90", pos: "center 22%", alt: "Toronto CN Tower blue sky" },
+    { url: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=1200&q=90", pos: "center 22%", alt: "Toronto CN Tower blue sky" },
     { url: "https://images.unsplash.com/photo-1517090504586-fde19ea6a0d4?w=1200&q=90", pos: "center 38%", alt: "Toronto waterfront skyline" },
     { url: "https://images.unsplash.com/photo-1604608672516-5b0d7a04e77e?w=1200&q=90", pos: "center 40%", alt: "Toronto Lake Ontario" },
   ],
 
   // 🏔️ 밴쿠버 — ✅ fixed: was desert camping(!), now BC mountains + harbor
   vancouver: [
-    { url: "https://images.unsplash.com/photo-9pYZWuU7sc8?w=1200&q=90", pos: "center 32%", alt: "Vancouver BC mountain lake reflection" },
+    { url: "https://images.unsplash.com/photo-1490131784822-b4626a8ec96a?w=1200&q=90", pos: "center 32%", alt: "Vancouver BC mountain lake reflection" },
     { url: "https://images.unsplash.com/photo-1494587351196-bbf5f29cff42?w=1200&q=90", pos: "center 35%", alt: "Lions Gate Bridge Vancouver" },
     { url: "https://images.unsplash.com/photo-1529511582893-2d7e684dd128?w=1200&q=90", pos: "center 40%", alt: "Vancouver Stanley Park" },
   ],
 
   // 🚀 휴스턴 — ✅ fixed Houston (was 404), + NASA Space Center
   houston: [
-    { url: "https://images.unsplash.com/photo-AlBgcDfDG_s?w=1200&q=90", pos: "center 35%", alt: "Houston city skyline" },
+    { url: "https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=1200&q=90", pos: "center 35%", alt: "Houston city skyline" },
     { url: "https://images.unsplash.com/photo-1630839024898-23280f37e33b?w=1200&q=90", pos: "center 40%", alt: "Houston NASA Space Center" },
     { url: "https://images.unsplash.com/photo-1597523540826-a6a4b81b24e5?w=1200&q=90", pos: "center 38%", alt: "Houston downtown modern" },
   ],
 
   // 🍑 애틀랜타 — ✅ fixed: was Taipei 101(!), now Atlanta + Georgia
   atlanta: [
-    { url: "https://images.unsplash.com/photo-DdsXgbHVg7M?w=1200&q=90", pos: "center 35%", alt: "Atlanta skyline" },
+    { url: "https://images.unsplash.com/photo-1602941525421-8f8b81d3edbb?w=1200&q=90", pos: "center 35%", alt: "Atlanta skyline" },
     { url: "https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?w=1200&q=90", pos: "center 40%", alt: "Atlanta Centennial Park area" },
     { url: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=90", pos: "center 42%", alt: "Georgia suburban beauty" },
   ],
 
   // 🔔 필라델피아 — ✅ verified aerial Philadelphia + historic center
   philadelphia: [
-    { url: "https://images.unsplash.com/photo-guy5aS3GvgA?w=1200&q=90", pos: "center 35%", alt: "Philadelphia aerial buildings" },
-    { url: "https://images.unsplash.com/photo-94yFYwJZVL4?w=1200&q=90", pos: "center 38%", alt: "Philadelphia high-rise daytime" },
+    { url: "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?w=1200&q=90", pos: "center 35%", alt: "Philadelphia aerial buildings" },
+    { url: "https://images.unsplash.com/photo-1563114773-84221bd62daa?w=1200&q=90", pos: "center 38%", alt: "Philadelphia high-rise daytime" },
     { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Philadelphia historic street" },
   ],
 
   // 🌊 마이애미 — ✅ fixed: was white Mustang in garage(!), now actual beach
   miami: [
-    { url: "https://images.unsplash.com/photo-1jBGMSMmzHA?w=1200&q=90", pos: "center 45%", alt: "Miami South Beach ocean" },
+    { url: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&q=90", pos: "center 45%", alt: "Miami South Beach ocean" },
     { url: "https://images.unsplash.com/photo-1516804553-95a2fb929bff?w=1200&q=90", pos: "center 35%", alt: "Miami skyline bay" },
     { url: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1200&q=90", pos: "center 50%", alt: "Miami tropical ocean sunset" },
   ],
 
   // 🏛️ 멕시코시티 — ✅ Zocalo National Palace confirmed + historic center
   mexicocity: [
-    { url: "https://images.unsplash.com/photo-CbtPT4TZI5E?w=1200&q=90", pos: "center 40%", alt: "Mexico City National Palace Zocalo" },
-    { url: "https://images.unsplash.com/photo-d4dAdgALJAY?w=1200&q=90", pos: "center 38%", alt: "Mexico City historic center" },
+    { url: "https://images.unsplash.com/photo-1567538096621-38d2284b23ff?w=1200&q=90", pos: "center 40%", alt: "Mexico City National Palace Zocalo" },
+    { url: "https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?w=1200&q=90", pos: "center 38%", alt: "Mexico City historic center" },
     { url: "https://images.unsplash.com/photo-1518638150340-f706e86654de?w=1200&q=90", pos: "center 40%", alt: "Mexico City colorful streets" },
   ],
 
   // 🎷 캔자스시티 — Midwest heart + Country Club Plaza + jazz
   kansascity: [
-    { url: "https://images.unsplash.com/photo-Ywi0Lecq6Kg?w=1200&q=90", pos: "center 38%", alt: "Kansas City skyline" },
-    { url: "https://images.unsplash.com/photo-feChhHyn_fE?w=1200&q=90", pos: "center 40%", alt: "Kansas City bridge view" },
+    { url: "https://images.unsplash.com/photo-1628102491629-778571d893a3?w=1200&q=90", pos: "center 38%", alt: "Kansas City skyline" },
+    { url: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&q=90", pos: "center 40%", alt: "Kansas City bridge view" },
   ],
 
   // 🌹 과달라하라 — 멕시코 문화 수도 + 테킬라 + 마리아치
@@ -197,8 +197,8 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
   // 🫘 시카고 — Cloud Gate (Bean) + 밀레니엄 파크 + 레이크 미시간
   chicago: [
-    { url: "https://images.unsplash.com/photo-lRIFgxCXJMA?w=1200&q=90", pos: "center 38%", alt: "Chicago Cloud Gate Bean Millennium Park" },
-    { url: "https://images.unsplash.com/photo-3e5DBLbrRL0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
+    { url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=90", pos: "center 38%", alt: "Chicago Cloud Gate Bean Millennium Park" },
+    { url: "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
   ],
 };
 
