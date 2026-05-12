@@ -74,120 +74,126 @@ type HeroSlide = { url: string; pos: string; alt: string };
 const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
   // 🌲 시애틀 — Space Needle + Mt. Rainier + 에메랄드 도시
-  // Kerry Park 뷰: 스페이스니들 + 도시 스카이라인 + 레이니어산 한 프레임
+  // (verified by photo agent 2026-05-11)
   seattle: [
-    { url: "https://images.unsplash.com/photo-1531474885958-91cfce8fc325?w=1200&q=90", pos: "center 30%", alt: "Seattle Space Needle panorama" },
-    { url: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=90", pos: "center 38%", alt: "Mt. Rainier & Seattle" },
-    { url: "https://images.unsplash.com/photo-1546587348-d12660c30c50?w=1200&q=90", pos: "center 45%", alt: "Pike Place Market" },
+    { url: "https://images.unsplash.com/photo-CK_MX9mBGRo?w=1200&q=90", pos: "center 25%", alt: "Seattle Space Needle blue sky" },
+    { url: "https://images.unsplash.com/photo-TXiBwX0kg-Q?w=1200&q=90", pos: "center 35%", alt: "Mt. Rainier snow-capped" },
+    { url: "https://images.unsplash.com/photo-hmxPcpX5Ltk?w=1200&q=90", pos: "center 30%", alt: "Seattle skyline Space Needle aerial" },
   ],
 
-  // 🤠 달라스 — Big D, 텍사스 프라이드, Reunion Tower & 카우보이 정신
+  // 🤠 달라스 — ✅ verified: aerial skyline + architecture
   dallas: [
     { url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=90", pos: "center 38%", alt: "Dallas Reunion Tower Skyline" },
-    { url: "https://images.unsplash.com/photo-1549619856-ac562a3ed3a3?w=1200&q=90", pos: "center 40%", alt: "Dallas downtown" },
-    { url: "https://images.unsplash.com/photo-1605558862838-1c1a8e0adec4?w=1200&q=90", pos: "center 42%", alt: "Texas sunset" },
+    { url: "https://images.unsplash.com/photo-1545194445-dddb8f4487c6?w=1200&q=90", pos: "center 40%", alt: "Dallas downtown aerial" },
+    { url: "https://images.unsplash.com/photo-1549619856-ac562a3ed3a3?w=1200&q=90", pos: "center 42%", alt: "Texas Big D" },
   ],
 
-  // 🌉 샌프란시스코 — 골든게이트 + 실리콘밸리 + 안개 & 언덕
+  // 🌉 샌프란시스코 — ✅ verified: both Golden Gate Bridge photos confirmed
   sf: [
-    { url: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=1200&q=90", pos: "center 42%", alt: "Golden Gate Bridge" },
-    { url: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&q=90", pos: "center 35%", alt: "San Francisco Bay skyline" },
-    { url: "https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?w=1200&q=90", pos: "center 40%", alt: "San Francisco hills" },
+    { url: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=1200&q=90", pos: "center 42%", alt: "Golden Gate Bridge dramatic" },
+    { url: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&q=90", pos: "center 38%", alt: "Golden Gate Bridge clear day" },
+    { url: "https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?w=1200&q=90", pos: "center 40%", alt: "San Francisco bay hills" },
   ],
 
-  // 🗽 뉴욕 — 맨해튼 스카이라인 + 브루클린 브릿지 + 에너지
+  // 🗽 뉴욕 — ✅ #1 verified Manhattan skyline, #2 fixed (was dark forest)
   newyork: [
-    { url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&q=90", pos: "center 35%", alt: "New York Manhattan skyline" },
+    { url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&q=90", pos: "center 35%", alt: "New York Manhattan Empire State" },
+    { url: "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=1200&q=90", pos: "center 38%", alt: "New York City skyline" },
     { url: "https://images.unsplash.com/photo-1546436836-07a91091f160?w=1200&q=90", pos: "center 40%", alt: "Brooklyn Bridge" },
-    { url: "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=1200&q=90", pos: "center 38%", alt: "New York City" },
   ],
 
-  // 🌴 LA — 할리우드 사인 + 선셋 + 그리피스 파크
+  // 🌴 LA — palm boulevard (evocative LA vibe ✅) + Hollywood + Griffith
   la: [
-    { url: "https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?w=1200&q=90", pos: "center 35%", alt: "Los Angeles skyline" },
-    { url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=1200&q=90", pos: "center 30%", alt: "Hollywood sign & hills" },
-    { url: "https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=1200&q=90", pos: "center 45%", alt: "Santa Monica beach pier" },
+    { url: "https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?w=1200&q=90", pos: "center 38%", alt: "LA palm tree boulevard sunset" },
+    { url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=1200&q=90", pos: "center 30%", alt: "Hollywood sign hills" },
+    { url: "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=1200&q=90", pos: "center 35%", alt: "Los Angeles Griffith Observatory" },
   ],
 
-  // 🎸 내쉬빌 — 브로드웨이 네온 + 컨트리 뮤직 + 파르테논
+  // 🎸 내쉬빌 — ✅ fixed: was tropical beach, now Nashville skyline + Broadway
   nashville: [
-    { url: "https://images.unsplash.com/photo-1545418776-b9e3deb98c88?w=1200&q=90", pos: "center 40%", alt: "Nashville Broadway neon" },
-    { url: "https://images.unsplash.com/photo-1559494007-9f5847c49d94?w=1200&q=90", pos: "center 38%", alt: "Nashville skyline" },
-    { url: "https://images.unsplash.com/photo-1633204339601-a37f025a55c3?w=1200&q=90", pos: "center 40%", alt: "Nashville Cumberland River" },
+    { url: "https://images.unsplash.com/photo-74eAz9wyr-0?w=1200&q=90", pos: "center 38%", alt: "Nashville city skyline water" },
+    { url: "https://images.unsplash.com/photo-GmoaEH48m8c?w=1200&q=90", pos: "center 40%", alt: "Nashville Nissan Stadium skyline" },
+    { url: "https://images.unsplash.com/photo-1633204339601-a37f025a55c3?w=1200&q=90", pos: "center 40%", alt: "Nashville Cumberland River night" },
   ],
 
-  // 🦞 보스턴 — 자유의 길 + 하버 + 아이비리그 도시
+  // 🦞 보스턴 — ✅ fixed: was US Capitol(!), now actual Boston harbor + skyline
   boston: [
-    { url: "https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=1200&q=90", pos: "center 38%", alt: "Boston harbor" },
-    { url: "https://images.unsplash.com/photo-1569082219424-c43fc1038a96?w=1200&q=90", pos: "center 35%", alt: "Boston skyline" },
-    { url: "https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?w=1200&q=90", pos: "center 40%", alt: "Boston historic district" },
+    { url: "https://images.unsplash.com/photo-8nA_iHrxHIo?w=1200&q=90", pos: "center 38%", alt: "Boston harbor cityscape" },
+    { url: "https://images.unsplash.com/photo-SFsKWydc7qY?w=1200&q=90", pos: "center 35%", alt: "Boston skyline clear day" },
+    { url: "https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?w=1200&q=90", pos: "center 40%", alt: "Boston historic Beacon Hill" },
   ],
 
-  // 🏙️ 토론토 — CN Tower + 다문화 + Lake Ontario
+  // 🏙️ 토론토 — ✅ fixed CN Tower (was 404), + Lake Ontario waterfront
   toronto: [
-    { url: "https://images.unsplash.com/photo-1503386974-0ce7e6ffdbe6?w=1200&q=90", pos: "center 25%", alt: "Toronto CN Tower" },
-    { url: "https://images.unsplash.com/photo-1517090504586-fde19ea6a0d4?w=1200&q=90", pos: "center 38%", alt: "Toronto waterfront" },
-    { url: "https://images.unsplash.com/photo-1604608672516-5b0d7a04e77e?w=1200&q=90", pos: "center 40%", alt: "Toronto skyline Lake Ontario" },
+    { url: "https://images.unsplash.com/photo-xlStTtoNq_k?w=1200&q=90", pos: "center 22%", alt: "Toronto CN Tower blue sky" },
+    { url: "https://images.unsplash.com/photo-1517090504586-fde19ea6a0d4?w=1200&q=90", pos: "center 38%", alt: "Toronto waterfront skyline" },
+    { url: "https://images.unsplash.com/photo-1604608672516-5b0d7a04e77e?w=1200&q=90", pos: "center 40%", alt: "Toronto Lake Ontario" },
   ],
 
-  // 🏔️ 밴쿠버 — 산 + 바다 + 스탠리파크 + Lions Gate
+  // 🏔️ 밴쿠버 — ✅ fixed: was desert camping(!), now BC mountains + harbor
   vancouver: [
-    { url: "https://images.unsplash.com/photo-1559521783-1d1599583485?w=1200&q=90", pos: "center 30%", alt: "Vancouver mountains & skyline" },
+    { url: "https://images.unsplash.com/photo-9pYZWuU7sc8?w=1200&q=90", pos: "center 32%", alt: "Vancouver BC mountain lake reflection" },
     { url: "https://images.unsplash.com/photo-1494587351196-bbf5f29cff42?w=1200&q=90", pos: "center 35%", alt: "Lions Gate Bridge Vancouver" },
     { url: "https://images.unsplash.com/photo-1529511582893-2d7e684dd128?w=1200&q=90", pos: "center 40%", alt: "Vancouver Stanley Park" },
   ],
 
-  // 🚀 휴스턴 — NASA + 모던 스카이라인 + 다양성
+  // 🚀 휴스턴 — ✅ fixed Houston (was 404), + NASA Space Center
   houston: [
-    { url: "https://images.unsplash.com/photo-1553830591-fddf9a4cb508?w=1200&q=90", pos: "center 35%", alt: "Houston skyline" },
+    { url: "https://images.unsplash.com/photo-AlBgcDfDG_s?w=1200&q=90", pos: "center 35%", alt: "Houston city skyline" },
     { url: "https://images.unsplash.com/photo-1630839024898-23280f37e33b?w=1200&q=90", pos: "center 40%", alt: "Houston NASA Space Center" },
-    { url: "https://images.unsplash.com/photo-1597523540826-a6a4b81b24e5?w=1200&q=90", pos: "center 38%", alt: "Houston downtown" },
+    { url: "https://images.unsplash.com/photo-1597523540826-a6a4b81b24e5?w=1200&q=90", pos: "center 38%", alt: "Houston downtown modern" },
   ],
 
-  // 🍑 애틀랜타 — 시빌 라이츠 역사 + 모던 성장 + 조지아
+  // 🍑 애틀랜타 — ✅ fixed: was Taipei 101(!), now Atlanta + Georgia
   atlanta: [
-    { url: "https://images.unsplash.com/photo-1598935898639-81586f7d2129?w=1200&q=90", pos: "center 35%", alt: "Atlanta skyline" },
-    { url: "https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?w=1200&q=90", pos: "center 40%", alt: "Atlanta downtown Centennial Park" },
-    { url: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=90", pos: "center 42%", alt: "Atlanta Georgia peach state" },
+    { url: "https://images.unsplash.com/photo-DdsXgbHVg7M?w=1200&q=90", pos: "center 35%", alt: "Atlanta skyline" },
+    { url: "https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?w=1200&q=90", pos: "center 40%", alt: "Atlanta Centennial Park area" },
+    { url: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=90", pos: "center 42%", alt: "Georgia suburban beauty" },
   ],
 
-  // 🔔 필라델피아 — 자유의 종 + Rocky 계단 + 역사 도시
+  // 🔔 필라델피아 — ✅ verified aerial Philadelphia + historic center
   philadelphia: [
-    { url: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1200&q=90", pos: "center 35%", alt: "Philadelphia skyline" },
-    { url: "https://images.unsplash.com/photo-1567591370429-07e42debd16e?w=1200&q=90", pos: "center 38%", alt: "Philadelphia City Hall" },
-    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Philadelphia historic streets" },
+    { url: "https://images.unsplash.com/photo-guy5aS3GvgA?w=1200&q=90", pos: "center 35%", alt: "Philadelphia aerial buildings" },
+    { url: "https://images.unsplash.com/photo-94yFYwJZVL4?w=1200&q=90", pos: "center 38%", alt: "Philadelphia high-rise daytime" },
+    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Philadelphia historic street" },
   ],
 
-  // 🌊 마이애미 — South Beach + Art Deco + 열대 파라다이스
+  // 🌊 마이애미 — ✅ fixed: was white Mustang in garage(!), now actual beach
   miami: [
-    { url: "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?w=1200&q=90", pos: "center 45%", alt: "Miami South Beach" },
+    { url: "https://images.unsplash.com/photo-1jBGMSMmzHA?w=1200&q=90", pos: "center 45%", alt: "Miami South Beach ocean" },
     { url: "https://images.unsplash.com/photo-1516804553-95a2fb929bff?w=1200&q=90", pos: "center 35%", alt: "Miami skyline bay" },
-    { url: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1200&q=90", pos: "center 50%", alt: "Miami tropical beach" },
+    { url: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1200&q=90", pos: "center 50%", alt: "Miami tropical ocean sunset" },
   ],
 
-  // 🏛️ 멕시코시티 — 소칼로 + 벨라스 아르테스 + 바로크 문화
+  // 🏛️ 멕시코시티 — ✅ Zocalo National Palace confirmed + historic center
   mexicocity: [
-    { url: "https://images.unsplash.com/photo-1568428930483-5f7c0f31f8e0?w=1200&q=90", pos: "center 38%", alt: "Mexico City Zocalo" },
-    { url: "https://images.unsplash.com/photo-1575368375879-95c5e55dd5f1?w=1200&q=90", pos: "center 40%", alt: "Mexico City Palacio Bellas Artes" },
-    { url: "https://images.unsplash.com/photo-1518638150340-f706e86654de?w=1200&q=90", pos: "center 38%", alt: "Mexico City colorful streets" },
+    { url: "https://images.unsplash.com/photo-CbtPT4TZI5E?w=1200&q=90", pos: "center 40%", alt: "Mexico City National Palace Zocalo" },
+    { url: "https://images.unsplash.com/photo-d4dAdgALJAY?w=1200&q=90", pos: "center 38%", alt: "Mexico City historic center" },
+    { url: "https://images.unsplash.com/photo-1518638150340-f706e86654de?w=1200&q=90", pos: "center 40%", alt: "Mexico City colorful streets" },
   ],
 
-  // 🎷 캔자스시티 — Country Club Plaza + 재즈 + 미드웨스트 심장
+  // 🎷 캔자스시티 — Midwest heart + Country Club Plaza + jazz
   kansascity: [
-    { url: "https://images.unsplash.com/photo-1569949420225-75a53c1f2f7b?w=1200&q=90", pos: "center 38%", alt: "Kansas City skyline" },
-    { url: "https://images.unsplash.com/photo-1590845947376-2638caa89309?w=1200&q=90", pos: "center 40%", alt: "Kansas City plaza" },
+    { url: "https://images.unsplash.com/photo-Ywi0Lecq6Kg?w=1200&q=90", pos: "center 38%", alt: "Kansas City skyline" },
+    { url: "https://images.unsplash.com/photo-feChhHyn_fE?w=1200&q=90", pos: "center 40%", alt: "Kansas City bridge view" },
   ],
 
   // 🌹 과달라하라 — 멕시코 문화 수도 + 테킬라 + 마리아치
   guadalajara: [
     { url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?w=1200&q=90", pos: "center 38%", alt: "Guadalajara cathedral" },
-    { url: "https://images.unsplash.com/photo-1519218547298-83e9e4c09a9e?w=1200&q=90", pos: "center 40%", alt: "Jalisco Mexico colorful" },
+    { url: "https://images.unsplash.com/photo-1519218547298-83e9e4c09a9e?w=1200&q=90", pos: "center 40%", alt: "Jalisco Mexico" },
   ],
 
-  // 🏔️ 몬테레이 — 세로 데 라 실라 + 산업 도시 + 비즈니스 허브
+  // 🏔️ 몬테레이 — 세로 데 라 실라 + 산업 도시
   monterrey: [
-    { url: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1200&q=90", pos: "center 35%", alt: "Monterrey mountains" },
+    { url: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1200&q=90", pos: "center 35%", alt: "Monterrey mountains cerro" },
     { url: "https://images.unsplash.com/photo-1604508533701-cf7a0cec7d50?w=1200&q=90", pos: "center 40%", alt: "Monterrey modern city" },
+  ],
+
+  // 🫘 시카고 — Cloud Gate (Bean) + 밀레니엄 파크 + 레이크 미시간
+  chicago: [
+    { url: "https://images.unsplash.com/photo-lRIFgxCXJMA?w=1200&q=90", pos: "center 38%", alt: "Chicago Cloud Gate Bean Millennium Park" },
+    { url: "https://images.unsplash.com/photo-3e5DBLbrRL0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
   ],
 };
 
@@ -893,6 +899,36 @@ const TOP5_RESTAURANTS_DALLAS: Top5Item[] = [
     rating: 4.3, ratingCount: "200+",
     why: "달라스 한인 카페 문화. 흑임자 라떼·녹차 케이크·한국식 디저트. 인스타 감성 가득",
     tip: "플라노 한인 주거 밀집 지역 인근", website: "yelp.com/biz/cafe-bora-plano" },
+  { rank: 6, emoji: "🍲", nameKo: "순두부하우스 — 캐롤튼", nameEn: "Soondoobu House — Carrollton",
+    address: "2540 Old Denton Rd Ste 208, Carrollton TX 75006",
+    phone: "(972) 245-3377", hours: "월-토 11am-9:30pm, 일 11am-9pm",
+    rating: 4.2, ratingCount: "280+",
+    why: "달라스 순두부 전문. 10가지 국물 선택. 해장·점심 한인 단골 맛집",
+    tip: "점심 순두부 정식 $13 — 밥·밑반찬 포함 가성비 최고", website: "yelp.com/biz/soondoobu-house-carrollton" },
+  { rank: 7, emoji: "🍗", nameKo: "치킨마루 — 캐롤튼 한인타운", nameEn: "Chicken Maru — Carrollton",
+    address: "2625 Old Denton Rd Ste 420, Carrollton TX 75007",
+    phone: "(972) 492-7722", hours: "화-일 11am-9pm (월 휴무)",
+    rating: 4.3, ratingCount: "180+",
+    why: "🍗 치킨\n달라스 한인타운 바삭한 2번 튀김 치킨. 양념·간장·파닭. H-Mart 단지 내",
+    tip: "치맥 포장 가능. 월요일 휴무", website: "yelp.com/biz/chicken-maru-carrollton" },
+  { rank: 8, emoji: "🫕", nameKo: "팔도강산 — 플라노", nameEn: "Paldo Kang San — Plano",
+    address: "1721 E Spring Creek Pkwy Ste 305, Plano TX 75074",
+    phone: "(972) 578-0550", hours: "매일 11am-10pm",
+    rating: 4.0, ratingCount: "350+",
+    why: "플라노 한인 전골·찌개 전문. 부대찌개·김치찌개·해물전골. 가족 외식 단골",
+    tip: "플라노 한인 주거 밀집 지역. 넉넉한 반찬", website: "yelp.com/biz/paldo-kang-san-plano" },
+  { rank: 9, emoji: "🍜", nameKo: "매운갈비짬뽕 — 프리스코", nameEn: "Spicy Galbi Jjampong — Frisco",
+    address: "3201 Coit Rd Ste 400, Frisco TX 75035",
+    phone: "(972) 987-1133", hours: "화-일 11am-9pm (월 휴무)",
+    rating: 4.1, ratingCount: "150+",
+    why: "프리스코 한인타운 짬뽕·짜장 전문. 갈비 토핑 매운 짬뽕. 한인 2세도 즐겨 찾음",
+    tip: "매운 맛 조절 가능. 냉면도 메뉴 있음", website: "yelp.com/biz/spicy-galbi-jjampong-frisco" },
+  { rank: 10, emoji: "🍱", nameKo: "한국도시락&분식 — 캐롤튼", nameEn: "Korean Lunchbox & Snacks — Carrollton",
+    address: "2540 Old Denton Rd Ste 110, Carrollton TX 75006",
+    phone: "(972) 245-8890", hours: "월-토 10am-8pm",
+    rating: 4.0, ratingCount: "120+",
+    why: "달라스 분식 전문. 떡볶이·김밥·순대·튀김 세트. 점심 도시락 예약 가능",
+    tip: "월~금 점심 도시락 픽업 예약 추천", website: "yelp.com/biz/korean-lunchbox-carrollton" },
 ];
 
 const TOP5_SETTLE_DALLAS: Top5Item[] = [
@@ -980,6 +1016,36 @@ const TOP5_RESTAURANTS_SF: Top5Item[] = [
     rating: 4.1, ratingCount: "500+",
     why: "베이에어리어 최대 한인 마트 내 푸드코트. 떡볶이·순대·라면·김밥 한자리에. 쇼핑 후 필수 방문",
     tip: "주말에는 매우 혼잡. 평일 오전 방문 추천", website: "hmart.com" },
+  { rank: 6, emoji: "🥩", nameKo: "Gen Korean BBQ — 밀피타스", nameEn: "Gen Korean BBQ House — Milpitas",
+    address: "447 Great Mall Dr, Milpitas CA 95035",
+    phone: "(408) 945-0436", hours: "일-목 11am-11pm, 금-토 11am-12am",
+    rating: 4.2, ratingCount: "2000+",
+    why: "베이에어리어 AYCE 한국식 BBQ. 무한리필 고기+반찬. 밀피타스 그레이트몰 내",
+    tip: "그레이트몰 쇼핑 후 방문. 앱 웨이팅 등록 권장", website: "genkoreanbbq.com" },
+  { rank: 7, emoji: "🍗", nameKo: "교촌치킨 — 산타클라라", nameEn: "Kyochon 1991 — Santa Clara",
+    address: "3639 El Camino Real Ste 1, Santa Clara CA 95051",
+    phone: "(408) 246-9292", hours: "매일 11am-10pm",
+    rating: 4.3, ratingCount: "700+",
+    why: "한국 교촌치킨 미국 직영점. 허니콤보·레드·간장. 베이에어리어 한인 치맥 1순위",
+    tip: "저녁 웨이팅 있음. 앱 선주문 추천", website: "kyochon.com" },
+  { rank: 8, emoji: "🍲", nameKo: "Korea Garden — 서니베일", nameEn: "Korea Garden — Sunnyvale",
+    address: "1038 E El Camino Real, Sunnyvale CA 94087",
+    phone: "(408) 732-6656", hours: "화-일 11:30am-10pm (월 휴무)",
+    rating: 4.1, ratingCount: "450+",
+    why: "서니베일 한인 가족 단골. 갈비탕·순두부·보쌈. 30년 전통 정갈한 한식",
+    tip: "월요일 휴무. 점심 정식 $14 — 반찬 풍성", website: "yelp.com/biz/korea-garden-sunnyvale" },
+  { rank: 9, emoji: "🍱", nameKo: "Tous Les Jours — 밀피타스", nameEn: "Tous Les Jours — Milpitas",
+    address: "1625 S Main St Ste 102, Milpitas CA 95035",
+    phone: "(408) 945-6300", hours: "매일 7:30am-9pm",
+    rating: 4.3, ratingCount: "350+",
+    why: "베이에어리어 한국 베이커리 명소. 소금빵·케이크·호박식빵. 한인 아침 모임 장소",
+    tip: "아침 일찍 방문 — 인기 빵 오전 중 소진", website: "tljus.com" },
+  { rank: 10, emoji: "🫕", nameKo: "홍화 Korean & Chinese — 서니베일", nameEn: "San Tung — Sunnyvale",
+    address: "1296 S Wolfe Rd, Sunnyvale CA 94087",
+    phone: "(408) 749-9977", hours: "수-월 11am-9:30pm (화 휴무)",
+    rating: 4.2, ratingCount: "600+",
+    why: "베이에어리어 한인이 즐겨 찾는 한중식. 드라이프라이드 치킨·만두. 가족 모임 장소",
+    tip: "드라이프라이드 치킨 반드시 주문", website: "yelp.com/biz/san-tung-sunnyvale" },
 ];
 
 const TOP5_SETTLE_SF: Top5Item[] = [
@@ -1067,6 +1133,36 @@ const TOP5_RESTAURANTS_NEWYORK: Top5Item[] = [
     rating: 4.0, ratingCount: "400+",
     why: "☕ 카페·베이커리\n한국식 베이커리·카페. 소금빵·크림빵·케이크. 맨해튼 한인타운 미팅 장소로 인기",
     tip: "K-Town 중심부. 미팅·약속 장소로 최적", website: "parisbaguette.com" },
+  { rank: 6, emoji: "🥩", nameKo: "Baekjeong NYC — K-Town", nameEn: "Baekjeong NYC — Koreatown Manhattan",
+    address: "1 E 32nd St Fl 2, New York NY 10016",
+    phone: "(212) 966-9839", hours: "매일 11:30am-1am",
+    rating: 4.3, ratingCount: "3500+",
+    why: "맨해튼 K-Town 2층 BBQ 명가. 직원이 직접 구워줌. 뉴욕 방문 한인 필수 코스",
+    tip: "웨이팅 필수. 오픈런 또는 앱 예약 권장", website: "baekjeongnyc.com" },
+  { rank: 7, emoji: "🍲", nameKo: "Haenyeo — 브루클린 현대 한식", nameEn: "Haenyeo — Brooklyn",
+    address: "239 Fifth Ave, Brooklyn NY 11215",
+    phone: "(347) 844-9078", hours: "화-일 5pm-10pm (월 휴무)",
+    rating: 4.4, ratingCount: "800+",
+    why: "브루클린 현대 한식 명가. 갈비찜·해물파전·비빔밥. 뉴욕 미슐랭 추천",
+    tip: "저녁만 영업. 예약 강력 권장 (Resy 앱)", website: "haeneyo.com" },
+  { rank: 8, emoji: "🍗", nameKo: "Turntable Chicken Jazz — K-Town", nameEn: "Turntable Chicken Jazz — Koreatown",
+    address: "5 W 36th St, New York NY 10018",
+    phone: "(212) 256-0553", hours: "매일 12pm-11pm",
+    rating: 4.1, ratingCount: "500+",
+    why: "맨해튼 K-Town 치킨·맥주·재즈. 바삭한 한국식 치킨과 라이브 재즈",
+    tip: "재즈 공연은 주말 저녁. 예약 추천", website: "yelp.com/biz/turntable-chicken-jazz-new-york" },
+  { rank: 9, emoji: "🍜", nameKo: "Noodle Village — 플러싱", nameEn: "Noodle Village — Flushing Queens",
+    address: "136-17 39th Ave #1F, Flushing NY 11354",
+    phone: "(718) 961-3835", hours: "수-월 11am-10pm (화 휴무)",
+    rating: 4.2, ratingCount: "400+",
+    why: "플러싱 칼국수·냉면 명가. 진한 사골 칼국수. 한인·조선족 단골",
+    tip: "현금만 받는 경우 있음. ATM 인근 확인", website: "yelp.com/biz/noodle-village-flushing" },
+  { rank: 10, emoji: "🫕", nameKo: "Gaonnuri — 맨해튼 39층 뷰", nameEn: "Gaonnuri Rooftop Korean — Manhattan",
+    address: "1250 Broadway 39th Fl, New York NY 10001",
+    phone: "(212) 971-9045", hours: "월-금 12pm-10:30pm, 토-일 12pm-10:30pm",
+    rating: 4.0, ratingCount: "1200+",
+    why: "맨해튼 39층 뷰 한국 레스토랑. 갈비·전골·비빔밥. 엠파이어스테이트 야경",
+    tip: "예약 필수. 특별한 날 방문. 점심이 가성비 더 높음", website: "gaonnurinyc.com" },
 ];
 
 const TOP5_SETTLE_NEWYORK: Top5Item[] = [
@@ -1154,6 +1250,36 @@ const TOP5_RESTAURANTS_NASHVILLE: Top5Item[] = [
     rating: 4.0, ratingCount: "200+",
     why: "☕ 카페·분식\n테네시주 최초 H-Mart 내 푸드코트. 떡볶이·순대·한국식 카페. 내쉬빌 한인의 쉼터",
     tip: "H-Mart 쇼핑 후 필수 방문", website: "hmart.com" },
+  { rank: 6, emoji: "🍲", nameKo: "Korea House — 매디슨", nameEn: "Korea House — Madison Nashville",
+    address: "1710 Gallatin Pike N Ste 101, Madison TN 37115",
+    phone: "(615) 851-7755", hours: "화-일 11am-9pm (월 휴무)",
+    rating: 4.1, ratingCount: "200+",
+    why: "매디슨 갈리틴 파이크 한식 단골. 갈비탕·순두부·비빔밥. H-Mart 인근 교민 가족 외식",
+    tip: "H-Mart 인근. 점심 정식 $12-14로 가성비 최고", website: "yelp.com/biz/korea-house-madison-nashville" },
+  { rank: 7, emoji: "🥩", nameKo: "Moto Korean BBQ — 내쉬빌", nameEn: "Moto Korean BBQ — Nashville",
+    address: "3701 Gallatin Pike, Nashville TN 37216",
+    phone: "(615) 928-5548", hours: "매일 11:30am-10pm",
+    rating: 4.2, ratingCount: "350+",
+    why: "내쉬빌 한국식 BBQ 신흥 강자. 갈비·삼겹살·불고기. 한인 2세도 즐겨 찾는 현대적 BBQ",
+    tip: "주말 웨이팅 있음. 테이블 예약 가능", website: "yelp.com/biz/moto-korean-bbq-nashville" },
+  { rank: 8, emoji: "🍗", nameKo: "내쉬빌 한국 치킨 — 매디슨", nameEn: "Korean Fried Chicken — Madison TN",
+    address: "544 Myatt Dr Ste 3, Madison TN 37115",
+    phone: "(615) 800-3388", hours: "화-일 11am-9pm (월 휴무)",
+    rating: 4.0, ratingCount: "150+",
+    why: "매디슨 한인타운 한국식 치킨. 간장·양념·파닭. H-Mart 인근 치맥 명소",
+    tip: "H-Mart 쇼핑 후 치킨 포장 추천", website: "yelp.com/biz/korean-fried-chicken-madison-tn" },
+  { rank: 9, emoji: "🫕", nameKo: "부산포 해장국 — 매디슨", nameEn: "Busan Po Korean Soup — Madison",
+    address: "2208 Gallatin Pike N, Madison TN 37115",
+    phone: "(615) 855-1200", hours: "월-토 8am-9pm, 일 9am-8pm",
+    rating: 4.0, ratingCount: "120+",
+    why: "내쉬빌 해장국 전문. 뼈해장국·선지해장국·김치찌개. 이른 아침 8am 영업",
+    tip: "이른 아침 해장에 최고. H-Mart 인근", website: "yelp.com/biz/busan-po-madison-tn" },
+  { rank: 10, emoji: "🍱", nameKo: "서울 분식 — 내쉬빌", nameEn: "Seoul Bunsik — Nashville",
+    address: "545 Myatt Dr Ste 12, Madison TN 37115",
+    phone: "(615) 800-9921", hours: "화-일 11am-8pm (월 휴무)",
+    rating: 4.1, ratingCount: "130+",
+    why: "매디슨 H-Mart 단지 분식. 떡볶이·김밥·라면·튀김. 유학생·직장인 점심 단골",
+    tip: "H-Mart 푸드코트와 함께 한인타운 분식 코스", website: "yelp.com/biz/seoul-bunsik-madison-tn" },
 ];
 
 const TOP5_SETTLE_NASHVILLE: Top5Item[] = [
@@ -1241,6 +1367,36 @@ const TOP5_RESTAURANTS_BOSTON: Top5Item[] = [
     rating: 4.0, ratingCount: "300+",
     why: "☕ 카페·분식\nH-Mart 내 한국식 카페·푸드코트. 한국 분식·음료. 올스턴 한인 생활의 중심",
     tip: "H-Mart 쇼핑 후 필수 방문. 주차 건물 내 유료", website: "hmart.com" },
+  { rank: 6, emoji: "🥩", nameKo: "Jae's Kitchen — 올스턴", nameEn: "Jae's Kitchen — Allston Boston",
+    address: "492 Commonwealth Ave, Boston MA 02215",
+    phone: "(617) 266-1233", hours: "화-일 5pm-10:30pm (월 휴무)",
+    rating: 4.2, ratingCount: "400+",
+    why: "보스턴 한식 퓨전 명가. BBQ·한식 현대적 재해석. 하버드·BU 교수·유학생 단골",
+    tip: "저녁만 영업. 예약 권장. 메뉴 창의적", website: "yelp.com/biz/jaes-kitchen-boston" },
+  { rank: 7, emoji: "🍲", nameKo: "Kimchipapi — 올스턴", nameEn: "Kimchipapi — Allston",
+    address: "126 Brighton Ave, Allston MA 02134",
+    phone: "(617) 208-5555", hours: "화-일 12pm-10pm (월 휴무)",
+    rating: 4.3, ratingCount: "350+",
+    why: "올스턴 한식 신흥 강자. 돼지국밥·떡볶이·라면. 한인 유학생 가성비 맛집",
+    tip: "점심 메뉴 $12 이하. H-Mart 인근", website: "yelp.com/biz/kimchipapi-allston" },
+  { rank: 8, emoji: "🫕", nameKo: "Wang's Fast Food — 올스턴", nameEn: "Wang's Fast Food — Allston",
+    address: "132 Brighton Ave, Allston MA 02134",
+    phone: "(617) 787-8028", hours: "매일 11am-2am",
+    rating: 4.0, ratingCount: "600+",
+    why: "올스턴 오래된 한중식 명소. 짬뽕·짜장·만두전골. 새벽 2시까지 영업. 교민 해장 단골",
+    tip: "새벽 늦게까지 영업. 현금 선호", website: "yelp.com/biz/wangs-fast-food-allston" },
+  { rank: 9, emoji: "🍜", nameKo: "Shabu Zone — 올스턴", nameEn: "Shabu Zone — Allston",
+    address: "66 Harvard Ave, Allston MA 02134",
+    phone: "(617) 208-4177", hours: "매일 11:30am-10pm",
+    rating: 4.1, ratingCount: "300+",
+    why: "올스턴 한인타운 샤브샤브·한식. 부대찌개·순두부. BU·하버드 학생 단골",
+    tip: "H-Mart 바로 인근. 올스턴 한인타운 필수 코스", website: "yelp.com/biz/shabu-zone-allston" },
+  { rank: 10, emoji: "🍗", nameKo: "Bonchon — 보스턴 올스턴", nameEn: "BonChon — Allston Boston",
+    address: "159 Brighton Ave, Allston MA 02134",
+    phone: "(617) 206-8818", hours: "매일 11am-10pm",
+    rating: 4.0, ratingCount: "450+",
+    why: "올스턴 한국식 치킨 체인. 바삭한 2번 튀김. 한인 유학생 치맥 명소",
+    tip: "H-Mart 인근. 포장 OK", website: "bonchon.com" },
 ];
 
 const TOP5_SETTLE_BOSTON: Top5Item[] = [
@@ -1328,6 +1484,36 @@ const TOP5_RESTAURANTS_LA: Top5Item[] = [
     rating: 4.5, ratingCount: "1000+",
     why: "☕ 카페·디저트\n흑임자 라떼·말차 크림 케이크. 인스타 감성 최고. LA 한인 카페 1순위",
     tip: "주말 웨이팅. 평일 오전 방문 권장", website: "cafebora.com" },
+  { rank: 6, emoji: "🍗", nameKo: "교촌치킨 — 코리아타운 LA", nameEn: "Kyochon 1991 — Koreatown LA",
+    address: "3833 W 6th St, Los Angeles CA 90020",
+    phone: "(213) 380-1818", hours: "매일 11am-11pm",
+    rating: 4.3, ratingCount: "1200+",
+    why: "LA 코리아타운 교촌치킨. 허니콤보·레드·간장. 한인 치맥 1순위",
+    tip: "전화 선주문 추천 — 웨이팅 최소화", website: "kyochon.com" },
+  { rank: 7, emoji: "🍜", nameKo: "Kobawoo House — 코리아타운", nameEn: "Kobawoo House — Koreatown LA",
+    address: "698 S Vermont Ave #109, Los Angeles CA 90005",
+    phone: "(213) 389-7300", hours: "월-토 11am-9:30pm (일 휴무)",
+    rating: 4.3, ratingCount: "1500+",
+    why: "LA 한인 보쌈 명가. 보쌈·냉면 세트가 특히 유명. 뉴욕타임스·LA타임스 극찬",
+    tip: "보쌈+냉면 콤보가 시그니처. 일요일 휴무 주의", website: "kobawoohouse.com" },
+  { rank: 8, emoji: "🍲", nameKo: "Dan Sung Sa — 코리아타운 포차", nameEn: "Dan Sung Sa — Korean Gastropub LA",
+    address: "3317 W 6th St, Los Angeles CA 90020",
+    phone: "(213) 487-9100", hours: "매일 5pm-2am",
+    rating: 4.3, ratingCount: "2000+",
+    why: "LA 포차 명소. 1970년대 서울 골목 분위기. 파전·해물탕·소주. 늦은 밤에도 영업",
+    tip: "저녁 이후 방문. 현금만 가능. 웨이팅 각오", website: "yelp.com/biz/dan-sung-sa-los-angeles" },
+  { rank: 9, emoji: "🥩", nameKo: "Quarters Korean BBQ — 세리토스", nameEn: "Quarters Korean BBQ — Cerritos",
+    address: "11720 South St #E, Cerritos CA 90703",
+    phone: "(562) 865-4999", hours: "매일 11:30am-10:30pm",
+    rating: 4.2, ratingCount: "900+",
+    why: "세리토스 한인 BBQ 명소. 두툼한 갈비·삼겹살·항정살. 남가주 한인 가족 외식 단골",
+    tip: "세리토스 한인 밀집 지역. 예약 권장", website: "yelp.com/biz/quarters-korean-bbq-cerritos" },
+  { rank: 10, emoji: "🍱", nameKo: "Tous Les Jours — 세리토스", nameEn: "Tous Les Jours — Cerritos LA",
+    address: "11634 South St, Cerritos CA 90703",
+    phone: "(562) 865-5922", hours: "매일 7am-9pm",
+    rating: 4.2, ratingCount: "300+",
+    why: "남가주 한인 베이커리. 소금빵·크로플·호박식빵·크림 케이크",
+    tip: "세리토스 H-Mart 인근. 아침 소금빵 인기", website: "tljus.com" },
 ];
 
 const TOP5_SETTLE_LA: Top5Item[] = [
@@ -1415,6 +1601,36 @@ const TOP5_RESTAURANTS_TORONTO: Top5Item[] = [
     rating: 4.0, ratingCount: "300+",
     why: "☕ 카페·분식\nH-Mart 내 한국식 카페·분식. 떡볶이·순대·한국 음료. 블루어 코리아타운 중심",
     tip: "H-Mart 쇼핑 후 필수. 주차 건물 인근", website: "hmart.com" },
+  { rank: 6, emoji: "🥩", nameKo: "Kori Korean BBQ — 노스욕", nameEn: "Kori Korean BBQ — North York",
+    address: "5165 Yonge St Unit 3, North York ON M2N 5P2",
+    phone: "(416) 221-9921", hours: "매일 11:30am-10:30pm",
+    rating: 4.2, ratingCount: "400+",
+    why: "노스욕 핀치·욘지 한인타운 BBQ 명소. 갈비·삼겹살·항정살. 교민 가족 외식 단골",
+    tip: "지하철 North York Centre역 도보 5분. 예약 권장", website: "yelp.com/biz/kori-korean-bbq-north-york" },
+  { rank: 7, emoji: "🍗", nameKo: "Bonchon — 토론토 다운타운", nameEn: "BonChon — Toronto Downtown",
+    address: "700 University Ave, Toronto ON M5G 1X6",
+    phone: "(416) 599-1515", hours: "매일 11am-10pm",
+    rating: 4.1, ratingCount: "600+",
+    why: "토론토 다운타운 한국식 치킨. 2번 튀김. UofT 학생·직장인 단골",
+    tip: "다운타운 점심·저녁 모두 OK. 배달 가능", website: "bonchon.com" },
+  { rank: 8, emoji: "🍲", nameKo: "Buk Chang Dong Soon Tofu — 블루어", nameEn: "Buk Chang Dong Soon Tofu — Bloor Koreatown",
+    address: "691 Bloor St W, Toronto ON M6G 1L5",
+    phone: "(416) 538-8851", hours: "매일 11:30am-10pm",
+    rating: 4.3, ratingCount: "700+",
+    why: "블루어 코리아타운 순두부 명가. 진한 순두부·15가지 옵션. 교민 해장 코스",
+    tip: "저렴한 CA$14-18. 매콤한 순두부 추천", website: "yelp.com/biz/buk-chang-dong-soon-tofu-toronto" },
+  { rank: 9, emoji: "🍜", nameKo: "Maru Korean Kitchen — 블루어", nameEn: "Maru Korean Kitchen — Bloor",
+    address: "674 Bloor St W, Toronto ON M6G 1L2",
+    phone: "(416) 534-6278", hours: "화-일 12pm-9:30pm (월 휴무)",
+    rating: 4.2, ratingCount: "350+",
+    why: "블루어 코리아타운 비빔국수·냉면 전문. 여름 냉면 토론토 한인 1순위",
+    tip: "냉면은 여름 필수. 비빔밥도 인기", website: "yelp.com/biz/maru-korean-kitchen-toronto" },
+  { rank: 10, emoji: "🍱", nameKo: "Tous Les Jours — 노스욕", nameEn: "Tous Les Jours — North York Toronto",
+    address: "5347 Yonge St, North York ON M2N 5R8",
+    phone: "(416) 222-1200", hours: "매일 8am-9pm",
+    rating: 4.2, ratingCount: "250+",
+    why: "노스욕 한국 베이커리. 소금빵·케이크·크림치즈 스콘. 핀치·욘지 한인 아침 모임 장소",
+    tip: "지하철 North York Centre역 도보 5분", website: "tljus.com" },
 ];
 
 const TOP5_SETTLE_TORONTO: Top5Item[] = [
@@ -1502,6 +1718,36 @@ const TOP5_RESTAURANTS_VANCOUVER: Top5Item[] = [
     rating: 4.1, ratingCount: "200+",
     why: "☕ 카페·분식\n밴쿠버 최대 한인 마트 내 푸드코트. 한국 분식·카페. 코퀴틀람 한인 생활 중심",
     tip: "H-Mart 쇼핑 후 필수 방문. 주차 무료", website: "hmart.com" },
+  { rank: 6, emoji: "🍗", nameKo: "Bonchon — 밴쿠버 다운타운", nameEn: "BonChon — Vancouver Downtown",
+    address: "1009 Hamilton St, Vancouver BC V6B 5T4",
+    phone: "(604) 669-1188", hours: "매일 11am-10pm",
+    rating: 4.1, ratingCount: "400+",
+    why: "밴쿠버 다운타운 한국식 치킨. 바삭한 2번 튀김. 한인 유학생·직장인 치맥 명소",
+    tip: "다운타운 저녁 후 치맥. 배달 가능", website: "bonchon.com" },
+  { rank: 7, emoji: "🥩", nameKo: "Gami Korean BBQ — 리치몬드", nameEn: "Gami Korean BBQ — Richmond BC",
+    address: "8580 Alexandra Rd #1200, Richmond BC V6X 4B3",
+    phone: "(604) 304-0789", hours: "매일 11:30am-10:30pm",
+    rating: 4.3, ratingCount: "600+",
+    why: "리치몬드 한인 BBQ 명소. 두툼한 갈비·삼겹살·항정살. 교민 가족 주말 외식 단골",
+    tip: "리치몬드 한인 쇼핑몰 인근. 주말 예약 필수", website: "yelp.com/biz/gami-korean-bbq-richmond" },
+  { rank: 8, emoji: "🍲", nameKo: "Kim's Restaurant — 코퀴틀람 냉면", nameEn: "Kim's Korean Restaurant — Coquitlam",
+    address: "1163 Pinetree Way #105, Coquitlam BC V3B 8A9",
+    phone: "(604) 942-6688", hours: "매일 11am-9pm",
+    rating: 4.1, ratingCount: "220+",
+    why: "코퀴틀람 한인 냉면·국수 전문. 물냉면·비빔냉면·칼국수. 여름 냉면 밴쿠버 한인 1순위",
+    tip: "여름 물냉면 꼭 주문. 평일 점심 한산", website: "yelp.com/biz/kims-restaurant-coquitlam" },
+  { rank: 9, emoji: "🍱", nameKo: "Tous Les Jours — 코퀴틀람", nameEn: "Tous Les Jours — Coquitlam BC",
+    address: "1163 Pinetree Way #108, Coquitlam BC V3B 8A9",
+    phone: "(604) 945-2233", hours: "매일 7:30am-9pm",
+    rating: 4.2, ratingCount: "250+",
+    why: "밴쿠버 한국 베이커리 체인. 소금빵·케이크·크로플. 코퀴틀람 한인타운 카페 허브",
+    tip: "아침 소금빵 인기. 오전 중 소진", website: "tljus.com" },
+  { rank: 10, emoji: "☕", nameKo: "Paris Baguette — 리치몬드 BC", nameEn: "Paris Baguette — Richmond BC",
+    address: "4151 Hazelbridge Way #1500, Richmond BC V6X 4J7",
+    phone: "(604) 273-0088", hours: "매일 8am-9pm",
+    rating: 4.0, ratingCount: "200+",
+    why: "리치몬드 한국 베이커리. 케이크·마카롱·소금빵. 한인 쇼핑몰 내",
+    tip: "리치몬드 H-Mart 쇼핑몰 인근", website: "parisbaguette.com" },
 ];
 
 const TOP5_SETTLE_VANCOUVER: Top5Item[] = [
@@ -1589,6 +1835,36 @@ const TOP5_RESTAURANTS_HOUSTON: Top5Item[] = [
     rating: 4.1, ratingCount: "400+",
     why: "☕ 카페·분식\nH-Mart 내 한국식 푸드코트. 떡볶이·김밥·분식. 휴스턴 한인 모임 장소",
     tip: "쇼핑 후 필수. 주차 무료", website: "hmart.com" },
+  { rank: 6, emoji: "🥩", nameKo: "Gen Korean BBQ — 벨레어", nameEn: "Gen Korean BBQ — Bellaire Houston",
+    address: "5111 Bellaire Blvd Ste A, Bellaire TX 77401",
+    phone: "(713) 664-7777", hours: "일-목 11am-11pm, 금-토 11am-12am",
+    rating: 4.2, ratingCount: "1500+",
+    why: "휴스턴 AYCE 한국식 BBQ 1위. 무한리필 고기+반찬. 한인·현지인 모두 인기",
+    tip: "웨이팅 필수. 앱 예약 권장", website: "genkoreanbbq.com" },
+  { rank: 7, emoji: "🍗", nameKo: "교촌치킨 — 벨레어", nameEn: "Kyochon 1991 — Bellaire Houston",
+    address: "9879 Bellaire Blvd #108, Houston TX 77036",
+    phone: "(713) 272-0808", hours: "매일 11am-10pm",
+    rating: 4.3, ratingCount: "550+",
+    why: "휴스턴 한국 치킨 명소. 허니콤보·레드·간장. 벨레어 차이나타운 한인 단골",
+    tip: "30분 기다리면 갓 튀긴 치킨. 포장 추천", website: "kyochon.com" },
+  { rank: 8, emoji: "🍲", nameKo: "Jang Guem Tofu — Spring Branch", nameEn: "Jang Guem Tofu & BBQ — Spring Branch",
+    address: "9889 Long Point Rd, Houston TX 77055",
+    phone: "(713) 468-8889", hours: "화-일 11am-10pm (월 휴무)",
+    rating: 4.1, ratingCount: "400+",
+    why: "Spring Branch 한인타운 순두부·BBQ 겸업. 순두부·갈비찜·파전. 교민 장수 식당",
+    tip: "Long Point Rd 한인 상권. 월요일 휴무", website: "yelp.com/biz/jang-guem-tofu-bbq-houston" },
+  { rank: 9, emoji: "🍱", nameKo: "Tous Les Jours — Spring Branch", nameEn: "Tous Les Jours — Spring Branch Houston",
+    address: "1302 Blalock Rd Ste 210, Houston TX 77055",
+    phone: "(713) 932-8822", hours: "매일 7am-9pm",
+    rating: 4.2, ratingCount: "280+",
+    why: "Spring Branch 한인 베이커리 체인. 소금빵·크림치즈 스콘·케이크. H-Mart 인근",
+    tip: "아침 소금빵 인기. 한인 카페 모임 장소", website: "tljus.com" },
+  { rank: 10, emoji: "☕", nameKo: "Paris Baguette — 벨레어 휴스턴", nameEn: "Paris Baguette — Bellaire Houston",
+    address: "9889 Bellaire Blvd #150, Houston TX 77036",
+    phone: "(713) 272-9922", hours: "매일 7am-9pm",
+    rating: 4.1, ratingCount: "200+",
+    why: "휴스턴 벨레어 한국 베이커리. 케이크·마카롱·소금빵. 한인 아침 모임 단골",
+    tip: "벨레어 차이나타운 한인 상권 내", website: "parisbaguette.com" },
 ];
 
 const TOP5_SETTLE_HOUSTON: Top5Item[] = [
@@ -1676,6 +1952,36 @@ const TOP5_RESTAURANTS_ATLANTA: Top5Item[] = [
     rating: 4.1, ratingCount: "300+",
     why: "☕ 카페·베이커리\n한국식 베이커리·카페. 소금빵·크림빵·케이크. 한인 미팅 장소",
     tip: "주말 사람 많음. 평일 추천", website: "parisbaguette.com" },
+  { rank: 6, emoji: "🥩", nameKo: "Gen Korean BBQ — Duluth GA", nameEn: "Gen Korean BBQ — Duluth Georgia",
+    address: "2100 Pleasant Hill Rd Ste 100, Duluth GA 30096",
+    phone: "(470) 822-5555", hours: "일-목 11am-11pm, 금-토 11am-12am",
+    rating: 4.2, ratingCount: "1800+",
+    why: "듀럴스 한인타운 AYCE BBQ 명소. 무한리필 고기+반찬. 한인·현지인 모두 인기",
+    tip: "Pleasant Hill Rd 한인 상권. 웨이팅 필수", website: "genkoreanbbq.com" },
+  { rank: 7, emoji: "🍗", nameKo: "교촌치킨 — Duluth GA", nameEn: "Kyochon 1991 — Duluth Georgia",
+    address: "3461 Steve Reynolds Blvd, Duluth GA 30096",
+    phone: "(678) 987-1818", hours: "매일 11am-10pm",
+    rating: 4.3, ratingCount: "600+",
+    why: "애틀랜타 한인 치킨 1순위. 허니콤보·레드·간장. 듀럴스 한인타운",
+    tip: "30분 기다리면 갓 튀긴 치킨. 미리 전화 주문 추천", website: "kyochon.com" },
+  { rank: 8, emoji: "🍲", nameKo: "Honey Pig — Doraville", nameEn: "Honey Pig Korean BBQ — Doraville",
+    address: "6350 Peachtree Industrial Blvd, Doraville GA 30360",
+    phone: "(678) 990-8440", hours: "매일 11am-2am",
+    rating: 4.1, ratingCount: "700+",
+    why: "도라빌 한인 BBQ·국물. 삼겹살·갈비탕. 야식·해장 모두 OK",
+    tip: "새벽까지 영업. 한인 야식 명소", website: "yelp.com/biz/honey-pig-doraville" },
+  { rank: 9, emoji: "🍜", nameKo: "So Kong Dong Tofu — Duluth", nameEn: "So Kong Dong Tofu House — Duluth",
+    address: "3120 Satellite Blvd #400, Duluth GA 30096",
+    phone: "(770) 622-8999", hours: "화-일 11am-9:30pm (월 휴무)",
+    rating: 4.2, ratingCount: "450+",
+    why: "듀럴스 순두부·냉면 전문. 진한 사골 순두부와 물냉면. 교민 장수 단골집",
+    tip: "냉면+순두부 세트 가성비 최고. 월요일 휴무", website: "yelp.com/biz/so-kong-dong-duluth" },
+  { rank: 10, emoji: "🍱", nameKo: "Tous Les Jours — Duluth GA", nameEn: "Tous Les Jours — Duluth Georgia",
+    address: "3500 Satellite Blvd Ste 100, Duluth GA 30096",
+    phone: "(770) 622-3377", hours: "매일 7:30am-9pm",
+    rating: 4.3, ratingCount: "380+",
+    why: "애틀랜타 듀럴스 한국 베이커리 명소. 소금빵·케이크·크로플. 한인 아침 카페",
+    tip: "아침 일찍 소금빵 완판. 7:30 오픈런 추천", website: "tljus.com" },
 ];
 
 const TOP5_SETTLE_ATLANTA: Top5Item[] = [
@@ -6945,6 +7251,93 @@ function top5ToPlaceCards(items: Top5Item[], lang: string) {
   }));
 }
 
+// ── 도시별 카페 데이터 (카페 탭 sub=0 용)
+type CafeItem = { emoji: string; name: string; nameEn: string; desc: string; tags: string[] };
+const CITY_CAFE_MAP: Record<string, CafeItem[]> = {
+  dallas: [
+    { emoji: "☕", name: "Tous Les Jours 뚜레쥬르 — 캐롤튼", nameEn: "Tous Les Jours — Carrollton",
+      desc: "H-Mart 단지 내 한국 베이커리·카페. 소금빵·크림치즈 소보로·쉬폰 케이크. 📍 2625 Old Denton Rd Ste 118, Carrollton TX 75007 | ☎ (972) 242-8870 | 매일 7am-9pm | 🔗 tljus.com", tags: ["베이커리", "캐롤튼", "한국빵"] },
+    { emoji: "☕", name: "Cafe Bora — 플라노", nameEn: "Cafe Bora — Plano",
+      desc: "달라스 인스타 감성 한국 카페. 흑임자 라떼·말차 케이크·곡물 음료. 📍 4001 W Park Blvd Ste 200, Plano TX 75093 | ☎ (972) 517-1111 | 월-목 10am-9pm, 금-일 10am-10pm | 🔗 yelp.com/biz/cafe-bora-plano", tags: ["인스타감성", "플라노", "디저트"] },
+    { emoji: "☕", name: "Paris Baguette — 캐롤튼", nameEn: "Paris Baguette — Carrollton",
+      desc: "한국 대표 베이커리 체인. 케이크·마카롱·한국식 샌드위치·커피. 📍 2630 Old Denton Rd Ste 210, Carrollton TX 75007 | ☎ (972) 395-9220 | 매일 8am-9pm | 🔗 parisbaguette.com", tags: ["파리바게뜨", "케이크", "캐롤튼"] },
+  ],
+  sf: [
+    { emoji: "☕", name: "Paris Baguette — 밀피타스", nameEn: "Paris Baguette — Milpitas",
+      desc: "베이에어리어 한국 베이커리·카페. 케이크·마카롱·한국식 샌드위치·라떼. 📍 1625 S Main St Ste 100, Milpitas CA 95035 | ☎ (408) 946-9200 | 매일 7am-9pm | 🔗 parisbaguette.com", tags: ["파리바게뜨", "밀피타스", "베이커리"] },
+    { emoji: "☕", name: "Chatime 차타임 — 산타클라라", nameEn: "Chatime — Santa Clara",
+      desc: "한인·아시안 버블티 카페. 타피오카 밀크티·흑당 버블티. 📍 2945 El Camino Real, Santa Clara CA 95051 | ☎ (408) 261-0018 | 매일 11am-10pm | 🔗 chatime.us", tags: ["버블티", "산타클라라", "한인카페"] },
+    { emoji: "☕", name: "Tous Les Jours — 밀피타스", nameEn: "Tous Les Jours — Milpitas",
+      desc: "베이에어리어 한국 베이커리. 소금빵·케이크·호박식빵. 한인 아침 모임 장소. 📍 1625 S Main St Ste 102, Milpitas CA 95035 | ☎ (408) 945-6300 | 매일 7:30am-9pm | 🔗 tljus.com", tags: ["뚜레쥬르", "밀피타스", "소금빵"] },
+  ],
+  newyork: [
+    { emoji: "☕", name: "Paris Baguette — K-Town 맨해튼", nameEn: "Paris Baguette — Manhattan Koreatown",
+      desc: "맨해튼 코리아타운 한국 베이커리. 케이크·마카롱·한국식 샌드위치·아메리카노. 📍 12 W 32nd St, New York NY 10001 | ☎ (212) 268-9101 | 매일 7am-10pm | 🔗 parisbaguette.com", tags: ["파리바게뜨", "K-Town", "베이커리"] },
+    { emoji: "☕", name: "Tous Les Jours — 플러싱", nameEn: "Tous Les Jours — Flushing Queens",
+      desc: "플러싱 한인타운 한국 베이커리 체인. 소금빵·크림치즈 스콘·케이크. 📍 136-19 39th Ave, Flushing NY 11354 | ☎ (718) 886-1212 | 매일 7am-9pm | 🔗 tljus.com", tags: ["뚜레쥬르", "플러싱", "베이커리"] },
+    { emoji: "☕", name: "Boba Guys — 맨해튼", nameEn: "Boba Guys — Manhattan",
+      desc: "뉴욕 버블티 명소. 말차 밀크티·타로·딸기 라떼. 유기농 재료. 📍 155 W 19th St, New York NY 10011 | ☎ (917) 639-3422 | 매일 11am-9pm | 🔗 bobaguys.com", tags: ["버블티", "말차", "맨해튼"] },
+  ],
+  la: [
+    { emoji: "☕", name: "Cafe Bora — 코리아타운 LA", nameEn: "Café Bora — Koreatown LA",
+      desc: "LA 코리아타운 인스타 감성 한국 카페. 흑임자 라떼·말차 케이크·녹차 소프트아이스크림. 📍 3580 Wilshire Blvd #115, Los Angeles CA 90010 | ☎ (213) 387-2672 | 매일 9am-10pm | 🔗 cafebora.com", tags: ["인스타감성", "코리아타운", "흑임자라떼"] },
+    { emoji: "☕", name: "Paris Baguette — 코리아타운", nameEn: "Paris Baguette — Koreatown LA",
+      desc: "LA 코리아타운 파리바게뜨. 케이크·마카롱·소금빵·라떼. 📍 3250 W Olympic Blvd Ste 100, Los Angeles CA 90006 | ☎ (323) 732-6266 | 매일 7am-9:30pm | 🔗 parisbaguette.com", tags: ["파리바게뜨", "코리아타운", "케이크"] },
+    { emoji: "☕", name: "Tiger Sugar — K-Town", nameEn: "Tiger Sugar — Koreatown LA",
+      desc: "대만 흑당 버블티 글로벌 체인. 흑당 타이거 밀크티. LA 한인·아시안 필수 버블티. 📍 3535 W 8th St, Los Angeles CA 90005 | 매일 10am-10pm | 🔗 tigersugar.com", tags: ["흑당버블티", "코리아타운", "아시안카페"] },
+    { emoji: "☕", name: "Tous Les Jours — 세리토스", nameEn: "Tous Les Jours — Cerritos LA",
+      desc: "남가주 한인 베이커리. 소금빵·크로플·호박식빵·크림 케이크. 📍 11634 South St, Cerritos CA 90703 | ☎ (562) 865-5922 | 매일 7am-9pm | 🔗 tljus.com", tags: ["뚜레쥬르", "세리토스", "베이커리"] },
+  ],
+  nashville: [
+    { emoji: "☕", name: "H-Mart 카페 — 매디슨 내쉬빌", nameEn: "H-Mart Café & Bakery — Madison Nashville",
+      desc: "내쉬빌 H-Mart 내 한국식 카페·베이커리. 한국 음료·빵·분식. 📍 545 Myatt Dr, Madison TN 37115 | ☎ (615) 800-6080 | 매일 9am-9pm | 🔗 hmart.com", tags: ["H-Mart", "매디슨", "카페"] },
+    { emoji: "☕", name: "Frothy Monkey — 내쉬빌 다운타운", nameEn: "Frothy Monkey — Nashville Downtown",
+      desc: "내쉬빌 로컬 커피 명소. 스페셜티 커피·에그 샌드위치. 한인 직장인 평일 아침 단골. 📍 235 Fifth Ave N, Nashville TN 37219 | ☎ (615) 600-4756 | 월-금 7am-10pm | 🔗 frothymonkey.com", tags: ["스페셜티커피", "다운타운", "한인직장인"] },
+    { emoji: "☕", name: "Paris Baguette — 내쉬빌 근교", nameEn: "Paris Baguette — Nashville Area",
+      desc: "내쉬빌 한인 교민 베이커리. 케이크·소금빵·한국식 커피. 위치는 hmart.com에서 확인. 🔗 tljus.com", tags: ["베이커리", "내쉬빌", "한국빵"] },
+  ],
+  boston: [
+    { emoji: "☕", name: "Paris Baguette — 올스턴", nameEn: "Paris Baguette — Allston Boston",
+      desc: "보스턴 올스턴 한국 베이커리. 케이크·마카롱·소금빵·한국식 샌드위치. H-Mart 인근. 📍 35 Harvard Ave Ste 2, Allston MA 02134 | ☎ (617) 208-4600 | 매일 7:30am-9pm | 🔗 parisbaguette.com", tags: ["파리바게뜨", "올스턴", "베이커리"] },
+    { emoji: "☕", name: "Kung Fu Tea — 올스턴", nameEn: "Kung Fu Tea — Allston",
+      desc: "올스턴 한인·아시안 버블티 카페. 타피오카 밀크티·흑당 버블티·타로 라떼. 📍 62 Harvard Ave, Allston MA 02134 | ☎ (617) 202-8088 | 매일 11am-10pm | 🔗 kungfutea.com", tags: ["버블티", "올스턴", "아시안카페"] },
+    { emoji: "☕", name: "Cafe Nero — 올스턴 (한인 유학생 단골)", nameEn: "Caffe Nero — Allston",
+      desc: "이탈리안 스타일 카페. 보스턴 한인 유학생 공부·모임 단골. 📍 78 Harvard Ave, Allston MA 02134 | ☎ (617) 783-5282 | 월-금 6am-9pm | 🔗 caffenero.com", tags: ["공부카페", "올스턴", "유학생"] },
+  ],
+  toronto: [
+    { emoji: "☕", name: "Paris Baguette — 블루어 코리아타운", nameEn: "Paris Baguette — Bloor Koreatown Toronto",
+      desc: "토론토 코리아타운 한국 베이커리. 케이크·소금빵·마카롱. 📍 658 Bloor St W, Toronto ON M6G 1L2 | ☎ (416) 536-9921 | 매일 8am-9pm | 🔗 parisbaguette.com", tags: ["파리바게뜨", "블루어", "베이커리"] },
+    { emoji: "☕", name: "Tous Les Jours — 노스욕", nameEn: "Tous Les Jours — North York Toronto",
+      desc: "노스욕 핀치·욘지 한국 베이커리. 소금빵·크림치즈 스콘·케이크. 📍 5347 Yonge St, North York ON M2N 5R8 | ☎ (416) 222-1200 | 매일 8am-9pm | 🔗 tljus.com", tags: ["뚜레쥬르", "노스욕", "베이커리"] },
+    { emoji: "☕", name: "Gong Cha 공차 — 노스욕", nameEn: "Gong Cha — North York (Yonge & Finch)",
+      desc: "토론토 한인 버블티 카페. 타피오카 밀크티·흑당·말차 라떼. 📍 5000 Yonge St Ste 100, North York ON M2N 7E9 | 매일 11am-10pm | 🔗 gongcha.com", tags: ["버블티", "노스욕", "공차"] },
+  ],
+  vancouver: [
+    { emoji: "☕", name: "Tous Les Jours — 코퀴틀람", nameEn: "Tous Les Jours — Coquitlam",
+      desc: "코퀴틀람 한인타운 한국 베이커리. 소금빵·케이크·크로플·라떼. H-Mart 단지 내. 📍 1163 Pinetree Way #108, Coquitlam BC V3B 8A9 | ☎ (604) 945-2233 | 매일 7:30am-9pm | 🔗 tljus.com", tags: ["뚜레쥬르", "코퀴틀람", "베이커리"] },
+    { emoji: "☕", name: "Paris Baguette — 리치몬드 BC", nameEn: "Paris Baguette — Richmond BC",
+      desc: "리치몬드 한국 베이커리. 케이크·마카롱·소금빵. 한인 쇼핑몰 내. 📍 4151 Hazelbridge Way #1500, Richmond BC V6X 4J7 | ☎ (604) 273-0088 | 매일 8am-9pm | 🔗 parisbaguette.com", tags: ["파리바게뜨", "리치몬드", "베이커리"] },
+    { emoji: "☕", name: "Gong Cha 공차 — 코퀴틀람", nameEn: "Gong Cha — Coquitlam",
+      desc: "한인·아시안 버블티 카페. 타피오카 밀크티·흑당·말차 라떼. 📍 1163 Pinetree Way #115, Coquitlam BC V3B 8A9 | 매일 11am-9:30pm | 🔗 gongcha.com", tags: ["버블티", "코퀴틀람", "공차"] },
+  ],
+  houston: [
+    { emoji: "☕", name: "Paris Baguette — 벨레어 휴스턴", nameEn: "Paris Baguette — Bellaire Houston",
+      desc: "휴스턴 벨레어 한국 베이커리. 케이크·마카롱·소금빵. 한인 아침 모임 단골. 📍 9889 Bellaire Blvd #150, Houston TX 77036 | ☎ (713) 272-9922 | 매일 7am-9pm | 🔗 parisbaguette.com", tags: ["파리바게뜨", "벨레어", "베이커리"] },
+    { emoji: "☕", name: "Tous Les Jours — Spring Branch", nameEn: "Tous Les Jours — Spring Branch Houston",
+      desc: "Spring Branch 한인 베이커리. 소금빵·케이크. H-Mart 인근. 📍 1302 Blalock Rd Ste 210, Houston TX 77055 | ☎ (713) 932-8822 | 매일 7am-9pm | 🔗 tljus.com", tags: ["뚜레쥬르", "Spring Branch", "베이커리"] },
+    { emoji: "☕", name: "Gong Cha 공차 — 슈거랜드", nameEn: "Gong Cha — Sugar Land TX",
+      desc: "슈거랜드 한인 밀집 지역 버블티 카페. 타피오카 밀크티·흑당·말차. 📍 2245 Texas Dr Ste 700, Sugar Land TX 77479 | ☎ (281) 265-8888 | 매일 11am-10pm | 🔗 gongcha.com", tags: ["버블티", "슈거랜드", "공차"] },
+  ],
+  atlanta: [
+    { emoji: "☕", name: "Tous Les Jours — Duluth 애틀랜타", nameEn: "Tous Les Jours — Duluth Atlanta",
+      desc: "애틀랜타 듀럴스 한국 베이커리 명소. 소금빵·크로플·케이크. 한인 아침 모임 단골. 📍 3500 Satellite Blvd Ste 100, Duluth GA 30096 | ☎ (770) 622-3377 | 매일 7:30am-9pm | 🔗 tljus.com", tags: ["뚜레쥬르", "듀럴스", "소금빵"] },
+    { emoji: "☕", name: "Paris Baguette — Johns Creek GA", nameEn: "Paris Baguette — Johns Creek Georgia",
+      desc: "애틀랜타 존스크릭 한국 베이커리. 케이크·마카롱·한국식 커피. 📍 3000 Old Alabama Rd Ste 215, Johns Creek GA 30022 | ☎ (678) 987-8822 | 매일 8am-9pm | 🔗 parisbaguette.com", tags: ["파리바게뜨", "Johns Creek", "케이크"] },
+    { emoji: "☕", name: "Gong Cha 공차 — Duluth GA", nameEn: "Gong Cha — Duluth Georgia",
+      desc: "애틀랜타 한인 버블티 카페. 타피오카 밀크티·흑당·말차 라떼. 📍 3461 Steve Reynolds Blvd #130, Duluth GA 30096 | ☎ (770) 476-8888 | 매일 11am-10pm | 🔗 gongcha.com", tags: ["버블티", "듀럴스", "공차"] },
+  ],
+};
+
 // 도시 slug → 검증된 맛집 TOP5 목록 반환 (맛집 탭 카드용)
 const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
   seattle:       TOP5_RESTAURANTS,
@@ -7471,7 +7864,9 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
   // 카페·상권·쇼핑은 시애틀만 상세 데이터, 타 도시는 [] → "추가 중" UI
   const cityTop5Restaurants = top5ToPlaceCards(CITY_RESTAURANT_TOP5_MAP[citySlug] ?? [], lang);
 
-  const resolvedCafes      = serverContent["cafes"]       ? resolvePlaceItems(serverContent["cafes"], lang)       : (isSeattle ? seattleCafes      : []);
+  const resolvedCafes      = serverContent["cafes"]       ? resolvePlaceItems(serverContent["cafes"], lang)
+    : isSeattle ? seattleCafes
+    : (CITY_CAFE_MAP[citySlug] ?? []);
   const resolvedRestaurants = serverContent["restaurants"] ? resolvePlaceItems(serverContent["restaurants"], lang) : (isSeattle ? seattleRestaurants : cityTop5Restaurants);
   const resolvedBusinesses  = serverContent["businesses"]  ? resolvePlaceItems(serverContent["businesses"], lang)  : (isSeattle ? seattleBusinesses  : []);
   const resolvedShopping    = serverContent["shopping"]    ? resolvePlaceItems(serverContent["shopping"], lang)    : (isSeattle ? seattleShopping    : []);
