@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HebronGuide Launch Checklist</title>
+  <title>HebronGuide — 출시 체크리스트</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -11,29 +11,39 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0d1117;
-      --bg2:       #161b22;
-      --bg3:       #1c2230;
-      --border:    #2d3748;
-      --gold:      #C9A227;
-      --gold-dim:  #8a6d1a;
-      --mint:      #6EE7B7;
-      --text:      #ECFDF5;
-      --text-muted:#94a3b8;
-      --green:     #22c55e;
-      --green-bg:  rgba(34,197,94,0.12);
-      --amber:     #f59e0b;
-      --amber-bg:  rgba(245,158,11,0.12);
-      --red:       #ef4444;
-      --red-bg:    rgba(239,68,68,0.10);
+      --bg:         #0d1117;
+      --bg2:        #161b22;
+      --bg3:        #1c2230;
+      --bg4:        #212836;
+      --border:     #2d3748;
+      --border2:    #3d4f66;
+      --gold:       #C9A227;
+      --gold-dim:   #8a6d1a;
+      --gold-bg:    rgba(201,162,39,0.10);
+      --mint:       #6EE7B7;
+      --mint-bg:    rgba(110,231,183,0.10);
+      --text:       #ECFDF5;
+      --text-muted: #94a3b8;
+      --text-dim:   #64748b;
+      --green:      #22c55e;
+      --green-bg:   rgba(34,197,94,0.12);
+      --green-bdr:  rgba(34,197,94,0.30);
+      --amber:      #f59e0b;
+      --amber-bg:   rgba(245,158,11,0.12);
+      --red:        #ef4444;
+      --red-bg:     rgba(239,68,68,0.10);
+      --red-bdr:    rgba(239,68,68,0.25);
+      --orange:     #f97316;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Noto Sans KR', sans-serif;
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.65;
       min-height: 100vh;
     }
 
@@ -48,9 +58,9 @@
       justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 200;
     }
-    .nav-left { display: flex; align-items: center; gap: 16px; }
+    .nav-left { display: flex; align-items: center; gap: 14px; }
     .back-btn {
       background: transparent;
       border: 1px solid var(--border);
@@ -69,19 +79,322 @@
     .back-btn:hover { border-color: var(--gold); color: var(--gold); }
     .logo {
       font-family: 'Cinzel', serif;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       color: var(--gold);
       letter-spacing: 0.04em;
     }
-    .logo span { color: var(--mint); font-size: 12px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; margin-left: 8px; vertical-align: middle; }
+    .logo span {
+      color: var(--mint);
+      font-size: 11px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 400;
+      margin-left: 8px;
+      vertical-align: middle;
+      opacity: 0.85;
+    }
     .nav-right { display: flex; align-items: center; gap: 10px; }
-    .print-btn {
-      background: var(--gold);
+    .reset-btn {
+      background: transparent;
+      border: 1px solid var(--red-bdr);
+      color: var(--red);
+      padding: 6px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .reset-btn:hover { background: var(--red-bg); }
+
+    /* ── LAYOUT ── */
+    main { max-width: 1080px; margin: 0 auto; padding: 40px 24px 100px; }
+
+    /* ── HERO ── */
+    .hero { text-align: center; margin-bottom: 40px; }
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(20px, 3.5vw, 32px);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle { color: var(--text-muted); font-size: 13px; }
+
+    /* ── OVERALL PROGRESS ── */
+    .progress-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .progress-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--mint));
+    }
+    .progress-top {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .progress-pct {
+      font-family: 'Cinzel', serif;
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .progress-right { flex: 1; min-width: 200px; }
+    .progress-label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-family: 'Cinzel', serif;
+      margin-bottom: 10px;
+    }
+    .progress-bar-wrap {
+      background: var(--bg3);
+      border-radius: 8px;
+      height: 16px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 8px;
+      background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+      transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+      width: 0%;
+    }
+    .progress-desc { font-size: 13px; color: var(--text-muted); }
+    .progress-stats {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+    .pstat { text-align: center; }
+    .pstat-val { font-size: 24px; font-weight: 700; line-height: 1; }
+    .pstat-val.c-green { color: var(--green); }
+    .pstat-val.c-gold  { color: var(--gold);  }
+    .pstat-val.c-dim   { color: var(--text-muted); }
+    .pstat-lbl { font-size: 11px; color: var(--text-dim); margin-top: 3px; }
+
+    /* ── PHASE PROGRESS STRIP ── */
+    .phase-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .phase-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      transition: border-color 0.2s;
+    }
+    .phase-item.active  { border-color: var(--gold); }
+    .phase-item.done    { border-color: var(--green-bdr); }
+    .phase-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .phase-name {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+    .phase-item.active .phase-name { color: var(--gold); }
+    .phase-item.done   .phase-name { color: var(--green); }
+    .phase-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .phase-badge.badge-active { background: var(--gold-bg); color: var(--gold); border: 1px solid rgba(201,162,39,0.3); }
+    .phase-badge.badge-done   { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-bdr); }
+    .phase-badge.badge-wait   { background: var(--bg3); color: var(--text-dim); border: 1px solid var(--border); }
+    .phase-bar-wrap {
+      background: var(--bg3);
+      border-radius: 4px;
+      height: 5px;
+      overflow: hidden;
+    }
+    .phase-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+    .phase-bar-fill.c-gold  { background: linear-gradient(90deg, var(--gold-dim), var(--gold)); }
+    .phase-bar-fill.c-green { background: var(--green); }
+    .phase-bar-fill.c-dim   { background: var(--border2); }
+    .phase-count {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 5px;
+    }
+
+    /* ── ACTIVE TASKS SECTION ── */
+    .active-section {
+      margin-bottom: 48px;
+    }
+    .active-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .active-title {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .active-title .phase-tag {
+      font-size: 14px;
+      color: var(--gold);
+      font-weight: 400;
+      margin-left: 8px;
+    }
+    .active-subtitle { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
+
+    /* ── TASK CARDS ── */
+    .tasks-grid { display: grid; gap: 14px; }
+
+    .task-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+      transition: transform 0.15s, border-color 0.2s, opacity 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .task-card:hover { transform: translateX(3px); }
+
+    .task-card.impact-critical { border-left-color: var(--red); }
+    .task-card.impact-high     { border-left-color: var(--orange); }
+    .task-card.impact-medium   { border-left-color: var(--amber); }
+    .task-card.impact-low      { border-left-color: var(--text-dim); }
+
+    .task-card.completed {
+      opacity: 0.55;
+      background: var(--green-bg);
+      border-left-color: var(--green) !important;
+      border-color: var(--green-bdr);
+    }
+    .task-card.completed .task-title { text-decoration: line-through; color: var(--text-muted); }
+
+    .task-card.task-new {
+      animation: slideDown 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .task-body { min-width: 0; }
+
+    .task-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .impact-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .impact-badge.critical { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-bdr); }
+    .impact-badge.high     { background: rgba(249,115,22,0.12); color: var(--orange); border: 1px solid rgba(249,115,22,0.30); }
+    .impact-badge.medium   { background: var(--amber-bg);  color: var(--amber);  border: 1px solid rgba(245,158,11,0.30); }
+    .impact-badge.low      { background: var(--bg3);       color: var(--text-dim); border: 1px solid var(--border); }
+
+    .cat-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--bg3);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .task-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .task-detail {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .task-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--mint);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .task-link:hover { opacity: 0.75; }
+
+    /* ── COMPLETE BUTTON ── */
+    .task-action { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0; }
+
+    .complete-btn {
+      background: var(--green);
       color: #0d1117;
       border: none;
-      padding: 7px 18px;
-      border-radius: 6px;
+      padding: 10px 20px;
+      border-radius: 8px;
       cursor: pointer;
       font-family: 'Noto Sans KR', sans-serif;
       font-size: 13px;
@@ -89,859 +402,853 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: opacity 0.15s;
+      transition: all 0.15s;
+      white-space: nowrap;
+      min-width: 90px;
+      justify-content: center;
     }
-    .print-btn:hover { opacity: 0.88; }
+    .complete-btn:hover { background: #16a34a; transform: scale(1.04); }
 
-    /* ── MAIN ── */
-    main { max-width: 1060px; margin: 0 auto; padding: 40px 24px 80px; }
-
-    /* ── HERO ── */
-    .hero { text-align: center; margin-bottom: 48px; }
-    .hero h1 {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(22px, 4vw, 34px);
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.06em;
-      margin-bottom: 6px;
-    }
-    .hero .subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 28px; }
-    .hero .date-badge {
-      display: inline-block;
-      background: var(--bg3);
+    .undo-btn {
+      background: transparent;
+      color: var(--text-dim);
       border: 1px solid var(--border);
-      color: var(--text-muted);
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: 12px;
-      padding: 4px 14px;
-      border-radius: 20px;
-      margin-bottom: 36px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .undo-btn:hover { border-color: var(--amber); color: var(--amber); }
+
+    .priority-num {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--border2);
+      line-height: 1;
     }
 
-    /* ── OVERALL PROGRESS ── */
-    .overall-card {
+    /* ── CELEBRATION BANNER ── */
+    .celebration {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      background: linear-gradient(135deg, #1a2e1a, #0d1f0d);
+      border: 1px solid var(--green-bdr);
+      border-radius: 14px;
+      padding: 18px 32px;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(34,197,94,0.25);
+      animation: celebIn 0.4s cubic-bezier(0.4,0,0.2,1);
+      max-width: 480px;
+      width: calc(100% - 32px);
+    }
+    .celebration.visible { display: block; }
+    @keyframes celebIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(-16px) scale(0.96); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+    }
+    .celebration-title {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+    .celebration-sub { font-size: 13px; color: var(--text-muted); }
+
+    /* ── CONFETTI ── */
+    .confetti-wrap {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 998;
+      overflow: hidden;
+    }
+    .confetti-piece {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      opacity: 0;
+      animation: confettiFall 2.4s ease-in forwards;
+    }
+    @keyframes confettiFall {
+      0%   { opacity: 1; transform: translateY(-20px) rotate(0deg); }
+      100% { opacity: 0; transform: translateY(110vh) rotate(720deg); }
+    }
+
+    /* ── COLLAPSIBLE ALL TASKS ── */
+    .all-tasks-section { margin-top: 12px; }
+
+    .collapse-toggle {
+      width: 100%;
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px 32px;
-      margin-bottom: 48px;
-      position: relative;
-      overflow: hidden;
-    }
-    .overall-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--mint));
-    }
-    .overall-label {
-      font-family: 'Cinzel', serif;
-      font-size: 13px;
-      letter-spacing: 0.1em;
+      border-radius: 10px;
+      padding: 14px 20px;
       color: var(--text-muted);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .overall-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .overall-pct {
-      font-family: 'Cinzel', serif;
-      font-size: 52px;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-      flex-shrink: 0;
-    }
-    .overall-right { flex: 1; min-width: 200px; }
-    .overall-bar-wrap {
-      background: var(--bg3);
-      border-radius: 8px;
-      height: 18px;
-      overflow: hidden;
-      margin-bottom: 8px;
-    }
-    .overall-bar-fill {
-      height: 100%;
-      border-radius: 8px;
-      background: linear-gradient(90deg, var(--gold-dim), var(--gold));
-      width: 46%;
-      transition: width 1s ease;
-    }
-    .overall-desc { font-size: 13px; color: var(--text-muted); }
-    .overall-stats {
-      display: flex; gap: 24px; flex-wrap: wrap; margin-top: 20px;
-      border-top: 1px solid var(--border); padding-top: 18px;
-    }
-    .stat { text-align: center; }
-    .stat-val { font-size: 22px; font-weight: 700; color: var(--text); }
-    .stat-val.green { color: var(--green); }
-    .stat-val.amber { color: var(--amber); }
-    .stat-val.red   { color: var(--red); }
-    .stat-lbl { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-
-    /* ── CATEGORY ── */
-    .category { margin-bottom: 44px; }
-    .cat-header {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 14px;
+      transition: all 0.15s;
     }
-    .cat-title {
+    .collapse-toggle:hover { border-color: var(--gold); color: var(--gold); }
+    .collapse-toggle .arrow { transition: transform 0.25s; font-size: 16px; }
+    .collapse-toggle.open .arrow { transform: rotate(180deg); }
+
+    .all-tasks-body {
+      display: none;
+      margin-top: 12px;
+    }
+    .all-tasks-body.open { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .phase-group { margin-bottom: 24px; }
+    .phase-group-title {
       font-family: 'Cinzel', serif;
-      font-size: 16px;
+      font-size: 13px;
       font-weight: 600;
-      color: var(--text);
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      padding: 8px 0 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .cat-emoji { font-size: 20px; }
-    .cat-pct-badge {
-      font-size: 13px;
-      font-weight: 700;
-      padding: 3px 12px;
-      border-radius: 20px;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-    }
-    .cat-bar-wrap {
-      background: var(--bg3);
-      border-radius: 6px;
-      height: 8px;
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
-    .cat-bar-fill {
-      height: 100%;
-      border-radius: 6px;
-      transition: width 1s ease;
-    }
-    .bar-green  { background: var(--green); }
-    .bar-yellow { background: linear-gradient(90deg, var(--amber), #fbbf24); }
-    .bar-red    { background: var(--red); }
-    .bar-gold   { background: linear-gradient(90deg, var(--gold-dim), var(--gold)); }
-
-    /* ── TABLE ── */
-    .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-    thead th {
-      background: var(--bg3);
-      color: var(--text-muted);
-      font-weight: 500;
+    .phase-group-title .pcount {
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: 11px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 10px 14px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
+      font-weight: 400;
+      color: var(--text-dim);
+      text-transform: none;
+      letter-spacing: 0;
     }
-    tbody tr:nth-child(even) { background: rgba(255,255,255,0.025); }
-    tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.1s; }
-    tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: rgba(201,162,39,0.06); }
-    tbody td { padding: 11px 14px; vertical-align: middle; color: var(--text); }
-    .td-item { font-weight: 500; min-width: 180px; }
-    .td-status { white-space: nowrap; min-width: 100px; }
-    .td-pct { white-space: nowrap; min-width: 80px; }
-    .td-rec { color: var(--text-muted); min-width: 220px; }
-    .td-rec.none { color: rgba(148,163,184,0.4); font-style: italic; }
 
-    /* status pills */
-    .pill {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 500;
-    }
-    .pill-green { background: var(--green-bg); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
-    .pill-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(245,158,11,0.25); }
-    .pill-red   { background: var(--red-bg);   color: #f87171;     border: 1px solid rgba(239,68,68,0.20); }
-
-    /* completion bar inside cell */
-    .pct-bar { display: flex; align-items: center; gap: 8px; }
-    .pct-mini {
-      flex: 1; max-width: 60px; height: 5px; border-radius: 4px;
-      background: var(--bg3); overflow: hidden;
-    }
-    .pct-mini-fill { height: 100%; border-radius: 4px; }
-    .pct-num { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
-
-    /* ── TOP 5 SECTION ── */
-    .top5 { margin-top: 56px; }
-    .top5-title {
-      font-family: 'Cinzel', serif;
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-    .top5-sub { color: var(--text-muted); font-size: 13px; margin-bottom: 24px; }
-    .top5-grid { display: grid; gap: 14px; }
-    .top5-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 18px 20px 18px 24px;
+    .mini-task {
       display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      border-left-width: 4px;
-      transition: transform 0.15s;
-    }
-    .top5-card:hover { transform: translateX(4px); }
-    .top5-card.red-card   { border-left-color: var(--red); }
-    .top5-card.amber-card { border-left-color: var(--amber); }
-    .top5-card.yellow-card { border-left-color: #eab308; }
-    .top5-num {
-      font-family: 'Cinzel', serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--border);
-      line-height: 1;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .top5-body { flex: 1; }
-    .top5-heading {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text);
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.12s;
+      border: 1px solid transparent;
       margin-bottom: 4px;
     }
-    .top5-desc { font-size: 13px; color: var(--text-muted); }
-    .top5-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+    .mini-task:hover { background: var(--bg3); border-color: var(--border); }
+    .mini-task.completed { opacity: 0.5; }
 
-    /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 32px 24px;
-      border-top: 1px solid var(--border);
-      color: var(--text-muted);
+    .mini-checkbox {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 2px solid var(--border2);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
       font-size: 12px;
-      margin-top: 56px;
     }
-    footer strong { color: var(--gold); font-family: 'Cinzel', serif; }
-
-    /* ── PRINT ── */
-    @media print {
-      nav, .print-btn { display: none !important; }
-      body { background: #fff; color: #111; }
-      .overall-card, .table-wrap, .top5-card { border-color: #ddd !important; }
-      .cat-bar-fill, .overall-bar-fill { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .mini-task.completed .mini-checkbox {
+      background: var(--green);
+      border-color: var(--green);
+      color: #0d1117;
     }
 
-    @media (max-width: 600px) {
-      main { padding: 24px 14px 60px; }
-      .overall-pct { font-size: 38px; }
-      .overall-stats { gap: 16px; }
+    .mini-task-title {
+      font-size: 13px;
+      font-weight: 500;
+      flex: 1;
+      transition: color 0.15s;
+    }
+    .mini-task.completed .mini-task-title { text-decoration: line-through; color: var(--text-dim); }
+
+    .mini-cat {
+      font-size: 11px;
+      color: var(--text-dim);
+      flex-shrink: 0;
+    }
+
+    /* ── EMPTY STATE ── */
+    .all-done-msg {
+      text-align: center;
+      padding: 48px 24px;
+      background: var(--bg2);
+      border: 1px solid var(--green-bdr);
+      border-radius: 14px;
+    }
+    .all-done-msg .emoji { font-size: 48px; margin-bottom: 16px; }
+    .all-done-msg h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+    .all-done-msg p { color: var(--text-muted); font-size: 14px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      main { padding: 24px 14px 80px; }
+      .phase-strip { grid-template-columns: repeat(2, 1fr); }
+      .progress-pct { font-size: 40px; }
+      .task-card { grid-template-columns: 1fr; }
+      .task-action { flex-direction: row; align-items: center; }
+      .priority-num { display: none; }
     }
   </style>
 </head>
 <body>
 
+<!-- ── CELEBRATION BANNER ── -->
+<div class="celebration" id="celebrationBanner">
+  <div class="celebration-title" id="celebrationTitle">🎉 Phase 완료!</div>
+  <div class="celebration-sub" id="celebrationSub">다음 단계로 진행합니다</div>
+</div>
+
+<!-- ── CONFETTI ── -->
+<div class="confetti-wrap" id="confettiWrap"></div>
+
 <!-- ── NAV ── -->
 <nav>
   <div class="nav-left">
-    <a class="back-btn" href="/">← 홈으로</a>
-    <div class="logo">HebronGuide<span>Launch Checklist</span></div>
+    <a class="back-btn" href="/">← 돌아가기</a>
+    <div class="logo">HebronGuide<span>출시 체크리스트</span></div>
   </div>
   <div class="nav-right">
-    <button class="print-btn" onclick="window.print()">🖨 인쇄 / PDF</button>
+    <button class="reset-btn" onclick="resetAll()">↺ 초기화</button>
   </div>
 </nav>
 
 <main>
-
   <!-- ── HERO ── -->
   <div class="hero">
-    <h1>Launch Readiness Checklist</h1>
-    <p class="subtitle">hebronguide.com — Korean Immigrant Digital Hospitality Platform</p>
-    <div class="date-badge">기준일 2026년 5월 12일</div>
+    <h1>Launch Readiness</h1>
+    <p class="subtitle">hebronguide.com — 단계별 출시 과제 관리 시스템</p>
   </div>
 
   <!-- ── OVERALL PROGRESS ── -->
-  <div class="overall-card">
-    <div class="overall-label">전체 출시 준비도 (가중 평균)</div>
-    <div class="overall-row">
-      <div class="overall-pct">46%</div>
-      <div class="overall-right">
-        <div class="overall-bar-wrap">
-          <div class="overall-bar-fill"></div>
+  <div class="progress-card">
+    <div class="progress-label">전체 진행률</div>
+    <div class="progress-top">
+      <div class="progress-pct" id="overallPct">0%</div>
+      <div class="progress-right">
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="overallBar"></div>
         </div>
-        <div class="overall-desc">7개 카테고리 가중 평균 — 기술 인프라는 양호하나 수익화·커뮤니티·교회 파트너십 영역이 집중 보강 필요</div>
+        <div class="progress-desc" id="overallDesc">20개 과제 완료를 향해 진행 중입니다</div>
       </div>
     </div>
-    <div class="overall-stats">
-      <div class="stat"><div class="stat-val green">18</div><div class="stat-lbl">✅ 완료 항목</div></div>
-      <div class="stat"><div class="stat-val amber">14</div><div class="stat-lbl">⚠️ 부분완료</div></div>
-      <div class="stat"><div class="stat-val red">19</div><div class="stat-lbl">❌ 미완료</div></div>
-      <div class="stat"><div class="stat-val" style="color:var(--text)">51</div><div class="stat-lbl">전체 항목</div></div>
-      <div class="stat"><div class="stat-val" style="color:var(--gold)">7</div><div class="stat-lbl">카테고리</div></div>
+    <div class="progress-stats">
+      <div class="pstat">
+        <div class="pstat-val c-green" id="statDone">0</div>
+        <div class="pstat-lbl">완료</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-val c-gold" id="statActive">0</div>
+        <div class="pstat-lbl">진행중</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-val c-dim" id="statWaiting">0</div>
+        <div class="pstat-lbl">대기</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-val c-dim">20</div>
+        <div class="pstat-lbl">전체</div>
+      </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       CATEGORY 1 — 기술·인프라 (85%)
-  ════════════════════════════════════════════ -->
-  <div class="category">
-    <div class="cat-header">
-      <div class="cat-title"><span class="cat-emoji">⚙️</span>카테고리 1 — 기술·인프라</div>
-      <span class="cat-pct-badge" style="color:var(--green)">85%</span>
-    </div>
-    <div class="cat-bar-wrap"><div class="cat-bar-fill bar-green" style="width:85%"></div></div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>항목</th>
-            <th>상태</th>
-            <th>완료도</th>
-            <th>보강 필요 사항</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-item">React PWA 앱 (HebronGuide.tsx)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">Vercel 배포 (hebronguide.com)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">다국어 지원 (한·영·스페인어)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">오프라인 지원 (Service Worker)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">PWA 설치 배너 (Android + iOS)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">Supabase 백엔드 연동</td>
-            <td class="td-status"><span class="pill pill-amber">⚠️ 부분완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-yellow" style="width:60%"></div></div><span class="pct-num">60%</span></div></td>
-            <td class="td-rec">SUPA_URL / SECRET 환경변수 미설정 — Vercel 대시보드에서 설정 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">JS 번들 최적화 (현재 1.3MB)</td>
-            <td class="td-status"><span class="pill pill-amber">⚠️ 부분완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-yellow" style="width:40%"></div></div><span class="pct-num">40%</span></div></td>
-            <td class="td-rec">코드 스플리팅·동적 import 적용 필요 — 로딩 속도 개선</td>
-          </tr>
-          <tr>
-            <td class="td-item">실제 기기 QA 테스트</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:10%"></div></div><span class="pct-num">10%</span></div></td>
-            <td class="td-rec">iPhone·Android 각 기기에서 전체 탭 점검 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">Google Analytics / 방문자 추적</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:0%"></div></div><span class="pct-num">0%</span></div></td>
-            <td class="td-rec">GA4 또는 Plausible 설치 필요</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <!-- ── PHASE STRIP ── -->
+  <div class="phase-strip" id="phaseStrip"></div>
 
-  <!-- ═══════════════════════════════════════════
-       CATEGORY 2 — 도시·콘텐츠 (55%)
-  ════════════════════════════════════════════ -->
-  <div class="category">
-    <div class="cat-header">
-      <div class="cat-title"><span class="cat-emoji">🗺️</span>카테고리 2 — 도시·콘텐츠</div>
-      <span class="cat-pct-badge" style="color:var(--amber)">55%</span>
-    </div>
-    <div class="cat-bar-wrap"><div class="cat-bar-fill bar-yellow" style="width:55%"></div></div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>항목</th><th>상태</th><th>완료도</th><th>보강 필요 사항</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-item">시애틀 — 마스터 템플릿</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:95%"></div></div><span class="pct-num">95%</span></div></td>
-            <td class="td-rec">연간 업데이트 체계화 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">달라스·SF·NY·내슈빌·보스턴·LA</td>
-            <td class="td-status"><span class="pill pill-amber">⚠️ 부분완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-yellow" style="width:60%"></div></div><span class="pct-num">60%</span></div></td>
-            <td class="td-rec">교회·맛집 데이터 검증 보강</td>
-          </tr>
-          <tr>
-            <td class="td-item">토론토·밴쿠버·휴스턴·애틀랜타</td>
-            <td class="td-status"><span class="pill pill-amber">⚠️ 부분완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-yellow" style="width:50%"></div></div><span class="pct-num">50%</span></div></td>
-            <td class="td-rec">현지 가이드 확보 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">시카고·필라델피아·마이애미·캔자스시티</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:20%"></div></div><span class="pct-num">20%</span></div></td>
-            <td class="td-rec">도시별 데이터 수집 시작 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">영웅 슬라이드 사진 (17개 도시)</td>
-            <td class="td-status"><span class="pill pill-amber">⚠️ 부분완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-yellow" style="width:70%"></div></div><span class="pct-num">70%</span></div></td>
-            <td class="td-rec">일부 사진 품질 개선 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">Gig 서비스 제공자 데이터</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:10%"></div></div><span class="pct-num">10%</span></div></td>
-            <td class="td-rec">헤브론 패스 검증 게이트 통과 제공자 모집 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">카페·맛집 정보 (10개 도시)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:80%"></div></div><span class="pct-num">80%</span></div></td>
-            <td class="td-rec">나머지 7개 도시 추가 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">공항 도착 가이드</td>
-            <td class="td-status"><span class="pill pill-amber">⚠️ 부분완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-yellow" style="width:50%"></div></div><span class="pct-num">50%</span></div></td>
-            <td class="td-rec">도시별 공항 상세 정보 추가</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       CATEGORY 3 — 교회 파트너십 (20%)
-  ════════════════════════════════════════════ -->
-  <div class="category">
-    <div class="cat-header">
-      <div class="cat-title"><span class="cat-emoji">⛪</span>카테고리 3 — 교회 파트너십</div>
-      <span class="cat-pct-badge" style="color:var(--red)">20%</span>
-    </div>
-    <div class="cat-bar-wrap"><div class="cat-bar-fill bar-red" style="width:20%"></div></div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>항목</th><th>상태</th><th>완료도</th><th>보강 필요 사항</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-item">파트너 교회 신청서 (founding-partner.html)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">프로모션 킷 (promo-kit.html)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">카카오·이메일 개인 발송 템플릿</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">실제 파트너 교회 모집 (목표 300개)</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:0%"></div></div><span class="pct-num">0%</span></div></td>
-            <td class="td-rec">목회자 네트워크 통해 직접 연락 시작 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">도시별 교회 데이터 입력</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:15%"></div></div><span class="pct-num">15%</span></div></td>
-            <td class="td-rec">시애틀 외 도시 교회 정보 수집 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">파트너 교회 온보딩 프로세스</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:0%"></div></div><span class="pct-num">0%</span></div></td>
-            <td class="td-rec">신청 후 안내·배지 부여 절차 수립 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">창립 교회 모임 날짜 확정</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:0%"></div></div><span class="pct-num">0%</span></div></td>
-            <td class="td-rec">교회 모집 후 첫 전체 모임 날짜 결정</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       CATEGORY 4 — 법적·운영 (65%)
-  ════════════════════════════════════════════ -->
-  <div class="category">
-    <div class="cat-header">
-      <div class="cat-title"><span class="cat-emoji">⚖️</span>카테고리 4 — 법적·운영</div>
-      <span class="cat-pct-badge" style="color:var(--amber)">65%</span>
-    </div>
-    <div class="cat-bar-wrap"><div class="cat-bar-fill bar-yellow" style="width:65%"></div></div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>항목</th><th>상태</th><th>완료도</th><th>보강 필요 사항</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-item">이용약관 (terms.html)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">개인정보처리방침 (privacy.html)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">회사소개 (about.html)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">HebronGuide LLC 법인 설립</td>
-            <td class="td-status"><span class="pill pill-amber">⚠️ 부분완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-yellow" style="width:50%"></div></div><span class="pct-num">50%</span></div></td>
-            <td class="td-rec">워싱턴주 LLC 등록 완료 확인 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">교회·LLC 재정 분리 (계좌)</td>
-            <td class="td-status"><span class="pill pill-amber">⚠️ 부분완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-yellow" style="width:50%"></div></div><span class="pct-num">50%</span></div></td>
-            <td class="td-rec">별도 비즈니스 계좌 개설 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">결제 처리 시스템 ($100 파트너비)</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:0%"></div></div><span class="pct-num">0%</span></div></td>
-            <td class="td-rec">Stripe 또는 PayPal 연동 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">담임목사 서면 동의서 (연간 갱신)</td>
-            <td class="td-status"><span class="pill pill-amber">⚠️ 부분완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-yellow" style="width:30%"></div></div><span class="pct-num">30%</span></div></td>
-            <td class="td-rec">공식 문서 양식 작성 필요</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       CATEGORY 5 — 마케팅·홍보 (35%)
-  ════════════════════════════════════════════ -->
-  <div class="category">
-    <div class="cat-header">
-      <div class="cat-title"><span class="cat-emoji">📣</span>카테고리 5 — 마케팅·홍보</div>
-      <span class="cat-pct-badge" style="color:var(--amber)">35%</span>
-    </div>
-    <div class="cat-bar-wrap"><div class="cat-bar-fill bar-yellow" style="width:35%"></div></div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>항목</th><th>상태</th><th>완료도</th><th>보강 필요 사항</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-item">SNS 공유 버튼 9개 (신청서)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">QR 코드 에셋 (qr-assets.html)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">포스터·SNS카드 (promo-kit.html)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">인스타그램 공식 계정 운영</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:0%"></div></div><span class="pct-num">0%</span></div></td>
-            <td class="td-rec">@hebronguide 계정 개설·콘텐츠 시작 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">카카오채널 개설</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:0%"></div></div><span class="pct-num">0%</span></div></td>
-            <td class="td-rec">한인 커뮤니티 주요 채널 — 우선순위 높음</td>
-          </tr>
-          <tr>
-            <td class="td-item">한인 미디어 보도 (한인소식 등)</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:5%"></div></div><span class="pct-num">5%</span></div></td>
-            <td class="td-rec">보도자료 작성·배포 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">Google SEO (검색 노출)</td>
-            <td class="td-status"><span class="pill pill-amber">⚠️ 부분완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-yellow" style="width:30%"></div></div><span class="pct-num">30%</span></div></td>
-            <td class="td-rec">sitemap.xml 제출·메타태그 최적화 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">교회 목사 네트워크 접근</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:5%"></div></div><span class="pct-num">5%</span></div></td>
-            <td class="td-rec">직접 연락 시작 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">창립 파트너 모집 캠페인 실행</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:0%"></div></div><span class="pct-num">0%</span></div></td>
-            <td class="td-rec">카카오·이메일 발송 시작 필요</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       CATEGORY 6 — 수익화 (20%)
-  ════════════════════════════════════════════ -->
-  <div class="category">
-    <div class="cat-header">
-      <div class="cat-title"><span class="cat-emoji">💰</span>카테고리 6 — 수익화</div>
-      <span class="cat-pct-badge" style="color:var(--red)">20%</span>
-    </div>
-    <div class="cat-bar-wrap"><div class="cat-bar-fill bar-red" style="width:20%"></div></div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>항목</th><th>상태</th><th>완료도</th><th>보강 필요 사항</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-item">HebronStore 구조 (앱 내)</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:80%"></div></div><span class="pct-num">80%</span></div></td>
-            <td class="td-rec">실제 상품 연동 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">파트너 교회 연회비 $100 구조 확정</td>
-            <td class="td-status"><span class="pill pill-green">✅ 완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-green" style="width:100%"></div></div><span class="pct-num">100%</span></div></td>
-            <td class="td-rec none">—</td>
-          </tr>
-          <tr>
-            <td class="td-item">라이선스 키 시스템 (Echo·Studio)</td>
-            <td class="td-status"><span class="pill pill-amber">⚠️ 부분완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-yellow" style="width:70%"></div></div><span class="pct-num">70%</span></div></td>
-            <td class="td-rec">Supabase 환경변수 설정 후 배포</td>
-          </tr>
-          <tr>
-            <td class="td-item">실제 결제 처리 (Stripe 등)</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:0%"></div></div><span class="pct-num">0%</span></div></td>
-            <td class="td-rec">결제 시스템 구현 최우선 과제</td>
-          </tr>
-          <tr>
-            <td class="td-item">Gig 서비스 수수료 수익</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:0%"></div></div><span class="pct-num">0%</span></div></td>
-            <td class="td-rec">제공자 모집 후 가능</td>
-          </tr>
-          <tr>
-            <td class="td-item">광고 수익 (검증된 업소)</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:5%"></div></div><span class="pct-num">5%</span></div></td>
-            <td class="td-rec">Phase 2 이후</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       CATEGORY 7 — 커뮤니티·사용자 (15%)
-  ════════════════════════════════════════════ -->
-  <div class="category">
-    <div class="cat-header">
-      <div class="cat-title"><span class="cat-emoji">🌱</span>카테고리 7 — 커뮤니티·사용자</div>
-      <span class="cat-pct-badge" style="color:var(--red)">15%</span>
-    </div>
-    <div class="cat-bar-wrap"><div class="cat-bar-fill bar-red" style="width:15%"></div></div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>항목</th><th>상태</th><th>완료도</th><th>보강 필요 사항</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-item">실제 MAU (월간 활성 사용자)</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:5%"></div></div><span class="pct-num">5%</span></div></td>
-            <td class="td-rec">목표: 1,000 MAU (현재 ~220)</td>
-          </tr>
-          <tr>
-            <td class="td-item">사용자 피드백 수집 채널</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:10%"></div></div><span class="pct-num">10%</span></div></td>
-            <td class="td-rec">앱 내 피드백 버튼·설문 추가 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">온보딩 튜토리얼</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:0%"></div></div><span class="pct-num">0%</span></div></td>
-            <td class="td-rec">처음 방문자 가이드 화면 필요</td>
-          </tr>
-          <tr>
-            <td class="td-item">사용자 리뷰·추천 시스템</td>
-            <td class="td-status"><span class="pill pill-red">❌ 미완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-red" style="width:0%"></div></div><span class="pct-num">0%</span></div></td>
-            <td class="td-rec">Phase 2 기능</td>
-          </tr>
-          <tr>
-            <td class="td-item">헤브론 패스 (제공자 검증 게이트)</td>
-            <td class="td-status"><span class="pill pill-amber">⚠️ 부분완료</span></td>
-            <td class="td-pct"><div class="pct-bar"><div class="pct-mini"><div class="pct-mini-fill bar-yellow" style="width:40%"></div></div><span class="pct-num">40%</span></div></td>
-            <td class="td-rec">Checkr 계약·운영팀 지정 후 가동</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       TOP 5 PRIORITY SECTION
-  ════════════════════════════════════════════ -->
-  <div class="top5">
-    <div class="top5-title">우선순위 TOP 5 보강 과제</div>
-    <div class="top5-sub">출시 가속을 위해 지금 즉시 착수해야 할 핵심 작업</div>
-    <div class="top5-grid">
-
-      <div class="top5-card red-card">
-        <div class="top5-num">01</div>
-        <div class="top5-body">
-          <div class="top5-heading">결제 시스템 구축 (Stripe)</div>
-          <div class="top5-desc">파트너 교회 연회비 $100 및 Gig 서비스 수수료 수취 불가 상태. Stripe 또는 PayPal 연동 없이는 실질적인 수익화 불가능. 가장 먼저 해결해야 할 기술 과제.</div>
+  <!-- ── ACTIVE TASKS ── -->
+  <div class="active-section">
+    <div class="active-header">
+      <div>
+        <div class="active-title" id="activeSectionTitle">
+          🎯 지금 바로 해야 할 일
+          <span class="phase-tag" id="activePhasTag"></span>
         </div>
-        <div class="top5-icon">🔴</div>
-      </div>
-
-      <div class="top5-card red-card">
-        <div class="top5-num">02</div>
-        <div class="top5-body">
-          <div class="top5-heading">파트너 교회 모집 캠페인 실행</div>
-          <div class="top5-desc">신청서·프로모션 킷·발송 템플릿은 모두 완성. 이제 실제 카카오·이메일 발송만 남음. 목회자 네트워크를 통한 직접 접촉 시작이 전체 생태계 성장의 출발점.</div>
-        </div>
-        <div class="top5-icon">🔴</div>
-      </div>
-
-      <div class="top5-card amber-card">
-        <div class="top5-num">03</div>
-        <div class="top5-body">
-          <div class="top5-heading">카카오채널 개설 + 인스타그램 운영 시작</div>
-          <div class="top5-desc">한인 커뮤니티에서 카카오채널은 필수 접점. @hebronguide 인스타그램 동시 개설로 온라인 존재감 확보. 두 채널 모두 콘텐츠 캘린더 수립 후 즉시 운영 시작.</div>
-        </div>
-        <div class="top5-icon">🟠</div>
-      </div>
-
-      <div class="top5-card amber-card">
-        <div class="top5-num">04</div>
-        <div class="top5-body">
-          <div class="top5-heading">Supabase 환경변수 설정 (SUPA_URL / SECRET)</div>
-          <div class="top5-desc">Vercel 대시보드에서 SUPA_URL과 SUPABASE_SERVICE_ROLE_SECRET 두 값 설정만으로 라이선스 키 시스템·백엔드 연동이 즉시 활성화. 30분 이내 완료 가능한 작업.</div>
-        </div>
-        <div class="top5-icon">🟠</div>
-      </div>
-
-      <div class="top5-card yellow-card">
-        <div class="top5-num">05</div>
-        <div class="top5-body">
-          <div class="top5-heading">실제 기기 QA 테스트 (iPhone + Android)</div>
-          <div class="top5-desc">PWA 설치·오프라인 모드·다국어 전환·모든 탭을 실제 iPhone (Safari) 및 Android (Chrome)에서 점검. 출시 전 필수 품질 관문으로 사용자 신뢰 확보에 직결.</div>
-        </div>
-        <div class="top5-icon">🟡</div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       WEIGHTED BREAKDOWN
-  ════════════════════════════════════════════ -->
-  <div style="margin-top:56px; background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:24px 28px;">
-    <div style="font-family:'Cinzel',serif; font-size:14px; letter-spacing:0.08em; color:var(--text-muted); text-transform:uppercase; margin-bottom:16px;">가중 평균 계산</div>
-    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg3); border-radius:8px; padding:10px 14px;">
-        <span style="font-size:13px; color:var(--text-muted)">⚙️ 기술·인프라 <span style="color:var(--text-muted); font-size:11px;">(×0.20)</span></span>
-        <span style="font-weight:700; color:var(--green)">17.0</span>
-      </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg3); border-radius:8px; padding:10px 14px;">
-        <span style="font-size:13px; color:var(--text-muted)">🗺️ 도시·콘텐츠 <span style="color:var(--text-muted); font-size:11px;">(×0.20)</span></span>
-        <span style="font-weight:700; color:var(--amber)">11.0</span>
-      </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg3); border-radius:8px; padding:10px 14px;">
-        <span style="font-size:13px; color:var(--text-muted)">⛪ 교회 파트너십 <span style="color:var(--text-muted); font-size:11px;">(×0.15)</span></span>
-        <span style="font-weight:700; color:var(--red)">3.0</span>
-      </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg3); border-radius:8px; padding:10px 14px;">
-        <span style="font-size:13px; color:var(--text-muted)">⚖️ 법적·운영 <span style="color:var(--text-muted); font-size:11px;">(×0.10)</span></span>
-        <span style="font-weight:700; color:var(--amber)">6.5</span>
-      </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg3); border-radius:8px; padding:10px 14px;">
-        <span style="font-size:13px; color:var(--text-muted)">📣 마케팅·홍보 <span style="color:var(--text-muted); font-size:11px;">(×0.15)</span></span>
-        <span style="font-weight:700; color:var(--amber)">5.25</span>
-      </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg3); border-radius:8px; padding:10px 14px;">
-        <span style="font-size:13px; color:var(--text-muted)">💰 수익화 <span style="color:var(--text-muted); font-size:11px;">(×0.10)</span></span>
-        <span style="font-weight:700; color:var(--red)">2.0</span>
-      </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg3); border-radius:8px; padding:10px 14px;">
-        <span style="font-size:13px; color:var(--text-muted)">🌱 커뮤니티·사용자 <span style="color:var(--text-muted); font-size:11px;">(×0.10)</span></span>
-        <span style="font-weight:700; color:var(--red)">1.5</span>
-      </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; background:linear-gradient(135deg,rgba(201,162,39,0.15),rgba(110,231,183,0.08)); border:1px solid var(--gold-dim); border-radius:8px; padding:10px 14px;">
-        <span style="font-size:13px; font-weight:700; color:var(--gold); font-family:'Cinzel',serif;">총계 (합산)</span>
-        <span style="font-weight:700; font-size:18px; color:var(--gold)">46%</span>
+        <div class="active-subtitle">현재 집중 과제 TOP 5 — 완료하면 다음 단계가 자동으로 나타납니다</div>
       </div>
     </div>
+    <div class="tasks-grid" id="activeTasksGrid"></div>
   </div>
 
+  <!-- ── ALL TASKS COLLAPSIBLE ── -->
+  <div class="all-tasks-section">
+    <button class="collapse-toggle" id="collapseToggle" onclick="toggleAllTasks()">
+      <span>전체 점검표 보기 — 20개 과제</span>
+      <span class="arrow">▼</span>
+    </button>
+    <div class="all-tasks-body" id="allTasksBody"></div>
+  </div>
 </main>
 
-<footer>
-  <strong>HebronGuide</strong> — Korean Immigrant Digital Hospitality Platform<br />
-  <span style="margin-top:4px; display:block;">hebronguide.com &nbsp;·&nbsp; 이 문서는 내부 출시 준비 현황 추적용입니다 &nbsp;·&nbsp; 기준일 2026-05-12</span>
-</footer>
+<script>
+// ═══════════════════════════════════════════════════════════
+//  TASK DATA
+// ═══════════════════════════════════════════════════════════
+const TASK_DEFINITIONS = [
+  // ── PHASE 1 — 즉시 실행 (Critical) ──
+  {
+    id: 'stripe-setup',
+    phase: 1,
+    priority: 1,
+    title: '결제 시스템 구축 (Stripe)',
+    category: '수익화',
+    detail: '파트너 교회 $100 결제 처리 불가 상태 — Stripe 계정 생성 → 결제 링크 생성 → 신청서에 연동. 수익화의 최우선 기반 작업.',
+    impact: 'critical',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'partner-campaign',
+    phase: 1,
+    priority: 2,
+    title: '파트너 교회 모집 캠페인 실행',
+    category: '교회 파트너십',
+    detail: '카카오·이메일 템플릿 완성됨 — 지금 바로 목회자 개별 연락 시작. 신청서·프로모션 킷 모두 준비 완료.',
+    impact: 'critical',
+    link: '/founding-partner.html',
+    completed: false
+  },
+  {
+    id: 'kakao-channel',
+    phase: 1,
+    priority: 3,
+    title: '카카오채널 개설',
+    category: '마케팅',
+    detail: '한인 커뮤니티 주요 소통 채널 — channel.kakao.com 에서 공식 채널 개설. 목회자 네트워크 접근의 핵심 도구.',
+    impact: 'critical',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'supabase-env',
+    phase: 1,
+    priority: 4,
+    title: 'Supabase 환경변수 설정',
+    category: '기술',
+    detail: 'Vercel 대시보드 → Settings → Environment Variables → SUPABASE_URL / SUPABASE_ANON_KEY 입력. 30분 작업으로 라이선스 시스템 즉시 활성화.',
+    impact: 'critical',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'qa-testing',
+    phase: 1,
+    priority: 5,
+    title: '실제 기기 QA 테스트',
+    category: '기술',
+    detail: 'iPhone Safari + Android Chrome 에서 전체 9탭 점검 · PWA 설치 · 오프라인 동작 확인. 출시 전 품질 관문.',
+    impact: 'critical',
+    link: null,
+    completed: false
+  },
+  // ── PHASE 2 — 2주 내 (High) ──
+  {
+    id: 'google-analytics',
+    phase: 2,
+    priority: 6,
+    title: 'Google Analytics 4 설치',
+    category: '기술',
+    detail: 'GA4 계정 생성 → GTM 또는 직접 스크립트 삽입 → 방문자·전환 추적 시작. 사용자 행동 데이터 없이는 개선 방향 불명확.',
+    impact: 'high',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'media-press',
+    phase: 2,
+    priority: 7,
+    title: '한인 미디어 보도자료 배포',
+    category: '마케팅',
+    detail: '미주중앙일보·한국일보·Radio Korea 에 보도자료 발송. HebronGuide 서비스 소개 — 한인 커뮤니티 인지도 확보.',
+    impact: 'high',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'llc-confirm',
+    phase: 2,
+    priority: 8,
+    title: 'LLC 법인 설립 확인',
+    category: '법적',
+    detail: '워싱턴주 Secretary of State 에서 HebronGuide LLC 등록 완료 확인. 법인 없이는 비즈니스 계좌 개설 불가.',
+    impact: 'high',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'business-account',
+    phase: 2,
+    priority: 9,
+    title: '비즈니스 계좌 개설',
+    category: '법적',
+    detail: '교회 재정과 분리된 HebronGuide LLC 전용 은행 계좌 개설. 재정 투명성 + 법인 운영 필수 조건.',
+    impact: 'high',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'hebron-pass-team',
+    phase: 2,
+    priority: 10,
+    title: '헤브론 패스 운영팀 지정',
+    category: '운영',
+    detail: '제공자 신청·문서·배경조회·승인 4단계 담당자 지정 · Checkr 계약. Gig 서비스 수익화의 선행 조건.',
+    impact: 'high',
+    link: null,
+    completed: false
+  },
+  // ── PHASE 3 — 1개월 내 (Medium) ──
+  {
+    id: 'city-content',
+    phase: 3,
+    priority: 11,
+    title: '나머지 7개 도시 콘텐츠 보강',
+    category: '콘텐츠',
+    detail: '시카고·필라델피아·마이애미·캔자스시티·워싱턴DC·라스베거스·오스틴 데이터 수집 및 검증.',
+    impact: 'medium',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'user-feedback',
+    phase: 3,
+    priority: 12,
+    title: '앱 내 피드백 버튼 추가',
+    category: '기술',
+    detail: 'HebronGuide.tsx 에 피드백 버튼 → Google Form 또는 이메일 연동. 사용자 목소리를 지속적으로 수집.',
+    impact: 'medium',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'seo-sitemap',
+    phase: 3,
+    priority: 13,
+    title: 'Sitemap 업데이트 · GSC 제출',
+    category: '기술',
+    detail: 'sitemap.xml 최신화 → Google Search Console 재제출 → 색인 가속. SEO 기반 유기적 트래픽 확보.',
+    impact: 'medium',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'onboarding',
+    phase: 3,
+    priority: 14,
+    title: '온보딩 튜토리얼 화면',
+    category: '기술',
+    detail: '첫 방문자용 3단계 소개 슬라이드 — 앱 주요 기능 안내. 신규 사용자 이탈 방지.',
+    impact: 'medium',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'founding-meeting',
+    phase: 3,
+    priority: 15,
+    title: '창립 파트너 교회 모임 날짜 확정',
+    category: '파트너십',
+    detail: '교회 모집 완료 후 — 전체 모임 날짜·장소 결정 · 창립 선언. 파트너십 생태계 공식 출범.',
+    impact: 'medium',
+    link: null,
+    completed: false
+  },
+  // ── PHASE 4 — 분기 내 (Later) ──
+  {
+    id: 'bundle-optimize',
+    phase: 4,
+    priority: 16,
+    title: 'JS 번들 최적화 (1.3MB→400KB)',
+    category: '기술',
+    detail: '코드 스플리팅·동적 import·Tree shaking 적용 — 로딩 3초→1초 목표. 성능 개선으로 이탈률 감소.',
+    impact: 'low',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'gig-providers',
+    phase: 4,
+    priority: 17,
+    title: 'Gig 서비스 제공자 모집',
+    category: '콘텐츠',
+    detail: '헤브론 패스 게이트 통과 후 — 청소·번역·이사·운전 제공자 각 도시 3명+. Gig 수익 모델 실현.',
+    impact: 'low',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'instagram-content',
+    phase: 4,
+    priority: 18,
+    title: '인스타그램 콘텐츠 운영',
+    category: '마케팅',
+    detail: '주 3회 이상 포스팅 — 도시 정보·교회 소개·이민자 팁 콘텐츠. SNS 기반 브랜드 인지도 구축.',
+    impact: 'low',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'review-system',
+    phase: 4,
+    priority: 19,
+    title: '사용자 리뷰·별점 시스템',
+    category: '기술',
+    detail: '맛집·서비스 제공자 별점 기능 추가 — Phase 2 핵심 기능. 사용자 참여도 및 콘텐츠 신뢰도 향상.',
+    impact: 'low',
+    link: null,
+    completed: false
+  },
+  {
+    id: 'mau-1000',
+    phase: 4,
+    priority: 20,
+    title: 'MAU 1,000명 달성',
+    category: '커뮤니티',
+    detail: '현재 ~220 → 목표 1,000 · 파트너 교회 바이럴 + SEO + SNS 통합 전략. 생태계 성장의 핵심 KPI.',
+    impact: 'low',
+    link: null,
+    completed: false
+  }
+];
 
+// ═══════════════════════════════════════════════════════════
+//  STATE MANAGEMENT
+// ═══════════════════════════════════════════════════════════
+const STORAGE_KEY = 'hg_tasks_v1';
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch (e) { return null; }
+}
+
+function saveState(completedIds) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(completedIds));
+}
+
+function getCompletedIds() {
+  const state = loadState();
+  if (!state || !Array.isArray(state)) return [];
+  return state;
+}
+
+function getTasks() {
+  const completedIds = getCompletedIds();
+  return TASK_DEFINITIONS.map(t => ({
+    ...t,
+    completed: completedIds.includes(t.id)
+  }));
+}
+
+function toggleTask(id) {
+  const completedIds = getCompletedIds();
+  let newIds;
+  if (completedIds.includes(id)) {
+    newIds = completedIds.filter(x => x !== id);
+  } else {
+    newIds = [...completedIds, id];
+  }
+  saveState(newIds);
+  render();
+}
+
+function resetAll() {
+  if (!confirm('모든 완료 기록을 초기화하시겠습니까?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+// ═══════════════════════════════════════════════════════════
+//  COMPUTED STATE
+// ═══════════════════════════════════════════════════════════
+function getActiveTasks(tasks) {
+  return tasks
+    .filter(t => !t.completed)
+    .sort((a, b) => a.priority - b.priority)
+    .slice(0, 5);
+}
+
+function getPhaseInfo(tasks) {
+  return [1, 2, 3, 4].map(phase => {
+    const phaseTasks = tasks.filter(t => t.phase === phase);
+    const done = phaseTasks.filter(t => t.completed).length;
+    return {
+      phase,
+      total: phaseTasks.length,
+      done,
+      allDone: done === phaseTasks.length,
+      pct: Math.round((done / phaseTasks.length) * 100)
+    };
+  });
+}
+
+// Detect if phase transition just happened (all active were from one phase)
+let _lastActivePhase = null;
+
+// ═══════════════════════════════════════════════════════════
+//  IMPACT HELPERS
+// ═══════════════════════════════════════════════════════════
+const IMPACT_LABELS = {
+  critical: '🔴 긴급',
+  high:     '🟠 높음',
+  medium:   '🟡 중간',
+  low:      '⚪ 낮음'
+};
+
+const PHASE_LABELS = {
+  1: 'Phase 1 — 즉시 실행',
+  2: 'Phase 2 — 2주 내',
+  3: 'Phase 3 — 1개월 내',
+  4: 'Phase 4 — 분기 내'
+};
+
+// ═══════════════════════════════════════════════════════════
+//  CONFETTI
+// ═══════════════════════════════════════════════════════════
+function launchConfetti() {
+  const wrap = document.getElementById('confettiWrap');
+  wrap.innerHTML = '';
+  const colors = ['#C9A227', '#6EE7B7', '#22c55e', '#f59e0b', '#ef4444', '#a78bfa'];
+  for (let i = 0; i < 55; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.top = '-10px';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDelay = (Math.random() * 0.8) + 's';
+    piece.style.animationDuration = (1.8 + Math.random() * 1.2) + 's';
+    piece.style.width = (6 + Math.random() * 6) + 'px';
+    piece.style.height = (6 + Math.random() * 6) + 'px';
+    wrap.appendChild(piece);
+  }
+  setTimeout(() => { wrap.innerHTML = ''; }, 3200);
+}
+
+// ═══════════════════════════════════════════════════════════
+//  CELEBRATION
+// ═══════════════════════════════════════════════════════════
+function showCelebration(phaseNum) {
+  const banner = document.getElementById('celebrationBanner');
+  const title = document.getElementById('celebrationTitle');
+  const sub = document.getElementById('celebrationSub');
+  title.textContent = `🎉 Phase ${phaseNum} 완료! +5 달성`;
+  sub.textContent = phaseNum < 4
+    ? `Phase ${phaseNum + 1} 과제가 자동으로 펼쳐집니다`
+    : '축하합니다! 모든 출시 과제를 완료했습니다 🏆';
+  banner.classList.add('visible');
+  launchConfetti();
+  setTimeout(() => banner.classList.remove('visible'), 4000);
+}
+
+// ═══════════════════════════════════════════════════════════
+//  TOGGLE ALL TASKS
+// ═══════════════════════════════════════════════════════════
+function toggleAllTasks() {
+  const btn = document.getElementById('collapseToggle');
+  const body = document.getElementById('allTasksBody');
+  btn.classList.toggle('open');
+  body.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════════════════
+//  RENDER
+// ═══════════════════════════════════════════════════════════
+function render() {
+  const tasks = getTasks();
+  const active = getActiveTasks(tasks);
+  const phaseInfos = getPhaseInfo(tasks);
+  const totalDone = tasks.filter(t => t.completed).length;
+  const pct = Math.round((totalDone / tasks.length) * 100);
+
+  // Determine current active phase
+  const firstUncompleted = tasks.find(t => !t.completed);
+  const currentPhase = firstUncompleted ? firstUncompleted.phase : 4;
+
+  // Detect phase completion for celebration
+  const previousPhaseComplete = _lastActivePhase !== null && _lastActivePhase !== currentPhase;
+  if (previousPhaseComplete && _lastActivePhase !== null) {
+    const completedPhaseInfo = phaseInfos.find(p => p.phase === _lastActivePhase);
+    if (completedPhaseInfo && completedPhaseInfo.allDone) {
+      setTimeout(() => showCelebration(_lastActivePhase), 200);
+    }
+  }
+  _lastActivePhase = currentPhase;
+
+  // ── Overall progress ──
+  document.getElementById('overallPct').textContent = pct + '%';
+  document.getElementById('overallBar').style.width = pct + '%';
+  document.getElementById('statDone').textContent = totalDone;
+  document.getElementById('statActive').textContent = active.length;
+  document.getElementById('statWaiting').textContent = tasks.length - totalDone - active.length;
+
+  const desc = pct === 100
+    ? '모든 출시 과제 완료! 🎉'
+    : `${tasks.length - totalDone}개 과제 남음 — ${PHASE_LABELS[currentPhase]}`;
+  document.getElementById('overallDesc').textContent = desc;
+
+  // ── Phase strip ──
+  const phaseStrip = document.getElementById('phaseStrip');
+  phaseStrip.innerHTML = phaseInfos.map(p => {
+    const isDone = p.allDone;
+    const isActive = p.phase === currentPhase;
+    const cls = isDone ? 'done' : (isActive ? 'active' : '');
+    const badgeCls = isDone ? 'badge-done' : (isActive ? 'badge-active' : 'badge-wait');
+    const badgeText = isDone ? '완료 ✅' : (isActive ? '진행중' : '대기');
+    const barCls = isDone ? 'c-green' : (isActive ? 'c-gold' : 'c-dim');
+    return `
+      <div class="phase-item ${cls}">
+        <div class="phase-item-top">
+          <span class="phase-name">Phase ${p.phase}</span>
+          <span class="phase-badge ${badgeCls}">${badgeText}</span>
+        </div>
+        <div class="phase-bar-wrap">
+          <div class="phase-bar-fill ${barCls}" style="width:${p.pct}%"></div>
+        </div>
+        <div class="phase-count">${p.done} / ${p.total} 완료</div>
+      </div>
+    `;
+  }).join('');
+
+  // ── Active section header ──
+  const sectionTitle = document.getElementById('activeSectionTitle');
+  if (pct === 100) {
+    sectionTitle.innerHTML = '🏆 모든 과제 완료!';
+    document.getElementById('activePhasTag').textContent = '';
+  } else {
+    sectionTitle.innerHTML = `🎯 지금 바로 해야 할 일 <span class="phase-tag" id="activePhasTag">${PHASE_LABELS[currentPhase]}</span>`;
+  }
+
+  // ── Active tasks cards ──
+  const grid = document.getElementById('activeTasksGrid');
+
+  if (pct === 100) {
+    grid.innerHTML = `
+      <div class="all-done-msg">
+        <div class="emoji">🎉</div>
+        <h2>출시 준비 완료!</h2>
+        <p>20개 과제를 모두 완료했습니다. HebronGuide를 세상에 내보낼 준비가 됐습니다.</p>
+      </div>
+    `;
+    return;
+  }
+
+  // Show active (next 5 uncompleted) + any completed tasks in current view
+  // We show all tasks by priority but visually mark completion
+  const displayTasks = [
+    ...active,
+    ...tasks.filter(t => t.completed && active.findIndex(a => a.id === t.id) === -1).slice(0, 2)
+  ].slice(0, 7); // Show active + recent completions
+
+  // Actually just show: uncompleted top 5 + the ones just completed (to allow undo)
+  const recentlyCompleted = tasks
+    .filter(t => t.completed)
+    .sort((a, b) => a.priority - b.priority)
+    .slice(0, 2);
+
+  const cardsToShow = [...active, ...recentlyCompleted.filter(r => !active.find(a => a.id === r.id))];
+
+  grid.innerHTML = cardsToShow.map((task, idx) => {
+    const isNew = !task.completed && idx < 5;
+    return renderTaskCard(task, isNew);
+  }).join('');
+
+  // ── All tasks collapsible ──
+  renderAllTasks(tasks, phaseInfos);
+}
+
+function renderTaskCard(task, isNew = false) {
+  const impactLabel = IMPACT_LABELS[task.impact] || '⚪';
+  const linkHtml = task.link
+    ? `<a class="task-link" href="${task.link}" target="_blank" rel="noopener">↗ 바로가기</a>`
+    : '';
+
+  const btnHtml = task.completed
+    ? `<button class="undo-btn" onclick="toggleTask('${task.id}')">↩ 취소</button>`
+    : `<button class="complete-btn" onclick="toggleTask('${task.id}')">✅ 완료</button>`;
+
+  return `
+    <div class="task-card impact-${task.impact} ${task.completed ? 'completed' : ''} ${isNew ? 'task-new' : ''}" id="card-${task.id}">
+      <div class="task-body">
+        <div class="task-meta">
+          <span class="impact-badge ${task.impact}">${impactLabel}</span>
+          <span class="cat-badge">${task.category}</span>
+        </div>
+        <div class="task-title">${task.title}</div>
+        <div class="task-detail">${task.detail}</div>
+        ${linkHtml}
+      </div>
+      <div class="task-action">
+        <div class="priority-num">${String(task.priority).padStart(2, '0')}</div>
+        ${btnHtml}
+      </div>
+    </div>
+  `;
+}
+
+function renderAllTasks(tasks, phaseInfos) {
+  const body = document.getElementById('allTasksBody');
+  const toggle = document.getElementById('collapseToggle');
+
+  // Update toggle label
+  const doneCount = tasks.filter(t => t.completed).length;
+  toggle.querySelector('span').textContent = `전체 점검표 보기 — ${doneCount} / ${tasks.length} 완료`;
+
+  body.innerHTML = [1, 2, 3, 4].map(phase => {
+    const pTasks = tasks.filter(t => t.phase === phase);
+    const pInfo = phaseInfos.find(p => p.phase === phase);
+    const rows = pTasks.map(t => `
+      <div class="mini-task ${t.completed ? 'completed' : ''}" onclick="toggleTask('${t.id}')">
+        <div class="mini-checkbox">${t.completed ? '✓' : ''}</div>
+        <div class="mini-task-title">${t.title}</div>
+        <div class="mini-cat">${t.category}</div>
+      </div>
+    `).join('');
+
+    const phaseLabel = PHASE_LABELS[phase];
+    return `
+      <div class="phase-group">
+        <div class="phase-group-title">
+          ${phaseLabel}
+          <span class="pcount">${pInfo.done}/${pInfo.total} 완료</span>
+        </div>
+        ${rows}
+      </div>
+    `;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════════
+render();
+</script>
 </body>
 </html>
