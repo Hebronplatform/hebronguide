@@ -5048,16 +5048,79 @@ function AmericasAdSection({ lang }: { lang: string }) {
   );
 }
 
+/* ─────────────────────────────────────────
+   HOME: 플라이휠 소셜 프루프 바 (쿠팡 원리 ①)
+   — "312개 교회 · 44개 도시" 숫자가 신뢰를 만든다
+───────────────────────────────────────── */
+function HebronFlywheelBar({ lang }: { lang: string }) {
+  const stats = [
+    { emoji: "🌍", value: "44", label: lang === "ko" ? "개 도시" : "Cities" },
+    { emoji: "⛪", value: "312+", label: lang === "ko" ? "등재 교회" : "Churches" },
+    { emoji: "🤝", value: "4", label: lang === "ko" ? "기관 파트너" : "Partners" },
+    { emoji: "🌐", value: "3", label: lang === "ko" ? "개 언어" : "Languages" },
+  ];
+  return (
+    <div style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
+      <div style={{ display: "flex", overflowX: "auto", scrollbarWidth: "none", padding: "0 8px" }}
+        className="[&::-webkit-scrollbar]:hidden">
+        {stats.map((s, i) => (
+          <div key={i} style={{
+            flexShrink: 0, display: "flex", alignItems: "center", gap: 5,
+            padding: "9px 14px",
+            borderRight: i < stats.length - 1 ? "1px solid rgba(0,0,0,0.07)" : "none",
+          }}>
+            <span style={{ fontSize: 13 }}>{s.emoji}</span>
+            <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A" }}>{s.value}</span>
+            <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#64748B" }}>{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   HOME: 창립 파트너 D-day 배너 (쿠팡 원리 ②)
+   — 희소성·긴급성: "D-234일 남음 · 등록비 면제"
+───────────────────────────────────────── */
+function FoundingPartnerBanner({ lang, onNavigate }: { lang: string; onNavigate?: (tab: number, subTab?: number) => void }) {
+  const daysLeft = Math.max(0, Math.ceil((new Date("2026-12-31").getTime() - Date.now()) / 86400000));
+  if (daysLeft === 0) return null;
+  return (
+    <div style={{ margin: "12px 16px 0", background: "linear-gradient(135deg, #FFFBEB, #FEF3C7)", border: "1.5px solid #F59E0B", borderRadius: 14, padding: "11px 14px", display: "flex", alignItems: "center", gap: 10 }}>
+      <span style={{ fontSize: 22, flexShrink: 0 }}>🌟</span>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12.5, color: "#92400E", lineHeight: 1.3 }}>
+          {lang === "ko" ? "2026 창립 파트너 교회 모집 중" : "2026 Founding Partner Churches Open"}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10.5, color: "#B45309", marginTop: 2 }}>
+          {lang === "ko"
+            ? `등록비($50) 면제 · 연회비 $20만 · IHM 인증 가정교회`
+            : `Registration fee waived · $20/yr · IHM-certified home churches`}
+        </div>
+      </div>
+      <div style={{ flexShrink: 0, textAlign: "center" }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#DC2626", background: "#FEE2E2", borderRadius: 8, padding: "3px 8px" }}>
+          D-{daysLeft}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#B45309", marginTop: 2 }}>12/31</div>
+      </div>
+    </div>
+  );
+}
+
 function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
   return (
     <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
       <CompactHeroNew />
+      <HebronFlywheelBar lang={lang} />
       <GlobalAdBanner lang={lang} />
       <QuickMenuSection onNavigate={onNavigate} />
       <AmericasAdSection lang={lang} />
       <HebronServicesAd lang={lang} onNavigate={onNavigate} />
-      <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
+      <FoundingPartnerBanner lang={lang} onNavigate={onNavigate} />
+      <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)", marginTop: 12 }} />
       <SettlementEssentialsSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <KoreanAmericanJourneySection onNavigate={onNavigate} />
