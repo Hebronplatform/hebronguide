@@ -5658,22 +5658,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <AmericasAdSection lang={lang} />
       <HebronServicesAd lang={lang} onNavigate={onNavigate} />
       <FoundingPartnerBanner lang={lang} onNavigate={onNavigate} />
-      {/* 뉴스레터 구독 배너 */}
-      <a href="/newsletter.html" style={{ textDecoration: "none", display: "block", margin: "10px 16px 0" }}>
-        <div style={{ background: "linear-gradient(135deg, rgba(110,231,183,0.12), rgba(201,162,39,0.08))", border: "1px solid rgba(110,231,183,0.3)", borderRadius: 14, padding: "12px 16px", display: "flex", alignItems: "center", gap: 12 }}>
-          <span style={{ fontSize: 24, flexShrink: 0 }}>📧</span>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#6EE7B7", marginBottom: 2 }}>
-              {lang === "ko" ? "헤브론 소식 뉴스레터" : "Hebron Newsletter"}
-            </div>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.6)" }}>
-              {lang === "ko" ? "이민·비자·커뮤니티 주간 소식 무료 구독" : "Free weekly immigration & community news"}
-            </div>
-          </div>
-          <span style={{ fontSize: 16, color: "rgba(110,231,183,0.7)" }}>›</span>
-        </div>
-      </a>
-      <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)", marginTop: 12 }} />
+      <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)", marginTop: 10 }} />
       <SettlementEssentialsSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <KoreanAmericanJourneySection onNavigate={onNavigate} />
@@ -5681,24 +5666,22 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <KoreanCultureCalendarSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <CityHubSection lang={lang} />
-      {/* 헤브론 스토어 배너 */}
-      <div style={{ margin: "12px 16px 0", background: "linear-gradient(135deg, rgba(242,153,74,0.38), rgba(75,91,215,0.30))", border: "1.5px solid rgba(242,153,74,0.7)", borderRadius: 16, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12, boxShadow: "0 2px 12px rgba(242,153,74,0.18)" }}>
+      {/* 헤브론 스토어 배너 — Coming Soon */}
+      <div style={{ margin: "12px 16px 0", background: "linear-gradient(135deg, rgba(242,153,74,0.18), rgba(75,91,215,0.14))", border: "1.5px solid rgba(242,153,74,0.35)", borderRadius: 16, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12 }}>
         <span style={{ fontSize: 28, flexShrink: 0 }}>🛒</span>
         <div style={{ flex: 1 }}>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff", marginBottom: 2 }}>
-            {lang === "ko" ? "헤브론 스토어 오픈" : "Hebron Store Now Open"}
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3 }}>
+            <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff" }}>
+              {lang === "ko" ? "헤브론 스토어" : "Hebron Store"}
+            </span>
+            <span style={{ background: "rgba(242,153,74,0.25)", border: "1px solid rgba(242,153,74,0.5)", borderRadius: 99, padding: "1px 8px", fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 9.5, color: "#F2994A", letterSpacing: "0.06em" }}>
+              COMING SOON
+            </span>
           </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.82)", lineHeight: 1.5 }}>
-            {lang === "ko"
-              ? "HebronLingua · 정착가이드 · 멤버십 직접 구매"
-              : "HebronLingua · Settlement guides · Membership"}
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>
+            {lang === "ko" ? "곧 오픈 예정입니다. 기대해 주세요." : "Opening soon. Stay tuned."}
           </div>
         </div>
-        <button
-          onClick={() => onNavigate && onNavigate(10)}
-          style={{ background: "#F2994A", border: "none", borderRadius: 10, padding: "8px 14px", fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#fff", cursor: "pointer", flexShrink: 0, boxShadow: "0 2px 8px rgba(242,153,74,0.4)" }}>
-          {lang === "ko" ? "보기 →" : "View →"}
-        </button>
       </div>
     </div>
   );
