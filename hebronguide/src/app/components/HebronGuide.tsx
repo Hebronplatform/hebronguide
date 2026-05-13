@@ -9487,6 +9487,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(0);
+  type WelcomeChurchData = { name: string; desc: string; phone?: string; kakao?: string; website?: string; email?: string; };
+  const [welcomeChurch, setWelcomeChurch] = useState<WelcomeChurchData | null>(null);
   const tabs = lang === "ko"
     ? ["소개", "교회 목록", "프로그램", "새가족", "🏆 교회 네트워크"]
     : ["About", "Churches", "Programs", "New Members", "🏆 Church Network"];
@@ -9537,6 +9539,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   ];
 
   return (
+    <>
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="⛪" titleKo="한인 교회" titleEn="Korean Churches"
@@ -9610,24 +9613,19 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                     {/* 새가족 신청 CTA — Tier 1 교회만, 연결 수단이 하나라도 있으면 표시 */}
                     {c.tier === 1 && (c.email || c.phone || c.kakao || c.website) && (
                       <div style={{ padding: "0 14px 14px 14px" }}>
-                        {/* 1행: 새가족 신청 (풀 너비) */}
-                        <a
-                          href={buildNewMemberHref({
-                            churchName:    c.name,
-                            churchEmail:   c.email,
-                            churchWebsite: c.website,
-                            lang,
-                          })}
+                        {/* 1행: 새가족 신청 (풀 너비) — 클릭 시 인앱 환영 모달 오픈 */}
+                        <button
+                          onClick={() => setWelcomeChurch(c)}
                           style={{
                             width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
                             background: "linear-gradient(135deg, rgba(201,162,39,0.9), rgba(184,144,28,0.9))",
                             color: "#0d1117", borderRadius: 10, padding: "10px 16px",
                             fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13,
-                            textDecoration: "none", transition: "opacity .15s", marginBottom: 8,
+                            border: "none", cursor: "pointer", transition: "opacity .15s", marginBottom: 8,
                           }}
                         >
                           🌿 {lang === "ko" ? "새가족 신청하기" : "Register as New Member"}
-                        </a>
+                        </button>
                         {/* 2행: 카카오·전화·홈페이지 보조 버튼 */}
                         {(c.kakao || c.phone || c.website) && (
                           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
@@ -9815,6 +9813,83 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         <CommunitySection category="church" citySlug={citySlug} lang={lang} />
       </div>
     </div>
+
+    {/* ── 새가족 환영 모달 (인앱 바텀시트) ── */}
+    {welcomeChurch && (
+      <div
+        style={{ position: "fixed", inset: 0, zIndex: 500, background: "rgba(0,0,0,0.62)", backdropFilter: "blur(6px)", display: "flex", alignItems: "flex-end", justifyContent: "center" }}
+        onClick={() => setWelcomeChurch(null)}
+      >
+        <div
+          style={{ width: "100%", maxWidth: 430, background: "#1a2535", borderRadius: "24px 24px 0 0", paddingBottom: "env(safe-area-inset-bottom,20px)", boxShadow: "0 -8px 48px rgba(0,0,0,0.5)" }}
+          onClick={e => e.stopPropagation()}
+        >
+          {/* 핸들 */}
+          <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.15)", margin: "14px auto 0" }} />
+
+          {/* 환영 헤더 */}
+          <div style={{ padding: "16px 22px 4px", textAlign: "center" }}>
+            <div style={{ fontSize: 36, marginBottom: 6 }}>🌿</div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 12, letterSpacing: ".1em", color: "#6EE7B7", marginBottom: 5 }}>
+              {lang === "ko" ? "환영합니다" : "WELCOME"}
+            </div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#ECFDF5", lineHeight: 1.3, marginBottom: 8 }}>
+              {welcomeChurch.name}
+            </div>
+            <div style={{ fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontSize: 11, color: "rgba(236,253,245,0.38)", fontStyle: "italic", lineHeight: 1.6 }}>
+              {lang === "ko"
+                ? '"내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35'
+                : '"I was a stranger and you welcomed me." — Matthew 25:35'}
+            </div>
+          </div>
+
+          {/* 교회 안내 정보 */}
+          <div style={{ margin: "14px 20px 4px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "14px 16px" }}>
+            {welcomeChurch.desc.split("\n")
+              .filter((l: string) => l.trim() && !l.startsWith("🔗") && !l.startsWith("✅"))
+              .slice(0, 4)
+              .map((line: string, i: number) => (
+                <div key={i} style={{ fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontSize: 12, color: "rgba(236,253,245,0.75)", lineHeight: 1.8 }}>
+                  {line}
+                </div>
+              ))}
+          </div>
+
+          {/* 직접 연결 버튼 */}
+          <div style={{ padding: "12px 20px 10px", display: "flex", flexDirection: "column", gap: 9 }}>
+            {welcomeChurch.kakao && (
+              <a href={welcomeChurch.kakao} target="_blank" rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "#FEE500", borderRadius: 13, padding: "14px 16px", fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#3A1D1D", textDecoration: "none" }}>
+                💬 {lang === "ko" ? "카카오채널로 연락하기" : "Contact via KakaoTalk"}
+              </a>
+            )}
+            {welcomeChurch.phone && (
+              <a href={`tel:${welcomeChurch.phone}`}
+                style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.3)", borderRadius: 13, padding: "14px 16px", fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 14, color: "#6EE7B7", textDecoration: "none" }}>
+                📞 {lang === "ko" ? `전화 연결 · ${welcomeChurch.phone}` : `Call · ${welcomeChurch.phone}`}
+              </a>
+            )}
+            {welcomeChurch.website && (
+              <a href={welcomeChurch.website} target="_blank" rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 13, padding: "14px 16px", fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 14, color: "rgba(236,253,245,0.8)", textDecoration: "none" }}>
+                🔗 {lang === "ko" ? "홈페이지 방문" : "Visit Website"}
+              </a>
+            )}
+            {welcomeChurch.email && (
+              <a href={`mailto:${welcomeChurch.email}?subject=${encodeURIComponent(lang === "ko" ? `[HebronGuide] ${welcomeChurch.name} 새가족 문의` : `[HebronGuide] ${welcomeChurch.name} New Member Inquiry`)}`}
+                style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 13, padding: "12px 16px", fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 13, color: "rgba(236,253,245,0.42)", textDecoration: "none" }}>
+                ✉️ {lang === "ko" ? "이메일 문의" : "Email Inquiry"}
+              </a>
+            )}
+            <button onClick={() => setWelcomeChurch(null)}
+              style={{ background: "transparent", border: "none", color: "rgba(236,253,245,0.22)", fontFamily: "Manrope,sans-serif", fontSize: 12, cursor: "pointer", padding: "6px", marginTop: 2 }}>
+              {lang === "ko" ? "닫기" : "Close"}
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 }
 

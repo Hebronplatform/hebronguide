@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>성도와 함께하는 VIP 환대 — 헤브론 파트너 교회 협력 문서</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:#0d1117;scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;color:#ECFDF5;line-height:1.8;min-height:100vh;}
+
+/* ── 인쇄 ── */
+@media print{
+  body{background:#fff;color:#111;}
+  header,footer{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .card{background:#f8f8f8!important;border:1px solid #ddd!important;}
+  .no-print{display:none!important;}
+}
+
+header{
+  background:linear-gradient(160deg,#1a2535 0%,#0d1117 100%);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:40px 24px 36px;
+  text-align:center;
+}
+.priv-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);
+  border-radius:99px;padding:5px 18px;
+  font-size:.7rem;font-weight:800;color:#fca5a5;letter-spacing:.07em;
+  margin-bottom:18px;
+}
+header h1{
+  font-family:'Noto Serif KR',serif;
+  font-size:1.75rem;font-weight:700;line-height:1.35;
+  color:#fff;margin-bottom:10px;
+}
+header h1 em{color:#6EE7B7;font-style:normal;}
+header .lead{
+  font-size:.88rem;color:rgba(236,253,245,.55);line-height:2;
+  max-width:480px;margin:0 auto;
+}
+
+.container{max-width:620px;margin:0 auto;padding:36px 20px 100px;}
+
+/* ── 섹션 타이틀 ── */
+.sec{margin:44px 0 18px;}
+.sec-label{
+  font-size:.68rem;font-weight:800;color:#6EE7B7;
+  letter-spacing:.12em;margin-bottom:8px;
+}
+.sec h2{
+  font-family:'Noto Serif KR',serif;
+  font-size:1.2rem;font-weight:700;color:#fff;line-height:1.4;
+}
+
+/* ── 카드 ── */
+.card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;padding:22px 24px;margin-bottom:14px;
+  position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+}
+.card.green::before{background:linear-gradient(180deg,#6EE7B7,#34d399);}
+.card.gold::before{background:linear-gradient(180deg,#C9A227,#b8901c);}
+.card.purple::before{background:linear-gradient(180deg,#a78bfa,#7c3aed);}
+.card.blue::before{background:linear-gradient(180deg,#60a5fa,#2563eb);}
+.card-title{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:7px;}
+.card-body{font-size:.84rem;color:rgba(236,253,245,.68);line-height:1.9;}
+.card-body strong{color:#ECFDF5;font-weight:700;}
+.card-body em{color:#6EE7B7;font-style:normal;font-weight:700;}
+
+/* ── 의식 전환 박스 ── */
+.mindshift{
+  background:linear-gradient(135deg,rgba(110,231,183,.08),rgba(201,162,39,.06));
+  border:1px solid rgba(110,231,183,.2);
+  border-radius:16px;padding:22px 24px;margin:20px 0;
+}
+.mindshift .q{
+  font-family:'Noto Serif KR',serif;
+  font-size:1rem;font-weight:700;color:#6EE7B7;
+  margin-bottom:6px;line-height:1.5;
+}
+.mindshift .a{
+  font-size:.85rem;color:rgba(236,253,245,.75);line-height:1.9;
+}
+
+/* ── 단계 리스트 ── */
+.steps{display:flex;flex-direction:column;gap:14px;}
+.step{display:flex;gap:16px;align-items:flex-start;}
+.step-num{
+  min-width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,#1a2535,#273444);
+  border:1.5px solid rgba(110,231,183,.35);
+  color:#6EE7B7;font-weight:900;font-size:.85rem;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-family:'Noto Sans KR',sans-serif;
+}
+.step-body{}
+.step-title{font-size:.9rem;font-weight:800;color:#fff;margin-bottom:3px;}
+.step-desc{font-size:.82rem;color:rgba(236,253,245,.6);line-height:1.75;}
+
+/* ── 업종 그리드 ── */
+.biz-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}
+.biz-item{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:12px 14px;
+}
+.biz-emoji{font-size:1.4rem;margin-bottom:4px;}
+.biz-name{font-size:.82rem;font-weight:700;color:#fff;margin-bottom:2px;}
+.biz-desc{font-size:.72rem;color:rgba(236,253,245,.5);line-height:1.5;}
+
+/* ── 성경 인용 ── */
+.verse-box{
+  background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.2);
+  border-radius:14px;padding:18px 22px;margin:20px 0;
+  text-align:center;
+}
+.verse-text{
+  font-family:'Noto Serif KR',serif;
+  font-size:.92rem;color:rgba(236,253,245,.85);
+  line-height:1.85;font-style:italic;margin-bottom:8px;
+}
+.verse-ref{font-size:.75rem;color:#C9A227;font-weight:700;}
+
+/* ── 협력 서약 ── */
+.covenant{
+  background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.06));
+  border:1px solid rgba(201,162,39,.3);
+  border-radius:16px;padding:24px;
+}
+.covenant h3{
+  font-family:'Noto Serif KR',serif;
+  font-size:1rem;font-weight:700;color:#C9A227;margin-bottom:14px;
+}
+.covenant ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.covenant li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:.85rem;color:rgba(236,253,245,.75);line-height:1.75;
+}
+.covenant li::before{
+  content:'✦';color:#C9A227;flex-shrink:0;margin-top:2px;font-size:.75rem;
+}
+
+/* ── 연락처 ── */
+.contact{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;padding:18px 20px;display:flex;align-items:center;gap:16px;
+  text-decoration:none;
+}
+.contact-icon{font-size:2rem;flex-shrink:0;}
+.contact-label{font-size:.72rem;color:rgba(236,253,245,.35);margin-bottom:2px;}
+.contact-value{font-size:.95rem;font-weight:800;color:#6EE7B7;}
+
+footer{
+  background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.06);
+  text-align:center;padding:28px 24px;
+  font-size:.72rem;color:rgba(236,253,245,.2);line-height:2;
+}
+footer strong{color:rgba(236,253,245,.4);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="priv-badge">🔒 헤브론 파트너 교회 전용 — 비공개 협력 문서</div>
+  <h1>성도와 함께하는<br><em>VIP 환대</em> 협력</h1>
+  <p class="lead">
+    교회 성도들이 자신의 업종을 헤브론가이드에 올리는 것은<br>
+    단순한 홍보가 아닙니다. 새로운 이민자를 맞이하는<br>
+    <strong style="color:#fff;">환대의 손길</strong>입니다.
+  </p>
+</header>
+
+<div class="container">
+
+  <div class="no-print" style="text-align:right;margin-bottom:4px;">
+    <a onclick="window.print()" style="font-size:.75rem;color:rgba(201,162,39,.6);cursor:pointer;font-family:'Noto Sans KR',sans-serif;">🖨️ 인쇄</a>
+  </div>
+
+  <!-- ── 성경적 근거 ── -->
+  <div class="verse-box">
+    <div class="verse-text">
+      "내가 나그네 되었을 때 너희가 영접하였고,<br>
+      헐벗었을 때에 옷을 입혔고,<br>
+      병들었을 때에 돌보았고,<br>
+      옥에 갇혔을 때에 와서 보았느니라"
+    </div>
+    <div class="verse-ref">마태복음 25:35–36</div>
+  </div>
+
+  <!-- ── 섹션 1: 의식 전환 ── -->
+  <div class="sec">
+    <div class="sec-label">SECTION 01</div>
+    <h2>성도의 업종 등재 —<br>홍보가 아니라 환대입니다</h2>
+  </div>
+
+  <div class="mindshift">
+    <div class="q">❓ "내 가게를 올리는 게 교회와 무슨 관계가 있나요?"</div>
+    <div class="a">
+      새로 이민 온 한인이 처음 도착한 날 가장 필요한 것은 신뢰할 수 있는 정보입니다.<br>
+      내 교회 성도가 운영하는 가게, 사무실, 클리닉이 가이드에 올라와 있다면 —<br>
+      그 새가족은 낯선 도시에서 <strong>교회 공동체에 의해 먼저 돌봄 받는 경험</strong>을 합니다.<br>
+      이것이 VIP 환대입니다.
+    </div>
+  </div>
+
+  <div class="mindshift">
+    <div class="q">💡 의식의 전환: "홍보"에서 "환대"로</div>
+    <div class="a">
+      기존 생각: <strong style="color:rgba(236,253,245,.4);">"내 가게를 더 알리고 싶다" → 홍보</strong><br>
+      새로운 시각: <strong style="color:#6EE7B7;">"새 이민자에게 내가 섬길 수 있다" → 환대의 도구</strong><br><br>
+      성도의 업종이 가이드에 올라오는 순간,<br>
+      그 성도는 <em>파송받은 환대 사역자</em>가 됩니다.
+    </div>
+  </div>
+
+  <!-- ── 섹션 2: 어떤 업종이 환대가 되는가 ── -->
+  <div class="sec">
+    <div class="sec-label">SECTION 02</div>
+    <h2>어떤 업종이 새가족에게<br>가장 필요한가</h2>
+  </div>
+
+  <p style="font-size:.84rem;color:rgba(236,253,245,.55);margin-bottom:14px;">
+    이민자가 도착 첫 주에 반드시 필요한 것들입니다. 우리 교회 성도 중에 아래 분야가 있다면 꼭 등재를 권유해 주세요.
+  </p>
+
+  <div class="biz-grid">
+    <div class="biz-item">
+      <div class="biz-emoji">🏥</div>
+      <div class="biz-name">의료 · 한의원</div>
+      <div class="biz-desc">한국어 진료 가능한 가정의, 한의원, 치과, 안과</div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">⚖️</div>
+      <div class="biz-name">법률 · 이민법</div>
+      <div class="biz-desc">이민 서류, 비자, 시민권 관련 법률 상담</div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">🏠</div>
+      <div class="biz-name">부동산</div>
+      <div class="biz-desc">집 구하기, 렌트, 첫 주택 구매 도움</div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">📚</div>
+      <div class="biz-name">교육 · 학원</div>
+      <div class="biz-desc">자녀 영어, 한국학교, SAT/ACT, 대학 상담</div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">💰</div>
+      <div class="biz-name">세무 · 회계</div>
+      <div class="biz-desc">세금 신고, SSN, ITIN, 소상공인 회계</div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">🍽️</div>
+      <div class="biz-name">한식당 · 카페</div>
+      <div class="biz-desc">한국 음식이 그리운 새 이민자의 첫 위로</div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">✂️</div>
+      <div class="biz-name">미용 · 뷰티</div>
+      <div class="biz-desc">한국식 헤어, 네일, 피부 관리 서비스</div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">🚗</div>
+      <div class="biz-name">자동차 · 운전</div>
+      <div class="biz-desc">중고차 구매 도움, 운전면허 취득 안내</div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">📦</div>
+      <div class="biz-name">이사 · 물류</div>
+      <div class="biz-desc">공항 픽업, 이사 도움, 짐 보관</div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">💼</div>
+      <div class="biz-name">취업 · 커리어</div>
+      <div class="biz-desc">이력서, 인터뷰 코칭, 직업 소개</div>
+    </div>
+  </div>
+
+  <!-- ── 섹션 3: 성도에게 어떻게 설명하는가 ── -->
+  <div class="sec">
+    <div class="sec-label">SECTION 03</div>
+    <h2>성도에게 어떻게<br>이야기를 꺼내는가</h2>
+  </div>
+
+  <div class="card green">
+    <div class="card-title">📢 주보 또는 광고 시간 — 1분 안내문 (예시)</div>
+    <div class="card-body">
+      <em>"우리 교회가 연계된 헤브론가이드는 전 세계 한인 이민자들이 새 도시에서 정착할 때 가장 먼저 찾는 가이드입니다. 성도님이 운영하시는 업종이나 서비스를 등재해 주시면, 새로 오시는 분들이 믿을 수 있는 분을 먼저 만나는 축복이 됩니다. 이것이 우리의 환대 사역입니다. 등재는 무료이며, 담당 목사님께 말씀해 주세요."</em>
+    </div>
+  </div>
+
+  <div class="card gold">
+    <div class="card-title">💬 소그룹 목장 나눔 질문 (목자 활용)</div>
+    <div class="card-body">
+      <strong>"만약 하나님이 새로 이민 온 한인에게 누군가를 먼저 보내주신다면, 그 '누군가'가 나일 수도 있다는 생각을 해 본 적 있으신가요?"</strong><br><br>
+      이 질문 이후, 헤브론가이드 등재를 <em>구체적인 환대의 실천 방법</em>으로 제안하세요.
+    </div>
+  </div>
+
+  <div class="card purple">
+    <div class="card-title">📱 성도에게 보내는 카카오 메시지 (복붙 사용)</div>
+    <div class="card-body">
+      <em>
+        "집사님, 안녕하세요. 목사입니다 🙏<br><br>
+        헤브론가이드(hebronguide.com)에 집사님 업소를 올려도 될까요? 새로 이민 온 분들이 믿을 수 있는 분을 찾을 때 집사님이 먼저 연결될 수 있어요. 무료이고, 등재 후 제가 직접 확인합니다. 하시겠으면 업소명, 주소, 전화번호, 홈페이지(있으면) 알려 주세요."
+      </em>
+    </div>
+  </div>
+
+  <!-- ── 섹션 4: 등재 절차 (목사가 대신 올려줌) ── -->
+  <div class="sec">
+    <div class="sec-label">SECTION 04</div>
+    <h2>등재 절차 — 목사님이 직접 진행합니다</h2>
+  </div>
+
+  <div style="background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.15);border-radius:12px;padding:14px 18px;margin-bottom:18px;font-size:.82rem;color:rgba(236,253,245,.7);line-height:1.9;">
+    ✅ 성도가 직접 입력하는 것이 아닙니다.<br>
+    <strong style="color:#6EE7B7;">목사님이 성도에게서 정보를 받아 → 폴 김 목사님께 전달 → 가이드에 등재</strong>되는 구조입니다.<br>
+    이 구조가 <strong style="color:#6EE7B7;">신뢰와 검증</strong>을 보장합니다.
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">성도에게서 업소 정보를 받습니다</div>
+        <div class="step-desc">업소명 · 업종 · 주소 · 전화 · 홈페이지(있으면) · 한 줄 소개</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">폴 김 목사님께 카카오 또는 이메일로 전달</div>
+        <div class="step-desc">이메일: gmc.hc300@gmail.com<br>"[도시명] 업소 등재 요청"이라고 제목을 적어 주세요</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">검토 후 1~3일 내 헤브론가이드에 게시</div>
+        <div class="step-desc">해당 도시 맛집·정착·도움 섹션에 노출됩니다</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">성도에게 등재 확인 링크 전달</div>
+        <div class="step-desc">성도가 직접 확인하고, 공동체에서 함께 나눌 수 있습니다</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 섹션 5: 연대의 그림 ── -->
+  <div class="sec">
+    <div class="sec-label">SECTION 05</div>
+    <h2>이것이 만들어가는<br>연대의 생태계</h2>
+  </div>
+
+  <div class="card blue">
+    <div class="card-title">🌍 교회 공동체가 연대하면 이런 일이 생깁니다</div>
+    <div class="card-body">
+      시애틀 한 교회 성도 20명이 각자의 업종을 올리면:<br><br>
+      • 한국어 진료 가능한 가정의 → <em>의료 공백 없는 도착</em><br>
+      • 이민법 전문 변호사 → <em>서류 걱정 없는 시작</em><br>
+      • 부동산 성도 → <em>안전한 집 먼저 찾기</em><br>
+      • 한식당 성도 → <em>첫날 밥 한 끼의 위로</em><br>
+      • 학원 성도 → <em>아이들 학교 걱정 덜기</em><br><br>
+      이것이 쌓이면 — 새 이민자는 <strong>교회 공동체가 이미 준비되어 기다리고 있었음</strong>을 느낍니다.<br>
+      선교보다 앞선, 삶으로 보여주는 환대입니다.
+    </div>
+  </div>
+
+  <div class="mindshift">
+    <div class="q">🎯 VIP 환대의 핵심: "준비된 교회"</div>
+    <div class="a">
+      새 이민자가 도착하기 전에 이미 가이드에 우리 교회 성도의 업소가 올라가 있다면 —<br>
+      그 순간부터 교회는 <em>반응하는 교회</em>가 아니라 <strong>준비된 교회</strong>가 됩니다.<br><br>
+      준비된 교회는 새가족을 놀라게 합니다.<br>
+      놀람은 감동이 되고, 감동은 공동체로 이어집니다.
+    </div>
+  </div>
+
+  <!-- ── 협력 서약 ── -->
+  <div class="sec">
+    <div class="sec-label">SECTION 06</div>
+    <h2>헤브론 파트너 교회<br>환대 협력 서약</h2>
+  </div>
+
+  <div class="covenant">
+    <h3>🤝 우리 교회는 이렇게 협력합니다</h3>
+    <ul>
+      <li>성도들에게 VIP 환대의 의미를 정기적으로 나누겠습니다</li>
+      <li>성도의 업종 정보를 목회자가 직접 수집하여 헤브론가이드에 전달하겠습니다</li>
+      <li>새로 이민 온 성도가 헤브론가이드를 통해 연결될 때 따뜻하게 환영하겠습니다</li>
+      <li>새가족에게 교회 성도 업소를 먼저 소개하는 문화를 만들겠습니다</li>
+      <li>이 협력이 홍보가 아닌 환대임을 성도들이 이해하도록 돕겠습니다</li>
+    </ul>
+  </div>
+
+  <!-- ── 연락처 ── -->
+  <div class="sec" style="margin-bottom:14px;">
+    <div class="sec-label">CONTACT</div>
+    <h2>등재 요청 · 문의</h2>
+  </div>
+
+  <a class="contact" href="mailto:gmc.hc300@gmail.com?subject=[헤브론가이드] 업소 등재 요청">
+    <div class="contact-icon">📧</div>
+    <div>
+      <div class="contact-label">폴 김 목사 · HebronGuide</div>
+      <div class="contact-value">gmc.hc300@gmail.com</div>
+    </div>
+  </a>
+
+</div>
+
+<footer>
+  <strong>HebronGuide</strong> — 이민자·이주자를 위한 디지털 환대 플랫폼<br>
+  🔒 헤브론 파트너 교회 전용 비공개 문서 · 외부 공유 금지<br>
+  <span style="font-size:.65rem;">© 2026 HebronGuide LLC · "내가 나그네 되었을 때 너희가 영접하였다" — 마 25:35</span>
+</footer>
+
+</body>
+</html>
