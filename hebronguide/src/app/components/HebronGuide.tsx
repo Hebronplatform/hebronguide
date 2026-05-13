@@ -5897,18 +5897,33 @@ function FoundingPartnerBanner({ lang, onNavigate }: { lang: string; onNavigate?
 
 function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
+  const ko = lang === "ko";
   return (
     <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
       <CompactHeroNew />
       <HebronFlywheelBar lang={lang} />
       <QuickMenuSection onNavigate={onNavigate} />
-      <HebronServicesAd lang={lang} onNavigate={onNavigate} />
-      <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)", marginTop: 10 }} />
+
+      {/* ── 커뮤니티 올리기 CTA ── */}
+      <div
+        onClick={() => onNavigate?.(5, 0)}
+        style={{ margin: "12px 16px 0", background: "linear-gradient(135deg,rgba(110,231,183,0.12),rgba(201,162,39,0.08))", border: "1.5px solid rgba(110,231,183,0.3)", borderRadius: 16, padding: "14px 18px", display: "flex", alignItems: "center", gap: 14, cursor: "pointer" }}>
+        <div style={{ width: 40, height: 40, borderRadius: 12, background: "rgba(110,231,183,0.15)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, flexShrink: 0 }}>✍️</div>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#6EE7B7", marginBottom: 2 }}>
+            {ko ? "이 도시 정보를 직접 올려 주세요" : "Share your local knowledge"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.55)" }}>
+            {ko ? "맛집·교회·취업·도움 — 내가 아는 것을 나누면 커뮤니티가 됩니다" : "Food · Church · Jobs · Help — sharing what you know builds community"}
+          </div>
+        </div>
+        <span style={{ color: "rgba(110,231,183,0.6)", fontSize: 18 }}>＋</span>
+      </div>
+
+      <div style={{ margin: "12px 16px 0", height: 0.5, background: "rgba(0,0,0,0.1)" }} />
       <SettlementEssentialsSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <KoreanAmericanJourneySection onNavigate={onNavigate} />
-      <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
-      <KoreanCultureCalendarSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <CityHubSection lang={lang} />
       {/* 헤브론 스토어 배너 — Coming Soon */}
@@ -8244,7 +8259,7 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="🍽️" titleKo="카페 · 맛집" titleEn="Café & Dining"
-        descKo={`${useCityConfig().nameKo} 한인 카페·맛집·상권 완전 가이드`}
+        descKo={`${useCityConfig().nameKo} — 맛집·카페·상권 가이드`}
         descEn={`Complete guide to ${useCityConfig().nameEn} Korean cafés, restaurants & district`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={(i) => { setSub(i); setFoodFilter("전체"); }} accentColor={accent} />
@@ -9028,8 +9043,8 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
   // sub-tab별 동적 헤더 — 클릭한 메뉴(병원·도움·법률 등)에 맞춰 타이틀이 바뀌도록
   const helpHeaders = [
     { emoji: "🆘", titleKo: "긴급연락 + 안전", titleEn: "Emergency & Safety", descKo: `${city.nameKo} — 911 · 한국 영사관 · 24시간 위기 핫라인`, descEn: `${city.nameEn} — 911 · Korean Consulate · 24/7 crisis lines` },
-    { emoji: "🏥", titleKo: "의료·병원 안내", titleEn: "Medical & Hospital Guide", descKo: `${city.nameKo} — 한인 의료기관 · 정신건강 · 응급 진료`, descEn: `${city.nameEn} — Korean clinics · Mental health · ER access` },
-    { emoji: "🤝", titleKo: "한인 커뮤니티", titleEn: "Korean Community", descKo: `${city.nameKo} — 한인회 · 미디어 · 한인타운`, descEn: `${city.nameEn} — Associations · Media · Koreatowns` },
+    { emoji: "🏥", titleKo: "의료·병원 안내", titleEn: "Medical & Hospital Guide", descKo: `${city.nameKo} — 의료기관 · 정신건강 · 응급 진료`, descEn: `${city.nameEn} — Clinics · Mental health · ER access` },
+    { emoji: "🤝", titleKo: "커뮤니티", titleEn: "Community", descKo: `${city.nameKo} — 한인회 · 커뮤니티 · 미디어`, descEn: `${city.nameEn} — Associations · Community · Media` },
     { emoji: "🔗", titleKo: "유용한 링크", titleEn: "Useful Links", descKo: `${city.nameKo} — 보험 · 취업 · 학교 · 무료 법률`, descEn: `${city.nameEn} — Insurance · Jobs · Schools · Free legal` },
     { emoji: "📋", titleKo: "무료 자원 (모르면 손해)", titleEn: "Free Resources Most Don't Know", descKo: `${city.nameKo} — 푸드뱅크 · 무료 법률 · VITA · 211`, descEn: `${city.nameEn} — Food banks · Free legal · VITA · 211` },
     { emoji: "⚖️", titleKo: "법률 지원", titleEn: "Legal Aid", descKo: `${city.nameKo} — 이민 · 노동 · 주거 · 무료 변호사`, descEn: `${city.nameEn} — Immigration · Labor · Housing · Free attorneys` },
@@ -10247,7 +10262,7 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="💼" titleKo="취업 가이드" titleEn="Jobs & Career"
-        descKo={`${useCityConfig().nameKo} 한인 취업·창업·비자 완전 가이드`}
+        descKo={`${useCityConfig().nameKo} — 취업·창업·비자 가이드`}
         descEn={`Complete guide to jobs, business & visas for Koreans in ${useCityConfig().nameEn}`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
@@ -14798,7 +14813,7 @@ function AppBar({ onHome }: { onHome?: () => void }) {
       <div className="flex items-center gap-[8px]">
         {/* 언어 토글: KO / EN / ES */}
         <div className="flex items-center" style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 10, padding: 2, gap: 2 }}>
-          {(["ko", "en", "es"] as const).map((l) => (
+          {(["ko", "en"] as const).map((l) => (
             <button
               key={l}
               onClick={() => setLang(l)}
@@ -14841,10 +14856,8 @@ export function HebronGuide() {
     const cityKo = city.nameKo;
     const cityEn = city.nameEn;
     document.title = lang === "ko"
-      ? `${cityKo} 한인 정착 가이드 — HebronGuide ${cityKo}`
-      : lang === "es"
-      ? `Guía de Asentamiento Coreano en ${cityEn} — HebronGuide ${cityEn}`
-      : `Korean Settlement Guide ${cityEn} — HebronGuide ${cityEn}`;
+      ? `${cityKo} 정착 가이드 — HebronGuide`
+      : `${cityEn} Settlement Guide — HebronGuide`;
   }, [lang, city]);
 
   const [settleInitialSub, setSettleInitialSub] = useState(0);
@@ -14864,7 +14877,7 @@ export function HebronGuide() {
   };
 
   const handleLangCycle = () => {
-    setLang(lang === "ko" ? "en" : lang === "en" ? "es" : "ko");
+    setLang(lang === "ko" ? "en" : "ko");
   };
 
   const handleSearchToggle = () => {
