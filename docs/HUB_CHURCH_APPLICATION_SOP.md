@@ -139,7 +139,7 @@ Tier 4 🔍 독립·무소속               — 사역팀 검토 후 매칭
 목사님의 사역에 주님의 평강이 함께하시길 기도합니다.
 
 — HebronGuide 운영팀
-   gmc.hc300@gmail.com
+   hebronplatform@gmail.com
    www.ijiguchon.org
 
 📖 비전: hebronguide.com

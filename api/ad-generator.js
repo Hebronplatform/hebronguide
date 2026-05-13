@@ -131,7 +131,7 @@ Unique Value: ${uniqueValue || 'Not specified'}`
         model: 'claude-opus-4-5',
       },
       humanReviewRequired: true,
-      reviewerEmail: 'gmc.hc300@gmail.com',
+      reviewerEmail: 'hebronplatform@gmail.com',
       message: '광고가 생성되었습니다. 폴 김 목사 검수 후 게시됩니다 (보통 24시간 이내).',
     })
 

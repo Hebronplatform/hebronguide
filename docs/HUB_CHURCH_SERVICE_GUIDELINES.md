@@ -321,7 +321,7 @@ HebronGuide를 통해 연락드립니다.
 □ 1. 파트너 코덱스 읽기 + 서약 서명
 □ 2. 이 지침서 숙지 확인
 □ 3. HebronGuide 앱 설치 + 탐색
-□ 4. 허브교회 배지 등록 (gmc.hc300@gmail.com)
+□ 4. 허브교회 배지 등록 (hebronplatform@gmail.com)
 □ 5. 첫 새가족 연결 전 모의 연습 (폴 김 목사와 줌)
 □ 6. 도시 내 다른 허브교회 목사님 인사
 □ 7. 파트너 카카오 단톡방 초대
@@ -335,7 +335,7 @@ HebronGuide를 통해 연락드립니다.
 ```
 새가족 위기 상황 (학대·위험·응급):
   → 즉시 911 신고
-  → 폴 김 목사에게 즉시 연락: gmc.hc300@gmail.com
+  → 폴 김 목사에게 즉시 연락: hebronplatform@gmail.com
   → HebronGuide 앱 도움 탭의 긴급 연락처 활용
 
 파트너 갈등 상황:
@@ -344,7 +344,7 @@ HebronGuide를 통해 연락드립니다.
   → 중재 불가 시 해당 서비스 일시 중단
 
 브랜드 위반 신고:
-  → gmc.hc300@gmail.com으로 즉시 보고
+  → hebronplatform@gmail.com으로 즉시 보고
   → 24시간 내 조사 시작
 ```
 

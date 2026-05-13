@@ -423,7 +423,7 @@ Level 3: 목회자·선교사 네트워크
    멈추고 다시 시작하겠습니다.
 
 폴 김 목사 (시애틀지구촌교회·HebronGuide)
-gmc.hc300@gmail.com | www.ijiguchon.org
+hebronplatform@gmail.com | www.ijiguchon.org
 ```
 
 ---

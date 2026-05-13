@@ -376,7 +376,7 @@
 
 편하신 날짜와 시간 알려주시면 제가 맞추겠습니다.
 감사합니다. — 폴 김 목사
-gmc.hc300@gmail.com | www.ijiguchon.org
+hebronplatform@gmail.com | www.ijiguchon.org
 ```
 
 ### 소개 요청 메시지 (1차 미팅 후)
@@ -497,4 +497,4 @@ A: 네, 해외 도시는 선교사님이 허브 역할을 합니다.
 
 *작성: 폴 김 목사 + HebronGuide | 2026-05-09*
 *기반: 마태복음 25:35 "나그네를 영접하였다"*
-*문의: gmc.hc300@gmail.com | www.ijiguchon.org | hebronguide.com*
+*문의: hebronplatform@gmail.com | www.ijiguchon.org | hebronguide.com*

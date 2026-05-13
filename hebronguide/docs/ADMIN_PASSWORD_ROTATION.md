@@ -191,7 +191,7 @@ https://hebronguide.com/seattle/admin
 
 ### 2027 Q1 — Magic Link 로그인
 - 비밀번호 대신 이메일 매직 링크
-- gmc.hc300@gmail.com 으로 1회용 로그인 링크
+- hebronplatform@gmail.com 으로 1회용 로그인 링크
 - 비밀번호 자체 폐기 가능
 
 ### 2027 Q3 — Role-Based Access (RBAC)
@@ -203,7 +203,7 @@ https://hebronguide.com/seattle/admin
 
 ## 📞 비상 연락처
 
-- 폴 김 (1차 관리자): gmc.hc300@gmail.com
+- 폴 김 (1차 관리자): hebronplatform@gmail.com
 - Supabase 지원: https://supabase.com/support
 - 시애틀지구촌교회 IT 사역팀: (배정 시 추가)
 

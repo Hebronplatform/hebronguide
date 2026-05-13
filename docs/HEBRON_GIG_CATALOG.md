@@ -283,7 +283,7 @@ Hebron Fast (클라이언트): $9.99/월
    3. Hebron TechFix (컴퓨터수리)
    4. Hebron TutorAce (학과튜터)
    5. Hebron PetSit (강아지 보기)
-✅ 이메일로 제공자 모집: gmc.hc300@gmail.com
+✅ 이메일로 제공자 모집: hebronplatform@gmail.com
 ✅ 카카오오픈채팅 '헤브론기그' 개설
 ```
 

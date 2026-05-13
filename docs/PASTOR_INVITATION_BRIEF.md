@@ -108,7 +108,7 @@
 **오늘 받으시고 — 주일 묵상 시간을 거치신 후 — 월요일 영상 통화로 깊은 대화 나눠요.**
 
 - 📞 영상 통화: 월요일 (협의)
-- ✉️ 이메일: gmc.hc300@gmail.com
+- ✉️ 이메일: hebronplatform@gmail.com
 - 🌐 hebronguide.com
 
 ---
