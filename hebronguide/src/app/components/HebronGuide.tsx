@@ -432,8 +432,8 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
       "https://videos.pexels.com/video-files/7005445/7005445-hd_1920_1080_30fps.mp4",    // LA Dusk and Dawn
     ],
     population: "50만+", state: "California",
-    taglineKo: "가장 큰 한인 커뮤니티", taglineEn: "The largest Korean community.",
-    taglineEs: "La comunidad coreana más grande.",
+    taglineKo: "꿈의 도시, 모두의 LA", taglineEn: "City of dreams, everyone's LA.",
+    taglineEs: "Ciudad de sueños, el LA de todos.",
   },
   toronto: {
     slug: "toronto", nameKo: "토론토", nameEn: "Toronto", color: "#06B6D4",
@@ -553,43 +553,43 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   chicago:    { slug: "chicago",    nameKo: "시카고",    nameEn: "Chicago",      color: "#1D4ED8", heroVideo: "", population: "6.2만+", state: "Illinois",    taglineKo: "바람의 도시, 우리의 집",       taglineEn: "City of Winds, Home of Ours.",   taglineEs: "Ciudad de los Vientos, nuestro hogar." },
   dc:         { slug: "dc",         nameKo: "워싱턴 DC", nameEn: "Washington DC",color: "#DC2626", heroVideo: "", population: "9.3만+", state: "Virginia/MD", taglineKo: "나라의 심장에서",             taglineEn: "At the Heart of the Nation.",    taglineEs: "En el corazón de la nación." },
   sandiego:   { slug: "sandiego",   nameKo: "샌디에고",  nameEn: "San Diego",    color: "#0891B2", heroVideo: "", population: "2.5만+", state: "California",  taglineKo: "태평양이 품은 도시",          taglineEn: "The City the Pacific Holds.",    taglineEs: "La ciudad que abraza el Pacífico." },
-  honolulu:   { slug: "honolulu",   nameKo: "호놀룰루",  nameEn: "Honolulu",     color: "#10B981", heroVideo: "", population: "2.3만+", state: "Hawaii",      taglineKo: "섬 위의 한인",               taglineEn: "Koreans on the Island.",         taglineEs: "Coreanos en la isla." },
-  portland:   { slug: "portland",   nameKo: "포틀랜드",  nameEn: "Portland",     color: "#BE185D", heroVideo: "", population: "1만+",   state: "Oregon",      taglineKo: "장미 도시의 한인들",          taglineEn: "Koreans in the Rose City.",      taglineEs: "Coreanos en la Ciudad de las Rosas." },
+  honolulu:   { slug: "honolulu",   nameKo: "호놀룰루",  nameEn: "Honolulu",     color: "#10B981", heroVideo: "", population: "2.3만+", state: "Hawaii",      taglineKo: "태평양의 섬, 새로운 출발",               taglineEn: "Island life, fresh start.",         taglineEs: "Vida isleña, nuevo comienzo." },
+  portland:   { slug: "portland",   nameKo: "포틀랜드",  nameEn: "Portland",     color: "#BE185D", heroVideo: "", population: "1만+",   state: "Oregon",      taglineKo: "장미 도시, 새로운 씨앗",          taglineEn: "Bloom in the Rose City.",      taglineEs: "Florecer en la Ciudad de las Rosas." },
   denver:     { slug: "denver",     nameKo: "덴버",      nameEn: "Denver",       color: "#92400E", heroVideo: "", population: "1.5만+", state: "Colorado",    taglineKo: "산을 바라보며",              taglineEn: "Looking Out to the Mountains.",  taglineEs: "Con vista a las montañas." },
 
   // ── 북미 확장 Tier B (Isolation: 3-4) ──────────────────────────────────
-  calgary:    { slug: "calgary",    nameKo: "캘거리",    nameEn: "Calgary",      color: "#D97706", heroVideo: "", population: "1.3만+", state: "Alberta",     taglineKo: "알버타의 한인",              taglineEn: "Koreans of Alberta.",            taglineEs: "Coreanos de Alberta." },
-  edmonton:   { slug: "edmonton",   nameKo: "에드먼턴",  nameEn: "Edmonton",     color: "#059669", heroVideo: "", population: "8천+",   state: "Alberta",     taglineKo: "북쪽 평원의 한인",           taglineEn: "Koreans on the Northern Plains.", taglineEs: "Coreanos en las llanuras del norte." },
-  ottawa:     { slug: "ottawa",     nameKo: "오타와",    nameEn: "Ottawa",       color: "#DC2626", heroVideo: "", population: "5천+",   state: "Ontario",     taglineKo: "수도의 조용한 한인",          taglineEn: "Quiet Koreans in the Capital.",  taglineEs: "Coreanos tranquilos en la capital." },
-  winnipeg:   { slug: "winnipeg",   nameKo: "위니펙",    nameEn: "Winnipeg",     color: "#7C3AED", heroVideo: "", population: "4천+",   state: "Manitoba",    taglineKo: "가장 고립된 캐나다 한인",     taglineEn: "Canada's Most Isolated Korean Community.", taglineEs: "La comunidad coreana más aislada de Canadá." },
-  phoenix:    { slug: "phoenix",    nameKo: "피닉스",    nameEn: "Phoenix",      color: "#EA580C", heroVideo: "", population: "1.2만+", state: "Arizona",     taglineKo: "사막 속의 한인",             taglineEn: "Koreans in the Desert.",         taglineEs: "Coreanos en el desierto." },
-  charlotte:  { slug: "charlotte",  nameKo: "샬럿",      nameEn: "Charlotte",    color: "#0EA5E9", heroVideo: "", population: "1.5만+", state: "N. Carolina", taglineKo: "남부의 성장하는 한인 도시",    taglineEn: "The South's Growing Korean City.", taglineEs: "La creciente ciudad coreana del Sur." },
-  raleigh:    { slug: "raleigh",    nameKo: "롤리",      nameEn: "Raleigh",      color: "#2563EB", heroVideo: "", population: "1만+",   state: "N. Carolina", taglineKo: "연구 삼각지의 한인",          taglineEn: "Koreans in the Research Triangle.", taglineEs: "Coreanos en el Triángulo de Investigación." },
-  columbus:   { slug: "columbus",   nameKo: "콜럼버스",  nameEn: "Columbus",     color: "#B91C1C", heroVideo: "", population: "1.2만+", state: "Ohio",        taglineKo: "오하이오 한인의 도시",         taglineEn: "Home of Ohio's Korean Community.", taglineEs: "Hogar de la comunidad coreana de Ohio." },
-  minneapolis:{ slug: "minneapolis",nameKo: "미니애폴리스",nameEn: "Minneapolis",  color: "#7C3AED", heroVideo: "", population: "8천+",   state: "Minnesota",   taglineKo: "호수 도시의 한인",           taglineEn: "Koreans in the Lake City.",      taglineEs: "Coreanos en la ciudad de los lagos." },
+  calgary:    { slug: "calgary",    nameKo: "캘거리",    nameEn: "Calgary",      color: "#D97706", heroVideo: "", population: "1.3만+", state: "Alberta",     taglineKo: "알버타의 새 출발",              taglineEn: "A new start in Alberta.",            taglineEs: "Un nuevo comienzo en Alberta." },
+  edmonton:   { slug: "edmonton",   nameKo: "에드먼턴",  nameEn: "Edmonton",     color: "#059669", heroVideo: "", population: "8천+",   state: "Alberta",     taglineKo: "북쪽 평원의 새 출발",           taglineEn: "New roots on the Northern Plains.", taglineEs: "Nuevas raíces en las llanuras del norte." },
+  ottawa:     { slug: "ottawa",     nameKo: "오타와",    nameEn: "Ottawa",       color: "#DC2626", heroVideo: "", population: "5천+",   state: "Ontario",     taglineKo: "수도에서의 새 시작",          taglineEn: "A quiet new start in the Capital.",  taglineEs: "Un nuevo comienzo tranquilo en la capital." },
+  winnipeg:   { slug: "winnipeg",   nameKo: "위니펙",    nameEn: "Winnipeg",     color: "#7C3AED", heroVideo: "", population: "4천+",   state: "Manitoba",    taglineKo: "대평원의 따뜻한 커뮤니티",     taglineEn: "Warm community on the great plains.", taglineEs: "Comunidad cálida en las grandes praderas." },
+  phoenix:    { slug: "phoenix",    nameKo: "피닉스",    nameEn: "Phoenix",      color: "#EA580C", heroVideo: "", population: "1.2만+", state: "Arizona",     taglineKo: "사막 속 새로운 뿌리",             taglineEn: "New roots in the desert sun.",         taglineEs: "Nuevas raíces bajo el sol del desierto." },
+  charlotte:  { slug: "charlotte",  nameKo: "샬럿",      nameEn: "Charlotte",    color: "#0EA5E9", heroVideo: "", population: "1.5만+", state: "N. Carolina", taglineKo: "남부의 빠른 성장, 함께",    taglineEn: "The South's fastest-growing community.", taglineEs: "La ciudad de más rápido crecimiento del Sur." },
+  raleigh:    { slug: "raleigh",    nameKo: "롤리",      nameEn: "Raleigh",      color: "#2563EB", heroVideo: "", population: "1만+",   state: "N. Carolina", taglineKo: "연구의 도시, 새로운 가능성",          taglineEn: "Innovation and new beginnings.", taglineEs: "Innovación y nuevos comienzos." },
+  columbus:   { slug: "columbus",   nameKo: "콜럼버스",  nameEn: "Columbus",     color: "#B91C1C", heroVideo: "", population: "1.2만+", state: "Ohio",        taglineKo: "오하이오의 중심, 새로운 집",         taglineEn: "Ohio's heart, your new home.", taglineEs: "El corazón de Ohio, tu nuevo hogar." },
+  minneapolis:{ slug: "minneapolis",nameKo: "미니애폴리스",nameEn: "Minneapolis",  color: "#7C3AED", heroVideo: "", population: "8천+",   state: "Minnesota",   taglineKo: "호수와 함께하는 새 출발",           taglineEn: "Fresh start by the lakes.",      taglineEs: "Nuevo comienzo junto a los lagos." },
   tucson:     { slug: "tucson",     nameKo: "투손",      nameEn: "Tucson",       color: "#CA8A04", heroVideo: "", population: "3천+",   state: "Arizona",     taglineKo: "사막의 대학 도시",           taglineEn: "Desert University City.",        taglineEs: "Ciudad universitaria del desierto." },
 
   // ── 북미 소도시·군사도시 Tier C (Isolation: 4-5) ─────────────────────────
-  fayetteville:{ slug: "fayetteville",nameKo: "페이엣빌", nameEn: "Fayetteville", color: "#15803D", heroVideo: "", population: "5천+",  state: "N. Carolina", taglineKo: "부대 옆 한인 가족들",         taglineEn: "Korean Families Near the Base.",  taglineEs: "Familias coreanas cerca de la base." },
-  killeen:    { slug: "killeen",    nameKo: "킬린",      nameEn: "Killeen",      color: "#854D0E", heroVideo: "", population: "4천+",   state: "Texas",       taglineKo: "포트 카바조스 한인 가족",      taglineEn: "Korean Families at Fort Cavazos.", taglineEs: "Familias coreanas en Fort Cavazos." },
+  fayetteville:{ slug: "fayetteville",nameKo: "페이엣빌", nameEn: "Fayetteville", color: "#15803D", heroVideo: "", population: "5천+",  state: "N. Carolina", taglineKo: "군인 가족의 도시, 함께",         taglineEn: "Military families, all together.",  taglineEs: "Familias militares, todos juntos." },
+  killeen:    { slug: "killeen",    nameKo: "킬린",      nameEn: "Killeen",      color: "#854D0E", heroVideo: "", population: "4천+",   state: "Texas",       taglineKo: "포트 카바조스, 새 가족",      taglineEn: "New family at Fort Cavazos.", taglineEs: "Nueva familia en Fort Cavazos." },
   anchorage:  { slug: "anchorage",  nameKo: "앵커리지",  nameEn: "Anchorage",    color: "#0F766E", heroVideo: "", population: "5천+",   state: "Alaska",      taglineKo: "가장 북쪽의 한인 도시",        taglineEn: "America's Northernmost Korean City.", taglineEs: "La ciudad coreana más al norte." },
 
   // ── 국제 확장 Tier A ────────────────────────────────────────────────────
-  sydney:     { slug: "sydney",     nameKo: "시드니",    nameEn: "Sydney",       color: "#0284C7", heroVideo: "", population: "7만+",   state: "N.S.W.",      taglineKo: "남반구의 한국",              taglineEn: "Korea in the Southern Hemisphere.", taglineEs: "Corea en el hemisferio sur." },
-  melbourne:  { slug: "melbourne",  nameKo: "멜버른",    nameEn: "Melbourne",    color: "#9333EA", heroVideo: "", population: "3만+",   state: "Victoria",    taglineKo: "카페 도시의 한인",           taglineEn: "Koreans in the Coffee City.",     taglineEs: "Coreanos en la ciudad del café." },
-  brisbane:   { slug: "brisbane",   nameKo: "브리즈번",  nameEn: "Brisbane",     color: "#CA8A04", heroVideo: "", population: "1.8만+", state: "Queensland",  taglineKo: "선샤인 스테이트의 한인",       taglineEn: "Koreans in the Sunshine State.",  taglineEs: "Coreanos en el Estado del Sol." },
-  perth:      { slug: "perth",      nameKo: "퍼스",      nameEn: "Perth",        color: "#0891B2", heroVideo: "", population: "1.2만+", state: "W. Australia",taglineKo: "가장 외진 한인 도시",         taglineEn: "The World's Most Remote Korean City.", taglineEs: "La ciudad coreana más remota del mundo." },
+  sydney:     { slug: "sydney",     nameKo: "시드니",    nameEn: "Sydney",       color: "#0284C7", heroVideo: "", population: "7만+",   state: "N.S.W.",      taglineKo: "남반구의 새로운 집",              taglineEn: "Your new home down under.", taglineEs: "Tu nuevo hogar en el hemisferio sur." },
+  melbourne:  { slug: "melbourne",  nameKo: "멜버른",    nameEn: "Melbourne",    color: "#9333EA", heroVideo: "", population: "3만+",   state: "Victoria",    taglineKo: "카페 문화의 도시, 새로운 시작",           taglineEn: "Start fresh in the Coffee City.",     taglineEs: "Nuevo comienzo en la ciudad del café." },
+  brisbane:   { slug: "brisbane",   nameKo: "브리즈번",  nameEn: "Brisbane",     color: "#CA8A04", heroVideo: "", population: "1.8만+", state: "Queensland",  taglineKo: "선샤인 스테이트, 밝은 출발",       taglineEn: "Bright new start in the Sunshine State.",  taglineEs: "Nuevo comienzo luminoso en el Estado del Sol." },
+  perth:      { slug: "perth",      nameKo: "퍼스",      nameEn: "Perth",        color: "#0891B2", heroVideo: "", population: "1.2만+", state: "W. Australia",taglineKo: "세계 최서단, 나만의 공간",         taglineEn: "World's most remote, your own space.", taglineEs: "La ciudad más remota, tu propio espacio." },
   auckland:   { slug: "auckland",   nameKo: "오클랜드",  nameEn: "Auckland",     color: "#16A34A", heroVideo: "", population: "2.5만+", state: "New Zealand", taglineKo: "키위와 함께",               taglineEn: "Together with the Kiwis.",       taglineEs: "Junto con los kiwis." },
   saopaulo:   { slug: "saopaulo",   nameKo: "상파울루",  nameEn: "São Paulo",    color: "#DC2626", heroVideo: "", population: "5만+",   state: "Brazil",      taglineKo: "남미 한인의 심장",           taglineEn: "Heart of Korean South America.",  taglineEs: "El corazón del sudamérica coreana." },
-  london:     { slug: "london",     nameKo: "런던",      nameEn: "London",       color: "#1E40AF", heroVideo: "", population: "4.5만+", state: "England",     taglineKo: "안개 속의 한인",             taglineEn: "Koreans in the Fog.",            taglineEs: "Coreanos en la niebla." },
+  london:     { slug: "london",     nameKo: "런던",      nameEn: "London",       color: "#1E40AF", heroVideo: "", population: "4.5만+", state: "England",     taglineKo: "안개의 도시, 새로운 역사",             taglineEn: "Write your story in the Fog.",            taglineEs: "Escribe tu historia entre la niebla." },
 
   // ── 국제 확장 Tier B-C ──────────────────────────────────────────────────
-  singapore:  { slug: "singapore",  nameKo: "싱가포르",  nameEn: "Singapore",    color: "#DC2626", heroVideo: "", population: "2.2만+", state: "Singapore",   taglineKo: "도시국가의 한인",            taglineEn: "Koreans in the City-State.",     taglineEs: "Coreanos en la ciudad-estado." },
-  bangkok:    { slug: "bangkok",    nameKo: "방콕",      nameEn: "Bangkok",      color: "#9333EA", heroVideo: "", population: "2만+",   state: "Thailand",    taglineKo: "황금 도시의 한인",           taglineEn: "Koreans in the Golden City.",    taglineEs: "Coreanos en la ciudad dorada." },
-  hochiminh:  { slug: "hochiminh",  nameKo: "호치민",    nameEn: "Ho Chi Minh City", color: "#BE185D", heroVideo: "", population: "6만+", state: "Vietnam",    taglineKo: "비즈니스 한인의 도시",        taglineEn: "City of Business Koreans.",      taglineEs: "Ciudad de los coreanos de negocios." },
-  dubai:      { slug: "dubai",      nameKo: "두바이",    nameEn: "Dubai",        color: "#CA8A04", heroVideo: "", population: "8천+",   state: "UAE",         taglineKo: "사막의 황금 도시 한인",        taglineEn: "Koreans in the Desert Gold City.", taglineEs: "Coreanos en la ciudad dorada del desierto." },
-  frankfurt:  { slug: "frankfurt",  nameKo: "프랑크푸르트",nameEn: "Frankfurt",   color: "#1D4ED8", heroVideo: "", population: "7천+",   state: "Germany",     taglineKo: "유럽 금융의 중심에서",         taglineEn: "At Europe's Financial Core.",    taglineEs: "En el núcleo financiero de Europa." },
-  berlin:     { slug: "berlin",     nameKo: "베를린",    nameEn: "Berlin",       color: "#374151", heroVideo: "", population: "5천+",   state: "Germany",     taglineKo: "장벽을 넘어선 한인",          taglineEn: "Koreans Beyond the Wall.",       taglineEs: "Coreanos más allá del muro." },
+  singapore:  { slug: "singapore",  nameKo: "싱가포르",  nameEn: "Singapore",    color: "#DC2626", heroVideo: "", population: "2.2만+", state: "Singapore",   taglineKo: "아시아의 허브, 모두의 도시",            taglineEn: "Asia's hub, everyone's city.",     taglineEs: "El hub de Asia, la ciudad de todos." },
+  bangkok:    { slug: "bangkok",    nameKo: "방콕",      nameEn: "Bangkok",      color: "#9333EA", heroVideo: "", population: "2만+",   state: "Thailand",    taglineKo: "황금 도시, 새로운 이야기",           taglineEn: "New stories in the Golden City.",    taglineEs: "Nuevas historias en la ciudad dorada." },
+  hochiminh:  { slug: "hochiminh",  nameKo: "호치민",    nameEn: "Ho Chi Minh City", color: "#BE185D", heroVideo: "", population: "6만+", state: "Vietnam",    taglineKo: "역동적인 비즈니스 도시",        taglineEn: "The dynamic city of business.",      taglineEs: "La ciudad dinámica de los negocios." },
+  dubai:      { slug: "dubai",      nameKo: "두바이",    nameEn: "Dubai",        color: "#CA8A04", heroVideo: "", population: "8천+",   state: "UAE",         taglineKo: "사막의 황금 도시",        taglineEn: "The Golden City of the Desert.", taglineEs: "La Ciudad Dorada del Desierto." },
+  frankfurt:  { slug: "frankfurt",  nameKo: "프랑크푸르트",nameEn: "Frankfurt",   color: "#1D4ED8", heroVideo: "", population: "7천+",   state: "Germany",     taglineKo: "유럽 금융 허브, 새로운 기회",         taglineEn: "At Europe's Financial Core.",    taglineEs: "En el núcleo financiero de Europa." },
+  berlin:     { slug: "berlin",     nameKo: "베를린",    nameEn: "Berlin",       color: "#374151", heroVideo: "", population: "5천+",   state: "Germany",     taglineKo: "장벽을 넘어, 자유의 도시",          taglineEn: "Beyond the Wall, city of freedom.",       taglineEs: "Más allá del muro, ciudad de libertad." },
   paris:      { slug: "paris",      nameKo: "파리",      nameEn: "Paris",        color: "#7C3AED", heroVideo: "", population: "1.5만+", state: "France",      taglineKo: "빛의 도시의 한인",           taglineEn: "Koreans in the City of Light.",  taglineEs: "Coreanos en la Ciudad de la Luz." },
 };
 
@@ -3810,7 +3810,11 @@ function CompactHeroNew() {
           fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 27, color: "#fff",
           letterSpacing: "-0.6px", textShadow: "0 2px 20px rgba(0,0,0,0.65)", lineHeight: 1.15,
         }}>
-          HebronGuide <span style={{ color: city.color }}>{lang === "ko" ? city.nameKo : city.nameEn}</span>
+          <span style={{ color: city.color }}>{lang === "ko" ? city.nameKo : city.nameEn}</span>
+          {" "}
+          <span style={{ fontWeight: 400, fontSize: 20, opacity: 0.9 }}>
+            {lang === "ko" ? "정착 가이드" : lang === "es" ? "Guía de Asentamiento" : "Settlement Guide"}
+          </span>
         </div>
         <div style={{
           fontFamily: "Manrope,sans-serif", fontWeight: 400, fontSize: 12.5,
@@ -4931,9 +4935,34 @@ function getCommunityByCategory(citySlug: string, category: string): any[] {
   return readCommunity().filter(i => i.citySlug === citySlug && i.category === category);
 }
 
+// ── 자동 번역 (MyMemory 무료 API) ────────────────────────────
+async function autoTranslate(text: string, from: string, to: string): Promise<string> {
+  if (!text.trim() || from === to) return text;
+  try {
+    const res = await fetch(
+      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text.slice(0,400))}&langpair=${from}|${to}`
+    );
+    const data = await res.json();
+    return data?.responseData?.translatedText ?? text;
+  } catch { return text; }
+}
+
+async function translateAll(text: string, srcLang: string): Promise<{ko:string;en:string;es:string}> {
+  if (!text.trim()) return { ko:"", en:"", es:"" };
+  const [ko, en, es] = await Promise.all([
+    srcLang === "ko" ? text : autoTranslate(text, srcLang, "ko"),
+    srcLang === "en" ? text : autoTranslate(text, srcLang, "en"),
+    srcLang === "es" ? text : autoTranslate(text, srcLang, "es"),
+  ]);
+  return { ko, en, es };
+}
+
 // 커뮤니티 아이템 카드
 function CommunityItemCard({ item, lang }: { item: any; lang: string }) {
-  const ko = lang === "ko";
+  // 언어에 맞는 설명 선택 (번역된 버전 우선, 없으면 원본)
+  const desc = lang === "ko" ? (item.desc_ko || item.desc)
+             : lang === "es" ? (item.desc_es || item.desc)
+             : (item.desc_en || item.desc);
   return (
     <div style={{
       background: "rgba(110,231,183,0.05)", border: "1px solid rgba(110,231,183,0.28)",
@@ -4943,13 +4972,13 @@ function CommunityItemCard({ item, lang }: { item: any; lang: string }) {
         <span style={{ fontSize: 18 }}>{item.emoji || "🌱"}</span>
         <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#ECFDF5" }}>{item.name}</span>
         <span style={{ marginLeft: "auto", background: "rgba(110,231,183,0.15)", border: "1px solid rgba(110,231,183,0.35)", color: "#6EE7B7", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700, flexShrink: 0 }}>
-          {ko ? "✅ 커뮤니티" : "✅ Community"}
+          ✅ {lang === "ko" ? "커뮤니티" : lang === "es" ? "Comunidad" : "Community"}
         </span>
       </div>
-      {item.desc && <div style={{ fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.65, marginBottom: 6 }}>{item.desc}</div>}
+      {desc && <div style={{ fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.65, marginBottom: 6 }}>{desc}</div>}
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
         {item.contact && <a href={`tel:${item.contact}`} style={{ fontSize: 11, color: "#6EE7B7", textDecoration: "none", fontWeight: 700 }}>📞 {item.contact}</a>}
-        {item.website && <a href={item.website} target="_blank" rel="noopener" style={{ fontSize: 11, color: "#6EE7B7", textDecoration: "none", fontWeight: 700 }}>🔗 웹사이트</a>}
+        {item.website && <a href={item.website} target="_blank" rel="noopener" style={{ fontSize: 11, color: "#6EE7B7", textDecoration: "none", fontWeight: 700 }}>🔗 {lang === "ko" ? "웹사이트" : lang === "es" ? "Sitio web" : "Website"}</a>}
         <span style={{ fontSize: 10, color: "rgba(236,253,245,0.3)", marginLeft: "auto" }}>{item.addedAt}</span>
       </div>
     </div>
@@ -4965,24 +4994,45 @@ function CommunitySection({ category, citySlug, lang }: { category: string; city
   const [submitted, setSubmitted] = useState(false);
   const label = COMMUNITY_LABELS[category] || COMMUNITY_LABELS.settle;
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!form.name.trim() || !form.contact.trim()) return;
-    const item = {
+    const srcLang = lang; // 현재 앱 언어 = 입력 언어
+    const desc = form.desc.trim();
+
+    // 즉시 원본으로 먼저 표시
+    const item: any = {
       category, citySlug,
       name: form.name.trim(),
       contact: form.contact.trim(),
-      desc: form.desc.trim(),
+      desc,
       website: form.website.trim(),
       emoji: label.emoji,
-      lang,
+      lang: srcLang,
     };
     addCommunityItem(item);
     setItems(getCommunityByCategory(citySlug, category));
-    // 서버에 자동 저장 (Supabase Edge Function → KV)
-    postToServer(item);
     setSubmitted(true);
     setForm({ name: "", contact: "", desc: "", website: "" });
     setTimeout(() => { setOpen(false); setSubmitted(false); }, 2500);
+
+    // 백그라운드에서 3개 언어 번역 후 저장
+    if (desc) {
+      translateAll(desc, srcLang).then(translated => {
+        const items = readCommunity();
+        const idx = items.findIndex(i =>
+          i.name === item.name && i.contact === item.contact && i.citySlug === citySlug
+        );
+        if (idx >= 0) {
+          items[idx].desc_ko = translated.ko;
+          items[idx].desc_en = translated.en;
+          items[idx].desc_es = translated.es;
+          writeCommunity(items);
+        }
+      }).catch(() => {});
+    }
+
+    // 서버에도 저장
+    postToServer({ ...item });
   };
 
   const inputStyle: React.CSSProperties = {

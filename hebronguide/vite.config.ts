@@ -36,7 +36,7 @@ export default defineConfig({
       manifest: {
         name: 'HebronGuide',
         short_name: 'HebronGuide',
-        description: '한인 정착부터 Korean American까지 — 도시를 알고, 사람을 찾다',
+        description: '44개+ 도시 정착 가이드 — 함께 만들어가는 이민자·이주자 커뮤니티',
         theme_color: '#0d1117',
         background_color: '#0d1117',
         display: 'standalone',
