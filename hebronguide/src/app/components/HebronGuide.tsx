@@ -10523,10 +10523,17 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
 function ExploreScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
+  const city = useCityConfig();
+  const isSeattle = city.slug === "seattle";
   const [sub, setSub] = useState(0);
-  const tabs = lang === "ko"
-    ? ["지역안내", "자연·여행", "문화·예술", "스포츠", "🧭 헤브론관광"]
-    : ["Areas", "Nature", "Culture & Art", "Sports", "🧭 Hebron Tour"];
+  // 비시애틀 도시: 지역·자연·문화·스포츠 탭은 시애틀 전용 데이터라 숨김
+  const tabs = isSeattle
+    ? (lang === "ko"
+        ? ["지역안내", "자연·여행", "문화·예술", "스포츠", "🧭 헤브론관광"]
+        : ["Areas", "Nature", "Culture & Art", "Sports", "🧭 Hebron Tour"])
+    : (lang === "ko"
+        ? ["탐방 TOP5", "🧭 헤브론관광"]
+        : ["Explore TOP5", "🧭 Hebron Tour"]);
   const accent = "#34D399";
 
   const areas = [
@@ -10565,18 +10572,26 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
     { emoji: "⚽", name: "한인 축구·농구 리그", nameEn: "Korean Soccer & Basketball League", desc: lang === "ko" ? "교회 연합 한인 스포츠 리그. 봄·가을 시즌 운영. 한인 커뮤니티 네트워킹 최고" : "Inter-church Korean sports leagues. Spring & fall seasons. Best Korean community networking", tags: ["교회리그", "네트워킹", "계절"] },
   ];
 
-  const resolvedAreas = serverContent["areas"] ? resolvePlaceItems(serverContent["areas"], lang) : areas;
-  const resolvedNature = serverContent["nature"] ? resolvePlaceItems(serverContent["nature"], lang) : nature;
+  const resolvedAreas   = serverContent["areas"]   ? resolvePlaceItems(serverContent["areas"],   lang) : areas;
+  const resolvedNature  = serverContent["nature"]  ? resolvePlaceItems(serverContent["nature"],  lang) : nature;
   const resolvedCulture = serverContent["culture"] ? resolvePlaceItems(serverContent["culture"], lang) : culture;
-  const resolvedSports = serverContent["sports"] ? resolvePlaceItems(serverContent["sports"], lang) : sports;
-  const content = [resolvedAreas, resolvedNature, resolvedCulture, resolvedSports][sub];
+  const resolvedSports  = serverContent["sports"]  ? resolvePlaceItems(serverContent["sports"],  lang) : sports;
+  // 시애틀: sub 0-3 = 지역·자연·문화·스포츠, sub 4 = 헤브론관광
+  // 비시애틀: sub 0 = TOP5만, sub 1 = 헤브론관광
+  const content = isSeattle ? [resolvedAreas, resolvedNature, resolvedCulture, resolvedSports][sub] : null;
+  // 헤브론관광 서브탭 인덱스 (도시마다 다름)
+  const hebronTourSub = isSeattle ? 4 : 1;
 
   return (
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
-      <ScreenHeader emoji="🗺️" titleKo="관광" titleEn="Tourism"
-        descKo={`${useCityConfig().nameKo} — 지역안내 · 자연 · 문화 · 스포츠`}
-        descEn={`${useCityConfig().nameEn} — Areas, Nature, Culture & Sports`}
+      <ScreenHeader emoji="🗺️" titleKo="탐방" titleEn="Explore"
+        descKo={isSeattle
+          ? `${city.nameKo} — 지역안내 · 자연 · 문화 · 스포츠`
+          : `${city.nameKo} — ${lang === "ko" ? "검증된 탐방 명소 TOP 5" : "Top 5 verified spots"}`}
+        descEn={isSeattle
+          ? `${city.nameEn} — Areas, Nature, Culture & Sports`
+          : `${city.nameEn} — Top 5 verified spots`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5">
@@ -10642,13 +10657,14 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
           })()} lang={lang} accentColor="#0EA5E9" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
-          {sub <= 3 && content && (
+          {/* 시애틀 전용: 지역·자연·문화·스포츠 서브탭 콘텐츠 */}
+          {isSeattle && sub <= 3 && content && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             </div>
           )}
-          {/* 헤브론관광 서브탭 (sub 4) */}
-          {sub === 4 && (
+          {/* 헤브론관광 서브탭 */}
+          {sub === hebronTourSub && (
             <div style={{ paddingTop: 4 }}>
 
               {/* 헤더 — 경험 중심 (종교 언어 없음) */}
