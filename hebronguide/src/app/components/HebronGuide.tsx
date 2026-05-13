@@ -17038,7 +17038,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
               📣 {lang === "ko" ? "광고 신청 — 파트너 비즈니스" : "Advertise — Partner Business"}
             </div>
             <div style={{ fontSize: 10, color: "#6B7280", fontFamily: "Manrope, sans-serif" }}>
-              {lang === "ko" ? "AI가 한·영·스 2개 언어 광고 자동 생성 (24시간)" : "AI generates 3-language ads in 24 hours"}
+              {lang === "ko" ? "한·영 2개 언어 광고 자동 생성 (24시간)" : "2-language ads auto-generated in 24 hours"}
             </div>
           </a>
         </div>
