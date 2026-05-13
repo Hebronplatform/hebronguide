@@ -15806,67 +15806,200 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
    TOP APP BAR
 ───────────────────────────────────────── */
 function AppBar({ onHome }: { onHome?: () => void }) {
-  const { t, lang, setLang } = useI18n();
-  const currentCity = useCityConfig(); // ← 모든 52개 도시 정확히 감지
+  const { lang, setLang } = useI18n();
+  const currentCity = useCityConfig();
+  const [showCitySheet, setShowCitySheet] = useState(false);
+  const [citySearch, setCitySearch] = useState("");
+
+  const filteredCities = HEBRON_CITIES.filter(c =>
+    c.nameKo.includes(citySearch) ||
+    c.nameEn.toLowerCase().includes(citySearch.toLowerCase())
+  );
+
+  // 지역별 그룹핑
+  const regions = [
+    { label: lang === "ko" ? "🇺🇸 미국" : "🇺🇸 USA",
+      cities: filteredCities.filter(c => c.flag === "🇺🇸") },
+    { label: lang === "ko" ? "🇨🇦 캐나다" : "🇨🇦 Canada",
+      cities: filteredCities.filter(c => c.flag === "🇨🇦") },
+    { label: lang === "ko" ? "🌏 오세아니아·남미" : "🌏 Oceania & S.America",
+      cities: filteredCities.filter(c => ["🇦🇺","🇳🇿","🇧🇷"].includes(c.flag)) },
+    { label: lang === "ko" ? "🌍 유럽·중동" : "🌍 Europe & Middle East",
+      cities: filteredCities.filter(c => ["🇬🇧","🇩🇪","🇫🇷","🇦🇪"].includes(c.flag)) },
+    { label: lang === "ko" ? "🌏 아시아" : "🌏 Asia",
+      cities: filteredCities.filter(c => ["🇸🇬","🇹🇭","🇻🇳","🇯🇵","🇲🇽"].includes(c.flag)) },
+  ].filter(r => r.cities.length > 0);
+
   return (
+    <>
     <header
       className="sticky top-0 z-40 flex items-center justify-between px-[20px] w-full"
-      style={{
-        height: 56,
-        background: "#F9F9F9",
-        borderBottom: "0.5px solid rgba(0,0,0,0.18)",
-      }}
+      style={{ height: 56, background: "#F9F9F9", borderBottom: "0.5px solid rgba(0,0,0,0.18)" }}
     >
-      {/* 로고 + 앱 이름 — 클릭하면 홈으로 (표준 UX) */}
-      <button
-        onClick={onHome}
-        style={{ display: "flex", alignItems: "center", gap: 10, background: "none", border: "none",
-          cursor: onHome ? "pointer" : "default", padding: "4px 6px 4px 0", borderRadius: 10,
-          transition: "opacity 0.15s" }}
-        onMouseEnter={e => { if (onHome) (e.currentTarget as HTMLElement).style.opacity = "0.75"; }}
-        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
-        title={onHome ? "홈으로" : "HebronGuide"}
-      >
-        <div className="flex items-center justify-center overflow-hidden" style={{ width: 34, height: 34, borderRadius: 10, border: "1px solid rgba(242,153,74,0.25)", background: "rgba(242,153,74,0.08)", flexShrink: 0 }}>
-          <img src={logoImg} alt="HebronGuide Logo" style={{ width: 28, height: 28, objectFit: "contain" }}
-            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; const fb = e.currentTarget.nextElementSibling as HTMLElement; if (fb) fb.style.display = "flex"; }} />
-          <span style={{ display: "none", alignItems: "center", justifyContent: "center", width: 28, height: 28, fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#F2994A", letterSpacing: "-0.5px" }}>HG</span>
-        </div>
-        <div className="flex flex-col" style={{ lineHeight: 1 }}>
-          <div>
-            <span style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "1.5px", color: "#F2994A" }}>HEBRON</span>
-            <span style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 600, fontSize: 13, letterSpacing: "1.5px", color: "#64748B" }}>GUIDE</span>
+      {/* 좌측: 로고 + 도시명(탭 가능) */}
+      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+        {/* 로고 — 클릭하면 홈 */}
+        <button
+          onClick={onHome}
+          style={{ display: "flex", alignItems: "center", gap: 10, background: "none", border: "none",
+            cursor: onHome ? "pointer" : "default", padding: "4px 0", borderRadius: 10, transition: "opacity 0.15s" }}
+          onMouseEnter={e => { if (onHome) (e.currentTarget as HTMLElement).style.opacity = "0.75"; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
+        >
+          <div className="flex items-center justify-center overflow-hidden"
+            style={{ width: 34, height: 34, borderRadius: 10, border: "1px solid rgba(242,153,74,0.25)", background: "rgba(242,153,74,0.08)", flexShrink: 0 }}>
+            <img src={logoImg} alt="HebronGuide Logo" style={{ width: 28, height: 28, objectFit: "contain" }}
+              onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; const fb = e.currentTarget.nextElementSibling as HTMLElement; if (fb) fb.style.display = "flex"; }} />
+            <span style={{ display: "none", alignItems: "center", justifyContent: "center", width: 28, height: 28, fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#F2994A" }}>HG</span>
           </div>
-          <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 600, fontSize: 9, letterSpacing: "1px", color: "#F2994A", marginTop: 2, opacity: 0.8 }}>
-            {currentCity.nameEn.toUpperCase()}
+          <div style={{ lineHeight: 1 }}>
+            <div>
+              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "1.5px", color: "#F2994A" }}>HEBRON</span>
+              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 13, letterSpacing: "1.5px", color: "#64748B" }}>GUIDE</span>
+            </div>
           </div>
-        </div>
-      </button>
+        </button>
 
+        {/* 도시명 — 클릭하면 도시 전환 시트 */}
+        <button
+          onClick={() => { setShowCitySheet(true); setCitySearch(""); }}
+          style={{ display: "flex", alignItems: "center", gap: 3, background: "rgba(242,153,74,0.08)",
+            border: "1px solid rgba(242,153,74,0.25)", borderRadius: 8, padding: "3px 8px",
+            cursor: "pointer", transition: "all 0.15s" }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(242,153,74,0.15)"; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(242,153,74,0.08)"; }}
+          title={lang === "ko" ? "도시 변경" : "Change city"}
+        >
+          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 9, letterSpacing: "1px", color: "#F2994A" }}>
+            {currentCity.nameEn.toUpperCase()}
+          </span>
+          <span style={{ fontSize: 8, color: "#F2994A", lineHeight: 1 }}>▾</span>
+        </button>
+      </div>
+
+      {/* 우측: 언어 토글 */}
       <div className="flex items-center gap-[8px]">
-        {/* 언어 토글: KO / EN / ES */}
         <div className="flex items-center" style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 10, padding: 2, gap: 2 }}>
           {(["ko", "en"] as const).map((l) => (
-            <button
-              key={l}
-              onClick={() => setLang(l)}
-              className="flex items-center justify-center border-0 cursor-pointer hover:scale-110 active:scale-95"
-              style={{
-                height: 24, paddingLeft: 8, paddingRight: 8, borderRadius: 7,
-                background: lang === l ? `rgba(242,153,74,0.12)` : "transparent",
+            <button key={l} onClick={() => setLang(l)}
+              className="flex items-center justify-center border-0 cursor-pointer"
+              style={{ height: 24, paddingLeft: 8, paddingRight: 8, borderRadius: 7,
+                background: lang === l ? "rgba(242,153,74,0.12)" : "transparent",
                 border: `1px solid ${lang === l ? "rgba(242,153,74,0.4)" : "transparent"}`,
-                transition: "all 0.2s ease",
-              }}
+                transition: "all 0.2s ease" }}
             >
-              <span style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: "0.5px", color: lang === l ? "#F2994A" : "#94A3B8" }}>
+              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: "0.5px", color: lang === l ? "#F2994A" : "#94A3B8" }}>
                 {l.toUpperCase()}
               </span>
             </button>
           ))}
         </div>
-        {/* 검색은 하단 바에서 처리 — 중복 제거 */}
       </div>
     </header>
+
+    {/* ── 도시 전환 바텀시트 ── */}
+    {showCitySheet && (
+      <div
+        style={{ position: "fixed", inset: 0, zIndex: 600, background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)", display: "flex", alignItems: "flex-end", justifyContent: "center" }}
+        onClick={() => setShowCitySheet(false)}
+      >
+        <div
+          style={{ width: "100%", maxWidth: 430, background: "#fff", borderRadius: "20px 20px 0 0",
+            paddingBottom: "env(safe-area-inset-bottom,12px)", maxHeight: "80vh", display: "flex", flexDirection: "column",
+            boxShadow: "0 -8px 40px rgba(0,0,0,0.2)" }}
+          onClick={e => e.stopPropagation()}
+        >
+          {/* 핸들 */}
+          <div style={{ width: 36, height: 4, borderRadius: 2, background: "#E5E7EB", margin: "12px auto 0", flexShrink: 0 }} />
+
+          {/* 헤더 */}
+          <div style={{ padding: "14px 18px 10px", flexShrink: 0 }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#1a2535", marginBottom: 2 }}>
+              🌍 {lang === "ko" ? "52개 도시" : "52 Cities"}
+            </div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8" }}>
+              {lang === "ko" ? "이사·출장·방문 도시를 선택하세요" : "Select your destination city"}
+            </div>
+          </div>
+
+          {/* 검색 */}
+          <div style={{ padding: "0 16px 10px", flexShrink: 0 }}>
+            <input
+              autoFocus
+              value={citySearch}
+              onChange={e => setCitySearch(e.target.value)}
+              placeholder={lang === "ko" ? "도시 검색 (한글·영문)" : "Search city..."}
+              style={{ width: "100%", background: "#F1F5F9", border: "1.5px solid #E2E8F0", borderRadius: 12,
+                padding: "10px 14px", fontSize: 14, fontFamily: "-apple-system,'Noto Sans KR',sans-serif",
+                outline: "none", color: "#1a2535" }}
+              onFocus={e => { (e.currentTarget as HTMLInputElement).style.borderColor = "#F2994A"; }}
+              onBlur={e => { (e.currentTarget as HTMLInputElement).style.borderColor = "#E2E8F0"; }}
+            />
+          </div>
+
+          {/* 도시 목록 — 지역별 그룹 */}
+          <div style={{ overflowY: "auto", flex: 1, padding: "0 8px 16px" }}>
+            {filteredCities.length === 0 ? (
+              <div style={{ textAlign: "center", padding: "32px 0", color: "#94A3B8", fontSize: 13, fontFamily: "Manrope,sans-serif" }}>
+                {lang === "ko" ? "검색 결과 없음" : "No results"}
+              </div>
+            ) : citySearch ? (
+              /* 검색 결과 — 그룹 없이 플랫 */
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, padding: "0 8px" }}>
+                {filteredCities.map(c => <CityCard key={c.nameEn} c={c} currentCity={currentCity} lang={lang} onClose={() => setShowCitySheet(false)} />)}
+              </div>
+            ) : (
+              /* 기본 — 지역별 그룹 */
+              regions.map(r => (
+                <div key={r.label} style={{ marginBottom: 16 }}>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#94A3B8",
+                    letterSpacing: "0.06em", padding: "4px 8px 6px" }}>{r.label}</div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, padding: "0 8px" }}>
+                    {r.cities.map(c => <CityCard key={c.nameEn} c={c} currentCity={currentCity} lang={lang} onClose={() => setShowCitySheet(false)} />)}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+    )}
+    </>
+  );
+}
+
+/* 도시 카드 — 시트 내부 */
+function CityCard({ c, currentCity, lang, onClose }: {
+  c: typeof HEBRON_CITIES[0];
+  currentCity: ReturnType<typeof useCityConfig>;
+  lang: string;
+  onClose: () => void;
+}) {
+  const isCurrent = c.nameEn === currentCity.nameEn;
+  return (
+    <a
+      href={`https://hebronguide.com${c.url}`}
+      onClick={isCurrent ? (e) => { e.preventDefault(); onClose(); } : onClose}
+      style={{
+        display: "flex", alignItems: "center", gap: 10,
+        padding: "10px 12px", borderRadius: 12, textDecoration: "none",
+        background: isCurrent ? "rgba(242,153,74,0.08)" : "#F8FAFC",
+        border: `1.5px solid ${isCurrent ? "rgba(242,153,74,0.45)" : "#E2E8F0"}`,
+        transition: "all 0.15s",
+      }}
+    >
+      <span style={{ fontSize: 20, flexShrink: 0 }}>{c.emoji}</span>
+      <div style={{ minWidth: 0 }}>
+        <div style={{ fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontWeight: 700,
+          fontSize: 12, color: isCurrent ? "#F2994A" : "#1a2535",
+          whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          {lang === "ko" ? c.nameKo : c.nameEn}
+        </div>
+        <div style={{ fontSize: 10, color: "#94A3B8", marginTop: 1 }}>
+          {c.flag}{isCurrent ? (lang === "ko" ? " 현재 위치" : " Current") : ""}
+        </div>
+      </div>
+    </a>
   );
 }
 
