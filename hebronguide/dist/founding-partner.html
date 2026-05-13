@@ -1,105 +1,98 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HebronGuide 파트너 교회 신청서 | HebronGuide</title>
-<meta name="description" content="HebronGuide 파트너 교회 — 44개+ 도시, 한인 이민자와 교회를 잇는 디지털 환대 플랫폼. 지금 신청하세요.">
+<title>교회 정보 올리기 | HebronGuide</title>
+<meta name="description" content="HebronGuide에 교회 정보를 올려 주세요. 44개+ 도시 이민자·이주자가 찾는 커뮤니티 가이드.">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0d1117;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.07);
   --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);
-  --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;
-  --text:#ECFDF5;--muted:rgba(236,253,245,0.55);
-  --green:#27AE60;--red:#EB5757;--r:14px;
+  --gold:#C9A227;--mint:#6EE7B7;--text:#ECFDF5;--muted:rgba(236,253,245,0.55);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;background:var(--bg);}
-body{font-family:'Noto Sans KR',-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
-input:-webkit-autofill,input:-webkit-autofill:focus,select:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #1a2030 inset !important;-webkit-text-fill-color:var(--text) !important;}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
+input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #1a2030 inset !important;-webkit-text-fill-color:var(--text) !important;}
 option,optgroup{background:var(--bg);color:var(--text);}
 
-/* NAV */
 nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
-.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;letter-spacing:.02em;font-family:'Cinzel',serif;}
-.nav-back{color:var(--muted);text-decoration:none;font-size:.8rem;transition:color .2s;display:flex;align-items:center;gap:6px;}
+.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;font-family:'Cinzel',serif;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:.8rem;display:flex;align-items:center;gap:6px;transition:color .2s;}
 .nav-back:hover{color:var(--gold);}
 
 /* HERO */
-.hero{text-align:center;padding:56px 24px 40px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.12),transparent);}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.4);color:#FCA5A5;font-size:.72rem;font-weight:800;padding:5px 16px;border-radius:20px;margin-bottom:16px;letter-spacing:.06em;}
-.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:#EF4444;animation:pulse 1.5s infinite;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.2);}}
-h1{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;color:#fff;line-height:1.3;margin-bottom:10px;}
-h1 .brand{font-family:'Cinzel',serif;font-size:.52em;color:var(--gold);display:block;letter-spacing:.08em;margin-bottom:4px;font-weight:700;}
-h1 span{color:var(--gold);}
-.hero-sub{font-size:.9rem;color:var(--muted);margin-bottom:32px;line-height:1.9;}
+.hero{text-align:center;padding:48px 24px 36px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.08),transparent);}
+h1{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:900;color:#fff;line-height:1.3;margin-bottom:8px;}
+h1 .brand{font-family:'Cinzel',serif;font-size:.5em;color:var(--gold);display:block;letter-spacing:.1em;margin-bottom:6px;font-weight:700;}
+.hero-sub{font-size:.9rem;color:var(--muted);margin-bottom:24px;line-height:2;}
 
-/* 혜택 카드 */
-.benefit-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:640px;margin:0 auto 28px;}
-.bc{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:16px 12px;text-align:center;}
-.bc-icon{font-size:1.4rem;margin-bottom:6px;}
-.bc-title{font-size:.78rem;font-weight:800;color:#fff;margin-bottom:3px;}
-.bc-desc{font-size:.7rem;color:var(--muted);line-height:1.5;}
+/* 체험 버튼 */
+.btn-try{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold),#d4a020);color:#0d1117;text-decoration:none;padding:11px 26px;border-radius:50px;font-weight:900;font-size:.9rem;font-family:'Noto Sans KR',sans-serif;margin-bottom:24px;box-shadow:0 4px 18px rgba(201,162,39,.35);}
 
-/* 가격 */
-.price-block{display:inline-flex;align-items:baseline;gap:6px;margin-bottom:8px;}
-.price-amount{font-family:'Cinzel',serif;font-size:2rem;font-weight:900;color:#fff;}
-.price-period{font-size:.8rem;color:var(--muted);}
-.price-note{font-size:.75rem;color:var(--muted);margin-bottom:24px;}
-.price-note span{color:var(--gold);font-weight:700;}
+/* 교회 수 카운터 */
+.church-counter{display:inline-flex;align-items:center;gap:8px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.22);border-radius:20px;padding:7px 20px;font-size:.85rem;color:var(--mint);font-weight:700;}
+.counter-dot{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:pulse 2s infinite;display:inline-block;}
 
-/* D-day */
-.d-day{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.3);border-radius:20px;padding:6px 18px;font-size:.82rem;font-weight:700;color:#FCA5A5;}
-.d-day strong{color:#EF4444;font-family:'Cinzel',serif;font-size:1rem;}
+/* 교회 목록 */
+.church-list-section{max-width:560px;margin:0 auto;padding:28px 20px 0;}
+.list-label{font-size:.68rem;font-weight:800;letter-spacing:.12em;color:rgba(201,162,39,.55);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.list-label::before,.list-label::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(201,162,39,.2));}
+.list-label::after{background:linear-gradient(to left,transparent,rgba(201,162,39,.2));}
+.church-chips{display:flex;flex-wrap:wrap;gap:8px;min-height:36px;}
+.church-chip{display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--border2);border-radius:99px;padding:6px 14px;font-size:.75rem;color:rgba(236,253,245,.8);font-family:'Noto Sans KR',sans-serif;transition:border-color .2s;}
+.church-chip.new{border-color:rgba(110,231,183,.4);background:rgba(110,231,183,.07);}
+.church-chip .flag{font-size:.85rem;}
 
-/* 컨테이너 */
-.container{max-width:560px;margin:0 auto;padding:40px 20px 80px;}
+/* SNS 공유 */
+.sns-section{text-align:center;padding:24px 24px 32px;border-top:1px solid rgba(255,255,255,0.06);}
+.sns-label{font-size:.68rem;font-weight:800;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:14px;}
+.sns-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.sns-btn{display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;}
+.sns-icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;}
+.sns-text{font-size:.67rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;}
 
-/* 폼 카드 */
+/* 신청 폼 */
+.container{max-width:560px;margin:0 auto;padding:32px 20px 80px;}
 .form-card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:28px 24px;}
-.form-title{font-size:1rem;font-weight:800;color:#fff;margin-bottom:4px;}
-.form-sub{font-size:.8rem;color:var(--muted);margin-bottom:22px;}
-
-/* 필드 */
+.form-title{font-size:1rem;font-weight:900;color:#fff;margin-bottom:4px;}
+.form-sub{font-size:.8rem;color:var(--muted);margin-bottom:22px;line-height:1.8;}
 .field{margin-bottom:14px;}
-label{display:block;font-size:.8rem;font-weight:700;color:rgba(236,253,245,0.7);margin-bottom:5px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:480px){.field-row{grid-template-columns:1fr;}}
+label{display:block;font-size:.8rem;font-weight:700;color:rgba(236,253,245,.7);margin-bottom:5px;}
 label .req{color:var(--gold);margin-left:2px;}
+label .opt{color:rgba(236,253,245,.3);font-weight:400;font-size:.73rem;margin-left:4px;}
 input,textarea,select{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;font-size:.88rem;color:var(--text);font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none;}
 input:focus,textarea:focus,select:focus{border-color:var(--gold);}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23666'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-@media(max-width:480px){.field-row{grid-template-columns:1fr;}}
-textarea{min-height:72px;resize:vertical;line-height:1.6;}
 .error-msg{font-size:.75rem;color:#FCA5A5;margin-top:4px;display:none;}
-.field.error input,.field.error select,.field.error textarea{border-color:#EF4444;}
+.field.error input,.field.error select{border-color:#EF4444;}
 .field.error .error-msg{display:block;}
-
-/* 할인 안내 */
-.discount-hint{background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.25);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.78rem;color:rgba(236,253,245,.75);line-height:1.7;}
-.discount-hint strong{color:var(--gold);}
-
-/* 동의 */
+#no-website-hint{display:none;margin-top:8px;background:rgba(110,231,183,.07);border:1px solid rgba(110,231,183,.25);border-radius:8px;padding:10px 14px;font-size:.78rem;color:var(--mint);line-height:1.7;}
 .agree-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;}
 .agree-item input[type=checkbox]{width:17px;height:17px;margin-top:2px;accent-color:var(--gold);flex-shrink:0;cursor:pointer;}
 .agree-item label{font-size:.8rem;color:rgba(236,253,245,.78);cursor:pointer;line-height:1.6;}
-
-/* 버튼 */
 .btn-submit{width:100%;background:linear-gradient(135deg,var(--gold),#d4a020);color:#0d1117;border:none;padding:14px;border-radius:12px;font-size:.95rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:20px;transition:all .2s;box-shadow:0 4px 16px rgba(201,162,39,.3);}
 .btn-submit:hover{box-shadow:0 6px 24px rgba(201,162,39,.45);transform:translateY(-1px);}
-.btn-submit:disabled{opacity:.45;cursor:not-allowed;transform:none;}
 
 /* 성공 */
 .success{display:none;text-align:center;padding:40px 20px;}
 .success.show{display:block;}
 .success-icon{font-size:3.5rem;margin-bottom:14px;}
 .success h2{font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:8px;}
-.success p{color:var(--muted);font-size:.88rem;line-height:1.8;}
+.success p{color:var(--muted);font-size:.88rem;line-height:2;}
+.share-nudge{margin-top:24px;background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.25);border-radius:14px;padding:18px 20px;}
+.share-nudge p{color:rgba(236,253,245,.8);font-size:.85rem;margin-bottom:14px;}
 .success-email{background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.3);border-radius:10px;padding:10px 16px;font-size:.85rem;color:var(--gold);font-weight:700;display:inline-block;margin-top:12px;}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.3);}}
 </style>
 </head>
 <body>
+
 <nav>
   <a href="/seattle/" class="logo">HebronGuide</a>
   <a href="javascript:history.back()" class="nav-back">← 돌아가기</a>
@@ -107,283 +100,71 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge"><span class="dot"></span> 2026 창립 파트너 모집 중</div>
-  <h1><span class="brand">HebronGuide</span><span>파트너 교회</span> 신청서</h1>
-  <p style="font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.12em;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">
-    사람과 사람, 교회와 교회를 이어주는
-  </p>
-  <p style="font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:16px;line-height:1.5;">
-    HebronGuide
+  <h1><span class="brand">HebronGuide</span>교회 정보를 올려 주세요</h1>
+  <p class="hero-sub">
+    44개+ 도시에서 이민자·이주자가 매일 찾는 커뮤니티 가이드입니다.<br>
+    교회가 이 안에 자리를 잡으면, 새로 오는 분들이 자연스럽게 연결됩니다.
   </p>
 
-  <!-- 원클릭 체험 버튼 -->
-  <a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener"
-     style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),#d4a020);color:#0d1117;text-decoration:none;padding:12px 28px;border-radius:50px;font-weight:900;font-size:.95rem;font-family:'Noto Sans KR',sans-serif;margin-bottom:20px;box-shadow:0 4px 20px rgba(201,162,39,.4);transition:transform .15s;">
-    <span>📱</span>
-    <span>HebronGuide.com — 지금 바로 체험하기</span>
-    <span style="font-size:1.1rem;">→</span>
+  <a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener" class="btn-try">
+    📱 HebronGuide.com 지금 체험하기 →
   </a>
 
-  <p class="hero-sub">
-    44개+ 도시 · 한인 이민자, 이주자와 교회를 잇는 디지털 환대 플랫폼<br>
-    도착하기 전, 당신의 교회가 먼저 손을 내밀 수 있습니다
-  </p>
-
-  <!-- 혜택 3단 카드 -->
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:520px;margin:0 auto 28px;">
-    <div style="background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.2);border-radius:12px;padding:16px 10px;text-align:center;">
-      <div style="font-size:1.4rem;margin-bottom:8px;">📱</div>
-      <div style="font-size:.75rem;font-weight:800;color:var(--mint);">디지털 등재</div>
-      <div style="font-size:.65rem;color:var(--muted);margin-top:4px;line-height:1.5;">44개+ 도시<br>한인 커뮤니티</div>
-    </div>
-    <div style="background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.25);border-radius:12px;padding:16px 10px;text-align:center;">
-      <div style="font-size:1.4rem;margin-bottom:8px;">🌐</div>
-      <div style="font-size:.75rem;font-weight:800;color:var(--gold);">3개 언어</div>
-      <div style="font-size:.65rem;color:var(--muted);margin-top:4px;line-height:1.5;">한국어 · 영어<br>스페인어</div>
-    </div>
-    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px 10px;text-align:center;">
-      <div style="font-size:1.4rem;margin-bottom:8px;">🤝</div>
-      <div style="font-size:.75rem;font-weight:800;color:#fff;">교회 연결</div>
-      <div style="font-size:.65rem;color:var(--muted);margin-top:4px;line-height:1.5;">도시와 도시<br>사람과 사람</div>
-    </div>
-  </div>
-
-  <div style="font-size:.82rem;color:rgba(110,231,183,.8);margin-bottom:8px;font-weight:700;">
-    ✨ 120개 교회와 함께 하나님 나라를 알리는 홍보 기간
-  </div>
-  <div style="font-size:.78rem;color:var(--muted);margin-bottom:18px;line-height:1.8;">
-    무료로 참여하시고, 자유롭게 주변에 전해 주세요
-  </div>
-
-  <!-- 홍보 기간 D-day -->
-  <div class="d-day" id="ddayBadge">
-    홍보 기간 마감: <strong id="ddayNum">D-???</strong> &nbsp;·&nbsp; 2026년 10월 1일
+  <br>
+  <div class="church-counter">
+    <span class="counter-dot"></span>
+    현재 <span id="totalCount">7</span>개 교회가 함께하고 있습니다
   </div>
 </div>
 
-<!-- ── 창립 파트너 현황 ── -->
-<div id="partnerStatus" style="padding:40px 24px 32px;background:rgba(0,0,0,.2);border-top:1px solid rgba(201,162,39,.15);border-bottom:1px solid rgba(201,162,39,.15);">
-  <div style="max-width:560px;margin:0 auto;text-align:center;">
-
-    <!-- 섹션 라벨 -->
-    <div style="font-size:.64rem;font-weight:800;letter-spacing:.18em;color:rgba(201,162,39,.55);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px;">
-      <span style="flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(201,162,39,.3));"></span>
-      창립 파트너 현황
-      <span style="flex:1;height:1px;background:linear-gradient(to left,transparent,rgba(201,162,39,.3));"></span>
-    </div>
-
-    <!-- 3-숫자 카운터 -->
-    <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;margin-bottom:24px;">
-      <div style="padding:0 8px;">
-        <div style="font-family:'Cinzel',serif;font-size:clamp(2.2rem,7vw,3.2rem);font-weight:900;color:#fff;line-height:1;letter-spacing:-.02em;" id="churchCount">0</div>
-        <div style="font-size:.66rem;color:rgba(236,253,245,.4);margin-top:6px;letter-spacing:.06em;">참여 교회</div>
-      </div>
-      <div style="width:1px;height:44px;background:rgba(255,255,255,.1);"></div>
-      <div style="padding:0 8px;">
-        <div style="font-family:'Cinzel',serif;font-size:clamp(2.2rem,7vw,3.2rem);font-weight:900;color:var(--gold);line-height:1;letter-spacing:-.02em;" id="cityCount">0</div>
-        <div style="font-size:.66rem;color:rgba(236,253,245,.4);margin-top:6px;letter-spacing:.06em;">참여 도시</div>
-      </div>
-      <div style="width:1px;height:44px;background:rgba(255,255,255,.1);"></div>
-      <div style="padding:0 8px;">
-        <div style="font-family:'Cinzel',serif;font-size:clamp(2.2rem,7vw,3.2rem);font-weight:900;color:#FCA5A5;line-height:1;letter-spacing:-.02em;" id="remainCount">120</div>
-        <div style="font-size:.66rem;color:rgba(236,253,245,.4);margin-top:6px;letter-spacing:.06em;">남은 자리</div>
-      </div>
-    </div>
-
-    <!-- 프로그레스 바 -->
-    <div style="background:rgba(255,255,255,.06);border-radius:99px;height:4px;margin-bottom:5px;overflow:hidden;">
-      <div id="progBar" style="height:100%;background:linear-gradient(90deg,var(--gold),#6EE7B7);border-radius:99px;width:0%;transition:width 1.8s cubic-bezier(.25,.46,.45,.94);"></div>
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:.6rem;color:rgba(236,253,245,.25);margin-bottom:22px;">
-      <span>0</span>
-      <span id="progLabel" style="color:rgba(236,253,245,.38);">함께할 120 교회</span>
-      <span>120</span>
-    </div>
-
-    <!-- 참여 도시 칩 -->
-    <div id="cityChips" style="display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-bottom:18px;min-height:28px;"></div>
-
-    <!-- 최근 합류 피드 -->
-    <div id="recentFeed" style="background:rgba(110,231,183,.04);border:1px solid rgba(110,231,183,.12);border-radius:12px;padding:11px 16px;font-size:.73rem;color:rgba(236,253,245,.5);line-height:2;min-height:36px;"></div>
-  </div>
+<!-- 교회 목록 -->
+<div class="church-list-section">
+  <div class="list-label">함께하는 교회</div>
+  <div class="church-chips" id="churchChips"><!-- JS로 생성 --></div>
 </div>
 
-<!-- 비전 메시지 -->
-<div style="background:linear-gradient(135deg,rgba(201,162,39,.08),rgba(110,231,183,.05));border-top:1px solid rgba(201,162,39,.2);border-bottom:1px solid rgba(201,162,39,.2);padding:40px 28px;text-align:center;">
-  <div style="max-width:560px;margin:0 auto;">
-
-    <div style="font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.15em;color:var(--gold);margin-bottom:28px;text-transform:uppercase;">A Word to Our Founding Partners</div>
-
-    <!-- 1. 시대 진단 -->
-    <div style="text-align:left;padding:20px 22px;background:rgba(255,255,255,.04);border-left:3px solid rgba(252,165,165,.5);border-radius:0 12px 12px 0;margin-bottom:28px;">
-      <p style="font-size:.95rem;color:rgba(236,253,245,.9);line-height:2.2;margin:0;">
-        사람들이 교회를 떠납니다.<br>
-        말로 전하는 시대가 지났습니다.<br>
-        <strong style="color:#fff;">이제 사람들은 삶으로 살아낸 환대에 마음을 엽니다.</strong><br>
-        <span style="color:#FCA5A5;font-size:.85rem;">— 탈기독교(Post-Christian) 시대의 현실입니다.</span>
-      </p>
-    </div>
-
-    <!-- 2. 개간 -->
-    <div style="text-align:left;padding:20px 22px;background:rgba(110,231,183,.05);border-left:3px solid rgba(110,231,183,.4);border-radius:0 12px 12px 0;margin-bottom:28px;">
-      <p style="font-size:.95rem;color:rgba(236,253,245,.9);line-height:2.2;margin:0;">
-        땅이 굳었습니다.<br>
-        씨앗이 자라지 못합니다.<br>
-        개간이 필요합니다.<br><br>
-        <strong style="color:#fff;">성경적 교회들이 연대할 때</strong><br>
-        세속화된 이 땅이 다시<br>
-        <strong style="color:var(--mint);">복음을 받아들이는 좋은 땅이 됩니다.</strong>
-      </p>
-    </div>
-
-    <!-- 3. 비전 -->
-    <p style="font-size:1rem;line-height:2.4;margin-bottom:28px;">
-      HebronGuide는 그 <strong style="color:var(--gold);">첫 삽</strong>입니다.<br>
-      이민자를 환대하는 것에서 시작합니다.<br>
-      교회와 교회가 연결됩니다.<br>
-      제자들이 온 세상으로 흘러갑니다.<br><br>
-      <strong style="color:#fff;font-size:1.05rem;">지금 창립 파트너가 된다는 것,</strong><br>
-      그 미래의 가치는 상상할 수 없을 만큼 클 것입니다.<br>
-      <span style="color:var(--gold);font-weight:800;">이 기회는 우리 세대에 마지막이 될 수도 있습니다.</span>
-    </p>
-
-    <!-- 4. 결단 -->
-    <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:26px;margin-bottom:28px;">
-      <p style="font-size:1rem;line-height:2.4;">
-        점점 꺼져가는 영혼 구원의 불씨,<br>
-        꺼진 줄 알았습니까?<br><br>
-        <strong style="color:var(--mint);font-size:1.02rem;">우리 다함께 연대하여</strong><br>
-        <strong style="color:var(--mint);">그 사명의 불길을 다시 타오르게 합시다.</strong>
-      </p>
-      <p style="margin-top:18px;font-size:.82rem;color:rgba(236,253,245,.4);line-height:2;">
-        "내가 나그네 되었을 때 너희가 영접하였다"<br>
-        <span style="color:var(--gold);">— 마태복음 25:35</span>
-      </p>
-    </div>
-
-    <!-- 5. 큰 비전 + CTA -->
-    <div style="background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.3);border-radius:16px;padding:24px 22px;">
-      <p style="font-size:.88rem;color:rgba(236,253,245,.7);line-height:2;margin-bottom:18px;">
-        HebronGuide(헤브론 가이드)는 시작일 뿐입니다.<br>
-        <strong style="color:#fff;">이 땅에 하나님 나라를 세우는<br>신앙 생태계의 첫 관문입니다.</strong>
-      </p>
-      <div style="border-top:1px solid rgba(201,162,39,.2);padding-top:16px;margin-bottom:16px;">
-        <div style="font-size:.68rem;font-weight:800;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">📣 Coming Soon</div>
-        <p style="font-size:.88rem;font-weight:800;color:#fff;margin-bottom:4px;">
-          Global Faith Ecosystem Project
-        </p>
-        <p style="font-size:.78rem;color:var(--gold);margin-bottom:12px;">지구촌 신앙 생태계 만들기 프로젝트</p>
-        <p style="font-size:.8rem;color:rgba(236,253,245,.65);line-height:1.9;">
-          조만간 이 비전 전체를 담은 프레젠테이션을 가지고<br>
-          곧 찾아 뵙겠습니다.
-        </p>
+<!-- SNS 공유 -->
+<div class="sns-section">
+  <div class="sns-label">이 페이지를 공유하고 더 많이 알려 주세요</div>
+  <div class="sns-row">
+    <button class="sns-btn" onclick="shareKakao()">
+      <div class="sns-icon" style="background:#FEE500;">💬</div>
+      <span class="sns-text">카카오톡</span>
+    </button>
+    <button class="sns-btn" onclick="shareWhatsApp()">
+      <div class="sns-icon" style="background:#25D366;">📱</div>
+      <span class="sns-text">WhatsApp</span>
+    </button>
+    <button class="sns-btn" onclick="shareFacebook()">
+      <div class="sns-icon" style="background:#1877F2;color:#fff;font-weight:900;font-size:1.1rem;font-family:Georgia,serif;">f</div>
+      <span class="sns-text">Facebook</span>
+    </button>
+    <button class="sns-btn" onclick="shareX()">
+      <div class="sns-icon" style="background:#000;border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:900;font-size:1rem;">𝕏</div>
+      <span class="sns-text">X</span>
+    </button>
+    <button class="sns-btn" onclick="shareTelegram()">
+      <div class="sns-icon" style="background:#2AABEE;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.012 9.482c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.155 13.48l-2.937-.918c-.638-.2-.651-.638.136-.943l11.47-4.42c.532-.194.997.13.738.049z"/></svg>
       </div>
-      <div style="border-top:1px solid rgba(201,162,39,.2);padding-top:16px;">
-        <p style="font-size:.95rem;font-weight:800;color:var(--gold);margin-bottom:8px;">창립 파트너 교회가 되어 주십시오.</p>
-        <p style="font-size:.82rem;color:rgba(236,253,245,.75);line-height:2;">
-          아래 QR 코드를 찍어 확인하고<br>
-          신청서를 기록하여 보내 주시면 됩니다.<br>
-          <span style="color:rgba(236,253,245,.55);">그리고 주변에 알려 주시고 추천해 주시기 바랍니다.</span>
-        </p>
-        <p style="font-size:.75rem;color:rgba(252,165,165,.8);margin-top:10px;line-height:1.8;">
-          창립 파트너는 각 도시 12개 교회를 넘지 않으며<br>
-          전체 120 교회 모집이 완료되면 조기 종료됩니다.
-        </p>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- QR 체험 섹션 -->
-<div style="text-align:center;padding:32px 24px 8px;border-top:1px solid rgba(255,255,255,0.06);">
-  <div style="font-size:.72rem;font-weight:800;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:10px;">신청 전, 먼저 체험해 보세요</div>
-  <div style="display:inline-block;background:#fff;border-radius:16px;padding:12px;margin-bottom:12px;box-shadow:0 4px 24px rgba(201,162,39,.25);">
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://hebronguide.com&color=0d1117&bgcolor=ffffff&margin=2" width="160" height="160" alt="HebronGuide QR" style="display:block;border-radius:8px;">
-  </div>
-  <div style="font-size:.88rem;font-weight:800;color:#fff;margin-bottom:4px;">📱 QR 스캔 → HebronGuide.com</div>
-  <div style="font-size:.75rem;color:var(--muted);">이민자의 눈으로 직접 확인하고 신청하세요</div>
-</div>
-
-<!-- SNS 공유 섹션 -->
-<div style="text-align:center;padding:24px 24px 32px;border-top:1px solid rgba(255,255,255,0.06);">
-  <div style="font-size:.72rem;font-weight:800;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:14px;">목회자에게 공유하기</div>
-  <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
-
-    <!-- 카카오톡 -->
-    <button onclick="shareKakao()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
-      <div style="width:48px;height:48px;background:#FEE500;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;">💬</div>
-      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">카카오톡</span>
+      <span class="sns-text">Telegram</span>
     </button>
-
-    <!-- WhatsApp -->
-    <button onclick="shareWhatsApp()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
-      <div style="width:48px;height:48px;background:#25D366;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;">📱</div>
-      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">WhatsApp</span>
+    <button class="sns-btn" onclick="shareSMS()">
+      <div class="sns-icon" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);">✉️</div>
+      <span class="sns-text">문자</span>
     </button>
-
-    <!-- Facebook -->
-    <button onclick="shareFacebook()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
-      <div style="width:48px;height:48px;background:#1877F2;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;font-weight:900;font-family:Georgia,serif;">f</div>
-      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">Facebook</span>
+    <button class="sns-btn" onclick="copyLink()">
+      <div class="sns-icon" style="background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.4);">🔗</div>
+      <span class="sns-text" id="copyLabel">링크 복사</span>
     </button>
-
-    <!-- X (Twitter) -->
-    <button onclick="shareX()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
-      <div style="width:48px;height:48px;background:#000;border:1px solid rgba(255,255,255,0.2);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;font-weight:900;font-family:Arial,sans-serif;">𝕏</div>
-      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">X</span>
-    </button>
-
-    <!-- Instagram -->
-    <button onclick="shareInstagram()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
-      <div style="width:48px;height:48px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border-radius:14px;display:flex;align-items:center;justify-content:center;">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      </div>
-      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">Instagram</span>
-    </button>
-
-    <!-- Threads -->
-    <button onclick="shareThreads()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
-      <div style="width:48px;height:48px;background:#000;border:1px solid rgba(255,255,255,0.2);border-radius:14px;display:flex;align-items:center;justify-content:center;">
-        <svg width="24" height="24" viewBox="0 0 192 192" fill="white"><path d="M141.537 88.9883C140.71 88.5919 139.87 88.2104 139.019 87.8451C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.881 72.2328C81.6116 63.5383 90.6052 61.6848 97.2286 61.6848C97.3051 61.6848 97.3819 61.6848 97.4576 61.6855C105.707 61.7381 111.932 64.1366 115.961 68.814C118.893 72.2193 120.854 76.925 121.825 82.8638C114.511 81.6207 106.601 81.2385 98.145 81.7233C74.3247 83.0954 59.0111 96.9879 60.0396 116.292C60.5615 126.084 65.4397 134.508 73.775 140.011C80.8224 144.663 89.899 146.938 99.3323 146.423C111.79 145.74 121.563 140.987 128.381 132.296C133.559 125.696 136.834 117.143 138.28 106.366C144.217 109.949 148.617 114.664 151.047 120.332C155.179 129.967 155.42 145.8 142.501 158.708C131.182 170.016 117.576 174.908 97.0135 175.059C74.2042 174.89 56.9538 167.575 45.7381 153.317C35.2355 139.966 29.8077 120.682 29.6052 96C29.8077 71.3178 35.2355 52.0336 45.7381 38.6827C56.9538 24.4249 74.2039 17.11 97.0135 16.9405C119.988 17.1113 137.539 24.4614 149.184 38.788C154.894 45.8136 159.199 54.6488 162.037 64.9503L178.184 60.6422C174.744 47.9622 169.331 37.0357 161.965 27.974C147.036 9.60668 125.202 0.195148 97.0695 0H96.9569C68.8816 0.19447 47.2921 9.6418 32.7883 28.0793C19.8819 44.4864 13.2244 67.3157 13.0007 95.9325L13 96L13.0007 96.0675C13.2244 124.684 19.8819 147.514 32.7883 163.921C47.2921 182.358 68.8816 191.806 96.9569 192H97.0695C122.03 191.827 139.624 185.292 154.118 170.811C173.081 151.866 172.51 128.119 166.26 113.541C161.776 103.087 153.227 94.5962 141.537 88.9883ZM98.4405 129.507C88.0005 130.095 77.1544 125.409 76.6196 115.372C76.2232 107.93 81.9158 99.626 99.0812 98.6368C101.047 98.5234 102.976 98.468 104.871 98.468C111.106 98.468 116.939 99.0737 122.242 100.233C120.264 124.935 108.662 128.946 98.4405 129.507Z"/></svg>
-      </div>
-      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">Threads</span>
-    </button>
-
-    <!-- Telegram -->
-    <button onclick="shareTelegram()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
-      <div style="width:48px;height:48px;background:#2AABEE;border-radius:14px;display:flex;align-items:center;justify-content:center;">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.012 9.482c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.155 13.48l-2.937-.918c-.638-.2-.651-.638.136-.943l11.47-4.42c.532-.194.997.13.738.049z"/></svg>
-      </div>
-      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">Telegram</span>
-    </button>
-
-    <!-- Line -->
-    <button onclick="shareLine()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
-      <div style="width:48px;height:48px;background:#00B900;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;font-weight:900;font-family:Arial,sans-serif;">L</div>
-      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">Line</span>
-    </button>
-
-    <!-- SMS -->
-    <button onclick="shareSMS()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
-      <div style="width:48px;height:48px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;">✉️</div>
-      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;">문자</span>
-    </button>
-
-    <!-- 링크 복사 -->
-    <button onclick="copyLink()" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
-      <div style="width:48px;height:48px;background:rgba(201,162,39,0.15);border:1px solid rgba(201,162,39,0.4);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;">🔗</div>
-      <span style="font-size:.68rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;" id="copyLabel">링크 복사</span>
-    </button>
-
   </div>
 </div>
 
 <!-- 신청 폼 -->
 <div class="container">
   <div class="form-card" id="formCard">
-    <div class="form-title">파트너 교회 신청</div>
-    <div class="form-sub">신청서 제출 후 1~2 영업일 내에 담당자가 연락드립니다</div>
+    <div class="form-title">⛪ 교회 정보 등록</div>
+    <div class="form-sub">양식을 작성하시면 담당자 확인 후 목록에 올라갑니다</div>
 
     <div class="field" id="f-churchName">
       <label>교회명 <span class="req">*</span></label>
@@ -422,9 +203,6 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
         <optgroup label="🇦🇺 호주">
           <option value="시드니, NSW">시드니 (Sydney, NSW)</option>
           <option value="멜버른, VIC">멜버른 (Melbourne, VIC)</option>
-          <option value="브리즈번, QLD">브리즈번 (Brisbane, QLD)</option>
-          <option value="퍼스, WA">퍼스 (Perth, WA)</option>
-          <option value="애들레이드, SA">애들레이드 (Adelaide, SA)</option>
         </optgroup>
         <optgroup label="🌎 기타">
           <option value="기타">기타 (직접 입력)</option>
@@ -454,170 +232,165 @@ textarea{min-height:72px;resize:vertical;line-height:1.6;}
     </div>
 
     <div class="field">
-      <label>교회 웹사이트 <span style="color:var(--muted);font-weight:400;">(선택)</span></label>
+      <label>교회 웹사이트 <span class="opt">(선택)</span></label>
       <input type="url" id="website" placeholder="https://..." oninput="checkWebsite()">
-      <div id="no-website-hint" style="display:none;margin-top:8px;background:rgba(110,231,183,.07);border:1px solid rgba(110,231,183,.25);border-radius:8px;padding:10px 14px;font-size:.78rem;color:var(--mint);line-height:1.7;">
-        🌐 웹사이트가 없으신가요? <strong>나누리(Nanuri)</strong>가 교회 홈페이지를 제작해 드립니다.<br>
-        <span style="color:var(--muted);">신청 후 담당자가 웹사이트 제작 안내도 함께 드립니다.</span>
+      <div id="no-website-hint">
+        🌐 웹사이트가 없으신가요? <strong>나누리(Nanuri)</strong>가 교회 홈페이지를 제작해 드립니다.
       </div>
     </div>
 
-    <!-- 안내 -->
-    <div class="discount-hint">
-      💡 신청서 제출 후 담당자가 개별 연락드립니다 · 무료로 함께해 주시면 됩니다
-    </div>
-
-    <!-- 동의 -->
     <div class="agree-item">
       <input type="checkbox" id="agree1">
       <label for="agree1">HebronGuide <a href="/terms.html" target="_blank" style="color:var(--gold);">이용약관</a> 및 <a href="/privacy.html" target="_blank" style="color:var(--gold);">개인정보처리방침</a>에 동의합니다</label>
     </div>
     <div class="agree-item">
       <input type="checkbox" id="agree2">
-      <label for="agree2">파트너 교회로서 새 이민자 환대 동행 역할에 협력합니다 <em style="color:var(--muted);">(마태복음 25:35)</em></label>
+      <label for="agree2">새로 오는 이민자·이주자를 환영하고 함께 동행하겠습니다</label>
     </div>
 
-    <button class="btn-submit" id="submitBtn" onclick="submitForm()">🌟 파트너 교회 신청하기</button>
+    <button class="btn-submit" id="submitBtn" onclick="submitForm()">⛪ 교회 정보 올리기</button>
   </div>
 
   <!-- 성공 -->
   <div class="success" id="successBox">
     <div class="success-icon">🙏</div>
-    <h2>신청이 접수되었습니다</h2>
-    <p>감사합니다. 함께해 주셔서 기쁩니다.<br>담당자가 1~2 영업일 내에 연락드리겠습니다.</p>
+    <h2>등록해 주셔서 감사합니다</h2>
+    <p>담당자가 확인 후 1~2 영업일 내에 연락드리겠습니다.</p>
 
-    <!-- ── 창립 파트너 배지 카드 ── -->
-    <div style="margin-top:28px;margin-bottom:4px;">
+    <!-- 배지 카드 -->
+    <div style="margin-top:28px;">
       <div style="font-size:.64rem;font-weight:800;letter-spacing:.14em;color:rgba(201,162,39,.65);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px;">
         <span style="flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(201,162,39,.3));"></span>
-        창립 파트너 배지 카드
+        교회 배지 카드
         <span style="flex:1;height:1px;background:linear-gradient(to left,transparent,rgba(201,162,39,.3));"></span>
       </div>
-
-      <!-- Canvas 카드 -->
       <div style="position:relative;display:inline-block;width:100%;max-width:340px;">
         <canvas id="badgeCanvas" style="width:100%;border-radius:16px;display:block;box-shadow:0 12px 48px rgba(201,162,39,.35);"></canvas>
         <div id="badgeLoading" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,17,23,.7);border-radius:16px;font-size:.82rem;color:var(--muted);">카드 생성 중...</div>
       </div>
-
-      <!-- 액션 버튼 -->
-      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px;margin-bottom:8px;">
-        <button onclick="downloadBadge()" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold),#d4a020);color:#0d1117;border:none;padding:10px 22px;border-radius:50px;font-size:.82rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;box-shadow:0 4px 14px rgba(201,162,39,.35);">
-          ⬇&nbsp;카드 저장
-        </button>
-        <button onclick="shareBadgeKakao()" style="display:inline-flex;align-items:center;gap:6px;background:#FEE500;color:#3A1D1D;border:none;padding:10px 22px;border-radius:50px;font-size:.82rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">
-          💬&nbsp;카카오 공유
-        </button>
-        <button onclick="shareBadgeInstagram()" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;border:none;padding:10px 22px;border-radius:50px;font-size:.82rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">
-          📸&nbsp;인스타 공유
-        </button>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px;margin-bottom:8px;">
+        <button onclick="downloadBadge()" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold),#d4a020);color:#0d1117;border:none;padding:10px 22px;border-radius:50px;font-size:.82rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">⬇&nbsp;카드 저장</button>
+        <button onclick="shareBadgeKakao()" style="display:inline-flex;align-items:center;gap:6px;background:#FEE500;color:#3A1D1D;border:none;padding:10px 22px;border-radius:50px;font-size:.82rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">💬&nbsp;카카오 공유</button>
+        <button onclick="shareBadgeInstagram()" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;border:none;padding:10px 22px;border-radius:50px;font-size:.82rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">📸&nbsp;인스타 공유</button>
       </div>
       <p style="font-size:.7rem;color:rgba(236,253,245,.3);">카드를 저장해 SNS에 자랑해 주세요 🙌</p>
     </div>
 
-    <!-- 공유 독려 -->
-    <div style="margin-top:20px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.2);border-radius:12px;padding:16px 18px;text-align:center;">
-      <div style="font-size:.82rem;font-weight:800;color:var(--mint);margin-bottom:6px;">🌏 주변에 알려 주세요</div>
-      <div style="font-size:.78rem;color:rgba(236,253,245,.65);line-height:1.8;">
-        이 배지 카드를 저장해 SNS에 올려 주시고<br>
-        목사님·성도님·가족들에게 링크를 전해 주세요.<br>
-        <span style="color:var(--mint);font-weight:700;">입소문이 하나님 나라를 열어갑니다.</span>
+    <!-- 공유 -->
+    <div class="share-nudge" style="margin-top:20px;">
+      <p><strong style="color:var(--gold);">HebronGuide를 주변에 알려 주세요</strong></p>
+      <div class="sns-row">
+        <button class="sns-btn" onclick="shareKakao()">
+          <div class="sns-icon" style="background:#FEE500;">💬</div>
+          <span class="sns-text">카카오톡</span>
+        </button>
+        <button class="sns-btn" onclick="shareWhatsApp()">
+          <div class="sns-icon" style="background:#25D366;">📱</div>
+          <span class="sns-text">WhatsApp</span>
+        </button>
+        <button class="sns-btn" onclick="shareSMS()">
+          <div class="sns-icon" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);">✉️</div>
+          <span class="sns-text">문자</span>
+        </button>
+        <button class="sns-btn" onclick="copyLink()">
+          <div class="sns-icon" style="background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.4);">🔗</div>
+          <span class="sns-text" id="copyLabel">링크 복사</span>
+        </button>
       </div>
     </div>
     <div class="success-email" id="successEmail"></div>
   </div>
 </div>
 
+<!-- 메인으로 돌아가기 -->
+<div style="text-align:center;padding:44px 24px 64px;border-top:1px solid rgba(255,255,255,0.07);background:#0d1117;">
+  <a href="/seattle/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:900;font-size:.95rem;font-family:'Noto Sans KR',sans-serif;">
+    ← &nbsp;HebronGuide 메인으로 돌아가기
+  </a>
+  <div style="margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
+    <a href="/ad-request.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">광고 등재</a>
+    <span style="color:rgba(255,255,255,0.12);">·</span>
+    <a href="/city-request.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">도시 신청</a>
+    <span style="color:rgba(255,255,255,0.12);">·</span>
+    <a href="/about.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">소개</a>
+    <span style="color:rgba(255,255,255,0.12);">·</span>
+    <a href="/privacy.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">개인정보</a>
+  </div>
+  <div style="margin-top:14px;font-size:.67rem;color:rgba(236,253,245,0.18);font-family:'Noto Sans KR',sans-serif;">© 2026 HebronGuide LLC · hebronguide.com</div>
+</div>
+
 <script>
-// SNS 공유
+// ── 공유 ─────────────────────────────────────────────────────
 const SHARE_URL = 'https://hebronguide.com/founding-partner.html';
-const SHARE_TEXT = '📱 HebronGuide 파트너 교회 모집 중 — 44개+ 도시 한인 이민자·이주자와 교회를 잇는 디지털 환대 플랫폼. 도시별 선착순 12개 · 2026년 10월 1일까지.';
+const SHARE_TEXT = '📱 HebronGuide — 이민자·이주자를 위한 커뮤니티 가이드. 44개+ 도시 정착 정보. 교회도 여기에 이름을 올릴 수 있어요!';
 
 function shareKakao() {
-  const msg = encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL);
-  window.open('https://sharer.kakao.com/talk/friends/picker/link?app_key=KAKAO_APP_KEY&link_ver=4.0&template_id=0', '_blank');
-  // Fallback: 카카오 미설치 시 링크 복사
   if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
-    window.location.href = `kakaotalk://msg/send?msg=${msg}`;
+    window.location.href = `kakaotalk://msg/send?msg=${encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL)}`;
   } else {
     navigator.clipboard?.writeText(SHARE_URL).then(() => alert('링크가 복사됐습니다. 카카오톡에 붙여넣기 하세요.'));
   }
 }
-function shareWhatsApp() {
-  window.open(`https://wa.me/?text=${encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL)}`, '_blank');
-}
-function shareFacebook() {
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SHARE_URL)}`, '_blank');
-}
-function shareX() {
-  window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(SHARE_URL)}&text=${encodeURIComponent(SHARE_TEXT)}`, '_blank');
-}
-function shareLine() {
-  window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(SHARE_URL)}`, '_blank');
-}
-function shareSMS() {
-  window.location.href = `sms:?body=${encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL)}`;
-}
-function shareInstagram() {
-  // Instagram은 URL 공유 API 없음 — 링크 복사 후 안내
-  navigator.clipboard?.writeText(SHARE_URL).then(() => {
-    alert('링크가 복사됐습니다!\nInstagram 앱 → 스토리 또는 DM에 붙여넣기 하세요.');
-  });
-  setTimeout(() => { window.open('https://www.instagram.com', '_blank'); }, 500);
-}
-function shareTelegram() {
-  window.open(`https://t.me/share/url?url=${encodeURIComponent(SHARE_URL)}&text=${encodeURIComponent(SHARE_TEXT)}`, '_blank');
-}
-function shareThreads() {
-  const text = encodeURIComponent(SHARE_TEXT + ' ' + SHARE_URL);
-  window.open(`https://www.threads.net/intent/post?text=${text}`, '_blank');
-}
+function shareWhatsApp() { window.open(`https://wa.me/?text=${encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL)}`, '_blank'); }
+function shareFacebook() { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SHARE_URL)}`, '_blank'); }
+function shareX() { window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(SHARE_URL)}&text=${encodeURIComponent(SHARE_TEXT)}`, '_blank'); }
+function shareTelegram() { window.open(`https://t.me/share/url?url=${encodeURIComponent(SHARE_URL)}&text=${encodeURIComponent(SHARE_TEXT)}`, '_blank'); }
+function shareSMS() { window.location.href = `sms:?body=${encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL)}`; }
 function copyLink() {
   navigator.clipboard?.writeText(SHARE_URL).then(() => {
-    const label = document.getElementById('copyLabel');
-    if (label) { label.textContent = '✅ 복사됨'; setTimeout(() => label.textContent = '링크 복사', 2000); }
+    const l = document.getElementById('copyLabel');
+    if (l) { l.textContent = '✅ 복사됨'; setTimeout(() => l.textContent = '링크 복사', 2000); }
   });
 }
 
-// 도시 선택
+// ── 교회 목록 ─────────────────────────────────────────────────
+// 관리자가 검증 후 추가하는 시드 데이터 (여기서 직접 수정)
+const SEED_CHURCHES = [
+  { name: '시애틀지구촌교회',       city: '시애틀, WA',   flag: '🇺🇸' },
+  { name: '달라스한인장로교회',     city: '달라스, TX',    flag: '🇺🇸' },
+  { name: '토론토새생명교회',       city: '토론토, ON',    flag: '🇨🇦' },
+  { name: '내슈빌한인침례교회',     city: '내슈빌, TN',    flag: '🇺🇸' },
+  { name: 'LA비전교회',            city: 'LA, CA',        flag: '🇺🇸' },
+  { name: '뉴욕한인교회',          city: '뉴욕, NY',      flag: '🇺🇸' },
+  { name: '애틀랜타사랑의교회',    city: '애틀랜타, GA',   flag: '🇺🇸' },
+];
+
+function getLocalChurches() {
+  try { return JSON.parse(localStorage.getItem('hg_churches') || '[]'); } catch { return []; }
+}
+function saveLocalChurch(name, city) {
+  const arr = getLocalChurches();
+  arr.unshift({ name, city, flag: '⛪', isNew: true });
+  try { localStorage.setItem('hg_churches', JSON.stringify(arr.slice(0, 20))); } catch {}
+}
+
+function renderChurches() {
+  const chips = document.getElementById('churchChips');
+  const countEl = document.getElementById('totalCount');
+  if (!chips) return;
+  const local = getLocalChurches();
+  const all = [...local, ...SEED_CHURCHES];
+  countEl.textContent = all.length;
+  chips.innerHTML = '';
+  all.forEach(c => {
+    const el = document.createElement('div');
+    el.className = 'church-chip' + (c.isNew ? ' new' : '');
+    el.innerHTML = `<span class="flag">${c.flag || '⛪'}</span>${c.name} <span style="font-size:.65rem;color:var(--muted);margin-left:2px;">· ${c.city}</span>`;
+    chips.appendChild(el);
+  });
+}
+
+// ── 폼 ──────────────────────────────────────────────────────
 function checkCity() {
   const val = document.getElementById('city').value;
   const other = document.getElementById('cityOther');
   if (other) other.style.display = val === '기타' ? 'block' : 'none';
 }
-
-// 웹사이트 입력 감지
 function checkWebsite() {
   const val = document.getElementById('website').value.trim();
   const hint = document.getElementById('no-website-hint');
   if (hint) hint.style.display = val === '' ? 'block' : 'none';
 }
-
-// D-day
-(function(){
-  const d = Math.max(0, Math.ceil((new Date("2026-10-01").getTime() - Date.now()) / 86400000));
-  document.getElementById('ddayNum').textContent = 'D-' + d;
-  document.getElementById('ddayBadge').title = '2026년 10월 1일 마감';
-})();
-
-// 도시 자동완성
-const CITY_META = {
-  "Seattle, WA":{state:"WA"},"Dallas, TX":{state:"TX"},"San Francisco, CA":{state:"CA"},
-  "New York, NY":{state:"NY"},"Nashville, TN":{state:"TN"},"Boston, MA":{state:"MA"},
-  "Los Angeles, CA":{state:"CA"},"Houston, TX":{state:"TX"},"Atlanta, GA":{state:"GA"},
-  "Chicago, IL":{state:"IL"},"Philadelphia, PA":{state:"PA"},"Miami, FL":{state:"FL"},
-  "Kansas City, MO":{state:"MO"},"Washington, DC":{state:"DC"},
-  "Toronto, ON":{state:"ON"},"Vancouver, BC":{state:"BC"},
-};
-function autofillState() {
-  const val = document.getElementById('city').value;
-  const other = document.getElementById('cityOther');
-  other.style.display = val === 'OTHER' ? 'block' : 'none';
-  const meta = CITY_META[val];
-  if (meta) document.getElementById('state').value = meta.state;
-}
-
-// 유효성 검사
 function validate() {
   let ok = true;
   const checks = [
@@ -639,89 +412,39 @@ function validate() {
   return ok;
 }
 
-// ── 창립 파트너 현황 ─────────────────────────────────────────
-// 숫자는 여기서만 수정
-const PARTNER = {
-  churches: 7,
-  total: 120,
-  cities: [
-    {name:'시애틀, WA',      flag:'🇺🇸', daysAgo:0},
-    {name:'달라스, TX',      flag:'🇺🇸', daysAgo:1},
-    {name:'로스앤젤레스',    flag:'🇺🇸', daysAgo:4},
-    {name:'내슈빌, TN',      flag:'🇺🇸', daysAgo:6},
-    {name:'토론토, ON',      flag:'🇨🇦', daysAgo:9},
-  ],
-};
+function submitForm() {
+  if (!validate()) return;
+  const churchName = document.getElementById('churchName').value;
+  const city = document.getElementById('city').value === '기타'
+    ? document.getElementById('cityOther').value
+    : document.getElementById('city').value;
 
-function animCount(el, target, dur) {
-  if (!el) return;
-  let v = 0, inc = target / ((dur || 1400) / 16);
-  const t = setInterval(() => {
-    v = Math.min(v + inc, target);
-    el.textContent = Math.floor(v);
-    if (v >= target) clearInterval(t);
-  }, 16);
+  const body = `[HebronGuide 교회 등록 신청]
+
+교회명: ${churchName}
+도시: ${city}
+담임목사: ${document.getElementById('pastorName').value}
+이메일: ${document.getElementById('email').value}
+전화번호: ${document.getElementById('phone').value}
+웹사이트: ${document.getElementById('website').value.trim() || '없음'}
+
+— hebronguide.com`;
+
+  const subject = `[HebronGuide] 교회 등록 — ${churchName}`;
+  window.location.href = `mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  // 즉시 목록에 추가
+  saveLocalChurch(churchName, city);
+  renderChurches();
+
+  document.getElementById('formCard').style.display = 'none';
+  document.getElementById('successBox').classList.add('show');
+  document.getElementById('successEmail').textContent = document.getElementById('email').value;
+
+  drawBadgeCard(churchName, city);
 }
 
-function buildPartnerUI() {
-  const { churches, total, cities } = PARTNER;
-
-  // 도시 칩
-  const chips = document.getElementById('cityChips');
-  if (chips) {
-    cities.forEach((c, i) => {
-      const isNew = i === 0;
-      const el = document.createElement('div');
-      el.style.cssText = [
-        'display:inline-flex;align-items:center;gap:5px;border-radius:99px;',
-        'padding:5px 13px;font-size:.7rem;font-family:\'Noto Sans KR\',sans-serif;',
-        'color:rgba(236,253,245,.8);transition:transform .15s;cursor:default;',
-        isNew
-          ? 'background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.3);'
-          : 'background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.2);',
-      ].join('');
-      el.innerHTML = `<span style="width:5px;height:5px;border-radius:50%;display:inline-block;flex-shrink:0;
-        background:${isNew ? '#6EE7B7' : 'var(--gold)'};
-        ${isNew ? 'animation:pulse 1.5s infinite;' : ''}"></span>
-        ${c.flag}&nbsp;${c.name}`;
-      chips.appendChild(el);
-    });
-  }
-
-  // 최근 합류 피드
-  const feed = document.getElementById('recentFeed');
-  if (feed) {
-    const items = cities.slice(0, 3).map(c => {
-      const when = c.daysAgo === 0 ? '<strong style="color:#6EE7B7;">오늘</strong>'
-                 : c.daysAgo === 1 ? '어제'
-                 : `${c.daysAgo}일 전`;
-      return `${c.flag}&nbsp;${c.name} — ${when}`;
-    });
-    feed.innerHTML = '<span style="color:rgba(110,231,183,.65);font-weight:700;margin-right:8px;">🔔 최근 합류</span>' +
-      items.join('&ensp;·&ensp;');
-  }
-
-  // 스크롤 감지 → 카운터 실행
-  const target = document.getElementById('partnerStatus');
-  if (!target) return;
-  const io = new IntersectionObserver(entries => {
-    if (!entries[0].isIntersecting) return;
-    animCount(document.getElementById('churchCount'), churches, 1400);
-    animCount(document.getElementById('cityCount'),   cities.length, 1200);
-    animCount(document.getElementById('remainCount'), total - churches, 1600);
-    const bar = document.getElementById('progBar');
-    if (bar) bar.style.width = (churches / total * 100).toFixed(1) + '%';
-    const lbl = document.getElementById('progLabel');
-    if (lbl) lbl.innerHTML =
-      `<span style="color:var(--mint);font-weight:700;">${churches}교회 참여 중</span>&ensp;·&ensp;선착순 ${total}`;
-    io.disconnect();
-  }, {threshold: 0.35});
-  io.observe(target);
-}
-
-document.addEventListener('DOMContentLoaded', buildPartnerUI);
-
-// ── 배지 카드 (Canvas) ──────────────────────────────────────────
+// ── 배지 카드 ─────────────────────────────────────────────────
 function rrect(ctx, x, y, w, h, r, fill, stroke) {
   ctx.beginPath();
   ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y);
@@ -730,10 +453,8 @@ function rrect(ctx, x, y, w, h, r, fill, stroke) {
   ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
   ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
   ctx.closePath();
-  if(fill) ctx.fill();
-  if(stroke) ctx.stroke();
+  if(fill) ctx.fill(); if(stroke) ctx.stroke();
 }
-
 async function drawBadgeCard(churchName, city) {
   await document.fonts.ready;
   const canvas = document.getElementById('badgeCanvas');
@@ -742,161 +463,70 @@ async function drawBadgeCard(churchName, city) {
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext('2d');
   const KR = '"Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif';
-
-  // 배경
-  ctx.fillStyle = '#0d1117';
-  ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = '#0d1117'; ctx.fillRect(0,0,W,H);
   const bg = ctx.createRadialGradient(W/2,H*0.38,0,W/2,H*0.38,W*0.62);
   bg.addColorStop(0,'rgba(201,162,39,0.13)'); bg.addColorStop(1,'transparent');
   ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
-
-  // 상단 그라디언트 바
   const tb = ctx.createLinearGradient(0,0,W,0);
   tb.addColorStop(0,'#C9A227'); tb.addColorStop(0.5,'#6EE7B7'); tb.addColorStop(1,'#C9A227');
   ctx.fillStyle = tb; ctx.fillRect(0,0,W,8);
-
-  // ✦
   ctx.fillStyle = 'rgba(201,162,39,0.55)'; ctx.font = '38px serif';
   ctx.textAlign = 'center'; ctx.fillText('✦',W/2,104);
-
-  // HEBRONGUIDE
-  ctx.fillStyle = '#C9A227';
-  ctx.font = `bold 56px Cinzel,"Times New Roman",serif`;
+  ctx.fillStyle = '#C9A227'; ctx.font = `bold 52px Cinzel,"Times New Roman",serif`;
   ctx.fillText('HEBRONGUIDE',W/2,176);
-
-  // 구분선
   ctx.strokeStyle = 'rgba(201,162,39,0.28)'; ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(W/2-160,202); ctx.lineTo(W/2+160,202); ctx.stroke();
-
-  // 창립 파트너 뱃지 필
   ctx.fillStyle = 'rgba(201,162,39,0.14)';
-  rrect(ctx,W/2-120,220,240,52,26,true,false);
+  rrect(ctx,W/2-130,220,260,52,26,true,false);
   ctx.strokeStyle = 'rgba(201,162,39,0.45)'; ctx.lineWidth = 1.5;
-  rrect(ctx,W/2-120,220,240,52,26,false,true);
+  rrect(ctx,W/2-130,220,260,52,26,false,true);
   ctx.fillStyle = '#C9A227'; ctx.font = `bold 24px ${KR}`;
-  ctx.fillText('2026 창립 파트너',W/2,255);
-
-  // 교회명
+  ctx.fillText('HebronGuide 등록 교회',W/2,255);
   ctx.fillStyle = '#ffffff';
   const fz = churchName.length > 12 ? 60 : churchName.length > 8 ? 70 : 82;
   ctx.font = `bold ${fz}px ${KR}`;
   ctx.fillText(churchName,W/2,398);
-
-  // 도시
-  ctx.fillStyle = 'rgba(236,253,245,0.52)';
-  ctx.font = `38px ${KR}`;
+  ctx.fillStyle = 'rgba(236,253,245,0.52)'; ctx.font = `38px ${KR}`;
   ctx.fillText(city,W/2,466);
-
-  // 구분점
-  ctx.fillStyle = 'rgba(201,162,39,0.45)';
-  ctx.font = '26px serif'; ctx.fillText('· · ·',W/2,540);
-
-  // 성경 구절
-  ctx.fillStyle = 'rgba(236,253,245,0.42)';
-  ctx.font = `26px ${KR}`;
+  ctx.fillStyle = 'rgba(201,162,39,0.45)'; ctx.font = '26px serif'; ctx.fillText('· · ·',W/2,540);
+  ctx.fillStyle = 'rgba(236,253,245,0.42)'; ctx.font = `26px ${KR}`;
   ctx.fillText('"내가 나그네 되었을 때 너희가 영접하였다"',W/2,616);
   ctx.fillStyle = '#C9A227'; ctx.font = `bold 24px ${KR}`;
   ctx.fillText('— 마태복음 25:35',W/2,660);
-
-  // 사명 문구
-  ctx.fillStyle = 'rgba(110,231,183,0.7)';
-  ctx.font = `24px ${KR}`;
-  ctx.fillText('이민자를 환대하는 교회 · 하나님 나라 창립 파트너',W/2,752);
-
-  // 하단 영역
+  ctx.fillStyle = 'rgba(110,231,183,0.7)'; ctx.font = `24px ${KR}`;
+  ctx.fillText('이민자·이주자를 환영하는 교회',W/2,752);
   const bb = ctx.createLinearGradient(0,820,0,H);
   bb.addColorStop(0,'transparent'); bb.addColorStop(1,'rgba(201,162,39,0.07)');
   ctx.fillStyle = bb; ctx.fillRect(0,820,W,H-820);
-
-  ctx.fillStyle = 'rgba(201,162,39,0.6)';
-  ctx.font = `28px Cinzel,"Times New Roman",serif`;
+  ctx.fillStyle = 'rgba(201,162,39,0.6)'; ctx.font = `28px Cinzel,"Times New Roman",serif`;
   ctx.fillText('hebronguide.com',W/2,904);
-
-  ctx.fillStyle = 'rgba(236,253,245,0.22)';
-  ctx.font = `22px ${KR}`;
+  ctx.fillStyle = 'rgba(236,253,245,0.22)'; ctx.font = `22px ${KR}`;
   ctx.fillText('Soli Deo Gloria · 하나님께만 영광',W/2,948);
-
-  // 하단 바
   ctx.fillStyle = tb; ctx.fillRect(0,H-8,W,8);
-
-  // 로딩 스피너 숨기기
   const ld = document.getElementById('badgeLoading');
   if(ld) ld.style.display = 'none';
 }
-
 function downloadBadge() {
   const c = document.getElementById('badgeCanvas');
   if(!c) return;
   const a = document.createElement('a');
-  a.download = 'hebronguide-founding-partner.png';
-  a.href = c.toDataURL('image/png');
-  a.click();
+  a.download = 'hebronguide-church.png'; a.href = c.toDataURL('image/png'); a.click();
 }
-
 function shareBadgeKakao() {
-  const txt = '우리 교회가 HebronGuide 2026 창립 파트너가 되었습니다 🙏\n' + SHARE_URL;
+  const txt = `우리 교회가 HebronGuide에 등록됐습니다 🙏\n${SHARE_URL}`;
   if(/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
     window.location.href = `kakaotalk://msg/send?msg=${encodeURIComponent(txt)}`;
   } else {
     navigator.clipboard?.writeText(SHARE_URL).then(()=>alert('링크가 복사됐습니다.\n카카오톡에 붙여넣기 하세요.'));
   }
 }
-
 function shareBadgeInstagram() {
   downloadBadge();
-  setTimeout(()=>{
-    alert('카드가 저장됐습니다! 🎉\n인스타그램 앱 → 스토리 또는 피드에 올려 주세요 🙌');
-    window.open('https://www.instagram.com','_blank');
-  },600);
+  setTimeout(()=>{ alert('카드가 저장됐습니다! 🎉\n인스타그램 스토리 또는 피드에 올려 주세요 🙌'); window.open('https://www.instagram.com','_blank'); },600);
 }
 
-// 제출
-function submitForm() {
-  if (!validate()) return;
-  const churchName = document.getElementById('churchName').value;
-  const city = document.getElementById('city').value === '기타'
-    ? document.getElementById('cityOther').value
-    : document.getElementById('city').value;
-
-  const body = `[HebronGuide 파트너 교회 신청]
-
-교회명: ${churchName}
-도시: ${city}
-담임목사: ${document.getElementById('pastorName').value}
-이메일: ${document.getElementById('email').value}
-전화번호: ${document.getElementById('phone').value}
-웹사이트: ${document.getElementById('website').value.trim() || '없음 → 나누리 웹사이트 제작 안내 필요'}
-
-— hebronguide.com | 마 25:35`;
-
-  const subject = `[HebronGuide] 파트너 교회 신청 — ${churchName}`;
-  window.location.href = `mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-  document.getElementById('formCard').style.display = 'none';
-  const sb = document.getElementById('successBox');
-  sb.classList.add('show');
-  document.getElementById('successEmail').textContent = document.getElementById('email').value;
-
-  // 배지 카드 생성
-  drawBadgeCard(churchName, city);
-}
+// 초기화
+document.addEventListener('DOMContentLoaded', renderChurches);
 </script>
-
-<!-- ── 메인으로 돌아가기 ── -->
-<div style="text-align:center;padding:44px 24px 64px;border-top:1px solid rgba(255,255,255,0.07);background:#0d1117;">
-  <a href="/seattle/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:900;font-size:.95rem;font-family:'Noto Sans KR',sans-serif;letter-spacing:.01em;transition:background .2s;">
-    ← &nbsp;HebronGuide 메인으로 돌아가기
-  </a>
-  <div style="margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
-    <a href="/founding-partner.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">파트너 신청</a>
-    <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/ad-request.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">광고 신청</a>
-    <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/about.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">소개</a>
-    <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/privacy.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">개인정보</a>
-  </div>
-  <div style="margin-top:14px;font-size:.67rem;color:rgba(236,253,245,0.18);font-family:'Noto Sans KR',sans-serif;">© 2026 HebronGuide LLC · hebronguide.com</div>
-</div>
 </body>
 </html>
