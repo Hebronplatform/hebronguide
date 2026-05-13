@@ -92,15 +92,13 @@ export default defineConfig({
         additionalManifestEntries: [],
 
         runtimeCaching: [
-          // HTML 페이지: 항상 네트워크 우선 → 구 캐시 fallback
+          // HTML 페이지: 항상 네트워크 우선 (캐시 없이) → 항상 최신 버전 로드
           {
             urlPattern: /\/index\.html$/,
-            handler: 'NetworkFirst',
+            handler: 'NetworkOnly',  // NetworkFirst → NetworkOnly: 절대 캐시 안 씀
             options: {
               cacheName: 'html-cache',
-              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 }, // 1일만 캐시
               cacheableResponse: { statuses: [0, 200] },
-              networkTimeoutSeconds: 3,
             },
           },
           // 구글 폰트: 장기 캐시 (거의 바뀌지 않음)
