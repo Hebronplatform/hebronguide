@@ -244,6 +244,10 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.0
       <input type="checkbox" id="agree2">
       <label for="agree2">입력한 정보가 사실임을 확인합니다</label>
     </div>
+    <div class="agree-row">
+      <input type="checkbox" id="agree3">
+      <label for="agree3">HebronGuide를 <strong style="color:#C084FC;">2개 교회 이상</strong>에 소개하겠습니다 🌿</label>
+    </div>
 
     <button class="btn-submit" id="btnSubmit" onclick="submitChurch()">
       ⛪ 교회 등재 신청하기
@@ -265,7 +269,9 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.0
 async function submitChurch() {
   const btn = document.getElementById('btnSubmit');
 
-  if (!document.getElementById('agree1').checked || !document.getElementById('agree2').checked) {
+  if (!document.getElementById('agree1').checked ||
+      !document.getElementById('agree2').checked ||
+      !document.getElementById('agree3').checked) {
     alert('동의 항목을 모두 체크해 주세요.'); return;
   }
 
