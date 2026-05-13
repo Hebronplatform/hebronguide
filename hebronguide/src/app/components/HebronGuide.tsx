@@ -289,7 +289,7 @@ const MINT = "#6EE7B7";
 /* ─────────────────────────────────────────
    CITY CONFIG — 도시별 설정
 ───────────────────────────────────────── */
-// 현재 17개 + 확장 27개 = 총 50개 도시 (계속 성장 중)
+// 현재 17개 + 확장 27개 = 총 52개 도시 (계속 성장 중)
 // 작은 도시일수록 HebronGuide가 더 필요합니다 — 외롭기 때문입니다
 type CitySlug =
   // 북미 (기존 17)
@@ -5667,7 +5667,7 @@ function CompactHeroNew() {
         }}>
           <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6EE7B7", display: "inline-block", flexShrink: 0 }} />
           <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(255,255,255,0.92)", letterSpacing: "0.05em" }}>
-            LIVE · {lang === "ko" ? "50개 도시" : "50 Cities"}
+            LIVE · {lang === "ko" ? "52개 도시" : "52 Cities"}
           </span>
         </div>
         <div style={{
@@ -5782,7 +5782,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       icon: "🤝", color: "#F59E0B",
       nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
       tagKo: "친구 · 멘토 · 동행 파트너", tagEn: "Friends · Mentors · Partners",
-      userKo: "50개 도시 한인을 만납니다", userEn: "Meet Koreans across 50 cities",
+      userKo: "52개 도시 한인을 만납니다", userEn: "Meet Koreans across 52 cities",
       providerKo: "멘토로 섬기실 분 → 함께해요", providerEn: "Mentor & serve → join us",
       tab: 5, subTab: 2,
     },
@@ -7916,7 +7916,7 @@ function AmericasAdSection({ lang }: { lang: string }) {
 
 /* ─────────────────────────────────────────
    HOME: 플라이휠 소셜 프루프 바 (쿠팡 원리 ①)
-   — "312개 교회 · 50개 도시" 숫자가 신뢰를 만든다
+   — "312개 교회 · 52개 도시" 숫자가 신뢰를 만든다
 ───────────────────────────────────────── */
 function HebronFlywheelBar({ lang }: { lang: string }) {
   const stats = [
@@ -9641,7 +9641,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 lang === "ko" ? "📱 HebronGuide 앱에 '헤브론 교회 네트워크' 금색 배지 표시" : "📱 Gold 'Hebron Church Network' badge displayed on HebronGuide app",
                 lang === "ko" ? "🌐 전국·전 세계 목회자 네트워크 참여" : "🌐 National & global pastor network membership",
                 lang === "ko" ? "📊 도시 내 한인 이민자 정착 현황 데이터 공유" : "📊 City-level Korean immigrant settlement data sharing",
-                lang === "ko" ? "🤝 50개+ 도시 파트너 교회와 교인 교류·연결 (계속 확장 중)" : "🤝 Member exchange & connection with 44+ partner cities (continuously expanding)",
+                lang === "ko" ? "🤝 52개+ 도시 파트너 교회와 교인 교류·연결 (계속 확장 중)" : "🤝 Member exchange & connection with 52+ partner cities (continuously expanding)",
               ].map((item, i) => (
                 <div key={i} style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, marginBottom: 4 }}>
                   {item}
@@ -9988,7 +9988,7 @@ function GroceryMartContent({ lang, accent }: { lang: string; accent: string }) 
         </div>
       </div>
       <MCard emoji="🏪" name="99 Ranch Market" nameEn="99 Ranch Market — Pan-Asian"
-        desc={ko ? "전국 최대 아시안 마트 체인. 중국계 운영이지만 한국 라면·고추장·참기름·두부 등 한국 식품 폭넓게 취급. 생선·해산물 신선도 높음. 캘리포니아·텍사스·뉴욕 등 전국 50개+ 매장." : "Largest pan-Asian supermarket chain in the US. Chinese-owned but stocks Korean ramen, gochujang, sesame oil, tofu widely. Excellent fresh fish & seafood. 50+ locations in CA, TX, NY."}
+        desc={ko ? "전국 최대 아시안 마트 체인. 중국계 운영이지만 한국 라면·고추장·참기름·두부 등 한국 식품 폭넓게 취급. 생선·해산물 신선도 높음. 캘리포니아·텍사스·뉴욕 등 전국 52개+ 매장." : "Largest pan-Asian supermarket chain in the US. Chinese-owned but stocks Korean ramen, gochujang, sesame oil, tofu widely. Excellent fresh fish & seafood. 50+ locations in CA, TX, NY."}
         tip={ko ? "한국 냉동식품(만두·떡볶이·순대)은 99 Ranch에서도 대부분 구매 가능." : "Most Korean frozen foods (mandu, tteokbokki, sundae) are available at 99 Ranch too."}
         website="99ranch.com" />
       <MCard emoji="🇯🇵" name="Uwajimaya (우와지마야)" nameEn="Uwajimaya — Pacific Northwest"
@@ -10594,7 +10594,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                   {[
                     { n: lang === "ko" ? "현지 한인" : "Local Korean", d: lang === "ko" ? "오래 살아온 분" : "Long-time residents" },
-                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "50개+ 도시" : "50+ cities" },
+                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "52개+ 도시" : "52+ cities" },
                     { n: lang === "ko" ? "소규모 투어" : "Small Group", d: lang === "ko" ? "개인 맞춤" : "Personal touch" },
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
@@ -11350,8 +11350,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             icon="🤝" color="#8B5CF6" lang={lang}
             titleKo="헤브론 커넥트 — 친구·멘토·동행 파트너 매칭"
             titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
-            descKo="교인 검증 프로필로 50개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
-            descEn="Meet Koreans across 50 cities. Friends, mentors, prayer partners & business connections."
+            descKo="교인 검증 프로필로 52개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
+            descEn="Meet Koreans across 52 cities. Friends, mentors, prayer partners & business connections."
           />
           {/* 211 팁 박스 */}
           <a href="tel:211" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>
@@ -13482,8 +13482,8 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
             icon="📚" color="#8B5CF6" lang={lang}
             titleKo="헤브론 튜터 — 한인 선배가 직접 가르칩니다"
             titleEn="Hebron Tutor — Learn from Korean Community Mentors"
-            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 50개+ 도시 가능."
-            descEn="Math, SAT, AP, Korean tutoring. Carefully selected Korean tutors. Online across 50+ cities."
+            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 52개+ 도시 가능."
+            descEn="Math, SAT, AP, Korean tutoring. Carefully selected Korean tutors. Online across 52+ cities."
           />
         </div>
       </div>
@@ -15294,7 +15294,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
       titleKo: "헤브론 튜터", titleEn: "Hebron Tutor",
       taglineKo: "검증된 한인 튜터. 교회 신뢰 + 학력 검증",
       taglineEn: "Verified Korean tutors. Church trust + academic credentials.",
-      stepsKo: ["튜터 등록 (학력 확인 + 꼼꼼한 과정)", "학생-튜터 매칭 (온라인 50개+ 도시)", "수업 진행 → 파트너 수입"],
+      stepsKo: ["튜터 등록 (학력 확인 + 꼼꼼한 과정)", "학생-튜터 매칭 (온라인 52개+ 도시)", "수업 진행 → 파트너 수입"],
       stepsEn: ["Tutor registration (church + academic + background check)", "Student-tutor matching (online across 17 cities)", "Sessions → 15% commission"],
       benchmarkName: "Wyzant",
       benchmarkData: ko ? "250만 학생 · 8만 명 튜터 · $8,000만 매출 · 25% 수수료 · 튜터 검증 시스템" : "2.5M students · 80K tutors · $80M revenue · 25% commission · tutor verification system",
@@ -15316,7 +15316,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
       benchmarkName: "Meetup + Bumble BFF + Nextdoor",
       benchmarkData: ko ? "Meetup: 5,000만 회원 · Bumble BFF: 4,000만 MAU · Nextdoor: $2.1B 기업가치 (위치 검증)" : "Meetup: 50M users · Bumble BFF: 40M MAU · Nextdoor: $2.1B valuation (location-verified)",
       benchmarkLesson: ko ? "공통 관심사 + 검증된 신원 + 오프라인 만남 연결 = 성공적 커뮤니티 플랫폼" : "Shared interests + verified identity + offline meeting connection = successful community platform",
-      hebronKo: "한인 커뮤니티 신뢰. 50개+ 도시 크로스 매칭. 다목적 연결.",
+      hebronKo: "한인 커뮤니티 신뢰. 52개+ 도시 크로스 매칭. 다목적 연결.",
       hebronEn: "Church verification > Nextdoor neighbor verification. 17-city cross matching. Multi-purpose connection.",
       revenueKo: "프리미엄 구독 $15/월 | 이벤트 주최 $10/회 | 비즈니스 연결 $30/매칭",
       revenueEn: "Premium subscription $15/mo | Event hosting $10/event | Business connection $30/match",
