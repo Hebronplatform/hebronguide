@@ -4891,25 +4891,27 @@ const COMMUNITY_LABELS: Record<string, { ko: string; en: string; emoji: string }
 // localStorage R/W
 const COMM_KEY = "hg_community_v2";
 
-// ── 커뮤니티 데이터 자동 수집 (Supabase Edge Function) ───────
+// ── 커뮤니티 데이터 자동 수집 (Supabase REST API 직접 저장) ──
 import { projectId, publicAnonKey } from "/utils/supabase/info";
-const COMMUNITY_ENDPOINT = `https://${projectId}.supabase.co/functions/v1/make-server-21f2cd69/community/submit`;
+const SUPA_REST = `https://${projectId}.supabase.co/rest/v1/community_items`;
 
 function postToServer(item: any) {
   try {
-    fetch(COMMUNITY_ENDPOINT, {
+    fetch(SUPA_REST, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "apikey":        publicAnonKey,
         "Authorization": `Bearer ${publicAnonKey}`,
+        "Prefer":        "return=minimal",
       },
       body: JSON.stringify({
-        category: item.category,
-        city:     item.citySlug,
-        name:     item.name,
-        contact:  item.contact,
-        desc:     item.desc,
-        website:  item.website || "",
+        category:    item.category,
+        city_slug:   item.citySlug,
+        name:        item.name,
+        contact:     item.contact,
+        description: item.desc,
+        website:     item.website || "",
       }),
     }).catch(() => {}); // 실패해도 앱 동작에 영향 없음
   } catch {}

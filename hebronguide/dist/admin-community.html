@@ -122,9 +122,16 @@ tr:hover td{background:rgba(255,255,255,.03);}
 </div>
 
 <script>
-const BASE = "https://okhfjzofifmsgssgajts.supabase.co/functions/v1/make-server-21f2cd69";
+// Supabase 설정 (anon key — 읽기는 service role key 필요, 아래 설명 참조)
+const SUPA_URL  = "https://okhfjzofifmsgssgajts.supabase.co";
+const ANON_KEY  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9raGZqem9maWZtc2dzc2dhanRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MDQ5NDksImV4cCI6MjA5MjE4MDk0OX0.jNHf3a4IeDJvaqlq5PSBRT0BYp4iKCQKRkdya3D-5F8";
+// 관리자는 Supabase 대시보드 → community_items 테이블에서 직접 CSV 다운로드 가능
+
 let adminPw = "";
 let allItems = [];
+// service role key — 설정하면 전체 데이터 조회 가능
+// Supabase 대시보드 → Settings → API → service_role key 복사 후 입력
+let serviceKey = "";
 
 const CAT_LABELS = {
   church:'⛪ 교회', food:'🍽️ 맛집', settle:'🏠 정착',
@@ -132,12 +139,21 @@ const CAT_LABELS = {
 };
 
 async function login() {
-  const pw = document.getElementById('pwInput').value;
+  const pw = document.getElementById('pwInput').value.trim();
   if (!pw) return;
+  // service_role key는 길이가 길고 eyJ로 시작
+  if (pw.startsWith('eyJ') && pw.length > 100) {
+    serviceKey = pw;
+    document.getElementById('loginBox').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadData();
+    return;
+  }
+  // 기존 admin 비밀번호 확인 (Edge Function)
   try {
+    const BASE = `${SUPA_URL}/functions/v1/make-server-21f2cd69`;
     const res = await fetch(`${BASE}/admin/verify`, {
-      method: 'POST',
-      headers: { 'Authorization': `Bearer ${pw}` }
+      method: 'POST', headers: { 'Authorization': `Bearer ${pw}` }
     });
     const data = await res.json();
     if (data.success) {
@@ -148,23 +164,35 @@ async function login() {
     } else {
       document.getElementById('loginErr').style.display = 'block';
     }
-  } catch {
-    document.getElementById('loginErr').style.display = 'block';
-  }
+  } catch { document.getElementById('loginErr').style.display = 'block'; }
 }
 
 async function loadData() {
   try {
-    const res = await fetch(`${BASE}/community/all`, {
-      headers: { 'Authorization': `Bearer ${adminPw}` }
-    });
-    const data = await res.json();
-    allItems = data.items || [];
+    let res;
+    if (serviceKey) {
+      // Supabase REST API — service role key로 직접 조회
+      res = await fetch(`${SUPA_URL}/rest/v1/community_items?order=created_at.desc&limit=1000`, {
+        headers: {
+          'apikey': serviceKey,
+          'Authorization': `Bearer ${serviceKey}`,
+        }
+      });
+      allItems = await res.json();
+    } else {
+      // Edge Function 경유
+      const BASE = `${SUPA_URL}/functions/v1/make-server-21f2cd69`;
+      res = await fetch(`${BASE}/community/all`, {
+        headers: { 'Authorization': `Bearer ${adminPw}` }
+      });
+      const data = await res.json();
+      allItems = data.items || [];
+    }
     updateStats();
     renderTable();
   } catch (e) {
     document.getElementById('tableBody').innerHTML =
-      `<tr><td colspan="7" class="empty">데이터 로드 실패: ${e}</td></tr>`;
+      `<tr><td colspan="7" class="empty">데이터 로드 실패: ${e}<br><small>Supabase service_role key를 사용해 주세요</small></td></tr>`;
   }
 }
 
