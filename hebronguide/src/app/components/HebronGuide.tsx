@@ -3958,18 +3958,18 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
             🔗 {ko ? "헤브론 연결 서비스" : "Hebron Connect Services"}
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", marginTop: 2 }}>
-            {ko ? "사람이 사람을 섬깁니다. 목마른 이에게 생수를 권하듯!" : "Person serving person — like offering living water!"}
+            {ko ? "사람이 사람을 돕습니다. 필요한 곳에 먼저 손을 내미는 것입니다." : "People helping people — reaching out to those who need it first."}
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "#6EE7B7", marginTop: 6, fontWeight: 700, letterSpacing: "-0.1px" }}>
             🛡️ {ko
-              ? "신청 → 문서 검증 → 신원조회 후 연결 — 검증 안 된 제공자는 매칭하지 않습니다"
-              : "Application → Document Check → Background Check → Connect — unverified providers are never matched"}
+              ? "신청 → 문서 확인 → 신원조회 후 연결 — 확인된 제공자만 매칭됩니다"
+              : "Apply → Document Check → Background Check → Connect — verified providers only"}
           </div>
         </div>
         <button
-          onClick={() => onNavigate?.(2, 4)}
-          style={{ background: "rgba(201,162,39,0.15)", border: "1px solid rgba(201,162,39,0.4)", color: "#C9A227", borderRadius: 20, padding: "5px 12px", fontSize: 10, fontWeight: 800, cursor: "pointer" }}>
-          {ko ? "파트너 신청 →" : "Partner →"}
+          onClick={() => { window.open('/ad-request.html', '_blank'); }}
+          style={{ background: "rgba(201,162,39,0.15)", border: "1px solid rgba(201,162,39,0.4)", color: "#C9A227", borderRadius: 20, padding: "5px 12px", fontSize: 10, fontWeight: 800, cursor: "pointer", flexShrink: 0 }}>
+          {ko ? "서비스 올리기 →" : "List Service →"}
         </button>
       </div>
 
@@ -4036,15 +4036,15 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
 
       {/* 하단 파트너십 메시지 */}
       <div style={{ marginTop: 12, background: "rgba(201,162,39,0.08)", border: "1px solid rgba(201,162,39,0.2)", borderRadius: 10, padding: "10px 14px", display: "flex", alignItems: "center", gap: 10 }}>
-        <span style={{ fontSize: 16 }}>🙏</span>
+        <span style={{ fontSize: 16 }}>🤝</span>
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#C9A227" }}>
-            {ko ? "함께 섬기는 파트너십" : "Ministry Partnership"}
+            {ko ? "모두가 행복한 파트너십" : "A Partnership Where Everyone Wins"}
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.55)", marginTop: 2, lineHeight: 1.5 }}>
             {ko
-              ? "모든 신뢰와 믿음의 관계는 개인과 공동체를 살립니다(마25:35)."
-              : "All relationships of trust and faith revive the individual and community (Matt 25:35)."}
+              ? "신뢰와 진정성이 있는 관계가 개인과 커뮤니티를 함께 성장시킵니다."
+              : "Relationships built on trust and authenticity grow both individuals and the community."}
           </div>
         </div>
       </div>
