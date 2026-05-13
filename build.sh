@@ -118,10 +118,14 @@ for city in \
 done
 
 # 5. 루트 공유 파일
-cp hebronguide/dist/registerSW.js       public/registerSW.js       2>/dev/null || true
-cp hebronguide/dist/manifest.webmanifest public/manifest.webmanifest 2>/dev/null || true
-cp hebronguide/dist/ad-request.html     public/ad-request.html     2>/dev/null || true
-cp hebronguide/dist/posters.html        public/posters.html        2>/dev/null || true
+cp hebronguide/dist/registerSW.js                  public/registerSW.js                  2>/dev/null || true
+cp hebronguide/dist/manifest.webmanifest            public/manifest.webmanifest            2>/dev/null || true
+cp hebronguide/dist/ad-request.html                public/ad-request.html                2>/dev/null || true
+cp hebronguide/dist/posters.html                   public/posters.html                   2>/dev/null || true
+# 목사님 전용 운영 문서 (앱 미연결 — URL 직접 공유)
+cp hebronguide/dist/church-guide.html              public/church-guide.html              2>/dev/null || true
+cp hebronguide/dist/hebron-ops-church-connect.html public/hebron-ops-church-connect.html 2>/dev/null || true
+cp hebronguide/dist/hebron-partner-mobilize.html   public/hebron-partner-mobilize.html   2>/dev/null || true
 
 # 6. API 함수는 Vercel이 자동 라우팅 (hebronguide/api/*.js → /api/*)
 
