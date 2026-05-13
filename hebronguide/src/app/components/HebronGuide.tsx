@@ -23,7 +23,7 @@
  * ══════════════════════════════════════════════════════════
  */
 
-import { useState, useEffect, useRef, type ReactNode } from "react";
+import { useState, useEffect, useRef, useMemo, type ReactNode } from "react";
 import svgPaths from "../../imports/svg-uguh2ql8id";
 
 /**
@@ -4280,6 +4280,181 @@ function getSettleSteps(citySlug: string) {
   ];
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   📋 DAY 1 도착 체크리스트 — 95% 전략 핵심
+   새 이민자가 앱을 열면 바로 "오늘 해야 할 것들" 확인
+   1.5세대가 도착하는 가족에게 "이거 켜" 하고 보내주는 기능
+═══════════════════════════════════════════════════════════════ */
+const DAY1_ITEMS = [
+  { id: "sim",      emoji: "📱", ko: "SIM 카드 등록",      en: "Get a SIM card",           sub_ko: "T-Mobile $30/월 추천",           sub_en: "T-Mobile $30/mo recommended" },
+  { id: "bank",     emoji: "🏦", ko: "은행 계좌 개설",      en: "Open a bank account",       sub_ko: "Chase·Bank of America 신분증 지참", sub_en: "Bring ID to Chase or BofA" },
+  { id: "housing",  emoji: "🏠", ko: "거주지 확정",         en: "Secure housing",             sub_ko: "에어비앤비 → 장기 렌트 순서로",   sub_en: "Airbnb → long-term rental" },
+  { id: "license",  emoji: "🚗", ko: "운전면허 전환",        en: "Transfer driver's license",  sub_ko: "입국 90일 이내 필수",             sub_en: "Required within 90 days" },
+  { id: "ssn",      emoji: "🪪", ko: "SSN 신청",             en: "Apply for SSN",              sub_ko: "입국 10일 후 가능",               sub_en: "Possible 10 days after arrival" },
+  { id: "health",   emoji: "🏥", ko: "건강보험 등록",        en: "Get health insurance",       sub_ko: "직장·Medicaid·마켓플레이스",      sub_en: "Work / Medicaid / Marketplace" },
+  { id: "school",   emoji: "📚", ko: "학교·학원 등록",       en: "School / ESL enrollment",    sub_ko: "공립 ESL 무료 운영",              sub_en: "Public ESL classes are free" },
+  { id: "doctor",   emoji: "👨‍⚕️", ko: "주치의 등록",        en: "Find a primary care doctor", sub_ko: "첫 방문 전 보험 확인 필수",       sub_en: "Confirm insurance before visit" },
+];
+
+function ArrivalChecklistSection({ lang }: { lang: string }) {
+  const ko = lang === "ko";
+  const [checks, setChecks] = useState<Record<string, boolean>>(() => {
+    try { return JSON.parse(localStorage.getItem("hg_arrival_checklist") || "{}"); } catch { return {}; }
+  });
+  const [collapsed, setCollapsed] = useState(() => {
+    try { return localStorage.getItem("hg_checklist_collapsed") === "1"; } catch { return false; }
+  });
+
+  const toggle = (id: string) => {
+    const next = { ...checks, [id]: !checks[id] };
+    setChecks(next);
+    try { localStorage.setItem("hg_arrival_checklist", JSON.stringify(next)); } catch {}
+  };
+  const done = DAY1_ITEMS.filter(i => checks[i.id]).length;
+  const total = DAY1_ITEMS.length;
+  const pct = Math.round((done / total) * 100);
+  const allDone = done === total;
+
+  const collapse = () => {
+    setCollapsed(true);
+    try { localStorage.setItem("hg_checklist_collapsed", "1"); } catch {}
+  };
+  const expand = () => {
+    setCollapsed(false);
+    try { localStorage.removeItem("hg_checklist_collapsed"); } catch {}
+  };
+
+  if (collapsed) return (
+    <button onClick={expand} style={{
+      width: "calc(100% - 32px)", margin: "12px 16px 0", background: "#fff",
+      border: "1.5px solid rgba(242,153,74,0.35)", borderRadius: 14, padding: "12px 16px",
+      display: "flex", alignItems: "center", gap: 12, cursor: "pointer", textAlign: "left",
+    }}>
+      <span style={{ fontSize: 20 }}>📋</span>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A" }}>
+          {ko ? `정착 체크리스트 — ${done}/${total} 완료` : `Arrival Checklist — ${done}/${total} done`}
+        </div>
+        <div style={{ background: "rgba(0,0,0,0.08)", borderRadius: 99, height: 4, marginTop: 6, overflow: "hidden" }}>
+          <div style={{ width: `${pct}%`, height: "100%", background: "linear-gradient(90deg,#F2994A,#6EE7B7)", borderRadius: 99, transition: "width .4s ease" }} />
+        </div>
+      </div>
+      <span style={{ color: "#F2994A", fontSize: 14 }}>›</span>
+    </button>
+  );
+
+  return (
+    <div style={{ margin: "12px 16px 0", background: "#fff", borderRadius: 16, overflow: "hidden", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+      {/* 헤더 */}
+      <div style={{ padding: "14px 16px 10px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
+        <div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 15, color: "#1B2A4A" }}>
+            📋 {ko ? "정착 체크리스트" : "Arrival Checklist"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#64748B", marginTop: 2 }}>
+            {ko ? `${done}/${total} 완료 · ${pct}%` : `${done}/${total} done · ${pct}%`}
+          </div>
+        </div>
+        <button onClick={collapse} style={{ background: "none", border: "none", color: "#94A3B8", cursor: "pointer", fontSize: 18, padding: "0 4px" }}>×</button>
+      </div>
+      {/* 프로그레스 바 */}
+      <div style={{ background: "rgba(0,0,0,0.06)", height: 4 }}>
+        <div style={{ width: `${pct}%`, height: "100%", background: "linear-gradient(90deg,#F2994A,#6EE7B7)", transition: "width .4s ease" }} />
+      </div>
+      {/* 체크 항목 */}
+      <div style={{ padding: "8px 0" }}>
+        {DAY1_ITEMS.map((item) => (
+          <button key={item.id} onClick={() => toggle(item.id)} style={{
+            width: "100%", background: "none", border: "none", cursor: "pointer",
+            padding: "9px 16px", display: "flex", alignItems: "center", gap: 12, textAlign: "left",
+          }}>
+            <div style={{
+              width: 24, height: 24, borderRadius: 8, flexShrink: 0,
+              background: checks[item.id] ? "linear-gradient(135deg,#6EE7B7,#34d399)" : "rgba(0,0,0,0.06)",
+              border: checks[item.id] ? "none" : "2px solid rgba(0,0,0,0.15)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              transition: "all .2s",
+            }}>
+              {checks[item.id] && <span style={{ color: "#0d1117", fontWeight: 900, fontSize: 13 }}>✓</span>}
+            </div>
+            <span style={{ fontSize: 18, flexShrink: 0 }}>{item.emoji}</span>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13, color: checks[item.id] ? "#94A3B8" : "#1B2A4A", textDecoration: checks[item.id] ? "line-through" : "none" }}>
+                {ko ? item.ko : item.en}
+              </div>
+              <div style={{ fontFamily: "-apple-system,sans-serif", fontSize: 11, color: "#94A3B8", marginTop: 1 }}>
+                {ko ? item.sub_ko : item.sub_en}
+              </div>
+            </div>
+          </button>
+        ))}
+      </div>
+      {/* 완료 시 공유 버튼 */}
+      {allDone && (
+        <div style={{ padding: "12px 16px 16px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+          <button
+            onClick={() => {
+              const msg = ko
+                ? `✅ 정착 체크리스트 완료! 이 앱 덕분에 순조롭게 정착했어요 → hebronguide.com`
+                : `✅ Arrival checklist complete! HebronGuide made settling in so much easier → hebronguide.com`;
+              if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+                window.location.href = `kakaotalk://msg/send?msg=${encodeURIComponent(msg)}`;
+              } else {
+                navigator.clipboard?.writeText(msg).then(() => alert(ko ? "복사됐습니다! 카카오톡에 붙여넣기 하세요." : "Copied! Paste into KakaoTalk or any chat."));
+              }
+            }}
+            style={{ width: "100%", background: "linear-gradient(135deg,#6EE7B7,#34d399)", color: "#0d1117", border: "none", borderRadius: 12, padding: "12px", fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, cursor: "pointer" }}>
+            🎉 {ko ? "정착 완료! — 지인에게 공유하기" : "Done! — Share with a friend"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   커뮤니티 펄스 — 앱이 살아있어 보이게
+───────────────────────────────────────── */
+function CommunityPulseSection({ lang }: { lang: string }) {
+  const ko = lang === "ko";
+  const city = useCityConfig();
+  const items = useMemo(() => {
+    try {
+      const all = JSON.parse(localStorage.getItem("hg_community_v2") || "[]");
+      return all.slice(0, 4);
+    } catch { return []; }
+  }, []);
+
+  const SEED_PULSE = [
+    { emoji: "⛪", text: ko ? `시애틀에 교회 정보가 올라왔어요` : `A church was added in Seattle`, time: ko ? "방금" : "just now" },
+    { emoji: "🍽️", text: ko ? `달라스에 맛집 정보가 새로 올라왔어요` : `A restaurant was added in Dallas`, time: ko ? "3분 전" : "3m ago" },
+    { emoji: "🏠", text: ko ? `토론토 정착 정보가 업데이트됐어요` : `Settlement info updated in Toronto`, time: ko ? "12분 전" : "12m ago" },
+    { emoji: "💼", text: ko ? `LA에 취업 정보가 올라왔어요` : `Job info posted in Los Angeles`, time: ko ? "1시간 전" : "1h ago" },
+  ];
+
+  const pulse = items.length > 0
+    ? items.map((i: any) => ({ emoji: i.emoji || "🌱", text: ko ? `${i.citySlug}에 ${i.name} 정보가 올라왔어요` : `${i.name} added in ${i.citySlug}`, time: ko ? "방금" : "just now" }))
+    : SEED_PULSE;
+
+  return (
+    <div style={{ margin: "12px 16px 0", background: "#fff", borderRadius: 14, padding: "14px 16px", boxShadow: "0 1px 6px rgba(0,0,0,0.06)" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#6EE7B7", animation: "pulse 2s infinite" }} />
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A" }}>
+          {ko ? "지금 이 순간" : "Right now"}
+        </div>
+      </div>
+      {pulse.map((p: any, i: number) => (
+        <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, paddingBottom: i < pulse.length - 1 ? 9 : 0, marginBottom: i < pulse.length - 1 ? 9 : 0, borderBottom: i < pulse.length - 1 ? "1px solid rgba(0,0,0,0.05)" : "none" }}>
+          <span style={{ fontSize: 16 }}>{p.emoji}</span>
+          <div style={{ flex: 1, fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontSize: 12, color: "#475569", lineHeight: 1.4 }}>{p.text}</div>
+          <span style={{ fontSize: 10, color: "#94A3B8", flexShrink: 0 }}>{p.time}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number) => void }) {
   const { lang } = useI18n();
   const city = useCityConfig();
@@ -5903,6 +6078,12 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <CompactHeroNew />
       <HebronFlywheelBar lang={lang} />
       <QuickMenuSection onNavigate={onNavigate} />
+
+      {/* ── Day 1 도착 체크리스트 ── */}
+      <ArrivalChecklistSection lang={lang} />
+
+      {/* ── 커뮤니티 펄스 ── */}
+      <CommunityPulseSection lang={lang} />
 
       {/* ── 커뮤니티 올리기 CTA ── */}
       <div
