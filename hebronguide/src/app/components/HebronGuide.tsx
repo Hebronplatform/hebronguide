@@ -10702,7 +10702,7 @@ function getCityEmergencyData(slug: string, lang: string) {
   return D[slug] ?? D.seattle;
 }
 
-function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSub?: number }) {
+function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?: () => void; initialSub?: number; fromQuickMenu?: boolean }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
   const city = useCityConfig();
@@ -10710,7 +10710,10 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
   const consulate = CITY_CONSULATE[city.slug] ?? CITY_CONSULATE.seattle;
   const em = getCityEmergencyData(city.slug, lang);
   const [sub, setSub] = useState(initialSub);
+  // QuickMenu 진입 시 서브탭 바 숨김 → "다른 도움 찾기" 버튼으로 열기
+  const [showAllTabs, setShowAllTabs] = useState(!fromQuickMenu);
   useEffect(() => { setSub(initialSub); }, [initialSub]);
+  useEffect(() => { setShowAllTabs(!fromQuickMenu); }, [fromQuickMenu]);
   const tabs = lang === "ko"
     ? ["긴급연락", "의료·병원", "커뮤니티", "유용한 링크", "📋 무료자원", "⚖️ 법률", "🇺🇸 Korean American"]
     : ["Emergency", "Medical", "Community", "Useful Links", "📋 Free Resources", "⚖️ Legal", "🇺🇸 Korean American"];
@@ -10996,7 +10999,10 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
       <ScreenHeader emoji={h.emoji} titleKo={h.titleKo} titleEn={h.titleEn}
         descKo={h.descKo} descEn={h.descEn}
         accentColor={accent} />
-      <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
+      {/* QuickMenu 진입 시 서브탭 바 숨김 — 약속한 콘텐츠만 집중 표시 */}
+      {showAllTabs && (
+        <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
+      )}
 
       {sub === 0 && (
         <div style={{ paddingBottom: 0 }}>
@@ -11583,6 +11589,42 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
               return [votingCard, libraryCard, benefitsCard, eventsCard];
             })().map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
+        </div>
+      )}
+
+      {/* ── QuickMenu 진입 시: 다른 도움 섹션으로 가는 문 ── */}
+      {!showAllTabs && (
+        <div style={{ padding: "8px 16px 4px" }}>
+          <button
+            onClick={() => setShowAllTabs(true)}
+            style={{
+              width: "100%",
+              background: "rgba(248,113,113,0.07)",
+              border: "1px solid rgba(248,113,113,0.22)",
+              borderRadius: 14,
+              padding: "13px 18px",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              fontFamily: "Manrope,sans-serif",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <span style={{ fontSize: 20 }}>🔍</span>
+              <div style={{ textAlign: "left" }}>
+                <div style={{ fontWeight: 800, fontSize: 13, color: "#F87171" }}>
+                  {lang === "ko" ? "다른 도움도 필요하세요?" : "Need other help?"}
+                </div>
+                <div style={{ fontSize: 11, color: "rgba(248,113,113,0.6)", marginTop: 1 }}>
+                  {lang === "ko"
+                    ? "긴급연락 · 커뮤니티 · 무료자원 · 법률 · Korean American"
+                    : "Emergency · Community · Free Resources · Legal · Korean Am."}
+                </div>
+              </div>
+            </div>
+            <span style={{ fontSize: 16, color: "#F87171", fontWeight: 700 }}>→</span>
+          </button>
         </div>
       )}
 
@@ -16864,12 +16906,17 @@ export function HebronGuide() {
   const [helpInitialSub, setHelpInitialSub] = useState(0);
   const [eduInitialSub, setEduInitialSub] = useState(0);
   const [costInitialSub, setCostInitialSub] = useState(0);
+  // QuickMenu → 도움 탭 진입 여부 추적 (true = 서브탭바 숨김)
+  const [helpFromQuickMenu, setHelpFromQuickMenu] = useState(false);
 
   const handleNavigate = (tab: number, subTab?: number) => {
     const maxTab = 11; // 홈·정착·교회·맛집·탐방·도움·취업·교육·생활비·사람연결·스토어·공항도착
     if (tab <= maxTab) {
       if (tab === 1 && subTab !== undefined) setSettleInitialSub(subTab);
-      if (tab === 5 && subTab !== undefined) setHelpInitialSub(subTab);
+      if (tab === 5 && subTab !== undefined) {
+        setHelpInitialSub(subTab);
+        setHelpFromQuickMenu(true); // QuickMenu·검색 경유 → 서브탭바 숨김
+      }
       if (tab === 7 && subTab !== undefined) setEduInitialSub(subTab);
       if (tab === 8 && subTab !== undefined) setCostInitialSub(subTab);
       setActiveNav(tab);
@@ -16975,7 +17022,7 @@ export function HebronGuide() {
     <ChurchScreen onHome={() => setActiveNav(0)} />,                                   // 2
     <DiningScreen onHome={() => setActiveNav(0)} />,                                   // 3
     <ExploreScreen onHome={() => setActiveNav(0)} />,                                  // 4
-    <HelpScreen onHome={() => setActiveNav(0)} initialSub={helpInitialSub} />,         // 5
+    <HelpScreen onHome={() => setActiveNav(0)} initialSub={helpInitialSub} fromQuickMenu={helpFromQuickMenu} />,  // 5
     <JobsScreen onHome={() => setActiveNav(0)} />,                                     // 6
     <EducationScreen onHome={() => setActiveNav(0)} initialSub={eduInitialSub} />,     // 7
     <CostScreen onHome={() => setActiveNav(0)} initialSub={costInitialSub} />,         // 8
@@ -17153,7 +17200,11 @@ export function HebronGuide() {
 
         <BottomNav
           activeIndex={activeNav}
-          onChange={setActiveNav}
+          onChange={(i, subTab) => {
+            // 탭바 직접 클릭 = 의도적 탐색 → 도움 탭은 전체 서브탭 노출
+            if (i === 5) setHelpFromQuickMenu(false);
+            setActiveNav(i);
+          }}
           onSearchToggle={handleSearchToggle}
           onShareToggle={() => setShowChat(prev => !prev)}
           onTranslateToggle={() => setShowTranslate(prev => !prev)}
