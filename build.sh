@@ -44,6 +44,8 @@ declare -A CITY_KO=(
   ["singapore"]="싱가포르"    ["bangkok"]="방콕"         ["hochiminh"]="호치민"
   ["dubai"]="두바이"          ["frankfurt"]="프랑크푸르트" ["berlin"]="베를린"
   ["paris"]="파리"
+  # 일본 (신규)
+  ["tokyo"]="도쿄"           ["osaka"]="오사카"
 )
 declare -A CITY_EN=(
   # 기존 17개 도시
@@ -70,6 +72,8 @@ declare -A CITY_EN=(
   ["singapore"]="Singapore"   ["bangkok"]="Bangkok"        ["hochiminh"]="Ho Chi Minh City"
   ["dubai"]="Dubai"           ["frankfurt"]="Frankfurt"    ["berlin"]="Berlin"
   ["paris"]="Paris"
+  # 일본 (신규)
+  ["tokyo"]="Tokyo"          ["osaka"]="Osaka"
 )
 
 # 4. 도시별 배포 (미리 빌드된 dist/ 사용 + index.html 메타데이터 치환)
@@ -84,7 +88,8 @@ for city in \
   calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
   tucson fayetteville killeen anchorage \
   sydney melbourne brisbane perth auckland saopaulo london \
-  singapore bangkok hochiminh dubai frankfurt berlin paris; do
+  singapore bangkok hochiminh dubai frankfurt berlin paris \
+  tokyo osaka; do
   mkdir -p public/$city
   cp -r hebronguide/dist/* public/$city/
 
@@ -120,5 +125,5 @@ cp hebronguide/dist/posters.html        public/posters.html        2>/dev/null |
 
 # 6. API 함수는 Vercel이 자동 라우팅 (hebronguide/api/*.js → /api/*)
 
-echo "=== Deploy Complete — 44 cities with city-specific SEO (계속 성장 중) ==="
+echo "=== Deploy Complete — 52 cities with city-specific SEO (계속 성장 중) ==="
 ls public/

@@ -305,7 +305,9 @@ type CitySlug =
   "sydney" | "melbourne" | "saopaulo" | "london" | "auckland" |
   // 국제 (Tier B-C)
   "singapore" | "bangkok" | "hochiminh" | "dubai" | "frankfurt" | "paris" |
-  "perth" | "brisbane" | "berlin";
+  "perth" | "brisbane" | "berlin" |
+  // 일본 (신규)
+  "tokyo" | "osaka";
 
 interface CityConfig {
   slug: CitySlug;
@@ -592,6 +594,9 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   frankfurt:  { slug: "frankfurt",  nameKo: "프랑크푸르트",nameEn: "Frankfurt",   color: "#1D4ED8", heroVideo: "", population: "7천+",   state: "Germany",     taglineKo: "유럽 금융 허브, 새로운 기회",         taglineEn: "At Europe's Financial Core.",    taglineEs: "En el núcleo financiero de Europa." },
   berlin:     { slug: "berlin",     nameKo: "베를린",    nameEn: "Berlin",       color: "#374151", heroVideo: "", population: "5천+",   state: "Germany",     taglineKo: "장벽을 넘어, 자유의 도시",          taglineEn: "Beyond the Wall, city of freedom.",       taglineEs: "Más allá del muro, ciudad de libertad." },
   paris:      { slug: "paris",      nameKo: "파리",      nameEn: "Paris",        color: "#7C3AED", heroVideo: "", population: "1.5만+", state: "France",      taglineKo: "빛의 도시의 한인",           taglineEn: "Koreans in the City of Light.",  taglineEs: "Coreanos en la Ciudad de la Luz." },
+  // 일본 — 재일 한인 82만, 가장 큰 미포함 디아스포라
+  tokyo:      { slug: "tokyo",      nameKo: "도쿄",      nameEn: "Tokyo",        color: "#DC2626", heroVideo: "", population: "6만+",   state: "Japan",       taglineKo: "신오쿠보에서 시작하는 새 인연",    taglineEn: "New bonds begin in Shin-Okubo.",    taglineEs: "Nuevos vínculos en Shin-Okubo." },
+  osaka:      { slug: "osaka",      nameKo: "오사카",    nameEn: "Osaka",        color: "#EA580C", heroVideo: "", population: "8만+",   state: "Japan",       taglineKo: "이쿠노구 백년의 뿌리, 새 이야기",  taglineEn: "Century of roots in Ikuno, new story.", taglineEs: "Un siglo de raíces en Ikuno." },
 };
 
 function useCityConfig(): CityConfig {
@@ -4320,6 +4325,107 @@ const TOP5_EXPLORE_PARIS: Top5Item[] = [
     tip: "성인 €21.50. 사전 온라인 예약 필수. RER C 베르사유 리브 고쉬역 하차", website: "chateauversailles.fr" },
 ];
 
+/* ── 도쿄 (TOKYO) ── */
+const TOP5_SETTLE_TOKYO: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "재일본대한민국민단 도쿄지방본부", nameEn: "Korean Residents Union – Tokyo Branch (Mindan)",
+    address: "〒106-0047 東京都港区南麻布1-7-32",
+    phone: "03-3454-4711", hours: "월~금 9:00-17:30",
+    why: "재일 한국인의 공식 커뮤니티 기관. 재류 자격 상담·재외국민 등록·법률 안내·커뮤니티 네트워킹까지 원스톱 지원. 처음 도쿄에 정착하는 한국인이 반드시 방문해야 할 첫 번째 창구.",
+    tip: "첫 방문 전 전화로 예약 권장. 한국어 통화 가능. 미나미아자부역(난보쿠선) 2번 출구에서 도보 5분", website: "mindan-tokyo.org" },
+  { rank: 2, emoji: "🏢", nameKo: "도쿄출입국재류관리국", nameEn: "Tokyo Regional Immigration Bureau",
+    address: "〒108-8255 東京都港区港南5-5-30",
+    phone: "0570-013904", hours: "월~금 9:00-16:00",
+    why: "재류자격 신청·갱신·변경, 영주권 신청 등 모든 비자 관련 업무 처리 공식 기관. 대기 시간이 길 수 있으니 오전 일찍 방문 권장.",
+    tip: "JR 시나가와역 고난 출구에서 버스(99번) 이용. 서류는 법무성 홈페이지에서 미리 작성 후 방문", website: "isa.go.jp" },
+  { rank: 3, emoji: "🏥", nameKo: "신주쿠 다문화 공생 플라자 (한국어 상담)", nameEn: "Shinjuku Multicultural Symbiosis Plaza",
+    address: "〒169-0073 東京都新宿区百人町2-2-3 大久保1F",
+    hours: "월~금 9:30-17:00",
+    why: "신오쿠보 한인타운 인근 신주쿠구청 운영 외국인 종합상담센터. 한국어 상담사 상주. 의료기관 안내·행정 절차·생활 정보 무료 지원.",
+    tip: "한국어 상담 가능 일자 사전 전화 확인. 신오쿠보역에서 도보 10분", website: "shinjuku.lg.jp" },
+  { rank: 4, emoji: "🛒", nameKo: "신오쿠보 한인 마켓 거리", nameEn: "Shin-Okubo Korea Town Market District",
+    address: "〒169-0073 東京都新宿区大久保1丁目 (JR 신오쿠보역 주변)",
+    why: "도쿄 최대 한인타운. 한국 슈퍼마켓 3곳 이상·한국 식당·화장품점·식품점 밀집. 김치·한국 라면·냉동식품 합리적 가격 구입 가능.",
+    tip: "주말 매우 혼잡. 평일 오전 방문 추천. 한국어 메뉴·직원 있어 초보 정착자도 편리", website: "okubo-street.com" },
+  { rank: 5, emoji: "📋", nameKo: "주일본 대한민국 대사관", nameEn: "Embassy of the Republic of Korea in Japan",
+    address: "〒106-0047 東京都港区南麻布1-2-5",
+    phone: "03-3452-7611", hours: "민원: 월~금 9:00-12:00, 13:00-16:00",
+    why: "여권 발급·갱신·공증·재외국민 등록 전담. 장기 체류자는 반드시 재외국민 등록 후 비상 연락망 확보 필요.",
+    tip: "민원 업무 사전 온라인 예약 필수. 여권 만료 6개월 전부터 갱신 준비 권장", website: "overseas.mofa.go.kr/jp-ko" },
+];
+const TOP5_EXPLORE_TOKYO: Top5Item[] = [
+  { rank: 1, emoji: "🏘️", nameKo: "신오쿠보 코리아타운", nameEn: "Shin-Okubo Korea Town",
+    address: "〒169-0073 東京都新宿区大久保1丁目 (JR 신오쿠보역 도보 1분)",
+    why: "도쿄 최대 한인타운. 한국 음식점·화장품·K팝 굿즈·한국 슈퍼마켓이 가득한 '작은 한국'. 처음 일본에 온 날도 한국어로 편하게 한 끼 해결 가능.",
+    tip: "주말 점심~오후 매우 혼잡. 평일 방문 추천", website: "okubo-street.com" },
+  { rank: 2, emoji: "🗼", nameKo: "도쿄타워", nameEn: "Tokyo Tower",
+    address: "〒105-0011 東京都港区芝公園4-2-8",
+    why: "333m 도쿄 랜드마크. 메인 덱(150m)·탑 덱(250m) 두 개 전망대. 야경이 특히 아름다움.",
+    tip: "메인 덱 ¥1,500. 온라인 사전 구매 시 약 200엔 할인. 오에도선 아카바네바시역 도보 5분", website: "tokyotower.co.jp" },
+  { rank: 3, emoji: "🚶", nameKo: "시부야 스크램블 교차로", nameEn: "Shibuya Scramble Crossing",
+    address: "〒150-0042 東京都渋谷区宇田川町1-21 (시부야역 하치코 출구 앞)",
+    why: "세계 가장 유명한 횡단보도. 신호 한 번에 최대 3,000명 동시 통행. 도쿄 에너지의 상징.",
+    tip: "스크램블스퀘어 옥상 전망대(Shibuya Sky, ¥2,200)에서 내려다보는 뷰 강력 추천", website: "gotokyo.org" },
+  { rank: 4, emoji: "⛩️", nameKo: "센소지 (아사쿠사 관음)", nameEn: "Senso-ji Temple, Asakusa",
+    address: "〒111-0032 東京都台東区浅草2-3-1",
+    why: "도쿄에서 가장 오래된 사찰. 연간 3,000만 명 방문. 나카미세 쇼핑거리 전통 기념품·과자 구경. 입장 무료.",
+    tip: "새벽 6시 오픈. 새벽 방문 시 조용한 분위기. 아사쿠사역 바로 옆", website: "senso-ji.jp" },
+  { rank: 5, emoji: "🌳", nameKo: "신주쿠 교엔 (국립 정원)", nameEn: "Shinjuku Gyoen National Garden",
+    address: "〒160-0014 東京都新宿区内藤町11",
+    why: "58.3헥타르 국립정원. 일본식·영국식·프랑스식 3개 정원 공존. 봄 벚꽃 명소. 도심 속 조용한 휴식처.",
+    tip: "입장료 ¥500. 신주쿠역 신남 출구에서 도보 10분. 알코올 반입 금지", website: "env.go.jp/garden/shinjukugyoen" },
+];
+
+/* ── 오사카 (OSAKA) ── */
+const TOP5_SETTLE_OSAKA: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "재일본대한민국민단 오사카지방본부", nameEn: "Korean Residents Union – Osaka Branch (Mindan)",
+    address: "〒530-0016 大阪市北区中崎2-4-2",
+    phone: "06-6371-7331", hours: "월~금 9:00-17:30",
+    why: "오사카 재일 한국인 공식 허브. 재류 자격·법률 상담·재외국민 등록·커뮤니티 행사 운영. 쓰루하시·이쿠노구 한인 커뮤니티와 연계.",
+    tip: "한국어 직원 상주. 첫 방문 시 전화 예약 후 방문. 나카자키초역(다니마치선) 도보 5분", website: "mindan.org" },
+  { rank: 2, emoji: "🏢", nameKo: "주오사카 대한민국 총영사관", nameEn: "Consulate General of the Republic of Korea in Osaka",
+    address: "〒542-0086 大阪市中央区西心斎橋2-3-4",
+    phone: "06-4256-2345", hours: "민원: 월~금 9:00-16:00",
+    why: "여권 발급·갱신·공증·재외국민 등록 등 긴키 지역 한국인 담당. 오사카·교토·나라·와카야마 거주자 모두 이곳 이용.",
+    tip: "사전 온라인 예약 필수. 심사이바시 오파(OPA) 근처 위치", website: "overseas.mofa.go.kr/jp-osaka-ko" },
+  { rank: 3, emoji: "🏘️", nameKo: "오사카 이쿠노 코리아타운 (쓰루하시)", nameEn: "Osaka Ikuno Korea Town (Tsuruhashi)",
+    address: "〒544-0034 大阪市生野区桃谷5-3-17",
+    phone: "06-6712-7150",
+    why: "일본 최대 한인타운. 1만여 명 재일 한국인 거주. 한국 식재료·식당·생활용품점 밀집. 정착 초기 한국 식품 조달·커뮤니티 연결 최적 장소.",
+    tip: "JR 쓰루하시역 또는 지하철 모모다니역 도보 5분. 주말 시장이 활기차고 식재료 저렴", website: "osaka-koreatown.com" },
+  { rank: 4, emoji: "🏢", nameKo: "오사카출입국재류관리국", nameEn: "Osaka Regional Immigration Services Bureau",
+    address: "〒559-0034 大阪市住之江区南港北1-29-53",
+    phone: "06-4703-2100", hours: "월~금 9:00-16:00",
+    why: "오사카·긴키 지역 재류 자격 신청·갱신·변경 담당 공식 기관. 대기 인원이 많으니 평일 오전 일찍 방문 권장.",
+    tip: "지하철 나카후토역 도보 5분. 서류 체크리스트 법무성 홈페이지에서 사전 확인 필수", website: "isa.go.jp" },
+  { rank: 5, emoji: "🏥", nameKo: "오사카 국제교류센터 (외국인 종합상담)", nameEn: "International House Osaka – Counseling",
+    address: "〒530-0005 大阪市北区中之島2-3-18",
+    hours: "화~일 9:00-17:30 (월요일 휴관)",
+    why: "의료·법률·생활 상담을 한국어 포함 다국어로 무료 제공. 한국어 가능 의사 정보·의료기관 통역 연결 허브.",
+    tip: "한국어 상담 가능 요일·시간 사전 확인. 지하철 혼마치역 도보 10분", website: "ih-osaka.or.jp" },
+];
+const TOP5_EXPLORE_OSAKA: Top5Item[] = [
+  { rank: 1, emoji: "🏘️", nameKo: "쓰루하시 코리아타운 (이쿠노 코리아타운)", nameEn: "Tsuruhashi / Ikuno Korea Town",
+    address: "〒544-0034 大阪市生野区桃谷5-3-17",
+    why: "일본 최대 코리아타운. 400m 상점가에 한국 음식점·식품점·의류점 가득. '일본 속 작은 한국'. 한국 요리 재료 쇼핑과 정통 한식 체험 동시 가능.",
+    tip: "JR 쓰루하시역 도보 5분. 갈비·순대·김치찌개 맛집 다수", website: "osaka-koreatown.com" },
+  { rank: 2, emoji: "🌟", nameKo: "도톤보리", nameEn: "Dotonbori",
+    address: "〒542-0071 大阪市中央区道頓堀 (난바역 14번 출구 도보 2분)",
+    why: "오사카 최고 번화가. 거대 네온사인·글리코상·다코야키·오코노미야키 맛집 밀집. 오사카 에너지를 온몸으로 느낄 수 있는 필수 방문지.",
+    tip: "저녁 6시 이후 가장 화려함. 도톤보리강 유람선(¥1,000 내외)으로 야경 감상 추천", website: "dotonbori.or.jp" },
+  { rank: 3, emoji: "🏯", nameKo: "오사카성", nameEn: "Osaka Castle",
+    address: "〒540-0002 大阪市中央区大阪城1-1",
+    why: "도요토미 히데요시가 쌓은 일본 3대 명성 중 하나. 8층 천수각(박물관)에서 오사카 시내 360도 조망. 봄 벚꽃 시즌 특히 아름다움.",
+    tip: "천수각 입장료 ¥1,200. JR 오사카조코엔역 도보 5분", website: "osakacastle.net" },
+  { rank: 4, emoji: "🌇", nameKo: "우메다 스카이 빌딩 (공중정원)", nameEn: "Umeda Sky Building – Kuchu Teien Observatory",
+    address: "〒531-6039 大阪市北区大淀中1-1-88",
+    why: "지상 173m 오픈에어 전망대. 두 타워를 연결한 독특한 건축. 오사카 야경 최고 뷰포인트.",
+    tip: "입장료 ¥2,000. 저녁 일몰 후 방문 추천. JR 오사카역 도보 7-9분", website: "skybldg.co.jp" },
+  { rank: 5, emoji: "🍜", nameKo: "이쿠노구 재일 한인 역사 거리", nameEn: "Ikuno-ku Korean Heritage District",
+    address: "〒544-0023 大阪市生野区鶴橋2丁目 일대",
+    why: "재일 한국인 1세대가 뿌리내린 지역. 해방 전후 역사가 살아있는 골목·간판·교회. 도쿄 신오쿠보와 다른 깊이 있는 한인 역사 체험.",
+    tip: "쓰루하시 코리아타운과 이어지는 도보 코스로 같은 날 방문 가능", website: "osaka-koreatown.com" },
+];
+
 /* ─────────────────────────────────────────
    HOOK: 온라인 상태 감지
 ───────────────────────────────────────── */
@@ -7775,7 +7881,7 @@ function AmericasAdSection({ lang }: { lang: string }) {
 ───────────────────────────────────────── */
 function HebronFlywheelBar({ lang }: { lang: string }) {
   const stats = [
-    { emoji: "🌍", value: "50", label: lang === "ko" ? "개 도시" : "Cities" },
+    { emoji: "🌍", value: "52", label: lang === "ko" ? "개 도시" : "Cities" },
     { emoji: "🤝", value: "4", label: lang === "ko" ? "기관 파트너" : "Partners" },
     { emoji: "🌐", value: "2", label: lang === "ko" ? "개 언어" : "Languages" },
   ];
@@ -8821,8 +8927,43 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "miami"     ? TOP5_SETTLE_MIAMI :
             useCityConfig().slug === "mexicocity"? TOP5_SETTLE_MEXICOCITY :
             useCityConfig().slug === "guadalajara"? TOP5_SETTLE_GUADALAJARA :
-            useCityConfig().slug === "monterrey" ? TOP5_SETTLE_MONTERREY :
-            useCityConfig().slug === "seattle"   ? TOP5_SETTLE :
+            useCityConfig().slug === "monterrey"   ? TOP5_SETTLE_MONTERREY :
+            useCityConfig().slug === "chicago"    ? TOP5_SETTLE_CHICAGO :
+            useCityConfig().slug === "dc"         ? TOP5_SETTLE_DC :
+            useCityConfig().slug === "sandiego"   ? TOP5_SETTLE_SANDIEGO :
+            useCityConfig().slug === "honolulu"   ? TOP5_SETTLE_HONOLULU :
+            useCityConfig().slug === "portland"   ? TOP5_SETTLE_PORTLAND :
+            useCityConfig().slug === "denver"     ? TOP5_SETTLE_DENVER :
+            useCityConfig().slug === "calgary"    ? TOP5_SETTLE_CALGARY :
+            useCityConfig().slug === "edmonton"   ? TOP5_SETTLE_EDMONTON :
+            useCityConfig().slug === "ottawa"     ? TOP5_SETTLE_OTTAWA :
+            useCityConfig().slug === "winnipeg"   ? TOP5_SETTLE_WINNIPEG :
+            useCityConfig().slug === "phoenix"    ? TOP5_SETTLE_PHOENIX :
+            useCityConfig().slug === "charlotte"  ? TOP5_SETTLE_CHARLOTTE :
+            useCityConfig().slug === "raleigh"    ? TOP5_SETTLE_RALEIGH :
+            useCityConfig().slug === "columbus"   ? TOP5_SETTLE_COLUMBUS :
+            useCityConfig().slug === "minneapolis"? TOP5_SETTLE_MINNEAPOLIS :
+            useCityConfig().slug === "tucson"     ? TOP5_SETTLE_TUCSON :
+            useCityConfig().slug === "fayetteville"? TOP5_SETTLE_FAYETTEVILLE :
+            useCityConfig().slug === "killeen"    ? TOP5_SETTLE_KILLEEN :
+            useCityConfig().slug === "anchorage"  ? TOP5_SETTLE_ANCHORAGE :
+            useCityConfig().slug === "sydney"     ? TOP5_SETTLE_SYDNEY :
+            useCityConfig().slug === "melbourne"  ? TOP5_SETTLE_MELBOURNE :
+            useCityConfig().slug === "brisbane"   ? TOP5_SETTLE_BRISBANE :
+            useCityConfig().slug === "perth"      ? TOP5_SETTLE_PERTH :
+            useCityConfig().slug === "auckland"   ? TOP5_SETTLE_AUCKLAND :
+            useCityConfig().slug === "saopaulo"   ? TOP5_SETTLE_SAOPAULO :
+            useCityConfig().slug === "london"     ? TOP5_SETTLE_LONDON :
+            useCityConfig().slug === "frankfurt"  ? TOP5_SETTLE_FRANKFURT :
+            useCityConfig().slug === "berlin"     ? TOP5_SETTLE_BERLIN :
+            useCityConfig().slug === "paris"      ? TOP5_SETTLE_PARIS :
+            useCityConfig().slug === "dubai"      ? TOP5_SETTLE_DUBAI :
+            useCityConfig().slug === "singapore"  ? TOP5_SETTLE_SINGAPORE :
+            useCityConfig().slug === "bangkok"    ? TOP5_SETTLE_BANGKOK :
+            useCityConfig().slug === "hochiminh"  ? TOP5_SETTLE_HOCHIMINH :
+            useCityConfig().slug === "tokyo"      ? TOP5_SETTLE_TOKYO :
+            useCityConfig().slug === "osaka"      ? TOP5_SETTLE_OSAKA :
+            useCityConfig().slug === "seattle"    ? TOP5_SETTLE :
             [] as Top5Item[]   // 미등록 도시 — 시애틀 데이터 노출 방지
           } lang={lang} accentColor="#F2994A" />
         )}
@@ -10350,6 +10491,41 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
               slug === "mexicocity"   ? TOP5_EXPLORE_MEXICOCITY :
               slug === "guadalajara"  ? TOP5_EXPLORE_GUADALAJARA :
               slug === "monterrey"    ? TOP5_EXPLORE_MONTERREY :
+              slug === "chicago"      ? TOP5_EXPLORE_CHICAGO :
+              slug === "dc"           ? TOP5_EXPLORE_DC :
+              slug === "sandiego"     ? TOP5_EXPLORE_SANDIEGO :
+              slug === "honolulu"     ? TOP5_EXPLORE_HONOLULU :
+              slug === "portland"     ? TOP5_EXPLORE_PORTLAND :
+              slug === "denver"       ? TOP5_EXPLORE_DENVER :
+              slug === "calgary"      ? TOP5_EXPLORE_CALGARY :
+              slug === "edmonton"     ? TOP5_EXPLORE_EDMONTON :
+              slug === "ottawa"       ? TOP5_EXPLORE_OTTAWA :
+              slug === "winnipeg"     ? TOP5_EXPLORE_WINNIPEG :
+              slug === "phoenix"      ? TOP5_EXPLORE_PHOENIX :
+              slug === "charlotte"    ? TOP5_EXPLORE_CHARLOTTE :
+              slug === "raleigh"      ? TOP5_EXPLORE_RALEIGH :
+              slug === "columbus"     ? TOP5_EXPLORE_COLUMBUS :
+              slug === "minneapolis"  ? TOP5_EXPLORE_MINNEAPOLIS :
+              slug === "tucson"       ? TOP5_EXPLORE_TUCSON :
+              slug === "fayetteville" ? TOP5_EXPLORE_FAYETTEVILLE :
+              slug === "killeen"      ? TOP5_EXPLORE_KILLEEN :
+              slug === "anchorage"    ? TOP5_EXPLORE_ANCHORAGE :
+              slug === "sydney"       ? TOP5_EXPLORE_SYDNEY :
+              slug === "melbourne"    ? TOP5_EXPLORE_MELBOURNE :
+              slug === "brisbane"     ? TOP5_EXPLORE_BRISBANE :
+              slug === "perth"        ? TOP5_EXPLORE_PERTH :
+              slug === "auckland"     ? TOP5_EXPLORE_AUCKLAND :
+              slug === "saopaulo"     ? TOP5_EXPLORE_SAOPAULO :
+              slug === "london"       ? TOP5_EXPLORE_LONDON :
+              slug === "frankfurt"    ? TOP5_EXPLORE_FRANKFURT :
+              slug === "berlin"       ? TOP5_EXPLORE_BERLIN :
+              slug === "paris"        ? TOP5_EXPLORE_PARIS :
+              slug === "dubai"        ? TOP5_EXPLORE_DUBAI :
+              slug === "singapore"    ? TOP5_EXPLORE_SINGAPORE :
+              slug === "bangkok"      ? TOP5_EXPLORE_BANGKOK :
+              slug === "hochiminh"    ? TOP5_EXPLORE_HOCHIMINH :
+              slug === "tokyo"        ? TOP5_EXPLORE_TOKYO :
+              slug === "osaka"        ? TOP5_EXPLORE_OSAKA :
               slug === "seattle"      ? TOP5_EXPLORE :   // seattle — isSeattleShuttleActive() 적용됨
               [] as Top5Item[];  // 미등록 도시 — 시애틀 관광지 노출 방지
             // 월드컵 시즌(6/11~7/19): 시애틀 외 모든 WC 호스트 도시에 교통 정보 1순위 삽입
@@ -16402,15 +16578,20 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
     });
   };
 
-  // SNS 플랫폼 목록 — 실제 브랜드 컬러 + SVG 아이콘 (이모지 ❌ → 진짜 로고 ✅)
+  // SNS 플랫폼 목록 — 실제 브랜드 공식 SVG 로고 사용
+  // 법적 근거: 공유 버튼 용도(Nominative Use)는 각 플랫폼 Brand Guidelines이 명시적으로 허용
+  // KakaoTalk: https://developers.kakao.com/docs/latest/ko/reference/design-guide
+  // Meta(FB/IG/WA): https://about.meta.com/brand/resources/
+  // X: https://about.twitter.com/en/who-we-are/brand-toolkit
   const platforms: { label: string; sub: string; bg: string; icon: React.ReactNode; action?: () => void; href?: string }[] = [
-    // 1행: 가장 자주 쓰는 것
+    // 1행
     { label: "카카오톡", sub: lang === "ko" ? "한국인 필수" : "Korean #1", bg: "#FAE100",
       icon: (
-        <svg viewBox="0 0 28 28" width="26" height="26">
-          {/* KakaoTalk: 특유의 말풍선 타원 + 꼬리 */}
-          <ellipse cx="14" cy="12.5" rx="11" ry="9" fill="#3A1D1D"/>
-          <polygon points="9.5,21 8,25.5 15.5,22" fill="#3A1D1D"/>
+        /* KakaoTalk 공식 로고 — 노란 말풍선 + 'k' 심볼 */
+        <svg viewBox="0 0 60 60" width="28" height="28">
+          <ellipse cx="30" cy="27" rx="22" ry="18" fill="#3C1E1E"/>
+          <polygon points="22,43 19,52 33,45" fill="#3C1E1E"/>
+          <path d="M20 27c0-3.3 4.5-6 10-6s10 2.7 10 6-4.5 6-10 6c-.8 0-1.5-.1-2.2-.2l-3.8 2.2 1-3.5C21.8 30.6 20 28.9 20 27z" fill="#FAE100"/>
         </svg>
       ),
       action: () => {
@@ -16422,61 +16603,57 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
     },
     { label: "WhatsApp", sub: lang === "ko" ? "글로벌 20억+" : "2B+ users", bg: "#25D366",
       icon: (
-        <svg viewBox="0 0 28 28" width="26" height="26" fill="white">
-          {/* WhatsApp: 전화기 + 말풍선 */}
-          <path d="M14 3C8.48 3 4 7.48 4 13c0 1.74.47 3.37 1.28 4.79L4 23l5.27-1.27C10.63 22.54 12.29 23 14 23c5.52 0 10-4.48 10-10S19.52 3 14 3z" fillOpacity="0.35"/>
-          <path d="M18.9 16.9c-.23.64-1.36 1.22-1.87 1.29-.48.07-1.06.1-1.71-.11a18 18 0 01-1.56-.58c-2.74-1.19-4.52-3.98-4.66-4.16-.13-.18-.87-1.15-.87-2.2 0-1.06.56-1.59.76-1.8.2-.22.44-.27.58-.27h.42c.13 0 .31-.05.49.37l.69 1.74-.24.5-.2.31c.27.44 1.08 1.56 2.06 2.04 1.06.5 1.06.35 1.25.29.18-.06.57-.3.65-.57.08-.27.08-.5.05-.57-.03-.06-.12-.1-.24-.16l-.91-.44c-.12-.06-.2-.1-.28.1l-.42.5c-.07.07-.13.07-.26 0-.13-.07-.57-.22-1.08-.65-.5-.44-.84-1.02-.93-1.18-.1-.17 0-.26.07-.35l.2-.24.14-.21c.05-.1.02-.17-.01-.24l-.67-1.62c-.18-.44-.36-.38-.5-.38h-.43c-.15 0-.39.06-.59.27"/>
+        /* WhatsApp 공식 로고 — 채팅 버블 + 전화기 */
+        <svg viewBox="0 0 175.216 175.552" width="28" height="28" fill="white">
+          <path d="M87.6 0C39.3 0 0 39.3 0 87.6c0 15.3 4 29.7 10.9 42.2L0 175.6l47.2-11c12 6.4 25.7 10 40.4 10 48.3 0 87.6-39.3 87.6-87.6S135.9 0 87.6 0zm0 159.8c-13.5 0-26.1-3.8-36.8-10.4l-2.7-1.6-27.9 7.3 7.5-27.2-1.7-2.8C19.1 114.5 15 101.5 15 87.6 15 47.5 47.5 15 87.6 15s72.6 32.5 72.6 72.6-32.5 72.2-72.6 72.2z"/>
+          <path d="M127.3 105.7c-2-1-11.9-5.8-13.7-6.5-1.8-.7-3.2-1-4.5.9-1.3 2-5.1 6.5-6.2 7.8-1.1 1.4-2.3 1.5-4.2.5-2-.9-8.3-3.1-15.8-9.8-5.8-5.2-9.8-11.7-10.9-13.7-1.1-2 0-3 .9-4 .8-.9 2-2.3 3-3.4.9-1.1 1.3-2 2-3.3.7-1.4.3-2.5-.1-3.4-.5-1-4.5-10.8-6.1-14.8-1.6-3.9-3.3-3.4-4.5-3.4-1.2-.1-2.5-.1-3.8-.1-1.3 0-3.5.5-5.3 2.5-1.8 2-7 6.8-7 16.6 0 9.8 7.2 19.3 8.2 20.7 1 1.3 14.1 21.5 34.2 30.2 4.8 2.1 8.5 3.3 11.4 4.2 4.8 1.5 9.2 1.3 12.6.8 3.8-.6 11.9-4.9 13.6-9.6 1.7-4.7 1.7-8.7 1.2-9.6-.5-1-1.9-1.5-3.9-2.5z"/>
         </svg>
       ),
       href: `https://wa.me/?text=${encoded}` },
-    { label: "Instagram", sub: lang === "ko" ? "스토리에 붙여넣기" : "Copy → Stories", bg: "linear-gradient(135deg,#833AB4 0%,#E1306C 50%,#F77737 100%)",
+    { label: "Instagram", sub: lang === "ko" ? "스토리에 붙여넣기" : "Copy → Stories", bg: "linear-gradient(135deg,#405DE6,#833AB4,#C13584,#E1306C,#F77737,#FCAF45)",
       icon: (
-        <svg viewBox="0 0 28 28" width="26" height="26" fill="none" stroke="white" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-          {/* Instagram: 카메라 아이콘 */}
-          <rect x="4.5" y="4.5" width="19" height="19" rx="6" ry="6"/>
-          <circle cx="14" cy="14" r="4.8"/>
-          <circle cx="20.5" cy="7.5" r="1.3" fill="white" stroke="none"/>
+        /* Instagram 공식 로고 */
+        <svg viewBox="0 0 24 24" width="27" height="27" fill="white">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
         </svg>
       ),
       action: () => openWithCopy("https://www.instagram.com/") },
     { label: "TikTok", sub: lang === "ko" ? "복사 후 앱 열기" : "Copy → paste in app", bg: "#010101",
       icon: (
-        <svg viewBox="0 0 28 28" width="26" height="26" fill="white">
-          {/* TikTok: 뮤직노트 'd' 형태 */}
-          <path d="M21.5 6v4.5a7.2 7.2 0 01-4.5-1.55V17.5a6 6 0 11-5-5.92v4.05a2 2 0 102 2V6h7.5z"/>
+        /* TikTok 공식 로고 */
+        <svg viewBox="0 0 24 24" width="27" height="27" fill="white">
+          <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.52V6.76a4.85 4.85 0 01-1.02-.07z"/>
         </svg>
       ),
       action: () => openWithCopy("https://www.tiktok.com/") },
-    // 2행: 추가 채널
+    // 2행
     { label: "Facebook", sub: "", bg: "#1877F2",
       icon: (
-        <svg viewBox="0 0 28 28" width="26" height="26" fill="white">
-          {/* Facebook: 굵은 소문자 f */}
-          <path d="M16.5 5H14.2C11.9 5 10 6.9 10 9.2V12H7.5v4H10v9h4.5V16H17l.5-4h-3V9.8c0-.5.4-.8.8-.8h2.2V5z"/>
+        /* Facebook 공식 'f' 로고 */
+        <svg viewBox="0 0 24 24" width="27" height="27" fill="white">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
         </svg>
       ),
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodeURIComponent(fullMsg)}` },
-    { label: "X", sub: "", bg: "#0F0F0F",
+    { label: "X (Twitter)", sub: "", bg: "#000000",
       icon: (
-        <svg viewBox="0 0 28 28" width="26" height="26" fill="white">
-          {/* X (Twitter): 볼드 X 형태 */}
-          <path d="M4 4.5l8.4 10L4 24h2.7L13.5 15l5.5 9H24L15.2 13.5 23.5 4.5h-2.7L12.3 13 7 4.5z"/>
+        /* X(Twitter) 공식 로고 */
+        <svg viewBox="0 0 24 24" width="27" height="27" fill="white">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
       ),
       href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(bodyText + "\n" + ctx.tags)}&url=${encodedUrl}` },
-    { label: lang === "ko" ? "이메일" : "Email", sub: "Gmail · Outlook", bg: "#0EA5E9",
+    { label: lang === "ko" ? "이메일" : "Email", sub: "Gmail · Outlook", bg: "#EA4335",
       icon: (
-        <svg viewBox="0 0 28 28" width="26" height="26" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          {/* Email: 봉투 */}
-          <rect x="4" y="7" width="20" height="14" rx="2.5"/>
-          <path d="M4 9.5l10 7 10-7"/>
+        /* Gmail/Email 아이콘 */
+        <svg viewBox="0 0 24 24" width="27" height="27" fill="white">
+          <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
         </svg>
       ),
       href: `mailto:?subject=HebronGuide&body=${encodeURIComponent(fullMsg + "\n\n" + appUrl)}` },
     { label: lang === "ko" ? "링크 복사" : "Copy Link", sub: lang === "ko" ? "클립보드" : "Clipboard", bg: "#475569",
       icon: (
         <svg viewBox="0 0 28 28" width="26" height="26" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          {/* Link: 체인 링크 */}
           <path d="M11.5 16.5H8a5 5 0 010-10h4.5m1 7H20a5 5 0 000-10h-4.5M10 14h8"/>
         </svg>
       ),
@@ -16817,6 +16994,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
 ───────────────────────────────────────── */
 function AppBar({ onHome }: { onHome?: () => void }) {
   const { t, lang, setLang } = useI18n();
+  const currentCity = useCityConfig(); // ← 모든 52개 도시 정확히 감지
   return (
     <header
       className="sticky top-0 z-40 flex items-center justify-between px-[20px] w-full"
@@ -16847,7 +17025,7 @@ function AppBar({ onHome }: { onHome?: () => void }) {
             <span style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 600, fontSize: 13, letterSpacing: "1.5px", color: "#64748B" }}>GUIDE</span>
           </div>
           <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Manrope, sans-serif", fontWeight: 600, fontSize: 9, letterSpacing: "1px", color: "#F2994A", marginTop: 2, opacity: 0.8 }}>
-            {(() => { const p = window.location.pathname.split('/').filter(Boolean)[0]?.toUpperCase(); return (p && ['SEATTLE','DALLAS','SF','NEWYORK','NASHVILLE','BOSTON','LA','TORONTO','VANCOUVER'].includes(p)) ? (p === 'SF' ? 'SAN FRANCISCO' : p === 'NEWYORK' ? 'NEW YORK' : p) : 'SEATTLE'; })()}
+            {currentCity.nameEn.toUpperCase()}
           </div>
         </div>
       </button>
