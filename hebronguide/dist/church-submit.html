@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>교회 등재 신청 — HebronGuide</title>
+<meta name="description" content="우리 교회를 HebronGuide에 등재하세요. 이민자·이주자들이 새 도시에서 교회를 찾을 때 가장 먼저 만납니다.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:#0d1117;}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;color:#ECFDF5;min-height:100vh;}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.96);backdrop-filter:blur(12px);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 24px;border-bottom:1px solid rgba(255,255,255,.07);}
+.logo{color:#C9A227;font-weight:900;font-size:1rem;text-decoration:none;}
+.nav-back{color:rgba(236,253,245,.4);text-decoration:none;font-size:.8rem;}
+
+.hero{background:linear-gradient(160deg,#1a2535 0%,#0d1117 100%);
+  border-bottom:1px solid rgba(255,255,255,.07);padding:32px 24px 28px;text-align:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(192,132,252,.12);border:1px solid rgba(192,132,252,.3);
+  border-radius:99px;padding:5px 18px;font-size:.72rem;font-weight:800;
+  color:#C084FC;letter-spacing:.06em;margin-bottom:14px;}
+.hero h1{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:8px;line-height:1.3;}
+.hero h1 em{color:#C084FC;font-style:normal;}
+.hero p{font-size:.85rem;color:rgba(236,253,245,.55);line-height:1.9;}
+
+.free-bar{background:linear-gradient(135deg,rgba(192,132,252,.1),rgba(201,162,39,.08));
+  border-top:2px solid rgba(192,132,252,.3);
+  text-align:center;padding:11px 24px;
+  font-size:.82rem;color:rgba(236,253,245,.75);font-weight:700;}
+.free-bar strong{color:#C084FC;}
+
+.container{max-width:560px;margin:0 auto;padding:28px 20px 80px;}
+
+.info-box{background:rgba(192,132,252,.07);border:1px solid rgba(192,132,252,.2);
+  border-radius:14px;padding:16px 18px;margin-bottom:22px;}
+.info-box p{font-size:.82rem;color:rgba(236,253,245,.7);line-height:1.9;}
+.info-box strong{color:#C084FC;}
+
+.form-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;padding:22px 22px;margin-bottom:14px;}
+.card-title{font-size:.88rem;font-weight:800;color:#fff;margin-bottom:16px;
+  padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;gap:8px;}
+
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:.78rem;font-weight:700;
+  color:rgba(236,253,245,.6);margin-bottom:5px;}
+.field label .req{color:#f87171;margin-left:2px;}
+.field label .opt{color:rgba(236,253,245,.3);font-size:.72rem;font-weight:400;margin-left:4px;}
+.field input,.field select,.field textarea{
+  width:100%;background:rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.12);border-radius:10px;
+  padding:11px 14px;font-size:.88rem;color:#ECFDF5;
+  font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#C084FC;}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23666'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;}
+.field select option{background:#1a2535;}
+.field textarea{min-height:72px;resize:vertical;line-height:1.7;}
+.field .hint{font-size:.72rem;color:rgba(236,253,245,.35);margin-top:4px;line-height:1.6;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:420px){.field-row{grid-template-columns:1fr;}}
+
+.agree-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;}
+.agree-row input[type=checkbox]{width:17px;height:17px;margin-top:2px;accent-color:#C084FC;flex-shrink:0;cursor:pointer;}
+.agree-row label{font-size:.8rem;color:rgba(236,253,245,.7);cursor:pointer;line-height:1.6;}
+
+.btn-submit{width:100%;background:linear-gradient(135deg,#C084FC,#9333ea);
+  color:#fff;border:none;padding:14px;border-radius:13px;
+  font-size:.95rem;font-weight:900;cursor:pointer;
+  font-family:'Noto Sans KR',sans-serif;transition:all .2s;
+  box-shadow:0 4px 16px rgba(192,132,252,.3);margin-top:18px;}
+.btn-submit:hover{box-shadow:0 6px 24px rgba(192,132,252,.4);transform:translateY(-1px);}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+
+#resultBox{display:none;padding:28px 0;text-align:center;}
+.result-icon{font-size:2.8rem;margin-bottom:12px;}
+.result-title{font-size:1.1rem;font-weight:900;margin-bottom:6px;}
+.result-desc{font-size:.85rem;color:rgba(236,253,245,.6);line-height:1.8;margin-bottom:20px;}
+.btn-back{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border-radius:12px;padding:13px 24px;font-size:.9rem;font-weight:800;
+  font-family:'Noto Sans KR',sans-serif;cursor:pointer;border:none;
+  text-decoration:none;background:rgba(192,132,252,.12);
+  border:1px solid rgba(192,132,252,.3);color:#C084FC;}
+
+footer{background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.06);
+  text-align:center;padding:24px;font-size:.7rem;color:rgba(236,253,245,.2);line-height:2;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/seattle/" class="logo">HebronGuide</a>
+  <a href="javascript:history.back()" class="nav-back">← 돌아가기</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">⛪ 교회 등재</div>
+  <h1>우리 교회를 <em>헤브론가이드</em>에</h1>
+  <p>이민자·이주자가 새 도시에서 교회를 찾을 때<br>가장 먼저 만나는 곳이 됩니다</p>
+</div>
+
+<div class="free-bar">
+  🎁 <strong>완전 무료</strong> · 등재 후 즉시 가이드에 표시됩니다
+</div>
+
+<div class="container">
+
+  <div class="info-box">
+    <p>
+      정보를 입력하시면 <strong>AI 자동 검토</strong> 후<br>
+      <strong>바로 게시됩니다.</strong> 별도 대기나 연락이 필요 없습니다.<br>
+      문의사항이 있을 때만 <strong>hebronplatform@gmail.com</strong>으로 연락해 주세요.
+    </p>
+  </div>
+
+  <div id="formArea">
+
+    <!-- 교회 기본 정보 -->
+    <div class="form-card">
+      <div class="card-title">⛪ 교회 정보</div>
+      <div class="field-row">
+        <div class="field">
+          <label>교회명 (한국어) <span class="req">*</span></label>
+          <input type="text" id="churchName" placeholder="예: 시애틀OO교회">
+        </div>
+        <div class="field">
+          <label>교회명 (영어) <span class="opt">(선택)</span></label>
+          <input type="text" id="churchNameEn" placeholder="Seattle OO Church">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>교단·소속 <span class="opt">(선택)</span></label>
+          <select id="denomination">
+            <option value="">선택 또는 직접 입력</option>
+            <optgroup label="🇺🇸 침례교">
+              <option value="SBC">SBC (남침례교)</option>
+              <option value="ABC">ABC (미국침례교)</option>
+              <option value="침례교">침례교 (기타)</option>
+            </optgroup>
+            <optgroup label="✝️ 장로교">
+              <option value="PCA">PCA (미국장로교)</option>
+              <option value="PCK">PCK (고신·통합·합동)</option>
+              <option value="장로교">장로교 (기타)</option>
+            </optgroup>
+            <optgroup label="🌿 가정교회">
+              <option value="IHM 가정교회">IHM 가정교회</option>
+              <option value="가정교회">가정교회 (기타)</option>
+            </optgroup>
+            <optgroup label="기타 교단">
+              <option value="감리교 UMC">감리교 (UMC)</option>
+              <option value="성결교">성결교</option>
+              <option value="순복음 AG">순복음 (AG)</option>
+              <option value="루터교">루터교</option>
+              <option value="성공회">성공회</option>
+              <option value="독립·무소속">독립·무소속</option>
+            </optgroup>
+          </select>
+          <div class="hint">목록에 없으면 직접 입력하셔도 됩니다</div>
+        </div>
+        <div class="field">
+          <label>도시 <span class="req">*</span></label>
+          <select id="city">
+            <option value="">선택하세요</option>
+            <option value="seattle">시애틀</option>
+            <option value="dallas">달라스</option>
+            <option value="la">LA</option>
+            <option value="newyork">뉴욕</option>
+            <option value="nashville">내쉬빌</option>
+            <option value="boston">보스턴</option>
+            <option value="toronto">토론토</option>
+            <option value="vancouver">밴쿠버</option>
+            <option value="houston">휴스턴</option>
+            <option value="atlanta">애틀랜타</option>
+            <option value="chicago">시카고</option>
+            <option value="dc">워싱턴 DC</option>
+            <option value="miami">마이애미</option>
+            <option value="philadelphia">필라델피아</option>
+            <option value="sf">샌프란시스코</option>
+            <option value="sydney">시드니</option>
+            <option value="melbourne">멜버른</option>
+            <option value="auckland">오클랜드</option>
+            <option value="london">런던</option>
+            <option value="tokyo">도쿄</option>
+            <option value="osaka">오사카</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>주소 <span class="opt">(선택)</span></label>
+        <input type="text" id="address" placeholder="123 Main St, Seattle WA 98101">
+      </div>
+      <div class="field">
+        <label>예배 시간 <span class="opt">(선택)</span></label>
+        <input type="text" id="serviceTimes" placeholder="주일 1부 8am · 2부 11am · 영어예배 11am">
+      </div>
+      <div class="field">
+        <label>한 줄 소개 <span class="opt">(선택)</span></label>
+        <textarea id="description" placeholder="새 이민자 환영 · 가정교회 목장 · 정착 상담 가능 등 자유롭게 적어 주세요"></textarea>
+      </div>
+    </div>
+
+    <!-- 연락처 -->
+    <div class="form-card">
+      <div class="card-title">📞 연락처</div>
+      <div class="field-row">
+        <div class="field">
+          <label>담당 목사 <span class="opt">(선택)</span></label>
+          <input type="text" id="pastor" placeholder="홍길동 목사">
+        </div>
+        <div class="field">
+          <label>교회 전화 <span class="opt">(선택)</span></label>
+          <input type="tel" id="phone" placeholder="(206) 000-0000">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>이메일 <span class="opt">(선택)</span></label>
+          <input type="email" id="email" placeholder="office@church.com">
+        </div>
+        <div class="field">
+          <label>홈페이지 <span class="opt">(선택)</span></label>
+          <input type="url" id="website" placeholder="https://...">
+        </div>
+      </div>
+      <div class="field">
+        <label>카카오채널 URL <span class="opt">(선택)</span></label>
+        <input type="url" id="kakao" placeholder="https://pf.kakao.com/_xxxxx">
+        <div class="hint">카카오채널이 있으면 방문자가 바로 연락할 수 있습니다</div>
+      </div>
+    </div>
+
+    <!-- 동의 -->
+    <div class="agree-row">
+      <input type="checkbox" id="agree1">
+      <label for="agree1">HebronGuide <a href="/terms.html" target="_blank" style="color:#C084FC;">이용약관</a> 및 <a href="/privacy.html" target="_blank" style="color:#C084FC;">개인정보처리방침</a>에 동의합니다</label>
+    </div>
+    <div class="agree-row">
+      <input type="checkbox" id="agree2">
+      <label for="agree2">입력한 정보가 사실임을 확인합니다</label>
+    </div>
+
+    <button class="btn-submit" id="btnSubmit" onclick="submitChurch()">
+      ⛪ 교회 등재 신청하기
+    </button>
+
+  </div>
+
+  <!-- 결과 -->
+  <div id="resultBox"></div>
+
+</div>
+
+<footer>
+  <strong>HebronGuide</strong> — 이민자·이주자를 위한 디지털 환대 플랫폼<br>
+  문의: hebronplatform@gmail.com · hebronguide.com
+</footer>
+
+<script>
+async function submitChurch() {
+  const btn = document.getElementById('btnSubmit');
+
+  if (!document.getElementById('agree1').checked || !document.getElementById('agree2').checked) {
+    alert('동의 항목을 모두 체크해 주세요.'); return;
+  }
+
+  const churchName = document.getElementById('churchName').value.trim();
+  const city       = document.getElementById('city').value;
+  if (!churchName || !city) {
+    alert('교회명과 도시는 필수입니다.'); return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '🔍 AI 검토 중...';
+
+  const data = {
+    churchName,
+    churchNameEn:  document.getElementById('churchNameEn').value.trim(),
+    denomination:  document.getElementById('denomination').value,
+    pastor:        document.getElementById('pastor').value.trim(),
+    phone:         document.getElementById('phone').value.trim(),
+    email:         document.getElementById('email').value.trim(),
+    website:       document.getElementById('website').value.trim(),
+    kakao:         document.getElementById('kakao').value.trim(),
+    address:       document.getElementById('address').value.trim(),
+    serviceTimes:  document.getElementById('serviceTimes').value.trim(),
+    description:   document.getElementById('description').value.trim(),
+    city,
+  };
+
+  let result = { status: 'pending', message: '접수되었습니다. 담당자가 곧 게시합니다.' };
+  try {
+    const res = await fetch('/api/submit-church', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    result = await res.json();
+  } catch (_) {}
+
+  showResult(result, data);
+}
+
+function showResult(result, data) {
+  document.getElementById('formArea').style.display = 'none';
+  const box = document.getElementById('resultBox');
+  box.style.display = 'block';
+
+  if (result.status === 'critical') {
+    box.innerHTML = `
+      <div class="result-icon">🚫</div>
+      <div class="result-title" style="color:#f87171;">등재가 어렵습니다</div>
+      <div class="result-desc">${result.message}</div>
+      <a class="btn-back" href="javascript:location.reload()">← 다시 시도</a>`;
+    return;
+  }
+
+  const icon  = result.status === 'published' ? '✅' : '📋';
+  const color = result.status === 'published' ? '#6EE7B7' : '#C084FC';
+  const title = result.status === 'published'
+    ? '가이드에 게시되었습니다!'
+    : '신청이 접수되었습니다';
+
+  box.innerHTML = `
+    <div class="result-icon">${icon}</div>
+    <div class="result-title" style="color:${color};">${title}</div>
+    <div class="result-desc">${result.message}<br><br>
+      문의사항이 있을 때만 연락 주세요:<br>
+      <strong style="color:#C084FC;">hebronplatform@gmail.com</strong>
+    </div>
+    <a class="btn-back" href="/${data.city}/">← 가이드에서 확인하기</a>`;
+}
+</script>
+</body>
+</html>

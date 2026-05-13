@@ -126,6 +126,7 @@ cp hebronguide/dist/posters.html                   public/posters.html          
 cp hebronguide/dist/church-guide.html              public/church-guide.html              2>/dev/null || true
 cp hebronguide/dist/hebron-ops-church-connect.html public/hebron-ops-church-connect.html 2>/dev/null || true
 cp hebronguide/dist/hebron-partner-mobilize.html   public/hebron-partner-mobilize.html   2>/dev/null || true
+cp hebronguide/dist/church-submit.html             public/church-submit.html             2>/dev/null || true
 
 # 6. API 함수는 Vercel이 자동 라우팅 (hebronguide/api/*.js → /api/*)
 
