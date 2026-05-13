@@ -289,7 +289,7 @@ const MINT = "#6EE7B7";
 /* ─────────────────────────────────────────
    CITY CONFIG — 도시별 설정
 ───────────────────────────────────────── */
-// 현재 17개 + 확장 27개 = 총 44개 도시 (계속 성장 중)
+// 현재 17개 + 확장 27개 = 총 50개 도시 (계속 성장 중)
 // 작은 도시일수록 HebronGuide가 더 필요합니다 — 외롭기 때문입니다
 type CitySlug =
   // 북미 (기존 17)
@@ -629,7 +629,7 @@ function getCityDemographics(slug: string, lang: string): CityDemographics {
         { group: ko ? "기타" : "Other", pct: "5%" },
       ],
       diversityScore: ko ? "높음" : "High",
-      strategicNote: "아시안 중 한인 비율 1위. 3개 언어(한·영·스) 모두 유효. 빅테크 이민자 커뮤니티 강세.",
+      strategicNote: "아시안 중 한인 비율 1위. 2개 언어(한·영·스) 모두 유효. 빅테크 이민자 커뮤니티 강세.",
       strategicNoteEn: "Highest Korean % among Asian cities. All 3 languages (KO/EN/ES) effective. Strong tech immigrant community.",
     },
     dallas: {
@@ -643,7 +643,7 @@ function getCityDemographics(slug: string, lang: string): CityDemographics {
         { group: ko ? "기타" : "Other", pct: "4%" },
       ],
       diversityScore: ko ? "매우 높음" : "Very High",
-      strategicNote: "히스패닉 29% → 스페인어 콘텐츠 전략 필수. 한·영·스 3개 언어 모두 핵심. 캐롤튼 한인타운 집중.",
+      strategicNote: "히스패닉 29% → 스페인어 콘텐츠 전략 필수. 한·영·스 2개 언어 모두 핵심. 캐롤튼 한인타운 집중.",
       strategicNoteEn: "Hispanic 29% — Spanish content essential. All 3 languages core. Focus on Carrollton Korean hub.",
     },
     la: {
@@ -813,7 +813,7 @@ function getCityDemographics(slug: string, lang: string): CityDemographics {
         { group: ko ? "기타" : "Other", pct: "1%" },
       ],
       diversityScore: ko ? "히스패닉 특화" : "Hispanic-dominant",
-      strategicNote: "스페인어가 제1언어! 히스패닉 70% — 스페인어 없으면 전략 불가. 한인 인구 작음. 중남미 한인 허브 역할. 3개 언어(한·영·스) 모두 필수.",
+      strategicNote: "스페인어가 제1언어! 히스패닉 70% — 스페인어 없으면 전략 불가. 한인 인구 작음. 중남미 한인 허브 역할. 2개 언어(한·영·스) 모두 필수.",
       strategicNoteEn: "Spanish is #1 language! Hispanic 70% — no Spanish = no strategy. Small Korean pop but Latin America Korean hub. All 3 languages (KO/EN/ES) essential.",
     },
     mexicocity: {
@@ -5561,7 +5561,7 @@ function CompactHeroNew() {
         }}>
           <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6EE7B7", display: "inline-block", flexShrink: 0 }} />
           <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(255,255,255,0.92)", letterSpacing: "0.05em" }}>
-            LIVE · {lang === "ko" ? "44개 도시" : "44 Cities"}
+            LIVE · {lang === "ko" ? "50개 도시" : "50 Cities"}
           </span>
         </div>
         <div style={{
@@ -5676,7 +5676,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       icon: "🤝", color: "#F59E0B",
       nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
       tagKo: "친구 · 멘토 · 동행 파트너", tagEn: "Friends · Mentors · Partners",
-      userKo: "44개 도시 한인을 만납니다", userEn: "Meet Koreans across 44 cities",
+      userKo: "50개 도시 한인을 만납니다", userEn: "Meet Koreans across 50 cities",
       providerKo: "멘토로 섬기실 분 → 함께해요", providerEn: "Mentor & serve → join us",
       tab: 5, subTab: 2,
     },
@@ -6947,7 +6947,7 @@ function CommunitySection({ category, citySlug, lang }: { category: string; city
     setForm({ name: "", contact: "", desc: "", website: "" });
     setTimeout(() => { setOpen(false); setSubmitted(false); }, 2500);
 
-    // 백그라운드에서 3개 언어 번역 후 저장
+    // 백그라운드에서 2개 언어 번역 후 저장
     if (desc) {
       translateAll(desc, srcLang).then(translated => {
         const items = readCommunity();
@@ -7771,11 +7771,11 @@ function AmericasAdSection({ lang }: { lang: string }) {
 
 /* ─────────────────────────────────────────
    HOME: 플라이휠 소셜 프루프 바 (쿠팡 원리 ①)
-   — "312개 교회 · 44개 도시" 숫자가 신뢰를 만든다
+   — "312개 교회 · 50개 도시" 숫자가 신뢰를 만든다
 ───────────────────────────────────────── */
 function HebronFlywheelBar({ lang }: { lang: string }) {
   const stats = [
-    { emoji: "🌍", value: "44", label: lang === "ko" ? "개 도시" : "Cities" },
+    { emoji: "🌍", value: "50", label: lang === "ko" ? "개 도시" : "Cities" },
     { emoji: "🤝", value: "4", label: lang === "ko" ? "기관 파트너" : "Partners" },
     { emoji: "🌐", value: "2", label: lang === "ko" ? "개 언어" : "Languages" },
   ];
@@ -9461,7 +9461,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 lang === "ko" ? "📱 HebronGuide 앱에 '헤브론 교회 네트워크' 금색 배지 표시" : "📱 Gold 'Hebron Church Network' badge displayed on HebronGuide app",
                 lang === "ko" ? "🌐 전국·전 세계 목회자 네트워크 참여" : "🌐 National & global pastor network membership",
                 lang === "ko" ? "📊 도시 내 한인 이민자 정착 현황 데이터 공유" : "📊 City-level Korean immigrant settlement data sharing",
-                lang === "ko" ? "🤝 44개+ 도시 파트너 교회와 교인 교류·연결 (계속 확장 중)" : "🤝 Member exchange & connection with 44+ partner cities (continuously expanding)",
+                lang === "ko" ? "🤝 50개+ 도시 파트너 교회와 교인 교류·연결 (계속 확장 중)" : "🤝 Member exchange & connection with 44+ partner cities (continuously expanding)",
               ].map((item, i) => (
                 <div key={i} style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, marginBottom: 4 }}>
                   {item}
@@ -10379,7 +10379,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                   {[
                     { n: lang === "ko" ? "현지 한인" : "Local Korean", d: lang === "ko" ? "오래 살아온 분" : "Long-time residents" },
-                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "44개+ 도시" : "44+ cities" },
+                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "50개+ 도시" : "50+ cities" },
                     { n: lang === "ko" ? "소규모 투어" : "Small Group", d: lang === "ko" ? "개인 맞춤" : "Personal touch" },
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
@@ -11135,8 +11135,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             icon="🤝" color="#8B5CF6" lang={lang}
             titleKo="헤브론 커넥트 — 친구·멘토·동행 파트너 매칭"
             titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
-            descKo="교인 검증 프로필로 44개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
-            descEn="Meet Koreans across 44 cities. Friends, mentors, prayer partners & business connections."
+            descKo="교인 검증 프로필로 50개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
+            descEn="Meet Koreans across 50 cities. Friends, mentors, prayer partners & business connections."
           />
           {/* 211 팁 박스 */}
           <a href="tel:211" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>
@@ -13267,8 +13267,8 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
             icon="📚" color="#8B5CF6" lang={lang}
             titleKo="헤브론 튜터 — 한인 선배가 직접 가르칩니다"
             titleEn="Hebron Tutor — Learn from Korean Community Mentors"
-            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 44개+ 도시 가능."
-            descEn="Math, SAT, AP, Korean tutoring. Carefully selected Korean tutors. Online across 44+ cities."
+            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 50개+ 도시 가능."
+            descEn="Math, SAT, AP, Korean tutoring. Carefully selected Korean tutors. Online across 50+ cities."
           />
         </div>
       </div>
@@ -14757,7 +14757,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
       price: ko ? "무료" : "Free", priceNote: ko ? "기본 무료 · Pro $4.99/월" : "Free · Pro $4.99/mo",
       badge: "✝️ 무료",
       features: ko
-        ? ["매일 큐티", "기도 기록", "목장 연동", "3개 언어", "오프라인"]
+        ? ["매일 큐티", "기도 기록", "목장 연동", "2개 언어", "오프라인"]
         : ["Daily devotional", "Prayer journal", "House church sync", "3 languages", "Offline"],
       buyLink: "mailto:hebronplatform@gmail.com?subject=HebronAltar 앱 접근 요청",
       status: "live",
@@ -14768,11 +14768,11 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
       emoji: "🛠️", color: "#FB923C",
       nameKo: "Hebron Gig 제공자 스타터 키트", nameEn: "Hebron Gig Provider Starter Kit",
       taglineKo: "은사와 재능으로 이웃을 섬기는 첫 걸음", taglineEn: "Your first step to serving neighbors with your gifts & talents",
-      descKo: "Hebron Gig에 제공자로 등록하는 완전 가이드 + 마케팅 자료.\n\n✅ 제공자 프로필 설정 가이드\n✅ 서비스 가격 책정 워크시트\n✅ 한·영·스 3개 언어 서비스 소개 템플릿\n✅ 소셜미디어 홍보 이미지 키트\n✅ 첫 고객 유치 전략 가이드",
+      descKo: "Hebron Gig에 제공자로 등록하는 완전 가이드 + 마케팅 자료.\n\n✅ 제공자 프로필 설정 가이드\n✅ 서비스 가격 책정 워크시트\n✅ 한·영·스 2개 언어 서비스 소개 템플릿\n✅ 소셜미디어 홍보 이미지 키트\n✅ 첫 고객 유치 전략 가이드",
       descEn: "Complete guide to becoming a Hebron Gig provider + marketing materials.\n\n✅ Provider profile setup guide\n✅ Service pricing worksheet\n✅ KO/EN/ES service introduction templates\n✅ Social media promo image kit\n✅ First client acquisition strategy",
       price: "$14.99", priceNote: ko ? "디지털 키트 즉시 다운로드" : "Instant digital kit download",
       features: ko
-        ? ["프로필 설정 가이드", "가격 책정 도구", "3개 언어 템플릿", "SNS 이미지", "첫 고객 전략"]
+        ? ["프로필 설정 가이드", "가격 책정 도구", "2개 언어 템플릿", "SNS 이미지", "첫 고객 전략"]
         : ["Profile setup guide", "Pricing worksheet", "3-language templates", "Social images", "First client strategy"],
       buyLink: "mailto:hebronplatform@gmail.com?subject=Gig 제공자 스타터 키트 구매&body=이름:%0A제공할 서비스:%0A도시:",
       status: "live",
@@ -15079,7 +15079,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
       titleKo: "헤브론 튜터", titleEn: "Hebron Tutor",
       taglineKo: "검증된 한인 튜터. 교회 신뢰 + 학력 검증",
       taglineEn: "Verified Korean tutors. Church trust + academic credentials.",
-      stepsKo: ["튜터 등록 (학력 확인 + 꼼꼼한 과정)", "학생-튜터 매칭 (온라인 44개+ 도시)", "수업 진행 → 파트너 수입"],
+      stepsKo: ["튜터 등록 (학력 확인 + 꼼꼼한 과정)", "학생-튜터 매칭 (온라인 50개+ 도시)", "수업 진행 → 파트너 수입"],
       stepsEn: ["Tutor registration (church + academic + background check)", "Student-tutor matching (online across 17 cities)", "Sessions → 15% commission"],
       benchmarkName: "Wyzant",
       benchmarkData: ko ? "250만 학생 · 8만 명 튜터 · $8,000만 매출 · 25% 수수료 · 튜터 검증 시스템" : "2.5M students · 80K tutors · $80M revenue · 25% commission · tutor verification system",
@@ -15101,7 +15101,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
       benchmarkName: "Meetup + Bumble BFF + Nextdoor",
       benchmarkData: ko ? "Meetup: 5,000만 회원 · Bumble BFF: 4,000만 MAU · Nextdoor: $2.1B 기업가치 (위치 검증)" : "Meetup: 50M users · Bumble BFF: 40M MAU · Nextdoor: $2.1B valuation (location-verified)",
       benchmarkLesson: ko ? "공통 관심사 + 검증된 신원 + 오프라인 만남 연결 = 성공적 커뮤니티 플랫폼" : "Shared interests + verified identity + offline meeting connection = successful community platform",
-      hebronKo: "한인 커뮤니티 신뢰. 44개+ 도시 크로스 매칭. 다목적 연결.",
+      hebronKo: "한인 커뮤니티 신뢰. 50개+ 도시 크로스 매칭. 다목적 연결.",
       hebronEn: "Church verification > Nextdoor neighbor verification. 17-city cross matching. Multi-purpose connection.",
       revenueKo: "프리미엄 구독 $15/월 | 이벤트 주최 $10/회 | 비즈니스 연결 $30/매칭",
       revenueEn: "Premium subscription $15/mo | Event hosting $10/event | Business connection $30/match",
@@ -15272,7 +15272,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
               services: [
                 { icon: "💻", name: ko ? "헤브론 컴퓨터수리" : "Hebron TechFix", price: ko ? "$60-120/시간" : "$60-120/hr", desc: ko ? "PC·맥·노트북 수리·바이러스 제거·속도개선" : "PC/Mac repair, virus removal & performance optimization" },
                 { icon: "📱", name: ko ? "헤브론 폰수리" : "Hebron PhoneFix", price: ko ? "$40-80/건" : "$40-80/job", desc: ko ? "아이폰·안드로이드 액정·배터리 교체" : "iPhone & Android screen/battery replacement" },
-                { icon: "🌐", name: ko ? "헤브론 웹사이트" : "Hebron WebBuild", price: ko ? "$200-800/프로젝트" : "$200-800/project", desc: ko ? "소규모 식당·가게 웹사이트 제작. 3개 언어 대응" : "Small business website creation in 3 languages" },
+                { icon: "🌐", name: ko ? "헤브론 웹사이트" : "Hebron WebBuild", price: ko ? "$200-800/프로젝트" : "$200-800/project", desc: ko ? "소규모 식당·가게 웹사이트 제작. 2개 언어 대응" : "Small business website creation in 3 languages" },
                 { icon: "🏠", name: ko ? "헤브론 스마트홈" : "Hebron SmartHome", price: ko ? "$50-150/시간" : "$50-150/hr", desc: ko ? "스마트 조명·보안카메라·AI 스피커 설치" : "Smart lights, security cameras & AI speaker setup" },
               ],
             },
@@ -15316,10 +15316,10 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                 { icon: "📱", name: ko ? "헤브론 SNS디자인" : "Hebron Social Design", price: ko ? "$30-80/건" : "$30-80/set", desc: ko ? "인스타·페이스북·카카오 게시물·배너 디자인" : "Instagram, Facebook & KakaoTalk post & banner design" },
                 { icon: "🖨️", name: ko ? "헤브론 인쇄물디자인" : "Hebron Print Design", price: ko ? "$50-200/건" : "$50-200/project", desc: ko ? "명함·브로셔·전단지·메뉴판·초대장 디자인" : "Business cards, brochures, flyers, menus & invitations" },
                 { icon: "⛪", name: ko ? "헤브론 교회디자인" : "Hebron Church Design", price: ko ? "$30-100/건" : "$30-100/project", desc: ko ? "주보·포스터·설교 PPT·유튜브 썸네일. 교회 특화" : "Church bulletin, posters, sermon PPT & YouTube thumbnails" },
-                { icon: "🎬", name: ko ? "헤브론 영상편집" : "Hebron VideoEdit", price: ko ? "$50-200/분" : "$50-200/min", desc: ko ? "유튜브·릴스·틱톡·교회 행사 영상 편집. 자막 3개 언어" : "YouTube, Reels, TikTok & church event video editing. 3-language subtitles" },
+                { icon: "🎬", name: ko ? "헤브론 영상편집" : "Hebron VideoEdit", price: ko ? "$50-200/분" : "$50-200/min", desc: ko ? "유튜브·릴스·틱톡·교회 행사 영상 편집. 자막 2개 언어" : "YouTube, Reels, TikTok & church event video editing. 3-language subtitles" },
                 { icon: "🏡", name: ko ? "헤브론 인테리어 상담" : "Hebron Interior Consult", price: ko ? "$60-150/시간" : "$60-150/hr", desc: ko ? "가정·소규모 상업공간 인테리어 컨설팅. 3D 시뮬레이션" : "Home & small business interior consulting. 3D simulation" },
                 { icon: "📷", name: ko ? "헤브론 사진편집" : "Hebron PhotoEdit", price: ko ? "$20-60/건" : "$20-60/set", desc: ko ? "포토샵 리터칭·배경제거·증명사진·제품사진 보정" : "Photoshop retouching, background removal & product photo editing" },
-                { icon: "🎁", name: ko ? "헤브론 패키지디자인" : "Hebron Package Design", price: ko ? "$100-400/건" : "$100-400/project", desc: ko ? "식품·제품 패키지·라벨 디자인. 3개 언어 적용" : "Food & product packaging & label design. 3-language ready" },
+                { icon: "🎁", name: ko ? "헤브론 패키지디자인" : "Hebron Package Design", price: ko ? "$100-400/건" : "$100-400/project", desc: ko ? "식품·제품 패키지·라벨 디자인. 2개 언어 적용" : "Food & product packaging & label design. 3-language ready" },
               ],
             },
             {
@@ -15419,7 +15419,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
 
                 <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                   {[
-                    { icon: "🌍", label: ko ? "한·영·스 3개 언어" : "KO · EN · ES Languages" },
+                    { icon: "🌍", label: ko ? "한·영·스 2개 언어" : "KO · EN · ES Languages" },
                     { icon: "💰", label: ko ? "수익의 85% 본인 몫" : "85% Revenue to You" },
                     { icon: "🤝", label: ko ? "커뮤니티 신뢰 기반" : "Community Trust" },
                     { icon: "🌐", label: ko ? "글로벌 확장 중" : "Going Global" },
@@ -16752,7 +16752,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
               📣 {lang === "ko" ? "광고 신청 — 파트너 비즈니스" : "Advertise — Partner Business"}
             </div>
             <div style={{ fontSize: 10, color: "#6B7280", fontFamily: "Manrope, sans-serif" }}>
-              {lang === "ko" ? "AI가 한·영·스 3개 언어 광고 자동 생성 (24시간)" : "AI generates 3-language ads in 24 hours"}
+              {lang === "ko" ? "AI가 한·영·스 2개 언어 광고 자동 생성 (24시간)" : "AI generates 3-language ads in 24 hours"}
             </div>
           </a>
         </div>
