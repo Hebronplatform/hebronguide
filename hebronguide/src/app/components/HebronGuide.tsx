@@ -222,6 +222,7 @@ import logoImg from "../../imports/icon-192.png";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useI18n } from "./I18nContext";
 import { useContent, resolvePlaceItems, resolveStepItems } from "./ContentContext";
+import { projectId, publicAnonKey } from "/utils/supabase/info";
 import {
   Home,
   Search,
@@ -4896,7 +4897,6 @@ const COMMUNITY_LABELS: Record<string, { ko: string; en: string; emoji: string }
 const COMM_KEY = "hg_community_v2";
 
 // ── 커뮤니티 데이터 자동 수집 (Supabase REST API 직접 저장) ──
-import { projectId, publicAnonKey } from "/utils/supabase/info";
 const SUPA_REST = `https://${projectId}.supabase.co/rest/v1/community_items`;
 
 function postToServer(item: any) {
@@ -14973,7 +14973,7 @@ export function HebronGuide() {
   ];
 
   return (
-    <div className="flex min-h-screen" style={{ background: "#F2F2F7" }}>
+    <div className="flex min-h-screen w-full" style={{ background: "#F2F2F7" }}>
       {/* 데스크탑 사이드바 */}
       <DesktopSidebar activeTab={activeNav} onNavigate={handleNavigate} />
 
