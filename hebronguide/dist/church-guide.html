@@ -568,9 +568,37 @@ footer strong { color: #6EE7B7; }
   </div>
 
   <div class="link-card">
-    <div style="font-size:.85rem;color:rgba(236,253,245,.65);">아래 주소를 핸드폰 주소창에 입력하시면<br>바로 신청 화면으로 이동합니다</div>
-    <div class="link-url">hebronguide.com/ad-request.html</div>
-    <div class="link-desc">또는 QR코드를 찍어도 됩니다 (hebronguide.com/qr-assets.html)</div>
+    <!-- QR 코드 -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;">
+      <div style="background:#fff;border-radius:14px;padding:12px;display:inline-block;box-shadow:0 4px 20px rgba(0,0,0,0.4);">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fhebronguide.com%2Fad-request.html&margin=6&color=0d1117&bgcolor=ffffff"
+          alt="교회 등재 신청 QR코드"
+          width="180" height="180"
+          style="display:block;border-radius:6px;"
+          loading="lazy"
+        />
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:.78rem;color:rgba(236,253,245,.55);margin-bottom:6px;">
+          📱 카메라로 찍으면 바로 신청 화면으로 이동합니다
+        </div>
+        <div class="link-url" style="margin:0;">hebronguide.com/ad-request.html</div>
+        <div class="link-desc" style="margin-top:6px;">
+          주소창에 직접 입력하셔도 됩니다
+        </div>
+      </div>
+      <!-- QR 인쇄/저장 안내 -->
+      <a
+        href="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https%3A%2F%2Fhebronguide.com%2Fad-request.html&margin=10&color=0d1117&bgcolor=ffffff"
+        download="hebronguide-church-qr.png"
+        target="_blank"
+        rel="noopener"
+        style="display:inline-flex;align-items:center;gap:6px;background:rgba(110,231,183,.15);border:1px solid rgba(110,231,183,.35);border-radius:10px;padding:8px 18px;text-decoration:none;font-size:.78rem;font-weight:700;color:#6EE7B7;font-family:'Noto Sans KR',sans-serif;"
+      >
+        ⬇️ QR코드 저장 (주보·전단지용)
+      </a>
+    </div>
   </div>
 
   <!-- ─── 체크리스트 ─── -->
