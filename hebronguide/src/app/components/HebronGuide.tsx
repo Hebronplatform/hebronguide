@@ -4958,7 +4958,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
             </div>
             {item.tip && (
               <div style={{ marginTop: 6, padding: "4px 8px", borderRadius: 6, background: "rgba(255,255,255,0.06)",
-                fontSize: 10, color: "rgba(236,253,245,0.55)", fontStyle: "italic" }}>
+                fontSize: 10, color: "rgba(236,253,245,0.88)", fontStyle: "italic" }}>
                 💡 {item.tip}
               </div>
             )}
@@ -5107,7 +5107,7 @@ function ChecklistItem({ itemId, title, desc, accentColor = MINT, showReminder =
           textDecoration: isDone ? "line-through" : "none",
           opacity: isDone ? 0.6 : 1, marginBottom: 3, transition: "all 0.2s ease",
         }}>{title}</div>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.65, color: "rgba(236,253,245,0.5)" }}>{desc}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.65, color: "rgba(236,253,245,0.82)" }}>{desc}</div>
         {showReminder && !isDone && (
           <button
             onClick={handleReminder}
@@ -5205,7 +5205,7 @@ function DualClock() {
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#ECFDF5", letterSpacing: "-0.3px", lineHeight: 1 }}>
           {seattleTime}
         </div>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.5)" }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.82)" }}>
           {seattleDate}
         </div>
       </div>
@@ -5229,7 +5229,7 @@ function DualClock() {
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#ECFDF5", letterSpacing: "-0.3px", lineHeight: 1 }}>
           {koreaTime}
         </div>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.5)" }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.82)" }}>
           {koreaDate}
         </div>
       </div>
@@ -5820,7 +5820,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 15, color: "#ECFDF5", letterSpacing: "-0.3px" }}>
             🔗 {ko ? "헤브론 연결 서비스" : "Hebron Connect Services"}
           </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", marginTop: 2 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.85)", marginTop: 2 }}>
             {ko ? "사람이 사람을 돕습니다. 필요한 곳에 먼저 손을 내미는 것입니다." : "People helping people — reaching out to those who need it first."}
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "#6EE7B7", marginTop: 6, fontWeight: 700, letterSpacing: "-0.1px" }}>
@@ -5904,7 +5904,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#C9A227" }}>
             {ko ? "모두가 행복한 파트너십" : "A Partnership Where Everyone Wins"}
           </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.55)", marginTop: 2, lineHeight: 1.5 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.88)", marginTop: 2, lineHeight: 1.5 }}>
             {ko
               ? "신뢰와 진정성으로 개인과 커뮤니티가 함께 성장합니다."
               : "Trust and authenticity help individuals and communities grow together."}
@@ -6589,7 +6589,7 @@ function ArticleCard({ imageSrc, category, title, excerpt, readTime = "5분", is
       </div>
       <div className="flex flex-col gap-[8px] px-[16px] py-[14px]">
         <h3 className="m-0" style={{ fontFamily: "'Noto Sans KR', sans-serif", fontWeight: isLarge ? 700 : 600, fontSize: isLarge ? 18 : 15, lineHeight: 1.45, color: "#ECFDF5", letterSpacing: "-0.3px" }}>{title}</h3>
-        <p className="m-0" style={{ fontFamily: "Manrope,sans-serif", fontWeight: 400, fontSize: 12, lineHeight: 1.6, color: "rgba(236,253,245,0.5)" }}>{excerpt}</p>
+        <p className="m-0" style={{ fontFamily: "Manrope,sans-serif", fontWeight: 400, fontSize: 12, lineHeight: 1.6, color: "rgba(236,253,245,0.82)" }}>{excerpt}</p>
         <div className="flex items-center gap-[6px] mt-[2px]">
           <div style={{ width: 4, height: 4, borderRadius: "50%", background: GOLD }} />
           <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 10, color: "rgba(201,162,39,0.75)" }}>{readTime}{t("readtime.suffix")}</span>
@@ -6690,7 +6690,7 @@ function ScreenHeader({ emoji, titleKo, titleEn, descKo, descEn, accentColor }: 
           <h2 className="m-0" style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 22, letterSpacing: "-0.5px", color: "#ECFDF5" }}>
             {lang === "ko" ? titleKo : titleEn}
           </h2>
-          <p className="m-0 mt-[3px]" style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)" }}>
+          <p className="m-0 mt-[3px]" style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.82)" }}>
             {lang === "ko" ? descKo : descEn}
           </p>
         </div>
@@ -6860,7 +6860,7 @@ function EmergencyRow({ emoji, title, number, desc }: { emoji: string; title: st
       <div style={{ width: 42, height: 42, borderRadius: 13, background: "rgba(239,68,68,0.15)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, flexShrink: 0 }}>{emoji}</div>
       <div style={{ flex: 1 }}>
         <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 14, color: "#ECFDF5" }}>{title}</div>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", marginTop: 2 }}>{desc}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.85)", marginTop: 2 }}>{desc}</div>
       </div>
       <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 16, color: "#F87171" }}>{number}</div>
     </a>
@@ -8066,7 +8066,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#6EE7B7", marginBottom: 2 }}>
             {ko ? "이 도시 정보를 직접 올려 주세요" : "Share your local knowledge"}
           </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.55)" }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.88)" }}>
             {ko ? "맛집·교회·취업·도움 — 내가 아는 것을 나누면 커뮤니티가 됩니다" : "Food · Church · Jobs · Help — sharing what you know builds community"}
           </div>
         </div>
@@ -9144,7 +9144,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ height: 10, borderRadius: 6, background: "rgba(255,255,255,0.08)", overflow: "hidden", marginBottom: 8 }}>
                 <div style={{ height: "100%", width: `${totalItems > 0 ? (totalDone / totalItems) * 100 : 0}%`, background: `linear-gradient(90deg,${accent},#6EE7B7)`, borderRadius: 6, transition: "width 0.5s ease" }} />
               </div>
-              <div style={{ fontSize: 11, color: "rgba(236,253,245,0.5)" }}>
+              <div style={{ fontSize: 11, color: "rgba(236,253,245,0.82)" }}>
                 {totalDone === totalItems && totalItems > 0
                   ? (lang === "ko" ? "🎉 모든 정착 단계 완료! 축하합니다!" : "🎉 All settlement steps complete! Congratulations!")
                   : (lang === "ko" ? `${Math.round((totalDone / totalItems) * 100)}% 완료 — 계속 진행하세요 💪` : `${Math.round((totalDone / totalItems) * 100)}% done — keep going 💪`)}
@@ -9191,7 +9191,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13, color: accent, marginBottom: 4 }}>
                 🏘️ {lang === "ko" ? `${citySlug.toUpperCase()} 동네별 가이드` : `${citySlug.toUpperCase()} Neighborhood Guide`}
               </div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", lineHeight: 1.5 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.85)", lineHeight: 1.5 }}>
                 {lang === "ko" ? "가족·학군·예산·통근 — 한 눈에 비교" : "Family · Schools · Budget · Commute — at a glance"}
               </div>
             </div>
@@ -9287,7 +9287,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             {/* 프로그레스 바 */}
             <div style={{ marginBottom: 16 }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-                <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, fontWeight: 600, color: "rgba(236,253,245,0.5)" }}>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, fontWeight: 600, color: "rgba(236,253,245,0.82)" }}>
                   {lang === "ko" ? "완료" : "Progress"}
                 </span>
                 <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, fontWeight: 700, color: accent }}>
@@ -9561,7 +9561,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               ].map((s, i) => (
                 <div key={i} style={{ background: "rgba(192,132,252,0.1)", borderRadius: 14, padding: "14px 16px", border: "1px solid rgba(192,132,252,0.2)", textAlign: "center" }}>
                   <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 22, color: "#ECFDF5" }}>{s.n}</div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", marginTop: 3 }}>{s.l}</div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.85)", marginTop: 3 }}>{s.l}</div>
                 </div>
               ))}
             </div>
@@ -10123,7 +10123,7 @@ function AmericaWorldContent({ lang, citySlug, accent }: { lang: string; citySlu
         <div style={{ margin: "10px 0 0 32px", background: "rgba(201,162,39,0.12)", border: "1px solid rgba(201,162,39,0.3)", borderRadius: 10, padding: "10px 12px" }}>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#C9A227", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: 5 }}>💬 {ko ? "이렇게 말하세요" : "Say this"}</div>
           <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, color: "#ECFDF5", fontWeight: 700, marginBottom: 3 }}>"{phrase}"</div>
-          {phraseKo && <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.55)" }}>{phraseKo}</div>}
+          {phraseKo && <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.88)" }}>{phraseKo}</div>}
         </div>
       )}
       {tip && (
@@ -10685,7 +10685,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
                       <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#06B6D4" }}>{s.n}</div>
-                      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.55)", marginTop: 2 }}>{s.d}</div>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.88)", marginTop: 2 }}>{s.d}</div>
                     </div>
                   ))}
                 </div>
@@ -10761,7 +10761,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                 <a href="mailto:hebronplatform@gmail.com?subject=Hebron 관광 가이드 참여 문의"
                   style={{ display: "block", textDecoration: "none" }}>
                   <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, padding: "10px 16px", textAlign: "center" }}>
-                    <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)" }}>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.82)" }}>
                       {lang === "ko" ? "이 도시를 안내하고 싶으신 분 → 문의하기" : "Want to guide this city? → Contact us"}
                     </div>
                   </div>
@@ -11344,7 +11344,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13, color: accent, marginBottom: 4 }}>
               🏥 {lang === "ko" ? "한인 의료·병원 안내" : "Korean Medical & Hospital Guide"}
             </div>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", lineHeight: 1.5 }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.85)", lineHeight: 1.5 }}>
               {lang === "ko" ? "한국어 가능 의료기관 · 정신건강 · 응급 연락" : "Korean-speaking clinics · Mental health · Emergency contacts"}
             </div>
           </div>
@@ -11482,7 +11482,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13, color: accent, marginBottom: 4 }}>
               📋 {lang === "ko" ? "한인 이민자가 모르는 미국 무료 자원" : "Free American Resources Korean Immigrants Often Don't Know"}
             </div>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)", lineHeight: 1.5 }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.85)", lineHeight: 1.5 }}>
               {lang === "ko" ? "미국 주류 사회의 검증된 무료·저비용 서비스 모음. 한국어 통역 가능한 곳 우선 표시" : "Verified free & low-cost mainstream American services. Korean interpreter availability noted"}
             </div>
           </div>
@@ -11542,7 +11542,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
                 <div style={{ background: accent, borderRadius: 8, padding: "5px 14px", fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#0d1117" }}>
                   {lang === "ko" ? "📱 211 전화하기" : "📱 Call 211"}
                 </div>
-                <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.5)" }}>
+                <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.82)" }}>
                   {lang === "ko" ? "✅ 검증됨 · 한국어 통역 가능" : "✅ Verified · Korean interpreter available"}
                 </span>
               </div>
@@ -15787,7 +15787,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
                     <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>{p.icon}</span>
                     <div>
                       <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#ECFDF5", marginBottom: 2 }}>{p.title}</div>
-                      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.55)", lineHeight: 1.5 }}>{p.desc}</div>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.88)", lineHeight: 1.5 }}>{p.desc}</div>
                     </div>
                   </div>
                 ))}
