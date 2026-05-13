@@ -7018,6 +7018,22 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     ? resolvePlaceItems(serverContent["churches"], lang)
     : defaultChurches;
 
+  // 커뮤니티가 직접 올린 교회 (founding-partner.html → localStorage)
+  const communityChurches = (() => {
+    try {
+      const all = JSON.parse(localStorage.getItem("hg_community_churches") || "[]");
+      return all.filter((c: any) => c.citySlug === citySlug).map((c: any) => ({
+        emoji: "⛪", name: c.name, nameEn: c.name,
+        desc: lang === "ko"
+          ? `${c.city} · 커뮤니티 등록 교회${c.pastor ? " · " + c.pastor : ""}`
+          : `${c.city} · Community-added church${c.pastor ? " · " + c.pastor : ""}`,
+        phone: c.phone || "", website: c.website || "",
+        tags: [lang === "ko" ? "커뮤니티" : "Community"],
+        isCommunity: true,
+      }));
+    } catch { return []; }
+  })();
+
   const programs = [
     { emoji: "📚", name: lang === "ko" ? "영어 ESL 클래스" : "ESL Classes", nameEn: "ESL", desc: lang === "ko" ? "무료 영어 수업. 대부분 교회에서 운영. 초급~중급 레벨별 반 구성" : "Free English classes at most churches. Beginner to intermediate levels", tags: ["무료", "영어"] },
     { emoji: "📋", name: lang === "ko" ? "이민자 정착 상담" : "Immigration Counseling", nameEn: "Immigration Support", desc: lang === "ko" ? "비자·운전면허·은행 계좌·학교 등록 등 정착 지원. 한인 자원봉사자 운영" : "Visa, license, banking, school enrollment support by Korean volunteers", tags: ["정착", "상담"] },
@@ -7082,9 +7098,26 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
           </>
         )}
         {sub === 1 && (
-          churches.length === 0
-            ? <ComingSoonCard lang={lang} accentColor={accent} />
-            : <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <>
+            {/* 커뮤니티 직접 등록 교회 */}
+            {communityChurches.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 12 }}>
+                {communityChurches.map((c: any, i: number) => (
+                  <div key={"com-" + i} style={{ border: "1px solid rgba(110,231,183,0.35)", borderRadius: 16, background: "rgba(110,231,183,0.05)" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0" }}>
+                      <span style={{ background: "rgba(110,231,183,0.15)", border: "1px solid rgba(110,231,183,0.4)", color: "#6EE7B7", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>
+                        {lang === "ko" ? "✅ 커뮤니티 등록" : "✅ Community"}
+                      </span>
+                    </div>
+                    <PlaceCard {...c} accentColor="#6EE7B7" />
+                  </div>
+                ))}
+              </div>
+            )}
+            {/* 기존 교회 목록 */}
+            {churches.length === 0
+              ? (communityChurches.length === 0 && <ComingSoonCard lang={lang} accentColor={accent} />)
+              : <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number; website?: string; email?: string; phone?: string; }>).map((c, i) => (
                   <div key={i} style={c.tier === 1 ? { border: "1px solid rgba(201,162,39,0.55)", borderRadius: 16, background: "rgba(201,162,39,0.06)" } : {}}>
                     {c.tier === 1 && (
@@ -7131,6 +7164,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   </div>
                 ))}
               </div>
+            }
+          </>
         )}
         {sub === 2 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">

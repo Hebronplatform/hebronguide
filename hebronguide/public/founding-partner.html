@@ -163,8 +163,8 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 <!-- 신청 폼 -->
 <div class="container">
   <div class="form-card" id="formCard">
-    <div class="form-title">⛪ 교회 정보 등록</div>
-    <div class="form-sub">양식을 작성하시면 담당자 확인 후 목록에 올라갑니다</div>
+    <div class="form-title">⛪ 교회 광고 올리기</div>
+    <div class="form-sub">작성하시면 바로 목록에 올라갑니다</div>
 
     <div class="field" id="f-churchName">
       <label>교회명 <span class="req">*</span></label>
@@ -239,23 +239,14 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
       </div>
     </div>
 
-    <div class="agree-item">
-      <input type="checkbox" id="agree1">
-      <label for="agree1">HebronGuide <a href="/terms.html" target="_blank" style="color:var(--gold);">이용약관</a> 및 <a href="/privacy.html" target="_blank" style="color:var(--gold);">개인정보처리방침</a>에 동의합니다</label>
-    </div>
-    <div class="agree-item">
-      <input type="checkbox" id="agree2">
-      <label for="agree2">새로 오는 이민자·이주자를 환영하고 함께 동행하겠습니다</label>
-    </div>
-
-    <button class="btn-submit" id="submitBtn" onclick="submitForm()">⛪ 교회 정보 올리기</button>
+    <button class="btn-submit" id="submitBtn" onclick="submitForm()">⛪ 교회 광고 올리기</button>
   </div>
 
   <!-- 성공 -->
   <div class="success" id="successBox">
-    <div class="success-icon">🙏</div>
-    <h2>등록해 주셔서 감사합니다</h2>
-    <p>담당자가 확인 후 1~2 영업일 내에 연락드리겠습니다.</p>
+    <div class="success-icon">🎉</div>
+    <h2>올라갔습니다!</h2>
+    <p>교회 정보가 HebronGuide에 바로 등록됐습니다.<br>주변에 알려 주시면 더 많은 분들이 찾아옵니다.</p>
 
     <!-- 배지 카드 -->
     <div style="margin-top:28px;">
@@ -343,25 +334,40 @@ function copyLink() {
   });
 }
 
-// ── 교회 목록 ─────────────────────────────────────────────────
-// 관리자가 검증 후 추가하는 시드 데이터 (여기서 직접 수정)
+// ── 도시 Slug 매핑 (HebronGuide 앱과 연동)
+const CITY_SLUG_MAP = {
+  '시애틀, WA':'seattle','달라스, TX':'dallas','샌프란시스코, CA':'sf',
+  '뉴욕, NY':'newyork','내슈빌, TN':'nashville','보스턴, MA':'boston',
+  '로스앤젤레스, CA':'la','휴스턴, TX':'houston','애틀랜타, GA':'atlanta',
+  '시카고, IL':'chicago','필라델피아, PA':'philadelphia','마이애미, FL':'miami',
+  '캔자스시티, MO':'kansascity','워싱턴 D.C.':'dc','토론토, ON':'toronto',
+  '밴쿠버, BC':'vancouver','서울, 한국':'seoul','부산, 한국':'busan',
+  '시드니, NSW':'sydney','멜버른, VIC':'melbourne',
+};
+
+// ── 시드 데이터 (이미 등록된 교회들)
 const SEED_CHURCHES = [
-  { name: '시애틀지구촌교회',       city: '시애틀, WA',   flag: '🇺🇸' },
-  { name: '달라스한인장로교회',     city: '달라스, TX',    flag: '🇺🇸' },
-  { name: '토론토새생명교회',       city: '토론토, ON',    flag: '🇨🇦' },
-  { name: '내슈빌한인침례교회',     city: '내슈빌, TN',    flag: '🇺🇸' },
-  { name: 'LA비전교회',            city: 'LA, CA',        flag: '🇺🇸' },
-  { name: '뉴욕한인교회',          city: '뉴욕, NY',      flag: '🇺🇸' },
-  { name: '애틀랜타사랑의교회',    city: '애틀랜타, GA',   flag: '🇺🇸' },
+  { name: '시애틀지구촌교회',    city: '시애틀, WA',    flag: '🇺🇸', slug: 'seattle' },
+  { name: '달라스한인장로교회',  city: '달라스, TX',    flag: '🇺🇸', slug: 'dallas' },
+  { name: '토론토새생명교회',    city: '토론토, ON',    flag: '🇨🇦', slug: 'toronto' },
+  { name: '내슈빌한인침례교회',  city: '내슈빌, TN',    flag: '🇺🇸', slug: 'nashville' },
+  { name: 'LA비전교회',         city: 'LA, CA',        flag: '🇺🇸', slug: 'la' },
+  { name: '뉴욕한인교회',       city: '뉴욕, NY',      flag: '🇺🇸', slug: 'newyork' },
+  { name: '애틀랜타사랑의교회', city: '애틀랜타, GA',  flag: '🇺🇸', slug: 'atlanta' },
 ];
 
+const LS_KEY = 'hg_community_churches';
+
 function getLocalChurches() {
-  try { return JSON.parse(localStorage.getItem('hg_churches') || '[]'); } catch { return []; }
+  try { return JSON.parse(localStorage.getItem(LS_KEY) || '[]'); } catch { return []; }
 }
-function saveLocalChurch(name, city) {
+function saveLocalChurch(name, city, pastor, phone, website) {
+  const slug = CITY_SLUG_MAP[city] || 'other';
   const arr = getLocalChurches();
-  arr.unshift({ name, city, flag: '⛪', isNew: true });
-  try { localStorage.setItem('hg_churches', JSON.stringify(arr.slice(0, 20))); } catch {}
+  arr.unshift({ name, city, citySlug: slug, pastor, phone, website,
+    flag: '⛪', isNew: true, emoji: '⛪',
+    desc: `${city} 한인 교회`, addedAt: new Date().toISOString().slice(0,10) });
+  try { localStorage.setItem(LS_KEY, JSON.stringify(arr.slice(0, 50))); } catch {}
 }
 
 function renderChurches() {
@@ -406,36 +412,36 @@ function validate() {
     if (!fn(v)) { f?.classList.add('error'); ok = false; }
     else f?.classList.remove('error');
   });
-  if (!document.getElementById('agree1').checked || !document.getElementById('agree2').checked) {
-    alert('동의 항목을 모두 체크해 주세요.'); ok = false;
-  }
   return ok;
 }
 
 function submitForm() {
   if (!validate()) return;
   const churchName = document.getElementById('churchName').value;
+  const pastor     = document.getElementById('pastorName').value;
+  const phone      = document.getElementById('phone').value;
+  const website    = document.getElementById('website').value.trim();
   const city = document.getElementById('city').value === '기타'
     ? document.getElementById('cityOther').value
     : document.getElementById('city').value;
 
-  const body = `[HebronGuide 교회 등록 신청]
+  // 즉시 로컬에 저장 → 앱에서도 보임
+  saveLocalChurch(churchName, city, pastor, phone, website);
+  renderChurches();
+
+  const body = `[HebronGuide 교회 등록]
 
 교회명: ${churchName}
 도시: ${city}
-담임목사: ${document.getElementById('pastorName').value}
+담임목사: ${pastor}
 이메일: ${document.getElementById('email').value}
-전화번호: ${document.getElementById('phone').value}
-웹사이트: ${document.getElementById('website').value.trim() || '없음'}
+전화번호: ${phone}
+웹사이트: ${website || '없음'}
 
 — hebronguide.com`;
 
   const subject = `[HebronGuide] 교회 등록 — ${churchName}`;
   window.location.href = `mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-  // 즉시 목록에 추가
-  saveLocalChurch(churchName, city);
-  renderChurches();
 
   document.getElementById('formCard').style.display = 'none';
   document.getElementById('successBox').classList.add('show');
