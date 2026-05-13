@@ -235,6 +235,28 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
       </div>
     </div>
 
+    <!-- ⭐ 목사 추천 (선택) -->
+    <div style="background:rgba(110,231,183,0.06);border:1px solid rgba(110,231,183,0.2);border-radius:14px;padding:16px 18px;margin:16px 0;">
+      <div style="font-size:.82rem;font-weight:800;color:var(--mint);margin-bottom:4px;">⭐ 목사님 추천 <span style="font-weight:400;color:var(--muted);font-size:.75rem;">(선택)</span></div>
+      <div style="font-size:.76rem;color:var(--muted);line-height:1.8;margin-bottom:12px;">
+        소속 교회 목사님 이메일을 입력하시면 추천 요청이 자동 발송됩니다.<br>
+        목사님 추천 + 담당자 확인이 완료되면 가이드에 <strong style="color:var(--gold);">⭐ 인증 배지</strong>가 표시됩니다.
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>소속 교회 <span class="opt">(선택)</span></label>
+          <input type="text" id="adChurch" placeholder="예: 시애틀OO교회">
+        </div>
+        <div class="field">
+          <label>목사님 이메일 <span class="opt">(선택)</span></label>
+          <input type="email" id="adPastorEmail" placeholder="pastor@church.com">
+        </div>
+      </div>
+      <div style="font-size:.72rem;color:rgba(236,253,245,0.3);line-height:1.6;">
+        ※ 추천 없이도 등재됩니다 — 배지 없이 일반 등재로 노출됩니다
+      </div>
+    </div>
+
     <div class="hint-box">
       <strong>✅ 홍보 기간 안내</strong><br>
       2026년 10월 1일까지 완전 무료입니다.<br>
@@ -365,24 +387,83 @@ function getSelectedCities() {
 }
 
 // 제출
-function submitAd() {
+async function submitAd() {
   if (!validate()) return;
 
-  const body = `[HebronGuide 무료 광고 등재 신청]
+  const btn = document.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.textContent = '🔍 AI 검토 중...';
 
-담당자: ${document.getElementById('adName').value}
-전화: ${document.getElementById('adPhone').value}
-이메일: ${document.getElementById('adEmail').value}
-웹사이트: ${document.getElementById('adWebsite').value.trim() || '없음'}
-업종: ${document.getElementById('adBiz').value}
-상호명: ${document.getElementById('adBizName').value}
-광고 내용: ${document.getElementById('adContent').value.trim() || '담당자와 협의 예정'}
-노출 도시: ${getSelectedCities()}
+  const bizName    = document.getElementById('adBizName').value.trim();
+  const bizType    = document.getElementById('adBiz').value;
+  const memberName = document.getElementById('adName').value.trim();
+  const phone      = document.getElementById('adPhone').value.trim();
+  const email      = document.getElementById('adEmail').value.trim();
+  const website    = document.getElementById('adWebsite').value.trim();
+  const description= document.getElementById('adContent').value.trim();
+  const cities     = getSelectedCities();
+  const churchName = document.getElementById('adChurch')?.value.trim() || '';
+  const pastorEmail= document.getElementById('adPastorEmail')?.value.trim() || '';
 
-— hebronguide.com | 홍보 기간 무료 등재 신청`;
+  // AI 검토 (실패해도 진행)
+  let aiStatus = 'clean', aiFlags = [];
+  try {
+    const res = await fetch('/api/submit-listing', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ memberName, churchName, pastorEmail, phone, email,
+        bizType, bizName, website, description, city: cities }),
+    });
+    const data = await res.json();
+    aiStatus = data.status || 'clean';
+    aiFlags  = data.flags  || [];
+  } catch(_) {}
 
-  const subject = `[HebronGuide] 무료 광고 신청 — ${document.getElementById('adBizName').value}`;
+  // 즉시 거절 (critical) — 재입력 유도
+  if (aiStatus === 'critical') {
+    btn.disabled = false;
+    btn.textContent = '✨ 무료 광고 등재 신청하기';
+    const reasons = aiFlags.map(f => `• ${f.msg}`).join('\n');
+    alert(`등재가 어렵습니다.\n\n${reasons}\n\n문의: hebronplatform@gmail.com`);
+    return;
+  }
+
+  // 담당자(Paul Kim) 이메일 본문 구성
+  const statusLabel = { clean:'✅ 문제 없음', warning:'⚠️ 확인 권장', error:'❌ 항목 누락' }[aiStatus] || '검토 필요';
+  const flagLines   = aiFlags.length ? aiFlags.map(f => `  [${f.level}] ${f.msg}`).join('\n') : '  없음';
+
+  const verifyBlock = pastorEmail
+    ? `\n══ ⭐ 배지 승인 전 검증 체크리스트 ══\n목사 이메일: ${pastorEmail}\n\n  □ 1. 이 목사님이 파트너 교회 목사인가?\n  □ 2. 이 업소가 해당 교회 성도의 업소인가?\n  □ 3. 교회-업소 관계가 실제 확인 가능한가?\n\n✅ 3가지 모두 확인 → endorsed: true 추가 (⭐ 배지)\n❌ 불확실 → 일반 등재 유지\n══════════════════════════════════════`
+    : '';
+
+  const body = `[HebronGuide] 업소 등재 신청 — ${statusLabel}
+
+업소명:    ${bizName}
+업종:      ${bizType}
+도시:      ${cities}
+소속 교회:  ${churchName || '미입력'}
+신청자:    ${memberName}
+전화:      ${phone}
+이메일:    ${email}
+웹사이트:   ${website || '—'}
+광고 내용:  ${description || '—'}
+
+── AI 검토 결과 (${statusLabel}) ──
+${flagLines}
+${verifyBlock}
+── HebronGuide 자동 검토 ── hebronguide.com`;
+
+  const subject = `[HebronGuide] 업소 등재 — ${bizName} (${statusLabel})`;
   window.location.href = `mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  // 목사 추천 요청 이메일 (별도)
+  if (pastorEmail) {
+    setTimeout(() => {
+      const pSubj = encodeURIComponent(`[HebronGuide] 성도 업소 추천 요청 — ${bizName}`);
+      const pBody = encodeURIComponent(`목사님 안녕하세요.\n${churchName || '교회'} 성도 ${memberName}님이 아래 업소를 HebronGuide에 등재 신청하셨습니다.\n\n업소명: ${bizName}\n업종:   ${bizType}\n도시:   ${cities}\n\n추천하시면 ⭐ 인증 배지가 표시됩니다.\n아래 주소로 "추천합니다" 한 줄만 보내 주세요:\nhebronplatform@gmail.com\n제목: [추천] ${bizName}\n\n── HebronGuide · hebronguide.com ──`);
+      window.open(`mailto:${pastorEmail}?subject=${pSubj}&body=${pBody}`);
+    }, 1000);
+  }
 
   document.getElementById('formCard').style.display = 'none';
   document.getElementById('successBox').classList.add('show');

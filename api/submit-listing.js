@@ -136,26 +136,44 @@ module.exports = async function handler(req, res) {
   const statusLabel = { clean: '✅ 문제 없음', warning: '⚠️ 확인 권장', error: '❌ 필수 누락', critical: '🚫 즉시 거절' }[status];
   const flagLines   = flags.length ? flags.map(f => `  [${f.level.toUpperCase()}] ${f.msg}`).join('\n') : '  없음';
 
+  // ⭐ 배지 검증 체크리스트 — 목사 추천이 있을 때만 포함
+  const verifySection = pastorEmail ? [
+    '',
+    '══ ⭐ 배지 승인 전 검증 체크리스트 ══',
+    `목사 이메일: ${pastorEmail}`,
+    '',
+    '아래 3가지를 확인하신 후에만 ⭐ 배지를 부여해 주세요:',
+    '',
+    '  □ 1. 이 목사님이 HebronGuide 파트너 교회 목사인가?',
+    '  □ 2. 이 업소가 해당 교회 성도의 업소인가?',
+    '  □ 3. 교회-업소 관계가 실제로 확인 가능한가?',
+    '',
+    '✅ 3가지 모두 확인 → 코드에 endorsed: true 추가 (⭐ 배지 부여)',
+    '❌ 하나라도 불확실 → 일반 등재 유지 (배지 없음)',
+    '══════════════════════════════════════',
+  ].join('\n') : '';
+
   const reviewEmailBody = [
     `[HebronGuide] 업소 등재 신청 — ${statusLabel}`,
     '',
-    `업소명:   ${bizName || '—'}`,
-    `업종:     ${bizType || '—'}`,
-    `도시:     ${city || '—'}`,
-    `소속 교회: ${churchName || '—'}`,
-    `성도:     ${memberName || '—'}`,
-    `전화:     ${phone || '—'}`,
-    `이메일:   ${email || '—'}`,
-    `주소:     ${address || '—'}`,
-    `웹사이트:  ${website || '—'}`,
-    `소개:     ${description || '—'}`,
+    `업소명:    ${bizName || '—'}`,
+    `업종:      ${bizType || '—'}`,
+    `도시:      ${city || '—'}`,
+    `소속 교회:  ${churchName || '미입력'}`,
+    `신청자:    ${memberName || '—'}`,
+    `전화:      ${phone || '—'}`,
+    `이메일:    ${email || '—'}`,
+    `주소:      ${address || '—'}`,
+    `웹사이트:   ${website || '—'}`,
+    `소개:      ${description || '—'}`,
     '',
     `── AI 검토 결과 (${statusLabel}) ──`,
     flagLines,
+    verifySection,
     '',
     status === 'clean'
-      ? '→ 자동 승인 대기 목록에 추가됩니다. 별도 조치 불필요.'
-      : '→ 확인 후 수동 처리가 필요합니다.',
+      ? '→ AI 검토 통과. 위 체크리스트 확인 후 처리해 주세요.'
+      : '→ 플래그 항목 확인 후 수동 처리가 필요합니다.',
     '',
     '── HebronGuide 자동 검토 시스템 ──',
     'hebronguide.com',
