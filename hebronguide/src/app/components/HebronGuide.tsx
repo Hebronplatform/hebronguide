@@ -9400,7 +9400,10 @@ function getCityChurches(slug: string, lang: string) {
           ? "✅ 검증됨 | 국제가사원(IHM) 회원교회 · SBC 소속. 김성수 목사.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 주일연합예배, 목장, 삶 공부 - 세축 네기둥\n🔗 www.ijiguchon.org"
           : "✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Sungsoo Kim.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday United Worship, Mokjang, Life Studies - Three Axes, Four Pillars\n🔗 www.ijiguchon.org",
         tags: ko ? ["가정교회", "IHM", "린우드"] : ["House Church", "IHM", "Lynnwood"],
-        website: "https://www.ijiguchon.org", email: "hebronplatform@gmail.com",
+        website: "https://ijiguchon.org",  // www 제거 — 405 오류 방지 (2026-05-13)
+        email: "hebronplatform@gmail.com",
+        // phone: "+1-425-XXX-XXXX",   // ← 김성수 목사님께 확인 후 추가
+        // kakao: "https://pf.kakao.com/_XXXXX",  // ← 카카오채널 URL 확인 후 추가
       },
       // 시애틀우리교회 — 지금은 보류 (2026-05-10 폴 김 목사 지시). 추후 재검토 시 복원.
     ],
@@ -9596,7 +9599,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {churches.length === 0
               ? (communityChurches.length === 0 && <ComingSoonCard lang={lang} accentColor={accent} />)
               : <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number; website?: string; email?: string; phone?: string; }>).map((c, i) => (
+                {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number; website?: string; email?: string; phone?: string; kakao?: string; }>).map((c, i) => (
                   <div key={i} style={c.tier === 1 ? { border: "1px solid rgba(201,162,39,0.55)", borderRadius: 16, background: "rgba(201,162,39,0.06)" } : {}}>
                     {c.tier === 1 && (
                       <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px" }}>
@@ -9604,9 +9607,10 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                       </div>
                     )}
                     <PlaceCard {...c} accentColor={c.tier === 1 ? GOLD : accent} />
-                    {/* 새가족 신청 CTA — 허브교회(Tier 1)만 표시 */}
-                    {c.tier === 1 && (c.website || c.email) && (
-                      <div style={{ padding: "0 14px 14px 14px", display: "flex", gap: 8, flexWrap: "wrap" }}>
+                    {/* 새가족 신청 CTA — Tier 1 교회만, 연결 수단이 하나라도 있으면 표시 */}
+                    {c.tier === 1 && (c.email || c.phone || c.kakao || c.website) && (
+                      <div style={{ padding: "0 14px 14px 14px" }}>
+                        {/* 1행: 새가족 신청 (풀 너비) */}
                         <a
                           href={buildNewMemberHref({
                             churchName:    c.name,
@@ -9615,27 +9619,57 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                             lang,
                           })}
                           style={{
-                            flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                            width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
                             background: "linear-gradient(135deg, rgba(201,162,39,0.9), rgba(184,144,28,0.9))",
                             color: "#0d1117", borderRadius: 10, padding: "10px 16px",
                             fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13,
-                            textDecoration: "none", transition: "opacity .15s",
+                            textDecoration: "none", transition: "opacity .15s", marginBottom: 8,
                           }}
                         >
                           🌿 {lang === "ko" ? "새가족 신청하기" : "Register as New Member"}
                         </a>
-                        {c.website && (
-                          <a href={c.website} target="_blank" rel="noopener"
-                            style={{
-                              display: "flex", alignItems: "center", justifyContent: "center",
-                              background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
-                              color: "rgba(236,253,245,0.7)", borderRadius: 10, padding: "10px 14px",
-                              fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12,
-                              textDecoration: "none",
-                            }}
-                          >
-                            🔗 {lang === "ko" ? "홈페이지" : "Website"}
-                          </a>
+                        {/* 2행: 카카오·전화·홈페이지 보조 버튼 */}
+                        {(c.kakao || c.phone || c.website) && (
+                          <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                            {c.kakao && (
+                              <a href={c.kakao} target="_blank" rel="noopener"
+                                style={{
+                                  flex: 1, minWidth: 70, display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
+                                  background: "#FEE500", borderRadius: 9, padding: "8px 10px",
+                                  fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#3A1D1D",
+                                  textDecoration: "none", whiteSpace: "nowrap",
+                                }}
+                              >
+                                💬 {lang === "ko" ? "카카오" : "KakaoTalk"}
+                              </a>
+                            )}
+                            {c.phone && (
+                              <a href={`tel:${c.phone}`}
+                                style={{
+                                  flex: 1, minWidth: 70, display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
+                                  background: "rgba(110,231,183,0.15)", border: "1px solid rgba(110,231,183,0.3)",
+                                  borderRadius: 9, padding: "8px 10px",
+                                  fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#6EE7B7",
+                                  textDecoration: "none", whiteSpace: "nowrap",
+                                }}
+                              >
+                                📞 {lang === "ko" ? "전화" : "Call"}
+                              </a>
+                            )}
+                            {c.website && (
+                              <a href={c.website} target="_blank" rel="noopener"
+                                style={{
+                                  flex: 1, minWidth: 70, display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
+                                  background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
+                                  borderRadius: 9, padding: "8px 10px",
+                                  fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "rgba(236,253,245,0.7)",
+                                  textDecoration: "none", whiteSpace: "nowrap",
+                                }}
+                              >
+                                🔗 {lang === "ko" ? "홈페이지" : "Website"}
+                              </a>
+                            )}
+                          </div>
                         )}
                       </div>
                     )}
