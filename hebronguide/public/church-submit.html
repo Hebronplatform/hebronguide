@@ -94,7 +94,7 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.0
 <body>
 
 <nav>
-  <a href="/seattle/" class="logo">HebronGuide</a>
+  <a href="/seattle/" class="logo" id="logoLink">HebronGuide</a>
   <a href="javascript:history.back()" class="nav-back">← 돌아가기</a>
 </nav>
 
@@ -348,6 +348,23 @@ function showResult(result, data) {
     </div>
     <a class="btn-back" href="/${data.city}/">← 가이드에서 확인하기</a>`;
 }
+
+// ── 도시 자동 감지 (로고 링크) ──
+(function() {
+  function detectCity() {
+    const p = new URLSearchParams(location.search);
+    if (p.get('city')) return p.get('city');
+    const ref = document.referrer;
+    if (ref) { const m = ref.match(/hebronguide\.com\/([a-z]+)\//); if (m) return m[1]; }
+    const path = location.pathname.split('/').filter(Boolean);
+    if (path.length && !path[0].includes('.html')) return path[0];
+    return 'seattle';
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    const logo = document.getElementById('logoLink');
+    if (logo) logo.href = '/' + detectCity() + '/';
+  });
+})();
 </script>
 </body>
 </html>
