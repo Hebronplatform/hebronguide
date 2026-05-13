@@ -4043,8 +4043,8 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.55)", marginTop: 2, lineHeight: 1.5 }}>
             {ko
-              ? "신뢰와 진정성이 있는 관계가 개인과 커뮤니티를 함께 성장시킵니다."
-              : "Relationships built on trust and authenticity grow both individuals and the community."}
+              ? "신뢰와 진정성으로 개인과 커뮤니티가 함께 성장합니다."
+              : "Trust and authenticity help individuals and communities grow together."}
           </div>
         </div>
       </div>
