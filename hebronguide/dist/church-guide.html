@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>교회 정보 등재 안내 — HebronGuide</title>
+<meta name="description" content="헤브론가이드에 교회 정보를 올리는 방법을 단계별로 안내합니다.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* ── 기본 ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; background: #f8f7f4; }
+body {
+  font-family: 'Noto Sans KR', -apple-system, sans-serif;
+  color: #1a1a1a;
+  line-height: 1.75;
+  background: #f8f7f4;
+  min-height: 100vh;
+}
+
+/* ── 인쇄 ── */
+@media print {
+  body { background: #fff; font-size: 14px; }
+  .no-print { display: none !important; }
+  .page-break { page-break-before: always; }
+  .step-card { break-inside: avoid; }
+  header, footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* ── 헤더 ── */
+header {
+  background: linear-gradient(135deg, #1a2535 0%, #0d1117 100%);
+  color: #fff;
+  padding: 32px 24px 28px;
+  text-align: center;
+}
+.logo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201,162,39,.2);
+  border: 1px solid rgba(201,162,39,.5);
+  border-radius: 99px;
+  padding: 5px 18px;
+  font-size: .75rem;
+  font-weight: 700;
+  color: #C9A227;
+  letter-spacing: .05em;
+  margin-bottom: 16px;
+}
+header h1 {
+  font-size: 1.65rem;
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+header h1 span { color: #6EE7B7; }
+header .subtitle {
+  font-size: .92rem;
+  color: rgba(236,253,245,.65);
+  line-height: 1.8;
+}
+
+/* ── 무료 배너 ── */
+.free-banner {
+  background: linear-gradient(135deg, rgba(110,231,183,.15), rgba(201,162,39,.1));
+  border-top: 3px solid #6EE7B7;
+  text-align: center;
+  padding: 14px 24px;
+  font-size: .85rem;
+  color: #065f46;
+  font-weight: 700;
+}
+.free-banner strong { color: #0d1117; }
+
+/* ── 컨테이너 ── */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+}
+
+/* ── 섹션 제목 ── */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  margin: 32px 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e5e7eb;
+}
+.section-title span.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #C9A227;
+  flex-shrink: 0;
+}
+
+/* ── 단계 카드 ── */
+.step-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  padding: 22px 22px 20px;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  position: relative;
+  overflow: hidden;
+}
+.step-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #6EE7B7, #34d399);
+}
+.step-num {
+  min-width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a2535, #0d1117);
+  color: #6EE7B7;
+  font-weight: 900;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.step-body { flex: 1; min-width: 0; }
+.step-title {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  margin-bottom: 5px;
+}
+.step-desc {
+  font-size: .88rem;
+  color: #4b5563;
+  line-height: 1.85;
+}
+.step-desc strong { color: #1a2535; font-weight: 700; }
+.step-desc code {
+  display: inline-block;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-family: 'Noto Sans KR', monospace;
+  font-size: .82rem;
+  color: #374151;
+}
+
+/* ── 팁 박스 ── */
+.tip-box {
+  background: rgba(110,231,183,.08);
+  border: 1px solid rgba(110,231,183,.35);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-top: 10px;
+  font-size: .82rem;
+  color: #065f46;
+  line-height: 1.85;
+}
+.tip-box .tip-label {
+  font-weight: 900;
+  color: #059669;
+  margin-bottom: 3px;
+}
+
+/* ── 입력 항목 표 ── */
+.field-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .85rem;
+  margin-top: 8px;
+}
+.field-table th {
+  background: #f3f4f6;
+  font-weight: 700;
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  font-size: .78rem;
+  white-space: nowrap;
+}
+.field-table td {
+  padding: 9px 12px;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
+  vertical-align: top;
+  line-height: 1.7;
+}
+.field-table tr:nth-child(even) td { background: #fafafa; }
+.badge-req {
+  display: inline-block;
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  color: #92400e;
+  font-size: .68rem;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-left: 4px;
+}
+.badge-opt {
+  display: inline-block;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  color: #6b7280;
+  font-size: .68rem;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-left: 4px;
+}
+
+/* ── QR / 직접링크 카드 ── */
+.link-card {
+  background: linear-gradient(135deg, #1a2535 0%, #0d1117 100%);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  margin-top: 10px;
+  color: #ECFDF5;
+}
+.link-url {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #6EE7B7;
+  letter-spacing: .01em;
+  margin: 12px 0 6px;
+  word-break: break-all;
+}
+.link-desc {
+  font-size: .78rem;
+  color: rgba(236,253,245,.55);
+}
+
+/* ── 체크리스트 ── */
+.checklist {
+  list-style: none;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: .88rem;
+  color: #374151;
+  line-height: 1.7;
+}
+.checklist li:last-child { border-bottom: none; }
+.check-box {
+  min-width: 20px;
+  height: 20px;
+  border: 2px solid #d1d5db;
+  border-radius: 5px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* ── 연락처 카드 ── */
+.contact-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.contact-icon {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+.contact-body .label {
+  font-size: .75rem;
+  color: #9ca3af;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+.contact-body .value {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #1a1a1a;
+}
+.contact-body .sub {
+  font-size: .78rem;
+  color: #6b7280;
+  margin-top: 2px;
+  line-height: 1.6;
+}
+
+/* ── 예상 타임라인 ── */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.tl-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  position: relative;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 36px;
+  bottom: 0;
+  width: 2px;
+  background: #e5e7eb;
+}
+.tl-item:last-child::before { display: none; }
+.tl-dot {
+  min-width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  border: 2px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.tl-dot.active {
+  background: linear-gradient(135deg, #1a2535, #0d1117);
+  border-color: #6EE7B7;
+}
+.tl-body { padding-top: 8px; }
+.tl-time { font-size: .75rem; font-weight: 700; color: #9ca3af; margin-bottom: 2px; }
+.tl-title { font-size: .9rem; font-weight: 700; color: #1a1a1a; }
+.tl-desc { font-size: .8rem; color: #6b7280; line-height: 1.7; margin-top: 2px; }
+
+/* ── 도시 리스트 ── */
+.city-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.city-chip {
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 99px;
+  padding: 4px 12px;
+  font-size: .76rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+/* ── 푸터 ── */
+footer {
+  background: linear-gradient(135deg, #1a2535 0%, #0d1117 100%);
+  color: rgba(236,253,245,.5);
+  text-align: center;
+  padding: 28px 24px;
+  font-size: .75rem;
+  line-height: 2;
+}
+footer strong { color: #6EE7B7; }
+
+/* ── 인쇄 버튼 ── */
+.print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201,162,39,.12);
+  border: 1px solid rgba(201,162,39,.4);
+  color: #92400e;
+  border-radius: 10px;
+  padding: 9px 20px;
+  font-size: .82rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-decoration: none;
+  margin-bottom: 24px;
+}
+.print-btn:hover { background: rgba(201,162,39,.2); }
+</style>
+</head>
+<body>
+
+<!-- 헤더 -->
+<header>
+  <div class="logo-badge">⛪ HebronGuide 교회 등재 안내</div>
+  <h1>우리 교회를 <span>헤브론가이드</span>에<br>올리는 방법</h1>
+  <p class="subtitle">
+    이민자·유학생·이주자가 새 도시에서 교회를 찾을 때<br>
+    가장 먼저 보게 됩니다 — 지금 바로 등재해 보세요
+  </p>
+</header>
+
+<!-- 무료 배너 -->
+<div class="free-banner">
+  🎁 2026년 10월 1일까지 <strong>완전 무료</strong> — 교회 등재 비용은 없습니다
+</div>
+
+<!-- 본문 -->
+<div class="container">
+
+  <!-- 인쇄 버튼 -->
+  <div class="no-print" style="text-align:right;">
+    <a class="print-btn" onclick="window.print()">🖨️ 인쇄 / PDF 저장</a>
+  </div>
+
+  <!-- ─── STEP 1 ─── -->
+  <div class="section-title">
+    <span class="dot"></span>
+    등재 신청 6단계
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <div class="step-title">핸드폰에서 헤브론가이드를 엽니다</div>
+      <div class="step-desc">
+        크롬(Chrome) 또는 사파리(Safari)로 아래 주소를 입력하세요.<br>
+        <code>hebronguide.com</code> &nbsp;→&nbsp; 자동으로 가이드로 이동합니다
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">💡 도시별 주소 안내</div>
+        시애틀: <strong>hebronguide.com/seattle</strong><br>
+        달라스: <strong>hebronguide.com/dallas</strong><br>
+        토론토: <strong>hebronguide.com/toronto</strong><br>
+        밴쿠버: <strong>hebronguide.com/vancouver</strong><br>
+        <span style="color:#6b7280;font-size:.78rem;">※ 그 외 도시도 같은 방식 (LA → /la, 뉴욕 → /newyork)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <div class="step-title">화면 맨 아래 "더보기" 버튼을 누릅니다</div>
+      <div class="step-desc">
+        화면 아래 탭 중 맨 오른쪽 <strong>⋯ 더보기</strong> 버튼을 누르면<br>
+        메뉴 화면이 올라옵니다.
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">📱 화면이 이렇게 보입니다</div>
+        홈 &nbsp;|&nbsp; 정착 &nbsp;|&nbsp; 탐방 &nbsp;|&nbsp; 도움 &nbsp;|&nbsp; <strong style="color:#059669;">더보기 ←</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <div class="step-title">"광고 신청" 버튼을 누릅니다</div>
+      <div class="step-desc">
+        더보기 메뉴 맨 아래에 있는 황금색<br>
+        <strong>📣 광고 신청 — 파트너 비즈니스</strong> 버튼을 누릅니다.<br>
+        교회 등재는 완전 무료입니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <div class="step-title">양식을 채웁니다</div>
+      <div class="step-desc" style="margin-bottom:10px;">
+        아래 항목을 입력해 주세요. <span style="color:#92400e;font-weight:700;">★ 표시는 필수</span>입니다.
+      </div>
+      <table class="field-table">
+        <thead>
+          <tr>
+            <th>입력 항목</th>
+            <th>예시</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>담당자 이름 <span class="badge-req">★ 필수</span></td>
+            <td>김헤브론 목사</td>
+          </tr>
+          <tr>
+            <td>전화번호 <span class="badge-req">★ 필수</span></td>
+            <td>(214) 629-3066</td>
+          </tr>
+          <tr>
+            <td>이메일 <span class="badge-req">★ 필수</span></td>
+            <td>pastor@church.com</td>
+          </tr>
+          <tr>
+            <td>웹사이트 <span class="badge-opt">선택</span></td>
+            <td>www.ourchurch.com</td>
+          </tr>
+          <tr>
+            <td>업종 선택 <span class="badge-req">★ 필수</span></td>
+            <td><strong>⛪ 교회</strong> 를 선택해 주세요</td>
+          </tr>
+          <tr>
+            <td>교회 이름 <span class="badge-req">★ 필수</span></td>
+            <td>시애틀 헤브론교회</td>
+          </tr>
+          <tr>
+            <td>소개 내용 <span class="badge-opt">선택</span></td>
+            <td>주소, 예배 시간, 새가족부 프로그램 등<br><span style="font-size:.76rem;color:#9ca3af;">자유롭게 적어 주시면 됩니다</span></td>
+          </tr>
+          <tr>
+            <td>도시 선택 <span class="badge-opt">선택</span></td>
+            <td>해당 도시에 체크 표시</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <div class="step-title">동의 후 "신청하기" 버튼을 누릅니다</div>
+      <div class="step-desc">
+        아래 두 가지에 체크하고 <strong>신청하기</strong> 버튼을 누릅니다.<br><br>
+        ☐ HebronGuide 이용약관 및 개인정보처리방침에 동의합니다<br>
+        ☐ HebronGuide를 주변에 소개하겠습니다 🌏
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">✅ 신청 완료!</div>
+        "신청이 접수되었습니다" 화면이 나오면 완료입니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">6</div>
+    <div class="step-body">
+      <div class="step-title">담당자 연락을 기다립니다</div>
+      <div class="step-desc">
+        신청 후 <strong>1~2 영업일 내</strong>에 헤브론가이드 담당자가<br>
+        이메일 또는 전화로 연락드립니다.<br>
+        교회 정보를 함께 다듬어 드립니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 직접 링크 ─── -->
+  <div class="section-title">
+    <span class="dot"></span>
+    바로 신청하기 (링크)
+  </div>
+
+  <div class="link-card">
+    <div style="font-size:.85rem;color:rgba(236,253,245,.65);">아래 주소를 핸드폰 주소창에 입력하시면<br>바로 신청 화면으로 이동합니다</div>
+    <div class="link-url">hebronguide.com/ad-request.html</div>
+    <div class="link-desc">또는 QR코드를 찍어도 됩니다 (hebronguide.com/qr-assets.html)</div>
+  </div>
+
+  <!-- ─── 체크리스트 ─── -->
+  <div class="section-title">
+    <span class="dot"></span>
+    신청 전 준비 체크리스트
+  </div>
+
+  <ul class="checklist">
+    <li>
+      <div class="check-box"></div>
+      <span><strong>교회 이름</strong> (한국어 / 영어)</span>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <span><strong>교회 주소</strong> (영문 주소 포함)</span>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <span><strong>담당자 전화번호 · 이메일</strong> (담당자나 교회 대표번호)</span>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <span><strong>교회 웹사이트</strong> (있는 경우)</span>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <span><strong>예배 시간</strong> (주일 1부/2부, 수요예배 등)</span>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <span><strong>새가족 환영 프로그램</strong> 한 줄 소개 (있는 경우)</span>
+    </li>
+  </ul>
+
+  <!-- ─── 타임라인 ─── -->
+  <div class="section-title">
+    <span class="dot"></span>
+    신청 후 진행 과정
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot active">📋</div>
+      <div class="tl-body">
+        <div class="tl-time">신청 당일</div>
+        <div class="tl-title">신청 접수 완료</div>
+        <div class="tl-desc">양식을 제출하면 자동으로 헤브론가이드 팀에 전달됩니다</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot active">📞</div>
+      <div class="tl-body">
+        <div class="tl-time">1 ~ 2 영업일 이내</div>
+        <div class="tl-title">담당자 연락</div>
+        <div class="tl-desc">이메일 또는 전화로 연락드립니다.<br>교회 정보를 함께 확인하고 보완합니다</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">✅</div>
+      <div class="tl-body">
+        <div class="tl-time">검토 완료 후</div>
+        <div class="tl-title">헤브론가이드 교회 탭에 게시</div>
+        <div class="tl-desc">교회 탭에 교회 정보가 노출됩니다.<br>전 세계 52개+ 도시 한인 이민자들이 볼 수 있습니다</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">🔄</div>
+      <div class="tl-body">
+        <div class="tl-time">이후 언제든지</div>
+        <div class="tl-title">정보 수정 요청</div>
+        <div class="tl-desc">예배 시간, 담당자, 프로그램 변경 시<br>이메일로 수정 요청하시면 됩니다</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 게시 도시 ─── -->
+  <div class="section-title">
+    <span class="dot"></span>
+    현재 헤브론가이드 운영 도시
+  </div>
+
+  <div style="background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,.06);">
+    <div style="font-size:.82rem;color:#6b7280;margin-bottom:10px;">교회 정보가 노출되는 도시 목록입니다</div>
+    <div class="city-chips">
+      <span class="city-chip">🇺🇸 시애틀</span>
+      <span class="city-chip">🇺🇸 달라스</span>
+      <span class="city-chip">🇺🇸 샌프란시스코</span>
+      <span class="city-chip">🇺🇸 뉴욕</span>
+      <span class="city-chip">🇺🇸 내쉬빌</span>
+      <span class="city-chip">🇺🇸 보스턴</span>
+      <span class="city-chip">🇺🇸 LA</span>
+      <span class="city-chip">🇨🇦 토론토</span>
+      <span class="city-chip">🇨🇦 밴쿠버</span>
+      <span class="city-chip">🇺🇸 휴스턴</span>
+      <span class="city-chip">🇺🇸 애틀랜타</span>
+      <span class="city-chip">🇺🇸 시카고</span>
+      <span class="city-chip">🇺🇸 워싱턴 DC</span>
+      <span class="city-chip">🇺🇸 마이애미</span>
+      <span class="city-chip">🇺🇸 필라델피아</span>
+      <span class="city-chip">🇦🇺 시드니</span>
+      <span class="city-chip">🇦🇺 멜버른</span>
+      <span class="city-chip">🇳🇿 오클랜드</span>
+      <span class="city-chip">🇬🇧 런던</span>
+      <span class="city-chip">🇯🇵 도쿄</span>
+      <span class="city-chip">🇯🇵 오사카</span>
+      <span class="city-chip" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">+ 30개 도시</span>
+    </div>
+  </div>
+
+  <!-- ─── 연락처 ─── -->
+  <div class="section-title">
+    <span class="dot"></span>
+    도움이 필요하시면 연락해 주세요
+  </div>
+
+  <div class="contact-card">
+    <div class="contact-icon">📧</div>
+    <div class="contact-body">
+      <div class="label">이메일 문의</div>
+      <div class="value">gmc.hc300@gmail.com</div>
+      <div class="sub">
+        교회 등재 신청 · 정보 수정 · 기타 문의<br>
+        보내주시면 1~2일 내 답변드립니다
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 자주 묻는 질문 ─── -->
+  <div class="section-title">
+    <span class="dot"></span>
+    자주 묻는 질문
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:10px;">
+
+    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px 18px;">
+      <div style="font-size:.9rem;font-weight:700;color:#1a1a1a;margin-bottom:4px;">Q. 비용이 있나요?</div>
+      <div style="font-size:.85rem;color:#4b5563;line-height:1.8;">
+        <strong style="color:#059669;">없습니다.</strong> 2026년 10월 1일까지 교회 등재는 완전 무료입니다.
+        그 이후에도 교회는 파트너 정책에 따라 우선 지원됩니다.
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px 18px;">
+      <div style="font-size:.9rem;font-weight:700;color:#1a1a1a;margin-bottom:4px;">Q. 핸드폰 앱을 깔아야 하나요?</div>
+      <div style="font-size:.85rem;color:#4b5563;line-height:1.8;">
+        아닙니다. 크롬이나 사파리에서 주소를 입력하면 바로 사용할 수 있습니다.<br>
+        원하시면 "홈 화면에 추가"로 앱처럼 쓸 수도 있습니다.
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px 18px;">
+      <div style="font-size:.9rem;font-weight:700;color:#1a1a1a;margin-bottom:4px;">Q. 나중에 정보를 바꿀 수 있나요?</div>
+      <div style="font-size:.85rem;color:#4b5563;line-height:1.8;">
+        네, 가능합니다. 예배 시간, 연락처, 사진 등 언제든지 이메일로 수정 요청해 주시면<br>
+        담당자가 반영해 드립니다.
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px 18px;">
+      <div style="font-size:.9rem;font-weight:700;color:#1a1a1a;margin-bottom:4px;">Q. 제 교회 도시가 목록에 없어요</div>
+      <div style="font-size:.85rem;color:#4b5563;line-height:1.8;">
+        문의 이메일로 연락 주시거나,<br>
+        <strong>hebronguide.com/city-request.html</strong> 에서 도시 추가 신청을 해 주시면<br>
+        검토 후 추가해 드립니다.
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 푸터 -->
+<footer>
+  <strong>HebronGuide</strong> — 이민자·이주자를 위한 디지털 환대 플랫폼<br>
+  <strong>hebronguide.com</strong> &nbsp;·&nbsp; 문의: gmc.hc300@gmail.com<br>
+  <span style="font-size:.7rem;">© 2026 HebronGuide LLC &nbsp;·&nbsp; 이민자가 새 땅에서 하나님과 동행하도록 돕는 플랫폼</span>
+</footer>
+
+</body>
+</html>
