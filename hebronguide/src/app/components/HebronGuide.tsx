@@ -4869,6 +4869,194 @@ function HebronServiceCard({ icon, titleKo, titleEn, descKo, descEn, color, lang
   );
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   🌱 커뮤니티 시스템 — 이민자가 함께 만들어가는 정보
+   - 각 섹션 하단에 "+ 여기에 올리기" 버튼
+   - 3개 필드만 (이름, 연락처, 소개) → 즉시 등록
+   - localStorage 저장 → 해당 섹션 맨 위에 표시
+   - 마찰 0, 승인 없음 — Facebook 초기 모델
+═══════════════════════════════════════════════════════════════ */
+
+// 카테고리별 한 줄 설명
+const COMMUNITY_LABELS: Record<string, { ko: string; en: string; emoji: string }> = {
+  church:   { ko: "교회 정보 올리기",     en: "Add a church",        emoji: "⛪" },
+  food:     { ko: "맛집 올리기",          en: "Add a restaurant",    emoji: "🍽️" },
+  settle:   { ko: "정착 정보 올리기",     en: "Add settlement info", emoji: "🏠" },
+  explore:  { ko: "탐방 장소 올리기",     en: "Add a place",         emoji: "🗺️" },
+  help:     { ko: "도움 정보 올리기",     en: "Add a resource",      emoji: "🤝" },
+  job:      { ko: "채용·일자리 올리기",   en: "Post a job",          emoji: "💼" },
+  edu:      { ko: "교육 정보 올리기",     en: "Add education info",  emoji: "📚" },
+};
+
+// localStorage R/W
+const COMM_KEY = "hg_community_v2";
+function readCommunity(): any[] {
+  try { return JSON.parse(localStorage.getItem(COMM_KEY) || "[]"); } catch { return []; }
+}
+function writeCommunity(items: any[]) {
+  try { localStorage.setItem(COMM_KEY, JSON.stringify(items.slice(0, 200))); } catch {}
+}
+function addCommunityItem(item: any) {
+  const items = readCommunity();
+  items.unshift({ ...item, id: Date.now().toString(), addedAt: new Date().toISOString().slice(0, 10) });
+  writeCommunity(items);
+}
+function getCommunityByCategory(citySlug: string, category: string): any[] {
+  return readCommunity().filter(i => i.citySlug === citySlug && i.category === category);
+}
+
+// 커뮤니티 아이템 카드
+function CommunityItemCard({ item, lang }: { item: any; lang: string }) {
+  const ko = lang === "ko";
+  return (
+    <div style={{
+      background: "rgba(110,231,183,0.05)", border: "1px solid rgba(110,231,183,0.28)",
+      borderRadius: 14, padding: "14px 16px", marginBottom: 10,
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+        <span style={{ fontSize: 18 }}>{item.emoji || "🌱"}</span>
+        <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#ECFDF5" }}>{item.name}</span>
+        <span style={{ marginLeft: "auto", background: "rgba(110,231,183,0.15)", border: "1px solid rgba(110,231,183,0.35)", color: "#6EE7B7", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700, flexShrink: 0 }}>
+          {ko ? "✅ 커뮤니티" : "✅ Community"}
+        </span>
+      </div>
+      {item.desc && <div style={{ fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.65, marginBottom: 6 }}>{item.desc}</div>}
+      <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+        {item.contact && <a href={`tel:${item.contact}`} style={{ fontSize: 11, color: "#6EE7B7", textDecoration: "none", fontWeight: 700 }}>📞 {item.contact}</a>}
+        {item.website && <a href={item.website} target="_blank" rel="noopener" style={{ fontSize: 11, color: "#6EE7B7", textDecoration: "none", fontWeight: 700 }}>🔗 웹사이트</a>}
+        <span style={{ fontSize: 10, color: "rgba(236,253,245,0.3)", marginLeft: "auto" }}>{item.addedAt}</span>
+      </div>
+    </div>
+  );
+}
+
+// 커뮤니티 섹션 (목록 + 올리기 버튼)
+function CommunitySection({ category, citySlug, lang }: { category: string; citySlug: string; lang: string }) {
+  const ko = lang === "ko";
+  const [items, setItems] = useState(() => getCommunityByCategory(citySlug, category));
+  const [open, setOpen] = useState(false);
+  const [form, setForm] = useState({ name: "", contact: "", desc: "", website: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const label = COMMUNITY_LABELS[category] || COMMUNITY_LABELS.settle;
+
+  const handleSubmit = () => {
+    if (!form.name.trim() || !form.contact.trim()) return;
+    const item = {
+      category, citySlug,
+      name: form.name.trim(),
+      contact: form.contact.trim(),
+      desc: form.desc.trim(),
+      website: form.website.trim(),
+      emoji: label.emoji,
+      lang,
+    };
+    addCommunityItem(item);
+    setItems(getCommunityByCategory(citySlug, category));
+    setSubmitted(true);
+    setForm({ name: "", contact: "", desc: "", website: "" });
+    // 이메일 알림
+    const body = `[커뮤니티 등록] ${label.ko}\n이름: ${item.name}\n연락처: ${item.contact}\n소개: ${item.desc}\n웹사이트: ${item.website}\n도시: ${citySlug}\n날짜: ${new Date().toISOString().slice(0,10)}`;
+    setTimeout(() => {
+      try { window.location.href = `mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(`[HebronGuide] ${label.ko} — ${item.name}`)}&body=${encodeURIComponent(body)}`; } catch {}
+    }, 100);
+    setTimeout(() => { setOpen(false); setSubmitted(false); }, 2200);
+  };
+
+  const inputStyle: React.CSSProperties = {
+    width: "100%", padding: "10px 14px", background: "rgba(255,255,255,0.06)",
+    border: "1px solid rgba(255,255,255,0.14)", borderRadius: 10,
+    color: "#ECFDF5", fontSize: 14, fontFamily: "inherit", outline: "none",
+    marginBottom: 10,
+  };
+
+  return (
+    <div style={{ marginTop: 24 }}>
+      {/* 기존 커뮤니티 아이템 */}
+      {items.length > 0 && (
+        <div style={{ marginBottom: 8 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(110,231,183,0.6)", letterSpacing: "0.08em", marginBottom: 10, textTransform: "uppercase" }}>
+            {ko ? "커뮤니티가 올린 정보" : "From the Community"}
+          </div>
+          {items.map((item, i) => <CommunityItemCard key={i} item={item} lang={lang} />)}
+        </div>
+      )}
+
+      {/* 올리기 버튼 */}
+      {!open && (
+        <button onClick={() => setOpen(true)} style={{
+          width: "100%", background: "rgba(110,231,183,0.07)",
+          border: "1.5px dashed rgba(110,231,183,0.3)",
+          borderRadius: 14, padding: "14px 16px",
+          display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+          color: "#6EE7B7", cursor: "pointer", fontFamily: "inherit",
+          transition: "background 0.2s",
+        }}>
+          <span style={{ fontSize: 20 }}>{label.emoji}</span>
+          <div style={{ textAlign: "left" }}>
+            <div style={{ fontWeight: 800, fontSize: 13 }}>{ko ? label.ko : label.en}</div>
+            <div style={{ fontSize: 11, opacity: 0.65 }}>
+              {ko ? "이 섹션에 내 정보를 올리면 바로 보입니다" : "Add your info — shows up immediately"}
+            </div>
+          </div>
+          <span style={{ marginLeft: "auto", fontSize: 20 }}>＋</span>
+        </button>
+      )}
+
+      {/* 인라인 폼 */}
+      {open && !submitted && (
+        <div style={{ background: "rgba(110,231,183,0.06)", border: "1px solid rgba(110,231,183,0.25)", borderRadius: 16, padding: "18px 16px" }}>
+          <div style={{ fontWeight: 800, fontSize: 14, color: "#6EE7B7", marginBottom: 14 }}>
+            {label.emoji} {ko ? label.ko : label.en}
+          </div>
+          <input
+            placeholder={ko ? "이름 / 상호명 *" : "Name / Business *"}
+            value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+            style={inputStyle}
+          />
+          <input
+            placeholder={ko ? "전화번호 또는 이메일 *" : "Phone or Email *"}
+            value={form.contact} onChange={e => setForm(f => ({ ...f, contact: e.target.value }))}
+            style={inputStyle}
+          />
+          <input
+            placeholder={ko ? "한 줄 소개 (서비스, 주소 등)" : "Brief description (service, address, etc.)"}
+            value={form.desc} onChange={e => setForm(f => ({ ...f, desc: e.target.value }))}
+            style={inputStyle}
+          />
+          <input
+            placeholder={ko ? "웹사이트 (선택)" : "Website (optional)"}
+            value={form.website} onChange={e => setForm(f => ({ ...f, website: e.target.value }))}
+            style={{ ...inputStyle, marginBottom: 14 }}
+          />
+          <div style={{ display: "flex", gap: 8 }}>
+            <button onClick={handleSubmit} style={{
+              flex: 1, background: "linear-gradient(135deg,#6EE7B7,#34d399)", color: "#0d1117",
+              border: "none", borderRadius: 10, padding: "11px", fontWeight: 800, fontSize: 14,
+              cursor: "pointer", fontFamily: "inherit",
+            }}>
+              {ko ? "바로 올리기 ✓" : "Post Now ✓"}
+            </button>
+            <button onClick={() => setOpen(false)} style={{
+              background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
+              color: "rgba(236,253,245,0.6)", borderRadius: 10, padding: "11px 16px",
+              cursor: "pointer", fontFamily: "inherit", fontSize: 13,
+            }}>
+              {ko ? "취소" : "Cancel"}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 완료 메시지 */}
+      {submitted && (
+        <div style={{ background: "rgba(110,231,183,0.1)", border: "1px solid rgba(110,231,183,0.35)", borderRadius: 14, padding: "16px", textAlign: "center", color: "#6EE7B7", fontWeight: 700 }}>
+          🎉 {ko ? "올라갔습니다! 모두가 볼 수 있어요." : "Posted! Everyone can see it now."}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function BackToHomeButton({ onHome, lang }: { onHome?: () => void; lang: string }) {
   // 하단 네비바에서 홈 이동 가능 — 별도 버튼 불필요 (공간 절약)
   return null;
@@ -6894,6 +7082,10 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
         )}
         </div>
       </div>
+
+      <div style={{ padding: "0 16px" }}>
+        <CommunitySection category="settle" citySlug={citySlug} lang={lang} />
+      </div>
     </div>
   );
 }
@@ -7298,7 +7490,9 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
 
           </div>
         )}
-
+      </div>
+      <div style={{ padding: "0 16px" }}>
+        <CommunitySection category="church" citySlug={citySlug} lang={lang} />
       </div>
     </div>
   );
@@ -8037,6 +8231,10 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
           </div>
         )}
       </div>
+
+      <div style={{ padding: "0 16px" }}>
+        <CommunitySection category="food" citySlug={citySlug} lang={lang} />
+      </div>
     </div>
   );
 }
@@ -8244,6 +8442,10 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
             </div>
           )}
         </div>
+      </div>
+
+      <div style={{ padding: "0 16px" }}>
+        <CommunitySection category="explore" citySlug={city.slug} lang={lang} />
       </div>
     </div>
   );
@@ -9355,6 +9557,10 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
           </div>
         </div>
       )}
+
+      <div style={{ padding: "0 16px" }}>
+        <CommunitySection category="help" citySlug={city.slug} lang={lang} />
+      </div>
     </div>
   );
 }
@@ -10014,6 +10220,10 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
             </a>
           </div>
         </div>
+      </div>
+
+      <div style={{ padding: "0 16px" }}>
+        <CommunitySection category="job" citySlug={city.slug} lang={lang} />
       </div>
     </div>
   );
@@ -10991,6 +11201,10 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
             descEn="Math, SAT, AP, Korean tutoring. Carefully selected Korean tutors. Online across 44+ cities."
           />
         </div>
+      </div>
+
+      <div style={{ padding: "0 16px" }}>
+        <CommunitySection category="edu" citySlug={city.slug} lang={lang} />
       </div>
     </div>
   );
