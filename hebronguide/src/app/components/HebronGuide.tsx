@@ -8060,17 +8060,17 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       {/* ── 커뮤니티 올리기 CTA ── */}
       <div
         onClick={() => onNavigate?.(5, 0)}
-        style={{ margin: "12px 16px 0", background: "linear-gradient(135deg,rgba(110,231,183,0.12),rgba(201,162,39,0.08))", border: "1.5px solid rgba(110,231,183,0.3)", borderRadius: 16, padding: "14px 18px", display: "flex", alignItems: "center", gap: 14, cursor: "pointer" }}>
-        <div style={{ width: 40, height: 40, borderRadius: 12, background: "rgba(110,231,183,0.15)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, flexShrink: 0 }}>✍️</div>
+        style={{ margin: "12px 16px 0", background: "linear-gradient(135deg,#064e3b,#065f46)", border: "1.5px solid rgba(110,231,183,0.5)", borderRadius: 16, padding: "14px 18px", display: "flex", alignItems: "center", gap: 14, cursor: "pointer", boxShadow: "0 4px 16px rgba(6,78,59,0.3)" }}>
+        <div style={{ width: 40, height: 40, borderRadius: 12, background: "rgba(110,231,183,0.25)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, flexShrink: 0 }}>✍️</div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#6EE7B7", marginBottom: 2 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#6EE7B7", marginBottom: 3 }}>
             {ko ? "이 도시 정보를 직접 올려 주세요" : "Share your local knowledge"}
           </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.88)" }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.9)", lineHeight: 1.5 }}>
             {ko ? "맛집·교회·취업·도움 — 내가 아는 것을 나누면 커뮤니티가 됩니다" : "Food · Church · Jobs · Help — sharing what you know builds community"}
           </div>
         </div>
-        <span style={{ color: "rgba(110,231,183,0.6)", fontSize: 18 }}>＋</span>
+        <span style={{ color: "#6EE7B7", fontSize: 20, fontWeight: 700 }}>＋</span>
       </div>
 
       <div style={{ margin: "12px 16px 0", height: 0.5, background: "rgba(0,0,0,0.1)" }} />
