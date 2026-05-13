@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -136,7 +136,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
       당신이 추천하면, <strong>교회와 교회가 이어집니다.</strong>
     </p>
     <div class="poem-ref">
-      "너희는 가서 모든 민족을 제자로 삼아" — 마태복음 28:19
+      "너희는 가서 모든 민족을 제자로 삼아" 
     </div>
   </div>
 </div>
@@ -358,7 +358,7 @@ function submitRequest() {
 신청 이유: ${document.getElementById('reqReason').value.trim() || '(미입력)'}
 추천인: ${document.getElementById('reqRef').value.trim() || '(미입력)'}
 
-— hebronguide.com | 마 28:19`;
+— hebronguide.com | `;
 
   const subject = `[HebronGuide] 도시 신청 — ${city}`;
   window.location.href = `mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

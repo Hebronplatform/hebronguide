@@ -3918,7 +3918,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
     {
       icon: "🤝", color: "#F59E0B",
       nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
-      tagKo: "친구 · 멘토 · 기도파트너", tagEn: "Friends · Mentors · Prayer",
+      tagKo: "친구 · 멘토 · 동행 파트너", tagEn: "Friends · Mentors · Partners",
       userKo: "44개 도시 한인을 만납니다", userEn: "Meet Koreans across 44 cities",
       providerKo: "멘토로 섬기실 분 → 함께해요", providerEn: "Mentor & serve → join us",
       tab: 5, subTab: 2,
@@ -7337,17 +7337,17 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* 섬김의 정신 카드 */}
             <div style={{ background: "rgba(192,132,252,0.07)", border: "1px solid rgba(192,132,252,0.22)", borderRadius: 16, padding: "18px 20px", marginBottom: 14 }}>
               <div style={{ fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 800, color: "#C084FC", letterSpacing: "0.06em", marginBottom: 10, opacity: 0.85 }}>
-                {lang === "ko" ? "⛪ HebronGuide 교회 철학" : "⛪ HebronGuide Church Philosophy"}
+                {lang === "ko" ? "⛪ HebronGuide 커뮤니티 철학" : "⛪ HebronGuide Community Philosophy"}
               </div>
               <div style={{ fontSize: 13, color: "rgba(236,253,245,0.88)", lineHeight: 1.75, fontStyle: "italic", borderLeft: "3px solid rgba(192,132,252,0.4)", paddingLeft: 12, marginBottom: 10 }}>
                 {lang === "ko"
-                  ? "\"인자가 온 것은 섬김을 받으려 함이 아니라 도리어 섬기려 하고\"\n— 마가복음 10:45"
-                  : "\"The Son of Man came not to be served but to serve.\"\n— Mark 10:45"}
+                  ? "\"받기 위해 오는 사람보다 주기 위해 오는 사람이 더 큰 사람입니다.\""
+                  : "\"Those who come to give are greater than those who come to receive.\""}
               </div>
               <div style={{ fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.7 }}>
                 {lang === "ko"
-                  ? "인생의 목적은 섬김에 있습니다. 예수님은 섬기러 오셨습니다. 섬기는 사람이 리더입니다.\nHebronGuide는 새 이민자를 섬기는 교회 공동체와 함께합니다."
-                  : "The purpose of life is in service. Jesus came to serve. The servant is the leader.\nHebronGuide partners with church communities that serve newcomers."}
+                  ? "섬기는 사람이 리더입니다. 새로 온 이웃에게 먼저 손을 내미는 것, 그것이 진정한 커뮤니티의 시작입니다."
+                  : "Those who serve are the true leaders. Reaching out first to newcomers — that's how real community begins."}
               </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[10px] mb-4">
@@ -7390,7 +7390,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   <div key={i} style={c.tier === 1 ? { border: "1px solid rgba(201,162,39,0.55)", borderRadius: 16, background: "rgba(201,162,39,0.06)" } : {}}>
                     {c.tier === 1 && (
                       <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px" }}>
-                        <span style={{ background: "rgba(201,162,39,0.18)", border: "1px solid rgba(201,162,39,0.45)", color: GOLD, borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>가정교회 ⭐</span>
+                        <span style={{ background: "rgba(201,162,39,0.18)", border: "1px solid rgba(201,162,39,0.45)", color: GOLD, borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>소그룹 커뮤니티 ⭐</span>
                       </div>
                     )}
                     <PlaceCard {...c} accentColor={c.tier === 1 ? GOLD : accent} />
@@ -7459,7 +7459,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               </div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, marginBottom: 10 }}>
                 {lang === "ko"
-                  ? "HebronGuide는 각 도시 안에 성경대로 복음을 실천하는 교회들과 연대하여 새로운 이민자들을 연결합니다."
+                  ? "HebronGuide는 각 도시 안에서 진정한 환대와 섬김을 실천하는 교회들과 연대하여 새로운 이주자들을 연결합니다."
                   : "In each city, HebronGuide partners with churches that practice the gospel according to Scripture, connecting newly arrived immigrants."}
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
@@ -7482,9 +7482,9 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 📋 {lang === "ko" ? "헤브론 교회 네트워크 선별 기준 6가지" : "6 Hub Church Selection Criteria"}
               </div>
               {[
-                { n: lang === "ko" ? "복음적 (Evangelical)" : "Evangelical", d: lang === "ko" ? "오직 성경·오직 믿음·오직 은혜 — 사회복음 X" : "Scripture alone, faith alone, grace alone — not social gospel", icon: "📖" },
-                { n: lang === "ko" ? "순수한 동기" : "Pure Motivation", d: lang === "ko" ? "교회 성장 수치가 아닌 영혼 구원이 목적" : "Purpose is soul salvation, not church growth numbers", icon: "🕊️" },
-                { n: lang === "ko" ? "제자 만드는 열정" : "Discipleship Passion", d: lang === "ko" ? "마28:19 '제자를 삼으라' — 삶공부·목장 등 체계적 사역" : "Matt 28:19 'make disciples' — structured life study & small groups", icon: "🔥" },
+                { n: lang === "ko" ? "가치 중심" : "Values-Centered", d: lang === "ko" ? "말보다 삶으로 보여주는 교회 — 진정성이 기준입니다" : "Showing values through life, not words — authenticity is the standard", icon: "🌿" },
+                { n: lang === "ko" ? "순수한 동기" : "Pure Motivation", d: lang === "ko" ? "숫자가 아닌 사람 한 명 한 명이 목적입니다" : "Each person matters more than any number or metric", icon: "🕊️" },
+                { n: lang === "ko" ? "성장을 돕는 열정" : "Growth Passion", d: lang === "ko" ? "사람이 더 나은 삶을 살도록 함께 배우고 성장합니다" : "Learning and growing together so everyone lives a better life", icon: "🔥" },
                 { n: lang === "ko" ? "헌신" : "Commitment", d: lang === "ko" ? "계절적이 아닌 지속적·일관된 사역" : "Consistent, year-round ministry, not seasonal", icon: "⚓" },
                 { n: lang === "ko" ? "이민자 환영" : "Immigrant Welcoming", d: lang === "ko" ? "새 이민자의 문화·언어·정서적 필요를 이해" : "Understands cultural, linguistic & emotional needs of new immigrants", icon: "🤝" },
                 { n: lang === "ko" ? "HebronGuide 파트너십" : "HebronGuide Partnership", d: lang === "ko" ? "새가족 연결 수락·환영 약속·공동체 책임" : "Accepts new arrivals, welcomes them, holds community accountability", icon: "✅" },
@@ -7558,7 +7558,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.65)" }}>
                   {lang === "ko"
-                    ? "📋 4-Tier · 신앙 고백 · 환대 동행 약속 (1-2주 검토)"
+                    ? "📋 커뮤니티 가치 · 환대 동행 약속 (1-2주 검토)"
                     : "📋 4-Tier · Gospel Confession · Hospitality Commitment (1-2 wks)"}
                 </div>
               </div>
@@ -8087,7 +8087,7 @@ function AmericaWorldContent({ lang, citySlug, accent }: { lang: string; citySlu
         desc={ko ? "미국 교회는 대부분 예배 후 'Potluck'(각자 음식 가져와 나누기) 또는 'Fellowship Meal'(함께하는 식사)을 합니다. 이것이 공동체의 시작입니다. 한인 교회도 마찬가지 — 예배 후 함께 밥 먹는 문화가 가장 강력한 연결고리입니다." : "Most American churches hold a 'Potluck' (everyone brings food to share) or 'Fellowship Meal' after services. This is where community begins. Korean churches are the same — sharing a meal after worship is the strongest community bond."}
         tip={ko ? "HebronGuide 교회 탭 → 근처 한인 가정교회를 찾아보세요. 첫날 밥 한 끼부터 시작됩니다." : "HebronGuide Church tab → find a nearby Korean home church. It starts with one shared meal."} />
 
-      <DCard emoji="🌿" title={ko ? "음식을 통한 환대 — 마태복음 25:35" : "Hospitality Through Food — Matthew 25:35"}
+      <DCard emoji="🌿" title={ko ? "음식을 통한 환대 — 이웃이 되는 가장 쉬운 방법" : "Hospitality Through Food — The Easiest Way to Be a Neighbor"}
         desc={ko ? "'내가 나그네 되었을 때 너희가 영접하였다' — 미국 한인 교회의 첫 환대는 항상 음식에서 시작됩니다. 모르는 도시에서 처음 한국 밥상을 받았을 때의 그 따뜻함, 그게 HebronGuide가 지향하는 것입니다." : "'I was a stranger and you welcomed me' (Matthew 25:35) — The first act of welcome in Korean-American churches is always food. The warmth of receiving a Korean meal in a strange new city — that's exactly what HebronGuide aims to be."}
         tip={ko ? "음식은 언어보다 먼저 사람을 연결합니다. 이 문화가 당신을 환영합니다." : "Food connects people before language does. This culture welcomes you."} />
     </div>
@@ -9175,7 +9175,7 @@ function HelpScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
           {/* 커뮤니티 탭 — 헤브론 커뮤니티 매칭 서비스 카드 */}
           <HebronServiceCard
             icon="🤝" color="#8B5CF6" lang={lang}
-            titleKo="헤브론 커넥트 — 친구·멘토·기도파트너 매칭"
+            titleKo="헤브론 커넥트 — 친구·멘토·동행 파트너 매칭"
             titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
             descKo="교인 검증 프로필로 44개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
             descEn="Meet Koreans across 44 cities. Friends, mentors, prayer partners & business connections."
