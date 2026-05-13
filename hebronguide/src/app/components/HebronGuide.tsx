@@ -15041,6 +15041,106 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
 }
 
 /* ─────────────────────────────────────────
+   데스크탑 사이드바 — lg 이상 화면에서 좌측 고정 네비게이션
+───────────────────────────────────────── */
+function DesktopSidebar({ activeTab, onNavigate }: { activeTab: number; onNavigate: (tab: number, subTab?: number) => void }) {
+  const { lang } = useI18n();
+  const city = useCityConfig();
+  const ko = lang === "ko";
+  const NAV_ITEMS = [
+    { tab: 0,  emoji: "🏠", labelKo: "홈",    labelEn: "Home" },
+    { tab: 1,  emoji: "🛬", labelKo: "정착",  labelEn: "Settle" },
+    { tab: 2,  emoji: "⛪", labelKo: "교회",  labelEn: "Church" },
+    { tab: 3,  emoji: "🍽️", labelKo: "맛집",  labelEn: "Food" },
+    { tab: 4,  emoji: "🗺️", labelKo: "탐방",  labelEn: "Explore" },
+    { tab: 5,  emoji: "🤝", labelKo: "도움",  labelEn: "Help" },
+    { tab: 6,  emoji: "💼", labelKo: "취업",  labelEn: "Jobs" },
+    { tab: 7,  emoji: "🎓", labelKo: "교육",  labelEn: "Schools" },
+    { tab: 8,  emoji: "💰", labelKo: "생활비", labelEn: "Costs" },
+  ];
+  return (
+    <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-screen w-64 z-40"
+      style={{ background: "#1a2535", borderRight: "1px solid rgba(255,255,255,0.08)" }}>
+      {/* 로고 */}
+      <div style={{ padding: "20px 16px 16px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 18, color: "#F2994A" }}>HEBRON</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 11, color: "#6EE7B7", marginTop: 2 }}>
+          {city.nameEn.toUpperCase()}
+        </div>
+      </div>
+      {/* 네비게이션 */}
+      <nav style={{ flex: 1, padding: "12px 8px", overflowY: "auto" }}>
+        {NAV_ITEMS.map(item => {
+          const isActive = activeTab === item.tab;
+          return (
+            <button key={item.tab} onClick={() => onNavigate(item.tab)}
+              style={{ width: "100%", display: "flex", alignItems: "center", gap: 12, padding: "10px 12px",
+                borderRadius: 12, border: "none", cursor: "pointer", marginBottom: 2,
+                background: isActive ? "rgba(242,153,74,0.15)" : "transparent",
+                outline: isActive ? "1.5px solid rgba(242,153,74,0.4)" : "none",
+                transition: "all 0.15s ease" }}>
+              <span style={{ fontSize: 18 }}>{item.emoji}</span>
+              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: isActive ? 800 : 500,
+                fontSize: 13, color: isActive ? "#F2994A" : "rgba(236,253,245,0.7)" }}>
+                {ko ? item.labelKo : item.labelEn}
+              </span>
+            </button>
+          );
+        })}
+      </nav>
+    </aside>
+  );
+}
+
+/* ─────────────────────────────────────────
+   통역 모달 (TranslateModal)
+───────────────────────────────────────── */
+function TranslateModal({ onClose, lang, onNavigate }: { onClose: () => void; lang: string; onNavigate?: (tab: number) => void }) {
+  const ko = lang === "ko";
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 300, background: "rgba(0,0,0,0.52)", backdropFilter: "blur(6px)",
+      display: "flex", alignItems: "flex-end" }} onClick={onClose}>
+      <div style={{ width: "100%", maxWidth: 430, margin: "0 auto", background: "#fff",
+        borderRadius: "24px 24px 0 0", paddingBottom: "env(safe-area-inset-bottom,16px)",
+        boxShadow: "0 -8px 48px rgba(0,0,0,0.18)" }} onClick={e => e.stopPropagation()}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 20px 0" }}>
+          <div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 17, color: "#1B2A4A" }}>
+              🌐 {ko ? "언어 서비스" : "Language Help"}
+            </div>
+            <div style={{ fontSize: 11, color: "#94A3B8", marginTop: 2 }}>
+              {ko ? "자동 번역 · 한·영 지원" : "Auto translation · KO · EN"}
+            </div>
+          </div>
+          <button onClick={onClose} style={{ border: "none", background: "#F1F5F9", borderRadius: "50%",
+            width: 32, height: 32, fontSize: 16, cursor: "pointer", color: "#64748B" }}>✕</button>
+        </div>
+        <div style={{ padding: "16px 20px 20px" }}>
+          {[
+            { emoji: "🇰🇷", title: ko ? "한국어" : "Korean", desc: ko ? "기본 언어" : "Default language" },
+            { emoji: "🇺🇸", title: ko ? "영어" : "English", desc: ko ? "영문 보기" : "Switch to English" },
+          ].map((item, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 14, padding: "12px 0",
+              borderBottom: i === 0 ? "1px solid #F1F5F9" : "none" }}>
+              <span style={{ fontSize: 28 }}>{item.emoji}</span>
+              <div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 14, color: "#1B2A4A" }}>{item.title}</div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#64748B" }}>{item.desc}</div>
+              </div>
+            </div>
+          ))}
+          <div style={{ marginTop: 12, padding: "10px 14px", background: "#F8FAFC", borderRadius: 12 }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#64748B", lineHeight: 1.5 }}>
+              {ko ? "언어 전환은 상단 KO / EN 버튼을 이용하세요." : "Use the KO / EN button at the top to switch languages."}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
    TAB 9: 사람연결 SCREEN (ConnectScreen)
 ───────────────────────────────────────── */
 function ConnectScreen({ onHome }: { onHome?: () => void }) {
