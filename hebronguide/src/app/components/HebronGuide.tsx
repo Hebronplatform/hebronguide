@@ -1879,7 +1879,7 @@ const TOP5_RESTAURANTS_HOUSTON: Top5Item[] = [
 ];
 
 const TOP5_SETTLE_HOUSTON: Top5Item[] = [
-  { rank: 1, emoji: "⭐", nameKo: "서울침례교회 (IHM 본부)", nameEn: "Seoul Baptist Church of Houston — IHM HQ",
+  { rank: 1, emoji: "⭐", nameKo: "휴스턴서울교회 (IHM 본부)", nameEn: "Seoul Church of Houston — IHM HQ",
     address: "10100 Pearl Ridge Way, Houston TX 77043",
     phone: "(713) 461-0700", hours: "주일예배·평일 사역",
     why: "⭐ 국제가정교회사역원(IHM) 본부. 최영기 목사 설립. 가정교회 운동 글로벌 거점. 휴스턴 한인 정착 영적 중심",
