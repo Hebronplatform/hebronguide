@@ -7777,7 +7777,7 @@ function HebronFlywheelBar({ lang }: { lang: string }) {
   const stats = [
     { emoji: "🌍", value: "44", label: lang === "ko" ? "개 도시" : "Cities" },
     { emoji: "🤝", value: "4", label: lang === "ko" ? "기관 파트너" : "Partners" },
-    { emoji: "🌐", value: "3", label: lang === "ko" ? "개 언어" : "Languages" },
+    { emoji: "🌐", value: "2", label: lang === "ko" ? "개 언어" : "Languages" },
   ];
   return (
     <div style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
