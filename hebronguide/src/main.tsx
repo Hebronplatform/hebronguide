@@ -4,9 +4,44 @@ import App from './app/App'
 import './styles/index.css'
 
 /* ─────────────────────────────────────────
-   PWA 자동 업데이트 시스템
+   ① React 실행 전 즉시 SW 업데이트 감지
+   앱이 크래시되어도 실행됨 — 구버전 캐시 탈출의 핵심
+───────────────────────────────────────── */
+if ('serviceWorker' in navigator) {
+  let _refreshing = false;
+
+  // 새 SW가 컨트롤을 가져오는 순간 즉시 reload — React 상태와 무관
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (_refreshing) return;
+    _refreshing = true;
+    window.location.reload();
+  });
+
+  // 페이지 로드 즉시 업데이트 확인 + 대기 중 SW 즉시 활성화
+  navigator.serviceWorker.getRegistration().then(reg => {
+    if (!reg) return;
+    // 이미 대기 중인 새 SW → 즉시 활성화
+    if (reg.waiting) {
+      reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+    }
+    // 최신 sw.js 확인 요청
+    reg.update().catch(() => {});
+    // 새 SW가 설치되면 즉시 활성화
+    reg.addEventListener('updatefound', () => {
+      const w = reg.installing;
+      if (!w) return;
+      w.addEventListener('statechange', () => {
+        if (w.state === 'installed') {
+          w.postMessage({ type: 'SKIP_WAITING' });
+        }
+      });
+    });
+  }).catch(() => {});
+}
+
+/* ─────────────────────────────────────────
+   PWA 자동 업데이트 시스템 (React 레이어)
    환대 패턴 D-2 (자기 속도 존중) + 강요 없는 부드러운 알림
-   📖 _hebron_codex/00_ecosystem/HOSPITALITY_PATTERNS.md Layer 4 F-3
 ───────────────────────────────────────── */
 
 // Safari 감지 (호환성 분기에만 사용)
