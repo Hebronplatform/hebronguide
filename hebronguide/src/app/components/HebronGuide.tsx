@@ -5009,7 +5009,9 @@ function CommunitySection({ category, citySlug, lang }: { category: string; city
             {label.emoji} {ko ? label.ko : label.en}
           </div>
           <input
-            placeholder={ko ? "이름 / 상호명 *" : "Name / Business *"}
+            placeholder={category === "church"
+              ? (ko ? "교회명 *" : "Church name *")
+              : (ko ? "이름 / 상호명 *" : "Name / Business *")}
             value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
             style={inputStyle}
           />
@@ -5019,7 +5021,9 @@ function CommunitySection({ category, citySlug, lang }: { category: string; city
             style={inputStyle}
           />
           <input
-            placeholder={ko ? "한 줄 소개 (서비스, 주소 등)" : "Brief description (service, address, etc.)"}
+            placeholder={category === "church"
+              ? (ko ? "주소 · 담임목사 · 예배 시간 등" : "Address · Pastor · Service times")
+              : (ko ? "한 줄 소개 (서비스, 주소 등)" : "Brief description (service, address, etc.)")}
             value={form.desc} onChange={e => setForm(f => ({ ...f, desc: e.target.value }))}
             style={inputStyle}
           />
@@ -5827,7 +5831,6 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <HebronFlywheelBar lang={lang} />
       <QuickMenuSection onNavigate={onNavigate} />
       <HebronServicesAd lang={lang} onNavigate={onNavigate} />
-      <FoundingPartnerBanner lang={lang} onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)", marginTop: 10 }} />
       <SettlementEssentialsSection onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
