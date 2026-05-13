@@ -8084,19 +8084,23 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <CityHubSection lang={lang} />
       {/* 헤브론 스토어 배너 — Coming Soon */}
-      <div style={{ margin: "12px 16px 0", background: "linear-gradient(135deg, rgba(242,153,74,0.18), rgba(75,91,215,0.14))", border: "1.5px solid rgba(242,153,74,0.35)", borderRadius: 16, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12 }}>
-        <span style={{ fontSize: 28, flexShrink: 0 }}>🛒</span>
-        <div style={{ flex: 1 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3 }}>
-            <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff" }}>
-              {lang === "ko" ? "헤브론 스토어" : "Hebron Store"}
-            </span>
-            <span style={{ background: "rgba(242,153,74,0.25)", border: "1px solid rgba(242,153,74,0.5)", borderRadius: 99, padding: "1px 8px", fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 9.5, color: "#F2994A", letterSpacing: "0.06em" }}>
-              COMING SOON
-            </span>
-          </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>
-            {lang === "ko" ? "곧 오픈 예정입니다. 기대해 주세요." : "Opening soon. Stay tuned."}
+      <div style={{ margin: "12px 16px 0", background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", overflow: "hidden", display: "flex", alignItems: "stretch" }}>
+        {/* 왼쪽 골드 액센트 바 */}
+        <div style={{ width: 5, background: "linear-gradient(180deg,#F2994A,#d4a020)", flexShrink: 0 }} />
+        <div style={{ flex: 1, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12 }}>
+          <span style={{ fontSize: 28, flexShrink: 0 }}>🛒</span>
+          <div style={{ flex: 1 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3 }}>
+              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A" }}>
+                {lang === "ko" ? "헤브론 스토어" : "Hebron Store"}
+              </span>
+              <span style={{ background: "#FEF3C7", border: "1px solid #F59E0B", borderRadius: 99, padding: "1px 8px", fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 9.5, color: "#D97706", letterSpacing: "0.06em" }}>
+                COMING SOON
+              </span>
+            </div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#475569", lineHeight: 1.5 }}>
+              {lang === "ko" ? "곧 오픈 예정입니다. 기대해 주세요." : "Opening soon. Stay tuned."}
+            </div>
           </div>
         </div>
       </div>
