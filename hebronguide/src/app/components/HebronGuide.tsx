@@ -200,6 +200,20 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=90", pos: "center 38%", alt: "Chicago Cloud Gate Bean Millennium Park" },
     { url: "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
   ],
+
+  // 🇰🇷 서울 — 경복궁 + 한강 + N서울타워
+  seoul: [
+    { url: "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=1200&q=90", pos: "center 35%", alt: "Seoul Gyeongbokgung Palace" },
+    { url: "https://images.unsplash.com/photo-1601513945640-14b8c5e4d9c3?w=1200&q=90", pos: "center 40%", alt: "Seoul skyline Han River" },
+    { url: "https://images.unsplash.com/photo-1548115184-bc6544d06a58?w=1200&q=90", pos: "center 38%", alt: "Seoul N Tower night" },
+  ],
+
+  // 🇰🇷 부산 — 해운대 + 광안리 + 감천문화마을
+  busan: [
+    { url: "https://images.unsplash.com/photo-1567321938699-7f5bece1aef9?w=1200&q=90", pos: "center 42%", alt: "Busan Haeundae Beach" },
+    { url: "https://images.unsplash.com/photo-1565461074545-cca9a8b77a19?w=1200&q=90", pos: "center 38%", alt: "Busan Gwangalli Bridge night" },
+    { url: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1200&q=90", pos: "center 40%", alt: "Busan Gamcheon Culture Village" },
+  ],
 };
 
 // 하위 호환: HERO_PHOTOS/POSITIONS 유지 (line 3840 imgHeroCard 참조용)
@@ -307,7 +321,9 @@ type CitySlug =
   "singapore" | "bangkok" | "hochiminh" | "dubai" | "frankfurt" | "paris" |
   "perth" | "brisbane" | "berlin" |
   // 일본 (신규)
-  "tokyo" | "osaka";
+  "tokyo" | "osaka" |
+  // 한국 — 역이민·방문 동포
+  "seoul" | "busan";
 
 interface CityConfig {
   slug: CitySlug;
@@ -597,6 +613,9 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   // 일본 — 재일 한인 82만, 가장 큰 미포함 디아스포라
   tokyo:      { slug: "tokyo",      nameKo: "도쿄",      nameEn: "Tokyo",        color: "#DC2626", heroVideo: "", population: "6만+",   state: "Japan",       taglineKo: "신오쿠보에서 시작하는 새 인연",    taglineEn: "New bonds begin in Shin-Okubo.",    taglineEs: "Nuevos vínculos en Shin-Okubo." },
   osaka:      { slug: "osaka",      nameKo: "오사카",    nameEn: "Osaka",        color: "#EA580C", heroVideo: "", population: "8만+",   state: "Japan",       taglineKo: "이쿠노구 백년의 뿌리, 새 이야기",  taglineEn: "Century of roots in Ikuno, new story.", taglineEs: "Un siglo de raíces en Ikuno." },
+  // 한국 — 역이민·방문 동포를 위한 한국 생활 재적응 가이드
+  seoul:      { slug: "seoul",      nameKo: "서울",      nameEn: "Seoul",        color: "#DC2626", heroVideo: "", population: "750만+",  state: "Korea",       taglineKo: "돌아온 당신을 위한 서울 가이드",   taglineEn: "Seoul guide for returning diaspora.",   taglineEs: "Guía de Seúl para la diáspora." },
+  busan:      { slug: "busan",      nameKo: "부산",      nameEn: "Busan",        color: "#0EA5E9", heroVideo: "", population: "100만+",  state: "Korea",       taglineKo: "바다와 함께 시작하는 새 일상",      taglineEn: "New life by the sea in Busan.",         taglineEs: "Nueva vida junto al mar en Busan." },
 };
 
 function useCityConfig(): CityConfig {
@@ -7537,6 +7556,9 @@ const HEBRON_CITIES = [
   // ── 일본 (신규) ──
   { emoji: "⛩️", nameKo: "도쿄",       nameEn: "Tokyo",         flag: "🇯🇵", url: "/tokyo/",       status: "live", color: "#DC2626" },
   { emoji: "🐙", nameKo: "오사카",      nameEn: "Osaka",         flag: "🇯🇵", url: "/osaka/",       status: "live", color: "#EA580C" },
+  // ── 한국 — 역이민·방문 동포 ──
+  { emoji: "🏯", nameKo: "서울",        nameEn: "Seoul",         flag: "🇰🇷", url: "/seoul/",       status: "live", color: "#DC2626" },
+  { emoji: "🌊", nameKo: "부산",        nameEn: "Busan",         flag: "🇰🇷", url: "/busan/",       status: "live", color: "#0EA5E9" },
 ];
 
 /* 도시별 디자인 — 항공 코드 + 그라디언트 (프로페셔널 스타일) */
@@ -7830,6 +7852,9 @@ const DIASPORA_IDENTITY: Record<string, {
   // 🇯🇵 일본
   tokyo:        { flag:"🇯🇵", ko:"재일 한인",        en:"Korean in Japan",    descKo:"일본 사회 속 재일 한인으로 당당하게", descEn:"Living proudly as Korean in Japan",               color:"#DC2626" },
   osaka:        { flag:"🇯🇵", ko:"재일 한인",        en:"Korean in Japan",    descKo:"일본 사회 속 재일 한인으로 당당하게", descEn:"Living proudly as Korean in Japan",               color:"#DC2626" },
+  // 🇰🇷 한국 — 역이민·방문 동포
+  seoul:        { flag:"🇰🇷", ko:"역이민·귀환 동포", en:"Returning Diaspora",  descKo:"다시 서울에서, 새롭게 시작하는 일상",  descEn:"Back in Seoul, starting a new chapter of life",   color:"#DC2626" },
+  busan:        { flag:"🇰🇷", ko:"역이민·귀환 동포", en:"Returning Diaspora",  descKo:"바다의 도시 부산에서 새 삶을 펼치다",  descEn:"Unfolding a new life in the city by the sea",     color:"#0EA5E9" },
 };
 
 function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
@@ -15828,6 +15853,8 @@ function AppBar({ onHome }: { onHome?: () => void }) {
       cities: filteredCities.filter(c => ["🇬🇧","🇩🇪","🇫🇷","🇦🇪"].includes(c.flag)) },
     { label: lang === "ko" ? "🌏 아시아" : "🌏 Asia",
       cities: filteredCities.filter(c => ["🇸🇬","🇹🇭","🇻🇳","🇯🇵","🇲🇽"].includes(c.flag)) },
+    { label: lang === "ko" ? "🇰🇷 한국 (역이민·방문)" : "🇰🇷 Korea (Returnees & Visitors)",
+      cities: filteredCities.filter(c => c.flag === "🇰🇷") },
   ].filter(r => r.cities.length > 0);
 
   return (
