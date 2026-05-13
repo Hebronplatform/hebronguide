@@ -8060,17 +8060,21 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       {/* ── 커뮤니티 올리기 CTA ── */}
       <div
         onClick={() => onNavigate?.(5, 0)}
-        style={{ margin: "12px 16px 0", background: "linear-gradient(135deg,#064e3b,#065f46)", border: "1.5px solid rgba(110,231,183,0.5)", borderRadius: 16, padding: "14px 18px", display: "flex", alignItems: "center", gap: 14, cursor: "pointer", boxShadow: "0 4px 16px rgba(6,78,59,0.3)" }}>
-        <div style={{ width: 40, height: 40, borderRadius: 12, background: "rgba(110,231,183,0.25)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, flexShrink: 0 }}>✍️</div>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#6EE7B7", marginBottom: 3 }}>
-            {ko ? "이 도시 정보를 직접 올려 주세요" : "Share your local knowledge"}
+        style={{ margin: "12px 16px 0", background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", overflow: "hidden", cursor: "pointer", display: "flex", alignItems: "stretch" }}>
+        {/* 왼쪽 민트 액센트 바 */}
+        <div style={{ width: 5, background: "linear-gradient(180deg,#6EE7B7,#34d399)", flexShrink: 0 }} />
+        <div style={{ flex: 1, padding: "14px 16px", display: "flex", alignItems: "center", gap: 14 }}>
+          <div style={{ width: 42, height: 42, borderRadius: 12, background: "#ECFDF5", border: "1.5px solid #6EE7B7", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, flexShrink: 0 }}>✍️</div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#065f46", marginBottom: 3 }}>
+              {ko ? "이 도시 정보를 직접 올려 주세요" : "Share your local knowledge"}
+            </div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#475569", lineHeight: 1.5 }}>
+              {ko ? "맛집·교회·취업·도움 — 내가 아는 것을 나누면 커뮤니티가 됩니다" : "Food · Church · Jobs · Help — sharing what you know builds community"}
+            </div>
           </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.9)", lineHeight: 1.5 }}>
-            {ko ? "맛집·교회·취업·도움 — 내가 아는 것을 나누면 커뮤니티가 됩니다" : "Food · Church · Jobs · Help — sharing what you know builds community"}
-          </div>
+          <span style={{ color: "#6EE7B7", fontSize: 20, fontWeight: 700, flexShrink: 0 }}>›</span>
         </div>
-        <span style={{ color: "#6EE7B7", fontSize: 20, fontWeight: 700 }}>＋</span>
       </div>
 
       <div style={{ margin: "12px 16px 0", height: 0.5, background: "rgba(0,0,0,0.1)" }} />
