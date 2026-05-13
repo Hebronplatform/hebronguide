@@ -5606,41 +5606,25 @@ function HebronFlywheelBar({ lang }: { lang: string }) {
 }
 
 /* ─────────────────────────────────────────
-   HOME: 창립 파트너 D-day 배너 (쿠팡 원리 ②)
-   — 희소성·긴급성: "D-234일 남음 · 등록비 면제"
+   HOME: 창립 파트너 배너
 ───────────────────────────────────────── */
 function FoundingPartnerBanner({ lang, onNavigate }: { lang: string; onNavigate?: (tab: number, subTab?: number) => void }) {
-  const daysLeft = Math.max(0, Math.ceil((new Date("2026-12-31").getTime() - Date.now()) / 86400000));
-  if (daysLeft === 0) return null;
   return (
     <a href="/founding-partner.html" style={{ textDecoration: "none", display: "block" }}>
-      <div style={{ margin: "12px 16px 0", background: "linear-gradient(135deg, #FEF3C7, #FDE68A)", border: "2px solid #F59E0B", borderRadius: 14, padding: "11px 14px", display: "flex", alignItems: "center", gap: 10, cursor: "pointer", boxShadow: "0 2px 12px rgba(245,158,11,0.25)" }}>
+      <div style={{ margin: "12px 16px 0", background: "linear-gradient(135deg, #FEF3C7, #FDE68A)", border: "1.5px solid #F59E0B", borderRadius: 14, padding: "12px 16px", display: "flex", alignItems: "center", gap: 12, cursor: "pointer", boxShadow: "0 2px 12px rgba(245,158,11,0.18)" }}>
         <span style={{ fontSize: 22, flexShrink: 0 }}>🌟</span>
         <div style={{ flex: 1 }}>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12.5, color: "#78350F", lineHeight: 1.3 }}>
-            {lang === "ko" ? "2026 창립 파트너 교회 모집 중 (IHM 인증 가정교회)" : "2026 Founding Partner — IHM House Churches"}
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12.5, color: "#78350F", lineHeight: 1.3, marginBottom: 3 }}>
+            {lang === "ko" ? "2026 창립 파트너 교회를 모십니다" : "2026 Founding Partner Churches — Join Us"}
           </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10.5, color: "#92400E", marginTop: 3, lineHeight: 1.6 }}>
-            {lang === "ko" ? (
-              <>
-                <span style={{ textDecoration: "line-through", opacity: 0.5 }}>등록비 $50</span>
-                {" "}면제 · <span style={{ textDecoration: "line-through", opacity: 0.5 }}>언어 2개 $60</span>
-                {" "}크레딧 · <strong style={{ color: "#78350F" }}>연$20만</strong> (총 $110 혜택) → 신청하기
-              </>
-            ) : (
-              <>
-                <span style={{ textDecoration: "line-through", opacity: 0.5 }}>$50 reg</span>
-                {" "}waived · <span style={{ textDecoration: "line-through", opacity: 0.5 }}>$60 lang</span>
-                {" "}credited · <strong style={{ color: "#78350F" }}>$20/yr</strong> → Apply Now
-              </>
-            )}
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10.5, color: "#92400E", lineHeight: 1.6 }}>
+            {lang === "ko"
+              ? "사람과 사람, 교회와 교회를 잇는 HebronGuide — 함께 이 일을 퍼뜨려 주세요"
+              : "Connecting people & churches across cities — help us spread the word"}
           </div>
         </div>
-        <div style={{ flexShrink: 0, textAlign: "center" }}>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#DC2626", background: "#FEE2E2", borderRadius: 8, padding: "3px 8px" }}>
-            D-{daysLeft}
-          </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#B45309", marginTop: 2 }}>12/31</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#78350F", background: "rgba(245,158,11,0.2)", borderRadius: 8, padding: "4px 10px", flexShrink: 0 }}>
+          {lang === "ko" ? "신청 →" : "Apply →"}
         </div>
       </div>
     </a>
@@ -5653,9 +5637,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
     <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
       <CompactHeroNew />
       <HebronFlywheelBar lang={lang} />
-      <GlobalAdBanner lang={lang} />
       <QuickMenuSection onNavigate={onNavigate} />
-      <AmericasAdSection lang={lang} />
       <HebronServicesAd lang={lang} onNavigate={onNavigate} />
       <FoundingPartnerBanner lang={lang} onNavigate={onNavigate} />
       <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)", marginTop: 10 }} />
