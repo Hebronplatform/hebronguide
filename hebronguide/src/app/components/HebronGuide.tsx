@@ -5844,7 +5844,6 @@ function AmericasAdSection({ lang }: { lang: string }) {
 function HebronFlywheelBar({ lang }: { lang: string }) {
   const stats = [
     { emoji: "🌍", value: "44", label: lang === "ko" ? "개 도시" : "Cities" },
-    { emoji: "⛪", value: "312+", label: lang === "ko" ? "등재 교회" : "Churches" },
     { emoji: "🤝", value: "4", label: lang === "ko" ? "기관 파트너" : "Partners" },
     { emoji: "🌐", value: "3", label: lang === "ko" ? "개 언어" : "Languages" },
   ];
