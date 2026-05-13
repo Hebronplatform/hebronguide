@@ -4890,6 +4890,31 @@ const COMMUNITY_LABELS: Record<string, { ko: string; en: string; emoji: string }
 
 // localStorage R/W
 const COMM_KEY = "hg_community_v2";
+
+// ── Google Sheets 자동 수집 ──────────────────────────────────
+// 아래 URL을 Google Apps Script 배포 URL로 교체하세요
+// 설정 방법: hebronguide.com/setup-sheets.html 참조
+const SHEETS_URL = "https://script.google.com/macros/s/REPLACE_WITH_YOUR_SCRIPT_ID/exec";
+
+function postToSheets(item: any) {
+  if (SHEETS_URL.includes("REPLACE_WITH")) return; // 미설정 시 스킵
+  try {
+    fetch(SHEETS_URL, {
+      method: "POST",
+      mode: "no-cors", // Google Apps Script CORS 우회
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        date:     new Date().toISOString().slice(0, 19).replace("T", " "),
+        category: item.category,
+        city:     item.citySlug,
+        name:     item.name,
+        contact:  item.contact,
+        desc:     item.desc,
+        website:  item.website || "",
+      }),
+    }).catch(() => {}); // 실패해도 앱에 영향 없음
+  } catch {}
+}
 function readCommunity(): any[] {
   try { return JSON.parse(localStorage.getItem(COMM_KEY) || "[]"); } catch { return []; }
 }
@@ -4952,14 +4977,11 @@ function CommunitySection({ category, citySlug, lang }: { category: string; city
     };
     addCommunityItem(item);
     setItems(getCommunityByCategory(citySlug, category));
+    // Google Sheets에 자동 저장
+    postToSheets(item);
     setSubmitted(true);
     setForm({ name: "", contact: "", desc: "", website: "" });
-    // 이메일 알림
-    const body = `[커뮤니티 등록] ${label.ko}\n이름: ${item.name}\n연락처: ${item.contact}\n소개: ${item.desc}\n웹사이트: ${item.website}\n도시: ${citySlug}\n날짜: ${new Date().toISOString().slice(0,10)}`;
-    setTimeout(() => {
-      try { window.location.href = `mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(`[HebronGuide] ${label.ko} — ${item.name}`)}&body=${encodeURIComponent(body)}`; } catch {}
-    }, 100);
-    setTimeout(() => { setOpen(false); setSubmitted(false); }, 2200);
+    setTimeout(() => { setOpen(false); setSubmitted(false); }, 2500);
   };
 
   const inputStyle: React.CSSProperties = {
