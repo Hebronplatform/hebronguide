@@ -7760,44 +7760,116 @@ function KoreanCultureCalendarSection({ onNavigate }: { onNavigate?: (tab: numbe
 /* ─────────────────────────────────────────
    HOME: Korean American 여정 섹션
 ───────────────────────────────────────── */
+// 도시 → 현지 한인 정체성 매핑 (52개 도시 전부 커버)
+const DIASPORA_IDENTITY: Record<string, {
+  flag: string; ko: string; en: string; descKo: string; descEn: string; color: string;
+}> = {
+  // 🇺🇸 미국
+  seattle:      { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  dallas:       { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  sf:           { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  newyork:      { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  nashville:    { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  boston:       { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  la:           { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  houston:      { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  atlanta:      { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  kansascity:   { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  philadelphia: { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  miami:        { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  chicago:      { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  dc:           { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  sandiego:     { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  honolulu:     { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  portland:     { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  denver:       { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  phoenix:      { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  charlotte:    { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  raleigh:      { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  columbus:     { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  minneapolis:  { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  tucson:       { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  fayetteville: { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  killeen:      { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  anchorage:    { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  // 🇲🇽 멕시코
+  mexicocity:   { flag:"🇲🇽", ko:"재멕시코 한인",     en:"Korean in Mexico",   descKo:"멕시코 사회의 당당한 구성원으로",      descEn:"A full participant in Mexican society",           color:"#16A34A" },
+  guadalajara:  { flag:"🇲🇽", ko:"재멕시코 한인",     en:"Korean in Mexico",   descKo:"멕시코 사회의 당당한 구성원으로",      descEn:"A full participant in Mexican society",           color:"#16A34A" },
+  monterrey:    { flag:"🇲🇽", ko:"재멕시코 한인",     en:"Korean in Mexico",   descKo:"멕시코 사회의 당당한 구성원으로",      descEn:"A full participant in Mexican society",           color:"#16A34A" },
+  // 🇨🇦 캐나다
+  toronto:      { flag:"🇨🇦", ko:"Korean Canadian",   en:"Korean Canadian",    descKo:"캐나다 사회의 당당한 구성원으로",      descEn:"A full participant in Canadian society",          color:"#DC2626" },
+  vancouver:    { flag:"🇨🇦", ko:"Korean Canadian",   en:"Korean Canadian",    descKo:"캐나다 사회의 당당한 구성원으로",      descEn:"A full participant in Canadian society",          color:"#DC2626" },
+  calgary:      { flag:"🇨🇦", ko:"Korean Canadian",   en:"Korean Canadian",    descKo:"캐나다 사회의 당당한 구성원으로",      descEn:"A full participant in Canadian society",          color:"#DC2626" },
+  edmonton:     { flag:"🇨🇦", ko:"Korean Canadian",   en:"Korean Canadian",    descKo:"캐나다 사회의 당당한 구성원으로",      descEn:"A full participant in Canadian society",          color:"#DC2626" },
+  ottawa:       { flag:"🇨🇦", ko:"Korean Canadian",   en:"Korean Canadian",    descKo:"캐나다 사회의 당당한 구성원으로",      descEn:"A full participant in Canadian society",          color:"#DC2626" },
+  winnipeg:     { flag:"🇨🇦", ko:"Korean Canadian",   en:"Korean Canadian",    descKo:"캐나다 사회의 당당한 구성원으로",      descEn:"A full participant in Canadian society",          color:"#DC2626" },
+  // 🇦🇺 호주
+  sydney:       { flag:"🇦🇺", ko:"Korean Australian", en:"Korean Australian",  descKo:"호주 사회의 당당한 구성원으로",        descEn:"A full participant in Australian society",        color:"#0284C7" },
+  melbourne:    { flag:"🇦🇺", ko:"Korean Australian", en:"Korean Australian",  descKo:"호주 사회의 당당한 구성원으로",        descEn:"A full participant in Australian society",        color:"#0284C7" },
+  brisbane:     { flag:"🇦🇺", ko:"Korean Australian", en:"Korean Australian",  descKo:"호주 사회의 당당한 구성원으로",        descEn:"A full participant in Australian society",        color:"#0284C7" },
+  perth:        { flag:"🇦🇺", ko:"Korean Australian", en:"Korean Australian",  descKo:"호주 사회의 당당한 구성원으로",        descEn:"A full participant in Australian society",        color:"#0284C7" },
+  // 🇳🇿 뉴질랜드
+  auckland:     { flag:"🇳🇿", ko:"재뉴질랜드 한인",  en:"Korean New Zealander",descKo:"뉴질랜드 사회의 당당한 구성원으로",   descEn:"A full participant in New Zealand society",       color:"#16A34A" },
+  // 🇧🇷 브라질
+  saopaulo:     { flag:"🇧🇷", ko:"재브라질 한인",    en:"Korean Brazilian",   descKo:"브라질 사회의 당당한 구성원으로",      descEn:"A full participant in Brazilian society",         color:"#DC2626" },
+  // 🇬🇧 영국
+  london:       { flag:"🇬🇧", ko:"Korean British",   en:"Korean British",     descKo:"영국 사회의 당당한 구성원으로",        descEn:"A full participant in British society",           color:"#1E40AF" },
+  // 🇩🇪 독일
+  frankfurt:    { flag:"🇩🇪", ko:"재독 한인",        en:"Korean in Germany",  descKo:"독일 사회의 당당한 구성원으로",        descEn:"A full participant in German society",            color:"#374151" },
+  berlin:       { flag:"🇩🇪", ko:"재독 한인",        en:"Korean in Germany",  descKo:"독일 사회의 당당한 구성원으로",        descEn:"A full participant in German society",            color:"#374151" },
+  // 🇫🇷 프랑스
+  paris:        { flag:"🇫🇷", ko:"재불 한인",        en:"Korean in France",   descKo:"프랑스 사회의 당당한 구성원으로",     descEn:"A full participant in French society",            color:"#7C3AED" },
+  // 🇦🇪 UAE
+  dubai:        { flag:"🇦🇪", ko:"재UAE 한인",       en:"Korean in the UAE",  descKo:"UAE에서 당당하게 뿌리내리기",          descEn:"Building roots and life in the UAE",              color:"#CA8A04" },
+  // 🇸🇬 싱가포르
+  singapore:    { flag:"🇸🇬", ko:"재싱가포르 한인",  en:"Korean in Singapore",descKo:"싱가포르에서 당당하게 뿌리내리기",     descEn:"Building roots and life in Singapore",            color:"#DC2626" },
+  // 🇹🇭 태국
+  bangkok:      { flag:"🇹🇭", ko:"재태국 한인",      en:"Korean in Thailand", descKo:"태국에서 당당하게 뿌리내리기",         descEn:"Building roots and life in Thailand",             color:"#9333EA" },
+  // 🇻🇳 베트남
+  hochiminh:    { flag:"🇻🇳", ko:"재베트남 한인",    en:"Korean in Vietnam",  descKo:"베트남에서 당당하게 뿌리내리기",       descEn:"Building roots and life in Vietnam",              color:"#BE185D" },
+  // 🇯🇵 일본
+  tokyo:        { flag:"🇯🇵", ko:"재일 한인",        en:"Korean in Japan",    descKo:"일본 사회 속 재일 한인으로 당당하게", descEn:"Living proudly as Korean in Japan",               color:"#DC2626" },
+  osaka:        { flag:"🇯🇵", ko:"재일 한인",        en:"Korean in Japan",    descKo:"일본 사회 속 재일 한인으로 당당하게", descEn:"Living proudly as Korean in Japan",               color:"#DC2626" },
+};
+
 function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
-  const steps = lang === "ko"
-    ? [
-        { emoji: "🛬", label: "정착", sub: "Day 1~3개월", color: "#F2994A", tab: 1, subTab: 0 },
-        { emoji: "🏘️", label: "적응", sub: "3개월~1년", color: "#10B981", tab: 1, subTab: 3 },
-        { emoji: "🇺🇸", label: "Korean American", sub: "1년+", color: "#3B82F6", tab: 5, subTab: 6 },
-      ]
-    : lang === "es"
-    ? [
-        { emoji: "🛬", label: "Asentarse", sub: "Día 1–3 meses", color: "#F2994A", tab: 1, subTab: 0 },
-        { emoji: "🏘️", label: "Adaptarse", sub: "3–12 meses", color: "#10B981", tab: 1, subTab: 3 },
-        { emoji: "🇺🇸", label: "Korean American", sub: "Año 1+", color: "#3B82F6", tab: 5, subTab: 6 },
-      ]
-    : [
-        { emoji: "🛬", label: "Settle", sub: "Day 1–3 months", color: "#F2994A", tab: 1, subTab: 0 },
-        { emoji: "🏘️", label: "Adapt", sub: "3–12 months", color: "#10B981", tab: 1, subTab: 3 },
-        { emoji: "🇺🇸", label: "Korean American", sub: "Year 1+", color: "#3B82F6", tab: 5, subTab: 6 },
-      ];
+  const city = useCityConfig();
+  const ko = lang === "ko";
+
+  // 현재 도시의 현지 정체성 — 미등록 도시는 글로벌 기본값
+  const identity = DIASPORA_IDENTITY[city.slug] ?? {
+    flag: "🌍", ko: "현지 한인", en: "Korean Diaspora",
+    descKo: "새로운 땅에서 당당하게 뿌리내리기",
+    descEn: "Building roots and community in your new home",
+    color: "#0EA5E9",
+  };
+
+  const steps = [
+    { emoji: "🛬", labelKo: "정착",   labelEn: "Settle", sub: ko ? "Day 1~3개월" : "Day 1–3 months", color: "#F2994A", tab: 1, subTab: 0 },
+    { emoji: "🏘️", labelKo: "적응",   labelEn: "Adapt",  sub: ko ? "3개월~1년"   : "3–12 months",     color: "#10B981", tab: 1, subTab: 3 },
+    { emoji: identity.flag, labelKo: identity.ko, labelEn: identity.en, sub: ko ? "1년+" : "Year 1+", color: identity.color, tab: 5, subTab: 6 },
+  ];
+
+  const titleKo = `${identity.flag} ${identity.ko} 여정`;
+  const titleEn = `${identity.flag} Your ${identity.en} Journey`;
 
   return (
     <div style={{ padding: "20px 16px 8px" }}>
       {/* 헤더 */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
-        <div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A", letterSpacing: "-0.2px" }}>
-            {lang === "ko" ? "🇺🇸 Korean American 여정" : lang === "es" ? "🇺🇸 Tu camino Korean American" : "🇺🇸 Your Korean American Journey"}
-          </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8", marginTop: 2 }}>
-            {lang === "ko" ? "이민자에서 당당한 미국 사회의 구성원으로" : lang === "es" ? "De recién llegado a participante pleno en la sociedad estadounidense" : "From newcomer to full participant in American society"}
-          </div>
+      <div style={{ marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A", letterSpacing: "-0.2px" }}>
+          {ko ? titleKo : titleEn}
+        </div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8", marginTop: 2 }}>
+          {ko ? identity.descKo : identity.descEn}
         </div>
       </div>
 
       {/* 3단계 여정 */}
       <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
         {steps.map((step, i) => (
-          <div key={i} style={{ display: "flex", alignItems: "center", flex: i === 2 ? "1.2" : "1", gap: 0 }}>
+          <div key={i} style={{ display: "flex", alignItems: "center", flex: i === 2 ? "1.2" : "1" }}>
             <button
               onClick={() => onNavigate?.(step.tab, step.subTab)}
               style={{
@@ -7815,7 +7887,9 @@ function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: numbe
               <div style={{
                 fontFamily: "-apple-system, 'Noto Sans KR', sans-serif",
                 fontWeight: 700, fontSize: 11, color: step.color, letterSpacing: "-0.2px", textAlign: "center",
-              }}>{step.label}</div>
+              }}>
+                {ko ? step.labelKo : step.labelEn}
+              </div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#94A3B8", textAlign: "center" }}>
                 {step.sub}
               </div>
@@ -7830,19 +7904,15 @@ function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: numbe
       {/* 하단 태그라인 */}
       <div style={{
         marginTop: 12, padding: "10px 14px",
-        background: "linear-gradient(135deg, rgba(59,130,246,0.07), rgba(16,185,129,0.06))",
-        borderRadius: 12, border: "1px solid rgba(59,130,246,0.12)",
+        background: `linear-gradient(135deg, ${identity.color}0d, rgba(16,185,129,0.06))`,
+        borderRadius: 12, border: `1px solid ${identity.color}1a`,
         display: "flex", alignItems: "center", gap: 10,
       }}>
         <span style={{ fontSize: 16 }}>💡</span>
-        <div style={{
-          fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#475569", lineHeight: 1.5, flex: 1,
-        }}>
-          {lang === "ko"
-            ? "HebronGuide는 정착 가이드를 넘어 미국 사회의 Korean American으로 성장하는 전 여정을 함께합니다."
-            : lang === "es"
-            ? "HebronGuide te acompaña desde el primer día en todo tu camino como Korean American — no solo en el asentamiento."
-            : "HebronGuide walks with you from Day 1 through your full journey as a Korean American — not just settlement."}
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#475569", lineHeight: 1.5, flex: 1 }}>
+          {ko
+            ? `HebronGuide는 정착 가이드를 넘어 ${city.nameKo}에서 ${identity.ko}로 성장하는 전 여정을 함께합니다.`
+            : `HebronGuide walks with you from Day 1 through your full journey as ${identity.en} in ${city.nameEn} — not just settlement.`}
         </div>
       </div>
     </div>
