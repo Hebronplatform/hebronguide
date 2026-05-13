@@ -1882,7 +1882,7 @@ const TOP5_SETTLE_HOUSTON: Top5Item[] = [
   { rank: 1, emoji: "⭐", nameKo: "휴스턴서울교회 (IHM 본부)", nameEn: "Seoul Church of Houston — IHM HQ",
     address: "10100 Pearl Ridge Way, Houston TX 77043",
     phone: "(713) 461-0700", hours: "주일예배·평일 사역",
-    why: "⭐ 국제가정교회사역원(IHM) 본부. 최영기 목사 설립. 가정교회 운동 글로벌 거점. 휴스턴 한인 정착 영적 중심",
+    why: "⭐ 국제가정교회사역원(IHM) 본부. 최영기 목사 설립. 현 담임: 이수관 목사. 가정교회 운동 글로벌 거점. 휴스턴 한인 정착 영적 중심",
     tip: "주일 예배 + 가정교회 모임 참여 가능", website: "seoulchurch.com" },
   { rank: 2, emoji: "🏛️", nameKo: "한인회 (Korean American Association)", nameEn: "Korean American Association of Greater Houston",
     address: "1815 Augusta Dr Ste 304, Houston TX 77057",
