@@ -5615,12 +5615,12 @@ function FoundingPartnerBanner({ lang, onNavigate }: { lang: string; onNavigate?
         <span style={{ fontSize: 22, flexShrink: 0 }}>🌟</span>
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12.5, color: "#78350F", lineHeight: 1.3, marginBottom: 3 }}>
-            {lang === "ko" ? "2026 창립 파트너 교회를 모십니다" : "2026 Founding Partner Churches — Join Us"}
+            {lang === "ko" ? "✨ HebronGuide 홍보 기간 — 120 교회와 함께" : "✨ HebronGuide Launch — 120 Founding Churches"}
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10.5, color: "#92400E", lineHeight: 1.6 }}>
             {lang === "ko"
-              ? "사람과 사람, 교회와 교회를 잇는 HebronGuide — 함께 이 일을 퍼뜨려 주세요"
-              : "Connecting people & churches across cities — help us spread the word"}
+              ? "무료 · 10월 1일까지 · 친구들에게 자유롭게 공유해 주세요"
+              : "Free · Until Oct 1 · Share freely with friends & community"}
           </div>
         </div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#78350F", background: "rgba(245,158,11,0.2)", borderRadius: 8, padding: "4px 10px", flexShrink: 0 }}>

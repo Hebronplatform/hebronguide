@@ -1,958 +1,392 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>광고 신청 — HebronGuide</title>
-<meta name="description" content="HebronGuide 광고 신청. 한·영·스 3개 언어 광고 제작. 검수 후 48시간 내 게시." />
+<title>무료 광고 등재 신청 — HebronGuide 홍보 기간</title>
+<meta name="description" content="2026년 10월 1일까지 HebronGuide 홍보 기간. 한인 커뮤니티에 무료로 광고를 등재해 드립니다.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system,'Noto Sans KR',sans-serif; background:linear-gradient(135deg,#1a2535 0%,#0d1117 100%); color:#ECFDF5; min-height:100vh; padding:24px 16px 40px; }
-  .container { max-width:560px; margin:0 auto; }
+:root{
+  --bg:#0d1117; --surface:rgba(255,255,255,0.04); --surface2:rgba(255,255,255,0.07);
+  --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.14);
+  --gold:#C9A227; --mint:#6EE7B7; --text:#ECFDF5; --muted:rgba(236,253,245,0.55);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:var(--bg);}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
 
-  /* 헤더 */
-  .header { text-align:center; margin-bottom:24px; padding-bottom:20px; border-bottom:1px solid rgba(201,162,39,0.2); }
-  h1 { font-size:22px; color:#C9A227; margin-bottom:6px; }
-  .subtitle { font-size:12px; color:rgba(236,253,245,0.55); line-height:1.6; }
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
+.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;font-family:'Cinzel',serif;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:.8rem;display:flex;align-items:center;gap:6px;transition:color .2s;}
+.nav-back:hover{color:var(--gold);}
 
-  /* 스텝 인디케이터 */
-  .steps { display:flex; align-items:center; gap:6px; margin-bottom:20px; }
-  .step-dot { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0; transition:all 0.2s; }
-  .step-dot.active { background:#C9A227; color:#0d1117; }
-  .step-dot.done { background:rgba(110,231,183,0.25); color:#6EE7B7; border:1px solid #6EE7B7; }
-  .step-dot.pending { background:rgba(255,255,255,0.06); color:rgba(236,253,245,0.3); border:1px solid rgba(255,255,255,0.1); }
-  .step-line { flex:1; height:2px; background:rgba(255,255,255,0.08); border-radius:1px; }
-  .step-line.done { background:rgba(110,231,183,0.4); }
-  .step-label { font-size:10px; color:rgba(236,253,245,0.5); text-align:center; margin-top:4px; }
+/* 프로모션 배너 */
+.promo-banner{background:linear-gradient(135deg,rgba(110,231,183,.15),rgba(201,162,39,.1));border-top:3px solid var(--mint);border-bottom:1px solid rgba(110,231,183,.25);padding:20px 24px;text-align:center;}
+.promo-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(110,231,183,.15);border:1px solid rgba(110,231,183,.4);color:var(--mint);font-size:.72rem;font-weight:800;padding:5px 16px;border-radius:20px;margin-bottom:12px;letter-spacing:.06em;}
+.promo-title{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:6px;}
+.promo-title span{color:var(--mint);}
+.promo-sub{font-size:.88rem;color:rgba(236,253,245,.75);line-height:2;margin-bottom:12px;}
+.promo-dday{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.3);border-radius:20px;padding:6px 18px;font-size:.82rem;font-weight:700;color:#FCA5A5;}
+.promo-dday strong{color:#EF4444;font-family:'Cinzel',serif;font-size:1rem;}
 
-  /* 카드 섹션 */
-  .card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:20px; margin-bottom:14px; }
-  .card-title { font-size:14px; color:#C9A227; font-weight:800; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+/* 약속 카드 */
+.promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:520px;margin:24px auto 0;}
+.promise-card{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:16px 10px;text-align:center;}
+.promise-icon{font-size:1.5rem;margin-bottom:6px;}
+.promise-title{font-size:.75rem;font-weight:800;color:#fff;margin-bottom:3px;}
+.promise-desc{font-size:.65rem;color:var(--muted);line-height:1.5;}
 
-  /* 폼 요소 */
-  label { display:block; font-size:11px; color:rgba(236,253,245,0.65); margin-bottom:4px; margin-top:12px; font-weight:600; }
-  label:first-child { margin-top:0; }
-  input[type=text], input[type=url], input[type=tel], input[type=number], select, textarea {
-    width:100%; padding:10px 12px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.12);
-    border-radius:8px; color:#ECFDF5; font-size:13px; font-family:inherit; transition:border-color 0.15s;
-  }
-  input:focus, select:focus, textarea:focus { outline:none; border-color:#6EE7B7; }
-  textarea { resize:vertical; min-height:64px; }
+/* 컨테이너 */
+.container{max-width:560px;margin:0 auto;padding:32px 20px 80px;}
 
-  /* 체크박스 그리드 */
-  .check-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:6px; }
-  .check-item { display:flex; align-items:center; gap:8px; padding:9px 10px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; cursor:pointer; font-size:11px; color:rgba(236,253,245,0.8); font-weight:400; margin:0; transition:all 0.15s; }
-  .check-item:has(input:checked) { border-color:#C9A227; background:rgba(201,162,39,0.1); }
-  .check-item input { width:14px; height:14px; accent-color:#C9A227; flex-shrink:0; }
+/* 폼 카드 */
+.form-card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:28px 24px;}
+.form-title{font-size:1rem;font-weight:900;color:#fff;margin-bottom:4px;}
+.form-sub{font-size:.8rem;color:var(--muted);margin-bottom:22px;line-height:1.8;}
 
-  /* 필 태그 (분위기) */
-  .tag-wrap { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
-  .tag-item { display:flex; align-items:center; gap:5px; padding:7px 11px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:20px; cursor:pointer; font-size:11px; color:rgba(236,253,245,0.75); font-weight:400; margin:0; transition:all 0.15s; }
-  .tag-item:has(input:checked) { border-color:#C9A227; background:rgba(201,162,39,0.1); color:#C9A227; }
-  .tag-item input { display:none; }
+/* 필드 */
+.field{margin-bottom:14px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:480px){.field-row{grid-template-columns:1fr;}}
+label{display:block;font-size:.8rem;font-weight:700;color:rgba(236,253,245,.7);margin-bottom:5px;}
+label .req{color:var(--gold);margin-left:2px;}
+label .opt{color:rgba(236,253,245,.3);font-weight:400;font-size:.73rem;margin-left:4px;}
+input,textarea,select{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;font-size:.88rem;color:var(--text);font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+input:focus,textarea:focus,select:focus{border-color:var(--gold);}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23666'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;}
+textarea{min-height:80px;resize:vertical;line-height:1.7;}
+.error-msg{font-size:.75rem;color:#FCA5A5;margin-top:4px;display:none;}
+.field.error input,.field.error select,.field.error textarea{border-color:#EF4444;}
+.field.error .error-msg{display:block;}
 
-  /* 노출 범위 카드 */
-  .reach-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:6px; }
-  .reach-card { padding:10px 8px; cursor:pointer; border:1px solid rgba(255,255,255,0.1); border-radius:10px; display:flex; flex-direction:column; gap:3px; margin:0; font-weight:400; background:rgba(255,255,255,0.04); transition:all 0.15s; }
+/* 도시 체크박스 */
+.city-grid{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;}
+.city-tag{display:inline-flex;align-items:center;gap:5px;background:var(--surface2);border:1px solid var(--border2);border-radius:99px;padding:5px 12px;font-size:.73rem;color:var(--muted);cursor:pointer;transition:all .15s;font-family:'Noto Sans KR',sans-serif;}
+.city-tag input{display:none;}
+.city-tag:has(input:checked){background:rgba(201,162,39,.1);border-color:var(--gold);color:var(--gold);}
 
-  /* 플랜 카드 */
-  .plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:6px; }
-  .plan-card { padding:12px 8px; text-align:center; cursor:pointer; border:1px solid rgba(255,255,255,0.1); border-radius:10px; background:rgba(255,255,255,0.04); margin:0; transition:all 0.15s; font-weight:400; }
-  .plan-card:has(input:checked) { background:rgba(201,162,39,0.12); border-color:#C9A227; }
-  .plan-card input { display:none; }
-  .plan-price { font-size:18px; font-weight:800; }
-  .plan-name { font-size:10px; opacity:0.6; margin-top:2px; }
+/* 힌트 */
+.hint-box{background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.2);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:.78rem;color:rgba(236,253,245,.72);line-height:1.8;}
+.hint-box strong{color:var(--mint);}
 
-  /* 시즌 카드 */
-  .season-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:6px; }
-  .season-card { padding:10px 12px; cursor:pointer; border:1px solid rgba(255,255,255,0.1); border-radius:10px; display:flex; flex-direction:column; gap:2px; margin:0; font-weight:400; background:rgba(255,255,255,0.04); transition:all 0.15s; }
+/* 동의 */
+.agree-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;}
+.agree-item input[type=checkbox]{width:17px;height:17px;margin-top:2px;accent-color:var(--gold);flex-shrink:0;cursor:pointer;}
+.agree-item label{font-size:.8rem;color:rgba(236,253,245,.78);cursor:pointer;line-height:1.6;}
 
-  /* 금액 계산 */
-  .price-box { margin-top:14px; background:rgba(201,162,39,0.08); border:1px solid rgba(201,162,39,0.3); border-radius:12px; padding:14px; }
-  .price-row { display:flex; justify-content:space-between; font-size:12px; color:rgba(236,253,245,0.7); margin-bottom:5px; }
-  .price-total { border-top:1px solid rgba(201,162,39,0.25); padding-top:10px; margin-top:10px; display:flex; justify-content:space-between; align-items:center; }
+/* 버튼 */
+.btn-submit{width:100%;background:linear-gradient(135deg,var(--mint),#34d399);color:#0d1117;border:none;padding:14px;border-radius:12px;font-size:.95rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:20px;transition:all .2s;box-shadow:0 4px 16px rgba(110,231,183,.3);}
+.btn-submit:hover{box-shadow:0 6px 24px rgba(110,231,183,.45);transform:translateY(-1px);}
 
-  /* 요약 */
-  .summary-row { display:flex; justify-content:space-between; align-items:flex-start; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:12px; }
-  .summary-label { color:rgba(236,253,245,0.5); font-size:11px; flex-shrink:0; min-width:80px; }
-  .summary-val { color:#ECFDF5; text-align:right; }
-
-  /* 버튼 */
-  .btn-row { display:flex; gap:10px; margin-top:20px; }
-  .btn-back { flex:1; padding:13px; background:transparent; border:1px solid rgba(255,255,255,0.15); border-radius:12px; color:rgba(236,253,245,0.7); font-size:13px; font-weight:700; cursor:pointer; }
-  .btn-next { flex:2; padding:13px; background:linear-gradient(135deg,#C9A227,#B8901C); border:none; border-radius:12px; color:#fff; font-size:14px; font-weight:800; cursor:pointer; box-shadow:0 4px 16px rgba(201,162,39,0.3); }
-  .btn-next:disabled { opacity:0.5; cursor:not-allowed; }
-  .btn-next:hover:not(:disabled) { transform:translateY(-1px); }
-
-  /* 결과 */
-  .result { background:rgba(110,231,183,0.06); border:1px solid rgba(110,231,183,0.25); border-radius:16px; padding:20px; margin-top:16px; }
-  .result-title { color:#6EE7B7; font-size:15px; font-weight:800; margin-bottom:14px; }
-  .ad-block { background:rgba(0,0,0,0.35); padding:14px; border-radius:10px; margin:8px 0; }
-  .lang-tag { display:inline-block; background:rgba(201,162,39,0.2); color:#C9A227; padding:2px 8px; border-radius:6px; font-size:10px; font-weight:700; margin-bottom:8px; }
-  .ad-headline { font-size:15px; font-weight:800; color:#ECFDF5; margin-bottom:4px; }
-  .ad-copy { font-size:12px; color:rgba(236,253,245,0.75); line-height:1.7; }
-  .qr-wrap { text-align:center; margin:14px 0; }
-  .qr-wrap img { max-width:180px; border-radius:8px; background:#fff; padding:8px; }
-  .error { background:rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.35); color:#F87171; padding:12px; border-radius:10px; margin-top:12px; font-size:12px; line-height:1.6; }
-  .footer { text-align:center; margin-top:28px; font-size:10px; color:rgba(236,253,245,0.35); line-height:1.8; }
-  .footer a { color:#6EE7B7; text-decoration:none; }
+/* 성공 */
+.success{display:none;text-align:center;padding:40px 20px;}
+.success.show{display:block;}
+.success-icon{font-size:3.5rem;margin-bottom:14px;}
+.success h2{font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:8px;}
+.success p{color:var(--muted);font-size:.88rem;line-height:2;}
+.success .share-nudge{margin-top:24px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.25);border-radius:14px;padding:18px 20px;}
+.success .share-nudge p{color:rgba(236,253,245,.8);font-size:.85rem;margin-bottom:14px;}
+.sns-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
+.sns-btn{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:none;cursor:pointer;}
+.sns-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;}
+.sns-label{font-size:.64rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;}
 </style>
 </head>
 <body>
-<div class="container">
 
-  <div class="header">
-    <h1>HebronGuide 광고 신청</h1>
-    <div class="subtitle">한인 커뮤니티를 위한 광고 플랫폼<br>한·영·스 3개 언어 · 검수 후 48시간 내 게시</div>
+<nav>
+  <a href="/seattle/" class="logo">HebronGuide</a>
+  <a href="javascript:history.back()" class="nav-back">← 돌아가기</a>
+</nav>
+
+<!-- 프로모션 배너 -->
+<div class="promo-banner">
+  <div class="promo-badge">✨ 홍보 기간 무료 등재</div>
+  <h1 class="promo-title"><span>무료</span>로 HebronGuide에 등재하세요</h1>
+  <p class="promo-sub">
+    2026년 10월 1일까지 — HebronGuide를 알리는 홍보 기간입니다.<br>
+    한인 이민자·이주자 커뮤니티에 무료로 광고를 올려드립니다.<br>
+    <strong style="color:#fff;">조건은 하나, 주변에 HebronGuide를 알려 주세요.</strong>
+  </p>
+  <div class="promo-dday">
+    홍보 기간 마감까지&nbsp;<strong id="ddayNum">D-???</strong>&nbsp;·&nbsp;2026년 10월 1일
   </div>
 
-  <!-- 스텝 인디케이터 -->
-  <div style="margin-bottom:6px;" id="stepWrapper">
-    <div class="steps" id="stepIndicator">
-      <div class="step-dot active" id="dot1">1</div>
-      <div class="step-line" id="line1"></div>
-      <div class="step-dot pending" id="dot2">2</div>
-      <div class="step-line" id="line2"></div>
-      <div class="step-dot pending" id="dot3">3</div>
-      <div class="step-line" id="line3"></div>
-      <div class="step-dot pending" id="dot4">4</div>
+  <div class="promise-grid">
+    <div class="promise-card">
+      <div class="promise-icon">🆓</div>
+      <div class="promise-title">완전 무료</div>
+      <div class="promise-desc">광고비 없음<br>프로모션 기간 전체</div>
     </div>
-    <div style="display:flex; justify-content:space-between; padding:0 4px;">
-      <span class="step-label">업소 정보</span>
-      <span class="step-label">광고 전략</span>
-      <span class="step-label">기대 효과</span>
-      <span class="step-label">검토·생성</span>
+    <div class="promise-card">
+      <div class="promise-icon">🌍</div>
+      <div class="promise-title">44개+ 도시</div>
+      <div class="promise-desc">한인 이민자·이주자<br>전체 노출</div>
     </div>
-  </div>
-
-  <form id="adForm">
-
-    <!-- ═══ STEP 1: 업소 정보 ═══ -->
-    <div id="step1">
-      <div class="card">
-        <div class="card-title">📍 업소 기본 정보</div>
-
-        <label>업소명 *</label>
-        <input type="text" name="businessName" required placeholder="예: 강남 한식당" />
-
-        <label>업소 종류 * <span style="opacity:0.5;font-weight:400;">한인 운영 또는 한인 커뮤니티를 위한 서비스</span></label>
-        <select name="businessType" required>
-          <option value="">선택하세요</option>
-          <optgroup label="── 한인 업소">
-            <option value="한식당">한식당 (BBQ·찌개·분식 등)</option>
-            <option value="카페">카페·베이커리</option>
-            <option value="한인 마트">한인 마트·식료품</option>
-            <option value="교회">한인 교회·사역 단체</option>
-            <option value="미용">미용실·뷰티 살롱</option>
-            <option value="교육">한국학교·태권도·학원</option>
-            <option value="기타 한인">기타 한인 비즈니스</option>
-          </optgroup>
-          <optgroup label="── 한인 커뮤니티를 위한 서비스">
-            <option value="의료">병원·치과·한의원 (한국어 가능)</option>
-            <option value="법률·세무">법률·세무·이민 서비스</option>
-            <option value="부동산">부동산·렌탈</option>
-            <option value="항공·여행">항공사·여행사</option>
-            <option value="금융">은행·보험·금융 서비스</option>
-            <option value="대학·교육기관">대학·어학원·교육기관</option>
-            <option value="기타 커뮤니티">기타 — 한인 커뮤니티를 위한 서비스</option>
-          </optgroup>
-        </select>
-
-        <label>광고 노출 범위 *</label>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px;">
-          <label class="reach-card" id="localLabel" style="border-color:#6EE7B7; background:rgba(110,231,183,0.08);">
-            <input type="radio" name="adReach" value="local" checked style="display:none;" onchange="updateReachUI()" />
-            <span style="font-size:13px;font-weight:800;color:#6EE7B7;">📍 도시 노출</span>
-            <span style="font-size:9px;color:rgba(236,253,245,0.5);line-height:1.5;margin-top:2px;">선택한 도시 페이지에만<br>표시됩니다</span>
-            <span style="font-size:9px;color:rgba(110,231,183,0.5);margin-top:6px;">월 $50부터</span>
-          </label>
-          <label class="reach-card" id="globalLabel">
-            <input type="radio" name="adReach" value="global" style="display:none;" onchange="updateReachUI()" />
-            <span style="font-size:13px;font-weight:800;color:#C9A227;">🌐 전체 노출</span>
-            <span style="font-size:9px;color:rgba(236,253,245,0.5);line-height:1.5;margin-top:2px;">전체 도시 최상단<br>배너에 고정됩니다</span>
-            <span style="font-size:9px;color:rgba(201,162,39,0.5);margin-top:6px;">월 $200부터</span>
-          </label>
-        </div>
-        <div id="cityNote" style="font-size:9px;color:rgba(236,253,245,0.35);margin-top:6px;">📍 도시 노출은 선택한 도시 방문자에게만 표시됩니다</div>
-
-        <label>도시 *</label>
-        <select name="city" id="citySelect" required>
-          <option value="">선택하세요</option>
-          <option value="seattle">시애틀 (Seattle)</option>
-          <option value="dallas">달라스 (Dallas)</option>
-          <option value="sf">샌프란시스코 (SF Bay)</option>
-          <option value="newyork">뉴욕 (New York)</option>
-          <option value="boston">보스턴 (Boston)</option>
-          <option value="la">로스앤젤레스 (LA)</option>
-          <option value="toronto">토론토 (Toronto)</option>
-          <option value="vancouver">밴쿠버 (Vancouver)</option>
-          <option value="houston">휴스턴 (Houston)</option>
-          <option value="atlanta">애틀랜타 (Atlanta)</option>
-          <option value="philadelphia">필라델피아 (Philadelphia)</option>
-          <option value="kansascity">캔자스시티 (Kansas City)</option>
-          <option value="miami">마이애미 (Miami)</option>
-          <option value="mexicocity">멕시코시티 (Mexico City)</option>
-          <option value="nashville">내쉬빌 (Nashville)</option>
-        </select>
-        <div style="font-size:9px;color:rgba(236,253,245,0.35);margin-top:4px;" id="cityNote">📍 로컬 광고는 해당 도시 사용자에게만 노출됩니다</div>
-
-        <label>주소</label>
-        <input type="text" name="address" placeholder="3000 184th St SW, Lynnwood WA" />
-
-        <label>전화</label>
-        <input type="tel" name="phone" placeholder="(425) 776-0858" />
-
-        <label>웹사이트</label>
-        <input type="url" name="website" id="websiteInput" placeholder="https://example.com" />
-        <label style="display:flex;align-items:center;gap:8px;margin-top:8px;cursor:pointer;font-weight:400;">
-          <input type="checkbox" id="noWebsite" name="noWebsite" style="width:16px;height:16px;accent-color:#C9A227;" onchange="toggleNoWebsite(this)" />
-          <span>웹사이트가 없습니다</span>
-        </label>
-        <div id="hebronWebCard" style="display:none;margin-top:10px;background:linear-gradient(135deg,rgba(30,64,175,0.2),rgba(124,58,237,0.1));border:1px solid rgba(99,102,241,0.35);border-radius:10px;padding:12px;">
-          <div style="font-size:10px;color:#818CF8;font-weight:800;margin-bottom:4px;">🌐 HebronWeb 웹사이트 제작 서비스</div>
-          <div style="font-size:11px;color:rgba(236,253,245,0.7);margin-bottom:8px;">광고와 함께 웹사이트도 만들어 드립니다 · 한·영 2개 언어 · 모바일 최적화</div>
-          <a href="https://hebronguide.com/seattle/#contact" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:#6366F1;color:#fff;text-decoration:none;padding:7px 14px;border-radius:16px;font-size:11px;font-weight:800;">🌐 제작 문의하기 →</a>
-        </div>
-      </div>
-      <div class="btn-row"><button type="button" class="btn-next" onclick="goStep(2)">다음 — 광고 전략 →</button></div>
-    </div>
-
-    <!-- ═══ STEP 2: 광고 전략 ═══ -->
-    <div id="step2" style="display:none;">
-      <div class="card">
-        <div class="card-title">🎯 광고 전략</div>
-        <div style="font-size:10px;color:rgba(236,253,245,0.4);margin-bottom:12px;line-height:1.6;">구체적일수록 타겟에 맞는 광고가 만들어집니다</div>
-
-        <label>광고 목적 *</label>
-        <select name="adGoal" required>
-          <option value="">선택하세요</option>
-          <option value="신규 고객 유치">신규 고객 유치 (일반 홍보)</option>
-          <option value="할인·프로모션">할인·프로모션 행사</option>
-          <option value="신메뉴·신상품 출시">신메뉴·신상품 출시</option>
-          <option value="신규 오픈 알림">신규 오픈 알림</option>
-          <option value="이전·확장 안내">이전·확장 안내</option>
-          <option value="월드컵 환영 행사">월드컵 환영 행사 (2026 6-7월)</option>
-          <option value="한국 명절 캠페인">설날·추석·광복절 캠페인</option>
-        </select>
-
-        <label>주요 타겟 고객 * <span style="opacity:0.5;font-weight:400;">(복수 선택 가능)</span></label>
-        <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="target" value="신규 이민자·유학생" />신규 이민자·유학생</label>
-          <label class="check-item"><input type="checkbox" name="target" value="한인 가족·장기 거주" />한인 가족·장기 거주</label>
-          <label class="check-item"><input type="checkbox" name="target" value="1.5세·2세 한인" />1.5세·2세 한인</label>
-          <label class="check-item"><input type="checkbox" name="target" value="비한인 K-문화 팬" />비한인 (K-문화 팬)</label>
-          <label class="check-item"><input type="checkbox" name="target" value="관광·방문객" />관광·방문객</label>
-          <label class="check-item"><input type="checkbox" name="target" value="전체" />전체 (타겟 미지정)</label>
-        </div>
-
-        <label>광고 후 원하는 고객 행동 *</label>
-        <select name="adCTA" required>
-          <option value="">선택하세요</option>
-          <option value="매장 직접 방문">매장 직접 방문</option>
-          <option value="전화 문의·예약">전화 문의·예약</option>
-          <option value="웹사이트·메뉴 확인">웹사이트·메뉴 확인</option>
-          <option value="카카오톡 채널 문의">카카오톡 채널 문의</option>
-          <option value="SNS 팔로우·공유">SNS 팔로우·공유</option>
-          <option value="이벤트 참여">이벤트·행사 참여</option>
-        </select>
-
-        <label>특별 혜택 또는 프로모션 <span style="opacity:0.5;font-weight:400;">(있으면 입력)</span></label>
-        <input type="text" name="specialOffer" placeholder="예: 첫 방문 10% 할인 · 점심 세트 $12.99 · 무료 주차" oninput="checkEthicsRealtime(this)" />
-
-        <label>업소 분위기 <span style="opacity:0.5;font-weight:400;">(복수 선택)</span></label>
-        <div class="tag-wrap">
-          <label class="tag-item"><input type="checkbox" name="vibe" value="가족 친화" />👨‍👩‍👧 가족 친화</label>
-          <label class="tag-item"><input type="checkbox" name="vibe" value="데이트·로맨틱" />💑 데이트</label>
-          <label class="tag-item"><input type="checkbox" name="vibe" value="비즈니스 미팅" />💼 비즈니스</label>
-          <label class="tag-item"><input type="checkbox" name="vibe" value="캐주얼·편안함" />😊 캐주얼</label>
-          <label class="tag-item"><input type="checkbox" name="vibe" value="프리미엄·고급" />✨ 프리미엄</label>
-          <label class="tag-item"><input type="checkbox" name="vibe" value="포장·배달 가능" />🥡 포장·배달</label>
-        </div>
-
-        <label>이 업소만의 강점 * <span style="opacity:0.5;font-weight:400;">(광고 카피의 핵심 소재)</span></label>
-        <textarea name="uniqueValue" required placeholder="예: 30년 전통 사골 국물 · 직원이 직접 구워줌 · 무제한 밑반찬 · 한국어 상담 가능" oninput="checkEthicsRealtime(this)"></textarea>
-      </div>
-      <div class="btn-row">
-        <button type="button" class="btn-back" onclick="goStep(1)">← 이전</button>
-        <button type="button" class="btn-next" onclick="goStep(3)">다음 — 기대 효과 →</button>
-      </div>
-    </div>
-
-    <!-- ═══ STEP 3: 기대 효과 + 광고 조건 ═══ -->
-    <div id="step3" style="display:none;">
-      <div class="card">
-        <div class="card-title">📈 기대 효과</div>
-
-        <label>광고로 기대하는 성과 * <span style="opacity:0.5;font-weight:400;">(복수 선택)</span></label>
-        <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="expectedResults" value="브랜드 인지도 향상" />📢 인지도 향상</label>
-          <label class="check-item"><input type="checkbox" name="expectedResults" value="신규 고객 확보" />🆕 신규 고객 확보</label>
-          <label class="check-item"><input type="checkbox" name="expectedResults" value="매출 증가" />💰 매출 증가</label>
-          <label class="check-item"><input type="checkbox" name="expectedResults" value="예약·문의 증가" />📞 예약·문의 증가</label>
-          <label class="check-item"><input type="checkbox" name="expectedResults" value="SNS 팔로워 증가" />📱 SNS 성장</label>
-          <label class="check-item"><input type="checkbox" name="expectedResults" value="이벤트 참여 확대" />🎉 이벤트 참여</label>
-        </div>
-
-        <label>월 목표 신규 고객 수 <span style="opacity:0.5;font-weight:400;">(예상치)</span></label>
-        <select name="expectedCustomers">
-          <option value="">선택 안 함</option>
-          <option value="10명 이하">10명 이하</option>
-          <option value="10-30명">10~30명</option>
-          <option value="30-100명">30~100명</option>
-          <option value="100명 이상">100명 이상</option>
-        </select>
-      </div>
-
-      <div class="card">
-        <div class="card-title">💰 광고 조건</div>
-
-        <label>광고 기간 *</label>
-        <select name="adDuration" id="adDuration" required onchange="calcTotal()">
-          <option value="0.5">1주 (월 단가 × 0.5)</option>
-          <option value="1" selected>1개월 — 추천</option>
-          <option value="2.4">3개월 (20% 할인)</option>
-          <option value="4.5">6개월 (25% 할인)</option>
-          <option value="8.0">12개월 — 연간 (33% 할인)</option>
-          <option value="2">월드컵 시즌 6/1–7/26</option>
-        </select>
-
-        <label>광고 플랜 *</label>
-        <div class="plan-grid">
-          <label class="plan-card">
-            <input type="radio" name="budget" id="budget1" value="기본" checked onchange="calcTotal()" />
-            <div class="plan-price" id="plan1Price">$50</div>
-            <div class="plan-name">/월</div>
-            <div style="font-size:10px;color:#6EE7B7;font-weight:700;margin-top:4px;" id="plan1Label">기본</div>
-          </label>
-          <label class="plan-card">
-            <input type="radio" name="budget" id="budget2" value="우선 노출" onchange="calcTotal()" />
-            <div class="plan-price" id="plan2Price">$100</div>
-            <div class="plan-name">/월</div>
-            <div style="font-size:10px;color:#C9A227;font-weight:700;margin-top:4px;" id="plan2Label">우선 노출</div>
-          </label>
-          <label class="plan-card">
-            <input type="radio" name="budget" id="budget3" value="골드" onchange="calcTotal()" />
-            <div class="plan-price" id="plan3Price">$200</div>
-            <div class="plan-name">/월</div>
-            <div style="font-size:10px;color:#F59E0B;font-weight:700;margin-top:4px;" id="plan3Label">🥇 골드</div>
-          </label>
-        </div>
-        <div style="font-size:9px;color:rgba(236,253,245,0.35);margin-top:6px;" id="planNote">기본: 목록 하단 로테이션 · 우선: 상단+사진+피크타임 · 골드: 최상단 고정+영상+24시간</div>
-
-        <label>광고 시즌</label>
-        <div class="season-grid">
-          <label class="season-card" id="seasonRegular">
-            <input type="radio" name="adSeason" value="1.0" checked style="display:none;" onchange="updateSeasonUI()" />
-            <span style="font-size:12px;font-weight:800;color:#6EE7B7;">📅 일반 시즌</span>
-            <span style="font-size:9px;color:rgba(236,253,245,0.5);">기본 요금 적용</span>
-          </label>
-          <label class="season-card" id="seasonHoliday">
-            <input type="radio" name="adSeason" value="1.3" style="display:none;" onchange="updateSeasonUI()" />
-            <span style="font-size:12px;font-weight:800;color:#FCD34D;">🌙 설날·추석</span>
-            <span style="font-size:9px;color:rgba(236,253,245,0.5);">+30% 프리미엄</span>
-          </label>
-          <label class="season-card" id="seasonWorldCup">
-            <input type="radio" name="adSeason" value="1.5" style="display:none;" onchange="updateSeasonUI()" />
-            <span style="font-size:12px;font-weight:800;color:#F87171;">⚽ 월드컵·올림픽</span>
-            <span style="font-size:9px;color:rgba(236,253,245,0.5);">+50% 프리미엄</span>
-          </label>
-          <label class="season-card" id="seasonEvent">
-            <input type="radio" name="adSeason" value="1.2" style="display:none;" onchange="updateSeasonUI()" />
-            <span style="font-size:12px;font-weight:800;color:#A78BFA;">🎉 기타 행사</span>
-            <span style="font-size:9px;color:rgba(236,253,245,0.5);">+20% 프리미엄</span>
-          </label>
-        </div>
-        <div style="font-size:9px;color:rgba(236,253,245,0.3);margin-top:6px;line-height:1.6;">이벤트 시즌엔 트래픽이 급증합니다 — 광고 효과가 높아진 만큼 요금이 조정됩니다<br>슬롯 제한: 글로벌 최대 1개 · 미주 최대 3개 · 로컬 20% 상한</div>
-
-        <!-- 실시간 금액 계산 -->
-        <div class="price-box">
-          <div style="font-size:11px;color:#C9A227;font-weight:800;margin-bottom:10px;">📋 예상 광고비</div>
-          <div class="price-row"><span id="calcPlanDesc">기본 $50/월</span><span id="calcPlanAmt">$50</span></div>
-          <div class="price-row"><span id="calcDurationDesc">× 1개월</span><span id="calcDiscountAmt"></span></div>
-          <div class="price-row" id="calcSeasonRow" style="display:none;"><span id="calcSeasonDesc"></span><span id="calcSeasonAmt" style="color:#F87171;"></span></div>
-          <div class="price-total">
-            <span style="font-size:13px;font-weight:800;">합계</span>
-            <span id="calcTotal" style="font-size:22px;color:#C9A227;font-weight:900;">$50</span>
-          </div>
-        </div>
-      </div>
-      <div class="btn-row">
-        <button type="button" class="btn-back" onclick="goStep(2)">← 이전</button>
-        <button type="button" class="btn-next" onclick="goStep(4)">다음 — 검토 →</button>
-      </div>
-    </div>
-
-    <!-- ═══ STEP 4: 검토 + 계약 + 제출 ═══ -->
-    <div id="step4" style="display:none;">
-
-      <!-- 신청 내용 요약 -->
-      <div class="card">
-        <div class="card-title">✅ 신청 내용 검토</div>
-        <div id="summaryContent"></div>
-      </div>
-
-      <!-- 게재 프로세스 -->
-      <div class="card">
-        <div class="card-title">📋 광고 게재 프로세스</div>
-        <div style="font-size:11px; color:rgba(236,253,245,0.65); line-height:2.0;">
-          <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:6px;">
-            <span style="background:#C9A227; color:#0d1117; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; flex-shrink:0;">1</span>
-            <span><strong>신청 접수</strong> — 신청서가 HebronGuide 검수팀에 전달됩니다</span>
-          </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:6px;">
-            <span style="background:#C9A227; color:#0d1117; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; flex-shrink:0;">2</span>
-            <span><strong>윤리 검수</strong> — HebronGuide 가이드라인(마10:16) 기준 48시간 내 검토</span>
-          </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:6px;">
-            <span style="background:#C9A227; color:#0d1117; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; flex-shrink:0;">3</span>
-            <span><strong>결제 요청</strong> — 승인 시 결제 안내 이메일 발송 (영수증 포함)</span>
-          </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:6px;">
-            <span style="background:#C9A227; color:#0d1117; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; flex-shrink:0;">4</span>
-            <span><strong>결제 확인</strong> — 결제 완료 확인 후에만 광고가 게시됩니다</span>
-          </div>
-          <div style="display:flex; gap:10px; align-items:flex-start;">
-            <span style="background:#6EE7B7; color:#0d1117; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; flex-shrink:0;">5</span>
-            <span><strong>게시 + 영수증</strong> — 광고 게시 즉시 공식 영수증 이메일 발송</span>
-          </div>
-        </div>
-        <div style="margin-top:12px; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2); border-radius:8px; padding:10px 12px; font-size:10px; color:rgba(239,68,68,0.8); line-height:1.8;">
-          ⚠️ <strong>결제 전 광고는 절대 게시되지 않습니다.</strong> 신청만으로 광고가 노출되지 않습니다.
-        </div>
-      </div>
-
-      <!-- 결제 방법 선택 -->
-      <div class="card">
-        <div class="card-title">💳 선호 결제 방법</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
-          <label class="check-item" style="border-radius:8px;">
-            <input type="radio" name="paymentMethod" value="Zelle" style="width:14px;height:14px;accent-color:#C9A227;" checked />
-            <span>💸 Zelle</span>
-          </label>
-          <label class="check-item" style="border-radius:8px;">
-            <input type="radio" name="paymentMethod" value="PayPal" style="width:14px;height:14px;accent-color:#C9A227;" />
-            <span>🅿️ PayPal</span>
-          </label>
-          <label class="check-item" style="border-radius:8px;">
-            <input type="radio" name="paymentMethod" value="계좌이체" style="width:14px;height:14px;accent-color:#C9A227;" />
-            <span>🏦 계좌이체</span>
-          </label>
-          <label class="check-item" style="border-radius:8px;">
-            <input type="radio" name="paymentMethod" value="신용카드" style="width:14px;height:14px;accent-color:#C9A227;" />
-            <span>💳 신용카드</span>
-          </label>
-        </div>
-        <div style="font-size:10px; color:rgba(236,253,245,0.35); margin-top:8px;">결제 상세 안내는 검수 완료 이메일에 포함됩니다</div>
-      </div>
-
-      <!-- 계약 조건 동의 -->
-      <div class="card" style="border-color:rgba(201,162,39,0.3);">
-        <div class="card-title">📜 광고 게재 계약 조건</div>
-
-        <!-- 핵심 조항 -->
-        <div style="background:rgba(0,0,0,0.25); border-radius:10px; padding:12px; font-size:10px; color:rgba(236,253,245,0.6); line-height:1.9; margin-bottom:14px; max-height:180px; overflow-y:auto;">
-          <strong style="color:rgba(236,253,245,0.85);">광고 게재 약관 (HebronGuide LLC)</strong><br><br>
-          <strong>① 게재 조건</strong><br>
-          검수 승인 + 결제 완료 후 광고가 게시됩니다. 결제 없이 게시되지 않습니다.<br><br>
-          <strong>② 영수증 및 계약서</strong><br>
-          결제 완료 시 공식 영수증과 게재 확인서가 이메일로 발송됩니다.<br><br>
-          <strong>③ 계약 위반 및 즉시 중단 조항</strong><br>
-          다음 경우 사전 통보 없이 광고를 즉시 중단하며 환불하지 않습니다:<br>
-          · 허위·과장 광고 (검증 불가 주장 포함)<br>
-          · 이단·사이비 단체 (신천지·통일교·JMS 등)<br>
-          · 차별적 표현 (민족·인종·성별 등)<br>
-          · HebronGuide 윤리 가이드라인(마10:16) 위반<br><br>
-          <strong>④ 환불 정책</strong><br>
-          · 검수 거부 시: 전액 환불<br>
-          · 게시 후 광고주 사유 취소: 잔여 기간 50% 환불<br>
-          · 계약 위반 중단: 환불 없음<br><br>
-          <strong>⑤ 광고 내용 변경</strong><br>
-          기간 내 1회 무료 수정 요청 가능 (hebronplatform@gmail.com)<br><br>
-          <strong>⑥ 분쟁 해결</strong><br>
-          이메일 협의 우선. 해결 불가 시 Washington State 법률 적용.<br><br>
-          <strong>⑦ 광고 데이터</strong><br>
-          노출 수·클릭 수 월간 리포트 제공 (골드 플랜 이상).
-        </div>
-
-        <!-- 동의 체크박스들 -->
-        <label class="check-item" style="margin-bottom:8px; border-radius:8px; align-items:flex-start;">
-          <input type="checkbox" id="agreeTerms" name="agreeTerms" required style="width:16px;height:16px;accent-color:#C9A227;flex-shrink:0;margin-top:1px;" />
-          <span style="font-size:11px; line-height:1.5;">위 광고 게재 약관을 읽었으며 모두 동의합니다. 계약 위반 시 광고가 즉시 중단될 수 있음을 이해합니다.</span>
-        </label>
-        <label class="check-item" style="margin-bottom:8px; border-radius:8px; align-items:flex-start;">
-          <input type="checkbox" id="agreeEthics" name="agreeEthics" required style="width:16px;height:16px;accent-color:#C9A227;flex-shrink:0;margin-top:1px;" />
-          <span style="font-size:11px; line-height:1.5;">제출하는 광고 정보가 사실이며, HebronGuide 윤리 가이드라인(마10:16 지혜+순결)을 준수함을 확인합니다.</span>
-        </label>
-        <label class="check-item" style="border-radius:8px; align-items:flex-start;">
-          <input type="checkbox" id="agreePayment" name="agreePayment" required style="width:16px;height:16px;accent-color:#C9A227;flex-shrink:0;margin-top:1px;" />
-          <span style="font-size:11px; line-height:1.5;">결제 완료 후에만 광고가 게시됨을 이해하며, 결제 안내 이메일 수신에 동의합니다.</span>
-        </label>
-      </div>
-
-      <div class="btn-row">
-        <button type="button" class="btn-back" onclick="goStep(3)">← 이전</button>
-        <button type="submit" class="btn-next" id="submitBtn">📩 광고 신청하기</button>
-      </div>
-    </div>
-
-  </form>
-
-  <div id="result"></div>
-
-  <div class="footer">
-    HebronGuide LLC (설립 진행 중)<br>
-    문의: <a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a> · <a href="https://hebronguide.com">hebronguide.com</a><br><br>
-    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-bottom:10px;">
-      <a href="#terms" onclick="showLegal('terms')" style="color:rgba(236,253,245,0.45); text-decoration:none; font-size:10px;">이용약관</a>
-      <span style="color:rgba(236,253,245,0.2);">|</span>
-      <a href="#privacy" onclick="showLegal('privacy')" style="color:rgba(236,253,245,0.45); text-decoration:none; font-size:10px;">개인정보처리방침</a>
-      <span style="color:rgba(236,253,245,0.2);">|</span>
-      <a href="#nospam" onclick="showLegal('nospam')" style="color:rgba(236,253,245,0.45); text-decoration:none; font-size:10px;">이메일 무단수집거부</a>
-      <span style="color:rgba(236,253,245,0.2);">|</span>
-      <a href="#disclaimer" onclick="showLegal('disclaimer')" style="color:rgba(236,253,245,0.45); text-decoration:none; font-size:10px;">책임의 한계와 법적고지</a>
-      <span style="color:rgba(236,253,245,0.2);">|</span>
-      <a href="#adstandards" onclick="showLegal('adstandards')" style="color:rgba(236,253,245,0.45); text-decoration:none; font-size:10px;">광고 게재 기준</a>
-    </div>
-    📜 모든 광고는 HebronGuide 편집 기준(마10:16 지혜+순결)을 따릅니다.<br>
-    HebronGuide 검수팀 확인 후 48시간 내 게시
-  </div>
-
-  <!-- 법적 문서 모달 -->
-  <div id="legalModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; overflow-y:auto; padding:20px;" onclick="closeLegal(event)">
-    <div style="max-width:560px; margin:40px auto; background:#1a2535; border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:24px; position:relative;">
-      <button onclick="closeLegal()" style="position:absolute; top:16px; right:16px; background:rgba(255,255,255,0.08); border:none; border-radius:50%; width:30px; height:30px; color:#ECFDF5; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
-      <div id="legalContent" style="font-size:12px; color:rgba(236,253,245,0.75); line-height:1.9;"></div>
+    <div class="promise-card">
+      <div class="promise-icon">🌐</div>
+      <div class="promise-title">3개 언어</div>
+      <div class="promise-desc">한국어 · 영어<br>스페인어</div>
     </div>
   </div>
-
 </div>
 
-<script>
-/* ─── 법적 문서 모달 ─── */
-const LEGAL_DOCS = {
-  terms: {
-    title: '이용약관',
-    content: `<strong style="font-size:14px;color:#C9A227;">HebronGuide 광고 서비스 이용약관</strong><br><br>
-<strong>제1조 (목적)</strong><br>
-이 약관은 HebronGuide LLC(이하 "회사")가 제공하는 광고 게재 서비스 이용에 관한 기본 사항을 규정합니다.<br><br>
-<strong>제2조 (서비스 내용)</strong><br>
-회사는 한인 커뮤니티를 위한 디지털 광고 게재 서비스를 제공합니다. 광고는 한국어·영어·스페인어로 제작됩니다.<br><br>
-<strong>제3조 (계약 성립)</strong><br>
-광고 신청서 제출 → 검수팀 검토 → 결제 완료 후 계약이 성립합니다. 결제 전까지 광고는 게시되지 않습니다.<br><br>
-<strong>제4조 (광고 게재 기준)</strong><br>
-회사는 편집 재량권을 보유하며, 커뮤니티 가치와 충돌하는 광고는 게재를 거절할 수 있습니다. 거절 시 전액 환불합니다.<br><br>
-<strong>제5조 (환불 정책)</strong><br>
-검수 거절: 전액 환불 / 광고주 사유 취소: 잔여 기간 50% 환불 / 약관 위반 중단: 환불 없음<br><br>
-<strong>제6조 (면책)</strong><br>
-회사는 광고 내용의 사실 여부에 대한 책임을 지지 않습니다. 광고주가 제공한 정보의 정확성에 대한 책임은 광고주에게 있습니다.<br><br>
-<strong>제7조 (준거법)</strong><br>
-이 약관은 Washington State 법률에 따릅니다.`
-  },
-  privacy: {
-    title: '개인정보처리방침',
-    content: `<strong style="font-size:14px;color:#C9A227;">개인정보처리방침</strong><br><br>
-HebronGuide LLC는 광고 신청 과정에서 수집된 개인정보를 다음과 같이 처리합니다.<br><br>
-<strong>수집 항목</strong><br>
-업소명, 주소, 전화번호, 이메일, 웹사이트, 광고 관련 정보<br><br>
-<strong>수집 목적</strong><br>
-광고 검수 및 게재, 결제 안내, 광고 리포트 발송<br><br>
-<strong>보유 기간</strong><br>
-계약 종료 후 1년 / 법적 의무 보존 기간 준수<br><br>
-<strong>제3자 제공</strong><br>
-원칙적으로 제3자에게 제공하지 않습니다. 법적 요구 시 예외 적용.<br><br>
-<strong>파기</strong><br>
-보유 기간 종료 시 안전하게 파기합니다.<br><br>
-문의: <a href="mailto:hebronplatform@gmail.com" style="color:#6EE7B7;">hebronplatform@gmail.com</a>`
-  },
-  nospam: {
-    title: '이메일 무단수집거부',
-    content: `<strong style="font-size:14px;color:#C9A227;">이메일 무단수집거부</strong><br><br>
-본 사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 그 밖의 기술적 장치를 이용하여 무단으로 수집되는 것을 거부합니다.<br><br>
-이를 위반 시 정보통신망법에 의해 형사처벌을 받을 수 있습니다.<br><br>
-<em style="color:rgba(236,253,245,0.5);">※ 게시일: 2026년 1월 1일</em>`
-  },
-  disclaimer: {
-    title: '책임의 한계와 법적고지',
-    content: `<strong style="font-size:14px;color:#C9A227;">책임의 한계와 법적고지</strong><br><br>
-<strong>광고 내용 책임</strong><br>
-HebronGuide는 광고주가 제공한 정보를 바탕으로 광고를 제작합니다. 광고 내용의 사실 여부에 대한 최종 책임은 광고주에게 있습니다.<br><br>
-<strong>편집 재량권</strong><br>
-HebronGuide는 커뮤니티 가치 및 편집 기준에 따라 광고 게재 여부를 독립적으로 결정할 권리를 보유합니다.<br><br>
-<strong>서비스 중단</strong><br>
-기술적 문제, 천재지변 등 불가항력으로 인한 서비스 중단 시 책임을 지지 않습니다.<br><br>
-<strong>법적 고지</strong><br>
-본 서비스는 미국 Washington State 법률을 준거법으로 합니다. 분쟁 발생 시 이메일 협의를 우선합니다.`
-  },
-  adstandards: {
-    title: '광고 게재 기준',
-    content: `<strong style="font-size:14px;color:#C9A227;">광고 게재 기준</strong><br><br>
-HebronGuide는 한인 커뮤니티를 위한 신뢰 플랫폼으로서, 아래 기준에 따라 광고 게재 여부를 결정합니다.<br><br>
-<strong>✅ 게재 가능</strong><br>
-· 한인이 운영하는 업소<br>
-· 한인 커뮤니티를 주요 고객으로 섬기는 서비스<br>
-· 사실에 근거한 정직한 광고<br>
-· 커뮤니티의 정착·생활·문화에 도움이 되는 서비스<br><br>
-<strong>🚫 게재 불가 (내용 기준)</strong><br>
-· 업소·단체의 실제 성격을 숨기거나 다르게 표현한 광고<br>
-· 검증 불가한 효능·치유·구원을 주장하는 광고<br>
-· 가입·모집이 주목적인 광고<br>
-· 허위·과장·오해를 유발하는 표현<br>
-· 특정 집단에 대한 차별·혐오 표현<br>
-· 도박·성인·유흥·불법 상품<br><br>
-<em style="color:rgba(236,253,245,0.5);">HebronGuide는 편집 재량권을 가진 비공개 선별 플랫폼입니다.</em>`
-  }
-};
+<!-- 신청 폼 -->
+<div class="container">
+  <div class="form-card" id="formCard">
+    <div class="form-title">📋 무료 광고 등재 신청</div>
+    <div class="form-sub">
+      아래 정보를 입력해 주시면 담당자가 연락드려<br>
+      광고 내용을 함께 만들어 드립니다.
+    </div>
 
-function showLegal(type) {
-  const doc = LEGAL_DOCS[type];
-  if (!doc) return;
-  document.getElementById('legalContent').innerHTML = doc.content;
-  document.getElementById('legalModal').style.display = 'block';
-  document.body.style.overflow = 'hidden';
-  event.preventDefault();
-}
-
-function closeLegal(e) {
-  if (e && e.target !== document.getElementById('legalModal') && !e.currentTarget?.querySelector?.('button')) return;
-  document.getElementById('legalModal').style.display = 'none';
-  document.body.style.overflow = '';
-}
-
-/* ─── 실시간 금지어 감지 ─── */
-// 특정 단체명이 아닌 행위·표현 기준으로만 감지 (법적 안전)
-const BANNED_PATTERNS = [
-  { pattern: /100% 보장|절대 효과|완치 보장|기적 치유|무조건 효과/i, msg: '검증 불가한 효능·효과 표현은 사용할 수 없습니다' },
-  { pattern: /fifa 공식|bts 공식|nfl 공식|nba 공식/i, msg: '공인되지 않은 공식 파트너 표시는 사용할 수 없습니다' },
-  { pattern: /지금 당장 가입|회원 모집|등록하세요.*구원|구원.*등록/i, msg: '가입·모집이 주목적인 표현은 허용되지 않습니다' },
-  { pattern: /한국인만|한인 전용|외국인 출입금지|특정 민족만/i, msg: '특정 집단을 배제하는 표현은 허용되지 않습니다' },
-  { pattern: /도박|카지노|성인|유흥|총기|무기/i, msg: '해당 업종의 광고는 게재되지 않습니다' },
-];
-
-function checkEthicsRealtime(el) {
-  const val = el.value;
-  let warnEl = el.nextElementSibling;
-  if (!warnEl || !warnEl.classList.contains('ethics-warn')) {
-    warnEl = document.createElement('div');
-    warnEl.className = 'ethics-warn';
-    warnEl.style.cssText = 'font-size:10px;color:#F87171;margin-top:4px;padding:6px 10px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:6px;display:none;';
-    el.parentNode.insertBefore(warnEl, el.nextSibling);
-  }
-  const found = BANNED_PATTERNS.find(p => p.pattern.test(val));
-  if (found) {
-    warnEl.textContent = '⚠️ ' + found.msg;
-    warnEl.style.display = 'block';
-    el.style.borderColor = '#EF4444';
-  } else {
-    warnEl.style.display = 'none';
-    el.style.borderColor = '';
-  }
-}
-
-/* ─── 스텝 네비게이션 ─── */
-let currentStep = 1;
-
-function goStep(n) {
-  if (n > currentStep && !validateStep(currentStep)) return;
-  document.getElementById(`step${currentStep}`).style.display = 'none';
-  currentStep = n;
-  document.getElementById(`step${n}`).style.display = 'block';
-  updateStepUI();
-  if (n === 4) buildSummary();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function updateStepUI() {
-  for (let i = 1; i <= 4; i++) {
-    const dot = document.getElementById(`dot${i}`);
-    dot.className = 'step-dot ' + (i < currentStep ? 'done' : i === currentStep ? 'active' : 'pending');
-    dot.textContent = i < currentStep ? '✓' : i;
-    if (i < 4) {
-      const line = document.getElementById(`line${i}`);
-      line.className = 'step-line' + (i < currentStep ? ' done' : '');
-    }
-  }
-}
-
-function validateStep(n) {
-  if (n === 1) {
-    const name = document.querySelector('[name=businessName]').value.trim();
-    const type = document.querySelector('[name=businessType]').value;
-    const city = document.getElementById('citySelect');
-    const reach = document.querySelector('[name=adReach]:checked')?.value;
-    if (!name) { alert('업소명을 입력해 주세요.'); return false; }
-    if (!type) { alert('업소 종류를 선택해 주세요.'); return false; }
-    if (reach === 'local' && !city.value) { alert('도시를 선택해 주세요.'); return false; }
-  }
-  if (n === 2) {
-    const goal = document.querySelector('[name=adGoal]').value;
-    const cta = document.querySelector('[name=adCTA]').value;
-    const unique = document.querySelector('[name=uniqueValue]').value.trim();
-    const targets = document.querySelectorAll('[name=target]:checked');
-    if (!goal) { alert('광고 목적을 선택해 주세요.'); return false; }
-    if (targets.length === 0) { alert('타겟 고객을 최소 1개 선택해 주세요.'); return false; }
-    if (!cta) { alert('원하는 고객 행동을 선택해 주세요.'); return false; }
-    if (!unique) { alert('업소 강점을 입력해 주세요.'); return false; }
-  }
-  if (n === 3) {
-    const results = document.querySelectorAll('[name=expectedResults]:checked');
-    if (results.length === 0) { alert('기대 성과를 최소 1개 선택해 주세요.'); return false; }
-  }
-  return true;
-}
-
-function buildSummary() {
-  const get = (name) => document.querySelector(`[name="${name}"]`)?.value || '—';
-  const getChecked = (name) => [...document.querySelectorAll(`[name="${name}"]:checked`)].map(el => el.value).join(', ') || '—';
-
-  const rows = [
-    ['업소명', get('businessName')],
-    ['업소 종류', get('businessType')],
-    ['도시', get('city') || '(전체 — 미주/글로벌)'],
-    ['노출 범위', {'local':'📍 도시 노출','global':'🌐 전체 노출'}[get('adReach')] || '—'],
-    ['광고 목적', get('adGoal')],
-    ['타겟 고객', getChecked('target')],
-    ['원하는 행동', get('adCTA')],
-    ['특별 혜택', get('specialOffer') || '없음'],
-    ['업소 분위기', getChecked('vibe') || '—'],
-    ['업소 강점', get('uniqueValue')],
-    ['기대 성과', getChecked('expectedResults')],
-    ['목표 신규 고객', get('expectedCustomers') || '—'],
-    ['광고 기간', {'0.5':'1주','1':'1개월','2.4':'3개월','2':'월드컵 시즌'}[get('adDuration')] || '—'],
-    ['광고 플랜', document.getElementById(`plan${['budget1','budget2','budget3'].indexOf(document.querySelector('[name=budget]:checked')?.id)+1}Label`)?.textContent || '—'],
-    ['예상 광고비', document.getElementById('calcTotal')?.textContent || '—'],
-  ];
-
-  document.getElementById('summaryContent').innerHTML = rows.map(([k, v]) => `
-    <div class="summary-row">
-      <span class="summary-label">${k}</span>
-      <span class="summary-val">${v}</span>
-    </div>`).join('');
-}
-
-/* ─── 노출 범위 UI ─── */
-// 2단계: 도시 노출 vs 전체 노출
-const PLANS = {
-  local:  { prices:['$50','$100','$200'],  labels:['기본','우선 노출','🥇 골드'], note:'📍 도시 노출: 선택한 도시 페이지에만 표시됩니다' },
-  global: { prices:['$200','$350','$500'], labels:['기본','우선 노출','🥇 골드'], note:'🌐 전체 노출: 전체 도시 최상단 배너에 고정됩니다' },
-};
-const REACH_STYLES = {
-  local:  { id:'localLabel',  border:'#6EE7B7', bg:'rgba(110,231,183,0.08)' },
-  global: { id:'globalLabel', border:'#C9A227', bg:'rgba(201,162,39,0.12)'  },
-};
-
-function updateReachUI() {
-  const reach = document.querySelector('[name=adReach]:checked')?.value || 'local';
-  const plan = PLANS[reach] || PLANS.local;
-  const citySelect = document.getElementById('citySelect');
-  const cityNote = document.getElementById('cityNote');
-
-  Object.values(REACH_STYLES).forEach(s => {
-    const el = document.getElementById(s.id);
-    if (el) { el.style.borderColor='rgba(255,255,255,0.1)'; el.style.background='rgba(255,255,255,0.04)'; }
-  });
-  const sel = REACH_STYLES[reach];
-  if (sel) {
-    const el = document.getElementById(sel.id);
-    if (el) { el.style.borderColor=sel.border; el.style.background=sel.bg; }
-  }
-
-  citySelect.disabled = reach !== 'local';
-  citySelect.style.opacity = reach === 'local' ? '1' : '0.35';
-  cityNote.textContent = reach === 'local'
-    ? '📍 선택한 도시 페이지를 방문하는 사용자에게만 표시됩니다'
-    : '🌐 HebronGuide 전체 도시 최상단에 노출됩니다 (인터넷 = 전 세계 접근 가능)';
-
-  [1,2,3].forEach(i => {
-    document.getElementById(`plan${i}Price`).textContent = plan.prices[i-1];
-    document.getElementById(`plan${i}Label`).textContent = plan.labels[i-1];
-    document.getElementById(`budget${i}`).value = plan.labels[i-1];
-  });
-  document.getElementById('budget1').checked = true;
-  document.getElementById('planNote').textContent = plan.note;
-  calcTotal();
-}
-
-/* ─── 시즌 UI ─── */
-const SEASON_IDS = { '1.0':'seasonRegular','1.2':'seasonEvent','1.3':'seasonHoliday','1.5':'seasonWorldCup' };
-const SEASON_COLORS = { '1.0':'#6EE7B7','1.2':'#A78BFA','1.3':'#FCD34D','1.5':'#F87171' };
-const SEASON_LABELS = { '1.0':'일반 시즌','1.2':'기타 행사 +20%','1.3':'설날·추석 +30%','1.5':'월드컵·올림픽 +50%' };
-
-function updateSeasonUI() {
-  const season = document.querySelector('[name=adSeason]:checked')?.value || '1.0';
-  Object.entries(SEASON_IDS).forEach(([val,id]) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const sel = val === season;
-    el.style.borderColor = sel ? SEASON_COLORS[val] : 'rgba(255,255,255,0.1)';
-    el.style.background = sel ? `${SEASON_COLORS[val]}18` : 'rgba(255,255,255,0.04)';
-  });
-  calcTotal();
-}
-
-/* ─── 금액 계산 ─── */
-// duration value = 실효 배율 (할인 적용 후). months·discount는 표시용
-const DURATION_META = {
-  '0.5': { label:'1주',            months:0.5,  discount:0    },
-  '1':   { label:'1개월',          months:1,    discount:0    },
-  '2.4': { label:'3개월',          months:3,    discount:0.20 },
-  '4.5': { label:'6개월',          months:6,    discount:0.25 },
-  '8.0': { label:'12개월 (연간)',  months:12,   discount:0.33 },
-  '2':   { label:'월드컵 시즌',    months:2,    discount:0    },
-};
-
-function calcTotal() {
-  const checked = document.querySelector('[name=budget]:checked');
-  const dur = document.getElementById('adDuration');
-  if (!checked || !dur) return;
-  const idx = ['budget1','budget2','budget3'].indexOf(checked.id) + 1;
-  const priceText = document.getElementById(`plan${idx}Price`)?.textContent || '$50';
-  const labelText = document.getElementById(`plan${idx}Label`)?.textContent || '';
-  const monthly = parseInt(priceText.replace(/[^0-9]/g,''), 10);
-  const durKey = dur.value;
-  const meta = DURATION_META[durKey] || { label:durKey, months:parseFloat(durKey), discount:0 };
-  const season = parseFloat(document.querySelector('[name=adSeason]:checked')?.value || '1.0');
-  const seasonLabel = SEASON_LABELS[String(season)] || '';
-
-  const beforeDiscount = monthly * meta.months;
-  const savedByDuration = Math.round(beforeDiscount * meta.discount);
-  const afterDuration = Math.round(beforeDiscount - savedByDuration);  // = monthly × parseFloat(durKey)
-  const total = Math.round(afterDuration * season);
-  const seasonExtra = total - afterDuration;
-
-  document.getElementById('calcPlanDesc').textContent = `${labelText} ${priceText}/월`;
-  document.getElementById('calcPlanAmt').textContent = priceText;
-
-  const discountText = meta.discount > 0
-    ? `× ${meta.months}개월  →  ${Math.round(meta.discount*100)}% 할인`
-    : `× ${meta.label}`;
-  document.getElementById('calcDurationDesc').textContent = discountText;
-  document.getElementById('calcDiscountAmt').textContent = meta.discount > 0 ? `-$${savedByDuration}` : '';
-
-  const seasonRow = document.getElementById('calcSeasonRow');
-  if (season !== 1.0 && seasonRow) {
-    seasonRow.style.display = 'flex';
-    document.getElementById('calcSeasonDesc').textContent = `🔥 ${seasonLabel}`;
-    document.getElementById('calcSeasonAmt').textContent = `+$${seasonExtra}`;
-  } else if (seasonRow) { seasonRow.style.display = 'none'; }
-
-  document.getElementById('calcTotal').textContent = `$${total}`;
-  checked.value = `$${total} — ${labelText} × ${meta.label} × ${seasonLabel}`;
-}
-
-/* ─── 웹사이트 없음 ─── */
-function toggleNoWebsite(cb) {
-  const input = document.getElementById('websiteInput');
-  const card = document.getElementById('hebronWebCard');
-  input.disabled = cb.checked;
-  input.value = cb.checked ? '' : input.value;
-  input.style.opacity = cb.checked ? '0.3' : '1';
-  card.style.display = cb.checked ? 'block' : 'none';
-}
-
-/* ─── 폼 제출 + 광고 생성 ─── */
-const form = document.getElementById('adForm');
-const submitBtn = document.getElementById('submitBtn');
-const resultDiv = document.getElementById('result');
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  submitBtn.disabled = true;
-  submitBtn.textContent = '⏳ 광고 생성 중...';
-  resultDiv.innerHTML = '';
-
-  // 체크박스 복수 값 수집
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData);
-  data.target = [...document.querySelectorAll('[name=target]:checked')].map(el => el.value).join(', ');
-  data.vibe = [...document.querySelectorAll('[name=vibe]:checked')].map(el => el.value).join(', ');
-  data.expectedResults = [...document.querySelectorAll('[name=expectedResults]:checked')].map(el => el.value).join(', ');
-
-  try {
-    const res = await fetch('/api/ad-generator', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    const result = await res.json();
-
-    if (!result.success) {
-      resultDiv.innerHTML = `<div class="error"><strong>⚠️ 오류:</strong> ${result.error || '알 수 없는 오류'}<br>${result.issues ? result.issues.join('<br>') : ''}</div>`;
-      submitBtn.disabled = false;
-      submitBtn.textContent = '📩 광고 신청하기';
-      return;
-    }
-
-    const ad = result.generated;
-    resultDiv.innerHTML = `
-      <div class="result">
-        <div class="result-title">✅ 광고 생성 완료!</div>
-
-        <div class="ad-block">
-          <div class="lang-tag">한국어</div>
-          <div class="ad-headline">${ad.headline_ko || ''}</div>
-          <div class="ad-copy">${ad.copy_ko || ''}</div>
-        </div>
-        <div class="ad-block">
-          <div class="lang-tag">English</div>
-          <div class="ad-headline">${ad.headline_en || ''}</div>
-          <div class="ad-copy">${ad.copy_en || ''}</div>
-        </div>
-        <div class="ad-block">
-          <div class="lang-tag">Español</div>
-          <div class="ad-headline">${ad.headline_es || ''}</div>
-          <div class="ad-copy">${ad.copy_es || ''}</div>
-        </div>
-
-        <div class="qr-wrap">
-          <p style="font-size:11px;color:rgba(236,253,245,0.6);margin-bottom:8px;">QR 코드 — 광고에 자동 삽입됩니다</p>
-          <img src="${result.qr.qrImageUrl}" alt="QR Code" />
-          <p style="font-size:10px;color:rgba(236,253,245,0.4);margin-top:6px;">${result.qr.url}</p>
-        </div>
-
-        <div style="background:rgba(0,0,0,0.3);padding:12px;border-radius:8px;font-size:11px;color:rgba(236,253,245,0.65);line-height:1.8;">
-          📌 <strong>다음 단계</strong><br>
-          1. HebronGuide 검수팀이 48시간 내 확인합니다<br>
-          2. 승인 후 선택하신 슬롯에 게시됩니다<br>
-          3. 결제 안내가 발송됩니다<br>
-          4. 광고 ID: <code style="color:#6EE7B7;">${result.adId}</code>
-        </div>
+    <!-- 신청자 정보 -->
+    <div class="field-row">
+      <div class="field" id="f-name">
+        <label>담당자 이름 <span class="req">*</span></label>
+        <input type="text" id="adName" placeholder="홍길동">
+        <div class="error-msg">이름을 입력해 주세요</div>
       </div>
-    `;
-    submitBtn.textContent = '✅ 신청 완료';
-    document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+      <div class="field" id="f-phone">
+        <label>전화번호 <span class="req">*</span></label>
+        <input type="tel" id="adPhone" placeholder="(214) 629-3066">
+        <div class="error-msg">전화번호를 입력해 주세요</div>
+      </div>
+    </div>
 
-  } catch (err) {
-    resultDiv.innerHTML = `<div class="error"><strong>⚠️ 네트워크 오류:</strong> ${err.message}</div>`;
-    submitBtn.disabled = false;
-    submitBtn.textContent = '📩 광고 신청하기';
-  }
-});
+    <div class="field" id="f-email">
+      <label>이메일 <span class="req">*</span></label>
+      <input type="email" id="adEmail" placeholder="example@email.com">
+      <div class="error-msg">올바른 이메일을 입력해 주세요</div>
+    </div>
 
-/* ─── 초기화 ─── */
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('localLabel').style.borderColor = '#6EE7B7';
-  document.getElementById('localLabel').style.background = 'rgba(110,231,183,0.08)';
-  document.getElementById('seasonRegular').style.borderColor = '#6EE7B7';
-  document.getElementById('seasonRegular').style.background = 'rgba(110,231,183,0.08)';
-  calcTotal();
-});
-</script>
+    <div class="field">
+      <label>웹사이트 <span class="opt">(선택)</span></label>
+      <input type="url" id="adWebsite" placeholder="https://...">
+    </div>
 
-<!-- ── 메인으로 돌아가기 ── -->
+    <div class="field" id="f-biz">
+      <label>업종 / 서비스 <span class="req">*</span></label>
+      <select id="adBiz">
+        <option value="">선택해 주세요</option>
+        <optgroup label="🍽️ 음식·외식">
+          <option value="한식당">한식당</option>
+          <option value="카페·베이커리">카페 · 베이커리</option>
+          <option value="기타 음식점">기타 음식점</option>
+        </optgroup>
+        <optgroup label="🏥 의료·건강">
+          <option value="한의원·침술">한의원 · 침술</option>
+          <option value="병원·클리닉">병원 · 클리닉</option>
+          <option value="약국">약국</option>
+        </optgroup>
+        <optgroup label="📚 교육">
+          <option value="학원·튜터링">학원 · 튜터링</option>
+          <option value="어학원">어학원</option>
+          <option value="유학원">유학원</option>
+        </optgroup>
+        <optgroup label="🏠 부동산·법률">
+          <option value="부동산">부동산</option>
+          <option value="법률·이민법">법률 · 이민법</option>
+          <option value="세무·회계">세무 · 회계</option>
+        </optgroup>
+        <optgroup label="✂️ 뷰티·생활">
+          <option value="미용실·네일">미용실 · 네일</option>
+          <option value="여행사">여행사</option>
+          <option value="보험">보험</option>
+        </optgroup>
+        <optgroup label="⛪ 교회·기관">
+          <option value="교회">교회</option>
+          <option value="한인회·커뮤니티">한인회 · 커뮤니티</option>
+          <option value="비영리단체">비영리단체</option>
+        </optgroup>
+        <optgroup label="🌎 기타">
+          <option value="기타">기타 (직접 기재)</option>
+        </optgroup>
+      </select>
+      <div class="error-msg">업종을 선택해 주세요</div>
+    </div>
+
+    <div class="field">
+      <label>상호명 / 단체명 <span class="req">*</span></label>
+      <input type="text" id="adBizName" placeholder="예: 시애틀 한인회 · 홍길동 한의원">
+    </div>
+
+    <div class="field">
+      <label>광고하고 싶은 내용 <span class="opt">(간단히)</span></label>
+      <textarea id="adContent" placeholder="예: 공항 픽업 서비스 운영, 한국어 진료 가능, 이민 서류 무료 상담..."></textarea>
+    </div>
+
+    <!-- 노출 도시 -->
+    <div class="field">
+      <label>주요 노출 도시 <span class="opt">(선택, 복수 가능)</span></label>
+      <div class="city-grid">
+        <label class="city-tag"><input type="checkbox" value="시애틀">🇺🇸 시애틀</label>
+        <label class="city-tag"><input type="checkbox" value="달라스">🇺🇸 달라스</label>
+        <label class="city-tag"><input type="checkbox" value="LA">🇺🇸 LA</label>
+        <label class="city-tag"><input type="checkbox" value="뉴욕">🇺🇸 뉴욕</label>
+        <label class="city-tag"><input type="checkbox" value="토론토">🇨🇦 토론토</label>
+        <label class="city-tag"><input type="checkbox" value="밴쿠버">🇨🇦 밴쿠버</label>
+        <label class="city-tag"><input type="checkbox" value="시카고">🇺🇸 시카고</label>
+        <label class="city-tag"><input type="checkbox" value="휴스턴">🇺🇸 휴스턴</label>
+        <label class="city-tag"><input type="checkbox" value="애틀랜타">🇺🇸 애틀랜타</label>
+        <label class="city-tag"><input type="checkbox" value="보스턴">🇺🇸 보스턴</label>
+        <label class="city-tag"><input type="checkbox" value="전체 도시">🌍 전체 도시</label>
+      </div>
+    </div>
+
+    <div class="hint-box">
+      <strong>✅ 홍보 기간 안내</strong><br>
+      2026년 10월 1일까지 완전 무료입니다.<br>
+      신청하시면 담당자가 직접 연락드려 광고 내용을 함께 만들어 드립니다.<br>
+      대신 <strong>HebronGuide를 주변에 자유롭게 알려 주세요</strong> — 그것이 전부입니다.
+    </div>
+
+    <div class="agree-item">
+      <input type="checkbox" id="agree1">
+      <label for="agree1">HebronGuide <a href="/terms.html" target="_blank" style="color:var(--gold);">이용약관</a> 및 <a href="/privacy.html" target="_blank" style="color:var(--gold);">개인정보처리방침</a>에 동의합니다</label>
+    </div>
+    <div class="agree-item">
+      <input type="checkbox" id="agree2">
+      <label for="agree2">HebronGuide를 주변 지인·커뮤니티에 소개하고 함께 퍼뜨리겠습니다 🌏</label>
+    </div>
+
+    <button class="btn-submit" onclick="submitAd()">✨ 무료 광고 등재 신청하기</button>
+  </div>
+
+  <!-- 성공 화면 -->
+  <div class="success" id="successBox">
+    <div class="success-icon">🎉</div>
+    <h2>신청이 접수되었습니다!</h2>
+    <p>
+      감사합니다. 담당자가 1~2 영업일 내에<br>
+      연락드려 광고 내용을 함께 만들어 드리겠습니다.<br><br>
+      <strong style="color:var(--mint);">HebronGuide를 주변에 알려 주시면<br>더 많은 한인이 혜택을 받습니다.</strong>
+    </p>
+
+    <div class="share-nudge">
+      <p><strong style="color:var(--mint);">지금 바로 공유해 주세요 🙌</strong></p>
+      <div class="sns-row">
+        <button class="sns-btn" onclick="shareKakao()">
+          <div class="sns-icon" style="background:#FEE500;">💬</div>
+          <span class="sns-label">카카오톡</span>
+        </button>
+        <button class="sns-btn" onclick="shareWhatsApp()">
+          <div class="sns-icon" style="background:#25D366;">📱</div>
+          <span class="sns-label">WhatsApp</span>
+        </button>
+        <button class="sns-btn" onclick="shareSMS()">
+          <div class="sns-icon" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);">✉️</div>
+          <span class="sns-label">문자</span>
+        </button>
+        <button class="sns-btn" onclick="copyLink()">
+          <div class="sns-icon" style="background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.4);">🔗</div>
+          <span class="sns-label" id="copyLabel">링크 복사</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 메인으로 돌아가기 -->
 <div style="text-align:center;padding:44px 24px 64px;border-top:1px solid rgba(255,255,255,0.07);background:#0d1117;">
-  <a href="/seattle/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:900;font-size:.95rem;font-family:'Noto Sans KR',sans-serif;letter-spacing:.01em;transition:background .2s;">
+  <a href="/seattle/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:900;font-size:.95rem;font-family:'Noto Sans KR',sans-serif;">
     ← &nbsp;HebronGuide 메인으로 돌아가기
   </a>
   <div style="margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
     <a href="/founding-partner.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">파트너 신청</a>
     <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/ad-request.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">광고 신청</a>
+    <a href="/city-request.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">도시 신청</a>
     <span style="color:rgba(255,255,255,0.12);">·</span>
     <a href="/about.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">소개</a>
-    <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/privacy.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">개인정보</a>
   </div>
   <div style="margin-top:14px;font-size:.67rem;color:rgba(236,253,245,0.18);font-family:'Noto Sans KR',sans-serif;">© 2026 HebronGuide LLC · hebronguide.com</div>
 </div>
+
+<script>
+// D-day
+(function(){
+  const d = Math.max(0, Math.ceil((new Date("2026-10-01").getTime() - Date.now()) / 86400000));
+  document.getElementById('ddayNum').textContent = 'D-' + d;
+})();
+
+// 공유
+const SHARE_URL = 'https://hebronguide.com/seattle/';
+const SHARE_TEXT = '📱 HebronGuide — 한인 이민자를 위한 디지털 환대 플랫폼. 44개+ 도시 정착 정보 무료 제공. 지금 바로 체험해 보세요!';
+
+function shareKakao() {
+  if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+    window.location.href = `kakaotalk://msg/send?msg=${encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL)}`;
+  } else {
+    navigator.clipboard?.writeText(SHARE_URL).then(() => alert('링크가 복사됐습니다. 카카오톡에 붙여넣기 하세요.'));
+  }
+}
+function shareWhatsApp() {
+  window.open(`https://wa.me/?text=${encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL)}`, '_blank');
+}
+function shareSMS() {
+  window.location.href = `sms:?body=${encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL)}`;
+}
+function copyLink() {
+  navigator.clipboard?.writeText(SHARE_URL).then(() => {
+    const lbl = document.getElementById('copyLabel');
+    if (lbl) { lbl.textContent = '✅ 복사됨'; setTimeout(() => lbl.textContent = '링크 복사', 2000); }
+  });
+}
+
+// 유효성 검사
+function validate() {
+  let ok = true;
+  const checks = [
+    {id:'adName',    el:'f-name',  fn: v => v.trim().length > 0},
+    {id:'adPhone',   el:'f-phone', fn: v => v.trim().length > 0},
+    {id:'adEmail',   el:'f-email', fn: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+    {id:'adBiz',     el:'f-biz',   fn: v => v !== ''},
+  ];
+  checks.forEach(({id, el, fn}) => {
+    const f = document.getElementById(el);
+    const v = document.getElementById(id)?.value || '';
+    if (!fn(v)) { f?.classList.add('error'); ok = false; }
+    else f?.classList.remove('error');
+  });
+  const bizName = document.getElementById('adBizName')?.value.trim();
+  if (!bizName) {
+    alert('상호명 또는 단체명을 입력해 주세요.'); ok = false;
+  }
+  if (!document.getElementById('agree1').checked || !document.getElementById('agree2').checked) {
+    alert('동의 항목을 모두 체크해 주세요.'); ok = false;
+  }
+  return ok;
+}
+
+// 선택 도시 수집
+function getSelectedCities() {
+  return Array.from(document.querySelectorAll('.city-grid input:checked')).map(el => el.value).join(', ') || '미선택';
+}
+
+// 제출
+function submitAd() {
+  if (!validate()) return;
+
+  const body = `[HebronGuide 무료 광고 등재 신청]
+
+담당자: ${document.getElementById('adName').value}
+전화: ${document.getElementById('adPhone').value}
+이메일: ${document.getElementById('adEmail').value}
+웹사이트: ${document.getElementById('adWebsite').value.trim() || '없음'}
+업종: ${document.getElementById('adBiz').value}
+상호명: ${document.getElementById('adBizName').value}
+광고 내용: ${document.getElementById('adContent').value.trim() || '담당자와 협의 예정'}
+노출 도시: ${getSelectedCities()}
+
+— hebronguide.com | 홍보 기간 무료 등재 신청`;
+
+  const subject = `[HebronGuide] 무료 광고 신청 — ${document.getElementById('adBizName').value}`;
+  window.location.href = `mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  document.getElementById('formCard').style.display = 'none';
+  document.getElementById('successBox').classList.add('show');
+}
+</script>
 </body>
 </html>
