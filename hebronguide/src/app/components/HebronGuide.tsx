@@ -15047,7 +15047,7 @@ function DesktopSidebar({ activeTab, onNavigate }: { activeTab: number; onNaviga
   const { lang } = useI18n();
   const city = useCityConfig();
   const ko = lang === "ko";
-  const NAV_ITEMS = [
+  const SIDEBAR_ITEMS = [
     { tab: 0,  emoji: "🏠", labelKo: "홈",    labelEn: "Home" },
     { tab: 1,  emoji: "🛬", labelKo: "정착",  labelEn: "Settle" },
     { tab: 2,  emoji: "⛪", labelKo: "교회",  labelEn: "Church" },
@@ -15070,7 +15070,7 @@ function DesktopSidebar({ activeTab, onNavigate }: { activeTab: number; onNaviga
       </div>
       {/* 네비게이션 */}
       <nav style={{ flex: 1, padding: "12px 8px", overflowY: "auto" }}>
-        {NAV_ITEMS.map(item => {
+        {SIDEBAR_ITEMS.map(item => {
           const isActive = activeTab === item.tab;
           return (
             <button key={item.tab} onClick={() => onNavigate(item.tab)}
@@ -15466,6 +15466,17 @@ const MORE_SECTIONS = [
   { icon: BookOpen,     labelKo: "한국학교",  labelEn: "K-School",     tab: 7, subTab: 5, color: "#BE185D" },
   { icon: Vote,         labelKo: "Korean Am.", labelEn: "Korean Am.",  tab: 5, subTab: 6, color: "#2563EB" },
 ];
+
+/* ─────────────────────────────────────────
+   하단 네비 5개 탭 — 모듈 레벨 (BottomNav + DesktopSidebar 공유)
+───────────────────────────────────────── */
+const NAV_ITEMS = [
+  { id: "home",    tab: 0,  icon: Home,       labelKo: "홈",    labelEn: "Home"    },
+  { id: "settle",  tab: 1,  icon: Users,      labelKo: "정착",  labelEn: "Settle"  },
+  { id: "explore", tab: 4,  icon: Map,        labelKo: "탐방",  labelEn: "Explore" },
+  { id: "help",    tab: 5,  icon: HeartPulse, labelKo: "도움",  labelEn: "Help"    },
+  { id: "more",    tab: -1, icon: Grid,       labelKo: "더보기", labelEn: "More"   },
+] as const;
 
 interface BottomNavProps {
   activeIndex: number;
