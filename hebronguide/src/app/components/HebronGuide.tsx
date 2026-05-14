@@ -7557,6 +7557,85 @@ function EmergencyRow({ emoji, title, number, desc }: { emoji: string; title: st
    — 언제 어디서든 홈으로 돌아올 수 있는 길
 ───────────────────────────────────────── */
 /* ─────────────────────────────────────────
+   도시 확장 신청 폼
+───────────────────────────────────────── */
+function CityRequestForm({ lang }: { lang: string }) {
+  const ko = lang === "ko";
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = () => {
+    if (!name.trim() || !email.trim() || !city.trim()) return;
+    const subject = encodeURIComponent(ko ? "[HebronGuide] 도시 추가 요청" : "[HebronGuide] City Expansion Request");
+    const body = encodeURIComponent(
+      ko
+        ? `안녕하세요.\n${name}입니다.\n내가 사는 도시에 HebronGuide를 만들어 주세요.\n\n— 이름: ${name}\n— 이메일: ${email}\n— 도시 (주/국가 포함): ${city}\n\nhebronguide.com`
+        : `Hello,\nMy name is ${name}.\nI'd love to have HebronGuide in my city.\n\n— Name: ${name}\n— Email: ${email}\n— City (State/Country): ${city}\n\nhebronguide.com`
+    );
+    window.open(`mailto:hebronplatform@gmail.com?subject=${subject}&body=${body}`, "_blank");
+    setSent(true);
+    setTimeout(() => setSent(false), 4000);
+  };
+
+  const inputStyle: React.CSSProperties = {
+    width: "100%", padding: "11px 14px",
+    background: "rgba(255,255,255,0.06)",
+    border: "1px solid rgba(255,255,255,0.12)",
+    borderRadius: 10, color: "#ECFDF5",
+    fontFamily: "Manrope,sans-serif", fontSize: 13,
+    outline: "none", marginBottom: 8, boxSizing: "border-box",
+  };
+
+  return (
+    <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(110,231,183,0.18)", borderRadius: 14, padding: "16px", marginBottom: 12 }}>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#6EE7B7", marginBottom: 6 }}>
+        🌏 {ko ? "내 도시에도 HebronGuide를 만들어 주세요" : "Bring HebronGuide to My City"}
+      </div>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.6)", lineHeight: 1.7, marginBottom: 12 }}>
+        {ko
+          ? "아직 HebronGuide가 없는 도시라면 신청해 주세요.\n이름과 이메일을 남겨 주시면 담당자가 연락드립니다."
+          : "If HebronGuide isn't in your city yet, let us know.\nLeave your name and email — we'll reach out to you."}
+      </div>
+      <input
+        style={inputStyle}
+        placeholder={ko ? "이름 / Name" : "Your Name"}
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <input
+        style={inputStyle}
+        placeholder={ko ? "이메일 / Email" : "Email Address"}
+        type="email"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+      />
+      <input
+        style={{ ...inputStyle, marginBottom: 12 }}
+        placeholder={ko ? "도시, 주/국가 (예: 오타와, ON, 캐나다)" : "City, State/Country (e.g. Ottawa, ON, Canada)"}
+        value={city}
+        onChange={e => setCity(e.target.value)}
+      />
+      <button
+        onClick={handleSubmit}
+        style={{
+          width: "100%", padding: "12px",
+          background: sent ? "rgba(110,231,183,0.2)" : "rgba(110,231,183,0.15)",
+          border: `1px solid rgba(110,231,183,${sent ? "0.5" : "0.3"})`,
+          borderRadius: 10, cursor: "pointer",
+          fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13,
+          color: "#6EE7B7",
+        }}>
+        {sent
+          ? (ko ? "✅ 신청이 전달되었습니다!" : "✅ Request Sent!")
+          : (ko ? "도시 추가 요청하기 →" : "Request My City →")}
+      </button>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
    헤브론 서비스 카드 — 각 탭에 자연스럽게 삽입
    서비스들은 한 곳에 모으지 않고 맥락에 맞는 탭에 분산 배치
 ───────────────────────────────────────── */
@@ -10489,7 +10568,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               lang === "ko"
                 ? "안녕하세요. {교회명} 담임목사 {성함}입니다.\nHebronGuide의 선물에 감사드리며 기꺼이 받겠습니다.\n\n— 교회명:\n— 담임목사:\n— 도시 / 주:\n— 교단 / 소속:\n— 교회 웹사이트:\n— 연락처 (이메일 / 전화):\n\n마 25:35 \"내가 나그네 되었을 때 너희가 영접하였다\"\nhebronguide.com"
                 : "Hello. I am {Pastor Name}, lead pastor of {Church Name}.\nWe gratefully accept HebronGuide\'s gift.\n\n— Church Name:\n— Lead Pastor:\n— City / State:\n— Denomination:\n— Website:\n— Contact (email / phone):\n\nMatt 25:35 — \"I was a stranger and you welcomed me.\"\nhebronguide.com"
-            )}`} style={{ display: "block", textDecoration: "none" }}>
+            )}`} style={{ display: "block", textDecoration: "none", marginBottom: 12 }}>
               <div style={{ background: "linear-gradient(135deg, #C9A227, #B8901C)", borderRadius: 14, padding: "14px 20px", textAlign: "center", boxShadow: "0 4px 16px rgba(201,162,39,0.28)" }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 3 }}>
                   🎁 {lang === "ko" ? "선물 감사히 받겠습니다 →" : "We Gratefully Accept This Gift →"}
@@ -10499,6 +10578,16 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 </div>
               </div>
             </a>
+
+            {/* 도시 확장 신청 */}
+            <CityRequestForm lang={lang} />
+
+            {/* 하나님 영광 푸터 */}
+            <div style={{ textAlign: "center", padding: "8px 0 4px", fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.28)", fontStyle: "italic", letterSpacing: "0.04em" }}>
+              {lang === "ko"
+                ? "HebronGuide는 세상 속에서 하나님의 영광을 드러내기를 원합니다."
+                : "HebronGuide exists to reveal the glory of God in the world."}
+            </div>
 
           </div>
         )}
