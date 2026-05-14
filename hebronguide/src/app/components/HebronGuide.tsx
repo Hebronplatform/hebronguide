@@ -10582,11 +10582,9 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* 도시 확장 신청 */}
             <CityRequestForm lang={lang} />
 
-            {/* 하나님 영광 푸터 */}
-            <div style={{ textAlign: "center", padding: "8px 0 4px", fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.28)", fontStyle: "italic", letterSpacing: "0.04em" }}>
-              {lang === "ko"
-                ? "HebronGuide는 세상 속에서 하나님의 영광을 드러내기를 원합니다."
-                : "HebronGuide exists to reveal the glory of God in the world."}
+            {/* 하나님 영광 — 고전 10:31 */}
+            <div style={{ textAlign: "center", padding: "8px 0 4px", fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.25)", letterSpacing: "0.08em" }}>
+              {lang === "ko" ? "고린도전서 10:31" : "1 Corinthians 10:31"}
             </div>
 
           </div>
