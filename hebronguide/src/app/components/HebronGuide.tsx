@@ -6152,36 +6152,232 @@ function getSettleSteps(citySlug: string) {
     atlanta: "Airbnb\nDuluth/Gwinnett",
     mexicocity: "Airbnb\nZona Rosa area",
   };
+  const cc = getCountryCode(citySlug);
+  // SIM 카드 — 나라별 추천 통신사
+  const simKo = cc === "CA" ? "Public Mobile\n$27~30/월" : cc === "AU" ? "ALDI Mobile\n마트 즉시 구매"
+    : cc === "JP" ? "IIJmio·Rakuten\n저렴한 요금제" : cc === "KR" ? "알뜰폰 요금제\n번호이동 가능"
+    : cc === "UK" ? "giffgaff·Lebara\n국제전화 저렴" : cc === "DE" ? "Aldi Talk·Lebara\n슈퍼마켓 즉시"
+    : cc === "MX" ? "Telcel 선불\nOXXO 편의점" : "T-Mobile 공항\n$30/월";
+  const simEn = cc === "CA" ? "Public Mobile\n$27–30/mo" : cc === "AU" ? "ALDI Mobile\nbuy at supermarket"
+    : cc === "JP" ? "IIJmio / Rakuten\nbudget plans" : cc === "KR" ? "MVNO plans\nport your number"
+    : cc === "UK" ? "giffgaff / Lebara\ncheap intl calls" : cc === "DE" ? "Aldi Talk / Lebara\nat supermarkets"
+    : cc === "MX" ? "Telcel prepaid\nbuy at OXXO" : "T-Mobile airport\n$30/mo";
+  // ID 번호 — 나라별 용어
+  const idKo = cc === "CA" ? "SIN 신청\nService Canada" : cc === "AU" ? "TFN 신청\nATO 온라인"
+    : cc === "JP" ? "마이넘버 신고\n구청 창구" : cc === "KR" ? "주민등록 재등록\n주민센터"
+    : cc === "UK" ? "NI 번호 신청\nHMRC" : cc === "DE" ? "Steuer-ID\n자동 우편"
+    : cc === "MX" ? "CURP 확인\nRENAPO 온라인" : "SSN 신청\n사회보장국";
+  const idEn = cc === "CA" ? "Apply for SIN\nService Canada" : cc === "AU" ? "Apply TFN\nATO online"
+    : cc === "JP" ? "Register My Number\nward office" : cc === "KR" ? "Re-register ID\ncommunity center"
+    : cc === "UK" ? "Apply NI Number\nHMRC" : cc === "DE" ? "Steuer-ID\nauto-mailed"
+    : cc === "MX" ? "Verify CURP\nRENAPO online" : "Apply for SSN\nSocial Security";
+  // 은행 — 나라별
+  const bankKo = cc === "CA" ? "Scotiabank·TD\n한인 지점 多" : cc === "AU" ? "Commonwealth\n공항 즉시 개설"
+    : cc === "JP" ? "Japan Post Bank\n외국인 허들 낮음" : cc === "KR" ? "카카오뱅크\n비대면 즉시"
+    : cc === "UK" ? "Monzo·Wise\n여권만 개설" : cc === "DE" ? "N26·Wise\nAnmeldung 불필요"
+    : cc === "MX" ? "BBVA·HSBC\n파스포트+CURP" : "Chase 추천\n여권만 OK";
+  const bankEn = cc === "CA" ? "Scotiabank / TD\nKorean-friendly" : cc === "AU" ? "Commonwealth\nopen at airport"
+    : cc === "JP" ? "Japan Post Bank\nlow barrier" : cc === "KR" ? "Kakaobank\ninstant online"
+    : cc === "UK" ? "Monzo / Wise\npassport only" : cc === "DE" ? "N26 / Wise\nno Anmeldung"
+    : cc === "MX" ? "BBVA / HSBC\npassport + CURP" : "Chase preferred\nPassport only";
   return [
-    { num: "1", emoji: "📱", titleKo: "SIM 카드",  titleEn: "SIM Card",       descKo: "공항 T-Mobile\n$30/월",       descEn: "Airport T-Mobile\n$30/mo",                                  color: "#F2994A" },
-    { num: "2", emoji: "🏠", titleKo: "임시 숙소", titleEn: "Housing",         descKo: housingKo[citySlug] ?? "에어비앤비\n한인타운 권장", descEn: housingEn[citySlug] ?? "Airbnb\nKoreatown area", color: "#7C3AED" },
-    { num: "3", emoji: "🏦", titleKo: "은행 계좌", titleEn: "Bank Account",    descKo: "Chase 추천\n여권만 OK",       descEn: "Chase preferred\nPassport only",                             color: "#2563EB" },
-    { num: "4", emoji: "🚗", titleKo: "운전면허", titleEn: "Driver License",   descKo: "한국어 필기\n가능",           descEn: "Korean test\navailable",                                     color: "#059669" },
-    { num: "5", emoji: "📋", titleKo: "SSN 신청", titleEn: "Apply SSN",        descKo: "사회보장국\n입국10일후",       descEn: "Social Security\n10 days after",                             color: "#EF4444" },
-    { num: "6", emoji: "💊", titleKo: "건강보험", titleEn: "Health Ins.",       descKo: healthInsKo[citySlug] ?? "건강보험\n소득기준 확인", descEn: healthInsEn[citySlug] ?? "Health insurance\nCheck eligibility", color: "#64748B" },
+    { num: "1", emoji: "📱", titleKo: "SIM 카드",  titleEn: "SIM Card",      descKo: simKo,  descEn: simEn,  color: "#F2994A" },
+    { num: "2", emoji: "🏠", titleKo: "임시 숙소", titleEn: "Housing",        descKo: housingKo[citySlug] ?? "에어비앤비\n한인타운 권장", descEn: housingEn[citySlug] ?? "Airbnb\nKoreatown area", color: "#7C3AED" },
+    { num: "3", emoji: "🏦", titleKo: "은행 계좌", titleEn: "Bank Account",   descKo: bankKo, descEn: bankEn, color: "#2563EB" },
+    { num: "4", emoji: "🚗", titleKo: cc === "KR" ? "면허 갱신" : "운전면허", titleEn: cc === "KR" ? "License Renewal" : "Driver License", descKo: "한국어 필기\n가능", descEn: "Korean test\navailable", color: "#059669" },
+    { num: "5", emoji: "📋", titleKo: cc === "CA" ? "SIN 신청" : cc === "AU" ? "TFN 신청" : cc === "JP" ? "마이넘버" : cc === "KR" ? "주민등록" : "SSN 신청",
+      titleEn: cc === "CA" ? "Apply SIN" : cc === "AU" ? "Apply TFN" : cc === "JP" ? "My Number" : cc === "KR" ? "Resident ID" : "Apply SSN",
+      descKo: idKo, descEn: idEn, color: "#EF4444" },
+    { num: "6", emoji: "💊", titleKo: "건강보험", titleEn: "Health Ins.",      descKo: healthInsKo[citySlug] ?? "건강보험\n소득기준 확인", descEn: healthInsEn[citySlug] ?? "Health insurance\nCheck eligibility", color: "#64748B" },
   ];
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   📋 DAY 1 도착 체크리스트 — 95% 전략 핵심
+   📋 DAY 1 도착 체크리스트 — 국가별 현지화
    새 이민자가 앱을 열면 바로 "오늘 해야 할 것들" 확인
-   1.5세대가 도착하는 가족에게 "이거 켜" 하고 보내주는 기능
+   정착지 나라에 맞는 기관·제도 용어로 자동 적용
 ═══════════════════════════════════════════════════════════════ */
-const DAY1_ITEMS = [
-  { id: "sim",      emoji: "📱", ko: "SIM 카드 등록",      en: "Get a SIM card",           sub_ko: "T-Mobile $30/월 추천",           sub_en: "T-Mobile $30/mo recommended" },
-  { id: "bank",     emoji: "🏦", ko: "은행 계좌 개설",      en: "Open a bank account",       sub_ko: "Chase·Bank of America 신분증 지참", sub_en: "Bring ID to Chase or BofA" },
-  { id: "housing",  emoji: "🏠", ko: "거주지 확정",         en: "Secure housing",             sub_ko: "에어비앤비 → 장기 렌트 순서로",   sub_en: "Airbnb → long-term rental" },
-  { id: "license",  emoji: "🚗", ko: "운전면허 전환",        en: "Transfer driver's license",  sub_ko: "입국 90일 이내 필수",             sub_en: "Required within 90 days" },
-  { id: "ssn",      emoji: "🪪", ko: "SSN 신청",             en: "Apply for SSN",              sub_ko: "입국 10일 후 가능",               sub_en: "Possible 10 days after arrival" },
-  { id: "health",   emoji: "🏥", ko: "건강보험 등록",        en: "Get health insurance",       sub_ko: "직장·Medicaid·마켓플레이스",      sub_en: "Work / Medicaid / Marketplace" },
-  { id: "school",   emoji: "📚", ko: "학교·학원 등록",       en: "School / ESL enrollment",    sub_ko: "공립 ESL 무료 운영",              sub_en: "Public ESL classes are free" },
-  { id: "doctor",   emoji: "👨‍⚕️", ko: "주치의 등록",        en: "Find a primary care doctor", sub_ko: "첫 방문 전 보험 확인 필수",       sub_en: "Confirm insurance before visit" },
-];
+
+// 나라 코드 감지
+function getCountryCode(slug: string): string {
+  if (["toronto","vancouver","calgary","edmonton","ottawa","winnipeg"].includes(slug)) return "CA";
+  if (["sydney","melbourne","brisbane","perth"].includes(slug))                          return "AU";
+  if (["auckland"].includes(slug))                                                        return "NZ";
+  if (["tokyo","osaka"].includes(slug))                                                   return "JP";
+  if (["seoul","busan"].includes(slug))                                                   return "KR";
+  if (["mexicocity","guadalajara","monterrey"].includes(slug))                            return "MX";
+  if (["london"].includes(slug))                                                          return "UK";
+  if (["frankfurt","berlin"].includes(slug))                                              return "DE";
+  if (["paris"].includes(slug))                                                           return "FR";
+  if (["dubai"].includes(slug))                                                           return "AE";
+  if (["singapore"].includes(slug))                                                       return "SG";
+  if (["bangkok"].includes(slug))                                                         return "TH";
+  if (["hochiminh"].includes(slug))                                                       return "VN";
+  if (["saopaulo"].includes(slug))                                                        return "BR";
+  return "US";
+}
+
+// 나라별 Day 1 체크리스트 — 현지 기관·제도 용어
+function getDayOneItems(slug: string) {
+  const cc = getCountryCode(slug);
+  return [
+    {
+      id: "sim", emoji: "📱",
+      ko: cc === "KR" ? "기존 번호 재개통 또는 알뜰폰" : "SIM 카드 등록",
+      en: cc === "KR" ? "Reactivate number or get MVNO" : "Get a SIM card",
+      sub_ko: cc === "CA" ? "Public Mobile·Koodo $27~30/월"
+            : cc === "AU" ? "ALDI Mobile·Woolworths 마트 즉시 구매"
+            : cc === "NZ" ? "Spark·One NZ 편의점 구매"
+            : cc === "JP" ? "IIJmio·Y!mobile·Rakuten Mobile"
+            : cc === "KR" ? "KT M모바일 등 번호이동 재개통"
+            : cc === "UK" ? "giffgaff·Lebara (한국 국제전화 저렴)"
+            : cc === "DE" ? "Aldi Talk·Lebara DE 슈퍼마켓 즉시"
+            : cc === "MX" ? "Telcel 선불 (OXXO 편의점)"
+            : cc === "SG" ? "Circles.Life·Giga 앱 기반 개통"
+            : "T-Mobile $30/월 추천",
+      sub_en: cc === "CA" ? "Public Mobile / Koodo ~$27–30/mo"
+            : cc === "AU" ? "ALDI Mobile / Woolworths — buy at supermarket"
+            : cc === "NZ" ? "Spark or One NZ — buy at convenience store"
+            : cc === "JP" ? "IIJmio / Y!mobile / Rakuten Mobile"
+            : cc === "KR" ? "Port your number or join MVNO"
+            : cc === "UK" ? "giffgaff / Lebara (cheap int'l calls)"
+            : cc === "DE" ? "Aldi Talk / Lebara DE at supermarkets"
+            : cc === "MX" ? "Telcel prepaid — buy at OXXO"
+            : cc === "SG" ? "Circles.Life / Giga — app-based setup"
+            : "T-Mobile $30/mo recommended",
+    },
+    {
+      id: "bank", emoji: "🏦",
+      ko: cc === "KR" ? "기존 계좌 재활성화" : "은행 계좌 개설",
+      en: cc === "KR" ? "Reactivate existing account" : "Open a bank account",
+      sub_ko: cc === "CA" ? "Scotiabank·TD·Koho — 한인 지점 多"
+            : cc === "AU" ? "Commonwealth Bank·Wise 병행 추천"
+            : cc === "NZ" ? "ANZ·Kiwibank 외국인 개설 가능"
+            : cc === "JP" ? "Japan Post Bank·Sony Bank — 외국인 허들 낮음"
+            : cc === "KR" ? "카카오뱅크 비대면 즉시 개설"
+            : cc === "UK" ? "Monzo·Wise — 여권만으로 즉시 개설"
+            : cc === "DE" ? "N26·Wise — Anmeldung 없이 개설 가능"
+            : cc === "MX" ? "BBVA·HSBC México — 파스포트+CURP"
+            : cc === "SG" ? "DBS·OCBC — Employment Pass 지참"
+            : "Chase·Bank of America — 신분증 지참",
+      sub_en: cc === "CA" ? "Scotiabank / TD / Koho — Korean-friendly branches"
+            : cc === "AU" ? "Commonwealth Bank + Wise for transfers"
+            : cc === "NZ" ? "ANZ or Kiwibank — foreigners welcome"
+            : cc === "JP" ? "Japan Post Bank / Sony Bank — low barrier"
+            : cc === "KR" ? "Kakaobank — non-face-to-face instant setup"
+            : cc === "UK" ? "Monzo / Wise — passport only, instant"
+            : cc === "DE" ? "N26 / Wise — no Anmeldung required"
+            : cc === "MX" ? "BBVA / HSBC México — passport + CURP"
+            : cc === "SG" ? "DBS / OCBC — bring Employment Pass"
+            : "Chase or Bank of America — bring ID",
+    },
+    {
+      id: "housing", emoji: "🏠",
+      ko: cc === "KR" ? "부동산 앱으로 월세 계약" : "거주지 확정",
+      en: cc === "KR" ? "Find rental via real estate app" : "Secure housing",
+      sub_ko: "에어비앤비 → 장기 렌트 순서로",
+      sub_en: "Airbnb → long-term rental",
+    },
+    {
+      id: "license", emoji: "🚗",
+      ko: cc === "KR" ? "운전면허 갱신·재발급" : "운전면허 전환",
+      en: cc === "KR" ? "Renew driver's license" : "Transfer driver's license",
+      sub_ko: cc === "CA" ? "ON·BC·AB 등 한국 면허 직접 교환 가능"
+            : cc === "AU" ? "주별 면허청 방문 — 한국 면허 인정 주 확인"
+            : cc === "JP" ? "JAF 번역 먼저 → 면허센터 방문 (한국 협정국)"
+            : cc === "KR" ? "운전면허시험장 방문 — 갱신·재발급"
+            : cc === "UK" ? "DVLA 온라인 교환 — 한국 면허 인정"
+            : cc === "DE" ? "Führerscheinstelle 방문 — 교환 가능"
+            : "입국 90일 이내 필수",
+      sub_en: cc === "CA" ? "ON/BC/AB: direct exchange with Korean license"
+            : cc === "AU" ? "Visit state road authority — check recognition"
+            : cc === "JP" ? "JAF translation → license center (Korea = treaty)"
+            : cc === "KR" ? "Visit driving license office for renewal"
+            : cc === "UK" ? "DVLA online exchange — Korean license accepted"
+            : cc === "DE" ? "Visit Führerscheinstelle — exchange possible"
+            : "Required within 90 days of arrival",
+    },
+    {
+      id: "id_number", emoji: "🪪",
+      ko: cc === "CA" ? "SIN 신청" : cc === "AU" ? "TFN 신청"
+        : cc === "NZ" ? "IRD 번호 신청" : cc === "JP" ? "마이넘버 신고"
+        : cc === "KR" ? "주민등록 재등록" : cc === "UK" ? "NI 번호 신청"
+        : cc === "DE" ? "Steuer-ID 자동 발급" : cc === "MX" ? "CURP 확인"
+        : cc === "SG" ? "FIN 자동 발급" : "SSN 신청",
+      en: cc === "CA" ? "Apply for SIN" : cc === "AU" ? "Apply for TFN"
+        : cc === "NZ" ? "Apply for IRD number" : cc === "JP" ? "Register My Number"
+        : cc === "KR" ? "Re-register Resident ID" : cc === "UK" ? "Apply for NI Number"
+        : cc === "DE" ? "Steuer-ID auto issued" : cc === "MX" ? "Verify CURP"
+        : cc === "SG" ? "FIN auto-issued" : "Apply for SSN",
+      sub_ko: cc === "CA" ? "Service Canada 방문 — 당일 발급"
+            : cc === "AU" ? "ATO 온라인 신청 — 우편 28일"
+            : cc === "NZ" ? "IRD 온라인 신청 — 10~15 영업일"
+            : cc === "JP" ? "구청 외국인 창구 방문 — 2~3주 우편"
+            : cc === "KR" ? "주민센터 방문 — 번호 기존 유지"
+            : cc === "UK" ? "HMRC/Jobcentre Plus — 인터뷰 필요"
+            : cc === "DE" ? "Anmeldung 후 2~4주 자동 우편 발송"
+            : cc === "MX" ? "RENAPO 온라인 확인 가능"
+            : cc === "SG" ? "비자 발급 시 자동 부여"
+            : "사회보장국 방문 — 입국 10일 후",
+      sub_en: cc === "CA" ? "Service Canada — same-day issue"
+            : cc === "AU" ? "Apply at ATO online — 28 days by mail"
+            : cc === "NZ" ? "IRD online — 10–15 business days"
+            : cc === "JP" ? "Ward office — mailed in 2–3 weeks"
+            : cc === "KR" ? "Community center — existing number kept"
+            : cc === "UK" ? "HMRC / Jobcentre Plus — interview may be needed"
+            : cc === "DE" ? "Auto-mailed 2–4 weeks after Anmeldung"
+            : cc === "MX" ? "Verify online at RENAPO"
+            : cc === "SG" ? "Auto-issued with your work visa"
+            : "Social Security Administration — 10 days after arrival",
+    },
+    {
+      id: "health", emoji: "🏥",
+      ko: "건강보험 등록",
+      en: "Get health insurance",
+      sub_ko: cc === "CA" ? "주정부 건강보험 (OHIP·MSP·RAMQ) 3개월 대기"
+            : cc === "AU" ? "Medicare ATO 등록 — 영주권자·시민권자"
+            : cc === "NZ" ? "ACC + 공공 의료 무료 (GP 등록 필요)"
+            : cc === "JP" ? "市区町村 창구 — 国民健康保険 등록"
+            : cc === "KR" ? "국민건강보험공단 — 귀국 후 자동 가입"
+            : cc === "UK" ? "NHS GP 등록 — 즉시 사용 가능"
+            : cc === "DE" ? "AOK·TK 등 공보험 — 직장 통해 자동"
+            : cc === "MX" ? "IMSS 자발 가입 (CURP 필수)"
+            : cc === "SG" ? "MediShield Life (영주권자) / 고용주 보험"
+            : "직장·Medicaid·마켓플레이스",
+      sub_en: cc === "CA" ? "Provincial plan (OHIP/MSP) — 3-month wait"
+            : cc === "AU" ? "Medicare via ATO — for PR/citizens"
+            : cc === "NZ" ? "Free public healthcare — register with GP"
+            : cc === "JP" ? "National Health Ins at ward office"
+            : cc === "KR" ? "NHIS — auto-enrolled after 6 months"
+            : cc === "UK" ? "Register with NHS GP — instant access"
+            : cc === "DE" ? "GKV (AOK/TK) — auto via employer"
+            : cc === "MX" ? "IMSS voluntary (CURP required)"
+            : cc === "SG" ? "MediShield Life (PR) / employer insurance"
+            : "Work / Medicaid / Marketplace",
+    },
+    {
+      id: "school", emoji: "📚",
+      ko: cc === "JP" ? "일본어 교실 등록" : cc === "KR" ? "한국 생활 재적응 프로그램" : "학교·어학원 등록",
+      en: cc === "JP" ? "Japanese language class" : cc === "KR" ? "Korean readaptation programs" : "School / ESL enrollment",
+      sub_ko: cc === "JP" ? "지자체 무료 일본어 강좌 활용" : cc === "KR" ? "지역 평생학습관·귀환 동포 지원" : "공립 ESL 무료 운영",
+      sub_en: cc === "JP" ? "Free Japanese classes at local municipality" : cc === "KR" ? "Community center returnee programs" : "Public ESL classes are free",
+    },
+    {
+      id: "doctor", emoji: "👨‍⚕️",
+      ko: cc === "KR" ? "한국 의료 시스템 재가입" : "주치의 등록",
+      en: cc === "KR" ? "Re-enter Korean medical system" : "Find a primary care doctor",
+      sub_ko: cc === "UK" ? "NHS GP 등록 — 주소 근처 GP 검색" : cc === "KR" ? "건강검진 예약 권장 (국가건강검진)" : "첫 방문 전 보험 확인 필수",
+      sub_en: cc === "UK" ? "Register with NHS GP near your address" : cc === "KR" ? "Schedule national health checkup" : "Confirm insurance before your first visit",
+    },
+  ];
+}
 
 function ArrivalChecklistSection({ lang }: { lang: string }) {
   const ko = lang === "ko";
+  const city = useCityConfig();
+  const DAY1_ITEMS = getDayOneItems(city.slug); // 정착지 나라에 맞는 항목 동적 생성
   const [checks, setChecks] = useState<Record<string, boolean>>(() => {
-    try { return JSON.parse(localStorage.getItem("hg_arrival_checklist") || "{}"); } catch { return {}; }
+    try { return JSON.parse(localStorage.getItem(`hg_arrival_checklist_${city.slug}`) || "{}"); } catch { return {}; }
   });
   const [collapsed, setCollapsed] = useState(() => {
     try { return localStorage.getItem("hg_checklist_collapsed") === "1"; } catch { return false; }
@@ -6190,7 +6386,7 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
   const toggle = (id: string) => {
     const next = { ...checks, [id]: !checks[id] };
     setChecks(next);
-    try { localStorage.setItem("hg_arrival_checklist", JSON.stringify(next)); } catch {}
+    try { localStorage.setItem(`hg_arrival_checklist_${city.slug}`, JSON.stringify(next)); } catch {}
   };
   const done = DAY1_ITEMS.filter(i => checks[i.id]).length;
   const total = DAY1_ITEMS.length;
