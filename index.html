@@ -531,7 +531,7 @@
     <!-- 통계 -->
     <div class="stats">
       <div class="stat">
-        <div class="stat-value">8</div>
+        <div class="stat-value">54</div>
         <div class="stat-label">도시 가이드</div>
       </div>
       <div class="stat">
@@ -549,83 +549,191 @@
     </div>
   </section>
 
-  <!-- 도시 벤토 그리드 -->
+  <!-- 도시 섹션 — 54개 전체 -->
   <section id="cities" class="cities-section">
     <div class="section-head">
-      <h2>도시를 선택하세요</h2>
-      <p>각 도시는 그 곳에 거주하는 한인이 직접 검증한 정보로 구성됩니다.</p>
+      <h2>전 세계 <span style="color:var(--accent-gold)">54개 도시</span></h2>
+      <p>한인이 사는 곳이라면 어디든. 도시를 선택하세요.</p>
     </div>
 
-    <nav class="bento" aria-label="도시별 가이드">
-      <a href="/seattle/" class="city-card featured" data-city="seattle">
-        <div class="city-card-arrow">→</div>
-        <div class="city-card-flag">🏔️</div>
-        <span class="badge-featured">⭐ 메인 모델 · 완전판</span>
-        <h3 class="city-card-name">시애틀</h3>
-        <p class="city-card-sub">Seattle · Washington · USA</p>
-        <div class="city-card-meta">
-          <span>한인 16.5만</span><span class="dot"></span>
-          <span>커뮤니티 검증</span>
+    <!-- 검색 -->
+    <div style="max-width:480px;margin:0 auto var(--space-12);padding:0 var(--space-6);">
+      <input id="citySearch" type="text" placeholder="🔍  도시 검색 (예: 뉴욕, Tokyo...)"
+        style="width:100%;padding:14px 20px;border-radius:100px;border:1px solid var(--separator-bold);
+        background:var(--bg-surface);color:var(--text-primary);font-size:16px;outline:none;
+        font-family:var(--font-text);" />
+    </div>
+
+    <!-- 지역별 도시 목록 -->
+    <div id="cityRegions" style="display:flex;flex-direction:column;gap:var(--space-10);padding:0 var(--space-6);">
+
+      <!-- 🇺🇸 미국 -->
+      <div class="region-block">
+        <div class="region-label">🇺🇸 미국</div>
+        <div class="city-pills">
+          <a href="/seattle/"      class="city-pill pill-featured">🏔️ 시애틀 ⭐</a>
+          <a href="/la/"           class="city-pill">🌴 로스앤젤레스</a>
+          <a href="/newyork/"      class="city-pill">🗽 뉴욕</a>
+          <a href="/sf/"           class="city-pill">🌉 샌프란시스코</a>
+          <a href="/dallas/"       class="city-pill">🤠 달라스</a>
+          <a href="/houston/"      class="city-pill">🛢️ 휴스턴</a>
+          <a href="/chicago/"      class="city-pill">🌆 시카고</a>
+          <a href="/atlanta/"      class="city-pill">🍑 애틀랜타</a>
+          <a href="/boston/"       class="city-pill">🦞 보스턴</a>
+          <a href="/nashville/"    class="city-pill">🎸 내슈빌</a>
+          <a href="/miami/"        class="city-pill">🌊 마이애미</a>
+          <a href="/dc/"           class="city-pill">🏛️ 워싱턴 DC</a>
+          <a href="/philadelphia/" class="city-pill">🔔 필라델피아</a>
+          <a href="/sandiego/"     class="city-pill">☀️ 샌디에고</a>
+          <a href="/portland/"     class="city-pill">🌲 포틀랜드</a>
+          <a href="/denver/"       class="city-pill">⛰️ 덴버</a>
+          <a href="/honolulu/"     class="city-pill">🌺 호놀룰루</a>
+          <a href="/kansascity/"   class="city-pill">🎷 캔자스시티</a>
+          <a href="/phoenix/"      class="city-pill">🌵 피닉스</a>
+          <a href="/minneapolis/"  class="city-pill">❄️ 미니애폴리스</a>
+          <a href="/charlotte/"    class="city-pill">🏙️ 샬럿</a>
+          <a href="/raleigh/"      class="city-pill">🔬 롤리</a>
+          <a href="/columbus/"     class="city-pill">🏈 콜럼버스</a>
+          <a href="/tucson/"       class="city-pill">🌵 투손</a>
+          <a href="/fayetteville/" class="city-pill">⚔️ 페이엣빌</a>
+          <a href="/killeen/"      class="city-pill">🪖 킬린</a>
+          <a href="/anchorage/"    class="city-pill">🐻 앵커리지</a>
         </div>
-      </a>
+      </div>
 
-      <a href="/dallas/" class="city-card" data-city="dallas">
-        <div class="city-card-arrow">→</div>
-        <div class="city-card-flag">🤠</div>
-        <h3 class="city-card-name">달라스</h3>
-        <p class="city-card-sub">Dallas · Texas</p>
-        <div class="city-card-meta"><span>한인 13만 명</span></div>
-      </a>
+      <!-- 🇨🇦 캐나다 -->
+      <div class="region-block">
+        <div class="region-label">🇨🇦 캐나다</div>
+        <div class="city-pills">
+          <a href="/toronto/"   class="city-pill">🍁 토론토</a>
+          <a href="/vancouver/" class="city-pill">🏔️ 밴쿠버</a>
+          <a href="/calgary/"   class="city-pill">🤠 캘거리</a>
+          <a href="/edmonton/"  class="city-pill">❄️ 에드먼턴</a>
+          <a href="/ottawa/"    class="city-pill">🏛️ 오타와</a>
+          <a href="/winnipeg/"  class="city-pill">🌾 위니펙</a>
+        </div>
+      </div>
 
-      <a href="/la/" class="city-card" data-city="la">
-        <div class="city-card-arrow">→</div>
-        <div class="city-card-flag">🌴</div>
-        <h3 class="city-card-name">LA</h3>
-        <p class="city-card-sub">Los Angeles · California</p>
-        <div class="city-card-meta"><span>한인 60만 명</span></div>
-      </a>
+      <!-- 🇲🇽 멕시코 -->
+      <div class="region-block">
+        <div class="region-label">🇲🇽 멕시코</div>
+        <div class="city-pills">
+          <a href="/mexicocity/"  class="city-pill">🌮 멕시코시티</a>
+          <a href="/guadalajara/" class="city-pill">🎺 과달라하라</a>
+          <a href="/monterrey/"   class="city-pill">🏭 몬테레이</a>
+        </div>
+      </div>
 
-      <a href="/sf/" class="city-card" data-city="sf">
-        <div class="city-card-arrow">→</div>
-        <div class="city-card-flag">🌉</div>
-        <h3 class="city-card-name">샌프란시스코</h3>
-        <p class="city-card-sub">SF Bay Area</p>
-        <div class="city-card-meta"><span>한인 12만 명</span></div>
-      </a>
+      <!-- 🇦🇺 호주·뉴질랜드 -->
+      <div class="region-block">
+        <div class="region-label">🇦🇺 호주 · 🇳🇿 뉴질랜드</div>
+        <div class="city-pills">
+          <a href="/sydney/"     class="city-pill">🦘 시드니</a>
+          <a href="/melbourne/"  class="city-pill">☕ 멜버른</a>
+          <a href="/brisbane/"   class="city-pill">🌞 브리즈번</a>
+          <a href="/perth/"      class="city-pill">🌅 퍼스</a>
+          <a href="/auckland/"   class="city-pill">🥝 오클랜드</a>
+        </div>
+      </div>
 
-      <a href="/newyork/" class="city-card" data-city="newyork">
-        <div class="city-card-arrow">→</div>
-        <div class="city-card-flag">🗽</div>
-        <h3 class="city-card-name">뉴욕</h3>
-        <p class="city-card-sub">New York · New Jersey</p>
-        <div class="city-card-meta"><span>한인 50만 명</span></div>
-      </a>
+      <!-- 🌎 남미 -->
+      <div class="region-block">
+        <div class="region-label">🌎 남미</div>
+        <div class="city-pills">
+          <a href="/saopaulo/" class="city-pill">🇧🇷 상파울루</a>
+        </div>
+      </div>
 
-      <a href="/nashville/" class="city-card" data-city="nashville">
-        <div class="city-card-arrow">→</div>
-        <div class="city-card-flag">🎸</div>
-        <h3 class="city-card-name">내슈빌</h3>
-        <p class="city-card-sub">Nashville · Tennessee</p>
-        <div class="city-card-meta"><span>한인 1.5만 명</span></div>
-      </a>
+      <!-- 🌍 유럽 -->
+      <div class="region-block">
+        <div class="region-label">🌍 유럽</div>
+        <div class="city-pills">
+          <a href="/london/"    class="city-pill">🇬🇧 런던</a>
+          <a href="/paris/"     class="city-pill">🇫🇷 파리</a>
+          <a href="/berlin/"    class="city-pill">🇩🇪 베를린</a>
+          <a href="/frankfurt/" class="city-pill">🇩🇪 프랑크푸르트</a>
+        </div>
+      </div>
 
-      <a href="/toronto/" class="city-card" data-city="toronto">
-        <div class="city-card-arrow">→</div>
-        <div class="city-card-flag">🍁</div>
-        <h3 class="city-card-name">토론토</h3>
-        <p class="city-card-sub">Toronto · Ontario · Canada</p>
-        <div class="city-card-meta"><span>한인 9만 명</span></div>
-      </a>
+      <!-- 🌏 아시아·중동 -->
+      <div class="region-block">
+        <div class="region-label">🌏 아시아 · 중동</div>
+        <div class="city-pills">
+          <a href="/singapore/" class="city-pill">🇸🇬 싱가포르</a>
+          <a href="/bangkok/"   class="city-pill">🇹🇭 방콕</a>
+          <a href="/hochiminh/" class="city-pill">🇻🇳 호치민</a>
+          <a href="/dubai/"     class="city-pill">🇦🇪 두바이</a>
+        </div>
+      </div>
 
-      <a href="/vancouver/" class="city-card" data-city="vancouver">
-        <div class="city-card-arrow">→</div>
-        <div class="city-card-flag">🏔️</div>
-        <h3 class="city-card-name">밴쿠버</h3>
-        <p class="city-card-sub">Vancouver · BC · Canada</p>
-        <div class="city-card-meta"><span>한인 7만 명</span></div>
-      </a>
-    </nav>
+      <!-- 🇯🇵 일본 -->
+      <div class="region-block">
+        <div class="region-label">🇯🇵 일본</div>
+        <div class="city-pills">
+          <a href="/tokyo/" class="city-pill">🗼 도쿄</a>
+          <a href="/osaka/" class="city-pill">🏯 오사카</a>
+        </div>
+      </div>
+
+      <!-- 🇰🇷 한국 -->
+      <div class="region-block">
+        <div class="region-label">🇰🇷 한국 (역이민·귀환 동포)</div>
+        <div class="city-pills">
+          <a href="/seoul/" class="city-pill">🏙️ 서울</a>
+          <a href="/busan/" class="city-pill">🌊 부산</a>
+        </div>
+      </div>
+
+    </div>
   </section>
+
+  <style>
+    .region-block { margin-bottom: var(--space-2); }
+    .region-label {
+      font-size: 12px; font-weight: 700; color: var(--accent-gold);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: var(--space-4);
+    }
+    .city-pills {
+      display: flex; flex-wrap: wrap; gap: var(--space-2);
+    }
+    .city-pill {
+      display: inline-flex; align-items: center;
+      padding: 8px 16px; border-radius: 100px;
+      background: var(--bg-surface); border: 1px solid var(--separator);
+      color: var(--text-primary); text-decoration: none;
+      font-size: 14px; font-weight: 500;
+      transition: all 200ms ease;
+      white-space: nowrap;
+    }
+    .city-pill:hover {
+      background: var(--bg-surface-2);
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+      transform: translateY(-2px);
+    }
+    .pill-featured {
+      background: linear-gradient(135deg, rgba(201,162,39,0.15), rgba(110,231,183,0.10));
+      border-color: rgba(201,162,39,0.4);
+      color: var(--accent-gold);
+      font-weight: 700;
+    }
+    .city-pill.hidden { display: none; }
+  </style>
+
+  <script>
+    document.getElementById('citySearch').addEventListener('input', function() {
+      var q = this.value.toLowerCase().trim();
+      document.querySelectorAll('.city-pill').forEach(function(pill) {
+        var text = pill.textContent.toLowerCase();
+        pill.classList.toggle('hidden', q.length > 0 && !text.includes(q));
+      });
+      document.querySelectorAll('.region-block').forEach(function(block) {
+        var visible = block.querySelectorAll('.city-pill:not(.hidden)').length > 0;
+        block.style.display = (q.length > 0 && !visible) ? 'none' : '';
+      });
+    });
+  </script>
 
   <!-- 사역 원칙 -->
   <section id="principles" class="principles">
