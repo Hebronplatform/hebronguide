@@ -8,12 +8,11 @@
   },
 
   "redirects": [
-    { "source": "/",                   "destination": "/seattle/", "permanent": false },
     { "source": "/seattle/index.html", "destination": "/seattle/", "permanent": true },
     { "source": "/dallas/index.html",  "destination": "/dallas/",  "permanent": true },
     { "source": "/sf/index.html",      "destination": "/sf/",      "permanent": true },
-    { "source": "/home",               "destination": "/seattle/", "permanent": true },
-    { "source": "/guide",              "destination": "/seattle/", "permanent": true }
+    { "source": "/home",               "destination": "/",         "permanent": true },
+    { "source": "/guide",              "destination": "/",         "permanent": true }
   ],
 
   "rewrites": [
@@ -54,7 +53,11 @@
     { "source": "/guadalajara",    "destination": "/guadalajara/index.html" },
     { "source": "/guadalajara/(.*)","destination": "/guadalajara/index.html" },
     { "source": "/monterrey",      "destination": "/monterrey/index.html" },
-    { "source": "/monterrey/(.*)", "destination": "/monterrey/index.html" }
+    { "source": "/monterrey/(.*)", "destination": "/monterrey/index.html" },
+    { "source": "/seoul",          "destination": "/seoul/index.html" },
+    { "source": "/seoul/(.*)",     "destination": "/seoul/index.html" },
+    { "source": "/busan",          "destination": "/busan/index.html" },
+    { "source": "/busan/(.*)",     "destination": "/busan/index.html" }
   ],
 
   "headers": [

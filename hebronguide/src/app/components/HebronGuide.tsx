@@ -16006,7 +16006,9 @@ function CityCard({ c, currentCity, lang, onClose }: {
   return (
     <a
       href={`https://hebronguide.com${c.url}`}
-      onClick={isCurrent ? (e) => { e.preventDefault(); onClose(); } : onClose}
+      onClick={isCurrent
+        ? (e) => { e.preventDefault(); onClose(); }
+        : () => { try { localStorage.setItem('hg_last_city', c.url.replace(/\//g,'')); } catch(_){} onClose(); }}
       style={{
         display: "flex", alignItems: "center", gap: 10,
         padding: "10px 12px", borderRadius: 12, textDecoration: "none",
@@ -16043,6 +16045,11 @@ export function HebronGuide() {
   const { showBanner, handleInstall, handleDismiss, isIOS } = useInstallPrompt();
   const { lang, setLang } = useI18n();
   const city = useCityConfig();
+
+  // 도시 기억 저장 — 글로벌 허브(hebronguide.com)에서 마지막 방문 도시로 자동 이동
+  useEffect(() => {
+    try { localStorage.setItem('hg_last_city', city.slug); } catch (_) {}
+  }, [city.slug]);
 
   // document.title 도시별 동적 업데이트
   useEffect(() => {
