@@ -10252,6 +10252,35 @@ function getCityChurches(slug: string, lang: string) {
         website: "https://ncmission.org", email: "welcome.ncmc@gmail.com", phone: "650-571-9445",
       },
     ],
+    busan: [
+      {
+        emoji: "⭐", tier: 1,
+        name: ko ? "수영로교회" : "Sooyoungro Church",
+        desc: ko
+          ? "✅ 가정교회 모델 · 역이민 귀환 동포 환영\n📍 부산 수영구 수영로 425\n📞 051-758-0691\n🕐 주일예배 7부(6:30am)·1부(8am)·2부(9:30am)·3부(11:10am)·4부(1pm)·5부(3pm)·영어예배(1pm)\n🔗 sooyoungro.org\n\n✨ 부산 한인 이민 귀환 동포를 따뜻하게 맞이합니다"
+          : "✅ House Church Model · Welcoming Returning Overseas Koreans\n📍 425 Sooyoungro, Suyeong-gu, Busan\n📞 051-758-0691\n🕐 Sunday services: 6:30am / 8am / 9:30am / 11:10am / 1pm / 3pm / English 1pm\n🔗 sooyoungro.org\n\n✨ Warmly welcomes returning Korean diaspora to Busan",
+        tags: ko ? ["가정교회", "수영구", "귀환동포환영"] : ["House Church", "Suyeong", "Returning Diaspora"],
+        website: "https://sooyoungro.org", phone: "051-758-0691",
+      },
+      {
+        emoji: "⛪", tier: 2,
+        name: ko ? "해운대교회" : "Haeundae Church",
+        desc: ko
+          ? "✅ 검증됨\n📍 부산 해운대구 해운대로 352\n📞 051-747-3675\n🕐 주일예배 1부(9am)·2부(11am)·3부(1pm)\n🔗 haeundaechurch.or.kr\n\n✨ 해운대 중심부, 귀환 동포·이민자 정착 상담 가능"
+          : "✅ Verified\n📍 352 Haeundaero, Haeundae-gu, Busan\n📞 051-747-3675\n🕐 Sunday: 9am / 11am / 1pm\n🔗 haeundaechurch.or.kr\n\n✨ Located in central Haeundae. Pastoral counseling available for returnees",
+        tags: ko ? ["해운대", "귀환동포", "부산중심"] : ["Haeundae", "Returnees", "Central Busan"],
+        website: "https://haeundaechurch.or.kr", phone: "051-747-3675",
+      },
+      {
+        emoji: "⛪", tier: 2,
+        name: ko ? "부산중앙교회" : "Busan Central Church",
+        desc: ko
+          ? "🔍 추가 검증 중\n📍 부산 동구 중앙대로\n📞 051-469-1004\n\n귀환 동포·역이민자를 위한 교회 정보를 계속 업데이트하고 있습니다.\n교회 등재: hebronguide.com/church-submit.html"
+          : "🔍 Verification in progress\n📍 Junggu, Busan\n\nWe're continuously updating church info for returning overseas Koreans.\nList your church: hebronguide.com/church-submit.html",
+        tags: ko ? ["부산중구", "귀환동포"] : ["Jung-gu", "Returnees"],
+        phone: "051-469-1004",
+      },
+    ],
   };
   return byCity[slug] ?? [];
 }
