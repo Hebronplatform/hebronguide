@@ -402,6 +402,61 @@ footer strong { color: #6EE7B7; }
   margin-bottom: 24px;
 }
 .print-btn:hover { background: rgba(201,162,39,.2); }
+
+/* ── 카운트다운 바 ── */
+.cd-bar {
+  background: linear-gradient(135deg, #1a2535 0%, #0d1117 100%);
+  border-top: 3px solid #C9A227;
+  border-bottom: 3px solid #C9A227;
+  padding: 18px 24px;
+  text-align: center;
+}
+.cd-label {
+  font-size: .72rem;
+  color: rgba(201,162,39,0.8);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.cd-digits {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cd-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(201,162,39,.25);
+  border-radius: 10px;
+  padding: 10px 14px;
+  min-width: 58px;
+}
+.cd-num {
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: #6EE7B7;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-family: 'Noto Sans KR', monospace;
+}
+.cd-uname {
+  font-size: .65rem;
+  color: rgba(236,253,245,.45);
+  margin-top: 4px;
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+.cd-sep {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: rgba(201,162,39,.4);
+  margin-bottom: 14px;
+}
 </style>
 </head>
 <body>
@@ -413,20 +468,7 @@ footer strong { color: #6EE7B7; }
   <p class="subtitle">
     무료 등재 마감일: <strong style="color:#6EE7B7;">2026년 10월 1일</strong>
   </p>
-  <div style="margin-top:14px;display:inline-flex;align-items:center;gap:10px;background:rgba(110,231,183,0.12);border:1px solid rgba(110,231,183,0.35);border-radius:99px;padding:7px 22px;">
-    <span style="font-size:.78rem;color:rgba(236,253,245,0.55);">마감까지</span>
-    <span id="dday" style="font-size:1.5rem;font-weight:900;color:#6EE7B7;letter-spacing:-0.03em;">D-?</span>
-    <span style="font-size:.78rem;color:rgba(236,253,245,0.55);">일 남음</span>
-  </div>
-  <script>
-    (function(){
-      var deadline = new Date('2026-10-01T00:00:00');
-      var today = new Date(); today.setHours(0,0,0,0);
-      var diff = Math.ceil((deadline - today) / 86400000);
-      var el = document.getElementById('dday');
-      if(el) el.textContent = diff > 0 ? 'D-' + diff : diff === 0 ? 'D-Day' : '마감';
-    })();
-  </script>
+
   <p style="font-size:.78rem;opacity:.5;margin-top:10px;font-style:italic;">
     "내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35</p>
 </header>
@@ -434,6 +476,20 @@ footer strong { color: #6EE7B7; }
 <!-- 프로모션 배너 -->
 <div class="free-banner">
   🌿 <strong>2026년 10월 1일까지</strong> 초청에 응하신 교회는 무상으로 등재해 드립니다
+</div>
+
+<div class="cd-bar">
+  <div class="cd-label">🌿 무료 등재 마감 카운트다운</div>
+  <div class="cd-digits">
+    <div class="cd-unit"><div class="cd-num" id="cd-d-1">-</div><div class="cd-uname">일</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-unit"><div class="cd-num" id="cd-h-1">--</div><div class="cd-uname">시간</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-unit"><div class="cd-num" id="cd-m-1">--</div><div class="cd-uname">분</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-unit"><div class="cd-num" id="cd-s-1">--</div><div class="cd-uname">초</div></div>
+  </div>
+  <div style="font-size:.72rem;color:rgba(236,253,245,.3);margin-top:10px;">2026년 10월 1일 마감</div>
 </div>
 
 <!-- 본문 -->
@@ -787,6 +843,21 @@ footer strong { color: #6EE7B7; }
 
 </div>
 
+<!-- 카운트다운 2 -->
+<div class="cd-bar">
+  <div class="cd-label">🌿 무료 등재 마감 카운트다운</div>
+  <div class="cd-digits">
+    <div class="cd-unit"><div class="cd-num" id="cd-d-2">-</div><div class="cd-uname">일</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-unit"><div class="cd-num" id="cd-h-2">--</div><div class="cd-uname">시간</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-unit"><div class="cd-num" id="cd-m-2">--</div><div class="cd-uname">분</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-unit"><div class="cd-num" id="cd-s-2">--</div><div class="cd-uname">초</div></div>
+  </div>
+  <div style="font-size:.72rem;color:rgba(236,253,245,.3);margin-top:10px;">2026년 10월 1일 마감</div>
+</div>
+
 <!-- 잘못된 정보 문의 -->
 <div style="max-width:600px;margin:0 auto;padding:0 20px 28px;">
   <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 18px;text-align:center;font-size:.78rem;color:rgba(236,253,245,.4);line-height:1.9;">
@@ -803,5 +874,30 @@ footer strong { color: #6EE7B7; }
   <span style="opacity:.5;">HebronGuide &nbsp;·&nbsp; hebronplatform@gmail.com &nbsp;·&nbsp; hebronguide.com</span>
 </footer>
 
+<script>
+(function(){
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    var dl = new Date('2026-10-01T00:00:00');
+    var diff = Math.max(0, dl - new Date());
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor(diff%86400000/3600000);
+    var m = Math.floor(diff%3600000/60000);
+    var s = Math.floor(diff%60000/1000);
+    [1,2].forEach(function(n){
+      var ed=document.getElementById('cd-d-'+n);
+      var eh=document.getElementById('cd-h-'+n);
+      var em=document.getElementById('cd-m-'+n);
+      var es=document.getElementById('cd-s-'+n);
+      if(ed) ed.textContent=d;
+      if(eh) eh.textContent=pad(h);
+      if(em) em.textContent=pad(m);
+      if(es) es.textContent=pad(s);
+    });
+  }
+  tick();
+  setInterval(tick,1000);
+})();
+</script>
 </body>
 </html>
