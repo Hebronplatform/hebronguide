@@ -201,18 +201,18 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
   ],
 
-  // 🇰🇷 서울 — N서울타워 + 경복궁 + 한강 (HTTP 200 검증)
+  // 🇰🇷 서울 — 경복궁(낮) + 한강(낮) + N타워(야경)
   seoul: [
+    { url: "https://images.unsplash.com/photo-1566800890932-e89159daf3dc?w=1200&q=90", pos: "center 40%", alt: "Gyeongbokgung Palace Seoul daytime" },
+    { url: "https://images.unsplash.com/photo-1628008335819-7175b35fa4f5?w=1200&q=90", pos: "center 35%", alt: "Seoul Han River daytime skyline" },
     { url: "https://images.unsplash.com/photo-1546874177-9e664107314e?w=1200&q=90", pos: "center 38%", alt: "Seoul N Tower city skyline at night" },
-    { url: "https://images.unsplash.com/photo-1566800890932-e89159daf3dc?w=1200&q=90", pos: "center 40%", alt: "Gyeongbokgung Palace Seoul" },
-    { url: "https://images.unsplash.com/photo-1628008335819-7175b35fa4f5?w=1200&q=90", pos: "center 35%", alt: "Seoul Han River skyline" },
   ],
 
-  // 🇰🇷 부산 — 해운대 야경 + 해변 + 감천문화마을 (HTTP 200 검증)
+  // 🇰🇷 부산 — 해운대 해변(낮) + 감천마을(낮) + 야경
   busan: [
+    { url: "https://images.unsplash.com/photo-1676290995185-0287c1b812ce?w=1200&q=90", pos: "center 38%", alt: "Busan Haeundae beach daytime" },
+    { url: "https://images.unsplash.com/photo-1538574027501-286b64ee38f8?w=1200&q=90", pos: "center 42%", alt: "Busan Gamcheon Culture Village colorful buildings" },
     { url: "https://images.unsplash.com/photo-1701172189149-450eecf09863?w=1200&q=90", pos: "center 40%", alt: "Busan Haeundae aerial night view" },
-    { url: "https://images.unsplash.com/photo-1676290995185-0287c1b812ce?w=1200&q=90", pos: "center 38%", alt: "Busan Haeundae beach waves" },
-    { url: "https://images.unsplash.com/photo-1538574027501-286b64ee38f8?w=1200&q=90", pos: "center 42%", alt: "Busan Gamcheon Culture Village colorful" },
   ],
 
 
@@ -6102,7 +6102,7 @@ function CompactHeroNew() {
               position: "absolute", inset: 0,
               width: "100%", height: "100%",
               objectFit: "cover", objectPosition: slide.pos,
-              filter: "brightness(1.08) saturate(1.65) contrast(1.1)",
+              filter: "brightness(1.4) saturate(1.5) contrast(0.95)",
               opacity: isActive ? 1 : 0,
               transition: `opacity 1.4s ease, transform ${isActive ? "0s" : "0s"}`,
               // Ken Burns: 활성 슬라이드만 줌 애니메이션
