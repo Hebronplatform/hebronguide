@@ -268,6 +268,135 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   saopaulo: [
     { url: "https://images.unsplash.com/photo-1544989164-31659c5e7f2c?w=1200&q=90", pos: "center 40%", alt: "Sao Paulo city skyline" },
   ],
+
+  // 🇺🇸 워싱턴 DC — 캐피톨 + 워싱턴 모뉴먼트
+  dc: [
+    { url: "https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=1200&q=90", pos: "center 38%", alt: "Washington DC National Mall" },
+    { url: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=1200&q=90", pos: "center 40%", alt: "Washington DC Capitol Building" },
+  ],
+
+  // 🇺🇸 샌디에고 — 해변 + 항구
+  sandiego: [
+    { url: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=1200&q=90", pos: "center 40%", alt: "San Diego harbor skyline" },
+    { url: "https://images.unsplash.com/photo-1507864629979-1ab41219bc0b?w=1200&q=90", pos: "center 38%", alt: "San Diego Coronado Beach" },
+  ],
+
+  // 🇺🇸 호놀룰루 — 와이키키 + 다이아몬드헤드
+  honolulu: [
+    { url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=90", pos: "center 38%", alt: "Hawaii Waikiki Beach" },
+    { url: "https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?w=1200&q=90", pos: "center 42%", alt: "Honolulu Diamond Head" },
+  ],
+
+  // 🇺🇸 포틀랜드 — 브릿지 + 도심
+  portland: [
+    { url: "https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?w=1200&q=90", pos: "center 40%", alt: "Portland Oregon bridges" },
+    { url: "https://images.unsplash.com/photo-1569879890461-b2b3ea5023c5?w=1200&q=90", pos: "center 38%", alt: "Portland city skyline" },
+  ],
+
+  // 🇺🇸 덴버 — 록키산 + 도심
+  denver: [
+    { url: "https://images.unsplash.com/photo-1570735783899-5bc9da35c9d2?w=1200&q=90", pos: "center 38%", alt: "Denver skyline Rocky Mountains" },
+    { url: "https://images.unsplash.com/photo-1538149428909-2a24600a30ac?w=1200&q=90", pos: "center 40%", alt: "Denver Colorado mountains" },
+  ],
+
+  // 🇺🇸 피닉스 — 사막 + 도심
+  phoenix: [
+    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Phoenix Arizona desert skyline" },
+    { url: "https://images.unsplash.com/photo-1570126618953-d437176e8c79?w=1200&q=90", pos: "center 38%", alt: "Phoenix city at night" },
+  ],
+
+  // 🇺🇸 샬럿 — 도심 스카이라인
+  charlotte: [
+    { url: "https://images.unsplash.com/photo-1566024119436-8f4c1f5d75e3?w=1200&q=90", pos: "center 40%", alt: "Charlotte North Carolina skyline" },
+  ],
+
+  // 🇺🇸 롤리 — 리서치 트라이앵글
+  raleigh: [
+    { url: "https://images.unsplash.com/photo-1580474576809-a6485a269699?w=1200&q=90", pos: "center 38%", alt: "Raleigh North Carolina skyline" },
+  ],
+
+  // 🇺🇸 콜럼버스 — 오하이오 도심
+  columbus: [
+    { url: "https://images.unsplash.com/photo-1575652284690-4e79d6c3a7e2?w=1200&q=90", pos: "center 40%", alt: "Columbus Ohio skyline" },
+  ],
+
+  // 🇺🇸 미니애폴리스 — 호수 + 도심
+  minneapolis: [
+    { url: "https://images.unsplash.com/photo-1612196808214-b7d9c59c4fe8?w=1200&q=90", pos: "center 38%", alt: "Minneapolis Minnesota skyline lakes" },
+  ],
+
+  // 🇺🇸 투손 — 사와로 선인장
+  tucson: [
+    { url: "https://images.unsplash.com/photo-1586339949216-35c2747cc36d?w=1200&q=90", pos: "center 40%", alt: "Tucson Arizona Saguaro cactus desert" },
+  ],
+
+  // 🇺🇸 페이엣빌 — 노스캐롤라이나
+  fayetteville: [
+    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Fayetteville North Carolina" },
+  ],
+
+  // 🇺🇸 킬린 — 텍사스 포트카바조스
+  killeen: [
+    { url: "https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=1200&q=90", pos: "center 38%", alt: "Killeen Texas Fort Cavazos" },
+  ],
+
+  // 🇺🇸 앵커리지 — 알래스카 설산
+  anchorage: [
+    { url: "https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=1200&q=90", pos: "center 35%", alt: "Anchorage Alaska mountains snow" },
+    { url: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=90", pos: "center 38%", alt: "Alaska Northern Lights aurora" },
+  ],
+
+  // 🇨🇦 캘거리 — 록키산 + 도심
+  calgary: [
+    { url: "https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?w=1200&q=90", pos: "center 38%", alt: "Calgary Alberta skyline Rocky Mountains" },
+    { url: "https://images.unsplash.com/photo-1570303345338-e1f0eddf4946?w=1200&q=90", pos: "center 40%", alt: "Calgary Stampede city" },
+  ],
+
+  // 🇨🇦 에드먼턴 — 앨버타 도심
+  edmonton: [
+    { url: "https://images.unsplash.com/photo-1580237541049-2d715a09486e?w=1200&q=90", pos: "center 40%", alt: "Edmonton Alberta skyline" },
+  ],
+
+  // 🇨🇦 오타와 — 의사당 + 리도운하
+  ottawa: [
+    { url: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1200&q=90", pos: "center 38%", alt: "Ottawa Parliament Hill" },
+    { url: "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=1200&q=90", pos: "center 40%", alt: "Ottawa Rideau Canal" },
+  ],
+
+  // 🇨🇦 위니펙 — 대평원 도시
+  winnipeg: [
+    { url: "https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?w=1200&q=90", pos: "center 40%", alt: "Winnipeg Manitoba skyline" },
+  ],
+
+  // 🇦🇺 브리즈번 — 스토리브릿지 + 도심
+  brisbane: [
+    { url: "https://images.unsplash.com/photo-1524293581917-878a6d017c71?w=1200&q=90", pos: "center 40%", alt: "Brisbane Story Bridge skyline" },
+    { url: "https://images.unsplash.com/photo-1548266652-99cf27701ced?w=1200&q=90", pos: "center 38%", alt: "Brisbane South Bank" },
+  ],
+
+  // 🇦🇺 퍼스 — 인도양 + 도심
+  perth: [
+    { url: "https://images.unsplash.com/photo-1577985043696-8f4c1f5d75e3?w=1200&q=90", pos: "center 40%", alt: "Perth Western Australia skyline" },
+    { url: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&q=90", pos: "center 38%", alt: "Perth beach sunset" },
+  ],
+
+  // 🇳🇿 오클랜드 — 스카이타워 + 항구
+  auckland: [
+    { url: "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=1200&q=90", pos: "center 38%", alt: "Auckland Sky Tower harbour" },
+    { url: "https://images.unsplash.com/photo-1527168027773-0cc890c4f212?w=1200&q=90", pos: "center 40%", alt: "Auckland New Zealand skyline" },
+  ],
+
+  // 🇩🇪 프랑크푸르트 — 유럽 금융허브
+  frankfurt: [
+    { url: "https://images.unsplash.com/photo-1527866512585-a0c0e4949517?w=1200&q=90", pos: "center 40%", alt: "Frankfurt Germany skyline ECB" },
+    { url: "https://images.unsplash.com/photo-1555990793-da11153b4559?w=1200&q=90", pos: "center 38%", alt: "Frankfurt banking district" },
+  ],
+
+  // 🇻🇳 호치민 — 도시 야경
+  hochiminh: [
+    { url: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1200&q=90", pos: "center 40%", alt: "Ho Chi Minh City skyline night" },
+    { url: "https://images.unsplash.com/photo-1570366583862-f91883984fde?w=1200&q=90", pos: "center 38%", alt: "Ho Chi Minh City streets" },
+  ],
   // 🇯🇵 도쿄 — 신주쿠 + 시부야 + 도쿄타워
   tokyo: [
     { url: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=90", pos: "center 40%", alt: "Tokyo city skyline at night" },
