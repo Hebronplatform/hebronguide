@@ -10589,8 +10589,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               </div>
               <div style={{ fontSize: 10, color: "rgba(236,253,245,0.28)", letterSpacing: "0.02em", lineHeight: 1.7 }}>
                 {lang === "ko"
-                  ? "동서남북 온누리에 하나님의 영광을"
-                  : "A faith ecosystem where God's glory shines to all corners of the world"}
+                  ? "동서남북 온누리에 하나님의 사랑을"
+                  : "God's love to every corner of the world"}
               </div>
               <div style={{ fontSize: 10, color: "rgba(236,253,245,0.18)", letterSpacing: "0.06em", marginTop: 2 }}>
                 {lang === "ko" ? "창 13:14-18 · 마 6:33 · 고전 10:31" : "Genesis 13:14-18 · Matthew 6:33 · 1 Corinthians 10:31"}
