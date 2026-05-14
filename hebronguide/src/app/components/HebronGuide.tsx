@@ -15523,6 +15523,17 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
 ───────────────────────────────────────── */
 
 // 탭별 공유 콘텐츠 — 도시명 동적 생성 (시애틀을 기준 템플릿으로 모든 도시에 적용)
+// 한국어 조사 자동 선택 — 받침 있으면 "으로", 없으면 "로"
+function withRo(word: string): string {
+  const last = word[word.length - 1];
+  const code = last?.charCodeAt(0) ?? 0;
+  if (code >= 0xAC00 && code <= 0xD7A3) {
+    const jong = (code - 0xAC00) % 28; // 종성 인덱스
+    return word + (jong !== 0 ? "으로" : "로");
+  }
+  return word + "로"; // 영문·기타
+}
+
 function getShareContexts(cityKo: string, cityEn: string, slug: string,
   identity?: { flag: string; ko: string; en: string }) {
   const id = identity ?? { flag: "🌍", ko: "현지 한인", en: "Korean Diaspora" };
@@ -15532,7 +15543,7 @@ function getShareContexts(cityKo: string, cityEn: string, slug: string,
   const tagId   = id.en.replace(/\s+/g, "");
   return {
     0: { emoji: "🏠", labelKo: "홈", labelEn: "Home",
-      textKo: `${cityKo} ${id.ko} 플랫폼 ${id.flag}\n정착부터 커뮤니티·법률·한국학교까지\n이민자에서 ${id.ko}로 — 함께 성장해요 👇`,
+      textKo: `${cityKo} ${id.ko} 플랫폼 ${id.flag}\n정착부터 커뮤니티·법률·한국학교까지\n이민자에서 ${withRo(id.ko)} — 함께 성장해요 👇`,
       textEn: `${cityEn} ${id.en} Platform ${id.flag}\nFrom settlement to community, legal aid & Korean schools\nGrow from newcomer to ${id.en} — together 👇`,
       tags: `#${tagId} #${slug}한인 #HebronGuide` },
     1: { emoji: "🛬", labelKo: "정착", labelEn: "Settlement",
