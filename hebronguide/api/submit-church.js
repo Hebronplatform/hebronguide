@@ -54,8 +54,8 @@ export default async function handler(req) {
   const confirmHtml = `
 <div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;background:#0d1117;color:#ECFDF5;border-radius:12px;overflow:hidden;">
   <div style="background:linear-gradient(135deg,#1a2535,#0d1117);padding:28px 24px;text-align:center;border-bottom:2px solid #C9A227;">
-    <div style="font-family:Georgia,serif;font-size:22px;font-weight:bold;color:#C9A227;letter-spacing:2px;">HebronGuide</div>
-    <div style="font-size:11px;color:rgba(236,253,245,.4);margin-top:4px;">hebronguide.com</div>
+    <img src="https://hebronguide.com/hebronguide-logo.svg" alt="HebronGuide" width="180" height="47" style="display:block;margin:0 auto 6px;">
+    <div style="font-size:11px;color:rgba(236,253,245,.4);">hebronguide.com</div>
   </div>
   <div style="padding:26px 24px;">
     <div style="font-size:15px;font-weight:bold;color:#ECFDF5;margin-bottom:14px;">✅ 교회 등재 신청이 접수되었습니다</div>
