@@ -11157,9 +11157,10 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
   const [showAllTabs, setShowAllTabs] = useState(!fromQuickMenu);
   useEffect(() => { setSub(initialSub); }, [initialSub]);
   useEffect(() => { setShowAllTabs(!fromQuickMenu); }, [fromQuickMenu]);
+  const diaspora = DIASPORA_IDENTITY[city.slug] ?? { flag: "🌍", ko: "동포 여정", en: "Journey" };
   const tabs = lang === "ko"
-    ? ["긴급연락", "의료·병원", "커뮤니티", "유용한 링크", "📋 무료자원", "⚖️ 법률", "🇺🇸 Korean American"]
-    : ["Emergency", "Medical", "Community", "Useful Links", "📋 Free Resources", "⚖️ Legal", "🇺🇸 Korean American"];
+    ? ["긴급연락", "의료·병원", "커뮤니티", "유용한 링크", "📋 무료자원", "⚖️ 법률", `${diaspora.flag} ${diaspora.ko}`]
+    : ["Emergency", "Medical", "Community", "Useful Links", "📋 Free Resources", "⚖️ Legal", `${diaspora.flag} ${diaspora.en}`];
   const accent = "#F87171";
 
   // 시애틀 전용 의료 항목 (시애틀 이외 도시에 노출 금지)
@@ -12061,8 +12062,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
                 </div>
                 <div style={{ fontSize: 11, color: "rgba(248,113,113,0.6)", marginTop: 1 }}>
                   {lang === "ko"
-                    ? "긴급연락 · 커뮤니티 · 무료자원 · 법률 · Korean American"
-                    : "Emergency · Community · Free Resources · Legal · Korean Am."}
+                    ? `긴급연락 · 커뮤니티 · 무료자원 · 법률 · ${DIASPORA_IDENTITY[city.slug]?.ko ?? "동포 여정"}`
+                    : `Emergency · Community · Free Resources · Legal · ${DIASPORA_IDENTITY[city.slug]?.en ?? "Journey"}`}
                 </div>
               </div>
             </div>
@@ -15598,7 +15599,7 @@ const MORE_SECTIONS = [
   { icon: Receipt,      labelKo: "세금신고",  labelEn: "Taxes",        tab: 8, subTab: 4, color: "#F97316" },
   { icon: Scale,        labelKo: "법률상담",  labelEn: "Legal",        tab: 5, subTab: 5, color: "#64748B" },
   { icon: BookOpen,     labelKo: "한국학교",  labelEn: "K-School",     tab: 7, subTab: 5, color: "#BE185D" },
-  { icon: Vote,         labelKo: "Korean Am.", labelEn: "Korean Am.",  tab: 5, subTab: 6, color: "#2563EB" },
+  { icon: Vote,         labelKo: "동포 여정",  labelEn: "Journey",     tab: 5, subTab: 6, color: "#2563EB" },
 ];
 
 /* ─────────────────────────────────────────
