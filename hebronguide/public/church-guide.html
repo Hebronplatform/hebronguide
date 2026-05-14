@@ -19,15 +19,6 @@ body {
   min-height: 100vh;
 }
 
-/* ── 인쇄 ── */
-@media print {
-  body { background: #fff; font-size: 14px; }
-  .no-print { display: none !important; }
-  .page-break { page-break-before: always; }
-  .step-card { break-inside: avoid; }
-  header, footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-}
-
 /* ── 헤더 ── */
 header {
   background: linear-gradient(135deg, #1a2535 0%, #0d1117 100%);
@@ -383,25 +374,6 @@ footer {
   line-height: 2;
 }
 footer strong { color: #6EE7B7; }
-
-/* ── 인쇄 버튼 ── */
-.print-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(201,162,39,.12);
-  border: 1px solid rgba(201,162,39,.4);
-  color: #92400e;
-  border-radius: 10px;
-  padding: 9px 20px;
-  font-size: .82rem;
-  font-weight: 700;
-  cursor: pointer;
-  font-family: 'Noto Sans KR', sans-serif;
-  text-decoration: none;
-  margin-bottom: 24px;
-}
-.print-btn:hover { background: rgba(201,162,39,.2); }
 
 /* ── 카운트다운 바 ── */
 .cd-bar {
