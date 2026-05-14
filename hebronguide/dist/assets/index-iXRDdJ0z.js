@@ -691,12 +691,18 @@ Key services:
 🔗 www.ijiguchon.org`,tags:a?["가정교회","IHM","린우드"]:["House Church","IHM","Lynnwood"],website:"https://ijiguchon.org",email:"hebronplatform@gmail.com"}],dallas:[{emoji:"⛪",tier:2,name:a?"에덴교회 (Eden Church at the Field)":"Eden Church at the Field — Carrollton",nameEn:a?"Eden Church at the Field":"에덴교회",desc:a?`✅ 검증됨
 📍 1401 Carrollton Pkwy, Carrollton, TX 75010
 ✨ 담임: 신종우 목사
+🕐 주일예배 매주 일요일 오후 12:30
 📞 214-629-3066
-📧 kfbcc@yahoo.com`:`✅ Verified
+📧 kfbcc@yahoo.com
+🏛 남침례단 · 2005년 설립
+🔗 edendallas.org`:`✅ Verified
 📍 1401 Carrollton Pkwy, Carrollton, TX 75010
 ✨ Lead Pastor: Jong-woo Shin
+🕐 Sunday Service every Sunday 12:30 PM
 📞 214-629-3066
-📧 kfbcc@yahoo.com`,tags:a?["한인교회","캐롤튼","달라스"]:["Korean Church","Carrollton","Dallas"],phone:"214-629-3066",email:"kfbcc@yahoo.com"}],la:[{emoji:"⭐",tier:1,name:a?"축복의동산교회 (OC)":"Mountain of Blessing Church (OC)",desc:a?`✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.
+📧 kfbcc@yahoo.com
+🏛 SBC · Est. 2005
+🔗 edendallas.org`,tags:a?["한인교회","캐롤튼","달라스","남침례단"]:["Korean Church","Carrollton","Dallas","SBC"],phone:"214-629-3066",email:"kfbcc@yahoo.com",website:"edendallas.org"}],la:[{emoji:"⭐",tier:1,name:a?"축복의동산교회 (OC)":"Mountain of Blessing Church (OC)",desc:a?`✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.
 📍 Orange County (LA 메트로), CA
 📞 714-336-9939
 ✨ 담임: 박준철 목사`:`✅ Verified | IHM (International House Church Ministries) member. House church ministry.
