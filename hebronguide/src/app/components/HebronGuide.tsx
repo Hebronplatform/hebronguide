@@ -201,18 +201,18 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
   ],
 
-  // 🇰🇷 서울 — 경복궁 + 한강 + 서울 야경
+  // 🇰🇷 서울 — N서울타워 + 경복궁 + 한강 (HTTP 200 검증)
   seoul: [
-    { url: "https://images.unsplash.com/photo-1583416750470-965b2707b531?w=1200&q=90", pos: "center 40%", alt: "Seoul city skyline at night" },
-    { url: "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=1200&q=90", pos: "center 35%", alt: "Seoul Gyeongbokgung Palace" },
-    { url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&q=90", pos: "center 38%", alt: "Seoul Han River night view" },
+    { url: "https://images.unsplash.com/photo-1546874177-9e664107314e?w=1200&q=90", pos: "center 38%", alt: "Seoul N Tower city skyline at night" },
+    { url: "https://images.unsplash.com/photo-1566800890932-e89159daf3dc?w=1200&q=90", pos: "center 40%", alt: "Gyeongbokgung Palace Seoul" },
+    { url: "https://images.unsplash.com/photo-1628008335819-7175b35fa4f5?w=1200&q=90", pos: "center 35%", alt: "Seoul Han River skyline" },
   ],
 
-  // 🇰🇷 부산 — 해운대 + 광안리 + 감천문화마을
+  // 🇰🇷 부산 — 해운대 야경 + 해변 + 감천문화마을 (HTTP 200 검증)
   busan: [
-    { url: "https://images.unsplash.com/photo-1567321938699-7f5bece1aef9?w=1200&q=90", pos: "center 42%", alt: "Busan Haeundae Beach" },
-    { url: "https://images.unsplash.com/photo-1565461074545-cca9a8b77a19?w=1200&q=90", pos: "center 38%", alt: "Busan Gwangalli Bridge night" },
-    { url: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1200&q=90", pos: "center 40%", alt: "Busan Gamcheon Culture Village" },
+    { url: "https://images.unsplash.com/photo-1701172189149-450eecf09863?w=1200&q=90", pos: "center 40%", alt: "Busan Haeundae aerial night view" },
+    { url: "https://images.unsplash.com/photo-1676290995185-0287c1b812ce?w=1200&q=90", pos: "center 38%", alt: "Busan Haeundae beach waves" },
+    { url: "https://images.unsplash.com/photo-1538574027501-286b64ee38f8?w=1200&q=90", pos: "center 42%", alt: "Busan Gamcheon Culture Village colorful" },
   ],
 
 
