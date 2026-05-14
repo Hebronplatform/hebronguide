@@ -10388,15 +10388,20 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         {sub === 4 && (
           <div style={{ paddingBottom: 8 }}>
 
-            {/* 비전 배너 */}
+            {/* 초청 배너 */}
             <div style={{ background: "linear-gradient(135deg, rgba(201,162,39,0.18), rgba(192,132,252,0.1))", border: "1px solid rgba(201,162,39,0.35)", borderRadius: 18, padding: "18px 16px", marginBottom: 14 }}>
               <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#C9A227", marginBottom: 8 }}>
-                🏆 {lang === "ko" ? "헤브론 교회 네트워크" : "Hebron Church Network"}
+                ✝️ {lang === "ko" ? "영혼구원에 목마른 교회를 초청합니다" : "An Invitation to Soul-Winning Churches"}
               </div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, marginBottom: 10 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 13, color: "rgba(236,253,245,0.95)", lineHeight: 1.9, marginBottom: 10, fontStyle: "italic" }}>
                 {lang === "ko"
-                  ? "HebronGuide는 각 도시 안에서 진정한 환대와 섬김을 실천하는 교회들과 연대하여 새로운 이주자들을 연결합니다."
-                  : "In each city, HebronGuide partners with churches that practice the gospel according to Scripture, connecting newly arrived immigrants."}
+                  ? "\"의에 주리고 목마른 자는 복이 있나니 그들이 배부를 것임이요\" — 마태복음 5:6"
+                  : "\"Blessed are those who hunger and thirst for righteousness, for they shall be satisfied.\" — Matthew 5:6"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.8, marginBottom: 10 }}>
+                {lang === "ko"
+                  ? "HebronGuide는 영혼구원에 갈급함과 목마름이 있는 교회를 정중히 초청합니다.\n낯선 땅에 홀로 도착한 이민자 한 영혼을 품고 환대하려는 목자의 마음이 있는 교회라면,\n함께 이 사명의 길을 걸어가길 원합니다."
+                  : "HebronGuide extends a sincere invitation to churches with a burning hunger and thirst for souls.\nIf your congregation carries the shepherd's heart — to embrace and welcome the lonely immigrant arriving in a foreign land — we invite you to walk this mission together."}
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                 {[
@@ -10415,15 +10420,15 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* 선별 기준 6가지 */}
             <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(192,132,252,0.2)", borderRadius: 14, padding: "16px", marginBottom: 12 }}>
               <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: accent, marginBottom: 12 }}>
-                📋 {lang === "ko" ? "헤브론 교회 네트워크 선별 기준 6가지" : "6 Hub Church Selection Criteria"}
+                🕊️ {lang === "ko" ? "이런 교회를 찾고 있습니다" : "We Are Looking for Churches Like This"}
               </div>
               {[
-                { n: lang === "ko" ? "가치 중심" : "Values-Centered", d: lang === "ko" ? "말보다 삶으로 보여주는 교회 — 진정성이 기준입니다" : "Showing values through life, not words — authenticity is the standard", icon: "🌿" },
-                { n: lang === "ko" ? "순수한 동기" : "Pure Motivation", d: lang === "ko" ? "숫자가 아닌 사람 한 명 한 명이 목적입니다" : "Each person matters more than any number or metric", icon: "🕊️" },
-                { n: lang === "ko" ? "성장을 돕는 열정" : "Growth Passion", d: lang === "ko" ? "사람이 더 나은 삶을 살도록 함께 배우고 성장합니다" : "Learning and growing together so everyone lives a better life", icon: "🔥" },
-                { n: lang === "ko" ? "헌신" : "Commitment", d: lang === "ko" ? "계절적이 아닌 지속적·일관된 사역" : "Consistent, year-round ministry, not seasonal", icon: "⚓" },
-                { n: lang === "ko" ? "이민자 환영" : "Immigrant Welcoming", d: lang === "ko" ? "새 이민자의 문화·언어·정서적 필요를 이해" : "Understands cultural, linguistic & emotional needs of new immigrants", icon: "🤝" },
-                { n: lang === "ko" ? "HebronGuide 파트너십" : "HebronGuide Partnership", d: lang === "ko" ? "새가족 연결 수락·환영 약속·공동체 책임" : "Accepts new arrivals, welcomes them, holds community accountability", icon: "✅" },
+                { n: lang === "ko" ? "영혼구원에 갈급한 교회" : "Hungry for Souls", d: lang === "ko" ? "한 영혼을 향한 갈급함과 목마름 — 그것이 이 초청의 첫 번째 기준입니다" : "A burning hunger and thirst for a single soul — that is the first and foremost criteria", icon: "🔥" },
+                { n: lang === "ko" ? "나그네를 영접하는 교회" : "Welcomes the Stranger", d: lang === "ko" ? "\"내가 나그네 되었을 때 너희가 영접하였다\" (마 25:35) — 말이 아닌 삶으로 실천" : "\"I was a stranger and you welcomed me\" (Matt 25:35) — lived out, not just spoken", icon: "🤝" },
+                { n: lang === "ko" ? "순수한 동기의 교회" : "Pure in Motive", d: lang === "ko" ? "교인 수나 광고 목적이 아닌, 한 영혼을 그리스도께 인도하려는 순수한 사명" : "Not for membership growth or visibility, but to lead one soul to Christ", icon: "🕊️" },
+                { n: lang === "ko" ? "지속적으로 헌신하는 교회" : "Consistent in Commitment", d: lang === "ko" ? "계절적이 아닌 — 새 이민자가 뿌리내릴 때까지 함께하는 긴 호흡의 사역" : "Not seasonal — a long-breath ministry that stays until roots are set", icon: "⚓" },
+                { n: lang === "ko" ? "문화를 이해하는 교회" : "Culturally Understanding", d: lang === "ko" ? "새 이민자의 언어·문화·정서적 두려움을 이해하고 함께 걷는 공동체" : "A community that understands the language, culture, and fears of the newly arrived", icon: "🌿" },
+                { n: lang === "ko" ? "함께 성장하는 교회" : "Growing Together", d: lang === "ko" ? "이민자를 섬기면서 우리 자신도 더 깊은 제자도로 성장하는 교회" : "A church that grows into deeper discipleship through serving immigrants", icon: "🌱" },
               ].map((c, i) => (
                 <div key={i} style={{ display: "flex", gap: 10, marginBottom: i < 5 ? 10 : 0, paddingBottom: i < 5 ? 10 : 0, borderBottom: i < 5 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
                   <span style={{ fontSize: 16, flexShrink: 0, marginTop: 1 }}>{c.icon}</span>
@@ -10486,16 +10491,16 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             )}`}
               style={{ display: "block", textDecoration: "none" }}>
               <div style={{ background: "linear-gradient(135deg, #C9A227, #B8901C)", borderRadius: 14, padding: "16px 20px", textAlign: "center", boxShadow: "0 4px 20px rgba(201,162,39,0.4)" }}>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 4 }}>
-                  🏆 {lang === "ko" ? "헤브론 교회 네트워크 신청 — 자가 진단 양식 자동 채움" : "Apply for Hebron Church Network — Pre-filled Self-Assessment"}
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 6 }}>
+                  ✝️ {lang === "ko" ? "이 사명에 함께해 주세요" : "We Invite You to Join This Mission"}
                 </div>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.85)", marginBottom: 4 }}>
-                  hebronplatform@gmail.com · www.ijiguchon.org
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(255,255,255,0.9)", marginBottom: 6, lineHeight: 1.7 }}>
+                  {lang === "ko"
+                    ? "영혼구원의 갈급함이 있으시다면, 정중히 초청합니다.\n아래 버튼을 눌러 교회 소개를 보내주세요."
+                    : "If your heart hungers for souls, we warmly invite you.\nTap below to send us your church's story."}
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.65)" }}>
-                  {lang === "ko"
-                    ? "📋 커뮤니티 가치 · 환대 동행 약속 (1-2주 검토)"
-                    : "📋 4-Tier · Gospel Confession · Hospitality Commitment (1-2 wks)"}
+                  hebronplatform@gmail.com · 검토 후 1-2주 내 연락드립니다
                 </div>
               </div>
             </a>
