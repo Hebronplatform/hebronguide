@@ -105,8 +105,7 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.0
 <div class="hero">
   <div class="hero-badge">⛪ HebronGuide 교회 무료 등재 안내</div>
   <h1>교회 <em>무료 등재</em> 신청</h1>
-  <p>"내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35<br>
-  🌿 2026년 10월 1일까지 응하신 교회는 무상 등재</p>
+  <p style="font-size:.8rem;opacity:.6;">마태복음 25:35 &nbsp;·&nbsp; 🌿 2026년 10월 1일까지 무료</p>
 </div>
 
 <!-- 단계 바 -->
@@ -188,7 +187,7 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.0
     <!-- ② 연락처 -->
     <div class="form-card">
       <div class="card-num">2</div>
-      <div class="card-title">📞 연락처 <span style="font-size:.74rem;font-weight:500;color:rgba(236,253,245,.35);">— 이메일 또는 전화 중 하나만</span></div>
+      <div class="card-title">📞 연락처 <span style="font-size:.74rem;font-weight:500;color:rgba(236,253,245,.35);">이메일 또는 전화 중 하나</span></div>
       <div class="field-row">
         <div class="field">
           <label>이메일</label>
@@ -306,16 +305,14 @@ function showResult(result, data) {
 
   const cityPath = data.city && !['other',''].includes(data.city) ? data.city : 'seattle';
   box.innerHTML = `
-    <div class="result-icon">🎁</div>
-    <div class="result-title" style="color:#6EE7B7;">신청이 접수되었습니다!</div>
+    <div class="result-icon">✅</div>
+    <div class="result-title" style="color:#6EE7B7;">접수되었습니다</div>
     <div class="result-desc">
-      <strong style="color:#C9A227;">${data.churchName}</strong> 교회의 신청을 감사히 받았습니다.<br>
-      담당자가 <strong>1~2주 내</strong> 연락드립니다.<br><br>
-      주변에 영혼구원에 진심인 교회에<br>
-      이 안내를 전달해 주시면 감사하겠습니다. 🌿<br><br>
+      <strong style="color:#C9A227;">${data.churchName}</strong><br>
+      1~2주 내 연락드립니다.<br><br>
       문의: <strong style="color:#C9A227;">hebronplatform@gmail.com</strong>
     </div>
-    <a class="btn-back" href="/${cityPath}/">← 가이드에서 확인하기</a>`;
+    <a class="btn-back" href="/${cityPath}/">← 가이드 보기</a>`;
 }
 
 // 도시 자동 감지
