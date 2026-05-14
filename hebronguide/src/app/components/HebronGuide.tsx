@@ -15611,11 +15611,12 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
     // 1행
     { label: "카카오톡", sub: lang === "ko" ? "한국인 필수" : "Korean #1", bg: "#FAE100",
       icon: (
-        /* KakaoTalk 공식 로고 — 노란 말풍선 + 'k' 심볼 */
+        /* KakaoTalk 공식 로고 — 노란 배경 위 다크브라운 말풍선 */
         <svg viewBox="0 0 60 60" width="28" height="28">
-          <ellipse cx="30" cy="27" rx="22" ry="18" fill="#3C1E1E"/>
-          <polygon points="22,43 19,52 33,45" fill="#3C1E1E"/>
-          <path d="M20 27c0-3.3 4.5-6 10-6s10 2.7 10 6-4.5 6-10 6c-.8 0-1.5-.1-2.2-.2l-3.8 2.2 1-3.5C21.8 30.6 20 28.9 20 27z" fill="#FAE100"/>
+          {/* 말풍선 본체 */}
+          <ellipse cx="30" cy="25" rx="22" ry="17" fill="#3B1E1C"/>
+          {/* 말풍선 꼬리 */}
+          <polygon points="20,39 14,52 30,43" fill="#3B1E1C"/>
         </svg>
       ),
       action: () => {
