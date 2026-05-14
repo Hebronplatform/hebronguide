@@ -10588,7 +10588,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 © 2026 Hebron Platform LLC
               </div>
               <div style={{ fontSize: 10, color: "rgba(236,253,245,0.18)", letterSpacing: "0.06em", marginTop: 2 }}>
-                {lang === "ko" ? "창 13:14-18" : "Genesis 13:14-18"}
+                {lang === "ko" ? "요 13:14" : "John 13:14"}
               </div>
               <div style={{ fontSize: 10, color: "rgba(236,253,245,0.18)", letterSpacing: "0.05em", marginTop: 2 }}>
                 <span style={{ color: "rgba(110,231,183,0.45)", fontWeight: 700 }}>HebronGuide</span>
