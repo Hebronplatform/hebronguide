@@ -499,7 +499,7 @@ const MINT = "#6EE7B7";
 /* ─────────────────────────────────────────
    CITY CONFIG — 도시별 설정
 ───────────────────────────────────────── */
-// 현재 17개 + 확장 27개 = 총 52개 도시 (계속 성장 중)
+// 현재 17개 + 확장 27개 = 총 54개 도시 (계속 성장 중)
 // 작은 도시일수록 HebronGuide가 더 필요합니다 — 외롭기 때문입니다
 type CitySlug =
   // 북미 (기존 17)
@@ -6146,7 +6146,7 @@ function CompactHeroNew() {
         }}>
           <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6EE7B7", display: "inline-block", flexShrink: 0 }} />
           <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(255,255,255,0.92)", letterSpacing: "0.05em" }}>
-            LIVE · {lang === "ko" ? "52개 도시" : "52 Cities"}
+            LIVE · {lang === "ko" ? "54개 도시" : "54 Cities"}
           </span>
         </div>
         <div style={{
@@ -6261,7 +6261,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       icon: "🤝", color: "#F59E0B",
       nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
       tagKo: "친구 · 멘토 · 동행 파트너", tagEn: "Friends · Mentors · Partners",
-      userKo: "52개 도시 한인을 만납니다", userEn: "Meet Koreans across 52 cities",
+      userKo: "54개 도시 한인을 만납니다", userEn: "Meet Koreans across 54 cities",
       providerKo: "멘토로 섬기실 분 → 함께해요", providerEn: "Mentor & serve → join us",
       tab: 5, subTab: 2,
     },
@@ -8438,7 +8438,7 @@ function KoreanCultureCalendarSection({ onNavigate }: { onNavigate?: (tab: numbe
 /* ─────────────────────────────────────────
    HOME: Korean American 여정 섹션
 ───────────────────────────────────────── */
-// 도시 → 현지 한인 정체성 매핑 (52개 도시 전부 커버)
+// 도시 → 현지 한인 정체성 매핑 (54개 도시 전부 커버)
 const DIASPORA_IDENTITY: Record<string, {
   flag: string; ko: string; en: string; descKo: string; descEn: string; color: string;
 }> = {
@@ -8667,11 +8667,11 @@ function AmericasAdSection({ lang }: { lang: string }) {
 
 /* ─────────────────────────────────────────
    HOME: 플라이휠 소셜 프루프 바 (쿠팡 원리 ①)
-   — "312개 교회 · 52개 도시" 숫자가 신뢰를 만든다
+   — "312개 교회 · 54개 도시" 숫자가 신뢰를 만든다
 ───────────────────────────────────────── */
 function HebronFlywheelBar({ lang }: { lang: string }) {
   const stats = [
-    { emoji: "🌍", value: "52", label: lang === "ko" ? "개 도시" : "Cities" },
+    { emoji: "🌍", value: "54", label: lang === "ko" ? "개 도시" : "Cities" },
     { emoji: "🤝", value: "4", label: lang === "ko" ? "기관 파트너" : "Partners" },
     { emoji: "🌐", value: "2", label: lang === "ko" ? "개 언어" : "Languages" },
   ];
@@ -10434,7 +10434,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 lang === "ko" ? "📱 HebronGuide 앱에 '헤브론 교회 네트워크' 금색 배지 표시" : "📱 Gold 'Hebron Church Network' badge displayed on HebronGuide app",
                 lang === "ko" ? "🌐 전국·전 세계 목회자 네트워크 참여" : "🌐 National & global pastor network membership",
                 lang === "ko" ? "📊 도시 내 한인 이민자 정착 현황 데이터 공유" : "📊 City-level Korean immigrant settlement data sharing",
-                lang === "ko" ? "🤝 52개+ 도시 파트너 교회와 교인 교류·연결 (계속 확장 중)" : "🤝 Member exchange & connection with 52+ partner cities (continuously expanding)",
+                lang === "ko" ? "🤝 54개+ 도시 파트너 교회와 교인 교류·연결 (계속 확장 중)" : "🤝 Member exchange & connection with 52+ partner cities (continuously expanding)",
               ].map((item, i) => (
                 <div key={i} style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, marginBottom: 4 }}>
                   {item}
@@ -14218,7 +14218,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                   {[
                     { n: lang === "ko" ? "현지 한인" : "Local Korean", d: lang === "ko" ? "오래 살아온 분" : "Long-time residents" },
-                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "52개+ 도시" : "52+ cities" },
+                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "54개+ 도시" : "52+ cities" },
                     { n: lang === "ko" ? "소규모 투어" : "Small Group", d: lang === "ko" ? "개인 맞춤" : "Personal touch" },
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
@@ -14975,8 +14975,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             icon="🤝" color="#8B5CF6" lang={lang}
             titleKo="헤브론 커넥트 — 친구·멘토·동행 파트너 매칭"
             titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
-            descKo="교인 검증 프로필로 52개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
-            descEn="Meet Koreans across 52 cities. Friends, mentors, prayer partners & business connections."
+            descKo="교인 검증 프로필로 54개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
+            descEn="Meet Koreans across 54 cities. Friends, mentors, prayer partners & business connections."
           />
           {/* 211 팁 박스 */}
           <a href="tel:211" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>
@@ -17107,7 +17107,7 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
             icon="📚" color="#8B5CF6" lang={lang}
             titleKo="헤브론 튜터 — 한인 선배가 직접 가르칩니다"
             titleEn="Hebron Tutor — Learn from Korean Community Mentors"
-            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 52개+ 도시 가능."
+            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 54개+ 도시 가능."
             descEn="Math, SAT, AP, Korean tutoring. Carefully selected Korean tutors. Online across 52+ cities."
           />
         </div>
@@ -19358,7 +19358,7 @@ function AppBar({ onHome }: { onHome?: () => void }) {
           {/* 헤더 */}
           <div style={{ padding: "14px 18px 10px", flexShrink: 0 }}>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#1a2535", marginBottom: 2 }}>
-              🌍 {lang === "ko" ? "52개 도시" : "52 Cities"}
+              🌍 {lang === "ko" ? "54개 도시" : "54 Cities"}
             </div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8" }}>
               {lang === "ko" ? "이사·출장·방문 도시를 선택하세요" : "Select your destination city"}

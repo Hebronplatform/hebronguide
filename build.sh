@@ -136,5 +136,5 @@ cp hebronguide/dist/church-submit.html             public/church-submit.html    
 
 # 6. API 함수는 Vercel이 자동 라우팅 (hebronguide/api/*.js → /api/*)
 
-echo "=== Deploy Complete — 52 cities with city-specific SEO (계속 성장 중) ==="
+echo "=== Deploy Complete — 54 cities with city-specific SEO (계속 성장 중) ==="
 ls public/
