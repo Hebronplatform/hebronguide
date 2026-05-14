@@ -191,11 +191,14 @@ header .sub{font-size:.85rem;color:rgba(236,253,245,.55);line-height:1.8;}
 <body>
 
 <header>
-  <div class="ops-badge">🔒 관리자 전용 — Hebron 관리자</div>
+  <img src="/hebronguide-logo.svg" alt="HebronGuide" width="180" height="47"
+       style="display:block;margin:0 auto 18px;opacity:.9;">
+  <div class="ops-badge">🔒 관리자 전용 — Hebron Platform LLC</div>
   <h1>교회 <span>연결 시스템</span> 운영 가이드</h1>
   <p class="sub">
-    "새가족 신청하기" 버튼이 각 교회와 어떻게 연결되는지 —<br>
-    목사님이 오더하는 분들께 직접 전달하는 핵심 설명서
+    교회 등재 · 새가족 연결 · 데이터 관리 —<br>
+    전체 흐름과 운영 원칙 핵심 설명서<br>
+    <span style="font-size:.75rem;opacity:.5;">전 세계 54개 도시 · hebronguide.com</span>
   </p>
 </header>
 
@@ -210,15 +213,50 @@ header .sub{font-size:.85rem;color:rgba(236,253,245,.55);line-height:1.8;}
   ──────────────────────────────── -->
   <div class="sec-title">
     <div class="sec-num">1</div>
-    "새가족 신청하기" 버튼 — 전체 연결 흐름
+    교회 등재 → 새가족 연결 — 전체 흐름
   </div>
 
+  <div class="hi-box" style="margin-bottom:16px;">
+    <div class="hi-title">📌 두 가지 흐름</div>
+    <strong>A. 교회 등재 신청</strong> — 목사님이 church-submit.html에서 교회 정보 제출<br>
+    <strong>B. 새가족 연결</strong> — 이민자가 앱에서 교회 카드 보고 직접 연락
+  </div>
+
+  <div style="font-size:.8rem;font-weight:700;color:rgba(236,253,245,.5);margin-bottom:8px;">A. 교회 등재 흐름</div>
+  <div class="flow">
+    <div class="flow-item">
+      <div class="flow-dot">⛪</div>
+      <div class="flow-body">
+        <div class="flow-label">목사님</div>
+        <div class="flow-title">church-guide.html 또는 church-submit.html 접속</div>
+        <div class="flow-desc">hebronguide.com/church-submit.html — 2단계로 완료</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-dot">✏️</div>
+      <div class="flow-body">
+        <div class="flow-label">입력</div>
+        <div class="flow-title">교회명 + 도시 + 이메일(또는 전화)</div>
+        <div class="flow-desc">필수 3개 필드만 — 1~2분이면 완료</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-dot">📧</div>
+      <div class="flow-body">
+        <div class="flow-label">접수</div>
+        <div class="flow-title">hebronplatform@gmail.com 수신 → 1~2주 내 등재</div>
+        <div class="flow-desc">/api/submit-church → Hebron Platform LLC 담당자 검토 후 코드 반영</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size:.8rem;font-weight:700;color:rgba(236,253,245,.5);margin:16px 0 8px;">B. 새가족 연결 흐름</div>
   <div class="flow">
     <div class="flow-item">
       <div class="flow-dot">👤</div>
       <div class="flow-body">
-        <div class="flow-label">방문자</div>
-        <div class="flow-title">헤브론가이드 교회 탭에서 교회 카드를 봄</div>
+        <div class="flow-label">이민자</div>
+        <div class="flow-title">HebronGuide 교회 탭에서 교회 카드를 봄</div>
         <div class="flow-desc">교회명 · 주소 · 예배 시간 · 태그 표시</div>
       </div>
     </div>
@@ -226,35 +264,16 @@ header .sub{font-size:.85rem;color:rgba(236,253,245,.55);line-height:1.8;}
       <div class="flow-dot">🌿</div>
       <div class="flow-body">
         <div class="flow-label">버튼 클릭</div>
-        <div class="flow-title">"새가족 신청하기" (금색 버튼) 클릭</div>
-        <div class="flow-desc">→ new-member.html 페이지로 이동<br>URL에 교회명·이메일 자동 포함</div>
-      </div>
-    </div>
-    <div class="flow-item">
-      <div class="flow-dot">📋</div>
-      <div class="flow-body">
-        <div class="flow-label">방문자 작성</div>
-        <div class="flow-title">새가족 신청 양식 작성</div>
-        <div class="flow-desc">이름 · 연락처 · 언어 · 도착 시기 · 가족 구성 · 메시지</div>
+        <div class="flow-title">"새가족 신청하기" (금색 버튼) 클릭 — Tier 1 교회만</div>
+        <div class="flow-desc">→ new-member.html 이동 / 카카오 · 전화 · 홈페이지 보조 버튼</div>
       </div>
     </div>
     <div class="flow-item">
       <div class="flow-dot">📧</div>
       <div class="flow-body">
-        <div class="flow-label">이메일 발송</div>
-        <div class="flow-title">mailto: 로 목사님 이메일로 전달</div>
-        <div class="flow-desc">
-          현재: <code>hebronplatform@gmail.com</code> (목사님 수신)<br>
-          교회별 직접 이메일로 변경도 가능
-        </div>
-      </div>
-    </div>
-    <div class="flow-item">
-      <div class="flow-dot">📞</div>
-      <div class="flow-body">
-        <div class="flow-label">추가 버튼 (선택)</div>
-        <div class="flow-title">카카오 · 전화 · 홈페이지 보조 버튼</div>
-        <div class="flow-desc">교회 데이터에 phone/kakao 값이 있을 때만 표시됨</div>
+        <div class="flow-label">전달</div>
+        <div class="flow-title">mailto: 로 이메일 전달</div>
+        <div class="flow-desc">기본값: <code>hebronplatform@gmail.com</code> / 교회별 직접 수신 변경 가능</div>
       </div>
     </div>
   </div>
@@ -336,7 +355,7 @@ header .sub{font-size:.85rem;color:rgba(236,253,245,.55);line-height:1.8;}
   </div>
 
   <div style="font-size:.82rem;color:rgba(236,253,245,.6);margin-bottom:10px;">
-    HebronGuide.tsx 코드 안에 교회 데이터를 이 형식으로 넣으면 됩니다
+    church-submit.html 접수 후 검토 → HebronGuide.tsx <code>getCityChurches()</code> 함수 안 <code>byCity</code>에 추가
   </div>
 
   <div class="code-block"><span class="comment">// ── 교회 1개 데이터 전체 형식 ──</span>
@@ -362,71 +381,65 @@ header .sub{font-size:.85rem;color:rgba(236,253,245,.55);line-height:1.8;}
   </div>
 
   <!-- ────────────────────────────────
-       SECTION 4: 시애틀지구촌교회 405 수정
+       SECTION 4: 운영 현황 & 완료 이력
   ──────────────────────────────── -->
   <div class="sec-title">
     <div class="sec-num">4</div>
-    시애틀지구촌교회 — 405 오류 원인과 수정
+    운영 현황 & 완료 이력
   </div>
 
-  <div class="warn-box">
-    <div class="warn-title">🚨 405 오류 원인 분석</div>
-    원인: <code>www.ijiguchon.org</code> 서버가 외부 링크 클릭 요청을 거부함<br>
-    → HTTP 405 "Method Not Allowed" — 서버측 설정 문제<br><br>
-    <strong>우리 코드 문제 아님.</strong> 교회 홈페이지 서버가 www 리다이렉트를<br>
-    잘못 처리하거나, CDN이 특정 요청 방식을 차단하는 경우.
-  </div>
+  <table class="data-table">
+    <thead><tr><th>날짜</th><th>작업</th><th>상태</th></tr></thead>
+    <tbody>
+      <tr><td>2026-05-13</td><td>시애틀지구촌교회 405 오류 — <code>www.</code> 제거</td><td style="color:#6EE7B7;">✅ 완료</td></tr>
+      <tr><td>2026-05-14</td><td>부산 교회 탭 추가 (수영로교회·해운대교회·부산중앙교회)</td><td style="color:#6EE7B7;">✅ 완료</td></tr>
+      <tr><td>2026-05-14</td><td>church-submit.html 2단계 간소화</td><td style="color:#6EE7B7;">✅ 완료</td></tr>
+      <tr><td>2026-05-14</td><td>HebronGuide LLC → Hebron Platform LLC 전체 치환</td><td style="color:#6EE7B7;">✅ 완료</td></tr>
+      <tr><td>—</td><td>시애틀지구촌교회 카카오채널 URL 확인 필요</td><td style="color:#fbbf24;">⏳ 대기</td></tr>
+      <tr><td>—</td><td>시애틀지구촌교회 교회 전화번호 확인 필요</td><td style="color:#fbbf24;">⏳ 대기</td></tr>
+    </tbody>
+  </table>
 
-  <div class="card">
-    <div class="card-title">✅ 이미 적용된 수정 (2026-05-13)</div>
-    <div class="card-desc">
-      <code>https://www.ijiguchon.org</code> → <code>https://ijiguchon.org</code><br>
-      www 제거 후 빌드 · 배포 완료.<br><br>
-      <strong>추가로 확인할 것</strong>:<br>
-      1. <code>ijiguchon.org</code> 도 안 되면 → 홈페이지 버튼 임시 제거<br>
-      2. 교회에 정확한 홈페이지 URL 확인 요청<br>
-      3. 홈페이지 대신 <strong>카카오채널 URL</strong>로 대체 가능
-    </div>
-  </div>
-
-  <div class="hi-box">
-    <div class="hi-title">📋 시애틀지구촌교회 현재 데이터 (확인 필요)</div>
-    <strong>Hebron 관리자 확인 요청 사항</strong>:<br>
-    ① 교회 대표 전화번호: <code>+1-425-___-____</code><br>
-    ② 카카오채널 URL: <code>https://pf.kakao.com/_???</code><br>
-    ③ 홈페이지 정확한 주소: www 포함/제외 여부<br>
-    ④ 새가족 담당자 이메일: 직접 수신 원하면 변경 가능
+  <div class="hi-box" style="margin-top:12px;">
+    <div class="hi-title">📋 브랜드 구조 (2026-05-14 확정)</div>
+    <strong>Hebron Platform LLC</strong> = 법인명 → 푸터 copyright에만 사용<br>
+    <strong>HebronGuide</strong> = 제품명 → 앱·서비스·마케팅 전체<br>
+    <code>"HebronGuide LLC"</code> 표현은 존재하지 않음 — 사용 금지
   </div>
 
   <!-- ────────────────────────────────
-       SECTION 5: 목사님이 교회에 보내는 데이터 수집 템플릿
+       SECTION 5: 데이터 수집 템플릿
   ──────────────────────────────── -->
   <div class="sec-title">
     <div class="sec-num">5</div>
-    목사님 → 교회 데이터 수집 템플릿
+    교회 데이터 수집 템플릿
   </div>
 
-  <div style="font-size:.82rem;color:rgba(236,253,245,.55);margin-bottom:10px;">
-    관심 표하는 목사님께 카카오톡으로 보내면 됩니다
+  <div style="font-size:.82rem;color:rgba(236,253,245,.55);margin-bottom:6px;">
+    1안 — church-submit.html 링크 전달 (권장)
   </div>
-
   <div class="template-box">
-    안녕하세요, 목사님 🙏<br><br>
-    헤브론가이드(hebronguide.com)에 교회 정보를 올려드리려고 합니다.<br>
-    아래 정보를 알려 주시면 바로 등재해 드리겠습니다.<br><br>
-    <strong>━━━ 교회 등재 정보 ━━━</strong><br><br>
-    📋 교회 이름 (한/영):<br>
-    📍 주소:<br>
-    ⛪ 주일예배 시간:<br>
-    👤 새가족 담당자 이름:<br>
-    📞 교회 전화번호:<br>
-    📧 새가족 문의 이메일:<br>
-    💬 카카오채널 URL: (있으면)<br>
-    🔗 교회 홈페이지:<br>
-    📝 한 줄 소개:<br><br>
-    <strong>━━━━━━━━━━━━━━━━━━</strong><br><br>
-    감사합니다 🌿<br>
-    — 폴 김 / HebronGuide
+    목사님, 안녕하세요.<br><br>
+    전 세계 54개 도시 한인 이민자 정착 앱 HebronGuide에<br>
+    교회를 등재해 드립니다. 아래 링크에서 2단계로 완료됩니다.<br><br>
+    👉 hebronguide.com/church-submit.html<br><br>
+    2026년 10월 1일까지 무료입니다.<br>
+    — 폴 김 / Hebron Platform LLC
+  </div>
+
+  <div style="font-size:.82rem;color:rgba(236,253,245,.55);margin:14px 0 6px;">
+    2안 — 직접 수집 (카카오톡으로 보낼 때)
+  </div>
+  <div class="template-box">
+    ━━━ HebronGuide 교회 등재 ━━━<br><br>
+    📋 교회 이름:<br>
+    🏙️ 도시:<br>
+    📞 전화 또는 📧 이메일:<br>
+    🔗 홈페이지 (선택):<br>
+    💬 카카오채널 URL (선택):<br>
+    ⛪ 예배 시간 (선택):<br><br>
+    ━━━━━━━━━━━━━━━━━━<br>
+    — 폴 김 / HebronGuide · hebronplatform@gmail.com
   </div>
 
   <!-- ────────────────────────────────
@@ -527,9 +540,11 @@ header .sub{font-size:.85rem;color:rgba(236,253,245,.55);line-height:1.8;}
 
 </div>
 
-<footer style="background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.07);text-align:center;padding:24px;font-size:.72rem;color:rgba(236,253,245,.25);">
-  🔒 HebronGuide 내부 운영 문서 — 관리자 전용<br>
-  hebronguide.com &nbsp;·&nbsp; hebronplatform@gmail.com
+<footer style="background:linear-gradient(135deg,#1a2535,#0d1117);border-top:1px solid rgba(255,255,255,.08);text-align:center;padding:32px 24px;font-size:.72rem;color:rgba(236,253,245,.55);line-height:2;">
+  <img src="/hebronguide-logo.svg" alt="HebronGuide" width="160" height="42"
+       style="display:block;margin:0 auto 12px;opacity:.85;">
+  <div>© 2026 Hebron Platform LLC &nbsp;·&nbsp; 1 Cor. 10:31</div>
+  <div style="opacity:.5;">🔒 내부 운영 문서 — 관리자 전용 &nbsp;·&nbsp; hebronplatform@gmail.com</div>
 </footer>
 
 </body>
