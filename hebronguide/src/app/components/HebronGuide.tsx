@@ -10587,13 +10587,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               <div style={{ fontSize: 11, color: "rgba(201,162,39,0.55)", fontWeight: 700, letterSpacing: "0.06em" }}>
                 © 2026 Hebron Platform LLC
               </div>
-              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.28)", letterSpacing: "0.02em", lineHeight: 1.7 }}>
-                {lang === "ko"
-                  ? "동서남북 온누리에 하나님의 사랑을"
-                  : "God's love to every corner of the world"}
-              </div>
               <div style={{ fontSize: 10, color: "rgba(236,253,245,0.18)", letterSpacing: "0.06em", marginTop: 2 }}>
-                {lang === "ko" ? "창 13:14-18 · 마 6:33 · 고전 10:31" : "Genesis 13:14-18 · Matthew 6:33 · 1 Corinthians 10:31"}
+                {lang === "ko" ? "창 13:14-18 · 마 6:33 · 고전 10:31 · 요 13:34" : "Gen 13:14-18 · Matt 6:33 · 1 Cor 10:31 · John 13:34"}
               </div>
               <div style={{ fontSize: 10, color: "rgba(236,253,245,0.18)", letterSpacing: "0.05em", marginTop: 2 }}>
                 <span style={{ color: "rgba(110,231,183,0.45)", fontWeight: 700 }}>HebronGuide</span>
