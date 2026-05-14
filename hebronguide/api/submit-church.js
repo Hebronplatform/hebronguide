@@ -26,6 +26,8 @@ export default async function handler(req) {
 
   const RESEND_KEY = process.env.RESEND_API_KEY || ''
   const ADMIN      = 'hebronplatform@gmail.com'
+  // 도메인 인증 전: onboarding@resend.dev (Resend 테스트 발신자)
+  // 도메인 인증 후: HebronGuide <noreply@hebronguide.com> 으로 변경
   const FROM       = 'HebronGuide <onboarding@resend.dev>'
   const now        = new Date().toLocaleString('ko-KR', { timeZone: 'America/Los_Angeles' })
 
@@ -71,26 +73,33 @@ export default async function handler(req) {
 </div>`
 
   // ── Resend 발송 ──
+  let resendStatus = 'no_key'
   if (RESEND_KEY) {
-    const tasks = [
+    try {
       // 관리자(Paul)에게 알림
-      fetch('https://api.resend.com/emails', {
+      const adminRes = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${RESEND_KEY}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ from: FROM, to: [ADMIN], subject: `[HebronGuide 신청] ${churchName} — ${city}`, html: adminHtml }),
-      }),
-    ]
+      })
+      const adminJson = await adminRes.json()
+      resendStatus = adminRes.ok ? 'sent' : `error:${JSON.stringify(adminJson)}`
+      console.log('[submit-church] admin email result:', adminRes.status, JSON.stringify(adminJson))
 
-    // 신청 교회에 확인 이메일 (이메일 있는 경우)
-    if (email) {
-      tasks.push(fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${RESEND_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ from: FROM, to: [email], subject: `[HebronGuide] ${churchName} 교회 등재 신청 접수`, html: confirmHtml }),
-      }))
+      // 신청 교회에 확인 이메일
+      if (email) {
+        const confRes = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${RESEND_KEY}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ from: FROM, to: [email], subject: `[HebronGuide] ${churchName} 교회 등재 신청 접수`, html: confirmHtml }),
+        })
+        const confJson = await confRes.json()
+        console.log('[submit-church] confirm email result:', confRes.status, JSON.stringify(confJson))
+      }
+    } catch (e) {
+      resendStatus = `exception:${e.message}`
+      console.error('[submit-church] email error:', e.message)
     }
-
-    await Promise.allSettled(tasks)
   }
 
   return new Response(JSON.stringify({
