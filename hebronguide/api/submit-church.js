@@ -24,7 +24,7 @@ export default async function handler(req) {
     return new Response(JSON.stringify({ status: 'error', message: '교회명과 도시는 필수입니다.' }), { status: 400, headers: CORS })
   }
 
-  const RESEND_KEY = globalThis.RESEND_API_KEY || ''
+  const RESEND_KEY = process.env.RESEND_API_KEY || ''
   const ADMIN      = 'hebronplatform@gmail.com'
   const FROM       = 'HebronGuide <onboarding@resend.dev>'
   const now        = new Date().toLocaleString('ko-KR', { timeZone: 'America/Los_Angeles' })
