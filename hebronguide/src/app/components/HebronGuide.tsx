@@ -10583,19 +10583,24 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             <CityRequestForm lang={lang} />
 
             {/* 브랜드 푸터 */}
-            <div style={{ textAlign: "center", padding: "10px 0 6px", fontFamily: "Manrope,sans-serif", lineHeight: 2 }}>
-              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.2)", letterSpacing: "0.06em" }}>
-                {lang === "ko" ? "마태복음 6:33 · 고린도전서 10:31" : "Matthew 6:33 · 1 Corinthians 10:31"}
-              </div>
-              <div style={{ fontSize: 11, color: "rgba(201,162,39,0.5)", fontWeight: 700, letterSpacing: "0.08em" }}>
+            <div style={{ textAlign: "center", padding: "12px 0 8px", fontFamily: "Manrope,sans-serif", lineHeight: 2 }}>
+              <div style={{ fontSize: 11, color: "rgba(201,162,39,0.55)", fontWeight: 700, letterSpacing: "0.06em" }}>
                 © 2026 Hebron Platform LLC
               </div>
-              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.2)", letterSpacing: "0.05em", marginTop: 2 }}>
-                <span style={{ color: "rgba(110,231,183,0.5)", fontWeight: 700 }}>HebronGuide</span>
-                <span style={{ margin: "0 6px", opacity: 0.3 }}>·</span>
-                <span style={{ opacity: 0.35 }}>NanuriWeb</span>
-                <span style={{ margin: "0 6px", opacity: 0.3 }}>·</span>
-                <span style={{ opacity: 0.35 }}>NanuriHome</span>
+              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.28)", letterSpacing: "0.02em", lineHeight: 1.7 }}>
+                {lang === "ko"
+                  ? "동서남북 온누리에 하나님의 영광이 비추이는 신앙 생태계"
+                  : "A faith ecosystem where God's glory shines to all corners of the world"}
+              </div>
+              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.18)", letterSpacing: "0.06em", marginTop: 2 }}>
+                {lang === "ko" ? "마태복음 6:33 · 고린도전서 10:31" : "Matthew 6:33 · 1 Corinthians 10:31"}
+              </div>
+              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.18)", letterSpacing: "0.05em", marginTop: 2 }}>
+                <span style={{ color: "rgba(110,231,183,0.45)", fontWeight: 700 }}>HebronGuide</span>
+                <span style={{ margin: "0 5px", opacity: 0.3 }}>·</span>
+                <span style={{ opacity: 0.3 }}>NanuriWeb</span>
+                <span style={{ margin: "0 5px", opacity: 0.3 }}>·</span>
+                <span style={{ opacity: 0.3 }}>NanuriHome</span>
               </div>
             </div>
 
