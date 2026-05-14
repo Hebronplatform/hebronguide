@@ -10,6 +10,7 @@ echo "=== HebronGuide Deploy Start ==="
 rm -rf public && mkdir -p public
 
 # 2. 루트 정적 파일
+cp index.html    public/index.html
 cp robots.txt    public/robots.txt
 cp sitemap.xml   public/sitemap.xml
 cp llms.txt      public/llms.txt
