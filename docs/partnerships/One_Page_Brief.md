@@ -59,6 +59,6 @@
 ---
 
 **문의:** hebronplatform@gmail.com | hebronguide.com
-**HebronGuide LLC** | 폴 김 (Paul Kim)
+**Hebron Platform LLC** | 폴 김 (Paul Kim)
 
 *Soli Deo Gloria*

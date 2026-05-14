@@ -1,5 +1,5 @@
 # 협력 협약서 (MOU)
-## HebronGuide LLC × 국제가정교회사역원 (IHM)
+## Hebron Platform LLC × 국제가정교회사역원 (IHM)
 
 ---
 
@@ -11,7 +11,7 @@
 
 ## 전문
 
-국제가정교회사역원(이하 "IHM")과 HebronGuide LLC(이하 "HebronGuide")는 하나님 나라의 확장과 한인 이민자 섬김이라는 공동의 사명 아래 본 협약을 체결합니다.
+국제가정교회사역원(이하 "IHM")과 Hebron Platform LLC(이하 "HebronGuide")는 하나님 나라의 확장과 한인 이민자 섬김이라는 공동의 사명 아래 본 협약을 체결합니다.
 
 IHM은 전 세계 한인 가정교회 운동의 신학적 중심으로서, 제자 만드는 교회를 세우고 성도를 섬기는 사역을 감당합니다.
 
@@ -103,7 +103,7 @@ IHM은 본 협약에 따른 파트너십 운영비로 다음을 지원합니다:
 
 본 협약의 내용을 확인하고 이에 동의하여 서명합니다.
 
-**HebronGuide LLC**
+**Hebron Platform LLC**
 
 서명: ____________________
 성명: 폴 김 (Paul Kim)
@@ -122,4 +122,4 @@ IHM은 본 협약에 따른 파트너십 운영비로 다음을 지원합니다:
 ---
 
 *본 협약은 한국어 원본을 기준으로 합니다.*
-*Soli Deo Gloria · HebronGuide LLC × IHM · 2026*
+*Soli Deo Gloria · Hebron Platform LLC × IHM · 2026*

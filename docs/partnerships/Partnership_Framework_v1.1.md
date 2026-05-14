@@ -1,5 +1,5 @@
 # HebronGuide 파트너십 프레임워크
-**버전 1.1 | 2026년 | HebronGuide LLC**
+**버전 1.1 | 2026년 | Hebron Platform LLC**
 
 ---
 
@@ -41,7 +41,7 @@ Tier 4: 독립·무소속 (검토 후)
 양방향 섬김이 기준입니다.
 
 ### 4. 투명한 재정
-모든 파트너십 재정은 HebronGuide LLC 계정으로 처리되며, 연간 리포트를 통해 파트너에게 공개됩니다.
+모든 파트너십 재정은 Hebron Platform LLC 계정으로 처리되며, 연간 리포트를 통해 파트너에게 공개됩니다.
 
 ---
 
@@ -96,4 +96,4 @@ Tier 4: 독립·무소속 (검토 후)
 ---
 
 *v1.0 → v1.1 변경: 2026년 가정교회 창립 파트너 등록비 면제 추가*
-*Soli Deo Gloria · HebronGuide LLC · 2026*
+*Soli Deo Gloria · Hebron Platform LLC · 2026*

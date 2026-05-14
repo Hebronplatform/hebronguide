@@ -210,7 +210,7 @@ From X → To Y → By When → And Why
 
 **구조적 분리 원칙:**
 ```
-HebronGuide LLC ≠ 시애틀지구촌교회
+Hebron Platform LLC ≠ 시애틀지구촌교회
 재정 완전 분리 (계좌·인력·자원)
 영적 파트너십만 유지
 ```

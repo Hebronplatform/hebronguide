@@ -1,5 +1,5 @@
 # Memorandum of Understanding (MOU)
-## HebronGuide LLC × Northwest Baptist Convention (NWBC)
+## Hebron Platform LLC × Northwest Baptist Convention (NWBC)
 
 ---
 
@@ -12,7 +12,7 @@
 
 ## Preamble
 
-The Northwest Baptist Convention (hereinafter "NWBC") and HebronGuide LLC (hereinafter "HebronGuide") enter into this Memorandum of Understanding based on a shared commitment to serving Korean-American immigrants throughout the Pacific Northwest.
+The Northwest Baptist Convention (hereinafter "NWBC") and Hebron Platform LLC (hereinafter "HebronGuide") enter into this Memorandum of Understanding based on a shared commitment to serving Korean-American immigrants throughout the Pacific Northwest.
 
 NWBC serves churches across Washington, Oregon, Idaho, and Alaska, equipping local congregations to fulfill the Great Commission and care for their communities.
 
@@ -100,7 +100,7 @@ Both parties agree to maintain confidentiality of shared church data, contact in
 
 ## Article 8 — Signatures
 
-**HebronGuide LLC**
+**Hebron Platform LLC**
 
 Signature: ____________________
 Name: Paul Kim
@@ -126,4 +126,4 @@ Date: _______________, 2026
 ---
 
 *This agreement is executed in English. A Korean translation is available upon request.*
-*Soli Deo Gloria · HebronGuide LLC × NWBC · 2026*
+*Soli Deo Gloria · Hebron Platform LLC × NWBC · 2026*

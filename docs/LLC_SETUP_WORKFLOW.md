@@ -12,11 +12,11 @@
 
 | 후보 | 장점 | 단점 |
 |---|---|---|
-| **HebronGuide LLC** | ⭐ 브랜드와 100% 일치, 도메인과 동일 | 종교 색채 ↓ |
+| **Hebron Platform LLC** | ⭐ 브랜드와 100% 일치, 도메인과 동일 | 종교 색채 ↓ |
 | Hebron Platform LLC | 글로벌 확장 시 유리 | 이미 비슷한 이름 존재 가능 |
 | Hebron Digital Ministry LLC | 사역 정체성 명확 | 영리 LLC와 어울리지 않음 (비영리 전환 시 유리) |
 
-**👉 추천: `HebronGuide LLC`**
+**👉 추천: `Hebron Platform LLC`**
 
 **WA Secretary of State에서 이름 중복 확인:**
 🔗 https://ccfs.sos.wa.gov/#/BusinessSearch
@@ -32,7 +32,7 @@
 
 ```
 ─────────────────────────────────────────
-법인명: HebronGuide LLC
+법인명: Hebron Platform LLC
 유형: Limited Liability Company (LLC)
 관할: Washington State
 
@@ -82,7 +82,7 @@ Registered Agent (등록 대리인):
 **입력 정보:**
 ```
 ─────────────────────────────────────────
-Legal Name: HebronGuide LLC
+Legal Name: Hebron Platform LLC
 Trade Name (DBA): HebronGuide (선택사항)
 Mailing Address: [LLC 등록 주소와 동일]
 Responsible Party: Paul Kim (본인 SSN 입력)
@@ -144,12 +144,12 @@ DATED: ____________, 2026
 
 ARTICLE 1 — FORMATION
 
-1.1 Formation. HebronGuide LLC (the "Company") was formed as a 
+1.1 Formation. Hebron Platform LLC (the "Company") was formed as a 
 Washington Limited Liability Company under the Washington Limited 
 Liability Company Act on the date the Articles of Organization 
 were filed with the Washington Secretary of State.
 
-1.2 Name. The Company's legal name is "HebronGuide LLC."
+1.2 Name. The Company's legal name is "Hebron Platform LLC."
 
 1.3 Principal Office. The principal office of the Company is 
 located at: [주소], Washington, [우편번호].
@@ -213,7 +213,7 @@ distribute available cash to themselves.
 
 ARTICLE 5 — SEPARATION FROM AFFILIATED ENTITIES
 
-5.1 Independent Operation. HebronGuide LLC operates as an 
+5.1 Independent Operation. Hebron Platform LLC operates as an 
 independent business entity, separate and distinct from any 
 religious organization or church, including Global Mission 
 Church of Greater Seattle.
@@ -259,7 +259,7 @@ Operating Agreement as of the date first written above.
 
 __________________________________
 Paul Kim, Sole Member
-HebronGuide LLC
+Hebron Platform LLC
 
 Date: _________________________
 
@@ -291,7 +291,7 @@ Payment Date: [실제 결제일]
 Payment Method: [Zelle / Venmo / Check / Cash]
 
 Issued By:
-HebronGuide LLC
+Hebron Platform LLC
 EIN: [발급받은 EIN]
 [주소]
 
@@ -316,7 +316,7 @@ Amount: $100.00
 ## 📊 진행 체크리스트
 
 ```
-□ Step 1A: 법인명 결정 (HebronGuide LLC)
+□ Step 1A: 법인명 결정 (Hebron Platform LLC)
 □ Step 1B: WA LLC 신청 ($200) — corps.wa.gov
 □ Step 1B: LLC 승인서 받기 (2-3일 후)
 □ Step 1C: EIN 신청 (무료) — irs.gov

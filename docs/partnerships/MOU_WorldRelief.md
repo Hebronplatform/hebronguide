@@ -1,5 +1,5 @@
 # Memorandum of Understanding (MOU)
-## HebronGuide LLC × World Relief
+## Hebron Platform LLC × World Relief
 
 ---
 
@@ -12,7 +12,7 @@
 
 ## Preamble
 
-World Relief (hereinafter "WR") and HebronGuide LLC (hereinafter "HebronGuide") enter into this Memorandum of Understanding to jointly serve Korean-American immigrants through complementary strengths.
+World Relief (hereinafter "WR") and Hebron Platform LLC (hereinafter "HebronGuide") enter into this Memorandum of Understanding to jointly serve Korean-American immigrants through complementary strengths.
 
 **World Relief** provides on-the-ground refugee resettlement, immigration legal services, ESL, economic empowerment, and church-based community support across the United States.
 
@@ -121,7 +121,7 @@ Either party may terminate with 30 days written notice, or immediately for mater
 
 ## Article 9 — Signatures
 
-**HebronGuide LLC**
+**Hebron Platform LLC**
 
 Signature: ____________________
 Name: Paul Kim
@@ -150,4 +150,4 @@ Date: _______________, 2026
 
 *Both parties affirm that this partnership is mission-driven and grounded in the shared calling to welcome the stranger.*
 
-*Soli Deo Gloria · HebronGuide LLC × World Relief · 2026*
+*Soli Deo Gloria · Hebron Platform LLC × World Relief · 2026*
