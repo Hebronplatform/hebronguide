@@ -201,11 +201,11 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
   ],
 
-  // 🇰🇷 서울 — 경복궁 + 한강 + N서울타워
+  // 🇰🇷 서울 — 경복궁 + 한강 + 서울 야경
   seoul: [
-    { url: "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=1200&q=90", pos: "center 35%", alt: "Seoul Gyeongbokgung Palace" },
-    { url: "https://images.unsplash.com/photo-1601513945640-14b8c5e4d9c3?w=1200&q=90", pos: "center 40%", alt: "Seoul skyline Han River" },
-    { url: "https://images.unsplash.com/photo-1548115184-bc6544d06a58?w=1200&q=90", pos: "center 38%", alt: "Seoul N Tower night" },
+    { url: "https://images.unsplash.com/photo-1583416750470-965b2707b531?w=1200&q=90", pos: "center 40%", alt: "Seoul city skyline at night" },
+    { url: "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=1200&q=90", pos: "center 35%", alt: "Seoul Gyeongbokgung Palace" },
+    { url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&q=90", pos: "center 38%", alt: "Seoul Han River night view" },
   ],
 
   // 🇰🇷 부산 — 해운대 + 광안리 + 감천문화마을
@@ -5608,9 +5608,7 @@ function CompactHeroNew() {
       height: "clamp(192px, 30dvh, 256px)",
       overflow: "hidden",
       borderRadius: "0 0 28px 28px",
-      background: hasMedia
-        ? `${city.color}66`
-        : `linear-gradient(135deg, ${city.color} 0%, ${city.color}cc 40%, #0b1326 100%)`,
+      background: `linear-gradient(135deg, ${city.color}bb 0%, ${city.color}66 55%, #0b1326 100%)`,
     }}>
 
       {/* ── Ken Burns 키프레임 */}
