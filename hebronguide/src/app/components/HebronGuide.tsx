@@ -308,6 +308,8 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇺🇸 샬럿 — 도심 스카이라인
   charlotte: [
     { url: "https://images.unsplash.com/photo-1566024119436-8f4c1f5d75e3?w=1200&q=90", pos: "center 40%", alt: "Charlotte North Carolina skyline" },
+    { url: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1200&q=90", pos: "center 38%", alt: "Charlotte uptown skyline daytime" },
+    { url: "https://images.unsplash.com/photo-1578985064249-e6b0f2ba94cb?w=1200&q=90", pos: "center 42%", alt: "Charlotte city at dusk" },
   ],
 
   // 🇺🇸 롤리 — 리서치 트라이앵글
@@ -765,12 +767,12 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   },
 
   // ── 북미 확장 Tier A (Isolation: 2-3) ──────────────────────────────────
-  chicago:    { slug: "chicago",    nameKo: "시카고",    nameEn: "Chicago",      color: "#1D4ED8", heroVideo: "", population: "6.2만+", state: "Illinois",    taglineKo: "바람의 도시, 우리의 집",       taglineEn: "City of Winds, Home of Ours.",   taglineEs: "Ciudad de los Vientos, nuestro hogar." },
+  chicago:    { slug: "chicago",    nameKo: "시카고",    nameEn: "Chicago",      color: "#2563EB", heroVideo: "", population: "6.2만+", state: "Illinois",    taglineKo: "바람의 도시, 우리의 집",       taglineEn: "City of Winds, Home of Ours.",   taglineEs: "Ciudad de los Vientos, nuestro hogar." },
   dc:         { slug: "dc",         nameKo: "워싱턴 DC", nameEn: "Washington DC",color: "#DC2626", heroVideo: "", population: "9.3만+", state: "Virginia/MD", taglineKo: "나라의 심장에서",             taglineEn: "At the Heart of the Nation.",    taglineEs: "En el corazón de la nación." },
   sandiego:   { slug: "sandiego",   nameKo: "샌디에고",  nameEn: "San Diego",    color: "#0891B2", heroVideo: "", population: "2.5만+", state: "California",  taglineKo: "태평양이 품은 도시",          taglineEn: "The City the Pacific Holds.",    taglineEs: "La ciudad que abraza el Pacífico." },
   honolulu:   { slug: "honolulu",   nameKo: "호놀룰루",  nameEn: "Honolulu",     color: "#10B981", heroVideo: "", population: "2.3만+", state: "Hawaii",      taglineKo: "태평양의 섬, 새로운 출발",               taglineEn: "Island life, fresh start.",         taglineEs: "Vida isleña, nuevo comienzo." },
   portland:   { slug: "portland",   nameKo: "포틀랜드",  nameEn: "Portland",     color: "#BE185D", heroVideo: "", population: "1만+",   state: "Oregon",      taglineKo: "장미 도시, 새로운 씨앗",          taglineEn: "Bloom in the Rose City.",      taglineEs: "Florecer en la Ciudad de las Rosas." },
-  denver:     { slug: "denver",     nameKo: "덴버",      nameEn: "Denver",       color: "#92400E", heroVideo: "", population: "1.5만+", state: "Colorado",    taglineKo: "산을 바라보며",              taglineEn: "Looking Out to the Mountains.",  taglineEs: "Con vista a las montañas." },
+  denver:     { slug: "denver",     nameKo: "덴버",      nameEn: "Denver",       color: "#EA580C", heroVideo: "", population: "1.5만+", state: "Colorado",    taglineKo: "산을 바라보며",              taglineEn: "Looking Out to the Mountains.",  taglineEs: "Con vista a las montañas." },
 
   // ── 북미 확장 Tier B (Isolation: 3-4) ──────────────────────────────────
   calgary:    { slug: "calgary",    nameKo: "캘거리",    nameEn: "Calgary",      color: "#D97706", heroVideo: "", population: "1.3만+", state: "Alberta",     taglineKo: "알버타의 새 출발",              taglineEn: "A new start in Alberta.",            taglineEs: "Un nuevo comienzo en Alberta." },
@@ -786,7 +788,7 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
 
   // ── 북미 소도시·군사도시 Tier C (Isolation: 4-5) ─────────────────────────
   fayetteville:{ slug: "fayetteville",nameKo: "페이엣빌", nameEn: "Fayetteville", color: "#15803D", heroVideo: "", population: "5천+",  state: "N. Carolina", taglineKo: "군인 가족의 도시, 함께",         taglineEn: "Military families, all together.",  taglineEs: "Familias militares, todos juntos." },
-  killeen:    { slug: "killeen",    nameKo: "킬린",      nameEn: "Killeen",      color: "#854D0E", heroVideo: "", population: "4천+",   state: "Texas",       taglineKo: "포트 카바조스, 새 가족",      taglineEn: "New family at Fort Cavazos.", taglineEs: "Nueva familia en Fort Cavazos." },
+  killeen:    { slug: "killeen",    nameKo: "킬린",      nameEn: "Killeen",      color: "#16A34A", heroVideo: "", population: "4천+",   state: "Texas",       taglineKo: "포트 카바조스, 새 가족",      taglineEn: "New family at Fort Cavazos.", taglineEs: "Nueva familia en Fort Cavazos." },
   anchorage:  { slug: "anchorage",  nameKo: "앵커리지",  nameEn: "Anchorage",    color: "#0F766E", heroVideo: "", population: "5천+",   state: "Alaska",      taglineKo: "가장 북쪽의 한인 도시",        taglineEn: "America's Northernmost Korean City.", taglineEs: "La ciudad coreana más al norte." },
 
   // ── 국제 확장 Tier A ────────────────────────────────────────────────────
@@ -796,7 +798,7 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   perth:      { slug: "perth",      nameKo: "퍼스",      nameEn: "Perth",        color: "#0891B2", heroVideo: "", population: "1.2만+", state: "W. Australia",taglineKo: "세계 최서단, 나만의 공간",         taglineEn: "World's most remote, your own space.", taglineEs: "La ciudad más remota, tu propio espacio." },
   auckland:   { slug: "auckland",   nameKo: "오클랜드",  nameEn: "Auckland",     color: "#16A34A", heroVideo: "", population: "2.5만+", state: "New Zealand", taglineKo: "키위와 함께",               taglineEn: "Together with the Kiwis.",       taglineEs: "Junto con los kiwis." },
   saopaulo:   { slug: "saopaulo",   nameKo: "상파울루",  nameEn: "São Paulo",    color: "#DC2626", heroVideo: "", population: "5만+",   state: "Brazil",      taglineKo: "남미 한인의 심장",           taglineEn: "Heart of Korean South America.",  taglineEs: "El corazón del sudamérica coreana." },
-  london:     { slug: "london",     nameKo: "런던",      nameEn: "London",       color: "#1E40AF", heroVideo: "", population: "4.5만+", state: "England",     taglineKo: "안개의 도시, 새로운 역사",             taglineEn: "Write your story in the Fog.",            taglineEs: "Escribe tu historia entre la niebla." },
+  london:     { slug: "london",     nameKo: "런던",      nameEn: "London",       color: "#2563EB", heroVideo: "", population: "4.5만+", state: "England",     taglineKo: "안개의 도시, 새로운 역사",             taglineEn: "Write your story in the Fog.",            taglineEs: "Escribe tu historia entre la niebla." },
 
   // ── 국제 확장 Tier B-C ──────────────────────────────────────────────────
   singapore:  { slug: "singapore",  nameKo: "싱가포르",  nameEn: "Singapore",    color: "#DC2626", heroVideo: "", population: "2.2만+", state: "Singapore",   taglineKo: "아시아의 허브, 모두의 도시",            taglineEn: "Asia's hub, everyone's city.",     taglineEs: "El hub de Asia, la ciudad de todos." },
@@ -6070,7 +6072,7 @@ function CompactHeroNew() {
       height: "clamp(192px, 30dvh, 256px)",
       overflow: "hidden",
       borderRadius: "0 0 28px 28px",
-      background: `linear-gradient(160deg, ${city.color} 0%, ${city.color}cc 35%, #0b1326 100%)`,
+      background: `linear-gradient(160deg, ${city.color} 0%, ${city.color}aa 50%, ${city.color}44 100%)`,
     }}>
 
       {/* ── Ken Burns 키프레임 */}
@@ -6087,6 +6089,9 @@ function CompactHeroNew() {
             key={i}
             src={slide.url}
             alt={slide.alt}
+            crossOrigin="anonymous"
+            loading="eager"
+            referrerPolicy="no-referrer"
             onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "0"; }}
             style={{
               position: "absolute", inset: 0,
@@ -6132,7 +6137,7 @@ function CompactHeroNew() {
       {/* ── 그라디언트 오버레이 */}
       <div style={{
         position: "absolute", inset: 0, zIndex: 2,
-        background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 38%, rgba(0,0,0,0.55) 100%)",
+        background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 38%, rgba(0,0,0,0.35) 100%)",
       }} />
 
       {/* ── 도시명 + 태그라인 */}
@@ -8203,7 +8208,7 @@ const HEBRON_CITIES = [
   // ── 유럽·중동·아시아 ──
   { emoji: "🎡", nameKo: "런던",        nameEn: "London",        flag: "🇬🇧", url: "/london/",      status: "live", color: "#1E40AF" },
   { emoji: "🏦", nameKo: "프랑크푸르트",nameEn: "Frankfurt",     flag: "🇩🇪", url: "/frankfurt/",   status: "live", color: "#1D4ED8" },
-  { emoji: "🧱", nameKo: "베를린",      nameEn: "Berlin",        flag: "🇩🇪", url: "/berlin/",      status: "live", color: "#374151" },
+  { emoji: "🧱", nameKo: "베를린",      nameEn: "Berlin",        flag: "🇩🇪", url: "/berlin/",      status: "live", color: "#2563EB" },
   { emoji: "🗼", nameKo: "파리",        nameEn: "Paris",         flag: "🇫🇷", url: "/paris/",       status: "live", color: "#7C3AED" },
   { emoji: "🏙️", nameKo: "두바이",     nameEn: "Dubai",         flag: "🇦🇪", url: "/dubai/",       status: "live", color: "#CA8A04" },
   { emoji: "🦁", nameKo: "싱가포르",    nameEn: "Singapore",     flag: "🇸🇬", url: "/singapore/",   status: "live", color: "#DC2626" },
