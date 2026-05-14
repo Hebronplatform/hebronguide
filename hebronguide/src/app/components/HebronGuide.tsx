@@ -214,6 +214,20 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1565461074545-cca9a8b77a19?w=1200&q=90", pos: "center 38%", alt: "Busan Gwangalli Bridge night" },
     { url: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1200&q=90", pos: "center 40%", alt: "Busan Gamcheon Culture Village" },
   ],
+
+  // 🇯🇵 도쿄 — 신주쿠 + 시부야 + 도쿄타워
+  tokyo: [
+    { url: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=90", pos: "center 40%", alt: "Tokyo city skyline at night" },
+    { url: "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=1200&q=90", pos: "center 38%", alt: "Tokyo Shibuya crossing" },
+    { url: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1200&q=90", pos: "center 35%", alt: "Tokyo Tower night view" },
+  ],
+
+  // 🇯🇵 오사카 — 도톤보리 + 오사카성
+  osaka: [
+    { url: "https://images.unsplash.com/photo-1590559899731-a382839e5549?w=1200&q=90", pos: "center 42%", alt: "Osaka Dotonbori night" },
+    { url: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1200&q=90", pos: "center 38%", alt: "Osaka Castle" },
+    { url: "https://images.unsplash.com/photo-1579135395432-57f6e36a9c79?w=1200&q=90", pos: "center 40%", alt: "Osaka Shinsekai" },
+  ],
 };
 
 // 하위 호환: HERO_PHOTOS/POSITIONS 유지 (line 3840 imgHeroCard 참조용)
@@ -5608,7 +5622,7 @@ function CompactHeroNew() {
       height: "clamp(192px, 30dvh, 256px)",
       overflow: "hidden",
       borderRadius: "0 0 28px 28px",
-      background: `linear-gradient(135deg, ${city.color}bb 0%, ${city.color}66 55%, #0b1326 100%)`,
+      background: `linear-gradient(160deg, ${city.color} 0%, ${city.color}cc 35%, #0b1326 100%)`,
     }}>
 
       {/* ── Ken Burns 키프레임 */}
