@@ -191,7 +191,7 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
   // 🏔️ 몬테레이 — 세로 데 라 실라 + 산업 도시
   monterrey: [
-    { url: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1200&q=90", pos: "center 35%", alt: "Monterrey mountains cerro" },
+    { url: "https://images.unsplash.com/photo-1568219656418-15c329312bf1?w=1200&q=90", pos: "center 35%", alt: "Monterrey mountains cerro" },
     { url: "https://images.unsplash.com/photo-1604508533701-cf7a0cec7d50?w=1200&q=90", pos: "center 40%", alt: "Monterrey modern city" },
   ],
 
@@ -215,6 +215,59 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1200&q=90", pos: "center 40%", alt: "Busan Gamcheon Culture Village" },
   ],
 
+
+  // 🇦🇺 시드니 — 오페라하우스 + 하버브릿지
+  sydney: [
+    { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=90", pos: "center 40%", alt: "Sydney Opera House and Harbour Bridge" },
+    { url: "https://images.unsplash.com/photo-1524820197278-540916411e20?w=1200&q=90", pos: "center 35%", alt: "Sydney skyline night" },
+  ],
+
+  // 🇦🇺 멜버른 — CBD + 야라강
+  melbourne: [
+    { url: "https://images.unsplash.com/photo-1514395462421-36b4dea0fa3f?w=1200&q=90", pos: "center 38%", alt: "Melbourne city skyline" },
+    { url: "https://images.unsplash.com/photo-1545044846-351ba102b6d5?w=1200&q=90", pos: "center 40%", alt: "Melbourne Yarra River" },
+  ],
+
+  // 🇬🇧 런던 — 빅벤 + 템즈강
+  london: [
+    { url: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=90", pos: "center 38%", alt: "London Big Ben Thames River" },
+    { url: "https://images.unsplash.com/photo-1520986606214-8b456906c813?w=1200&q=90", pos: "center 40%", alt: "London Tower Bridge night" },
+  ],
+
+  // 🇫🇷 파리 — 에펠탑 + 센강
+  paris: [
+    { url: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=90", pos: "center 40%", alt: "Paris Eiffel Tower Seine River" },
+    { url: "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=1200&q=90", pos: "center 38%", alt: "Paris night view" },
+  ],
+
+  // 🇩🇪 베를린 — 브란덴부르크문
+  berlin: [
+    { url: "https://images.unsplash.com/photo-1528728329032-2fc96d6c2b93?w=1200&q=90", pos: "center 38%", alt: "Berlin Brandenburg Gate" },
+    { url: "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=1200&q=90", pos: "center 40%", alt: "Berlin city skyline" },
+  ],
+
+  // 🇸🇬 싱가포르 — 마리나베이샌즈
+  singapore: [
+    { url: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1200&q=90", pos: "center 40%", alt: "Singapore Marina Bay Sands skyline" },
+    { url: "https://images.unsplash.com/photo-1508964942454-1a56651d54ac?w=1200&q=90", pos: "center 38%", alt: "Singapore Gardens by the Bay" },
+  ],
+
+  // 🇦🇪 두바이 — 부르즈칼리파
+  dubai: [
+    { url: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=90", pos: "center 40%", alt: "Dubai Burj Khalifa skyline" },
+    { url: "https://images.unsplash.com/photo-1526495124232-a04e1849168c?w=1200&q=90", pos: "center 38%", alt: "Dubai Marina night" },
+  ],
+
+  // 🇹🇭 방콕 — 왓아룬 + 차오프라야강
+  bangkok: [
+    { url: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1200&q=90", pos: "center 38%", alt: "Bangkok Wat Arun temple" },
+    { url: "https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=1200&q=90", pos: "center 40%", alt: "Bangkok skyline night" },
+  ],
+
+  // 🇧🇷 상파울루 — 도심
+  saopaulo: [
+    { url: "https://images.unsplash.com/photo-1544989164-31659c5e7f2c?w=1200&q=90", pos: "center 40%", alt: "Sao Paulo city skyline" },
+  ],
   // 🇯🇵 도쿄 — 신주쿠 + 시부야 + 도쿄타워
   tokyo: [
     { url: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=90", pos: "center 40%", alt: "Tokyo city skyline at night" },
@@ -225,7 +278,7 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇯🇵 오사카 — 도톤보리 + 오사카성
   osaka: [
     { url: "https://images.unsplash.com/photo-1590559899731-a382839e5549?w=1200&q=90", pos: "center 42%", alt: "Osaka Dotonbori night" },
-    { url: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1200&q=90", pos: "center 38%", alt: "Osaka Castle" },
+    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 38%", alt: "Osaka Castle" },
     { url: "https://images.unsplash.com/photo-1579135395432-57f6e36a9c79?w=1200&q=90", pos: "center 40%", alt: "Osaka Shinsekai" },
   ],
 };
@@ -622,7 +675,7 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   hochiminh:  { slug: "hochiminh",  nameKo: "호치민",    nameEn: "Ho Chi Minh City", color: "#BE185D", heroVideo: "", population: "6만+", state: "Vietnam",    taglineKo: "역동적인 비즈니스 도시",        taglineEn: "The dynamic city of business.",      taglineEs: "La ciudad dinámica de los negocios." },
   dubai:      { slug: "dubai",      nameKo: "두바이",    nameEn: "Dubai",        color: "#CA8A04", heroVideo: "", population: "8천+",   state: "UAE",         taglineKo: "사막의 황금 도시",        taglineEn: "The Golden City of the Desert.", taglineEs: "La Ciudad Dorada del Desierto." },
   frankfurt:  { slug: "frankfurt",  nameKo: "프랑크푸르트",nameEn: "Frankfurt",   color: "#1D4ED8", heroVideo: "", population: "7천+",   state: "Germany",     taglineKo: "유럽 금융 허브, 새로운 기회",         taglineEn: "At Europe's Financial Core.",    taglineEs: "En el núcleo financiero de Europa." },
-  berlin:     { slug: "berlin",     nameKo: "베를린",    nameEn: "Berlin",       color: "#374151", heroVideo: "", population: "5천+",   state: "Germany",     taglineKo: "장벽을 넘어, 자유의 도시",          taglineEn: "Beyond the Wall, city of freedom.",       taglineEs: "Más allá del muro, ciudad de libertad." },
+  berlin:     { slug: "berlin",     nameKo: "베를린",    nameEn: "Berlin",       color: "#2563EB", heroVideo: "", population: "5천+",   state: "Germany",     taglineKo: "장벽을 넘어, 자유의 도시",          taglineEn: "Beyond the Wall, city of freedom.",       taglineEs: "Más allá del muro, ciudad de libertad." },
   paris:      { slug: "paris",      nameKo: "파리",      nameEn: "Paris",        color: "#7C3AED", heroVideo: "", population: "1.5만+", state: "France",      taglineKo: "빛의 도시의 한인",           taglineEn: "Koreans in the City of Light.",  taglineEs: "Coreanos en la Ciudad de la Luz." },
   // 일본 — 재일 한인 82만, 가장 큰 미포함 디아스포라
   tokyo:      { slug: "tokyo",      nameKo: "도쿄",      nameEn: "Tokyo",        color: "#DC2626", heroVideo: "", population: "6만+",   state: "Japan",       taglineKo: "신오쿠보에서 시작하는 새 인연",    taglineEn: "New bonds begin in Shin-Okubo.",    taglineEs: "Nuevos vínculos en Shin-Okubo." },
