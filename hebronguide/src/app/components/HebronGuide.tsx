@@ -10582,10 +10582,21 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* 도시 확장 신청 */}
             <CityRequestForm lang={lang} />
 
-            {/* 마 6:33 · 고전 10:31 · Hebron Platform LLC */}
-            <div style={{ textAlign: "center", padding: "8px 0 6px", fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.22)", letterSpacing: "0.06em", lineHeight: 1.9 }}>
-              <div>{lang === "ko" ? "마태복음 6:33 · 고린도전서 10:31" : "Matthew 6:33 · 1 Corinthians 10:31"}</div>
-              <div>© 2026 Hebron Platform LLC</div>
+            {/* 브랜드 푸터 */}
+            <div style={{ textAlign: "center", padding: "10px 0 6px", fontFamily: "Manrope,sans-serif", lineHeight: 2 }}>
+              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.2)", letterSpacing: "0.06em" }}>
+                {lang === "ko" ? "마태복음 6:33 · 고린도전서 10:31" : "Matthew 6:33 · 1 Corinthians 10:31"}
+              </div>
+              <div style={{ fontSize: 11, color: "rgba(201,162,39,0.5)", fontWeight: 700, letterSpacing: "0.08em" }}>
+                © 2026 Hebron Platform LLC
+              </div>
+              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.2)", letterSpacing: "0.05em", marginTop: 2 }}>
+                <span style={{ color: "rgba(110,231,183,0.5)", fontWeight: 700 }}>HebronGuide</span>
+                <span style={{ margin: "0 6px", opacity: 0.3 }}>·</span>
+                <span style={{ opacity: 0.35 }}>NanuriWeb</span>
+                <span style={{ margin: "0 6px", opacity: 0.3 }}>·</span>
+                <span style={{ opacity: 0.35 }}>NanuriHome</span>
+              </div>
             </div>
 
           </div>
