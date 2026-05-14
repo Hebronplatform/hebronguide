@@ -9613,8 +9613,8 @@ function getCityChurches(slug: string, lang: string) {
     seattle: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "시애틀지구촌교회 (Global Mission Church)" : "Global Mission Church of Greater Seattle",
-        nameEn: ko ? "Global Mission Church of Greater Seattle" : "시애틀지구촌교회",
+        name: ko ? "Hebron Platform (Global Mission Church)" : "Global Mission Church of Greater Seattle",
+        nameEn: ko ? "Global Mission Church of Greater Seattle" : "Hebron Platform",
         desc: ko
           ? "✅ 검증됨 | 국제가사원(IHM) 회원교회 · SBC 소속. 김성수 목사.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 주일연합예배, 목장, 삶 공부 - 세축 네기둥\n🔗 www.ijiguchon.org"
           : "✅ Verified | IHM (International House Church Ministries) member · SBC. Pastor Sungsoo Kim.\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday United Worship, Mokjang, Life Studies - Three Axes, Four Pillars\n🔗 www.ijiguchon.org",
@@ -13329,7 +13329,7 @@ function getCityKoreanSchool(slug: string, lang: string) {
                  : "✅ WA's largest Korean school. Every Saturday morning. Pre-K to adult, TOPIK prep.\n🔗 seattlekoreanschool.org",
         tags: ["한국학교","토요한글","TOPIK"] },
       { emoji: "📖", name: ko ? "교회 부설 한국학교" : "Church-Based Korean Schools",
-        desc: ko ? "많은 한인 교회가 자체 한국학교 운영. GMC 시애틀지구촌교회·벨뷰·린우드 지역 교회 토요 한국학교.\n🔗 ijiguchon.org"
+        desc: ko ? "많은 한인 교회가 자체 한국학교 운영. GMC Hebron Platform·벨뷰·린우드 지역 교회 토요 한국학교.\n🔗 ijiguchon.org"
                  : "Many Korean churches run Saturday Korean schools. GMC, Bellevue & Lynnwood Korean churches.\n🔗 ijiguchon.org",
         tags: ["교회한국학교","토요일","무료"] },
       { emoji: "📊", name: ko ? "NAKS-PNW (서북미협의회)" : "NAKS-PNW — Korean Schools Regional Council",
@@ -13838,7 +13838,7 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       tags: lang === "ko" ? ["한국학교", "토요한글", "TOPIK"] : ["Korean School", "Saturday", "TOPIK"] },
     { emoji: "📖", name: lang === "ko" ? "교회 부설 한국학교 (주요 교회)" : "Church-Based Korean Schools",
       desc: lang === "ko"
-        ? "많은 한인 교회가 자체 한국학교 운영:\n• 시애틀지구촌교회 (GMC): 주일학교 겸 한국어 교육 🔗 ijiguchon.org\n• 벨뷰 지역 교회: 토요 한국학교 다수\n• 린우드 지역 교회: 한국어·역사·문화 병행\n\n장점: 교회 멤버십으로 학비 할인·무료"
+        ? "많은 한인 교회가 자체 한국학교 운영:\n• Hebron Platform (GMC): 주일학교 겸 한국어 교육 🔗 ijiguchon.org\n• 벨뷰 지역 교회: 토요 한국학교 다수\n• 린우드 지역 교회: 한국어·역사·문화 병행\n\n장점: 교회 멤버십으로 학비 할인·무료"
         : "Many Korean churches run their own Korean schools:\n• Global Mission Church (GMC): Sunday school + Korean 🔗 ijiguchon.org\n• Bellevue Korean churches: multiple Saturday programs\n• Lynnwood Korean churches: language, history & culture\n\nBenefit: Discounted or free tuition for members",
       tags: lang === "ko" ? ["교회한국학교", "주일학교", "무료"] : ["Church School", "Sunday School", "Free"] },
     { emoji: "📊", name: lang === "ko" ? "재미한국학교 서북미협의회 (NAKS-PNW)" : "Korean Schools of America — PNW (NAKS)",

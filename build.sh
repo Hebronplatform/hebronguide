@@ -111,8 +111,8 @@ for city in \
     -e "s#HebronGuide Seattle 2026#HebronGuide ${EN} 2026#g" \
     -e "s#HebronGuide 시애틀 — 시애틀 한인 정착·생활·교회 완전 가이드#HebronGuide ${KO} — ${KO} 한인 정착·생활·교회 완전 가이드#g" \
     -e "s#HebronGuide 시애틀 — 한인 정착·교회·맛집 가이드#HebronGuide ${KO} — 한인 정착·교회·맛집 가이드#g" \
-    -e "s#시애틀 한인 16.5만이 검증한 정착 가이드. 시애틀지구촌교회가 운영하는 신뢰할 수 있는 한인 커뮤니티 플랫폼.#${KO} 한인 커뮤니티를 위한 정착 가이드. HebronGuide가 운영하는 신뢰할 수 있는 한인 플랫폼.#g" \
-    -e "s#시애틀 한인 16.5만이 검증한 정착 가이드. 시애틀지구촌교회 운영.#${KO} 한인 커뮤니티 정착 가이드. HebronGuide 운영.#g" \
+    -e "s#시애틀 한인 16.5만이 검증한 정착 가이드. Hebron Platform이 운영하는 신뢰할 수 있는 한인 커뮤니티 플랫폼.#${KO} 한인 커뮤니티를 위한 정착 가이드. HebronGuide가 운영하는 신뢰할 수 있는 한인 플랫폼.#g" \
+    -e "s#시애틀 한인 16.5만이 검증한 정착 가이드. Hebron Platform 운영.#${KO} 한인 커뮤니티 정착 가이드. HebronGuide 운영.#g" \
     -e "s#시애틀 한인 가이드#${KO} 한인 가이드#g" \
     -e "s#\"HebronGuide 시애틀\"#\"HebronGuide ${KO}\"#g" \
     -e "s#hebronguide.com/seattle/#hebronguide.com/${city}/#g" \
