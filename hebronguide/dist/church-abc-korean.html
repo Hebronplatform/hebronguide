@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>HebronGuide 교회 등재 안내 — 미주침례교회 한인총회</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Noto+Sans+KR:wght@400;500;700;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;}
+body{font-family:'Noto Sans KR',sans-serif;background:#f5f4f0;color:#1a1a1a;min-height:100vh;padding:32px 16px 60px;}
+
+.page{max-width:660px;margin:0 auto;background:#fff;border-radius:4px;box-shadow:0 4px 32px rgba(0,0,0,.1);}
+
+/* ── 헤더 ── */
+.hd{background:linear-gradient(150deg,#1a2535 0%,#0d1117 100%);padding:38px 36px 32px;text-align:center;}
+.hd-logo{display:block;margin:0 auto 16px;}
+.hd-org{display:inline-block;background:rgba(201,162,39,.18);border:1px solid rgba(201,162,39,.5);border-radius:99px;padding:5px 22px;font-size:.72rem;font-weight:700;color:#C9A227;letter-spacing:.1em;margin-bottom:16px;}
+.hd h1{font-family:'Noto Serif KR',serif;font-size:1.5rem;font-weight:700;color:#fff;line-height:1.45;margin-bottom:10px;}
+.hd h1 em{color:#6EE7B7;font-style:normal;}
+.hd-verse{font-size:.78rem;color:rgba(236,253,245,.4);font-style:italic;margin-top:8px;}
+
+/* ── 리본 ── */
+.ribbon{background:linear-gradient(135deg,rgba(110,231,183,.12),rgba(201,162,39,.08));border-top:2px solid #6EE7B7;border-bottom:1px solid rgba(110,231,183,.15);padding:12px 36px;text-align:center;font-size:.82rem;color:#065f46;font-weight:700;}
+
+/* ── 본문 ── */
+.body{padding:32px 36px;}
+
+/* 숫자 3개 */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px;}
+.stat{background:#f8f7f4;border:1px solid #e8e5df;border-radius:12px;padding:16px 10px;text-align:center;}
+.stat-n{font-family:'Noto Serif KR',serif;font-size:1.5rem;font-weight:700;color:#1a2535;line-height:1;}
+.stat-l{font-size:.66rem;color:#6b7280;margin-top:4px;line-height:1.5;}
+
+/* 섹션 레이블 */
+.lbl{font-size:.68rem;font-weight:700;color:#C9A227;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
+
+/* 가치 리스트 */
+.vals{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:28px;}
+.vals li{display:flex;align-items:flex-start;gap:12px;font-size:.88rem;color:#374151;line-height:1.75;}
+.vals li .ic{font-size:1.1rem;flex-shrink:0;margin-top:2px;}
+
+hr{border:none;border-top:1px solid #e8e5df;margin:24px 0;}
+
+/* 하이라이트 박스 */
+.hi{background:#f0fdf4;border-left:3px solid #059669;border-radius:0 10px 10px 0;padding:13px 16px;margin-bottom:28px;font-size:.87rem;color:#065f46;line-height:1.8;}
+
+/* QR 섹션 */
+.qr-section{background:linear-gradient(150deg,#1a2535,#0d1117);border-radius:18px;padding:28px 24px;margin-bottom:24px;}
+.qr-title{font-family:'Noto Serif KR',serif;font-size:1.05rem;color:#fff;text-align:center;margin-bottom:6px;}
+.qr-sub{font-size:.78rem;color:rgba(236,253,245,.45);text-align:center;margin-bottom:22px;}
+
+.qr-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;}
+.qr-col{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.qr-box{background:#fff;border-radius:14px;padding:11px;box-shadow:0 4px 18px rgba(0,0,0,.4);}
+.qr-box img{display:block;border-radius:6px;}
+.qr-badge{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;}
+.qr-url{font-size:.68rem;color:rgba(236,253,245,.45);}
+.qr-btn-mint{display:block;width:100%;padding:10px;background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.3);border-radius:10px;font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:.8rem;color:#6EE7B7;text-align:center;text-decoration:none;}
+.qr-btn-gold{display:block;width:100%;padding:10px;background:linear-gradient(135deg,#C9A227,#b8921c);border-radius:10px;font-family:'Noto Sans KR',sans-serif;font-weight:800;font-size:.8rem;color:#fff;text-align:center;text-decoration:none;box-shadow:0 3px 12px rgba(201,162,39,.3);}
+
+.dl-row{display:flex;gap:8px;justify-content:center;}
+.dl-btn{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:9px;font-size:.7rem;font-weight:700;text-decoration:none;font-family:'Noto Sans KR',sans-serif;}
+.dl-mint{background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);color:#6EE7B7;}
+.dl-gold{background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);color:#C9A227;}
+
+/* 2단계 */
+.steps{display:flex;align-items:center;gap:0;margin-bottom:24px;}
+.step-col{flex:1;background:#f8f7f4;border:1.5px solid #e8e5df;padding:18px 14px;text-align:center;}
+.step-col:first-child{border-radius:14px 0 0 14px;}
+.step-col:last-child{border-radius:0 14px 14px 0;}
+.step-num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem;color:#fff;margin:0 auto 8px;}
+.step-num.navy{background:linear-gradient(135deg,#1a2535,#0d1117);}
+.step-num.gold{background:linear-gradient(135deg,#C9A227,#b8921c);}
+.step-ico{font-size:1.5rem;margin-bottom:6px;}
+.step-t{font-size:.85rem;font-weight:900;color:#1a1a1a;line-height:1.4;}
+.step-d{font-size:.72rem;color:#6b7280;margin-top:3px;}
+.step-arr{color:#d1d5db;font-size:1.1rem;padding:0 4px;flex-shrink:0;}
+
+/* 연락 */
+.contact{display:flex;align-items:center;gap:16px;background:#f8f7f4;border:1px solid #e8e5df;border-radius:14px;padding:18px 20px;margin-bottom:24px;}
+.contact-ico{font-size:2rem;flex-shrink:0;}
+.contact h3{font-size:.9rem;font-weight:900;color:#1a1a1a;margin-bottom:3px;}
+.contact p{font-size:.8rem;color:#6b7280;line-height:1.7;}
+.contact a{color:#1a2535;font-weight:700;}
+
+/* 전달 요청 */
+.fwd{background:#fef9ec;border:1px solid rgba(201,162,39,.35);border-radius:14px;padding:18px 20px;}
+.fwd .lbl{margin-bottom:6px;}
+.fwd p{font-size:.85rem;color:#374151;line-height:1.85;}
+
+/* 푸터 */
+.ft{background:linear-gradient(135deg,#1a2535,#0d1117);padding:28px 36px;text-align:center;}
+.ft img{display:block;margin:0 auto 10px;opacity:.85;}
+.ft p{font-size:.68rem;color:rgba(236,253,245,.5);line-height:2;}
+
+@media(max-width:480px){
+  .body{padding:24px 20px;}
+  .hd{padding:28px 20px 24px;}
+  .ft{padding:24px 20px;}
+  .qr-section{padding:22px 16px;}
+  .stats{grid-template-columns:repeat(3,1fr);}
+  .stat-n{font-size:1.25rem;}
+}
+@media print{
+  body{background:#fff;padding:0;}
+  .page{box-shadow:none;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 헤더 -->
+  <div class="hd">
+    <img class="hd-logo" src="/hebronguide-logo.svg" alt="HebronGuide" width="200" height="52">
+    <div class="hd-org">⛪ 미주침례교회 한인총회</div>
+    <h1>이민자가 새 도시에서<br>가장 먼저 찾는 것은 <em>교회</em>입니다</h1>
+    <div class="hd-verse">"내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35</div>
+  </div>
+
+  <!-- 리본 -->
+  <div class="ribbon">
+    🌿 2026년 10월 1일까지 — 미주침례교회 한인총회 소속 교회 <strong>무료</strong> 등재
+  </div>
+
+  <!-- 본문 -->
+  <div class="body">
+
+    <!-- 숫자 -->
+    <div class="stats">
+      <div class="stat"><div class="stat-n">54</div><div class="stat-l">전 세계<br>운영 도시</div></div>
+      <div class="stat"><div class="stat-n">700만</div><div class="stat-l">재외 한인<br>잠재 사용자</div></div>
+      <div class="stat"><div class="stat-n">무료</div><div class="stat-l">10월 1일<br>까지</div></div>
+    </div>
+
+    <!-- 왜 등재하는가 -->
+    <div class="lbl">HebronGuide란</div>
+    <ul class="vals">
+      <li><span class="ic">🛬</span><span>새 도시에 도착한 이민자가 교회·병원·맛집·이민 정보를 찾는 <strong>첫 번째 플랫폼</strong>. 그때 목사님 교회가 보입니다.</span></li>
+      <li><span class="ic">🌍</span><span>시애틀·달라스·LA·뉴욕·토론토·런던·도쿄 등 <strong>54개 도시</strong> — 해외로 나간 성도도, 새로 온 이민자도 교회를 찾습니다.</span></li>
+      <li><span class="ic">📱</span><span>앱 설치 없이 브라우저로 바로 사용. <strong>hebronguide.com</strong></span></li>
+    </ul>
+
+    <div class="hi">
+      📌 <strong>교회 등재 = 이민자와의 첫 만남</strong><br>
+      새 도시, 낯선 환경, 어디 가야 할지 모르는 그 순간 —<br>
+      HebronGuide에 등재된 교회가 <strong>가장 먼저</strong> 나타납니다.
+    </div>
+
+    <hr>
+
+    <!-- QR 섹션 -->
+    <div class="qr-section">
+      <div class="qr-title">먼저 보고, 바로 신청하세요</div>
+      <div class="qr-sub">왼쪽으로 앱을 직접 경험하고 · 오른쪽으로 교회를 등재하세요</div>
+
+      <div class="qr-grid">
+
+        <!-- 샘플 -->
+        <div class="qr-col">
+          <div class="qr-box">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fhebronguide.com%2Fseattle%2F&margin=5&color=0d1117&bgcolor=ffffff"
+                 alt="샘플 QR" width="160" height="160" loading="lazy">
+          </div>
+          <div style="text-align:center;">
+            <div class="qr-badge" style="color:rgba(110,231,183,.75);">📱 앱 미리보기</div>
+            <div class="qr-url">hebronguide.com/seattle</div>
+          </div>
+          <a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener" class="qr-btn-mint">
+            샘플 보기 →
+          </a>
+        </div>
+
+        <!-- 신청 -->
+        <div class="qr-col">
+          <div class="qr-box">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fhebronguide.com%2Fchurch-submit.html&margin=5&color=0d1117&bgcolor=ffffff"
+                 alt="등재 신청 QR" width="160" height="160" loading="lazy">
+          </div>
+          <div style="text-align:center;">
+            <div class="qr-badge" style="color:rgba(201,162,39,.85);">⛪ 등재 신청</div>
+            <div class="qr-url">church-submit.html</div>
+          </div>
+          <a href="https://hebronguide.com/church-submit.html" target="_blank" rel="noopener" class="qr-btn-gold">
+            등재 신청하기 →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- QR 저장 -->
+      <div class="dl-row">
+        <a href="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fhebronguide.com%2Fseattle%2F&margin=12&color=0d1117&bgcolor=ffffff"
+           download="hebronguide-sample-qr.png" target="_blank" rel="noopener" class="dl-btn dl-mint">
+          ⬇️ 샘플 QR 저장
+        </a>
+        <a href="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fhebronguide.com%2Fchurch-submit.html&margin=12&color=0d1117&bgcolor=ffffff"
+           download="hebronguide-church-qr.png" target="_blank" rel="noopener" class="dl-btn dl-gold">
+          ⬇️ 신청 QR 저장
+        </a>
+      </div>
+    </div>
+
+    <!-- 2단계 -->
+    <div class="lbl">등재 신청 — 단 2단계</div>
+    <div class="steps">
+      <div class="step-col">
+        <div class="step-num navy">1</div>
+        <div class="step-ico">📱</div>
+        <div class="step-t">QR 스캔<br>또는 버튼 클릭</div>
+        <div class="step-d">오른쪽 QR 코드</div>
+      </div>
+      <div class="step-arr">→</div>
+      <div class="step-col">
+        <div class="step-num gold">2</div>
+        <div class="step-ico">✏️</div>
+        <div class="step-t">교회명·연락처<br>입력 후 전송</div>
+        <div class="step-d">1~2주 내 등재</div>
+      </div>
+    </div>
+
+    <!-- 연락처 -->
+    <div class="contact">
+      <div class="contact-ico">📧</div>
+      <div>
+        <h3>문의</h3>
+        <p><a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a><br>
+        HebronGuide · hebronguide.com · 1~2일 내 답변</p>
+      </div>
+    </div>
+
+    <!-- 전달 요청 -->
+    <div class="fwd">
+      <div class="lbl">목사님께 부탁드립니다</div>
+      <p>미주침례교회 한인총회 소속 교회 중 영혼구원에 진심인 교회가 있다면,<br>
+      이 안내를 함께 나눠 주시면 감사하겠습니다.<br>
+      이민자 한 영혼이 교회를 찾는 그 순간을 함께 만들어 가길 원합니다.</p>
+    </div>
+
+  </div>
+
+  <!-- 푸터 -->
+  <div class="ft">
+    <img src="/hebronguide-logo.svg" alt="HebronGuide" width="170" height="44">
+    <p>© 2026 Hebron Platform LLC &nbsp;·&nbsp; 1 Cor. 10:31<br>
+    hebronplatform@gmail.com &nbsp;·&nbsp; hebronguide.com</p>
+  </div>
+
+</div>
+</body>
+</html>
