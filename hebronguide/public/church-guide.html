@@ -413,6 +413,20 @@ footer strong { color: #6EE7B7; }
   <p class="subtitle">
     무료 등재 마감일: <strong style="color:#6EE7B7;">2026년 10월 1일</strong>
   </p>
+  <div style="margin-top:14px;display:inline-flex;align-items:center;gap:10px;background:rgba(110,231,183,0.12);border:1px solid rgba(110,231,183,0.35);border-radius:99px;padding:7px 22px;">
+    <span style="font-size:.78rem;color:rgba(236,253,245,0.55);">마감까지</span>
+    <span id="dday" style="font-size:1.5rem;font-weight:900;color:#6EE7B7;letter-spacing:-0.03em;">D-?</span>
+    <span style="font-size:.78rem;color:rgba(236,253,245,0.55);">일 남음</span>
+  </div>
+  <script>
+    (function(){
+      var deadline = new Date('2026-10-01T00:00:00');
+      var today = new Date(); today.setHours(0,0,0,0);
+      var diff = Math.ceil((deadline - today) / 86400000);
+      var el = document.getElementById('dday');
+      if(el) el.textContent = diff > 0 ? 'D-' + diff : diff === 0 ? 'D-Day' : '마감';
+    })();
+  </script>
   <p style="font-size:.78rem;opacity:.5;margin-top:10px;font-style:italic;">
     "내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35</p>
 </header>
