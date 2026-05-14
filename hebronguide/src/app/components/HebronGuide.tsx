@@ -10589,7 +10589,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               </div>
               <div style={{ fontSize: 10, color: "rgba(236,253,245,0.28)", letterSpacing: "0.02em", lineHeight: 1.7 }}>
                 {lang === "ko"
-                  ? "동서남북 온누리에 하나님의 영광이 비추이는 신앙 생태계"
+                  ? "동서남북 온누리에 하나님의 영광을"
                   : "A faith ecosystem where God's glory shines to all corners of the world"}
               </div>
               <div style={{ fontSize: 10, color: "rgba(236,253,245,0.18)", letterSpacing: "0.06em", marginTop: 2 }}>
