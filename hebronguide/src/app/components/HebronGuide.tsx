@@ -10388,119 +10388,68 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         {sub === 4 && (
           <div style={{ paddingBottom: 8 }}>
 
-            {/* 초청 배너 */}
-            <div style={{ background: "linear-gradient(135deg, rgba(201,162,39,0.18), rgba(192,132,252,0.1))", border: "1px solid rgba(201,162,39,0.35)", borderRadius: 18, padding: "18px 16px", marginBottom: 14 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#C9A227", marginBottom: 8 }}>
-                ✝️ {lang === "ko" ? "영혼구원에 목마른 교회를 초청합니다" : "An Invitation to Soul-Winning Churches"}
+            {/* 초청 카드 */}
+            <div style={{ background: "linear-gradient(160deg, rgba(201,162,39,0.15) 0%, rgba(0,0,0,0) 100%)", border: "1px solid rgba(201,162,39,0.3)", borderRadius: 18, padding: "20px 18px", marginBottom: 12 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(201,162,39,0.8)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 10 }}>
+                {lang === "ko" ? "✝️ HebronGuide 교회 초청" : "✝️ HebronGuide Church Invitation"}
               </div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 13, color: "rgba(236,253,245,0.95)", lineHeight: 1.9, marginBottom: 10, fontStyle: "italic" }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 17, color: "#ECFDF5", lineHeight: 1.4, marginBottom: 12 }}>
                 {lang === "ko"
-                  ? "\"의에 주리고 목마른 자는 복이 있나니 그들이 배부를 것임이요\" — 마태복음 5:6"
-                  : "\"Blessed are those who hunger and thirst for righteousness, for they shall be satisfied.\" — Matthew 5:6"}
+                  ? "영혼구원에 갈급함과 목마름이 있는 교회를 정중히 초청합니다."
+                  : "We sincerely invite churches with a hunger and thirst for souls."}
               </div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.8, marginBottom: 10 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.9, fontStyle: "italic", marginBottom: 14 }}>
                 {lang === "ko"
-                  ? "HebronGuide는 영혼구원에 갈급함과 목마름이 있는 교회를 정중히 초청합니다.\n낯선 땅에 홀로 도착한 이민자 한 영혼을 품고 환대하려는 목자의 마음이 있는 교회라면,\n함께 이 사명의 길을 걸어가길 원합니다."
-                  : "HebronGuide extends a sincere invitation to churches with a burning hunger and thirst for souls.\nIf your congregation carries the shepherd's heart — to embrace and welcome the lonely immigrant arriving in a foreign land — we invite you to walk this mission together."}
+                  ? "\"내가 나그네 되었을 때 너희가 영접하였다\" — 마태복음 25:35"
+                  : "\"I was a stranger and you welcomed me.\" — Matthew 25:35"}
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
-                {[
-                  { n: lang === "ko" ? "도시당 12개" : "12 per city", d: lang === "ko" ? "선별된 헤브론 교회" : "Curated hub churches" },
-                  { n: lang === "ko" ? "새가족 연결" : "New arrivals", d: lang === "ko" ? "헤브론 교회 네트워크로 안내" : "Directed to hub churches" },
-                  { n: lang === "ko" ? "전 세계" : "Worldwide", d: lang === "ko" ? "목사·선교사 네트워크" : "Pastor & missionary network" },
-                ].map((s, i) => (
-                  <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
-                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#C9A227" }}>{s.n}</div>
-                    <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "rgba(236,253,245,0.6)", marginTop: 3, lineHeight: 1.4 }}>{s.d}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 선별 기준 6가지 */}
-            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(192,132,252,0.2)", borderRadius: 14, padding: "16px", marginBottom: 12 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: accent, marginBottom: 12 }}>
-                🕊️ {lang === "ko" ? "이런 교회를 찾고 있습니다" : "We Are Looking for Churches Like This"}
-              </div>
+              {/* 초청 기준 — 심플 리스트 */}
               {[
-                { n: lang === "ko" ? "영혼구원에 갈급한 교회" : "Hungry for Souls", d: lang === "ko" ? "한 영혼을 향한 갈급함과 목마름 — 그것이 이 초청의 첫 번째 기준입니다" : "A burning hunger and thirst for a single soul — that is the first and foremost criteria", icon: "🔥" },
-                { n: lang === "ko" ? "나그네를 영접하는 교회" : "Welcomes the Stranger", d: lang === "ko" ? "\"내가 나그네 되었을 때 너희가 영접하였다\" (마 25:35) — 말이 아닌 삶으로 실천" : "\"I was a stranger and you welcomed me\" (Matt 25:35) — lived out, not just spoken", icon: "🤝" },
-                { n: lang === "ko" ? "순수한 동기의 교회" : "Pure in Motive", d: lang === "ko" ? "교인 수나 광고 목적이 아닌, 한 영혼을 그리스도께 인도하려는 순수한 사명" : "Not for membership growth or visibility, but to lead one soul to Christ", icon: "🕊️" },
-                { n: lang === "ko" ? "지속적으로 헌신하는 교회" : "Consistent in Commitment", d: lang === "ko" ? "계절적이 아닌 — 새 이민자가 뿌리내릴 때까지 함께하는 긴 호흡의 사역" : "Not seasonal — a long-breath ministry that stays until roots are set", icon: "⚓" },
-                { n: lang === "ko" ? "문화를 이해하는 교회" : "Culturally Understanding", d: lang === "ko" ? "새 이민자의 언어·문화·정서적 두려움을 이해하고 함께 걷는 공동체" : "A community that understands the language, culture, and fears of the newly arrived", icon: "🌿" },
-                { n: lang === "ko" ? "함께 성장하는 교회" : "Growing Together", d: lang === "ko" ? "이민자를 섬기면서 우리 자신도 더 깊은 제자도로 성장하는 교회" : "A church that grows into deeper discipleship through serving immigrants", icon: "🌱" },
-              ].map((c, i) => (
-                <div key={i} style={{ display: "flex", gap: 10, marginBottom: i < 5 ? 10 : 0, paddingBottom: i < 5 ? 10 : 0, borderBottom: i < 5 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
-                  <span style={{ fontSize: 16, flexShrink: 0, marginTop: 1 }}>{c.icon}</span>
-                  <div>
-                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>{c.n}</div>
-                    <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.6)", lineHeight: 1.5, marginTop: 2 }}>{c.d}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* 헤브론 교회 네트워크 혜택 */}
-            <div style={{ background: "rgba(201,162,39,0.08)", border: "1px solid rgba(201,162,39,0.25)", borderRadius: 14, padding: "14px 16px", marginBottom: 12 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#C9A227", marginBottom: 10 }}>
-                🎁 {lang === "ko" ? "헤브론 교회 네트워크 혜택" : "Hebron Church Network Benefits"}
-              </div>
-              {[
-                lang === "ko" ? "🏠 새 이민자가 도착하기 전에 미리 연락 — 환영 준비 가능" : "🏠 Pre-arrival notice for new immigrants — prepare welcome",
-                lang === "ko" ? "📱 HebronGuide 앱에 '헤브론 교회 네트워크' 금색 배지 표시" : "📱 Gold 'Hebron Church Network' badge displayed on HebronGuide app",
-                lang === "ko" ? "🌐 전국·전 세계 목회자 네트워크 참여" : "🌐 National & global pastor network membership",
-                lang === "ko" ? "📊 도시 내 한인 이민자 정착 현황 데이터 공유" : "📊 City-level Korean immigrant settlement data sharing",
-                lang === "ko" ? "🤝 54개+ 도시 파트너 교회와 교인 교류·연결 (계속 확장 중)" : "🤝 Member exchange & connection with 52+ partner cities (continuously expanding)",
+                { icon: "🔥", ko: "영혼구원을 향한 갈급함과 목마름", en: "A burning hunger and thirst for souls" },
+                { icon: "🤝", ko: "낯선 땅의 이민자를 삶으로 환영하는 교회", en: "A church that welcomes immigrants through lived hospitality" },
+                { icon: "🕊️", ko: "숫자가 아닌 한 영혼을 위한 순수한 사명", en: "A pure calling for one soul, not numbers" },
+                { icon: "⚓", ko: "뿌리내릴 때까지 함께하는 지속적 헌신", en: "Long-term commitment until the newcomer takes root" },
               ].map((item, i) => (
-                <div key={i} style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.7, marginBottom: 4 }}>
-                  {item}
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: i < 3 ? 10 : 0 }}>
+                  <span style={{ fontSize: 14, flexShrink: 0, marginTop: 1 }}>{item.icon}</span>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.82)", lineHeight: 1.6 }}>
+                    {lang === "ko" ? item.ko : item.en}
+                  </div>
                 </div>
               ))}
             </div>
 
-            {/* 도시별 목표 */}
-            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: accent, marginBottom: 8 }}>
-                🗺️ {lang === "ko" ? "도시별 12개 헤브론 교회 네트워크 목표" : "12 Hebron Network Churches Per City"}
-              </div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.7)", lineHeight: 1.8 }}>
-                {lang === "ko"
-                  ? "• 대도시 (LA·NY·달라스): 12개 교회 — 지역별 균형 배치\n• 중소도시 (시애틀·애틀랜타): 12개 이하 — 도시 전체 커버\n• 소도시·군사도시: 3-5개 교회 — 외로운 한인을 위한 등불\n\n새 이민자는 거주지에서 가장 가까운 헤브론 교회 네트워크로 자동 연결됩니다."
-                  : "• Major cities (LA, NY, Dallas): 12 churches — balanced regional coverage\n• Mid cities (Seattle, Atlanta): up to 12 — city-wide coverage\n• Small & military cities: 3-5 churches — a light for lonely Koreans\n\nNew immigrants automatically connected to nearest hub church."}
+            {/* 프로모션 안내 */}
+            <div style={{ background: "rgba(110,231,183,0.08)", border: "1px solid rgba(110,231,183,0.25)", borderRadius: 12, padding: "12px 16px", marginBottom: 12 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ fontSize: 16 }}>🌿</span>
+                <div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#6EE7B7", marginBottom: 2 }}>
+                    {lang === "ko" ? "초기 파트너 교회 초청" : "Founding Partner Church Invitation"}
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.7)", lineHeight: 1.7 }}>
+                    {lang === "ko"
+                      ? "2026년 10월 1일까지 초청에 응해 주신 교회는 무상으로 등재해 드립니다."
+                      : "Churches that respond to this invitation by October 1, 2026 will be listed at no charge."}
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* 허브교회 탭 — 헤브론 매칭 서비스 카드 */}
-            <HebronServiceCard
-              icon="💍" color="#EC4899" lang={lang}
-              titleKo="헤브론 매칭 — 진지하고 따뜻한 만남"
-              titleEn="Hebron Match — Thoughtful & Meaningful Connection"
-              descKo="같은 가치관과 삶의 방향을 가진 분을 만납니다. 신중하게, 진심으로 연결합니다."
-              descEn="Meet someone who shares your values and direction in life. Connected thoughtfully and sincerely."
-            />
-
-            {/* CTA — mailto body에 자가 진단 양식 미리 채움 (4-Tier + 신앙 고백 + 환대 동행) */}
+            {/* CTA */}
             <a href={`mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(
-              lang === "ko"
-                ? "[HebronGuide] 헤브론 교회 네트워크 신청"
-                : "[HebronGuide] Hebron Church Network Application"
+              lang === "ko" ? "[HebronGuide] 교회 등재 초청에 응합니다" : "[HebronGuide] Church Listing — Responding to Your Invitation"
             )}&body=${encodeURIComponent(
               lang === "ko"
-                ? `안녕하세요. {교회명} 담임목사 {성함}입니다.\nHebronGuide 헤브론 교회 네트워크 등록을 신청합니다.\n\n=== 1. 기본 정보 ===\n- 교회명:\n- 담임목사 성함:\n- 도시 / 주:\n- 교단·소속 (예: SBC, 장로교 PCA, 가정교회 IHM):\n- 설립년도:\n- 교인 수 (대략):\n- 교회 공식 웹사이트:\n- 연락처 (이메일 / 전화):\n\n=== 2. 4-Tier 자가 분류 (해당하는 곳에 ✅) ===\n[ ] Tier 1 — 가정교회 (IHM 인증)\n[ ] Tier 2 — SBC·정통 보수\n[ ] Tier 3 — 기타 정통 교단 (장로·감리·성결·침례 등)\n[ ] Tier 4 — 독립·무소속\n\n=== 3. 복음 신앙 고백 (Y/N) ===\n[ ] 사도신경·니케아신경에 동의합니다.\n[ ] 성경 66권의 무오성을 믿습니다.\n[ ] 그리스도의 십자가 대속과 부활을 신앙고백합니다.\n\n=== 4. 헤브론 교회 네트워크 환대 동행 약속 (Y/N) ===\n[ ] 새 이민자 환대 동행자 역할에 동의합니다.\n[ ] 사역자·전문가 추천에 협력합니다.\n[ ] 분기별 영혼 점검 자가 진단에 참여합니다.\n\n=== 5. 추가 메시지 (자유 작성) ===\n\n\n— 검토 후 1-2주 내 결과 안내드립니다. 감사합니다.\n  www.ijiguchon.org · hebronguide.com\n  마 25:35 "내가 나그네 되었을 때 너희가 영접하였다"`
-                : `Hello. I am {Pastor Name}, lead pastor of {Church Name}.\nWe would like to apply as a HebronGuide Hub Church.\n\n=== 1. Basic Information ===\n- Church Name:\n- Lead Pastor:\n- City / State:\n- Denomination / Affiliation (e.g., SBC, PCA, IHM House Church):\n- Year Founded:\n- Approx. Members:\n- Official Website:\n- Contact (email / phone):\n\n=== 2. 4-Tier Self-Classification (✅ where applicable) ===\n[ ] Tier 1 — IHM-certified House Church\n[ ] Tier 2 — SBC / Conservative Evangelical\n[ ] Tier 3 — Other Orthodox Denominations (Presbyterian, Methodist, Holiness, Baptist, etc.)\n[ ] Tier 4 — Independent / Non-affiliated\n\n=== 3. Gospel Confession (Y/N) ===\n[ ] I affirm the Apostles' and Nicene Creeds.\n[ ] I affirm the inerrancy of the 66 books of Scripture.\n[ ] I confess Christ's substitutionary atonement and resurrection.\n\n=== 4. Hub Church Hospitality Commitment (Y/N) ===\n[ ] We agree to serve as hospitality companions for new immigrants.\n[ ] We commit to recommending qualified ministers and professionals.\n[ ] We will participate in quarterly soul-check self-assessment.\n\n=== 5. Additional Message (free-form) ===\n\n\n— Review will take 1-2 weeks. Thank you.\n  www.ijiguchon.org · hebronguide.com\n  Matthew 25:35 — "I was a stranger and you welcomed me."`
-            )}`}
-              style={{ display: "block", textDecoration: "none" }}>
-              <div style={{ background: "linear-gradient(135deg, #C9A227, #B8901C)", borderRadius: 14, padding: "16px 20px", textAlign: "center", boxShadow: "0 4px 20px rgba(201,162,39,0.4)" }}>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 6 }}>
-                  ✝️ {lang === "ko" ? "이 사명에 함께해 주세요" : "We Invite You to Join This Mission"}
-                </div>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(255,255,255,0.9)", marginBottom: 6, lineHeight: 1.7 }}>
-                  {lang === "ko"
-                    ? "영혼구원의 갈급함이 있으시다면, 정중히 초청합니다.\n아래 버튼을 눌러 교회 소개를 보내주세요."
-                    : "If your heart hungers for souls, we warmly invite you.\nTap below to send us your church's story."}
+                ? `안녕하세요.\n{교회명} 담임목사 {성함}입니다.\nHebronGuide 교회 등재 초청에 감사드리며, 기꺼이 응합니다.\n\n— 교회명:\n— 담임목사:\n— 도시 / 주:\n— 교단 / 소속:\n— 교회 웹사이트:\n— 연락처:\n— 한 말씀 (자유롭게):\n\n마 25:35 "내가 나그네 되었을 때 너희가 영접하였다"\nhebronguide.com`
+                : `Hello,\nI am {Pastor Name}, lead pastor of {Church Name}.\nThank you for the invitation to be listed on HebronGuide. We gladly respond.\n\n— Church Name:\n— Lead Pastor:\n— City / State:\n— Denomination:\n— Website:\n— Contact:\n— A few words (optional):\n\nMatt 25:35 — "I was a stranger and you welcomed me."\nhebronguide.com`
+            )}`} style={{ display: "block", textDecoration: "none" }}>
+              <div style={{ background: "linear-gradient(135deg, #C9A227, #B8901C)", borderRadius: 14, padding: "15px 20px", textAlign: "center", boxShadow: "0 4px 20px rgba(201,162,39,0.35)" }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 3 }}>
+                  {lang === "ko" ? "이 초청에 응하기 →" : "Accept This Invitation →"}
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.65)" }}>
-                  hebronplatform@gmail.com · 검토 후 1-2주 내 연락드립니다
+                  hebronplatform@gmail.com · {lang === "ko" ? "1-2주 내 연락드립니다" : "We'll be in touch within 1-2 weeks"}
                 </div>
               </div>
             </a>
