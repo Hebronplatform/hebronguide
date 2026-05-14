@@ -15523,16 +15523,22 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
 ───────────────────────────────────────── */
 
 // 탭별 공유 콘텐츠 — 도시명 동적 생성 (시애틀을 기준 템플릿으로 모든 도시에 적용)
-function getShareContexts(cityKo: string, cityEn: string, slug: string) {
+function getShareContexts(cityKo: string, cityEn: string, slug: string,
+  identity?: { flag: string; ko: string; en: string }) {
+  const id = identity ?? { flag: "🌍", ko: "현지 한인", en: "Korean Diaspora" };
+  const cc = getCountryCode(slug);
+  const idNumKo = cc === "CA" ? "SIN" : cc === "AU" ? "TFN" : cc === "JP" ? "마이넘버" : cc === "KR" ? "주민등록" : "SSN";
+  const idNumEn = cc === "CA" ? "SIN" : cc === "AU" ? "TFN" : cc === "JP" ? "My Number" : cc === "KR" ? "Resident ID" : "SSN";
+  const tagId   = id.en.replace(/\s+/g, "");
   return {
     0: { emoji: "🏠", labelKo: "홈", labelEn: "Home",
-      textKo: `${cityKo} Korean American 플랫폼 🇺🇸\n정착부터 투표·법률·한국학교·다민족 커뮤니티까지\n이민자에서 Korean American으로 — 함께 성장해요 👇`,
-      textEn: `${cityEn} Korean American Platform 🇺🇸\nFrom settlement to voting, legal aid, Korean schools & multicultural community\nGrow from newcomer to Korean American — together 👇`,
-      tags: `#KoreanAmerican #${slug}한인 #HebronGuide` },
+      textKo: `${cityKo} ${id.ko} 플랫폼 ${id.flag}\n정착부터 커뮤니티·법률·한국학교까지\n이민자에서 ${id.ko}로 — 함께 성장해요 👇`,
+      textEn: `${cityEn} ${id.en} Platform ${id.flag}\nFrom settlement to community, legal aid & Korean schools\nGrow from newcomer to ${id.en} — together 👇`,
+      tags: `#${tagId} #${slug}한인 #HebronGuide` },
     1: { emoji: "🛬", labelKo: "정착", labelEn: "Settlement",
-      textKo: `${cityKo} 정착 완벽 가이드 🛬\nSSN·운전면허·비자·세금·법률·한국학교까지\n새로 오신 분들께 꼭 공유해 주세요 👇`,
-      textEn: `Complete ${cityEn} Korean American guide 🛬\nSSN, license, visa, taxes, legal aid, Korean schools\nShare with every new arrival 👇`,
-      tags: `#${slug}정착 #KoreanAmerican #HebronGuide` },
+      textKo: `${cityKo} 정착 완벽 가이드 🛬\n${idNumKo}·운전면허·비자·세금·법률·한국학교까지\n새로 오신 분들께 꼭 공유해 주세요 👇`,
+      textEn: `Complete ${cityEn} ${id.en} guide 🛬\n${idNumEn}, license, visa, taxes, legal aid, Korean schools\nShare with every new arrival 👇`,
+      tags: `#${slug}정착 #${tagId} #HebronGuide` },
     2: { emoji: "⛪", labelKo: "교회", labelEn: "Church",
       textKo: `${cityKo} 한인교회 정보 ⛪\n가정교회 중심으로 검증된 교회 정보\n믿을 수 있는 커뮤니티를 찾고 계신다면 👇`,
       textEn: `Korean churches in ${cityEn} ⛪\nVerified church info, house church communities\nLooking for a trusted community? 👇`,
@@ -15544,7 +15550,7 @@ function getShareContexts(cityKo: string, cityEn: string, slug: string) {
     4: { emoji: "🗺️", labelKo: "관광", labelEn: "Tourism",
       textKo: `${cityKo} 관광 명소 완벽 정리 🗺️\n자연·문화·야경·액티비티 총망라\n${cityKo} 방문 계획이라면 꼭 보세요 👇`,
       textEn: `${cityEn}'s best attractions 🗺️\nNature, culture, nightviews & activities\nMust-see before your ${cityEn} trip 👇`,
-      tags: `#${slug}관광 #KoreanAmerican #HebronGuide` },
+      tags: `#${slug}관광 #${tagId} #HebronGuide` },
     5: { emoji: "🆘", labelKo: "도움·긴급", labelEn: "Help & Emergency",
       textKo: `${cityKo} 한인 긴급 연락처 모음 🆘\n병원·총영사관·법률·커뮤니티 자원\n셀폰에 저장해 두세요! 👇`,
       textEn: `${cityEn} emergency contacts for Koreans 🆘\nHospital, consulate, legal & community resources\nSave this now! 👇`,
@@ -15567,7 +15573,8 @@ function getShareContexts(cityKo: string, cityEn: string, slug: string) {
 function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void; lang: string; activeNav?: number }) {
   const shareCity    = useCityConfig();
   const appUrl       = `https://hebronguide.com/${shareCity.slug}/`;
-  const SHARE_CTX    = getShareContexts(shareCity.nameKo, shareCity.nameEn, shareCity.slug);
+  const shareIdentity = DIASPORA_IDENTITY[shareCity.slug] ?? { flag: "🌍", ko: "현지 한인", en: "Korean Diaspora" };
+  const SHARE_CTX    = getShareContexts(shareCity.nameKo, shareCity.nameEn, shareCity.slug, shareIdentity);
   const ctx          = SHARE_CTX[activeNav] ?? SHARE_CTX[0];
   const bodyText     = lang === "ko" ? ctx.textKo : ctx.textEn;
   const fullMsg      = `${bodyText}\n\n📱 HebronGuide ${shareCity.nameKo} — hebronguide.com/${shareCity.slug}\n${ctx.tags}`;
