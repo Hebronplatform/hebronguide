@@ -6072,8 +6072,13 @@ function CompactHeroNew() {
       height: "clamp(192px, 30dvh, 256px)",
       overflow: "hidden",
       borderRadius: "0 0 28px 28px",
-      background: `linear-gradient(160deg, ${city.color} 0%, ${city.color}aa 50%, ${city.color}44 100%)`,
+      backgroundColor: city.color || "#1B4F72",
     }}>
+      {/* ── 솔리드 도시 색상 보장 레이어 (이미지 실패시 반드시 보임) */}
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 0,
+        backgroundColor: city.color || "#1B4F72",
+      }} />
 
       {/* ── Ken Burns 키프레임 */}
       <style>{`
