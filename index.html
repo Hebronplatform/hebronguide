@@ -480,13 +480,23 @@
   </style>
 </head>
 <body>
-  <!-- ── 자동 리다이렉트: 시애틀 메인 앱으로 ── -->
+  <!-- ── 마지막 방문 도시 기억 → 자동 이동, 처음 방문자는 랜딩 페이지 표시 ── -->
   <script>
-    // 루트(/) 접속 시 시애틀 React 앱으로 즉시 이동
-    // 쿼리스트링·해시 보존 (예: /?lang=en → /seattle/?lang=en)
-    var search = window.location.search;
-    var hash = window.location.hash;
-    window.location.replace('/seattle/' + search + hash);
+    (function() {
+      var lastCity = localStorage.getItem('hg_last_city');
+      var valid = ['seattle','dallas','sf','newyork','nashville','boston','la','toronto',
+        'vancouver','houston','atlanta','kansascity','philadelphia','miami','mexicocity',
+        'guadalajara','monterrey','chicago','dc','sandiego','honolulu','portland','denver',
+        'calgary','edmonton','ottawa','winnipeg','phoenix','charlotte','raleigh','columbus',
+        'minneapolis','tucson','fayetteville','killeen','anchorage','sydney','melbourne',
+        'brisbane','perth','auckland','saopaulo','london','singapore','bangkok','hochiminh',
+        'dubai','frankfurt','berlin','paris','tokyo','osaka','seoul','busan'];
+      if (lastCity && valid.indexOf(lastCity) !== -1) {
+        var s = window.location.search, h = window.location.hash;
+        window.location.replace('/' + lastCity + '/' + s + h);
+      }
+      // 처음 방문자 → 이 랜딩 페이지 그대로 표시
+    })();
   </script>
   <!-- 스티키 네비 -->
   <nav class="topbar">
