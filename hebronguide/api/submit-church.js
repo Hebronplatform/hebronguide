@@ -26,9 +26,7 @@ export default async function handler(req) {
 
   const RESEND_KEY = process.env.RESEND_API_KEY || ''
   const ADMIN      = 'hebronplatform@gmail.com'
-  // 도메인 인증 전: onboarding@resend.dev (Resend 테스트 발신자)
-  // 도메인 인증 후: HebronGuide <noreply@hebronguide.com> 으로 변경
-  const FROM       = 'HebronGuide <onboarding@resend.dev>'
+  const FROM       = 'HebronGuide <noreply@hebronguide.com>'
   const now        = new Date().toLocaleString('ko-KR', { timeZone: 'America/Los_Angeles' })
 
   // ── 관리자 알림 이메일 ──
