@@ -758,7 +758,39 @@ Key services:
 🕐 1st 11:30am · 2nd 1:30pm (English service)
 📞 650-571-9445
 📧 welcome.ncmc@gmail.com
-🔗 ncmission.org`,tags:a?["가정교회","한영이중언어","샌마테오"]:["House Church","Bilingual","San Mateo"],website:"https://ncmission.org",email:"welcome.ncmc@gmail.com",phone:"650-571-9445"}],busan:[{emoji:"⭐",tier:1,name:a?"수영로교회":"Sooyoungro Church",desc:a?`✅ 가정교회 모델 · 역이민 귀환 동포 환영
+🔗 ncmission.org`,tags:a?["가정교회","한영이중언어","샌마테오"]:["House Church","Bilingual","San Mateo"],website:"https://ncmission.org",email:"welcome.ncmc@gmail.com",phone:"650-571-9445"}],seoul:[{emoji:"⭐",tier:1,name:a?"온누리교회":"Onnuri Church Seoul",desc:a?`✅ 검증됨 · 귀환 동포·역이민자 환영
+📍 서울 서초구 남부순환로 2497
+📞 02-2077-1000
+🕐 주일예배 1부(7am)·2부(9am)·3부(11am)·4부(2pm)
+🔗 onnuri.org
+
+✨ 해외에서 돌아온 귀환 동포를 위한 영어예배·글로벌 공동체 운영`:`✅ Verified · Welcoming returning overseas Koreans
+📍 2497 Nambusunhwan-ro, Seocho-gu, Seoul
+📞 02-2077-1000
+🕐 Sunday services: 7am / 9am / 11am / 2pm
+🔗 onnuri.org
+
+✨ English services and global community for returning diaspora`,tags:a?["서초구","귀환동포","영어예배"]:["Seocho","Returnees","English Service"],website:"https://onnuri.org",phone:"02-2077-1000"},{emoji:"⛪",tier:2,name:a?"사랑의교회":"Sarang Community Church",desc:a?`✅ 검증됨
+📍 서울 서초구 서초대로 55
+📞 02-3479-0000
+🕐 주일예배 1부(8am)·2부(10am)·3부(12pm)·4부(2pm)
+🔗 sarang.org
+
+✨ 귀환 역이민자·재외동포 정착 상담 가능`:`✅ Verified
+📍 55 Seocho-daero, Seocho-gu, Seoul
+📞 02-3479-0000
+🕐 Sunday: 8am / 10am / 12pm / 2pm
+🔗 sarang.org
+
+✨ Counseling available for returning overseas Koreans`,tags:a?["서초구","귀환동포"]:["Seocho","Returnees"],website:"https://sarang.org",phone:"02-3479-0000"},{emoji:"⛪",tier:2,name:a?"강남교회":"Gangnam Church Seoul",desc:a?`🔍 추가 검증 중
+📍 서울 강남구
+
+서울 귀환 동포·역이민자를 위한 교회 정보를 계속 업데이트하고 있습니다.
+교회 등재: hebronguide.com/church-submit.html`:`🔍 Verification in progress
+📍 Gangnam-gu, Seoul
+
+Continuously updating church info for returning overseas Koreans.
+List your church: hebronguide.com/church-submit.html`,tags:a?["강남구","귀환동포"]:["Gangnam","Returnees"]}],busan:[{emoji:"⭐",tier:1,name:a?"수영로교회":"Sooyoungro Church",desc:a?`✅ 가정교회 모델 · 역이민 귀환 동포 환영
 📍 부산 수영구 수영로 425
 📞 051-758-0691
 🕐 주일예배 7부(6:30am)·1부(8am)·2부(9:30am)·3부(11:10am)·4부(1pm)·5부(3pm)·영어예배(1pm)
