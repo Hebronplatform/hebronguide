@@ -201,16 +201,16 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
   ],
 
-  // 🇰🇷 서울 — 검증된 Unsplash 사진
+  // 🇰🇷 서울 — 검증된 Unsplash 사진 (re-verified 2026-05-15)
   seoul: [
     { url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&q=90", pos: "center 40%", alt: "Seoul Korea cityscape" },
-    { url: "https://images.unsplash.com/photo-1506241537529-eefea1fbe44d?w=1200&q=90", pos: "center 35%", alt: "Seoul South Korea" },
+    { url: "https://images.unsplash.com/photo-1573074617613-fc8ef27eaa2f?w=1200&q=90", pos: "center 35%", alt: "Seoul South Korea night" },
   ],
 
-  // 🇰🇷 부산 — 검증된 Unsplash 사진
+  // 🇰🇷 부산 — 검증된 Unsplash 사진 (re-verified 2026-05-15)
   busan: [
     { url: "https://images.unsplash.com/photo-1535139262971-ab8d6ce71e1e?w=1200&q=90", pos: "center 40%", alt: "Busan South Korea beach" },
-    { url: "https://images.unsplash.com/photo-1562793453-ffd7be1f6b1e?w=1200&q=90", pos: "center 42%", alt: "Busan Korea" },
+    { url: "https://images.unsplash.com/photo-1570639780287-5b66f3ec75e8?w=1200&q=90", pos: "center 42%", alt: "Busan coastal town Korea" },
   ],
 
 
