@@ -201,18 +201,16 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
   ],
 
-  // 🇰🇷 서울 — 경복궁(낮) + 서울 도심(낮) + 한강(낮)
+  // 🇰🇷 서울 — 검증된 Unsplash 사진
   seoul: [
-    { url: "https://images.unsplash.com/photo-1601621915196-2621bfb0cd6e?w=1200&q=90&auto=format&fit=crop", pos: "center 45%", alt: "Seoul Han River daytime skyline" },
-    { url: "https://images.unsplash.com/photo-1563746924237-f81d5a3b5e0a?w=1200&q=90&auto=format&fit=crop", pos: "center 40%", alt: "Seoul cityscape daytime" },
-    { url: "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=1200&q=90&auto=format&fit=crop", pos: "center 38%", alt: "Gyeongbokgung Palace Seoul" },
+    { url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&q=90", pos: "center 40%", alt: "Seoul Korea cityscape" },
+    { url: "https://images.unsplash.com/photo-1506241537529-eefea1fbe44d?w=1200&q=90", pos: "center 35%", alt: "Seoul South Korea" },
   ],
 
-  // 🇰🇷 부산 — 해운대(낮) + 광안대교(낮) + 감천마을(낮)
+  // 🇰🇷 부산 — 검증된 Unsplash 사진
   busan: [
-    { url: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1200&q=90&auto=format&fit=crop", pos: "center 40%", alt: "Busan Haeundae beach daytime" },
-    { url: "https://images.unsplash.com/photo-1538574027501-286b64ee38f8?w=1200&q=90&auto=format&fit=crop", pos: "center 42%", alt: "Busan Gamcheon Culture Village colorful buildings" },
-    { url: "https://images.unsplash.com/photo-1676290995185-0287c1b812ce?w=1200&q=90&auto=format&fit=crop", pos: "center 38%", alt: "Busan coastal view daytime" },
+    { url: "https://images.unsplash.com/photo-1535139262971-ab8d6ce71e1e?w=1200&q=90", pos: "center 40%", alt: "Busan South Korea beach" },
+    { url: "https://images.unsplash.com/photo-1562793453-ffd7be1f6b1e?w=1200&q=90", pos: "center 42%", alt: "Busan Korea" },
   ],
 
 
