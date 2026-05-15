@@ -32,9 +32,10 @@ export default async function handler(req) {
   const now          = new Date().toLocaleString('ko-KR', { timeZone: 'America/Los_Angeles' })
 
   // ── Supabase 자동 저장 (즉시 게시) ──
+  console.log('[supa] URL:', SUPA_URL ? 'set' : 'MISSING', '/ KEY:', SUPA_KEY ? 'set' : 'MISSING')
   if (SUPA_URL && SUPA_KEY) {
     try {
-      await fetch(`${SUPA_URL}/rest/v1/community_items`, {
+      const supaRes = await fetch(`${SUPA_URL}/rest/v1/community_items`, {
         method: 'POST',
         headers: {
           'apikey': SUPA_KEY,
@@ -55,7 +56,11 @@ export default async function handler(req) {
           status: 'published',
         }),
       })
-    } catch (_) {}
+      const supaText = await supaRes.text()
+      console.log('[supa] status:', supaRes.status, '/ body:', supaText.slice(0, 200))
+    } catch (e) {
+      console.error('[supa] error:', e.message)
+    }
   }
 
   // ── 관리자 알림 이메일 ──
