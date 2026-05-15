@@ -24,9 +24,9 @@ export default async function handler(req) {
     return new Response(JSON.stringify({ status: 'error', message: '교회명과 도시는 필수입니다.' }), { status: 400, headers: CORS })
   }
 
-  const RESEND_KEY   = process.env.RESEND_API_KEY || ''
-  const SUPA_URL     = process.env.SUPABASE_URL || ''
-  const SUPA_KEY     = process.env.SUPABASE_ANON_KEY || ''
+  const RESEND_KEY   = process.env.RESEND_API_KEY   ?? ''
+  const SUPA_URL     = process.env.SUPABASE_URL      ?? 'https://vextxqzggznulwpganwt.supabase.co'
+  const SUPA_KEY     = process.env.SUPABASE_ANON_KEY ?? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4MTUzOTIsImV4cCI6MjA5NDM5MTM5Mn0.XghaQZYtI-dq5mf8i-DPVCxtw_XBBjxGUnvaiwGQFWk'
   const ADMIN        = 'hebronplatform@gmail.com'
   const FROM         = 'HebronGuide <noreply@hebronguide.com>'
   const now          = new Date().toLocaleString('ko-KR', { timeZone: 'America/Los_Angeles' })
