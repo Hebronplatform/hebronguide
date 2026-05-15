@@ -1,5 +1,5 @@
-// Vercel Edge Function — 교회 등재 신청 자동 이메일
-// 환경변수: RESEND_API_KEY (Vercel Settings → Environment Variables)
+// Vercel Edge Function — 교회 등재 신청 + Supabase 자동 게시
+// 환경변수: RESEND_API_KEY, SUPABASE_URL, SUPABASE_ANON_KEY
 
 export const config = { runtime: 'edge' }
 
@@ -24,10 +24,39 @@ export default async function handler(req) {
     return new Response(JSON.stringify({ status: 'error', message: '교회명과 도시는 필수입니다.' }), { status: 400, headers: CORS })
   }
 
-  const RESEND_KEY = process.env.RESEND_API_KEY || ''
-  const ADMIN      = 'hebronplatform@gmail.com'
-  const FROM       = 'HebronGuide <noreply@hebronguide.com>'
-  const now        = new Date().toLocaleString('ko-KR', { timeZone: 'America/Los_Angeles' })
+  const RESEND_KEY   = process.env.RESEND_API_KEY || ''
+  const SUPA_URL     = process.env.SUPABASE_URL || ''
+  const SUPA_KEY     = process.env.SUPABASE_ANON_KEY || ''
+  const ADMIN        = 'hebronplatform@gmail.com'
+  const FROM         = 'HebronGuide <noreply@hebronguide.com>'
+  const now          = new Date().toLocaleString('ko-KR', { timeZone: 'America/Los_Angeles' })
+
+  // ── Supabase 자동 저장 (즉시 게시) ──
+  if (SUPA_URL && SUPA_KEY) {
+    try {
+      await fetch(`${SUPA_URL}/rest/v1/community_items`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPA_KEY,
+          'Authorization': `Bearer ${SUPA_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify({
+          category: 'church',
+          city_slug: city,
+          name: churchName,
+          pastor: pastor || null,
+          contact: email || phone || null,
+          phone: phone || null,
+          email: email || null,
+          description: description || null,
+          website: website || null,
+          status: 'published',
+        }),
+      })
+    } catch (_) {}
+  }
 
   // ── 관리자 알림 이메일 ──
   const adminHtml = `
