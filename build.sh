@@ -18,6 +18,7 @@ cp icon-192.png  public/icon-192.png
 cp icon-512.png  public/icon-512.png
 cp icon-192.png  public/apple-touch-icon.png
 cp icon-192.png  public/apple-touch-icon-precomposed.png
+cp hebronguide/dist/hebronguide-logo.svg public/hebronguide-logo.svg
 
 # 3. 도시별 메타데이터 정의 (한국어명·영어명·주/지역)
 declare -A CITY_KO=(
