@@ -6095,14 +6095,7 @@ function CompactHeroNew() {
             crossOrigin="anonymous"
             loading="eager"
             referrerPolicy="no-referrer"
-            onError={(e) => {
-              const img = e.currentTarget as HTMLImageElement;
-              img.style.opacity = "0";
-              // 첫 번째 이미지 실패 시 다음 슬라이드로 자동 전환
-              if (i === 0 && slides && slides.length > 1) {
-                setTimeout(() => setSlideIdx(1), 100);
-              }
-            }}
+            onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "0"; }}
             style={{
               position: "absolute", inset: 0,
               width: "100%", height: "100%",
