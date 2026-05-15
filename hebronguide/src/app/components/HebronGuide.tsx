@@ -10334,7 +10334,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const citySlug = city.slug;
 
   const defaultChurches = getCityChurches(citySlug, lang);
-  const churches = serverContent["churches"]
+  const churches = (serverContent["churches"] && serverContent["churches"].length > 0)
     ? resolvePlaceItems(serverContent["churches"], lang)
     : defaultChurches;
 
