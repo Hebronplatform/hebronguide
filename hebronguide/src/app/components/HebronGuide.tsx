@@ -201,18 +201,18 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
   ],
 
-  // 🇰🇷 서울 — 경복궁(낮) + 한강(낮) + N타워(야경)
+  // 🇰🇷 서울 — 경복궁(낮) + 서울 도심(낮) + 한강(낮)
   seoul: [
-    { url: "https://images.unsplash.com/photo-1566800890932-e89159daf3dc?w=1200&q=90", pos: "center 40%", alt: "Gyeongbokgung Palace Seoul daytime" },
-    { url: "https://images.unsplash.com/photo-1628008335819-7175b35fa4f5?w=1200&q=90", pos: "center 35%", alt: "Seoul Han River daytime skyline" },
-    { url: "https://images.unsplash.com/photo-1546874177-9e664107314e?w=1200&q=90", pos: "center 38%", alt: "Seoul N Tower city skyline at night" },
+    { url: "https://images.unsplash.com/photo-1601621915196-2621bfb0cd6e?w=1200&q=90&auto=format&fit=crop", pos: "center 45%", alt: "Seoul Han River daytime skyline" },
+    { url: "https://images.unsplash.com/photo-1563746924237-f81d5a3b5e0a?w=1200&q=90&auto=format&fit=crop", pos: "center 40%", alt: "Seoul cityscape daytime" },
+    { url: "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=1200&q=90&auto=format&fit=crop", pos: "center 38%", alt: "Gyeongbokgung Palace Seoul" },
   ],
 
-  // 🇰🇷 부산 — 해운대 해변(낮) + 감천마을(낮) + 야경
+  // 🇰🇷 부산 — 해운대(낮) + 광안대교(낮) + 감천마을(낮)
   busan: [
-    { url: "https://images.unsplash.com/photo-1676290995185-0287c1b812ce?w=1200&q=90", pos: "center 38%", alt: "Busan Haeundae beach daytime" },
-    { url: "https://images.unsplash.com/photo-1538574027501-286b64ee38f8?w=1200&q=90", pos: "center 42%", alt: "Busan Gamcheon Culture Village colorful buildings" },
-    { url: "https://images.unsplash.com/photo-1701172189149-450eecf09863?w=1200&q=90", pos: "center 40%", alt: "Busan Haeundae aerial night view" },
+    { url: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1200&q=90&auto=format&fit=crop", pos: "center 40%", alt: "Busan Haeundae beach daytime" },
+    { url: "https://images.unsplash.com/photo-1538574027501-286b64ee38f8?w=1200&q=90&auto=format&fit=crop", pos: "center 42%", alt: "Busan Gamcheon Culture Village colorful buildings" },
+    { url: "https://images.unsplash.com/photo-1676290995185-0287c1b812ce?w=1200&q=90&auto=format&fit=crop", pos: "center 38%", alt: "Busan coastal view daytime" },
   ],
 
 
@@ -6097,7 +6097,14 @@ function CompactHeroNew() {
             crossOrigin="anonymous"
             loading="eager"
             referrerPolicy="no-referrer"
-            onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "0"; }}
+            onError={(e) => {
+              const img = e.currentTarget as HTMLImageElement;
+              img.style.opacity = "0";
+              // 첫 번째 이미지 실패 시 다음 슬라이드로 자동 전환
+              if (i === 0 && slides && slides.length > 1) {
+                setTimeout(() => setSlideIdx(1), 100);
+              }
+            }}
             style={{
               position: "absolute", inset: 0,
               width: "100%", height: "100%",
