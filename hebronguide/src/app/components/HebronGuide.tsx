@@ -201,16 +201,16 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
   ],
 
-  // 🇰🇷 서울 — 검증된 Unsplash 사진 (re-verified 2026-05-15)
+  // 🇰🇷 서울 — 경복궁(낮) + 한강(낮) — 야경 제거
   seoul: [
-    { url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&q=90", pos: "center 40%", alt: "Seoul Korea cityscape" },
-    { url: "https://images.unsplash.com/photo-1573074617613-fc8ef27eaa2f?w=1200&q=90", pos: "center 35%", alt: "Seoul South Korea night" },
+    { url: "https://images.unsplash.com/photo-1556453580-8fa56e79e96a?w=1200&q=90", pos: "center 45%", alt: "Gyeongbokgung Palace Seoul daytime" },
+    { url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=90", pos: "center 40%", alt: "Seoul Korea daytime cityscape" },
   ],
 
-  // 🇰🇷 부산 — 검증된 Unsplash 사진 (re-verified 2026-05-15)
+  // 🇰🇷 부산 — 해운대(낮) + 감천마을(낮) — 야경 없음
   busan: [
-    { url: "https://images.unsplash.com/photo-1535139262971-ab8d6ce71e1e?w=1200&q=90", pos: "center 40%", alt: "Busan South Korea beach" },
-    { url: "https://images.unsplash.com/photo-1570639780287-5b66f3ec75e8?w=1200&q=90", pos: "center 42%", alt: "Busan coastal town Korea" },
+    { url: "https://images.unsplash.com/photo-1535139262971-ab8d6ce71e1e?w=1200&q=90", pos: "center 40%", alt: "Busan South Korea beach daytime" },
+    { url: "https://images.unsplash.com/photo-1558786374-2ebb9cdd8d59?w=1200&q=90", pos: "center 42%", alt: "Busan Gamcheon Culture Village colorful daytime" },
   ],
 
 
@@ -267,10 +267,10 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1544989164-31659c5e7f2c?w=1200&q=90", pos: "center 40%", alt: "Sao Paulo city skyline" },
   ],
 
-  // 🇺🇸 워싱턴 DC — 캐피톨 + 워싱턴 모뉴먼트
+  // 🇺🇸 워싱턴 DC — 낮 사진만
   dc: [
-    { url: "https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=1200&q=90", pos: "center 38%", alt: "Washington DC National Mall" },
-    { url: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=1200&q=90", pos: "center 40%", alt: "Washington DC Capitol Building" },
+    { url: "https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=1200&q=90", pos: "center 38%", alt: "Washington DC National Mall daytime" },
+    { url: "https://images.unsplash.com/photo-1603466182842-d022f7d0ee45?w=1200&q=90", pos: "center 40%", alt: "Washington DC Lincoln Memorial daytime" },
   ],
 
   // 🇺🇸 샌디에고 — 해변 + 항구
