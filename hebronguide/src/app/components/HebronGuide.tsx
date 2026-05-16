@@ -8514,6 +8514,43 @@ function KoreanCultureCalendarSection({ onNavigate }: { onNavigate?: (tab: numbe
 /* ─────────────────────────────────────────
    HOME: Korean American 여정 섹션
 ───────────────────────────────────────── */
+// ── 한국어 조사 자동 선택 헬퍼 ──────────────────────────────
+// 동적 변수(nameKo, identity.ko 등) 뒤에 조사를 붙일 때 반드시 사용
+// 직접 하드코딩 금지: `${x}로` ❌  →  `${x}${roJosa(x)}` ✅
+//
+// 판별 기준: 마지막 한글 음절의 종성(받침) 유무
+//   받침 없음 / 받침 ㄹ → "로", "가", "를", "는", "와"
+//   그 외 받침          → "으로", "이", "을", "은", "과"
+//   비한글(영어 등)     → 받침 없음 취급
+
+function _jongseong(s: string): number {
+  const code = s.trimEnd().charCodeAt(s.trimEnd().length - 1);
+  if (code >= 0xAC00 && code <= 0xD7A3) return (code - 0xAC00) % 28;
+  return 0; // 비한글 → 받침 없음 취급
+}
+/** "로" vs "으로" */
+function roJosa(s: string): string {
+  const j = _jongseong(s);
+  return (j === 0 || j === 8) ? "로" : "으로";
+}
+/** "이" vs "가" (주격 조사) */
+function iGaJosa(s: string): string {
+  return _jongseong(s) !== 0 ? "이" : "가";
+}
+/** "을" vs "를" (목적격 조사) */
+function eulReulJosa(s: string): string {
+  return _jongseong(s) !== 0 ? "을" : "를";
+}
+/** "은" vs "는" (보조사) */
+function eunNeunJosa(s: string): string {
+  return _jongseong(s) !== 0 ? "은" : "는";
+}
+/** "과" vs "와" (접속 조사) */
+function waGwaJosa(s: string): string {
+  return _jongseong(s) !== 0 ? "과" : "와";
+}
+// ────────────────────────────────────────────────────────────
+
 // 도시 → 현지 한인 정체성 매핑 (54개 도시 전부 커버)
 const DIASPORA_IDENTITY: Record<string, {
   flag: string; ko: string; en: string; descKo: string; descEn: string; color: string;
@@ -8669,7 +8706,7 @@ function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: numbe
         <span style={{ fontSize: 16 }}>💡</span>
         <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#475569", lineHeight: 1.5, flex: 1 }}>
           {ko
-            ? `HebronGuide는 정착 가이드를 넘어 ${city.nameKo}에서 ${identity.ko}로 성장하는 전 여정을 함께합니다.`
+            ? `HebronGuide는 정착 가이드를 넘어 ${city.nameKo}에서 ${identity.ko}${roJosa(identity.ko)} 성장하는 전 여정을 함께합니다.`
             : `HebronGuide walks with you from Day 1 through your full journey as ${identity.en} in ${city.nameEn} — not just settlement.`}
         </div>
       </div>
