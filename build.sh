@@ -78,8 +78,11 @@ declare -A CITY_EN=(
   ["paris"]="Paris"
   # 일본 (신규)
   ["tokyo"]="Tokyo"          ["osaka"]="Osaka"
-  # 한국 (역이민·방문 동포)
+  # 한국 (역이민·이주·정착)
   ["seoul"]="Seoul"          ["busan"]="Busan"
+  ["ansan"]="안산"           ["incheon"]="인천"
+  ["jeju"]="제주"            ["daegu"]="대구"
+  ["gwangju"]="광주"         ["daejeon"]="대전"
 )
 
 # 4. 도시별 배포 (미리 빌드된 dist/ 사용 + index.html 메타데이터 치환)
@@ -96,7 +99,7 @@ for city in \
   sydney melbourne brisbane perth auckland saopaulo london \
   singapore bangkok hochiminh dubai frankfurt berlin paris \
   tokyo osaka \
-  seoul busan; do
+  seoul busan ansan incheon jeju daegu gwangju daejeon; do
   mkdir -p public/$city
   cp -r hebronguide/dist/* public/$city/
 

@@ -129,7 +129,19 @@
     { "source": "/tokyo",              "destination": "/tokyo/index.html" },
     { "source": "/tokyo/(.*)",         "destination": "/tokyo/index.html" },
     { "source": "/osaka",              "destination": "/osaka/index.html" },
-    { "source": "/osaka/(.*)",         "destination": "/osaka/index.html" }
+    { "source": "/osaka/(.*)",         "destination": "/osaka/index.html" },
+    { "source": "/ansan",              "destination": "/ansan/index.html" },
+    { "source": "/ansan/(.*)",         "destination": "/ansan/index.html" },
+    { "source": "/incheon",            "destination": "/incheon/index.html" },
+    { "source": "/incheon/(.*)",       "destination": "/incheon/index.html" },
+    { "source": "/jeju",               "destination": "/jeju/index.html" },
+    { "source": "/jeju/(.*)",          "destination": "/jeju/index.html" },
+    { "source": "/daegu",              "destination": "/daegu/index.html" },
+    { "source": "/daegu/(.*)",         "destination": "/daegu/index.html" },
+    { "source": "/gwangju",            "destination": "/gwangju/index.html" },
+    { "source": "/gwangju/(.*)",       "destination": "/gwangju/index.html" },
+    { "source": "/daejeon",            "destination": "/daejeon/index.html" },
+    { "source": "/daejeon/(.*)",       "destination": "/daejeon/index.html" }
   ],
 
   "headers": [

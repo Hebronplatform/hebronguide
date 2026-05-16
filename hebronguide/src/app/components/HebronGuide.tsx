@@ -211,6 +211,42 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1200&q=90", pos: "center 38%", alt: "Busan Korea cityscape daytime" },
   ],
 
+  // 🇰🇷 안산 — 한국 다문화 수도
+  ansan: [
+    { url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=90", pos: "center 40%", alt: "Ansan Korea multicultural city" },
+    { url: "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?w=1200&q=90", pos: "center 38%", alt: "Ansan Korea cityscape" },
+  ],
+
+  // 🇰🇷 인천 — 공항·항구·송도
+  incheon: [
+    { url: "https://images.unsplash.com/photo-1601628828688-632f38a5a7d0?w=1200&q=90", pos: "center 40%", alt: "Incheon Korea cityscape" },
+    { url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=90", pos: "center 38%", alt: "Incheon Korea daytime" },
+  ],
+
+  // 🇰🇷 제주 — 자연·해변·한라산
+  jeju: [
+    { url: "https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=1200&q=90", pos: "center 45%", alt: "Jeju Island Korea coast" },
+    { url: "https://images.unsplash.com/photo-1540202403-b7abd6747a18?w=1200&q=90", pos: "center 40%", alt: "Jeju Island Korea nature" },
+  ],
+
+  // 🇰🇷 대구 — 섬유·사과·패션
+  daegu: [
+    { url: "https://images.unsplash.com/photo-1519817914152-22d216bb9170?w=1200&q=90", pos: "center 40%", alt: "Daegu Korea downtown" },
+    { url: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=90", pos: "center 38%", alt: "Daegu Korea cityscape" },
+  ],
+
+  // 🇰🇷 광주 — 문화·예술·민주
+  gwangju: [
+    { url: "https://images.unsplash.com/photo-1583922606661-0822ed0bd916?w=1200&q=90", pos: "center 40%", alt: "Gwangju Korea city" },
+    { url: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=90", pos: "center 38%", alt: "Gwangju Korea daytime" },
+  ],
+
+  // 🇰🇷 대전 — 과학·KAIST·엑스포
+  daejeon: [
+    { url: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=90", pos: "center 40%", alt: "Daejeon Korea science city" },
+    { url: "https://images.unsplash.com/photo-1519817914152-22d216bb9170?w=1200&q=90", pos: "center 38%", alt: "Daejeon Korea cityscape" },
+  ],
+
   // 🇺🇸 루이빌 — 검증된 사진 (200 OK)
   louisville: [
     { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Louisville Kentucky daytime" },
@@ -491,7 +527,7 @@ const MINT = "#6EE7B7";
 /* ─────────────────────────────────────────
    CITY CONFIG — 도시별 설정
 ───────────────────────────────────────── */
-// 현재 55개 도시 (계속 성장 중)
+// 현재 61개 도시 (계속 성장 중)
 // 작은 도시일수록 HebronGuide가 더 필요합니다 — 외롭기 때문입니다
 type CitySlug =
   // 북미 (기존 17)
@@ -510,8 +546,8 @@ type CitySlug =
   "perth" | "brisbane" | "berlin" |
   // 일본 (신규)
   "tokyo" | "osaka" |
-  // 한국 — 역이민·방문 동포
-  "seoul" | "busan";
+  // 한국 — 역이민·방문 동포·한국 이주
+  "seoul" | "busan" | "ansan" | "incheon" | "jeju" | "daegu" | "gwangju" | "daejeon";
 
 interface CityConfig {
   slug: CitySlug;
@@ -802,9 +838,15 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   // 일본 — 재일 한인 82만, 가장 큰 미포함 디아스포라
   tokyo:      { slug: "tokyo",      nameKo: "도쿄",      nameEn: "Tokyo",        color: "#DC2626", heroVideo: "", population: "6만+",   state: "Japan",       taglineKo: "신오쿠보에서 시작하는 새 인연",    taglineEn: "New bonds begin in Shin-Okubo.",    taglineEs: "Nuevos vínculos en Shin-Okubo." },
   osaka:      { slug: "osaka",      nameKo: "오사카",    nameEn: "Osaka",        color: "#EA580C", heroVideo: "", population: "8만+",   state: "Japan",       taglineKo: "이쿠노구 백년의 뿌리, 새 이야기",  taglineEn: "Century of roots in Ikuno, new story.", taglineEs: "Un siglo de raíces en Ikuno." },
-  // 한국 — 역이민·방문 동포를 위한 한국 생활 재적응 가이드
+  // 한국 — 역이민·이주·한국 생활 가이드
   seoul:      { slug: "seoul",      nameKo: "서울",      nameEn: "Seoul",        color: "#DC2626", heroVideo: "", population: "750만+",  state: "Korea",       taglineKo: "돌아온 당신을 위한 서울 가이드",   taglineEn: "Seoul guide for returning diaspora.",   taglineEs: "Guía de Seúl para la diáspora." },
   busan:      { slug: "busan",      nameKo: "부산",      nameEn: "Busan",        color: "#0EA5E9", heroVideo: "", population: "100만+",  state: "Korea",       taglineKo: "바다와 함께 시작하는 새 일상",      taglineEn: "New life by the sea in Busan.",         taglineEs: "Nueva vida junto al mar en Busan." },
+  ansan:      { slug: "ansan",      nameKo: "안산",      nameEn: "Ansan",        color: "#8B5CF6", heroVideo: "", population: "10만+",   state: "Korea",       taglineKo: "80개 국적의 다문화 수도",           taglineEn: "Multicultural capital, 80 nationalities.", taglineEs: "Capital multicultural, 80 nacionalidades." },
+  incheon:    { slug: "incheon",    nameKo: "인천",      nameEn: "Incheon",      color: "#0EA5E9", heroVideo: "", population: "10만+",   state: "Korea",       taglineKo: "한국의 첫 관문, 인천국제공항",     taglineEn: "Korea's gateway — Incheon Airport.",    taglineEs: "La puerta de entrada a Corea." },
+  jeju:       { slug: "jeju",       nameKo: "제주",      nameEn: "Jeju",         color: "#10B981", heroVideo: "", population: "2.5만+",  state: "Korea",       taglineKo: "바람과 돌의 섬, 새로운 시작",      taglineEn: "Island of wind and stone.",             taglineEs: "Isla de viento y piedra." },
+  daegu:      { slug: "daegu",      nameKo: "대구",      nameEn: "Daegu",        color: "#F59E0B", heroVideo: "", population: "4만+",    state: "Korea",       taglineKo: "패션의 도시, 뜨거운 한국의 심장",  taglineEn: "Korea's fashion city, warm heart.",     taglineEs: "La ciudad de la moda de Corea." },
+  gwangju:    { slug: "gwangju",    nameKo: "광주",      nameEn: "Gwangju",      color: "#EC4899", heroVideo: "", population: "3만+",    state: "Korea",       taglineKo: "예향의 도시, 아시아 문화의 중심",  taglineEn: "City of art, heart of Asia.",           taglineEs: "Ciudad del arte, corazón de Asia." },
+  daejeon:    { slug: "daejeon",    nameKo: "대전",      nameEn: "Daejeon",      color: "#3B82F6", heroVideo: "", population: "2만+",    state: "Korea",       taglineKo: "과학의 도시, 한국의 실리콘밸리",   taglineEn: "Science City, Korea's Silicon Valley.", taglineEs: "La ciudad de la ciencia de Corea." },
 };
 
 function useCityConfig(): CityConfig {
@@ -4799,6 +4841,290 @@ const TOP5_EXPLORE_BUSAN: Top5Item[] = [
   },
 ];
 
+/* ── 안산 (ANSAN) — 한국 다문화 수도 ── */
+const TOP5_SETTLE_ANSAN: Top5Item[] = [
+  { rank:1, emoji:"🌏", nameKo:"안산시외국인주민지원센터", nameEn:"Ansan Migrant Support Center",
+    address:"경기도 안산시 단원구 원고개로 30", phone:"031-410-3100", hours:"월-금 9am-6pm",
+    why:"안산 외국인 정착 원스톱 지원 기관. 입국 초기 상담·통역·법률·의료 지원 무료 제공. 80개 국적 다문화 커뮤니티의 허브.",
+    tip:"1층 방문 후 필요한 서비스 안내 요청. 한국어 교육 프로그램 상시 운영", website:"migrantcenter.kr" },
+  { rank:2, emoji:"🏛️", nameKo:"안산출입국·외국인청", nameEn:"Ansan Immigration Office",
+    address:"경기도 안산시 단원구 적금로 73", phone:"031-412-4800", hours:"월-금 9am-6pm",
+    why:"외국인등록증 발급·갱신, 체류자격 변경, 장기체류 허가 등 모든 체류 관련 행정 처리. 안산 외국인 전담 기관.",
+    tip:"방문 전 하이코리아(hikorea.go.kr) 온라인 예약 필수. 대기 시간 절감", website:"hikorea.go.kr" },
+  { rank:3, emoji:"🏥", nameKo:"단원구보건소", nameEn:"Danwon-gu Public Health Center",
+    address:"경기도 안산시 단원구 화랑로 387", phone:"031-481-2700", hours:"월-금 9am-6pm",
+    why:"외국인 건강검진·예방접종·의료서비스 무료/저비용 제공. 다국어 통역 서비스 운영. 국민건강보험 가입 전 임시 의료 이용 가능.",
+    tip:"외국인 무료 건강검진 신청 가능. 통역 필요 시 사전 요청", website:"ansan.go.kr" },
+  { rank:4, emoji:"🌐", nameKo:"원곡동 다문화거리", nameEn:"Wongok-dong Multicultural Street",
+    address:"경기도 안산시 단원구 원곡동 일대", hours:"상시 (상점 9am-10pm)",
+    why:"한국 최대 다문화 특구. 중국·베트남·필리핀·우즈베키스탄 음식점·마트·환전소 집결. 외국인 커뮤니티 정보를 현장에서 직접 얻을 수 있는 최적 장소.",
+    tip:"원곡동 원주민 커뮤니티에서 정착 팁·일자리 정보 공유 활발", website:"maps.google.com/?q=원곡동+다문화거리" },
+  { rank:5, emoji:"💼", nameKo:"고용노동부 안산고용센터", nameEn:"Ansan Employment Center",
+    address:"경기도 안산시 단원구 광덕대로 109", phone:"031-412-8700", hours:"월-금 9am-6pm",
+    why:"외국인 취업 허가·고용허가제(EPS) 관련 행정 처리. 일자리 정보 제공 및 구직 등록. 제조업 취업 외국인 필수 방문 기관.",
+    tip:"E-9 고용허가 비자 소지자 필수 등록. 통역 서비스 요청 가능", website:"work.go.kr" },
+];
+const TOP5_EXPLORE_ANSAN: Top5Item[] = [
+  { rank:1, emoji:"🌊", nameKo:"시화호 조력발전소", nameEn:"Sihwa Lake Tidal Power Plant",
+    address:"경기도 안산시 단원구 대부황금로 790", hours:"화-일 9am-5pm",
+    rating:4.4, ratingCount:"5,000+",
+    why:"세계 최대 조력발전소. 무료 견학. 시화호 갈대밭·생태공원과 연계. 안산 특유의 산업·자연 공존 풍경.", tip:"주말 인파 많음. 주차장 무료", website:"kdoek.co.kr" },
+  { rank:2, emoji:"🏖️", nameKo:"대부도 해변", nameEn:"Daebudo Beach",
+    address:"경기도 안산시 단원구 대부도 일대", hours:"상시",
+    rating:4.3, ratingCount:"8,000+",
+    why:"서해 갯벌 체험·바지락칼국수·조개구이. 서울·안산에서 1시간. 외국인들도 즐기는 한국 서해 해변.", tip:"썰물 시간 확인 필수 (갯벌 체험은 썰물 때)", website:"daebudo.co.kr" },
+  { rank:3, emoji:"🌿", nameKo:"안산갈대습지공원", nameEn:"Ansan Reed Marsh Park",
+    address:"경기도 안산시 상록구 호수공원로 55", hours:"화-일 9am-6pm",
+    rating:4.5, ratingCount:"6,000+",
+    why:"시화호 수질 정화 생태공원. 갈대밭 산책로·철새 도래지. 도시 속 자연 힐링 공간.", tip:"해 질 무렵 갈대밭 사진 명소" },
+  { rank:4, emoji:"🎨", nameKo:"경기도미술관", nameEn:"Gyeonggi Museum of Modern Art",
+    address:"경기도 안산시 단원구 화랑로 312", phone:"031-481-7000", hours:"화-일 10am-6pm",
+    rating:4.3, ratingCount:"3,000+",
+    why:"현대·동시대 미술 전시. 다문화 도시 안산의 문화적 자부심. 입장료 저렴.", tip:"기획 전시 일정 홈페이지 사전 확인", website:"gmoma.ggcf.kr" },
+  { rank:5, emoji:"🏞️", nameKo:"화랑유원지", nameEn:"Hwarang Recreation Park",
+    address:"경기도 안산시 단원구 화랑로 312", hours:"상시",
+    rating:4.2, ratingCount:"4,000+",
+    why:"안산 도심 속 호수공원. 자전거 대여·피크닉·조깅. 외국인 커뮤니티 주말 모임 장소로도 인기.", tip:"자전거 대여소 주말 혼잡. 평일 추천" },
+];
+
+/* ── 인천 (INCHEON) — 한국의 첫 관문 ── */
+const TOP5_SETTLE_INCHEON: Top5Item[] = [
+  { rank:1, emoji:"🛂", nameKo:"인천출입국·외국인청", nameEn:"Incheon Immigration Office",
+    address:"인천광역시 남동구 예술로 152번길 23", phone:"032-890-7000", hours:"월-금 9am-6pm",
+    why:"인천 체류 외국인 모든 행정 처리. 외국인등록증 발급·갱신, 비자 변경. 인천국제공항 입국 후 가장 먼저 방문할 기관.",
+    tip:"온라인 예약(hikorea.go.kr) 후 방문 시 대기 최소화", website:"hikorea.go.kr" },
+  { rank:2, emoji:"🌐", nameKo:"인천글로벌캠퍼스 지원센터", nameEn:"Incheon Global Campus Support",
+    address:"인천광역시 연수구 송도문화로 119", phone:"032-626-7000", hours:"월-금 9am-6pm",
+    why:"송도 외국대학 캠퍼스(NYU·조지메이슨 등) 유학생·외국인 전담 지원. 정착·언어·행정 무료 상담.",
+    tip:"송도국제도시 거주 예정자 필수 방문", website:"igc.or.kr" },
+  { rank:3, emoji:"🏥", nameKo:"인천의료원", nameEn:"Incheon Medical Center",
+    address:"인천광역시 동구 방축로 217", phone:"032-580-6000", hours:"24시간 응급",
+    why:"외국인 전담 의료서비스·다국어 통역 운영. 건강보험 가입 전 외국인 저비용 의료 이용 가능.",
+    tip:"응급 시 119. 외국인 진료 예약은 032-580-6000", website:"inmc.or.kr" },
+  { rank:4, emoji:"🏛️", nameKo:"인천시 외국인주민지원센터", nameEn:"Incheon Migrant Support Center",
+    address:"인천광역시 남동구 인주대로 568", phone:"032-464-6500", hours:"월-금 9am-6pm",
+    why:"외국인 주민 생활 지원. 한국어 교육, 법률·취업 상담, 문화 프로그램. 인천 정착 외국인 필수 연계 기관.",
+    tip:"한국어 초급 수업 무료 등록 가능", website:"incheon.go.kr" },
+  { rank:5, emoji:"💼", nameKo:"인천경제자유구역청", nameEn:"Incheon Free Economic Zone Authority",
+    address:"인천광역시 연수구 아트센터대로 175", phone:"032-453-7114", hours:"월-금 9am-6pm",
+    why:"송도·청라·영종 경제자유구역 투자·취업 지원. 외국 기업·인재를 위한 정착 원스톱 서비스.",
+    tip:"E-7, D-8 비자 취업 상담 가능", website:"ifez.go.kr" },
+];
+const TOP5_EXPLORE_INCHEON: Top5Item[] = [
+  { rank:1, emoji:"🏛️", nameKo:"인천 차이나타운", nameEn:"Incheon Chinatown",
+    address:"인천광역시 중구 차이나타운로 일대", hours:"상시 (음식점 11am-9pm)",
+    rating:4.4, ratingCount:"15,000+",
+    why:"한국 유일 차이나타운. 자장면 발상지. 짜장·짬뽕 원조 맛집 거리. 인천 여행 1번지.", tip:"주말 혼잡. 자장면 박물관 관람 추천", website:"incheon.go.kr/chinatown" },
+  { rank:2, emoji:"🌉", nameKo:"인천대교", nameEn:"Incheon Grand Bridge",
+    address:"인천광역시 중구 운서동 일대", hours:"상시",
+    rating:4.5, ratingCount:"5,000+",
+    why:"세계 5위 규모 사장교. 영종도~송도 연결. 드라이브 코스·일몰 명소.", tip:"인천대교 전망대 주차 후 도보 관람 가능" },
+  { rank:3, emoji:"🎡", nameKo:"송도 센트럴파크", nameEn:"Songdo Central Park",
+    address:"인천광역시 연수구 센트럴로 200", hours:"상시",
+    rating:4.6, ratingCount:"20,000+",
+    why:"스마트시티 송도의 중심 공원. 수상택시·카약·피크닉. 뉴욕 센트럴파크 모델.", tip:"수상택시 1회권 구매 후 탑승", website:"songdo.com" },
+  { rank:4, emoji:"🏖️", nameKo:"을왕리 해수욕장", nameEn:"Eurwangni Beach",
+    address:"인천광역시 중구 을왕리 일대", hours:"상시 (여름 09am-6pm)",
+    rating:4.3, ratingCount:"8,000+",
+    why:"인천공항 인근 해변. 조개구이·낙조. 입국 당일 또는 출국 전 방문하는 공항 인근 해변.", tip:"인천공항에서 버스 75분" },
+  { rank:5, emoji:"🏰", nameKo:"강화도", nameEn:"Ganghwa Island",
+    address:"인천광역시 강화군 일대", hours:"상시",
+    rating:4.5, ratingCount:"10,000+",
+    why:"단군신화·고인돌 유네스코 유산·역사 유적. 강화도 순무김치·젓갈. 서울 1시간 역사 기행.", tip:"강화대교 통행 무료. 강화읍내 버스 연결" },
+];
+
+/* ── 제주 (JEJU) — 바람과 돌의 섬 ── */
+const TOP5_SETTLE_JEJU: Top5Item[] = [
+  { rank:1, emoji:"🛂", nameKo:"제주출입국·외국인청", nameEn:"Jeju Immigration Office",
+    address:"제주특별자치도 제주시 광양9길 10", phone:"064-729-0600", hours:"월-금 9am-6pm",
+    why:"제주 체류 외국인 등록·비자 변경·체류연장. 제주 장기체류·이민 외국인 필수 방문.",
+    tip:"하이코리아 온라인 예약 필수. 제주는 무비자 입국 가능 국가 많음", website:"hikorea.go.kr" },
+  { rank:2, emoji:"🏘️", nameKo:"제주시 외국인주민지원센터", nameEn:"Jeju Migrant Support Center",
+    address:"제주특별자치도 제주시 서광로 2길 18", phone:"064-725-3745", hours:"월-금 9am-6pm",
+    why:"제주 이주 외국인 한국어 교육·법률 상담·문화 프로그램. 영어·중국어·베트남어 통역 서비스.",
+    tip:"제주 이주 희망자 사전 온라인 상담 가능", website:"jeju.go.kr" },
+  { rank:3, emoji:"🏠", nameKo:"제주 부동산 정보 통합포털", nameEn:"Jeju Real Estate Portal",
+    address:"제주특별자치도 제주시 일원", hours:"온라인",
+    why:"제주 장기거주 외국인 주택 임대·매매 정보. 제주 이민특례법 추진 중 — 외국인 부동산 취득 규정 지속 변화.",
+    tip:"부동산 거래 전 법률 상담 필수. 외국인 투자이민 5억 이상 부동산 취득 시 F-2 비자 가능", website:"jeju.go.kr/land" },
+  { rank:4, emoji:"🏥", nameKo:"제주대학교병원", nameEn:"Jeju National University Hospital",
+    address:"제주특별자치도 제주시 아란13길 15", phone:"064-717-1114", hours:"24시간 응급",
+    why:"제주 유일 3차 의료기관. 외국인 의료서비스·응급 치료. 국민건강보험 미가입 외국인도 이용 가능.",
+    tip:"응급 시 119. 외국어 의료 통역 사전 요청", website:"jejunuh.co.kr" },
+  { rank:5, emoji:"💼", nameKo:"제주특별자치도 투자진흥과", nameEn:"Jeju Investment Promotion",
+    address:"제주특별자치도 제주시 문연로 6", phone:"064-710-2763", hours:"월-금 9am-6pm",
+    why:"제주 외국인 투자·창업 지원. 투자이민 F-2 비자 연계. 디지털노마드·원격근무자 유치 정책 담당.",
+    tip:"투자이민 상담 사전 예약 필수", website:"investjeju.com" },
+];
+const TOP5_EXPLORE_JEJU: Top5Item[] = [
+  { rank:1, emoji:"🏔️", nameKo:"한라산", nameEn:"Hallasan Mountain",
+    address:"제주특별자치도 서귀포시 토평동 산15-1", phone:"064-713-9950", hours:"일출~입산 마감 시각 계절별 다름",
+    rating:4.9, ratingCount:"30,000+",
+    why:"제주의 상징. 해발 1,950m 남한 최고봉. 백록담 화구호. 세계자연유산. 제주 온 사람이라면 반드시 올라야 할 곳.", tip:"성판악·관음사 코스 6~9시간. 입산 시간 엄수. 등산화 필수" },
+  { rank:2, emoji:"🌅", nameKo:"성산일출봉", nameEn:"Seongsan Ilchulbong",
+    address:"제주특별자치도 서귀포시 성산읍 일출로 284-12", phone:"064-783-0959", hours:"일출 전 30분~일몰",
+    rating:4.8, ratingCount:"25,000+",
+    why:"유네스코 세계자연유산. 해수면 위로 솟은 분화구. 일출 장면은 전국 최고. 제주 이주자가 반드시 경험할 감동.", tip:"일출 1시간 전 도착 권장. 입장료 2천 원", website:"seongsanilchulbong.jeju.kr" },
+  { rank:3, emoji:"🌊", nameKo:"협재해수욕장", nameEn:"Hyeopjae Beach",
+    address:"제주특별자치도 제주시 한림읍 협재리", hours:"상시 (여름 09am-6pm)",
+    rating:4.7, ratingCount:"15,000+",
+    why:"제주 대표 에메랄드빛 해변. 비양도 전망. 한국에서 가장 아름다운 해변 중 하나.", tip:"비양도 배편 협재항에서 15분. 여름 성수기 주차 어려움" },
+  { rank:4, emoji:"🍊", nameKo:"감귤 농장 체험", nameEn:"Tangerine Farm Experience",
+    address:"제주특별자치도 서귀포시 일원 각 농장", hours:"10월-1월 수확 시즌",
+    rating:4.6, ratingCount:"10,000+",
+    why:"제주 감귤 직접 따기 체험. 제주 이주민들이 가장 사랑하는 제주만의 경험. 서귀포 농장 다수.",
+    tip:"수확 시즌(10월~1월) 예약 필수. 감귤 무게당 요금", website:"maps.google.com/?q=제주+감귤체험농장" },
+  { rank:5, emoji:"🏖️", nameKo:"우도", nameEn: "Udo Island",
+    address:"제주특별자치도 제주시 우도면 일원", hours:"상시 (우도 배편 07am-6pm)",
+    rating:4.7, ratingCount:"12,000+",
+    why:"제주도 속 작은 섬. 땅콩 아이스크림·검은 모래 해변·자전거 일주. 제주 이주민의 필수 주말 나들이.", tip:"성산항 or 종달항에서 배편 15분. 전기 자전거 대여 추천" },
+];
+
+/* ── 대구 (DAEGU) — 패션·사과·뜨거운 도시 ── */
+const TOP5_SETTLE_DAEGU: Top5Item[] = [
+  { rank:1, emoji:"🛂", nameKo:"대구출입국·외국인청", nameEn:"Daegu Immigration Office",
+    address:"대구광역시 달서구 달구벌대로 1564", phone:"053-980-3000", hours:"월-금 9am-6pm",
+    why:"대구·경북 체류 외국인 모든 행정 처리. 외국인등록증·비자 변경·체류연장.",
+    tip:"하이코리아 온라인 예약 후 방문", website:"hikorea.go.kr" },
+  { rank:2, emoji:"🌐", nameKo:"대구 외국인 이주민 지원센터", nameEn:"Daegu Migrant Support Center",
+    address:"대구광역시 중구 달구벌대로 2178", phone:"053-803-4100", hours:"월-금 9am-6pm",
+    why:"외국인 정착 지원·한국어 교육·법률 상담·취업 지원. 베트남·중국·필리핀 커뮤니티 교류 허브.",
+    tip:"한국어 교육 무료 등록 가능", website:"daegu.go.kr" },
+  { rank:3, emoji:"🏥", nameKo:"경북대학교병원", nameEn:"Kyungpook National University Hospital",
+    address:"대구광역시 중구 동덕로 130", phone:"053-200-5114", hours:"24시간 응급",
+    why:"대구 최대 3차 의료기관. 외국어 의료서비스. 국민건강보험 미가입 외국인 의료비 지원 연계.",
+    tip:"응급 시 119. 외국어 통역 사전 예약", website:"knuh.or.kr" },
+  { rank:4, emoji:"💼", nameKo:"대구경북경제자유구역청", nameEn:"DGFEZ Authority",
+    address:"대구광역시 달서구 성서로 24", phone:"053-601-5000", hours:"월-금 9am-6pm",
+    why:"대구·경북 외국 기업·인재 투자·취업 지원. 의료·IT·패션·섬유 산업 외국인 채용 연계.",
+    tip:"E-7·D-8 비자 취업 상담 가능", website:"dgfez.go.kr" },
+  { rank:5, emoji:"🏛️", nameKo:"대구시 외국인 주민 지원 서비스", nameEn:"Daegu Foreigner Support",
+    address:"대구광역시 중구 공평로 88", phone:"053-803-3000", hours:"월-금 9am-6pm",
+    why:"다문화가족 지원, 외국인 주민 자조 모임, 한국 생활 정보 제공. 대구 정착 외국인 커뮤니티 네트워크 연결.",
+    tip:"SNS 외국인 주민 커뮤니티 가입 추천", website:"daegu.go.kr" },
+];
+const TOP5_EXPLORE_DAEGU: Top5Item[] = [
+  { rank:1, emoji:"🏙️", nameKo:"동성로", nameEn:"Dongseong-ro",
+    address:"대구광역시 중구 동성로 일대", hours:"상시 (상점 11am-11pm)",
+    rating:4.5, ratingCount:"20,000+",
+    why:"대구 최대 번화가. 패션·맛집·카페·버스킹. '한국의 명동'. 대구 이주민이 가장 먼저 걷는 거리.", tip:"지하철 1·2호선 반월당역 하차" },
+  { rank:2, emoji:"🍎", nameKo:"팔공산", nameEn:"Palgongsan Mountain",
+    address:"대구광역시 동구 팔공산로 일대", phone:"053-982-0005", hours:"상시",
+    rating:4.6, ratingCount:"15,000+",
+    why:"대구 수호산. 갓바위(소원 성취 부처)·동화사. 케이블카·등산로. 대구 이주민의 주말 힐링 명소.", tip:"동화사 셔틀버스 운영. 케이블카 주말 혼잡" },
+  { rank:3, emoji:"🛍️", nameKo:"서문시장", nameEn:"Seomun Market",
+    address:"대구광역시 중구 큰장로26길 45", hours:"월-토 8am-8pm (야시장 별도)",
+    rating:4.5, ratingCount:"12,000+",
+    why:"조선시대부터 500년 역사 전통시장. 납작만두·칼국수·야시장. 대구 물가·생활권 파악의 핵심.", tip:"야시장(금·토·일 6pm~11pm) 볼거리 많음" },
+  { rank:4, emoji:"🎨", nameKo:"대구예술발전소", nameEn:"Daegu Art Factory",
+    address:"대구광역시 중구 달성로 235", phone:"053-430-1255", hours:"화-일 10am-7pm",
+    rating:4.3, ratingCount:"4,000+",
+    why:"폐 담배 공장 개조 복합문화예술공간. 전시·공연·카페. 대구 문화예술 핵심 거점.", tip:"무료 입장. 기획 전시 별도 요금" },
+  { rank:5, emoji:"♨️", nameKo:"수성못", nameEn:"Suseong Lake",
+    address:"대구광역시 수성구 수성못변길 일대", hours:"상시",
+    rating:4.5, ratingCount:"10,000+",
+    why:"대구 도심 호수. 오리배·분수쇼·카페 거리. 저녁 산책·자전거. 대구 이주민 데이트·가족 나들이 1순위.", tip:"주말 저녁 음악분수 쇼 (4~10월)" },
+];
+
+/* ── 광주 (GWANGJU) — 예향·민주의 도시 ── */
+const TOP5_SETTLE_GWANGJU: Top5Item[] = [
+  { rank:1, emoji:"🛂", nameKo:"광주출입국·외국인청", nameEn:"Gwangju Immigration Office",
+    address:"광주광역시 광산구 첨단월봉로 30", phone:"062-930-8000", hours:"월-금 9am-6pm",
+    why:"광주·전남 외국인 체류 행정 전담. 외국인등록증·비자 변경·체류연장. 광주 이주 초기 필수 방문.",
+    tip:"하이코리아 온라인 예약 후 방문", website:"hikorea.go.kr" },
+  { rank:2, emoji:"🌐", nameKo:"광주 외국인주민지원센터", nameEn:"Gwangju Migrant Support Center",
+    address:"광주광역시 서구 상무번영로 65", phone:"062-224-5900", hours:"월-금 9am-6pm",
+    why:"외국인 정착 지원·한국어 교육·법률 무료 상담. 광주 다문화 커뮤니티 정보 허브.",
+    tip:"한국어 교육 무료 등록. 커뮤니티 행사 정기 개최", website:"gjmcs.or.kr" },
+  { rank:3, emoji:"🎨", nameKo:"국립아시아문화전당 (ACC)", nameEn:"Asia Culture Center",
+    address:"광주광역시 동구 문화전당로 38", phone:"062-601-4114", hours:"화-일 10am-6pm",
+    why:"아시아 최대 문화 복합기관. 외국인·다문화 프로그램 풍부. 광주 이주 외국인이 가장 빠르게 커뮤니티를 만들 수 있는 공간.",
+    tip:"무료 프로그램 다수. 사전 예약 권장", website:"acc.go.kr" },
+  { rank:4, emoji:"🏥", nameKo:"전남대학교병원", nameEn:"Chonnam National University Hospital",
+    address:"광주광역시 동구 학동로 42", phone:"062-220-5114", hours:"24시간 응급",
+    why:"광주·전남 최대 3차 의료기관. 외국어 의료서비스 운영.", tip:"응급 시 119", website:"cnuh.com" },
+  { rank:5, emoji:"💼", nameKo:"광주창조경제혁신센터", nameEn:"Gwangju Creative Economy Center",
+    address:"광주광역시 동구 금남로 193-12", phone:"062-606-3800", hours:"월-금 9am-6pm",
+    why:"광주 창업·취업 지원. 외국인 창업자 멘토링·네트워크. AI·자동차·에너지 산업 특화.",
+    tip:"외국인 창업 비자(D-8) 상담 가능", website:"ccei.creativekorea.or.kr/gwangju" },
+];
+const TOP5_EXPLORE_GWANGJU: Top5Item[] = [
+  { rank:1, emoji:"🎨", nameKo:"국립아시아문화전당", nameEn:"Asia Culture Center",
+    address:"광주광역시 동구 문화전당로 38", phone:"062-601-4114", hours:"화-일 10am-6pm",
+    rating:4.6, ratingCount:"8,000+",
+    why:"아시아 최대 복합문화기관. 전시·공연·영화·도서관. 광주의 자부심.", tip:"무료 상설 전시 다수", website:"acc.go.kr" },
+  { rank:2, emoji:"🕊️", nameKo:"국립5·18민주묘지", nameEn:"May 18 National Cemetery",
+    address:"광주광역시 북구 민주로 200", hours:"09am-6pm",
+    rating:4.8, ratingCount:"5,000+",
+    why:"1980년 5·18 민주화운동 희생자 묘지. 한국 민주주의의 성지. 광주의 역사적 정체성.", tip:"경건한 방문 요망. 교육적 가치 높음" },
+  { rank:3, emoji:"🍽️", nameKo:"남광주시장", nameEn:"Nam Gwangju Market",
+    address:"광주광역시 동구 제봉로 124", hours:"화-일 10am-7pm (야시장 별도)",
+    rating:4.4, ratingCount:"6,000+",
+    why:"광주 전통 재래시장. 한정식·전라도 향토음식·야시장. 광주 생활물가 체험.",
+    tip:"목요 야시장 (5~10월) 강력 추천" },
+  { rank:4, emoji:"🌿", nameKo:"무등산", nameEn:"Mudeungsan Mountain",
+    address:"광주광역시 동구·북구 일원", hours:"상시 (일출 전후 입산 제한)",
+    rating:4.7, ratingCount:"10,000+",
+    why:"광주의 어머니 산. 국립공원. 증심사·원효사·수박 명산지. 광주 이주민 주말 등산 1순위.",
+    tip:"증심사 버스 정류장에서 등산 시작. 왕복 4~6시간" },
+  { rank:5, emoji:"🌸", nameKo:"광주 양림동 역사문화마을", nameEn:"Yangnim-dong Historic Village",
+    address:"광주광역시 남구 양림동 일대", hours:"상시",
+    rating:4.3, ratingCount:"4,000+",
+    why:"100년 전 선교사 거주지·근대문화유산. 카페·문화 공간으로 재생. 광주 역사와 현재가 공존하는 골목.",
+    tip:"광주 근대역사길 걷기 코스 추천" },
+];
+
+/* ── 대전 (DAEJEON) — 과학의 도시 ── */
+const TOP5_SETTLE_DAEJEON: Top5Item[] = [
+  { rank:1, emoji:"🛂", nameKo:"대전출입국·외국인청", nameEn:"Daejeon Immigration Office",
+    address:"대전광역시 서구 청사로 189", phone:"042-540-4100", hours:"월-금 9am-6pm",
+    why:"대전·충남 외국인 체류 행정 전담. 외국인등록증·비자 변경·체류연장.",
+    tip:"하이코리아 온라인 예약 필수", website:"hikorea.go.kr" },
+  { rank:2, emoji:"🔬", nameKo:"KAIST 국제처", nameEn:"KAIST International Office",
+    address:"대전광역시 유성구 대학로 291", phone:"042-350-2062", hours:"월-금 9am-6pm",
+    why:"KAIST 외국인 연구원·학생·방문자 정착 지원. 주거·비자·의료 연계. 대전 과학 커뮤니티 중심.",
+    tip:"KAIST 캠퍼스 외국인 커뮤니티 활발", website:"io.kaist.ac.kr" },
+  { rank:3, emoji:"🌐", nameKo:"대전 외국인주민지원센터", nameEn:"Daejeon Migrant Support Center",
+    address:"대전광역시 중구 선화로 5", phone:"042-486-8004", hours:"월-금 9am-6pm",
+    why:"외국인 정착 지원·한국어 교육·법률 상담. 대전 다문화 커뮤니티 정보 허브.",
+    tip:"한국어 교육 무료 등록 가능", website:"daejeon.go.kr" },
+  { rank:4, emoji:"🏥", nameKo:"충남대학교병원", nameEn:"Chungnam National University Hospital",
+    address:"대전광역시 중구 문화로 282", phone:"042-280-7114", hours:"24시간 응급",
+    why:"대전 3차 의료기관. 외국어 의료서비스·다국어 안내. 외국인 연구자·학생 주로 이용.",
+    tip:"응급 시 119", website:"cnuh.co.kr" },
+  { rank:5, emoji:"💼", nameKo:"대덕특구 내 연구기관 취업지원", nameEn:"Daedeok Innopolis Employment",
+    address:"대전광역시 유성구 가정북로 96", phone:"042-865-8900", hours:"월-금 9am-6pm",
+    why:"ETRI·KIST·KAIST 등 정부 연구기관 외국인 연구원 채용 정보. E-3·E-1 비자 취업 최다 도시.",
+    tip:"연구원 채용은 각 기관 채용 공고 직접 확인", website:"innopolis.or.kr" },
+];
+const TOP5_EXPLORE_DAEJEON: Top5Item[] = [
+  { rank:1, emoji:"🔭", nameKo:"국립중앙과학관", nameEn:"National Science Museum",
+    address:"대전광역시 유성구 대덕대로 481", phone:"042-601-7979", hours:"화-일 9:30am-5:30pm",
+    rating:4.6, ratingCount:"10,000+",
+    why:"한국 최대 과학관. 우주·생명·에너지·첨단기술 전시. 과학의 도시 대전의 상징. 어린이·가족 필수 코스.",
+    tip:"주말 예약 권장. 야외 자연사관 무료", website:"science.go.kr" },
+  { rank:2, emoji:"🌊", nameKo:"대청댐·청남대", nameEn:"Daecheong Dam & Cheongnandae",
+    address:"대전광역시 대덕구 미호동 일원", hours:"화-일 9am-6pm",
+    rating:4.5, ratingCount:"6,000+",
+    why:"대청호 수변 산책. 전 대통령 하계 휴가지 청남대. 자전거·피크닉 명소.",
+    tip:"청남대 셔틀버스 대청댐 주차장 출발" },
+  { rank:3, emoji:"♨️", nameKo:"유성 온천", nameEn:"Yuseong Hot Springs",
+    address:"대전광역시 유성구 온천로 일대", hours:"상시 (각 호텔 시설 이용)",
+    rating:4.4, ratingCount:"8,000+",
+    why:"100년 역사 알칼리성 온천. 유성 온천 지구 호텔·스파 집결. 연구원·외국인들의 주말 힐링 장소.",
+    tip:"유성 온천역 주변 공중목욕탕 저렴하게 이용 가능" },
+  { rank:4, emoji:"🌿", nameKo:"계족산 황톳길", nameEn:"Gyejoksan Clay Path",
+    address:"대전광역시 대덕구 장동 일원", hours:"상시",
+    rating:4.7, ratingCount:"7,000+",
+    why:"맨발 걷기 14.5km 황톳길. 대전 시민 최애 산책 코스. 맨발 걷기 열풍 진원지.",
+    tip:"장갑·물통 지참. 맨발 걷기 후 발 세척 시설 완비" },
+  { rank:5, emoji:"🏛️", nameKo:"엑스포과학공원", nameEn:"Expo Science Park",
+    address:"대전광역시 유성구 대덕대로 480", phone:"042-866-5114", hours:"화-일 9:30am-6pm",
+    rating:4.3, ratingCount:"5,000+",
+    why:"1993 세계박람회 개최지. 한빛탑·한국관·놀이시설. 대전 역사와 과학 체험.",
+    tip:"한빛탑 전망대(지상 93m) 대전 전경 조망", website:"expopark.co.kr" },
+];
+
 /* ── 도쿄 (TOKYO) ── */
 const TOP5_SETTLE_TOKYO: Top5Item[] = [
   { rank: 1, emoji: "🏛️", nameKo: "재일본대한민국민단 도쿄지방본부", nameEn: "Korean Residents Union – Tokyo Branch (Mindan)",
@@ -6142,7 +6468,7 @@ function CompactHeroNew() {
         }}>
           <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6EE7B7", display: "inline-block", flexShrink: 0 }} />
           <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(255,255,255,0.92)", letterSpacing: "0.05em" }}>
-            LIVE · {lang === "ko" ? "55개 도시" : "55 Cities"}
+            LIVE · {lang === "ko" ? "61개 도시" : "61 Cities"}
           </span>
         </div>
         <div style={{
@@ -6257,7 +6583,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       icon: "🤝", color: "#F59E0B",
       nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
       tagKo: "친구 · 멘토 · 동행 파트너", tagEn: "Friends · Mentors · Partners",
-      userKo: "55개 도시 한인을 만납니다", userEn: "Meet Koreans across 55 cities",
+      userKo: "61개 도시 한인을 만납니다", userEn: "Meet Koreans across 61 cities",
       providerKo: "멘토로 섬기실 분 → 함께해요", providerEn: "Mentor & serve → join us",
       tab: 5, subTab: 2,
     },
@@ -6660,7 +6986,7 @@ function getCountryCode(slug: string): string {
   if (["sydney","melbourne","brisbane","perth"].includes(slug))                          return "AU";
   if (["auckland"].includes(slug))                                                        return "NZ";
   if (["tokyo","osaka"].includes(slug))                                                   return "JP";
-  if (["seoul","busan"].includes(slug))                                                   return "KR";
+  if (["seoul","busan","ansan","incheon","jeju","daegu","gwangju","daejeon"].includes(slug)) return "KR";
   if (["mexicocity","guadalajara","monterrey"].includes(slug))                            return "MX";
   if (["london"].includes(slug))                                                          return "UK";
   if (["frankfurt","berlin"].includes(slug))                                              return "DE";
@@ -8291,6 +8617,12 @@ const HEBRON_CITIES = [
   // ── 한국 — 역이민·방문 동포 ──
   { emoji: "🏯", nameKo: "서울",        nameEn: "Seoul",         flag: "🇰🇷", url: "/seoul/",       status: "live", color: "#DC2626" },
   { emoji: "🌊", nameKo: "부산",        nameEn: "Busan",         flag: "🇰🇷", url: "/busan/",       status: "live", color: "#0EA5E9" },
+  { emoji: "🌏", nameKo: "안산",        nameEn: "Ansan",         flag: "🇰🇷", url: "/ansan/",       status: "live", color: "#8B5CF6" },
+  { emoji: "✈️", nameKo: "인천",        nameEn: "Incheon",       flag: "🇰🇷", url: "/incheon/",     status: "live", color: "#0EA5E9" },
+  { emoji: "🌿", nameKo: "제주",        nameEn: "Jeju",          flag: "🇰🇷", url: "/jeju/",        status: "live", color: "#10B981" },
+  { emoji: "🍎", nameKo: "대구",        nameEn: "Daegu",         flag: "🇰🇷", url: "/daegu/",       status: "live", color: "#F59E0B" },
+  { emoji: "🎨", nameKo: "광주",        nameEn: "Gwangju",       flag: "🇰🇷", url: "/gwangju/",     status: "live", color: "#EC4899" },
+  { emoji: "🔬", nameKo: "대전",        nameEn: "Daejeon",       flag: "🇰🇷", url: "/daejeon/",     status: "live", color: "#3B82F6" },
 ];
 
 /* 도시별 디자인 — 항공 코드 + 그라디언트 (프로페셔널 스타일) */
@@ -8551,7 +8883,7 @@ function waGwaJosa(s: string): string {
 }
 // ────────────────────────────────────────────────────────────
 
-// 도시 → 현지 한인 정체성 매핑 (55개 도시 전부 커버)
+// 도시 → 현지 한인 정체성 매핑 (61개 도시 전부 커버)
 const DIASPORA_IDENTITY: Record<string, {
   flag: string; ko: string; en: string; descKo: string; descEn: string; color: string;
 }> = {
@@ -8623,6 +8955,12 @@ const DIASPORA_IDENTITY: Record<string, {
   tokyo:        { flag:"🇯🇵", ko:"재일 한인",        en:"Korean in Japan",    descKo:"일본 사회 속 재일 한인으로 당당하게", descEn:"Living proudly as Korean in Japan",               color:"#DC2626" },
   osaka:        { flag:"🇯🇵", ko:"재일 한인",        en:"Korean in Japan",    descKo:"일본 사회 속 재일 한인으로 당당하게", descEn:"Living proudly as Korean in Japan",               color:"#DC2626" },
   // 🇰🇷 한국 — 역이민·방문 동포
+  ansan:        { flag:"🇰🇷", ko:"한국 이주민",       en:"Korea Immigrant",     descKo:"80개 국적이 함께 사는 다문화 도시에서",  descEn:"In Korea's most multicultural city.",             color:"#8B5CF6" },
+  incheon:      { flag:"🇰🇷", ko:"한국 이주민",       en:"Korea Immigrant",     descKo:"한국의 첫 관문에서 새 삶을 시작하며",    descEn:"Starting fresh at Korea's main gateway.",         color:"#0EA5E9" },
+  jeju:         { flag:"🇰🇷", ko:"제주 이주민",       en:"Jeju Settler",        descKo:"바람과 자연의 섬에서 새 이야기를 쓰며",   descEn:"Writing a new story on the island of wind.",      color:"#10B981" },
+  daegu:        { flag:"🇰🇷", ko:"한국 이주민",       en:"Korea Immigrant",     descKo:"뜨거운 열정의 도시 대구에서",             descEn:"In the passionate city of Daegu.",                color:"#F59E0B" },
+  gwangju:      { flag:"🇰🇷", ko:"한국 이주민",       en:"Korea Immigrant",     descKo:"예술과 문화의 도시 광주에서",             descEn:"In Gwangju, city of art and culture.",            color:"#EC4899" },
+  daejeon:      { flag:"🇰🇷", ko:"한국 이주민",       en:"Korea Immigrant",     descKo:"과학과 연구의 중심 대전에서",             descEn:"In Daejeon, Korea's science capital.",            color:"#3B82F6" },
   seoul:        { flag:"🇰🇷", ko:"역이민·귀환 동포", en:"Returning Diaspora",  descKo:"다시 서울에서, 새롭게 시작하는 일상",  descEn:"Back in Seoul, starting a new chapter of life",   color:"#DC2626" },
   busan:        { flag:"🇰🇷", ko:"역이민·귀환 동포", en:"Returning Diaspora",  descKo:"바다의 도시 부산에서 새 삶을 펼치다",  descEn:"Unfolding a new life in the city by the sea",     color:"#0EA5E9" },
 };
@@ -8781,11 +9119,11 @@ function AmericasAdSection({ lang }: { lang: string }) {
 
 /* ─────────────────────────────────────────
    HOME: 플라이휠 소셜 프루프 바 (쿠팡 원리 ①)
-   — "312개 교회 · 55개 도시" 숫자가 신뢰를 만든다
+   — "312개 교회 · 61개 도시" 숫자가 신뢰를 만든다
 ───────────────────────────────────────── */
 function HebronFlywheelBar({ lang }: { lang: string }) {
   const stats = [
-    { emoji: "🌍", value: "55", label: lang === "ko" ? "개 도시" : "Cities" },
+    { emoji: "🌍", value: "61", label: lang === "ko" ? "개 도시" : "Cities" },
     { emoji: "🤝", value: "4", label: lang === "ko" ? "기관 파트너" : "Partners" },
     { emoji: "🌐", value: "2", label: lang === "ko" ? "개 언어" : "Languages" },
   ];
@@ -9892,6 +10230,12 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "osaka"      ? TOP5_SETTLE_OSAKA :
             useCityConfig().slug === "seoul"       ? TOP5_SETTLE_SEOUL :
             useCityConfig().slug === "busan"       ? TOP5_SETTLE_BUSAN :
+            useCityConfig().slug === "ansan"       ? TOP5_SETTLE_ANSAN :
+            useCityConfig().slug === "incheon"     ? TOP5_SETTLE_INCHEON :
+            useCityConfig().slug === "jeju"        ? TOP5_SETTLE_JEJU :
+            useCityConfig().slug === "daegu"       ? TOP5_SETTLE_DAEGU :
+            useCityConfig().slug === "gwangju"     ? TOP5_SETTLE_GWANGJU :
+            useCityConfig().slug === "daejeon"     ? TOP5_SETTLE_DAEJEON :
             useCityConfig().slug === "seattle"    ? TOP5_SETTLE :
             [] as Top5Item[]   // 미등록 도시 — 시애틀 데이터 노출 방지
           } lang={lang} accentColor="#F2994A" />
@@ -10693,8 +11037,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 const ko = lang === "ko";
                 const shareTitle = ko ? "HebronGuide 교회 등재 — 선물 드립니다" : "A Gift: Free Church Listing on HebronGuide";
                 const shareBody = ko
-                  ? "목사님, 안녕하세요.\n\n전 세계 55개 도시 한인 이민자 정착 앱 HebronGuide가\n교회 등재를 선물로 드립니다.\n\n영혼구원에 갈급한 교회라면 받아 주세요.\n2026년 10월 1일까지 무상 등재.\n\n주변에 영혼구원에 진심인 교회가 있다면\n이 초청을 함께 전달해 주세요.\n\nhebronguide.com\nhebronplatform@gmail.com\n\n마 25:35 \"내가 나그네 되었을 때 너희가 영접하였다\""
-                  : "Hello Pastor,\n\nHebronGuide — the Korean immigrant settlement app in 55 cities worldwide — offers your church a free listing as a gift.\n\nIf your church has a heart for souls, please accept.\nFree listing until October 1, 2026.\n\nPlease also pass this to 3+ churches you know have a genuine heart for souls.\n\nhebronguide.com\nhebronplatform@gmail.com\n\nMatt 25:35 — \"I was a stranger and you welcomed me.\"";
+                  ? "목사님, 안녕하세요.\n\n전 세계 61개 도시 한인 이민자 정착 앱 HebronGuide가\n교회 등재를 선물로 드립니다.\n\n영혼구원에 갈급한 교회라면 받아 주세요.\n2026년 10월 1일까지 무상 등재.\n\n주변에 영혼구원에 진심인 교회가 있다면\n이 초청을 함께 전달해 주세요.\n\nhebronguide.com\nhebronplatform@gmail.com\n\n마 25:35 \"내가 나그네 되었을 때 너희가 영접하였다\""
+                  : "Hello Pastor,\n\nHebronGuide — the Korean immigrant settlement app in 61 cities worldwide — offers your church a free listing as a gift.\n\nIf your church has a heart for souls, please accept.\nFree listing until October 1, 2026.\n\nPlease also pass this to 3+ churches you know have a genuine heart for souls.\n\nhebronguide.com\nhebronplatform@gmail.com\n\nMatt 25:35 — \"I was a stranger and you welcomed me.\"";
                 const shareUrl = "https://hebronguide.com";
                 const encodedMsg = encodeURIComponent(shareBody + "\n\n" + shareUrl);
                 return (
@@ -11291,6 +11635,114 @@ const TOP5_FOOD_BUSAN: Top5Item[] = [
     tip: "장산역(2호선) 도보 6분, 좌동 전통시장 안. 아침 일찍 재료가 소진될 수 있다.",
     website: "world.nol.com/en/content/pois/0bc83780-9277-4c5d-8a8d-733ef74d8216",
   },
+];
+
+const TOP5_FOOD_ANSAN: Top5Item[] = [
+  { rank:1, emoji:"🍜", nameKo:"원곡동 베트남쌀국수", nameEn:"Wongok-dong Pho Street",
+    address:"경기도 안산시 단원구 원곡동 다문화거리", hours:"월-일 10am-10pm", rating:4.4, ratingCount:"2,000+",
+    why:"한국에서 가장 정통에 가까운 베트남 쌀국수 골목. 현지 베트남 교민이 운영. 저렴하고 넉넉한 양.", tip:"현지인 많은 식당 선택 — 맛 보장" },
+  { rank:2, emoji:"🥘", nameKo:"원곡동 중앙아시아 식당가", nameEn:"Central Asian Food Street",
+    address:"경기도 안산시 단원구 원곡동 일대", hours:"월-일 11am-9pm", rating:4.3, ratingCount:"1,500+",
+    why:"카자흐스탄·우즈베키스탄·키르기스스탄 정통 요리. 한국에서 유일하게 맛볼 수 있는 샤슬릭·라그만·플로프.", tip:"국수류와 고기 구이 주력 메뉴" },
+  { rank:3, emoji:"🍖", nameKo:"안산 닭갈비 골목", nameEn:"Ansan Dakgalbi Street",
+    address:"경기도 안산시 단원구 원고개로 일대", hours:"월-일 11am-10pm", rating:4.5, ratingCount:"3,000+",
+    why:"안산 현지인이 즐겨 찾는 닭갈비 거리. 지역 물가 반영 저렴한 가격에 푸짐한 양.", tip:"2인분 이상 주문 권장" },
+  { rank:4, emoji:"🥗", nameKo:"원곡동 할랄 식당", nameEn:"Wongok-dong Halal Restaurant",
+    address:"경기도 안산시 단원구 원곡동 일대", hours:"월-일 10am-9pm", rating:4.3, ratingCount:"1,000+",
+    why:"무슬림 교민 대상 할랄 인증 식당. 파키스탄·방글라데시·인도네시아 요리. 한국 내 할랄 식당 밀도 1위 지역.", tip:"금요일 점심 혼잡 — 평일 방문 권장" },
+  { rank:5, emoji:"🍱", nameKo:"안산 순대국밥 골목", nameEn:"Ansan Sundae Soup Street",
+    address:"경기도 안산시 단원구 초지동 일대", hours:"월-일 6am-3pm", rating:4.5, ratingCount:"2,500+",
+    why:"새벽부터 문 여는 안산 현지인 조식 성지. 진한 육수·내장·순대가 가득한 1만 원 이하 명물.", tip:"오전 7~10시가 피크. 현금 지참 권장" },
+];
+
+const TOP5_FOOD_INCHEON: Top5Item[] = [
+  { rank:1, emoji:"🍜", nameKo:"공화춘 (자장면 원조)", nameEn:"Gonghwachun — Original Jajangmyeon",
+    address:"인천광역시 중구 차이나타운로26번길 12-17", phone:"032-765-0571", hours:"화-일 11am-8pm", rating:4.5, ratingCount:"5,000+",
+    why:"1905년 개업, 한국 자장면 원조 식당. 차이나타운 1번지. 역사적 가치 + 원조 맛.", tip:"줄 서서 기다리는 것이 정석. 춘장 직접 볶는 특제 자장면" },
+  { rank:2, emoji:"🦞", nameKo:"인천 연안부두 해산물", nameEn:"Incheon Coastal Seafood Market",
+    address:"인천광역시 중구 연안부두로 10", hours:"월-일 7am-8pm", rating:4.6, ratingCount:"8,000+",
+    why:"서해 직송 꽃게·새우·조개 경매 직판장. 인천 최신 해산물 가격. 조리 가능 식당 바로 옆.", tip:"오전 일찍 방문 시 가장 싱싱한 해산물" },
+  { rank:3, emoji:"🥟", nameKo:"인천 쫄면 원조 골목", nameEn:"Incheon Jjolmyeon Street",
+    address:"인천광역시 미추홀구 용현동 일대", hours:"월-일 11am-9pm", rating:4.4, ratingCount:"3,000+",
+    why:"쫄면 발상지 인천. 1970년대 광신제면소에서 탄생한 한국 쫄면의 고향.", tip:"현지 분식집이 원조 맛 그대로" },
+  { rank:4, emoji:"🥐", nameKo:"신포국제시장", nameEn:"Sinpo International Market",
+    address:"인천광역시 중구 우현로49번길 12", hours:"화-일 10am-8pm", rating:4.5, ratingCount:"6,000+",
+    why:"인천 최대 재래시장. 신포 닭강정(인천 명물)·분식·먹거리. 외국인도 즐기는 인천 대표 시장.", tip:"닭강정은 매운맛·순한맛 선택 가능" },
+  { rank:5, emoji:"🍣", nameKo:"소래포구 어시장", nameEn:"Sorae Fish Market",
+    address:"경기도 시흥시 포구로 237 (인천 인접)", hours:"월-일 6am-8pm", rating:4.4, ratingCount:"7,000+",
+    why:"인천 인근 서해 최대 수산시장. 활새우·꽃게·생선회 직판. 인천 거주 외국인 주말 나들이 코스.", tip:"새벽·오전 방문 시 가장 신선. 주차 넉넉함" },
+];
+
+const TOP5_FOOD_JEJU: Top5Item[] = [
+  { rank:1, emoji:"🥩", nameKo:"제주 흑돼지 거리", nameEn:"Jeju Black Pork Street",
+    address:"제주특별자치도 제주시 연동 일대", hours:"월-일 12pm-11pm", rating:4.7, ratingCount:"10,000+",
+    why:"제주 흑돼지는 한국 여행자가 제주에서 반드시 먹어야 하는 1순위. 연동·이도동 흑돼지 거리 집결.", tip:"연탄불 구이가 정통. 부위는 삼겹살·항정살 추천" },
+  { rank:2, emoji:"🍜", nameKo:"옥돔식당 (제주 옥돔미역국)", nameEn:"Okdom Fish & Miyeok Soup",
+    address:"제주특별자치도 서귀포시 일대 제주식당", hours:"월-일 8am-8pm", rating:4.6, ratingCount:"5,000+",
+    why:"제주 향토 생선 옥돔 미역국. 제주 사람들의 생일상·속풀이 1위 메뉴. 외지인도 반하는 깊은 육수.", tip:"아침 식사로 먹는 것이 제주 현지 방식" },
+  { rank:3, emoji:"🍊", nameKo:"제주 귤 농원 직판장", nameEn:"Jeju Tangerine Direct Market",
+    address:"제주특별자치도 서귀포시 일대", hours:"10월~1월 수확 시즌 10am-5pm", rating:4.7, ratingCount:"6,000+",
+    why:"감귤 직접 따서 먹고 저렴하게 구입. 제주 이주민들이 가장 좋아하는 제철 경험.", tip:"서귀포 농장 농가민박 연계 투어 추천" },
+  { rank:4, emoji:"🥣", nameKo:"제주 전통 오메기떡", nameEen:"Omegi Rice Cake",
+    address:"제주특별자치도 제주시 민속오일시장 내", hours:"월-일 9am-6pm", rating:4.5, ratingCount:"3,000+",
+    why:"제주 고유 찰기장 전통 떡. 제주 오일시장 명물. 한 입에 제주 전통 맛 경험.", tip:"제주민속오일시장 (2·7일 장) 방문 시 꼭 구매" },
+  { rank:5, emoji:"🍺", nameKo:"제주 한라봉 맥주·막걸리", nameEn:"Jeju Hallabong Craft Beer",
+    address:"제주 전역 편의점·음식점", hours:"상시", rating:4.6, ratingCount:"4,000+",
+    why:"한라봉·감귤 향 제주 특산 크래프트 맥주·막걸리. 제주 이주민의 소확행.", tip:"제스피(Jeju Beer Co.) 제주 맥주 전국 유통" },
+];
+
+const TOP5_FOOD_DAEGU: Top5Item[] = [
+  { rank:1, emoji:"🌶️", nameKo:"납작만두 골목", nameEn:"Flat Dumpling Street",
+    address:"대구광역시 중구 서문시장 내 및 인근", hours:"화-일 10am-8pm", rating:4.6, ratingCount:"5,000+",
+    why:"대구 명물 납작만두. 얇고 바삭한 군만두 스타일. 서문시장 야시장 최고 인기 메뉴.", tip:"서문시장 야시장 금·토·일 6pm~11pm" },
+  { rank:2, emoji:"🍖", nameKo:"대구 찜갈비 거리 (동인동)", nameEn:"Dongindong Braised Ribs Street",
+    address:"대구광역시 중구 동인동 일대", hours:"월-일 11am-10pm", rating:4.7, ratingCount:"7,000+",
+    why:"매운 찜갈비 원조 거리. 대구식 매운 양념이 특징. 전국 관광객이 일부러 찾아오는 대구 대표 음식.", tip:"매운 단계 선택 가능. 물 많이 준비" },
+  { rank:3, emoji:"🥩", nameKo:"대구 따로국밥 원조", nameEen:"Daegu Taro-gukbap",
+    address:"대구광역시 중구 교동시장 일대", hours:"월-일 6am-3pm", rating:4.5, ratingCount:"4,000+",
+    why:"밥과 국이 따로 나오는 대구 향토 음식. 진한 선지해장국. 대구 아침밥 문화의 상징.", tip:"오전 7~10시 현지인 조식 성지" },
+  { rank:4, emoji:"🍦", nameKo:"동성로 팥빙수 명가", nameEn:"Dongseong-ro Patbingsu",
+    address:"대구광역시 중구 동성로 일대", hours:"월-일 11am-10pm", rating:4.4, ratingCount:"3,000+",
+    why:"대구는 한국에서 가장 더운 도시. 여름 팥빙수 문화 발달. 동성로 팥빙수 골목 여름 명물.", tip:"여름 평일에도 30~40분 대기 예상" },
+  { rank:5, emoji:"🍜", nameKo:"대구 무침회 골목", nameEen:"Daegu Spicy Fish Salad",
+    address:"대구광역시 달성공원 인근", hours:"화-일 11am-9pm", rating:4.5, ratingCount:"3,500+",
+    why:"내륙 도시지만 대구식 회무침은 전국 최고. 민물고기 무침회·갈비탕과 함께 대구 3대 명물.", tip:"고추장 양념 매운맛 주의" },
+];
+
+const TOP5_FOOD_GWANGJU: Top5Item[] = [
+  { rank:1, emoji:"🍚", nameKo:"한정식 골목 (무등산 자락)", nameEn:"Hanjeongsik (Korean Table d'hôte)",
+    address:"광주광역시 동구 무등산 자락 일대", hours:"월-일 11:30am-8pm", rating:4.7, ratingCount:"5,000+",
+    why:"전라도 한정식은 한국 음식 문화의 정점. 광주·전남은 반찬 수·맛에서 전국 최고. 이주민도 감탄하는 밥상.", tip:"2인 이상 방문 권장. 예약 추천" },
+  { rank:2, emoji:"🦆", nameKo:"무등산 보리밥·오리탕", nameEen:"Mudeungsan Barley Rice & Duck Soup",
+    address:"광주광역시 동구 무등산 일대 음식촌", hours:"월-일 10am-9pm", rating:4.5, ratingCount:"4,000+",
+    why:"무등산 등산 후 먹는 보리밥 백반·오리탕. 광주 현지인의 주말 나들이 코스.", tip:"등산 후 하산 시 들르는 것이 공식 코스" },
+  { rank:3, emoji:"🥗", nameKo:"광주 육전 명가", nameEen:"Gwangju Yukjeon (Beef Pancake)",
+    address:"광주광역시 동구 충장로 일대", hours:"월-일 11am-10pm", rating:4.6, ratingCount:"3,500+",
+    why:"전남식 쇠고기 부침개. 광주 향토 음식. 충장로·남광주시장 골목에서 만날 수 있는 광주만의 맛.", tip:"막걸리와 궁합 최고" },
+  { rank:4, emoji:"🍢", nameKo:"남광주시장 야시장", nameEen:"Nam Gwangju Market Night Market",
+    address:"광주광역시 동구 제봉로 124", hours:"목요 야시장 5pm~11pm (5~10월)", rating:4.5, ratingCount:"5,000+",
+    why:"광주 대표 야시장. 전국 푸드트럭·핸드메이드·버스킹. 광주 이주민이 가장 사랑하는 야외 문화 공간.", tip:"목요일만 야시장 운영. 우천 시 취소" },
+  { rank:5, emoji:"🍺", nameKo:"광주 맥주 거리 (충장로)", nameEen:"Gwangju Craft Beer Street",
+    address:"광주광역시 동구 충장로 일대", hours:"월-일 5pm~2am", rating:4.4, ratingCount:"2,500+",
+    why:"충장로 젊은이 거리·크래프트 맥주·음식. 광주 야간 외식 문화의 중심.", tip:"금·토 밤 버스킹 공연 함께 즐기기" },
+];
+
+const TOP5_FOOD_DAEJEON: Top5Item[] = [
+  { rank:1, emoji:"🍢", nameKo:"성심당 (대전 빵집 전설)", nameEn:"Seongsimmdang Bakery",
+    address:"대전광역시 중구 대종로 480", phone:"042-253-9000", hours:"월-일 8am-10pm", rating:4.9, ratingCount:"20,000+",
+    why:"70년 전통 대전의 자존심. 튀김소보로·부추빵. 전국 여행자가 대전 들를 때 반드시 사는 것. 외국인들도 SNS 인증 필수.", tip:"오전 개장 직후나 저녁 방문 시 대기 최소. 포장 줄 별도 운영" },
+  { rank:2, emoji:"🐔", nameKo:"대전 두루치기 골목", nameEn:"Daejeon Duruchigi Street",
+    address:"대전광역시 서구 갈마동 일대", hours:"월-일 11am-10pm", rating:4.5, ratingCount:"3,000+",
+    why:"대전 향토 음식 두루치기(돼지고기 매운 볶음). 대전 서구 갈마동 거리 집결.", tip:"매운 단계 선택 가능" },
+  { rank:3, emoji:"🍜", nameKo:"칼국수 골목 (은행동)", nameEen:"Daejeon Kalguksu Noodle Street",
+    address:"대전광역시 중구 은행동 일대", hours:"월-일 10am-9pm", rating:4.5, ratingCount:"4,000+",
+    why:"대전식 진한 바지락 칼국수. 은행동 칼국수 골목. 대전 현지인 점심 성지.", tip:"점심 시간 12~1pm 대기. 11시 30분 방문 추천" },
+  { rank:4, emoji:"🥩", nameKo:"유성 탕정 갈비 거리", nameEen:"Yuseong Galbi Street",
+    address:"대전광역시 유성구 유성대로 일대", hours:"월-일 11am-10pm", rating:4.6, ratingCount:"5,000+",
+    why:"유성 온천 인근 갈비 거리. KAIST·연구원들이 퇴근 후 즐겨 찾는 곳. 과학 커뮤니티 식사 문화.", tip:"3~4인 가족 식사 최적 코스" },
+  { rank:5, emoji:"🍺", nameKo:"크래프트 맥주 거리 (둔산동)", nameEen:"Dunsandong Craft Beer",
+    address:"대전광역시 서구 둔산동 일대", hours:"월-일 5pm~2am", rating:4.4, ratingCount:"2,000+",
+    why:"대전 신도심 둔산동 크래프트 맥주·펍 거리. 외국인 연구원·유학생이 즐겨 찾는 국제적 분위기.", tip:"주말 밤 야외 좌석 인기" },
 ];
 
 const TOP5_FOOD_LONDON: Top5Item[] = [
@@ -13726,6 +14178,12 @@ const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
   osaka:         TOP5_FOOD_OSAKA,
   seoul:         TOP5_FOOD_SEOUL,
   busan:         TOP5_FOOD_BUSAN,
+  ansan:         TOP5_FOOD_ANSAN,
+  incheon:       TOP5_FOOD_INCHEON,
+  jeju:          TOP5_FOOD_JEJU,
+  daegu:         TOP5_FOOD_DAEGU,
+  gwangju:       TOP5_FOOD_GWANGJU,
+  daejeon:       TOP5_FOOD_DAEJEON,
   // 북미 확장 도시
   chicago:       TOP5_FOOD_CHICAGO,
   dc:            TOP5_FOOD_DC,
@@ -14483,6 +14941,12 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
               slug === "osaka"        ? TOP5_EXPLORE_OSAKA :
               slug === "seoul"          ? TOP5_EXPLORE_SEOUL :
               slug === "busan"          ? TOP5_EXPLORE_BUSAN :
+              slug === "ansan"          ? TOP5_EXPLORE_ANSAN :
+              slug === "incheon"        ? TOP5_EXPLORE_INCHEON :
+              slug === "jeju"           ? TOP5_EXPLORE_JEJU :
+              slug === "daegu"          ? TOP5_EXPLORE_DAEGU :
+              slug === "gwangju"        ? TOP5_EXPLORE_GWANGJU :
+              slug === "daejeon"        ? TOP5_EXPLORE_DAEJEON :
               slug === "seattle"      ? TOP5_EXPLORE :   // seattle — isSeattleShuttleActive() 적용됨
               [] as Top5Item[];  // 미등록 도시 — 시애틀 관광지 노출 방지
             // 월드컵 시즌(6/11~7/19): 시애틀 외 모든 WC 호스트 도시에 교통 정보 1순위 삽입
@@ -14513,7 +14977,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                   {[
                     { n: lang === "ko" ? "현지 한인" : "Local Korean", d: lang === "ko" ? "오래 살아온 분" : "Long-time residents" },
-                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "55개+ 도시" : "55+ cities" },
+                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "61개+ 도시" : "61+ cities" },
                     { n: lang === "ko" ? "소규모 투어" : "Small Group", d: lang === "ko" ? "개인 맞춤" : "Personal touch" },
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
@@ -15270,8 +15734,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             icon="🤝" color="#8B5CF6" lang={lang}
             titleKo="헤브론 커넥트 — 친구·멘토·동행 파트너 매칭"
             titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
-            descKo="교인 검증 프로필로 55개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
-            descEn="Meet Koreans across 55 cities. Friends, mentors, prayer partners & business connections."
+            descKo="교인 검증 프로필로 61개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
+            descEn="Meet Koreans across 61 cities. Friends, mentors, prayer partners & business connections."
           />
           {/* 211 팁 박스 */}
           <a href="tel:211" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>
@@ -17402,7 +17866,7 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
             icon="📚" color="#8B5CF6" lang={lang}
             titleKo="헤브론 튜터 — 한인 선배가 직접 가르칩니다"
             titleEn="Hebron Tutor — Learn from Korean Community Mentors"
-            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 55개+ 도시 가능."
+            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 61개+ 도시 가능."
             descEn="Math, SAT, AP, Korean tutoring. Carefully selected Korean tutors. Online across 52+ cities."
           />
         </div>
@@ -19653,7 +20117,7 @@ function AppBar({ onHome }: { onHome?: () => void }) {
           {/* 헤더 */}
           <div style={{ padding: "14px 18px 10px", flexShrink: 0 }}>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#1a2535", marginBottom: 2 }}>
-              🌍 {lang === "ko" ? "55개 도시" : "55 Cities"}
+              🌍 {lang === "ko" ? "61개 도시" : "61 Cities"}
             </div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8" }}>
               {lang === "ko" ? "이사·출장·방문 도시를 선택하세요" : "Select your destination city"}
