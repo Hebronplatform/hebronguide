@@ -89,7 +89,7 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   dallas: [
     { url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=90", pos: "center 38%", alt: "Dallas Reunion Tower Skyline" },
     { url: "https://images.unsplash.com/photo-1545194445-dddb8f4487c6?w=1200&q=90", pos: "center 40%", alt: "Dallas downtown aerial" },
-    { url: "https://images.unsplash.com/photo-1549619856-ac562a3ed3a3?w=1200&q=90", pos: "center 42%", alt: "Texas Big D" },
+    { url: "https://images.unsplash.com/photo-1548115184-bc6544d06a58?w=1200&q=90", pos: "center 42%", alt: "Dallas skyline architecture" },
   ],
 
   // 🌉 샌프란시스코 — ✅ verified: both Golden Gate Bridge photos confirmed
@@ -128,8 +128,8 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🏙️ 토론토 — ✅ fixed CN Tower (was 404), + Lake Ontario waterfront
   toronto: [
     { url: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=1200&q=90", pos: "center 22%", alt: "Toronto CN Tower blue sky" },
-    { url: "https://images.unsplash.com/photo-1517090504586-fde19ea6a0d4?w=1200&q=90", pos: "center 38%", alt: "Toronto waterfront skyline" },
-    { url: "https://images.unsplash.com/photo-1604608672516-5b0d7a04e77e?w=1200&q=90", pos: "center 40%", alt: "Toronto Lake Ontario" },
+    { url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=90", pos: "center 38%", alt: "Toronto waterfront skyline" },
+    { url: "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1200&q=90", pos: "center 40%", alt: "Toronto Lake Ontario" },
   ],
 
   // 🏔️ 밴쿠버 — ✅ fixed: was desert camping(!), now BC mountains + harbor
@@ -142,8 +142,8 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🚀 휴스턴 — ✅ fixed Houston (was 404), + NASA Space Center
   houston: [
     { url: "https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=1200&q=90", pos: "center 35%", alt: "Houston city skyline" },
-    { url: "https://images.unsplash.com/photo-1630839024898-23280f37e33b?w=1200&q=90", pos: "center 40%", alt: "Houston NASA Space Center" },
-    { url: "https://images.unsplash.com/photo-1597523540826-a6a4b81b24e5?w=1200&q=90", pos: "center 38%", alt: "Houston downtown modern" },
+    { url: "https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=1200&q=90", pos: "center 40%", alt: "Houston NASA Space Center" },
+    { url: "https://images.unsplash.com/photo-1543968996-ee822b8176ba?w=1200&q=90", pos: "center 38%", alt: "Houston downtown modern" },
   ],
 
   // 🍑 애틀랜타 — ✅ fixed: was Taipei 101(!), now Atlanta + Georgia
@@ -163,7 +163,7 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🌊 마이애미 — ✅ fixed: was white Mustang in garage(!), now actual beach
   miami: [
     { url: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&q=90", pos: "center 45%", alt: "Miami South Beach ocean" },
-    { url: "https://images.unsplash.com/photo-1516804553-95a2fb929bff?w=1200&q=90", pos: "center 35%", alt: "Miami skyline bay" },
+    { url: "https://images.unsplash.com/photo-1535498730771-e735b998cd64?w=1200&q=90", pos: "center 35%", alt: "Miami skyline bay" },
   ],
 
   // 🏛️ 멕시코시티 — ✅ Zocalo National Palace confirmed + historic center
@@ -182,13 +182,13 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🌹 과달라하라 — 멕시코 문화 수도 + 테킬라 + 마리아치
   guadalajara: [
     { url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?w=1200&q=90", pos: "center 38%", alt: "Guadalajara cathedral" },
-    { url: "https://images.unsplash.com/photo-1519218547298-83e9e4c09a9e?w=1200&q=90", pos: "center 40%", alt: "Jalisco Mexico" },
+    { url: "https://images.unsplash.com/photo-1573920111312-04f1b25c6b85?w=1200&q=90", pos: "center 40%", alt: "Jalisco Mexico" },
   ],
 
   // 🏔️ 몬테레이 — 세로 데 라 실라 + 산업 도시
   monterrey: [
     { url: "https://images.unsplash.com/photo-1568219656418-15c329312bf1?w=1200&q=90", pos: "center 35%", alt: "Monterrey mountains cerro" },
-    { url: "https://images.unsplash.com/photo-1604508533701-cf7a0cec7d50?w=1200&q=90", pos: "center 40%", alt: "Monterrey modern city" },
+    { url: "https://images.unsplash.com/photo-1570641963303-92ce4845ed4c?w=1200&q=90", pos: "center 40%", alt: "Monterrey modern city" },
   ],
 
   // 🫘 시카고 — Cloud Gate (Bean) + 밀레니엄 파크 + 레이크 미시간
@@ -241,7 +241,7 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
   // 🇩🇪 베를린 — 브란덴부르크문
   berlin: [
-    { url: "https://images.unsplash.com/photo-1528728329032-2fc96d6c2b93?w=1200&q=90", pos: "center 38%", alt: "Berlin Brandenburg Gate" },
+    { url: "https://images.unsplash.com/photo-1560930950-5cc20e80e392?w=1200&q=90", pos: "center 38%", alt: "Berlin Brandenburg Gate" },
     { url: "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=1200&q=90", pos: "center 40%", alt: "Berlin city skyline" },
   ],
 
@@ -269,13 +269,13 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇺🇸 워싱턴 DC — 낮 사진만
   dc: [
     { url: "https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=1200&q=90", pos: "center 38%", alt: "Washington DC National Mall daytime" },
-    { url: "https://images.unsplash.com/photo-1603466182842-d022f7d0ee45?w=1200&q=90", pos: "center 40%", alt: "Washington DC Lincoln Memorial daytime" },
+    { url: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1200&q=90", pos: "center 40%", alt: "Washington DC Capitol building" },
   ],
 
   // 🇺🇸 샌디에고 — 해변 + 항구
   sandiego: [
     { url: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=1200&q=90", pos: "center 40%", alt: "San Diego harbor skyline" },
-    { url: "https://images.unsplash.com/photo-1507864629979-1ab41219bc0b?w=1200&q=90", pos: "center 38%", alt: "San Diego Coronado Beach" },
+    { url: "https://images.unsplash.com/photo-1474314881477-04c4aac40a0e?w=1200&q=90", pos: "center 38%", alt: "San Diego Coronado Beach" },
   ],
 
   // 🇺🇸 호놀룰루 — 와이키키 + 다이아몬드헤드
@@ -287,13 +287,13 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇺🇸 포틀랜드 — 브릿지 + 도심
   portland: [
     { url: "https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?w=1200&q=90", pos: "center 40%", alt: "Portland Oregon bridges" },
-    { url: "https://images.unsplash.com/photo-1569879890461-b2b3ea5023c5?w=1200&q=90", pos: "center 38%", alt: "Portland city skyline" },
+    { url: "https://images.unsplash.com/photo-1501554728187-ce583db33af7?w=1200&q=90", pos: "center 38%", alt: "Portland city skyline" },
   ],
 
   // 🇺🇸 덴버 — 록키산 + 도심
   denver: [
-    { url: "https://images.unsplash.com/photo-1570735783899-5bc9da35c9d2?w=1200&q=90", pos: "center 38%", alt: "Denver skyline Rocky Mountains" },
-    { url: "https://images.unsplash.com/photo-1538149428909-2a24600a30ac?w=1200&q=90", pos: "center 40%", alt: "Denver Colorado mountains" },
+    { url: "https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=1200&q=90", pos: "center 38%", alt: "Denver skyline Rocky Mountains" },
+    { url: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1200&q=90", pos: "center 40%", alt: "Denver Colorado mountains" },
   ],
 
   // 🇺🇸 피닉스 — 사막 + 도심
@@ -303,23 +303,23 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
   // 🇺🇸 샬럿 — 도심 스카이라인
   charlotte: [
-    { url: "https://images.unsplash.com/photo-1566024119436-8f4c1f5d75e3?w=1200&q=90", pos: "center 40%", alt: "Charlotte North Carolina skyline" },
-    { url: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1200&q=90", pos: "center 38%", alt: "Charlotte uptown skyline daytime" },
+    { url: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=90", pos: "center 40%", alt: "Charlotte North Carolina skyline" },
+    { url: "https://images.unsplash.com/photo-1584308972272-9e4e7685e80f?w=1200&q=90", pos: "center 38%", alt: "Charlotte uptown skyline daytime" },
   ],
 
   // 🇺🇸 롤리 — 리서치 트라이앵글
   raleigh: [
-    { url: "https://images.unsplash.com/photo-1580474576809-a6485a269699?w=1200&q=90", pos: "center 38%", alt: "Raleigh North Carolina skyline" },
+    { url: "https://images.unsplash.com/photo-1583922606661-0822ed0bd916?w=1200&q=90", pos: "center 38%", alt: "Raleigh North Carolina skyline" },
   ],
 
   // 🇺🇸 콜럼버스 — 오하이오 도심
   columbus: [
-    { url: "https://images.unsplash.com/photo-1575652284690-4e79d6c3a7e2?w=1200&q=90", pos: "center 40%", alt: "Columbus Ohio skyline" },
+    { url: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=90", pos: "center 40%", alt: "Columbus Ohio skyline" },
   ],
 
   // 🇺🇸 미니애폴리스 — 호수 + 도심
   minneapolis: [
-    { url: "https://images.unsplash.com/photo-1612196808214-b7d9c59c4fe8?w=1200&q=90", pos: "center 38%", alt: "Minneapolis Minnesota skyline lakes" },
+    { url: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=1200&q=90", pos: "center 38%", alt: "Minneapolis Minnesota skyline lakes" },
   ],
 
   // 🇺🇸 투손 — 사와로 선인장
@@ -373,19 +373,19 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
   // 🇦🇺 퍼스 — 인도양 + 도심
   perth: [
-    { url: "https://images.unsplash.com/photo-1577985043696-8f4c1f5d75e3?w=1200&q=90", pos: "center 40%", alt: "Perth Western Australia skyline" },
+    { url: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1200&q=90", pos: "center 40%", alt: "Perth Western Australia skyline" },
   ],
 
   // 🇳🇿 오클랜드 — 스카이타워 + 항구
   auckland: [
     { url: "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=1200&q=90", pos: "center 38%", alt: "Auckland Sky Tower harbour" },
-    { url: "https://images.unsplash.com/photo-1527168027773-0cc890c4f212?w=1200&q=90", pos: "center 40%", alt: "Auckland New Zealand skyline" },
+    { url: "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=1200&q=90", pos: "center 40%", alt: "Auckland New Zealand skyline" },
   ],
 
   // 🇩🇪 프랑크푸르트 — 유럽 금융허브
   frankfurt: [
-    { url: "https://images.unsplash.com/photo-1527866512585-a0c0e4949517?w=1200&q=90", pos: "center 40%", alt: "Frankfurt Germany skyline ECB" },
-    { url: "https://images.unsplash.com/photo-1555990793-da11153b4559?w=1200&q=90", pos: "center 38%", alt: "Frankfurt banking district" },
+    { url: "https://images.unsplash.com/photo-1495954484750-af469f2f9be5?w=1200&q=90", pos: "center 40%", alt: "Frankfurt Germany skyline" },
+    { url: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=1200&q=90", pos: "center 38%", alt: "Frankfurt banking district" },
   ],
 
   // 🇻🇳 호치민 — 도시
@@ -400,7 +400,7 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇯🇵 오사카 — 도톤보리 + 오사카성
   osaka: [
     { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 38%", alt: "Osaka Castle" },
-    { url: "https://images.unsplash.com/photo-1579135395432-57f6e36a9c79?w=1200&q=90", pos: "center 40%", alt: "Osaka Shinsekai" },
+    { url: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=90", pos: "center 40%", alt: "Osaka Shinsekai" },
   ],
 };
 
