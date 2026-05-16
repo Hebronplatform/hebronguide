@@ -94,6 +94,8 @@
     { "source": "/fayetteville/(.*)",  "destination": "/fayetteville/index.html" },
     { "source": "/killeen",            "destination": "/killeen/index.html" },
     { "source": "/killeen/(.*)",       "destination": "/killeen/index.html" },
+    { "source": "/louisville",         "destination": "/louisville/index.html" },
+    { "source": "/louisville/(.*)",    "destination": "/louisville/index.html" },
     { "source": "/anchorage",          "destination": "/anchorage/index.html" },
     { "source": "/anchorage/(.*)",     "destination": "/anchorage/index.html" },
     { "source": "/sydney",             "destination": "/sydney/index.html" },

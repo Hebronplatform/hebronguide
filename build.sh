@@ -37,7 +37,7 @@ declare -A CITY_KO=(
   ["winnipeg"]="위니펙"       ["phoenix"]="피닉스"       ["charlotte"]="샬럿"
   ["raleigh"]="롤리"          ["columbus"]="콜럼버스"    ["minneapolis"]="미니애폴리스"
   ["tucson"]="투손"           ["fayetteville"]="페이엣빌" ["killeen"]="킬린"
-  ["anchorage"]="앵커리지"
+  ["louisville"]="루이빌"     ["anchorage"]="앵커리지"
   # 국제 확장 Tier A
   ["sydney"]="시드니"         ["melbourne"]="멜버른"     ["brisbane"]="브리즈번"
   ["perth"]="퍼스"            ["auckland"]="오클랜드"    ["saopaulo"]="상파울루"
@@ -67,7 +67,7 @@ declare -A CITY_EN=(
   ["winnipeg"]="Winnipeg"     ["phoenix"]="Phoenix"        ["charlotte"]="Charlotte"
   ["raleigh"]="Raleigh"       ["columbus"]="Columbus"      ["minneapolis"]="Minneapolis"
   ["tucson"]="Tucson"         ["fayetteville"]="Fayetteville" ["killeen"]="Killeen"
-  ["anchorage"]="Anchorage"
+  ["louisville"]="Louisville" ["anchorage"]="Anchorage"
   # 국제 확장 Tier A
   ["sydney"]="Sydney"         ["melbourne"]="Melbourne"    ["brisbane"]="Brisbane"
   ["perth"]="Perth"           ["auckland"]="Auckland"      ["saopaulo"]="Sao Paulo"
@@ -92,7 +92,7 @@ for city in \
   kansascity philadelphia miami mexicocity guadalajara monterrey \
   chicago dc sandiego honolulu portland denver \
   calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
-  tucson fayetteville killeen anchorage \
+  tucson fayetteville killeen louisville anchorage \
   sydney melbourne brisbane perth auckland saopaulo london \
   singapore bangkok hochiminh dubai frankfurt berlin paris \
   tokyo osaka \

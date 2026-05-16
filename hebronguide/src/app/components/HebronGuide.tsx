@@ -502,7 +502,7 @@ type CitySlug =
   "chicago" | "dc" | "sandiego" | "honolulu" | "portland" | "denver" |
   // 북미 확장 (Tier B-C)
   "calgary" | "phoenix" | "charlotte" | "columbus" | "raleigh" | "minneapolis" |
-  "fayetteville" | "killeen" | "anchorage" | "tucson" | "winnipeg" | "edmonton" | "ottawa" |
+  "fayetteville" | "killeen" | "anchorage" | "tucson" | "winnipeg" | "edmonton" | "ottawa" | "louisville" |
   // 국제 (Tier A)
   "sydney" | "melbourne" | "saopaulo" | "london" | "auckland" |
   // 국제 (Tier B-C)
@@ -779,6 +779,7 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   // ── 북미 소도시·군사도시 Tier C (Isolation: 4-5) ─────────────────────────
   fayetteville:{ slug: "fayetteville",nameKo: "페이엣빌", nameEn: "Fayetteville", color: "#22C55E", heroVideo: "", population: "5천+",  state: "N. Carolina", taglineKo: "군인 가족의 도시, 함께",         taglineEn: "Military families, all together.",  taglineEs: "Familias militares, todos juntos." },
   killeen:    { slug: "killeen",    nameKo: "킬린",      nameEn: "Killeen",      color: "#16A34A", heroVideo: "", population: "4천+",   state: "Texas",       taglineKo: "포트 카바조스, 새 가족",      taglineEn: "New family at Fort Cavazos.", taglineEs: "Nueva familia en Fort Cavazos." },
+  louisville: { slug: "louisville", nameKo: "루이빌",    nameEn: "Louisville",   color: "#7C3AED", heroVideo: "", population: "3천+",   state: "Kentucky",    taglineKo: "버번의 도시, 새 이야기",      taglineEn: "The Bourbon Capital, Your New Story.", taglineEs: "La capital del bourbon, tu nueva historia." },
   anchorage:  { slug: "anchorage",  nameKo: "앵커리지",  nameEn: "Anchorage",    color: "#14B8A6", heroVideo: "", population: "5천+",   state: "Alaska",      taglineKo: "가장 북쪽의 한인 도시",        taglineEn: "America's Northernmost Korean City.", taglineEs: "La ciudad coreana más al norte." },
 
   // ── 국제 확장 Tier A ────────────────────────────────────────────────────
@@ -8262,6 +8263,7 @@ const HEBRON_CITIES = [
   { emoji: "🌵", nameKo: "투손",        nameEn: "Tucson",        flag: "🇺🇸", url: "/tucson/",      status: "live", color: "#CA8A04" },
   { emoji: "🪖", nameKo: "페이엣빌",    nameEn: "Fayetteville",  flag: "🇺🇸", url: "/fayetteville/",status: "live", color: "#22C55E" },
   { emoji: "🪖", nameKo: "킬린",        nameEn: "Killeen",       flag: "🇺🇸", url: "/killeen/",     status: "live", color: "#F59E0B" },
+  { emoji: "🥃", nameKo: "루이빌",      nameEn: "Louisville",    flag: "🇺🇸", url: "/louisville/",  status: "live", color: "#7C3AED" },
   { emoji: "🐻", nameKo: "앵커리지",    nameEn: "Anchorage",     flag: "🇺🇸", url: "/anchorage/",   status: "live", color: "#14B8A6" },
   { emoji: "🍁", nameKo: "캘거리",      nameEn: "Calgary",       flag: "🇨🇦", url: "/calgary/",     status: "live", color: "#D97706" },
   { emoji: "🍁", nameKo: "에드먼턴",    nameEn: "Edmonton",      flag: "🇨🇦", url: "/edmonton/",    status: "live", color: "#10B981" },
@@ -8543,6 +8545,7 @@ const DIASPORA_IDENTITY: Record<string, {
   tucson:       { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
   fayetteville: { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
   killeen:      { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  louisville:   { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#7C3AED" },
   anchorage:    { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
   // 🇲🇽 멕시코
   mexicocity:   { flag:"🇲🇽", ko:"재멕시코 한인",     en:"Korean in Mexico",   descKo:"멕시코 사회의 당당한 구성원으로",      descEn:"A full participant in Mexican society",           color:"#16A34A" },
