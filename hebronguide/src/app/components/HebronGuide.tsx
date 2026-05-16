@@ -83,7 +83,6 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     // 오후 세트 (12-23시) — 다른 분위기
     { url: "https://images.unsplash.com/photo-1613525850352-52de526e2336?w=1200&q=90", pos: "center 28%", alt: "Seattle Space Needle afternoon", timeSet: "pm" },
     { url: "https://images.unsplash.com/photo-1542223616-9de9adb5e3e8?w=1200&q=90", pos: "center 35%", alt: "Seattle skyline aerial", timeSet: "pm" },
-    { url: "https://images.unsplash.com/photo-1531335773500-23410807365a?w=1200&q=90", pos: "center 30%", alt: "Seattle Space Needle evening", timeSet: "pm" },
   ],
 
   // 🤠 달라스 — ✅ verified: aerial skyline + architecture
@@ -109,7 +108,6 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
   // 🌴 LA — palm boulevard (evocative LA vibe ✅) + Hollywood + Griffith
   la: [
-    { url: "https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?w=1200&q=90", pos: "center 38%", alt: "LA palm tree boulevard sunset" },
     { url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=1200&q=90", pos: "center 30%", alt: "Hollywood sign hills" },
     { url: "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=1200&q=90", pos: "center 35%", alt: "Los Angeles Griffith Observatory" },
   ],
@@ -118,7 +116,6 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   nashville: [
     { url: "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=1200&q=90", pos: "center 38%", alt: "Nashville city skyline water" },
     { url: "https://images.unsplash.com/photo-1616198814651-e71f960c3180?w=1200&q=90", pos: "center 40%", alt: "Nashville Nissan Stadium skyline" },
-    { url: "https://images.unsplash.com/photo-1633204339601-a37f025a55c3?w=1200&q=90", pos: "center 40%", alt: "Nashville Cumberland River night" },
   ],
 
   // 🦞 보스턴 — ✅ fixed: was US Capitol(!), now actual Boston harbor + skyline
@@ -167,7 +164,6 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   miami: [
     { url: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&q=90", pos: "center 45%", alt: "Miami South Beach ocean" },
     { url: "https://images.unsplash.com/photo-1516804553-95a2fb929bff?w=1200&q=90", pos: "center 35%", alt: "Miami skyline bay" },
-    { url: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1200&q=90", pos: "center 50%", alt: "Miami tropical ocean sunset" },
   ],
 
   // 🏛️ 멕시코시티 — ✅ Zocalo National Palace confirmed + historic center
@@ -217,7 +213,6 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇦🇺 시드니 — 오페라하우스 + 하버브릿지
   sydney: [
     { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=90", pos: "center 40%", alt: "Sydney Opera House and Harbour Bridge" },
-    { url: "https://images.unsplash.com/photo-1524820197278-540916411e20?w=1200&q=90", pos: "center 35%", alt: "Sydney skyline night" },
   ],
 
   // 🇦🇺 멜버른 — CBD + 야라강
@@ -229,13 +224,11 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇬🇧 런던 — 빅벤 + 템즈강
   london: [
     { url: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=90", pos: "center 38%", alt: "London Big Ben Thames River" },
-    { url: "https://images.unsplash.com/photo-1520986606214-8b456906c813?w=1200&q=90", pos: "center 40%", alt: "London Tower Bridge night" },
   ],
 
   // 🇫🇷 파리 — 에펠탑 + 센강
   paris: [
     { url: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=90", pos: "center 40%", alt: "Paris Eiffel Tower Seine River" },
-    { url: "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=1200&q=90", pos: "center 38%", alt: "Paris night view" },
   ],
 
   // 🇩🇪 베를린 — 브란덴부르크문
@@ -253,13 +246,11 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇦🇪 두바이 — 부르즈칼리파
   dubai: [
     { url: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=90", pos: "center 40%", alt: "Dubai Burj Khalifa skyline" },
-    { url: "https://images.unsplash.com/photo-1526495124232-a04e1849168c?w=1200&q=90", pos: "center 38%", alt: "Dubai Marina night" },
   ],
 
   // 🇹🇭 방콕 — 왓아룬 + 차오프라야강
   bangkok: [
     { url: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1200&q=90", pos: "center 38%", alt: "Bangkok Wat Arun temple" },
-    { url: "https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=1200&q=90", pos: "center 40%", alt: "Bangkok skyline night" },
   ],
 
   // 🇧🇷 상파울루 — 도심
@@ -300,14 +291,12 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇺🇸 피닉스 — 사막 + 도심
   phoenix: [
     { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Phoenix Arizona desert skyline" },
-    { url: "https://images.unsplash.com/photo-1570126618953-d437176e8c79?w=1200&q=90", pos: "center 38%", alt: "Phoenix city at night" },
   ],
 
   // 🇺🇸 샬럿 — 도심 스카이라인
   charlotte: [
     { url: "https://images.unsplash.com/photo-1566024119436-8f4c1f5d75e3?w=1200&q=90", pos: "center 40%", alt: "Charlotte North Carolina skyline" },
     { url: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1200&q=90", pos: "center 38%", alt: "Charlotte uptown skyline daytime" },
-    { url: "https://images.unsplash.com/photo-1578985064249-e6b0f2ba94cb?w=1200&q=90", pos: "center 42%", alt: "Charlotte city at dusk" },
   ],
 
   // 🇺🇸 롤리 — 리서치 트라이앵글
@@ -377,7 +366,6 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇦🇺 퍼스 — 인도양 + 도심
   perth: [
     { url: "https://images.unsplash.com/photo-1577985043696-8f4c1f5d75e3?w=1200&q=90", pos: "center 40%", alt: "Perth Western Australia skyline" },
-    { url: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&q=90", pos: "center 38%", alt: "Perth beach sunset" },
   ],
 
   // 🇳🇿 오클랜드 — 스카이타워 + 항구
@@ -392,21 +380,17 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1555990793-da11153b4559?w=1200&q=90", pos: "center 38%", alt: "Frankfurt banking district" },
   ],
 
-  // 🇻🇳 호치민 — 도시 야경
+  // 🇻🇳 호치민 — 도시
   hochiminh: [
-    { url: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1200&q=90", pos: "center 40%", alt: "Ho Chi Minh City skyline night" },
     { url: "https://images.unsplash.com/photo-1570366583862-f91883984fde?w=1200&q=90", pos: "center 38%", alt: "Ho Chi Minh City streets" },
   ],
   // 🇯🇵 도쿄 — 신주쿠 + 시부야 + 도쿄타워
   tokyo: [
-    { url: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=90", pos: "center 40%", alt: "Tokyo city skyline at night" },
     { url: "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=1200&q=90", pos: "center 38%", alt: "Tokyo Shibuya crossing" },
-    { url: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1200&q=90", pos: "center 35%", alt: "Tokyo Tower night view" },
   ],
 
   // 🇯🇵 오사카 — 도톤보리 + 오사카성
   osaka: [
-    { url: "https://images.unsplash.com/photo-1590559899731-a382839e5549?w=1200&q=90", pos: "center 42%", alt: "Osaka Dotonbori night" },
     { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 38%", alt: "Osaka Castle" },
     { url: "https://images.unsplash.com/photo-1579135395432-57f6e36a9c79?w=1200&q=90", pos: "center 40%", alt: "Osaka Shinsekai" },
   ],
@@ -6038,12 +6022,7 @@ function CompactHeroNew() {
   const slides = CITY_HERO_SLIDES[city.slug] ?? null;
 
   // 오전(0-11) → 0번부터, 오후(12-23) → 절반부터 시작
-  const initIdx = (() => {
-    if (!slides) return 0;
-    const h = new Date().getHours();
-    const half = Math.floor(slides.length / 2);
-    return h < 12 ? 0 : half;
-  })();
+  const initIdx = 0; // 항상 첫 슬라이드(낮 사진)부터 시작
   const [slideIdx, setSlideIdx] = useState(initIdx);
 
   // 5초마다 다음 슬라이드
