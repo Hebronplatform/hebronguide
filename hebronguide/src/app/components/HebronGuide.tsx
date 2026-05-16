@@ -197,16 +197,24 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
   ],
 
-  // 🇰🇷 서울 — 경복궁(낮) + 한강(낮) — 야경 제거
+  // 🇰🇷 서울 — 검증된 사진 3장 (200 OK 확인)
   seoul: [
-    { url: "https://images.unsplash.com/photo-1556453580-8fa56e79e96a?w=1200&q=90", pos: "center 45%", alt: "Gyeongbokgung Palace Seoul daytime" },
-    { url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=90", pos: "center 40%", alt: "Seoul Korea daytime cityscape" },
+    { url: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=1200&q=90", pos: "center 42%", alt: "Seoul Korea cityscape daytime" },
+    { url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&q=90", pos: "center 40%", alt: "Seoul Korea urban daytime" },
+    { url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=90", pos: "center 40%", alt: "Seoul Korea daytime" },
   ],
 
-  // 🇰🇷 부산 — 해운대(낮) + 감천마을(낮) — 야경 없음
+  // 🇰🇷 부산 — 검증된 사진 (200 OK)
   busan: [
-    { url: "https://images.unsplash.com/photo-1535139262971-ab8d6ce71e1e?w=1200&q=90", pos: "center 40%", alt: "Busan South Korea beach daytime" },
-    { url: "https://images.unsplash.com/photo-1558786374-2ebb9cdd8d59?w=1200&q=90", pos: "center 42%", alt: "Busan Gamcheon Culture Village colorful daytime" },
+    { url: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1200&q=90", pos: "center 40%", alt: "Busan South Korea daytime" },
+    { url: "https://images.unsplash.com/photo-1558818498-28c1e002b655?w=1200&q=90", pos: "center 42%", alt: "Busan Korea beach daytime" },
+    { url: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1200&q=90", pos: "center 38%", alt: "Busan Korea cityscape daytime" },
+  ],
+
+  // 🇺🇸 루이빌 — 검증된 사진 (200 OK)
+  louisville: [
+    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Louisville Kentucky daytime" },
+    { url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=90", pos: "center 38%", alt: "Louisville Kentucky cityscape" },
   ],
 
 
