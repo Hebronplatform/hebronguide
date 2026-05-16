@@ -10673,12 +10673,12 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               <div style={{ fontSize: 10, color: "rgba(236,253,245,0.25)", marginTop: 3, letterSpacing: "0.04em" }}>
                 <a href="https://hebronguide.com/privacy.html" target="_blank" rel="noopener"
                    style={{ color: "rgba(110,231,183,0.45)", textDecoration: "none" }}>
-                  {lang === "ko" ? "개인정보처리방침" : "Privacy Policy"}
+                  개인정보처리방침
                 </a>
                 <span style={{ margin: "0 6px", opacity: 0.35 }}>·</span>
                 <a href="https://hebronguide.com/terms.html" target="_blank" rel="noopener"
                    style={{ color: "rgba(110,231,183,0.45)", textDecoration: "none" }}>
-                  {lang === "ko" ? "서비스 약관" : "Terms of Service"}
+                  서비스 약관
                 </a>
               </div>
               <div style={{ fontSize: 10, color: "rgba(236,253,245,0.18)", letterSpacing: "0.06em", marginTop: 2 }}>
