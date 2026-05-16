@@ -9802,15 +9802,30 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   // sub-tab별 동적 헤더 — 클릭한 메뉴(정착·주택·비자 등)에 맞춰 타이틀이 바뀌도록
   const cityNameKo = useCityConfig().nameKo;
   const cityNameEn = useCityConfig().nameEn;
+  const ccSettle = getCountryCode(citySlug);
+  const isKR = ccSettle === "KR";
+  const isJP = ccSettle === "JP";
   const settleHeaders = [
-    { emoji: "🛬", titleKo: "1주차 — 도착 직후", titleEn: "Week 1 — Just Arrived", descKo: `${cityNameKo} 첫 7일 — 임시 거주·휴대폰·SSN·은행`, descEn: `${cityNameEn} first 7 days — temp housing · phone · SSN · bank` },
-    { emoji: "📅", titleKo: "1개월 정착", titleEn: "Month 1 Settlement", descKo: `${cityNameKo} 면허·정식 임대·차량·자녀 학교`, descEn: `${cityNameEn} license · lease · car · school enrollment` },
-    { emoji: "🏡", titleKo: "3개월 안정", titleEn: "Month 3 Stability", descKo: `${cityNameKo} 의료보험·가구·세금 ID·커뮤니티`, descEn: `${cityNameEn} health insurance · furniture · tax ID · community` },
-    { emoji: "📋", titleKo: "행정 절차", titleEn: "Admin Procedures", descKo: `${cityNameKo} 영주권·시민권·DMV·세금 신고`, descEn: `${cityNameEn} green card · citizenship · DMV · tax filing` },
+    { emoji: "🛬", titleKo: "1주차 — 도착 직후", titleEn: "Week 1 — Just Arrived",
+      descKo: isKR ? `${cityNameKo} 첫 7일 — 임시 거주·휴대폰·주민등록·은행` : `${cityNameKo} 첫 7일 — 임시 거주·휴대폰·SSN·은행`,
+      descEn: isKR ? `${cityNameEn} first 7 days — housing · phone · resident reg · bank` : `${cityNameEn} first 7 days — temp housing · phone · SSN · bank` },
+    { emoji: "📅", titleKo: "1개월 정착", titleEn: "Month 1 Settlement",
+      descKo: isKR ? `${cityNameKo} 건강보험·면허·임대·자녀 학교` : `${cityNameKo} 면허·정식 임대·차량·자녀 학교`,
+      descEn: isKR ? `${cityNameEn} health ins · license · lease · school` : `${cityNameEn} license · lease · car · school enrollment` },
+    { emoji: "🏡", titleKo: "3개월 안정", titleEn: "Month 3 Stability",
+      descKo: `${cityNameKo} 의료보험·가구·세금·커뮤니티`,
+      descEn: `${cityNameEn} health insurance · furniture · tax · community` },
+    { emoji: "📋", titleKo: "행정 절차", titleEn: "Admin Procedures",
+      descKo: isKR ? `${cityNameKo} 거소신고·국적회복·건강보험·세금` : `${cityNameKo} 영주권·시민권·DMV·세금 신고`,
+      descEn: isKR ? `${cityNameEn} residence reg · nationality · health ins · tax` : `${cityNameEn} green card · citizenship · DMV · tax filing` },
     { emoji: "💰", titleKo: "재정 시작", titleEn: "Finance Setup", descKo: `${cityNameKo} 은행·신용카드·크레딧·은퇴 계좌`, descEn: `${cityNameEn} banking · credit cards · score · retirement` },
     { emoji: "🏘️", titleKo: "주택 가이드", titleEn: "Housing Guide", descKo: `${cityNameKo} 동네 비교 · 부동산 · 카운티별 가격 · 헤브론 홈`, descEn: `${cityNameEn} neighborhoods · realty · county pricing · Hebron Home` },
     { emoji: "✅", titleKo: "전체 체크리스트", titleEn: "Complete Checklist", descKo: `${cityNameKo} 정착 모든 단계 한눈에`, descEn: `${cityNameEn} all settlement steps at a glance` },
-    { emoji: "🛂", titleKo: "비자·이민 가이드", titleEn: "Visa & Immigration", descKo: `${cityNameKo} F-1 · H-1B · 영주권 · 시민권 단계별`, descEn: `${cityNameEn} F-1 · H-1B · green card · citizenship` },
+    { emoji: isKR ? "🏛️" : "🛂",
+      titleKo: isKR ? "역이민·귀환 가이드" : "비자·이민 가이드",
+      titleEn: isKR ? "Return Migration Guide" : "Visa & Immigration",
+      descKo: isKR ? `${cityNameKo} F-4 비자 · 국적회복 · 거소신고 · 역이민 절차` : `${cityNameKo} F-1 · H-1B · 영주권 · 시민권 단계별`,
+      descEn: isKR ? `${cityNameEn} F-4 visa · nationality · residence reg · return` : `${cityNameEn} F-1 · H-1B · green card · citizenship` },
   ];
   const sh = settleHeaders[sub] ?? settleHeaders[0];
 
@@ -9884,7 +9899,47 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
         <div className="px-4 md:px-6 lg:px-8">
 
         {/* ── 비자·이민 탭 (index 7) ── */}
-        {sub === 7 && (
+        {sub === 7 && isKR && (
+          <div>
+            {[
+              { emoji: "🏛️", name: lang === "ko" ? "체류 자격 한눈에 보기" : "Visa & Stay Status Overview",
+                desc: lang === "ko"
+                  ? "✅ 한국 귀환 동포 주요 체류 자격:\n\n• F-4 (재외동포) — 외국국적 동포의 장기체류 비자. 취업 가능(단순노무 제외). 2년마다 갱신\n• F-5 (영주) — 5년 이상 체류 후 신청 가능. 갱신 없는 영구 체류\n• 국적회복 — 외국국적 포기 후 한국 국적 재취득. 법무부 국적과 신청\n• 거소신고 — 외국국적동포가 91일 이상 체류 시 주소지 구청 신고 의무\n\n💡 재외동포청(OKA) — oka.go.kr 에서 개인 상황별 최적 체류 자격 무료 상담"
+                  : "✅ Key stay status for returning Koreans:\n\n• F-4 (Overseas Korean) — long-stay visa for ethnic Koreans with foreign citizenship. Work permitted (except unskilled labor). Renew every 2 years\n• F-5 (Permanent Resident) — apply after 5+ years in Korea. No renewal needed\n• Nationality Recovery — regain Korean citizenship after renouncing foreign nationality. Apply at Ministry of Justice\n• Residence Registration — required within 90 days if staying 91+ days. Register at local district office\n\n💡 Overseas Koreans Agency (OKA) — oka.go.kr — free consultation",
+                tags: lang === "ko" ? ["F-4비자", "재외동포", "체류자격"] : ["F-4", "Overseas Korean", "Stay Status"] },
+              { emoji: "📋", name: lang === "ko" ? "주민등록 재등록 절차" : "Resident Registration Process",
+                desc: lang === "ko"
+                  ? "✅ 귀국 후 주민등록 재등록 (한국 국적자):\n\n준비서류:\n• 여권 (유효기간 6개월 이상 권장)\n• 외국 운전면허 또는 신분증\n• 귀국 신고서 (주민센터 비치)\n\n절차:\n1. 주소지 관할 주민센터 방문\n2. 주민등록 말소 해제 신청\n3. 주민등록증 재발급 신청 (2~3주 소요)\n\n💡 정부24(gov.kr) 온라인 신청 가능 (일부 서류 방문 필요)\n📞 주민센터 찾기: 주소검색→ 지역 주민센터 연결"
+                  : "✅ Re-register resident ID (Korean nationals returning home):\n\nRequired documents:\n• Valid passport (6+ months recommended)\n• Foreign driver's license or ID\n• Return registration form (available at community center)\n\nProcess:\n1. Visit local 주민센터 (community center)\n2. Apply to reinstate your 주민등록 (resident registration)\n3. Request new 주민등록증 (ID card) — takes 2–3 weeks\n\n💡 Some steps available online at gov.kr\n📞 Find nearest community center by address search",
+                tags: lang === "ko" ? ["주민등록", "재등록", "주민센터"] : ["Resident ID", "Registration", "Community Center"] },
+              { emoji: "🏥", name: lang === "ko" ? "국민건강보험 재가입" : "National Health Insurance Re-enrollment",
+                desc: lang === "ko"
+                  ? "✅ 귀국 후 건강보험 가입:\n\n• 국내 거주 시작 → 지역가입자 자동 편입 (귀국 후 1개월 이내)\n• 직장 취업 시 → 직장가입자로 전환 (회사에서 자동 처리)\n• 피부양자 등록 → 배우자·직계가족 건강보험 피부양자 가능\n\n납부 기준:\n• 지역가입자: 소득·재산·자동차 등급 기반 산정\n• 최초 귀국 시 전년도 소득 없으면 최저 보험료 적용\n\n신청:\n• 국민건강보험공단: nhis.or.kr / 📞 1577-1000\n• 전국 지사 방문 또는 온라인 신청 가능"
+                  : "✅ Health insurance enrollment upon return:\n\n• Moving to Korea → auto-enrolled as local subscriber within 1 month\n• Starting employment → automatically switched to workplace subscriber\n• Dependent registration → spouse/direct family can be added as dependents\n\nPremium basis:\n• Local subscriber: calculated on income, assets, and vehicle\n• No prior-year income → minimum premium applied at first enrollment\n\nApply:\n• NHIS: nhis.or.kr / 📞 1577-1000\n• Visit any branch or apply online",
+                tags: lang === "ko" ? ["건강보험", "국민건강보험", "NHIS"] : ["Health Insurance", "NHIS", "Enrollment"] },
+              { emoji: "🚗", name: lang === "ko" ? "운전면허 갱신·재발급" : "Driver's License Renewal",
+                desc: lang === "ko"
+                  ? "✅ 귀국 후 운전면허:\n\n기존 한국 면허 보유자:\n• 면허 갱신: 유효기간 내 → 가까운 운전면허시험장 또는 경찰서\n• 면허 재발급: 분실·훼손 → 주민센터 또는 운전면허시험장\n\n외국 면허 소지자 (한국 면허 없음):\n• 외국 면허 → 한국 면허 전환 가능 (협정국: 미국·캐나다·호주 등)\n• 협정국 면허: 필기·실기 면제, 적성검사만 통과 시 발급\n• 비협정국: 학과·기능·도로주행 전부 응시\n\n📞 도로교통공단: safedriving.or.kr / 1577-1120"
+                  : "✅ Driver's license upon return:\n\nExisting Korean license holders:\n• Renewal: before expiry → nearest license exam office or police station\n• Reissue: lost/damaged → community center or license exam office\n\nForeign license holders (no Korean license):\n• Transfer from foreign license (treaty countries: US, Canada, Australia, etc.)\n• Treaty country license: exempt from written & driving test — vision test only\n• Non-treaty country: must take all tests\n\n📞 Road Traffic Authority: safedriving.or.kr / 1577-1120",
+                tags: lang === "ko" ? ["운전면허", "갱신", "도로교통공단"] : ["Driver License", "Renewal", "Transfer"] },
+              { emoji: "💼", name: lang === "ko" ? "역이민 지원 프로그램" : "Return Migration Support Programs",
+                desc: lang === "ko"
+                  ? "✅ 정부 귀환 동포 지원:\n\n재외동포청 (OKA):\n• 홈페이지: oka.go.kr / 📞 032-410-1000\n• 국내 정착 원스톱 상담, 취업·창업 지원, 주거 연계\n\n재외동포재단:\n• 홈페이지: okf.or.kr / 📞 02-3415-0100\n• 귀국 동포 한국어 교육, 정착 프로그램\n\n서울글로벌센터 (서울 거주자):\n• 홈페이지: global.seoul.go.kr\n• 다국어 법률·세무·의료 무료 상담\n\n고용24 (취업):\n• 홈페이지: work.go.kr\n• 해외 경력자 국내 취업 재진입 지원"
+                  : "✅ Government support for returning Koreans:\n\nOverseas Koreans Agency (OKA):\n• oka.go.kr / 📞 032-410-1000\n• One-stop settlement consultation, employment & startup support\n\nOverseas Koreans Foundation:\n• okf.or.kr / 📞 02-3415-0100\n• Korean language education, settlement programs\n\nSeoul Global Center (Seoul residents):\n• global.seoul.go.kr\n• Free multilingual legal, tax, and medical consultation\n\nWork Korea (Employment):\n• work.go.kr\n• Re-entry support for overseas career holders",
+                tags: lang === "ko" ? ["역이민지원", "재외동포청", "귀환프로그램"] : ["Return Support", "OKA", "Programs"] },
+            ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+            <div style={{ background: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#FCA5A5", marginBottom: 4 }}>🏛️ {lang === "ko" ? "귀환 핵심 체크포인트" : "Key Return Checkpoints"}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)", whiteSpace: "pre-line" }}>
+                {lang === "ko"
+                  ? "• 도착 즉시: 거소신고 또는 주민등록 재등록 (주민센터)\n• 1개월 이내: 국민건강보험공단 가입 (nhis.or.kr)\n• 재외동포청 상담: oka.go.kr — 체류 자격·취업 무료 상담\n• 운전면허: safedriving.or.kr — 기존 면허 갱신 또는 해외 면허 전환\n• 금융: 기존 계좌 재활성화 또는 카카오뱅크 비대면 개설"
+                  : "• On arrival: register at 주민센터 (resident registration)\n• Within 1 month: enroll in National Health Insurance (nhis.or.kr)\n• OKA consultation: oka.go.kr — free advice on stay status & employment\n• Driver's license: safedriving.or.kr — renew or transfer foreign license\n• Banking: reactivate existing account or open Kakaobank online"}
+              </div>
+            </div>
+          </div>
+        )}
+        {/* ── 비자·이민 탭 (index 7, 미국/기타 도시) ── */}
+        {sub === 7 && !isKR && (
           <div>
             {[
               { emoji: "🛂", name: lang === "ko" ? "비자 종류 한눈에 보기" : "Visa Types Overview",
