@@ -25,17 +25,11 @@ function MainApp() {
 }
 
 // 현재 URL의 첫 경로 세그먼트로 basename 동적 설정
-// /seattle/, /dallas/, /sf/ 등 17개 도시 모두 지원
-const SUPPORTED_CITIES = [
-  "seattle", "dallas", "sf", "newyork", "nashville", "boston",
-  "la", "toronto", "vancouver", "houston", "atlanta", "kansascity",
-  "philadelphia", "miami", "mexicocity", "guadalajara", "monterrey"
-];
-
+// 54개 도시 전체 지원 — 리스트 체크 없이 URL 세그먼트 직접 사용
 function detectBasename(): string {
   if (typeof window === "undefined") return "/seattle";
   const firstSegment = window.location.pathname.split("/").filter(Boolean)[0]?.toLowerCase();
-  return firstSegment && SUPPORTED_CITIES.includes(firstSegment) ? `/${firstSegment}` : "/seattle";
+  return firstSegment ? `/${firstSegment}` : "/seattle";
 }
 
 export const router = createBrowserRouter([
