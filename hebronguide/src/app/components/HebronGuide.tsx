@@ -9821,11 +9821,11 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "💰", titleKo: "재정 시작", titleEn: "Finance Setup", descKo: `${cityNameKo} 은행·신용카드·크레딧·은퇴 계좌`, descEn: `${cityNameEn} banking · credit cards · score · retirement` },
     { emoji: "🏘️", titleKo: "주택 가이드", titleEn: "Housing Guide", descKo: `${cityNameKo} 동네 비교 · 부동산 · 카운티별 가격 · 헤브론 홈`, descEn: `${cityNameEn} neighborhoods · realty · county pricing · Hebron Home` },
     { emoji: "✅", titleKo: "전체 체크리스트", titleEn: "Complete Checklist", descKo: `${cityNameKo} 정착 모든 단계 한눈에`, descEn: `${cityNameEn} all settlement steps at a glance` },
-    { emoji: isKR ? "🏛️" : "🛂",
-      titleKo: isKR ? "역이민·귀환 가이드" : "비자·이민 가이드",
-      titleEn: isKR ? "Return Migration Guide" : "Visa & Immigration",
-      descKo: isKR ? `${cityNameKo} F-4 비자 · 국적회복 · 거소신고 · 역이민 절차` : `${cityNameKo} F-1 · H-1B · 영주권 · 시민권 단계별`,
-      descEn: isKR ? `${cityNameEn} F-4 visa · nationality · residence reg · return` : `${cityNameEn} F-1 · H-1B · green card · citizenship` },
+    { emoji: isKR ? "🗺️" : "🛂",
+      titleKo: isKR ? "한국 이주 가이드" : "비자·이민 가이드",
+      titleEn: isKR ? "Moving to Korea Guide" : "Visa & Immigration",
+      descKo: isKR ? `${cityNameKo} 역이민·취업·결혼·장기체류 — 4가지 트랙` : `${cityNameKo} F-1 · H-1B · 영주권 · 시민권 단계별`,
+      descEn: isKR ? `${cityNameEn} return · work · marriage · long-stay — 4 tracks` : `${cityNameEn} F-1 · H-1B · green card · citizenship` },
   ];
   const sh = settleHeaders[sub] ?? settleHeaders[0];
 
@@ -9898,42 +9898,78 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
         )}
         <div className="px-4 md:px-6 lg:px-8">
 
-        {/* ── 비자·이민 탭 (index 7) ── */}
+        {/* ── 한국 이주 가이드 탭 (index 7, KR) — 4트랙 ── */}
         {sub === 7 && isKR && (
           <div>
-            {[
-              { emoji: "🏛️", name: lang === "ko" ? "체류 자격 한눈에 보기" : "Visa & Stay Status Overview",
-                desc: lang === "ko"
-                  ? "✅ 한국 귀환 동포 주요 체류 자격:\n\n• F-4 (재외동포) — 외국국적 동포의 장기체류 비자. 취업 가능(단순노무 제외). 2년마다 갱신\n• F-5 (영주) — 5년 이상 체류 후 신청 가능. 갱신 없는 영구 체류\n• 국적회복 — 외국국적 포기 후 한국 국적 재취득. 법무부 국적과 신청\n• 거소신고 — 외국국적동포가 91일 이상 체류 시 주소지 구청 신고 의무\n\n💡 재외동포청(OKA) — oka.go.kr 에서 개인 상황별 최적 체류 자격 무료 상담"
-                  : "✅ Key stay status for returning Koreans:\n\n• F-4 (Overseas Korean) — long-stay visa for ethnic Koreans with foreign citizenship. Work permitted (except unskilled labor). Renew every 2 years\n• F-5 (Permanent Resident) — apply after 5+ years in Korea. No renewal needed\n• Nationality Recovery — regain Korean citizenship after renouncing foreign nationality. Apply at Ministry of Justice\n• Residence Registration — required within 90 days if staying 91+ days. Register at local district office\n\n💡 Overseas Koreans Agency (OKA) — oka.go.kr — free consultation",
-                tags: lang === "ko" ? ["F-4비자", "재외동포", "체류자격"] : ["F-4", "Overseas Korean", "Stay Status"] },
-              { emoji: "📋", name: lang === "ko" ? "주민등록 재등록 절차" : "Resident Registration Process",
-                desc: lang === "ko"
-                  ? "✅ 귀국 후 주민등록 재등록 (한국 국적자):\n\n준비서류:\n• 여권 (유효기간 6개월 이상 권장)\n• 외국 운전면허 또는 신분증\n• 귀국 신고서 (주민센터 비치)\n\n절차:\n1. 주소지 관할 주민센터 방문\n2. 주민등록 말소 해제 신청\n3. 주민등록증 재발급 신청 (2~3주 소요)\n\n💡 정부24(gov.kr) 온라인 신청 가능 (일부 서류 방문 필요)\n📞 주민센터 찾기: 주소검색→ 지역 주민센터 연결"
-                  : "✅ Re-register resident ID (Korean nationals returning home):\n\nRequired documents:\n• Valid passport (6+ months recommended)\n• Foreign driver's license or ID\n• Return registration form (available at community center)\n\nProcess:\n1. Visit local 주민센터 (community center)\n2. Apply to reinstate your 주민등록 (resident registration)\n3. Request new 주민등록증 (ID card) — takes 2–3 weeks\n\n💡 Some steps available online at gov.kr\n📞 Find nearest community center by address search",
-                tags: lang === "ko" ? ["주민등록", "재등록", "주민센터"] : ["Resident ID", "Registration", "Community Center"] },
-              { emoji: "🏥", name: lang === "ko" ? "국민건강보험 재가입" : "National Health Insurance Re-enrollment",
-                desc: lang === "ko"
-                  ? "✅ 귀국 후 건강보험 가입:\n\n• 국내 거주 시작 → 지역가입자 자동 편입 (귀국 후 1개월 이내)\n• 직장 취업 시 → 직장가입자로 전환 (회사에서 자동 처리)\n• 피부양자 등록 → 배우자·직계가족 건강보험 피부양자 가능\n\n납부 기준:\n• 지역가입자: 소득·재산·자동차 등급 기반 산정\n• 최초 귀국 시 전년도 소득 없으면 최저 보험료 적용\n\n신청:\n• 국민건강보험공단: nhis.or.kr / 📞 1577-1000\n• 전국 지사 방문 또는 온라인 신청 가능"
-                  : "✅ Health insurance enrollment upon return:\n\n• Moving to Korea → auto-enrolled as local subscriber within 1 month\n• Starting employment → automatically switched to workplace subscriber\n• Dependent registration → spouse/direct family can be added as dependents\n\nPremium basis:\n• Local subscriber: calculated on income, assets, and vehicle\n• No prior-year income → minimum premium applied at first enrollment\n\nApply:\n• NHIS: nhis.or.kr / 📞 1577-1000\n• Visit any branch or apply online",
-                tags: lang === "ko" ? ["건강보험", "국민건강보험", "NHIS"] : ["Health Insurance", "NHIS", "Enrollment"] },
-              { emoji: "🚗", name: lang === "ko" ? "운전면허 갱신·재발급" : "Driver's License Renewal",
-                desc: lang === "ko"
-                  ? "✅ 귀국 후 운전면허:\n\n기존 한국 면허 보유자:\n• 면허 갱신: 유효기간 내 → 가까운 운전면허시험장 또는 경찰서\n• 면허 재발급: 분실·훼손 → 주민센터 또는 운전면허시험장\n\n외국 면허 소지자 (한국 면허 없음):\n• 외국 면허 → 한국 면허 전환 가능 (협정국: 미국·캐나다·호주 등)\n• 협정국 면허: 필기·실기 면제, 적성검사만 통과 시 발급\n• 비협정국: 학과·기능·도로주행 전부 응시\n\n📞 도로교통공단: safedriving.or.kr / 1577-1120"
-                  : "✅ Driver's license upon return:\n\nExisting Korean license holders:\n• Renewal: before expiry → nearest license exam office or police station\n• Reissue: lost/damaged → community center or license exam office\n\nForeign license holders (no Korean license):\n• Transfer from foreign license (treaty countries: US, Canada, Australia, etc.)\n• Treaty country license: exempt from written & driving test — vision test only\n• Non-treaty country: must take all tests\n\n📞 Road Traffic Authority: safedriving.or.kr / 1577-1120",
-                tags: lang === "ko" ? ["운전면허", "갱신", "도로교통공단"] : ["Driver License", "Renewal", "Transfer"] },
-              { emoji: "💼", name: lang === "ko" ? "역이민 지원 프로그램" : "Return Migration Support Programs",
-                desc: lang === "ko"
-                  ? "✅ 정부 귀환 동포 지원:\n\n재외동포청 (OKA):\n• 홈페이지: oka.go.kr / 📞 032-410-1000\n• 국내 정착 원스톱 상담, 취업·창업 지원, 주거 연계\n\n재외동포재단:\n• 홈페이지: okf.or.kr / 📞 02-3415-0100\n• 귀국 동포 한국어 교육, 정착 프로그램\n\n서울글로벌센터 (서울 거주자):\n• 홈페이지: global.seoul.go.kr\n• 다국어 법률·세무·의료 무료 상담\n\n고용24 (취업):\n• 홈페이지: work.go.kr\n• 해외 경력자 국내 취업 재진입 지원"
-                  : "✅ Government support for returning Koreans:\n\nOverseas Koreans Agency (OKA):\n• oka.go.kr / 📞 032-410-1000\n• One-stop settlement consultation, employment & startup support\n\nOverseas Koreans Foundation:\n• okf.or.kr / 📞 02-3415-0100\n• Korean language education, settlement programs\n\nSeoul Global Center (Seoul residents):\n• global.seoul.go.kr\n• Free multilingual legal, tax, and medical consultation\n\nWork Korea (Employment):\n• work.go.kr\n• Re-entry support for overseas career holders",
-                tags: lang === "ko" ? ["역이민지원", "재외동포청", "귀환프로그램"] : ["Return Support", "OKA", "Programs"] },
-            ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
-            <div style={{ background: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#FCA5A5", marginBottom: 4 }}>🏛️ {lang === "ko" ? "귀환 핵심 체크포인트" : "Key Return Checkpoints"}</div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)", whiteSpace: "pre-line" }}>
+            {/* 트랙 안내 배너 */}
+            <div style={{ background: "linear-gradient(135deg,rgba(220,38,38,0.10),rgba(201,162,39,0.08))", border: "1px solid rgba(220,38,38,0.25)", borderRadius: 16, padding: "16px 18px", marginBottom: 16 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#FCA5A5", marginBottom: 6 }}>
+                🗺️ {lang === "ko" ? "한국 이주 — 4가지 트랙" : "Moving to Korea — 4 Tracks"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.65)", lineHeight: 1.8 }}>
                 {lang === "ko"
-                  ? "• 도착 즉시: 거소신고 또는 주민등록 재등록 (주민센터)\n• 1개월 이내: 국민건강보험공단 가입 (nhis.or.kr)\n• 재외동포청 상담: oka.go.kr — 체류 자격·취업 무료 상담\n• 운전면허: safedriving.or.kr — 기존 면허 갱신 또는 해외 면허 전환\n• 금융: 기존 계좌 재활성화 또는 카카오뱅크 비대면 개설"
-                  : "• On arrival: register at 주민센터 (resident registration)\n• Within 1 month: enroll in National Health Insurance (nhis.or.kr)\n• OKA consultation: oka.go.kr — free advice on stay status & employment\n• Driver's license: safedriving.or.kr — renew or transfer foreign license\n• Banking: reactivate existing account or open Kakaobank online"}
+                  ? "① 역이민·귀환 (재외동포)  ② 취업 이민  ③ 결혼 이민  ④ 장기거주·디지털노마드\n본인에게 해당하는 트랙을 확인하세요."
+                  : "① Return migration (diaspora)  ② Work immigration  ③ Marriage immigration  ④ Long-stay · Digital nomad\nFind the track that applies to you."}
+              </div>
+            </div>
+
+            {/* ── 트랙 1: 역이민·귀환 한인 ── */}
+            <div style={{ background: "rgba(220,38,38,0.07)", border: "1px solid rgba(220,38,38,0.2)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#FCA5A5", marginBottom: 8 }}>
+                🇰🇷 {lang === "ko" ? "트랙 ① — 역이민·귀환 동포 (재외동포 한인)" : "Track ① — Returning Korean Diaspora"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.7)", lineHeight: 1.85, whiteSpace: "pre-line" }}>
+                {lang === "ko"
+                  ? "• F-4 재외동포 비자 — 외국국적 동포 장기체류. 취업 가능(단순노무 제외). 2년 갱신\n• F-5 영주 — 5년+ 체류 후 신청. 갱신 없음\n• 국적회복 — 외국국적 포기 후 한국 국적 재취득 (법무부)\n• 거소신고 — 91일+ 체류 시 주소지 구청 신고 의무\n• 주민등록 재등록 — 주민센터 방문, 당일 처리\n• 건강보험 — 귀국 후 1개월 내 국민건강보험공단 자동 편입\n\n📞 재외동포청 무료 상담: oka.go.kr / 032-410-1000\n📞 하이코리아 온라인 비자: hikorea.go.kr"
+                  : "• F-4 Overseas Korean Visa — long-stay for ethnic Koreans with foreign citizenship. Work permitted. Renew every 2 years\n• F-5 Permanent Residency — after 5+ years. No renewal needed\n• Nationality Recovery — regain Korean citizenship after renouncing foreign nationality\n• Residence Registration — required if staying 91+ days. Register at local district office\n• Re-register Resident ID — visit 주민센터, same-day processing\n• Health Insurance — auto-enrolled within 1 month of return\n\n📞 Overseas Koreans Agency: oka.go.kr / 032-410-1000\n📞 Online visa: hikorea.go.kr"}
+              </div>
+            </div>
+
+            {/* ── 트랙 2: 취업 이민 ── */}
+            <div style={{ background: "rgba(37,99,235,0.07)", border: "1px solid rgba(37,99,235,0.2)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#93C5FD", marginBottom: 8 }}>
+                💼 {lang === "ko" ? "트랙 ② — 취업 이민 (한국에서 일하고 싶은 외국인)" : "Track ② — Work Immigration"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.7)", lineHeight: 1.85, whiteSpace: "pre-line" }}>
+                {lang === "ko"
+                  ? "• E-7 특정활동 — 전문직 취업비자. 고용주 초청 필수. 가장 일반적인 취업 경로\n• E-1/E-2 회화지도 — 영어·외국어 강사 (E-2: 영어권 국적자 한정)\n• E-3/E-4/E-5 — 연구원·기술지도·전문직업 (의사·변호사 등)\n• D-8 기업투자 — 외국인 투자기업 직원 파견\n• F-2 거주 — 장기체류 후 취득. 취업 제한 없음\n\n절차:\n1. 한국 고용주 채용 → 비자 초청장 발급\n2. 본국 한국 영사관에서 비자 신청\n3. 입국 후 90일 내 출입국사무소 → 외국인등록증 발급\n\n📞 하이코리아: hikorea.go.kr\n📞 고용노동부: work.go.kr"
+                  : "• E-7 Designated Activities — professional work visa. Employer sponsorship required. Most common route\n• E-1/E-2 Language Teaching — foreign language instruction (E-2: English-speaking nationalities only)\n• E-3/E-4/E-5 — Researcher / Technical guidance / Professional (doctors, lawyers, etc.)\n• D-8 Corporate Investment — employee dispatch from foreign-invested company\n• F-2 Residence — obtained after long-term stay. No work restrictions\n\nProcess:\n1. Korean employer hires you → issues visa invitation\n2. Apply for visa at Korean consulate in home country\n3. Within 90 days of arrival → register foreigner ID at immigration office\n\n📞 HiKorea: hikorea.go.kr\n📞 Ministry of Employment: work.go.kr"}
+              </div>
+            </div>
+
+            {/* ── 트랙 3: 결혼 이민 ── */}
+            <div style={{ background: "rgba(16,185,129,0.07)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#6EE7B7", marginBottom: 8 }}>
+                💑 {lang === "ko" ? "트랙 ③ — 결혼 이민 (한국인 배우자)" : "Track ③ — Marriage Immigration"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.7)", lineHeight: 1.85, whiteSpace: "pre-line" }}>
+                {lang === "ko"
+                  ? "• F-6 결혼이민 — 한국인 배우자와 결혼 시 발급. 취업 가능. 2년 갱신\n• F-5 영주 — F-6으로 2년+ 체류 후 신청 가능\n• 혼인귀화 — F-6으로 2년+ 또는 혼인 3년+ 후 신청\n\n절차:\n1. 본국에서 한국 혼인신고 서류 준비\n2. 한국 영사관에서 F-6 비자 신청\n3. 입국 후 시청/구청 혼인신고\n4. 출입국사무소 → 외국인등록증 발급\n\n중요:\n• 가정폭력·이혼 시에도 체류 지위 보호 가능\n• 다문화가족지원센터 무료 한국어 교육·정착 지원\n\n📞 다문화가족지원포털: liveinkorea.kr\n📞 출입국외국인정책본부: 1345"
+                  : "• F-6 Marriage Migration — issued when married to a Korean national. Work permitted. Renew every 2 years\n• F-5 Permanent Residency — apply after 2+ years on F-6\n• Naturalization by marriage — after 2+ years on F-6 or 3+ years of marriage\n\nProcess:\n1. Prepare marriage registration documents in home country\n2. Apply for F-6 visa at Korean consulate\n3. After entry: register marriage at city/district office\n4. Immigration office → get foreigner registration card\n\nImportant:\n• Stay status protected even in domestic violence/divorce cases\n• Multicultural Family Support Centers offer free Korean education\n\n📞 LiveInKorea: liveinkorea.kr\n📞 Immigration hotline: 1345"}
+              </div>
+            </div>
+
+            {/* ── 트랙 4: 장기거주·디지털노마드 ── */}
+            <div style={{ background: "rgba(124,58,237,0.07)", border: "1px solid rgba(124,58,237,0.2)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#C4B5FD", marginBottom: 8 }}>
+                🌐 {lang === "ko" ? "트랙 ④ — 장기거주·디지털노마드" : "Track ④ — Long-Stay · Digital Nomad"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.7)", lineHeight: 1.85, whiteSpace: "pre-line" }}>
+                {lang === "ko"
+                  ? "• D-10 구직 비자 — 한국 취업 준비 중 체류 (최대 6개월, 1회 연장)\n• 워킹홀리데이 — 한국과 협정국 (호주·캐나다·영국 등 약 30개국). 만 18~30세\n• C-3 단기 체류 → 장기로 전환 시 D/F/E 비자 필요\n• 외국인등록 — 90일 초과 체류 시 반드시 등록 (벌금 방지)\n\n디지털노마드 팁:\n• 한국은 공식 '디지털노마드 비자' 없음 (2025년 기준)\n• 관광(C-3) 90일 + 인접국 출입국 반복 방식 일부 사용 (비추천)\n• E-7 또는 D-8 취업 비자가 현실적 장기 체류 경로\n• 코워킹 스페이스: 위워크 서울·패스트파이브·스파크플러스\n\n📞 출입국외국인정책본부: 1345 (24시간, 영어 가능)\n📞 외국인등록 안내: hikorea.go.kr"
+                  : "• D-10 Job Seeker Visa — stay while seeking employment in Korea (up to 6 months, 1 extension)\n• Working Holiday — Korea has agreements with ~30 countries (Australia, Canada, UK, etc.). Ages 18–30\n• C-3 Short Stay → must switch to D/F/E visa for long-term\n• Foreigner Registration — mandatory if staying 90+ days (avoid fines)\n\nDigital Nomad tips:\n• Korea has no official 'Digital Nomad Visa' as of 2025\n• Tourist (C-3) 90-day + border run method used by some (not recommended)\n• E-7 or D-8 work visa is the realistic long-term option\n• Coworking: WeWork Seoul · FastFive · Sparkplus\n\n📞 Immigration hotline: 1345 (24hrs, English available)\n📞 Foreigner registration: hikorea.go.kr"}
+              </div>
+            </div>
+
+            {/* 공통 핵심 체크포인트 */}
+            <div style={{ background: "rgba(201,162,39,0.07)", border: "1px solid rgba(201,162,39,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 4 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#FDE68A", marginBottom: 4 }}>
+                ✅ {lang === "ko" ? "공통 핵심 절차" : "Universal Key Steps"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.85, color: "rgba(236,253,245,0.65)", whiteSpace: "pre-line" }}>
+                {lang === "ko"
+                  ? "• 90일 초과 체류 → 반드시 외국인등록 (출입국사무소)\n• 체류 자격 모를 때 → 1345 전화 (24시간, 영어·한국어)\n• 카카오뱅크 — 외국인 등록 후 비대면 즉시 개설\n• 국민건강보험 — 6개월+ 체류 시 지역가입자 의무 가입\n• 구글맵 'immigration office near me' 또는 hikorea.go.kr"
+                  : "• Staying 90+ days → register as foreigner (immigration office)\n• Unsure about visa status → call 1345 (24hrs, English/Korean)\n• Kakaobank — open instantly online after foreigner registration\n• Health Insurance — mandatory enrollment after 6+ months of stay\n• Google Maps 'immigration office near me' or hikorea.go.kr"}
               </div>
             </div>
           </div>
