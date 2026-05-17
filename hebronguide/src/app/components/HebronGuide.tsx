@@ -3855,6 +3855,100 @@ const TOP5_EXPLORE_ANCHORAGE: Top5Item[] = [
     tip: "무료 입장. 주차 $5. 여름(6-9월) 최적", website: "dnr.alaska.gov/parks/units/chugach" },
 ];
 
+/* ── LOUISVILLE (KY) ── */
+const TOP5_SETTLE_LOUISVILLE: Top5Item[] = [
+  { rank: 1, emoji: "⛪", nameKo: "루이빌새한장로교회", nameEn: "Louisville Saehan Presbyterian Church",
+    address: "Louisville, KY",
+    hours: "주일 예배 (일정 문의)",
+    why: "⭐ 가정교회 (IHM 인증 기준). 담임: 김상헌 목사. 루이빌 한인 정착 첫 영적 기착지. 목장 소그룹 모임 운영.",
+    tip: "예배 일정·장소는 교회에 직접 문의 (주소 업데이트 예정)",
+    website: "google.com/search?q=루이빌새한장로교회" },
+  { rank: 2, emoji: "🏛️", nameKo: "켄터키 한인회", nameEn: "Korean American Association of Kentucky",
+    address: "Louisville, KY",
+    hours: "문의 후 방문",
+    why: "루이빌 한인 커뮤니티 네트워크. 정착 초기 정보·취업·생활 상담.",
+    tip: "구글 검색으로 최신 연락처 확인", website: "google.com/search?q=Korean+American+Association+Louisville+KY" },
+  { rank: 3, emoji: "🚗", nameKo: "Kentucky KYTC — 운전면허", nameEn: "Kentucky KYTC — Driver's License",
+    address: "1000 St. Matthews Ave, Louisville, KY 40204",
+    hours: "월-금 8am-4:30pm",
+    why: "켄터키 이주 후 60일 내 면허 전환 의무. 한국 면허 소지 시 도로 주행 테스트 면제 가능.",
+    tip: "지참 서류: 여권·비자·SSN·주소 증빙 2개. 필기 테스트 한국어 응시 불가", website: "drive.ky.gov" },
+  { rank: 4, emoji: "🏪", nameKo: "H-Mart 루이빌 (또는 아시안 마트)", nameEn: "H-Mart Louisville / Asian Grocery",
+    address: "Louisville, KY (지점 위치 구글 확인)",
+    hours: "매일 9am-9pm",
+    why: "루이빌 한국 식재료·반찬·즉석식품. 한인 커뮤니티 생활 거점.",
+    tip: "구글맵 'H-Mart Louisville' 또는 'Korean grocery Louisville KY' 검색", website: "hmart.com" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "한국 총영사관 (애틀랜타 관할)", nameEn: "Korean Consulate — Atlanta (Jurisdiction)",
+    address: "229 Peachtree St NE Suite 500, Atlanta, GA 30303",
+    phone: "(404) 522-1611", hours: "월-금 9am-12pm, 1:30pm-4pm",
+    why: "켄터키는 애틀랜타 총영사관 관할. 여권 발급·갱신·공증·재외국민 등록.",
+    tip: "온라인 예약 필수. 루이빌 영사 순회 서비스 여부 사전 확인", website: "overseas.mofa.go.kr/us-atlanta-ko" },
+];
+const TOP5_FOOD_LOUISVILLE: Top5Item[] = [
+  { rank: 1, emoji: "🍗", nameKo: "H-Mart 푸드코트 (한국 즉석식품)", nameEn: "H-Mart Food Court",
+    address: "Louisville, KY (구글맵 확인)",
+    hours: "매일 11am-8pm",
+    rating: 4.2, ratingCount: "500+",
+    why: "루이빌 한국 음식 최고 거점. 떡볶이·순대·김밥·라면. 한인 커뮤니티 모임 장소.",
+    tip: "H-Mart 내 푸드코트 위치 사전 확인 권장" },
+  { rank: 2, emoji: "🥩", nameKo: "루이빌 한국 식당 (구글 검색)", nameEn: "Korean Restaurants — Louisville",
+    address: "Louisville, KY 일대",
+    hours: "매장별 상이",
+    rating: 4.1, ratingCount: "1,000+",
+    why: "루이빌 소규모 한국 식당가. 한식·BBQ·순두부 등. 한인 규모가 작아 선택지 제한적.",
+    tip: "'Korean restaurant Louisville KY' 구글 검색 후 Yelp 별점 확인", website: "yelp.com/search?find_desc=Korean+restaurant&find_loc=Louisville+KY" },
+  { rank: 3, emoji: "🍺", nameKo: "Pappy & Charles — 버번 바 (체험)", nameEn: "Bourbon Experience Bar",
+    address: "Louisville, KY 다운타운",
+    hours: "화-일 4pm-12am",
+    rating: 4.4, ratingCount: "2,000+",
+    why: "켄터키 버번위스키 본고장 루이빌 필수 체험. 한인들도 즐겨 찾는 로컬 버번 바.",
+    tip: "버번 트레일 시작점. 비음주자는 버번 아이스크림·소다 주문 가능" },
+  { rank: 4, emoji: "🌮", nameKo: "루이빌 푸드트럭 씬", nameEn: "Louisville Food Truck Scene",
+    address: "Jefferson Square Park, Louisville KY",
+    hours: "금-일 11am-8pm (계절·행사별 상이)",
+    rating: 4.3, ratingCount: "3,000+",
+    why: "다문화 푸드트럭 집결. 멕시칸·인도·아시안·BBQ. 저렴하고 다양한 루이빌 로컬 먹거리.",
+    tip: "Louisville Food Truck Association SNS에서 위치 확인" },
+  { rank: 5, emoji: "🥧", nameKo: "Homemade Pie Kitchen (현지 명물)", nameEn: "Homemade Pie Kitchen",
+    address: "2 locations — Middletown & St. Matthews, Louisville KY",
+    hours: "월-토 7am-7pm, 일 8am-5pm",
+    rating: 4.5, ratingCount: "4,000+",
+    why: "루이빌 현지인 줄서는 파이 전문점. 한인들도 추천하는 로컬 디저트 명소.",
+    tip: "수제 파이 시즌별 메뉴 변동. 오전 방문 시 선택지 많음", website: "homemadepieskitchen.com" },
+];
+const TOP5_EXPLORE_LOUISVILLE: Top5Item[] = [
+  { rank: 1, emoji: "🐎", nameKo: "처칠다운스 (Kentucky Derby)", nameEn: "Churchill Downs — Kentucky Derby",
+    address: "700 Central Ave, Louisville, KY 40208",
+    phone: "(502) 636-4400", hours: "투어: 화-일 10am-4pm / 경마: 계절별",
+    rating: 4.6, ratingCount: "15,000+",
+    why: "켄터키 더비 개최지. 세계 3대 경마. 박물관·경마장 투어 가능. 루이빌 필수 관광.",
+    tip: "Kentucky Derby 당일(5월 첫째 토요일) 입장권 1년 전 예매 권장", website: "churchilldowns.com" },
+  { rank: 2, emoji: "🥊", nameKo: "무하마드 알리 센터", nameEn: "Muhammad Ali Center",
+    address: "144 N 6th St, Louisville, KY 40202",
+    phone: "(502) 584-9254", hours: "화-일 9:30am-5pm",
+    rating: 4.7, ratingCount: "8,000+",
+    why: "루이빌 출신 전설적 복서 무하마드 알리 기념 박물관. 인권·평화 메시지와 스포츠 역사 전시.",
+    tip: "입장료 $16. 박물관+전망대+강변 산책 패키지로 반나절 코스", website: "alicenter.org" },
+  { rank: 3, emoji: "⚾", nameKo: "Louisville Slugger 박물관", nameEn: "Louisville Slugger Museum & Factory",
+    address: "800 W Main St, Louisville, KY 40202",
+    phone: "(877) 775-8443", hours: "월-토 9am-5pm, 일 11am-5pm",
+    rating: 4.6, ratingCount: "10,000+",
+    why: "야구 배트 브랜드 Louisville Slugger 공장·박물관. 배트 제작 과정 직접 관람. 미국 야구 문화 체험.",
+    tip: "투어 포함 입장권 $16. 1층 기념품점에서 맞춤 배트 주문 가능", website: "sluggermuseum.com" },
+  { rank: 4, emoji: "🌉", nameKo: "빅포 브릿지 (Big Four Bridge)", nameEn: "Big Four Bridge",
+    address: "Witherspoon St, Louisville, KY 40202",
+    hours: "상시 개방",
+    rating: 4.5, ratingCount: "7,000+",
+    why: "오하이오강 위 보행자 전용 다리. 루이빌↔인디애나 뷰. 자전거·산책 명소. 일몰 포토스팟.",
+    tip: "무료 입장. Clarksville IN쪽에도 공원 있어 왕복 산책 가능" },
+  { rank: 5, emoji: "🦁", nameKo: "루이빌 동물원", nameEn: "Louisville Zoo",
+    address: "1100 Trevilian Way, Louisville, KY 40213",
+    phone: "(502) 459-2181", hours: "매일 10am-5pm",
+    rating: 4.5, ratingCount: "12,000+",
+    why: "미국 20대 동물원. 1,700종+동물. 가족 나들이 최적. 봄-가을 야외 행사 풍성.",
+    tip: "주차 $7. 입장료 성인 $19. 온라인 예매 시 할인", website: "louisvillezoo.org" },
+];
+
 /* ── 20. SYDNEY ── */
 const TOP5_SETTLE_SYDNEY: Top5Item[] = [
   { rank: 1, emoji: "🏛️", nameKo: "시드니 한인회", nameEn: "Korean Society of Sydney",
@@ -7211,13 +7305,21 @@ function getSettleSteps(citySlug: string) {
     : cc === "MX" ? "BBVA / HSBC\npassport + CURP" : "Chase preferred\nPassport only";
   return [
     { num: "1", emoji: "📱", titleKo: "SIM 카드",  titleEn: "SIM Card",      descKo: simKo,  descEn: simEn,  color: "#F2994A" },
-    { num: "2", emoji: "🏠", titleKo: "임시 숙소", titleEn: "Housing",        descKo: housingKo[citySlug] ?? "에어비앤비\n한인타운 권장", descEn: housingEn[citySlug] ?? "Airbnb\nKoreatown area", color: "#7C3AED" },
+    { num: "2", emoji: "🏠", titleKo: "임시 숙소", titleEn: "Housing",
+        descKo: housingKo[citySlug] ?? (cc === "KR" ? "직방·다방\n앱으로 단기 검색" : cc === "JP" ? "스모·홈즈\n부동산 앱" : cc === "AU" ? "Domain·REA\n부동산 앱" : cc === "CA" ? "Zumper·Kijiji\n임대 앱" : cc === "UK" ? "Rightmove·Zoopla\n임대 앱" : cc === "DE" ? "ImmoScout24\n임대 앱" : "에어비앤비\n한인타운 권장"),
+        descEn: housingEn[citySlug] ?? (cc === "KR" ? "Jikbang / Daebang\nrental apps" : cc === "JP" ? "Suumo / Homes\nreal estate" : cc === "AU" ? "Domain / REA\nreal estate" : cc === "CA" ? "Zumper / Kijiji\nrental app" : cc === "UK" ? "Rightmove / Zoopla\nrental" : cc === "DE" ? "ImmoScout24\nrental app" : "Airbnb\nKoreatown area"), color: "#7C3AED" },
     { num: "3", emoji: "🏦", titleKo: "은행 계좌", titleEn: "Bank Account",   descKo: bankKo, descEn: bankEn, color: "#2563EB" },
-    { num: "4", emoji: "🚗", titleKo: cc === "KR" ? "면허 갱신" : "운전면허", titleEn: cc === "KR" ? "License Renewal" : "Driver License", descKo: "한국어 필기\n가능", descEn: "Korean test\navailable", color: "#059669" },
+    { num: "4", emoji: "🚗",
+        titleKo: cc === "KR" ? "운전면허 교환" : "운전면허",
+        titleEn: cc === "KR" ? "License Exchange" : "Driver License",
+        descKo: cc === "KR" ? "운전면허시험장\n외국면허 교환 가능" : "한국어 필기\n가능",
+        descEn: cc === "KR" ? "Driver license center\nforeign license exchange" : "Korean test\navailable", color: "#059669" },
     { num: "5", emoji: "📋", titleKo: cc === "CA" ? "SIN 신청" : cc === "AU" ? "TFN 신청" : cc === "JP" ? "마이넘버" : cc === "KR" ? "주민등록" : "SSN 신청",
       titleEn: cc === "CA" ? "Apply SIN" : cc === "AU" ? "Apply TFN" : cc === "JP" ? "My Number" : cc === "KR" ? "Resident ID" : "Apply SSN",
       descKo: idKo, descEn: idEn, color: "#EF4444" },
-    { num: "6", emoji: "💊", titleKo: "건강보험", titleEn: "Health Ins.",      descKo: healthInsKo[citySlug] ?? "건강보험\n소득기준 확인", descEn: healthInsEn[citySlug] ?? "Health insurance\nCheck eligibility", color: "#64748B" },
+    { num: "6", emoji: "💊", titleKo: "건강보험", titleEn: "Health Ins.",
+        descKo: healthInsKo[citySlug] ?? (cc === "KR" ? "국민건강보험\n지사·공단 신청" : cc === "JP" ? "국민건강보험\n구청 창구" : cc === "AU" ? "Medicare\n공항 즉시 신청" : cc === "CA" ? "주별 의료보험\n입국 후 3개월" : cc === "UK" ? "NHS 등록\nGP 방문" : cc === "DE" ? "TK·AOK\n의무 가입" : "건강보험\n소득기준 확인"),
+        descEn: healthInsEn[citySlug] ?? (cc === "KR" ? "NHIS branch\napply in person" : cc === "JP" ? "Kokuho\nward office" : cc === "AU" ? "Medicare\napply at airport" : cc === "CA" ? "Provincial health\n3-month wait" : cc === "UK" ? "NHS — Register\nwith local GP" : cc === "DE" ? "TK / AOK\nmandatory plan" : "Health insurance\nCheck eligibility"), color: "#64748B" },
   ];
 }
 
@@ -10487,6 +10589,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "fayetteville"? TOP5_SETTLE_FAYETTEVILLE :
             useCityConfig().slug === "killeen"    ? TOP5_SETTLE_KILLEEN :
             useCityConfig().slug === "anchorage"  ? TOP5_SETTLE_ANCHORAGE :
+            useCityConfig().slug === "louisville" ? TOP5_SETTLE_LOUISVILLE :
             useCityConfig().slug === "sydney"     ? TOP5_SETTLE_SYDNEY :
             useCityConfig().slug === "melbourne"  ? TOP5_SETTLE_MELBOURNE :
             useCityConfig().slug === "brisbane"   ? TOP5_SETTLE_BRISBANE :
@@ -14763,6 +14866,7 @@ const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
   fayetteville:  TOP5_FOOD_FAYETTEVILLE,
   killeen:       TOP5_FOOD_KILLEEN,
   anchorage:     TOP5_FOOD_ANCHORAGE,
+  louisville:    TOP5_FOOD_LOUISVILLE,
   calgary:       TOP5_FOOD_CALGARY,
   edmonton:      TOP5_FOOD_EDMONTON,
   ottawa:        TOP5_FOOD_OTTAWA,
@@ -15486,6 +15590,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
               slug === "fayetteville" ? TOP5_EXPLORE_FAYETTEVILLE :
               slug === "killeen"      ? TOP5_EXPLORE_KILLEEN :
               slug === "anchorage"    ? TOP5_EXPLORE_ANCHORAGE :
+              slug === "louisville"   ? TOP5_EXPLORE_LOUISVILLE :
               slug === "sydney"       ? TOP5_EXPLORE_SYDNEY :
               slug === "melbourne"    ? TOP5_EXPLORE_MELBOURNE :
               slug === "brisbane"     ? TOP5_EXPLORE_BRISBANE :
