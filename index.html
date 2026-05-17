@@ -490,7 +490,7 @@
         'calgary','edmonton','ottawa','winnipeg','phoenix','charlotte','raleigh','columbus',
         'minneapolis','tucson','fayetteville','killeen','anchorage','sydney','melbourne',
         'brisbane','perth','auckland','saopaulo','london','singapore','bangkok','hochiminh',
-        'dubai','frankfurt','berlin','paris','tokyo','osaka','seoul','busan'];
+        'dubai','frankfurt','berlin','paris','tokyo','osaka','seoul','busan','louisville','orangecounty','ansan','incheon','jeju','daegu','gwangju','daejeon'];
       if (lastCity && valid.indexOf(lastCity) !== -1) {
         var s = window.location.search, h = window.location.hash;
         window.location.replace('/' + lastCity + '/' + s + h);
@@ -501,7 +501,7 @@
   <!-- 스티키 네비 -->
   <nav class="topbar">
     <div class="topbar-inner">
-      <a href="/" class="brand">HebronGuide</a>
+      <a href="/" class="brand"><img src="https://hebronguide.com/hebronguide-logo.svg" alt="HebronGuide" height="32" style="vertical-align:middle;"></a>
       <div class="topnav-links">
         <a href="/seattle/">시애틀</a>
         <a href="#cities">도시 목록</a>
@@ -531,7 +531,7 @@
     <!-- 통계 -->
     <div class="stats">
       <div class="stat">
-        <div class="stat-value">54</div>
+        <div class="stat-value">62</div>
         <div class="stat-label">도시 가이드</div>
       </div>
       <div class="stat">
@@ -549,10 +549,10 @@
     </div>
   </section>
 
-  <!-- 도시 섹션 — 54개 전체 -->
+  <!-- 도시 섹션 — 62개 전체 -->
   <section id="cities" class="cities-section">
     <div class="section-head">
-      <h2>전 세계 <span style="color:var(--accent-gold)">54개 도시</span></h2>
+      <h2>전 세계 <span style="color:var(--accent-gold)">62개 도시</span></h2>
       <p>한인이 사는 곳이라면 어디든. 도시를 선택하세요.</p>
     </div>
 
@@ -598,6 +598,8 @@
           <a href="/fayetteville/" class="city-pill">⚔️ 페이엣빌</a>
           <a href="/killeen/"      class="city-pill">🪖 킬린</a>
           <a href="/anchorage/"    class="city-pill">🐻 앵커리지</a>
+          <a href="/louisville/"   class="city-pill">🥃 루이빌</a>
+          <a href="/orangecounty/" class="city-pill">🍊 오렌지카운티</a>
         </div>
       </div>
 
@@ -614,16 +616,6 @@
         </div>
       </div>
 
-      <!-- 🇲🇽 멕시코 -->
-      <div class="region-block">
-        <div class="region-label">🇲🇽 멕시코</div>
-        <div class="city-pills">
-          <a href="/mexicocity/"  class="city-pill">🌮 멕시코시티</a>
-          <a href="/guadalajara/" class="city-pill">🎺 과달라하라</a>
-          <a href="/monterrey/"   class="city-pill">🏭 몬테레이</a>
-        </div>
-      </div>
-
       <!-- 🇦🇺 호주·뉴질랜드 -->
       <div class="region-block">
         <div class="region-label">🇦🇺 호주 · 🇳🇿 뉴질랜드</div>
@@ -636,11 +628,14 @@
         </div>
       </div>
 
-      <!-- 🌎 남미 -->
+      <!-- 🌎 중남미 (UN Geoscheme: 중미·남미) -->
       <div class="region-block">
-        <div class="region-label">🌎 남미</div>
+        <div class="region-label">🌎 중남미</div>
         <div class="city-pills">
-          <a href="/saopaulo/" class="city-pill">🇧🇷 상파울루</a>
+          <a href="/mexicocity/"  class="city-pill">🌮 멕시코시티</a>
+          <a href="/guadalajara/" class="city-pill">🎺 과달라하라</a>
+          <a href="/monterrey/"   class="city-pill">🏭 몬테레이</a>
+          <a href="/saopaulo/"    class="city-pill">🇧🇷 상파울루</a>
         </div>
       </div>
 
@@ -677,10 +672,16 @@
 
       <!-- 🇰🇷 한국 -->
       <div class="region-block">
-        <div class="region-label">🇰🇷 한국 (역이민·귀환 동포)</div>
+        <div class="region-label">🇰🇷 한국 (이주·역이민·귀환 동포)</div>
         <div class="city-pills">
-          <a href="/seoul/" class="city-pill">🏙️ 서울</a>
-          <a href="/busan/" class="city-pill">🌊 부산</a>
+          <a href="/seoul/"   class="city-pill">🏯 서울</a>
+          <a href="/busan/"   class="city-pill">🌊 부산</a>
+          <a href="/ansan/"   class="city-pill">🌏 안산</a>
+          <a href="/incheon/" class="city-pill">✈️ 인천</a>
+          <a href="/jeju/"    class="city-pill">🌿 제주</a>
+          <a href="/daegu/"   class="city-pill">🍎 대구</a>
+          <a href="/gwangju/" class="city-pill">🎨 광주</a>
+          <a href="/daejeon/" class="city-pill">🔬 대전</a>
         </div>
       </div>
 
