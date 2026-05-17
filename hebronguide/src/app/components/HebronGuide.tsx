@@ -11265,17 +11265,14 @@ function getCityChurches(slug: string, lang: string) {
     seattle: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "Hebron Platform (Global Mission Church)" : "Global Mission Church of Greater Seattle",
-        nameEn: ko ? "Global Mission Church of Greater Seattle" : "Hebron Platform",
+        name: ko ? "시애틀지구촌교회" : "Global Mission Church of Greater Seattle",
+        nameEn: "Global Mission Church of Greater Seattle",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 시애틀 지역목자 · 세축 네기둥\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 주일연합예배 · 목장 · 삶 공부\n✨ 담임: 김성수 목사\n📞 425-350-0191\n🔗 ijiguchon.org"
-          : "✅ House Church | HMI Seattle Regional Shepherd · Three Axes & Four Pillars\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday Worship · Mokjang · Life Studies\n✨ Lead Pastor: Sungsoo Kim\n📞 425-350-0191\n🔗 ijiguchon.org",
+          ? "✅ 가정교회 | 북미가사원 시애틀 지역목자 · 세축 네기둥\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 주일연합예배 · 목장 · 삶 공부\n✨ 담임: 김성수 목사\n🔗 ijiguchon.org"
+          : "✅ House Church | HMI Seattle Regional Shepherd · Three Axes & Four Pillars\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday Worship · Mokjang · Life Studies\n✨ Lead Pastor: Sungsoo Kim\n🔗 ijiguchon.org",
         tags: ko ? ["가정교회", "IHM", "린우드", "시애틀"] : ["House Church", "IHM", "Lynnwood", "Seattle"],
-        website: "https://ijiguchon.org",  // www 제거 — 405 오류 방지 (2026-05-13)
-        phone: "425-350-0191",
+        website: "https://ijiguchon.org",
         email: "hebronplatform@gmail.com",
-        // phone: "+1-425-XXX-XXXX",   // ← 김성수 목사님께 확인 후 추가
-        // kakao: "https://pf.kakao.com/_XXXXX",  // ← 카카오채널 URL 확인 후 추가
       },
       // 시애틀우리교회 — 지금은 보류 (2026-05-10 폴 김 목사 지시). 추후 재검토 시 복원.
     ],
@@ -11285,20 +11282,18 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "예달교회" : "Yedal Church — Dallas",
         nameEn: "Yedal Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 텍사스 지역목자\n📍 Dallas, TX\n✨ 담임: 이우철 목사\n📞 214-596-1776"
-          : "✅ House Church | HMI North America Texas Regional Shepherd\n📍 Dallas, TX\n✨ Lead Pastor: Woo Chul Lee\n📞 214-596-1776",
+          ? "✅ 가정교회 | 북미가사원 텍사스 지역목자\n📍 Dallas, TX\n✨ 담임: 이우철 목사"
+          : "✅ House Church | HMI North America Texas Regional Shepherd\n📍 Dallas, TX\n✨ Lead Pastor: Woo Chul Lee",
         tags: ko ? ["가정교회", "달라스", "텍사스"] : ["House Church", "Dallas", "Texas"],
-        phone: "214-596-1776",
       },
       {
         emoji: "⛪", tier: 2,
         name: ko ? "에덴교회 (Eden Church at the Field)" : "Eden Church at the Field — Carrollton",
         nameEn: ko ? "Eden Church at the Field" : "에덴교회",
         desc: ko
-          ? "✅ 검증됨\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n✨ 담임: 신종우 목사\n🕐 주일예배 매주 일요일 오후 12:30\n📞 214-629-3066\n📧 kfbcc@yahoo.com\n🏛 남침례단 · 2005년 설립\n🔗 edendallas.org"
-          : "✅ Verified\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n✨ Lead Pastor: Jong-woo Shin\n🕐 Sunday Service every Sunday 12:30 PM\n📞 214-629-3066\n📧 kfbcc@yahoo.com\n🏛 SBC · Est. 2005\n🔗 edendallas.org",
+          ? "✅ 검증됨\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n✨ 담임: 신종우 목사\n🕐 주일예배 매주 일요일 오후 12:30\n📧 kfbcc@yahoo.com\n🏛 남침례단 · 2005년 설립\n🔗 edendallas.org"
+          : "✅ Verified\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n✨ Lead Pastor: Jong-woo Shin\n🕐 Sunday Service every Sunday 12:30 PM\n📧 kfbcc@yahoo.com\n🏛 SBC · Est. 2005\n🔗 edendallas.org",
         tags: ko ? ["한인교회", "캐롤튼", "달라스", "남침례단"] : ["Korean Church", "Carrollton", "Dallas", "SBC"],
-        phone: "214-629-3066",
         email: "kfbcc@yahoo.com",
         website: "edendallas.org",
       },
@@ -11309,20 +11304,18 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "깃즈패밀리교회" : "God's Family Church — OC",
         nameEn: "God's Family Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 OC 지역목자 (아프리카 동부 선교 지원)\n📍 Orange County, CA\n✨ 담임: 유대호 목사\n📞 909-910-9261"
-          : "✅ House Church | HMI North America OC Regional Shepherd\n📍 Orange County, CA\n✨ Lead Pastor: Daeho Yoo\n📞 909-910-9261",
+          ? "✅ 가정교회 | 북미가사원 OC 지역목자 (아프리카 동부 선교 지원)\n📍 Orange County, CA\n✨ 담임: 유대호 목사"
+          : "✅ House Church | HMI North America OC Regional Shepherd\n📍 Orange County, CA\n✨ Lead Pastor: Daeho Yoo",
         tags: ko ? ["가정교회", "오렌지카운티"] : ["House Church", "OC"],
-        phone: "909-910-9261",
       },
       {
         emoji: "⭐", tier: 1,
         name: ko ? "주님의마음교회" : "Lord's Heart Church — OC",
         nameEn: "Lord's Heart Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 OC 지역목자\n📍 Orange County, CA\n✨ 담임: 오경탁 목사\n📞 714-336-9939"
-          : "✅ House Church | HMI North America OC Regional Shepherd\n📍 Orange County, CA\n✨ Lead Pastor: Kyungtack Oh\n📞 714-336-9939",
+          ? "✅ 가정교회 | 북미가사원 OC 지역목자\n📍 Orange County, CA\n✨ 담임: 오경탁 목사"
+          : "✅ House Church | HMI North America OC Regional Shepherd\n📍 Orange County, CA\n✨ Lead Pastor: Kyungtack Oh",
         tags: ko ? ["가정교회", "오렌지카운티"] : ["House Church", "OC"],
-        phone: "714-336-9939",
       },
       {
         emoji: "⛪", tier: 2,
@@ -11341,20 +11334,18 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "갈릴리선교교회" : "Galilee Mission Church — LA K-Town",
         nameEn: "Galilee Mission Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 LA K-Town 지역목자\n📍 LA Koreatown, CA\n✨ 담임: 한전광 목사\n📞 323-332-2350"
-          : "✅ House Church | HMI North America LA K-Town Regional Shepherd\n📍 LA Koreatown, CA\n✨ Lead Pastor: Jeongwang Han\n📞 323-332-2350",
+          ? "✅ 가정교회 | 북미가사원 LA K-Town 지역목자\n📍 LA Koreatown, CA\n✨ 담임: 한천영 목사"
+          : "✅ House Church | HMI North America LA K-Town Regional Shepherd\n📍 LA Koreatown, CA\n✨ Lead Pastor: Cheonyoung Han",
         tags: ko ? ["가정교회", "LA", "코리아타운"] : ["House Church", "LA", "Koreatown"],
-        phone: "323-332-2350",
       },
       {
         emoji: "⭐", tier: 1,
         name: "Journey Christian Fellowship",
         nameEn: "Journey Christian Fellowship",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 영어권 서부 지역목자\n📍 Ventura County, CA\n✨ Lead Pastor: Young Su McCann\n📞 805-234-5423"
-          : "✅ House Church | HMI North America English-Speaking West Regional Shepherd\n📍 Ventura County, CA\n✨ Lead Pastor: Young Su McCann\n📞 805-234-5423",
+          ? "✅ 가정교회 | 북미가사원 영어권 서부 지역목자\n📍 Ventura County, CA\n✨ Lead Pastor: Young Su McCann"
+          : "✅ House Church | HMI North America English-Speaking West Regional Shepherd\n📍 Ventura County, CA\n✨ Lead Pastor: Young Su McCann",
         tags: ko ? ["가정교회", "영어권", "CA"] : ["House Church", "English", "CA"],
-        phone: "805-234-5423",
       },
     ],
     houston: [
@@ -11362,51 +11353,46 @@ function getCityChurches(slug: string, lang: string) {
         emoji: "⭐", tier: 1,
         name: ko ? "휴스턴서울교회" : "Seoul Church of Houston",
         desc: ko
-          ? "✅ 가정교회 | 국제가사원장 교회 · 세축 네기둥 기준 교회\n📍 Houston, TX\n✨ 담임: 이수관 목사 (국제가사원장)\n📞 713-896-7755\n🔗 seoulchurch.com"
-          : "✅ House Church | International HMI President's Church · Three Axes & Four Pillars\n📍 Houston, TX\n✨ Lead Pastor: Sukwan Lee (Int'l HMI President)\n📞 713-896-7755\n🔗 seoulchurch.com",
+          ? "✅ 가정교회 | 국제가사원장 교회 · 세축 네기둥 기준 교회\n📍 Houston, TX\n✨ 담임: 이수관 목사 (국제가사원장)\n🔗 seoulchurch.com"
+          : "✅ House Church | International HMI President's Church · Three Axes & Four Pillars\n📍 Houston, TX\n✨ Lead Pastor: Sukwan Lee (Int'l HMI President)\n🔗 seoulchurch.com",
         tags: ko ? ["가정교회", "IHM", "휴스턴", "기준교회"] : ["House Church", "IHM", "Houston", "Flagship"],
-        phone: "713-896-7755",
       },
       {
         emoji: "⭐", tier: 1,
         name: "New Life Fellowship",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 이사 · 영어권 간사\n📍 Houston, TX\n✨ Lead Pastor: Eric Shin (신동일 목사)\n📞 713-896-7755"
-          : "✅ House Church | HMI North America Board & English Ministry Director\n📍 Houston, TX\n✨ Lead Pastor: Eric Shin\n📞 713-896-7755",
+          ? "✅ 가정교회 | 북미가사원 이사 · 영어권 간사\n📍 Houston, TX\n✨ Lead Pastor: Eric Shin (신동일 목사)"
+          : "✅ House Church | HMI North America Board & English Ministry Director\n📍 Houston, TX\n✨ Lead Pastor: Eric Shin",
         tags: ko ? ["가정교회", "IHM", "휴스턴", "영어권"] : ["House Church", "IHM", "Houston", "English"],
-        phone: "713-896-7755",
       },
     ],
     toronto: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "목인교회" : "Mokin Church — Toronto",
-        nameEn: "Mokin Church",
+        name: ko ? "목민교회" : "Mokmin Church — Toronto",
+        nameEn: "Mokmin Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 토론토 지역목자 · 실행위원\n📍 Toronto, ON, Canada\n✨ 담임: 곽용 목사\n📞 416-992-9937"
-          : "✅ House Church | HMI North America Toronto Regional Shepherd & Executive\n📍 Toronto, ON, Canada\n✨ Lead Pastor: Yong Kwak\n📞 416-992-9937",
+          ? "✅ 가정교회 | 북미가사원 토론토 지역목자 · 실행위원\n📍 Toronto, ON, Canada\n✨ 담임: 곽웅 목사"
+          : "✅ House Church | HMI North America Toronto Regional Shepherd & Executive\n📍 Toronto, ON, Canada\n✨ Lead Pastor: Woong Kwak",
         tags: ko ? ["가정교회", "토론토"] : ["House Church", "Toronto"],
-        phone: "416-992-9937",
       },
       {
         emoji: "⭐", tier: 1,
         name: ko ? "워터루제일교회" : "Waterloo First Church",
         nameEn: "Waterloo First Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 토론토(워터루) 지역목자\n📍 Waterloo, ON, Canada\n✨ 담임: 김성운 목사\n📞 519-616-9116"
-          : "✅ House Church | HMI Toronto (Waterloo) Regional Shepherd\n📍 Waterloo, ON, Canada\n✨ Lead Pastor: Sungwun Kim\n📞 519-616-9116",
+          ? "✅ 가정교회 | 북미가사원 토론토(워터루) 지역목자\n📍 Waterloo, ON, Canada\n✨ 담임: 김성은 목사"
+          : "✅ House Church | HMI Toronto (Waterloo) Regional Shepherd\n📍 Waterloo, ON, Canada\n✨ Lead Pastor: Sungeun Kim",
         tags: ko ? ["가정교회", "워터루", "토론토"] : ["House Church", "Waterloo", "Toronto"],
-        phone: "519-616-9116",
       },
       {
         emoji: "⭐", tier: 1,
         name: ko ? "한인등대교회" : "Korean Lighthouse Church — Toronto",
         nameEn: "Korean Lighthouse Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 토론토(등대) 지역목자\n📍 Toronto, ON, Canada\n✨ 담임: 안순기 목사\n📞 647-262-2269"
-          : "✅ House Church | HMI Toronto (Lighthouse) Regional Shepherd\n📍 Toronto, ON, Canada\n✨ Lead Pastor: Sungki Ahn\n📞 647-262-2269",
+          ? "✅ 가정교회 | 북미가사원 토론토(등대) 지역목자\n📍 Toronto, ON, Canada\n✨ 담임: 안순기 목사"
+          : "✅ House Church | HMI Toronto (Lighthouse) Regional Shepherd\n📍 Toronto, ON, Canada\n✨ Lead Pastor: Sungki Ahn",
         tags: ko ? ["가정교회", "토론토"] : ["House Church", "Toronto"],
-        phone: "647-262-2269",
       },
     ],
     vancouver: [
@@ -11415,30 +11401,27 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "나의사랑하는교회 (MBC)" : "My Beloved Church — Vancouver (MBC)",
         nameEn: "My Beloved Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 밴쿠버(MBC) 지역목자\n📍 Vancouver, BC, Canada\n✨ 담임: 오은식 목사\n📞 778-231-4734"
-          : "✅ House Church | HMI Vancouver (MBC) Regional Shepherd\n📍 Vancouver, BC, Canada\n✨ Lead Pastor: Eunsik Oh\n📞 778-231-4734",
+          ? "✅ 가정교회 | 북미가사원 밴쿠버(MBC) 지역목자\n📍 Vancouver, BC, Canada\n✨ 담임: 오은식 목사"
+          : "✅ House Church | HMI Vancouver (MBC) Regional Shepherd\n📍 Vancouver, BC, Canada\n✨ Lead Pastor: Eunsik Oh",
         tags: ko ? ["가정교회", "밴쿠버"] : ["House Church", "Vancouver"],
-        phone: "778-231-4734",
       },
       {
         emoji: "⭐", tier: 1,
         name: ko ? "두드림교회" : "DooDream Church — Vancouver",
         nameEn: "DooDream Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 밴쿠버(두드림) 지역목자\n📍 Vancouver, BC, Canada\n✨ 담임: 안대선 목사\n📞 778-999-0691"
-          : "✅ House Church | HMI Vancouver (DooDream) Regional Shepherd\n📍 Vancouver, BC, Canada\n✨ Lead Pastor: Daesun Ahn\n📞 778-999-0691",
+          ? "✅ 가정교회 | 북미가사원 밴쿠버(두드림) 지역목자\n📍 Vancouver, BC, Canada\n✨ 담임: 안대선 목사"
+          : "✅ House Church | HMI Vancouver (DooDream) Regional Shepherd\n📍 Vancouver, BC, Canada\n✨ Lead Pastor: Daesun Ahn",
         tags: ko ? ["가정교회", "밴쿠버"] : ["House Church", "Vancouver"],
-        phone: "778-999-0691",
       },
       {
         emoji: "⭐", tier: 1,
         name: ko ? "사랑의교회 (밴쿠버)" : "Love Church — Vancouver",
         nameEn: "Love Church Vancouver",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 밴쿠버(사랑의) 지역목자\n📍 Vancouver, BC, Canada\n✨ 담임: 이은진 목사\n📞 778-891-4133"
-          : "✅ House Church | HMI Vancouver (Love) Regional Shepherd\n📍 Vancouver, BC, Canada\n✨ Lead Pastor: Eunjin Lee\n📞 778-891-4133",
+          ? "✅ 가정교회 | 북미가사원 밴쿠버(사랑의) 지역목자\n📍 Vancouver, BC, Canada\n✨ 담임: 이은진 목사"
+          : "✅ House Church | HMI Vancouver (Love) Regional Shepherd\n📍 Vancouver, BC, Canada\n✨ Lead Pastor: Eunjin Lee",
         tags: ko ? ["가정교회", "밴쿠버"] : ["House Church", "Vancouver"],
-        phone: "778-891-4133",
       },
     ],
     sf: [
@@ -11446,30 +11429,28 @@ function getCityChurches(slug: string, lang: string) {
         emoji: "⭐", tier: 1,
         name: ko ? "새누리선교교회 (NCMC)" : "New Community Mission Church (NCMC)",
         desc: ko
-          ? "✅ 가정교회 · 한·영 이중언어 · 북미가사원 SF 지역목자\n📍 3399 CSM Dr., San Mateo, CA 94402\n✨ 담임: 김태훈 목사\n🕐 1부 11:30am · 2부 1:30pm (영어예배)\n📞 415-595-6629\n📧 welcome.ncmc@gmail.com\n🔗 ncmission.org"
-          : "✅ House Church · Korean-English Bilingual · HMI SF Regional Shepherd\n📍 3399 CSM Dr., San Mateo, CA 94402\n✨ Lead Pastor: Rev. Tae Kim\n🕐 1st 11:30am · 2nd 1:30pm (English service)\n📞 415-595-6629\n📧 welcome.ncmc@gmail.com\n🔗 ncmission.org",
+          ? "✅ 가정교회 · 한·영 이중언어 · 북미가사원 SF 지역목자\n📍 3399 CSM Dr., San Mateo, CA 94402\n✨ 담임: 김태훈 목사\n🕐 1부 11:30am · 2부 1:30pm (영어예배)\n📧 welcome.ncmc@gmail.com\n🔗 ncmission.org"
+          : "✅ House Church · Korean-English Bilingual · HMI SF Regional Shepherd\n📍 3399 CSM Dr., San Mateo, CA 94402\n✨ Lead Pastor: Rev. Tae Kim\n🕐 1st 11:30am · 2nd 1:30pm (English service)\n📧 welcome.ncmc@gmail.com\n🔗 ncmission.org",
         tags: ko ? ["가정교회", "한영이중언어", "샌마테오"] : ["House Church", "Bilingual", "San Mateo"],
-        website: "https://ncmission.org", email: "welcome.ncmc@gmail.com", phone: "415-595-6629",
+        website: "https://ncmission.org", email: "welcome.ncmc@gmail.com",
       },
       {
         emoji: "⭐", tier: 1,
         name: ko ? "피스토스장로교회" : "Pistos Presbyterian Church — East Bay",
         nameEn: "Pistos Presbyterian Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 북가주(이스트베이) 지역목자\n📍 East Bay, CA\n✨ 담임: 조영구 목사\n📞 510-488-3687"
-          : "✅ House Church | HMI North CA (East Bay) Regional Shepherd\n📍 East Bay, CA\n✨ Lead Pastor: Youngku Cho\n📞 510-488-3687",
+          ? "✅ 가정교회 | 북미가사원 북가주(이스트베이) 지역목자\n📍 East Bay, CA\n✨ 담임: 조영구 목사"
+          : "✅ House Church | HMI North CA (East Bay) Regional Shepherd\n📍 East Bay, CA\n✨ Lead Pastor: Youngku Cho",
         tags: ko ? ["가정교회", "이스트베이", "SF베이"] : ["House Church", "East Bay", "SF Bay"],
-        phone: "510-488-3687",
       },
       {
         emoji: "⭐", tier: 1,
         name: ko ? "시온영락교회" : "Zion Young-Nak Church — San Jose",
         nameEn: "Zion Young-Nak Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 북가주(산호세) 지역목자\n📍 San Jose, CA\n✨ 담임: 이기준 목사\n📞 415-283-6838"
-          : "✅ House Church | HMI North CA (San Jose) Regional Shepherd\n📍 San Jose, CA\n✨ Lead Pastor: Kijun Lee\n📞 415-283-6838",
+          ? "✅ 가정교회 | 북미가사원 북가주(산호세) 지역목자\n📍 San Jose, CA\n✨ 담임: 이기준 목사"
+          : "✅ House Church | HMI North CA (San Jose) Regional Shepherd\n📍 San Jose, CA\n✨ Lead Pastor: Kijun Lee",
         tags: ko ? ["가정교회", "산호세", "SF베이"] : ["House Church", "San Jose", "SF Bay"],
-        phone: "415-283-6838",
       },
     ],
     seoul: [
@@ -11477,19 +11458,19 @@ function getCityChurches(slug: string, lang: string) {
         emoji: "⭐", tier: 1,
         name: ko ? "온누리교회" : "Onnuri Church Seoul",
         desc: ko
-          ? "✅ 검증됨 · 귀환 동포·역이민자 환영\n📍 서울 서초구 남부순환로 2497\n📞 02-2077-1000\n🕐 주일예배 1부(7am)·2부(9am)·3부(11am)·4부(2pm)\n🔗 onnuri.org\n\n✨ 해외에서 돌아온 귀환 동포를 위한 영어예배·글로벌 공동체 운영"
-          : "✅ Verified · Welcoming returning overseas Koreans\n📍 2497 Nambusunhwan-ro, Seocho-gu, Seoul\n📞 02-2077-1000\n🕐 Sunday services: 7am / 9am / 11am / 2pm\n🔗 onnuri.org\n\n✨ English services and global community for returning diaspora",
+          ? "✅ 검증됨 · 귀환 동포·역이민자 환영\n📍 서울 서초구 남부순환로 2497\n🕐 주일예배 1부(7am)·2부(9am)·3부(11am)·4부(2pm)\n🔗 onnuri.org\n\n✨ 해외에서 돌아온 귀환 동포를 위한 영어예배·글로벌 공동체 운영"
+          : "✅ Verified · Welcoming returning overseas Koreans\n📍 2497 Nambusunhwan-ro, Seocho-gu, Seoul\n🕐 Sunday services: 7am / 9am / 11am / 2pm\n🔗 onnuri.org\n\n✨ English services and global community for returning diaspora",
         tags: ko ? ["서초구", "귀환동포", "영어예배"] : ["Seocho", "Returnees", "English Service"],
-        website: "https://onnuri.org", phone: "02-2077-1000",
+        website: "https://onnuri.org",
       },
       {
         emoji: "⛪", tier: 2,
         name: ko ? "사랑의교회" : "Sarang Community Church",
         desc: ko
-          ? "✅ 검증됨\n📍 서울 서초구 서초대로 55\n📞 02-3479-0000\n🕐 주일예배 1부(8am)·2부(10am)·3부(12pm)·4부(2pm)\n🔗 sarang.org\n\n✨ 귀환 역이민자·재외동포 정착 상담 가능"
-          : "✅ Verified\n📍 55 Seocho-daero, Seocho-gu, Seoul\n📞 02-3479-0000\n🕐 Sunday: 8am / 10am / 12pm / 2pm\n🔗 sarang.org\n\n✨ Counseling available for returning overseas Koreans",
+          ? "✅ 검증됨\n📍 서울 서초구 서초대로 55\n🕐 주일예배 1부(8am)·2부(10am)·3부(12pm)·4부(2pm)\n🔗 sarang.org\n\n✨ 귀환 역이민자·재외동포 정착 상담 가능"
+          : "✅ Verified\n📍 55 Seocho-daero, Seocho-gu, Seoul\n🕐 Sunday: 8am / 10am / 12pm / 2pm\n🔗 sarang.org\n\n✨ Counseling available for returning overseas Koreans",
         tags: ko ? ["서초구", "귀환동포"] : ["Seocho", "Returnees"],
-        website: "https://sarang.org", phone: "02-3479-0000",
+        website: "https://sarang.org",
       },
       {
         emoji: "⛪", tier: 2,
@@ -11505,28 +11486,27 @@ function getCityChurches(slug: string, lang: string) {
         emoji: "⭐", tier: 1,
         name: ko ? "수영로교회" : "Sooyoungro Church",
         desc: ko
-          ? "✅ 가정교회 모델 · 역이민 귀환 동포 환영\n📍 부산 수영구 수영로 425\n📞 051-758-0691\n🕐 주일예배 7부(6:30am)·1부(8am)·2부(9:30am)·3부(11:10am)·4부(1pm)·5부(3pm)·영어예배(1pm)\n🔗 sooyoungro.org\n\n✨ 부산 한인 이민 귀환 동포를 따뜻하게 맞이합니다"
-          : "✅ House Church Model · Welcoming Returning Overseas Koreans\n📍 425 Sooyoungro, Suyeong-gu, Busan\n📞 051-758-0691\n🕐 Sunday services: 6:30am / 8am / 9:30am / 11:10am / 1pm / 3pm / English 1pm\n🔗 sooyoungro.org\n\n✨ Warmly welcomes returning Korean diaspora to Busan",
+          ? "✅ 가정교회 모델 · 역이민 귀환 동포 환영\n📍 부산 수영구 수영로 425\n🕐 주일예배 7부(6:30am)·1부(8am)·2부(9:30am)·3부(11:10am)·4부(1pm)·5부(3pm)·영어예배(1pm)\n🔗 sooyoungro.org\n\n✨ 부산 한인 이민 귀환 동포를 따뜻하게 맞이합니다"
+          : "✅ House Church Model · Welcoming Returning Overseas Koreans\n📍 425 Sooyoungro, Suyeong-gu, Busan\n🕐 Sunday services: 6:30am / 8am / 9:30am / 11:10am / 1pm / 3pm / English 1pm\n🔗 sooyoungro.org\n\n✨ Warmly welcomes returning Korean diaspora to Busan",
         tags: ko ? ["가정교회", "수영구", "귀환동포환영"] : ["House Church", "Suyeong", "Returning Diaspora"],
-        website: "https://sooyoungro.org", phone: "051-758-0691",
+        website: "https://sooyoungro.org",
       },
       {
         emoji: "⛪", tier: 2,
         name: ko ? "해운대교회" : "Haeundae Church",
         desc: ko
-          ? "✅ 검증됨\n📍 부산 해운대구 해운대로 352\n📞 051-747-3675\n🕐 주일예배 1부(9am)·2부(11am)·3부(1pm)\n🔗 haeundaechurch.or.kr\n\n✨ 해운대 중심부, 귀환 동포·이민자 정착 상담 가능"
-          : "✅ Verified\n📍 352 Haeundaero, Haeundae-gu, Busan\n📞 051-747-3675\n🕐 Sunday: 9am / 11am / 1pm\n🔗 haeundaechurch.or.kr\n\n✨ Located in central Haeundae. Pastoral counseling available for returnees",
+          ? "✅ 검증됨\n📍 부산 해운대구 해운대로 352\n🕐 주일예배 1부(9am)·2부(11am)·3부(1pm)\n🔗 haeundaechurch.or.kr\n\n✨ 해운대 중심부, 귀환 동포·이민자 정착 상담 가능"
+          : "✅ Verified\n📍 352 Haeundaero, Haeundae-gu, Busan\n🕐 Sunday: 9am / 11am / 1pm\n🔗 haeundaechurch.or.kr\n\n✨ Located in central Haeundae. Pastoral counseling available for returnees",
         tags: ko ? ["해운대", "귀환동포", "부산중심"] : ["Haeundae", "Returnees", "Central Busan"],
-        website: "https://haeundaechurch.or.kr", phone: "051-747-3675",
+        website: "https://haeundaechurch.or.kr",
       },
       {
         emoji: "⛪", tier: 2,
         name: ko ? "부산중앙교회" : "Busan Central Church",
         desc: ko
-          ? "🔍 추가 검증 중\n📍 부산 동구 중앙대로\n📞 051-469-1004\n\n귀환 동포·역이민자를 위한 교회 정보를 계속 업데이트하고 있습니다.\n교회 등재: hebronguide.com/church-submit.html"
+          ? "🔍 추가 검증 중\n📍 부산 동구 중앙대로\n\n귀환 동포·역이민자를 위한 교회 정보를 계속 업데이트하고 있습니다.\n교회 등재: hebronguide.com/church-submit.html"
           : "🔍 Verification in progress\n📍 Junggu, Busan\n\nWe're continuously updating church info for returning overseas Koreans.\nList your church: hebronguide.com/church-submit.html",
         tags: ko ? ["부산중구", "귀환동포"] : ["Jung-gu", "Returnees"],
-        phone: "051-469-1004",
       },
     ],
     louisville: [
@@ -11535,11 +11515,10 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "루이빌새한장로교회" : "Louisville Saehan Presbyterian Church",
         nameEn: "Louisville Saehan Presbyterian Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 켄터키 지역목자\n📍 Louisville, KY\n🏠 목장 소그룹 모임 운영\n✨ 담임: 김성헌 목사\n📞 501-267-1416\n🔗 saehan.org"
-          : "✅ House Church | HMI Kentucky Regional Shepherd\n📍 Louisville, KY\n🏠 Small group Mokjang meetings\n✨ Lead Pastor: Sungheon Kim\n📞 501-267-1416\n🔗 saehan.org",
+          ? "✅ 가정교회 | 북미가사원 켄터키 지역목자\n📍 Louisville, KY\n🏠 목장 소그룹 모임 운영\n✨ 담임: 김성헌 목사\n🔗 saehan.org"
+          : "✅ House Church | HMI Kentucky Regional Shepherd\n📍 Louisville, KY\n🏠 Small group Mokjang meetings\n✨ Lead Pastor: Sungheon Kim\n🔗 saehan.org",
         tags: ko ? ["가정교회", "루이빌", "장로교", "켄터키"] : ["House Church", "Louisville", "Presbyterian", "Kentucky"],
         website: "https://www.saehan.org",
-        phone: "501-267-1416",
       },
     ],
     nashville: [
@@ -11548,10 +11527,9 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "주님의품턴교회" : "Lord's Embrace Church — Nashville",
         nameEn: "Lord's Embrace Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 테네시 지역목자\n📍 Tennessee (Nashville 지역)\n✨ 담임: 이영범 목사\n📞 931-217-7905"
-          : "✅ House Church | HMI Tennessee Regional Shepherd\n📍 Tennessee (Nashville area)\n✨ Lead Pastor: Youngbum Lee\n📞 931-217-7905",
+          ? "✅ 가정교회 | 북미가사원 테네시 지역목자\n📍 Tennessee (Nashville 지역)\n✨ 담임: 이영범 목사"
+          : "✅ House Church | HMI Tennessee Regional Shepherd\n📍 Tennessee (Nashville area)\n✨ Lead Pastor: Youngbum Lee",
         tags: ko ? ["가정교회", "내쉬빌", "테네시"] : ["House Church", "Nashville", "Tennessee"],
-        phone: "931-217-7905",
       },
     ],
     boston: [
@@ -11560,32 +11538,29 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "내슈아한마음교회" : "Nashua One Heart Church",
         nameEn: "Nashua One Heart Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 뉴잉글랜드 지역목자\n📍 Nashua, NH (뉴잉글랜드)\n✨ 담임: 최지원 목사\n📞 978-500-8960"
-          : "✅ House Church | HMI New England Regional Shepherd\n📍 Nashua, NH (New England)\n✨ Lead Pastor: Jiwon Choi\n📞 978-500-8960",
+          ? "✅ 가정교회 | 북미가사원 뉴잉글랜드 지역목자\n📍 Nashua, NH (뉴잉글랜드)\n✨ 담임: 최지원 목사"
+          : "✅ House Church | HMI New England Regional Shepherd\n📍 Nashua, NH (New England)\n✨ Lead Pastor: Jiwon Choi",
         tags: ko ? ["가정교회", "보스턴", "뉴잉글랜드", "내슈아"] : ["House Church", "Boston", "New England", "Nashua"],
-        phone: "978-500-8960",
       },
     ],
     newyork: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "한울심교회" : "Hanulsim Church — New York",
-        nameEn: "Hanulsim Church",
+        name: ko ? "한울림교회" : "Hanullim Church — New York",
+        nameEn: "Hanullim Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 뉴욕 지역목자\n📍 New York (Long Island)\n✨ 담임: 김원재 목사\n📞 516-746-0932"
-          : "✅ House Church | HMI New York Regional Shepherd\n📍 New York (Long Island)\n✨ Lead Pastor: Wonjae Kim\n📞 516-746-0932",
+          ? "✅ 가정교회 | 북미가사원 뉴욕 지역목자\n📍 New York (Long Island)\n✨ 담임: 김원재 목사"
+          : "✅ House Church | HMI New York Regional Shepherd\n📍 New York (Long Island)\n✨ Lead Pastor: Wonjae Kim",
         tags: ko ? ["가정교회", "뉴욕", "롱아일랜드"] : ["House Church", "New York", "Long Island"],
-        phone: "516-746-0932",
       },
       {
         emoji: "⭐", tier: 1,
         name: "Day and Night Church",
         nameEn: "Day and Night Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 영어권 동부 지역목자\n📍 New York, NY\n✨ Lead Pastor: Rein Auh\n📞 646-644-1611"
-          : "✅ House Church | HMI English-Speaking East Regional Shepherd\n📍 New York, NY\n✨ Lead Pastor: Rein Auh\n📞 646-644-1611",
+          ? "✅ 가정교회 | 북미가사원 영어권 동부 지역목자\n📍 New York, NY\n✨ Lead Pastor: Rein Auh"
+          : "✅ House Church | HMI English-Speaking East Regional Shepherd\n📍 New York, NY\n✨ Lead Pastor: Rein Auh",
         tags: ko ? ["가정교회", "뉴욕", "영어권"] : ["House Church", "New York", "English"],
-        phone: "646-644-1611",
       },
     ],
     philadelphia: [
@@ -11594,10 +11569,9 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "밴실웸연합감리교회" : "Bensal Hem UMC — Philadelphia",
         nameEn: "Bensal Hem United Methodist Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 필라/뉴저지 지역목자\n📍 Philadelphia / New Jersey 지역\n✨ 담임: 차영후 목사\n📞 215-639-1320"
-          : "✅ House Church | HMI Philadelphia/NJ Regional Shepherd\n📍 Philadelphia / New Jersey area\n✨ Lead Pastor: Younghoo Cha\n📞 215-639-1320",
+          ? "✅ 가정교회 | 북미가사원 필라/뉴저지 지역목자\n📍 Philadelphia / New Jersey 지역\n✨ 담임: 차영후 목사"
+          : "✅ House Church | HMI Philadelphia/NJ Regional Shepherd\n📍 Philadelphia / New Jersey area\n✨ Lead Pastor: Younghoo Cha",
         tags: ko ? ["가정교회", "필라델피아", "뉴저지"] : ["House Church", "Philadelphia", "New Jersey"],
-        phone: "215-639-1320",
       },
     ],
     dc: [
@@ -11606,20 +11580,18 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "새로운교회" : "New Church — Virginia/Maryland",
         nameEn: "New Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 버지니아/메릴랜드 지역목자\n📍 Virginia / Maryland (DC 인근)\n✨ 담임: 안형준 목사\n📞 703-625-3979"
-          : "✅ House Church | HMI Virginia/Maryland Regional Shepherd\n📍 Virginia / Maryland (Greater DC)\n✨ Lead Pastor: Hyungjun Ahn\n📞 703-625-3979",
+          ? "✅ 가정교회 | 북미가사원 버지니아/메릴랜드 지역목자\n📍 Virginia / Maryland (DC 인근)\n✨ 담임: 안형준 목사"
+          : "✅ House Church | HMI Virginia/Maryland Regional Shepherd\n📍 Virginia / Maryland (Greater DC)\n✨ Lead Pastor: Hyungjun Ahn",
         tags: ko ? ["가정교회", "DC", "버지니아", "메릴랜드"] : ["House Church", "DC", "Virginia", "Maryland"],
-        phone: "703-625-3979",
       },
       {
         emoji: "⭐", tier: 1,
         name: "Unity Church",
         nameEn: "Unity Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 영어권 중부 지역목자\n📍 Maryland (DC 인근)\n✨ Lead Pastor: Dan Eum\n📞 240-401-1621"
-          : "✅ House Church | HMI English-Speaking Central Regional Shepherd\n📍 Maryland (Greater DC)\n✨ Lead Pastor: Dan Eum\n📞 240-401-1621",
+          ? "✅ 가정교회 | 북미가사원 영어권 중부 지역목자\n📍 Maryland (DC 인근)\n✨ Lead Pastor: Dan Eum"
+          : "✅ House Church | HMI English-Speaking Central Regional Shepherd\n📍 Maryland (Greater DC)\n✨ Lead Pastor: Dan Eum",
         tags: ko ? ["가정교회", "DC", "메릴랜드", "영어권"] : ["House Church", "DC", "Maryland", "English"],
-        phone: "240-401-1621",
       },
     ],
     portland: [
@@ -11628,10 +11600,9 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "온누리성결교회" : "Onnuri Holiness Church — Oregon",
         nameEn: "Onnuri Holiness Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 오레곤 지역목자\n📍 Oregon (Portland 지역)\n✨ 담임: 강재원 목사\n📞 503-317-8544"
-          : "✅ House Church | HMI Oregon Regional Shepherd\n📍 Oregon (Portland area)\n✨ Lead Pastor: Jaewon Kang\n📞 503-317-8544",
+          ? "✅ 가정교회 | 북미가사원 오레곤 지역목자\n📍 Oregon (Portland 지역)\n✨ 담임: 강재원 목사"
+          : "✅ House Church | HMI Oregon Regional Shepherd\n📍 Oregon (Portland area)\n✨ Lead Pastor: Jaewon Kang",
         tags: ko ? ["가정교회", "포틀랜드", "오레곤"] : ["House Church", "Portland", "Oregon"],
-        phone: "503-317-8544",
       },
     ],
     chicago: [
@@ -11640,10 +11611,9 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "도담교회" : "Dodam Church — Chicago",
         nameEn: "Dodam Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 시카고 지역목자\n📍 Chicago, IL\n✨ 담임: 곽성률 목사\n📞 847-732-3685"
-          : "✅ House Church | HMI Chicago Regional Shepherd\n📍 Chicago, IL\n✨ Lead Pastor: Sungruel Kwak\n📞 847-732-3685",
+          ? "✅ 가정교회 | 북미가사원 시카고 지역목자\n📍 Chicago, IL\n✨ 담임: 곽성룡 목사"
+          : "✅ House Church | HMI Chicago Regional Shepherd\n📍 Chicago, IL\n✨ Lead Pastor: Sungyong Kwak",
         tags: ko ? ["가정교회", "시카고"] : ["House Church", "Chicago"],
-        phone: "847-732-3685",
       },
     ],
     sandiego: [
@@ -11652,10 +11622,9 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "기쁨의교회" : "Joy Church — San Diego",
         nameEn: "Joy Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 샌디에고 지역목자\n📍 San Diego, CA\n✨ 담임: 조성대 목사\n📞 858-220-2217"
-          : "✅ House Church | HMI San Diego Regional Shepherd\n📍 San Diego, CA\n✨ Lead Pastor: Sungdae Cho\n📞 858-220-2217",
+          ? "✅ 가정교회 | 북미가사원 샌디에고 지역목자\n📍 San Diego, CA\n✨ 담임: 조성대 목사"
+          : "✅ House Church | HMI San Diego Regional Shepherd\n📍 San Diego, CA\n✨ Lead Pastor: Sungdae Cho",
         tags: ko ? ["가정교회", "샌디에고"] : ["House Church", "San Diego"],
-        phone: "858-220-2217",
       },
     ],
   };
