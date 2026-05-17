@@ -6315,7 +6315,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
       <div style={{ padding: "0 16px", marginBottom: 12, display: "flex", alignItems: "center", gap: 6 }}>
         <span style={{ fontSize: 16 }}>⭐</span>
         <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 15, color: "#ECFDF5" }}>
-          {lang === "ko" ? "TOP 5 베스트 — 검증된 추천" : "TOP 5 Best — Verified Picks"}
+          {lang === "ko" ? "TOP 10 베스트 — 검증된 추천" : "TOP 10 Best — Verified Picks"}
         </span>
       </div>
       <div
@@ -11956,8 +11956,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "워싱턴지구촌교회 (Global Mission Church)" : "Global Mission Church — Silver Spring",
         nameEn: "Global Mission Church (GMC)",
         desc: ko
-          ? "✅ 가정교회 | 메릴랜드·DC 한인 가정교회 사역\n📍 13421 Georgia Ave, Silver Spring, MD 20906\n🔗 gmcusa.org\n✨ 실버스프링 중심. 목장·삶공부 운영"
-          : "✅ House Church | Korean house church ministry in MD/DC area\n📍 13421 Georgia Ave, Silver Spring, MD 20906\n🔗 gmcusa.org\n✨ Silver Spring center. Mokjang & Life Studies",
+          ? "✅ 가정교회 | 메릴랜드·DC 한인 가정교회 사역\n📍 13421 Georgia Ave, Silver Spring, MD 20906\n✨ 담임: 박승진 목사 (5대, 2023.11 취임)\n🔗 gmcusa.org"
+          : "✅ House Church | Korean house church ministry in MD/DC area\n📍 13421 Georgia Ave, Silver Spring, MD 20906\n✨ Lead Pastor: Rev. Seungjin Park (5th, installed Nov 2023)\n🔗 gmcusa.org",
         tags: ko ? ["가정교회", "실버스프링", "메릴랜드"] : ["House Church", "Silver Spring", "Maryland"],
         website: "https://www.gmcusa.org",
       },
@@ -16099,10 +16099,10 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
       <ScreenHeader emoji="🗺️" titleKo="탐방" titleEn="Explore"
         descKo={isSeattle
           ? `${city.nameKo} — 지역안내 · 자연 · 문화 · 스포츠`
-          : `${city.nameKo} — ${lang === "ko" ? "검증된 탐방 명소 TOP 5" : "Top 5 verified spots"}`}
+          : `${city.nameKo} — ${lang === "ko" ? "검증된 탐방 명소 TOP 10" : "Top 10 verified spots"}`}
         descEn={isSeattle
           ? `${city.nameEn} — Areas, Nature, Culture & Sports`
-          : `${city.nameEn} — Top 5 verified spots`}
+          : `${city.nameEn} — Top 10 verified spots`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5">
@@ -20986,7 +20986,7 @@ function getShareContexts(cityKo: string, cityEn: string, slug: string,
       textEn: `Korean churches in ${cityEn} ⛪\nVerified church info, house church communities\nLooking for a trusted community? 👇`,
       tags: `#${slug}한인교회 #가정교회 #HebronGuide` },
     3: { emoji: "🍽️", labelKo: "맛집", labelEn: "Food",
-      textKo: `${cityKo} 한인 검증 맛집 TOP 5 🍽️\n수백 곳 중 엄선한 진짜 맛집\n여기는 정말 맛있어요! 👇`,
+      textKo: `${cityKo} 한인 검증 맛집 TOP 10 🍽️\n수백 곳 중 엄선한 진짜 맛집\n여기는 정말 맛있어요! 👇`,
       textEn: `${cityEn}'s top verified Korean restaurants 🍽️\nHandpicked from hundreds of options\nThese are genuinely delicious! 👇`,
       tags: `#${slug}맛집 #한식 #KoreanFood #HebronGuide` },
     4: { emoji: "🗺️", labelKo: "관광", labelEn: "Tourism",
