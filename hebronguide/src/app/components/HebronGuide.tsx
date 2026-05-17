@@ -217,16 +217,13 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1200&q=90", pos: "center 38%", alt: "Busan Korea cityscape daytime" },
   ],
 
-  // 🇰🇷 안산 — 한국 다문화 수도
-  ansan: [
-    { url: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=1200&q=90", pos: "center 40%", alt: "Ansan Korea multicultural city" },
-    { url: "https://images.unsplash.com/photo-1598368195835-91e67f80c9d7?w=1200&q=90", pos: "center 38%", alt: "Ansan Korea urban daytime" },
-  ],
+  // 🇰🇷 안산 — Unsplash 검증 사진 없음 → 그라디언트 폴백 사용
+  // ansan: (제거 — 비안산 사진 사용 금지 원칙)
 
-  // 🇰🇷 인천 — 공항·항구·송도
+  // 🇰🇷 인천/송도 — Jiho Choi 촬영 (Songdo, Yeonsu-gu, Incheon) ✅ 위치 확인됨
   incheon: [
-    { url: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=1200&q=90", pos: "center 40%", alt: "Incheon Korea cityscape" },
-    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 38%", alt: "Incheon Korea daytime" },
+    { url: "https://images.unsplash.com/photo-1638198800371-32341c84beba?w=1200&q=90", pos: "center 40%", alt: "Songdo Incheon Korea skyline" },
+    { url: "https://images.unsplash.com/photo-1671959670640-bd1ea822a635?w=1200&q=90", pos: "center 38%", alt: "Songdo Incheon Korea night" },
   ],
 
   // 🇰🇷 제주 — 자연·해변·한라산
@@ -235,40 +232,38 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=90", pos: "center 40%", alt: "Jeju Island Korea coast" },
   ],
 
-  // 🇰🇷 대구 — 섬유·사과·패션
+  // 🇰🇷 대구 — Minsoo Eun·yujeong Huh 촬영 (대구광역시) ✅ 위치 확인됨
   daegu: [
-    { url: "https://images.unsplash.com/photo-1577648188599-291bb8b831c3?w=1200&q=90", pos: "center 40%", alt: "Daegu Korea city" },
-    { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=90", pos: "center 38%", alt: "Daegu Korea downtown" },
+    { url: "https://images.unsplash.com/photo-1627638148559-d686e8b87003?w=1200&q=90", pos: "center 40%", alt: "Daegu Korea nighttime street" },
+    { url: "https://images.unsplash.com/photo-1619598965917-d7da30c3a9a8?w=1200&q=90", pos: "center 38%", alt: "Daegu Korea urban street" },
   ],
 
-  // 🇰🇷 광주 — 문화·예술·민주
+  // 🇰🇷 광주 — 광주광역시 도심 ✅ 위치 확인됨 (2장 미확보 → 1장)
   gwangju: [
-    { url: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=1200&q=90", pos: "center 40%", alt: "Gwangju Korea city" },
-    { url: "https://images.unsplash.com/photo-1526661934280-676cef25bc9b?w=1200&q=90", pos: "center 38%", alt: "Gwangju Korea daytime" },
+    { url: "https://images.unsplash.com/photo-1696250753322-94a5adbca94d?w=1200&q=90", pos: "center 40%", alt: "Gwangju Metropolitan City Korea street" },
   ],
 
-  // 🇰🇷 대전 — 과학·KAIST·엑스포
+  // 🇰🇷 대전 — Oh Taeyeon 촬영 (대전광역시) ✅ 위치 확인됨
   daejeon: [
-    { url: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1200&q=90", pos: "center 40%", alt: "Daejeon Korea science city" },
-    { url: "https://images.unsplash.com/photo-1574263867128-a3d5c1b1decc?w=1200&q=90", pos: "center 38%", alt: "Daejeon Korea urban" },
+    { url: "https://images.unsplash.com/photo-1700929259310-10a0ba52de68?w=1200&q=90", pos: "center 40%", alt: "Daejeon Korea city skyline mountains" },
+    { url: "https://images.unsplash.com/photo-1702038209516-b41500d744c2?w=1200&q=90", pos: "center 38%", alt: "Daejeon Korea riverside building twilight" },
   ],
 
-  // 🇰🇷 창원 — 진해 벚꽃·방산·경남 (200 OK 검증)
+  // 🇰🇷 창원 — Seongjin Park 촬영 (창원시) ✅ 위치 확인됨
   changwon: [
-    { url: "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=1200&q=90", pos: "center 45%", alt: "Jinhae cherry blossom Korea spring" },
-    { url: "https://images.unsplash.com/photo-1609372332255-611485350f25?w=1200&q=90", pos: "center 40%", alt: "Changwon South Korea cityscape" },
+    { url: "https://images.unsplash.com/photo-1676642223292-89042a695154?w=1200&q=90", pos: "center 40%", alt: "Changwon South Korea park" },
+    { url: "https://images.unsplash.com/photo-1685799224800-a0b543cc6301?w=1200&q=90", pos: "center 38%", alt: "Changwon South Korea waterfront" },
   ],
 
-  // 🇰🇷 천안·아산 — 독립기념관·온양온천·현대차 (200 OK 검증)
+  // 🇰🇷 천안 — hohyeong lee 촬영 (백석동, 서북구, 천안) ✅ 위치 확인됨 (2장 미확보 → 1장)
   cheonan: [
-    { url: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1200&q=90", pos: "center 40%", alt: "Cheonan Korea modern city" },
-    { url: "https://images.unsplash.com/photo-1549082984-1323b94df9a6?w=1200&q=90", pos: "center 38%", alt: "Cheonan Asan Korea urban" },
+    { url: "https://images.unsplash.com/photo-1550136513-548af4445338?w=1200&q=90", pos: "center 40%", alt: "Cheonan Korea modern buildings Baekseok-dong" },
   ],
 
-  // 🇺🇸 루이빌 — 도시 스카이라인 (200 OK 검증)
+  // 🇺🇸 루이빌 — Unsplash Louisville 검색 결과 ✅ 위치 확인됨
   louisville: [
-    { url: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=90", pos: "center 40%", alt: "Louisville Kentucky skyline Ohio River" },
-    { url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=90", pos: "center 38%", alt: "Louisville Kentucky city aerial" },
+    { url: "https://images.unsplash.com/photo-1746895396781-fa22a20f4f63?w=1200&q=90", pos: "center 40%", alt: "Louisville Kentucky skyline river" },
+    { url: "https://images.unsplash.com/photo-1615825742158-5aac7849e4a4?w=1200&q=90", pos: "center 38%", alt: "Louisville Kentucky bridge sunset" },
   ],
 
 
