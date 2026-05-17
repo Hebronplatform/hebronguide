@@ -261,6 +261,23 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1550136513-548af4445338?w=1200&q=90", pos: "center 40%", alt: "Cheonan Korea modern buildings Baekseok-dong" },
   ],
 
+  // 🇺🇸 올랜도 — Lake Eola (Orlando, FL 확인) ✅
+  orlando: [
+    { url: "https://images.unsplash.com/photo-1609184889233-eff6dd93def4?w=1200&q=90", pos: "center 40%", alt: "Lake Eola Orlando Florida sunrise" },
+    { url: "https://images.unsplash.com/photo-1759116093915-a824b4b7106a?w=1200&q=90", pos: "center 38%", alt: "Orlando Florida lake city night" },
+  ],
+
+  // 🇰🇷 분당·수지 — 한국 아파트·산 경관 (Unsplash 분당 무료 사진 없음 → 한국 도시) ✅
+  bundang: [
+    { url: "https://images.unsplash.com/photo-1747227826577-771455d68f66?w=1200&q=90", pos: "center 40%", alt: "Bundang Korea apartment buildings mountains" },
+  ],
+
+  // 🇺🇸 메릴랜드 — Rockville, MD (Tatiana Rodriguez 촬영, Rockville MD 확인) ✅
+  maryland: [
+    { url: "https://images.unsplash.com/photo-1585584114951-11cf079942f0?w=1200&q=90", pos: "center 40%", alt: "Rockville Maryland cherry blossoms spring" },
+    { url: "https://images.unsplash.com/photo-1696942181423-1bc3722472f3?w=1200&q=90", pos: "center 38%", alt: "Rockville Maryland residential neighborhood" },
+  ],
+
   // 🇺🇸 루이빌 — Big Four Bridge + 다운타운 스카이라인 ✅ 위치 확인됨 (Louisville, KY)
   louisville: [
     { url: "https://images.unsplash.com/photo-1747975801330-83ddb8b1a3d7?w=1200&q=90", pos: "center 40%", alt: "Louisville Kentucky downtown skyline bridge" },
@@ -561,7 +578,9 @@ type CitySlug =
   // 일본 (신규)
   "tokyo" | "osaka" |
   // 한국 — 역이민·방문 동포·한국 이주
-  "seoul" | "busan" | "ansan" | "incheon" | "jeju" | "daegu" | "gwangju" | "daejeon" | "changwon" | "cheonan";
+  "seoul" | "busan" | "ansan" | "incheon" | "jeju" | "daegu" | "gwangju" | "daejeon" | "changwon" | "cheonan" | "bundang" |
+  // 북미 신규
+  "orlando" | "maryland";
 
 interface CityConfig {
   slug: CitySlug;
@@ -864,6 +883,9 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   daejeon:    { slug: "daejeon",    nameKo: "대전",      nameEn: "Daejeon",      color: "#3B82F6", heroVideo: "", population: "2만+",    state: "Korea",       taglineKo: "과학의 도시, 한국의 실리콘밸리",   taglineEn: "Science City, Korea's Silicon Valley.", taglineEs: "La ciudad de la ciencia de Corea." },
   changwon:   { slug: "changwon",   nameKo: "창원",      nameEn: "Changwon",     color: "#F472B6", heroVideo: "", population: "9만+",    state: "Korea",       taglineKo: "진해 벚꽃과 방산의 도시, 경남의 심장", taglineEn: "Cherry blossoms and industry in South Gyeongnam.", taglineEs: "Flores de cerezo e industria en Gyeongnam del Sur." },
   cheonan:    { slug: "cheonan",    nameKo: "천안·아산", nameEn: "Cheonan",      color: "#78716C", heroVideo: "", population: "8만+",    state: "Korea",       taglineKo: "독립의 성지, 충남의 첫 관문",       taglineEn: "Land of independence, gateway to Chungnam.", taglineEs: "Tierra de independencia, puerta de Chungnam." },
+  bundang:    { slug: "bundang",    nameKo: "분당·수지", nameEn: "Bundang",      color: "#7C3AED", heroVideo: "", population: "5만+",    state: "Korea",       taglineKo: "귀환 동포의 새 보금자리, 분당·수지", taglineEn: "New home for returning diaspora — Bundang & Suji.", taglineEs: "Nuevo hogar para la diáspora coreana." },
+  orlando:    { slug: "orlando",    nameKo: "올랜도",    nameEn: "Orlando",      color: "#F97316", heroVideo: "", population: "3천+",    state: "Florida",     taglineKo: "선샤인 스테이트의 한인 커뮤니티",    taglineEn: "Korean Community in the Sunshine State.", taglineEs: "Comunidad coreana en Florida." },
+  maryland:   { slug: "maryland",   nameKo: "메릴랜드",  nameEn: "Maryland",     color: "#DC2626", heroVideo: "", population: "2만+",    state: "Maryland",    taglineKo: "DC의 보금자리, 메릴랜드 한인 커뮤니티", taglineEn: "Home of DC's Korean community — Montgomery County.", taglineEs: "La comunidad coreana del área de DC." },
 };
 
 function useCityConfig(): CityConfig {
@@ -3943,6 +3965,285 @@ const TOP5_EXPLORE_LOUISVILLE: Top5Item[] = [
     rating: 4.5, ratingCount: "12,000+",
     why: "미국 20대 동물원. 1,700종+동물. 가족 나들이 최적. 봄-가을 야외 행사 풍성.",
     tip: "주차 $7. 입장료 성인 $19. 온라인 예매 시 할인", website: "louisvillezoo.org" },
+];
+
+/* ── 올랜도 (ORLANDO, FL) ── */
+const TOP5_SETTLE_ORLANDO: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "올랜도 한인회 (KAAGO)", nameEn: "Korean Association of Greater Orlando",
+    address: "Orlando, FL",
+    hours: "문의 후 방문",
+    why: "올랜도 한인 커뮤니티 최대 조직. 정착 초기 한인 네트워크 연결·생활 정보 제공.",
+    tip: "구글 검색 'Korean Association Orlando FL' 또는 현지 한인교회 통해 연락", website: "google.com/search?q=Korean+Association+Greater+Orlando" },
+  { rank: 2, emoji: "🚗", nameKo: "Florida DHSMV — 운전면허", nameEn: "FL DHSMV — Driver License",
+    address: "Nearest DHSMV office (플로리다 이주 후 30일 내)",
+    hours: "월-금 8am-5pm",
+    why: "플로리다 이주 후 30일 이내 운전면허 전환 의무. 한국 면허 소지 시 일부 테스트 면제 가능.",
+    tip: "appointments.flhsmv.gov 온라인 예약 필수. 여권·SSN·주소증명 지참", website: "flhsmv.gov" },
+  { rank: 3, emoji: "💊", nameKo: "Florida Medicaid / Marketplace", nameEn: "Florida Health Insurance",
+    address: "healthcare.gov (온라인 신청)",
+    hours: "연중 상시 (Open Enrollment: 11월-1월)",
+    why: "플로리다는 Medicaid 확장 미시행 주. ACA Marketplace 통해 민간보험 가입 권장.",
+    tip: "저소득 시 Premium Tax Credit 최대 적용. healthcare.gov 한국어 전화 상담 가능", website: "healthcare.gov" },
+  { rank: 4, emoji: "📱", nameKo: "T-Mobile 올랜도 (SIM·핸드폰)", nameEn: "T-Mobile Orlando",
+    address: "International Drive 일대 다수 지점",
+    hours: "매일 10am-8pm",
+    why: "올랜도 관광지 중심부. SIM 카드·핸드폰 즉시 구매·개통. 한국어 안내 가능 직원 있음.",
+    tip: "$30/월 Prepaid 무제한 추천. 도착 당일 공항 T-Mobile 부스에서 구매 가능", website: "t-mobile.com" },
+  { rank: 5, emoji: "🇰🇷", nameKo: "한국 총영사관 마이애미 (관할)", nameEn: "Korean Consulate — Miami (Jurisdiction)",
+    address: "2333 Ponce de Leon Blvd Suite 1280, Coral Gables, FL 33134",
+    phone: "(786) 268-8900", hours: "월-금 9am-12pm, 1:30pm-4pm",
+    why: "플로리다는 마이애미 총영사관 관할. 여권 발급·갱신·공증·재외국민 등록.",
+    tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/us-miami-ko", website: "overseas.mofa.go.kr/us-miami-ko" },
+];
+const TOP5_FOOD_ORLANDO: Top5Item[] = [
+  { rank: 1, emoji: "🏪", nameKo: "아시안 마켓 (한국 식품)", nameEn: "Asian Market — Korean Groceries",
+    address: "Orlando 및 Kissimmee 일대",
+    hours: "매일 9am-9pm",
+    rating: 4.2, ratingCount: "1,000+",
+    why: "올랜도에는 H-Mart 미입점. 아시안 마켓(Lotte, HK Supermarket 등)에서 한국 식재료 구매 가능.",
+    tip: "Lotte International Market: 근처 Tampa 또는 Atlanta H-Mart 방문 권장", website: "yelp.com/search?find_desc=Korean+grocery&find_loc=Orlando+FL" },
+  { rank: 2, emoji: "🍖", nameKo: "올랜도 한식당 (한국 BBQ)", nameEn: "Korean Restaurants — Orlando",
+    address: "International Drive / Semoran Blvd 일대",
+    hours: "매장별 상이",
+    rating: 4.1, ratingCount: "2,000+",
+    why: "올랜도 한인 식당은 주로 Semoran Blvd·Colonial Dr 일대. 관광지 대비 실속 한식.",
+    tip: "'Korean restaurant Orlando FL' 구글 검색 → Yelp 최신 별점 확인", website: "yelp.com/search?find_desc=Korean+restaurant&find_loc=Orlando+FL" },
+  { rank: 3, emoji: "☕", nameKo: "한인 카페 & 베이커리", nameEn: "Korean Cafe & Bakery",
+    address: "Orlando 한인 밀집 지역",
+    hours: "매장별 상이",
+    rating: 4.3, ratingCount: "500+",
+    why: "올랜도 한인 커뮤니티 카페. 한국 음료·빵·간식. 한인 모임 장소로 인기.",
+    tip: "구글맵 'Korean cafe Orlando' 검색", website: "google.com/search?q=Korean+cafe+Orlando+FL" },
+  { rank: 4, emoji: "🍜", nameKo: "국제 다이닝 (International Drive)", nameEn: "International Drive Dining",
+    address: "International Dr, Orlando, FL",
+    hours: "레스토랑별 상이",
+    rating: 4.0, ratingCount: "50,000+",
+    why: "올랜도 최대 외식 밀집 지역. 다양한 아시아·미국 음식. 테마파크 방문 전후 식사 최적.",
+    tip: "점심시간 이전(11am) 방문 시 웨이팅 없음" },
+  { rank: 5, emoji: "🎠", nameKo: "디즈니 스프링스 다이닝", nameEn: "Disney Springs — Dining",
+    address: "1486 Buena Vista Dr, Lake Buena Vista, FL",
+    hours: "매일 10am-11pm",
+    rating: 4.4, ratingCount: "30,000+",
+    why: "디즈니 리조트 외부 무료 입장 쇼핑·다이닝. 다양한 식당 선택지. 주차 무료.",
+    tip: "Earl of Sandwich, Frontera Cocina 인기. 예약 불필요", website: "disneysprings.com" },
+];
+const TOP5_EXPLORE_ORLANDO: Top5Item[] = [
+  { rank: 1, emoji: "🏰", nameKo: "월트 디즈니 월드", nameEn: "Walt Disney World Resort",
+    address: "Bay Lake, FL 32836",
+    hours: "매일 (파크별 상이 — 공식 앱 확인)",
+    rating: 4.7, ratingCount: "500,000+",
+    why: "세계 최대 테마파크. Magic Kingdom·EPCOT·Hollywood Studios·Animal Kingdom 4개 파크. 가족 여행 필수 코스.",
+    tip: "Lightning Lane 패스 사전 구매 권장. 공식 앱으로 실시간 대기 확인", website: "disneyworld.disney.go.com" },
+  { rank: 2, emoji: "🎬", nameKo: "유니버설 스튜디오 플로리다", nameEn: "Universal Studios Florida",
+    address: "6000 Universal Blvd, Orlando, FL 32819",
+    hours: "매일 9am-6pm (계절별 상이)",
+    rating: 4.7, ratingCount: "300,000+",
+    why: "해리포터 위저딩 월드·미니언즈·쥬라기 공원. 미국 주요 테마파크 2위.",
+    tip: "Universal Express 패스 구매 시 대기 50% 단축. 오전 일찍 방문 권장", website: "universalorlando.com" },
+  { rank: 3, emoji: "🌿", nameKo: "레이크 이올라 공원", nameEn: "Lake Eola Park",
+    address: "512 E Washington St, Orlando, FL 32801",
+    hours: "매일 6am-12am",
+    rating: 4.6, ratingCount: "20,000+",
+    why: "올랜도 다운타운 중심 공원. 분수쇼·오리배·주말 파머스 마켓. 한인들의 조깅·산책 명소.",
+    tip: "주말 파머스 마켓(일요일 10am-3pm) 방문 시 현지 유기농 식품 구매 가능" },
+  { rank: 4, emoji: "🚀", nameKo: "케네디 우주센터", nameEn: "Kennedy Space Center Visitor Complex",
+    address: "Space Commerce Way, Merritt Island, FL 32953",
+    hours: "매일 9am-5pm",
+    rating: 4.6, ratingCount: "80,000+",
+    why: "NASA 실제 발사대·우주왕복선·로켓 전시. 올랜도에서 45분. 미국 우주 탐사 역사 현장.",
+    tip: "로켓 발사 일정 확인 후 방문 시 무료 관람 가능 (kennedy공식 사이트)", website: "kennedyspacecenter.com" },
+  { rank: 5, emoji: "🌊", nameKo: "씨월드 올랜도", nameEn: "SeaWorld Orlando",
+    address: "7007 SeaWorld Dr, Orlando, FL 32821",
+    hours: "매일 9am-6pm (계절별 상이)",
+    rating: 4.4, ratingCount: "100,000+",
+    why: "범고래·돌고래·상어 쇼·롤러코스터. 어린이·가족 테마파크. 시즌 멤버십 가성비 우수.",
+    tip: "연간 패스 구매 시 올랜도 3개 테마파크 할인 혜택", website: "seaworldentertainment.com/seaworld/orlando" },
+];
+
+/* ── 분당·수지 (BUNDANG, Korea) ── */
+const TOP5_SETTLE_BUNDANG: Top5Item[] = [
+  { rank: 1, emoji: "🌐", nameKo: "성남시 외국인주민복지지원센터", nameEn: "Seongnam Foreign Resident Welfare Center",
+    address: "경기도 성남시 분당구 분당로 53번길 12",
+    hours: "월-금 9am-6pm",
+    why: "분당구 외국인 정착 원스톱 지원. 비자·생활·의료·취업 상담. 한국어 교육 프로그램 운영.",
+    tip: "방문 전 전화 예약 권장. 한국어·영어 상담 가능", website: "foreigner.seongnam.go.kr" },
+  { rank: 2, emoji: "🛂", nameKo: "수원출입국·외국인청", nameEn: "Suwon Immigration Office",
+    address: "경기도 수원시 영통구 광교로 107",
+    phone: "031-210-6300", hours: "월-금 9am-6pm",
+    why: "분당·수지 거주 외국인 관할 출입국사무소. 외국인등록증 발급·비자 변경·체류연장.",
+    tip: "하이코리아(hikorea.go.kr) 온라인 예약 필수. 대기 최소화", website: "hikorea.go.kr" },
+  { rank: 3, emoji: "🏥", nameKo: "국민건강보험공단 분당지사", nameEn: "NHIS Bundang Branch",
+    address: "경기도 성남시 분당구 황새울로 200번길 45",
+    hours: "월-금 9am-6pm",
+    why: "분당 지역 국민건강보험 가입·변경·문의. 외국인 건강보험 의무 가입(6개월 이상 체류 시).",
+    tip: "nhis.or.kr 온라인 또는 지사 방문. 공단 콜센터 1577-1000" },
+  { rank: 4, emoji: "💼", nameKo: "판교 고용복지플러스센터", nameEn: "Pangyo Employment Welfare Plus Center",
+    address: "경기도 성남시 분당구 대왕판교로 700",
+    hours: "월-금 9am-6pm",
+    why: "판교 IT 클러스터 인근. 취업 상담·직업훈련·실업급여. 외국인 E-7 비자 취업 연계.",
+    tip: "판교 테크노밸리 입주 기업 채용 정보 상시 공유", website: "work.go.kr" },
+  { rank: 5, emoji: "🏪", nameKo: "이마트 분당 & 코스트코 하남", nameEn: "Emart Bundang & Costco Hanam",
+    address: "성남시 분당구 / 하남시 (분당에서 20분)",
+    hours: "매일 10am-11pm",
+    why: "분당 이마트·트레이더스에서 한국 식재료·생필품 원스톱 쇼핑. 코스트코 하남에서 대량 구매 가능.",
+    tip: "판교 현대백화점 식품관도 고급 식재료·반찬 구매 가능", website: "emart.com" },
+];
+const TOP5_FOOD_BUNDANG: Top5Item[] = [
+  { rank: 1, emoji: "☕", nameKo: "백현동 카페거리", nameEn: "Backheondong Cafe Street",
+    address: "경기도 성남시 분당구 백현동 일대",
+    hours: "카페별 10am-11pm",
+    rating: 4.5, ratingCount: "30,000+",
+    why: "한국에서 손꼽히는 프리미엄 카페 밀집 거리. 에이블루·더큰컵·스타벅스 리저브 등. 귀환 동포·외국인들의 SNS 명소.",
+    tip: "주말 혼잡 — 평일 오전 방문 추천. 주차는 판교역 환승주차장 이용" },
+  { rank: 2, emoji: "🍽️", nameKo: "정자동 먹자골목", nameEn: "Jeongja-dong Restaurant Street",
+    address: "경기도 성남시 분당구 정자동 일대",
+    hours: "음식점별 11am-10pm",
+    rating: 4.3, ratingCount: "20,000+",
+    why: "분당 최대 먹자골목. 한식·일식·이탈리안·한국 카페 밀집. IT 종사자 점심 명소.",
+    tip: "정자역 도보 5분. 점심 12-1pm 매우 혼잡 — 11:30am 방문 추천" },
+  { rank: 3, emoji: "🛍️", nameKo: "판교 현대백화점 식품관", nameEn: "Hyundai Dept. Store Pangyo — Food Hall",
+    address: "경기도 성남시 분당구 대왕판교로 606",
+    hours: "매일 10:30am-8pm",
+    rating: 4.5, ratingCount: "10,000+",
+    why: "판교 현대백화점 지하 식품관. 프리미엄 한식·일식·빵집·반찬가게. 귀환 동포들이 즐겨 찾는 맛집 집결지.",
+    tip: "화요일 정기 할인 이벤트 확인. 지하주차장 1시간 무료", website: "hyundaidept.com" },
+  { rank: 4, emoji: "🥩", nameKo: "분당 한우 전문점 (서현역 인근)", nameEn: "Bundang Korean Beef (Near Seohyeon)",
+    address: "경기도 성남시 분당구 서현동 일대",
+    hours: "매일 11:30am-10pm",
+    rating: 4.4, ratingCount: "5,000+",
+    why: "분당 서현동 한우 맛집 골목. 귀국 후 한국 소고기를 제대로 즐길 수 있는 지역 명소.",
+    tip: "서현역 1번 출구 도보 5분. 저녁 예약 필수" },
+  { rank: 5, emoji: "🍰", nameKo: "수지 로데오거리", nameEn: "Suji Rodeo Street — Cafes & Dining",
+    address: "경기도 용인시 수지구 풍덕천동 일대",
+    hours: "가게별 10am-11pm",
+    rating: 4.3, ratingCount: "8,000+",
+    why: "수지 구성역·죽전역 인근 카페·음식점 밀집. 분당과 비슷한 분위기로 수지 거주 동포들의 주말 명소.",
+    tip: "수지구청역 도보 5분" },
+];
+const TOP5_EXPLORE_BUNDANG: Top5Item[] = [
+  { rank: 1, emoji: "🌿", nameKo: "율동공원 (분당 호수공원)", nameEn: "Yuldong Park — Bundang Lake Park",
+    address: "경기도 성남시 분당구 운중동 1",
+    hours: "상시 개방",
+    rating: 4.7, ratingCount: "50,000+",
+    why: "분당의 상징 호수공원. 산책·자전거·피크닉·조깅. 봄 벚꽃·가을 단풍 명소. 귀환 동포들이 한국 정착 후 가장 먼저 찾는 힐링 장소.",
+    tip: "주말 조깅·자전거 혼잡. 평일 오전 한적. 카약 대여 가능" },
+  { rank: 2, emoji: "🏙️", nameKo: "판교 테크노밸리 (판교역)", nameEn: "Pangyo Techno Valley",
+    address: "경기도 성남시 분당구 판교역로 235",
+    hours: "업무지구 평일 / 현대백화점 매일",
+    rating: 4.5, ratingCount: "20,000+",
+    why: "한국의 실리콘밸리. 네이버·카카오·넥슨·삼성SDS 등 IT 대기업 집결. 현대백화점·스트리트·푸드코트.",
+    tip: "신분당선 판교역 직결. 평일 점심 회사원 인파 많음" },
+  { rank: 3, emoji: "🚴", nameKo: "탄천 자전거길", nameEn: "Tancheon Cycling Path",
+    address: "성남시 분당구 (강남·한강까지 연결)",
+    hours: "상시 개방",
+    rating: 4.6, ratingCount: "30,000+",
+    why: "분당에서 강남·잠실·한강까지 연결되는 자전거 전용 도로. 총 15km. 귀환 동포들의 서울 접근성 체험 최적 코스.",
+    tip: "자전거 대여: 탄천 인근 공공자전거(따릉이) 또는 전동킥보드 이용" },
+  { rank: 4, emoji: "🛒", nameKo: "AK 플라자 분당 & 서현 로데오", nameEn: "AK Plaza Bundang & Seohyeon Rodeo",
+    address: "경기도 성남시 분당구 서현동",
+    hours: "매일 10:30am-9pm",
+    rating: 4.3, ratingCount: "15,000+",
+    why: "분당 최대 복합쇼핑몰. 영화관·패션·식당·마트. 서현역 직결. 귀환 동포들의 쇼핑·여가 거점.",
+    tip: "서현역 2번 출구 바로 연결" },
+  { rank: 5, emoji: "🏞️", nameKo: "광교호수공원 (수지 인근)", nameEn: "Gwanggyo Lake Park — Near Suji",
+    address: "경기도 수원시 영통구 광교호수로 180",
+    hours: "상시 개방",
+    rating: 4.8, ratingCount: "80,000+",
+    why: "수지에서 15분 거리. 한국 최고 수준의 도시 호수공원. 넓은 산책로·수변 카페·레스토랑. 사진 명소.",
+    tip: "경기도미술관·카카오 AI 캠퍼스와 인접. 주말 차량 혼잡" },
+];
+
+/* ── 메릴랜드 (MARYLAND — Silver Spring·Rockville·Gaithersburg 일대) ── */
+const TOP5_SETTLE_MARYLAND: Top5Item[] = [
+  { rank: 1, emoji: "🌐", nameKo: "한인봉사센터 KCSC (실버스프링·게이더스버그)", nameEn: "Korean Community Service Center (KCSC)",
+    address: "Gaithersburg & Silver Spring, MD 지점",
+    hours: "월-금 9am-5pm",
+    why: "DC 메트로 최대 한인 사회복지 기관(1974년~). 법률·이민·건강·취업·노인 지원. 한국어 상담 전담.",
+    tip: "Gaithersburg 지점: (301) 948-3932 / Silver Spring 지점: (301) 588-8292", website: "kcscgw.org" },
+  { rank: 2, emoji: "🚗", nameKo: "Maryland MVA — 운전면허 (록빌)", nameEn: "Maryland MVA — Driver License (Rockville)",
+    address: "15 Metropolitan Grove Rd, Gaithersburg, MD 20878",
+    hours: "월-금 8:30am-4:30pm, 토 8:30am-12pm",
+    why: "메릴랜드 이주 후 60일 내 면허 전환. 한국 면허 지참 시 필기 면제 가능.",
+    tip: "mva.maryland.gov 온라인 예약 필수. 여권·SSN·주소증명 2개 지참", website: "mva.maryland.gov" },
+  { rank: 3, emoji: "🇰🇷", nameKo: "주미 한국대사관 (워싱턴 DC)", nameEn: "Korean Embassy Washington DC",
+    address: "2450 Massachusetts Ave NW, Washington, DC 20008",
+    phone: "(202) 939-5600", hours: "월-금 9am-12pm, 1:30pm-4pm",
+    why: "메릴랜드·버지니아·DC 한인 관할. 여권·공증·재외국민 등록·재외투표.",
+    tip: "온라인 예약 필수. 메릴랜드 거주자는 워싱턴 대사관 방문", website: "usa.mofa.go.kr" },
+  { rank: 4, emoji: "🏪", nameKo: "H-Mart Germantown (한국 대형마트)", nameEn: "H-Mart Germantown",
+    address: "13830 Outlet Dr, Silver Spring, MD 20904",
+    hours: "매일 8am-10pm",
+    why: "메릴랜드 최대 한국 마트. 한국 식재료·반찬·즉석식품·의약품. 푸드코트 운영.",
+    tip: "주말 혼잡. 평일 오전 방문 추천. H-Mart 앱으로 할인 쿠폰 사전 확인", website: "hmart.com" },
+  { rank: 5, emoji: "💊", nameKo: "CareFirst BlueCross BlueShield MD", nameEn: "CareFirst BlueCross BlueShield Maryland",
+    address: "ACA Marketplace 온라인 신청",
+    hours: "상시 (오픈 등록: 11월-1월)",
+    why: "메릴랜드 최대 민간 건강보험사. 직장 없을 시 ACA Marketplace 통해 개인 플랜 가입.",
+    tip: "marylandhealthconnection.gov 메릴랜드 공식 거래소. 저소득 시 보조금 대폭 지원", website: "marylandhealthconnection.gov" },
+];
+const TOP5_FOOD_MARYLAND: Top5Item[] = [
+  { rank: 1, emoji: "🏪", nameKo: "H-Mart Germantown 푸드코트", nameEn: "H-Mart Germantown Food Court",
+    address: "13830 Outlet Dr, Silver Spring, MD 20904",
+    hours: "매일 10am-9pm",
+    rating: 4.3, ratingCount: "3,000+",
+    why: "H-Mart 내 한국 푸드코트. 떡볶이·순대·국수·분식·커피. 메릴랜드 한인 모임의 대표 장소.",
+    tip: "점심시간 혼잡. 오전이나 오후 2-4pm 방문 추천", website: "hmart.com" },
+  { rank: 2, emoji: "🥩", nameKo: "록빌 한인타운 한식당 (Rockville Pike)", nameEn: "Korean Restaurants — Rockville Pike",
+    address: "Rockville Pike, Rockville, MD 20852",
+    hours: "매장별 11am-10pm",
+    rating: 4.3, ratingCount: "10,000+",
+    why: "DC 메트로 최대 한인타운. 한국 BBQ·순두부·냉면·분식 등 다양한 한식. 한인 식품점·미용실 집결.",
+    tip: "Rockville Metro역 인근 도보 이동 가능. 주차는 Pike & Rose 공영주차장 이용" },
+  { rank: 3, emoji: "🍺", nameKo: "게이더스버그 한인 레스토랑", nameEn: "Korean Restaurants — Gaithersburg",
+    address: "Gaithersburg, MD 20877",
+    hours: "매장별 11am-10pm",
+    rating: 4.2, ratingCount: "5,000+",
+    why: "게이더스버그 한인 식당가. 한국 BBQ·삼겹살·곱창·치킨. 록빌보다 조금 여유로운 분위기.",
+    tip: "한국 치킨집 배달: Doordash·Uber Eats에서 'Korean chicken' 검색", website: "yelp.com/search?find_desc=Korean+restaurant&find_loc=Gaithersburg+MD" },
+  { rank: 4, emoji: "☕", nameKo: "실버스프링 한인 카페", nameEn: "Korean Cafes — Silver Spring",
+    address: "Silver Spring, MD 20901",
+    hours: "카페별 8am-9pm",
+    rating: 4.4, ratingCount: "2,000+",
+    why: "실버스프링 한인 밀집 지역의 한국 카페. 버블티·한국 스낵·케이크. 한인 모임 장소.",
+    tip: "구글맵 'Korean cafe Silver Spring MD' 검색 최신 정보 확인" },
+  { rank: 5, emoji: "🍣", nameKo: "Pike & Rose 다이닝 (록빌)", nameEn: "Pike & Rose — Rockville Dining",
+    address: "11800 Grand Park Ave, North Bethesda, MD 20852",
+    hours: "매장별 상이",
+    rating: 4.4, ratingCount: "15,000+",
+    why: "록빌 인근 신개념 복합 다이닝·쇼핑 단지. 한국 음식 외 다양한 국제 레스토랑. 귀환 동포들의 사교 장소.",
+    tip: "White Flint Metro역 도보 5분. 무료 주차", website: "pikeandrose.com" },
+];
+const TOP5_EXPLORE_MARYLAND: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "워싱턴 DC 내셔널몰 (15분)", nameEn: "National Mall — Washington DC",
+    address: "National Mall, Washington, DC 20024",
+    hours: "상시 개방 (박물관: 10am-5:30pm, 무료)",
+    rating: 4.8, ratingCount: "200,000+",
+    why: "메릴랜드에서 Metro 15분. 링컨 기념관·한국전쟁 참전용사 기념비·스미소니언 박물관 무료 관람.",
+    tip: "한국전쟁 기념비(Korean War Veterans Memorial): Mall 서쪽 끝. 입장 무료. 반드시 방문" },
+  { rank: 2, emoji: "🎵", nameKo: "스트라스모어 음악당 (록빌)", nameEn: "Strathmore Music Center — Rockville",
+    address: "5301 Tuckerman Ln, North Bethesda, MD 20852",
+    phone: "(301) 581-5100", hours: "공연 일정별 상이",
+    rating: 4.7, ratingCount: "8,000+",
+    why: "워싱턴 DC 메트로 최고 공연장 중 하나. 클래식·재즈·팝. 한국 예술가 공연 빈번.",
+    tip: "Metro Red Line Grosvenor-Strathmore역 직결. 무료 주차 가능", website: "strathmore.org" },
+  { rank: 3, emoji: "⛰️", nameKo: "수가로프 마운틴", nameEn: "Sugarloaf Mountain",
+    address: "7901 Comus Rd, Dickerson, MD 20842",
+    hours: "매일 8am-일몰",
+    rating: 4.7, ratingCount: "5,000+",
+    why: "메릴랜드 유일 개인 소유 산(580m). 무료 하이킹. DC 메트로에서 40분. 시즌별 단풍·야생화 명소.",
+    tip: "무료 입장. 주차 무료. 정상까지 왕복 2시간. 등산화 권장" },
+  { rank: 4, emoji: "🌊", nameKo: "그레이트폴스 공원 (메릴랜드 측)", nameEn: "Great Falls Park — Maryland Side",
+    address: "Falls Rd, Potomac, MD 20854",
+    hours: "매일 7am-일몰",
+    rating: 4.8, ratingCount: "15,000+",
+    why: "포토맥 강 대폭포. 웅장한 자연 경관. C&O 운하 역사 공원 연결. 사진 명소. DC에서 25분.",
+    tip: "주차비 $20 (NPS 연간패스 소지 시 무료). 주말 만차 — 오전 8시 전 도착 권장" },
+  { rank: 5, emoji: "🌸", nameKo: "브룩사이드 가든 (Wheaton)", nameEn: "Brookside Gardens — Wheaton",
+    address: "1800 Glenallan Ave, Wheaton, MD 20902",
+    hours: "매일 9am-4pm",
+    rating: 4.7, ratingCount: "6,000+",
+    why: "50에이커 공립 식물원. 봄 튤립·여름 장미·가을 국화. 무료 입장. 메릴랜드 한인 가족 나들이 명소.",
+    tip: "무료 입장. 봄 시즌(3-5월) 가장 아름다움. 실내 온실 연중 개방", website: "montgomeryparks.org/parks-and-trails/brookside-gardens" },
 ];
 
 /* ── 20. SYDNEY ── */
@@ -7331,7 +7632,7 @@ function getCountryCode(slug: string): string {
   if (["sydney","melbourne","brisbane","perth"].includes(slug))                          return "AU";
   if (["auckland"].includes(slug))                                                        return "NZ";
   if (["tokyo","osaka"].includes(slug))                                                   return "JP";
-  if (["seoul","busan","ansan","incheon","jeju","daegu","gwangju","daejeon","changwon","cheonan"].includes(slug)) return "KR";
+  if (["seoul","busan","ansan","incheon","jeju","daegu","gwangju","daejeon","changwon","cheonan","bundang"].includes(slug)) return "KR";
   if (["mexicocity","guadalajara","monterrey"].includes(slug))                            return "MX";
   if (["london"].includes(slug))                                                          return "UK";
   if (["frankfurt","berlin"].includes(slug))                                              return "DE";
@@ -8933,6 +9234,8 @@ const HEBRON_CITIES = [
   { emoji: "🪖", nameKo: "페이엣빌",    nameEn: "Fayetteville",  flag: "🇺🇸", url: "/fayetteville/",status: "live", color: "#22C55E" },
   { emoji: "🪖", nameKo: "킬린",        nameEn: "Killeen",       flag: "🇺🇸", url: "/killeen/",     status: "live", color: "#F59E0B" },
   { emoji: "🥃", nameKo: "루이빌",      nameEn: "Louisville",    flag: "🇺🇸", url: "/louisville/",  status: "live", color: "#7C3AED" },
+  { emoji: "☀️", nameKo: "올랜도",      nameEn: "Orlando",       flag: "🇺🇸", url: "/orlando/",     status: "live", color: "#F97316" },
+  { emoji: "🍒", nameKo: "메릴랜드",    nameEn: "Maryland",      flag: "🇺🇸", url: "/maryland/",    status: "live", color: "#DC2626" },
   { emoji: "🐻", nameKo: "앵커리지",    nameEn: "Anchorage",     flag: "🇺🇸", url: "/anchorage/",   status: "live", color: "#14B8A6" },
   { emoji: "🍁", nameKo: "캘거리",      nameEn: "Calgary",       flag: "🇨🇦", url: "/calgary/",     status: "live", color: "#D97706" },
   { emoji: "🍁", nameKo: "에드먼턴",    nameEn: "Edmonton",      flag: "🇨🇦", url: "/edmonton/",    status: "live", color: "#10B981" },
@@ -8974,6 +9277,7 @@ const HEBRON_CITIES = [
   { emoji: "🔬", nameKo: "대전",        nameEn: "Daejeon",       flag: "🇰🇷", url: "/daejeon/",     status: "live", color: "#3B82F6" },
   { emoji: "🌸", nameKo: "창원",        nameEn: "Changwon",      flag: "🇰🇷", url: "/changwon/",    status: "live", color: "#F472B6" },
   { emoji: "🏛️", nameKo: "천안·아산",  nameEn: "Cheonan",       flag: "🇰🇷", url: "/cheonan/",     status: "live", color: "#78716C" },
+  { emoji: "🏡", nameKo: "분당·수지",   nameEn: "Bundang",       flag: "🇰🇷", url: "/bundang/",     status: "live", color: "#7C3AED" },
 ];
 
 /* 도시별 디자인 — 항공 코드 + 그라디언트 (프로페셔널 스타일) */
@@ -9315,6 +9619,9 @@ const DIASPORA_IDENTITY: Record<string, {
   daejeon:      { flag:"🇰🇷", ko:"한국 이주민",       en:"Korea Immigrant",     descKo:"과학과 연구의 중심 대전에서",             descEn:"In Daejeon, Korea's science capital.",            color:"#3B82F6" },
   changwon:     { flag:"🇰🇷", ko:"한국 이주민",       en:"Korea Immigrant",     descKo:"벚꽃과 방산이 공존하는 경남의 심장에서", descEn:"In the heart of South Gyeongnam.",                color:"#F472B6" },
   cheonan:      { flag:"🇰🇷", ko:"한국 이주민",       en:"Korea Immigrant",     descKo:"독립의 성지 천안·아산에서 새 삶을 시작하며", descEn:"Starting anew in Cheonan·Asan.",              color:"#78716C" },
+  bundang:      { flag:"🇰🇷", ko:"귀환 동포",         en:"Returning Diaspora",  descKo:"분당·수지에서 다시 시작하는 새로운 일상", descEn:"Starting a new chapter in Bundang & Suji.",       color:"#7C3AED" },
+  orlando:      { flag:"🇺🇸", ko:"Korean American",   en:"Korean American",     descKo:"플로리다 선샤인 스테이트에서 꿈을 키우며", descEn:"Growing dreams in Florida's Sunshine State.",    color:"#F97316" },
+  maryland:     { flag:"🇺🇸", ko:"Korean American",   en:"Korean American",     descKo:"DC 인근 메릴랜드에서 뿌리내리며",     descEn:"Putting down roots in Maryland near DC.",          color:"#DC2626" },
   seoul:        { flag:"🇰🇷", ko:"역이민·귀환 동포", en:"Returning Diaspora",  descKo:"다시 서울에서, 새롭게 시작하는 일상",  descEn:"Back in Seoul, starting a new chapter of life",   color:"#DC2626" },
   busan:        { flag:"🇰🇷", ko:"역이민·귀환 동포", en:"Returning Diaspora",  descKo:"바다의 도시 부산에서 새 삶을 펼치다",  descEn:"Unfolding a new life in the city by the sea",     color:"#0EA5E9" },
 };
@@ -10586,6 +10893,9 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "killeen"    ? TOP5_SETTLE_KILLEEN :
             useCityConfig().slug === "anchorage"  ? TOP5_SETTLE_ANCHORAGE :
             useCityConfig().slug === "louisville" ? TOP5_SETTLE_LOUISVILLE :
+            useCityConfig().slug === "orlando"    ? TOP5_SETTLE_ORLANDO :
+            useCityConfig().slug === "bundang"    ? TOP5_SETTLE_BUNDANG :
+            useCityConfig().slug === "maryland"   ? TOP5_SETTLE_MARYLAND :
             useCityConfig().slug === "sydney"     ? TOP5_SETTLE_SYDNEY :
             useCityConfig().slug === "melbourne"  ? TOP5_SETTLE_MELBOURNE :
             useCityConfig().slug === "brisbane"   ? TOP5_SETTLE_BRISBANE :
@@ -11279,8 +11589,8 @@ function getCityChurches(slug: string, lang: string) {
     dallas: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "예달교회" : "Yedal Church — Dallas",
-        nameEn: "Yedal Church",
+        name: ko ? "예닮교회" : "Yedam Church — Dallas",
+        nameEn: "Yedam Church",
         desc: ko
           ? "✅ 가정교회 | 북미가사원 텍사스 지역목자\n📍 Dallas, TX\n✨ 담임: 이우철 목사"
           : "✅ House Church | HMI North America Texas Regional Shepherd\n📍 Dallas, TX\n✨ Lead Pastor: Woo Chul Lee",
@@ -11301,11 +11611,11 @@ function getCityChurches(slug: string, lang: string) {
     orangecounty: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "깃즈패밀리교회" : "God's Family Church — OC",
+        name: ko ? "갓즈패밀리교회" : "God's Family Church — OC",
         nameEn: "God's Family Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 OC 지역목자 (아프리카 동부 선교 지원)\n📍 Orange County, CA\n✨ 담임: 유대호 목사"
-          : "✅ House Church | HMI North America OC Regional Shepherd\n📍 Orange County, CA\n✨ Lead Pastor: Daeho Yoo",
+          ? "✅ 가정교회 | 북미가사원 OC 지역목자\n📍 Orange County, CA\n✨ 담임: 이경태 목사"
+          : "✅ House Church | HMI North America OC Regional Shepherd\n📍 Orange County, CA\n✨ Lead Pastor: Kyungtae Lee",
         tags: ko ? ["가정교회", "오렌지카운티"] : ["House Church", "OC"],
       },
       {
@@ -11455,7 +11765,7 @@ function getCityChurches(slug: string, lang: string) {
     ],
     seoul: [
       {
-        emoji: "⭐", tier: 1,
+        emoji: "⛪", tier: 2,
         name: ko ? "온누리교회" : "Onnuri Church Seoul",
         desc: ko
           ? "✅ 검증됨 · 귀환 동포·역이민자 환영\n📍 서울 서초구 남부순환로 2497\n🕐 주일예배 1부(7am)·2부(9am)·3부(11am)·4부(2pm)\n🔗 onnuri.org\n\n✨ 해외에서 돌아온 귀환 동포를 위한 영어예배·글로벌 공동체 운영"
@@ -11483,7 +11793,7 @@ function getCityChurches(slug: string, lang: string) {
     ],
     busan: [
       {
-        emoji: "⭐", tier: 1,
+        emoji: "⛪", tier: 2,
         name: ko ? "수영로교회" : "Sooyoungro Church",
         desc: ko
           ? "✅ 가정교회 모델 · 역이민 귀환 동포 환영\n📍 부산 수영구 수영로 425\n🕐 주일예배 7부(6:30am)·1부(8am)·2부(9:30am)·3부(11:10am)·4부(1pm)·5부(3pm)·영어예배(1pm)\n🔗 sooyoungro.org\n\n✨ 부산 한인 이민 귀환 동포를 따뜻하게 맞이합니다"
@@ -11524,8 +11834,8 @@ function getCityChurches(slug: string, lang: string) {
     nashville: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "주님의품턴교회" : "Lord's Embrace Church — Nashville",
-        nameEn: "Lord's Embrace Church",
+        name: ko ? "주님의몸된교회" : "Body of Christ Church — Nashville",
+        nameEn: "Body of Christ Church",
         desc: ko
           ? "✅ 가정교회 | 북미가사원 테네시 지역목자\n📍 Tennessee (Nashville 지역)\n✨ 담임: 이영범 목사"
           : "✅ House Church | HMI Tennessee Regional Shepherd\n📍 Tennessee (Nashville area)\n✨ Lead Pastor: Youngbum Lee",
@@ -11566,11 +11876,11 @@ function getCityChurches(slug: string, lang: string) {
     philadelphia: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "밴실웸연합감리교회" : "Bensal Hem UMC — Philadelphia",
-        nameEn: "Bensal Hem United Methodist Church",
+        name: ko ? "벤살렘연합감리교회" : "Bensalem UMC — Philadelphia",
+        nameEn: "Bensalem United Methodist Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 필라/뉴저지 지역목자\n📍 Philadelphia / New Jersey 지역\n✨ 담임: 차영후 목사"
-          : "✅ House Church | HMI Philadelphia/NJ Regional Shepherd\n📍 Philadelphia / New Jersey area\n✨ Lead Pastor: Younghoo Cha",
+          ? "✅ 가정교회 | 북미가사원 필라/뉴저지 지역목자\n📍 Bensalem, PA (Philadelphia 인근)\n✨ 담임: 차명훈 목사"
+          : "✅ House Church | HMI Philadelphia/NJ Regional Shepherd\n📍 Bensalem, PA (Greater Philadelphia)\n✨ Lead Pastor: Myunghun Cha",
         tags: ko ? ["가정교회", "필라델피아", "뉴저지"] : ["House Church", "Philadelphia", "New Jersey"],
       },
     ],
@@ -11614,6 +11924,42 @@ function getCityChurches(slug: string, lang: string) {
           ? "✅ 가정교회 | 북미가사원 시카고 지역목자\n📍 Chicago, IL\n✨ 담임: 곽성룡 목사"
           : "✅ House Church | HMI Chicago Regional Shepherd\n📍 Chicago, IL\n✨ Lead Pastor: Sungyong Kwak",
         tags: ko ? ["가정교회", "시카고"] : ["House Church", "Chicago"],
+      },
+    ],
+    orlando: [
+      {
+        emoji: "⭐", tier: 1,
+        name: ko ? "올랜도비전교회" : "Orlando Vision Church (KPCO)",
+        nameEn: "Orlando Vision Church",
+        desc: ko
+          ? "✅ 가정교회 | 북미가사원 플로리다 지역 · 북미가사원장 교회\n📍 16796 E. Davenport Rd, Winter Garden, FL 34787\n✨ 담임: 남인철 목사 (북미가사원장)\n🔗 kpco.org"
+          : "✅ House Church | HMI North America President's Church · Florida\n📍 16796 E. Davenport Rd, Winter Garden, FL 34787\n✨ Lead Pastor: Inchul Nam (HMI NA President)\n🔗 kpco.org",
+        tags: ko ? ["가정교회", "올랜도", "플로리다", "IHM"] : ["House Church", "Orlando", "Florida", "IHM"],
+        website: "http://www.kpco.org",
+      },
+    ],
+    bundang: [
+      {
+        emoji: "⛪", tier: 2,
+        name: ko ? "지구촌교회 (성남 분당)" : "Jiguchon Global Church — Bundang",
+        nameEn: "Jiguchon Global Church",
+        desc: ko
+          ? "✅ 검증됨 | 귀환 동포·역이민자 환영\n📍 경기도 성남시 분당구\n🕐 주일예배 다수 (공식 홈페이지 확인)\n🔗 jiguchon.or.kr\n\n✨ 원로: 이동원 목사 / 담임: 김우준 목사 (2025.5 취임)"
+          : "✅ Verified · Welcoming returning overseas Koreans\n📍 Bundang-gu, Seongnam, Gyeonggi Province\n🕐 Multiple Sunday services (see website)\n🔗 jiguchon.or.kr\n\n✨ Senior: Rev. Dongwon Lee / Lead Pastor: Rev. Woojun Kim (since May 2025)",
+        tags: ko ? ["분당", "귀환동포", "성남", "한국"] : ["Bundang", "Returnees", "Seongnam", "Korea"],
+        website: "https://www.jiguchon.or.kr",
+      },
+    ],
+    maryland: [
+      {
+        emoji: "⭐", tier: 1,
+        name: ko ? "워싱턴지구촌교회 (Global Mission Church)" : "Global Mission Church — Silver Spring",
+        nameEn: "Global Mission Church (GMC)",
+        desc: ko
+          ? "✅ 가정교회 | 메릴랜드·DC 한인 가정교회 사역\n📍 13421 Georgia Ave, Silver Spring, MD 20906\n🔗 gmcusa.org\n✨ 실버스프링 중심. 목장·삶공부 운영"
+          : "✅ House Church | Korean house church ministry in MD/DC area\n📍 13421 Georgia Ave, Silver Spring, MD 20906\n🔗 gmcusa.org\n✨ Silver Spring center. Mokjang & Life Studies",
+        tags: ko ? ["가정교회", "실버스프링", "메릴랜드"] : ["House Church", "Silver Spring", "Maryland"],
+        website: "https://www.gmcusa.org",
       },
     ],
     sandiego: [
@@ -15073,6 +15419,9 @@ const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
   killeen:       TOP5_FOOD_KILLEEN,
   anchorage:     TOP5_FOOD_ANCHORAGE,
   louisville:    TOP5_FOOD_LOUISVILLE,
+  orlando:       TOP5_FOOD_ORLANDO,
+  bundang:       TOP5_FOOD_BUNDANG,
+  maryland:      TOP5_FOOD_MARYLAND,
   calgary:       TOP5_FOOD_CALGARY,
   edmonton:      TOP5_FOOD_EDMONTON,
   ottawa:        TOP5_FOOD_OTTAWA,
@@ -15797,6 +16146,9 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
               slug === "killeen"      ? TOP5_EXPLORE_KILLEEN :
               slug === "anchorage"    ? TOP5_EXPLORE_ANCHORAGE :
               slug === "louisville"   ? TOP5_EXPLORE_LOUISVILLE :
+              slug === "orlando"      ? TOP5_EXPLORE_ORLANDO :
+              slug === "bundang"      ? TOP5_EXPLORE_BUNDANG :
+              slug === "maryland"     ? TOP5_EXPLORE_MARYLAND :
               slug === "sydney"       ? TOP5_EXPLORE_SYDNEY :
               slug === "melbourne"    ? TOP5_EXPLORE_MELBOURNE :
               slug === "brisbane"     ? TOP5_EXPLORE_BRISBANE :
@@ -19856,6 +20208,14 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
         { icon: "🚌", name: "공항리무진버스 → 창원", desc: ko ? "김해공항 → 창원시청·마산 직행. 1층 탑승소" : "PUS → Changwon City Hall / Masan direct. 1F boarding", price: "₩6,900", time: "55-70분" },
         { icon: "🚇", name: "경전철 → 창원중앙역 연계", desc: ko ? "경전철 사상역 → KTX 창원중앙역. 환승 복잡" : "Light rail to Sasang → connect to Changwon station", price: "₩10,000+", time: "80분+" },
         { icon: "🚖", name: "카카오택시", desc: ko ? "창원 시내 약 35,000-50,000원" : "₩35,000-50,000 to Changwon city center", price: "₩35,000-50,000", time: "50분" },
+      ],
+    },
+    bundang: {
+      airport: "인천국제공항 / 신분당선 (분당선)", airportCode: "ICN",
+      transport: [
+        { icon: "🚇", name: "신분당선 (광교 방향)", desc: ko ? "강남역 → 신분당선 → 판교역·정자역 (분당 중심). 서울 환승 연결" : "Gangnam → Shinbundang Line → Pangyo/Jeongja (Bundang center)", price: "₩2,250", time: "30-50분 (서울 기준)" },
+        { icon: "🚌", name: "공항리무진버스 → 분당", desc: ko ? "인천공항 → 분당 직행 리무진. 1층 탑승소 (KD운송·대원고속)" : "ICN → Bundang direct limousine bus. Board at 1F", price: "₩13,000", time: "70-90분" },
+        { icon: "🚖", name: "카카오택시", desc: ko ? "인천공항 → 분당(판교·정자) 약 60,000-90,000원" : "₩60,000-90,000 from ICN to Bundang/Pangyo", price: "₩60,000-90,000", time: "60-80분" },
       ],
     },
     cheonan: {

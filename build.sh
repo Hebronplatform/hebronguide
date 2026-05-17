@@ -38,6 +38,9 @@ declare -A CITY_KO=(
   ["raleigh"]="롤리"          ["columbus"]="콜럼버스"    ["minneapolis"]="미니애폴리스"
   ["tucson"]="투손"           ["fayetteville"]="페이엣빌" ["killeen"]="킬린"
   ["louisville"]="루이빌"     ["anchorage"]="앵커리지"
+  ["orlando"]="올랜도"        ["maryland"]="메릴랜드"
+  # 한국 신규
+  ["bundang"]="분당·수지"
   # 국제 확장 Tier A
   ["sydney"]="시드니"         ["melbourne"]="멜버른"     ["brisbane"]="브리즈번"
   ["perth"]="퍼스"            ["auckland"]="오클랜드"    ["saopaulo"]="상파울루"
@@ -70,6 +73,8 @@ declare -A CITY_EN=(
   ["raleigh"]="Raleigh"       ["columbus"]="Columbus"      ["minneapolis"]="Minneapolis"
   ["tucson"]="Tucson"         ["fayetteville"]="Fayetteville" ["killeen"]="Killeen"
   ["louisville"]="Louisville" ["anchorage"]="Anchorage"
+  ["orlando"]="Orlando"       ["maryland"]="Maryland"
+  ["bundang"]="분당·수지"
   # 국제 확장 Tier A
   ["sydney"]="Sydney"         ["melbourne"]="Melbourne"    ["brisbane"]="Brisbane"
   ["perth"]="Perth"           ["auckland"]="Auckland"      ["saopaulo"]="Sao Paulo"
@@ -102,7 +107,8 @@ for city in \
   sydney melbourne brisbane perth auckland saopaulo london \
   singapore bangkok hochiminh dubai frankfurt berlin paris \
   tokyo osaka \
-  seoul busan ansan incheon jeju daegu gwangju daejeon changwon cheonan; do
+  seoul busan ansan incheon jeju daegu gwangju daejeon changwon cheonan bundang \
+  orlando maryland; do
   mkdir -p public/$city
   cp -r hebronguide/dist/* public/$city/
 

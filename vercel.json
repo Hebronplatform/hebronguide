@@ -147,7 +147,13 @@
     { "source": "/changwon",           "destination": "/changwon/index.html" },
     { "source": "/changwon/(.*)",      "destination": "/changwon/index.html" },
     { "source": "/cheonan",            "destination": "/cheonan/index.html" },
-    { "source": "/cheonan/(.*)",       "destination": "/cheonan/index.html" }
+    { "source": "/cheonan/(.*)",       "destination": "/cheonan/index.html" },
+    { "source": "/bundang",            "destination": "/bundang/index.html" },
+    { "source": "/bundang/(.*)",       "destination": "/bundang/index.html" },
+    { "source": "/orlando",            "destination": "/orlando/index.html" },
+    { "source": "/orlando/(.*)",       "destination": "/orlando/index.html" },
+    { "source": "/maryland",           "destination": "/maryland/index.html" },
+    { "source": "/maryland/(.*)",      "destination": "/maryland/index.html" }
   ],
 
   "headers": [
