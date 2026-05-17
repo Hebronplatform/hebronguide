@@ -218,22 +218,40 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   ],
 
   // 🇰🇷 안산 — 한국 다문화 수도
-  ansan: [], // 🇰🇷 안산 — 도시 그라디언트 폴백 (한국 사진 준비 중)
+  ansan: [
+    { url: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=1200&q=90", pos: "center 40%", alt: "Ansan Korea multicultural city" },
+    { url: "https://images.unsplash.com/photo-1598368195835-91e67f80c9d7?w=1200&q=90", pos: "center 38%", alt: "Ansan Korea urban daytime" },
+  ],
 
   // 🇰🇷 인천 — 공항·항구·송도
-  incheon: [], // 🇰🇷 인천 — 도시 그라디언트 폴백 (한국 사진 준비 중)
+  incheon: [
+    { url: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=1200&q=90", pos: "center 40%", alt: "Incheon Korea cityscape" },
+    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 38%", alt: "Incheon Korea daytime" },
+  ],
 
   // 🇰🇷 제주 — 자연·해변·한라산
-  jeju: [], // 🇰🇷 제주 — 도시 그라디언트 폴백 (제주 사진 준비 중)
+  jeju: [
+    { url: "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=1200&q=90", pos: "center 45%", alt: "Jeju Island Korea nature" },
+    { url: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=90", pos: "center 40%", alt: "Jeju Island Korea coast" },
+  ],
 
   // 🇰🇷 대구 — 섬유·사과·패션
-  daegu: [], // 🇰🇷 대구 — 도시 그라디언트 폴백 (대구 사진 준비 중)
+  daegu: [
+    { url: "https://images.unsplash.com/photo-1577648188599-291bb8b831c3?w=1200&q=90", pos: "center 40%", alt: "Daegu Korea city" },
+    { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=90", pos: "center 38%", alt: "Daegu Korea downtown" },
+  ],
 
   // 🇰🇷 광주 — 문화·예술·민주
-  gwangju: [], // 🇰🇷 광주 — 도시 그라디언트 폴백 (광주 사진 준비 중)
+  gwangju: [
+    { url: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=1200&q=90", pos: "center 40%", alt: "Gwangju Korea city" },
+    { url: "https://images.unsplash.com/photo-1526661934280-676cef25bc9b?w=1200&q=90", pos: "center 38%", alt: "Gwangju Korea daytime" },
+  ],
 
   // 🇰🇷 대전 — 과학·KAIST·엑스포
-  daejeon: [], // 🇰🇷 대전 — 도시 그라디언트 폴백 (대전 사진 준비 중)
+  daejeon: [
+    { url: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1200&q=90", pos: "center 40%", alt: "Daejeon Korea science city" },
+    { url: "https://images.unsplash.com/photo-1574263867128-a3d5c1b1decc?w=1200&q=90", pos: "center 38%", alt: "Daejeon Korea urban" },
+  ],
 
   // 🇺🇸 루이빌 — 검증된 사진 (200 OK)
   louisville: [
