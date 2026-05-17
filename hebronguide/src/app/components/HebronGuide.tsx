@@ -8670,7 +8670,7 @@ const HEBRON_CITIES = [
   { emoji: "🍁", nameKo: "에드먼턴",    nameEn: "Edmonton",      flag: "🇨🇦", url: "/edmonton/",    status: "live", color: "#10B981" },
   { emoji: "🏛️", nameKo: "오타와",     nameEn: "Ottawa",        flag: "🇨🇦", url: "/ottawa/",      status: "live", color: "#DC2626" },
   { emoji: "🌾", nameKo: "위니펙",      nameEn: "Winnipeg",      flag: "🇨🇦", url: "/winnipeg/",    status: "live", color: "#7C3AED" },
-  // ── 중남미 (멕시코·브라질) ──
+  // ── 중남미 (Central & South America — UN Geoscheme 기준) ──
   { emoji: "🌮", nameKo: "멕시코시티",   nameEn: "Mexico City",   flag: "🇲🇽", url: "/mexicocity/",  status: "live", color: "#A3E635" },
   { emoji: "🌺", nameKo: "과달라하라",   nameEn: "Guadalajara",   flag: "🇲🇽", url: "/guadalajara/", status: "live", color: "#F87171" },
   { emoji: "⛰️", nameKo: "몬테레이",    nameEn: "Monterrey",     flag: "🇲🇽", url: "/monterrey/",   status: "live", color: "#C084FC" },
