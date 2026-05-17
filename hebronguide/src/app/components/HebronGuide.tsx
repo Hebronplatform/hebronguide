@@ -238,9 +238,10 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1619598965917-d7da30c3a9a8?w=1200&q=90", pos: "center 38%", alt: "Daegu Korea urban street" },
   ],
 
-  // 🇰🇷 광주 — 광주광역시 도심 ✅ 위치 확인됨 (2장 미확보 → 1장)
+  // 🇰🇷 광주 — 국립아시아문화전당 (ACC) ✅ 위치 확인됨 (광주광역시 충장동)
   gwangju: [
-    { url: "https://images.unsplash.com/photo-1696250753322-94a5adbca94d?w=1200&q=90", pos: "center 40%", alt: "Gwangju Metropolitan City Korea street" },
+    { url: "https://images.unsplash.com/photo-1592899940134-b5fe9ca259b4?w=1200&q=90", pos: "center 40%", alt: "Gwangju National Asia Culture Center (ACC) entrance" },
+    { url: "https://images.unsplash.com/photo-1592899940281-0ba5f29175b0?w=1200&q=90", pos: "center 38%", alt: "Gwangju National Asia Culture Center outdoor plaza" },
   ],
 
   // 🇰🇷 대전 — Oh Taeyeon 촬영 (대전광역시) ✅ 위치 확인됨
@@ -260,10 +261,10 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1550136513-548af4445338?w=1200&q=90", pos: "center 40%", alt: "Cheonan Korea modern buildings Baekseok-dong" },
   ],
 
-  // 🇺🇸 루이빌 — Unsplash Louisville 검색 결과 ✅ 위치 확인됨
+  // 🇺🇸 루이빌 — Big Four Bridge + 다운타운 스카이라인 ✅ 위치 확인됨 (Louisville, KY)
   louisville: [
-    { url: "https://images.unsplash.com/photo-1746895396781-fa22a20f4f63?w=1200&q=90", pos: "center 40%", alt: "Louisville Kentucky skyline river" },
-    { url: "https://images.unsplash.com/photo-1615825742158-5aac7849e4a4?w=1200&q=90", pos: "center 38%", alt: "Louisville Kentucky bridge sunset" },
+    { url: "https://images.unsplash.com/photo-1747975801330-83ddb8b1a3d7?w=1200&q=90", pos: "center 40%", alt: "Louisville Kentucky downtown skyline bridge" },
+    { url: "https://images.unsplash.com/photo-1615825742158-5aac7849e4a4?w=1200&q=90", pos: "center 38%", alt: "Louisville Kentucky Big Four Bridge sunset" },
   ],
 
 
@@ -11433,9 +11434,10 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "루이빌새한장로교회" : "Louisville Saehan Presbyterian Church",
         nameEn: "Louisville Saehan Presbyterian Church",
         desc: ko
-          ? "✅ 가정교회 | 담임: 김상헌 목사.\n📍 Louisville, KY\n🏠 목장 소그룹 모임 운영\n📞 예배 일정·장소 문의 환영\n✨ 루이빌 한인 이민자 정착 첫 번째 영적 공동체"
-          : "✅ House Church | Lead Pastor: Sang Heon Kim.\n📍 Louisville, KY\n🏠 Small group Mokjang meetings\n📞 Contact for service schedule & location\n✨ First spiritual community for Korean immigrants in Louisville",
-        tags: ko ? ["가정교회", "루이빌", "장로교", "IHM기준"] : ["House Church", "Louisville", "Presbyterian"],
+          ? "✅ 가정교회 | 담임: 김상헌 목사.\n📍 Louisville, KY\n🏠 목장 소그룹 모임 운영\n📞 예배 일정·장소 문의 환영\n🔗 saehan.org\n✨ 루이빌 한인 이민자 정착 첫 번째 영적 공동체"
+          : "✅ House Church | Lead Pastor: Sang Heon Kim.\n📍 Louisville, KY\n🏠 Small group Mokjang meetings\n🔗 saehan.org\n✨ First spiritual community for Korean immigrants in Louisville",
+        tags: ko ? ["가정교회", "루이빌", "장로교"] : ["House Church", "Louisville", "Presbyterian"],
+        website: "https://www.saehan.org",
       },
     ],
   };
@@ -11565,7 +11567,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   <div key={i} style={c.tier === 1 ? { border: "1px solid rgba(201,162,39,0.55)", borderRadius: 16, background: "rgba(201,162,39,0.06)" } : {}}>
                     {c.tier === 1 && (
                       <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px" }}>
-                        <span style={{ background: "rgba(201,162,39,0.18)", border: "1px solid rgba(201,162,39,0.45)", color: GOLD, borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>소그룹 커뮤니티 ⭐</span>
+                        <span style={{ background: "rgba(201,162,39,0.18)", border: "1px solid rgba(201,162,39,0.45)", color: GOLD, borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>가정교회 ⭐</span>
                       </div>
                     )}
                     <PlaceCard {...c} accentColor={c.tier === 1 ? GOLD : accent} />
