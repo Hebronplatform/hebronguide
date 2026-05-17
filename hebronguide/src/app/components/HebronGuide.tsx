@@ -218,40 +218,22 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   ],
 
   // 🇰🇷 안산 — 한국 다문화 수도
-  ansan: [
-    { url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=90", pos: "center 40%", alt: "Ansan Korea multicultural city" },
-    { url: "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?w=1200&q=90", pos: "center 38%", alt: "Ansan Korea cityscape" },
-  ],
+  ansan: [], // 🇰🇷 안산 — 도시 그라디언트 폴백 (한국 사진 준비 중)
 
   // 🇰🇷 인천 — 공항·항구·송도
-  incheon: [
-    { url: "https://images.unsplash.com/photo-1601628828688-632f38a5a7d0?w=1200&q=90", pos: "center 40%", alt: "Incheon Korea cityscape" },
-    { url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=90", pos: "center 38%", alt: "Incheon Korea daytime" },
-  ],
+  incheon: [], // 🇰🇷 인천 — 도시 그라디언트 폴백 (한국 사진 준비 중)
 
   // 🇰🇷 제주 — 자연·해변·한라산
-  jeju: [
-    { url: "https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=1200&q=90", pos: "center 45%", alt: "Jeju Island Korea coast" },
-    { url: "https://images.unsplash.com/photo-1540202403-b7abd6747a18?w=1200&q=90", pos: "center 40%", alt: "Jeju Island Korea nature" },
-  ],
+  jeju: [], // 🇰🇷 제주 — 도시 그라디언트 폴백 (제주 사진 준비 중)
 
   // 🇰🇷 대구 — 섬유·사과·패션
-  daegu: [
-    { url: "https://images.unsplash.com/photo-1519817914152-22d216bb9170?w=1200&q=90", pos: "center 40%", alt: "Daegu Korea downtown" },
-    { url: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=90", pos: "center 38%", alt: "Daegu Korea cityscape" },
-  ],
+  daegu: [], // 🇰🇷 대구 — 도시 그라디언트 폴백 (대구 사진 준비 중)
 
   // 🇰🇷 광주 — 문화·예술·민주
-  gwangju: [
-    { url: "https://images.unsplash.com/photo-1583922606661-0822ed0bd916?w=1200&q=90", pos: "center 40%", alt: "Gwangju Korea city" },
-    { url: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=90", pos: "center 38%", alt: "Gwangju Korea daytime" },
-  ],
+  gwangju: [], // 🇰🇷 광주 — 도시 그라디언트 폴백 (광주 사진 준비 중)
 
   // 🇰🇷 대전 — 과학·KAIST·엑스포
-  daejeon: [
-    { url: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=90", pos: "center 40%", alt: "Daejeon Korea science city" },
-    { url: "https://images.unsplash.com/photo-1519817914152-22d216bb9170?w=1200&q=90", pos: "center 38%", alt: "Daejeon Korea cityscape" },
-  ],
+  daejeon: [], // 🇰🇷 대전 — 도시 그라디언트 폴백 (대전 사진 준비 중)
 
   // 🇺🇸 루이빌 — 검증된 사진 (200 OK)
   louisville: [
@@ -10223,8 +10205,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   const cityNameKo = useCityConfig().nameKo;
   const cityNameEn = useCityConfig().nameEn;
   const ccSettle = getCountryCode(citySlug);
-  const isKR = ccSettle === "KR";
-  const isJP = ccSettle === "JP";
+  const isKR  = ccSettle === "KR";
+  const isJP  = ccSettle === "JP";
+  const isCA  = ccSettle === "CA";
+  const isAU  = ccSettle === "AU";
+  const isEU  = ["UK","DE","FR"].includes(ccSettle);          // 영국·독일·프랑스
+  const isGulf = ccSettle === "AE";                            // UAE/두바이
+  const isSEA = ["SG","TH","VN"].includes(ccSettle);          // 싱가포르·태국·베트남
   const settleHeaders = [
     { emoji: "🛬", titleKo: "1주차 — 도착 직후", titleEn: "Week 1 — Just Arrived",
       descKo: isKR ? `${cityNameKo} 첫 7일 — 임시 거주·휴대폰·주민등록·은행` : `${cityNameKo} 첫 7일 — 임시 거주·휴대폰·SSN·은행`,
@@ -10241,11 +10228,25 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "💰", titleKo: "재정 시작", titleEn: "Finance Setup", descKo: `${cityNameKo} 은행·신용카드·크레딧·은퇴 계좌`, descEn: `${cityNameEn} banking · credit cards · score · retirement` },
     { emoji: "🏘️", titleKo: "주택 가이드", titleEn: "Housing Guide", descKo: `${cityNameKo} 동네 비교 · 부동산 · 카운티별 가격 · 헤브론 홈`, descEn: `${cityNameEn} neighborhoods · realty · county pricing · Hebron Home` },
     { emoji: "✅", titleKo: "전체 체크리스트", titleEn: "Complete Checklist", descKo: `${cityNameKo} 정착 모든 단계 한눈에`, descEn: `${cityNameEn} all settlement steps at a glance` },
-    { emoji: isKR ? "🗺️" : "🛂",
-      titleKo: isKR ? "한국 이주 가이드" : "비자·이민 가이드",
-      titleEn: isKR ? "Moving to Korea Guide" : "Visa & Immigration",
-      descKo: isKR ? `${cityNameKo} 역이민·취업·결혼·장기체류 — 4가지 트랙` : `${cityNameKo} F-1 · H-1B · 영주권 · 시민권 단계별`,
-      descEn: isKR ? `${cityNameEn} return · work · marriage · long-stay — 4 tracks` : `${cityNameEn} F-1 · H-1B · green card · citizenship` },
+    { emoji: isKR ? "🗺️" : isJP ? "🗾" : isCA ? "🍁" : isAU ? "🦘" : isEU ? "🇪🇺" : isGulf ? "🌙" : isSEA ? "🌴" : "🛂",
+      titleKo: isKR ? "한국 이주 가이드" : isJP ? "일본 이주 가이드" : isCA ? "캐나다 이민 가이드" : isAU ? "호주 이민 가이드" : isEU ? "유럽 비자 가이드" : isGulf ? "UAE 비자 가이드" : isSEA ? "동남아 비자 가이드" : "비자·이민 가이드",
+      titleEn: isKR ? "Moving to Korea" : isJP ? "Moving to Japan" : isCA ? "Canada Immigration" : isAU ? "Australia Immigration" : isEU ? "Europe Visa Guide" : isGulf ? "UAE Visa Guide" : isSEA ? "Southeast Asia Visa" : "Visa & Immigration",
+      descKo: isKR ? `${cityNameKo} 역이민·취업·결혼·장기체류 — 4가지 트랙`
+            : isJP ? `${cityNameKo} 재류카드·취업·결혼·유학 — 4가지 트랙`
+            : isCA ? `${cityNameKo} Express Entry·PNP·가족초청·유학 경로`
+            : isAU ? `${cityNameKo} 기술이민·파트너·워홀·유학 경로`
+            : isEU ? `${cityNameKo} 취업비자·EU Blue Card·가족결합`
+            : isGulf ? `${cityNameKo} 취업비자·골든비자·원격근무`
+            : isSEA ? `${cityNameKo} 취업허가·장기체류·비자 경로`
+            : `${cityNameKo} F-1 · H-1B · 영주권 · 시민권 단계별`,
+      descEn: isKR ? `${cityNameEn} return · work · marriage · long-stay — 4 tracks`
+            : isJP ? `${cityNameEn} residence card · work · marriage · study — 4 tracks`
+            : isCA ? `${cityNameEn} Express Entry · PNP · family · study pathways`
+            : isAU ? `${cityNameEn} skilled · partner · WHV · study pathways`
+            : isEU ? `${cityNameEn} work visa · EU Blue Card · family reunification`
+            : isGulf ? `${cityNameEn} employment · golden visa · remote work`
+            : isSEA ? `${cityNameEn} work permit · long-stay · visa pathways`
+            : `${cityNameEn} F-1 · H-1B · green card · citizenship` },
   ];
   const sh = settleHeaders[sub] ?? settleHeaders[0];
 
@@ -10401,8 +10402,270 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             </div>
           </div>
         )}
+        {/* ── 🇯🇵 일본 이주 가이드 (index 7) ── */}
+        {sub === 7 && isJP && (
+          <div>
+            <div style={{ background:"linear-gradient(135deg,rgba(220,38,38,0.10),rgba(255,255,255,0.05))", border:"1px solid rgba(220,38,38,0.25)", borderRadius:16, padding:"16px 18px", marginBottom:16 }}>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:13, color:"#FCA5A5", marginBottom:6 }}>
+                🗾 {lang==="ko" ? "일본 이주 — 4가지 트랙" : "Moving to Japan — 4 Tracks"}
+              </div>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.65)", lineHeight:1.8 }}>
+                {lang==="ko" ? "① 재일동포·특별영주  ② 취업 비자  ③ 결혼·가족 비자  ④ 유학·장기체류" : "① Zainichi · Special PR  ② Work visa  ③ Marriage · Family  ④ Study · Long-stay"}
+              </div>
+            </div>
+            {/* 트랙 1 */}
+            <div style={{ background:"rgba(220,38,38,0.07)", border:"1px solid rgba(220,38,38,0.2)", borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12, color:"#FCA5A5", marginBottom:8 }}>
+                🇰🇷 {lang==="ko" ? "트랙 ① — 재일동포·특별영주자" : "Track ① — Zainichi Koreans · Special PR"}
+              </div>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.7)", lineHeight:1.85, whiteSpace:"pre-line" }}>
+                {lang==="ko"
+                  ? "• 특별영주자 (特別永住者) — 재일동포 3세 이하 대상. 일본 체류 기간 제한 없음\n• 재류카드 (在留カード) — 입국 후 14일 내 시구정촌(市区町村) 신고 의무\n• 한국 국적 유지 가능 — 귀화 없이 영구 체류 가능\n• 마이넘버 (マイナンバー) — 재류카드 등록 후 주민표 기재 → 마이넘버 카드 신청\n• 국민건강보험 — 시구정촌 창구에서 가입 (직장 없으면 지역 가입)\n\n📞 입국재류관리청: immi-moj.go.jp\n📞 한국 총영사관 도쿄: 03-3452-7611"
+                  : "• Special Permanent Resident — for ethnic Koreans (Zainichi). No time limit on stay in Japan\n• Residence Card (在留カード) — register at city/ward office within 14 days of entry\n• Can maintain Korean nationality — permanent stay without naturalization\n• My Number (マイナンバー) — register at city office after residence card\n• National Health Insurance — enroll at city office if not covered by employer\n\n📞 Immigration Services Agency: immi-moj.go.jp\n📞 Korean Consulate Tokyo: 03-3452-7611"}
+              </div>
+            </div>
+            {/* 트랙 2 */}
+            <div style={{ background:"rgba(37,99,235,0.07)", border:"1px solid rgba(37,99,235,0.2)", borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12, color:"#93C5FD", marginBottom:8 }}>
+                💼 {lang==="ko" ? "트랙 ② — 취업 비자" : "Track ② — Work Visa"}
+              </div>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.7)", lineHeight:1.85, whiteSpace:"pre-line" }}>
+                {lang==="ko"
+                  ? "• 技術·人文知識·国際業務 (기인국) — IT·엔지니어·마케팅·통역. 가장 일반적인 취업 비자\n• 高度専門職 (고도전문직) — 포인트제 우대 비자. 영주권 취득 최단 경로 (1~3년)\n• 特定技能 (특정기능) — 제조·외식·건설 등 특정 업종 (1호: 5년, 2호: 갱신 가능)\n• 経営·管理 (경영관리) — 법인 대표·창업자 비자\n\n절차:\n1. 일본 고용주 채용 → 재류자격 인정증명서 발급\n2. 한국 일본 대사관에서 비자 신청\n3. 입국 후 14일 내 거주지 시구정촌 신고\n4. 재류카드 + 마이넘버 카드 발급\n\n📞 JNTO 외국인 취업 안내: jinto.go.jp\n📞 헬로워크 (공공직업안정소): hello-work.go.jp"
+                  : "• 技術·人文知識·国際業務 — IT/engineering/marketing/interpretation. Most common work visa\n• 高度専門職 — Points-based preferential visa. Fastest PR pathway (1–3 years)\n• 特定技能 — Specified skilled worker for manufacturing, food service, construction\n• 経営·管理 — Corporate manager / startup founder visa\n\nProcess:\n1. Japanese employer hires you → issues Certificate of Eligibility\n2. Apply for visa at Japanese Embassy in Korea\n3. Within 14 days of entry: register at city/ward office\n4. Obtain Residence Card + My Number Card"}
+              </div>
+            </div>
+            {/* 트랙 3 */}
+            <div style={{ background:"rgba(16,185,129,0.07)", border:"1px solid rgba(16,185,129,0.2)", borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12, color:"#6EE7B7", marginBottom:8 }}>
+                💑 {lang==="ko" ? "트랙 ③ — 결혼·가족 비자" : "Track ③ — Marriage · Family Visa"}
+              </div>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.7)", lineHeight:1.85, whiteSpace:"pre-line" }}>
+                {lang==="ko"
+                  ? "• 日本人の配偶者等 (일본인 배우자) — 일본인과 결혼 시. 갱신 가능. 취업 제한 없음\n• 永住者の配偶者等 — 영주자 배우자\n• 定住者 (정주자) — 일계인 등 특정 출신 배우자·자녀\n\n절차:\n1. 일본에서 혼인신고 (시구정촌 창구)\n2. 재류자격 인정증명서 신청 → 비자 취득\n3. 3~5년 체류 후 영주 신청 가능\n\n💡 한·일 부부 — 한국 출생 자녀 국적 선택: 만 22세까지 이중국적 유지 가능"
+                  : "• 日本人の配偶者等 — Spouse of Japanese national. Renewable. No work restrictions\n• 永住者の配偶者等 — Spouse of permanent resident\n• 定住者 — Settled status for descendants of Japanese nationals, etc.\n\nProcess:\n1. Register marriage at city/ward office in Japan\n2. Apply for Certificate of Eligibility → obtain visa\n3. After 3–5 years, can apply for Permanent Residency\n\n💡 Korean-Japanese couples — children can maintain dual nationality until age 22"}
+              </div>
+            </div>
+            {/* 트랙 4 */}
+            <div style={{ background:"rgba(124,58,237,0.07)", border:"1px solid rgba(124,58,237,0.2)", borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12, color:"#C4B5FD", marginBottom:8 }}>
+                🎓 {lang==="ko" ? "트랙 ④ — 유학·장기체류·워킹홀리데이" : "Track ④ — Study · Long-Stay · Working Holiday"}
+              </div>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.7)", lineHeight:1.85, whiteSpace:"pre-line" }}>
+                {lang==="ko"
+                  ? "• 留学 (유학) — 일본어학교·대학·전문학교. 주 28시간 아르바이트 가능\n• 워킹홀리데이 — 한·일 협정. 만 18~30세. 1년 체류 + 취업 가능\n• 短期滞在 (단기체류) — 관광·방문. 90일 (한국인 무비자)\n• 特定活動46号 — 일본 대학 졸업 외국인의 일본 취업 탐색 비자\n\n핵심 공통 절차:\n• 재류카드 — 중장기 체류자 필수. 14일 내 거주지 신고\n• 마이넘버 — 은행 계좌·건강보험·세금 신고에 필수\n• 은행 계좌 — Japan Post Bank(우체국) 외국인 개설 장벽 낮음\n• 건강보험 — 3개월 이상 체류 시 국민건강보험 가입 의무\n\n📞 외국인 종합 상담: 0120-282-8382 (다국어)"
+                  : "• 留学 (Study) — language school, university, vocational. Up to 28 hrs/week part-time\n• Working Holiday — Korea-Japan agreement. Ages 18–30. 1-year stay + work permitted\n• 短期滞在 — Tourism/visit. 90 days (Koreans visa-free)\n• 特定活動46号 — Job-search visa for foreign graduates of Japanese universities\n\nKey steps for all:\n• Residence Card — mandatory for mid/long-term stays. Register within 14 days\n• My Number — required for bank account, health insurance, taxes\n• Bank account — Japan Post Bank has lowest barrier for foreigners\n• Health Insurance — mandatory enrollment after 3+ months of stay"}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── 🇨🇦 캐나다 이민 가이드 (index 7) ── */}
+        {sub === 7 && isCA && (
+          <div>
+            <div style={{ background:"linear-gradient(135deg,rgba(220,38,38,0.10),rgba(255,255,255,0.05))", border:"1px solid rgba(220,38,38,0.25)", borderRadius:16, padding:"16px 18px", marginBottom:16 }}>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:13, color:"#FCA5A5", marginBottom:6 }}>
+                🍁 {lang==="ko" ? "캐나다 이민 — 4가지 경로" : "Canada Immigration — 4 Pathways"}
+              </div>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.65)", lineHeight:1.8 }}>
+                {lang==="ko" ? "① Express Entry (연방 기술이민)  ② 주정부 이민(PNP)  ③ 가족초청  ④ 유학 → 취업 경로" : "① Express Entry  ② Provincial Nominee  ③ Family Sponsorship  ④ Study → Work pathway"}
+              </div>
+            </div>
+            {[
+              { color:"rgba(220,38,38,0.07)", border:"rgba(220,38,38,0.2)", tc:"#FCA5A5",
+                title: lang==="ko" ? "① Express Entry — 연방 기술이민" : "① Express Entry — Federal Skilled Worker",
+                body: lang==="ko"
+                  ? "• FSW (연방기술이민) — 학력·경력·영어점수 CRS 점수 기반. 가장 빠른 영주권 경로\n• CEC (캐나다 경험직) — 캐나다 취업 1년 후 신청. 한인에게 실질적 최단 경로\n• 풀 점수 커트라인: 보통 470~510점 (시기별 변동)\n\n📞 IRCC (이민난민시민권부): canada.ca/immigration\n📞 캐나다 한국 총영사관: www.korea.ca"
+                  : "• FSW — Education/experience/English CRS score. Fastest PR pathway\n• CEC — Apply after 1 year of Canadian work experience. Most practical for Koreans\n• Cutoff: typically 470–510 CRS points (varies)\n\n📞 IRCC: canada.ca/immigration" },
+              { color:"rgba(37,99,235,0.07)", border:"rgba(37,99,235,0.2)", tc:"#93C5FD",
+                title: lang==="ko" ? "② 주정부 이민(PNP) + 취업 비자" : "② Provincial Nominee Program (PNP) + Work Visa",
+                body: lang==="ko"
+                  ? "• 온타리오 OINPt (Tech Draw) — IT·엔지니어 한인 다수 활용\n• BC PNP Skills Immigration — 밴쿠버 취업 후 주정부 추천\n• 앨버타 AAIP — 에드먼턴·캘거리 취업자 대상\n• 취업비자: LMIA 기반 Work Permit or CUSMA (NAFTA 후속)\n• SIN (Social Insurance Number) — 취업·납세·혜택 수령 필수. 도착 즉시 Service Canada 방문"
+                  : "• Ontario OINP Tech Draw — popular for Korean IT workers\n• BC PNP — after finding employment in Vancouver\n• Alberta AAIP — for workers in Edmonton/Calgary\n• Work Permit: LMIA-based or CUSMA stream\n• SIN (Social Insurance Number) — required for work/taxes. Visit Service Canada on arrival" },
+              { color:"rgba(16,185,129,0.07)", border:"rgba(16,185,129,0.2)", tc:"#6EE7B7",
+                title: lang==="ko" ? "③ 가족초청 + 배우자 비자" : "③ Family Sponsorship + Spousal Visa",
+                body: lang==="ko"
+                  ? "• 배우자/파트너 동반 — PR 또는 시민권자가 스폰서. 처리 12개월\n• 부모·조부모 초청 — 연 1회 추첨 (Super Visa 대안: 최대 5년 체류 관광비자)\n• 자녀 초청 — 22세 이하 미혼 자녀\n• 의료보험(OHIP/MSP) — 주마다 대기 기간 상이. ON·BC는 3개월 대기"
+                  : "• Spouse/partner — sponsored by PR or citizen. 12-month processing\n• Parents/grandparents — annual lottery (Super Visa alternative: up to 5-year visit)\n• Dependent children — under 22 and unmarried\n• Health Insurance — waiting period varies by province (ON/BC: 3 months)" },
+              { color:"rgba(124,58,237,0.07)", border:"rgba(124,58,237,0.2)", tc:"#C4B5FD",
+                title: lang==="ko" ? "④ 유학 → PGWP → 영주권" : "④ Study → PGWP → Permanent Residency",
+                body: lang==="ko"
+                  ? "• PGWP (졸업후 취업허가) — 캐나다 대학 졸업 후 최대 3년 취업 가능\n• PGWP → CEC → Express Entry 순서가 한인 유학생 영주권 황금 경로\n• 캐나다 학생비자 (Study Permit) — 입학허가서 + 재정 증빙으로 신청\n• 커뮤니티 칼리지 → 대학 편입 → PGWP 전략으로 비용 절감"
+                  : "• PGWP — Work up to 3 years after graduating from a Canadian institution\n• PGWP → CEC → Express Entry is the golden pathway for Korean students\n• Study Permit — apply with acceptance letter + financial proof\n• College → University transfer + PGWP strategy to reduce costs" },
+            ].map((t, i) => (
+              <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.7)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* ── 🇦🇺 호주 이민 가이드 (index 7) ── */}
+        {sub === 7 && isAU && (
+          <div>
+            <div style={{ background:"linear-gradient(135deg,rgba(37,99,235,0.10),rgba(255,255,255,0.05))", border:"1px solid rgba(37,99,235,0.25)", borderRadius:16, padding:"16px 18px", marginBottom:16 }}>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:13, color:"#93C5FD", marginBottom:6 }}>
+                🦘 {lang==="ko" ? "호주 이민 — 4가지 경로" : "Australia Immigration — 4 Pathways"}
+              </div>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.65)", lineHeight:1.8 }}>
+                {lang==="ko" ? "① 기술이민(Skilled)  ② 파트너 비자  ③ 워킹홀리데이(WHV)  ④ 유학 → 졸업생 비자" : "① Skilled Migration  ② Partner Visa  ③ Working Holiday  ④ Study → Graduate Visa"}
+              </div>
+            </div>
+            {[
+              { color:"rgba(37,99,235,0.07)", border:"rgba(37,99,235,0.2)", tc:"#93C5FD",
+                title: lang==="ko" ? "① 기술이민 — Skilled Migration" : "① Skilled Migration",
+                body: lang==="ko"
+                  ? "• Subclass 189 (독립기술이민) — 스폰서 불필요. 포인트 기반. 한국인 IT·엔지니어 다수\n• Subclass 190 (주정부 스폰서) — 주에서 추천. +5점 추가\n• Subclass 491 (지방기술이민) — 지방 지역 취업 조건. +15점 추가. 3년 후 영주 가능\n• 포인트 계산: 나이·학력·영어(IELTS)·경력 합산 65점 이상 필요\n• EOI (Expression of Interest) — SkillSelect 등록 후 초청 대기\n\n📞 호주 이민부: homeaffairs.gov.au\n📞 한국 호주 대사관: southkorea.embassy.gov.au"
+                  : "• Subclass 189 — No sponsor needed. Points-based. Popular for Korean IT/engineers\n• Subclass 190 — State-sponsored. +5 bonus points\n• Subclass 491 — Regional. +15 bonus points. PR after 3 years\n• Points: age + education + English (IELTS) + experience. Minimum 65 points\n• EOI — register in SkillSelect and wait for invitation" },
+              { color:"rgba(16,185,129,0.07)", border:"rgba(16,185,129,0.2)", tc:"#6EE7B7",
+                title: lang==="ko" ? "② 파트너 비자 (Subclass 820/801)" : "② Partner Visa (Subclass 820/801)",
+                body: lang==="ko"
+                  ? "• 820 (임시) → 801 (영주) 2단계 진행\n• 호주 시민권자·영주권자 파트너 대상\n• 처리 기간: 18~24개월 (대기 시간 포함)\n• TFN (Tax File Number) — 파트너 비자 후 즉시 신청. 납세·혜택 수령 필수\n• Medicare — 파트너 비자 소지자 즉시 가입 가능"
+                  : "• 820 (temporary) → 801 (permanent) two-stage process\n• For partners of Australian citizens or permanent residents\n• Processing: 18–24 months including waiting time\n• TFN (Tax File Number) — apply immediately after partner visa\n• Medicare — partner visa holders eligible immediately" },
+              { color:"rgba(234,88,12,0.07)", border:"rgba(234,88,12,0.2)", tc:"#FDBA74",
+                title: lang==="ko" ? "③ 워킹홀리데이 (WHV) — Subclass 417" : "③ Working Holiday Visa — Subclass 417",
+                body: lang==="ko"
+                  ? "• 한국인 만 18~35세. 1년 체류·취업 가능\n• 2차 WHV: 지역 농장 3개월 근무 후 신청 가능 (최대 3년)\n• 지원 방법: online.immi.gov.au → WHV 신청 (처리 1~3일)\n• TFN 신청 → 은행 계좌 → 세금 환급 (WHV 세율: 15%)\n• 호주 농장·리조트·카페·IT 등 다양한 취업 가능"
+                  : "• Korean citizens 18–35 years old. 1-year stay + work\n• 2nd WHV: after 3 months regional farm work (up to 3 years total)\n• Apply online: online.immi.gov.au (processed in 1–3 days)\n• Get TFN → bank account → tax refund (WHV tax rate: 15%)\n• Farm, resort, cafe, IT jobs all available" },
+              { color:"rgba(124,58,237,0.07)", border:"rgba(124,58,237,0.2)", tc:"#C4B5FD",
+                title: lang==="ko" ? "④ 유학 → 졸업생 비자 (Subclass 485)" : "④ Study → Graduate Visa (Subclass 485)",
+                body: lang==="ko"
+                  ? "• 호주 대학 졸업 후 Subclass 485 발급 (2~4년)\n• 485 기간 동안 취업 → 기술이민 포인트 + 경력 쌓기\n• Subclass 485 → 190/189 기술이민 → 영주권이 주요 경로\n• Medicare — 학생 비자는 OSHC(Overseas Student Health Cover) 가입 의무\n• AHM·Bupa·Medibank 등 OSHC 보험사 선택"
+                  : "• Graduate visa after graduating from Australian university (2–4 years)\n• Use 485 period to work and build points + experience for skilled migration\n• 485 → 190/189 skilled migration → PR is the main pathway\n• Students must have OSHC (Overseas Student Health Cover)\n• Choose from AHM, Bupa, Medibank for OSHC" },
+            ].map((t, i) => (
+              <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.7)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* ── 🇪🇺 유럽 비자 가이드 (index 7) ── */}
+        {sub === 7 && isEU && (
+          <div>
+            <div style={{ background:"linear-gradient(135deg,rgba(37,99,235,0.10),rgba(255,255,255,0.05))", border:"1px solid rgba(37,99,235,0.25)", borderRadius:16, padding:"16px 18px", marginBottom:16 }}>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:13, color:"#93C5FD", marginBottom:6 }}>
+                🇪🇺 {lang==="ko" ? "유럽 비자 가이드 (영국·독일·프랑스)" : "Europe Visa Guide (UK · Germany · France)"}
+              </div>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.65)", lineHeight:1.8 }}>
+                {lang==="ko" ? "한국인 무비자 90일 (쉥겐). 장기 체류는 각국 비자 필요." : "Koreans: 90 days visa-free (Schengen). Long-term requires national visa."}
+              </div>
+            </div>
+            {[
+              { color:"rgba(37,99,235,0.07)", border:"rgba(37,99,235,0.2)", tc:"#93C5FD",
+                title: lang==="ko" ? "🇬🇧 영국 — Skilled Worker Visa" : "🇬🇧 UK — Skilled Worker Visa",
+                body: lang==="ko"
+                  ? "• Skilled Worker — 스폰서 고용주 필요. 영어 B1 이상. 최소 연봉 £26,200\n• Global Talent — 과학·예술·디지털·연구 분야 특기자. 스폰서 불필요\n• Youth Mobility Scheme — 한국인 만 18~30세. 2년 체류·취업\n• Graduate Visa — 영국 대학 졸업 후 2년 (박사 3년) 취업 탐색\n• IHS (건강보험 부담금) — 비자 신청 시 £1,035/년 납부 (NHS 이용권)\n\n📞 UKVI: gov.uk/browse/visas-immigration"
+                  : "• Skilled Worker — Sponsor employer required. English B1+. Minimum £26,200 salary\n• Global Talent — No sponsor needed for science/arts/digital/research\n• Youth Mobility — Korean citizens 18–30. 2 years work+stay\n• Graduate Visa — 2 years (PhD: 3 years) after UK university graduation\n• IHS — pay £1,035/yr health surcharge with visa application (NHS access)" },
+              { color:"rgba(255,215,0,0.07)", border:"rgba(255,215,0,0.2)", tc:"#FDE68A",
+                title: lang==="ko" ? "🇩🇪 독일 — Fachkräfteeinwanderungsgesetz (기술이민법)" : "🇩🇪 Germany — Skilled Immigration Act",
+                body: lang==="ko"
+                  ? "• EU Blue Card — 연봉 €45,300+ 전문직. 21개월 후 영주권 신청 가능\n• Chancenkarte (기회카드) — 포인트 기반 구직 비자 (2024년 신설). 한국인 적극 활용\n• Niederlassungserlaubnis — 5년 후 영주 허가. EU Blue Card는 21~33개월\n• 독일어 B1 이상 — 장기 체류·영주권에 유리\n• Anmeldung (주소 등록) — 입국 후 14일 내 의무. 은행 계좌·건강보험에 필수\n\n📞 BAMF: bamf.de"
+                  : "• EU Blue Card — €45,300+ salary. PR application possible after 21 months\n• Chancenkarte — Points-based job-seeker card (introduced 2024). Good for Koreans\n• Niederlassungserlaubnis — PR after 5 years (21–33 months with EU Blue Card)\n• German B1+ — advantageous for long-term stay and PR\n• Anmeldung — register address within 14 days. Required for bank account/insurance" },
+              { color:"rgba(30,58,138,0.07)", border:"rgba(30,58,138,0.2)", tc:"#BFDBFE",
+                title: lang==="ko" ? "🇫🇷 프랑스 — Talent Passport (파세포르 탈랑)" : "🇫🇷 France — Talent Passport",
+                body: lang==="ko"
+                  ? "• Passeport Talent — IT·연구·예술·창업·투자자. 4년 체류. 갱신 가능\n• 취업 비자 (Salarié) — 고용주 스폰서. OFII(이민청) 도착 후 등록 의무\n• 워킹홀리데이 — 한·불 협정. 만 18~30세. 1년\n• 사회보험 번호 (NIR) — 취업·의료보험에 필수. CPAM에서 발급\n• Carte Vitale — 건강보험 카드. 3개월 체류 후 신청 가능\n\n📞 France-Visas: france-visas.gouv.fr"
+                  : "• Passeport Talent — IT/research/arts/entrepreneur/investor. 4-year stay\n• Salarié (Employee) — employer sponsor. Register with OFII after arrival\n• Working Holiday — Korea-France agreement. Ages 18–30. 1 year\n• NIR (Social Insurance Number) — required for work + health insurance. Issued by CPAM\n• Carte Vitale — health insurance card. Apply after 3 months" },
+            ].map((t, i) => (
+              <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.7)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* ── 🇦🇪 UAE 비자 가이드 (index 7) ── */}
+        {sub === 7 && isGulf && (
+          <div>
+            <div style={{ background:"linear-gradient(135deg,rgba(202,138,4,0.10),rgba(255,255,255,0.05))", border:"1px solid rgba(202,138,4,0.25)", borderRadius:16, padding:"16px 18px", marginBottom:16 }}>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:13, color:"#FDE68A", marginBottom:6 }}>
+                🌙 {lang==="ko" ? "UAE(두바이) 비자 가이드" : "UAE (Dubai) Visa Guide"}
+              </div>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.65)", lineHeight:1.8 }}>
+                {lang==="ko" ? "한국인 무비자 30일. 장기 체류는 취업·골든 비자 필요." : "Koreans: 30 days visa-free. Long-term requires employment or Golden Visa."}
+              </div>
+            </div>
+            {[
+              { color:"rgba(202,138,4,0.07)", border:"rgba(202,138,4,0.2)", tc:"#FDE68A",
+                title: lang==="ko" ? "💼 취업 비자 (Residence Visa + Work Permit)" : "💼 Employment Visa (Residence + Work Permit)",
+                body: lang==="ko"
+                  ? "• 고용주가 Employment Visa 스폰서 → 2년 거주 비자 발급\n• 입국 후 Emirates ID 발급 (거주 필수 신분증)\n• 의료보험 — 고용주 의무 제공 (Dubai Health Authority)\n• UAE 소득세 없음 — 연봉 전액 수령 (한인 직장인 매력 포인트)\n• UAE 운전면허 — 한국 면허 직접 교환 가능 (필기 면제)\n\n📞 GDRFA 두바이: gdrfad.gov.ae"
+                  : "• Employer sponsors Employment Visa → 2-year residence visa issued\n• Get Emirates ID after entry (mandatory residence ID)\n• Health insurance — employer must provide (Dubai Health Authority)\n• No income tax — receive full salary (major draw for Korean workers)\n• UAE license — direct exchange from Korean license (no written test)" },
+              { color:"rgba(234,88,12,0.07)", border:"rgba(234,88,12,0.2)", tc:"#FDBA74",
+                title: lang==="ko" ? "🏅 골든 비자 (Golden Visa) — 10년 장기 체류" : "🏅 Golden Visa — 10-Year Long-Stay",
+                body: lang==="ko"
+                  ? "• 10년 갱신 가능 거주 비자. 고용주 스폰서 불필요\n• 대상: 투자자(AED 200만+), 기업인, 탁월한 인재, 연구자, 의사\n• 특별 인재 — 예술·과학·스포츠·특수 기술 분야\n• 학업 우수자 — UAE 대학 졸업 후 GPA 3.75+ 또는 고등학교 95%+\n• 한국인 IT·의료·교육 전문가 적극 활용 중"
+                  : "• 10-year renewable residence. No employer sponsor needed\n• Eligible: investors (AED 2M+), entrepreneurs, outstanding talent, researchers, doctors\n• Special talent — arts, science, sports, specialized skills\n• Academic excellence — GPA 3.75+ at UAE university or 95%+ in high school\n• Korean IT, medical, and education professionals actively using this" },
+              { color:"rgba(16,185,129,0.07)", border:"rgba(16,185,129,0.2)", tc:"#6EE7B7",
+                title: lang==="ko" ? "🖥️ 원격근무 비자 (Remote Work / Freelancer)" : "🖥️ Remote Work Visa / Freelancer",
+                body: lang==="ko"
+                  ? "• Virtual Working Program — 1년. 해외 소득 기반 원격근무자 대상. 월 최소 수입 $3,500\n• Freelance Permit — 미디어·기술·교육·컨설팅 분야. DTMFZ 등 프리존 발급\n• 두바이 생활비 — 1BR 아파트 $2,000~3,500/월. 세금 없는 장점으로 한인 디지털노마드 급증\n• Tamm 앱 — 두바이 정부 서비스 원스톱 앱 (비자·허가·행정)"
+                  : "• Virtual Working Program — 1 year. For remote workers with overseas income (min $3,500/mo)\n• Freelance Permit — media/tech/education/consulting. Issued by free zones (e.g., DTMFZ)\n• Dubai cost of living — 1BR $2,000–3,500/mo. No tax draws Korean digital nomads\n• Tamm app — Dubai government one-stop service app (visa, permits, admin)" },
+            ].map((t, i) => (
+              <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.7)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* ── 🌴 동남아시아 비자 가이드 (index 7) ── */}
+        {sub === 7 && isSEA && (
+          <div>
+            <div style={{ background:"linear-gradient(135deg,rgba(16,185,129,0.10),rgba(255,255,255,0.05))", border:"1px solid rgba(16,185,129,0.25)", borderRadius:16, padding:"16px 18px", marginBottom:16 }}>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:13, color:"#6EE7B7", marginBottom:6 }}>
+                🌴 {lang==="ko" ? `동남아시아 비자 가이드 — ${useCityConfig().nameKo}` : `Southeast Asia Visa Guide — ${useCityConfig().nameEn}`}
+              </div>
+            </div>
+            {/* 싱가포르 */}
+            {citySlug === "singapore" && [
+              { color:"rgba(220,38,38,0.07)", border:"rgba(220,38,38,0.2)", tc:"#FCA5A5",
+                title: lang==="ko" ? "🇸🇬 싱가포르 취업 비자" : "🇸🇬 Singapore Work Passes",
+                body: lang==="ko"
+                  ? "• EP (Employment Pass) — 전문직. 최소 월 SGD 5,000. 기업 스폰서 필수\n• S Pass — 준전문직. 최소 월 SGD 3,150. 쿼터 적용\n• EntrePass — 스타트업 창업자. MAS·IP 조건 충족 시\n• LTVP (장기방문증) — EP 소지자 배우자·부양가족\n• PR 신청 — EP 2년 이상 보유 후 신청. 심사 기준 비공개\n• MediShield Life — 싱가포르 의료보험. PR·시민권자 자동 가입\n\n📞 MOM: mom.gov.sg"
+                  : "• EP — Professionals. Min SGD 5,000/month. Company sponsor required\n• S Pass — Semi-skilled. Min SGD 3,150/month. Subject to quota\n• EntrePass — Startup founders meeting MAS/IP criteria\n• LTVP — Long-Term Visit Pass for EP holder's spouse/dependents\n• PR — Apply after holding EP for 2+ years. Criteria not publicly disclosed\n• MediShield Life — auto-enrolled for PR/citizens" },
+            ].map((t, i) => (
+              <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.7)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+              </div>
+            ))}
+            {/* 태국 */}
+            {citySlug === "bangkok" && [
+              { color:"rgba(30,58,138,0.07)", border:"rgba(30,58,138,0.2)", tc:"#BFDBFE",
+                title: lang==="ko" ? "🇹🇭 태국 비자 종류" : "🇹🇭 Thailand Visa Types",
+                body: lang==="ko"
+                  ? "• Non-B (취업) — 고용주 스폰서 + 노동부 Work Permit. 1년 갱신\n• LTR (장기체류) — 부유층·원격근무자·퇴직자·전문가. 10년. 법인세·소득세 혜택\n• Thailand Elite — 5~20년 체류. 연 $3,000~30,000. 한인 장기 거주자 인기\n• SMART Visa — 투자자·스타트업·전문가·임원. 4년\n• 한국인 무비자 30일 (육로 2회 연속 사용 불가)\n• Work Permit — 법인 4명 이상 태국인 직원 고용 조건\n\n📞 BOI Thailand: boi.go.th"
+                  : "• Non-B — Employer + Ministry of Labour Work Permit. Annual renewal\n• LTR — Wealthy global citizens/remote workers/retirees/professionals. 10 years\n• Thailand Elite — 5–20 year stay. $3,000–30,000/yr. Popular with Korean long-termers\n• SMART Visa — Investors/startups/experts/executives. 4 years\n• Koreans: 30 days visa-free (land border: 2 consecutive uses not allowed)" },
+            ].map((t, i) => (
+              <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.7)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+              </div>
+            ))}
+            {/* 베트남 */}
+            {citySlug === "hochiminh" && [
+              { color:"rgba(190,24,93,0.07)", border:"rgba(190,24,93,0.2)", tc:"#F9A8D4",
+                title: lang==="ko" ? "🇻🇳 베트남 비자 종류" : "🇻🇳 Vietnam Visa Types",
+                body: lang==="ko"
+                  ? "• 한국인 무비자 45일 (2023년 확대). E-visa 90일 온라인 신청 가능\n• DN (취업 비자) — 고용주 초청 + 노동부 Work Permit. 2년 갱신\n• TRC (임시거주증) — 2년 이상 체류 외국인. 출입국사무소 발급\n• Work Permit 면제 — 전문 기술직·관리직 일부. 확인 필요\n• 한국 기업 진출 多 — 삼성·LG·현대 등 협력사 취업 한인 급증\n• 의료보험 — 취업자 사회보험(Social Insurance) 의무 가입\n\n📞 DOLAB (노동부): dolab.vn"
+                  : "• Koreans: 45 days visa-free (expanded 2023). E-visa: 90 days online application\n• DN Work Visa — employer + Ministry of Labour Work Permit. 2-year renewal\n• TRC (Temporary Residence Card) — for 2+ year stays. Issued at immigration office\n• Work Permit exemption — some professional/managerial roles. Verify case-by-case\n• Many Korean companies — Samsung/LG/Hyundai affiliates driving Korean worker surge" },
+            ].map((t, i) => (
+              <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
+                <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.7)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* ── 비자·이민 탭 (index 7, 미국/기타 도시) ── */}
-        {sub === 7 && !isKR && (
+        {sub === 7 && !isKR && !isJP && !isCA && !isAU && !isEU && !isGulf && !isSEA && (
           <div>
             {[
               { emoji: "🛂", name: lang === "ko" ? "비자 종류 한눈에 보기" : "Visa Types Overview",
