@@ -143,7 +143,11 @@
     { "source": "/gwangju",            "destination": "/gwangju/index.html" },
     { "source": "/gwangju/(.*)",       "destination": "/gwangju/index.html" },
     { "source": "/daejeon",            "destination": "/daejeon/index.html" },
-    { "source": "/daejeon/(.*)",       "destination": "/daejeon/index.html" }
+    { "source": "/daejeon/(.*)",       "destination": "/daejeon/index.html" },
+    { "source": "/changwon",           "destination": "/changwon/index.html" },
+    { "source": "/changwon/(.*)",      "destination": "/changwon/index.html" },
+    { "source": "/cheonan",            "destination": "/cheonan/index.html" },
+    { "source": "/cheonan/(.*)",       "destination": "/cheonan/index.html" }
   ],
 
   "headers": [

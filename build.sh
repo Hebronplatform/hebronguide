@@ -50,6 +50,7 @@ declare -A CITY_KO=(
   ["tokyo"]="도쿄"           ["osaka"]="오사카"
   # 한국 (역이민·방문 동포)
   ["seoul"]="서울"           ["busan"]="부산"
+  ["changwon"]="창원"        ["cheonan"]="천안·아산"
 )
 declare -A CITY_EN=(
   # 기존 17개 도시
@@ -84,6 +85,7 @@ declare -A CITY_EN=(
   ["ansan"]="안산"           ["incheon"]="인천"
   ["jeju"]="제주"            ["daegu"]="대구"
   ["gwangju"]="광주"         ["daejeon"]="대전"
+  ["changwon"]="창원"        ["cheonan"]="천안·아산"
 )
 
 # 4. 도시별 배포 (미리 빌드된 dist/ 사용 + index.html 메타데이터 치환)
@@ -100,7 +102,7 @@ for city in \
   sydney melbourne brisbane perth auckland saopaulo london \
   singapore bangkok hochiminh dubai frankfurt berlin paris \
   tokyo osaka \
-  seoul busan ansan incheon jeju daegu gwangju daejeon; do
+  seoul busan ansan incheon jeju daegu gwangju daejeon changwon cheonan; do
   mkdir -p public/$city
   cp -r hebronguide/dist/* public/$city/
 

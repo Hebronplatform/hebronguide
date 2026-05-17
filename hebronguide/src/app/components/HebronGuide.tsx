@@ -253,6 +253,18 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1574263867128-a3d5c1b1decc?w=1200&q=90", pos: "center 38%", alt: "Daejeon Korea urban" },
   ],
 
+  // 🇰🇷 창원 — 진해 벚꽃·방산·경남 (200 OK 검증)
+  changwon: [
+    { url: "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=1200&q=90", pos: "center 45%", alt: "Jinhae cherry blossom Korea spring" },
+    { url: "https://images.unsplash.com/photo-1609372332255-611485350f25?w=1200&q=90", pos: "center 40%", alt: "Changwon South Korea cityscape" },
+  ],
+
+  // 🇰🇷 천안·아산 — 독립기념관·온양온천·현대차 (200 OK 검증)
+  cheonan: [
+    { url: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=1200&q=90", pos: "center 40%", alt: "Cheonan Korea urban daytime" },
+    { url: "https://images.unsplash.com/photo-1601134467661-3d775b999c8b?w=1200&q=90", pos: "center 38%", alt: "Cheonan Asan Korea city" },
+  ],
+
   // 🇺🇸 루이빌 — 검증된 사진 (200 OK)
   louisville: [
     { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Louisville Kentucky daytime" },
@@ -553,7 +565,7 @@ type CitySlug =
   // 일본 (신규)
   "tokyo" | "osaka" |
   // 한국 — 역이민·방문 동포·한국 이주
-  "seoul" | "busan" | "ansan" | "incheon" | "jeju" | "daegu" | "gwangju" | "daejeon";
+  "seoul" | "busan" | "ansan" | "incheon" | "jeju" | "daegu" | "gwangju" | "daejeon" | "changwon" | "cheonan";
 
 interface CityConfig {
   slug: CitySlug;
@@ -854,6 +866,8 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   daegu:      { slug: "daegu",      nameKo: "대구",      nameEn: "Daegu",        color: "#F59E0B", heroVideo: "", population: "4만+",    state: "Korea",       taglineKo: "패션의 도시, 뜨거운 한국의 심장",  taglineEn: "Korea's fashion city, warm heart.",     taglineEs: "La ciudad de la moda de Corea." },
   gwangju:    { slug: "gwangju",    nameKo: "광주",      nameEn: "Gwangju",      color: "#EC4899", heroVideo: "", population: "3만+",    state: "Korea",       taglineKo: "예향의 도시, 아시아 문화의 중심",  taglineEn: "City of art, heart of Asia.",           taglineEs: "Ciudad del arte, corazón de Asia." },
   daejeon:    { slug: "daejeon",    nameKo: "대전",      nameEn: "Daejeon",      color: "#3B82F6", heroVideo: "", population: "2만+",    state: "Korea",       taglineKo: "과학의 도시, 한국의 실리콘밸리",   taglineEn: "Science City, Korea's Silicon Valley.", taglineEs: "La ciudad de la ciencia de Corea." },
+  changwon:   { slug: "changwon",   nameKo: "창원",      nameEn: "Changwon",     color: "#F472B6", heroVideo: "", population: "9만+",    state: "Korea",       taglineKo: "진해 벚꽃과 방산의 도시, 경남의 심장", taglineEn: "Cherry blossoms and industry in South Gyeongnam.", taglineEs: "Flores de cerezo e industria en Gyeongnam del Sur." },
+  cheonan:    { slug: "cheonan",    nameKo: "천안·아산", nameEn: "Cheonan",      color: "#78716C", heroVideo: "", population: "8만+",    state: "Korea",       taglineKo: "독립의 성지, 충남의 첫 관문",       taglineEn: "Land of independence, gateway to Chungnam.", taglineEs: "Tierra de independencia, puerta de Chungnam." },
 };
 
 function useCityConfig(): CityConfig {
@@ -5132,6 +5146,162 @@ const TOP5_EXPLORE_DAEJEON: Top5Item[] = [
     tip:"한빛탑 전망대(지상 93m) 대전 전경 조망", website:"expopark.co.kr" },
 ];
 
+/* ── 창원 (CHANGWON) — 진해 벚꽃·방산·경남 ── */
+const TOP5_SETTLE_CHANGWON: Top5Item[] = [
+  { rank:1, emoji:"🌏", nameKo:"창원시외국인종합지원센터", nameEn:"Changwon Migrant Support Center",
+    address:"경남 창원시 마산회원구 3·15대로 260", phone:"055-225-3910", hours:"월-금 9am-6pm",
+    why:"창원 외국인 주민 원스톱 정착 지원. 한국어 교육·법률·취업·의료 상담 무료 제공. 경남 외국인 9만명 커뮤니티 허브.",
+    tip:"한국어 초급반 무료 등록 가능. 방문 전 전화 확인 권장", website:"changwon.go.kr" },
+  { rank:2, emoji:"🏛️", nameKo:"창원출입국·외국인사무소", nameEn:"Changwon Immigration Office",
+    address:"경남 창원시 성산구 비음로 69", phone:"055-280-4500", hours:"월-금 9am-6pm",
+    why:"외국인등록증 발급·갱신, 체류자격 변경, 비자 연장. 경남 전역 체류 외국인 담당 기관.",
+    tip:"하이코리아(hikorea.go.kr) 온라인 예약 후 방문 — 대기 최소화", website:"hikorea.go.kr" },
+  { rank:3, emoji:"🏥", nameKo:"국민건강보험공단 창원지사", nameEn:"NHIS Changwon Branch",
+    address:"경남 창원시 성산구 창이대로 655", phone:"1577-1000", hours:"월-금 9am-6pm",
+    why:"건강보험 가입·변경·납부 상담. 외국인 직장가입자·지역가입자 안내. 창원 제조업 취업 외국인 필수 방문.",
+    tip:"외국인 건강보험 의무 가입 (입국 6개월 후). 통역 서비스 요청 가능", website:"nhis.or.kr" },
+  { rank:4, emoji:"💼", nameKo:"경남외국인근로자지원센터", nameEn:"Gyeongnam Migrant Worker Center",
+    address:"경남 창원시 의창구 용지로 238", phone:"055-286-0064", hours:"월-금 9am-6pm",
+    why:"E-9·E-10 외국인 근로자 취업·생활 상담. 체류 연장, 사업장 변경, 산업재해 지원. 창원 제조업 외국인 근로자 전문 기관.",
+    tip:"한국어·영어·베트남어·인도네시아어 통역 가능", website:"eps.go.kr" },
+  { rank:5, emoji:"🔧", nameKo:"고용복지플러스센터 창원", nameEn:"Changwon Employment Welfare Center",
+    address:"경남 창원시 성산구 창이대로 655", phone:"055-239-0500", hours:"월-금 9am-6pm",
+    why:"외국인 취업 허가·고용허가제(EPS) 등록. 창원 방산·제조업 일자리 정보. E-7 전문직 취업 상담.",
+    tip:"E-9 비자 소지자 사업장 변경 허가 신청 기관", website:"work.go.kr" },
+];
+const TOP5_FOOD_CHANGWON: Top5Item[] = [
+  { rank:1, emoji:"🐟", nameKo:"마산 오동동 아구찜 거리", nameEn:"Masan Agu-jjim Street",
+    address:"경남 창원시 마산합포구 오동동 일대", hours:"월-일 11am-10pm",
+    rating:4.5, ratingCount:"8,000+",
+    why:"한국 3대 아구찜 명소. 마산 앞바다 아귀(아구) 특산 요리. 칼칼하고 진한 국물이 일품. 전국에서 찾아오는 창원 대표 음식.",
+    tip:"오동동 시장 입구부터 즐비한 아구찜 식당. 2인분부터 주문 가능" },
+  { rank:2, emoji:"🥩", nameKo:"창원불낙볶음", nameEn:"Changwon Bul-nak-bokkeum",
+    address:"창원시 성산구·마산합포구 일대 한식집", hours:"월-일 11:30am-9pm",
+    rating:4.4, ratingCount:"4,000+",
+    why:"불고기(소고기)+낙지 볶음의 창원 향토음식. 매콤달콤한 양념에 버무린 조합이 독특. 창원 직장인 점심 필수 메뉴.",
+    tip:"매운 단계 선택 가능한 식당 이용 권장" },
+  { rank:3, emoji:"🦐", nameKo:"진해 어시장 회·해산물", nameEn:"Jinhae Fish Market",
+    address:"경남 창원시 진해구 충장로 일대", hours:"월-일 8am-8pm",
+    rating:4.3, ratingCount:"5,000+",
+    why:"진해만 신선한 해산물 집산지. 계절 생선회·조개구이·홍합탕. 군항제 시즌엔 관광객과 현지인이 함께 붐비는 명소.",
+    tip:"오전 일찍 방문 시 가장 신선한 어획물 구매 가능" },
+  { rank:4, emoji:"🌊", nameKo:"진동 미더덕찜", nameEn:"Jindong MideoDeok-jjim",
+    address:"경남 창원시 마산합포구 진동면 일대", hours:"월-일 11am-8pm",
+    rating:4.4, ratingCount:"2,000+",
+    why:"창원 진동면 특산 미더덕(멍게류) 찜. 봄~초여름이 제철. 바다향 가득한 경남 별미. 전국 미더덕의 70%가 진동 생산.",
+    tip:"3~6월이 최대 제철. 진동면 식당가에서 현지 가격으로 즐길 수 있음" },
+  { rank:5, emoji:"🍲", nameKo:"창원중앙시장 국밥골목", nameEn:"Changwon Joongang Market Gukbap Alley",
+    address:"경남 창원시 의창구 중앙동 일대", hours:"월-토 6am-3pm",
+    rating:4.2, ratingCount:"3,000+",
+    why:"소머리국밥·돼지국밥 원조 식당 집결. 이른 아침 창원 시민들의 해장 국밥. 저렴하고 푸짐한 경남식 국밥 문화.",
+    tip:"오전 7-9시가 가장 맛있는 시간. 일요일 영업 여부 사전 확인" },
+];
+const TOP5_EXPLORE_CHANGWON: Top5Item[] = [
+  { rank:1, emoji:"🌸", nameKo:"진해 군항제", nameEn:"Jinhae Gunhangje Festival",
+    address:"경남 창원시 진해구 일원", hours:"매년 4월 초 (10일간)",
+    rating:4.8, ratingCount:"30,000+",
+    why:"세계 최대 벚꽃 축제. 340만 방문객. 여좌천 로망스 다리·경화역·장복산 케이블카 벚꽃 절경. 한국 봄 여행 버킷리스트 1위.",
+    tip:"4월 첫째 주 전후 10일. 대중교통 이용 필수 — 진해 주차 극도로 혼잡. KTX 창원역→버스 연결" },
+  { rank:2, emoji:"🌊", nameKo:"마산합포 해안 산책로", nameEn:"Masan Happo Coastal Trail",
+    address:"경남 창원시 마산합포구 해안대로 일대", hours:"상시",
+    rating:4.3, ratingCount:"5,000+",
+    why:"마산항 석양 명소. 바다를 보며 걷는 해안 산책로. 조개구이 포장마차와 함께하는 저녁 산책. 창원 로컬 데이트 코스.",
+    tip:"석양 시간(오후 6-7시) 방문 시 최고 경관" },
+  { rank:3, emoji:"⛰️", nameKo:"무학산 둘레길", nameEn:"Muhaksan Mountain Trail",
+    address:"경남 창원시 마산합포구 무학산 일원", hours:"상시",
+    rating:4.5, ratingCount:"8,000+",
+    why:"해발 767m. 창원 3대 명산 중 최고봉. 정상에서 마산만·진해만 파노라마 조망. 사계절 등산 인파 붐비는 창원 대표 산.",
+    tip:"왕복 3-4시간. 초보자는 부곡 코스 추천. 물·간식 충분히 준비" },
+  { rank:4, emoji:"🚡", nameKo:"장복산 케이블카", nameEn:"Jangboksan Cable Car",
+    address:"경남 창원시 진해구 장복산로 170", phone:"055-548-2200", hours:"화-일 9am-6pm",
+    rating:4.4, ratingCount:"6,000+",
+    why:"진해 전경 조망 케이블카. 군항제 시즌엔 벚꽃 물결 위 하늘 산책. 창원 서부 바다·산 동시 조망 가능.",
+    tip:"군항제 기간엔 1-2시간 대기. 평일 오전 방문 추천", website:"changwon.go.kr" },
+  { rank:5, emoji:"🏭", nameKo:"창원단지 야경", nameEn:"Changwon Industrial Complex Night View",
+    address:"경남 창원시 성산구 창원산업단지 일원", hours:"상시",
+    rating:4.1, ratingCount:"2,000+",
+    why:"한국 최대 기계·방산 산업단지 야간 경관. 한화에어로스페이스·현대로템·두산에너빌리티 공장 야경. 한국 중공업의 상징적 풍경.",
+    tip:"외부 도로에서 관람 가능. 단지 내부 출입은 관계자 외 제한" },
+];
+
+/* ── 천안·아산 (CHEONAN) — 독립기념관·온양온천·현대차 ── */
+const TOP5_SETTLE_CHEONAN: Top5Item[] = [
+  { rank:1, emoji:"🌏", nameKo:"천안시외국인주민지원센터", nameEn:"Cheonan Migrant Support Center",
+    address:"충남 천안시 서북구 번영로 208", phone:"041-521-5114", hours:"월-금 9am-6pm",
+    why:"천안 외국인 주민 정착 원스톱 지원. 한국어 교육·법률·취업·생활 상담 무료. 충남 외국인 7-8만명의 주요 거점.",
+    tip:"한국어 강좌 무료 등록 가능. 다국어 상담 요청 시 사전 연락", website:"cheonan.go.kr" },
+  { rank:2, emoji:"🌿", nameKo:"아산시 다문화가족지원센터", nameEn:"Asan Multicultural Family Center",
+    address:"충남 아산시 온천대로 927", phone:"041-537-0650", hours:"월-금 9am-6pm",
+    why:"아산 이주 결혼·다문화 가정 전담 지원. 언어 통역·부부 상담·자녀 교육 지원. 현대차 아산공장 외국인 가족 주요 이용 기관.",
+    tip:"결혼이민자 한국어 교육·취업 연계 프로그램 운영", website:"asan.go.kr" },
+  { rank:3, emoji:"🏛️", nameKo:"천안출입국·외국인사무소", nameEn:"Cheonan Immigration Office",
+    address:"충남 천안시 서북구 충무로 9", phone:"041-620-6300", hours:"월-금 9am-6pm",
+    why:"천안·아산 체류 외국인 등록·비자 변경·체류 연장. 충남 전역 외국인 행정 담당 기관.",
+    tip:"온라인 예약(hikorea.go.kr) 필수. 방문 전 필요 서류 목록 확인", website:"hikorea.go.kr" },
+  { rank:4, emoji:"🏥", nameKo:"국민건강보험공단 천안지사", nameEn:"NHIS Cheonan Branch",
+    address:"충남 천안시 서북구 충무로 9", phone:"1577-1000", hours:"월-금 9am-6pm",
+    why:"건강보험 가입·납부·이의신청. 현대차·삼성 취업 외국인 직장가입자 안내. 아산·천안 제조업 종사자 필수 방문.",
+    tip:"직장가입자는 고용주를 통해 자동 가입. 지역가입자는 직접 신청 필요", website:"nhis.or.kr" },
+  { rank:5, emoji:"💼", nameKo:"고용복지플러스센터 천안", nameEn:"Cheonan Employment Welfare Center",
+    address:"충남 천안시 동남구 청수14로 19", phone:"041-620-7800", hours:"월-금 9am-6pm",
+    why:"외국인 취업 허가·EPS 등록. 현대차 아산공장·삼성디스플레이 취업 연계. E-9·E-7 비자 소지자 필수 등록.",
+    tip:"사업장 변경 허가·구직 등록 동시 처리 가능", website:"work.go.kr" },
+];
+const TOP5_FOOD_CHEONAN: Top5Item[] = [
+  { rank:1, emoji:"🌰", nameKo:"천안 호두과자 (학화·원조)", nameEn:"Cheonan Walnut Cake — Hakwa",
+    address:"충남 천안시 동남구 봉명로 2길 일대 (천안역 인근)", hours:"월-일 8am-9pm",
+    rating:4.6, ratingCount:"12,000+",
+    why:"1934년 창업 원조 호두과자. 천안의 대표 향토 먹거리. 쫄깃한 반죽 안에 호두·팥소. 전국 명물로 수십 개 브랜드 중 원조 학화 추천.",
+    tip:"천안역 1번 출구 인근 학화 호두과자 본점. 기차 타기 전 선물용으로 구매 가능" },
+  { rank:2, emoji:"🐷", nameKo:"병천순대 (병천면 순대 거리)", nameEn:"Byeongcheon Sundae Street",
+    address:"충남 천안시 동남구 병천면 병천시장 일대", hours:"월-일 10am-9pm",
+    rating:4.5, ratingCount:"9,000+",
+    why:"60년 전통 충남 순대국밥 명소. 병천 장날(5·10일) 유래 순대 문화. 쫄깃한 찹쌀 순대+진한 국물. 전국에서 찾아오는 순대 성지.",
+    tip:"오전 11시-오후 2시 가장 붐빔. 장날(5·10일)에 더욱 활기찬 분위기" },
+  { rank:3, emoji:"🥩", nameKo:"아산 갈비촌 (온양온천 인근)", nameEn:"Asan Galbi Village",
+    address:"충남 아산시 온천동 일대", hours:"월-일 11:30am-10pm",
+    rating:4.4, ratingCount:"6,000+",
+    why:"온양온천 지구 한우갈비 식당 밀집. 온천욕 후 갈비로 마무리하는 충남 여행의 정석. 저렴한 가격에 넉넉한 양.",
+    tip:"온천 후 이른 저녁(5-6시) 방문 시 대기 없이 입장" },
+  { rank:4, emoji:"🍉", nameKo:"성환 수박", nameEn:"Seonghwan Watermelon",
+    address:"충남 천안시 서북구 성환읍 일대", hours:"여름 수확 시즌 (6-8월) 직거래 장터",
+    rating:4.5, ratingCount:"3,000+",
+    why:"전국 최고 품질 수박 산지. 일교차 큰 성환 기후로 당도 최고. 6-8월 수박 시즌엔 현지 직거래 가능. 천안 특산 선물로도 인기.",
+    tip:"성환역 인근 직거래 장터에서 저렴하게 구매 가능 (6-8월)" },
+  { rank:5, emoji:"🫘", nameKo:"병천 두부두루치기", nameEn:"Byeongcheon Tofu Duruchigl",
+    address:"충남 천안시 동남구 병천면 일대", hours:"월-일 11am-8pm",
+    rating:4.3, ratingCount:"2,000+",
+    why:"병천 지역 두부 요리. 국산 두부+매콤한 양념 볶음. 순대국밥과 함께 병천 쌍두마차 먹거리.",
+    tip:"병천순대 거리 내 두부두루치기 세트 주문 가능" },
+];
+const TOP5_EXPLORE_CHEONAN: Top5Item[] = [
+  { rank:1, emoji:"🏛️", nameKo:"독립기념관", nameEn:"Independence Hall of Korea",
+    address:"충남 천안시 동남구 목천읍 삼방로 95", phone:"041-560-0114", hours:"화-일 9:30am-6pm (하절기)",
+    rating:4.7, ratingCount:"20,000+",
+    why:"1987년 개관 한국 독립운동 성지. 7개 전시관·3·1운동 체험관·순국선열 추모탑. 무료 입장. 한국 역사 이해의 필수 코스.",
+    tip:"무료 입장 (주차비만 부담). 가족 단위 역사 교육 최적지. 3·1절·광복절 특별 행사", website:"i815.or.kr" },
+  { rank:2, emoji:"⚓", nameKo:"현충사 (이순신 장군 성역)", nameEn:"Hyeonchungsa Shrine",
+    address:"충남 아산시 염치읍 백암리 108", phone:"041-539-4600", hours:"화-일 9am-6pm",
+    rating:4.6, ratingCount:"10,000+",
+    why:"이순신 장군 생가·기념관·사당. 조선시대 유물·거북선 모형 전시. 무료 입장. 봄 벚꽃 명소로도 유명.",
+    tip:"무료 입장. 4월 봄 벚꽃 시즌엔 가족 나들이객 인파. 주차장 무료", website:"hcs.go.kr" },
+  { rank:3, emoji:"♨️", nameKo:"아산 온양온천", nameEn:"Asan Onyang Hot Spring",
+    address:"충남 아산시 온천동 일대", hours:"각 스파 시설별 상이 (보통 06am-10pm)",
+    rating:4.4, ratingCount:"15,000+",
+    why:"1,300년 역사 알칼리성 온천. 신라 태종 무열왕·조선 세종·세조 행행 기록. 현대 호텔스파·공중목욕탕까지 다양한 가격대.",
+    tip:"온양온천역 도보 5분. 공중목욕탕은 저렴하게 온천 체험 가능" },
+  { rank:4, emoji:"🏘️", nameKo:"외암민속마을", nameEn:"Oeam Folk Village",
+    address:"충남 아산시 송악면 외암로 91-13", phone:"041-541-0848", hours:"화-일 9am-6pm",
+    rating:4.5, ratingCount:"8,000+",
+    why:"조선시대 반촌(班村) 보존 민속마을. 초가집·기와집·돌담길 그대로. 국가지정 중요민속문화재. 숙박 체험(민박) 가능.",
+    tip:"입장료 2,000원. 주말 전통문화 체험 프로그램 운영", website:"oeam.co.kr" },
+  { rank:5, emoji:"⛰️", nameKo:"광덕산 호두나무 군락지", nameEn:"Gwangdeoksan Walnut Grove",
+    address:"충남 천안시 동남구 광덕면 일원", hours:"상시",
+    rating:4.3, ratingCount:"4,000+",
+    why:"해발 699m 광덕산. 천안 호두과자 원료 호두나무 군락지. 가을 단풍 명소. 정상에서 천안·아산 평야 조망.",
+    tip:"봄 진달래·가을 단풍이 절정. 등산로 왕복 2-3시간. 물·간식 필수" },
+];
+
 /* ── 오렌지카운티 (ORANGE COUNTY) — 풀러튼·부에나파크 ── */
 const TOP5_SETTLE_ORANGECOUNTY: Top5Item[] = [
   { rank:1, emoji:"🏛️", nameKo:"오렌지카운티 한인회", nameEn:"Korean American Federation of Orange County",
@@ -7063,7 +7233,7 @@ function getCountryCode(slug: string): string {
   if (["sydney","melbourne","brisbane","perth"].includes(slug))                          return "AU";
   if (["auckland"].includes(slug))                                                        return "NZ";
   if (["tokyo","osaka"].includes(slug))                                                   return "JP";
-  if (["seoul","busan","ansan","incheon","jeju","daegu","gwangju","daejeon"].includes(slug)) return "KR";
+  if (["seoul","busan","ansan","incheon","jeju","daegu","gwangju","daejeon","changwon","cheonan"].includes(slug)) return "KR";
   if (["mexicocity","guadalajara","monterrey"].includes(slug))                            return "MX";
   if (["london"].includes(slug))                                                          return "UK";
   if (["frankfurt","berlin"].includes(slug))                                              return "DE";
@@ -8704,6 +8874,8 @@ const HEBRON_CITIES = [
   { emoji: "🍎", nameKo: "대구",        nameEn: "Daegu",         flag: "🇰🇷", url: "/daegu/",       status: "live", color: "#F59E0B" },
   { emoji: "🎨", nameKo: "광주",        nameEn: "Gwangju",       flag: "🇰🇷", url: "/gwangju/",     status: "live", color: "#EC4899" },
   { emoji: "🔬", nameKo: "대전",        nameEn: "Daejeon",       flag: "🇰🇷", url: "/daejeon/",     status: "live", color: "#3B82F6" },
+  { emoji: "🌸", nameKo: "창원",        nameEn: "Changwon",      flag: "🇰🇷", url: "/changwon/",    status: "live", color: "#F472B6" },
+  { emoji: "🏛️", nameKo: "천안·아산",  nameEn: "Cheonan",       flag: "🇰🇷", url: "/cheonan/",     status: "live", color: "#78716C" },
 ];
 
 /* 도시별 디자인 — 항공 코드 + 그라디언트 (프로페셔널 스타일) */
@@ -9043,6 +9215,8 @@ const DIASPORA_IDENTITY: Record<string, {
   daegu:        { flag:"🇰🇷", ko:"한국 이주민",       en:"Korea Immigrant",     descKo:"뜨거운 열정의 도시 대구에서",             descEn:"In the passionate city of Daegu.",                color:"#F59E0B" },
   gwangju:      { flag:"🇰🇷", ko:"한국 이주민",       en:"Korea Immigrant",     descKo:"예술과 문화의 도시 광주에서",             descEn:"In Gwangju, city of art and culture.",            color:"#EC4899" },
   daejeon:      { flag:"🇰🇷", ko:"한국 이주민",       en:"Korea Immigrant",     descKo:"과학과 연구의 중심 대전에서",             descEn:"In Daejeon, Korea's science capital.",            color:"#3B82F6" },
+  changwon:     { flag:"🇰🇷", ko:"한국 이주민",       en:"Korea Immigrant",     descKo:"벚꽃과 방산이 공존하는 경남의 심장에서", descEn:"In the heart of South Gyeongnam.",                color:"#F472B6" },
+  cheonan:      { flag:"🇰🇷", ko:"한국 이주민",       en:"Korea Immigrant",     descKo:"독립의 성지 천안·아산에서 새 삶을 시작하며", descEn:"Starting anew in Cheonan·Asan.",              color:"#78716C" },
   seoul:        { flag:"🇰🇷", ko:"역이민·귀환 동포", en:"Returning Diaspora",  descKo:"다시 서울에서, 새롭게 시작하는 일상",  descEn:"Back in Seoul, starting a new chapter of life",   color:"#DC2626" },
   busan:        { flag:"🇰🇷", ko:"역이민·귀환 동포", en:"Returning Diaspora",  descKo:"바다의 도시 부산에서 새 삶을 펼치다",  descEn:"Unfolding a new life in the city by the sea",     color:"#0EA5E9" },
 };
@@ -10337,6 +10511,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "daegu"       ? TOP5_SETTLE_DAEGU :
             useCityConfig().slug === "gwangju"     ? TOP5_SETTLE_GWANGJU :
             useCityConfig().slug === "daejeon"     ? TOP5_SETTLE_DAEJEON :
+            useCityConfig().slug === "changwon"    ? TOP5_SETTLE_CHANGWON :
+            useCityConfig().slug === "cheonan"     ? TOP5_SETTLE_CHEONAN :
             useCityConfig().slug === "orangecounty" ? TOP5_SETTLE_ORANGECOUNTY :
             useCityConfig().slug === "seattle"    ? TOP5_SETTLE :
             [] as Top5Item[]   // 미등록 도시 — 시애틀 데이터 노출 방지
@@ -14569,6 +14745,8 @@ const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
   daegu:         TOP5_FOOD_DAEGU,
   gwangju:       TOP5_FOOD_GWANGJU,
   daejeon:       TOP5_FOOD_DAEJEON,
+  changwon:      TOP5_FOOD_CHANGWON,
+  cheonan:       TOP5_FOOD_CHEONAN,
   // 북미 확장 도시
   chicago:       TOP5_FOOD_CHICAGO,
   dc:            TOP5_FOOD_DC,
@@ -15332,6 +15510,8 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
               slug === "daegu"          ? TOP5_EXPLORE_DAEGU :
               slug === "gwangju"        ? TOP5_EXPLORE_GWANGJU :
               slug === "daejeon"        ? TOP5_EXPLORE_DAEJEON :
+              slug === "changwon"       ? TOP5_EXPLORE_CHANGWON :
+              slug === "cheonan"        ? TOP5_EXPLORE_CHEONAN :
               slug === "orangecounty"   ? TOP5_EXPLORE_ORANGECOUNTY :
               slug === "seattle"      ? TOP5_EXPLORE :   // seattle — isSeattleShuttleActive() 적용됨
               [] as Top5Item[];  // 미등록 도시 — 시애틀 관광지 노출 방지
