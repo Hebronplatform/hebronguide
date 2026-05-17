@@ -166,6 +166,12 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1535498730771-e735b998cd64?w=1200&q=90", pos: "center 35%", alt: "Miami skyline bay" },
   ],
 
+  // 🍊 오렌지카운티 — 풀러튼·부에나파크 (검증 200 OK)
+  orangecounty: [
+    { url: "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?w=1200&q=90", pos: "center 40%", alt: "Orange County California daytime" },
+    { url: "https://images.unsplash.com/photo-1580655653885-65763b2597d0?w=1200&q=90", pos: "center 38%", alt: "Southern California suburbs" },
+  ],
+
   // 🏛️ 멕시코시티 — ✅ Zocalo National Palace confirmed + historic center
   mexicocity: [
     { url: "https://images.unsplash.com/photo-1567538096621-38d2284b23ff?w=1200&q=90", pos: "center 40%", alt: "Mexico City National Palace Zocalo" },
@@ -527,13 +533,13 @@ const MINT = "#6EE7B7";
 /* ─────────────────────────────────────────
    CITY CONFIG — 도시별 설정
 ───────────────────────────────────────── */
-// 현재 61개 도시 (계속 성장 중)
+// 현재 62개 도시 (계속 성장 중)
 // 작은 도시일수록 HebronGuide가 더 필요합니다 — 외롭기 때문입니다
 type CitySlug =
   // 북미 (기존 17)
   "seattle" | "dallas" | "sf" | "newyork" | "nashville" | "boston" | "la" |
   "toronto" | "vancouver" | "houston" | "atlanta" | "kansascity" | "philadelphia" |
-  "miami" | "mexicocity" | "guadalajara" | "monterrey" |
+  "miami" | "orangecounty" | "mexicocity" | "guadalajara" | "monterrey" |
   // 북미 확장 (Tier A)
   "chicago" | "dc" | "sandiego" | "honolulu" | "portland" | "denver" |
   // 북미 확장 (Tier B-C)
@@ -763,6 +769,7 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
     population: "5천+", state: "Florida",
     taglineKo: "햇살 아래 새 출발", taglineEn: "Fresh start under the sun.", taglineEs: "Nuevo comienzo bajo el sol."
   },
+  orangecounty: { slug: "orangecounty", nameKo: "오렌지카운티", nameEn: "Orange County", color: "#F97316", heroVideo: "", population: "10만+", state: "California", taglineKo: "풀러튼·부에나파크 — LA 남쪽 한인 중심지", taglineEn: "Fullerton · Buena Park — Korean hub south of LA.", taglineEs: "Fullerton · Buena Park — hub coreano al sur de LA." },
   mexicocity: {
     slug: "mexicocity", nameKo: "멕시코시티", nameEn: "Mexico City", color: "#DC2626",
     // 낮 멕시코시티 스카이라인 + Bellas Artes·Angel of Independence 4영상 6시간마다
@@ -5125,6 +5132,76 @@ const TOP5_EXPLORE_DAEJEON: Top5Item[] = [
     tip:"한빛탑 전망대(지상 93m) 대전 전경 조망", website:"expopark.co.kr" },
 ];
 
+/* ── 오렌지카운티 (ORANGE COUNTY) — 풀러튼·부에나파크 ── */
+const TOP5_SETTLE_ORANGECOUNTY: Top5Item[] = [
+  { rank:1, emoji:"🏛️", nameKo:"오렌지카운티 한인회", nameEn:"Korean American Federation of Orange County",
+    address:"Fullerton / Garden Grove, CA", phone:"714-534-6800", hours:"월-금 9am-5pm",
+    why:"OC 한인 정착 원스톱 지원. 정착 초기 정보·법률·취업 상담. 부에나파크·풀러튼 한인 커뮤니티 네트워크 연결.",
+    tip:"방문 전 전화 예약 권장. 한국어 서비스 가능", website:"kaf-oc.org" },
+  { rank:2, emoji:"🚗", nameKo:"CA DMV 풀러튼", nameEn:"CA DMV — Fullerton",
+    address:"2400 N. Towne Ave, Pomona, CA 91767 (인근)", phone:"800-777-0133", hours:"월-금 8am-5pm",
+    why:"오렌지카운티 이주 후 10일 내 CA 운전면허 전환 의무. 한국 면허 소지자도 필기·실기 모두 응시 필요 (CA는 한국과 면허 협정 없음).",
+    tip:"예약 필수 (dmv.ca.gov). 대기 2-4시간 — 이른 아침 방문 추천", website:"dmv.ca.gov" },
+  { rank:3, emoji:"🏥", nameKo:"OC 한인 무료 클리닉", nameEn:"Korean Health Clinic of OC",
+    address:"Garden Grove / Fullerton 지역", hours:"월-금 9am-5pm (예약제)",
+    why:"한국어 의료 서비스·저비용 진료. 건강보험 없는 이주 초기 외국인 지원. OC 한인 의사·간호사 봉사 운영.",
+    tip:"건강보험 없어도 진료 가능. 사전 예약 필수", website:"google.com/search?q=Korean+health+clinic+orange+county" },
+  { rank:4, emoji:"🏪", nameKo:"H-Mart 풀러튼", nameEn:"H-Mart Fullerton",
+    address:"875 S. Harbor Blvd, Fullerton, CA 92832", phone:"714-525-5555", hours:"월-일 8am-9pm",
+    why:"OC 최대 한국 슈퍼마켓. 한식 재료·반찬·한국 라면·김치 완비. 풀러튼 한인 커뮤니티 정착의 첫 번째 기착지.",
+    tip:"푸드코트 내 한국 분식집 운영. 주말 혼잡", website:"hmart.com" },
+  { rank:5, emoji:"⛪", nameKo:"풀러튼좋은교회", nameEn:"Fullerton Good Church",
+    address:"Fullerton, CA (Orange County)", hours:"주일 예배",
+    why:"박희수 담임목사. OC 한인 이주자·정착자 환영 사역. 한인 네트워크 연결 및 생활 정보 공유.",
+    tip:"방문 전 홈페이지 예배 시간 확인", website:"joeunchurch.com" },
+];
+
+const TOP5_EXPLORE_ORANGECOUNTY: Top5Item[] = [
+  { rank:1, emoji:"🏰", nameKo:"디즈니랜드", nameEn:"Disneyland Resort",
+    address:"1313 S Disneyland Dr, Anaheim, CA 92802", phone:"714-781-4636", hours:"월-일 9am-11pm (시즌별 다름)",
+    rating:4.7, ratingCount:"80,000+",
+    why:"오렌지카운티·부에나파크 바로 옆 세계 최초 디즈니랜드. 가족 나들이 1번지. 한인 이주자들이 미국 생활 첫 해에 꼭 한 번 방문하는 곳.", tip:"GoofyApp으로 대기 없는 시간대 확인. 주차 $35. Genie+ 옵션 추천", website:"disneyland.disney.go.com" },
+  { rank:2, emoji:"🎡", nameKo:"놋츠 베리 팜", nameEn:"Knott's Berry Farm",
+    address:"8039 Beach Blvd, Buena Park, CA 90620", phone:"714-220-5200", hours:"월-일 10am-10pm (시즌별)",
+    rating:4.5, ratingCount:"30,000+",
+    why:"부에나파크 한인 상권 바로 옆. 미국 최초 테마파크. 롤러코스터 명소. Beach Blvd 한국 식당 식사 후 바로 방문 가능.", tip:"디즈니랜드보다 저렴·덜 붐빔. 한국 식사 후 저녁 방문 코스", website:"knotts.com" },
+  { rank:3, emoji:"🏖️", nameKo:"헌팅턴 비치", nameEn:"Huntington Beach",
+    address:"Huntington Beach, CA 92648", hours:"상시",
+    rating:4.6, ratingCount:"20,000+",
+    why:"서핑 USA 수도. 세계 서핑 선수권 개최지. OC 거주 한인들의 주말 필수 코스. 길이 1.8km 황금빛 해변.", tip:"주차 비치 시티 앱 활용. 선셋 타임 방문 강력 추천" },
+  { rank:4, emoji:"🛍️", nameKo:"비치 블러바드 한인 상권", nameEen:"Beach Blvd Korean Town (Buena Park)",
+    address:"Beach Blvd, Buena Park / La Mirada, CA", hours:"월-일 10am-11pm",
+    rating:4.5, ratingCount:"15,000+",
+    why:"OC 최대 한인 상권. Korean BBQ·순두부·칼국수·한국 카페·노래방·마트 집결. LA 코리아타운 못지않은 OC 한인 거리.", tip:"Beach Blvd와 Orangethorpe Ave 교차로 인근이 핵심" },
+  { rank:5, emoji:"🌊", nameKo:"라구나 비치", nameEn:"Laguna Beach",
+    address:"Laguna Beach, CA 92651", hours:"상시",
+    rating:4.8, ratingCount:"10,000+",
+    why:"OC 최고의 예술·자연 해변. 갤러리·조각공원·수정처럼 맑은 바다. 미국 서해안 가장 아름다운 해변 중 하나. OC 이주 후 한번은 꼭 가야 하는 곳.", tip:"성수기(6-8월) 주차 어려움 — 셔틀 이용 권장" },
+];
+
+const TOP5_FOOD_ORANGECOUNTY: Top5Item[] = [
+  { rank:1, emoji:"🥩", nameKo:"비치 블러바드 한국 BBQ 거리", nameEn:"Beach Blvd Korean BBQ Strip (Buena Park)",
+    address:"Beach Blvd & Orangethorpe Ave, Buena Park, CA", hours:"월-일 11am-11pm", rating:4.6, ratingCount:"10,000+",
+    why:"OC 한인 BBQ 성지. 수십 개 한국 BBQ 식당 집결. LA 코리아타운과 견줄 만한 밀도. 부에나파크 한인 커뮤니티의 주말 식사 1번지.",
+    tip:"Hanbat Korean BBQ, Genwa, 장원갈비 등 인기 식당 Yelp 사전 확인" },
+  { rank:2, emoji:"🍲", nameKo:"H-Mart 풀러튼 푸드코트", nameEen:"H-Mart Fullerton Food Court",
+    address:"875 S. Harbor Blvd, Fullerton, CA 92832", hours:"월-일 8am-9pm", rating:4.5, ratingCount:"5,000+",
+    why:"H-Mart 2층 한국 분식 푸드코트. 떡볶이·순대·김밥·라면. 풀러튼 한인 이주자 첫 식사 장소로 인기.",
+    tip:"식사 후 1층 한식 재료 쇼핑 한번에 해결" },
+  { rank:3, emoji:"🍜", nameKo:"순두부찌개 골목 (가든그로브)", nameEen:"Sundubu Soup Spots — Garden Grove",
+    address:"Garden Grove Blvd, Garden Grove, CA", hours:"월-일 10am-10pm", rating:4.5, ratingCount:"6,000+",
+    why:"가든그로브 한인 밀집 지역 순두부 명가들. 원조에 가까운 정통 순두부. LA 순두부 거리와 쌍벽.",
+    tip:"BCD 두부집·순두부 명인 등 검색 후 Yelp 확인" },
+  { rank:4, emoji:"☕", nameKo:"풀러튼 한국 카페 거리", nameEen:"Fullerton Korean Cafe Strip",
+    address:"Fullerton, CA (Harbor Blvd 인근)", hours:"월-일 8am-11pm", rating:4.4, ratingCount:"4,000+",
+    why:"풀러튼 한국 카페 밀집 지역. 달고나커피·크로플·한국식 디저트. OC 한인 2030 모임 성지.",
+    tip:"Boba tea·한국 빙수 전문점 다수" },
+  { rank:5, emoji:"🍣", nameKo:"Gen Korean BBQ House (부에나파크)", nameEen:"Gen Korean BBQ — Buena Park",
+    address:"5600 Brookhollow Blvd, Buena Park, CA 90620", hours:"월-일 11am-12am", rating:4.5, ratingCount:"8,000+",
+    why:"미국 전역 한국 BBQ 체인 중 최고 평가. 무한리필·고품질 고기. OC 한인·비한인 모두 즐기는 대표 한국 BBQ 브랜드.",
+    tip:"Yelp 예약 권장. 주말 1시간 대기 예상", website:"genkoreanbbq.com" },
+];
+
 /* ── 도쿄 (TOKYO) ── */
 const TOP5_SETTLE_TOKYO: Top5Item[] = [
   { rank: 1, emoji: "🏛️", nameKo: "재일본대한민국민단 도쿄지방본부", nameEn: "Korean Residents Union – Tokyo Branch (Mindan)",
@@ -6468,7 +6545,7 @@ function CompactHeroNew() {
         }}>
           <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6EE7B7", display: "inline-block", flexShrink: 0 }} />
           <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(255,255,255,0.92)", letterSpacing: "0.05em" }}>
-            LIVE · {lang === "ko" ? "61개 도시" : "61 Cities"}
+            LIVE · {lang === "ko" ? "62개 도시" : "62 Cities"}
           </span>
         </div>
         <div style={{
@@ -6583,7 +6660,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       icon: "🤝", color: "#F59E0B",
       nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
       tagKo: "친구 · 멘토 · 동행 파트너", tagEn: "Friends · Mentors · Partners",
-      userKo: "61개 도시 한인을 만납니다", userEn: "Meet Koreans across 61 cities",
+      userKo: "62개 도시 한인을 만납니다", userEn: "Meet Koreans across 62 cities",
       providerKo: "멘토로 섬기실 분 → 함께해요", providerEn: "Mentor & serve → join us",
       tab: 5, subTab: 2,
     },
@@ -8571,9 +8648,7 @@ const HEBRON_CITIES = [
   { emoji: "🏛️", nameKo: "필라델피아",  nameEn: "Philadelphia",  flag: "🇺🇸", url: "/philadelphia/",status: "live", color: "#60A5FA" },
   { emoji: "🎷", nameKo: "캔자스시티",   nameEn: "Kansas City",   flag: "🇺🇸", url: "/kansascity/",  status: "live", color: "#34D399" },
   { emoji: "🌴", nameKo: "마이애미",     nameEn: "Miami",         flag: "🇺🇸", url: "/miami/",       status: "live", color: "#FB923C" },
-  { emoji: "🌮", nameKo: "멕시코시티",   nameEn: "Mexico City",   flag: "🇲🇽", url: "/mexicocity/",  status: "live", color: "#A3E635" },
-  { emoji: "🌺", nameKo: "과달라하라",   nameEn: "Guadalajara",   flag: "🇲🇽", url: "/guadalajara/", status: "live", color: "#F87171" },
-  { emoji: "⛰️", nameKo: "몬테레이",    nameEn: "Monterrey",     flag: "🇲🇽", url: "/monterrey/",   status: "live", color: "#C084FC" },
+  { emoji: "🍊", nameKo: "오렌지카운티",nameEn: "Orange County", flag: "🇺🇸", url: "/orangecounty/",status: "live", color: "#F97316" },
   // ── 북미 확장 ──
   { emoji: "🏙️", nameKo: "시카고",      nameEn: "Chicago",       flag: "🇺🇸", url: "/chicago/",     status: "live", color: "#2563EB" },
   { emoji: "🏛️", nameKo: "워싱턴 DC",  nameEn: "Washington DC", flag: "🇺🇸", url: "/dc/",          status: "live", color: "#DC2626" },
@@ -8595,19 +8670,25 @@ const HEBRON_CITIES = [
   { emoji: "🍁", nameKo: "에드먼턴",    nameEn: "Edmonton",      flag: "🇨🇦", url: "/edmonton/",    status: "live", color: "#10B981" },
   { emoji: "🏛️", nameKo: "오타와",     nameEn: "Ottawa",        flag: "🇨🇦", url: "/ottawa/",      status: "live", color: "#DC2626" },
   { emoji: "🌾", nameKo: "위니펙",      nameEn: "Winnipeg",      flag: "🇨🇦", url: "/winnipeg/",    status: "live", color: "#7C3AED" },
-  // ── 오세아니아·남미 ──
+  // ── 중남미 (멕시코·브라질) ──
+  { emoji: "🌮", nameKo: "멕시코시티",   nameEn: "Mexico City",   flag: "🇲🇽", url: "/mexicocity/",  status: "live", color: "#A3E635" },
+  { emoji: "🌺", nameKo: "과달라하라",   nameEn: "Guadalajara",   flag: "🇲🇽", url: "/guadalajara/", status: "live", color: "#F87171" },
+  { emoji: "⛰️", nameKo: "몬테레이",    nameEn: "Monterrey",     flag: "🇲🇽", url: "/monterrey/",   status: "live", color: "#C084FC" },
+  { emoji: "🇧🇷", nameKo: "상파울루",  nameEn: "São Paulo",     flag: "🇧🇷", url: "/saopaulo/",    status: "live", color: "#DC2626" },
+  // ── 오세아니아 ──
   { emoji: "🦘", nameKo: "시드니",      nameEn: "Sydney",        flag: "🇦🇺", url: "/sydney/",      status: "live", color: "#38BDF8" },
   { emoji: "☕", nameKo: "멜버른",      nameEn: "Melbourne",     flag: "🇦🇺", url: "/melbourne/",   status: "live", color: "#9333EA" },
   { emoji: "🌞", nameKo: "브리즈번",    nameEn: "Brisbane",      flag: "🇦🇺", url: "/brisbane/",    status: "live", color: "#CA8A04" },
   { emoji: "🌊", nameKo: "퍼스",        nameEn: "Perth",         flag: "🇦🇺", url: "/perth/",       status: "live", color: "#38BDF8" },
   { emoji: "🥝", nameKo: "오클랜드",    nameEn: "Auckland",      flag: "🇳🇿", url: "/auckland/",    status: "live", color: "#16A34A" },
-  { emoji: "🇧🇷", nameKo: "상파울루",  nameEn: "São Paulo",     flag: "🇧🇷", url: "/saopaulo/",    status: "live", color: "#DC2626" },
-  // ── 유럽·중동·아시아 ──
+  // ── 유럽 ──
   { emoji: "🎡", nameKo: "런던",        nameEn: "London",        flag: "🇬🇧", url: "/london/",      status: "live", color: "#2563EB" },
   { emoji: "🏦", nameKo: "프랑크푸르트",nameEn: "Frankfurt",     flag: "🇩🇪", url: "/frankfurt/",   status: "live", color: "#3B82F6" },
   { emoji: "🧱", nameKo: "베를린",      nameEn: "Berlin",        flag: "🇩🇪", url: "/berlin/",      status: "live", color: "#2563EB" },
   { emoji: "🗼", nameKo: "파리",        nameEn: "Paris",         flag: "🇫🇷", url: "/paris/",       status: "live", color: "#7C3AED" },
+  // ── 중동 ──
   { emoji: "🏙️", nameKo: "두바이",     nameEn: "Dubai",         flag: "🇦🇪", url: "/dubai/",       status: "live", color: "#CA8A04" },
+  // ── 동남아시아 ──
   { emoji: "🦁", nameKo: "싱가포르",    nameEn: "Singapore",     flag: "🇸🇬", url: "/singapore/",   status: "live", color: "#DC2626" },
   { emoji: "🏯", nameKo: "방콕",        nameEn: "Bangkok",       flag: "🇹🇭", url: "/bangkok/",     status: "live", color: "#9333EA" },
   { emoji: "🛵", nameKo: "호치민",      nameEn: "Ho Chi Minh City",flag:"🇻🇳", url: "/hochiminh/",  status: "live", color: "#BE185D" },
@@ -8883,7 +8964,7 @@ function waGwaJosa(s: string): string {
 }
 // ────────────────────────────────────────────────────────────
 
-// 도시 → 현지 한인 정체성 매핑 (61개 도시 전부 커버)
+// 도시 → 현지 한인 정체성 매핑 (62개 도시 전부 커버)
 const DIASPORA_IDENTITY: Record<string, {
   flag: string; ko: string; en: string; descKo: string; descEn: string; color: string;
 }> = {
@@ -8917,6 +8998,7 @@ const DIASPORA_IDENTITY: Record<string, {
   louisville:   { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#7C3AED" },
   anchorage:    { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
   // 🇲🇽 멕시코
+  orangecounty: { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#F97316" },
   mexicocity:   { flag:"🇲🇽", ko:"재멕시코 한인",     en:"Korean in Mexico",   descKo:"멕시코 사회의 당당한 구성원으로",      descEn:"A full participant in Mexican society",           color:"#16A34A" },
   guadalajara:  { flag:"🇲🇽", ko:"재멕시코 한인",     en:"Korean in Mexico",   descKo:"멕시코 사회의 당당한 구성원으로",      descEn:"A full participant in Mexican society",           color:"#16A34A" },
   monterrey:    { flag:"🇲🇽", ko:"재멕시코 한인",     en:"Korean in Mexico",   descKo:"멕시코 사회의 당당한 구성원으로",      descEn:"A full participant in Mexican society",           color:"#16A34A" },
@@ -9119,11 +9201,11 @@ function AmericasAdSection({ lang }: { lang: string }) {
 
 /* ─────────────────────────────────────────
    HOME: 플라이휠 소셜 프루프 바 (쿠팡 원리 ①)
-   — "312개 교회 · 61개 도시" 숫자가 신뢰를 만든다
+   — "312개 교회 · 62개 도시" 숫자가 신뢰를 만든다
 ───────────────────────────────────────── */
 function HebronFlywheelBar({ lang }: { lang: string }) {
   const stats = [
-    { emoji: "🌍", value: "61", label: lang === "ko" ? "개 도시" : "Cities" },
+    { emoji: "🌍", value: "62", label: lang === "ko" ? "개 도시" : "Cities" },
     { emoji: "🤝", value: "4", label: lang === "ko" ? "기관 파트너" : "Partners" },
     { emoji: "🌐", value: "2", label: lang === "ko" ? "개 언어" : "Languages" },
   ];
@@ -10236,6 +10318,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "daegu"       ? TOP5_SETTLE_DAEGU :
             useCityConfig().slug === "gwangju"     ? TOP5_SETTLE_GWANGJU :
             useCityConfig().slug === "daejeon"     ? TOP5_SETTLE_DAEJEON :
+            useCityConfig().slug === "orangecounty" ? TOP5_SETTLE_ORANGECOUNTY :
             useCityConfig().slug === "seattle"    ? TOP5_SETTLE :
             [] as Top5Item[]   // 미등록 도시 — 시애틀 데이터 노출 방지
           } lang={lang} accentColor="#F2994A" />
@@ -10653,6 +10736,26 @@ function getCityChurches(slug: string, lang: string) {
         website: "edendallas.org",
       },
     ],
+    orangecounty: [
+      {
+        emoji: "⛪", tier: 2,
+        name: ko ? "풀러튼좋은교회" : "Fullerton Good Church",
+        nameEn: "Fullerton Good Church",
+        desc: ko
+          ? "✅ 등재 신청 | 박희수 담임목사.\n📍 Fullerton, CA (Orange County)\n🔗 joeunchurch.com\n✨ 풀러튼 지역 한인 정착 연결·환영 사역"
+          : "✅ Partner Church | Lead Pastor: Hee Soo Park.\n📍 Fullerton, CA (Orange County)\n🔗 joeunchurch.com\n✨ Korean immigrant welcome & settlement ministry in Fullerton",
+        tags: ko ? ["풀러튼", "오렌지카운티", "한인교회"] : ["Fullerton", "OC", "Korean Church"],
+        website: "http://www.joeunchurch.com",
+      },
+      {
+        emoji: "⭐", tier: 1,
+        name: ko ? "축복의동산교회 (OC)" : "Mountain of Blessing Church (OC)",
+        desc: ko
+          ? "✅ 검증됨 | 국제가사원(IHM) 회원교회. 가정교회 사역.\n📍 Orange County, CA\n📞 714-336-9939\n✨ 담임: 박준철 목사"
+          : "✅ Verified | IHM (International House Church Ministries) member. House church ministry.\n📍 Orange County, CA\n📞 714-336-9939\n✨ Lead Pastor: Jun Cheol Park",
+        tags: ko ? ["가정교회", "IHM", "OC"] : ["House Church", "IHM", "OC"],
+      },
+    ],
     la: [
       {
         emoji: "⭐", tier: 1,
@@ -11037,8 +11140,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 const ko = lang === "ko";
                 const shareTitle = ko ? "HebronGuide 교회 등재 — 선물 드립니다" : "A Gift: Free Church Listing on HebronGuide";
                 const shareBody = ko
-                  ? "목사님, 안녕하세요.\n\n전 세계 61개 도시 한인 이민자 정착 앱 HebronGuide가\n교회 등재를 선물로 드립니다.\n\n영혼구원에 갈급한 교회라면 받아 주세요.\n2026년 10월 1일까지 무상 등재.\n\n주변에 영혼구원에 진심인 교회가 있다면\n이 초청을 함께 전달해 주세요.\n\nhebronguide.com\nhebronplatform@gmail.com\n\n마 25:35 \"내가 나그네 되었을 때 너희가 영접하였다\""
-                  : "Hello Pastor,\n\nHebronGuide — the Korean immigrant settlement app in 61 cities worldwide — offers your church a free listing as a gift.\n\nIf your church has a heart for souls, please accept.\nFree listing until October 1, 2026.\n\nPlease also pass this to 3+ churches you know have a genuine heart for souls.\n\nhebronguide.com\nhebronplatform@gmail.com\n\nMatt 25:35 — \"I was a stranger and you welcomed me.\"";
+                  ? "목사님, 안녕하세요.\n\n전 세계 62개 도시 한인 이민자 정착 앱 HebronGuide가\n교회 등재를 선물로 드립니다.\n\n영혼구원에 갈급한 교회라면 받아 주세요.\n2026년 10월 1일까지 무상 등재.\n\n주변에 영혼구원에 진심인 교회가 있다면\n이 초청을 함께 전달해 주세요.\n\nhebronguide.com\nhebronplatform@gmail.com\n\n마 25:35 \"내가 나그네 되었을 때 너희가 영접하였다\""
+                  : "Hello Pastor,\n\nHebronGuide — the Korean immigrant settlement app in 62 cities worldwide — offers your church a free listing as a gift.\n\nIf your church has a heart for souls, please accept.\nFree listing until October 1, 2026.\n\nPlease also pass this to 3+ churches you know have a genuine heart for souls.\n\nhebronguide.com\nhebronplatform@gmail.com\n\nMatt 25:35 — \"I was a stranger and you welcomed me.\"";
                 const shareUrl = "https://hebronguide.com";
                 const encodedMsg = encodeURIComponent(shareBody + "\n\n" + shareUrl);
                 return (
@@ -11839,7 +11942,7 @@ const TOP5_FOOD_PARIS: Top5Item[] = [
     phone: "+33 1 45 54 56 32",
     hours: "월-토 12:00-14:30, 19:00-22:30, 일 19:00-22:30",
     rating: 4.7,
-    ratingCount: "61+",
+    ratingCount: "62+",
     why: "15구 부시코 지하철역 인근의 정통 한식당. 비빔밥·불고기·바비큐와 함께 기가 막힌 반찬(김치·연근 조림 등)이 제공됩니다. 트립어드바이저 4.7점으로 파리 한식당 최상위권에 자리한 교민·관광객 공인 맛집입니다.",
     tip: "반찬이 매우 훌륭함. 소고기 비빔밥과 불고기 조합 추천. 예약 권장.",
     website: "hangang.fr",
@@ -14176,6 +14279,7 @@ const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
   dubai:         TOP5_FOOD_DUBAI,
   tokyo:         TOP5_FOOD_TOKYO,
   osaka:         TOP5_FOOD_OSAKA,
+  orangecounty:  TOP5_FOOD_ORANGECOUNTY,
   seoul:         TOP5_FOOD_SEOUL,
   busan:         TOP5_FOOD_BUSAN,
   ansan:         TOP5_FOOD_ANSAN,
@@ -14947,6 +15051,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
               slug === "daegu"          ? TOP5_EXPLORE_DAEGU :
               slug === "gwangju"        ? TOP5_EXPLORE_GWANGJU :
               slug === "daejeon"        ? TOP5_EXPLORE_DAEJEON :
+              slug === "orangecounty"   ? TOP5_EXPLORE_ORANGECOUNTY :
               slug === "seattle"      ? TOP5_EXPLORE :   // seattle — isSeattleShuttleActive() 적용됨
               [] as Top5Item[];  // 미등록 도시 — 시애틀 관광지 노출 방지
             // 월드컵 시즌(6/11~7/19): 시애틀 외 모든 WC 호스트 도시에 교통 정보 1순위 삽입
@@ -14977,7 +15082,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                   {[
                     { n: lang === "ko" ? "현지 한인" : "Local Korean", d: lang === "ko" ? "오래 살아온 분" : "Long-time residents" },
-                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "61개+ 도시" : "61+ cities" },
+                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "62개+ 도시" : "62+ cities" },
                     { n: lang === "ko" ? "소규모 투어" : "Small Group", d: lang === "ko" ? "개인 맞춤" : "Personal touch" },
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
@@ -15734,8 +15839,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             icon="🤝" color="#8B5CF6" lang={lang}
             titleKo="헤브론 커넥트 — 친구·멘토·동행 파트너 매칭"
             titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
-            descKo="교인 검증 프로필로 61개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
-            descEn="Meet Koreans across 61 cities. Friends, mentors, prayer partners & business connections."
+            descKo="교인 검증 프로필로 62개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
+            descEn="Meet Koreans across 62 cities. Friends, mentors, prayer partners & business connections."
           />
           {/* 211 팁 박스 */}
           <a href="tel:211" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>
@@ -17866,7 +17971,7 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
             icon="📚" color="#8B5CF6" lang={lang}
             titleKo="헤브론 튜터 — 한인 선배가 직접 가르칩니다"
             titleEn="Hebron Tutor — Learn from Korean Community Mentors"
-            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 61개+ 도시 가능."
+            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 62개+ 도시 가능."
             descEn="Math, SAT, AP, Korean tutoring. Carefully selected Korean tutors. Online across 52+ cities."
           />
         </div>
@@ -20117,7 +20222,7 @@ function AppBar({ onHome }: { onHome?: () => void }) {
           {/* 헤더 */}
           <div style={{ padding: "14px 18px 10px", flexShrink: 0 }}>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#1a2535", marginBottom: 2 }}>
-              🌍 {lang === "ko" ? "61개 도시" : "61 Cities"}
+              🌍 {lang === "ko" ? "62개 도시" : "62 Cities"}
             </div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8" }}>
               {lang === "ko" ? "이사·출장·방문 도시를 선택하세요" : "Select your destination city"}

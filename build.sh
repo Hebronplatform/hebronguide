@@ -57,7 +57,8 @@ declare -A CITY_EN=(
   ["newyork"]="New York"      ["nashville"]="Nashville"    ["boston"]="Boston"
   ["la"]="Los Angeles"        ["toronto"]="Toronto"        ["vancouver"]="Vancouver"
   ["houston"]="Houston"       ["atlanta"]="Atlanta"        ["kansascity"]="Kansas City"
-  ["philadelphia"]="Philadelphia" ["miami"]="Miami"        ["mexicocity"]="Mexico City"
+  ["philadelphia"]="Philadelphia" ["miami"]="Miami"        ["orangecounty"]="Orange County"
+  ["mexicocity"]="Mexico City"
   ["guadalajara"]="Guadalajara"   ["monterrey"]="Monterrey"
   # 북미 확장 Tier A
   ["chicago"]="Chicago"       ["dc"]="Washington DC"       ["sandiego"]="San Diego"
@@ -92,7 +93,7 @@ BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 echo "--- Deploying to cities (with city-specific SEO, build_time=$BUILD_TIME) ---"
 for city in \
   seattle dallas sf newyork nashville boston la toronto vancouver houston atlanta \
-  kansascity philadelphia miami mexicocity guadalajara monterrey \
+  kansascity philadelphia miami orangecounty mexicocity guadalajara monterrey \
   chicago dc sandiego honolulu portland denver \
   calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
   tucson fayetteville killeen louisville anchorage \

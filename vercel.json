@@ -48,6 +48,8 @@
     { "source": "/philadelphia/(.*)","destination": "/philadelphia/index.html" },
     { "source": "/miami",          "destination": "/miami/index.html" },
     { "source": "/miami/(.*)",     "destination": "/miami/index.html" },
+    { "source": "/orangecounty",      "destination": "/orangecounty/index.html" },
+    { "source": "/orangecounty/(.*)", "destination": "/orangecounty/index.html" },
     { "source": "/mexicocity",     "destination": "/mexicocity/index.html" },
     { "source": "/mexicocity/(.*)","destination": "/mexicocity/index.html" },
     { "source": "/guadalajara",    "destination": "/guadalajara/index.html" },
