@@ -19471,6 +19471,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
   const [phase, setPhase] = useState(0);
   const city = useCityConfig();
   const ko = lang === "ko";
+  const isKR = getCountryCode(city.slug) === "KR";
   const accent = "#38BDF8";
 
   const PHASES = [
@@ -19577,6 +19578,88 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
         { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
       ],
     },
+    // 🇰🇷 한국 도시 — 공항 교통편
+    seoul: {
+      airport: "인천국제공항", airportCode: "ICN",
+      transport: [
+        { icon: "🚆", name: "공항철도 직통 (AREX)", desc: ko ? "인천공항 → 서울역 43분 직행. 발매기 또는 앱에서 티켓" : "ICN → Seoul Station direct, 43 min. Buy at machine or app", price: "₩9,500", time: "43분" },
+        { icon: "🚌", name: "공항리무진버스", desc: ko ? "강남·홍대·인사동·명동 등 노선 다양. 1층 리무진 탑승소" : "Routes to Gangnam, Hongdae, Myeongdong. Board at 1F", price: "₩10,000-17,000", time: "60-90분" },
+        { icon: "🚇", name: "지하철 AREX (일반)", desc: ko ? "홍대입구 등 환승 연결. 짐 많으면 불편하지만 저렴" : "Connects to Seoul subway at Hongdae. Cheapest option", price: "₩4,150", time: "66분" },
+        { icon: "🚖", name: "카카오택시", desc: ko ? "앱 미리 설치. 서울 시내 70,000-100,000원" : "Install KakaoTaxi app first. ₩70,000-100,000 to city", price: "₩70,000-100,000", time: "60-90분" },
+      ],
+    },
+    busan: {
+      airport: "김해국제공항", airportCode: "PUS",
+      transport: [
+        { icon: "🚇", name: "부산-김해경전철", desc: ko ? "공항 → 사상역 → 부산 지하철 환승. 저렴하고 편리" : "Airport → Sasang → Busan subway transfer. Cheap & easy", price: "₩2,900", time: "35-50분" },
+        { icon: "🚌", name: "공항리무진버스", desc: ko ? "해운대·서면·남포동 직행 노선. 1층 매표소" : "Direct to Haeundae, Seomyeon, Nampo-dong. 1F counter", price: "₩7,000-10,000", time: "40-60분" },
+        { icon: "🚖", name: "카카오택시", desc: ko ? "서면·해운대 25,000-40,000원. 앱 미리 설치" : "₩25,000-40,000 to Seomyeon/Haeundae. Pre-install app", price: "₩25,000-40,000", time: "30-40분" },
+      ],
+    },
+    ansan: {
+      airport: "인천국제공항", airportCode: "ICN",
+      transport: [
+        { icon: "🚌", name: "공항리무진버스 → 안산", desc: ko ? "인천공항 → 안산 직행. 1층 리무진 탑승소에서 표 구매" : "ICN → Ansan direct. Buy ticket at 1F counter", price: "₩9,000", time: "70분" },
+        { icon: "🚇", name: "AREX → 4호선 (안산역)", desc: ko ? "공항철도 → 오이도역 → 4호선 안산·중앙역. 환승 복잡" : "Airport rail → Oido → Line 4 to Ansan. Multiple transfers", price: "₩3,600", time: "80분" },
+        { icon: "🚖", name: "카카오택시", desc: ko ? "원곡동·단원구 약 50,000-70,000원" : "₩50,000-70,000 to Wongok-dong / Danwon-gu", price: "₩50,000-70,000", time: "60분" },
+      ],
+    },
+    incheon: {
+      airport: "인천국제공항 (인천 소재)", airportCode: "ICN",
+      transport: [
+        { icon: "🚌", name: "공항버스 → 인천 시내", desc: ko ? "계양·부평·남동구 행 버스. 1층 탑승. 시내 직결" : "To Gyeyang, Bupyeong, Namdong-gu. Board at 1F", price: "₩1,700", time: "30-40분" },
+        { icon: "🚇", name: "AREX → 인천1호선 환승", desc: ko ? "계양역 환승 → 인천1호선 시청·부평구청역" : "Transfer at Gyeyang → Incheon Line 1 to City Hall", price: "₩4,150", time: "50분" },
+        { icon: "🚖", name: "카카오택시", desc: ko ? "인천 중구·남동구 약 20,000-35,000원" : "₩20,000-35,000 to Jung-gu / Namdong-gu", price: "₩20,000-35,000", time: "30분" },
+      ],
+    },
+    jeju: {
+      airport: "제주국제공항", airportCode: "CJU",
+      transport: [
+        { icon: "🚌", name: "공항버스", desc: ko ? "제주시내·서귀포 노선 다양. 번호 확인 후 탑승. 가장 저렴" : "Routes to Jeju city & Seogwipo. Check route number first", price: "₩1,200-5,500", time: "20-60분" },
+        { icon: "🚗", name: "렌터카 (제주 필수)", desc: ko ? "대중교통 불편 → 렌터카 강력 권장. 1층 픽업 데스크" : "Public transit limited → rental car strongly recommended. 1F desks", price: "₩40,000-80,000/일", time: "즉시" },
+        { icon: "🚖", name: "카카오택시", desc: ko ? "제주시내 5,000-10,000원, 서귀포 30,000-50,000원" : "₩5,000-10,000 city, ₩30,000-50,000 to Seogwipo", price: "₩5,000-50,000", time: "10-40분" },
+      ],
+    },
+    daegu: {
+      airport: "대구국제공항", airportCode: "TAE",
+      transport: [
+        { icon: "🚌", name: "공항버스 → 대구 시내", desc: ko ? "동대구역·중앙로 방면. 배차 간격 30-60분으로 넓음" : "To Dongdaegu Station / Jungangno. 30-60 min intervals", price: "₩1,400", time: "20-30분" },
+        { icon: "🚆", name: "KTX 동대구역 연계", desc: ko ? "서울 KTX 이용 시 동대구역 하차 → 시내 택시 이동" : "Via KTX to Dongdaegu Station from Seoul", price: "₩30,000", time: "1시간 40분" },
+        { icon: "🚖", name: "카카오택시", desc: ko ? "동대구·수성구 약 10,000-20,000원" : "₩10,000-20,000 to Dongdaegu / Suseong-gu", price: "₩10,000-20,000", time: "15-25분" },
+      ],
+    },
+    gwangju: {
+      airport: "광주공항 / KTX 광주송정역", airportCode: "KWJ",
+      transport: [
+        { icon: "🚌", name: "공항버스 → 광주 시내", desc: ko ? "상무지구·충장로 방면. 배차 간격 넓음 — 미리 확인" : "To Sangmu / Chungjangno. Infrequent — check schedule first", price: "₩1,600", time: "25-35분" },
+        { icon: "🚆", name: "KTX 광주송정역 (서울↔광주)", desc: ko ? "서울발 KTX 1시간40분. 송정역 → 택시로 시내 이동" : "Seoul → Gwangju Songjeong via KTX: 1h 40min", price: "₩40,000", time: "1시간 40분" },
+        { icon: "🚖", name: "카카오택시", desc: ko ? "상무지구·광주역 약 10,000-18,000원" : "₩10,000-18,000 to Sangmu / Gwangju Station area", price: "₩10,000-18,000", time: "15-25분" },
+      ],
+    },
+    daejeon: {
+      airport: "KTX·SRT 대전역 (전용 공항 없음)", airportCode: "—",
+      transport: [
+        { icon: "🚆", name: "KTX → 대전역 (서울 출발)", desc: ko ? "서울역 출발 KTX 50분. 대전역 하차" : "Seoul Station → Daejeon via KTX: 50 min", price: "₩23,700", time: "50분" },
+        { icon: "🚆", name: "SRT → 대전역 (수서 출발)", desc: ko ? "수서역 출발 SRT 47분. 대전역 하차" : "Suseo → Daejeon via SRT: 47 min", price: "₩17,900", time: "47분" },
+        { icon: "🚖", name: "카카오택시 (대전역 → 목적지)", desc: ko ? "둔산·유성구 약 8,000-15,000원" : "₩8,000-15,000 to Dunsan / Yuseong from station", price: "₩8,000-15,000", time: "15-20분" },
+      ],
+    },
+    changwon: {
+      airport: "김해국제공항 (창원 관문)", airportCode: "PUS",
+      transport: [
+        { icon: "🚌", name: "공항리무진버스 → 창원", desc: ko ? "김해공항 → 창원시청·마산 직행. 1층 탑승소" : "PUS → Changwon City Hall / Masan direct. 1F boarding", price: "₩6,900", time: "55-70분" },
+        { icon: "🚇", name: "경전철 → 창원중앙역 연계", desc: ko ? "경전철 사상역 → KTX 창원중앙역. 환승 복잡" : "Light rail to Sasang → connect to Changwon station", price: "₩10,000+", time: "80분+" },
+        { icon: "🚖", name: "카카오택시", desc: ko ? "창원 시내 약 35,000-50,000원" : "₩35,000-50,000 to Changwon city center", price: "₩35,000-50,000", time: "50분" },
+      ],
+    },
+    cheonan: {
+      airport: "인천국제공항", airportCode: "ICN",
+      transport: [
+        { icon: "🚌", name: "공항리무진버스 → 천안", desc: ko ? "인천공항 → 천안버스터미널 직행. 1층 리무진 탑승소" : "ICN → Cheonan Bus Terminal direct. 1F ticket counter", price: "₩11,000", time: "90분" },
+        { icon: "🚆", name: "AREX → KTX → 천안아산역", desc: ko ? "공항철도 서울역 → KTX 20분 → 천안아산역" : "AREX to Seoul Station → KTX 20 min → Cheonan-Asan", price: "₩15,000+", time: "90분+" },
+        { icon: "🚖", name: "카카오택시 (공항→천안)", desc: ko ? "약 80,000-100,000원. 교통 상황에 따라 할증" : "₩80,000-100,000. Surge pricing may apply in traffic", price: "₩80,000-100,000", time: "70분" },
+      ],
+    },
   };
 
   const cityAirport = CITY_AIRPORT[city.slug] ?? {
@@ -19636,7 +19719,40 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
 
   // ── 단계별 컨텐츠 ─────────────────────────────────────────
 
-  const renderPhase0 = () => (
+  const renderPhase0 = () => isKR ? (
+    <div>
+      <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🇰🇷 한국 입국 준비 체크리스트</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "비행기 타기 최소 2주 전에 확인하세요. 인천·김해·제주 도착 시 필요한 준비입니다." : "Check at least 2 weeks before your flight to Korea. Prepare for arrival at ICN, PUS, or CJU."}
+        </div>
+      </div>
+      <StepCard num={1} title={ko ? "한국 비자 확인 — 입국 목적에 맞는 비자" : "Korean Visa — Match Your Purpose of Entry"} critical>
+        <BodyText>{ko ? "90일 이하 관광·방문은 한국이 무비자 협정 맺은 국가(미국 포함) 시 비자 불필요. 취업(E-9·E-7), 결혼(F-6), 역이민(F-4 재외동포), 유학(D-2·D-4)은 해당 비자 필수. 비자 만료일과 체류허가 기간은 다를 수 있음." : "Visa-free entry for 90 days or less from countries with agreements (including US). Work (E-9/E-7), marriage (F-6), diaspora (F-4), study (D-2/D-4) all require the corresponding visa. Visa expiry ≠ authorized stay."}</BodyText>
+        <WarnBox text={ko ? "비자 없이 90일 초과 체류 시 불법 체류(단속·강제출국). 반드시 체류자격 변경 또는 갱신." : "Overstaying 90 days without a visa is illegal — deportation risk. Change or renew status in time."} />
+      </StepCard>
+      <StepCard num={2} title={ko ? "여권 유효기간 확인 — 체류 기간 + 여유 있게" : "Passport Validity — Cover Your Stay + Buffer"} critical>
+        <BodyText>{ko ? "체류 기간 동안 여권이 유효해야 합니다. 최소 6개월 여유를 권장. 만료일이 가깝다면 출국 전 갱신하세요." : "Your passport must be valid throughout your stay. Recommend 6+ months buffer. Renew before departure if close to expiry."}</BodyText>
+      </StepCard>
+      <StepCard num={3} title={ko ? "입국 서류 준비 — 비자 종류별" : "Entry Documents — By Visa Type"}>
+        <BodyText>{ko ? "• F-4(재외동포): 외국국적 동포 확인 서류\n• E-9(고용허가): 고용허가서·표준근로계약서\n• F-6(결혼): 혼인관계증명서·배우자 가족관계증명서\n• D-2(유학): 입학허가서·재정보증서\n• 무비자: 왕복 항공권·숙소 정보" : "• F-4 (Overseas Korean): proof of Korean descent\n• E-9 (Employment): work permit & contract\n• F-6 (Marriage): marriage certificate\n• D-2 (Study): admission letter + financial guarantee\n• Visa-free: return ticket + accommodation info"}</BodyText>
+      </StepCard>
+      <StepCard num={4} title={ko ? "원화 준비 — 한국 도착 초기 현금" : "Korean Won — Cash for Arrival"}>
+        <BodyText>{ko ? "출발 전 한국 원화를 소량 준비하거나, 인천공항 도착층 ATM(KEB 하나·신한)에서 인출하세요. 공항 환전소는 수수료가 높습니다. 초기 현금 10-20만원이면 충분합니다." : "Prepare some Korean Won before departure, or withdraw from ATMs (KEB Hana, Shinhan) at ICN arrivals. Airport exchange booths have high fees. ₩100,000–200,000 is enough for arrival day."}</BodyText>
+        <TipBox text={ko ? "카카오뱅크·토스 계좌가 있으면 공항 ATM에서 바로 인출 가능. 수수료 무료 또는 저렴." : "If you have Kakaobank or Toss, withdraw from ATMs fee-free or at low cost."} />
+      </StepCard>
+      <StepCard num={5} title={ko ? "짐 무게·개수 제한 확인" : "Baggage Weight & Count Limits"}>
+        <BodyText>{ko ? "항공사마다 다릅니다. 일반적으로 이코노미: 위탁 수화물 23kg × 2개, 기내 수화물 10kg × 1개. 초과 시 공항에서 추가 요금이 발생합니다." : "Varies by airline. Economy typically: 2 checked bags (23kg each) + 1 carry-on (10kg). Oversize fees apply at the airport."}</BodyText>
+      </StepCard>
+      <StepCard num={6} title={ko ? "한국 주소·연락처 저장 (주민신고 필수)" : "Save Korean Address & Contacts (Required for Registration)"}>
+        <BodyText>{ko ? "입국 심사 시 한국 내 체류 주소를 물어볼 수 있습니다. 외국인등록·거소신고 시에도 실제 주소가 필요합니다. 집주인, 직장, 교회 연락처를 미리 저장하세요." : "Immigration may ask your Korean address. You'll also need it for alien registration or address notification. Save landlord, employer, and church contacts in advance."}</BodyText>
+      </StepCard>
+      <StepCard num={7} title={ko ? "한국 SIM·알뜰폰 계획" : "Korean SIM / MVNO Plan"}>
+        <BodyText>{ko ? "인천공항 도착층에 SK·KT·LG U+ 부스가 있어 즉시 개통 가능. 알뜰폰(MVNO)은 시내 편의점·대리점에서 저렴하게 개통. 기존 한국 번호가 있으면 번호이동으로 재개통." : "SK, KT, LG U+ booths are at ICN arrivals for instant activation. MVNO (budget carriers) available at convenience stores in the city. If you have an old Korean number, port it back."}</BodyText>
+        <TipBox text={ko ? "인천공항 7번 게이트 근처 통신사 부스 — 선불 유심 구매 시 영문 여권 제시" : "Carrier booths near ICN Gate 7 — bring your passport for prepaid SIM purchase."} />
+      </StepCard>
+    </div>
+  ) : (
     <div>
       <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🇰🇷 한국 출발 전 체크리스트</div>
@@ -19656,21 +19772,21 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
       </StepCard>
       <StepCard num={3} title={ko ? "항공권 경유 여부 확인 — 가장 중요!" : "Check Your Itinerary for Layovers — MOST IMPORTANT!"} critical>
         <BodyText>{ko ? "인천에서 미국 목적지까지 직항이 없으면 중간 도시에서 경유합니다. 대표 경유 공항: 로스앤젤레스(LAX), 샌프란시스코(SFO), 시카고(ORD), 디트로이트(DTW), 달라스(DFW), 시애틀(SEA)." : "If there's no direct flight from Incheon to your destination, you'll have a layover. Common US transit hubs: LAX, SFO, ORD, DTW, DFW, SEA."}</BodyText>
-        <WarnBox text={ko ? "미국 경유 시 경유 공항에서 입국 심사를 받고, 짐을 찾아 다시 부쳐야 합니다. 연결 시간이 2시간 미만이면 매우 촉박합니다 — 항공사에 미리 확인하세요." : "When transiting through the US, you clear immigration at your first US airport and must collect then re-check your luggage. Less than 2 hours connection time is very tight — confirm with your airline."} />
+        <WarnBox text={ko ? "미국 경유 시 경유 공항에서 입국 심사를 받고, 짐을 찾아 다시 부쳐야 합니다. 연결 시간이 2시간 미만이면 매우 촉박합니다." : "When transiting through the US, you clear immigration at your first US airport and must collect then re-check your luggage. Less than 2 hours is very tight."} />
       </StepCard>
       <StepCard num={4} title={ko ? "달러 환전 — 한국에서 하세요" : "Currency Exchange — Do It in Korea"}>
-        <BodyText>{ko ? "한국 시중은행 환율이 미국 공항보다 10-15% 유리합니다. 공항 환전소(Bureau de Change)는 수수료가 높아 손해입니다. 도착 초기 현금 $300-500 준비를 권장합니다." : "Korean bank exchange rates are 10-15% better than US airport kiosks. Airport exchange booths charge high fees. Recommend preparing $300-500 cash for first arrival."}</BodyText>
+        <BodyText>{ko ? "한국 시중은행 환율이 미국 공항보다 10-15% 유리합니다. 공항 환전소는 수수료가 높아 손해입니다. 도착 초기 현금 $300-500 준비를 권장합니다." : "Korean bank exchange rates are 10-15% better than US airport kiosks. Airport exchange booths charge high fees. Recommend preparing $300-500 cash for first arrival."}</BodyText>
         <TipBox text={ko ? "하나은행·신한은행 환율우대 쿠폰으로 최대 90% 우대 환율 적용 가능." : "Hana Bank & Shinhan Bank offer up to 90% fee waiver with exchange coupons."} />
       </StepCard>
       <StepCard num={5} title={ko ? "짐 무게·개수 제한 확인" : "Baggage Weight & Count Limits"}>
         <BodyText>{ko ? "항공사마다 다릅니다. 일반적으로 이코노미: 위탁 수화물 23kg × 2개. 기내 수화물 10kg × 1개. 초과 시 공항에서 추가 요금이 발생합니다." : "Varies by airline. Economy class typically allows 2 checked bags (23kg each) + 1 carry-on (10kg). Excess baggage fees are charged at the airport."}</BodyText>
       </StepCard>
       <StepCard num={6} title={ko ? "미국 주소·연락처 미리 저장" : "Save Your US Address & Contacts in Advance"}>
-        <BodyText>{ko ? "입국 신고서에 미국 내 체류 주소(영문)를 써야 합니다. 학교 기숙사, 친척 집, 에어비앤비 주소를 영어로 메모장에 저장해 두세요. 학교 담당자, 집주인, 한인 교회 연락처도 함께 저장." : "You must write your US address (in English) on the customs declaration form. Save dorm, relative's home, or Airbnb address in English. Also save school contact, landlord, and Korean church contacts."}</BodyText>
+        <BodyText>{ko ? "입국 신고서에 미국 내 체류 주소(영문)를 써야 합니다. 학교 기숙사, 친척 집, 에어비앤비 주소를 영어로 메모장에 저장해 두세요." : "You must write your US address (in English) on the customs declaration form. Save dorm, relative's home, or Airbnb address in English."}</BodyText>
         <PhraseCard situation={ko ? "기내 신고서 주소 항목" : "Address field on customs form"} english="123 Lynnwood Ave, Lynnwood, WA 98036" korean={ko ? "예시 주소 — 실제 본인 주소를 영어로 저장하세요" : "Example — save your actual address in English"} />
       </StepCard>
       <StepCard num={7} title={ko ? "미국 SIM 카드 옵션 미리 알아보기" : "Research US SIM Card Options in Advance"}>
-        <BodyText>{ko ? "공항에서 구매 가능하지만 비쌉니다. 미리 알아두면 당황하지 않습니다. 추천: T-Mobile ($30/월, 무제한 데이터), AT&T Prepaid, Google Fi. 한국에서 이미 T-Mobile eSIM 구매도 가능합니다." : "Available at the airport but expensive. Good to know in advance. Recommended: T-Mobile ($30/month unlimited), AT&T Prepaid, Google Fi. You can pre-purchase T-Mobile eSIM in Korea."}</BodyText>
+        <BodyText>{ko ? "공항에서 구매 가능하지만 비쌉니다. 추천: T-Mobile ($30/월, 무제한), AT&T Prepaid, Google Fi. 한국에서 T-Mobile eSIM 구매도 가능합니다." : "Available at the airport but expensive. Recommended: T-Mobile ($30/month unlimited), AT&T Prepaid, Google Fi. You can pre-purchase T-Mobile eSIM in Korea."}</BodyText>
       </StepCard>
     </div>
   );
@@ -19683,62 +19799,125 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
           {ko ? "착석 후 확인할 것들. 기내에서 미리 준비하면 공항에서 30분이 아낍니다." : "Things to check after boarding. Preparing in-flight saves 30 minutes at the airport."}
         </div>
       </div>
-      <StepCard num={1} title={ko ? "세관 신고서 (CBP Form 6059B) 작성" : "Customs Declaration Form (CBP Form 6059B)"} critical>
-        <BodyText>{ko ? "승무원이 나눠주는 종이 양식입니다. 가족 단위는 1장. 영어로 작성. 미국 내 체류 주소, 반입 물품 신고." : "Paper form distributed by flight attendants. One form per family. Fill in English. Write US stay address and declare any items."}</BodyText>
-        <WarnBox text={ko ? "$10,000 이상 현금·수표 소지 시 반드시 신고. 미신고 발각 시 전액 압류 가능." : "Declare cash or checks over $10,000. Failure to declare can result in full confiscation."} />
-        <TipBox text={ko ? "비행기에서 주지 않으면 공항 세관 구역에 비치되어 있습니다." : "If not given on the plane, forms are available in the customs area at the airport."} />
+      <StepCard num={1} title={isKR ? (ko ? "한국 세관 신고서 (휴대품 신고서) 작성" : "Korea Customs Declaration Form") : (ko ? "세관 신고서 (CBP Form 6059B) 작성" : "Customs Declaration Form (CBP Form 6059B)")} critical>
+        {isKR ? (
+          <>
+            <BodyText>{ko ? "한국 입국 시 승무원이 나눠주는 '여행자 휴대품 신고서'를 작성하세요. 가족은 대표자 1명이 대표 신고 가능. 면세 한도: $800(약 100만원) 초과 물품 신고 필수." : "Fill out the 'Traveler's Declaration Form' given by flight attendants when entering Korea. One form per family (representative filing allowed). Duty-free limit: $800 USD — declare items above this."}</BodyText>
+            <WarnBox text={ko ? "미신고 물품 적발 시 과태료·추가 세금 부과. 육류·과일·식물은 별도 동식물 검역 신고 필수." : "Undeclared items may incur fines and extra taxes. Meat, fruit, and plants require a separate quarantine declaration."} />
+          </>
+        ) : (
+          <>
+            <BodyText>{ko ? "승무원이 나눠주는 종이 양식입니다. 가족 단위는 1장. 영어로 작성. 미국 내 체류 주소, 반입 물품 신고." : "Paper form distributed by flight attendants. One form per family. Fill in English. Write US stay address and declare any items."}</BodyText>
+            <WarnBox text={ko ? "$10,000 이상 현금·수표 소지 시 반드시 신고. 미신고 발각 시 전액 압류 가능." : "Declare cash or checks over $10,000. Failure to declare can result in full confiscation."} />
+          </>
+        )}
       </StepCard>
       <StepCard num={2} title={ko ? "연결편 정보 확인" : "Check Your Connecting Flight Info"}>
-        <BodyText>{ko ? "경유하는 경우, 다음 편 항공사·편명·출발 게이트를 기내 모니터나 좌석 포켓 서류에서 확인하세요. 경유지 공항에 도착하면 가장 먼저 안내판에서 게이트를 찾아야 합니다." : "If connecting, check your next flight's airline, flight number, and departure gate on the in-seat monitor or itinerary. When you land at the transit airport, first find your gate on the departure board."}</BodyText>
+        <BodyText>{ko ? "경유하는 경우, 다음 편 항공사·편명·출발 게이트를 기내 모니터나 좌석 포켓 서류에서 확인하세요." : "If connecting, check your next flight's airline, flight number, and departure gate on the in-seat monitor or itinerary."}</BodyText>
         <PhraseCard situation={ko ? "승무원에게 질문" : "Ask a flight attendant"} english="Excuse me, what gate is my connecting flight to [city]?" korean={ko ? "[도시] 가는 연결편 게이트가 어디예요?" : "Where is my connecting gate?"} />
       </StepCard>
-      <StepCard num={3} title={ko ? "기내 기본 영어 표현" : "Basic In-Flight English"}>
+      <StepCard num={3} title={ko ? "기내 기본 표현" : "Basic In-Flight Phrases"}>
         <PhraseCard situation={ko ? "식사 주문" : "Ordering food"} english="Chicken, please." korean={ko ? "닭고기로 주세요" : "Chicken please"} />
-        <PhraseCard situation={ko ? "음료 주문" : "Ordering drinks"} english="Water, please." korean={ko ? "물 주세요 (오렌지 주스만 아니어도 됩니다 😊)" : "Water please (you have more options than orange juice 😊)"} />
+        <PhraseCard situation={ko ? "음료 주문" : "Ordering drinks"} english="Water, please." korean={ko ? "물 주세요" : "Water please"} />
         <PhraseCard situation={ko ? "담요 요청" : "Requesting blanket"} english="Can I have a blanket, please?" korean={ko ? "담요 하나 주시겠어요?" : "May I have a blanket?"} />
-        <PhraseCard situation={ko ? "화장실 위치" : "Restroom location"} english="Where is the restroom?" korean={ko ? "화장실이 어디예요?" : "Where is the bathroom?"} />
       </StepCard>
       <StepCard num={4} title={ko ? "시차 적응 팁" : "Jet Lag Tips"}>
-        <BodyText>{ko ? "인천→미국 서부 13-17시간, 동부 14-16시간. 미국 현지 시간에 맞춰 자고 일어나는 연습을 비행 중부터 시작하세요. 도착 첫날은 무리하지 마세요." : "ICN→US West Coast 13-17 hours, East Coast 14-16 hours. Start adjusting to US local time during the flight. Don't overdo it on arrival day."}</BodyText>
+        <BodyText>{isKR
+          ? (ko ? "한국 현지 시간에 맞춰 자고 일어나는 연습을 비행 중부터 시작하세요. 도착 첫날은 무리하지 마세요. 한국 시간으로 낮이면 자지 않고, 밤이면 일찍 취침하세요." : "Start adjusting to Korean local time during the flight. Don't overexert on arrival day. Stay awake if it's daytime in Korea, sleep early if it's nighttime.")
+          : (ko ? "인천→미국 서부 13-17시간, 동부 14-16시간. 미국 현지 시간에 맞춰 자고 일어나는 연습을 비행 중부터 시작하세요." : "ICN→US West Coast 13-17 hours, East Coast 14-16 hours. Start adjusting to US local time during the flight.")
+        }</BodyText>
       </StepCard>
     </div>
   );
 
-  const renderPhase2 = () => (
+  const renderPhase2 = () => isKR ? (
+    <div>
+      <div style={{ background: "rgba(239,68,68,0.1)", borderRadius: 14, padding: "14px 16px", marginBottom: 14, border: "1px solid rgba(239,68,68,0.3)" }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: "#EF4444", marginBottom: 4 }}>🔄 {ko ? "경유 / 국내선 연결 — 인천 도착 후" : "Transit / Domestic Connection — After ICN Arrival"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.7)", lineHeight: 1.6 }}>
+          {ko ? "인천국제공항이 한국의 관문. 부산·대구·광주 등 지방 도시는 국내선 연결이 필요합니다." : "ICN is Korea's main gateway. For Busan, Daegu, Gwangju etc., you may need a domestic connection."}
+        </div>
+      </div>
+      <StepCard num={1} title={ko ? "인천공항 도착 후 — 입국심사 먼저" : "After Landing at ICN — Immigration First"} critical>
+        <BodyText>{ko ? "인천공항에 도착하면 '입국 심사(Immigration)' 표지판을 따라가세요. 지방 국내선 연결은 입국심사 완료 후에 합니다." : "Follow '입국 심사 / Immigration' signs after landing. Only after clearing immigration can you connect to domestic flights."}</BodyText>
+      </StepCard>
+      <StepCard num={2} title={ko ? "수하물 수취 + 세관" : "Baggage Claim + Customs"} critical>
+        <BodyText>{ko ? "입국 심사 후 Baggage Claim에서 짐을 찾고, 세관 신고서를 제출합니다. 국내선 연결 전 반드시 완료." : "After immigration, collect bags at Baggage Claim and submit customs form. Must complete before any domestic connection."}</BodyText>
+      </StepCard>
+      <StepCard num={3} title={ko ? "국내선 연결 — 김포공항 이동" : "Domestic Connection — Go to Gimpo Airport"}>
+        <BodyText>{ko ? "부산(김해)·대구·광주 등은 김포공항(GMP)에서 출발합니다. 인천→김포: 공항버스·지하철·택시 40-60분." : "Flights to Busan, Daegu, Gwangju depart from Gimpo (GMP). ICN→GMP: bus/subway/taxi 40-60 min."}</BodyText>
+        <TipBox text={ko ? "김포 탑승 마감 최소 40분 전 도착 필요. 인천 세관 후 김포까지 최소 2시간 여유 확보." : "Arrive at Gimpo at least 40 min before boarding. Allow 2+ hours total from ICN customs to GMP boarding."} />
+      </StepCard>
+      <StepCard num={4} title={ko ? "KTX·고속버스로 지방 이동 (대안)" : "KTX / Express Bus to Regions (Alternative)"}>
+        <BodyText>{ko ? "국내선 대신 KTX 또는 고속버스가 더 저렴하고 편리할 수 있습니다.\n• 서울→부산: KTX 2시간30분\n• 서울→대구: KTX 1시간40분\n• 서울→광주(송정): KTX 1시간40분" : "KTX or express buses can be cheaper and easier than domestic flights.\n• Seoul→Busan: KTX 2h 30min\n• Seoul→Daegu: KTX 1h 40min\n• Seoul→Gwangju: KTX 1h 40min"}</BodyText>
+      </StepCard>
+      <StepCard num={5} title={ko ? "연결 시간 촉박하면" : "If Connection Time Is Tight"}>
+        <BodyText>{ko ? "입국→짐→세관→이동→탑승에 최소 3시간 필요. 여유롭게 당일 다음 편이나 서울 1박 후 이동을 고려하세요." : "You need at least 3 hours from immigration to domestic boarding. Consider a later flight or overnight in Seoul."}</BodyText>
+      </StepCard>
+    </div>
+  ) : (
     <div>
       <div style={{ background: "rgba(239,68,68,0.1)", borderRadius: 14, padding: "14px 16px", marginBottom: 14, border: "1px solid rgba(239,68,68,0.3)" }}>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: "#EF4444", marginBottom: 4 }}>🔄 {ko ? "경유 — 이게 가장 당황스럽습니다" : "Transit — This Is the Most Confusing Part"}</div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.7)", lineHeight: 1.6 }}>
-          {ko ? "미국에서 경유하면 경유 공항이 첫 입국지입니다. 입국 심사 + 짐 재수속을 경유지에서 해야 합니다. 당황하지 마세요 — 모든 사람이 같은 과정을 거칩니다." : "When transiting through the US, your transit airport is your point of entry. You clear immigration AND re-check luggage there. Don't panic — everyone goes through this."}
+          {ko ? "미국에서 경유하면 경유 공항이 첫 입국지입니다. 입국 심사 + 짐 재수속을 경유지에서 해야 합니다." : "When transiting through the US, your transit airport is your point of entry. You clear immigration AND re-check luggage there."}
         </div>
       </div>
-      <StepCard num={1} title={ko ? "비행기에서 내리면 — 'Immigration' 표지판을 따라가세요" : "After Landing — Follow 'Immigration' Signs"} critical>
-        <BodyText>{ko ? "경유 공항에 도착하면 비행기에서 내려 'Immigration' 또는 'Passport Control' 표지판을 따라가세요. 다음 편 게이트를 먼저 찾으려 하지 마세요 — 입국 심사가 먼저입니다." : "After landing at your transit airport, exit the plane and follow 'Immigration' or 'Passport Control' signs. Don't look for your next gate first — immigration comes first."}</BodyText>
+      <StepCard num={1} title={ko ? "비행기에서 내리면 — 'Immigration' 표지판" : "After Landing — Follow 'Immigration' Signs"} critical>
+        <BodyText>{ko ? "경유 공항에 도착하면 'Immigration' 또는 'Passport Control' 표지판을 따라가세요. 입국 심사가 먼저입니다." : "Follow 'Immigration' or 'Passport Control' signs. Immigration before gate."}</BodyText>
       </StepCard>
-      <StepCard num={2} title={ko ? "입국 심사 (Immigration) 줄 서기" : "Stand in the Immigration Line"} critical>
-        <BodyText>{ko ? "'All Passports' 또는 'Visitors' 줄에 서세요. 미국 시민권자·영주권자 줄(US Citizens/Permanent Residents)에는 서지 마세요." : "Join the 'All Passports' or 'Visitors' line. Do not stand in the US Citizens / Permanent Residents line."}</BodyText>
-        <PhraseCard situation={ko ? "줄을 잘못 섰을 때" : "If you're in the wrong line"} english="Excuse me, I'm not a US citizen. Which line should I use?" korean={ko ? "저는 미국 시민이 아닌데, 어느 줄에 서야 하나요?" : "I'm not a US citizen — which line?"} />
+      <StepCard num={2} title={ko ? "입국 심사 줄 서기" : "Stand in the Immigration Line"} critical>
+        <BodyText>{ko ? "'All Passports' 줄에 서세요. US Citizens 줄에는 서지 마세요." : "Use 'All Passports' line. Not US Citizens / Permanent Residents."}</BodyText>
+        <PhraseCard situation={ko ? "줄을 잘못 섰을 때" : "Wrong line"} english="Excuse me, I'm not a US citizen. Which line should I use?" korean={ko ? "저는 미국 시민이 아닌데, 어느 줄에 서야 하나요?" : "I'm not a US citizen — which line?"} />
       </StepCard>
-      <StepCard num={3} title={ko ? "입국 심사 통과 후 — 수하물 수취대(Baggage Claim)" : "After Immigration — Baggage Claim"} critical>
-        <BodyText>{ko ? "입국 심사 후 반드시 수하물 수취대로 가서 짐을 찾아야 합니다. 짐 없이 연결편을 타면 짐은 목적지에 도착하지 않습니다." : "After clearing immigration, you MUST go to Baggage Claim and collect your luggage. If you board without collecting bags, they will not arrive at your destination."}</BodyText>
-        <WarnBox text={ko ? "많은 첫 방문자가 '짐은 최종 목적지로 자동으로 가는 줄 알았다'고 합니다. 미국 경유 시에는 반드시 짐을 찾아 다시 부쳐야 합니다." : "Many first-timers assume 'my bags go automatically to the final destination.' For US transits, you MUST collect and re-check your bags."} />
+      <StepCard num={3} title={ko ? "짐 찾아 다시 부치기" : "Collect & Re-Check Bags"} critical>
+        <BodyText>{ko ? "입국 심사 후 Baggage Claim에서 짐을 찾고, 세관 신고서 제출 후 Connecting Flights 표지판으로 이동해 짐을 다시 부치세요." : "Collect bags at Baggage Claim, then re-check via 'Connecting Flights' signs after customs."}</BodyText>
+        <WarnBox text={ko ? "미국 경유 시에는 반드시 짐을 찾아 다시 부쳐야 합니다 — 자동으로 최종 목적지로 가지 않습니다." : "For US transits, MUST collect and re-check bags — they don't go automatically."} />
       </StepCard>
-      <StepCard num={4} title={ko ? "세관 통과 후 짐 다시 부치기 (Re-Check)" : "Re-Check Bags After Customs"}>
-        <BodyText>{ko ? "세관 신고서 제출 후, 'Connecting Flights' 또는 'Baggage Re-Check' 표지판을 따라가세요. 같은 항공사면 짐을 다시 부칠 수 있습니다. 항공사가 다르면 새로 체크인해야 합니다." : "After submitting your customs form, follow 'Connecting Flights' or 'Baggage Re-Check' signs. Same airline: re-check your bags. Different airline: new check-in required."}</BodyText>
+      <StepCard num={4} title={ko ? "게이트 찾기" : "Find Your Gate"}>
+        <BodyText>{ko ? "TSA 보안 검색 후 Departure Board에서 편명으로 게이트 번호를 확인하세요." : "After TSA security, find gate on Departure Board by flight number."}</BodyText>
+        <PhraseCard situation={ko ? "게이트 모를 때" : "Unknown gate"} english="Excuse me, where is gate [B12]? My flight is [AA 1234]." korean={ko ? "[B12] 게이트가 어디예요?" : "Where is gate B12?"} />
       </StepCard>
-      <StepCard num={5} title={ko ? "게이트 찾기 — Departure Board 확인" : "Find Your Gate — Check Departure Board"}>
-        <BodyText>{ko ? "짐 부친 후 보안 검색(TSA)을 통과해 연결편 게이트로 이동합니다. 공항 안내판(Departure Board)에서 편명으로 게이트를 확인하세요." : "After re-checking bags, clear security (TSA) and head to your connecting gate. Find your gate number on the Departure Board using your flight number."}</BodyText>
-        <PhraseCard situation={ko ? "게이트를 모를 때" : "When you don't know your gate"} english="Excuse me, where is gate [B12]? My flight is [AA 1234]." korean={ko ? "[B12] 게이트가 어디예요? 제 항공편은 [AA 1234]예요." : "Where is gate B12? My flight is AA 1234."} />
-      </StepCard>
-      <StepCard num={6} title={ko ? "연결 시간이 너무 촉박하다면" : "If Your Connection Time Is Very Tight"}>
-        <BodyText>{ko ? "연결 시간이 1시간 미만으로 촉박하다면 즉시 항공사 직원에게 도움을 요청하세요. 출구에서 이름 적힌 표지판을 들고 기다리는 항공사 직원이 있을 수 있습니다." : "If you have less than 1 hour to connect, immediately ask an airline staff member for help. Some airlines have staff waiting at the gate with signs showing your name."}</BodyText>
-        <PhraseCard situation={ko ? "연결편 놓칠 것 같을 때" : "When you might miss your connection"} english="I have a very tight connection to [Dallas]. Can you help me?" korean={ko ? "[달라스] 연결편 시간이 너무 촉박합니다. 도와주실 수 있나요?" : "My connection to Dallas is very tight. Please help."} />
-        <TipBox text={ko ? "항공사 실수로 연결을 못 탔다면 항공사 카운터에서 무료 재발권을 받을 수 있습니다. 당황하지 말고 카운터로 가세요." : "If you miss your connection due to the airline's fault, go to the airline counter for a free rebooking. Stay calm and find the counter."} />
+      <StepCard num={5} title={ko ? "연결 촉박하면" : "Tight Connection"}>
+        <BodyText>{ko ? "1시간 미만이면 즉시 항공사 직원 도움 요청하세요." : "Less than 1 hour — ask airline staff immediately."}</BodyText>
+        <PhraseCard situation={ko ? "연결편 놓칠 것 같을 때" : "Might miss connection"} english="I have a very tight connection to [Dallas]. Can you help me?" korean={ko ? "[달라스] 연결편 시간이 너무 촉박합니다." : "My connection is very tight."} />
       </StepCard>
     </div>
   );
 
-  const renderPhase3 = () => (
+  const renderPhase3 = () => isKR ? (
+    <div>
+      <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🛂 {ko ? "한국 입국 심사 — 단계별 안내" : "Korean Immigration — Step by Step"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "인천·김해·제주 공항 기준. 미리 알면 긴장되지 않습니다." : "Based on ICN, PUS, CJU airports. Knowing what to expect makes it easy."}
+        </div>
+      </div>
+      <StepCard num={1} title={ko ? "입국 심사 줄 서기 — 외국인 줄" : "Queue — Foreigners Line"} critical>
+        <BodyText>{ko ? "한국 국적자는 '내국인' 줄, 외국인은 '외국인(Foreigners)' 줄에 서세요. 재외동포(F-4) 비자 소지자는 자동 심사대를 이용할 수 있습니다." : "Korean nationals use '내국인' lane; foreigners use '외국인 (Foreigners)' lane. F-4 (overseas Korean) visa holders may use the automated gates."}</BodyText>
+      </StepCard>
+      <StepCard num={2} title={ko ? "자동 입국 심사대 (Smart Entry)" : "Automated Gates (Smart Entry)"}>
+        <BodyText>{ko ? "인천공항에는 자동 심사대가 있어 사전 등록 시 빠르게 통과 가능합니다. 등록 방법: 공항 내 스마트엔트리서비스 등록 데스크 방문." : "ICN has automated Smart Entry gates for pre-registered travelers. Register at the Smart Entry Service desk inside the airport."}</BodyText>
+        <TipBox text={ko ? "첫 방문자는 유인 심사대(직원 있는 창구) 이용 권장 — 스탬프와 입국 확인이 명확합니다." : "First-time arrivals: use staffed booths for a clear stamp and confirmation."} />
+      </StepCard>
+      <StepCard num={3} title={ko ? "심사관에게 여권·비자 제출" : "Present Passport & Visa to Officer"} critical>
+        <BodyText>{ko ? "여권, 비자, 관련 서류(고용계약서·초청장 등)를 심사관에게 제출합니다. 심사관이 먼저 말할 때까지 기다리세요." : "Present your passport, visa, and supporting documents (work contract, invitation letter, etc.). Wait for the officer to speak first."}</BodyText>
+      </StepCard>
+      <StepCard num={4} title={ko ? "심사관 질문 — Q&A 시뮬레이션" : "Officer Questions — Q&A Simulation"} critical>
+        <PhraseCard situation={ko ? "Q: 한국 방문 목적이 뭔가요?" : "Q: Purpose of visit to Korea?"} english="I'm here to work. / I'm here to live with my spouse. / I'm here for language study." korean={ko ? "취업 목적 / 배우자와 거주 / 어학연수" : "Work / Live with spouse / Language study"} />
+        <PhraseCard situation={ko ? "Q: 한국 내 주소가 어디예요?" : "Q: Your address in Korea?"} english="My address is [한국 주소 영문]." korean={ko ? "[주소]입니다. 한국 주소를 영문으로 미리 저장해 두세요." : "Have your Korean address ready in English."} />
+        <PhraseCard situation={ko ? "Q: 얼마나 머무를 예정인가요?" : "Q: How long will you stay?"} english="I'll be staying for [1 year / indefinitely / 6 months]." korean={ko ? "[1년 / 장기 / 6개월] 거주 예정입니다." : "I'll stay for 1 year / long-term / 6 months."} />
+        <WarnBox text={ko ? "짧고 정직하게 답하세요. 비자 유형에 맞지 않는 활동을 언급하지 마세요." : "Answer briefly and honestly. Don't mention activities that don't match your visa type."} />
+      </StepCard>
+      <StepCard num={5} title={ko ? "생체정보 — 지문 + 사진" : "Biometrics — Fingerprints + Photo"}>
+        <BodyText>{ko ? "외국인 입국자는 지문(양 검지) + 사진 촬영이 필수입니다. 심사관 안내에 따라 진행하면 됩니다." : "Foreign nationals must provide fingerprints (both index fingers) and a facial photo. Follow the officer's instructions."}</BodyText>
+      </StepCard>
+      <StepCard num={6} title={ko ? "외국인등록 안내 (90일 초과 체류 시)" : "Alien Registration Info (For Stays Over 90 Days)"}>
+        <BodyText>{ko ? "입국 후 90일 이내에 관할 출입국관리사무소에서 외국인등록을 해야 합니다. 이 카드가 한국에서의 신분증 역할을 합니다." : "Register with the local immigration office within 90 days of entry. This card serves as your ID in Korea."}</BodyText>
+        <TipBox text={ko ? "하이코리아(hikorea.go.kr)에서 온라인 예약 후 방문하면 대기 시간을 줄일 수 있습니다." : "Book online at hikorea.go.kr before your visit to reduce wait time."} />
+      </StepCard>
+    </div>
+  ) : (
     <div>
       <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🛂 {ko ? "입국 심사 — Q&A 시뮬레이션" : "Immigration — Q&A Simulation"}</div>
@@ -19746,34 +19925,59 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
           {ko ? "미리 연습하면 떨리지 않습니다. 심사관은 대부분 짧고 간단한 대답을 원합니다." : "Practice ahead and you won't be nervous. Officers usually want short, simple answers."}
         </div>
       </div>
-      <StepCard num={1} title={ko ? "줄 서기 — 반드시 'All Passports' 줄" : "Queue — Must Use 'All Passports' Line"} critical>
-        <BodyText>{ko ? "미국 시민권자·영주권자(US Citizens / Permanent Residents) 줄은 한국 여권으로 이용 불가. 'All Passports' 또는 'Non-Residents' 줄에 서세요." : "Do not use the US Citizens / Permanent Residents line with a Korean passport. Use the 'All Passports' or 'Non-Residents' line."}</BodyText>
+      <StepCard num={1} title={ko ? "줄 서기 — 'All Passports' 줄" : "Queue — 'All Passports' Line"} critical>
+        <BodyText>{ko ? "US Citizens / Permanent Residents 줄은 이용 불가. 'All Passports' 또는 'Non-Residents' 줄에 서세요." : "Do not use US Citizens / Permanent Residents line. Use 'All Passports' or 'Non-Residents' line."}</BodyText>
       </StepCard>
       <StepCard num={2} title={ko ? "APC 키오스크 (자동 입국 심사기)" : "APC Kiosks (Automated Passport Control)"}>
-        <BodyText>{ko ? "많은 대형 공항에 APC 키오스크가 있어 한국어 지원 화면으로 직접 처리 가능합니다. 여권 스캔 → 질문 답변 → 사진 촬영 → 영수증 출력. 이 영수증을 심사관에게 제출합니다." : "Many major airports have APC kiosks with Korean language option. Scan passport → answer questions → photo taken → print receipt. Submit this receipt to the officer."}</BodyText>
-        <TipBox text={ko ? "한국어 버튼을 찾으세요. 없으면 영어로 진행해도 됩니다 — 질문이 단순합니다." : "Look for the Korean language button. If not available, proceed in English — the questions are simple."} />
+        <BodyText>{ko ? "한국어 지원 화면으로 직접 처리 가능. 여권 스캔 → 질문 답변 → 사진 촬영 → 영수증 출력 → 심사관 제출." : "Korean language available. Scan passport → answer questions → photo → print receipt → submit to officer."}</BodyText>
       </StepCard>
-      <StepCard num={3} title={ko ? "심사관 앞 — 여권과 신고서 제출" : "At the Officer's Booth — Hand Over Passport & Form"}>
-        <BodyText>{ko ? "여권, 입국 신고서, (있으면) 입국 서류(I-20 등)를 심사관에게 제출합니다. 말하기 전에 먼저 서류를 내미세요. 심사관이 먼저 말합니다." : "Hand over your passport, customs form, and supporting documents (I-20 etc.) to the officer. Let the officer speak first."}</BodyText>
+      <StepCard num={3} title={ko ? "심사관 앞 — 서류 제출" : "At the Booth — Submit Documents"}>
+        <BodyText>{ko ? "여권, 입국 신고서, I-20 등 입국 서류 제출. 심사관이 먼저 말할 때까지 기다리세요." : "Submit passport, customs form, and documents (I-20 etc.). Wait for the officer to speak first."}</BodyText>
       </StepCard>
-      <StepCard num={4} title={ko ? "심사관 질문 — Q&A 시뮬레이션" : "Officer Questions — Q&A Simulation"} critical>
-        <PhraseCard situation={ko ? "Q: 방문 목적이 뭔가요?" : "Q: What is the purpose of your visit?"} english="I'm here to study. / I'm here for vacation. / I'm here to visit family." korean={ko ? "유학 목적 / 관광 / 가족 방문" : "Study / Tourism / Family visit"} />
-        <PhraseCard situation={ko ? "Q: 얼마나 머무를 예정인가요?" : "Q: How long are you staying?"} english="I'll be here for [4 years / 2 weeks / 1 month]." korean={ko ? "[4년 / 2주 / 1개월] 머물 예정입니다." : "I'll stay for..."} />
-        <PhraseCard situation={ko ? "Q: 미국 내 주소가 어디예요?" : "Q: Where will you be staying?"} english="I'll be staying at [123 Main St, Seattle, WA]." korean={ko ? "[주소]에 머물 예정입니다. 미리 영어 주소 저장 필수!" : "Have your address ready in English!"} />
-        <PhraseCard situation={ko ? "Q: 현금 얼마나 가지고 있어요?" : "Q: How much money are you carrying?"} english="I have about [$500 / $1,000] in cash." korean={ko ? "현금 약 [$금액] 가지고 있습니다." : "I have about $X in cash."} />
-        <WarnBox text={ko ? "짧고 정직하게 답하세요. 불필요하게 많은 설명은 오히려 의심을 살 수 있습니다. 모르는 단어가 나오면 'Could you repeat that?' 또는 'I don't understand.'라고 하세요." : "Answer briefly and honestly. Avoid over-explaining — it can seem suspicious. If you don't understand, say 'Could you repeat that?' or 'I don't understand.'"} />
+      <StepCard num={4} title={ko ? "심사관 질문 Q&A" : "Officer Questions — Q&A"} critical>
+        <PhraseCard situation={ko ? "Q: 방문 목적?" : "Q: Purpose of visit?"} english="I'm here to study. / I'm here for vacation. / I'm here to visit family." korean={ko ? "유학 / 관광 / 가족 방문" : "Study / Tourism / Family visit"} />
+        <PhraseCard situation={ko ? "Q: 얼마나 머무나요?" : "Q: How long staying?"} english="I'll be here for [4 years / 2 weeks / 1 month]." korean={ko ? "[4년 / 2주 / 1개월] 예정" : "I'll stay for..."} />
+        <PhraseCard situation={ko ? "Q: 미국 내 주소?" : "Q: US address?"} english="I'll be staying at [123 Main St, Seattle, WA]." korean={ko ? "[주소]. 영어 주소 미리 저장 필수!" : "Have English address ready!"} />
+        <WarnBox text={ko ? "짧고 정직하게 답하세요. 모르면 'Could you repeat that?'" : "Answer briefly and honestly. If unsure: 'Could you repeat that?'"} />
       </StepCard>
-      <StepCard num={5} title={ko ? "생체정보 — 지문 10개 + 사진 촬영" : "Biometrics — All 10 Fingerprints + Photo"}>
-        <BodyText>{ko ? "양손 손가락 10개 지문을 스캐너에 차례로 올려놓으라고 합니다. 카메라를 정면으로 바라보면 사진이 촬영됩니다. 처음이라 어색해도 심사관이 안내해 줍니다." : "You'll be asked to place all 10 fingers on the scanner one by one. Look straight at the camera for the photo. Officers will guide you through it."}</BodyText>
+      <StepCard num={5} title={ko ? "생체정보 — 지문 10개 + 사진" : "Biometrics — 10 Fingerprints + Photo"}>
+        <BodyText>{ko ? "양손 10개 지문 스캐너 + 정면 카메라 촬영. 심사관이 안내합니다." : "All 10 fingers on scanner + look at camera. Officer will guide you."}</BodyText>
       </StepCard>
       <StepCard num={6} title={ko ? "I-94 (입국 허가 기록)" : "I-94 (Arrival/Departure Record)"}>
-        <BodyText>{ko ? "예전에는 종이였지만 지금은 자동 전산 처리됩니다. 입국 후 cbp.dhs.gov/I94에서 본인 입국 기록과 허가 체류 기간을 확인하세요." : "Previously paper-based, now automatically processed. After entry, verify your record and authorized stay period at cbp.dhs.gov/I94."}</BodyText>
-        <TipBox text={ko ? "체류 허가 기간은 비자 만료일과 다를 수 있습니다. I-94에 표시된 날짜가 실제 체류 가능 기한입니다." : "Authorized stay may differ from your visa expiration date. The date on your I-94 is your actual stay limit."} />
+        <BodyText>{ko ? "자동 전산 처리. 입국 후 cbp.dhs.gov/I94에서 허가 체류 기간 확인." : "Auto-processed. After entry, verify authorized stay at cbp.dhs.gov/I94."}</BodyText>
+        <TipBox text={ko ? "I-94 날짜가 실제 체류 가능 기한 — 비자 만료일과 다를 수 있음." : "I-94 date is your actual stay limit — may differ from visa expiry."} />
       </StepCard>
     </div>
   );
 
-  const renderPhase4 = () => (
+  const renderPhase4 = () => isKR ? (
+    <div>
+      <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🧳 {ko ? "짐 찾기 + 한국 세관" : "Baggage Claim + Korean Customs"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "입국 심사 통과 후 수하물 수취대(Baggage Claim)로 이동합니다." : "After clearing immigration, head to Baggage Claim."}
+        </div>
+      </div>
+      <StepCard num={1} title={ko ? "Baggage Claim 안내판 확인" : "Check the Baggage Claim Board"}>
+        <BodyText>{ko ? "Baggage Claim 구역 전광판에서 본인 항공편 번호(예: KE 085)를 찾아 배정된 수취대 번호를 확인하세요." : "Find your flight number (e.g., KE 085) on the board and note your assigned carousel number."}</BodyText>
+        <PhraseCard situation={ko ? "짐 찾는 위치 질문" : "Asking where to find luggage"} english="Excuse me, which carousel is for flight [KE 085]?" korean={ko ? "[KE 085] 편 짐은 몇 번 수취대인가요?" : "Which carousel for flight KE 085?"} />
+      </StepCard>
+      <StepCard num={2} title={ko ? "내 짐 확인 — 수하물 태그 대조" : "Identify Your Luggage — Check Tag"}>
+        <BodyText>{ko ? "체크인 시 받은 수하물 태그 번호와 짐에 달린 태그를 대조하세요. 혼잡한 공항에서 짐 혼선이 발생할 수 있습니다." : "Compare your baggage claim tag (from check-in) with the tag on your bag. Mix-ups happen in busy airports."}</BodyText>
+      </StepCard>
+      <StepCard num={3} title={ko ? "짐 분실 시 — 즉시 항공사 카운터" : "Lost Luggage — Go to Airline Counter"}>
+        <BodyText>{ko ? "짐이 나오지 않으면 즉시 항공사 분실 신고 카운터로 가세요. 수하물 태그가 필요합니다." : "If your bag doesn't appear, go to the airline's lost luggage counter immediately. Bring your baggage tag."}</BodyText>
+        <PhraseCard situation={ko ? "짐 분실 신고" : "Filing lost luggage report"} english="My luggage didn't arrive. I need to file a lost luggage report." korean={ko ? "제 짐이 나오지 않았습니다. 분실 신고를 하고 싶습니다." : "My bag didn't arrive — need to file a report."} />
+      </StepCard>
+      <StepCard num={4} title={ko ? "한국 세관 신고서 제출" : "Submit Korean Customs Form"} critical>
+        <BodyText>{ko ? "짐을 찾은 후 세관(Customs) 구역으로 이동해 기내에서 작성한 '여행자 휴대품 신고서'를 제출합니다. 면세 한도 초과 물품은 반드시 신고." : "After collecting bags, move to Customs and submit the declaration form filled out on the plane. Declare items above the duty-free limit."}</BodyText>
+        <WarnBox text={ko ? "반입 금지: 총기·마약·멸종위기 동식물. 요주의: 육류·과일·식물(검역 필요), $800 초과 물품. 신고 안 하면 과태료." : "Prohibited: firearms, drugs, endangered species. Watch: meat/fruit/plants (quarantine), items over $800. Failure to declare = fine."} />
+      </StepCard>
+      <StepCard num={5} title={ko ? "세관 검사 대상 — 당황하지 마세요" : "If Selected for Customs Inspection — Stay Calm"}>
+        <BodyText>{ko ? "무작위 선발이거나 신고 물품이 있는 경우 추가 검사를 받을 수 있습니다. 정직하게 협조하면 금방 끝납니다." : "You may be selected randomly or for declared items. Cooperate honestly and it ends quickly."}</BodyText>
+      </StepCard>
+    </div>
+  ) : (
     <div>
       <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🧳 {ko ? "짐 찾기 + 세관" : "Baggage Claim + Customs"}</div>
@@ -19782,27 +19986,53 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
         </div>
       </div>
       <StepCard num={1} title={ko ? "Baggage Claim 안내판 확인" : "Check the Baggage Claim Board"}>
-        <BodyText>{ko ? "Baggage Claim 구역 입구의 전광판에서 본인 항공편 번호(예: KE 017)를 찾아 배정된 수취대(Carousel) 번호를 확인하세요." : "Find your flight number (e.g., KE 017) on the Baggage Claim board and note your assigned carousel number."}</BodyText>
-        <PhraseCard situation={ko ? "짐 찾는 위치 질문" : "Asking where to find luggage"} english="Excuse me, which carousel is for flight [KE 017]?" korean={ko ? "[KE 017] 편 짐은 몇 번 수취대에서 찾나요?" : "Which carousel for flight KE 017?"} />
+        <BodyText>{ko ? "전광판에서 항공편 번호(예: KE 017)로 수취대 번호 확인." : "Find your flight number (e.g., KE 017) and note carousel number."}</BodyText>
+        <PhraseCard situation={ko ? "짐 위치 질문" : "Asking for luggage location"} english="Excuse me, which carousel is for flight [KE 017]?" korean={ko ? "[KE 017] 편 짐 수취대가 어디예요?" : "Which carousel for KE 017?"} />
       </StepCard>
-      <StepCard num={2} title={ko ? "내 짐 확인 — 수하물 태그 대조" : "Identify Your Luggage — Check Baggage Tag"}>
-        <BodyText>{ko ? "공항에서 짐을 잃어버리거나 누군가 실수로 가져가는 일이 있습니다. 체크인 시 받은 수하물 태그(Baggage Claim Tag) 번호와 짐에 달린 태그를 대조하세요." : "Luggage mix-ups happen at airports. Compare the baggage claim tag number (from check-in) with the tag on the bag."}</BodyText>
+      <StepCard num={2} title={ko ? "내 짐 확인" : "Identify Your Luggage"}>
+        <BodyText>{ko ? "체크인 수하물 태그 번호와 짐 태그를 대조하세요." : "Compare baggage claim tag with the tag on your bag."}</BodyText>
       </StepCard>
-      <StepCard num={3} title={ko ? "짐 분실 시 — 즉시 항공사 카운터" : "If Luggage Is Lost — Go to Airline Counter Immediately"}>
-        <BodyText>{ko ? "수취대에 짐이 나오지 않으면 배회하지 말고 즉시 항공사 카운터로 가서 수하물 분실 신고(Lost Luggage Report)를 합니다. 수하물 태그가 필요합니다." : "If your bag doesn't appear on the carousel, immediately go to the airline counter and file a Lost Luggage Report. You'll need your baggage tag."}</BodyText>
-        <PhraseCard situation={ko ? "짐 분실 신고" : "Filing a lost luggage report"} english="My luggage didn't arrive. I need to file a lost luggage report." korean={ko ? "제 짐이 나오지 않았습니다. 분실 신고를 하고 싶습니다." : "My bag didn't arrive. I need to file a report."} />
+      <StepCard num={3} title={ko ? "짐 분실 시 — 항공사 카운터" : "Lost Luggage — Airline Counter"}>
+        <BodyText>{ko ? "짐이 없으면 즉시 항공사 분실 카운터로. 수하물 태그 지참." : "Bag not there → go to airline's lost luggage counter. Bring baggage tag."}</BodyText>
+        <PhraseCard situation={ko ? "분실 신고" : "Lost luggage report"} english="My luggage didn't arrive. I need to file a lost luggage report." korean={ko ? "제 짐이 없습니다. 분실 신고하고 싶습니다." : "My bag didn't arrive."} />
       </StepCard>
-      <StepCard num={4} title={ko ? "세관 신고서 제출" : "Submit Customs Declaration Form"} critical>
-        <BodyText>{ko ? "짐을 찾은 후 세관 구역(Customs)으로 이동합니다. 기내에서 작성한 세관 신고서를 CBP 직원에게 제출합니다. 대부분 빠르게 통과됩니다." : "After collecting bags, move to the Customs area. Submit your customs declaration form to the CBP officer. Most people pass through quickly."}</BodyText>
-        <WarnBox text={ko ? "한국 음식 반입 주의: 육류(소·돼지·닭)는 원칙적으로 반입 금지. 멸치·건어물·해산물은 대부분 가능. 과일·채소·식물은 신고 필수. 신고하지 않으면 압류·벌금." : "Korean food caution: Raw meat (beef, pork, chicken) generally prohibited. Dried fish, anchovies, seafood usually allowed. Fresh fruit, vegetables, plants must be declared. Failure to declare → confiscation and fines."} />
+      <StepCard num={4} title={ko ? "세관 신고서 제출 (CBP)" : "Submit Customs Form (CBP)"} critical>
+        <BodyText>{ko ? "짐 찾은 후 세관(Customs)으로 이동해 CBP 신고서 제출. 대부분 빠르게 통과." : "After bags, move to Customs and submit your CBP form. Most pass through quickly."}</BodyText>
+        <WarnBox text={ko ? "한국 음식: 육류 반입 원칙 금지. 건어물·해산물 대부분 가능. 과일·식물 신고 필수." : "Korean food: meat generally prohibited. Dried seafood usually OK. Fruit/plants must be declared."} />
       </StepCard>
-      <StepCard num={5} title={ko ? "세관 검사 대상 되면 당황하지 마세요" : "If Selected for Inspection — Stay Calm"}>
-        <BodyText>{ko ? "무작위 선발 또는 신고 물품이 있는 경우 별도 검사실로 안내될 수 있습니다. 정직하게 협조하면 금방 끝납니다. 숨기는 게 더 큰 문제를 만듭니다." : "You may be directed to a secondary inspection room randomly or if you declared items. Cooperate honestly and it will be over quickly. Concealing items creates much bigger problems."}</BodyText>
+      <StepCard num={5} title={ko ? "세관 검사 — 당황하지 마세요" : "Customs Inspection — Stay Calm"}>
+        <BodyText>{ko ? "무작위 선발 가능. 정직하게 협조하면 금방 끝납니다." : "Random selection possible. Cooperate honestly and it ends quickly."}</BodyText>
       </StepCard>
     </div>
   );
 
-  const renderPhase5 = () => (
+  const renderPhase5 = () => isKR ? (
+    <div>
+      <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🚪 {ko ? "공항 출구 — 드디어 한국 땅!" : "Airport Exit — You Made It to Korea!"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
+          {ko ? "세관 통과 후 공항 밖으로 나옵니다. 한국에서의 새 삶이 시작됩니다." : "After customs, you exit the airport. Your new life in Korea begins here."}
+        </div>
+      </div>
+      <StepCard num={1} title={ko ? "SIM 카드 개통 — 공항 통신사 부스" : "Get a SIM Card — Airport Carrier Booth"} critical>
+        <BodyText>{ko ? "세관 통과 직후 도착층에 SK텔레콤·KT·LG U+ 부스가 있습니다. 선불 유심(Prepaid SIM)을 구매하거나 알뜰폰 유심을 개통하세요. 영문 여권 지참 필수." : "Right after customs at arrivals, there are SK Telecom, KT, and LG U+ booths. Buy a prepaid SIM or activate an MVNO SIM. Bring your passport."}</BodyText>
+        <TipBox text={ko ? "기존 한국 번호가 있으면 번호이동으로 재개통 가능 (알뜰폰 대리점에서 처리). 선불 유심은 3-5만원대." : "If you have an old Korean number, you can port it back at an MVNO store. Prepaid SIMs cost ₩30,000-50,000."} />
+      </StepCard>
+      <StepCard num={2} title={ko ? "교통카드 (T-money) 구매" : "Get a T-money Transit Card"}>
+        <BodyText>{ko ? "공항 편의점(CU·GS25) 또는 안내 데스크에서 T-money 카드를 구매하세요. 버스·지하철·일부 택시에서 사용 가능. 충전은 편의점 계산대에서." : "Buy a T-money card at airport convenience stores (CU, GS25) or the info desk. Works on buses, subways, and some taxis. Recharge at any convenience store."}</BodyText>
+      </StepCard>
+      <StepCard num={3} title={ko ? "환전 또는 ATM 인출" : "Currency Exchange or ATM Withdrawal"}>
+        <BodyText>{ko ? "도착층 KEB하나은행·신한은행 ATM에서 원화 인출이 편리합니다. 공항 환전소는 수수료가 높습니다. 초기 현금 10-20만원이면 충분." : "ATMs (KEB Hana, Shinhan) at arrivals are convenient for KRW withdrawal. Airport exchange booths have high fees. ₩100,000-200,000 is enough for arrival day."}</BodyText>
+      </StepCard>
+      <StepCard num={4} title={ko ? "가족·교회·픽업에 도착 연락" : "Contact Family, Church, or Pickup"}>
+        <BodyText>{ko ? "집주인, 직장 담당자, 픽업 담당자, 가족에게 카카오톡으로 도착 메시지를 보내세요." : "Send a KakaoTalk arrival message to your landlord, employer, pickup contact, and family."}</BodyText>
+        <PhraseCard situation={ko ? "픽업 담당자에게 연락" : "Text to pickup driver"} english="안녕하세요, 지금 인천공항 도착했습니다. 1터미널 출국층에 있어요." korean={ko ? "한국어로 문자 — 공항과 위치를 정확히 알려주세요" : "Text in Korean — specify airport and terminal"} />
+      </StepCard>
+      <StepCard num={5} title={ko ? "공항 안전 — 소지품 관리" : "Airport Safety — Watch Your Belongings"}>
+        <BodyText>{ko ? "여권, 지갑, 핸드폰은 항상 몸에 지니세요. 한국 공항은 비교적 안전하지만 혼잡한 구역에서는 주의가 필요합니다." : "Keep your passport, wallet, and phone on your body. Korean airports are generally safe, but stay alert in crowded areas."}</BodyText>
+      </StepCard>
+    </div>
+  ) : (
     <div>
       <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🚪 {ko ? "공항 출구 — 드디어 미국 땅!" : "Airport Exit — You Made It to the USA!"}</div>
@@ -19811,12 +20041,12 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
         </div>
       </div>
       <StepCard num={1} title={ko ? "인터넷 연결 — SIM 카드 또는 WiFi" : "Get Online — SIM Card or WiFi"} critical>
-        <BodyText>{ko ? "출구 나오기 전, 또는 직후에 인터넷을 연결하세요. 공항 WiFi(무료)를 임시로 사용하거나 SIM 카드 매장을 찾으세요. 주요 공항 T-Mobile·AT&T 매장이 도착 층에 있습니다." : "Connect to the internet before or right after exiting. Use free airport WiFi temporarily or find a SIM card store. T-Mobile and AT&T stores are in most major airports' arrivals area."}</BodyText>
-        <TipBox text={ko ? "T-Mobile Prepaid: $30/월 무제한 플랜. 한국 사용하던 eSIM 단말기라면 온라인 즉시 개통 가능." : "T-Mobile Prepaid: $30/month unlimited. If your phone supports eSIM, you can activate online immediately."} />
+        <BodyText>{ko ? "출구 직후 인터넷을 연결하세요. 공항 WiFi(무료)를 임시로 사용하거나 SIM 카드 매장을 찾으세요. T-Mobile·AT&T 매장이 도착 층에 있습니다." : "Connect to the internet right after exiting. Use free airport WiFi or find a SIM card store. T-Mobile and AT&T stores are at arrivals."}</BodyText>
+        <TipBox text={ko ? "T-Mobile Prepaid: $30/월 무제한 플랜." : "T-Mobile Prepaid: $30/month unlimited."} />
       </StepCard>
       <StepCard num={2} title={ko ? "가족·학교·교회에 도착 연락" : "Contact Family, School, or Church"}>
-        <BodyText>{ko ? "연락처에 저장된 학교 담당자, 집주인, 픽업 담당자에게 즉시 도착 문자를 보내세요. KakaoTalk이 있다면 가족에게도." : "Send an arrival text to your school contact, landlord, pickup driver, and family via KakaoTalk."}</BodyText>
-        <PhraseCard situation={ko ? "픽업 기사에게 문자" : "Text to pickup driver"} english="Hi, I just arrived at [SEA] airport. I'm at Terminal [S] Arrivals. My name is [name]." korean={ko ? "[SEA] 공항 도착했습니다. [S]터미널 도착층에 있습니다. 이름은 [이름]입니다." : "Just landed at SEA. At Terminal S Arrivals."} />
+        <BodyText>{ko ? "학교 담당자, 집주인, 픽업 담당자에게 즉시 도착 문자를 보내세요. KakaoTalk으로 가족에게도." : "Send an arrival text to your school contact, landlord, and pickup driver. Also message family via KakaoTalk."}</BodyText>
+        <PhraseCard situation={ko ? "픽업 기사에게 문자" : "Text to pickup driver"} english="Hi, I just arrived at [SEA] airport. I'm at Terminal [S] Arrivals. My name is [name]." korean={ko ? "[SEA] 공항 도착했습니다. [S]터미널 도착층에 있습니다." : "Just landed at SEA. At Terminal S Arrivals."} />
       </StepCard>
       <StepCard num={3} title={ko ? "픽업 확인 — 어디서 만나나요?" : "Pickup Confirmation — Where to Meet?"}>
         <BodyText>{ko ? "대부분의 공항은 'Arrivals' 층 또는 'Ground Transportation' 구역에서 픽업합니다. Uber·Lyft는 전용 픽업 구역이 따로 있으며 앱에서 안내합니다." : "Most airports have pickups at the 'Arrivals' level or 'Ground Transportation' area. Uber and Lyft have designated pickup zones shown in the app."}</BodyText>
@@ -19855,7 +20085,12 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
         </StepCard>
       ))}
       <StepCard num={cityAirport.transport.length + 1} title={ko ? "도착 첫날 밤 — 지금 당장 할 일" : "First Night Arrival — What To Do Right Now"}>
-        <BodyText>{ko ? `1. 짐 풀기\n2. 샤워 + 식사 (H-Mart 구내식당 또는 근처 한식당)\n3. 시차 적응 — 너무 자지 말고 현지 시간에 맞추기\n4. 내일 해야 할 일 메모 (SSN 신청, 은행 개설, 운전면허)` : `1. Unpack essentials\n2. Shower + eat (H-Mart food court or nearby Korean restaurant)\n3. Jet lag — try not to sleep too early, adjust to local time\n4. Note tomorrow's tasks (SSN application, bank account, driver's license)`}</BodyText>
+        <BodyText>{isKR
+          ? (ko ? `1. 짐 풀기\n2. 샤워 + 식사 (편의점·근처 한식당·배달의민족)\n3. 시차 적응 — 한국 시간에 맞춰 일찍 취침\n4. 내일 할 일 메모:\n   • SIM 개통 또는 번호이동\n   • 주민센터 / 출입국사무소 (외국인등록)\n   • 카카오뱅크 계좌 개설\n   • 국민건강보험 가입`
+               : `1. Unpack essentials\n2. Shower + eat (convenience store / nearby Korean restaurant / Baemin delivery)\n3. Jet lag — sleep early on Korean time\n4. Note tomorrow's tasks:\n   • SIM activation or number porting\n   • Community center / immigration office (alien registration)\n   • Kakaobank account setup\n   • NHIS health insurance enrollment`)
+          : (ko ? `1. 짐 풀기\n2. 샤워 + 식사 (H-Mart 구내식당 또는 근처 한식당)\n3. 시차 적응 — 너무 자지 말고 현지 시간에 맞추기\n4. 내일 해야 할 일 메모 (SSN 신청, 은행 개설, 운전면허)`
+               : `1. Unpack essentials\n2. Shower + eat (H-Mart food court or nearby Korean restaurant)\n3. Jet lag — try not to sleep too early, adjust to local time\n4. Note tomorrow's tasks (SSN application, bank account, driver's license)`)
+        }</BodyText>
         <TipBox text={ko ? `HebronGuide ${city.nameKo} → '정착' 탭에서 Day 1~3개월 체크리스트를 확인하세요.` : `Check HebronGuide ${city.nameEn} → 'Settle' tab for the Day 1–3 month checklist.`} />
       </StepCard>
     </div>
@@ -19867,8 +20102,8 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
     <div style={{ paddingBottom: 96, background: "#1a2535", minHeight: "100vh" }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="✈️" titleKo="공항·도착 시뮬레이션" titleEn="Airport Arrival Guide"
-        descKo={`한국 출발 전부터 ${city.nameKo} 도착까지 — 단계별 완전 가이드`}
-        descEn={`From Korea departure to ${city.nameEn} arrival — complete step-by-step guide`}
+        descKo={isKR ? `출발 전부터 ${city.nameKo} 도착까지 — 한국 입국 단계별 완전 가이드` : `한국 출발 전부터 ${city.nameKo} 도착까지 — 단계별 완전 가이드`}
+        descEn={isKR ? `From departure to ${city.nameEn} — complete Korea arrival step-by-step guide` : `From Korea departure to ${city.nameEn} arrival — complete step-by-step guide`}
         accentColor={accent} />
 
       {/* 단계 탭 (가로 스크롤) */}
