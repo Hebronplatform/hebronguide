@@ -11564,10 +11564,21 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               ? (communityChurches.length === 0 && <ComingSoonCard lang={lang} accentColor={accent} />)
               : <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number; website?: string; email?: string; phone?: string; kakao?: string; }>).map((c, i) => (
-                  <div key={i} style={c.tier === 1 ? { border: "1px solid rgba(201,162,39,0.55)", borderRadius: 16, background: "rgba(201,162,39,0.06)" } : {}}>
+                  <div key={i} style={
+                    c.tier === 1
+                      ? { border: "1px solid rgba(201,162,39,0.55)", borderRadius: 16, background: "rgba(201,162,39,0.06)" }
+                      : c.tier === 2
+                        ? { border: "1px solid rgba(110,231,183,0.35)", borderRadius: 16, background: "rgba(110,231,183,0.04)" }
+                        : {}
+                  }>
                     {c.tier === 1 && (
                       <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px" }}>
                         <span style={{ background: "rgba(201,162,39,0.18)", border: "1px solid rgba(201,162,39,0.45)", color: GOLD, borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>가정교회 ⭐</span>
+                      </div>
+                    )}
+                    {c.tier === 2 && (
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px" }}>
+                        <span style={{ background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.4)", color: "#6EE7B7", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>협력교회 ✅</span>
                       </div>
                     )}
                     <PlaceCard {...c} accentColor={c.tier === 1 ? GOLD : accent} />
