@@ -261,14 +261,14 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
   // 🇰🇷 천안·아산 — 독립기념관·온양온천·현대차 (200 OK 검증)
   cheonan: [
-    { url: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=1200&q=90", pos: "center 40%", alt: "Cheonan Korea urban daytime" },
-    { url: "https://images.unsplash.com/photo-1601134467661-3d775b999c8b?w=1200&q=90", pos: "center 38%", alt: "Cheonan Asan Korea city" },
+    { url: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1200&q=90", pos: "center 40%", alt: "Cheonan Korea modern city" },
+    { url: "https://images.unsplash.com/photo-1549082984-1323b94df9a6?w=1200&q=90", pos: "center 38%", alt: "Cheonan Asan Korea urban" },
   ],
 
-  // 🇺🇸 루이빌 — 검증된 사진 (200 OK)
+  // 🇺🇸 루이빌 — 도시 스카이라인 (200 OK 검증)
   louisville: [
-    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Louisville Kentucky daytime" },
-    { url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=90", pos: "center 38%", alt: "Louisville Kentucky cityscape" },
+    { url: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=90", pos: "center 40%", alt: "Louisville Kentucky skyline Ohio River" },
+    { url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=90", pos: "center 38%", alt: "Louisville Kentucky city aerial" },
   ],
 
 
@@ -11430,6 +11430,17 @@ function getCityChurches(slug: string, lang: string) {
           : "🔍 Verification in progress\n📍 Junggu, Busan\n\nWe're continuously updating church info for returning overseas Koreans.\nList your church: hebronguide.com/church-submit.html",
         tags: ko ? ["부산중구", "귀환동포"] : ["Jung-gu", "Returnees"],
         phone: "051-469-1004",
+      },
+    ],
+    louisville: [
+      {
+        emoji: "⭐", tier: 1,
+        name: ko ? "루이빌새한장로교회" : "Louisville Saehan Presbyterian Church",
+        nameEn: "Louisville Saehan Presbyterian Church",
+        desc: ko
+          ? "✅ 가정교회 | 담임: 김상헌 목사.\n📍 Louisville, KY\n🏠 목장 소그룹 모임 운영\n📞 예배 일정·장소 문의 환영\n✨ 루이빌 한인 이민자 정착 첫 번째 영적 공동체"
+          : "✅ House Church | Lead Pastor: Sang Heon Kim.\n📍 Louisville, KY\n🏠 Small group Mokjang meetings\n📞 Contact for service schedule & location\n✨ First spiritual community for Korean immigrants in Louisville",
+        tags: ko ? ["가정교회", "루이빌", "장로교", "IHM기준"] : ["House Church", "Louisville", "Presbyterian"],
       },
     ],
   };
