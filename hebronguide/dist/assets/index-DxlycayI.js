@@ -1212,11 +1212,11 @@ We're continuously updating church info for returning overseas Koreans.
 List your church: hebronguide.com/church-submit.html`,tags:a?["부산중구","귀환동포"]:["Jung-gu","Returnees"]}],louisville:[{emoji:"⭐",tier:1,name:a?"루이빌새한장로교회":"Louisville Saehan Presbyterian Church",nameEn:"Louisville Saehan Presbyterian Church",desc:a?`✅ 가정교회 | 북미가사원 켄터키 지역목자
 📍 Louisville, KY
 🏠 목장 소그룹 모임 운영
-✨ 담임: 김성헌 목사
+✨ 담임: 김상헌 목사
 🔗 saehan.org`:`✅ House Church | HMI Kentucky Regional Shepherd
 📍 Louisville, KY
 🏠 Small group Mokjang meetings
-✨ Lead Pastor: Sungheon Kim
+✨ Lead Pastor: Sangheon Kim
 🔗 saehan.org`,tags:a?["가정교회","루이빌","장로교","켄터키"]:["House Church","Louisville","Presbyterian","Kentucky"],website:"https://www.saehan.org"}],nashville:[{emoji:"⭐",tier:1,name:a?"주님의몸된교회":"Body of Christ Church — Nashville",nameEn:"Body of Christ Church",desc:a?`✅ 가정교회 | 북미가사원 테네시 지역목자
 📍 Tennessee (Nashville 지역)
 ✨ 담임: 이영범 목사`:`✅ House Church | HMI Tennessee Regional Shepherd

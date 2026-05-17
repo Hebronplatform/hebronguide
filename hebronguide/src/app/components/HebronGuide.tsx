@@ -11825,8 +11825,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "루이빌새한장로교회" : "Louisville Saehan Presbyterian Church",
         nameEn: "Louisville Saehan Presbyterian Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 켄터키 지역목자\n📍 Louisville, KY\n🏠 목장 소그룹 모임 운영\n✨ 담임: 김성헌 목사\n🔗 saehan.org"
-          : "✅ House Church | HMI Kentucky Regional Shepherd\n📍 Louisville, KY\n🏠 Small group Mokjang meetings\n✨ Lead Pastor: Sungheon Kim\n🔗 saehan.org",
+          ? "✅ 가정교회 | 북미가사원 켄터키 지역목자\n📍 Louisville, KY\n🏠 목장 소그룹 모임 운영\n✨ 담임: 김상헌 목사\n🔗 saehan.org"
+          : "✅ House Church | HMI Kentucky Regional Shepherd\n📍 Louisville, KY\n🏠 Small group Mokjang meetings\n✨ Lead Pastor: Sangheon Kim\n🔗 saehan.org",
         tags: ko ? ["가정교회", "루이빌", "장로교", "켄터키"] : ["House Church", "Louisville", "Presbyterian", "Kentucky"],
         website: "https://www.saehan.org",
       },
