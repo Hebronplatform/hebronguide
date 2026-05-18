@@ -103,15 +103,15 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
       신뢰할 수 있는 한인 교회·커뮤니티와 연결될 수 있도록 돕는
       <strong>디지털 환대 플랫폼</strong>입니다.<br><br>
       공항에서 나온 첫날부터 활용할 수 있는 생활 정보, 검증된 업소 정보,
-      그리고 환대하는 교회 네트워크를 세 언어(한국어·영어·스페인어)로 제공합니다.
+      그리고 환대하는 교회 네트워크를 한국어·영어로 제공합니다.
     </p>
     <div class="stat-row">
       <div class="stat-item">
-        <div class="stat-num">44+</div>
+        <div class="stat-num" id="cityCountStat">67</div>
         <div class="stat-label">서비스 도시</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">3</div>
+        <div class="stat-num">2</div>
         <div class="stat-label">지원 언어</div>
       </div>
       <div class="stat-item">
@@ -156,7 +156,7 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
         <div class="icon">🌐</div>
         <div class="txt">
           <strong>다국어 환대</strong>
-          한국어·영어·스페인어로 모든 한인 이민자를 환영합니다.
+          한국어·영어로 모든 한인 이민자를 환영합니다.
         </div>
       </li>
       <li>
@@ -176,8 +176,8 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
       <tr><td>운영사</td><td>Hebron Platform LLC</td></tr>
       <tr><td>설립 비전</td><td>Hebron 관리자 / Hebron Platform</td></tr>
       <tr><td>서비스</td><td>hebronguide.com</td></tr>
-      <tr><td>서비스 지역</td><td>미주 52개+ 도시 (미국·캐나다·멕시코)</td></tr>
-      <tr><td>지원 언어</td><td>한국어 · 영어 · 스페인어</td></tr>
+      <tr><td>서비스 지역</td><td>전 세계 <span id="cityCountTable">67</span>개 도시 (미국·캐나다·멕시코·한국·유럽·오세아니아·아시아·중동)</td></tr>
+      <tr><td>지원 언어</td><td>한국어 · 영어</td></tr>
       <tr><td>이메일</td><td><a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a></td></tr>
     </table>
   </div>
@@ -202,6 +202,12 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
 </footer>
 
 <script>
+/* ── 도시 수 자동 업데이트 — 이 숫자 하나만 바꾸면 페이지 전체 반영 ── */
+const HEBRON_CITY_COUNT = 67; // ← 도시 추가 시 여기만 수정
+document.querySelectorAll('#cityCountStat, #cityCountTable').forEach(function(el){
+  el.textContent = HEBRON_CITY_COUNT;
+});
+
 /* HebronGuide — 도시 자동 복귀 (모든 사용자가 자기 도시로) */
 (function(){
   function detectCity(){
