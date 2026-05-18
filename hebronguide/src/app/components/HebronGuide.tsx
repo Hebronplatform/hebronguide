@@ -9035,6 +9035,15 @@ const DAILY_QUOTES = [
   { ko: "주님의 말씀은 네 입에서도, 네 자손의 입에서도, 네 자손의 자손의 입에서도 이제로부터 영원히 떠나지 않을 것이다.", en: "\"My words in your mouth will not depart from your mouth, or from the mouths of your children, or from the mouths of their descendants — from this time on and forever.\"", source: "이사야 59:21 (새번역)", sourceEn: "Isaiah 59:21", type: "scripture" },
   { ko: "지금 당신이 걷는 이 길이 자녀들의 지도가 됩니다. 오늘의 선택이 다음 세대의 토대입니다.", en: "\"The path you walk today becomes the map for your children. Today's choices build tomorrow's foundation.\"", source: "G2G — 세대에서 세대로", sourceEn: "G2G — Generation to Generation", type: "service" },
   { ko: "부모가 내 집 밥상에서 나눈 이야기가 자녀의 가슴에 평생 남습니다.", en: "\"The stories told at your family table become the stories carried in your children's hearts forever.\"", source: "G2G — 세대에서 세대로", sourceEn: "G2G — Generation to Generation", type: "service" },
+
+  // ── 신약교회의 회복 — Acts 2 모델 (은근히, 자연스럽게)
+  // HebronGuide의 신학적 북극성: 정착 → 공동체 → 교회 → 신약교회 회복
+  { ko: "그들은 사도들의 가르침을 받아 서로 교제하고, 빵을 떼며, 기도에 힘썼다. 집에서 집으로 다니며 떡을 떼고, 즐거운 마음으로 음식을 나누었다.", en: "\"They devoted themselves to the apostles' teaching and to fellowship, to the breaking of bread and to prayer... They broke bread in their homes and ate together with glad and sincere hearts.\"", source: "사도행전 2:42, 46 (새번역)", sourceEn: "Acts 2:42, 46", type: "scripture" },
+  { ko: "두 사람이나 세 사람이 내 이름으로 모인 곳에는, 나도 그들 가운데 있다.", en: "\"For where two or three gather in my name, there am I with them.\"", source: "마태복음 18:20 (새번역)", sourceEn: "Matthew 18:20", type: "scripture" },
+  { ko: "여러분은 그리스도의 몸이며, 각각 그 지체입니다.", en: "\"Now you are the body of Christ, and each one of you is a part of it.\"", source: "고린도전서 12:27 (새번역)", sourceEn: "1 Corinthians 12:27", type: "scripture" },
+  { ko: "각 사람에게 성령을 나타내 주시는 것은 공동의 유익을 위한 것입니다.", en: "\"To each one the manifestation of the Spirit is given for the common good.\"", source: "고린도전서 12:7 (새번역)", sourceEn: "1 Corinthians 12:7", type: "scripture" },
+  { ko: "그리고 그분은 어떤 이들은 사도로, 어떤 이들은 예언자로, 어떤 이들은 복음 전도자로, 어떤 이들은 목사나 교사로 삼으셨습니다. 이것은 성도들을 온전히 하여 봉사의 일을 하게 하려는 것입니다.", en: "\"So Christ himself gave the apostles, the prophets, the evangelists, the pastors and teachers, to equip his people for works of service.\"", source: "에베소서 4:11-12 (새번역)", sourceEn: "Ephesians 4:11-12", type: "scripture" },
+  { ko: "서로 사랑하십시오. 내가 여러분을 사랑한 것과 같이, 여러분도 서로 사랑하십시오. 여러분이 서로 사랑하면, 모든 사람이 그것으로써 여러분이 내 제자임을 알게 될 것입니다.", en: "\"Love one another. As I have loved you, so you must love one another. By this everyone will know that you are my disciples, if you love one another.\"", source: "요한복음 13:34-35 (새번역)", sourceEn: "John 13:34-35", type: "scripture" },
 ];
 
 function DailyQuoteSection({ lang }: { lang: string }) {
