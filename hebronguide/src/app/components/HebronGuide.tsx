@@ -243,34 +243,44 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇰🇷 안산 — Unsplash 검증 사진 없음 → 그라디언트 폴백 사용
   // ansan: (제거 — 비안산 사진 사용 금지 원칙)
 
-  // 🇰🇷 인천/송도 — Jiho Choi 촬영 (Songdo, Yeonsu-gu, Incheon) ✅ 위치 확인됨
+  // 🇰🇷 인천/송도 — Jiho Choi 촬영 + Clark Gu (인천 해안) ✅ 위치 확인됨
+  // Story: ① 송도 스카이라인 → ② 송도 야경 → ③ 인천 해안·대교
   incheon: [
-    { url: "https://images.unsplash.com/photo-1638198800371-32341c84beba?w=1200&q=90", pos: "center 40%", alt: "Songdo Incheon Korea skyline" },
-    { url: "https://images.unsplash.com/photo-1671959670640-bd1ea822a635?w=1200&q=90", pos: "center 38%", alt: "Songdo Incheon Korea night" },
+    { url: "https://images.unsplash.com/photo-1638198800371-32341c84beba?w=1200&q=95", pos: "center 40%", alt: "Songdo Incheon Korea skyline daytime" },
+    { url: "https://images.unsplash.com/photo-1671959670640-bd1ea822a635?w=1200&q=95", pos: "center 38%", alt: "Songdo Incheon Korea night cityscape" },
+    { url: "https://images.unsplash.com/photo-1dQ67p9IKm8?w=1200&q=95",               pos: "center 40%", alt: "Incheon bridge sunset dusk purple orange sky coast" },
   ],
 
-  // 🇰🇷 제주 — 자연·해변·한라산
+  // 🇰🇷 제주 — 자연·해변·한라산·성산일출봉
+  // Story: ① 제주 해변 → ② 해안 절경 → ③ 성산일출봉 일출 황금빛
   jeju: [
-    { url: "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=1200&q=90", pos: "center 45%", alt: "Jeju Island Korea nature" },
-    { url: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=90", pos: "center 40%", alt: "Jeju Island Korea coast" },
+    { url: "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=1200&q=95", pos: "center 45%", alt: "Jeju Island Korea coast nature green" },
+    { url: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=95", pos: "center 40%", alt: "Jeju Island Korea coastal cliffs ocean" },
+    { url: "https://images.unsplash.com/photo-HiFzaPmxkZc?w=1200&q=95",              pos: "center 50%", alt: "Seongsan Ilchulbong golden hour sunrise Jeju volcanic cliffs" },
   ],
 
-  // 🇰🇷 대구 — Minsoo Eun·yujeong Huh 촬영 (대구광역시) ✅ 위치 확인됨
+  // 🇰🇷 대구 — Minsoo Eun·yujeong Huh·Danielle Austria 촬영 ✅ 위치 확인됨
+  // Story: ① 야경 골목 → ② 도심 거리 → ③ 대구 타워 전망 도시 항공
   daegu: [
-    { url: "https://images.unsplash.com/photo-1627638148559-d686e8b87003?w=1200&q=90", pos: "center 40%", alt: "Daegu Korea nighttime street" },
-    { url: "https://images.unsplash.com/photo-1619598965917-d7da30c3a9a8?w=1200&q=90", pos: "center 38%", alt: "Daegu Korea urban street" },
+    { url: "https://images.unsplash.com/photo-1627638148559-d686e8b87003?w=1200&q=95", pos: "center 40%", alt: "Daegu Korea nighttime street market lights" },
+    { url: "https://images.unsplash.com/photo-1619598965917-d7da30c3a9a8?w=1200&q=95", pos: "center 38%", alt: "Daegu Korea urban street daytime pedestrians" },
+    { url: "https://images.unsplash.com/photo-d7-dyUYp-a0?w=1200&q=95",                pos: "center 50%", alt: "Daegu cityscape aerial view from Daegu Tower daytime" },
   ],
 
-  // 🇰🇷 광주 — 국립아시아문화전당 (ACC) ✅ 위치 확인됨 (광주광역시 충장동)
+  // 🇰🇷 광주 — ACC 공식 계정 검증 사진 3장 (Sido Lee + ASIA CULTURECENTER)
+  // Story: ① 도착·랜드마크 → ② 사람들·광장 → ③ 예술·꽃·희망
   gwangju: [
-    { url: "https://images.unsplash.com/photo-1592899940134-b5fe9ca259b4?w=1200&q=90", pos: "center 40%", alt: "Gwangju National Asia Culture Center (ACC) entrance" },
-    { url: "https://images.unsplash.com/photo-1592899940281-0ba5f29175b0?w=1200&q=90", pos: "center 38%", alt: "Gwangju National Asia Culture Center outdoor plaza" },
+    { url: "https://images.unsplash.com/photo-5AT-vaVUABA?w=1200&q=95", pos: "center 50%", alt: "Gwangju Asia Culture Center exterior daytime architecture" },
+    { url: "https://images.unsplash.com/photo-c5xo90azsHE?w=1200&q=95", pos: "center 60%", alt: "Gwangju ACC Plaza Bridge people walking yellow evening light" },
+    { url: "https://images.unsplash.com/photo-MMeBFubn47Q?w=1200&q=95", pos: "center 40%", alt: "Gwangju ACC memorial garden pink flowers greenery spring" },
   ],
 
-  // 🇰🇷 대전 — Oh Taeyeon 촬영 (대전광역시) ✅ 위치 확인됨
+  // 🇰🇷 대전 — Oh Taeyeon + Juwhan Yu 촬영 ✅ 위치 확인됨
+  // Story: ① 도시·산 전경 → ② 강변 야경 → ③ 엑스포공원 한빛탑 (과학의 도시 상징)
   daejeon: [
-    { url: "https://images.unsplash.com/photo-1700929259310-10a0ba52de68?w=1200&q=90", pos: "center 40%", alt: "Daejeon Korea city skyline mountains" },
-    { url: "https://images.unsplash.com/photo-1702038209516-b41500d744c2?w=1200&q=90", pos: "center 38%", alt: "Daejeon Korea riverside building twilight" },
+    { url: "https://images.unsplash.com/photo-1700929259310-10a0ba52de68?w=1200&q=95", pos: "center 40%", alt: "Daejeon Korea city skyline mountains daytime" },
+    { url: "https://images.unsplash.com/photo-1702038209516-b41500d744c2?w=1200&q=95", pos: "center 38%", alt: "Daejeon Korea riverside building twilight reflections" },
+    { url: "https://images.unsplash.com/photo-8AaYqXalJqs?w=1200&q=95",                pos: "center 40%", alt: "Hanvit Tower Expo Park Daejeon Korea science city landmark" },
   ],
 
   // 🇰🇷 창원 — Seongjin Park 촬영 (창원시) ✅ 위치 확인됨
@@ -279,9 +289,12 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1685799224800-a0b543cc6301?w=1200&q=90", pos: "center 38%", alt: "Changwon South Korea waterfront" },
   ],
 
-  // 🇰🇷 천안 — hohyeong lee 촬영 (백석동, 서북구, 천안) ✅ 위치 확인됨 (2장 미확보 → 1장)
+  // 🇰🇷 천안 — hohyeong lee + Yena Kwon + Hyechun Yoo 촬영 ✅
+  // Story: ① 백석동 현대 도시 → ② 자전거·강변 생활 → ③ 도시·역 전경
   cheonan: [
-    { url: "https://images.unsplash.com/photo-1550136513-548af4445338?w=1200&q=90", pos: "center 40%", alt: "Cheonan Korea modern buildings Baekseok-dong" },
+    { url: "https://images.unsplash.com/photo-1550136513-548af4445338?w=1200&q=95", pos: "center 40%", alt: "Cheonan Korea modern buildings Baekseok-dong skyline" },
+    { url: "https://images.unsplash.com/photo-Wi2O68sS0t0?w=1200&q=95",             pos: "center 50%", alt: "Cheonan Korea riverside bicycle path lifestyle" },
+    { url: "https://images.unsplash.com/photo-YJxCB0O6Ds4?w=1200&q=95",             pos: "center 40%", alt: "Cheonan Korea city urban train station buildings" },
   ],
 
   // 🇺🇸 올랜도 — Lake Eola (Orlando, FL 확인) ✅
@@ -308,9 +321,12 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   ],
 
 
-  // 🇦🇺 시드니 — 오페라하우스 + 하버브릿지
+  // 🇦🇺 시드니 — 오페라하우스 + 본다이 비치 + 해안 항공 ✅
+  // Story: ① 오페라하우스 도착 랜드마크 → ② 본다이 비치 여름 생활 → ③ 해안 절경 조망
   sydney: [
-    { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=90", pos: "center 40%", alt: "Sydney Opera House and Harbour Bridge" },
+    { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=95", pos: "center 40%", alt: "Sydney Opera House Harbour Bridge landmark daytime" },
+    { url: "https://images.unsplash.com/photo-qDYvDDc8uk0?w=1200&q=95",               pos: "center 50%", alt: "Bondi Beach Sydney crowded summer beach sunny day" },
+    { url: "https://images.unsplash.com/photo-LNg1qe_9Sik?w=1200&q=95",               pos: "center 35%", alt: "Bondi Beach coastal view ocean cliffs aerial Sydney" },
   ],
 
   // 🇦🇺 멜버른 — CBD + 야라강
@@ -8087,7 +8103,7 @@ function CompactHeroNew() {
               position: "absolute", inset: 0,
               width: "100%", height: "100%",
               objectFit: "cover", objectPosition: slide.pos,
-              filter: "brightness(1.35) saturate(1.5) contrast(0.95)",
+              filter: "brightness(1.42) saturate(1.68) contrast(1.08)",
               opacity: isActive ? 1 : 0,
               transition: "opacity 1.4s ease",
               // 항상 애니메이션 실행 (none↔active 전환 시 위치 점프 방지)
@@ -9065,6 +9081,168 @@ const DAILY_QUOTES = [
   { ko: "그리고 그분은 어떤 이들은 사도로, 어떤 이들은 예언자로, 어떤 이들은 복음 전도자로, 어떤 이들은 목사나 교사로 삼으셨습니다. 이것은 성도들을 온전히 하여 봉사의 일을 하게 하려는 것입니다.", en: "\"So Christ himself gave the apostles, the prophets, the evangelists, the pastors and teachers, to equip his people for works of service.\"", source: "에베소서 4:11-12 (새번역)", sourceEn: "Ephesians 4:11-12", type: "scripture" },
   { ko: "서로 사랑하십시오. 내가 여러분을 사랑한 것과 같이, 여러분도 서로 사랑하십시오. 여러분이 서로 사랑하면, 모든 사람이 그것으로써 여러분이 내 제자임을 알게 될 것입니다.", en: "\"Love one another. As I have loved you, so you must love one another. By this everyone will know that you are my disciples, if you love one another.\"", source: "요한복음 13:34-35 (새번역)", sourceEn: "John 13:34-35", type: "scripture" },
 ];
+
+/* ─────────────────────────────────────────
+   CITY EVENTS — 도시별 주요 이벤트 한 줄 안내
+   매주 에이전트가 업데이트 (holidays·festivals·sports·community)
+   Last updated: 2026-05-18
+───────────────────────────────────────── */
+type CityEventItem = { emoji: string; ko: string; en: string; date: string; type: "holiday"|"sports"|"festival"|"culture"|"alert"|"church" };
+const CITY_EVENTS: Partial<Record<string, CityEventItem[]>> = {
+  // ── 미국 공통 이벤트
+  _us_common: [
+    { emoji:"⚽", ko:"FIFA 월드컵 2026 — 6월 11일~7월 19일 미국·캐나다·멕시코 개최", en:"FIFA World Cup 2026 — June 11–July 19 USA/Canada/Mexico", date:"2026-06", type:"sports" },
+    { emoji:"🎆", ko:"미국 독립기념일 (7월 4일) — 불꽃놀이·퍼레이드", en:"Independence Day July 4 — Fireworks & Parades", date:"2026-07-04", type:"holiday" },
+    { emoji:"🦃", ko:"추수감사절 (11월 26일) — 쇼핑·가족 모임", en:"Thanksgiving Nov 26 — Shopping & Family", date:"2026-11-26", type:"holiday" },
+    { emoji:"🎄", ko:"크리스마스 (12월 25일) — 연말 행사·예배", en:"Christmas Dec 25 — Year-end Events & Services", date:"2026-12-25", type:"church" },
+    { emoji:"🌸", ko:"부활절 (4월 5일) — 한인 교회 특별 예배", en:"Easter Apr 5 — Korean Church Special Services", date:"2026-04-05", type:"church" },
+  ],
+  // ── 시애틀
+  seattle: [
+    { emoji:"⚽", ko:"FIFA 월드컵 시애틀 경기 — Lumen Field (6월)", en:"FIFA World Cup Seattle matches at Lumen Field (June)", date:"2026-06", type:"sports" },
+    { emoji:"🌸", ko:"워싱턴 벚꽃 시즌 — UW 캠퍼스 (3-4월)", en:"Cherry Blossom Season at UW Campus (Mar–Apr)", date:"2026-03", type:"festival" },
+    { emoji:"🎶", ko:"시애틀 재즈 페스티벌 (8월)", en:"Seattle Jazz Festival (August)", date:"2026-08", type:"culture" },
+  ],
+  // ── LA·오렌지카운티
+  la: [
+    { emoji:"⚽", ko:"FIFA 월드컵 LA 경기 — SoFi Stadium (6월)", en:"FIFA World Cup LA at SoFi Stadium (June)", date:"2026-06", type:"sports" },
+    { emoji:"🎬", ko:"LA 한국 영화제 (10월)", en:"Korean Film Festival LA (October)", date:"2026-10", type:"culture" },
+    { emoji:"🌮", ko:"LA 코리아타운 파라데이 (여름)", en:"Koreatown Parade Day (Summer)", date:"2026-07", type:"festival" },
+  ],
+  orangecounty: [
+    { emoji:"⚽", ko:"FIFA 월드컵 LA 경기 관람 — SoFi Stadium 30분 거리", en:"FIFA World Cup LA — 30 min from OC to SoFi", date:"2026-06", type:"sports" },
+    { emoji:"🎠", ko:"디즈니랜드 연말 이벤트 (11-1월)", en:"Disneyland Holiday Events (Nov–Jan)", date:"2026-11", type:"festival" },
+    { emoji:"🏄", ko:"US Open of Surfing — 헌팅턴 비치 (7월)", en:"US Open of Surfing at Huntington Beach (July)", date:"2026-07", type:"sports" },
+  ],
+  // ── 뉴욕
+  newyork: [
+    { emoji:"⚽", ko:"FIFA 월드컵 뉴욕 경기 — MetLife Stadium (6월)", en:"FIFA World Cup NY at MetLife Stadium (June)", date:"2026-06", type:"sports" },
+    { emoji:"🎉", ko:"한인 퍼레이드 — 코리안 퍼레이드 (10월)", en:"Korean Parade NYC (October)", date:"2026-10", type:"festival" },
+    { emoji:"🎆", ko:"새해 카운트다운 — 타임스스퀘어 (12월 31일)", en:"Times Square New Year Countdown (Dec 31)", date:"2026-12-31", type:"festival" },
+  ],
+  // ── 달라스
+  dallas: [
+    { emoji:"⚽", ko:"FIFA 월드컵 달라스 경기 — AT&T Stadium (6월)", en:"FIFA World Cup Dallas at AT&T Stadium (June)", date:"2026-06", type:"sports" },
+    { emoji:"🤠", ko:"달라스 한인 문화 축제 (가을)", en:"Dallas Korean Cultural Festival (Fall)", date:"2026-09", type:"festival" },
+  ],
+  // ── 휴스턴
+  houston: [
+    { emoji:"⚽", ko:"FIFA 월드컵 휴스턴 7경기 — NRG Stadium (6-7월)", en:"FIFA World Cup Houston 7 games — NRG Stadium (Jun–Jul)", date:"2026-06", type:"sports" },
+    { emoji:"🌹", ko:"휴스턴 로데오 & livestock show (2-3월)", en:"Houston Livestock Show & Rodeo (Feb–Mar)", date:"2026-02", type:"festival" },
+  ],
+  // ── 시카고
+  chicago: [
+    { emoji:"⚽", ko:"FIFA 월드컵 시카고 경기 — Soldier Field (6월)", en:"FIFA World Cup Chicago at Soldier Field (June)", date:"2026-06", type:"sports" },
+    { emoji:"🎆", ko:"시카고 블루스 페스티벌 (6월)", en:"Chicago Blues Festival (June)", date:"2026-06", type:"culture" },
+    { emoji:"🎃", ko:"할로윈 시카고 — 한인타운 행사 (10월)", en:"Halloween Chicago — Korean community events (Oct)", date:"2026-10", type:"festival" },
+  ],
+  // ── 토론토
+  toronto: [
+    { emoji:"⚽", ko:"FIFA 월드컵 토론토 경기 — BMO Field (6월)", en:"FIFA World Cup Toronto at BMO Field (June)", date:"2026-06", type:"sports" },
+    { emoji:"🍂", ko:"토론토 한인 문화제 (가을)", en:"Toronto Korean Cultural Festival (Fall)", date:"2026-09", type:"festival" },
+    { emoji:"🍁", ko:"캐나다 데이 (7월 1일) — CN타워 불꽃놀이", en:"Canada Day July 1 — CN Tower Fireworks", date:"2026-07-01", type:"holiday" },
+  ],
+  // ── 밴쿠버
+  vancouver: [
+    { emoji:"⚽", ko:"FIFA 월드컵 밴쿠버 경기 — BC Place (6월)", en:"FIFA World Cup Vancouver at BC Place (June)", date:"2026-06", type:"sports" },
+    { emoji:"🌸", ko:"밴쿠버 벚꽃 축제 (3-4월)", en:"Vancouver Cherry Blossom Festival (Mar–Apr)", date:"2026-03", type:"festival" },
+    { emoji:"🍁", ko:"캐나다 데이 (7월 1일)", en:"Canada Day July 1", date:"2026-07-01", type:"holiday" },
+  ],
+  // ── 한국 도시들
+  seoul: [
+    { emoji:"🌸", ko:"벚꽃 시즌 — 여의도·윤중로 (4월 초)", en:"Cherry Blossom at Yeouido (early April)", date:"2026-04", type:"festival" },
+    { emoji:"🎆", ko:"광복절 (8월 15일) — 서울 행사", en:"Liberation Day Aug 15 — Seoul events", date:"2026-08-15", type:"holiday" },
+    { emoji:"🥮", ko:"추석 (10월 6일) — 가족 귀성", en:"Chuseok Oct 6 — Family Homecoming", date:"2026-10-06", type:"holiday" },
+  ],
+  busan: [
+    { emoji:"🎬", ko:"부산 국제영화제 BIFF (10월)", en:"Busan International Film Festival BIFF (October)", date:"2026-10", type:"culture" },
+    { emoji:"🎆", ko:"해운대 모래축제 (5월)", en:"Haeundae Sand Festival (May)", date:"2026-05", type:"festival" },
+    { emoji:"🥮", ko:"추석 (10월 6일) — 가족 귀성", en:"Chuseok Oct 6 — Family Homecoming", date:"2026-10-06", type:"holiday" },
+  ],
+  jeju: [
+    { emoji:"🌸", ko:"벚꽃·유채꽃 시즌 (3-4월) — 전국 최초 개화", en:"Cherry & Canola Blossoms (Mar–Apr) — First in Korea", date:"2026-03", type:"festival" },
+    { emoji:"🏊", ko:"제주 국제 트라이애슬론 (6월)", en:"Jeju International Triathlon (June)", date:"2026-06", type:"sports" },
+  ],
+  // ── 오세아니아
+  sydney: [
+    { emoji:"🎆", ko:"시드니 새해맞이 불꽃놀이 — 세계 최초 자정 (1월 1일)", en:"Sydney NYE Fireworks — World's first midnight (Jan 1)", date:"2027-01-01", type:"festival" },
+    { emoji:"🌈", ko:"시드니 마르디그라 (2-3월) — 한인 관광객 급증 기간", en:"Sydney Mardi Gras (Feb–Mar) — Peak Korean tourist season", date:"2026-02", type:"festival" },
+  ],
+  // ── 도쿄
+  tokyo: [
+    { emoji:"🌸", ko:"도쿄 벚꽃 시즌 — 우에노·신주쿠 (3월 말-4월 초)", en:"Tokyo Cherry Blossom — Ueno/Shinjuku (late Mar–early Apr)", date:"2026-03", type:"festival" },
+    { emoji:"🎆", ko:"스미다 강 불꽃놀이 (7월)", en:"Sumida River Fireworks (July)", date:"2026-07", type:"festival" },
+  ],
+  // ── 유럽
+  london: [
+    { emoji:"👑", ko:"영국 왕실 행사 (연중)", en:"Royal Events UK (year-round)", date:"2026", type:"culture" },
+    { emoji:"🎄", ko:"옥스퍼드 스트리트 크리스마스 조명 (11-12월)", en:"Oxford Street Christmas Lights (Nov–Dec)", date:"2026-11", type:"festival" },
+  ],
+  paris: [
+    { emoji:"🚴", ko:"투르 드 프랑스 파리 도착 (7월)", en:"Tour de France Paris Finish (July)", date:"2026-07", type:"sports" },
+    { emoji:"🎄", ko:"샹젤리제 크리스마스 마켓 (12월)", en:"Champs-Elysées Christmas Market (December)", date:"2026-12", type:"festival" },
+  ],
+};
+
+// 도시별 이벤트 + 미국 공통 이벤트 합치기
+function getCityEvents(slug: string): CityEventItem[] {
+  const specific = CITY_EVENTS[slug] ?? [];
+  const usCommon = (slug !== "seoul" && slug !== "busan" && slug !== "tokyo" && slug !== "osaka"
+    && slug !== "london" && slug !== "paris" && slug !== "frankfurt" && slug !== "berlin"
+    && slug !== "sydney" && slug !== "melbourne" && slug !== "brisbane" && slug !== "perth"
+    && slug !== "auckland" && slug !== "saopaulo" && slug !== "singapore" && slug !== "bangkok"
+    && slug !== "hochiminh" && slug !== "dubai" && slug !== "seoul" && slug !== "busan"
+    && slug !== "jeju" && slug !== "daegu" && slug !== "gwangju" && slug !== "daejeon"
+    && slug !== "ansan" && slug !== "incheon" && slug !== "changwon" && slug !== "cheonan"
+    && slug !== "bundang")
+    ? (CITY_EVENTS["_us_common"] ?? []) : [];
+  return [...specific, ...usCommon].slice(0, 5);
+}
+
+function CityEventsSection({ lang }: { lang: string }) {
+  const ko = lang === "ko";
+  const city = useCityConfig();
+  const events = getCityEvents(city.slug);
+  if (!events.length) return null;
+
+  const typeColor: Record<string, string> = {
+    sports: "#F97316", festival: "#8B5CF6", holiday: "#EF4444",
+    culture: "#06B6D4", church: "#10B981", alert: "#F59E0B",
+  };
+
+  return (
+    <div style={{ margin: "8px 16px 0" }}>
+      {/* 섹션 헤더 */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:6 }}>
+        <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12, color:"rgba(0,0,0,0.5)", letterSpacing:"0.06em", textTransform:"uppercase" }}>
+          📅 {ko ? `${city.nameKo} 주요 이벤트` : `${city.nameEn} Upcoming Events`}
+        </div>
+        <div style={{ fontFamily:"Manrope,sans-serif", fontSize:10, color:"rgba(0,0,0,0.35)" }}>
+          {ko ? "매주 업데이트" : "Weekly update"}
+        </div>
+      </div>
+      {/* 가로 스크롤 이벤트 카드 */}
+      <div style={{ display:"flex", gap:8, overflowX:"auto", paddingBottom:4 }}>
+        {events.map((ev, i) => (
+          <div key={i} style={{
+            flexShrink:0, background:"#fff",
+            borderRadius:12, padding:"8px 12px",
+            boxShadow:"0 1px 6px rgba(0,0,0,0.07)",
+            borderLeft:`3px solid ${typeColor[ev.type] || "#94A3B8"}`,
+            maxWidth:200, minWidth:150,
+          }}>
+            <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11.5, fontWeight:700, color:"#1B2A4A", lineHeight:1.4 }}>
+              {ev.emoji} {ko ? ev.ko : ev.en}
+            </div>
+            <div style={{ fontFamily:"Manrope,sans-serif", fontSize:10, color:"rgba(0,0,0,0.42)", marginTop:3 }}>
+              {ev.date}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function DailyQuoteSection({ lang }: { lang: string }) {
   const ko = lang === "ko";
@@ -11302,6 +11480,9 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <CompactHeroNew />
       <HebronFlywheelBar lang={lang} />
       <QuickMenuSection onNavigate={onNavigate} />
+
+      {/* ── 도시 이벤트 — 매주 업데이트 ── */}
+      <CityEventsSection lang={lang} />
 
       {/* ── Day 1 도착 체크리스트 ── */}
       <ArrivalChecklistSection lang={lang} />
