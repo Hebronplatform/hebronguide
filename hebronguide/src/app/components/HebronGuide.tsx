@@ -73,43 +73,44 @@ function buildNewMemberHref(opts: {
 type HeroSlide = { url: string; pos: string; alt: string };
 const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
-  // 🌲 시애틀 — Space Needle + Mt. Rainier + 에메랄드 도시
-  // (verified by photo agent 2026-05-11)
+  // 🌲 시애틀 — Space Needle Kerry Park 전경 + Pike Place Market + waterfront
+  // (verified 2026-05-18)
   seattle: [
-    // 오전 세트 (0-11시) — 맑은 낮
-    { url: "https://images.unsplash.com/photo-1502175353174-a7a70e73b362?w=1200&q=90", pos: "center 25%", alt: "Seattle Space Needle blue sky", timeSet: "am" },
-    { url: "https://images.unsplash.com/photo-1622839497468-9e4a20007cf8?w=1200&q=90", pos: "center 30%", alt: "Seattle downtown clear day", timeSet: "am" },
-    { url: "https://images.unsplash.com/photo-1437809781432-a957377661ee?w=1200&q=90", pos: "center 35%", alt: "Seattle waterfront sunny", timeSet: "am" },
-    // 오후 세트 (12-23시) — 다른 분위기
-    { url: "https://images.unsplash.com/photo-1613525850352-52de526e2336?w=1200&q=90", pos: "center 28%", alt: "Seattle Space Needle afternoon", timeSet: "pm" },
-    { url: "https://images.unsplash.com/photo-1542223616-9de9adb5e3e8?w=1200&q=90", pos: "center 35%", alt: "Seattle skyline aerial", timeSet: "pm" },
+    { url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=90", pos: "center 40%", alt: "Seattle Space Needle Kerry Park skyline" },
+    { url: "https://images.unsplash.com/photo-1502175353174-a7a70e73b362?w=1200&q=90", pos: "center 25%", alt: "Seattle Space Needle blue sky" },
+    { url: "https://images.unsplash.com/photo-1437809781432-a957377661ee?w=1200&q=90", pos: "center 35%", alt: "Seattle Pike Place waterfront" },
   ],
 
-  // 🤠 달라스 — ✅ verified: aerial skyline + architecture
+  // 🤠 달라스 — Reunion Tower 야경 + Trinity River 스카이라인
+  // (verified 2026-05-18: landmark Reunion Tower illuminated sphere)
   dallas: [
-    { url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=90", pos: "center 38%", alt: "Dallas Reunion Tower Skyline" },
-    { url: "https://images.unsplash.com/photo-1545194445-dddb8f4487c6?w=1200&q=90", pos: "center 40%", alt: "Dallas downtown aerial" },
-    { url: "https://images.unsplash.com/photo-1548115184-bc6544d06a58?w=1200&q=90", pos: "center 42%", alt: "Dallas skyline architecture" },
+    { url: "https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=1200&q=90", pos: "center 38%", alt: "Dallas Reunion Tower night skyline" },
+    { url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=90", pos: "center 38%", alt: "Dallas Reunion Tower daytime" },
+    { url: "https://images.unsplash.com/photo-1570639856878-1e91f99bcc05?w=1200&q=90", pos: "center 40%", alt: "Dallas downtown aerial" },
   ],
 
-  // 🌉 샌프란시스코 — ✅ verified: both Golden Gate Bridge photos confirmed
+  // 🌉 샌프란시스코 — Golden Gate 안개 + Painted Ladies (알라모 스퀘어)
+  // (verified 2026-05-18: iconic fog+bridge, Victorian vs. modern skyline)
   sf: [
-    { url: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=1200&q=90", pos: "center 42%", alt: "Golden Gate Bridge dramatic" },
-    { url: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&q=90", pos: "center 38%", alt: "Golden Gate Bridge clear day" },
-    { url: "https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?w=1200&q=90", pos: "center 40%", alt: "San Francisco bay hills" },
+    { url: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=1200&q=90", pos: "center 42%", alt: "Golden Gate Bridge dramatic fog" },
+    { url: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&q=90", pos: "center 38%", alt: "Golden Gate Bridge clear blue sky" },
+    { url: "https://images.unsplash.com/photo-1506146332389-18140dc7b2fb?w=1200&q=90", pos: "center 60%", alt: "Painted Ladies Victorian houses San Francisco skyline" },
   ],
 
-  // 🗽 뉴욕 — ✅ #1 verified Manhattan skyline, #2 fixed (was dark forest)
+  // 🗽 뉴욕 — Brooklyn Bridge 황혼 + Manhattan 야경 + 브릿지 아치 뷰
+  // (verified 2026-05-18: dusk golden tones + bridge arch Manhattan)
   newyork: [
-    { url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&q=90", pos: "center 35%", alt: "New York Manhattan Empire State" },
-    { url: "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=1200&q=90", pos: "center 38%", alt: "New York City skyline" },
-    { url: "https://images.unsplash.com/photo-1546436836-07a91091f160?w=1200&q=90", pos: "center 40%", alt: "Brooklyn Bridge" },
+    { url: "https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?w=1200&q=90", pos: "center 50%", alt: "NYC Brooklyn Bridge Manhattan skyline dusk golden hour" },
+    { url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&q=90", pos: "center 35%", alt: "New York Manhattan Empire State Building" },
+    { url: "https://images.unsplash.com/photo-1546436836-07a91091f160?w=1200&q=90", pos: "center 40%", alt: "Brooklyn Bridge arch view Manhattan" },
   ],
 
-  // 🌴 LA — palm boulevard (evocative LA vibe ✅) + Hollywood + Griffith
+  // 🌴 LA — Griffith Observatory 드론 + Hollywood Sign + Santa Monica Pier
+  // (verified 2026-05-18: Griffith hillside drone shot, Hollywood sign mountain)
   la: [
-    { url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=1200&q=90", pos: "center 30%", alt: "Hollywood sign hills" },
-    { url: "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=1200&q=90", pos: "center 35%", alt: "Los Angeles Griffith Observatory" },
+    { url: "https://images.unsplash.com/photo-1580655653885-65763b2597d0?w=1200&q=90", pos: "center 50%", alt: "Griffith Observatory Los Angeles hillside aerial" },
+    { url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=1200&q=90", pos: "center 30%", alt: "Hollywood Sign mountain hills Los Angeles" },
+    { url: "https://images.unsplash.com/photo-1496588152823-86ff7695e68f?w=1200&q=90", pos: "center 35%", alt: "Santa Monica Pier Los Angeles sunset" },
   ],
 
   // 🎸 내쉬빌 — ✅ fixed: was tropical beach, now Nashville skyline + Broadway
@@ -132,25 +133,28 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1200&q=90", pos: "center 40%", alt: "Toronto Lake Ontario" },
   ],
 
-  // 🏔️ 밴쿠버 — ✅ fixed: was desert camping(!), now BC mountains + harbor
+  // 🏔️ 밴쿠버 — Stanley Park 바위해안 + 산+바다+스카이라인 3중 레이어
+  // (verified 2026-05-18: Stanley Park rocky waterfront, mountains+ocean+city)
   vancouver: [
-    { url: "https://images.unsplash.com/photo-1490131784822-b4626a8ec96a?w=1200&q=90", pos: "center 32%", alt: "Vancouver BC mountain lake reflection" },
+    { url: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=90", pos: "center 60%", alt: "Vancouver skyline Stanley Park rocky shore mountains" },
+    { url: "https://images.unsplash.com/photo-1490131784822-b4626a8ec96a?w=1200&q=90", pos: "center 32%", alt: "Vancouver BC mountains ocean skyline" },
     { url: "https://images.unsplash.com/photo-1494587351196-bbf5f29cff42?w=1200&q=90", pos: "center 35%", alt: "Lions Gate Bridge Vancouver" },
-    { url: "https://images.unsplash.com/photo-1529511582893-2d7e684dd128?w=1200&q=90", pos: "center 40%", alt: "Vancouver Stanley Park" },
   ],
 
-  // 🚀 휴스턴 — ✅ fixed Houston (was 404), + NASA Space Center
+  // 🚀 휴스턴 — 야경 스카이라인 (오렌지+블루) + NASA Space Center + 항공 뷰
+  // (verified 2026-05-18: orange/blue night skyline, helicopter aerial dusk)
   houston: [
-    { url: "https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=1200&q=90", pos: "center 35%", alt: "Houston city skyline" },
-    { url: "https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=1200&q=90", pos: "center 40%", alt: "Houston NASA Space Center" },
-    { url: "https://images.unsplash.com/photo-1543968996-ee822b8176ba?w=1200&q=90", pos: "center 38%", alt: "Houston downtown modern" },
+    { url: "https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=1200&q=90", pos: "center 50%", alt: "Houston skyline orange blue night reflection" },
+    { url: "https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=1200&q=90", pos: "center 40%", alt: "Houston NASA Space Center rocket" },
+    { url: "https://images.unsplash.com/photo-1543968996-ee822b8176ba?w=1200&q=90", pos: "center 38%", alt: "Houston downtown aerial" },
   ],
 
-  // 🍑 애틀랜타 — ✅ fixed: was Taipei 101(!), now Atlanta + Georgia
+  // 🍑 애틀랜타 — SkyView Ferris Wheel 다운타운 + Midtown 야경 항공 뷰
+  // (verified 2026-05-18: SkyView Ferris wheel landmark, Midtown night aerial)
   atlanta: [
-    { url: "https://images.unsplash.com/photo-1602941525421-8f8b81d3edbb?w=1200&q=90", pos: "center 35%", alt: "Atlanta skyline" },
-    { url: "https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?w=1200&q=90", pos: "center 40%", alt: "Atlanta Centennial Park area" },
-    { url: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=90", pos: "center 42%", alt: "Georgia suburban beauty" },
+    { url: "https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?w=1200&q=90", pos: "center 50%", alt: "Atlanta SkyView Ferris Wheel downtown skyline" },
+    { url: "https://images.unsplash.com/photo-1602941525421-8f8b81d3edbb?w=1200&q=90", pos: "center 35%", alt: "Atlanta Midtown skyline night aerial" },
+    { url: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=90", pos: "center 42%", alt: "Atlanta Georgia summer" },
   ],
 
   // 🔔 필라델피아 — ✅ verified aerial Philadelphia + historic center
@@ -160,10 +164,12 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Philadelphia historic street" },
   ],
 
-  // 🌊 마이애미 — ✅ fixed: was white Mustang in garage(!), now actual beach
+  // 🌊 마이애미 — South Beach 파스텔 구조대 + Ocean Drive Art Deco 네온
+  // (verified 2026-05-18: iconic colorful lifeguard tower + Colony Hotel neon)
   miami: [
-    { url: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&q=90", pos: "center 45%", alt: "Miami South Beach ocean" },
-    { url: "https://images.unsplash.com/photo-1535498730771-e735b998cd64?w=1200&q=90", pos: "center 35%", alt: "Miami skyline bay" },
+    { url: "https://images.unsplash.com/photo-1535498730771-e735b998cd64?w=1200&q=90", pos: "center 35%", alt: "Miami South Beach colorful lifeguard tower ocean" },
+    { url: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&q=90", pos: "center 45%", alt: "Miami South Beach Art Deco Ocean Drive" },
+    { url: "https://images.unsplash.com/photo-1548283520-d1ab7c0b9f1c?w=1200&q=90", pos: "center 40%", alt: "Miami skyline bay sunset" },
   ],
 
   // 🍊 오렌지카운티 — 풀러튼·부에나파크 (검증 200 OK)
@@ -203,11 +209,12 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
   ],
 
-  // 🇰🇷 서울 — 검증된 사진 3장 (200 OK 확인)
+  // 🇰🇷 서울 — 경복궁 한복 방문객 + N서울타워 + 한강 야경
+  // (verified 2026-05-18: Gyeongbokgung hanbok visitors, N Seoul Tower landmark)
   seoul: [
-    { url: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=1200&q=90", pos: "center 42%", alt: "Seoul Korea cityscape daytime" },
-    { url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&q=90", pos: "center 40%", alt: "Seoul Korea urban daytime" },
-    { url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=90", pos: "center 40%", alt: "Seoul Korea daytime" },
+    { url: "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=1200&q=90", pos: "center 50%", alt: "Gyeongbokgung Palace Seoul Korea traditional hanbok visitors" },
+    { url: "https://images.unsplash.com/photo-1583425423688-5be5e8a9fcba?w=1200&q=90", pos: "center 40%", alt: "N Seoul Tower Namsan landmark Korea" },
+    { url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=90", pos: "center 40%", alt: "Seoul Korea Han River night skyline" },
   ],
 
   // 🇰🇷 부산 — 검증된 사진 (200 OK)
@@ -296,9 +303,11 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1545044846-351ba102b6d5?w=1200&q=90", pos: "center 40%", alt: "Melbourne Yarra River" },
   ],
 
-  // 🇬🇧 런던 — 빅벤 + 템즈강
+  // 🇬🇧 런던 — 빅벤 야경 + Tower Bridge 황금 조명
+  // (verified 2026-05-18: Big Ben illuminated night, Tower Bridge warm glow)
   london: [
-    { url: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=90", pos: "center 38%", alt: "London Big Ben Thames River" },
+    { url: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=90", pos: "center 38%", alt: "London Big Ben Thames River night" },
+    { url: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=1200&q=90", pos: "center 50%", alt: "Tower Bridge London night warm golden lights" },
   ],
 
   // 🇫🇷 파리 — 에펠탑 + 센강
@@ -459,9 +468,12 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   hochiminh: [
     { url: "https://images.unsplash.com/photo-1570366583862-f91883984fde?w=1200&q=90", pos: "center 38%", alt: "Ho Chi Minh City streets" },
   ],
-  // 🇯🇵 도쿄 — 신주쿠 + 시부야 + 도쿄타워
+  // 🇯🇵 도쿄 — 시부야 스크램블 야경 + 센소지 사원 + 도쿄 스카이트리
+  // (verified 2026-05-18: Shibuya night neon, Senso-ji Temple gold/red)
   tokyo: [
-    { url: "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=1200&q=90", pos: "center 38%", alt: "Tokyo Shibuya crossing" },
+    { url: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=90", pos: "center 50%", alt: "Tokyo Shibuya crossing scramble night neon lights" },
+    { url: "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=1200&q=90", pos: "center 38%", alt: "Tokyo Shibuya crossing daytime" },
+    { url: "https://images.unsplash.com/photo-1547860742-31c4c657e153?w=1200&q=90", pos: "center 40%", alt: "Senso-ji Temple Asakusa Tokyo red gold" },
   ],
 
   // 🇯🇵 오사카 — 도톤보리 + 오사카성
@@ -7990,13 +8002,31 @@ function CompactHeroNew() {
         backgroundColor: city.color || "#1B4F72",
       }} />
 
-      {/* ── Ken Burns 키프레임 */}
+      {/* ── 애니메이션 키프레임: Ken Burns Infinite + 파티클 + 스캔라인 */}
       <style>{`
-        @keyframes kbIn  { from { transform:scale(1.0) translateX(0)   } to { transform:scale(1.08) translateX(-1.5%) } }
-        @keyframes kbOut { from { transform:scale(1.0) translateX(0)   } to { transform:scale(1.08) translateX( 1.5%) } }
+        @keyframes kbIn  {
+          0%   { transform: scale(1.0)  translate(0%,     0%);   }
+          50%  { transform: scale(1.12) translate(-1.8%, -1.2%); }
+          100% { transform: scale(1.0)  translate(0%,     0%);   }
+        }
+        @keyframes kbOut {
+          0%   { transform: scale(1.0)  translate(0%,    0%);   }
+          50%  { transform: scale(1.12) translate(1.8%,  -1.2%); }
+          100% { transform: scale(1.0)  translate(0%,   0%);   }
+        }
+        @keyframes heroParticle {
+          0%   { transform: translate(0, 0)   scale(1);   opacity: 0;   }
+          15%  { opacity: 0.9; }
+          85%  { opacity: 0.3; }
+          100% { transform: translate(var(--ptx), var(--pty)) scale(0.4); opacity: 0; }
+        }
+        @keyframes heroScan {
+          0%   { top: -3px; opacity: 0.6; }
+          100% { top: 110%;  opacity: 0;   }
+        }
       `}</style>
 
-      {/* ── 사진 슬라이드 (도시별 랜드마크) */}
+      {/* ── 사진 슬라이드: Ken Burns 무한 반복 */}
       {slides && slides.map((slide, i) => {
         const isActive = i === slideIdx;
         return (
@@ -8012,12 +8042,11 @@ function CompactHeroNew() {
               position: "absolute", inset: 0,
               width: "100%", height: "100%",
               objectFit: "cover", objectPosition: slide.pos,
-              filter: "brightness(1.4) saturate(1.5) contrast(0.95)",
+              filter: "brightness(1.35) saturate(1.5) contrast(0.95)",
               opacity: isActive ? 1 : 0,
-              transition: `opacity 1.4s ease, transform ${isActive ? "0s" : "0s"}`,
-              // Ken Burns: 활성 슬라이드만 줌 애니메이션
+              transition: "opacity 1.4s ease",
               animation: isActive
-                ? `${i % 2 === 0 ? "kbIn" : "kbOut"} 6s ease-out forwards`
+                ? `${i % 2 === 0 ? "kbIn" : "kbOut"} 10s ease-in-out infinite`
                 : "none",
               zIndex: isActive ? 1 : 0,
             }}
@@ -8052,8 +8081,43 @@ function CompactHeroNew() {
       {/* ── 그라디언트 오버레이 */}
       <div style={{
         position: "absolute", inset: 0, zIndex: 2,
-        background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 38%, rgba(0,0,0,0.35) 100%)",
+        background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 38%, rgba(0,0,0,0.42) 100%)",
       }} />
+
+      {/* ── 스캔라인 (도시 색상) */}
+      {slides && (
+        <div style={{
+          position: "absolute", left: 0, right: 0, height: 2, zIndex: 3,
+          background: `linear-gradient(90deg, transparent 0%, ${city.color || "#6EE7B7"}99 40%, ${city.color || "#6EE7B7"}cc 50%, ${city.color || "#6EE7B7"}99 60%, transparent 100%)`,
+          animation: "heroScan 5s linear infinite",
+          pointerEvents: "none",
+        }} />
+      )}
+
+      {/* ── 파티클 (사진 슬라이드가 있는 도시만) */}
+      {slides && ([
+        { left:"12%",  delay:"0s",    size:5, tx:"-18px", ty:"-65px", color: city.color || "#6EE7B7" },
+        { left:"27%",  delay:"0.8s",  size:3, tx:"12px",  ty:"-80px", color:"rgba(255,255,255,0.9)"  },
+        { left:"45%",  delay:"1.6s",  size:4, tx:"-8px",  ty:"-55px", color:"#C9A227"               },
+        { left:"63%",  delay:"2.4s",  size:3, tx:"20px",  ty:"-72px", color: city.color || "#6EE7B7" },
+        { left:"78%",  delay:"3.2s",  size:5, tx:"-14px", ty:"-60px", color:"rgba(255,255,255,0.8)"  },
+        { left:"88%",  delay:"0.4s",  size:3, tx:"8px",   ty:"-48px", color:"#C9A227"               },
+      ] as const).map((p, i) => (
+        <div key={`pt-${i}`} style={{
+          position: "absolute",
+          bottom: 38,
+          left: p.left,
+          width: p.size,
+          height: p.size,
+          borderRadius: "50%",
+          background: p.color,
+          zIndex: 4,
+          pointerEvents: "none",
+          ["--ptx" as any]: p.tx,
+          ["--pty" as any]: p.ty,
+          animation: `heroParticle 3.2s ${p.delay} ease-out infinite`,
+        }} />
+      ))}
 
       {/* ── 도시명 + 태그라인 */}
       <div style={{ position: "absolute", bottom: 18, left: 18, right: 72, zIndex: 3 }}>
@@ -8066,7 +8130,7 @@ function CompactHeroNew() {
         }}>
           <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6EE7B7", display: "inline-block", flexShrink: 0 }} />
           <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(255,255,255,0.92)", letterSpacing: "0.05em" }}>
-            LIVE · {lang === "ko" ? "62개 도시" : "62 Cities"}
+            LIVE · {lang === "ko" ? "67개 도시" : "67 Cities"}
           </span>
         </div>
         <div style={{
