@@ -73,14 +73,15 @@ function buildNewMemberHref(opts: {
 type HeroSlide = { url: string; pos: string; alt: string };
 const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
-  // 🌲 시애틀 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
-  // Story: Puget Sound 도착 → Space Needle → Pike Place → 하이커들 → Fremont 동네
+  // 🌲 시애틀 — ① DJI 드론 공중 → ② Space Needle 랜드마크 → ③ Pike Place 사람들 → ④ 하이커 환대 → ⑤ Fremont 정착
+  // Story: Josh Hild DJI 드론(레이크+다운타운) → Space Needle+Rainier → Pike Place 마켓 군중 → 하이커 미소 → Fremont 동네
+  // 표준 적용: S1=진짜 드론공중(8uL3goCiCRs), S3=주간 사람들(FLW5Saogvt8) | q=90→q=95
   seattle: [
-    { url: "https://images.unsplash.com/photo-UmEYn_GYqFo?w=1200&q=90",              pos: "center 50%", alt: "Seattle skyline Kerry Park arrival aerial" },
-    { url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=90",  pos: "center 40%", alt: "Space Needle Mt Rainier landmark" },
-    { url: "https://images.unsplash.com/photo-xsqF178XAhk?w=1200&q=90",              pos: "center 50%", alt: "Pike Place Market Public Market neon dusk" },
-    { url: "https://images.unsplash.com/photo-4vRiJdl5vaI?w=1200&q=90",              pos: "center 50%", alt: "Group hikers mountain trail people smiling" },
-    { url: "https://images.unsplash.com/photo-oqYy08JnUWE?w=1200&q=90",              pos: "center 50%", alt: "Fremont neighborhood couple sidewalk settle" },
+    { url: "https://images.unsplash.com/photo-8uL3goCiCRs?w=1200&q=95",              pos: "center 60%", alt: "Seattle drone aerial DJI lake downtown skyline daytime wide" },
+    { url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=95",  pos: "center 40%", alt: "Space Needle Mt Rainier Seattle landmark blue sky" },
+    { url: "https://images.unsplash.com/photo-FLW5Saogvt8?w=1200&q=95",              pos: "center 50%", alt: "Pike Place Market Seattle people daytime community welcome" },
+    { url: "https://images.unsplash.com/photo-4vRiJdl5vaI?w=1200&q=95",              pos: "center 50%", alt: "Group hikers mountain trail smiling people warmth" },
+    { url: "https://images.unsplash.com/photo-oqYy08JnUWE?w=1200&q=95",              pos: "center 50%", alt: "Fremont neighborhood couple sidewalk Seattle settle home" },
   ],
 
   // 🤠 달라스 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
