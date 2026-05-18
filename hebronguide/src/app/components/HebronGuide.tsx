@@ -22165,7 +22165,68 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
           </div>
         </StepCard>
       ))}
-      <StepCard num={cityAirport.transport.length + 1} title={ko ? "도착 첫날 밤 — 지금 당장 할 일" : "First Night Arrival — What To Do Right Now"}>
+      {/* ── 단기 숙소 안내 ── */}
+      <StepCard num={cityAirport.transport.length + 1} title={ko ? "🏨 첫 1-4주 숙소 — 어디서 지낼까?" : "🏨 First 1-4 Weeks — Where to Stay?"}>
+        <BodyText>
+          {ko
+            ? `${city.nameKo}에 처음 도착하면 장기 집을 바로 계약하기 어렵습니다.\n아래 순서로 숙소를 찾으세요:`
+            : `It's hard to sign a long-term lease immediately upon arrival in ${city.nameEn}.\nFind temporary housing in this order:`}
+        </BodyText>
+        <div style={{ display:"flex", flexDirection:"column", gap:8, marginTop:10 }}>
+          {[
+            {
+              icon:"🏠",
+              titleKo:"한인 민박 (추천 1순위)",
+              titleEn:"Korean Guesthouse (Top Choice)",
+              descKo:`${city.nameKo} 한인 커뮤니티 내 민박. 한국어 소통, 한식 제공, 정착 정보 무료 제공. 카카오톡 오픈채팅 '${city.nameKo} 한인 민박' 검색 또는 지역 한인 커뮤니티 문의.`,
+              descEn:`Korean-run guesthouses in the ${city.nameEn} Korean community. Korean-speaking hosts, Korean food, free settlement tips. Search KakaoTalk Open Chat or ask local Korean churches.`,
+              price: ko?"$50-100/박":"$50-100/night"
+            },
+            {
+              icon:"🛏️",
+              titleKo:"에어비앤비 — 한인 밀집 구역 선택",
+              titleEn:"Airbnb — Stay in Korean Neighborhood",
+              descKo:`${city.nameKo} 한인타운·마트 근처 숙소 선택. 생활 편의·한국어 환경 유지. 1-2주 단위 예약으로 장기 주거 탐색 시간 확보.`,
+              descEn:`Choose Airbnb near the Korean area in ${city.nameEn}. Convenient access to Korean stores and community. Book 1-2 week blocks while searching for long-term housing.`,
+              price:ko?"$70-150/박":"$70-150/night"
+            },
+            {
+              icon:"🏩",
+              titleKo:"Extended Stay 호텔 (주·월 단위)",
+              titleEn:"Extended Stay Hotel (Weekly/Monthly Rate)",
+              descKo:`Extended Stay America, WoodSpring Suites 등 — 주·월 단위 요금 적용, 취사 가능. 한인타운 인근 지점 선택 권장.`,
+              descEn:`Extended Stay America, WoodSpring Suites, etc. — weekly/monthly rates, kitchenette included. Choose a location near the Korean community.`,
+              price:ko?"$900-1,500/월":"$900-1,500/month"
+            },
+            {
+              icon:"🔍",
+              titleKo:"장기 주거 탐색 (2-4주 내)",
+              titleEn:"Long-Term Housing Search (within 2-4 weeks)",
+              descKo:`Zillow·Apartments.com·한인 부동산 동시 검색. 신용기록 없어도 가능한 집주인 있음. 한인 교회 게시판, 카카오톡 지역 방에서 룸메이트 구하기도 효과적.`,
+              descEn:`Search Zillow, Apartments.com, and Korean realtors simultaneously. Some landlords accept new arrivals without credit history. Korean church bulletin boards and local KakaoTalk groups are effective for finding roommates.`,
+              price:ko?"$1,200-2,500/월":"$1,200-2,500/month"
+            },
+          ].map((item,i)=>(
+            <div key={i} style={{background:"rgba(255,255,255,0.04)",borderRadius:12,padding:"12px 13px",display:"flex",gap:10,alignItems:"flex-start"}}>
+              <span style={{fontSize:18,flexShrink:0,marginTop:2}}>{item.icon}</span>
+              <div style={{flex:1}}>
+                <div style={{fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:12.5,color:"#ECFDF5",marginBottom:4}}>
+                  {ko?item.titleKo:item.titleEn}
+                  <span style={{marginLeft:8,background:"rgba(201,162,39,0.18)",borderRadius:6,padding:"1px 7px",fontSize:10,color:"#C9A227",fontWeight:700}}>{item.price}</span>
+                </div>
+                <div style={{fontFamily:"Manrope,sans-serif",fontSize:11.5,color:"rgba(236,253,245,0.68)",lineHeight:1.6}}>
+                  {ko?item.descKo:item.descEn}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <TipBox text={ko
+          ? `💡 한인 교회에 연락하면 단기 숙소 정보를 무료로 안내받을 수 있습니다. "저 ${city.nameKo}에 막 도착했는데 단기 숙소 추천해 주실 수 있나요?"라고 물어보세요.`
+          : `💡 Contact a Korean church — they often know of short-term housing options for newcomers. Ask: "I just arrived in ${city.nameEn}. Can you recommend temporary housing?"`} />
+      </StepCard>
+
+      <StepCard num={cityAirport.transport.length + 2} title={ko ? "도착 첫날 밤 — 지금 당장 할 일" : "First Night Arrival — What To Do Right Now"}>
         <BodyText>{isKR
           ? (ko ? `1. 짐 풀기\n2. 샤워 + 식사 (편의점·근처 한식당·배달의민족)\n3. 시차 적응 — 한국 시간에 맞춰 일찍 취침\n4. 내일 할 일 메모:\n   • SIM 개통 또는 번호이동\n   • 주민센터 / 출입국사무소 (외국인등록)\n   • 카카오뱅크 계좌 개설\n   • 국민건강보험 가입`
                : `1. Unpack essentials\n2. Shower + eat (convenience store / nearby Korean restaurant / Baemin delivery)\n3. Jet lag — sleep early on Korean time\n4. Note tomorrow's tasks:\n   • SIM activation or number porting\n   • Community center / immigration office (alien registration)\n   • Kakaobank account setup\n   • NHIS health insurance enrollment`)

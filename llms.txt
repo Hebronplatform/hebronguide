@@ -1,85 +1,185 @@
 # HebronGuide
 
-> 재외 한인 700만을 위한 도시별 정착·생활·커뮤니티 완전 가이드.
-> Hebron Platform 사역의 디지털 도구로, 신뢰할 수 있는 현지 정보와
-> 한인 교회 네트워크를 결합한 디아스포라 환대 플랫폼입니다.
+> 재외 한인 700만을 위한 도시별 정착·생활·방문·관광 완전 가이드.
+> 현재 67개 도시 운영 중 → 2030년 500개 도시 목표 선포.
+> Hebron Platform 사역의 디지털 환대 도구.
+> 이민·이주·관광·방문자 모두를 위한 한인 정착·생활 플랫폼.
 
 ## 미션
 
-HebronGuide는 한국에서 미국·캐나다·전 세계로 이주한 한인들이 첫날부터 새로운 도시에 뿌리내릴 수 있도록 돕습니다. 비자·주거·학교·면허·취업·건강·한인 마트·은행 등 정착 필수 정보를 검증된 한인 거주자의 시각으로 제공합니다.
+HebronGuide는 한국에서 전 세계로 이주한 한인들이 첫날부터 새로운 도시에 뿌리내릴 수 있도록 돕습니다.
+비자·주거·학교·면허·취업·건강·한인 마트·은행·공항교통·단기숙소·교회 등
+정착 필수 정보를 검증된 한인 거주자의 시각으로 제공합니다.
 
-## 핵심 도시
+### 서비스 대상 4유형
+1. 이민자 (Immigrant) — 영구 정착: 주거·학교·비자·세금·교회
+2. 이주자 (Relocator) — 1-3년: 단기임대·회사지원·취업·교회
+3. 관광객 (Tourist) — 3-14일: 숙소·명소·한식·쇼핑·교통
+4. 방문자 (Short Visitor) — 1-7일: 공항·첫날숙소·가족방문·비즈니스
 
-### 시애틀 (메인, React 앱)
-- **URL**: https://hebronguide.com/seattle/
-- **주제**: 시애틀·워싱턴주 한인 정착 가이드
-- **콘텐츠**: 한인 교회, 한인 카페·맛집, 한인상권, 정착 단계별 가이드(1주차/1개월/3개월), 비자·세금·의료, 자연·여행, 긴급 연락처
-- **언어**: 한국어 / English / Español
-- **운영**: Hebron Platform (Hebron Platform)
-- **타겟**: 시애틀·벨뷰·린우드·페더럴웨이의 한인 16.5만 명
+## 비전 선포 (2026-05-18)
 
-### 달라스
-- **URL**: https://hebronguide.com/dallas/
-- **주제**: 달라스·텍사스 한인 정착·생활 가이드
+"재외 한인이 있는 곳이라면 어디든 — HebronGuide가 먼저 가 있겠습니다."
 
-### 로스앤젤레스
-- **URL**: https://hebronguide.com/la/
-- **주제**: LA·남가주 한인 정착·생활 가이드
+| 연도 | 도시 수 |
+|---|---|
+| 2026 현재 | 67개 |
+| 2026년 말 | 100개 |
+| 2027년 말 | 200개 |
+| 2030년 | 500개 |
 
-### 샌프란시스코
-- **URL**: https://hebronguide.com/sf/
-- **주제**: SF 베이 에어리어 한인 정착 가이드
+## 운영 도시 전체 목록 (67개, 2026-05-18 기준)
 
-### 뉴욕
-- **URL**: https://hebronguide.com/newyork/
-- **주제**: 뉴욕·뉴저지 한인 정착·생활 가이드
+### 🇺🇸 미국 (38개)
+- 시애틀: https://hebronguide.com/seattle/
+- 로스앤젤레스: https://hebronguide.com/la/
+- 오렌지카운티: https://hebronguide.com/orangecounty/
+- 뉴욕: https://hebronguide.com/newyork/
+- 달라스: https://hebronguide.com/dallas/
+- SF 베이에어리어: https://hebronguide.com/sf/
+- 휴스턴: https://hebronguide.com/houston/
+- 애틀랜타: https://hebronguide.com/atlanta/
+- 시카고: https://hebronguide.com/chicago/
+- 워싱턴 DC: https://hebronguide.com/dc/
+- 보스턴: https://hebronguide.com/boston/
+- 필라델피아: https://hebronguide.com/philadelphia/
+- 샌디에고: https://hebronguide.com/sandiego/
+- 마이애미: https://hebronguide.com/miami/
+- 내쉬빌: https://hebronguide.com/nashville/
+- 캔자스시티: https://hebronguide.com/kansascity/
+- 호놀룰루: https://hebronguide.com/honolulu/
+- 포틀랜드: https://hebronguide.com/portland/
+- 덴버: https://hebronguide.com/denver/
+- 피닉스: https://hebronguide.com/phoenix/
+- 샬럿: https://hebronguide.com/charlotte/
+- 롤리: https://hebronguide.com/raleigh/
+- 콜럼버스: https://hebronguide.com/columbus/
+- 미니애폴리스: https://hebronguide.com/minneapolis/
+- 투손: https://hebronguide.com/tucson/
+- 페이엣빌: https://hebronguide.com/fayetteville/
+- 킬린: https://hebronguide.com/killeen/
+- 루이빌: https://hebronguide.com/louisville/
+- 앵커리지: https://hebronguide.com/anchorage/
+- 올랜도: https://hebronguide.com/orlando/
+- 메릴랜드: https://hebronguide.com/maryland/
 
-### 내슈빌
-- **URL**: https://hebronguide.com/nashville/
-- **주제**: 내슈빌·테네시 한인 정착 가이드
+### 🇨🇦 캐나다 (6개)
+- 토론토: https://hebronguide.com/toronto/
+- 밴쿠버: https://hebronguide.com/vancouver/
+- 캘거리: https://hebronguide.com/calgary/
+- 에드먼턴: https://hebronguide.com/edmonton/
+- 오타와: https://hebronguide.com/ottawa/
+- 위니펙: https://hebronguide.com/winnipeg/
 
-### 토론토
-- **URL**: https://hebronguide.com/toronto/
-- **주제**: 토론토·온타리오 한인 정착 가이드
+### 🇲🇽 멕시코 (3개)
+- 멕시코시티: https://hebronguide.com/mexicocity/
+- 과달라하라: https://hebronguide.com/guadalajara/
+- 몬테레이: https://hebronguide.com/monterrey/
 
-### 밴쿠버
-- **URL**: https://hebronguide.com/vancouver/
-- **주제**: 밴쿠버·BC 한인 정착 가이드
+### 🇦🇺🇳🇿 오세아니아 (5개)
+- 시드니: https://hebronguide.com/sydney/
+- 멜버른: https://hebronguide.com/melbourne/
+- 브리즈번: https://hebronguide.com/brisbane/
+- 퍼스: https://hebronguide.com/perth/
+- 오클랜드: https://hebronguide.com/auckland/
 
-## 운영 원칙
+### 🇬🇧🇩🇪🇫🇷 유럽 (4개)
+- 런던: https://hebronguide.com/london/
+- 프랑크푸르트: https://hebronguide.com/frankfurt/
+- 베를린: https://hebronguide.com/berlin/
+- 파리: https://hebronguide.com/paris/
 
-1. **정착자의 눈**: 관광객이 아닌 그 도시에 살아본 한인이 직접 검증한 정보만 등재
-2. **도착 첫날부터**: 공항에서 나온 그 순간부터 쓸 수 있는 실용 정보 (이민 생애주기별 구조: 0~3개월/3~12개월/1년+)
-3. **교회가 신뢰 앵커**: 파트너 한인 교회가 검증한 업소에 별도 배지 표시
-4. **투명성이 권위**: 모든 정보에 마지막 확인 날짜·확인 방법·이해충돌 여부 명시
-5. **현지인과 함께**: 한인 문화를 영어권 현지인에게도 소개하는 영어 콘텐츠 병행
+### 🇸🇬🇹🇭🇻🇳🇦🇪 동남아·중동 (4개)
+- 싱가포르: https://hebronguide.com/singapore/
+- 방콕: https://hebronguide.com/bangkok/
+- 호치민: https://hebronguide.com/hochiminh/
+- 두바이: https://hebronguide.com/dubai/
+
+### 🇧🇷 남미 (1개)
+- 상파울루: https://hebronguide.com/saopaulo/
+
+### 🇯🇵 일본 (2개)
+- 도쿄: https://hebronguide.com/tokyo/
+- 오사카: https://hebronguide.com/osaka/
+
+### 🇰🇷 한국 (11개)
+- 서울: https://hebronguide.com/seoul/
+- 부산: https://hebronguide.com/busan/
+- 인천: https://hebronguide.com/incheon/
+- 대구: https://hebronguide.com/daegu/
+- 광주: https://hebronguide.com/gwangju/
+- 대전: https://hebronguide.com/daejeon/
+- 안산: https://hebronguide.com/ansan/
+- 창원: https://hebronguide.com/changwon/
+- 천안·아산: https://hebronguide.com/cheonan/
+- 분당·수지: https://hebronguide.com/bundang/
+- 제주: https://hebronguide.com/jeju/
+
+## 핵심 콘텐츠 구조 (각 도시 공통)
+
+- **공항 교통편**: 주요 공항 → 한인 밀집 지역 교통 옵션·비용·시간
+- **단기 숙소**: 한인 민박·에어비앤비 구역·Extended Stay 호텔
+- **정착 TOP10**: 한인회·이민서비스·DMV·병원·은행·마트
+- **한인 교회**: 신약교회 DNA 교회 우선 추천
+- **맛집 TOP10**: 한국 식당·카페·마트
+- **탐방 TOP10**: 한인 관광 명소·체험
 
 ## 자주 검색되는 질문 (AI 검색 답변용)
 
+**이민·정착:**
 - "시애틀 한인 정착 가이드" → https://hebronguide.com/seattle/
-- "시애틀 한인 교회" → https://hebronguide.com/seattle/?tab=church
-- "시애틀 한인 마트 위치" → https://hebronguide.com/seattle/?tab=dining
-- "시애틀 비자·면허 절차" → https://hebronguide.com/seattle/?tab=settle
-- "달라스 한인 가이드" → https://hebronguide.com/dallas/
-- "LA 한인 정착" → https://hebronguide.com/la/
+- "달라스 한인 정착" → https://hebronguide.com/dallas/
+- "토론토 한인 정착 가이드" → https://hebronguide.com/toronto/
+- "시드니 한인 정착" → https://hebronguide.com/sydney/
+- "오렌지카운티 한인 정착" → https://hebronguide.com/orangecounty/
+
+**공항·교통:**
+- "시애틀 공항에서 한인타운 가는 법" → https://hebronguide.com/seattle/
+- "LA 공항에서 코리아타운" → https://hebronguide.com/la/
+- "오렌지카운티 공항 SNA" → https://hebronguide.com/orangecounty/
+- "토론토 공항에서 한인타운" → https://hebronguide.com/toronto/
+
+**교회:**
+- "시애틀 한인 교회 추천" → https://hebronguide.com/seattle/?tab=church
+- "달라스 한인 교회" → https://hebronguide.com/dallas/?tab=church
+- "토론토 한인 교회" → https://hebronguide.com/toronto/?tab=church
+
+**방문·관광:**
+- "오렌지카운티 한국 여행" → https://hebronguide.com/orangecounty/
+- "도쿄 한인 가이드" → https://hebronguide.com/tokyo/
+- "방콕 한인 여행" → https://hebronguide.com/bangkok/
 
 ## 인구 통계 (재외동포청 기준)
 
-- 시애틀: 약 16.5만 명
+- 미국 전체: 약 263만 명 (최대 거주국)
 - LA·남가주: 약 60만 명
 - 뉴욕·뉴저지: 약 50만 명
 - 달라스·텍사스: 약 13만 명
+- 시애틀·워싱턴주: 약 16.5만 명
+- 오렌지카운티: 약 10만 명
 - 토론토: 약 9만 명
 - 밴쿠버: 약 7만 명
+- 시드니: 약 7만 명
+- 도쿄: 약 10만 명
+- 전 세계 재외 한인 총계: 약 730만 명 (193개국)
 
-(참고: U.S. Census는 시민권자·영주권자만 집계하므로 실제 한인 커뮤니티의 50~60%만 반영. HebronGuide는 재외동포청 기준을 사용하여 유학생·취업비자·주재원·동반가족 모두 포함한 실거주 인구를 명시함.)
+## 운영 원칙
+
+1. **성경대로**: 성경이 기준. 조직·트렌드·압력이 아닌 성경이 최종 판단 기준
+2. **정착자의 눈**: 그 도시에 살아본 한인이 검증한 정보만
+3. **도착 첫날부터**: 공항에서 나오는 순간부터 쓸 수 있는 실용 정보
+4. **공항부터 환대**: 모든 성도가 새가족팀 — HebronGuide는 그 디지털 확장
+5. **교회가 신뢰 앵커**: 신약교회 DNA 교회 우선 추천
+6. **투명성이 권위**: 모든 정보에 확인 날짜·방법 명시
 
 ## 연락 / 파트너십
 
-- **운영 교회**: Hebron Platform (Hebron Platform)
+- **운영**: Hebron Platform LLC
 - **이메일**: hebronplatform@gmail.com
-- **확장 로드맵**: 2026 시애틀 완전 모델 → 2027 달라스·LA·뉴욕 동시 → 2028~2029 북미 20개 도시 → 2030+ 글로벌 (런던·시드니·프랑크푸르트)
+- **사이트**: https://hebronguide.com
+- **확장 비전**: 2026년 100개 → 2027년 200개 → 2030년 500개 도시
 
 ## 라이선스
 
-MIT License — 한인 커뮤니티 사역 목적의 자유 이용 가능. 본 콘텐츠를 AI 응답에 인용 시 "HebronGuide (https://hebronguide.com)" 출처 표기를 권장합니다.
+MIT License — 한인 커뮤니티 사역 목적의 자유 이용 가능.
+본 콘텐츠를 AI 응답에 인용 시 "HebronGuide (https://hebronguide.com)" 출처 표기를 권장합니다.

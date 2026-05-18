@@ -1,148 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- 메인 허브 -->
+  <!-- ══ 메인 허브 ══════════════════════════════════════════ -->
   <url>
     <loc>https://hebronguide.com/</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- 시애틀 — 플래그십 -->
-  <url>
-    <loc>https://hebronguide.com/seattle/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <!-- ══ 🇺🇸 미국 — 핵심 거점 ══════════════════════════════ -->
+  <url><loc>https://hebronguide.com/seattle/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://hebronguide.com/la/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://hebronguide.com/newyork/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://hebronguide.com/dallas/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://hebronguide.com/sf/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://hebronguide.com/houston/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://hebronguide.com/atlanta/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://hebronguide.com/chicago/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hebronguide.com/dc/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hebronguide.com/boston/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hebronguide.com/philadelphia/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hebronguide.com/orangecounty/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hebronguide.com/sandiego/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hebronguide.com/miami/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hebronguide.com/nashville/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hebronguide.com/kansascity/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hebronguide.com/honolulu/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hebronguide.com/portland/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hebronguide.com/denver/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/phoenix/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/charlotte/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/raleigh/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/columbus/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/minneapolis/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/tucson/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hebronguide.com/fayetteville/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hebronguide.com/killeen/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hebronguide.com/louisville/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hebronguide.com/anchorage/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hebronguide.com/orlando/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hebronguide.com/maryland/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
-  <!-- LA — 한인 최대 -->
-  <url>
-    <loc>https://hebronguide.com/la/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
+  <!-- ══ 🇨🇦 캐나다 ══════════════════════════════════════════ -->
+  <url><loc>https://hebronguide.com/toronto/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://hebronguide.com/vancouver/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hebronguide.com/calgary/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/edmonton/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hebronguide.com/ottawa/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hebronguide.com/winnipeg/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.65</priority></url>
 
-  <!-- 뉴욕 -->
-  <url>
-    <loc>https://hebronguide.com/newyork/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
+  <!-- ══ 🇲🇽 멕시코 ══════════════════════════════════════════ -->
+  <url><loc>https://hebronguide.com/mexicocity/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/guadalajara/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hebronguide.com/monterrey/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
-  <!-- 달라스 -->
-  <url>
-    <loc>https://hebronguide.com/dallas/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- ══ 🇦🇺🇳🇿 오세아니아 ══════════════════════════════════ -->
+  <url><loc>https://hebronguide.com/sydney/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hebronguide.com/melbourne/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hebronguide.com/brisbane/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/perth/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hebronguide.com/auckland/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
 
-  <!-- SF 베이에어리어 -->
-  <url>
-    <loc>https://hebronguide.com/sf/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- ══ 🇬🇧🇩🇪🇫🇷 유럽 ══════════════════════════════════════ -->
+  <url><loc>https://hebronguide.com/london/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hebronguide.com/frankfurt/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/berlin/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/paris/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
 
-  <!-- 휴스턴 -->
-  <url>
-    <loc>https://hebronguide.com/houston/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- ══ 🇸🇬🇹🇭🇻🇳🇦🇪 동남아·중동 ══════════════════════════ -->
+  <url><loc>https://hebronguide.com/singapore/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hebronguide.com/bangkok/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/hochiminh/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/dubai/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
 
-  <!-- 애틀랜타 -->
-  <url>
-    <loc>https://hebronguide.com/atlanta/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- ══ 🇧🇷 남미 ══════════════════════════════════════════ -->
+  <url><loc>https://hebronguide.com/saopaulo/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
 
-  <!-- 토론토 -->
-  <url>
-    <loc>https://hebronguide.com/toronto/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
+  <!-- ══ 🇯🇵 일본 ══════════════════════════════════════════ -->
+  <url><loc>https://hebronguide.com/tokyo/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hebronguide.com/osaka/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
-  <!-- 밴쿠버 -->
-  <url>
-    <loc>https://hebronguide.com/vancouver/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- 보스턴 -->
-  <url>
-    <loc>https://hebronguide.com/boston/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- 필라델피아 -->
-  <url>
-    <loc>https://hebronguide.com/philadelphia/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- 마이애미 -->
-  <url>
-    <loc>https://hebronguide.com/miami/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- 내쉬빌 -->
-  <url>
-    <loc>https://hebronguide.com/nashville/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- 캔자스시티 -->
-  <url>
-    <loc>https://hebronguide.com/kansascity/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- 멕시코시티 -->
-  <url>
-    <loc>https://hebronguide.com/mexicocity/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <!-- 과달라하라 -->
-  <url>
-    <loc>https://hebronguide.com/guadalajara/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <!-- 몬테레이 -->
-  <url>
-    <loc>https://hebronguide.com/monterrey/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
-  </url>
+  <!-- ══ 🇰🇷 한국 (역이민·이주·방문) ═════════════════════════ -->
+  <url><loc>https://hebronguide.com/seoul/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hebronguide.com/busan/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hebronguide.com/incheon/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/daegu/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/gwangju/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/daejeon/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/ansan/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hebronguide.com/changwon/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hebronguide.com/cheonan/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hebronguide.com/bundang/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hebronguide.com/jeju/</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
 
 </urlset>
