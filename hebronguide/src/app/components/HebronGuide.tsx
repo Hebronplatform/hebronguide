@@ -8923,10 +8923,10 @@ function CommunityPulseSection({ lang }: { lang: string }) {
   }, [cityKo, cityEn, ko]);
 
   const fullFeed = [...storedItems, ...ALL_PULSE];
-  const [offset, setOffset] = React.useState(0);
-  const [fade, setFade] = React.useState(true);
+  const [offset, setOffset] = useState(0);
+  const [fade, setFade] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const id = setInterval(() => {
       setFade(false);
       setTimeout(() => {
