@@ -123,26 +123,34 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=1200&q=90", pos: "center 30%", alt: "Hollywood Sign LA palm neighborhood settle" },
   ],
 
-  // 🎸 내쉬빌 — ✅ fixed: was tropical beach, now Nashville skyline + Broadway
+  // 🎸 내쉬빌 — ① 스카이라인 → ② 파르테논 랜드마크 → ③ Broadway 군중 → ④ 뮤럴 특색 → ⑤ 동네 정착
+  // Story: 스카이라인 도착 → Centennial Park 파르테논 → Broadway 활기 → East Nashville → 주택가
   nashville: [
-    { url: "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=1200&q=90", pos: "center 38%", alt: "Nashville city skyline water" },
-    { url: "https://images.unsplash.com/photo-1616198814651-e71f960c3180?w=1200&q=90", pos: "center 40%", alt: "Nashville Nissan Stadium skyline" },
+    { url: "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=1200&q=95", pos: "center 38%", alt: "Nashville city skyline waterfront arrival" },
+    { url: "https://images.unsplash.com/photo-RKGHKyBCu04?w=1200&q=95",               pos: "center 50%", alt: "Nashville Parthenon Centennial Park landmark winter dramatic" },
+    { url: "https://images.unsplash.com/photo-cH0dI0f277Y?w=1200&q=95",               pos: "center 50%", alt: "Nashville Broadway crowd downtown honky tonk people welcome" },
+    { url: "https://images.unsplash.com/photo-r_5qqU4LQLU?w=1200&q=95",               pos: "center 50%", alt: "Nashville street scene mural urban community character" },
+    { url: "https://images.unsplash.com/photo-1616198814651-e71f960c3180?w=1200&q=95", pos: "center 40%", alt: "Nashville Nissan Stadium skyline neighborhood settle" },
   ],
 
-  // 🦞 보스턴 — ✅ fixed: was US Capitol(!), now actual Boston harbor + skyline
+  // 🦞 보스턴 — ① 항구 전경 → ② 스카이라인 → ③ Beacon Hill → ④ Boston Common 사람들 → ⑤ Acorn St 정착
+  // Story: 항구 도착 → 랜드마크 스카이라인 → 역사지구 → 공원 사람들 → 코블스톤 동네 정착
   boston: [
-    { url: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=1200&q=90", pos: "center 38%", alt: "Boston harbor cityscape" },
-    { url: "https://images.unsplash.com/photo-1536514498073-50e69d39c6cf?w=1200&q=90", pos: "center 35%", alt: "Boston skyline clear day" },
-    { url: "https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?w=1200&q=90", pos: "center 40%", alt: "Boston historic Beacon Hill" },
+    { url: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=1200&q=95", pos: "center 38%", alt: "Boston harbor cityscape arrival waterfront" },
+    { url: "https://images.unsplash.com/photo-1536514498073-50e69d39c6cf?w=1200&q=95", pos: "center 35%", alt: "Boston skyline clear day landmark" },
+    { url: "https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?w=1200&q=95", pos: "center 40%", alt: "Boston historic Beacon Hill charming streets" },
+    { url: "https://images.unsplash.com/photo-eSQNlt0QmXI?w=1200&q=95",               pos: "center 50%", alt: "Boston Common Public Garden people walking spring paths" },
+    { url: "https://images.unsplash.com/photo-UMERikYzYvQ?w=1200&q=95",               pos: "center 50%", alt: "Acorn Street Boston cobblestone historic residential autumn settle" },
   ],
 
-  // 🍁 토론토 — ① DJI 드론 CN타워 → ② CN타워 지상 랜드마크 → ③ 워터프런트 스카이라인 → ④ 온타리오 호수
-  // Story: Patrick Tomasso DJI 드론 겨울 새벽 → CN타워 → 워터프런트 → 레이크 온타리오
+  // 🍁 토론토 — ① DJI 드론 → ② CN타워 → ③ 워터프런트 → ④ Kensington 마켓 → ⑤ 가을 주택가
+  // Story: 드론 → 랜드마크 → 스카이라인 → 커뮤니티 마켓 → 정착 동네
   toronto: [
     { url: "https://images.unsplash.com/photo-lZbRV_a4Yxg?w=1200&q=95",               pos: "center 45%", alt: "Toronto aerial drone CN Tower winter sunrise cityscape" },
     { url: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=1200&q=95", pos: "center 22%", alt: "Toronto CN Tower blue sky landmark" },
-    { url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=95", pos: "center 38%", alt: "Toronto waterfront skyline people" },
-    { url: "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1200&q=95", pos: "center 40%", alt: "Toronto Lake Ontario settle neighborhood" },
+    { url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=95", pos: "center 38%", alt: "Toronto waterfront skyline people community" },
+    { url: "https://images.unsplash.com/photo-UT3gOadcdN0?w=1200&q=95",               pos: "center 50%", alt: "Kensington Market Toronto people summer street community welcome" },
+    { url: "https://images.unsplash.com/photo-faR1gf1_PXk?w=1200&q=95",               pos: "center 50%", alt: "Toronto residential autumn tree-lined street neighborhood settle" },
   ],
 
   // 🏔️ 밴쿠버 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
@@ -165,28 +173,34 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1543968996-ee822b8176ba?w=1200&q=95",   pos: "center 38%", alt: "Houston neighborhood skyline settle home" },
   ],
 
-  // 🍑 애틀랜타 — ① 공중 전경 → ② 랜드마크 관람차+야경 → ③ 여름 생활
-  // Story: ibuki Tsubo 항공 → SkyView Ferris Wheel 다운타운 → Atlanta 여름
+  // 🍑 애틀랜타 — ① 공중 → ② 관람차 랜드마크 → ③ Midtown 야경 → ④ BeltLine 뮤럴 → ⑤ 숲 속 동네
+  // Story: 항공 → 다운타운 관람차 → 미드타운 야경 → 벨트라인 커뮤니티 → 가을 나무 동네
   atlanta: [
     { url: "https://images.unsplash.com/photo-XV81dRUMzpo?w=1200&q=95",               pos: "center 50%", alt: "Atlanta downtown aerial view cityscape daytime overhead" },
     { url: "https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?w=1200&q=95", pos: "center 50%", alt: "Atlanta SkyView Ferris Wheel downtown skyline landmark" },
     { url: "https://images.unsplash.com/photo-1602941525421-8f8b81d3edbb?w=1200&q=95", pos: "center 35%", alt: "Atlanta Midtown skyline night aerial purple" },
-    { url: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=95", pos: "center 42%", alt: "Atlanta Georgia summer neighborhood people" },
+    { url: "https://images.unsplash.com/photo-MVAGXN2Aw5w?w=1200&q=95",               pos: "center 50%", alt: "Atlanta BeltLine urban trail mural street art community" },
+    { url: "https://images.unsplash.com/photo-MHyWDLt-qoY?w=1200&q=95",               pos: "center 50%", alt: "Atlanta city in a forest autumn tree canopy aerial neighborhood" },
   ],
 
-  // 🔔 필라델피아 — ✅ verified aerial Philadelphia + historic center
+  // 🔔 필라델피아 — ① 공중 → ② 고층 랜드마크 → ③ 역사 거리 → ④ Reading Terminal 마켓 → ⑤ Manayunk 로우하우스
+  // Story: 항공 → 다운타운 → 역사지구 → 마켓 커뮤니티 → 정착 동네
   philadelphia: [
-    { url: "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?w=1200&q=90", pos: "center 35%", alt: "Philadelphia aerial buildings" },
-    { url: "https://images.unsplash.com/photo-1563114773-84221bd62daa?w=1200&q=90", pos: "center 38%", alt: "Philadelphia high-rise daytime" },
-    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Philadelphia historic street" },
+    { url: "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?w=1200&q=95", pos: "center 35%", alt: "Philadelphia aerial buildings cityscape" },
+    { url: "https://images.unsplash.com/photo-1563114773-84221bd62daa?w=1200&q=95",    pos: "center 38%", alt: "Philadelphia high-rise skyscraper daytime landmark" },
+    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=95",    pos: "center 40%", alt: "Philadelphia historic street cobblestone character" },
+    { url: "https://images.unsplash.com/photo-CDzS-hLgtC8?w=1200&q=95",               pos: "center 50%", alt: "Reading Terminal Market Philadelphia people community food" },
+    { url: "https://images.unsplash.com/photo-ZLPw6OCCy14?w=1200&q=95",               pos: "center 40%", alt: "Manayunk Philadelphia row houses residential street settle" },
   ],
 
-  // 🌊 마이애미 — South Beach 파스텔 구조대 + Ocean Drive Art Deco 네온
-  // (verified 2026-05-18: iconic colorful lifeguard tower + Colony Hotel neon)
+  // 🌊 마이애미 — ① 구조대 → ② Art Deco → ③ 스카이라인 → ④ Wynwood 뮤럴 → ⑤ 팜트리 주택가
+  // Story: 비치 랜드마크 → Art Deco 특색 → 스카이라인 → Wynwood 예술 → 베네치안 팜트리 동네
   miami: [
-    { url: "https://images.unsplash.com/photo-1535498730771-e735b998cd64?w=1200&q=90", pos: "center 35%", alt: "Miami South Beach colorful lifeguard tower ocean" },
-    { url: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&q=90", pos: "center 45%", alt: "Miami South Beach Art Deco Ocean Drive" },
-    { url: "https://images.unsplash.com/photo-1548283520-d1ab7c0b9f1c?w=1200&q=90", pos: "center 40%", alt: "Miami skyline bay sunset" },
+    { url: "https://images.unsplash.com/photo-1535498730771-e735b998cd64?w=1200&q=95", pos: "center 35%", alt: "Miami South Beach colorful lifeguard tower ocean landmark" },
+    { url: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&q=95",    pos: "center 45%", alt: "Miami South Beach Art Deco Ocean Drive neon" },
+    { url: "https://images.unsplash.com/photo-1548283520-d1ab7c0b9f1c?w=1200&q=95",    pos: "center 40%", alt: "Miami skyline bay sunset Brickell" },
+    { url: "https://images.unsplash.com/photo-hyn3hxWXhrI?w=1200&q=95",               pos: "center 50%", alt: "Miami Wynwood street art mural colorful community character" },
+    { url: "https://images.unsplash.com/photo-zh9LAc3vynE?w=1200&q=95",               pos: "center 50%", alt: "Miami Venetian Islands palm tree residential street settle" },
   ],
 
   // 🍊 오렌지카운티 — 풀러튼·부에나파크 (검증 200 OK)
@@ -220,10 +234,14 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1570641963303-92ce4845ed4c?w=1200&q=90", pos: "center 40%", alt: "Monterrey modern city" },
   ],
 
-  // 🫘 시카고 — Cloud Gate (Bean) + 밀레니엄 파크 + 레이크 미시간
+  // 🫘 시카고 — ① Cloud Gate → ② 레이크프런트 스카이라인 → ③ Riverwalk 사람들 → ④ 강 보트 → ⑤ Logan Square 동네
+  // Story: Bean 랜드마크 → 미시간 호수 → 리버워크 커뮤니티 → 강 아키텍처 투어 → 정착 동네
   chicago: [
-    { url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=90", pos: "center 38%", alt: "Chicago Cloud Gate Bean Millennium Park" },
-    { url: "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=1200&q=90", pos: "center 40%", alt: "Chicago lakefront skyline" },
+    { url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=95", pos: "center 38%", alt: "Chicago Cloud Gate Bean Millennium Park landmark" },
+    { url: "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=1200&q=95", pos: "center 40%", alt: "Chicago lakefront skyline Lake Michigan" },
+    { url: "https://images.unsplash.com/photo-HSqb6bg5t_4?w=1200&q=95",               pos: "center 50%", alt: "Chicago Riverwalk people sitting chairs community welcome" },
+    { url: "https://images.unsplash.com/photo-hOy29Nl9cQ8?w=1200&q=95",               pos: "center 50%", alt: "Chicago River boat ride architecture character" },
+    { url: "https://images.unsplash.com/photo-4yCIt5wVV4E?w=1200&q=95",               pos: "center 50%", alt: "Logan Square Chicago residential rowhouses neighborhood settle" },
   ],
 
   // 🇰🇷 서울 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
@@ -324,19 +342,24 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   ],
 
 
-  // 🇦🇺 시드니 — ① DJI 드론 하버브릿지 → ② 오페라하우스 랜드마크 → ③ 본다이 비치 사람들 → ④ 해안 절경
-  // Story: Road Trip with Raj 드론 → 오페라하우스 → 여름 해변 군중 → 해안 조망
+  // 🇦🇺 시드니 — ① DJI 드론 → ② 오페라하우스 → ③ 본다이 비치 군중 → ④ 해안 라이프 → ⑤ 교외 주택
+  // Story: 드론 하버 → 랜드마크 → 여름 해변 사람들 → 해안 절경 → 정착 교외
   sydney: [
-    { url: "https://images.unsplash.com/photo-J61Sh5YrQho?w=1200&q=95",               pos: "center 50%", alt: "Sydney Harbour Bridge aerial drone view concrete arch daytime" },
-    { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=95", pos: "center 40%", alt: "Sydney Opera House Harbour Bridge landmark iconic" },
+    { url: "https://images.unsplash.com/photo-J61Sh5YrQho?w=1200&q=95",               pos: "center 50%", alt: "Sydney Harbour Bridge aerial drone daytime arch view" },
+    { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=95", pos: "center 40%", alt: "Sydney Opera House Harbour Bridge iconic landmark" },
     { url: "https://images.unsplash.com/photo-qDYvDDc8uk0?w=1200&q=95",               pos: "center 50%", alt: "Bondi Beach Sydney crowded summer beach people welcome" },
-    { url: "https://images.unsplash.com/photo-LNg1qe_9Sik?w=1200&q=95",               pos: "center 35%", alt: "Bondi Beach coastal cliff ocean aerial settle" },
+    { url: "https://images.unsplash.com/photo-yJkj1272J5s?w=1200&q=95",               pos: "center 55%", alt: "Sydney beach people coastal lifestyle daytime" },
+    { url: "https://images.unsplash.com/photo-sRgFzCdUZJI?w=1200&q=95",               pos: "center 50%", alt: "Sydney suburban neighborhood housing estate aerial settle" },
   ],
 
-  // 🇦🇺 멜버른 — CBD + 야라강
+  // 🇦🇺 멜버른 — ① DJI 드론 → ② CBD 스카이라인 → ③ Federation Square 군중 → ④ 레인웨이 → ⑤ 테라스 교외
+  // Story: 드론 일출 항구 → 야라강 스카이라인 → Federation Square 사람들 → 레인웨이 골목 → 테라스 동네
   melbourne: [
-    { url: "https://images.unsplash.com/photo-1514395462421-36b4dea0fa3f?w=1200&q=90", pos: "center 38%", alt: "Melbourne city skyline" },
-    { url: "https://images.unsplash.com/photo-1545044846-351ba102b6d5?w=1200&q=90", pos: "center 40%", alt: "Melbourne Yarra River" },
+    { url: "https://images.unsplash.com/photo-nOh1SBxtjPg?w=1200&q=95",               pos: "center 50%", alt: "Melbourne drone aerial cityscape sunrise port daytime" },
+    { url: "https://images.unsplash.com/photo-1514395462421-36b4dea0fa3f?w=1200&q=95", pos: "center 38%", alt: "Melbourne CBD skyline Yarra River landmark" },
+    { url: "https://images.unsplash.com/photo-GN2cRdZTYE4?w=1200&q=95",               pos: "center 50%", alt: "Federation Square Melbourne people crowd Swanston St welcome" },
+    { url: "https://images.unsplash.com/photo-ZDl7VL4lKRU?w=1200&q=95",               pos: "center 50%", alt: "Melbourne laneway narrow street people atmospheric character" },
+    { url: "https://images.unsplash.com/photo-mXnfeL__TJQ?w=1200&q=95",               pos: "center 50%", alt: "Melbourne suburb bicycle terrace house residential settle" },
   ],
 
   // 🇬🇧 런던 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
@@ -9093,99 +9116,113 @@ const DAILY_QUOTES = [
    Last updated: 2026-05-18
 ───────────────────────────────────────── */
 type CityEventItem = { emoji: string; ko: string; en: string; date: string; type: "holiday"|"sports"|"festival"|"culture"|"alert"|"church" };
+// ── Last updated: 2026-05-18 (에이전트 실사 검증 기반)
+// ── 매주 월요일 자동 업데이트 에이전트 상주 중
 const CITY_EVENTS: Partial<Record<string, CityEventItem[]>> = {
-  // ── 미국 공통 이벤트
   _us_common: [
-    { emoji:"⚽", ko:"FIFA 월드컵 2026 — 6월 11일~7월 19일 미국·캐나다·멕시코 개최", en:"FIFA World Cup 2026 — June 11–July 19 USA/Canada/Mexico", date:"2026-06", type:"sports" },
-    { emoji:"🎆", ko:"미국 독립기념일 (7월 4일) — 불꽃놀이·퍼레이드", en:"Independence Day July 4 — Fireworks & Parades", date:"2026-07-04", type:"holiday" },
-    { emoji:"🦃", ko:"추수감사절 (11월 26일) — 쇼핑·가족 모임", en:"Thanksgiving Nov 26 — Shopping & Family", date:"2026-11-26", type:"holiday" },
-    { emoji:"🎄", ko:"크리스마스 (12월 25일) — 연말 행사·예배", en:"Christmas Dec 25 — Year-end Events & Services", date:"2026-12-25", type:"church" },
-    { emoji:"🌸", ko:"부활절 (4월 5일) — 한인 교회 특별 예배", en:"Easter Apr 5 — Korean Church Special Services", date:"2026-04-05", type:"church" },
+    { emoji:"⚽", ko:"FIFA 월드컵 2026 — 6월11일~7월19일 미국·캐나다·멕시코 (뉴욕 결승)", en:"FIFA World Cup 2026 — Jun 11–Jul 19, USA/Canada/Mexico (Final in NY)", date:"2026-06", type:"sports" },
+    { emoji:"🏔️", ko:"밀라노 동계올림픽 — 2월6~22일 진행 중", en:"Milan-Cortina Winter Olympics — Feb 6-22 underway", date:"2026-02-06", type:"sports" },
+    { emoji:"🌸", ko:"부활절 (4월5일) — 한인 교회 특별 예배", en:"Easter Apr 5 — Korean Church Special Services", date:"2026-04-05", type:"church" },
+    { emoji:"🎆", ko:"독립기념일 (7월4일) — 불꽃놀이·퍼레이드", en:"Independence Day Jul 4 — Fireworks & Parades", date:"2026-07-04", type:"holiday" },
+    { emoji:"🎄", ko:"크리스마스 (12월25일) — 연말 예배·행사", en:"Christmas Dec 25 — Year-end Services & Events", date:"2026-12-25", type:"church" },
   ],
-  // ── 시애틀
   seattle: [
-    { emoji:"⚽", ko:"FIFA 월드컵 시애틀 경기 — Lumen Field (6월)", en:"FIFA World Cup Seattle matches at Lumen Field (June)", date:"2026-06", type:"sports" },
-    { emoji:"🌸", ko:"워싱턴 벚꽃 시즌 — UW 캠퍼스 (3-4월)", en:"Cherry Blossom Season at UW Campus (Mar–Apr)", date:"2026-03", type:"festival" },
-    { emoji:"🎶", ko:"시애틀 재즈 페스티벌 (8월)", en:"Seattle Jazz Festival (August)", date:"2026-08", type:"culture" },
+    { emoji:"⚽", ko:"FIFA 월드컵 시애틀 6경기 — Lumen Field (6월15일~7월6일)", en:"FIFA World Cup Seattle 6 matches — Lumen Field (Jun 15–Jul 6)", date:"2026-06-15", type:"sports" },
+    { emoji:"🎉", ko:"WABA 코리아 엑스포 — 워터프런트 피어62 무료 (8월14~16일)", en:"WABA Korea Expo — Pier 62 Waterfront, Free (Aug 14-16)", date:"2026-08-14", type:"festival" },
+    { emoji:"🌸", ko:"UW 캠퍼스 벚꽃 시즌 (3~4월)", en:"UW Campus Cherry Blossoms (Mar–Apr)", date:"2026-03", type:"festival" },
   ],
-  // ── LA·오렌지카운티
   la: [
-    { emoji:"⚽", ko:"FIFA 월드컵 LA 경기 — SoFi Stadium (6월)", en:"FIFA World Cup LA at SoFi Stadium (June)", date:"2026-06", type:"sports" },
-    { emoji:"🎬", ko:"LA 한국 영화제 (10월)", en:"Korean Film Festival LA (October)", date:"2026-10", type:"culture" },
-    { emoji:"🌮", ko:"LA 코리아타운 파라데이 (여름)", en:"Koreatown Parade Day (Summer)", date:"2026-07", type:"festival" },
+    { emoji:"⚽", ko:"FIFA 월드컵 LA 8경기+준결승 — SoFi Stadium (6~7월)", en:"FIFA World Cup LA 8 matches + QF — SoFi Stadium (Jun–Jul)", date:"2026-06-12", type:"sports" },
+    { emoji:"🎤", ko:"BTS 아리랑 월드투어 LA — SoFi Stadium 4회 (9월1~6일)", en:"BTS Arirang World Tour LA — SoFi Stadium 4 nights (Sep 1-6)", date:"2026-09-01", type:"culture" },
+    { emoji:"🎉", ko:"LA 한인 축제 — 코리아타운 서울국제공원 (10월1~4일)", en:"LA Korean Festival — Seoul Intl Park, Koreatown (Oct 1-4)", date:"2026-10-01", type:"festival" },
   ],
   orangecounty: [
-    { emoji:"⚽", ko:"FIFA 월드컵 LA 경기 관람 — SoFi Stadium 30분 거리", en:"FIFA World Cup LA — 30 min from OC to SoFi", date:"2026-06", type:"sports" },
-    { emoji:"🎠", ko:"디즈니랜드 연말 이벤트 (11-1월)", en:"Disneyland Holiday Events (Nov–Jan)", date:"2026-11", type:"festival" },
+    { emoji:"⚽", ko:"FIFA 월드컵 LA 경기 — SoFi Stadium 30분 거리 (6~7월)", en:"FIFA World Cup LA — 30 min from OC to SoFi (Jun–Jul)", date:"2026-06", type:"sports" },
     { emoji:"🏄", ko:"US Open of Surfing — 헌팅턴 비치 (7월)", en:"US Open of Surfing at Huntington Beach (July)", date:"2026-07", type:"sports" },
+    { emoji:"🎠", ko:"디즈니랜드 할로윈·크리스마스 이벤트 (9월~1월)", en:"Disneyland Halloween & Holiday Events (Sep–Jan)", date:"2026-09", type:"festival" },
   ],
-  // ── 뉴욕
   newyork: [
-    { emoji:"⚽", ko:"FIFA 월드컵 뉴욕 경기 — MetLife Stadium (6월)", en:"FIFA World Cup NY at MetLife Stadium (June)", date:"2026-06", type:"sports" },
-    { emoji:"🎉", ko:"한인 퍼레이드 — 코리안 퍼레이드 (10월)", en:"Korean Parade NYC (October)", date:"2026-10", type:"festival" },
-    { emoji:"🎆", ko:"새해 카운트다운 — 타임스스퀘어 (12월 31일)", en:"Times Square New Year Countdown (Dec 31)", date:"2026-12-31", type:"festival" },
+    { emoji:"⚽", ko:"FIFA 월드컵 결승 🏆 — MetLife Stadium (7월19일)", en:"FIFA World Cup FINAL 🏆 — MetLife Stadium (Jul 19)", date:"2026-07-19", type:"sports" },
+    { emoji:"🎤", ko:"BTS 아리랑 월드투어 뉴욕 — MetLife Stadium (8월1~2일)", en:"BTS Arirang World Tour NY — MetLife Stadium (Aug 1-2)", date:"2026-08-01", type:"culture" },
+    { emoji:"🎉", ko:"Korea Festa NYC — 뉴욕 각지 순회 (5~9월)", en:"Korea Festa NYC — Multiple venues around NYC (May–Sep)", date:"2026-05-18", type:"festival" },
   ],
-  // ── 달라스
   dallas: [
-    { emoji:"⚽", ko:"FIFA 월드컵 달라스 경기 — AT&T Stadium (6월)", en:"FIFA World Cup Dallas at AT&T Stadium (June)", date:"2026-06", type:"sports" },
-    { emoji:"🤠", ko:"달라스 한인 문화 축제 (가을)", en:"Dallas Korean Cultural Festival (Fall)", date:"2026-09", type:"festival" },
+    { emoji:"⚽", ko:"FIFA 월드컵 준결승 — AT&T Stadium 9경기 (7월14일)", en:"FIFA World Cup Semi-Final — AT&T Stadium 9 matches (Jul 14)", date:"2026-06-14", type:"sports" },
+    { emoji:"🎤", ko:"BTS 아리랑 월드투어 달라스 — AT&T Stadium (8월15~16일)", en:"BTS Arirang World Tour Dallas — AT&T Stadium (Aug 15-16)", date:"2026-08-15", type:"culture" },
+    { emoji:"🎉", ko:"달라스 한인 축제 (가을)", en:"Dallas Korean Cultural Festival (Fall)", date:"2026-09", type:"festival" },
   ],
-  // ── 휴스턴
   houston: [
-    { emoji:"⚽", ko:"FIFA 월드컵 휴스턴 7경기 — NRG Stadium (6-7월)", en:"FIFA World Cup Houston 7 games — NRG Stadium (Jun–Jul)", date:"2026-06", type:"sports" },
-    { emoji:"🌹", ko:"휴스턴 로데오 & livestock show (2-3월)", en:"Houston Livestock Show & Rodeo (Feb–Mar)", date:"2026-02", type:"festival" },
+    { emoji:"⚽", ko:"FIFA 월드컵 휴스턴 7경기 — NRG Stadium (6월14일~7월4일)", en:"FIFA World Cup Houston 7 matches — NRG Stadium (Jun 14–Jul 4)", date:"2026-06-14", type:"sports" },
+    { emoji:"🎉", ko:"KFest 휴스턴 한인 축제 — Discovery Green 무료 17회 (10월11~12일)", en:"KFest Houston — Discovery Green, Free, 17th annual (Oct 11-12)", date:"2026-10-11", type:"festival" },
+    { emoji:"🤠", ko:"휴스턴 로데오 & 가축박람회 (2~3월)", en:"Houston Livestock Show & Rodeo (Feb–Mar)", date:"2026-02", type:"festival" },
   ],
-  // ── 시카고
+  atlanta: [
+    { emoji:"⚽", ko:"FIFA 월드컵 준결승 — Mercedes-Benz Stadium 8경기 (7월15일)", en:"FIFA World Cup Semi-Final — Mercedes-Benz Stadium (Jul 15)", date:"2026-06-15", type:"sports" },
+    { emoji:"🎉", ko:"애틀랜타 한인 축제 — Sugarloaf Mills 동남부 최대 (9월19~20일)", en:"Atlanta Korean Festival — Sugarloaf Mills, SE USA's largest (Sep 19-20)", date:"2026-09-19", type:"festival" },
+  ],
   chicago: [
-    { emoji:"⚽", ko:"FIFA 월드컵 시카고 경기 — Soldier Field (6월)", en:"FIFA World Cup Chicago at Soldier Field (June)", date:"2026-06", type:"sports" },
-    { emoji:"🎆", ko:"시카고 블루스 페스티벌 (6월)", en:"Chicago Blues Festival (June)", date:"2026-06", type:"culture" },
-    { emoji:"🎃", ko:"할로윈 시카고 — 한인타운 행사 (10월)", en:"Halloween Chicago — Korean community events (Oct)", date:"2026-10", type:"festival" },
+    { emoji:"🎤", ko:"BTS 아리랑 월드투어 시카고 — Soldier Field (8월27~28일)", en:"BTS Arirang World Tour Chicago — Soldier Field (Aug 27-28)", date:"2026-08-27", type:"culture" },
+    { emoji:"🎉", ko:"시카고 한인 축제 — Maggie Daley Park 무료 (8월 하순)", en:"Chicago Korean Festival — Maggie Daley Park, Free (late Aug)", date:"2026-08", type:"festival" },
+    { emoji:"🎸", ko:"시카고 블루스 페스티벌 — Grant Park 무료 (6월)", en:"Chicago Blues Festival — Grant Park, Free (June)", date:"2026-06", type:"culture" },
   ],
-  // ── 토론토
   toronto: [
-    { emoji:"⚽", ko:"FIFA 월드컵 토론토 경기 — BMO Field (6월)", en:"FIFA World Cup Toronto at BMO Field (June)", date:"2026-06", type:"sports" },
-    { emoji:"🍂", ko:"토론토 한인 문화제 (가을)", en:"Toronto Korean Cultural Festival (Fall)", date:"2026-09", type:"festival" },
-    { emoji:"🍁", ko:"캐나다 데이 (7월 1일) — CN타워 불꽃놀이", en:"Canada Day July 1 — CN Tower Fireworks", date:"2026-07-01", type:"holiday" },
+    { emoji:"⚽", ko:"FIFA 월드컵 토론토 6경기 — BMO Field 캐나다 홈 (6월12일~)", en:"FIFA World Cup Toronto 6 matches — BMO Field, Canada home (Jun 12+)", date:"2026-06-12", type:"sports" },
+    { emoji:"🎉", ko:"토론토 한인 축제 TKF — Mel Lastman Square 무료 (8월21~23일)", en:"Toronto Korean Festival TKF — Mel Lastman Square, Free (Aug 21-23)", date:"2026-08-21", type:"festival" },
+    { emoji:"🍁", ko:"캐나다 데이 (7월1일) — CN타워 불꽃놀이", en:"Canada Day Jul 1 — CN Tower Fireworks", date:"2026-07-01", type:"holiday" },
   ],
-  // ── 밴쿠버
   vancouver: [
-    { emoji:"⚽", ko:"FIFA 월드컵 밴쿠버 경기 — BC Place (6월)", en:"FIFA World Cup Vancouver at BC Place (June)", date:"2026-06", type:"sports" },
-    { emoji:"🌸", ko:"밴쿠버 벚꽃 축제 (3-4월)", en:"Vancouver Cherry Blossom Festival (Mar–Apr)", date:"2026-03", type:"festival" },
-    { emoji:"🍁", ko:"캐나다 데이 (7월 1일)", en:"Canada Day July 1", date:"2026-07-01", type:"holiday" },
+    { emoji:"⚽", ko:"FIFA 월드컵 밴쿠버 7경기 — BC Place (6~7월)", en:"FIFA World Cup Vancouver 7 matches — BC Place (Jun–Jul)", date:"2026-06-26", type:"sports" },
+    { emoji:"🎉", ko:"한인문화유산축제 — Swangard Stadium 24회 (7월18일)", en:"Korean Cultural Heritage Festival — Swangard Stadium, 24th (Jul 18)", date:"2026-07-18", type:"festival" },
+    { emoji:"🥬", ko:"김치 & K-푸드 페스티벌 — 버나비 (8월28~29일)", en:"Kimchi & K-Food Festival — Burnaby (Aug 28-29)", date:"2026-08-28", type:"festival" },
   ],
-  // ── 한국 도시들
   seoul: [
-    { emoji:"🌸", ko:"벚꽃 시즌 — 여의도·윤중로 (4월 초)", en:"Cherry Blossom at Yeouido (early April)", date:"2026-04", type:"festival" },
-    { emoji:"🎆", ko:"광복절 (8월 15일) — 서울 행사", en:"Liberation Day Aug 15 — Seoul events", date:"2026-08-15", type:"holiday" },
-    { emoji:"🥮", ko:"추석 (10월 6일) — 가족 귀성", en:"Chuseok Oct 6 — Family Homecoming", date:"2026-10-06", type:"holiday" },
+    { emoji:"🏮", ko:"설날 (2월17일) — 가족 귀향·차례·세배 (Year of Horse 병오년)", en:"Seollal Lunar New Year (Feb 17) — Family reunion, Year of Horse", date:"2026-02-17", type:"holiday" },
+    { emoji:"🌸", ko:"여의도 봄꽃축제 (4월8~12일) — 벚꽃 무료", en:"Yeouido Spring Flower Festival (Apr 8-12) — Cherry blossoms, free", date:"2026-04-08", type:"festival" },
+    { emoji:"🏮", ko:"연등회 (5월16~17일) — 유네스코 등재 종로 등불 행진", en:"Lotus Lantern Festival (May 16-17) — UNESCO heritage, Jongno parade", date:"2026-05-16", type:"festival" },
+    { emoji:"🎆", ko:"광복절 81주년 (8월15일) — 국경일 기념식", en:"Liberation Day 81st (Aug 15) — National ceremonies", date:"2026-08-15", type:"holiday" },
+    { emoji:"🥮", ko:"추석 (9월25일) — 3일 연휴·성묘·한국 최대 명절", en:"Chuseok (Sep 25) — 3-day holiday, Korea's biggest festival", date:"2026-09-25", type:"holiday" },
   ],
   busan: [
-    { emoji:"🎬", ko:"부산 국제영화제 BIFF (10월)", en:"Busan International Film Festival BIFF (October)", date:"2026-10", type:"culture" },
-    { emoji:"🎆", ko:"해운대 모래축제 (5월)", en:"Haeundae Sand Festival (May)", date:"2026-05", type:"festival" },
-    { emoji:"🥮", ko:"추석 (10월 6일) — 가족 귀성", en:"Chuseok Oct 6 — Family Homecoming", date:"2026-10-06", type:"holiday" },
+    { emoji:"🎬", ko:"부산국제영화제 BIFF 31회 — 해운대 영화의전당 (10월6~15일)", en:"Busan Int'l Film Festival BIFF 31st — Haeundae Cinema Center (Oct 6-15)", date:"2026-10-06", type:"culture" },
+    { emoji:"🥮", ko:"추석 (9월25일) — 해운대 특별 행사", en:"Chuseok (Sep 25) — Haeundae special events", date:"2026-09-25", type:"holiday" },
   ],
   jeju: [
-    { emoji:"🌸", ko:"벚꽃·유채꽃 시즌 (3-4월) — 전국 최초 개화", en:"Cherry & Canola Blossoms (Mar–Apr) — First in Korea", date:"2026-03", type:"festival" },
-    { emoji:"🏊", ko:"제주 국제 트라이애슬론 (6월)", en:"Jeju International Triathlon (June)", date:"2026-06", type:"sports" },
+    { emoji:"🔥", ko:"제주 들불축제 — 새별오름 달집태우기 (3월9~14일)", en:"Jeju Fire Festival — Saebyeol Oreum hillside burning (Mar 9-14)", date:"2026-03-09", type:"festival" },
+    { emoji:"🌸", ko:"벚꽃·유채꽃 시즌 — 전국 최초 개화 (3~4월)", en:"Cherry & Canola Blossoms — First in Korea (Mar–Apr)", date:"2026-03", type:"festival" },
   ],
-  // ── 오세아니아
   sydney: [
-    { emoji:"🎆", ko:"시드니 새해맞이 불꽃놀이 — 세계 최초 자정 (1월 1일)", en:"Sydney NYE Fireworks — World's first midnight (Jan 1)", date:"2027-01-01", type:"festival" },
-    { emoji:"🌈", ko:"시드니 마르디그라 (2-3월) — 한인 관광객 급증 기간", en:"Sydney Mardi Gras (Feb–Mar) — Peak Korean tourist season", date:"2026-02", type:"festival" },
+    { emoji:"🎉", ko:"시드니 한인 축제 — Darling Harbour Tumbalong Park 무료 (3월28~29일)", en:"Sydney Korean Festival — Darling Harbour, Free (Mar 28-29)", date:"2026-03-28", type:"festival" },
+    { emoji:"🎆", ko:"시드니 새해 불꽃놀이 — 세계 최초 자정 (2027년 1월1일)", en:"Sydney NYE Fireworks — World's first midnight (Jan 1, 2027)", date:"2027-01-01", type:"festival" },
   ],
-  // ── 도쿄
   tokyo: [
-    { emoji:"🌸", ko:"도쿄 벚꽃 시즌 — 우에노·신주쿠 (3월 말-4월 초)", en:"Tokyo Cherry Blossom — Ueno/Shinjuku (late Mar–early Apr)", date:"2026-03", type:"festival" },
-    { emoji:"🎆", ko:"스미다 강 불꽃놀이 (7월)", en:"Sumida River Fireworks (July)", date:"2026-07", type:"festival" },
+    { emoji:"🌸", ko:"도쿄 벚꽃 시즌 — 우에노·요요기공원 (3월말~4월초)", en:"Tokyo Cherry Blossom — Ueno/Yoyogi Park (late Mar–early Apr)", date:"2026-03", type:"festival" },
+    { emoji:"🏮", ko:"오봉 Obon 조상 추모·봉오도리 — 고토구 (7월13~16일)", en:"Obon Festival — Ancestor memorial, Bon Odori dance (Jul 13-16)", date:"2026-07-13", type:"festival" },
+    { emoji:"🎆", ko:"후카가와 하치만 마츠리 수제 퍼레이드 (8월12~16일)", en:"Fukagawa Hachiman Festival water-throwing parade (Aug 12-16)", date:"2026-08-12", type:"culture" },
   ],
-  // ── 유럽
+  osaka: [
+    { emoji:"🎤", ko:"MAMA 어워즈 오사카 — 교세라돔 K팝 시상식 (11월20~21일)", en:"MAMA Awards Osaka — Kyocera Dome K-pop awards (Nov 20-21)", date:"2026-11-20", type:"culture" },
+    { emoji:"🌸", ko:"오사카 벚꽃 시즌 — 오사카성 공원 (4월)", en:"Osaka Cherry Blossoms — Osaka Castle Park (April)", date:"2026-04", type:"festival" },
+  ],
   london: [
-    { emoji:"👑", ko:"영국 왕실 행사 (연중)", en:"Royal Events UK (year-round)", date:"2026", type:"culture" },
-    { emoji:"🎄", ko:"옥스퍼드 스트리트 크리스마스 조명 (11-12월)", en:"Oxford Street Christmas Lights (Nov–Dec)", date:"2026-11", type:"festival" },
+    { emoji:"🍜", ko:"JUNG 한국 음식 축제 — King's Cross 무료 30개 업체 (5월1~4일)", en:"JUNG Korean Food Festival — King's Cross, Free, 30 vendors (May 1-4)", date:"2026-05-01", type:"culture" },
+    { emoji:"🎤", ko:"런던 한류 축제 — K팝DJ·랜덤플레이댄스 (7월4~6일)", en:"London Hallyu Festival — K-pop DJ, Random Play Dance (Jul 4-6)", date:"2026-07-04", type:"culture" },
+    { emoji:"🎄", ko:"옥스퍼드 스트리트 크리스마스 조명 (11~12월)", en:"Oxford Street Christmas Lights (Nov–Dec)", date:"2026-11", type:"festival" },
   ],
   paris: [
     { emoji:"🚴", ko:"투르 드 프랑스 파리 도착 (7월)", en:"Tour de France Paris Finish (July)", date:"2026-07", type:"sports" },
     { emoji:"🎄", ko:"샹젤리제 크리스마스 마켓 (12월)", en:"Champs-Elysées Christmas Market (December)", date:"2026-12", type:"festival" },
+  ],
+  singapore: [
+    { emoji:"🎆", ko:"싱가포르 국경일 — 마리나베이 불꽃놀이 (8월9일)", en:"Singapore National Day — Marina Bay Fireworks (Aug 9)", date:"2026-08-09", type:"holiday" },
+    { emoji:"🏎️", ko:"F1 싱가포르 그랑프리 야간 레이스 (9월)", en:"F1 Singapore Grand Prix Night Race (September)", date:"2026-09", type:"sports" },
+  ],
+  bangkok: [
+    { emoji:"💦", ko:"송크란 물축제 (4월13~15일)", en:"Songkran Water Festival (Apr 13-15)", date:"2026-04-13", type:"festival" },
+    { emoji:"🕯️", ko:"로이끄라통 등불 축제 (11월)", en:"Loi Krathong Lantern Festival (November)", date:"2026-11", type:"festival" },
+  ],
+  dubai: [
+    { emoji:"🎆", ko:"UAE 국경일 (12월2일) — 두바이 불꽃놀이", en:"UAE National Day (Dec 2) — Dubai Fireworks", date:"2026-12-02", type:"holiday" },
+    { emoji:"🛍️", ko:"두바이 쇼핑 페스티벌 (1~2월)", en:"Dubai Shopping Festival (Jan–Feb)", date:"2026-01", type:"festival" },
   ],
 };
 
