@@ -8256,10 +8256,10 @@ function CompactHeroNew() {
         display: "flex", alignItems: "center", gap: 4,
         pointerEvents: "none",
       }}>
-        <span style={{ fontSize: 11, color: "#C9A227", fontWeight: 900, lineHeight: 1 }}>★</span>
+        <span style={{ fontSize: 11, color: "#C9A227", fontWeight: 900, lineHeight: 1 }}>✦</span>
         <span style={{ fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 800,
           color: "rgba(255,255,255,0.97)", letterSpacing: "0.04em" }}>
-          {lang === "ko" ? "#1 글로벌 한인 가이드" : "#1 Global Korean Guide"}
+          {lang === "ko" ? "글로벌 환대 커뮤니티" : "Global Hospitality Community"}
         </span>
       </div>
 
