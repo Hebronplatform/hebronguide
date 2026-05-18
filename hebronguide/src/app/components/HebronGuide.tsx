@@ -8987,41 +8987,40 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
 ───────────────────────────────────────── */
 
 const DAILY_QUOTES = [
-  // ── 성경 구절 (이민·새 시작·용기·환대 주제)
-  { ko: "\"두려워하지 말라, 내가 너와 함께 함이라. 놀라지 말라, 나는 네 하나님이 됨이라.\"", en: "\"Fear not, for I am with you; be not dismayed, for I am your God.\"", source: "이사야 41:10", sourceEn: "Isaiah 41:10", type: "scripture" },
-  { ko: "\"내가 새 일을 행하리니 이제 나타낼 것이라. 너희가 그것을 알지 못하겠느냐. 반드시 사막에 길을 내겠다.\"", en: "\"I am doing a new thing! Now it springs up; do you not perceive it? I am making a way in the wilderness.\"", source: "이사야 43:19", sourceEn: "Isaiah 43:19", type: "scripture" },
-  { ko: "\"너희를 향한 나의 생각을 내가 아나니 평안이요 재앙이 아니니라. 너희에게 미래와 희망을 주는 것이니라.\"", en: "\"For I know the plans I have for you... plans to prosper you and not to harm you, plans to give you hope and a future.\"", source: "예레미야 29:11", sourceEn: "Jeremiah 29:11", type: "scripture" },
-  { ko: "\"무엇이든지 남에게 대접을 받고자 하는 대로 너희도 남을 대접하라.\"", en: "\"Do to others what you would have them do to you.\"", source: "마태복음 7:12", sourceEn: "Matthew 7:12", type: "scripture" },
-  { ko: "\"내가 나그네 되었을 때 너희가 영접하였다.\"", en: "\"I was a stranger and you invited me in.\"", source: "마태복음 25:35", sourceEn: "Matthew 25:35", type: "scripture" },
-  { ko: "\"내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라.\"", en: "\"I can do all things through Christ who strengthens me.\"", source: "빌립보서 4:13", sourceEn: "Philippians 4:13", type: "scripture" },
-  { ko: "\"사람이 마음으로 자기의 길을 계획할지라도 그의 걸음을 인도하시는 이는 여호와시니라.\"", en: "\"In their hearts humans plan their course, but the Lord establishes their steps.\"", source: "잠언 16:9", sourceEn: "Proverbs 16:9", type: "scripture" },
-  { ko: "\"손님 대접하기를 잊지 말라. 이로써 부지중에 천사들을 대접한 이들이 있었느니라.\"", en: "\"Do not forget to show hospitality to strangers, for by so doing some people have shown hospitality to angels.\"", source: "히브리서 13:2", sourceEn: "Hebrews 13:2", type: "scripture" },
-  { ko: "\"내가 산을 향하여 눈을 들리라. 나의 도움이 어디서 올꼬. 나의 도움은 천지를 지으신 여호와에게서로다.\"", en: "\"I lift up my eyes to the mountains — where does my help come from? My help comes from the Lord, the Maker of heaven and earth.\"", source: "시편 121:1-2", sourceEn: "Psalm 121:1-2", type: "scripture" },
-  { ko: "\"우리가 알거니와 하나님을 사랑하는 자 곧 그의 뜻대로 부르심을 입은 자들에게는 모든 것이 합력하여 선을 이루느니라.\"", en: "\"We know that in all things God works for the good of those who love him.\"", source: "로마서 8:28", sourceEn: "Romans 8:28", type: "scripture" },
-  { ko: "\"그러므로 내일 일을 위하여 염려하지 말라. 내일 일은 내일이 염려할 것이요. 한 날의 괴로움은 그날로 족하니라.\"", en: "\"Do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.\"", source: "마태복음 6:34", sourceEn: "Matthew 6:34", type: "scripture" },
-  { ko: "\"너는 마음을 다하여 여호와를 신뢰하고 네 명철을 의지하지 말라. 너는 범사에 그를 인정하라. 그리하면 네 길을 지도하시리라.\"", en: "\"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.\"", source: "잠언 3:5-6", sourceEn: "Proverbs 3:5-6", type: "scripture" },
+  // ── 성경 구절 (새번역) — 이민·새 시작·용기·환대
+  { ko: "두려워하지 말아라. 내가 너와 함께 있다. 놀라지 말아라. 내가 너의 하나님이다.", en: "\"Fear not, for I am with you; be not dismayed, for I am your God.\"", source: "이사야 41:10 (새번역)", sourceEn: "Isaiah 41:10", type: "scripture" },
+  { ko: "보아라, 내가 새로운 일을 하겠다. 이제 곧 나타날 것이다. 너희는 그것을 알아차리지 못하겠느냐? 내가 사막에 길을 내겠다.", en: "\"See, I am doing a new thing! Now it springs up; do you not perceive it? I am making a way in the wilderness.\"", source: "이사야 43:19 (새번역)", sourceEn: "Isaiah 43:19", type: "scripture" },
+  { ko: "나는 너희를 위하여 계획하고 있는 것을 잘 알고 있다. 재앙이 아니라 평안을 누리게 하려는 것이다. 너희에게 미래와 희망을 주려는 것이다.", en: "\"For I know the plans I have for you — plans to prosper you and not to harm you, plans to give you hope and a future.\"", source: "예레미야 29:11 (새번역)", sourceEn: "Jeremiah 29:11", type: "scripture" },
+  { ko: "무엇이든지 남에게 대접을 받고자 하는 대로, 너희도 남을 대접하여라.", en: "\"Do to others what you would have them do to you.\"", source: "마태복음 7:12 (새번역)", sourceEn: "Matthew 7:12", type: "scripture" },
+  { ko: "내가 나그네 되었을 때에 여러분이 영접해 주었고.", en: "\"I was a stranger and you invited me in.\"", source: "마태복음 25:35 (새번역)", sourceEn: "Matthew 25:35", type: "scripture" },
+  { ko: "나에게 능력을 주시는 분 안에서, 나는 모든 것을 할 수 있습니다.", en: "\"I can do all things through Christ who strengthens me.\"", source: "빌립보서 4:13 (새번역)", sourceEn: "Philippians 4:13", type: "scripture" },
+  { ko: "사람이 마음으로 자기의 길을 계획하지만, 그 발걸음을 인도하시는 분은 주님이시다.", en: "\"In their hearts humans plan their course, but the Lord establishes their steps.\"", source: "잠언 16:9 (새번역)", sourceEn: "Proverbs 16:9", type: "scripture" },
+  { ko: "나그네 대접하기를 소홀히 하지 마십시오. 어떤 이들은 그렇게 하다가, 자기도 모르는 사이에 천사들을 대접하였습니다.", en: "\"Do not forget to show hospitality to strangers, for by so doing some people have shown hospitality to angels.\"", source: "히브리서 13:2 (새번역)", sourceEn: "Hebrews 13:2", type: "scripture" },
+  { ko: "내가 눈을 들어 산을 바라본다. 나의 도움이 어디서 오는가? 나의 도움은 하늘과 땅을 만드신 주님에게서 온다.", en: "\"I lift up my eyes to the mountains — where does my help come from? My help comes from the Lord, the Maker of heaven and earth.\"", source: "시편 121:1-2 (새번역)", sourceEn: "Psalm 121:1-2", type: "scripture" },
+  { ko: "하나님을 사랑하는 사람들, 곧 하나님의 뜻대로 부르심을 받은 사람들에게는, 모든 것이 서로 협력해서 선을 이룬다는 것을 압니다.", en: "\"We know that in all things God works for the good of those who love him.\"", source: "로마서 8:28 (새번역)", sourceEn: "Romans 8:28", type: "scripture" },
+  { ko: "그러므로 내일 일을 걱정하지 말아라. 내일 일은 내일이 맡아서 걱정할 것이다. 한 날의 괴로움은 그날에 겪는 것으로 충분하다.", en: "\"Do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.\"", source: "마태복음 6:34 (새번역)", sourceEn: "Matthew 6:34", type: "scripture" },
+  { ko: "네 마음을 다하여 주님을 신뢰하고, 너 자신의 슬기를 의지하지 말아라. 네가 하는 모든 일에서 그분을 인정하여라. 그러면 그분이 네 길을 반듯하게 펴 주실 것이다.", en: "\"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways acknowledge him, and he will make your paths straight.\"", source: "잠언 3:5-6 (새번역)", sourceEn: "Proverbs 3:5-6", type: "scripture" },
+  { ko: "아주 작은 일에 충실한 사람은 큰 일에도 충실하고, 아주 작은 일에 불충실한 사람은 큰 일에도 불충실하다.", en: "\"Whoever can be trusted with very little can also be trusted with much.\"", source: "누가복음 16:10 (새번역)", sourceEn: "Luke 16:10", type: "scripture" },
 
-  // ── 보편적 지혜 (새 시작·용기·이민·공동체)
-  { ko: "\"가장 긴 여정도 한 걸음으로 시작된다.\"", en: "\"A journey of a thousand miles begins with a single step.\"", source: "노자 (老子)", sourceEn: "Lao Tzu", type: "wisdom" },
-  { ko: "\"가장 어두운 밤도 끝난다. 그리고 태양은 반드시 떠오른다.\"", en: "\"Even the darkest night will end, and the sun will rise.\"", source: "빅토르 위고", sourceEn: "Victor Hugo", type: "wisdom" },
-  { ko: "\"나무를 심기 가장 좋은 때는 20년 전이었다. 두 번째로 좋은 때는 지금이다.\"", en: "\"The best time to plant a tree was 20 years ago. The second best time is now.\"", source: "중국 속담", sourceEn: "Chinese Proverb", type: "wisdom" },
-  { ko: "\"타인을 이해하는 것이 지식이다. 자신을 아는 것이 지혜다.\"", en: "\"Knowing others is intelligence; knowing yourself is true wisdom.\"", source: "노자 (老子)", sourceEn: "Lao Tzu", type: "wisdom" },
-  { ko: "\"고향의 향수는 우리 모두에게 있다. 우리가 있는 그대로 돌아갈 수 있는 안전한 곳.\"", en: "\"The ache for home lives in all of us — the safe place where we can go as we are.\"", source: "마야 앤젤루", sourceEn: "Maya Angelou", type: "wisdom" },
-  { ko: "\"어디를 가든 그 곳은 어떤 방식으로든 당신의 일부가 된다.\"", en: "\"Wherever you go becomes a part of you somehow.\"", source: "아니타 데사이", sourceEn: "Anita Desai", type: "wisdom" },
-  { ko: "\"위대한 일을 하는 유일한 방법은 자신이 하는 일을 사랑하는 것이다.\"", en: "\"The only way to do great work is to love what you do.\"", source: "스티브 잡스", sourceEn: "Steve Jobs", type: "wisdom" },
-  { ko: "\"중요한 것은 얼마나 오래 사는가가 아니라 어떻게 사는가다.\"", en: "\"It is not how old you are, but how you are old.\"", source: "쥘 르나르", sourceEn: "Jules Renard", type: "wisdom" },
-  { ko: "\"우리는 바람을 조종할 수 없지만 돛은 조정할 수 있다.\"", en: "\"We cannot direct the wind, but we can adjust the sails.\"", source: "독일 속담", sourceEn: "German Proverb", type: "wisdom" },
-  { ko: "\"서로 다른 것이 모여 완전한 것을 만든다.\"", en: "\"It is difference and uniqueness that makes a whole.\"", source: "파울로 코엘료", sourceEn: "Paulo Coelho", type: "wisdom" },
-  { ko: "\"강이 바다에 이르듯이, 우리도 결국 고향에 닿는다.\"", en: "\"As rivers reach the sea, we all find our way home.\"", source: "공자 (孔子)", sourceEn: "Confucius", type: "wisdom" },
+  // ── 성경적 세계관 필터 통과 — 성경적 가치 지지하는 명언
+  // (제외: 스티브 잡스-세속성공관, 파울로 코엘료-뉴에이지, 데스몬드 투투-신학충돌, 간디-힌두세계관)
+  { ko: "우리 앞에는 지금까지 뒤에 남겨온 어떤 것보다 훨씬 더 좋은 것들이 있다.", en: "\"There are far, far better things ahead than any we leave behind.\"", source: "C.S. 루이스", sourceEn: "C.S. Lewis", type: "wisdom" },
+  { ko: "하나님이 방해하시도록 우리 자신을 열어드릴 준비가 되어야 한다. 하나님은 우리의 계획보다 더 좋은 계획을 가지고 계신다.", en: "\"We must be ready to allow ourselves to be interrupted by God. God has better plans than ours.\"", source: "디트리히 본회퍼", sourceEn: "Dietrich Bonhoeffer", type: "wisdom" },
+  { ko: "주님, 당신은 우리를 당신을 위해 만드셨고, 우리 마음은 당신 안에서 쉼을 얻기까지 안식이 없습니다.", en: "\"You have made us for Yourself, O Lord, and our heart is restless until it finds its rest in You.\"", source: "어거스틴 (고백록)", sourceEn: "Augustine (Confessions)", type: "wisdom" },
+  { ko: "기쁨은 우리에게 그냥 찾아오지 않는다. 우리는 매일 기쁨을 선택해야 한다.", en: "\"Joy does not simply happen to us. We have to choose joy and keep choosing it every day.\"", source: "앙리 누웬", sourceEn: "Henri Nouwen", type: "wisdom" },
+  { ko: "가장 어두운 밤도 끝난다. 그리고 태양은 반드시 떠오른다.", en: "\"Even the darkest night will end, and the sun will rise.\"", source: "빅토르 위고", sourceEn: "Victor Hugo", type: "wisdom" },
+  { ko: "나무를 심기 가장 좋은 때는 20년 전이었다. 두 번째로 좋은 때는 지금이다.", en: "\"The best time to plant a tree was 20 years ago. The second best time is now.\"", source: "중국 속담", sourceEn: "Chinese Proverb", type: "wisdom" },
+  { ko: "고향의 향수는 우리 모두에게 있다. 우리가 있는 그대로 돌아갈 수 있는 안전한 곳.", en: "\"The ache for home lives in all of us — the safe place where we can go as we are.\"", source: "마야 앤젤루", sourceEn: "Maya Angelou", type: "wisdom" },
+  { ko: "어디를 가든 그 곳은 어떤 방식으로든 당신의 일부가 된다.", en: "\"Wherever you go becomes a part of you somehow.\"", source: "아니타 데사이", sourceEn: "Anita Desai", type: "wisdom" },
+  { ko: "중요한 것은 얼마나 오래 사는가가 아니라 어떻게 사는가이다.", en: "\"It matters not how long you live, but how.\"", source: "필립 제임스 베일리", sourceEn: "Philip James Bailey", type: "wisdom" },
+  { ko: "우리는 바람을 조종할 수 없지만 돛은 조정할 수 있다.", en: "\"We cannot direct the wind, but we can adjust the sails.\"", source: "독일 속담", sourceEn: "German Proverb", type: "wisdom" },
 
-  // ── 섬김·환대·공동체
-  { ko: "\"자신만을 위해 사는 사람은 아무것도 이루지 못한다. 다른 사람들을 위해 사는 사람은 영원히 기억된다.\"", en: "\"Those who live for themselves accomplish little. Those who live for others leave a lasting mark.\"", source: "알베르트 슈바이처", sourceEn: "Albert Schweitzer", type: "service" },
-  { ko: "\"당신이 가진 것이 적다고 생각할 때, 가진 것을 나눠라. 그것이 기적의 시작이다.\"", en: "\"When you think you have nothing to give, that is exactly the moment to give. That's how miracles begin.\"", source: "마더 테레사", sourceEn: "Mother Teresa", type: "service" },
-  { ko: "\"인류를 섬기는 것이 하나님을 섬기는 것이다.\"", en: "\"The best way to find yourself is to lose yourself in the service of others.\"", source: "마하트마 간디", sourceEn: "Mahatma Gandhi", type: "service" },
-  { ko: "\"어떤 친절한 행동도 낭비되지 않는다.\"", en: "\"No act of kindness, no matter how small, is ever wasted.\"", source: "이솝", sourceEn: "Aesop", type: "service" },
-  { ko: "\"우리는 혼자서는 완전하지 않다. 함께일 때 비로소 완전해진다.\"", en: "\"I am because we are. We can only be human together.\"", source: "데스몬드 투투 (우분투 철학)", sourceEn: "Desmond Tutu (Ubuntu philosophy)", type: "service" },
-  { ko: "\"작은 일에 충성하는 자는 큰 일에도 충성할 것이요.\"", en: "\"Whoever can be trusted with very little can also be trusted with much.\"", source: "누가복음 16:10", sourceEn: "Luke 16:10", type: "scripture" },
-  { ko: "\"세상을 바꾸는 가장 강력한 방법은 당신 앞에 있는 단 한 사람을 진심으로 섬기는 것이다.\"", en: "\"The most powerful way to change the world is to wholeheartedly serve the one person in front of you.\"", source: "프레드 로저스 (Fred Rogers)", sourceEn: "Fred Rogers", type: "service" },
+  // ── 섬김·환대·사랑 — 성경적 가치 일치
+  { ko: "자신만을 위해 사는 사람은 아무것도 이루지 못한다. 다른 사람들을 위해 사는 사람은 영원히 기억된다.", en: "\"Those who live for themselves accomplish little. Those who live for others leave a lasting mark.\"", source: "알베르트 슈바이처 (의사·선교사)", sourceEn: "Albert Schweitzer (doctor & missionary)", type: "service" },
+  { ko: "당신이 가진 것이 아무것도 없다고 느낄 때 — 그 순간이 바로 줄 수 있는 때이다. 그것이 기적의 시작이다.", en: "\"When you think you have nothing to give, that is exactly the moment to give. That's how miracles begin.\"", source: "마더 테레사", sourceEn: "Mother Teresa", type: "service" },
+  { ko: "어떤 친절한 행동도 낭비되지 않는다.", en: "\"No act of kindness, no matter how small, is ever wasted.\"", source: "이솝", sourceEn: "Aesop", type: "service" },
+  { ko: "세상을 바꾸는 가장 강력한 방법은 당신 앞에 있는 단 한 사람을 진심으로 섬기는 것이다.", en: "\"The most powerful way to change the world is to wholeheartedly serve the one person in front of you.\"", source: "프레드 로저스 (장로교 목사)", sourceEn: "Fred Rogers (Presbyterian minister)", type: "service" },
+  { ko: "사랑은 행동이지, 감정이 아니다. 사랑한다는 것은 선택이다.", en: "\"Love is not an emotion. It is a decision.\"", source: "C.S. 루이스 (《순전한 기독교》)", sourceEn: "C.S. Lewis (Mere Christianity)", type: "service" },
 ];
 
 function DailyQuoteSection({ lang }: { lang: string }) {
