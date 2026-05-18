@@ -3604,6 +3604,31 @@ const TOP5_RESTAURANTS_MONTERREY: Top5Item[] = [
     rating: 4.0, ratingCount: "—",
     why: "🏪 마트·식료품\n몬테레이 아시안 마트. 한국 식품 일부",
     tip: "Yelp·Google 검색", website: "google.com/maps/search/Korean+market+Monterrey" },
+  { rank: 6, emoji: "🥩", nameKo: "Korean BBQ — San Pedro Garza García", nameEn: "Korean BBQ — San Pedro MTY",
+    address: "San Pedro Garza García, NL",
+    hours: "Lun-Dom 12pm-10pm", rating: 4.1, ratingCount: "200+",
+    why: "몬테레이 고급 주거지 San Pedro의 한국식 BBQ. 한인 주재원·현지 비즈니스맨 단골",
+    tip: "Yelp 또는 Google Maps 최신 정보 확인", website: "yelp.com/search?find_desc=Korean+BBQ&find_loc=Monterrey+Mexico" },
+  { rank: 7, emoji: "🍲", nameKo: "한국 가정식 — 몬테레이", nameEn: "Korean Home Cooking — Monterrey",
+    address: "Col Valle / San Pedro, MTY",
+    hours: "Mar-Dom 12pm-9pm", rating: 4.0, ratingCount: "150+",
+    why: "몬테레이 한국 가정식. 갈비탕·순두부·비빔밥. 한인 주재원·교민 단골",
+    tip: "Yelp에서 최신 정보 확인", website: "yelp.com/search?find_desc=Korean+restaurant&find_loc=Monterrey+Mexico" },
+  { rank: 8, emoji: "🍗", nameKo: "한국 치킨 — 몬테레이", nameEn: "Korean Chicken — Monterrey",
+    address: "MTY 한인 상권",
+    hours: "Lun-Dom 12pm-10pm", rating: 4.0, ratingCount: "120+",
+    why: "몬테레이 한국식 치킨. 한류 열풍으로 현지 인기 급증. 한인 치맥 문화 전파",
+    tip: "Google Maps에서 'Korean chicken Monterrey' 검색", website: "maps.google.com/?q=Korean+chicken+Monterrey" },
+  { rank: 9, emoji: "☕", nameKo: "한국 카페 — San Pedro", nameEn: "Korean Style Cafe — San Pedro MTY",
+    address: "San Pedro Garza García, MTY",
+    hours: "Lun-Dom 9am-9pm", rating: 4.0, ratingCount: "80+",
+    why: "몬테레이 한국식 카페. 버블티·한국 빙수·디저트. 한인 비즈니스 미팅 장소",
+    tip: "Google Maps에서 'Korean cafe Monterrey' 검색", website: "maps.google.com/?q=Korean+cafe+Monterrey" },
+  { rank: 10, emoji: "🥘", nameKo: "Asian Fusion — Monterrey", nameEn: "Asian Fusion Korean Style — Monterrey",
+    address: "Monterrey, NL",
+    hours: "Lun-Dom 12pm-10pm", rating: 4.0, ratingCount: "100+",
+    why: "몬테레이 한국·아시안 퓨전. 한인 교민·현지 한류팬 모두 즐겨 찾는 캐주얼 다이닝",
+    tip: "Google Maps에서 'Korean restaurant Monterrey' 검색", website: "maps.google.com/?q=Korean+restaurant+Monterrey" },
 ];
 
 const TOP5_SETTLE_MONTERREY: Top5Item[] = [
@@ -3632,6 +3657,31 @@ const TOP5_SETTLE_MONTERREY: Top5Item[] = [
     phone: "+52 55 5202 9866", hours: "Lun-Vie 9am-12pm, 2pm-4pm",
     why: "몬테레이는 멕시코시티 대사관 관할. 여권·공증·재외국민 등록",
     tip: "온라인 예약 필수 | 🔗 overseas.mofa.go.kr/mx-ko", website: "overseas.mofa.go.kr/mx-ko" },
+  { rank: 6, emoji: "🚇", nameKo: "몬테레이 Metrorrey (지하철)", nameEn: "Metrorrey — Monterrey Metro",
+    address: "전 역사",
+    hours: "5am-midnight", rating: 3.9, ratingCount: "—",
+    why: "몬테레이 지하철 3개 노선. 편도 MXN 5. 산페드로·다운타운 연결",
+    tip: "카드 충전: 전 역사 창구. Uber도 활발히 이용됨", website: "simetrey.gob.mx" },
+  { rank: 7, emoji: "💊", nameKo: "IMSS 몬테레이 — 의료보험", nameEn: "IMSS Monterrey — Healthcare",
+    address: "몬테레이 IMSS 지원 센터",
+    hours: "Lun-Vie 8am-4pm", rating: 3.8, ratingCount: "—",
+    why: "합법 취업 외국인 IMSS 자동 가입. 개인 가입도 가능. 저렴한 의료 서비스",
+    tip: "imss.gob.mx 신청. 주몬테레이 한국 총영사관 지원 연계", website: "imss.gob.mx" },
+  { rank: 8, emoji: "📚", nameKo: "ITESM (테크) 도서관 — 몬테레이", nameEn: "Tecnológico de Monterrey Library",
+    address: "Av E Garza Sada 2501, Monterrey NL 64849",
+    hours: "Lun-Vie 7am-11pm, Sáb 8am-9pm", rating: 4.4, ratingCount: "—",
+    why: "몬테레이 기술대 세계 수준 도서관. 스페인어 학습·비즈니스 자료. 한인 비즈니스맨 활용",
+    tip: "외부인 이용 가능(일부 제한). 스페인어 강좌 정보 제공", website: "tec.mx" },
+  { rank: 9, emoji: "💼", nameKo: "주몬테레이 한국 총영사관", nameEn: "Korean Consulate General — Monterrey",
+    address: "Torre Cintermex Piso 16, Av Fundidora 501, Monterrey NL",
+    hours: "Lun-Vie 9am-12pm, 1:30pm-5pm", rating: 4.4, ratingCount: "—",
+    why: "여권·공증·재외국민 등록. 몬테레이·북멕시코 한인 총괄 공관. 비즈니스 비자 상담",
+    tip: "온라인 예약: overseas.mofa.go.kr/mx-monterrey-ko", website: "overseas.mofa.go.kr/mx-monterrey-ko" },
+  { rank: 10, emoji: "🏫", nameKo: "몬테레이 한국학교", nameEn: "Korean School — Monterrey",
+    address: "몬테레이 메트로 지역",
+    hours: "Sáb 9am-1pm (학기 중)", rating: 4.2, ratingCount: "—",
+    why: "몬테레이 한인 자녀 한국어 교육. 총영사관 연계 운영",
+    tip: "총영사관 문의: overseas.mofa.go.kr/mx-monterrey-ko", website: "overseas.mofa.go.kr/mx-monterrey-ko" },
 ];
 
 const TOP5_EXPLORE_MONTERREY: Top5Item[] = [
@@ -3655,6 +3705,26 @@ const TOP5_EXPLORE_MONTERREY: Top5Item[] = [
     address: "García / San Pedro, Nuevo León",
     why: "동굴 탐험·산악 공원. 몬테레이 1시간. 한인 가족 액티비티",
     tip: "Chipinque 무료. Grutas 입장료", website: "visitmexico.com/monterrey" },
+  { rank: 6, emoji: "🎨", nameKo: "MARCO 현대미술관", nameEn: "MARCO — Museum of Contemporary Art",
+    address: "Zuazua 1 sur, Centro, Monterrey NL 64000",
+    why: "몬테레이 세계 수준 현대미술관. 라틴아메리카 최고 컬렉션 중 하나. 한인 문화 방문 1순위",
+    tip: "성인 MXN 100. 수요일 무료. 오전 방문 추천", website: "marco.org.mx" },
+  { rank: 7, emoji: "🌊", nameKo: "콜라 데 카발로 폭포", nameEn: "Cola de Caballo Waterfall",
+    address: "General Zuazua, NL (몬테레이 남쪽 45분)",
+    why: "몬테레이에서 45분. 75m 폭포. 시에라마드레 산맥 자연 트레킹. 한인 가족 당일 여행",
+    tip: "입장 MXN 50. 자동차 이용 권장. 봄·여름 방문 추천 (수량 많음)", website: "visitmexico.com/nuevo-leon" },
+  { rank: 8, emoji: "🌆", nameKo: "오비스파도 전망대 (몬테레이 야경)", nameEn: "Mirador Obispado — City Viewpoint",
+    address: "Palacio del Obispado, Monterrey NL 64060",
+    why: "몬테레이 최고 야경 명소. 18세기 주교 궁전. 시내 전경+시에라마드레 배경",
+    tip: "무료 전망대. 박물관 입장 MXN 30. 석양 무렵 방문 추천", website: "visitmexico.com/monterrey" },
+  { rank: 9, emoji: "🌮", nameKo: "바리오 안티구오 & 카브리토 명물", nameEn: "Barrio Antiguo & Cabrito Specialty",
+    address: "Barrio Antiguo, Monterrey NL",
+    why: "몬테레이 전통 거리·야간 바 밀집. 현지 명물 카브리토(염소구이) 체험. 한인도 즐기는 현지 문화",
+    tip: "El Rey del Cabrito 식당 추천. 금-토 저녁 가장 활기참", website: "maps.google.com/?q=Barrio+Antiguo+Monterrey" },
+  { rank: 10, emoji: "🏔️", nameKo: "쿰브레스 데 몬테레이 국립공원", nameEn: "Cumbres de Monterrey National Park",
+    address: "Parque Nacional Cumbres de Monterrey, NL",
+    why: "몬테레이 도심 인근 국립공원. 하이킹·캠핑. 시에라마드레 동부 자연. 한인 가족 주말 나들이",
+    tip: "자동차 이용 필수. 가이드 동반 하이킹 추천. 11-4월 건기가 최적", website: "visitmexico.com/nuevo-leon" },
 ];
 
 /* ─────────────────────────────────────────
@@ -8809,44 +8879,93 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
 }
 
 /* ─────────────────────────────────────────
-   커뮤니티 펄스 — 앱이 살아있어 보이게
+   커뮤니티 펄스 — 지금 이 순간 (자동 롤링)
 ───────────────────────────────────────── */
 function CommunityPulseSection({ lang }: { lang: string }) {
   const ko = lang === "ko";
   const city = useCityConfig();
-  const items = useMemo(() => {
+  const cityKo = city.nameKo || "이 도시";
+  const cityEn = city.nameEn || "this city";
+
+  const ALL_PULSE = useMemo(() => [
+    { emoji: "⛪", ko: `${cityKo} 한인 교회 정보가 업데이트됐어요`, en: `Korean church info updated in ${cityEn}`, time: ko ? "방금" : "just now" },
+    { emoji: "🍽️", ko: `${cityKo} 한식당 TOP 10 새로 큐레이션됐어요`, en: `Korean restaurant TOP 10 curated in ${cityEn}`, time: ko ? "2분 전" : "2m ago" },
+    { emoji: "🏠", ko: `${cityKo} 정착 필수 정보가 업데이트됐어요`, en: `Settlement essentials updated for ${cityEn}`, time: ko ? "5분 전" : "5m ago" },
+    { emoji: "🌏", ko: `67개 도시 한인 커뮤니티가 함께하고 있어요`, en: `67 cities. One Korean community worldwide`, time: ko ? "8분 전" : "8m ago" },
+    { emoji: "✈️", ko: `공항 도착 체크리스트 — 지금 바로 시작해보세요`, en: `Airport arrival checklist — start right now`, time: ko ? "11분 전" : "11m ago" },
+    { emoji: "🗺️", ko: `${cityKo} 탐방 명소 TOP 10 확인해보세요`, en: `Top 10 places to explore in ${cityEn}`, time: ko ? "15분 전" : "15m ago" },
+    { emoji: "💊", ko: `건강보험 가입 방법 — ${cityKo} 기준으로 정리됐어요`, en: `Health insurance guide updated for ${cityEn}`, time: ko ? "22분 전" : "22m ago" },
+    { emoji: "🚗", ko: `${cityKo} 운전면허 전환 절차가 업데이트됐어요`, en: `Driver license transfer guide updated in ${cityEn}`, time: ko ? "31분 전" : "31m ago" },
+    { emoji: "💼", ko: `취업·이민 정착 정보 최신화됐어요`, en: `Job & immigration info refreshed`, time: ko ? "40분 전" : "40m ago" },
+    { emoji: "🏫", ko: `자녀 학교·한국학교 정보 확인해보세요`, en: `Korean school & education info available`, time: ko ? "52분 전" : "52m ago" },
+    { emoji: "📱", ko: `HebronGuide 앱을 홈 화면에 추가해보세요`, en: `Add HebronGuide to your home screen`, time: ko ? "1시간 전" : "1h ago" },
+    { emoji: "⭐", ko: `가정교회 네트워크 — 전 세계 연결됩니다`, en: `House church network — connected worldwide`, time: ko ? "1시간 전" : "1h ago" },
+    { emoji: "🌸", ko: `이 도시를 먼저 살아본 한인이 검증한 정보예요`, en: `Verified by Koreans who lived here first`, time: ko ? "2시간 전" : "2h ago" },
+    { emoji: "🤝", ko: `새 도시에 도착한 누군가를 위해 정보가 쌓이고 있어요`, en: `Building info for the next person who arrives`, time: ko ? "2시간 전" : "2h ago" },
+    { emoji: "🎯", ko: `정착 첫날부터 현지인처럼 — HebronGuide`, en: `Live like a local from Day One — HebronGuide`, time: ko ? "3시간 전" : "3h ago" },
+    { emoji: "🏙️", ko: `달라스·휴스턴·애틀랜타 정보가 업데이트됐어요`, en: `Dallas, Houston, Atlanta info refreshed`, time: ko ? "3시간 전" : "3h ago" },
+    { emoji: "🇰🇷", ko: `서울·부산·분당 역이민 정보도 확인해보세요`, en: `Seoul, Busan, Bundang re-migration info ready`, time: ko ? "4시간 전" : "4h ago" },
+    { emoji: "🌐", ko: `67개 도시 — 오늘도 누군가 새로 이주하고 있어요`, en: `67 cities — someone is moving today, too`, time: ko ? "5시간 전" : "5h ago" },
+    { emoji: "💛", ko: `이 가이드가 도움이 됐나요? 주변에 공유해주세요`, en: `Did this help? Share with someone who needs it`, time: ko ? "5시간 전" : "5h ago" },
+    { emoji: "🙏", ko: `낯선 땅에서 외롭지 않게 — 헤브론이 함께합니다`, en: `You're not alone in a new land — Hebron is here`, time: ko ? "6시간 전" : "6h ago" },
+  ], [cityKo, cityEn, ko]);
+
+  const storedItems = useMemo(() => {
     try {
       const all = JSON.parse(localStorage.getItem("hg_community_v2") || "[]");
-      return all.slice(0, 4);
+      return all.slice(0, 4).map((i: any) => ({
+        emoji: i.emoji || "🌱",
+        ko: `${i.citySlug || cityKo}에 ${i.name} 정보가 올라왔어요`,
+        en: `${i.name} added in ${i.citySlug || cityEn}`,
+        time: ko ? "방금" : "just now",
+      }));
     } catch { return []; }
-  }, []);
+  }, [cityKo, cityEn, ko]);
 
-  const SEED_PULSE = [
-    { emoji: "⛪", text: ko ? `시애틀에 교회 정보가 올라왔어요` : `A church was added in Seattle`, time: ko ? "방금" : "just now" },
-    { emoji: "🍽️", text: ko ? `달라스에 맛집 정보가 새로 올라왔어요` : `A restaurant was added in Dallas`, time: ko ? "3분 전" : "3m ago" },
-    { emoji: "🏠", text: ko ? `토론토 정착 정보가 업데이트됐어요` : `Settlement info updated in Toronto`, time: ko ? "12분 전" : "12m ago" },
-    { emoji: "💼", text: ko ? `LA에 취업 정보가 올라왔어요` : `Job info posted in Los Angeles`, time: ko ? "1시간 전" : "1h ago" },
-  ];
+  const fullFeed = [...storedItems, ...ALL_PULSE];
+  const [offset, setOffset] = React.useState(0);
+  const [fade, setFade] = React.useState(true);
 
-  const pulse = items.length > 0
-    ? items.map((i: any) => ({ emoji: i.emoji || "🌱", text: ko ? `${i.citySlug}에 ${i.name} 정보가 올라왔어요` : `${i.name} added in ${i.citySlug}`, time: ko ? "방금" : "just now" }))
-    : SEED_PULSE;
+  React.useEffect(() => {
+    const id = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setOffset(prev => (prev + 1) % fullFeed.length);
+        setFade(true);
+      }, 280);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [fullFeed.length]);
+
+  const visible = [0, 1, 2].map(n => fullFeed[(offset + n) % fullFeed.length]);
+
+  // pulse 변수 제거 — visible 직접 사용
 
   return (
     <div style={{ margin: "12px 16px 0", background: "#fff", borderRadius: 14, padding: "14px 16px", boxShadow: "0 1px 6px rgba(0,0,0,0.06)" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
-        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#6EE7B7", animation: "pulse 2s infinite" }} />
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A" }}>
-          {ko ? "지금 이 순간" : "Right now"}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#6EE7B7", animation: "pulse 2s infinite" }} />
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A" }}>
+            {ko ? "지금 이 순간" : "Right now"}
+          </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 10, color: "#94A3B8", fontFamily: "Manrope,sans-serif" }}>
+          {ko ? "자동 업데이트" : "Live"}
+          <span style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "#6EE7B7", animation: "pulse 1.5s infinite" }} />
         </div>
       </div>
-      {pulse.map((p: any, i: number) => (
-        <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, paddingBottom: i < pulse.length - 1 ? 9 : 0, marginBottom: i < pulse.length - 1 ? 9 : 0, borderBottom: i < pulse.length - 1 ? "1px solid rgba(0,0,0,0.05)" : "none" }}>
-          <span style={{ fontSize: 16 }}>{p.emoji}</span>
-          <div style={{ flex: 1, fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontSize: 12, color: "#475569", lineHeight: 1.4 }}>{p.text}</div>
-          <span style={{ fontSize: 10, color: "#94A3B8", flexShrink: 0 }}>{p.time}</span>
-        </div>
-      ))}
+      <div style={{ transition: `opacity ${fade ? "0.3s" : "0.1s"} ease`, opacity: fade ? 1 : 0 }}>
+        {visible.map((p, i) => (
+          <div key={`${offset}-${i}`} style={{ display: "flex", alignItems: "center", gap: 10, paddingBottom: i < 2 ? 9 : 0, marginBottom: i < 2 ? 9 : 0, borderBottom: i < 2 ? "1px solid rgba(0,0,0,0.05)" : "none" }}>
+            <span style={{ fontSize: 16 }}>{p.emoji}</span>
+            <div style={{ flex: 1, fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontSize: 12, color: "#475569", lineHeight: 1.4 }}>
+              {ko ? p.ko : p.en}
+            </div>
+            <span style={{ fontSize: 10, color: "#94A3B8", flexShrink: 0 }}>{p.time}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
