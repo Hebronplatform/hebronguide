@@ -22777,49 +22777,365 @@ function DesktopSidebar({ activeTab, onNavigate }: { activeTab: number; onNaviga
 }
 
 /* ─────────────────────────────────────────
-   통역 모달 (TranslateModal)
+   🎙️ AI 통역기 (TranslateModal) v3.0
+   Web Speech API (STT) + Claude AI 번역 + TTS 음성 출력
+   실시간 자막 · 이어폰/스피커 자동 출력 · 양방향 한↔영
 ───────────────────────────────────────── */
-function TranslateModal({ onClose, lang, onNavigate }: { onClose: () => void; lang: string; onNavigate?: (tab: number) => void }) {
+function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; onNavigate?: (tab: number) => void }) {
   const ko = lang === "ko";
+
+  // ── 상태 ──
+  const [dir, setDir] = useState<"ko-en"|"en-ko">("ko-en");
+  const [isListening, setIsListening] = useState(false);
+  const [interim, setInterim]         = useState("");   // 실시간 인식 중 자막
+  const [original, setOriginal]       = useState("");   // 인식 완료 원문
+  const [translated, setTranslated]   = useState("");   // 번역 결과
+  const [isTranslating, setIsTranslating] = useState(false);
+  const [isSpeaking, setIsSpeaking]   = useState(false);
+  const [autoSpeak, setAutoSpeak]     = useState(true);
+  const [textInput, setTextInput]     = useState("");
+  const [history, setHistory]         = useState<{orig:string;trans:string}[]>([]);
+  const [errMsg, setErrMsg]           = useState("");
+  const recognRef = useRef<unknown>(null);
+  const synthRef  = useRef<SpeechSynthesisUtterance | null>(null);
+
+  // ── 언어 설정 ──
+  const fromBcp = dir === "ko-en" ? "ko-KR" : "en-US";
+  const toBcp   = dir === "ko-en" ? "en-US" : "ko-KR";
+  const fromFlag = dir === "ko-en" ? "🇰🇷" : "🇺🇸";
+  const toFlag   = dir === "ko-en" ? "🇺🇸" : "🇰🇷";
+  const fromLabel = dir === "ko-en" ? "한국어" : "English";
+  const toLabel   = dir === "ko-en" ? "English" : "한국어";
+
+  // ── Speech Recognition 지원 확인 ──
+  const SR = typeof window !== "undefined"
+    ? ((window as unknown as {SpeechRecognition?: unknown}).SpeechRecognition
+      || (window as unknown as {webkitSpeechRecognition?: unknown}).webkitSpeechRecognition)
+    : null;
+
+  // ── TTS 음성 출력 ──
+  const speak = (text: string, bcp: string) => {
+    if (!text || typeof window === "undefined") return;
+    const synth = window.speechSynthesis;
+    synth.cancel();
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = bcp;
+    utt.rate = 0.92;
+    utt.pitch = 1.0;
+    // 이어폰/스피커 모두 자동 사용 (브라우저가 현재 오디오 출력 장치로 재생)
+    utt.onstart = () => setIsSpeaking(true);
+    utt.onend   = () => setIsSpeaking(false);
+    utt.onerror = () => setIsSpeaking(false);
+    synthRef.current = utt;
+    synth.speak(utt);
+  };
+
+  const stopSpeak = () => {
+    window.speechSynthesis?.cancel();
+    setIsSpeaking(false);
+  };
+
+  // ── AI 번역 (Claude API) ──
+  const translate = async (text: string) => {
+    if (!text.trim()) return;
+    setIsTranslating(true);
+    setTranslated("");
+    setErrMsg("");
+    try {
+      const prompt = dir === "ko-en"
+        ? `Translate the following Korean text to English. Output ONLY the translation, no explanation:\n\n${text}`
+        : `다음 영어 텍스트를 한국어로 번역하세요. 번역문만 출력하고 설명은 하지 마세요:\n\n${text}`;
+      const res = await fetch("/api/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userMessage: prompt, systemPrompt: "You are a professional Korean-English interpreter. Translate accurately and naturally." }),
+      });
+      const data = await res.json();
+      const result: string = data.reply || data.answer || "";
+      setTranslated(result);
+      setHistory(prev => [{ orig: text, trans: result }, ...prev.slice(0, 4)]);
+      if (autoSpeak && result) speak(result, toBcp);
+    } catch {
+      setErrMsg(ko ? "번역 오류. 잠시 후 다시 시도해 주세요." : "Translation failed. Please try again.");
+    }
+    setIsTranslating(false);
+  };
+
+  // ── 음성 인식 시작/중지 ──
+  const startListening = () => {
+    if (!SR) { setErrMsg(ko ? "이 브라우저는 음성 인식을 지원하지 않습니다." : "Speech recognition not supported in this browser."); return; }
+    setErrMsg(""); setOriginal(""); setTranslated(""); setInterim("");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const recognition = new (SR as any)();
+    recognition.lang = fromBcp;
+    recognition.continuous = false;
+    recognition.interimResults = true;
+    recognition.maxAlternatives = 1;
+    recognition.onstart  = () => setIsListening(true);
+    recognition.onend    = () => { setIsListening(false); setInterim(""); };
+    recognition.onerror  = (e: { error: string }) => {
+      setIsListening(false);
+      setErrMsg(e.error === "no-speech" ? (ko ? "음성이 감지되지 않았습니다." : "No speech detected.") : (ko ? "마이크 오류: " + e.error : "Mic error: " + e.error));
+    };
+    recognition.onresult = (e: { results: SpeechRecognitionResultList }) => {
+      let final = "", inter = "";
+      for (let i = 0; i < e.results.length; i++) {
+        if (e.results[i].isFinal) final += e.results[i][0].transcript;
+        else inter += e.results[i][0].transcript;
+      }
+      setInterim(inter);
+      if (final) { setOriginal(final); setInterim(""); translate(final); }
+    };
+    recognRef.current = recognition;
+    recognition.start();
+  };
+
+  const stopListening = () => {
+    (recognRef.current as { stop?: () => void })?.stop?.();
+    setIsListening(false);
+  };
+
+  const handleTextSubmit = () => {
+    if (!textInput.trim()) return;
+    setOriginal(textInput); translate(textInput); setTextInput("");
+  };
+
+  // ── 방향 전환 ──
+  const flipDir = () => {
+    setDir(d => d === "ko-en" ? "en-ko" : "ko-en");
+    setOriginal(""); setTranslated(""); setInterim(""); setErrMsg("");
+    stopSpeak();
+  };
+
+  // 닫기 시 정리
+  const handleClose = () => {
+    stopListening(); stopSpeak(); onClose();
+  };
+
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 300, background: "rgba(0,0,0,0.52)", backdropFilter: "blur(6px)",
-      display: "flex", alignItems: "flex-end" }} onClick={onClose}>
-      <div style={{ width: "100%", maxWidth: 430, margin: "0 auto", background: "#fff",
-        borderRadius: "24px 24px 0 0", paddingBottom: "env(safe-area-inset-bottom,16px)",
-        boxShadow: "0 -8px 48px rgba(0,0,0,0.18)" }} onClick={e => e.stopPropagation()}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 20px 0" }}>
+    <div style={{ position:"fixed", inset:0, zIndex:300, background:"rgba(0,0,0,0.6)",
+      backdropFilter:"blur(8px)", display:"flex", alignItems:"flex-end" }} onClick={handleClose}>
+      <div style={{ width:"100%", maxWidth:430, margin:"0 auto", background:"#0f172a",
+        borderRadius:"24px 24px 0 0", paddingBottom:"env(safe-area-inset-bottom,20px)",
+        boxShadow:"0 -8px 48px rgba(0,0,0,0.4)", maxHeight:"90vh", overflowY:"auto" }}
+        onClick={e => e.stopPropagation()}>
+
+        {/* ── 헤더 ── */}
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", padding:"18px 18px 0" }}>
           <div>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 17, color: "#1B2A4A" }}>
-              🌐 {ko ? "언어 서비스" : "Language Help"}
+            <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:900, fontSize:16, color:"#ECFDF5",
+              display:"flex", alignItems:"center", gap:7 }}>
+              🎙️ {ko ? "AI 통역기" : "AI Interpreter"}
+              {isSpeaking && <span style={{ fontSize:10, background:"rgba(110,231,183,0.2)", color:"#6EE7B7",
+                borderRadius:8, padding:"2px 8px", fontWeight:700, animation:"pulse 1s infinite" }}>▶ 재생 중</span>}
             </div>
-            <div style={{ fontSize: 11, color: "#94A3B8", marginTop: 2 }}>
-              {ko ? "자동 번역 · 한·영 지원" : "Auto translation · KO · EN"}
+            <div style={{ fontSize:10, color:"rgba(236,253,245,0.45)", marginTop:2, fontFamily:"Manrope,sans-serif" }}>
+              {ko ? "음성 인식 · AI 번역 · 음성 출력" : "Speech Recognition · AI Translation · TTS"}
             </div>
           </div>
-          <button onClick={onClose} style={{ border: "none", background: "#F1F5F9", borderRadius: "50%",
-            width: 32, height: 32, fontSize: 16, cursor: "pointer", color: "#64748B" }}>✕</button>
+          <div style={{ display:"flex", gap:8, alignItems:"center" }}>
+            {/* 자동 읽기 토글 */}
+            <button onClick={() => setAutoSpeak(a => !a)}
+              style={{ border:"none", background: autoSpeak ? "rgba(110,231,183,0.2)" : "rgba(255,255,255,0.08)",
+                borderRadius:20, padding:"5px 10px", cursor:"pointer",
+                fontFamily:"Manrope,sans-serif", fontSize:10, fontWeight:700,
+                color: autoSpeak ? "#6EE7B7" : "rgba(236,253,245,0.45)" }}>
+              {autoSpeak ? "🔊 자동 ON" : "🔇 자동 OFF"}
+            </button>
+            <button onClick={handleClose}
+              style={{ border:"none", background:"rgba(255,255,255,0.1)", borderRadius:"50%",
+                width:32, height:32, fontSize:16, cursor:"pointer", color:"#ECFDF5" }}>✕</button>
+          </div>
         </div>
-        <div style={{ padding: "16px 20px 20px" }}>
-          {[
-            { emoji: "🇰🇷", title: ko ? "한국어" : "Korean", desc: ko ? "기본 언어" : "Default language" },
-            { emoji: "🇺🇸", title: ko ? "영어" : "English", desc: ko ? "영문 보기" : "Switch to English" },
-          ].map((item, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 14, padding: "12px 0",
-              borderBottom: i === 0 ? "1px solid #F1F5F9" : "none" }}>
-              <span style={{ fontSize: 28 }}>{item.emoji}</span>
-              <div>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 14, color: "#1B2A4A" }}>{item.title}</div>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#64748B" }}>{item.desc}</div>
+
+        <div style={{ padding:"14px 18px 18px" }}>
+
+          {/* ── 방향 전환 ── */}
+          <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:14 }}>
+            <div style={{ flex:1, background:"rgba(255,255,255,0.07)", borderRadius:12,
+              padding:"10px 14px", textAlign:"center" }}>
+              <div style={{ fontSize:18 }}>{fromFlag}</div>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:12, fontWeight:700,
+                color:"#ECFDF5", marginTop:3 }}>{fromLabel}</div>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:9, color:"rgba(236,253,245,0.4)" }}>
+                {ko ? "입력" : "Input"}
               </div>
             </div>
-          ))}
-          <div style={{ marginTop: 12, padding: "10px 14px", background: "#F8FAFC", borderRadius: 12 }}>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#64748B", lineHeight: 1.5 }}>
-              {ko ? "언어 전환은 상단 KO / EN 버튼을 이용하세요." : "Use the KO / EN button at the top to switch languages."}
+            <button onClick={flipDir}
+              style={{ width:40, height:40, borderRadius:"50%", border:"1px solid rgba(201,162,39,0.4)",
+                background:"rgba(201,162,39,0.12)", cursor:"pointer", fontSize:18,
+                display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+              ⇄
+            </button>
+            <div style={{ flex:1, background:"rgba(110,231,183,0.08)", borderRadius:12,
+              padding:"10px 14px", textAlign:"center", border:"1px solid rgba(110,231,183,0.2)" }}>
+              <div style={{ fontSize:18 }}>{toFlag}</div>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:12, fontWeight:700,
+                color:"#6EE7B7", marginTop:3 }}>{toLabel}</div>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:9, color:"rgba(110,231,183,0.5)" }}>
+                {ko ? "번역 출력" : "Output"}
+              </div>
             </div>
           </div>
+
+          {/* ── 원문 자막 ── */}
+          <div style={{ background:"rgba(255,255,255,0.06)", borderRadius:14,
+            padding:"12px 14px", minHeight:54, marginBottom:8,
+            border:"1px solid rgba(255,255,255,0.1)" }}>
+            <div style={{ fontFamily:"Manrope,sans-serif", fontSize:9, color:"rgba(236,253,245,0.4)",
+              fontWeight:700, letterSpacing:"0.08em", marginBottom:5 }}>
+              {fromFlag} {ko ? "원문 (자막)" : "Original (caption)"}
+            </div>
+            <div style={{ fontFamily:"-apple-system,'Noto Sans KR',sans-serif", fontSize:14,
+              color: original ? "#ECFDF5" : "rgba(236,253,245,0.25)", lineHeight:1.7, minHeight:22 }}>
+              {original || (interim
+                ? <span style={{ color:"rgba(236,253,245,0.5)", fontStyle:"italic" }}>{interim}...</span>
+                : <span>{ko ? "🎙️ 아래 버튼을 눌러 말씀하세요" : "🎙️ Tap the button below to speak"}</span>
+              )}
+            </div>
+          </div>
+
+          {/* ── 번역 자막 ── */}
+          <div style={{ background: translated ? "rgba(110,231,183,0.07)" : "rgba(255,255,255,0.03)",
+            borderRadius:14, padding:"12px 14px", minHeight:54, marginBottom:12,
+            border:`1px solid ${translated ? "rgba(110,231,183,0.25)" : "rgba(255,255,255,0.06)"}`,
+            transition:"all 0.3s" }}>
+            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:5 }}>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:9, color:"rgba(110,231,183,0.6)",
+                fontWeight:700, letterSpacing:"0.08em" }}>
+                {toFlag} {ko ? "번역 결과 (자막)" : "Translation (caption)"}
+              </div>
+              {translated && (
+                <div style={{ display:"flex", gap:6 }}>
+                  {isSpeaking
+                    ? <button onClick={stopSpeak}
+                        style={{ border:"none", background:"rgba(239,68,68,0.2)", color:"#FCA5A5",
+                          borderRadius:8, padding:"3px 8px", cursor:"pointer",
+                          fontFamily:"Manrope,sans-serif", fontSize:9, fontWeight:700 }}>
+                        ⏹ {ko ? "중지" : "Stop"}
+                      </button>
+                    : <button onClick={() => speak(translated, toBcp)}
+                        style={{ border:"none", background:"rgba(110,231,183,0.15)", color:"#6EE7B7",
+                          borderRadius:8, padding:"3px 8px", cursor:"pointer",
+                          fontFamily:"Manrope,sans-serif", fontSize:9, fontWeight:700 }}>
+                        🔊 {ko ? "다시 듣기" : "Play again"}
+                      </button>
+                  }
+                  <button onClick={() => navigator.clipboard?.writeText(translated)}
+                    style={{ border:"none", background:"rgba(255,255,255,0.08)", color:"rgba(236,253,245,0.6)",
+                      borderRadius:8, padding:"3px 8px", cursor:"pointer",
+                      fontFamily:"Manrope,sans-serif", fontSize:9, fontWeight:700 }}>
+                    📋 {ko ? "복사" : "Copy"}
+                  </button>
+                </div>
+              )}
+            </div>
+            <div style={{ fontFamily:"-apple-system,'Noto Sans KR',sans-serif", fontSize:15,
+              color: translated ? "#ECFDF5" : "rgba(236,253,245,0.2)", lineHeight:1.7, minHeight:22 }}>
+              {isTranslating
+                ? <span style={{ color:"rgba(110,231,183,0.6)", fontFamily:"Manrope,sans-serif", fontSize:12 }}>
+                    ✦ {ko ? "AI 번역 중..." : "Translating..."}
+                  </span>
+                : (translated || (ko ? "번역 결과가 여기에 표시됩니다" : "Translation will appear here"))}
+            </div>
+          </div>
+
+          {/* ── 오류 메시지 ── */}
+          {errMsg && (
+            <div style={{ background:"rgba(239,68,68,0.1)", border:"1px solid rgba(239,68,68,0.3)",
+              borderRadius:10, padding:"8px 12px", marginBottom:10,
+              fontFamily:"Manrope,sans-serif", fontSize:11, color:"#FCA5A5" }}>
+              ⚠️ {errMsg}
+            </div>
+          )}
+
+          {/* ── 마이크 버튼 ── */}
+          {SR && (
+            <button
+              onPointerDown={startListening}
+              onPointerUp={stopListening}
+              onPointerLeave={stopListening}
+              style={{
+                width:"100%", padding:"16px 0",
+                background: isListening
+                  ? "linear-gradient(135deg,#EF4444,#DC2626)"
+                  : "linear-gradient(135deg,#6EE7B7,#34d399)",
+                border:"none", borderRadius:14, cursor:"pointer",
+                fontFamily:"Manrope,sans-serif", fontWeight:900, fontSize:15,
+                color: isListening ? "#fff" : "#0d1117",
+                display:"flex", alignItems:"center", justifyContent:"center", gap:10,
+                boxShadow: isListening
+                  ? "0 0 24px rgba(239,68,68,0.5)"
+                  : "0 4px 20px rgba(110,231,183,0.35)",
+                transition:"all 0.18s",
+                marginBottom:10,
+              }}>
+              <span style={{ fontSize:20 }}>{isListening ? "🔴" : "🎙️"}</span>
+              {isListening
+                ? (ko ? "듣는 중... (손 떼면 중지)" : "Listening... (release to stop)")
+                : (ko ? "누르고 말하세요" : "Hold & Speak")}
+            </button>
+          )}
+
+          {/* ── 텍스트 입력 (마이크 없을 때 또는 보조 입력) ── */}
+          <div style={{ display:"flex", gap:8 }}>
+            <input
+              value={textInput}
+              onChange={e => setTextInput(e.target.value)}
+              onKeyDown={e => e.key === "Enter" && handleTextSubmit()}
+              placeholder={ko ? `${fromLabel}로 입력...` : `Type in ${fromLabel}...`}
+              style={{ flex:1, background:"rgba(255,255,255,0.08)", border:"1px solid rgba(255,255,255,0.14)",
+                borderRadius:12, padding:"11px 14px", fontSize:13, color:"#ECFDF5",
+                fontFamily:"-apple-system,'Noto Sans KR',sans-serif", outline:"none" }}
+            />
+            <button onClick={handleTextSubmit}
+              disabled={!textInput.trim()}
+              style={{ background: textInput.trim() ? "rgba(201,162,39,0.85)" : "rgba(255,255,255,0.06)",
+                border:"none", borderRadius:12, padding:"0 16px", cursor: textInput.trim() ? "pointer" : "default",
+                fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:13,
+                color: textInput.trim() ? "#1B2A4A" : "rgba(255,255,255,0.25)" }}>
+              →
+            </button>
+          </div>
+
+          {/* ── 안내 ── */}
+          <div style={{ marginTop:12, padding:"10px 12px", background:"rgba(255,255,255,0.04)",
+            borderRadius:10, display:"flex", gap:8, alignItems:"flex-start" }}>
+            <span style={{ fontSize:13, flexShrink:0, marginTop:1 }}>🎧</span>
+            <div style={{ fontFamily:"Manrope,sans-serif", fontSize:10, color:"rgba(236,253,245,0.45)", lineHeight:1.6 }}>
+              {ko
+                ? "이어폰 연결 시 번역 음성이 자동으로 이어폰으로 재생됩니다. '자동 ON' 상태에서 번역 완료 즉시 음성이 출력됩니다."
+                : "When earphones are connected, translated audio plays automatically through them. With 'Auto ON', audio plays immediately after translation."}
+            </div>
+          </div>
+
+          {/* ── 최근 번역 기록 ── */}
+          {history.length > 0 && (
+            <div style={{ marginTop:12 }}>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:10, fontWeight:700,
+                color:"rgba(236,253,245,0.35)", letterSpacing:"0.08em", marginBottom:6 }}>
+                {ko ? "📋 최근 번역" : "📋 Recent"}
+              </div>
+              {history.slice(0,3).map((h, i) => (
+                <div key={i}
+                  onClick={() => { setOriginal(h.orig); setTranslated(h.trans); if (autoSpeak) speak(h.trans, toBcp); }}
+                  style={{ background:"rgba(255,255,255,0.04)", borderRadius:10, padding:"8px 12px",
+                    marginBottom:5, cursor:"pointer",
+                    borderLeft:"2px solid rgba(110,231,183,0.3)" }}>
+                  <div style={{ fontFamily:"Manrope,sans-serif", fontSize:10, color:"rgba(236,253,245,0.5)",
+                    marginBottom:2, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{h.orig}</div>
+                  <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(110,231,183,0.75)",
+                    whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{h.trans}</div>
+                </div>
+              ))}
+            </div>
+          )}
+
         </div>
       </div>
+      <style>{`
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+      `}</style>
     </div>
   );
 }
