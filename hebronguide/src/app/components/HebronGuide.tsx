@@ -13488,24 +13488,39 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
       <div className="pt-5 px-4 md:px-6 lg:px-8">
         {sub === 0 && (
           <>
-            {/* ── 신약교회 회복 비전 카드 ── */}
-            <div style={{ background: "linear-gradient(135deg,rgba(201,162,39,0.1) 0%,rgba(192,132,252,0.07) 100%)", border: "1px solid rgba(201,162,39,0.28)", borderRadius: 16, padding: "18px 20px", marginBottom: 12 }}>
-              <div style={{ fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 800, color: "#C9A227", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 10, opacity: 0.9 }}>
-                ✈️ {lang === "ko" ? "HebronGuide가 꿈꾸는 교회" : "The Church HebronGuide Envisions"}
+            {/* ── 성경대로 — HebronGuide 교회 철학의 토대 ── */}
+            <div style={{ background: "linear-gradient(135deg,rgba(201,162,39,0.11) 0%,rgba(0,0,0,0) 100%)", border: "1px solid rgba(201,162,39,0.3)", borderRadius: 16, padding: "20px 18px", marginBottom: 12 }}>
+              <div style={{ fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 800, color: "#C9A227", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12, opacity: 0.85 }}>
+                📖 {lang === "ko" ? "HebronGuide 교회 기준" : "HebronGuide Church Standard"}
               </div>
-              <div style={{ fontSize: 13, color: "rgba(236,253,245,0.9)", lineHeight: 1.75, borderLeft: "3px solid rgba(201,162,39,0.5)", paddingLeft: 12, marginBottom: 12 }}>
+
+              {/* 핵심 원칙 */}
+              <div style={{ background: "rgba(0,0,0,0.25)", borderRadius: 12, padding: "14px 16px", marginBottom: 14, borderLeft: "3px solid #C9A227" }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14.5, color: "#ECFDF5", marginBottom: 6 }}>
+                  {lang === "ko" ? "성경대로" : "According to Scripture"}
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.7)", lineHeight: 1.85 }}>
+                  {lang === "ko"
+                    ? "성경이 그렇다고 하면 그런 줄 알고,\n아니라고 하면 아닌 줄 알고,\n하라고 하면 하고, 하지 말라고 하면 하지 않고."
+                    : "If Scripture says it is so, we believe it.\nIf Scripture says otherwise, we follow that.\nIf it commands, we obey. If it forbids, we abstain."}
+                </div>
+              </div>
+
+              {/* 대위임령 */}
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12.5, color: "rgba(236,253,245,0.82)", lineHeight: 1.7, marginBottom: 12 }}>
                 {lang === "ko"
-                  ? "공항에서부터 모든 성도가 새가족팀이 되어 환대하고 환영하는 교회 — 영혼구원하여 그리스도의 제자를 만드는 사명에 충실한 교회"
-                  : "A church where every member is a welcome team — starting from the airport. A church faithful to the mission of saving souls and making disciples of Christ."}
+                  ? "예수님이 \"제자를 만들라\" 하셨으면 — 제자를 만들어야 합니다.\n공항에서부터 모든 성도가 새가족팀이 되어 환대하는 교회,\nHebronGuide는 이런 교회를 찾고 연결합니다."
+                  : "If Jesus said \"make disciples\" — then make disciples.\nA church where every member is a welcome team from the airport.\nHebronGuide seeks and connects these churches."}
               </div>
+
               {[
-                { icon: "✈️", ko: "공항부터 시작되는 환대 — 모든 성도이 새가족팀", en: "Welcome begins at the airport — every member is a welcome team" },
-                { icon: "🔥", ko: "영혼구원하여 그리스도의 제자를 만드는 사명", en: "Faithful to making disciples who save souls" },
-                { icon: "🏠", ko: "소그룹 공동체를 통한 목자-양 관계 (목장·셀·다락방·구역 이름 불문)", en: "Shepherd-flock relationship through small groups (any name)" },
+                { icon: "📖", ko: "성경이 기준 — 조직·전통·인증이 아닌", en: "Scripture is the standard — not organization, tradition, or certification" },
+                { icon: "🔥", ko: "영혼구원 → 그리스도의 제자 만들기 (마 28:19)", en: "Save souls → Make disciples of Christ (Matt 28:19)" },
+                { icon: "✈️", ko: "공항부터 시작되는 환대 — 모든 성도가 새가족팀", en: "Welcome from the airport — every member is a welcome team" },
               ].map((item, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: i < 2 ? 8 : 0 }}>
                   <span style={{ fontSize: 14, flexShrink: 0, marginTop: 1 }}>{item.icon}</span>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11.5, color: "rgba(236,253,245,0.78)", lineHeight: 1.6 }}>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11.5, color: "rgba(236,253,245,0.72)", lineHeight: 1.6 }}>
                     {lang === "ko" ? item.ko : item.en}
                   </div>
                 </div>
