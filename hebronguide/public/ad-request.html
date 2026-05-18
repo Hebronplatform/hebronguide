@@ -629,10 +629,8 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <div style="font-size:.82rem;color:rgba(236,253,245,.85);line-height:1.9;font-family:'Noto Sans KR',sans-serif;">
         <strong id="successApplicantName" style="color:#fff;font-size:.9rem;"></strong>
         <span id="successNameSuffix"></span><br><br>
-        HebronGuide 파트너 신청을 해주셔서 진심으로 감사드립니다.<br>
-        신청이 정상적으로 접수되었습니다.<br><br>
-        <strong style="color:var(--gold)">신청 접수 후 48시간 이내에 담당자가 연락드릴 예정입니다.</strong><br><br>
-        함께 섬겨주셔서 감사합니다.
+        신청해 주셔서 감사합니다.<br>
+        <strong style="color:var(--gold)">48시간 이내에 담당자가 연락드리겠습니다.</strong>
       </div>
       <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);
         font-size:.75rem;color:rgba(236,253,245,.45);font-family:'Noto Sans KR',sans-serif;">
@@ -774,14 +772,8 @@ function submitForm(type) {
   // ── 감사 메시지 본문 (이메일 CC에 포함)
   const thankYouMsg = [
     `${applicantName ? applicantName + '님,' : '안녕하세요,'}`,
+    `신청해 주셔서 감사합니다. 48시간 이내에 연락드리겠습니다. 🙏`,
     ``,
-    `HebronGuide 파트너 신청을 해주셔서 진심으로 감사드립니다.`,
-    `신청이 정상적으로 접수되었습니다.`,
-    ``,
-    `신청 접수 후 48시간 이내에 담당자가 연락드릴 예정입니다.`,
-    `기다려 주셔서 감사합니다.`,
-    ``,
-    `함께 섬겨주셔서 감사합니다. 🙏`,
     `HebronGuide 운영팀`,
     `hebronplatform@gmail.com`,
     `hebronguide.com`,
