@@ -8123,10 +8123,11 @@ function CompactHeroNew() {
             crossOrigin="anonymous"
             loading="eager"
             referrerPolicy="no-referrer"
+            aria-hidden="true"
             onError={(e) => {
               const img = e.currentTarget as HTMLImageElement;
               img.style.opacity = "0";
-              img.style.animation = "none"; // 실패 시 애니메이션도 중지
+              img.style.animation = "none";
             }}
             style={{
               position: "absolute", inset: 0,
@@ -8135,11 +8136,13 @@ function CompactHeroNew() {
               filter: "brightness(1.42) saturate(1.68) contrast(1.08)",
               opacity: isActive ? 1 : 0,
               transition: "opacity 1.4s ease",
-              // 항상 애니메이션 실행 (none↔active 전환 시 위치 점프 방지)
-              // 비활성 슬라이드도 백그라운드에서 계속 움직임 → 전환 시 자연스럽게 이어짐
               animation: `${i % 2 === 0 ? "kbIn" : "kbOut"} 10s ease-in-out infinite`,
-              animationDelay: `${-i * 2.5}s`, // 슬라이드마다 위상 다르게 — 다양성 확보
+              animationDelay: `${-i * 2.5}s`,
               zIndex: isActive ? 1 : 0,
+              // ▼ 이미지 로딩/전환 중 alt 텍스트 표시 완전 차단
+              color: "transparent",
+              fontSize: 0,
+              textIndent: "-9999px",
             }}
           />
         );
@@ -9116,26 +9119,26 @@ const DAILY_QUOTES = [
    매주 에이전트가 업데이트 (holidays·festivals·sports·community)
    Last updated: 2026-05-18
 ───────────────────────────────────────── */
-type CityEventItem = { emoji: string; ko: string; en: string; date: string; type: "holiday"|"sports"|"festival"|"culture"|"alert"|"church" };
+type CityEventItem = { emoji: string; ko: string; en: string; date: string; type: "holiday"|"sports"|"festival"|"culture"|"alert"|"church"; url?: string; phone?: string; address?: string };
 // ── Last updated: 2026-05-18 (에이전트 실사 검증 기반)
 // ── 매주 월요일 자동 업데이트 에이전트 상주 중
 const CITY_EVENTS: Partial<Record<string, CityEventItem[]>> = {
   _us_common: [
-    { emoji:"⚽", ko:"FIFA 월드컵 2026 — 6월11일~7월19일 미국·캐나다·멕시코 (뉴욕 결승)", en:"FIFA World Cup 2026 — Jun 11–Jul 19, USA/Canada/Mexico (Final in NY)", date:"2026-06", type:"sports" },
-    { emoji:"🏔️", ko:"밀라노 동계올림픽 — 2월6~22일 진행 중", en:"Milan-Cortina Winter Olympics — Feb 6-22 underway", date:"2026-02-06", type:"sports" },
+    { emoji:"⚽", ko:"FIFA 월드컵 2026 — 6월11일~7월19일 미국·캐나다·멕시코 (뉴욕 결승)", en:"FIFA World Cup 2026 — Jun 11–Jul 19, USA/Canada/Mexico (Final in NY)", date:"2026-06", type:"sports", url:"https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026" },
+    { emoji:"🏔️", ko:"밀라노 동계올림픽 — 2월6~22일", en:"Milan-Cortina Winter Olympics — Feb 6-22", date:"2026-02-06", type:"sports", url:"https://www.olympics.com/en/olympic-games/milan-cortina-2026" },
     { emoji:"🌸", ko:"부활절 (4월5일) — 한인 교회 특별 예배", en:"Easter Apr 5 — Korean Church Special Services", date:"2026-04-05", type:"church" },
     { emoji:"🎆", ko:"독립기념일 (7월4일) — 불꽃놀이·퍼레이드", en:"Independence Day Jul 4 — Fireworks & Parades", date:"2026-07-04", type:"holiday" },
     { emoji:"🎄", ko:"크리스마스 (12월25일) — 연말 예배·행사", en:"Christmas Dec 25 — Year-end Services & Events", date:"2026-12-25", type:"church" },
   ],
   seattle: [
-    { emoji:"⚽", ko:"FIFA 월드컵 시애틀 6경기 — Lumen Field (6월15일~7월6일)", en:"FIFA World Cup Seattle 6 matches — Lumen Field (Jun 15–Jul 6)", date:"2026-06-15", type:"sports" },
-    { emoji:"🎉", ko:"WABA 코리아 엑스포 — 워터프런트 피어62 무료 (8월14~16일)", en:"WABA Korea Expo — Pier 62 Waterfront, Free (Aug 14-16)", date:"2026-08-14", type:"festival" },
-    { emoji:"🌸", ko:"UW 캠퍼스 벚꽃 시즌 (3~4월)", en:"UW Campus Cherry Blossoms (Mar–Apr)", date:"2026-03", type:"festival" },
+    { emoji:"⚽", ko:"FIFA 월드컵 시애틀 6경기 — Lumen Field (6월15일~7월6일)", en:"FIFA World Cup Seattle 6 matches — Lumen Field (Jun 15–Jul 6)", date:"2026-06-15", type:"sports", url:"https://seattlefwc26.org/matches", address:"Lumen Field, 800 Occidental Ave S, Seattle, WA" },
+    { emoji:"🎉", ko:"WABA 코리아 엑스포 — 워터프런트 피어62 무료 (8월14~16일)", en:"WABA Korea Expo — Pier 62 Waterfront, Free (Aug 14-16)", date:"2026-08-14", type:"festival", url:"https://www.koreanexpo.org", address:"Pier 62, Seattle Waterfront" },
+    { emoji:"🌸", ko:"UW 캠퍼스 벚꽃 시즌 (3~4월)", en:"UW Campus Cherry Blossoms (Mar–Apr)", date:"2026-03", type:"festival", url:"https://www.washington.edu", address:"University of Washington, Seattle, WA" },
   ],
   la: [
-    { emoji:"⚽", ko:"FIFA 월드컵 LA 8경기+준결승 — SoFi Stadium (6~7월)", en:"FIFA World Cup LA 8 matches + QF — SoFi Stadium (Jun–Jul)", date:"2026-06-12", type:"sports" },
-    { emoji:"🎤", ko:"BTS 아리랑 월드투어 LA — SoFi Stadium 4회 (9월1~6일)", en:"BTS Arirang World Tour LA — SoFi Stadium 4 nights (Sep 1-6)", date:"2026-09-01", type:"culture" },
-    { emoji:"🎉", ko:"LA 한인 축제 — 코리아타운 서울국제공원 (10월1~4일)", en:"LA Korean Festival — Seoul Intl Park, Koreatown (Oct 1-4)", date:"2026-10-01", type:"festival" },
+    { emoji:"⚽", ko:"FIFA 월드컵 LA 8경기+준결승 — SoFi Stadium (6~7월)", en:"FIFA World Cup LA 8 matches + QF — SoFi Stadium (Jun–Jul)", date:"2026-06-12", type:"sports", url:"https://www.sofistadium.com/news/detail/los-angeles-final-match-schedule", address:"SoFi Stadium, 1001 Stadium Dr, Inglewood, CA" },
+    { emoji:"🎤", ko:"BTS 아리랑 월드투어 LA — SoFi Stadium 4회 (9월1~6일)", en:"BTS Arirang World Tour LA — SoFi Stadium 4 nights (Sep 1-6)", date:"2026-09-01", type:"culture", url:"https://www.ticketmaster.com", address:"SoFi Stadium, 1001 Stadium Dr, Inglewood, CA" },
+    { emoji:"🎉", ko:"LA 한인 축제 — 코리아타운 서울국제공원 (10월1~4일)", en:"LA Korean Festival — Seoul Intl Park, Koreatown (Oct 1-4)", date:"2026-10-01", type:"festival", url:"https://www.lakoreanfestival.org", address:"Seoul International Park, 3250 San Marino St, Los Angeles" },
   ],
   orangecounty: [
     { emoji:"⚽", ko:"FIFA 월드컵 LA 경기 — SoFi Stadium 30분 거리 (6~7월)", en:"FIFA World Cup LA — 30 min from OC to SoFi (Jun–Jul)", date:"2026-06", type:"sports" },
@@ -9246,44 +9249,163 @@ function CityEventsSection({ lang }: { lang: string }) {
   const ko = lang === "ko";
   const city = useCityConfig();
   const events = getCityEvents(city.slug);
+  const [selected, setSelected] = useState<CityEventItem | null>(null);
   if (!events.length) return null;
 
   const typeColor: Record<string, string> = {
     sports: "#F97316", festival: "#8B5CF6", holiday: "#EF4444",
     culture: "#06B6D4", church: "#10B981", alert: "#F59E0B",
   };
+  const typeLabel: Record<string, { ko: string; en: string }> = {
+    sports:  { ko:"스포츠",   en:"Sports"   },
+    festival:{ ko:"축제",     en:"Festival" },
+    holiday: { ko:"공휴일",   en:"Holiday"  },
+    culture: { ko:"문화",     en:"Culture"  },
+    church:  { ko:"교회",     en:"Church"   },
+    alert:   { ko:"알림",     en:"Alert"    },
+  };
 
   return (
+    <>
     <div style={{ margin: "8px 16px 0" }}>
-      {/* 섹션 헤더 */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:6 }}>
         <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12, color:"rgba(0,0,0,0.5)", letterSpacing:"0.06em", textTransform:"uppercase" }}>
           📅 {ko ? `${city.nameKo} 주요 이벤트` : `${city.nameEn} Upcoming Events`}
         </div>
         <div style={{ fontFamily:"Manrope,sans-serif", fontSize:10, color:"rgba(0,0,0,0.35)" }}>
-          {ko ? "매주 업데이트" : "Weekly update"}
+          {ko ? "탭해서 상세 보기" : "Tap for details"}
         </div>
       </div>
       {/* 가로 스크롤 이벤트 카드 */}
       <div style={{ display:"flex", gap:8, overflowX:"auto", paddingBottom:4 }}>
         {events.map((ev, i) => (
-          <div key={i} style={{
-            flexShrink:0, background:"#fff",
-            borderRadius:12, padding:"8px 12px",
-            boxShadow:"0 1px 6px rgba(0,0,0,0.07)",
-            borderLeft:`3px solid ${typeColor[ev.type] || "#94A3B8"}`,
-            maxWidth:200, minWidth:150,
-          }}>
+          <div key={i}
+            onClick={() => setSelected(ev)}
+            style={{
+              flexShrink:0, background:"#fff",
+              borderRadius:12, padding:"8px 12px",
+              boxShadow:"0 1px 6px rgba(0,0,0,0.07)",
+              borderLeft:`3px solid ${typeColor[ev.type] || "#94A3B8"}`,
+              maxWidth:200, minWidth:150,
+              cursor:"pointer",
+              transition:"transform 0.12s, box-shadow 0.12s",
+              WebkitTapHighlightColor:"transparent",
+            }}
+            onTouchStart={e => (e.currentTarget.style.transform = "scale(0.97)")}
+            onTouchEnd={e => (e.currentTarget.style.transform = "scale(1)")}
+          >
             <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11.5, fontWeight:700, color:"#1B2A4A", lineHeight:1.4 }}>
               {ev.emoji} {ko ? ev.ko : ev.en}
             </div>
-            <div style={{ fontFamily:"Manrope,sans-serif", fontSize:10, color:"rgba(0,0,0,0.42)", marginTop:3 }}>
-              {ev.date}
+            <div style={{ display:"flex", alignItems:"center", gap:6, marginTop:4 }}>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:9.5, color:"rgba(0,0,0,0.38)" }}>{ev.date}</div>
+              {(ev.url || ev.address) && (
+                <div style={{ fontFamily:"Manrope,sans-serif", fontSize:9, background:`${typeColor[ev.type]}22`, color:typeColor[ev.type], borderRadius:4, padding:"1px 5px", fontWeight:700 }}>
+                  {ko ? "상세 →" : "Info →"}
+                </div>
+              )}
             </div>
           </div>
         ))}
       </div>
     </div>
+
+    {/* ── 이벤트 상세 모달 ── */}
+    {selected && (
+      <div
+        onClick={() => setSelected(null)}
+        style={{
+          position:"fixed", inset:0, zIndex:500,
+          background:"rgba(0,0,0,0.55)", backdropFilter:"blur(4px)",
+          display:"flex", alignItems:"flex-end", justifyContent:"center",
+          padding:"0 0 calc(env(safe-area-inset-bottom,0px) + 16px)",
+          animation:"fadeIn 0.18s ease",
+        }}>
+        <style>{`@keyframes fadeIn{from{opacity:0}to{opacity:1}} @keyframes slideUp2{from{transform:translateY(80px);opacity:0}to{transform:translateY(0);opacity:1}}`}</style>
+        <div
+          onClick={e => e.stopPropagation()}
+          style={{
+            background:"#fff", borderRadius:"20px 20px 16px 16px",
+            width:"100%", maxWidth:480, padding:"20px 20px 24px",
+            boxShadow:"0 -4px 40px rgba(0,0,0,0.18)",
+            animation:"slideUp2 0.25s cubic-bezier(0.34,1.56,0.64,1)",
+          }}>
+          {/* 핸들 바 */}
+          <div style={{ width:36, height:4, background:"#E2E8F0", borderRadius:2, margin:"0 auto 16px" }} />
+
+          {/* 이벤트 타입 배지 */}
+          <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:12 }}>
+            <span style={{ background:`${typeColor[selected.type]}18`, color:typeColor[selected.type], borderRadius:8, padding:"3px 10px", fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:11 }}>
+              {(typeLabel[selected.type]?.[ko ? "ko" : "en"]) ?? selected.type}
+            </span>
+            <span style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(0,0,0,0.4)" }}>{selected.date}</span>
+          </div>
+
+          {/* 이벤트 제목 */}
+          <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:15, color:"#1B2A4A", lineHeight:1.5, marginBottom:10 }}>
+            {selected.emoji} {ko ? selected.ko : selected.en}
+          </div>
+
+          {/* 장소 */}
+          {selected.address && (
+            <div style={{ display:"flex", alignItems:"flex-start", gap:8, marginBottom:8 }}>
+              <span style={{ fontSize:14, flexShrink:0 }}>📍</span>
+              <div style={{ fontFamily:"Manrope,sans-serif", fontSize:12, color:"rgba(0,0,0,0.6)", lineHeight:1.5 }}>
+                {selected.address}
+              </div>
+            </div>
+          )}
+
+          {/* 버튼 행 */}
+          <div style={{ display:"flex", gap:8, marginTop:16 }}>
+            {selected.url && (
+              <a
+                href={selected.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ flex:1, textDecoration:"none" }}>
+                <div style={{
+                  background: typeColor[selected.type] || "#1B2A4A",
+                  borderRadius:12, padding:"12px 0",
+                  fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:13,
+                  color:"#fff", textAlign:"center",
+                }}>
+                  🔗 {ko ? "공식 사이트 바로가기" : "Official Website"}
+                </div>
+              </a>
+            )}
+            {selected.address && (
+              <a
+                href={`https://maps.google.com/?q=${encodeURIComponent(selected.address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ flex: selected.url ? "0 0 auto" : 1, textDecoration:"none" }}>
+                <div style={{
+                  background:"#F1F5F9", borderRadius:12, padding:"12px 16px",
+                  fontFamily:"Manrope,sans-serif", fontWeight:700, fontSize:13,
+                  color:"#1B2A4A", textAlign:"center", whiteSpace:"nowrap",
+                }}>
+                  🗺️ {ko ? "지도" : "Map"}
+                </div>
+              </a>
+            )}
+            {!selected.url && !selected.address && (
+              <div style={{ flex:1, background:"#F1F5F9", borderRadius:12, padding:"12px 0", fontFamily:"Manrope,sans-serif", fontSize:12, color:"rgba(0,0,0,0.4)", textAlign:"center" }}>
+                {ko ? "상세 정보 업데이트 예정" : "Details coming soon"}
+              </div>
+            )}
+          </div>
+
+          {/* 닫기 */}
+          <button
+            onClick={() => setSelected(null)}
+            style={{ width:"100%", marginTop:10, background:"transparent", border:"none", fontFamily:"Manrope,sans-serif", fontSize:13, color:"rgba(0,0,0,0.4)", cursor:"pointer", padding:"6px 0" }}>
+            {ko ? "닫기" : "Close"}
+          </button>
+        </div>
+      </div>
+    )}
+    </>
   );
 }
 
