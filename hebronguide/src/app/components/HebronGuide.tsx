@@ -8981,770 +8981,115 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
 }
 
 /* ─────────────────────────────────────────
-   커뮤니티 펄스 — 지금 이 순간 (자동 롤링)
-───────────────────────────────────────── */
-/* ─────────────────────────────────────────
-   한인의 자부심 — Korean Achievers Spotlight
-   (도시별 연결 한인 인물 + K-컨텐츠)
+   오늘의 한 줄 — 성구 · 명언 (일일 로테이션)
+   기준: 일반인도 공감 · 새 시작·소망·섬김 주제
+   성경 구절은 지혜로 자연스럽게 — 강요 없이
 ───────────────────────────────────────── */
 
-type KAchiever = {
-  emoji: string;
-  name: string;
-  nameEn: string;
-  field: string;
-  fieldEn: string;
-  achievement: string;
-  achievementEn: string;
-  cities: string[];
-  color: string;
-  tag: string;
-  tagEn: string;
-  verified?: string;    // 검증 출처 표시
-  verifiedEn?: string;
-};
+const DAILY_QUOTES = [
+  // ── 성경 구절 (이민·새 시작·용기·환대 주제)
+  { ko: "\"두려워하지 말라, 내가 너와 함께 함이라. 놀라지 말라, 나는 네 하나님이 됨이라.\"", en: "\"Fear not, for I am with you; be not dismayed, for I am your God.\"", source: "이사야 41:10", sourceEn: "Isaiah 41:10", type: "scripture" },
+  { ko: "\"내가 새 일을 행하리니 이제 나타낼 것이라. 너희가 그것을 알지 못하겠느냐. 반드시 사막에 길을 내겠다.\"", en: "\"I am doing a new thing! Now it springs up; do you not perceive it? I am making a way in the wilderness.\"", source: "이사야 43:19", sourceEn: "Isaiah 43:19", type: "scripture" },
+  { ko: "\"너희를 향한 나의 생각을 내가 아나니 평안이요 재앙이 아니니라. 너희에게 미래와 희망을 주는 것이니라.\"", en: "\"For I know the plans I have for you... plans to prosper you and not to harm you, plans to give you hope and a future.\"", source: "예레미야 29:11", sourceEn: "Jeremiah 29:11", type: "scripture" },
+  { ko: "\"무엇이든지 남에게 대접을 받고자 하는 대로 너희도 남을 대접하라.\"", en: "\"Do to others what you would have them do to you.\"", source: "마태복음 7:12", sourceEn: "Matthew 7:12", type: "scripture" },
+  { ko: "\"내가 나그네 되었을 때 너희가 영접하였다.\"", en: "\"I was a stranger and you invited me in.\"", source: "마태복음 25:35", sourceEn: "Matthew 25:35", type: "scripture" },
+  { ko: "\"내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라.\"", en: "\"I can do all things through Christ who strengthens me.\"", source: "빌립보서 4:13", sourceEn: "Philippians 4:13", type: "scripture" },
+  { ko: "\"사람이 마음으로 자기의 길을 계획할지라도 그의 걸음을 인도하시는 이는 여호와시니라.\"", en: "\"In their hearts humans plan their course, but the Lord establishes their steps.\"", source: "잠언 16:9", sourceEn: "Proverbs 16:9", type: "scripture" },
+  { ko: "\"손님 대접하기를 잊지 말라. 이로써 부지중에 천사들을 대접한 이들이 있었느니라.\"", en: "\"Do not forget to show hospitality to strangers, for by so doing some people have shown hospitality to angels.\"", source: "히브리서 13:2", sourceEn: "Hebrews 13:2", type: "scripture" },
+  { ko: "\"내가 산을 향하여 눈을 들리라. 나의 도움이 어디서 올꼬. 나의 도움은 천지를 지으신 여호와에게서로다.\"", en: "\"I lift up my eyes to the mountains — where does my help come from? My help comes from the Lord, the Maker of heaven and earth.\"", source: "시편 121:1-2", sourceEn: "Psalm 121:1-2", type: "scripture" },
+  { ko: "\"우리가 알거니와 하나님을 사랑하는 자 곧 그의 뜻대로 부르심을 입은 자들에게는 모든 것이 합력하여 선을 이루느니라.\"", en: "\"We know that in all things God works for the good of those who love him.\"", source: "로마서 8:28", sourceEn: "Romans 8:28", type: "scripture" },
+  { ko: "\"그러므로 내일 일을 위하여 염려하지 말라. 내일 일은 내일이 염려할 것이요. 한 날의 괴로움은 그날로 족하니라.\"", en: "\"Do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.\"", source: "마태복음 6:34", sourceEn: "Matthew 6:34", type: "scripture" },
+  { ko: "\"너는 마음을 다하여 여호와를 신뢰하고 네 명철을 의지하지 말라. 너는 범사에 그를 인정하라. 그리하면 네 길을 지도하시리라.\"", en: "\"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.\"", source: "잠언 3:5-6", sourceEn: "Proverbs 3:5-6", type: "scripture" },
 
-// ── 세계를 바꾼 한국인 — 검증된 사실만 (출처 명시)
-type KWorldChanger = {
-  emoji: string;
-  name: string;
-  nameEn: string;
-  years: string;
-  field: string;
-  fieldEn: string;
-  story: string;
-  storyEn: string;
-  proof: string;       // 국제 공인 증거
-  proofEn: string;
-  source: string;      // 출처
-  color: string;
-  faith?: string;      // 신앙 (검증된 경우만)
-  faithEn?: string;
-  quote?: string;      // 본인 말 (검증된 경우만)
-  quoteEn?: string;
-};
+  // ── 보편적 지혜 (새 시작·용기·이민·공동체)
+  { ko: "\"가장 긴 여정도 한 걸음으로 시작된다.\"", en: "\"A journey of a thousand miles begins with a single step.\"", source: "노자 (老子)", sourceEn: "Lao Tzu", type: "wisdom" },
+  { ko: "\"가장 어두운 밤도 끝난다. 그리고 태양은 반드시 떠오른다.\"", en: "\"Even the darkest night will end, and the sun will rise.\"", source: "빅토르 위고", sourceEn: "Victor Hugo", type: "wisdom" },
+  { ko: "\"나무를 심기 가장 좋은 때는 20년 전이었다. 두 번째로 좋은 때는 지금이다.\"", en: "\"The best time to plant a tree was 20 years ago. The second best time is now.\"", source: "중국 속담", sourceEn: "Chinese Proverb", type: "wisdom" },
+  { ko: "\"타인을 이해하는 것이 지식이다. 자신을 아는 것이 지혜다.\"", en: "\"Knowing others is intelligence; knowing yourself is true wisdom.\"", source: "노자 (老子)", sourceEn: "Lao Tzu", type: "wisdom" },
+  { ko: "\"고향의 향수는 우리 모두에게 있다. 우리가 있는 그대로 돌아갈 수 있는 안전한 곳.\"", en: "\"The ache for home lives in all of us — the safe place where we can go as we are.\"", source: "마야 앤젤루", sourceEn: "Maya Angelou", type: "wisdom" },
+  { ko: "\"어디를 가든 그 곳은 어떤 방식으로든 당신의 일부가 된다.\"", en: "\"Wherever you go becomes a part of you somehow.\"", source: "아니타 데사이", sourceEn: "Anita Desai", type: "wisdom" },
+  { ko: "\"위대한 일을 하는 유일한 방법은 자신이 하는 일을 사랑하는 것이다.\"", en: "\"The only way to do great work is to love what you do.\"", source: "스티브 잡스", sourceEn: "Steve Jobs", type: "wisdom" },
+  { ko: "\"중요한 것은 얼마나 오래 사는가가 아니라 어떻게 사는가다.\"", en: "\"It is not how old you are, but how you are old.\"", source: "쥘 르나르", sourceEn: "Jules Renard", type: "wisdom" },
+  { ko: "\"우리는 바람을 조종할 수 없지만 돛은 조정할 수 있다.\"", en: "\"We cannot direct the wind, but we can adjust the sails.\"", source: "독일 속담", sourceEn: "German Proverb", type: "wisdom" },
+  { ko: "\"서로 다른 것이 모여 완전한 것을 만든다.\"", en: "\"It is difference and uniqueness that makes a whole.\"", source: "파울로 코엘료", sourceEn: "Paulo Coelho", type: "wisdom" },
+  { ko: "\"강이 바다에 이르듯이, 우리도 결국 고향에 닿는다.\"", en: "\"As rivers reach the sea, we all find our way home.\"", source: "공자 (孔子)", sourceEn: "Confucius", type: "wisdom" },
 
-const WORLD_CHANGERS: KWorldChanger[] = [
-  {
-    emoji: "🕊️",
-    name: "한경직 목사",
-    nameEn: "Rev. Han Kyung-chik",
-    years: "1902–2000",
-    field: "목회자 · World Vision 공동창립자",
-    fieldEn: "Pastor · Co-founder of World Vision",
-    story: "1945년 북한 난민 27명을 데리고 서울 영락교회를 세웠다. 세계 최대 인도주의 단체 중 하나인 World Vision을 미국인 Robert Pierce와 함께 1950년 공동창립했다. 영락교회는 세계 최대 장로교회 중 하나(6만 명)로 성장했으며, 전 세계 500개 자매교회를 낳았다.",
-    storyEn: "In 1945, with 27 North Korean refugees, he founded Youngnak Presbyterian Church in Seoul. In 1950, he co-founded World Vision with American Robert Pierce — now one of the world's largest humanitarian organizations operating in ~100 countries. Youngnak grew to 60,000 members with 500 sister churches worldwide.",
-    proof: "1992년 템플턴 종교발전상 수상 (세계 최고 권위 종교상, 노벨상 규모 상금)",
-    proofEn: "1992 Templeton Prize for Progress in Religion — the world's most prestigious religious award, Nobel Prize-equivalent prize money",
-    source: "Templeton Prize official records · Wikipedia (Kyung-Chik Han · World Vision International)",
-    color: "#7C3AED",
-    faith: "장로교 목사",
-    faithEn: "Presbyterian Minister",
-  },
-  {
-    emoji: "💊",
-    name: "이태석 신부",
-    nameEn: "Fr. John Lee Tae-seok",
-    years: "1962–2010",
-    field: "의사·살레시오 수도회 사제",
-    fieldEn: "Medical Doctor & Salesian Catholic Priest",
-    story: "의대를 졸업하고 사제 서품을 받은 후 2001년 내전의 상처로 가득한 남수단 톤즈(Tonj)에 홀로 들어갔다. 8년간 하루 200~300명을 치료하고, 나병 환자 80개 마을 예방접종을 완료했으며, 학교와 기숙사, 병원을 세웠다. 현지 청소년 35명에게 악기를 가르쳐 'Tonj 브라스밴드'를 만들었다. 2010년 대장암으로 선종(47세).",
-    storyEn: "After graduating medical school and receiving priestly ordination, he entered war-torn Tonj, South Sudan alone in 2001. For 8 years, he treated 200–300 patients daily, vaccinated 80 villages against disease, built a hospital, school, and dormitory, and founded a 35-member brass band of local youth. He died of colon cancer in 2010, age 47.",
-    proof: "남수단 정부 교과서에 유일한 외국인으로 수록됨 · 이태석 재단 남수단 NGO 등록 (2020) · 다큐멘터리 영화 '울지마 톤즈' 제작",
-    proofEn: "Included in South Sudanese national school textbooks — the only foreigner · Lee Tae-seok Foundation registered as NGO in South Sudan (2020) · Documentary film 'Goodbye Tonj' produced",
-    source: "Wikipedia (John Lee Tae-seok) · Lee Tae-seok Foundation official records",
-    color: "#059669",
-    faith: "살레시오회 사제",
-    faithEn: "Salesian Catholic Priest",
-  },
-  {
-    emoji: "🕊️",
-    name: "손양원 목사",
-    nameEn: "Rev. Son Yang-won",
-    years: "1902–1950",
-    field: "목사 · 나병 환자 사역자 · 순교자",
-    fieldEn: "Pastor · Leprosy Minister · Martyr",
-    story: "전남 여수 애양원에서 나병 환자를 섬기던 중, 1948년 여순사건으로 두 아들이 공산주의 청년에게 총살당했다. 손양원 목사는 아들을 죽인 그 청년 차재선에게 사형 면죄를 탄원하고, 그를 양아들로 입양했다. \"두 아들을 데려가시고 더 좋은 아들을 주셨다\"고 고백했다. 한국전쟁 중 피신을 거부하고 환자 곁을 지키다 1950년 9월 공산군에게 순교했다.",
-    storyEn: "While serving leprosy patients in Yeosu, his two sons were killed by a communist soldier in the 1948 Yeosu-Suncheon Rebellion. Son Yang-won petitioned to spare the killer's life, then adopted him as his own son, saying 'God took two sons and gave me a better one.' Refusing to flee during the Korean War, he was martyred by communist forces on September 28, 1950.",
-    proof: "세계 신학교 교과서(풀러·프린스턴 등) 수록 — '급진적 용서'의 세계적 표상 · Christianity Today·The Gospel Coalition 다수 특집 기고",
-    proofEn: "Included in global seminary curricula (Fuller, Princeton, etc.) as the world's defining example of radical forgiveness · Featured extensively in Christianity Today and The Gospel Coalition",
-    source: "Dictionary of Christianity in America (InterVarsity Press) · Christianity Today · The Gospel Coalition",
-    color: "#DC2626",
-    faith: "장로교 목사 · 나병 환자 사역",
-    faithEn: "Presbyterian Pastor · Leprosy Ministry",
-    quote: "\"두 아들을 데려가시고 더 좋은 아들을 주셨다\" — 아들의 살인자를 양아들로 입양하며",
-    quoteEn: "\"God took two sons and gave me a better one\" — said when adopting his sons' killer",
-  },
-  {
-    emoji: "🕊️",
-    name: "김대중 대통령",
-    nameEn: "President Kim Dae-jung",
-    years: "1924–2009",
-    field: "대한민국 제15대 대통령 · 민주화 운동가",
-    fieldEn: "15th President of South Korea · Democracy Activist",
-    story: "군부독재에 저항하다 투옥, 사형 선고, 납치 위협을 수십 년간 견뎠다. 대통령 취임 후 남북 화해를 위한 '햇볕정책'을 추진하여 2000년 사상 최초 남북정상회담을 성사시켰다. 이산가족 상봉도 성사했다. 노벨 평화상 수락 연설에서 \"그 순간 예수님이 내 눈 앞에 나타나셨다\"고 직접 신앙을 고백했다.",
-    storyEn: "He endured decades of imprisonment, death sentence, and kidnapping threats under military dictatorship. As President, his 'Sunshine Policy' led to the first-ever inter-Korean Summit (June 2000) and Korean War family reunions. In his Nobel Prize acceptance speech, he personally testified: 'Jesus Christ appeared before me with such clarity... I clung to him and begged him to save me.'",
-    proof: "2000년 노벨 평화상 수상 — \"한국과 동아시아의 민주주의·인권 및 북한과의 평화·화해에 기여\"",
-    proofEn: "2000 Nobel Peace Prize — 'for his work for democracy and human rights in South Korea and in East Asia, and for peace and reconciliation with North Korea'",
-    source: "NobelPrize.org official biography · Nobel Prize acceptance speech (2000)",
-    color: "#1D4ED8",
-    faith: "천주교 신자",
-    faithEn: "Roman Catholic",
-    quote: "\"예수님이 내 눈 앞에 나타나셨다. 나는 그분을 붙잡고 살려달라고 간청했다.\" — 2000 노벨 평화상 수락 연설",
-    quoteEn: "\"Jesus Christ appeared before me with such clarity. I clung to him and begged him to save me.\" — 2000 Nobel Peace Prize Acceptance Speech",
-  },
-  {
-    emoji: "🌍",
-    name: "이종욱 박사",
-    nameEn: "Dr. Lee Jong-wook",
-    years: "1945–2006",
-    field: "제6대 세계보건기구(WHO) 사무총장",
-    fieldEn: "6th Director-General of the World Health Organization",
-    story: "한국인 최초로 주요 국제기구 수장에 오른 인물. 23년간 WHO에서 결핵·에이즈·소아마비 퇴치에 헌신했다. '3 by 5' 정책(2005년까지 300만 명 에이즈 치료)을 주도하고, '백신의 황제(Vaccine Czar)'로 불렸다. 수단 다르푸르 위기 및 인도양 쓰나미 현장을 직접 방문했다. 2006년 재임 중 뇌졸중으로 별세. 그의 이름을 딴 국제 공중보건상이 WHO에 설립됐다.",
-    storyEn: "The first Korean to lead any major international organization. Spent 23 years at WHO fighting tuberculosis, AIDS, and polio. Led the '3 by 5' HIV/AIDS initiative and was called 'Vaccine Czar.' Personally visited Darfur and post-tsunami sites. Died in office from a stroke in 2006. A WHO Memorial Prize bearing his name is awarded annually.",
-    proof: "TIME 100 가장 영향력 있는 인물 선정 (2004) · Dr. Lee Jong-wook Memorial Prize 연간 수여 (2009~현재)",
-    proofEn: "TIME 100 Most Influential People (2004) · Dr. Lee Jong-wook Memorial Prize established by WHO & South Korea, awarded annually since 2009",
-    source: "Wikipedia (Lee Jong-wook) · TIME Magazine 2004 · WHO official records",
-    color: "#0EA5E9",
-  },
-  {
-    emoji: "✈️",
-    name: "한국 선교사들",
-    nameEn: "Korean Missionaries",
-    years: "1980년대~현재",
-    field: "세계 2위 기독교 선교사 파송 국가",
-    fieldEn: "World's 2nd Largest Missionary-Sending Nation",
-    story: "인구 5,100만 명의 작은 나라 한국이 전 세계에 약 2만 명의 기독교 선교사를 파송하고 있다. 미국(4만6천 명) 다음으로 세계 2위. 한국 선교사들은 서방 선교사가 들어가기 어려운 '10/40 창문' 지역 — 이슬람·불교·힌두 문화권 — 에서 특히 활발히 활동하고 있다. 이는 한국이 과거 수혜국에서 세계 최대 규모의 선교 후원국으로 변모한 역사적 전환점이다.",
-    storyEn: "South Korea, with only 51 million people, sends approximately 20,000 Christian missionaries worldwide — the world's 2nd largest missionary-sending nation after the US (46,000). Korean missionaries are especially active in the '10/40 Window' — Islamic, Buddhist, and Hindu regions where Western missionaries face barriers. This marks Korea's historic transformation from a mission-receiving to a mission-sending nation.",
-    proof: "세계 2위 선교사 파송국 (2009년 기준 ~2만 명 / 160개국) · '한국 기독교 세계선교협의회(KWMA)' 공식 통계",
-    proofEn: "World's 2nd largest missionary-sending nation — ~20,000 missionaries in 160+ countries (2009 data) · Korea World Missions Association (KWMA) official statistics",
-    source: "Wikipedia (Christianity in South Korea) · Korea World Missions Association",
-    color: "#F59E0B",
-    faith: "개신교 및 천주교 선교사",
-    faithEn: "Protestant & Catholic Missionaries",
-  },
+  // ── 섬김·환대·공동체
+  { ko: "\"자신만을 위해 사는 사람은 아무것도 이루지 못한다. 다른 사람들을 위해 사는 사람은 영원히 기억된다.\"", en: "\"Those who live for themselves accomplish little. Those who live for others leave a lasting mark.\"", source: "알베르트 슈바이처", sourceEn: "Albert Schweitzer", type: "service" },
+  { ko: "\"당신이 가진 것이 적다고 생각할 때, 가진 것을 나눠라. 그것이 기적의 시작이다.\"", en: "\"When you think you have nothing to give, that is exactly the moment to give. That's how miracles begin.\"", source: "마더 테레사", sourceEn: "Mother Teresa", type: "service" },
+  { ko: "\"인류를 섬기는 것이 하나님을 섬기는 것이다.\"", en: "\"The best way to find yourself is to lose yourself in the service of others.\"", source: "마하트마 간디", sourceEn: "Mahatma Gandhi", type: "service" },
+  { ko: "\"어떤 친절한 행동도 낭비되지 않는다.\"", en: "\"No act of kindness, no matter how small, is ever wasted.\"", source: "이솝", sourceEn: "Aesop", type: "service" },
+  { ko: "\"우리는 혼자서는 완전하지 않다. 함께일 때 비로소 완전해진다.\"", en: "\"I am because we are. We can only be human together.\"", source: "데스몬드 투투 (우분투 철학)", sourceEn: "Desmond Tutu (Ubuntu philosophy)", type: "service" },
+  { ko: "\"작은 일에 충성하는 자는 큰 일에도 충성할 것이요.\"", en: "\"Whoever can be trusted with very little can also be trusted with much.\"", source: "누가복음 16:10", sourceEn: "Luke 16:10", type: "scripture" },
+  { ko: "\"세상을 바꾸는 가장 강력한 방법은 당신 앞에 있는 단 한 사람을 진심으로 섬기는 것이다.\"", en: "\"The most powerful way to change the world is to wholeheartedly serve the one person in front of you.\"", source: "프레드 로저스 (Fred Rogers)", sourceEn: "Fred Rogers", type: "service" },
 ];
 
-// ── 세계 속의 한국인 — 검증·다양한 분야 (스캔들 없는 인물만)
-// 기준: ① 삶의 끝까지 본이 된 인물 ② 성경적 가치와 충돌 없음 ③ 다양한 분야
-const KOREAN_ACHIEVERS: KAchiever[] = [
-  // ── 스포츠
-  {
-    emoji: "⚽", name: "손흥민", nameEn: "Son Heung-min",
-    field: "⚽ 축구", fieldEn: "⚽ Football",
-    achievement: "토트넘 홋스퍼 주장 · 아시아 최초 EPL 득점왕 · 군복무 완수 후 복귀·선두 유지",
-    achievementEn: "Tottenham captain · First Asian EPL top scorer · Returned from military service, still excelling",
-    cities: ["london"], color: "#2563EB", tag: "런던", tagEn: "London",
-    verified: "BBC Sport · Premier League 공식 기록", verifiedEn: "BBC Sport · Premier League official records",
-  },
-  {
-    emoji: "⛸️", name: "김연아", nameEn: "Kim Yu-na",
-    field: "⛸️ 피겨스케이팅", fieldEn: "⛸️ Figure Skating",
-    achievement: "밴쿠버 2010 금메달 · 세계선수권 2회 · 역대 최고점 · 은퇴 후 유니세프 홍보대사",
-    achievementEn: "Vancouver 2010 Gold · 2x World Champ · All-time record · UNICEF Goodwill Ambassador after retirement",
-    cities: ["vancouver", "seoul"], color: "#06B6D4", tag: "밴쿠버·서울", tagEn: "Vancouver·Seoul",
-  },
-  {
-    emoji: "🏌️", name: "박세리", nameEn: "Se Ri Pak",
-    field: "🏌️ 골프", fieldEn: "🏌️ Golf",
-    achievement: "1998 LPGA 신인 첫 해 4메이저 우승 · '세리 키즈'(박인비·신지애 등) 세대 탄생 · 한국 여자골프 기틀 세움",
-    achievementEn: "4 major wins as a rookie in 1998 · Inspired 'Se Ri Kids' generation (Inbee Park etc.) · Built foundation of Korean women's golf",
-    cities: ["seoul"], color: "#059669", tag: "서울 → 세계", tagEn: "Seoul → World",
-    verified: "LPGA 명예의 전당 (2007) · Wikipedia", verifiedEn: "LPGA Hall of Fame (2007) · Wikipedia",
-  },
-  {
-    emoji: "🏌️", name: "박인비", nameEn: "Park In-bee",
-    field: "🏌️ 골프", fieldEn: "🏌️ Golf",
-    achievement: "LPGA 통산 21승 · 리우 2016 금메달 · 세계랭킹 1위 · '세리 키즈' 세대 완성",
-    achievementEn: "21 LPGA wins · Rio 2016 Gold Medal · World #1 · Fulfillment of the 'Se Ri Kids' generation",
-    cities: ["seoul"], color: "#10B981", tag: "서울 → 세계", tagEn: "Seoul → World",
-  },
-  {
-    emoji: "⚾", name: "박찬호", nameEn: "Chan-ho Park",
-    field: "⚾ 야구", fieldEn: "⚾ Baseball",
-    achievement: "1994년 아시아 첫 메이저리그 선발 투수 · LA 다저스 17시즌 124승 · 한국 야구의 문을 열다",
-    achievementEn: "First Asian starting pitcher in MLB (1994) · 124 career wins with LA Dodgers · Opened the door for Korean baseball",
-    cities: ["la"], color: "#F97316", tag: "LA", tagEn: "Los Angeles",
-  },
-  {
-    emoji: "🏃", name: "손기정", nameEn: "Sohn Kee-chung",
-    field: "🏃 육상·역사", fieldEn: "🏃 Athletics · History",
-    achievement: "1936 베를린 올림픽 마라톤 금메달 — 일제강점기 일장기 달고 뛰어야 했던 한국인. 시상대에서 고개 숙인 그 사진은 민족의 아픔과 자존심을 동시에 담았다",
-    achievementEn: "1936 Berlin Olympics marathon gold — forced to compete under Japan's flag during colonial rule. His bowed head at the podium became a symbol of Korean dignity under oppression",
-    cities: ["seoul"], color: "#92400E", tag: "서울 → 역사", tagEn: "Seoul → History",
-    verified: "IOC 공식 기록 · Wikipedia (Sohn Kee-chung)", verifiedEn: "IOC official records · Wikipedia",
-  },
-  {
-    emoji: "⚾", name: "김하성", nameEn: "Ha-seong Kim",
-    field: "⚾ 야구", fieldEn: "⚾ Baseball",
-    achievement: "샌디에고 파드리스 · MLB 골드글러브 · KBO 최고 유격수 출신 · 성실함으로 증명",
-    achievementEn: "San Diego Padres · MLB Gold Glove · Former KBO best shortstop · Proved himself through diligence",
-    cities: ["sandiego"], color: "#F59E0B", tag: "샌디에고", tagEn: "San Diego",
-  },
-
-  // ── 문학·예술
-  {
-    emoji: "📖", name: "한강", nameEn: "Han Kang",
-    field: "📖 소설가", fieldEn: "📖 Novelist",
-    achievement: "2024 노벨문학상 수상 · 국제부커상(2016) · '인간의 폭력성과 존엄성'을 탐구한 한국 최초 노벨상 수상 작가",
-    achievementEn: "2024 Nobel Prize in Literature · International Booker Prize (2016) · First Korean Nobel laureate, exploring human dignity amid violence",
-    cities: ["seoul"], color: "#7C3AED", tag: "서울 → 세계", tagEn: "Seoul → World",
-    verified: "NobelPrize.org (2024) · Booker Prize official records", verifiedEn: "NobelPrize.org (2024) · Booker Prize official records",
-  },
-  {
-    emoji: "✍️", name: "이민진", nameEn: "Min Jin Lee",
-    field: "✍️ 소설가", fieldEn: "✍️ Novelist",
-    achievement: "파친코(Pachinko) — NYT 베스트셀러 · 재일 한인 4대 이민사 서사 · 애플TV+ 드라마화",
-    achievementEn: "Pachinko — NYT Bestseller · 4-generation Korean diaspora in Japan · Apple TV+ adaptation",
-    cities: ["newyork"], color: "#6D28D9", tag: "뉴욕", tagEn: "New York",
-  },
-  {
-    emoji: "🎻", name: "정경화", nameEn: "Kyung-Wha Chung",
-    field: "🎻 바이올리니스트", fieldEn: "🎻 Violinist",
-    achievement: "세계 최정상 바이올리니스트 · 줄리아드 출신 · 베를린·런던·뉴욕 필하모닉 독주 · 그라모폰 어워드",
-    achievementEn: "World-class violinist · Juilliard alumna · Soloist with Berlin, London, NY Philharmonics · Gramophone Award",
-    cities: ["newyork", "london"], color: "#BE185D", tag: "뉴욕·런던", tagEn: "New York·London",
-    verified: "Gramophone Magazine · Carnegie Hall 공식 기록", verifiedEn: "Gramophone Magazine · Carnegie Hall official records",
-  },
-  {
-    emoji: "🎵", name: "조수미", nameEn: "Sumi Jo",
-    field: "🎵 오페라 소프라노", fieldEn: "🎵 Opera Soprano",
-    achievement: "세계 4대 오페라 하우스(메트·라스칼라·코번트가든·파리오페라) 전석 매진 · '동양의 나이팅게일'",
-    achievementEn: "Sold out at all 4 major opera houses (Met, La Scala, Covent Garden, Paris Opera) · 'Nightingale of the East'",
-    cities: ["paris", "london", "newyork"], color: "#9333EA", tag: "파리·런던·뉴욕", tagEn: "Paris·London·NYC",
-    verified: "Metropolitan Opera · La Scala official records", verifiedEn: "Metropolitan Opera · La Scala official records",
-  },
-
-  // ── 영화
-  {
-    emoji: "🎬", name: "봉준호", nameEn: "Bong Joon-ho",
-    field: "🎬 영화감독", fieldEn: "🎬 Film Director",
-    achievement: "기생충(2019) — 칸 황금종려상·오스카 4관왕. 비영어권 영화 최초 아카데미 작품상",
-    achievementEn: "Parasite — Palme d'Or + 4 Oscars. First non-English film to win Best Picture",
-    cities: ["seoul", "la"], color: "#DC2626", tag: "서울·LA", tagEn: "Seoul·LA",
-  },
-  {
-    emoji: "🎭", name: "이정재", nameEn: "Lee Jung-jae",
-    field: "🎭 배우", fieldEn: "🎭 Actor",
-    achievement: "오징어게임 주연 · 에미상 남우주연상 최초 한국인 수상 (2022)",
-    achievementEn: "Squid Game lead · First Korean Emmy Award for Outstanding Lead Actor (2022)",
-    cities: ["seoul", "la"], color: "#1D4ED8", tag: "서울·LA", tagEn: "Seoul·LA",
-  },
-  {
-    emoji: "🎭", name: "Sandra Oh", nameEn: "Sandra Oh",
-    field: "🎭 배우", fieldEn: "🎭 Actress",
-    achievement: "Grey's Anatomy · Killing Eve · 골든글로브 수상 · 한국계 캐나다인 배우",
-    achievementEn: "Grey's Anatomy · Killing Eve · Golden Globe winner · Korean-Canadian actress",
-    cities: ["vancouver", "la"], color: "#EC4899", tag: "밴쿠버·LA", tagEn: "Vancouver·LA",
-  },
-  {
-    emoji: "🎭", name: "Steven Yeun", nameEn: "Steven Yeun",
-    field: "🎭 배우", fieldEn: "🎭 Actor",
-    achievement: "미나리 · 워킹데드 · 오스카 노미네이트 · 한국계 최초 아카데미 남우주연상 후보",
-    achievementEn: "Minari · The Walking Dead · First Korean-American Oscar nominee for Best Actor",
-    cities: ["la", "atlanta"], color: "#16A34A", tag: "LA·애틀랜타", tagEn: "LA·Atlanta",
-  },
-
-  // ── 정치·사회
-  {
-    emoji: "🏛️", name: "앤디 김", nameEn: "Andy Kim",
-    field: "🏛️ 정치인", fieldEn: "🏛️ Politician",
-    achievement: "미국 연방 상원의원 (NJ, 2024) · 한국계 최초 미 상원의원 · 봉사의 마음으로 출마",
-    achievementEn: "US Senator (NJ, 2024) · First Korean-American US Senator · Ran with a heart of service",
-    cities: ["newyork", "dc"], color: "#EF4444", tag: "뉴욕·DC", tagEn: "New York·DC",
-    verified: "US Senate official records (2024)", verifiedEn: "US Senate official records",
-  },
-];
-
-// ── 인류가 주목할 사람들 — 국적 불문, 삶으로 증명한 인물들
-// 기준: 검증된 사실 · 삶의 끝까지 본 · 조용한 섬김 · 성경적 가치 일치
-type GlobalExemplar = {
-  initials: string;     // 이니셜 (사진 대신)
-  name: string;
-  nameKo: string;
-  years: string;
-  nation: string;
-  field: string;
-  fieldKo: string;
-  story: string;
-  storyKo: string;
-  proof: string;
-  proofKo: string;
-  source: string;
-  color: string;
-  faith?: string;
-  faithKo?: string;
-  quote?: string;
-  quoteKo?: string;
-  quietly?: boolean;    // 묵묵한 섬김
-};
-
-const GLOBAL_EXEMPLARS: GlobalExemplar[] = [
-  {
-    initials: "FR", name: "Fred Rogers", nameKo: "프레드 로저스",
-    years: "1928–2003", nation: "🇺🇸 미국",
-    field: "Presbyterian Minister · TV Host",
-    fieldKo: "장로교 목사 · 어린이 TV 진행자",
-    story: "Ordained Presbyterian minister who believed TV could nurture children's souls. Created 'Mister Rogers' Neighborhood' (1968–2001, 895 episodes). In 1969, his 6-minute Senate testimony single-handedly saved $20M in PBS funding. Wrote 200 songs. No scandal in 33 years of ministry.",
-    storyKo: "장로교 목사 서품 후 TV를 아이들의 영혼을 섬기는 매체로 사용했다. '미스터 로저스의 동네' 895편을 33년간 진행했다. 1969년 상원 청문회 6분 발언으로 PBS 예산 2천만 달러를 단독으로 지켜냈다. 200곡 작사 작곡. 33년간 스캔들 전무.",
-    proof: "Presidential Medal of Freedom (2002) · Lifetime Achievement Emmy (1997) · 40+ honorary degrees",
-    proofKo: "대통령 자유훈장 (2002) · 에미 평생공로상 (1997) · 명예박사 40개 이상",
-    source: "Wikipedia (Fred Rogers) · Presidential Medal of Freedom records",
-    color: "#0EA5E9",
-    faith: "Presbyterian (PCUSA), ordained 1963",
-    faithKo: "장로교 목사 서품 (1963, Pittsburgh Presbytery)",
-    quote: "\"When I was a boy and I would see scary things in the news, my mother would say: 'Look for the helpers. You will always find people who are helping.'\"",
-    quoteKo: "\"어렸을 때 뉴스에서 무서운 일이 나오면 어머니는 말씀하셨어요: '도와주는 사람들을 찾아봐. 항상 돕는 사람들이 있을 거야.'\"",
-  },
-  {
-    initials: "EL", name: "Eric Liddell", nameKo: "에릭 리델",
-    years: "1902–1945", nation: "🇬🇧 스코틀랜드",
-    field: "Olympic Champion · Missionary to China",
-    fieldKo: "올림픽 챔피언 · 중국 선교사",
-    story: "Gave up his best event (100m) at the 1924 Paris Olympics because heats fell on Sunday. Switched to 400m — not his specialty — and won gold with a world record. Then quietly gave up his athletic career to serve as a missionary in rural China. Died in a Japanese internment camp at age 43, having given his food ration to the sick. His last words: 'It's complete surrender.'",
-    storyKo: "1924 파리 올림픽 100m 예선이 주일에 잡히자 자신의 최강 종목을 포기했다. 비전공 400m로 전환하여 세계신기록으로 금메달을 땄다. 이후 조용히 운동 커리어를 버리고 중국 농촌 선교사로 떠났다. 1943년 일본군 수용소에 억류되어 자신의 식량 배급을 아픈 이들에게 나눠주다 43세에 별세했다. 마지막 말: '완전한 항복입니다(It's complete surrender).'",
-    proof: "1924 Olympic Gold Medal (400m) · Subject of Oscar-winning film 'Chariots of Fire' (1981)",
-    proofKo: "1924 올림픽 금메달(400m) · 아카데미 작품상 수상 영화 '불의 전차(Chariots of Fire, 1981)' 주인공",
-    source: "Wikipedia (Eric Liddell) · IOC official records",
-    color: "#DC2626",
-    faith: "Scottish Congregationalist, missionary to China (1925–1945)",
-    faithKo: "스코틀랜드 회중교회, 중국 선교사 (1925-1945)",
-    quote: "\"It's complete surrender.\" — last words, in a Japanese internment camp",
-    quoteKo: "\"완전한 항복입니다.\" — 일본 수용소에서의 마지막 말",
-    quietly: true,
-  },
-  {
-    initials: "CB", name: "Corrie ten Boom", nameKo: "코리 텐 붐",
-    years: "1892–1983", nation: "🇳🇱 네덜란드",
-    field: "WWII Rescuer · Speaker on Forgiveness",
-    fieldKo: "2차대전 유대인 구출자 · 용서 전도사",
-    story: "A Dutch watchmaker who hid Jewish families in her home during Nazi occupation, saving ~800 lives. Arrested, sent to Ravensbrück concentration camp. Her sister Betsie died there. She was released due to a clerical error — one week later, all women her age were sent to the gas chambers. She spent the rest of her life preaching forgiveness worldwide, even shaking hands with the former guard who had tormented her sister.",
-    storyKo: "나치 점령하 네덜란드에서 유대인 가정을 숨겨 약 800명을 구출한 시계 수선공. 체포되어 라벤스브뤼크 강제수용소로 이송됐다. 언니 벳시는 그곳에서 사망. 자신은 행정 착오로 풀려났다 — 일주일 후 같은 나이 여성들은 모두 가스실로 보내졌다. 그는 남은 생애를 전 세계를 다니며 용서를 전하는 데 보냈다. 실제 자신을 학대한 수용소 간수와 악수한 그 순간의 고백이 세계를 움직였다.",
-    proof: "Yad Vashem 'Righteous Among the Nations' (1967) · Knighted by Queen of the Netherlands · 'The Hiding Place' bestselling memoir (1971)",
-    proofKo: "야드바셈 '열방의 의인' 지정 (이스라엘, 1967) · 네덜란드 여왕 기사 서훈 · 자서전 '숨겨진 장소(The Hiding Place)' 세계적 베스트셀러 (1971)",
-    source: "Wikipedia (Corrie ten Boom) · Yad Vashem official records",
-    color: "#7C3AED",
-    faith: "Dutch Reformed Church (Calvinist)",
-    faithKo: "네덜란드 개혁교회 (칼뱅주의)",
-    quote: "\"There is no pit so deep that He is not deeper still.\" — words of her dying sister Betsie",
-    quoteKo: "\"아무리 깊은 구덩이라도 하나님의 사랑이 더 깊습니다.\" — 죽어가는 언니 벳시의 말",
-  },
-  {
-    initials: "NW", name: "Nicholas Winton", nameKo: "니콜라스 윈튼",
-    years: "1909–2015", nation: "🇬🇧 영국",
-    field: "Humanitarian — 'Czech Kindertransport'",
-    fieldKo: "인도주의자 — '체코 어린이 구출 작전'",
-    story: "In 1939, this 29-year-old British stockbroker organized the rescue of 669 Jewish children from Nazi-occupied Czechoslovakia, arranging transport to Britain and foster families for each child. He told absolutely no one for 50 years. In 1988, his wife found a scrapbook in their attic. He appeared on BBC and discovered that the audience was full of the now-adult children — and their descendants — whom he had saved.",
-    storyKo: "1939년 29세 영국 주식 중개인이 나치 점령 체코슬로바키아에서 유대인 아이 669명을 구출했다. 영국행 교통편과 각 아이마다 가정을 직접 구했다. 그는 이 사실을 50년간 단 한 명에게도 말하지 않았다. 1988년 아내가 다락에서 스크랩북을 발견했다. BBC 방송에 출연한 그는, 그날 방청석에 자신이 구한 아이들(이제 어른)과 그 자녀들이 가득 앉아 있다는 사실을 그 순간에야 알았다.",
-    proof: "Knighted by Queen Elizabeth II (2003) · British Hero of the Holocaust (2010) · Order of the White Lion, Czech Republic's highest honor (2014)",
-    proofKo: "엘리자베스 여왕 기사 서훈 (2003) · '영국 홀로코스트 영웅' (2010) · 체코 최고 훈장 백사자훈장 (2014)",
-    source: "Wikipedia (Nicholas Winton) · UK government Holocaust records",
-    color: "#059669",
-    quietly: true,
-    quote: "\"I believe in ethics. If everybody believed in ethics we'd have no problems at all.\"",
-    quoteKo: "\"나는 윤리를 믿습니다. 모든 사람이 윤리를 믿는다면 아무 문제도 없을 것입니다.\"",
-  },
-];
-
-// K-컨텐츠 도시별 데이터
-type KContent = {
-  emoji: string;
-  title: string;
-  titleEn: string;
-  type: string;
-  typeEn: string;
-  desc: string;
-  descEn: string;
-  color: string;
-};
-const K_CONTENT_BY_CITY: Partial<Record<string, KContent[]>> = {
-  seoul: [
-    { emoji: "🎬", title: "기생충 촬영지", titleEn: "Parasite Filming Locations", type: "영화", typeEn: "Film", desc: "봉준호 감독 오스카 4관왕. 마포구·자하문로 일대 촬영지 관광 가능", descEn: "Bong Joon-ho's 4-Oscar masterpiece. Filming locations in Mapo-gu open for visitors", color: "#DC2626" },
-    { emoji: "🦑", title: "오징어게임 성지", titleEn: "Squid Game Landmarks", type: "드라마", typeEn: "Drama", desc: "넷플릭스 역대 1위 한국 드라마. 이정재 에미상 수상 (2022)", descEn: "Netflix's #1 Korean drama. Lee Jung-jae won the Emmy Award (2022)", color: "#7C3AED" },
-    { emoji: "🎵", title: "BTS 성지순례", titleEn: "BTS Pilgrimage Sites", type: "K-팝", typeEn: "K-Pop", desc: "HYBE 사옥 · 한강공원 뮤직비디오 촬영지 · 잠실 올림픽 공연장", descEn: "HYBE HQ · Han River MV locations · Olympic stadium performances", color: "#4F46E5" },
-  ],
-  busan: [
-    { emoji: "🌊", title: "해운대 — 드라마 성지", titleEn: "Haeundae Drama Setting", type: "드라마", typeEn: "Drama", desc: "수십 편 한국 드라마·영화 배경. 부산국제영화제(BIFF) 개최지", descEn: "Setting for dozens of K-dramas. Home of Busan International Film Festival (BIFF)", color: "#0EA5E9" },
-    { emoji: "🎬", title: "범죄도시·기장 촬영지", titleEn: "K-Crime Thriller Locations", type: "영화", typeEn: "Film", desc: "마동석 주연 범죄도시 시리즈 배경 도시. 누적 관객 3000만+", descEn: "Setting for Crime City series starring Don Lee. 30M+ cumulative audience", color: "#F59E0B" },
-  ],
-  jeju: [
-    { emoji: "🌿", title: "K-드라마 촬영지 1번지", titleEn: "K-Drama Filming Hub #1", type: "드라마", typeEn: "Drama", desc: "마이 디어 미스터·호텔 델루나·우리들의 블루스 등 수십 편 촬영지", descEn: "Setting for My Mister, Hotel Del Luna, Our Blues and dozens of K-dramas", color: "#10B981" },
-  ],
-  la: [
-    { emoji: "🎤", title: "K-팝 콘서트 메카", titleEn: "K-Pop Concert Mecca", type: "K-팝", typeEn: "K-Pop", desc: "BTS·BLACKPINK·EXO 등 모든 K-팝 아티스트의 미국 첫 콘서트 도시. 코첼라 연계", descEn: "Every K-pop artist's first US concert city. BTS, BLACKPINK, Coachella connections", color: "#F97316" },
-    { emoji: "🎬", title: "K-콘텐츠·코리아타운", titleEn: "K-Content & Koreatown", type: "문화", typeEn: "Culture", desc: "미나리(Steven Yeun) 배경. LA 한인타운은 K-드라마 미국 로케이션 1순위", descEn: "Minari (Steven Yeun) setting. LA Koreatown is the #1 K-drama US shooting location", color: "#DC2626" },
-  ],
-  london: [
-    { emoji: "⚽", title: "손흥민의 도시", titleEn: "Son Heung-min's City", type: "스포츠", typeEn: "Sports", desc: "토트넘 홋스퍼 주장 손흥민. 토트넘 홋스퍼 스타디움 투어로 성지순례 가능", descEn: "Tottenham Hotspur captain Son Heung-min. Stadium tours available for fans", color: "#2563EB" },
-    { emoji: "🎬", title: "런던 K-웨이브", titleEn: "K-Wave in London", type: "문화", typeEn: "Culture", desc: "영국 K-팝 팬덤 급성장. K-넷플릭스 구독 영국 TOP 5 콘텐츠에 한국 드라마 포함", descEn: "UK K-pop fandom booming. Korean dramas consistently in UK Netflix Top 5", color: "#9333EA" },
-  ],
-  tokyo: [
-    { emoji: "🇯🇵", title: "한류 원조 시장", titleEn: "Original Hallyu Market", type: "K-웨이브", typeEn: "K-Wave", desc: "신오쿠보 코리아타운 K-팝·K-푸드 1번지. BTS·TWICE 일본 최대 팬덤", descEn: "Shin-Okubo Korea Town — Japan's #1 K-pop & K-food hub. BTS·TWICE largest Japanese fandoms", color: "#DC2626" },
-  ],
-  singapore: [
-    { emoji: "🌟", title: "동남아 K-웨이브 허브", titleEn: "Southeast Asia K-Wave Hub", type: "K-웨이브", typeEn: "K-Wave", desc: "싱가포르 넷플릭스 TOP 10에 한국 드라마 상시 진입. K-팝 이벤트 아시아 거점", descEn: "Korean dramas constantly in Singapore Netflix Top 10. Asia K-pop event hub", color: "#DC2626" },
-  ],
-  bangkok: [
-    { emoji: "💜", title: "태국 K-팝 팬덤 1위", titleEn: "Thailand's #1 K-Pop Fandom", type: "K-팝", typeEn: "K-Pop", desc: "태국은 동남아 최대 한류 국가. 한국 드라마·K-팝이 태국 10-20대 문화 중심으로 자리잡음", descEn: "Thailand is SE Asia's largest Hallyu nation. K-pop and K-dramas are central to Thai youth culture", color: "#9333EA" },
-  ],
-  vancouver: [
-    { emoji: "⛸️", title: "김연아의 도시", titleEn: "Kim Yu-na's City", type: "스포츠", typeEn: "Sports", desc: "밴쿠버 2010 동계올림픽 금메달. 세계 최고점 기록. 한국 스포츠 역사 최고 순간", descEn: "Vancouver 2010 Olympic Gold. World record score. Greatest moment in Korean sports history", color: "#06B6D4" },
-  ],
-  sydney: [
-    { emoji: "🦘", title: "호주 K-웨이브", titleEn: "K-Wave in Australia", type: "문화", typeEn: "Culture", desc: "호주 워홀·유학 한인 중심지. K-팝 페스티벌 정기 개최. K-푸드 급성장 시장", descEn: "Hub for Korean WHV workers. Regular K-pop festivals. Rapidly growing K-food market", color: "#38BDF8" },
-  ],
-  newyork: [
-    { emoji: "📚", title: "파친코 — 이민진 소설", titleEn: "Pachinko — Min Jin Lee", type: "문학", typeEn: "Literature", desc: "뉴욕 거주 한국계 작가 이민진의 재일 한인 이민사 대서사. NYT 베스트셀러·애플TV+ 드라마화", descEn: "Epic novel by NYC-based Korean-American author Min Jin Lee. NYT Bestseller & Apple TV+ drama", color: "#7C3AED" },
-    { emoji: "🏛️", title: "앤디 김 — 미국 첫 한국계 상원의원", titleEn: "Andy Kim — First Korean-American Senator", type: "정치", typeEn: "Politics", desc: "2024년 뉴저지 연방 상원의원 당선. 한국계 미국인의 정치적 영향력 확대 상징", descEn: "Elected NJ US Senator 2024. Symbol of growing Korean-American political influence", color: "#EF4444" },
-  ],
-};
-
-function KoreanAchieversSection({ lang, citySlug }: { lang: string; citySlug: string }) {
+function DailyQuoteSection({ lang }: { lang: string }) {
   const ko = lang === "ko";
-  // 현재 도시와 연결된 인물 먼저, 나머지는 그 다음
-  const sorted = [...KOREAN_ACHIEVERS].sort((a, b) => {
-    const aMatch = a.cities.includes(citySlug) ? 0 : 1;
-    const bMatch = b.cities.includes(citySlug) ? 0 : 1;
-    return aMatch - bMatch;
-  });
-  const kContent = K_CONTENT_BY_CITY[citySlug] ?? [];
+  // 날짜 기반 로테이션 — 매일 다른 구절, 하루 종일 동일
+  const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+  const quote = DAILY_QUOTES[dayOfYear % DAILY_QUOTES.length];
+
+  const today = new Date();
+  const dateStr = ko
+    ? `${today.getMonth() + 1}월 ${today.getDate()}일`
+    : `${today.toLocaleString("en", { month: "short" })} ${today.getDate()}`;
 
   return (
-    <div style={{ margin: "16px 0 0", background: "#fff", borderRadius: 16, overflow: "hidden", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-      {/* 헤더 */}
-      <div style={{ padding: "14px 16px 10px", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: 18 }}>🔥</span>
-            <div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: "#1B2A4A" }}>
-                {ko ? "세계 속의 한국인" : "Koreans in the World"}
-              </div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "#94A3B8", marginTop: 1 }}>
-                {ko ? "다양한 분야에서 세계 무대를 빛낸 한국인들" : "Koreans making an impact across every field"}
-              </div>
+    <div style={{ margin: "12px 16px 0" }}>
+      <div style={{
+        background: "#fff",
+        borderRadius: 16,
+        padding: "18px 20px",
+        boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+        borderLeft: `4px solid ${quote.type === "scripture" ? "#6EE7B7" : quote.type === "service" ? "#C9A227" : "#94A3B8"}`,
+      }}>
+        {/* 헤더 */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+            <span style={{ fontSize: 15 }}>
+              {quote.type === "scripture" ? "✦" : quote.type === "service" ? "🌿" : "💡"}
+            </span>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#1B2A4A" }}>
+              {ko ? "오늘의 한 줄" : "Today's Word"}
             </div>
           </div>
-          <div style={{ fontSize: 9, fontFamily: "Manrope,sans-serif", fontWeight: 700,
-            background: "linear-gradient(135deg,#C9A227,#F59E0B)",
-            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-            letterSpacing: "0.05em" }}>
-            GLOBAL ★
+          <div style={{ fontSize: 10, fontFamily: "Manrope,sans-serif", color: "#CBD5E1" }}>
+            {dateStr}
           </div>
         </div>
-      </div>
 
-      {/* K-컨텐츠 도시 연결 (도시 관련 있을 때만) */}
-      {kContent.length > 0 && (
-        <div style={{ padding: "10px 16px 0" }}>
-          <div style={{ fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700,
-            color: "#94A3B8", letterSpacing: "0.08em", marginBottom: 8 }}>
-            {ko ? "이 도시의 K-스토리" : "K-STORIES IN THIS CITY"}
-          </div>
-          <div style={{ display: "flex", gap: 8, overflowX: "auto", paddingBottom: 8, scrollbarWidth: "none" }}>
-            {kContent.map((item, i) => (
-              <div key={i} style={{
-                flexShrink: 0, width: 200,
-                background: `linear-gradient(135deg, ${item.color}15, ${item.color}08)`,
-                border: `1px solid ${item.color}30`,
-                borderRadius: 12, padding: "10px 12px",
-              }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 5 }}>
-                  <span style={{ fontSize: 16 }}>{item.emoji}</span>
-                  <span style={{ fontSize: 9, fontFamily: "Manrope,sans-serif", fontWeight: 700,
-                    color: item.color, background: `${item.color}20`,
-                    padding: "2px 6px", borderRadius: 99 }}>
-                    {ko ? item.type : item.typeEn}
-                  </span>
-                </div>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12,
-                  color: "#1B2A4A", marginBottom: 4, lineHeight: 1.3 }}>
-                  {ko ? item.title : item.titleEn}
-                </div>
-                <div style={{ fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontSize: 10,
-                  color: "#475569", lineHeight: 1.5 }}>
-                  {ko ? item.desc : item.descEn}
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* 구절 */}
+        <div style={{
+          fontFamily: "'Noto Sans KR', -apple-system, Georgia, serif",
+          fontSize: 15,
+          fontWeight: 600,
+          color: "#1B2A4A",
+          lineHeight: 1.75,
+          letterSpacing: "-0.2px",
+          marginBottom: 10,
+        }}>
+          {ko ? quote.ko : quote.en}
         </div>
-      )}
 
-      {/* 인물 카드 */}
-      <div style={{ padding: "10px 16px 14px" }}>
-        <div style={{ fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700,
-          color: "#94A3B8", letterSpacing: "0.08em", marginBottom: 8 }}>
-          {ko ? "한인 인물 · 세계 무대" : "KOREAN ACHIEVERS · WORLD STAGE"}
-        </div>
-        <div style={{ display: "flex", gap: 8, overflowX: "auto", paddingBottom: 4, scrollbarWidth: "none" }}>
-          {sorted.map((p, i) => {
-            const isLinked = p.cities.includes(citySlug);
-            return (
-              <div key={i} style={{
-                flexShrink: 0, width: 170,
-                background: isLinked
-                  ? `linear-gradient(135deg, ${p.color}20, ${p.color}10)`
-                  : "linear-gradient(135deg, #F8FAFC, #F1F5F9)",
-                border: `1.5px solid ${isLinked ? p.color + "50" : "rgba(0,0,0,0.07)"}`,
-                borderRadius: 14, padding: "11px 12px",
-                position: "relative",
-              }}>
-                {/* 도시 연결 표시 */}
-                {isLinked && (
-                  <div style={{
-                    position: "absolute", top: 7, right: 8,
-                    fontSize: 8, fontFamily: "Manrope,sans-serif", fontWeight: 700,
-                    background: p.color, color: "#fff",
-                    padding: "2px 6px", borderRadius: 99,
-                  }}>
-                    {ko ? "이 도시" : "This City"}
-                  </div>
-                )}
-                {/* 이모지 + 분야 */}
-                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
-                  <div style={{
-                    width: 36, height: 36, borderRadius: 10,
-                    background: `linear-gradient(135deg, ${p.color}30, ${p.color}15)`,
-                    border: `1px solid ${p.color}40`,
-                    display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0,
-                  }}>
-                    {p.emoji}
-                  </div>
-                  <div>
-                    <div style={{ fontSize: 8, color: p.color, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>
-                      {ko ? p.field : p.fieldEn}
-                    </div>
-                    <div style={{ fontSize: 8, color: "#94A3B8", fontFamily: "Manrope,sans-serif" }}>
-                      {ko ? p.tag : p.tagEn}
-                    </div>
-                  </div>
-                </div>
-                {/* 이름 */}
-                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#1B2A4A", marginBottom: 2 }}>
-                  {ko ? p.name : p.nameEn}
-                </div>
-                <div style={{ fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontSize: 9,
-                  color: "#475569", lineHeight: 1.5 }}>
-                  {ko ? p.achievement : p.achievementEn}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* ── 인류가 주목할 사람들 (국적 불문, 삶으로 증명) */}
-      <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", padding: "12px 16px 0" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 10 }}>
-          <span style={{ fontSize: 14 }}>🌿</span>
-          <div>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#1B2A4A" }}>
-              {ko ? "인류가 주목할 사람들" : "People Humanity Should Know"}
-            </div>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#94A3B8" }}>
-              {ko ? "국적 불문 · 삶으로 증명 · 조용한 섬김" : "Any nation · Proved by their lives · Quiet faithfulness"}
-            </div>
-          </div>
-        </div>
-        <div style={{ display: "flex", gap: 10, overflowX: "auto", paddingBottom: 12, scrollbarWidth: "none" }}>
-          {GLOBAL_EXEMPLARS.map((g, i) => (
-            <div key={i} style={{
-              flexShrink: 0, width: 230,
-              background: `linear-gradient(135deg, ${g.color}10, ${g.color}05)`,
-              border: `1.5px solid ${g.color}30`,
-              borderRadius: 14, padding: "12px 13px",
-            }}>
-              {/* 이니셜 배지 + 이름 */}
-              <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 7 }}>
-                <div style={{
-                  width: 40, height: 40, borderRadius: 12, flexShrink: 0,
-                  background: `linear-gradient(135deg, ${g.color}30, ${g.color}15)`,
-                  border: `1.5px solid ${g.color}50`,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: g.color,
-                }}>
-                  {g.initials}
-                </div>
-                <div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#1B2A4A", lineHeight: 1.2 }}>
-                    {ko ? g.nameKo : g.name}
-                  </div>
-                  <div style={{ fontSize: 8, color: "#94A3B8", fontFamily: "Manrope,sans-serif" }}>
-                    {g.nation} · {g.years}
-                  </div>
-                  <div style={{ fontSize: 8, color: g.color, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>
-                    {ko ? g.fieldKo : g.field}
-                  </div>
-                </div>
-              </div>
-              {/* 묵묵한 섬김 태그 */}
-              {g.quietly && (
-                <div style={{ marginBottom: 6 }}>
-                  <span style={{ fontSize: 8, fontFamily: "Manrope,sans-serif", fontWeight: 700,
-                    background: "rgba(5,150,105,0.12)", color: "#047857",
-                    border: "1px solid rgba(5,150,105,0.25)",
-                    borderRadius: 99, padding: "2px 7px" }}>
-                    🌱 {ko ? "묵묵한 섬김" : "Quiet Faithfulness"}
-                  </span>
-                </div>
-              )}
-              {/* 이야기 */}
-              <div style={{ fontSize: 9.5, color: "#475569", fontFamily: "-apple-system,'Noto Sans KR',sans-serif",
-                lineHeight: 1.6, marginBottom: 6 }}>
-                {ko ? g.storyKo : g.story}
-              </div>
-              {/* 검증 증거 */}
-              <div style={{
-                background: `${g.color}12`, border: `1px solid ${g.color}25`,
-                borderRadius: 7, padding: "5px 8px", marginBottom: g.quote ? 6 : 0,
-              }}>
-                <div style={{ fontSize: 8, color: g.color, fontWeight: 700, fontFamily: "Manrope,sans-serif", marginBottom: 1 }}>
-                  {ko ? "🏆 검증" : "🏆 VERIFIED"}
-                </div>
-                <div style={{ fontSize: 8.5, color: "#1B2A4A", fontFamily: "Manrope,sans-serif", lineHeight: 1.5 }}>
-                  {ko ? g.proofKo : g.proof}
-                </div>
-              </div>
-              {/* 말씀 */}
-              {g.quote && (
-                <div style={{ borderLeft: `3px solid ${g.color}60`, paddingLeft: 7, marginTop: 5 }}>
-                  <div style={{ fontSize: 9, color: "#64748B", fontFamily: "-apple-system,'Noto Sans KR',sans-serif",
-                    lineHeight: 1.5, fontStyle: "italic" }}>
-                    {ko ? g.quoteKo : g.quote}
-                  </div>
-                </div>
-              )}
-              {/* 신앙 */}
-              {g.faith && (
-                <div style={{ marginTop: 5, display: "flex", gap: 4, alignItems: "center" }}>
-                  <span style={{ fontSize: 8 }}>✝️</span>
-                  <span style={{ fontSize: 7.5, color: "#94A3B8", fontFamily: "Manrope,sans-serif" }}>
-                    {ko ? g.faithKo : g.faith}
-                  </span>
-                </div>
-              )}
-              <div style={{ marginTop: 4, fontSize: 7, color: "#CBD5E1", fontFamily: "Manrope,sans-serif" }}>
-                📎 {g.source.split(" · ")[0]}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── 세계를 바꾼 한국인들 (검증된 사실) */}
-      <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", padding: "12px 16px 14px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 10 }}>
-          <span style={{ fontSize: 14 }}>🌍</span>
-          <div>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#1B2A4A" }}>
-              {ko ? "세계를 바꾼 한국인들" : "Koreans Who Changed the World"}
-            </div>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#94A3B8" }}>
-              {ko ? "아직 잘 알려지지 않은 이야기 — 검증된 사실만" : "Untold stories — verified facts only"}
-            </div>
-          </div>
+        {/* 출처 */}
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
           <div style={{
-            marginLeft: "auto", fontSize: 8, fontFamily: "Manrope,sans-serif", fontWeight: 800,
-            background: "rgba(16,185,129,0.12)", color: "#059669",
-            border: "1px solid rgba(16,185,129,0.3)",
-            borderRadius: 99, padding: "3px 8px", flexShrink: 0,
-          }}>
-            {ko ? "✓ 검증됨" : "✓ VERIFIED"}
+            width: 18, height: 1,
+            background: quote.type === "scripture" ? "#6EE7B7" : quote.type === "service" ? "#C9A227" : "#CBD5E1",
+          }} />
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8", fontWeight: 600 }}>
+            {ko ? quote.source : quote.sourceEn}
           </div>
-        </div>
-        <div style={{ display: "flex", gap: 10, overflowX: "auto", paddingBottom: 4, scrollbarWidth: "none" }}>
-          {WORLD_CHANGERS.map((w, i) => (
-            <div key={i} style={{
-              flexShrink: 0, width: 240,
-              background: `linear-gradient(135deg, ${w.color}12, ${w.color}06)`,
-              border: `1.5px solid ${w.color}35`,
-              borderRadius: 14, padding: "12px 13px",
-              position: "relative",
-            }}>
-              {/* 출처 태그 */}
-              <div style={{
-                position: "absolute", top: 8, right: 8,
-                fontSize: 7, fontFamily: "Manrope,sans-serif", fontWeight: 700,
-                background: "rgba(16,185,129,0.15)", color: "#047857",
-                border: "1px solid rgba(16,185,129,0.25)",
-                borderRadius: 99, padding: "2px 6px", maxWidth: 80,
-                whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-              }}>✓ {ko ? "팩트" : "FACT"}</div>
-
-              {/* 이모지 + 이름 + 연도 */}
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 7 }}>
-                <div style={{
-                  width: 38, height: 38, borderRadius: 10, flexShrink: 0,
-                  background: `linear-gradient(135deg, ${w.color}25, ${w.color}12)`,
-                  border: `1.5px solid ${w.color}40`,
-                  display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20,
-                }}>
-                  {w.emoji}
-                </div>
-                <div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#1B2A4A", lineHeight: 1.2 }}>
-                    {ko ? w.name : w.nameEn}
-                  </div>
-                  <div style={{ fontSize: 8, color: w.color, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>
-                    {ko ? w.field : w.fieldEn}
-                  </div>
-                  <div style={{ fontSize: 8, color: "#94A3B8", fontFamily: "Manrope,sans-serif" }}>{w.years}</div>
-                </div>
-              </div>
-
-              {/* 국제 공인 증거 (강조) */}
-              <div style={{
-                background: `${w.color}15`, border: `1px solid ${w.color}30`,
-                borderRadius: 8, padding: "6px 8px", marginBottom: 6,
-              }}>
-                <div style={{ fontSize: 8, color: w.color, fontFamily: "Manrope,sans-serif", fontWeight: 800, marginBottom: 2 }}>
-                  {ko ? "🏆 국제 공인" : "🏆 INTERNATIONAL RECOGNITION"}
-                </div>
-                <div style={{ fontSize: 9, color: "#1B2A4A", fontFamily: "-apple-system,'Noto Sans KR',sans-serif", lineHeight: 1.5, fontWeight: 600 }}>
-                  {ko ? w.proof : w.proofEn}
-                </div>
-              </div>
-
-              {/* 이야기 */}
-              <div style={{ fontSize: 9.5, color: "#475569", fontFamily: "-apple-system,'Noto Sans KR',sans-serif", lineHeight: 1.6, marginBottom: w.quote ? 6 : 0 }}>
-                {ko ? w.story : w.storyEn}
-              </div>
-
-              {/* 본인 말 (있을 때만) */}
-              {w.quote && (
-                <div style={{
-                  borderLeft: `3px solid ${w.color}80`,
-                  paddingLeft: 7, marginTop: 4,
-                }}>
-                  <div style={{ fontSize: 9, color: "#64748B", fontFamily: "-apple-system,'Noto Sans KR',sans-serif",
-                    lineHeight: 1.5, fontStyle: "italic" }}>
-                    {ko ? w.quote : w.quoteEn}
-                  </div>
-                </div>
-              )}
-
-              {/* 신앙 태그 (검증된 경우만) */}
-              {w.faith && (
-                <div style={{ marginTop: 6, display: "flex", alignItems: "center", gap: 4 }}>
-                  <span style={{ fontSize: 9 }}>✝️</span>
-                  <span style={{ fontSize: 8, color: "#94A3B8", fontFamily: "Manrope,sans-serif" }}>
-                    {ko ? w.faith : w.faithEn}
-                  </span>
-                </div>
-              )}
-
-              {/* 출처 */}
-              <div style={{ marginTop: 5, fontSize: 7.5, color: "#CBD5E1", fontFamily: "Manrope,sans-serif" }}>
-                📎 {w.source.split(" · ")[0]}
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </div>
   );
 }
+
+/* ─────────────────────────────────────────
+   커뮤니티 펄스 — 지금 이 순간 (자동 롤링)
+───────────────────────────────────────── */
 
 function CommunityPulseSection({ lang }: { lang: string }) {
   const ko = lang === "ko";
@@ -11713,7 +11058,6 @@ function FoundingPartnerBanner({ lang, onNavigate }: { lang: string; onNavigate?
 function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
   const ko = lang === "ko";
-  const city = useCityConfig();
   return (
     <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
       <CompactHeroNew />
@@ -11723,13 +11067,11 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       {/* ── Day 1 도착 체크리스트 ── */}
       <ArrivalChecklistSection lang={lang} />
 
+      {/* ── 오늘의 한 줄 ── */}
+      <DailyQuoteSection lang={lang} />
+
       {/* ── 커뮤니티 펄스 ── */}
       <CommunityPulseSection lang={lang} />
-
-      {/* ── 한인의 자부심 + K-컨텐츠 ── */}
-      <div style={{ margin: "0 16px" }}>
-        <KoreanAchieversSection lang={lang} citySlug={city.slug} />
-      </div>
 
       {/* ── 커뮤니티 올리기 CTA ── */}
       <div
