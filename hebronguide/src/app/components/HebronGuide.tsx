@@ -4781,7 +4781,7 @@ const TOP5_SETTLE_LOUISVILLE: Top5Item[] = [
   { rank: 1, emoji: "⛪", nameKo: "루이빌새한장로교회", nameEn: "Louisville Saehan Presbyterian Church",
     address: "Louisville, KY",
     hours: "주일 예배 (일정 문의)",
-    why: "⭐ 가정교회 (IHM 인증 기준). 담임: 김상헌 목사. 루이빌 한인 정착 첫 영적 기착지. 목장 소그룹 모임 운영.",
+    why: "⭐ 영혼구원 · 제자 사명 중심 교회. 담임: 김상헌 목사. 목장 소그룹을 통한 목자-양 공동체 운영. 루이빌 한인 정착 첫 영적 기착지.",
     tip: "예배 일정·장소는 교회에 직접 문의 (주소 업데이트 예정)",
     website: "google.com/search?q=루이빌새한장로교회" },
   { rank: 2, emoji: "🏛️", nameKo: "켄터키 한인회", nameEn: "Korean American Association of Kentucky",
@@ -13488,6 +13488,30 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
       <div className="pt-5 px-4 md:px-6 lg:px-8">
         {sub === 0 && (
           <>
+            {/* ── 신약교회 회복 비전 카드 ── */}
+            <div style={{ background: "linear-gradient(135deg,rgba(201,162,39,0.1) 0%,rgba(192,132,252,0.07) 100%)", border: "1px solid rgba(201,162,39,0.28)", borderRadius: 16, padding: "18px 20px", marginBottom: 12 }}>
+              <div style={{ fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 800, color: "#C9A227", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 10, opacity: 0.9 }}>
+                ✈️ {lang === "ko" ? "HebronGuide가 꿈꾸는 교회" : "The Church HebronGuide Envisions"}
+              </div>
+              <div style={{ fontSize: 13, color: "rgba(236,253,245,0.9)", lineHeight: 1.75, borderLeft: "3px solid rgba(201,162,39,0.5)", paddingLeft: 12, marginBottom: 12 }}>
+                {lang === "ko"
+                  ? "공항에서부터 모든 성도가 새가족팀이 되어 환대하고 환영하는 교회 — 영혼구원하여 그리스도의 제자를 만드는 사명에 충실한 교회"
+                  : "A church where every member is a welcome team — starting from the airport. A church faithful to the mission of saving souls and making disciples of Christ."}
+              </div>
+              {[
+                { icon: "✈️", ko: "공항부터 시작되는 환대 — 모든 성도이 새가족팀", en: "Welcome begins at the airport — every member is a welcome team" },
+                { icon: "🔥", ko: "영혼구원하여 그리스도의 제자를 만드는 사명", en: "Faithful to making disciples who save souls" },
+                { icon: "🏠", ko: "소그룹 공동체를 통한 목자-양 관계 (목장·셀·다락방·구역 이름 불문)", en: "Shepherd-flock relationship through small groups (any name)" },
+              ].map((item, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: i < 2 ? 8 : 0 }}>
+                  <span style={{ fontSize: 14, flexShrink: 0, marginTop: 1 }}>{item.icon}</span>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11.5, color: "rgba(236,253,245,0.78)", lineHeight: 1.6 }}>
+                    {lang === "ko" ? item.ko : item.en}
+                  </div>
+                </div>
+              ))}
+            </div>
+
             {/* 섬김의 정신 카드 */}
             <div style={{ background: "rgba(192,132,252,0.07)", border: "1px solid rgba(192,132,252,0.22)", borderRadius: 16, padding: "18px 20px", marginBottom: 14 }}>
               <div style={{ fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 800, color: "#C084FC", letterSpacing: "0.06em", marginBottom: 10, opacity: 0.85 }}>
