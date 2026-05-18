@@ -9125,111 +9125,224 @@ const WORLD_CHANGERS: KWorldChanger[] = [
   },
 ];
 
+// ── 세계 속의 한국인 — 검증·다양한 분야 (스캔들 없는 인물만)
+// 기준: ① 삶의 끝까지 본이 된 인물 ② 성경적 가치와 충돌 없음 ③ 다양한 분야
 const KOREAN_ACHIEVERS: KAchiever[] = [
+  // ── 스포츠
   {
     emoji: "⚽", name: "손흥민", nameEn: "Son Heung-min",
-    field: "축구", fieldEn: "Football",
-    achievement: "토트넘 홋스퍼 주장 · 아시아 최초 EPL 득점왕 · 2023 AFC 올해의 선수",
-    achievementEn: "Tottenham Hotspur captain · First Asian EPL top scorer · AFC Player of the Year",
+    field: "⚽ 축구", fieldEn: "⚽ Football",
+    achievement: "토트넘 홋스퍼 주장 · 아시아 최초 EPL 득점왕 · 군복무 완수 후 복귀·선두 유지",
+    achievementEn: "Tottenham captain · First Asian EPL top scorer · Returned from military service, still excelling",
     cities: ["london"], color: "#2563EB", tag: "런던", tagEn: "London",
-  },
-  {
-    emoji: "🎬", name: "봉준호", nameEn: "Bong Joon-ho",
-    field: "영화감독", fieldEn: "Film Director",
-    achievement: "기생충(2019) — 칸 황금종려상·오스카 4관왕. 한국영화 첫 아카데미 작품상",
-    achievementEn: "Parasite — Palme d'Or + 4 Oscars. First Korean Best Picture winner",
-    cities: ["seoul", "la"], color: "#DC2626", tag: "서울·LA", tagEn: "Seoul·LA",
-  },
-  {
-    emoji: "🎵", name: "BTS (방탄소년단)", nameEn: "BTS",
-    field: "K-팝", fieldEn: "K-Pop",
-    achievement: "빌보드 HOT 100 1위 · 그래미 노미네이트 · 글로벌 팬덤 ARMY 1억+명",
-    achievementEn: "Billboard Hot 100 #1 · Grammy nominees · 100M+ ARMY worldwide",
-    cities: ["seoul", "newyork", "la", "london"], color: "#7C3AED", tag: "서울 → 세계", tagEn: "Seoul → World",
+    verified: "BBC Sport · Premier League 공식 기록", verifiedEn: "BBC Sport · Premier League official records",
   },
   {
     emoji: "⛸️", name: "김연아", nameEn: "Kim Yu-na",
-    field: "피겨스케이팅", fieldEn: "Figure Skating",
-    achievement: "밴쿠버 2010 금메달 · 세계선수권 2회 · 피겨 역대 최고점 보유",
-    achievementEn: "Vancouver 2010 Gold Medal · 2x World Champion · All-time record holder",
+    field: "⛸️ 피겨스케이팅", fieldEn: "⛸️ Figure Skating",
+    achievement: "밴쿠버 2010 금메달 · 세계선수권 2회 · 역대 최고점 · 은퇴 후 유니세프 홍보대사",
+    achievementEn: "Vancouver 2010 Gold · 2x World Champ · All-time record · UNICEF Goodwill Ambassador after retirement",
     cities: ["vancouver", "seoul"], color: "#06B6D4", tag: "밴쿠버·서울", tagEn: "Vancouver·Seoul",
   },
   {
-    emoji: "🏋️", name: "이정재", nameEn: "Lee Jung-jae",
-    field: "배우", fieldEn: "Actor",
-    achievement: "오징어게임 주연 · 에미상 남우주연상 최초 한국인 수상 (2022)",
-    achievementEn: "Squid Game lead · First Korean Emmy Award for Outstanding Lead Actor (2022)",
+    emoji: "🏌️", name: "박세리", nameEn: "Se Ri Pak",
+    field: "🏌️ 골프", fieldEn: "🏌️ Golf",
+    achievement: "1998 LPGA 신인 첫 해 4메이저 우승 · '세리 키즈'(박인비·신지애 등) 세대 탄생 · 한국 여자골프 기틀 세움",
+    achievementEn: "4 major wins as a rookie in 1998 · Inspired 'Se Ri Kids' generation (Inbee Park etc.) · Built foundation of Korean women's golf",
+    cities: ["seoul"], color: "#059669", tag: "서울 → 세계", tagEn: "Seoul → World",
+    verified: "LPGA 명예의 전당 (2007) · Wikipedia", verifiedEn: "LPGA Hall of Fame (2007) · Wikipedia",
+  },
+  {
+    emoji: "🏌️", name: "박인비", nameEn: "Park In-bee",
+    field: "🏌️ 골프", fieldEn: "🏌️ Golf",
+    achievement: "LPGA 통산 21승 · 리우 2016 금메달 · 세계랭킹 1위 · '세리 키즈' 세대 완성",
+    achievementEn: "21 LPGA wins · Rio 2016 Gold Medal · World #1 · Fulfillment of the 'Se Ri Kids' generation",
+    cities: ["seoul"], color: "#10B981", tag: "서울 → 세계", tagEn: "Seoul → World",
+  },
+  {
+    emoji: "⚾", name: "박찬호", nameEn: "Chan-ho Park",
+    field: "⚾ 야구", fieldEn: "⚾ Baseball",
+    achievement: "1994년 아시아 첫 메이저리그 선발 투수 · LA 다저스 17시즌 124승 · 한국 야구의 문을 열다",
+    achievementEn: "First Asian starting pitcher in MLB (1994) · 124 career wins with LA Dodgers · Opened the door for Korean baseball",
+    cities: ["la"], color: "#F97316", tag: "LA", tagEn: "Los Angeles",
+  },
+  {
+    emoji: "🏃", name: "손기정", nameEn: "Sohn Kee-chung",
+    field: "🏃 육상·역사", fieldEn: "🏃 Athletics · History",
+    achievement: "1936 베를린 올림픽 마라톤 금메달 — 일제강점기 일장기 달고 뛰어야 했던 한국인. 시상대에서 고개 숙인 그 사진은 민족의 아픔과 자존심을 동시에 담았다",
+    achievementEn: "1936 Berlin Olympics marathon gold — forced to compete under Japan's flag during colonial rule. His bowed head at the podium became a symbol of Korean dignity under oppression",
+    cities: ["seoul"], color: "#92400E", tag: "서울 → 역사", tagEn: "Seoul → History",
+    verified: "IOC 공식 기록 · Wikipedia (Sohn Kee-chung)", verifiedEn: "IOC official records · Wikipedia",
+  },
+  {
+    emoji: "⚾", name: "김하성", nameEn: "Ha-seong Kim",
+    field: "⚾ 야구", fieldEn: "⚾ Baseball",
+    achievement: "샌디에고 파드리스 · MLB 골드글러브 · KBO 최고 유격수 출신 · 성실함으로 증명",
+    achievementEn: "San Diego Padres · MLB Gold Glove · Former KBO best shortstop · Proved himself through diligence",
+    cities: ["sandiego"], color: "#F59E0B", tag: "샌디에고", tagEn: "San Diego",
+  },
+
+  // ── 문학·예술
+  {
+    emoji: "📖", name: "한강", nameEn: "Han Kang",
+    field: "📖 소설가", fieldEn: "📖 Novelist",
+    achievement: "2024 노벨문학상 수상 · 국제부커상(2016) · '인간의 폭력성과 존엄성'을 탐구한 한국 최초 노벨상 수상 작가",
+    achievementEn: "2024 Nobel Prize in Literature · International Booker Prize (2016) · First Korean Nobel laureate, exploring human dignity amid violence",
+    cities: ["seoul"], color: "#7C3AED", tag: "서울 → 세계", tagEn: "Seoul → World",
+    verified: "NobelPrize.org (2024) · Booker Prize official records", verifiedEn: "NobelPrize.org (2024) · Booker Prize official records",
+  },
+  {
+    emoji: "✍️", name: "이민진", nameEn: "Min Jin Lee",
+    field: "✍️ 소설가", fieldEn: "✍️ Novelist",
+    achievement: "파친코(Pachinko) — NYT 베스트셀러 · 재일 한인 4대 이민사 서사 · 애플TV+ 드라마화",
+    achievementEn: "Pachinko — NYT Bestseller · 4-generation Korean diaspora in Japan · Apple TV+ adaptation",
+    cities: ["newyork"], color: "#6D28D9", tag: "뉴욕", tagEn: "New York",
+  },
+  {
+    emoji: "🎻", name: "정경화", nameEn: "Kyung-Wha Chung",
+    field: "🎻 바이올리니스트", fieldEn: "🎻 Violinist",
+    achievement: "세계 최정상 바이올리니스트 · 줄리아드 출신 · 베를린·런던·뉴욕 필하모닉 독주 · 그라모폰 어워드",
+    achievementEn: "World-class violinist · Juilliard alumna · Soloist with Berlin, London, NY Philharmonics · Gramophone Award",
+    cities: ["newyork", "london"], color: "#BE185D", tag: "뉴욕·런던", tagEn: "New York·London",
+    verified: "Gramophone Magazine · Carnegie Hall 공식 기록", verifiedEn: "Gramophone Magazine · Carnegie Hall official records",
+  },
+  {
+    emoji: "🎵", name: "조수미", nameEn: "Sumi Jo",
+    field: "🎵 오페라 소프라노", fieldEn: "🎵 Opera Soprano",
+    achievement: "세계 4대 오페라 하우스(메트·라스칼라·코번트가든·파리오페라) 전석 매진 · '동양의 나이팅게일'",
+    achievementEn: "Sold out at all 4 major opera houses (Met, La Scala, Covent Garden, Paris Opera) · 'Nightingale of the East'",
+    cities: ["paris", "london", "newyork"], color: "#9333EA", tag: "파리·런던·뉴욕", tagEn: "Paris·London·NYC",
+    verified: "Metropolitan Opera · La Scala official records", verifiedEn: "Metropolitan Opera · La Scala official records",
+  },
+
+  // ── 영화
+  {
+    emoji: "🎬", name: "봉준호", nameEn: "Bong Joon-ho",
+    field: "🎬 영화감독", fieldEn: "🎬 Film Director",
+    achievement: "기생충(2019) — 칸 황금종려상·오스카 4관왕. 비영어권 영화 최초 아카데미 작품상",
+    achievementEn: "Parasite — Palme d'Or + 4 Oscars. First non-English film to win Best Picture",
     cities: ["seoul", "la"], color: "#DC2626", tag: "서울·LA", tagEn: "Seoul·LA",
   },
   {
+    emoji: "🎭", name: "이정재", nameEn: "Lee Jung-jae",
+    field: "🎭 배우", fieldEn: "🎭 Actor",
+    achievement: "오징어게임 주연 · 에미상 남우주연상 최초 한국인 수상 (2022)",
+    achievementEn: "Squid Game lead · First Korean Emmy Award for Outstanding Lead Actor (2022)",
+    cities: ["seoul", "la"], color: "#1D4ED8", tag: "서울·LA", tagEn: "Seoul·LA",
+  },
+  {
     emoji: "🎭", name: "Sandra Oh", nameEn: "Sandra Oh",
-    field: "배우", fieldEn: "Actress",
+    field: "🎭 배우", fieldEn: "🎭 Actress",
     achievement: "Grey's Anatomy · Killing Eve · 골든글로브 수상 · 한국계 캐나다인 배우",
     achievementEn: "Grey's Anatomy · Killing Eve · Golden Globe winner · Korean-Canadian actress",
     cities: ["vancouver", "la"], color: "#EC4899", tag: "밴쿠버·LA", tagEn: "Vancouver·LA",
   },
   {
-    emoji: "⚾", name: "박찬호", nameEn: "Chan-ho Park",
-    field: "야구", fieldEn: "Baseball",
-    achievement: "LA 다저스 아시아 첫 메이저리그 선발 · 17시즌 통산 124승",
-    achievementEn: "LA Dodgers — First Asian MLB starter · 124 career wins over 17 seasons",
-    cities: ["la"], color: "#F97316", tag: "LA", tagEn: "Los Angeles",
-  },
-  {
-    emoji: "⚾", name: "류현진", nameEn: "Ryu Hyun-jin",
-    field: "야구", fieldEn: "Baseball",
-    achievement: "LA 다저스·토론토 블루제이스 · NL ERA 타이틀 · 한국 최고 좌완투수",
-    achievementEn: "LA Dodgers & Toronto Blue Jays · NL ERA title · Korea's best left-hander",
-    cities: ["la", "toronto"], color: "#DC2626", tag: "LA·토론토", tagEn: "LA·Toronto",
-  },
-  {
-    emoji: "🎶", name: "Jay Park (박재범)", nameEn: "Jay Park",
-    field: "음악·사업가", fieldEn: "Music & Entrepreneur",
-    achievement: "시애틀 출신 K-팝 아티스트 · AOMG·H1ghr Music 창립 · 힙합 개척",
-    achievementEn: "Seattle-born K-pop artist · Founded AOMG & H1ghr Music · Hip-hop pioneer",
-    cities: ["seattle", "seoul"], color: "#0EA5E9", tag: "시애틀·서울", tagEn: "Seattle·Seoul",
-  },
-  {
-    emoji: "🏌️", name: "박인비", nameEn: "Park In-bee",
-    field: "골프", fieldEn: "Golf",
-    achievement: "LPGA 통산 21승 · 리우 2016 금메달 · 세계랭킹 1위 · '갓모드' 선수",
-    achievementEn: "21 LPGA wins · Rio 2016 Gold Medal · World #1 · Legend of women's golf",
-    cities: ["seoul"], color: "#10B981", tag: "서울 → 세계", tagEn: "Seoul → World",
-  },
-  {
-    emoji: "✍️", name: "이민진", nameEn: "Min Jin Lee",
-    field: "소설가", fieldEn: "Novelist",
-    achievement: "파친코(Pachinko) 작가 · NYT 베스트셀러 · 재미 한인 이민사 서사",
-    achievementEn: "Author of Pachinko · NYT Bestseller · Epic of Korean-American immigration",
-    cities: ["newyork"], color: "#7C3AED", tag: "뉴욕", tagEn: "New York",
-  },
-  {
-    emoji: "🏛️", name: "앤디 김", nameEn: "Andy Kim",
-    field: "정치인", fieldEn: "Politician",
-    achievement: "미국 연방 상원의원 (NJ) · 한국계 최초 미 상원의원 당선 (2024)",
-    achievementEn: "US Senator (NJ) · First Korean-American elected to the US Senate (2024)",
-    cities: ["newyork", "dc"], color: "#EF4444", tag: "뉴욕·DC", tagEn: "New York·DC",
-  },
-  {
-    emoji: "⚾", name: "김하성", nameEn: "Ha-seong Kim",
-    field: "야구", fieldEn: "Baseball",
-    achievement: "샌디에고 파드리스 · MLB 골드글러브 수상 · KBO 최고 유격수 출신",
-    achievementEn: "San Diego Padres · MLB Gold Glove · Former KBO's best shortstop",
-    cities: ["sandiego"], color: "#F59E0B", tag: "샌디에고", tagEn: "San Diego",
-  },
-  {
-    emoji: "🎬", name: "Steven Yeun (이스티브 연)", nameEn: "Steven Yeun",
-    field: "배우", fieldEn: "Actor",
-    achievement: "미나리·워킹데드 · 오스카 노미네이트 · 한국계 최초 아카데미 남우주연상 후보",
+    emoji: "🎭", name: "Steven Yeun", nameEn: "Steven Yeun",
+    field: "🎭 배우", fieldEn: "🎭 Actor",
+    achievement: "미나리 · 워킹데드 · 오스카 노미네이트 · 한국계 최초 아카데미 남우주연상 후보",
     achievementEn: "Minari · The Walking Dead · First Korean-American Oscar nominee for Best Actor",
     cities: ["la", "atlanta"], color: "#16A34A", tag: "LA·애틀랜타", tagEn: "LA·Atlanta",
   },
+
+  // ── 정치·사회
   {
-    emoji: "🎵", name: "BLACKPINK", nameEn: "BLACKPINK",
-    field: "K-팝", fieldEn: "K-Pop",
-    achievement: "YouTube 구독자 최다 그룹 · 코첼라 헤드라이너 · 4개국 글로벌 멤버",
-    achievementEn: "Most subscribed group on YouTube · Coachella headliner · 4-nation global group",
-    cities: ["seoul", "la", "newyork"], color: "#EC4899", tag: "서울 → 세계", tagEn: "Seoul → World",
+    emoji: "🏛️", name: "앤디 김", nameEn: "Andy Kim",
+    field: "🏛️ 정치인", fieldEn: "🏛️ Politician",
+    achievement: "미국 연방 상원의원 (NJ, 2024) · 한국계 최초 미 상원의원 · 봉사의 마음으로 출마",
+    achievementEn: "US Senator (NJ, 2024) · First Korean-American US Senator · Ran with a heart of service",
+    cities: ["newyork", "dc"], color: "#EF4444", tag: "뉴욕·DC", tagEn: "New York·DC",
+    verified: "US Senate official records (2024)", verifiedEn: "US Senate official records",
+  },
+];
+
+// ── 인류가 주목할 사람들 — 국적 불문, 삶으로 증명한 인물들
+// 기준: 검증된 사실 · 삶의 끝까지 본 · 조용한 섬김 · 성경적 가치 일치
+type GlobalExemplar = {
+  initials: string;     // 이니셜 (사진 대신)
+  name: string;
+  nameKo: string;
+  years: string;
+  nation: string;
+  field: string;
+  fieldKo: string;
+  story: string;
+  storyKo: string;
+  proof: string;
+  proofKo: string;
+  source: string;
+  color: string;
+  faith?: string;
+  faithKo?: string;
+  quote?: string;
+  quoteKo?: string;
+  quietly?: boolean;    // 묵묵한 섬김
+};
+
+const GLOBAL_EXEMPLARS: GlobalExemplar[] = [
+  {
+    initials: "FR", name: "Fred Rogers", nameKo: "프레드 로저스",
+    years: "1928–2003", nation: "🇺🇸 미국",
+    field: "Presbyterian Minister · TV Host",
+    fieldKo: "장로교 목사 · 어린이 TV 진행자",
+    story: "Ordained Presbyterian minister who believed TV could nurture children's souls. Created 'Mister Rogers' Neighborhood' (1968–2001, 895 episodes). In 1969, his 6-minute Senate testimony single-handedly saved $20M in PBS funding. Wrote 200 songs. No scandal in 33 years of ministry.",
+    storyKo: "장로교 목사 서품 후 TV를 아이들의 영혼을 섬기는 매체로 사용했다. '미스터 로저스의 동네' 895편을 33년간 진행했다. 1969년 상원 청문회 6분 발언으로 PBS 예산 2천만 달러를 단독으로 지켜냈다. 200곡 작사 작곡. 33년간 스캔들 전무.",
+    proof: "Presidential Medal of Freedom (2002) · Lifetime Achievement Emmy (1997) · 40+ honorary degrees",
+    proofKo: "대통령 자유훈장 (2002) · 에미 평생공로상 (1997) · 명예박사 40개 이상",
+    source: "Wikipedia (Fred Rogers) · Presidential Medal of Freedom records",
+    color: "#0EA5E9",
+    faith: "Presbyterian (PCUSA), ordained 1963",
+    faithKo: "장로교 목사 서품 (1963, Pittsburgh Presbytery)",
+    quote: "\"When I was a boy and I would see scary things in the news, my mother would say: 'Look for the helpers. You will always find people who are helping.'\"",
+    quoteKo: "\"어렸을 때 뉴스에서 무서운 일이 나오면 어머니는 말씀하셨어요: '도와주는 사람들을 찾아봐. 항상 돕는 사람들이 있을 거야.'\"",
+  },
+  {
+    initials: "EL", name: "Eric Liddell", nameKo: "에릭 리델",
+    years: "1902–1945", nation: "🇬🇧 스코틀랜드",
+    field: "Olympic Champion · Missionary to China",
+    fieldKo: "올림픽 챔피언 · 중국 선교사",
+    story: "Gave up his best event (100m) at the 1924 Paris Olympics because heats fell on Sunday. Switched to 400m — not his specialty — and won gold with a world record. Then quietly gave up his athletic career to serve as a missionary in rural China. Died in a Japanese internment camp at age 43, having given his food ration to the sick. His last words: 'It's complete surrender.'",
+    storyKo: "1924 파리 올림픽 100m 예선이 주일에 잡히자 자신의 최강 종목을 포기했다. 비전공 400m로 전환하여 세계신기록으로 금메달을 땄다. 이후 조용히 운동 커리어를 버리고 중국 농촌 선교사로 떠났다. 1943년 일본군 수용소에 억류되어 자신의 식량 배급을 아픈 이들에게 나눠주다 43세에 별세했다. 마지막 말: '완전한 항복입니다(It's complete surrender).'",
+    proof: "1924 Olympic Gold Medal (400m) · Subject of Oscar-winning film 'Chariots of Fire' (1981)",
+    proofKo: "1924 올림픽 금메달(400m) · 아카데미 작품상 수상 영화 '불의 전차(Chariots of Fire, 1981)' 주인공",
+    source: "Wikipedia (Eric Liddell) · IOC official records",
+    color: "#DC2626",
+    faith: "Scottish Congregationalist, missionary to China (1925–1945)",
+    faithKo: "스코틀랜드 회중교회, 중국 선교사 (1925-1945)",
+    quote: "\"It's complete surrender.\" — last words, in a Japanese internment camp",
+    quoteKo: "\"완전한 항복입니다.\" — 일본 수용소에서의 마지막 말",
+    quietly: true,
+  },
+  {
+    initials: "CB", name: "Corrie ten Boom", nameKo: "코리 텐 붐",
+    years: "1892–1983", nation: "🇳🇱 네덜란드",
+    field: "WWII Rescuer · Speaker on Forgiveness",
+    fieldKo: "2차대전 유대인 구출자 · 용서 전도사",
+    story: "A Dutch watchmaker who hid Jewish families in her home during Nazi occupation, saving ~800 lives. Arrested, sent to Ravensbrück concentration camp. Her sister Betsie died there. She was released due to a clerical error — one week later, all women her age were sent to the gas chambers. She spent the rest of her life preaching forgiveness worldwide, even shaking hands with the former guard who had tormented her sister.",
+    storyKo: "나치 점령하 네덜란드에서 유대인 가정을 숨겨 약 800명을 구출한 시계 수선공. 체포되어 라벤스브뤼크 강제수용소로 이송됐다. 언니 벳시는 그곳에서 사망. 자신은 행정 착오로 풀려났다 — 일주일 후 같은 나이 여성들은 모두 가스실로 보내졌다. 그는 남은 생애를 전 세계를 다니며 용서를 전하는 데 보냈다. 실제 자신을 학대한 수용소 간수와 악수한 그 순간의 고백이 세계를 움직였다.",
+    proof: "Yad Vashem 'Righteous Among the Nations' (1967) · Knighted by Queen of the Netherlands · 'The Hiding Place' bestselling memoir (1971)",
+    proofKo: "야드바셈 '열방의 의인' 지정 (이스라엘, 1967) · 네덜란드 여왕 기사 서훈 · 자서전 '숨겨진 장소(The Hiding Place)' 세계적 베스트셀러 (1971)",
+    source: "Wikipedia (Corrie ten Boom) · Yad Vashem official records",
+    color: "#7C3AED",
+    faith: "Dutch Reformed Church (Calvinist)",
+    faithKo: "네덜란드 개혁교회 (칼뱅주의)",
+    quote: "\"There is no pit so deep that He is not deeper still.\" — words of her dying sister Betsie",
+    quoteKo: "\"아무리 깊은 구덩이라도 하나님의 사랑이 더 깊습니다.\" — 죽어가는 언니 벳시의 말",
+  },
+  {
+    initials: "NW", name: "Nicholas Winton", nameKo: "니콜라스 윈튼",
+    years: "1909–2015", nation: "🇬🇧 영국",
+    field: "Humanitarian — 'Czech Kindertransport'",
+    fieldKo: "인도주의자 — '체코 어린이 구출 작전'",
+    story: "In 1939, this 29-year-old British stockbroker organized the rescue of 669 Jewish children from Nazi-occupied Czechoslovakia, arranging transport to Britain and foster families for each child. He told absolutely no one for 50 years. In 1988, his wife found a scrapbook in their attic. He appeared on BBC and discovered that the audience was full of the now-adult children — and their descendants — whom he had saved.",
+    storyKo: "1939년 29세 영국 주식 중개인이 나치 점령 체코슬로바키아에서 유대인 아이 669명을 구출했다. 영국행 교통편과 각 아이마다 가정을 직접 구했다. 그는 이 사실을 50년간 단 한 명에게도 말하지 않았다. 1988년 아내가 다락에서 스크랩북을 발견했다. BBC 방송에 출연한 그는, 그날 방청석에 자신이 구한 아이들(이제 어른)과 그 자녀들이 가득 앉아 있다는 사실을 그 순간에야 알았다.",
+    proof: "Knighted by Queen Elizabeth II (2003) · British Hero of the Holocaust (2010) · Order of the White Lion, Czech Republic's highest honor (2014)",
+    proofKo: "엘리자베스 여왕 기사 서훈 (2003) · '영국 홀로코스트 영웅' (2010) · 체코 최고 훈장 백사자훈장 (2014)",
+    source: "Wikipedia (Nicholas Winton) · UK government Holocaust records",
+    color: "#059669",
+    quietly: true,
+    quote: "\"I believe in ethics. If everybody believed in ethics we'd have no problems at all.\"",
+    quoteKo: "\"나는 윤리를 믿습니다. 모든 사람이 윤리를 믿는다면 아무 문제도 없을 것입니다.\"",
   },
 ];
 
@@ -9272,7 +9385,7 @@ const K_CONTENT_BY_CITY: Partial<Record<string, KContent[]>> = {
     { emoji: "🌟", title: "동남아 K-웨이브 허브", titleEn: "Southeast Asia K-Wave Hub", type: "K-웨이브", typeEn: "K-Wave", desc: "싱가포르 넷플릭스 TOP 10에 한국 드라마 상시 진입. K-팝 이벤트 아시아 거점", descEn: "Korean dramas constantly in Singapore Netflix Top 10. Asia K-pop event hub", color: "#DC2626" },
   ],
   bangkok: [
-    { emoji: "💜", title: "태국 K-팝 팬덤 1위", titleEn: "Thailand's #1 K-Pop Fandom", type: "K-팝", typeEn: "K-Pop", desc: "태국은 동남아 최대 한류 국가. BLACKPINK 멤버 리사 태국 출신으로 K-팝 상징", descEn: "Thailand is SE Asia's largest Hallyu nation. BLACKPINK's Lisa symbolizes Thai-Korean K-pop", color: "#9333EA" },
+    { emoji: "💜", title: "태국 K-팝 팬덤 1위", titleEn: "Thailand's #1 K-Pop Fandom", type: "K-팝", typeEn: "K-Pop", desc: "태국은 동남아 최대 한류 국가. 한국 드라마·K-팝이 태국 10-20대 문화 중심으로 자리잡음", descEn: "Thailand is SE Asia's largest Hallyu nation. K-pop and K-dramas are central to Thai youth culture", color: "#9333EA" },
   ],
   vancouver: [
     { emoji: "⛸️", title: "김연아의 도시", titleEn: "Kim Yu-na's City", type: "스포츠", typeEn: "Sports", desc: "밴쿠버 2010 동계올림픽 금메달. 세계 최고점 기록. 한국 스포츠 역사 최고 순간", descEn: "Vancouver 2010 Olympic Gold. World record score. Greatest moment in Korean sports history", color: "#06B6D4" },
@@ -9305,10 +9418,10 @@ function KoreanAchieversSection({ lang, citySlug }: { lang: string; citySlug: st
             <span style={{ fontSize: 18 }}>🔥</span>
             <div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: "#1B2A4A" }}>
-                {ko ? "한인의 자부심" : "Korean Pride"}
+                {ko ? "세계 속의 한국인" : "Koreans in the World"}
               </div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "#94A3B8", marginTop: 1 }}>
-                {ko ? "세계를 빛낸 한인들 · 2·3세대에게 전합니다" : "Koreans lighting up the world"}
+                {ko ? "다양한 분야에서 세계 무대를 빛낸 한국인들" : "Koreans making an impact across every field"}
               </div>
             </div>
           </div>
@@ -9316,7 +9429,7 @@ function KoreanAchieversSection({ lang, citySlug }: { lang: string; citySlug: st
             background: "linear-gradient(135deg,#C9A227,#F59E0B)",
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
             letterSpacing: "0.05em" }}>
-            HALLYU ★
+            GLOBAL ★
           </div>
         </div>
       </div>
@@ -9418,6 +9531,104 @@ function KoreanAchieversSection({ lang, citySlug }: { lang: string; citySlug: st
               </div>
             );
           })}
+        </div>
+      </div>
+
+      {/* ── 인류가 주목할 사람들 (국적 불문, 삶으로 증명) */}
+      <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", padding: "12px 16px 0" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 10 }}>
+          <span style={{ fontSize: 14 }}>🌿</span>
+          <div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#1B2A4A" }}>
+              {ko ? "인류가 주목할 사람들" : "People Humanity Should Know"}
+            </div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#94A3B8" }}>
+              {ko ? "국적 불문 · 삶으로 증명 · 조용한 섬김" : "Any nation · Proved by their lives · Quiet faithfulness"}
+            </div>
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: 10, overflowX: "auto", paddingBottom: 12, scrollbarWidth: "none" }}>
+          {GLOBAL_EXEMPLARS.map((g, i) => (
+            <div key={i} style={{
+              flexShrink: 0, width: 230,
+              background: `linear-gradient(135deg, ${g.color}10, ${g.color}05)`,
+              border: `1.5px solid ${g.color}30`,
+              borderRadius: 14, padding: "12px 13px",
+            }}>
+              {/* 이니셜 배지 + 이름 */}
+              <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 7 }}>
+                <div style={{
+                  width: 40, height: 40, borderRadius: 12, flexShrink: 0,
+                  background: `linear-gradient(135deg, ${g.color}30, ${g.color}15)`,
+                  border: `1.5px solid ${g.color}50`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: g.color,
+                }}>
+                  {g.initials}
+                </div>
+                <div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#1B2A4A", lineHeight: 1.2 }}>
+                    {ko ? g.nameKo : g.name}
+                  </div>
+                  <div style={{ fontSize: 8, color: "#94A3B8", fontFamily: "Manrope,sans-serif" }}>
+                    {g.nation} · {g.years}
+                  </div>
+                  <div style={{ fontSize: 8, color: g.color, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>
+                    {ko ? g.fieldKo : g.field}
+                  </div>
+                </div>
+              </div>
+              {/* 묵묵한 섬김 태그 */}
+              {g.quietly && (
+                <div style={{ marginBottom: 6 }}>
+                  <span style={{ fontSize: 8, fontFamily: "Manrope,sans-serif", fontWeight: 700,
+                    background: "rgba(5,150,105,0.12)", color: "#047857",
+                    border: "1px solid rgba(5,150,105,0.25)",
+                    borderRadius: 99, padding: "2px 7px" }}>
+                    🌱 {ko ? "묵묵한 섬김" : "Quiet Faithfulness"}
+                  </span>
+                </div>
+              )}
+              {/* 이야기 */}
+              <div style={{ fontSize: 9.5, color: "#475569", fontFamily: "-apple-system,'Noto Sans KR',sans-serif",
+                lineHeight: 1.6, marginBottom: 6 }}>
+                {ko ? g.storyKo : g.story}
+              </div>
+              {/* 검증 증거 */}
+              <div style={{
+                background: `${g.color}12`, border: `1px solid ${g.color}25`,
+                borderRadius: 7, padding: "5px 8px", marginBottom: g.quote ? 6 : 0,
+              }}>
+                <div style={{ fontSize: 8, color: g.color, fontWeight: 700, fontFamily: "Manrope,sans-serif", marginBottom: 1 }}>
+                  {ko ? "🏆 검증" : "🏆 VERIFIED"}
+                </div>
+                <div style={{ fontSize: 8.5, color: "#1B2A4A", fontFamily: "Manrope,sans-serif", lineHeight: 1.5 }}>
+                  {ko ? g.proofKo : g.proof}
+                </div>
+              </div>
+              {/* 말씀 */}
+              {g.quote && (
+                <div style={{ borderLeft: `3px solid ${g.color}60`, paddingLeft: 7, marginTop: 5 }}>
+                  <div style={{ fontSize: 9, color: "#64748B", fontFamily: "-apple-system,'Noto Sans KR',sans-serif",
+                    lineHeight: 1.5, fontStyle: "italic" }}>
+                    {ko ? g.quoteKo : g.quote}
+                  </div>
+                </div>
+              )}
+              {/* 신앙 */}
+              {g.faith && (
+                <div style={{ marginTop: 5, display: "flex", gap: 4, alignItems: "center" }}>
+                  <span style={{ fontSize: 8 }}>✝️</span>
+                  <span style={{ fontSize: 7.5, color: "#94A3B8", fontFamily: "Manrope,sans-serif" }}>
+                    {ko ? g.faithKo : g.faith}
+                  </span>
+                </div>
+              )}
+              <div style={{ marginTop: 4, fontSize: 7, color: "#CBD5E1", fontFamily: "Manrope,sans-serif" }}>
+                📎 {g.source.split(" · ")[0]}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
