@@ -162,6 +162,11 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 <div class="promo-bar">
   ✨ <strong>2026년 10월 1일까지 무료 홍보 기간</strong> — 지금 신청하면 전 도시 무료 노출
 </div>
+<!-- 승인 안내 배너 -->
+<div style="background:rgba(201,162,39,.07);border-bottom:1px solid rgba(201,162,39,.2);
+  padding:9px 20px;text-align:center;font-size:.78rem;color:rgba(236,253,245,.7);">
+  🔐 <strong style="color:var(--gold)">모든 신청은 관리자 검토·승인 후 게시됩니다</strong> — 무료 기간에도 동일하게 적용
+</div>
 
 <!-- 메인 컨테이너 -->
 <div class="container">
@@ -264,6 +269,12 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <strong>📋 다음 단계:</strong> 신청서 접수 후 24시간 내 담당자가 연락드립니다.
       신원 확인 후 HebronGuide에 개인 프로필이 등록됩니다.
     </div>
+    <div style="background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.22);
+      border-radius:10px;padding:10px 14px;margin-bottom:4px;
+      font-size:.76rem;color:rgba(236,253,245,.65);line-height:1.7;display:flex;gap:8px;align-items:flex-start;">
+      <span style="flex-shrink:0;font-size:14px;">🔐</span>
+      <span><strong style="color:var(--gold)">관리자 검토·승인 후 프로필이 등재</strong>됩니다. 무료 기간에도 동일하게 적용됩니다.</span>
+    </div>
 
     <button class="btn-submit" onclick="submitForm('person')">
       🧑 개인 파트너 신청하기
@@ -340,6 +351,12 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
     <div class="hint hint-gold">
       <strong>📋 파트너 교회 혜택:</strong> 교회 탭 우선 노출 · 새 한인 도착 시 연결 · 주보 QR 인서트 제공
+    </div>
+    <div style="background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.22);
+      border-radius:10px;padding:10px 14px;margin-bottom:4px;
+      font-size:.76rem;color:rgba(236,253,245,.65);line-height:1.7;display:flex;gap:8px;align-items:flex-start;">
+      <span style="flex-shrink:0;font-size:14px;">🔐</span>
+      <span><strong style="color:var(--gold)">관리자 검토·승인 후 등재</strong>됩니다. 무료 기간에도 동일하게 적용됩니다.</span>
     </div>
 
     <button class="btn-submit" onclick="submitForm('church')">
@@ -465,7 +482,13 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
     </div>
 
     <div class="hint hint-gold">
-      <strong>📋 등재 과정:</strong> 신청 → 담당자 확인 (24h) → 광고 초안 공유 → 승인 → 무료 게시
+      <strong>📋 등재 과정:</strong> 신청 → 관리자 검토 (24h) → 광고 초안 공유 → 최종 승인 → 무료 게시
+    </div>
+    <div style="background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.22);
+      border-radius:10px;padding:10px 14px;margin-bottom:4px;
+      font-size:.76rem;color:rgba(236,253,245,.65);line-height:1.7;display:flex;gap:8px;align-items:flex-start;">
+      <span style="flex-shrink:0;font-size:14px;">🔐</span>
+      <span><strong style="color:var(--gold)">모든 광고는 관리자 검토·승인 후 게시</strong>됩니다. 무료 기간에도 동일하게 적용됩니다.</span>
     </div>
 
     <button class="btn-submit" onclick="submitForm('business')">
@@ -489,7 +512,7 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
     <div class="field">
       <label>홍보 유형 <span class="req">*</span></label>
-      <select id="prType">
+      <select id="prType" onchange="togglePromoOther(this.value)">
         <option value="">선택해 주세요</option>
         <option>📅 이벤트·행사</option>
         <option>📢 모집 공고 (직원·봉사·회원)</option>
@@ -499,8 +522,16 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
         <option>📱 앱·콘텐츠·미디어</option>
         <option>⛪ 교회·신앙 행사</option>
         <option>🌱 커뮤니티·공익 활동</option>
-        <option>기타</option>
+        <option value="기타">✏️ 기타 (직접 입력)</option>
       </select>
+    </div>
+
+    <!-- 기타 직접 입력 — '기타' 선택 시 표시 -->
+    <div class="field" id="prTypeOtherField" style="display:none;margin-top:-6px;">
+      <label>유형 직접 입력 <span class="req">*</span></label>
+      <input type="text" id="prTypeOther"
+        placeholder="예: 결혼·가족 행사, 부동산 오픈하우스, 선교 보고회, 구직·구인, 중고 판매...">
+      <div class="error-msg" id="prTypeOtherErr">내용을 입력해 주세요</div>
     </div>
 
     <div class="field-row">
@@ -543,7 +574,16 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
     </div>
 
     <div class="hint hint-gold">
-      <strong>📋 처리 과정:</strong> 신청서 검토 (24h) → HebronGuide 이벤트 섹션 및 해당 도시 페이지에 노출
+      <strong>📋 처리 과정:</strong> 신청서 검토 (24h) → 관리자 승인 → HebronGuide 이벤트 섹션 및 해당 도시 페이지 게시
+    </div>
+
+    <!-- 승인 안내 -->
+    <div style="background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.22);
+      border-radius:10px;padding:10px 14px;margin-bottom:4px;
+      font-size:.76rem;color:rgba(236,253,245,.65);line-height:1.7;display:flex;gap:8px;align-items:flex-start;">
+      <span style="flex-shrink:0;font-size:14px;">🔐</span>
+      <span>무료 기간에도 <strong style="color:var(--gold)">모든 홍보물은 관리자 검토·승인 후 게시</strong>됩니다.
+      부적절하거나 HebronGuide 가치관에 맞지 않는 내용은 등재가 거부될 수 있습니다.</span>
     </div>
 
     <button class="btn-submit" onclick="submitForm('promo')">
@@ -586,6 +626,13 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 const path = location.pathname;
 const cityMatch = path.match(/^\/([a-z]+)\//);
 if(cityMatch) document.getElementById('logoLink').href = '/' + cityMatch[1] + '/';
+
+// 홍보 유형 '기타' 선택 시 직접 입력 필드 토글
+function togglePromoOther(val) {
+  const field = document.getElementById('prTypeOtherField');
+  field.style.display = val === '기타' ? 'block' : 'none';
+  if (val !== '기타') document.getElementById('prTypeOther').value = '';
+}
 
 // 탭 전환
 function switchTab(type) {
@@ -645,13 +692,24 @@ function submitForm(type) {
     subject = `[사업체 광고 신청] ${document.getElementById('bBiz').value}`;
     body = `유형: 사업체 광고\n업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n주소: ${document.getElementById('bAddress').value}\n웹사이트: ${document.getElementById('bWebsite').value}\n노출 도시: ${cities || '미선택'}\n\n광고 내용:\n${document.getElementById('bDesc').value}`;
   } else if(type === 'promo') {
+    // '기타' 선택 시 직접 입력값 유효성 확인
+    const prTypeVal = document.getElementById('prType').value;
+    const prTypeOtherVal = document.getElementById('prTypeOther').value.trim();
+    if (prTypeVal === '기타' && !prTypeOtherVal) {
+      document.getElementById('prTypeOtherField').querySelector('.error-msg').style.display = 'block';
+      return;
+    } else {
+      document.getElementById('prTypeOtherField').querySelector('.error-msg').style.display = 'none';
+    }
+    const finalPromoType = prTypeVal === '기타' ? `기타 — ${prTypeOtherVal}` : prTypeVal;
+
     valid = validate([
       {id:'prTitle',type:'required'},{id:'prContact',type:'required'},
       {id:'prPhone',type:'required'}
     ]);
     if(!valid) return;
     subject = `[홍보 신청] ${document.getElementById('prTitle').value}`;
-    body = `유형: 홍보\n제목: ${document.getElementById('prTitle').value}\n홍보유형: ${document.getElementById('prType').value}\n기간: ${document.getElementById('prStart').value} ~ ${document.getElementById('prEnd').value}\n담당자: ${document.getElementById('prContact').value}\n전화: ${document.getElementById('prPhone').value}\n이메일: ${document.getElementById('prEmail').value}\n링크: ${document.getElementById('prUrl').value}\n\n홍보 내용:\n${document.getElementById('prDesc').value}`;
+    body = `유형: 홍보\n제목: ${document.getElementById('prTitle').value}\n홍보유형: ${finalPromoType}\n기간: ${document.getElementById('prStart').value} ~ ${document.getElementById('prEnd').value}\n담당자: ${document.getElementById('prContact').value}\n전화: ${document.getElementById('prPhone').value}\n이메일: ${document.getElementById('prEmail').value}\n링크: ${document.getElementById('prUrl').value}\n\n홍보 내용:\n${document.getElementById('prDesc').value}\n\n[관리자 검토·승인 후 게시 예정]`;
   }
 
   // 이메일 전송 (mailto)
