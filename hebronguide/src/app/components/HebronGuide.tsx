@@ -76,51 +76,51 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🌲 시애틀 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
   // Story: Puget Sound 도착 → Space Needle → Pike Place → 하이커들 → Fremont 동네
   seattle: [
-    { url: "https://images.unsplash.com/photo-UmEYn_GYqFo?w=1200&q=90",              pos: "center 50%", alt: "① Seattle skyline Kerry Park arrival aerial" },
-    { url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=90",  pos: "center 40%", alt: "② Space Needle Mt Rainier landmark" },
-    { url: "https://images.unsplash.com/photo-xsqF178XAhk?w=1200&q=90",              pos: "center 50%", alt: "③ Pike Place Market Public Market neon dusk" },
-    { url: "https://images.unsplash.com/photo-4vRiJdl5vaI?w=1200&q=90",              pos: "center 50%", alt: "④ Group hikers mountain trail people smiling" },
-    { url: "https://images.unsplash.com/photo-oqYy08JnUWE?w=1200&q=90",              pos: "center 50%", alt: "⑤ Fremont neighborhood couple sidewalk settle" },
+    { url: "https://images.unsplash.com/photo-UmEYn_GYqFo?w=1200&q=90",              pos: "center 50%", alt: "Seattle skyline Kerry Park arrival aerial" },
+    { url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=90",  pos: "center 40%", alt: "Space Needle Mt Rainier landmark" },
+    { url: "https://images.unsplash.com/photo-xsqF178XAhk?w=1200&q=90",              pos: "center 50%", alt: "Pike Place Market Public Market neon dusk" },
+    { url: "https://images.unsplash.com/photo-4vRiJdl5vaI?w=1200&q=90",              pos: "center 50%", alt: "Group hikers mountain trail people smiling" },
+    { url: "https://images.unsplash.com/photo-oqYy08JnUWE?w=1200&q=90",              pos: "center 50%", alt: "Fremont neighborhood couple sidewalk settle" },
   ],
 
   // 🤠 달라스 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
   // Story: 달라스 항공 → Reunion Tower 야경 → Texas BBQ → 가족 야외 → 동네 풍경
   dallas: [
-    { url: "https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=1200&q=90",   pos: "center 38%", alt: "① Dallas aerial skyline arrival" },
-    { url: "https://images.unsplash.com/photo-9ieoSO0gkAU?w=1200&q=90",               pos: "center 30%", alt: "② Reunion Tower illuminated night Dallas landmark" },
-    { url: "https://images.unsplash.com/photo-qeeYfQSII7M?w=1200&q=90",               pos: "center 50%", alt: "③ Texas BBQ grilled meat fire character" },
-    { url: "https://images.unsplash.com/photo-Hvx6uDg-fig?w=1200&q=90",               pos: "center 50%", alt: "④ Family group sitting grass Dallas outdoor smiling" },
-    { url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=90", pos: "center 38%", alt: "⑤ Dallas downtown skyline neighborhood settle" },
+    { url: "https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=1200&q=90",   pos: "center 38%", alt: "Dallas aerial skyline arrival" },
+    { url: "https://images.unsplash.com/photo-9ieoSO0gkAU?w=1200&q=90",               pos: "center 30%", alt: "Reunion Tower illuminated night Dallas landmark" },
+    { url: "https://images.unsplash.com/photo-qeeYfQSII7M?w=1200&q=90",               pos: "center 50%", alt: "Texas BBQ grilled meat fire character" },
+    { url: "https://images.unsplash.com/photo-Hvx6uDg-fig?w=1200&q=90",               pos: "center 50%", alt: "Family group sitting grass Dallas outdoor smiling" },
+    { url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=90", pos: "center 38%", alt: "Dallas downtown skyline neighborhood settle" },
   ],
 
   // 🌉 샌프란시스코 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
   // Story: SF 항공 → Golden Gate 안개 → 파머스마켓 → 친구들 → Painted Ladies 동네
   sf: [
-    { url: "https://images.unsplash.com/photo-ApQ1k44R4YU?w=1200&q=90",               pos: "center 50%", alt: "① San Francisco aerial Bay Bridge arrival" },
-    { url: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=1200&q=90", pos: "center 42%", alt: "② Golden Gate Bridge dramatic fog landmark" },
-    { url: "https://images.unsplash.com/photo-aD0sB8_rWZs?w=1200&q=90",               pos: "center 50%", alt: "③ Farmers market produce SF outdoor stall character" },
-    { url: "https://images.unsplash.com/photo-mMnU-UMmXok?w=1200&q=90",               pos: "center 50%", alt: "④ Group friends posing San Francisco day trip people" },
-    { url: "https://images.unsplash.com/photo-1506146332389-18140dc7b2fb?w=1200&q=90", pos: "center 60%", alt: "⑤ Painted Ladies Victorian houses SF neighborhood settle" },
+    { url: "https://images.unsplash.com/photo-ApQ1k44R4YU?w=1200&q=90",               pos: "center 50%", alt: "San Francisco aerial Bay Bridge arrival" },
+    { url: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=1200&q=90", pos: "center 42%", alt: "Golden Gate Bridge dramatic fog landmark" },
+    { url: "https://images.unsplash.com/photo-aD0sB8_rWZs?w=1200&q=90",               pos: "center 50%", alt: "Farmers market produce SF outdoor stall character" },
+    { url: "https://images.unsplash.com/photo-mMnU-UMmXok?w=1200&q=90",               pos: "center 50%", alt: "Group friends posing San Francisco day trip people" },
+    { url: "https://images.unsplash.com/photo-1506146332389-18140dc7b2fb?w=1200&q=90", pos: "center 60%", alt: "Painted Ladies Victorian houses SF neighborhood settle" },
   ],
 
   // 🗽 뉴욕 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
   // Story: Manhattan 항공 → Brooklyn Bridge → 노점상 → Central Park 사람들 → Brooklyn 동네
   newyork: [
-    { url: "https://images.unsplash.com/photo-V4cHacmEnW8?w=1200&q=90",               pos: "center 50%", alt: "① Manhattan aerial skyscrapers arrival" },
-    { url: "https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?w=1200&q=90", pos: "center 50%", alt: "② Brooklyn Bridge Manhattan dusk landmark" },
-    { url: "https://images.unsplash.com/photo-O5-1mtVkdz0?w=1200&q=90",               pos: "center 50%", alt: "③ NYC street food cart city character" },
-    { url: "https://images.unsplash.com/photo-vMLfRVkWItI?w=1200&q=90",               pos: "center 50%", alt: "④ People rowing boats Central Park sunny smiling" },
-    { url: "https://images.unsplash.com/photo-Ote98_3yWck?w=1200&q=90",               pos: "center 50%", alt: "⑤ Brooklyn brownstone neighborhood street settle" },
+    { url: "https://images.unsplash.com/photo-V4cHacmEnW8?w=1200&q=90",               pos: "center 50%", alt: "Manhattan aerial skyscrapers arrival" },
+    { url: "https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?w=1200&q=90", pos: "center 50%", alt: "Brooklyn Bridge Manhattan dusk landmark" },
+    { url: "https://images.unsplash.com/photo-O5-1mtVkdz0?w=1200&q=90",               pos: "center 50%", alt: "NYC street food cart city character" },
+    { url: "https://images.unsplash.com/photo-vMLfRVkWItI?w=1200&q=90",               pos: "center 50%", alt: "People rowing boats Central Park sunny smiling" },
+    { url: "https://images.unsplash.com/photo-Ote98_3yWck?w=1200&q=90",               pos: "center 50%", alt: "Brooklyn brownstone neighborhood street settle" },
   ],
 
   // 🌴 LA — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
   // Story: LA 항공 → Griffith Observatory → Santa Monica Beach → 거리의 사람들 → 팜트리 동네
   la: [
-    { url: "https://images.unsplash.com/photo-xGC1o0a7njI?w=1200&q=90",               pos: "center 50%", alt: "① Los Angeles aerial basin skyline arrival" },
-    { url: "https://images.unsplash.com/photo-1580655653885-65763b2597d0?w=1200&q=90", pos: "center 50%", alt: "② Griffith Observatory LA hillside landmark" },
-    { url: "https://images.unsplash.com/photo-u1FWmL-gtpo?w=1200&q=90",               pos: "center 50%", alt: "③ Santa Monica Beach people relaxing ocean character" },
-    { url: "https://images.unsplash.com/photo-AN8wX45Rmew?w=1200&q=90",               pos: "center 50%", alt: "④ Two men walking LA sidewalk casual smiling people" },
-    { url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=1200&q=90", pos: "center 30%", alt: "⑤ Hollywood Sign LA palm neighborhood settle" },
+    { url: "https://images.unsplash.com/photo-xGC1o0a7njI?w=1200&q=90",               pos: "center 50%", alt: "Los Angeles aerial basin skyline arrival" },
+    { url: "https://images.unsplash.com/photo-1580655653885-65763b2597d0?w=1200&q=90", pos: "center 50%", alt: "Griffith Observatory LA hillside landmark" },
+    { url: "https://images.unsplash.com/photo-u1FWmL-gtpo?w=1200&q=90",               pos: "center 50%", alt: "Santa Monica Beach people relaxing ocean character" },
+    { url: "https://images.unsplash.com/photo-AN8wX45Rmew?w=1200&q=90",               pos: "center 50%", alt: "Two men walking LA sidewalk casual smiling people" },
+    { url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=1200&q=90", pos: "center 30%", alt: "Hollywood Sign LA palm neighborhood settle" },
   ],
 
   // 🎸 내쉬빌 — ✅ fixed: was tropical beach, now Nashville skyline + Broadway
@@ -146,21 +146,21 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🏔️ 밴쿠버 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
   // Story: 산+바다 항공 → Stanley Park 스카이라인 → Granville Island 마켓 → 워터프론트 두 사람 → 가을 동네
   vancouver: [
-    { url: "https://images.unsplash.com/photo-GWRuNS8Y0KM?w=1200&q=90",               pos: "center 50%", alt: "① Vancouver aerial mountains snow sunset arrival" },
-    { url: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=90",   pos: "center 60%", alt: "② Vancouver skyline Stanley Park marina landmark" },
-    { url: "https://images.unsplash.com/photo-aRrs19oeAs8?w=1200&q=90",               pos: "center 50%", alt: "③ Granville Island Public Market people stalls character" },
-    { url: "https://images.unsplash.com/photo-EmKyobm2Eh4?w=1200&q=90",               pos: "center 50%", alt: "④ Two women walking Vancouver waterfront skyline people" },
-    { url: "https://images.unsplash.com/photo-_f5f0qLaEpA?w=1200&q=90",               pos: "center 50%", alt: "⑤ Vancouver street mountain background autumn settle" },
+    { url: "https://images.unsplash.com/photo-GWRuNS8Y0KM?w=1200&q=90",               pos: "center 50%", alt: "Vancouver aerial mountains snow sunset arrival" },
+    { url: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=90",   pos: "center 60%", alt: "Vancouver skyline Stanley Park marina landmark" },
+    { url: "https://images.unsplash.com/photo-aRrs19oeAs8?w=1200&q=90",               pos: "center 50%", alt: "Granville Island Public Market people stalls character" },
+    { url: "https://images.unsplash.com/photo-EmKyobm2Eh4?w=1200&q=90",               pos: "center 50%", alt: "Two women walking Vancouver waterfront skyline people" },
+    { url: "https://images.unsplash.com/photo-_f5f0qLaEpA?w=1200&q=90",               pos: "center 50%", alt: "Vancouver street mountain background autumn settle" },
   ],
 
   // 🚀 휴스턴 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
   // Story: 숲+빌딩 도착 → 야경 스카이라인 → NASA → 웃는 사람 → 나무 그늘 동네
   houston: [
-    { url: "https://images.unsplash.com/photo-KdQq7b7kX7Q?w=1200&q=90",               pos: "center 50%", alt: "① Houston trees buildings arrival green cityscape" },
-    { url: "https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=1200&q=90", pos: "center 50%", alt: "② Houston skyline night orange blue landmark" },
-    { url: "https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=1200&q=90", pos: "center 40%", alt: "③ NASA Space Center rocket Houston character" },
-    { url: "https://images.unsplash.com/photo-8VghbLlZUdQ?w=1200&q=90",               pos: "center 50%", alt: "④ Smiling person Houston portrait people warm" },
-    { url: "https://images.unsplash.com/photo-1543968996-ee822b8176ba?w=1200&q=90",   pos: "center 38%", alt: "⑤ Houston neighborhood skyline settle" },
+    { url: "https://images.unsplash.com/photo-KdQq7b7kX7Q?w=1200&q=90",               pos: "center 50%", alt: "Houston trees buildings arrival green cityscape" },
+    { url: "https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=1200&q=90", pos: "center 50%", alt: "Houston skyline night orange blue landmark" },
+    { url: "https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=1200&q=90", pos: "center 40%", alt: "NASA Space Center rocket Houston character" },
+    { url: "https://images.unsplash.com/photo-8VghbLlZUdQ?w=1200&q=90",               pos: "center 50%", alt: "Smiling person Houston portrait people warm" },
+    { url: "https://images.unsplash.com/photo-1543968996-ee822b8176ba?w=1200&q=90",   pos: "center 38%", alt: "Houston neighborhood skyline settle" },
   ],
 
   // 🍑 애틀랜타 — SkyView Ferris Wheel 다운타운 + Midtown 야경 항공 뷰
@@ -226,11 +226,11 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇰🇷 서울 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
   // Story: 서울 야경 도착 → 경복궁 → 한국 길거리음식 → 젊은이들 → 북촌 골목
   seoul: [
-    { url: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=1200&q=90", pos: "center 42%", alt: "① Seoul Korea aerial arrival night skyline" },
-    { url: "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=1200&q=90", pos: "center 50%", alt: "② Gyeongbokgung Palace Seoul hanbok visitors landmark" },
-    { url: "https://images.unsplash.com/photo-OxsIv3_zWXg?w=1200&q=90",               pos: "center 50%", alt: "③ Korean street food market stalls crowds" },
-    { url: "https://images.unsplash.com/photo-l8OUvgBvLIE?w=1200&q=90",               pos: "center 50%", alt: "④ Young Korean friends smiling together people" },
-    { url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&q=90", pos: "center 40%", alt: "⑤ Bukchon Hanok Village Seoul alley settle" },
+    { url: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=1200&q=90", pos: "center 42%", alt: "Seoul Korea aerial arrival night skyline" },
+    { url: "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=1200&q=90", pos: "center 50%", alt: "Gyeongbokgung Palace Seoul hanbok visitors landmark" },
+    { url: "https://images.unsplash.com/photo-OxsIv3_zWXg?w=1200&q=90",               pos: "center 50%", alt: "Korean street food market stalls crowds" },
+    { url: "https://images.unsplash.com/photo-l8OUvgBvLIE?w=1200&q=90",               pos: "center 50%", alt: "Young Korean friends smiling together people" },
+    { url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&q=90", pos: "center 40%", alt: "Bukchon Hanok Village Seoul alley settle" },
   ],
 
   // 🇰🇷 부산 — 검증된 사진 (200 OK)
@@ -322,11 +322,11 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇬🇧 런던 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
   // Story: 템즈 항공 → Tower Bridge → Borough Market → Notting Hill 카니발 → 주택가
   london: [
-    { url: "https://images.unsplash.com/photo-Oja2ty_9ZLM?w=1200&q=90",               pos: "center 50%", alt: "① London aerial Thames Shard arrival daytime" },
-    { url: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=90", pos: "center 38%", alt: "② Big Ben Thames River London night landmark" },
-    { url: "https://images.unsplash.com/photo-pqcBBLyBZ6A?w=1200&q=90",               pos: "center 50%", alt: "③ Borough Market food stalls people arches character" },
-    { url: "https://images.unsplash.com/photo-JsgzqtL53FE?w=1200&q=90",               pos: "center 50%", alt: "④ Notting Hill Carnival crowd diverse festive people" },
-    { url: "https://images.unsplash.com/photo-a_eUwLKSw5E?w=1200&q=90",               pos: "center 50%", alt: "⑤ London residential building iron fence neighborhood" },
+    { url: "https://images.unsplash.com/photo-Oja2ty_9ZLM?w=1200&q=90",               pos: "center 50%", alt: "London aerial Thames Shard arrival daytime" },
+    { url: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=90", pos: "center 38%", alt: "Big Ben Thames River London night landmark" },
+    { url: "https://images.unsplash.com/photo-pqcBBLyBZ6A?w=1200&q=90",               pos: "center 50%", alt: "Borough Market food stalls people arches character" },
+    { url: "https://images.unsplash.com/photo-JsgzqtL53FE?w=1200&q=90",               pos: "center 50%", alt: "Notting Hill Carnival crowd diverse festive people" },
+    { url: "https://images.unsplash.com/photo-a_eUwLKSw5E?w=1200&q=90",               pos: "center 50%", alt: "London residential building iron fence neighborhood" },
   ],
 
   // 🇫🇷 파리 — 에펠탑 + 센강
@@ -490,11 +490,11 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   // 🇯🇵 도쿄 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
   // Story: 도쿄 야경 항공 → 시부야 스크램블 → 라멘집 → 하라주쿠 사람들 → 조용한 골목
   tokyo: [
-    { url: "https://images.unsplash.com/photo-64ajtpEzlYc?w=1200&q=90",               pos: "center 50%", alt: "① Tokyo aerial night Roppongi arrival cityscape" },
-    { url: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=90", pos: "center 50%", alt: "② Tokyo Shibuya crossing scramble night neon landmark" },
-    { url: "https://images.unsplash.com/photo-gXZ_hbfpMjo?w=1200&q=90",               pos: "center 50%", alt: "③ Japanese ramen bar people eating character" },
-    { url: "https://images.unsplash.com/photo-seR-6Nqg99E?w=1200&q=90",               pos: "center 50%", alt: "④ Crowd pedestrians Harajuku street Tokyo people" },
-    { url: "https://images.unsplash.com/photo-grOTReWUHhU?w=1200&q=90",               pos: "center 50%", alt: "⑤ Quiet Tokyo residential alley settle" },
+    { url: "https://images.unsplash.com/photo-64ajtpEzlYc?w=1200&q=90",               pos: "center 50%", alt: "Tokyo aerial night Roppongi arrival cityscape" },
+    { url: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=90", pos: "center 50%", alt: "Tokyo Shibuya crossing scramble night neon landmark" },
+    { url: "https://images.unsplash.com/photo-gXZ_hbfpMjo?w=1200&q=90",               pos: "center 50%", alt: "Japanese ramen bar people eating character" },
+    { url: "https://images.unsplash.com/photo-seR-6Nqg99E?w=1200&q=90",               pos: "center 50%", alt: "Crowd pedestrians Harajuku street Tokyo people" },
+    { url: "https://images.unsplash.com/photo-grOTReWUHhU?w=1200&q=90",               pos: "center 50%", alt: "Quiet Tokyo residential alley settle" },
   ],
 
   // 🇯🇵 오사카 — 도톤보리 + 오사카성
@@ -8058,7 +8058,11 @@ function CompactHeroNew() {
             crossOrigin="anonymous"
             loading="eager"
             referrerPolicy="no-referrer"
-            onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "0"; }}
+            onError={(e) => {
+              const img = e.currentTarget as HTMLImageElement;
+              img.style.opacity = "0";
+              img.style.animation = "none"; // 실패 시 애니메이션도 중지
+            }}
             style={{
               position: "absolute", inset: 0,
               width: "100%", height: "100%",
@@ -8066,9 +8070,10 @@ function CompactHeroNew() {
               filter: "brightness(1.35) saturate(1.5) contrast(0.95)",
               opacity: isActive ? 1 : 0,
               transition: "opacity 1.4s ease",
-              animation: isActive
-                ? `${i % 2 === 0 ? "kbIn" : "kbOut"} 10s ease-in-out infinite`
-                : "none",
+              // 항상 애니메이션 실행 (none↔active 전환 시 위치 점프 방지)
+              // 비활성 슬라이드도 백그라운드에서 계속 움직임 → 전환 시 자연스럽게 이어짐
+              animation: `${i % 2 === 0 ? "kbIn" : "kbOut"} 10s ease-in-out infinite`,
+              animationDelay: `${-i * 2.5}s`, // 슬라이드마다 위상 다르게 — 다양성 확보
               zIndex: isActive ? 1 : 0,
             }}
           />
