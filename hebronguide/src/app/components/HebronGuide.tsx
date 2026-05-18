@@ -9125,15 +9125,16 @@ type CityEventItem = { emoji: string; ko: string; en: string; date: string; type
 const CITY_EVENTS: Partial<Record<string, CityEventItem[]>> = {
   _us_common: [
     { emoji:"⚽", ko:"FIFA 월드컵 2026 — 6월11일~7월19일 미국·캐나다·멕시코 (뉴욕 결승)", en:"FIFA World Cup 2026 — Jun 11–Jul 19, USA/Canada/Mexico (Final in NY)", date:"2026-06", type:"sports", url:"https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026" },
-    { emoji:"🏔️", ko:"밀라노 동계올림픽 — 2월6~22일", en:"Milan-Cortina Winter Olympics — Feb 6-22", date:"2026-02-06", type:"sports", url:"https://www.olympics.com/en/olympic-games/milan-cortina-2026" },
+    { emoji:"🏔️", ko:"밀라노 동계올림픽 — 2월6~22일", en:"Milan-Cortina Winter Olympics — Feb 6-22", date:"2026-02-06", type:"sports", url:"https://www.olympics.com/en/milano-cortina-2026" },
     { emoji:"🌸", ko:"부활절 (4월5일) — 한인 교회 특별 예배", en:"Easter Apr 5 — Korean Church Special Services", date:"2026-04-05", type:"church" },
     { emoji:"🎆", ko:"독립기념일 (7월4일) — 불꽃놀이·퍼레이드", en:"Independence Day Jul 4 — Fireworks & Parades", date:"2026-07-04", type:"holiday" },
     { emoji:"🎄", ko:"크리스마스 (12월25일) — 연말 예배·행사", en:"Christmas Dec 25 — Year-end Services & Events", date:"2026-12-25", type:"church" },
   ],
   seattle: [
     { emoji:"⚽", ko:"FIFA 월드컵 시애틀 6경기 — Lumen Field (6월15일~7월6일)", en:"FIFA World Cup Seattle 6 matches — Lumen Field (Jun 15–Jul 6)", date:"2026-06-15", type:"sports", url:"https://seattlefwc26.org/matches", address:"Lumen Field, 800 Occidental Ave S, Seattle, WA" },
-    { emoji:"🎉", ko:"WABA 코리아 엑스포 — 워터프런트 피어62 무료 (8월14~16일)", en:"WABA Korea Expo — Pier 62 Waterfront, Free (Aug 14-16)", date:"2026-08-14", type:"festival", url:"https://www.koreanexpo.org", address:"Pier 62, Seattle Waterfront" },
-    { emoji:"🌸", ko:"UW 캠퍼스 벚꽃 시즌 (3~4월)", en:"UW Campus Cherry Blossoms (Mar–Apr)", date:"2026-03", type:"festival", url:"https://www.washington.edu", address:"University of Washington, Seattle, WA" },
+    { emoji:"🎤", ko:"IVE 월드투어 — Climate Pledge Arena (8월7일)", en:"IVE World Tour SHOW WHAT I AM — Climate Pledge Arena (Aug 7)", date:"2026-08-07", type:"culture", url:"https://climatepledgearena.com/event/ive-26/", address:"Climate Pledge Arena, 334 1st Ave N, Seattle, WA" },
+    { emoji:"🎉", ko:"WABA 코리아 엑스포 — 워터프런트 피어62 무료 (8월14~16일)", en:"WABA Korea Expo — Pier 62 Waterfront, Free (Aug 14-16)", date:"2026-08-14", type:"festival", url:"https://kaccwa.org/waba-expo-festival/", address:"Pier 62, Seattle Waterfront" },
+    { emoji:"🌸", ko:"UW 캠퍼스 벚꽃 시즌 (3~4월)", en:"UW Campus Cherry Blossoms (Mar–Apr)", date:"2026-03", type:"festival", url:"https://www.washington.edu/cherryblossoms/", address:"University of Washington, Seattle, WA" },
   ],
   la: [
     { emoji:"⚽", ko:"FIFA 월드컵 LA 8경기+준결승 — SoFi Stadium (6~7월)", en:"FIFA World Cup LA 8 matches + QF — SoFi Stadium (Jun–Jul)", date:"2026-06-12", type:"sports", url:"https://www.sofistadium.com/news/detail/los-angeles-final-match-schedule", address:"SoFi Stadium, 1001 Stadium Dr, Inglewood, CA" },
