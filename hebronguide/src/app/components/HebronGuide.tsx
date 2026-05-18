@@ -23323,21 +23323,29 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
             })}
           </div>
 
-          {/* 광고 신청 — 파트너 비즈니스용 (Soft CTA) */}
+          {/* 파트너 비즈니스 — 광고·파트너 신청 문의 */}
           <a href="/ad-request.html" target="_blank" rel="noopener noreferrer"
             onClick={() => setShowMore(false)}
             style={{
-              display: "block", marginTop: 12, padding: "10px 14px",
+              display: "flex", alignItems: "center", gap: 10,
+              marginTop: 12, padding: "11px 14px",
               background: "linear-gradient(135deg, rgba(201,162,39,0.12), rgba(110,231,183,0.08))",
-              border: "1px solid rgba(201,162,39,0.25)", borderRadius: 12,
-              textDecoration: "none", textAlign: "center",
+              border: "1px solid rgba(201,162,39,0.3)", borderRadius: 12,
+              textDecoration: "none",
             }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#C9A227", letterSpacing: "0.3px", marginBottom: 2 }}>
-              📣 {lang === "ko" ? "광고 신청 — 파트너 비즈니스" : "Advertise — Partner Business"}
+            {/* 아이콘 */}
+            <div style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(201,162,39,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 18 }}>
+              🤝
             </div>
-            <div style={{ fontSize: 10, color: "#6B7280", fontFamily: "Manrope, sans-serif" }}>
-              {lang === "ko" ? "한·영 2개 언어 광고 자동 생성 (24시간)" : "2-language ads auto-generated in 24 hours"}
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 11.5, fontWeight: 800, color: "#92400E", letterSpacing: "0.1px", marginBottom: 2, fontFamily: "Manrope, sans-serif" }}>
+                {lang === "ko" ? "파트너 비즈니스" : "Partner Business"}
+              </div>
+              <div style={{ fontSize: 10.5, color: "#C9A227", fontWeight: 700, fontFamily: "Manrope, sans-serif" }}>
+                {lang === "ko" ? "광고, 파트너 신청 문의 →" : "Ad & Partnership Inquiry →"}
+              </div>
             </div>
+            <div style={{ fontSize: 16, color: "#C9A227", fontWeight: 700 }}>›</div>
           </a>
         </div>
       )}
