@@ -136,11 +136,13 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?w=1200&q=90", pos: "center 40%", alt: "Boston historic Beacon Hill" },
   ],
 
-  // 🏙️ 토론토 — ✅ fixed CN Tower (was 404), + Lake Ontario waterfront
+  // 🍁 토론토 — ① DJI 드론 CN타워 → ② CN타워 지상 랜드마크 → ③ 워터프런트 스카이라인 → ④ 온타리오 호수
+  // Story: Patrick Tomasso DJI 드론 겨울 새벽 → CN타워 → 워터프런트 → 레이크 온타리오
   toronto: [
-    { url: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=1200&q=90", pos: "center 22%", alt: "Toronto CN Tower blue sky" },
-    { url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=90", pos: "center 38%", alt: "Toronto waterfront skyline" },
-    { url: "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1200&q=90", pos: "center 40%", alt: "Toronto Lake Ontario" },
+    { url: "https://images.unsplash.com/photo-lZbRV_a4Yxg?w=1200&q=95",               pos: "center 45%", alt: "Toronto aerial drone CN Tower winter sunrise cityscape" },
+    { url: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=1200&q=95", pos: "center 22%", alt: "Toronto CN Tower blue sky landmark" },
+    { url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=95", pos: "center 38%", alt: "Toronto waterfront skyline people" },
+    { url: "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1200&q=95", pos: "center 40%", alt: "Toronto Lake Ontario settle neighborhood" },
   ],
 
   // 🏔️ 밴쿠버 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
@@ -153,22 +155,23 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-_f5f0qLaEpA?w=1200&q=90",               pos: "center 50%", alt: "Vancouver street mountain background autumn settle" },
   ],
 
-  // 🚀 휴스턴 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
-  // Story: 숲+빌딩 도착 → 야경 스카이라인 → NASA → 웃는 사람 → 나무 그늘 동네
+  // 🚀 휴스턴 — ① 드론 공중 → ② 야경 랜드마크 → ③ NASA 특징 → ④ 사람들 → ⑤ 정착
+  // Story: DJI 드론 다운타운 → 야경 스카이라인 → NASA 우주센터 → 웃는 사람 → 나무 그늘 동네
   houston: [
-    { url: "https://images.unsplash.com/photo-KdQq7b7kX7Q?w=1200&q=90",               pos: "center 50%", alt: "Houston trees buildings arrival green cityscape" },
-    { url: "https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=1200&q=90", pos: "center 50%", alt: "Houston skyline night orange blue landmark" },
-    { url: "https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=1200&q=90", pos: "center 40%", alt: "NASA Space Center rocket Houston character" },
-    { url: "https://images.unsplash.com/photo-8VghbLlZUdQ?w=1200&q=90",               pos: "center 50%", alt: "Smiling person Houston portrait people warm" },
-    { url: "https://images.unsplash.com/photo-1543968996-ee822b8176ba?w=1200&q=90",   pos: "center 38%", alt: "Houston neighborhood skyline settle" },
+    { url: "https://images.unsplash.com/photo-TyV0T7PtnOM?w=1200&q=95",               pos: "center 50%", alt: "Houston downtown drone aerial skyline daytime wide view" },
+    { url: "https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=1200&q=95", pos: "center 50%", alt: "Houston skyline night orange blue landmark" },
+    { url: "https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=1200&q=95", pos: "center 40%", alt: "NASA Space Center rocket Houston character" },
+    { url: "https://images.unsplash.com/photo-8VghbLlZUdQ?w=1200&q=95",               pos: "center 50%", alt: "Smiling person Houston portrait people warm welcome" },
+    { url: "https://images.unsplash.com/photo-1543968996-ee822b8176ba?w=1200&q=95",   pos: "center 38%", alt: "Houston neighborhood skyline settle home" },
   ],
 
-  // 🍑 애틀랜타 — SkyView Ferris Wheel 다운타운 + Midtown 야경 항공 뷰
-  // (verified 2026-05-18: SkyView Ferris wheel landmark, Midtown night aerial)
+  // 🍑 애틀랜타 — ① 공중 전경 → ② 랜드마크 관람차+야경 → ③ 여름 생활
+  // Story: ibuki Tsubo 항공 → SkyView Ferris Wheel 다운타운 → Atlanta 여름
   atlanta: [
-    { url: "https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?w=1200&q=90", pos: "center 50%", alt: "Atlanta SkyView Ferris Wheel downtown skyline" },
-    { url: "https://images.unsplash.com/photo-1602941525421-8f8b81d3edbb?w=1200&q=90", pos: "center 35%", alt: "Atlanta Midtown skyline night aerial" },
-    { url: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=90", pos: "center 42%", alt: "Atlanta Georgia summer" },
+    { url: "https://images.unsplash.com/photo-XV81dRUMzpo?w=1200&q=95",               pos: "center 50%", alt: "Atlanta downtown aerial view cityscape daytime overhead" },
+    { url: "https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?w=1200&q=95", pos: "center 50%", alt: "Atlanta SkyView Ferris Wheel downtown skyline landmark" },
+    { url: "https://images.unsplash.com/photo-1602941525421-8f8b81d3edbb?w=1200&q=95", pos: "center 35%", alt: "Atlanta Midtown skyline night aerial purple" },
+    { url: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=95", pos: "center 42%", alt: "Atlanta Georgia summer neighborhood people" },
   ],
 
   // 🔔 필라델피아 — ✅ verified aerial Philadelphia + historic center
@@ -321,12 +324,13 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   ],
 
 
-  // 🇦🇺 시드니 — 오페라하우스 + 본다이 비치 + 해안 항공 ✅
-  // Story: ① 오페라하우스 도착 랜드마크 → ② 본다이 비치 여름 생활 → ③ 해안 절경 조망
+  // 🇦🇺 시드니 — ① DJI 드론 하버브릿지 → ② 오페라하우스 랜드마크 → ③ 본다이 비치 사람들 → ④ 해안 절경
+  // Story: Road Trip with Raj 드론 → 오페라하우스 → 여름 해변 군중 → 해안 조망
   sydney: [
-    { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=95", pos: "center 40%", alt: "Sydney Opera House Harbour Bridge landmark daytime" },
-    { url: "https://images.unsplash.com/photo-qDYvDDc8uk0?w=1200&q=95",               pos: "center 50%", alt: "Bondi Beach Sydney crowded summer beach sunny day" },
-    { url: "https://images.unsplash.com/photo-LNg1qe_9Sik?w=1200&q=95",               pos: "center 35%", alt: "Bondi Beach coastal view ocean cliffs aerial Sydney" },
+    { url: "https://images.unsplash.com/photo-J61Sh5YrQho?w=1200&q=95",               pos: "center 50%", alt: "Sydney Harbour Bridge aerial drone view concrete arch daytime" },
+    { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=95", pos: "center 40%", alt: "Sydney Opera House Harbour Bridge landmark iconic" },
+    { url: "https://images.unsplash.com/photo-qDYvDDc8uk0?w=1200&q=95",               pos: "center 50%", alt: "Bondi Beach Sydney crowded summer beach people welcome" },
+    { url: "https://images.unsplash.com/photo-LNg1qe_9Sik?w=1200&q=95",               pos: "center 35%", alt: "Bondi Beach coastal cliff ocean aerial settle" },
   ],
 
   // 🇦🇺 멜버른 — CBD + 야라강
@@ -503,14 +507,15 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   hochiminh: [
     { url: "https://images.unsplash.com/photo-1570366583862-f91883984fde?w=1200&q=90", pos: "center 38%", alt: "Ho Chi Minh City streets" },
   ],
-  // 🇯🇵 도쿄 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
-  // Story: 도쿄 야경 항공 → 시부야 스크램블 → 라멘집 → 하라주쿠 사람들 → 조용한 골목
+  // 🇯🇵 도쿄 — ① 전망대 조감 → ② 시부야 크로싱(에어리얼) → ③ 라멘 특색 → ④ 하라주쿠 군중 → ⑤ 골목 정착
+  // Story: Christoph Theisinger 신주쿠 조감 → Ryoji Iwata 시부야 공중 → 라멘 → 하라주쿠 → 조용한 골목
+  // 표준 적용: S1=조감(전망대), S2=시부야 크로싱(세계 최다 보행자=환대), S3-5=특색·사람·정착
   tokyo: [
-    { url: "https://images.unsplash.com/photo-64ajtpEzlYc?w=1200&q=90",               pos: "center 50%", alt: "Tokyo aerial night Roppongi arrival cityscape" },
-    { url: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=90", pos: "center 50%", alt: "Tokyo Shibuya crossing scramble night neon landmark" },
-    { url: "https://images.unsplash.com/photo-gXZ_hbfpMjo?w=1200&q=90",               pos: "center 50%", alt: "Japanese ramen bar people eating character" },
-    { url: "https://images.unsplash.com/photo-seR-6Nqg99E?w=1200&q=90",               pos: "center 50%", alt: "Crowd pedestrians Harajuku street Tokyo people" },
-    { url: "https://images.unsplash.com/photo-grOTReWUHhU?w=1200&q=90",               pos: "center 50%", alt: "Quiet Tokyo residential alley settle" },
+    { url: "https://images.unsplash.com/photo-txwDMvvcpEc?w=1200&q=95",               pos: "center 50%", alt: "Tokyo Shinjuku bird's eye view urban dense city light trails arrival" },
+    { url: "https://images.unsplash.com/photo-IBaVuZsJJTo?w=1200&q=95",               pos: "center 50%", alt: "Shibuya crossing aerial 3000 pedestrians Tokyo welcome landmark" },
+    { url: "https://images.unsplash.com/photo-gXZ_hbfpMjo?w=1200&q=95",               pos: "center 50%", alt: "Japanese ramen bar people eating community character" },
+    { url: "https://images.unsplash.com/photo-seR-6Nqg99E?w=1200&q=95",               pos: "center 50%", alt: "Crowd pedestrians Harajuku street Tokyo people warmth" },
+    { url: "https://images.unsplash.com/photo-grOTReWUHhU?w=1200&q=95",               pos: "center 50%", alt: "Quiet Tokyo residential alley settle home" },
   ],
 
   // 🇯🇵 오사카 — 도톤보리 + 오사카성
