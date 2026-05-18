@@ -8173,6 +8173,23 @@ function CompactHeroNew() {
         </div>
       </div>
 
+      {/* ── #1 뱃지 (우상단) */}
+      <div style={{
+        position: "absolute", top: 12, right: 14, zIndex: 10,
+        background: "rgba(0,0,0,0.38)", backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        border: "1px solid rgba(201,162,39,0.45)",
+        borderRadius: 99, padding: "4px 10px",
+        display: "flex", alignItems: "center", gap: 4,
+        pointerEvents: "none",
+      }}>
+        <span style={{ fontSize: 9, color: "#C9A227", fontWeight: 900, lineHeight: 1 }}>★</span>
+        <span style={{ fontSize: 9, fontFamily: "Manrope,sans-serif", fontWeight: 800,
+          color: "rgba(255,255,255,0.95)", letterSpacing: "0.04em" }}>
+          {lang === "ko" ? "#1 한인 정착 가이드" : "#1 Korean Settlement Guide"}
+        </span>
+      </div>
+
       {/* ── 슬라이드 닷 인디케이터 */}
       {slides && slides.length > 1 && (
         <div style={{ position: "absolute", bottom: 10, right: 14, zIndex: 4, display: "flex", gap: 5, alignItems: "center" }}>
@@ -8966,6 +8983,324 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
 /* ─────────────────────────────────────────
    커뮤니티 펄스 — 지금 이 순간 (자동 롤링)
 ───────────────────────────────────────── */
+/* ─────────────────────────────────────────
+   한인의 자부심 — Korean Achievers Spotlight
+   (도시별 연결 한인 인물 + K-컨텐츠)
+───────────────────────────────────────── */
+
+type KAchiever = {
+  emoji: string;
+  name: string;
+  nameEn: string;
+  field: string;
+  fieldEn: string;
+  achievement: string;
+  achievementEn: string;
+  cities: string[];
+  color: string;
+  tag: string;
+  tagEn: string;
+};
+
+const KOREAN_ACHIEVERS: KAchiever[] = [
+  {
+    emoji: "⚽", name: "손흥민", nameEn: "Son Heung-min",
+    field: "축구", fieldEn: "Football",
+    achievement: "토트넘 홋스퍼 주장 · 아시아 최초 EPL 득점왕 · 2023 AFC 올해의 선수",
+    achievementEn: "Tottenham Hotspur captain · First Asian EPL top scorer · AFC Player of the Year",
+    cities: ["london"], color: "#2563EB", tag: "런던", tagEn: "London",
+  },
+  {
+    emoji: "🎬", name: "봉준호", nameEn: "Bong Joon-ho",
+    field: "영화감독", fieldEn: "Film Director",
+    achievement: "기생충(2019) — 칸 황금종려상·오스카 4관왕. 한국영화 첫 아카데미 작품상",
+    achievementEn: "Parasite — Palme d'Or + 4 Oscars. First Korean Best Picture winner",
+    cities: ["seoul", "la"], color: "#DC2626", tag: "서울·LA", tagEn: "Seoul·LA",
+  },
+  {
+    emoji: "🎵", name: "BTS (방탄소년단)", nameEn: "BTS",
+    field: "K-팝", fieldEn: "K-Pop",
+    achievement: "빌보드 HOT 100 1위 · 그래미 노미네이트 · 글로벌 팬덤 ARMY 1억+명",
+    achievementEn: "Billboard Hot 100 #1 · Grammy nominees · 100M+ ARMY worldwide",
+    cities: ["seoul", "newyork", "la", "london"], color: "#7C3AED", tag: "서울 → 세계", tagEn: "Seoul → World",
+  },
+  {
+    emoji: "⛸️", name: "김연아", nameEn: "Kim Yu-na",
+    field: "피겨스케이팅", fieldEn: "Figure Skating",
+    achievement: "밴쿠버 2010 금메달 · 세계선수권 2회 · 피겨 역대 최고점 보유",
+    achievementEn: "Vancouver 2010 Gold Medal · 2x World Champion · All-time record holder",
+    cities: ["vancouver", "seoul"], color: "#06B6D4", tag: "밴쿠버·서울", tagEn: "Vancouver·Seoul",
+  },
+  {
+    emoji: "🏋️", name: "이정재", nameEn: "Lee Jung-jae",
+    field: "배우", fieldEn: "Actor",
+    achievement: "오징어게임 주연 · 에미상 남우주연상 최초 한국인 수상 (2022)",
+    achievementEn: "Squid Game lead · First Korean Emmy Award for Outstanding Lead Actor (2022)",
+    cities: ["seoul", "la"], color: "#DC2626", tag: "서울·LA", tagEn: "Seoul·LA",
+  },
+  {
+    emoji: "🎭", name: "Sandra Oh", nameEn: "Sandra Oh",
+    field: "배우", fieldEn: "Actress",
+    achievement: "Grey's Anatomy · Killing Eve · 골든글로브 수상 · 한국계 캐나다인 배우",
+    achievementEn: "Grey's Anatomy · Killing Eve · Golden Globe winner · Korean-Canadian actress",
+    cities: ["vancouver", "la"], color: "#EC4899", tag: "밴쿠버·LA", tagEn: "Vancouver·LA",
+  },
+  {
+    emoji: "⚾", name: "박찬호", nameEn: "Chan-ho Park",
+    field: "야구", fieldEn: "Baseball",
+    achievement: "LA 다저스 아시아 첫 메이저리그 선발 · 17시즌 통산 124승",
+    achievementEn: "LA Dodgers — First Asian MLB starter · 124 career wins over 17 seasons",
+    cities: ["la"], color: "#F97316", tag: "LA", tagEn: "Los Angeles",
+  },
+  {
+    emoji: "⚾", name: "류현진", nameEn: "Ryu Hyun-jin",
+    field: "야구", fieldEn: "Baseball",
+    achievement: "LA 다저스·토론토 블루제이스 · NL ERA 타이틀 · 한국 최고 좌완투수",
+    achievementEn: "LA Dodgers & Toronto Blue Jays · NL ERA title · Korea's best left-hander",
+    cities: ["la", "toronto"], color: "#DC2626", tag: "LA·토론토", tagEn: "LA·Toronto",
+  },
+  {
+    emoji: "🎶", name: "Jay Park (박재범)", nameEn: "Jay Park",
+    field: "음악·사업가", fieldEn: "Music & Entrepreneur",
+    achievement: "시애틀 출신 K-팝 아티스트 · AOMG·H1ghr Music 창립 · 힙합 개척",
+    achievementEn: "Seattle-born K-pop artist · Founded AOMG & H1ghr Music · Hip-hop pioneer",
+    cities: ["seattle", "seoul"], color: "#0EA5E9", tag: "시애틀·서울", tagEn: "Seattle·Seoul",
+  },
+  {
+    emoji: "🏌️", name: "박인비", nameEn: "Park In-bee",
+    field: "골프", fieldEn: "Golf",
+    achievement: "LPGA 통산 21승 · 리우 2016 금메달 · 세계랭킹 1위 · '갓모드' 선수",
+    achievementEn: "21 LPGA wins · Rio 2016 Gold Medal · World #1 · Legend of women's golf",
+    cities: ["seoul"], color: "#10B981", tag: "서울 → 세계", tagEn: "Seoul → World",
+  },
+  {
+    emoji: "✍️", name: "이민진", nameEn: "Min Jin Lee",
+    field: "소설가", fieldEn: "Novelist",
+    achievement: "파친코(Pachinko) 작가 · NYT 베스트셀러 · 재미 한인 이민사 서사",
+    achievementEn: "Author of Pachinko · NYT Bestseller · Epic of Korean-American immigration",
+    cities: ["newyork"], color: "#7C3AED", tag: "뉴욕", tagEn: "New York",
+  },
+  {
+    emoji: "🏛️", name: "앤디 김", nameEn: "Andy Kim",
+    field: "정치인", fieldEn: "Politician",
+    achievement: "미국 연방 상원의원 (NJ) · 한국계 최초 미 상원의원 당선 (2024)",
+    achievementEn: "US Senator (NJ) · First Korean-American elected to the US Senate (2024)",
+    cities: ["newyork", "dc"], color: "#EF4444", tag: "뉴욕·DC", tagEn: "New York·DC",
+  },
+  {
+    emoji: "⚾", name: "김하성", nameEn: "Ha-seong Kim",
+    field: "야구", fieldEn: "Baseball",
+    achievement: "샌디에고 파드리스 · MLB 골드글러브 수상 · KBO 최고 유격수 출신",
+    achievementEn: "San Diego Padres · MLB Gold Glove · Former KBO's best shortstop",
+    cities: ["sandiego"], color: "#F59E0B", tag: "샌디에고", tagEn: "San Diego",
+  },
+  {
+    emoji: "🎬", name: "Steven Yeun (이스티브 연)", nameEn: "Steven Yeun",
+    field: "배우", fieldEn: "Actor",
+    achievement: "미나리·워킹데드 · 오스카 노미네이트 · 한국계 최초 아카데미 남우주연상 후보",
+    achievementEn: "Minari · The Walking Dead · First Korean-American Oscar nominee for Best Actor",
+    cities: ["la", "atlanta"], color: "#16A34A", tag: "LA·애틀랜타", tagEn: "LA·Atlanta",
+  },
+  {
+    emoji: "🎵", name: "BLACKPINK", nameEn: "BLACKPINK",
+    field: "K-팝", fieldEn: "K-Pop",
+    achievement: "YouTube 구독자 최다 그룹 · 코첼라 헤드라이너 · 4개국 글로벌 멤버",
+    achievementEn: "Most subscribed group on YouTube · Coachella headliner · 4-nation global group",
+    cities: ["seoul", "la", "newyork"], color: "#EC4899", tag: "서울 → 세계", tagEn: "Seoul → World",
+  },
+];
+
+// K-컨텐츠 도시별 데이터
+type KContent = {
+  emoji: string;
+  title: string;
+  titleEn: string;
+  type: string;
+  typeEn: string;
+  desc: string;
+  descEn: string;
+  color: string;
+};
+const K_CONTENT_BY_CITY: Partial<Record<string, KContent[]>> = {
+  seoul: [
+    { emoji: "🎬", title: "기생충 촬영지", titleEn: "Parasite Filming Locations", type: "영화", typeEn: "Film", desc: "봉준호 감독 오스카 4관왕. 마포구·자하문로 일대 촬영지 관광 가능", descEn: "Bong Joon-ho's 4-Oscar masterpiece. Filming locations in Mapo-gu open for visitors", color: "#DC2626" },
+    { emoji: "🦑", title: "오징어게임 성지", titleEn: "Squid Game Landmarks", type: "드라마", typeEn: "Drama", desc: "넷플릭스 역대 1위 한국 드라마. 이정재 에미상 수상 (2022)", descEn: "Netflix's #1 Korean drama. Lee Jung-jae won the Emmy Award (2022)", color: "#7C3AED" },
+    { emoji: "🎵", title: "BTS 성지순례", titleEn: "BTS Pilgrimage Sites", type: "K-팝", typeEn: "K-Pop", desc: "HYBE 사옥 · 한강공원 뮤직비디오 촬영지 · 잠실 올림픽 공연장", descEn: "HYBE HQ · Han River MV locations · Olympic stadium performances", color: "#4F46E5" },
+  ],
+  busan: [
+    { emoji: "🌊", title: "해운대 — 드라마 성지", titleEn: "Haeundae Drama Setting", type: "드라마", typeEn: "Drama", desc: "수십 편 한국 드라마·영화 배경. 부산국제영화제(BIFF) 개최지", descEn: "Setting for dozens of K-dramas. Home of Busan International Film Festival (BIFF)", color: "#0EA5E9" },
+    { emoji: "🎬", title: "범죄도시·기장 촬영지", titleEn: "K-Crime Thriller Locations", type: "영화", typeEn: "Film", desc: "마동석 주연 범죄도시 시리즈 배경 도시. 누적 관객 3000만+", descEn: "Setting for Crime City series starring Don Lee. 30M+ cumulative audience", color: "#F59E0B" },
+  ],
+  jeju: [
+    { emoji: "🌿", title: "K-드라마 촬영지 1번지", titleEn: "K-Drama Filming Hub #1", type: "드라마", typeEn: "Drama", desc: "마이 디어 미스터·호텔 델루나·우리들의 블루스 등 수십 편 촬영지", descEn: "Setting for My Mister, Hotel Del Luna, Our Blues and dozens of K-dramas", color: "#10B981" },
+  ],
+  la: [
+    { emoji: "🎤", title: "K-팝 콘서트 메카", titleEn: "K-Pop Concert Mecca", type: "K-팝", typeEn: "K-Pop", desc: "BTS·BLACKPINK·EXO 등 모든 K-팝 아티스트의 미국 첫 콘서트 도시. 코첼라 연계", descEn: "Every K-pop artist's first US concert city. BTS, BLACKPINK, Coachella connections", color: "#F97316" },
+    { emoji: "🎬", title: "K-콘텐츠·코리아타운", titleEn: "K-Content & Koreatown", type: "문화", typeEn: "Culture", desc: "미나리(Steven Yeun) 배경. LA 한인타운은 K-드라마 미국 로케이션 1순위", descEn: "Minari (Steven Yeun) setting. LA Koreatown is the #1 K-drama US shooting location", color: "#DC2626" },
+  ],
+  london: [
+    { emoji: "⚽", title: "손흥민의 도시", titleEn: "Son Heung-min's City", type: "스포츠", typeEn: "Sports", desc: "토트넘 홋스퍼 주장 손흥민. 토트넘 홋스퍼 스타디움 투어로 성지순례 가능", descEn: "Tottenham Hotspur captain Son Heung-min. Stadium tours available for fans", color: "#2563EB" },
+    { emoji: "🎬", title: "런던 K-웨이브", titleEn: "K-Wave in London", type: "문화", typeEn: "Culture", desc: "영국 K-팝 팬덤 급성장. K-넷플릭스 구독 영국 TOP 5 콘텐츠에 한국 드라마 포함", descEn: "UK K-pop fandom booming. Korean dramas consistently in UK Netflix Top 5", color: "#9333EA" },
+  ],
+  tokyo: [
+    { emoji: "🇯🇵", title: "한류 원조 시장", titleEn: "Original Hallyu Market", type: "K-웨이브", typeEn: "K-Wave", desc: "신오쿠보 코리아타운 K-팝·K-푸드 1번지. BTS·TWICE 일본 최대 팬덤", descEn: "Shin-Okubo Korea Town — Japan's #1 K-pop & K-food hub. BTS·TWICE largest Japanese fandoms", color: "#DC2626" },
+  ],
+  singapore: [
+    { emoji: "🌟", title: "동남아 K-웨이브 허브", titleEn: "Southeast Asia K-Wave Hub", type: "K-웨이브", typeEn: "K-Wave", desc: "싱가포르 넷플릭스 TOP 10에 한국 드라마 상시 진입. K-팝 이벤트 아시아 거점", descEn: "Korean dramas constantly in Singapore Netflix Top 10. Asia K-pop event hub", color: "#DC2626" },
+  ],
+  bangkok: [
+    { emoji: "💜", title: "태국 K-팝 팬덤 1위", titleEn: "Thailand's #1 K-Pop Fandom", type: "K-팝", typeEn: "K-Pop", desc: "태국은 동남아 최대 한류 국가. BLACKPINK 멤버 리사 태국 출신으로 K-팝 상징", descEn: "Thailand is SE Asia's largest Hallyu nation. BLACKPINK's Lisa symbolizes Thai-Korean K-pop", color: "#9333EA" },
+  ],
+  vancouver: [
+    { emoji: "⛸️", title: "김연아의 도시", titleEn: "Kim Yu-na's City", type: "스포츠", typeEn: "Sports", desc: "밴쿠버 2010 동계올림픽 금메달. 세계 최고점 기록. 한국 스포츠 역사 최고 순간", descEn: "Vancouver 2010 Olympic Gold. World record score. Greatest moment in Korean sports history", color: "#06B6D4" },
+  ],
+  sydney: [
+    { emoji: "🦘", title: "호주 K-웨이브", titleEn: "K-Wave in Australia", type: "문화", typeEn: "Culture", desc: "호주 워홀·유학 한인 중심지. K-팝 페스티벌 정기 개최. K-푸드 급성장 시장", descEn: "Hub for Korean WHV workers. Regular K-pop festivals. Rapidly growing K-food market", color: "#38BDF8" },
+  ],
+  newyork: [
+    { emoji: "📚", title: "파친코 — 이민진 소설", titleEn: "Pachinko — Min Jin Lee", type: "문학", typeEn: "Literature", desc: "뉴욕 거주 한국계 작가 이민진의 재일 한인 이민사 대서사. NYT 베스트셀러·애플TV+ 드라마화", descEn: "Epic novel by NYC-based Korean-American author Min Jin Lee. NYT Bestseller & Apple TV+ drama", color: "#7C3AED" },
+    { emoji: "🏛️", title: "앤디 김 — 미국 첫 한국계 상원의원", titleEn: "Andy Kim — First Korean-American Senator", type: "정치", typeEn: "Politics", desc: "2024년 뉴저지 연방 상원의원 당선. 한국계 미국인의 정치적 영향력 확대 상징", descEn: "Elected NJ US Senator 2024. Symbol of growing Korean-American political influence", color: "#EF4444" },
+  ],
+};
+
+function KoreanAchieversSection({ lang, citySlug }: { lang: string; citySlug: string }) {
+  const ko = lang === "ko";
+  // 현재 도시와 연결된 인물 먼저, 나머지는 그 다음
+  const sorted = [...KOREAN_ACHIEVERS].sort((a, b) => {
+    const aMatch = a.cities.includes(citySlug) ? 0 : 1;
+    const bMatch = b.cities.includes(citySlug) ? 0 : 1;
+    return aMatch - bMatch;
+  });
+  const kContent = K_CONTENT_BY_CITY[citySlug] ?? [];
+
+  return (
+    <div style={{ margin: "16px 0 0", background: "#fff", borderRadius: 16, overflow: "hidden", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+      {/* 헤더 */}
+      <div style={{ padding: "14px 16px 10px", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 18 }}>🔥</span>
+            <div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: "#1B2A4A" }}>
+                {ko ? "한인의 자부심" : "Korean Pride"}
+              </div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "#94A3B8", marginTop: 1 }}>
+                {ko ? "세계를 빛낸 한인들 · 2·3세대에게 전합니다" : "Koreans lighting up the world"}
+              </div>
+            </div>
+          </div>
+          <div style={{ fontSize: 9, fontFamily: "Manrope,sans-serif", fontWeight: 700,
+            background: "linear-gradient(135deg,#C9A227,#F59E0B)",
+            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+            letterSpacing: "0.05em" }}>
+            HALLYU ★
+          </div>
+        </div>
+      </div>
+
+      {/* K-컨텐츠 도시 연결 (도시 관련 있을 때만) */}
+      {kContent.length > 0 && (
+        <div style={{ padding: "10px 16px 0" }}>
+          <div style={{ fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700,
+            color: "#94A3B8", letterSpacing: "0.08em", marginBottom: 8 }}>
+            {ko ? "이 도시의 K-스토리" : "K-STORIES IN THIS CITY"}
+          </div>
+          <div style={{ display: "flex", gap: 8, overflowX: "auto", paddingBottom: 8, scrollbarWidth: "none" }}>
+            {kContent.map((item, i) => (
+              <div key={i} style={{
+                flexShrink: 0, width: 200,
+                background: `linear-gradient(135deg, ${item.color}15, ${item.color}08)`,
+                border: `1px solid ${item.color}30`,
+                borderRadius: 12, padding: "10px 12px",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 5 }}>
+                  <span style={{ fontSize: 16 }}>{item.emoji}</span>
+                  <span style={{ fontSize: 9, fontFamily: "Manrope,sans-serif", fontWeight: 700,
+                    color: item.color, background: `${item.color}20`,
+                    padding: "2px 6px", borderRadius: 99 }}>
+                    {ko ? item.type : item.typeEn}
+                  </span>
+                </div>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12,
+                  color: "#1B2A4A", marginBottom: 4, lineHeight: 1.3 }}>
+                  {ko ? item.title : item.titleEn}
+                </div>
+                <div style={{ fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontSize: 10,
+                  color: "#475569", lineHeight: 1.5 }}>
+                  {ko ? item.desc : item.descEn}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 인물 카드 */}
+      <div style={{ padding: "10px 16px 14px" }}>
+        <div style={{ fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700,
+          color: "#94A3B8", letterSpacing: "0.08em", marginBottom: 8 }}>
+          {ko ? "한인 인물 · 세계 무대" : "KOREAN ACHIEVERS · WORLD STAGE"}
+        </div>
+        <div style={{ display: "flex", gap: 8, overflowX: "auto", paddingBottom: 4, scrollbarWidth: "none" }}>
+          {sorted.map((p, i) => {
+            const isLinked = p.cities.includes(citySlug);
+            return (
+              <div key={i} style={{
+                flexShrink: 0, width: 170,
+                background: isLinked
+                  ? `linear-gradient(135deg, ${p.color}20, ${p.color}10)`
+                  : "linear-gradient(135deg, #F8FAFC, #F1F5F9)",
+                border: `1.5px solid ${isLinked ? p.color + "50" : "rgba(0,0,0,0.07)"}`,
+                borderRadius: 14, padding: "11px 12px",
+                position: "relative",
+              }}>
+                {/* 도시 연결 표시 */}
+                {isLinked && (
+                  <div style={{
+                    position: "absolute", top: 7, right: 8,
+                    fontSize: 8, fontFamily: "Manrope,sans-serif", fontWeight: 700,
+                    background: p.color, color: "#fff",
+                    padding: "2px 6px", borderRadius: 99,
+                  }}>
+                    {ko ? "이 도시" : "This City"}
+                  </div>
+                )}
+                {/* 이모지 + 분야 */}
+                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
+                  <div style={{
+                    width: 36, height: 36, borderRadius: 10,
+                    background: `linear-gradient(135deg, ${p.color}30, ${p.color}15)`,
+                    border: `1px solid ${p.color}40`,
+                    display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0,
+                  }}>
+                    {p.emoji}
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 8, color: p.color, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>
+                      {ko ? p.field : p.fieldEn}
+                    </div>
+                    <div style={{ fontSize: 8, color: "#94A3B8", fontFamily: "Manrope,sans-serif" }}>
+                      {ko ? p.tag : p.tagEn}
+                    </div>
+                  </div>
+                </div>
+                {/* 이름 */}
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#1B2A4A", marginBottom: 2 }}>
+                  {ko ? p.name : p.nameEn}
+                </div>
+                <div style={{ fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontSize: 9,
+                  color: "#475569", lineHeight: 1.5 }}>
+                  {ko ? p.achievement : p.achievementEn}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CommunityPulseSection({ lang }: { lang: string }) {
   const ko = lang === "ko";
   const city = useCityConfig();
@@ -10933,6 +11268,7 @@ function FoundingPartnerBanner({ lang, onNavigate }: { lang: string; onNavigate?
 function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
   const ko = lang === "ko";
+  const city = useCityConfig();
   return (
     <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
       <CompactHeroNew />
@@ -10944,6 +11280,11 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
 
       {/* ── 커뮤니티 펄스 ── */}
       <CommunityPulseSection lang={lang} />
+
+      {/* ── 한인의 자부심 + K-컨텐츠 ── */}
+      <div style={{ margin: "0 16px" }}>
+        <KoreanAchieversSection lang={lang} citySlug={city.slug} />
+      </div>
 
       {/* ── 커뮤니티 올리기 CTA ── */}
       <div
