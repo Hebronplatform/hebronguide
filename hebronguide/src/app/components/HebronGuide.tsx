@@ -23250,6 +23250,59 @@ function getShareContexts(cityKo: string, cityEn: string, slug: string,
   };
 }
 
+/* ── 음성 검색 버튼 — 마이크로 말하면 검색어 자동 입력 ── */
+function SearchVoiceButton({ onResult, lang }: { onResult: (text: string) => void; lang: string }) {
+  const ko = lang === "ko";
+  const [listening, setListening] = useState(false);
+  const [supported] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return !!((window as unknown as {SpeechRecognition?:unknown}).SpeechRecognition
+            || (window as unknown as {webkitSpeechRecognition?:unknown}).webkitSpeechRecognition);
+  });
+  if (!supported) return null;
+
+  const toggle = () => {
+    const SR = (window as unknown as {SpeechRecognition?:unknown}).SpeechRecognition
+            || (window as unknown as {webkitSpeechRecognition?:unknown}).webkitSpeechRecognition;
+    if (!SR) return;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const rec = new (SR as any)();
+    rec.lang = ko ? "ko-KR" : "en-US";
+    rec.continuous = false;
+    rec.interimResults = false;
+    rec.onstart  = () => setListening(true);
+    rec.onend    = () => setListening(false);
+    rec.onresult = (e: { results: SpeechRecognitionResultList }) => {
+      const text = e.results[0]?.[0]?.transcript || "";
+      if (text) onResult(text);
+    };
+    rec.onerror  = () => setListening(false);
+    rec.start();
+  };
+
+  return (
+    <button
+      onClick={toggle}
+      title={ko ? "음성으로 검색" : "Voice search"}
+      style={{
+        width: 36, height: 36, borderRadius: "50%", border: "none",
+        background: listening ? "rgba(255,59,48,0.12)" : "rgba(120,120,128,0.12)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        cursor: "pointer", flexShrink: 0, transition: "all 0.18s",
+        boxShadow: listening ? "0 0 12px rgba(255,59,48,0.3)" : "none",
+      }}>
+      {listening
+        ? <svg width="16" height="16" viewBox="0 0 24 24" fill="#FF3B30"><circle cx="12" cy="12" r="6"/></svg>
+        : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" strokeWidth="2" strokeLinecap="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+      }
+    </button>
+  );
+}
+
 function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void; lang: string; activeNav?: number }) {
   const shareCity    = useCityConfig();
   const appUrl       = `https://hebronguide.com/${shareCity.slug}/`;
@@ -23373,25 +23426,42 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
   ];
 
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 300, background: "rgba(0,0,0,0.52)", backdropFilter: "blur(6px)", display: "flex", alignItems: "flex-end" }} onClick={onClose}>
-      <div style={{ width: "100%", maxWidth: 430, margin: "0 auto", background: "#fff", borderRadius: "24px 24px 0 0", paddingBottom: "env(safe-area-inset-bottom,16px)", boxShadow: "0 -8px 48px rgba(0,0,0,0.18)" }} onClick={e => e.stopPropagation()}>
+    <div style={{ position:"fixed", inset:0, zIndex:300,
+      background:"rgba(0,0,0,0.4)", backdropFilter:"blur(16px) saturate(180%)",
+      display:"flex", alignItems:"flex-end" }} onClick={onClose}>
+      <div style={{ width:"100%", maxWidth:430, margin:"0 auto",
+        background:"rgba(255,255,255,0.97)", backdropFilter:"saturate(180%) blur(20px)",
+        borderRadius:"22px 22px 0 0", paddingBottom:"env(safe-area-inset-bottom,20px)",
+        boxShadow:"0 -2px 0 rgba(0,0,0,0.06), 0 -20px 60px rgba(0,0,0,0.15)" }}
+        onClick={e => e.stopPropagation()}>
+
+        {/* ── Apple 핸들 바 ── */}
+        <div style={{ display:"flex", justifyContent:"center", padding:"10px 0 0" }}>
+          <div style={{ width:36, height:4, borderRadius:2, background:"rgba(0,0,0,0.15)" }} />
+        </div>
 
         {/* ── 헤더 ── */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 20px 0" }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", padding:"14px 20px 0" }}>
           <div>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 17, color: "#1B2A4A" }}>
-              📤 {lang === "ko" ? "공유하기" : "Share"}
+            <div style={{ fontFamily:"-apple-system,'Noto Sans KR',sans-serif",
+              fontWeight:700, fontSize:17, color:"#1C1C1E", letterSpacing:"-0.3px" }}>
+              {lang === "ko" ? "공유하기" : "Share"}
             </div>
-            <div style={{ fontSize: 11, color: "#94A3B8", marginTop: 2 }}>
-              {ctx.emoji} {lang === "ko" ? ctx.labelKo : ctx.labelEn} {lang === "ko" ? "정보 공유" : "info"}
+            <div style={{ fontFamily:"-apple-system,sans-serif", fontSize:12, color:"#8E8E93", marginTop:2 }}>
+              {ctx.emoji} {lang === "ko" ? ctx.labelKo : ctx.labelEn}
             </div>
           </div>
-          <button onClick={onClose} style={{ border: "none", background: "#F1F5F9", borderRadius: "50%", width: 32, height: 32, fontSize: 16, cursor: "pointer", color: "#64748B" }}>✕</button>
+          <button onClick={onClose} style={{ border:"none",
+            background:"rgba(120,120,128,0.12)", borderRadius:"50%",
+            width:30, height:30, fontSize:14, cursor:"pointer", color:"#8E8E93",
+            display:"flex", alignItems:"center", justifyContent:"center" }}>✕</button>
         </div>
 
         {/* ── 공유 미리보기 카드 ── */}
-        <div style={{ margin: "14px 16px 0", background: "linear-gradient(135deg,#F8FAFC,#EFF6FF)", border: "1px solid #E2E8F0", borderRadius: 14, padding: "14px 14px 10px" }}>
-          <div style={{ fontSize: 12, color: "#64748B", lineHeight: 1.65, whiteSpace: "pre-line" }}>
+        <div style={{ margin:"12px 16px 0", background:"rgba(118,118,128,0.05)",
+          border:"1px solid rgba(118,118,128,0.12)", borderRadius:14, padding:"12px 14px 10px" }}>
+          <div style={{ fontFamily:"-apple-system,'Noto Sans KR',sans-serif",
+            fontSize:12, color:"#3C3C43", lineHeight:1.65, whiteSpace:"pre-line", opacity:0.8 }}>
             {bodyText}
           </div>
           <div style={{ marginTop: 8, paddingTop: 8, borderTop: "1px solid #E2E8F0", display: "flex", alignItems: "center", gap: 6 }}>
@@ -24094,36 +24164,109 @@ export function HebronGuide() {
       >
         <AppBar onHome={() => setActiveNav(0)} />
 
-        {/* 검색바 (슬라이드 인) */}
+        {/* ── 검색 오버레이 (Apple 스타일 + 음성 입력) */}
         {showSearch && (() => {
-          // 실시간 앱 내 검색 매칭
           const q = searchQuery.toLowerCase().replace(/\s/g, "");
           const internalMatches = q.length > 0
             ? SEARCH_MAP.filter(item => item.keywords.some(kw => kw.replace(/\s/g,"").includes(q) || q.includes(kw.replace(/\s/g,""))))
             : [];
-          const googleUrl = `https://www.google.com/search?q=${encodeURIComponent((searchQuery || "시애틀 한인") + " 시애틀 한인")}`;
-          const perplexityUrl = `https://www.perplexity.ai/search?q=${encodeURIComponent((searchQuery || "시애틀 한인 정보") + " 시애틀 한인")}`;
+          const citySlugForSearch = useCityConfig?.()?.slug || "seattle";
+          const cityNameKo = useCityConfig?.()?.nameKo || "시애틀";
+          const googleUrl = `https://www.google.com/search?q=${encodeURIComponent((searchQuery || cityNameKo + " 한인") + " " + cityNameKo + " 한인")}`;
+          const perplexityUrl = `https://www.perplexity.ai/search?q=${encodeURIComponent((searchQuery || cityNameKo + " 한인 정보") + " " + cityNameKo + " 한인")}`;
 
           return (
             <div style={{
-              position: "fixed", top: 56, left: "50%", transform: "translateX(-50%)",
-              width: "100%", maxWidth: 430, zIndex: 200,
-              background: "#fff", boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
-              borderRadius: "0 0 20px 20px",
-            }}>
-              {/* 검색 입력창 */}
-              <div style={{ padding: "10px 14px", display: "flex", gap: 8, alignItems: "center", borderBottom: "1px solid #F1F5F9" }}>
-                <span style={{ fontSize: 16, color: "#94A3B8" }}>🔍</span>
-                <input autoFocus value={searchQuery}
+              position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 200,
+              background: "rgba(0,0,0,0.45)", backdropFilter: "blur(12px)",
+            }} onClick={handleSearchToggle}>
+            <div style={{
+              position: "fixed", top: 0, left: "50%", transform: "translateX(-50%)",
+              width: "100%", maxWidth: 430, zIndex: 201,
+              background: "rgba(249,249,249,0.98)",
+              backdropFilter: "saturate(180%) blur(20px)",
+              boxShadow: "0 1px 0 rgba(0,0,0,0.08), 0 20px 60px rgba(0,0,0,0.2)",
+              borderRadius: "0 0 22px 22px",
+            }} onClick={e => e.stopPropagation()}>
+
+              {/* 검색 입력창 — Apple 스타일 */}
+              <div style={{
+                padding: "12px 14px 10px",
+                display: "flex", gap: 10, alignItems: "center",
+              }}>
+                {/* 검색 아이콘 */}
+                <div style={{
+                  width: 36, height: 36, borderRadius: 10,
+                  background: "rgba(120,120,128,0.12)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  flexShrink: 0,
+                }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" strokeWidth="2.5" strokeLinecap="round">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                  </svg>
+                </div>
+
+                {/* 입력 필드 */}
+                <input
+                  id="search-input-main"
+                  autoFocus
+                  value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   onKeyDown={e => e.key === "Enter" && handleSearch(searchQuery)}
-                  placeholder={lang === "ko" ? "백정, 치과, 비자, 스페이스니들..." : "Baekjeong, dentist, visa, Space Needle..."}
-                  style={{ flex: 1, border: "none", outline: "none", fontSize: 15,
-                    fontFamily: "'Noto Sans KR', sans-serif", background: "transparent" }}
+                  placeholder={lang === "ko" ? "교회, 맛집, 병원, 비자..." : "Church, food, hospital, visa..."}
+                  style={{
+                    flex: 1, border: "none", outline: "none", fontSize: 17,
+                    fontFamily: "-apple-system,'Noto Sans KR',sans-serif",
+                    background: "transparent", color: "#1C1C1E", letterSpacing: "-0.2px",
+                  }}
                 />
-                <button onClick={handleSearchToggle}
-                  style={{ border: "none", background: "none", fontSize: 20, cursor: "pointer", color: "#94A3B8", padding: 4 }}>✕</button>
+
+                {/* 마이크 버튼 — 음성 검색 */}
+                <SearchVoiceButton
+                  onResult={(text: string) => {
+                    setSearchQuery(text);
+                    setTimeout(() => handleSearch(text), 200);
+                  }}
+                  lang={lang}
+                />
+
+                {/* 닫기 */}
+                {searchQuery ? (
+                  <button onClick={() => setSearchQuery("")}
+                    style={{ border:"none", background:"rgba(120,120,128,0.18)", borderRadius:"50%",
+                      width:22, height:22, fontSize:12, cursor:"pointer", color:"#8E8E93",
+                      display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                    ✕
+                  </button>
+                ) : (
+                  <button onClick={handleSearchToggle}
+                    style={{ border:"none", background:"none", fontSize:15, cursor:"pointer",
+                      color:"#007AFF", fontFamily:"-apple-system,sans-serif", fontWeight:500,
+                      padding:"4px 0", flexShrink:0 }}>
+                    {lang === "ko" ? "취소" : "Cancel"}
+                  </button>
+                )}
               </div>
+
+              {/* 검색어 없을 때 — 빠른 검색 칩 */}
+              {!searchQuery && (
+                <div style={{ padding: "4px 14px 12px" }}>
+                  <div style={{ fontFamily:"-apple-system,sans-serif", fontSize:12, color:"#8E8E93",
+                    fontWeight:600, letterSpacing:"0.02em", marginBottom:8 }}>
+                    {lang === "ko" ? "빠른 검색" : "Quick Search"}
+                  </div>
+                  <div style={{ display:"flex", flexWrap:"wrap", gap:6 }}>
+                    {["교회","한식당","병원","비자","운전면허","취업","학교","생활비","이민"].map(chip => (
+                      <button key={chip} onClick={() => { setSearchQuery(chip); handleSearch(chip); }}
+                        style={{ border:"1px solid rgba(120,120,128,0.2)", background:"rgba(120,120,128,0.06)",
+                          borderRadius:20, padding:"5px 12px", cursor:"pointer",
+                          fontFamily:"-apple-system,'Noto Sans KR',sans-serif", fontSize:13, color:"#1C1C1E" }}>
+                        {chip}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* 다른 도시 HebronGuide — 도시명 검색 시 */}
               {(() => {
@@ -24198,34 +24341,41 @@ export function HebronGuide() {
                 </div>
               )}
 
-              {/* 외부 검색 — 앱 내 결과 없을 때만 강조, 항상 하단에 작게 표시 */}
-              <div style={{ padding: q.length > 0 && internalMatches.length === 0 ? "12px 14px 16px" : "8px 14px 12px",
-                background: q.length > 0 && internalMatches.length === 0 ? "#FFF8F5" : "transparent",
-                borderTop: "1px solid #F1F5F9" }}>
+              {/* 외부 검색 — Apple 스타일 */}
+              <div style={{
+                padding: "8px 14px 14px",
+                borderTop: q.length > 0 ? "1px solid rgba(120,120,128,0.12)" : "none",
+              }}>
                 {q.length > 0 && internalMatches.length === 0 && (
-                  <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 13, color: "#64748B", marginBottom: 10 }}>
-                    {lang === "ko" ? `"${searchQuery}" 앱 내 결과가 없어요. 외부에서 찾아볼게요:` : `No results in app for "${searchQuery}". Try:` }
+                  <div style={{ fontFamily:"-apple-system,'Noto Sans KR',sans-serif",
+                    fontSize:13, color:"#8E8E93", marginBottom:8 }}>
+                    {lang === "ko" ? `앱 내 결과 없음. 웹에서 찾기:` : `Not in app. Search web:`}
                   </div>
                 )}
-                <div style={{ display: "flex", gap: 8 }}>
-                  <a href={googleUrl} target="_blank" rel="noopener noreferrer" style={{
-                    flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
-                    padding: "9px 10px", borderRadius: 10, textDecoration: "none",
-                    background: "#F8FAFC", border: "1px solid #E2E8F0",
-                  }}>
-                    <span style={{ fontSize: 14 }}>🔍</span>
-                    <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#374151" }}>Google</span>
-                  </a>
-                  <a href={perplexityUrl} target="_blank" rel="noopener noreferrer" style={{
-                    flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
-                    padding: "9px 10px", borderRadius: 10, textDecoration: "none",
-                    background: "#EFF6FF", border: "1px solid #BFDBFE",
-                  }}>
-                    <span style={{ fontSize: 14 }}>🤖</span>
-                    <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#1D4ED8" }}>Perplexity</span>
-                  </a>
-                </div>
+                {q.length > 0 && (
+                  <div style={{ display:"flex", gap:8 }}>
+                    <a href={googleUrl} target="_blank" rel="noopener noreferrer" style={{
+                      flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:6,
+                      padding:"10px", borderRadius:12, textDecoration:"none",
+                      background:"rgba(0,122,255,0.06)", border:"1px solid rgba(0,122,255,0.15)",
+                    }}>
+                      <span style={{ fontSize:15 }}>🔍</span>
+                      <span style={{ fontFamily:"-apple-system,sans-serif", fontWeight:600,
+                        fontSize:13, color:"#007AFF" }}>Google</span>
+                    </a>
+                    <a href={perplexityUrl} target="_blank" rel="noopener noreferrer" style={{
+                      flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:6,
+                      padding:"10px", borderRadius:12, textDecoration:"none",
+                      background:"rgba(99,102,241,0.06)", border:"1px solid rgba(99,102,241,0.15)",
+                    }}>
+                      <span style={{ fontSize:15 }}>✦</span>
+                      <span style={{ fontFamily:"-apple-system,sans-serif", fontWeight:600,
+                        fontSize:13, color:"#6366F1" }}>AI Search</span>
+                    </a>
+                  </div>
+                )}
               </div>
+            </div>
             </div>
           );
         })()}
