@@ -23131,6 +23131,23 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
             </div>
           )}
 
+        {/* ── 닫기 / 홈으로 버튼 ── */}
+        <button
+          onClick={handleClose}
+          style={{
+            width:"100%", marginTop:14,
+            background:"rgba(255,255,255,0.07)",
+            border:"1px solid rgba(255,255,255,0.12)",
+            borderRadius:14, padding:"13px 0", cursor:"pointer",
+            display:"flex", alignItems:"center", justifyContent:"center", gap:8,
+            fontFamily:"Manrope,sans-serif", fontWeight:700, fontSize:14,
+            color:"rgba(236,253,245,0.7)",
+            transition:"background 0.15s",
+          }}>
+          <span style={{ fontSize:16 }}>🏠</span>
+          {ko ? "닫고 홈으로" : "Close & Go Home"}
+        </button>
+
         </div>
       </div>
       <style>{`
