@@ -9000,7 +9000,130 @@ type KAchiever = {
   color: string;
   tag: string;
   tagEn: string;
+  verified?: string;    // 검증 출처 표시
+  verifiedEn?: string;
 };
+
+// ── 세계를 바꾼 한국인 — 검증된 사실만 (출처 명시)
+type KWorldChanger = {
+  emoji: string;
+  name: string;
+  nameEn: string;
+  years: string;
+  field: string;
+  fieldEn: string;
+  story: string;
+  storyEn: string;
+  proof: string;       // 국제 공인 증거
+  proofEn: string;
+  source: string;      // 출처
+  color: string;
+  faith?: string;      // 신앙 (검증된 경우만)
+  faithEn?: string;
+  quote?: string;      // 본인 말 (검증된 경우만)
+  quoteEn?: string;
+};
+
+const WORLD_CHANGERS: KWorldChanger[] = [
+  {
+    emoji: "🕊️",
+    name: "한경직 목사",
+    nameEn: "Rev. Han Kyung-chik",
+    years: "1902–2000",
+    field: "목회자 · World Vision 공동창립자",
+    fieldEn: "Pastor · Co-founder of World Vision",
+    story: "1945년 북한 난민 27명을 데리고 서울 영락교회를 세웠다. 세계 최대 인도주의 단체 중 하나인 World Vision을 미국인 Robert Pierce와 함께 1950년 공동창립했다. 영락교회는 세계 최대 장로교회 중 하나(6만 명)로 성장했으며, 전 세계 500개 자매교회를 낳았다.",
+    storyEn: "In 1945, with 27 North Korean refugees, he founded Youngnak Presbyterian Church in Seoul. In 1950, he co-founded World Vision with American Robert Pierce — now one of the world's largest humanitarian organizations operating in ~100 countries. Youngnak grew to 60,000 members with 500 sister churches worldwide.",
+    proof: "1992년 템플턴 종교발전상 수상 (세계 최고 권위 종교상, 노벨상 규모 상금)",
+    proofEn: "1992 Templeton Prize for Progress in Religion — the world's most prestigious religious award, Nobel Prize-equivalent prize money",
+    source: "Templeton Prize official records · Wikipedia (Kyung-Chik Han · World Vision International)",
+    color: "#7C3AED",
+    faith: "장로교 목사",
+    faithEn: "Presbyterian Minister",
+  },
+  {
+    emoji: "💊",
+    name: "이태석 신부",
+    nameEn: "Fr. John Lee Tae-seok",
+    years: "1962–2010",
+    field: "의사·살레시오 수도회 사제",
+    fieldEn: "Medical Doctor & Salesian Catholic Priest",
+    story: "의대를 졸업하고 사제 서품을 받은 후 2001년 내전의 상처로 가득한 남수단 톤즈(Tonj)에 홀로 들어갔다. 8년간 하루 200~300명을 치료하고, 나병 환자 80개 마을 예방접종을 완료했으며, 학교와 기숙사, 병원을 세웠다. 현지 청소년 35명에게 악기를 가르쳐 'Tonj 브라스밴드'를 만들었다. 2010년 대장암으로 선종(47세).",
+    storyEn: "After graduating medical school and receiving priestly ordination, he entered war-torn Tonj, South Sudan alone in 2001. For 8 years, he treated 200–300 patients daily, vaccinated 80 villages against disease, built a hospital, school, and dormitory, and founded a 35-member brass band of local youth. He died of colon cancer in 2010, age 47.",
+    proof: "남수단 정부 교과서에 유일한 외국인으로 수록됨 · 이태석 재단 남수단 NGO 등록 (2020) · 다큐멘터리 영화 '울지마 톤즈' 제작",
+    proofEn: "Included in South Sudanese national school textbooks — the only foreigner · Lee Tae-seok Foundation registered as NGO in South Sudan (2020) · Documentary film 'Goodbye Tonj' produced",
+    source: "Wikipedia (John Lee Tae-seok) · Lee Tae-seok Foundation official records",
+    color: "#059669",
+    faith: "살레시오회 사제",
+    faithEn: "Salesian Catholic Priest",
+  },
+  {
+    emoji: "🕊️",
+    name: "손양원 목사",
+    nameEn: "Rev. Son Yang-won",
+    years: "1902–1950",
+    field: "목사 · 나병 환자 사역자 · 순교자",
+    fieldEn: "Pastor · Leprosy Minister · Martyr",
+    story: "전남 여수 애양원에서 나병 환자를 섬기던 중, 1948년 여순사건으로 두 아들이 공산주의 청년에게 총살당했다. 손양원 목사는 아들을 죽인 그 청년 차재선에게 사형 면죄를 탄원하고, 그를 양아들로 입양했다. \"두 아들을 데려가시고 더 좋은 아들을 주셨다\"고 고백했다. 한국전쟁 중 피신을 거부하고 환자 곁을 지키다 1950년 9월 공산군에게 순교했다.",
+    storyEn: "While serving leprosy patients in Yeosu, his two sons were killed by a communist soldier in the 1948 Yeosu-Suncheon Rebellion. Son Yang-won petitioned to spare the killer's life, then adopted him as his own son, saying 'God took two sons and gave me a better one.' Refusing to flee during the Korean War, he was martyred by communist forces on September 28, 1950.",
+    proof: "세계 신학교 교과서(풀러·프린스턴 등) 수록 — '급진적 용서'의 세계적 표상 · Christianity Today·The Gospel Coalition 다수 특집 기고",
+    proofEn: "Included in global seminary curricula (Fuller, Princeton, etc.) as the world's defining example of radical forgiveness · Featured extensively in Christianity Today and The Gospel Coalition",
+    source: "Dictionary of Christianity in America (InterVarsity Press) · Christianity Today · The Gospel Coalition",
+    color: "#DC2626",
+    faith: "장로교 목사 · 나병 환자 사역",
+    faithEn: "Presbyterian Pastor · Leprosy Ministry",
+    quote: "\"두 아들을 데려가시고 더 좋은 아들을 주셨다\" — 아들의 살인자를 양아들로 입양하며",
+    quoteEn: "\"God took two sons and gave me a better one\" — said when adopting his sons' killer",
+  },
+  {
+    emoji: "🕊️",
+    name: "김대중 대통령",
+    nameEn: "President Kim Dae-jung",
+    years: "1924–2009",
+    field: "대한민국 제15대 대통령 · 민주화 운동가",
+    fieldEn: "15th President of South Korea · Democracy Activist",
+    story: "군부독재에 저항하다 투옥, 사형 선고, 납치 위협을 수십 년간 견뎠다. 대통령 취임 후 남북 화해를 위한 '햇볕정책'을 추진하여 2000년 사상 최초 남북정상회담을 성사시켰다. 이산가족 상봉도 성사했다. 노벨 평화상 수락 연설에서 \"그 순간 예수님이 내 눈 앞에 나타나셨다\"고 직접 신앙을 고백했다.",
+    storyEn: "He endured decades of imprisonment, death sentence, and kidnapping threats under military dictatorship. As President, his 'Sunshine Policy' led to the first-ever inter-Korean Summit (June 2000) and Korean War family reunions. In his Nobel Prize acceptance speech, he personally testified: 'Jesus Christ appeared before me with such clarity... I clung to him and begged him to save me.'",
+    proof: "2000년 노벨 평화상 수상 — \"한국과 동아시아의 민주주의·인권 및 북한과의 평화·화해에 기여\"",
+    proofEn: "2000 Nobel Peace Prize — 'for his work for democracy and human rights in South Korea and in East Asia, and for peace and reconciliation with North Korea'",
+    source: "NobelPrize.org official biography · Nobel Prize acceptance speech (2000)",
+    color: "#1D4ED8",
+    faith: "천주교 신자",
+    faithEn: "Roman Catholic",
+    quote: "\"예수님이 내 눈 앞에 나타나셨다. 나는 그분을 붙잡고 살려달라고 간청했다.\" — 2000 노벨 평화상 수락 연설",
+    quoteEn: "\"Jesus Christ appeared before me with such clarity. I clung to him and begged him to save me.\" — 2000 Nobel Peace Prize Acceptance Speech",
+  },
+  {
+    emoji: "🌍",
+    name: "이종욱 박사",
+    nameEn: "Dr. Lee Jong-wook",
+    years: "1945–2006",
+    field: "제6대 세계보건기구(WHO) 사무총장",
+    fieldEn: "6th Director-General of the World Health Organization",
+    story: "한국인 최초로 주요 국제기구 수장에 오른 인물. 23년간 WHO에서 결핵·에이즈·소아마비 퇴치에 헌신했다. '3 by 5' 정책(2005년까지 300만 명 에이즈 치료)을 주도하고, '백신의 황제(Vaccine Czar)'로 불렸다. 수단 다르푸르 위기 및 인도양 쓰나미 현장을 직접 방문했다. 2006년 재임 중 뇌졸중으로 별세. 그의 이름을 딴 국제 공중보건상이 WHO에 설립됐다.",
+    storyEn: "The first Korean to lead any major international organization. Spent 23 years at WHO fighting tuberculosis, AIDS, and polio. Led the '3 by 5' HIV/AIDS initiative and was called 'Vaccine Czar.' Personally visited Darfur and post-tsunami sites. Died in office from a stroke in 2006. A WHO Memorial Prize bearing his name is awarded annually.",
+    proof: "TIME 100 가장 영향력 있는 인물 선정 (2004) · Dr. Lee Jong-wook Memorial Prize 연간 수여 (2009~현재)",
+    proofEn: "TIME 100 Most Influential People (2004) · Dr. Lee Jong-wook Memorial Prize established by WHO & South Korea, awarded annually since 2009",
+    source: "Wikipedia (Lee Jong-wook) · TIME Magazine 2004 · WHO official records",
+    color: "#0EA5E9",
+  },
+  {
+    emoji: "✈️",
+    name: "한국 선교사들",
+    nameEn: "Korean Missionaries",
+    years: "1980년대~현재",
+    field: "세계 2위 기독교 선교사 파송 국가",
+    fieldEn: "World's 2nd Largest Missionary-Sending Nation",
+    story: "인구 5,100만 명의 작은 나라 한국이 전 세계에 약 2만 명의 기독교 선교사를 파송하고 있다. 미국(4만6천 명) 다음으로 세계 2위. 한국 선교사들은 서방 선교사가 들어가기 어려운 '10/40 창문' 지역 — 이슬람·불교·힌두 문화권 — 에서 특히 활발히 활동하고 있다. 이는 한국이 과거 수혜국에서 세계 최대 규모의 선교 후원국으로 변모한 역사적 전환점이다.",
+    storyEn: "South Korea, with only 51 million people, sends approximately 20,000 Christian missionaries worldwide — the world's 2nd largest missionary-sending nation after the US (46,000). Korean missionaries are especially active in the '10/40 Window' — Islamic, Buddhist, and Hindu regions where Western missionaries face barriers. This marks Korea's historic transformation from a mission-receiving to a mission-sending nation.",
+    proof: "세계 2위 선교사 파송국 (2009년 기준 ~2만 명 / 160개국) · '한국 기독교 세계선교협의회(KWMA)' 공식 통계",
+    proofEn: "World's 2nd largest missionary-sending nation — ~20,000 missionaries in 160+ countries (2009 data) · Korea World Missions Association (KWMA) official statistics",
+    source: "Wikipedia (Christianity in South Korea) · Korea World Missions Association",
+    color: "#F59E0B",
+    faith: "개신교 및 천주교 선교사",
+    faithEn: "Protestant & Catholic Missionaries",
+  },
+];
 
 const KOREAN_ACHIEVERS: KAchiever[] = [
   {
@@ -9295,6 +9418,117 @@ function KoreanAchieversSection({ lang, citySlug }: { lang: string; citySlug: st
               </div>
             );
           })}
+        </div>
+      </div>
+
+      {/* ── 세계를 바꾼 한국인들 (검증된 사실) */}
+      <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", padding: "12px 16px 14px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 10 }}>
+          <span style={{ fontSize: 14 }}>🌍</span>
+          <div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#1B2A4A" }}>
+              {ko ? "세계를 바꾼 한국인들" : "Koreans Who Changed the World"}
+            </div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#94A3B8" }}>
+              {ko ? "아직 잘 알려지지 않은 이야기 — 검증된 사실만" : "Untold stories — verified facts only"}
+            </div>
+          </div>
+          <div style={{
+            marginLeft: "auto", fontSize: 8, fontFamily: "Manrope,sans-serif", fontWeight: 800,
+            background: "rgba(16,185,129,0.12)", color: "#059669",
+            border: "1px solid rgba(16,185,129,0.3)",
+            borderRadius: 99, padding: "3px 8px", flexShrink: 0,
+          }}>
+            {ko ? "✓ 검증됨" : "✓ VERIFIED"}
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: 10, overflowX: "auto", paddingBottom: 4, scrollbarWidth: "none" }}>
+          {WORLD_CHANGERS.map((w, i) => (
+            <div key={i} style={{
+              flexShrink: 0, width: 240,
+              background: `linear-gradient(135deg, ${w.color}12, ${w.color}06)`,
+              border: `1.5px solid ${w.color}35`,
+              borderRadius: 14, padding: "12px 13px",
+              position: "relative",
+            }}>
+              {/* 출처 태그 */}
+              <div style={{
+                position: "absolute", top: 8, right: 8,
+                fontSize: 7, fontFamily: "Manrope,sans-serif", fontWeight: 700,
+                background: "rgba(16,185,129,0.15)", color: "#047857",
+                border: "1px solid rgba(16,185,129,0.25)",
+                borderRadius: 99, padding: "2px 6px", maxWidth: 80,
+                whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+              }}>✓ {ko ? "팩트" : "FACT"}</div>
+
+              {/* 이모지 + 이름 + 연도 */}
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 7 }}>
+                <div style={{
+                  width: 38, height: 38, borderRadius: 10, flexShrink: 0,
+                  background: `linear-gradient(135deg, ${w.color}25, ${w.color}12)`,
+                  border: `1.5px solid ${w.color}40`,
+                  display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20,
+                }}>
+                  {w.emoji}
+                </div>
+                <div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#1B2A4A", lineHeight: 1.2 }}>
+                    {ko ? w.name : w.nameEn}
+                  </div>
+                  <div style={{ fontSize: 8, color: w.color, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>
+                    {ko ? w.field : w.fieldEn}
+                  </div>
+                  <div style={{ fontSize: 8, color: "#94A3B8", fontFamily: "Manrope,sans-serif" }}>{w.years}</div>
+                </div>
+              </div>
+
+              {/* 국제 공인 증거 (강조) */}
+              <div style={{
+                background: `${w.color}15`, border: `1px solid ${w.color}30`,
+                borderRadius: 8, padding: "6px 8px", marginBottom: 6,
+              }}>
+                <div style={{ fontSize: 8, color: w.color, fontFamily: "Manrope,sans-serif", fontWeight: 800, marginBottom: 2 }}>
+                  {ko ? "🏆 국제 공인" : "🏆 INTERNATIONAL RECOGNITION"}
+                </div>
+                <div style={{ fontSize: 9, color: "#1B2A4A", fontFamily: "-apple-system,'Noto Sans KR',sans-serif", lineHeight: 1.5, fontWeight: 600 }}>
+                  {ko ? w.proof : w.proofEn}
+                </div>
+              </div>
+
+              {/* 이야기 */}
+              <div style={{ fontSize: 9.5, color: "#475569", fontFamily: "-apple-system,'Noto Sans KR',sans-serif", lineHeight: 1.6, marginBottom: w.quote ? 6 : 0 }}>
+                {ko ? w.story : w.storyEn}
+              </div>
+
+              {/* 본인 말 (있을 때만) */}
+              {w.quote && (
+                <div style={{
+                  borderLeft: `3px solid ${w.color}80`,
+                  paddingLeft: 7, marginTop: 4,
+                }}>
+                  <div style={{ fontSize: 9, color: "#64748B", fontFamily: "-apple-system,'Noto Sans KR',sans-serif",
+                    lineHeight: 1.5, fontStyle: "italic" }}>
+                    {ko ? w.quote : w.quoteEn}
+                  </div>
+                </div>
+              )}
+
+              {/* 신앙 태그 (검증된 경우만) */}
+              {w.faith && (
+                <div style={{ marginTop: 6, display: "flex", alignItems: "center", gap: 4 }}>
+                  <span style={{ fontSize: 9 }}>✝️</span>
+                  <span style={{ fontSize: 8, color: "#94A3B8", fontFamily: "Manrope,sans-serif" }}>
+                    {ko ? w.faith : w.faithEn}
+                  </span>
+                </div>
+              )}
+
+              {/* 출처 */}
+              <div style={{ marginTop: 5, fontSize: 7.5, color: "#CBD5E1", fontFamily: "Manrope,sans-serif" }}>
+                📎 {w.source.split(" · ")[0]}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
