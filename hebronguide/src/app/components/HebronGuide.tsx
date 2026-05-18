@@ -9026,6 +9026,15 @@ const DAILY_QUOTES = [
   { ko: "어떤 친절한 행동도 낭비되지 않는다.", en: "\"No act of kindness, no matter how small, is ever wasted.\"", source: "이솝", sourceEn: "Aesop", type: "service" },
   { ko: "세상을 바꾸는 가장 강력한 방법은 당신 앞에 있는 단 한 사람을 진심으로 섬기는 것이다.", en: "\"The most powerful way to change the world is to wholeheartedly serve the one person in front of you.\"", source: "프레드 로저스 (장로교 목사)", sourceEn: "Fred Rogers (Presbyterian minister)", type: "service" },
   { ko: "사랑은 행동이지, 감정이 아니다. 사랑한다는 것은 선택이다.", en: "\"Love is not an emotion. It is a decision.\"", source: "C.S. 루이스 (《순전한 기독교》)", sourceEn: "C.S. Lewis (Mere Christianity)", type: "service" },
+
+  // ── G2G — 세대에서 세대로 (Generation to Generation)
+  // 직접 말하지 않고, 씨앗처럼 심는다
+  { ko: "우리는 이것을 자녀들에게 숨기지 않고, 다음 세대에게 주님의 영광스러운 업적과 그분이 행하신 놀라운 일들을 알리겠습니다.", en: "\"We will tell the next generation the praiseworthy deeds of the Lord, his power, and the wonders he has done.\"", source: "시편 78:4 (새번역)", sourceEn: "Psalm 78:4", type: "scripture" },
+  { ko: "오늘 내가 명령하는 이 말씀을 마음에 새기고, 이 말씀을 자녀에게 부지런히 가르치십시오.", en: "\"These commandments that I give you today are to be on your hearts. Impress them on your children.\"", source: "신명기 6:6-7 (새번역)", sourceEn: "Deuteronomy 6:6-7", type: "scripture" },
+  { ko: "어릴 때부터 마땅히 가야 할 길을 아이에게 가르쳐라. 그러면 아이는 늙어서도 그 길을 떠나지 않는다.", en: "\"Start children off on the way they should go, and even when they are old they will not turn from it.\"", source: "잠언 22:6 (새번역)", sourceEn: "Proverbs 22:6", type: "scripture" },
+  { ko: "주님의 말씀은 네 입에서도, 네 자손의 입에서도, 네 자손의 자손의 입에서도 이제로부터 영원히 떠나지 않을 것이다.", en: "\"My words in your mouth will not depart from your mouth, or from the mouths of your children, or from the mouths of their descendants — from this time on and forever.\"", source: "이사야 59:21 (새번역)", sourceEn: "Isaiah 59:21", type: "scripture" },
+  { ko: "지금 당신이 걷는 이 길이 자녀들의 지도가 됩니다. 오늘의 선택이 다음 세대의 토대입니다.", en: "\"The path you walk today becomes the map for your children. Today's choices build tomorrow's foundation.\"", source: "G2G — 세대에서 세대로", sourceEn: "G2G — Generation to Generation", type: "service" },
+  { ko: "부모가 내 집 밥상에서 나눈 이야기가 자녀의 가슴에 평생 남습니다.", en: "\"The stories told at your family table become the stories carried in your children's hearts forever.\"", source: "G2G — 세대에서 세대로", sourceEn: "G2G — Generation to Generation", type: "service" },
 ];
 
 function DailyQuoteSection({ lang }: { lang: string }) {
@@ -9122,6 +9131,11 @@ function CommunityPulseSection({ lang }: { lang: string }) {
     { emoji: "🌐", ko: `67개 도시 — 오늘도 누군가 새로 이주하고 있어요`, en: `67 cities — someone is moving today, too`, time: ko ? "5시간 전" : "5h ago" },
     { emoji: "💛", ko: `이 가이드가 도움이 됐나요? 주변에 공유해주세요`, en: `Did this help? Share with someone who needs it`, time: ko ? "5시간 전" : "5h ago" },
     { emoji: "🙏", ko: `낯선 땅에서 외롭지 않게 — 헤브론이 함께합니다`, en: `You're not alone in a new land — Hebron is here`, time: ko ? "6시간 전" : "6h ago" },
+    // ── G2G — 세대에서 세대로 (은근히, 자연스럽게)
+    { emoji: "🌱", ko: `지금 당신이 걷는 이 길이 자녀들의 지도가 됩니다`, en: `The path you walk today becomes the map for your children`, time: ko ? "오늘" : "today" },
+    { emoji: "🌳", ko: `${cityKo}에 뿌린 뿌리가 다음 세대의 이야기가 됩니다`, en: `The roots you plant in ${cityEn} become the next generation's story`, time: ko ? "오늘" : "today" },
+    { emoji: "💫", ko: `1세의 정착이 2세의 정체성이 됩니다 — 세대에서 세대로`, en: `First generation's settlement becomes second generation's identity`, time: ko ? "오늘" : "today" },
+    { emoji: "👨‍👩‍👧‍👦", ko: `부모가 선택한 이 도시가 자녀의 고향이 됩니다`, en: `The city you chose for your family becomes your children's home`, time: ko ? "오늘" : "today" },
   ], [cityKo, cityEn, ko]);
 
   const storedItems = useMemo(() => {
