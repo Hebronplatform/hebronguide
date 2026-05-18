@@ -591,7 +591,7 @@ const MINT = "#6EE7B7";
 /* ─────────────────────────────────────────
    CITY CONFIG — 도시별 설정
 ───────────────────────────────────────── */
-// 현재 62개 도시 (계속 성장 중)
+// 현재 67개 도시 (계속 성장 중)
 // 작은 도시일수록 HebronGuide가 더 필요합니다 — 외롭기 때문입니다
 type CitySlug =
   // 북미 (기존 17)
@@ -8283,7 +8283,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       icon: "🤝", color: "#F59E0B",
       nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
       tagKo: "친구 · 멘토 · 동행 파트너", tagEn: "Friends · Mentors · Partners",
-      userKo: "62개 도시 한인을 만납니다", userEn: "Meet Koreans across 62 cities",
+      userKo: "67개 도시 한인을 만납니다", userEn: "Meet Koreans across 62 cities",
       providerKo: "멘토로 섬기실 분 → 함께해요", providerEn: "Mentor & serve → join us",
       tab: 5, subTab: 2,
     },
@@ -10757,7 +10757,7 @@ function waGwaJosa(s: string): string {
 }
 // ────────────────────────────────────────────────────────────
 
-// 도시 → 현지 한인 정체성 매핑 (62개 도시 전부 커버)
+// 도시 → 현지 한인 정체성 매핑 (67개 도시 전부 커버)
 const DIASPORA_IDENTITY: Record<string, {
   flag: string; ko: string; en: string; descKo: string; descEn: string; color: string;
 }> = {
@@ -10999,7 +10999,7 @@ function AmericasAdSection({ lang }: { lang: string }) {
 
 /* ─────────────────────────────────────────
    HOME: 플라이휠 소셜 프루프 바 (쿠팡 원리 ①)
-   — "312개 교회 · 62개 도시" 숫자가 신뢰를 만든다
+   — "312개 교회 · 67개 도시" 숫자가 신뢰를 만든다
 ───────────────────────────────────────── */
 function HebronFlywheelBar({ lang }: { lang: string }) {
   const stats = [
@@ -13474,7 +13474,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 const ko = lang === "ko";
                 const shareTitle = ko ? "HebronGuide 교회 등재 — 선물 드립니다" : "A Gift: Free Church Listing on HebronGuide";
                 const shareBody = ko
-                  ? "목사님, 안녕하세요.\n\n전 세계 62개 도시 한인 이민자 정착 앱 HebronGuide가\n교회 등재를 선물로 드립니다.\n\n영혼구원에 갈급한 교회라면 받아 주세요.\n2026년 10월 1일까지 무상 등재.\n\n주변에 영혼구원에 진심인 교회가 있다면\n이 초청을 함께 전달해 주세요.\n\nhebronguide.com\nhebronplatform@gmail.com\n\n마 25:35 \"내가 나그네 되었을 때 너희가 영접하였다\""
+                  ? "목사님, 안녕하세요.\n\n전 세계 67개 도시 한인 이민자 정착 앱 HebronGuide가\n교회 등재를 선물로 드립니다.\n\n영혼구원에 갈급한 교회라면 받아 주세요.\n2026년 10월 1일까지 무상 등재.\n\n주변에 영혼구원에 진심인 교회가 있다면\n이 초청을 함께 전달해 주세요.\n\nhebronguide.com\nhebronplatform@gmail.com\n\n마 25:35 \"내가 나그네 되었을 때 너희가 영접하였다\""
                   : "Hello Pastor,\n\nHebronGuide — the Korean immigrant settlement app in 62 cities worldwide — offers your church a free listing as a gift.\n\nIf your church has a heart for souls, please accept.\nFree listing until October 1, 2026.\n\nPlease also pass this to 3+ churches you know have a genuine heart for souls.\n\nhebronguide.com\nhebronplatform@gmail.com\n\nMatt 25:35 — \"I was a stranger and you welcomed me.\"";
                 const shareUrl = "https://hebronguide.com";
                 const encodedMsg = encodeURIComponent(shareBody + "\n\n" + shareUrl);
@@ -18185,7 +18185,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             icon="🤝" color="#8B5CF6" lang={lang}
             titleKo="헤브론 커넥트 — 친구·멘토·동행 파트너 매칭"
             titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
-            descKo="교인 검증 프로필로 62개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
+            descKo="교인 검증 프로필로 67개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
             descEn="Meet Koreans across 62 cities. Friends, mentors, prayer partners & business connections."
           />
           {/* 211 팁 박스 */}
@@ -22811,7 +22811,7 @@ function AppBar({ onHome }: { onHome?: () => void }) {
           {/* 헤더 */}
           <div style={{ padding: "14px 18px 10px", flexShrink: 0 }}>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#1a2535", marginBottom: 2 }}>
-              🌍 {lang === "ko" ? "62개 도시" : "62 Cities"}
+              🌍 {lang === "ko" ? "67개 도시" : "67 Cities"}
             </div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8" }}>
               {lang === "ko" ? "이사·출장·방문 도시를 선택하세요" : "Select your destination city"}
