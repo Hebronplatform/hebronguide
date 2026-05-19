@@ -155,6 +155,12 @@
   .footer-links a:hover{color:var(--gold);}
   .footer-copy{font-size:.7rem;color:var(--muted2);}
   .footer-soul{font-size:.82rem;color:rgba(201,162,39,.55);font-style:italic;margin-top:10px;line-height:1.8;}
+
+  /* ── 한/영 전환 ── */
+  html[lang="ko"] .en{display:none!important;}
+  html[lang="en"] .ko{display:none!important;}
+  .lang-btn{background:transparent;border:1px solid var(--border2);color:var(--muted);font-size:.75rem;font-weight:700;border-radius:20px;padding:5px 14px;cursor:pointer;transition:all .2s;font-family:'Noto Sans KR',sans-serif;letter-spacing:.04em;white-space:nowrap;}
+  .lang-btn:hover{border-color:var(--gold);color:var(--gold);}
   </style>
 </head>
 <body>
@@ -167,50 +173,49 @@
     <img src="/hebronguide-logo.svg" alt="HebronGuide" style="height:34px;width:auto;" onerror="this.style.display='none'">
   </a>
   <div class="nav-links">
-    <a href="#values">핵심가치</a>
-    <a href="#mission">사명</a>
-    <a href="#vision">비전</a>
-    <a href="#cities">67개 도시</a>
-    <a href="/church-guide.html">파트너 교회</a>
-    <a href="/seattle/" class="nav-cta">지금 시작하기 →</a>
+    <a href="#values"><span class="ko">핵심가치</span><span class="en">Values</span></a>
+    <a href="#mission"><span class="ko">사명</span><span class="en">Mission</span></a>
+    <a href="#vision"><span class="ko">비전</span><span class="en">Vision</span></a>
+    <a href="#cities"><span class="ko">67개 도시</span><span class="en">67+ Cities</span></a>
+    <a href="/church-guide.html"><span class="ko">파트너 교회</span><span class="en">Partner Church</span></a>
+    <button class="lang-btn" onclick="toggleLang()" id="lang-btn">EN</button>
+    <a href="/seattle/" class="nav-cta"><span class="ko">지금 시작하기 →</span><span class="en">Get Started →</span></a>
   </div>
 </nav>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO ━━━ -->
 <div class="hero">
-  <div class="hero-eyebrow">✦ 글로벌 환대 커뮤니티</div>
+  <div class="hero-eyebrow">✦ <span class="ko">글로벌 환대 커뮤니티</span><span class="en">Global Hospitality Community</span></div>
 
   <h1 class="hero-headline">
-    이 세상 어느 누구도<br>
-    <span class="accent">혼자가 아닙니다.</span>
+    <span class="ko">이 세상 어느 누구도<br><span class="accent">혼자가 아닙니다.</span></span>
+    <span class="en">No one in this world<br><span class="accent">should be alone.</span></span>
   </h1>
 
   <p class="hero-sub-big">
-    낯선 도시에서, 낯선 언어 속에서<br>
-    소외되고 외롭고 고독함을 느끼지 않아야 합니다.<br>
-    <strong style="color:#fff;font-weight:700;">어떤 도시에서도. 어느 누구도.</strong>
+    <span class="ko">낯선 도시에서, 낯선 언어 속에서<br>소외되고 외롭고 고독함을 느끼지 않아야 합니다.<br><strong style="color:#fff;font-weight:700;">어떤 도시에서도. 어느 누구도.</strong></span>
+    <span class="en">In a foreign city, in an unfamiliar language —<br>no one should feel isolated, lonely, or forgotten.<br><strong style="color:#fff;font-weight:700;">In any city. For anyone.</strong></span>
   </p>
 
   <div class="hero-declaration">
     <p>
-      "공항 문을 나서듯, 낯선 도시와 세상 속으로<br>
-      첫발을 내딛는 그 순간부터<br>
-      누군가가 기다리고 있어야 합니다.<br>
-      그 누군가가 되는 것 — 이것이 헤브론입니다."
+      <span class="ko">"공항 문을 나서듯, 낯선 도시와 세상 속으로<br>첫발을 내딛는 그 순간부터<br>누군가가 기다리고 있어야 합니다.<br>그 누군가가 되는 것 — 이것이 헤브론입니다."</span>
+      <span class="en">"Like stepping through an airport gate into an unfamiliar world —<br>from that very first moment,<br>someone should be waiting.<br>Being that someone — this is Hebron."</span>
     </p>
-    <span class="speaker">— HebronGuide 창립 정신</span>
+    <span class="speaker ko">— HebronGuide 창립 정신</span>
+    <span class="speaker en">— HebronGuide Founding Spirit</span>
   </div>
 
   <div class="hero-cta">
-    <a href="/seattle/" class="btn-hero">지금 시작하기 →</a>
-    <a href="#mission" class="btn-outline">이 운동에 함께하기</a>
+    <a href="/seattle/" class="btn-hero"><span class="ko">지금 시작하기 →</span><span class="en">Get Started →</span></a>
+    <a href="#mission" class="btn-outline"><span class="ko">이 운동에 함께하기</span><span class="en">Join This Movement</span></a>
   </div>
 
   <div class="hero-stats">
-    <div class="stat"><div class="stat-n">67<sup style="font-size:.9rem;">+</sup></div><div class="stat-l">서비스 도시</div></div>
-    <div class="stat"><div class="stat-n">730<sub style="font-size:.8rem;">만</sub></div><div class="stat-l">재외 한인</div></div>
-    <div class="stat"><div class="stat-n">500</div><div class="stat-l">2030 목표 도시</div></div>
-    <div class="stat"><div class="stat-n">∞</div><div class="stat-l">환대의 마음</div></div>
+    <div class="stat"><div class="stat-n">67<sup style="font-size:.9rem;">+</sup></div><div class="stat-l"><span class="ko">서비스 도시</span><span class="en">Cities</span></div></div>
+    <div class="stat"><div class="stat-n">730<sub style="font-size:.8rem;"><span class="ko">만</span><span class="en">K</span></sub></div><div class="stat-l"><span class="ko">재외 한인</span><span class="en">Korean Diaspora</span></div></div>
+    <div class="stat"><div class="stat-n">500</div><div class="stat-l"><span class="ko">2030 목표 도시</span><span class="en">2030 City Goal</span></div></div>
+    <div class="stat"><div class="stat-n">∞</div><div class="stat-l"><span class="ko">환대의 마음</span><span class="en">Heart of Welcome</span></div></div>
   </div>
 </div>
 
@@ -220,13 +225,12 @@
 <div class="core-truth">
   <div class="core-truth-inner">
     <h2>
-      환대는 선택이 아닙니다.<br>
-      <em>부르심입니다.</em>
+      <span class="ko">환대는 선택이 아닙니다.<br><em>부르심입니다.</em></span>
+      <span class="en">Hospitality is not optional.<br><em>It is a calling.</em></span>
     </h2>
     <p class="core-truth-desc">
-      비행기에서 내린 그 순간, 아는 사람 하나 없는 낯선 도시에서<br>
-      따뜻한 손길 하나가 한 사람의 인생을 바꿉니다.<br>
-      그 손길이 되기 위해 HebronGuide가 존재합니다.
+      <span class="ko">비행기에서 내린 그 순간, 아는 사람 하나 없는 낯선 도시에서<br>따뜻한 손길 하나가 한 사람의 인생을 바꿉니다.<br>그 손길이 되기 위해 HebronGuide가 존재합니다.</span>
+      <span class="en">The moment you step off the plane into an unfamiliar city where you know no one —<br>one warm, extended hand can change a person's life.<br>HebronGuide exists to be that hand.</span>
     </p>
     <div class="verses">
       <div class="verse">
@@ -250,33 +254,33 @@
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ VALUES ━━━ -->
 <div class="values-section" id="values">
   <div class="sec-label">핵심가치 · Core Values</div>
-  <h2 class="sec-title">우리가 믿는 것들</h2>
-  <p class="sec-desc">HebronGuide의 모든 결정은 이 네 가지 믿음 위에 세워집니다.</p>
+  <h2 class="sec-title"><span class="ko">우리가 믿는 것들</span><span class="en">What We Believe</span></h2>
+  <p class="sec-desc"><span class="ko">HebronGuide의 모든 결정은 이 네 가지 믿음 위에 세워집니다.</span><span class="en">Every decision at HebronGuide is built on these four beliefs.</span></p>
 
   <div class="values-grid">
     <div class="val-card">
       <div class="val-icon">🕊️</div>
-      <div class="val-title">모든 사람은 환대받을 자격이 있습니다</div>
-      <div class="val-body">국적·언어·배경과 무관하게, 이 세상에 소외되어야 할 사람은 없습니다. 낯선 도시의 첫날이 두렵지 않도록 — 그것이 우리의 출발점입니다.</div>
-      <div class="val-quote">"이 세상 어느 누구도 외롭고 고독함을 느끼지 않아야 해."</div>
+      <div class="val-title"><span class="ko">모든 사람은 환대받을 자격이 있습니다</span><span class="en">Everyone Deserves to Be Welcomed</span></div>
+      <div class="val-body"><span class="ko">국적·언어·배경과 무관하게, 이 세상에 소외되어야 할 사람은 없습니다. 낯선 도시의 첫날이 두렵지 않도록 — 그것이 우리의 출발점입니다.</span><span class="en">Regardless of nationality, language, or background — no one should be left out. So that the first day in a new city holds no fear — that is where we begin.</span></div>
+      <div class="val-quote"><span class="ko">"이 세상 어느 누구도 외롭고 고독함을 느끼지 않아야 해."</span><span class="en">"No one in this world should ever feel lonely or forgotten."</span></div>
     </div>
     <div class="val-card">
       <div class="val-icon">🔥</div>
-      <div class="val-title">삶이 먼저, 정보가 그 다음</div>
-      <div class="val-body">정착 정보는 수단입니다. 진짜 목적은 사람과 사람을 잇는 것입니다. 병원 정보 하나, 식당 정보 하나가 관계의 시작이 됩니다.</div>
-      <div class="val-quote">"성도의 일터가, 성도의 식탁이, 이미 누군가의 첫 번째 교회입니다."</div>
+      <div class="val-title"><span class="ko">삶이 먼저, 정보가 그 다음</span><span class="en">Life First, Information Follows</span></div>
+      <div class="val-body"><span class="ko">정착 정보는 수단입니다. 진짜 목적은 사람과 사람을 잇는 것입니다. 병원 정보 하나, 식당 정보 하나가 관계의 시작이 됩니다.</span><span class="en">Settlement information is a means, not an end. The real purpose is connecting people to people. A hospital listing, a restaurant recommendation — these become the start of a relationship.</span></div>
+      <div class="val-quote"><span class="ko">"성도의 일터가, 성도의 식탁이, 이미 누군가의 첫 번째 교회입니다."</span><span class="en">"A believer's workplace, a believer's table — already someone's first church."</span></div>
     </div>
     <div class="val-card">
       <div class="val-icon">🌱</div>
-      <div class="val-title">섬김이 리더십입니다</div>
-      <div class="val-body">"인자가 온 것은 섬기려 하고" — 크고자 하는 자는 섬기는 자가 되어야 합니다. HebronGuide는 권력이 아닌 섬김, 소유가 아닌 나눔으로 운영됩니다.</div>
-      <div class="val-quote">— 마가복음 10:43-45</div>
+      <div class="val-title"><span class="ko">섬김이 리더십입니다</span><span class="en">Serving Is Leading</span></div>
+      <div class="val-body"><span class="ko">"인자가 온 것은 섬기려 하고" — 크고자 하는 자는 섬기는 자가 되어야 합니다. HebronGuide는 권력이 아닌 섬김, 소유가 아닌 나눔으로 운영됩니다.</span><span class="en">"The Son of Man came to serve" — whoever wants to be great must be a servant. HebronGuide runs not on power but on service, not on ownership but on sharing.</span></div>
+      <div class="val-quote">— <span class="ko">마가복음 10:43-45</span><span class="en">Mark 10:43-45</span></div>
     </div>
     <div class="val-card">
       <div class="val-icon">🌍</div>
-      <div class="val-title">한인에서 모든 민족으로</div>
-      <div class="val-body">한인 디아스포라로 시작했지만, 하나님의 나라는 모든 민족을 향합니다. 중국계, 베트남계, 아랍계 — 환대에는 국경이 없습니다.</div>
-      <div class="val-quote">"각 민족 단위로 만들어 주면 되잖아." — 창립자</div>
+      <div class="val-title"><span class="ko">한인에서 모든 민족으로</span><span class="en">From Korean to All Nations</span></div>
+      <div class="val-body"><span class="ko">한인 디아스포라로 시작했지만, 하나님의 나라는 모든 민족을 향합니다. 중국계, 베트남계, 아랍계 — 환대에는 국경이 없습니다.</span><span class="en">We began with the Korean diaspora, but God's kingdom is for every nation. Chinese, Vietnamese, Arabic — hospitality knows no borders.</span></div>
+      <div class="val-quote"><span class="ko">"각 민족 단위로 만들어 주면 되잖아." — 창립자</span><span class="en">"Build one for each people group." — Founder</span></div>
     </div>
   </div>
 </div>
@@ -287,37 +291,44 @@
 <div class="mission-section" id="mission">
   <div class="mission-inner">
     <div class="sec-label">사명 · Mission</div>
-    <h2 class="sec-title">환대가 <span>세상을 바꿉니다</span></h2>
-    <p class="sec-desc">한 사람의 따뜻한 행동이 어떻게 세상을 바꾸는지, 우리는 믿습니다.</p>
+    <h2 class="sec-title"><span class="ko">환대가 <span>세상을 바꿉니다</span></span><span class="en">Hospitality <span>Changes the World</span></span></h2>
+    <p class="sec-desc"><span class="ko">한 사람의 따뜻한 행동이 어떻게 세상을 바꾸는지, 우리는 믿습니다.</span><span class="en">We believe one warm act from one person can change the world.</span></p>
 
     <div class="mission-flow">
-      <div class="flow-step">낯선 도시 도착</div>
+      <div class="flow-step"><span class="ko">낯선 도시 도착</span><span class="en">Arrive in a new city</span></div>
       <div class="flow-arr">→</div>
-      <div class="flow-step highlight">HebronGuide 발견</div>
+      <div class="flow-step highlight">HebronGuide</div>
       <div class="flow-arr">→</div>
-      <div class="flow-step">성도의 가게에서 환대</div>
+      <div class="flow-step"><span class="ko">성도의 가게에서 환대</span><span class="en">Welcomed at a believer's shop</span></div>
       <div class="flow-arr">→</div>
-      <div class="flow-step">마음의 문이 열린다</div>
+      <div class="flow-step"><span class="ko">마음의 문이 열린다</span><span class="en">The heart opens</span></div>
       <div class="flow-arr">→</div>
-      <div class="flow-step highlight">밝은 세상이 열린다.</div>
+      <div class="flow-step highlight"><span class="ko">밝은 세상이 열린다.</span><span class="en">A brighter world unfolds.</span></div>
     </div>
 
     <div class="mission-declaration">
       <p>
-        목사님, 분주한 우리 성도님들이<br>
+        <span class="ko">목사님, 분주한 우리 성도님들이<br>
         <strong>세상 속에서 어떻게 선교사적 삶을 살 수 있을까요?</strong><br><br>
         성도의 일상, 성도의 일터, 성도의 환대로<br>
         먼저 닫힌 마음의 문들을 열어야 하지 않을까요?<br><br>
         그리스도인들의 신앙 생활 생태계 안에서<br>
         기쁜 소식 밖에 있는 외롭고 소외된 자들의 마음을 열 때<br>
-        교회 존재의 목적과 가치를 찾게 되지 않을까요?
+        교회 존재의 목적과 가치를 찾게 되지 않을까요?</span>
+        <span class="en">Pastor, our members are busy with daily life —<br>
+        <strong>How can they live as missionaries right where they are?</strong><br><br>
+        Through a believer's daily life, workplace, and hospitality —<br>
+        shouldn't we be opening the closed doors of hearts first?<br><br>
+        Within a Christian ecosystem of hospitality, faith, and daily life —<br>
+        when we open the hearts of the lonely and isolated outside the Good News,<br>
+        won't we find the purpose and value of the church's very existence?</span>
       </p>
-      <div class="stamp">HebronGuide가 함께합니다.</div>
+      <div class="stamp"><span class="ko">HebronGuide가 함께합니다.</span><span class="en">HebronGuide is with you.</span></div>
     </div>
 
     <div style="text-align:center;margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="/church-guide.html" class="btn-hero" style="font-size:.9rem;padding:13px 28px;">⛪ 파트너 교회 되기</a>
-      <a href="/ad-request.html" class="btn-outline" style="font-size:.88rem;">사업체 등재하기</a>
+      <a href="/church-guide.html" class="btn-hero" style="font-size:.9rem;padding:13px 28px;">⛪ <span class="ko">파트너 교회 되기</span><span class="en">Become a Partner Church</span></a>
+      <a href="/ad-request.html" class="btn-outline" style="font-size:.88rem;"><span class="ko">사업체 등재하기</span><span class="en">Register Your Business</span></a>
     </div>
   </div>
 </div>
@@ -327,50 +338,48 @@
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ VISION 2030 ━━━ -->
 <div class="vision-section" id="vision">
   <div class="sec-label">비전 · Vision 2030</div>
-  <h2 class="sec-title">67개 도시에서 <span>전 세계로</span></h2>
+  <h2 class="sec-title"><span class="ko">67개 도시에서 <span>전 세계로</span></span><span class="en">From 67 Cities <span>to the World</span></span></h2>
   <p class="sec-desc">
-    한인 디아스포라가 뿌리내린 곳에서<br>
-    모든 민족을 향한 환대의 문을 엽니다.
+    <span class="ko">한인 디아스포라가 뿌리내린 곳에서<br>모든 민족을 향한 환대의 문을 엽니다.</span>
+    <span class="en">From where the Korean diaspora has planted roots,<br>we open the door of welcome to every nation.</span>
   </p>
 
   <div class="roadmap">
     <div class="road-item current">
-      <div class="road-year">2026 현재</div>
+      <div class="road-year"><span class="ko">2026 현재</span><span class="en">2026 Now</span></div>
       <div class="road-num">67<span style="font-size:1rem;">+</span></div>
-      <div class="road-unit">도시</div>
-      <div class="road-desc">한인 디아스포라 중심 · 한국어·영어</div>
+      <div class="road-unit"><span class="ko">도시</span><span class="en">Cities</span></div>
+      <div class="road-desc"><span class="ko">한인 디아스포라 중심 · 한국어·영어</span><span class="en">Korean diaspora focus · KO·EN</span></div>
     </div>
     <div class="road-item">
       <div class="road-year">2027</div>
       <div class="road-num">200</div>
-      <div class="road-unit">도시 목표</div>
-      <div class="road-desc">아시아·유럽·남미 확장</div>
+      <div class="road-unit"><span class="ko">도시 목표</span><span class="en">City Goal</span></div>
+      <div class="road-desc"><span class="ko">아시아·유럽·남미 확장</span><span class="en">Asia · Europe · Latin America</span></div>
     </div>
     <div class="road-item">
       <div class="road-year">2028-29</div>
       <div class="road-num">300</div>
-      <div class="road-unit">도시 목표</div>
-      <div class="road-desc">중국계·베트남계·필리핀계 추가</div>
+      <div class="road-unit"><span class="ko">도시 목표</span><span class="en">City Goal</span></div>
+      <div class="road-desc"><span class="ko">중국계·베트남계·필리핀계 추가</span><span class="en">Chinese · Vietnamese · Filipino</span></div>
     </div>
     <div class="road-item">
       <div class="road-year">2030</div>
       <div class="road-num">500</div>
-      <div class="road-unit">도시 선포</div>
-      <div class="road-desc">모든 민족 · World Relief 파트너십</div>
+      <div class="road-unit"><span class="ko">도시 선포</span><span class="en">City Declaration</span></div>
+      <div class="road-desc"><span class="ko">모든 민족 · World Relief 파트너십</span><span class="en">All Nations · World Relief Partnership</span></div>
     </div>
   </div>
 
   <div class="vision-world">
     <p style="font-size:1rem;color:var(--muted);line-height:2.1;max-width:620px;margin:0 auto 24px;">
-      <strong style="color:#fff;">2030년, 세상 어느 도시에서도</strong><br>
-      한인이든, 중국계든, 베트남계든, 아랍계든<br>
-      HebronGuide를 켜면 — 그 도시에서 환대받을 수 있습니다.<br><br>
-      이것이 우리가 선포하는 <strong style="color:var(--gold);">글로벌 환대 커뮤니티</strong>의 완성입니다.
+      <span class="ko"><strong style="color:#fff;">2030년, 세상 어느 도시에서도</strong><br>한인이든, 중국계든, 베트남계든, 아랍계든<br>HebronGuide를 켜면 — 그 도시에서 환대받을 수 있습니다.<br><br>이것이 우리가 선포하는 <strong style="color:var(--gold);">글로벌 환대 커뮤니티</strong>의 완성입니다.</span>
+      <span class="en"><strong style="color:#fff;">By 2030, in any city in the world —</strong><br>whether Korean, Chinese, Vietnamese, or Arabic,<br>open HebronGuide and find welcome in that city.<br><br>This is the fulfillment of what we proclaim: the <strong style="color:var(--gold);">Global Hospitality Community</strong>.</span>
     </p>
     <div style="background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.2);border-radius:16px;padding:24px;max-width:540px;margin:0 auto;font-size:.88rem;color:rgba(236,253,245,.75);line-height:2;">
-      🤝 <strong style="color:var(--mint);">World Relief 파트너십 추진 중</strong><br>
-      22개국 880만 난민·이민자 지원 기관과 함께<br>
-      모든 민족을 위한 디지털 환대 플랫폼을 만들어갑니다.
+      🤝 <strong style="color:var(--mint);"><span class="ko">World Relief 파트너십 추진 중</span><span class="en">World Relief Partnership in Progress</span></strong><br>
+      <span class="ko">22개국 880만 난민·이민자 지원 기관과 함께<br>모든 민족을 위한 디지털 환대 플랫폼을 만들어갑니다.</span>
+      <span class="en">Together with an organization serving 8.8M refugees & immigrants in 22 countries,<br>building a digital hospitality platform for every nation.</span>
     </div>
   </div>
 </div>
@@ -379,11 +388,10 @@
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ JOIN ━━━ -->
 <div class="join-section">
-  <h2>당신의 <em>선한 영향력</em>이<br>세상을 바꿉니다</h2>
+  <h2><span class="ko">당신의 <em>선한 영향력</em>이<br>세상을 바꿉니다</span><span class="en">Your <em>Good Influence</em><br>Changes the World</span></h2>
   <p>
-    거창한 것이 아닙니다.<br>
-    전화번호 하나, 식당 한 곳, 초대 한 마디면 충분합니다.<br>
-    <strong style="color:#fff;">지금 이 운동에 함께해 주세요.</strong>
+    <span class="ko">거창한 것이 아닙니다.<br>전화번호 하나, 식당 한 곳, 초대 한 마디면 충분합니다.<br><strong style="color:#fff;">지금 이 운동에 함께해 주세요.</strong></span>
+    <span class="en">It doesn't take much.<br>One phone number, one restaurant, one invitation is enough.<br><strong style="color:#fff;">Join this movement today.</strong></span>
   </p>
 
   <div class="join-cards">
@@ -417,8 +425,8 @@
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CITIES ━━━ -->
 <div class="cities-section" id="cities">
   <div class="sec-label">서비스 도시 · Cities</div>
-  <h2 class="sec-title">전 세계 <span>67개+ 도시</span></h2>
-  <p class="sec-desc" style="margin-bottom:32px;">한인이 사는 모든 곳 — 이민·이주·관광·방문자 모두를 위한 가이드</p>
+  <h2 class="sec-title"><span class="ko">전 세계 <span>67개+ 도시</span></span><span class="en"><span>67+ Cities</span> Worldwide</span></h2>
+  <p class="sec-desc" style="margin-bottom:32px;"><span class="ko">한인이 사는 모든 곳 — 이민·이주·관광·방문자 모두를 위한 가이드</span><span class="en">Wherever Koreans live — a guide for immigrants, expats, travelers, and visitors</span></p>
 
   <div class="search-wrap">
     <input id="citySearch" type="text" placeholder="도시 검색 (뉴욕, Tokyo, 서울...)"/>
@@ -518,7 +526,7 @@
   </div>
 
   <div style="text-align:center;margin-top:40px;">
-    <a href="/seattle/" class="btn-hero">지금 내 도시 찾기 →</a>
+    <a href="/seattle/" class="btn-hero"><span class="ko">지금 내 도시 찾기 →</span><span class="en">Find My City →</span></a>
   </div>
 </div>
 
@@ -536,12 +544,36 @@
   </div>
   <div class="footer-copy">© 2026 Hebron Platform LLC. All rights reserved.</div>
   <div class="footer-soul">
-    "이 세상 어느 누구도, 소외되고 외롭고 고독함을 느끼지 않아야 합니다.<br>
-    어떤 도시에서도. 어느 누구도."
+    <span class="ko">"이 세상 어느 누구도, 소외되고 외롭고 고독함을 느끼지 않아야 합니다.<br>어떤 도시에서도. 어느 누구도."</span>
+    <span class="en">"No one in this world should ever feel isolated, lonely, or forgotten.<br>In any city. For anyone."</span>
   </div>
 </footer>
 
 <script>
+// 한/영 전환
+function toggleLang(){
+  var html=document.documentElement;
+  var btn=document.getElementById('lang-btn');
+  if(html.lang==='ko'){
+    html.lang='en';
+    btn.textContent='한국어';
+    localStorage.setItem('hg_lang','en');
+  } else {
+    html.lang='ko';
+    btn.textContent='EN';
+    localStorage.setItem('hg_lang','ko');
+  }
+}
+// 저장된 언어 복원
+(function(){
+  var saved=localStorage.getItem('hg_lang');
+  if(saved==='en'){
+    document.documentElement.lang='en';
+    var btn=document.getElementById('lang-btn');
+    if(btn)btn.textContent='한국어';
+  }
+})();
+
 var inp=document.getElementById('citySearch');
 if(inp){
   inp.addEventListener('input',function(){
