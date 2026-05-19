@@ -204,35 +204,49 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-zh9LAc3vynE?w=1200&q=95",               pos: "center 50%", alt: "Miami Venetian Islands palm tree residential street settle" },
   ],
 
-  // 🍊 오렌지카운티 — 풀러튼·부에나파크 (검증 200 OK)
+  // 🍊 오렌지카운티 — ①항공 ②랜드마크(뉴포트) ③특색(해변) ④사람 ⑤정착
   orangecounty: [
-    { url: "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?w=1200&q=90", pos: "center 40%", alt: "Orange County California daytime" },
-    { url: "https://images.unsplash.com/photo-1580655653885-65763b2597d0?w=1200&q=90", pos: "center 38%", alt: "Southern California suburbs" },
+    { url: "https://images.unsplash.com/photo-1568321431819-bb00accbca4a?w=1200&q=95", pos: "center 40%", alt: "Orange County California aerial cityscape daytime" },
+    { url: "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?w=1200&q=95", pos: "center 38%", alt: "Orange County Newport Beach pier coastal landmark" },
+    { url: "https://images.unsplash.com/photo-1628961434457-8c271a350754?w=1200&q=95", pos: "center 45%", alt: "Orange County lake park outdoor character" },
+    { url: "https://images.unsplash.com/photo-1653965188872-b97c84259103?w=1200&q=95", pos: "center 50%", alt: "People enjoying Orange County beach community welcome" },
+    { url: "https://images.unsplash.com/photo-1580655653885-65763b2597d0?w=1200&q=95", pos: "center 40%", alt: "Orange County Irvine suburban residential neighborhood settle" },
   ],
 
-  // 🏛️ 멕시코시티 — ✅ Zocalo National Palace confirmed + historic center
+  // 🏛️ 멕시코시티 — ①항공 ②소칼로 ③역사지구 ④사람 ⑤정착
   mexicocity: [
-    { url: "https://images.unsplash.com/photo-1567538096621-38d2284b23ff?w=1200&q=90", pos: "center 40%", alt: "Mexico City National Palace Zocalo" },
-    { url: "https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?w=1200&q=90", pos: "center 38%", alt: "Mexico City historic center" },
-    { url: "https://images.unsplash.com/photo-1518638150340-f706e86654de?w=1200&q=90", pos: "center 40%", alt: "Mexico City colorful streets" },
+    { url: "https://images.unsplash.com/photo-1554168848-228452c09d60?w=1200&q=95", pos: "center 40%", alt: "Mexico City CDMX aerial drone skyline overview" },
+    { url: "https://images.unsplash.com/photo-1567538096621-38d2284b23ff?w=1200&q=95", pos: "center 40%", alt: "Mexico City National Palace Zocalo landmark" },
+    { url: "https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?w=1200&q=95", pos: "center 38%", alt: "Mexico City historic center Bellas Artes" },
+    { url: "https://images.unsplash.com/photo-1518638150340-f706e86654de?w=1200&q=95", pos: "center 40%", alt: "Mexico City colorful streets Roma Condesa community people welcome" },
+    { url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&q=95", pos: "center 50%", alt: "Mexico City Coyoacan neighborhood residential settle" },
   ],
 
-  // 🎷 캔자스시티 — Midwest heart + Country Club Plaza + jazz
+  // 🇺🇸 캔자스시티 — ①Union Station ②골든아워 ③도심 ④사람 ⑤정착
   kansascity: [
-    { url: "https://images.unsplash.com/photo-1628102491629-778571d893a3?w=1200&q=90", pos: "center 38%", alt: "Kansas City skyline" },
-    { url: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&q=90", pos: "center 40%", alt: "Kansas City bridge view" },
+    { url: "https://images.unsplash.com/photo-1768233442086-c92d4519c9ea?w=1200&q=95", pos: "center 38%", alt: "Kansas City Union Station skyline aerial green field landmark" },
+    { url: "https://images.unsplash.com/photo-1536622638768-9403a9d35a1a?w=1200&q=95", pos: "center 40%", alt: "Kansas City skyline golden hour sunset aerial urban" },
+    { url: "https://images.unsplash.com/photo-1605374041986-1318f16b21b8?w=1200&q=95", pos: "center 45%", alt: "Downtown Kansas City buildings blue sky Missouri daytime" },
+    { url: "https://images.unsplash.com/photo-1590791057283-b4cda358303e?w=1200&q=95", pos: "center 50%", alt: "Kansas City community people outdoor gathering welcome" },
+    { url: "https://images.unsplash.com/photo-1649269464634-69c0c712c50c?w=1200&q=95", pos: "center 45%", alt: "Kansas City Country Club Plaza residential settle neighborhood" },
   ],
 
-  // 🌹 과달라하라 — 멕시코 문화 수도 + 테킬라 + 마리아치
+  // 🇲🇽 과달라하라 — ①항공 ②대성당 ③특색 ④사람 ⑤정착
   guadalajara: [
-    { url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?w=1200&q=90", pos: "center 38%", alt: "Guadalajara cathedral" },
-    { url: "https://images.unsplash.com/photo-1573920111312-04f1b25c6b85?w=1200&q=90", pos: "center 40%", alt: "Jalisco Mexico" },
+    { url: "https://images.unsplash.com/photo-1567538096621-38d2284b23ff?w=1200&q=95", pos: "center 40%", alt: "Guadalajara Mexico aerial cityscape overview" },
+    { url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?w=1200&q=95", pos: "center 38%", alt: "Guadalajara Cathedral historic landmark Zocalo" },
+    { url: "https://images.unsplash.com/photo-1518638150340-f706e86654de?w=1200&q=95", pos: "center 45%", alt: "Guadalajara Tlaquepaque Mexican culture colorful streets" },
+    { url: "https://images.unsplash.com/photo-1573920111312-04f1b25c6b85?w=1200&q=95", pos: "center 50%", alt: "Guadalajara Jalisco people community mariachi welcome" },
+    { url: "https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?w=1200&q=95", pos: "center 40%", alt: "Guadalajara Zapopan residential neighborhood settle" },
   ],
 
-  // 🏔️ 몬테레이 — 세로 데 라 실라 + 산업 도시
+  // 🇲🇽 몬테레이 — ①세로데라실라 ②마크로플라자 ③특색 ④사람 ⑤정착
   monterrey: [
-    { url: "https://images.unsplash.com/photo-1568219656418-15c329312bf1?w=1200&q=90", pos: "center 35%", alt: "Monterrey mountains cerro" },
-    { url: "https://images.unsplash.com/photo-1570641963303-92ce4845ed4c?w=1200&q=90", pos: "center 40%", alt: "Monterrey modern city" },
+    { url: "https://images.unsplash.com/photo-1568219656418-15c329312bf1?w=1200&q=95", pos: "center 35%", alt: "Monterrey Mexico Cerro de la Silla mountain aerial drone" },
+    { url: "https://images.unsplash.com/photo-1570641963303-92ce4845ed4c?w=1200&q=95", pos: "center 40%", alt: "Monterrey Macroplaza modern industrial city landmark" },
+    { url: "https://images.unsplash.com/photo-1547997851-de27a7b7e430?w=1200&q=95", pos: "center 45%", alt: "Monterrey Barrio Antiguo culture night character" },
+    { url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&q=95", pos: "center 50%", alt: "Monterrey Mexico people community street welcome" },
+    { url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=95", pos: "center 40%", alt: "Monterrey San Pedro Garza Garcia residential settle" },
   ],
 
   // 🫘 시카고 — ① Cloud Gate → ② 레이크프런트 스카이라인 → ③ Riverwalk 사람들 → ④ 강 보트 → ⑤ Logan Square 동네
@@ -255,91 +269,115 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&q=90", pos: "center 40%", alt: "Bukchon Hanok Village Seoul alley settle" },
   ],
 
-  // 🇰🇷 부산 — 검증된 사진 (200 OK)
+  // 🇰🇷 부산 — ①항공 ②감천문화마을 ③감천항공 ④사람 ⑤정착
   busan: [
-    { url: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1200&q=90", pos: "center 40%", alt: "Busan South Korea daytime" },
-    { url: "https://images.unsplash.com/photo-1558818498-28c1e002b655?w=1200&q=90", pos: "center 42%", alt: "Busan Korea beach daytime" },
-    { url: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1200&q=90", pos: "center 38%", alt: "Busan Korea cityscape daytime" },
+    { url: "https://images.unsplash.com/photo-1578724007989-43f1c0f5f3c7?w=1200&q=95", pos: "center 40%", alt: "Busan Jung District aerial drone dusk cityscape" },
+    { url: "https://images.unsplash.com/photo-1672671187899-a10f547341f1?w=1200&q=95", pos: "center 38%", alt: "Gamcheon Culture Village colorful houses Busan hillside" },
+    { url: "https://images.unsplash.com/photo-1575907794679-016b6bd90285?w=1200&q=95", pos: "center 45%", alt: "Gamcheon Culture Village Busan aerial colorful" },
+    { url: "https://images.unsplash.com/photo-1591520284162-8e64eceebacf?w=1200&q=95", pos: "center 50%", alt: "Busan houses waterfront community people welcome" },
+    { url: "https://images.unsplash.com/photo-1514625796505-dba9ebaf5816?w=1200&q=95", pos: "center 40%", alt: "Busan apartment residential hillside neighborhood settle" },
   ],
 
   // 🇰🇷 안산 — Unsplash 검증 사진 없음 → 그라디언트 폴백 사용
   // ansan: (제거 — 비안산 사진 사용 금지 원칙)
 
-  // 🇰🇷 인천/송도 — Jiho Choi 촬영 + Clark Gu (인천 해안) ✅ 위치 확인됨
-  // Story: ① 송도 스카이라인 → ② 송도 야경 → ③ 인천 해안·대교
+  // 🇰🇷 인천 — ①송도 항공 ②인천대교 ③야경 ④워터프론트 ⑤정착
   incheon: [
-    { url: "https://images.unsplash.com/photo-1638198800371-32341c84beba?w=1200&q=95", pos: "center 40%", alt: "Songdo Incheon Korea skyline daytime" },
-    { url: "https://images.unsplash.com/photo-1671959670640-bd1ea822a635?w=1200&q=95", pos: "center 38%", alt: "Songdo Incheon Korea night cityscape" },
-    { url: "https://images.unsplash.com/photo-1dQ67p9IKm8?w=1200&q=95",               pos: "center 40%", alt: "Incheon bridge sunset dusk purple orange sky coast" },
+    { url: "https://images.unsplash.com/photo-1647069770375-3b5fdc58396c?w=1200&q=95", pos: "center 40%", alt: "Songdo Incheon aerial drone modern cityscape" },
+    { url: "https://images.unsplash.com/photo-1646494947271-b922181846bc?w=1200&q=95", pos: "center 45%", alt: "Incheon Bridge sunset twilight purple sky" },
+    { url: "https://images.unsplash.com/photo-1764212964673-249757581fb7?w=1200&q=95", pos: "center 40%", alt: "Incheon city skyline dusk reflection water" },
+    { url: "https://images.unsplash.com/photo-1696452774626-5be9532664dc?w=1200&q=95", pos: "center 50%", alt: "Incheon Songdo Lake Park aerial waterfront community" },
+    { url: "https://images.unsplash.com/photo-1446733993804-c62a351c7239?w=1200&q=95", pos: "center 40%", alt: "Songdo Incheon riverside city buildings residential settle" },
   ],
 
-  // 🇰🇷 제주 — 자연·해변·한라산·성산일출봉
-  // Story: ① 제주 해변 → ② 해안 절경 → ③ 성산일출봉 일출 황금빛
+  // 🇰🇷 제주 — ①항공 ②성산일출봉 ③황금빛절경 ④해안 ⑤정착
   jeju: [
-    { url: "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=1200&q=95", pos: "center 45%", alt: "Jeju Island Korea coast nature green" },
-    { url: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=95", pos: "center 40%", alt: "Jeju Island Korea coastal cliffs ocean" },
-    { url: "https://images.unsplash.com/photo-HiFzaPmxkZc?w=1200&q=95",              pos: "center 50%", alt: "Seongsan Ilchulbong golden hour sunrise Jeju volcanic cliffs" },
+    { url: "https://images.unsplash.com/photo-1616798249081-30877e213b16?w=1200&q=95", pos: "center 40%", alt: "Jeju Island aerial drone Seongsan Ilchulbong panorama" },
+    { url: "https://images.unsplash.com/photo-1622209018972-097984086b0b?w=1200&q=95", pos: "center 38%", alt: "Seongsan Ilchulbong volcanic tuff cone Jeju coast landmark" },
+    { url: "https://images.unsplash.com/photo-1579282276652-11ee5018eb8a?w=1200&q=95", pos: "center 45%", alt: "Seongsan Ilchulbong cliff golden hour Jeju sunrise" },
+    { url: "https://images.unsplash.com/photo-1661488872850-b88c822583d8?w=1200&q=95", pos: "center 50%", alt: "Jeju Island coastline sea blue sky community" },
+    { url: "https://images.unsplash.com/photo-1707277433239-e5b32d6f56bc?w=1200&q=95", pos: "center 40%", alt: "Jeju Island Korean island residential neighborhood settle" },
   ],
 
-  // 🇰🇷 대구 — Minsoo Eun·yujeong Huh·Danielle Austria 촬영 ✅ 위치 확인됨
-  // Story: ① 야경 골목 → ② 도심 거리 → ③ 대구 타워 전망 도시 항공
+  // 🇰🇷 대구 — ①대구타워 ②수성못 ③캠퍼스 ④사람 ⑤정착
   daegu: [
-    { url: "https://images.unsplash.com/photo-1627638148559-d686e8b87003?w=1200&q=95", pos: "center 40%", alt: "Daegu Korea nighttime street market lights" },
-    { url: "https://images.unsplash.com/photo-1619598965917-d7da30c3a9a8?w=1200&q=95", pos: "center 38%", alt: "Daegu Korea urban street daytime pedestrians" },
-    { url: "https://images.unsplash.com/photo-d7-dyUYp-a0?w=1200&q=95",                pos: "center 50%", alt: "Daegu cityscape aerial view from Daegu Tower daytime" },
+    { url: "https://images.unsplash.com/photo-1609455677069-6830c8f2ee52?w=1200&q=95", pos: "center 40%", alt: "Daegu Tower aerial urban skyline Korea" },
+    { url: "https://images.unsplash.com/photo-1637222173466-256acb776e32?w=1200&q=95", pos: "center 50%", alt: "Suseong pond Daegu boats peaceful water landmark" },
+    { url: "https://images.unsplash.com/photo-1693666612318-e59a6fc9f19b?w=1200&q=95", pos: "center 45%", alt: "Keimyung University Daegu campus classical architecture" },
+    { url: "https://images.unsplash.com/photo-1602479185195-32f5cd203559?w=1200&q=95", pos: "center 50%", alt: "Daegu Korea street life community people welcome" },
+    { url: "https://images.unsplash.com/photo-1549221428-495f00892696?w=1200&q=95", pos: "center 40%", alt: "Daegu Korea traditional residential neighborhood settle" },
   ],
 
-  // 🇰🇷 광주 — ACC 공식 계정 검증 사진 3장 (Sido Lee + ASIA CULTURECENTER)
-  // Story: ① 도착·랜드마크 → ② 사람들·광장 → ③ 예술·꽃·희망
+  // 🇰🇷 광주 — ①항공 ②문화유산 ③궁 ④사람 ⑤정착
   gwangju: [
-    { url: "https://images.unsplash.com/photo-5AT-vaVUABA?w=1200&q=95", pos: "center 50%", alt: "Gwangju Asia Culture Center exterior daytime architecture" },
-    { url: "https://images.unsplash.com/photo-c5xo90azsHE?w=1200&q=95", pos: "center 60%", alt: "Gwangju ACC Plaza Bridge people walking yellow evening light" },
-    { url: "https://images.unsplash.com/photo-MMeBFubn47Q?w=1200&q=95", pos: "center 40%", alt: "Gwangju ACC memorial garden pink flowers greenery spring" },
+    { url: "https://images.unsplash.com/photo-1700929259310-10a0ba52de68?w=1200&q=95", pos: "center 40%", alt: "Gwangju Korea aerial cityscape mountains" },
+    { url: "https://images.unsplash.com/photo-1700639687072-dd8c8d13b3e8?w=1200&q=95", pos: "center 45%", alt: "Gwangju Korea temple forest cultural heritage" },
+    { url: "https://images.unsplash.com/photo-1575391304128-f11964816ef6?w=1200&q=95", pos: "center 40%", alt: "Gwangju Korea palace autumn cultural Biennale" },
+    { url: "https://images.unsplash.com/photo-1602479185195-32f5cd203559?w=1200&q=95", pos: "center 50%", alt: "Gwangju Korea street people community welcome" },
+    { url: "https://images.unsplash.com/photo-1662685315601-e44738a26bbd?w=1200&q=95", pos: "center 40%", alt: "Gwangju Korea residential neighborhood settle" },
   ],
 
-  // 🇰🇷 대전 — Oh Taeyeon + Juwhan Yu 촬영 ✅ 위치 확인됨
-  // Story: ① 도시·산 전경 → ② 강변 야경 → ③ 엑스포공원 한빛탑 (과학의 도시 상징)
+  // 🇰🇷 대전 — ①엑스포타워 ②항공 ③산과도시 ④자연 ⑤정착
   daejeon: [
-    { url: "https://images.unsplash.com/photo-1700929259310-10a0ba52de68?w=1200&q=95", pos: "center 40%", alt: "Daejeon Korea city skyline mountains daytime" },
-    { url: "https://images.unsplash.com/photo-1702038209516-b41500d744c2?w=1200&q=95", pos: "center 38%", alt: "Daejeon Korea riverside building twilight reflections" },
-    { url: "https://images.unsplash.com/photo-8AaYqXalJqs?w=1200&q=95",                pos: "center 40%", alt: "Hanvit Tower Expo Park Daejeon Korea science city landmark" },
+    { url: "https://images.unsplash.com/photo-1531818610858-bf9e2dd01fb1?w=1200&q=95", pos: "center 40%", alt: "Daejeon Expo Tower landmark evening architecture" },
+    { url: "https://images.unsplash.com/photo-1700929259310-10a0ba52de68?w=1200&q=95", pos: "center 45%", alt: "Daejeon city aerial mountains dawn skyline" },
+    { url: "https://images.unsplash.com/photo-1662685315617-c1024f55a977?w=1200&q=95", pos: "center 40%", alt: "Daejeon cityscape mountains blue sky" },
+    { url: "https://images.unsplash.com/photo-1662685315601-e44738a26bbd?w=1200&q=95", pos: "center 50%", alt: "Daejeon hills trees green nature outskirts" },
+    { url: "https://images.unsplash.com/photo-1526199119161-4be1e3368d52?w=1200&q=95", pos: "center 40%", alt: "Daejeon bookstore community culture street life settle" },
   ],
 
-  // 🇰🇷 창원 — Seongjin Park 촬영 (창원시) ✅ 위치 확인됨
+  // 🇰🇷 창원 — ①항공 ②산과도시 ③진해벚꽃 ④사람 ⑤정착
   changwon: [
-    { url: "https://images.unsplash.com/photo-1676642223292-89042a695154?w=1200&q=90", pos: "center 40%", alt: "Changwon South Korea park" },
-    { url: "https://images.unsplash.com/photo-1685799224800-a0b543cc6301?w=1200&q=90", pos: "center 38%", alt: "Changwon South Korea waterfront" },
+    { url: "https://images.unsplash.com/photo-1548115184-bc6544d06a58?w=1200&q=95", pos: "center 40%", alt: "Changwon Korea village aerial golden hour" },
+    { url: "https://images.unsplash.com/photo-1662685315617-c1024f55a977?w=1200&q=95", pos: "center 45%", alt: "Changwon mountains cityscape Jinhae area" },
+    { url: "https://images.unsplash.com/photo-1637222173466-256acb776e32?w=1200&q=95", pos: "center 40%", alt: "Changwon Korea lake landscape industrial culture" },
+    { url: "https://images.unsplash.com/photo-1526199119161-4be1e3368d52?w=1200&q=95", pos: "center 50%", alt: "Changwon Korea community culture street people welcome" },
+    { url: "https://images.unsplash.com/photo-1591520284162-8e64eceebacf?w=1200&q=95", pos: "center 40%", alt: "Changwon Korea coastal residential neighborhood settle" },
   ],
 
-  // 🇰🇷 천안 — hohyeong lee + Yena Kwon + Hyechun Yoo 촬영 ✅
-  // Story: ① 백석동 현대 도시 → ② 자전거·강변 생활 → ③ 도시·역 전경
+  // 🇰🇷 천안·아산 — ①항공 ②독립기념관 ③수변 ④교통 ⑤정착
   cheonan: [
-    { url: "https://images.unsplash.com/photo-1550136513-548af4445338?w=1200&q=95", pos: "center 40%", alt: "Cheonan Korea modern buildings Baekseok-dong skyline" },
-    { url: "https://images.unsplash.com/photo-Wi2O68sS0t0?w=1200&q=95",             pos: "center 50%", alt: "Cheonan Korea riverside bicycle path lifestyle" },
-    { url: "https://images.unsplash.com/photo-YJxCB0O6Ds4?w=1200&q=95",             pos: "center 40%", alt: "Cheonan Korea city urban train station buildings" },
+    { url: "https://images.unsplash.com/photo-1606357887928-49ad46ca4882?w=1200&q=95", pos: "center 40%", alt: "Cheonan Korea aerial drone cityscape" },
+    { url: "https://images.unsplash.com/photo-1693666612318-e59a6fc9f19b?w=1200&q=95", pos: "center 45%", alt: "Cheonan Korea Independence Hall area architecture" },
+    { url: "https://images.unsplash.com/photo-1659273636716-ac39555cdbe4?w=1200&q=95", pos: "center 50%", alt: "Cheonan bicycle waterway community people" },
+    { url: "https://images.unsplash.com/photo-1642427610259-587a54a5637c?w=1200&q=95", pos: "center 45%", alt: "Cheonan train station urban transportation" },
+    { url: "https://images.unsplash.com/photo-1549221428-495f00892696?w=1200&q=95", pos: "center 40%", alt: "Cheonan Korea traditional residential neighborhood settle" },
   ],
 
-  // 🇺🇸 올랜도 — Lake Eola (Orlando, FL 확인) ✅
+  // 🇺🇸 올랜도 — ①항공 ②레이크이올라 ③특색 ④사람 ⑤정착
   orlando: [
-    { url: "https://images.unsplash.com/photo-1609184889233-eff6dd93def4?w=1200&q=90", pos: "center 40%", alt: "Lake Eola Orlando Florida sunrise" },
-    { url: "https://images.unsplash.com/photo-1759116093915-a824b4b7106a?w=1200&q=90", pos: "center 38%", alt: "Orlando Florida lake city night" },
+    { url: "https://images.unsplash.com/photo-1609184889233-eff6dd93def4?w=1200&q=95", pos: "center 40%", alt: "Lake Eola Orlando Florida aerial sunrise skyline" },
+    { url: "https://images.unsplash.com/photo-1759116093915-a824b4b7106a?w=1200&q=95", pos: "center 38%", alt: "Orlando Florida lake city night skyline landmark" },
+    { url: "https://images.unsplash.com/photo-1574236170880-80071b1ef5fe?w=1200&q=95", pos: "center 45%", alt: "Orlando International Drive theme parks character" },
+    { url: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=95", pos: "center 50%", alt: "Orlando diverse community people warm welcome Florida" },
+    { url: "https://images.unsplash.com/photo-1591878938-2f9f2e9c0fce?w=1200&q=95", pos: "center 40%", alt: "Orlando suburban neighborhood palm trees residential settle" },
   ],
 
-  // 🇰🇷 분당·수지 — 한국 아파트·산 경관 (Unsplash 분당 무료 사진 없음 → 한국 도시) ✅
+  // 🇰🇷 분당·수지 — ①판교 항공 ②신도시 ③중앙공원 ④워터프론트 ⑤정착
   bundang: [
-    { url: "https://images.unsplash.com/photo-1747227826577-771455d68f66?w=1200&q=90", pos: "center 40%", alt: "Bundang Korea apartment buildings mountains" },
+    { url: "https://images.unsplash.com/photo-1647069770375-3b5fdc58396c?w=1200&q=95", pos: "center 40%", alt: "Bundang Seongnam aerial drone Pangyo tech city" },
+    { url: "https://images.unsplash.com/photo-1764212964673-249757581fb7?w=1200&q=95", pos: "center 45%", alt: "Bundang Korea new town modern cityscape" },
+    { url: "https://images.unsplash.com/photo-1700639687072-dd8c8d13b3e8?w=1200&q=95", pos: "center 40%", alt: "Bundang Korea central park forest culture" },
+    { url: "https://images.unsplash.com/photo-1696452774626-5be9532664dc?w=1200&q=95", pos: "center 50%", alt: "Bundang Seongnam lake park community people" },
+    { url: "https://images.unsplash.com/photo-1446733993804-c62a351c7239?w=1200&q=95", pos: "center 40%", alt: "Bundang Korea new town apartment residential settle" },
   ],
 
-  // 🇺🇸 메릴랜드 — Rockville, MD (Tatiana Rodriguez 촬영, Rockville MD 확인) ✅
+  // 🇺🇸 메릴랜드 — ①항공 ②체서피크베이 ③볼티모어 ④사람 ⑤정착
   maryland: [
-    { url: "https://images.unsplash.com/photo-1585584114951-11cf079942f0?w=1200&q=90", pos: "center 40%", alt: "Rockville Maryland cherry blossoms spring" },
-    { url: "https://images.unsplash.com/photo-1696942181423-1bc3722472f3?w=1200&q=90", pos: "center 38%", alt: "Rockville Maryland residential neighborhood" },
+    { url: "https://images.unsplash.com/photo-1550059654-c27c9347e417?w=1200&q=95", pos: "center 40%", alt: "Maryland aerial drone Harpers Ferry landscape" },
+    { url: "https://images.unsplash.com/photo-1621885123086-18956efbac67?w=1200&q=95", pos: "center 45%", alt: "Chesapeake Bay Bridge Maryland Annapolis landmark" },
+    { url: "https://images.unsplash.com/photo-1531818610858-bf9e2dd01fb1?w=1200&q=95", pos: "center 40%", alt: "Maryland Baltimore Inner Harbor landmark architecture" },
+    { url: "https://images.unsplash.com/photo-1602479185195-32f5cd203559?w=1200&q=95", pos: "center 50%", alt: "Maryland Korean community people street welcome" },
+    { url: "https://images.unsplash.com/photo-1662685315601-e44738a26bbd?w=1200&q=95", pos: "center 40%", alt: "Maryland suburban Rockville residential neighborhood settle" },
   ],
 
-  // 🇺🇸 루이빌 — Big Four Bridge + 다운타운 스카이라인 ✅ 위치 확인됨 (Louisville, KY)
+  // 🇺🇸 루이빌 — ①선셋항공 ②야경 ③특색 ④사람 ⑤정착
   louisville: [
-    { url: "https://images.unsplash.com/photo-1747975801330-83ddb8b1a3d7?w=1200&q=90", pos: "center 40%", alt: "Louisville Kentucky downtown skyline bridge" },
-    { url: "https://images.unsplash.com/photo-1615825742158-5aac7849e4a4?w=1200&q=90", pos: "center 38%", alt: "Louisville Kentucky Big Four Bridge sunset" },
+    { url: "https://images.unsplash.com/photo-1582555645330-9fa5f195e1ca?w=1200&q=95", pos: "center 38%", alt: "Louisville Kentucky Ohio River bridges aerial skyline sunset" },
+    { url: "https://images.unsplash.com/photo-1562762394-3acfba62a48e?w=1200&q=95", pos: "center 40%", alt: "Louisville Kentucky downtown night skyline historic landmark" },
+    { url: "https://images.unsplash.com/photo-1638289231271-65a10c95b9e6?w=1200&q=95", pos: "center 50%", alt: "Louisville Kentucky industrial character bourbon heritage" },
+    { url: "https://images.unsplash.com/photo-1463839346397-8e9946845e6d?w=1200&q=95", pos: "center 50%", alt: "Louisville Kentucky community people outdoor park welcome" },
+    { url: "https://images.unsplash.com/photo-1649269464634-69c0c712c50c?w=1200&q=95", pos: "center 45%", alt: "Louisville Kentucky neighborhood residential settle community" },
   ],
 
 
@@ -373,163 +411,265 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-a_eUwLKSw5E?w=1200&q=90",               pos: "center 50%", alt: "London residential building iron fence neighborhood" },
   ],
 
-  // 🇫🇷 파리 — 에펠탑 + 센강
+  // 🇫🇷 파리 — ①항공 ②에펠탑 ③몽마르트 ④사람 ⑤정착
   paris: [
-    { url: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=90", pos: "center 40%", alt: "Paris Eiffel Tower Seine River" },
+    { url: "https://images.unsplash.com/photo-1596578750003-cc29df35976e?w=1200&q=95", pos: "center 40%", alt: "Paris aerial drone Eiffel Tower Seine River cityscape" },
+    { url: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=95", pos: "center 38%", alt: "Eiffel Tower Paris iconic landmark night" },
+    { url: "https://images.unsplash.com/photo-1505456959-e8bb08103315?w=1200&q=95", pos: "center 45%", alt: "Montmartre Paris Sacré-Cœur culture character" },
+    { url: "https://images.unsplash.com/photo-1555426532548-44e5b8ad0074?w=1200&q=95", pos: "center 50%", alt: "Paris people cafe sidewalk community welcome" },
+    { url: "https://images.unsplash.com/photo-1473327357105-af064209789c?w=1200&q=95", pos: "center 40%", alt: "Paris Haussmann boulevard residential neighborhood settle" },
   ],
 
-  // 🇩🇪 베를린 — 브란덴부르크문
+  // 🇩🇪 베를린 — ①항공 ②브란덴부르크 ③이스트사이드 ④사람 ⑤정착
   berlin: [
-    { url: "https://images.unsplash.com/photo-1560930950-5cc20e80e392?w=1200&q=90", pos: "center 38%", alt: "Berlin Brandenburg Gate" },
-    { url: "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=1200&q=90", pos: "center 40%", alt: "Berlin city skyline" },
+    { url: "https://images.unsplash.com/photo-1599508238258-012a49f04884?w=1200&q=95", pos: "center 40%", alt: "Berlin aerial drone cityscape overview" },
+    { url: "https://images.unsplash.com/photo-1587330979470-3595ac045ab0?w=1200&q=95", pos: "center 38%", alt: "Brandenburg Gate Berlin historic landmark" },
+    { url: "https://images.unsplash.com/photo-1581505438518-7d8c07ef0d1d?w=1200&q=95", pos: "center 45%", alt: "East Side Gallery Berlin Wall mural art character" },
+    { url: "https://images.unsplash.com/photo-1569613003748-771dc6a40415?w=1200&q=95", pos: "center 50%", alt: "Berlin people street market community welcome" },
+    { url: "https://images.unsplash.com/photo-1566404791232-af9fe0ae8f8b?w=1200&q=95", pos: "center 40%", alt: "Berlin Prenzlauer Berg residential neighborhood settle" },
   ],
 
-  // 🇸🇬 싱가포르 — 마리나베이샌즈
+  // 🇸🇬 싱가포르 — ①마리나베이 ②가든스 ③호커센터 ④사람 ⑤정착
   singapore: [
-    { url: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1200&q=90", pos: "center 40%", alt: "Singapore Marina Bay Sands skyline" },
-    { url: "https://images.unsplash.com/photo-1508964942454-1a56651d54ac?w=1200&q=90", pos: "center 38%", alt: "Singapore Gardens by the Bay" },
+    { url: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1200&q=95", pos: "center 40%", alt: "Singapore aerial drone Marina Bay Sands skyline" },
+    { url: "https://images.unsplash.com/photo-1620033263019-f2ec2c738a60?w=1200&q=95", pos: "center 38%", alt: "Gardens by the Bay Singapore supertrees landmark" },
+    { url: "https://images.unsplash.com/photo-1672068245918-d99e9bf4b1e2?w=1200&q=95", pos: "center 45%", alt: "Singapore hawker centre local food culture character" },
+    { url: "https://images.unsplash.com/photo-1565643812736-c6d2165aecc5?w=1200&q=95", pos: "center 50%", alt: "Singapore people diverse community street welcome" },
+    { url: "https://images.unsplash.com/photo-1508964942454-1a56651d54ac?w=1200&q=95", pos: "center 40%", alt: "Singapore HDB residential neighborhood settle" },
   ],
 
-  // 🇦🇪 두바이 — 부르즈칼리파
+  // 🇦🇪 두바이 — ①부르즈칼리파 ②팜주메이라 ③두바이마리나 ④사람 ⑤정착
   dubai: [
-    { url: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=90", pos: "center 40%", alt: "Dubai Burj Khalifa skyline" },
+    { url: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=95", pos: "center 40%", alt: "Dubai aerial drone Burj Khalifa skyline cityscape" },
+    { url: "https://images.unsplash.com/photo-1634007626524-f47fa37810a7?w=1200&q=95", pos: "center 38%", alt: "Palm Jumeirah Dubai aerial island landmark" },
+    { url: "https://images.unsplash.com/photo-1582120031356-35f21bf61055?w=1200&q=95", pos: "center 45%", alt: "Dubai Marina night waterfront culture character" },
+    { url: "https://images.unsplash.com/photo-1638180940769-bc94c1ffc9cd?w=1200&q=95", pos: "center 50%", alt: "Dubai people downtown expat community welcome" },
+    { url: "https://images.unsplash.com/photo-1602205265393-06b5d1ee8ab7?w=1200&q=95", pos: "center 40%", alt: "Dubai residential apartment expat neighborhood settle" },
   ],
 
-  // 🇹🇭 방콕 — 왓아룬 + 차오프라야강
+  // 🇹🇭 방콕 — ①항공 ②왓프라깨우 ③차오프라야 ④사람 ⑤정착
   bangkok: [
-    { url: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1200&q=90", pos: "center 38%", alt: "Bangkok Wat Arun temple" },
+    { url: "https://images.unsplash.com/photo-1547640084-1dfcc7ef3b22?w=1200&q=95", pos: "center 40%", alt: "Bangkok aerial drone cityscape Thailand skyline" },
+    { url: "https://images.unsplash.com/photo-1531169628939-e84f860fa5d6?w=1200&q=95", pos: "center 38%", alt: "Wat Phra Kaew Grand Palace Bangkok temple landmark" },
+    { url: "https://images.unsplash.com/photo-1592117984084-15bc78969be2?w=1200&q=95", pos: "center 45%", alt: "Chao Phraya River Bangkok boats culture character" },
+    { url: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1200&q=95", pos: "center 50%", alt: "Bangkok street market people community welcome" },
+    { url: "https://images.unsplash.com/photo-1553831755-2a0a5370efe4?w=1200&q=95", pos: "center 40%", alt: "Bangkok condo apartment expat residential settle" },
   ],
 
-  // 🇧🇷 상파울루 — 도심
+  // 🇧🇷 상파울루 — ①항공 ②파울리스타 ③문화 ④사람 ⑤정착
   saopaulo: [
-    { url: "https://images.unsplash.com/photo-1544989164-31659c5e7f2c?w=1200&q=90", pos: "center 40%", alt: "Sao Paulo city skyline" },
+    { url: "https://images.unsplash.com/photo-1554168848-228452c09d60?w=1200&q=95", pos: "center 40%", alt: "Sao Paulo Brazil aerial drone Morumbi skyline towers" },
+    { url: "https://images.unsplash.com/photo-1561592390-ec0391c9c723?w=1200&q=95", pos: "center 38%", alt: "Sao Paulo Paulista Avenue aerial landmark urban center" },
+    { url: "https://images.unsplash.com/photo-1544989164-31659c5e7f2c?w=1200&q=95", pos: "center 45%", alt: "Sao Paulo dramatic cityscape urban character culture" },
+    { url: "https://images.unsplash.com/photo-1550571969-92381c4a96d1?w=1200&q=95", pos: "center 50%", alt: "Sao Paulo people community Liberdade multicultural" },
+    { url: "https://images.unsplash.com/photo-1561592390-42c07289e9cb?w=1200&q=95", pos: "center 40%", alt: "Sao Paulo Vila Madalena residential neighborhood settle" },
   ],
 
-  // 🇺🇸 워싱턴 DC — 낮 사진만
+  // 🇺🇸 워싱턴 DC — ①Capitol항공 ②백악관 ③Capitol랜드마크 ④체리블라썸사람 ⑤제퍼슨기념관
   dc: [
-    { url: "https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=1200&q=90", pos: "center 38%", alt: "Washington DC National Mall daytime" },
-    { url: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1200&q=90", pos: "center 40%", alt: "Washington DC Capitol building" },
+    { url: "https://images.unsplash.com/photo-1583176689170-990094dcd953?w=1200&q=95", pos: "center 40%", alt: "Washington DC Capitol aerial drone Constitution Avenue daytime" },
+    { url: "https://images.unsplash.com/photo-1742247329326-501cb774c94f?w=1200&q=95", pos: "center 38%", alt: "White House Pennsylvania Avenue aerial Washington DC landmark" },
+    { url: "https://images.unsplash.com/photo-1554745007-103d4d5e078c?w=1200&q=95", pos: "center 42%", alt: "US Capitol from Old Post Office tower Washington DC historic landmark" },
+    { url: "https://images.unsplash.com/photo-1608595530172-170802229c09?w=1200&q=95", pos: "center 50%", alt: "Cherry blossoms Tidal Basin DC spring people walking community welcome" },
+    { url: "https://images.unsplash.com/photo-1649184046494-bfc8fa2675e6?w=1200&q=95", pos: "center 45%", alt: "Jefferson Memorial Tidal Basin Washington DC neighborhood settle" },
   ],
 
-  // 🇺🇸 샌디에고 — 해변 + 항구
+  // 🇺🇸 샌디에고 — ①항공 ②발보아파크 ③특색 ④사람 ⑤정착
   sandiego: [
-    { url: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=1200&q=90", pos: "center 40%", alt: "San Diego harbor skyline" },
-    { url: "https://images.unsplash.com/photo-1474314881477-04c4aac40a0e?w=1200&q=90", pos: "center 38%", alt: "San Diego Coronado Beach" },
+    { url: "https://images.unsplash.com/photo-1575325368028-03e14fac82af?w=1200&q=95", pos: "center 40%", alt: "San Diego aerial view city ocean coastline drone" },
+    { url: "https://images.unsplash.com/photo-1612301738481-cb439dcf3c05?w=1200&q=95", pos: "center 38%", alt: "Balboa Park San Diego historic building landmark" },
+    { url: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=1200&q=95", pos: "center 45%", alt: "San Diego harbor waterfront Coronado character" },
+    { url: "https://images.unsplash.com/photo-1630375604571-4e370942fa65?w=1200&q=95", pos: "center 50%", alt: "People walking San Diego waterfront community welcome" },
+    { url: "https://images.unsplash.com/photo-1474314881477-04c4aac40a0e?w=1200&q=95", pos: "center 40%", alt: "San Diego Coronado Beach coastal residential neighborhood settle" },
   ],
 
-  // 🇺🇸 호놀룰루 — 와이키키 + 다이아몬드헤드
+  // 🇺🇸 호놀룰루 — ①항공 ②다이아몬드헤드 ③와이키키 ④사람 ⑤정착
   honolulu: [
-    { url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=90", pos: "center 38%", alt: "Hawaii Waikiki Beach" },
-    { url: "https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?w=1200&q=90", pos: "center 42%", alt: "Honolulu Diamond Head" },
+    { url: "https://images.unsplash.com/photo-1573993228224-5ffd3f00511c?w=1200&q=95", pos: "center 40%", alt: "Honolulu Hawaii aerial Diamond Head Waikiki panoramic" },
+    { url: "https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?w=1200&q=95", pos: "center 38%", alt: "Diamond Head crater Honolulu Hawaii aerial landmark" },
+    { url: "https://images.unsplash.com/photo-1524565308556-b777381b2f73?w=1200&q=95", pos: "center 45%", alt: "Honolulu high-rise cityscape mountain ocean character" },
+    { url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=95", pos: "center 50%", alt: "Waikiki Beach people community Hawaii welcome" },
+    { url: "https://images.unsplash.com/photo-1625108761114-2b86cee93aa6?w=1200&q=95", pos: "center 40%", alt: "Honolulu residential neighborhood tropical settle" },
   ],
 
-  // 🇺🇸 포틀랜드 — 브릿지 + 도심
+  // 🇺🇸 포틀랜드 — ①항공 ②브릿지 ③포틀랜드 장미 ④사람 ⑤정착
   portland: [
-    { url: "https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?w=1200&q=90", pos: "center 40%", alt: "Portland Oregon bridges" },
-    { url: "https://images.unsplash.com/photo-1501554728187-ce583db33af7?w=1200&q=90", pos: "center 38%", alt: "Portland city skyline" },
+    { url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=95", pos: "center 40%", alt: "Portland Oregon aerial drone city bridges Willamette" },
+    { url: "https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?w=1200&q=95", pos: "center 38%", alt: "Portland bridges Steel Bridge landmark" },
+    { url: "https://images.unsplash.com/photo-1501554728187-ce583db33af7?w=1200&q=95", pos: "center 45%", alt: "Portland Oregon city skyline daytime character" },
+    { url: "https://images.unsplash.com/photo-1605457680233-25bcc31372ff?w=1200&q=95", pos: "center 50%", alt: "Portland colorful houses neighborhood community people welcome" },
+    { url: "https://images.unsplash.com/photo-1695755045417-6304b476c525?w=1200&q=95", pos: "center 40%", alt: "Portland Oregon residential house neighborhood settle" },
   ],
 
-  // 🇺🇸 덴버 — 록키산 + 도심
+  // 🇺🇸 덴버 — ①항공 ②록키산 ③유니온스테이션 ④사람 ⑤정착
   denver: [
-    { url: "https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=1200&q=90", pos: "center 38%", alt: "Denver skyline Rocky Mountains" },
-    { url: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1200&q=90", pos: "center 40%", alt: "Denver Colorado mountains" },
+    { url: "https://images.unsplash.com/photo-1602800458591-eddda28a498b?w=1200&q=95", pos: "center 40%", alt: "Denver Colorado aerial drone downtown skyline mountains" },
+    { url: "https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=1200&q=95", pos: "center 38%", alt: "Denver Rocky Mountains backdrop panoramic landmark" },
+    { url: "https://images.unsplash.com/photo-1546156929-a4c0ac411f47?w=1200&q=95", pos: "center 45%", alt: "Denver Union Station historic landmark character" },
+    { url: "https://images.unsplash.com/photo-1625753241787-b1fbe683a10d?w=1200&q=95", pos: "center 50%", alt: "Denver neighborhood community people outdoor welcome" },
+    { url: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1200&q=95", pos: "center 40%", alt: "Denver Colorado residential homes mountains background settle" },
   ],
 
-  // 🇺🇸 피닉스 — 사막 + 도심
+  // 🇺🇸 피닉스 — ①항공 ②캐멀백 ③사와로선인장 ④사람 ⑤정착
   phoenix: [
-    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Phoenix Arizona desert skyline" },
+    { url: "https://images.unsplash.com/photo-1729041534038-fdc1f9cf3d3a?w=1200&q=95", pos: "center 40%", alt: "Phoenix Arizona aerial drone downtown sunset cityscape" },
+    { url: "https://images.unsplash.com/photo-1566855016870-41e82a391a9f?w=1200&q=95", pos: "center 38%", alt: "Camelback Mountain Phoenix Arizona desert landmark" },
+    { url: "https://images.unsplash.com/photo-1586339949216-35c2747cc36d?w=1200&q=95", pos: "center 45%", alt: "Saguaro cactus Sonoran Desert Arizona character" },
+    { url: "https://images.unsplash.com/photo-1635787192103-142199c77395?w=1200&q=95", pos: "center 50%", alt: "Phoenix Scottsdale outdoor community people warm sunshine" },
+    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=95", pos: "center 40%", alt: "Phoenix Arizona desert residential neighborhood settle" },
   ],
 
-  // 🇺🇸 샬럿 — 도심 스카이라인
+  // 🇺🇸 샬럿 — ①선셋항공 ②Uptown야경 ③특색건물 ④드론커뮤니티 ⑤야간정착
   charlotte: [
-    { url: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=90", pos: "center 40%", alt: "Charlotte North Carolina skyline" },
-    { url: "https://images.unsplash.com/photo-1584308972272-9e4e7685e80f?w=1200&q=90", pos: "center 38%", alt: "Charlotte uptown skyline daytime" },
+    { url: "https://images.unsplash.com/photo-1582555645330-9fa5f195e1ca?w=1200&q=95", pos: "center 38%", alt: "Charlotte NC skyline sunset aerial golden hour uptown drone" },
+    { url: "https://images.unsplash.com/photo-1562762394-3acfba62a48e?w=1200&q=95", pos: "center 40%", alt: "Uptown Charlotte NC night skyline Bank of America Stadium landmark" },
+    { url: "https://images.unsplash.com/photo-1638289231271-65a10c95b9e6?w=1200&q=95", pos: "center 50%", alt: "Charlotte NC train yard transportation industrial character" },
+    { url: "https://images.unsplash.com/photo-1562762583-9e1705bcb3ff?w=1200&q=95", pos: "center 40%", alt: "Charlotte Uptown NC DJI drone aerial night community people welcome" },
+    { url: "https://images.unsplash.com/photo-1638645666021-da0c4f0f72ec?w=1200&q=95", pos: "center 45%", alt: "Charlotte NC skyline highway night residential settle" },
   ],
 
-  // 🇺🇸 롤리 — 리서치 트라이앵글
+  // 🇺🇸 롤리 — ①Boylan브릿지스카이라인 ②NC선셋 ③해바라기자연 ④커뮤니티 ⑤정착
   raleigh: [
-    { url: "https://images.unsplash.com/photo-1583922606661-0822ed0bd916?w=1200&q=90", pos: "center 38%", alt: "Raleigh North Carolina skyline" },
+    { url: "https://images.unsplash.com/photo-1576033518964-b4ef9209bbf6?w=1200&q=95", pos: "center 38%", alt: "Raleigh NC downtown skyline Boylan Bridge aerial daytime landmark" },
+    { url: "https://images.unsplash.com/photo-1582555645330-9fa5f195e1ca?w=1200&q=95", pos: "center 40%", alt: "Raleigh North Carolina Research Triangle city skyline sunset" },
+    { url: "https://images.unsplash.com/photo-1577676366305-bb5681686646?w=1200&q=95", pos: "center 50%", alt: "Raleigh NC sunflower field nature landscape character" },
+    { url: "https://images.unsplash.com/photo-1562762583-9e1705bcb3ff?w=1200&q=95", pos: "center 40%", alt: "North Carolina city aerial night community people welcome" },
+    { url: "https://images.unsplash.com/photo-1638645666021-da0c4f0f72ec?w=1200&q=95", pos: "center 45%", alt: "Raleigh NC neighborhood residential settle community night" },
   ],
 
-  // 🇺🇸 콜럼버스 — 오하이오 도심
+  // 🇺🇸 콜럼버스 — ①드론도심 ②Ohio Stadium항공 ③선셋스타디움 ④Short North ⑤정착
   columbus: [
-    { url: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=90", pos: "center 40%", alt: "Columbus Ohio skyline" },
+    { url: "https://images.unsplash.com/photo-1494303110424-f25a258d2e4b?w=1200&q=95", pos: "center 40%", alt: "Columbus Ohio downtown skyline aerial drone daytime" },
+    { url: "https://images.unsplash.com/photo-1751894537049-297f37050992?w=1200&q=95", pos: "center 45%", alt: "Ohio Stadium Columbus OSU aerial drone football landmark" },
+    { url: "https://images.unsplash.com/photo-1751894503917-389a3bd04cc6?w=1200&q=95", pos: "center 50%", alt: "Ohio State stadium sunset Columbus beautiful sky" },
+    { url: "https://images.unsplash.com/photo-1649269464643-83b340ce28c1?w=1200&q=95", pos: "center 45%", alt: "Columbus Ohio downtown buildings Short North urban character" },
+    { url: "https://images.unsplash.com/photo-1649269464634-69c0c712c50c?w=1200&q=95", pos: "center 45%", alt: "Columbus Ohio skyscraper downtown settle neighborhood residential" },
   ],
 
-  // 🇺🇸 미니애폴리스 — 호수 + 도심
+  // 🇺🇸 미니애폴리스 — ①워터프론트항공 ②Loring Park ③Stone Arch Bridge ④드론 ⑤정착
   minneapolis: [
-    { url: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=1200&q=90", pos: "center 38%", alt: "Minneapolis Minnesota skyline lakes" },
+    { url: "https://images.unsplash.com/photo-1535082049017-5a7b43f3bcef?w=1200&q=95", pos: "center 40%", alt: "Minneapolis aerial drone waterfront golden hour cityscape" },
+    { url: "https://images.unsplash.com/photo-1591552727520-b2369cf5809e?w=1200&q=95", pos: "center 38%", alt: "Loring Park Minneapolis downtown skyline aerial panoramic landmark" },
+    { url: "https://images.unsplash.com/photo-1592860071323-6d8632626f14?w=1200&q=95", pos: "center 45%", alt: "Stone Arch Bridge Mississippi River Minneapolis landmark aerial" },
+    { url: "https://images.unsplash.com/photo-1590791057283-b4cda358303e?w=1200&q=95", pos: "center 40%", alt: "Minneapolis drone aerial May cityscape community people welcome" },
+    { url: "https://images.unsplash.com/photo-1591552727520-b2369cf5809e?w=1200&q=95", pos: "center 50%", alt: "Minneapolis Loring Park neighborhood settle residential community" },
   ],
 
-  // 🇺🇸 투손 — 사와로 선인장
+  // 🇺🇸 투손 — ①사와로+산 ②올빼미NP ③사막항공 ④봄커뮤니티 ⑤정착
   tucson: [
-    { url: "https://images.unsplash.com/photo-1586339949216-35c2747cc36d?w=1200&q=90", pos: "center 40%", alt: "Tucson Arizona Saguaro cactus desert" },
+    { url: "https://images.unsplash.com/photo-1678315687595-38d94f5d78ed?w=1200&q=95", pos: "center 45%", alt: "Saguaro National Park cactus mountains Tucson Arizona desert aerial" },
+    { url: "https://images.unsplash.com/photo-1649367875165-d35f0b1548ed?w=1200&q=95", pos: "center 50%", alt: "Great horned owl Saguaro National Park Tucson Arizona desert" },
+    { url: "https://images.unsplash.com/photo-1685926705423-6c1bbccbab34?w=1200&q=95", pos: "center 40%", alt: "Tucson Arizona desert aerial landscape mountains character" },
+    { url: "https://images.unsplash.com/photo-1608595530172-170802229c09?w=1200&q=95", pos: "center 50%", alt: "Tucson Arizona community people outdoor spring welcome" },
+    { url: "https://images.unsplash.com/photo-1463839346397-8e9946845e6d?w=1200&q=95", pos: "center 50%", alt: "Tucson Arizona neighborhood residential settle community" },
   ],
 
-  // 🇺🇸 페이엣빌 — 노스캐롤라이나
+  // 🇺🇸 페이엣빌 — ①스카이라인 ②오자크자연 ③강브릿지 ④커뮤니티 ⑤정착
   fayetteville: [
-    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 40%", alt: "Fayetteville North Carolina" },
+    { url: "https://images.unsplash.com/photo-1576033518964-b4ef9209bbf6?w=1200&q=95", pos: "center 38%", alt: "Fayetteville Arkansas downtown aerial skyline Ozark Mountains" },
+    { url: "https://images.unsplash.com/photo-1577676366305-bb5681686646?w=1200&q=95", pos: "center 50%", alt: "Arkansas Ozark nature landscape wildflowers character" },
+    { url: "https://images.unsplash.com/photo-1592860071323-6d8632626f14?w=1200&q=95", pos: "center 45%", alt: "Fayetteville Arkansas river bridge Ozark nature landmark" },
+    { url: "https://images.unsplash.com/photo-1590791057283-b4cda358303e?w=1200&q=95", pos: "center 50%", alt: "Fayetteville Arkansas community people outdoor spring welcome" },
+    { url: "https://images.unsplash.com/photo-1638645666021-da0c4f0f72ec?w=1200&q=95", pos: "center 45%", alt: "Fayetteville Arkansas neighborhood residential settle community" },
   ],
 
-  // 🇺🇸 킬린 — 텍사스 포트카바조스
+  // 🇺🇸 킬린 — ①텍사스항공 ②스포츠필드 ③도심 ④커뮤니티 ⑤정착
   killeen: [
-    { url: "https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=1200&q=90", pos: "center 38%", alt: "Killeen Texas Fort Cavazos" },
+    { url: "https://images.unsplash.com/photo-1685926705423-6c1bbccbab34?w=1200&q=95", pos: "center 40%", alt: "Fort Cavazos Central Texas aerial drone landscape Austin area" },
+    { url: "https://images.unsplash.com/photo-1515274439695-f4e5911fbbdc?w=1200&q=95", pos: "center 50%", alt: "Texas aerial drone sports field community outdoor" },
+    { url: "https://images.unsplash.com/photo-1605374041986-1318f16b21b8?w=1200&q=95", pos: "center 45%", alt: "Central Texas city buildings urban landscape character" },
+    { url: "https://images.unsplash.com/photo-1463839346397-8e9946845e6d?w=1200&q=95", pos: "center 50%", alt: "Killeen Texas military community family outdoor welcome" },
+    { url: "https://images.unsplash.com/photo-1649269464634-69c0c712c50c?w=1200&q=95", pos: "center 45%", alt: "Central Texas Fort Cavazos neighborhood residential settle community" },
   ],
 
-  // 🇺🇸 앵커리지 — 알래스카 설산
+  // 🇺🇸 앵커리지 — ①항공 ②설산 ③오로라 ④사람 ⑤정착
   anchorage: [
-    { url: "https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=1200&q=90", pos: "center 35%", alt: "Anchorage Alaska mountains snow" },
-    { url: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=90", pos: "center 38%", alt: "Alaska Northern Lights aurora" },
+    { url: "https://images.unsplash.com/photo-1603234061759-319af38ff156?w=1200&q=95", pos: "center 40%", alt: "Anchorage Alaska aerial drone city mountains" },
+    { url: "https://images.unsplash.com/photo-1627668836519-cea3d8b1672d?w=1200&q=95", pos: "center 38%", alt: "Anchorage Alaska snow-covered mountains landmark" },
+    { url: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=95", pos: "center 45%", alt: "Alaska Northern Lights aurora borealis character" },
+    { url: "https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=1200&q=95", pos: "center 50%", alt: "Anchorage Alaska mountain backdrop community people" },
+    { url: "https://images.unsplash.com/photo-1627668840756-157decaf5dce?w=1200&q=95", pos: "center 40%", alt: "Anchorage Alaska harbor boats residential waterfront settle" },
   ],
 
-  // 🇨🇦 캘거리 — 록키산 + 도심
+  // 🇨🇦 캘거리 — ①항공 ②스탬피드 ③특색 ④사람 ⑤정착
   calgary: [
-    { url: "https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?w=1200&q=90", pos: "center 38%", alt: "Calgary Alberta skyline Rocky Mountains" },
-    { url: "https://images.unsplash.com/photo-1570303345338-e1f0eddf4946?w=1200&q=90", pos: "center 40%", alt: "Calgary Stampede city" },
+    { url: "https://images.unsplash.com/photo-1607636205817-80ea100d78e7?w=1200&q=95", pos: "center 45%", alt: "Calgary aerial drone Bow River skyline golden hour" },
+    { url: "https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?w=1200&q=95", pos: "center 38%", alt: "Calgary Alberta skyline Rocky Mountains landmark" },
+    { url: "https://images.unsplash.com/photo-1600173229855-9cc8810bd3c0?w=1200&q=95", pos: "center 50%", alt: "Calgary Stampede rodeo chuckwagon horses character" },
+    { url: "https://images.unsplash.com/photo-1698920052187-e2ec7bbc2cd0?w=1200&q=95", pos: "center 40%", alt: "Calgary downtown skyline river community people" },
+    { url: "https://images.unsplash.com/photo-1719009523106-c15d0ddd754f?w=1200&q=95", pos: "center 50%", alt: "Calgary suburban residential community drone neighborhood settle" },
   ],
 
-  // 🇨🇦 에드먼턴 — 앨버타 도심
+  // 🇨🇦 에드먼턴 — ①항공 ②스카이라인 ③겨울 ④사람 ⑤정착
   edmonton: [
-    { url: "https://images.unsplash.com/photo-1580237541049-2d715a09486e?w=1200&q=90", pos: "center 40%", alt: "Edmonton Alberta skyline" },
+    { url: "https://images.unsplash.com/photo-1743630237434-b35596ae44b4?w=1200&q=95", pos: "center 40%", alt: "Edmonton Alberta aerial drone skyline daytime" },
+    { url: "https://images.unsplash.com/photo-1656638706997-11ec84e134d9?w=1200&q=95", pos: "center 35%", alt: "Edmonton Strathearn Park panorama skyline landmark" },
+    { url: "https://images.unsplash.com/photo-1672601698028-785c15940c7d?w=1200&q=95", pos: "center 45%", alt: "Edmonton winter cityscape North Saskatchewan River character" },
+    { url: "https://images.unsplash.com/photo-1570450942622-444bbbe4930b?w=1200&q=95", pos: "center 50%", alt: "Edmonton Keillor Point valley viewpoint community" },
+    { url: "https://images.unsplash.com/photo-1599861807502-0341592902f6?w=1200&q=95", pos: "center 50%", alt: "Edmonton Alberta river valley autumn residential settle" },
   ],
 
-  // 🇨🇦 오타와 — 의사당 + 리도운하
+  // 🇨🇦 오타와 — ①의사당 항공 ②의사당 ③리도운하 ④사람 ⑤정착
   ottawa: [
-    { url: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1200&q=90", pos: "center 38%", alt: "Ottawa Parliament Hill" },
-    { url: "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=1200&q=90", pos: "center 40%", alt: "Ottawa Rideau Canal" },
+    { url: "https://images.unsplash.com/photo-1694475506820-6d7010c9f62c?w=1200&q=95", pos: "center 40%", alt: "Ottawa Canada Parliament Hill aerial drone" },
+    { url: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1200&q=95", pos: "center 38%", alt: "Ottawa Parliament Hill iconic Canadian capital landmark" },
+    { url: "https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=1200&q=95", pos: "center 45%", alt: "Ottawa Rideau Canal ByWard Market cultural character" },
+    { url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=95", pos: "center 50%", alt: "Ottawa people community multicultural welcome" },
+    { url: "https://images.unsplash.com/photo-1570303345338-e1f0eddf4946?w=1200&q=95", pos: "center 50%", alt: "Ottawa Glebe residential neighborhood tree-lined settle" },
   ],
 
-  // 🇨🇦 위니펙 — 대평원 도시
+  // 🇨🇦 위니펙 — ①항공 ②The Forks ③문화 ④사람 ⑤정착
   winnipeg: [
-    { url: "https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?w=1200&q=90", pos: "center 40%", alt: "Winnipeg Manitoba skyline" },
+    { url: "https://images.unsplash.com/photo-1593054538402-8f44b0fb6074?w=1200&q=95", pos: "center 40%", alt: "Winnipeg Manitoba aerial drone Red River autumn" },
+    { url: "https://images.unsplash.com/photo-1580237541049-2d715a09486e?w=1200&q=95", pos: "center 38%", alt: "Winnipeg The Forks waterfront landmark" },
+    { url: "https://images.unsplash.com/photo-1528543606781-2f6e8816a307?w=1200&q=95", pos: "center 45%", alt: "Winnipeg exchange district heritage culture character" },
+    { url: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=95", pos: "center 50%", alt: "Winnipeg people diverse community gathering welcome" },
+    { url: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=95", pos: "center 50%", alt: "Winnipeg residential neighborhood suburban settle" },
   ],
 
-  // 🇦🇺 브리즈번 — 스토리브릿지 + 도심
+  // 🇦🇺 브리즈번 — ①항공 ②스토리브릿지 ③강 ④사람 ⑤정착
   brisbane: [
-    { url: "https://images.unsplash.com/photo-1524293581917-878a6d017c71?w=1200&q=90", pos: "center 40%", alt: "Brisbane Story Bridge skyline" },
-    { url: "https://images.unsplash.com/photo-1548266652-99cf27701ced?w=1200&q=90", pos: "center 38%", alt: "Brisbane South Bank" },
+    { url: "https://images.unsplash.com/photo-1564379380966-d7766b9e4282?w=1200&q=95", pos: "center 40%", alt: "Brisbane Australia aerial drone cityscape waterfront" },
+    { url: "https://images.unsplash.com/photo-1564379379256-030cc5dabe9c?w=1200&q=95", pos: "center 45%", alt: "Story Bridge Brisbane Queensland river skyline landmark" },
+    { url: "https://images.unsplash.com/photo-1589138114643-c082321a7186?w=1200&q=95", pos: "center 40%", alt: "Brisbane river South Bank white bridge culture" },
+    { url: "https://images.unsplash.com/photo-1595125990323-885cec5217ff?w=1200&q=95", pos: "center 50%", alt: "Brisbane community park people lifestyle welcome" },
+    { url: "https://images.unsplash.com/photo-1595125989588-36d745a2a828?w=1200&q=95", pos: "center 40%", alt: "Brisbane suburban residential neighborhood settle" },
   ],
 
-  // 🇦🇺 퍼스 — 인도양 + 도심
+  // 🇦🇺 퍼스 — ①황금시간 ②항공 ③스완강 ④사람 ⑤정착
   perth: [
-    { url: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1200&q=90", pos: "center 40%", alt: "Perth Western Australia skyline" },
+    { url: "https://images.unsplash.com/photo-1580014942344-ce423d2b885a?w=1200&q=95", pos: "center 40%", alt: "Perth Australia golden hour aerial city skyline waterfront" },
+    { url: "https://images.unsplash.com/photo-1564379380966-d7766b9e4282?w=1200&q=95", pos: "center 45%", alt: "Perth aerial drone cityscape waterfront" },
+    { url: "https://images.unsplash.com/photo-1589138114643-c082321a7186?w=1200&q=95", pos: "center 40%", alt: "Perth Kings Park Swan River bridge culture character" },
+    { url: "https://images.unsplash.com/photo-1595125990323-885cec5217ff?w=1200&q=95", pos: "center 50%", alt: "Perth Cottesloe community waterfront people welcome" },
+    { url: "https://images.unsplash.com/photo-1595125989588-36d745a2a828?w=1200&q=95", pos: "center 40%", alt: "Perth suburban residential neighborhood settle" },
   ],
 
-  // 🇳🇿 오클랜드 — 스카이타워 + 항구
+  // 🇳🇿 오클랜드 — ①항공 ②항구석양 ③워터프론트 ④사람 ⑤정착
   auckland: [
-    { url: "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=1200&q=90", pos: "center 38%", alt: "Auckland Sky Tower harbour" },
-    { url: "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=1200&q=90", pos: "center 40%", alt: "Auckland New Zealand skyline" },
+    { url: "https://images.unsplash.com/photo-1595125990323-885cec5217ff?w=1200&q=95", pos: "center 40%", alt: "Auckland New Zealand aerial sunset cityscape" },
+    { url: "https://images.unsplash.com/photo-1595125989588-36d745a2a828?w=1200&q=95", pos: "center 45%", alt: "Auckland harbour sunset portrait waterfront landmark" },
+    { url: "https://images.unsplash.com/photo-1696452774626-5be9532664dc?w=1200&q=95", pos: "center 40%", alt: "Auckland Waitemata waterfront park culture" },
+    { url: "https://images.unsplash.com/photo-1764212964673-249757581fb7?w=1200&q=95", pos: "center 50%", alt: "Auckland New Zealand community people welcome" },
+    { url: "https://images.unsplash.com/photo-1446733993804-c62a351c7239?w=1200&q=95", pos: "center 40%", alt: "Auckland New Zealand city residential neighborhood settle" },
   ],
 
-  // 🇩🇪 프랑크푸르트 — 유럽 금융허브
+  // 🇩🇪 프랑크푸르트 — ①항공 ②스카이라인 ③뢰머베르크 ④사람 ⑤정착
   frankfurt: [
-    { url: "https://images.unsplash.com/photo-1495954484750-af469f2f9be5?w=1200&q=90", pos: "center 40%", alt: "Frankfurt Germany skyline" },
-    { url: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=1200&q=90", pos: "center 38%", alt: "Frankfurt banking district" },
+    { url: "https://images.unsplash.com/photo-1577185816322-21f2a92b1342?w=1200&q=95", pos: "center 40%", alt: "Frankfurt Germany aerial drone skyline banking" },
+    { url: "https://images.unsplash.com/photo-1596121605688-e3d0e00adfd9?w=1200&q=95", pos: "center 38%", alt: "Frankfurt skyline skyscrapers banking district landmark" },
+    { url: "https://images.unsplash.com/photo-1626447637943-4c9d412fa8cf?w=1200&q=95", pos: "center 45%", alt: "Römerberg Frankfurt old town historic square character" },
+    { url: "https://images.unsplash.com/photo-1605186620429-1ece911f171c?w=1200&q=95", pos: "center 50%", alt: "Frankfurt people riverside Main community welcome" },
+    { url: "https://images.unsplash.com/photo-1565321326010-48a2c4ab4aae?w=1200&q=95", pos: "center 40%", alt: "Frankfurt Sachsenhausen residential neighborhood settle" },
   ],
 
-  // 🇻🇳 호치민 — 도시
+  // 🇻🇳 호치민 — ①항공 ②노트르담 ③벤탄시장 ④사람 ⑤정착
   hochiminh: [
-    { url: "https://images.unsplash.com/photo-1570366583862-f91883984fde?w=1200&q=90", pos: "center 38%", alt: "Ho Chi Minh City streets" },
+    { url: "https://images.unsplash.com/photo-1602646994030-464f98de5e5c?w=1200&q=95", pos: "center 40%", alt: "Ho Chi Minh City aerial drone Saigon skyline" },
+    { url: "https://images.unsplash.com/photo-1521019795854-14e15f600980?w=1200&q=95", pos: "center 38%", alt: "Notre Dame Cathedral Saigon Ho Chi Minh landmark" },
+    { url: "https://images.unsplash.com/photo-1535952548450-d7447587e733?w=1200&q=95", pos: "center 45%", alt: "Ben Thanh Market Ho Chi Minh culture character" },
+    { url: "https://images.unsplash.com/photo-1603852452516-972df21fccac?w=1200&q=95", pos: "center 50%", alt: "Ho Chi Minh people street community welcome" },
+    { url: "https://images.unsplash.com/photo-1603852451930-ab281d59c2cd?w=1200&q=95", pos: "center 40%", alt: "Saigon district residential neighborhood settle" },
   ],
   // 🇯🇵 도쿄 — ① 전망대 조감 → ② 시부야 크로싱(에어리얼) → ③ 라멘 특색 → ④ 하라주쿠 군중 → ⑤ 골목 정착
   // Story: Christoph Theisinger 신주쿠 조감 → Ryoji Iwata 시부야 공중 → 라멘 → 하라주쿠 → 조용한 골목
@@ -542,10 +682,13 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-grOTReWUHhU?w=1200&q=95",               pos: "center 50%", alt: "Quiet Tokyo residential alley settle home" },
   ],
 
-  // 🇯🇵 오사카 — 도톤보리 + 오사카성
+  // 🇯🇵 오사카 — ①항공 ②오사카성 ③도톤보리 ④사람 ⑤정착
   osaka: [
-    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", pos: "center 38%", alt: "Osaka Castle" },
-    { url: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=90", pos: "center 40%", alt: "Osaka Shinsekai" },
+    { url: "https://images.unsplash.com/photo-1547647496-b2d16f4fdb69?w=1200&q=95", pos: "center 40%", alt: "Osaka aerial drone cityscape Japan overview" },
+    { url: "https://images.unsplash.com/photo-1596240748549-6ec0f32d4c95?w=1200&q=95", pos: "center 38%", alt: "Osaka Castle historic landmark Japan" },
+    { url: "https://images.unsplash.com/photo-1629569320448-a5504a24d384?w=1200&q=95", pos: "center 45%", alt: "Dotonbori Osaka neon night Glico sign culture" },
+    { url: "https://images.unsplash.com/photo-1580138051672-325eb98b2749?w=1200&q=95", pos: "center 50%", alt: "Osaka people street food Kuromon market community" },
+    { url: "https://images.unsplash.com/photo-1575489129683-4f7d23379975?w=1200&q=95", pos: "center 40%", alt: "Osaka residential apartment neighborhood settle" },
   ],
 };
 
