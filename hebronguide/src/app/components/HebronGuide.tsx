@@ -12760,6 +12760,9 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   const isEU  = ["UK","DE","FR"].includes(ccSettle);          // 영국·독일·프랑스
   const isGulf = ccSettle === "AE";                            // UAE/두바이
   const isSEA = ["SG","TH","VN"].includes(ccSettle);          // 싱가포르·태국·베트남
+  const isNZ  = ccSettle === "NZ";                             // 뉴질랜드
+  const isBR  = ccSettle === "BR";                             // 브라질
+  const isMX  = ccSettle === "MX";                             // 멕시코
   const settleHeaders = [
     { emoji: "🛬", titleKo: "1주차 — 도착 직후", titleEn: "Week 1 — Just Arrived",
       descKo: isKR ? `${cityNameKo} 첫 7일 — 임시 거주·휴대폰·주민등록·은행` : `${cityNameKo} 첫 7일 — 임시 거주·휴대폰·SSN·은행`,
@@ -12776,9 +12779,9 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "💰", titleKo: "재정 시작", titleEn: "Finance Setup", descKo: `${cityNameKo} 은행·신용카드·크레딧·은퇴 계좌`, descEn: `${cityNameEn} banking · credit cards · score · retirement` },
     { emoji: "🏘️", titleKo: "주택 가이드", titleEn: "Housing Guide", descKo: `${cityNameKo} 동네 비교 · 부동산 · 카운티별 가격 · 헤브론 홈`, descEn: `${cityNameEn} neighborhoods · realty · county pricing · Hebron Home` },
     { emoji: "✅", titleKo: "전체 체크리스트", titleEn: "Complete Checklist", descKo: `${cityNameKo} 정착 모든 단계 한눈에`, descEn: `${cityNameEn} all settlement steps at a glance` },
-    { emoji: isKR ? "🗺️" : isJP ? "🗾" : isCA ? "🍁" : isAU ? "🦘" : isEU ? "🇪🇺" : isGulf ? "🌙" : isSEA ? "🌴" : "🛂",
-      titleKo: isKR ? "한국 이주 가이드" : isJP ? "일본 이주 가이드" : isCA ? "캐나다 이민 가이드" : isAU ? "호주 이민 가이드" : isEU ? "유럽 비자 가이드" : isGulf ? "UAE 비자 가이드" : isSEA ? "동남아 비자 가이드" : "비자·이민 가이드",
-      titleEn: isKR ? "Moving to Korea" : isJP ? "Moving to Japan" : isCA ? "Canada Immigration" : isAU ? "Australia Immigration" : isEU ? "Europe Visa Guide" : isGulf ? "UAE Visa Guide" : isSEA ? "Southeast Asia Visa" : "Visa & Immigration",
+    { emoji: isKR ? "🗺️" : isJP ? "🗾" : isCA ? "🍁" : isAU ? "🦘" : isEU ? "🇪🇺" : isGulf ? "🌙" : isSEA ? "🌴" : isNZ ? "🥝" : isBR ? "🇧🇷" : isMX ? "🇲🇽" : "🛂",
+      titleKo: isKR ? "한국 이주 가이드" : isJP ? "일본 이주 가이드" : isCA ? "캐나다 이민 가이드" : isAU ? "호주 이민 가이드" : isEU ? "유럽 비자 가이드" : isGulf ? "UAE 비자 가이드" : isSEA ? "동남아 비자 가이드" : isNZ ? "뉴질랜드 이민 가이드" : isBR ? "브라질 비자 가이드" : isMX ? "멕시코 비자 가이드" : "비자·이민 가이드",
+      titleEn: isKR ? "Moving to Korea" : isJP ? "Moving to Japan" : isCA ? "Canada Immigration" : isAU ? "Australia Immigration" : isEU ? "Europe Visa Guide" : isGulf ? "UAE Visa Guide" : isSEA ? "Southeast Asia Visa" : isNZ ? "New Zealand Immigration" : isBR ? "Brazil Visa Guide" : isMX ? "Mexico Visa Guide" : "Visa & Immigration",
       descKo: isKR ? `${cityNameKo} 역이민·취업·결혼·장기체류 — 4가지 트랙`
             : isJP ? `${cityNameKo} 재류카드·취업·결혼·유학 — 4가지 트랙`
             : isCA ? `${cityNameKo} Express Entry·PNP·가족초청·유학 경로`
@@ -12786,6 +12789,9 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             : isEU ? `${cityNameKo} 취업비자·EU Blue Card·가족결합`
             : isGulf ? `${cityNameKo} 취업비자·골든비자·원격근무`
             : isSEA ? `${cityNameKo} 취업허가·장기체류·비자 경로`
+            : isNZ ? `${cityNameKo} 기술이민·워홀·취업·유학 경로`
+            : isBR ? `${cityNameKo} 임시거주·VIPER 영주·취업 경로`
+            : isMX ? `${cityNameKo} Residente Temporal·영주·취업 경로`
             : `${cityNameKo} F-1 · H-1B · 영주권 · 시민권 단계별`,
       descEn: isKR ? `${cityNameEn} return · work · marriage · long-stay — 4 tracks`
             : isJP ? `${cityNameEn} residence card · work · marriage · study — 4 tracks`
@@ -12794,6 +12800,9 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             : isEU ? `${cityNameEn} work visa · EU Blue Card · family reunification`
             : isGulf ? `${cityNameEn} employment · golden visa · remote work`
             : isSEA ? `${cityNameEn} work permit · long-stay · visa pathways`
+            : isNZ ? `${cityNameEn} skilled migrant · WHV · work · study pathways`
+            : isBR ? `${cityNameEn} temporary residence · VIPER permanent · work pathways`
+            : isMX ? `${cityNameEn} Residente Temporal · permanent · work pathways`
             : `${cityNameEn} F-1 · H-1B · green card · citizenship` },
   ];
   const sh = settleHeaders[sub] ?? settleHeaders[0];
@@ -13218,8 +13227,131 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
           </div>
         )}
 
+        {/* ── 비자·이민 탭 (index 7, 뉴질랜드) ── */}
+        {sub === 7 && isNZ && (
+          <div>
+            {[
+              { emoji: "🥝", name: lang === "ko" ? "뉴질랜드 비자 종류" : "New Zealand Visa Types",
+                desc: lang === "ko"
+                  ? "✅ 주요 비자 유형:\n• Accredited Employer Work Visa (AEWV) — 인증 고용주 스폰서. NZ의 핵심 취업비자\n• Skilled Migrant Category (SMC) — 포인트 기반 기술이민 영주권. 160점 이상\n• Working Holiday Visa — 한-NZ 협정. 만 30세 이하, 최대 23개월\n• Student Visa → Post-Study Work Visa — 졸업 후 최대 3년 취업 허가\n• Partner/Spouse Visa — NZ 시민권자·영주권자 배우자\n• Residence from Work — 취업비자 2년 후 영주권 신청 가능\n\n📞 Immigration NZ: immigration.govt.nz"
+                  : "✅ Key visa types:\n• Accredited Employer Work Visa (AEWV) — employer-sponsored. Primary NZ work visa\n• Skilled Migrant Category (SMC) — points-based residence (160+ points)\n• Working Holiday Visa — Korea-NZ agreement. Age ≤30, up to 23 months\n• Student Visa → Post-Study Work Visa — up to 3 years work after graduation\n• Partner/Spouse Visa — for partners of NZ citizens or residents\n• Residence from Work — apply for residency after 2 years on work visa\n\n📞 Immigration NZ: immigration.govt.nz",
+                tags: lang === "ko" ? ["AEWV", "SMC", "워킹홀리데이"] : ["AEWV", "SMC", "Working Holiday"] },
+              { emoji: "📋", name: lang === "ko" ? "IRD 번호·NHI 등록 (필수!)" : "IRD Number & NHI Registration (Critical!)",
+                desc: lang === "ko"
+                  ? "✅ 도착 즉시 처리할 것:\n\n• IRD 번호 (세금 ID) — ird.govt.nz 온라인 신청. 근무 시작 전 필수\n• NHI 번호 (National Health Index) — GP 첫 방문 시 자동 발급. 무료\n• ACC (사고보상공사) — 취업자는 자동 가입. 업무·일상 부상 모두 보장\n• 은행 계좌 — 여권 + IRD 번호 + 거주지 증명으로 개설 (BNZ·ANZ·Kiwibank)\n\n💡 IRD 번호 없으면 급여에서 최고 세율(39%) 원천징수됨. 첫날 신청!"
+                  : "✅ Do immediately on arrival:\n\n• IRD Number (tax ID) — apply online at ird.govt.nz. Required before starting work\n• NHI Number (National Health Index) — issued at first GP visit. Free\n• ACC (Accident Compensation Corporation) — automatic for workers. Covers work & everyday injuries\n• Bank account — passport + IRD number + proof of address (BNZ, ANZ, Kiwibank)\n\n💡 Without an IRD number, you'll be taxed at the highest rate (39%). Apply on day one!",
+                tags: lang === "ko" ? ["IRD번호", "NHI", "ACC"] : ["IRD Number", "NHI", "ACC"] },
+              { emoji: "📅", name: lang === "ko" ? "비자 연장·영주권 신청" : "Visa Extension & Residency Application",
+                desc: lang === "ko"
+                  ? "⚠️ 만료 4개월 전 준비 시작!\n\n비자 연장:\n• AEWV 연장 — 고용주 인증 유지 확인 후 온라인 신청 (immigration.govt.nz)\n• 워킹홀리데이 연장 불가 — 다른 비자로 전환 필요\n\n영주권 신청 경로:\n• Skilled Migrant Category — Expression of Interest → 초청 → 신청\n• Residence from Work — AEWV 2년 보유 + 급여 기준 충족\n• Partnership — 1년 이상 동거 + 관계 진정성 증명\n\n📞 Immigration NZ 콜센터: 0508 558 855"
+                  : "⚠️ Start preparing 4 months before expiry!\n\nVisa Extension:\n• AEWV renewal — confirm employer accreditation, apply online (immigration.govt.nz)\n• Working Holiday cannot be extended — must switch to another visa\n\nResidency Pathways:\n• Skilled Migrant — Expression of Interest → invitation → application\n• Residence from Work — 2 years on AEWV + salary threshold met\n• Partnership — 12+ months living together + genuine relationship evidence\n\n📞 Immigration NZ: 0508 558 855",
+                tags: lang === "ko" ? ["비자연장", "SMC", "영주권"] : ["Visa Extension", "SMC", "Residency"] },
+              { emoji: "🏠", name: lang === "ko" ? "뉴질랜드 정착 핵심 정보" : "NZ Settlement Essentials",
+                desc: lang === "ko"
+                  ? "✅ 정착 체크리스트:\n\n• GP (주치의) 등록 — 도착 즉시. NHI 발급·처방전·전문의 의뢰\n• 운전면허 전환 — 한국 면허 → NZ 면허 (첫 12개월 내). NZTA 사무소 방문\n• KiwiSaver 가입 — NZ 퇴직연금. 고용주 3% 매칭 + 정부 보조\n• 자녀 학교 — 거주 구역 내 공립학교 무료 (Ministry of Education: education.govt.nz)\n• 한인 커뮤니티 — 오클랜드 Korean Association of NZ (kaofnz.org.nz)"
+                  : "✅ Settlement checklist:\n\n• Register with a GP (general practitioner) — immediately. NHI, prescriptions, specialist referrals\n• Driver licence conversion — Korean licence → NZ licence (within first 12 months). Visit NZTA office\n• KiwiSaver enrolment — NZ retirement savings. 3% employer match + government contribution\n• Children's school — free public school in your zone (education.govt.nz)\n• Korean community — Korean Association of NZ: kaofnz.org.nz",
+                tags: lang === "ko" ? ["GP등록", "KiwiSaver", "운전면허"] : ["GP", "KiwiSaver", "Driver Licence"] },
+              { emoji: "🇰🇷", name: lang === "ko" ? "주오클랜드 한국 총영사관" : "Korean Consulate General Auckland",
+                desc: lang === "ko"
+                  ? "✅ 주소: 2 Kitchener St, Auckland CBD\n📞 +64-9-379-0818\n영업시간: 월-금 9am-12pm, 1:30pm-4:30pm (예약 권장)\n\n주요 서비스:\n• 여권 발급·갱신\n• 재외국민 등록 (도착 후 필수)\n• 공증·영사 확인\n• 국적·병역 상담\n\n🔗 nzl.mofa.go.kr"
+                  : "✅ Address: 2 Kitchener St, Auckland CBD\n📞 +64-9-379-0818\nHours: Mon-Fri 9am-12pm, 1:30pm-4:30pm (appointment recommended)\n\nKey services:\n• Passport issuance & renewal\n• Overseas Korean registration (required after arrival)\n• Notarization & consular certification\n• Nationality & military service consultation\n\n🔗 nzl.mofa.go.kr",
+                tags: lang === "ko" ? ["총영사관", "여권", "재외국민"] : ["Consulate", "Passport", "Registration"] },
+            ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+            <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#818CF8", marginBottom: 4 }}>🥝 {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
+                {lang === "ko"
+                  ? "• 도착 즉시: ird.govt.nz에서 IRD 번호 신청\n• GP 등록: 도착 첫 주 내 (NHI 번호 발급)\n• 비자 만료 4개월 전: 연장·영주권 신청 준비\n• 재외국민 등록: 오클랜드 한국 총영사관 방문"
+                  : "• On arrival: apply for IRD number at ird.govt.nz\n• Register with a GP within the first week (NHI number issued)\n• 4 months before visa expiry: prepare extension or residency application\n• Register as overseas Korean: visit Korean Consulate Auckland"}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── 비자·이민 탭 (index 7, 브라질) ── */}
+        {sub === 7 && isBR && (
+          <div>
+            {[
+              { emoji: "🇧🇷", name: lang === "ko" ? "브라질 비자 종류" : "Brazil Visa Types",
+                desc: lang === "ko"
+                  ? "✅ 주요 비자 유형:\n• VITEM V (취업비자) — 브라질 고용주 스폰서 필수. 2년 갱신\n• VITEM IX (투자자비자) — 법인 설립 + 투자금 R$ 500,000 이상\n• VITEC (기술연수) — 기술 협력·연수 목적\n• VIPER (영주비자) — 4년 임시거주 후 신청 가능. 취업자·투자자·배우자\n• VICONJ (가족결합) — 브라질 시민권자·영주권자 배우자·자녀\n• 워킹홀리데이 — 한-브라질 협정 (만 18-30세, 최대 1년)\n\n📞 Polícia Federal: pf.gov.br"
+                  : "✅ Key visa types:\n• VITEM V (Work Visa) — Brazilian employer sponsorship required. 2-year renewal\n• VITEM IX (Investor Visa) — company formation + R$ 500,000+ investment\n• VITEC (Technical Training) — technology cooperation & training\n• VIPER (Permanent Visa) — apply after 4 years temporary residence\n• VICONJ (Family Reunification) — spouse/children of Brazilian citizen/resident\n• Working Holiday — Korea-Brazil agreement (age 18-30, up to 1 year)\n\n📞 Polícia Federal: pf.gov.br",
+                tags: lang === "ko" ? ["VITEM", "VIPER", "취업비자"] : ["VITEM", "VIPER", "Work Visa"] },
+              { emoji: "📋", name: lang === "ko" ? "CPF·CTPS·RNE 등록 (필수!)" : "CPF · CTPS · RNE Registration (Critical!)",
+                desc: lang === "ko"
+                  ? "✅ 도착 즉시 처리할 것:\n\n• CPF (세금 ID) — 브라질 국세청(Receita Federal) 또는 한국 영사관에서 신청. 은행·계약 필수\n• RNE/CIE (외국인등록증) — Polícia Federal 방문. 비자 발급 후 90일 내\n• CTPS (노동수첩) — 취업 시 고용주가 디지털 CTPS 등록. Ministry of Labour\n• 은행 계좌 — CPF + RNE + 거주지 증명으로 개설 (Itaú·Bradesco·Nubank)\n• SUS 건강보험 — 전국민 무료 의료. UBS(지역보건소) 방문하여 카드 발급\n\n💡 CPF 없으면 브라질에서 거의 아무것도 못함. 첫날 신청!"
+                  : "✅ Do immediately on arrival:\n\n• CPF (tax ID) — apply at Receita Federal or Korean consulate. Required for banking & contracts\n• RNE/CIE (Foreigners' ID Card) — visit Polícia Federal within 90 days of visa\n• CTPS (Work Permit Card) — employer registers digital CTPS on hiring. Ministry of Labour\n• Bank account — CPF + RNE + proof of address (Itaú, Bradesco, Nubank)\n• SUS (Public Health) — free healthcare for all residents. Visit local UBS for card\n\n💡 Without CPF you can barely do anything in Brazil. Apply on day one!",
+                tags: lang === "ko" ? ["CPF", "RNE", "SUS"] : ["CPF", "RNE", "SUS"] },
+              { emoji: "📅", name: lang === "ko" ? "비자 연장·영주권 신청" : "Visa Extension & Permanent Residency",
+                desc: lang === "ko"
+                  ? "⚠️ 만료 90일 전 준비 시작!\n\n연장:\n• VITEM V — 고용 유지 + 고용주 갱신 신청서. Polícia Federal 방문\n• 처리 기간: 30-90일\n\n영주권 (VIPER) 신청 경로:\n• 4년 임시거주 (VITEM V/IX) 후 영주권 신청\n• 배우자 — 브라질 시민권자와 결혼 후 1년 이상\n• 투자자 — 지속적 사업 운영 증명\n• 은퇴자 — 월 R$ 6,000+ 해외 소득 증명\n\n📞 Polícia Federal: 158 (연방경찰 콜센터)"
+                  : "⚠️ Start preparing 90 days before expiry!\n\nExtension:\n• VITEM V — maintain employment + employer renewal docs. Visit Polícia Federal\n• Processing: 30-90 days\n\nPermanent Residency (VIPER) Pathways:\n• After 4 years on VITEM V/IX\n• Spouse — married to Brazilian citizen for 1+ years\n• Investor — proof of ongoing business operation\n• Retiree — R$ 6,000+/month overseas income\n\n📞 Polícia Federal: 158",
+                tags: lang === "ko" ? ["VIPER", "영주권", "비자연장"] : ["VIPER", "Permanent", "Extension"] },
+              { emoji: "🏠", name: lang === "ko" ? "브라질 정착 핵심 정보" : "Brazil Settlement Essentials",
+                desc: lang === "ko"
+                  ? "✅ 정착 체크리스트:\n\n• 운전면허 전환 — 한국 면허 → 브라질 CNH. DETRAN 방문 (각 주 교통국)\n• INSS (사회보험) — 취업자 자동 공제. 의료·연금·출산급여 포함\n• 자녀 학교 — 공립학교 무료. 시립 교육부(SME)에 거주지 증명 제출\n• 한인 커뮤니티 — 상파울루 봉헤찌루(Bom Retiro)·리베르다지(Liberdade) 한인 밀집 지역\n• 한국학교 — Escola Coreana de São Paulo (한국 교육원 산하)"
+                  : "✅ Settlement checklist:\n\n• Driver licence conversion — Korean → Brazilian CNH. Visit DETRAN (state traffic authority)\n• INSS (Social Insurance) — auto-deducted for employees. Covers healthcare, pension, maternity\n• Children's school — free public school. Submit proof of residence to municipal SME\n• Korean community — Bom Retiro & Liberdade districts in São Paulo\n• Korean school — Escola Coreana de São Paulo (under Korean Education Center)",
+                tags: lang === "ko" ? ["INSS", "운전면허", "자녀학교"] : ["INSS", "Driver Licence", "School"] },
+              { emoji: "🇰🇷", name: lang === "ko" ? "주상파울루 한국 총영사관" : "Korean Consulate General São Paulo",
+                desc: lang === "ko"
+                  ? "✅ 주소: Av. Paulista 37, 8° andar, Bela Vista, São Paulo\n📞 +55-11-3141-1278\n영업시간: 월-금 9am-12pm, 2pm-5pm\n\n주요 서비스:\n• 여권 발급·갱신\n• 재외국민 등록 (도착 후 필수)\n• CPF 신청 대리 (현지 한인 대상)\n• 공증·영사 확인\n\n🔗 bra-saopaulo.mofa.go.kr"
+                  : "✅ Address: Av. Paulista 37, 8th fl, Bela Vista, São Paulo\n📞 +55-11-3141-1278\nHours: Mon-Fri 9am-12pm, 2pm-5pm\n\nKey services:\n• Passport issuance & renewal\n• Overseas Korean registration (required after arrival)\n• CPF application assistance (for local Koreans)\n• Notarization & consular certification\n\n🔗 bra-saopaulo.mofa.go.kr",
+                tags: lang === "ko" ? ["총영사관", "여권", "CPF"] : ["Consulate", "Passport", "CPF"] },
+            ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+            <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#818CF8", marginBottom: 4 }}>🇧🇷 {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
+                {lang === "ko"
+                  ? "• 도착 즉시: 한국 총영사관 또는 Receita Federal에서 CPF 신청\n• 90일 내: Polícia Federal에서 RNE(외국인등록증) 발급\n• 취업 즉시: CTPS 디지털 등록 + INSS 가입 확인\n• 비자 만료 90일 전: 연장 또는 VIPER 영주권 준비"
+                  : "• On arrival: apply for CPF at Korean consulate or Receita Federal\n• Within 90 days: get RNE (foreigners' ID) at Polícia Federal\n• On employment: verify digital CTPS registration + INSS enrollment\n• 90 days before visa expiry: prepare extension or VIPER permanent residency"}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── 비자·이민 탭 (index 7, 멕시코) ── */}
+        {sub === 7 && isMX && (
+          <div>
+            {[
+              { emoji: "🇲🇽", name: lang === "ko" ? "멕시코 비자 종류" : "Mexico Visa Types",
+                desc: lang === "ko"
+                  ? "✅ 주요 비자 유형:\n• 한국인 무비자 입국 — 관광·상용 최대 180일. 입국 시 허가 기간 확인 필수\n• Residente Temporal (임시거주자) — 취업·유학·투자·가족결합. 1-4년, 갱신 가능\n• Residente Temporal Estudiante — 학생 임시거주. 재학 기간 유효\n• Residente Permanente (영주) — 4년 임시거주 후 신청. 또는 멕시코인 배우자\n• IMMEX (제조업 취업) — 마낄라도라 공장 취업 외국인 특수 허가\n• 원격근무 비자 (디지털노마드) — 2024년 도입. Residente Temporal 내 처리\n\n📞 INM (이민청): inm.gob.mx"
+                  : "✅ Key visa types:\n• Visa-free entry for Koreans — tourism/business up to 180 days. Check permitted stay on arrival\n• Residente Temporal (Temporary Resident) — work, study, invest, family. 1-4 years, renewable\n• Residente Temporal Estudiante — student temporary residence. Valid for study duration\n• Residente Permanente (Permanent) — after 4 years temp residence, or spouse of Mexican national\n• IMMEX (Manufacturing Work) — special permit for maquiladora factory workers\n• Digital Nomad option — handled within Residente Temporal framework (introduced 2024)\n\n📞 INM: inm.gob.mx",
+                tags: lang === "ko" ? ["ResidenteTemporal", "INM", "무비자"] : ["Residente Temporal", "INM", "Visa-Free"] },
+              { emoji: "📋", name: lang === "ko" ? "RFC·CURP·IMSS 등록 (필수!)" : "RFC · CURP · IMSS Registration (Critical!)",
+                desc: lang === "ko"
+                  ? "✅ 도착 즉시 처리할 것:\n\n• CURP (주민등록번호) — 멕시코 신분증 번호. gob.mx 온라인 발급 (무료). 입국 후 발급 가능\n• RFC (세금 ID) — SAT(세무청) 방문 또는 앱 신청. 취업·사업·은행 필수\n• IMSS 가입 — 취업자 고용주가 등록. 의료·연금·출산급여. 확인: imss.gob.mx\n• 은행 계좌 — CURP + RFC + 거주지 증명. BBVA·Banamex·HSBC Mexico\n• 외국인 거주증 (CURP 카드) — INM 발급. Residente Temporal 카드와 함께 소지\n\n💡 CURP는 멕시코 모든 행정 절차의 기본. 가장 먼저 발급!"
+                  : "✅ Do immediately on arrival:\n\n• CURP (Population Registry Code) — Mexico's ID number. Apply free at gob.mx. Available after entry\n• RFC (Tax ID) — apply at SAT office or via app. Required for work, business, banking\n• IMSS enrollment — employer registers on hiring. Covers healthcare, pension, maternity\n• Bank account — CURP + RFC + proof of address (BBVA, Banamex, HSBC Mexico)\n• Foreign Resident Card — issued by INM. Carry with Residente Temporal card\n\n💡 CURP is the foundation of all administrative procedures in Mexico. Get it first!",
+                tags: lang === "ko" ? ["CURP", "RFC", "IMSS"] : ["CURP", "RFC", "IMSS"] },
+              { emoji: "📅", name: lang === "ko" ? "비자 연장·영주권 신청" : "Visa Extension & Permanent Residency",
+                desc: lang === "ko"
+                  ? "⚠️ 만료 30일 전 준비 시작!\n\nResidente Temporal 연장:\n• INM 사무소 방문. 여권 + 현재 거주증 + 재정 증명 + 사진\n• 1년 단위 연장 (최대 4년). 처리 기간: 2-4주\n\nResidente Permanente 신청:\n• 4년 임시거주 완료 후 신청\n• 멕시코인 배우자 — 혼인 후 즉시 신청 가능\n• 멕시코 출생 자녀 — 자녀 출생 증명으로 신청\n• 은퇴자 — 월 USD 2,700 이상 해외 소득 증명\n\n📞 INM 콜센터: 800-004-6264"
+                  : "⚠️ Start preparing 30 days before expiry!\n\nResidente Temporal Extension:\n• Visit INM office. Passport + current card + financial proof + photos\n• 1-year increments (max 4 years). Processing: 2-4 weeks\n\nResidente Permanente Application:\n• After completing 4 years of temporary residence\n• Spouse of Mexican national — can apply immediately after marriage\n• Parent of Mexican-born child — with birth certificate\n• Retiree — USD 2,700+/month overseas income\n\n📞 INM: 800-004-6264",
+                tags: lang === "ko" ? ["연장", "영주권", "INM"] : ["Extension", "Permanent", "INM"] },
+              { emoji: "🏠", name: lang === "ko" ? "멕시코 정착 핵심 정보" : "Mexico Settlement Essentials",
+                desc: lang === "ko"
+                  ? "✅ 정착 체크리스트:\n\n• 운전면허 전환 — 한국 면허 → 멕시코 면허. 각 주 교통국(Secretaría de Movilidad) 방문\n• 의료보험 — IMSS(취업자) 또는 INSABI/Seguro Popular(자영업자·무직). 가까운 클리닉 등록\n• 자녀 학교 — 공립학교 무료. SEP(교육부) 통해 CURP로 등록\n• 한인 커뮤니티 — 멕시코시티: Polanco·Lomas de Chapultepec 한인 밀집. 한국 기업 주재원 多\n• 한국학교 — 멕시코시티 한국교육원 (education.go.kr/mexico)"
+                  : "✅ Settlement checklist:\n\n• Driver licence conversion — Korean → Mexican licence. Visit state traffic authority (Secretaría de Movilidad)\n• Healthcare — IMSS (employed) or INSABI/Seguro Popular (self-employed/unemployed). Register at local clinic\n• Children's school — free public school. Register via SEP (Education Ministry) using CURP\n• Korean community — Mexico City: Polanco & Lomas de Chapultepec districts. Many Korean company employees\n• Korean school — Centro Educativo Coreano en México (education.go.kr/mexico)",
+                tags: lang === "ko" ? ["IMSS", "운전면허", "자녀학교"] : ["IMSS", "Driver Licence", "School"] },
+              { emoji: "🇰🇷", name: lang === "ko" ? "주멕시코 한국 대사관" : "Korean Embassy Mexico City",
+                desc: lang === "ko"
+                  ? "✅ 주소: 211 Lope de Armendáriz, Lomas de Virreyes, Mexico City\n📞 +52-55-5202-9866\n영업시간: 월-금 9am-12pm, 2pm-5pm (예약 권장)\n\n주요 서비스:\n• 여권 발급·갱신\n• 재외국민 등록 (도착 후 필수)\n• 공증·영사 확인\n• 한인 법률 긴급 지원\n\n🔗 mex.mofa.go.kr"
+                  : "✅ Address: 211 Lope de Armendáriz, Lomas de Virreyes, Mexico City\n📞 +52-55-5202-9866\nHours: Mon-Fri 9am-12pm, 2pm-5pm (appointment recommended)\n\nKey services:\n• Passport issuance & renewal\n• Overseas Korean registration (required after arrival)\n• Notarization & consular certification\n• Emergency legal assistance for Koreans\n\n🔗 mex.mofa.go.kr",
+                tags: lang === "ko" ? ["대사관", "여권", "재외국민"] : ["Embassy", "Passport", "Registration"] },
+            ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+            <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#818CF8", marginBottom: 4 }}>🇲🇽 {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
+                {lang === "ko"
+                  ? "• 도착 즉시: gob.mx에서 CURP 발급\n• 취업 시: SAT에서 RFC 발급 + IMSS 가입 확인\n• 비자 만료 30일 전: INM 방문하여 Residente Temporal 연장\n• 재외국민 등록: 주멕시코 한국 대사관 방문"
+                  : "• On arrival: get CURP at gob.mx\n• On employment: get RFC at SAT + verify IMSS enrollment\n• 30 days before visa expiry: visit INM to extend Residente Temporal\n• Register as overseas Korean: visit Korean Embassy Mexico City"}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* ── 비자·이민 탭 (index 7, 미국/기타 도시) ── */}
-        {sub === 7 && !isKR && !isJP && !isCA && !isAU && !isEU && !isGulf && !isSEA && (
+        {sub === 7 && !isKR && !isJP && !isCA && !isAU && !isEU && !isGulf && !isSEA && !isNZ && !isBR && !isMX && (
           <div>
             {[
               { emoji: "🛂", name: lang === "ko" ? "비자 종류 한눈에 보기" : "Visa Types Overview",
