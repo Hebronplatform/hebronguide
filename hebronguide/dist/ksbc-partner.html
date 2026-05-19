@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HebronGuide 파트너 교회 안내 | 미주남침례회 한인교회총회</title>
+<meta name="description" content="HebronGuide — 새로 오신 성도가 공항에서부터 여러분의 교회를 만납니다. 미주남침례회 한인교회 파트너 안내.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.08);
+  --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.16);
+  --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;--blue:#60A5FA;
+  --text:#ECFDF5;--muted:rgba(236,253,245,0.55);
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:var(--bg);}
+body{font-family:'Noto Sans KR',-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
+.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;letter-spacing:.02em;font-family:'Cinzel',serif;}
+.nav-tag{font-size:.72rem;color:var(--muted);background:rgba(255,255,255,0.06);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;}
+
+/* HERO */
+.hero{text-align:center;padding:56px 24px 44px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.12),transparent);}
+.hero-eyebrow{display:inline-block;font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);border-radius:20px;padding:5px 16px;}
+h1{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;color:#fff;line-height:1.35;margin-bottom:16px;}
+h1 span{color:var(--gold);}
+.hero-sub{font-size:.95rem;color:var(--muted);max-width:500px;margin:0 auto 28px;line-height:1.9;}
+.verse-box{display:inline-block;background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.22);border-radius:12px;padding:14px 24px;font-size:.88rem;color:rgba(236,253,245,.8);font-style:italic;line-height:1.7;}
+.verse-box cite{display:block;margin-top:5px;font-style:normal;font-size:.75rem;color:var(--gold);font-weight:700;}
+
+/* CONTAINER */
+.container{max-width:660px;margin:0 auto;padding:40px 20px 80px;}
+
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:28px;margin-bottom:18px;}
+@media(max-width:480px){.card{padding:22px 18px;}}
+.card-label{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.card-title{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:12px;}
+.card-body{font-size:.9rem;color:var(--muted);line-height:1.85;}
+.card-body strong{color:var(--text);}
+
+/* QR BLOCK */
+.qr-block{display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.qr-wrap{flex-shrink:0;background:#fff;border-radius:12px;padding:10px;width:140px;height:140px;display:flex;align-items:center;justify-content:center;}
+.qr-wrap img{width:120px;height:120px;display:block;}
+.qr-info{flex:1;min-width:180px;}
+.qr-url{font-family:'Cinzel',serif;font-size:1.15rem;font-weight:900;color:var(--gold);letter-spacing:.04em;margin-bottom:8px;}
+.qr-desc{font-size:.85rem;color:var(--muted);line-height:1.8;}
+
+/* CITY SEARCH */
+.search-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+select{flex:1;min-width:180px;background:#1a2535;color:var(--text);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;font-size:.9rem;font-family:'Noto Sans KR',sans-serif;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A227' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;cursor:pointer;}
+select:focus{outline:none;border-color:var(--gold);}
+select option{background:#1a2535;color:var(--text);}
+.btn-go{background:var(--gold);color:#0d1117;font-weight:900;font-size:.9rem;border:none;border-radius:10px;padding:12px 22px;cursor:pointer;white-space:nowrap;font-family:'Noto Sans KR',sans-serif;transition:background .2s;}
+.btn-go:hover{background:var(--gold2);}
+
+/* BENEFITS */
+.benefit-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:4px;}
+.benefit-list li{display:flex;align-items:flex-start;gap:12px;font-size:.88rem;color:var(--muted);}
+.benefit-list .icon{width:32px;height:32px;flex-shrink:0;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.22);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.benefit-list .txt strong{display:block;font-size:.83rem;font-weight:700;color:var(--text);margin-bottom:2px;}
+
+/* STEP */
+.step-row{display:flex;gap:12px;margin-top:4px;flex-wrap:wrap;}
+.step-item{flex:1;min-width:140px;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:16px 14px;text-align:center;}
+.step-num{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:900;color:var(--gold);line-height:1;}
+.step-label{font-size:.78rem;color:var(--muted);margin-top:6px;line-height:1.5;}
+
+/* CTA */
+.cta-wrap{text-align:center;margin-top:28px;}
+.btn-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:1rem;border:none;border-radius:50px;padding:15px 36px;cursor:pointer;text-decoration:none;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;}
+.btn-cta:hover{opacity:.88;}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:var(--mint);font-size:.85rem;text-decoration:none;font-weight:700;}
+.btn-secondary:hover{text-decoration:underline;}
+
+/* CONTACT */
+.contact-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
+.contact-item{flex:1;min-width:160px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+.contact-label{font-size:.68rem;color:var(--gold);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;}
+.contact-val{font-size:.85rem;color:var(--text);}
+.contact-val a{color:var(--mint);text-decoration:none;}
+.contact-val a:hover{text-decoration:underline;}
+
+/* FOOTER */
+footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padding:28px 24px;text-align:center;}
+.footer-logo{font-family:'Cinzel',serif;color:var(--gold);font-weight:900;font-size:.9rem;margin-bottom:8px;}
+.footer-copy{font-size:.72rem;color:rgba(236,253,245,.3);}
+
+/* PRINT */
+@media print{
+  nav,.cta-wrap,.btn-secondary{display:none!important;}
+  body{background:#fff;color:#111;}
+  .card{border:1px solid #ddd;background:#fff;}
+  .qr-wrap{border:1px solid #ccc;}
+  h1,.card-title,.qr-url,.step-num{color:#111!important;}
+  .card-body,.benefit-list li,.step-label,.muted{color:#444!important;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://hebronguide.com" class="logo">HebronGuide</a>
+  <span class="nav-tag">미주남침례회 한인교회 파트너 안내</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">⛪ 파트너 교회 초청</div>
+  <h1>새로 오신 성도가<br><span>공항에서부터</span> 여러분의 교회를 만납니다</h1>
+  <p class="hero-sub">HebronGuide는 전 세계 67개 도시 한인 이민자·이주자를 위한<br>디지털 환대 플랫폼입니다. 파트너 교회로 함께해 주세요.</p>
+  <div class="verse-box">
+    "내가 나그네 되었을 때 너희가 영접하였다"
+    <cite>— 마태복음 25:35</cite>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- QR + URL -->
+  <div class="card">
+    <div class="card-label">지금 바로 방문</div>
+    <div class="card-title">hebronguide.com</div>
+    <div class="qr-block">
+      <div class="qr-wrap">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https://hebronguide.com&color=0d1117&bgcolor=ffffff&qzone=1" alt="HebronGuide QR코드" loading="lazy">
+      </div>
+      <div class="qr-info">
+        <div class="qr-url">hebronguide.com</div>
+        <div class="qr-desc">
+          QR 코드를 스캔하거나<br>
+          주소를 직접 입력하면<br>
+          HebronGuide를 바로 만납니다.<br><br>
+          <strong style="color:var(--text)">교회 주보·스크린·SNS</strong>에<br>
+          자유롭게 사용해 주세요.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CITY SEARCH -->
+  <div class="card">
+    <div class="card-label">도시 검색</div>
+    <div class="card-title">우리 도시 HebronGuide 보기</div>
+    <p class="card-body">아래에서 도시를 선택하면 해당 도시의 HebronGuide로 바로 이동합니다.</p>
+    <div class="search-row">
+      <select id="citySelect">
+        <option value="">── 도시를 선택하세요 ──</option>
+        <optgroup label="🇺🇸 미국 서부">
+          <option value="seattle">시애틀 Seattle</option>
+          <option value="la">로스앤젤레스 Los Angeles</option>
+          <option value="sf">샌프란시스코 San Francisco</option>
+          <option value="orangecounty">오렌지카운티 Orange County</option>
+          <option value="sandiego">샌디에이고 San Diego</option>
+          <option value="portland">포틀랜드 Portland</option>
+          <option value="lasvegas">라스베이거스 Las Vegas</option>
+          <option value="phoenix">피닉스 Phoenix</option>
+          <option value="sacramento">새크라멘토 Sacramento</option>
+          <option value="saltlakecity">솔트레이크시티 Salt Lake City</option>
+          <option value="denver">덴버 Denver</option>
+        </optgroup>
+        <optgroup label="🇺🇸 미국 중부·남부">
+          <option value="dallas">달라스 Dallas</option>
+          <option value="houston">휴스턴 Houston</option>
+          <option value="chicago">시카고 Chicago</option>
+          <option value="atlanta">애틀랜타 Atlanta</option>
+          <option value="miami">마이애미 Miami</option>
+          <option value="nashville">내쉬빌 Nashville</option>
+          <option value="columbus">콜럼버스 Columbus</option>
+          <option value="indianapolis">인디애나폴리스 Indianapolis</option>
+          <option value="minneapolis">미니애폴리스 Minneapolis</option>
+          <option value="kansascity">캔자스시티 Kansas City</option>
+          <option value="stlouis">세인트루이스 St. Louis</option>
+          <option value="oklahomacity">오클라호마시티 Oklahoma City</option>
+          <option value="memphis">멤피스 Memphis</option>
+          <option value="charlotte">샬롯 Charlotte</option>
+          <option value="raleigh">롤리 Raleigh</option>
+        </optgroup>
+        <optgroup label="🇺🇸 미국 동부">
+          <option value="newyork">뉴욕 New York</option>
+          <option value="washington">워싱턴 DC Washington DC</option>
+          <option value="boston">보스턴 Boston</option>
+          <option value="philadelphia">필라델피아 Philadelphia</option>
+          <option value="baltimore">볼티모어 Baltimore</option>
+          <option value="pittsburgh">피츠버그 Pittsburgh</option>
+          <option value="detroit">디트로이트 Detroit</option>
+          <option value="cleveland">클리블랜드 Cleveland</option>
+          <option value="richmond">리치몬드 Richmond</option>
+        </optgroup>
+        <optgroup label="🇨🇦 캐나다">
+          <option value="toronto">토론토 Toronto</option>
+          <option value="vancouver">밴쿠버 Vancouver</option>
+          <option value="calgary">캘거리 Calgary</option>
+          <option value="montreal">몬트리올 Montreal</option>
+        </optgroup>
+        <optgroup label="🌎 중남미">
+          <option value="mexicocity">멕시코시티 Mexico City</option>
+          <option value="guadalajara">과달라하라 Guadalajara</option>
+          <option value="monterrey">몬테레이 Monterrey</option>
+          <option value="saopaulobr">상파울루 São Paulo</option>
+        </optgroup>
+        <optgroup label="🇬🇧 유럽">
+          <option value="london">런던 London</option>
+          <option value="paris">파리 Paris</option>
+          <option value="berlin">베를린 Berlin</option>
+          <option value="frankfurt">프랑크푸르트 Frankfurt</option>
+        </optgroup>
+        <optgroup label="🇦🇺 오세아니아">
+          <option value="sydney">시드니 Sydney</option>
+          <option value="melbourne">멜버른 Melbourne</option>
+          <option value="brisbane">브리즈번 Brisbane</option>
+          <option value="auckland">오클랜드 Auckland</option>
+        </optgroup>
+        <optgroup label="🇯🇵 일본">
+          <option value="tokyo">도쿄 Tokyo</option>
+          <option value="osaka">오사카 Osaka</option>
+        </optgroup>
+        <optgroup label="🇰🇷 한국">
+          <option value="seoul">서울 Seoul</option>
+          <option value="busan">부산 Busan</option>
+          <option value="incheon">인천 Incheon</option>
+          <option value="daegu">대구 Daegu</option>
+          <option value="gwangju">광주 Gwangju</option>
+          <option value="daejeon">대전 Daejeon</option>
+          <option value="jeju">제주 Jeju</option>
+          <option value="ansan">안산 Ansan</option>
+          <option value="changwon">창원 Changwon</option>
+          <option value="cheonan">천안·아산 Cheonan</option>
+        </optgroup>
+        <optgroup label="🌏 동남아·중동">
+          <option value="singapore">싱가포르 Singapore</option>
+          <option value="bangkok">방콕 Bangkok</option>
+          <option value="dubai">두바이 Dubai</option>
+        </optgroup>
+      </select>
+      <button class="btn-go" onclick="goToCity()">→ 보러 가기</button>
+    </div>
+  </div>
+
+  <!-- BENEFITS -->
+  <div class="card">
+    <div class="card-label">파트너 교회 혜택</div>
+    <div class="card-title">함께하면 이런 점이 좋습니다</div>
+    <ul class="benefit-list">
+      <li>
+        <div class="icon">📍</div>
+        <div class="txt">
+          <strong>교회 정보 무료 등재</strong>
+          도시별 HebronGuide에 교회명·예배 시간·연락처·위치가 소개됩니다.
+        </div>
+      </li>
+      <li>
+        <div class="icon">✈️</div>
+        <div class="txt">
+          <strong>공항에서부터 연결</strong>
+          새로 도착한 성도가 HebronGuide에서 교회를 검색하고 첫날부터 연결됩니다.
+        </div>
+      </li>
+      <li>
+        <div class="icon">📲</div>
+        <div class="txt">
+          <strong>디지털 환대 자동화</strong>
+          교회가 직접 안내하지 않아도 HebronGuide가 24시간 새가족을 맞습니다.
+        </div>
+      </li>
+      <li>
+        <div class="icon">🌐</div>
+        <div class="txt">
+          <strong>67개 도시 네트워크</strong>
+          전 세계 한인 이민자·이주자 이동 경로 위에 여러분의 교회가 함께합니다.
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 3 STEPS -->
+  <div class="card">
+    <div class="card-label">등록 3단계</div>
+    <div class="card-title">간단히 등록하시면 됩니다</div>
+    <div class="step-row">
+      <div class="step-item">
+        <div class="step-num">①</div>
+        <div class="step-label">아래 버튼을 눌러<br>신청서 작성</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">②</div>
+        <div class="step-label">운영팀 검토<br>(48시간 이내)</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">③</div>
+        <div class="step-label">해당 도시<br>HebronGuide에 게시</div>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <a href="https://hebronguide.com/ad-request.html" class="btn-cta">
+        ⛪ 파트너 교회 등록 신청
+      </a><br>
+      <a href="https://hebronguide.com" class="btn-secondary">
+        → hebronguide.com 바로 방문
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="card">
+    <div class="card-label">문의</div>
+    <div class="card-title">궁금한 점은 언제든지</div>
+    <div class="contact-row">
+      <div class="contact-item">
+        <div class="contact-label">이메일</div>
+        <div class="contact-val"><a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">웹사이트</div>
+        <div class="contact-val"><a href="https://hebronguide.com" target="_blank">hebronguide.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">운영</div>
+        <div class="contact-val">Hebron Platform LLC</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">HebronGuide</div>
+  <div class="footer-copy">글로벌 환대 커뮤니티 · © 2026 Hebron Platform LLC. All rights reserved.</div>
+</footer>
+
+<script>
+function goToCity(){
+  var sel=document.getElementById('citySelect');
+  var val=sel.value;
+  if(!val){alert('도시를 선택해 주세요.');return;}
+  window.open('https://hebronguide.com/'+val+'/', '_blank');
+}
+document.getElementById('citySelect').addEventListener('keydown',function(e){
+  if(e.key==='Enter')goToCity();
+});
+</script>
+</body>
+</html>
