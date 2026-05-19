@@ -159,23 +159,7 @@
 </head>
 <body>
 
-<!-- 마지막 방문 도시 자동 이동 — 페이지 렌더 후 실행 -->
-<script>
-window.addEventListener('DOMContentLoaded', function(){
-  try {
-    var last=localStorage.getItem('hg_last_city');
-    var valid=['seattle','dallas','sf','newyork','nashville','boston','la','toronto','vancouver',
-      'houston','atlanta','kansascity','philadelphia','miami','mexicocity','guadalajara','monterrey',
-      'chicago','dc','sandiego','honolulu','portland','denver','calgary','edmonton','ottawa','winnipeg',
-      'phoenix','charlotte','raleigh','columbus','minneapolis','tucson','fayetteville','killeen',
-      'louisville','anchorage','sydney','melbourne','brisbane','perth','auckland','saopaulo',
-      'london','singapore','bangkok','hochiminh','dubai','frankfurt','berlin','paris',
-      'tokyo','osaka','seoul','busan','ansan','incheon','jeju','daegu','gwangju','daejeon',
-      'changwon','cheonan','bundang','orangecounty','orlando','maryland'];
-    if(last&&valid.indexOf(last)!==-1){window.location.replace('/'+last+'/');}
-  } catch(e){}
-});
-</script>
+<!-- 루트(/) 는 항상 랜딩 페이지 표시 — 자동 리디렉트 없음 -->
 
 <!-- NAV -->
 <nav>
