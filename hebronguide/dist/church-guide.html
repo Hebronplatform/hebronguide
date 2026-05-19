@@ -1,607 +1,414 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>교회 정보 등재 안내 — HebronGuide</title>
-<meta name="description" content="헤브론가이드에 교회 정보를 올리는 방법을 단계별로 안내합니다.">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>교회 파트너 안내 — HebronGuide</title>
+<meta name="description" content="HebronGuide 파트너 교회 안내. 67개+ 도시, 무료 등재 2026년 10월 1일까지.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
 <style>
-/* ── 기본 ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; background: #f8f7f4; }
-body {
-  font-family: 'Noto Sans KR', -apple-system, sans-serif;
-  color: #1a1a1a;
-  line-height: 1.75;
-  background: #f8f7f4;
-  min-height: 100vh;
+:root{
+  --bg:#0d1117;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.08);
+  --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.16);
+  --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;
+  --text:#ECFDF5;--muted:rgba(236,253,245,0.55);
+  --light-bg:#f8f7f4;--light-card:#fff;--light-border:#e5e7eb;
+  --light-text:#1a1a1a;--light-muted:#4b5563;
 }
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
 
-/* ── 헤더 ── */
-header {
-  background: linear-gradient(135deg, #1a2535 0%, #0d1117 100%);
-  color: #fff;
-  padding: 32px 24px 28px;
-  text-align: center;
-}
-.logo-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(201,162,39,.2);
-  border: 1px solid rgba(201,162,39,.5);
-  border-radius: 99px;
-  padding: 5px 18px;
-  font-size: .75rem;
-  font-weight: 700;
-  color: #C9A227;
-  letter-spacing: .05em;
-  margin-bottom: 16px;
-}
-header h1 {
-  font-size: 4.8rem;
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 12px;
-}
-header h1 span { color: #6EE7B7; }
-header .subtitle {
-  font-size: .92rem;
-  color: rgba(236,253,245,.65);
-  line-height: 1.8;
-}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
+.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;font-family:'Cinzel',serif;}
+.nav-tag{font-size:.72rem;color:var(--muted);background:rgba(255,255,255,0.06);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;}
 
-/* ── 무료 배너 ── */
-.free-banner {
-  background: linear-gradient(135deg, rgba(110,231,183,.15), rgba(201,162,39,.1));
-  border-top: 3px solid #6EE7B7;
-  text-align: center;
-  padding: 14px 24px;
-  font-size: .85rem;
-  color: #065f46;
-  font-weight: 700;
-}
-.free-banner strong { color: #0d1117; }
+/* ── HERO (다크) ── */
+.hero{text-align:center;padding:56px 24px 48px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.13),transparent);}
+.door-open{display:inline-block;margin-bottom:20px;font-size:.95rem;color:rgba(236,253,245,.75);line-height:1.9;background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.28);border-radius:14px;padding:14px 28px;}
+.door-open strong{color:var(--gold);font-size:1.02rem;}
+h1{font-size:clamp(1.5rem,4vw,2.3rem);font-weight:900;color:#fff;line-height:1.4;margin-bottom:18px;}
+h1 em{color:var(--gold);font-style:normal;}
+.hero-sub{font-size:.93rem;color:var(--muted);max-width:500px;margin:0 auto 28px;line-height:2;}
+.verse-block{display:flex;flex-direction:column;gap:10px;max-width:500px;margin:0 auto;}
+.verse{background:rgba(201,162,39,.07);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:12px 18px;text-align:left;}
+.verse p{font-size:.88rem;color:rgba(236,253,245,.85);font-style:italic;line-height:1.8;}
+.verse cite{display:block;margin-top:5px;font-style:normal;font-size:.74rem;color:var(--gold);font-weight:700;}
 
-/* ── 컨테이너 ── */
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 32px 20px 80px;
-}
+/* ── 카운트다운 ── */
+.cd-bar{background:linear-gradient(135deg,#1a2535,#0d1117);border-top:3px solid var(--gold);border-bottom:3px solid var(--gold);padding:18px 24px;text-align:center;}
+.cd-label{font-size:.7rem;color:rgba(201,162,39,.8);font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
+.cd-digits{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;}
+.cd-unit{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(201,162,39,.25);border-radius:10px;padding:10px 14px;min-width:56px;}
+.cd-num{font-size:1.85rem;font-weight:900;color:var(--mint);letter-spacing:-0.04em;line-height:1;}
+.cd-uname{font-size:.63rem;color:rgba(236,253,245,.4);margin-top:4px;font-weight:600;}
+.cd-sep{font-size:1.4rem;font-weight:900;color:rgba(201,162,39,.4);margin-bottom:12px;}
+.free-pill{display:inline-block;background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.3);color:var(--mint);font-size:.75rem;font-weight:800;border-radius:20px;padding:4px 14px;margin-top:10px;}
 
-/* ── 섹션 제목 ── */
-.section-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.1rem;
-  font-weight: 900;
-  color: #1a1a1a;
-  margin: 32px 0 16px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #e5e7eb;
-}
-.section-title span.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #C9A227;
-  flex-shrink: 0;
-}
+/* ── STORY (다크 카드) ── */
+.dark-container{max-width:660px;margin:0 auto;padding:32px 20px;}
+.dark-card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:28px;margin-bottom:18px;}
+@media(max-width:480px){.dark-card{padding:22px 18px;}}
+.card-label{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.card-title{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:14px;}
+.story-label{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;}
+.story-block{display:flex;flex-direction:column;gap:18px;margin-bottom:18px;}
+.s-scene{padding:14px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(255,255,255,.07);}
+.s-scene-tag{font-size:.66rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+.s-para{font-size:.88rem;color:rgba(236,253,245,.82);line-height:1.95;margin-bottom:8px;}
+.s-para:last-child{margin-bottom:0;}
+.s-note{font-size:.77rem;color:var(--muted);font-style:italic;}
+.s-note-box{font-size:.78rem;color:var(--muted);font-style:italic;margin-top:8px;padding:8px 12px;background:rgba(255,255,255,.03);border-left:2px solid rgba(255,255,255,.1);border-radius:0 6px 6px 0;}
+.s-talk-wrap{display:flex;flex-direction:column;gap:6px;margin:8px 0;}
+.s-talk{display:flex;align-items:baseline;gap:8px;font-size:.86rem;padding:8px 12px;border-radius:8px;}
+.s-talk em{font-style:italic;line-height:1.7;color:rgba(236,253,245,.78);}
+.s-who{font-size:.7rem;font-weight:800;white-space:nowrap;letter-spacing:.04em;flex-shrink:0;}
+.s-talk-host{background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.15);}
+.s-talk-host .s-who{color:var(--gold);}
+.s-talk-guest{background:rgba(110,231,183,.05);border:1px solid rgba(110,231,183,.12);}
+.s-talk-guest .s-who{color:var(--mint);}
+.s-talk-gold em{color:var(--gold2)!important;font-weight:600;}
+.s-para strong{color:#fff;font-weight:900;}
+.story-climax{font-size:1.1rem;font-weight:900;color:#fff;line-height:1.9;text-align:center;padding:22px 18px;background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(201,162,39,.05));border:1px solid rgba(201,162,39,.3);border-radius:14px;}
+.story-reflection{font-size:.9rem;color:rgba(236,253,245,.72);line-height:2;padding:16px 0 4px;border-top:1px solid rgba(201,162,39,.2);margin-top:4px;}
+.story-reflection strong{color:#fff;display:block;margin-top:10px;font-size:.95rem;line-height:1.95;}
+.declaration-text{font-size:.97rem;color:rgba(236,253,245,.88);line-height:2.0;}
+.declaration-text strong{color:#fff;font-weight:900;}
+.declaration-vision{font-size:.95rem;color:rgba(236,253,245,.72);line-height:2;font-style:italic;}
+.declaration-stamp{font-size:1.1rem;font-weight:900;color:var(--gold);border-top:1px solid rgba(201,162,39,.25);padding-top:14px;margin-top:14px;}
+.decl-divider{height:1px;background:rgba(201,162,39,.2);margin:16px 0;}
 
-/* ── 단계 카드 ── */
-.step-card {
-  background: #fff;
-  border-radius: 16px;
-  border: 1px solid #e5e7eb;
-  padding: 22px 22px 20px;
-  margin-bottom: 14px;
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  box-shadow: 0 1px 4px rgba(0,0,0,.06);
-  position: relative;
-  overflow: hidden;
-}
-.step-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 4px;
-  background: linear-gradient(180deg, #6EE7B7, #34d399);
-}
-.step-num {
-  min-width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #1a2535, #0d1117);
-  color: #6EE7B7;
-  font-weight: 900;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-.step-body { flex: 1; min-width: 0; }
-.step-title {
-  font-size: 1rem;
-  font-weight: 900;
-  color: #1a1a1a;
-  margin-bottom: 5px;
-}
-.step-desc {
-  font-size: .88rem;
-  color: #4b5563;
-  line-height: 1.85;
-}
-.step-desc strong { color: #1a2535; font-weight: 700; }
-.step-desc code {
-  display: inline-block;
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  padding: 2px 8px;
-  font-family: 'Noto Sans KR', monospace;
-  font-size: .82rem;
-  color: #374151;
-}
+/* ── 섹션 전환 ── */
+.section-bridge{background:var(--light-bg);padding:28px 24px 0;text-align:center;}
+.bridge-label{display:inline-block;background:linear-gradient(135deg,#1a2535,#0d1117);color:var(--gold);font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-radius:20px;padding:6px 18px;margin-bottom:0;}
 
-/* ── 팁 박스 ── */
-.tip-box {
-  background: rgba(110,231,183,.08);
-  border: 1px solid rgba(110,231,183,.35);
-  border-radius: 12px;
-  padding: 14px 18px;
-  margin-top: 10px;
-  font-size: .82rem;
-  color: #065f46;
-  line-height: 1.85;
-}
-.tip-box .tip-label {
-  font-weight: 900;
-  color: #059669;
-  margin-bottom: 3px;
-}
+/* ── LIGHT 섹션 (실용 정보) ── */
+.light-container{max-width:600px;margin:0 auto;padding:24px 20px 48px;background:var(--light-bg);}
+.section-title{display:flex;align-items:center;gap:10px;font-size:1.05rem;font-weight:900;color:var(--light-text);margin:28px 0 14px;padding-bottom:10px;border-bottom:2px solid var(--light-border);}
+.section-title:first-child{margin-top:0;}
+.section-title .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;}
 
-/* ── 입력 항목 표 ── */
-.field-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: .85rem;
-  margin-top: 8px;
-}
-.field-table th {
-  background: #f3f4f6;
-  font-weight: 700;
-  padding: 8px 12px;
-  text-align: left;
-  border: 1px solid #e5e7eb;
-  color: #374151;
-  font-size: .78rem;
-  white-space: nowrap;
-}
-.field-table td {
-  padding: 9px 12px;
-  border: 1px solid #e5e7eb;
-  color: #4b5563;
-  vertical-align: top;
-  line-height: 1.7;
-}
-.field-table tr:nth-child(even) td { background: #fafafa; }
-.badge-req {
-  display: inline-block;
-  background: #fef3c7;
-  border: 1px solid #f59e0b;
-  color: #92400e;
-  font-size: .68rem;
-  font-weight: 700;
-  border-radius: 4px;
-  padding: 1px 5px;
-  margin-left: 4px;
-}
-.badge-opt {
-  display: inline-block;
-  background: #f3f4f6;
-  border: 1px solid #d1d5db;
-  color: #6b7280;
-  font-size: .68rem;
-  font-weight: 700;
-  border-radius: 4px;
-  padding: 1px 5px;
-  margin-left: 4px;
-}
+/* QR 카드 */
+.link-card{background:linear-gradient(135deg,#1a2535,#0d1117);border-radius:16px;padding:22px;text-align:center;margin-bottom:0;}
+.qr-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+@media(max-width:380px){.qr-grid{grid-template-columns:1fr;}}
+.qr-item{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.qr-wrap{background:#fff;border-radius:12px;padding:10px;box-shadow:0 4px 20px rgba(0,0,0,.4);}
+.qr-wrap img{display:block;border-radius:5px;}
+.qr-tag{font-size:.67rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px;}
+.qr-sub{font-size:.7rem;color:rgba(236,253,245,.45);}
+.btn-sample{display:block;width:100%;background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.3);border-radius:10px;padding:10px;text-align:center;text-decoration:none;font-weight:700;font-size:.8rem;color:var(--mint);font-family:'Noto Sans KR',sans-serif;}
+.btn-apply{display:block;width:100%;background:linear-gradient(135deg,#C9A227,#b8921c);border-radius:10px;padding:10px;text-align:center;text-decoration:none;font-weight:800;font-size:.8rem;color:#fff;font-family:'Noto Sans KR',sans-serif;box-shadow:0 3px 12px rgba(201,162,39,.3);}
+.qr-dl-row{display:flex;gap:8px;justify-content:center;}
+.btn-dl{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:7px 12px;text-decoration:none;font-size:.7rem;font-weight:700;font-family:'Noto Sans KR',sans-serif;}
 
-/* ── QR / 직접링크 카드 ── */
-.link-card {
-  background: linear-gradient(135deg, #1a2535 0%, #0d1117 100%);
-  border-radius: 16px;
-  padding: 24px;
-  text-align: center;
-  margin-top: 10px;
-  color: #ECFDF5;
-}
-.link-url {
-  font-size: 1.1rem;
-  font-weight: 900;
-  color: #6EE7B7;
-  letter-spacing: .01em;
-  margin: 12px 0 6px;
-  word-break: break-all;
-}
-.link-desc {
-  font-size: .78rem;
-  color: rgba(236,253,245,.55);
-}
+/* 도시 검색 */
+.search-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
+select.city-sel{flex:1;min-width:180px;background:#1a2535;color:var(--text);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;font-size:.88rem;font-family:'Noto Sans KR',sans-serif;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A227' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;cursor:pointer;}
+select.city-sel:focus{outline:none;border-color:var(--gold);}
+select.city-sel option{background:#1a2535;color:var(--text);}
+.btn-go{background:var(--gold);color:#0d1117;font-weight:900;font-size:.88rem;border:none;border-radius:10px;padding:12px 20px;cursor:pointer;white-space:nowrap;font-family:'Noto Sans KR',sans-serif;transition:background .2s;}
+.btn-go:hover{background:var(--gold2);}
 
-/* ── 체크리스트 ── */
-.checklist {
-  list-style: none;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: 0 1px 4px rgba(0,0,0,.06);
-}
-.checklist li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 7px 0;
-  border-bottom: 1px solid #f3f4f6;
-  font-size: .88rem;
-  color: #374151;
-  line-height: 1.7;
-}
-.checklist li:last-child { border-bottom: none; }
-.check-box {
-  min-width: 20px;
-  height: 20px;
-  border: 2px solid #d1d5db;
-  border-radius: 5px;
-  margin-top: 2px;
-  flex-shrink: 0;
-}
+/* 체크리스트 */
+.checklist{list-style:none;background:var(--light-card);border:1px solid var(--light-border);border-radius:14px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.checklist li{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f3f4f6;font-size:.88rem;color:#374151;line-height:1.7;}
+.checklist li:last-child{border-bottom:none;}
+.check-box{min-width:20px;height:20px;border:2px solid #d1d5db;border-radius:5px;margin-top:2px;flex-shrink:0;}
 
-/* ── 연락처 카드 ── */
-.contact-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  padding: 20px 22px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  box-shadow: 0 1px 4px rgba(0,0,0,.06);
-}
-.contact-icon {
-  font-size: 2.2rem;
-  flex-shrink: 0;
-}
-.contact-body .label {
-  font-size: .75rem;
-  color: #9ca3af;
-  font-weight: 600;
-  margin-bottom: 3px;
-}
-.contact-body .value {
-  font-size: 1rem;
-  font-weight: 900;
-  color: #1a1a1a;
-}
-.contact-body .sub {
-  font-size: .78rem;
-  color: #6b7280;
-  margin-top: 2px;
-  line-height: 1.6;
-}
+/* 3단계 프로세스 */
+.process-row{display:flex;gap:10px;margin:14px 0 20px;flex-wrap:wrap;}
+.process-item{flex:1;min-width:130px;background:var(--light-card);border:1px solid var(--light-border);border-radius:12px;padding:16px 12px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.p-num{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:900;color:var(--gold);line-height:1;}
+.p-label{font-size:.76rem;color:var(--light-muted);margin-top:6px;line-height:1.55;}
+.btn-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:.95rem;border:none;border-radius:50px;padding:15px 32px;cursor:pointer;text-decoration:none;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;}
+.btn-cta:hover{opacity:.88;}
 
-/* ── 예상 타임라인 ── */
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-.tl-item {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  padding-bottom: 20px;
-  position: relative;
-}
-.tl-item:last-child { padding-bottom: 0; }
-.tl-item::before {
-  content: '';
-  position: absolute;
-  left: 19px;
-  top: 36px;
-  bottom: 0;
-  width: 2px;
-  background: #e5e7eb;
-}
-.tl-item:last-child::before { display: none; }
-.tl-dot {
-  min-width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #f3f4f6;
-  border: 2px solid #e5e7eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1;
-}
-.tl-dot.active {
-  background: linear-gradient(135deg, #1a2535, #0d1117);
-  border-color: #6EE7B7;
-}
-.tl-body { padding-top: 8px; }
-.tl-time { font-size: .75rem; font-weight: 700; color: #9ca3af; margin-bottom: 2px; }
-.tl-title { font-size: .9rem; font-weight: 700; color: #1a1a1a; }
-.tl-desc { font-size: .8rem; color: #6b7280; line-height: 1.7; margin-top: 2px; }
+/* 타임라인 */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{display:flex;gap:16px;align-items:flex-start;padding-bottom:20px;position:relative;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{content:'';position:absolute;left:19px;top:36px;bottom:0;width:2px;background:var(--light-border);}
+.tl-item:last-child::before{display:none;}
+.tl-dot{min-width:40px;height:40px;border-radius:50%;background:#f3f4f6;border:2px solid var(--light-border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;position:relative;z-index:1;}
+.tl-dot.active{background:linear-gradient(135deg,#1a2535,#0d1117);border-color:var(--mint);}
+.tl-body{padding-top:8px;}
+.tl-time{font-size:.75rem;font-weight:700;color:#9ca3af;margin-bottom:2px;}
+.tl-title{font-size:.9rem;font-weight:700;color:var(--light-text);}
+.tl-desc{font-size:.8rem;color:var(--light-muted);line-height:1.7;margin-top:2px;}
 
-/* ── 도시 리스트 ── */
-.city-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
-}
-.city-chip {
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  border-radius: 99px;
-  padding: 4px 12px;
-  font-size: .76rem;
-  color: #4b5563;
-  font-weight: 500;
-}
+/* 도시 추가 폼 */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+@media(max-width:480px){.form-grid{grid-template-columns:1fr;}}
+.form-field{display:flex;flex-direction:column;gap:6px;}
+.form-field.full{grid-column:1/-1;}
+.form-field label{font-size:.74rem;font-weight:700;color:var(--light-muted);letter-spacing:.04em;}
+.form-field input,.form-field textarea{width:100%;background:var(--light-card);color:var(--light-text);border:1.5px solid var(--light-border);border-radius:10px;padding:11px 14px;font-size:.88rem;font-family:'Noto Sans KR',sans-serif;transition:border .2s;}
+.form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--gold);}
+.form-field textarea{resize:vertical;min-height:68px;}
+.form-note{font-size:.74rem;color:var(--light-muted);margin-top:8px;line-height:1.7;}
+.btn-submit{width:100%;background:#1a2535;border:1.5px solid #2d3748;color:var(--mint);font-weight:700;font-size:.9rem;border-radius:12px;padding:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s;margin-top:6px;}
+.btn-submit:hover{background:#243045;}
+.form-thanks{display:none;margin-top:14px;text-align:center;padding:16px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.25);border-radius:12px;}
+.form-thanks .icon{font-size:1.3rem;margin-bottom:6px;}
+.form-thanks .msg{font-weight:700;color:#059669;margin-bottom:3px;}
+.form-thanks .sub{font-size:.82rem;color:var(--light-muted);}
 
-/* ── 푸터 ── */
-footer {
-  background: linear-gradient(135deg, #1a2535 0%, #0d1117 100%);
-  color: rgba(236,253,245,.65);
-  text-align: center;
-  padding: 36px 24px 28px;
-  font-size: .75rem;
-  line-height: 2;
-}
+/* FAQ */
+.faq-item{background:var(--light-card);border:1px solid var(--light-border);border-radius:12px;padding:16px 18px;margin-bottom:10px;}
+.faq-q{font-size:.9rem;font-weight:700;color:var(--light-text);margin-bottom:4px;}
+.faq-a{font-size:.85rem;color:var(--light-muted);line-height:1.8;}
+.faq-a strong{color:#059669;}
 
-/* ── 카운트다운 바 ── */
-.cd-bar {
-  background: linear-gradient(135deg, #1a2535 0%, #0d1117 100%);
-  border-top: 3px solid #C9A227;
-  border-bottom: 3px solid #C9A227;
-  padding: 18px 24px;
-  text-align: center;
-}
-.cd-label {
-  font-size: .72rem;
-  color: rgba(201,162,39,0.8);
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-.cd-digits {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.cd-unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(201,162,39,.25);
-  border-radius: 10px;
-  padding: 10px 14px;
-  min-width: 58px;
-}
-.cd-num {
-  font-size: 1.9rem;
-  font-weight: 900;
-  color: #6EE7B7;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  font-family: 'Noto Sans KR', monospace;
-}
-.cd-uname {
-  font-size: .65rem;
-  color: rgba(236,253,245,.45);
-  margin-top: 4px;
-  font-weight: 600;
-  letter-spacing: .05em;
-}
-.cd-sep {
-  font-size: 1.4rem;
-  font-weight: 900;
-  color: rgba(201,162,39,.4);
-  margin-bottom: 14px;
-}
+/* 연락처 */
+.contact-card{background:var(--light-card);border:1px solid var(--light-border);border-radius:14px;padding:18px 20px;display:flex;align-items:center;gap:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.contact-icon{font-size:2rem;flex-shrink:0;}
+.contact-body .c-label{font-size:.74rem;color:#9ca3af;font-weight:600;margin-bottom:2px;}
+.contact-body .c-val{font-size:.95rem;font-weight:900;color:var(--light-text);word-break:break-all;}
+.contact-body .c-sub{font-size:.77rem;color:var(--light-muted);margin-top:2px;}
+
+/* 도시 칩 */
+.city-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.city-chip{background:#f3f4f6;border:1px solid var(--light-border);border-radius:99px;padding:4px 12px;font-size:.75rem;color:var(--light-muted);font-weight:500;}
+
+/* ── 마지막 문 ── */
+.door-close{text-align:center;padding:52px 24px 44px;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(201,162,39,.1),transparent);border-top:1px solid var(--border);}
+.door-close-inner{font-size:clamp(1.05rem,3vw,1.4rem);font-weight:700;color:rgba(236,253,245,.85);line-height:1.8;margin-bottom:26px;}
+.door-close-inner strong{display:block;font-size:clamp(1.2rem,3.5vw,1.6rem);font-weight:900;color:var(--gold);margin-top:6px;}
+.btn-door{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:.95rem;border-radius:50px;padding:14px 34px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;}
+.btn-door:hover{opacity:.88;}
+
+/* 푸터 */
+footer{background:linear-gradient(135deg,#1a2535,#0d1117);color:rgba(236,253,245,.55);text-align:center;padding:32px 24px 24px;font-size:.75rem;line-height:2;}
 </style>
 </head>
 <body>
 
-<!-- 헤더 -->
-<header>
-  <div class="logo-badge">⛪ HebronGuide 교회 등재 안내</div>
-  <h1><span>교회 <em style="color:#F4D03F;font-style:italic;font-family:’Playfair Display’,Georgia,serif;font-weight:900;letter-spacing:.01em;">&#x2018;무료&#x2019;</em> 등재 안내</span></h1>
-  <p class="subtitle">
-    마감일: <strong style="color:#6EE7B7;">2026년 10월 1일</strong>
-  </p>
+<nav>
+  <a href="https://hebronguide.com" class="logo">HebronGuide</a>
+  <span class="nav-tag">파트너 교회 안내</span>
+</nav>
 
-  <p style="font-size:.78rem;opacity:.5;margin-top:10px;font-style:italic;">
-    "내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35</p>
-</header>
-
-<!-- 프로모션 배너 -->
-<div class="free-banner">
-  🌿 <strong>2026년 10월 1일까지</strong> 무료 등재
+<!-- ① HERO -->
+<div class="hero">
+  <div class="door-open">
+    목사님들께서 그 첫 만남이 이루어지는<br><strong>헤브론의 문을 열어 주세요.</strong>
+  </div>
+  <h1>새신자 환영은 교회 문 안에서<br>시작되지 않습니다.<br><em>세상 한 복판에서 먼저 시작되어야 합니다.</em></h1>
+  <p class="hero-sub">성도의 일터에서, 성도의 식탁에서, 성도의 전화번호 하나에서<br>새신자의 마음이 열리고 교회가 살아납니다.</p>
+  <div class="verse-block">
+    <div class="verse">
+      <p>"내가 나그네 되었을 때 너희가 영접하였다"</p>
+      <cite>— 마태복음 25:35</cite>
+    </div>
+    <div class="verse">
+      <p>"손님 대접하기를 잊지 말라 이로써 부지중에 천사들을 대접한 이들이 있었느니라"</p>
+      <cite>— 히브리서 13:2</cite>
+    </div>
+  </div>
 </div>
 
+<!-- ② 카운트다운 -->
 <div class="cd-bar">
   <div class="cd-label">🌿 무료 등재 마감 카운트다운</div>
   <div class="cd-digits">
-    <div class="cd-unit"><div class="cd-num" id="cd-d-1">-</div><div class="cd-uname">일</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-d">-</div><div class="cd-uname">일</div></div>
     <div class="cd-sep">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-h-1">--</div><div class="cd-uname">시간</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-h">--</div><div class="cd-uname">시간</div></div>
     <div class="cd-sep">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-m-1">--</div><div class="cd-uname">분</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-m">--</div><div class="cd-uname">분</div></div>
     <div class="cd-sep">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-s-1">--</div><div class="cd-uname">초</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-s">--</div><div class="cd-uname">초</div></div>
   </div>
-  <div style="font-size:.72rem;color:rgba(236,253,245,.3);margin-top:10px;">2026년 10월 1일 마감</div>
+  <div class="free-pill">🌿 2026년 10월 1일까지 무료 등재</div>
 </div>
 
-<!-- 본문 -->
-<div class="container">
+<!-- ③ 스토리 + 선언문 -->
+<div class="dark-container">
 
-<!-- ─── 신청하기 (2단계) ─── -->
-  <div class="section-title" style="margin-top:0;">
-    <span class="dot"></span>
-    등재 신청
-  </div>
+  <div class="dark-card">
+    <div class="story-label">✦ 실제 있을 법한 이야기</div>
+    <div class="story-block">
 
-  <!-- 2단계 시각 -->
-  <div style="display:flex;gap:0;margin-bottom:18px;align-items:stretch;">
+      <div class="s-scene">
+        <div class="s-scene-tag">도착</div>
+        <p class="s-para">한국에서 온 A씨, 미국 땅을 처음 밟습니다.<br>
+        공항 문을 나서는 순간 — 모든 것이 낯설고 막막합니다.</p>
+      </div>
 
-    <!-- Step 1 -->
-    <div style="flex:1;background:#fff;border:1.5px solid #e5e7eb;border-radius:16px 0 0 16px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;">
-      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#1a2535,#0d1117);color:#6EE7B7;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
-      <div style="font-size:1.6rem;">📱</div>
-      <div style="font-size:.88rem;font-weight:900;color:#1a1a1a;line-height:1.4;">QR 스캔<br><span style="font-weight:500;color:#6b7280;font-size:.78rem;">또는 버튼 클릭</span></div>
+      <div class="s-scene">
+        <div class="s-scene-tag">첫 만남</div>
+        <p class="s-para">숙소에 짐을 풀고 배가 고팠습니다.<br>
+        스마트폰으로 한인 식당을 검색해 작은 한식당 문을 열었습니다.<br>
+        따뜻한 된장찌개 냄새, 그리고 주인 박 집사님의 환한 웃음.</p>
+        <div class="s-talk-wrap">
+          <div class="s-talk s-talk-host"><span class="s-who">박 집사님</span><em>"어서 오세요~ 혼자 오셨어요? 처음이신 것 같은데?"</em></div>
+          <div class="s-talk s-talk-guest"><span class="s-who">A 씨</span><em>"네... 오늘 도착했어요."</em></div>
+        </div>
+        <p class="s-para">그 짧은 대화에 A씨의 눈시울이 붉어졌습니다.</p>
+        <p class="s-note-box">박 집사님은 같은 도시 한인교회 성도입니다. 그 사실을 A씨는 아직 모릅니다.</p>
+      </div>
+
+      <div class="s-scene">
+        <div class="s-scene-tag">HebronGuide</div>
+        <p class="s-para">식사를 마칠 즈음, 박 집사님이 조용히 스마트폰을 꺼냈습니다.</p>
+        <div class="s-talk-wrap">
+          <div class="s-talk s-talk-host"><span class="s-who">박 집사님</span><em>"이 도시 처음이시면 이거 꼭 저장해 두세요. 병원, 학교, 은행... 다 나와 있어요."</em></div>
+        </div>
+        <p class="s-para">화면에 뜨는 이름 — <strong>HebronGuide</strong></p>
+        <p class="s-para">그날 밤, 숙소에서 혼자 화면을 넘겨봤습니다.<br>병원, 운전면허, 학교, 한인 마트, 교회...</p>
+        <div class="s-talk-wrap">
+          <div class="s-talk s-talk-guest s-talk-gold"><span class="s-who">A 씨</span><em>"낯선 도시에서 막막했는데... 이런 정착 가이드가 있었군요~!"</em></div>
+        </div>
+      </div>
+
+      <div class="s-scene">
+        <div class="s-scene-tag">관계의 시작</div>
+        <p class="s-para">돌아갈 때 박 집사님이 명함을 건넸습니다.</p>
+        <div class="s-talk-wrap">
+          <div class="s-talk s-talk-host"><span class="s-who">박 집사님</span><em>"제 개인 번호예요. 도움 필요하면 언제든 연락하세요."</em></div>
+        </div>
+        <p class="s-para">낯선 도시에서 받은 첫 번째 전화번호. 첫 번째 관계가 시작됐습니다.</p>
+        <p class="s-para">일주일 후, 문자가 왔습니다.</p>
+        <div class="s-talk-wrap">
+          <div class="s-talk s-talk-guest"><span class="s-who">A 씨</span><em>"집사님, 덕분에 잘 정착하고 있어요. 정말 감사합니다."</em></div>
+          <div class="s-talk s-talk-host"><span class="s-who">박 집사님</span><em>"잘 됐네요~ 이번 주일에 교회 한번 같이 가보실래요?"</em></div>
+        </div>
+      </div>
+
+      <div class="story-climax">
+        그 주일 —<br>
+        A씨는 생애 처음으로 교회에 앉았습니다.
+      </div>
+
     </div>
 
-    <!-- 화살표 -->
-    <div style="display:flex;align-items:center;padding:0 4px;color:#d1d5db;font-size:1.2rem;font-weight:300;flex-shrink:0;">→</div>
-
-    <!-- Step 2 -->
-    <div style="flex:1;background:#fff;border:1.5px solid #e5e7eb;border-radius:0 16px 16px 0;padding:20px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;">
-      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#C9A227,#b8921c);color:#fff;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
-      <div style="font-size:1.6rem;">✏️</div>
-      <div style="font-size:.88rem;font-weight:900;color:#1a1a1a;line-height:1.4;">교회명·연락처<br><span style="font-weight:500;color:#6b7280;font-size:.78rem;">입력 후 전송</span></div>
+    <div class="story-reflection">
+      성도의 식당 하나가, 전화번호 하나가, 초대 한 마디가<br>
+      한 영혼을 교회로 이끌었습니다.<br><br>
+      <strong>목사님, 이 일이 지금 당신의 도시에서 일어날 수 있습니다.<br>
+      더 많은 A씨가 오늘도 도착하고 있습니다.</strong>
     </div>
-
   </div>
 
+  <!-- 선언문 -->
+  <div class="dark-card">
+    <p class="declaration-text">
+      목사님, 분주한 우리 성도님들이<br>
+      세상 속에서 어떻게 선교사적 삶을 살 수 있을까요?<br><br>
+      <strong>HebronGuide가 함께 하겠습니다.<br>파트너 교회가 되어 주십시오.</strong>
+    </p>
+    <div class="decl-divider"></div>
+    <p class="declaration-vision">
+      그리스도인들의 환대, 신앙, 생활 생태계 안에서<br>
+      비신자들은 마음을 열고<br>
+      그 교회를 찾게 될 것입니다.
+    </p>
+    <div class="declaration-stamp">HebronGuide가 함께합니다.</div>
+  </div>
+
+</div>
+
+<!-- ④ 실용 정보 (라이트 섹션) -->
+<div style="background:var(--light-bg);padding-top:8px;">
+<div class="light-container">
+
+  <!-- QR 등재 신청 -->
+  <div class="section-title" style="margin-top:0;"><span class="dot"></span>지금 바로 등재 신청</div>
   <div class="link-card">
-
-    <!-- QR 두 개 나란히 -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
-
-      <!-- QR 1: 샘플 보기 -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
-        <div style="background:#fff;border-radius:14px;padding:11px;box-shadow:0 4px 20px rgba(0,0,0,0.4);">
-          <img
-            src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fhebronguide.com%2Fseattle%2F&margin=5&color=0d1117&bgcolor=ffffff"
-            alt="HebronGuide 샘플 QR"
-            width="160" height="160"
-            style="display:block;border-radius:6px;"
-            loading="lazy"
-          />
+    <div class="qr-grid">
+      <div class="qr-item">
+        <div class="qr-wrap">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fhebronguide.com%2Fseattle%2F&margin=5&color=0d1117&bgcolor=ffffff" alt="HebronGuide 샘플 QR" width="150" height="150" loading="lazy"/>
         </div>
-        <div style="text-align:center;">
-          <div style="font-size:.68rem;color:rgba(110,231,183,.7);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px;">📱 앱 미리보기</div>
-          <div style="font-size:.72rem;color:rgba(236,253,245,.55);">hebronguide.com/seattle</div>
+        <div>
+          <div class="qr-tag" style="color:rgba(110,231,183,.7);">📱 앱 미리보기</div>
+          <div class="qr-sub">hebronguide.com/seattle</div>
         </div>
-        <a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener" style="display:block;width:100%;text-decoration:none;">
-          <div style="background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.3);border-radius:11px;padding:11px;text-align:center;font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:.82rem;color:#6EE7B7;">
-            샘플 보기 →
-          </div>
-        </a>
+        <a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener" class="btn-sample">샘플 보기 →</a>
       </div>
-
-      <!-- QR 2: 등재 신청 -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
-        <div style="background:#fff;border-radius:14px;padding:11px;box-shadow:0 4px 20px rgba(0,0,0,0.4);">
-          <img
-            src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fhebronguide.com%2Fchurch-submit.html&margin=5&color=0d1117&bgcolor=ffffff"
-            alt="교회 등재 신청 QR"
-            width="160" height="160"
-            style="display:block;border-radius:6px;"
-            loading="lazy"
-          />
+      <div class="qr-item">
+        <div class="qr-wrap">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fhebronguide.com%2Fad-request.html&margin=5&color=0d1117&bgcolor=ffffff" alt="교회 등재 신청 QR" width="150" height="150" loading="lazy"/>
         </div>
-        <div style="text-align:center;">
-          <div style="font-size:.68rem;color:rgba(201,162,39,.8);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px;">⛪ 등재 신청</div>
-          <div style="font-size:.72rem;color:rgba(236,253,245,.55);">church-submit.html</div>
+        <div>
+          <div class="qr-tag" style="color:rgba(201,162,39,.8);">⛪ 등재 신청</div>
+          <div class="qr-sub">ad-request.html</div>
         </div>
-        <a href="https://hebronguide.com/church-submit.html" target="_blank" rel="noopener" style="display:block;width:100%;text-decoration:none;">
-          <div style="background:linear-gradient(135deg,#C9A227,#b8921c);border-radius:11px;padding:11px;text-align:center;font-family:'Noto Sans KR',sans-serif;font-weight:800;font-size:.82rem;color:#fff;box-shadow:0 3px 12px rgba(201,162,39,.3);">
-            등재 신청하기 →
-          </div>
-        </a>
+        <a href="https://hebronguide.com/ad-request.html" target="_blank" rel="noopener" class="btn-apply">등재 신청하기 →</a>
       </div>
-
     </div>
-
-    <!-- QR 저장 -->
-    <div style="display:flex;gap:8px;justify-content:center;">
-      <a
-        href="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fhebronguide.com%2Fseattle%2F&margin=12&color=0d1117&bgcolor=ffffff"
-        download="hebronguide-sample-qr.png" target="_blank" rel="noopener"
-        style="display:inline-flex;align-items:center;gap:5px;background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);border-radius:9px;padding:8px 14px;text-decoration:none;font-size:.72rem;font-weight:700;color:#6EE7B7;font-family:'Noto Sans KR',sans-serif;">
-        ⬇️ 샘플 QR 저장
-      </a>
-      <a
-        href="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fhebronguide.com%2Fchurch-submit.html&margin=12&color=0d1117&bgcolor=ffffff"
-        download="hebronguide-church-qr.png" target="_blank" rel="noopener"
-        style="display:inline-flex;align-items:center;gap:5px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);border-radius:9px;padding:8px 14px;text-decoration:none;font-size:.72rem;font-weight:700;color:#C9A227;font-family:'Noto Sans KR',sans-serif;">
-        ⬇️ 신청 QR 저장
-      </a>
+    <div class="qr-dl-row">
+      <a href="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fhebronguide.com%2Fseattle%2F&margin=12&color=0d1117&bgcolor=ffffff" download="hebronguide-sample-qr.png" target="_blank" rel="noopener" class="btn-dl" style="color:var(--mint);">⬇️ 샘플 QR 저장</a>
+      <a href="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fhebronguide.com%2Fad-request.html&margin=12&color=0d1117&bgcolor=ffffff" download="hebronguide-apply-qr.png" target="_blank" rel="noopener" class="btn-dl" style="color:var(--gold);">⬇️ 신청 QR 저장</a>
     </div>
-
   </div>
 
-  <!-- ─── 체크리스트 ─── -->
-  <div class="section-title">
-    <span class="dot"></span>
-    신청 전 준비 체크리스트
+  <!-- 도시 검색 -->
+  <div class="section-title"><span class="dot"></span>우리 도시 HebronGuide 보기</div>
+  <div style="font-size:.88rem;color:var(--light-muted);margin-bottom:4px;">도시를 선택하면 해당 도시 페이지로 바로 이동합니다.</div>
+  <div class="search-row">
+    <select id="citySelect" class="city-sel">
+      <option value="">── 도시를 선택하세요 ──</option>
+      <optgroup label="🇺🇸 미국 서부">
+        <option value="seattle">시애틀 Seattle</option><option value="la">LA Los Angeles</option><option value="sf">샌프란시스코 San Francisco</option><option value="orangecounty">오렌지카운티 Orange County</option><option value="sandiego">샌디에고 San Diego</option><option value="portland">포틀랜드 Portland</option><option value="lasvegas">라스베이거스 Las Vegas</option><option value="phoenix">피닉스 Phoenix</option><option value="denver">덴버 Denver</option><option value="honolulu">호놀룰루 Honolulu</option><option value="anchorage">앵커리지 Anchorage</option>
+      </optgroup>
+      <optgroup label="🇺🇸 미국 중부·남부">
+        <option value="dallas">달라스 Dallas</option><option value="houston">휴스턴 Houston</option><option value="chicago">시카고 Chicago</option><option value="atlanta">애틀랜타 Atlanta</option><option value="miami">마이애미 Miami</option><option value="nashville">내쉬빌 Nashville</option><option value="charlotte">샬럿 Charlotte</option><option value="raleigh">롤리 Raleigh</option><option value="columbus">콜럼버스 Columbus</option><option value="minneapolis">미니애폴리스 Minneapolis</option><option value="kansascity">캔자스시티 Kansas City</option><option value="louisville">루이빌 Louisville</option><option value="tucson">투손 Tucson</option><option value="fayetteville">페이엣빌 Fayetteville</option><option value="killeen">킬린 Killeen</option><option value="orlando">올랜도 Orlando</option>
+      </optgroup>
+      <optgroup label="🇺🇸 미국 동부">
+        <option value="newyork">뉴욕 New York</option><option value="washington">워싱턴 DC Washington DC</option><option value="boston">보스턴 Boston</option><option value="philadelphia">필라델피아 Philadelphia</option><option value="maryland">메릴랜드 Maryland</option>
+      </optgroup>
+      <optgroup label="🇨🇦 캐나다">
+        <option value="toronto">토론토 Toronto</option><option value="vancouver">밴쿠버 Vancouver</option><option value="calgary">캘거리 Calgary</option><option value="edmonton">에드먼턴 Edmonton</option><option value="ottawa">오타와 Ottawa</option><option value="winnipeg">위니펙 Winnipeg</option>
+      </optgroup>
+      <optgroup label="🌎 중남미">
+        <option value="mexicocity">멕시코시티 Mexico City</option><option value="guadalajara">과달라하라 Guadalajara</option><option value="monterrey">몬테레이 Monterrey</option><option value="saopaulo">상파울루 São Paulo</option>
+      </optgroup>
+      <optgroup label="🇬🇧 유럽">
+        <option value="london">런던 London</option><option value="paris">파리 Paris</option><option value="berlin">베를린 Berlin</option><option value="frankfurt">프랑크푸르트 Frankfurt</option>
+      </optgroup>
+      <optgroup label="🇦🇺 오세아니아">
+        <option value="sydney">시드니 Sydney</option><option value="melbourne">멜버른 Melbourne</option><option value="brisbane">브리즈번 Brisbane</option><option value="perth">퍼스 Perth</option><option value="auckland">오클랜드 Auckland</option>
+      </optgroup>
+      <optgroup label="🇯🇵 일본">
+        <option value="tokyo">도쿄 Tokyo</option><option value="osaka">오사카 Osaka</option>
+      </optgroup>
+      <optgroup label="🇰🇷 한국">
+        <option value="seoul">서울 Seoul</option><option value="busan">부산 Busan</option><option value="incheon">인천 Incheon</option><option value="daegu">대구 Daegu</option><option value="gwangju">광주 Gwangju</option><option value="daejeon">대전 Daejeon</option><option value="jeju">제주 Jeju</option><option value="ansan">안산 Ansan</option><option value="changwon">창원 Changwon</option><option value="cheonan">천안·아산 Cheonan</option><option value="bundang">분당 Bundang</option>
+      </optgroup>
+      <optgroup label="🌏 동남아·중동">
+        <option value="singapore">싱가포르 Singapore</option><option value="bangkok">방콕 Bangkok</option><option value="hochiminh">호치민 Ho Chi Minh</option><option value="dubai">두바이 Dubai</option>
+      </optgroup>
+    </select>
+    <button class="btn-go" onclick="goToCity()">→ 보러 가기</button>
   </div>
 
+  <!-- 체크리스트 -->
+  <div class="section-title"><span class="dot"></span>신청 전 준비 체크리스트</div>
   <ul class="checklist">
-    <li>
-      <div class="check-box"></div>
-      <span><strong>교회 이름</strong> (한국어 / 영어)</span>
-    </li>
-    <li>
-      <div class="check-box"></div>
-      <span><strong>교회 주소</strong> (영문 주소 포함)</span>
-    </li>
-    <li>
-      <div class="check-box"></div>
-      <span><strong>전화번호 · 카톡 · 이메일</strong> (목사님이나 담당자)</span>
-    </li>
-    <li>
-      <div class="check-box"></div>
-      <span><strong>교회 웹사이트</strong> (있는 경우)</span>
-    </li>
-    <li>
-      <div class="check-box"></div>
-      <span><strong>예배 시간</strong> (주일 1부/2부, 수요예배 등)</span>
-    </li>
-    <li>
-      <div class="check-box"></div>
-      <span><strong>새가족 환영 프로그램</strong> 한 줄 소개 (있는 경우)</span>
-    </li>
+    <li><div class="check-box"></div><span><strong>교회 이름</strong> (한국어 / 영어)</span></li>
+    <li><div class="check-box"></div><span><strong>교회 주소</strong> (영문 포함)</span></li>
+    <li><div class="check-box"></div><span><strong>전화번호 · 카톡 · 이메일</strong> (목사님 또는 담당자)</span></li>
+    <li><div class="check-box"></div><span><strong>예배 시간</strong> (주일 1·2부, 수요예배 등)</span></li>
+    <li><div class="check-box"></div><span><strong>교회 웹사이트</strong> (있는 경우)</span></li>
+    <li><div class="check-box"></div><span><strong>새가족 환영 프로그램</strong> 한 줄 소개 (있는 경우)</span></li>
   </ul>
 
-  <!-- ─── 타임라인 ─── -->
-  <div class="section-title">
-    <span class="dot"></span>
-    신청 후 진행 과정
+  <!-- 3단계 + CTA -->
+  <div class="section-title"><span class="dot"></span>등재 3단계</div>
+  <div class="process-row">
+    <div class="process-item"><div class="p-num">①</div><div class="p-label">신청서 작성<br>(3분)</div></div>
+    <div class="process-item"><div class="p-num">②</div><div class="p-label">운영팀 검토<br>(48시간)</div></div>
+    <div class="process-item"><div class="p-num">③</div><div class="p-label">도시 페이지<br>게시 완료</div></div>
+  </div>
+  <div style="text-align:center;margin-bottom:28px;">
+    <a href="https://hebronguide.com/ad-request.html" class="btn-cta">⛪ 교회 · 사업체 등재 신청</a>
   </div>
 
+  <!-- 타임라인 -->
+  <div class="section-title"><span class="dot"></span>신청 후 진행 과정</div>
   <div class="timeline">
     <div class="tl-item">
       <div class="tl-dot active">📧</div>
@@ -614,172 +421,131 @@ footer {
     <div class="tl-item">
       <div class="tl-dot">✅</div>
       <div class="tl-body">
-        <div class="tl-time">1~2주 내</div>
-        <div class="tl-title">교회 탭에 등재 완료</div>
-        <div class="tl-desc">전 세계 54개 도시에 노출됩니다</div>
+        <div class="tl-time">48시간 이내</div>
+        <div class="tl-title">검토 후 게시</div>
+        <div class="tl-desc">전 세계 67개+ 도시에 노출됩니다</div>
       </div>
     </div>
     <div class="tl-item">
       <div class="tl-dot">🔄</div>
       <div class="tl-body">
         <div class="tl-time">이후 언제든지</div>
-        <div class="tl-title">정보 수정</div>
-        <div class="tl-desc">이메일로 요청하면 반영합니다</div>
+        <div class="tl-title">정보 수정 요청</div>
+        <div class="tl-desc">이메일로 요청하시면 바로 반영합니다</div>
       </div>
     </div>
   </div>
 
-  <!-- ─── 게시 도시 ─── -->
-  <div class="section-title">
-    <span class="dot"></span>
-    현재 헤브론가이드 운영 도시
-  </div>
-
-  <div style="background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,.06);">
-    <div class="city-chips">
-      <span class="city-chip">🇺🇸 시애틀</span>
-      <span class="city-chip">🇺🇸 달라스</span>
-      <span class="city-chip">🇺🇸 샌프란시스코</span>
-      <span class="city-chip">🇺🇸 뉴욕</span>
-      <span class="city-chip">🇺🇸 내쉬빌</span>
-      <span class="city-chip">🇺🇸 보스턴</span>
-      <span class="city-chip">🇺🇸 LA</span>
-      <span class="city-chip">🇨🇦 토론토</span>
-      <span class="city-chip">🇨🇦 밴쿠버</span>
-      <span class="city-chip">🇺🇸 휴스턴</span>
-      <span class="city-chip">🇺🇸 애틀랜타</span>
-      <span class="city-chip">🇺🇸 시카고</span>
-      <span class="city-chip">🇺🇸 워싱턴 DC</span>
-      <span class="city-chip">🇺🇸 마이애미</span>
-      <span class="city-chip">🇺🇸 필라델피아</span>
-      <span class="city-chip">🇦🇺 시드니</span>
-      <span class="city-chip">🇦🇺 멜버른</span>
-      <span class="city-chip">🇳🇿 오클랜드</span>
-      <span class="city-chip">🇬🇧 런던</span>
-      <span class="city-chip">🇯🇵 도쿄</span>
-      <span class="city-chip">🇯🇵 오사카</span>
-      <span class="city-chip" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">+ 33개 도시 (총 54개)</span>
+  <!-- 도시 추가 신청 -->
+  <div class="section-title"><span class="dot"></span>우리 도시가 없다면</div>
+  <div style="font-size:.88rem;color:var(--light-muted);margin-bottom:4px;">목사님 도시가 목록에 없다면 추가 신청해 주세요. 우선 순위로 반영합니다.</div>
+  <form id="cityReqForm" onsubmit="submitCityRequest(event)" style="background:var(--light-card);border:1px solid var(--light-border);border-radius:14px;padding:18px 20px;">
+    <div class="form-grid">
+      <div class="form-field"><label>성함 *</label><input type="text" id="req_name" placeholder="홍길동 목사" required></div>
+      <div class="form-field"><label>이메일 *</label><input type="email" id="req_email" placeholder="pastor@church.org" required></div>
+      <div class="form-field"><label>교회명 *</label><input type="text" id="req_church" placeholder="○○한인교회" required></div>
+      <div class="form-field"><label>요청 도시 *</label><input type="text" id="req_city" placeholder="예: Tucson, AZ" required></div>
+      <div class="form-field full"><label>한인 커뮤니티 현황 (선택)</label><textarea id="req_msg" placeholder="한인 교회 수, 한인 인구 등 간략히 알려주시면 더 빠르게 반영됩니다."></textarea></div>
     </div>
+    <p class="form-note">※ 접수 후 48시간 이내 담당자가 확인 메일을 보내드립니다.</p>
+    <button type="submit" class="btn-submit">🗺️ 도시 추가 신청하기</button>
+  </form>
+  <div id="cityReqThanks" class="form-thanks">
+    <div class="icon">🙏</div>
+    <div class="msg">신청해 주셔서 감사합니다!</div>
+    <div class="sub">48시간 이내에 연락드리겠습니다.</div>
   </div>
 
-  <!-- ─── 연락처 ─── -->
-  <div class="section-title">
-    <span class="dot"></span>
-    문의
-  </div>
+  <!-- FAQ -->
+  <div class="section-title"><span class="dot"></span>자주 묻는 질문</div>
+  <div class="faq-item"><div class="faq-q">Q. 비용이 있나요?</div><div class="faq-a"><strong>없습니다.</strong> 2026년 10월 1일까지 무료입니다.</div></div>
+  <div class="faq-item"><div class="faq-q">Q. 신청 방법이 어렵지 않나요?</div><div class="faq-a">버튼 클릭 → 교회명·연락처 입력 → 전송. 끝입니다.</div></div>
+  <div class="faq-item"><div class="faq-q">Q. 나중에 정보를 바꿀 수 있나요?</div><div class="faq-a">이메일로 연락하시면 바로 반영합니다.</div></div>
+  <div class="faq-item"><div class="faq-q">Q. 교회뿐 아니라 성도 사업체도 등재할 수 있나요?</div><div class="faq-a"><strong>됩니다.</strong> 성도의 일터가 환대의 현장입니다. 신청 시 업종을 선택해 주세요.</div></div>
 
+  <!-- 연락처 -->
+  <div class="section-title"><span class="dot"></span>문의</div>
   <div class="contact-card">
     <div class="contact-icon">📧</div>
     <div class="contact-body">
-      <div class="label">이메일 문의</div>
-      <div class="value">hebronplatform@gmail.com</div>
-      <div class="sub">1~2일 내 답변</div>
+      <div class="c-label">이메일 문의</div>
+      <div class="c-val">hebronplatform@gmail.com</div>
+      <div class="c-sub">48시간 이내 답변 · hebronguide.com</div>
     </div>
   </div>
 
-  <!-- ─── 자주 묻는 질문 ─── -->
-  <div class="section-title">
-    <span class="dot"></span>
-    자주 묻는 질문
-  </div>
-
-  <div style="display:flex;flex-direction:column;gap:10px;">
-
-    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px 18px;">
-      <div style="font-size:.9rem;font-weight:700;color:#1a1a1a;margin-bottom:4px;">Q. 비용이 있나요?</div>
-      <div style="font-size:.85rem;color:#4b5563;line-height:1.8;">
-        <strong style="color:#059669;">없습니다.</strong> 2026년 10월 1일까지 무료입니다.
-      </div>
+  <!-- 현재 도시 -->
+  <div class="section-title"><span class="dot"></span>현재 운영 도시 (67개+)</div>
+  <div style="background:var(--light-card);border:1px solid var(--light-border);border-radius:14px;padding:16px 18px;">
+    <div class="city-chips">
+      <span class="city-chip">🇺🇸 시애틀</span><span class="city-chip">🇺🇸 달라스</span><span class="city-chip">🇺🇸 SF</span><span class="city-chip">🇺🇸 뉴욕</span><span class="city-chip">🇺🇸 LA</span><span class="city-chip">🇺🇸 내쉬빌</span><span class="city-chip">🇺🇸 보스턴</span><span class="city-chip">🇺🇸 휴스턴</span><span class="city-chip">🇺🇸 애틀랜타</span><span class="city-chip">🇺🇸 시카고</span><span class="city-chip">🇺🇸 DC</span><span class="city-chip">🇺🇸 마이애미</span><span class="city-chip">🇺🇸 필라델피아</span><span class="city-chip">🇨🇦 토론토</span><span class="city-chip">🇨🇦 밴쿠버</span><span class="city-chip">🇦🇺 시드니</span><span class="city-chip">🇦🇺 멜버른</span><span class="city-chip">🇬🇧 런던</span><span class="city-chip">🇯🇵 도쿄</span><span class="city-chip">🇰🇷 서울</span>
+      <span class="city-chip" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">+ 47개 도시 (총 67개+)</span>
     </div>
-
-    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px 18px;">
-      <div style="font-size:.9rem;font-weight:700;color:#1a1a1a;margin-bottom:4px;">Q. 신청 방법이 어렵지 않나요?</div>
-      <div style="font-size:.85rem;color:#4b5563;line-height:1.8;">
-        QR 스캔 또는 버튼 → 교회명·연락처 입력 → 전송. 끝입니다.
-      </div>
-    </div>
-
-    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px 18px;">
-      <div style="font-size:.9rem;font-weight:700;color:#1a1a1a;margin-bottom:4px;">Q. 나중에 정보를 바꿀 수 있나요?</div>
-      <div style="font-size:.85rem;color:#4b5563;line-height:1.8;">
-        이메일로 연락하시면 반영합니다.
-      </div>
-    </div>
-
-    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px 18px;">
-      <div style="font-size:.9rem;font-weight:700;color:#1a1a1a;margin-bottom:4px;">Q. 제 교회 도시가 목록에 없어요</div>
-      <div style="font-size:.85rem;color:#4b5563;line-height:1.8;">
-        <strong>hebronplatform@gmail.com</strong> 으로 연락 주시면 추가합니다.
-      </div>
-    </div>
-
   </div>
 
 </div>
+</div>
 
-<!-- 카운트다운 2 -->
-<div class="cd-bar">
-  <div class="cd-label">🌿 무료 등재 마감 카운트다운</div>
-  <div class="cd-digits">
-    <div class="cd-unit"><div class="cd-num" id="cd-d-2">-</div><div class="cd-uname">일</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-h-2">--</div><div class="cd-uname">시간</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-m-2">--</div><div class="cd-uname">분</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-s-2">--</div><div class="cd-uname">초</div></div>
+<!-- ⑤ 마지막 문 -->
+<div class="door-close">
+  <div class="door-close-inner">
+    목사님들께서 그 첫 만남이 이루어지는<br>
+    <strong>헤브론의 문을 열어 주세요.</strong>
   </div>
-  <div style="font-size:.72rem;color:rgba(236,253,245,.3);margin-top:10px;">2026년 10월 1일 마감</div>
+  <a href="https://hebronguide.com/ad-request.html" class="btn-door">지금 문을 열겠습니다 →</a>
 </div>
 
-<!-- NanuriWeb 미니 링크 -->
-<div style="max-width:600px;margin:0 auto;padding:0 20px 24px;text-align:center;">
-  <a href="https://nanuriweb.com/church" target="_blank" rel="noopener"
-     style="display:inline-flex;align-items:center;gap:8px;font-size:.8rem;color:#1B4F72;text-decoration:none;font-weight:700;font-family:'Noto Sans KR',sans-serif;opacity:.7;">
-    🌐 교회 홈페이지가 필요하신가요? → nanuriweb.com
-  </a>
-</div>
-
-<!-- 잘못된 정보 문의 -->
-<div style="max-width:600px;margin:0 auto;padding:0 20px 28px;">
-  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 18px;text-align:center;font-size:.78rem;color:rgba(236,253,245,.4);line-height:1.9;">
-    📋 가이드를 살피다 잘못된 정보를 발견하셨나요?<br>
-    <a href="mailto:hebronplatform@gmail.com?subject=[오류 신고] HebronGuide 교회 안내" style="color:#6EE7B7;font-weight:700;">hebronplatform@gmail.com</a>으로 문의해 주세요.
-  </div>
-</div>
-
-<!-- 푸터 -->
 <footer>
-  <img src="https://hebronguide.com/hebronguide-logo.svg" alt="HebronGuide" width="180" height="47"
-       style="display:block;margin:0 auto 14px;opacity:.85;">
-  <div>© 2026 Hebron Platform LLC &nbsp;·&nbsp; 1 Cor. 10:31</div>
-  <div style="opacity:.65;">hebronplatform@gmail.com &nbsp;·&nbsp; hebronguide.com</div>
+  <img src="https://hebronguide.com/hebronguide-logo.svg" alt="HebronGuide" width="160" height="42" style="display:block;margin:0 auto 12px;opacity:.8;">
+  <div>글로벌 환대 커뮤니티 · © 2026 Hebron Platform LLC</div>
+  <div style="opacity:.65;">hebronplatform@gmail.com · hebronguide.com</div>
 </footer>
 
 <script>
+// 카운트다운
 (function(){
-  function pad(n){ return String(n).padStart(2,'0'); }
+  function pad(n){return String(n).padStart(2,'0');}
   function tick(){
-    var dl = new Date('2026-10-01T00:00:00');
-    var diff = Math.max(0, dl - new Date());
-    var d = Math.floor(diff/86400000);
-    var h = Math.floor(diff%86400000/3600000);
-    var m = Math.floor(diff%3600000/60000);
-    var s = Math.floor(diff%60000/1000);
-    [1,2].forEach(function(n){
-      var ed=document.getElementById('cd-d-'+n);
-      var eh=document.getElementById('cd-h-'+n);
-      var em=document.getElementById('cd-m-'+n);
-      var es=document.getElementById('cd-s-'+n);
-      if(ed) ed.textContent=d;
-      if(eh) eh.textContent=pad(h);
-      if(em) em.textContent=pad(m);
-      if(es) es.textContent=pad(s);
-    });
+    var dl=new Date('2026-10-01T00:00:00');
+    var diff=Math.max(0,dl-new Date());
+    var d=Math.floor(diff/86400000);
+    var h=Math.floor(diff%86400000/3600000);
+    var m=Math.floor(diff%3600000/60000);
+    var s=Math.floor(diff%60000/1000);
+    var ed=document.getElementById('cd-d');
+    var eh=document.getElementById('cd-h');
+    var em=document.getElementById('cd-m');
+    var es=document.getElementById('cd-s');
+    if(ed)ed.textContent=d;
+    if(eh)eh.textContent=pad(h);
+    if(em)em.textContent=pad(m);
+    if(es)es.textContent=pad(s);
   }
-  tick();
-  setInterval(tick,1000);
+  tick();setInterval(tick,1000);
 })();
+
+// 도시 검색
+function goToCity(){
+  var val=document.getElementById('citySelect').value;
+  if(!val){alert('도시를 선택해 주세요.');return;}
+  window.open('https://hebronguide.com/'+val+'/','_blank');
+}
+document.getElementById('citySelect').addEventListener('keydown',function(e){if(e.key==='Enter')goToCity();});
+
+// 도시 추가 신청
+function submitCityRequest(e){
+  e.preventDefault();
+  var name=document.getElementById('req_name').value.trim();
+  var email=document.getElementById('req_email').value.trim();
+  var church=document.getElementById('req_church').value.trim();
+  var city=document.getElementById('req_city').value.trim();
+  var msg=document.getElementById('req_msg').value.trim();
+  var body='[도시 추가 신청]\n\n성함: '+name+'\n이메일: '+email+'\n교회명: '+church+'\n요청 도시: '+city+(msg?'\n\n현황:\n'+msg:'');
+  var mailto='mailto:hebronplatform@gmail.com?cc='+encodeURIComponent(email)+'&subject='+encodeURIComponent('[HebronGuide] 도시 추가 신청 — '+city)+'&body='+encodeURIComponent(body);
+  window.location.href=mailto;
+  document.getElementById('cityReqForm').style.display='none';
+  document.getElementById('cityReqThanks').style.display='block';
+}
 </script>
 </body>
 </html>
