@@ -35,7 +35,33 @@
 
 ---
 
-## 3. 핵심 선언 — CORE DECLARATION
+## 3. 오리지널 성경 근거 — ORIGINAL SCRIPTURE
+
+> **창세기 13:14-18 · Genesis 13:14-18**
+
+> *"롯이 아브람을 떠난 후에 여호와께서 아브람에게 이르시되*  
+> *너는 눈을 들어 너 있는 곳에서 북쪽과 남쪽 그리고 동쪽과 서쪽을 바라보라.*  
+> *보이는 땅을 내가 너와 네 자손에게 주리니 영원히 이르리라...*  
+> *너는 일어나 그 땅을 종과 횡으로 두루 다녀보라 내가 그것을 네게 주리라.*  
+> *이에 아브람이 장막을 옮겨 헤브론에 있는 마므레 상수리 수풀에 이르러 거주하며*  
+> *거기서 여호와를 위하여 제단을 쌓았더라."*
+
+> *"The LORD said to Abram... 'Look around from where you are,*  
+> *to the north and south, to the east and west.*  
+> *All the land that you see I will give to you and your offspring forever...*  
+> *Go, walk through the length and breadth of the land, for I am giving it to you.'*  
+> *So Abram went to live near the great trees of Mamre at Hebron,*  
+> *where he pitched his tents. There he built an altar to the LORD."*
+
+**이 본문이 HebronGuide의 심장입니다.**
+
+거류민으로 낯선 땅을 걷던 아브람처럼 —  
+이민자들이 새 땅에서도 하나님과 동행하며 제단을 쌓을 수 있도록.  
+헤브론은 그 이름 그대로, 나그네가 정착하고 예배하는 땅이 됩니다.
+
+---
+
+## 4. 핵심 선언 — CORE DECLARATION
 
 > **이 세상 어느 누구도 혼자가 아닙니다.**  
 > *No one in this world should be alone.*
