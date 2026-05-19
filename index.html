@@ -217,8 +217,10 @@
       font-family: var(--font-display); font-weight: 800;
       font-size: clamp(56px, 9vw, 120px); line-height: 0.95; letter-spacing: -0.05em;
       margin-bottom: var(--space-8);
+      color: #ffffff; /* iOS 폴백 — background-clip 실패 시 흰색 텍스트 보장 */
       background: linear-gradient(180deg, #ffffff 0%, #c8c8cc 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
       animation: fadeInUp 1s var(--ease) both;
     }
     .hero h1 .accent {
@@ -490,7 +492,10 @@
         'calgary','edmonton','ottawa','winnipeg','phoenix','charlotte','raleigh','columbus',
         'minneapolis','tucson','fayetteville','killeen','anchorage','sydney','melbourne',
         'brisbane','perth','auckland','saopaulo','london','singapore','bangkok','hochiminh',
-        'dubai','frankfurt','berlin','paris','tokyo','osaka','seoul','busan','louisville','orangecounty','ansan','incheon','jeju','daegu','gwangju','daejeon'];
+        'dubai','frankfurt','berlin','paris','tokyo','osaka','seoul','busan','louisville',
+        'orangecounty','ansan','incheon','jeju','daegu','gwangju','daejeon',
+        'changwon','cheonan','bundang','orlando','maryland','osaka','hochiminh',
+        'pittsburgh','richmond','stlouis','oklahomacity','memphis','montreal'];
       if (lastCity && valid.indexOf(lastCity) !== -1) {
         var s = window.location.search, h = window.location.hash;
         window.location.replace('/' + lastCity + '/' + s + h);
