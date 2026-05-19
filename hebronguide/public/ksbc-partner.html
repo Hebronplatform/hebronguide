@@ -104,12 +104,16 @@ h1 em{color:var(--gold);font-style:normal;}
 
 /* DECLARATION */
 .declaration{background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.07));border:1px solid rgba(201,162,39,.3);border-radius:18px;padding:28px;margin-bottom:18px;}
-.journey{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
-.journey-step{display:flex;align-items:flex-start;gap:12px;}
-.j-num{flex-shrink:0;width:26px;height:26px;background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;color:var(--gold);margin-top:2px;}
-.j-txt{font-size:.9rem;color:rgba(236,253,245,.8);line-height:1.7;}
-.j-txt em{color:var(--gold);font-style:italic;font-weight:700;}
-.j-txt strong{color:#fff;font-weight:900;}
+.story-label{font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
+.journey{display:flex;flex-direction:column;gap:0;margin-bottom:20px;border-left:2px solid rgba(201,162,39,.2);padding-left:4px;}
+.journey-step{display:flex;align-items:flex-start;gap:14px;padding:12px 0 12px 12px;position:relative;}
+.journey-step:not(:last-child)::after{content:'';position:absolute;left:-5px;bottom:0;width:8px;height:8px;background:rgba(201,162,39,.15);border-radius:50%;}
+.journey-final{border-top:1px solid rgba(201,162,39,.2);margin-top:4px;padding-top:16px;}
+.j-num{flex-shrink:0;width:28px;height:28px;background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;color:var(--gold);margin-top:2px;}
+.j-txt{font-size:.9rem;color:rgba(236,253,245,.82);line-height:1.85;}
+.j-txt em{color:var(--gold2);font-style:italic;font-weight:600;}
+.j-txt strong{color:#fff;font-weight:900;font-size:.97rem;}
+.j-aside{display:block;font-size:.78rem;color:var(--muted);margin-top:4px;}
 .decl-divider{height:1px;background:rgba(201,162,39,.2);margin:18px 0;}
 .declaration-text{font-size:.97rem;color:rgba(236,253,245,.88);line-height:2.0;margin-bottom:4px;}
 .declaration-text strong{color:#fff;font-weight:900;}
@@ -241,14 +245,73 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
   <div class="declaration">
 
     <!-- 비신자의 여정 -->
+    <div class="story-label">✦ A씨의 이야기</div>
     <div class="journey">
-      <div class="journey-step"><span class="j-num">①</span><span class="j-txt">한국에 살던 A씨, 미국은 처음입니다. 모든 것이 낯설고 불안합니다.</span></div>
-      <div class="journey-step"><span class="j-num">②</span><span class="j-txt">인터넷 검색으로 근처 한인 식당을 찾아 들어갑니다.</span></div>
-      <div class="journey-step"><span class="j-num">③</span><span class="j-txt">따뜻한 환대를 받고 감동이 되었습니다. <em style="font-size:.8rem;opacity:.7">(모교회 성도가 운영)</em></span></div>
-      <div class="journey-step"><span class="j-num">④</span><span class="j-txt">주인에게 <em>"HebronGuide"</em>를 소개받습니다.</span></div>
-      <div class="journey-step"><span class="j-num">⑤</span><span class="j-txt"><em>"낯선 도시에서 막막했는데... 이런 정착 가이드가 있었군요~!"</em><br><span style="font-size:.82rem;color:var(--muted);">— 감사하여 마음의 문이 열립니다.</span></span></div>
-      <div class="journey-step"><span class="j-num">⑥</span><span class="j-txt">주인은 개인 전번을 주며 <em>"혹시 도움이 필요하면 연락하라"</em>고 환대를 베풉니다.</span></div>
-      <div class="journey-step"><span class="j-num">⑦</span><span class="j-txt"><strong>그 관계 뒤에 교회가 있습니다.</strong></span></div>
+
+      <div class="journey-step">
+        <span class="j-num">①</span>
+        <span class="j-txt">
+          한국에서 온 A씨, 미국 땅을 처음 밟습니다.<br>
+          공항 문을 나서는 순간 —<br>
+          <em>아는 사람도, 아는 길도, 아무것도 없습니다.</em>
+        </span>
+      </div>
+
+      <div class="journey-step">
+        <span class="j-num">②</span>
+        <span class="j-txt">
+          저녁이 됩니다. 배가 고픕니다.<br>
+          스마트폰으로 한인 식당을 검색합니다.<br>
+          낯선 거리를 걸어 작은 한식당 문을 밉니다.
+        </span>
+      </div>
+
+      <div class="journey-step">
+        <span class="j-num">③</span>
+        <span class="j-txt">
+          따뜻한 된장찌개 냄새, 그리고 주인의 환한 웃음.<br>
+          <em>"어서 오세요~ 처음 오셨어요?"</em><br>
+          그 한 마디에 A씨의 눈시울이 붉어집니다.<br>
+          <span class="j-aside">(이 식당, 지역 한인교회 성도가 운영합니다)</span>
+        </span>
+      </div>
+
+      <div class="journey-step">
+        <span class="j-num">④</span>
+        <span class="j-txt">
+          식사를 마칠 즈음, 주인이 스마트폰을 꺼냅니다.<br>
+          <em>"이 도시 처음이시면 이거 꼭 저장해 두세요."</em><br>
+          화면에 뜨는 이름 — <strong>HebronGuide</strong>
+        </span>
+      </div>
+
+      <div class="journey-step">
+        <span class="j-num">⑤</span>
+        <span class="j-txt">
+          A씨, 화면을 넘겨봅니다.<br>
+          병원, 학교, 은행, 교회, 맛집... 필요한 모든 것이 한국어로.<br>
+          <em>"낯선 도시에서 막막했는데...<br>이런 정착 가이드가 있었군요~!"</em><br>
+          <span class="j-aside">— 감사한 마음에 마음의 문이 열립니다.</span>
+        </span>
+      </div>
+
+      <div class="journey-step">
+        <span class="j-num">⑥</span>
+        <span class="j-txt">
+          돌아가려는 A씨에게 주인이 명함을 건넵니다.<br>
+          <em>"제 개인 번호예요. 도움 필요하면 언제든 연락하세요."</em><br>
+          낯선 도시에서 받은 첫 번째 전화번호.<br>
+          <span class="j-aside">첫 번째 관계가 시작됩니다.</span>
+        </span>
+      </div>
+
+      <div class="journey-step journey-final">
+        <span class="j-num">⑦</span>
+        <span class="j-txt">
+          <strong>그리고 그 관계 뒤에 — 교회가 있습니다.</strong>
+        </span>
+      </div>
+
     </div>
 
     <div class="decl-divider"></div>
