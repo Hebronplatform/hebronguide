@@ -147,10 +147,11 @@ cp hebronguide/dist/hebron-ops-church-connect.html public/hebron-ops-church-conn
 cp hebronguide/dist/hebron-partner-mobilize.html   public/hebron-partner-mobilize.html   2>/dev/null || true
 cp hebronguide/dist/church-submit.html             public/church-submit.html             2>/dev/null || true
 
-# 루트 HTML 파일 전체 자동 복사 (ksbc-partner, ops-dashboard, about 등 신규 파일 자동 포함)
+# 루트 HTML 파일 전체 자동 복사 (church-guide, ksbc-partner, ops-dashboard, about 등 모두 포함)
 for f in hebronguide/dist/*.html; do
   fname=$(basename "$f")
-  cp "$f" "public/$fname" 2>/dev/null || true
+  cp "$f" "public/$fname"
+  echo "  copied: $fname"
 done
 echo "  OK: all root HTML files copied"
 
