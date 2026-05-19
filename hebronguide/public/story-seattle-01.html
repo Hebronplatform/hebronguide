@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>첫 번째 전화번호 — HebronGuide 이달의 이야기</title>
+<meta name="description" content="공항 문을 나서던 그 순간, 아무도 없었다. 시애틀에 혼자 도착한 한 이민자의 이야기.">
+<meta property="og:title" content="첫 번째 전화번호 — HebronGuide 이달의 이야기">
+<meta property="og:description" content="공항 문을 나서던 그 순간, 아무도 없었다. 시애틀에 혼자 도착한 한 이민자의 이야기.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;--surface:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.16);
+  --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;
+  --text:#ECFDF5;--muted:rgba(236,253,245,0.6);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:var(--bg);}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;min-height:100vh;}
+
+/* ── 언어 전환 ── */
+html[lang="ko"] .en{display:none!important;}
+html[lang="en"] .ko{display:none!important;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
+.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;font-family:'Cinzel',serif;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-tag{font-size:.72rem;color:var(--muted);background:rgba(255,255,255,0.06);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;}
+.lang-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:rgba(236,253,245,.75);font-size:.7rem;font-weight:700;letter-spacing:.06em;border-radius:20px;padding:5px 13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s;}
+.lang-btn:hover{background:rgba(201,162,39,.15);border-color:rgba(201,162,39,.4);color:var(--gold);}
+
+/* HERO */
+.story-hero{text-align:center;padding:56px 24px 40px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.1),transparent);}
+.story-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:99px;padding:6px 18px;margin-bottom:24px;}
+.story-title-ko{font-family:'Noto Serif KR',serif;font-size:clamp(1.8rem,6vw,2.8rem);font-weight:700;color:#fff;line-height:1.35;margin-bottom:12px;}
+.story-title-en{font-size:clamp(1.4rem,4vw,2rem);font-weight:700;color:#fff;line-height:1.35;margin-bottom:12px;}
+.story-sub{font-size:.92rem;color:var(--muted);margin-bottom:8px;}
+.story-location{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(201,162,39,.75);font-weight:700;background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.2);border-radius:99px;padding:4px 14px;margin-top:8px;}
+.story-divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:28px auto;}
+
+/* STORY BODY */
+.story-container{max-width:680px;margin:0 auto;padding:8px 24px 64px;}
+.story-scene{margin-bottom:36px;}
+.scene-marker{font-size:.68rem;font-weight:800;color:rgba(201,162,39,.5);letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);}
+.story-p{font-family:'Noto Serif KR',serif;font-size:1.02rem;color:rgba(236,253,245,.88);line-height:2.05;margin-bottom:18px;}
+.story-p-en{font-family:Georgia,serif;font-size:.98rem;color:rgba(236,253,245,.88);line-height:2;margin-bottom:18px;}
+.story-p strong,.story-p-en strong{color:#fff;font-weight:700;}
+.story-inner{font-size:.95rem;color:rgba(110,231,183,.85);font-style:italic;padding-left:20px;border-left:2px solid rgba(110,231,183,.25);margin:16px 0 20px;line-height:2;}
+.story-dialogue{background:rgba(201,162,39,.06);border:1px solid rgba(201,162,39,.15);border-radius:12px;padding:16px 20px;margin:16px 0;}
+.dialogue-who{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.dialogue-line{font-family:'Noto Serif KR',serif;font-size:.97rem;color:rgba(236,253,245,.9);line-height:1.95;font-style:italic;}
+.dialogue-line-en{font-family:Georgia,serif;font-size:.94rem;color:rgba(236,253,245,.9);line-height:1.9;font-style:italic;}
+.story-climax{background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.05));border:1px solid rgba(201,162,39,.3);border-radius:18px;padding:28px;margin:32px 0;text-align:center;}
+.climax-text{font-family:'Noto Serif KR',serif;font-size:1.08rem;font-weight:700;color:#fff;line-height:2;}
+.climax-text-en{font-family:Georgia,serif;font-size:1.02rem;font-weight:700;color:#fff;line-height:1.95;}
+
+/* REFLECTION */
+.story-reflection{background:rgba(255,255,255,.03);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;padding:20px 24px;margin:28px 0;}
+.reflection-text{font-family:'Noto Serif KR',serif;font-size:.95rem;color:rgba(236,253,245,.8);line-height:2.1;}
+.reflection-text-en{font-family:Georgia,serif;font-size:.92rem;color:rgba(236,253,245,.8);line-height:2.05;}
+
+/* RELATED LINKS */
+.story-links{margin:32px 0;}
+.links-label{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+.link-row{display:flex;flex-direction:column;gap:10px;}
+.link-card{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:14px 18px;text-decoration:none;transition:border-color .2s;}
+.link-card:hover{border-color:rgba(201,162,39,.4);}
+.link-emoji{font-size:1.3rem;flex-shrink:0;}
+.link-info .link-title{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:2px;}
+.link-info .link-desc{font-size:.76rem;color:var(--muted);}
+.link-arrow{margin-left:auto;color:rgba(201,162,39,.5);font-size:.9rem;}
+
+/* SHARE */
+.share-bar{text-align:center;margin:36px 0 24px;}
+.share-label{font-size:.8rem;color:var(--muted);margin-bottom:14px;}
+.share-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
+.btn-share{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:99px;padding:10px 20px;cursor:pointer;font-size:.8rem;font-weight:700;font-family:'Noto Sans KR',sans-serif;color:var(--text);transition:background .2s;}
+.btn-share:hover{background:rgba(201,162,39,.12);border-color:rgba(201,162,39,.3);}
+.btn-kakao{background:rgba(254,229,0,.1);border-color:rgba(254,229,0,.3);color:#fee900;}
+.btn-kakao:hover{background:rgba(254,229,0,.18);}
+
+/* SOURCE */
+.story-source{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:18px 22px;margin-top:32px;}
+.source-label{font-size:.68rem;font-weight:800;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+.source-item{font-size:.78rem;color:rgba(236,253,245,.4);line-height:1.9;padding-left:10px;border-left:1px solid rgba(255,255,255,.08);margin-bottom:6px;}
+.source-item:last-child{margin-bottom:0;}
+.source-item a{color:rgba(110,231,183,.5);text-decoration:none;}
+.source-item a:hover{text-decoration:underline;}
+
+/* NEXT STORY */
+.next-story{text-align:center;padding:40px 24px;border-top:1px solid var(--border);}
+.next-label{font-size:.7rem;font-weight:800;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;}
+.btn-next{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:.9rem;border-radius:50px;padding:13px 30px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;}
+.btn-next:hover{opacity:.88;}
+
+/* FOOTER */
+footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-align:center;padding:28px 24px;font-size:.74rem;color:rgba(236,253,245,.3);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://hebronguide.com" class="logo">HebronGuide</a>
+  <div class="nav-right">
+    <span class="nav-tag ko">이달의 이야기</span>
+    <span class="nav-tag en">Story of the Month</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="story-hero">
+  <div class="story-badge">
+    <span>📖</span>
+    <span class="ko">이달의 이야기 · 2026년 5월</span>
+    <span class="en">Story of the Month · May 2026</span>
+  </div>
+
+  <div class="story-title-ko ko">첫 번째 전화번호</div>
+  <div class="story-title-en en">The First Phone Number</div>
+
+  <p class="story-sub ko">공항 문을 나서던 그 순간, 아무도 없었다.</p>
+  <p class="story-sub en">The moment she stepped out of the airport, there was no one.</p>
+
+  <div class="story-location">🏔️ <span class="ko">시애틀, 워싱턴</span><span class="en">Seattle, Washington</span></div>
+  <div class="story-divider"></div>
+</div>
+
+<!-- STORY BODY -->
+<div class="story-container">
+
+  <!-- Scene 1 -->
+  <div class="story-scene">
+    <div class="scene-marker ko">장면 1 — 공항</div>
+    <div class="scene-marker en">Scene 1 — Airport</div>
+
+    <p class="story-p ko">2019년 9월, 이지현 씨(가명)는 시애틀 타코마 공항 도착 게이트를 나섰다.</p>
+    <p class="story-p-en en">September 2019. Jihyun Lee (pseudonym) walked out of the arrivals gate at Seattle-Tacoma International Airport.</p>
+
+    <p class="story-p ko">손에는 캐리어 두 개. IT 취업비자 한 장. 그리고 종이 한 장 — 낯선 주소가 적힌 한 달치 에어비앤비 예약 확인서.</p>
+    <p class="story-p-en en">In her hands: two suitcases. One IT work visa. And a single sheet of paper — an Airbnb confirmation with an unfamiliar address.</p>
+
+    <p class="story-p ko">마중 나온 사람은 없었다. 남편은 한국에서 아직 비자를 기다리고 있었다. 두 아이도 아직 한국에 있었다. 미국은 처음이었다.</p>
+    <p class="story-p-en en">No one was there to meet her. Her husband was still waiting for his visa in Korea. Their two children were still in Korea. This was her first time in America.</p>
+
+    <p class="story-p ko">공항 문을 나서는 순간, 그 광경이 이지현 씨를 멈춰 세웠다. 사람들이 서로를 안고, 이름을 부르며, 웃으며 지나쳐 갔다. 모두에게 누군가가 있었다.</p>
+    <p class="story-p-en en">The moment she stepped outside, the scene stopped her. People were embracing, calling names, laughing as they passed. Everyone had someone.</p>
+
+    <div class="story-inner ko">"나만 혼자구나."</div>
+    <div class="story-inner en">"I'm the only one alone."</div>
+  </div>
+
+  <!-- Scene 2 -->
+  <div class="story-scene">
+    <div class="scene-marker ko">장면 2 — 이틀째 밤</div>
+    <div class="scene-marker en">Scene 2 — Second Night</div>
+
+    <p class="story-p ko">린우드의 작은 아파트. 짐을 풀고 이틀이 지났다. 냉장고는 텅 비었다. 밥을 먹어야 했다. 스마트폰을 꺼냈다. "한인 식당 시애틀."</p>
+    <p class="story-p-en en">A small apartment in Lynnwood. Two days had passed since she unpacked. The refrigerator was empty. She had to eat. She took out her phone. "Korean restaurant Seattle."</p>
+
+    <p class="story-p ko">구글 지도에 핀이 하나 꽂혔다. 걸어서 10분.</p>
+    <p class="story-p-en en">A pin dropped on the map. Ten minutes on foot.</p>
+
+    <p class="story-p ko">작은 식당 문을 열자, 된장찌개 냄새가 밀려왔다. 이지현 씨는 그 냄새에 울 뻔했다고 나중에 말했다. 낯선 도시에서, 익숙한 냄새 하나가 그렇게 사람을 무너뜨릴 수 있다는 걸 그때 처음 알았다고.</p>
+    <p class="story-p-en en">When she opened the door of the small restaurant, the smell of doenjang jjigae rushed out. She later said she almost cried. In a strange city, she hadn't known that a single familiar smell could undo a person like that.</p>
+
+    <p class="story-p ko">주인아주머니가 고개를 들었다. 환한 얼굴로.</p>
+    <p class="story-p-en en">The owner looked up. With a bright, open face.</p>
+
+    <div class="story-dialogue">
+      <div class="dialogue-who ko">주인 아주머니</div>
+      <div class="dialogue-who en">Owner</div>
+      <div class="dialogue-line ko">"어머, 혼자 오셨어요? 처음이신 것 같은데?"</div>
+      <div class="dialogue-line-en en">"Oh, are you by yourself? You look like you're new here."</div>
+    </div>
+
+    <p class="story-p ko">그 말 한마디에 이지현 씨는 뭔가 무너지는 것을 느꼈다. 이틀 만에 처음으로 누군가가 자신의 존재를 알아채 준 것이. 이틀 만에 처음으로 누군가가 말을 건 것이.</p>
+    <p class="story-p-en en">At those words, Jihyun felt something give way inside her. For the first time in two days, someone had noticed her. For the first time in two days, someone had spoken to her.</p>
+
+    <div class="story-dialogue">
+      <div class="dialogue-who ko">이지현 씨</div>
+      <div class="dialogue-who en">Jihyun</div>
+      <div class="dialogue-line ko">"네… 일주일 전에 왔어요. 여기 아무것도 모르겠어요."</div>
+      <div class="dialogue-line-en en">"Yes… I arrived a week ago. I don't know anything about this place."</div>
+    </div>
+
+    <p class="story-p ko">주인아주머니는 말없이 식탁을 정성스럽게 차렸다. 반찬 하나하나를. 이지현 씨는 밥을 먹으면서 처음으로 울었다. 조용하게. 혼자.</p>
+    <p class="story-p-en en">The owner quietly set the table — carefully, dish by dish. Jihyun cried for the first time while eating. Quietly. Alone.</p>
+  </div>
+
+  <!-- Scene 3 -->
+  <div class="story-scene">
+    <div class="scene-marker ko">장면 3 — 명함 한 장</div>
+    <div class="scene-marker en">Scene 3 — One Business Card</div>
+
+    <p class="story-p ko">밥을 다 먹고 나가려는 이지현 씨에게 아주머니가 명함을 내밀었다. 뒷면에 작게 적어 준 것도 있었다. HebronGuide라는 이름과 주소.</p>
+    <p class="story-p-en en">As Jihyun was getting ready to leave, the owner handed her a business card. On the back, she had written something small — a name and address: HebronGuide.</p>
+
+    <div class="story-dialogue">
+      <div class="dialogue-who ko">주인 아주머니</div>
+      <div class="dialogue-who en">Owner</div>
+      <div class="dialogue-line ko">"저도 딱 그랬어요. 15년 전에. 문 나서는 순간 아무도 없어서 얼마나 울었는지. 이거 보세요 — 병원도 있고, 학교도 있고, 면허도, 교회도."</div>
+      <div class="dialogue-line-en en">"I was exactly the same. Fifteen years ago. I cried so much stepping out that door with no one there. Look at this — there's hospitals, schools, driver's license, churches."</div>
+    </div>
+
+    <div class="story-dialogue">
+      <div class="dialogue-who ko">주인 아주머니</div>
+      <div class="dialogue-who en">Owner</div>
+      <div class="dialogue-line ko">"그리고 이건 제 개인 번호예요. 뭐든 모르면 문자하세요."</div>
+      <div class="dialogue-line-en en">"And this is my personal number. Text me for anything you don't know."</div>
+    </div>
+
+    <p class="story-p ko">이지현 씨는 두 손으로 명함을 받았다.</p>
+    <p class="story-p-en en">Jihyun received the card with both hands.</p>
+
+    <p class="story-p ko"><strong>시애틀에서 받은 첫 번째 사람의 전화번호.</strong></p>
+    <p class="story-p-en en"><strong>The first person's phone number she received in Seattle.</strong></p>
+
+    <p class="story-p ko">나중에 알게 됐다. 그 아주머니가 동네 한인교회 집사님이었다는 것을. 식당은 그분의 일터였지만, 그 식탁은 이미 누군가의 처음이 되는 교회였다는 것을.</p>
+    <p class="story-p-en en">She found out later. The owner was a deacon at the local Korean church. The restaurant was her workplace — but that table had already become someone's first church.</p>
+  </div>
+
+  <!-- Scene 4 -->
+  <div class="story-scene">
+    <div class="scene-marker ko">장면 4 — 그날 밤</div>
+    <div class="scene-marker en">Scene 4 — That Night</div>
+
+    <p class="story-p ko">그날 밤, 아파트로 돌아와 이지현 씨는 명함에 적힌 주소를 폰으로 찾아 들어갔다. 화면을 하나씩 넘겼다.</p>
+    <p class="story-p-en en">That night, back in the apartment, Jihyun looked up the address on her phone. She scrolled through it, screen by screen.</p>
+
+    <p class="story-p ko">병원. 운전면허. 한인 마트. 아이 학교. 교회.</p>
+    <p class="story-p-en en">Hospital. Driver's license. Korean grocery. Children's schools. Church.</p>
+
+    <div class="story-inner ko">"이런 게 있었구나.<br>아무것도 모르는 게 내 잘못이 아니었구나."</div>
+    <div class="story-inner en">"This existed all along.<br>Not knowing wasn't my fault."</div>
+
+    <p class="story-p ko">그날 밤, 이지현 씨는 처음으로 잘 잤다.</p>
+    <p class="story-p-en en">That night, Jihyun slept well for the first time.</p>
+  </div>
+
+  <!-- Climax -->
+  <div class="story-climax">
+    <div class="climax-text ko">그로부터 5년 후.<br>이지현 씨는 시애틀에 뿌리를 내렸다.<br>남편이 왔고, 아이들이 왔고, 집도 생겼다.<br><br>그리고 지금, 이지현 씨는 매달 한 번씩<br>공항으로 간다.<br><br>혼자 도착하는 누군가를 맞이하러.</div>
+    <div class="climax-text-en en">Five years later.<br>Jihyun has put down roots in Seattle.<br>Her husband came. Her children came. They have a home.<br><br>And now, once a month,<br>Jihyun goes to the airport.<br><br>To meet someone arriving alone.</div>
+  </div>
+
+  <!-- Reflection -->
+  <div class="story-reflection">
+    <div class="reflection-text ko">
+      한인 이민자 연구자 Daniel Lee 박사(풀러신학교)는 말합니다.<br><br>
+      "1세대 이민자에게 교회는 단순한 예배 공간이 아니었습니다. 그곳은 생존의 장소였습니다. 한국어로 말할 수 있는, 공동체를 찾을 수 있는, 새로운 환경에 적응하는 법을 발견할 수 있는 유일한 곳이었습니다."<br><br>
+      이지현 씨 이야기에서 그 교회는 예배당 안에 있지 않았습니다. 된장찌개 냄새가 나는 작은 식당 안에, 집사님의 명함 한 장 안에, 낯선 사람의 전화번호 하나 안에 있었습니다.
+    </div>
+    <div class="reflection-text-en en">
+      Dr. Daniel Lee (Fuller Seminary's Asian American Research Institute) says:<br><br>
+      "For first-generation immigrants, the church was not simply a place of worship. It was a place of survival — the only place where they could speak Korean, find community, and discover how to adapt to their new environment."<br><br>
+      In Jihyun's story, that church was not inside a sanctuary. It was in a small restaurant smelling of doenjang jjigae. In a single business card. In one stranger's phone number.
+    </div>
+  </div>
+
+  <!-- Related Links -->
+  <div class="story-links">
+    <div class="links-label ko">이 이야기에 등장하는 곳</div>
+    <div class="links-label en">Places in this story</div>
+    <div class="link-row">
+      <a href="https://hebronguide.com/seattle/" class="link-card">
+        <span class="link-emoji">🏔️</span>
+        <div class="link-info">
+          <div class="link-title ko">시애틀 HebronGuide</div>
+          <div class="link-title en">Seattle HebronGuide</div>
+          <div class="link-desc ko">병원·학교·운전면허·한인 마트·교회 — 정착 정보 전체</div>
+          <div class="link-desc en">Hospital · School · License · Korean grocery · Church — all settlement info</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://hebronguide.com/church-guide.html" class="link-card">
+        <span class="link-emoji">⛪</span>
+        <div class="link-info">
+          <div class="link-title ko">파트너 교회 안내</div>
+          <div class="link-title en">Partner Church Guide</div>
+          <div class="link-desc ko">낯선 도시에서 여러분을 기다리는 교회들</div>
+          <div class="link-desc en">Churches waiting to welcome you in a new city</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Share -->
+  <div class="share-bar">
+    <div class="share-label ko">이 이야기가 마음에 닿았다면, 나눠주세요.</div>
+    <div class="share-label en">If this story touched you, share it.</div>
+    <div class="share-btns">
+      <button class="btn-share btn-kakao" onclick="shareKakao()">💬 <span class="ko">카카오톡</span><span class="en">KakaoTalk</span></button>
+      <button class="btn-share" onclick="copyLink()">🔗 <span class="ko">링크 복사</span><span class="en">Copy Link</span></button>
+    </div>
+  </div>
+
+  <!-- Source -->
+  <div class="story-source">
+    <div class="source-label ko">출처 및 참고</div>
+    <div class="source-label en">Sources & References</div>
+    <div class="source-item ko">이 이야기는 실제 한인 이민자 증언들을 바탕으로 재구성한 복합 서사입니다. 등장인물 이름은 가명입니다.</div>
+    <div class="source-item en">This story is a composite narrative reconstructed from real Korean immigrant testimonies. Names are pseudonyms.</div>
+    <div class="source-item">
+      Daniel Lee, Fuller Seminary Asian American Research Institute —
+      <a href="https://usaamen.net/bbs/board.php?bo_table=data&wr_id=10939" target="_blank" rel="noopener">「영화 '미나리'로 보는 한인들의 신앙과 이민교회의 역할」</a>,
+      Amen.net, 2021.04.29
+    </div>
+    <div class="source-item">
+      이상현 목사 (Bethel UMC, CA) —
+      <a href="https://www.umcdiscipleship.org/articles/%EC%9D%B4%EB%AF%BC%EC%9E%90%EC%82%AC%EC%97%AD" target="_blank" rel="noopener">「이민자 사역: 한인교회의 도전과 변화」</a>,
+      UMC Discipleship, 2025.02.03
+    </div>
+    <div class="source-item">
+      폴 김 목사 (Paul Kim), 시애틀지구촌교회 — 25년 목회 경험 및 목회칼럼 (<a href="https://ijiguchon.org" target="_blank" rel="noopener">ijiguchon.org</a>)
+    </div>
+    <div class="source-item">
+      HebronGuide 운영 철학 —
+      <a href="https://hebronguide.com/philosophy.html" target="_blank" rel="noopener">philosophy.html</a>,
+      Hebron Platform LLC, 2026
+    </div>
+  </div>
+
+</div>
+
+<!-- NEXT -->
+<div class="next-story">
+  <div class="next-label ko">다음 도시 이야기가 곧 옵니다</div>
+  <div class="next-label en">Next city story coming soon</div>
+  <br>
+  <a href="https://hebronguide.com" class="btn-next">
+    <span class="ko">🌍 전 세계 도시 보기</span>
+    <span class="en">🌍 Explore All Cities</span>
+  </a>
+</div>
+
+<footer>
+  <div>HebronGuide · <span class="ko">글로벌 환대 커뮤니티</span><span class="en">Global Hospitality Community</span> · © 2026 Hebron Platform LLC</div>
+  <div style="margin-top:6px;opacity:.6;">hebronplatform@gmail.com · hebronguide.com</div>
+</footer>
+
+<script>
+/* 언어 전환 */
+function toggleLang(){
+  var html=document.documentElement;
+  var btn=document.getElementById('lang-btn');
+  if(html.lang==='ko'){html.lang='en';btn.textContent='한국어';}
+  else{html.lang='ko';btn.textContent='EN';}
+  localStorage.setItem('hg_lang',html.lang);
+}
+(function(){
+  var s=localStorage.getItem('hg_lang');
+  if(s==='en'){document.documentElement.lang='en';var b=document.getElementById('lang-btn');if(b)b.textContent='한국어';}
+})();
+
+/* 링크 복사 */
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href).then(function(){
+    var lang=document.documentElement.lang;
+    alert(lang==='en'?'Link copied!':'링크가 복사됐습니다!');
+  });
+}
+
+/* 카카오톡 공유 */
+function shareKakao(){
+  var lang=document.documentElement.lang;
+  var text=lang==='en'
+    ?'The First Phone Number — A Korean immigrant story from Seattle. Read on HebronGuide: '
+    :'첫 번째 전화번호 — 시애틀 한인 이민자 이야기. HebronGuide에서 읽기: ';
+  var url=window.location.href;
+  if(navigator.share){
+    navigator.share({title:lang==='en'?'The First Phone Number':'첫 번째 전화번호',text:text,url:url});
+  } else {
+    navigator.clipboard.writeText(text+url).then(function(){
+      alert(lang==='en'?'Copied! Paste into KakaoTalk.':'복사됐습니다! 카카오톡에 붙여넣기 하세요.');
+    });
+  }
+}
+</script>
+</body>
+</html>
