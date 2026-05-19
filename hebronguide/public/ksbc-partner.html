@@ -53,9 +53,17 @@ h1 em{color:var(--gold);font-style:normal;}
 
 /* DECLARATION */
 .declaration{background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.07));border:1px solid rgba(201,162,39,.3);border-radius:18px;padding:28px;margin-bottom:18px;}
-.declaration-text{font-size:1rem;color:rgba(236,253,245,.88);line-height:2;margin-bottom:20px;}
+.journey{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.journey-step{display:flex;align-items:flex-start;gap:12px;}
+.j-num{flex-shrink:0;width:26px;height:26px;background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;color:var(--gold);margin-top:2px;}
+.j-txt{font-size:.9rem;color:rgba(236,253,245,.8);line-height:1.7;}
+.j-txt em{color:var(--gold);font-style:italic;font-weight:700;}
+.j-txt strong{color:#fff;font-weight:900;}
+.decl-divider{height:1px;background:rgba(201,162,39,.2);margin:18px 0;}
+.declaration-text{font-size:.97rem;color:rgba(236,253,245,.88);line-height:2.0;margin-bottom:4px;}
 .declaration-text strong{color:#fff;font-weight:900;}
-.declaration-stamp{font-size:1.05rem;font-weight:900;color:var(--gold);line-height:1.7;border-top:1px solid rgba(201,162,39,.25);padding-top:16px;margin-top:4px;}
+.declaration-vision{font-size:.97rem;color:rgba(236,253,245,.75);line-height:2;font-style:italic;margin-bottom:4px;}
+.declaration-stamp{font-size:1.1rem;font-weight:900;color:var(--gold);border-top:1px solid rgba(201,162,39,.25);padding-top:16px;margin-top:16px;}
 
 /* QR BLOCK */
 .qr-block{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
@@ -105,6 +113,21 @@ select option{background:#1a2535;color:var(--text);}
 .form-note{font-size:.75rem;color:var(--muted);margin-top:8px;line-height:1.7;}
 .btn-submit{width:100%;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-weight:700;font-size:.9rem;border-radius:12px;padding:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s;margin-top:4px;}
 .btn-submit:hover{background:rgba(201,162,39,.15);border-color:var(--gold);}
+
+/* JOIN LIST */
+.join-list{display:flex;flex-direction:column;gap:14px;margin:16px 0;}
+.join-item{display:flex;align-items:flex-start;gap:14px;}
+.join-icon{width:38px;height:38px;flex-shrink:0;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.22);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+.join-body{}
+.join-title{font-size:.9rem;font-weight:800;color:#fff;margin-bottom:3px;}
+.join-desc{font-size:.82rem;color:var(--muted);line-height:1.7;}
+
+/* PROCESS */
+.process-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:20px 0 4px;padding:14px;background:var(--surface2);border-radius:12px;}
+.process-item{display:flex;align-items:center;gap:6px;}
+.p-num{font-family:'Cinzel',serif;font-size:.9rem;font-weight:900;color:var(--gold);}
+.p-label{font-size:.78rem;color:var(--muted);}
+.process-arrow{color:rgba(201,162,39,.4);font-size:.85rem;}
 
 /* CONTACT */
 .contact-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
@@ -162,20 +185,37 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
 
   <!-- DECLARATION -->
   <div class="declaration">
+
+    <!-- 비신자의 여정 -->
+    <div class="journey">
+      <div class="journey-step"><span class="j-num">①</span><span class="j-txt">낯선 도시에 홀로 도착합니다. 아무도 없고, 아무것도 모릅니다.</span></div>
+      <div class="journey-step"><span class="j-num">②</span><span class="j-txt">HebronGuide에서 정착 정보를 찾습니다.</span></div>
+      <div class="journey-step"><span class="j-num">③</span><span class="j-txt">한인 성도의 가게에서 따뜻한 인사를 받습니다.</span></div>
+      <div class="journey-step"><span class="j-num">④</span><span class="j-txt"><em>"이 사람들은 왜 이렇게 친절하지?"</em> — 마음의 문이 열립니다.</span></div>
+      <div class="journey-step"><span class="j-num">⑤</span><span class="j-txt">그 문 너머에 <strong>교회</strong>가 있습니다.</span></div>
+    </div>
+
+    <div class="decl-divider"></div>
+
+    <!-- 성도·목회자 초청 -->
     <p class="declaration-text">
-      새가족 환영은 교회 등록카드를 받는 그날이 아닙니다.<br>
-      비행기에서 내린 그 순간, 집을 구하는 그 첫날,<br>
-      아무도 모르는 도시에서 홀로 서 있는 그 시간 —<br>
-      <strong>거기서부터 환대가 시작될 때 교회가 살아납니다.</strong><br><br>
-      모든 성도는 새가족 환영팀입니다.<br>
-      성도의 가게가, 성도의 소개가, 성도의 삶이<br>
-      이미 누군가의 첫 번째 교회입니다.
+      설교도, 전도지도 아닙니다.<br>
+      성도 개인의 삶이, 성도의 일터가,<br>
+      성도의 환대로 먼저 마음의 문을 여십시오.<br><br>
+      <strong>성도님이 섬기는 교회의 첫 번째 환영팀입니다.</strong>
     </p>
+
+    <div class="decl-divider"></div>
+
+    <!-- 비전 선언 -->
+    <p class="declaration-vision">
+      그리스도인들의 환대, 신앙, 생활 생태계 안에서<br>
+      비신자들은 마음을 열고<br>
+      당신의 교회를 찾게 될 것입니다.
+    </p>
+
     <div class="declaration-stamp">
-      HebronGuide가 함께합니다.<br>
-      <span style="font-size:.88rem;color:rgba(201,162,39,.8);font-weight:700;">
-        교회 등록과 성도 사업체 등록, 거기서 선교가 시작됩니다.
-      </span>
+      HebronGuide가 함께합니다.
     </div>
   </div>
 
@@ -338,24 +378,43 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
   </div>
 
   <!-- REGISTER CTA -->
-  <div class="sec-divider"><span>교회 · 사업체 등록</span></div>
+  <div class="sec-divider"><span>지금 시작하세요</span></div>
   <div class="card">
-    <div class="card-label">등록 3단계</div>
-    <div class="card-title">지금 바로 시작하세요</div>
-    <div class="step-row">
-      <div class="step-item">
-        <div class="step-num">①</div>
-        <div class="step-label">신청서 작성<br>(3분)</div>
+    <div class="card-label">참여 방법</div>
+    <div class="card-title">세 가지로 함께할 수 있습니다</div>
+
+    <div class="join-list">
+      <div class="join-item">
+        <div class="join-icon">⛪</div>
+        <div class="join-body">
+          <div class="join-title">교회 등록</div>
+          <div class="join-desc">새가족이 공항에서부터 여러분의 교회를 만납니다.<br>도시 페이지에 교회명·예배 시간·연락처가 소개됩니다.</div>
+        </div>
       </div>
-      <div class="step-item">
-        <div class="step-num">②</div>
-        <div class="step-label">운영팀 검토<br>(48시간)</div>
+      <div class="join-item">
+        <div class="join-icon">🏪</div>
+        <div class="join-body">
+          <div class="join-title">사업체 등록</div>
+          <div class="join-desc">성도의 일터가 환대의 첫 현장입니다.<br>가게·서비스·전문직 — 삶이 선교가 됩니다.</div>
+        </div>
       </div>
-      <div class="step-item">
-        <div class="step-num">③</div>
-        <div class="step-label">도시 페이지<br>게시 완료</div>
+      <div class="join-item">
+        <div class="join-icon">🗺️</div>
+        <div class="join-body">
+          <div class="join-title">도시 추가 신청</div>
+          <div class="join-desc">목사님 도시가 목록에 없다면 먼저 요청해 주세요.<br>우선 순위로 반영하여 연락드립니다.</div>
+        </div>
       </div>
     </div>
+
+    <div class="process-row">
+      <div class="process-item"><span class="p-num">①</span><span class="p-label">신청서 작성 (3분)</span></div>
+      <div class="process-arrow">→</div>
+      <div class="process-item"><span class="p-num">②</span><span class="p-label">운영팀 검토 (48시간)</span></div>
+      <div class="process-arrow">→</div>
+      <div class="process-item"><span class="p-num">③</span><span class="p-label">도시 페이지 게시</span></div>
+    </div>
+
     <div class="cta-group">
       <a href="https://hebronguide.com/ad-request.html" class="btn-cta">⛪ 교회 · 사업체 등록 신청</a>
       <a href="https://hebronguide.com" class="btn-cta-outline">→ HebronGuide 바로 방문</a>
