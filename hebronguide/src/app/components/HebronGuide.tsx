@@ -8119,15 +8119,13 @@ function CompactHeroNew() {
           <img
             key={i}
             src={slide.url}
-            alt={slide.alt}
-            crossOrigin="anonymous"
-            loading="eager"
-            referrerPolicy="no-referrer"
+            alt=""
             aria-hidden="true"
+            loading={i === 0 ? "eager" : "lazy"}
+            decoding="async"
             onError={(e) => {
               const img = e.currentTarget as HTMLImageElement;
-              img.style.opacity = "0";
-              img.style.animation = "none";
+              img.style.display = "none";
             }}
             style={{
               position: "absolute", inset: 0,
@@ -8139,7 +8137,6 @@ function CompactHeroNew() {
               animation: `${i % 2 === 0 ? "kbIn" : "kbOut"} 10s ease-in-out infinite`,
               animationDelay: `${-i * 2.5}s`,
               zIndex: isActive ? 1 : 0,
-              // ▼ 이미지 로딩/전환 중 alt 텍스트 표시 완전 차단
               color: "transparent",
               fontSize: 0,
               textIndent: "-9999px",
