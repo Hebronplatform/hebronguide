@@ -77,31 +77,40 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // JS/CSS는 빌드 시 hash가 바뀌므로 캐싱 OK
-        // HTML·SW·workbox 파일은 항상 네트워크에서 최신본 확인
-        globPatterns: ['**/*.{js,css,ico,png,svg,woff2}'],
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // 포털 앱 전략: 항상 최신 정보 제공
+        // JS/CSS 번들은 precache ❌ → NetworkFirst로 런타임 처리
+        // 아이콘·이미지만 precache (안 바뀌는 것만)
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        globPatterns: ['**/*.{ico,png,svg}'], // JS·CSS·woff2 precache 제거
         navigateFallback: null,
-
-        // 새 SW 즉시 활성화 — 대기 없이 바로 교체
         skipWaiting: true,
         clientsClaim: true,
         cleanupOutdatedCaches: true,
-
-        // SW 내부에서 SKIP_WAITING 메시지 처리
-        // (main.tsx의 UpdateBanner와 연동)
         additionalManifestEntries: [],
 
         runtimeCaching: [
-          // HTML 페이지: 항상 네트워크 우선 (캐시 없이) → 항상 최신 버전 로드
+          // ① HTML — 항상 서버에서 (캐시 절대 사용 안 함)
           {
             urlPattern: /\/index\.html$/,
-            handler: 'NetworkOnly',  // NetworkFirst → NetworkOnly: 절대 캐시 안 씀
+            handler: 'NetworkOnly',
+          },
+
+          // ② 메인 JS·CSS 번들 — NetworkFirst
+          //    온라인: 항상 최신 번들 다운로드 (도시 추가·업데이트 즉시 반영)
+          //    오프라인: 캐시 폴백 (최대 24시간)
+          {
+            urlPattern: /\/assets\/.*\.(js|css)$/,
+            handler: 'NetworkFirst',
             options: {
-              cacheName: 'html-cache',
+              cacheName: 'app-bundle-v2',
+              networkTimeoutSeconds: 5,
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },
-          // 구글 폰트: 장기 캐시 (거의 바뀌지 않음)
+
+          // ③ 구글 폰트 — CacheFirst (1년, 절대 안 바뀜)
           {
             urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\/.*/i,
             handler: 'CacheFirst',
