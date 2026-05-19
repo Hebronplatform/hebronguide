@@ -29,6 +29,57 @@ h1{font-size:clamp(1.55rem,4vw,2.35rem);font-weight:900;color:#fff;line-height:1
 h1 em{color:var(--gold);font-style:normal;}
 .hero-sub{font-size:.95rem;color:var(--muted);max-width:520px;margin:0 auto 32px;line-height:2;}
 
+/* HEBRON DOOR — 처음과 마지막 */
+.hebron-door-open{
+  display:inline-block;
+  margin-bottom:24px;
+  font-size:1rem;
+  color:rgba(236,253,245,.75);
+  line-height:1.9;
+  background:rgba(201,162,39,.07);
+  border:1px solid rgba(201,162,39,.28);
+  border-radius:14px;
+  padding:14px 28px;
+  letter-spacing:.01em;
+}
+.hebron-door-open strong{color:var(--gold);font-size:1.08rem;}
+
+.hebron-door-close{
+  text-align:center;
+  padding:56px 24px 48px;
+  background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(201,162,39,.1),transparent);
+  border-top:1px solid var(--border);
+}
+.door-inner{
+  font-size:clamp(1.1rem,3vw,1.45rem);
+  font-weight:700;
+  color:rgba(236,253,245,.85);
+  line-height:1.8;
+  margin-bottom:28px;
+}
+.door-inner strong{
+  display:block;
+  font-size:clamp(1.25rem,3.5vw,1.65rem);
+  font-weight:900;
+  color:var(--gold);
+  margin-top:6px;
+}
+.door-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:linear-gradient(135deg,#C9A227,#f0c040);
+  color:#0d1117;
+  font-weight:900;
+  font-size:1rem;
+  border-radius:50px;
+  padding:15px 36px;
+  text-decoration:none;
+  font-family:'Noto Sans KR',sans-serif;
+  transition:opacity .2s;
+}
+.door-btn:hover{opacity:.88;}
+
 /* VERSE BLOCK */
 .verse-block{display:flex;flex-direction:column;gap:12px;max-width:520px;margin:0 auto;}
 .verse{background:rgba(201,162,39,.07);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:14px 20px;text-align:left;}
@@ -163,6 +214,9 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
 <!-- HERO -->
 <div class="hero">
   <div class="hero-eyebrow">⛪ 선교 파트너 초청</div>
+  <div class="hebron-door-open">
+    목사님들께서 그 첫 만남이 이루어지는<br><strong>헤브론의 문을 열어 주세요.</strong>
+  </div>
   <h1>환대는 교회 문 안에서<br>시작되지 않습니다.<br><em>세상 한복판에서 먼저 시작됩니다.</em></h1>
   <p class="hero-sub">
     공항에 내린 그 첫 순간, 낯선 도시의 첫 밤 —<br>
@@ -481,6 +535,15 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
     </div>
   </div>
 
+</div>
+
+<!-- 마지막 문 -->
+<div class="hebron-door-close">
+  <div class="door-inner">
+    목사님들께서 그 첫 만남이 이루어지는<br>
+    <strong>헤브론의 문을 열어 주세요.</strong>
+  </div>
+  <a href="https://hebronguide.com/ad-request.html" class="door-btn">지금 문을 열겠습니다 →</a>
 </div>
 
 <footer>
