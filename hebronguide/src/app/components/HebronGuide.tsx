@@ -14023,13 +14023,13 @@ function getCityChurches(slug: string, lang: string) {
     ],
     bundang: [
       {
-        emoji: "⛪", tier: 2,
-        name: ko ? "지구촌교회 (성남 분당)" : "Jiguchon Global Church — Bundang",
-        nameEn: "Jiguchon Global Church",
+        emoji: "⭐", tier: 1,
+        name: ko ? "지구촌교회" : "Global Mission Church (Jiguchon)",
+        nameEn: "Global Mission Church",
         desc: ko
-          ? "✅ 검증됨 | 귀환 동포·역이민자 환영\n📍 경기도 성남시 분당구\n🕐 주일예배 다수 (공식 홈페이지 확인)\n🔗 jiguchon.or.kr\n\n✨ 원로: 이동원 목사 / 담임: 김우준 목사 (2025.5 취임)"
-          : "✅ Verified · Welcoming returning overseas Koreans\n📍 Bundang-gu, Seongnam, Gyeonggi Province\n🕐 Multiple Sunday services (see website)\n🔗 jiguchon.or.kr\n\n✨ Senior: Rev. Dongwon Lee / Lead Pastor: Rev. Woojun Kim (since May 2025)",
-        tags: ko ? ["분당", "귀환동포", "성남", "한국"] : ["Bundang", "Returnees", "Seongnam", "Korea"],
+          ? "✅ 검증됨 · 귀환 동포·역이민자 환영\n📍 경기도 성남시 분당구 돌마로 52 (미션센터)\n📞 031-710-9300\n🕐 주일예배 다부제 — jiguchon.or.kr 예배시간 확인\n🌐 jiguchon.or.kr\n\n✨ 담임: 김우준 목사 · 원로: 이동원 목사\n기독교한국침례회 · 분당·수지 2개 캠퍼스\n영어예배(GEM) · 일본어·중국어·몽골어 국제예배 운영\n교인 약 3만명 · 귀환 동포 정착 상담 가능"
+          : "✅ Verified · Welcoming returning overseas Koreans\n📍 52 Dolma-ro, Bundang-gu, Seongnam-si, Gyeonggi Province\n📞 031-710-9300\n🕐 Multiple Sunday services — see jiguchon.or.kr for schedule\n🌐 jiguchon.or.kr\n\n✨ Senior Pastor: Rev. David Woo-Joon Kim · Emeritus: Rev. Daniel Dong-Won Lee\nKorea Baptist Convention · 2 campuses: Bundang & Suji\nEnglish Ministry (GEM): gmcem.org · Services in Japanese, Chinese & Mongolian\n~30,000 members · Pastoral support available for returning diaspora",
+        tags: ko ? ["분당", "침례교", "이동원목사", "영어예배", "귀환동포"] : ["Bundang", "Baptist", "English Ministry", "Returnees"],
         website: "https://www.jiguchon.or.kr",
       },
     ],
