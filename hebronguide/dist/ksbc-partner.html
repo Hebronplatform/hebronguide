@@ -3,16 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HebronGuide 파트너 교회 안내 | 미주남침례회 한인교회총회</title>
-<meta name="description" content="HebronGuide — 새로 오신 성도가 공항에서부터 여러분의 교회를 만납니다. 미주남침례회 한인교회 파트너 안내.">
+<title>HebronGuide 선교 파트너 초청 | 미주남침례회 한인교회총회</title>
+<meta name="description" content="HebronGuide — 공항에서부터 시작되는 환대. 미주남침례회 한인교회 선교 파트너 안내.">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0d1117;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.08);
   --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.16);
-  --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;--blue:#60A5FA;
+  --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;
   --text:#ECFDF5;--muted:rgba(236,253,245,0.55);
-  --r:14px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;background:var(--bg);}
@@ -24,65 +23,94 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .nav-tag{font-size:.72rem;color:var(--muted);background:rgba(255,255,255,0.06);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;}
 
 /* HERO */
-.hero{text-align:center;padding:56px 24px 44px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.12),transparent);}
-.hero-eyebrow{display:inline-block;font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);border-radius:20px;padding:5px 16px;}
-h1{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;color:#fff;line-height:1.35;margin-bottom:16px;}
-h1 span{color:var(--gold);}
-.hero-sub{font-size:.95rem;color:var(--muted);max-width:500px;margin:0 auto 28px;line-height:1.9;}
-.verse-box{display:inline-block;background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.22);border-radius:12px;padding:14px 24px;font-size:.88rem;color:rgba(236,253,245,.8);font-style:italic;line-height:1.7;}
-.verse-box cite{display:block;margin-top:5px;font-style:normal;font-size:.75rem;color:var(--gold);font-weight:700;}
+.hero{text-align:center;padding:60px 24px 50px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.13),transparent);}
+.hero-eyebrow{display:inline-block;font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);border-radius:20px;padding:5px 16px;}
+h1{font-size:clamp(1.55rem,4vw,2.35rem);font-weight:900;color:#fff;line-height:1.4;margin-bottom:20px;}
+h1 em{color:var(--gold);font-style:normal;}
+.hero-sub{font-size:.95rem;color:var(--muted);max-width:520px;margin:0 auto 32px;line-height:2;}
+
+/* VERSE BLOCK */
+.verse-block{display:flex;flex-direction:column;gap:12px;max-width:520px;margin:0 auto;}
+.verse{background:rgba(201,162,39,.07);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:14px 20px;text-align:left;}
+.verse p{font-size:.9rem;color:rgba(236,253,245,.85);font-style:italic;line-height:1.8;}
+.verse cite{display:block;margin-top:6px;font-style:normal;font-size:.75rem;color:var(--gold);font-weight:700;}
 
 /* CONTAINER */
 .container{max-width:660px;margin:0 auto;padding:40px 20px 80px;}
+
+/* SECTION DIVIDER */
+.sec-divider{display:flex;align-items:center;gap:12px;margin:32px 0 20px;}
+.sec-divider span{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;}
+.sec-divider::before,.sec-divider::after{content:'';flex:1;height:1px;background:var(--border2);}
 
 /* CARD */
 .card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:28px;margin-bottom:18px;}
 @media(max-width:480px){.card{padding:22px 18px;}}
 .card-label{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
 .card-title{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:12px;}
-.card-body{font-size:.9rem;color:var(--muted);line-height:1.85;}
+.card-body{font-size:.9rem;color:var(--muted);line-height:1.9;}
 .card-body strong{color:var(--text);}
 
+/* DECLARATION */
+.declaration{background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.07));border:1px solid rgba(201,162,39,.3);border-radius:18px;padding:28px;margin-bottom:18px;}
+.declaration-text{font-size:1rem;color:rgba(236,253,245,.88);line-height:2;margin-bottom:20px;}
+.declaration-text strong{color:#fff;font-weight:900;}
+.declaration-stamp{font-size:1.05rem;font-weight:900;color:var(--gold);line-height:1.7;border-top:1px solid rgba(201,162,39,.25);padding-top:16px;margin-top:4px;}
+
 /* QR BLOCK */
-.qr-block{display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
-.qr-wrap{flex-shrink:0;background:#fff;border-radius:12px;padding:10px;width:140px;height:140px;display:flex;align-items:center;justify-content:center;}
-.qr-wrap img{width:120px;height:120px;display:block;}
+.qr-block{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.qr-wrap{flex-shrink:0;background:#fff;border-radius:12px;padding:10px;width:136px;height:136px;display:flex;align-items:center;justify-content:center;}
+.qr-wrap img{width:116px;height:116px;display:block;}
 .qr-info{flex:1;min-width:180px;}
-.qr-url{font-family:'Cinzel',serif;font-size:1.15rem;font-weight:900;color:var(--gold);letter-spacing:.04em;margin-bottom:8px;}
-.qr-desc{font-size:.85rem;color:var(--muted);line-height:1.8;}
+.qr-url{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:900;color:var(--gold);letter-spacing:.04em;margin-bottom:8px;}
+.qr-desc{font-size:.83rem;color:var(--muted);line-height:1.85;}
 
 /* CITY SEARCH */
 .search-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
-select{flex:1;min-width:180px;background:#1a2535;color:var(--text);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;font-size:.9rem;font-family:'Noto Sans KR',sans-serif;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A227' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;cursor:pointer;}
+select{flex:1;min-width:180px;background:#1a2535;color:var(--text);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;font-size:.88rem;font-family:'Noto Sans KR',sans-serif;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A227' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;cursor:pointer;}
 select:focus{outline:none;border-color:var(--gold);}
 select option{background:#1a2535;color:var(--text);}
-.btn-go{background:var(--gold);color:#0d1117;font-weight:900;font-size:.9rem;border:none;border-radius:10px;padding:12px 22px;cursor:pointer;white-space:nowrap;font-family:'Noto Sans KR',sans-serif;transition:background .2s;}
+.btn-go{background:var(--gold);color:#0d1117;font-weight:900;font-size:.88rem;border:none;border-radius:10px;padding:12px 20px;cursor:pointer;white-space:nowrap;font-family:'Noto Sans KR',sans-serif;transition:background .2s;}
 .btn-go:hover{background:var(--gold2);}
 
 /* BENEFITS */
 .benefit-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:4px;}
 .benefit-list li{display:flex;align-items:flex-start;gap:12px;font-size:.88rem;color:var(--muted);}
-.benefit-list .icon{width:32px;height:32px;flex-shrink:0;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.22);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;}
-.benefit-list .txt strong{display:block;font-size:.83rem;font-weight:700;color:var(--text);margin-bottom:2px;}
+.benefit-list .icon{width:32px;height:32px;flex-shrink:0;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.22);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;}
+.benefit-list .txt strong{display:block;font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:2px;}
 
-/* STEP */
-.step-row{display:flex;gap:12px;margin-top:4px;flex-wrap:wrap;}
-.step-item{flex:1;min-width:140px;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:16px 14px;text-align:center;}
-.step-num{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:900;color:var(--gold);line-height:1;}
-.step-label{font-size:.78rem;color:var(--muted);margin-top:6px;line-height:1.5;}
+/* STEPS */
+.step-row{display:flex;gap:12px;margin:14px 0 20px;flex-wrap:wrap;}
+.step-item{flex:1;min-width:130px;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:16px 12px;text-align:center;}
+.step-num{font-family:'Cinzel',serif;font-size:1.35rem;font-weight:900;color:var(--gold);line-height:1;}
+.step-label{font-size:.76rem;color:var(--muted);margin-top:6px;line-height:1.55;}
 
 /* CTA */
-.cta-wrap{text-align:center;margin-top:28px;}
-.btn-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:1rem;border:none;border-radius:50px;padding:15px 36px;cursor:pointer;text-decoration:none;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;}
+.cta-group{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:20px;}
+.btn-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:.95rem;border:none;border-radius:50px;padding:15px 32px;cursor:pointer;text-decoration:none;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;text-align:center;}
 .btn-cta:hover{opacity:.88;}
-.btn-secondary{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:var(--mint);font-size:.85rem;text-decoration:none;font-weight:700;}
-.btn-secondary:hover{text-decoration:underline;}
+.btn-cta-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid var(--mint);color:var(--mint);font-weight:700;font-size:.88rem;border-radius:50px;padding:12px 26px;cursor:pointer;text-decoration:none;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;}
+.btn-cta-outline:hover{opacity:.75;}
+
+/* FORM */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+@media(max-width:480px){.form-grid{grid-template-columns:1fr;}}
+.form-field{display:flex;flex-direction:column;gap:6px;}
+.form-field.full{grid-column:1/-1;}
+.form-field label{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.06em;}
+.form-field input,.form-field textarea,.form-field select.city-req{width:100%;background:#1a2535;color:var(--text);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;font-size:.88rem;font-family:'Noto Sans KR',sans-serif;transition:border .2s;}
+.form-field input::placeholder,.form-field textarea::placeholder{color:rgba(236,253,245,.3);}
+.form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--gold);}
+.form-field textarea{resize:vertical;min-height:72px;}
+.form-note{font-size:.75rem;color:var(--muted);margin-top:8px;line-height:1.7;}
+.btn-submit{width:100%;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-weight:700;font-size:.9rem;border-radius:12px;padding:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s;margin-top:4px;}
+.btn-submit:hover{background:rgba(201,162,39,.15);border-color:var(--gold);}
 
 /* CONTACT */
 .contact-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
-.contact-item{flex:1;min-width:160px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
-.contact-label{font-size:.68rem;color:var(--gold);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;}
-.contact-val{font-size:.85rem;color:var(--text);}
+.contact-item{flex:1;min-width:150px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+.contact-label{font-size:.67rem;color:var(--gold);font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px;}
+.contact-val{font-size:.84rem;color:var(--text);}
 .contact-val a{color:var(--mint);text-decoration:none;}
 .contact-val a:hover{text-decoration:underline;}
 
@@ -93,12 +121,12 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
 
 /* PRINT */
 @media print{
-  nav,.cta-wrap,.btn-secondary{display:none!important;}
+  nav,.cta-group{display:none!important;}
   body{background:#fff;color:#111;}
-  .card{border:1px solid #ddd;background:#fff;}
-  .qr-wrap{border:1px solid #ccc;}
-  h1,.card-title,.qr-url,.step-num{color:#111!important;}
-  .card-body,.benefit-list li,.step-label,.muted{color:#444!important;}
+  .card,.declaration{border:1px solid #ddd;background:#fff;}
+  h1,.card-title,.qr-url,.step-num,.declaration-stamp{color:#111!important;}
+  .card-body,.benefit-list li,.step-label,.qr-desc{color:#444!important;}
+  .verse{border-left-color:#C9A227;background:#fffbf0;}
 }
 </style>
 </head>
@@ -106,23 +134,53 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
 
 <nav>
   <a href="https://hebronguide.com" class="logo">HebronGuide</a>
-  <span class="nav-tag">미주남침례회 한인교회 파트너 안내</span>
+  <span class="nav-tag">미주남침례회 한인교회 · 선교 파트너 안내</span>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow">⛪ 파트너 교회 초청</div>
-  <h1>새로 오신 성도가<br><span>공항에서부터</span> 여러분의 교회를 만납니다</h1>
-  <p class="hero-sub">HebronGuide는 전 세계 67개 도시 한인 이민자·이주자를 위한<br>디지털 환대 플랫폼입니다. 파트너 교회로 함께해 주세요.</p>
-  <div class="verse-box">
-    "내가 나그네 되었을 때 너희가 영접하였다"
-    <cite>— 마태복음 25:35</cite>
+  <div class="hero-eyebrow">⛪ 선교 파트너 초청</div>
+  <h1>환대는 교회 문 안에서<br>시작되지 않습니다.<br><em>세상 한복판에서 먼저 시작됩니다.</em></h1>
+  <p class="hero-sub">
+    공항에 내린 그 첫 순간, 낯선 도시의 첫 밤 —<br>
+    거기서부터 여러분의 교회가 이미 함께할 수 있습니다.<br>
+    HebronGuide는 67개 도시에서 그 환대의 문을 열고 있습니다.
+  </p>
+  <div class="verse-block">
+    <div class="verse">
+      <p>"내가 나그네 되었을 때 너희가 영접하였다"</p>
+      <cite>— 마태복음 25:35</cite>
+    </div>
+    <div class="verse">
+      <p>"손님 대접하기를 잊지 말라 이로써 부지중에 천사들을 대접한 이들이 있었느니라"</p>
+      <cite>— 히브리서 13:2</cite>
+    </div>
   </div>
 </div>
 
 <div class="container">
 
+  <!-- DECLARATION -->
+  <div class="declaration">
+    <p class="declaration-text">
+      새가족 환영은 교회 등록카드를 받는 그날이 아닙니다.<br>
+      비행기에서 내린 그 순간, 집을 구하는 그 첫날,<br>
+      아무도 모르는 도시에서 홀로 서 있는 그 시간 —<br>
+      <strong>거기서부터 환대가 시작될 때 교회가 살아납니다.</strong><br><br>
+      모든 성도는 새가족 환영팀입니다.<br>
+      성도의 가게가, 성도의 소개가, 성도의 삶이<br>
+      이미 누군가의 첫 번째 교회입니다.
+    </p>
+    <div class="declaration-stamp">
+      HebronGuide가 함께합니다.<br>
+      <span style="font-size:.88rem;color:rgba(201,162,39,.8);font-weight:700;">
+        교회 등록과 성도 사업체 등록, 거기서 선교가 시작됩니다.
+      </span>
+    </div>
+  </div>
+
   <!-- QR + URL -->
+  <div class="sec-divider"><span>QR · 링크</span></div>
   <div class="card">
     <div class="card-label">지금 바로 방문</div>
     <div class="card-title">hebronguide.com</div>
@@ -133,10 +191,9 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
       <div class="qr-info">
         <div class="qr-url">hebronguide.com</div>
         <div class="qr-desc">
-          QR 코드를 스캔하거나<br>
-          주소를 직접 입력하면<br>
+          QR 코드를 스캔하거나 주소를 직접 입력하면<br>
           HebronGuide를 바로 만납니다.<br><br>
-          <strong style="color:var(--text)">교회 주보·스크린·SNS</strong>에<br>
+          <strong style="color:var(--text)">교회 주보 · 스크린 · SNS · 카카오톡</strong>에<br>
           자유롭게 사용해 주세요.
         </div>
       </div>
@@ -144,6 +201,7 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
   </div>
 
   <!-- CITY SEARCH -->
+  <div class="sec-divider"><span>도시 검색</span></div>
   <div class="card">
     <div class="card-label">도시 검색</div>
     <div class="card-title">우리 도시 HebronGuide 보기</div>
@@ -243,74 +301,111 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
   </div>
 
   <!-- BENEFITS -->
+  <div class="sec-divider"><span>파트너 혜택</span></div>
   <div class="card">
-    <div class="card-label">파트너 교회 혜택</div>
-    <div class="card-title">함께하면 이런 점이 좋습니다</div>
+    <div class="card-label">함께하면</div>
+    <div class="card-title">선교가 일상이 됩니다</div>
     <ul class="benefit-list">
-      <li>
-        <div class="icon">📍</div>
-        <div class="txt">
-          <strong>교회 정보 무료 등재</strong>
-          도시별 HebronGuide에 교회명·예배 시간·연락처·위치가 소개됩니다.
-        </div>
-      </li>
       <li>
         <div class="icon">✈️</div>
         <div class="txt">
           <strong>공항에서부터 연결</strong>
-          새로 도착한 성도가 HebronGuide에서 교회를 검색하고 첫날부터 연결됩니다.
+          새로 도착한 성도가 HebronGuide에서 교회를 검색하고 첫날부터 여러분의 교회로 연결됩니다.
         </div>
       </li>
       <li>
-        <div class="icon">📲</div>
+        <div class="icon">📍</div>
         <div class="txt">
-          <strong>디지털 환대 자동화</strong>
-          교회가 직접 안내하지 않아도 HebronGuide가 24시간 새가족을 맞습니다.
+          <strong>교회 정보 무료 등재</strong>
+          도시별 HebronGuide에 교회명 · 예배 시간 · 연락처 · 위치가 소개됩니다.
+        </div>
+      </li>
+      <li>
+        <div class="icon">🏪</div>
+        <div class="txt">
+          <strong>성도 사업체 등재</strong>
+          교회 성도의 가게와 서비스가 같은 페이지에 소개됩니다. 성도의 삶이 환대의 현장입니다.
         </div>
       </li>
       <li>
         <div class="icon">🌐</div>
         <div class="txt">
           <strong>67개 도시 네트워크</strong>
-          전 세계 한인 이민자·이주자 이동 경로 위에 여러분의 교회가 함께합니다.
+          전 세계 한인 이동 경로 위에 여러분의 교회가 함께합니다.
         </div>
       </li>
     </ul>
   </div>
 
-  <!-- 3 STEPS -->
+  <!-- REGISTER CTA -->
+  <div class="sec-divider"><span>교회 · 사업체 등록</span></div>
   <div class="card">
     <div class="card-label">등록 3단계</div>
-    <div class="card-title">간단히 등록하시면 됩니다</div>
+    <div class="card-title">지금 바로 시작하세요</div>
     <div class="step-row">
       <div class="step-item">
         <div class="step-num">①</div>
-        <div class="step-label">아래 버튼을 눌러<br>신청서 작성</div>
+        <div class="step-label">신청서 작성<br>(3분)</div>
       </div>
       <div class="step-item">
         <div class="step-num">②</div>
-        <div class="step-label">운영팀 검토<br>(48시간 이내)</div>
+        <div class="step-label">운영팀 검토<br>(48시간)</div>
       </div>
       <div class="step-item">
         <div class="step-num">③</div>
-        <div class="step-label">해당 도시<br>HebronGuide에 게시</div>
+        <div class="step-label">도시 페이지<br>게시 완료</div>
       </div>
     </div>
+    <div class="cta-group">
+      <a href="https://hebronguide.com/ad-request.html" class="btn-cta">⛪ 교회 · 사업체 등록 신청</a>
+      <a href="https://hebronguide.com" class="btn-cta-outline">→ HebronGuide 바로 방문</a>
+    </div>
+  </div>
 
-    <div class="cta-wrap">
-      <a href="https://hebronguide.com/ad-request.html" class="btn-cta">
-        ⛪ 파트너 교회 등록 신청
-      </a><br>
-      <a href="https://hebronguide.com" class="btn-secondary">
-        → hebronguide.com 바로 방문
-      </a>
+  <!-- CITY REQUEST FORM -->
+  <div class="sec-divider"><span>도시 추가 신청</span></div>
+  <div class="card">
+    <div class="card-label">우리 도시가 없다면</div>
+    <div class="card-title">도시 추가를 신청해 주세요</div>
+    <p class="card-body" style="margin-bottom:4px;">목사님 계신 도시가 목록에 없다면 추가 신청해 주세요.<br>
+    접수 후 <strong>우선 순위로 반영</strong>하여 연락드립니다.</p>
+    <form id="cityReqForm" onsubmit="submitCityRequest(event)">
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="req_name">성함 *</label>
+          <input type="text" id="req_name" placeholder="홍길동 목사" required>
+        </div>
+        <div class="form-field">
+          <label for="req_email">이메일 *</label>
+          <input type="email" id="req_email" placeholder="pastor@church.org" required>
+        </div>
+        <div class="form-field">
+          <label for="req_church">교회명 *</label>
+          <input type="text" id="req_church" placeholder="○○한인교회" required>
+        </div>
+        <div class="form-field">
+          <label for="req_city">추가 요청 도시 *</label>
+          <input type="text" id="req_city" placeholder="예: Tucson, AZ" required>
+        </div>
+        <div class="form-field full">
+          <label for="req_msg">한인 커뮤니티 현황 (선택)</label>
+          <textarea id="req_msg" placeholder="한인 교회 수, 한인 인구 규모 등 간략히 알려주시면 더 빠르게 반영됩니다."></textarea>
+        </div>
+      </div>
+      <p class="form-note">※ 접수 후 48시간 이내 담당자가 확인 메일을 보내드립니다.</p>
+      <button type="submit" class="btn-submit">🗺️ 도시 추가 신청하기</button>
+    </form>
+    <div id="cityReqThanks" style="display:none;margin-top:16px;text-align:center;padding:16px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.25);border-radius:12px;">
+      <div style="font-size:1.4rem;margin-bottom:6px;">🙏</div>
+      <div style="font-weight:700;color:var(--mint);margin-bottom:4px;">신청해 주셔서 감사합니다!</div>
+      <div style="font-size:.83rem;color:var(--muted);">48시간 이내에 연락드리겠습니다.</div>
     </div>
   </div>
 
   <!-- CONTACT -->
   <div class="card">
     <div class="card-label">문의</div>
-    <div class="card-title">궁금한 점은 언제든지</div>
+    <div class="card-title">언제든지 연락주세요</div>
     <div class="contact-row">
       <div class="contact-item">
         <div class="contact-label">이메일</div>
@@ -335,15 +430,41 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
 </footer>
 
 <script>
+/* 도시 검색 */
 function goToCity(){
-  var sel=document.getElementById('citySelect');
-  var val=sel.value;
+  var val=document.getElementById('citySelect').value;
   if(!val){alert('도시를 선택해 주세요.');return;}
   window.open('https://hebronguide.com/'+val+'/', '_blank');
 }
-document.getElementById('citySelect').addEventListener('keydown',function(e){
-  if(e.key==='Enter')goToCity();
-});
+document.getElementById('citySelect').addEventListener('keydown',function(e){if(e.key==='Enter')goToCity();});
+
+/* 도시 추가 신청 → mailto */
+function submitCityRequest(e){
+  e.preventDefault();
+  var name=document.getElementById('req_name').value.trim();
+  var email=document.getElementById('req_email').value.trim();
+  var church=document.getElementById('req_church').value.trim();
+  var city=document.getElementById('req_city').value.trim();
+  var msg=document.getElementById('req_msg').value.trim();
+
+  var body='[도시 추가 신청]\n\n'
+    +'성함: '+name+'\n'
+    +'이메일: '+email+'\n'
+    +'교회명: '+church+'\n'
+    +'요청 도시: '+city+'\n'
+    +(msg?'\n현황:\n'+msg:'');
+
+  var mailto='mailto:hebronplatform@gmail.com'
+    +'?cc='+encodeURIComponent(email)
+    +'&subject='+encodeURIComponent('[HebronGuide] 도시 추가 신청 — '+city)
+    +'&body='+encodeURIComponent(body);
+
+  window.location.href=mailto;
+
+  // 감사 메시지
+  document.getElementById('cityReqForm').style.display='none';
+  document.getElementById('cityReqThanks').style.display='block';
+}
 </script>
 </body>
 </html>
