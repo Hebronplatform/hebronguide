@@ -4,6 +4,33 @@ import App from './app/App'
 import './styles/index.css'
 
 /* ─────────────────────────────────────────
+   ⓪ 배포 버전 체크 — 근본적 캐시 해결
+   매 배포마다 /ver.txt 타임스탬프가 바뀜
+   이전 버전과 다르면 → SW 해제 + 캐시 전체 삭제 + 강제 리로드
+   Chrome·Safari·PWA 모든 환경에서 작동
+───────────────────────────────────────── */
+(async function checkDeployVersion() {
+  try {
+    const res = await fetch('/ver.txt', { cache: 'no-store' });
+    if (!res.ok) return;
+    const newVer = (await res.text()).trim();
+    const storedVer = localStorage.getItem('hg_deploy_ver');
+    if (storedVer === newVer) return; // 같은 버전 → 그대로
+    // 새 버전 감지 → SW 등록 해제 + 캐시 전체 삭제
+    if ('serviceWorker' in navigator) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(regs.map(r => r.unregister()));
+    }
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      await Promise.all(keys.map(k => caches.delete(k)));
+    }
+    localStorage.setItem('hg_deploy_ver', newVer);
+    window.location.reload();
+  } catch (_) { /* 오프라인 등 오류 시 조용히 무시 */ }
+})();
+
+/* ─────────────────────────────────────────
    ① React 실행 전 즉시 SW 업데이트 감지
    앱이 크래시되어도 실행됨 — 구버전 캐시 탈출의 핵심
 ───────────────────────────────────────── */

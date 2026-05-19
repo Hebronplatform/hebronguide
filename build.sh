@@ -157,5 +157,9 @@ echo "  OK: all root HTML files copied"
 
 # 6. API 함수는 Vercel이 자동 라우팅 (hebronguide/api/*.js → /api/*)
 
+# 7. 배포 버전 타임스탬프 — 앱이 이 파일을 보고 캐시 자동 초기화
+echo "$(date -u +%s)" > public/ver.txt
+echo "  OK: ver.txt → $(cat public/ver.txt)"
+
 echo "=== Deploy Complete — 67 cities with city-specific SEO (계속 성장 중) ==="
 ls public/
