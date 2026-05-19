@@ -148,12 +148,18 @@ cp hebronguide/dist/hebron-partner-mobilize.html   public/hebron-partner-mobiliz
 cp hebronguide/dist/church-submit.html             public/church-submit.html             2>/dev/null || true
 
 # 루트 HTML 파일 전체 자동 복사 (church-guide, ksbc-partner, ops-dashboard, about 등 모두 포함)
+# ⚠️ index.html 은 제외 — 13번 줄에서 루트 랜딩 페이지(index.html)가 이미 복사됨
+#    이 루프가 index.html 도 복사하면 React SPA index 가 랜딩 페이지를 덮어써서 깜깜이 발생!
 for f in hebronguide/dist/*.html; do
   fname=$(basename "$f")
+  if [ "$fname" = "index.html" ]; then
+    echo "  skipped: index.html (landing page protected)"
+    continue
+  fi
   cp "$f" "public/$fname"
   echo "  copied: $fname"
 done
-echo "  OK: all root HTML files copied"
+echo "  OK: all root HTML files copied (index.html protected)"
 
 # 6. API 함수는 Vercel이 자동 라우팅 (hebronguide/api/*.js → /api/*)
 
