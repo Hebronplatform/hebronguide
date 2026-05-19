@@ -24063,10 +24063,22 @@ export function HebronGuide() {
     setLang(lang === "ko" ? "en" : "ko");
   };
 
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
   const handleSearchToggle = () => {
     setShowSearch(prev => !prev);
     if (showSearch) setSearchQuery("");
   };
+
+  // iOS Safari autoFocus 대체 — showSearch 열릴 때 ref로 직접 포커스
+  useEffect(() => {
+    if (showSearch) {
+      const timer = setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 120);
+      return () => clearTimeout(timer);
+    }
+  }, [showSearch]);
 
   // subTab 포함 검색 맵 — 구체적 키워드일수록 앞에 배치 (선순위 매칭)
   const SEARCH_MAP: Array<{ tab: number; subTab?: number; labelKo: string; labelEn: string; keywords: string[] }> = [
@@ -24194,7 +24206,10 @@ export function HebronGuide() {
             <div style={{
               position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 200,
               background: "rgba(0,0,0,0.45)", backdropFilter: "blur(12px)",
-            }} onClick={handleSearchToggle}>
+            }}
+              onClick={handleSearchToggle}
+              onTouchStart={handleSearchToggle}
+            >
             <div style={{
               position: "fixed", top: 0, left: "50%", transform: "translateX(-50%)",
               width: "100%", maxWidth: 430, zIndex: 201,
@@ -24202,7 +24217,10 @@ export function HebronGuide() {
               backdropFilter: "saturate(180%) blur(20px)",
               boxShadow: "0 1px 0 rgba(0,0,0,0.08), 0 20px 60px rgba(0,0,0,0.2)",
               borderRadius: "0 0 22px 22px",
-            }} onClick={e => e.stopPropagation()}>
+            }}
+              onClick={e => e.stopPropagation()}
+              onTouchStart={e => e.stopPropagation()}
+            >
 
               {/* 검색 입력창 — Apple 스타일 */}
               <div style={{
@@ -24223,16 +24241,21 @@ export function HebronGuide() {
 
                 {/* 입력 필드 */}
                 <input
+                  ref={searchInputRef}
                   id="search-input-main"
-                  autoFocus
+                  type="search"
+                  inputMode="search"
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   onKeyDown={e => e.key === "Enter" && handleSearch(searchQuery)}
+                  onTouchStart={e => e.stopPropagation()}
+                  onClick={e => e.stopPropagation()}
                   placeholder={lang === "ko" ? "교회, 맛집, 병원, 비자..." : "Church, food, hospital, visa..."}
                   style={{
                     flex: 1, border: "none", outline: "none", fontSize: 17,
                     fontFamily: "-apple-system,'Noto Sans KR',sans-serif",
                     background: "transparent", color: "#1C1C1E", letterSpacing: "-0.2px",
+                    WebkitAppearance: "none",
                   }}
                 />
 
