@@ -691,7 +691,17 @@ function switchTab(type) {
   document.getElementById('tab-' + type).classList.add('active');
   document.getElementById('form-' + type).classList.add('active');
   document.getElementById('successMsg').classList.remove('show');
+  // URL 해시 업데이트 (직접 링크 공유 가능)
+  history.replaceState(null, '', '#' + type);
 }
+
+// 페이지 로드 시 해시로 탭 자동 선택
+(function() {
+  const hashMap = { church:'church', biz:'business', business:'business', promo:'promo', person:'person' };
+  const hash = location.hash.replace('#','');
+  const type = hashMap[hash];
+  if (type) switchTab(type);
+})();
 
 // 유효성 검사
 function validate(fields) {
