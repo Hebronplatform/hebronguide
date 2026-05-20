@@ -121,17 +121,12 @@
   <div class="login-icon">🛡️</div>
   <h1 class="login-title">관리자 로그인</h1>
   <p class="login-note">HebronGuide 운영팀 전용</p>
-  <input type="email" id="email-input" value="hebronplatform@gmail.com" style="display:none">
-  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-    <div style="flex:1;min-width:160px">
-      <button class="btn" onclick="sendMagicLinkTo('hebronplatform@gmail.com')">🔐 Gmail 로그인</button>
-      <p style="font-size:.72rem;color:#8b949e;margin-top:6px">hebronplatform@gmail.com</p>
-    </div>
-    <div style="flex:1;min-width:160px">
-      <button class="btn" style="background:linear-gradient(135deg,#FEE500,#f0d800);color:#3C1E1E" onclick="sendMagicLinkTo('ijiguchon@kakao.com')">💛 카카오 로그인</button>
-      <p style="font-size:.72rem;color:#8b949e;margin-top:6px">ijiguchon@kakao.com</p>
-    </div>
+  <div class="input-group">
+    <label>비밀번호</label>
+    <input type="password" id="pw-input" placeholder="비밀번호 입력" autocomplete="current-password">
   </div>
+  <button class="btn-primary" onclick="checkPassword()">🔐 로그인</button>
+  <div id="login-msg"></div>
   <div id="login-msg"></div>
 </div>
 
@@ -245,18 +240,44 @@
     return true
   }
 
-  // ── 관리자 이메일 화이트리스트 ─────────────────────────────
-  const ADMIN_EMAILS = [
-    'hebronplatform@gmail.com',
-    'ijiguchon@kakao.com',
-  ]
+  // ── 비밀번호 해시 (SHA-256) ──────────────────────────────
+  const PW_HASH = '248001227e1ea4270e357d3f1d2dfc14c2d72a774ac0eda0e0b4449a14bb92f7'
+  const SESSION_KEY = 'hg_admin_session'
+  const SESSION_DAYS = 7
 
-  // ── 로그인 ───────────────────────────────────────────────
-  async function sendMagicLinkTo(email) {
-    if (!initSB()) { showMsg('Supabase SDK 로드 실패', 'err'); return }
-    const { error } = await sbMain.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.href } })
-    if (error) { showMsg(error.message, 'err'); return }
-    showMsg(`✉️ ${email} 으로 발송됐습니다! 확인해주세요.`, 'ok')
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('')
+  }
+
+  // ── 비밀번호 로그인 ──────────────────────────────────────
+  async function checkPassword() {
+    const pw = document.getElementById('pw-input').value
+    if (!pw) return
+    const hash = await sha256(pw)
+    if (hash !== PW_HASH) {
+      showMsg('❌ 비밀번호가 틀렸습니다', 'err')
+      return
+    }
+    // 세션 저장 (7일)
+    const expiry = Date.now() + SESSION_DAYS * 24 * 60 * 60 * 1000
+    localStorage.setItem(SESSION_KEY, JSON.stringify({ expiry }))
+    initSB()
+    showApp({ email: 'admin' })
+  }
+
+  // ── 세션 확인 ────────────────────────────────────────────
+  function checkSession() {
+    try {
+      const s = JSON.parse(localStorage.getItem(SESSION_KEY) || '{}')
+      return s.expiry && s.expiry > Date.now()
+    } catch { return false }
+  }
+
+  function logout() {
+    localStorage.removeItem(SESSION_KEY)
+    document.getElementById('app').style.display = 'none'
+    document.getElementById('login-gate').style.display = 'block'
   }
 
   function showMsg(text, type) {
@@ -561,21 +582,15 @@
   }
 
   // ── 초기화 ───────────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', async () => {
-    if (!initSB()) return
-
-    const { data: { session: s } } = await sbMain.auth.getSession()
-    if (s) {
-      session = s
-      showApp(s.user)
+  document.addEventListener('DOMContentLoaded', () => {
+    // 세션 유효하면 바로 입장
+    if (checkSession()) {
+      initSB()
+      showApp({ email: 'admin' })
     }
-
-    sbMain.auth.onAuthStateChange((event, s) => {
-      if (event === 'SIGNED_IN' && s) { session = s; showApp(s.user) }
-    })
-
-    document.getElementById('email-input').addEventListener('keydown', e => {
-      if (e.key === 'Enter') sendMagicLink()
+    // 엔터키 로그인
+    document.getElementById('pw-input')?.addEventListener('keydown', e => {
+      if (e.key === 'Enter') checkPassword()
     })
   })
 
