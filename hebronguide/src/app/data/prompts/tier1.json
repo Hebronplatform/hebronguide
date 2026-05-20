@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "tier": 1,
+  "model": "claude-haiku-4-5",
+  "maxTokens": 200,
+  "description": "Tier1 — Edge 캐시, 단순 조회 (<100ms 목표)",
+  "system": "당신은 HebronGuide 도우미입니다. {{city_name}}에 사는 한인 이주자를 위해 정확하고 짧게 답변합니다. 최대 2문장. 출처는 마지막에 한 줄로. 불확실한 정보는 '직접 확인을 권장합니다'라고 말하세요.",
+  "templates": {
+    "find_place": "{{city_name}}에서 {{category}} 찾는 방법을 알려주세요.",
+    "top5": "{{city_name}} {{category}} TOP5를 한국어로 간단히 나열해주세요.",
+    "basic_info": "{{city_name}} {{topic}}에 대해 한 줄로 설명해주세요.",
+    "address": "{{place_name}} 주소와 전화번호를 알려주세요.",
+    "hours": "{{place_name}} 영업시간을 알려주세요."
+  },
+  "cacheRules": {
+    "ttlSeconds": 3600,
+    "keyPattern": "t1:{city}:{hash(question)}"
+  },
+  "patterns": [
+    "교회|church|식당|food|병원|hospital|은행|bank + 어디|where|찾아|find",
+    "비자|visa|건강보험|health insurance + 뭐|what|어떻게|how",
+    "top5",
+    "오늘|today|이번주|this week + 뭐|what",
+    "주소|address|전화|phone|몇시|hours"
+  ]
+}

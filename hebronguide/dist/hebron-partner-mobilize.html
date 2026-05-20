@@ -8,7 +8,46 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 html{background:#0d1117;scroll-behavior:smooth;}
-body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;color:#ECFDF5;line-height:1.8;min-height:100vh;}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;color:#ECFDF5;line-height:1.8;min-height:100vh;padding-bottom:72px;}
+
+/* ── 스티키 액션바 (항상 하단 고정) ── */
+.sticky-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:999;
+  display:flex;gap:0;
+  background:rgba(13,17,23,.97);
+  backdrop-filter:blur(16px);
+  border-top:1px solid rgba(255,255,255,.1);
+  box-shadow:0 -4px 24px rgba(0,0,0,.5);
+  padding:10px 12px;
+  gap:8px;
+}
+.sticky-bar a, .sticky-bar button{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+  border-radius:12px;padding:12px 8px;
+  font-family:'Noto Sans KR',sans-serif;font-weight:800;font-size:.82rem;
+  text-decoration:none;cursor:pointer;border:none;
+  transition:opacity .2s;
+  white-space:nowrap;
+}
+.sticky-bar a:hover,.sticky-bar button:hover{opacity:.85;}
+.sbar-primary{background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;}
+.sbar-secondary{background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.3)!important;color:#6EE7B7;}
+.sbar-ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)!important;color:rgba(236,253,245,.65);}
+
+/* ── 인라인 빠른 연결 (섹션 끝 미니 CTA) ── */
+.quick-cta{
+  display:flex;gap:8px;margin:16px 0 8px;flex-wrap:wrap;
+}
+.qbtn{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:'Noto Sans KR',sans-serif;font-size:.76rem;font-weight:700;
+  border-radius:99px;padding:7px 16px;text-decoration:none;
+  border:1px solid;transition:opacity .2s;
+}
+.qbtn:hover{opacity:.8;}
+.qbtn-gold{color:#C9A227;border-color:rgba(201,162,39,.35);background:rgba(201,162,39,.08);}
+.qbtn-mint{color:#6EE7B7;border-color:rgba(110,231,183,.3);background:rgba(110,231,183,.06);}
+.qbtn-white{color:rgba(236,253,245,.65);border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.04);}
 
 @media print{
   body{background:#fff;color:#111;}
@@ -139,8 +178,21 @@ footer strong{color:rgba(236,253,245,.4);}
 </head>
 <body>
 
-<!-- 언어 토글 -->
+<!-- 스티키 액션바 — 항상 하단 고정 -->
+<div class="sticky-bar no-print">
+  <a href="https://hebronguide.com/ad-request.html" target="_blank" rel="noopener" class="sbar-primary"
+     data-ko="⛪ 등재 신청하기" data-en="⛪ Register Now"></a>
+  <a href="https://hebronguide.com" target="_blank" rel="noopener" class="sbar-secondary"
+     data-ko="🌍 HebronGuide.com" data-en="🌍 HebronGuide.com"></a>
+  <a href="mailto:hebronplatform@gmail.com?subject=[HebronGuide] 등재 문의" class="sbar-ghost"
+     data-ko="📧 문의" data-en="📧 Contact"></a>
+</div>
+
+<!-- 언어 토글 + 로고 -->
 <div class="lang-bar no-print">
+  <a href="https://hebronguide.com" style="margin-right:auto;display:flex;align-items:center;">
+    <img src="https://hebronguide.com/hebronguide-logo.svg" alt="HebronGuide" height="28" style="opacity:.9;">
+  </a>
   <button class="lang-btn active" id="btn-ko" onclick="setLang('ko')">한국어</button>
   <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
   <span style="margin-left:8px;font-size:.68rem;color:rgba(236,253,245,.2);">|</span>
@@ -190,6 +242,14 @@ footer strong{color:rgba(236,253,245,.4);}
       data-ko="기존 생각: <strong style='color:rgba(236,253,245,.4);'>&ldquo;내 가게를 더 알리고 싶다&rdquo; → 홍보</strong><br>새로운 시각: <strong style='color:#6EE7B7;'>&ldquo;새 이민자에게 내가 섬길 수 있다&rdquo; → 환대의 도구</strong><br><br>성도의 업종이 가이드에 올라오는 순간,<br>그 성도는 <em>파송받은 환대 사역자</em>가 됩니다."
       data-en="Old mindset: <strong style='color:rgba(236,253,245,.4);'>&ldquo;I want more people to know my business.&rdquo; → Marketing</strong><br>New perspective: <strong style='color:#6EE7B7;'>&ldquo;I can serve a newly arrived immigrant.&rdquo; → A tool of hospitality</strong><br><br>The moment a member's business is listed on the guide,<br>that member becomes <em>a sent minister of hospitality</em>.">
     </div>
+  </div>
+
+  <!-- Section 01 인라인 CTA -->
+  <div class="quick-cta">
+    <a href="https://hebronguide.com/ad-request.html" target="_blank" rel="noopener" class="qbtn qbtn-gold"
+       data-ko="→ 지금 등재 신청" data-en="→ Register Now"></a>
+    <a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener" class="qbtn qbtn-mint"
+       data-ko="📱 가이드 미리보기" data-en="📱 Preview the Guide"></a>
   </div>
 
   <!-- SECTION 02 -->
@@ -295,6 +355,14 @@ footer strong{color:rgba(236,253,245,.4);}
     </div>
   </div>
 
+  <!-- Section 03 인라인 CTA -->
+  <div class="quick-cta">
+    <a href="https://hebronguide.com/ad-request.html" target="_blank" rel="noopener" class="qbtn qbtn-gold"
+       data-ko="→ 성도에게 보낼 등재 링크" data-en="→ Listing Link for Members"></a>
+    <a href="https://hebronguide.com/church-guide.html" target="_blank" rel="noopener" class="qbtn qbtn-white"
+       data-ko="📄 교회 안내 자료" data-en="📄 Church Guide"></a>
+  </div>
+
   <!-- SECTION 04 -->
   <div class="sec">
     <div class="sec-label">SECTION 04</div>
@@ -371,6 +439,12 @@ footer strong{color:rgba(236,253,245,.4);}
     </div>
   </div>
 
+  <!-- Section 05 인라인 CTA — 비전 읽고 가장 행동하고 싶은 순간 -->
+  <div class="quick-cta">
+    <a href="https://hebronguide.com/ad-request.html" target="_blank" rel="noopener" class="qbtn qbtn-gold"
+       data-ko="✦ 우리 교회도 준비된 교회가 되겠습니다 →" data-en="✦ Our Church Will Be a Prepared Church →"></a>
+  </div>
+
   <!-- SECTION 06 -->
   <div class="sec">
     <div class="sec-label">SECTION 06</div>
@@ -386,6 +460,87 @@ footer strong{color:rgba(236,253,245,.4);}
       <li><span data-ko="새가족에게 교회 성도 업소를 먼저 소개하는 문화를 만들겠습니다" data-en="We will cultivate a culture of introducing church member businesses to newcomers first"></span></li>
       <li><span data-ko="이 협력이 홍보가 아닌 환대임을 성도들이 이해하도록 돕겠습니다" data-en="We will help our members understand that this is hospitality, not advertising"></span></li>
     </ul>
+  </div>
+
+  <!-- ═══ CTA + QR ═══ -->
+  <div class="sec" style="margin-bottom:14px;">
+    <div class="sec-label" data-ko="지금 시작하세요" data-en="GET STARTED NOW"></div>
+    <h2 data-ko="읽으셨다면, 지금 바로 시작할 수 있습니다" data-en="You've Read It — Now Take the First Step"></h2>
+  </div>
+
+  <!-- 등재 신청 CTA -->
+  <div style="background:linear-gradient(135deg,rgba(110,231,183,.1),rgba(201,162,39,.07));border:1px solid rgba(110,231,183,.25);border-radius:18px;padding:26px 24px;margin-bottom:16px;">
+
+    <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
+      <!-- QR: 등재 신청 -->
+      <div style="flex-shrink:0;text-align:center;">
+        <div style="background:#fff;border-radius:12px;padding:8px;display:inline-block;box-shadow:0 4px 16px rgba(0,0,0,.4);">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fhebronguide.com%2Fad-request.html&color=0d1117&bgcolor=ffffff&margin=4"
+               alt="등재 신청 QR" width="120" height="120" loading="lazy">
+        </div>
+        <div style="font-size:.65rem;color:rgba(110,231,183,.6);margin-top:6px;font-weight:700;" data-ko="📱 QR 스캔" data-en="📱 Scan QR"></div>
+        <button onclick="downloadQR('register')" style="margin-top:6px;background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);color:rgba(110,231,183,.7);font-size:.62rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;"
+          data-ko="⬇ QR 저장" data-en="⬇ Save QR"></button>
+      </div>
+
+      <!-- 텍스트 + 버튼 -->
+      <div style="flex:1;min-width:180px;">
+        <div style="font-size:.75rem;font-weight:800;color:#6EE7B7;letter-spacing:.08em;margin-bottom:6px;" data-ko="⛪ 교회 · 사업체 등재 신청" data-en="⛪ Register Church or Business"></div>
+        <div style="font-size:.88rem;color:rgba(236,253,245,.8);line-height:1.85;margin-bottom:14px;"
+          data-ko="성도 사업체 무료 등재 · 교회 정보 게시<br><strong style='color:#fff;'>2026년 10월 1일까지 무료</strong>"
+          data-en="Free member business listing · Church info posting<br><strong style='color:#fff;'>Free until October 1, 2026</strong>">
+        </div>
+        <a href="https://hebronguide.com/ad-request.html" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:.88rem;border-radius:50px;padding:12px 24px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;"
+           data-ko="→ 지금 등재 신청하기"
+           data-en="→ Register Now">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HebronGuide 메인 사이트 -->
+  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:20px 22px;margin-bottom:16px;">
+    <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;">
+      <!-- QR: 메인 사이트 -->
+      <div style="flex-shrink:0;text-align:center;">
+        <div style="background:#fff;border-radius:12px;padding:8px;display:inline-block;box-shadow:0 4px 16px rgba(0,0,0,.4);">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fhebronguide.com&color=0d1117&bgcolor=ffffff&margin=4"
+               alt="HebronGuide QR" width="120" height="120" loading="lazy">
+        </div>
+        <div style="font-size:.65rem;color:rgba(201,162,39,.6);margin-top:6px;font-weight:700;" data-ko="📱 QR 스캔" data-en="📱 Scan QR"></div>
+        <button onclick="downloadQR('main')" style="margin-top:6px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);color:rgba(201,162,39,.7);font-size:.62rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;"
+          data-ko="⬇ QR 저장" data-en="⬇ Save QR"></button>
+      </div>
+
+      <div style="flex:1;min-width:180px;">
+        <div style="font-size:.75rem;font-weight:800;color:#C9A227;letter-spacing:.08em;margin-bottom:6px;">🌍 HebronGuide.com</div>
+        <div style="font-size:.88rem;color:rgba(236,253,245,.7);line-height:1.85;margin-bottom:12px;"
+          data-ko="전 세계 67개+ 도시 · 한인 이민자 정착 가이드<br>성도들이 직접 보여줄 수 있는 가이드"
+          data-en="67+ cities worldwide · Korean immigrant settlement guide<br>A guide members can show others directly">
+        </div>
+        <a href="https://hebronguide.com" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:7px;background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);color:#C9A227;font-weight:700;font-size:.82rem;border-radius:20px;padding:8px 18px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;"
+           data-ko="→ HebronGuide.com 바로가기"
+           data-en="→ Visit HebronGuide.com">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 카카오톡 공유 -->
+  <div style="background:rgba(254,229,0,.06);border:1px solid rgba(254,229,0,.2);border-radius:14px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;gap:14px;">
+    <span style="font-size:1.5rem;flex-shrink:0;">💬</span>
+    <div>
+      <div style="font-size:.8rem;font-weight:800;color:#fee900;margin-bottom:4px;"
+        data-ko="카카오톡으로 성도에게 바로 공유하세요"
+        data-en="Share directly with members via KakaoTalk">
+      </div>
+      <div style="font-size:.78rem;color:rgba(236,253,245,.55);line-height:1.8;"
+        data-ko="위 링크나 QR을 카카오톡으로 성도에게 전달하시면 됩니다.<br>성도가 직접 신청하면 목사님께 추천 확인 이메일이 자동 발송됩니다."
+        data-en="Share the link or QR above via KakaoTalk to your members.<br>When a member submits, an endorsement request is automatically sent to you.">
+      </div>
+    </div>
   </div>
 
   <!-- 연락처 -->
@@ -438,6 +593,20 @@ function setLang(lang) {
 
 // 페이지 로드 시 적용
 document.addEventListener('DOMContentLoaded', () => setLang(currentLang));
+
+// CTA 버튼 (data-ko/en으로 처리됨) — 이미 setLang에서 자동 처리됨
+// QR 저장 편의 함수
+function downloadQR(type) {
+  var urls = {
+    register: 'https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https%3A%2F%2Fhebronguide.com%2Fad-request.html&color=0d1117&bgcolor=ffffff&margin=12',
+    main:     'https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https%3A%2F%2Fhebronguide.com&color=0d1117&bgcolor=ffffff&margin=12'
+  };
+  var a = document.createElement('a');
+  a.href = urls[type];
+  a.download = 'hebronguide-' + type + '-qr.png';
+  a.target = '_blank';
+  a.click();
+}
 </script>
 
 </body>
