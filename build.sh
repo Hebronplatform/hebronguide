@@ -150,6 +150,7 @@ cp hebronguide/dist/pastor-dashboard.html          public/pastor-dashboard.html 
 cp hebronguide/dist/story-submit.html              public/story-submit.html              2>/dev/null || true
 cp hebronguide/dist/ksbc-partner.html              public/ksbc-partner.html              2>/dev/null || true
 cp hebronguide/dist/register.html                  public/register.html                  2>/dev/null || true
+cp hebronguide/dist/admin.html                     public/admin.html                     2>/dev/null || true
 
 # 루트 HTML 파일 전체 자동 복사 (church-guide, ksbc-partner, ops-dashboard, about 등 모두 포함)
 # ⚠️ index.html 은 제외 — 13번 줄에서 루트 랜딩 페이지(index.html)가 이미 복사됨
