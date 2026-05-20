@@ -16,8 +16,6 @@
   ],
 
   "rewrites": [
-    { "source": "/pastor-dashboard.html", "destination": "/seattle/pastor-dashboard.html" },
-    { "source": "/register.html",         "destination": "/seattle/register.html" },
     { "source": "/assets/(.*)",    "destination": "/seattle/assets/$1" },
     { "source": "/registerSW.js",  "destination": "/seattle/registerSW.js" },
     { "source": "/sw.js",          "destination": "/seattle/sw.js" },
