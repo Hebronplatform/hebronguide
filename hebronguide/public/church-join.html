@@ -220,6 +220,14 @@ select option,select optgroup{background:#0d1117;color:#e6edf3}
         <button onclick="goStep1()" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8b949e;padding:13px;border-radius:12px;cursor:pointer;font-size:.9rem;font-family:'Noto Sans KR',sans-serif">← 이전</button>
         <button class="btn-submit" style="flex:2;margin-top:0" onclick="submitChurch()" id="submitBtn">⛪ 등록 신청하기</button>
       </div>
+
+      <!-- 이메일 폴백 (오류 시 자동 표시) -->
+      <div id="email-fallback" style="display:none;margin-top:14px;background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.25);border-radius:12px;padding:14px 16px;text-align:center">
+        <div style="font-size:.85rem;font-weight:700;color:#C9A227;margin-bottom:8px">⚠️ 시스템 오류 — 이메일로 신청하세요</div>
+        <div style="font-size:.78rem;color:#8b949e;margin-bottom:12px;line-height:1.6">입력하신 정보가 이메일로 자동 채워집니다.<br>전송 후 24-48시간 내 처리해 드립니다.</div>
+        <a id="email-fallback-link" href="#" style="display:inline-block;background:#C9A227;color:#000;font-weight:800;padding:10px 24px;border-radius:10px;text-decoration:none;font-size:.9rem">✉️ 이메일로 신청하기</a>
+        <div style="font-size:.72rem;color:#8b949e;margin-top:8px">hebronplatform@gmail.com</div>
+      </div>
     </div>
   </div>
 
@@ -340,8 +348,24 @@ async function submitChurch() {
   } catch(e) {
     btn.textContent = '⛪ 등록 신청하기'
     btn.disabled = false
-    alert('오류가 발생했습니다. 다시 시도해 주세요.')
+    showEmailFallback()
   }
+}
+
+function showEmailFallback() {
+  const church = document.getElementById('churchName').value.trim()
+  const pastor = document.getElementById('pastorName').value.trim()
+  const city   = document.getElementById('cityName').value
+  const phone  = document.getElementById('churchPhone').value.trim()
+  const email  = document.getElementById('churchEmail').value.trim()
+  const web    = document.getElementById('churchWeb').value.trim()
+
+  const body = `HebronGuide 교회 등록 신청\n\n교회명: ${church}\n담임목사: ${pastor}\n도시: ${city}\n전화: ${phone}\n이메일: ${email}\n홈페이지: ${web}`
+  const mailto = `mailto:hebronplatform@gmail.com?subject=[교회 등록] ${encodeURIComponent(church)}&body=${encodeURIComponent(body)}`
+
+  document.getElementById('email-fallback').style.display = 'block'
+  document.getElementById('email-fallback-link').href = mailto
+  document.getElementById('step2').scrollIntoView({behavior:'smooth'})
 }
 
 function setError(id, show) {

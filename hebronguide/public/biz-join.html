@@ -189,6 +189,13 @@ select option,select optgroup{background:#0d1117;color:#e6edf3}
       </div>
 
       <button class="btn-submit" onclick="submitBiz()" id="submitBtn">🏪 사업체 등록 신청하기</button>
+
+      <div id="email-fallback" style="display:none;margin-top:14px;background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.25);border-radius:12px;padding:14px 16px;text-align:center">
+        <div style="font-size:.85rem;font-weight:700;color:#C9A227;margin-bottom:8px">⚠️ 시스템 오류 — 이메일로 신청하세요</div>
+        <div style="font-size:.78rem;color:#8b949e;margin-bottom:12px;line-height:1.6">입력하신 정보가 이메일로 자동 채워집니다.</div>
+        <a id="email-fallback-link" href="#" style="display:inline-block;background:#C9A227;color:#000;font-weight:800;padding:10px 24px;border-radius:10px;text-decoration:none;font-size:.9rem">✉️ 이메일로 신청하기</a>
+        <div style="font-size:.72rem;color:#8b949e;margin-top:8px">hebronplatform@gmail.com</div>
+      </div>
     </div>
   </div>
 
@@ -295,7 +302,15 @@ async function submitBiz() {
   } catch(e) {
     btn.textContent = '🏪 사업체 등록 신청하기'
     btn.disabled = false
-    alert('오류가 발생했습니다. 다시 시도해 주세요.')
+    // 이메일 폴백
+    const bizName = document.getElementById('biz_name').value.trim()
+    const owner   = document.getElementById('biz_owner').value.trim()
+    const city    = document.getElementById('biz_city').value
+    const phone   = document.getElementById('biz_phone').value.trim()
+    const body = `HebronGuide 사업체 등록 신청\n\n업체명: ${bizName}\n업종: ${selectedCat}\n대표자: ${owner}\n도시: ${city}\n전화: ${phone}`
+    const mailto = `mailto:hebronplatform@gmail.com?subject=[사업체 등록] ${encodeURIComponent(bizName)}&body=${encodeURIComponent(body)}`
+    document.getElementById('email-fallback').style.display = 'block'
+    document.getElementById('email-fallback-link').href = mailto
   }
 }
 </script>
