@@ -121,7 +121,7 @@
   <div class="login-icon">🛡️</div>
   <h1 class="login-title">관리자 로그인</h1>
   <p class="login-note">HebronGuide 운영팀 전용</p>
-  <input type="email" id="email-input" placeholder="hebronplatform@gmail.com" value="hebronplatform@gmail.com">
+  <input type="email" id="email-input" placeholder="관리자 이메일" value="hebronplatform@gmail.com" autocomplete="email">
   <button class="btn" onclick="sendMagicLink()">로그인 링크 받기</button>
   <div id="login-msg"></div>
 </div>
@@ -236,15 +236,27 @@
     return true
   }
 
+  // ── 관리자 이메일 화이트리스트 ─────────────────────────────
+  const ADMIN_EMAILS = [
+    'hebronplatform@gmail.com',
+    'ijiguchon@kakao.com',
+  ]
+
   // ── 로그인 ───────────────────────────────────────────────
   async function sendMagicLink() {
     if (!initSB()) { showMsg('Supabase SDK 로드 실패', 'err'); return }
-    const email = document.getElementById('email-input').value.trim()
+    const email = document.getElementById('email-input').value.trim().toLowerCase()
     if (!email) return
-    // 두 프로젝트 모두에 Magic Link 발송 (주 프로젝트 사용)
+
+    // 관리자 이메일만 허용
+    if (!ADMIN_EMAILS.includes(email)) {
+      showMsg('❌ 관리자만 접근 가능합니다.', 'err')
+      return
+    }
+
     const { error } = await sbMain.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.href } })
     if (error) { showMsg(error.message, 'err'); return }
-    showMsg('✉️ 이메일을 확인해주세요!', 'ok')
+    showMsg('✉️ 이메일을 확인해주세요! (스팸함도 확인)', 'ok')
   }
 
   function showMsg(text, type) {
