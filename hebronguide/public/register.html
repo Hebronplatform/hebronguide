@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>등록 · Register — HebronGuide</title>
+  <meta name="description" content="HebronGuide 개인·교회·사업체 등록 허브">
+  <link rel="icon" href="/icon-192.png">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --border: rgba(255,255,255,.1);
+      --gold: #C9A227;
+      --mint: #6EE7B7;
+      --text: #e6edf3;
+      --muted: #8b949e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0 }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, 'Noto Sans KR', sans-serif; min-height: 100vh }
+
+    html[lang="en"] .ko { display: none !important }
+    html[lang="ko"] .en { display: none !important }
+
+    /* ── 언어바 ── */
+    .lang-bar { background: rgba(255,255,255,.04); border-bottom: 1px solid var(--border); padding: 8px 20px; display: flex; align-items: center; justify-content: space-between }
+    .lang-bar a { color: var(--muted); text-decoration: none; font-size: .85rem }
+    .lang-bar a:hover { color: var(--mint) }
+    .lang-btn { background: none; border: 1px solid var(--border); color: var(--muted); padding: 4px 12px; border-radius: 6px; cursor: pointer; font-size: .8rem; transition: .2s }
+    .lang-btn.active, .lang-btn:hover { border-color: var(--mint); color: var(--mint) }
+
+    /* ── 헤더 ── */
+    .hero { text-align: center; padding: 48px 20px 32px }
+    .hero-badge { display: inline-block; background: rgba(201,162,39,.12); border: 1px solid rgba(201,162,39,.3); color: var(--gold); border-radius: 20px; padding: 4px 14px; font-size: .8rem; margin-bottom: 16px }
+    .hero-title { font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 800; margin-bottom: 10px }
+    .hero-sub { color: var(--muted); font-size: .95rem; max-width: 480px; margin: 0 auto; line-height: 1.6 }
+
+    /* ── 그리드 ── */
+    .grid { max-width: 900px; margin: 0 auto; padding: 0 16px 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px }
+
+    /* ── 카드 ── */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 10px; transition: .2s; position: relative; overflow: hidden }
+    .card:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3) }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent, var(--gold)); border-radius: 16px 16px 0 0 }
+
+    .card-icon { font-size: 2rem; margin-bottom: 4px }
+    .card-title { font-size: 1.05rem; font-weight: 700 }
+    .card-sub { font-size: .82rem; color: var(--muted); line-height: 1.5 }
+    .card-arrow { margin-top: auto; font-size: .85rem; color: var(--gold); font-weight: 600 }
+
+    /* ── 색상 강조 ── */
+    .c-mint { --accent: #6EE7B7 }
+    .c-blue { --accent: #60A5FA }
+    .c-purple { --accent: #A78BFA }
+    .c-orange { --accent: #FB923C }
+    .c-pink { --accent: #F472B6 }
+    .c-gold { --accent: #C9A227 }
+
+    /* ── 구분선 ── */
+    .section-title { max-width: 900px; margin: 32px auto 12px; padding: 0 16px; font-size: .8rem; font-weight: 700; color: var(--muted); letter-spacing: .08em; text-transform: uppercase }
+
+    /* ── 도움말 ── */
+    .help-row { max-width: 900px; margin: 0 auto 48px; padding: 0 16px }
+    .help-box { background: rgba(110,231,183,.06); border: 1px solid rgba(110,231,183,.15); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 14px }
+    .help-icon { font-size: 1.4rem; flex-shrink: 0 }
+    .help-text { font-size: .85rem; color: var(--muted); line-height: 1.5 }
+    .help-text a { color: var(--mint); text-decoration: none }
+    .help-text a:hover { text-decoration: underline }
+  </style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <a href="/">← <span class="ko">HebronGuide 홈</span><span class="en">HebronGuide Home</span></a>
+  <div style="display:flex;gap:6px">
+    <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
+  </div>
+</div>
+
+<!-- 히어로 -->
+<div class="hero">
+  <div class="hero-badge">✝️ HebronGuide</div>
+  <h1 class="hero-title">
+    <span class="ko">무엇을 등록하시겠어요?</span>
+    <span class="en">What would you like to register?</span>
+  </h1>
+  <p class="hero-sub ko">개인·교회·사업체·파트너 목사까지 — 모든 등록이 한 곳에.</p>
+  <p class="hero-sub en">Individuals, churches, businesses, and partner pastors — all in one place.</p>
+</div>
+
+<!-- 섹션 1: 개인 -->
+<div class="section-title ko">👤 개인</div>
+<div class="section-title en">👤 Individual</div>
+<div class="grid">
+
+  <a href="/seattle/" class="card c-mint">
+    <div class="card-icon">🏙️</div>
+    <div class="card-title ko">내 도시 정착 가이드</div>
+    <div class="card-title en">My City Settlement Guide</div>
+    <div class="card-sub ko">64개 도시 중 내가 사는 곳을 선택해서 정착 정보를 확인하세요.</div>
+    <div class="card-sub en">Select your city from 64 cities and access settlement information.</div>
+    <div class="card-arrow ko">도시 선택하기 →</div>
+    <div class="card-arrow en">Choose my city →</div>
+  </a>
+
+  <a href="/story-submit.html" class="card c-blue">
+    <div class="card-icon">📝</div>
+    <div class="card-title ko">내 이야기 제출</div>
+    <div class="card-title en">Submit My Story</div>
+    <div class="card-sub ko">이민·유학·파견 경험을 K-드라마 5막 형식으로 나눠주세요. 누군가의 희망이 됩니다.</div>
+    <div class="card-sub en">Share your immigration or expat story in K-drama 5-act format. It becomes someone's hope.</div>
+    <div class="card-arrow ko">이야기 쓰기 →</div>
+    <div class="card-arrow en">Write my story →</div>
+  </a>
+
+</div>
+
+<!-- 섹션 2: 교회 -->
+<div class="section-title ko">⛪ 교회</div>
+<div class="section-title en">⛪ Church</div>
+<div class="grid">
+
+  <a href="/church-guide.html" class="card c-gold">
+    <div class="card-icon">⛪</div>
+    <div class="card-title ko">교회 등록·수정</div>
+    <div class="card-title en">Register / Update Church</div>
+    <div class="card-sub ko">한인 교회 정보를 HebronGuide에 등록하거나 기존 정보를 업데이트하세요.</div>
+    <div class="card-sub en">Register your Korean church on HebronGuide or update existing information.</div>
+    <div class="card-arrow ko">교회 등록하기 →</div>
+    <div class="card-arrow en">Register church →</div>
+  </a>
+
+  <a href="/church-submit.html" class="card c-purple">
+    <div class="card-icon">📋</div>
+    <div class="card-title ko">교회 정보 신청서</div>
+    <div class="card-title en">Church Info Application</div>
+    <div class="card-sub ko">새가족 환영·정착 지원 교회로 등재 신청. 검토 후 Tier1⭐ 등급 부여.</div>
+    <div class="card-sub en">Apply to be listed as a newcomer-welcoming church. Tier1⭐ rating after review.</div>
+    <div class="card-arrow ko">신청서 작성 →</div>
+    <div class="card-arrow en">Fill out application →</div>
+  </a>
+
+  <a href="/ksbc-partner.html" class="card c-orange">
+    <div class="card-icon">🤝</div>
+    <div class="card-title ko">KSBC 파트너십</div>
+    <div class="card-title en">KSBC Partnership</div>
+    <div class="card-sub ko">한인침례교회 네트워크와 함께하는 파트너십 프로그램.</div>
+    <div class="card-sub en">Partnership program with Korean Southern Baptist Church network.</div>
+    <div class="card-arrow ko">파트너십 보기 →</div>
+    <div class="card-arrow en">View partnership →</div>
+  </a>
+
+</div>
+
+<!-- 섹션 3: 사업체 -->
+<div class="section-title ko">🏪 사업체</div>
+<div class="section-title en">🏪 Business</div>
+<div class="grid">
+
+  <a href="/member-listing.html" class="card c-pink">
+    <div class="card-icon">🏪</div>
+    <div class="card-title ko">사업체 등록</div>
+    <div class="card-title en">Business Listing</div>
+    <div class="card-sub ko">식당·카페·학원·법률·의료·부동산 등 한인 사업체를 등록하세요.</div>
+    <div class="card-sub en">Register Korean-owned businesses: restaurants, cafes, tutoring, legal, medical, real estate.</div>
+    <div class="card-arrow ko">사업체 등록하기 →</div>
+    <div class="card-arrow en">Register business →</div>
+  </a>
+
+  <a href="/ad-request.html" class="card c-mint">
+    <div class="card-icon">📢</div>
+    <div class="card-title ko">광고·홍보 요청</div>
+    <div class="card-title en">Ad / Promotion Request</div>
+    <div class="card-sub ko">HebronGuide 도시 페이지에 사업체 광고를 게재하세요.</div>
+    <div class="card-sub en">Place your business ad on HebronGuide city pages.</div>
+    <div class="card-arrow ko">광고 요청하기 →</div>
+    <div class="card-arrow en">Request ad →</div>
+  </a>
+
+</div>
+
+<!-- 섹션 4: 파트너 목사·사역자 -->
+<div class="section-title ko">✝️ 파트너 목사·사역자</div>
+<div class="section-title en">✝️ Partner Pastor & Minister</div>
+<div class="grid">
+
+  <a href="/hebron-partner-mobilize.html" class="card c-gold">
+    <div class="card-icon">🌍</div>
+    <div class="card-title ko">파트너 목사 신청</div>
+    <div class="card-title en">Apply as Partner Pastor</div>
+    <div class="card-sub ko">전 세계 한인 사역자라면 누구든지. 섬기는 사람이 리더입니다 (막10:45).</div>
+    <div class="card-sub en">Any Korean ministry worker worldwide. Servants are leaders (Mark 10:45).</div>
+    <div class="card-arrow ko">파트너 신청하기 →</div>
+    <div class="card-arrow en">Apply to partner →</div>
+  </a>
+
+  <a href="/seattle/pastor-dashboard.html" class="card c-purple">
+    <div class="card-icon">📊</div>
+    <div class="card-title ko">목사 대시보드</div>
+    <div class="card-title en">Pastor Dashboard</div>
+    <div class="card-sub ko">이미 파트너이시면 대시보드에서 사역 인사이트와 질문 현황을 확인하세요.</div>
+    <div class="card-sub en">Already a partner? Check ministry insights and question stats on your dashboard.</div>
+    <div class="card-arrow ko">대시보드 로그인 →</div>
+    <div class="card-arrow en">Login to dashboard →</div>
+  </a>
+
+  <a href="/ksbc-partner.html" class="card c-blue">
+    <div class="card-icon">🏛️</div>
+    <div class="card-title ko">허브교회 신청</div>
+    <div class="card-title en">Apply as Hub Church</div>
+    <div class="card-sub ko">지역 허브교회로 등록하고 이주자 환영 네트워크의 중심이 되세요.</div>
+    <div class="card-sub en">Register as a regional hub church and become a center for welcoming immigrants.</div>
+    <div class="card-arrow ko">허브교회 신청 →</div>
+    <div class="card-arrow en">Apply as hub church →</div>
+  </a>
+
+</div>
+
+<!-- 도움말 -->
+<div class="help-row">
+  <div class="help-box">
+    <div class="help-icon">💬</div>
+    <div class="help-text">
+      <span class="ko">질문이 있으시면 <a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a> 으로 연락해 주세요. 또는 각 도시 페이지에서 AI에게 물어보세요.</span>
+      <span class="en">Have questions? Contact <a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a>. Or ask the AI on any city page.</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.lang = lang
+    localStorage.setItem('hg_lang', lang)
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko')
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en')
+  }
+  const lang = localStorage.getItem('hg_lang') || 'ko'
+  setLang(lang)
+</script>
+</body>
+</html>
