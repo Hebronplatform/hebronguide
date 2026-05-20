@@ -1,10 +1,8 @@
 // api/pastor-insights.js — HebronGuide 사역 인사이트 분석
-// Vercel Serverless Function (Node.js runtime)
+// Vercel Edge Function — fetch() 직접 사용 (npm 의존성 없음)
 // Tier 3: Claude Opus — 목사 파트너 전용 (인증 필요)
-// POST /api/pastor-insights  { city: "seattle" }
-// Authorization: Bearer <supabase_access_token>
 
-export const config = { runtime: 'nodejs18.x' }
+export const config = { runtime: 'edge' }
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
