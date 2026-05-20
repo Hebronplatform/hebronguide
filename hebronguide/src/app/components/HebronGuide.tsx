@@ -1452,6 +1452,54 @@ const TOP5_RESTAURANTS_DALLAS: Top5Item[] = [
     tip: "월~금 점심 도시락 픽업 예약 추천", website: "yelp.com/biz/korean-lunchbox-carrollton" },
 ];
 
+// ── 도시별 입국신고서 예시 주소 ────────────────────────────────────────────
+// 각 도시 한인 밀집 지역 대표 주소 (실제 주소 형식, 예시용)
+const CITY_EXAMPLE_ADDRESS: Record<string, { en: string; district: string }> = {
+  seattle:      { en: "123 184th St SW, Lynnwood, WA 98036",         district: "린우드 한인타운" },
+  dallas:       { en: "123 Royal Ln, Carrollton, TX 75006",           district: "캐롤턴 한인타운" },
+  sf:           { en: "123 El Camino Real, Sunnyvale, CA 94087",      district: "선니베일 한인 밀집" },
+  newyork:      { en: "123 Northern Blvd, Flushing, NY 11354",        district: "플러싱 한인타운" },
+  la:           { en: "123 Western Ave, Los Angeles, CA 90020",       district: "LA 코리아타운" },
+  nashville:    { en: "123 Nolensville Pike, Nashville, TN 37211",    district: "내쉬빌 한인 밀집" },
+  boston:       { en: "123 Harvard Ave, Allston, MA 02134",           district: "알스턴 한인 밀집" },
+  houston:      { en: "123 Bellaire Blvd, Houston, TX 77036",         district: "벨레어 아시아타운" },
+  atlanta:      { en: "123 Buford Hwy NE, Doraville, GA 30340",      district: "도라빌 한인타운" },
+  chicago:      { en: "123 Touhy Ave, Niles, IL 60714",               district: "나일스·글렌뷰 한인 밀집" },
+  dc:           { en: "123 Little River Tpke, Annandale, VA 22003",   district: "애난데일 코리아타운" },
+  sandiego:     { en: "123 Convoy St, San Diego, CA 92111",           district: "컨보이 스트리트 한인타운" },
+  honolulu:     { en: "123 King St, Honolulu, HI 96813",              district: "호놀룰루 한인 밀집" },
+  portland:     { en: "123 SW Morrison St, Portland, OR 97204",       district: "포틀랜드 중심가" },
+  denver:       { en: "123 Federal Blvd, Denver, CO 80219",           district: "덴버 한인 밀집" },
+  kansascity:   { en: "123 Metcalf Ave, Overland Park, KS 66202",     district: "오버랜드파크 한인 밀집" },
+  philadelphia: { en: "123 Old York Rd, Elkins Park, PA 19027",       district: "엘킨스파크 한인 밀집" },
+  miami:        { en: "123 SW 8th St, Miami, FL 33130",               district: "마이애미 한인 밀집" },
+  charlotte:    { en: "123 Park Rd, Charlotte, NC 28209",             district: "샬럿 한인 밀집" },
+  raleigh:      { en: "123 Davis Dr, Morrisville, NC 27560",          district: "모리스빌 한인 밀집" },
+  columbus:     { en: "123 Bethel Rd, Columbus, OH 43214",            district: "콜럼버스 한인 밀집" },
+  minneapolis:  { en: "123 University Ave W, St Paul, MN 55103",      district: "세인트폴 한인 밀집" },
+  orlando:      { en: "123 E Colonial Dr, Orlando, FL 32803",         district: "올랜도 한인 밀집" },
+  toronto:      { en: "123 Yonge St, Toronto, ON M2N 5P9",            district: "노스욕 한인타운" },
+  vancouver:    { en: "123 No 3 Rd, Richmond, BC V6X 2B8",            district: "리치먼드 한인 밀집" },
+  calgary:      { en: "123 Centre St N, Calgary, AB T2E 2P8",         district: "캘거리 한인 밀집" },
+  sydney:       { en: "123 Pitt St, Sydney NSW 2000",                  district: "시드니 CBD" },
+  melbourne:    { en: "123 Swanston St, Melbourne VIC 3000",           district: "멜버른 CBD" },
+  auckland:     { en: "123 Queen St, Auckland 1010",                   district: "오클랜드 CBD" },
+  london:       { en: "123 New Malden High St, New Malden KT3 4BX",   district: "뉴몰든 코리아타운" },
+  paris:        { en: "123 Rue de la Roquette, Paris 75011",           district: "파리 한인 밀집" },
+  frankfurt:    { en: "123 Kaiserstraße, Frankfurt 60311",             district: "프랑크푸르트 CBD" },
+  berlin:       { en: "123 Kurfürstendamm, Berlin 10711",              district: "베를린 한인 밀집" },
+  dubai:        { en: "123 Sheikh Zayed Rd, Dubai, UAE",               district: "두바이 한인 밀집" },
+  singapore:    { en: "123 Orchard Rd, Singapore 238858",              district: "싱가포르 한인 밀집" },
+  bangkok:      { en: "123 Sukhumvit Rd, Bangkok 10110",               district: "수쿰빗 한인 밀집" },
+  hochiminh:    { en: "123 Nguyen Hue Blvd, Ho Chi Minh City",        district: "빈탄·푸미훙 한인 밀집" },
+  tokyo:        { en: "1-23 Shin-Okubo, Shinjuku-ku, Tokyo 169-0073", district: "신오쿠보 코리아타운" },
+  osaka:        { en: "1-23 Tsuruhashi, Ikuno-ku, Osaka 544-0033",    district: "츠루하시 코리아타운" },
+  seoul:        { en: "123 Teheran-ro, Gangnam-gu, Seoul 06142",       district: "강남 중심가" },
+  busan:        { en: "123 Jungang-daero, Busanjin-gu, Busan 47296",  district: "부산 중심가" },
+  saopaulo:     { en: "123 Rua Galvão Bueno, São Paulo SP 01506-000", district: "봉헤치루 코리아타운" },
+  mexicocity:   { en: "123 Paseo de la Reforma, CDMX 06600",          district: "멕시코시티 한인 밀집" },
+}
+
 const TOP5_SETTLE_DALLAS: Top5Item[] = [
   { rank: 1, emoji: "🏛️", nameKo: "한인회 (KCS — Korean Community Services)", nameEn: "Korean Community Services of North Texas",
     address: "2625 Old Denton Rd Ste 124, Carrollton TX 75007",
@@ -22481,9 +22529,17 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
       <StepCard num={5} title={ko ? "짐 무게·개수 제한 확인" : "Baggage Weight & Count Limits"}>
         <BodyText>{ko ? "항공사마다 다릅니다. 일반적으로 이코노미: 위탁 수화물 23kg × 2개. 기내 수화물 10kg × 1개. 초과 시 공항에서 추가 요금이 발생합니다." : "Varies by airline. Economy class typically allows 2 checked bags (23kg each) + 1 carry-on (10kg). Excess baggage fees are charged at the airport."}</BodyText>
       </StepCard>
-      <StepCard num={6} title={ko ? "미국 주소·연락처 미리 저장" : "Save Your US Address & Contacts in Advance"}>
-        <BodyText>{ko ? "입국 신고서에 미국 내 체류 주소(영문)를 써야 합니다. 학교 기숙사, 친척 집, 에어비앤비 주소를 영어로 메모장에 저장해 두세요." : "You must write your US address (in English) on the customs declaration form. Save dorm, relative's home, or Airbnb address in English."}</BodyText>
-        <PhraseCard situation={ko ? "기내 신고서 주소 항목" : "Address field on customs form"} english="123 Lynnwood Ave, Lynnwood, WA 98036" korean={ko ? "예시 주소 — 실제 본인 주소를 영어로 저장하세요" : "Example — save your actual address in English"} />
+      <StepCard num={6} title={ko ? "현지 주소·연락처 미리 저장" : "Save Your Local Address & Contacts in Advance"}>
+        <BodyText>{ko ? "입국 신고서에 현지 체류 주소(영문)를 써야 합니다. 학교 기숙사, 친척 집, 에어비앤비 주소를 영어로 메모장에 저장해 두세요." : "You must write your local address (in English) on the customs/arrival form. Save dorm, relative's home, or Airbnb address in English notes."}</BodyText>
+        <PhraseCard
+          situation={ko
+            ? `기내 신고서 주소 항목 — ${CITY_EXAMPLE_ADDRESS[slug]?.district ?? city.nameKo} 예시`
+            : `Address field on arrival form — ${city.nameEn} area example`}
+          english={CITY_EXAMPLE_ADDRESS[slug]?.en ?? `123 Main St, ${city.nameEn}, [ZIP]`}
+          korean={ko
+            ? `${CITY_EXAMPLE_ADDRESS[slug]?.district ?? city.nameKo} 예시 주소 — 실제 본인 주소를 영어로 저장하세요`
+            : `${city.nameEn} area example — save your actual address in English`}
+        />
       </StepCard>
       <StepCard num={7} title={ko ? "미국 SIM 카드 옵션 미리 알아보기" : "Research US SIM Card Options in Advance"}>
         <BodyText>{ko ? "공항에서 구매 가능하지만 비쌉니다. 추천: T-Mobile ($30/월, 무제한), AT&T Prepaid, Google Fi. 한국에서 T-Mobile eSIM 구매도 가능합니다." : "Available at the airport but expensive. Recommended: T-Mobile ($30/month unlimited), AT&T Prepaid, Google Fi. You can pre-purchase T-Mobile eSIM in Korea."}</BodyText>
