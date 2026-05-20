@@ -768,25 +768,44 @@ function submitForm(type) {
   const applicantName  = (document.getElementById(nameMap[type])?.value || '').trim();
   const applicantEmail = (document.getElementById(emailMap[type])?.value || '').trim();
 
-  // ── 감사 메시지 본문 (이메일 CC에 포함)
-  const thankYouMsg = [
-    `${applicantName ? applicantName + '님,' : '안녕하세요,'}`,
-    `신청해 주셔서 감사합니다. 48시간 이내에 연락드리겠습니다. 🙏`,
-    ``,
-    `HebronGuide 운영팀`,
-    `hebronplatform@gmail.com`,
-    `hebronguide.com`,
-  ].join('\n');
+  // ── 버튼 로딩 상태
+  const btn = document.querySelector(`#form-${type} .btn-submit`);
+  const origText = btn.textContent;
+  btn.textContent = '⏳ 제출 중...';
+  btn.disabled = true;
 
-  const fullBody = body
-    + '\n\n─────────────────────────────\n'
-    + thankYouMsg
-    + '\n── HebronGuide Partner · hebronguide.com ──';
+  // ── API 직접 제출 (이메일 앱 불필요)
+  try {
+    const phoneMap = {person:'pPhone', church:'cPhone', business:'bPhone', promo:'prPhone'};
+    const cityMap  = {person:'pCity',  church:'cCity',  business:'',       promo:''};
+    const phone = (document.getElementById(phoneMap[type])?.value || '').trim();
+    const city  = cityMap[type] ? (document.getElementById(cityMap[type])?.value || '').trim() : '';
 
-  // ── 이메일 전송 (mailto) — 신청자 CC 포함
-  const ccParam = applicantEmail ? `&cc=${encodeURIComponent(applicantEmail)}` : '';
-  const mailto = `mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(subject)}${ccParam}&body=${encodeURIComponent(fullBody)}`;
-  window.location.href = mailto;
+    const res = await fetch('/api/submit-form', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type, subject, body,
+        name:  applicantName,
+        email: applicantEmail,
+        phone, city,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.ok) {
+      btn.textContent = origText;
+      btn.disabled = false;
+      alert(data.error || '제출에 실패했습니다. 다시 시도해 주세요.');
+      return;
+    }
+  } catch(e) {
+    btn.textContent = origText;
+    btn.disabled = false;
+    alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+    return;
+  }
 
   // ── 성공 화면 — 신청자 이름 표시
   document.querySelectorAll('.form-card').forEach(f=>f.classList.remove('active'));
