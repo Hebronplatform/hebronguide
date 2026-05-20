@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>한국 사람이 더 무서웠습니다 — HebronGuide 이달의 이야기</title>
+<meta name="description" content="낯선 나라에서 가장 경계한 것은 외국인이 아니었습니다. 런던 이달의 이야기.">
+<meta property="og:title" content="한국 사람이 더 무서웠습니다 — HebronGuide">
+<meta property="og:description" content="7년 전 상처가 있었습니다. 같은 한국 사람한테서 받은 상처가. 그런데 카카오톡 한 줄이 열었습니다.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;--surface:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.16);
+  --gold:#C9A227;--mint:#6EE7B7;--text:#ECFDF5;--muted:rgba(236,253,245,0.6);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:var(--bg);}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;min-height:100vh;}
+html[lang="ko"] .en{display:none!important;}
+html[lang="en"] .ko{display:none!important;}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
+.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;font-family:'Cinzel',serif;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-tag{font-size:.72rem;color:var(--muted);background:rgba(255,255,255,0.06);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;}
+.lang-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:rgba(236,253,245,.75);font-size:.7rem;font-weight:700;border-radius:20px;padding:5px 13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
+.lang-btn:hover{background:rgba(201,162,39,.15);border-color:rgba(201,162,39,.4);color:var(--gold);}
+
+.hero{text-align:center;padding:60px 24px 44px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.1),transparent);}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:99px;padding:6px 18px;margin-bottom:24px;}
+.story-title{font-family:'Noto Serif KR',serif;font-size:clamp(1.9rem,6vw,2.9rem);font-weight:700;color:#fff;line-height:1.3;margin-bottom:14px;}
+.story-title-en{font-family:Georgia,serif;font-size:clamp(1.5rem,4.5vw,2.1rem);font-weight:700;color:#fff;line-height:1.3;margin-bottom:14px;}
+.story-sub{font-size:.95rem;color:var(--muted);max-width:480px;margin:0 auto 10px;line-height:2.1;}
+.story-loc{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(201,162,39,.75);font-weight:700;background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.2);border-radius:99px;padding:4px 16px;margin-top:12px;}
+.divider{width:50px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:30px auto;}
+
+.wrap{max-width:660px;margin:0 auto;padding:0 24px 72px;}
+.scene{margin-bottom:40px;}
+.slabel{font-size:.67rem;font-weight:800;color:rgba(201,162,39,.42);letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.05);}
+.sp{font-family:'Noto Serif KR',serif;font-size:1.02rem;color:rgba(236,253,245,.88);line-height:2.1;margin-bottom:20px;}
+.sp-en{font-family:Georgia,serif;font-size:.98rem;color:rgba(236,253,245,.88);line-height:2.05;margin-bottom:20px;}
+.sp strong,.sp-en strong{color:#fff;}
+
+.quote{background:rgba(201,162,39,.06);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;padding:18px 22px;margin:20px 0 24px;}
+.qt{font-family:'Noto Serif KR',serif;font-size:.97rem;color:rgba(236,253,245,.9);line-height:2.1;font-style:italic;}
+.qt-en{font-family:Georgia,serif;font-size:.93rem;color:rgba(236,253,245,.9);line-height:2.05;font-style:italic;}
+.qs{font-size:.71rem;color:rgba(201,162,39,.6);font-weight:700;margin-top:10px;font-style:normal;}
+
+.inner{color:rgba(110,231,183,.85);font-style:italic;padding-left:20px;border-left:2px solid rgba(110,231,183,.2);margin:16px 0 20px;font-family:'Noto Serif KR',serif;font-size:.95rem;line-height:2.05;}
+.inner-en{color:rgba(110,231,183,.85);font-style:italic;padding-left:20px;border-left:2px solid rgba(110,231,183,.2);margin:16px 0 20px;font-family:Georgia,serif;font-size:.92rem;line-height:2;}
+
+.dialogue{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:15px 18px;margin:14px 0;}
+.d-who{font-size:.67rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;}
+.d-line{font-family:'Noto Serif KR',serif;font-size:.94rem;color:rgba(236,253,245,.9);line-height:1.95;font-style:italic;}
+.d-line-en{font-family:Georgia,serif;font-size:.91rem;color:rgba(236,253,245,.9);line-height:1.9;font-style:italic;}
+
+.climax{background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.05));border:1px solid rgba(201,162,39,.3);border-radius:18px;padding:30px 26px;margin:36px 0;text-align:center;}
+.ct{font-family:'Noto Serif KR',serif;font-size:1.08rem;font-weight:700;color:#fff;line-height:2.1;}
+.ct-en{font-family:Georgia,serif;font-size:1.02rem;font-weight:700;color:#fff;line-height:2.05;}
+
+.link-card{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:14px 18px;text-decoration:none;margin-bottom:10px;transition:border-color .2s;}
+.link-card:hover{border-color:rgba(201,162,39,.4);}
+.link-title{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:2px;}
+.link-desc{font-size:.76rem;color:var(--muted);}
+
+.share-bar{text-align:center;margin:32px 0 24px;}
+.share-hint{font-size:.82rem;color:var(--muted);margin-bottom:14px;}
+.share-btns{display:flex;justify-content:center;gap:10px;}
+.btn-share{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:99px;padding:10px 20px;cursor:pointer;font-size:.8rem;font-weight:700;font-family:'Noto Sans KR',sans-serif;color:var(--text);}
+.btn-kakao{background:rgba(254,229,0,.1);border-color:rgba(254,229,0,.3);color:#fee900;}
+
+.src-box{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px 20px;margin-top:24px;}
+.src-title{font-size:.67rem;font-weight:800;color:rgba(255,255,255,.28);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+.src{font-size:.78rem;color:rgba(236,253,245,.37);line-height:1.9;padding-left:10px;border-left:1px solid rgba(255,255,255,.07);margin-bottom:6px;}
+.src a{color:rgba(110,231,183,.4);text-decoration:none;}
+.src strong{color:rgba(236,253,245,.55);}
+
+.next{text-align:center;padding:40px 24px;border-top:1px solid var(--border);}
+.next-lbl{font-size:.7rem;font-weight:800;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
+.btn-next{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:.9rem;border-radius:50px;padding:13px 30px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;}
+
+footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-align:center;padding:24px;font-size:.73rem;color:rgba(236,253,245,.26);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://hebronguide.com" class="logo">HebronGuide</a>
+  <div class="nav-right">
+    <span class="nav-tag ko">이달의 이야기</span>
+    <span class="nav-tag en">Story of the Month</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="badge">📖 <span class="ko">이달의 이야기 · 2026년 10월</span><span class="en">Story of the Month · October 2026</span></div>
+
+  <h1 class="story-title ko">"한국 사람이<br>더 무서웠습니다"</h1>
+  <h1 class="story-title-en en">"Koreans Were<br>What I Feared Most"</h1>
+
+  <p class="story-sub ko">낯선 나라에서 가장 경계한 것은 외국인이 아니었습니다.</p>
+  <p class="story-sub en">In a foreign country, the ones he was most guarded against were not foreigners.</p>
+
+  <div class="story-loc">🇬🇧 <span class="ko">런던, 영국</span><span class="en">London, United Kingdom</span></div>
+  <div class="divider"></div>
+</div>
+
+<div class="wrap">
+
+  <!-- S1 -->
+  <div class="scene">
+    <div class="slabel ko">1막 — 히드로 공항 · 겨울</div>
+    <div class="slabel en">Act 1 — Heathrow Airport · Winter</div>
+
+    <p class="sp ko">최민준 씨(가명, 40대 IT 개발자)가 런던에 도착했습니다. 비자도 있었고 일자리도 있었습니다. 준비는 됐습니다. 문제는 마음이었습니다.</p>
+    <p class="sp-en en">Minjun Choi (pseudonym, an IT developer in his forties) arrived in London. He had a visa, he had a job. He was prepared. The problem was his heart.</p>
+
+    <p class="sp ko">7년 전, 다른 해외 도시에서 같은 한국 사람에게 크게 당했습니다. 함께 일하던 사람이었습니다. 주말에도 같이 밥을 먹었고, 힘들 때 전화를 걸던 사람이었습니다. 그런데 그가 윗사람에게 보고서를 올렸습니다. 최민준 씨 이름으로. 최민준 씨가 모르는 내용으로.</p>
+    <p class="sp-en en">Seven years ago, in another city abroad, he had been badly hurt by a fellow Korean. Someone he worked alongside. They'd eaten together on weekends. The kind of person he'd call when things got hard. And then that person submitted a report to the higher-ups. In Minjun's name. With things Minjun had never said.</p>
+
+    <p class="sp ko">그 일로 최민준 씨는 프로젝트에서 빠졌습니다. 해명도 소용없었습니다. 팀 전체가 이미 알고 있었고, 이미 거리를 두고 있었습니다. 한국으로 돌아오는 비행기 안에서 최민준 씨는 창밖만 바라봤습니다. 7시간 동안. 아무것도 먹지 않았습니다.</p>
+    <p class="sp-en en">Because of it, Minjun was removed from the project. No amount of explanation helped. The whole team already knew. Already keeping their distance. On the flight back to Korea, Minjun just stared out the window. For seven hours. He didn't eat anything.</p>
+
+    <div class="inner ko">"한국 사람이 더 무서워요. 솔직히."</div>
+    <div class="inner-en en">"Honestly — Koreans are what I'm most afraid of."</div>
+
+    <div class="quote">
+      <p class="qt ko">"'아직도 사람을 믿나?' 오징어 게임 세 번째 시즌에 나오는 대사다."</p>
+      <p class="qt-en en">"'Do you still believe in people?' — a line from the third season of Squid Game."</p>
+      <p class="qs ko">— 김성수 목사, 「끝까지 사람을 믿으시는 예수님」, 2025.06.29</p>
+      <p class="qs en">— Rev. Kim Sung-su, "Jesus Who Believes in People to the End," Jun. 29, 2025</p>
+    </div>
+
+    <p class="sp ko">최민준 씨는 그 대사가 귀에 박혔습니다. 아직도 사람을 믿나. 모르겠다고 생각했습니다. 적어도 한국 사람은.</p>
+    <p class="sp-en en">That line stuck with Minjun. Do you still believe in people? He didn't know. At least not Koreans.</p>
+  </div>
+
+  <!-- S2 -->
+  <div class="scene">
+    <div class="slabel ko">2막 — HebronGuide</div>
+    <div class="slabel en">Act 2 — HebronGuide</div>
+
+    <p class="sp ko">런던 정착 정보를 찾다가 HebronGuide를 발견했습니다. 한인 교회 정보가 나왔습니다. 창을 닫았습니다. "교회는 더 무서워. 한인 교회는 더더욱."</p>
+    <p class="sp-en en">While searching for settlement information in London, he discovered HebronGuide. Korean church listings appeared. He closed the tab. "Churches are even scarier. Korean churches especially."</p>
+
+    <p class="sp ko">혼자였습니다. 런던은. 퇴근 후 아파트에 돌아오면 아무도 없었습니다. 냉장고를 열었다 닫았습니다. 한국에서 먹던 컵라면을 찾았는데 없었습니다. 영국 슈퍼마켓 봉지만 있었습니다. 밥을 먹다가 그냥 젓가락을 내려놨습니다. 뭔가 더 필요했는데 그게 뭔지 몰랐습니다.</p>
+    <p class="sp-en en">He was alone. London. Every evening he came back to his apartment to no one. He opened the fridge and closed it again. He looked for the cup ramen he used to eat in Korea. It wasn't there. Just bags from an English supermarket. He started eating, then put his chopsticks down. He needed something more, but didn't know what.</p>
+
+    <div class="inner ko">연락할 사람이 없는 게 아니었습니다. 연락하고 싶지 않은 것이었습니다. 또 상처받을까봐.</div>
+    <div class="inner-en en">It wasn't that there was no one to contact. He didn't want to reach out. Afraid of being hurt again.</div>
+
+    <p class="sp ko">일주일 후 다시 열었습니다. 병원 정보가 필요했습니다. GP 등록을 어떻게 해야 하는지, 한국어로 아픈 걸 설명할 수 있는 곳이 있는지. 페이지를 내려가다 보니 — 성도 연락처가 있었습니다. 작은 글씨로. "궁금한 거 있으시면 연락주세요."</p>
+    <p class="sp-en en">A week later, he opened it again. He needed medical information — how to register with a GP, whether there was a place where he could explain symptoms in Korean. Scrolling down the page, he noticed — a contact for a church member. In small print. "Feel free to reach out with any questions."</p>
+
+    <p class="sp ko">최민준 씨는 오래 바라봤습니다. 전화기를 들었다가 놨습니다. 다시 들었습니다. 딱 한 가지만 물어보기로 했습니다. 병원 때문에. 그것만. 그 이상은 안 된다고 스스로에게 말했습니다.</p>
+    <p class="sp-en en">Minjun stared at it for a long time. He picked up his phone, then put it down. Picked it up again. He decided to ask just one thing. About the hospital. Just that. He told himself: nothing more than that.</p>
+  </div>
+
+  <!-- S3 -->
+  <div class="scene">
+    <div class="slabel ko">3막 — 카카오톡 한 줄</div>
+    <div class="slabel en">Act 3 — One Line on KakaoTalk</div>
+
+    <p class="sp ko">메시지를 보냈습니다. "혹시 이 근처에 한국어 되는 GP 아세요?"</p>
+    <p class="sp-en en">He sent a message. "Do you happen to know a GP near here who speaks Korean?"</p>
+
+    <p class="sp ko">30분 후 답장이 왔습니다. 주소, 전화번호, 진료 가능한 요일. 그리고 마지막에 한 줄이 더 있었습니다.</p>
+    <p class="sp-en en">Thirty minutes later, a reply came. The address, phone number, available days. And at the end, one more line.</p>
+
+    <div class="dialogue">
+      <div class="d-who ko">성도 연락처</div>
+      <div class="d-who en">The Church Contact</div>
+      <div class="d-line ko">"제가 처음 왔을 때 도움받았던 곳이에요. 잘 오셨어요~"</div>
+      <div class="d-line-en en">"This is where I got help when I first arrived. Welcome. Glad you're here~"</div>
+    </div>
+
+    <p class="sp ko">최민준 씨는 그 마지막 문장을 다시 읽었습니다. "잘 오셨어요~"</p>
+    <p class="sp-en en">Minjun read that last sentence again. "Welcome. Glad you're here~"</p>
+
+    <div class="inner ko">7년 만에 처음 듣는 말이었습니다. 한국 사람한테서.</div>
+    <div class="inner-en en">It was the first time in seven years he had heard those words. From a Korean.</div>
+
+    <div class="quote">
+      <p class="qt ko">"예수님의 사랑은 조건부가 아니었다. 베드로가 세 번 부인할 것을 아시면서도... 끝까지 사랑하셨다."</p>
+      <p class="qt-en en">"Jesus' love was not conditional. Even knowing that Peter would deny him three times... He loved him to the end."</p>
+      <p class="qs ko">— 김성수 목사, 「끝까지 사람을 믿으시는 예수님」, 2025.06.29</p>
+      <p class="qs en">— Rev. Kim Sung-su, "Jesus Who Believes in People to the End," Jun. 29, 2025</p>
+    </div>
+  </div>
+
+  <!-- S4 -->
+  <div class="scene">
+    <div class="slabel ko">4막 — 조심스러운 변화</div>
+    <div class="slabel en">Act 4 — A Cautious Change</div>
+
+    <p class="sp ko">병원에서 우연히 그 성도를 만났습니다. 짧은 인사를 나눴습니다. 커피 한 잔을 했습니다. 최민준 씨는 경계심을 유지하려고 했습니다. 말을 아꼈습니다. 그런데 이상하게 — 편했습니다.</p>
+    <p class="sp-en en">He ran into the church member at the hospital. They exchanged brief greetings. Had a cup of coffee. Minjun tried to keep his guard up. He kept his words measured. But strangely — he felt at ease.</p>
+
+    <div class="dialogue">
+      <div class="d-who ko">성도</div>
+      <div class="d-who en">The Church Member</div>
+      <div class="d-line ko">"저도 처음에는 런던 사람들 다 경계했어요. 지금은... 뭐, 다들 비슷하더라고요."</div>
+      <div class="d-line-en en">"I was on guard around everyone here at first too. But now... I don't know, people are all pretty much the same."</div>
+    </div>
+
+    <p class="sp ko">최민준 씨는 조용히 고개를 끄덕였습니다. 아무 말도 하지 않았습니다. 그것으로 충분했습니다.</p>
+    <p class="sp-en en">Minjun quietly nodded. He said nothing. That was enough.</p>
+
+    <div class="quote">
+      <p class="qt ko">"나는 아직도 사람을 믿는가?"</p>
+      <p class="qt-en en">"Do I still believe in people?"</p>
+      <p class="qs ko">— 김성수 목사, 「끝까지 사람을 믿으시는 예수님」, 2025.06.29</p>
+      <p class="qs en">— Rev. Kim Sung-su, "Jesus Who Believes in People to the End," Jun. 29, 2025</p>
+    </div>
+  </div>
+
+  <!-- S5 -->
+  <div class="scene">
+    <div class="slabel ko">5막 — 6개월 후</div>
+    <div class="slabel en">Act 5 — Six Months Later</div>
+
+    <p class="sp ko">6개월 후, 런던에 새로 온 한국인이 온라인 커뮤니티에 글을 올렸습니다. 병원 등록을 어떻게 해야 하느냐고. 최민준 씨는 그 글을 보았습니다. 잠시 생각했습니다.</p>
+    <p class="sp-en en">Six months later, a newly arrived Korean in London posted a question in an online community. How do I register with a doctor? Minjun saw the post. He paused for a moment.</p>
+
+    <p class="sp ko">HebronGuide 링크를 보냈습니다. 그리고 한 줄을 추가했습니다.</p>
+    <p class="sp-en en">He sent the HebronGuide link. And added one line.</p>
+
+    <div class="dialogue">
+      <div class="d-who ko">최민준 씨</div>
+      <div class="d-who en">Minjun</div>
+      <div class="d-line ko">"궁금한 거 있으면 저한테 연락하세요."</div>
+      <div class="d-line-en en">"If you have any questions, feel free to reach out to me."</div>
+    </div>
+
+    <p class="sp ko">7년 전 상처보다 6개월의 경험이 더 컸습니다. 그것이 전부였습니다.</p>
+    <p class="sp-en en">Six months of experience had grown larger than the wound from seven years ago. That was all it took.</p>
+
+    <div class="quote">
+      <p class="qt ko">"편안함보다 불편한 사명을 선택할 때 진정한 자유를 경험하게 된다."</p>
+      <p class="qt-en en">"When we choose an uncomfortable mission over comfort, we experience true freedom."</p>
+      <p class="qs ko">— 김성수 목사, 「끝까지 사람을 믿으시는 예수님」, 2025.06.29</p>
+      <p class="qs en">— Rev. Kim Sung-su, "Jesus Who Believes in People to the End," Jun. 29, 2025</p>
+    </div>
+
+    <div class="inner ko">"아직도 사람을 믿나?" — 믿기로 했습니다.</div>
+    <div class="inner-en en">"Do you still believe in people?" — He decided to.</div>
+  </div>
+
+  <!-- 클라이맥스 -->
+  <div class="climax">
+    <p class="ct ko">
+      7년 전 상처가 있었습니다.<br>
+      같은 한국 사람한테서 받은 상처가.<br><br>
+      그래서 런던에서도 경계했습니다.<br>
+      마음을 닫고, 멀리서 지켜봤습니다.<br><br>
+      그런데 — 카카오톡 한 줄이 열었습니다.<br>
+      "잘 오셨어요~"<br><br>
+      <strong>예수님도 배신할 것을 아시면서도 믿으셨다면<br>우리도 한 번 더 믿어볼 수 있지 않을까요.</strong>
+    </p>
+    <p class="ct-en en">
+      There was a wound from seven years ago.<br>
+      A wound that came from another Korean.<br><br>
+      So he stayed guarded in London too.<br>
+      Heart closed. Watching from a distance.<br><br>
+      But one line on KakaoTalk opened it.<br>
+      "Welcome. Glad you're here~"<br><br>
+      <strong>If Jesus could trust those He knew would betray Him —<br>maybe we can afford to try once more.</strong>
+    </p>
+  </div>
+
+  <!-- 희망·재미·감사 -->
+  <div style="text-align:center;padding:8px 0 32px;">
+
+    <!-- 재미 -->
+    <p class="sp ko" style="color:rgba(236,253,245,.55);font-family:'Noto Serif KR',serif;line-height:2.2;font-size:.95rem;">
+      웃긴 것이 있습니다. 😄<br>
+      최민준 씨가 보낸 HebronGuide 링크를 받은 그 한국인.<br>
+      런던에서 처음으로 웃었다고 했습니다.<br>
+      링크 옆에 적힌 메모 때문에.<br><br>
+      <em style="color:rgba(236,253,245,.8);">"한국 사람 별로 안 무서워요. 일부만."</em>
+    </p>
+    <p class="sp-en en" style="color:rgba(236,253,245,.55);font-family:Georgia,serif;line-height:2.1;font-size:.92rem;">
+      Here's the funny part. 😄<br>
+      The Korean who received Minjun's HebronGuide link —<br>
+      said they laughed for the first time in London.<br>
+      Because of the note he wrote next to the link.<br><br>
+      <em style="color:rgba(236,253,245,.8);">"Koreans aren't that scary. Just some of them."</em>
+    </p>
+
+    <div style="height:1px;background:rgba(255,255,255,.06);margin:20px 0;"></div>
+
+    <!-- 감사 -->
+    <p class="sp ko" style="color:rgba(110,231,183,.7);font-family:'Noto Serif KR',serif;line-height:2.2;font-size:.95rem;font-style:italic;">
+      그 성도에게 감사드립니다.<br>
+      "GP 아세요?" 라는 차가운 질문에<br>
+      "잘 오셨어요~"로 답해 주셔서.<br>
+      그 따뜻한 물결표 하나가 7년의 벽을 건드렸습니다.
+    </p>
+    <p class="sp-en en" style="color:rgba(110,231,183,.7);font-family:Georgia,serif;line-height:2.1;font-size:.92rem;font-style:italic;">
+      Thank you, that church member.<br>
+      For answering a cold question — "Do you know a GP?" —<br>
+      with a warm "Welcome~"<br>
+      That little tilde touched seven years of walls.
+    </p>
+
+    <div style="height:1px;background:rgba(255,255,255,.06);margin:20px 0;"></div>
+
+    <!-- 희망 -->
+    <p class="sp ko" style="color:rgba(236,253,245,.7);font-family:'Noto Serif KR',serif;line-height:2.3;text-align:center;">
+      "아직도 사람을 믿나?"<br><br>
+      믿기로 했습니다.<br>
+      상처가 있어도. 배신을 경험했어도.<br>
+      한 번 더, 먼저 손 내밀기로 합니다.<br><br>
+      <strong style="color:var(--gold);font-size:1.05rem;">런던에서. 오늘도.</strong>
+    </p>
+    <p class="sp-en en" style="color:rgba(236,253,245,.7);font-family:Georgia,serif;line-height:2.2;text-align:center;">
+      "Do you still believe in people?"<br><br>
+      He decided to.<br>
+      Even with wounds. Even after betrayal.<br>
+      Once more — reach out first.<br><br>
+      <strong style="color:var(--gold);font-size:1.02rem;">In London. Today.</strong>
+    </p>
+  </div>
+
+  <!-- 링크 -->
+  <div style="margin-bottom:32px;">
+    <div style="font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">
+      <span class="ko">이 이야기와 연결된 곳</span>
+      <span class="en">Connected to This Story</span>
+    </div>
+    <a href="https://hebronguide.com/london/" class="link-card">
+      <span style="font-size:1.3rem;flex-shrink:0;">🇬🇧</span>
+      <div>
+        <div class="link-title ko">런던 HebronGuide</div>
+        <div class="link-title en">London HebronGuide</div>
+        <div class="link-desc ko">정착 정보 · GP 병원 · 교회 · 교통 · 한인 마트</div>
+        <div class="link-desc en">Settlement · GP · Church · Transport · Korean grocery</div>
+      </div>
+      <span style="margin-left:auto;color:rgba(201,162,39,.5);">→</span>
+    </a>
+    <a href="https://hebronguide.com/story-submit.html" class="link-card">
+      <span style="font-size:1.3rem;flex-shrink:0;">✍️</span>
+      <div>
+        <div class="link-title ko">이야기 제출</div>
+        <div class="link-title en">Submit a Story</div>
+        <div class="link-desc ko">당신의 도시 이야기를 나눠주세요</div>
+        <div class="link-desc en">Share your city's story</div>
+      </div>
+      <span style="margin-left:auto;color:rgba(201,162,39,.5);">→</span>
+    </a>
+    <a href="https://hebronguide.com/story-dallas-01.html" class="link-card">
+      <span style="font-size:1.3rem;flex-shrink:0;">📖</span>
+      <div>
+        <div class="link-title ko">다른 이야기</div>
+        <div class="link-title en">Another Story</div>
+        <div class="link-desc ko">"3년 후 떠날 걸 알았습니다" — 달라스</div>
+        <div class="link-desc en">"I Knew I'd Leave in Three Years" — Dallas</div>
+      </div>
+      <span style="margin-left:auto;color:rgba(201,162,39,.5);">→</span>
+    </a>
+  </div>
+
+  <!-- 공유 -->
+  <div class="share-bar">
+    <p class="share-hint ko">상처가 있어도 다시 손 내밀어 보려는 분께 전해주세요.</p>
+    <p class="share-hint en">Share this with someone who's been hurt but is ready to try again.</p>
+    <div class="share-btns">
+      <button class="btn-share btn-kakao" onclick="shareStory()">💬 <span class="ko">카카오톡</span><span class="en">KakaoTalk</span></button>
+      <button class="btn-share" onclick="copyLink()">🔗 <span class="ko">링크 복사</span><span class="en">Copy Link</span></button>
+    </div>
+  </div>
+
+  <!-- 출처 -->
+  <div class="src-box">
+    <div class="src-title ko">출처 및 참고</div>
+    <div class="src-title en">Sources &amp; References</div>
+    <p class="src"><strong>김성수 목사</strong>, 「끝까지 사람을 믿으시는 예수님」, 시애틀지구촌교회 목회자 칼럼, 2025.06.29 — <a href="https://ijiguchon.org" target="_blank" rel="noopener">ijiguchon.org</a></p>
+    <p class="src ko">실제 이민자 공동체 경험을 바탕으로 재구성한 복합 서사입니다. 등장인물 이름과 세부 사항은 변경했습니다.</p>
+    <p class="src en">This story is a composite narrative reconstructed from real immigrant community experiences. Names and details have been changed.</p>
+    <p class="src">HebronGuide 이야기 스튜디오 — <a href="https://hebronguide.com/story-submit.html" target="_blank">story-submit.html</a></p>
+  </div>
+</div>
+
+<div class="next">
+  <div class="next-lbl ko">모든 도시의 이야기가 모이고 있습니다</div>
+  <div class="next-lbl en">Stories from every city are gathering</div>
+  <br>
+  <a href="https://hebronguide.com" class="btn-next">
+    <span class="ko">🌍 전 세계 67개+ 도시</span>
+    <span class="en">🌍 67+ Cities Worldwide</span>
+  </a>
+</div>
+
+<footer>
+  <div>HebronGuide · <span class="ko">글로벌 환대 커뮤니티</span><span class="en">Global Hospitality Community</span> · © 2026 Hebron Platform LLC</div>
+</footer>
+
+<script>
+function toggleLang(){
+  var html=document.documentElement,btn=document.getElementById('lang-btn');
+  if(html.lang==='ko'){html.lang='en';btn.textContent='한국어';}
+  else{html.lang='ko';btn.textContent='EN';}
+  localStorage.setItem('hg_lang',html.lang);
+}
+(function(){
+  var s=localStorage.getItem('hg_lang');
+  if(s==='en'){document.documentElement.lang='en';var b=document.getElementById('lang-btn');if(b)b.textContent='한국어';}
+})();
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href).then(function(){
+    alert(document.documentElement.lang==='en'?'Link copied!':'링크가 복사됐습니다!');
+  });
+}
+function shareStory(){
+  var ko=document.documentElement.lang==='ko';
+  var title=ko?'"한국 사람이 더 무서웠습니다" — HebronGuide 런던':'"Koreans Were What I Feared Most" — HebronGuide London';
+  var text=ko?'낯선 나라에서 가장 경계한 것은 외국인이 아니었습니다. 런던 이민자 이야기. ':'In a foreign country, the ones he feared most were not foreigners. A London immigrant story. ';
+  if(navigator.share){navigator.share({title:title,text:text,url:window.location.href});}
+  else{navigator.clipboard.writeText(text+window.location.href).then(function(){alert(ko?'복사됐습니다! 카카오톡에 붙여넣기 하세요.':'Copied! Paste into KakaoTalk.');});}
+}
+</script>
+</body>
+</html>
