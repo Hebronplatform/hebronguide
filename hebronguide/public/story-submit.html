@@ -4,7 +4,9 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>이야기를 나눠주세요 — HebronGuide 이야기 스튜디오</title>
-<meta name="description" content="목사님이 목회 현장에서 경험한 이야기를 나눠주세요. HebronGuide가 K-드라마처럼 극적으로 재구성해 전 세계에 전합니다.">
+<meta name="description" content="전 세계 67개+ 도시. 목사님이 목회 현장에서 경험한 이야기를 나눠주세요. HebronGuide가 K-드라마처럼 극적으로 재구성해 전 세계에 전합니다.">
+<meta property="og:title" content="이야기를 나눠주세요 — HebronGuide Story Studio">
+<meta property="og:description" content="전 세계 67개+ 도시 목사님들의 목회 이야기를 수집합니다.">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -17,237 +19,447 @@
 html{scroll-behavior:smooth;background:var(--bg);}
 body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
 
+/* 언어 전환 */
+html[lang="ko"] .en{display:none!important;}
+html[lang="en"] .ko{display:none!important;}
+
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
 .logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;font-family:'Cinzel',serif;}
+.nav-right{display:flex;align-items:center;gap:10px;}
 .nav-tag{font-size:.72rem;color:var(--muted);background:rgba(255,255,255,0.06);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;}
+.lang-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:rgba(236,253,245,.75);font-size:.7rem;font-weight:700;letter-spacing:.06em;border-radius:20px;padding:5px 13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s;}
+.lang-btn:hover{background:rgba(201,162,39,.15);border-color:rgba(201,162,39,.4);color:var(--gold);}
 
 /* HERO */
 .hero{text-align:center;padding:56px 24px 44px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.11),transparent);}
 .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:99px;padding:6px 18px;margin-bottom:22px;}
 .hero h1{font-family:'Noto Serif KR',serif;font-size:clamp(1.7rem,5vw,2.4rem);font-weight:700;color:#fff;line-height:1.4;margin-bottom:16px;}
 .hero h1 em{color:var(--gold);font-style:normal;}
-.hero-sub{font-size:.95rem;color:var(--muted);max-width:520px;margin:0 auto 28px;line-height:2;}
+.hero-sub{font-size:.95rem;color:var(--muted);max-width:540px;margin:0 auto 22px;line-height:2.1;}
+.city-count{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:10px;}
+.city-pill-sm{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:99px;padding:4px 12px;font-size:.74rem;color:var(--muted);}
 .divider{width:50px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:28px auto 0;}
 
+/* 세계 지도 도시 카운터 */
+.world-stats{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;padding:28px 24px;border-bottom:1px solid var(--border);}
+.stat-item{text-align:center;}
+.stat-num{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:900;color:var(--gold);line-height:1;}
+.stat-label{font-size:.72rem;color:var(--muted);margin-top:4px;}
+
 /* HOW IT WORKS */
-.how{max-width:640px;margin:0 auto;padding:44px 24px 32px;}
-.how-title{font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;text-align:center;margin-bottom:24px;}
+.how{max-width:660px;margin:0 auto;padding:40px 24px 28px;}
+.sec-title{font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;text-align:center;margin-bottom:22px;}
 .steps{display:flex;flex-direction:column;gap:0;}
-.step{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.step{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.05);}
 .step:last-child{border-bottom:none;}
-.step-num{min-width:36px;height:36px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;color:var(--gold);font-size:.9rem;flex-shrink:0;}
-.step-body{}
-.step-title{font-size:.92rem;font-weight:800;color:#fff;margin-bottom:4px;}
-.step-desc{font-size:.82rem;color:var(--muted);line-height:1.8;}
+.step-num{min-width:34px;height:34px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;color:var(--gold);font-size:.85rem;flex-shrink:0;}
+.step-title{font-size:.9rem;font-weight:800;color:#fff;margin-bottom:3px;}
+.step-desc{font-size:.81rem;color:var(--muted);line-height:1.8;}
 
 /* 보호 안내 */
-.protect-bar{background:rgba(110,231,183,.05);border:1px solid rgba(110,231,183,.15);border-radius:14px;padding:18px 22px;max-width:640px;margin:0 auto 32px;display:flex;gap:14px;align-items:flex-start;}
-.protect-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
-.protect-text{font-size:.84rem;color:rgba(110,231,183,.8);line-height:1.85;}
+.protect-bar{background:rgba(110,231,183,.05);border:1px solid rgba(110,231,183,.15);border-radius:14px;padding:16px 20px;max-width:660px;margin:0 auto 28px;display:flex;gap:12px;align-items:flex-start;}
+.protect-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px;}
+.protect-text{font-size:.82rem;color:rgba(110,231,183,.8);line-height:1.85;}
 .protect-text strong{color:var(--mint);}
 
+/* 5막 구조 */
+.arc-box{max-width:660px;margin:0 auto 28px;background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:20px 22px;}
+.arc-title{font-size:.68rem;font-weight:800;color:rgba(201,162,39,.55);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;}
+.arc-list{display:flex;gap:0;flex-direction:column;}
+.arc-row{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.arc-row:last-child{border-bottom:none;}
+.arc-n{font-size:.72rem;font-weight:800;color:var(--gold);min-width:26px;padding-top:2px;}
+.arc-name{font-size:.82rem;font-weight:700;color:#fff;margin-bottom:1px;}
+.arc-hint{font-size:.74rem;color:var(--muted);}
+.arc-row:last-child .arc-name{color:var(--mint);}
+
 /* FORM */
-.form-container{max-width:640px;margin:0 auto;padding:0 24px 72px;}
-.q-block{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:26px;margin-bottom:18px;}
-.q-label{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;}
-.q-num{min-width:32px;height:32px;background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;color:var(--gold);font-size:.85rem;flex-shrink:0;}
-.q-text{}
-.q-title{font-size:.97rem;font-weight:800;color:#fff;margin-bottom:3px;}
-.q-hint{font-size:.78rem;color:var(--muted);line-height:1.75;font-style:italic;}
-textarea{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.12);border-radius:12px;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:.9rem;padding:14px 16px;resize:vertical;min-height:100px;line-height:1.8;transition:border .2s;}
+.form-wrap{max-width:660px;margin:0 auto;padding:0 24px 72px;}
+.sec-head{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin:28px 0 14px;padding-bottom:8px;border-bottom:1px solid rgba(201,162,39,.15);}
+.q-block{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:22px;margin-bottom:14px;}
+.q-top{display:flex;gap:12px;align-items:flex-start;margin-bottom:13px;}
+.q-num{min-width:30px;height:30px;background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;color:var(--gold);font-size:.82rem;flex-shrink:0;}
+.q-title{font-size:.93rem;font-weight:800;color:#fff;margin-bottom:3px;}
+.q-hint{font-size:.76rem;color:var(--muted);line-height:1.75;font-style:italic;}
+textarea{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:11px;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:.88rem;padding:13px 15px;resize:vertical;min-height:95px;line-height:1.85;transition:border .2s;}
 textarea:focus{outline:none;border-color:var(--gold);}
-textarea::placeholder{color:rgba(236,253,245,.25);font-style:italic;}
-input[type=text],input[type=email],select.sel{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.12);border-radius:12px;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:.9rem;padding:13px 16px;transition:border .2s;}
-input[type=text]:focus,input[type=email]:focus,select.sel:focus{outline:none;border-color:var(--gold);}
-input::placeholder{color:rgba(236,253,245,.25);}
-select.sel{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A227' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;cursor:pointer;}
-select.sel option{background:#1a2535;}
+textarea::placeholder{color:rgba(236,253,245,.22);font-style:italic;}
+input[type=text],input[type=email]{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:11px;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:.88rem;padding:12px 15px;transition:border .2s;}
+input:focus{outline:none;border-color:var(--gold);}
+input::placeholder{color:rgba(236,253,245,.22);}
+select.sel{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:11px;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:.88rem;padding:12px 15px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A227' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;cursor:pointer;transition:border .2s;}
+select.sel:focus{outline:none;border-color:var(--gold);}
+select.sel option{background:#0d1117;}
 
-/* 기본 정보 그리드 */
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;}
-@media(max-width:480px){.info-grid{grid-template-columns:1fr;}}
-.info-field{display:flex;flex-direction:column;gap:7px;}
-.info-field label{font-size:.74rem;font-weight:700;color:rgba(201,162,39,.7);letter-spacing:.05em;}
-.info-field.full{grid-column:1/-1;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px;}
+@media(max-width:480px){.grid2{grid-template-columns:1fr;}}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field.full{grid-column:1/-1;}
+.field label{font-size:.72rem;font-weight:700;color:rgba(201,162,39,.65);letter-spacing:.04em;}
 
-/* 구분 */
-.section-head{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin:32px 0 16px;padding-bottom:10px;border-bottom:1px solid rgba(201,162,39,.15);}
+/* 언어 선택 탭 */
+.lang-tabs{display:flex;gap:6px;margin-bottom:14px;}
+.ltab{padding:7px 16px;border-radius:99px;font-size:.78rem;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--muted);transition:all .2s;}
+.ltab.active{background:rgba(201,162,39,.12);border-color:rgba(201,162,39,.35);color:var(--gold);}
 
-/* 제출 버튼 */
-.submit-area{text-align:center;margin-top:28px;}
-.btn-submit{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:1rem;border:none;border-radius:50px;padding:16px 40px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;box-shadow:0 6px 28px rgba(201,162,39,.25);}
+/* 제출 */
+.submit-area{text-align:center;margin-top:24px;}
+.btn-submit{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:1rem;border:none;border-radius:50px;padding:16px 42px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;box-shadow:0 6px 28px rgba(201,162,39,.22);}
 .btn-submit:hover{opacity:.88;}
-.submit-note{font-size:.78rem;color:var(--muted);margin-top:12px;line-height:1.8;}
+.submit-note{font-size:.78rem;color:var(--muted);margin-top:12px;line-height:1.85;}
 
-/* 감사 메시지 */
-.thanks-box{display:none;text-align:center;background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.06));border:1px solid rgba(201,162,39,.3);border-radius:20px;padding:40px 28px;margin-top:20px;}
-.thanks-icon{font-size:2.5rem;margin-bottom:16px;}
-.thanks-title{font-family:'Noto Serif KR',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:10px;}
-.thanks-desc{font-size:.9rem;color:var(--muted);line-height:2;}
-.thanks-stamp{font-size:1rem;font-weight:900;color:var(--gold);margin-top:18px;}
+/* 감사 */
+.thanks{display:none;text-align:center;background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.06));border:1px solid rgba(201,162,39,.3);border-radius:20px;padding:44px 28px;margin-top:20px;}
+.thanks-icon{font-size:2.6rem;margin-bottom:18px;}
+.thanks-title{font-family:'Noto Serif KR',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:12px;}
+.thanks-desc{font-size:.9rem;color:var(--muted);line-height:2.1;margin-bottom:20px;}
+.thanks-stamp{font-size:1rem;font-weight:900;color:var(--gold);}
 
-/* 샘플 이야기 미리보기 */
-.sample-bar{background:var(--surface2);border-radius:16px;padding:22px 24px;margin-bottom:32px;max-width:640px;margin-left:auto;margin-right:auto;}
-.sample-label{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
-.sample-title{font-size:1rem;font-weight:800;color:#fff;margin-bottom:6px;}
-.sample-desc{font-size:.82rem;color:var(--muted);line-height:1.8;margin-bottom:14px;}
-.btn-sample{display:inline-flex;align-items:center;gap:6px;color:var(--mint);font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid rgba(110,231,183,.25);border-radius:20px;padding:6px 16px;}
-.btn-sample:hover{background:rgba(110,231,183,.08);}
+/* 샘플 */
+.sample-card{background:var(--surface2);border:1px solid var(--border2);border-radius:14px;padding:18px 20px;max-width:660px;margin:0 auto 24px;}
+.sample-lbl{font-size:.67rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.sample-title{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:5px;}
+.sample-desc{font-size:.8rem;color:var(--muted);line-height:1.8;margin-bottom:12px;}
+.btn-sample{display:inline-flex;align-items:center;gap:6px;color:var(--mint);font-size:.78rem;font-weight:700;text-decoration:none;border:1px solid rgba(110,231,183,.22);border-radius:20px;padding:6px 14px;}
+.btn-sample:hover{background:rgba(110,231,183,.07);}
 
-/* 구조 설명 */
-.structure{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:22px;max-width:640px;margin:0 auto 32px;}
-.structure-title{font-size:.72rem;font-weight:800;color:rgba(201,162,39,.6);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;}
-.arc{display:flex;flex-direction:column;gap:0;}
-.arc-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);}
-.arc-item:last-child{border-bottom:none;}
-.arc-num{font-size:.75rem;font-weight:800;color:var(--gold);min-width:28px;padding-top:2px;}
-.arc-body{}
-.arc-name{font-size:.84rem;font-weight:700;color:#fff;margin-bottom:2px;}
-.arc-hint{font-size:.76rem;color:var(--muted);}
-.arc-item:last-child .arc-name{color:var(--mint);}
+/* 동의 */
+.agree-box{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:16px 18px;margin-bottom:20px;}
 
-footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-align:center;padding:26px 24px;font-size:.74rem;color:rgba(236,253,245,.28);}
+footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-align:center;padding:24px;font-size:.73rem;color:rgba(236,253,245,.27);}
 </style>
 </head>
 <body>
 
 <nav>
   <a href="https://hebronguide.com" class="logo">HebronGuide</a>
-  <span class="nav-tag">📖 이야기 스튜디오</span>
+  <div class="nav-right">
+    <span class="nav-tag ko">📖 이야기 스튜디오</span>
+    <span class="nav-tag en">📖 Story Studio</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="badge">✦ HebronGuide Story Studio</div>
-  <h1>목사님이 경험한 이야기,<br><em>전 세계로 흘러갑니다.</em></h1>
-  <p class="hero-sub">
-    목회 현장에서 만난 한 사람의 이야기.<br>
-    그 사실을 바탕으로 HebronGuide가 K-드라마처럼 극적으로 재구성해<br>
-    전 세계 67개+ 도시 이민자들에게 희망으로 전합니다.
+  <div class="badge">✦ HebronGuide Story Studio · Global</div>
+
+  <h1 class="ko">목사님이 경험한 이야기,<br><em>전 세계로 흘러갑니다.</em></h1>
+  <h1 class="en">Your Story,<br><em>Carried Across the World.</em></h1>
+
+  <p class="hero-sub ko">
+    시애틀에서 런던까지, 두바이에서 상파울루까지.<br>
+    전 세계 67개+ 도시 목사님들이 목회 현장에서 경험한 이야기를 수집합니다.<br>
+    그 이야기를 K-드라마처럼 재구성해 — 매달 새 도시의 이야기로 — 전합니다.
   </p>
+  <p class="hero-sub en">
+    From Seattle to London. Dubai to São Paulo.<br>
+    We collect real stories from pastors in 67+ cities worldwide.<br>
+    Each story is dramatized and published monthly — bringing hope to someone arriving alone.
+  </p>
+
+  <div class="city-count">
+    <span class="city-pill-sm">🇺🇸 미국 31개 도시</span>
+    <span class="city-pill-sm">🇨🇦 캐나다 6개</span>
+    <span class="city-pill-sm">🌎 중남미 4개</span>
+    <span class="city-pill-sm">🇬🇧 유럽 4개</span>
+    <span class="city-pill-sm">🇦🇺 오세아니아 5개</span>
+    <span class="city-pill-sm">🇯🇵 일본 2개</span>
+    <span class="city-pill-sm">🇰🇷 한국 11개</span>
+    <span class="city-pill-sm">🌏 동남아·중동 4개</span>
+  </div>
   <div class="divider"></div>
 </div>
 
-<div style="padding:40px 24px 8px;">
+<!-- 통계 -->
+<div class="world-stats">
+  <div class="stat-item">
+    <div class="stat-num">67<span style="font-size:1.1rem;">+</span></div>
+    <div class="stat-label ko">전 세계 도시</div>
+    <div class="stat-label en">Cities Worldwide</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">1</div>
+    <div class="stat-label ko">도시당 월 1편 이야기</div>
+    <div class="stat-label en">Story per City / Month</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">10<span style="font-size:1.1rem;">분</span></div>
+    <div class="stat-label ko">제출 소요 시간</div>
+    <div class="stat-label en">Time to Submit</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">48<span style="font-size:1.1rem;">h</span></div>
+    <div class="stat-label ko">재구성 후 확인</div>
+    <div class="stat-label en">Review Turnaround</div>
+  </div>
+</div>
+
+<div style="max-width:660px;margin:0 auto;padding:36px 24px 0;">
 
   <!-- 보호 안내 -->
   <div class="protect-bar">
     <div class="protect-icon">🛡️</div>
-    <div class="protect-text">
+    <div class="protect-text ko">
       <strong>이름과 세부 사항은 반드시 보호됩니다.</strong><br>
-      제출해 주신 내용은 팩트로만 활용하며, 이름·장소·날짜는 변경해 재구성합니다.
-      <strong>감정과 사건의 본질만 그대로</strong> 살립니다.
+      이름·장소는 변경하고, 감정·사건의 본질만 살립니다.
       출판 전 목사님께서 최종 확인하십니다.
+    </div>
+    <div class="protect-text en">
+      <strong>Names and details are always protected.</strong><br>
+      We change names and locations, but preserve the emotional truth.
+      You review the final story before publication.
     </div>
   </div>
 
   <!-- 진행 과정 -->
-  <div class="how">
-    <div class="how-title">이렇게 진행됩니다</div>
+  <div class="how" style="padding-top:0;">
+    <div class="sec-title ko">이렇게 진행됩니다</div>
+    <div class="sec-title en">How It Works</div>
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
-        <div class="step-body">
-          <div class="step-title">5개 질문에 답해주세요 (10분)</div>
-          <div class="step-desc">아래 양식에 경험하신 이야기의 핵심을 적어주세요. 문장이 완벽하지 않아도 됩니다. 기억나는 대로면 충분합니다.</div>
+        <div>
+          <div class="step-title ko">5개 질문에 답해주세요 (10분)</div>
+          <div class="step-title en">Answer 5 questions (10 min)</div>
+          <div class="step-desc ko">문장이 완벽하지 않아도 됩니다. 기억나는 대로면 충분합니다. 한국어·영어 모두 가능합니다.</div>
+          <div class="step-desc en">Perfect sentences are not required. Korean or English — write however is comfortable.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <div class="step-body">
-          <div class="step-title">HebronGuide팀이 재구성합니다 (48시간)</div>
-          <div class="step-desc">팩트를 바탕으로 K-드라마 5막 구조로 재구성합니다. 이름·장소 변경, 감동 유지, 희망으로 마무리.</div>
+        <div>
+          <div class="step-title ko">HebronGuide팀이 K-드라마 5막으로 재구성 (48시간)</div>
+          <div class="step-title en">Our team dramatizes into 5-act structure (48 hrs)</div>
+          <div class="step-desc ko">이름·장소 변경, 감동 유지, 희망으로 마무리. 한/영 두 버전으로 완성합니다.</div>
+          <div class="step-desc en">Names and locations changed. Emotion preserved. Ends with hope. Both Korean and English versions.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <div class="step-body">
-          <div class="step-title">목사님이 최종 확인하십니다</div>
-          <div class="step-desc">완성된 이야기를 이메일로 보내드립니다. "이 이야기가 사실의 본질에서 벗어나지 않습니까?" 확인 후 출판합니다.</div>
+        <div>
+          <div class="step-title ko">목사님이 최종 확인하십니다</div>
+          <div class="step-title en">You review and approve</div>
+          <div class="step-desc ko">"이 이야기가 사실의 본질에서 벗어나지 않습니까?" — 확인 후 출판합니다.</div>
+          <div class="step-desc en">"Does this story stay true to the essence of what happened?" — Published only after your approval.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">4</div>
-        <div class="step-body">
-          <div class="step-title">전 세계로 전해집니다</div>
-          <div class="step-desc">HebronGuide 해당 도시 페이지에 "이달의 이야기"로 게시됩니다. 카카오톡으로 공유됩니다.</div>
+        <div>
+          <div class="step-title ko">해당 도시 HebronGuide에 게시됩니다</div>
+          <div class="step-title en">Published on that city's HebronGuide page</div>
+          <div class="step-desc ko">낯선 도시에 도착한 누군가가 이 이야기를 읽고 덜 외로워집니다. 카카오톡·SNS로 공유됩니다.</div>
+          <div class="step-desc en">Someone arriving alone in that city reads this story and feels less alone. Shared via KakaoTalk and social media.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 샘플 -->
-  <div class="sample-bar">
-    <div class="sample-label">📖 이렇게 만들어집니다</div>
-    <div class="sample-title">"반기는 사람이 없었습니다" — 시애틀 이야기</div>
-    <div class="sample-desc">김성수 목사님의 실제 칼럼을 바탕으로 재구성한 첫 번째 헤브론 이야기입니다.</div>
-    <a href="https://hebronguide.com/story-seattle-01.html" class="btn-sample">이야기 읽기 →</a>
+  <!-- 5막 구조 -->
+  <div class="arc-box">
+    <div class="arc-title ko">📐 K-드라마 5막 구조 — 모든 이야기에 적용</div>
+    <div class="arc-title en">📐 5-Act K-Drama Structure — Applied to Every Story</div>
+    <div class="arc-list">
+      <div class="arc-row"><div class="arc-n">1막</div><div><div class="arc-name ko">도착 (Arrival)</div><div class="arc-name en">Arrival</div><div class="arc-hint ko">낯선 땅, 첫 순간 — 독자가 그 공간 안으로</div><div class="arc-hint en">Unfamiliar land, first moment — reader steps inside that scene</div></div></div>
+      <div class="arc-row"><div class="arc-n">2막</div><div><div class="arc-name ko">막막함 (The Wall)</div><div class="arc-name en">The Wall</div><div class="arc-hint ko">가장 힘든 순간 — "나도 그랬다"는 공감</div><div class="arc-hint en">Hardest moment — "I've been there too"</div></div></div>
+      <div class="arc-row"><div class="arc-n">3막</div><div><div class="arc-name ko">만남 (The Encounter)</div><div class="arc-name en">The Encounter</div><div class="arc-hint ko">예상치 못한 연결 — 짧지만 가장 강렬</div><div class="arc-hint en">Unexpected connection — brief but most powerful</div></div></div>
+      <div class="arc-row"><div class="arc-n">4막</div><div><div class="arc-name ko">변화 (The Turn)</div><div class="arc-name en">The Turn</div><div class="arc-hint ko">무언가 달라진 순간 — 작아도 된다</div><div class="arc-hint en">Something shifts — even small changes count</div></div></div>
+      <div class="arc-row"><div class="arc-n">5막</div><div><div class="arc-name ko">희망 (The Hope) ✦ 필수</div><div class="arc-name en">The Hope ✦ Required</div><div class="arc-hint ko">"당신도 그 사람이 될 수 있습니다" — 항상 희망으로</div><div class="arc-hint en">"You could be that person" — always ends with hope</div></div></div>
+    </div>
   </div>
 
-  <!-- 5막 구조 -->
-  <div class="structure">
-    <div class="structure-title">📐 K-드라마 5막 구조 — 모든 이야기에 적용됩니다</div>
-    <div class="arc">
-      <div class="arc-item"><div class="arc-num">1막</div><div class="arc-body"><div class="arc-name">도착 (Arrival)</div><div class="arc-hint">낯선 땅, 첫 순간 — 독자가 그 장면 안으로 들어가게</div></div></div>
-      <div class="arc-item"><div class="arc-num">2막</div><div class="arc-body"><div class="arc-name">막막함 (The Wall)</div><div class="arc-hint">가장 힘든 순간 — "나도 그랬다"는 공감</div></div></div>
-      <div class="arc-item"><div class="arc-num">3막</div><div class="arc-body"><div class="arc-name">만남 (The Encounter)</div><div class="arc-hint">예상치 못한 연결 — 짧지만 가장 강렬한 장면</div></div></div>
-      <div class="arc-item"><div class="arc-num">4막</div><div class="arc-body"><div class="arc-name">변화 (The Turn)</div><div class="arc-hint">무언가 달라진 순간 — 작아도 된다</div></div></div>
-      <div class="arc-item"><div class="arc-num">5막</div><div class="arc-body"><div class="arc-name">희망 (The Hope) ✦ 필수</div><div class="arc-hint">"당신도 그 사람이 될 수 있습니다" — 항상 희망으로 끝납니다</div></div></div>
-    </div>
+  <!-- 샘플 -->
+  <div class="sample-card">
+    <div class="sample-lbl ko">📖 완성된 이야기 예시</div>
+    <div class="sample-lbl en">📖 Example of a completed story</div>
+    <div class="sample-title ko">"반기는 사람이 없었습니다" — 시애틀</div>
+    <div class="sample-title en">"There Was No One to Welcome Me" — Seattle</div>
+    <div class="sample-desc ko">시애틀지구촌교회 김성수 목사님의 실제 칼럼을 바탕으로 재구성한 첫 번째 헤브론 이야기.</div>
+    <div class="sample-desc en">The first HebronGuide story, reconstructed from the real pastoral column of Rev. Kim Sung-su, Seattle.</div>
+    <a href="https://hebronguide.com/story-seattle-01.html" class="btn-sample">
+      <span class="ko">이야기 읽기 →</span>
+      <span class="en">Read the Story →</span>
+    </a>
   </div>
 
 </div>
 
 <!-- FORM -->
-<div class="form-container">
-
-  <div class="section-head">📋 이야기 제출 양식</div>
+<div class="form-wrap">
+  <div class="sec-head ko">📋 이야기 제출 — 5개 질문</div>
+  <div class="sec-head en">📋 Story Submission — 5 Questions</div>
 
   <form id="storyForm" onsubmit="submitStory(event)">
 
-    <!-- 기본 정보 -->
+    <!-- 언어 선택 -->
     <div class="q-block">
-      <div class="q-label">
+      <div class="q-top">
         <div class="q-num">✦</div>
-        <div class="q-text">
-          <div class="q-title">기본 정보</div>
-          <div class="q-hint">목사님과 이야기에 대한 기본 정보를 적어주세요.</div>
+        <div>
+          <div class="q-title ko">작성 언어 선택</div>
+          <div class="q-title en">Preferred Writing Language</div>
+          <div class="q-hint ko">한국어·영어 어느 쪽이든 편한 언어로 작성해 주세요.</div>
+          <div class="q-hint en">Write in whichever language is more comfortable for you.</div>
         </div>
       </div>
-      <div class="info-grid">
-        <div class="info-field">
-          <label>성함 *</label>
-          <input type="text" id="s_name" placeholder="홍길동 목사" required>
+      <div class="lang-tabs">
+        <div class="ltab active" onclick="setWriteLang('ko',this)">한국어</div>
+        <div class="ltab" onclick="setWriteLang('en',this)">English</div>
+        <div class="ltab" onclick="setWriteLang('both',this)">
+          <span class="ko">둘 다</span><span class="en">Both</span>
         </div>
-        <div class="info-field">
-          <label>이메일 *</label>
+      </div>
+      <input type="hidden" id="s_writelang" value="ko">
+    </div>
+
+    <!-- 기본 정보 -->
+    <div class="q-block">
+      <div class="q-top">
+        <div class="q-num">✦</div>
+        <div>
+          <div class="q-title ko">기본 정보</div>
+          <div class="q-title en">Basic Information</div>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="field">
+          <label ko class="ko">성함 / Name *</label>
+          <label class="en">Your Name *</label>
+          <input type="text" id="s_name" placeholder="Pastor / 목사 Kim..." required>
+        </div>
+        <div class="field">
+          <label class="ko">이메일 *</label>
+          <label class="en">Email *</label>
           <input type="email" id="s_email" placeholder="pastor@church.org" required>
         </div>
-        <div class="info-field">
-          <label>교회명</label>
-          <input type="text" id="s_church" placeholder="○○교회">
+        <div class="field">
+          <label class="ko">교회명</label>
+          <label class="en">Church Name</label>
+          <input type="text" id="s_church" placeholder="○○ Church / 교회">
         </div>
-        <div class="info-field">
-          <label>이야기 속 도시 *</label>
-          <input type="text" id="s_city" placeholder="예: 시애틀, 달라스, 서울..." required>
+        <div class="field">
+          <label class="ko">이야기 속 도시 *</label>
+          <label class="en">City of the Story *</label>
+          <select class="sel" id="s_city" required>
+            <option value="" class="ko">── 도시 선택 ──</option>
+            <option value="" class="en">── Select a city ──</option>
+            <optgroup label="🇺🇸 미국 서부 US West">
+              <option>시애틀 Seattle, WA</option>
+              <option>로스앤젤레스 Los Angeles, CA</option>
+              <option>샌프란시스코 San Francisco, CA</option>
+              <option>오렌지카운티 Orange County, CA</option>
+              <option>샌디에고 San Diego, CA</option>
+              <option>포틀랜드 Portland, OR</option>
+              <option>라스베이거스 Las Vegas, NV</option>
+              <option>피닉스 Phoenix, AZ</option>
+              <option>덴버 Denver, CO</option>
+              <option>호놀룰루 Honolulu, HI</option>
+              <option>앵커리지 Anchorage, AK</option>
+            </optgroup>
+            <optgroup label="🇺🇸 미국 중·남부 US South &amp; Midwest">
+              <option>달라스 Dallas, TX</option>
+              <option>휴스턴 Houston, TX</option>
+              <option>시카고 Chicago, IL</option>
+              <option>애틀랜타 Atlanta, GA</option>
+              <option>마이애미 Miami, FL</option>
+              <option>내쉬빌 Nashville, TN</option>
+              <option>샬럿 Charlotte, NC</option>
+              <option>롤리 Raleigh, NC</option>
+              <option>콜럼버스 Columbus, OH</option>
+              <option>미니애폴리스 Minneapolis, MN</option>
+              <option>캔자스시티 Kansas City, MO</option>
+              <option>루이빌 Louisville, KY</option>
+              <option>올랜도 Orlando, FL</option>
+              <option>투손 Tucson, AZ</option>
+              <option>페이엣빌 Fayetteville, NC</option>
+              <option>킬린 Killeen, TX</option>
+            </optgroup>
+            <optgroup label="🇺🇸 미국 동부 US East">
+              <option>뉴욕 New York, NY</option>
+              <option>워싱턴 DC Washington DC</option>
+              <option>보스턴 Boston, MA</option>
+              <option>필라델피아 Philadelphia, PA</option>
+              <option>메릴랜드 Maryland, MD</option>
+            </optgroup>
+            <optgroup label="🇨🇦 캐나다 Canada">
+              <option>토론토 Toronto, ON</option>
+              <option>밴쿠버 Vancouver, BC</option>
+              <option>캘거리 Calgary, AB</option>
+              <option>에드먼턴 Edmonton, AB</option>
+              <option>오타와 Ottawa, ON</option>
+              <option>위니펙 Winnipeg, MB</option>
+            </optgroup>
+            <optgroup label="🌎 중남미 Latin America">
+              <option>멕시코시티 Mexico City</option>
+              <option>과달라하라 Guadalajara</option>
+              <option>몬테레이 Monterrey</option>
+              <option>상파울루 São Paulo, Brazil</option>
+            </optgroup>
+            <optgroup label="🇬🇧 유럽 Europe">
+              <option>런던 London, UK</option>
+              <option>파리 Paris, France</option>
+              <option>베를린 Berlin, Germany</option>
+              <option>프랑크푸르트 Frankfurt, Germany</option>
+            </optgroup>
+            <optgroup label="🇦🇺 오세아니아 Oceania">
+              <option>시드니 Sydney, Australia</option>
+              <option>멜버른 Melbourne, Australia</option>
+              <option>브리즈번 Brisbane, Australia</option>
+              <option>퍼스 Perth, Australia</option>
+              <option>오클랜드 Auckland, NZ</option>
+            </optgroup>
+            <optgroup label="🇯🇵 일본 Japan">
+              <option>도쿄 Tokyo</option>
+              <option>오사카 Osaka</option>
+            </optgroup>
+            <optgroup label="🇰🇷 한국 Korea">
+              <option>서울 Seoul</option>
+              <option>부산 Busan</option>
+              <option>인천 Incheon</option>
+              <option>대구 Daegu</option>
+              <option>광주 Gwangju</option>
+              <option>대전 Daejeon</option>
+              <option>제주 Jeju</option>
+              <option>안산 Ansan</option>
+              <option>창원 Changwon</option>
+              <option>천안·아산 Cheonan·Asan</option>
+              <option>분당 Bundang</option>
+            </optgroup>
+            <optgroup label="🌏 동남아·중동 SE Asia &amp; Middle East">
+              <option>싱가포르 Singapore</option>
+              <option>방콕 Bangkok, Thailand</option>
+              <option>호치민 Ho Chi Minh City, Vietnam</option>
+              <option>두바이 Dubai, UAE</option>
+            </optgroup>
+            <optgroup label="기타 Other">
+              <option>목록에 없는 도시 (아래에 직접 기재)</option>
+            </optgroup>
+          </select>
         </div>
-        <div class="info-field full">
-          <label>시기 (대략)</label>
-          <input type="text" id="s_when" placeholder="예: 2018년경, 코로나 전, 최근 3년 내...">
+        <div class="field">
+          <label class="ko">시기 (대략)</label>
+          <label class="en">Approximate Time Period</label>
+          <input type="text" id="s_when" placeholder="예: 2019년경 / around 2019...">
         </div>
-        <div class="info-field full">
-          <label>이야기 속 인물 유형 *</label>
+        <div class="field full">
+          <label class="ko">이야기 속 인물 유형 *</label>
+          <label class="en">Type of Person in the Story *</label>
           <select class="sel" id="s_type" required>
-            <option value="">선택해주세요</option>
-            <option>새로 도착한 이민자</option>
-            <option>유학생</option>
-            <option>주재원 가정</option>
-            <option>역이민 (한국 귀환)</option>
-            <option>비신자 이웃</option>
-            <option>2세 한인</option>
-            <option>다른 민족 이민자</option>
-            <option>기타</option>
+            <option value="">
+              <span class="ko">선택해주세요</span>
+              <span class="en">Select</span>
+            </option>
+            <option>새로 도착한 이민자 / Newly arrived immigrant</option>
+            <option>유학생 / International student</option>
+            <option>주재원 가정 / Corporate expat family</option>
+            <option>역이민 (한국 귀환) / Return migration to Korea</option>
+            <option>비신자 이웃 / Non-believing neighbor</option>
+            <option>2세 한인 / Second-generation Korean</option>
+            <option>다른 민족 이민자 / Non-Korean immigrant</option>
+            <option>난민·망명 신청자 / Refugee / Asylum seeker</option>
+            <option>기타 / Other</option>
           </select>
         </div>
       </div>
@@ -255,123 +467,185 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
 
     <!-- Q1 -->
     <div class="q-block">
-      <div class="q-label">
+      <div class="q-top">
         <div class="q-num">1</div>
-        <div class="q-text">
-          <div class="q-title">도착의 장면</div>
-          <div class="q-hint">그 사람이 처음 그 도시에 왔을 때의 구체적인 상황은 어떠했나요?<br>언제쯤? 혼자였나요, 가족과 함께였나요? 어떤 표정이었나요?</div>
+        <div>
+          <div class="q-title ko">도착의 장면</div>
+          <div class="q-title en">The Arrival Scene</div>
+          <div class="q-hint ko">그 사람이 처음 그 도시에 왔을 때의 구체적인 상황은?<br>언제? 혼자였나요, 가족과 함께였나요? 어떤 표정이었나요?</div>
+          <div class="q-hint en">What was the specific situation when this person first arrived in that city?<br>When? Alone or with family? What did their face look like?</div>
         </div>
       </div>
-      <textarea id="s_q1" placeholder="예: 2016년 겨울, 한 청년이 공항에서 나왔을 때 마중 나온 사람이 없었습니다. 짐이 너무 많아서 혼자 끌기도 힘들었는데..." rows="4" required></textarea>
+      <textarea id="s_q1" rows="4" required
+        placeholder="예: 2017년 여름, 한 여성이 두바이 공항에서 나왔을 때 남편은 선발대로 먼저 가 있었고 세 살짜리 아이를 혼자 안고 있었습니다...
+Ex: In the summer of 2017, a woman came out of Dubai airport holding her three-year-old alone — her husband had gone ahead as an advance party..."></textarea>
     </div>
 
     <!-- Q2 -->
     <div class="q-block">
-      <div class="q-label">
+      <div class="q-top">
         <div class="q-num">2</div>
-        <div class="q-text">
-          <div class="q-title">가장 막막했던 순간</div>
-          <div class="q-hint">그 사람에게 가장 힘들었던 구체적인 순간 하나를 적어주세요.<br>무엇이 없었나요? 어떤 감정이었나요?</div>
+        <div>
+          <div class="q-title ko">가장 막막했던 순간</div>
+          <div class="q-title en">The Hardest Moment</div>
+          <div class="q-hint ko">그 사람에게 가장 힘들었던 구체적인 순간 하나를.<br>무엇이 없어서? 어떤 감정이었나요?</div>
+          <div class="q-hint en">One specific moment that was hardest for this person.<br>What was missing? What did they feel?</div>
         </div>
       </div>
-      <textarea id="s_q2" placeholder="예: 은행 계좌를 못 만들어서 3주 동안 현금만 쓰다가 강도를 당했습니다. 아무에게도 말하지 못했습니다..." rows="4" required></textarea>
+      <textarea id="s_q2" rows="4" required
+        placeholder="예: 아이가 열이 40도였는데 어느 병원을 가야 하는지, 영어로 어떻게 말해야 하는지 아무것도 몰랐습니다...
+Ex: The child had a fever of 40°C and she had no idea which hospital to go to or how to explain it in English..."></textarea>
     </div>
 
     <!-- Q3 -->
     <div class="q-block">
-      <div class="q-label">
+      <div class="q-top">
         <div class="q-num">3</div>
-        <div class="q-text">
-          <div class="q-title">연결의 순간</div>
-          <div class="q-hint">어떻게 처음 연결이 시작되었나요?<br>누가 먼저 다가갔나요? 어떤 상황에서? 어떤 말 한마디가 마음을 열었나요?</div>
+        <div>
+          <div class="q-title ko">연결의 순간</div>
+          <div class="q-title en">The Encounter</div>
+          <div class="q-hint ko">어떻게 처음 연결이 시작되었나요?<br>누가 먼저 다가갔나요? 어떤 말 한마디가 마음을 열었나요?</div>
+          <div class="q-hint en">How did the first connection begin?<br>Who approached first? What single sentence opened the door?</div>
         </div>
       </div>
-      <textarea id="s_q3" placeholder="예: 교회 앞 주차장에서 트렁크가 안 열려 혼자 쩔쩔매는데, 성도 한 분이 다가와서 아무 말 없이 같이 밀어줬습니다..." rows="4" required></textarea>
+      <textarea id="s_q3" rows="4" required
+        placeholder="예: 교회 성도 한 분이 한국 마트에서 우연히 만나 무작정 병원까지 같이 운전해 주셨습니다. 아무것도 물어보지 않고...
+Ex: A church member happened to meet her at the Korean market and simply drove her to the hospital — without asking anything..."></textarea>
     </div>
 
     <!-- Q4 -->
     <div class="q-block">
-      <div class="q-label">
+      <div class="q-top">
         <div class="q-num">4</div>
-        <div class="q-text">
-          <div class="q-title">무엇이 달라졌나요</div>
-          <div class="q-hint">그 만남 이후 무엇이 변했나요?<br>작은 것도 좋습니다. 구체적일수록 좋습니다.</div>
+        <div>
+          <div class="q-title ko">무엇이 달라졌나요</div>
+          <div class="q-title en">What Changed</div>
+          <div class="q-hint ko">그 만남 이후 무엇이 변했나요? 작은 것도 괜찮습니다.</div>
+          <div class="q-hint en">What changed after that encounter? Small things count.</div>
         </div>
       </div>
-      <textarea id="s_q4" placeholder="예: 그 다음 주부터 주일마다 나오기 시작했습니다. 처음에는 예배가 끝나면 바로 갔는데, 한 달 후에는 점심을 같이 먹기 시작했고..." rows="4" required></textarea>
+      <textarea id="s_q4" rows="4" required
+        placeholder="예: 그 다음 주 처음으로 교회에 왔습니다. 아직 예배의 의미는 몰랐지만 그 분이 있어서 왔다고 했습니다...
+Ex: The following week she came to church for the first time. She said she didn't understand worship yet — but she came because that person was there..."></textarea>
     </div>
 
     <!-- Q5 -->
     <div class="q-block">
-      <div class="q-label">
+      <div class="q-top">
         <div class="q-num">5</div>
-        <div class="q-text">
-          <div class="q-title">지금 그 이야기는 어디로 흘러가고 있나요</div>
-          <div class="q-hint">지금 그 사람은 어떻게 살고 있나요?<br>교회를 다니고 있나요? 다른 사람을 돕고 있나요? 어떤 모습으로 남아 있나요?</div>
+        <div>
+          <div class="q-title ko">지금 그 이야기는 어디로 흘러가고 있나요</div>
+          <div class="q-title en">Where Is the Story Now</div>
+          <div class="q-hint ko">지금 그 사람은 어떻게 살고 있나요?<br>교회를 다니나요? 다른 사람을 돕고 있나요?</div>
+          <div class="q-hint en">How is this person living now?<br>Are they attending church? Helping others?</div>
         </div>
       </div>
-      <textarea id="s_q5" placeholder="예: 지금은 새로 도착하는 유학생들 픽업을 직접 하고 있습니다. 공항에 마중을 못 가봤던 그 기억 때문이라고 했습니다..." rows="4" required></textarea>
+      <textarea id="s_q5" rows="4" required
+        placeholder="예: 지금은 두바이 한인교회 새신자 담당 간사로 섬기고 있습니다. 공항에서 처음 도착하는 한국 사람을 픽업하는 일을 자원해서 합니다...
+Ex: She now serves as the new members coordinator at the Korean church in Dubai. She volunteers to pick up newly arrived Koreans at the airport..."></textarea>
     </div>
 
     <!-- 추가 -->
     <div class="q-block">
-      <div class="q-label">
+      <div class="q-top">
         <div class="q-num">+</div>
-        <div class="q-text">
-          <div class="q-title">더 전하고 싶은 것 (선택)</div>
-          <div class="q-hint">위 질문에 담지 못한 것, 꼭 포함되었으면 하는 문장, 또는 주의사항이 있다면 적어주세요.</div>
+        <div>
+          <div class="q-title ko">더 전하고 싶은 것 (선택)</div>
+          <div class="q-title en">Anything Else (Optional)</div>
+          <div class="q-hint ko">꼭 포함되었으면 하는 문장, 주의사항, 또는 이 이야기에서 가장 중요한 것.</div>
+          <div class="q-hint en">A sentence you want preserved, privacy notes, or what matters most in this story.</div>
         </div>
       </div>
-      <textarea id="s_extra" placeholder="예: 이 분은 현재도 우리 교회 성도이니 특히 신분 보호를 부탁드립니다. / 이 이야기에서 꼭 살려주셨으면 하는 문장은..." rows="3"></textarea>
+      <textarea id="s_extra" rows="3"
+        placeholder="예: 이 분은 현재도 우리 교회 성도이니 특히 도시명도 바꿔주세요 / Please change even the city name as this person is still in our congregation..."></textarea>
     </div>
 
     <!-- 동의 -->
-    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:18px 20px;margin-bottom:24px;">
+    <div class="agree-box">
       <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;">
         <input type="checkbox" id="s_agree" required style="width:18px;height:18px;margin-top:3px;flex-shrink:0;accent-color:var(--gold);">
-        <span style="font-size:.83rem;color:var(--muted);line-height:1.85;">
-          제출한 내용이 HebronGuide 이야기 스튜디오에 의해 재구성되는 것에 동의합니다.
-          이름·장소 등 식별 정보는 변경되며, 출판 전 최종 확인 이메일이 발송됩니다.
+        <span style="font-size:.82rem;color:var(--muted);line-height:1.85;">
+          <span class="ko">제출한 내용이 HebronGuide 이야기 스튜디오에 의해 재구성되는 것에 동의합니다.
+          이름·장소 등 식별 정보는 변경되며, 출판 전 최종 확인 이메일이 발송됩니다.</span>
+          <span class="en">I agree that the submitted content may be dramatized by the HebronGuide Story Studio.
+          Names and identifying details will be changed. A review email will be sent before publication.</span>
         </span>
       </label>
     </div>
 
     <div class="submit-area">
-      <button type="submit" class="btn-submit">✦ 이야기 제출하기</button>
-      <p class="submit-note">48시간 이내 HebronGuide팀이 연락드립니다.<br>이야기 하나가 전 세계 이민자들에게 희망이 됩니다.</p>
+      <button type="submit" class="btn-submit">
+        ✦ <span class="ko">이야기 제출하기</span><span class="en">Submit My Story</span>
+      </button>
+      <p class="submit-note ko">
+        48시간 이내 HebronGuide팀이 연락드립니다.<br>
+        목사님의 이야기 하나가 전 세계 이민자들에게 희망이 됩니다.
+      </p>
+      <p class="submit-note en">
+        Our team will contact you within 48 hours.<br>
+        Your one story becomes hope for immigrants arriving around the world.
+      </p>
     </div>
 
   </form>
 
-  <!-- 감사 메시지 -->
-  <div id="thankYou" class="thanks-box">
+  <!-- 감사 -->
+  <div id="thankYou" class="thanks">
     <div class="thanks-icon">🙏</div>
-    <div class="thanks-title">이야기를 나눠주셔서 감사합니다.</div>
-    <div class="thanks-desc">
+    <div class="thanks-title ko">이야기를 나눠주셔서 감사합니다.</div>
+    <div class="thanks-title en">Thank you for sharing your story.</div>
+    <div class="thanks-desc ko">
       48시간 이내에 재구성된 이야기 초안을 이메일로 보내드립니다.<br>
       목사님이 확인하신 후 출판됩니다.<br><br>
       목사님의 이야기 하나가<br>
-      낯선 도시에 도착한 누군가의 손을 잡아줄 것입니다.
+      낯선 도시에 혼자 도착한 누군가의 손을 잡아줄 것입니다.
     </div>
-    <div class="thanks-stamp">HebronGuide · 글로벌 환대 커뮤니티</div>
+    <div class="thanks-desc en">
+      We'll send you a draft of the dramatized story within 48 hours.<br>
+      It will be published only after your review and approval.<br><br>
+      Your story will reach out and hold the hand<br>
+      of someone arriving alone in an unfamiliar city.
+    </div>
+    <div class="thanks-stamp">HebronGuide · Global Hospitality Community</div>
   </div>
 
 </div>
 
 <footer>
-  <div>HebronGuide 이야기 스튜디오 · © 2026 Hebron Platform LLC</div>
+  <div>HebronGuide Story Studio · © 2026 Hebron Platform LLC · <span class="ko">전 세계 67개+ 도시</span><span class="en">67+ Cities Worldwide</span></div>
   <div style="margin-top:5px;opacity:.7;">hebronplatform@gmail.com · hebronguide.com</div>
 </footer>
 
 <script>
-function submitStory(e) {
+/* 언어 전환 */
+function toggleLang(){
+  var html=document.documentElement,btn=document.getElementById('lang-btn');
+  if(html.lang==='ko'){html.lang='en';btn.textContent='한국어';}
+  else{html.lang='ko';btn.textContent='EN';}
+  localStorage.setItem('hg_lang',html.lang);
+}
+(function(){
+  var s=localStorage.getItem('hg_lang');
+  if(s==='en'){document.documentElement.lang='en';var b=document.getElementById('lang-btn');if(b)b.textContent='한국어';}
+})();
+
+/* 작성 언어 탭 */
+function setWriteLang(lang,el){
+  document.querySelectorAll('.ltab').forEach(function(t){t.classList.remove('active');});
+  el.classList.add('active');
+  document.getElementById('s_writelang').value=lang;
+}
+
+/* 제출 */
+function submitStory(e){
   e.preventDefault();
   var name   = document.getElementById('s_name').value.trim();
   var email  = document.getElementById('s_email').value.trim();
   var church = document.getElementById('s_church').value.trim();
-  var city   = document.getElementById('s_city').value.trim();
+  var city   = document.getElementById('s_city').value;
   var when   = document.getElementById('s_when').value.trim();
   var type   = document.getElementById('s_type').value;
+  var wlang  = document.getElementById('s_writelang').value;
   var q1     = document.getElementById('s_q1').value.trim();
   var q2     = document.getElementById('s_q2').value.trim();
   var q3     = document.getElementById('s_q3').value.trim();
@@ -380,33 +654,34 @@ function submitStory(e) {
   var extra  = document.getElementById('s_extra').value.trim();
 
   var body =
-    '[HebronGuide 이야기 제출]\n\n' +
+    '[HebronGuide 이야기 스튜디오 — 전 세계 이야기 제출]\n\n' +
     '── 기본 정보 ──\n' +
-    '성함: ' + name + '\n' +
-    '이메일: ' + email + '\n' +
-    '교회: ' + (church||'미기재') + '\n' +
-    '도시: ' + city + '\n' +
-    '시기: ' + (when||'미기재') + '\n' +
-    '인물 유형: ' + type + '\n\n' +
-    '── 5개 핵심 질문 ──\n\n' +
-    'Q1. 도착의 장면\n' + q1 + '\n\n' +
-    'Q2. 가장 막막했던 순간\n' + q2 + '\n\n' +
-    'Q3. 연결의 순간\n' + q3 + '\n\n' +
-    'Q4. 무엇이 달라졌나\n' + q4 + '\n\n' +
-    'Q5. 지금 이야기는\n' + q5 +
-    (extra ? '\n\n── 추가 사항 ──\n' + extra : '');
+    '이름 / Name: ' + name + '\n' +
+    '이메일 / Email: ' + email + '\n' +
+    '교회 / Church: ' + (church||'미기재') + '\n' +
+    '도시 / City: ' + city + '\n' +
+    '시기 / Period: ' + (when||'미기재') + '\n' +
+    '인물 유형 / Person Type: ' + type + '\n' +
+    '작성 언어 / Writing Language: ' + wlang + '\n\n' +
+    '── 5개 질문 / 5 Questions ──\n\n' +
+    'Q1. 도착의 장면 / The Arrival Scene\n' + q1 + '\n\n' +
+    'Q2. 가장 막막했던 순간 / The Hardest Moment\n' + q2 + '\n\n' +
+    'Q3. 연결의 순간 / The Encounter\n' + q3 + '\n\n' +
+    'Q4. 무엇이 달라졌나 / What Changed\n' + q4 + '\n\n' +
+    'Q5. 지금 이야기는 / Where Is the Story Now\n' + q5 +
+    (extra ? '\n\n── 추가 사항 / Additional Notes ──\n' + extra : '');
 
-  var subject = '[HebronGuide 이야기] ' + city + ' — ' + name;
+  var subject = '[HebronGuide Story] ' + city + ' — ' + name;
   var mailto = 'mailto:hebronplatform@gmail.com' +
     '?cc=' + encodeURIComponent(email) +
     '&subject=' + encodeURIComponent(subject) +
     '&body=' + encodeURIComponent(body);
 
   window.location.href = mailto;
-
-  document.getElementById('storyForm').style.display = 'none';
-  document.getElementById('thankYou').style.display = 'block';
-  document.getElementById('thankYou').scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('storyForm').style.display='none';
+  var t=document.getElementById('thankYou');
+  t.style.display='block';
+  t.scrollIntoView({behavior:'smooth'});
 }
 </script>
 </body>
