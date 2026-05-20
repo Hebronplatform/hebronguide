@@ -310,8 +310,14 @@
     setTableLoading()
     try {
       if (tab === 'community') {
-        const { data } = await sbMain.from('community_items').select('*').order('created_at', { ascending: false })
-        allData = data || []
+        // community_items + content_items 두 테이블 합쳐서 조회
+        const [r1, r2] = await Promise.allSettled([
+          sbMain.from('community_items').select('*').order('created_at', { ascending: false }),
+          sbMain.from('content_items').select('*').order('created_at', { ascending: false }),
+        ])
+        const d1 = r1.status === 'fulfilled' ? (r1.value.data || []) : []
+        const d2 = r2.status === 'fulfilled' ? (r2.value.data || []) : []
+        allData = [...d1, ...d2].sort((a,b) => new Date(b.created_at||0) - new Date(a.created_at||0))
         renderCommunity(allData)
       } else if (tab === 'churches') {
         const { data } = await sbMain.from('churches').select('*').order('created_at', { ascending: false }).limit(200)
