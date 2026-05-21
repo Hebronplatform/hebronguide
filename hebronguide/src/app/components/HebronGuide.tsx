@@ -14219,36 +14219,16 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               </div>
 
               {/* 핵심 원칙 */}
-              <div style={{ background: "rgba(0,0,0,0.25)", borderRadius: 12, padding: "14px 16px", marginBottom: 14, borderLeft: "3px solid #C9A227" }}>
+              <div style={{ background: "rgba(0,0,0,0.25)", borderRadius: 12, padding: "14px 16px", borderLeft: "3px solid #C9A227" }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14.5, color: "#ECFDF5", marginBottom: 6 }}>
                   {lang === "ko" ? "성경대로" : "According to Scripture"}
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.7)", lineHeight: 1.85 }}>
                   {lang === "ko"
-                    ? "성경이 그렇다고 하면 그런 줄 알고,\n아니라고 하면 아닌 줄 알고,\n하라고 하면 하고, 하지 말라고 하면 하지 않고."
-                    : "If Scripture says it is so, we believe it.\nIf Scripture says otherwise, we follow that.\nIf it commands, we obey. If it forbids, we abstain."}
+                    ? "새로운 땅에서 처음 만나는 공동체가\n당신의 이웃이 되어 드립니다."
+                    : "The community you meet in a new land\nbecomes your neighbor."}
                 </div>
               </div>
-
-              {/* 대위임령 */}
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12.5, color: "rgba(236,253,245,0.82)", lineHeight: 1.7, marginBottom: 12 }}>
-                {lang === "ko"
-                  ? "예수님이 \"제자를 만들라\" 하셨으면 — 제자를 만들어야 합니다.\n공항에서부터 모든 성도가 새가족팀이 되어 환대하는 교회,\nHebronGuide는 이런 교회를 찾고 연결합니다."
-                  : "If Jesus said \"make disciples\" — then make disciples.\nA church where every member is a welcome team from the airport.\nHebronGuide seeks and connects these churches."}
-              </div>
-
-              {[
-                { icon: "📖", ko: "성경이 기준 — 조직·전통·인증이 아닌", en: "Scripture is the standard — not organization, tradition, or certification" },
-                { icon: "🔥", ko: "영혼구원 → 그리스도의 제자 만들기 (마 28:19)", en: "Save souls → Make disciples of Christ (Matt 28:19)" },
-                { icon: "✈️", ko: "공항부터 시작되는 환대 — 모든 성도가 새가족팀", en: "Welcome from the airport — every member is a welcome team" },
-              ].map((item, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: i < 2 ? 8 : 0 }}>
-                  <span style={{ fontSize: 14, flexShrink: 0, marginTop: 1 }}>{item.icon}</span>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11.5, color: "rgba(236,253,245,0.72)", lineHeight: 1.6 }}>
-                    {lang === "ko" ? item.ko : item.en}
-                  </div>
-                </div>
-              ))}
             </div>
 
             {/* 섬김의 정신 카드 */}
