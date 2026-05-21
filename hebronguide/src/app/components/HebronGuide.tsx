@@ -14236,10 +14236,15 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               <div style={{ fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 800, color: "#C084FC", letterSpacing: "0.06em", marginBottom: 10, opacity: 0.85 }}>
                 {lang === "ko" ? "⛪ HebronGuide 커뮤니티 철학" : "⛪ HebronGuide Community Philosophy"}
               </div>
+              <div style={{ fontSize: 13, color: "rgba(236,253,245,0.88)", lineHeight: 1.75, fontStyle: "italic", borderLeft: "3px solid rgba(192,132,252,0.4)", paddingLeft: 12, marginBottom: 8 }}>
+                {lang === "ko"
+                  ? "\"주는 것이 받는 것보다 복이 있다\" — 사도행전 20:35"
+                  : "\"It is more blessed to give than to receive.\" — Acts 20:35"}
+              </div>
               <div style={{ fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.7 }}>
                 {lang === "ko"
-                  ? "섬기는 사람이 리더입니다. 새로 온 이웃에게 먼저 손을 내미는 것, 그것이 진정한 커뮤니티의 시작입니다."
-                  : "Those who serve are the true leaders. Reaching out first to newcomers — that's how real community begins."}
+                  ? "새로 온 이웃에게 먼저 손을 내미는 것, 그것이 진정한 커뮤니티의 시작입니다."
+                  : "Reaching out first to newcomers — that's how real community begins."}
               </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[10px] mb-4">
