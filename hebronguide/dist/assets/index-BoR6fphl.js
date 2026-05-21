@@ -1422,13 +1422,17 @@ Key services:
 📍 Houston, TX
 ✨ Lead Pastor: Eric Shin (신동일 목사)`:`✅ House Church | HMI North America Board & English Ministry Director
 📍 Houston, TX
-✨ Lead Pastor: Eric Shin`,tags:a?["가정교회","IHM","휴스턴","영어권"]:["House Church","IHM","Houston","English"]},{emoji:"⛪",tier:2,name:a?"뉴라이프교회":"New Life Church",desc:a?`✅ 침례교 | 한인 이주자 환영 · 정착 지원
-📍 Houston, TX
+✨ Lead Pastor: Eric Shin`,tags:a?["가정교회","IHM","휴스턴","영어권"]:["House Church","IHM","Houston","English"]},{emoji:"⛪",tier:2,name:a?"뉴라이프침례교회":"New Life Baptist Church",nameEn:"New Life Baptist Church",desc:a?`✅ 침례교 | 건강한 교회 · 건강한 성도
+📍 1717 Katy Gap Rd. Katy, TX 77494 (임시 예배 장소)
 ✨ 담임: 김한국 목사
-🔗 newlifehouston.org`:`✅ Baptist | Welcoming Korean immigrants · Settlement support
-📍 Houston, TX
+📞 346-527-0958
+✉️ nlbchouston@gmail.com
+🔗 newlifehouston.org`:`✅ Baptist | Healthy Church · Healthy Members
+📍 1717 Katy Gap Rd. Katy, TX 77494 (Temporary Worship Venue)
 ✨ Lead Pastor: Han-guk Kim
-🔗 newlifehouston.org`,tags:a?["침례교","휴스턴","이주자환영"]:["Baptist","Houston","Newcomer-friendly"]}],toronto:[{emoji:"⭐",tier:1,name:a?"목민교회":"Mokmin Church — Toronto",nameEn:"Mokmin Church",desc:a?`✅ 가정교회 | 북미가사원 토론토 지역목자 · 실행위원
+📞 346-527-0958
+✉️ nlbchouston@gmail.com
+🔗 newlifehouston.org`,tags:a?["침례교","휴스턴","건강한교회","건강한성도"]:["Baptist","Houston","Healthy Church"],website:"https://newlifehouston.org",email:"nlbchouston@gmail.com",phone:"346-527-0958"}],toronto:[{emoji:"⭐",tier:1,name:a?"목민교회":"Mokmin Church — Toronto",nameEn:"Mokmin Church",desc:a?`✅ 가정교회 | 북미가사원 토론토 지역목자 · 실행위원
 📍 Toronto, ON, Canada
 ✨ 담임: 곽웅 목사`:`✅ House Church | HMI North America Toronto Regional Shepherd & Executive
 📍 Toronto, ON, Canada
