@@ -14236,11 +14236,6 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               <div style={{ fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 800, color: "#C084FC", letterSpacing: "0.06em", marginBottom: 10, opacity: 0.85 }}>
                 {lang === "ko" ? "⛪ HebronGuide 커뮤니티 철학" : "⛪ HebronGuide Community Philosophy"}
               </div>
-              <div style={{ fontSize: 13, color: "rgba(236,253,245,0.88)", lineHeight: 1.75, fontStyle: "italic", borderLeft: "3px solid rgba(192,132,252,0.4)", paddingLeft: 12, marginBottom: 10 }}>
-                {lang === "ko"
-                  ? "\"받기 위해 오는 사람보다 주기 위해 오는 사람이 더 큰 사람입니다.\""
-                  : "\"Those who come to give are greater than those who come to receive.\""}
-              </div>
               <div style={{ fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.7 }}>
                 {lang === "ko"
                   ? "섬기는 사람이 리더입니다. 새로 온 이웃에게 먼저 손을 내미는 것, 그것이 진정한 커뮤니티의 시작입니다."
