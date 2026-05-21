@@ -14725,6 +14725,11 @@ const TOP5_FOOD_TOKYO: Top5Item[] = [
     tip: "신오쿠보역 도보 3분, 코리안 골목 안쪽에 위치. 현금 결제 권장.",
     website: "yelp.com/biz/프룸-3rd점",
   },
+  { rank: 6, emoji: "🎉", nameKo: "홍대포차 (신오쿠보)", nameEn: "Hongdaepocha Shin-Okubo", address: "2-19-1 Okubo, Shinjuku City, Tokyo 169-0072", phone: "+81 50 2030 4678", hours: "매일 11:00-23:00", rating: 4.2, ratingCount: "700+", why: "서울 홍대 야시장 분위기를 도쿄에 완벽 재현한 한국식 포장마차 이자카야다. 떡볶이, 순대, 어묵 등 서울 길거리 음식을 즐기며 한국의 흥겨운 분위기를 만끽할 수 있다.", tip: "저녁 7시 이후에 활기가 살아남 — 한국 소주와 곱창 조합이 인기 최고.", website: "savorjapan.com/0031530167" },
+  { rank: 7, emoji: "🍗", nameKo: "네네치킨 (신오쿠보)", nameEn: "NeNe Chicken Shin-Okubo", address: "1-7-16 Hyakunincho, Shinjuku City, Tokyo 169-0073", phone: "+81 3 6205 9953", hours: "매일 11:00-23:00", rating: 4.2, ratingCount: "2,000+", why: "한국 최대 치킨 프랜차이즈의 도쿄 매장으로, 양념치킨·치즈치킨·순살치킨을 현지에서 그대로 즐길 수 있다. 치킨 한 조각에 맥주 한 캔으로 도쿄에서의 한국식 '치맥'을 체험할 수 있다.", tip: "신오쿠보역 1분 거리 — 치킨과 소주 세트 주문 시 할인 쿠폰 앱에서 확인.", website: "nenechicken.com" },
+  { rank: 8, emoji: "🍜", nameKo: "이치란 라멘 (신주쿠)", nameEn: "Ichiran Ramen Shinjuku", address: "3-34-11 Shinjuku, Shinjuku City, Tokyo 160-0022", phone: "+81 3 3350 7001", hours: "24시간 영업", rating: 4.3, ratingCount: "10,000+", why: "혼밥 문화를 창조한 일본 최유명 1인 칸막이 라멘으로, 도쿄 한인 이민자들이 홀로 끼니를 해결할 때 가장 먼저 찾는 외식 공간이다. 맵기·면 경도·기름 양 모두 커스터마이즈 가능해 현지 적응 초기에도 부담이 없다.", tip: "튀긴 마늘 추가(무료)와 면 특선 Hard로 주문하는 것이 현지인 스타일이다.", website: "ichiran.com" },
+  { rank: 9, emoji: "🍣", nameKo: "잇푸도 라멘 (신주쿠)", nameEn: "Ippudo Shinjuku", address: "3-38-1 Shinjuku, Shinjuku City, Tokyo 160-0022", phone: "+81 3 5272 0039", hours: "매일 11:00-22:00", rating: 4.2, ratingCount: "5,000+", why: "일본 최고 라멘 브랜드의 신주쿠 매장으로, 크리미한 돈코츠 수프와 쫄깃한 면이 한인 라멘 팬들을 열광시키는 곳이다. 신주쿠 중심가에서 한국 국물 요리와 유사한 깊은 맛을 즐길 수 있다.", tip: "점심 라멘+교자+라이스 세트가 가성비 최고 — 11시 오픈 직후가 대기 없음.", website: "ippudo.com" },
+  { rank: 10, emoji: "🌸", nameKo: "규카쿠 야키니쿠 (신주쿠)", nameEn: "Gyukaku Shinjuku", address: "1-2-11 Nishishinjuku, Shinjuku City, Tokyo 160-0023", phone: "+81 3 3348 7744", hours: "매일 11:30-23:30", rating: 4.0, ratingCount: "8,000+", why: "일본식으로 변형된 한국 야키니쿠의 정수를 경험할 수 있는 대형 체인이다. 재일 한인 1세가 개발한 메뉴들이 일본 대중화에 성공한 역사적 브랜드로, 한인 이민자들이 일본 친구들에게 '한국 BBQ 입문'으로 소개하기 딱 좋다.", tip: "런치 갈비 정식이 2,000엔 이하로 저렴하고 음료가 포함됩니다.", website: "gyukaku.co.jp" },
 ];
 
 const TOP5_FOOD_OSAKA: Top5Item[] = [
@@ -15122,6 +15127,11 @@ const TOP5_FOOD_LONDON: Top5Item[] = [
     why: "현지 교민들이 자주 찾는 순대국밥 전문점. 순대볶음·순대전골·보쌈 등 술안주·가정식이 주 메뉴로, 소주 한 잔과 함께 즐기는 정통 한국 밤문화 분위기를 뉴몰든에서 경험할 수 있습니다. 한국인 손님 비율이 높아 현지 교민 검증 맛집.",
     tip: "교민들이 자주 찾는 조용한 단골 식당. 순대국밥이 시그니처.",
   },
+  { rank: 6, emoji: "🌶️", nameKo: "대박", nameEn: "Daebak", address: "316-318 Kennington Lane, London SE11 5HY", phone: "+44 20 7642 1522", hours: "월-금 12:00-15:00·17:00-22:30 / 토 12:00-22:30 / 일 12:00-21:30", rating: 4.6, ratingCount: "1,200+", why: "구글 1,199개 리뷰에 4.6 평점 — 런던에서 가장 많이 검증된 한식당 중 하나다. 한국식 치킨, 비빔밥, 김치찌개 등 정통 메뉴를 합리적인 가격에 제공하며 한인 이민자들의 진짜 동네 단골 맛집이다.", tip: "점심 비빔밥 세트가 런던에서 드물게 가성비 좋은 한식입니다.", website: "daebak.sbs" },
+  { rank: 7, emoji: "🍛", nameKo: "아리랑 (런던 최초 한식당 1975)", nameEn: "Arirang Korean Restaurant", address: "31-32 Poland Street, Soho, London W1F 8QT", phone: "+44 20 7437 6633", hours: "매일 12:00-16:00·18:00-23:00", rating: 4.2, ratingCount: "1,770+", why: "1975년 영국 최초 한국 레스토랑으로 개업한 런던 한인 역사의 산증인이다. 50년의 역사가 담긴 곳에서 전통 BBQ와 정통 한식을 맛볼 수 있어 런던 교민들에게 각별한 감동을 주는 장소다.", tip: "소호 중심 위치 덕분에 연극·뮤지컬 관람 전후 식사 장소로 완벽합니다.", website: "arirangrestaurantlondon.com" },
+  { rank: 8, emoji: "⭐", nameKo: "도사 (미슐랭 아키라 백)", nameEn: "Dosa by Akira Back", address: "22 Hanover Square, Mayfair, London W1S 1JP", phone: "+44 20 7889 8888", hours: "화-토 런치·디너 (예약 필수)", rating: 4.7, ratingCount: "200+", why: "2025년 미슐랭 1스타 수상 — 한국계 셰프 Akira Back이 런던 최고급 호텔 만다린 오리엔탈 메이페어에 선보이는 프리미엄 한국 파인다이닝이다. 런던에서 한국의 세계적 위상을 체험할 수 있는 특별한 경험이다.", tip: "£195 테이스팅 메뉴 단 하나만 운영 — 예산 계획 후 미리 예약 필수.", website: "mandarinonline.com/london-mayfair" },
+  { rank: 9, emoji: "🌿", nameKo: "칼롱 (미슐랭 빕 구르망)", nameEn: "Cálong", address: "35 Stoke Newington Church St, Hackney, London N16 0NX", phone: "+44 20 3561 4798", hours: "수-토 런치·디너", rating: 4.5, ratingCount: "400+", why: "2026 미슐랭 빕 구르망 수상 — 한국계 셰프 Joo Won이 클래식 유러피안 기법에 한국 플레이버를 녹인 혁신적인 비스트로다. 한국 문화와 유럽 요리를 세계적으로 연결하는 런던의 최신 한식 아이콘이다.", tip: "매주 메뉴가 바뀌니 인스타그램으로 이번 주 메뉴 확인 후 방문 추천.", website: "instagram.com/calong_restaurant" },
+  { rank: 10, emoji: "🌏", nameKo: "앵글로타이 (미슐랭 태국)", nameEn: "AngloThai", address: "7 Norfolk Place, Paddington, London W2 1QJ", phone: "+44 20 3019 9090", hours: "화-토 런치·디너", rating: 4.5, ratingCount: "600+", why: "미슐랭 1스타 — 태국 맛을 영국 식재료와 결합한 독창적인 다이닝으로 한인 미식가들 사이에서 '런던에서 꼭 가봐야 할 비한식 맛집'으로 유명하다. 동아시아 문화를 사랑하는 한인들에게 친근하면서도 새로운 미식 경험을 제공한다.", tip: "시즌마다 메뉴가 바뀌므로 예약 시 제철 식재료 특선 메뉴를 꼭 문의하세요.", website: "anglothai.co.uk" },
 ];
 
 const TOP5_FOOD_PARIS: Top5Item[] = [
@@ -15408,6 +15418,11 @@ const TOP5_FOOD_SINGAPORE: Top5Item[] = [
     tip: "저녁만 운영(18시 오픈). 예약 필수이며 두세 번은 가봐야 메뉴를 다 즐길 수 있습니다.",
     website: "anjusingapore.com",
   },
+  { rank: 6, emoji: "🔥", nameKo: "번트 엔즈 (미슐랭 BBQ)", nameEn: "Burnt Ends", address: "7 Dempsey Rd, #01-02, Singapore 249671", phone: "+65 6224 3933", hours: "화-토 11:45-14:00·18:00-늦게", rating: 4.3, ratingCount: "3,000+", why: "미슐랭 1스타·2025 세계 50대 레스토랑 선정 — 직화 바비큐를 고급 다이닝으로 승화시킨 싱가포르 아이콘이다. BBQ 문화를 사랑하는 한인 이민자들에게 '세계 최고 수준의 구이'를 경험할 수 있는 특별한 공간이다.", tip: "카운터 석이 화덕을 직접 볼 수 있어 최고 경험 — 오픈 테이블로 미리 예약.", website: "burntends.com.sg" },
+  { rank: 7, emoji: "⭐", nameKo: "메타 (미슐랭 2스타 한식)", nameEn: "Meta Restaurant", address: "9 Mohamed Sultan Road, Singapore 238959", phone: "+65 6513 0898", hours: "화-목 18:00-23:30 / 금-토 12:00-15:00·18:30-23:30", rating: 4.7, ratingCount: "600+", why: "미슐랭 2스타·2025 아시아 50대 레스토랑 39위 — 현대 한국 요리를 서양·일본 기법으로 재해석한 싱가포르 최정상 한식 파인다이닝이다. 한국 음식의 세계적 위상을 증명해주는 레스토랑이다.", tip: "7코스 테이스팅 메뉴만 제공 — 음식 알레르기는 예약 시 반드시 사전 고지 필요.", website: "metarestaurant.sg" },
+  { rank: 8, emoji: "🐔", nameKo: "송계옥 (오차드로드)", nameEn: "Song Gye Ok", address: "176 Orchard Road, #02-53/54, The Centrepoint, Singapore 238843", phone: "+65 8088 2035", hours: "매일 11:30-15:00·17:00-22:00", rating: 4.4, ratingCount: "800+", why: "서울 유명 닭구이 전문점이 싱가포르 오차드로드에 상륙한 화제의 한식당이다. 6가지 부위로 나눠 숯불 직화로 굽는 통닭 요리가 싱가포르에서 처음 선보이는 독특한 방식으로 한인 커뮤니티 SNS에서 화제가 됐다.", tip: "삼계탕 런치 세트가 한정 수량 — 오전 11시 30분 오픈 직후 빠르게 마감된다.", website: "songgyeok.sg" },
+  { rank: 9, emoji: "🍗", nameKo: "치킨업 (탄종파가)", nameEn: "Chicken Up", address: "48 Tanjong Pagar Road, #01-01, Singapore 088469", phone: "+65 6327 1203", hours: "월-목 17:30-02:00 / 금-토 17:30-03:00 / 일 17:30-00:00", rating: 4.1, ratingCount: "1,000+", why: "싱가포르 대표 한국 치킨 맛집으로 현지 한인들의 '치맥' 성지다. 탄종파가 한인 밀집 지역에 위치해 직장인 한인들의 야식 첫 번째 선택지이며 늦은 밤 소주와 함께하는 양념치킨이 일품이다.", tip: "새벽 타임 주문 시 핫소스 양 조절 가능 — 주문 시 미리 맵기 수준 요청.", website: "facebook.com/ChickenUp.CentrePoint" },
+  { rank: 10, emoji: "🌿", nameKo: "누리 (미슐랭 크로스로드)", nameEn: "Nouri", address: "72 Amoy Street, Singapore 069891", phone: "+65 9230 2477", hours: "수-일 12:00-14:30·18:00-00:00", rating: 4.4, ratingCount: "700+", why: "미슐랭 1스타 '크로스로드 쿠킹' — 싱가포르의 다문화성을 음식으로 표현한 셰프 Ivan Brehm의 작품이다. 아시아·유럽·중동 등 다양한 요리 전통이 조화를 이루는 코스 메뉴가 여러 문화에 익숙한 한인 이민자들에게 깊은 공감을 자아낸다.", tip: "주말 런치는 평일보다 예약이 조금 더 쉬움 — 와인 페어링 추가를 강력 추천.", website: "nouri.com.sg" },
 ];
 
 const TOP5_FOOD_BANGKOK: Top5Item[] = [
@@ -15699,6 +15714,11 @@ const TOP5_FOOD_SYDNEY: Top5Item[] = [
     tip: "1층이 아닌 Level 1(2층) 입구 주의. 점심 세트 메뉴가 저녁보다 가성비 좋음.",
     website: "789bbq.com/stores/678-haymarket",
   },
+  { rank: 6, emoji: "🍳", nameKo: "시드니 마당", nameEn: "Sydney Madang", address: "371A Pitt St, Sydney NSW 2000", phone: "+61 2 9264 7010", hours: "매일 11:30-02:00", rating: 4.1, ratingCount: "800+", why: "새벽 2시까지 운영하는 시드니 CBD 한식 야식의 성지다. 뚝배기 비빔밥, 해물탕, 순두부찌개를 한국 현지 분위기 그대로 즐길 수 있다.", tip: "야식으로 찾는다면 자정 이후 항상 자리가 있다 — 웨이팅 없이 입장 가능.", website: "sydneymadang.cafeleader.com" },
+  { rank: 7, emoji: "🍗", nameKo: "지호한방삼계탕 (시드니)", nameEn: "Jiho Hanbang Samgyetang", address: "76-78 Liverpool St, Sydney NSW 2000", phone: "+61 2 9264 0050", hours: "매일 11:00-21:00", rating: 4.6, ratingCount: "300+", why: "서울 본점의 인삼 닭백숙을 시드니에서 그대로 맛볼 수 있는 한방 전문점이다. 건강을 생각하는 한인 부모 세대에게 특히 인기가 높으며, 출산 후 보양식으로 현지 한인들이 즐겨 찾는다.", tip: "삼계탕 한 그릇에 인삼주 한 잔이 세트 — 단품보다 추가 요금이 매우 저렴하다.", website: "instagram.com/jiho_sydney" },
+  { rank: 8, emoji: "🐟", nameKo: "세인트 피터 (호주 해산물)", nameEn: "Saint Peter", address: "362 Oxford St, Paddington NSW 2021", phone: "+61 2 8937 2530", hours: "화-토 12:00-15:00·18:00-22:00", rating: 4.3, ratingCount: "400+", why: "2025 Gourmet Traveller 올해의 레스토랑 선정 — 시드니 최고 현대 호주식 해산물 다이닝이다. 세계 어디에서도 맛보기 힘든 신선한 호주 해산물 요리를 경험할 수 있어 한인 이민자들의 특별한 날 선택지다.", tip: "예약은 최소 4주 전 필수 — 오픈 날짜에 맞춰 홈페이지에서 바로 잡아야 한다.", website: "saintpeter.com.au" },
+  { rank: 9, emoji: "🥩", nameKo: "명장 & 오발탄 코리안 BBQ", nameEn: "Myung Jang & Obaltan Korean BBQ", address: "363A Pitt St, Sydney NSW 2000", phone: "+61 2 9269 0299", hours: "월-목 11:00-23:00 / 금-토 11:00-01:00 / 일 11:00-23:00", rating: 4.5, ratingCount: "2,700+", why: "불고기 소갈비와 크리스피 치킨이 탁월한 시드니 대표 한식당이다. 2,700개 이상의 리뷰가 신뢰를 증명하며, 다양한 반찬 구성이 한국 정식 분위기를 그대로 살려낸다.", tip: "금·토 심야 시간대는 반드시 예약 후 방문하세요.", website: "facebook.com/Myungjang363A" },
+  { rank: 10, emoji: "🍱", nameKo: "대장금 코리안 BBQ", nameEn: "Dae Jang Kum Korean BBQ", address: "35 Goulburn St, Haymarket NSW 2000", phone: "+61 2 9211 0890", hours: "매일 12:00-00:00", rating: 4.1, ratingCount: "400+", why: "1990년대부터 운영된 시드니 Haymarket 한인 타운의 역사적인 한식당이다. 김치찌개, 비빔밥, 불고기 정식이 정통 맛을 유지하며, 초기 한인 이민자들이 고향 음식을 처음 맛본 '역사의 현장'으로 커뮤니티 구심점 역할을 한다.", tip: "점심 백반 세트가 저렴하고 빠르게 나와 직장인 점심 핫플.", website: "facebook.com/daejangkumsydney" },
 ];
 
 const TOP5_FOOD_MELBOURNE: Top5Item[] = [
@@ -16295,6 +16315,11 @@ const TOP5_FOOD_DC: Top5Item[] = [
       "dc.koreaportal.com 등재 해산물 전문 한식당. 부산 자갈치 시장의 이름을 딴 해산물 특화 식당으로 게장·회·생선구이 등 해산물 한식을 Annandale에서 즐길 수 있는 희귀한 공간이다.",
     tip: "해산물 메뉴 특성상 신선도가 관건. 방문 전 전화로 당일 추천 메뉴 확인 후 방문 추천.",
   },
+  { rank: 6, emoji: "🥢", nameKo: "치코 (중한 퓨전)", nameEn: "Chiko", address: "423 8th St SE, Washington, DC 20003", phone: "(202) 558-9934", hours: "월-목 4pm-9pm / 금 4pm-10pm / 토-일 11am-10pm", rating: 4.4, ratingCount: "400+", why: "중국과 한국 요리의 퓨전을 선보이는 독특한 레스토랑으로, 더블 프라이드 한국식 치킨과 만두가 시그니처 메뉴다. 캐피톨 힐 지역에 위치해 현지인과 한인 모두에게 두루 인기가 높다. 주말 브런치도 운영한다.", tip: "브리스켓 볶음밥은 꼭 시도해야 할 베스트셀러 메뉴다.", website: "chikorestaurant.com" },
+  { rank: 7, emoji: "🍜", nameKo: "다이카야 (일본 라멘)", nameEn: "Daikaya", address: "705 6th St NW, Washington, DC 20001", phone: "(202) 589-1600", hours: "월-목 11:30am-9pm / 금-토 11:30am-10pm / 일 11:30am-9pm", rating: 4.2, ratingCount: "1,900+", why: "DC 차이나타운 인근의 인기 홋카이도 스타일 삿포로 라멘 레스토랑으로, 한국인 입맛에도 잘 맞는 진한 국물이 특징이다. 오랫동안 DC 음식 씬에서 검증된 맛집이다.", tip: "1층 라멘 바는 예약 없이 카운터 좌석 이용이 가능하다.", website: "daikayadc.com" },
+  { rank: 8, emoji: "🌿", nameKo: "알비 (레반트 요리)", nameEn: "Albi", address: "1346 4th St SE, Washington, DC 20003", phone: "(202) 921-9592", hours: "화-토 5pm-10pm", rating: 4.6, ratingCount: "460+", why: "미쉐린 스타를 받은 네이비 야드의 레반트 요리 레스토랑으로, 2025년 워싱토니안 '올해의 레스토랑'에 선정됐다. 숯불·장작 화덕을 활용한 중동 요리가 독특하며 특별한 날 방문에 완벽하다.", tip: "테이스팅 메뉴 코스 구성이 최고이니 코스를 추천한다.", website: "albidc.com" },
+  { rank: 9, emoji: "🫙", nameKo: "서울스파이스", nameEn: "SeoulSpice", address: "145 N St NE, Suite 400, Washington, DC 20002", phone: "(202) 817-6927", hours: "매일 11am-10pm", rating: 4.3, ratingCount: "430+", why: "DC 여러 지점을 운영하는 한식 패스트 캐주얼 레스토랑으로, 비빔밥·불고기를 빠르고 신선하게 즐길 수 있다. 바쁜 직장인과 학생들에게 특히 인기가 높다.", tip: "비빔밥 보울에 고추장 소스를 '엑스트라'로 요청하면 더욱 진한 맛을 즐길 수 있다.", website: "seoulspice.com" },
+  { rank: 10, emoji: "🍱", nameKo: "옹기", nameEn: "Onggi", address: "2100 P St NW, Washington, DC 20037", phone: "(202) 450-1085", hours: "화-일 11am-9pm", rating: 4.4, ratingCount: "50+", why: "듀폰트 서클에 오픈한 모던 한식 레스토랑으로, 한정식 코스 메뉴와 바 메뉴를 함께 제공한다. 신선한 로컬 식재료와 전통 한식의 만남이 인상적이다.", tip: "Resy에서 미리 예약하자.", website: "onggidc.com" },
 ];
 
 const TOP5_FOOD_SANDIEGO: Top5Item[] = [
@@ -16372,6 +16397,11 @@ const TOP5_FOOD_SANDIEGO: Top5Item[] = [
       "미주 중앙일보 SD 업소록(yp.koreadaily.com) 직접 등재 확인 식당. 춘천식 닭갈비를 Convoy St에서 즐길 수 있는 특화 식당. 철판에 볶는 매콤한 닭갈비와 마지막에 볶아주는 볶음밥이 한인 젊은층과 유학생들 사이 인기다.",
     tip: "볶음밥은 처음부터 주문해야 재료를 남겨줌. 매운 정도 조절 가능.",
   },
+  { rank: 6, emoji: "🔥", nameKo: "만나 헤브 BBQ", nameEn: "Manna Heaven BBQ", address: "4428 Convoy St, Ste 210, San Diego, CA 92111", phone: "(858) 278-3300", hours: "월-목 12pm-10:30pm / 금-토 12pm-11pm / 일 12pm-9:30pm", rating: 4.4, ratingCount: "4,800+", why: "4,800개 이상의 리뷰를 가진 샌디에이고 컨보이 지역 대형 KBBQ 레스토랑으로, 압도적인 양이 특징이다. 대가족이나 대그룹 모임에도 무리 없이 수용 가능한 검증된 맛집이다.", tip: "금요일과 토요일은 밤 11시까지 운영하므로 늦은 저녁 모임에도 완벽하다.", website: "mannaheavenbbq.com" },
+  { rank: 7, emoji: "🌊", nameKo: "아이언사이드 피쉬 & 오이스터", nameEn: "Ironside Fish & Oyster", address: "1654 India St, San Diego, CA 92101", phone: "(619) 269-3033", hours: "월-목 11:30am-10pm / 금 11:30am-11pm / 토-일 11am-11pm", rating: 4.6, ratingCount: "6,100+", why: "리틀 이탈리아에 위치한 샌디에이고 최고의 해산물 레스토랑으로, 6,100개 이상의 리뷰가 입증하는 압도적인 인기를 자랑한다. 신선한 굴과 해산물 요리가 한국인 입맛에도 잘 맞는다.", tip: "해피아워(3-6pm)에 방문하면 생굴과 음료를 훨씬 저렴하게 즐길 수 있다.", website: "ironsidefishandoyster.com" },
+  { rank: 8, emoji: "🥩", nameKo: "송학 코리안 BBQ", nameEn: "SongHak Korean BBQ", address: "4681 Convoy St, Ste B, San Diego, CA 92111", phone: "(858) 277-8625", hours: "월-목 5pm-11pm / 금 5pm-12am / 토-일 10:50am-12am", rating: 4.3, ratingCount: "840+", why: "컨보이 스트리트의 정통 한국식 BBQ 레스토랑으로, 금·토요일에는 자정까지 운영해 야식 KBBQ를 즐기기에 최적이다.", tip: "주말 낮에는 10시 50분부터 오픈하니 이른 점심 KBBQ도 가능하다.", website: "songhakbbq.com" },
+  { rank: 9, emoji: "🌮", nameKo: "푸에스토 (멕시코 타코)", nameEn: "Puesto at The Headquarters", address: "789 W Harbor Dr, Unit 155, San Diego, CA 92101", phone: "(619) 233-8880", hours: "매일 11am-9pm (금-토 10pm)", rating: 4.4, ratingCount: "5,600+", why: "어워드 수상 멕시칸 레스토랑으로, 5,600개 이상의 리뷰를 보유한 샌디에이고 최고 명소 중 하나다. 구르메 타코와 창의적인 칵테일이 한인 이민자들의 미국 음식 문화 탐방에 완벽한 선택이다.", tip: "항구 뷰가 펼쳐지는 야외 좌석이 특히 아름답다.", website: "eatpuesto.com" },
+  { rank: 10, emoji: "🌊", nameKo: "조지스 앳 더 코브", nameEn: "George's at the Cove", address: "1250 Prospect St, La Jolla, CA 92037", phone: "(858) 454-4244", hours: "매일 11am-10pm", rating: 4.5, ratingCount: "4,700+", why: "라 호야 해안가에서 40년 넘게 운영된 샌디에이고의 아이코닉 파인다이닝으로, 태평양 오션뷰와 함께하는 캘리포니아 모던 요리가 특별한 날 기념식사에 완벽하다.", tip: "오션 테라스 야외석은 샌디에이고 최고의 뷰를 자랑하니 날씨 좋은 날 낮 방문을 추천한다.", website: "georgesatthecove.com" },
 ];
 
 const TOP5_FOOD_HONOLULU: Top5Item[] = [
@@ -16442,6 +16472,11 @@ const TOP5_FOOD_HONOLULU: Top5Item[] = [
     why: "🍱 백반·분식\n카파훌루 애비뉴에서 교민과 현지 한식 팬들이 함께 즐기는 가성비 백반집. 김치찌개·된장찌개·불고기 정식 등 기본 한식을 저렴하게 즐길 수 있어 유학생과 젊은 교민들에게 인기가 높다. 하와이에서 가장 저렴한 한식 정식을 찾는다면 이 곳이다.",
     tip: "테이크아웃 할인 10%. 현금 결제 선호",
   },
+  { rank: 6, emoji: "🌺", nameKo: "헬레나스 하와이안 푸드", nameEn: "Helena's Hawaiian Food", address: "1240 N School St, Honolulu, HI 96817", phone: "(808) 845-8044", hours: "화-금 10am-7:30pm", rating: 4.7, ratingCount: "4,500+", why: "1946년부터 운영 중인 호놀룰루의 전설적인 하와이 전통 음식 레스토랑으로, 제임스 비어드 파운데이션 '지역 클래식' 수상 명소다. 한인 이민자들이 '하와이 정착 후 꼭 가봐야 할 곳'으로 꼽는 버킷리스트 맛집이다.", tip: "화~금요일만 운영하며 오픈 시간 전에 줄이 생기니 여유 있게 일찍 방문하자.", website: "helenashawaiianfood.com" },
+  { rank: 7, emoji: "🌿", nameKo: "머드 헨 워터 (팜투테이블)", nameEn: "Mud Hen Water", address: "3452 Waialae Ave, Honolulu, HI 96816", phone: "(808) 737-6000", hours: "화-목 5pm-9pm / 금 5pm-9:30pm / 토-일 9:30am-2pm·5pm-9:30pm", rating: 4.4, ratingCount: "670+", why: "뉴욕타임즈가 2023년 미국 최고 음식 23선 중 하나로 선정한 팜투테이블 하와이안 레스토랑이다. 하와이 로컬 농산물로 만든 하와이식 소울 푸드가 한국인 입맛에도 잘 맞는다.", tip: "주말 브런치는 예약 경쟁이 치열하니 2-3주 전에 미리 OpenTable 예약을 잡아두자.", website: "mudhenwater.com" },
+  { rank: 8, emoji: "🇹🇷", nameKo: "이스탄불 하와이 (터키 요리)", nameEn: "Istanbul Hawaii", address: "1108 Auahi St, Ste 152, Honolulu, HI 96814", phone: "(808) 772-4440", hours: "수-일 11am-2:30pm·5pm-9pm", rating: 4.6, ratingCount: "1,700+", why: "어머니와 딸이 운영하는 현대 터키·지중해 레스토랑으로, 1,700개 이상의 리뷰에서 4.6 별점을 유지하는 탁월한 맛집이다. 공유 문화 방식으로 식사할 수 있어 한인 이민자들이 색다른 미식 경험을 하기에 완벽하다.", tip: "하와이 로컬 와인 리스트와의 페어링 추천을 직원에게 요청하면 특별한 저녁이 완성된다.", website: "istanbulhawaii.com" },
+  { rank: 9, emoji: "🍖", nameKo: "서울 가든 야키니쿠", nameEn: "Seoul Garden Yakiniku", address: "1679 Kapiolani Blvd, Honolulu, HI 96814", phone: "(808) 944-4803", hours: "월-금 10am-11pm", rating: 4.0, ratingCount: "360+", why: "카피올라니 블루바드에 위치한 야키니쿠 전문점으로, 평일 밤 11시까지 운영해 늦은 저녁 BBQ를 즐기기에 좋다. AYCE(무한리필) 옵션과 단품 주문 모두 가능하다.", tip: "2시간 AYCE 세션을 선택하면 다양한 고기를 부담 없이 실컷 즐길 수 있다.", website: "seoulgardenyakiniku.com" },
+  { rank: 10, emoji: "🍲", nameKo: "코리아 가든", nameEn: "Korea Garden", address: "1683 Kalākaua Ave, Honolulu, HI 96826", phone: "(808) 949-9909", hours: "매일 10:30am-10:30pm", rating: 4.3, ratingCount: "340+", why: "칼라카우아 에비뉴에 위치한 호놀룰루의 인기 한식당으로, 매일 오전 10시 30분부터 운영해 가장 편리한 한식 식당 중 하나다. 정통 한국 가정식 메뉴와 합리적인 런치 스페셜로 큰 사랑을 받고 있다.", tip: "점심 스페셜 메뉴는 가성비 최고이며, 오전 일찍 방문하면 여유롭게 즐길 수 있다.", website: "korea-garden.res-menu.net" },
 ];
 
 const TOP5_FOOD_PORTLAND: Top5Item[] = [
@@ -16512,6 +16547,11 @@ const TOP5_FOOD_PORTLAND: Top5Item[] = [
     why: "🍗 한국식 치킨·맥주\n비버튼 한인타운 치맥의 대표 주자. 바삭한 한국식 양념치킨과 간장치킨을 지역 크래프트 맥주와 함께 즐길 수 있다. 퇴근 후 가볍게 치킨 한 마리 뜯으며 수다 떠는 교민 모임 장소로 인기가 높다.",
     tip: "반반(양념+간장) 주문이 정석. 대기 없이 먹으려면 평일 오후 6시 이전 방문 추천",
   },
+  { rank: 6, emoji: "🌿", nameKo: "비빔 (한식 카페)", nameEn: "Bibim", address: "1019 NW 23rd Ave, Portland, OR 97210", phone: "(971) 242-8992", hours: "화-목 11am-3pm·4:30pm-8pm", rating: 4.3, ratingCount: "360+", why: "노스웨스트 포틀랜드의 세련된 NW 23번가에 위치한 모던 한식 카페로, 비빔밥 중심의 건강한 한식 메뉴가 특징이다. 한국 음식에 익숙하지 않은 포틀랜드 현지인들에게 한식을 처음 소개하기에 완벽한 분위기다.", tip: "점심 세트 메뉴로 비빔밥과 국을 함께 주문하면 가장 만족스러운 한 끼가 된다.", website: "bibimpdx.square.site" },
+  { rank: 7, emoji: "🥩", nameKo: "코키 코리안 BBQ", nameEn: "Kkoki Korean BBQ", address: "8001 SE Powell Blvd, Suite O, Portland, OR 97206", phone: "(503) 327-8875", hours: "월-금 3:30pm-12am", rating: 4.3, ratingCount: "220+", why: "포틀랜드 SE 파웰 지역에서 자정까지 운영하는 한국식 BBQ 레스토랑으로, 늦은 시간까지 테이블 그릴 BBQ를 즐길 수 있는 포틀랜드의 몇 안 되는 곳이다.", tip: "주말 자정까지 운영하니 포틀랜드 야간 모임 장소로 최적이다.", website: "kkokibbq.com" },
+  { rank: 8, emoji: "🍕", nameKo: "러블리스 피프티 피프티 (나폴리 피자)", nameEn: "Lovely's Fifty Fifty", address: "4039 Mississippi Ave N, Portland, OR 97227", phone: "(503) 281-4060", hours: "월-목 5pm-10pm / 금-일 5pm-늦게", rating: 4.6, ratingCount: "600+", why: "포틀랜드 미시시피 에비뉴의 4.6 별점 나폴리 스타일 피자 레스토랑으로, 포틀랜드 최고 피자 명소다. 시즌 로컬 식재료와 수제 아이스크림이 특징이며 미국인 친구들과 함께 방문하기에 완벽하다.", tip: "시즌 메뉴는 자주 바뀌니 오픈 직후 방문해 오늘의 특별 토핑 피자를 노려보자.", website: "lovelys5050.com" },
+  { rank: 9, emoji: "🥩", nameKo: "옥스 (아르헨티나 그릴)", nameEn: "Ox Restaurant", address: "2225 NE Martin Luther King Jr Blvd, Portland, OR 97212", phone: "(503) 284-3366", hours: "매일 4:30pm-10pm", rating: 4.5, ratingCount: "1,400+", why: "포틀랜드 NE 지역의 제임스 비어드 수상 아르헨티나 스타일 스테이크하우스로, 장작불에 구운 고기 요리가 한국인의 숯불 구이 사랑과 맞닿아 있어 특히 친숙하게 느껴진다.", tip: "뼈 붙은 립아이와 '블랙 골드' 소스 조합은 꼭 맛봐야 할 시그니처다.", website: "oxpdx.com" },
+  { rank: 10, emoji: "🌍", nameKo: "아카디 PDX (서아프리카 요리)", nameEn: "Akadi PDX", address: "1001 SE Division St, Unit 2, Portland, OR 97202", phone: "(503) 477-7138", hours: "수-일 4pm-9pm", rating: 4.6, ratingCount: "440+", why: "포틀랜드 SE 디비전 스트리트에 위치한 서아프리카 가나 요리 전문점으로, 4.6 별점과 440개 이상의 리뷰로 포틀랜드 최고 에스닉 레스토랑 중 하나로 꼽힌다. 포틀랜드의 다문화 음식 씬을 대표하는 레스토랑이다.", tip: "푸푸(Fufu)와 에구시 스튜는 처음 방문자에게 강력 추천하는 입문 메뉴다.", website: "akadipdx.com" },
 ];
 
 const TOP5_FOOD_DENVER: Top5Item[] = [
@@ -16582,6 +16622,11 @@ const TOP5_FOOD_DENVER: Top5Item[] = [
     tip: "오전 오픈과 함께 방문 시 가장 신선. 주말 점심 시간대는 혼잡",
     website: "hmart.com",
   },
+  { rank: 6, emoji: "🦑", nameKo: "무봉리 순대", nameEn: "Moobongri Soondae", address: "2787 S Parker Rd, Aurora, CO 80014", phone: "(720) 696-7188", hours: "월 9am-9pm / 화 10am-9pm / 수-일 9am-9pm", rating: 4.4, ratingCount: "100+", why: "오로라에서 순대국밥과 내장탕을 전문으로 하는 희귀한 식당이다. H-Mart 근처에 위치해 장을 보고 들르기 편하며, 향수를 자극하는 서민 음식이 그립다면 꼭 방문해야 할 곳이다.", tip: "순대국밥에 깍두기를 곁들이면 더욱 맛있습니다.", website: "moobongriusa.com" },
+  { rank: 7, emoji: "🍚", nameKo: "두부 하우스", nameEn: "Tofu House", address: "2353 S Havana St, Unit D1, Aurora, CO 80014", phone: "(303) 751-2840", hours: "화-토 11am-9pm", rating: 4.3, ratingCount: "300+", why: "오로라 한인타운의 순두부 전문 한식당으로, 부드러운 순두부찌개와 돌솥비빔밥이 대표 메뉴다. 가정식 느낌의 편안한 분위기로 오랜 단골이 많다.", tip: "순두부는 매운맛 단계를 선택할 수 있으니 처음엔 중간 맛으로 시작하세요.", website: "thetofustory.com" },
+  { rank: 8, emoji: "🍚", nameKo: "백가 코리안 키친", nameEn: "BaekGa Korean Kitchen", address: "200 Quebec St, Unit 115, Denver, CO 80230", phone: "(720) 639-3872", hours: "화-일 11am-9pm", rating: 4.3, ratingCount: "100+", why: "덴버 로우리 타운 센터에 위치한 현대적인 한식당으로, 비빔밥·갈비탕·잡채 등 정통 한식을 감각적인 공간에서 즐길 수 있다.", tip: "점심 런치 세트가 저렴하고 빠르게 나와 직장인들에게 인기입니다.", website: "baekga.net" },
+  { rank: 9, emoji: "🌮", nameKo: "알마 폰다 피나 (미슐랭 멕시코)", nameEn: "Alma Fonda Fina", address: "2556 15th St, Denver, CO 80211", phone: "(303) 455-9463", hours: "월-목 2pm-10pm / 금 2pm-11pm / 토 4pm-11pm / 일 4pm-10pm", rating: 4.9, ratingCount: "270+", why: "미슐랭 1스타를 받은 멕시코 현대 요리 레스토랑으로, 덴버 로하이 지역에서 현지인들이 강력히 추천하는 파인다이닝이다. 다민족 음식 문화에 관심 있는 한인 이민자들에게 덴버의 미식 수준을 느낄 수 있는 특별한 경험을 제공한다.", tip: "예약 없이는 입장이 거의 불가능하니 OpenTable로 미리 예약하세요.", website: "almalohidenver.com" },
+  { rank: 10, emoji: "🌿", nameKo: "루트 다운 (팜투테이블)", nameEn: "Root Down", address: "1600 W 33rd Ave, Denver, CO 80211", phone: "(303) 993-4200", hours: "월-목·일 5pm-9pm / 금-토 5pm-10pm", rating: 4.5, ratingCount: "4,100+", why: "덴버 하이랜즈에 위치한 친환경·글로벌 퓨전 뉴아메리칸 레스토랑으로, 유기농 로컬 식재료를 사용한 다양한 메뉴가 특징이다. 채식 옵션이 풍부해 건강을 중시하는 한인 가족 모임에도 적합하다.", tip: "브런치는 특히 인기가 많으므로 주말 방문 시 예약을 권장합니다.", website: "root-down.com" },
 ];
 
 const TOP5_FOOD_PHOENIX: Top5Item[] = [
@@ -16659,6 +16704,11 @@ const TOP5_FOOD_PHOENIX: Top5Item[] = [
     tip: "점심 무한리필이 저녁보다 저렴. 주말에는 줄이 길어 오픈 11시에 맞춰 입장 추천.",
     website: "mannabbq.org",
   },
+  { rank: 6, emoji: "🍲", nameKo: "더 스톤 코리안 두부 하우스", nameEn: "The Stone Korean Tofu House", address: "1870 W Main St, Mesa, AZ 85202", phone: "(480) 361-0523", hours: "월-토 11am-10pm / 일 11:30am-9pm", rating: 4.6, ratingCount: "370+", why: "메사에 위치한 한국식 순두부 전문점으로, 해물 핫팟과 김치 삼겹살 순두부가 특히 유명하다. 직원 서비스가 훌륭하다는 리뷰가 많아 처음 방문하는 분들도 편안하게 즐길 수 있다.", tip: "해물 순두부는 맵기 조절이 가능하니 기호에 맞게 주문하세요.", website: "thestonetofuaz.com" },
+  { rank: 7, emoji: "🍱", nameKo: "초당 두부 레스토랑", nameEn: "Chodang Tofu Restaurant", address: "501 N Arizona Ave, Chandler, AZ 85225", phone: "(480) 855-7712", hours: "수-일 11am-8:30pm", rating: 4.5, ratingCount: "500+", why: "찬들러에 위치한 순두부 및 한국 가정식 전문점으로, 음식·서비스·분위기 모두 높은 평가를 받는 수준 높은 한식당이다. 정통 불고기와 된장찌개를 그리워하는 한인들에게 특히 추천한다.", tip: "월·화 휴무이니 방문 전 확인하세요.", website: "chodangaz.com" },
+  { rank: 8, emoji: "🍖", nameKo: "시즐 코리안 바베큐", nameEn: "Sizzle Korean Barbeque", address: "21001 N Tatum Blvd, Ste 36-1210, Phoenix, AZ 85050", phone: "(480) 265-9406", hours: "매일 11:30am-12am", rating: 4.4, ratingCount: "800+", why: "피닉스 데저트 릿지 마켓플레이스에 위치한 한국 BBQ로, 자정까지 영업해 늦은 저녁에도 한식을 즐길 수 있다. 프리미엄 삼겹살과 LA갈비가 특히 맛있다는 평이 많다.", tip: "자정 영업 덕분에 교회 모임 후 늦은 저녁 식사 장소로 제격이다.", website: "sizzlekoreanbbq.com" },
+  { rank: 9, emoji: "🍣", nameKo: "노부 스코츠데일 (일식 퓨전)", nameEn: "Nobu Scottsdale", address: "7014 E Camelback Rd, Scottsdale, AZ 85251", phone: "(480) 581-0055", hours: "매일 5pm-9:30pm / 토-일 브런치 10:30am-2pm", rating: 4.7, ratingCount: "2,500+", why: "세계적인 노부 마쓰히사 셰프의 일본 퓨전 다이닝으로, 피닉스 메트로에서 특별한 날에 방문하기 좋은 최고급 레스토랑이다. 블랙 코드·옐로우테일 할라페뇨 등 시그니처 메뉴는 다민족 미식에 관심 있는 한인들에게 색다른 경험을 선사한다.", tip: "스코츠데일 패션 스퀘어 럭셔리 윙에 위치해 쇼핑 후 저녁으로 연계하기 좋습니다.", website: "noburestaurants.com" },
+  { rank: 10, emoji: "🍖", nameKo: "진 바베큐 (메사)", nameEn: "Jin BBQ", address: "111 S Dobson Rd, Ste 104, Mesa, AZ 85202", phone: "(480) 687-2124", hours: "월-목 5pm-11pm / 금-토 12pm-12am / 일 12pm-10pm", rating: 4.3, ratingCount: "490+", why: "메사에 위치한 한국식 참숯 바베큐 전문점으로 잘 마리네이드된 고기와 풍성한 반찬이 특징이다. 자정까지 영업해 늦은 시간에도 한국 야식 문화를 즐길 수 있다.", tip: "금·토 점심부터 영업하므로 주말 외식 장소로 활용하기 좋다.", website: "jinbbq.com" },
 ];
 
 const TOP5_FOOD_CHARLOTTE: Top5Item[] = [
@@ -16728,6 +16778,11 @@ const TOP5_FOOD_CHARLOTTE: Top5Item[] = [
     tip: "치킨+맥주 조합의 '치맥 세트'를 주문하면 가장 한국다운 분위기를 즐길 수 있습니다.",
     website: "bbq-usa.com",
   },
+  { rank: 6, emoji: "🔥", nameKo: "서울 푸드 미트 컴퍼니", nameEn: "Seoul Food Meat Company", address: "1400 S Church St, Ste A, Charlotte, NC 28203", phone: "(980) 299-5143", hours: "월-목 11:30am-12am / 금-일 11:30am-2am", rating: 4.2, ratingCount: "500+", why: "샬럿 사우스엔드에 위치한 한국 퓨전 BBQ 레스토랑으로, 12시간 소갈비와 크리스피 삼겹살이 시그니처 메뉴다. 가라오케 룸, 야외 테라스까지 갖춰 다양한 모임에 활용할 수 있다.", tip: "노다(NoDa) 밀 디스트릭트 지점(421 E 26th St)도 있어 위치에 따라 선택하세요.", website: "seoulfoodmeatcoclt.com" },
+  { rank: 7, emoji: "🍱", nameKo: "페페로 코리안 레스토랑", nameEn: "Pepero Korean Restaurant", address: "10920 Monroe Rd, Matthews, NC 28105", phone: "(704) 845-2107", hours: "수-토 11am-9pm / 일 12pm-9pm", rating: 4.4, ratingCount: "410+", why: "샬럿 인근 매슈스의 한인 마트 내 위치한 숨은 맛집으로, 비빔밥·불고기·김치볶음밥 등 정통 가정식 한식을 저렴하게 즐길 수 있다. 옆 마트에서 한국 식재료 장을 보고 식사까지 해결할 수 있다.", tip: "마트 장보기와 식사를 함께 할 수 있어 시간 절약이 된다.", website: "peperocharlotte.com" },
+  { rank: 8, emoji: "🍗", nameKo: "하버디시 (미슐랭 남부 요리)", nameEn: "Haberdish", address: "3106 N Davidson St, Charlotte, NC 28205", phone: "(704) 817-1084", hours: "화-목 11am-10pm / 금-토 11am-10pm / 일 브런치·디너", rating: 4.5, ratingCount: "800+", why: "샬럿 노다(NoDa) 지구의 미슐랭 가이드 추천 남부 아메리칸 레스토랑으로, 바삭한 프라이드치킨과 시즌 사이드가 유명하다. 미국 남부 음식 문화를 체험하고 싶은 한인 이민자들에게 현지 정서를 느낄 수 있는 훌륭한 선택이다.", tip: "프라이드 치킨은 예약을 권장하며, 주말 브런치도 매우 인기가 있다.", website: "haberdish.com" },
+  { rank: 9, emoji: "🍽️", nameKo: "킨드레드 (제임스 비어드 파인다이닝)", nameEn: "Kindred", address: "131 N Main St, Davidson, NC 28036", phone: "(980) 231-5000", hours: "화-토 5pm-10pm / 토-일 브런치 11am-2pm", rating: 4.6, ratingCount: "790+", why: "제임스 비어드 노미네이트를 받은 샬럿 인근 데이비슨의 파인다이닝으로, 계절 식재료를 활용한 창의적인 뉴아메리칸 요리가 특징이다. 특별한 날 가족 외식이나 커플 데이트 장소로 완벽한 선택이다.", tip: "예약 필수이며, 브런치 밀크브레드 롤은 놓치지 마세요.", website: "kindreddavidson.com" },
+  { rank: 10, emoji: "🫕", nameKo: "케이팟 코리안 BBQ & 핫팟", nameEn: "KPOT Korean BBQ & Hot Pot", address: "8760 J M Keynes Dr, Charlotte, NC 28262", phone: "(704) 368-9888", hours: "매일 12pm-10:30pm (금-토 11:30pm)", rating: 4.0, ratingCount: "75+", why: "샬럿에서 한국 BBQ와 훠궈를 동시에 즐길 수 있는 복합 식당으로, 다양한 국물 베이스와 고기 조합을 선택할 수 있다. 비한인 친구들과 함께 재미있는 공동 식사 경험을 하기에 좋다.", tip: "풀 바도 운영하므로 소주 칵테일과 함께 즐겨보세요.", website: "thekpot.com" },
 ];
 
 const TOP5_FOOD_RALEIGH: Top5Item[] = [
@@ -16796,6 +16851,11 @@ const TOP5_FOOD_RALEIGH: Top5Item[] = [
     why: "🍜 홀리 스프링스 신흥 한인 커뮤니티의 한식 거점\n빠르게 성장하는 홀리 스프링스 한인 인구를 위한 정통 한식당입니다. 신도시 분위기에 맞는 깔끔한 인테리어와 함께 된장찌개·순두부찌개·비빔밥 등 편안한 가정식 메뉴를 선보입니다. 어린 자녀를 둔 젊은 한인 가족들이 많이 거주하는 홀리 스프링스에서 친숙한 한국 음식으로 아이들 입맛도 사로잡는 인기 식당입니다.",
     tip: "아이를 동반한 가족 외식에 매우 적합하며, 어린이 메뉴도 갖추고 있습니다.",
   },
+  { rank: 6, emoji: "🥟", nameKo: "브루어리 바바나 (미슐랭 딤섬)", nameEn: "Brewery Bhavana", address: "218 S Blount St, Raleigh, NC 27601", phone: "(919) 829-9998", hours: "매일 11:30am-10pm (금-토 11pm)", rating: 4.7, ratingCount: "1,600+", why: "미슐랭 가이드 추천 딤섬 레스토랑 겸 수제 맥주 양조장으로, 최고 수준의 딤섬과 베이징 오리가 유명하다. 아시안 음식을 좋아하는 한인 이민자들이 특별한 날에 방문하기에 손색없는 롤리 최고의 다민족 식당이다.", tip: "예약 없이는 대기가 길 수 있으며, 브런치 딤섬이 저녁보다 덜 붐빕니다.", website: "brewerybhavana.com" },
+  { rank: 7, emoji: "🌏", nameKo: "비다 만다 (라오스 요리)", nameEn: "Bida Manda Laotian Restaurant", address: "222 S Blount St, Raleigh, NC 27601", phone: "(919) 829-9999", hours: "월-목 5pm-10pm / 금-토 11am-10pm / 일 11am-9pm", rating: 4.6, ratingCount: "1,900+", why: "롤리에서 가장 사랑받는 동남아시아 레스토랑으로, 라오스 전통 요리를 고급스럽게 재해석한 메뉴가 특징이다. 아시안 커뮤니티 정서에 맞는 따뜻한 분위기와 친절한 서비스로 한인 이민자들에게도 높은 공감대를 형성한다.", tip: "Brewery Bhavana와 같은 건물 블록에 있어 두 곳을 하루에 방문할 수 있습니다.", website: "bidamandaraleigh.com" },
+  { rank: 8, emoji: "🍱", nameKo: "아주마 코리안 (캐리)", nameEn: "Ajumma Korean", address: "2055 Renaissance Park Pl, Cary, NC 27513", phone: "(919) 234-1384", hours: "화-일 11am-9pm", rating: 4.4, ratingCount: "110+", why: "캐리에 위치한 가정식 한식당으로, 아주머니가 직접 만드는 반찬과 찌개가 고향의 맛을 떠올리게 한다. 소박하지만 정성스러운 음식으로 한인 이민자들 사이에서 편안한 단골 식당으로 인기다.", tip: "일요일도 영업하므로 교회 예배 후 식사 장소로 적합하다.", website: "ajummakorean.com" },
+  { rank: 9, emoji: "🍺", nameKo: "스탠버리 (모던 아메리칸)", nameEn: "Stanbury", address: "938 N Blount St, Raleigh, NC 27604", phone: "(919) 831-0808", hours: "화-토 5:30pm-10pm", rating: 4.5, ratingCount: "400+", why: "롤리 다운타운의 모던 아메리칸 레스토랑으로, 화덕에 구운 NC 로컬 식재료를 활용한 창의적인 요리가 특징이다. 미국 남부 음식 문화를 탐험하고 싶은 한인 이민자들에게 현지 미식의 진수를 보여주는 레스토랑이다.", tip: "메뉴가 자주 바뀌는 시즌 메뉴를 순환하므로 방문 전 메뉴를 확인하세요.", website: "stanburyraleigh.com" },
+  { rank: 10, emoji: "🍜", nameKo: "세올 그릴 (AYCE BBQ)", nameEn: "Seol Grille", address: "2310 Walnut St, Cary, NC 27518", phone: "(984) 241-9112", hours: "일-월·수-목 12pm-10:30pm / 금-토 12pm-11pm", rating: 4.5, ratingCount: "600+", why: "2025년 '롤리 베스트 한식당'에 선정된 AYCE(무한리필) 한국 BBQ 레스토랑으로, 소주 칵테일 바를 갖추고 있어 식사와 음주를 함께 즐기기 좋다.", tip: "화요일 휴무이며, 무한리필 BBQ는 1인 1주문이 기본이다.", website: "seolgrille.com" },
 ];
 
 const TOP5_FOOD_COLUMBUS: Top5Item[] = [
@@ -16933,6 +16993,11 @@ const TOP5_FOOD_MINNEAPOLIS: Top5Item[] = [
     why: "🍜 사우스 미네아폴리스 조용한 한식 명소\n번화한 상권에서 살짝 벗어난 사우스 미네아폴리스의 한적한 주거지에 자리한 소박하고 진심 어린 한식당입니다. 칼국수·잔치국수·수육 등 투박하지만 정직한 한국 가정식 메뉴들이 오랫동안 동네 단골들의 발길을 이끌고 있습니다. 화려하지 않아도 매 끼니 진심을 담아 요리하는 주인 가족의 정성이 느껴지는, 음식으로 사람을 섬기는 식당입니다.",
     tip: "평일 점심시간에 방문하면 조용하게 식사할 수 있습니다. 전화 예약 후 방문을 권장합니다.",
   },
+  { rank: 6, emoji: "🍱", nameKo: "미나리 & 더 피콕 (현대 동아시아)", nameEn: "Minari & The Pikok Lounge", address: "323 13th Ave NE, Minneapolis, MN 55413", phone: "(612) 259-8914", hours: "일-목 4pm-9pm / 금-토 4pm-10pm", rating: 4.5, ratingCount: "170+", why: "노스이스트 미니애폴리스에 위치한 현대적인 한국 영향의 동아시아 레스토랑으로, 딤섬 카트 시스템과 창의적인 메뉴 구성이 독특하다. 영화 '미나리'에서 이름을 딴 이 식당은 한인 정체성을 현대적으로 표현하는 미네소타 한인의 자랑스러운 명소다.", tip: "예약은 Resy를 통해 가능하며, 딤섬 카트가 지나갈 때 마음에 드는 것을 바로 집으세요.", website: "minarirestaurant.com" },
+  { rank: 7, emoji: "🍽️", nameKo: "스푼 앤 스테이블 (제임스 비어드)", nameEn: "Spoon and Stable", address: "211 N 1st St, Minneapolis, MN 55401", phone: "(612) 224-9850", hours: "월-금 4pm-11pm / 토 4pm-11:30pm / 일 10am-11pm", rating: 4.7, ratingCount: "1,400+", why: "제임스 비어드 어워드 수상 셰프 개빈 케이슨의 뉴아메리칸 레스토랑으로, 미드웨스트 제철 식재료와 프렌치 기법이 어우러진 파인다이닝이다. 미국 최고 레스토랑 중 하나로 꼽히며 특별한 날 기념 외식 장소로 완벽하다.", tip: "예약은 필수이며, 선데이 브런치는 주중 저녁보다 예약이 조금 더 수월합니다.", website: "spoonandstable.com" },
+  { rank: 8, emoji: "🌿", nameKo: "비나이 (몽족 요리)", nameEn: "Vinai", address: "1300 NE 2nd St, Minneapolis, MN 55413", phone: "(612) 749-6051", hours: "화-목 5pm-10pm / 금-토 5pm-11pm", rating: 4.6, ratingCount: "145+", why: "몽족(Hmong) 요리를 현대적으로 재해석한 혁신적인 레스토랑으로, 미국 내 몽족 문화 보존과 음식 발전에 기여하고 있다. 아시안 이민자로서의 공통된 경험과 정체성을 느낄 수 있는 특별한 식당이다.", tip: "예약은 매월 1일 정오에 오픈되므로 미리 알림을 설정해두세요.", website: "vinaimn.com" },
+  { rank: 9, emoji: "🥘", nameKo: "동해 코리안 그릴 & 스시", nameEn: "Dong Hae Korean Grill & Sushi", address: "903 S Washington Ave, Minneapolis, MN 55415", phone: "(612) 333-1999", hours: "매일 11am-10pm", rating: 4.3, ratingCount: "160+", why: "미니애폴리스 웨어하우스 지구에 위치한 한식·스시 복합 레스토랑으로, AYCE 스시와 31가지 정통 한식 메뉴를 동시에 제공한다. 도심에서 일하는 한인들의 점심 모임 장소로도 자주 이용된다.", tip: "AYCE 스시와 한식을 동시에 즐길 수 있어 한식이 익숙하지 않은 동료와 함께하기에도 좋다.", website: "donghaekgs.com" },
+  { rank: 10, emoji: "🍜", nameKo: "코리아 레스토랑 (대학가)", nameEn: "Korea Restaurant", address: "211 Oak St SE, FL 1, Minneapolis, MN 55414", phone: "(612) 746-0559", hours: "월-토 11am-8pm", rating: 4.3, ratingCount: "230+", why: "미네소타 대학교 앞 딩키타운에 위치한 정통 한식당으로, 저렴한 가격에 불고기·비빔밥·된장찌개 등 가정식 한식을 즐길 수 있다. 오랜 역사와 단골들의 꾸준한 사랑을 받는 미니애폴리스 한인 커뮤니티의 터줏대감 식당이다.", tip: "불고기 플래터는 사이즈가 넉넉하므로 2인이 함께 나눠먹기 좋습니다.", website: "N/A" },
 ];
 
 const TOP5_FOOD_TUCSON: Top5Item[] = [
