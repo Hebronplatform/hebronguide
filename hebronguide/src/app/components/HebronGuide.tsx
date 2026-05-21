@@ -13837,7 +13837,7 @@ function getCityChurches(slug: string, lang: string) {
       },
       {
         emoji: "⛪", tier: 2,
-        name: ko ? "뉴라이프침례교회" : "New Life Baptist Church",
+        name: ko ? "뉴라이프교회" : "New Life Church",
         desc: ko
           ? "✅ 침례교 | 한인 이주자 환영 · 정착 지원\n📍 Houston, TX\n✨ 담임: 김한국 목사\n🔗 newlifehouston.org"
           : "✅ Baptist | Welcoming Korean immigrants · Settlement support\n📍 Houston, TX\n✨ Lead Pastor: Han-guk Kim\n🔗 newlifehouston.org",
