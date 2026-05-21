@@ -93,7 +93,12 @@ declare -A CITY_EN=(
   ["changwon"]="창원"        ["cheonan"]="천안·아산"
 )
 
-# 4. 도시별 배포 (미리 빌드된 dist/ 사용 + index.html 메타데이터 치환)
+# 4. dist/ 정리 — city 서브디렉토리 잔재 제거 (assets/, data/ 제외)
+# 이전 빌드나 실수로 dist/seattle/ 등이 생기면 모든 도시에 불필요한 서브폴더가 복사되는 문제 방지
+find hebronguide/dist -maxdepth 1 -mindepth 1 -type d ! -name assets ! -name data -exec rm -rf {} + 2>/dev/null || true
+echo "  OK: dist/ 서브디렉토리 정리 완료"
+
+# 5. 도시별 배포 (미리 빌드된 dist/ 사용 + index.html 메타데이터 치환)
 # og:updated_time — 매 배포마다 타임스탬프 갱신 → KakaoTalk·Slack·iMessage 캐시 무효화
 # 카카오는 이 값이 바뀌면 자동 재크롤하므로 44개+ 도시 글로벌 확장 시에도 캐시 문제 없음
 BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
