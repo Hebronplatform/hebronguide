@@ -14444,9 +14444,9 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               <div style={{ fontSize: 10, color: "rgba(236,253,245,0.18)", letterSpacing: "0.05em", marginTop: 2 }}>
                 <span style={{ color: "rgba(110,231,183,0.45)", fontWeight: 700 }}>HebronGuide</span>
                 <span style={{ margin: "0 5px", opacity: 0.3 }}>·</span>
-                <span style={{ opacity: 0.3 }}>NanuriWeb</span>
+                <a href="https://nanuriweb.com" target="_blank" rel="noopener" style={{ color: "rgba(110,231,183,0.7)", textDecoration: "none", fontWeight: 700 }}>NanuriWeb</a>
                 <span style={{ margin: "0 5px", opacity: 0.3 }}>·</span>
-                <span style={{ opacity: 0.3 }}>NanuriHome</span>
+                <a href="https://nanurihome.com" target="_blank" rel="noopener" style={{ color: "rgba(110,231,183,0.7)", textDecoration: "none", fontWeight: 700 }}>NanuriHome</a>
               </div>
             </div>
 
