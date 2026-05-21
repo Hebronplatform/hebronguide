@@ -23056,7 +23056,9 @@ function DesktopSidebar({ activeTab, onNavigate }: { activeTab: number; onNaviga
       style={{ background: "#1a2535", borderRight: "1px solid rgba(255,255,255,0.08)" }}>
       {/* 로고 */}
       <div style={{ padding: "20px 16px 16px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 18, color: "#F2994A" }}>HEBRON</div>
+        <a href="https://hebronguide.com" style={{ textDecoration: "none" }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 18, color: "#F2994A", cursor: "pointer" }}>HEBRON</div>
+        </a>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 11, color: "#6EE7B7", marginTop: 2 }}>
           {city.nameEn.toUpperCase()}
         </div>
