@@ -13835,6 +13835,14 @@ function getCityChurches(slug: string, lang: string) {
           : "✅ House Church | HMI North America Board & English Ministry Director\n📍 Houston, TX\n✨ Lead Pastor: Eric Shin",
         tags: ko ? ["가정교회", "IHM", "휴스턴", "영어권"] : ["House Church", "IHM", "Houston", "English"],
       },
+      {
+        emoji: "⛪", tier: 2,
+        name: ko ? "뉴라이프침례교회" : "New Life Baptist Church",
+        desc: ko
+          ? "✅ 침례교 | 한인 이주자 환영 · 정착 지원\n📍 Houston, TX\n✨ 담임: 김한국 목사\n🔗 newlifehouston.org"
+          : "✅ Baptist | Welcoming Korean immigrants · Settlement support\n📍 Houston, TX\n✨ Lead Pastor: Han-guk Kim\n🔗 newlifehouston.org",
+        tags: ko ? ["침례교", "휴스턴", "이주자환영"] : ["Baptist", "Houston", "Newcomer-friendly"],
+      },
     ],
     toronto: [
       {

@@ -1409,7 +1409,13 @@ Key services:
 📍 Houston, TX
 ✨ Lead Pastor: Eric Shin (신동일 목사)`:`✅ House Church | HMI North America Board & English Ministry Director
 📍 Houston, TX
-✨ Lead Pastor: Eric Shin`,tags:a?["가정교회","IHM","휴스턴","영어권"]:["House Church","IHM","Houston","English"]}],toronto:[{emoji:"⭐",tier:1,name:a?"목민교회":"Mokmin Church — Toronto",nameEn:"Mokmin Church",desc:a?`✅ 가정교회 | 북미가사원 토론토 지역목자 · 실행위원
+✨ Lead Pastor: Eric Shin`,tags:a?["가정교회","IHM","휴스턴","영어권"]:["House Church","IHM","Houston","English"]},{emoji:"⛪",tier:2,name:a?"뉴라이프침례교회":"New Life Baptist Church",desc:a?`✅ 침례교 | 한인 이주자 환영 · 정착 지원
+📍 Houston, TX
+✨ 담임: 김한국 목사
+🔗 newlifehouston.org`:`✅ Baptist | Welcoming Korean immigrants · Settlement support
+📍 Houston, TX
+✨ Lead Pastor: Han-guk Kim
+🔗 newlifehouston.org`,tags:a?["침례교","휴스턴","이주자환영"]:["Baptist","Houston","Newcomer-friendly"]}],toronto:[{emoji:"⭐",tier:1,name:a?"목민교회":"Mokmin Church — Toronto",nameEn:"Mokmin Church",desc:a?`✅ 가정교회 | 북미가사원 토론토 지역목자 · 실행위원
 📍 Toronto, ON, Canada
 ✨ 담임: 곽웅 목사`:`✅ House Church | HMI North America Toronto Regional Shepherd & Executive
 📍 Toronto, ON, Canada
