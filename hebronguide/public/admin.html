@@ -228,6 +228,7 @@
   let sbMain = null, sbNew = null, session = null
   let currentTab = 'community'
   let allData = []
+  let adminToken = null  // 로그인 성공 시 설정 — API 인증에 사용
 
   // ── Supabase 초기화 ────────────────────────────────────────
   function initSB() {
@@ -252,6 +253,7 @@
     const pw = document.getElementById('pw-input').value
     if (!pw) return
     const hash = await sha256(pw)
+    adminToken = hash  // 메모리에 저장 — API 인증 토큰으로 사용
     if (hash !== PW_HASH) {
       showMsg('❌ 비밀번호가 틀렸습니다', 'err')
       return
@@ -321,7 +323,7 @@
         allData = data || []
         renderChurches(allData)
       } else if (tab === 'restaurants') {
-        const { dataR } = await sbMain.from('restaurants').select('*').order('created_at', { ascending: false }).limit(100)
+        const { data: dataR } = await sbMain.from('restaurants').select('*').order('created_at', { ascending: false }).limit(100)
         const { data: dataC } = await sbMain.from('cafes').select('*').order('created_at', { ascending: false }).limit(100)
         allData = [...(dataR || []), ...(dataC || [])]
         renderRestaurants(allData)
@@ -500,36 +502,49 @@
       </table>`
   }
 
-  // ── 데이터 조작 ──────────────────────────────────────────
+  // ── 데이터 조작 — /api/admin-action 경유 (서비스 키 사용, RLS 우회) ──
+  async function adminAction(payload) {
+    const res = await fetch('/api/admin-action', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...payload, token: adminToken }),
+    })
+    const json = await res.json().catch(() => ({ error: `HTTP ${res.status}` }))
+    if (!res.ok || json.error) throw new Error(json.error || '요청 실패')
+    return json
+  }
+
   async function updateStatus(id, table, db, status) {
-    const sb = db === 'main' ? sbMain : sbNew
-    const { error } = await sb.from(table).update({ status }).eq('id', id)
-    if (error) { toast('❌ ' + error.message); return }
-    toast(`✅ ${status === 'approved' ? '승인' : '거절'} 완료`)
-    loadTabData(currentTab)
+    try {
+      const r = await adminAction({ action: 'update_status', id, table, status })
+      toast(`✅ ${r.msg || (status === 'approved' ? '승인 완료' : '거절 완료')}`)
+      loadTabData(currentTab)
+    } catch(e) { toast('❌ ' + e.message) }
   }
 
   async function deleteRow(id, table, db) {
     if (!confirm('정말 삭제하시겠습니까?')) return
-    const sb = db === 'main' ? sbMain : sbNew
-    const { error } = await sb.from(table).delete().eq('id', id)
-    if (error) { toast('❌ ' + error.message); return }
-    toast('🗑️ 삭제 완료')
-    loadTabData(currentTab)
+    try {
+      const r = await adminAction({ action: 'delete', id, table })
+      toast('🗑️ ' + (r.msg || '삭제 완료'))
+      loadTabData(currentTab)
+    } catch(e) { toast('❌ ' + e.message) }
   }
 
   async function verifyPartner(id) {
-    const { error } = await sbNew.from('pastor_partners').update({ verified: true }).eq('id', id)
-    if (error) { toast('❌ ' + error.message); return }
-    toast('✅ 인증 완료')
-    loadTabData('partners')
+    try {
+      const r = await adminAction({ action: 'verify_partner', id, table: 'pastor_partners' })
+      toast('✅ ' + (r.msg || '인증 완료'))
+      loadTabData('partners')
+    } catch(e) { toast('❌ ' + e.message) }
   }
 
   async function featureStory(id) {
-    const { error } = await sbNew.from('stories').update({ featured: true }).eq('id', id)
-    if (error) { toast('❌ ' + error.message); return }
-    toast('⭐ 피처드 설정 완료')
-    loadTabData('stories')
+    try {
+      const r = await adminAction({ action: 'feature_story', id, table: 'stories' })
+      toast('⭐ ' + (r.msg || '피처드 설정 완료'))
+      loadTabData('stories')
+    } catch(e) { toast('❌ ' + e.message) }
   }
 
   function editRow(id, table) {
@@ -625,8 +640,9 @@
 
   // ── 초기화 ───────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {
-    // 세션 유효하면 바로 입장
+    // 세션 유효하면 바로 입장 (adminToken은 PW_HASH로 고정)
     if (checkSession()) {
+      adminToken = PW_HASH
       initSB()
       showApp({ email: 'admin' })
     }
