@@ -14422,31 +14422,19 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             <CityRequestForm lang={lang} />
 
             {/* 브랜드 푸터 */}
-            <div style={{ textAlign: "center", padding: "12px 0 8px", fontFamily: "Manrope,sans-serif", lineHeight: 2 }}>
-              <div style={{ fontSize: 11, color: "rgba(201,162,39,0.55)", fontWeight: 700, letterSpacing: "0.06em" }}>
-                © 2026 Hebron Platform LLC
+            <div style={{ textAlign: "center", padding: "12px 0 8px", fontFamily: "Manrope,sans-serif" }}>
+              <div style={{ fontSize: 10, color: "rgba(201,162,39,0.5)", letterSpacing: "0.04em", marginBottom: 5 }}>
+                © 2026 Hebron Platform LLC · 1 Cor. 10:31 ·{" "}
+                <a href="https://hebronguide.com/privacy.html" target="_blank" rel="noopener" style={{ color: "rgba(110,231,183,0.5)", textDecoration: "none" }}>개인정보처리방침</a>
+                {" · "}
+                <a href="https://hebronguide.com/terms.html" target="_blank" rel="noopener" style={{ color: "rgba(110,231,183,0.5)", textDecoration: "none" }}>서비스 약관</a>
               </div>
-              {/* 법적 링크 */}
-              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.25)", marginTop: 3, letterSpacing: "0.04em" }}>
-                <a href="https://hebronguide.com/privacy.html" target="_blank" rel="noopener"
-                   style={{ color: "rgba(110,231,183,0.45)", textDecoration: "none" }}>
-                  개인정보처리방침
-                </a>
-                <span style={{ margin: "0 6px", opacity: 0.35 }}>·</span>
-                <a href="https://hebronguide.com/terms.html" target="_blank" rel="noopener"
-                   style={{ color: "rgba(110,231,183,0.45)", textDecoration: "none" }}>
-                  서비스 약관
-                </a>
-              </div>
-              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.18)", letterSpacing: "0.06em", marginTop: 2 }}>
-                {"1 Cor. 10:31"}
-              </div>
-              <div style={{ fontSize: 10, color: "rgba(236,253,245,0.18)", letterSpacing: "0.05em", marginTop: 2 }}>
-                <span style={{ color: "rgba(110,231,183,0.45)", fontWeight: 700 }}>HebronGuide</span>
-                <span style={{ margin: "0 5px", opacity: 0.3 }}>·</span>
-                <a href="https://nanuriweb.com" target="_blank" rel="noopener" style={{ color: "rgba(110,231,183,0.7)", textDecoration: "none", fontWeight: 700 }}>NanuriWeb</a>
-                <span style={{ margin: "0 5px", opacity: 0.3 }}>·</span>
-                <a href="https://nanurihome.com" target="_blank" rel="noopener" style={{ color: "rgba(110,231,183,0.7)", textDecoration: "none", fontWeight: 700 }}>NanuriHome</a>
+              <div style={{ fontSize: 10, letterSpacing: "0.04em" }}>
+                <span style={{ color: "rgba(110,231,183,0.55)", fontWeight: 700 }}>HebronGuide</span>
+                <span style={{ margin: "0 5px", color: "rgba(255,255,255,0.2)" }}>·</span>
+                <a href="https://nanuriweb.com" target="_blank" rel="noopener" style={{ color: "rgba(110,231,183,0.55)", textDecoration: "none", fontWeight: 700 }}>NanuriWeb</a>
+                <span style={{ margin: "0 5px", color: "rgba(255,255,255,0.2)" }}>·</span>
+                <a href="https://nanurihome.com" target="_blank" rel="noopener" style={{ color: "rgba(110,231,183,0.55)", textDecoration: "none", fontWeight: 700 }}>NanuriHome</a>
               </div>
             </div>
 
