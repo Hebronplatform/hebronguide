@@ -14386,134 +14386,34 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         {sub === 4 && (
           <div style={{ paddingBottom: 8 }}>
 
-            {/* 사명 소개 카드 */}
-            <div style={{ background: "linear-gradient(160deg, rgba(201,162,39,0.10) 0%, rgba(0,0,0,0) 100%)", border: "1px solid rgba(201,162,39,0.25)", borderRadius: 18, padding: "20px 18px", marginBottom: 12 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(201,162,39,0.75)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 10 }}>
-                🌏 {lang === "ko" ? "HebronGuide 사명" : "HebronGuide Mission"}
-              </div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#ECFDF5", lineHeight: 1.6, marginBottom: 10 }}>
+            {/* 동참 초청 */}
+            <div style={{ background: "linear-gradient(160deg, rgba(201,162,39,0.10) 0%, rgba(0,0,0,0) 100%)", border: "1px solid rgba(201,162,39,0.25)", borderRadius: 18, padding: "20px 18px", marginBottom: 14 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#ECFDF5", lineHeight: 1.7, marginBottom: 10 }}>
                 {lang === "ko"
-                  ? "새 도시에 도착한 한인 이민자가\n가장 먼저 찾는 안내자가 되겠습니다."
-                  : "To be the first guide Korean immigrants reach\nwhen they arrive in a new city."}
+                  ? "HebronGuide의 사명에 동의하시는 교회의 동참을 구합니다."
+                  : "We invite churches that share HebronGuide's mission to join us."}
               </div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.8 }}>
                 {lang === "ko"
-                  ? "HebronGuide는 현재 67개 도시에서 한인 이민자의 정착을 돕고 있습니다. 지역 교회는 이 여정에서 가장 중요한 연결고리입니다."
-                  : "HebronGuide currently serves Korean immigrants across 67 cities. The local church is the most vital connector in that journey."}
+                  ? "아래 버튼으로 교회 정보를 보내주시면 운영팀이 연락드립니다."
+                  : "Send us your church info below and our team will be in touch."}
               </div>
             </div>
 
-            {/* 동참 초청 카드 */}
-            <div style={{ background: "rgba(192,132,252,0.06)", border: "1px solid rgba(192,132,252,0.2)", borderRadius: 16, padding: "18px", marginBottom: 12 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, fontWeight: 800, color: "#C084FC", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 10, opacity: 0.85 }}>
-                ⛪ {lang === "ko" ? "함께할 교회를 찾습니다" : "Seeking Partner Churches"}
-              </div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 13, color: "rgba(236,253,245,0.85)", lineHeight: 1.7, marginBottom: 14 }}>
-                {lang === "ko"
-                  ? "HebronGuide의 사명과 비전에 동의하시는 교회의 많은 동참을 정중히 구합니다."
-                  : "We respectfully invite churches that share HebronGuide's mission and vision to join us."}
-              </div>
-              {[
-                { icon: "✈️", ko: "새로 도착한 이민자를 공동체로 환영하는 교회", en: "Churches that welcome newly arrived immigrants into community" },
-                { icon: "🤝", ko: "지역 한인 이웃과 함께 성장하는 교회", en: "Churches growing alongside the local Korean community" },
-                { icon: "📖", ko: "성경적 가치로 이웃을 섬기는 교회", en: "Churches serving neighbors with biblical values" },
-              ].map((item, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: i < 2 ? 9 : 0 }}>
-                  <span style={{ fontSize: 13, flexShrink: 0, marginTop: 2 }}>{item.icon}</span>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.78)", lineHeight: 1.6 }}>
-                    {lang === "ko" ? item.ko : item.en}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* 등록 절차 카드 */}
-            <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "16px 18px", marginBottom: 12 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#ECFDF5", marginBottom: 12 }}>
-                {lang === "ko" ? "등록 절차" : "How to Register"}
-              </div>
-              {[
-                { step: "1", ko: "아래 버튼으로 교회 기본 정보를 보내주세요", en: "Send your church's basic information below" },
-                { step: "2", ko: "HebronGuide 운영팀이 검토 후 연락드립니다 (1–2주)", en: "Our team will review and reach out within 1–2 weeks" },
-                { step: "3", ko: "승인 후 해당 도시 교회 목록에 등재됩니다", en: "Upon approval, your church is listed in the city directory" },
-              ].map((item, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: i < 2 ? 10 : 0 }}>
-                  <div style={{ width: 22, height: 22, borderRadius: "50%", background: "rgba(201,162,39,0.2)", border: "1px solid rgba(201,162,39,0.4)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#C9A227" }}>
-                    {item.step}
-                  </div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.75)", lineHeight: 1.6, paddingTop: 2 }}>
-                    {lang === "ko" ? item.ko : item.en}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* 공유 — 주변 교회에 알리기 */}
-            <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 12 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.7, marginBottom: 12 }}>
-                {lang === "ko"
-                  ? "같은 마음을 가진 교회가 주변에 있다면 함께 나눠주세요."
-                  : "If you know a church that shares this vision, feel free to pass it along."}
-              </div>
-              {(() => {
-                const ko = lang === "ko";
-                const shareTitle = ko ? "HebronGuide 교회 네트워크 참여 안내" : "Join the HebronGuide Church Network";
-                const shareBody = ko
-                  ? "목사님, 안녕하세요.\n\n전 세계 67개 도시 한인 이민자 정착 가이드 HebronGuide입니다.\n\nHebronGuide의 사명과 비전에 동의하시는 교회의 동참을 구하고 있습니다.\n관심 있으신 교회는 아래 링크를 통해 등록해 주세요.\n\nhebronguide.com\nhebronplatform@gmail.com"
-                  : "Hello Pastor,\n\nWe are HebronGuide — a settlement guide for Korean immigrants across 67 cities worldwide.\n\nWe are looking for partner churches that share our mission and vision.\nIf your church is interested, please register through the link below.\n\nhebronguide.com\nhebronplatform@gmail.com";
-                const shareUrl = "https://hebronguide.com";
-                const encodedMsg = encodeURIComponent(shareBody + "\n\n" + shareUrl);
-                return (
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    {typeof navigator !== "undefined" && (navigator as any).share ? (
-                      <button
-                        onClick={() => { (navigator as any).share({ title: shareTitle, text: shareBody, url: shareUrl }).catch(() => {}); }}
-                        style={{ width: "100%", padding: "13px", background: "linear-gradient(135deg, #FEE500, #FFD600)", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#3C1E1E", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-                        📲 {ko ? "카카오·문자·SNS로 알리기" : "Share via KakaoTalk · Text · SNS"}
-                      </button>
-                    ) : (
-                      <a href={`https://wa.me/?text=${encodedMsg}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-                        <div style={{ width: "100%", padding: "13px", background: "rgba(37,211,102,0.15)", border: "1px solid rgba(37,211,102,0.3)", borderRadius: 12, fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13, color: "#25D366", textAlign: "center" }}>
-                          💬 WhatsApp {ko ? "으로 알리기" : "Share"}
-                        </div>
-                      </a>
-                    )}
-                    <div style={{ display: "flex", gap: 8 }}>
-                      <a href={`https://wa.me/?text=${encodedMsg}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", flex: 1 }}>
-                        <div style={{ padding: "11px 8px", background: "rgba(37,211,102,0.12)", border: "1px solid rgba(37,211,102,0.25)", borderRadius: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#25D366", textAlign: "center" }}>
-                          💬 WhatsApp
-                        </div>
-                      </a>
-                      <a href={`mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodedMsg}`} style={{ textDecoration: "none", flex: 1 }}>
-                        <div style={{ padding: "11px 8px", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "rgba(236,253,245,0.75)", textAlign: "center" }}>
-                          ✉️ {ko ? "이메일" : "Email"}
-                        </div>
-                      </a>
-                      <button
-                        onClick={() => { navigator.clipboard.writeText(shareBody + "\n\n" + shareUrl).then(() => alert(ko ? "복사됐습니다." : "Copied!")); }}
-                        style={{ flex: 1, padding: "11px 8px", background: "transparent", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, cursor: "pointer", fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 12, color: "rgba(236,253,245,0.45)", textAlign: "center" }}>
-                        📋 {ko ? "복사" : "Copy"}
-                      </button>
-                    </div>
-                  </div>
-                );
-              })()}
-            </div>
-
-            {/* 등록 신청 버튼 */}
+            {/* 등록 버튼 */}
             <a href={`mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(
               lang === "ko" ? "[HebronGuide] 교회 등록 신청" : "[HebronGuide] Church Registration"
             )}&body=${encodeURIComponent(
               lang === "ko"
                 ? "안녕하세요. {교회명} 담임목사 {성함}입니다.\nHebronGuide 교회 네트워크 등록을 신청합니다.\n\n— 교회명:\n— 담임목사:\n— 도시 / 주:\n— 교단 / 소속:\n— 교회 웹사이트:\n— 연락처 (이메일 / 전화):"
-                : "Hello. I am {Pastor Name}, lead pastor of {Church Name}.\nI would like to register our church with the HebronGuide network.\n\n— Church Name:\n— Lead Pastor:\n— City / State:\n— Denomination:\n— Website:\n— Contact (email / phone):"
+                : "Hello. I am {Pastor Name}, lead pastor of {Church Name}.\nI would like to register with the HebronGuide network.\n\n— Church Name:\n— Lead Pastor:\n— City / State:\n— Denomination:\n— Website:\n— Contact (email / phone):"
             )}`} style={{ display: "block", textDecoration: "none", marginBottom: 12 }}>
               <div style={{ background: "linear-gradient(135deg, #C9A227, #B8901C)", borderRadius: 14, padding: "14px 20px", textAlign: "center", boxShadow: "0 4px 16px rgba(201,162,39,0.25)" }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 3 }}>
-                  {lang === "ko" ? "교회 등록 신청하기 →" : "Apply to Register Your Church →"}
+                  {lang === "ko" ? "교회 등록 신청하기 →" : "Register Your Church →"}
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.6)" }}>
-                  hebronplatform@gmail.com · {lang === "ko" ? "1–2주 내 연락드립니다" : "We'll be in touch within 1–2 weeks"}
+                  hebronplatform@gmail.com
                 </div>
               </div>
             </a>
