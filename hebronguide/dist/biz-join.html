@@ -263,18 +263,17 @@ async function submitBiz() {
   btn.disabled = true
 
   const data = {
-    title:       document.getElementById('biz_name').value.trim(),
+    name:        document.getElementById('biz_name').value.trim(),   // 업체명
+    pastor:      document.getElementById('biz_owner').value.trim(),  // 대표자 (pastor 컬럼 재활용)
+    phone:       document.getElementById('biz_phone').value.trim(),
+    email:       document.getElementById('biz_email').value.trim(),
+    website:     document.getElementById('biz_web').value.trim(),
     description: [
       `업종: ${selectedCat}`,
-      `대표자: ${document.getElementById('biz_owner').value.trim()}`,
       document.getElementById('biz_address').value.trim() ? `주소: ${document.getElementById('biz_address').value.trim()}` : '',
-      document.getElementById('biz_web').value.trim() ? `웹: ${document.getElementById('biz_web').value.trim()}` : '',
       document.getElementById('biz_desc').value.trim() ? `소개: ${document.getElementById('biz_desc').value.trim()}` : '',
     ].filter(Boolean).join(' | '),
     category:    'business',
-    name:        document.getElementById('biz_owner').value.trim(),
-    contact:     document.getElementById('biz_email').value.trim(),
-    phone:       document.getElementById('biz_phone').value.trim(),
     city_slug:   document.getElementById('biz_city').value,
     status:      'pending',
   }

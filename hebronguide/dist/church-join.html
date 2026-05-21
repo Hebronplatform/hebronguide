@@ -301,22 +301,21 @@ async function submitChurch() {
   btn.textContent = '⏳ 등록 중...'
   btn.disabled = true
 
+  const kakao = document.getElementById('kakaoId').value.trim()
+  const web   = document.getElementById('churchWeb').value.trim()
+  const desc  = [`카카오: ${kakao||'—'}`, `웹: ${web||'—'}`].join(' | ')
+
   const data = {
-    title:       document.getElementById('churchName').value.trim(),
-    description: `담임목사: ${document.getElementById('pastorName').value.trim()}`,
-    category:    'church',
-    name:        document.getElementById('pastorName').value.trim(),
-    contact:     document.getElementById('churchEmail').value.trim(),
+    name:        document.getElementById('churchName').value.trim(),  // 교회명
+    pastor:      document.getElementById('pastorName').value.trim(),  // 담임목사
     phone:       phone,
+    email:       document.getElementById('churchEmail').value.trim(),
+    website:     web,
+    description: desc,
+    category:    'church',
     city_slug:   document.getElementById('cityName').value,
     status:      'pending',
   }
-
-  // 카카오 ID, 웹사이트 추가
-  const kakao = document.getElementById('kakaoId').value.trim()
-  const web   = document.getElementById('churchWeb').value.trim()
-  if (kakao) data.description += ` | 카카오: ${kakao}`
-  if (web)   data.description += ` | 웹: ${web}`
 
   try {
     const res = await fetch(`${SUPABASE_URL}/rest/v1/community_items`, {
@@ -339,8 +338,8 @@ async function submitChurch() {
     document.getElementById('dot2').textContent = '✓'
     document.getElementById('dot3').classList.add('done')
 
-    document.getElementById('s-church').textContent = data.title
-    document.getElementById('s-pastor').textContent = data.name
+    document.getElementById('s-church').textContent = data.name
+    document.getElementById('s-pastor').textContent = data.pastor
     document.getElementById('s-city').textContent   = data.city_slug
     document.getElementById('s-phone').textContent  = phone
     window.scrollTo({top:0, behavior:'smooth'})
