@@ -8464,21 +8464,23 @@ function CompactHeroNew() {
       </div>
 
       {/* ── #1 뱃지 (우상단) */}
-      <div style={{
-        position: "absolute", top: 12, right: 14, zIndex: 10,
-        background: "rgba(0,0,0,0.38)", backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-        border: "1px solid rgba(201,162,39,0.45)",
-        borderRadius: 99, padding: "4px 10px",
-        display: "flex", alignItems: "center", gap: 4,
-        pointerEvents: "none",
-      }}>
-        <span style={{ fontSize: 11, color: "#C9A227", fontWeight: 900, lineHeight: 1 }}>✦</span>
-        <span style={{ fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 800,
-          color: "rgba(255,255,255,0.97)", letterSpacing: "0.04em" }}>
-          {lang === "ko" ? "글로벌 환대 커뮤니티" : "Global Hospitality Community"}
-        </span>
-      </div>
+      <a href="https://hebronguide.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+        <div style={{
+          position: "absolute", top: 12, right: 14, zIndex: 10,
+          background: "rgba(0,0,0,0.38)", backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          border: "1px solid rgba(201,162,39,0.45)",
+          borderRadius: 99, padding: "4px 10px",
+          display: "flex", alignItems: "center", gap: 4,
+          cursor: "pointer",
+        }}>
+          <span style={{ fontSize: 11, color: "#C9A227", fontWeight: 900, lineHeight: 1 }}>✦</span>
+          <span style={{ fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 800,
+            color: "rgba(255,255,255,0.97)", letterSpacing: "0.04em" }}>
+            {lang === "ko" ? "글로벌 환대 커뮤니티" : "Global Hospitality Community"}
+          </span>
+        </div>
+      </a>
 
       {/* ── 슬라이드 닷 인디케이터 */}
       {slides && slides.length > 1 && (
