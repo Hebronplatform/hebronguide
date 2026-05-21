@@ -175,5 +175,60 @@ echo "  OK: all root HTML files copied (index.html protected)"
 echo "$(date -u +%s)" > public/ver.txt
 echo "  OK: ver.txt → $(cat public/ver.txt)"
 
-echo "=== Deploy Complete — 67 cities with city-specific SEO (계속 성장 중) ==="
+# 8. cities.json 자동 생성 — admin.html 도시 필터 자동 업데이트
+# build.sh의 CITY_KO/CITY_EN 배열이 유일한 소스. 도시 추가 시 여기만 수정하면 admin 자동 반영.
+echo "--- Generating cities.json for admin panel ---"
+REGION_MAP=(
+  ["seattle"]="🇺🇸 미국"    ["dallas"]="🇺🇸 미국"     ["sf"]="🇺🇸 미국"
+  ["newyork"]="🇺🇸 미국"    ["la"]="🇺🇸 미국"         ["houston"]="🇺🇸 미국"
+  ["atlanta"]="🇺🇸 미국"    ["chicago"]="🇺🇸 미국"     ["dc"]="🇺🇸 미국"
+  ["nashville"]="🇺🇸 미국"  ["boston"]="🇺🇸 미국"      ["miami"]="🇺🇸 미국"
+  ["philadelphia"]="🇺🇸 미국" ["sandiego"]="🇺🇸 미국"  ["portland"]="🇺🇸 미국"
+  ["denver"]="🇺🇸 미국"     ["honolulu"]="🇺🇸 미국"    ["charlotte"]="🇺🇸 미국"
+  ["raleigh"]="🇺🇸 미국"    ["columbus"]="🇺🇸 미국"    ["minneapolis"]="🇺🇸 미국"
+  ["kansascity"]="🇺🇸 미국" ["orlando"]="🇺🇸 미국"     ["maryland"]="🇺🇸 미국"
+  ["fayetteville"]="🇺🇸 미국" ["killeen"]="🇺🇸 미국"   ["louisville"]="🇺🇸 미국"
+  ["anchorage"]="🇺🇸 미국"  ["tucson"]="🇺🇸 미국"      ["orangecounty"]="🇺🇸 미국"
+  ["toronto"]="🇨🇦 캐나다"  ["vancouver"]="🇨🇦 캐나다" ["calgary"]="🇨🇦 캐나다"
+  ["edmonton"]="🇨🇦 캐나다" ["ottawa"]="🇨🇦 캐나다"    ["winnipeg"]="🇨🇦 캐나다"
+  ["mexicocity"]="🌎 중남미" ["guadalajara"]="🌎 중남미" ["monterrey"]="🌎 중남미"
+  ["saopaulo"]="🌎 중남미"
+  ["london"]="🇬🇧 유럽"     ["paris"]="🇬🇧 유럽"       ["berlin"]="🇬🇧 유럽"
+  ["frankfurt"]="🇬🇧 유럽"
+  ["sydney"]="🇦🇺 오세아니아" ["melbourne"]="🇦🇺 오세아니아" ["brisbane"]="🇦🇺 오세아니아"
+  ["perth"]="🇦🇺 오세아니아"  ["auckland"]="🇦🇺 오세아니아"
+  ["singapore"]="🌏 동남아·중동" ["bangkok"]="🌏 동남아·중동"
+  ["hochiminh"]="🌏 동남아·중동" ["dubai"]="🌏 동남아·중동"
+  ["tokyo"]="🇯🇵 일본"      ["osaka"]="🇯🇵 일본"
+  ["seoul"]="🇰🇷 한국"      ["busan"]="🇰🇷 한국"      ["incheon"]="🇰🇷 한국"
+  ["ansan"]="🇰🇷 한국"      ["daejeon"]="🇰🇷 한국"    ["daegu"]="🇰🇷 한국"
+  ["gwangju"]="🇰🇷 한국"    ["jeju"]="🇰🇷 한국"       ["bundang"]="🇰🇷 한국"
+  ["changwon"]="🇰🇷 한국"   ["cheonan"]="🇰🇷 한국"
+)
+
+printf '[' > public/cities.json
+first=1
+for city in \
+  seattle dallas sf newyork la houston atlanta chicago dc nashville boston miami \
+  philadelphia sandiego portland denver honolulu charlotte raleigh columbus minneapolis \
+  kansascity orlando maryland fayetteville killeen louisville anchorage tucson orangecounty \
+  toronto vancouver calgary edmonton ottawa winnipeg \
+  mexicocity guadalajara monterrey saopaulo \
+  london paris berlin frankfurt \
+  sydney melbourne brisbane perth auckland \
+  singapore bangkok hochiminh dubai \
+  tokyo osaka \
+  seoul busan incheon ansan daejeon daegu gwangju jeju bundang changwon cheonan; do
+  KO="${CITY_KO[$city]:-$city}"
+  EN="${CITY_EN[$city]:-$city}"
+  REGION="${REGION_MAP[$city]:-기타}"
+  [ $first -eq 0 ] && printf ',' >> public/cities.json
+  printf '{"slug":"%s","nameKo":"%s","nameEn":"%s","region":"%s"}' \
+    "$city" "$KO" "$EN" "$REGION" >> public/cities.json
+  first=0
+done
+printf ']' >> public/cities.json
+echo "  OK: cities.json → $(wc -c < public/cities.json) bytes, $(grep -o '"slug"' public/cities.json | wc -l) cities"
+
+echo "=== Deploy Complete — cities auto-synced to cities.json ==="
 ls public/
