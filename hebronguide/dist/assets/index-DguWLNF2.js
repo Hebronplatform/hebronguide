@@ -1368,13 +1368,13 @@ Key services:
 📍 4900 168th St. SW., Lynnwood, WA 98037
 🏠 Sunday Worship · Mokjang · Life Studies
 ✨ Lead Pastor: Sungsoo Kim
-🔗 ijiguchon.org`,tags:a?["가정교회","IHM","린우드","시애틀"]:["House Church","IHM","Lynnwood","Seattle"],website:"https://ijiguchon.org",email:"info@ijiguchon.org"},{emoji:"⛪",tier:2,name:a?"시애틀우리교회":"Seattle Woori Church",nameEn:"Seattle Woori Church",desc:a?`✅ 검증됨
+🔗 ijiguchon.org`,tags:a?["가정교회","IHM","린우드","시애틀"]:["House Church","IHM","Lynnwood","Seattle"],website:"https://ijiguchon.org",email:"info@ijiguchon.org"},{emoji:"⭐",tier:1,name:a?"시애틀우리교회":"Seattle Woori Church",nameEn:"Seattle Woori Church",desc:a?`✅ 가정교회
 📍 Bellevue, WA
 ✨ 담임: 최요환 목사
-🏠 주일예배 · 소그룹 · 이민자 환영`:`✅ Verified
+🏠 주일예배 · 목장 · 삶 공부 · 이민자 환영`:`✅ House Church
 📍 Bellevue, WA
 ✨ Lead Pastor: Yohwan Choi
-🏠 Sunday Service · Small Groups · Welcoming Immigrants`,tags:a?["한인교회","벨뷰","시애틀"]:["Korean Church","Bellevue","Seattle"]}],dallas:[{emoji:"⭐",tier:1,name:a?"예닮교회":"Yedam Church — Dallas",nameEn:"Yedam Church",desc:a?`✅ 가정교회 | 북미가사원 텍사스 지역목자
+🏠 Sunday Worship · Mokjang · Life Studies · Welcoming Immigrants`,tags:a?["가정교회","벨뷰","시애틀"]:["House Church","Bellevue","Seattle"]}],dallas:[{emoji:"⭐",tier:1,name:a?"예닮교회":"Yedam Church — Dallas",nameEn:"Yedam Church",desc:a?`✅ 가정교회 | 북미가사원 텍사스 지역목자
 📍 Dallas, TX
 ✨ 담임: 이우철 목사`:`✅ House Church | HMI North America Texas Regional Shepherd
 📍 Dallas, TX

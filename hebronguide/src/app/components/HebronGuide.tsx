@@ -13813,13 +13813,13 @@ function getCityChurches(slug: string, lang: string) {
         email: "info@ijiguchon.org",
       },
       {
-        emoji: "⛪", tier: 2,
+        emoji: "⭐", tier: 1,
         name: ko ? "시애틀우리교회" : "Seattle Woori Church",
         nameEn: "Seattle Woori Church",
         desc: ko
-          ? "✅ 검증됨\n📍 Bellevue, WA\n✨ 담임: 최요환 목사\n🏠 주일예배 · 소그룹 · 이민자 환영"
-          : "✅ Verified\n📍 Bellevue, WA\n✨ Lead Pastor: Yohwan Choi\n🏠 Sunday Service · Small Groups · Welcoming Immigrants",
-        tags: ko ? ["한인교회", "벨뷰", "시애틀"] : ["Korean Church", "Bellevue", "Seattle"],
+          ? "✅ 가정교회\n📍 Bellevue, WA\n✨ 담임: 최요환 목사\n🏠 주일예배 · 목장 · 삶 공부 · 이민자 환영"
+          : "✅ House Church\n📍 Bellevue, WA\n✨ Lead Pastor: Yohwan Choi\n🏠 Sunday Worship · Mokjang · Life Studies · Welcoming Immigrants",
+        tags: ko ? ["가정교회", "벨뷰", "시애틀"] : ["House Church", "Bellevue", "Seattle"],
       },
     ],
     dallas: [
