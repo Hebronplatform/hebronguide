@@ -1,10 +1,23 @@
 #!/bin/bash
 # HebronGuide 빌드 스크립트 — Vercel 자동 실행
-# dist/는 로컬에서 미리 빌드 후 git에 포함 → Vercel은 복사만 수행
-# 각 도시 index.html의 title·description을 도시별로 자동 치환 (SEO + UX)
+# Vercel 환경: React 앱 직접 빌드 → 항상 최신 해시 일관 배포 (검정 화면 방지)
+# 로컬 환경:   기존 dist/ 재사용 (빠른 테스트)
 set -e
 
 echo "=== HebronGuide Deploy Start ==="
+
+# 0. React 앱 빌드 (Vercel에서만 실행 — $VERCEL=1 자동 설정됨)
+# 이유: 로컬에서 빌드 후 커밋하면 JS 해시가 배포마다 바뀌어
+#       Vercel CDN 전파 중 일부 노드가 이전 파일을 서비스 → 검정 화면 발생
+#       Vercel에서 직접 빌드하면 모든 에셋이 한 번에 원자적으로 배포됨
+if [ "$VERCEL" = "1" ]; then
+  echo "--- [Vercel] React 앱 빌드 시작 ---"
+  cd hebronguide
+  npm install --no-audit 2>&1 | tail -2
+  npm run build 2>&1 | tail -5
+  cd ..
+  echo "--- [Vercel] React 앱 빌드 완료 ---"
+fi
 
 # 1. public 초기화
 rm -rf public && mkdir -p public
