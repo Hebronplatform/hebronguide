@@ -14238,8 +14238,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               </div>
               <div style={{ fontSize: 13, color: "rgba(236,253,245,0.88)", lineHeight: 1.75, fontStyle: "italic", borderLeft: "3px solid rgba(192,132,252,0.4)", paddingLeft: 12, marginBottom: 8 }}>
                 {lang === "ko"
-                  ? "\"주는 것이 받는 것보다 복이 있다\" — 사도행전 20:35"
-                  : "\"It is more blessed to give than to receive.\" — Acts 20:35"}
+                  ? "\"주는 것이 받는 것보다 복이 있다\""
+                  : "\"It is more blessed to give than to receive.\""}
               </div>
               <div style={{ fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.7 }}>
                 {lang === "ko"
