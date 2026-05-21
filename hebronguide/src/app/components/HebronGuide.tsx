@@ -10573,150 +10573,76 @@ function CommunityItemCard({ item, lang }: { item: any; lang: string }) {
 }
 
 // 커뮤니티 섹션 (목록 + 올리기 버튼)
+// ── 섹션별 의견·요청 피드백 (이메일 전송) ─────────────────────
 function CommunitySection({ category, citySlug, lang }: { category: string; citySlug: string; lang: string }) {
   const ko = lang === "ko";
-  const [items, setItems] = useState(() => getCommunityByCategory(citySlug, category));
-  const [open, setOpen] = useState(false);
-  const [form, setForm] = useState({ name: "", contact: "", desc: "", website: "" });
-  const [submitted, setSubmitted] = useState(false);
-  const label = COMMUNITY_LABELS[category] || COMMUNITY_LABELS.settle;
+  const [text, setText] = useState("");
+  const [sent, setSent] = useState(false);
+  const city = useCityConfig();
 
-  const handleSubmit = async () => {
-    if (!form.name.trim() || !form.contact.trim()) return;
-    const srcLang = lang; // 현재 앱 언어 = 입력 언어
-    const desc = form.desc.trim();
+  const SECTION_LABEL: Record<string, { ko: string; en: string; emoji: string }> = {
+    church:  { ko: "교회",    en: "church",    emoji: "⛪" },
+    food:    { ko: "맛집",    en: "restaurant", emoji: "🍽️" },
+    settle:  { ko: "정착",    en: "settlement", emoji: "🏠" },
+    explore: { ko: "탐방",    en: "explore",    emoji: "🗺️" },
+    help:    { ko: "도움",    en: "help",       emoji: "🤝" },
+    job:     { ko: "취업",    en: "job",        emoji: "💼" },
+    edu:     { ko: "교육",    en: "education",  emoji: "📚" },
+  };
+  const label = SECTION_LABEL[category] || { ko: "정보", en: "info", emoji: "💬" };
 
-    // 즉시 원본으로 먼저 표시
-    const item: any = {
-      category, citySlug,
-      name: form.name.trim(),
-      contact: form.contact.trim(),
-      desc,
-      website: form.website.trim(),
-      emoji: label.emoji,
-      lang: srcLang,
-    };
-    addCommunityItem(item);
-    setItems(getCommunityByCategory(citySlug, category));
-    setSubmitted(true);
-    setForm({ name: "", contact: "", desc: "", website: "" });
-    setTimeout(() => { setOpen(false); setSubmitted(false); }, 2500);
-
-    // 백그라운드에서 2개 언어 번역 후 저장
-    if (desc) {
-      translateAll(desc, srcLang).then(translated => {
-        const items = readCommunity();
-        const idx = items.findIndex(i =>
-          i.name === item.name && i.contact === item.contact && i.citySlug === citySlug
-        );
-        if (idx >= 0) {
-          items[idx].desc_ko = translated.ko;
-          items[idx].desc_en = translated.en;
-          items[idx].desc_es = translated.es;
-          writeCommunity(items);
-        }
-      }).catch(() => {});
-    }
-
-    // 서버에도 저장
-    postToServer({ ...item });
+  const handleSend = () => {
+    if (!text.trim()) return;
+    const subject = encodeURIComponent(`[HebronGuide ${city.nameKo} ${label.ko}] 추가 요청`);
+    const body = encodeURIComponent(
+      `도시: ${city.nameKo} (${citySlug})\n섹션: ${label.ko}\n\n내용:\n${text.trim()}\n\n---\nhebronguide.com`
+    );
+    window.open(`mailto:hebronplatform@gmail.com?subject=${subject}&body=${body}`);
+    setSent(true);
+    setText("");
+    setTimeout(() => setSent(false), 3000);
   };
 
-  const inputStyle: React.CSSProperties = {
-    width: "100%", padding: "10px 14px", background: "rgba(255,255,255,0.06)",
-    border: "1px solid rgba(255,255,255,0.14)", borderRadius: 10,
-    color: "#ECFDF5", fontSize: 14, fontFamily: "inherit", outline: "none",
-    marginBottom: 10,
-  };
+  if (sent) return (
+    <div style={{ marginTop: 20, background: "rgba(110,231,183,0.08)", border: "1px solid rgba(110,231,183,0.25)", borderRadius: 12, padding: "14px 16px", textAlign: "center", color: "#6EE7B7", fontSize: 13, fontWeight: 700 }}>
+      ✅ {ko ? "의견을 보내주셔서 감사합니다. 검토 후 반영하겠습니다." : "Thank you! We'll review and update soon."}
+    </div>
+  );
 
   return (
-    <div style={{ marginTop: 24 }}>
-      {/* 기존 커뮤니티 아이템 */}
-      {items.length > 0 && (
-        <div style={{ marginBottom: 8 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(110,231,183,0.6)", letterSpacing: "0.08em", marginBottom: 10, textTransform: "uppercase" }}>
-            {ko ? "커뮤니티가 올린 정보" : "From the Community"}
-          </div>
-          {items.map((item, i) => <CommunityItemCard key={i} item={item} lang={lang} />)}
+    <div style={{ marginTop: 20 }}>
+      <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "14px 16px" }}>
+        <div style={{ fontSize: 12, color: "rgba(236,253,245,0.45)", marginBottom: 10 }}>
+          💬 {ko
+            ? `이 ${label.ko} 섹션에 추가했으면 하는 정보가 있으신가요?`
+            : `Anything to add to this ${label.en} section?`}
         </div>
-      )}
-
-      {/* 올리기 버튼 */}
-      {!open && (
-        <button onClick={() => setOpen(true)} style={{
-          width: "100%", background: "rgba(110,231,183,0.07)",
-          border: "1.5px dashed rgba(110,231,183,0.3)",
-          borderRadius: 14, padding: "14px 16px",
-          display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
-          color: "#6EE7B7", cursor: "pointer", fontFamily: "inherit",
-          transition: "background 0.2s",
-        }}>
-          <span style={{ fontSize: 20 }}>{label.emoji}</span>
-          <div style={{ textAlign: "left" }}>
-            <div style={{ fontWeight: 800, fontSize: 13 }}>{ko ? label.ko : label.en}</div>
-            <div style={{ fontSize: 11, opacity: 0.65 }}>
-              {ko ? "이 섹션에 내 정보를 올리면 바로 보입니다" : "Add your info — shows up immediately"}
-            </div>
-          </div>
-          <span style={{ marginLeft: "auto", fontSize: 20 }}>＋</span>
+        <textarea
+          value={text}
+          onChange={e => setText(e.target.value)}
+          placeholder={ko ? "예: 추천 교회, 맛집, 정보 등 자유롭게 적어주세요" : "e.g. Recommended church, restaurant, tip..."}
+          rows={2}
+          style={{
+            width: "100%", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
+            borderRadius: 8, padding: "10px 12px", color: "#ECFDF5", fontSize: 13,
+            fontFamily: "inherit", outline: "none", resize: "none", marginBottom: 8,
+            boxSizing: "border-box" as const,
+          }}
+        />
+        <button
+          onClick={handleSend}
+          disabled={!text.trim()}
+          style={{
+            background: text.trim() ? "rgba(110,231,183,0.15)" : "rgba(255,255,255,0.04)",
+            border: `1px solid ${text.trim() ? "rgba(110,231,183,0.4)" : "rgba(255,255,255,0.08)"}`,
+            color: text.trim() ? "#6EE7B7" : "rgba(236,253,245,0.3)",
+            borderRadius: 8, padding: "8px 16px", fontSize: 12, fontWeight: 700,
+            cursor: text.trim() ? "pointer" : "default", fontFamily: "inherit",
+          }}
+        >
+          {ko ? "의견 보내기 →" : "Send Feedback →"}
         </button>
-      )}
-
-      {/* 인라인 폼 */}
-      {open && !submitted && (
-        <div style={{ background: "rgba(110,231,183,0.06)", border: "1px solid rgba(110,231,183,0.25)", borderRadius: 16, padding: "18px 16px" }}>
-          <div style={{ fontWeight: 800, fontSize: 14, color: "#6EE7B7", marginBottom: 14 }}>
-            {label.emoji} {ko ? label.ko : label.en}
-          </div>
-          <input
-            placeholder={category === "church"
-              ? (ko ? "교회명 *" : "Church name *")
-              : (ko ? "이름 / 상호명 *" : "Name / Business *")}
-            value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-            style={inputStyle}
-          />
-          <input
-            placeholder={ko ? "전화번호 또는 이메일 *" : "Phone or Email *"}
-            value={form.contact} onChange={e => setForm(f => ({ ...f, contact: e.target.value }))}
-            style={inputStyle}
-          />
-          <input
-            placeholder={category === "church"
-              ? (ko ? "주소 · 담임목사 · 예배 시간 등" : "Address · Pastor · Service times")
-              : (ko ? "한 줄 소개 (서비스, 주소 등)" : "Brief description (service, address, etc.)")}
-            value={form.desc} onChange={e => setForm(f => ({ ...f, desc: e.target.value }))}
-            style={inputStyle}
-          />
-          <input
-            placeholder={ko ? "웹사이트 (선택)" : "Website (optional)"}
-            value={form.website} onChange={e => setForm(f => ({ ...f, website: e.target.value }))}
-            style={{ ...inputStyle, marginBottom: 14 }}
-          />
-          <div style={{ display: "flex", gap: 8 }}>
-            <button onClick={handleSubmit} style={{
-              flex: 1, background: "linear-gradient(135deg,#6EE7B7,#34d399)", color: "#0d1117",
-              border: "none", borderRadius: 10, padding: "11px", fontWeight: 800, fontSize: 14,
-              cursor: "pointer", fontFamily: "inherit",
-            }}>
-              {ko ? "바로 올리기 ✓" : "Post Now ✓"}
-            </button>
-            <button onClick={() => setOpen(false)} style={{
-              background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
-              color: "rgba(236,253,245,0.6)", borderRadius: 10, padding: "11px 16px",
-              cursor: "pointer", fontFamily: "inherit", fontSize: 13,
-            }}>
-              {ko ? "취소" : "Cancel"}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* 완료 메시지 */}
-      {submitted && (
-        <div style={{ background: "rgba(110,231,183,0.1)", border: "1px solid rgba(110,231,183,0.35)", borderRadius: 14, padding: "16px", textAlign: "center", color: "#6EE7B7", fontWeight: 700 }}>
-          🎉 {ko ? "올라갔습니다! 모두가 볼 수 있어요." : "Posted! Everyone can see it now."}
-        </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -13711,7 +13637,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
       </div>
 
       <div style={{ padding: "0 16px" }}>
-        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
+        <CommunitySection category="settle" citySlug={citySlug} lang={lang} />
       </div>
     </div>
   );
@@ -14441,7 +14367,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         )}
       </div>
       <div style={{ padding: "0 16px" }}>
-        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
+        <CommunitySection category="church" citySlug={citySlug} lang={lang} />
       </div>
     </div>
 
@@ -18246,7 +18172,7 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
       </div>
 
       <div style={{ padding: "0 16px" }}>
-        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
+        <CommunitySection category="food" citySlug={citySlug} lang={lang} />
       </div>
     </div>
   );
@@ -18524,7 +18450,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
       </div>
 
       <div style={{ padding: "0 16px" }}>
-        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
+        <CommunitySection category="explore" citySlug={city.slug} lang={lang} />
       </div>
     </div>
   );
@@ -19681,7 +19607,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
       )}
 
       <div style={{ padding: "0 16px" }}>
-        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
+        <CommunitySection category="help" citySlug={city.slug} lang={lang} />
       </div>
     </div>
   );
@@ -20345,7 +20271,7 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
       </div>
 
       <div style={{ padding: "0 16px" }}>
-        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
+        <CommunitySection category="job" citySlug={city.slug} lang={lang} />
       </div>
     </div>
   );
@@ -21326,7 +21252,7 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       </div>
 
       <div style={{ padding: "0 16px" }}>
-        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
+        <CommunitySection category="edu" citySlug={city.slug} lang={lang} />
       </div>
     </div>
   );
