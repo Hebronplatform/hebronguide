@@ -313,8 +313,8 @@
       if (tab === 'community') {
         // community_items + content_items 두 테이블 합쳐서 조회
         const [r1, r2] = await Promise.allSettled([
-          sbMain.from('community_items').select('*').order('created_at', { ascending: false }),
-          sbMain.from('content_items').select('*').order('created_at', { ascending: false }),
+          sbNew.from('community_items').select('*').order('created_at', { ascending: false }),
+          sbNew.from('content_items').select('*').order('created_at', { ascending: false }),
         ])
         const d1 = r1.status === 'fulfilled' ? (r1.value.data || []) : []
         const d2 = r2.status === 'fulfilled' ? (r2.value.data || []) : []
@@ -368,9 +368,9 @@
               <td><span class="status ${r.status || 'community'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '💬 커뮤니티'}</span></td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions">
-                ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','main','approved')">✅ 승인</button>` : ''}
-                ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','main','rejected')">❌ 거절</button>` : ''}
-                <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','main')">🗑</button>
+                ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
+                ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
+                <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
               </div></td>
             </tr>`).join('')}
         </tbody>
@@ -576,7 +576,7 @@
   // ── 통계 로드 ────────────────────────────────────────────
   async function loadStats() {
     const counts = [
-      sbMain.from('community_items').select('id', { count: 'exact', head: true }),
+      sbNew.from('community_items').select('id', { count: 'exact', head: true }),
       sbMain.from('churches').select('id', { count: 'exact', head: true }),
       sbMain.from('restaurants').select('id', { count: 'exact', head: true }),
       sbNew.from('pastor_partners').select('id', { count: 'exact', head: true }),
