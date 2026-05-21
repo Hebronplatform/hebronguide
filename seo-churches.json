@@ -1,0 +1,235 @@
+{
+  "seattle": {
+    "cityKo": "시애틀", "cityEn": "Seattle", "region": "Washington, USA",
+    "churches": [
+      { "name": "시애틀지구촌교회", "nameEn": "Seattle Global Mission Church" },
+      { "name": "시애틀한인침례교회", "nameEn": "Korean Baptist Church of Seattle" },
+      { "name": "시애틀온누리교회", "nameEn": "Seattle Onnuri Church" },
+      { "name": "시애틀새생명교회", "nameEn": "New Life Korean Church Seattle" },
+      { "name": "시애틀열린문교회", "nameEn": "Open Door Korean Church Seattle" }
+    ]
+  },
+  "dallas": {
+    "cityKo": "달라스", "cityEn": "Dallas", "region": "Texas, USA",
+    "churches": [
+      { "name": "예닮교회", "nameEn": "Yedarm Church Dallas" },
+      { "name": "에덴교회", "nameEn": "Eden Church Dallas" },
+      { "name": "달라스한인교회", "nameEn": "Korean Church of Dallas" },
+      { "name": "달라스온누리교회", "nameEn": "Dallas Onnuri Church" }
+    ]
+  },
+  "sf": {
+    "cityKo": "샌프란시스코", "cityEn": "San Francisco", "region": "California, USA",
+    "churches": [
+      { "name": "새누리선교교회", "nameEn": "NCMC San Francisco" },
+      { "name": "피스토스장로교회", "nameEn": "Pistos Presbyterian Church" },
+      { "name": "시온영락교회", "nameEn": "Zion Young Nak Church SF" },
+      { "name": "SF한인교회", "nameEn": "Korean Church of San Francisco" }
+    ]
+  },
+  "newyork": {
+    "cityKo": "뉴욕", "cityEn": "New York", "region": "New York, USA",
+    "churches": [
+      { "name": "한울림교회", "nameEn": "Hanulim Church New York" },
+      { "name": "뉴욕한인교회", "nameEn": "Korean Church of New York" },
+      { "name": "뉴욕온누리교회", "nameEn": "New York Onnuri Church" },
+      { "name": "Day and Night Church", "nameEn": "Day and Night Church NYC" }
+    ]
+  },
+  "la": {
+    "cityKo": "로스앤젤레스", "cityEn": "Los Angeles", "region": "California, USA",
+    "churches": [
+      { "name": "갈릴리선교교회", "nameEn": "Galilee Mission Church LA" },
+      { "name": "Journey Christian Fellowship", "nameEn": "Journey Christian Fellowship LA" },
+      { "name": "LA온누리교회", "nameEn": "LA Onnuri Church" },
+      { "name": "사랑의교회 LA", "nameEn": "Sarang Church LA" },
+      { "name": "베델한인교회", "nameEn": "Bethel Korean Church LA" }
+    ]
+  },
+  "houston": {
+    "cityKo": "휴스턴", "cityEn": "Houston", "region": "Texas, USA",
+    "churches": [
+      { "name": "휴스턴서울교회", "nameEn": "Houston Seoul Church" },
+      { "name": "뉴라이프교회", "nameEn": "New Life Church Houston" },
+      { "name": "New Life Fellowship Houston", "nameEn": "New Life Fellowship Houston" },
+      { "name": "휴스턴한인침례교회", "nameEn": "Korean Baptist Church of Houston" }
+    ]
+  },
+  "atlanta": {
+    "cityKo": "애틀랜타", "cityEn": "Atlanta", "region": "Georgia, USA",
+    "churches": [
+      { "name": "애틀랜타한인교회", "nameEn": "Korean Church of Atlanta" },
+      { "name": "애틀랜타온누리교회", "nameEn": "Atlanta Onnuri Church" },
+      { "name": "애틀랜타지구촌교회", "nameEn": "Atlanta Global Mission Church" }
+    ]
+  },
+  "chicago": {
+    "cityKo": "시카고", "cityEn": "Chicago", "region": "Illinois, USA",
+    "churches": [
+      { "name": "도담교회", "nameEn": "Dodam Church Chicago" },
+      { "name": "시카고한인교회", "nameEn": "Korean Church of Chicago" },
+      { "name": "시카고온누리교회", "nameEn": "Chicago Onnuri Church" }
+    ]
+  },
+  "dc": {
+    "cityKo": "워싱턴 DC", "cityEn": "Washington DC", "region": "Washington DC, USA",
+    "churches": [
+      { "name": "새로운교회", "nameEn": "New Church Washington DC" },
+      { "name": "워싱턴DC한인교회", "nameEn": "Korean Church of Washington DC" },
+      { "name": "Unity Church DC", "nameEn": "Unity Church Washington DC" }
+    ]
+  },
+  "nashville": {
+    "cityKo": "내쉬빌", "cityEn": "Nashville", "region": "Tennessee, USA",
+    "churches": [
+      { "name": "주님의몸된교회", "nameEn": "Body of Christ Church Nashville" },
+      { "name": "내쉬빌한인교회", "nameEn": "Korean Church of Nashville" }
+    ]
+  },
+  "boston": {
+    "cityKo": "보스턴", "cityEn": "Boston", "region": "Massachusetts, USA",
+    "churches": [
+      { "name": "내슈아한마음교회", "nameEn": "Nashua Hanmaeum Church" },
+      { "name": "보스턴한인교회", "nameEn": "Korean Church of Boston" },
+      { "name": "보스턴온누리교회", "nameEn": "Boston Onnuri Church" }
+    ]
+  },
+  "philadelphia": {
+    "cityKo": "필라델피아", "cityEn": "Philadelphia", "region": "Pennsylvania, USA",
+    "churches": [
+      { "name": "벤살렘연합감리교회", "nameEn": "Bensalem United Methodist Church" },
+      { "name": "필라델피아한인교회", "nameEn": "Korean Church of Philadelphia" }
+    ]
+  },
+  "toronto": {
+    "cityKo": "토론토", "cityEn": "Toronto", "region": "Ontario, Canada",
+    "churches": [
+      { "name": "목민교회", "nameEn": "Mokmin Church Toronto" },
+      { "name": "워터루제일교회", "nameEn": "Waterloo First Korean Church" },
+      { "name": "한인등대교회", "nameEn": "Korean Lighthouse Church Toronto" },
+      { "name": "토론토한인교회", "nameEn": "Korean Church of Toronto" }
+    ]
+  },
+  "vancouver": {
+    "cityKo": "밴쿠버", "cityEn": "Vancouver", "region": "British Columbia, Canada",
+    "churches": [
+      { "name": "나의사랑하는교회", "nameEn": "My Beloved Church Vancouver" },
+      { "name": "두드림교회", "nameEn": "Knocking Church Vancouver" },
+      { "name": "사랑의교회 밴쿠버", "nameEn": "Sarang Church Vancouver" },
+      { "name": "밴쿠버한인교회", "nameEn": "Korean Church of Vancouver" }
+    ]
+  },
+  "orangecounty": {
+    "cityKo": "오렌지카운티", "cityEn": "Orange County", "region": "California, USA",
+    "churches": [
+      { "name": "갓즈패밀리교회", "nameEn": "God's Family Church Orange County" },
+      { "name": "주님의마음교회", "nameEn": "Heart of the Lord Church OC" },
+      { "name": "풀러튼좋은교회", "nameEn": "Good Church Fullerton" },
+      { "name": "사랑의교회 OC", "nameEn": "Sarang Church Orange County" },
+      { "name": "그레이스 코리안 처치 풀러튼", "nameEn": "Grace Korean Church Fullerton" }
+    ]
+  },
+  "sandiego": {
+    "cityKo": "샌디에고", "cityEn": "San Diego", "region": "California, USA",
+    "churches": [
+      { "name": "기쁨의교회", "nameEn": "Joy Church San Diego" },
+      { "name": "샌디에고한인교회", "nameEn": "Korean Church of San Diego" }
+    ]
+  },
+  "portland": {
+    "cityKo": "포틀랜드", "cityEn": "Portland", "region": "Oregon, USA",
+    "churches": [
+      { "name": "온누리성결교회", "nameEn": "Onnuri Holiness Church Portland" },
+      { "name": "포틀랜드한인교회", "nameEn": "Korean Church of Portland" }
+    ]
+  },
+  "denver": {
+    "cityKo": "덴버", "cityEn": "Denver", "region": "Colorado, USA",
+    "churches": [
+      { "name": "덴버한인교회", "nameEn": "Korean Church of Denver" },
+      { "name": "덴버온누리교회", "nameEn": "Denver Onnuri Church" }
+    ]
+  },
+  "miami": {
+    "cityKo": "마이애미", "cityEn": "Miami", "region": "Florida, USA",
+    "churches": [
+      { "name": "마이애미한인교회", "nameEn": "Korean Church of Miami" }
+    ]
+  },
+  "orlando": {
+    "cityKo": "올랜도", "cityEn": "Orlando", "region": "Florida, USA",
+    "churches": [
+      { "name": "올랜도비전교회", "nameEn": "Orlando Vision Church" },
+      { "name": "올랜도한인교회", "nameEn": "Korean Church of Orlando" }
+    ]
+  },
+  "maryland": {
+    "cityKo": "메릴랜드", "cityEn": "Maryland", "region": "Maryland, USA",
+    "churches": [
+      { "name": "워싱턴지구촌교회", "nameEn": "Washington Global Mission Church" },
+      { "name": "메릴랜드한인교회", "nameEn": "Korean Church of Maryland" }
+    ]
+  },
+  "louisville": {
+    "cityKo": "루이빌", "cityEn": "Louisville", "region": "Kentucky, USA",
+    "churches": [
+      { "name": "루이빌새한장로교회", "nameEn": "Louisville Saehan Presbyterian Church" },
+      { "name": "루이빌한인교회", "nameEn": "Korean Church of Louisville" }
+    ]
+  },
+  "kansascity": {
+    "cityKo": "캔자스시티", "cityEn": "Kansas City", "region": "Missouri, USA",
+    "churches": [
+      { "name": "캔자스시티한인교회", "nameEn": "Korean Church of Kansas City" }
+    ]
+  },
+  "sydney": {
+    "cityKo": "시드니", "cityEn": "Sydney", "region": "New South Wales, Australia",
+    "churches": [
+      { "name": "시드니한인교회", "nameEn": "Korean Church of Sydney" },
+      { "name": "시드니온누리교회", "nameEn": "Sydney Onnuri Church" }
+    ]
+  },
+  "melbourne": {
+    "cityKo": "멜버른", "cityEn": "Melbourne", "region": "Victoria, Australia",
+    "churches": [
+      { "name": "멜버른한인교회", "nameEn": "Korean Church of Melbourne" }
+    ]
+  },
+  "london": {
+    "cityKo": "런던", "cityEn": "London", "region": "England, UK",
+    "churches": [
+      { "name": "런던한인교회", "nameEn": "Korean Church of London" },
+      { "name": "런던온누리교회", "nameEn": "London Onnuri Church" }
+    ]
+  },
+  "tokyo": {
+    "cityKo": "도쿄", "cityEn": "Tokyo", "region": "Japan",
+    "churches": [
+      { "name": "도쿄한인교회", "nameEn": "Korean Church of Tokyo" },
+      { "name": "도쿄온누리교회", "nameEn": "Tokyo Onnuri Church" }
+    ]
+  },
+  "singapore": {
+    "cityKo": "싱가포르", "cityEn": "Singapore", "region": "Singapore",
+    "churches": [
+      { "name": "싱가포르한인교회", "nameEn": "Korean Church of Singapore" },
+      { "name": "싱가포르온누리교회", "nameEn": "Singapore Onnuri Church" }
+    ]
+  },
+  "bundang": {
+    "cityKo": "분당·수지", "cityEn": "Bundang", "region": "Gyeonggi, Korea",
+    "churches": [
+      { "name": "지구촌교회", "nameEn": "Global Mission Church Bundang" },
+      { "name": "분당우리교회", "nameEn": "Bundang Woori Church" }
+    ]
+  },
+  "seoul": {
+    "cityKo": "서울", "cityEn": "Seoul", "region": "Korea",
+    "churches": [
+      { "name": "온누리교회", "nameEn": "Onnuri Church Seoul" },
+      { "name": "사랑의교회", "nameEn": "Sarang Church Seoul" },
+      { "name": "강남교회", "nameEn": "Gangnam Church Seoul" }
+    ]
+  }
+}

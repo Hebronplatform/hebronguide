@@ -248,5 +248,10 @@ done
 printf ']' >> public/cities.json
 echo "  OK: cities.json → $(wc -c < public/cities.json) bytes, $(grep -o '"slug"' public/cities.json | wc -l) cities"
 
+# 9. SEO JSON-LD 구조화 데이터 삽입 — 구글 검색 시 HebronGuide 노출
+# 효과: "시애틀지구촌교회", "달라스 한인 교회" 등 검색 → HebronGuide 연결
+echo "--- Injecting SEO JSON-LD structured data ---"
+node seo-inject.js
+
 echo "=== Deploy Complete — cities auto-synced to cities.json ==="
 ls public/
