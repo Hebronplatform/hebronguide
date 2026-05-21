@@ -22587,11 +22587,11 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
         <BodyText>{ko ? "입국 신고서에 현지 체류 주소(영문)를 써야 합니다. 학교 기숙사, 친척 집, 에어비앤비 주소를 영어로 메모장에 저장해 두세요." : "You must write your local address (in English) on the customs/arrival form. Save dorm, relative's home, or Airbnb address in English notes."}</BodyText>
         <PhraseCard
           situation={ko
-            ? `기내 신고서 주소 항목 — ${CITY_EXAMPLE_ADDRESS[slug]?.district ?? city.nameKo} 예시`
+            ? `기내 신고서 주소 항목 — ${CITY_EXAMPLE_ADDRESS[city.slug]?.district ?? city.nameKo} 예시`
             : `Address field on arrival form — ${city.nameEn} area example`}
-          english={CITY_EXAMPLE_ADDRESS[slug]?.en ?? `123 Main St, ${city.nameEn}, [ZIP]`}
+          english={CITY_EXAMPLE_ADDRESS[city.slug]?.en ?? `123 Main St, ${city.nameEn}, [ZIP]`}
           korean={ko
-            ? `${CITY_EXAMPLE_ADDRESS[slug]?.district ?? city.nameKo} 예시 주소 — 실제 본인 주소를 영어로 저장하세요`
+            ? `${CITY_EXAMPLE_ADDRESS[city.slug]?.district ?? city.nameKo} 예시 주소 — 실제 본인 주소를 영어로 저장하세요`
             : `${city.nameEn} area example — save your actual address in English`}
         />
       </StepCard>
