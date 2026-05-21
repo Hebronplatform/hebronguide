@@ -14,15 +14,14 @@ const CORS = {
 // 관리자 비밀번호 해시 (admin@Hebron2026!)
 const ADMIN_HASH = '614fea13745bbaa53de1c1c36b216c3cd5009df185b9f642089eb7ea76a69b90'
 
-// Supabase 프로젝트 URL 매핑
-// community_items, pastor_partners, stories, ai_query_logs → vextxqzggznulwpganwt
-// churches, restaurants, cafes → okhfjzofifmsgssgajts
+// Supabase 프로젝트: 단일 프로젝트 (vextxqzggznulwpganwt)
+// SUPABASE_SERVICE_KEY_MAIN 은 SUPABASE_SERVICE_KEY 와 동일 키 사용
 const SB_URLS = {
-  main:  'https://okhfjzofifmsgssgajts.supabase.co',
+  main:  'https://vextxqzggznulwpganwt.supabase.co',
   new:   'https://vextxqzggznulwpganwt.supabase.co',
 }
 
-// 테이블 → 어느 Supabase 프로젝트인지 매핑
+// 테이블 → 모두 동일 프로젝트 사용
 const TABLE_DB = {
   community_items:  'new',
   content_items:    'new',
@@ -30,9 +29,9 @@ const TABLE_DB = {
   stories:          'new',
   ai_query_logs:    'new',
   content_reviews:  'new',
-  churches:         'main',
-  restaurants:      'main',
-  cafes:            'main',
+  churches:         'new',
+  restaurants:      'new',
+  cafes:            'new',
 }
 
 async function sbFetch(table, method, id, body = null) {
