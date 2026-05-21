@@ -14192,7 +14192,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     { title: "처음 방문 시 팁", desc: "대부분 교회는 방문자 환영. 미리 연락 없이 예배 시간에 방문해도 됩니다. 주차장 안내원이 도와드립니다" },
     { title: "예배 시간 (일반적)", desc: "주일 1부 8:00am · 2부 11:00am · 영어예배 11:00am. 교회마다 다르니 홈페이지 확인" },
     { title: "새가족 등록 혜택", desc: "정착 상담 · 생활 정보 · 한인 네트워크 연결. 대부분 무료 제공" },
-    { title: "한인 교회 찾는 법", desc: `카카오 지도 또는 구글에서 '${city.nameKo} 한인 교회' 검색, 또는 지역 한인 교회 협회 홈페이지 참고` },
+    { title: "한인 교회 찾는 법", desc: `구글에서 '${city.nameKo} 한인 교회' 검색, 또는 지역 한인 교회 협회 홈페이지 참고` },
   ] : [
     { title: "Tips for first visit", desc: "Most churches warmly welcome visitors. No need to call ahead — just show up at service time. Parking attendants will help" },
     { title: "Typical service times", desc: "Sunday 1st: 8:00am · 2nd: 11:00am · English Service: 11:00am. Check each church website for details" },
