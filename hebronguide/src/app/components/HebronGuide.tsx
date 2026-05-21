@@ -13711,7 +13711,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
       </div>
 
       <div style={{ padding: "0 16px" }}>
-        <CommunitySection category="settle" citySlug={citySlug} lang={lang} />
+        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
       </div>
     </div>
   );
@@ -14441,7 +14441,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         )}
       </div>
       <div style={{ padding: "0 16px" }}>
-        <CommunitySection category="church" citySlug={citySlug} lang={lang} />
+        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
       </div>
     </div>
 
@@ -18246,7 +18246,7 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
       </div>
 
       <div style={{ padding: "0 16px" }}>
-        <CommunitySection category="food" citySlug={citySlug} lang={lang} />
+        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
       </div>
     </div>
   );
@@ -18524,7 +18524,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
       </div>
 
       <div style={{ padding: "0 16px" }}>
-        <CommunitySection category="explore" citySlug={city.slug} lang={lang} />
+        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
       </div>
     </div>
   );
@@ -19681,7 +19681,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
       )}
 
       <div style={{ padding: "0 16px" }}>
-        <CommunitySection category="help" citySlug={city.slug} lang={lang} />
+        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
       </div>
     </div>
   );
@@ -20345,7 +20345,7 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
       </div>
 
       <div style={{ padding: "0 16px" }}>
-        <CommunitySection category="job" citySlug={city.slug} lang={lang} />
+        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
       </div>
     </div>
   );
@@ -21326,7 +21326,7 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       </div>
 
       <div style={{ padding: "0 16px" }}>
-        <CommunitySection category="edu" citySlug={city.slug} lang={lang} />
+        {/* 커뮤니티 직접 제출 제거 — AI 자동 큐레이션으로 대체 */}
       </div>
     </div>
   );

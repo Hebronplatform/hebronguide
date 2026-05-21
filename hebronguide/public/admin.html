@@ -159,6 +159,50 @@
       </div>
     </div>
 
+    <!-- AI 자동 큐레이션 -->
+    <div style="background:linear-gradient(135deg,rgba(110,231,183,.08),rgba(0,0,0,0));border:1px solid rgba(110,231,183,.25);border-radius:12px;padding:16px 20px;margin-bottom:16px">
+      <div style="font-size:.75rem;font-weight:800;color:var(--mint);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px">🤖 AI 자동 콘텐츠 큐레이션</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+        <select id="curator-city" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:7px;font-size:.85rem">
+          <option value="">도시 선택</option>
+          <optgroup label="🇺🇸 미국">
+            <option value="seattle|시애틀 Seattle">시애틀</option>
+            <option value="dallas|달라스 Dallas">달라스</option>
+            <option value="houston|휴스턴 Houston">휴스턴</option>
+            <option value="la|로스앤젤레스 LA">로스앤젤레스</option>
+            <option value="newyork|뉴욕 New York">뉴욕</option>
+            <option value="chicago|시카고 Chicago">시카고</option>
+            <option value="dc|워싱턴DC Washington DC">워싱턴DC</option>
+            <option value="boston|보스턴 Boston">보스턴</option>
+            <option value="atlanta|애틀랜타 Atlanta">애틀랜타</option>
+          </optgroup>
+          <optgroup label="🇨🇦 캐나다">
+            <option value="toronto|토론토 Toronto">토론토</option>
+            <option value="vancouver|밴쿠버 Vancouver">밴쿠버</option>
+          </optgroup>
+          <optgroup label="🌏 국제">
+            <option value="sydney|시드니 Sydney">시드니</option>
+            <option value="london|런던 London">런던</option>
+            <option value="tokyo|도쿄 Tokyo">도쿄</option>
+            <option value="singapore|싱가포르 Singapore">싱가포르</option>
+          </optgroup>
+        </select>
+        <select id="curator-section" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:7px;font-size:.85rem">
+          <option value="all">전체 섹션</option>
+          <option value="settle">🏠 정착 정보</option>
+          <option value="food">🍽️ 맛집</option>
+          <option value="church">⛪ 교회</option>
+          <option value="explore">🗺️ 탐방</option>
+          <option value="job">💼 취업</option>
+          <option value="edu">📚 교육</option>
+        </select>
+        <button onclick="runCurator()" style="background:linear-gradient(135deg,var(--mint),#34d399);color:#000;font-weight:800;border:none;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:.85rem">
+          🤖 AI 조사 시작
+        </button>
+      </div>
+      <div id="curator-status" style="font-size:.82rem;color:var(--muted);min-height:20px"></div>
+    </div>
+
     <!-- 통계 -->
     <div class="stats-row">
       <div class="stat-card">
@@ -599,6 +643,38 @@
     el.textContent = msg
     el.classList.add('show')
     setTimeout(() => el.classList.remove('show'), 2500)
+  }
+
+  // ── AI 자동 큐레이션 ─────────────────────────────────────
+  async function runCurator() {
+    const cityVal = document.getElementById('curator-city').value
+    const section = document.getElementById('curator-section').value
+    const status  = document.getElementById('curator-status')
+
+    if (!cityVal) { toast('❌ 도시를 선택해주세요'); return }
+
+    const [citySlug, cityName] = cityVal.split('|')
+    status.textContent = `🤖 ${cityName} — ${section === 'all' ? '전체 섹션' : section} 조사 중... (1-2분 소요)`
+    status.style.color = 'var(--mint)'
+
+    try {
+      const res = await fetch('/api/content-curator', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ city: cityName, citySlug, section, token: adminToken }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || '요청 실패')
+
+      const saved = Object.values(data.results || {}).reduce((sum, r) => sum + (r.saved || 0), 0)
+      status.textContent = `✅ 완료! ${saved}개 항목이 저장됐습니다. 커뮤니티 글 탭에서 검토·승인하세요.`
+      status.style.color = 'var(--green)'
+      loadTabData('community')
+      loadStats()
+    } catch(e) {
+      status.textContent = `❌ ${e.message}`
+      status.style.color = 'var(--red)'
+    }
   }
 
   // ── 도시 필터 자동 로드 (cities.json) ─────────────────────
