@@ -173,11 +173,7 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
   <!-- 유형 탭 선택 -->
   <div class="type-tabs">
-    <div class="type-tab active" onclick="switchTab('person')" id="tab-person">
-      <span class="tab-icon">🧑</span>
-      <span class="tab-lbl">개인</span>
-    </div>
-    <div class="type-tab" onclick="switchTab('church')" id="tab-church">
+    <div class="type-tab active" onclick="switchTab('church')" id="tab-church">
       <span class="tab-icon">⛪</span>
       <span class="tab-lbl">교회</span>
     </div>
@@ -186,109 +182,17 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <span class="tab-lbl">사업체</span>
     </div>
     <div class="type-tab" onclick="switchTab('promo')" id="tab-promo">
-      <span class="tab-icon">📣</span>
-      <span class="tab-lbl">홍보</span>
+      <span class="tab-icon">📢</span>
+      <span class="tab-lbl">광고·홍보</span>
     </div>
   </div>
 
-  <!-- ══════════ 개인 폼 ══════════ -->
-  <div class="form-card active" id="form-person">
-    <div class="form-section-title">🧑 개인 파트너 신청</div>
-    <div class="hint">
-      <strong>헤브론 라이드 드라이버</strong>, <strong>헤브론 투어 가이드</strong>,
-      <strong>통역·번역</strong>, <strong>커뮤니티 서비스</strong> 등 개인 재능을 등록하세요.
-      HebronGuide를 통해 한인 이민자·방문자와 연결됩니다.
-    </div>
+  <!-- 개인 서비스 → 사업체 탭에 통합 (드라이버·번역·튜터 등은 사업체 업종에서 선택) -->
 
     <div class="field-row">
-      <div class="field" id="p-name">
-        <label>이름 <span class="req">*</span></label>
-        <input type="text" id="pName" placeholder="홍길동">
-        <div class="error-msg">이름을 입력해 주세요</div>
-      </div>
-      <div class="field" id="p-phone">
-        <label>전화·카카오 <span class="req">*</span></label>
-        <input type="tel" id="pPhone" placeholder="(000) 000-0000">
-        <div class="error-msg">연락처를 입력해 주세요</div>
-      </div>
-    </div>
-
-    <div class="field" id="p-email">
-      <label>이메일 <span class="req">*</span></label>
-      <input type="email" id="pEmail" placeholder="example@email.com">
-      <div class="error-msg">올바른 이메일을 입력해 주세요</div>
-    </div>
-
-    <div class="field">
-      <label>활동 도시 <span class="req">*</span></label>
-      <select id="pCity">
-        <option value="">도시 선택</option>
-        <optgroup label="🇺🇸 미국">
-          <option>시애틀 Seattle</option><option>로스앤젤레스 LA</option>
-          <option>오렌지카운티 Orange County</option><option>뉴욕 New York</option>
-          <option>달라스 Dallas</option><option>SF 베이에어리어 SF Bay</option>
-          <option>휴스턴 Houston</option><option>애틀랜타 Atlanta</option>
-          <option>시카고 Chicago</option><option>워싱턴DC Washington DC</option>
-          <option>보스턴 Boston</option><option>마이애미 Miami</option>
-          <option>내쉬빌 Nashville</option><option>필라델피아 Philadelphia</option>
-          <option>호놀룰루 Honolulu</option><option>기타 미국</option>
-        </optgroup>
-        <optgroup label="🇨🇦 캐나다">
-          <option>토론토 Toronto</option><option>밴쿠버 Vancouver</option>
-          <option>캘거리 Calgary</option><option>기타 캐나다</option>
-        </optgroup>
-        <optgroup label="🇰🇷 한국">
-          <option>서울</option><option>부산</option><option>인천</option>
-          <option>기타 한국</option>
-        </optgroup>
-        <optgroup label="🌏 기타">
-          <option>시드니 Sydney</option><option>도쿄 Tokyo</option>
-          <option>런던 London</option><option>기타 도시</option>
-        </optgroup>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>제공 서비스 유형 <span class="req">*</span> <span class="opt">(복수 선택 가능)</span></label>
-      <div class="service-grid">
-        <label class="service-tag"><input type="checkbox" name="pService" value="ride"><span class="s-icon">🚗</span><span class="s-lbl">헤브론 라이드<br>한국어 드라이버</span></label>
-        <label class="service-tag"><input type="checkbox" name="pService" value="tour"><span class="s-icon">🗺️</span><span class="s-lbl">헤브론 투어<br>한국어 가이드</span></label>
-        <label class="service-tag"><input type="checkbox" name="pService" value="translate"><span class="s-icon">🌐</span><span class="s-lbl">통역·번역<br>한·영·기타</span></label>
-        <label class="service-tag"><input type="checkbox" name="pService" value="tutor"><span class="s-icon">📚</span><span class="s-lbl">과외·튜터링<br>학업 지원</span></label>
-        <label class="service-tag"><input type="checkbox" name="pService" value="relocation"><span class="s-icon">🏠</span><span class="s-lbl">정착 도우미<br>이사·정착 지원</span></label>
-        <label class="service-tag"><input type="checkbox" name="pService" value="other"><span class="s-icon">✨</span><span class="s-lbl">기타 서비스<br>아래에 적어주세요</span></label>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>자기소개 및 서비스 설명 <span class="req">*</span></label>
-      <textarea id="pDesc" placeholder="본인 소개, 제공 서비스 내용, 이용 가능 시간, 요금 등을 자유롭게 적어주세요."></textarea>
-    </div>
-
-    <div class="hint hint-gold">
-      <strong>📋 처리 과정 (3단계)</strong><br>
-      <span style="display:flex;align-items:center;gap:6px;margin-top:6px;flex-wrap:wrap;">
-        <span style="background:rgba(201,162,39,.2);border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:700;">① 신청 등록</span>
-        <span style="color:var(--gold);">→</span>
-        <span style="background:rgba(201,162,39,.2);border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:700;">② 승인 검토 · 승인</span>
-        <span style="color:var(--gold);">→</span>
-        <span style="background:rgba(110,231,183,.2);border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:700;color:var(--mint);">③ 프로필 게시</span>
-      </span>
-    </div>
-    <div style="background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.22);
-      border-radius:10px;padding:10px 14px;margin-bottom:4px;
-      font-size:.76rem;color:rgba(236,253,245,.65);line-height:1.7;display:flex;gap:8px;align-items:flex-start;">
-      <span style="flex-shrink:0;font-size:14px;">🔐</span>
-      <span>검토·승인 후 게시되며, 운영 방침에 따라 게시 후에도 내용이 조정되거나 내려질 수 있습니다.<br>신뢰와 질서를 소중히 여기는 HebronGuide 운영에 협조해 주셔서 감사합니다.</span>
-    </div>
-
-    <button class="btn-submit" onclick="submitForm('person')">
-      🧑 개인 파트너 신청하기
-    </button>
-  </div>
 
   <!-- ══════════ 교회 폼 ══════════ -->
-  <div class="form-card" id="form-church">
+  <div class="form-card active" id="form-church">
     <div class="form-section-title">⛪ 헤브론 파트너 교회 신청</div>
     <div class="hint">
       <strong>헤브론 파트너 교회</strong>로 등록하시면 HebronGuide 67개 도시 교회 탭에
@@ -380,8 +284,8 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
   <div class="form-card" id="form-business">
     <div class="form-section-title">🏢 사업체 광고·등재 신청</div>
     <div class="hint">
-      한식당, 부동산, 의료, 교육, 법률 등 한인 커뮤니티를 위한 모든 사업체를
-      HebronGuide에 무료로 등재해 드립니다. <strong>2026년 10월 1일까지 무료.</strong>
+      한식당, 부동산, 의료, 교육, 법률 등 사업체는 물론 드라이버·번역·정착 도우미 등
+      <strong>개인 서비스업도 등록 가능합니다.</strong> <strong>2026년 10월 1일까지 무료.</strong>
     </div>
 
     <div class="field-row">
@@ -423,6 +327,11 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
           </optgroup>
           <optgroup label="💻 IT·서비스">
             <option>IT·개발</option><option>마케팅·디자인</option><option>번역·통역</option>
+          </optgroup>
+          <optgroup label="🧑 개인 서비스">
+            <option>드라이버·픽업 서비스</option><option>투어 가이드</option>
+            <option>정착 도우미·컨시어지</option><option>과외·튜터 (개인)</option>
+            <option>기타 개인 서비스</option>
           </optgroup>
           <optgroup label="⛪ 교회·기관">
             <option>교회</option><option>비영리단체</option><option>한인회·커뮤니티</option>
@@ -697,7 +606,7 @@ function switchTab(type) {
 
 // 페이지 로드 시 해시로 탭 자동 선택
 (function() {
-  const hashMap = { church:'church', biz:'business', business:'business', promo:'promo', person:'person' };
+  const hashMap = { church:'church', biz:'business', business:'business', promo:'promo', person:'business' };
   const hash = location.hash.replace('#','');
   const type = hashMap[hash];
   if (type) switchTab(type);
