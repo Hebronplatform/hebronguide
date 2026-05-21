@@ -14207,7 +14207,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* ── 성경대로 — HebronGuide 교회 철학의 토대 ── */}
             <div style={{ background: "linear-gradient(135deg,rgba(201,162,39,0.11) 0%,rgba(0,0,0,0) 100%)", border: "1px solid rgba(201,162,39,0.3)", borderRadius: 16, padding: "20px 18px", marginBottom: 12 }}>
               <div style={{ fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 800, color: "#C9A227", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12, opacity: 0.85 }}>
-                📖 {lang === "ko" ? "HebronGuide 교회 기준" : "HebronGuide Church Standard"}
+                📖 {lang === "ko" ? "HebronGuide 핵심 가치" : "HebronGuide Core Values"}
               </div>
 
               {/* 핵심 원칙 */}
