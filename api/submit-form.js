@@ -12,8 +12,9 @@ const CORS = {
   'Content-Type': 'application/json',
 }
 
-const SUPABASE_URL = 'https://okhfjzofifmsgssgajts.supabase.co'
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9raGZqem9maWZtc2dzc2dhanRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MDQ5NDksImV4cCI6MjA5MjE4MDk0OX0.jNHf3a4IeDJvaqlq5PSBRT0BYp4iKCQKRkdya3D-5F8'
+// community_items 는 vextxqzggznulwpganwt (sbNew) 프로젝트에 있음
+const SUPABASE_URL = 'https://vextxqzggznulwpganwt.supabase.co'
+const SUPABASE_KEY = 'sb_publishable_j1cYftObx8VDVkEQAvluXg_rn20pnfX'
 const ADMIN_EMAIL   = 'hebronplatform@gmail.com'
 
 export default async function handler(req) {

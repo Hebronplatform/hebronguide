@@ -8604,7 +8604,7 @@ function CompactHeroNew() {
       </div>
 
       {/* ── #1 뱃지 (우상단) */}
-      <a href="https://hebronguide.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+      <a href="https://hebronguide.com/#cities" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
         <div style={{
           position: "absolute", top: 12, right: 14, zIndex: 10,
           background: "rgba(0,0,0,0.38)", backdropFilter: "blur(12px)",
@@ -13812,7 +13812,15 @@ function getCityChurches(slug: string, lang: string) {
         website: "https://ijiguchon.org",
         email: "info@ijiguchon.org",
       },
-      // 시애틀우리교회 — 지금은 보류 (2026-05-10 폴 김 목사 지시). 추후 재검토 시 복원.
+      {
+        emoji: "⛪", tier: 2,
+        name: ko ? "시애틀우리교회" : "Seattle Woori Church",
+        nameEn: "Seattle Woori Church",
+        desc: ko
+          ? "✅ 검증됨\n📍 Bellevue, WA\n✨ 담임: 최요환 목사\n🏠 주일예배 · 소그룹 · 이민자 환영"
+          : "✅ Verified\n📍 Bellevue, WA\n✨ Lead Pastor: Yohwan Choi\n🏠 Sunday Service · Small Groups · Welcoming Immigrants",
+        tags: ko ? ["한인교회", "벨뷰", "시애틀"] : ["Korean Church", "Bellevue", "Seattle"],
+      },
     ],
     dallas: [
       {
@@ -14516,10 +14524,9 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 <a href="https://hebronguide.com/terms.html" target="_blank" rel="noopener" style={{ color: "inherit", textDecoration: "none" }}>서비스 약관</a>
               </div>
               <div>
-                HebronGuide{" · "}
-                <a href="https://nanuriweb.com" target="_blank" rel="noopener" style={{ color: "inherit", textDecoration: "none" }}>NanuriWeb</a>
+                <a href="https://hebronguide.com" target="_blank" rel="noopener" style={{ color: "inherit", textDecoration: "none" }}>hebronguide.com</a>
                 {" · "}
-                <a href="https://nanurihome.com" target="_blank" rel="noopener" style={{ color: "inherit", textDecoration: "none" }}>NanuriHome</a>
+                <a href="mailto:hebronplatform@gmail.com" style={{ color: "inherit", textDecoration: "none" }}>hebronplatform@gmail.com</a>
               </div>
             </div>
 
