@@ -1361,7 +1361,7 @@ Key services:
 📍 4900 168th St. SW., Lynnwood, WA 98037
 🏠 Sunday Worship · Mokjang · Life Studies
 ✨ Lead Pastor: Sungsoo Kim
-🔗 ijiguchon.org`,tags:a?["가정교회","IHM","린우드","시애틀"]:["House Church","IHM","Lynnwood","Seattle"],website:"https://ijiguchon.org",email:"hebronplatform@gmail.com"}],dallas:[{emoji:"⭐",tier:1,name:a?"예닮교회":"Yedam Church — Dallas",nameEn:"Yedam Church",desc:a?`✅ 가정교회 | 북미가사원 텍사스 지역목자
+🔗 ijiguchon.org`,tags:a?["가정교회","IHM","린우드","시애틀"]:["House Church","IHM","Lynnwood","Seattle"],website:"https://ijiguchon.org",email:"info@ijiguchon.org"}],dallas:[{emoji:"⭐",tier:1,name:a?"예닮교회":"Yedam Church — Dallas",nameEn:"Yedam Church",desc:a?`✅ 가정교회 | 북미가사원 텍사스 지역목자
 📍 Dallas, TX
 ✨ 담임: 이우철 목사`:`✅ House Church | HMI North America Texas Regional Shepherd
 📍 Dallas, TX

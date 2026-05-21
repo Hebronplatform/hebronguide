@@ -13742,7 +13742,7 @@ function getCityChurches(slug: string, lang: string) {
           : "✅ House Church | HMI Seattle Regional Shepherd · Three Axes & Four Pillars\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday Worship · Mokjang · Life Studies\n✨ Lead Pastor: Sungsoo Kim\n🔗 ijiguchon.org",
         tags: ko ? ["가정교회", "IHM", "린우드", "시애틀"] : ["House Church", "IHM", "Lynnwood", "Seattle"],
         website: "https://ijiguchon.org",
-        email: "hebronplatform@gmail.com",
+        email: "info@ijiguchon.org",
       },
       // 시애틀우리교회 — 지금은 보류 (2026-05-10 폴 김 목사 지시). 추후 재검토 시 복원.
     ],
