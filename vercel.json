@@ -3,9 +3,18 @@
   "outputDirectory": "public",
 
   "functions": {
-    "api/ad-generator.js": { "maxDuration": 30 },
-    "api/ask.js":          { "maxDuration": 30 }
+    "api/ad-generator.js":   { "maxDuration": 30 },
+    "api/ask.js":            { "maxDuration": 30 },
+    "api/city-reviewer.js":  { "maxDuration": 60 },
+    "api/content-curator.js":{ "maxDuration": 60 }
   },
+
+  "crons": [
+    {
+      "path": "/api/city-reviewer",
+      "schedule": "0 9 * * 1"
+    }
+  ],
 
   "redirects": [
     { "source": "/seattle/index.html", "destination": "/seattle/", "permanent": true },

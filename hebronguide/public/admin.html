@@ -199,8 +199,20 @@
         <button onclick="runCurator()" style="background:linear-gradient(135deg,var(--mint),#34d399);color:#000;font-weight:800;border:none;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:.85rem">
           🤖 AI 조사 시작
         </button>
+        <button onclick="runWeeklyReview()" style="background:linear-gradient(135deg,var(--gold),#B8901C);color:#000;font-weight:800;border:none;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:.85rem">
+          🔍 주간 리뷰
+        </button>
       </div>
       <div id="curator-status" style="font-size:.82rem;color:var(--muted);min-height:20px"></div>
+    </div>
+
+    <!-- 주간 리뷰 패널 -->
+    <div id="review-panel" style="background:linear-gradient(135deg,rgba(201,162,39,.07),rgba(0,0,0,0));border:1px solid rgba(201,162,39,.22);border-radius:12px;padding:16px 20px;margin-bottom:16px;display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div style="font-size:.75rem;font-weight:800;color:var(--gold);letter-spacing:.08em;text-transform:uppercase">📋 이번 주 업데이트 제안</div>
+        <span id="review-count" style="background:rgba(201,162,39,.2);color:var(--gold);border-radius:20px;padding:2px 10px;font-size:.75rem;font-weight:800"></span>
+      </div>
+      <div id="review-list" style="display:flex;flex-direction:column;gap:8px"></div>
     </div>
 
     <!-- 통계 -->
@@ -645,6 +657,75 @@
     setTimeout(() => el.classList.remove('show'), 2500)
   }
 
+  // ── 주간 리뷰 패널 ───────────────────────────────────────
+  async function loadReviews() {
+    if (!sbNew) return
+    const { data } = await sbNew.from('content_reviews')
+      .select('*').eq('status','pending').order('created_at',{ascending:false}).limit(50)
+    if (!data || data.length === 0) {
+      document.getElementById('review-panel').style.display = 'none'
+      return
+    }
+    document.getElementById('review-panel').style.display = 'block'
+    document.getElementById('review-count').textContent = `${data.length}건`
+    const ICONS = { settle:'🏠', food:'🍽️', church:'⛪', explore:'🗺️', job:'💼', edu:'📚' }
+    document.getElementById('review-list').innerHTML = data.map(r => `
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start">
+        <div style="flex:1">
+          <div style="font-size:.75rem;color:var(--muted);margin-bottom:3px">
+            ${ICONS[r.section]||'📌'} ${r.city_name} · ${r.section} · <span style="color:${r.confidence==='high'?'var(--green)':r.confidence==='low'?'var(--red)':'var(--yellow)'}">${r.confidence}</span>
+          </div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:4px">${esc(r.title)}</div>
+          ${r.proposed_value ? `<div style="font-size:.78rem;color:var(--mint);line-height:1.5">${esc(r.proposed_value.slice(0,120))}</div>` : ''}
+          ${r.source ? `<div style="font-size:.72rem;color:var(--muted);margin-top:3px">출처: ${esc(r.source)}</div>` : ''}
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0">
+          <button class="btn-sm btn-approve" onclick="approveReview('${r.id}')">✅</button>
+          <button class="btn-sm btn-reject" onclick="rejectReview('${r.id}')">❌</button>
+        </div>
+      </div>`).join('')
+  }
+
+  async function runWeeklyReview() {
+    const cityVal = document.getElementById('curator-city').value
+    if (!cityVal) { toast('❌ 도시를 선택해주세요'); return }
+    const [citySlug, cityName] = cityVal.split('|')
+    const status = document.getElementById('curator-status')
+    status.textContent = `🔍 ${cityName} 주간 리뷰 중...`
+    status.style.color = 'var(--gold)'
+    try {
+      const res = await fetch('/api/city-reviewer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ citySlug, cityName, token: adminToken }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      status.textContent = `✅ ${data.message}`
+      status.style.color = 'var(--green)'
+      loadReviews()
+    } catch(e) {
+      status.textContent = `❌ ${e.message}`
+      status.style.color = 'var(--red)'
+    }
+  }
+
+  async function approveReview(id) {
+    try {
+      await adminAction({ action: 'update_status', id, table: 'content_reviews', status: 'approved' })
+      toast('✅ 승인됨 — 다음 배포 시 반영됩니다')
+      loadReviews()
+    } catch(e) { toast('❌ ' + e.message) }
+  }
+
+  async function rejectReview(id) {
+    try {
+      await adminAction({ action: 'update_status', id, table: 'content_reviews', status: 'rejected' })
+      toast('❌ 거절됨')
+      loadReviews()
+    } catch(e) { toast('❌ ' + e.message) }
+  }
+
   // ── AI 자동 큐레이션 ─────────────────────────────────────
   async function runCurator() {
     const cityVal = document.getElementById('curator-city').value
@@ -737,6 +818,7 @@
     loadCityFilter()   // ← 도시 필터 자동 로드 (cities.json)
     loadStats()
     loadTabData('community')
+    loadReviews()      // ← 주간 리뷰 대기 항목 로드
   }
 </script>
 </body>

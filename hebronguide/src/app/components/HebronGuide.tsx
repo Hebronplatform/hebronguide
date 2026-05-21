@@ -14230,6 +14230,24 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                       </div>
                     )}
                     <PlaceCard {...c} accentColor={c.tier === 1 ? GOLD : accent} />
+                    {/* 방문 의사 — Tier 2·3 교회 (website 있으면) */}
+                    {c.tier !== 1 && (c.website || c.phone) && (
+                      <div style={{ padding: "0 14px 12px 14px" }}>
+                        <a
+                          href={c.website ? `https://${c.website.replace(/^https?:\/\//,'')}` : `tel:${c.phone}`}
+                          target="_blank" rel="noopener"
+                          style={{
+                            display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                            background: "rgba(110,231,183,0.08)", border: "1px solid rgba(110,231,183,0.25)",
+                            color: "#6EE7B7", borderRadius: 10, padding: "9px 16px",
+                            fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12,
+                            textDecoration: "none",
+                          }}
+                        >
+                          🌿 {lang === "ko" ? "교회 방문하기" : "Visit Church"}
+                        </a>
+                      </div>
+                    )}
                     {/* 새가족 신청 CTA — Tier 1 교회만, 연결 수단이 하나라도 있으면 표시 */}
                     {c.tier === 1 && (c.email || c.phone || c.kakao || c.website) && (
                       <div style={{ padding: "0 14px 14px 14px" }}>
