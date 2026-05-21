@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HebronGuide 포스터</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0 }
+body { background: #1a1a2e; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; font-family: 'Noto Sans KR', sans-serif }
+
+/* 인쇄 버튼 */
+.print-bar { width: 210mm; max-width: 100%; display: flex; gap: 10px; justify-content: flex-end; margin-bottom: 12px }
+.btn-print { background: #C9A227; color: #000; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: .9rem }
+.btn-print:hover { background: #e8b53a }
+.btn-en { background: rgba(255,255,255,.12); color: #fff; border: none; padding: 8px 16px; border-radius: 8px; font-size: .85rem; cursor: pointer }
+
+/* ── 포스터 본체 ── */
+.poster {
+  width: 210mm;
+  max-width: 100%;
+  min-height: 297mm;
+  background: linear-gradient(160deg, #0d1117 0%, #0f1923 50%, #0d1117 100%);
+  border: 1px solid rgba(201,162,39,.3);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14mm 14mm 12mm;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
+}
+
+/* 배경 장식 */
+.poster::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(201,162,39,.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+.poster::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; right: -60px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(110,231,183,.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* 상단 배지 */
+.top-badge {
+  background: rgba(201,162,39,.15);
+  border: 1px solid rgba(201,162,39,.4);
+  color: #C9A227;
+  font-size: 9pt;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 4px 16px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+
+/* 로고 */
+.logo-wrap { text-align: center; margin-bottom: 16px }
+.logo-icon {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, rgba(201,162,39,.2), rgba(110,231,183,.1));
+  border: 1.5px solid rgba(201,162,39,.4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 10px;
+  font-size: 26px;
+}
+.logo-text {
+  font-family: 'Cinzel', serif;
+  font-size: 28pt;
+  font-weight: 900;
+  color: #C9A227;
+  letter-spacing: .04em;
+  line-height: 1;
+}
+.logo-sub { font-size: 9pt; color: rgba(236,253,245,.5); letter-spacing: .08em; margin-top: 4px }
+
+/* 구분선 */
+.divider { width: 60px; height: 2px; background: linear-gradient(90deg, transparent, #C9A227, transparent); margin: 16px auto }
+
+/* 메인 헤드라인 */
+.headline-ko {
+  font-size: 20pt;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.headline-ko span { color: #C9A227 }
+.headline-en {
+  font-size: 10pt;
+  color: rgba(236,253,245,.6);
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* 도시 카운터 */
+.city-counter {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.counter-item { text-align: center }
+.counter-num {
+  font-family: 'Cinzel', serif;
+  font-size: 22pt;
+  font-weight: 900;
+  color: #C9A227;
+  line-height: 1;
+}
+.counter-label { font-size: 7.5pt; color: rgba(236,253,245,.5); margin-top: 3px }
+
+/* 기능 그리드 */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.feature {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 8px;
+  padding: 10px 8px;
+  text-align: center;
+}
+.feature-icon { font-size: 18pt; margin-bottom: 5px }
+.feature-title-ko { font-size: 8.5pt; font-weight: 700; color: #e6edf3; margin-bottom: 3px }
+.feature-title-en { font-size: 7pt; color: rgba(236,253,245,.4) }
+.feature-desc { font-size: 7pt; color: rgba(236,253,245,.55); line-height: 1.5; margin-top: 3px }
+
+/* QR + 접속 방법 */
+.qr-section {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(201,162,39,.2);
+  border-radius: 12px;
+  padding: 16px 20px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+.qr-box {
+  background: #fff;
+  border-radius: 8px;
+  padding: 6px;
+  flex-shrink: 0;
+}
+.qr-box img { display: block; width: 90px; height: 90px }
+.qr-info { flex: 1 }
+.qr-label { font-size: 8pt; color: rgba(236,253,245,.5); margin-bottom: 4px }
+.qr-url {
+  font-family: 'Cinzel', serif;
+  font-size: 13pt;
+  font-weight: 700;
+  color: #C9A227;
+  margin-bottom: 6px;
+}
+.qr-steps { font-size: 7.5pt; color: rgba(236,253,245,.6); line-height: 1.8 }
+.qr-steps span { color: #6EE7B7; font-weight: 700; margin-right: 4px }
+
+/* 카카오 배너 */
+.kakao-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #FEE500;
+  border-radius: 8px;
+  padding: 8px 14px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+.kakao-icon { font-size: 16pt; flex-shrink: 0 }
+.kakao-text { flex: 1 }
+.kakao-title { font-size: 8.5pt; font-weight: 800; color: #3C1E1E }
+.kakao-url { font-size: 7.5pt; color: #5C3E1E }
+
+/* 도시 리스트 */
+.city-strip {
+  width: 100%;
+  background: rgba(255,255,255,.03);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+}
+.city-strip-title { font-size: 7.5pt; color: #C9A227; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px }
+.city-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.city-pill {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 99px;
+  padding: 2px 9px;
+  font-size: 7pt;
+  color: rgba(236,253,245,.65);
+}
+
+/* 하단 태그라인 */
+.footer-verse {
+  text-align: center;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  width: 100%;
+}
+.verse-ko { font-size: 8pt; color: rgba(236,253,245,.5); line-height: 1.7 }
+.verse-ref { font-size: 7.5pt; color: #6EE7B7; margin-top: 3px }
+
+/* 인쇄 */
+@media print {
+  body { background: white; padding: 0 }
+  .print-bar { display: none }
+  .poster {
+    width: 210mm; min-height: 297mm;
+    box-shadow: none; border: none;
+    border-radius: 0;
+  }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact }
+}
+</style>
+</head>
+<body>
+
+<!-- 인쇄 버튼 -->
+<div class="print-bar">
+  <button class="btn-en" onclick="switchLang()">한/EN 전환</button>
+  <button class="btn-print" onclick="window.print()">🖨️ 인쇄하기</button>
+</div>
+
+<!-- ── 포스터 ── -->
+<div class="poster">
+
+  <!-- 배지 -->
+  <div class="top-badge" id="badge">✦ 전 세계 한인 이주자 정착 가이드 ✦</div>
+
+  <!-- 로고 -->
+  <div class="logo-wrap">
+    <div class="logo-icon">🌿</div>
+    <div class="logo-text">HebronGuide</div>
+    <div class="logo-sub">hebronguide.com</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 헤드라인 -->
+  <div class="headline-ko" id="h1">
+    낯선 땅에서<br><span>혼자가 아닙니다</span>
+  </div>
+  <div class="headline-en" id="h2">
+    Settlement Guide for Korean Immigrants Worldwide<br>
+    Visa · Church · Food · Housing · Jobs · 24hr AI Help
+  </div>
+
+  <!-- 카운터 -->
+  <div class="city-counter">
+    <div class="counter-item">
+      <div class="counter-num">67+</div>
+      <div class="counter-label" id="c1">전 세계 도시</div>
+    </div>
+    <div class="counter-item">
+      <div class="counter-num">🆓</div>
+      <div class="counter-label" id="c2">완전 무료</div>
+    </div>
+    <div class="counter-item">
+      <div class="counter-num">24h</div>
+      <div class="counter-label" id="c3">AI 즉시 답변</div>
+    </div>
+  </div>
+
+  <!-- 기능 -->
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">🛂</div>
+      <div class="feature-title-ko" id="f1ko">비자·정착</div>
+      <div class="feature-title-en" id="f1en">Visa & Settle</div>
+      <div class="feature-desc" id="f1d">공항 도착부터 비자·건강보험·은행 안내</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">⛪</div>
+      <div class="feature-title-ko" id="f2ko">한인 교회</div>
+      <div class="feature-title-en" id="f2en">Korean Church</div>
+      <div class="feature-desc" id="f2d">새가족 환영 교회 디렉토리</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🍜</div>
+      <div class="feature-title-ko" id="f3ko">맛집·카페</div>
+      <div class="feature-title-en" id="f3en">Food & Cafe</div>
+      <div class="feature-desc" id="f3d">현지 한인 검증 TOP 맛집</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">💼</div>
+      <div class="feature-title-ko" id="f4ko">취업 정보</div>
+      <div class="feature-title-en" id="f4en">Jobs</div>
+      <div class="feature-desc" id="f4d">비자별 취업·커리어 안내</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🤖</div>
+      <div class="feature-title-ko" id="f5ko">AI 도우미</div>
+      <div class="feature-title-en" id="f5en">AI Help</div>
+      <div class="feature-desc" id="f5d">24시간 즉시 답변</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📖</div>
+      <div class="feature-title-ko" id="f6ko">이달의 이야기</div>
+      <div class="feature-title-en" id="f6en">Stories</div>
+      <div class="feature-desc" id="f6d">실제 이민자 K-드라마 이야기</div>
+    </div>
+  </div>
+
+  <!-- QR 코드 -->
+  <div class="qr-section">
+    <div class="qr-box">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=000000&bgcolor=ffffff&data=https://hebronguide.com&qzone=1" alt="QR hebronguide.com">
+    </div>
+    <div class="qr-info">
+      <div class="qr-label" id="ql">📱 QR 코드 스캔하면 바로 시작!</div>
+      <div class="qr-url">hebronguide.com</div>
+      <div class="qr-steps">
+        <span>①</span> 카메라 앱으로 QR 스캔<br>
+        <span>②</span> 내 도시 선택<br>
+        <span>③</span> 정착 정보 바로 확인
+      </div>
+    </div>
+  </div>
+
+  <!-- 카카오 채널 -->
+  <div class="kakao-row">
+    <div class="kakao-icon">💛</div>
+    <div class="kakao-text">
+      <div class="kakao-title" id="kt">카카오 채널 구독 — 새 도시 오픈·소식 알림</div>
+      <div class="kakao-url">pf.kakao.com/_dxdxlbX</div>
+    </div>
+    <div style="background:#fff;border-radius:6px;padding:4px">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=000000&bgcolor=ffffff&data=https://pf.kakao.com/_dxdxlbX&qzone=1" alt="Kakao QR" style="display:block;width:52px;height:52px">
+    </div>
+  </div>
+
+  <!-- 도시 목록 -->
+  <div class="city-strip">
+    <div class="city-strip-title" id="ct">📍 커버 도시</div>
+    <div class="city-pills">
+      <span class="city-pill">🇺🇸 시애틀</span>
+      <span class="city-pill">🇺🇸 달라스</span>
+      <span class="city-pill">🇺🇸 뉴욕</span>
+      <span class="city-pill">🇺🇸 LA</span>
+      <span class="city-pill">🇺🇸 휴스턴</span>
+      <span class="city-pill">🇺🇸 시카고</span>
+      <span class="city-pill">🇺🇸 애틀랜타</span>
+      <span class="city-pill">🇺🇸 워싱턴DC</span>
+      <span class="city-pill">🇨🇦 토론토</span>
+      <span class="city-pill">🇨🇦 밴쿠버</span>
+      <span class="city-pill">🇬🇧 런던</span>
+      <span class="city-pill">🇦🇺 시드니</span>
+      <span class="city-pill">🇯🇵 도쿄</span>
+      <span class="city-pill">🇰🇷 서울</span>
+      <span class="city-pill">🇸🇬 싱가포르</span>
+      <span class="city-pill">🇦🇪 두바이</span>
+      <span class="city-pill">+ 51개 도시</span>
+    </div>
+  </div>
+
+  <!-- 하단 성구 -->
+  <div class="footer-verse">
+    <div class="verse-ko" id="fv">"내가 나그네 되었을 때 너희가 영접하였다"</div>
+    <div class="verse-ref">마태복음 25:35 · Hebron Platform LLC</div>
+  </div>
+
+</div>
+
+<script>
+let lang = 'ko'
+
+const texts = {
+  badge:  { ko: '✦ 전 세계 한인 이주자 정착 가이드 ✦', en: '✦ Global Korean Immigrant Settlement Guide ✦' },
+  h1:     { ko: '낯선 땅에서<br><span style="color:#C9A227">혼자가 아닙니다</span>', en: 'You Are <span style="color:#C9A227">Not Alone</span><br>in a Foreign Land' },
+  h2:     { ko: '비자·교회·맛집·주거·취업 — 공항에서부터 시작되는 환대', en: 'Visa · Church · Food · Housing · Jobs · 24hr AI Help' },
+  c1:     { ko: '전 세계 도시', en: 'Cities Worldwide' },
+  c2:     { ko: '완전 무료', en: 'Completely Free' },
+  c3:     { ko: 'AI 즉시 답변', en: 'AI Instant Help' },
+  f1ko:   { ko: '비자·정착', en: 'Visa & Settle' },
+  f1d:    { ko: '공항 도착부터 비자·건강보험·은행 안내', en: 'Airport → visa, insurance, bank guide' },
+  f2ko:   { ko: '한인 교회', en: 'Korean Church' },
+  f2d:    { ko: '새가족 환영 교회 디렉토리', en: 'Newcomer-welcoming church directory' },
+  f3ko:   { ko: '맛집·카페', en: 'Food & Cafe' },
+  f3d:    { ko: '현지 한인 검증 TOP 맛집', en: 'Korean community-verified top restaurants' },
+  f4ko:   { ko: '취업 정보', en: 'Jobs' },
+  f4d:    { ko: '비자별 취업·커리어 안내', en: 'Visa-specific job & career guide' },
+  f5ko:   { ko: 'AI 도우미', en: 'AI Help' },
+  f5d:    { ko: '24시간 즉시 답변', en: '24hr instant answers' },
+  f6ko:   { ko: '이달의 이야기', en: 'Stories' },
+  f6d:    { ko: '실제 이민자 K-드라마 이야기', en: 'Real immigrant K-drama stories' },
+  ql:     { ko: '📱 QR 코드 스캔하면 바로 시작!', en: '📱 Scan QR to get started instantly!' },
+  kt:     { ko: '카카오 채널 구독 — 새 도시 오픈·소식 알림', en: 'KakaoTalk Channel — city updates & news' },
+  ct:     { ko: '📍 커버 도시', en: '📍 Cities Covered' },
+  fv:     { ko: '"내가 나그네 되었을 때 너희가 영접하였다"', en: '"I was a stranger and you welcomed me"' },
+}
+
+function switchLang() {
+  lang = lang === 'ko' ? 'en' : 'ko'
+  Object.entries(texts).forEach(([id, t]) => {
+    const el = document.getElementById(id)
+    if (el) el.innerHTML = t[lang]
+  })
+  // f1en, f2en 처리
+  document.querySelectorAll('[id$="en"]').forEach(el => {
+    el.style.display = lang === 'en' ? 'none' : ''
+  })
+}
+</script>
+</body>
+</html>
