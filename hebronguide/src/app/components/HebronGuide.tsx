@@ -14225,8 +14225,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.7)", lineHeight: 1.85 }}>
                   {lang === "ko"
-                    ? "새로운 땅에서 처음 만나는 공동체가\n당신의 이웃이 되어 드립니다."
-                    : "The community you meet in a new land\nbecomes your neighbor."}
+                    ? "새로운 도시에서 처음 만나는 공동체가\n당신의 이웃이 되어 드립니다."
+                    : "The community you meet in a new city\nbecomes your neighbor."}
                 </div>
               </div>
             </div>
