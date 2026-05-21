@@ -7280,7 +7280,7 @@ const TOP5_SETTLE: Top5Item[] = [
     address: "Lynnwood / Federal Way 일대",
     hours: "행사·모임 일정별 상이",
     why: "시애틀 최대 한인 커뮤니티 네트워크. 신년·추석 행사·한인 페스티벌 주최. 한인 비즈니스·인맥 연결. 정착 초기 커뮤니티 진입 최단 경로.",
-    tip: "한인 네이버밴드 '시애틀한인생활' 가입 시 실시간 커뮤니티 정보 수신 가능", website: "kasc.us" },
+    tip: "HebronGuide 카카오 채널 구독 시 실시간 커뮤니티 정보 수신 가능 (pf.kakao.com/_dxdxlbX)", website: "kasc.us" },
 ];
 
 // 시애틀 월드컵 시즌 한정 정보 (5/21 ~ 9/7) — kSeattle.com 2026-05-07 기사 기반
@@ -13692,14 +13692,14 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                   </div>
                   <span style={{ color: accent, fontSize: 14 }}>→</span>
                 </a>
-                <a href="https://cafe.naver.com/seattlekorean" target="_blank" rel="noopener noreferrer"
-                  style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
-                  <span style={{ fontSize: 16 }}>🟢</span>
+                <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener noreferrer"
+                  style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(254,229,0,0.07)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(254,229,0,0.25)" }}>
+                  <span style={{ fontSize: 16 }}>💬</span>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
-                      {lang === "ko" ? "네이버 카페 '시애틀한인생활'" : "Naver Café '시애틀한인생활'"}
+                      {lang === "ko" ? "HebronGuide 카카오 채널" : "HebronGuide KakaoTalk Channel"}
                     </div>
-                    <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "정착 경험담·질문·정보 공유" : "Settlement experiences & Q&A"}</div>
+                    <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "정착 Q&A · 정보 공유 · 커뮤니티" : "Settlement Q&A · Info · Community"}</div>
                   </div>
                   <span style={{ color: accent, fontSize: 14 }}>→</span>
                 </a>
