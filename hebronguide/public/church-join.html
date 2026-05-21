@@ -329,7 +329,10 @@ async function submitChurch() {
       body: JSON.stringify(data),
     })
 
-    if (!res.ok) throw new Error('저장 실패')
+    if (!res.ok) {
+      const errText = await res.text()
+      throw new Error(`HTTP ${res.status}: ${errText}`)
+    }
 
     // 성공 화면
     document.getElementById('step2').style.display = 'none'
@@ -347,7 +350,21 @@ async function submitChurch() {
   } catch(e) {
     btn.textContent = '⛪ 등록 신청하기'
     btn.disabled = false
-    showEmailFallback()
+    console.error('등록 오류:', e.message)
+    // 오류 메시지 화면에 표시 (진단용)
+    document.getElementById('email-fallback').style.display = 'block'
+    document.getElementById('email-fallback').insertAdjacentHTML('afterbegin',
+      `<div style="font-size:.75rem;color:#f87171;margin-bottom:8px;word-break:break-all">오류: ${e.message}</div>`)
+    const church = document.getElementById('churchName').value.trim()
+    const pastor = document.getElementById('pastorName').value.trim()
+    const city   = document.getElementById('cityName').value
+    const phone  = document.getElementById('churchPhone').value.trim()
+    const email  = document.getElementById('churchEmail').value.trim()
+    const web    = document.getElementById('churchWeb').value.trim()
+    const body = `HebronGuide 교회 등록 신청\n\n교회명: ${church}\n담임목사: ${pastor}\n도시: ${city}\n전화: ${phone}\n이메일: ${email}\n홈페이지: ${web}`
+    const mailto = `mailto:hebronplatform@gmail.com?subject=[교회 등록] ${encodeURIComponent(church)}&body=${encodeURIComponent(body)}`
+    document.getElementById('email-fallback-link').href = mailto
+    document.getElementById('step2').scrollIntoView({behavior:'smooth'})
   }
 }
 
