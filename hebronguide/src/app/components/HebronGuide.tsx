@@ -13980,23 +13980,24 @@ function getCityChurches(slug: string, lang: string) {
     ],
     seoul: [
       {
-        emoji: "⭐", tier: 1,
+        emoji: "⭐", tier: 1, hcmi: true,
         name: ko ? "다운교회" : "Down Church — Seoul",
         nameEn: "Down Church",
         desc: ko
-          ? "✅ 가정교회\n📍 서울\n✨ 담임: 석정일 목사\n🔗 downchurch.com"
+          ? "✅ 가정교회 (HCMI)\n📍 서울\n✨ 담임: 석정일 목사\n🔗 downchurch.com"
           : "✅ HCMI\n📍 Seoul\n✨ Lead Pastor: Jeongil Suk\n🔗 downchurch.com",
-        tags: ko ? ["가정교회", "서울"] : ["HCMI", "Seoul"],
+        tags: ko ? ["가정교회", "HCMI", "서울"] : ["HCMI", "Seoul"],
         website: "https://www.downchurch.com",
       },
       {
-        emoji: "⛪", tier: 2,
+        emoji: "⛪", tier: 2, hebronPartner: true,
         name: ko ? "행복한교회 (의정부)" : "Haengbokan Church — Uijeongbu",
         nameEn: "Haengbokan Church",
         desc: ko
           ? "✅ 검증됨\n📍 경기도 의정부시 오목로 225번길 135 트윈타워 1동 7층\n☎ 010-3254-8020\n✨ 담임: 이현권 목사\n\n서울 북부 30분 거리. 경기 북부 한인 이주민·귀환 동포를 따뜻하게 환영합니다."
           : "✅ Verified\n📍 Twin Tower Bldg 1, 7F, 135 Omokro 225beon-gil, Uijeongbu, Gyeonggi\n☎ 010-3254-8020\n✨ Lead Pastor: Hyeonkwon Lee\n\n30 min from northern Seoul. Warmly welcomes Korean diaspora returning to the greater Seoul area.",
-        tags: ko ? ["의정부", "경기북부", "귀환동포환영"] : ["Uijeongbu", "North Gyeonggi", "Returning Diaspora"],
+        tags: ko ? ["의정부", "경기북부", "귀환동포환영", "Hebron협력"] : ["Uijeongbu", "North Gyeonggi", "Returning Diaspora", "HebronPartner"],
+        phone: "01032548020",
       },
     ],
     busan: [
@@ -14338,7 +14339,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {churches.length === 0
               ? (communityChurches.length === 0 && <ComingSoonCard lang={lang} accentColor={accent} />)
               : <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number; website?: string; email?: string; phone?: string; kakao?: string; }>).map((c, i) => (
+                {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number; hcmi?: boolean; hebronPartner?: boolean; website?: string; email?: string; phone?: string; kakao?: string; }>).map((c, i) => (
                   <div key={i} style={
                     c.tier === 1
                       ? { border: "1px solid rgba(201,162,39,0.55)", borderRadius: 16, background: "rgba(201,162,39,0.06)" }
@@ -14346,16 +14347,21 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                         ? { border: "1px solid rgba(110,231,183,0.35)", borderRadius: 16, background: "rgba(110,231,183,0.04)" }
                         : {}
                   }>
-                    {c.tier === 1 && (
-                      <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px" }}>
-                        <span style={{ background: "rgba(201,162,39,0.18)", border: "1px solid rgba(201,162,39,0.45)", color: GOLD, borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>가정교회 ⭐</span>
+                    {/* 교회 유형 뱃지 — 가정교회(HCMI) / Hebron 협력교회 독립 표시 */}
+                    {(c.hcmi ?? c.tier === 1) || (c.hebronPartner ?? c.tier === 2) ? (
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px", flexWrap: "wrap" }}>
+                        {(c.hcmi ?? c.tier === 1) && (
+                          <span style={{ background: "rgba(201,162,39,0.18)", border: "1px solid rgba(201,162,39,0.45)", color: GOLD, borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700, letterSpacing: "0.02em" }}>
+                            🏠 가정교회 (HCMI)
+                          </span>
+                        )}
+                        {(c.hebronPartner ?? (c.tier === 2 && !c.hcmi)) && (
+                          <span style={{ background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.4)", color: "#6EE7B7", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700, letterSpacing: "0.02em" }}>
+                            🤝 Hebron 협력교회
+                          </span>
+                        )}
                       </div>
-                    )}
-                    {c.tier === 2 && (
-                      <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px" }}>
-                        <span style={{ background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.4)", color: "#6EE7B7", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>협력교회 ✅</span>
-                      </div>
-                    )}
+                    ) : null}
                     <PlaceCard {...c} accentColor={c.tier === 1 ? GOLD : accent} />
                     {/* 방문 의사 — Tier 2·3 교회 (website 있으면) */}
                     {c.tier !== 1 && (c.website || c.phone) && (
