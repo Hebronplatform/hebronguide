@@ -11770,24 +11770,6 @@ function GrowthShareSection({ lang }: { lang: string }) {
         </button>
       </div>
 
-      {/* ── 선물 CTA (피드백·응원 링크) ── */}
-      <a
-        href="mailto:hebronplatform@gmail.com?subject=HebronGuide 응원합니다&body=HebronGuide가 큰 도움이 됐습니다. 감사합니다!"
-        style={{ display: "block", textDecoration: "none" }}>
-        <div style={{
-          background: "linear-gradient(135deg,#C9A227,#B8901C)",
-          borderRadius: 14, padding: "14px 18px",
-          display: "flex", flexDirection: "column", alignItems: "center",
-          boxShadow: "0 4px 14px rgba(201,162,39,0.25)",
-        }}>
-          <div style={{ fontFamily: "'Noto Sans KR',Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1a1200", marginBottom: 3 }}>
-            🎁 {ko ? "선물 감사히 받겠습니다 →" : "Send us your encouragement →"}
-          </div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(26,18,0,0.72)" }}>
-            hebronplatform@gmail.com · {ko ? "1–2주 내 연락드립니다" : "We'll reply within 1–2 weeks"}
-          </div>
-        </div>
-      </a>
     </div>
   );
 }
