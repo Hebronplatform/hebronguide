@@ -288,36 +288,10 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
     </div>
 
     <!-- 개인정보 동의 — 교회 -->
-    <div class="consent-section">
-      <table class="pipa-table">
-        <thead><tr>
-          <th>수집 항목<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Data Items</span></th>
-          <th>수집·이용 목적<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Purpose</span></th>
-          <th>보유 기간<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Retention</span></th>
-          <th>거부권 및 불이익<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Right to Refuse</span></th>
-        </tr></thead>
-        <tbody><tr>
-          <td>교회명, 담임목사, 전화, 이메일, 주소, 웹사이트<br><span style="color:rgba(236,253,245,.4)">Church name, pastor, phone, email, address, website</span></td>
-          <td>HebronGuide 교회 디렉토리 무료 등재 및 운영<br><span style="color:rgba(236,253,245,.4)">Free listing on HebronGuide church directory</span></td>
-          <td>삭제 요청 시 또는 서비스 종료 시까지<br><span style="color:rgba(236,253,245,.4)">Until deletion request or end of service</span></td>
-          <td>거부 가능. 거부 시 등재 불가.<br><span style="color:rgba(236,253,245,.4)">You may refuse. Refusal means listing cannot be published.</span></td>
-        </tr></tbody>
-      </table>
-      <div class="pipa-note">※ 수집 정보는 미국 소재 서버(Supabase)에 저장됩니다. / Data is stored on US servers (Supabase).<br>운영: Hebron Platform LLC &nbsp;|&nbsp; hebronplatform@gmail.com</div>
-      <label class="consent-row">
-        <input type="checkbox" id="cConsent">
-        <span class="consent-text"><span class="req">[필수]</span> 위 개인정보 수집·이용 내용을 확인하고 동의합니다.<br>
-        <span style="color:rgba(236,253,245,.5);font-size:.7rem">I have reviewed the data disclosure above and consent to the collection and use of my information for a free HebronGuide listing.</span></span>
-      </label>
-      <label class="consent-row">
-        <input type="checkbox" id="cUpdates">
-        <span class="consent-text"><span class="opt">[선택]</span> HebronGuide 서비스 업데이트 및 공지 수신에 동의합니다. / I agree to receive service updates from HebronGuide.</span>
-      </label>
-      <div class="consent-footer">
-        Hebron Platform LLC는 귀하의 정보를 제3자에게 판매하지 않습니다. 정보는 HebronGuide 무료 등재 목적으로만 사용됩니다. 삭제 요청: hebronplatform@gmail.com &nbsp;|&nbsp;
-        <a href="/privacy.html" style="color:rgba(110,231,183,.6)">개인정보처리방침 / Privacy Policy</a>
-      </div>
-    </div>
+    <label class="consent-row" style="margin:14px 0 4px;">
+      <input type="checkbox" id="cConsent">
+      <span class="consent-text"><span class="req">[필수]</span> 교회명·연락처를 HebronGuide 교회 등재 목적으로 수집·이용하는 데 동의합니다. &nbsp;<a href="/privacy.html">개인정보처리방침 →</a></span>
+    </label>
 
     <button class="btn-submit" onclick="submitForm('church')">
       파트너 교회 신청하기 →
@@ -408,36 +382,10 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
     </div>
 
     <!-- 개인정보 동의 — 사업체 -->
-    <div class="consent-section">
-      <table class="pipa-table">
-        <thead><tr>
-          <th>수집 항목<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Data Items</span></th>
-          <th>수집·이용 목적<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Purpose</span></th>
-          <th>보유 기간<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Retention</span></th>
-          <th>거부권 및 불이익<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Right to Refuse</span></th>
-        </tr></thead>
-        <tbody><tr>
-          <td>업체명, 업종, 담당자, 전화, 이메일, 주소, 웹사이트<br><span style="color:rgba(236,253,245,.4)">Business name, type, contact, phone, email, address, website</span></td>
-          <td>HebronGuide 사업체 디렉토리 무료 등재 및 운영<br><span style="color:rgba(236,253,245,.4)">Free listing on HebronGuide business directory</span></td>
-          <td>삭제 요청 시 또는 서비스 종료 시까지<br><span style="color:rgba(236,253,245,.4)">Until deletion request or end of service</span></td>
-          <td>거부 가능. 거부 시 등재 불가.<br><span style="color:rgba(236,253,245,.4)">You may refuse. Refusal means listing cannot be published.</span></td>
-        </tr></tbody>
-      </table>
-      <div class="pipa-note">※ 수집 정보는 미국 소재 서버(Supabase)에 저장됩니다. / Data is stored on US servers (Supabase).<br>운영: Hebron Platform LLC &nbsp;|&nbsp; hebronplatform@gmail.com</div>
-      <label class="consent-row">
-        <input type="checkbox" id="bConsent">
-        <span class="consent-text"><span class="req">[필수]</span> 위 개인정보 수집·이용 내용을 확인하고 동의합니다.<br>
-        <span style="color:rgba(236,253,245,.5);font-size:.7rem">I have reviewed the data disclosure above and consent to the collection and use of my information for a free HebronGuide listing.</span></span>
-      </label>
-      <label class="consent-row">
-        <input type="checkbox" id="bUpdates">
-        <span class="consent-text"><span class="opt">[선택]</span> HebronGuide 서비스 업데이트 및 공지 수신에 동의합니다. / I agree to receive service updates from HebronGuide.</span>
-      </label>
-      <div class="consent-footer">
-        Hebron Platform LLC는 귀하의 정보를 제3자에게 판매하지 않습니다. 삭제 요청: hebronplatform@gmail.com &nbsp;|&nbsp;
-        <a href="/privacy.html" style="color:rgba(110,231,183,.6)">개인정보처리방침 / Privacy Policy</a>
-      </div>
-    </div>
+    <label class="consent-row" style="margin:14px 0 4px;">
+      <input type="checkbox" id="bConsent">
+      <span class="consent-text"><span class="req">[필수]</span> 업체명·연락처를 HebronGuide 사업체 등재 목적으로 수집·이용하는 데 동의합니다. &nbsp;<a href="/privacy.html">개인정보처리방침 →</a></span>
+    </label>
 
     <button class="btn-submit" onclick="submitForm('business')">
       등재 신청하기 →
@@ -532,38 +480,11 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       </span>
     </div>
 
-    <!-- 승인 안내 -->
     <!-- 개인정보 동의 — 홍보 -->
-    <div class="consent-section">
-      <table class="pipa-table">
-        <thead><tr>
-          <th>수집 항목<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Data Items</span></th>
-          <th>수집·이용 목적<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Purpose</span></th>
-          <th>보유 기간<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Retention</span></th>
-          <th>거부권 및 불이익<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Right to Refuse</span></th>
-        </tr></thead>
-        <tbody><tr>
-          <td>담당자, 전화, 이메일, 홍보 내용<br><span style="color:rgba(236,253,245,.4)">Contact name, phone, email, promo content</span></td>
-          <td>HebronGuide 홍보 등재 및 운영<br><span style="color:rgba(236,253,245,.4)">Promo listing on HebronGuide</span></td>
-          <td>삭제 요청 시 또는 서비스 종료 시까지<br><span style="color:rgba(236,253,245,.4)">Until deletion request or end of service</span></td>
-          <td>거부 가능. 거부 시 홍보 등재 불가.<br><span style="color:rgba(236,253,245,.4)">You may refuse. Refusal means promo cannot be published.</span></td>
-        </tr></tbody>
-      </table>
-      <div class="pipa-note">※ 수집 정보는 미국 소재 서버(Supabase)에 저장됩니다. / Data is stored on US servers (Supabase).<br>운영: Hebron Platform LLC &nbsp;|&nbsp; hebronplatform@gmail.com</div>
-      <label class="consent-row">
-        <input type="checkbox" id="prConsent">
-        <span class="consent-text"><span class="req">[필수]</span> 위 개인정보 수집·이용 내용을 확인하고 동의합니다.<br>
-        <span style="color:rgba(236,253,245,.5);font-size:.7rem">I have reviewed the data disclosure above and consent to the collection and use of my information for a free HebronGuide listing.</span></span>
-      </label>
-      <label class="consent-row">
-        <input type="checkbox" id="prUpdates">
-        <span class="consent-text"><span class="opt">[선택]</span> HebronGuide 서비스 업데이트 및 공지 수신에 동의합니다. / I agree to receive service updates from HebronGuide.</span>
-      </label>
-      <div class="consent-footer">
-        Hebron Platform LLC는 귀하의 정보를 제3자에게 판매하지 않습니다. 삭제 요청: hebronplatform@gmail.com &nbsp;|&nbsp;
-        <a href="/privacy.html" style="color:rgba(110,231,183,.6)">개인정보처리방침 / Privacy Policy</a>
-      </div>
-    </div>
+    <label class="consent-row" style="margin:14px 0 4px;">
+      <input type="checkbox" id="prConsent">
+      <span class="consent-text"><span class="req">[필수]</span> 담당자·연락처를 HebronGuide 홍보 등재 목적으로 수집·이용하는 데 동의합니다. &nbsp;<a href="/privacy.html">개인정보처리방침 →</a></span>
+    </label>
 
     <button class="btn-submit" onclick="submitForm('promo')">
       📣 홍보 신청하기
