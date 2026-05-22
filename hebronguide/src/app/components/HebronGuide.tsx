@@ -13819,8 +13819,9 @@ function getCityChurches(slug: string, lang: string) {
         desc: ko
           ? "✅ 가정교회\n📍 Bellevue, WA\n✨ 담임: 최요환 목사\n🏠 주일예배 · 목장 · 삶 공부 · 이민자 환영\n🔗 seattlewoori.org"
           : "✅ House Church\n📍 Bellevue, WA\n✨ Lead Pastor: Yohwan Choi\n🏠 Sunday Worship · Mokjang · Life Studies · Welcoming Immigrants\n🔗 seattlewoori.org",
+
         tags: ko ? ["가정교회", "벨뷰", "시애틀"] : ["House Church", "Bellevue", "Seattle"],
-        website: "https://seattlewoori.org",
+        website: "http://www.seattlewoori.org/#n",
       },
     ],
     dallas: [

@@ -1376,7 +1376,7 @@ Key services:
 📍 Bellevue, WA
 ✨ Lead Pastor: Yohwan Choi
 🏠 Sunday Worship · Mokjang · Life Studies · Welcoming Immigrants
-🔗 seattlewoori.org`,tags:a?["가정교회","벨뷰","시애틀"]:["House Church","Bellevue","Seattle"],website:"https://seattlewoori.org"}],dallas:[{emoji:"⭐",tier:1,name:a?"예닮교회":"Yedam Church — Dallas",nameEn:"Yedam Church",desc:a?`✅ 가정교회 | 북미가사원 텍사스 지역목자
+🔗 seattlewoori.org`,tags:a?["가정교회","벨뷰","시애틀"]:["House Church","Bellevue","Seattle"],website:"http://www.seattlewoori.org/#n"}],dallas:[{emoji:"⭐",tier:1,name:a?"예닮교회":"Yedam Church — Dallas",nameEn:"Yedam Church",desc:a?`✅ 가정교회 | 북미가사원 텍사스 지역목자
 📍 Dallas, TX
 ✨ 담임: 이우철 목사
 🔗 ydkcdallas.org`:`✅ House Church | HMI North America Texas Regional Shepherd
