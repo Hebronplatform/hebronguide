@@ -11747,28 +11747,6 @@ function GrowthShareSection({ lang }: { lang: string }) {
         {ko ? "카카오·문자·SNS로 전달하기" : "Share via Kakao · Text · SNS"}
       </button>
 
-      {/* ── 3개 보조 버튼 ── */}
-      <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-        {/* WhatsApp */}
-        <button onClick={doWhatsApp} style={{ ...btnBase, border: "1px solid rgba(37,211,102,0.3)", background: "rgba(37,211,102,0.1)" }}>
-          <span style={{ fontSize: 18 }}>💬</span>
-          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#25D366" }}>WhatsApp</span>
-        </button>
-        {/* 이메일 */}
-        <button onClick={doEmail} style={btnBase}>
-          <span style={{ fontSize: 18 }}>✉️</span>
-          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "rgba(236,253,245,0.8)" }}>
-            {ko ? "이메일" : "Email"}
-          </span>
-        </button>
-        {/* 복사 */}
-        <button onClick={doCopy} style={{ ...btnBase, border: `1px solid ${copied ? "#6EE7B7" : "rgba(255,255,255,0.13)"}` }}>
-          <span style={{ fontSize: 18 }}>{copied ? "✅" : "📋"}</span>
-          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: copied ? "#6EE7B7" : "rgba(236,253,245,0.8)" }}>
-            {copied ? (ko ? "복사됨!" : "Copied!") : (ko ? "복사" : "Copy")}
-          </span>
-        </button>
-      </div>
 
     </div>
   );
