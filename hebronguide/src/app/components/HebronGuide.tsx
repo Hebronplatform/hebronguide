@@ -14398,8 +14398,53 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                       </div>
                     ) : null}
                     <PlaceCard {...c} accentColor={c.tier === 1 ? GOLD : accent} />
-                    {/* 방문 의사 — Tier 2·3 교회 (website 있으면) */}
-                    {c.tier !== 1 && (c.website || c.phone) && (
+                    {/* Hebron 협력교회 — 환영 모달 + 전화·이메일 버튼 */}
+                    {c.tier !== 1 && c.hebronPartner && (c.phone || c.email) && (
+                      <div style={{ padding: "0 14px 14px 14px" }}>
+                        <button
+                          onClick={() => setWelcomeChurch(c)}
+                          style={{
+                            width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                            background: "linear-gradient(135deg, rgba(110,231,183,0.85), rgba(52,211,153,0.85))",
+                            color: "#0d1117", borderRadius: 10, padding: "10px 16px",
+                            fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13,
+                            border: "none", cursor: "pointer", marginBottom: 8,
+                          }}
+                        >
+                          🌿 {lang === "ko" ? "교회 방문하기" : "Visit Church"}
+                        </button>
+                        <div style={{ display: "flex", gap: 6 }}>
+                          {c.phone && (
+                            <a href={`tel:${c.phone}`}
+                              style={{
+                                flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
+                                background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.3)",
+                                borderRadius: 9, padding: "8px 10px",
+                                fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#6EE7B7",
+                                textDecoration: "none",
+                              }}
+                            >
+                              📞 {lang === "ko" ? "전화하기" : "Call"}
+                            </a>
+                          )}
+                          {c.email && (
+                            <a href={`mailto:${c.email}`}
+                              style={{
+                                flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
+                                background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
+                                borderRadius: 9, padding: "8px 10px",
+                                fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "rgba(236,253,245,0.75)",
+                                textDecoration: "none",
+                              }}
+                            >
+                              ✉️ {lang === "ko" ? "이메일" : "Email"}
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    {/* 방문 의사 — 일반 Tier 2·3 교회 (website 있으면) */}
+                    {c.tier !== 1 && !c.hebronPartner && (c.website || c.phone) && (
                       <div style={{ padding: "0 14px 12px 14px" }}>
                         <a
                           href={c.website ? `https://${c.website.replace(/^https?:\/\//,'')}` : `tel:${c.phone}`}
