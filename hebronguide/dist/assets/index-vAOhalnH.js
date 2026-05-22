@@ -1490,7 +1490,13 @@ Key services:
 🔗 eternaljoychurch.org`:`✅ House Church | HMI North CA (San Jose) Regional Shepherd
 📍 San Jose, CA
 ✨ Lead Pastor: Kijun Lee
-🔗 eternaljoychurch.org`,tags:a?["가정교회","산호세","SF베이"]:["House Church","San Jose","SF Bay"],website:"https://www.eternaljoychurch.org"}],seoul:[],busan:[{emoji:"⛪",tier:2,name:a?"수영로교회":"Sooyoungro Church",desc:a?`✅ 가정교회 모델 · 역이민 귀환 동포 환영
+🔗 eternaljoychurch.org`,tags:a?["가정교회","산호세","SF베이"]:["House Church","San Jose","SF Bay"],website:"https://www.eternaljoychurch.org"}],seoul:[{emoji:"⭐",tier:1,name:a?"다운교회":"Down Church — Seoul",nameEn:"Down Church",desc:a?`✅ 가정교회
+📍 서울
+✨ 담임: 석정일 목사
+🔗 downchurch.com`:`✅ House Church
+📍 Seoul
+✨ Lead Pastor: Jeongil Suk
+🔗 downchurch.com`,tags:a?["가정교회","서울"]:["House Church","Seoul"],website:"https://www.downchurch.com"}],busan:[{emoji:"⛪",tier:2,name:a?"수영로교회":"Sooyoungro Church",desc:a?`✅ 가정교회 모델 · 역이민 귀환 동포 환영
 📍 부산 수영구 수영로 425
 🕐 주일예배 7부(6:30am)·1부(8am)·2부(9:30am)·3부(11:10am)·4부(1pm)·5부(3pm)·영어예배(1pm)
 🔗 sooyoungro.org

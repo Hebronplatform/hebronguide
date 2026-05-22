@@ -14022,6 +14022,16 @@ function getCityChurches(slug: string, lang: string) {
       },
     ],
     seoul: [
+      {
+        emoji: "⭐", tier: 1,
+        name: ko ? "다운교회" : "Down Church — Seoul",
+        nameEn: "Down Church",
+        desc: ko
+          ? "✅ 가정교회\n📍 서울\n✨ 담임: 석정일 목사\n🔗 downchurch.com"
+          : "✅ House Church\n📍 Seoul\n✨ Lead Pastor: Jeongil Suk\n🔗 downchurch.com",
+        tags: ko ? ["가정교회", "서울"] : ["House Church", "Seoul"],
+        website: "https://www.downchurch.com",
+      },
     ],
     busan: [
       {
