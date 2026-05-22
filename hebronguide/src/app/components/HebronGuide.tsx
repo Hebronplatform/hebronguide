@@ -233,11 +233,11 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
   // 🇲🇽 과달라하라 — ①항공 ②대성당 ③특색 ④사람 ⑤정착
   guadalajara: [
-    { url: "https://images.unsplash.com/photo-1567538096621-38d2284b23ff?w=1200&q=95", pos: "center 40%", alt: "Guadalajara Mexico aerial cityscape overview" },
+    { url: "https://images.unsplash.com/photo-VjmCIHH2aGs?w=1200&q=95", pos: "center 40%", alt: "Guadalajara aerial cityscape overview Jalisco Mexico downtown" },
     { url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?w=1200&q=95", pos: "center 38%", alt: "Guadalajara Cathedral historic landmark Zocalo" },
-    { url: "https://images.unsplash.com/photo-1518638150340-f706e86654de?w=1200&q=95", pos: "center 45%", alt: "Guadalajara Tlaquepaque Mexican culture colorful streets" },
+    { url: "https://images.unsplash.com/photo-Yv900yRFNQ0?w=1200&q=95", pos: "center 45%", alt: "Hospicio Cabañas Guadalajara murals cultural UNESCO landmark arches" },
     { url: "https://images.unsplash.com/photo-1573920111312-04f1b25c6b85?w=1200&q=95", pos: "center 50%", alt: "Guadalajara Jalisco people community mariachi welcome" },
-    { url: "https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?w=1200&q=95", pos: "center 40%", alt: "Guadalajara Zapopan residential neighborhood settle" },
+    { url: "https://images.unsplash.com/photo-rMY9gpFN2QA?w=1200&q=95", pos: "center 40%", alt: "Guadalajara colorful umbrella market street culture neighborhood settle" },
   ],
 
   // 🇲🇽 몬테레이 — ①세로데라실라 ②마크로플라자 ③특색 ④사람 ⑤정착
@@ -246,7 +246,7 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1570641963303-92ce4845ed4c?w=1200&q=95", pos: "center 40%", alt: "Monterrey Macroplaza modern industrial city landmark" },
     { url: "https://images.unsplash.com/photo-1547997851-de27a7b7e430?w=1200&q=95", pos: "center 45%", alt: "Monterrey Barrio Antiguo culture night character" },
     { url: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&q=95", pos: "center 50%", alt: "Monterrey Mexico people community street welcome" },
-    { url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=95", pos: "center 40%", alt: "Monterrey San Pedro Garza Garcia residential settle" },
+    { url: "https://images.unsplash.com/photo-vQBzvWBFhrI?w=1200&q=95", pos: "center 45%", alt: "Monterrey Mexico hillside residential neighborhood houses settle community" },
   ],
 
   // 🫘 시카고 — ① Cloud Gate → ② 레이크프런트 스카이라인 → ③ Riverwalk 사람들 → ④ 강 보트 → ⑤ Logan Square 동네
@@ -373,10 +373,10 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
   // 🇺🇸 루이빌 — ①선셋항공 ②야경 ③특색 ④사람 ⑤정착
   louisville: [
-    { url: "https://images.unsplash.com/photo-1582555645330-9fa5f195e1ca?w=1200&q=95", pos: "center 38%", alt: "Louisville Kentucky Ohio River bridges aerial skyline sunset" },
-    { url: "https://images.unsplash.com/photo-1562762394-3acfba62a48e?w=1200&q=95", pos: "center 40%", alt: "Louisville Kentucky downtown night skyline historic landmark" },
-    { url: "https://images.unsplash.com/photo-1638289231271-65a10c95b9e6?w=1200&q=95", pos: "center 50%", alt: "Louisville Kentucky industrial character bourbon heritage" },
-    { url: "https://images.unsplash.com/photo-1463839346397-8e9946845e6d?w=1200&q=95", pos: "center 50%", alt: "Louisville Kentucky community people outdoor park welcome" },
+    { url: "https://images.unsplash.com/photo-A9LoLmADuRk?w=1200&q=95", pos: "center 40%", alt: "Louisville Kentucky Big 4 Walking Bridge skyline dusk illuminated Ohio River" },
+    { url: "https://images.unsplash.com/photo-VNGVZ6m4WfU?w=1200&q=95", pos: "center 40%", alt: "Louisville Kentucky skyline dusk Ohio River reflection Clarksville Indiana" },
+    { url: "https://images.unsplash.com/photo-iWpF3D_M-1g?w=1200&q=95", pos: "center 50%", alt: "Louisville Kentucky Ohio River sunset bridge waterfront downtown landmark" },
+    { url: "https://images.unsplash.com/photo-I9rAM1iblKA?w=1200&q=95", pos: "center 45%", alt: "Louisville Kentucky downtown skyline over Ohio River people community" },
     { url: "https://images.unsplash.com/photo-1649269464634-69c0c712c50c?w=1200&q=95", pos: "center 45%", alt: "Louisville Kentucky neighborhood residential settle community" },
   ],
 
@@ -458,7 +458,7 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
   // 🇧🇷 상파울루 — ①항공 ②파울리스타 ③문화 ④사람 ⑤정착
   saopaulo: [
-    { url: "https://images.unsplash.com/photo-1554168848-228452c09d60?w=1200&q=95", pos: "center 40%", alt: "Sao Paulo Brazil aerial drone Morumbi skyline towers" },
+    { url: "https://images.unsplash.com/photo-UzN-d1g4moY?w=1200&q=95", pos: "center 40%", alt: "Sao Paulo aerial drone Bela Vista Paulista urban skyline overview Brazil" },
     { url: "https://images.unsplash.com/photo-1561592390-ec0391c9c723?w=1200&q=95", pos: "center 38%", alt: "Sao Paulo Paulista Avenue aerial landmark urban center" },
     { url: "https://images.unsplash.com/photo-1544989164-31659c5e7f2c?w=1200&q=95", pos: "center 45%", alt: "Sao Paulo dramatic cityscape urban character culture" },
     { url: "https://images.unsplash.com/photo-1550571969-92381c4a96d1?w=1200&q=95", pos: "center 50%", alt: "Sao Paulo people community Liberdade multicultural" },
@@ -519,22 +519,22 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=95", pos: "center 40%", alt: "Phoenix Arizona desert residential neighborhood settle" },
   ],
 
-  // 🇺🇸 샬럿 — ①선셋항공 ②Uptown야경 ③특색건물 ④드론커뮤니티 ⑤야간정착
+  // 🇺🇸 샬럿 — ①드론일출 ②Bank of America Stadium ③Uptown야경 ④고속도로야경 ⑤스카이라인서쪽
   charlotte: [
-    { url: "https://images.unsplash.com/photo-1582555645330-9fa5f195e1ca?w=1200&q=95", pos: "center 38%", alt: "Charlotte NC skyline sunset aerial golden hour uptown drone" },
-    { url: "https://images.unsplash.com/photo-1562762394-3acfba62a48e?w=1200&q=95", pos: "center 40%", alt: "Uptown Charlotte NC night skyline Bank of America Stadium landmark" },
-    { url: "https://images.unsplash.com/photo-1638289231271-65a10c95b9e6?w=1200&q=95", pos: "center 50%", alt: "Charlotte NC train yard transportation industrial character" },
-    { url: "https://images.unsplash.com/photo-1562762583-9e1705bcb3ff?w=1200&q=95", pos: "center 40%", alt: "Charlotte Uptown NC DJI drone aerial night community people welcome" },
-    { url: "https://images.unsplash.com/photo-1638645666021-da0c4f0f72ec?w=1200&q=95", pos: "center 45%", alt: "Charlotte NC skyline highway night residential settle" },
+    { url: "https://images.unsplash.com/photo-vWkq72HluHM?w=1200&q=95", pos: "center 40%", alt: "Charlotte NC Uptown skyline aerial drone sunrise golden hour" },
+    { url: "https://images.unsplash.com/photo-_jlA9epjimM?w=1200&q=95", pos: "center 50%", alt: "Charlotte NC Bank of America Stadium Carolina Panthers NFL aerial landmark" },
+    { url: "https://images.unsplash.com/photo-6biN3uBw4Fg?w=1200&q=95", pos: "center 40%", alt: "Uptown Charlotte NC night skyline buildings illuminated landmark" },
+    { url: "https://images.unsplash.com/photo-WhCC5YQxyLY?w=1200&q=95", pos: "center 45%", alt: "Charlotte NC highway night skyline traffic community welcome" },
+    { url: "https://images.unsplash.com/photo-x0P-6BRp5jc?w=1200&q=95", pos: "center 50%", alt: "Charlotte NC skyline from west side trees residential neighborhood settle" },
   ],
 
-  // 🇺🇸 롤리 — ①Boylan브릿지스카이라인 ②NC선셋 ③해바라기자연 ④커뮤니티 ⑤정착
+  // 🇺🇸 롤리 — ①일몰스카이라인 ②Boylan Bridge스카이라인 ③NC주의회 ④Dix Park ⑤도심일출
   raleigh: [
-    { url: "https://images.unsplash.com/photo-1576033518964-b4ef9209bbf6?w=1200&q=95", pos: "center 38%", alt: "Raleigh NC downtown skyline Boylan Bridge aerial daytime landmark" },
-    { url: "https://images.unsplash.com/photo-1582555645330-9fa5f195e1ca?w=1200&q=95", pos: "center 40%", alt: "Raleigh North Carolina Research Triangle city skyline sunset" },
-    { url: "https://images.unsplash.com/photo-1577676366305-bb5681686646?w=1200&q=95", pos: "center 50%", alt: "Raleigh NC sunflower field nature landscape character" },
-    { url: "https://images.unsplash.com/photo-1562762583-9e1705bcb3ff?w=1200&q=95", pos: "center 40%", alt: "North Carolina city aerial night community people welcome" },
-    { url: "https://images.unsplash.com/photo-1638645666021-da0c4f0f72ec?w=1200&q=95", pos: "center 45%", alt: "Raleigh NC neighborhood residential settle community night" },
+    { url: "https://images.unsplash.com/photo-ICOLTTjYgaA?w=1200&q=95", pos: "center 38%", alt: "Raleigh NC downtown skyline sunset Research Triangle landmark" },
+    { url: "https://images.unsplash.com/photo-SScbTSOJ00E?w=1200&q=95", pos: "center 40%", alt: "Raleigh NC skyline from Boylan Bridge downtown architecture" },
+    { url: "https://images.unsplash.com/photo-evz_9DAmsO4?w=1200&q=95", pos: "center 50%", alt: "Raleigh NC North Carolina Legislative Building state capitol landmark" },
+    { url: "https://images.unsplash.com/photo-Tzzv7PmyiN0?w=1200&q=95", pos: "center 60%", alt: "Raleigh NC Dorthea Dix Park daffodils flowers city skyline community welcome" },
+    { url: "https://images.unsplash.com/photo-a_KPwLo3Lo4?w=1200&q=95", pos: "center 45%", alt: "Raleigh NC downtown cityscape sunrise Research Triangle settle" },
   ],
 
   // 🇺🇸 콜럼버스 — ①드론도심 ②Ohio Stadium항공 ③선셋스타디움 ④Short North ⑤정착
@@ -552,42 +552,42 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1591552727520-b2369cf5809e?w=1200&q=95", pos: "center 38%", alt: "Loring Park Minneapolis downtown skyline aerial panoramic landmark" },
     { url: "https://images.unsplash.com/photo-1592860071323-6d8632626f14?w=1200&q=95", pos: "center 45%", alt: "Stone Arch Bridge Mississippi River Minneapolis landmark aerial" },
     { url: "https://images.unsplash.com/photo-1590791057283-b4cda358303e?w=1200&q=95", pos: "center 40%", alt: "Minneapolis drone aerial May cityscape community people welcome" },
-    { url: "https://images.unsplash.com/photo-1591552727520-b2369cf5809e?w=1200&q=95", pos: "center 50%", alt: "Minneapolis Loring Park neighborhood settle residential community" },
+    { url: "https://images.unsplash.com/photo-zchkN4JCbIE?w=1200&q=95", pos: "center 50%", alt: "Minneapolis Minnesota aerial drone cityscape residential neighborhood settle" },
   ],
 
-  // 🇺🇸 투손 — ①사와로+산 ②올빼미NP ③사막항공 ④봄커뮤니티 ⑤정착
+  // 🇺🇸 투손 — ①사와로+산 ②올빼미NP ③투손도심+산 ④투손도심배경 ⑤투손항공
   tucson: [
     { url: "https://images.unsplash.com/photo-1678315687595-38d94f5d78ed?w=1200&q=95", pos: "center 45%", alt: "Saguaro National Park cactus mountains Tucson Arizona desert aerial" },
-    { url: "https://images.unsplash.com/photo-1649367875165-d35f0b1548ed?w=1200&q=95", pos: "center 50%", alt: "Great horned owl Saguaro National Park Tucson Arizona desert" },
-    { url: "https://images.unsplash.com/photo-1685926705423-6c1bbccbab34?w=1200&q=95", pos: "center 40%", alt: "Tucson Arizona desert aerial landscape mountains character" },
-    { url: "https://images.unsplash.com/photo-1608595530172-170802229c09?w=1200&q=95", pos: "center 50%", alt: "Tucson Arizona community people outdoor spring welcome" },
-    { url: "https://images.unsplash.com/photo-1463839346397-8e9946845e6d?w=1200&q=95", pos: "center 50%", alt: "Tucson Arizona neighborhood residential settle community" },
+    { url: "https://images.unsplash.com/photo-1649367875165-d35f0b1548ed?w=1200&q=95", pos: "center 50%", alt: "Great horned owl Saguaro National Park Tucson Arizona desert wildlife" },
+    { url: "https://images.unsplash.com/photo-ZMnsqtGkOho?w=1200&q=95", pos: "center 40%", alt: "Tucson Arizona downtown city mountains backdrop character" },
+    { url: "https://images.unsplash.com/photo-6ie2Y4Yo1t4?w=1200&q=95", pos: "center 50%", alt: "Tucson Arizona downtown mountain backdrop community people welcome" },
+    { url: "https://images.unsplash.com/photo-bs17N-YQXVg?w=1200&q=95", pos: "center 50%", alt: "Tucson Arizona aerial cityscape desert residential settle" },
   ],
 
-  // 🇺🇸 페이엣빌 — ①스카이라인 ②오자크자연 ③강브릿지 ④커뮤니티 ⑤정착
+  // 🇺🇸 페이엣빌 NC — ①다운타운 ②벚꽃 ③Hay Street ④자연 ⑤정착 (Fort Liberty 군인도시, NC)
   fayetteville: [
-    { url: "https://images.unsplash.com/photo-1576033518964-b4ef9209bbf6?w=1200&q=95", pos: "center 38%", alt: "Fayetteville Arkansas downtown aerial skyline Ozark Mountains" },
-    { url: "https://images.unsplash.com/photo-1577676366305-bb5681686646?w=1200&q=95", pos: "center 50%", alt: "Arkansas Ozark nature landscape wildflowers character" },
-    { url: "https://images.unsplash.com/photo-1592860071323-6d8632626f14?w=1200&q=95", pos: "center 45%", alt: "Fayetteville Arkansas river bridge Ozark nature landmark" },
-    { url: "https://images.unsplash.com/photo-1590791057283-b4cda358303e?w=1200&q=95", pos: "center 50%", alt: "Fayetteville Arkansas community people outdoor spring welcome" },
-    { url: "https://images.unsplash.com/photo-1638645666021-da0c4f0f72ec?w=1200&q=95", pos: "center 45%", alt: "Fayetteville Arkansas neighborhood residential settle community" },
+    { url: "https://images.unsplash.com/photo-WR8UwEVhU9U?w=1200&q=95", pos: "center 38%", alt: "Fayetteville NC downtown brick clock tower building landmark" },
+    { url: "https://images.unsplash.com/photo-4B_rFkT-UXo?w=1200&q=95", pos: "center 50%", alt: "Fayetteville NC cherry blossom street spring character" },
+    { url: "https://images.unsplash.com/photo-6xfkKQLYp3Y?w=1200&q=95", pos: "center 45%", alt: "Fayetteville NC Hay Street downtown historic district" },
+    { url: "https://images.unsplash.com/photo-BqKDXjaS1Fg?w=1200&q=95", pos: "center 50%", alt: "Fayetteville NC nature outdoor community people welcome" },
+    { url: "https://images.unsplash.com/photo-NnePfYzU3yc?w=1200&q=95", pos: "center 45%", alt: "Fayetteville NC residential neighborhood settle community" },
   ],
 
-  // 🇺🇸 킬린 — ①텍사스항공 ②스포츠필드 ③도심 ④커뮤니티 ⑤정착
+  // 🇺🇸 킬린 — ①텍사스항공 ②스포츠필드 ③Waco TX근교 ④Waco야경 ⑤Texas Hill Country
   killeen: [
-    { url: "https://images.unsplash.com/photo-1685926705423-6c1bbccbab34?w=1200&q=95", pos: "center 40%", alt: "Fort Cavazos Central Texas aerial drone landscape Austin area" },
+    { url: "https://images.unsplash.com/photo-1685926705423-6c1bbccbab34?w=1200&q=95", pos: "center 40%", alt: "Fort Cavazos Central Texas aerial drone landscape" },
     { url: "https://images.unsplash.com/photo-1515274439695-f4e5911fbbdc?w=1200&q=95", pos: "center 50%", alt: "Texas aerial drone sports field community outdoor" },
-    { url: "https://images.unsplash.com/photo-1605374041986-1318f16b21b8?w=1200&q=95", pos: "center 45%", alt: "Central Texas city buildings urban landscape character" },
-    { url: "https://images.unsplash.com/photo-1463839346397-8e9946845e6d?w=1200&q=95", pos: "center 50%", alt: "Killeen Texas military community family outdoor welcome" },
-    { url: "https://images.unsplash.com/photo-1649269464634-69c0c712c50c?w=1200&q=95", pos: "center 45%", alt: "Central Texas Fort Cavazos neighborhood residential settle community" },
+    { url: "https://images.unsplash.com/photo-wTrP_Z4R4aU?w=1200&q=95", pos: "center 45%", alt: "Waco Texas aerial cityscape river forests Central Texas landmark" },
+    { url: "https://images.unsplash.com/photo-3TZvk3V4YXI?w=1200&q=95", pos: "center 50%", alt: "Waco Texas night skyline community people Central Texas welcome" },
+    { url: "https://images.unsplash.com/photo-x0oTt1Mvyas?w=1200&q=95", pos: "center 45%", alt: "Texas Hill Country lake aerial Jonestown neighborhood settle" },
   ],
 
-  // 🇺🇸 앵커리지 — ①항공 ②설산 ③오로라 ④사람 ⑤정착
+  // 🇺🇸 앵커리지 — ①항공 ②설산 ③오로라 ④다운타운전망 ⑤정착
   anchorage: [
     { url: "https://images.unsplash.com/photo-1603234061759-319af38ff156?w=1200&q=95", pos: "center 40%", alt: "Anchorage Alaska aerial drone city mountains" },
     { url: "https://images.unsplash.com/photo-1627668836519-cea3d8b1672d?w=1200&q=95", pos: "center 38%", alt: "Anchorage Alaska snow-covered mountains landmark" },
     { url: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=95", pos: "center 45%", alt: "Alaska Northern Lights aurora borealis character" },
-    { url: "https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=1200&q=95", pos: "center 50%", alt: "Anchorage Alaska mountain backdrop community people" },
+    { url: "https://images.unsplash.com/photo-8UCTwY4mrVA?w=1200&q=95", pos: "center 50%", alt: "Downtown Anchorage viewpoint snow mountains city community welcome" },
     { url: "https://images.unsplash.com/photo-1627668840756-157decaf5dce?w=1200&q=95", pos: "center 40%", alt: "Anchorage Alaska harbor boats residential waterfront settle" },
   ],
 
