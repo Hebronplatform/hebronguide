@@ -567,11 +567,74 @@
       .stats-grid { grid-template-columns: repeat(2, 1fr) }
       .hub-grid { grid-template-columns: repeat(2, 1fr) }
     }
+
+    /* ── 상세 모달 ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,.65); backdrop-filter: blur(4px);
+      justify-content: center; align-items: flex-start;
+      padding: 40px 16px;
+      overflow-y: auto;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #1a1d26;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 18px;
+      width: 100%; max-width: 560px;
+      padding: 28px 24px 24px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px;
+      background: rgba(255,255,255,.08); border: none;
+      color: #e8edf3; width: 32px; height: 32px;
+      border-radius: 50%; cursor: pointer; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,.16); }
+    .modal-title {
+      font-size: 1.05rem; font-weight: 800;
+      color: var(--gold); margin-bottom: 20px;
+      padding-right: 40px; line-height: 1.4;
+    }
+    .modal-fields { display: flex; flex-direction: column; gap: 12px; }
+    .modal-field { display: flex; flex-direction: column; gap: 4px; }
+    .modal-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .06em;
+      color: var(--muted); text-transform: uppercase;
+    }
+    .modal-value {
+      font-size: .88rem; color: #e8edf3;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px; padding: 10px 14px;
+      white-space: pre-wrap; word-break: break-word;
+      line-height: 1.65;
+    }
+    .modal-value a { color: var(--mint); }
+    .modal-actions {
+      display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap;
+    }
+    tbody tr { cursor: pointer; }
+    tbody tr:hover td { background: rgba(201,162,39,.06) !important; }
   </style>
 </head>
 <body>
 
 <div id="toast"></div>
+
+<!-- ── 상세 모달 ── -->
+<div class="modal-overlay" id="detailModal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeDetailModal()">✕</button>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-fields" id="modalFields"></div>
+    <div class="modal-actions" id="modalActions"></div>
+  </div>
+</div>
 
 <!-- ── 로그인 ── -->
 <div id="login-gate">
@@ -744,9 +807,10 @@
     <!-- 데이터 테이블 -->
     <div class="content-header">
       <div class="tabs">
-        <button class="tab active" onclick="switchTab('community')">💬 커뮤니티 글</button>
+        <button class="tab active" onclick="switchTab('community')">💬 기타 신청</button>
         <button class="tab" onclick="switchTab('churches')">⛪ 교회</button>
-        <button class="tab" onclick="switchTab('restaurants')">🍜 식당·카페</button>
+        <button class="tab" onclick="switchTab('restaurants')">🍜 사업체·카페</button>
+        <button class="tab" onclick="switchTab('promo')">📣 홍보</button>
         <button class="tab" onclick="switchTab('partners')">✝️ 파트너 목사</button>
         <button class="tab" onclick="switchTab('stories')">📖 이야기</button>
         <button class="tab" onclick="switchTab('logs')">📊 AI 로그</button>
@@ -847,7 +911,7 @@
   function switchTab(tab) {
     currentTab = tab
     document.querySelectorAll('.tab').forEach((t, i) => {
-      const tabs = ['community','churches','restaurants','partners','stories','logs']
+      const tabs = ['community','churches','restaurants','promo','partners','stories','logs']
       t.classList.toggle('active', tabs[i] === tab)
     })
     document.getElementById('search').value = ''
@@ -866,17 +930,27 @@
         ])
         const d1 = r1.status === 'fulfilled' ? (r1.value.data || []) : []
         const d2 = r2.status === 'fulfilled' ? (r2.value.data || []) : []
-        allData = [...d1, ...d2].sort((a,b) => new Date(b.created_at||0) - new Date(a.created_at||0))
+        // 교회·사업체·홍보 신청은 각 전용 탭에서 처리 → 여기서 제외
+        const ROUTED_CATS = ['church', 'church_application', 'business', 'promo']
+        allData = [...d1, ...d2]
+          .filter(r => !ROUTED_CATS.includes(r.category))
+          .sort((a,b) => new Date(b.created_at||0) - new Date(a.created_at||0))
         renderCommunity(allData)
       } else if (tab === 'churches') {
-        const { data } = await sbMain.from('churches').select('*').order('created_at', { ascending: false }).limit(200)
-        allData = data || []
-        renderChurches(allData)
+        const { data: churchData } = await sbMain.from('churches').select('*').order('created_at', { ascending: false }).limit(200)
+        const { data: appData } = await sbMain.from('community_items').select('*').eq('category', 'church').order('created_at', { ascending: false }).limit(100)
+        allData = churchData || []
+        renderChurches(allData, appData || [])
       } else if (tab === 'restaurants') {
         const { data: dataR } = await sbMain.from('restaurants').select('*').order('created_at', { ascending: false }).limit(100)
         const { data: dataC } = await sbMain.from('cafes').select('*').order('created_at', { ascending: false }).limit(100)
+        const { data: bizApps } = await sbMain.from('community_items').select('*').eq('category', 'business').order('created_at', { ascending: false }).limit(100)
         allData = [...(dataR || []), ...(dataC || [])]
-        renderRestaurants(allData)
+        renderRestaurants(allData, bizApps || [])
+      } else if (tab === 'promo') {
+        const { data: promoApps } = await sbMain.from('community_items').select('*').eq('category', 'promo').order('created_at', { ascending: false }).limit(100)
+        allData = promoApps || []
+        renderPromo(allData)
       } else if (tab === 'partners') {
         const { data } = await sbNew.from('pastor_partners').select('*').order('joined_at', { ascending: false })
         allData = data || []
@@ -906,12 +980,12 @@
         </tr></thead>
         <tbody>
           ${data.map(r => `
-            <tr data-id="${r.id}" data-table="community_items" data-db="main">
+            <tr data-id="${r.id}" data-table="community_items" data-db="main" onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기">
               <td>
                 <div class="cell-name">${esc(r.title || r.business_name || r.name || '(제목없음)')}</div>
                 <div class="cell-sub">${esc(r.category || r.type || '')}</div>
               </td>
-              <td><div class="cell-desc" title="${esc(r.description || r.content || '')}">${esc((r.description || r.content || '').slice(0, 60))}</div></td>
+              <td><div class="cell-desc">${esc((r.description || r.content || '').slice(0, 60))}${(r.description || r.content || '').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">더보기 →</span>' : ''}</div></td>
               <td><span class="cell-city">${esc(r.city_slug || r.city || '—')}</span></td>
               <td>
                 <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
@@ -919,7 +993,7 @@
               </td>
               <td><span class="status ${r.status || 'community'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '💬 커뮤니티'}</span></td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
-              <td><div class="actions">
+              <td><div class="actions" onclick="event.stopPropagation()">
                 ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
                 ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
                 <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
@@ -929,18 +1003,58 @@
       </table>`
   }
 
-  // ── 교회 렌더링 ──────────────────────────────────────────
-  function renderChurches(data) {
-    if (!data.length) { setEmpty('등록된 교회가 없습니다'); return }
-    document.getElementById('count-badge').textContent = `${data.length}개`
-    document.getElementById('table-content').innerHTML = `
+  // ── 교회 렌더링 (등록 교회 + 신청 대기) ─────────────────
+  function renderChurches(data, applications) {
+    const totalCount = data.length + (applications ? applications.length : 0)
+    if (!totalCount) { setEmpty('등록된 교회가 없습니다'); return }
+    document.getElementById('count-badge').textContent = `${totalCount}개`
+
+    const appSection = applications && applications.length ? `
+      <div style="padding:14px 16px 8px;background:rgba(201,162,39,.07);border-bottom:1px solid rgba(201,162,39,.18);">
+        <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--gold);text-transform:uppercase;">
+          ⏳ 교회 파트너 신청 대기 — ${applications.length}건
+        </span>
+        <span style="font-size:.7rem;color:var(--muted);margin-left:8px;">행을 클릭하면 전체 내용 확인</span>
+      </div>
+      <table>
+        <thead><tr>
+          <th>이름·교회명</th><th>내용</th><th>도시·주소</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th>
+        </tr></thead>
+        <tbody>
+          ${applications.map(r => `
+            <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기" style="background:rgba(201,162,39,.03)">
+              <td>
+                <div class="cell-name">${esc(r.name || '(이름없음)')}</div>
+                <div class="cell-sub">${esc(r.category || '')}</div>
+              </td>
+              <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">더보기 →</span>' : ''}</div></td>
+              <td><span class="cell-city">${esc(r.city_slug || r.city || '—')}</span></td>
+              <td>
+                <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
+                <div class="cell-sub">${esc(r.contact || '')}</div>
+              </td>
+              <td><span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span></td>
+              <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
+              <td><div class="actions" onclick="event.stopPropagation()">
+                ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
+                ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
+                <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
+              </div></td>
+            </tr>`).join('')}
+        </tbody>
+      </table>` : ''
+
+    const churchSection = data.length ? `
+      ${applications && applications.length ? `<div style="padding:14px 16px 8px;background:rgba(110,231,183,.05);border-top:1px solid rgba(110,231,183,.12);border-bottom:1px solid rgba(255,255,255,.05);">
+        <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--mint);text-transform:uppercase;">✅ 등록 교회 — ${data.length}개</span>
+      </div>` : ''}
       <table>
         <thead><tr>
           <th>교회명</th><th>설명</th><th>도시</th><th>Tier</th><th>상태</th><th>액션</th>
         </tr></thead>
         <tbody>
           ${data.map(r => `
-            <tr>
+            <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'church')" title="클릭하여 상세 보기">
               <td>
                 <div class="cell-name">${esc(r.name || '(이름없음)')}</div>
                 <div class="cell-sub">${esc(r.name_en || '')}</div>
@@ -949,13 +1063,15 @@
               <td><span class="cell-city">${esc(r.city_slug || r.city || '—')}</span></td>
               <td><span class="status ${r.tier === 1 ? 'approved' : 'community'}">Tier ${r.tier || '?'}</span></td>
               <td><span class="status ${r.active ? 'approved' : 'rejected'}">${r.active ? '✅ 활성' : '⏸ 비활성'}</span></td>
-              <td><div class="actions">
+              <td><div class="actions" onclick="event.stopPropagation()">
                 <button class="btn-sm btn-edit" onclick="editRow('${r.id}','churches')">✏️ 수정</button>
                 <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','churches','main')">🗑</button>
               </div></td>
             </tr>`).join('')}
         </tbody>
-      </table>`
+      </table>` : ''
+
+    document.getElementById('table-content').innerHTML = `<div class="table-wrap">${appSection}${churchSection}</div>`
   }
 
   // ── 파트너 목사 렌더링 ───────────────────────────────────
@@ -985,24 +1101,104 @@
       </table>`
   }
 
-  // ── 식당·카페 렌더링 ─────────────────────────────────────
-  function renderRestaurants(data) {
-    if (!data.length) { setEmpty('등록된 식당·카페가 없습니다'); return }
-    document.getElementById('count-badge').textContent = `${data.length}개`
-    document.getElementById('table-content').innerHTML = `
+  // ── 사업체·카페 렌더링 (등록 + 신청) ────────────────────
+  function renderRestaurants(data, applications) {
+    const totalCount = data.length + (applications ? applications.length : 0)
+    if (!totalCount) { setEmpty('등록된 사업체·카페가 없습니다'); return }
+    document.getElementById('count-badge').textContent = `${totalCount}개`
+
+    const appSection = applications && applications.length ? `
+      <div style="padding:14px 16px 8px;background:rgba(201,162,39,.07);border-bottom:1px solid rgba(201,162,39,.18);">
+        <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--gold);text-transform:uppercase;">
+          ⏳ 사업체 등재 신청 대기 — ${applications.length}건
+        </span>
+        <span style="font-size:.7rem;color:var(--muted);margin-left:8px;">행 클릭 → 전체 내용</span>
+      </div>
+      <table>
+        <thead><tr>
+          <th>이름·업체명</th><th>내용</th><th>도시</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th>
+        </tr></thead>
+        <tbody>
+          ${applications.map(r => `
+            <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기" style="background:rgba(201,162,39,.03)">
+              <td>
+                <div class="cell-name">${esc(r.name || '(이름없음)')}</div>
+                <div class="cell-sub">사업체 신청</div>
+              </td>
+              <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">더보기 →</span>' : ''}</div></td>
+              <td><span class="cell-city">${esc(r.city_slug || r.city || '—')}</span></td>
+              <td>
+                <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
+              </td>
+              <td><span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span></td>
+              <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
+              <td><div class="actions" onclick="event.stopPropagation()">
+                ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
+                ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
+                <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
+              </div></td>
+            </tr>`).join('')}
+        </tbody>
+      </table>` : ''
+
+    const bizSection = data.length ? `
+      ${applications && applications.length ? `<div style="padding:14px 16px 8px;background:rgba(110,231,183,.05);border-top:1px solid rgba(110,231,183,.12);border-bottom:1px solid rgba(255,255,255,.05);">
+        <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--mint);text-transform:uppercase;">✅ 등록 식당·카페 — ${data.length}개</span>
+      </div>` : ''}
       <table>
         <thead><tr>
           <th>이름</th><th>설명</th><th>도시</th><th>상태</th><th>액션</th>
         </tr></thead>
         <tbody>
           ${data.map(r => `
-            <tr>
+            <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'restaurant')" title="클릭하여 상세 보기">
               <td class="cell-name">${esc(r.name || '—')}</td>
               <td><div class="cell-desc">${esc((r.desc || r.description || '').slice(0,60))}</div></td>
               <td><span class="cell-city">${esc(r.city_slug || r.city || '—')}</span></td>
               <td><span class="status ${r.active ? 'approved' : 'rejected'}">${r.active ? '✅ 활성' : '⏸ 비활성'}</span></td>
-              <td><div class="actions">
+              <td><div class="actions" onclick="event.stopPropagation()">
                 <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','restaurants','main')">🗑</button>
+              </div></td>
+            </tr>`).join('')}
+        </tbody>
+      </table>` : ''
+
+    document.getElementById('table-content').innerHTML = `<div class="table-wrap">${appSection}${bizSection}</div>`
+  }
+
+  // ── 홍보 신청 렌더링 ──────────────────────────────────────
+  function renderPromo(data) {
+    if (!data.length) { setEmpty('홍보 신청이 없습니다'); return }
+    document.getElementById('count-badge').textContent = `${data.length}건`
+    document.getElementById('table-content').innerHTML = `
+      <div style="padding:14px 16px 8px;background:rgba(96,165,250,.07);border-bottom:1px solid rgba(96,165,250,.18);">
+        <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--blue);text-transform:uppercase;">
+          📣 홍보 신청 — ${data.length}건
+        </span>
+        <span style="font-size:.7rem;color:var(--muted);margin-left:8px;">행 클릭 → 전체 내용</span>
+      </div>
+      <table>
+        <thead><tr>
+          <th>제목·담당자</th><th>내용</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th>
+        </tr></thead>
+        <tbody>
+          ${data.map(r => `
+            <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기">
+              <td>
+                <div class="cell-name">${esc(r.name || '(이름없음)')}</div>
+                <div class="cell-sub">홍보 신청</div>
+              </td>
+              <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">더보기 →</span>' : ''}</div></td>
+              <td>
+                <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
+                <div class="cell-sub">${esc(r.contact || '')}</div>
+              </td>
+              <td><span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span></td>
+              <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
+              <td><div class="actions" onclick="event.stopPropagation()">
+                ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
+                ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
+                <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
               </div></td>
             </tr>`).join('')}
         </tbody>
@@ -1142,6 +1338,52 @@
       document.getElementById(ids[i]).textContent = r.status === 'fulfilled' ? (r.value.count ?? '?') : '?'
     })
   }
+
+  // ── 상세 모달 ─────────────────────────────────────────────
+  function showDetail(r, tableKey) {
+    const labelMap = {
+      name: '이름·교회명', title: '제목', business_name: '사업체명',
+      description: '내용 (전체)', content: '내용 (전체)',
+      city_slug: '도시', city: '도시', address: '주소',
+      phone: '전화', contact: '연락처', email: '이메일',
+      website: '웹사이트', url: 'URL',
+      category: '카테고리', type: '유형', status: '상태',
+      denomination: '교단', tier: 'Tier',
+      created_at: '신청일시', updated_at: '수정일시',
+    }
+    const skipKeys = ['id','user_id','auth_uid']
+
+    document.getElementById('modalTitle').textContent =
+      r.title || r.business_name || r.name || '(제목없음)'
+
+    const fieldsEl = document.getElementById('modalFields')
+    fieldsEl.innerHTML = Object.entries(r)
+      .filter(([k, v]) => !skipKeys.includes(k) && v !== null && v !== '' && v !== undefined)
+      .map(([k, v]) => {
+        const label = labelMap[k] || k
+        let val = String(v)
+        if (k === 'created_at' || k === 'updated_at') val = new Date(v).toLocaleString('ko-KR')
+        if (k === 'status') val = v === 'approved' ? '✅ 승인' : v === 'rejected' ? '❌ 거절' : v === 'pending' ? '⏳ 대기' : v
+        return `<div class="modal-field">
+          <div class="modal-label">${label}</div>
+          <div class="modal-value">${esc(val)}</div>
+        </div>`
+      }).join('')
+
+    // 액션 버튼
+    const actEl = document.getElementById('modalActions')
+    actEl.innerHTML = ''
+    if (tableKey === 'community') {
+      if (r.status !== 'approved') actEl.innerHTML += `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved');closeDetailModal()">✅ 승인</button>`
+      if (r.status !== 'rejected') actEl.innerHTML += `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected');closeDetailModal()">❌ 거절</button>`
+      actEl.innerHTML += `<button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new');closeDetailModal()">🗑 삭제</button>`
+    }
+
+    document.getElementById('detailModal').classList.add('open')
+  }
+  function closeDetailModal() { document.getElementById('detailModal').classList.remove('open') }
+  function closeModal(e) { if (e.target === document.getElementById('detailModal')) closeDetailModal() }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetailModal() })
 
   // ── 유틸 ─────────────────────────────────────────────────
   function esc(s) { return String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;') }

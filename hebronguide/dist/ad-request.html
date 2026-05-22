@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>파트너 신청 — HebronGuide | 개인·교회·사업체·홍보</title>
-<meta name="description" content="HebronGuide 파트너 신청 — 개인, 교회, 사업체, 홍보 모든 문의를 한 곳에서. 67개 도시 한인 커뮤니티에 함께하세요.">
+<title>파트너 신청 — HebronGuide | 교회·사업체·홍보</title>
+<meta name="description" content="HebronGuide 파트너 신청 — 교회, 사업체, 홍보 문의를 한 곳에서. 67개 도시 한인 커뮤니티에 함께하세요.">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -26,8 +26,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .hero{background:linear-gradient(135deg,rgba(201,162,39,.13),rgba(110,231,183,.08));
   border-bottom:1px solid rgba(201,162,39,.2);padding:28px 20px 24px;text-align:center;}
 .hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(201,162,39,.15);
-  border:1px solid rgba(201,162,39,.4);color:var(--gold);font-size:.7rem;font-weight:800;
-  padding:4px 14px;border-radius:20px;margin-bottom:12px;letter-spacing:.06em;}
+  border:1px solid rgba(201,162,39,.4);color:var(--gold);font-size:1.4rem;font-weight:900;
+  padding:10px 22px;border-radius:20px;margin-bottom:12px;letter-spacing:.01em;}
 .hero h1{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:6px;line-height:1.3;}
 .hero h1 span{color:var(--gold);}
 .hero p{font-size:.85rem;color:rgba(236,253,245,.72);line-height:1.8;margin-bottom:16px;}
@@ -45,7 +45,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .container{max-width:560px;margin:0 auto;padding:24px 16px 100px;}
 
 /* 유형 탭 */
-.type-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:20px;}
+.type-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:20px;}
 .type-tab{display:flex;flex-direction:column;align-items:center;gap:4px;
   padding:12px 4px 10px;border-radius:14px;border:1.5px solid var(--border2);
   background:var(--surface);cursor:pointer;transition:all .18s;-webkit-tap-highlight-color:transparent;}
@@ -57,8 +57,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 /* 폼 카드 */
 .form-card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:24px 20px;display:none;}
 .form-card.active{display:block;}
-.form-section-title{font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.08em;
-  text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.form-section-title{font-size:1rem;font-weight:900;color:var(--gold);letter-spacing:.01em;
+  margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
 .field{margin-bottom:13px;}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 @media(max-width:420px){.field-row{grid-template-columns:1fr;}}
@@ -102,6 +102,22 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 .hint-gold{background:rgba(201,162,39,.07);border-color:rgba(201,162,39,.2);}
 .hint-gold strong{color:var(--gold);}
 
+/* 동의 섹션 */
+.consent-section{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:14px 16px;margin:14px 0 4px;}
+.pipa-table{width:100%;border-collapse:collapse;font-size:.65rem;margin-bottom:12px;}
+.pipa-table th{background:rgba(201,162,39,.1);color:var(--gold);padding:5px 7px;border:1px solid rgba(255,255,255,.07);font-weight:700;line-height:1.4;vertical-align:top;}
+.pipa-table td{padding:5px 7px;border:1px solid rgba(255,255,255,.05);color:rgba(236,253,245,.68);line-height:1.6;vertical-align:top;font-size:.64rem;}
+.pipa-note{font-size:.63rem;color:rgba(236,253,245,.38);line-height:1.6;margin-bottom:12px;padding-top:4px;}
+.consent-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.consent-row:last-of-type{margin-bottom:0;}
+.consent-row input[type=checkbox]{width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--gold);cursor:pointer;}
+.consent-text{font-size:.74rem;color:rgba(236,253,245,.78);line-height:1.7;}
+.consent-text a{color:var(--mint);text-decoration:none;}
+.consent-text .req{color:var(--gold);font-weight:700;}
+.consent-text .opt{color:rgba(236,253,245,.4);font-size:.7rem;}
+.consent-footer{font-size:.63rem;color:rgba(236,253,245,.35);line-height:1.7;margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06);}
+.consent-error{border-color:rgba(248,113,113,.5)!important;animation:shake .3s ease;}
+
 /* 제출 버튼 */
 .btn-submit{width:100%;background:linear-gradient(135deg,var(--gold),#e6b800);
   color:#1B2A4A;border:none;padding:14px;border-radius:12px;font-size:.95rem;
@@ -110,22 +126,46 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 .btn-submit:hover{box-shadow:0 6px 24px rgba(201,162,39,.45);transform:translateY(-1px);}
 .btn-submit:active{transform:scale(0.98);}
 
-/* 성공 화면 */
-.success{display:none;text-align:center;padding:40px 20px;}
-.success.show{display:block;}
-.success-icon{font-size:3.5rem;margin-bottom:14px;}
-.success h2{font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:8px;}
-.success p{color:var(--muted);font-size:.85rem;line-height:2;}
-.success-card{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:18px;margin-top:20px;text-align:left;}
-.success-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
-.success-row:last-child{margin-bottom:0;}
-.success-row .s-ico{font-size:1.1rem;flex-shrink:0;margin-top:2px;}
-.success-row .s-txt{font-size:.82rem;color:rgba(236,253,245,.75);line-height:1.6;}
+/* 성공 화면 — Apple 스타일 */
+.success{display:none;text-align:center;padding:60px 20px 80px;max-width:400px;margin:0 auto;}
+.success.show{display:block;animation:fadeUp .4s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
-/* 연락처 하단 */
-.contact-footer{margin-top:16px;background:rgba(255,255,255,.03);border:1px solid var(--border);
-  border-radius:12px;padding:14px 16px;font-size:.78rem;color:var(--muted);text-align:center;line-height:1.8;}
-.contact-footer a{color:var(--mint);text-decoration:none;}
+.success-check{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,#C9A227,#f0c040);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 28px;
+  font-size:1.6rem;color:#0d1117;font-weight:900;
+  box-shadow:0 8px 32px rgba(201,162,39,.35);
+}
+.success h2{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:10px;letter-spacing:-.01em;}
+.success-sub{font-size:.88rem;color:rgba(236,253,245,.55);margin-bottom:32px;line-height:1.7;}
+.success-name-tag{
+  display:inline-block;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:30px;padding:6px 18px;
+  font-size:.82rem;color:rgba(236,253,245,.8);
+  margin-bottom:32px;
+}
+.success-name-tag strong{color:#fff;}
+.success-divider{width:40px;height:1px;background:rgba(255,255,255,.1);margin:0 auto 28px;}
+.success-contact-link{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--mint);font-size:.82rem;font-weight:600;
+  text-decoration:none;
+  border:1px solid rgba(110,231,183,.2);border-radius:8px;
+  padding:8px 16px;background:rgba(110,231,183,.06);
+  transition:background .2s;
+}
+.success-contact-link:hover{background:rgba(110,231,183,.12);}
+.success-home-btn{
+  display:block;margin:20px auto 0;
+  width:fit-content;
+  color:rgba(236,253,245,.4);font-size:.78rem;text-decoration:none;
+  letter-spacing:.01em;transition:color .2s;
+}
+.success-home-btn:hover{color:rgba(236,253,245,.7);}
 
 /* 구분선 */
 .divider{height:1px;background:var(--border);margin:16px 0;}
@@ -145,16 +185,11 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
 <!-- 히어로 -->
 <div class="hero">
-  <div class="hero-badge">🤝 파트너 신청 — 함께 섬깁시다</div>
-  <h1>HebronGuide와 <span>함께하세요</span></h1>
-  <p>
-    67개 도시, 전 세계 한인 이민자·이주자·방문자를 위한 플랫폼.<br>
-    개인·교회·사업체·홍보 — 모든 문의를 한 곳에서 신청하세요.
-  </p>
+  <div class="hero-badge">⛪ 파트너 신청하기</div>
   <div class="stats-row">
     <div class="stat-item"><div class="stat-num">67</div><div class="stat-lbl">개 도시</div></div>
     <div class="stat-item"><div class="stat-num">🆓</div><div class="stat-lbl">무료 등재</div></div>
-    <div class="stat-item"><div class="stat-num">3개</div><div class="stat-lbl">언어 지원</div></div>
+    <div class="stat-item"><div class="stat-num">2개</div><div class="stat-lbl">언어 지원</div></div>
   </div>
 </div>
 
@@ -187,17 +222,10 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
     </div>
   </div>
 
-  <!-- 개인 서비스 → 사업체 탭에 통합 (드라이버·번역·튜터 등은 사업체 업종에서 선택) -->
-
-    <div class="field-row">
-
   <!-- ══════════ 교회 폼 ══════════ -->
   <div class="form-card active" id="form-church">
-    <div class="form-section-title">⛪ 헤브론 파트너 교회 신청</div>
-    <div class="hint">
-      <strong>헤브론 파트너 교회</strong>로 등록하시면 HebronGuide 67개 도시 교회 탭에
-      무료로 노출됩니다. 새로 오는 한인에게 첫 번째로 연결되는 교회가 됩니다.
-    </div>
+    <div class="form-section-title">⛪ 교회 신청</div>
+
 
     <div class="field-row">
       <div class="field" id="c-church">
@@ -224,7 +252,7 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
     </div>
 
     <div class="field">
-      <label>교회 주소 (도시) <span class="req">*</span></label>
+      <label>교회가 위치한 도시 <span class="req">*</span></label>
       <input type="text" id="cCity" placeholder="시애틀, WA / 달라스, TX / 토론토, ON 등">
     </div>
 
@@ -233,12 +261,26 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <input type="url" id="cWebsite" placeholder="https://www.yourchurch.com">
     </div>
 
+    <!-- 교회 특성 체크 -->
+    <div class="field">
+      <label style="margin-bottom:8px;">교회 특성 <span class="opt">(해당 시 선택)</span></label>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;">
+          <input type="checkbox" id="cHebronCoop" style="width:17px;height:17px;accent-color:var(--mint);flex-shrink:0;">
+          <span style="font-size:.85rem;color:rgba(236,253,245,.85);font-weight:700;">Hebron 협력교회</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;">
+          <input type="checkbox" id="cHcmi" style="width:17px;height:17px;accent-color:var(--gold);flex-shrink:0;">
+          <span style="font-size:.85rem;color:rgba(236,253,245,.85);font-weight:700;">가정교회(HCMI)</span>
+        </label>
+      </div>
+    </div>
+
     <div class="field-row">
       <div class="field">
-        <label>교단 (혹은 특성) <span class="opt">(선택)</span></label>
+        <label>교단 <span class="opt">(선택)</span></label>
         <select id="cDenom">
           <option value="">선택</option>
-          <option>가정교회(신약교회 회복)</option>
           <option>장로교 (PCA / KAPC / KPCA)</option>
           <option>침례교 (SBC / KSBC)</option>
           <option>감리교 (UMC / KMC)</option>
@@ -258,169 +300,108 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <textarea id="cDesc" placeholder="새가족 환영 프로그램, ESL 수업, 정착 도움, 목장 소그룹 등 교회 사역을 소개해 주세요."></textarea>
     </div>
 
-    <div class="hint hint-gold">
-      <strong>📋 파트너 교회 혜택:</strong> 교회 탭 우선 노출 · 새 한인 도착 시 연결 · 주보 QR 인서트 제공<br>
-      <span style="display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap;">
-        <span style="background:rgba(201,162,39,.2);border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:700;">① 신청 등록</span>
-        <span style="color:var(--gold);">→</span>
-        <span style="background:rgba(201,162,39,.2);border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:700;">② 승인 검토 · 승인</span>
-        <span style="color:var(--gold);">→</span>
-        <span style="background:rgba(110,231,183,.2);border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:700;color:var(--mint);">③ 교회 등재 게시</span>
-      </span>
-    </div>
-    <div style="background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.22);
-      border-radius:10px;padding:10px 14px;margin-bottom:4px;
-      font-size:.76rem;color:rgba(236,253,245,.65);line-height:1.7;display:flex;gap:8px;align-items:flex-start;">
-      <span style="flex-shrink:0;font-size:14px;">🔐</span>
-      <span>검토·승인 후 게시되며, 운영 방침에 따라 게시 후에도 내용이 조정되거나 내려질 수 있습니다.<br>신뢰와 질서를 소중히 여기는 HebronGuide 운영에 협조해 주셔서 감사합니다.</span>
-    </div>
+    <!-- 개인정보 동의 — 교회 -->
+    <label class="consent-row" style="margin:14px 0 4px;">
+      <input type="checkbox" id="cConsent">
+      <span class="consent-text"><span class="req">[필수]</span> 교회명·연락처를 HebronGuide 교회 등재 목적으로 수집·이용하는 데 동의합니다. &nbsp;<a href="/privacy.html">개인정보처리방침 →</a></span>
+    </label>
 
     <button class="btn-submit" onclick="submitForm('church')">
-      ⛪ 파트너 교회 신청하기
+      교회 신청하기 →
     </button>
   </div>
 
   <!-- ══════════ 사업체 폼 ══════════ -->
   <div class="form-card" id="form-business">
-    <div class="form-section-title">🏢 사업체 광고·등재 신청</div>
-    <div class="hint">
-      한식당, 부동산, 의료, 교육, 법률 등 사업체는 물론 드라이버·번역·정착 도우미 등
-      <strong>개인 서비스업도 등록 가능합니다.</strong> <strong>2026년 10월 1일까지 무료.</strong>
-    </div>
+    <div class="form-section-title">🏢 등재 신청</div>
 
     <div class="field-row">
       <div class="field" id="b-biz">
         <label>업체명 <span class="req">*</span></label>
-        <input type="text" id="bBiz" placeholder="헤브론 한식당">
+        <input type="text" id="bBiz" placeholder="예: 헤브론 한식당">
         <div class="error-msg">업체명을 입력해 주세요</div>
       </div>
       <div class="field" id="b-type">
         <label>업종 <span class="req">*</span></label>
         <select id="bType">
           <option value="">선택</option>
-          <optgroup label="🍽️ 음식·외식">
-            <option>한식당</option><option>카페·베이커리</option><option>기타 음식점</option>
-          </optgroup>
-          <optgroup label="🏥 의료·건강">
-            <option>한의원·침술</option><option>병원·클리닉</option><option>약국</option><option>피트니스</option>
-          </optgroup>
-          <optgroup label="📚 교육·학습">
-            <option>학교 (K-12 / 사립학교)</option>
-            <option>학원·튜터링 (수학·과학·영어 등)</option>
-            <option>어학원 (ESL·영어·한국어)</option>
-            <option>음악 학원 (피아노·바이올린·성악 등)</option>
-            <option>미술·디자인 학원</option>
-            <option>태권도·체육 도장</option>
-            <option>방과후 프로그램·데이케어</option>
-            <option>SAT·ACT·AP 입시 준비</option>
-            <option>대학 입시·유학원</option>
-            <option>한국학교·한국어 교육</option>
-            <option>온라인 교육·이러닝</option>
-            <option>직업훈련·자격증</option>
-            <option>특수교육·보습</option>
-          </optgroup>
-          <optgroup label="🏠 부동산·법률">
-            <option>부동산</option><option>이민법·법률</option><option>세무·회계</option>
-          </optgroup>
-          <optgroup label="✂️ 뷰티·생활">
-            <option>미용실·네일</option><option>여행사</option><option>보험</option><option>이사·물류</option>
-          </optgroup>
-          <optgroup label="💻 IT·서비스">
-            <option>IT·개발</option><option>마케팅·디자인</option><option>번역·통역</option>
-          </optgroup>
-          <optgroup label="🧑 개인 서비스">
-            <option>드라이버·픽업 서비스</option><option>투어 가이드</option>
-            <option>정착 도우미·컨시어지</option><option>과외·튜터 (개인)</option>
-            <option>기타 개인 서비스</option>
-          </optgroup>
-          <optgroup label="⛪ 교회·기관">
-            <option>교회</option><option>비영리단체</option><option>한인회·커뮤니티</option>
-          </optgroup>
-          <optgroup label="🛒 유통·기타">
-            <option>한인 마트·슈퍼</option><option>온라인 쇼핑몰</option><option>기타</option>
-          </optgroup>
+          <option>음식·카페</option>
+          <option>의료·건강</option>
+          <option>교육·학원</option>
+          <option>부동산·법률·세무</option>
+          <option>뷰티·생활서비스</option>
+          <option>IT·마케팅</option>
+          <option>드라이버·투어·정착</option>
+          <option>유통·마트</option>
+          <option>기타</option>
         </select>
         <div class="error-msg">업종을 선택해 주세요</div>
       </div>
     </div>
 
-    <div class="field" id="b-name">
-      <label>담당자 이름 <span class="req">*</span></label>
-      <input type="text" id="bName" placeholder="홍길동">
-      <div class="error-msg">담당자 이름을 입력해 주세요</div>
-    </div>
-
     <div class="field-row">
+      <div class="field" id="b-name">
+        <label>담당자 <span class="req">*</span></label>
+        <input type="text" id="bName" placeholder="홍길동">
+        <div class="error-msg">담당자 이름을 입력해 주세요</div>
+      </div>
       <div class="field" id="b-phone">
         <label>전화번호 <span class="req">*</span></label>
         <input type="tel" id="bPhone" placeholder="(000) 000-0000">
         <div class="error-msg">전화번호를 입력해 주세요</div>
       </div>
+    </div>
+
+    <div class="field">
+      <label>이메일 <span class="req">*</span></label>
+      <input type="email" id="bEmail" placeholder="info@yourbiz.com">
+    </div>
+
+    <div class="field-row">
       <div class="field">
-        <label>이메일 <span class="req">*</span></label>
-        <input type="email" id="bEmail" placeholder="info@yourbiz.com">
+        <label>업체 주소 <span class="opt">(선택)</span></label>
+        <input type="text" id="bAddress" placeholder="123 Main St, Seattle, WA 98101">
+      </div>
+      <div class="field">
+        <label>웹사이트 / SNS <span class="opt">(선택)</span></label>
+        <input type="url" id="bWebsite" placeholder="https://... 또는 인스타그램">
       </div>
     </div>
 
     <div class="field">
-      <label>업체 주소 <span class="opt">(선택)</span></label>
-      <input type="text" id="bAddress" placeholder="123 Main St, Seattle, WA 98101">
+      <label>노출 도시 <span class="opt">(선택)</span></label>
+      <select id="bCitySelect" onchange="toggleCityOther(this.value)">
+        <option value="">— 선택 안 함 (검토 후 협의) —</option>
+        <option value="시애틀">🌲 시애틀 Seattle, WA</option>
+        <option value="로스앤젤레스">🌴 LA · OC Los Angeles / Orange County, CA</option>
+        <option value="SF">🌉 SF San Francisco Bay Area, CA</option>
+        <option value="뉴욕">🗽 뉴욕 New York, NY</option>
+        <option value="달라스">🤠 달라스 Dallas, TX</option>
+        <option value="휴스턴">🚀 휴스턴 Houston, TX</option>
+        <option value="시카고">🫘 시카고 Chicago, IL</option>
+        <option value="워싱턴DC">🏛️ DC · 메릴랜드 Washington DC / Maryland</option>
+        <option value="토론토">🍁 토론토 Toronto, ON</option>
+        <option value="밴쿠버">🏔️ 밴쿠버 Vancouver, BC</option>
+        <option value="서울">🏯 서울 Seoul, Korea</option>
+        <option value="기타">📍 기타 도시 (직접 입력)</option>
+      </select>
+      <input type="text" id="bCityOther" placeholder="예: 보스턴, MA / 애틀랜타, GA / 도쿄, 일본"
+        style="display:none;margin-top:8px;" />
     </div>
 
     <div class="field">
-      <label>웹사이트 / SNS <span class="opt">(선택)</span></label>
-      <input type="url" id="bWebsite" placeholder="https://... 또는 인스타그램 링크">
+      <label>한 줄 소개 <span class="opt">(선택)</span></label>
+      <textarea id="bDesc" placeholder="제공 서비스나 특별 혜택을 간단히 알려주세요."></textarea>
     </div>
 
-    <div class="field">
-      <label>노출 원하는 도시 <span class="opt">(복수 선택 가능)</span></label>
-      <div class="city-grid" id="bCityGrid">
-        <label class="city-tag"><input type="checkbox" value="시애틀">🌲 시애틀</label>
-        <label class="city-tag"><input type="checkbox" value="로스앤젤레스">🌴 LA</label>
-        <label class="city-tag"><input type="checkbox" value="오렌지카운티">🍊 OC</label>
-        <label class="city-tag"><input type="checkbox" value="뉴욕">🗽 뉴욕</label>
-        <label class="city-tag"><input type="checkbox" value="달라스">🤠 달라스</label>
-        <label class="city-tag"><input type="checkbox" value="SF">🌉 SF</label>
-        <label class="city-tag"><input type="checkbox" value="휴스턴">🚀 휴스턴</label>
-        <label class="city-tag"><input type="checkbox" value="애틀랜타">🍑 애틀랜타</label>
-        <label class="city-tag"><input type="checkbox" value="시카고">🫘 시카고</label>
-        <label class="city-tag"><input type="checkbox" value="워싱턴DC">🏛️ DC</label>
-        <label class="city-tag"><input type="checkbox" value="보스턴">🦞 보스턴</label>
-        <label class="city-tag"><input type="checkbox" value="마이애미">🌊 마이애미</label>
-        <label class="city-tag"><input type="checkbox" value="토론토">🍁 토론토</label>
-        <label class="city-tag"><input type="checkbox" value="밴쿠버">🏔️ 밴쿠버</label>
-        <label class="city-tag"><input type="checkbox" value="서울">🏯 서울</label>
-        <label class="city-tag"><input type="checkbox" value="시드니">🦘 시드니</label>
-        <label class="city-tag"><input type="checkbox" value="도쿄">🗼 도쿄</label>
-        <label class="city-tag"><input type="checkbox" value="런던">🎡 런던</label>
-        <label class="city-tag"><input type="checkbox" value="전체(67개 도시)">🌍 전체 67개 도시</label>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>광고 내용 / 소개 <span class="opt">(선택)</span></label>
-      <textarea id="bDesc" placeholder="업체 소개, 제공 서비스, 특별 혜택, 한인 커뮤니티를 위한 특별 안내 등을 자유롭게 적어주세요."></textarea>
-    </div>
-
-    <div class="hint hint-gold">
-      <strong>📋 처리 과정 (3단계)</strong><br>
-      <span style="display:flex;align-items:center;gap:6px;margin-top:6px;flex-wrap:wrap;">
-        <span style="background:rgba(201,162,39,.2);border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:700;">① 신청 등록</span>
-        <span style="color:var(--gold);">→</span>
-        <span style="background:rgba(201,162,39,.2);border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:700;">② 승인 검토 · 승인</span>
-        <span style="color:var(--gold);">→</span>
-        <span style="background:rgba(110,231,183,.2);border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:700;color:var(--mint);">③ 광고 게시</span>
-      </span>
-    </div>
-    <div style="background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.22);
-      border-radius:10px;padding:10px 14px;margin-bottom:4px;
-      font-size:.76rem;color:rgba(236,253,245,.65);line-height:1.7;display:flex;gap:8px;align-items:flex-start;">
-      <span style="flex-shrink:0;font-size:14px;">🔐</span>
-      <span>검토·승인 후 게시되며, 운영 방침에 따라 게시 후에도 내용이 조정되거나 내려질 수 있습니다.<br>신뢰와 질서를 소중히 여기는 HebronGuide 운영에 협조해 주셔서 감사합니다.</span>
-    </div>
+    <!-- 개인정보 동의 — 사업체 -->
+    <label class="consent-row" style="margin:14px 0 4px;">
+      <input type="checkbox" id="bConsent">
+      <span class="consent-text"><span class="req">[필수]</span> 업체명·연락처를 HebronGuide 사업체 등재 목적으로 수집·이용하는 데 동의합니다. &nbsp;<a href="/privacy.html">개인정보처리방침 →</a></span>
+    </label>
 
     <button class="btn-submit" onclick="submitForm('business')">
-      🏢 사업체 등재 신청하기
+      등재 신청하기 →
     </button>
   </div>
 
@@ -512,70 +493,39 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       </span>
     </div>
 
-    <!-- 승인 안내 -->
-    <div style="background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.22);
-      border-radius:10px;padding:10px 14px;margin-bottom:4px;
-      font-size:.76rem;color:rgba(236,253,245,.65);line-height:1.7;display:flex;gap:8px;align-items:flex-start;">
-      <span style="flex-shrink:0;font-size:14px;">🔐</span>
-      <span>검토·승인 후 게시되며, 운영 방침에 따라 게시 후에도 내용이 조정되거나 내려질 수 있습니다.<br>신뢰와 질서를 소중히 여기는 HebronGuide 운영에 협조해 주셔서 감사합니다.</span>
-    </div>
+    <!-- 개인정보 동의 — 홍보 -->
+    <label class="consent-row" style="margin:14px 0 4px;">
+      <input type="checkbox" id="prConsent">
+      <span class="consent-text"><span class="req">[필수]</span> 담당자·연락처를 HebronGuide 홍보 등재 목적으로 수집·이용하는 데 동의합니다. &nbsp;<a href="/privacy.html">개인정보처리방침 →</a></span>
+    </label>
 
     <button class="btn-submit" onclick="submitForm('promo')">
       📣 홍보 신청하기
     </button>
   </div>
 
-  <!-- 성공 화면 -->
+  <!-- 성공 화면 — Apple 스타일 -->
   <div class="success" id="successMsg">
-    <div class="success-icon">🙏</div>
-    <h2>신청이 접수되었습니다!</h2>
 
-    <!-- 감사 메시지 카드 -->
-    <div style="background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.06));
-      border:1px solid rgba(201,162,39,.28);border-radius:16px;padding:20px 18px;
-      margin:16px 0;text-align:left;">
-      <div style="font-size:.82rem;color:rgba(236,253,245,.85);line-height:1.9;font-family:'Noto Sans KR',sans-serif;">
-        <strong id="successApplicantName" style="color:#fff;font-size:.9rem;"></strong>
-        <span id="successNameSuffix"></span><br><br>
-        신청해 주셔서 감사합니다.<br>
-        <strong style="color:var(--gold)">48시간 이내에 담당자가 연락드리겠습니다.</strong>
-      </div>
-      <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);
-        font-size:.75rem;color:rgba(236,253,245,.45);font-family:'Noto Sans KR',sans-serif;">
-        HebronGuide 운영팀 &nbsp;·&nbsp; hebronplatform@gmail.com &nbsp;·&nbsp; hebronguide.com
-      </div>
+    <div class="success-check">✓</div>
+
+    <h2>신청 완료</h2>
+    <p class="success-sub">접수되었습니다.<br>48시간 이내에 연락드리겠습니다.</p>
+
+    <div class="success-name-tag">
+      <strong id="successApplicantName"></strong><span id="successNameSuffix"></span>
     </div>
 
-    <!-- 확인 이메일 안내 -->
-    <div style="background:rgba(110,231,183,.07);border:1px solid rgba(110,231,183,.2);
-      border-radius:12px;padding:12px 14px;margin-bottom:14px;text-align:left;
-      font-size:.78rem;color:rgba(236,253,245,.7);line-height:1.7;">
-      <span style="color:var(--mint);font-weight:800;">📨 확인 메시지</span><br>
-      신청하신 이메일 주소로 접수 확인 메시지를 보내드렸습니다.<br>
-      이메일이 오지 않으면 <strong style="color:#fff;">hebronplatform@gmail.com</strong>으로 문의해 주세요.
-    </div>
+    <div class="success-divider"></div>
 
-    <div class="success-card">
-      <div class="success-row">
-        <span class="s-ico">📧</span>
-        <span class="s-txt"><strong style="color:#fff">hebronplatform@gmail.com</strong><br>추가 문의 사항은 이메일로 연락주세요.</span>
-      </div>
-      <div class="success-row">
-        <span class="s-ico">💬</span>
-        <span class="s-txt">카카오톡 오픈채팅 "HebronGuide 파트너"<br>에서도 빠르게 소통하실 수 있습니다.</span>
-      </div>
-      <div class="success-row">
-        <span class="s-ico">🌍</span>
-        <span class="s-txt">HebronGuide 67개 도시 — 한인이 있는 곳이라면 어디든.<br><a href="https://hebronguide.com" style="color:var(--mint)">hebronguide.com</a></span>
-      </div>
-    </div>
-  </div>
+    <a href="mailto:hebronplatform@gmail.com" class="success-contact-link">
+      ✉️ hebronplatform@gmail.com
+    </a>
 
-  <!-- 연락처 -->
-  <div class="divider"></div>
-  <div class="contact-footer">
-    📞 직접 문의: <a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a><br>
-    운영: Hebron Platform LLC &nbsp;|&nbsp; <a href="https://hebronguide.com">hebronguide.com</a>
+    <a href="https://hebronguide.com" class="success-home-btn">
+      hebronguide.com →
+    </a>
+
   </div>
 
 </div><!-- /container -->
@@ -629,6 +579,26 @@ function validate(fields) {
   return ok;
 }
 
+// 기타 도시 직접 입력 필드 토글
+function toggleCityOther(val) {
+  const el = document.getElementById('bCityOther');
+  if (!el) return;
+  el.style.display = val === '기타' ? 'block' : 'none';
+  if (val !== '기타') el.value = '';
+}
+
+// 동의 체크 확인
+function checkConsent(id) {
+  const el = document.getElementById(id);
+  if (!el || !el.checked) {
+    el?.closest('.consent-section')?.classList.add('consent-error');
+    setTimeout(() => el?.closest('.consent-section')?.classList.remove('consent-error'), 2000);
+    alert('개인정보 수집·이용에 동의해 주세요.\nPlease consent to the data collection policy.');
+    return false;
+  }
+  return true;
+}
+
 // 폼 제출
 async function submitForm(type) {
   let valid = false;
@@ -649,17 +619,24 @@ async function submitForm(type) {
       {id:'cPhone',type:'required'}
     ]);
     if(!valid) return;
+    if(!checkConsent('cConsent')) return;
     subject = `[교회 파트너 신청] ${document.getElementById('cChurch').value}`;
-    body = `유형: 파트너 교회\n교회명: ${document.getElementById('cChurch').value}\n담임목사: ${document.getElementById('cPastor').value}\n도시: ${document.getElementById('cCity').value}\n전화: ${document.getElementById('cPhone').value}\n이메일: ${document.getElementById('cEmail').value}\n웹사이트: ${document.getElementById('cWebsite').value}\n교단: ${document.getElementById('cDenom').value}\n예배시간: ${document.getElementById('cService').value}\n\n소개:\n${document.getElementById('cDesc').value}`;
+    const hebronCoop = document.getElementById('cHebronCoop')?.checked ? '✅' : '—';
+    const hcmi = document.getElementById('cHcmi')?.checked ? '✅' : '—';
+    body = `유형: 파트너 교회\n교회명: ${document.getElementById('cChurch').value}\n담임목사: ${document.getElementById('cPastor').value}\n도시: ${document.getElementById('cCity').value}\n전화: ${document.getElementById('cPhone').value}\n이메일: ${document.getElementById('cEmail').value}\n웹사이트: ${document.getElementById('cWebsite').value}\nHebron 협력교회: ${hebronCoop}\n가정교회(HCMI): ${hcmi}\n교단: ${document.getElementById('cDenom').value}\n예배시간: ${document.getElementById('cService').value}\n\n소개:\n${document.getElementById('cDesc').value}`;
   } else if(type === 'business') {
     valid = validate([
       {id:'bBiz',type:'required'},{id:'bName',type:'required'},
       {id:'bPhone',type:'required'}
     ]);
     if(!valid) return;
-    const cities = [...document.querySelectorAll('#bCityGrid input:checked')].map(c=>c.value).join(', ');
-    subject = `[사업체 광고 신청] ${document.getElementById('bBiz').value}`;
-    body = `유형: 사업체 광고\n업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n주소: ${document.getElementById('bAddress').value}\n웹사이트: ${document.getElementById('bWebsite').value}\n노출 도시: ${cities || '미선택'}\n\n광고 내용:\n${document.getElementById('bDesc').value}`;
+    if(!checkConsent('bConsent')) return;
+    const citySelect = document.getElementById('bCitySelect')?.value || '';
+    const city = citySelect === '기타'
+      ? (document.getElementById('bCityOther')?.value.trim() || '기타 (미입력)')
+      : (citySelect || '미선택');
+    subject = `[사업체 등재 신청] ${document.getElementById('bBiz').value}`;
+    body = `업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n주소: ${document.getElementById('bAddress')?.value || ''}\n웹사이트: ${document.getElementById('bWebsite')?.value || ''}\n노출 도시: ${city}\n\n소개:\n${document.getElementById('bDesc').value}`;
   } else if(type === 'promo') {
     // '기타' 선택 시 직접 입력값 유효성 확인
     const prTypeVal = document.getElementById('prType').value;
@@ -677,6 +654,7 @@ async function submitForm(type) {
       {id:'prPhone',type:'required'}
     ]);
     if(!valid) return;
+    if(!checkConsent('prConsent')) return;
     subject = `[홍보 신청] ${document.getElementById('prTitle').value}`;
     body = `유형: 홍보\n제목: ${document.getElementById('prTitle').value}\n홍보유형: ${finalPromoType}\n기간: ${document.getElementById('prStart').value} ~ ${document.getElementById('prEnd').value}\n담당자: ${document.getElementById('prContact').value}\n전화: ${document.getElementById('prPhone').value}\n이메일: ${document.getElementById('prEmail').value}\n링크: ${document.getElementById('prUrl').value}\n\n홍보 내용:\n${document.getElementById('prDesc').value}\n\n[관리자 검토·승인 후 게시 예정]`;
   }

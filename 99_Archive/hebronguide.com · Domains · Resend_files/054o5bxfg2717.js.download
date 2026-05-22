@@ -1,0 +1,949 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,156809,e=>{"use strict";e.s(["formatScheduledAt",0,e=>{let t=new Date(e);if("Invalid Date"===t.toString())return"";let i=t.getDate(),s=t.toLocaleString("en-US",{month:"short"}),a=t.getHours(),n=t.getMinutes(),r=a%12||12,o=a<12?"AM":"PM",d=0===n?`${r}${o}`:`${r}:${n.toString().padStart(2,"0")}${o}`;return`${s} ${i}${(e=>{if(e>3&&e<21)return"th";switch(e%10){case 1:return"st";case 2:return"nd";case 3:return"rd";default:return"th"}})(i)}, ${d}`}])},117803,e=>{"use strict";var t=e.i(400894);e.s(["ClockIcon",()=>t.default])},621021,e=>{"use strict";var t,i="user-agent",s="function",a="object",n="string",r="undefined",o="browser",d="device",l="engine",c="result",m="name",x="type",h="vendor",u="version",p="architecture",w="major",b="model",E="console",g="mobile",v="tablet",C="smarttv",_="wearable",R="embedded",f="inapp",A="brands",S="formFactors",y="fullVersionList",D="platform",k="platformVersion",T="bitness",L="sec-ch-ua",I=L+"-full-version-list",O=L+"-arch",j=L+"-"+T,N=L+"-form-factors",$=L+"-"+g,M=L+"-"+b,P=L+"-"+D,H=P+"-version",U=[A,y,g,b,D,k,p,S,T],B="Amazon",G="Apple",V="ASUS",q="BlackBerry",F="Google",z="Huawei",J="Lenovo",W="Honor",Y="Microsoft",X="Motorola",K="Nvidia",Z="OnePlus",Q="OPPO",ee="Samsung",et="Sharp",ei="Sony",es="Xiaomi",ea="Zebra",en="Chrome",er="Chromium",eo="Chromecast",ed="Edge",el="Firefox",ec="Opera",em="Facebook",ex="Sogou",eh="Mobile ",eu=" Browser",ep="Windows",ew=typeof window!==r&&window.navigator?window.navigator:void 0,eb=ew&&ew.userAgentData?ew.userAgentData:void 0,eE=function(e,t){var i={},s=t;if(!eC(t))for(var a in s={},t)for(var n in t[a])s[n]=t[a][n].concat(s[n]?s[n]:[]);for(var r in e)i[r]=s[r]&&s[r].length%2==0?s[r].concat(e[r]):e[r];return i},eg=function(e){for(var t={},i=0;i<e.length;i++)t[e[i].toUpperCase()]=e[i];return t},ev=function(e,t){if(typeof e===a&&e.length>0){for(var i in e)if(ef(t)==ef(e[i]))return!0;return!1}return!!e_(e)&&ef(t)==ef(e)},eC=function(e,t){for(var i in e)return/^(browser|cpu|device|engine|os)$/.test(i)||!!t&&eC(e[i])},e_=function(e){return typeof e===n},eR=function(e){if(e){for(var t=[],i=ey(/\\?\"/g,e).split(","),s=0;s<i.length;s++)if(i[s].indexOf(";")>-1){var a=ek(i[s]).split(";v=");t[s]={brand:a[0],version:a[1]}}else t[s]=ek(i[s]);return t}},ef=function(e){return e_(e)?e.toLowerCase():e},eA=function(e){return e_(e)?ey(/[^\d\.]/g,e).split(".")[0]:void 0},eS=function(e){for(var t in e)if(e.hasOwnProperty(t)){var i=e[t];typeof i==a&&2==i.length?this[i[0]]=i[1]:this[i]=void 0}return this},ey=function(e,t){return e_(t)?t.replace(e,""):t},eD=function(e){return ey(/\\?\"/g,e)},ek=function(e,t){return e=ey(/^\s\s*/,String(e)),typeof t===r?e:e.substring(0,t)},eT=function(e,t){if(e&&t)for(var i,n,r,o,d,l,c=0;c<t.length&&!d;){var m=t[c],x=t[c+1];for(i=n=0;i<m.length&&!d&&m[i];)if(d=m[i++].exec(e))for(r=0;r<x.length;r++)l=d[++n],typeof(o=x[r])===a&&o.length>0?2===o.length?typeof o[1]==s?this[o[0]]=o[1].call(this,l):this[o[0]]=o[1]:o.length>=3&&(typeof o[1]!==s||o[1].exec&&o[1].test?3==o.length?this[o[0]]=l?l.replace(o[1],o[2]):void 0:4==o.length?this[o[0]]=l?o[3].call(this,l.replace(o[1],o[2])):void 0:o.length>4&&(this[o[0]]=l?o[3].apply(this,[l.replace(o[1],o[2])].concat(o.slice(4))):void 0):o.length>3?this[o[0]]=l?o[1].apply(this,o.slice(2)):void 0:this[o[0]]=l?o[1].call(this,l,o[2]):void 0):this[o]=l||void 0;c+=2}},eL=function(e,t){for(var i in t)if(typeof t[i]===a&&t[i].length>0){for(var s=0;s<t[i].length;s++)if(ev(t[i][s],e))return"?"===i?void 0:i}else if(ev(t[i],e))return"?"===i?void 0:i;return t.hasOwnProperty("*")?t["*"]:e},eI={ME:"4.90","NT 3.51":"3.51","NT 4.0":"4.0",2e3:["5.0","5.01"],XP:["5.1","5.2"],Vista:"6.0",7:"6.1",8:"6.2","8.1":"6.3",10:["6.4","10.0"],NT:""},eO={embedded:"Automotive",mobile:"Mobile",tablet:["Tablet","EInk"],smarttv:"TV",wearable:"Watch",xr:["VR","XR"],"?":["Desktop","Unknown"],"*":void 0},ej={Chrome:"Google Chrome",Edge:"Microsoft Edge","Edge WebView2":"Microsoft Edge WebView2","Chrome WebView":"Android WebView","Chrome Headless":"HeadlessChrome","Huawei Browser":"HuaweiBrowser","MIUI Browser":"Miui Browser","Opera Mobi":"OperaMobile",Yandex:"YaBrowser"},eN={browser:[[/\b(?:crmo|crios)\/([\w\.]+)/i],[u,[m,eh+"Chrome"]],[/webview.+edge\/([\w\.]+)/i],[u,[m,ed+" WebView"]],[/edg(?:e|ios|a)?\/([\w\.]+)/i],[u,[m,"Edge"]],[/(opera mini)\/([-\w\.]+)/i,/(opera [mobiletab]{3,6})\b.+version\/([-\w\.]+)/i,/(opera)(?:.+version\/|[\/ ]+)([\w\.]+)/i],[m,u],[/opios[\/ ]+([\w\.]+)/i],[u,[m,ec+" Mini"]],[/\bop(?:rg)?x\/([\w\.]+)/i],[u,[m,ec+" GX"]],[/\bopr\/([\w\.]+)/i],[u,[m,ec]],[/\bb[ai]*d(?:uhd|[ub]*[aekoprswx]{5,6})[\/ ]?([\w\.]+)/i],[u,[m,"Baidu"]],[/\b(?:mxbrowser|mxios|myie2)\/?([-\w\.]*)\b/i],[u,[m,"Maxthon"]],[/(kindle)\/([\w\.]+)/i,/(lunascape|maxthon|netfront|jasmine|blazer|sleipnir)[\/ ]?([\w\.]*)/i,/(avant|iemobile|slim(?:browser|boat|jet))[\/ ]?([\d\.]*)/i,/(?:ms|\()(ie) ([\w\.]+)/i,/(atlas|flock|rockmelt|midori|epiphany|silk|skyfire|bolt|iron|vivaldi|iridium|phantomjs|bowser|qupzilla|falkon|rekonq|puffin|whale(?!.+naver)|qqbrowserlite|duckduckgo|klar|helio|(?=comodo_)?dragon|otter|dooble|(?:hi|lg |ovi|qute)browser|palemoon)\/v?([-\w\.]+)/i,/(brave)(?: chrome)?\/([\d\.]+)/i,/(aloha|heytap|ovi|115|surf|qwant)browser\/([\d\.]+)/i,/(qwant)(?:ios|mobile)\/([\d\.]+)/i,/(ecosia|weibo)(?:__| \w+@)([\d\.]+)/i],[m,u],[/quark(?:pc)?\/([-\w\.]+)/i],[u,[m,"Quark"]],[/\bddg\/([\w\.]+)/i],[u,[m,"DuckDuckGo"]],[/(?:\buc? ?browser|(?:juc.+)ucweb)[\/ ]?([\w\.]+)/i],[u,[m,"UCBrowser"]],[/microm.+\bqbcore\/([\w\.]+)/i,/\bqbcore\/([\w\.]+).+microm/i,/micromessenger\/([\w\.]+)/i],[u,[m,"WeChat"]],[/konqueror\/([\w\.]+)/i],[u,[m,"Konqueror"]],[/trident.+rv[: ]([\w\.]{1,9})\b.+like gecko/i],[u,[m,"IE"]],[/ya(?:search)?browser\/([\w\.]+)/i],[u,[m,"Yandex"]],[/slbrowser\/([\w\.]+)/i],[u,[m,"Smart "+J+eu]],[/(av(?:ast|g|ira))\/([\w\.]+)/i],[[m,/(.+)/,"$1 Secure"+eu],u],[/norton\/([\w\.]+)/i],[u,[m,"Norton Private"+eu]],[/\bfocus\/([\w\.]+)/i],[u,[m,el+" Focus"]],[/ mms\/([\w\.]+)$/i],[u,[m,ec+" Neon"]],[/ opt\/([\w\.]+)$/i],[u,[m,ec+" Touch"]],[/coc_coc\w+\/([\w\.]+)/i],[u,[m,"Coc Coc"]],[/dolfin\/([\w\.]+)/i],[u,[m,"Dolphin"]],[/coast\/([\w\.]+)/i],[u,[m,ec+" Coast"]],[/miuibrowser\/([\w\.]+)/i],[u,[m,"MIUI"+eu]],[/fxios\/([\w\.-]+)/i],[u,[m,eh+el]],[/\bqihoobrowser\/?([\w\.]*)/i],[u,[m,"360"]],[/\b(qq)\/([\w\.]+)/i],[[m,/(.+)/,"$1Browser"],u],[/(oculus|sailfish|huawei|vivo|pico)browser\/([\w\.]+)/i],[[m,/(.+)/,"$1"+eu],u],[/samsungbrowser\/([\w\.]+)/i],[u,[m,ee+" Internet"]],[/metasr[\/ ]?([\d\.]+)/i],[u,[m,ex+" Explorer"]],[/(sogou)mo\w+\/([\d\.]+)/i],[[m,ex+" Mobile"],u],[/(electron)\/([\w\.]+) safari/i,/(tesla)(?: qtcarbrowser|\/(20\d\d\.[-\w\.]+))/i,/m?(qqbrowser|2345(?=browser|chrome|explorer))\w*[\/ ]?v?([\w\.]+)/i],[m,u],[/(lbbrowser|luakit|rekonq|steam(?= (clie|tenf|gameo)))/i],[m],[/ome\/([\w\.]+).+(iron(?= saf)|360(?=[es]e$))/i],[u,m],[/((?:fban\/fbios|fb_iab\/fb4a)(?!.+fbav)|;fbav\/([\w\.]+);)/i],[[m,em],u,[x,f]],[/(kakao(?:talk|story))[\/ ]([\w\.]+)/i,/(naver)\(.*?(\d+\.[\w\.]+).*\)/i,/(daum)apps[\/ ]([\w\.]+)/i,/safari (line)\/([\w\.]+)/i,/\b(line)\/([\w\.]+)\/iab/i,/(alipay)client\/([\w\.]+)/i,/(twitter)(?:and| f.+e\/([\w\.]+))/i,/(bing)(?:web|sapphire)\/([\w\.]+)/i,/(instagram|snapchat|klarna)[\/ ]([-\w\.]+)/i],[m,u,[x,f]],[/\bgsa\/([\w\.]+) .*safari\//i],[u,[m,"GSA"],[x,f]],[/(?:musical_ly|trill)(?:.+app_?version\/|_)([\w\.]+)/i],[u,[m,"TikTok"],[x,f]],[/\[(linkedin)app\]/i],[m,[x,f]],[/(zalo(?:app)?)[\/\sa-z]*([\w\.-]+)/i],[[m,/(.+)/,"Zalo"],u,[x,f]],[/(chromium)[\/ ]([-\w\.]+)/i],[m,u],[/ome-(lighthouse)$/i],[m,[x,"fetcher"]],[/headlesschrome(?:\/([\w\.]+)| )/i],[u,[m,en+" Headless"]],[/wv\).+chrome\/([\w\.]+).+edgw\//i],[u,[m,ed+" WebView2"]],[/ wv\).+(chrome)\/([\w\.]+)/i],[[m,en+" WebView"],u],[/droid.+ version\/([\w\.]+)\b.+(?:mobile safari|safari)/i],[u,[m,"Android"+eu]],[/chrome\/([\w\.]+) mobile/i],[u,[m,eh+"Chrome"]],[/(chrome|omniweb|arora|[tizenoka]{5} ?browser)\/v?([\w\.]+)/i],[m,u],[/version\/([\w\.\,]+) .*mobile(?:\/\w+ | ?)safari/i],[u,[m,eh+"Safari"]],[/iphone .*mobile(?:\/\w+ | ?)safari/i],[[m,eh+"Safari"]],[/version\/([\w\.\,]+) .*(safari)/i],[u,m],[/webkit.+?(mobile ?safari|safari)(\/[\w\.]+)/i],[m,[u,"1"]],[/(webkit|khtml)\/([\w\.]+)/i],[m,u],[/(?:mobile|tablet);.*(firefox)\/([\w\.-]+)/i],[[m,eh+el],u],[/(navigator|netscape\d?)\/([-\w\.]+)/i],[[m,"Netscape"],u],[/(wolvic|librewolf)\/([\w\.]+)/i],[m,u],[/mobile vr; rv:([\w\.]+)\).+firefox/i],[u,[m,el+" Reality"]],[/ekiohf.+(flow)\/([\w\.]+)/i,/(swiftfox)/i,/(icedragon|iceweasel|camino|chimera|fennec|maemo browser|minimo|conkeror)[\/ ]?([\w\.\+]+)/i,/(seamonkey|k-meleon|icecat|iceape|firebird|phoenix|basilisk|waterfox)\/([-\w\.]+)$/i,/(firefox)\/([\w\.]+)/i,/(mozilla)\/([\w\.]+(?= .+rv\:.+gecko\/\d+)|[0-4][\w\.]+(?!.+compatible))/i,/(amaya|dillo|doris|icab|ladybird|lynx|mosaic|netsurf|obigo|polaris|w3m|(?:go|ice|up)[\. ]?browser)[-\/ ]?v?([\w\.]+)/i,/\b(links) \(([\w\.]+)/i],[m,[u,/_/g,"."]],[/(cobalt)\/([\w\.]+)/i],[m,[u,/[^\d\.]+./,""]]],cpu:[[/\b((amd|x|x86[-_]?|wow|win)64)\b/i],[[p,"amd64"]],[/(ia32(?=;))/i,/\b((i[346]|x)86)(pc)?\b/i],[[p,"ia32"]],[/\b(aarch64|arm(v?[89]e?l?|_?64))\b/i],[[p,"arm64"]],[/\b(arm(v[67])?ht?n?[fl]p?)\b/i],[[p,"armhf"]],[/( (ce|mobile); ppc;|\/[\w\.]+arm\b)/i],[[p,"arm"]],[/ sun4\w[;\)]/i],[[p,"sparc"]],[/\b(avr32|ia64(?=;)|68k(?=\))|\barm(?=v([1-7]|[5-7]1)l?|;|eabi)|(irix|mips|sparc)(64)?\b|pa-risc)/i,/((ppc|powerpc)(64)?)( mac|;|\))/i,/(?:osf1|[freopnt]{3,4}bsd) (alpha)/i],[[p,/ower/,"",ef]],[/mc680.0/i],[[p,"68k"]],[/winnt.+\[axp/i],[[p,"alpha"]]],device:[[/\b(sch-i[89]0\d|shw-m380s|sm-[ptx]\w{2,4}|gt-[pn]\d{2,4}|sgh-t8[56]9|nexus 10)/i],[b,[h,ee],[x,v]],[/\b((?:s[cgp]h|gt|sm)-(?![lr])\w+|sc[g-]?[\d]+a?|galaxy nexus)/i,/samsung[- ]((?!sm-[lr]|browser)[-\w]+)/i,/sec-(sgh\w+)/i],[b,[h,ee],[x,g]],[/(?:\/|\()(ip(?:hone|od)[\w, ]*)[\/\);]/i],[b,[h,G],[x,g]],[/\b(?:ios|apple\w+)\/.+[\(\/](ipad)/i,/\b(ipad)[\d,]*[;\] ].+(mac |i(pad)?)os/i],[b,[h,G],[x,v]],[/(macintosh);/i],[b,[h,G]],[/\b(sh-?[altvz]?\d\d[a-ekm]?)/i],[b,[h,et],[x,g]],[/\b((?:brt|eln|hey2?|gdi|jdn)-a?[lnw]09|(?:ag[rm]3?|jdn2|kob2)-a?[lw]0[09]hn)(?: bui|\)|;)/i],[b,[h,W],[x,v]],[/honor([-\w ]+)[;\)]/i],[b,[h,W],[x,g]],[/\b((?:ag[rs][2356]?k?|bah[234]?|bg[2o]|bt[kv]|cmr|cpn|db[ry]2?|jdn2|got|kob2?k?|mon|pce|scm|sht?|[tw]gr|vrd)-[ad]?[lw][0125][09]b?|605hw|bg2-u03|(?:gem|fdr|m2|ple|t1)-[7a]0[1-4][lu]|t1-a2[13][lw]|mediapad[\w\. ]*(?= bui|\)))\b(?!.+d\/s)/i],[b,[h,z],[x,v]],[/(?:huawei) ?([-\w ]+)[;\)]/i,/\b(nexus 6p|\w{2,4}e?-[atu]?[ln][\dx][\dc][adnt]?)\b(?!.+d\/s)/i],[b,[h,z],[x,g]],[/oid[^\)]+; (2[\dbc]{4}(182|283|rp\w{2})[cgl]|m2105k81a?c)(?: bui|\))/i,/\b(?:xiao)?((?:red)?mi[-_ ]?pad[\w- ]*)(?: bui|\))/i],[[b,/_/g," "],[h,es],[x,v]],[/\b; (\w+) build\/hm\1/i,/\b(hm[-_ ]?note?[_ ]?(?:\d\w)?) bui/i,/oid[^\)]+; (redmi[\-_ ]?(?:note|k)?[\w_ ]+|m?[12]\d[01]\d\w{3,6}|poco[\w ]+|(shark )?\w{3}-[ah]0|qin ?[1-3](s\+|ultra| pro)?)( bui|; wv|\))/i,/\b(mi[-_ ]?(?:a\d|one|one[_ ]plus|note|max|cc)?[_ ]?(?:\d{0,2}\w?)[_ ]?(?:plus|se|lite|pro)?( 5g|lte)?)(?: bui|\))/i,/ ([\w ]+) miui\/v?\d/i],[[b,/_/g," "],[h,es],[x,g]],[/droid.+; (cph2[3-6]\d[13579]|((gm|hd)19|(ac|be|in|kb)20|(d[en]|eb|le|mt)21|ne22)[0-2]\d|p[g-l]\w[1m]10)\b/i,/(?:one)?(?:plus)? (a\d0\d\d)(?: b|\))/i],[b,[h,Z],[x,g]],[/; (\w+) bui.+ oppo/i,/\b(cph[12]\d{3}|p(?:af|c[al]|d\w|e[ar])[mt]\d0|x9007|a101op)\b/i],[b,[h,Q],[x,g]],[/\b(opd2(\d{3}a?))(?: bui|\))/i],[b,[h,eL,{OnePlus:["203","304","403","404","413","415"],"*":Q}],[x,v]],[/(vivo (5r?|6|8l?|go|one|s|x[il]?[2-4]?)[\w\+ ]*)(?: bui|\))/i],[b,[h,"BLU"],[x,g]],[/; vivo (\w+)(?: bui|\))/i,/\b(v[12]\d{3}\w?[at])(?: bui|;)/i],[b,[h,"Vivo"],[x,g]],[/\b(rmx[1-3]\d{3})(?: bui|;|\))/i],[b,[h,"Realme"],[x,g]],[/(ideatab[-\w ]+|602lv|d-42a|a101lv|a2109a|a3500-hv|s[56]000|pb-6505[my]|tb-?x?\d{3,4}(?:f[cu]|xu|[av])|yt\d?-[jx]?\d+[lfmx])( bui|;|\)|\/)/i,/lenovo ?(b[68]0[08]0-?[hf]?|tab(?:[\w- ]+?)|tb[\w-]{6,7})( bui|;|\)|\/)/i],[b,[h,J],[x,v]],[/lenovo[-_ ]?([-\w ]+?)(?: bui|\)|\/)/i],[b,[h,J],[x,g]],[/\b(milestone|droid(?:[2-4x]| (?:bionic|x2|pro|razr))?:?( 4g)?)\b[\w ]+build\//i,/\bmot(?:orola)?[- ]([\w\s]+)(\)| bui)/i,/((?:moto(?! 360)[-\w\(\) ]+|xt\d{3,4}[cgkosw\+]?[-\d]*|nexus 6)(?= bui|\)))/i],[b,[h,X],[x,g]],[/\b(mz60\d|xoom[2 ]{0,2}) build\//i],[b,[h,X],[x,v]],[/\b(?:lg)?([vl]k\-?\d{3}) bui| 3\.[-\w; ]{10}lg?-([06cv9]{3,4})/i],[b,[h,"LG"],[x,v]],[/(lm(?:-?f100[nv]?|-[\w\.]+)(?= bui|\))|nexus [45])/i,/\blg[-e;\/ ]+(?!.*(?:browser|netcast|android tv|watch|webos))(\w+)/i,/\blg-?([\d\w]+) bui/i],[b,[h,"LG"],[x,g]],[/(nokia) (t[12][01])/i],[h,b,[x,v]],[/(?:maemo|nokia).*(n900|lumia \d+|rm-\d+)/i,/nokia[-_ ]?(([-\w\. ]*?))( bui|\)|;|\/)/i],[[b,/_/g," "],[x,g],[h,"Nokia"]],[/(pixel (c|tablet))\b/i],[b,[h,F],[x,v]],[/droid.+;(?: google)? (g(01[13]a|020[aem]|025[jn]|1b60|1f8f|2ybb|4s1m|576d|5nz6|8hhn|8vou|a02099|c15s|d1yq|e2ae|ec77|gh2x|kv4x|p4bc|pj41|r83y|tt9q|ur25|wvk6)|pixel[\d ]*a?( pro)?( xl)?( fold)?( \(5g\))?)( bui|\))/i],[b,[h,F],[x,g]],[/(google) (pixelbook( go)?)/i],[h,b],[/droid.+; (a?\d[0-2]{2}so|[c-g]\d{4}|so[-gl]\w+|xq-\w\w\d\d)(?= bui|\).+chrome\/(?![1-6]{0,1}\d\.))/i],[b,[h,ei],[x,g]],[/sony tablet [ps]/i,/\b(?:sony)?sgp\w+(?: bui|\))/i],[[b,"Xperia Tablet"],[h,ei],[x,v]],[/(alexa)webm/i,/(kf[a-z]{2}wi|aeo(?!bc)\w\w)( bui|\))/i,/(kf[a-z]+)( bui|\)).+silk\//i],[b,[h,B],[x,v]],[/((?:sd|kf)[0349hijorstuw]+)( bui|\)).+silk\//i],[[b,/(.+)/g,"Fire Phone $1"],[h,B],[x,g]],[/(playbook);[-\w\),; ]+(rim)/i],[b,h,[x,v]],[/\b((?:bb[a-f]|st[hv])100-\d)/i,/(?:blackberry|\(bb10;) (\w+)/i],[b,[h,q],[x,g]],[/(?:\b|asus_)(transfo[prime ]{4,10} \w+|eeepc|slider \w+|nexus 7|padfone|p00[cj])/i],[b,[h,V],[x,v]],[/ (z[bes]6[027][012][km][ls]|zenfone \d\w?)\b/i],[b,[h,V],[x,g]],[/(nexus 9)/i],[b,[h,"HTC"],[x,v]],[/(htc)[-;_ ]{1,2}([\w ]+(?=\)| bui)|\w+)/i,/(zte)[- ]([\w ]+?)(?: bui|\/|\))/i,/(alcatel|geeksphone|nexian|panasonic(?!(?:;|\.))|sony(?!-bra))[-_ ]?([-\w]*)/i],[h,[b,/_/g," "],[x,g]],[/tcl (xess p17aa)/i,/droid [\w\.]+; ((?:8[14]9[16]|9(?:0(?:48|60|8[01])|1(?:3[27]|66)|2(?:6[69]|9[56])|466))[gqswx])(_\w(\w|\w\w))?(\)| bui)/i],[b,[h,"TCL"],[x,v]],[/droid [\w\.]+; (418(?:7d|8v)|5087z|5102l|61(?:02[dh]|25[adfh]|27[ai]|56[dh]|59k|65[ah])|a509dl|t(?:43(?:0w|1[adepqu])|50(?:6d|7[adju])|6(?:09dl|10k|12b|71[efho]|76[hjk])|7(?:66[ahju]|67[hw]|7[045][bh]|71[hk]|73o|76[ho]|79w|81[hks]?|82h|90[bhsy]|99b)|810[hs]))(_\w(\w|\w\w))?(\)| bui)/i],[b,[h,"TCL"],[x,g]],[/(itel) ((\w+))/i],[[h,ef],b,[x,eL,{tablet:["p10001l","w7001"],"*":"mobile"}]],[/droid.+; ([ab][1-7]-?[0178a]\d\d?)/i],[b,[h,"Acer"],[x,v]],[/droid.+; (m[1-5] note) bui/i,/\bmz-([-\w]{2,})/i],[b,[h,"Meizu"],[x,g]],[/; ((?:power )?armor(?:[\w ]{0,8}))(?: bui|\))/i],[b,[h,"Ulefone"],[x,g]],[/; (energy ?\w+)(?: bui|\))/i,/; energizer ([\w ]+)(?: bui|\))/i],[b,[h,"Energizer"],[x,g]],[/; cat (b35);/i,/; (b15q?|s22 flip|s48c|s62 pro)(?: bui|\))/i],[b,[h,"Cat"],[x,g]],[/((?:new )?andromax[\w- ]+)(?: bui|\))/i],[b,[h,"Smartfren"],[x,g]],[/droid.+; (a(in)?(0(15|59|6[35])|142)p?)/i],[b,[h,"Nothing"],[x,g]],[/; (x67 5g|tikeasy \w+|ac[1789]\d\w+)( b|\))/i,/archos ?(5|gamepad2?|([\w ]*[t1789]|hello) ?\d+[\w ]*)( b|\))/i],[b,[h,"Archos"],[x,v]],[/archos ([\w ]+)( b|\))/i,/; (ac[3-6]\d\w{2,8})( b|\))/i],[b,[h,"Archos"],[x,g]],[/; (n159v)/i],[b,[h,"HMD"],[x,g]],[/(imo) (tab \w+)/i,/(infinix|tecno) (x1101b?|p904|dp(7c|8d|10a)( pro)?|p70[1-3]a?|p904|t1101)/i],[h,b,[x,v]],[/(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus(?! zenw)|dell|jolla|meizu|motorola|polytron|tecno|micromax|advan)[-_ ]?([-\w]*)/i,/; (blu|hmd|imo|infinix|lava|oneplus|tcl|wiko)[_ ]([\w\+ ]+?)(?: bui|\)|; r)/i,/(hp) ([\w ]+\w)/i,/(microsoft); (lumia[\w ]+)/i,/(oppo) ?([\w ]+) bui/i,/(hisense) ([ehv][\w ]+)\)/i,/droid[^;]+; (philips)[_ ]([sv-x][\d]{3,4}[xz]?)/i],[h,b,[x,g]],[/(kobo)\s(ereader|touch)/i,/(hp).+(touchpad(?!.+tablet)|tablet)/i,/(kindle)\/([\w\.]+)/i],[h,b,[x,v]],[/(surface duo)/i],[b,[h,Y],[x,v]],[/droid [\d\.]+; (fp\du?)(?: b|\))/i],[b,[h,"Fairphone"],[x,g]],[/((?:tegranote|shield t(?!.+d tv))[\w- ]*?)(?: b|\))/i],[b,[h,K],[x,v]],[/(sprint) (\w+)/i],[h,b,[x,g]],[/(kin\.[onetw]{3})/i],[[b,/\./g," "],[h,Y],[x,g]],[/droid.+; ([c6]+|et5[16]|mc[239][23]x?|vc8[03]x?)\)/i],[b,[h,ea],[x,v]],[/droid.+; (ec30|ps20|tc[2-8]\d[kx])\)/i],[b,[h,ea],[x,g]],[/(philips)[\w ]+tv/i,/smart-tv.+(samsung)/i],[h,[x,C]],[/hbbtv.+maple;(\d+)/i],[[b,/^/,"SmartTV"],[h,ee],[x,C]],[/(vizio)(?: |.+model\/)(\w+-\w+)/i,/tcast.+(lg)e?. ([-\w]+)/i],[h,b,[x,C]],[/(nux; netcast.+smarttv|lg (netcast\.tv-201\d|android tv))/i],[[h,"LG"],[x,C]],[/(apple) ?tv/i],[h,[b,G+" TV"],[x,C]],[/crkey.*devicetype\/chromecast/i],[[b,eo+" Third Generation"],[h,F],[x,C]],[/crkey.*devicetype\/([^/]*)/i],[[b,/^/,"Chromecast "],[h,F],[x,C]],[/fuchsia.*crkey/i],[[b,eo+" Nest Hub"],[h,F],[x,C]],[/crkey/i],[[b,eo],[h,F],[x,C]],[/(portaltv)/i],[b,[h,em],[x,C]],[/droid.+aft(\w+)( bui|\))/i],[b,[h,B],[x,C]],[/(shield \w+ tv)/i],[b,[h,K],[x,C]],[/\(dtv[\);].+(aquos)/i,/(aquos-tv[\w ]+)\)/i],[b,[h,et],[x,C]],[/(bravia[\w ]+)( bui|\))/i],[b,[h,ei],[x,C]],[/(mi(tv|box)-?\w+) bui/i],[b,[h,es],[x,C]],[/Hbbtv.*(technisat) (.*);/i],[h,b,[x,C]],[/\b(roku)[\dx]*[\)\/]((?:dvp-)?[\d\.]*)/i,/hbbtv\/\d+\.\d+\.\d+ +\([\w\+ ]*; *([\w\d][^;]*);([^;]*)/i],[[h,/.+\/(\w+)/,"$1",eL,{LG:"lge"}],[b,ek],[x,C]],[/(playstation \w+)/i],[b,[h,ei],[x,E]],[/\b(xbox(?: one)?(?!; xbox))[\); ]/i],[b,[h,Y],[x,E]],[/(ouya)/i,/(nintendo) (\w+)/i,/(retroid) (pocket ([^\)]+))/i,/(valve).+(steam deck)/i,/droid.+; ((shield|rgcube|gr0006))( bui|\))/i],[[h,eL,{Nvidia:"Shield",Anbernic:"RGCUBE",Logitech:"GR0006"}],b,[x,E]],[/\b(sm-[lr]\d\d[0156][fnuw]?s?|gear live)\b/i],[b,[h,ee],[x,_]],[/((pebble))app/i,/(asus|google|lg|oppo|xiaomi) ((pixel |zen)?watch[\w ]*)( bui|\))/i],[h,b,[x,_]],[/(ow(?:19|20)?we?[1-3]{1,3})/i],[b,[h,Q],[x,_]],[/(watch)(?: ?os[,\/]|\d,\d\/)[\d\.]+/i],[b,[h,G],[x,_]],[/(opwwe\d{3})/i],[b,[h,Z],[x,_]],[/(moto 360)/i],[b,[h,X],[x,_]],[/(smartwatch 3)/i],[b,[h,ei],[x,_]],[/(g watch r)/i],[b,[h,"LG"],[x,_]],[/droid.+; (wt63?0{2,3})\)/i],[b,[h,ea],[x,_]],[/droid.+; (glass) \d/i],[b,[h,F],[x,"xr"]],[/(pico) ([\w ]+) os\d/i],[h,b,[x,"xr"]],[/(quest( \d| pro)?s?).+vr/i],[b,[h,em],[x,"xr"]],[/mobile vr; rv.+firefox/i],[[x,"xr"]],[/(tesla)(?: qtcarbrowser|\/[-\w\.]+)/i],[h,[x,R]],[/(aeobc)\b/i],[b,[h,B],[x,R]],[/(homepod).+mac os/i],[b,[h,G],[x,R]],[/windows iot/i],[[x,R]],[/droid.+; ([\w- ]+) (4k|android|smart|google)[- ]?tv/i],[b,[x,C]],[/\b((4k|android|smart|opera)[- ]?tv|tv; rv:|large screen[\w ]+safari)\b/i],[[x,C]],[/droid .+?; ([^;]+?)(?: bui|; wv\)|\) applew|; hmsc).+?(mobile|vr|\d) safari/i],[b,[x,eL,{mobile:"Mobile",xr:"VR","*":v}]],[/\b((tablet|tab)[;\/]|focus\/\d(?!.+mobile))/i],[[x,v]],[/(phone|mobile(?:[;\/]| [ \w\/\.]*safari)|pda(?=.+windows ce))/i],[[x,g]],[/droid .+?; ([\w\. -]+)( bui|\))/i],[b,[h,"Generic"]]],engine:[[/windows.+ edge\/([\w\.]+)/i],[u,[m,ed+"HTML"]],[/(arkweb)\/([\w\.]+)/i],[m,u],[/webkit\/537\.36.+chrome\/(?!27)([\w\.]+)/i],[u,[m,"Blink"]],[/(presto)\/([\w\.]+)/i,/(webkit|trident|netfront|netsurf|amaya|lynx|w3m|goanna|servo)\/([\w\.]+)/i,/ekioh(flow)\/([\w\.]+)/i,/(khtml|tasman|links|dillo)[\/ ]\(?([\w\.]+)/i,/(icab)[\/ ]([23]\.[\d\.]+)/i,/\b(libweb)/i],[m,u],[/ladybird\//i],[[m,"LibWeb"]],[/rv\:([\w\.]{1,9})\b.+(gecko)/i],[u,m]],os:[[/(windows nt) (6\.[23]); arm/i],[[m,/N/,"R"],[u,eL,eI]],[/(windows (?:phone|mobile|iot))(?: os)?[\/ ]?([\d\.]*( se)?)/i,/(windows)[\/ ](1[01]|2000|3\.1|7|8(\.1)?|9[58]|me|server 20\d\d( r2)?|vista|xp)/i],[m,u],[/windows nt ?([\d\.\)]*)(?!.+xbox)/i,/\bwin(?=3| ?9|n)(?:nt| 9x )?([\d\.;]*)/i],[[u,/(;|\))/g,"",eL,eI],[m,ep]],[/(windows ce)\/?([\d\.]*)/i],[m,u],[/[adehimnop]{4,7}\b(?:.*os ([\w]+) like mac|; opera)/i,/(?:ios;fbsv|ios(?=.+ip(?:ad|hone)|.+apple ?tv)|ip(?:ad|hone)(?: |.+i(?:pad)?)os|apple ?tv.+ios)[\/ ]([\w\.]+)/i,/\btvos ?([\w\.]+)/i,/cfnetwork\/.+darwin/i],[[u,/_/g,"."],[m,"iOS"]],[/(mac os x) ?([\w\. ]*)/i,/(macintosh|mac_powerpc\b)(?!.+(haiku|morphos))/i],[[m,"macOS"],[u,/_/g,"."]],[/android ([\d\.]+).*crkey/i],[u,[m,eo+" Android"]],[/fuchsia.*crkey\/([\d\.]+)/i],[u,[m,eo+" Fuchsia"]],[/crkey\/([\d\.]+).*devicetype\/smartspeaker/i],[u,[m,eo+" SmartSpeaker"]],[/linux.*crkey\/([\d\.]+)/i],[u,[m,eo+" Linux"]],[/crkey\/([\d\.]+)/i],[u,[m,eo]],[/droid ([\w\.]+)\b.+(android[- ]x86)/i],[u,m],[/(ubuntu) ([\w\.]+) like android/i],[[m,/(.+)/,"$1 Touch"],u],[/(harmonyos)[\/ ]?([\d\.]*)/i,/(android|bada|blackberry|kaios|maemo|meego|openharmony|qnx|rim tablet os|sailfish|series40|symbian|tizen)\w*[-\/\.; ]?([\d\.]*)/i],[m,u],[/\(bb(10);/i],[u,[m,q]],[/(?:symbian ?os|symbos|s60(?=;)|series ?60)[-\/ ]?([\w\.]*)/i],[u,[m,"Symbian"]],[/mozilla\/[\d\.]+ \((?:mobile[;\w ]*|tablet|tv|[^\)]*(?:viera|lg(?:l25|-d300)|alcatel ?o.+|y300-f1)); rv:([\w\.]+)\).+gecko\//i],[u,[m,el+" OS"]],[/\b(?:hp)?wos(?:browser)?\/([\w\.]+)/i,/webos(?:[ \/]?|\.tv-20(?=2[2-9]))(\d[\d\.]*)/i],[u,[m,"webOS"]],[/web0s;.+?(?:chr[o0]me|safari)\/(\d+)/i],[[u,eL,{25:"120",24:"108",23:"94",22:"87",6:"79",5:"68",4:"53",3:"38",2:"538",1:"537","*":"TV"}],[m,"webOS"]],[/watch(?: ?os[,\/ ]|\d,\d\/)([\d\.]+)/i],[u,[m,"watchOS"]],[/cros [\w]+(?:\)| ([\w\.]+)\b)/i],[u,[m,"Chrome OS"]],[/kepler ([\w\.]+); (aft|aeo)/i],[u,[m,"Vega OS"]],[/(netrange)mmh/i,/(nettv)\/(\d+\.[\w\.]+)/i,/(nintendo|playstation) (\w+)/i,/(xbox); +xbox ([^\);]+)/i,/(pico) .+os([\w\.]+)/i,/\b(joli|palm)\b ?(?:os)?\/?([\w\.]*)/i,/linux.+(mint)[\/\(\) ]?([\w\.]*)/i,/(mageia|vectorlinux|fuchsia|arcaos|arch(?= ?linux))[;l ]([\d\.]*)/i,/([kxln]?ubuntu|debian|suse|opensuse|gentoo|slackware|fedora|mandriva|centos|pclinuxos|red ?hat|zenwalk|linpus|raspbian|plan 9|minix|risc os|contiki|deepin|manjaro|elementary os|sabayon|linspire|knoppix)(?: gnu[\/ ]linux)?(?: enterprise)?(?:[- ]linux)?(?:-gnu)?[-\/ ]?(?!chrom|package)([-\w\.]*)/i,/((?:open)?solaris)[-\/ ]?([\w\.]*)/i,/\b(aix)[; ]([1-9\.]{0,4})/i,/(hurd|linux|morphos)(?: (?:arm|x86|ppc)\w*| ?)([\w\.]*)/i,/(gnu) ?([\w\.]*)/i,/\b([-frentopcghs]{0,5}bsd|dragonfly)[\/ ]?(?!amd|[ix346]{1,2}86)([\w\.]*)/i,/(haiku) ?(r\d)?/i],[m,u],[/(sunos) ?([\d\.]*)/i],[[m,"Solaris"],u],[/\b(beos|os\/2|amigaos|openvms|hp-ux|serenityos)/i,/(unix) ?([\w\.]*)/i],[m,u]]},e$=(t={init:{},isIgnore:{},isIgnoreRgx:{},toString:{}},eS.call(t.init,[[o,[m,u,w,x]],["cpu",[p]],[d,[x,b,h]],[l,[m,u]],["os",[m,u]]]),eS.call(t.isIgnore,[[o,[u,w]],[l,[u]],["os",[u]]]),eS.call(t.isIgnoreRgx,[[o,/ ?browser$/i],["os",/ ?os$/i]]),eS.call(t.toString,[[o,[m,u]],["cpu",[p]],[d,[h,b]],[l,[m,u]],["os",[m,u]]]),t),eM=function(e,t){var i=e$.init[t],s=e$.isIgnore[t]||0,a=e$.isIgnoreRgx[t]||0,n=e$.toString[t]||0;function o(){eS.call(this,i)}return o.prototype.getItem=function(){return e},o.prototype.withClientHints=function(){return eb?eb.getHighEntropyValues(U).then(function(t){return e.setCH(new eP(t,!1)).parseCH().get()}):e.parseCH().get()},o.prototype.withFeatureCheck=function(){return e.detectFeature().get()},t!=c&&(o.prototype.is=function(e){var t=!1;for(var i in this)if(this.hasOwnProperty(i)&&!ev(s,i)&&ef(a?ey(a,this[i]):this[i])==ef(a?ey(a,e):e)){if(t=!0,e!=r)break}else if(e==r&&t){t=!t;break}return t},o.prototype.toString=function(){var e="";for(var t in n)typeof this[n[t]]!==r&&(e+=(e?" ":"")+this[n[t]]);return e||r}),o.prototype.then=function(e){var t=this,i=function(){for(var e in t)t.hasOwnProperty(e)&&(this[e]=t[e])};i.prototype={is:o.prototype.is,toString:o.prototype.toString,withClientHints:o.prototype.withClientHints,withFeatureCheck:o.prototype.withFeatureCheck};var s=new i;return e(s),s},new o};function eP(e,t){if(e=e||{},eS.call(this,U),t)eS.call(this,[[A,eR(e[L])],[y,eR(e[I])],[g,/\?1/.test(e[$])],[b,eD(e[M])],[D,eD(e[P])],[k,eD(e[H])],[p,eD(e[O])],[S,eR(e[N])],[T,eD(e[j])]]);else for(var i in e)this.hasOwnProperty(i)&&typeof e[i]!==r&&(this[i]=e[i])}function eH(e,t,i,s){return eS.call(this,[["itemType",e],["ua",t],["uaCH",s],["rgxMap",i],["data",eM(this,e)]]),this}function eU(e,t,r){if(typeof e===a?(eC(e,!0)?(typeof t===a&&(r=t),t=e):(r=e,t=void 0),e=void 0):typeof e!==n||eC(t,!0)||(r=t,t=void 0),r)if(typeof r.append===s){var m={};r.forEach(function(e,t){m[String(t).toLowerCase()]=e}),r=m}else{var x={};for(var h in r)r.hasOwnProperty(h)&&(x[String(h).toLowerCase()]=r[h]);r=x}if(!(this instanceof eU))return new eU(e,t,r).getResult();var u=typeof e===n?e:r&&r[i]?r[i]:ew&&ew.userAgent?ew.userAgent:"",p=new eP(r,!0),w=t?eE(eN,t):eN,b=function(e){return e==c?function(){return new eH(e,u,w,p).set("ua",u).set(o,this.getBrowser()).set("cpu",this.getCPU()).set(d,this.getDevice()).set(l,this.getEngine()).set("os",this.getOS()).get()}:function(){return new eH(e,u,w[e],p).parseUA().get()}};return eS.call(this,[["getBrowser",b(o)],["getCPU",b("cpu")],["getDevice",b(d)],["getEngine",b(l)],["getOS",b("os")],["getResult",b(c)],["getUA",function(){return u}],["setUA",function(e){return e_(e)&&(u=ek(e,500)),this}]]).setUA(u),this}eH.prototype.get=function(e){return e?this.data.hasOwnProperty(e)?this.data[e]:void 0:this.data},eH.prototype.set=function(e,t){return this.data[e]=t,this},eH.prototype.setCH=function(e){return this.uaCH=e,this},eH.prototype.detectFeature=function(){if(ew&&ew.userAgent==this.ua)switch(this.itemType){case o:ew.brave&&typeof ew.brave.isBrave==s&&this.set(m,"Brave");break;case d:!this.get(x)&&eb&&eb[g]&&this.set(x,g),"Macintosh"==this.get(b)&&ew&&typeof ew.standalone!==r&&ew.maxTouchPoints&&ew.maxTouchPoints>2&&this.set(b,"iPad").set(x,v);break;case"os":!this.get(m)&&eb&&eb[D]&&this.set(m,eb[D]);break;case c:var e=this.data,t=function(t){return e[t].getItem().detectFeature().get()};this.set(o,t(o)).set("cpu",t("cpu")).set(d,t(d)).set(l,t(l)).set("os",t("os"))}return this},eH.prototype.parseUA=function(){switch(this.itemType!=c&&eT.call(this.data,this.ua,this.rgxMap),this.itemType){case o:this.set(w,eA(this.get(u)));break;case"os":if("iOS"==this.get(m)&&"18.6"==this.get(u)){var e=/\) Version\/([\d\.]+)/.exec(this.ua);e&&parseInt(e[1].substring(0,2),10)>=26&&this.set(u,e[1])}}return this},eH.prototype.parseCH=function(){var e=this.uaCH,t=this.rgxMap;switch(this.itemType){case o:case l:var i,s=e[y]||e[A];if(s)for(var a=0;a<s.length;a++){var n=s[a].brand||s[a],r=s[a].version;this.itemType==o&&!/not.a.brand/i.test(n)&&(!i||/Chrom/.test(i)&&n!=er||i==ed&&/WebView2/.test(n))&&(n=eL(n,ej),(i=this.get(m))&&!/Chrom/.test(i)&&/Chrom/.test(n)||this.set(m,n).set(u,r).set(w,eA(r)),i=n),this.itemType==l&&n==er&&this.set(u,r)}break;case"cpu":var E=e[p];E&&(E&&"64"==e[T]&&(E+="64"),eT.call(this.data,E+";",t));break;case d:if(e[g]&&this.set(x,g),e[b]&&(this.set(b,e[b]),!this.get(x)||!this.get(h))){var v,C={};eT.call(C,"droid 9; "+e[b]+")",t),!this.get(x)&&C.type&&this.set(x,C.type),!this.get(h)&&C.vendor&&this.set(h,C.vendor)}if(e[S]){if("string"!=typeof e[S])for(var _=0;!v&&_<e[S].length;)v=eL(e[S][_++],eO);else v=eL(e[S],eO);this.set(x,v)}break;case"os":var R=e[D];if(R){var f=e[k];R==ep&&(f=parseInt(eA(f),10)>=13?"11":"10"),this.set(m,R).set(u,f)}this.get(m)==ep&&"Xbox"==e[b]&&this.set(m,"Xbox").set(u,void 0);break;case c:var L=this.data,I=function(t){return L[t].getItem().setCH(e).parseCH().get()};this.set(o,I(o)).set("cpu",I("cpu")).set(d,I(d)).set(l,I(l)).set("os",I("os"))}return this},eU.VERSION="2.0.9",eU.BROWSER=eg([m,u,w,x]),eU.CPU=eg([p]),eU.DEVICE=eg([b,h,x,E,g,C,v,_,R]),eU.ENGINE=eU.OS=eg([m,u]),e.s(["UAParser",0,eU])},915327,e=>{"use strict";e.s(["spaceCamelCase",0,e=>{let t=e.replace(/([^ ])([A-Z])/g,"$1 $2");return" "===t.charAt(0)?t.slice(1):t}])},92381,e=>{"use strict";var t=e.i(533667),i=e.i(716871),s=e.i(621021),a=e.i(632035),n=e.i(37632),r=e.i(156809),o=e.i(915327);e.s(["getEmailStatusDescription",0,e=>{switch(e){case n.EmailStatus.Received:return"The email was received and successfully parsed by Resend.";case n.EmailStatus.Delivered:return"Resend successfully delivered the email to the recipient's mail server.";case n.EmailStatus.Delivery_Delayed:return"The email couldn't be delivered to the recipient's mail server because a temporary issue occurred. Delivery delays can occur, for example, when the recipient's inbox is full, or when the receiving email server experiences a transient issue.";case n.EmailStatus.Bounced:return"The recipient's mail server permanently rejected the email.";case n.EmailStatus.Complained:return"The email was successfully delivered to the recipient's mail server, but the recipient marked it as spam.";case n.EmailStatus.Sent:return"The API request was successful and Resend will attempt to deliver the message to the recipient's mail server.";case n.EmailStatus.Opened:return"The recipient's opened the email.";case n.EmailStatus.Clicked:return"The recipient's clicked on an email link.";case n.EmailStatus.Suppressed:return"The email was not sent because the recipient is on the suppression list.";case n.EmailStatus.Unsubscribed:return"This recipient has unsubscribed. They will no longer receive any future emails.";case n.EmailStatus.Failed:return"The email couldn't be processed. Please try again.";default:return"Check the documentation for more information."}},"getEmailStatusTooltip",0,(e,d)=>{switch(e){case n.EmailStatus.Delivered:return(0,t.jsx)(a.Text,{children:"Resend successfully delivered the email to the recipient's mail server"});case n.EmailStatus.Delivery_Delayed:return(0,t.jsxs)(t.Fragment,{children:[d.delayType&&(0,t.jsx)(a.Text,{className:"mb-0.5 block text-balance",size:"3",color:"white",children:(0,o.spaceCamelCase)(d.delayType)}),(0,t.jsx)(a.Text,{children:"The email couldn't be delivered to the recipient's mail server because a temporary issue occurred. Delivery delays can occur, for example, when the recipient's inbox is full, or when the receiving email server experiences a transient issue."})]});case n.EmailStatus.Bounced:return(0,t.jsxs)(t.Fragment,{children:[d.bounceType&&(0,t.jsx)(a.Text,{className:"mb-0.5 block text-balance",size:"3",color:"white",children:(0,o.spaceCamelCase)(d.bounceType)}),(0,t.jsx)(a.Text,{children:d.bounceMessage}),d?.bounceLink&&(0,t.jsx)("a",{href:"https://resend.com/docs",target:"_blank",children:(0,t.jsxs)("span",{className:"group mt-1.5 flex cursor-pointer items-center font-medium leading-[1.2]",children:["Learn more",(0,t.jsx)(i.ChevronRight,{className:"size-3.5! ml-0.5 transition duration-150 ease-in-out group-hover:translate-x-0.5"})]})})]});case n.EmailStatus.Complained:return(0,t.jsx)(a.Text,{children:"The email was successfully delivered to the recipient's mail server, but the recipient marked it as spam"});case n.EmailStatus.Sent:return(0,t.jsx)(a.Text,{children:"The API request was successful and Resend will attempt to deliver the message to the recipient's mail server"});case n.EmailStatus.Opened:{let e=(0,s.UAParser)(d.userAgent);return(0,t.jsxs)(a.Text,{children:[e.os.name&&e.browser.name&&(0,t.jsxs)(t.Fragment,{children:[(0,t.jsxs)("strong",{className:"mb-0.5",children:[e.os.name," ",(0,t.jsx)("span",{className:"mx-0.5",children:"·"})," ",e.browser.name]}),(0,t.jsx)("br",{})]}),"The recipient's opened the email"]})}case n.EmailStatus.Clicked:{let e=(0,s.UAParser)(d.userAgent);return(0,t.jsxs)(a.Text,{children:[e.os.name&&e.browser.name&&(0,t.jsxs)(t.Fragment,{children:[(0,t.jsxs)("strong",{className:"mb-0.5",children:[e.os.name," ",(0,t.jsx)("span",{className:"mx-0.5",children:"·"})," ",e.browser.name]}),(0,t.jsx)("br",{})]}),"Clicked at"," ",(0,t.jsx)("span",{className:"block w-full",style:{wordBreak:"break-all"},children:d.link})]})}case n.EmailStatus.Scheduled:return(0,t.jsx)(a.Text,{children:d.scheduledAt?`Scheduled for ${(0,r.formatScheduledAt)(d.scheduledAt)}`:"The email is scheduled to be sent at a later time"});case n.EmailStatus.Canceled:return(0,t.jsx)(a.Text,{children:"The email's schedule has been canceled and it will not be sent."});case n.EmailStatus.Suppressed:return(0,t.jsx)(a.Text,{children:"The email was not sent because the recipient is on the suppression list."});default:return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(a.Text,{children:"Check the documentation for more information"}),d?.bounceLink&&(0,t.jsx)("a",{href:"https://resend.com/docs",target:"_blank",children:(0,t.jsxs)("span",{className:"group mt-1.5 flex cursor-pointer items-center font-medium leading-[1.2]",children:["Go to docs",(0,t.jsx)(i.ChevronRight,{className:"size-3.5! ml-0.5 transition duration-150 ease-in-out group-hover:translate-x-0.5"})]})})]})}}])},119131,e=>{"use strict";let t=`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+await resend.emails.send({
+  from: 'Acme <onboarding@resend.dev>',
+  to: ['delivered@resend.dev'],
+  subject: 'hello world',
+  html: '<p>it works!</p>',
+});`,i=`import resend
+
+resend.api_key = "re_xxxxxxxxx"
+
+params: resend.Emails.SendParams = {
+  "from": "Acme <onboarding@resend.dev>",
+  "to": ["delivered@resend.dev"],
+  "subject": "hello world",
+  "html": "<p>it works!</p>"
+}
+
+email = resend.Emails.send(params)
+print(email)`,s=`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->emails->send([
+  'from' => 'Acme <onboarding@resend.dev>',
+  'to' => ['delivered@resend.dev'],
+  'subject' => 'hello world',
+  'html' => '<p>it works!</p>'
+]);`,a=`require "resend"
+
+Resend.api_key = "re_xxxxxxxxx"
+
+params = {
+  "from": "Acme <onboarding@resend.dev>",
+  "to": ["delivered@resend.dev"],
+  "subject": "hello world",
+  "html": "<p>it works!</p>"
+}
+
+sent = Resend::Emails.send(params)
+puts sent`,n=`import (
+	"fmt"
+
+	"github.com/resend/resend-go/v3"
+)
+
+func main() {
+  ctx := context.TODO()
+  client := resend.NewClient("re_xxxxxxxxx")
+
+  params := &resend.SendEmailRequest{
+      From:        "Acme <onboarding@resend.dev>",
+      To:          []string{"delivered@resend.dev"},
+      Subject:     "hello world",
+      Html:        "<p>it works!</p>",
+      ReplyTo:     "onboarding@resend.dev"
+  }
+
+  sent, err := client.Emails.SendWithContext(ctx, params)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Println(sent.Id)
+}`,r=`use resend_rs::types::{CreateEmailBaseOptions};
+use resend_rs::{Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let from = "Acme <onboarding@resend.dev>";
+  let to = ["delivered@resend.dev"];
+  let subject = "hello world";
+  let html = "<p>it works!</p>";
+
+  let email = CreateEmailBaseOptions::new(from, to, subject)
+    .with_html(html);
+
+  let _email = resend.emails.send(email).await?;
+
+  Ok(())
+}`,o=`import com.resend.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Resend resend = new Resend("re_xxxxxxxxx");
+
+        SendEmailRequest sendEmailRequest = SendEmailRequest.builder()
+                .from("Acme <onboarding@resend.dev>")
+                .to("delivered@resend.dev")
+                .subject("hello world")
+                .html("<p>it works!</p>")
+                .build();
+
+        SendEmailResponse data = resend.emails().send(sendEmailRequest);
+    }
+}`,d=`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" );
+
+var resp = await resend.EmailSendAsync( new EmailMessage()
+{
+    From = "Acme <onboarding@resend.dev>",
+    To = "delivered@resend.dev",
+    Subject = "hello world",
+    HtmlBody = "<p>it works!</p>",
+} );
+Console.WriteLine( "Email Id={0}", resp.Content );
+`,l=`curl -X POST 'https://api.resend.com/emails' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx' \\
+ -H 'Content-Type: application/json' \\
+ -d $'{
+  "from": "Acme <onboarding@resend.dev>",
+  "to": ["delivered@resend.dev"],
+  "subject": "hello world",
+  "html": "<p>it works!</p>"
+}'`,c=`resend emails send \\
+  --from 'Acme <onboarding@resend.dev>' \\
+  --to 'delivered@resend.dev' \\
+  --subject 'hello world' \\
+  --html '<p>it works!</p>'`,m=`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+await resend.batch.send([
+  {
+    from: 'Acme <onboarding@resend.dev>',
+    to: ['foo@gmail.com'],
+    subject: 'hello world',
+    html: '<h1>it works!</h1>',
+  },
+  {
+    from: 'Acme <onboarding@resend.dev>',
+    to: ['bar@outlook.com'],
+    subject: 'world hello',
+    html: '<p>it works!</p>',
+  },
+]);`,x=`import resend
+from typing import List
+
+resend.api_key = "re_xxxxxxxxx"
+
+params: List[resend.Emails.SendParams] = [
+  {
+    "from": "Acme <onboarding@resend.dev>",
+    "to": ["foo@gmail.com"],
+    "subject": "hello world",
+    "html": "<h1>it works!</h1>",
+  },
+  {
+    "from": "Acme <onboarding@resend.dev>",
+    "to": ["bar@outlook.com"],
+    "subject": "world hello",
+    "html": "<p>it works!</p>",
+  }
+]
+
+resend.Batch.send(params)`,h=`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->batch->send([
+  [
+    'from' => 'Acme <onboarding@resend.dev>',
+    'to' => ['foo@gmail.com'],
+    'subject' => 'hello world',
+    'html' => '<h1>it works!</h1>',
+  ],
+  [
+    'from' => 'Acme <onboarding@resend.dev>',
+    'to' => ['bar@outlook.com'],
+    'subject' => 'world hello',
+    'html' => '<p>it works!</p>',
+  ]
+]);`,u=`require "resend"
+
+Resend.api_key = 're_xxxxxxxxx'
+
+params = [
+  {
+    "from": "Acme <onboarding@resend.dev>",
+    "to": ["foo@gmail.com"],
+    "subject": "hello world",
+    "html": "<h1>it works!</h1>",
+  },
+  {
+    "from": "Acme <onboarding@resend.dev>",
+    "to": ["bar@outlook.com"],
+    "subject": "world hello",
+    "html": "<p>it works!</p>",
+  }
+]
+
+Resend::Batch.send(params)`,p=`package examples
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/resend/resend-go/v3"
+)
+
+func main() {
+
+  ctx := context.TODO()
+
+  client := resend.NewClient("re_xxxxxxxxx")
+
+  var batchEmails = []*resend.SendEmailRequest{
+    {
+      From:    "Acme <onboarding@resend.dev>",
+      To:      []string{"foo@gmail.com"},
+      Subject: "hello world",
+      Html:    "<h1>it works!</h1>",
+    },
+    {
+      From:    "Acme <onboarding@resend.dev>",
+      To:      []string{"bar@outlook.com"},
+      Subject: "world hello",
+      Html:    "<p>it works!</p>",
+    },
+  }
+
+  sent, err := client.Batch.SendWithContext(ctx, batchEmails)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Println(sent.Data)
+}`,w=`use resend_rs::types::CreateEmailBaseOptions;
+use resend_rs::{Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let emails = vec![
+    CreateEmailBaseOptions::new(
+      "Acme <onboarding@resend.dev>",
+      vec!["foo@gmail.com"],
+      "hello world",
+    )
+    .with_html("<h1>it works!</h1>"),
+    CreateEmailBaseOptions::new(
+      "Acme <onboarding@resend.dev>",
+      vec!["bar@outlook.com"],
+      "world hello",
+    )
+    .with_html("<p>it works!</p>"),
+  ];
+
+  let _emails = resend.batch.send(emails).await?;
+
+  Ok(())
+}`,b=`import com.resend.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Resend resend = new Resend("re_xxxxxxxxx");
+
+        SendEmailRequest firstEmailRequest = SendEmailRequest.builder()
+            .from("Acme <onboarding@resend.dev>")
+            .to("foo@gmail.com")
+            .subject("hello world")
+            .html("<h1>it works!</h1>")
+            .build();
+
+        SendEmailRequest secondEmailRequest = SendEmailRequest.builder()
+            .from("Acme <onboarding@resend.dev>")
+            .to("bar@outlook.com")
+            .subject("world hello")
+            .html("<p>it works!</p>")
+            .build();
+
+        CreateBatchEmailsResponse data = resend.batch().send(
+            Arrays.asList(firstEmailRequest, secondEmailRequest)
+        );
+    }
+}`,E=`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" );
+
+var mail1 = new EmailMessage()
+{
+    From = "Acme <onboarding@resend.dev>",
+    To = "foo@gmail.com",
+    Subject = "hello world",
+    HtmlBody = "<p>it works!</p>",
+};
+
+var mail2 = new EmailMessage()
+{
+    From = "Acme <onboarding@resend.dev>",
+    To = "bar@outlook.com",
+    Subject = "hello world",
+    HtmlBody = "<p>it works!</p>",
+};
+
+var resp = await resend.EmailBatchAsync( [ mail1, mail2 ] );
+Console.WriteLine( "Nr Emails={0}", resp.Content.Count );
+`,g=`curl -X POST 'https://api.resend.com/emails/batch' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx' \\
+ -H 'Content-Type: application/json' \\
+ -d $'[
+  {
+    "from": "Acme <onboarding@resend.dev>",
+    "to": ["foo@gmail.com"],
+    "subject": "hello world",
+    "html": "<h1>it works!</h1>"
+  },
+  {
+    "from": "Acme <onboarding@resend.dev>",
+    "to": ["bar@outlook.com"],
+    "subject": "world hello",
+    "html": "<p>it works!</p>"
+  }
+]'`,v=`resend emails batch \\
+  --file batch-emails.json`,C=`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+const { data, error } = await resend.emails.list();`,_=`import resend
+
+resend.api_key = "re_xxxxxxxxx"
+resend.Emails.list()`,R=`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->emails->list();`,f=`require "resend"
+
+Resend.api_key = "re_xxxxxxxxx"
+
+emails = Resend::Emails.list
+puts emails`,A=`import (
+  "context"
+  "fmt"
+
+  "github.com/resend/resend-go/v3"
+)
+
+ctx := context.TODO()
+client := resend.NewClient("re_xxxxxxxxx")
+
+paginatedResp, err := client.Emails.ListWithOptions(ctx, nil)
+if err != nil {
+  panic(err)
+}
+
+fmt.Printf("Found %d emails
+", len(paginatedResp.Data))
+
+if paginatedResp.HasMore {
+  opts := &resend.ListOptions{
+    After: &paginatedResp.Data[len(paginatedResp.Data)-1].ID,
+  }
+  paginatedResp, err = client.Emails.ListWithOptions(ctx, opts)
+
+  if err != nil {
+    panic(err)
+  }
+
+  fmt.Printf("Found %d more emails in next page
+", len(paginatedResp.Data))
+}`,S=`use resend_rs::{list_opts::ListOptions, Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let _emails = resend
+    .emails
+    .list(ListOptions::default())
+    .await?;
+
+  Ok(())
+}`,y=`import com.resend.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Resend resend = new Resend("re_xxxxxxxxx");
+
+        ListEmailsResponseSuccess emails = resend.emails().list();
+    }
+}`,D=`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" );
+
+var resp = await resend.EmailListAsync();
+Console.WriteLine( "Count={0}", resp.Content.Data.Count );`,k=`curl -X GET 'https://api.resend.com/emails' \\
+     -H 'Authorization: Bearer re_xxxxxxxxx'`;e.s(["LIST_EMAILS_CLI_CODE",0,"resend emails list","LIST_EMAILS_CURL_CODE",0,k,"LIST_EMAILS_DOTNET_CODE",0,D,"LIST_EMAILS_GO_CODE",0,A,"LIST_EMAILS_JAVA_CODE",0,y,"LIST_EMAILS_NODEJS_CODE",0,C,"LIST_EMAILS_PHP_CODE",0,R,"LIST_EMAILS_PYTHON_CODE",0,_,"LIST_EMAILS_RUBY_CODE",0,f,"LIST_EMAILS_RUST_CODE",0,S,"SEND_BATCH_EMAILS_CLI_CODE",0,v,"SEND_BATCH_EMAILS_CURL_CODE",0,g,"SEND_BATCH_EMAILS_DOTNET_CODE",0,E,"SEND_BATCH_EMAILS_GO_CODE",0,p,"SEND_BATCH_EMAILS_JAVA_CODE",0,b,"SEND_BATCH_EMAILS_NODEJS_CODE",0,m,"SEND_BATCH_EMAILS_PHP_CODE",0,h,"SEND_BATCH_EMAILS_PYTHON_CODE",0,x,"SEND_BATCH_EMAILS_RUBY_CODE",0,u,"SEND_BATCH_EMAILS_RUST_CODE",0,w,"SEND_EMAIL_CLI_CODE",0,c,"SEND_EMAIL_CURL_CODE",0,l,"SEND_EMAIL_DOTNET_CODE",0,d,"SEND_EMAIL_GO_CODE",0,n,"SEND_EMAIL_JAVA_CODE",0,o,"SEND_EMAIL_NODEJS_CODE",0,t,"SEND_EMAIL_PHP_CODE",0,s,"SEND_EMAIL_PYTHON_CODE",0,i,"SEND_EMAIL_RUBY_CODE",0,a,"SEND_EMAIL_RUST_CODE",0,r,"cancelEmailCliCode",0,e=>`resend emails cancel ${e}`,"cancelEmailCurlCode",0,e=>`curl -X POST 'https://api.resend.com/emails/${e}/cancel' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx' \\
+ -H 'Content-Type: application/json'`,"cancelEmailDotnetCode",0,e=>`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" );
+
+await resend.EmailCancelAsync( new Guid( "${e}" ) );
+`,"cancelEmailGoCode",0,e=>`import "github.com/resend/resend-go/v3"
+
+client := resend.NewClient("re_xxxxxxxxx")
+
+canceled, err := client.Emails.Cancel("${e}")
+if err != nil {
+  panic(err)
+}
+fmt.Println(canceled.Id)`,"cancelEmailJavaCode",0,e=>`import com.resend.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Resend resend = new Resend("re_xxxxxxxxx");
+
+        CancelEmailResponse canceled = resend
+          .emails()
+          .cancel("${e}");
+    }
+}`,"cancelEmailNodejsCode",0,e=>`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+resend.emails.cancel('${e}');`,"cancelEmailPhpCode",0,e=>`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->emails->cancel('${e}');`,"cancelEmailPythonCode",0,e=>`import resend
+
+resend.api_key = "re_xxxxxxxxx"
+resend.Emails.cancel(email_id="${e}")`,"cancelEmailRubyCode",0,e=>`require "resend"
+
+Resend.api_key = "re_xxxxxxxxx"
+
+Resend::Emails.cancel("${e}")`,"cancelEmailRustCode",0,e=>`use resend_rs::{Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let _canceled = resend
+    .emails
+    .cancel("${e}")
+    .await?;
+
+  Ok(())
+}`,"getEmailCliCode",0,e=>`resend emails get ${e}`,"getEmailCurlCode",0,e=>`curl -X GET 'https://api.resend.com/emails/${e}' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx' \\
+ -H 'Content-Type: application/json'`,"getEmailDotnetCode",0,e=>`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" );
+
+var resp = await resend.EmailRetrieveAsync( new Guid( "${e}" ) );
+Console.WriteLine( "Subject={0}", resp.Content.Subject );
+`,"getEmailGoCode",0,e=>`import "github.com/resend/resend-go/v3"
+
+client := resend.NewClient("re_xxxxxxxxx")
+
+email, err := client.Emails.Get("${e}")`,"getEmailJavaCode",0,e=>`import com.resend.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Resend resend = new Resend("re_xxxxxxxxx");
+
+        Email email = resend.emails().get("${e}");
+    }
+}`,"getEmailNodejsCode",0,e=>`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+resend.emails.get('${e}');`,"getEmailPhpCode",0,e=>`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->emails->get('${e}');`,"getEmailPythonCode",0,e=>`import resend
+
+resend.api_key = "re_xxxxxxxxx"
+resend.Emails.get(email_id="${e}")`,"getEmailRubyCode",0,e=>`Resend.api_key = "re_xxxxxxxxx"
+email = Resend::Emails.get("${e}")
+puts email`,"getEmailRustCode",0,e=>`use resend_rs::{Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let _email = resend
+    .emails
+    .get("${e}")
+    .await?;
+
+  Ok(())
+}`,"listAttachmentsCliCode",0,e=>`resend emails attachments ${e}`,"listAttachmentsCurlCode",0,e=>`curl -X GET 'https://api.resend.com/emails/${e}/attachments' \
+     -H 'Authorization: Bearer re_xxxxxxxxx'`,"listAttachmentsDotnetCode",0,e=>`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" ); // Or from DI
+
+var resp = await resend.EmailAttachmentListAsync( new Guid( "${e}" ));
+Console.WriteLine( "Nr Attachments={0}", resp.Content.Data.Count );`,"listAttachmentsGoCode",0,e=>`import (
+	"context"
+	"github.com/resend/resend-go/v3"
+)
+
+func main() {
+	client := resend.NewClient("re_xxxxxxxxx")
+
+	attachments, err := client.Emails.ListAttachmentsWithContext(
+		context.TODO(),
+		"${e}",
+	)
+}`,"listAttachmentsJavaCode",0,e=>`import com.resend.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Resend resend = new Resend("re_xxxxxxxxx");
+
+    ListAttachmentsResponse response = resend.emails().listAttachments(
+      "${e}"
+    );
+  }
+}`,"listAttachmentsNodejsCode",0,e=>`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+const { data, error } = await resend.emails.attachments.list({
+  emailId: '${e}',
+});`,"listAttachmentsPhpCode",0,e=>`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->emails->attachments->list(
+  emailId: '${e}'
+);`,"listAttachmentsPythonCode",0,e=>`import resend
+
+resend.api_key = 're_xxxxxxxxx'
+
+attachments = resend.Emails.Attachments.list(
+  email_id='${e}'
+)`,"listAttachmentsRubyCode",0,e=>`require 'resend'
+
+Resend.api_key = 're_xxxxxxxxx'
+
+Resend::Emails::Attachments.list(
+  email_id: '${e}'
+)`,"listAttachmentsRustCode",0,e=>`use resend_rs::{list_opts::ListOptions, Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let _email = resend
+    .emails
+    .list_attachments(
+      "${e}",
+      ListOptions::default(),
+    )
+    .await?;
+
+  Ok(())
+}`,"retrieveAttachmentCliCode",0,(e,t)=>`resend emails attachment ${e} ${t}`,"retrieveAttachmentCurlCode",0,(e,t)=>`curl -X GET 'https://api.resend.com/emails/${e}/attachments/${t}' \
+     -H 'Authorization: Bearer re_xxxxxxxxx'`,"retrieveAttachmentDotnetCode",0,(e,t)=>`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" ); // Or from DI
+
+var resp = await resend.EmailAttachmentRetrieveAsync(
+  emailId: new Guid( "${e}" ),
+  attachmentId: new Guid( "${t}" )
+);
+Console.WriteLine( "URL={0}", resp.Content.DownloadUrl );`,"retrieveAttachmentGoCode",0,(e,t)=>`import (
+	"context"
+	"github.com/resend/resend-go/v3"
+)
+
+func main() {
+	client := resend.NewClient("re_xxxxxxxxx")
+
+	attachment, err := client.Emails.GetAttachmentWithContext(
+		context.TODO(),
+		"${t}",
+		"${e}",
+	)
+}`,"retrieveAttachmentJavaCode",0,(e,t)=>`import com.resend.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Resend resend = new Resend("re_xxxxxxxxx");
+
+    AttachmentResponse attachment = resend.emails().getAttachment(
+      "${t}",
+      "${e}"
+    );
+  }
+}`,"retrieveAttachmentNodejsCode",0,(e,t)=>`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+const { data, error } = await resend.emails.attachments.get({
+  id: '${t}',
+  emailId: '${e}',
+});`,"retrieveAttachmentPhpCode",0,(e,t)=>`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->emails->attachments->get(
+  id: '${t}',
+  emailId: '${e}'
+);`,"retrieveAttachmentPythonCode",0,(e,t)=>`import resend
+
+resend.api_key = 're_xxxxxxxxx'
+
+attachment = resend.Emails.Attachments.get(
+  email_id='${e}',
+  attachment_id='${t}'
+)`,"retrieveAttachmentRubyCode",0,(e,t)=>`require 'resend'
+
+Resend.api_key = 're_xxxxxxxxx'
+
+Resend::Emails::Attachments.get(
+  id: '${t}',
+  email_id: '${e}'
+)`,"retrieveAttachmentRustCode",0,(e,t)=>`use resend_rs::{Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let _email = resend
+    .emails
+    .get_attachment(
+      "${t}",
+      "${e}",
+    )
+    .await?;
+
+  Ok(())
+}`,"updateEmailCliCode",0,e=>`resend emails update ${e} \\
+  --scheduled-at '2024-12-01T00:00:00Z'`,"updateEmailCurlCode",0,(e,t)=>`curl -X PATCH 'https://api.resend.com/emails/${e}' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx' \\
+ -H 'Content-Type: application/json' \\
+ -d $'{
+  "scheduled_at": "${t}"
+}'`,"updateEmailDotnetCode",0,e=>`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" );
+
+await resend.EmailRescheduleAsync(
+    new Guid( "${e}" ),
+    DateTime.UtcNow.AddMinutes( 1 ) );
+`,"updateEmailGoCode",0,e=>`import "github.com/resend/resend-go/v3"
+
+client := resend.NewClient("re_xxxxxxxxx")
+
+oneMinuteFromNow := time.Now().Add(time.Minute * time.Duration(1))
+oneMinuteFromNowISO := oneMinuteFromNow.Format("2006-01-02T15:04:05-0700")
+
+updateParams := &resend.UpdateEmailRequest{
+  Id:          "${e}",
+  ScheduledAt: oneMinuteFromNowISO
+}
+
+updatedEmail, err := client.Emails.Update(updateParams)
+if err != nil {
+  panic(err)
+}
+fmt.Printf("%v\\n", updatedEmail)`,"updateEmailJavaCode",0,e=>`import com.resend.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Resend resend = new Resend("re_xxxxxxxxx");
+
+        String oneMinuteFromNow = Instant
+          .now()
+          .plus(1, ChronoUnit.MINUTES)
+          .toString();
+
+        UpdateEmailOptions updateParams = UpdateEmailOptions.builder()
+                .scheduledAt(oneMinuteFromNow)
+                .build();
+
+        UpdateEmailResponse data = resend.emails().update("${e}", updateParams);
+    }
+}`,"updateEmailNodejsCode",0,e=>`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+const oneMinuteFromNow = new Date(Date.now() + 1000 * 60).toISOString();
+
+resend.emails.update({
+  id: '${e}',
+  scheduledAt: oneMinuteFromNow,
+});`,"updateEmailPhpCode",0,e=>`$resend = Resend::client('re_xxxxxxxxx');
+
+$oneMinuteFromNow = (new DateTime())->modify('+1 minute')->format(DateTime::ISO8601);
+
+$resend->emails->update('${e}', [
+  'scheduled_at' => $oneMinuteFromNow
+]);`,"updateEmailPythonCode",0,e=>`import resend
+from datetime import datetime, timedelta
+
+resend.api_key = "re_xxxxxxxxx"
+
+one_minute_from_now = (datetime.now() + timedelta(minutes=1)).isoformat()
+
+update_params: resend.Emails.UpdateParams = {
+  "id": "${e}",
+  "scheduled_at": one_minute_from_now
+}
+
+resend.Emails.update(params=update_params)`,"updateEmailRubyCode",0,e=>`require "resend"
+
+Resend.api_key = "re_xxxxxxxxx"
+
+one_minute_from_now = (Time.now + 1 * 60).strftime("%Y-%m-%dT%H:%M:%S.%L%z")
+
+update_params = {
+  "email_id": "${e}",
+  "scheduled_at": one_minute_from_now
+}
+
+Resend::Emails.update(update_params)`,"updateEmailRustCode",0,(e,t)=>`use resend_rs::{types::UpdateEmailOptions, Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let update = UpdateEmailOptions::new()
+    .with_scheduled_at("${t}");
+
+  let _email = resend
+    .emails
+    .update("${e}", update)
+    .await?;
+
+  Ok(())
+}`])},600277,e=>{"use strict";let t=`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+const { data, error } = await resend.emails.receiving.list();`,i=`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->emails->receiving->list();`,s=`import resend
+
+resend.api_key = "re_xxxxxxxxx"
+
+resend.Emails.Receiving.list()`,a=`require "resend"
+
+Resend.api_key = "re_xxxxxxxxx"
+
+Resend::Emails::Receiving.list()`,n=`import (
+	"context"
+
+	"github.com/resend/resend-go/v3"
+)
+
+func main() {
+	client := resend.NewClient("re_xxxxxxxxx")
+
+	emails, err := client.Emails.Receiving.ListWithContext(context.TODO())
+}`,r=`use resend_rs::{list_opts::ListOptions, Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let _email = resend.receiving.list(ListOptions::default()).await?;
+
+  Ok(())
+}`,o=`import com.resend.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Resend resend = new Resend("re_xxxxxxxxx");
+
+    ListReceivedEmailsResponse response = resend.receiving().list();
+  }
+}`,d=`curl -X GET 'https://api.resend.com/emails/receiving' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx'`,l=`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" ); // Or from DI
+
+var resp = await resend.ReceivedEmailListAsync();
+Console.WriteLine( "Nr Received={0}", resp.Content.Data.Count );`;e.s(["LIST_RECEIVED_EMAILS_CLI_CODE",0,"resend emails receiving list","LIST_RECEIVED_EMAILS_CURL_CODE",0,d,"LIST_RECEIVED_EMAILS_DOTNET_CODE",0,l,"LIST_RECEIVED_EMAILS_GO_CODE",0,n,"LIST_RECEIVED_EMAILS_JAVA_CODE",0,o,"LIST_RECEIVED_EMAILS_NODEJS_CODE",0,t,"LIST_RECEIVED_EMAILS_PHP_CODE",0,i,"LIST_RECEIVED_EMAILS_PYTHON_CODE",0,s,"LIST_RECEIVED_EMAILS_RUBY_CODE",0,a,"LIST_RECEIVED_EMAILS_RUST_CODE",0,r,"getReceivedEmailAttachmentCliCode",0,(e,t)=>`resend emails receiving attachment ${e} ${t}`,"getReceivedEmailAttachmentCurlCode",0,(e,t)=>`curl -X GET 'https://api.resend.com/emails/receiving/${e}/attachments/${t}' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx'`,"getReceivedEmailAttachmentDotnetCode",0,(e,t)=>`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" ); // Or from DI
+
+var resp = await resend.ReceivedEmailAttachmentRetrieveAsync(
+  emailId: new Guid( "${e}" ),
+  attachmentId: new Guid( "${t}" )
+);
+Console.WriteLine( "URL={0}", resp.Content.DownloadUrl );`,"getReceivedEmailAttachmentGoCode",0,(e,t)=>`import (
+	"context"
+
+	"github.com/resend/resend-go/v3"
+)
+
+func main() {
+	client := resend.NewClient("re_xxxxxxxxx")
+
+	attachment, err := client.Emails.Receiving.GetAttachmentWithContext(
+		context.TODO(),
+		"${t}",
+		"${e}",
+	)
+}`,"getReceivedEmailAttachmentJavaCode",0,(e,t)=>`import com.resend.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Resend resend = new Resend("re_xxxxxxxxx");
+
+    AttachmentDetails attachment = resend.receiving().getAttachment(
+      "${t}",
+      "${e}",
+    );
+  }
+}`,"getReceivedEmailAttachmentNodejsCode",0,(e,t)=>`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+const { data, error } = await resend.attachments.receiving.get({
+  id: '${t}',
+  emailId: '${e}',
+});`,"getReceivedEmailAttachmentPhpCode",0,(e,t)=>`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->emails->receiving->attachments->get(
+    emailId: '${e}',
+    id: '${t}'
+);`,"getReceivedEmailAttachmentPythonCode",0,(e,t)=>`import resend
+
+resend.api_key = "re_xxxxxxxxx"
+
+attachment_details: resend.EmailAttachmentDetails = (
+  resend.Emails.Receiving.Attachments.get(
+    email_id='${e}',
+    attachment_id='${t}',
+  )
+)`,"getReceivedEmailAttachmentRubyCode",0,(e,t)=>`require 'resend'
+
+Resend.api_key = 're_xxxxxxxxx'
+
+attachment = Resend::Emails::Receiving::Attachments.get(
+  id: '${t}',
+  email_id: '${e}'
+)`,"getReceivedEmailAttachmentRustCode",0,(e,t)=>`use resend_rs::{Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let _email = resend.receiving.get_attachment(
+    "${t}",
+    "${e}",
+  ).await?;
+
+  Ok(())
+}`,"getReceivedEmailCliCode",0,e=>`resend emails receiving get ${e}`,"getReceivedEmailCurlCode",0,e=>`curl -X GET 'https://api.resend.com/emails/receiving/${e}' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx'`,"getReceivedEmailDotnetCode",0,e=>`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" ); // Or from DI
+
+var resp = await resend.ReceivedEmailRetrieveAsync( new Guid( "${e}" ) );
+Console.WriteLine( "Subject={0}", resp.Content.Subject );`,"getReceivedEmailGoCode",0,e=>`import (
+	"context"
+
+	"github.com/resend/resend-go/v3"
+)
+
+func main() {
+	client := resend.NewClient("re_xxxxxxxxx")
+
+	email, err := client.Emails.Receiving.GetWithContext(
+		context.TODO(),
+		"${e}",
+	)
+}`,"getReceivedEmailJavaCode",0,e=>`import com.resend.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Resend resend = new Resend("re_xxxxxxxxx");
+
+    ReceivedEmail email = resend.receiving().get("${e}");
+  }
+}`,"getReceivedEmailNodejsCode",0,e=>`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+const { data, error } = await resend.emails.receiving.get('${e}');`,"getReceivedEmailPhpCode",0,e=>`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->emails->receiving->get('${e}');`,"getReceivedEmailPythonCode",0,e=>`import resend
+
+resend.api_key = "re_xxxxxxxxx"
+
+resend.Emails.Receiving.get(email_id="${e}")`,"getReceivedEmailRubyCode",0,e=>`require "resend"
+
+Resend.api_key = "re_xxxxxxxxx"
+
+Resend::Emails::Receiving.get("${e}")`,"getReceivedEmailRustCode",0,e=>`use resend_rs::{Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let _email = resend.receiving.get("${e}").await?;
+
+  Ok(())
+}`,"listReceivedEmailAttachmentsCliCode",0,e=>`resend emails receiving attachments ${e}`,"listReceivedEmailAttachmentsCurlCode",0,e=>`curl -X GET 'https://api.resend.com/emails/receiving/${e}/attachments' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx'`,"listReceivedEmailAttachmentsDotnetCode",0,e=>`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" ); // Or from DI
+
+var resp = await resend.ReceivedEmailAttachmentListAsync( new Guid( "${e}" ));
+Console.WriteLine( "Nr Attachments={0}", resp.Content.Data.Count );`,"listReceivedEmailAttachmentsGoCode",0,e=>`import (
+	"context"
+
+	"github.com/resend/resend-go/v3"
+)
+
+func main() {
+	client := resend.NewClient("re_xxxxxxxxx")
+
+	attachments, err := client.Emails.Receiving.ListAttachmentsWithContext(
+		context.TODO(),
+		"${e}",
+	)
+}`,"listReceivedEmailAttachmentsJavaCode",0,e=>`import com.resend.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Resend resend = new Resend("re_xxxxxxxxx");
+
+    ListAttachmentsResponse response = resend.receiving().listAttachments(
+      "${e}"
+    );
+  }
+}`,"listReceivedEmailAttachmentsNodejsCode",0,e=>`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+const { data, error } = await resend.attachments.receiving.list({
+  emailId: '${e}',
+});`,"listReceivedEmailAttachmentsPhpCode",0,e=>`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->emails->receiving->attachments->list(
+    emailId: '${e}'
+);`,"listReceivedEmailAttachmentsPythonCode",0,e=>`from resend import EmailsReceiving
+
+resend.api_key = "re_xxxxxxxxx"
+
+all_attachments: EmailsReceiving.Attachments.ListResponse = resend.Emails.Receiving.Attachments.list(email_id='${e}')`,"listReceivedEmailAttachmentsRubyCode",0,e=>`require 'resend'
+
+Resend.api_key = 're_xxxxxxxxx'
+
+attachments = Resend::Emails::Receiving::Attachments.list(
+  email_id: '${e}'
+)`,"listReceivedEmailAttachmentsRustCode",0,e=>`use resend_rs::{list_opts::ListOptions, Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let _email = resend.receiving
+    .list_attachments("${e}", ListOptions::default())
+    .await?;
+
+  Ok(())
+}`])},182409,406686,520523,87294,e=>{"use strict";var t=e.i(533667),i=e.i(490570);let s=({number:e})=>(0,t.jsx)(i.Trigger,{className:"rounded-xl outline-hidden focus-visible:ring-2 focus-visible:ring-gray-3",children:(0,t.jsxs)("div",{className:"flex cursor-default items-center justify-center overflow-hidden rounded-lg border border-gray-3 bg-transparent px-1.5 py-0.5 text-center text-xs uppercase text-gray-11",children:["+",e]})});e.s(["Details",0,({list:e})=>{let a=e.slice(1);return 0===a.length?null:(0,t.jsxs)(i.Root,{children:[(0,t.jsx)(s,{number:a.length}),(0,t.jsx)(i.Content,{children:a.map((e,i)=>(0,t.jsx)("p",{className:"text-xs",children:e},i))})]})},"MultipleDetails",0,({list:e})=>{let a=e.reduce((e,t)=>e+t.items.length,0)-1;return a<=0?null:(0,t.jsxs)(i.Root,{children:[(0,t.jsx)(s,{number:a}),(0,t.jsx)(i.Content,{children:e.map((e,i)=>(0,t.jsxs)("div",{className:"mb-3 mt-3 first:mt-2 last:mb-0",children:[(0,t.jsx)("p",{className:"text-xs text-slate-9 mb-1",children:e.section}),e.items.map((e,i)=>(0,t.jsx)("p",{className:"text-xs mb-1",children:e},i))]},i))})]})}],182409);var a=e.i(643452),n=e.i(500640),r=e.i(154390);let o=(0,r.createServerReference)("40527d7c6d8ace97cd5290474611f01811cafdddc3",r.callServer,void 0,r.findSourceMapURL,"removeSchedule");var d=e.i(796590),l=e.i(216726);e.i(853309);var c=e.i(76185),m=e.i(429304),x=e.i(632035);e.i(344702);var h=e.i(140932),u=e.i(742054),p=e.i(923747);function w({emailId:e,emailSubject:i,handleOpenChange:s}){let[r,b]=a.useState("disabled"),[E,g]=a.useState(""),v=async t=>{if(t.preventDefault(),"CANCEL"===E)try{b("loading"),await o(e),(0,u.showToast)({title:"Schedule has been canceled.",appearance:"green"}),s(!1)}catch(t){console.error(t);let e=(0,p.hasMessage)(t)?t.message:"Unable to cancel the email. Try again later.";(0,u.showToast)({title:e,appearance:"red"}),b("normal")}},C="CANCEL"===E;return(0,n.useHotkeys)("mod+enter",()=>{C&&"loading"!==r&&v({preventDefault:()=>{}})},{enableOnFormTags:["input"]},[C,r,v]),(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(l.Title,{children:"Cancel scheduled email"}),(0,t.jsxs)(x.Text,{className:"mt-6 block",size:"2",children:["Are you sure you want to cancel the schedule for"," ",(0,t.jsx)("span",{className:"font-bold text-slate-12",children:i}),"?"]}),(0,t.jsxs)("form",{onSubmit:v,children:[(0,t.jsxs)("div",{className:"mt-4 flex w-full flex-col gap-1",children:[(0,t.jsxs)(m.Label,{children:["Type ",(0,t.jsx)("strong",{children:"CANCEL"})," to confirm."]}),(0,t.jsx)(h.TextField.Input,{onChange:e=>{e.target.value.length>0&&"CANCEL"===e.target.value?b("normal"):b("disabled"),g(e.target.value)},value:E})]}),(0,t.jsxs)("div",{className:"mt-6 flex items-center gap-2",children:[(0,t.jsx)(d.Button,{appearance:"red",state:r,shortcut:[c.SHORTCUTS_VALUES.CMD,c.SHORTCUTS_VALUES.ENTER],children:"Cancel schedule"}),(0,t.jsx)(l.Close,{asChild:!0,children:(0,t.jsx)(d.Button,{appearance:"fade",children:"Dismiss"})})]})]})]})}e.s(["CancelScheduleModal",0,function({emailId:e,emailSubject:i,children:s}){let[n,r]=a.useState(!1);return(0,t.jsxs)(l.Root,{open:n,onOpenChange:r,children:[(0,t.jsx)(l.Trigger,{asChild:!0,children:s}),(0,t.jsx)(l.Content,{children:(0,t.jsx)(w,{emailId:e,emailSubject:i,handleOpenChange:r})})]})}],406686);var b=e.i(432976),E=e.i(945060);let g=(0,r.createServerReference)("60c5b842bda6545ce87e2c8c245154da254f005c4f",r.callServer,void 0,r.findSourceMapURL,"editSchedule");var v=e.i(944098);function C({emailId:e,scheduleDate:i,handleOpenChange:s}){let[n,r]=a.useState("normal"),[o,c]=a.useState(i),h=async t=>{t.preventDefault();try{r("loading"),await g(e,o),(0,u.showToast)({title:"Scheduled edited.",appearance:"green"}),s(!1),r("normal")}catch(t){console.error(t);let e=(0,p.hasMessage)(t)?t.message:"Unable to edit the schedule. Try again later.";(0,u.showToast)({title:e,appearance:"red"}),r("normal")}},w=(0,v.isValidScheduleDate)(o);return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(l.Title,{children:"Edit schedule"}),(0,t.jsxs)("form",{onSubmit:h,children:[(0,t.jsxs)("div",{className:"mt-6 flex flex-col gap-2",children:[(0,t.jsx)(m.Label,{htmlFor:"domain",children:"When"}),(0,t.jsx)(b.NaturalLanguageField,{defaultValue:o,onChange:e=>{c(e)},children:(0,t.jsx)("input",{placeholder:"Enter a date or time...",className:"border-slate-6 bg-slate-3 text-slate-12 focus-visible:ring-slate-7 transition ease-in-out duration-200 placeholder:text-slate-11 h-8 rounded-md px-2 text-sm relative w-full select-none appearance-none border outline-hidden focus-visible:ring-2",name:"when"})}),(0,t.jsxs)(x.Text,{size:"1",color:"red",className:(0,E.cn)("transition-opacity ease-in-out duration-100 opacity-0",{"opacity-100":!w}),children:["Invalid date, it should be between now and ",(0,v.maxScheduledAtAsText)(),"."]})]}),(0,t.jsxs)("div",{className:"mt-6 flex items-center gap-2",children:[(0,t.jsx)(d.Button,{state:w?n:"disabled",type:"submit",children:"Save"}),(0,t.jsx)(l.Close,{asChild:!0,children:(0,t.jsx)(d.Button,{appearance:"fade",children:"Cancel"})})]})]})]})}e.s(["EditScheduleModal",0,function({children:e,emailId:i,scheduleDate:s}){let[n,r]=a.useState(!1);return(0,t.jsxs)(l.Root,{open:n,onOpenChange:r,children:[(0,t.jsx)(l.Trigger,{asChild:!0,children:e}),(0,t.jsx)(l.Content,{children:(0,t.jsx)(C,{emailId:i,scheduleDate:s,handleOpenChange:r})})]})}],520523),e.i(308528);var _=e.i(912436);let R=(0,r.createServerReference)("7f3020a4cbb58c79b25a7e6a06af3dd9a74330b6c3",r.callServer,void 0,r.findSourceMapURL,"createShareEmailLink");var f=e.i(836075),A=e.i(864667),S=e.i(793909);let y=[{value:"10m",label:"10 minutes"},{value:"3h",label:"3 hours"},{value:"24h",label:"24 hours"},{value:"48h",label:"48 hours"}];e.s(["ShareEmailModal",0,function({emailId:e,type:i,open:s,onOpenChange:r,showEmailId:o=!1}){let[p,w]=a.useState("confirm"),[b,E]=a.useState("48h"),[g,v]=a.useState(""),{execute:C,isPending:D}=(0,_.useAction)(R,{onSuccess:({data:e})=>{e?.token&&(v(`${location.protocol}//${location.host}/shared?token=${e.token}`),w("link"))},onError:({error:e})=>{(0,u.showToast)({title:(0,f.getActionErrorMessage)(e),appearance:"red"})}}),k=y.find(e=>e.value===b)?.label;return(0,n.useHotkeys)("mod+enter",()=>{"confirm"!==p||D||C({id:e,type:i,expiresIn:b})},{enableOnFormTags:!0,enabled:s},[p,D,e,i,b,s]),(0,t.jsx)(l.Root,{open:s,onOpenChange:function(e){r(e),e||(w("confirm"),E("48h"),v(""))},children:(0,t.jsxs)(l.Content,{children:[(0,t.jsx)(l.Title,{children:"Share email"}),(0,t.jsx)(x.Text,{as:"p",size:"2",children:"Anyone with the link can view this email."}),"confirm"===p?(0,t.jsxs)(t.Fragment,{children:[(0,t.jsxs)("div",{className:"mt-6 flex flex-col gap-2",children:[(0,t.jsx)(m.Label,{children:"Link expires after"}),(0,t.jsxs)(S.Root,{value:b,onValueChange:e=>E(e),children:[(0,t.jsx)(S.Trigger,{children:(0,t.jsx)(S.Value,{})}),(0,t.jsx)(S.Content,{children:y.map(e=>(0,t.jsx)(S.Item,{value:e.value,children:e.label},e.value))})]})]}),(0,t.jsxs)("div",{className:"mt-6 flex items-center gap-2",children:[(0,t.jsx)(d.Button,{state:D?"loading":"normal",onClick:()=>C({id:e,type:i,expiresIn:b}),shortcut:[c.SHORTCUTS_VALUES.CMD,c.SHORTCUTS_VALUES.ENTER],children:"Generate link"}),(0,t.jsx)(l.Close,{asChild:!0,children:(0,t.jsx)(d.Button,{appearance:"gray",shortcut:c.SHORTCUTS_VALUES.ESC,children:"Cancel"})})]})]}):(0,t.jsxs)(t.Fragment,{children:[(0,t.jsxs)("div",{className:"mt-6 flex flex-col gap-2",children:[(0,t.jsxs)(m.Label,{htmlFor:"shareUrl",children:["Link expires after ",k]}),(0,t.jsxs)(h.TextField.Root,{children:[(0,t.jsx)(h.TextField.Input,{id:"shareUrl",state:"read-only",value:g}),(0,t.jsx)(h.TextField.Slot,{children:(0,t.jsx)(A.CopyButton,{value:g})})]})]}),o&&(0,t.jsxs)("div",{className:"mt-4 flex flex-col gap-2",children:[(0,t.jsx)(m.Label,{htmlFor:"emailId",children:"Email ID"}),(0,t.jsxs)(h.TextField.Root,{children:[(0,t.jsx)(h.TextField.Input,{id:"emailId",state:"read-only",value:e}),(0,t.jsx)(h.TextField.Slot,{children:(0,t.jsx)(A.CopyButton,{value:e})})]})]}),(0,t.jsx)("div",{className:"mt-6 flex items-center gap-2",children:(0,t.jsx)(l.Close,{asChild:!0,children:(0,t.jsx)(d.Button,{children:"Done"})})})]})]})})}],87294)},229759,665826,e=>{"use strict";var t=e.i(533667),i=e.i(182840),s=e.i(557408),a=e.i(989266),n=e.i(867389),r=e.i(119131);e.s(["ApiDrawerEmails",0,({emailId:e="5e4d5e4d-5e4d-5e4d-5e4d-5e4d5e4d5e4d",children:o,open:d,onOpenChange:l})=>{let c=new Date(Date.now()+6e4).toISOString(),m="4a90a90a-90a9-0a90-a90a-90a90a90a90a",x="Sending Email API";return(0,t.jsxs)(i.Root,{open:d,onOpenChange:l,children:[o&&(0,t.jsx)(i.Trigger,{title:x,asChild:!0,children:o}),(0,t.jsxs)(i.Content,{children:[(0,t.jsx)(i.Header,{title:x}),(0,t.jsx)(i.Body,{children:(0,t.jsxs)(a.ApiDrawerRoot,{children:[(0,t.jsx)(s.ApiDrawerNavigation,{}),(0,t.jsx)(n.ApiDrawerSection,{code:{cURL:r.SEND_EMAIL_CURL_CODE,Go:r.SEND_EMAIL_GO_CODE,Rust:r.SEND_EMAIL_RUST_CODE,Java:r.SEND_EMAIL_JAVA_CODE,"Node.js":r.SEND_EMAIL_NODEJS_CODE,PHP:r.SEND_EMAIL_PHP_CODE,Python:r.SEND_EMAIL_PYTHON_CODE,Ruby:r.SEND_EMAIL_RUBY_CODE,".NET":r.SEND_EMAIL_DOTNET_CODE,CLI:r.SEND_EMAIL_CLI_CODE},title:"Send Email",href:"https://resend.com/docs/api-reference/emails/send-email"}),(0,t.jsx)(n.ApiDrawerSection,{code:{cURL:r.SEND_BATCH_EMAILS_CURL_CODE,Go:r.SEND_BATCH_EMAILS_GO_CODE,Rust:r.SEND_BATCH_EMAILS_RUST_CODE,Java:r.SEND_BATCH_EMAILS_JAVA_CODE,"Node.js":r.SEND_BATCH_EMAILS_NODEJS_CODE,PHP:r.SEND_BATCH_EMAILS_PHP_CODE,Python:r.SEND_BATCH_EMAILS_PYTHON_CODE,Ruby:r.SEND_BATCH_EMAILS_RUBY_CODE,".NET":r.SEND_BATCH_EMAILS_DOTNET_CODE,CLI:r.SEND_BATCH_EMAILS_CLI_CODE},title:"Send Batch Emails",href:"https://resend.com/docs/api-reference/emails/send-batch-emails"}),(0,t.jsx)(n.ApiDrawerSection,{code:{cURL:r.getEmailCurlCode(e),Go:r.getEmailGoCode(e),Rust:r.getEmailRustCode(e),Java:r.getEmailJavaCode(e),"Node.js":r.getEmailNodejsCode(e),PHP:r.getEmailPhpCode(e),Python:r.getEmailPythonCode(e),Ruby:r.getEmailRubyCode(e),".NET":r.getEmailDotnetCode(e),CLI:r.getEmailCliCode(e)},title:"Retrieve Email",href:"https://resend.com/docs/api-reference/emails/retrieve-email"}),(0,t.jsx)(n.ApiDrawerSection,{code:{cURL:r.updateEmailCurlCode(e,c),Go:r.updateEmailGoCode(e),Rust:r.updateEmailRustCode(e,c),Java:r.updateEmailJavaCode(e),"Node.js":r.updateEmailNodejsCode(e),PHP:r.updateEmailPhpCode(e),Python:r.updateEmailPythonCode(e),Ruby:r.updateEmailRubyCode(e),".NET":r.updateEmailDotnetCode(e),CLI:r.updateEmailCliCode(e)},title:"Update Email",href:"https://resend.com/docs/api-reference/emails/update-email"}),(0,t.jsx)(n.ApiDrawerSection,{code:{cURL:r.cancelEmailCurlCode(e),Go:r.cancelEmailGoCode(e),Rust:r.cancelEmailRustCode(e),Java:r.cancelEmailJavaCode(e),"Node.js":r.cancelEmailNodejsCode(e),PHP:r.cancelEmailPhpCode(e),Python:r.cancelEmailPythonCode(e),Ruby:r.cancelEmailRubyCode(e),".NET":r.cancelEmailDotnetCode(e),CLI:r.cancelEmailCliCode(e)},title:"Cancel Email",href:"https://resend.com/docs/api-reference/emails/cancel-email"}),(0,t.jsx)(n.ApiDrawerSection,{code:{cURL:r.LIST_EMAILS_CURL_CODE,Go:r.LIST_EMAILS_GO_CODE,Rust:r.LIST_EMAILS_RUST_CODE,Java:r.LIST_EMAILS_JAVA_CODE,"Node.js":r.LIST_EMAILS_NODEJS_CODE,PHP:r.LIST_EMAILS_PHP_CODE,Python:r.LIST_EMAILS_PYTHON_CODE,Ruby:r.LIST_EMAILS_RUBY_CODE,".NET":r.LIST_EMAILS_DOTNET_CODE,CLI:r.LIST_EMAILS_CLI_CODE},title:"List Emails",href:"https://resend.com/docs/api-reference/emails/list-emails"}),(0,t.jsx)(n.ApiDrawerSection,{code:{cURL:r.listAttachmentsCurlCode(e),Go:r.listAttachmentsGoCode(e),Rust:r.listAttachmentsRustCode(e),Java:r.listAttachmentsJavaCode(e),"Node.js":r.listAttachmentsNodejsCode(e),PHP:r.listAttachmentsPhpCode(e),Python:r.listAttachmentsPythonCode(e),Ruby:r.listAttachmentsRubyCode(e),".NET":r.listAttachmentsDotnetCode(e),CLI:r.listAttachmentsCliCode(e)},title:"List Attachments",href:"https://resend.com/docs/api-reference/emails/list-email-attachments"}),(0,t.jsx)(n.ApiDrawerSection,{code:{cURL:r.retrieveAttachmentCurlCode(e,m),Go:r.retrieveAttachmentGoCode(e,m),Rust:r.retrieveAttachmentRustCode(e,m),Java:r.retrieveAttachmentJavaCode(e,m),"Node.js":r.retrieveAttachmentNodejsCode(e,m),PHP:r.retrieveAttachmentPhpCode(e,m),Python:r.retrieveAttachmentPythonCode(e,m),Ruby:r.retrieveAttachmentRubyCode(e,m),".NET":r.retrieveAttachmentDotnetCode(e,m),CLI:r.retrieveAttachmentCliCode(e,m)},title:"Retrieve Attachment",href:"https://resend.com/docs/api-reference/emails/retrieve-email-attachment"})]})})]})]})}],229759);var o=e.i(684502),d=e.i(600277);e.s(["ApiDrawerInbound",0,({emailId:e="5e4d5e4d-5e4d-5e4d-5e4d-5e4d5e4d5e4d",attachmentId:r="abc01abc-01ab-c01a-bc01-abc01abc01ab",children:l,open:c,onOpenChange:m})=>{let x="Receiving Email API";return(0,t.jsxs)(i.Root,{open:c,onOpenChange:m,children:[l&&(0,t.jsx)(i.Trigger,{title:x,asChild:!0,children:l}),(0,t.jsxs)(i.Content,{children:[(0,t.jsx)(i.Header,{title:x}),(0,t.jsx)(i.Body,{children:(0,t.jsxs)(a.ApiDrawerRoot,{allowedSdks:o.INBOUND_SDK_VALUES,children:[(0,t.jsx)(s.ApiDrawerNavigation,{allowedSdks:o.INBOUND_SDK_VALUES}),(0,t.jsx)(n.ApiDrawerSection,{code:{cURL:d.LIST_RECEIVED_EMAILS_CURL_CODE,"Node.js":d.LIST_RECEIVED_EMAILS_NODEJS_CODE,Rust:d.LIST_RECEIVED_EMAILS_RUST_CODE,PHP:d.LIST_RECEIVED_EMAILS_PHP_CODE,Python:d.LIST_RECEIVED_EMAILS_PYTHON_CODE,Ruby:d.LIST_RECEIVED_EMAILS_RUBY_CODE,Go:d.LIST_RECEIVED_EMAILS_GO_CODE,Java:d.LIST_RECEIVED_EMAILS_JAVA_CODE,".NET":d.LIST_RECEIVED_EMAILS_DOTNET_CODE,CLI:d.LIST_RECEIVED_EMAILS_CLI_CODE},title:"List Received Emails",href:"https://resend.com/docs/api-reference/emails/list-received-emails"}),(0,t.jsx)(n.ApiDrawerSection,{code:{cURL:d.getReceivedEmailCurlCode(e),"Node.js":d.getReceivedEmailNodejsCode(e),Rust:d.getReceivedEmailRustCode(e),PHP:d.getReceivedEmailPhpCode(e),Python:d.getReceivedEmailPythonCode(e),Ruby:d.getReceivedEmailRubyCode(e),Go:d.getReceivedEmailGoCode(e),Java:d.getReceivedEmailJavaCode(e),".NET":d.getReceivedEmailDotnetCode(e),CLI:d.getReceivedEmailCliCode(e)},title:"Retrieve Received Email",href:"https://resend.com/docs/api-reference/emails/retrieve-received-email"}),(0,t.jsx)(n.ApiDrawerSection,{code:{cURL:d.listReceivedEmailAttachmentsCurlCode(e),"Node.js":d.listReceivedEmailAttachmentsNodejsCode(e),Rust:d.listReceivedEmailAttachmentsRustCode(e),PHP:d.listReceivedEmailAttachmentsPhpCode(e),Python:d.listReceivedEmailAttachmentsPythonCode(e),Ruby:d.listReceivedEmailAttachmentsRubyCode(e),Go:d.listReceivedEmailAttachmentsGoCode(e),Java:d.listReceivedEmailAttachmentsJavaCode(e),".NET":d.listReceivedEmailAttachmentsDotnetCode(e),CLI:d.listReceivedEmailAttachmentsCliCode(e)},title:"List Received Email Attachments",href:"https://resend.com/docs/api-reference/attachments/list-received-email-attachments"}),(0,t.jsx)(n.ApiDrawerSection,{code:{cURL:d.getReceivedEmailAttachmentCurlCode(e,r),"Node.js":d.getReceivedEmailAttachmentNodejsCode(e,r),Rust:d.getReceivedEmailAttachmentRustCode(e,r),PHP:d.getReceivedEmailAttachmentPhpCode(e,r),Python:d.getReceivedEmailAttachmentPythonCode(e,r),Ruby:d.getReceivedEmailAttachmentRubyCode(e,r),Go:d.getReceivedEmailAttachmentGoCode(e,r),Java:d.getReceivedEmailAttachmentJavaCode(e,r),".NET":d.getReceivedEmailAttachmentDotnetCode(e,r),CLI:d.getReceivedEmailAttachmentCliCode(e,r)},title:"Retrieve Received Email Attachment",href:"https://resend.com/docs/api-reference/attachments/retrieve-received-email-attachment"})]})})]})]})}],665826)}]);

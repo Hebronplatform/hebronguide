@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>HebronGuide SF Bay Area — 샌프란시스코 한인 완전 가이드</title>
+<meta name="description" content="샌프란시스코 베이에어리어 한인 이민자·유학생·정착민을 위한 정착·생활·커뮤니티 완전 가이드 | HebronGuide">
+<style>
+:root{--home-bg:#0d1117;--gold:#E9A84C;--muted:rgba(255,255,255,0.55);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:var(--home-bg);color:#f0f0f0;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}button{cursor:pointer;border:none;background:none;font-family:inherit;}
+#home{min-height:100vh;max-width:480px;margin:0 auto;padding:0 0 80px;}
+.status-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 20px 8px;font-size:0.75rem;color:var(--muted);}
+.status-lang{display:flex;gap:4px;background:rgba(255,255,255,0.08);border-radius:20px;padding:3px;}
+.slang{padding:3px 10px;border-radius:16px;font-size:0.7rem;font-weight:700;color:var(--muted);transition:all .2s;}
+.slang.on{background:var(--gold);color:#1a1a1a;}
+.hero-card{margin:8px 16px 0;background:linear-gradient(135deg,#1a2a00 0%,#2d4800 50%,#1a3a6e 100%);border-radius:20px;padding:28px 24px 22px;position:relative;overflow:hidden;}
+.hero-card::before{content:'🌉';position:absolute;right:16px;top:12px;font-size:5rem;opacity:0.12;pointer-events:none;}
+.hero-back{font-size:0.75rem;color:rgba(255,255,255,0.6);margin-bottom:14px;}
+.hero-back a{color:var(--gold);}
+.hero-city{font-size:0.7rem;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.6);margin-bottom:6px;}
+.hero-title{font-size:1.7rem;font-weight:900;line-height:1.15;margin-bottom:10px;letter-spacing:-0.5px;}
+.hero-title em{font-style:normal;color:#86EFAC;}
+.hero-sub{font-size:0.82rem;color:rgba(255,255,255,0.75);line-height:1.5;margin-bottom:18px;}
+.hero-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
+.pill{background:rgba(255,255,255,0.12);border-radius:20px;padding:4px 10px;font-size:0.72rem;font-weight:600;}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.hst{background:rgba(255,255,255,0.1);border-radius:10px;padding:10px 8px;text-align:center;}
+.hst-n{font-size:1.1rem;font-weight:900;color:#86EFAC;}
+.hst-l{font-size:0.65rem;color:rgba(255,255,255,0.7);margin-top:2px;line-height:1.3;}
+.sec-label{padding:20px 20px 10px;font-size:0.7rem;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.4);}
+.app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 16px;}
+.app-icon{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:transform .15s;}
+.app-icon:active{transform:scale(0.9);}
+.app-icon-img{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2rem;position:relative;}
+.live-dot{position:absolute;top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:#34D399;border:2px solid var(--home-bg);}
+.app-name{font-size:0.65rem;color:rgba(255,255,255,0.8);text-align:center;line-height:1.3;font-weight:500;word-break:keep-all;}
+.ic-1{background:linear-gradient(135deg,#1d4ed8,#3b82f6);}
+.ic-2{background:linear-gradient(135deg,#15803d,#22c55e);}
+.ic-3{background:linear-gradient(135deg,#b45309,#f59e0b);}
+.ic-4{background:linear-gradient(135deg,#7c3aed,#a855f7);}
+.ic-5{background:linear-gradient(135deg,#166534,#4ade80);}
+.ic-6{background:linear-gradient(135deg,#0369a1,#38bdf8);}
+.ic-7{background:linear-gradient(135deg,#155e75,#06b6d4);}
+.ic-8{background:linear-gradient(135deg,#0c4a6e,#0ea5e9);}
+.ic-9{background:linear-gradient(135deg,#9a3412,#f97316);}
+.ic-10{background:linear-gradient(135deg,#991b1b,#ef4444);}
+.ic-11{background:linear-gradient(135deg,#4c1d95,#8b5cf6);}
+.ic-12{background:linear-gradient(135deg,#7f1d1d,#dc2626);}
+.ic-13{background:linear-gradient(135deg,#78350f,#d97706);}
+.ic-14{background:linear-gradient(135deg,#7c2d12,#ea580c);}
+.ic-15{background:linear-gradient(135deg,#052e16,#16a34a);}
+.ic-16{background:linear-gradient(135deg,#1e1b4b,#6366f1);}
+.float-nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(28,33,40,0.92);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.12);border-radius:24px;padding:10px 24px;display:flex;gap:24px;z-index:9998;}
+.fn-btn{display:flex;flex-direction:column;align-items:center;gap:2px;color:rgba(255,255,255,0.5);font-size:0.65rem;}
+.fn-btn.on{color:var(--gold);}
+.fn-icon{font-size:1.2rem;}
+.app-overlay{position:fixed;inset:0;z-index:9999;display:none;flex-direction:column;transform:translateY(100%);transition:transform .3s cubic-bezier(0.32,0.72,0,1);}
+.app-overlay.open{display:flex;transform:translateY(0);}
+.app-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;position:sticky;top:0;z-index:10;}
+.app-back{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:white;}
+.app-header-title{font-size:1rem;font-weight:800;color:white;}
+.app-header-right{width:36px;}
+.tab-bar{display:flex;overflow-x:auto;gap:0;border-bottom:1px solid rgba(255,255,255,0.15);scrollbar-width:none;position:sticky;top:58px;z-index:9;background:inherit;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{flex-shrink:0;padding:10px 16px;font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.5);border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;}
+.tab-btn.on{color:white;border-bottom-color:white;}
+.app-content{flex:1;overflow-y:auto;padding:20px 16px 60px;}
+.app-content::-webkit-scrollbar{width:0;}
+.ccard{background:rgba(255,255,255,0.06);border-radius:14px;padding:18px;margin-bottom:12px;border-left:4px solid rgba(255,255,255,0.2);}
+.ccard-title{font-size:0.9rem;font-weight:800;margin-bottom:6px;}
+.ccard-body{font-size:0.83rem;line-height:1.65;color:rgba(255,255,255,0.8);}
+.ccard-body strong{color:white;}
+.sec-head{font-size:0.95rem;font-weight:900;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.info-row{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);align-items:flex-start;}
+.info-key{font-size:0.8rem;font-weight:700;color:rgba(255,255,255,0.5);min-width:90px;padding-top:1px;}
+.info-val{font-size:0.83rem;line-height:1.5;flex:1;}
+.tag-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
+.tag-item{background:rgba(255,255,255,0.08);border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.4;}
+.tag-item strong{display:block;font-size:0.88rem;margin-bottom:2px;}
+.num-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px;}
+.num-card{background:rgba(255,255,255,0.07);border-radius:12px;padding:14px;text-align:center;}
+.num-big{font-size:1.6rem;font-weight:900;}
+.num-label{font-size:0.7rem;color:rgba(255,255,255,0.6);margin-top:3px;}
+.step-list{display:flex;flex-direction:column;gap:10px;}
+.step-item{display:flex;gap:12px;align-items:flex-start;}
+.step-num{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:800;flex-shrink:0;margin-top:1px;}
+.step-text{font-size:0.83rem;line-height:1.55;flex:1;}
+.step-text strong{display:block;font-size:0.88rem;margin-bottom:2px;}
+.dtable{width:100%;border-collapse:collapse;}
+.dtable th{font-size:0.75rem;font-weight:700;color:rgba(255,255,255,0.5);text-align:left;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.1);}
+.dtable td{font-size:0.82rem;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);vertical-align:top;}
+.dtable td:first-child{color:rgba(255,255,255,0.6);min-width:80px;font-size:0.78rem;}
+[data-en]{display:none;}
+body.en [data-ko]{display:none!important;}
+body.en [data-en]{display:initial!important;}
+@media(min-width:520px){#home{max-width:520px;}}
+.city-switcher{display:flex;gap:6px;overflow-x:auto;padding:6px 16px 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.city-switcher::-webkit-scrollbar{display:none;}
+.cs-city{flex-shrink:0;padding:5px 12px;border-radius:20px;font-size:0.72rem;font-weight:700;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.45);transition:all .2s;white-space:nowrap;text-decoration:none;}
+.cs-city.active{background:rgba(232,128,74,0.15);border-color:#E8804A;color:#E8804A;}
+.cs-city:not(.active):hover{border-color:rgba(255,255,255,0.22);color:rgba(255,255,255,0.8);}
+</style>
+</head>
+<body>
+<div id="home">
+  <div class="status-bar">
+    <span>🇺🇸 SF Bay Area · California</span>
+    <div class="status-lang">
+      <button class="slang on" onclick="setLang('ko')" data-ko>한국어</button>
+      <button class="slang" onclick="setLang('en')" data-en>English</button>
+    </div>
+  </div>
+  <div class="city-switcher">
+    <a class="cs-city" href="/seattle/">🌲 시애틀</a>
+    <a class="cs-city" href="/dallas/">⭐ 달라스</a>
+    <a class="cs-city active" href="/sf/">🌉 SF</a>
+    <a class="cs-city" href="/newyork/">🗽 뉴욕</a>
+    <a class="cs-city" href="/nashville/">🎵 내쉬빌</a>
+  </div>
+  <div class="hero-card">
+    <div class="hero-back"><a href="../index.html">← HebronGuide</a> › SF Bay Area</div>
+    <div class="hero-city">SAN FRANCISCO BAY AREA · CALIFORNIA</div>
+    <div class="hero-title">
+      <span data-ko>샌프란시스코<br>한인 완전 가이드</span>
+      <span data-en>SF Bay Area<br><em>Korean Life Guide</em></span>
+    </div>
+    <p class="hero-sub">
+      <span data-ko>실리콘밸리·샌프란시스코 — 세계 최고 기술 허브에서 살아가는 한인을 위한 가이드</span>
+      <span data-en>Silicon Valley & San Francisco — The guide for Koreans living in the world's top tech hub</span>
+    </p>
+    <div class="hero-pills">
+      <span class="pill">🍎 Apple · Google · Meta</span>
+      <span class="pill">🏘️ 산호세 코리아타운</span>
+      <span class="pill">🌁 골든게이트</span>
+      <span class="pill">💰 높은 생활비</span>
+    </div>
+    <div class="hero-stats">
+      <div class="hst"><div class="hst-n">10만+</div><div class="hst-l" data-ko>베이에어리어 한인</div><div class="hst-l" data-en>Bay Area Koreans</div></div>
+      <div class="hst"><div class="hst-n">16</div><div class="hst-l" data-ko>가이드 섹션</div><div class="hst-l" data-en>Sections</div></div>
+      <div class="hst"><div class="hst-n">13.3%</div><div class="hst-l" data-ko>CA 최고 소득세</div><div class="hst-l" data-en>CA Top Tax Rate</div></div>
+      <div class="hst"><div class="hst-n">$3,500</div><div class="hst-l" data-ko>평균 1BR 렌트</div><div class="hst-l" data-en>Avg 1BR Rent</div></div>
+    </div>
+  </div>
+
+  <div class="sec-label" data-ko>정착 & 생활</div><div class="sec-label" data-en>SETTLEMENT & LIFE</div>
+  <div class="app-grid">
+    <div class="app-icon" onclick="openApp('settle')"><div class="app-icon-img ic-1"><span>🏠</span><div class="live-dot"></div></div><div class="app-name"><span data-ko>정착가이드</span><span data-en>Settle</span></div></div>
+    <div class="app-icon" onclick="openApp('hood')"><div class="app-icon-img ic-2">🗺️</div><div class="app-name"><span data-ko>지역안내</span><span data-en>Areas</span></div></div>
+    <div class="app-icon" onclick="openApp('biz')"><div class="app-icon-img ic-3">🏪</div><div class="app-name"><span data-ko>한인상권</span><span data-en>K-Business</span></div></div>
+    <div class="app-icon" onclick="openApp('church')"><div class="app-icon-img ic-4">⛪</div><div class="app-name"><span data-ko>한인교회</span><span data-en>Churches</span></div></div>
+  </div>
+  <div class="app-grid" style="margin-top:14px;">
+    <div class="app-icon" onclick="openApp('edu')"><div class="app-icon-img ic-5">🎓</div><div class="app-name"><span data-ko>교육정보</span><span data-en>Education</span></div></div>
+    <div class="app-icon" onclick="openApp('jobs')"><div class="app-icon-img ic-6">💼</div><div class="app-name"><span data-ko>취업정보</span><span data-en>Jobs</span></div></div>
+    <div class="app-icon" onclick="openApp('health')"><div class="app-icon-img ic-7">🏥</div><div class="app-name"><span data-ko>의료보험</span><span data-en>Health</span></div></div>
+    <div class="app-icon" onclick="openApp('transit')"><div class="app-icon-img ic-8">🚇</div><div class="app-name"><span data-ko>교통안내</span><span data-en>Transit</span></div></div>
+  </div>
+  <div class="sec-label" style="margin-top:18px;" data-ko>재정 & 안전</div><div class="sec-label" style="margin-top:18px;" data-en>FINANCE & SAFETY</div>
+  <div class="app-grid">
+    <div class="app-icon" onclick="openApp('cost')"><div class="app-icon-img ic-9">💰</div><div class="app-name"><span data-ko>생활비</span><span data-en>Cost</span></div></div>
+    <div class="app-icon" onclick="openApp('safety')"><div class="app-icon-img ic-10">🛡️</div><div class="app-name"><span data-ko>안전정보</span><span data-en>Safety</span></div></div>
+    <div class="app-icon" onclick="openApp('comm')"><div class="app-icon-img ic-11">🤝</div><div class="app-name"><span data-ko>커뮤니티</span><span data-en>Community</span></div></div>
+    <div class="app-icon" onclick="openApp('emerg')"><div class="app-icon-img ic-12">🚨</div><div class="app-name"><span data-ko>긴급연락</span><span data-en>Emergency</span></div></div>
+  </div>
+  <div class="sec-label" style="margin-top:18px;" data-ko>라이프스타일</div><div class="sec-label" style="margin-top:18px;" data-en>LIFESTYLE</div>
+  <div class="app-grid">
+    <div class="app-icon" onclick="openApp('cafe')"><div class="app-icon-img ic-13">☕</div><div class="app-name"><span data-ko>카페 추천</span><span data-en>Cafés</span></div></div>
+    <div class="app-icon" onclick="openApp('food')"><div class="app-icon-img ic-14">🍽️</div><div class="app-name"><span data-ko>맛집 안내</span><span data-en>Dining</span></div></div>
+    <div class="app-icon" onclick="openApp('nature')"><div class="app-icon-img ic-15">🌉</div><div class="app-name"><span data-ko>관광·나들이</span><span data-en>Explore</span></div></div>
+    <div class="app-icon" onclick="openApp('global')"><div class="app-icon-img ic-16">🌍</div><div class="app-name"><span data-ko>글로벌</span><span data-en>Global</span></div></div>
+  </div>
+
+  <!-- HebronGuide Footer -->
+  <div style="margin:32px 0 100px;padding:24px 16px 8px;border-top:1px solid rgba(255,255,255,0.07);">
+    <div style="text-align:center;margin-bottom:18px;">
+      <img src="../assets/hebronguide-logo.svg" alt="HebronGuide" style="height:38px;max-width:220px;display:block;margin:0 auto;">
+    </div>
+    <div style="background:rgba(110,231,183,0.07);border:1px solid rgba(110,231,183,0.15);border-radius:14px;padding:18px;margin-bottom:14px;">
+      <div style="font-size:0.8rem;font-weight:800;color:#6EE7B7;margin-bottom:8px;" data-ko>🏢 교회·비즈니스 운영자 여러분께</div>
+      <div style="font-size:0.8rem;font-weight:800;color:#6EE7B7;margin-bottom:8px;" data-en>🏢 For Church & Business Leaders</div>
+      <div style="font-size:0.77rem;color:rgba(255,255,255,0.7);line-height:1.65;" data-ko>귀하의 교회·비즈니스·기관을 HebronGuide를 통해 한인 커뮤니티에 알리세요. 새 비즈니스 창업·이전 시 웹사이트 제작을 함께 도와드립니다.</div>
+      <div style="font-size:0.77rem;color:rgba(255,255,255,0.7);line-height:1.65;" data-en>List your church, business, or organization on HebronGuide to reach the Korean community. We also help new businesses create their first website.</div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="mailto:info@hebronguide.com" style="display:inline-block;background:#6EE7B7;color:#0d1117;border-radius:9px;padding:8px 16px;font-size:0.75rem;font-weight:800;" data-ko>웹사이트 문의 →</a>
+        <a href="mailto:info@hebronguide.com" style="display:inline-block;background:#6EE7B7;color:#0d1117;border-radius:9px;padding:8px 16px;font-size:0.75rem;font-weight:800;" data-en>Website Inquiry →</a>
+        <a href="../index.html" style="display:inline-block;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border-radius:9px;padding:8px 14px;font-size:0.72rem;font-weight:700;" data-ko>← 도시 가이드</a>
+        <a href="../index.html" style="display:inline-block;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border-radius:9px;padding:8px 14px;font-size:0.72rem;font-weight:700;" data-en>← City Guides</a>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.65rem;color:rgba(255,255,255,0.2);">© 2025 HebronGuide · For informational purposes only</div>
+  </div>
+</div>
+
+<div class="float-nav" id="floatNav">
+  <div class="fn-btn on"><div class="fn-icon">🏠</div><span data-ko>홈</span><span data-en>Home</span></div>
+  <div class="fn-btn" onclick="openApp('settle')"><div class="fn-icon">📋</div><span data-ko>정착</span><span data-en>Settle</span></div>
+  <div class="fn-btn" onclick="openApp('jobs')"><div class="fn-icon">💼</div><span data-ko>취업</span><span data-en>Jobs</span></div>
+  <div class="fn-btn" onclick="openApp('emerg')"><div class="fn-icon">🚨</div>SOS</div>
+</div>
+
+<!-- 정착가이드 -->
+<div class="app-overlay" id="app-settle" style="background:linear-gradient(180deg,#0f1f3d,#1a2a50);">
+  <div class="app-header" style="background:linear-gradient(135deg,#1a3a6e,#0f1f3d);">
+    <button class="app-back" onclick="closeApp('settle')">‹</button>
+    <div class="app-header-title">🏠 <span data-ko>정착가이드</span><span data-en>Settlement</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#0f1f3d;">
+    <button class="tab-btn on" onclick="sTab(this,'ss-week1')"><span data-ko>1주차</span><span data-en>Week 1</span></button>
+    <button class="tab-btn" onclick="sTab(this,'ss-month1')"><span data-ko>1개월</span><span data-en>Month 1</span></button>
+    <button class="tab-btn" onclick="sTab(this,'ss-tax')"><span data-ko>세금</span><span data-en>Tax</span></button>
+    <button class="tab-btn" onclick="sTab(this,'ss-top10')">TOP 10</button>
+  </div>
+  <div class="app-content">
+    <section id="ss-week1">
+      <div class="sec-head" data-ko>📅 SF 베이에어리어 도착 1주일</div>
+      <div class="sec-head" data-en>📅 First Week in the Bay Area</div>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num" style="background:#60A5FA33;color:#60A5FA;">1</div><div class="step-text"><strong data-ko>임시 숙소 — 산타클라라/산호세 권장</strong><strong data-en>Temporary housing — Santa Clara/San Jose recommended</strong><span data-ko>한인 밀집 지역 중심. Airbnb 또는 한인 단기 임대. SF 시내는 매우 비쌈.</span><span data-en>Near Korean concentration. Airbnb or Korean short-term rental. SF city proper is very expensive.</span></div></div>
+        <div class="step-item"><div class="step-num" style="background:#60A5FA33;color:#60A5FA;">2</div><div class="step-text"><strong data-ko>Clipper 카드 발급</strong><strong data-en>Get a Clipper Card</strong><span data-ko>베이에어리어 대중교통 통합 카드. BART·Caltrain·MUNI 모두 사용. 공항 도착 즉시 구매 가능.</span><span data-en>Bay Area transit pass. Works on BART, Caltrain & MUNI. Available immediately at the airport.</span></div></div>
+        <div class="step-item"><div class="step-num" style="background:#60A5FA33;color:#60A5FA;">3</div><div class="step-text"><strong data-ko>은행 계좌 — Chase/BofA 한인 지점</strong><strong data-en>Bank account — Chase/BofA Korean branch</strong><span data-ko>쿠퍼티노·산호세 한인 밀집 지역 지점 방문.</span><span data-en>Visit branches in Cupertino or San Jose Korean areas.</span></div></div>
+        <div class="step-item"><div class="step-num" style="background:#60A5FA33;color:#60A5FA;">4</div><div class="step-text"><strong data-ko>H-Mart 방문 — 산호세/밀피타스</strong><strong data-en>Visit H-Mart — San Jose/Milpitas</strong><span data-ko>베이에어리어 최대 한인 마트. 지역 정보 교류 허브.</span><span data-en>Largest Korean market in the Bay. Community info exchange hub.</span></div></div>
+        <div class="step-item"><div class="step-num" style="background:#60A5FA33;color:#60A5FA;">5</div><div class="step-text"><strong data-ko>⚠️ 캘리포니아 세금 구조 파악</strong><strong data-en>⚠️ Understand California tax structure</strong><span data-ko>캘리포니아 주 소득세 최고 13.3%. 연봉 $150K 시 약 $15K+ 추가 세금. 한인 CPA 조기 상담 강력 권장.</span><span data-en>California state income tax up to 13.3%. On $150K salary, ~$15K+ extra in state tax. Strongly recommend early Korean CPA consultation.</span></div></div>
+        <div class="step-item"><div class="step-num" style="background:#60A5FA33;color:#60A5FA;">6</div><div class="step-text"><strong data-ko>한인 교회 첫 방문</strong><strong data-en>First Korean church visit</strong><span data-ko>베이에어리어 한인 교회 200개 이상. 주거·취업·학교 정보의 핵심 네트워크.</span><span data-en>200+ Korean churches in the Bay Area. Core network for housing, jobs, and school info.</span></div></div>
+      </div>
+    </section>
+    <section id="ss-month1" style="margin-top:28px;">
+      <div class="sec-head" data-ko>📋 1개월 내 처리</div>
+      <div class="sec-head" data-en>📋 Within 1 Month</div>
+      <div class="ccard" style="border-left-color:#60A5FA;">
+        <div class="ccard-title" data-ko>🚗 캘리포니아 운전면허 취득 ✅ 검증됨</div>
+        <div class="ccard-title" data-en>🚗 Get California Driver's License ✅ Verified</div>
+        <div class="ccard-body">
+          <span data-ko>DMV 방문 (예약 필수). 한국 면허 교환 불가. 필기+실기. 한국어 필기 가능. 실리콘밸리 교외 거주 시 차 필수.</span>
+          <span data-en>Visit DMV (appointment required). Korean license not transferable. Written + road test. Korean written test available. Car essential for Silicon Valley suburbs.</span>
+          <div style="margin-top:8px;font-size:0.82rem;color:rgba(255,255,255,0.75);">
+            <span data-ko>📍 California DMV San Jose: 111 W Alma Ave, San Jose CA 95112</span>
+            <span data-en>📍 California DMV San Jose: 111 W Alma Ave, San Jose CA 95112</span>
+          </div>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:8px;">
+            <a href="tel:+18007770133" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📞 (800) 777-0133</a>
+            <a href="https://www.dmv.ca.gov/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 dmv.ca.gov</a>
+            <a href="https://maps.google.com/?q=111+W+Alma+Ave+San+Jose+CA+95112" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📍 Google Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="ccard" style="border-left-color:#60A5FA;">
+        <div class="ccard-title" data-ko>🪪 SSA 사회보장국 (산호세) ✅ 검증됨</div>
+        <div class="ccard-title" data-en>🪪 Social Security Administration (San Jose) ✅ Verified</div>
+        <div class="ccard-body">
+          <span data-ko>소셜 시큐리티 카드 발급. 취업·은행·운전면허 모두 필수. 예약 없이 방문 가능 (대기 있음).<br>📍 280 S First St Room 244, San Jose CA 95113<br>⏰ 월-금 9AM–4PM</span>
+          <span data-en>Social Security card issuance. Required for employment, banking, and driver's license. Walk-in available (wait expected).<br>📍 280 S First St Room 244, San Jose CA 95113<br>⏰ Mon–Fri 9AM–4PM</span>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:8px;">
+            <a href="tel:+18663312235" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📞 (866) 331-2235</a>
+            <a href="https://maps.google.com/?q=280+S+First+St+San+Jose+CA+95113" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📍 Google Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="ccard" style="border-left-color:#60A5FA;">
+        <div class="ccard-title" data-ko>💛 KACF-SF (한인커뮤니티재단) ✅ 검증됨</div>
+        <div class="ccard-title" data-en>💛 KACF-SF (Korean American Community Foundation) ✅ Verified</div>
+        <div class="ccard-body">
+          <span data-ko>한인 커뮤니티 재단. 의료·장학·시니어 지원 프로그램. 초기 정착자에게 유용.</span>
+          <span data-en>Korean American community foundation. Healthcare, scholarship, and senior support programs. Useful for new settlers.</span>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:8px;">
+            <a href="tel:+16506565705" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📞 (650) 656-5705</a>
+            <a href="https://www.kacfsf.org/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 kacfsf.org</a>
+          </div>
+        </div>
+      </div>
+      <div class="ccard" style="border-left-color:#60A5FA;"><div class="ccard-title" data-ko>🏠 장기 주거지 — 베이에어리어 렌트 현실 ✅ 검증됨</div><div class="ccard-title" data-en>🏠 Long-term Housing — Bay Area Rent Reality ✅ Verified</div><div class="ccard-body"><span data-ko>SF 시내 1BR $3,200~4,500. 산호세 1BR $2,200~2,800. 프리몬트 1BR $2,200~2,800. 데일리시티 1BR $1,900~2,500 (SF보다 저렴). 룸 쉐어 $1,000~1,500 (초기 절약 방법).</span><span data-en>SF city 1BR $3,200–4,500. San Jose 1BR $2,200–2,800. Fremont 1BR $2,200–2,800. Daly City 1BR $1,900–2,500 (cheaper than SF). Room share $1,000–1,500 (initial savings option).</span></div></div>
+      <div class="ccard" style="border-left-color:#60A5FA;"><div class="ccard-title" data-ko>💡 렌트 절약 전략</div><div class="ccard-title" data-en>💡 Rent Saving Strategy</div><div class="ccard-body"><span data-ko>• 한인 룸 쉐어 (네이버 카페, 카카오톡)<br>• SF 시내보다 데일리시티·East Bay (프리몬트, 헤이워드) 선택<br>• 회사 셔틀버스 노선 따라 거주지 결정<br>• 한인 교회 새가족 임시 숙박 지원 활용</span><span data-en>• Korean room share (Naver Cafe, KakaoTalk)<br>• Choose Daly City or East Bay (Fremont, Hayward) over SF city<br>• Choose housing along company shuttle routes<br>• Use Korean church new family temporary housing support</span></div></div>
+    </section>
+    <section id="ss-tax" style="margin-top:28px;">
+      <div class="sec-head" data-ko>💸 캘리포니아 세금 — 반드시 알아야 할 것</div>
+      <div class="sec-head" data-en>💸 California Tax — Must Know</div>
+      <div class="ccard" style="border-left-color:#F87171;">
+        <div class="ccard-title" data-ko>⚠️ 캘리포니아 세금의 현실</div>
+        <div class="ccard-title" data-en>⚠️ California Tax Reality</div>
+        <div class="ccard-body"><span data-ko>• 주 소득세: 1%~13.3% (누진세)<br>• 연봉 $100K → 주 세금 약 $6,500<br>• 연봉 $200K → 주 세금 약 $18,000<br>• 연봉 $300K → 주 세금 약 $30,000+<br><br><strong>워싱턴(시애틀)·텍사스(달라스) 대비 실질 급여 차이 큼</strong><br>빅테크 높은 연봉도 세금 후 체감 소득 낮아짐.</span><span data-en>• State income tax: 1%–13.3% (progressive)<br>• Salary $100K → ~$6,500 state tax<br>• Salary $200K → ~$18,000 state tax<br>• Salary $300K → $30,000+ state tax<br><br><strong>Significantly lower take-home pay vs. Washington (Seattle) or Texas (Dallas)</strong><br>Even high Big Tech salaries feel lower after taxes.</span></div>
+      </div>
+      <div class="ccard" style="border-left-color:#60A5FA;"><div class="ccard-title" data-ko>RSU·스톡옵션 세금 주의</div><div class="ccard-title" data-en>RSU & Stock Option Tax Warning</div><div class="ccard-body"><span data-ko>캘리포니아는 RSU 베스팅 시 일반 소득세 + 주 소득세 동시 과세. 세금 폭탄 가능. 한인 CPA 상담 필수.</span><span data-en>California taxes RSU vesting as ordinary income + state income tax. Tax bomb possible. Korean CPA consultation essential.</span></div></div>
+    </section>
+    <section id="ss-top10" style="margin-top:28px;">
+      <div class="sec-head">TOP 10 — <span data-ko>베이에어리어 정착 필수</span><span data-en>Bay Area Essentials</span></div>
+      <div class="tag-grid">
+        <div class="tag-item"><strong>🚇 Clipper Card</strong><span data-ko>베이에어리어 교통 카드</span><span data-en>Bay Area transit card</span></div>
+        <div class="tag-item"><strong>🏠 Craigslist</strong><span data-ko>룸 쉐어 찾기</span><span data-en>Room share search</span></div>
+        <div class="tag-item"><strong>📊 한인 CPA</strong><span data-ko>캘리포니아 세금 필수</span><span data-en>CA tax essential</span></div>
+        <div class="tag-item"><strong>🌐 VPN</strong><span data-ko>한국 방송 시청</span><span data-en>Korean TV streaming</span></div>
+        <div class="tag-item"><strong>🚗 Caltrain</strong><span data-ko>SF~실리콘밸리 통근</span><span data-en>SF to SV commute</span></div>
+        <div class="tag-item"><strong>💸 Wise</strong><span data-ko>한국 송금 최저비용</span><span data-en>Lowest-cost remittance</span></div>
+        <div class="tag-item"><strong>📱 Nextdoor</strong><span data-ko>동네 정보·렌트</span><span data-en>Neighborhood info</span></div>
+        <div class="tag-item"><strong>🛒 H-Mart</strong><span data-ko>산호세/밀피타스</span><span data-en>San Jose/Milpitas</span></div>
+        <div class="tag-item"><strong>🏥 Zocdoc</strong><span data-ko>한인 의사 예약</span><span data-en>Korean doctor booking</span></div>
+        <div class="tag-item"><strong>📺 Naver Cafe</strong><span data-ko>베이에어리어 한인</span><span data-en>Bay Area Korean</span></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- 지역안내 -->
+<div class="app-overlay" id="app-hood" style="background:linear-gradient(180deg,#0a2e1a,#1a4d2e);">
+  <div class="app-header" style="background:linear-gradient(135deg,#1a4d2e,#0a2e1a);">
+    <button class="app-back" onclick="closeApp('hood')">‹</button>
+    <div class="app-header-title">🗺️ <span data-ko>지역안내</span><span data-en>Neighborhoods</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#0a2e1a;">
+    <button class="tab-btn on" onclick="sTab(this,'sh-sv')"><span data-ko>실리콘밸리</span><span data-en>Silicon Valley</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sh-east')"><span data-ko>이스트베이</span><span data-en>East Bay</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sh-sf')">SF</button>
+    <button class="tab-btn" onclick="sTab(this,'sh-compare')"><span data-ko>비교표</span><span data-en>Compare</span></button>
+  </div>
+  <div class="app-content">
+    <section id="sh-sv">
+      <div class="sec-head" data-ko>🏢 실리콘밸리 — 한인 IT 전문직 중심</div>
+      <div class="sec-head" data-en>🏢 Silicon Valley — Korean IT Professionals Hub</div>
+      <div class="ccard" style="border-left-color:#4ADE80;"><div class="ccard-title">Cupertino · 쿠퍼티노 ⭐</div><div class="ccard-body"><span data-ko>Apple 본사. <strong>한인 IT 전문직·가족 최다 지역.</strong> 최상위 학군 (Cupertino Union SD). 한인 상권·교회 밀집. 렌트 높음.<br>렌트: 1B $2,800–3,500 / 2B $3,500–4,500</span><span data-en>Apple HQ. <strong>Most Korean IT professionals & families.</strong> Top schools (Cupertino Union SD). Dense Korean businesses & churches. High rent.<br>Rent: 1B $2,800–3,500 / 2B $3,500–4,500</span></div></div>
+      <div class="ccard"><div class="ccard-title">Sunnyvale · 서니베일</div><div class="ccard-body"><span data-ko>Google·Yahoo·LinkedIn 인근. 한인 가족 다수. 합리적 렌트 (쿠퍼티노 대비). 좋은 학군.<br>렌트: 1B $2,500–3,200</span><span data-en>Near Google, Yahoo, LinkedIn. Many Korean families. More reasonable rent vs. Cupertino. Good schools.<br>Rent: 1B $2,500–3,200</span></div></div>
+      <div class="ccard"><div class="ccard-title">San Jose · 산호세</div><div class="ccard-body"><span data-ko>베이에어리어 최대 한인 상권·코리아타운. H-Mart 위치. 다양한 한인 교회. 렌트 실리콘밸리 중 상대적 저렴.<br>렌트: 1B $2,200–2,800</span><span data-en>Largest Korean business district & Koreatown in the Bay Area. H-Mart location. Diverse Korean churches. Relatively affordable rent in Silicon Valley.<br>Rent: 1B $2,200–2,800</span></div></div>
+      <div class="ccard"><div class="ccard-title">Santa Clara · 산타클라라</div><div class="ccard-body"><span data-ko>Intel·Nvidia 본사. 반도체·하드웨어 엔지니어 선호. 한인 엔지니어 많음.<br>렌트: 1B $2,400–3,000</span><span data-en>Intel & Nvidia HQ. Popular with semiconductor & hardware engineers. Many Korean engineers.<br>Rent: 1B $2,400–3,000</span></div></div>
+    </section>
+    <section id="sh-east" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🌉 이스트베이 — 가성비 대안</div>
+      <div class="sec-head" data-en>🌉 East Bay — Affordable Alternative</div>
+      <div class="ccard" style="border-left-color:#4ADE80;"><div class="ccard-title">Fremont · 프리몬트</div><div class="ccard-body"><span data-ko>실리콘밸리 통근 가능 + 저렴한 렌트. 한인·아시안 밀집. BART 연결. 좋은 학군. <strong>가성비 최고.</strong><br>렌트: 1B $2,200–2,700</span><span data-en>Commutable to Silicon Valley + affordable rent. Dense Korean/Asian community. BART access. Good schools. <strong>Best value.</strong><br>Rent: 1B $2,200–2,700</span></div></div>
+      <div class="ccard"><div class="ccard-title">Milpitas · 밀피타스</div><div class="ccard-body"><span data-ko>H-Mart 밀피타스. 산호세 인접. 한인·베트남인 커뮤니티. 합리적 렌트.<br>렌트: 1B $2,100–2,600</span><span data-en>H-Mart Milpitas. Adjacent to San Jose. Korean & Vietnamese community. Reasonable rent.<br>Rent: 1B $2,100–2,600</span></div></div>
+    </section>
+    <section id="sh-sf" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🌁 샌프란시스코 시내</div>
+      <div class="sec-head" data-en>🌁 San Francisco City</div>
+      <div class="ccard"><div class="ccard-title">SF Inner Sunset / Richmond</div><div class="ccard-body"><span data-ko>한인 식당·카페 다수. 문화·예술 풍부. 대중교통 좋음. <strong>렌트 매우 비쌈.</strong> 리치몬드 지역은 한인 식당·카페 증가 중 (2025년 기준).<br>렌트: 1BR $3,200–4,500</span><span data-en>Many Korean restaurants & cafes. Rich culture & arts. Good transit. <strong>Very expensive rent.</strong> Richmond district seeing growing Korean restaurants & cafes (as of 2025).<br>Rent: 1BR $3,200–4,500</span></div></div>
+      <div class="ccard" style="border-left-color:#4ADE80;"><div class="ccard-title">Daly City · 데일리시티 ✅ 검증됨</div><div class="ccard-body"><span data-ko>SF 바로 남쪽. SF보다 저렴. BART·Muni 연결. 한인·필리핀인 커뮤니티. <strong>Jagalchi Market 위치 — 베이에어리어 새 한인 마켓 허브.</strong><br>렌트: 1BR $1,900–2,500 (2025년 기준. SF 대비 가성비 우수)</span><span data-en>Just south of SF. Cheaper than SF. BART & Muni access. Korean & Filipino community. <strong>Jagalchi Market here — new Bay Area Korean market hub.</strong><br>Rent: 1BR $1,900–2,500 (2025. Great value vs. SF)</span></div></div>
+    </section>
+    <section id="sh-compare" style="margin-top:28px;">
+      <div class="sec-head" data-ko>📊 지역 비교 ✅ 2025년 렌트 기준</div><div class="sec-head" data-en>📊 Area Comparison ✅ 2025 Rent Data</div>
+      <table class="dtable">
+        <thead><tr><th data-ko>지역</th><th data-en>Area</th><th data-ko>한인</th><th data-en>Korean</th><th data-ko>1BR 렌트</th><th data-en>1BR Rent</th><th data-ko>학군</th><th data-en>School</th></tr></thead>
+        <tbody>
+          <tr><td data-ko>쿠퍼티노</td><td data-en>Cupertino</td><td>⭐⭐⭐</td><td>⭐⭐⭐</td><td>$2,800–3,500</td><td>$2,800–3,500</td><td>A+</td><td>A+</td></tr>
+          <tr><td data-ko>서니베일</td><td data-en>Sunnyvale</td><td>⭐⭐</td><td>⭐⭐</td><td>$2,500–3,200</td><td>$2,500–3,200</td><td>A</td><td>A</td></tr>
+          <tr><td data-ko>산호세</td><td data-en>San Jose</td><td>⭐⭐⭐</td><td>⭐⭐⭐</td><td>$2,200–2,800</td><td>$2,200–2,800</td><td>A-</td><td>A-</td></tr>
+          <tr><td data-ko>프리몬트</td><td data-en>Fremont</td><td>⭐⭐</td><td>⭐⭐</td><td>$2,200–2,800</td><td>$2,200–2,800</td><td>A</td><td>A</td></tr>
+          <tr><td data-ko>데일리시티</td><td data-en>Daly City</td><td>⭐⭐</td><td>⭐⭐</td><td>$1,900–2,500</td><td>$1,900–2,500</td><td>B+</td><td>B+</td></tr>
+          <tr><td data-ko>SF 시내</td><td data-en>SF City</td><td>⭐</td><td>⭐</td><td>$3,200–4,500</td><td>$3,200–4,500</td><td>B</td><td>B</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>
+
+<!-- 취업정보 -->
+<div class="app-overlay" id="app-jobs" style="background:linear-gradient(180deg,#0a1a3c,#1a2d5c);">
+  <div class="app-header" style="background:linear-gradient(135deg,#1a2d5c,#0a1a3c);">
+    <button class="app-back" onclick="closeApp('jobs')">‹</button>
+    <div class="app-header-title">💼 <span data-ko>취업정보</span><span data-en>Jobs & Economy</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#0a1a3c;">
+    <button class="tab-btn on" onclick="sTab(this,'sj-big5')"><span data-ko>빅테크</span><span data-en>Big Tech</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sj-startup')"><span data-ko>스타트업</span><span data-en>Startups</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sj-tips')"><span data-ko>취업 팁</span><span data-en>Tips</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sj-visa')"><span data-ko>비자</span><span data-en>Visa</span></button>
+  </div>
+  <div class="app-content">
+    <section id="sj-big5">
+      <div class="num-grid">
+        <div class="num-card"><div class="num-big" style="color:#38BDF8;">🍎</div><div class="num-label">Apple</div></div>
+        <div class="num-card"><div class="num-big" style="color:#38BDF8;">🔍</div><div class="num-label">Google</div></div>
+        <div class="num-card"><div class="num-big" style="color:#38BDF8;">👤</div><div class="num-label">Meta</div></div>
+        <div class="num-card"><div class="num-big" style="color:#38BDF8;">🔷</div><div class="num-label">Nvidia</div></div>
+      </div>
+      <div class="ccard" style="border-left-color:#38BDF8;"><div class="ccard-title">Apple 🍎</div><div class="ccard-body"><span data-ko>본사 쿠퍼티노. 하드웨어·소프트웨어·AI. <strong>한인 엔지니어 수천 명.</strong> 연봉 $150K–$450K+. 주택 보조 프로그램.</span><span data-en>HQ Cupertino. Hardware, software, AI. <strong>Thousands of Korean engineers.</strong> Salary $150K–$450K+. Housing assistance programs.</span></div></div>
+      <div class="ccard" style="border-left-color:#38BDF8;"><div class="ccard-title">Google 🔍</div><div class="ccard-body"><span data-ko>본사 마운틴뷰. 검색·유튜브·클라우드·AI. 최상위 보상 패키지. 한인 직원 수천 명. 연봉 $160K–$500K+.</span><span data-en>HQ Mountain View. Search, YouTube, Cloud, AI. Top-tier compensation. Thousands of Korean employees. Salary $160K–$500K+.</span></div></div>
+      <div class="ccard" style="border-left-color:#38BDF8;"><div class="ccard-title">Nvidia · Intel · AMD</div><div class="ccard-body"><span data-ko>반도체·GPU·AI 칩. 한국 반도체 경력자에게 최고 기회. Nvidia 급성장 중. 연봉 $160K–$600K+.</span><span data-en>Semiconductors, GPUs, AI chips. Top opportunity for Korean semiconductor veterans. Nvidia growing rapidly. Salary $160K–$600K+.</span></div></div>
+      <div class="ccard" style="border-left-color:#38BDF8;"><div class="ccard-title">Meta · Salesforce · Adobe</div><div class="ccard-body"><span data-ko>소셜미디어·CRM·크리에이티브 소프트웨어. SF 시내 및 실리콘밸리. 한인 직원 다수.</span><span data-en>Social media, CRM, creative software. SF city and Silicon Valley. Many Korean employees.</span></div></div>
+    </section>
+    <section id="sj-startup" style="margin-top:28px;">
+      <div class="ccard" style="border-left-color:#38BDF8;"><div class="ccard-title" data-ko>🚀 스타트업 생태계</div><div class="ccard-title" data-en>🚀 Startup Ecosystem</div><div class="ccard-body"><span data-ko>세계 최고의 스타트업 생태계. Y Combinator, Andreessen Horowitz 등 탑 VC. 한인 창업자 다수 활동 중.<br>• 한인 창업 커뮤니티: KoSEA (Korean Scientists & Engineers in America)<br>• 한인 VC 네트워크 활발<br>• 스타트업 경험 후 빅테크 이동 공통 경로</span><span data-en>World's best startup ecosystem. Top VCs: Y Combinator, Andreessen Horowitz. Many Korean founders active.<br>• Korean founder community: KoSEA<br>• Active Korean VC network<br>• Common path: startup experience → Big Tech</span></div></div>
+    </section>
+    <section id="sj-tips" style="margin-top:28px;">
+      <div class="ccard" style="border-left-color:#38BDF8;"><div class="ccard-title" data-ko>💡 베이에어리어 한인 취업 필수 팁</div><div class="ccard-title" data-en>💡 Bay Area Korean Job Tips</div><div class="ccard-body"><span data-ko>• <strong>KoSEA</strong> — 한인 과학자·엔지니어 협회. 네트워킹 핵심<br>• <strong>Stanford/UCB 한인 동문</strong> 네트워크 강력<br>• Leetcode + System Design — 빅테크 필수 준비<br>• 링크드인 최적화 필수 (리크루터 매일 연락)<br>• 베이에어리어 한인 교회 소그룹 = 의외로 강력한 취업 루트</span><span data-en>• <strong>KoSEA</strong> — Korean Scientists & Engineers Association. Core networking<br>• <strong>Stanford/UCB Korean alumni</strong> network is powerful<br>• Leetcode + System Design — essential Big Tech prep<br>• LinkedIn optimization essential (recruiters contact daily)<br>• Bay Area Korean church small groups = surprisingly powerful job route</span></div></div>
+    </section>
+    <section id="sj-visa" style="margin-top:28px;">
+      <div class="ccard" style="border-left-color:#38BDF8;"><div class="ccard-title" data-ko>🛂 비자 정보</div><div class="ccard-title" data-en>🛂 Visa Info</div><div class="ccard-body"><span data-ko>• <strong>H-1B</strong>: 빅테크 모두 적극 스폰서<br>• <strong>OPT/STEM OPT</strong>: 3년간 취업 자유 (졸업 후)<br>• <strong>EB-1A/EB-2 NIW</strong>: 탁월한 능력자 영주권 — 실리콘밸리 가장 많이 활용<br>• 이민 전문 변호사 비용 높지만 필수</span><span data-en>• <strong>H-1B</strong>: All Big Tech companies actively sponsor<br>• <strong>OPT/STEM OPT</strong>: 3 years open employment (post-graduation)<br>• <strong>EB-1A/EB-2 NIW</strong>: Extraordinary ability green card — most used in Silicon Valley<br>• Immigration attorneys are expensive but essential</span></div></div>
+    </section>
+  </div>
+</div>
+
+<!-- 생활비 -->
+<div class="app-overlay" id="app-cost" style="background:linear-gradient(180deg,#1a0a00,#3a1a00);">
+  <div class="app-header" style="background:linear-gradient(135deg,#3a1a00,#1a0a00);">
+    <button class="app-back" onclick="closeApp('cost')">‹</button>
+    <div class="app-header-title">💰 <span data-ko>생활비</span><span data-en>Cost of Living</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="app-content" style="padding-top:16px;">
+    <div class="num-grid">
+      <div class="num-card"><div class="num-big" style="color:#F97316;">13.3%</div><div class="num-label" data-ko>CA 최고 소득세율</div><div class="num-label" data-en>CA Top Income Tax</div></div>
+      <div class="num-card"><div class="num-big" style="color:#F97316;">10.25%</div><div class="num-label" data-ko>산호세 판매세</div><div class="num-label" data-en>San Jose Sales Tax</div></div>
+      <div class="num-card"><div class="num-big" style="color:#F97316;">$3,200</div><div class="num-label" data-ko>SF 평균 1BR 렌트</div><div class="num-label" data-en>SF Avg 1BR Rent</div></div>
+      <div class="num-card"><div class="num-big" style="color:#F97316;">$6.00+</div><div class="num-label" data-ko>갤런당 주유비</div><div class="num-label" data-en>Gas per Gallon</div></div>
+    </div>
+    <table class="dtable">
+      <thead><tr><th data-ko>항목</th><th data-en>Item</th><th>쿠퍼티노/산호세</th><th>Cupertino/SJ</th><th>프리몬트</th><th>Fremont</th><th>SF 시내</th><th>SF City</th></tr></thead>
+      <tbody>
+        <tr><td data-ko>스튜디오</td><td data-en>Studio</td><td colspan="2">$2,200–2,800</td><td colspan="2">$1,900–2,400</td><td colspan="2">$2,800–3,800</td></tr>
+        <tr><td data-ko>1베드룸</td><td data-en>1 Bedroom</td><td colspan="2">$2,800–3,500</td><td colspan="2">$2,200–2,700</td><td colspan="2">$3,200–4,500</td></tr>
+        <tr><td data-ko>2베드룸</td><td data-en>2 Bedroom</td><td colspan="2">$3,500–4,500</td><td colspan="2">$2,800–3,500</td><td colspan="2">$4,000–5,500</td></tr>
+        <tr><td data-ko>한식당 1인</td><td data-en>Korean meal</td><td colspan="6" style="text-align:center;">$18–28</td></tr>
+        <tr><td data-ko>주 소득세</td><td data-en>State tax</td><td colspan="6" style="text-align:center;color:#F87171;">최고 13.3% — 미국에서 가장 높음</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 안전 -->
+<div class="app-overlay" id="app-safety" style="background:linear-gradient(180deg,#1a0000,#3a0000);">
+  <div class="app-header" style="background:linear-gradient(135deg,#3a0000,#1a0000);">
+    <button class="app-back" onclick="closeApp('safety')">‹</button>
+    <div class="app-header-title">🛡️ <span data-ko>안전정보</span><span data-en>Safety</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="app-content" style="padding-top:16px;">
+    <div class="ccard" style="border-left-color:#4ADE80;"><div class="ccard-title">✅ <span data-ko>안전 지역</span><span data-en>Safe Areas</span></div><div class="ccard-body"><span data-ko>Cupertino, Sunnyvale, Santa Clara, Fremont, Milpitas, Dublin, Pleasanton — 교외 지역 우수 치안. 한인 가족 대다수 거주.</span><span data-en>Cupertino, Sunnyvale, Santa Clara, Fremont, Milpitas, Dublin, Pleasanton — excellent suburban safety. Most Korean families live here.</span></div></div>
+    <div class="ccard" style="border-left-color:#FBBF24;"><div class="ccard-title">⚠️ <span data-ko>SF 시내 주의 구역</span><span data-en>SF Downtown Caution</span></div><div class="ccard-body"><span data-ko>Tenderloin, SOMA 일부, Market St 주변 — 노숙자·약물 문제 심각. 야간 단독 보행 비권장. 차량 내 물건 절대 방치 금지.</span><span data-en>Tenderloin, parts of SOMA, around Market St — serious homeless/drug issues. Not recommended to walk alone at night. Never leave anything visible in your car.</span></div></div>
+    <div class="ccard" style="border-left-color:#F87171;"><div class="ccard-title">🚫 <span data-ko>차량 절도 주의</span><span data-en>Vehicle Break-in Warning</span></div><div class="ccard-body"><span data-ko>SF와 오클랜드는 차량 유리창 파손 절도 매우 빈번. 차량 내 가방·물건 절대 두지 말 것. 빈 트렁크도 닫아두기.</span><span data-en>SF and Oakland have very frequent smash-and-grab car break-ins. Never leave bags or items in your car. Even close empty trunks.</span></div></div>
+  </div>
+</div>
+
+<!-- 긴급연락 -->
+<div class="app-overlay" id="app-emerg" style="background:linear-gradient(180deg,#1f0000,#3b0000);">
+  <div class="app-header" style="background:linear-gradient(135deg,#3b0000,#1f0000);">
+    <button class="app-back" onclick="closeApp('emerg')">‹</button>
+    <div class="app-header-title">🚨 <span data-ko>긴급연락</span><span data-en>Emergency</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="app-content" style="padding-top:16px;">
+    <div class="ccard" style="border-left-color:#EF4444;">
+      <div class="ccard-title" data-ko>🆘 베이에어리어 긴급 연락처</div>
+      <div class="ccard-title" data-en>🆘 Bay Area Emergency Contacts</div>
+      <div class="ccard-body">
+        <div class="info-row"><div class="info-key" data-ko>긴급 신고</div><div class="info-key" data-en>Emergency</div><div class="info-val"><strong style="font-size:1.1rem;">911</strong></div></div>
+        <div class="info-row"><div class="info-key" data-ko>SF 비긴급</div><div class="info-key" data-en>SF Non-emergency</div><div class="info-val"><a href="tel:+14155530123" style="color:inherit;">(415) 553-0123</a></div></div>
+        <div class="info-row"><div class="info-key" data-ko>한국 총영사관</div><div class="info-key" data-en>Korean Consulate</div><div class="info-val"><a href="tel:+14159212251" style="color:inherit;">(415) 921-2251</a></div></div>
+        <div class="info-row"><div class="info-key" data-ko>영사관 긴급</div><div class="info-key" data-en>Consulate Emergency</div><div class="info-val"><a href="tel:+14152654859" style="color:inherit;">(415) 265-4859</a></div></div>
+        <div class="info-row"><div class="info-key">Crisis</div><div class="info-val"><a href="tel:988" style="color:inherit;">988</a> <span data-ko>(정신건강)</span><span data-en>(Mental Health)</span></div></div>
+        <div class="info-row"><div class="info-key">Poison</div><div class="info-val"><a href="tel:+18002221222" style="color:inherit;">1-800-222-1222</a></div></div>
+      </div>
+    </div>
+
+    <div class="ccard" style="border-left-color:#FBBF24;">
+      <div class="ccard-title" data-ko>🏛️ 한국 총영사관 SF ✅ 검증됨</div>
+      <div class="ccard-title" data-en>🏛️ Korean Consulate General SF ✅ Verified</div>
+      <div class="ccard-body">
+        <span data-ko>여권 갱신, 가족관계등록, 공증, 납세 증명 등 한인 공문서 서비스.<br>📍 3500 Clay St, San Francisco CA 94118<br>⏰ 월-금 9AM–5PM</span>
+        <span data-en>Passport renewal, family registration, notarization, tax certificates, and other Korean document services.<br>📍 3500 Clay St, San Francisco CA 94118<br>⏰ Mon–Fri 9AM–5PM</span>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:8px;">
+          <a href="tel:+14159212251" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📞 (415) 921-2251</a>
+          <a href="tel:+14152654859" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🚨 긴급 (415) 265-4859</a>
+          <a href="https://overseas.mofa.go.kr/us-sanfrancisco-en" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 공식 웹사이트</a>
+          <a href="https://maps.google.com/?q=3500+Clay+St+San+Francisco+CA+94118" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ccard" style="border-left-color:#A78BFA;">
+      <div class="ccard-title" data-ko>🤝 MARU Center (한인커뮤니티센터) ✅ 검증됨</div>
+      <div class="ccard-title" data-en>🤝 MARU Center (Korean Community Center) ✅ Verified</div>
+      <div class="ccard-body">
+        <span data-ko>이민 법률·ESL·주거·정신건강 <strong>무료 지원.</strong> 이스트베이 한인 사회서비스 핵심 기관.<br>📍 101 Callan Ave Suite 400, San Leandro CA 94577</span>
+        <span data-en>Immigration legal aid, ESL, housing, and mental health support — <strong>all free.</strong> Core Korean social services in the East Bay.<br>📍 101 Callan Ave Suite 400, San Leandro CA 94577</span>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:8px;">
+          <a href="tel:+18448282254" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📞 (844) 828-2254</a>
+          <a href="https://www.kcceb.org/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 kcceb.org</a>
+          <a href="https://maps.google.com/?q=101+Callan+Ave+San+Leandro+CA+94577" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ccard"><div class="ccard-title" data-ko>🏥 주요 응급실</div><div class="ccard-title" data-en>🏥 Major ERs</div><div class="ccard-body"><span data-ko>• UCSF Medical Center — SF<br>• Stanford Health Care — 팔로알토<br>• El Camino Health — 마운틴뷰<br>• Kaiser Permanente — 베이에어리어 전역</span><span data-en>• UCSF Medical Center — SF<br>• Stanford Health Care — Palo Alto<br>• El Camino Health — Mountain View<br>• Kaiser Permanente — throughout Bay Area</span></div></div>
+  </div>
+</div>
+
+<!-- 글로벌 -->
+<div class="app-overlay" id="app-global" style="background:linear-gradient(180deg,#0a0a1f,#12123a);">
+  <div class="app-header" style="background:linear-gradient(135deg,#12123a,#0a0a1f);">
+    <button class="app-back" onclick="closeApp('global')">‹</button>
+    <div class="app-header-title">🌍 HebronGuide Global</div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="app-content" style="padding-top:16px;text-align:center;">
+    <div class="ccard" style="border-left-color:#818CF8;text-align:left;"><div class="ccard-title" data-ko>SF는 HebronGuide 1차 핵심 도시입니다</div><div class="ccard-title" data-en>SF Bay Area is a Tier 1 HebronGuide City</div><div class="ccard-body"><span data-ko>전 세계 700만 한인을 위한 글로벌 플랫폼. SF에서 시작해 전 세계로 확장합니다.</span><span data-en>Global platform for 7M overseas Koreans. Expanding from the Bay Area globally.</span></div></div>
+    <div class="sec-head" style="text-align:left;margin-top:20px;" data-ko>🌍 다른 도시 가이드</div>
+    <div class="sec-head" style="text-align:left;margin-top:20px;" data-en>🌍 Other City Guides</div>
+    <div class="tag-grid" style="text-align:left;">
+      <div class="tag-item" style="cursor:pointer;" onclick="location.href='../seattle/index.html'"><strong>🌲 Seattle</strong><span data-ko>시애틀 — LIVE</span><span data-en>Seattle — LIVE</span></div>
+      <div class="tag-item" style="cursor:pointer;" onclick="location.href='../la/index.html'"><strong>🌴 Los Angeles</strong><span data-ko>LA·OC — LIVE</span><span data-en>LA·OC — LIVE</span></div>
+      <div class="tag-item" style="cursor:pointer;" onclick="location.href='../newyork/index.html'"><strong>🗽 New York</strong><span data-ko>뉴욕·NJ — LIVE</span><span data-en>NY·NJ — LIVE</span></div>
+      <div class="tag-item" style="cursor:pointer;" onclick="location.href='../dallas/index.html'"><strong>🤠 Dallas</strong><span data-ko>달라스 — LIVE</span><span data-en>Dallas — LIVE</span></div>
+      <div class="tag-item" style="cursor:pointer;" onclick="location.href='../vancouver/index.html'"><strong>🍁 Vancouver</strong><span data-ko>밴쿠버 — LIVE</span><span data-en>Vancouver — LIVE</span></div>
+      <div class="tag-item"><strong>🏙️ Chicago</strong><span data-ko>시카고 — 준비중</span><span data-en>Chicago — Coming</span></div>
+    </div>
+    <a href="../index.html" style="display:inline-block;background:#818CF8;color:white;border-radius:12px;padding:14px 28px;font-weight:800;font-size:0.9rem;margin-top:20px;" data-ko>🌍 글로벌 대시보드</a>
+    <a href="../index.html" style="display:inline-block;background:#818CF8;color:white;border-radius:12px;padding:14px 28px;font-weight:800;font-size:0.9rem;margin-top:20px;" data-en>🌍 Global Dashboard</a>
+  </div>
+</div>
+
+<!-- 한인상권 -->
+<div class="app-overlay" id="app-biz" style="background:linear-gradient(180deg,#2d1a00,#4d3000);">
+  <div class="app-header" style="background:linear-gradient(135deg,#4d3000,#2d1a00);">
+    <button class="app-back" onclick="closeApp('biz')">‹</button>
+    <div class="app-header-title">🏪 <span data-ko>한인상권</span><span data-en>K-Business</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#2d1a00;">
+    <button class="tab-btn on" onclick="sTab(this,'sb-sj')"><span data-ko>산호세</span><span data-en>San Jose</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sb-cup')"><span data-ko>쿠퍼티노</span><span data-en>Cupertino</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sb-mart')"><span data-ko>마트·은행</span><span data-en>Markets</span></button>
+  </div>
+  <div class="app-content">
+    <section id="sb-sj">
+      <div class="sec-head" data-ko>🏙️ 산호세 — 베이에어리어 최대 한인상권</div>
+      <div class="sec-head" data-en>🏙️ San Jose — Bay Area's Largest Korean Commercial Hub</div>
+      <div class="ccard" style="border-left-color:#FBBF24;"><div class="ccard-title">Saratoga Ave 코리아타운 구역</div><div class="ccard-body"><span data-ko><strong>베이에어리어 최대 한인 상권.</strong> Saratoga Ave 인근에 한인 식당·노래방·마트·미용실 밀집. H-Mart 산호세 2곳 위치. 한인 교회 다수 밀집.</span><span data-en><strong>Bay Area's largest Korean commercial area.</strong> Korean restaurants, karaoke, markets & salons dense near Saratoga Ave. 2 H-Mart locations in San Jose. Many Korean churches concentrated here.</span></div></div>
+      <div class="ccard" style="border-left-color:#FBBF24;"><div class="ccard-title" data-ko>주요 한인 비즈니스</div><div class="ccard-title" data-en>Key Korean Businesses</div><div class="ccard-body"><span data-ko>• 한인 식당 150개+ (삼겹살·부대찌개·치킨·분식)<br>• 한인 노래방 10개+<br>• 한인 미용실·네일샵 50개+<br>• 한인 법률·회계·보험 사무소<br>• 한인 부동산·렌트 중개<br>• 한인 여행사·무역업체</span><span data-en>• 150+ Korean restaurants (BBQ, army stew, chicken, snacks)<br>• 10+ Korean karaoke bars<br>• 50+ Korean hair salons & nail shops<br>• Korean legal, accounting & insurance offices<br>• Korean real estate & rental agencies<br>• Korean travel agencies & trading companies</span></div></div>
+    </section>
+    <section id="sb-cup" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🍎 쿠퍼티노 — Apple 타운 한인상권</div>
+      <div class="sec-head" data-en>🍎 Cupertino — Apple Town Korean District</div>
+      <div class="ccard" style="border-left-color:#FBBF24;"><div class="ccard-title">Ranch 99 / Korean Plaza</div><div class="ccard-body"><span data-ko>쿠퍼티노 한인·아시안 상권 중심. 한인 식당·마트 밀집. Apple 직원 한인들의 점심 핫스팟. IT 전문직 고소득 한인 소비자 대상 프리미엄 상권.</span><span data-en>Center of Cupertino Korean/Asian commercial area. Dense Korean restaurants & markets. Lunch hotspot for Korean Apple employees. Premium district targeting high-income Korean IT professionals.</span></div></div>
+      <div class="ccard" style="border-left-color:#FBBF24;"><div class="ccard-title">Milpitas · 밀피타스 H-Mart</div><div class="ccard-body"><span data-ko>밀피타스 H-Mart는 베이에어리어 한인 마트 중 가장 큰 규모. 쿠퍼티노·산호세·프리몬트 한인 모두 방문. 한인 푸드코트·반찬 코너 완비.</span><span data-en>Milpitas H-Mart is the largest Korean market in the Bay Area. Koreans from Cupertino, San Jose & Fremont all visit. Full Korean food court & side dish section.</span></div></div>
+    </section>
+    <section id="sb-mart" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🛒 한인 마트 & 은행 ✅ 검증됨</div>
+      <div class="sec-head" data-en>🛒 Korean Markets & Banks ✅ Verified</div>
+
+      <div class="ccard" style="border-left-color:#FBBF24;">
+        <div class="ccard-title" data-ko>🛍️ Jagalchi Market (데일리시티) ✅ 검증됨 — 신규 랜드마크</div>
+        <div class="ccard-title" data-en>🛍️ Jagalchi Market (Daly City) ✅ Verified — New Landmark</div>
+        <div class="ccard-body">
+          <span data-ko><strong>75,000 sqft 초대형 한국 마켓+푸드홀.</strong> 베이에어리어 한인 마트의 새 중심. 데일리시티 세라몬테 센터 내.<br>📍 63 Serramonte Ctr, Daly City CA 94015</span>
+          <span data-en><strong>75,000 sqft mega Korean market + food hall.</strong> New center of Bay Area Korean grocery. Inside Serramonte Center, Daly City.<br>📍 63 Serramonte Ctr, Daly City CA 94015</span>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:8px;">
+            <a href="https://www.jagalchi.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 jagalchi.com</a>
+            <a href="https://maps.google.com/?q=63+Serramonte+Ctr+Daly+City+CA+94015" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📍 Google Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#FBBF24;">
+        <div class="ccard-title" data-ko>베이에어리어 H-Mart 전체 ✅ 검증됨</div>
+        <div class="ccard-title" data-en>All H-Mart Locations in Bay Area ✅ Verified</div>
+        <div class="ccard-body">
+          <span data-ko>
+            <strong>H-Mart San Francisco (알라메니)</strong><br>
+            📍 3995 Alemany Blvd, SF CA 94132 &nbsp;⏰ 매일 8AM–10PM<br>
+            <a href="tel:+16509937450" style="color:#6EE7B7;font-size:0.78rem;">📞 (650) 993-7450</a>&nbsp;
+            <a href="https://maps.google.com/?q=3995+Alemany+Blvd+San+Francisco+CA+94132" target="_blank" rel="noopener" style="color:#6EE7B7;font-size:0.78rem;">📍 지도</a><br><br>
+            <strong>H-Mart San Jose (De Anza)</strong><br>
+            📍 1179 S De Anza Blvd, San Jose CA 95129 &nbsp;⏰ 매일 8AM–10PM<br>
+            <a href="tel:+14084181601" style="color:#6EE7B7;font-size:0.78rem;">📞 (408) 418-1601</a>&nbsp;
+            <a href="https://maps.google.com/?q=1179+S+De+Anza+Blvd+San+Jose+CA+95129" target="_blank" rel="noopener" style="color:#6EE7B7;font-size:0.78rem;">📍 지도</a><br><br>
+            <strong>H-Mart San Jose (Oakland Rd)</strong><br>
+            📍 1710 Oakland Rd, San Jose CA 95131<br>
+            <a href="tel:+14085995440" style="color:#6EE7B7;font-size:0.78rem;">📞 (408) 599-5440</a>&nbsp;
+            <a href="https://maps.google.com/?q=1710+Oakland+Rd+San+Jose+CA+95131" target="_blank" rel="noopener" style="color:#6EE7B7;font-size:0.78rem;">📍 지도</a><br><br>
+            <strong>H-Mart Dublin NEW 🆕</strong> (2026년 3월 오픈)<br>
+            📍 7884 Dublin Blvd, Dublin CA<br>
+            <a href="https://maps.google.com/?q=7884+Dublin+Blvd+Dublin+CA" target="_blank" rel="noopener" style="color:#6EE7B7;font-size:0.78rem;">📍 지도</a>
+          </span>
+          <span data-en>
+            <strong>H-Mart San Francisco (Alemany)</strong><br>
+            📍 3995 Alemany Blvd, SF CA 94132 &nbsp;⏰ Daily 8AM–10PM<br>
+            <a href="tel:+16509937450" style="color:#6EE7B7;font-size:0.78rem;">📞 (650) 993-7450</a>&nbsp;
+            <a href="https://maps.google.com/?q=3995+Alemany+Blvd+San+Francisco+CA+94132" target="_blank" rel="noopener" style="color:#6EE7B7;font-size:0.78rem;">📍 Map</a><br><br>
+            <strong>H-Mart San Jose (De Anza)</strong><br>
+            📍 1179 S De Anza Blvd, San Jose CA 95129 &nbsp;⏰ Daily 8AM–10PM<br>
+            <a href="tel:+14084181601" style="color:#6EE7B7;font-size:0.78rem;">📞 (408) 418-1601</a>&nbsp;
+            <a href="https://maps.google.com/?q=1179+S+De+Anza+Blvd+San+Jose+CA+95129" target="_blank" rel="noopener" style="color:#6EE7B7;font-size:0.78rem;">📍 Map</a><br><br>
+            <strong>H-Mart San Jose (Oakland Rd)</strong><br>
+            📍 1710 Oakland Rd, San Jose CA 95131<br>
+            <a href="tel:+14085995440" style="color:#6EE7B7;font-size:0.78rem;">📞 (408) 599-5440</a>&nbsp;
+            <a href="https://maps.google.com/?q=1710+Oakland+Rd+San+Jose+CA+95131" target="_blank" rel="noopener" style="color:#6EE7B7;font-size:0.78rem;">📍 Map</a><br><br>
+            <strong>H-Mart Dublin NEW 🆕</strong> (Opened March 2026)<br>
+            📍 7884 Dublin Blvd, Dublin CA<br>
+            <a href="https://maps.google.com/?q=7884+Dublin+Blvd+Dublin+CA" target="_blank" rel="noopener" style="color:#6EE7B7;font-size:0.78rem;">📍 Map</a>
+          </span>
+        </div>
+      </div>
+      <div class="ccard" style="border-left-color:#FBBF24;"><div class="ccard-title" data-ko>한인 은행</div><div class="ccard-title" data-en>Korean Banks</div><div class="ccard-body"><span data-ko>• <strong>Hanmi Bank</strong> — 산호세·쿠퍼티노 지점. 한인 No.1<br>• <strong>Preferred Bank</strong> — IT 전문직·자산관리<br>• <strong>한국 은행 미국지점</strong> — 우리·신한·기업은행 산호세<br>• <strong>Chase / BofA</strong> — 쿠퍼티노·산호세 한인 지점</span><span data-en>• <strong>Hanmi Bank</strong> — San Jose & Cupertino branches. Korean #1<br>• <strong>Preferred Bank</strong> — IT professionals & asset management<br>• <strong>Korean bank US branches</strong> — Woori, Shinhan, IBK in San Jose<br>• <strong>Chase / BofA</strong> — Korean branches in Cupertino & San Jose</span></div></div>
+    </section>
+  </div>
+</div>
+
+<!-- 한인교회 -->
+<div class="app-overlay" id="app-church" style="background:linear-gradient(180deg,#1a0a3c,#2d1a5c);">
+  <div class="app-header" style="background:linear-gradient(135deg,#2d1a5c,#1a0a3c);">
+    <button class="app-back" onclick="closeApp('church')">‹</button>
+    <div class="app-header-title">⛪ <span data-ko>한인교회</span><span data-en>Korean Churches</span></div>
+    <div class="app-header-right"></div>
+  </div>
+    <div class="tab-bar" style="background:#1a0a3c;">
+    <button class="tab-btn on" onclick="sTab(this,'sf-hc')"><span data-ko>가정교회</span><span data-en>House Church</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sf-ch-main')"><span data-ko>주요 교회</span><span data-en>Major Churches</span></button>
+  </div>
+<div class="app-content">
+    <section id="sf-hc">
+      <div class="ccard" style="border-left-color:#C084FC;">
+        <div class="ccard-title" data-ko>&#127968; 가정교회란?</div>
+        <div class="ccard-title" data-en>&#127968; What Is a House Church?</div>
+        <div class="ccard-body"><span data-ko>가정교회는 5~30명의 신자가 <strong>가정에서 모이는 소규모 예배 공동체</strong>입니다. 대형 교회의 대안이 아니라 <strong>보완재</strong>로서, 이민 생활의 고독을 채우는 가장 따뜻한 첫 번째 공동체가 될 수 있습니다.</span><span data-en>A house church is a <strong>small worship community of 5&#8211;30 believers meeting in a home</strong>. Not an alternative but a <strong>complement</strong> to large churches &#8212; it can be the warmest first community to fill the loneliness of immigrant life.</span></div>
+      </div>
+      <div class="ccard" style="border-left-color:#C084FC;">
+        <div class="ccard-title" data-ko>&#128161; 이민자에게 가정교회가 특별한 이유</div>
+        <div class="ccard-title" data-en>&#128161; Why House Church Is Special for Immigrants</div>
+        <div class="ccard-body"><span data-ko>&#9989; <strong>즉각적 소속감</strong> &#8212; 소규모이기에 첫날부터 이름을 기억해준다<br>&#9989; <strong>실질적 돌봄</strong> &#8212; 이사, 병원 동행, 식사 나눔이 자연스럽게 일어난다<br>&#9989; <strong>언어 부담 없음</strong> &#8212; 소그룹에서 솔직하고 편한 대화 가능<br>&#9989; <strong>유연한 일정</strong> &#8212; 주중&#183;주말 어디서나 모임 가능<br>&#9989; <strong>신앙 탐색 공간</strong> &#8212; 아직 교회가 낯선 분도 편안하게 참여 가능</span><span data-en>&#9989; <strong>Immediate belonging</strong> &#8212; Small size means they remember your name from day one<br>&#9989; <strong>Practical care</strong> &#8212; Help moving, hospital accompaniment, sharing meals happen naturally<br>&#9989; <strong>No language pressure</strong> &#8212; Honest, comfortable conversation in small groups<br>&#9989; <strong>Flexible schedule</strong> &#8212; Meetings possible any day of the week<br>&#9989; <strong>Faith exploration space</strong> &#8212; Comfortable even if church is still unfamiliar</span></div>
+      </div>
+      <div class="ccard" style="border-left-color:#C084FC;">
+        <div class="ccard-title" data-ko>&#128269; 베이에어리어 가정교회 찾는 법</div>
+        <div class="ccard-title" data-en>&#128269; How to Find a House Church in the Bay Area</div>
+        <div class="ccard-body"><span data-ko>&#8226; <strong>한인 교회 새가족부</strong>에 &#8220;소그룹&#183;셀&#183;가정교회&#8221; 연결 문의<br>&#8226; <strong>카카오톡 오픈채팅</strong> &#8212; &#8220;베이에어리어 한인 모임&#8221; 검색<br>&#8226; <strong>네이버 카페</strong> &#8212; 한인 생활 카페에서 지역 소그룹 탐색<br>&#8226; 이미 아는 한인에게 직접 물어보기 &#8212; 가장 빠르고 확실한 방법<br>&#8226; 도착 전 SNS로 미리 연결해두면 첫 주에 바로 참여 가능</span><span data-en>&#8226; Ask the <strong>new member ministry</strong> at a Korean church for &#8220;small group / cell / house church&#8221; connections<br>&#8226; <strong>KakaoTalk open chat</strong> &#8212; search &#8220;the Bay Area Korean community&#8221;<br>&#8226; <strong>Naver Caf&#233;</strong> &#8212; explore local small groups in Korean life caf&#233;s<br>&#8226; Ask a Korean you already know directly &#8212; fastest, most reliable method<br>&#8226; Connect via SNS before arrival so you can join in your first week</span></div>
+      </div>
+      <div class="ccard" style="border-left-color:#7C3AED;">
+        <div class="ccard-title" data-ko>&#128152; 가정교회는 어떤 교회인가요?</div>
+        <div class="ccard-title" data-en>&#128152; What Kind of Church Is a House Church?</div>
+        <div class="ccard-body"><span data-ko>가정교회는 신약교회를 추구하는 교회로서 처음 신앙의 문을 두드리는 분들에게 친화적인 교회입니다.</span><span data-en>A house church pursues the model of the New Testament church, making it a welcoming and accessible place for those opening the door of faith for the first time.</span></div>
+      </div>
+    </section>
+    <section id="sf-ch-main" style="margin-top:28px;">
+
+    <div class="sec-head" data-ko>⛪ 베이에어리어 한인 교회 200개+</div>
+    <div class="sec-head" data-en>⛪ 200+ Korean Churches in the Bay Area</div>
+    <div class="ccard" style="border-left-color:#C084FC;"><div class="ccard-title" data-ko>산호세·쿠퍼티노 대형교회</div><div class="ccard-title" data-en>Large Churches in SJ & Cupertino</div><div class="ccard-body"><span data-ko>• <strong>베이지역 순복음교회 (BFGC)</strong> — 산호세. 베이에어리어 최대 한인 교회<br>• <strong>새나라교회</strong> — 산호세. 한인 이민자·1.5세 강세<br>• <strong>실리콘밸리장로교회</strong> — 쿠퍼티노. IT 전문직 가족 多<br>• <strong>베다니교회</strong> — 산호세. 청년·EM 사역 강점<br>• <strong>안디옥교회 베이지역</strong> — 밀피타스. 가족 중심</span><span data-en>• <strong>Bay Full Gospel Church (BFGC)</strong> — San Jose. Largest Korean church in Bay Area<br>• <strong>New Country Church</strong> — San Jose. Strong Korean immigrants & 1.5 gen<br>• <strong>Silicon Valley Presbyterian</strong> — Cupertino. Many IT professional families<br>• <strong>Bethany Church</strong> — San Jose. Strong youth & EM ministry<br>• <strong>Antioch Church Bay Area</strong> — Milpitas. Family-centered</span></div></div>
+    <div class="ccard" style="border-left-color:#C084FC;"><div class="ccard-title" data-ko>SF·이스트베이 교회</div><div class="ccard-title" data-en>SF & East Bay Churches</div><div class="ccard-body"><span data-ko>• <strong>샌프란시스코한인교회</strong> — SF 시내. 역사적 한인 교회<br>• <strong>버클리한인장로교회</strong> — 버클리. UC 버클리 한인 학생 多<br>• <strong>오클랜드한인침례교회</strong> — 오클랜드. 이스트베이 한인 거점</span><span data-en>• <strong>San Francisco Korean Church</strong> — SF city. Historic Korean church<br>• <strong>Berkeley Korean Presbyterian</strong> — Berkeley. Many UC Berkeley Korean students<br>• <strong>Oakland Korean Baptist</strong> — Oakland. East Bay Korean hub</span></div></div>
+    <div class="ccard" style="border-left-color:#C084FC;"><div class="ccard-title" data-ko>교회의 실질적 역할</div><div class="ccard-title" data-en>Practical Church Role</div><div class="ccard-body"><span data-ko>베이에어리어 한인 교회는 IT·반도체 업계 취업 네트워크의 핵심. 빅테크 내 한인 사내 그룹과 교회 네트워크가 연결됨. 자녀 교육 정보·렌트 정보·이민 법률 모두 교회 인맥 통해 유통.</span><span data-en>Bay Area Korean churches are the core of IT & semiconductor employment networks. Big Tech internal Korean employee groups connect with church networks. Children's education info, rental info & immigration legal referrals all flow through church connections.</span></div></div>
+    </section>
+  </div>
+</div>
+
+<!-- 교육정보 -->
+<div class="app-overlay" id="app-edu" style="background:linear-gradient(180deg,#1a2a00,#2d4a00);">
+  <div class="app-header" style="background:linear-gradient(135deg,#2d4a00,#1a2a00);">
+    <button class="app-back" onclick="closeApp('edu')">‹</button>
+    <div class="app-header-title">🎓 <span data-ko>교육정보</span><span data-en>Education</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#1a2a00;">
+    <button class="tab-btn on" onclick="sTab(this,'se-k12')">K-12</button>
+    <button class="tab-btn" onclick="sTab(this,'se-univ')"><span data-ko>대학</span><span data-en>Universities</span></button>
+    <button class="tab-btn" onclick="sTab(this,'se-hagwon')"><span data-ko>학원</span><span data-en>Tutoring</span></button>
+  </div>
+  <div class="app-content">
+    <section id="se-k12">
+      <div class="sec-head" data-ko>🏫 K-12 학군 — 지역별 TOP 선택</div>
+      <div class="sec-head" data-en>🏫 K-12 Schools — Top Choices by Area</div>
+      <div class="ccard" style="border-left-color:#86EFAC;"><div class="ccard-title">Cupertino Union SD · 쿠퍼티노 ⭐⭐⭐</div><div class="ccard-body"><span data-ko><strong>CA 최상위 학군 중 하나.</strong> 한인·중국계 밀집으로 경쟁 매우 강함. Monta Vista HS는 전국 탑 고교. 내신 경쟁 치열 — 준비 없이는 스트레스 가능. <strong>학력 최우선 가족에게 추천.</strong></span><span data-en><strong>One of CA's top school districts.</strong> Very competitive due to Korean & Chinese concentration. Monta Vista HS is a top national high school. Intense GPA competition — can be stressful without preparation. <strong>Recommended for academically focused families.</strong></span></div></div>
+      <div class="ccard" style="border-left-color:#86EFAC;"><div class="ccard-title">Fremont Unified SD · 프리몬트</div><div class="ccard-body"><span data-ko>좋은 학군 + 합리적 렌트의 조합. Mission San Jose HS — 전국 상위권. 한인·아시안 밀집으로 학업 분위기 좋음. 쿠퍼티노보다 경쟁 약간 낮음.</span><span data-en>Good schools + reasonable rent combination. Mission San Jose HS — top nationally ranked. Academic atmosphere good due to Korean/Asian concentration. Slightly less competitive than Cupertino.</span></div></div>
+      <div class="ccard" style="border-left-color:#86EFAC;"><div class="ccard-title">Sunnyvale / Mountain View SD</div><div class="ccard-body"><span data-ko>Google·LinkedIn 인근. 우수한 학군. 한인 가족 증가 중. 쿠퍼티노 대비 다양성 높음. 렌트 다소 낮음.</span><span data-en>Near Google & LinkedIn. Excellent schools. Growing Korean families. More diverse than Cupertino. Somewhat lower rent.</span></div></div>
+    </section>
+    <section id="se-univ" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🏛️ 베이에어리어 대학교</div>
+      <div class="sec-head" data-en>🏛️ Bay Area Universities</div>
+      <div class="ccard" style="border-left-color:#86EFAC;"><div class="ccard-body"><span data-ko>• <strong>Stanford University</strong> — 세계 최고. 팔로알토. 한인 교수·연구원 多<br>• <strong>UC Berkeley</strong> — 퍼블릭 아이비. 버클리. 한인 유학생 400명+<br>• <strong>UCSF</strong> — 의학·바이오. 세계 최정상<br>• <strong>San Jose State (SJSU)</strong> — 합리적 학비 주립대. 한인 학생 多<br>• <strong>Santa Clara University</strong> — 예수회 사립. 실리콘밸리 IT 취업 강점<br>• <strong>UC Santa Cruz</strong> — 자연환경 최고. 컴퓨터사이언스 유명</span><span data-en>• <strong>Stanford University</strong> — World's best. Palo Alto. Many Korean professors & researchers<br>• <strong>UC Berkeley</strong> — Public Ivy. Berkeley. 400+ Korean international students<br>• <strong>UCSF</strong> — Medicine & biotech. World top<br>• <strong>San Jose State (SJSU)</strong> — Affordable state university. Many Korean students<br>• <strong>Santa Clara University</strong> — Jesuit private. Strong Silicon Valley IT employment<br>• <strong>UC Santa Cruz</strong> — Best natural environment. Famous for computer science</span></div></div>
+    </section>
+    <section id="se-hagwon" style="margin-top:28px;">
+      <div class="sec-head" data-ko>📚 한인 학원 — 쿠퍼티노·산호세</div>
+      <div class="sec-head" data-en>📚 Korean Tutoring — Cupertino & San Jose</div>
+      <div class="ccard" style="border-left-color:#86EFAC;"><div class="ccard-body"><span data-ko>• <strong>매스카운티 (Math County)</strong> — 쿠퍼티노. 수학 최강<br>• <strong>브레인리그</strong> — 산호세. 수학·과학 전문<br>• <strong>AoPS (Art of Problem Solving)</strong> — 온라인+오프라인. 경시수학<br>• <strong>한인 영어·SAT 학원</strong> — 쿠퍼티노·밀피타스 다수<br>• <strong>한국어 학교</strong> — 토요한국학교 (산호세·쿠퍼티노·프리몬트)<br><br>경쟁이 치열한 쿠퍼티노 학군 특성상 학원비 지출 상당함. 학원비 월 $300~800 예상.</span><span data-en>• <strong>Math County</strong> — Cupertino. Top math program<br>• <strong>Brain League</strong> — San Jose. Math & science specialization<br>• <strong>AoPS (Art of Problem Solving)</strong> — Online+offline. Competition math<br>• <strong>Korean English & SAT tutoring</strong> — Many in Cupertino & Milpitas<br>• <strong>Korean language schools</strong> — Saturday Korean schools (San Jose, Cupertino, Fremont)<br><br>Due to Cupertino's competitive academic environment, tutoring costs are significant. Budget $300–800/month for tutoring.</span></div></div>
+    </section>
+  </div>
+</div>
+
+<!-- 의료보험 -->
+<div class="app-overlay" id="app-health" style="background:linear-gradient(180deg,#0a1f3c,#1a3a5c);">
+  <div class="app-header" style="background:linear-gradient(135deg,#1a3a5c,#0a1f3c);">
+    <button class="app-back" onclick="closeApp('health')">‹</button>
+    <div class="app-header-title">🏥 <span data-ko>의료보험</span><span data-en>Healthcare</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="app-content">
+    <div class="sec-head" data-ko>🏥 베이에어리어 의료 — 세계 최고 수준</div>
+    <div class="sec-head" data-en>🏥 Bay Area Healthcare — World-Class Level</div>
+    <div class="ccard" style="border-left-color:#FBBF24;"><div class="ccard-title" data-ko>⚠️ 미국 의료보험 기본 원칙</div><div class="ccard-title" data-en>⚠️ US Healthcare Basics</div><div class="ccard-body"><span data-ko>미국은 공공 의료보험 없음. 직장 건강보험 또는 개인 구매 필수. 무보험 ER 방문 시 $5,000~50,000 청구 가능. 빅테크 고용주 건강보험은 일반적으로 우수한 편.</span><span data-en>No public health insurance in the USA. Employer health insurance or individual purchase essential. Uninsured ER visit can cost $5,000–50,000. Big Tech employer health insurance is generally excellent.</span></div></div>
+    <div class="ccard" style="border-left-color:#7DD3FC;"><div class="ccard-title" data-ko>🏥 베이에어리어 주요 의료기관</div><div class="ccard-title" data-en>🏥 Key Bay Area Medical Facilities</div><div class="ccard-body"><span data-ko>• <strong>Stanford Health Care</strong> — 팔로알토. 세계 탑 병원<br>• <strong>UCSF Medical Center</strong> — SF 시내. 암·특수질환 최강<br>• <strong>Kaiser Permanente</strong> — 베이에어리어 전역. HMO 보험+진료 통합<br>• <strong>El Camino Health</strong> — 마운틴뷰. 실리콘밸리 중심<br>• <strong>Sutter Health</strong> — 베이에어리어 각지<br>• <strong>Santa Clara Valley Medical</strong> — 산호세. 공공병원</span><span data-en>• <strong>Stanford Health Care</strong> — Palo Alto. World top hospital<br>• <strong>UCSF Medical Center</strong> — SF city. Best for cancer & special conditions<br>• <strong>Kaiser Permanente</strong> — Throughout Bay Area. HMO insurance + care integrated<br>• <strong>El Camino Health</strong> — Mountain View. Silicon Valley center<br>• <strong>Sutter Health</strong> — Various Bay Area locations<br>• <strong>Santa Clara Valley Medical</strong> — San Jose. Public hospital</span></div></div>
+    <div class="ccard" style="border-left-color:#7DD3FC;"><div class="ccard-title" data-ko>한인 의료 — 한국어 가능 의사</div><div class="ccard-title" data-en>Korean Medical — Korean-speaking Doctors</div><div class="ccard-body"><span data-ko>• <strong>한인 내과·가정의</strong> — 산호세·쿠퍼티노 다수. Zocdoc에서 Korean 필터<br>• <strong>한인 치과</strong> — 쿠퍼티노·산호세 밀집<br>• <strong>한인 한의원</strong> — 산호세 여러 곳<br>• <strong>한인 정신건강 클리닉</strong> — 실리콘밸리 번아웃·스트레스 특화<br><br>Zocdoc · HealthGrades에서 "Korean-speaking" 필터로 검색 가능.</span><span data-en>• <strong>Korean internists & family doctors</strong> — Many in San Jose & Cupertino. Filter "Korean" on Zocdoc<br>• <strong>Korean dentists</strong> — Dense in Cupertino & San Jose<br>• <strong>Korean Oriental medicine</strong> — Several in San Jose<br>• <strong>Korean mental health clinics</strong> — Specialized for Silicon Valley burnout & stress<br><br>Search with "Korean-speaking" filter on Zocdoc & HealthGrades.</span></div></div>
+    <div class="ccard" style="border-left-color:#7DD3FC;"><div class="ccard-title">Medi-Cal / Covered California</div><div class="ccard-body"><span data-ko>소득 기준 충족 시 Medi-Cal (공공) 또는 Covered CA (보조금 보험). 프리랜서·자영업자·취준생에게 중요. 한인 사회서비스 단체 통해 신청 지원 가능.</span><span data-en>If income threshold met, Medi-Cal (public) or Covered CA (subsidized insurance) available. Important for freelancers, self-employed & job seekers. Application support through Korean community service organizations.</span></div><div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);"><a href="https://www.coveredca.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 Covered California</a></div></div>
+  </div>
+</div>
+
+<!-- 교통안내 -->
+<div class="app-overlay" id="app-transit" style="background:linear-gradient(180deg,#001a2e,#002d4d);">
+  <div class="app-header" style="background:linear-gradient(135deg,#002d4d,#001a2e);">
+    <button class="app-back" onclick="closeApp('transit')">‹</button>
+    <div class="app-header-title">🚇 <span data-ko>교통안내</span><span data-en>Transit</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#001a2e;">
+    <button class="tab-btn on" onclick="sTab(this,'st-bart')">BART·Caltrain</button>
+    <button class="tab-btn" onclick="sTab(this,'st-drive')"><span data-ko>운전</span><span data-en>Driving</span></button>
+    <button class="tab-btn" onclick="sTab(this,'st-shuttle')"><span data-ko>셔틀</span><span data-en>Shuttles</span></button>
+  </div>
+  <div class="app-content">
+    <section id="st-bart">
+      <div class="sec-head" data-ko>🚇 베이에어리어 대중교통</div>
+      <div class="sec-head" data-en>🚇 Bay Area Public Transit</div>
+      <div class="ccard" style="border-left-color:#22D3EE;"><div class="ccard-title">BART (Bay Area Rapid Transit)</div><div class="ccard-body"><span data-ko><strong>베이에어리어 지하철.</strong> SF↔오클랜드↔프리몬트↔더블린↔베르클리 연결. SFO 공항 직결. 프리몬트·밀피타스 한인 거주자 활용 가능. 산호세·쿠퍼티노까지는 불편.</span><span data-en><strong>Bay Area subway.</strong> Connects SF ↔ Oakland ↔ Fremont ↔ Dublin ↔ Berkeley. Direct SFO airport connection. Usable for Korean residents in Fremont & Milpitas. Inconvenient to San Jose & Cupertino.</span></div><div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);"><a href="https://www.bart.gov/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 <span data-ko>공식 웹사이트</span><span data-en>Official Website</span></a></div></div>
+      <div class="ccard" style="border-left-color:#22D3EE;"><div class="ccard-title">Caltrain ✅ 검증됨</div><div class="ccard-body"><span data-ko><strong>SF↔실리콘밸리 통근열차.</strong> SF 4th&King ↔ 산호세. 산타클라라·서니베일·마운틴뷰·팔로알토 정차. SF 거주 + 실리콘밸리 출근자에게 이상적. 회사 셔틀 연계 필수.<br>💡 기본 요금 $4.00부터. Clipper 카드로 할인 적용.</span><span data-en><strong>SF↔Silicon Valley commuter train.</strong> SF 4th&King ↔ San Jose. Stops at Santa Clara, Sunnyvale, Mountain View & Palo Alto. Ideal for SF residents commuting to Silicon Valley. Must connect with company shuttles.<br>💡 Base fare from $4.00. Discount applied with Clipper card.</span></div><div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);"><a href="https://www.caltrain.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 caltrain.com</a></div></div>
+      <div class="ccard" style="border-left-color:#22D3EE;"><div class="ccard-title">Clipper 카드 ✅ 검증됨</div><div class="ccard-body"><span data-ko><strong>베이에어리어 통합 교통카드.</strong> BART + Caltrain + MUNI + VTA + AC Transit 모두 사용 가능. SFO 공항 BART 자동발매기에서 즉시 구매 가능.</span><span data-en><strong>Bay Area unified transit card.</strong> Works on BART, Caltrain, MUNI, VTA & AC Transit. Available immediately at SFO airport BART vending machines.</span></div></div>
+      <div class="ccard" style="border-left-color:#22D3EE;"><div class="ccard-title">VTA (Santa Clara Valley)</div><div class="ccard-body"><span data-ko>산호세·산타클라라·쿠퍼티노 경전철·버스. 실리콘밸리 내 이동. 자동차 없는 경우 사용하나 커버리지 제한적.</span><span data-en>San Jose, Santa Clara & Cupertino light rail & bus. For movement within Silicon Valley. Used when no car but coverage is limited.</span></div></div>
+    </section>
+    <section id="st-drive" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🚗 실리콘밸리 운전 — 차는 필수</div>
+      <div class="sec-head" data-en>🚗 Silicon Valley Driving — Car Is Essential</div>
+      <div class="ccard" style="border-left-color:#22D3EE;"><div class="ccard-title" data-ko>교외 거주 시 자동차 필수</div><div class="ccard-title" data-en>Car Essential for Suburban Living</div><div class="ccard-body"><span data-ko>쿠퍼티노·산호세·프리몬트·밀피타스 거주 시 자동차 없이 생활 매우 어려움. 통근 I-280·US-101·I-880 러시아워 정체 극심. Waze 필수.</span><span data-en>Living in Cupertino, San Jose, Fremont or Milpitas without a car is very difficult. Commutes on I-280, US-101 & I-880 have extreme rush hour congestion. Waze is essential.</span></div></div>
+      <div class="ccard" style="border-left-color:#22D3EE;"><div class="ccard-title" data-ko>캘리포니아 운전면허</div><div class="ccard-title" data-en>California Driver's License</div><div class="ccard-body"><span data-ko>한국 면허 교환 불가 — 필기+실기 필수. DMV 예약 필수 (수주 대기). 한국어 필기시험 가능. 도착 후 최우선 처리 사항. 국제면허 일시 인정 (60일~1년).</span><span data-en>Korean license cannot be exchanged — written + road test required. DMV appointment essential (weeks wait). Korean written test available. Top priority task after arrival. International license temporarily accepted (60 days–1 year).</span></div></div>
+    </section>
+    <section id="st-shuttle" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🚌 빅테크 셔틀버스</div>
+      <div class="sec-head" data-en>🚌 Big Tech Shuttle Buses</div>
+      <div class="ccard" style="border-left-color:#22D3EE;"><div class="ccard-body"><span data-ko>• <strong>Google 셔틀</strong> — SF·이스트베이↔마운틴뷰 Googleplex<br>• <strong>Apple 셔틀 (Charlie Bus)</strong> — SF·산호세↔쿠퍼티노 Apple Park<br>• <strong>Meta 셔틀</strong> — SF·이스트베이↔멘로파크<br>• <strong>Nvidia 셔틀</strong> — SF·이스트베이↔산타클라라<br><br><strong>셔틀 경로 따라 주거지 결정하면 교통비·시간 대폭 절약.</strong><br>Glassdoor·직원 커뮤니티에서 셔틀 노선 사전 확인 권장.</span><span data-en>• <strong>Google Shuttle</strong> — SF & East Bay ↔ Mountain View Googleplex<br>• <strong>Apple Shuttle (Charlie Bus)</strong> — SF & San Jose ↔ Cupertino Apple Park<br>• <strong>Meta Shuttle</strong> — SF & East Bay ↔ Menlo Park<br>• <strong>Nvidia Shuttle</strong> — SF & East Bay ↔ Santa Clara<br><br><strong>Choosing housing along shuttle routes saves huge transportation costs & time.</strong><br>Recommend checking shuttle routes in advance via Glassdoor & employee communities.</span></div></div>
+    </section>
+  </div>
+</div>
+
+<!-- 커뮤니티 -->
+<div class="app-overlay" id="app-comm" style="background:linear-gradient(180deg,#0a1a3c,#1a3050);">
+  <div class="app-header" style="background:linear-gradient(135deg,#1a3050,#0a1a3c);">
+    <button class="app-back" onclick="closeApp('comm')">‹</button>
+    <div class="app-header-title">🤝 <span data-ko>커뮤니티</span><span data-en>Community</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="app-content">
+    <div class="sec-head" data-ko>🤝 베이에어리어 한인 커뮤니티</div>
+    <div class="sec-head" data-en>🤝 Bay Area Korean Community</div>
+    <div class="ccard" style="border-left-color:#A78BFA;"><div class="ccard-title" data-ko>온라인 커뮤니티</div><div class="ccard-title" data-en>Online Communities</div><div class="ccard-body"><span data-ko>• <strong>네이버 카페 "베이코리안"</strong> — 베이에어리어 한인 최대 커뮤니티<br>• <strong>카카오톡 오픈채팅</strong> — 실리콘밸리 한인·IT 직군별 채팅방<br>• <strong>Band 앱</strong> — 한인 교회 소그룹·동호회<br>• <strong>Facebook 그룹</strong> — "Bay Area Koreans", "실리콘밸리 한인"<br>• <strong>KOSA (한인과학기술자협회)</strong> — IT·엔지니어 네트워크</span><span data-en>• <strong>Naver Cafe "Bay Korean"</strong> — Largest Bay Area Korean community<br>• <strong>KakaoTalk Open Chat</strong> — Silicon Valley Korean & IT-specific chat rooms<br>• <strong>Band app</strong> — Korean church small groups & clubs<br>• <strong>Facebook Groups</strong> — "Bay Area Koreans", "Silicon Valley Koreans"<br>• <strong>KOSA (Korean Scientists & Engineers)</strong> — IT & engineering network</span></div></div>
+    <div class="ccard" style="border-left-color:#A78BFA;">
+      <div class="ccard-title" data-ko>오프라인 커뮤니티·단체 ✅ 검증됨</div>
+      <div class="ccard-title" data-en>Offline Community Organizations ✅ Verified</div>
+      <div class="ccard-body">
+        <span data-ko>• <strong>MARU Center (한인커뮤니티센터)</strong> — 산 리안드로. 이민법률·ESL·주거·정신건강 무료 지원 <a href="https://www.kcceb.org/" target="_blank" rel="noopener" style="color:#6EE7B7;">🔗 kcceb.org</a> / <a href="tel:+18448282254" style="color:#6EE7B7;">📞 (844) 828-2254</a><br>• <strong>KACF-SF (한인커뮤니티재단)</strong> — 의료·장학·시니어 지원 <a href="https://www.kacfsf.org/" target="_blank" rel="noopener" style="color:#6EE7B7;">🔗 kacfsf.org</a> / <a href="tel:+16506565705" style="color:#6EE7B7;">📞 (650) 656-5705</a><br>• <strong>북가주한인회 (NKAA)</strong> — 공식 한인 단체<br>• <strong>한인상공회의소</strong> — 비즈니스 네트워크<br>• <strong>KoSEA</strong> — 한인 과학자·엔지니어 협회<br>• <strong>한인 여성회</strong> — 여성 한인 지원<br>• <strong>한국학교</strong> — 토요 한국어 수업 (전 베이에어리어)</span>
+        <span data-en>• <strong>MARU Center (Korean Community Center)</strong> — San Leandro. Free immigration legal, ESL, housing & mental health support <a href="https://www.kcceb.org/" target="_blank" rel="noopener" style="color:#6EE7B7;">🔗 kcceb.org</a> / <a href="tel:+18448282254" style="color:#6EE7B7;">📞 (844) 828-2254</a><br>• <strong>KACF-SF (Korean American Community Foundation)</strong> — Healthcare, scholarship & senior support <a href="https://www.kacfsf.org/" target="_blank" rel="noopener" style="color:#6EE7B7;">🔗 kacfsf.org</a> / <a href="tel:+16506565705" style="color:#6EE7B7;">📞 (650) 656-5705</a><br>• <strong>Northern California Korean Association (NKAA)</strong> — Official Korean organization<br>• <strong>Korean Chamber of Commerce</strong> — Business network<br>• <strong>KoSEA</strong> — Korean Scientists & Engineers Association<br>• <strong>Korean Women's Association</strong> — Support for Korean women<br>• <strong>Korean schools</strong> — Saturday Korean language classes (throughout Bay Area)</span>
+      </div>
+    </div>
+    <div class="ccard" style="border-left-color:#A78BFA;"><div class="ccard-title" data-ko>한인 미디어</div><div class="ccard-title" data-en>Korean Media</div><div class="ccard-body"><span data-ko>• <strong>한국일보 SF</strong> — 한인 신문 (온라인)<br>• <strong>KoreAm Journal</strong> — 한인 영어 매체<br>• <strong>KTSF Channel 26</strong> — 베이에어리어 한인 TV<br>• <strong>베이코리안 유튜브</strong> — 베이에어리어 한인 정보 영상</span><span data-en>• <strong>Korea Daily SF</strong> — Korean newspaper (online)<br>• <strong>KoreAm Journal</strong> — Korean-American English media<br>• <strong>KTSF Channel 26</strong> — Bay Area Korean TV<br>• <strong>Bay Korean YouTube</strong> — Bay Area Korean info videos</span></div></div>
+  </div>
+</div>
+
+<!-- 카페 추천 -->
+<div class="app-overlay" id="app-cafe" style="background:linear-gradient(180deg,#1a0f00,#2d1a00);">
+  <div class="app-header" style="background:linear-gradient(135deg,#2d1a00,#1a0f00);">
+    <button class="app-back" onclick="closeApp('cafe')">‹</button>
+    <div class="app-header-title">☕ <span data-ko>카페 추천</span><span data-en>Cafés</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#1a0f00;">
+    <button class="tab-btn on" onclick="sTab(this,'sc-sv')"><span data-ko>실리콘밸리</span><span data-en>Silicon Valley</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sc-sf')">SF</button>
+    <button class="tab-btn" onclick="sTab(this,'sc-work')"><span data-ko>업무용</span><span data-en>Work</span></button>
+  </div>
+  <div class="app-content">
+    <section id="sc-sv">
+      <div class="sec-head" data-ko>☕ 실리콘밸리 인기 카페</div>
+      <div class="sec-head" data-en>☕ Popular Cafés in Silicon Valley</div>
+      <div class="ccard" style="border-left-color:#D97706;"><div class="ccard-title">카페베네 Cupertino · 한인 카페</div><div class="ccard-body"><span data-ko>쿠퍼티노 한인 카페 허브. Apple·Google 출근 전 한인 직장인 모임 장소. 한국식 음료·빙수. 한인 네트워킹 핫스팟.</span><span data-en>Cupertino Korean café hub. Meeting spot for Korean workers before Apple & Google commutes. Korean-style drinks & bingsu. Korean networking hotspot.</span></div></div>
+      <div class="ccard" style="border-left-color:#D97706;"><div class="ccard-title">Peet's Coffee — 실리콘밸리 전역</div><div class="ccard-body"><span data-ko>베이에어리어 오리지널 스페셜티 커피 체인. 한인 IT 전문직들이 미팅·면접 장소로 자주 사용. 마운틴뷰·팔로알토 지점 인기.</span><span data-en>Bay Area's original specialty coffee chain. Popular venue for Korean IT professionals for meetings & interviews. Mountain View & Palo Alto locations popular.</span></div></div>
+      <div class="ccard" style="border-left-color:#D97706;"><div class="ccard-title">Boba Tea Shops — 한인 밀크티</div><div class="ccard-body"><span data-ko>쿠퍼티노·산호세에 한인·대만계 보바티샵 多. Tastea·Gong Cha·Tiger Sugar·Sharetea. 한인 학생·직장인 즐겨 찾음.</span><span data-en>Many Korean & Taiwanese boba tea shops in Cupertino & San Jose. Tastea, Gong Cha, Tiger Sugar & Sharetea. Popular with Korean students & workers.</span></div></div>
+    </section>
+    <section id="sc-sf" style="margin-top:28px;">
+      <div class="sec-head" data-ko>☕ SF 시내 카페</div>
+      <div class="sec-head" data-en>☕ SF City Cafés</div>
+      <div class="ccard" style="border-left-color:#D97706;"><div class="ccard-title">Blue Bottle Coffee — SF 발상지</div><div class="ccard-body"><span data-ko>SF 오리지널 스페셜티 커피. 오클랜드 창업. SF 여러 지점. 한인 유학생·크리에이터 즐겨 찾음. 미니멀 인테리어로 작업하기 좋음.</span><span data-en>SF's original specialty coffee. Founded in Oakland. Multiple SF locations. Popular with Korean students & creatives. Minimalist interior good for working.</span></div></div>
+      <div class="ccard" style="border-left-color:#D97706;"><div class="ccard-title">Sightglass Coffee · Ritual Coffee</div><div class="ccard-body"><span data-ko>SF 스페셜티 커피 대표 브랜드. SOMA·미션 지역. 한인 IT·크리에이티브 직군 인기. 노트북 작업 가능. 넓고 모던한 공간.</span><span data-en>SF's leading specialty coffee brands. SOMA & Mission districts. Popular with Korean IT & creative workers. Laptop-friendly. Spacious modern interiors.</span></div></div>
+    </section>
+    <section id="sc-work" style="margin-top:28px;">
+      <div class="sec-head" data-ko>💻 업무·스터디 카페 팁</div>
+      <div class="sec-head" data-en>💻 Work & Study Café Tips</div>
+      <div class="ccard" style="border-left-color:#D97706;"><div class="ccard-body"><span data-ko>• 베이에어리어 카페 대부분 노트북 사용 환영<br>• 장시간 작업 시 Peet's·Blue Bottle보다 체인 카페 예의<br>• 쿠퍼티노 Apple Park 근처 카페들은 주차 편리<br>• 구인·구직 비공식 미팅 장소로 카페 많이 활용<br>• WiFi: 대부분 무료. 빠른 인터넷 필요 시 图书관(공립도서관) 추천<br>• 한인 운영 카페는 한국어로 자유롭게 소통 가능</span><span data-en>• Most Bay Area cafés welcome laptop use<br>• For long sessions, chain cafés are more considerate than boutique ones<br>• Cafés near Cupertino Apple Park have convenient parking<br>• Cafés widely used for informal job/hiring meetings<br>• WiFi: mostly free. For fast internet, recommend public libraries<br>• Korean-owned cafés allow free communication in Korean</span></div></div>
+    </section>
+  </div>
+</div>
+
+<!-- 맛집 안내 -->
+<div class="app-overlay" id="app-food" style="background:linear-gradient(180deg,#1a0a00,#2e1200);">
+  <div class="app-header" style="background:linear-gradient(135deg,#2e1200,#1a0a00);">
+    <button class="app-back" onclick="closeApp('food')">‹</button>
+    <div class="app-header-title">🍽️ <span data-ko>맛집 안내</span><span data-en>Dining</span></div>
+    <div class="app-header-right"></div>
+  </div>
+  <div class="tab-bar" style="background:#1a0a00;">
+    <button class="tab-btn on" onclick="sTab(this,'sf-korean')"><span data-ko>한식</span><span data-en>Korean</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sf-sf')">SF</button>
+    <button class="tab-btn" onclick="sTab(this,'sf-tips')">Tips</button>
+  </div>
+  <div class="app-content">
+    <section id="sf-korean">
+      <div class="sec-head" data-ko>🍖 SF 베이에어리어 한식 TOP 5 ✅ 검증됨</div>
+      <div class="sec-head" data-en>🍖 SF Bay Area Korean Food TOP 5 ✅ Verified</div>
+
+      <div class="ccard" style="border-left-color:#FB923C;">
+        <div class="ccard-title">1. San Ho Won <span style="font-size:0.7rem;color:#86EFAC;font-weight:700;">✅ 검증됨</span></div>
+        <div class="ccard-body">
+          <span data-ko><strong>미슐랭 스타 한국식 숯불 BBQ.</strong> Corey Lee 셰프 공동 창업. SF 미션 디스트릭트 위치.<br>📍 2170 Bryant St, San Francisco CA 94110</span>
+          <span data-en><strong>Michelin-starred Korean charcoal BBQ.</strong> Co-founded by Chef Corey Lee. Located in SF Mission District.<br>📍 2170 Bryant St, San Francisco CA 94110</span>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:8px;">
+            <a href="tel:+14158684479" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📞 (415) 868-4479</a>
+            <a href="https://www.sanhowon.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 sanhowon.com</a>
+            <a href="https://maps.google.com/?q=2170+Bryant+St+San+Francisco+CA+94110" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📍 Google Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#FB923C;">
+        <div class="ccard-title">2. Pogu at Jagalchi (데일리시티) <span style="font-size:0.7rem;color:#86EFAC;font-weight:700;">✅ 검증됨</span></div>
+        <div class="ccard-body">
+          <span data-ko><strong>미슐랭 셰프 Tony Yoo, 2025년 3월 오픈.</strong> Jagalchi Market 내 위치. 데일리시티.<br>📍 63 Serramonte Ctr, Daly City CA 94015</span>
+          <span data-en><strong>Michelin chef Tony Yoo, opened March 2025.</strong> Located inside Jagalchi Market. Daly City.<br>📍 63 Serramonte Ctr, Daly City CA 94015</span>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:8px;">
+            <a href="tel:+14154703420" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📞 (415) 470-3420</a>
+            <a href="https://maps.google.com/?q=63+Serramonte+Ctr+Daly+City+CA+94015" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📍 Google Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#FB923C;">
+        <div class="ccard-title">3. Sohn/SŌHN (SF Dogpatch) <span style="font-size:0.7rem;color:#86EFAC;font-weight:700;">✅ 검증됨</span></div>
+        <div class="ccard-body">
+          <span data-ko><strong>한미 퓨전 카페.</strong> James Beard 인정 셰프 Deuki Hong 운영. SF Dogpatch 위치.<br>📍 2535 3rd St, San Francisco CA 94107</span>
+          <span data-en><strong>Korean-American fusion café.</strong> Operated by James Beard-recognized Chef Deuki Hong. SF Dogpatch.<br>📍 2535 3rd St, San Francisco CA 94107</span>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:8px;">
+            <a href="https://www.sohnsf.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 sohnsf.com</a>
+            <a href="https://maps.google.com/?q=2535+3rd+St+San+Francisco+CA+94107" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📍 Google Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#FB923C;">
+        <div class="ccard-title">4. Kunjip (산타클라라) <span style="font-size:0.7rem;color:#86EFAC;font-weight:700;">✅ 검증됨</span></div>
+        <div class="ccard-body">
+          <span data-ko><strong>사우스베이 한인 최장수 정통 한식.</strong> 순두부·갈비 전문. 산타클라라.<br>📍 1066 Kiely Blvd, Santa Clara CA 95051</span>
+          <span data-en><strong>South Bay's longest-running authentic Korean restaurant.</strong> Sundubu & galbi specialty. Santa Clara.<br>📍 1066 Kiely Blvd, Santa Clara CA 95051</span>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:8px;">
+            <a href="tel:+14082460025" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📞 (408) 246-0025</a>
+            <a href="https://maps.google.com/?q=1066+Kiely+Blvd+Santa+Clara+CA+95051" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📍 Google Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ccard" style="border-left-color:#FB923C;">
+        <div class="ccard-title">5. Daeho Kalbijjim (밀피타스) <span style="font-size:0.7rem;color:#86EFAC;font-weight:700;">✅ 검증됨</span></div>
+        <div class="ccard-body">
+          <span data-ko><strong>바이럴 갈비찜 전문.</strong> SNS에서 폭발적 인기. 밀피타스.<br>📍 217 W Calaveras Blvd, Milpitas CA 95035</span>
+          <span data-en><strong>Viral braised short rib specialist.</strong> Explosive popularity on social media. Milpitas.<br>📍 217 W Calaveras Blvd, Milpitas CA 95035</span>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:8px;">
+            <a href="tel:+14087703778" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📞 (408) 770-3778</a>
+            <a href="https://www.daeho-kalbijjim.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">🔗 daeho-kalbijjim.com</a>
+            <a href="https://maps.google.com/?q=217+W+Calaveras+Blvd+Milpitas+CA+95035" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:0.72rem;color:#6EE7B7;font-weight:700;">📍 Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="sf-sf" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🌉 SF 시내 맛집</div>
+      <div class="sec-head" data-en>🌉 SF City Dining</div>
+      <div class="ccard" style="border-left-color:#FB923C;"><div class="ccard-title">SF Mission District — 세계 음식의 집합</div><div class="ccard-body"><span data-ko>미션 지구는 멕시칸·라틴 음식의 성지. 정통 타코·부리토 5~10달러로 한 끼 해결. 한인 유학생·직장인들이 즐겨 찾는 지역. <strong>San Ho Won</strong>도 이 지역 위치 (미슐랭 스타 한국 BBQ).</span><span data-en>Mission District is the holy land for Mexican & Latin food. Authentic tacos & burritos for $5–10 per meal. Favored by Korean students & workers. <strong>San Ho Won</strong> (Michelin-star Korean BBQ) also located here.</span></div></div>
+      <div class="ccard" style="border-left-color:#FB923C;"><div class="ccard-title">SF Dogpatch / Japantown 근처 한식</div><div class="ccard-body"><span data-ko>SF Dogpatch에 SŌHN (한미 퓨전, James Beard 셰프). Japantown 근처 한인 식당 집중. Korea House·한국관 등. 퇴근 후 SF 직장인 한인 저녁 모임 장소.</span><span data-en>SŌHN (Korean-American fusion, James Beard chef) in SF Dogpatch. Korean restaurants near Japantown. Korea House and others. After-work Korean dinner spot for SF workers.</span></div></div>
+    </section>
+    <section id="sf-tips" style="margin-top:28px;">
+      <div class="sec-head" data-ko>💡 베이에어리어 외식 꿀팁</div>
+      <div class="sec-head" data-en>💡 Bay Area Dining Tips</div>
+      <div class="tag-grid">
+        <div class="tag-item"><strong>🍽️ Yelp</strong><span data-ko>식당 리뷰 1순위</span><span data-en>Top restaurant review</span></div>
+        <div class="tag-item"><strong>🕐 Benu/Atelier 예약</strong><span data-ko>미슐랭 사전 예약</span><span data-en>Michelin advance booking</span></div>
+        <div class="tag-item"><strong>💰 Happy Hour</strong><span data-ko>오후 3~6시 할인</span><span data-en>3–6pm discount</span></div>
+        <div class="tag-item"><strong>🚗 Drive-thru 없음</strong><span data-ko>SF는 대부분 좌석제</span><span data-en>SF mostly sit-down</span></div>
+        <div class="tag-item"><strong>🌮 Taco Truck</strong><span data-ko>$3~5 정통 타코</span><span data-en>$3–5 authentic tacos</span></div>
+        <div class="tag-item"><strong>📦 DoorDash</strong><span data-ko>배달 앱 1위</span><span data-en>Top delivery app</span></div>
+      </div>
+      <div class="ccard" style="margin-top:12px;border-left-color:#FB923C;"><div class="ccard-title" data-ko>⚠️ SF 식당 가격 현실</div><div class="ccard-title" data-en>⚠️ SF Restaurant Price Reality</div><div class="ccard-body"><span data-ko>SF 시내 점심 $20~35, 저녁 $40~80 (미슐랭급 $150+). 실리콘밸리 한식당 점심 $18~28. 한인 마켓 반찬·밀키트로 자취 시 비용 절약 가능.</span><span data-en>SF city lunch $20–35, dinner $40–80 (Michelin-level $150+). Silicon Valley Korean restaurant lunch $18–28. Cost savings possible by cooking with Korean market side dishes & meal kits.</span></div></div>
+    </section>
+  </div>
+</div>
+
+<!-- 관광·나들이 -->
+<div class="app-overlay" id="app-nature" style="background:linear-gradient(180deg,#001a10,#003020);">
+  <div class="app-header" style="background:linear-gradient(135deg,#003020,#001a10);">
+    <button class="app-back" onclick="closeApp('nature')">‹</button>
+    <div class="app-header-title">🌉 <span data-ko>관광·나들이</span><span data-en>Explore</span></div>
+  </div>
+  <div class="tab-bar" style="background:#001a10;">
+    <button class="tab-btn on" onclick="sTab(this,'sn-sf')">SF</button>
+    <button class="tab-btn" onclick="sTab(this,'sn-nature')"><span data-ko>자연</span><span data-en>Nature</span></button>
+    <button class="tab-btn" onclick="sTab(this,'sn-day')"><span data-ko>당일치기</span><span data-en>Day Trips</span></button>
+  </div>
+  <div class="app-content">
+    <section id="sn-sf">
+      <div class="sec-head" data-ko>🌁 SF 시내 명소</div>
+      <div class="sec-head" data-en>🌁 SF City Highlights</div>
+      <div class="ccard" style="border-left-color:#34D399;"><div class="ccard-title">Golden Gate Bridge · 골든게이트 브릿지</div><div class="ccard-body"><span data-ko>SF 상징. 도보·자전거 횡단 가능. 새벽 안개 속 브릿지는 특히 장관. 주차 어려움 — Muni Bus·자전거 권장. 렌터 자전거로 횡단 후 Sausalito 페리 귀환 추천.</span><span data-en>SF's symbol. Walkable & bikeable. Bridge in early morning fog is especially spectacular. Parking is difficult — recommend Muni Bus or bike. Recommended: cross by rental bike then return by Sausalito ferry.</span></div></div>
+      <div class="ccard" style="border-left-color:#34D399;"><div class="ccard-title">Fisherman's Wharf · 피셔맨즈 워프</div><div class="ccard-body"><span data-ko>SF 관광 핵심. Pier 39 바다사자·클램차우더·크랩. 한인 가족 나들이 필수 코스. 알카트라즈 투어 출발지 (사전 예약 필수).</span><span data-en>SF tourism core. Pier 39 sea lions, clam chowder & crab. Essential family outing spot for Koreans. Starting point for Alcatraz tours (advance booking required).</span></div></div>
+      <div class="ccard" style="border-left-color:#34D399;"><div class="ccard-title">Alcatraz · 알카트라즈</div><div class="ccard-body"><span data-ko>전 연방 교도소 섬. SF 만의 상징적 관광지. 오디오 투어 한국어 제공. 1~2주 전 예약 필수 (매진 빈번).</span><span data-en>Former federal prison island. Iconic San Francisco Bay attraction. Audio tour available in Korean. Must book 1–2 weeks ahead (frequently sold out).</span></div></div>
+      <div class="ccard" style="border-left-color:#34D399;"><div class="ccard-title">Golden Gate Park · 골든게이트 파크</div><div class="ccard-body"><span data-ko>센트럴파크보다 큰 SF 공원. Japanese Tea Garden·드영미술관·아쿠아리움 포함. 주말 가족 나들이 1번지. 자전거 렌트 후 파크 투어 추천.</span><span data-en>SF park larger than Central Park. Includes Japanese Tea Garden, de Young Museum & Aquarium. #1 weekend family outing. Recommend renting a bike for a park tour.</span></div></div>
+    </section>
+    <section id="sn-nature" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🌲 베이에어리어 자연·하이킹</div>
+      <div class="sec-head" data-en>🌲 Bay Area Nature & Hiking</div>
+      <div class="ccard" style="border-left-color:#34D399;"><div class="ccard-title">Muir Woods · 뮤어 우즈</div><div class="ccard-body"><span data-ko>세계 최대 레드우드 삼림. SF에서 차로 45분. 거대한 나무 숲 산책로. 주차 예약 필수 (사전 예약제). 한인 가족 극강 추천.</span><span data-en>World's largest redwood forest. 45 min drive from SF. Trails through giant tree forest. Parking reservation required (advance booking). Highly recommended for Korean families.</span></div></div>
+      <div class="ccard" style="border-left-color:#34D399;"><div class="ccard-title">Mt. Tamalpais · 타말파이스 산</div><div class="ccard-body"><span data-ko>SF 북쪽 마린 카운티. 베이에어리어 전경 조망 최고. 하이킹 코스 다양. 일출·일몰 명소. 난이도 다양해 초보자도 OK.</span><span data-en>Marin County north of SF. Best panoramic views of the Bay Area. Diverse hiking trails. Famous for sunrise & sunset. Various difficulty levels, beginners welcome.</span></div></div>
+      <div class="ccard" style="border-left-color:#34D399;"><div class="ccard-title">Big Basin / Castle Rock · 산타크루즈 산</div><div class="ccard-body"><span data-ko>실리콘밸리 서쪽 산타크루즈 산맥. 레드우드 트레일·폭포·산악 자전거. 주말 한인 IT 직장인 하이킹 성지. 산호세에서 차 30분.</span><span data-en>Santa Cruz Mountains west of Silicon Valley. Redwood trails, waterfalls & mountain biking. Weekend hiking holy ground for Korean IT workers. 30 min drive from San Jose.</span></div></div>
+    </section>
+    <section id="sn-day" style="margin-top:28px;">
+      <div class="sec-head" data-ko>🚗 당일치기 여행</div>
+      <div class="sec-head" data-en>🚗 Day Trip Destinations</div>
+      <div class="tag-grid">
+        <div class="tag-item"><strong>🍷 Napa Valley</strong><span data-ko>SF에서 1시간. 와인 투어</span><span data-en>1hr from SF. Wine tours</span></div>
+        <div class="tag-item"><strong>🌊 Santa Cruz</strong><span data-ko>서퍼 해변·롤러코스터</span><span data-en>Surfer beach & boardwalk</span></div>
+        <div class="tag-item"><strong>🌉 Sausalito</strong><span data-ko>페리로 30분. 아기자기 마을</span><span data-en>30min by ferry. Charming town</span></div>
+        <div class="tag-item"><strong>🦭 Monterey</strong><span data-ko>해달·아쿠아리움. 1.5시간</span><span data-en>Sea otters & aquarium. 1.5hr</span></div>
+        <div class="tag-item"><strong>🌳 Yosemite</strong><span data-ko>SF에서 3.5시간. 예약 필수</span><span data-en>3.5hr from SF. Booking req</span></div>
+        <div class="tag-item"><strong>🌲 Lake Tahoe</strong><span data-ko>3.5시간. 스키·여름 호수</span><span data-en>3.5hr. Skiing & summer lake</span></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+function setLang(l){document.body.classList.toggle('en',l==='en');document.querySelectorAll('.slang').forEach(b=>b.classList.remove('on'));document.querySelector(`.slang[onclick="setLang('${l}')"]`)?.classList.add('on');localStorage.setItem('hg-lang',l);}
+const sv=localStorage.getItem('hg-lang');if(sv)setLang(sv);
+let cur=null;
+function openApp(id){const el=document.getElementById('app-'+id);if(!el)return;el.style.display='flex';requestAnimationFrame(()=>el.classList.add('open'));cur=id;document.getElementById('home').style.display='none';document.getElementById('floatNav').style.display='none';}
+function closeApp(id){const el=document.getElementById('app-'+id);if(!el)return;el.classList.remove('open');setTimeout(()=>{el.style.display='none';},300);document.getElementById('home').style.display='block';document.getElementById('floatNav').style.display='flex';cur=null;}
+function sTab(btn,sid){const ov=btn.closest('.app-overlay');ov.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');const t=document.getElementById(sid);if(t){const c=ov.querySelector('.app-content');c.scrollTo({top:t.offsetTop-8,behavior:'smooth'});}}
+let sy=0;document.addEventListener('touchstart',e=>{sy=e.touches[0].clientY;});document.addEventListener('touchend',e=>{const dy=e.changedTouches[0].clientY-sy;if(dy>80&&cur){const ov=document.getElementById('app-'+cur);if(ov?.querySelector('.app-content').scrollTop===0)closeApp(cur);}});
+</script>
+</body>
+</html>

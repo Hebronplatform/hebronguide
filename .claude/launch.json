@@ -2,11 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "HebronGuide Global",
-      "runtimeExecutable": "C:\\Python314\\python.exe",
-      "runtimeArgs": ["-m", "http.server", "3900"],
-      "cwd": ".",
-      "port": 3900
+      "name": "hebronguide-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "hebronguide"],
+      "port": 5173
     }
   ]
 }

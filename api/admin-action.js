@@ -38,13 +38,12 @@ async function sbFetch(table, method, id, body = null) {
   const db = TABLE_DB[table] || 'new'
   const url = `${SB_URLS[db]}/rest/v1/${table}?id=eq.${encodeURIComponent(id)}`
 
-  // 프로젝트별 서비스 키 선택
-  const serviceKey = db === 'main'
-    ? process.env.SUPABASE_SERVICE_KEY_MAIN
-    : process.env.SUPABASE_SERVICE_KEY
+  // 단일 Supabase 프로젝트 — MAIN 또는 일반 키 중 설정된 것 사용
+  const serviceKey = process.env.SUPABASE_SERVICE_KEY_MAIN
+    || process.env.SUPABASE_SERVICE_KEY
 
   if (!serviceKey) {
-    throw new Error(`서비스 키 미설정: SUPABASE_SERVICE_KEY${db === 'main' ? '_MAIN' : ''} (Vercel 환경변수 확인)`)
+    throw new Error('서비스 키 미설정: Vercel → Settings → Environment Variables → SUPABASE_SERVICE_KEY_MAIN 확인')
   }
 
   const res = await fetch(url, {

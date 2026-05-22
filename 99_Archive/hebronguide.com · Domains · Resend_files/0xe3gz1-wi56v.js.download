@@ -1,0 +1,322 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,222646,e=>{"use strict";var a=e.i(44666);e.s(["analyticsClient",0,{capture:e=>{a.default.capture(e.event,e.properties)},capturePublic:e=>{a.default.capture(e.event,e.properties)}}])},395550,e=>{"use strict";var a=e.i(533667),i=e.i(945060);e.s(["Body",0,function({className:e,removeLastBorder:r=!1,...t}){return(0,a.jsx)("tbody",{className:(0,i.cn)(r&&"[&_tr:last-child_td]:border-b-0",e),...t})},"Cell",0,function({className:e,...r}){return(0,a.jsx)("td",{className:(0,i.cn)("border-gray-2 h-10 text-ellipsis whitespace-nowrap border-b px-3 text-sm",e),...r})},"Head",0,function({className:e,...r}){return(0,a.jsx)("thead",{...r,className:(0,i.cn)("h-8",e)})},"Header",0,function({className:e,...r}){return(0,a.jsx)("th",{className:(0,i.cn)("h-8 border-b border-t border-gray-a3 px-3 text-xs font-semibold text-gray-11 bg-gray-a2","first:rounded-l-xl first:border-l","last:rounded-r-xl last:border-r",e),...r})},"Root",0,function({className:e,containerClassName:r,...t}){return(0,a.jsx)("div",{className:"@container min-h-0",children:(0,a.jsx)("div",{className:(0,i.cn)("relative w-full overflow-x-auto transform-gpu overflow-y-hidden min-h-0 @3xl:overflow-visible",r),children:(0,a.jsx)("table",{className:(0,i.cn)("m-0 w-max min-w-full border-separate border-spacing-0 border-none p-0 text-left md:w-full",e),...t})})})},"Row",0,function({className:e,...i}){return(0,a.jsx)("tr",{className:e,...i})}])},138265,e=>{"use strict";var a=e.i(533667),i=e.i(257536),r=e.i(170816),t=e.i(643452),n=e.i(498013),o=e.i(945060),s=e.i(864667);let d={initial:{opacity:0},animate:{opacity:1,transition:{ease:"circInOut",duration:.1}},exit:{opacity:0,transition:{ease:"circIn",duration:.3}}},x={initial:{opacity:0},animate:{opacity:1},exit:{opacity:0},transition:{duration:0}},m=300,l=500,c=1e3;e.s(["CopyableSlot",0,function({children:e,copyText:p,persistCopyButtonStatus:u=!1,className:y,delayToShow:h=m,delayToHide:f=l,buttonSize:k,clickTarget:D="default"}){let[C,v]=t.default.useState(!1),[g,b]=t.default.useState(!1),[_,R]=t.default.useState(void 0),w=t.default.useRef(null),E=t.default.useRef(null),S=t.default.useRef(null),T=(0,n.usePrefersReducedMotion)();return(t.default.useEffect(()=>{C||b(!1)},[C]),p)?(0,a.jsxs)("span",{className:(0,o.cn)("relative flex items-center gap-2 w-full min-w-0","container"===D&&"cursor-pointer",y),style:{maxWidth:_},onClick:e=>{if("container"===D&&S.current){let a=e.target;S.current===a||S.current.contains(a)||S.current.click()}},onMouseEnter:e=>{R(e.currentTarget.offsetWidth),"container"===D?v(!0):w.current=setTimeout(()=>v(!0),h),E.current&&clearTimeout(E.current)},onMouseLeave:()=>{!g&&(E.current=setTimeout(()=>v(!1),f),w.current&&clearTimeout(w.current))},children:[e,(0,a.jsx)(i.AnimatePresence,{children:C&&(0,a.jsx)(r.motion.div,{className:"h-[1em] w-4 relative",...T?x:d,children:(0,a.jsx)("div",{className:"flex absolute -inset-2",children:(0,a.jsx)(s.CopyButton,{ref:S,buttonSize:k,persistCopyButtonStatus:u,onCopy:()=>{b(!0),u||setTimeout(()=>{v(!1),window.requestAnimationFrame(()=>{b(!1)})},c)},className:"m-auto block",value:p})})})})]}):e}])},740306,e=>{"use strict";var a=e.i(533667),i=e.i(26505),r=e.i(945060),t=e.i(632035);e.s(["InternalLink",0,function({children:e,className:n,...o}){return(0,a.jsx)(i.default,{...o,className:(0,r.cn)("cursor-pointer truncate border-b border-dashed border-gray-4 transition duration-300 ease-in-out group-hover:border-blue-9 hover:border-blue-9",n),children:(0,a.jsx)(t.Text,{color:"white",className:"cursor-pointer",children:e})})}])},34093,e=>{"use strict";var a=e.i(533667),i=e.i(945060);e.i(232217);var r=e.i(718400),t=e.i(459917),n=e.i(762837);e.s(["DropdownMenuItemAnimation",0,function({animationData:e,children:o,size:s=18,iconClassName:d,...x}){let m=(0,n.useIconAnimation)();return(0,a.jsxs)(r.DropdownMenu.Item,{onMouseEnter:m.onMouseEnter,onMouseLeave:m.onMouseLeave,...x,children:[(0,a.jsx)(t.LazyLottie,{animationData:e,autoplay:!1,className:(0,i.cn)("invert dark:invert-0",d),loop:!1,lottieRef:m.ref,style:{width:s,height:s}}),o]})}])},144803,e=>{"use strict";var a=e.i(533667),i=e.i(945060);e.s(["Content",0,({children:e,className:r})=>(0,a.jsx)("div",{className:(0,i.cn)("mx-auto w-full max-w-full px-6 md:max-w-6xl",r),children:e}),"Header",0,({children:e,className:r})=>(0,a.jsx)("div",{className:(0,i.cn)("mx-auto w-full max-w-6xl px-6 py-8",r),children:e})])},721890,e=>{"use strict";var a=e.i(643452);function i(){return(i=Object.assign.bind()).apply(null,arguments)}var r=["id","volume","playbackRate","soundEnabled","interrupt","onload"];e.s(["default",0,function(t,n){var o=void 0===n?{}:n,s=o.volume,d=void 0===s?1:s,x=o.playbackRate,m=void 0===x?1:x,l=o.soundEnabled,c=void 0===l||l,p=o.interrupt,u=void 0!==p&&p,y=o.onload,h=function(e,a){if(null==e)return{};var i={};for(var r in e)if(({}).hasOwnProperty.call(e,r)){if(-1!==a.indexOf(r))continue;i[r]=e[r]}return i}(o,r),f=a.default.useRef(null),k=a.default.useRef(!1),D=a.default.useState(null),C=D[0],v=D[1],g=a.default.useState(null),b=g[0],_=g[1],R=function(){"function"==typeof y&&y.call(this),k.current&&v(1e3*this.duration()),_(this)};(0,a.useEffect)(function(){return e.A(636480).then(function(e){if(!k.current){var a;f.current=null!=(a=e.Howl)?a:e.default.Howl,k.current=!0,new f.current(i({src:Array.isArray(t)?t:[t],volume:d,rate:m,onload:R},h))}}),function(){k.current=!1}},[]),a.default.useEffect(function(){f.current&&b&&_(new f.current(i({src:Array.isArray(t)?t:[t],volume:d,onload:R},h)))},[JSON.stringify(t)]),a.default.useEffect(function(){b&&(b.volume(d),h.sprite||b.rate(m))},[b,d,m]);var w=a.default.useCallback(function(e){void 0===e&&(e={}),b&&(c||e.forceSoundEnabled)&&(u&&b.stop(),e.playbackRate&&b.rate(e.playbackRate),b.play(e.id))},[b,c,u]),E=a.default.useCallback(function(e){b&&b.stop(e)},[b]),S=a.default.useCallback(function(e){b&&b.pause(e)},[b]);return[w,{sound:b,stop:E,pause:S,duration:C}]}])},318082,e=>{"use strict";let a=(0,e.i(379581).default)("refresh-cw",[["path",{d:"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8",key:"v9h5vc"}],["path",{d:"M21 3v5h-5",key:"1q7to0"}],["path",{d:"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16",key:"3uifl3"}],["path",{d:"M8 16H3v5",key:"1cv678"}]]);e.s(["default",0,a])},622057,e=>{"use strict";let a=(0,e.i(379581).default)("circle-check",[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["path",{d:"m9 12 2 2 4-4",key:"dzmm74"}]]);e.s(["CircleCheck",0,a],622057)},830482,e=>{"use strict";let a=(0,e.i(379581).default)("globe",[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["path",{d:"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20",key:"13o1zl"}],["path",{d:"M2 12h20",key:"9i4pu4"}]]);e.s(["Globe",0,a],830482)},219648,e=>{"use strict";let a=(0,e.i(379581).default)("circle-x",[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["path",{d:"m15 9-6 6",key:"1uzhvr"}],["path",{d:"m9 9 6 6",key:"z0biqf"}]]);e.s(["CircleX",0,a],219648)},497086,e=>{"use strict";var a=e.i(318082);e.s(["RefreshCw",()=>a.default])},837749,(e,a,i)=>{a.exports=JSON.parse('{"v":"5.12.1","fr":60,"ip":0,"op":60,"w":500,"h":500,"nm":"system-regular-120-text-snippet","ddd":0,"assets":[{"id":"comp_1","nm":"hover-text","fr":60,"layers":[{"ddd":0,"ind":1,"ty":4,"nm":".primary.design","cl":"primary design","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[250.003,250.001,0],"ix":2,"l":2},"a":{"a":0,"k":[250.003,250.001,0],"ix":1,"l":2},"s":{"a":0,"k":[100,100,100],"ix":6,"l":2}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[8.644,0],[0,0],[0,8.643],[-8.644,0],[0,0],[0,-8.643]],"o":[[0,0],[-8.644,0],[0,-8.643],[0,0],[8.644,0],[0,8.643]],"v":[[88.542,15.65],[-88.542,15.65],[-104.192,0],[-88.542,-15.65],[88.542,-15.65],[104.192,0]],"c":true},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"fl","c":{"a":0,"k":[0.616,0.627,0.655,1],"ix":4,"x":"var $bm_rt;\\n$bm_rt = comp(\'system-regular-120-text-snippet\').layer(\'control\').effect(\'primary\')(\'Color\');"},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":".primary","mn":"ADBE Vector Graphic - Fill","hd":false,"cl":"primary"},{"ty":"tr","p":{"a":0,"k":[249.998,328.126],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 1","np":2,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[8.644,0],[0,0],[0,8.643],[-8.644,0],[0,0],[0,-8.643]],"o":[[0,0],[-8.644,0],[0,-8.643],[0,0],[8.644,0],[0,8.643]],"v":[[46.875,15.65],[-46.875,15.65],[-62.525,0],[-46.875,-15.65],[46.875,-15.65],[62.525,0]],"c":true},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"fl","c":{"a":0,"k":[0.616,0.627,0.655,1],"ix":4,"x":"var $bm_rt;\\n$bm_rt = comp(\'system-regular-120-text-snippet\').layer(\'control\').effect(\'primary\')(\'Color\');"},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":".primary","mn":"ADBE Vector Graphic - Fill","hd":false,"cl":"primary"},{"ty":"tr","p":{"a":0,"k":[208.331,182.29],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 2","np":2,"cix":2,"bm":0,"ix":2,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[8.644,0],[0,0],[0,8.643],[-8.644,0],[0,0],[0,-8.643]],"o":[[0,0],[-8.644,0],[0,-8.643],[0,0],[8.644,0],[0,8.643]],"v":[[88.542,15.65],[-88.542,15.65],[-104.192,0],[-88.542,-15.65],[88.542,-15.65],[104.192,0]],"c":true},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"fl","c":{"a":0,"k":[0.616,0.627,0.655,1],"ix":4,"x":"var $bm_rt;\\n$bm_rt = comp(\'system-regular-120-text-snippet\').layer(\'control\').effect(\'primary\')(\'Color\');"},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":".primary","mn":"ADBE Vector Graphic - Fill","hd":false,"cl":"primary"},{"ty":"tr","p":{"a":0,"k":[249.998,255.211],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 3","np":2,"cix":2,"bm":0,"ix":3,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0],[0,-2.858],[0,0],[-2.858,0],[0,0],[0,2.858],[0,0]],"o":[[0,0],[-2.858,0],[0,0],[0,2.858],[0,0],[2.858,0],[0,0],[0,0]],"v":[[29.977,-156.227],[-151.042,-156.224],[-156.225,-151.04],[-156.225,151.044],[-151.042,156.228],[151.042,156.228],[156.225,151.044],[156.225,-29.98]],"c":true},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ind":1,"ty":"sh","ix":2,"ks":{"a":0,"k":{"i":[[20.117,0],[0,0],[0,20.117],[0,0],[-20.117,0],[0,0],[-2.936,-2.935],[0,0],[-0.736,-1.411],[0,0],[0,-2.521],[0,0]],"o":[[0,0],[-20.117,0],[0,0],[0,-20.117],[0,0],[4.15,0],[0,0],[1.125,1.125],[0,0],[1.166,2.235],[0,0],[0,20.117]],"v":[[151.042,187.528],[-151.042,187.528],[-187.526,151.044],[-187.526,-151.04],[-151.042,-187.524],[36.459,-187.528],[47.526,-182.944],[182.936,-47.534],[185.745,-43.707],[185.75,-43.696],[187.526,-36.457],[187.526,151.044]],"c":true},"ix":2},"nm":"Path 2","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"fl","c":{"a":0,"k":[0.616,0.627,0.655,1],"ix":4,"x":"var $bm_rt;\\n$bm_rt = comp(\'system-regular-120-text-snippet\').layer(\'control\').effect(\'primary\')(\'Color\');"},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":".primary","mn":"ADBE Vector Graphic - Fill","hd":false,"cl":"primary"},{"ty":"tr","p":{"a":0,"k":[250.003,250.001],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 4","np":3,"cix":2,"bm":0,"ix":4,"mn":"ADBE Vector Group","hd":false}],"ip":60,"op":300,"st":0,"ct":1,"bm":0},{"ddd":0,"ind":2,"ty":4,"nm":".primary.design","cl":"primary design","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[250.003,250.001,0],"ix":2,"l":2},"a":{"a":0,"k":[250.003,250.001,0],"ix":1,"l":2},"s":{"a":0,"k":[100,100,100],"ix":6,"l":2}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[8.644,0],[0,0],[0,8.643],[-8.644,0],[0,0],[0,-8.643]],"o":[[0,0],[-8.644,0],[0,-8.643],[0,0],[8.644,0],[0,8.643]],"v":[[88.542,15.65],[-88.542,15.65],[-104.192,0],[-88.542,-15.65],[88.542,-15.65],[104.192,0]],"c":true},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"fl","c":{"a":0,"k":[0.616,0.627,0.655,1],"ix":4,"x":"var $bm_rt;\\n$bm_rt = comp(\'system-regular-120-text-snippet\').layer(\'control\').effect(\'primary\')(\'Color\');"},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":".primary","mn":"ADBE Vector Graphic - Fill","hd":false,"cl":"primary"},{"ty":"tr","p":{"a":0,"k":[249.998,328.126],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 1","np":2,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[8.644,0],[0,0],[0,8.643],[-8.644,0],[0,0],[0,-8.643]],"o":[[0,0],[-8.644,0],[0,-8.643],[0,0],[8.644,0],[0,8.643]],"v":[[46.875,15.65],[-46.875,15.65],[-62.525,0],[-46.875,-15.65],[46.875,-15.65],[62.525,0]],"c":true},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"fl","c":{"a":0,"k":[0.616,0.627,0.655,1],"ix":4,"x":"var $bm_rt;\\n$bm_rt = comp(\'system-regular-120-text-snippet\').layer(\'control\').effect(\'primary\')(\'Color\');"},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":".primary","mn":"ADBE Vector Graphic - Fill","hd":false,"cl":"primary"},{"ty":"tr","p":{"a":0,"k":[208.331,182.29],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 2","np":2,"cix":2,"bm":0,"ix":2,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[8.644,0],[0,0],[0,8.643],[-8.644,0],[0,0],[0,-8.643]],"o":[[0,0],[-8.644,0],[0,-8.643],[0,0],[8.644,0],[0,8.643]],"v":[[88.542,15.65],[-88.542,15.65],[-104.192,0],[-88.542,-15.65],[88.542,-15.65],[104.192,0]],"c":true},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"fl","c":{"a":0,"k":[0.616,0.627,0.655,1],"ix":4,"x":"var $bm_rt;\\n$bm_rt = comp(\'system-regular-120-text-snippet\').layer(\'control\').effect(\'primary\')(\'Color\');"},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":".primary","mn":"ADBE Vector Graphic - Fill","hd":false,"cl":"primary"},{"ty":"tr","p":{"a":0,"k":[249.998,255.211],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 3","np":2,"cix":2,"bm":0,"ix":3,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0],[0,-2.858],[0,0],[-2.858,0],[0,0],[0,2.858],[0,0]],"o":[[0,0],[-2.858,0],[0,0],[0,2.858],[0,0],[2.858,0],[0,0],[0,0]],"v":[[29.977,-156.227],[-151.042,-156.224],[-156.225,-151.04],[-156.225,151.044],[-151.042,156.228],[151.042,156.228],[156.225,151.044],[156.225,-29.98]],"c":true},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ind":1,"ty":"sh","ix":2,"ks":{"a":0,"k":{"i":[[20.117,0],[0,0],[0,20.117],[0,0],[-20.117,0],[0,0],[-2.936,-2.935],[0,0],[-0.736,-1.411],[0,0],[0,-2.521],[0,0]],"o":[[0,0],[-20.117,0],[0,0],[0,-20.117],[0,0],[4.15,0],[0,0],[1.125,1.125],[0,0],[1.166,2.235],[0,0],[0,20.117]],"v":[[151.042,187.528],[-151.042,187.528],[-187.526,151.044],[-187.526,-151.04],[-151.042,-187.524],[36.459,-187.528],[47.526,-182.944],[182.936,-47.534],[185.745,-43.707],[185.75,-43.696],[187.526,-36.457],[187.526,151.044]],"c":true},"ix":2},"nm":"Path 2","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"fl","c":{"a":0,"k":[0.616,0.627,0.655,1],"ix":4,"x":"var $bm_rt;\\n$bm_rt = comp(\'system-regular-120-text-snippet\').layer(\'control\').effect(\'primary\')(\'Color\');"},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":".primary","mn":"ADBE Vector Graphic - Fill","hd":false,"cl":"primary"},{"ty":"tr","p":{"a":0,"k":[250.003,250.001],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 4","np":3,"cix":2,"bm":0,"ix":4,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":1,"st":0,"ct":1,"bm":0},{"ddd":0,"ind":3,"ty":4,"nm":".primary.design","cl":"primary design","parent":4,"sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[250.003,249.999,0],"ix":2,"l":2},"a":{"a":0,"k":[250.003,250.001,0],"ix":1,"l":2},"s":{"a":0,"k":[100,100,100],"ix":6,"l":2}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-199.791,-0.303],[202.041,0.525]],"c":false},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.616,0.627,0.655,1],"ix":3,"x":"var $bm_rt;\\n$bm_rt = comp(\'system-regular-120-text-snippet\').layer(\'control\').effect(\'primary\')(\'Color\');"},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":31.3,"ix":5},"lc":2,"lj":2,"bm":0,"nm":".primary","mn":"ADBE Vector Graphic - Stroke","hd":false,"cl":"primary"},{"ty":"tm","s":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.8],"y":[0]},"t":5,"s":[27.5]},{"t":15,"s":[8],"h":1},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":22,"s":[93]},{"i":{"x":[0.1],"y":[1]},"o":{"x":[0.167],"y":[0.167]},"t":23,"s":[93]},{"t":45,"s":[27.5]}],"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.8],"y":[0]},"t":9,"s":[72]},{"t":19,"s":[8],"h":1},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":22,"s":[93]},{"i":{"x":[0.1],"y":[1]},"o":{"x":[0.167],"y":[0.167]},"t":32,"s":[92]},{"t":54,"s":[72]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":3,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false},{"ty":"tr","p":{"a":0,"k":[249.998,328.126],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-158.125,-0.303],[223.375,0.293]],"c":false},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.616,0.627,0.655,1],"ix":3,"x":"var $bm_rt;\\n$bm_rt = comp(\'system-regular-120-text-snippet\').layer(\'control\').effect(\'primary\')(\'Color\');"},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":31.3,"ix":5},"lc":2,"lj":2,"bm":0,"nm":".primary","mn":"ADBE Vector Graphic - Stroke","hd":false,"cl":"primary"},{"ty":"tm","s":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.8],"y":[0]},"t":1,"s":[29]},{"t":11,"s":[8],"h":1},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":18,"s":[90]},{"i":{"x":[0.1],"y":[1]},"o":{"x":[0.167],"y":[0.167]},"t":19,"s":[91]},{"t":41,"s":[29]}],"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.8],"y":[0]},"t":5,"s":[53.7]},{"t":15,"s":[8],"h":1},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":18,"s":[90]},{"i":{"x":[0.1],"y":[1]},"o":{"x":[0.167],"y":[0.167]},"t":28,"s":[89]},{"t":50,"s":[54]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":3,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false},{"ty":"tr","p":{"a":0,"k":[208.331,182.29],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 2","np":3,"cix":2,"bm":0,"ix":2,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-199.791,-0.303],[202.041,0.525]],"c":false},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.616,0.627,0.655,1],"ix":3,"x":"var $bm_rt;\\n$bm_rt = comp(\'system-regular-120-text-snippet\').layer(\'control\').effect(\'primary\')(\'Color\');"},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":31.3,"ix":5},"lc":2,"lj":2,"bm":0,"nm":".primary","mn":"ADBE Vector Graphic - Stroke","hd":false,"cl":"primary"},{"ty":"tm","s":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.8],"y":[0]},"t":3,"s":[27.5]},{"t":13,"s":[8],"h":1},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":20,"s":[93]},{"i":{"x":[0.1],"y":[1]},"o":{"x":[0.167],"y":[0.167]},"t":21,"s":[93]},{"t":43,"s":[27.5]}],"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.8],"y":[0]},"t":7,"s":[72]},{"t":17,"s":[8],"h":1},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":20,"s":[93]},{"i":{"x":[0.1],"y":[1]},"o":{"x":[0.167],"y":[0.167]},"t":30,"s":[92]},{"t":52,"s":[72]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":3,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false},{"ty":"tr","p":{"a":0,"k":[249.998,255.211],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 3","np":3,"cix":2,"bm":0,"ix":3,"mn":"ADBE Vector Group","hd":false}],"ip":1,"op":60,"st":0,"ct":1,"bm":0},{"ddd":0,"ind":4,"ty":4,"nm":".primary.design","cl":"primary design","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":1,"k":[{"i":{"x":[0.142],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":0,"s":[0]},{"i":{"x":[0.229],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":26,"s":[-4]},{"t":60,"s":[0]}],"ix":10},"p":{"a":1,"k":[{"i":{"x":0.17,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[250.004,250.003,0],"to":[0,0,0],"ti":[0,0,0]},{"i":{"x":0.251,"y":1},"o":{"x":0.333,"y":0},"t":17,"s":[199.004,250.003,0],"to":[0,0,0],"ti":[0,0,0]},{"t":60,"s":[250.004,250.003,0]}],"ix":2,"l":2},"a":{"a":0,"k":[250.003,250.001,0],"ix":1,"l":2},"s":{"a":0,"k":[100,100,100],"ix":6,"l":2}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0],[0,0],[0,-11.506],[0,0],[-11.506,0],[0,0],[0,11.506],[0,0]],"o":[[0,0],[0,0],[-11.506,0],[0,0],[0,11.506],[0,0],[11.506,0],[0,0],[0,0]],"v":[[171.869,-36.468],[36.46,-171.878],[-151.042,-171.874],[-171.876,-151.04],[-171.876,151.044],[-151.042,171.878],[151.042,171.878],[171.876,151.044],[171.876,-36.457]],"c":true},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.616,0.627,0.655,1],"ix":3,"x":"var $bm_rt;\\n$bm_rt = comp(\'system-regular-120-text-snippet\').layer(\'control\').effect(\'primary\')(\'Color\');"},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":31.3,"ix":5},"lc":2,"lj":2,"bm":0,"nm":".primary","mn":"ADBE Vector Graphic - Stroke","hd":false,"cl":"primary"},{"ty":"tr","p":{"a":0,"k":[250.003,250.001],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 4","np":2,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false}],"ip":1,"op":60,"st":0,"ct":1,"bm":0}]}],"layers":[{"ddd":0,"ind":1,"ty":3,"nm":"control","sr":1,"ks":{"o":{"a":0,"k":0,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[0,0],"ix":2,"l":2},"a":{"a":0,"k":[0,0,0],"ix":1,"l":2},"s":{"a":0,"k":[100,100,100],"ix":6,"l":2}},"ao":0,"ef":[{"ty":5,"nm":"primary","np":3,"mn":"ADBE Color Control","ix":1,"en":1,"ef":[{"ty":2,"nm":"Color","mn":"ADBE Color Control-0001","ix":1,"v":{"a":0,"k":[0.616,0.627,0.655],"ix":1}}]}],"ip":0,"op":131,"st":0,"bm":0},{"ddd":0,"ind":3,"ty":0,"nm":"hover-text","refId":"comp_1","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[250,250,0],"ix":2,"l":2},"a":{"a":0,"k":[250,250,0],"ix":1,"l":2},"s":{"a":0,"k":[100,100,100],"ix":6,"l":2}},"ao":0,"w":500,"h":500,"ip":0,"op":70,"st":0,"bm":0}],"markers":[{"tm":0,"cm":"default:hover-text","dr":60}],"props":{}}')},124036,e=>{"use strict";var a=e.i(643452),i=e.i(291967),r=e.i(597637),t=e.i(877550),n=e.i(467500),o=e.i(205156),s=e.i(538185),d=e.i(824076),x=e.i(533667),m="Switch",[l,c]=(0,t.createContextScope)(m),[p,u]=l(m),y=a.forwardRef((e,t)=>{let{__scopeSwitch:o,name:s,checked:l,defaultChecked:c,required:u,disabled:y,value:h="on",onCheckedChange:f,form:C,...v}=e,[g,b]=a.useState(null),_=(0,r.useComposedRefs)(t,e=>b(e)),R=a.useRef(!1),w=!g||C||!!g.closest("form"),[E,S]=(0,n.useControllableState)({prop:l,defaultProp:c??!1,onChange:f,caller:m});return(0,x.jsxs)(p,{scope:o,checked:E,disabled:y,children:[(0,x.jsx)(d.Primitive.button,{type:"button",role:"switch","aria-checked":E,"aria-required":u,"data-state":D(E),"data-disabled":y?"":void 0,disabled:y,value:h,...v,ref:_,onClick:(0,i.composeEventHandlers)(e.onClick,e=>{S(e=>!e),w&&(R.current=e.isPropagationStopped(),R.current||e.stopPropagation())})}),w&&(0,x.jsx)(k,{control:g,bubbles:!R.current,name:s,value:h,checked:E,required:u,disabled:y,form:C,style:{transform:"translateX(-100%)"}})]})});y.displayName=m;var h="SwitchThumb",f=a.forwardRef((e,a)=>{let{__scopeSwitch:i,...r}=e,t=u(h,i);return(0,x.jsx)(d.Primitive.span,{"data-state":D(t.checked),"data-disabled":t.disabled?"":void 0,...r,ref:a})});f.displayName=h;var k=a.forwardRef(({__scopeSwitch:e,control:i,checked:t,bubbles:n=!0,...d},m)=>{let l=a.useRef(null),c=(0,r.useComposedRefs)(l,m),p=(0,o.usePrevious)(t),u=(0,s.useSize)(i);return a.useEffect(()=>{let e=l.current;if(!e)return;let a=Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,"checked").set;if(p!==t&&a){let i=new Event("click",{bubbles:n});a.call(e,t),e.dispatchEvent(i)}},[p,t,n]),(0,x.jsx)("input",{type:"checkbox","aria-hidden":!0,defaultChecked:t,...d,tabIndex:-1,ref:c,style:{...d.style,...u,position:"absolute",pointerEvents:"none",opacity:0,margin:0}})});function D(e){return e?"checked":"unchecked"}k.displayName="SwitchBubbleInput",e.s(["Root",0,y,"Switch",0,y,"SwitchThumb",0,f,"Thumb",0,f,"createSwitchScope",0,c])},546131,e=>{"use strict";var a=e.i(124036);e.s(["Switch",0,a])},855140,e=>{"use strict";var a=e.i(533667),i=e.i(546131);e.s(["Switch",0,({checked:e,defaultChecked:r,onCheckedChange:t,disabled:n,...o})=>(0,a.jsx)(i.Switch.Root,{checked:e,defaultChecked:r,disabled:n,className:"relative h-6 w-10 cursor-pointer rounded-full border border-gray-3 bg-gray-2 outline-hidden focus-visible:ring-4 focus-visible:ring-gray-2 data-[state=checked]:border-green-6 data-[state=checked]:bg-green-7 dark:data-[state=checked]:bg-green-10 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",id:"open-tracking",onCheckedChange:t,value:e?"on":"off",...o,children:(0,a.jsx)(i.Switch.Thumb,{className:"block h-4 w-4 translate-x-0.75 rounded-full bg-gray-8 transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-4.75 data-[state=checked]:bg-gray-12"})})])},118919,e=>{"use strict";let a=[{id:"us-east-1",name:"North Virginia",flag:"/static/flags/us.svg"},{id:"eu-west-1",name:"Ireland",flag:"/static/flags/ie.svg"},{id:"sa-east-1",name:"São Paulo",flag:"/static/flags/br.svg"},{id:"ap-northeast-1",name:"Tokyo",flag:"/static/flags/jp.svg"}];e.s(["getRegion",0,e=>a.find(a=>a.id===e)||a[0],"regions",0,a])},377546,(e,a,i)=>{a.exports={v:"5.12.1",fr:60,ip:0,op:30,w:500,h:500,nm:"system-regular-26-play",ddd:0,assets:[{id:"comp_1",nm:"hover-play",fr:60,layers:[{ddd:0,ind:1,ty:4,nm:".primary.design",cl:"primary design",sr:1,ks:{o:{a:0,k:100,ix:11},r:{a:0,k:0,ix:10},p:{a:1,k:[{i:{x:.088,y:1},o:{x:.333,y:0},t:0,s:[250,250,0],to:[11,0,0],ti:[0,0,0]},{i:{x:.667,y:1},o:{x:.333,y:0},t:16,s:[316,250,0],to:[0,0,0],ti:[11,0,0]},{t:30,s:[250,250,0]}],ix:2,l:2},a:{a:0,k:[0,0,0],ix:1,l:2},s:{a:0,k:[100,100,100],ix:6,l:2}},ao:0,shapes:[{ty:"gr",it:[{ind:0,ty:"sh",ix:1,ks:{a:0,k:{i:[[.938,0],[.551,-.327],[0,-2.492],[0,0],[-1.02,-.592],[-2.733,1.654],[0,0],[0,1.103],[2.06,1.246],[0,0]],o:[[-1.366,0],[-1.285,.715],[0,0],[0,2.472],[.938,.511],[0,0],[2.304,-1.409],[0,-1.246],[0,0],[-1.101,-.674]],v:[[-87.386,-135.31],[-90.404,-134.493],[-93.198,-129.897],[-93.198,130.107],[-90.466,134.498],[-84.328,134.457],[133.152,4.507],[135.823,-.069],[133.315,-4.318],[-84.266,-134.411]],c:!0},ix:2},nm:"Path 1",mn:"ADBE Vector Shape - Group",hd:!1},{ind:1,ty:"sh",ix:2,ks:{a:0,k:{i:[[6.668,0],[5.751,3.248],[0,13.257],[0,0],[-11.725,6.618],[-11.46,-6.965],[0,0],[-.041,-12.787],[11.195,-6.843],[0,0]],o:[[-6.362,0],[-11.685,-6.598],[0,0],[0,-13.379],[11.746,-6.638],[0,0],[11.052,6.659],[.041,12.909],[0,0],[-5.852,3.534]],v:[[-87.386,166.669],[-105.862,161.808],[-124.52,130.107],[-124.52,-129.897],[-105.8,-161.823],[-68.137,-161.292],[149.445,-31.219],[167.145,-.151],[149.323,31.387],[-68.218,161.359]],c:!0},ix:2},nm:"Path 2",mn:"ADBE Vector Shape - Group",hd:!1},{ty:"fl",c:{a:0,k:[.631,.643,.647,1],ix:4,x:"var $bm_rt;\n$bm_rt = comp('system-regular-26-play').layer('control').effect('primary')('Color');"},o:{a:0,k:100,ix:5},r:1,bm:0,nm:".primary",mn:"ADBE Vector Graphic - Fill",hd:!1,cl:"primary"},{ty:"tr",p:{a:0,k:[0,0],ix:2},a:{a:0,k:[0,0],ix:1},s:{a:0,k:[100,100],ix:3},r:{a:0,k:0,ix:6},o:{a:0,k:100,ix:7},sk:{a:0,k:0,ix:4},sa:{a:0,k:0,ix:5},nm:"Transform"}],nm:"Group 1",np:3,cix:2,bm:0,ix:1,mn:"ADBE Vector Group",hd:!1}],ip:0,op:465,st:-1,ct:1,bm:0}]}],layers:[{ddd:0,ind:1,ty:3,nm:"control",sr:1,ks:{o:{a:0,k:0,ix:11},r:{a:0,k:0,ix:10},p:{a:0,k:[0,0],ix:2,l:2},a:{a:0,k:[0,0,0],ix:1,l:2},s:{a:0,k:[100,100,100],ix:6,l:2}},ao:0,ef:[{ty:5,nm:"primary",np:3,mn:"ADBE Color Control",ix:1,en:1,ef:[{ty:2,nm:"Color",mn:"ADBE Color Control-0001",ix:1,v:{a:0,k:[.631,.643,.647],ix:1}}]}],ip:0,op:151,st:0,bm:0},{ddd:0,ind:3,ty:0,nm:"hover-play",refId:"comp_1",sr:1,ks:{o:{a:0,k:100,ix:11},r:{a:0,k:0,ix:10},p:{a:0,k:[250,250,0],ix:2,l:2},a:{a:0,k:[250,250,0],ix:1,l:2},s:{a:0,k:[100,100,100],ix:6,l:2}},ao:0,w:500,h:500,ip:0,op:40,st:0,bm:0}],markers:[{tm:0,cm:"default:hover-play",dr:30}],props:{}}},162673,283922,e=>{"use strict";var a=e.i(533667),i=e.i(869265),r=e.i(643452),t=e.i(692981),n=e.i(222646),o=e.i(945060),s=e.i(796590),d=e.i(824393),x=e.i(459917),m=e.i(490570),l=e.i(762837),c=e.i(377546),p=e.i(426340),u=e.i(632035);function y({onClose:e,videoUrl:i}){return r.useEffect(()=>{let a=a=>{"Escape"===a.key&&e()};return document.addEventListener("keydown",a),()=>document.removeEventListener("keydown",a)},[e]),(0,a.jsx)("div",{className:"fixed bottom-6 right-6 z-50",children:(0,a.jsxs)("div",{className:"relative w-[320px] overflow-hidden rounded-2xl border border-gray-4 bg-black shadow-2xl",children:[(0,a.jsxs)("div",{className:"flex items-center justify-between border-b border-gray-4 bg-gray-1 px-4 py-1.5",children:[(0,a.jsx)(u.Text,{color:"white",weight:"semibold",children:"How to add DNS records"}),(0,a.jsxs)(m.Root,{children:[(0,a.jsx)(m.Trigger,{asChild:!0,children:(0,a.jsx)(d.IconButton,{"aria-label":"Close tutorial video",appearance:"fade",onClick:e,children:(0,a.jsx)(p.X,{className:"h-2 w-2"})})}),(0,a.jsx)(m.Content,{children:"Close tutorial video"})]})]}),(0,a.jsx)("div",{className:"aspect-video w-full bg-black",children:(0,a.jsx)("video",{autoPlay:!0,controls:!0,muted:!0,playsInline:!0,className:"h-full w-full",src:i})})]})})}e.s(["DomainTutorialButton",0,function({defaultOpen:e=!1,dnsProvider:p,iconOnly:u=!1,onClick:h,...f}){let k=(0,i.usePathname)(),D=(0,t.useActiveTeam)(),C=(0,l.useIconAnimation)(),v="GoDaddy"===p?"https://cdn.resend.com/posts/tutorial-video-godaddy.mp4":"https://cdn.resend.com/posts/tutorial-video-generic-provider.mp4",[g,b]=r.useState(e),_=e=>{n.analyticsClient.capture({event:"tutorial.started",timestamp:new Date().toISOString(),distinctId:String(D.user_id),groups:{team:String(D.team_id)},properties:{dns_provider:p,page:k}}),h?.(e),b(!0)},R=u?18:16,w=(0,a.jsx)(x.LazyLottie,{animationData:c.default,autoplay:!1,loop:!1,lottieRef:C.ref,onMouseEnter:C.onMouseEnter,onMouseLeave:C.onMouseLeave,className:(0,o.cn)("invert dark:invert-0",{"h-4 w-4":!u}),style:{width:R,height:R}});return(0,a.jsxs)(a.Fragment,{children:[u?(0,a.jsxs)(m.Root,{children:[(0,a.jsx)(m.Trigger,{asChild:!0,children:(0,a.jsx)(d.IconButton,{appearance:"gray","aria-label":"Tutorial",className:f.className,onClick:_,type:"button",children:w})}),(0,a.jsx)(m.Content,{children:"Learn how to add records"})]}):(0,a.jsx)(s.Button,{...f,appearance:"gray",iconLeft:w,onClick:_,children:"Tutorial"}),g&&(0,a.jsx)(y,{onClose:()=>b(!1),videoUrl:v})]})}],162673);var h=e.i(464385),f=e.i(166892);e.s(["ForwardInstructions",0,({domainId:e,children:i,capability:r,onForwarded:t})=>{let{mutateAsync:n}=f.trpc.domains.forwardInstructions.useMutation();return(0,a.jsx)(h.ForwardInstructionsPopover,{analyticsFormType:"dns-instructions-forward",inputId:"email",label:"Forward DNS records",submitAriaLabel:"Send instructions",onForward:async a=>{await n({id:e,to:a,...r&&{capability:r}})},onForwarded:t,children:i})}],283922)},902457,e=>{"use strict";let a=["by","moscow","ru","ru.com","ru.net","su","tatar","бел","москва","рус","рф","xn--90ais","xn--80adxhks","xn--p1acf","xn--p1ai"];e.s(["TRACKING_DOMAIN_CERTIFICATE_RESTRICTION_DOCS_URL",0,"https://resend.com/docs/dashboard/domains/tracking#unsupported-domains","TRACKING_DOMAIN_CERTIFICATE_RESTRICTION_MESSAGE",0,"Custom tracking domains are not available for this domain because we cannot issue certificates for some domains under regional restrictions.","isCustomTrackingDomainSupported",0,function(e){let i=e.trim().toLowerCase().replace(/\.$/,"");return!i||!a.some(e=>i===e||i.endsWith(`.${e}`))}])},598952,e=>{"use strict";let a=`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+resend.domains.list();`,i=`import resend
+
+resend.api_key = "re_xxxxxxxxx"
+resend.Domains.list()`,r=`Resend.api_key = 're_xxxxxxxxx'
+Resend::Domains.list`,t=`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->domains->list();`,n=`import 	"github.com/resend/resend-go/v3"
+
+client := resend.NewClient("re_xxxxxxxxx")
+
+domains, err := client.Domains.List()`,o=`use resend_rs::{Resend, Result, list_opts::ListOptions};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let _domains = resend
+    .domains
+    .list(ListOptions::default())
+    .await?;
+
+  Ok(())
+}`,s=`import com.resend.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Resend resend = new Resend("re_xxxxxxxxx");
+
+        ListDomainsResponse response = resend.domains().list();
+    }
+}`,d=`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" );
+
+var resp = await resend.DomainListAsync();
+Console.WriteLine( "Nr Domains={0}", resp.Content.Count );`,x=`curl -X GET 'https://api.resend.com/domains' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx' \\
+ -H 'Content-Type: application/json'`;e.s(["LIST_DOMAINS_CLI_CODE",0,"resend domains list","LIST_DOMAINS_CURL_CODE",0,x,"LIST_DOMAINS_DOTNET_CODE",0,d,"LIST_DOMAINS_GO_CODE",0,n,"LIST_DOMAINS_JAVA_CODE",0,s,"LIST_DOMAINS_NODEJS_CODE",0,a,"LIST_DOMAINS_PHP_CODE",0,t,"LIST_DOMAINS_PYTHON_CODE",0,i,"LIST_DOMAINS_RUBY_CODE",0,r,"LIST_DOMAINS_RUST_CODE",0,o,"addDomainCliCode",0,e=>`resend domains create \\
+  --name ${e}`,"addDomainCurlCode",0,e=>`curl -X POST 'https://api.resend.com/domains' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx' \\
+ -H 'Content-Type: application/json' \\
+ -d $'{
+  "name": "${e}",
+}'`,"addDomainDotnetCode",0,e=>`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" );
+
+var resp = await resend.DomainAddAsync( new DomainAddData {
+   DomainName = "${e}",
+   CustomReturnPath = "outbound"
+} );
+`,"addDomainGoCode",0,e=>`import 	"github.com/resend/resend-go/v3"
+
+client := resend.NewClient("re_xxxxxxxxx")
+
+params := &resend.CreateDomainRequest{
+    Name: "${e}",
+}
+
+domain, err := client.Domains.Create(params)`,"addDomainJavaCode",0,e=>`import com.resend.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Resend resend = new Resend("re_xxxxxxxxx");
+
+        CreateDomainRequest params = CreateDomainRequest
+                .builder()
+                .name("${e}").build();
+
+        CreateDomainResponse domain = resend.domains().create(params);
+    }
+}`,"addDomainNodejsCode",0,e=>`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+resend.domains.create({ name: '${e}' });`,"addDomainPhpCode",0,e=>`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->domains->create([
+  'name' => '${e}'
+]);`,"addDomainPythonCode",0,e=>`import resend
+
+resend.api_key = "re_xxxxxxxxx"
+
+params: resend.Domains.CreateParams = {
+  "name": "${e}",
+}
+
+resend.Domains.create(params)`,"addDomainRubyCode",0,e=>`Resend.api_key = ENV["RESEND_API_KEY"]
+
+params = {
+  name: "${e}",
+}
+domain = Resend::Domains.create(params)
+puts domain`,"addDomainRustCode",0,e=>`use resend_rs::{types::CreateDomainOptions, Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let _domain = resend
+    .domains
+    .add(CreateDomainOptions::new("${e}"))
+    .await?;
+
+  Ok(())
+}`,"getDomainCliCode",0,e=>`resend domains get ${e}`,"getDomainCurlCode",0,e=>`curl -X GET 'https://api.resend.com/domains/${e}' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx' \\
+ -H 'Content-Type: application/json'`,"getDomainDotnetCode",0,e=>`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" );
+
+var resp = await resend.DomainRetrieveAsync( new Guid( "${e}" ) );
+Console.WriteLine( "Domain Id={0}", resp.Content.Name );`,"getDomainGoCode",0,e=>`import 	"github.com/resend/resend-go/v3"
+
+client := resend.NewClient("re_xxxxxxxxx")
+
+retrievedDomain, err := client.Domains.Get("${e}")`,"getDomainJavaCode",0,e=>`import com.resend.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Resend resend = new Resend("re_xxxxxxxxx");
+
+        Domain domain = resend.domains().get("${e}");
+    }
+}`,"getDomainNodejsCode",0,e=>`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+resend.domains.get('${e}');`,"getDomainPhpCode",0,e=>`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->domains->get('${e}');`,"getDomainPythonCode",0,e=>`import resend
+
+resend.api_key = "re_xxxxxxxxx"
+
+resend.Domains.get(domain_id="${e}")`,"getDomainRubyCode",0,e=>`require "resend"
+
+Resend.api_key = "re_xxxxxxxxx"
+
+Resend::Domains.get "${e}"`,"getDomainRustCode",0,e=>`use resend_rs::{Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let _domain = resend
+    .domains
+    .get("${e}")
+    .await?;
+
+  Ok(())
+}`,"removeDomainCliCode",0,e=>`resend domains delete ${e}`,"removeDomainCurlCode",0,e=>`curl -X DELETE 'https://api.resend.com/domains/${e}' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx' \\
+ -H 'Content-Type: application/json'`,"removeDomainDotnetCode",0,e=>`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" );
+
+await resend.DomainDeleteAsync( new Guid( "${e}" ) );`,"removeDomainGoCode",0,e=>`import 	"github.com/resend/resend-go/v3"
+
+client := resend.NewClient("re_xxxxxxxxx")
+
+removed, err := client.Domains.Remove("${e}")`,"removeDomainJavaCode",0,e=>`import com.resend.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Resend resend = new Resend("re_xxxxxxxxx");
+
+        DeleteDomainResponse removed = resend.domains().remove("${e}");
+    }
+}`,"removeDomainNodejsCode",0,e=>`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+resend.domains.remove('${e}');`,"removeDomainPhpCode",0,e=>`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->domains->remove('${e}');`,"removeDomainPythonCode",0,e=>`import resend
+
+resend.api_key = "re_xxxxxxxxx"
+
+resend.Domains.remove(domain_id="${e}")`,"removeDomainRubyCode",0,e=>`Resend.api_key = ENV["RESEND_API_KEY"]
+Resend::Domains.remove("${e}")`,"removeDomainRustCode",0,e=>`use resend_rs::{Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let _deleted = resend
+    .domains
+    .delete("${e}")
+    .await?;
+
+  Ok(())
+}`,"updateDomainCliCode",0,e=>`resend domains update ${e} \\
+  --open-tracking \\
+  --click-tracking`,"updateDomainCurlCode",0,e=>`curl -X PATCH 'https://api.resend.com/domains/${e}' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx' \\
+ -H 'Content-Type: application/json' \\
+ -d $'{
+  "open_tracking": false,
+  "click_tracking": true
+}'`,"updateDomainDotnetCode",0,e=>`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" );
+
+await resend.DomainUpdateAsync(
+    new Guid( "${e}" ),
+    new DomainUpdateData()
+    {
+        TrackOpen = false,
+        TrackClicks = true,
+        TlsMode = TlsMode.Enforced,
+    }
+);`,"updateDomainGoCode",0,e=>`import 	"github.com/resend/resend-go/v3"
+
+client := resend.NewClient("re_xxxxxxxxx")
+
+updateDomainParams := &resend.UpdateDomainRequest{
+  OpenTracking:  false,
+  ClickTracking: true,
+  Tls: resend.Enforced,
+}
+
+updated, err := client.Domains.Update("${e}", updateDomainParams)`,"updateDomainJavaCode",0,e=>`Resend resend = new Resend("re_xxxxxxxxx");
+
+UpdateDomainOptions params = UpdateDomainOptions.builder()
+                .id("${e}")
+                .openTracking(false)
+                .clickTracking(true)
+                .build();
+
+resend.domains().update(params);`,"updateDomainNodejsCode",0,e=>`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+resend.domains.update({
+  id: '${e}',
+  openTracking: false,
+  clickTracking: true,
+});`,"updateDomainPhpCode",0,e=>`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->domains->update(
+  '${e}',
+  [
+    'open_tracking' => false,
+    'click_tracking' => true,
+  ]
+);`,"updateDomainPythonCode",0,e=>`import resend
+
+resend.api_key = "re_xxxxxxxxx"
+
+params: resend.Domains.UpdateParams = {
+  "id": "${e}",
+  "open_tracking": False,
+  "click_tracking": True,
+}
+
+resend.Domains.update(params)`,"updateDomainRubyCode",0,e=>`Resend.api_key = "re_xxxxxxxxx"
+
+Resend::Domains.update({
+  id: "${e}",
+  open_tracking: false,
+  click_tracking: false,
+})`,"updateDomainRustCode",0,e=>`use resend_rs::{types::DomainChanges, Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  let changes = DomainChanges::new()
+    .with_open_tracking(false)
+    .with_click_tracking(true);
+
+  let _domain = resend
+    .domains
+    .update("${e}", changes)
+    .await?;
+
+  Ok(())
+}`,"verifyDomainCliCode",0,e=>`resend domains verify ${e}`,"verifyDomainCurlCode",0,e=>`curl -X POST 'https://api.resend.com/domains/${e}/verify' \\
+ -H 'Authorization: Bearer re_xxxxxxxxx' \\
+ -H 'Content-Type: application/json'`,"verifyDomainDotnetCode",0,e=>`using Resend;
+
+IResend resend = ResendClient.Create( "re_xxxxxxxxx" );
+
+var resp = await resend.DomainVerifyAsync( new Guid( "${e}" ) );`,"verifyDomainGoCode",0,e=>`import 	"github.com/resend/resend-go/v3"
+
+client := resend.NewClient("re_xxxxxxxxx")
+
+verified, err := client.Domains.Verify("${e}")`,"verifyDomainJavaCode",0,e=>`import com.resend.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Resend resend = new Resend("re_xxxxxxxxx");
+
+        VerifyDomainResponse verified = resend.domains().verify("${e}");
+    }
+}`,"verifyDomainNodejsCode",0,e=>`import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+resend.domains.verify('${e}');`,"verifyDomainPhpCode",0,e=>`$resend = Resend::client('re_xxxxxxxxx');
+
+$resend->domains->verify('${e}');`,"verifyDomainPythonCode",0,e=>`import resend
+
+resend.api_key = "re_xxxxxxxxx"
+resend.Domains.verify(domain_id="${e}")`,"verifyDomainRubyCode",0,e=>`Resend.api_key = ENV["RESEND_API_KEY"]
+Resend::Domains.verify("${e}")`,"verifyDomainRustCode",0,e=>`use resend_rs::{Resend, Result};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let resend = Resend::new("re_xxxxxxxxx");
+
+  resend
+    .domains
+    .verify("${e}")
+    .await?;
+
+  Ok(())
+}`])},402477,e=>{"use strict";var a=e.i(533667),i=e.i(182840),r=e.i(557408),t=e.i(989266),n=e.i(867389),o=e.i(598952);e.s(["ApiDrawerDomains",0,({domainId:e="5e4d5e4d-5e4d-5e4d-5e4d-5e4d5e4d5e4d",domainName:s="example.com",children:d,open:x,onOpenChange:m})=>{let l="Domains API";return(0,a.jsxs)(i.Root,{open:x,onOpenChange:m,children:[d&&(0,a.jsx)(i.Trigger,{title:l,asChild:!0,children:d}),(0,a.jsxs)(i.Content,{children:[(0,a.jsx)(i.Header,{title:l}),(0,a.jsx)(i.Body,{children:(0,a.jsxs)(t.ApiDrawerRoot,{children:[(0,a.jsx)(r.ApiDrawerNavigation,{}),(0,a.jsx)(n.ApiDrawerSection,{code:{cURL:o.addDomainCurlCode(s),Go:o.addDomainGoCode(s),Rust:o.addDomainRustCode(s),Java:o.addDomainJavaCode(s),"Node.js":o.addDomainNodejsCode(s),PHP:o.addDomainPhpCode(s),Python:o.addDomainPythonCode(s),Ruby:o.addDomainRubyCode(s),".NET":o.addDomainDotnetCode(s),CLI:o.addDomainCliCode(s)},title:"Add domain",href:"https://resend.com/docs/api-reference/domains/create-domain"}),(0,a.jsx)(n.ApiDrawerSection,{code:{cURL:o.getDomainCurlCode(e),Go:o.getDomainGoCode(e),Rust:o.getDomainRustCode(e),Java:o.getDomainJavaCode(e),"Node.js":o.getDomainNodejsCode(e),PHP:o.getDomainPhpCode(e),Python:o.getDomainPythonCode(e),Ruby:o.getDomainRubyCode(e),".NET":o.getDomainDotnetCode(e),CLI:o.getDomainCliCode(e)},title:"Retrieve Domain",href:"https://resend.com/docs/api-reference/domains/get-domain"}),(0,a.jsx)(n.ApiDrawerSection,{code:{cURL:o.verifyDomainCurlCode(e),Go:o.verifyDomainGoCode(e),Rust:o.verifyDomainRustCode(e),Java:o.verifyDomainJavaCode(e),"Node.js":o.verifyDomainNodejsCode(e),PHP:o.verifyDomainPhpCode(e),Python:o.verifyDomainPythonCode(e),Ruby:o.verifyDomainRubyCode(e),".NET":o.verifyDomainDotnetCode(e),CLI:o.verifyDomainCliCode(e)},title:"Verify Domain",href:"https://resend.com/docs/api-reference/domains/verify-domain"}),(0,a.jsx)(n.ApiDrawerSection,{code:{cURL:o.updateDomainCurlCode(e),Go:o.updateDomainGoCode(e),Rust:o.updateDomainRustCode(e),Java:o.updateDomainJavaCode(e),"Node.js":o.updateDomainNodejsCode(e),PHP:o.updateDomainPhpCode(e),Python:o.updateDomainPythonCode(e),Ruby:o.updateDomainRubyCode(e),".NET":o.updateDomainDotnetCode(e),CLI:o.updateDomainCliCode(e)},title:"Update Domain",href:"https://resend.com/docs/api-reference/domains/update-domain"}),(0,a.jsx)(n.ApiDrawerSection,{code:{cURL:o.LIST_DOMAINS_CURL_CODE,Go:o.LIST_DOMAINS_GO_CODE,Rust:o.LIST_DOMAINS_RUST_CODE,Java:o.LIST_DOMAINS_JAVA_CODE,"Node.js":o.LIST_DOMAINS_NODEJS_CODE,PHP:o.LIST_DOMAINS_PHP_CODE,Python:o.LIST_DOMAINS_PYTHON_CODE,Ruby:o.LIST_DOMAINS_RUBY_CODE,".NET":o.LIST_DOMAINS_DOTNET_CODE,CLI:o.LIST_DOMAINS_CLI_CODE},title:"List Domains",href:"https://resend.com/docs/api-reference/domains/list-domains"}),(0,a.jsx)(n.ApiDrawerSection,{code:{cURL:o.removeDomainCurlCode(e),Go:o.removeDomainGoCode(e),Rust:o.removeDomainRustCode(e),Java:o.removeDomainJavaCode(e),"Node.js":o.removeDomainNodejsCode(e),PHP:o.removeDomainPhpCode(e),Python:o.removeDomainPythonCode(e),Ruby:o.removeDomainRubyCode(e),".NET":o.removeDomainDotnetCode(e),CLI:o.removeDomainCliCode(e)},title:"Delete Domain",href:"https://resend.com/docs/api-reference/domains/delete-domain"})]})})]})]})}])},854361,e=>{"use strict";var a=e.i(533667),i=e.i(869265),r=e.i(643452),t=e.i(500640),n=e.i(166892),o=e.i(796590),s=e.i(864667),d=e.i(216726);e.i(853309);var x=e.i(76185),m=e.i(761504),l=e.i(632035);e.i(344702);var c=e.i(140932),p=e.i(742054);function u({domainIds:e,domainName:y,redirectOnDelete:h,onOpenChange:f,onSuccess:k,inputRef:D}){let[C,v]=r.useState(""),[g,b]=r.useState("disabled"),_=e.length,R=1===_?y:`DELETE ${_} DOMAINS`,w=1===_?"This domain has been deleted":`${_} domains have been deleted`,E=(0,i.useRouter)(),S=n.trpc.useUtils(),{mutate:T,isPending:A}=n.trpc.domains.delete.useMutation({onSuccess:async()=>{await Promise.all([S.domains.list.invalidate(),S.domains.verifiedDomainNames.invalidate(),S.domains.getById.invalidate()]),(0,p.showToast)({title:w,appearance:"green"}),f(!1),k?.(),h&&E.push("/domains"),E.refresh()},onError:e=>{(0,p.showToast)({title:e.message,appearance:"red"})}}),N=C===R;return(0,t.useHotkeys)("mod+enter",()=>{N&&!A&&T({ids:e})},{enableOnFormTags:["input"]},[N,A,e,h]),(0,a.jsxs)(a.Fragment,{children:[(0,a.jsxs)(d.Title,{children:["Delete domain",_>1?"s":""]}),(0,a.jsxs)(l.Text,{className:"mt-6 block",size:"2",children:["Are you sure you want to delete"," ",_>1?`${_} domains`:"this domain","?"]}),(0,a.jsx)(l.Text,{color:"red",size:"2",weight:"bold",children:"This can not be undone."}),(0,a.jsxs)(l.Text,{className:"mt-4 block",size:"2",children:["Type"," ",(0,a.jsxs)(m.Tag,{className:"inline-flex max-w-80 pr-1 text-sm",size:"1",children:[(0,a.jsx)(l.Text,{color:"white",className:"truncate",children:R}),(0,a.jsx)(s.CopyButton,{value:R})]})," ","to confirm."]}),(0,a.jsxs)("form",{onSubmit:a=>{a.preventDefault(),C===R&&T({ids:e})},children:[(0,a.jsx)("div",{className:"mt-4 flex w-full flex-col gap-1",children:(0,a.jsx)(c.TextField.Input,{ref:D,onChange:e=>{e.target.value.length>0&&e.target.value===R?b("normal"):b("disabled"),v(e.target.value)},value:C,placeholder:1===_?"Enter domain name":"Enter confirmation text"})}),(0,a.jsxs)("div",{className:"mt-6 flex items-center gap-2",children:[(0,a.jsxs)(o.Button,{appearance:"red",state:A?"loading":g,shortcut:[x.SHORTCUTS_VALUES.CMD,x.SHORTCUTS_VALUES.ENTER],children:["Delete domain",_>1?"s":""]}),(0,a.jsx)(d.Close,{asChild:!0,children:(0,a.jsx)(o.Button,{appearance:"gray",shortcut:x.SHORTCUTS_VALUES.ESC,children:"Cancel"})})]})]})]})}e.s(["DeleteDomainModal",0,function({domainIds:e,domainName:i,redirectOnDelete:t=!0,onSuccess:n,children:o,open:s,onOpenChange:x}){let[m,l]=r.useState(!1),c=r.useRef(null),p=void 0!==s;function y(e){p||l(e),x?.(e)}return(0,a.jsxs)(d.Root,{open:p?s:m,onOpenChange:y,children:[o&&(0,a.jsx)(d.Trigger,{asChild:!0,children:o}),(0,a.jsx)(d.Content,{onOpenAutoFocus:e=>{e.preventDefault(),c.current?.focus()},children:(0,a.jsx)(u,{domainIds:e,domainName:i,redirectOnDelete:t,onOpenChange:y,onSuccess:n,inputRef:c})})]})}])},636480,e=>{e.v(a=>Promise.all(["static/chunks/0o-s6x2.~j7j_.js"].map(a=>e.l(a))).then(()=>a(807643)))}]);

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HebronGuide — 랜드마크 헤더 샘플</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0d1117; font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif; color:#fff; padding:16px; }
+
+  @keyframes kbIn  { 0%{transform:scale(1.0) translate(0%,0%)} 50%{transform:scale(1.12) translate(-1.8%,-1.2%)} 100%{transform:scale(1.0) translate(0%,0%)} }
+  @keyframes kbOut { 0%{transform:scale(1.0) translate(0%,0%)} 50%{transform:scale(1.12) translate(1.8%,-1.2%)}  100%{transform:scale(1.0) translate(0%,0%)} }
+  @keyframes particle { 0%{transform:translate(0,0) scale(1);opacity:0} 15%{opacity:.9} 85%{opacity:.3} 100%{transform:translate(var(--px),var(--py)) scale(.4);opacity:0} }
+  @keyframes scan { 0%{top:-3px;opacity:.7} 100%{top:110%;opacity:0} }
+
+  .hero {
+    position:relative; height:210px; border-radius:0 0 26px 26px;
+    overflow:hidden; max-width:360px; margin:0 auto 8px;
+    box-shadow:0 18px 50px rgba(0,0,0,.7);
+  }
+  .hero .bg { position:absolute; inset:0; z-index:0; }
+  .hero .slide {
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; transition:opacity 1.4s ease; z-index:1;
+    filter:brightness(1.3) saturate(1.5) contrast(.96);
+  }
+  .hero .grad { position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.06) 35%,rgba(0,0,0,.48) 100%); }
+  .hero .scan-line { position:absolute; left:0; right:0; height:2px; z-index:3; pointer-events:none; animation:scan 5s linear infinite; }
+  .hero .pt { position:absolute; bottom:38px; border-radius:50%; z-index:4; pointer-events:none; animation:particle 3.2s ease-out infinite; }
+  .hero .txt { position:absolute; bottom:0; left:0; right:60px; z-index:10; padding:0 16px 14px; }
+  .hero .badge {
+    display:inline-flex; align-items:center; gap:4px;
+    background:rgba(0,0,0,.28); backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.15); border-radius:99px;
+    padding:3px 9px; margin-bottom:6px;
+  }
+  .hero .bdot { width:5px; height:5px; border-radius:50%; display:inline-block; }
+  .hero .btxt { font-size:9px; font-weight:700; color:rgba(255,255,255,.9); letter-spacing:.05em; }
+  .hero .cname { font-size:24px; font-weight:900; color:#fff; letter-spacing:-.5px;
+    text-shadow:0 2px 18px rgba(0,0,0,.65); line-height:1.15; }
+  .hero .tline { font-size:11.5px; color:rgba(255,255,255,.82); margin-top:4px;
+    text-shadow:0 1px 7px rgba(0,0,0,.5); }
+  .hero .dots { position:absolute; bottom:9px; right:12px; z-index:11; display:flex; gap:5px; align-items:center; }
+  .hero .dot { height:5px; border-radius:99px; border:none; cursor:pointer; transition:all .3s; }
+
+  /* layout */
+  .header { text-align:center; padding:18px 0 14px; }
+  .header h1 { font-size:18px; font-weight:800; color:#6EE7B7; }
+  .header p  { font-size:12px; color:#64748B; margin-top:3px; }
+  .tabs { display:flex; justify-content:center; gap:7px; margin-bottom:14px; flex-wrap:wrap; }
+  .tab { padding:6px 14px; border-radius:20px; border:1px solid rgba(255,255,255,.1);
+    font-size:12px; cursor:pointer; background:rgba(255,255,255,.04); color:#94A3B8;
+    transition:all .2s; font-family:inherit; }
+  .tab.on { background:#6EE7B7; color:#0a2a1f; border-color:#6EE7B7; font-weight:700; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; max-width:800px; margin:0 auto 20px; }
+  .city-label { font-size:11px; color:#6EE7B7; text-align:center; margin-top:6px; }
+  .note { max-width:400px; margin:10px auto 0; background:rgba(110,231,183,.05);
+    border:1px solid rgba(110,231,183,.15); border-radius:10px; padding:12px 14px;
+    font-size:12px; color:#64748B; line-height:1.8; }
+  .note strong { color:#6EE7B7; }
+  hr { border:none; border-top:1px solid rgba(255,255,255,.07); margin:20px 0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>HebronGuide — 랜드마크 헤더</h1>
+  <p>Ken Burns ∞ + 파티클 + 스캔라인 | 각 도시 랜드마크 사진 적용</p>
+</div>
+
+<!-- 인터랙티브 (단일 헤더) -->
+<div class="tabs" id="mainTabs">
+  <button class="tab on"  onclick="go('seattle')">🏙️ 시애틀</button>
+  <button class="tab"     onclick="go('seoul')">🇰🇷 서울</button>
+  <button class="tab"     onclick="go('newyork')">🗽 뉴욕</button>
+  <button class="tab"     onclick="go('dallas')">🤠 달라스</button>
+  <button class="tab"     onclick="go('la')">🌴 LA</button>
+  <button class="tab"     onclick="go('tokyo')">🗼 도쿄</button>
+  <button class="tab"     onclick="go('london')">🇬🇧 런던</button>
+  <button class="tab"     onclick="go('miami')">🌊 마이애미</button>
+</div>
+
+<div class="hero" id="hero">
+  <div class="bg" id="bg"></div>
+  <img class="slide" id="s0" src="" alt="" style="animation:kbIn 10s ease-in-out infinite;">
+  <img class="slide" id="s1" src="" alt="" style="opacity:0;animation:kbOut 10s ease-in-out infinite;">
+  <div class="grad"></div>
+  <div class="scan-line" id="scanL"></div>
+  <div class="pt" id="p0" style="left:12%;--px:-18px;--py:-65px;width:5px;height:5px;animation-delay:0s;"></div>
+  <div class="pt" id="p1" style="left:27%;--px:12px;--py:-80px;width:3px;height:3px;background:rgba(255,255,255,.9);animation-delay:.8s;"></div>
+  <div class="pt" id="p2" style="left:45%;--px:-8px;--py:-55px;width:4px;height:4px;background:#C9A227;animation-delay:1.6s;"></div>
+  <div class="pt" id="p3" style="left:63%;--px:20px;--py:-72px;width:3px;height:3px;animation-delay:2.4s;"></div>
+  <div class="pt" id="p4" style="left:78%;--px:-14px;--py:-60px;width:5px;height:5px;background:rgba(255,255,255,.8);animation-delay:3.2s;"></div>
+  <div class="pt" id="p5" style="left:88%;--px:8px;--py:-48px;width:3px;height:3px;background:#C9A227;animation-delay:.4s;"></div>
+  <div class="txt">
+    <div class="badge"><span class="bdot" id="bdot"></span><span class="btxt" id="btxt"></span></div>
+    <div class="cname" id="cname"></div>
+    <div class="tline" id="tline"></div>
+  </div>
+  <div class="dots" id="dots"></div>
+</div>
+
+<hr>
+
+<!-- 그리드: 모든 도시 한눈에 -->
+<div style="text-align:center;margin-bottom:12px;">
+  <span style="font-size:12px;color:#6EE7B7;letter-spacing:1px;">ALL CITIES PREVIEW</span>
+</div>
+<div class="grid" id="grid"></div>
+
+<div class="note">
+  <strong>확인 후:</strong> "푸쉬해줘" 한 마디면 즉시 live 반영됩니다.<br>
+  <strong>사진 교체 요청:</strong> "시애틀 사진 더 선명하게" 등 말씀해주세요.
+</div>
+
+<script>
+const C = {
+  seattle: { color:"#2E86C1", flag:"🇺🇸", nameKo:"시애틀", nameEn:"Seattle",
+    tagline:"Space Needle · 에메랄드 시티 한인 커뮤니티",
+    slides:["https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=900&q=85",
+            "https://images.unsplash.com/photo-1502175353174-a7a70e73b362?w=900&q=85",
+            "https://images.unsplash.com/photo-1437809781432-a957377661ee?w=900&q=85"] },
+  seoul: { color:"#E74C3C", flag:"🇰🇷", nameKo:"서울", nameEn:"Seoul",
+    tagline:"경복궁 · N서울타워 · 역이민 한인 허브",
+    slides:["https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=900&q=85",
+            "https://images.unsplash.com/photo-1583425423688-5be5e8a9fcba?w=900&q=85"] },
+  newyork: { color:"#7D3C98", flag:"🇺🇸", nameKo:"뉴욕", nameEn:"New York",
+    tagline:"Brooklyn Bridge · Manhattan Skyline",
+    slides:["https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?w=900&q=85",
+            "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=900&q=85",
+            "https://images.unsplash.com/photo-1546436836-07a91091f160?w=900&q=85"] },
+  dallas: { color:"#D68910", flag:"🇺🇸", nameKo:"달라스", nameEn:"Dallas",
+    tagline:"Reunion Tower · 텍사스 DFW 한인 커뮤니티",
+    slides:["https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=900&q=85",
+            "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=900&q=85"] },
+  la: { color:"#F39C12", flag:"🇺🇸", nameKo:"로스앤젤레스", nameEn:"Los Angeles",
+    tagline:"Griffith Observatory · Hollywood · 코리아타운",
+    slides:["https://images.unsplash.com/photo-1580655653885-65763b2597d0?w=900&q=85",
+            "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=900&q=85",
+            "https://images.unsplash.com/photo-1496588152823-86ff7695e68f?w=900&q=85"] },
+  tokyo: { color:"#DC2626", flag:"🇯🇵", nameKo:"도쿄", nameEn:"Tokyo",
+    tagline:"시부야 스크램블 · 센소지 · 신오쿠보",
+    slides:["https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=900&q=85",
+            "https://images.unsplash.com/photo-1547860742-31c4c657e153?w=900&q=85"] },
+  london: { color:"#2563EB", flag:"🇬🇧", nameKo:"런던", nameEn:"London",
+    tagline:"Big Ben · Tower Bridge · 안개의 도시",
+    slides:["https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=85",
+            "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=900&q=85"] },
+  miami: { color:"#06B6D4", flag:"🇺🇸", nameKo:"마이애미", nameEn:"Miami",
+    tagline:"South Beach · Art Deco · 에메랄드 바다",
+    slides:["https://images.unsplash.com/photo-1535498730771-e735b998cd64?w=900&q=85",
+            "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&q=85"] },
+};
+
+let cur='seattle', idx=0, timer;
+
+function go(name) {
+  cur=name; idx=0; clearInterval(timer);
+  render();
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.classList.toggle('on', Object.keys(C)[i]===name);
+  });
+  if(C[name].slides.length>1)
+    timer=setInterval(()=>{idx=(idx+1)%C[cur].slides.length;render();},5000);
+}
+
+function render() {
+  const c=C[cur];
+  document.getElementById('bg').style.background=c.color;
+  const sc=document.getElementById('scanL');
+  sc.style.background=`linear-gradient(90deg,transparent 0%,${c.color}99 40%,${c.color}cc 50%,${c.color}99 60%,transparent 100%)`;
+  ['p0','p3'].forEach(id=>document.getElementById(id).style.background=c.color);
+  const s0=document.getElementById('s0'), s1=document.getElementById('s1');
+  if(idx%2===0){ s0.src=c.slides[idx]; s0.style.opacity=1; s1.style.opacity=0; }
+  else         { s1.src=c.slides[idx]; s1.style.opacity=1; s0.style.opacity=0; }
+  document.getElementById('bdot').style.background=c.color;
+  document.getElementById('btxt').textContent=`LIVE · ${c.flag} ${c.nameEn} · 67 Cities`;
+  document.getElementById('cname').innerHTML=`<span style="color:${c.color}">${c.nameKo}</span> <span style="font-weight:400;font-size:18px;opacity:.9">정착 가이드</span>`;
+  document.getElementById('tline').textContent=c.tagline;
+  const dw=document.getElementById('dots'); dw.innerHTML='';
+  if(c.slides.length>1) c.slides.forEach((_,i)=>{
+    const d=document.createElement('button'); d.className='dot';
+    d.style.cssText=`width:${i===idx?'20px':'5px'};background:${i===idx?'#fff':'rgba(255,255,255,.3)'}`;
+    d.onclick=()=>{idx=i;clearInterval(timer);render();timer=setInterval(()=>{idx=(idx+1)%C[cur].slides.length;render();},5000);};
+    dw.appendChild(d);
+  });
+}
+
+// 그리드 빌드
+const grid=document.getElementById('grid');
+Object.entries(C).forEach(([k,c])=>{
+  const wrap=document.createElement('div');
+  const h=document.createElement('div');
+  h.className='hero';
+  h.style.cssText='height:160px;max-width:100%;cursor:pointer;';
+  h.innerHTML=`
+    <div class="bg" style="background:${c.color}"></div>
+    <img class="slide" src="${c.slides[0]}" alt="${c.nameEn}" style="opacity:1;animation:kbIn 10s ease-in-out infinite;object-fit:cover;">
+    <div class="grad"></div>
+    <div class="scan-line" style="background:linear-gradient(90deg,transparent,${c.color}cc,transparent);animation:scan 5s linear infinite;"></div>
+    <div class="txt" style="padding:0 12px 10px;">
+      <div class="badge" style="margin-bottom:4px;">
+        <span class="bdot" style="background:${c.color}"></span>
+        <span class="btxt">${c.flag} ${c.nameEn}</span>
+      </div>
+      <div class="cname" style="font-size:18px;"><span style="color:${c.color}">${c.nameKo}</span> <span style="font-weight:400;font-size:13px;opacity:.85">정착 가이드</span></div>
+      <div class="tline" style="font-size:10px;">${c.tagline}</div>
+    </div>`;
+  h.onclick=()=>{go(k);window.scrollTo({top:0,behavior:'smooth'});};
+  wrap.appendChild(h);
+  const lbl=document.createElement('div'); lbl.className='city-label'; lbl.textContent=`${c.flag} ${c.nameKo} (클릭하면 위에서 크게 확인)`;
+  wrap.appendChild(lbl); grid.appendChild(wrap);
+});
+
+go('seattle');
+</script>
+</body>
+</html>

@@ -13989,6 +13989,15 @@ function getCityChurches(slug: string, lang: string) {
         tags: ko ? ["가정교회", "서울"] : ["HCMI", "Seoul"],
         website: "https://www.downchurch.com",
       },
+      {
+        emoji: "⛪", tier: 2,
+        name: ko ? "행복한교회 (의정부)" : "Haengbokan Church — Uijeongbu",
+        nameEn: "Haengbokan Church",
+        desc: ko
+          ? "✅ 검증됨\n📍 경기도 의정부시 오목로 225번길 135 트윈타워 1동 7층\n☎ 010-3254-8020\n✨ 담임: 이현권 목사\n\n서울 북부 30분 거리. 경기 북부 한인 이주민·귀환 동포를 따뜻하게 환영합니다."
+          : "✅ Verified\n📍 Twin Tower Bldg 1, 7F, 135 Omokro 225beon-gil, Uijeongbu, Gyeonggi\n☎ 010-3254-8020\n✨ Lead Pastor: Hyeonkwon Lee\n\n30 min from northern Seoul. Warmly welcomes Korean diaspora returning to the greater Seoul area.",
+        tags: ko ? ["의정부", "경기북부", "귀환동포환영"] : ["Uijeongbu", "North Gyeonggi", "Returning Diaspora"],
+      },
     ],
     busan: [
       {
