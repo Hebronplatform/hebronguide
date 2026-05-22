@@ -14009,6 +14009,18 @@ function getCityChurches(slug: string, lang: string) {
       {
         emoji: "⛪", tier: 2, hebronPartner: true,
         denomination: "장로교 (PCA / KAPC / KPCA)",
+        name: ko ? "예수생명교회 (남양주)" : "Jesus Life Church — Namyangju",
+        nameEn: "JESUS LIFE CHURCH",
+        desc: ko
+          ? "✅ 검증됨\n📍 경기도 남양주시\n🕐 주일예배 오전 11:00\n☎ 010-5146-0691\n✉️ core69m@gmail.com\n✨ 담임: 맹기원 목사\n\n1:1 맞춤 성경공부와 코칭을 도와드립니다. 서울 동북부 30분 거리."
+          : "✅ Verified\n📍 Namyangju, Gyeonggi\n🕐 Sunday Service 11:00am\n☎ 010-5146-0691\n✉️ core69m@gmail.com\n✨ Lead Pastor: Giweon Maeng\n\nPersonalized 1-on-1 Bible study and coaching available. 30 min from northeast Seoul.",
+        tags: ko ? ["남양주", "경기동북", "장로교", "성경공부", "Hebron협력"] : ["Namyangju", "Northeast Gyeonggi", "Presbyterian", "BibleStudy"],
+        phone: "01051460691",
+        email: "core69m@gmail.com",
+      },
+      {
+        emoji: "⛪", tier: 2, hebronPartner: true,
+        denomination: "장로교 (PCA / KAPC / KPCA)",
         name: ko ? "행복한교회 (의정부)" : "Haengbokan Church — Uijeongbu",
         nameEn: "Haengbokan Church",
         desc: ko
