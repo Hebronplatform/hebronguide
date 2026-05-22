@@ -402,19 +402,19 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
     <div class="field">
       <label>노출 도시 <span class="opt">(선택)</span></label>
       <select id="bCitySelect">
-        <option value="전체(67개 도시)">🌍 전체 — 67개 도시 모두</option>
-        <option value="시애틀">🌲 시애틀</option>
-        <option value="로스앤젤레스">🌴 LA · OC</option>
-        <option value="뉴욕">🗽 뉴욕</option>
-        <option value="달라스">🤠 달라스</option>
-        <option value="SF">🌉 SF</option>
-        <option value="휴스턴">🚀 휴스턴</option>
-        <option value="시카고">🫘 시카고</option>
-        <option value="워싱턴DC">🏛️ DC · 메릴랜드</option>
-        <option value="토론토">🍁 토론토</option>
-        <option value="밴쿠버">🏔️ 밴쿠버</option>
-        <option value="서울">🏯 서울</option>
-        <option value="기타">📍 기타 (소개란에 명시)</option>
+        <option value="">— 도시 선택 (선택 사항) —</option>
+        <option value="시애틀">🌲 시애틀 Seattle, WA</option>
+        <option value="로스앤젤레스">🌴 LA · OC Los Angeles / Orange County, CA</option>
+        <option value="SF">🌉 SF San Francisco Bay Area, CA</option>
+        <option value="뉴욕">🗽 뉴욕 New York, NY</option>
+        <option value="달라스">🤠 달라스 Dallas, TX</option>
+        <option value="휴스턴">🚀 휴스턴 Houston, TX</option>
+        <option value="시카고">🫘 시카고 Chicago, IL</option>
+        <option value="워싱턴DC">🏛️ DC · 메릴랜드 Washington DC / Maryland</option>
+        <option value="토론토">🍁 토론토 Toronto, ON</option>
+        <option value="밴쿠버">🏔️ 밴쿠버 Vancouver, BC</option>
+        <option value="서울">🏯 서울 Seoul, Korea</option>
+        <option value="기타">📍 기타 — 소개란에 도시명 명시</option>
       </select>
     </div>
 
@@ -703,7 +703,7 @@ async function submitForm(type) {
     ]);
     if(!valid) return;
     if(!checkConsent('bConsent')) return;
-    const city = document.getElementById('bCitySelect')?.value || '전체';
+    const city = document.getElementById('bCitySelect')?.value || '미선택';
     subject = `[사업체 등재 신청] ${document.getElementById('bBiz').value}`;
     body = `업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n주소: ${document.getElementById('bAddress')?.value || ''}\n웹사이트: ${document.getElementById('bWebsite')?.value || ''}\n노출 도시: ${city}\n\n소개:\n${document.getElementById('bDesc').value}`;
   } else if(type === 'promo') {
