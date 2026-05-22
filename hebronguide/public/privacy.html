@@ -90,7 +90,7 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
   <div class="hero-eyebrow">Privacy Policy</div>
   <h1>개인정보처리방침</h1>
   <p class="hero-sub">Hebron Platform LLC는 이용자의 개인정보를 소중히 여기며<br>이 방침에 따라 투명하게 처리합니다.</p>
-  <div class="effective-date">시행일: 2026년 1월 1일</div>
+  <div class="effective-date">시행일: 2026년 5월 15일</div>
 </div>
 
 <div class="container">
@@ -101,10 +101,13 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
       <li><a href="#s1">수집하는 개인정보 항목</a></li>
       <li><a href="#s2">개인정보 수집 목적</a></li>
       <li><a href="#s3">개인정보 보유 및 이용 기간</a></li>
-      <li><a href="#s4">제3자 제공 여부</a></li>
-      <li><a href="#s5">이용자의 권리</a></li>
-      <li><a href="#s6">개인정보 보호 조치</a></li>
-      <li><a href="#s7">문의처</a></li>
+      <li><a href="#s4">개인정보 처리 위탁 (수탁자)</a></li>
+      <li><a href="#s5">국경 간 데이터 이전</a></li>
+      <li><a href="#s6">제3자 제공 여부</a></li>
+      <li><a href="#s7">AI 기능 사용 안내</a></li>
+      <li><a href="#s8">이용자의 권리</a></li>
+      <li><a href="#s9">개인정보 보호 조치</a></li>
+      <li><a href="#s10">문의처</a></li>
     </ol>
   </div>
 
@@ -113,41 +116,47 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
       <div class="section-num">제1조</div>
       <div class="section-title">수집하는 개인정보 항목</div>
       <div class="section-body">
-        <p>HebronGuide는 파트너 교회 신청 시 아래 항목을 수집합니다.</p>
+        <p>HebronGuide는 아래 신청 유형에 따라 개인정보를 수집합니다. <strong>일반 방문자</strong>는 별도 개인정보 수집 없이 모든 정보를 열람할 수 있습니다.</p>
+
+        <p style="margin-top:14px;font-weight:700;color:var(--text);">① 파트너 교회 신청</p>
         <table class="data-table">
-          <thead>
-            <tr>
-              <th>구분</th>
-              <th>수집 항목</th>
-              <th>필수 여부</th>
-            </tr>
-          </thead>
+          <thead><tr><th>구분</th><th>수집 항목</th><th>필수 여부</th></tr></thead>
           <tbody>
-            <tr>
-              <td>교회 정보</td>
-              <td>교회명, 담임목사명, 도시·주</td>
-              <td>필수</td>
-            </tr>
-            <tr>
-              <td>연락처</td>
-              <td>이메일 주소, 전화번호</td>
-              <td>필수</td>
-            </tr>
-            <tr>
-              <td>온라인</td>
-              <td>교회 웹사이트 URL</td>
-              <td>선택</td>
-            </tr>
-            <tr>
-              <td>추가 정보</td>
-              <td>교단, 주일예배 시간, 담당자 메시지</td>
-              <td>선택</td>
-            </tr>
+            <tr><td>교회 정보</td><td>교회명, 담임목사명, 도시·주</td><td>필수</td></tr>
+            <tr><td>연락처</td><td>이메일, 전화번호</td><td>필수</td></tr>
+            <tr><td>온라인</td><td>교회 웹사이트 URL</td><td>선택</td></tr>
+            <tr><td>추가 정보</td><td>교단, 주일예배 시간, 새가족 환영 방식</td><td>선택</td></tr>
           </tbody>
         </table>
-        <div class="highlight-box">
-          <strong>일반 방문자</strong>에게는 별도의 개인정보를 수집하지 않습니다. 회원가입 없이 모든 정보를 열람할 수 있습니다.
-        </div>
+
+        <p style="margin-top:14px;font-weight:700;color:var(--text);">② 사업체 등재 신청</p>
+        <table class="data-table">
+          <thead><tr><th>구분</th><th>수집 항목</th><th>필수 여부</th></tr></thead>
+          <tbody>
+            <tr><td>사업체 정보</td><td>업체명, 업종, 사업체 주소</td><td>필수</td></tr>
+            <tr><td>담당자</td><td>담당자 이름, 전화번호, 이메일</td><td>필수</td></tr>
+            <tr><td>온라인</td><td>웹사이트·SNS 링크</td><td>선택</td></tr>
+            <tr><td>기타</td><td>노출 희망 도시, 업체 소개</td><td>선택</td></tr>
+          </tbody>
+        </table>
+
+        <p style="margin-top:14px;font-weight:700;color:var(--text);">③ 광고·홍보 신청</p>
+        <table class="data-table">
+          <thead><tr><th>구분</th><th>수집 항목</th><th>필수 여부</th></tr></thead>
+          <tbody>
+            <tr><td>신청자</td><td>담당자 이름, 전화번호, 이메일</td><td>필수</td></tr>
+            <tr><td>홍보 내용</td><td>홍보 제목, 유형, 기간, 링크</td><td>필수/선택</td></tr>
+          </tbody>
+        </table>
+
+        <p style="margin-top:14px;font-weight:700;color:var(--text);">④ 서비스 이용 자동 수집</p>
+        <table class="data-table">
+          <thead><tr><th>구분</th><th>수집 항목</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td>AI 질의</td><td>질문 내용 (비식별 처리 후 저장)</td><td>서비스 품질 개선</td></tr>
+            <tr><td>로컬 스토리지</td><td>체크리스트 진행 상태 (기기 내 저장)</td><td>서버 전송 없음</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -186,9 +195,78 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
     </div>
   </div>
 
+  <!-- 신규: 수탁자 -->
   <div class="section" id="s4">
     <div class="section-card">
       <div class="section-num">제4조</div>
+      <div class="section-title">개인정보 처리 위탁 (수탁자)</div>
+      <div class="section-body">
+        <p>HebronGuide는 서비스 운영을 위해 아래 제3자에게 개인정보 처리를 위탁합니다. 위탁업체는 위탁 목적 범위 내에서만 개인정보를 처리하며, 재위탁이 금지됩니다.</p>
+        <table class="data-table" style="margin-top:10px;">
+          <thead><tr><th>수탁업체</th><th>위탁 내용</th><th>소재지</th><th>보유 기간</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Supabase, Inc.</strong></td>
+              <td>데이터베이스 저장 및 관리<br><span style="font-size:.78rem;color:rgba(236,253,245,.4)">supabase.com</span></td>
+              <td>미국 (San Francisco, CA)</td>
+              <td>위탁 계약 종료 시까지</td>
+            </tr>
+            <tr>
+              <td><strong>Vercel, Inc.</strong></td>
+              <td>웹 서비스 호스팅 및 배포<br><span style="font-size:.78rem;color:rgba(236,253,245,.4)">vercel.com</span></td>
+              <td>미국 (San Francisco, CA)</td>
+              <td>위탁 계약 종료 시까지</td>
+            </tr>
+            <tr>
+              <td><strong>Google LLC (Gmail)</strong></td>
+              <td>이메일 알림 발송<br><span style="font-size:.78rem;color:rgba(236,253,245,.4)">google.com</span></td>
+              <td>미국 (Mountain View, CA)</td>
+              <td>전송 완료 즉시</td>
+            </tr>
+            <tr>
+              <td><strong>Anthropic, PBC</strong></td>
+              <td>AI 질의응답 처리<br><span style="font-size:.78rem;color:rgba(236,253,245,.4)">anthropic.com</span></td>
+              <td>미국 (San Francisco, CA)</td>
+              <td>처리 완료 후 미저장 (API)</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="highlight-box" style="margin-top:12px;">
+          위 수탁업체들은 각각 SOC 2 Type II, GDPR 적정성 결정 또는 SCCs(표준 계약 조항)에 따라 개인정보를 처리합니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 신규: 국경 간 이전 -->
+  <div class="section" id="s5">
+    <div class="section-card">
+      <div class="section-num">제5조</div>
+      <div class="section-title">국경 간 데이터 이전</div>
+      <div class="section-body">
+        <p>HebronGuide는 미국 소재 서버(Supabase, Vercel)에서 서비스를 운영합니다. 귀하의 개인정보는 귀하가 거주하는 국가 외부, 특히 <strong>미국</strong>으로 이전·저장·처리될 수 있습니다.</p>
+        <table class="data-table" style="margin-top:10px;">
+          <thead><tr><th>이전 대상국</th><th>이전 근거</th><th>보호 조치</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>미국 (USA)</td>
+              <td>서비스 제공 동의 (이용약관 및 개인정보처리방침 동의)</td>
+              <td>SCCs · Supabase DPA · Vercel DPA</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="highlight-box" style="margin-top:12px;">
+          <strong>한국 이용자 안내 (개인정보보호법 제28조의8):</strong> 수집된 정보는 한국 외 미국 소재 서버에 저장됩니다. 이에 동의하지 않으시면 서비스 신청을 중단하고 hebronplatform@gmail.com으로 삭제를 요청하실 수 있습니다.<br><br>
+          <strong>EU/UK 이용자 안내 (GDPR Article 46):</strong> 데이터 이전은 표준 계약 조항(SCCs)에 따라 보호됩니다. 자세한 내용은 수탁업체의 DPA(Data Processing Agreement)를 참조하십시오.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 기존 제4조 → 제6조로 번호 변경 -->
+  <div class="section" id="s6">
+    <div class="section-card">
+      <div class="section-num">제6조</div>
       <div class="section-title">제3자 제공 여부</div>
       <div class="section-body">
         <p>HebronGuide는 이용자의 개인정보를 <strong>제3자에게 제공하지 않습니다.</strong></p>
@@ -202,48 +280,79 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
     </div>
   </div>
 
-  <div class="section" id="s5">
+  <!-- AI 기능 안내 -->
+  <div class="section" id="s7">
     <div class="section-card">
-      <div class="section-num">제5조</div>
-      <div class="section-title">이용자의 권리</div>
+      <div class="section-num">제7조</div>
+      <div class="section-title">AI 기능 사용 안내</div>
       <div class="section-body">
-        <p>이용자는 언제든지 다음 권리를 행사할 수 있습니다.</p>
-        <p>· <strong>열람 요청</strong> — 본인에 관한 개인정보 처리 현황 확인</p>
-        <p>· <strong>정정 요청</strong> — 개인정보가 잘못 기재된 경우 수정 요청</p>
-        <p>· <strong>삭제 요청</strong> — 보유 중인 개인정보 삭제 요청 (탈퇴 처리 포함)</p>
-        <p>· <strong>처리 정지 요청</strong> — 개인정보 처리 일시 정지 요청</p>
-        <p>위 권리 행사는 아래 문의처로 이메일을 통해 요청하시면 지체 없이 처리합니다.</p>
+        <p>HebronGuide는 아래 목적으로 AI 기술(Anthropic Claude API)을 사용합니다.</p>
+        <p>· <strong>AI 질의응답</strong> — 이용자가 입력한 질문을 Anthropic API에 전송하여 답변을 생성합니다. 질문은 비식별 처리 후 서비스 개선 목적으로 내부 로그에 저장될 수 있습니다.</p>
+        <p>· <strong>콘텐츠 큐레이션</strong> — 도시별 정착 정보를 자동으로 수집·요약합니다. 이 과정에서 이용자 개인정보는 처리되지 않습니다.</p>
+        <div class="highlight-box">
+          AI 처리는 <strong>자동화된 개인별 의사결정(Automated Individual Decision-Making)</strong>에 해당하지 않으며, 이용자의 법적 권리나 의무에 영향을 미치지 않습니다. (GDPR 제22조 해당 없음)
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="section" id="s6">
+  <!-- 이용자 권리 (확장) -->
+  <div class="section" id="s8">
     <div class="section-card">
-      <div class="section-num">제6조</div>
+      <div class="section-num">제8조</div>
+      <div class="section-title">이용자의 권리</div>
+      <div class="section-body">
+        <p>이용자는 언제든지 아래 권리를 행사할 수 있습니다. 요청은 hebronplatform@gmail.com으로 보내주시면 <strong>30일(영업일 기준) 이내</strong>에 처리합니다.</p>
+        <table class="data-table" style="margin-top:10px;">
+          <thead><tr><th>권리</th><th>내용</th><th>근거</th></tr></thead>
+          <tbody>
+            <tr><td>열람권</td><td>보유 중인 개인정보 처리 현황 확인</td><td>전 지역 공통</td></tr>
+            <tr><td>정정권</td><td>부정확한 개인정보 수정 요청</td><td>전 지역 공통</td></tr>
+            <tr><td>삭제권 (잊혀질 권리)</td><td>보유 개인정보 삭제 요청</td><td>GDPR Art.17 · CCPA · PIPA</td></tr>
+            <tr><td>처리 정지권</td><td>개인정보 처리 일시 정지 요청</td><td>GDPR Art.18 · PIPA</td></tr>
+            <tr><td>데이터 이동권</td><td>본인 데이터를 기계가독형으로 수령 요청</td><td>GDPR Art.20</td></tr>
+            <tr><td>동의 철회권</td><td>이전에 제공한 동의를 언제든지 철회</td><td>GDPR · PIPA · 전 지역</td></tr>
+            <tr><td>감독기관 이의제기권</td><td>EU/UK 이용자: 해당 국가 데이터보호감독기관에 이의 제기 가능</td><td>GDPR Art.77</td></tr>
+            <tr><td>CCPA 권리 (캘리포니아)</td><td>데이터 열람·삭제·판매 거부·차별금지 요청</td><td>CCPA/CPRA</td></tr>
+          </tbody>
+        </table>
+        <div class="highlight-box" style="margin-top:12px;">
+          HebronGuide는 이용자 데이터를 <strong>제3자에게 판매하지 않습니다.</strong> CCPA의 "판매 거부(Do Not Sell)" 옵션은 당사에 해당하지 않습니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s9">
+    <div class="section-card">
+      <div class="section-num">제9조</div>
       <div class="section-title">개인정보 보호 조치</div>
       <div class="section-body">
         <p>HebronGuide는 개인정보를 안전하게 관리하기 위해 다음 조치를 시행합니다.</p>
         <p>· <strong>접근 제한</strong> — 개인정보 처리 담당자를 최소화하고 접근 권한을 관리합니다.</p>
-        <p>· <strong>암호화 저장</strong> — 개인정보는 암호화된 데이터베이스에 저장됩니다.</p>
+        <p>· <strong>암호화 저장</strong> — 개인정보는 암호화된 데이터베이스(Supabase)에 저장됩니다.</p>
+        <p>· <strong>전송 암호화</strong> — 모든 데이터는 TLS/HTTPS를 통해 암호화되어 전송됩니다.</p>
         <p>· <strong>보안 점검</strong> — 시스템 취약점을 정기적으로 점검합니다.</p>
-        <p>· <strong>API 키 비노출</strong> — 서비스 운영에 사용되는 인증 정보는 코드에 직접 포함하지 않습니다.</p>
+        <p>· <strong>API 키 비노출</strong> — 서비스 운영에 사용되는 인증 정보는 소스 코드에 포함하지 않습니다.</p>
+        <p>· <strong>최소 수집 원칙</strong> — 서비스 제공에 필요한 최소한의 정보만 수집합니다.</p>
       </div>
     </div>
   </div>
 
-  <div class="section" id="s7">
+  <div class="section" id="s10">
     <div class="section-card">
-      <div class="section-num">제7조</div>
+      <div class="section-num">제10조</div>
       <div class="section-title">문의처</div>
       <div class="section-body">
-        <p>개인정보 처리에 관한 문의, 열람·정정·삭제 요청은 아래로 연락해 주십시오.</p>
+        <p>개인정보 처리에 관한 문의, 열람·정정·삭제·이동·동의 철회 요청은 아래로 연락해 주십시오.</p>
         <div class="contact-box">
-          <p><strong>운영사</strong>: Hebron Platform LLC</p>
-          <p><strong>개인정보 보호책임자</strong>: 김성수 (Sung Soo Kim)</p>
+          <p><strong>운영사</strong>: Hebron Platform LLC (Washington State, USA)</p>
+          <p><strong>개인정보 보호책임자 (DPO)</strong>: Paul Kim</p>
           <p><strong>이메일</strong>: <a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a></p>
-          <p><strong>응답 기간</strong>: 영업일 기준 3일 이내</p>
+          <p><strong>응답 기간</strong>: 30일 이내 (GDPR·CCPA·PIPA 법정 기간 준수)</p>
+          <p style="margin-top:8px;font-size:.82rem;color:rgba(236,253,245,.5);">EU/UK 이용자: 본 방침에 불만이 있을 경우 해당 국가의 데이터보호감독기관(DPA)에 이의를 제기할 권리가 있습니다.</p>
         </div>
-        <p style="margin-top:14px;">본 방침은 <strong>2026년 1월 1일</strong>부터 시행됩니다. 내용이 변경될 경우 시행 7일 전 웹사이트를 통해 공지합니다.</p>
+        <p style="margin-top:14px;">본 방침은 <strong>2026년 5월 15일</strong>부터 시행됩니다. 내용이 변경될 경우 시행 7일 전 웹사이트를 통해 공지합니다.</p>
       </div>
     </div>
   </div>
