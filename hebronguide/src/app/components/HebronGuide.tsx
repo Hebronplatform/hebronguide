@@ -11674,8 +11674,8 @@ function AmericasAdSection({ lang }: { lang: string }) {
 }
 
 /* ─────────────────────────────────────────
-   VIRAL: 카카오톡 공유 섹션 — 도착 한인이 한인에게 전달
-   "도움이 됐다면 다음 사람에게도 전해 주세요"
+   VIRAL: 공유 섹션 — 카카오·문자·SNS·WhatsApp·이메일·복사
+   스크린샷 디자인: 대형 노란 버튼 + 3개 보조 버튼
 ───────────────────────────────────────── */
 function GrowthShareSection({ lang }: { lang: string }) {
   const ko = lang === "ko";
@@ -11690,93 +11690,104 @@ function GrowthShareSection({ lang }: { lang: string }) {
     : `${cityNameEn} Korean Settlement Guide — HebronGuide`;
   const shareText  = ko
     ? `${cityNameKo}에 새로 오신 한인분들께 꼭 필요한 정착 앱이에요. 교회·맛집·정착 정보 한 곳에서 무료로!`
-    : `The essential free app for Koreans arriving in ${cityNameEn}. Church, food, and settlement info in one place!`;
+    : `The essential free app for Koreans arriving in ${cityNameEn}. Church, food & settlement info — free!`;
 
   const [copied, setCopied] = useState(false);
 
-  const doShare = () => {
+  /* 네이티브 공유 (Web Share API) — 카카오·문자·SNS 시스템 시트 */
+  const doNativeShare = () => {
     if (navigator.share) {
       navigator.share({ title: shareTitle, text: shareText, url: shareUrl }).catch(() => {});
-      return;
-    }
-    // KakaoTalk deep link (mobile) or clipboard (desktop)
-    const fullMsg = `${shareTitle}\n${shareText}\n${shareUrl}`;
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      window.location.href = `kakaotalk://msg/send?msg=${encodeURIComponent(fullMsg)}`;
     } else {
-      navigator.clipboard?.writeText(shareUrl).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2500); });
+      /* 데스크톱 폴백 → 클립보드 */
+      navigator.clipboard?.writeText(`${shareText}\n${shareUrl}`)
+        .then(() => { setCopied(true); setTimeout(() => setCopied(false), 2500); });
     }
   };
 
-  const copyLink = () => {
-    navigator.clipboard?.writeText(shareUrl).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2500); });
+  /* WhatsApp */
+  const doWhatsApp = () => {
+    window.open(`https://wa.me/?text=${encodeURIComponent(`${shareText}\n${shareUrl}`)}`, "_blank");
+  };
+
+  /* 이메일 */
+  const doEmail = () => {
+    window.open(
+      `mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(`${shareText}\n\n${shareUrl}`)}`,
+      "_blank"
+    );
+  };
+
+  /* 링크 복사 */
+  const doCopy = () => {
+    navigator.clipboard?.writeText(shareUrl)
+      .then(() => { setCopied(true); setTimeout(() => setCopied(false), 2500); });
+  };
+
+  const btnBase: React.CSSProperties = {
+    flex: 1, border: "1px solid rgba(255,255,255,0.13)",
+    borderRadius: 12, padding: "11px 6px", cursor: "pointer",
+    display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
+    background: "rgba(255,255,255,0.07)", transition: "background 0.15s",
   };
 
   return (
     <div style={{ margin: "12px 16px 0" }}>
-      <div style={{
-        background: "linear-gradient(135deg,#0f2027 0%,#1a3040 100%)",
-        borderRadius: 18,
-        padding: "18px 16px",
-        position: "relative",
-        overflow: "hidden",
-        boxShadow: "0 4px 20px rgba(0,0,0,0.18)"
-      }}>
-        {/* 배경 장식 */}
-        <div style={{ position:"absolute", top:-24, right:-20, width:90, height:90, borderRadius:"50%", background:"rgba(201,162,39,0.08)", pointerEvents:"none" }} />
-        <div style={{ position:"absolute", bottom:-28, left:-12, width:72, height:72, borderRadius:"50%", background:"rgba(110,231,183,0.06)", pointerEvents:"none" }} />
+      {/* ── 큰 노란 공유 버튼 ── */}
+      <button
+        onClick={doNativeShare}
+        style={{
+          width: "100%", padding: "15px 16px", marginBottom: 10,
+          background: "#FEE500", border: "none", borderRadius: 14, cursor: "pointer",
+          display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+          boxShadow: "0 4px 16px rgba(254,229,0,0.28)",
+          fontFamily: "'Noto Sans KR',Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#1a1200",
+        }}>
+        <span style={{ fontSize: 20 }}>📱</span>
+        {ko ? "카카오·문자·SNS로 전달하기" : "Share via Kakao · Text · SNS"}
+      </button>
 
-        {/* 헤더 */}
-        <div style={{ display:"flex", alignItems:"center", gap:9, marginBottom:12, position:"relative" }}>
-          <span style={{ fontSize:22 }}>🤝</span>
-          <div>
-            <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:13.5, color:"#ECFDF5", lineHeight:1.3 }}>
-              {ko ? "도움이 됐다면 다음 분께도 전해 주세요" : "Help the next Korean arriving here"}
-            </div>
-            <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11, color:"rgba(236,253,245,0.52)", marginTop:2 }}>
-              {ko
-                ? `${cityNameKo}에 새로 오는 한인들에게 가장 필요한 앱입니다`
-                : `The most-needed app for new Korean arrivals in ${cityNameEn}`}
-            </div>
+      {/* ── 3개 보조 버튼 ── */}
+      <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+        {/* WhatsApp */}
+        <button onClick={doWhatsApp} style={{ ...btnBase, border: "1px solid rgba(37,211,102,0.3)", background: "rgba(37,211,102,0.1)" }}>
+          <span style={{ fontSize: 18 }}>💬</span>
+          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#25D366" }}>WhatsApp</span>
+        </button>
+        {/* 이메일 */}
+        <button onClick={doEmail} style={btnBase}>
+          <span style={{ fontSize: 18 }}>✉️</span>
+          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "rgba(236,253,245,0.8)" }}>
+            {ko ? "이메일" : "Email"}
+          </span>
+        </button>
+        {/* 복사 */}
+        <button onClick={doCopy} style={{ ...btnBase, border: `1px solid ${copied ? "#6EE7B7" : "rgba(255,255,255,0.13)"}` }}>
+          <span style={{ fontSize: 18 }}>{copied ? "✅" : "📋"}</span>
+          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: copied ? "#6EE7B7" : "rgba(236,253,245,0.8)" }}>
+            {copied ? (ko ? "복사됨!" : "Copied!") : (ko ? "복사" : "Copy")}
+          </span>
+        </button>
+      </div>
+
+      {/* ── 선물 CTA (피드백·응원 링크) ── */}
+      <a
+        href="mailto:hebronplatform@gmail.com?subject=HebronGuide 응원합니다&body=HebronGuide가 큰 도움이 됐습니다. 감사합니다!"
+        style={{ display: "block", textDecoration: "none" }}>
+        <div style={{
+          background: "linear-gradient(135deg,#C9A227,#B8901C)",
+          borderRadius: 14, padding: "14px 18px",
+          display: "flex", flexDirection: "column", alignItems: "center",
+          boxShadow: "0 4px 14px rgba(201,162,39,0.25)",
+        }}>
+          <div style={{ fontFamily: "'Noto Sans KR',Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1a1200", marginBottom: 3 }}>
+            🎁 {ko ? "선물 감사히 받겠습니다 →" : "Send us your encouragement →"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(26,18,0,0.72)" }}>
+            hebronplatform@gmail.com · {ko ? "1–2주 내 연락드립니다" : "We'll reply within 1–2 weeks"}
           </div>
         </div>
-
-        {/* 공유 버튼 행 */}
-        <div style={{ display:"flex", gap:8, position:"relative" }}>
-          {/* 카카오톡 공유 */}
-          <button
-            onClick={doShare}
-            style={{
-              flex:1, background:"#FEE500", border:"none", borderRadius:12,
-              padding:"11px 8px", cursor:"pointer",
-              display:"flex", alignItems:"center", justifyContent:"center", gap:6,
-              boxShadow:"0 2px 8px rgba(254,229,0,0.3)",
-              fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:12.5, color:"#3C1E1E"
-            }}>
-            {/* 카카오 말풍선 아이콘 */}
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="#3C1E1E" style={{ flexShrink:0 }}>
-              <path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.611 1.517 4.91 3.8 6.3l-.97 3.6 4.17-2.75c.96.17 1.96.25 2.97.25 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/>
-            </svg>
-            {ko ? "카카오톡 공유" : "Share via KakaoTalk"}
-          </button>
-
-          {/* 링크 복사 */}
-          <button
-            onClick={copyLink}
-            style={{
-              background: copied ? "rgba(110,231,183,0.18)" : "rgba(255,255,255,0.09)",
-              border: `1px solid ${copied ? "#6EE7B7" : "rgba(255,255,255,0.14)"}`,
-              borderRadius:12, padding:"11px 14px", cursor:"pointer",
-              display:"flex", alignItems:"center", justifyContent:"center", gap:5,
-              transition:"all 0.2s"
-            }}>
-            <span style={{ fontSize:14 }}>{copied ? "✅" : "🔗"}</span>
-            <span style={{ fontFamily:"Manrope,sans-serif", fontWeight:700, fontSize:11.5, color: copied ? "#6EE7B7" : "#ECFDF5" }}>
-              {copied ? (ko ? "복사됨!" : "Copied!") : (ko ? "링크 복사" : "Copy Link")}
-            </span>
-          </button>
-        </div>
-      </div>
+      </a>
     </div>
   );
 }
