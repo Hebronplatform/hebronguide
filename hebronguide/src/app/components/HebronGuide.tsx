@@ -259,14 +259,13 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-4yCIt5wVV4E?w=1200&q=95",               pos: "center 50%", alt: "Logan Square Chicago residential rowhouses neighborhood settle" },
   ],
 
-  // 🇰🇷 서울 — ① 남산타워 야경 → ② 롯데타워/잠실 드론 → ③ 서울 항공 파노라마 → ④ 한강+야경 → ⑤ 서울 도심 낮전경
-  // Story: 남산타워 야경 → 롯데타워 잠실 → 드론 파노라마 → 한강 야경 → 밝은 서울 도심
+  // 🇰🇷 서울 — ① 남산타워 항공 → ② 롯데타워 야경 → ③ 한강 항공 → ④ 서울 야경 → ⑤ 한강 낮전경
   seoul: [
-    { url: "https://images.unsplash.com/photo-xq37Grcd5JM?w=1200&q=95",               pos: "center 35%", alt: "Seoul Namsan N Tower evening cityscape panorama from Inwang Mountain" },
-    { url: "https://images.unsplash.com/photo-IUrLDqJ19jQ?w=1200&q=95",               pos: "center 50%", alt: "Lotte World Tower Jamsil Seoul daytime Han River aerial drone" },
-    { url: "https://images.unsplash.com/photo-wpT8YxhNk9w?w=1200&q=95",               pos: "center 55%", alt: "Seoul aerial drone panorama Han River bridges cityscape golden hour" },
-    { url: "https://images.unsplash.com/photo-O_eLWZ1kPME?w=1200&q=95",               pos: "center 45%", alt: "Seoul night Han River city lights wide shot from Lotte World Tower" },
-    { url: "https://images.unsplash.com/photo-RT3a2TK1RgY?w=1200&q=95",               pos: "center 40%", alt: "Seoul Namsan Tower daytime Han River bridge bright cityscape" },
+    { url: "https://images.unsplash.com/photo-1538669715315-155098f0fb1d?w=1200&q=95", pos: "center 45%", alt: "Seoul N Seoul Tower Namsan aerial cityscape blooming flowers" },
+    { url: "https://images.unsplash.com/photo-1677172346766-7bcad75e133c?w=1200&q=95", pos: "center 50%", alt: "Lotte World Tower Songpa Seoul night city skyline" },
+    { url: "https://images.unsplash.com/photo-1533029629910-8067cd72131b?w=1200&q=95", pos: "center 50%", alt: "Seoul Han River aerial bridges sunset Songpa panorama" },
+    { url: "https://images.unsplash.com/photo-1575493089581-f6ed9a9661e4?w=1200&q=95", pos: "center 45%", alt: "Seoul night city lights Han River nightscape from Lotte World Tower" },
+    { url: "https://images.unsplash.com/photo-1770029989977-611edce66fcf?w=1200&q=95", pos: "center 50%", alt: "Seoul Han River bridge daytime bright cityscape modern skyline" },
   ],
 
   // 🇰🇷 부산 — ①항공 ②감천문화마을 ③감천항공 ④사람 ⑤정착
@@ -11743,10 +11742,11 @@ function GrowthShareSection({ lang }: { lang: string }) {
   return (
     <div style={{ margin: "12px 16px 0" }}>
       {/* ── 큰 노란 공유 버튼 ── */}
+      {/* 카카오로 전달하기 버튼 */}
       <button
         onClick={doNativeShare}
         style={{
-          width: "100%", padding: "15px 16px", marginBottom: 10,
+          width: "100%", padding: "15px 16px", marginBottom: 12,
           background: "#FEE500", border: "none", borderRadius: 14, cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
           boxShadow: "0 4px 16px rgba(254,229,0,0.28)",
@@ -11756,6 +11756,52 @@ function GrowthShareSection({ lang }: { lang: string }) {
         {ko ? "카카오로 전달하기" : "Share via KakaoTalk"}
       </button>
 
+      {/* 카카오 채널 등록 안내 */}
+      <a
+        href="https://pf.kakao.com/_dxdxlbX"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ textDecoration: "none" }}
+      >
+        <div style={{
+          background: "rgba(254,229,0,0.07)",
+          border: "1px solid rgba(254,229,0,0.25)",
+          borderRadius: 14,
+          padding: "14px 16px",
+          display: "flex", alignItems: "center", gap: 12,
+        }}>
+          <div style={{
+            width: 40, height: 40, borderRadius: 10, flexShrink: 0,
+            background: "#FEE500",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 20,
+          }}>💬</div>
+          <div style={{ flex: 1 }}>
+            <div style={{
+              fontSize: 13, fontWeight: 800,
+              color: "#ECFDF5", marginBottom: 3,
+              fontFamily: "'Noto Sans KR',sans-serif",
+            }}>
+              {ko ? "카카오 채널 추가하기" : "Follow KakaoTalk Channel"}
+            </div>
+            <div style={{
+              fontSize: 11.5, color: "rgba(236,253,245,0.6)",
+              lineHeight: 1.5, fontFamily: "'Noto Sans KR',sans-serif",
+            }}>
+              {ko
+                ? "수정 요청·문의는 카카오 채널로 편하게 보내주세요.\n채널 추가하면 새 도시 오픈 소식도 받으실 수 있어요 🙌"
+                : "Send requests or questions via KakaoTalk.\nFollow the channel to get notified of new city launches 🙌"}
+            </div>
+          </div>
+          <div style={{
+            fontSize: 11, fontWeight: 700,
+            color: "#FEE500", whiteSpace: "nowrap",
+            fontFamily: "Manrope,sans-serif",
+          }}>
+            {ko ? "채널 추가 →" : "Follow →"}
+          </div>
+        </div>
+      </a>
 
     </div>
   );
