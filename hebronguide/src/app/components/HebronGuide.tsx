@@ -11768,7 +11768,12 @@ function GrowthShareSection({ lang }: { lang: string }) {
           <span style={{ fontSize: 13, fontWeight: 500, color: "#ECFDF5", fontFamily: "'Noto Sans KR',sans-serif" }}>
             💬 {ko ? "문의·수정 요청은 카카오 채널로" : "Questions? KakaoTalk Channel"}
           </span>
-          <span style={{ fontSize: 12, fontWeight: 800, color: "#FEE500", whiteSpace: "nowrap", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
+          <span style={{
+            fontSize: 11.5, fontWeight: 800, color: "#1a1200",
+            background: "#FEE500", borderRadius: 8,
+            padding: "4px 10px", whiteSpace: "nowrap",
+            fontFamily: "Manrope,sans-serif", flexShrink: 0,
+          }}>
             {ko ? "채널 추가 →" : "Follow →"}
           </span>
         </div>
