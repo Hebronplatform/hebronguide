@@ -229,14 +229,25 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
     <div class="field-row">
       <div class="field" id="c-church">
-        <label>교회명 <span class="req">*</span></label>
+        <label>교회명 (한국어) <span class="req">*</span></label>
         <input type="text" id="cChurch" placeholder="시애틀좋은교회">
         <div class="error-msg">교회명을 입력해 주세요</div>
       </div>
+      <div class="field">
+        <label>Church Name (English) <span class="opt">(선택)</span></label>
+        <input type="text" id="cChurchEn" placeholder="Seattle Good Church">
+      </div>
+    </div>
+
+    <div class="field-row">
       <div class="field" id="c-pastor">
         <label>담임목사 성함 <span class="req">*</span></label>
         <input type="text" id="cPastor" placeholder="김헤브론 목사">
         <div class="error-msg">목사 성함을 입력해 주세요</div>
+      </div>
+      <div class="field">
+        <label>Pastor Name (English) <span class="opt">(선택)</span></label>
+        <input type="text" id="cPastorEn" placeholder="Paul Kim">
       </div>
     </div>
 
@@ -623,7 +634,9 @@ async function submitForm(type) {
     subject = `[교회 파트너 신청] ${document.getElementById('cChurch').value}`;
     const hebronCoop = document.getElementById('cHebronCoop')?.checked ? '✅' : '—';
     const hcmi = document.getElementById('cHcmi')?.checked ? '✅' : '—';
-    body = `유형: 파트너 교회\n교회명: ${document.getElementById('cChurch').value}\n담임목사: ${document.getElementById('cPastor').value}\n도시: ${document.getElementById('cCity').value}\n전화: ${document.getElementById('cPhone').value}\n이메일: ${document.getElementById('cEmail').value}\n웹사이트: ${document.getElementById('cWebsite').value}\nHebron 협력교회: ${hebronCoop}\n가정교회(HCMI): ${hcmi}\n교단: ${document.getElementById('cDenom').value}\n예배시간: ${document.getElementById('cService').value}\n\n소개:\n${document.getElementById('cDesc').value}`;
+    const cChurchEn = document.getElementById('cChurchEn')?.value.trim() || '';
+    const cPastorEn = document.getElementById('cPastorEn')?.value.trim() || '';
+    body = `유형: 파트너 교회\n교회명(KO): ${document.getElementById('cChurch').value}${cChurchEn ? `\n교회명(EN): ${cChurchEn}` : ''}\n담임목사(KO): ${document.getElementById('cPastor').value}${cPastorEn ? `\n담임목사(EN): ${cPastorEn}` : ''}\n도시: ${document.getElementById('cCity').value}\n전화: ${document.getElementById('cPhone').value}\n이메일: ${document.getElementById('cEmail').value}\n웹사이트: ${document.getElementById('cWebsite').value}\nHebron 협력교회: ${hebronCoop}\n가정교회(HCMI): ${hcmi}\n교단: ${document.getElementById('cDenom').value}\n예배시간: ${document.getElementById('cService').value}\n\n소개:\n${document.getElementById('cDesc').value}`;
   } else if(type === 'business') {
     valid = validate([
       {id:'bBiz',type:'required'},{id:'bName',type:'required'},
