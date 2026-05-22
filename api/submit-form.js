@@ -2,6 +2,7 @@
 // Node.js Serverless Function (Edge 아님 — nodemailer 사용)
 // 1. Supabase community_items 저장
 // 2. Gmail SMTP → hebronplatform@gmail.com 즉시 알림
+// 수정: title 컬럼 제거 (community_items 스키마에 없음) + 에러 상세 로그
 
 import nodemailer from 'nodemailer'
 
@@ -35,6 +36,7 @@ export default async function handler(req, res) {
 
     // ── 1. Supabase 저장 ─────────────────────────────────────
     let savedOk = false
+    let saveErrorDetail = ''
     try {
       const saveRes = await fetch(`${SUPABASE_URL}/rest/v1/community_items`, {
         method: 'POST',
@@ -45,23 +47,33 @@ export default async function handler(req, res) {
           'Prefer': 'return=minimal',
         },
         body: JSON.stringify({
-          title:       subject,
-          description: body,
+          // ✅ 'title' 컬럼 없음 — name 필드를 신청 제목으로 사용
+          name:        name || subject,       // 신청자명 또는 제목
+          description: `[${subject}]\n\n${body}`,  // 제목+내용 합산
           category:    type || 'general',
-          name:        name  || '',
           contact:     email || '',
           phone:       phone || '',
           city_slug:   city  || '',
           status:      'pending',
         }),
       })
-      savedOk = saveRes.ok
+
+      if (saveRes.ok) {
+        savedOk = true
+        console.log('Supabase save OK')
+      } else {
+        const errText = await saveRes.text().catch(() => 'unknown')
+        saveErrorDetail = `HTTP ${saveRes.status}: ${errText}`
+        console.error('Supabase save failed:', saveErrorDetail)
+      }
     } catch (e) {
-      console.warn('Supabase save failed:', e.message)
+      saveErrorDetail = e.message
+      console.warn('Supabase save exception:', e.message)
     }
 
     // ── 2. Gmail SMTP 이메일 전송 ─────────────────────────────
     let emailOk = false
+    let emailSkipped = false
     const gmailPass = process.env.GMAIL_APP_PASS
 
     if (gmailPass) {
@@ -83,6 +95,7 @@ export default async function handler(req, res) {
           `이메일: ${email || '—'}`,
           `전화:   ${phone || '—'}`,
           `도시:   ${city  || '—'}`,
+          `유형:   ${type  || '—'}`,
           '── HebronGuide Partner · hebronguide.com ──',
         ].join('\n')
 
@@ -90,7 +103,7 @@ export default async function handler(req, res) {
           from:     `"HebronGuide 신청" <${FROM_EMAIL}>`,
           to:       ADMIN_EMAIL,
           replyTo:  email || FROM_EMAIL,
-          subject:  subject,
+          subject:  `[HebronGuide] ${subject}`,
           text:     emailBody,
         })
         emailOk = true
@@ -99,13 +112,29 @@ export default async function handler(req, res) {
         console.error('Gmail send failed:', e.message)
       }
     } else {
-      console.warn('GMAIL_APP_PASS not set — email skipped')
+      // GMAIL_APP_PASS 미설정 — 이메일은 선택 기능, 실패로 카운트 안 함
+      emailSkipped = true
+      console.warn('GMAIL_APP_PASS not set — email skipped (not a failure)')
     }
 
     // ── 3. 응답 ──────────────────────────────────────────────
-    if (!savedOk && !emailOk) {
+    // 이메일 미설정 시: Supabase 저장만 필요
+    // 이메일 설정 시: 둘 중 하나만 성공해도 OK
+    const anythingWorked = savedOk || emailOk || emailSkipped
+
+    if (!savedOk && !emailOk && !emailSkipped) {
+      // 이메일 설정됐는데 둘 다 실패
       return res.status(500).json({
-        error: '저장에 실패했습니다. 잠시 후 다시 시도해 주세요.'
+        error: '저장에 실패했습니다. 잠시 후 다시 시도해 주세요.',
+        _debug: process.env.NODE_ENV !== 'production' ? saveErrorDetail : undefined,
+      })
+    }
+
+    if (!savedOk && emailSkipped) {
+      // 이메일 미설정 + Supabase 실패 → 진짜 에러
+      return res.status(500).json({
+        error: '저장에 실패했습니다. 잠시 후 다시 시도해 주세요.',
+        _debug: process.env.NODE_ENV !== 'production' ? saveErrorDetail : undefined,
       })
     }
 
