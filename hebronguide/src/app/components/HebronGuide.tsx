@@ -259,14 +259,14 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-4yCIt5wVV4E?w=1200&q=95",               pos: "center 50%", alt: "Logan Square Chicago residential rowhouses neighborhood settle" },
   ],
 
-  // 🇰🇷 서울 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
-  // Story: 서울 야경 도착 → 경복궁 → 한국 길거리음식 → 젊은이들 → 북촌 골목
+  // 🇰🇷 서울 — ① 남산타워 야경 → ② 롯데타워/잠실 드론 → ③ 서울 항공 파노라마 → ④ 한강+야경 → ⑤ 서울 도심 낮전경
+  // Story: 남산타워 야경 → 롯데타워 잠실 → 드론 파노라마 → 한강 야경 → 밝은 서울 도심
   seoul: [
-    { url: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=1200&q=90", pos: "center 42%", alt: "Seoul Korea aerial arrival night skyline" },
-    { url: "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=1200&q=90", pos: "center 50%", alt: "Gyeongbokgung Palace Seoul hanbok visitors landmark" },
-    { url: "https://images.unsplash.com/photo-OxsIv3_zWXg?w=1200&q=90",               pos: "center 50%", alt: "Korean street food market stalls crowds" },
-    { url: "https://images.unsplash.com/photo-l8OUvgBvLIE?w=1200&q=90",               pos: "center 50%", alt: "Young Korean friends smiling together people" },
-    { url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&q=90", pos: "center 40%", alt: "Bukchon Hanok Village Seoul alley settle" },
+    { url: "https://images.unsplash.com/photo-xq37Grcd5JM?w=1200&q=95",               pos: "center 35%", alt: "Seoul Namsan N Tower evening cityscape panorama from Inwang Mountain" },
+    { url: "https://images.unsplash.com/photo-IUrLDqJ19jQ?w=1200&q=95",               pos: "center 50%", alt: "Lotte World Tower Jamsil Seoul daytime Han River aerial drone" },
+    { url: "https://images.unsplash.com/photo-wpT8YxhNk9w?w=1200&q=95",               pos: "center 55%", alt: "Seoul aerial drone panorama Han River bridges cityscape golden hour" },
+    { url: "https://images.unsplash.com/photo-O_eLWZ1kPME?w=1200&q=95",               pos: "center 45%", alt: "Seoul night Han River city lights wide shot from Lotte World Tower" },
+    { url: "https://images.unsplash.com/photo-RT3a2TK1RgY?w=1200&q=95",               pos: "center 40%", alt: "Seoul Namsan Tower daytime Han River bridge bright cityscape" },
   ],
 
   // 🇰🇷 부산 — ①항공 ②감천문화마을 ③감천항공 ④사람 ⑤정착
