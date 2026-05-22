@@ -1468,9 +1468,11 @@ Key services:
 📧 welcome.ncmc@gmail.com
 🔗 ncmission.org`,tags:a?["가정교회","한영이중언어","샌마테오"]:["House Church","Bilingual","San Mateo"],website:"https://ncmission.org",email:"welcome.ncmc@gmail.com"},{emoji:"⭐",tier:1,name:a?"피스토스장로교회":"Pistos Presbyterian Church — East Bay",nameEn:"Pistos Presbyterian Church",desc:a?`✅ 가정교회 | 북미가사원 북가주(이스트베이) 지역목자
 📍 East Bay, CA
-✨ 담임: 조영구 목사`:`✅ House Church | HMI North CA (East Bay) Regional Shepherd
+✨ 담임: 조영구 목사
+🔗 gopistos.com`:`✅ House Church | HMI North CA (East Bay) Regional Shepherd
 📍 East Bay, CA
-✨ Lead Pastor: Youngku Cho`,tags:a?["가정교회","이스트베이","SF베이"]:["House Church","East Bay","SF Bay"]},{emoji:"⭐",tier:1,name:a?"시온영락교회":"Zion Young-Nak Church — San Jose",nameEn:"Zion Young-Nak Church",desc:a?`✅ 가정교회 | 북미가사원 북가주(산호세) 지역목자
+✨ Lead Pastor: Youngku Cho
+🔗 gopistos.com`,tags:a?["가정교회","이스트베이","SF베이"]:["House Church","East Bay","SF Bay"],website:"https://gopistos.com"},{emoji:"⭐",tier:1,name:a?"시온영락교회":"Zion Young-Nak Church — San Jose",nameEn:"Zion Young-Nak Church",desc:a?`✅ 가정교회 | 북미가사원 북가주(산호세) 지역목자
 📍 San Jose, CA
 ✨ 담임: 이기준 목사`:`✅ House Church | HMI North CA (San Jose) Regional Shepherd
 📍 San Jose, CA

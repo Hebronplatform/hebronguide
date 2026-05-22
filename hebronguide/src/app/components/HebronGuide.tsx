@@ -13997,9 +13997,10 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "피스토스장로교회" : "Pistos Presbyterian Church — East Bay",
         nameEn: "Pistos Presbyterian Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 북가주(이스트베이) 지역목자\n📍 East Bay, CA\n✨ 담임: 조영구 목사"
-          : "✅ House Church | HMI North CA (East Bay) Regional Shepherd\n📍 East Bay, CA\n✨ Lead Pastor: Youngku Cho",
+          ? "✅ 가정교회 | 북미가사원 북가주(이스트베이) 지역목자\n📍 East Bay, CA\n✨ 담임: 조영구 목사\n🔗 gopistos.com"
+          : "✅ House Church | HMI North CA (East Bay) Regional Shepherd\n📍 East Bay, CA\n✨ Lead Pastor: Youngku Cho\n🔗 gopistos.com",
         tags: ko ? ["가정교회", "이스트베이", "SF베이"] : ["House Church", "East Bay", "SF Bay"],
+        website: "https://gopistos.com",
       },
       {
         emoji: "⭐", tier: 1,
