@@ -3,47 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>이용약관 | HebronGuide</title>
-<meta name="description" content="HebronGuide 이용약관 — 서비스 이용 조건, 이용자 의무, 면책조항, 준거법을 안내합니다.">
+<title>이용약관 / Terms of Service | HebronGuide</title>
+<meta name="description" content="HebronGuide 이용약관 — 서비스 이용 조건, 면책조항, 준거법을 안내합니다.">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0d1117;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.07);
   --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);
-  --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;
-  --text:#ECFDF5;--muted:rgba(236,253,245,0.55);
-  --r:14px;
+  --gold:#C9A227;--mint:#6EE7B7;--text:#ECFDF5;--muted:rgba(236,253,245,0.55);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;background:var(--bg);}
 body{font-family:'Noto Sans KR',-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
-
-/* NAV */
 nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
 .logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;letter-spacing:.02em;font-family:'Cinzel',serif;}
-.nav-back{color:var(--muted);text-decoration:none;font-size:.8rem;transition:color .2s;display:flex;align-items:center;gap:6px;}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:.8rem;transition:color .2s;}
 .nav-back:hover{color:var(--gold);}
-
-/* HERO */
+.lang-toggle{display:flex;background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:8px;overflow:hidden;}
+.lang-btn{background:none;border:none;padding:5px 13px;font-size:.78rem;font-weight:700;cursor:pointer;color:var(--muted);transition:all .15s;font-family:'Noto Sans KR',sans-serif;letter-spacing:.04em;}
+.lang-btn.active{background:var(--gold);color:#0d1117;}
 .hero{text-align:center;padding:56px 24px 40px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.08),transparent);}
 .hero-eyebrow{font-family:'Cinzel',serif;font-size:.72rem;color:var(--gold);letter-spacing:.12em;font-weight:700;margin-bottom:14px;text-transform:uppercase;}
-h1{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:900;color:#fff;line-height:1.3;margin-bottom:12px;}
+h1{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:900;color:#fff;line-height:1.3;margin-bottom:12px;}
 .hero-sub{font-size:.85rem;color:var(--muted);max-width:480px;margin:0 auto;}
 .effective-date{display:inline-block;margin-top:16px;background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.2);border-radius:20px;padding:5px 18px;font-size:.75rem;color:var(--gold);font-weight:700;}
-
-/* CONTAINER */
 .container{max-width:680px;margin:0 auto;padding:40px 20px 80px;}
-
-/* TOC */
 .toc{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:20px 24px;margin-bottom:28px;}
 .toc-title{font-size:.78rem;font-weight:800;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;}
 .toc ol{padding-left:18px;display:flex;flex-direction:column;gap:4px;}
 .toc ol li a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:color .2s;}
 .toc ol li a:hover{color:var(--gold);}
-
-/* SECTION */
 .section{margin-bottom:20px;}
-.section-card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:28px 28px;}
+.section-card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:28px;}
 @media(max-width:480px){.section-card{padding:20px 16px;}}
 .section-num{font-family:'Cinzel',serif;font-size:.7rem;color:var(--gold);letter-spacing:.1em;font-weight:700;margin-bottom:6px;}
 .section-title{font-size:1rem;font-weight:800;color:#fff;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
@@ -51,267 +43,413 @@ h1{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.5rem,3.5vw,2.2rem);fo
 .section-body strong{color:var(--text);font-weight:700;}
 .section-body p{margin-bottom:10px;}
 .section-body p:last-child{margin-bottom:0;}
-
-/* HIGHLIGHT BOX */
 .highlight-box{background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.2);border-radius:12px;padding:14px 18px;margin-top:12px;font-size:.85rem;color:rgba(236,253,245,.75);line-height:1.75;}
 .highlight-box strong{color:var(--mint);}
-
-/* WARNING BOX */
 .warning-box{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:14px 18px;margin-top:12px;font-size:.85rem;color:rgba(236,253,245,.75);line-height:1.75;}
 .warning-box strong{color:#FCD34D;}
-
-/* CONTACT BOX */
 .contact-box{background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.22);border-radius:12px;padding:16px 20px;margin-top:12px;}
 .contact-box p{font-size:.85rem;color:rgba(236,253,245,.75);line-height:1.7;}
 .contact-box a{color:var(--gold);text-decoration:none;}
-.contact-box a:hover{text-decoration:underline;}
-
-/* FOOTER */
 footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padding:32px 24px;text-align:center;}
 .footer-logo{font-family:'Cinzel',serif;color:var(--gold);font-weight:900;font-size:.9rem;margin-bottom:10px;}
 .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 20px;margin-bottom:12px;}
-.footer-links a{color:var(--muted);text-decoration:none;font-size:.8rem;transition:color .2s;}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:.8rem;}
 .footer-links a:hover{color:var(--gold);}
 .footer-copy{font-size:.72rem;color:rgba(236,253,245,.3);}
+/* 언어 토글 */
+.lang-en{display:none;}
+.lang-ko{display:block;}
+body.en .lang-ko{display:none;}
+body.en .lang-en{display:block;}
 </style>
 </head>
 <body>
 
 <nav>
   <a href="/" class="logo">HebronGuide</a>
-  <a href="javascript:history.back()" class="nav-back">← 돌아가기</a>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-ko" onclick="setLang('ko')">KO</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="javascript:history.back()" class="nav-back">← 돌아가기 / Back</a>
+  </div>
 </nav>
 
 <div class="hero">
   <div class="hero-eyebrow">Terms of Service</div>
-  <h1>이용약관</h1>
-  <p class="hero-sub">HebronGuide 서비스를 이용하기 전에 아래 약관을 주의 깊게 읽어주십시오.</p>
-  <div class="effective-date">시행일: 2026년 5월 15일</div>
+  <div class="lang-ko"><h1>이용약관</h1>
+  <p class="hero-sub">HebronGuide 서비스를 이용하기 전에 아래 약관을 주의 깊게 읽어주십시오.</p></div>
+  <div class="lang-en"><h1>Terms of Service</h1>
+  <p class="hero-sub">Please read these Terms carefully before using the HebronGuide service.</p></div>
+  <div class="effective-date">
+    <span class="lang-ko">시행일: 2026년 5월 15일</span>
+    <span class="lang-en">Effective Date: May 15, 2026</span>
+  </div>
 </div>
 
 <div class="container">
 
   <div class="toc">
-    <div class="toc-title">목차</div>
+    <div class="toc-title lang-ko">목차</div>
+    <div class="toc-title lang-en">Table of Contents</div>
     <ol>
-      <li><a href="#s1">서비스 소개</a></li>
-      <li><a href="#s2">서비스 이용 조건</a></li>
-      <li><a href="#s3">이용자 의무</a></li>
-      <li><a href="#s4">서비스 변경 및 중단</a></li>
-      <li><a href="#s5">면책조항 및 책임 한도</a></li>
-      <li><a href="#s6">지식재산권</a></li>
-      <li><a href="#s7">DMCA 저작권 신고 절차</a></li>
-      <li><a href="#s8">분쟁 해결 및 중재</a></li>
-      <li><a href="#s9">준거법</a></li>
-      <li><a href="#s10">약관 변경</a></li>
-      <li><a href="#s11">문의처</a></li>
+      <li><a href="#s1"><span class="lang-ko">서비스 소개</span><span class="lang-en">Service Description</span></a></li>
+      <li><a href="#s2"><span class="lang-ko">서비스 이용 조건</span><span class="lang-en">Terms of Use</span></a></li>
+      <li><a href="#s3"><span class="lang-ko">이용자 의무</span><span class="lang-en">User Obligations</span></a></li>
+      <li><a href="#s4"><span class="lang-ko">서비스 변경 및 중단</span><span class="lang-en">Service Changes and Suspension</span></a></li>
+      <li><a href="#s5"><span class="lang-ko">면책조항 및 책임 한도</span><span class="lang-en">Disclaimer and Limitation of Liability</span></a></li>
+      <li><a href="#s6"><span class="lang-ko">지식재산권</span><span class="lang-en">Intellectual Property</span></a></li>
+      <li><a href="#s7"><span class="lang-ko">DMCA 저작권 신고 절차</span><span class="lang-en">DMCA Copyright Notice Procedure</span></a></li>
+      <li><a href="#s8"><span class="lang-ko">분쟁 해결 및 중재</span><span class="lang-en">Dispute Resolution and Arbitration</span></a></li>
+      <li><a href="#s9"><span class="lang-ko">준거법</span><span class="lang-en">Governing Law</span></a></li>
+      <li><a href="#s10"><span class="lang-ko">약관 변경</span><span class="lang-en">Changes to Terms</span></a></li>
+      <li><a href="#s11"><span class="lang-ko">문의처</span><span class="lang-en">Contact Information</span></a></li>
     </ol>
   </div>
 
+  <!-- 제1조 / Article 1 -->
   <div class="section" id="s1">
     <div class="section-card">
-      <div class="section-num">제1조</div>
-      <div class="section-title">서비스 소개</div>
-      <div class="section-body">
-        <p><strong>HebronGuide</strong>(이하 "서비스")는 Hebron Platform LLC(이하 "회사")가 운영하는 한인 이민자·이주자 대상 디지털 환대 플랫폼입니다.</p>
-        <p>· 서비스명: HebronGuide</p>
-        <p>· 서비스 주소: hebronguide.com</p>
-        <p>· 운영사: Hebron Platform LLC</p>
-        <p>본 약관은 이용자가 HebronGuide 서비스를 이용함에 있어 필요한 권리·의무 및 책임사항을 규정합니다.</p>
+      <div class="lang-ko">
+        <div class="section-num">제1조</div>
+        <div class="section-title">서비스 소개</div>
+        <div class="section-body">
+          <p><strong>HebronGuide</strong>(이하 "서비스")는 Hebron Platform LLC(이하 "회사")가 운영하는 한인 이민자·이주자·방문자 대상 디지털 환대 플랫폼입니다.</p>
+          <p>· 서비스명: HebronGuide &nbsp;·&nbsp; 서비스 주소: hebronguide.com &nbsp;·&nbsp; 운영사: Hebron Platform LLC (Washington State, USA)</p>
+          <p>본 약관은 이용자가 HebronGuide 서비스를 이용함에 있어 필요한 권리·의무 및 책임사항을 규정합니다.</p>
+        </div>
+      </div>
+      <div class="lang-en">
+        <div class="section-num">Article 1</div>
+        <div class="section-title">Service Description</div>
+        <div class="section-body">
+          <p><strong>HebronGuide</strong> (the "Service") is a digital hospitality platform for Korean immigrants, expatriates, and visitors, operated by Hebron Platform LLC (the "Company").</p>
+          <p>· Service Name: HebronGuide &nbsp;·&nbsp; URL: hebronguide.com &nbsp;·&nbsp; Operator: Hebron Platform LLC (Washington State, USA)</p>
+          <p>These Terms govern users' rights, obligations, and responsibilities when using the HebronGuide service.</p>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- 제2조 / Article 2 -->
   <div class="section" id="s2">
     <div class="section-card">
-      <div class="section-num">제2조</div>
-      <div class="section-title">서비스 이용 조건</div>
-      <div class="section-body">
-        <p>HebronGuide의 기본 정보 열람 서비스는 <strong>누구나 무료로 이용</strong>할 수 있습니다.</p>
-        <p>파트너 교회 등록 등 특정 서비스는 별도 신청 및 검토 절차를 거칩니다.</p>
-        <p>서비스를 이용함으로써 이용자는 본 약관에 동의한 것으로 간주됩니다. 동의하지 않는 경우 서비스 이용을 중단하여 주십시오.</p>
+      <div class="lang-ko">
+        <div class="section-num">제2조</div>
+        <div class="section-title">서비스 이용 조건</div>
+        <div class="section-body">
+          <p>HebronGuide의 기본 정보 열람 서비스는 <strong>누구나 무료로 이용</strong>할 수 있습니다.</p>
+          <p>파트너 교회 등록 등 특정 서비스는 별도 신청 및 검토 절차를 거칩니다.</p>
+          <p>서비스를 이용함으로써 이용자는 본 약관에 동의한 것으로 간주됩니다. 동의하지 않는 경우 서비스 이용을 중단하여 주십시오.</p>
+        </div>
+      </div>
+      <div class="lang-en">
+        <div class="section-num">Article 2</div>
+        <div class="section-title">Terms of Use</div>
+        <div class="section-body">
+          <p>General information browsing is available <strong>free of charge to all users</strong>.</p>
+          <p>Registration as a partner church or business requires a separate application and is subject to review and approval by the Company.</p>
+          <p>By accessing or using the service, users agree to be bound by these Terms. If you do not agree, please discontinue use of the service immediately.</p>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- 제3조 / Article 3 -->
   <div class="section" id="s3">
     <div class="section-card">
-      <div class="section-num">제3조</div>
-      <div class="section-title">이용자 의무</div>
-      <div class="section-body">
-        <p>이용자는 서비스를 이용할 때 다음 의무를 준수해야 합니다.</p>
-        <p>· <strong>정확한 정보 제공</strong> — 파트너 신청 및 서비스 이용 시 사실에 근거한 정확한 정보를 제공해야 합니다. 허위 정보를 제공하는 경우 등재가 거부되거나 취소될 수 있습니다.</p>
-        <p>· <strong>정보 최신성 유지</strong> — 등재된 교회·기관 정보가 변경된 경우 지체 없이 회사에 알려야 합니다.</p>
-        <p>· <strong>법령 준수</strong> — 관련 법령 및 본 약관을 준수하며 서비스를 이용해야 합니다.</p>
-        <p>· <strong>타인 권리 존중</strong> — 타인의 개인정보, 지식재산권, 명예를 침해하는 행위를 해서는 안 됩니다.</p>
-        <p>· <strong>비상업적 이용</strong> — 회사의 사전 동의 없이 서비스 콘텐츠를 상업적 목적으로 무단 사용해서는 안 됩니다.</p>
+      <div class="lang-ko">
+        <div class="section-num">제3조</div>
+        <div class="section-title">이용자 의무</div>
+        <div class="section-body">
+          <p>· <strong>정확한 정보 제공</strong> — 허위 정보를 제공하는 경우 등재가 거부되거나 취소될 수 있습니다.</p>
+          <p>· <strong>정보 최신성 유지</strong> — 등재된 정보가 변경된 경우 지체 없이 회사에 알려야 합니다.</p>
+          <p>· <strong>법령 준수</strong> — 관련 법령 및 본 약관을 준수하며 서비스를 이용해야 합니다.</p>
+          <p>· <strong>타인 권리 존중</strong> — 타인의 개인정보, 지식재산권, 명예를 침해하는 행위를 해서는 안 됩니다.</p>
+          <p>· <strong>비상업적 이용</strong> — 회사의 사전 동의 없이 서비스 콘텐츠를 상업적 목적으로 무단 사용해서는 안 됩니다.</p>
+        </div>
+      </div>
+      <div class="lang-en">
+        <div class="section-num">Article 3</div>
+        <div class="section-title">User Obligations</div>
+        <div class="section-body">
+          <p>· <strong>Accuracy of Information</strong> — Users must provide truthful information. Submission of false information may result in rejection or removal.</p>
+          <p>· <strong>Keeping Information Current</strong> — Users must promptly notify the Company of any changes to listed information.</p>
+          <p>· <strong>Legal Compliance</strong> — Users must comply with all applicable laws and these Terms.</p>
+          <p>· <strong>Respect for Others' Rights</strong> — Users must not infringe upon personal data rights, intellectual property rights, or reputation of others.</p>
+          <p>· <strong>Non-Commercial Use</strong> — No unauthorized commercial use of service content without prior written consent.</p>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- 제4조 / Article 4 -->
   <div class="section" id="s4">
     <div class="section-card">
-      <div class="section-num">제4조</div>
-      <div class="section-title">서비스 변경 및 중단</div>
-      <div class="section-body">
-        <p>회사는 서비스의 품질 개선, 운영 정책 변경 등을 이유로 서비스의 내용을 변경하거나 일시적으로 중단할 권리를 보유합니다.</p>
-        <p>· <strong>서비스 변경</strong> — 기능 추가, 수정, 삭제 등 서비스 내용을 사전 고지 후 변경할 수 있습니다.</p>
-        <p>· <strong>일시 중단</strong> — 시스템 점검, 장애 복구, 긴급 상황 등으로 서비스가 일시 중단될 수 있습니다.</p>
-        <p>· <strong>서비스 종료</strong> — 불가피한 사유로 서비스를 종료해야 하는 경우 30일 전 웹사이트를 통해 공지합니다.</p>
-        <div class="warning-box">
-          회사는 서비스 변경·중단으로 인해 발생하는 손해에 대해, 회사의 고의 또는 중대한 과실이 없는 한 책임을 지지 않습니다.
+      <div class="lang-ko">
+        <div class="section-num">제4조</div>
+        <div class="section-title">서비스 변경 및 중단</div>
+        <div class="section-body">
+          <p>· <strong>서비스 변경</strong> — 사전 고지 후 서비스 내용을 변경할 수 있습니다.</p>
+          <p>· <strong>일시 중단</strong> — 시스템 점검, 장애 복구, 긴급 상황 등으로 서비스가 일시 중단될 수 있습니다.</p>
+          <p>· <strong>서비스 종료</strong> — 불가피한 사유로 서비스를 종료해야 하는 경우 <strong>30일 전</strong> 웹사이트를 통해 공지합니다.</p>
+          <div class="warning-box">회사는 서비스 변경·중단으로 인해 발생하는 손해에 대해, 회사의 고의 또는 중대한 과실이 없는 한 책임을 지지 않습니다.</div>
+        </div>
+      </div>
+      <div class="lang-en">
+        <div class="section-num">Article 4</div>
+        <div class="section-title">Service Changes and Suspension</div>
+        <div class="section-body">
+          <p>· <strong>Service Modifications</strong> — The Company may modify service content with prior notice.</p>
+          <p>· <strong>Temporary Suspension</strong> — Interruptions may occur due to maintenance, outages, or emergencies.</p>
+          <p>· <strong>Service Termination</strong> — At least <strong>30 days' advance notice</strong> will be posted on the website.</p>
+          <div class="warning-box">The Company shall not be liable for damages from service changes or suspension, except where caused by the Company's intentional misconduct or gross negligence.</div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- 제5조 / Article 5 -->
   <div class="section" id="s5">
     <div class="section-card">
-      <div class="section-num">제5조</div>
-      <div class="section-title">면책조항 및 책임 한도</div>
-      <div class="section-body">
-        <p>HebronGuide에 게재된 정보는 최선을 다해 검증하지만, <strong>정보의 완전한 정확성을 보증하지 않습니다.</strong></p>
-        <p>· 회사는 게재된 업소, 교회, 생활 정보의 최신성·정확성에 대해 법적 책임을 지지 않습니다.</p>
-        <p>· 이용자가 서비스에 게재된 정보를 신뢰하여 발생한 손해에 대해 회사는 책임을 지지 않습니다.</p>
-        <p>· 회사는 이용자 간, 또는 이용자와 제3자 간에 발생한 분쟁에 개입하지 않습니다.</p>
-        <p>· 천재지변, 전쟁, 테러, 해킹, 통신 장애 등 회사의 통제 범위를 벗어난 사유로 발생한 서비스 중단에 대해 책임을 지지 않습니다.</p>
-
-        <div class="warning-box" style="margin-top:14px;">
-          <strong>책임 한도 (Limitation of Liability)</strong><br>
-          관련 법령이 허용하는 최대 한도 내에서, 회사의 총 책임은 이용자가 손해 발생 12개월 전 회사에 실제로 지불한 금액을 초과하지 않습니다. 이용자가 무료 서비스를 이용한 경우 회사의 최대 책임액은 <strong>미화 100달러(USD $100)</strong>로 제한됩니다.<br><br>
-          회사는 간접 손해, 부수적 손해, 특별 손해, 결과적 손해, 징벌적 손해, 일실 이익에 대해 책임을 지지 않습니다.<br><br>
-          <span style="font-size:.8rem;color:rgba(236,253,245,.6)">일부 지역 법률은 책임 제한을 허용하지 않을 수 있으므로, 위 제한이 귀하에게 적용되지 않을 수 있습니다.</span>
+      <div class="lang-ko">
+        <div class="section-num">제5조</div>
+        <div class="section-title">면책조항 및 책임 한도</div>
+        <div class="section-body">
+          <p>HebronGuide에 게재된 정보는 최선을 다해 검증하지만, <strong>정보의 완전한 정확성을 보증하지 않습니다.</strong></p>
+          <p>· 게재된 업소, 교회, 생활 정보의 최신성·정확성에 대해 법적 책임을 지지 않습니다.</p>
+          <p>· 이용자가 서비스에 게재된 정보를 신뢰하여 발생한 손해에 대해 책임을 지지 않습니다.</p>
+          <p>· 이용자 간, 또는 이용자와 제3자 간에 발생한 분쟁에 개입하지 않습니다.</p>
+          <p>· 천재지변, 전쟁, 해킹, 통신 장애 등 회사의 통제 범위를 벗어난 사유로 발생한 중단에 대해 책임을 지지 않습니다.</p>
+          <div class="warning-box" style="margin-top:14px;">
+            <strong>책임 한도 (Limitation of Liability)</strong><br>
+            관련 법령이 허용하는 최대 한도 내에서, 회사의 총 책임은 이용자가 손해 발생 12개월 전 회사에 실제로 지불한 금액을 초과하지 않습니다. 무료 서비스 이용자의 경우 회사의 최대 책임액은 <strong>미화 100달러(USD $100)</strong>로 제한됩니다.<br>
+            회사는 간접 손해, 부수적 손해, 특별 손해, 결과적 손해, 징벌적 손해, 일실 이익에 대해 책임을 지지 않습니다.<br>
+            <span style="font-size:.8rem;color:rgba(236,253,245,.6)">일부 지역 법률은 책임 제한을 허용하지 않을 수 있습니다.</span>
+          </div>
+          <div class="highlight-box" style="margin-top:12px;">HebronGuide는 <strong>섬기는 마음으로</strong> 정보를 제공합니다. 부정확한 정보를 발견하시면 <a href="mailto:hebronplatform@gmail.com" style="color:var(--mint);">hebronplatform@gmail.com</a>으로 알려주십시오.</div>
         </div>
-
-        <div class="highlight-box" style="margin-top:12px;">
-          HebronGuide는 <strong>섬기는 마음으로</strong> 정보를 제공합니다. 부정확한 정보를 발견하시면 <a href="mailto:hebronplatform@gmail.com" style="color:var(--mint);">hebronplatform@gmail.com</a>으로 알려주십시오. 빠르게 수정하겠습니다.
+      </div>
+      <div class="lang-en">
+        <div class="section-num">Article 5</div>
+        <div class="section-title">Disclaimer and Limitation of Liability</div>
+        <div class="section-body">
+          <p>HebronGuide makes reasonable efforts to verify accuracy but <strong>does not warrant that all information is complete or error-free.</strong></p>
+          <p>· The Company is not liable for the accuracy or currency of listed businesses, churches, or local information.</p>
+          <p>· The Company is not liable for damages arising from reliance on service information.</p>
+          <p>· The Company is not liable for disputes between users or between users and third parties.</p>
+          <p>· The Company is not liable for force majeure events including natural disasters, government actions, hacking, or infrastructure failures.</p>
+          <div class="warning-box" style="margin-top:14px;">
+            <strong>LIMITATION OF LIABILITY</strong><br>
+            To the maximum extent permitted by applicable law, the Company's total cumulative liability shall not exceed the greater of: (a) amounts actually paid by the user to the Company in the 12 months preceding the claim; or (b) <strong>USD $100</strong> for users who accessed the service free of charge.<br>
+            In no event shall the Company be liable for indirect, incidental, special, consequential, or punitive damages, or loss of profits or data.<br>
+            <span style="font-size:.8rem;color:rgba(236,253,245,.6)">Some jurisdictions do not permit exclusion or limitation of certain damages; the above may not apply to you.</span>
+          </div>
+          <div class="highlight-box" style="margin-top:12px;">HebronGuide provides information with a <strong>servant heart</strong>. If you find inaccurate information, please notify us at <a href="mailto:hebronplatform@gmail.com" style="color:var(--mint);">hebronplatform@gmail.com</a>.</div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- 제6조 / Article 6 -->
   <div class="section" id="s6">
     <div class="section-card">
-      <div class="section-num">제6조</div>
-      <div class="section-title">지식재산권</div>
-      <div class="section-body">
-        <p>HebronGuide의 로고, 디자인, 텍스트, 소프트웨어 등 모든 콘텐츠에 대한 지식재산권은 회사에 귀속됩니다.</p>
-        <p>이용자는 회사의 사전 서면 동의 없이 서비스 콘텐츠를 복제, 배포, 전송, 수정하거나 상업적으로 이용할 수 없습니다.</p>
-        <p>파트너 교회가 제공한 교회 정보, 사진 등 콘텐츠의 저작권은 해당 교회에 있으며, 회사는 서비스 운영 목적으로만 이용합니다.</p>
+      <div class="lang-ko">
+        <div class="section-num">제6조</div>
+        <div class="section-title">지식재산권</div>
+        <div class="section-body">
+          <p>HebronGuide의 로고, 디자인, 텍스트, 소프트웨어 등 모든 콘텐츠에 대한 지식재산권은 회사에 귀속됩니다.</p>
+          <p>이용자는 회사의 사전 서면 동의 없이 서비스 콘텐츠를 복제, 배포, 전송, 수정하거나 상업적으로 이용할 수 없습니다.</p>
+          <p>파트너 교회·사업체가 제공한 정보, 사진 등 콘텐츠의 저작권은 해당 파트너에 있으며, 회사는 서비스 운영 목적으로만 이용합니다.</p>
+        </div>
+      </div>
+      <div class="lang-en">
+        <div class="section-num">Article 6</div>
+        <div class="section-title">Intellectual Property</div>
+        <div class="section-body">
+          <p>All logos, designs, text, software, and other content comprising HebronGuide are the intellectual property of Hebron Platform LLC.</p>
+          <p>No content may be reproduced, distributed, transmitted, modified, or used for commercial purposes without prior written consent.</p>
+          <p>Content submitted by partner churches and businesses remains their intellectual property. The Company uses such content solely for service operation and display.</p>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- 제7조 / Article 7 -->
   <div class="section" id="s7">
     <div class="section-card">
-      <div class="section-num">제7조</div>
-      <div class="section-title">DMCA 저작권 신고 절차</div>
-      <div class="section-body">
-        <p>HebronGuide는 미국 디지털 밀레니엄 저작권법(DMCA, 17 U.S.C. §512)에 따라 저작권 침해 신고를 처리합니다.</p>
-        <p><strong>저작권 침해 신고 방법:</strong> 아래 내용을 포함하여 hebronplatform@gmail.com으로 이메일을 보내주십시오.</p>
-        <p>① 저작권자(또는 대리인)의 서명 / ② 침해된 저작물 설명 / ③ 침해 콘텐츠의 URL / ④ 신고자 연락처 / ⑤ 무단 사용임을 믿는다는 성실한 확인 / ⑥ 신고 내용이 정확함을 위증 처벌 각오 하에 확인하는 진술</p>
-        <div class="warning-box" style="margin-top:10px;">
-          허위 DMCA 신고는 법적 책임(손해배상 포함)을 초래할 수 있습니다.
+      <div class="lang-ko">
+        <div class="section-num">제7조</div>
+        <div class="section-title">DMCA 저작권 신고 절차</div>
+        <div class="section-body">
+          <p>HebronGuide는 미국 디지털 밀레니엄 저작권법(DMCA, 17 U.S.C. §512)에 따라 저작권 침해 신고를 처리합니다.</p>
+          <p>아래 내용을 포함하여 <strong>hebronplatform@gmail.com</strong>으로 이메일을 보내주십시오.</p>
+          <p>① 저작권자(또는 대리인)의 서명 &nbsp; ② 침해된 저작물 설명 &nbsp; ③ 침해 콘텐츠의 URL &nbsp; ④ 신고자 연락처 &nbsp; ⑤ 무단 사용임을 믿는다는 성실한 확인 &nbsp; ⑥ 신고 내용이 정확함을 위증 처벌 각오 하에 확인하는 진술</p>
+          <div class="warning-box">허위 DMCA 신고는 법적 책임(손해배상 포함)을 초래할 수 있습니다. (17 U.S.C. §512(f))</div>
+        </div>
+      </div>
+      <div class="lang-en">
+        <div class="section-num">Article 7</div>
+        <div class="section-title">DMCA Copyright Notice Procedure</div>
+        <div class="section-body">
+          <p>To report copyright infringement under the Digital Millennium Copyright Act (17 U.S.C. §512), email <strong>hebronplatform@gmail.com</strong> with all of the following:</p>
+          <p>(1) Signature of the rights owner or authorized agent; (2) Identification of the copyrighted work; (3) URL of the infringing content; (4) Your contact information; (5) A good-faith belief statement that the use is not authorized; (6) A statement under penalty of perjury that the information is accurate and you are authorized to act.</p>
+          <div class="warning-box">Filing a materially false DMCA notice may expose the claimant to legal liability including damages under <strong>17 U.S.C. §512(f)</strong>.</div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- 제8조 / Article 8 -->
   <div class="section" id="s8">
     <div class="section-card">
-      <div class="section-num">제8조</div>
-      <div class="section-title">분쟁 해결 및 중재</div>
-      <div class="section-body">
-        <p>서비스 이용과 관련한 분쟁이 발생한 경우, 회사와 이용자는 상호 협의를 통해 우선 해결하도록 노력합니다.</p>
-
-        <div class="warning-box" style="margin-top:12px;">
-          <strong>구속력 있는 중재 (Binding Arbitration)</strong><br>
-          협의로 해결되지 않는 분쟁은 미국 중재협회(AAA) 소비자 중재 규칙에 따라 <strong>개인 구속력 있는 중재</strong>로 해결됩니다. 중재는 워싱턴주 King County에서 진행되거나, 당사자 합의 시 원격으로 진행될 수 있습니다.<br><br>
-          <strong>집단 소송 포기 (Class Action Waiver):</strong> 이용자는 본 약관에 동의함으로써 집단 소송, 집단 중재, 대표 소송을 제기할 권리를 포기합니다. 모든 분쟁은 개인 자격으로만 진행됩니다.<br><br>
-          <span style="font-size:.8rem;color:rgba(236,253,245,.6)">소액 사건(small claims court 관할 금액 이하)은 워싱턴주 소액 법원에 제기할 수 있습니다. EU 이용자는 온라인 분쟁 해결(ODR) 플랫폼(ec.europa.eu/consumers/odr)을 이용할 수 있습니다.</span>
+      <div class="lang-ko">
+        <div class="section-num">제8조</div>
+        <div class="section-title">분쟁 해결 및 중재</div>
+        <div class="section-body">
+          <p>서비스 이용과 관련한 분쟁이 발생한 경우, 회사와 이용자는 상호 협의를 통해 우선 해결하도록 노력합니다.</p>
+          <div class="warning-box" style="margin-top:12px;">
+            <strong>구속력 있는 중재 (Binding Arbitration)</strong><br>
+            협의로 해결되지 않는 분쟁은 미국 중재협회(AAA) 소비자 중재 규칙에 따라 <strong>개인 구속력 있는 중재</strong>로 해결됩니다. 중재는 워싱턴주 King County에서 진행되거나, 당사자 합의 시 원격으로 진행될 수 있습니다.<br><br>
+            <strong>집단 소송 포기 (Class Action Waiver):</strong> 이용자는 본 약관에 동의함으로써 집단 소송, 집단 중재, 대표 소송을 제기할 권리를 포기합니다. 모든 분쟁은 개인 자격으로만 진행됩니다.<br><br>
+            <span style="font-size:.8rem;color:rgba(236,253,245,.6)">소액 사건은 워싱턴주 소액 법원에 제기할 수 있습니다. EU 이용자는 EU ODR 플랫폼(ec.europa.eu/consumers/odr)을 이용할 수 있습니다.</span>
+          </div>
+        </div>
+      </div>
+      <div class="lang-en">
+        <div class="section-num">Article 8</div>
+        <div class="section-title">Dispute Resolution and Arbitration</div>
+        <div class="section-body">
+          <p>The parties agree to first attempt to resolve any dispute through good-faith negotiation.</p>
+          <div class="warning-box" style="margin-top:12px;">
+            <strong>BINDING ARBITRATION</strong><br>
+            Unresolved disputes shall be finally settled by binding individual arbitration under AAA Consumer Arbitration Rules in King County, Washington, or remotely by mutual agreement.<br><br>
+            <strong>CLASS ACTION WAIVER:</strong> BY AGREEING TO THESE TERMS, USERS WAIVE THE RIGHT TO PARTICIPATE IN ANY CLASS ACTION LAWSUIT, CLASS ARBITRATION, OR REPRESENTATIVE ACTION. ALL DISPUTES MUST BE BROUGHT IN AN INDIVIDUAL CAPACITY ONLY.<br><br>
+            <span style="font-size:.8rem;color:rgba(236,253,245,.6)">Small claims court remains available for qualifying matters. EU users may use the ODR platform at ec.europa.eu/consumers/odr.</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- 제9조 / Article 9 -->
   <div class="section" id="s9">
     <div class="section-card">
-      <div class="section-num">제9조</div>
-      <div class="section-title">준거법</div>
-      <div class="section-body">
-        <p>본 약관은 <strong>미국 워싱턴주(State of Washington) 법률</strong>에 따라 해석되고 적용됩니다. 저촉 법규 조항은 적용되지 않습니다.</p>
-        <p>중재 조항(제8조)은 미국 연방 중재법(Federal Arbitration Act, 9 U.S.C.)의 적용을 받습니다.</p>
+      <div class="lang-ko">
+        <div class="section-num">제9조</div>
+        <div class="section-title">준거법</div>
+        <div class="section-body">
+          <p>본 약관은 <strong>미국 워싱턴주(State of Washington) 법률</strong>에 따라 해석되고 적용됩니다. 저촉 법규 조항은 적용되지 않습니다.</p>
+          <p>제8조의 중재 조항은 미국 연방 중재법(Federal Arbitration Act, 9 U.S.C.)의 적용을 받습니다.</p>
+        </div>
+      </div>
+      <div class="lang-en">
+        <div class="section-num">Article 9</div>
+        <div class="section-title">Governing Law</div>
+        <div class="section-body">
+          <p>These Terms are governed by the laws of the <strong>State of Washington, USA</strong>, without regard to conflict of laws principles.</p>
+          <p>The arbitration provision in Article 8 is governed by the <strong>Federal Arbitration Act (9 U.S.C.)</strong>.</p>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- 제10조 / Article 10 -->
   <div class="section" id="s10">
     <div class="section-card">
-      <div class="section-num">제10조</div>
-      <div class="section-title">약관 변경</div>
-      <div class="section-body">
-        <p>회사는 필요한 경우 본 약관을 변경할 수 있습니다. 변경 시에는 시행 <strong>7일 전</strong> 웹사이트 공지사항을 통해 안내합니다.</p>
-        <p>변경된 약관의 시행일 이후에도 서비스를 계속 이용하는 경우, 변경된 약관에 동의한 것으로 간주됩니다.</p>
-        <p>변경된 약관에 동의하지 않는 경우 서비스 이용을 중단하고, 파트너 해제를 요청할 수 있습니다.</p>
+      <div class="lang-ko">
+        <div class="section-num">제10조</div>
+        <div class="section-title">약관 변경</div>
+        <div class="section-body">
+          <p>회사는 필요한 경우 본 약관을 변경할 수 있습니다. 변경 시에는 시행 <strong>7일 전</strong> 웹사이트 공지사항을 통해 안내합니다.</p>
+          <p>변경된 약관의 시행일 이후에도 서비스를 계속 이용하는 경우, 변경된 약관에 동의한 것으로 간주됩니다.</p>
+          <p>변경된 약관에 동의하지 않는 경우 서비스 이용을 중단하고 파트너 해제를 요청할 수 있습니다.</p>
+        </div>
+      </div>
+      <div class="lang-en">
+        <div class="section-num">Article 10</div>
+        <div class="section-title">Changes to Terms</div>
+        <div class="section-body">
+          <p>The Company may modify these Terms at any time. Changes will be announced on the website at least <strong>7 days</strong> before taking effect.</p>
+          <p>Continued use of the service after the effective date of any amendment constitutes acceptance of the revised Terms.</p>
+          <p>If you do not agree to amended Terms, you must discontinue use and may request removal of your partner listing.</p>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- 제11조 / Article 11 -->
   <div class="section" id="s11">
     <div class="section-card">
-      <div class="section-num">제11조</div>
-      <div class="section-title">문의처</div>
-      <div class="section-body">
-        <p>약관에 관한 문의, 서비스 관련 문의는 아래로 연락해 주십시오.</p>
-        <div class="contact-box">
-          <p><strong>운영사</strong>: Hebron Platform LLC (Washington State, USA)</p>
-          <p><strong>서비스</strong>: hebronguide.com</p>
-          <p><strong>이메일</strong>: <a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a></p>
-          <p><strong>응답 기간</strong>: 영업일 기준 3일 이내</p>
+      <div class="lang-ko">
+        <div class="section-num">제11조</div>
+        <div class="section-title">문의처</div>
+        <div class="section-body">
+          <p>약관에 관한 문의, 서비스 관련 문의는 아래로 연락해 주십시오.</p>
+          <div class="contact-box">
+            <p><strong>운영사</strong>: Hebron Platform LLC (Washington State, USA)</p>
+            <p><strong>서비스</strong>: hebronguide.com</p>
+            <p><strong>이메일</strong>: <a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a></p>
+            <p><strong>응답 기간</strong>: 영업일 기준 3일 이내</p>
+          </div>
+          <p style="margin-top:14px;">본 약관은 <strong>2026년 5월 15일</strong>부터 시행됩니다.</p>
+          <p style="margin-top:8px;font-size:.82rem;color:rgba(236,253,245,.5);">본 약관의 한국어본과 영어본이 상충할 경우 <strong>영어본이 우선</strong>합니다.</p>
         </div>
-        <p style="margin-top:14px;">본 약관은 <strong>2026년 5월 15일</strong>부터 시행됩니다.</p>
-        <p style="margin-top:8px;font-size:.82rem;color:rgba(236,253,245,.5);">본 약관의 한국어본과 영어본이 상충할 경우 <strong>영어본이 우선</strong>합니다. (In case of conflict between the Korean and English versions, the English version shall prevail.)</p>
+      </div>
+      <div class="lang-en">
+        <div class="section-num">Article 11</div>
+        <div class="section-title">Contact Information</div>
+        <div class="section-body">
+          <p>For inquiries regarding these Terms or the service, please contact us.</p>
+          <div class="contact-box">
+            <p><strong>Operator:</strong> Hebron Platform LLC (Washington State, USA)</p>
+            <p><strong>Service:</strong> hebronguide.com</p>
+            <p><strong>Email:</strong> <a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a></p>
+            <p><strong>Response Time:</strong> Within 3 business days</p>
+          </div>
+          <p style="margin-top:14px;"><strong>Effective Date: May 15, 2026.</strong></p>
+          <p style="margin-top:8px;font-size:.82rem;color:rgba(236,253,245,.5);">In case of conflict between the Korean and English versions of these Terms, the <strong>English version shall prevail</strong>.</p>
+        </div>
       </div>
     </div>
   </div>
 
 </div>
 
-
-<!-- ── 메인으로 돌아가기 ── -->
 <div style="text-align:center;padding:36px 24px 16px;">
-  <a href="/seattle/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:13px 32px;border-radius:50px;font-weight:900;font-size:.9rem;font-family:'Noto Sans KR',sans-serif;">
-    ← &nbsp;HebronGuide 메인으로 돌아가기
+  <a href="/seattle/" id="mainLink" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:13px 32px;border-radius:50px;font-weight:900;font-size:.9rem;font-family:'Noto Sans KR',sans-serif;">
+    <span class="lang-ko">← HebronGuide 메인으로 돌아가기</span>
+    <span class="lang-en">← Back to HebronGuide</span>
   </a>
 </div>
 <footer>
   <div class="footer-logo">HebronGuide</div>
   <div class="footer-links">
-    <a href="about.html">회사소개</a>
-    <a href="privacy.html">개인정보처리방침</a>
-    <a href="terms.html">이용약관</a>
+    <a href="privacy.html"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy Policy</span></a>
+    <a href="terms.html"><span class="lang-ko">이용약관</span><span class="lang-en">Terms of Service</span></a>
   </div>
   <div class="footer-copy">© 2026 Hebron Platform LLC. All rights reserved.</div>
 </footer>
 
 <script>
-/* HebronGuide — 도시 자동 복귀 (모든 사용자가 자기 도시로) */
+function setLang(lang) {
+  document.body.className = lang === 'en' ? 'en' : '';
+  document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.documentElement.lang = lang === 'en' ? 'en' : 'ko';
+  localStorage.setItem('hg_lang', lang);
+}
 (function(){
-  function detectCity(){
-    var p=new URLSearchParams(location.search);
-    if(p.get('city'))return p.get('city');
-    var ref=document.referrer;
-    if(ref){var m=ref.match(/hebronguide\.com\/([a-z]+)\//);if(m&&m[1])return m[1];}
-    var segs=location.pathname.split('/').filter(Boolean);
-    if(segs.length&&segs[0].indexOf('.')<0)return segs[0];
-    return'seattle';
-  }
-  var city=detectCity();
-  if(city!=='seattle'){
-    document.querySelectorAll('a[href*="/seattle/"]').forEach(function(a){
-      a.href=a.href.replace(/\/seattle\//g,'/'+city+'/');
-    });
-  }
+  var saved = localStorage.getItem('hg_lang') || 'ko';
+  if (saved === 'en') setLang('en');
+})();
+(function(){
+  var p=new URLSearchParams(location.search);
+  var city=p.get('city');
+  if(!city){var ref=document.referrer;if(ref){var m=ref.match(/hebronguide\.com\/([a-z]+)\//);if(m&&m[1])city=m[1];}}
+  if(!city){var segs=location.pathname.split('/').filter(Boolean);if(segs.length&&segs[0].indexOf('.')<0)city=segs[0];}
+  if(city&&city!=='seattle'){var el=document.getElementById('mainLink');if(el)el.href='/'+city+'/';}
 })();
 </script>
 </body>
