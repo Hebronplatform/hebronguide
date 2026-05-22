@@ -41,41 +41,106 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+/* ── Hebron Brand Tokens ─────────────────────────────────────
+   Source: _hebron_codex/design-tokens/hebron-tokens.css
+   HebronGuide는 항상 다크 모드 → .dark에 브랜드 색상 연결
+──────────────────────────────────────────────────────────── */
+:root {
+  /* Brand Core */
+  --hebron-gold:       #C9A227;
+  --hebron-gold-light: #f0c040;
+  --hebron-gold-dark:  #B8901C;
+  --hebron-gold-alpha-10: rgba(201,162,39,0.10);
+  --hebron-gold-alpha-20: rgba(201,162,39,0.20);
+  --hebron-mint:       #6EE7B7;
+  --hebron-mint-2:     #34d399;
+  --hebron-mint-3:     #10b981;
+  --hebron-mint-alpha-10: rgba(110,231,183,0.10);
+
+  /* Dark Background Scale */
+  --hebron-bg:         #0d1117;
+  --hebron-surface:    #1a2535;
+  --hebron-surface-2:  #212d3d;
+  --hebron-surface-3:  #273444;
+
+  /* Text */
+  --hebron-text-1:     #ECFDF5;
+  --hebron-text-2:     rgba(236,253,245,0.70);
+  --hebron-text-3:     rgba(236,253,245,0.45);
+  --hebron-text-4:     rgba(236,253,245,0.28);
+
+  /* Border */
+  --hebron-border:     rgba(255,255,255,0.08);
+  --hebron-border-2:   rgba(255,255,255,0.14);
+  --hebron-border-3:   rgba(255,255,255,0.22);
+
+  /* Status */
+  --hebron-red:        #f87171;
+  --hebron-green:      #4ade80;
+  --hebron-yellow:     #fbbf24;
+  --hebron-blue:       #60a5fa;
+
+  /* Typography */
+  --hebron-font-display: 'Cinzel', 'Georgia', serif;
+  --hebron-font-body:    'Noto Sans KR', -apple-system, 'Segoe UI', sans-serif;
+  --hebron-font-ui:      'Manrope', -apple-system, sans-serif;
+
+  /* Radius */
+  --hebron-radius-xs:   6px;
+  --hebron-radius-sm:   8px;
+  --hebron-radius-md:   12px;
+  --hebron-radius-lg:   18px;
+  --hebron-radius-xl:   24px;
+  --hebron-radius-full: 9999px;
+
+  /* Shadow */
+  --hebron-shadow-sm:   0 2px 8px rgba(0,0,0,0.18);
+  --hebron-shadow-md:   0 4px 16px rgba(0,0,0,0.24);
+  --hebron-shadow-lg:   0 8px 32px rgba(0,0,0,0.32);
+  --hebron-shadow-gold: 0 4px 16px rgba(201,162,39,0.30);
+
+  /* Motion */
+  --hebron-transition-fast:   0.15s ease;
+  --hebron-transition-normal: 0.25s ease;
+  --hebron-transition-slow:   0.40s ease;
+}
+
+/* ── shadcn/ui 다크 테마 → Hebron 브랜드 색상 매핑 ── */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
+  --background:             #0d1117;   /* --hebron-bg */
+  --foreground:             #ECFDF5;   /* --hebron-text-1 */
+  --card:                   #1a2535;   /* --hebron-surface */
+  --card-foreground:        #ECFDF5;
+  --popover:                #1a2535;
+  --popover-foreground:     #ECFDF5;
+  --primary:                #C9A227;   /* --hebron-gold */
+  --primary-foreground:     #0d1117;
+  --secondary:              #212d3d;   /* --hebron-surface-2 */
+  --secondary-foreground:   #ECFDF5;
+  --muted:                  #212d3d;
+  --muted-foreground:       rgba(236,253,245,0.45);
+  --accent:                 #273444;   /* --hebron-surface-3 */
+  --accent-foreground:      #6EE7B7;   /* --hebron-mint */
+  --destructive:            #f87171;   /* --hebron-red */
+  --destructive-foreground: #ECFDF5;
+  --border:                 rgba(255,255,255,0.08);
+  --input:                  rgba(255,255,255,0.06);
+  --ring:                   #C9A227;   /* --hebron-gold */
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --chart-1: #C9A227;
+  --chart-2: #6EE7B7;
+  --chart-3: #60a5fa;
+  --chart-4: #a78bfa;
+  --chart-5: #f87171;
+  --sidebar:                  #1a2535;
+  --sidebar-foreground:       #ECFDF5;
+  --sidebar-primary:          #C9A227;
+  --sidebar-primary-foreground: #0d1117;
+  --sidebar-accent:           #212d3d;
+  --sidebar-accent-foreground:#6EE7B7;
+  --sidebar-border:           rgba(255,255,255,0.08);
+  --sidebar-ring:             #C9A227;
 }
 
 @theme inline {
