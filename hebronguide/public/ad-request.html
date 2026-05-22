@@ -261,12 +261,19 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <input type="url" id="cWebsite" placeholder="https://www.yourchurch.com">
     </div>
 
-    <!-- 가정교회(HCMI) 체크 -->
+    <!-- 교회 특성 체크 -->
     <div class="field">
-      <label class="consent-row" style="margin:0;">
-        <input type="checkbox" id="cHcmi" style="width:17px;height:17px;accent-color:var(--gold);flex-shrink:0;">
-        <span class="consent-text" style="font-weight:600;">가정교회(HCMI) <span class="opt">(해당 시 선택)</span></span>
-      </label>
+      <label style="margin-bottom:8px;">교회 특성 <span class="opt">(해당 시 선택)</span></label>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;">
+          <input type="checkbox" id="cHebronCoop" style="width:17px;height:17px;accent-color:var(--mint);flex-shrink:0;">
+          <span style="font-size:.85rem;color:rgba(236,253,245,.85);font-weight:700;">Hebron 협력교회</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;">
+          <input type="checkbox" id="cHcmi" style="width:17px;height:17px;accent-color:var(--gold);flex-shrink:0;">
+          <span style="font-size:.85rem;color:rgba(236,253,245,.85);font-weight:700;">가정교회(HCMI)</span>
+        </label>
+      </div>
     </div>
 
     <div class="field-row">
@@ -614,8 +621,9 @@ async function submitForm(type) {
     if(!valid) return;
     if(!checkConsent('cConsent')) return;
     subject = `[교회 파트너 신청] ${document.getElementById('cChurch').value}`;
-    const hcmi = document.getElementById('cHcmi')?.checked ? '✅ 가정교회(HCMI)' : '—';
-    body = `유형: 파트너 교회\n교회명: ${document.getElementById('cChurch').value}\n담임목사: ${document.getElementById('cPastor').value}\n도시: ${document.getElementById('cCity').value}\n전화: ${document.getElementById('cPhone').value}\n이메일: ${document.getElementById('cEmail').value}\n웹사이트: ${document.getElementById('cWebsite').value}\n가정교회(HCMI): ${hcmi}\n교단: ${document.getElementById('cDenom').value}\n예배시간: ${document.getElementById('cService').value}\n\n소개:\n${document.getElementById('cDesc').value}`;
+    const hebronCoop = document.getElementById('cHebronCoop')?.checked ? '✅' : '—';
+    const hcmi = document.getElementById('cHcmi')?.checked ? '✅' : '—';
+    body = `유형: 파트너 교회\n교회명: ${document.getElementById('cChurch').value}\n담임목사: ${document.getElementById('cPastor').value}\n도시: ${document.getElementById('cCity').value}\n전화: ${document.getElementById('cPhone').value}\n이메일: ${document.getElementById('cEmail').value}\n웹사이트: ${document.getElementById('cWebsite').value}\nHebron 협력교회: ${hebronCoop}\n가정교회(HCMI): ${hcmi}\n교단: ${document.getElementById('cDenom').value}\n예배시간: ${document.getElementById('cService').value}\n\n소개:\n${document.getElementById('cDesc').value}`;
   } else if(type === 'business') {
     valid = validate([
       {id:'bBiz',type:'required'},{id:'bName',type:'required'},
