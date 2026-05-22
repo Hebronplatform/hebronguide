@@ -11756,50 +11756,21 @@ function GrowthShareSection({ lang }: { lang: string }) {
         {ko ? "카카오로 전달하기" : "Share via KakaoTalk"}
       </button>
 
-      {/* 카카오 채널 등록 안내 */}
-      <a
-        href="https://pf.kakao.com/_dxdxlbX"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ textDecoration: "none" }}
-      >
+      {/* 카카오 채널 등록 안내 — 슬림 */}
+      <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
         <div style={{
-          background: "rgba(254,229,0,0.07)",
-          border: "1px solid rgba(254,229,0,0.25)",
-          borderRadius: 14,
-          padding: "14px 16px",
-          display: "flex", alignItems: "center", gap: 12,
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          padding: "9px 14px",
+          background: "rgba(254,229,0,0.06)",
+          border: "1px solid rgba(254,229,0,0.2)",
+          borderRadius: 10, gap: 8,
         }}>
-          <div style={{
-            width: 40, height: 40, borderRadius: 10, flexShrink: 0,
-            background: "#FEE500",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: 20,
-          }}>💬</div>
-          <div style={{ flex: 1 }}>
-            <div style={{
-              fontSize: 13, fontWeight: 800,
-              color: "#ECFDF5", marginBottom: 3,
-              fontFamily: "'Noto Sans KR',sans-serif",
-            }}>
-              {ko ? "카카오 채널 추가하기" : "Follow KakaoTalk Channel"}
-            </div>
-            <div style={{
-              fontSize: 11.5, color: "rgba(236,253,245,0.6)",
-              lineHeight: 1.5, fontFamily: "'Noto Sans KR',sans-serif",
-            }}>
-              {ko
-                ? "수정 요청·문의는 카카오 채널로 편하게 보내주세요.\n채널 추가하면 새 도시 오픈 소식도 받으실 수 있어요 🙌"
-                : "Send requests or questions via KakaoTalk.\nFollow the channel to get notified of new city launches 🙌"}
-            </div>
-          </div>
-          <div style={{
-            fontSize: 11, fontWeight: 700,
-            color: "#FEE500", whiteSpace: "nowrap",
-            fontFamily: "Manrope,sans-serif",
-          }}>
+          <span style={{ fontSize: 13, color: "rgba(236,253,245,0.65)", fontFamily: "'Noto Sans KR',sans-serif" }}>
+            💬 {ko ? "문의·수정 요청은 카카오 채널로" : "Questions? KakaoTalk Channel"}
+          </span>
+          <span style={{ fontSize: 11, fontWeight: 700, color: "#FEE500", whiteSpace: "nowrap", fontFamily: "Manrope,sans-serif" }}>
             {ko ? "채널 추가 →" : "Follow →"}
-          </div>
+          </span>
         </div>
       </a>
 
