@@ -9933,53 +9933,62 @@ function CommunityPulseSection({ lang }: { lang: string }) {
 function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number) => void }) {
   const { lang } = useI18n();
   const city = useCityConfig();
-  const SETTLE_STEPS = getSettleSteps(city.slug); // 도시별 맞춤 정착 카드
+  const SETTLE_STEPS = getSettleSteps(city.slug);
   return (
-    <div style={{ padding: "16px 0 8px" }}>
-      <div style={{ padding: "0 16px", marginBottom: 12, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{
-          fontFamily: "'Noto Sans KR', sans-serif",
-          fontWeight: 700, fontSize: 15, color: "#1B2A4A", letterSpacing: "-0.3px",
-        }}>
-          ✅ {lang === "ko" ? "정착 필수" : "Settlement Essentials"}
+    <div style={{
+      margin: "12px 16px 0",
+      background: "linear-gradient(135deg, #1a2535 0%, #0f1a27 100%)",
+      borderRadius: 18,
+      padding: "16px 14px 14px",
+      border: "1px solid rgba(255,255,255,0.08)",
+      boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
+    }}>
+      {/* 헤더 */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+        <div style={{ fontFamily: "'Noto Sans KR', Manrope, sans-serif", fontWeight: 800, fontSize: 13,
+          color: "#ECFDF5", letterSpacing: "-0.2px", display: "flex", alignItems: "center", gap: 6 }}>
+          <span style={{ fontSize: 15 }}>🛬</span>
+          {lang === "ko" ? "정착 필수" : "Settlement Essentials"}
         </div>
         <button onClick={() => onNavigate?.(1)} style={{
-          background: "none", border: "none",
-          fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Noto Sans KR', sans-serif",
-          fontWeight: 600,
-          fontSize: 12, color: "#F2994A", cursor: "pointer" }}>
+          background: "none", border: "none", cursor: "pointer",
+          fontFamily: "Manrope, sans-serif", fontWeight: 700, fontSize: 11,
+          color: "#C9A227",
+        }}>
           {lang === "ko" ? "전체 보기 →" : "See all →"}
         </button>
       </div>
-      {/* 2열 그리드 — 카드 간격 넓게, 내부는 꽉 차게 */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16,
-        padding: "0 16px" }}>
+      {/* 2열 카드 그리드 */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 8 }}>
         {SETTLE_STEPS.map((step, i) => (
           <button key={i} onClick={() => onNavigate?.(1)} style={{
-            background: "#FFFFFF", borderRadius: 14, padding: "12px 10px",
-            display: "flex", flexDirection: "row", alignItems: "center", gap: 10,
-            border: "none",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.10)",
+            borderRadius: 12, padding: "11px 10px",
+            display: "flex", flexDirection: "row", alignItems: "center", gap: 9,
             cursor: "pointer", textAlign: "left",
-          }}>
+            transition: "background 0.15s",
+            WebkitTapHighlightColor: "transparent",
+          }}
+          onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.11)")}
+          onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
+          >
             <div style={{
-              width: 40, height: 40, borderRadius: 11, background: step.color,
+              width: 36, height: 36, borderRadius: 9,
+              background: `${step.color}25`,
+              border: `1px solid ${step.color}50`,
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 20, flexShrink: 0,
+              fontSize: 17, flexShrink: 0,
             }}>
               {step.emoji}
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{
-                fontFamily: "-apple-system, 'Noto Sans KR', sans-serif",
-                fontWeight: 700, fontSize: 12,
-                color: "#1B2A4A", marginBottom: 2 }}>
+              <div style={{ fontFamily: "'Noto Sans KR', sans-serif", fontWeight: 700,
+                fontSize: 11, color: "#ECFDF5", marginBottom: 2, lineHeight: 1.3 }}>
                 {lang === "ko" ? step.titleKo : step.titleEn}
               </div>
-              <div style={{
-                fontFamily: "-apple-system, sans-serif",
-                fontSize: 10, color: "#64748B",
-                lineHeight: 1.4, whiteSpace: "pre-line" }}>
+              <div style={{ fontFamily: "Manrope, sans-serif", fontSize: 9.5,
+                color: "rgba(236,253,245,0.48)", lineHeight: 1.4, whiteSpace: "pre-line" }}>
                 {lang === "ko" ? step.descKo : step.descEn}
               </div>
             </div>
@@ -11919,11 +11928,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <GrowthShareSection lang={lang} />
 
 
-      <div style={{ margin: "12px 16px 0", height: 0.5, background: "rgba(0,0,0,0.1)" }} />
       <SettlementEssentialsSection onNavigate={onNavigate} />
-      <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
-      <KoreanAmericanJourneySection onNavigate={onNavigate} />
-      <div style={{ margin: "0 16px", height: 0.5, background: "rgba(0,0,0,0.12)" }} />
       <CityHubSection lang={lang} />
       {/* 헤브론 스토어 배너 — Coming Soon */}
       <div style={{ margin: "12px 16px 0", background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", overflow: "hidden", display: "flex", alignItems: "stretch" }}>
