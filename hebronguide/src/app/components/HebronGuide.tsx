@@ -494,11 +494,11 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
 
   // 🇺🇸 포틀랜드 — ①항공 ②브릿지 ③포틀랜드 장미 ④사람 ⑤정착
   portland: [
-    { url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&q=95", pos: "center 40%", alt: "Portland Oregon aerial drone city bridges Willamette" },
-    { url: "https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?w=1200&q=95", pos: "center 38%", alt: "Portland bridges Steel Bridge landmark" },
-    { url: "https://images.unsplash.com/photo-1501554728187-ce583db33af7?w=1200&q=95", pos: "center 45%", alt: "Portland Oregon city skyline daytime character" },
-    { url: "https://images.unsplash.com/photo-1605457680233-25bcc31372ff?w=1200&q=95", pos: "center 50%", alt: "Portland colorful houses neighborhood community people welcome" },
-    { url: "https://images.unsplash.com/photo-1695755045417-6304b476c525?w=1200&q=95", pos: "center 40%", alt: "Portland Oregon residential house neighborhood settle" },
+    { url: "https://images.unsplash.com/photo-1603312504738-3dd0fdaff23b?w=1200&q=95", pos: "center 40%", alt: "Portland Oregon aerial skyline Mt Hood backdrop panoramic" },
+    { url: "https://images.unsplash.com/photo-1628347422534-3cdff90dee42?w=1200&q=95", pos: "center 50%", alt: "Portland Oregon Willamette River skyline sunset landmark" },
+    { url: "https://images.unsplash.com/photo-1715656205207-4dbc595722b2?w=1200&q=95", pos: "center 45%", alt: "Portland Oregon bridge skyline daytime city view" },
+    { url: "https://images.unsplash.com/photo-1605457680233-25bcc31372ff?w=1200&q=95", pos: "center 50%", alt: "Portland Oregon neighborhood community residential warm" },
+    { url: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=95", pos: "center 30%", alt: "Diverse people welcoming smiling community Portland" },
   ],
 
   // 🇺🇸 덴버 — ①항공 ②록키산 ③유니온스테이션 ④사람 ⑤정착
