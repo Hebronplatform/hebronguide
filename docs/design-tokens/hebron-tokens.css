@@ -1,0 +1,123 @@
+/* ═══════════════════════════════════════════════════════════
+   HEBRON FAITH OS — CANONICAL DESIGN TOKENS  v1.0
+   2026-05-22  |  Source of truth for all Hebron apps
+
+   사용법:
+     - React/Vite 앱: @import 경로 설정 후 var(--hebron-gold) 사용
+     - Vanilla HTML: <link> 또는 <style> @import 로 불러오기
+     - 각 앱의 기존 색상 변수를 이 토큰으로 교체
+
+   앱별 현황:
+     HebronGuide  → theme.css에 .dark 연결 완료
+     HebronShepherd → tailwind.config에 hebron 색상 반영 필요
+     HebronAltar  → index.html :root에 직접 반영 필요
+     HebronLingua → index.html tailwind config 업데이트 필요
+     NanuriWeb    → :root 변수를 이 토큰으로 교체 필요
+═══════════════════════════════════════════════════════════ */
+
+:root {
+
+  /* ────────────────────────────────────────
+     BRAND CORE — 전 앱 공통 필수 토큰
+  ──────────────────────────────────────── */
+
+  /* Gold — 신뢰, 품격, 헤브론 정체성 */
+  --hebron-gold:      #C9A227;
+  --hebron-gold-light:#f0c040;   /* hover / highlight */
+  --hebron-gold-dark: #B8901C;   /* pressed / dark variant */
+  --hebron-gold-alpha-10: rgba(201,162,39,0.10);
+  --hebron-gold-alpha-20: rgba(201,162,39,0.20);
+
+  /* Mint — 환대, 새로운 시작 */
+  --hebron-mint:      #6EE7B7;
+  --hebron-mint-2:    #34d399;   /* hover */
+  --hebron-mint-3:    #10b981;   /* dark/pressed */
+  --hebron-mint-alpha-10: rgba(110,231,183,0.10);
+
+  /* ────────────────────────────────────────
+     DARK THEME — 기본 테마 (HebronGuide, Shepherd, Lingua)
+  ──────────────────────────────────────── */
+
+  --hebron-bg:        #0d1117;   /* 페이지 배경 (가장 어두움) */
+  --hebron-surface:   #1a2535;   /* 카드 / 패널 */
+  --hebron-surface-2: #212d3d;   /* 올라온 서피스 */
+  --hebron-surface-3: #273444;   /* 최상단 서피스 */
+
+  /* Text */
+  --hebron-text-1:    #ECFDF5;
+  --hebron-text-2:    rgba(236,253,245,0.70);
+  --hebron-text-3:    rgba(236,253,245,0.45);
+  --hebron-text-4:    rgba(236,253,245,0.28);
+
+  /* Border */
+  --hebron-border:    rgba(255,255,255,0.08);
+  --hebron-border-2:  rgba(255,255,255,0.14);
+  --hebron-border-3:  rgba(255,255,255,0.22);
+
+  /* ────────────────────────────────────────
+     LIGHT THEME — HebronAltar, NanuriWeb
+  ──────────────────────────────────────── */
+
+  --hebron-light-bg:       #F8F9FA;
+  --hebron-light-surface:  #FFFFFF;
+  --hebron-light-surface-2:#F0F2F5;
+  --hebron-light-text:     #1B2A4A;
+  --hebron-light-text-2:   #475569;
+  --hebron-light-muted:    #94A3B8;
+  --hebron-light-navy:     #1B4F72;
+  --hebron-light-border:   rgba(0,0,0,0.08);
+
+  /* ────────────────────────────────────────
+     STATUS COLORS
+  ──────────────────────────────────────── */
+
+  --hebron-red:     #f87171;
+  --hebron-green:   #4ade80;
+  --hebron-yellow:  #fbbf24;
+  --hebron-blue:    #60a5fa;
+  --hebron-purple:  #a78bfa;
+
+  /* ────────────────────────────────────────
+     TYPOGRAPHY
+  ──────────────────────────────────────── */
+
+  /* Display (로고·헤더·강조) */
+  --hebron-font-display: 'Cinzel', 'Georgia', serif;
+
+  /* Body (한국어 본문 필수) */
+  --hebron-font-body: 'Noto Sans KR', -apple-system, 'Segoe UI', sans-serif;
+
+  /* UI / 숫자 레이블 */
+  --hebron-font-ui: 'Manrope', -apple-system, sans-serif;
+
+  /* Mono (코드) */
+  --hebron-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* ────────────────────────────────────────
+     BORDER RADIUS
+  ──────────────────────────────────────── */
+
+  --hebron-radius-xs:   6px;
+  --hebron-radius-sm:   8px;
+  --hebron-radius-md:   12px;
+  --hebron-radius-lg:   18px;
+  --hebron-radius-xl:   24px;
+  --hebron-radius-full: 9999px;
+
+  /* ────────────────────────────────────────
+     ELEVATION (box-shadow)
+  ──────────────────────────────────────── */
+
+  --hebron-shadow-sm:  0 2px 8px rgba(0,0,0,0.18);
+  --hebron-shadow-md:  0 4px 16px rgba(0,0,0,0.24);
+  --hebron-shadow-lg:  0 8px 32px rgba(0,0,0,0.32);
+  --hebron-shadow-gold: 0 4px 16px rgba(201,162,39,0.30);
+
+  /* ────────────────────────────────────────
+     MOTION
+  ──────────────────────────────────────── */
+
+  --hebron-transition-fast:   0.15s ease;
+  --hebron-transition-normal: 0.25s ease;
+  --hebron-transition-slow:   0.40s ease;
+}
