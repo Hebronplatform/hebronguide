@@ -14022,32 +14022,6 @@ function getCityChurches(slug: string, lang: string) {
       },
     ],
     seoul: [
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "온누리교회" : "Onnuri Church Seoul",
-        desc: ko
-          ? "✅ 검증됨 · 귀환 동포·역이민자 환영\n📍 서울 서초구 남부순환로 2497\n🕐 주일예배 1부(7am)·2부(9am)·3부(11am)·4부(2pm)\n🔗 onnuri.org\n\n✨ 해외에서 돌아온 귀환 동포를 위한 영어예배·글로벌 공동체 운영"
-          : "✅ Verified · Welcoming returning overseas Koreans\n📍 2497 Nambusunhwan-ro, Seocho-gu, Seoul\n🕐 Sunday services: 7am / 9am / 11am / 2pm\n🔗 onnuri.org\n\n✨ English services and global community for returning diaspora",
-        tags: ko ? ["서초구", "귀환동포", "영어예배"] : ["Seocho", "Returnees", "English Service"],
-        website: "https://onnuri.org",
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "사랑의교회" : "Sarang Community Church",
-        desc: ko
-          ? "✅ 검증됨\n📍 서울 서초구 서초대로 55\n🕐 주일예배 1부(8am)·2부(10am)·3부(12pm)·4부(2pm)\n🔗 sarang.org\n\n✨ 귀환 역이민자·재외동포 정착 상담 가능"
-          : "✅ Verified\n📍 55 Seocho-daero, Seocho-gu, Seoul\n🕐 Sunday: 8am / 10am / 12pm / 2pm\n🔗 sarang.org\n\n✨ Counseling available for returning overseas Koreans",
-        tags: ko ? ["서초구", "귀환동포"] : ["Seocho", "Returnees"],
-        website: "https://sarang.org",
-      },
-      {
-        emoji: "⛪", tier: 2,
-        name: ko ? "강남교회" : "Gangnam Church Seoul",
-        desc: ko
-          ? "🔍 추가 검증 중\n📍 서울 강남구\n\n서울 귀환 동포·역이민자를 위한 교회 정보를 계속 업데이트하고 있습니다.\n교회 등재: hebronguide.com/church-submit.html"
-          : "🔍 Verification in progress\n📍 Gangnam-gu, Seoul\n\nContinuously updating church info for returning overseas Koreans.\nList your church: hebronguide.com/church-submit.html",
-        tags: ko ? ["강남구", "귀환동포"] : ["Gangnam", "Returnees"],
-      },
     ],
     busan: [
       {

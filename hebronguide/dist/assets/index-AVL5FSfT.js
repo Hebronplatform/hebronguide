@@ -1490,35 +1490,7 @@ Key services:
 🔗 eternaljoychurch.org`:`✅ House Church | HMI North CA (San Jose) Regional Shepherd
 📍 San Jose, CA
 ✨ Lead Pastor: Kijun Lee
-🔗 eternaljoychurch.org`,tags:a?["가정교회","산호세","SF베이"]:["House Church","San Jose","SF Bay"],website:"https://www.eternaljoychurch.org"}],seoul:[{emoji:"⛪",tier:2,name:a?"온누리교회":"Onnuri Church Seoul",desc:a?`✅ 검증됨 · 귀환 동포·역이민자 환영
-📍 서울 서초구 남부순환로 2497
-🕐 주일예배 1부(7am)·2부(9am)·3부(11am)·4부(2pm)
-🔗 onnuri.org
-
-✨ 해외에서 돌아온 귀환 동포를 위한 영어예배·글로벌 공동체 운영`:`✅ Verified · Welcoming returning overseas Koreans
-📍 2497 Nambusunhwan-ro, Seocho-gu, Seoul
-🕐 Sunday services: 7am / 9am / 11am / 2pm
-🔗 onnuri.org
-
-✨ English services and global community for returning diaspora`,tags:a?["서초구","귀환동포","영어예배"]:["Seocho","Returnees","English Service"],website:"https://onnuri.org"},{emoji:"⛪",tier:2,name:a?"사랑의교회":"Sarang Community Church",desc:a?`✅ 검증됨
-📍 서울 서초구 서초대로 55
-🕐 주일예배 1부(8am)·2부(10am)·3부(12pm)·4부(2pm)
-🔗 sarang.org
-
-✨ 귀환 역이민자·재외동포 정착 상담 가능`:`✅ Verified
-📍 55 Seocho-daero, Seocho-gu, Seoul
-🕐 Sunday: 8am / 10am / 12pm / 2pm
-🔗 sarang.org
-
-✨ Counseling available for returning overseas Koreans`,tags:a?["서초구","귀환동포"]:["Seocho","Returnees"],website:"https://sarang.org"},{emoji:"⛪",tier:2,name:a?"강남교회":"Gangnam Church Seoul",desc:a?`🔍 추가 검증 중
-📍 서울 강남구
-
-서울 귀환 동포·역이민자를 위한 교회 정보를 계속 업데이트하고 있습니다.
-교회 등재: hebronguide.com/church-submit.html`:`🔍 Verification in progress
-📍 Gangnam-gu, Seoul
-
-Continuously updating church info for returning overseas Koreans.
-List your church: hebronguide.com/church-submit.html`,tags:a?["강남구","귀환동포"]:["Gangnam","Returnees"]}],busan:[{emoji:"⛪",tier:2,name:a?"수영로교회":"Sooyoungro Church",desc:a?`✅ 가정교회 모델 · 역이민 귀환 동포 환영
+🔗 eternaljoychurch.org`,tags:a?["가정교회","산호세","SF베이"]:["House Church","San Jose","SF Bay"],website:"https://www.eternaljoychurch.org"}],seoul:[],busan:[{emoji:"⛪",tier:2,name:a?"수영로교회":"Sooyoungro Church",desc:a?`✅ 가정교회 모델 · 역이민 귀환 동포 환영
 📍 부산 수영구 수영로 425
 🕐 주일예배 7부(6:30am)·1부(8am)·2부(9:30am)·3부(11:10am)·4부(1pm)·5부(3pm)·영어예배(1pm)
 🔗 sooyoungro.org
