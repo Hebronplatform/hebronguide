@@ -11744,7 +11744,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
           fontFamily: "'Noto Sans KR',Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#1a1200",
         }}>
         <span style={{ fontSize: 20 }}>📱</span>
-        {ko ? "카카오·문자·SNS로 전달하기" : "Share via Kakao · Text · SNS"}
+        {ko ? "카카오로 전달하기" : "Share via KakaoTalk"}
       </button>
 
 
