@@ -271,7 +271,7 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
     </div>
 
     <div class="field">
-      <label>교회 주소 (도시) <span class="req">*</span></label>
+      <label>교회가 위치한 도시 <span class="req">*</span></label>
       <input type="text" id="cCity" placeholder="시애틀, WA / 달라스, TX / 토론토, ON 등">
     </div>
 
@@ -401,8 +401,8 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
     <div class="field">
       <label>노출 도시 <span class="opt">(선택)</span></label>
-      <select id="bCitySelect">
-        <option value="">— 도시 선택 (선택 사항) —</option>
+      <select id="bCitySelect" onchange="toggleCityOther(this.value)">
+        <option value="">— 선택 안 함 (검토 후 협의) —</option>
         <option value="시애틀">🌲 시애틀 Seattle, WA</option>
         <option value="로스앤젤레스">🌴 LA · OC Los Angeles / Orange County, CA</option>
         <option value="SF">🌉 SF San Francisco Bay Area, CA</option>
@@ -414,8 +414,10 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
         <option value="토론토">🍁 토론토 Toronto, ON</option>
         <option value="밴쿠버">🏔️ 밴쿠버 Vancouver, BC</option>
         <option value="서울">🏯 서울 Seoul, Korea</option>
-        <option value="기타">📍 기타 — 소개란에 도시명 명시</option>
+        <option value="기타">📍 기타 도시 (직접 입력)</option>
       </select>
+      <input type="text" id="bCityOther" placeholder="예: 보스턴, MA / 애틀랜타, GA / 도쿄, 일본"
+        style="display:none;margin-top:8px;" />
     </div>
 
     <div class="field">
@@ -661,6 +663,14 @@ function validate(fields) {
   return ok;
 }
 
+// 기타 도시 직접 입력 필드 토글
+function toggleCityOther(val) {
+  const el = document.getElementById('bCityOther');
+  if (!el) return;
+  el.style.display = val === '기타' ? 'block' : 'none';
+  if (val !== '기타') el.value = '';
+}
+
 // 동의 체크 확인
 function checkConsent(id) {
   const el = document.getElementById(id);
@@ -703,7 +713,10 @@ async function submitForm(type) {
     ]);
     if(!valid) return;
     if(!checkConsent('bConsent')) return;
-    const city = document.getElementById('bCitySelect')?.value || '미선택';
+    const citySelect = document.getElementById('bCitySelect')?.value || '';
+    const city = citySelect === '기타'
+      ? (document.getElementById('bCityOther')?.value.trim() || '기타 (미입력)')
+      : (citySelect || '미선택');
     subject = `[사업체 등재 신청] ${document.getElementById('bBiz').value}`;
     body = `업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n주소: ${document.getElementById('bAddress')?.value || ''}\n웹사이트: ${document.getElementById('bWebsite')?.value || ''}\n노출 도시: ${city}\n\n소개:\n${document.getElementById('bDesc').value}`;
   } else if(type === 'promo') {
