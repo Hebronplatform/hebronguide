@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "pptxgenjs": "^4.0.1"
+    "pptxgenjs": "^4.0.1",
+    "nodemailer": "^6.9.14"
   }
 }

@@ -6,7 +6,8 @@
     "api/ad-generator.js":   { "maxDuration": 30 },
     "api/ask.js":            { "maxDuration": 30 },
     "api/city-reviewer.js":  { "maxDuration": 60 },
-    "api/content-curator.js":{ "maxDuration": 60 }
+    "api/content-curator.js":{ "maxDuration": 60 },
+    "api/submit-form.js":    { "maxDuration": 15 }
   },
 
   "crons": [
