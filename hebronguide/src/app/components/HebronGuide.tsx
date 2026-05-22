@@ -14165,8 +14165,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "오레곤선교교회 (KMC)" : "Korean Mission Church of Oregon (KMC)",
         nameEn: "Korean Mission Church of Oregon",
         desc: ko
-          ? "✅ 미주성결교회 (KMC)\n📍 Portland, OR\n✨ 담임: 주환준 목사\n📞 503-292-2294\n✉️ kmcoregon@gmail.com\n\n🏠 가족처럼 함께 지어져 가는 교회 공동체. 영적인 공급(은혜로운 말씀)과 육체에 필요한 섬김(점심) 함께 제공. 한국어·영어 동시 예배."
-          : "✅ Korean Mission Church (KMC)\n📍 Portland, OR\n✨ Lead Pastor: Hwanjun Ju\n📞 503-292-2294\n✉️ kmcoregon@gmail.com\n\n🏠 A church community built together as family. Spiritual nourishment (Word) + physical care (lunch) provided. Bilingual Korean-English worship.",
+          ? "✅ 미주성결교회 (KMC)\n📍 9100 SW Wilshire St, Portland, OR 97225\n✨ 담임: 주환준 목사\n📞 503-292-2294\n✉️ kmcoregon@gmail.com\n\n🏠 가족처럼 함께 지어져 가는 교회 공동체. 영적인 공급(은혜로운 말씀)과 육체에 필요한 섬김(점심) 함께 제공. 한국어·영어 동시 예배."
+          : "✅ Korean Mission Church (KMC)\n📍 9100 SW Wilshire St, Portland, OR 97225\n✨ Lead Pastor: Hwanjun Ju\n📞 503-292-2294\n✉️ kmcoregon@gmail.com\n\n🏠 A church community built together as family. Spiritual nourishment (Word) + physical care (lunch) provided. Bilingual Korean-English worship.",
         tags: ko ? ["성결교회", "포틀랜드", "한영예배", "KMC"] : ["KMC", "Portland", "Bilingual", "Oregon"],
         email: "kmcoregon@gmail.com",
         phone: "503-292-2294",
