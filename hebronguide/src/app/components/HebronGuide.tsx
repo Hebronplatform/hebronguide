@@ -353,22 +353,22 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1591878938-2f9f2e9c0fce?w=1200&q=95", pos: "center 40%", alt: "Orlando suburban neighborhood palm trees residential settle" },
   ],
 
-  // 🇰🇷 분당·수지 — ①판교 항공 ②신도시 ③중앙공원 ④워터프론트 ⑤정착
+  // 🇰🇷 분당·수지 — ①성남항공 ②지하철 ③중앙공원 ④신도시판교 ⑤고층아파트정착
   bundang: [
-    { url: "https://images.unsplash.com/photo-1647069770375-3b5fdc58396c?w=1200&q=95", pos: "center 40%", alt: "Bundang Seongnam aerial drone Pangyo tech city" },
-    { url: "https://images.unsplash.com/photo-1764212964673-249757581fb7?w=1200&q=95", pos: "center 45%", alt: "Bundang Korea new town modern cityscape" },
-    { url: "https://images.unsplash.com/photo-1700639687072-dd8c8d13b3e8?w=1200&q=95", pos: "center 40%", alt: "Bundang Korea central park forest culture" },
-    { url: "https://images.unsplash.com/photo-1696452774626-5be9532664dc?w=1200&q=95", pos: "center 50%", alt: "Bundang Seongnam lake park community people" },
-    { url: "https://images.unsplash.com/photo-1446733993804-c62a351c7239?w=1200&q=95", pos: "center 40%", alt: "Bundang Korea new town apartment residential settle" },
+    { url: "https://images.unsplash.com/photo-wdsh-96lNdI?w=1200&q=95",               pos: "center 40%", alt: "Bundang-gu Seongnam aerial drone high-rise residential tech city Pangyo" },
+    { url: "https://images.unsplash.com/photo-pkrptLvGSak?w=1200&q=95",               pos: "center 45%", alt: "Gyeonggi Bundang subway modern transit infrastructure community" },
+    { url: "https://images.unsplash.com/photo-1700639687072-dd8c8d13b3e8?w=1200&q=95", pos: "center 40%", alt: "Bundang Korea central park forest green culture" },
+    { url: "https://images.unsplash.com/photo-8RN751rleDo?w=1200&q=95",               pos: "center 50%", alt: "Sejong City planned new town Korea high-rise community modern welcome" },
+    { url: "https://images.unsplash.com/photo-rRSpD1mDZbs?w=1200&q=95",               pos: "center 40%", alt: "Seongnam Bundang high-rise apartment buildings residential settle" },
   ],
 
-  // 🇺🇸 메릴랜드 — ①항공 ②체서피크베이 ③볼티모어 ④사람 ⑤정착
+  // 🇺🇸 메릴랜드 — ①항공 ②체서피크베이브릿지 ③아나폴리스주의회 ④체리블라썸 ⑤조지타운주택가
   maryland: [
-    { url: "https://images.unsplash.com/photo-1550059654-c27c9347e417?w=1200&q=95", pos: "center 40%", alt: "Maryland aerial drone Harpers Ferry landscape" },
-    { url: "https://images.unsplash.com/photo-1621885123086-18956efbac67?w=1200&q=95", pos: "center 45%", alt: "Chesapeake Bay Bridge Maryland Annapolis landmark" },
-    { url: "https://images.unsplash.com/photo-1531818610858-bf9e2dd01fb1?w=1200&q=95", pos: "center 40%", alt: "Maryland Baltimore Inner Harbor landmark architecture" },
-    { url: "https://images.unsplash.com/photo-1602479185195-32f5cd203559?w=1200&q=95", pos: "center 50%", alt: "Maryland Korean community people street welcome" },
-    { url: "https://images.unsplash.com/photo-1662685315601-e44738a26bbd?w=1200&q=95", pos: "center 40%", alt: "Maryland suburban Rockville residential neighborhood settle" },
+    { url: "https://images.unsplash.com/photo-1550059654-c27c9347e417?w=1200&q=95",   pos: "center 40%", alt: "Maryland aerial drone Harpers Ferry landscape arrival" },
+    { url: "https://images.unsplash.com/photo-1621885123086-18956efbac67?w=1200&q=95", pos: "center 45%", alt: "Chesapeake Bay Bridge Maryland Annapolis waterway landmark" },
+    { url: "https://images.unsplash.com/photo-ykrTHE8kwWk?w=1200&q=95",               pos: "center 40%", alt: "Maryland State House Annapolis historic Capitol architecture" },
+    { url: "https://images.unsplash.com/photo-8Pfk-VUU40Q?w=1200&q=95",               pos: "center 50%", alt: "Cherry blossoms Washington Monument Tidal Basin DC spring community welcome" },
+    { url: "https://images.unsplash.com/photo-E0BLQcp0JZ8?w=1200&q=95",               pos: "center 40%", alt: "Georgetown DC red brick row houses historic residential neighborhood settle" },
   ],
 
   // 🇺🇸 루이빌 — ①선셋항공 ②야경 ③특색 ④사람 ⑤정착
@@ -636,22 +636,22 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1595125989588-36d745a2a828?w=1200&q=95", pos: "center 40%", alt: "Brisbane suburban residential neighborhood settle" },
   ],
 
-  // 🇦🇺 퍼스 — ①황금시간 ②항공 ③스완강 ④사람 ⑤정착
+  // 🇦🇺 퍼스 — ①황금시간항공 ②엘리자베스키 ③킹스파크전망 ④스완강워터프론트 ⑤코틀슬로비치
   perth: [
     { url: "https://images.unsplash.com/photo-1580014942344-ce423d2b885a?w=1200&q=95", pos: "center 40%", alt: "Perth Australia golden hour aerial city skyline waterfront" },
-    { url: "https://images.unsplash.com/photo-1564379380966-d7766b9e4282?w=1200&q=95", pos: "center 45%", alt: "Perth aerial drone cityscape waterfront" },
-    { url: "https://images.unsplash.com/photo-1589138114643-c082321a7186?w=1200&q=95", pos: "center 40%", alt: "Perth Kings Park Swan River bridge culture character" },
-    { url: "https://images.unsplash.com/photo-1595125990323-885cec5217ff?w=1200&q=95", pos: "center 50%", alt: "Perth Cottesloe community waterfront people welcome" },
-    { url: "https://images.unsplash.com/photo-1595125989588-36d745a2a828?w=1200&q=95", pos: "center 40%", alt: "Perth suburban residential neighborhood settle" },
+    { url: "https://images.unsplash.com/photo-43SHpwJTT7Y?w=1200&q=95",               pos: "center 45%", alt: "Perth Elizabeth Quay aerial drone Swan River CBD Western Australia" },
+    { url: "https://images.unsplash.com/photo-gl7nkS_h4lo?w=1200&q=95",               pos: "center 40%", alt: "Perth CBD skyline Swan River from Kings Park daytime panorama" },
+    { url: "https://images.unsplash.com/photo-RESEQty1uvc?w=1200&q=95",               pos: "center 50%", alt: "Perth waterfront golden hour city community welcome" },
+    { url: "https://images.unsplash.com/photo-QjoJrmhkMBw?w=1200&q=95",               pos: "center 40%", alt: "Cottesloe Beach Perth aerial coastal suburban settle Western Australia" },
   ],
 
-  // 🇳🇿 오클랜드 — ①항공 ②항구석양 ③워터프론트 ④사람 ⑤정착
+  // 🇳🇿 오클랜드 — ①하버브릿지항공 ②스카이타워요트 ③석양풍경 ④포후투카와하버 ⑤교외주택
   auckland: [
-    { url: "https://images.unsplash.com/photo-1595125990323-885cec5217ff?w=1200&q=95", pos: "center 40%", alt: "Auckland New Zealand aerial sunset cityscape" },
-    { url: "https://images.unsplash.com/photo-1595125989588-36d745a2a828?w=1200&q=95", pos: "center 45%", alt: "Auckland harbour sunset portrait waterfront landmark" },
-    { url: "https://images.unsplash.com/photo-1696452774626-5be9532664dc?w=1200&q=95", pos: "center 40%", alt: "Auckland Waitemata waterfront park culture" },
-    { url: "https://images.unsplash.com/photo-1764212964673-249757581fb7?w=1200&q=95", pos: "center 50%", alt: "Auckland New Zealand community people welcome" },
-    { url: "https://images.unsplash.com/photo-1446733993804-c62a351c7239?w=1200&q=95", pos: "center 40%", alt: "Auckland New Zealand city residential neighborhood settle" },
+    { url: "https://images.unsplash.com/photo-Kg8k8erii9U?w=1200&q=95",               pos: "center 40%", alt: "Auckland Harbour Bridge aerial drone skyline New Zealand arrival" },
+    { url: "https://images.unsplash.com/photo-Z0FFw6jB734?w=1200&q=95",               pos: "center 45%", alt: "Auckland Sky Tower harbour yacht waterfront iconic landmark" },
+    { url: "https://images.unsplash.com/photo-v9FIx0J-KAA?w=1200&q=95",               pos: "center 40%", alt: "Auckland sunset cityscape New Zealand culture character" },
+    { url: "https://images.unsplash.com/photo-HZn8On8OF9I?w=1200&q=95",               pos: "center 50%", alt: "Auckland Harbour Bridge Pohutukawa trees sunset warm welcome" },
+    { url: "https://images.unsplash.com/photo-nTP5K2X-5Nw?w=1200&q=95",               pos: "center 40%", alt: "Auckland suburban landscape sunset New Zealand residential settle" },
   ],
 
   // 🇩🇪 프랑크푸르트 — ①항공 ②스카이라인 ③뢰머베르크 ④사람 ⑤정착
