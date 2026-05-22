@@ -11757,24 +11757,19 @@ function GrowthShareSection({ lang }: { lang: string }) {
       </button>
 
       {/* 카카오 채널 등록 안내 */}
-      <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+      <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "block" }}>
         <div style={{
           display: "flex", alignItems: "center", justifyContent: "space-between",
           padding: "10px 14px",
           background: "rgba(255,255,255,0.06)",
           border: "1px solid rgba(255,255,255,0.12)",
-          borderRadius: 12, gap: 10,
+          borderRadius: 12,
         }}>
-          <span style={{ fontSize: 13, fontWeight: 500, color: "#ECFDF5", fontFamily: "'Noto Sans KR',sans-serif" }}>
-            💬 {ko ? "문의·수정 요청은 카카오 채널로" : "Questions? KakaoTalk Channel"}
+          <span style={{ fontSize: 12.5, color: "#ECFDF5", fontFamily: "'Noto Sans KR',sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            💬 {ko ? "문의·수정 요청 → 카카오 채널" : "Contact via KakaoTalk"}
           </span>
-          <span style={{
-            fontSize: 11.5, fontWeight: 800, color: "#1a1200",
-            background: "#FEE500", borderRadius: 8,
-            padding: "4px 10px", whiteSpace: "nowrap",
-            fontFamily: "Manrope,sans-serif", flexShrink: 0,
-          }}>
-            {ko ? "채널 추가 →" : "Follow →"}
+          <span style={{ fontSize: 11.5, fontWeight: 800, color: "#1a1200", background: "#FEE500", borderRadius: 7, padding: "3px 9px", whiteSpace: "nowrap", fontFamily: "Manrope,sans-serif", marginLeft: 8, flexShrink: 0 }}>
+            {ko ? "채널 추가" : "Follow"}
           </span>
         </div>
       </a>
