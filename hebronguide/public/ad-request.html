@@ -272,19 +272,43 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <input type="url" id="cWebsite" placeholder="https://www.yourchurch.com">
     </div>
 
-    <!-- 교회 유형 체크 -->
+    <!-- 교회 유형 체크 (복수 선택 가능) -->
     <div class="field">
-      <label style="margin-bottom:8px;">교회 유형 <span class="opt">(해당 항목 선택)</span></label>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;">
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;">
-          <input type="checkbox" id="cHebronCoop" style="width:17px;height:17px;accent-color:var(--mint);flex-shrink:0;">
-          <span style="font-size:.85rem;color:rgba(236,253,245,.85);font-weight:700;">Hebron 협력교회</span>
+      <label style="margin-bottom:10px;">교회 유형 <span class="opt">(복수 선택 가능)</span></label>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+
+        <label id="label-hebron" for="cHebronCoop" style="
+          display:flex;align-items:center;gap:9px;cursor:pointer;
+          border:1.5px solid rgba(110,231,183,0.3);border-radius:12px;
+          padding:10px 16px;background:rgba(110,231,183,0.05);
+          transition:all .15s;-webkit-tap-highlight-color:transparent;
+          flex:1;min-width:140px;">
+          <input type="checkbox" id="cHebronCoop"
+            style="width:18px;height:18px;accent-color:var(--mint);flex-shrink:0;"
+            onchange="toggleChurchType('hebron',this.checked)">
+          <div>
+            <div style="font-size:.85rem;font-weight:800;color:var(--mint);">🤝 Hebron 협력교회</div>
+            <div style="font-size:.7rem;color:rgba(236,253,245,.5);margin-top:1px;">헤브론 파트너 교회</div>
+          </div>
         </label>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;">
-          <input type="checkbox" id="cHcmi" style="width:17px;height:17px;accent-color:var(--gold);flex-shrink:0;">
-          <span style="font-size:.85rem;color:rgba(236,253,245,.85);font-weight:700;">가정교회(HCMI)</span>
+
+        <label id="label-hcmi" for="cHcmi" style="
+          display:flex;align-items:center;gap:9px;cursor:pointer;
+          border:1.5px solid rgba(201,162,39,0.3);border-radius:12px;
+          padding:10px 16px;background:rgba(201,162,39,0.05);
+          transition:all .15s;-webkit-tap-highlight-color:transparent;
+          flex:1;min-width:140px;">
+          <input type="checkbox" id="cHcmi"
+            style="width:18px;height:18px;accent-color:var(--gold);flex-shrink:0;"
+            onchange="toggleChurchType('hcmi',this.checked)">
+          <div>
+            <div style="font-size:.85rem;font-weight:800;color:var(--gold);">🏠 가정교회 (HCMI)</div>
+            <div style="font-size:.7rem;color:rgba(236,253,245,.5);margin-top:1px;">House Church Ministries Intl</div>
+          </div>
         </label>
+
       </div>
+      <p style="font-size:.7rem;color:rgba(236,253,245,.4);margin-top:8px;">둘 다 해당하면 모두 선택하세요</p>
     </div>
 
     <div class="field-row">
@@ -572,6 +596,19 @@ function switchTab(type) {
   const type = hashMap[hash];
   if (type) switchTab(type);
 })();
+
+// 교회 유형 토글 — 선택 시 카드 활성 스타일
+function toggleChurchType(type, checked) {
+  if (type === 'hebron') {
+    const el = document.getElementById('label-hebron');
+    el.style.border = checked ? '1.5px solid rgba(110,231,183,0.8)' : '1.5px solid rgba(110,231,183,0.3)';
+    el.style.background = checked ? 'rgba(110,231,183,0.12)' : 'rgba(110,231,183,0.05)';
+  } else {
+    const el = document.getElementById('label-hcmi');
+    el.style.border = checked ? '1.5px solid rgba(201,162,39,0.8)' : '1.5px solid rgba(201,162,39,0.3)';
+    el.style.background = checked ? 'rgba(201,162,39,0.12)' : 'rgba(201,162,39,0.05)';
+  }
+}
 
 // 유효성 검사
 function validate(fields) {
