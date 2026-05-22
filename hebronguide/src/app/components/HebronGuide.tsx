@@ -8416,10 +8416,10 @@ function CompactHeroNew() {
   const initIdx = 0; // 항상 첫 슬라이드(낮 사진)부터 시작
   const [slideIdx, setSlideIdx] = useState(initIdx);
 
-  // 5초마다 다음 슬라이드
+  // 3초마다 다음 슬라이드
   useEffect(() => {
     if (!slides || slides.length <= 1) return;
-    const timer = setInterval(() => setSlideIdx(i => (i + 1) % slides.length), 5000);
+    const timer = setInterval(() => setSlideIdx(i => (i + 1) % slides.length), 3000);
     return () => clearInterval(timer);
   }, [slides]);
 
@@ -8493,7 +8493,7 @@ function CompactHeroNew() {
               objectFit: "cover", objectPosition: slide.pos,
               filter: "brightness(1.42) saturate(1.68) contrast(1.08)",
               opacity: isActive ? 1 : 0,
-              transition: "opacity 1.4s ease",
+              transition: "opacity 0.8s ease",
               animation: `${i % 2 === 0 ? "kbIn" : "kbOut"} 10s ease-in-out infinite`,
               animationDelay: `${-i * 2.5}s`,
               zIndex: isActive ? 1 : 0,
