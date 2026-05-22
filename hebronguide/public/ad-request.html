@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>파트너 신청 — HebronGuide | 개인·교회·사업체·홍보</title>
-<meta name="description" content="HebronGuide 파트너 신청 — 개인, 교회, 사업체, 홍보 모든 문의를 한 곳에서. 67개 도시 한인 커뮤니티에 함께하세요.">
+<title>파트너 신청 — HebronGuide | 교회·사업체·홍보</title>
+<meta name="description" content="HebronGuide 파트너 신청 — 교회, 사업체, 홍보 문의를 한 곳에서. 67개 도시 한인 커뮤니티에 함께하세요.">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -173,12 +173,12 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
   <h1>HebronGuide와 <span>함께하세요</span></h1>
   <p>
     67개 도시, 전 세계 한인 이민자·이주자·방문자를 위한 플랫폼.<br>
-    개인·교회·사업체·홍보 — 모든 문의를 한 곳에서 신청하세요.
+    교회·사업체·홍보 — 모든 문의를 한 곳에서 신청하세요.
   </p>
   <div class="stats-row">
     <div class="stat-item"><div class="stat-num">67</div><div class="stat-lbl">개 도시</div></div>
     <div class="stat-item"><div class="stat-num">🆓</div><div class="stat-lbl">무료 등재</div></div>
-    <div class="stat-item"><div class="stat-num">3개</div><div class="stat-lbl">언어 지원</div></div>
+    <div class="stat-item"><div class="stat-num">2개</div><div class="stat-lbl">언어 지원</div></div>
   </div>
 </div>
 
@@ -306,145 +306,80 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
   <!-- ══════════ 사업체 폼 ══════════ -->
   <div class="form-card" id="form-business">
-    <div class="form-section-title">🏢 사업체 광고·등재 신청</div>
-    <div class="hint">
-      한식당, 부동산, 의료, 교육, 법률 등 사업체는 물론 드라이버·번역·정착 도우미 등
-      <strong>개인 서비스업도 등록 가능합니다.</strong> <strong>2026년 10월 1일까지 무료.</strong>
-    </div>
+    <div class="form-section-title">🏢 등재 신청</div>
 
     <div class="field-row">
       <div class="field" id="b-biz">
         <label>업체명 <span class="req">*</span></label>
-        <input type="text" id="bBiz" placeholder="헤브론 한식당">
+        <input type="text" id="bBiz" placeholder="예: 헤브론 한식당">
         <div class="error-msg">업체명을 입력해 주세요</div>
       </div>
       <div class="field" id="b-type">
         <label>업종 <span class="req">*</span></label>
         <select id="bType">
           <option value="">선택</option>
-          <optgroup label="🍽️ 음식·외식">
-            <option>한식당</option><option>카페·베이커리</option><option>기타 음식점</option>
-          </optgroup>
-          <optgroup label="🏥 의료·건강">
-            <option>한의원·침술</option><option>병원·클리닉</option><option>약국</option><option>피트니스</option>
-          </optgroup>
-          <optgroup label="📚 교육·학습">
-            <option>학교 (K-12 / 사립학교)</option>
-            <option>학원·튜터링 (수학·과학·영어 등)</option>
-            <option>어학원 (ESL·영어·한국어)</option>
-            <option>음악 학원 (피아노·바이올린·성악 등)</option>
-            <option>미술·디자인 학원</option>
-            <option>태권도·체육 도장</option>
-            <option>방과후 프로그램·데이케어</option>
-            <option>SAT·ACT·AP 입시 준비</option>
-            <option>대학 입시·유학원</option>
-            <option>한국학교·한국어 교육</option>
-            <option>온라인 교육·이러닝</option>
-            <option>직업훈련·자격증</option>
-            <option>특수교육·보습</option>
-          </optgroup>
-          <optgroup label="🏠 부동산·법률">
-            <option>부동산</option><option>이민법·법률</option><option>세무·회계</option>
-          </optgroup>
-          <optgroup label="✂️ 뷰티·생활">
-            <option>미용실·네일</option><option>여행사</option><option>보험</option><option>이사·물류</option>
-          </optgroup>
-          <optgroup label="💻 IT·서비스">
-            <option>IT·개발</option><option>마케팅·디자인</option><option>번역·통역</option>
-          </optgroup>
-          <optgroup label="🧑 개인 서비스">
-            <option>드라이버·픽업 서비스</option><option>투어 가이드</option>
-            <option>정착 도우미·컨시어지</option><option>과외·튜터 (개인)</option>
-            <option>기타 개인 서비스</option>
-          </optgroup>
-          <optgroup label="⛪ 교회·기관">
-            <option>교회</option><option>비영리단체</option><option>한인회·커뮤니티</option>
-          </optgroup>
-          <optgroup label="🛒 유통·기타">
-            <option>한인 마트·슈퍼</option><option>온라인 쇼핑몰</option><option>기타</option>
-          </optgroup>
+          <option>음식·카페</option>
+          <option>의료·건강</option>
+          <option>교육·학원</option>
+          <option>부동산·법률·세무</option>
+          <option>뷰티·생활서비스</option>
+          <option>IT·마케팅</option>
+          <option>드라이버·투어·정착</option>
+          <option>유통·마트</option>
+          <option>기타</option>
         </select>
         <div class="error-msg">업종을 선택해 주세요</div>
       </div>
     </div>
 
-    <div class="field" id="b-name">
-      <label>담당자 이름 <span class="req">*</span></label>
-      <input type="text" id="bName" placeholder="홍길동">
-      <div class="error-msg">담당자 이름을 입력해 주세요</div>
-    </div>
-
     <div class="field-row">
+      <div class="field" id="b-name">
+        <label>담당자 <span class="req">*</span></label>
+        <input type="text" id="bName" placeholder="홍길동">
+        <div class="error-msg">담당자 이름을 입력해 주세요</div>
+      </div>
       <div class="field" id="b-phone">
         <label>전화번호 <span class="req">*</span></label>
         <input type="tel" id="bPhone" placeholder="(000) 000-0000">
         <div class="error-msg">전화번호를 입력해 주세요</div>
       </div>
-      <div class="field">
-        <label>이메일 <span class="req">*</span></label>
-        <input type="email" id="bEmail" placeholder="info@yourbiz.com">
-      </div>
     </div>
 
     <div class="field">
-      <label>업체 주소 <span class="opt">(선택)</span></label>
-      <input type="text" id="bAddress" placeholder="123 Main St, Seattle, WA 98101">
+      <label>이메일 <span class="req">*</span></label>
+      <input type="email" id="bEmail" placeholder="info@yourbiz.com">
     </div>
 
     <div class="field">
-      <label>웹사이트 / SNS <span class="opt">(선택)</span></label>
-      <input type="url" id="bWebsite" placeholder="https://... 또는 인스타그램 링크">
+      <label>노출 도시 <span class="opt">(선택)</span></label>
+      <select id="bCitySelect">
+        <option value="전체(67개 도시)">🌍 전체 — 67개 도시 모두</option>
+        <option value="시애틀">🌲 시애틀</option>
+        <option value="로스앤젤레스">🌴 LA · OC</option>
+        <option value="뉴욕">🗽 뉴욕</option>
+        <option value="달라스">🤠 달라스</option>
+        <option value="SF">🌉 SF</option>
+        <option value="휴스턴">🚀 휴스턴</option>
+        <option value="시카고">🫘 시카고</option>
+        <option value="워싱턴DC">🏛️ DC · 메릴랜드</option>
+        <option value="토론토">🍁 토론토</option>
+        <option value="밴쿠버">🏔️ 밴쿠버</option>
+        <option value="서울">🏯 서울</option>
+        <option value="기타">📍 기타 (소개란에 명시)</option>
+      </select>
     </div>
 
     <div class="field">
-      <label>노출 원하는 도시 <span class="opt">(복수 선택 가능)</span></label>
-      <div class="city-grid" id="bCityGrid">
-        <label class="city-tag"><input type="checkbox" value="시애틀">🌲 시애틀</label>
-        <label class="city-tag"><input type="checkbox" value="로스앤젤레스">🌴 LA</label>
-        <label class="city-tag"><input type="checkbox" value="오렌지카운티">🍊 OC</label>
-        <label class="city-tag"><input type="checkbox" value="뉴욕">🗽 뉴욕</label>
-        <label class="city-tag"><input type="checkbox" value="달라스">🤠 달라스</label>
-        <label class="city-tag"><input type="checkbox" value="SF">🌉 SF</label>
-        <label class="city-tag"><input type="checkbox" value="휴스턴">🚀 휴스턴</label>
-        <label class="city-tag"><input type="checkbox" value="애틀랜타">🍑 애틀랜타</label>
-        <label class="city-tag"><input type="checkbox" value="시카고">🫘 시카고</label>
-        <label class="city-tag"><input type="checkbox" value="워싱턴DC">🏛️ DC</label>
-        <label class="city-tag"><input type="checkbox" value="보스턴">🦞 보스턴</label>
-        <label class="city-tag"><input type="checkbox" value="마이애미">🌊 마이애미</label>
-        <label class="city-tag"><input type="checkbox" value="토론토">🍁 토론토</label>
-        <label class="city-tag"><input type="checkbox" value="밴쿠버">🏔️ 밴쿠버</label>
-        <label class="city-tag"><input type="checkbox" value="서울">🏯 서울</label>
-        <label class="city-tag"><input type="checkbox" value="시드니">🦘 시드니</label>
-        <label class="city-tag"><input type="checkbox" value="도쿄">🗼 도쿄</label>
-        <label class="city-tag"><input type="checkbox" value="런던">🎡 런던</label>
-        <label class="city-tag"><input type="checkbox" value="전체(67개 도시)">🌍 전체 67개 도시</label>
-      </div>
+      <label>한 줄 소개 <span class="opt">(선택)</span></label>
+      <textarea id="bDesc" placeholder="제공 서비스나 특별 혜택을 간단히 알려주세요."></textarea>
     </div>
 
-    <div class="field">
-      <label>광고 내용 / 소개 <span class="opt">(선택)</span></label>
-      <textarea id="bDesc" placeholder="업체 소개, 제공 서비스, 특별 혜택, 한인 커뮤니티를 위한 특별 안내 등을 자유롭게 적어주세요."></textarea>
-    </div>
-
-    <div class="hint hint-gold">
-      <strong>📋 처리 과정 (3단계)</strong><br>
-      <span style="display:flex;align-items:center;gap:6px;margin-top:6px;flex-wrap:wrap;">
-        <span style="background:rgba(201,162,39,.2);border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:700;">① 신청 등록</span>
-        <span style="color:var(--gold);">→</span>
-        <span style="background:rgba(201,162,39,.2);border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:700;">② 승인 검토 · 승인</span>
-        <span style="color:var(--gold);">→</span>
-        <span style="background:rgba(110,231,183,.2);border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:700;color:var(--mint);">③ 광고 게시</span>
-      </span>
-    </div>
-    <div style="background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.22);
-      border-radius:10px;padding:10px 14px;margin-bottom:4px;
-      font-size:.76rem;color:rgba(236,253,245,.65);line-height:1.7;display:flex;gap:8px;align-items:flex-start;">
-      <span style="flex-shrink:0;font-size:14px;">🔐</span>
-      <span>검토·승인 후 게시되며, 운영 방침에 따라 게시 후에도 내용이 조정되거나 내려질 수 있습니다.<br>신뢰와 질서를 소중히 여기는 HebronGuide 운영에 협조해 주셔서 감사합니다.</span>
+    <div class="hint" style="font-size:.76rem;color:rgba(236,253,245,.5);">
+      🔐 검토·승인 후 게시됩니다.
     </div>
 
     <button class="btn-submit" onclick="submitForm('business')">
-      🏢 사업체 등재 신청하기
+      등재 신청하기 →
     </button>
   </div>
 
@@ -652,9 +587,9 @@ async function submitForm(type) {
       {id:'bPhone',type:'required'}
     ]);
     if(!valid) return;
-    const cities = [...document.querySelectorAll('#bCityGrid input:checked')].map(c=>c.value).join(', ');
-    subject = `[사업체 광고 신청] ${document.getElementById('bBiz').value}`;
-    body = `유형: 사업체 광고\n업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n주소: ${document.getElementById('bAddress').value}\n웹사이트: ${document.getElementById('bWebsite').value}\n노출 도시: ${cities || '미선택'}\n\n광고 내용:\n${document.getElementById('bDesc').value}`;
+    const city = document.getElementById('bCitySelect')?.value || '전체';
+    subject = `[사업체 등재 신청] ${document.getElementById('bBiz').value}`;
+    body = `업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n노출 도시: ${city}\n\n소개:\n${document.getElementById('bDesc').value}`;
   } else if(type === 'promo') {
     // '기타' 선택 시 직접 입력값 유효성 확인
     const prTypeVal = document.getElementById('prType').value;
