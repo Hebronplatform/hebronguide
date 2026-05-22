@@ -56,11 +56,11 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padd
 .footer-links a{color:var(--muted);text-decoration:none;font-size:.8rem;}
 .footer-links a:hover{color:var(--gold);}
 .footer-copy{font-size:.72rem;color:rgba(236,253,245,.3);}
-/* 언어 토글 */
-.lang-en{display:none;}
-.lang-ko{display:block;}
-body.en .lang-ko{display:none;}
-body.en .lang-en{display:block;}
+/* 언어 토글 — 영어 기본 */
+.lang-ko{display:none;}
+.lang-en{display:block;}
+body.ko .lang-en{display:none;}
+body.ko .lang-ko{display:block;}
 </style>
 </head>
 <body>
@@ -69,8 +69,8 @@ body.en .lang-en{display:block;}
   <a href="/" class="logo">HebronGuide</a>
   <div class="nav-right">
     <div class="lang-toggle">
-      <button class="lang-btn active" id="btn-ko" onclick="setLang('ko')">KO</button>
-      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">KO</button>
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
     </div>
     <a href="javascript:history.back()" class="nav-back">← 돌아가기 / Back</a>
   </div>
@@ -434,15 +434,16 @@ body.en .lang-en{display:block;}
 
 <script>
 function setLang(lang) {
-  document.body.className = lang === 'en' ? 'en' : '';
+  document.body.className = lang === 'ko' ? 'ko' : '';
   document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-  document.documentElement.lang = lang === 'en' ? 'en' : 'ko';
+  document.documentElement.lang = lang === 'ko' ? 'ko' : 'en';
   localStorage.setItem('hg_lang', lang);
 }
+// 저장된 언어 복원 (기본: 영어)
 (function(){
-  var saved = localStorage.getItem('hg_lang') || 'ko';
-  if (saved === 'en') setLang('en');
+  var saved = localStorage.getItem('hg_lang') || 'en';
+  if (saved === 'ko') setLang('ko');
 })();
 (function(){
   var p=new URLSearchParams(location.search);
