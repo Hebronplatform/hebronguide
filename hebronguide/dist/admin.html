@@ -159,6 +159,62 @@
       </div>
     </div>
 
+    <!-- AI 자동 큐레이션 -->
+    <div style="background:linear-gradient(135deg,rgba(110,231,183,.08),rgba(0,0,0,0));border:1px solid rgba(110,231,183,.25);border-radius:12px;padding:16px 20px;margin-bottom:16px">
+      <div style="font-size:.75rem;font-weight:800;color:var(--mint);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px">🤖 AI 자동 콘텐츠 큐레이션</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+        <select id="curator-city" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:7px;font-size:.85rem">
+          <option value="">도시 선택</option>
+          <optgroup label="🇺🇸 미국">
+            <option value="seattle|시애틀 Seattle">시애틀</option>
+            <option value="dallas|달라스 Dallas">달라스</option>
+            <option value="houston|휴스턴 Houston">휴스턴</option>
+            <option value="la|로스앤젤레스 LA">로스앤젤레스</option>
+            <option value="newyork|뉴욕 New York">뉴욕</option>
+            <option value="chicago|시카고 Chicago">시카고</option>
+            <option value="dc|워싱턴DC Washington DC">워싱턴DC</option>
+            <option value="boston|보스턴 Boston">보스턴</option>
+            <option value="atlanta|애틀랜타 Atlanta">애틀랜타</option>
+          </optgroup>
+          <optgroup label="🇨🇦 캐나다">
+            <option value="toronto|토론토 Toronto">토론토</option>
+            <option value="vancouver|밴쿠버 Vancouver">밴쿠버</option>
+          </optgroup>
+          <optgroup label="🌏 국제">
+            <option value="sydney|시드니 Sydney">시드니</option>
+            <option value="london|런던 London">런던</option>
+            <option value="tokyo|도쿄 Tokyo">도쿄</option>
+            <option value="singapore|싱가포르 Singapore">싱가포르</option>
+          </optgroup>
+        </select>
+        <select id="curator-section" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:7px;font-size:.85rem">
+          <option value="all">전체 섹션</option>
+          <option value="settle">🏠 정착 정보</option>
+          <option value="food">🍽️ 맛집</option>
+          <option value="church">⛪ 교회</option>
+          <option value="explore">🗺️ 탐방</option>
+          <option value="job">💼 취업</option>
+          <option value="edu">📚 교육</option>
+        </select>
+        <button onclick="runCurator()" style="background:linear-gradient(135deg,var(--mint),#34d399);color:#000;font-weight:800;border:none;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:.85rem">
+          🤖 AI 조사 시작
+        </button>
+        <button onclick="runWeeklyReview()" style="background:linear-gradient(135deg,var(--gold),#B8901C);color:#000;font-weight:800;border:none;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:.85rem">
+          🔍 주간 리뷰
+        </button>
+      </div>
+      <div id="curator-status" style="font-size:.82rem;color:var(--muted);min-height:20px"></div>
+    </div>
+
+    <!-- 주간 리뷰 패널 -->
+    <div id="review-panel" style="background:linear-gradient(135deg,rgba(201,162,39,.07),rgba(0,0,0,0));border:1px solid rgba(201,162,39,.22);border-radius:12px;padding:16px 20px;margin-bottom:16px;display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div style="font-size:.75rem;font-weight:800;color:var(--gold);letter-spacing:.08em;text-transform:uppercase">📋 이번 주 업데이트 제안</div>
+        <span id="review-count" style="background:rgba(201,162,39,.2);color:var(--gold);border-radius:20px;padding:2px 10px;font-size:.75rem;font-weight:800"></span>
+      </div>
+      <div id="review-list" style="display:flex;flex-direction:column;gap:8px"></div>
+    </div>
+
     <!-- 통계 -->
     <div class="stats-row">
       <div class="stat-card">
@@ -313,8 +369,8 @@
       if (tab === 'community') {
         // community_items + content_items 두 테이블 합쳐서 조회
         const [r1, r2] = await Promise.allSettled([
-          sbMain.from('community_items').select('*').order('created_at', { ascending: false }),
-          sbMain.from('content_items').select('*').order('created_at', { ascending: false }),
+          sbNew.from('community_items').select('*').order('created_at', { ascending: false }),
+          sbNew.from('content_items').select('*').order('created_at', { ascending: false }),
         ])
         const d1 = r1.status === 'fulfilled' ? (r1.value.data || []) : []
         const d2 = r2.status === 'fulfilled' ? (r2.value.data || []) : []
@@ -368,9 +424,9 @@
               <td><span class="status ${r.status || 'community'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '💬 커뮤니티'}</span></td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions">
-                ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','main','approved')">✅ 승인</button>` : ''}
-                ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','main','rejected')">❌ 거절</button>` : ''}
-                <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','main')">🗑</button>
+                ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
+                ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
+                <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
               </div></td>
             </tr>`).join('')}
         </tbody>
@@ -576,7 +632,7 @@
   // ── 통계 로드 ────────────────────────────────────────────
   async function loadStats() {
     const counts = [
-      sbMain.from('community_items').select('id', { count: 'exact', head: true }),
+      sbNew.from('community_items').select('id', { count: 'exact', head: true }),
       sbMain.from('churches').select('id', { count: 'exact', head: true }),
       sbMain.from('restaurants').select('id', { count: 'exact', head: true }),
       sbNew.from('pastor_partners').select('id', { count: 'exact', head: true }),
@@ -599,6 +655,107 @@
     el.textContent = msg
     el.classList.add('show')
     setTimeout(() => el.classList.remove('show'), 2500)
+  }
+
+  // ── 주간 리뷰 패널 ───────────────────────────────────────
+  async function loadReviews() {
+    if (!sbNew) return
+    const { data } = await sbNew.from('content_reviews')
+      .select('*').eq('status','pending').order('created_at',{ascending:false}).limit(50)
+    if (!data || data.length === 0) {
+      document.getElementById('review-panel').style.display = 'none'
+      return
+    }
+    document.getElementById('review-panel').style.display = 'block'
+    document.getElementById('review-count').textContent = `${data.length}건`
+    const ICONS = { settle:'🏠', food:'🍽️', church:'⛪', explore:'🗺️', job:'💼', edu:'📚' }
+    document.getElementById('review-list').innerHTML = data.map(r => `
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start">
+        <div style="flex:1">
+          <div style="font-size:.75rem;color:var(--muted);margin-bottom:3px">
+            ${ICONS[r.section]||'📌'} ${r.city_name} · ${r.section} · <span style="color:${r.confidence==='high'?'var(--green)':r.confidence==='low'?'var(--red)':'var(--yellow)'}">${r.confidence}</span>
+          </div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:4px">${esc(r.title)}</div>
+          ${r.proposed_value ? `<div style="font-size:.78rem;color:var(--mint);line-height:1.5">${esc(r.proposed_value.slice(0,120))}</div>` : ''}
+          ${r.source ? `<div style="font-size:.72rem;color:var(--muted);margin-top:3px">출처: ${esc(r.source)}</div>` : ''}
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0">
+          <button class="btn-sm btn-approve" onclick="approveReview('${r.id}')">✅</button>
+          <button class="btn-sm btn-reject" onclick="rejectReview('${r.id}')">❌</button>
+        </div>
+      </div>`).join('')
+  }
+
+  async function runWeeklyReview() {
+    const cityVal = document.getElementById('curator-city').value
+    if (!cityVal) { toast('❌ 도시를 선택해주세요'); return }
+    const [citySlug, cityName] = cityVal.split('|')
+    const status = document.getElementById('curator-status')
+    status.textContent = `🔍 ${cityName} 주간 리뷰 중...`
+    status.style.color = 'var(--gold)'
+    try {
+      const res = await fetch('/api/city-reviewer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ citySlug, cityName, token: adminToken }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      status.textContent = `✅ ${data.message}`
+      status.style.color = 'var(--green)'
+      loadReviews()
+    } catch(e) {
+      status.textContent = `❌ ${e.message}`
+      status.style.color = 'var(--red)'
+    }
+  }
+
+  async function approveReview(id) {
+    try {
+      await adminAction({ action: 'update_status', id, table: 'content_reviews', status: 'approved' })
+      toast('✅ 승인됨 — 다음 배포 시 반영됩니다')
+      loadReviews()
+    } catch(e) { toast('❌ ' + e.message) }
+  }
+
+  async function rejectReview(id) {
+    try {
+      await adminAction({ action: 'update_status', id, table: 'content_reviews', status: 'rejected' })
+      toast('❌ 거절됨')
+      loadReviews()
+    } catch(e) { toast('❌ ' + e.message) }
+  }
+
+  // ── AI 자동 큐레이션 ─────────────────────────────────────
+  async function runCurator() {
+    const cityVal = document.getElementById('curator-city').value
+    const section = document.getElementById('curator-section').value
+    const status  = document.getElementById('curator-status')
+
+    if (!cityVal) { toast('❌ 도시를 선택해주세요'); return }
+
+    const [citySlug, cityName] = cityVal.split('|')
+    status.textContent = `🤖 ${cityName} — ${section === 'all' ? '전체 섹션' : section} 조사 중... (1-2분 소요)`
+    status.style.color = 'var(--mint)'
+
+    try {
+      const res = await fetch('/api/content-curator', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ city: cityName, citySlug, section, token: adminToken }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || '요청 실패')
+
+      const saved = Object.values(data.results || {}).reduce((sum, r) => sum + (r.saved || 0), 0)
+      status.textContent = `✅ 완료! ${saved}개 항목이 저장됐습니다. 커뮤니티 글 탭에서 검토·승인하세요.`
+      status.style.color = 'var(--green)'
+      loadTabData('community')
+      loadStats()
+    } catch(e) {
+      status.textContent = `❌ ${e.message}`
+      status.style.color = 'var(--red)'
+    }
   }
 
   // ── 도시 필터 자동 로드 (cities.json) ─────────────────────
@@ -661,6 +818,7 @@
     loadCityFilter()   // ← 도시 필터 자동 로드 (cities.json)
     loadStats()
     loadTabData('community')
+    loadReviews()      // ← 주간 리뷰 대기 항목 로드
   }
 </script>
 </body>
