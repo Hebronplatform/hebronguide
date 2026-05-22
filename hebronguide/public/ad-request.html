@@ -350,6 +350,17 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <input type="email" id="bEmail" placeholder="info@yourbiz.com">
     </div>
 
+    <div class="field-row">
+      <div class="field">
+        <label>업체 주소 <span class="opt">(선택)</span></label>
+        <input type="text" id="bAddress" placeholder="123 Main St, Seattle, WA 98101">
+      </div>
+      <div class="field">
+        <label>웹사이트 / SNS <span class="opt">(선택)</span></label>
+        <input type="url" id="bWebsite" placeholder="https://... 또는 인스타그램">
+      </div>
+    </div>
+
     <div class="field">
       <label>노출 도시 <span class="opt">(선택)</span></label>
       <select id="bCitySelect">
@@ -589,7 +600,7 @@ async function submitForm(type) {
     if(!valid) return;
     const city = document.getElementById('bCitySelect')?.value || '전체';
     subject = `[사업체 등재 신청] ${document.getElementById('bBiz').value}`;
-    body = `업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n노출 도시: ${city}\n\n소개:\n${document.getElementById('bDesc').value}`;
+    body = `업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n주소: ${document.getElementById('bAddress')?.value || ''}\n웹사이트: ${document.getElementById('bWebsite')?.value || ''}\n노출 도시: ${city}\n\n소개:\n${document.getElementById('bDesc').value}`;
   } else if(type === 'promo') {
     // '기타' 선택 시 직접 입력값 유효성 확인
     const prTypeVal = document.getElementById('prType').value;
