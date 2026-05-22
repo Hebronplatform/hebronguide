@@ -102,6 +102,22 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 .hint-gold{background:rgba(201,162,39,.07);border-color:rgba(201,162,39,.2);}
 .hint-gold strong{color:var(--gold);}
 
+/* 동의 섹션 */
+.consent-section{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:14px 16px;margin:14px 0 4px;}
+.pipa-table{width:100%;border-collapse:collapse;font-size:.65rem;margin-bottom:12px;}
+.pipa-table th{background:rgba(201,162,39,.1);color:var(--gold);padding:5px 7px;border:1px solid rgba(255,255,255,.07);font-weight:700;line-height:1.4;vertical-align:top;}
+.pipa-table td{padding:5px 7px;border:1px solid rgba(255,255,255,.05);color:rgba(236,253,245,.68);line-height:1.6;vertical-align:top;font-size:.64rem;}
+.pipa-note{font-size:.63rem;color:rgba(236,253,245,.38);line-height:1.6;margin-bottom:12px;padding-top:4px;}
+.consent-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.consent-row:last-of-type{margin-bottom:0;}
+.consent-row input[type=checkbox]{width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--gold);cursor:pointer;}
+.consent-text{font-size:.74rem;color:rgba(236,253,245,.78);line-height:1.7;}
+.consent-text a{color:var(--mint);text-decoration:none;}
+.consent-text .req{color:var(--gold);font-weight:700;}
+.consent-text .opt{color:rgba(236,253,245,.4);font-size:.7rem;}
+.consent-footer{font-size:.63rem;color:rgba(236,253,245,.35);line-height:1.7;margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06);}
+.consent-error{border-color:rgba(248,113,113,.5)!important;animation:shake .3s ease;}
+
 /* 제출 버튼 */
 .btn-submit{width:100%;background:linear-gradient(135deg,var(--gold),#e6b800);
   color:#1B2A4A;border:none;padding:14px;border-radius:12px;font-size:.95rem;
@@ -293,8 +309,36 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <textarea id="cDesc" placeholder="새가족 환영 프로그램, ESL 수업, 정착 도움, 목장 소그룹 등 교회 사역을 소개해 주세요."></textarea>
     </div>
 
-    <div class="hint" style="font-size:.76rem;color:rgba(236,253,245,.5);">
-      🔐 신청 후 검토·승인 절차를 거쳐 게시됩니다.
+    <!-- 개인정보 동의 — 교회 -->
+    <div class="consent-section">
+      <table class="pipa-table">
+        <thead><tr>
+          <th>수집 항목<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Data Items</span></th>
+          <th>수집·이용 목적<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Purpose</span></th>
+          <th>보유 기간<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Retention</span></th>
+          <th>거부권 및 불이익<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Right to Refuse</span></th>
+        </tr></thead>
+        <tbody><tr>
+          <td>교회명, 담임목사, 전화, 이메일, 주소, 웹사이트<br><span style="color:rgba(236,253,245,.4)">Church name, pastor, phone, email, address, website</span></td>
+          <td>HebronGuide 교회 디렉토리 무료 등재 및 운영<br><span style="color:rgba(236,253,245,.4)">Free listing on HebronGuide church directory</span></td>
+          <td>삭제 요청 시 또는 서비스 종료 시까지<br><span style="color:rgba(236,253,245,.4)">Until deletion request or end of service</span></td>
+          <td>거부 가능. 거부 시 등재 불가.<br><span style="color:rgba(236,253,245,.4)">You may refuse. Refusal means listing cannot be published.</span></td>
+        </tr></tbody>
+      </table>
+      <div class="pipa-note">※ 수집 정보는 미국 소재 서버(Supabase)에 저장됩니다. / Data is stored on US servers (Supabase).<br>운영: Hebron Platform LLC &nbsp;|&nbsp; hebronplatform@gmail.com</div>
+      <label class="consent-row">
+        <input type="checkbox" id="cConsent">
+        <span class="consent-text"><span class="req">[필수]</span> 위 개인정보 수집·이용 내용을 확인하고 동의합니다.<br>
+        <span style="color:rgba(236,253,245,.5);font-size:.7rem">I have reviewed the data disclosure above and consent to the collection and use of my information for a free HebronGuide listing.</span></span>
+      </label>
+      <label class="consent-row">
+        <input type="checkbox" id="cUpdates">
+        <span class="consent-text"><span class="opt">[선택]</span> HebronGuide 서비스 업데이트 및 공지 수신에 동의합니다. / I agree to receive service updates from HebronGuide.</span>
+      </label>
+      <div class="consent-footer">
+        Hebron Platform LLC는 귀하의 정보를 제3자에게 판매하지 않습니다. 정보는 HebronGuide 무료 등재 목적으로만 사용됩니다. 삭제 요청: hebronplatform@gmail.com &nbsp;|&nbsp;
+        <a href="/privacy.html" style="color:rgba(110,231,183,.6)">개인정보처리방침 / Privacy Policy</a>
+      </div>
     </div>
 
     <button class="btn-submit" onclick="submitForm('church')">
@@ -383,8 +427,36 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <textarea id="bDesc" placeholder="제공 서비스나 특별 혜택을 간단히 알려주세요."></textarea>
     </div>
 
-    <div class="hint" style="font-size:.76rem;color:rgba(236,253,245,.5);">
-      🔐 검토·승인 후 게시됩니다.
+    <!-- 개인정보 동의 — 사업체 -->
+    <div class="consent-section">
+      <table class="pipa-table">
+        <thead><tr>
+          <th>수집 항목<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Data Items</span></th>
+          <th>수집·이용 목적<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Purpose</span></th>
+          <th>보유 기간<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Retention</span></th>
+          <th>거부권 및 불이익<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Right to Refuse</span></th>
+        </tr></thead>
+        <tbody><tr>
+          <td>업체명, 업종, 담당자, 전화, 이메일, 주소, 웹사이트<br><span style="color:rgba(236,253,245,.4)">Business name, type, contact, phone, email, address, website</span></td>
+          <td>HebronGuide 사업체 디렉토리 무료 등재 및 운영<br><span style="color:rgba(236,253,245,.4)">Free listing on HebronGuide business directory</span></td>
+          <td>삭제 요청 시 또는 서비스 종료 시까지<br><span style="color:rgba(236,253,245,.4)">Until deletion request or end of service</span></td>
+          <td>거부 가능. 거부 시 등재 불가.<br><span style="color:rgba(236,253,245,.4)">You may refuse. Refusal means listing cannot be published.</span></td>
+        </tr></tbody>
+      </table>
+      <div class="pipa-note">※ 수집 정보는 미국 소재 서버(Supabase)에 저장됩니다. / Data is stored on US servers (Supabase).<br>운영: Hebron Platform LLC &nbsp;|&nbsp; hebronplatform@gmail.com</div>
+      <label class="consent-row">
+        <input type="checkbox" id="bConsent">
+        <span class="consent-text"><span class="req">[필수]</span> 위 개인정보 수집·이용 내용을 확인하고 동의합니다.<br>
+        <span style="color:rgba(236,253,245,.5);font-size:.7rem">I have reviewed the data disclosure above and consent to the collection and use of my information for a free HebronGuide listing.</span></span>
+      </label>
+      <label class="consent-row">
+        <input type="checkbox" id="bUpdates">
+        <span class="consent-text"><span class="opt">[선택]</span> HebronGuide 서비스 업데이트 및 공지 수신에 동의합니다. / I agree to receive service updates from HebronGuide.</span>
+      </label>
+      <div class="consent-footer">
+        Hebron Platform LLC는 귀하의 정보를 제3자에게 판매하지 않습니다. 삭제 요청: hebronplatform@gmail.com &nbsp;|&nbsp;
+        <a href="/privacy.html" style="color:rgba(110,231,183,.6)">개인정보처리방침 / Privacy Policy</a>
+      </div>
     </div>
 
     <button class="btn-submit" onclick="submitForm('business')">
@@ -481,10 +553,37 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
     </div>
 
     <!-- 승인 안내 -->
-    <div style="background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.22);
-      border-radius:10px;padding:10px 14px;margin-bottom:4px;
-      font-size:.76rem;color:rgba(236,253,245,.65);line-height:1.7;display:flex;gap:8px;align-items:flex-start;">
-      <span style="flex-shrink:0;font-size:14px;">🔐</span>
+    <!-- 개인정보 동의 — 홍보 -->
+    <div class="consent-section">
+      <table class="pipa-table">
+        <thead><tr>
+          <th>수집 항목<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Data Items</span></th>
+          <th>수집·이용 목적<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Purpose</span></th>
+          <th>보유 기간<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Retention</span></th>
+          <th>거부권 및 불이익<br><span style="font-weight:400;color:rgba(201,162,39,.7)">Right to Refuse</span></th>
+        </tr></thead>
+        <tbody><tr>
+          <td>담당자, 전화, 이메일, 홍보 내용<br><span style="color:rgba(236,253,245,.4)">Contact name, phone, email, promo content</span></td>
+          <td>HebronGuide 홍보 등재 및 운영<br><span style="color:rgba(236,253,245,.4)">Promo listing on HebronGuide</span></td>
+          <td>삭제 요청 시 또는 서비스 종료 시까지<br><span style="color:rgba(236,253,245,.4)">Until deletion request or end of service</span></td>
+          <td>거부 가능. 거부 시 홍보 등재 불가.<br><span style="color:rgba(236,253,245,.4)">You may refuse. Refusal means promo cannot be published.</span></td>
+        </tr></tbody>
+      </table>
+      <div class="pipa-note">※ 수집 정보는 미국 소재 서버(Supabase)에 저장됩니다. / Data is stored on US servers (Supabase).<br>운영: Hebron Platform LLC &nbsp;|&nbsp; hebronplatform@gmail.com</div>
+      <label class="consent-row">
+        <input type="checkbox" id="prConsent">
+        <span class="consent-text"><span class="req">[필수]</span> 위 개인정보 수집·이용 내용을 확인하고 동의합니다.<br>
+        <span style="color:rgba(236,253,245,.5);font-size:.7rem">I have reviewed the data disclosure above and consent to the collection and use of my information for a free HebronGuide listing.</span></span>
+      </label>
+      <label class="consent-row">
+        <input type="checkbox" id="prUpdates">
+        <span class="consent-text"><span class="opt">[선택]</span> HebronGuide 서비스 업데이트 및 공지 수신에 동의합니다. / I agree to receive service updates from HebronGuide.</span>
+      </label>
+      <div class="consent-footer">
+        Hebron Platform LLC는 귀하의 정보를 제3자에게 판매하지 않습니다. 삭제 요청: hebronplatform@gmail.com &nbsp;|&nbsp;
+        <a href="/privacy.html" style="color:rgba(110,231,183,.6)">개인정보처리방침 / Privacy Policy</a>
+      </div>
+    </div>
 
     <button class="btn-submit" onclick="submitForm('promo')">
       📣 홍보 신청하기
@@ -566,6 +665,18 @@ function validate(fields) {
   return ok;
 }
 
+// 동의 체크 확인
+function checkConsent(id) {
+  const el = document.getElementById(id);
+  if (!el || !el.checked) {
+    el?.closest('.consent-section')?.classList.add('consent-error');
+    setTimeout(() => el?.closest('.consent-section')?.classList.remove('consent-error'), 2000);
+    alert('개인정보 수집·이용에 동의해 주세요.\nPlease consent to the data collection policy.');
+    return false;
+  }
+  return true;
+}
+
 // 폼 제출
 async function submitForm(type) {
   let valid = false;
@@ -586,6 +697,7 @@ async function submitForm(type) {
       {id:'cPhone',type:'required'}
     ]);
     if(!valid) return;
+    if(!checkConsent('cConsent')) return;
     subject = `[교회 파트너 신청] ${document.getElementById('cChurch').value}`;
     body = `유형: 파트너 교회\n교회명: ${document.getElementById('cChurch').value}\n담임목사: ${document.getElementById('cPastor').value}\n도시: ${document.getElementById('cCity').value}\n전화: ${document.getElementById('cPhone').value}\n이메일: ${document.getElementById('cEmail').value}\n웹사이트: ${document.getElementById('cWebsite').value}\n교단: ${document.getElementById('cDenom').value}\n예배시간: ${document.getElementById('cService').value}\n\n소개:\n${document.getElementById('cDesc').value}`;
   } else if(type === 'business') {
@@ -594,6 +706,7 @@ async function submitForm(type) {
       {id:'bPhone',type:'required'}
     ]);
     if(!valid) return;
+    if(!checkConsent('bConsent')) return;
     const city = document.getElementById('bCitySelect')?.value || '전체';
     subject = `[사업체 등재 신청] ${document.getElementById('bBiz').value}`;
     body = `업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n주소: ${document.getElementById('bAddress')?.value || ''}\n웹사이트: ${document.getElementById('bWebsite')?.value || ''}\n노출 도시: ${city}\n\n소개:\n${document.getElementById('bDesc').value}`;
@@ -614,6 +727,7 @@ async function submitForm(type) {
       {id:'prPhone',type:'required'}
     ]);
     if(!valid) return;
+    if(!checkConsent('prConsent')) return;
     subject = `[홍보 신청] ${document.getElementById('prTitle').value}`;
     body = `유형: 홍보\n제목: ${document.getElementById('prTitle').value}\n홍보유형: ${finalPromoType}\n기간: ${document.getElementById('prStart').value} ~ ${document.getElementById('prEnd').value}\n담당자: ${document.getElementById('prContact').value}\n전화: ${document.getElementById('prPhone').value}\n이메일: ${document.getElementById('prEmail').value}\n링크: ${document.getElementById('prUrl').value}\n\n홍보 내용:\n${document.getElementById('prDesc').value}\n\n[관리자 검토·승인 후 게시 예정]`;
   }
