@@ -33,7 +33,7 @@ export default async function handler(req) {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-3-haiku-20240307',
+        model: 'claude-3-5-haiku-20241022',
         max_tokens: 500,
         system: systemPrompt,
         messages: [{ role: 'user', content: userMessage }],
@@ -42,8 +42,12 @@ export default async function handler(req) {
 
     if (!res.ok) {
       const err = await res.text()
-      console.error('Anthropic error:', err)
-      return new Response(JSON.stringify({ reply: '잠시 후 다시 시도해 주세요. / Please try again shortly.' }), { headers: CORS })
+      console.error('Anthropic error status:', res.status, err)
+      let msg = '잠시 후 다시 시도해 주세요. / Please try again shortly.'
+      if (res.status === 401) msg = 'API 키를 확인해 주세요. (Vercel → Settings → Environment Variables → ANTHROPIC_API_KEY)'
+      if (res.status === 429) msg = '요청이 많습니다. 잠시 후 다시 시도해 주세요.'
+      if (res.status === 529) msg = 'Anthropic 서버가 일시적으로 과부하 상태입니다. 잠시 후 다시 시도해 주세요.'
+      return new Response(JSON.stringify({ reply: msg, status: res.status }), { headers: CORS })
     }
 
     const data = await res.json()
