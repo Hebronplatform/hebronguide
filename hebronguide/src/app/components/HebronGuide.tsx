@@ -791,7 +791,7 @@ const MINT = "#6EE7B7";
 /* ─────────────────────────────────────────
    CITY CONFIG — 도시별 설정
 ───────────────────────────────────────── */
-// 현재 67개 도시 (계속 성장 중)
+// 현재 68개 도시 (계속 성장 중)
 // 작은 도시일수록 HebronGuide가 더 필요합니다 — 외롭기 때문입니다
 type CitySlug =
   // 북미 (기존 17)
@@ -8594,7 +8594,7 @@ function CompactHeroNew() {
         }}>
           <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6EE7B7", display: "inline-block", flexShrink: 0 }} />
           <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(255,255,255,0.92)", letterSpacing: "0.05em" }}>
-            {lang === "ko" ? "✦ 67개 도시의 이야기" : "✦ 67 Cities"}
+            {lang === "ko" ? "✦ 68개 도시의 이야기" : "✦ 68 Cities"}
           </span>
         </div>
         <div style={{
@@ -8728,7 +8728,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       icon: "🤝", color: "#F59E0B",
       nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
       tagKo: "친구 · 멘토 · 동행 파트너", tagEn: "Friends · Mentors · Partners",
-      userKo: "67개 도시 한인을 만납니다", userEn: "Meet Koreans across 62 cities",
+      userKo: "68개 도시 한인을 만납니다", userEn: "Meet Koreans across 62 cities",
       providerKo: "멘토로 섬기실 분 → 함께해요", providerEn: "Mentor & serve → join us",
       tab: 5, subTab: 2,
     },
@@ -9859,7 +9859,7 @@ function CommunityPulseSection({ lang }: { lang: string }) {
     { emoji: "⛪", ko: `${cityKo} 한인 교회 정보가 업데이트됐어요`, en: `Korean church info updated in ${cityEn}`, time: ko ? "방금" : "just now" },
     { emoji: "🍽️", ko: `${cityKo} 한식당 TOP 10 새로 큐레이션됐어요`, en: `Korean restaurant TOP 10 curated in ${cityEn}`, time: ko ? "2분 전" : "2m ago" },
     { emoji: "🏠", ko: `${cityKo} 정착 필수 정보가 업데이트됐어요`, en: `Settlement essentials updated for ${cityEn}`, time: ko ? "5분 전" : "5m ago" },
-    { emoji: "🌏", ko: `67개 도시 한인 커뮤니티가 함께하고 있어요`, en: `67 cities. One Korean community worldwide`, time: ko ? "8분 전" : "8m ago" },
+    { emoji: "🌏", ko: `68개 도시 한인 커뮤니티가 함께하고 있어요`, en: `68 cities. One Korean community worldwide`, time: ko ? "8분 전" : "8m ago" },
     { emoji: "✈️", ko: `공항 도착 체크리스트 — 지금 바로 시작해보세요`, en: `Airport arrival checklist — start right now`, time: ko ? "11분 전" : "11m ago" },
     { emoji: "🗺️", ko: `${cityKo} 탐방 명소 TOP 10 확인해보세요`, en: `Top 10 places to explore in ${cityEn}`, time: ko ? "15분 전" : "15m ago" },
     { emoji: "💊", ko: `건강보험 가입 방법 — ${cityKo} 기준으로 정리됐어요`, en: `Health insurance guide updated for ${cityEn}`, time: ko ? "22분 전" : "22m ago" },
