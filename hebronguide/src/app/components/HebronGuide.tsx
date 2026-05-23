@@ -11698,12 +11698,18 @@ function AmericasAdSection({ lang }: { lang: string }) {
 }
 
 /* ─────────────────────────────────────────
-   🎵 FLOATING MUSIC PLAYER — 슬림 바 + 열기/닫기
-   기본: 한 줄 바 / 열면: 유튜브 플레이어
+   🎵 FLOATING MUSIC PLAYER — 플레이리스트
+   슬림 바 + 이전/다음 + 열기/닫기
 ───────────────────────────────────────── */
+const MUSIC_PLAYLIST = [
+  { id: "pKsR_CTaSdk", title: "Spring Café Romance 🌿" },
+  { id: "r8Bte2R56SM", title: "Bloom Again Music 🌸" },
+];
+
 function FloatingMusicPlayer() {
   const [active, setActive] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [idx, setIdx] = useState(0);
 
   useEffect(() => {
     _setMusicActive = setActive;
@@ -11711,6 +11717,10 @@ function FloatingMusicPlayer() {
   }, []);
 
   if (!active) return null;
+
+  const song = MUSIC_PLAYLIST[idx];
+  const prev = () => setIdx(i => (i - 1 + MUSIC_PLAYLIST.length) % MUSIC_PLAYLIST.length);
+  const next = () => setIdx(i => (i + 1) % MUSIC_PLAYLIST.length);
 
   return (
     <div style={{
@@ -11725,37 +11735,44 @@ function FloatingMusicPlayer() {
         boxShadow: "0 2px 16px rgba(0,0,0,0.4)",
         overflow: "hidden",
       }}>
-        {/* 슬림 한 줄 바 — 항상 표시 */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "7px 12px" }}>
-          <span style={{ fontSize: 14, flexShrink: 0 }}>🎵</span>
+        {/* 슬림 한 줄 바 */}
+        <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "7px 10px" }}>
+          {/* 이전 */}
+          <button onClick={prev} style={{ background: "none", border: "none", color: "rgba(110,231,183,0.6)", fontSize: 13, cursor: "pointer", padding: "0 2px", flexShrink: 0 }}>⏮</button>
+          <span style={{ fontSize: 13, flexShrink: 0 }}>🎵</span>
+          {/* 곡 제목 */}
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 11.5, fontWeight: 700, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-              Spring Café Romance 🌿 · Bloom Again Music
+              {song.title} · Bloom Again Music
             </div>
           </div>
-          <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#6EE7B7", flexShrink: 0 }} />
-          <button
-            onClick={() => setExpanded(p => !p)}
-            style={{ background: "none", border: "none", color: "rgba(110,231,183,0.7)", fontSize: 11, fontWeight: 700, cursor: "pointer", padding: "2px 6px", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}
-          >{expanded ? "▼ 닫기" : "▲ 열기"}</button>
-          <button
-            onClick={() => setActive(false)}
-            style={{ background: "none", border: "none", color: "rgba(236,253,245,0.3)", fontSize: 15, cursor: "pointer", padding: "0 2px", lineHeight: 1, flexShrink: 0 }}
-          >✕</button>
+          {/* 다음 */}
+          <button onClick={next} style={{ background: "none", border: "none", color: "rgba(110,231,183,0.6)", fontSize: 13, cursor: "pointer", padding: "0 2px", flexShrink: 0 }}>⏭</button>
+          {/* 재생 중 표시 */}
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#6EE7B7", flexShrink: 0 }} />
+          {/* 열기/닫기 */}
+          <button onClick={() => setExpanded(p => !p)}
+            style={{ background: "none", border: "none", color: "rgba(110,231,183,0.7)", fontSize: 10, fontWeight: 700, cursor: "pointer", padding: "2px 4px", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
+            {expanded ? "▼" : "▲"}
+          </button>
+          {/* 닫기 */}
+          <button onClick={() => setActive(false)}
+            style={{ background: "none", border: "none", color: "rgba(236,253,245,0.3)", fontSize: 14, cursor: "pointer", padding: "0 2px", lineHeight: 1, flexShrink: 0 }}>✕</button>
         </div>
-        {/* 오디오 전용 iframe — 항상 숨김 재생 */}
+        {/* 오디오 iframe — 항상 숨김 재생 */}
         <iframe
-          src="https://www.youtube.com/embed/pKsR_CTaSdk?rel=0&modestbranding=1&autoplay=1"
+          key={`audio-${song.id}`}
+          src={`https://www.youtube.com/embed/${song.id}?rel=0&modestbranding=1&autoplay=1`}
           title="audio-player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           style={{ position: "absolute", width: 1, height: 1, opacity: 0, pointerEvents: "none", border: "none" }}
         />
-        {/* 영상 플레이어 — 열기 시만 표시 */}
+        {/* 영상 — 열기 시만 표시 */}
         {expanded && (
           <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%" }}>
             <iframe
-              src="https://www.youtube.com/embed/pKsR_CTaSdk?rel=0&modestbranding=1"
-              title="Spring Café Romance - Bloom Again Music"
+              src={`https://www.youtube.com/embed/${song.id}?rel=0&modestbranding=1`}
+              title={song.title}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
