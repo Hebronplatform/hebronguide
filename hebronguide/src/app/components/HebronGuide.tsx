@@ -11773,59 +11773,39 @@ function GrowthShareSection({ lang }: { lang: string }) {
         </div>
       </a>
 
-      {/* 🎵 오늘의 음악 — Bloom Again Music */}
-      <a
-        href="https://youtu.be/pKsR_CTaSdk"
-        target="_blank" rel="noopener noreferrer"
-        style={{ textDecoration: "none", display: "block", marginTop: 10 }}
-      >
-        <div style={{
-          borderRadius: 14, overflow: "hidden",
-          border: "1px solid rgba(255,255,255,0.08)",
-          background: "linear-gradient(135deg, #0d1f1a 0%, #0d1117 100%)",
-        }}>
-          {/* 유튜브 썸네일 */}
-          <div style={{ position: "relative", width: "100%", aspectRatio: "16/7", overflow: "hidden" }}>
-            <img
-              src="https://img.youtube.com/vi/pKsR_CTaSdk/mqdefault.jpg"
-              alt="Bloom Again Music"
-              style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.75 }}
-            />
-            {/* 재생 버튼 오버레이 */}
-            <div style={{
-              position: "absolute", inset: 0,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              background: "rgba(0,0,0,0.25)",
-            }}>
-              <div style={{
-                width: 44, height: 44, borderRadius: "50%",
-                background: "rgba(255,255,255,0.92)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
-              }}>
-                <span style={{ fontSize: 18, marginLeft: 3 }}>▶</span>
-              </div>
+      {/* 🎵 오늘의 음악 — Bloom Again Music (인앱 재생) */}
+      <div style={{
+        marginTop: 10, borderRadius: 14, overflow: "hidden",
+        border: "1px solid rgba(255,255,255,0.08)",
+        background: "#0d1117",
+      }}>
+        {/* 곡 정보 헤더 */}
+        <div style={{ padding: "10px 14px 8px", display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ fontSize: 14 }}>🎵</span>
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", letterSpacing: ".05em" }}>
+              {ko ? "오늘의 음악" : "Music for Today"}
             </div>
-          </div>
-          {/* 곡 정보 */}
-          <div style={{ padding: "10px 14px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", letterSpacing: ".06em", marginBottom: 3 }}>
-                🎵 {ko ? "오늘의 음악" : "Music for Today"}
-              </div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#ECFDF5", fontFamily: "'Noto Sans KR',sans-serif" }}>
-                Spring Café Romance 🌿
-              </div>
-              <div style={{ fontSize: 11, color: "rgba(236,253,245,0.5)", fontFamily: "Manrope,sans-serif", marginTop: 2 }}>
-                Bloom Again Music
-              </div>
+            <div style={{ fontSize: 12, fontWeight: 600, color: "#ECFDF5", fontFamily: "'Noto Sans KR',sans-serif" }}>
+              Spring Café Romance 🌿 · Bloom Again Music
             </div>
-            <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(236,253,245,0.5)", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" }}>
-              {ko ? "YouTube →" : "YouTube →"}
-            </span>
           </div>
         </div>
-      </a>
+        {/* 유튜브 인앱 플레이어 */}
+        <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%" }}>
+          <iframe
+            src="https://www.youtube.com/embed/pKsR_CTaSdk?rel=0&modestbranding=1"
+            title="Spring Café Romance - Bloom Again Music"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{
+              position: "absolute", top: 0, left: 0,
+              width: "100%", height: "100%",
+              border: "none",
+            }}
+          />
+        </div>
+      </div>
 
     </div>
   );
@@ -11982,17 +11962,8 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <HebronFlywheelBar lang={lang} />
       <QuickMenuSection onNavigate={onNavigate} />
 
-      {/* ── 도시 이벤트 — 매주 업데이트 ── */}
-      <CityEventsSection lang={lang} />
-
       {/* ── Day 1 도착 체크리스트 ── */}
       <ArrivalChecklistSection lang={lang} />
-
-      {/* ── 오늘의 한 줄 ── */}
-      <DailyQuoteSection lang={lang} />
-
-      {/* ── 커뮤니티 펄스 ── */}
-      <CommunityPulseSection lang={lang} />
 
       {/* ── 바이럴 공유 — "도움이 됐다면 다음 분께도" ── */}
       <GrowthShareSection lang={lang} />
