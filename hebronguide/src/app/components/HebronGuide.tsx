@@ -168,6 +168,15 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-_f5f0qLaEpA?w=1200&q=90",               pos: "center 50%", alt: "Vancouver street mountain background autumn settle" },
   ],
 
+  // 🌲 프린스조지 — BC 북부 자연 도시
+  princgeorge: [
+    { url: "https://images.unsplash.com/photo-1542401886-65d6c61db217?w=1200&q=95", pos: "center 50%", alt: "British Columbia forest mountains aerial Prince George BC" },
+    { url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=95", pos: "center 40%", alt: "BC mountain lake nature landscape forest green" },
+    { url: "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=1200&q=95", pos: "center 50%", alt: "Small Canadian city street community neighborhood" },
+    { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=95", pos: "center 45%", alt: "BC mountains snow winter landscape Canada" },
+    { url: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=95", pos: "center 50%", alt: "Forest pine trees nature British Columbia settle" },
+  ],
+
   // 🚀 휴스턴 — ① 드론 공중 → ② 야경 랜드마크 → ③ NASA 특징 → ④ 사람들 → ⑤ 정착
   // Story: DJI 드론 다운타운 → 야경 스카이라인 → NASA 우주센터 → 웃는 사람 → 나무 그늘 동네
   houston: [
@@ -804,7 +813,7 @@ type CitySlug =
   // 한국 — 역이민·방문 동포·한국 이주
   "seoul" | "busan" | "ansan" | "incheon" | "jeju" | "daegu" | "gwangju" | "daejeon" | "changwon" | "cheonan" | "bundang" |
   // 북미 신규
-  "orlando" | "maryland";
+  "orlando" | "maryland" | "princgeorge";
 
 interface CityConfig {
   slug: CitySlug;
@@ -1063,6 +1072,7 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   edmonton:   { slug: "edmonton",   nameKo: "에드먼턴",  nameEn: "Edmonton",     color: "#10B981", heroVideo: "", population: "8천+",   state: "Alberta",     taglineKo: "북쪽 평원의 새 출발",           taglineEn: "New roots on the Northern Plains.", taglineEs: "Nuevas raíces en las llanuras del norte." },
   ottawa:     { slug: "ottawa",     nameKo: "오타와",    nameEn: "Ottawa",       color: "#DC2626", heroVideo: "", population: "5천+",   state: "Ontario",     taglineKo: "수도에서의 새 시작",          taglineEn: "A quiet new start in the Capital.",  taglineEs: "Un nuevo comienzo tranquilo en la capital." },
   winnipeg:   { slug: "winnipeg",   nameKo: "위니펙",    nameEn: "Winnipeg",     color: "#7C3AED", heroVideo: "", population: "4천+",   state: "Manitoba",    taglineKo: "대평원의 따뜻한 커뮤니티",     taglineEn: "Warm community on the great plains.", taglineEs: "Comunidad cálida en las grandes praderas." },
+  princgeorge: { slug: "princgeorge", nameKo: "프린스조지", nameEn: "Prince George", color: "#2D6A4F", heroVideo: "", population: "5백+", state: "British Columbia", taglineKo: "BC 북부, 자연 속의 따뜻한 한인 공동체", taglineEn: "A warm Korean community in the heart of northern BC.", taglineEs: "Una cálida comunidad coreana en el norte de BC." },
   phoenix:    { slug: "phoenix",    nameKo: "피닉스",    nameEn: "Phoenix",      color: "#EA580C", heroVideo: "", population: "1.2만+", state: "Arizona",     taglineKo: "사막 속 새로운 뿌리",             taglineEn: "New roots in the desert sun.",         taglineEs: "Nuevas raíces bajo el sol del desierto." },
   charlotte:  { slug: "charlotte",  nameKo: "샬럿",      nameEn: "Charlotte",    color: "#0EA5E9", heroVideo: "", population: "1.5만+", state: "N. Carolina", taglineKo: "남부의 빠른 성장, 함께",    taglineEn: "The South's fastest-growing community.", taglineEs: "La ciudad de más rápido crecimiento del Sur." },
   raleigh:    { slug: "raleigh",    nameKo: "롤리",      nameEn: "Raleigh",      color: "#2563EB", heroVideo: "", population: "1만+",   state: "N. Carolina", taglineKo: "연구의 도시, 새로운 가능성",          taglineEn: "Innovation and new beginnings.", taglineEs: "Innovación y nuevos comienzos." },
@@ -11148,6 +11158,7 @@ const HEBRON_CITIES = [
   { emoji: "🍁", nameKo: "에드먼턴",    nameEn: "Edmonton",      flag: "🇨🇦", url: "/edmonton/",    status: "live", color: "#10B981" },
   { emoji: "🏛️", nameKo: "오타와",     nameEn: "Ottawa",        flag: "🇨🇦", url: "/ottawa/",      status: "live", color: "#DC2626" },
   { emoji: "🌾", nameKo: "위니펙",      nameEn: "Winnipeg",      flag: "🇨🇦", url: "/winnipeg/",    status: "live", color: "#7C3AED" },
+  { emoji: "🌲", nameKo: "프린스조지",  nameEn: "Prince George", flag: "🇨🇦", url: "/princgeorge/", status: "live", color: "#2D6A4F" },
   // ── 중남미 (Central & South America — UN Geoscheme 기준) ──
   { emoji: "🌮", nameKo: "멕시코시티",   nameEn: "Mexico City",   flag: "🇲🇽", url: "/mexicocity/",  status: "live", color: "#A3E635" },
   { emoji: "🌺", nameKo: "과달라하라",   nameEn: "Guadalajara",   flag: "🇲🇽", url: "/guadalajara/", status: "live", color: "#F87171" },
@@ -11490,6 +11501,7 @@ const DIASPORA_IDENTITY: Record<string, {
   edmonton:     { flag:"🇨🇦", ko:"Korean Canadian",   en:"Korean Canadian",    descKo:"캐나다 사회의 당당한 구성원으로",      descEn:"A full participant in Canadian society",          color:"#DC2626" },
   ottawa:       { flag:"🇨🇦", ko:"Korean Canadian",   en:"Korean Canadian",    descKo:"캐나다 사회의 당당한 구성원으로",      descEn:"A full participant in Canadian society",          color:"#DC2626" },
   winnipeg:     { flag:"🇨🇦", ko:"Korean Canadian",   en:"Korean Canadian",    descKo:"캐나다 사회의 당당한 구성원으로",      descEn:"A full participant in Canadian society",          color:"#DC2626" },
+  princgeorge:  { flag:"🇨🇦", ko:"Korean Canadian",   en:"Korean Canadian",    descKo:"BC 북부에서 새 삶을 시작하며",         descEn:"Starting a new life in northern BC",              color:"#2D6A4F" },
   // 🇦🇺 호주
   sydney:       { flag:"🇦🇺", ko:"Korean Australian", en:"Korean Australian",  descKo:"호주 사회의 당당한 구성원으로",        descEn:"A full participant in Australian society",        color:"#0284C7" },
   melbourne:    { flag:"🇦🇺", ko:"Korean Australian", en:"Korean Australian",  descKo:"호주 사회의 당당한 구성원으로",        descEn:"A full participant in Australian society",        color:"#0284C7" },
@@ -14061,6 +14073,21 @@ function getCityChurches(slug: string, lang: string) {
           ? "✅ 가정교회 | 북미가사원 밴쿠버(사랑의) 지역목자\n📍 Vancouver, BC, Canada\n✨ 담임: 이은진 목사"
           : "✅ HCMI | HMI Vancouver (Love) Regional Shepherd\n📍 Vancouver, BC, Canada\n✨ Lead Pastor: Eunjin Lee",
         tags: ko ? ["가정교회", "밴쿠버"] : ["HCMI", "Vancouver"],
+      },
+    ],
+    princgeorge: [
+      {
+        emoji: "⛪", tier: 2, hebronPartner: true,
+        denomination: "기타",
+        name: ko ? "프린스조지한인교회" : "Prince George Korean Church",
+        nameEn: "Prince George Korean Church",
+        desc: ko
+          ? "✅ 검증됨\n📍 Prince George, BC, Canada\n🕐 주일예배 10:30am\n☎ 604-727-0259\n✉️ pgkchurch@gmail.com\n✨ 담임: 오일권 목사 (Daniel Oh)\n🔗 pgkchurch.ca\n\n새가족모임 운영 · 한인봉사센터 연계. BC 북부 한인 이주민을 따뜻하게 환영합니다."
+          : "✅ Verified\n📍 Prince George, BC, Canada\n🕐 Sunday Service 10:30am\n☎ 604-727-0259\n✉️ pgkchurch@gmail.com\n✨ Lead Pastor: Daniel Oh\n🔗 pgkchurch.ca\n\nNew members' group & Korean community service center. Warmly welcomes Korean diaspora in northern BC.",
+        tags: ko ? ["프린스조지", "BC북부", "한인봉사센터", "새가족모임"] : ["Prince George", "Northern BC", "Community Center", "New Members"],
+        phone: "6047270259",
+        email: "pgkchurch@gmail.com",
+        website: "https://pgkchurch.ca",
       },
     ],
     sf: [
