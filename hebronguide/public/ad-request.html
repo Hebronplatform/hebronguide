@@ -314,15 +314,17 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
     <div class="field-row">
       <div class="field">
         <label>교단 <span class="opt">(선택)</span></label>
-        <select id="cDenom">
+        <select id="cDenom" onchange="toggleDenomOther(this.value)">
           <option value="">선택</option>
           <option>장로교 (PCA / KAPC / KPCA)</option>
           <option>침례교 (SBC / KSBC)</option>
           <option>감리교 (UMC / KMC)</option>
           <option>순복음 / 성결교</option>
           <option>독립 교회</option>
-          <option>기타</option>
+          <option value="기타">기타</option>
         </select>
+        <input type="text" id="cDenomOther" placeholder="교단 이름을 직접 입력해 주세요"
+          style="display:none;margin-top:8px;width:100%;background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 14px;font-size:.88rem;color:var(--text);font-family:'Noto Sans KR',sans-serif;outline:none;">
       </div>
       <div class="field">
         <label>주일 예배 시간 <span class="opt">(선택)</span></label>
@@ -597,6 +599,13 @@ function switchTab(type) {
   if (type) switchTab(type);
 })();
 
+// 교단 기타 선택 시 직접 입력 필드 토글
+function toggleDenomOther(val) {
+  const el = document.getElementById('cDenomOther');
+  el.style.display = val === '기타' ? 'block' : 'none';
+  if (val !== '기타') el.value = '';
+}
+
 // 교회 유형 토글 — 선택 시 카드 활성 스타일
 function toggleChurchType(type, checked) {
   if (type === 'hebron') {
@@ -673,7 +682,10 @@ async function submitForm(type) {
     const hcmi = document.getElementById('cHcmi')?.checked ? '✅' : '—';
     const cChurchEn = document.getElementById('cChurchEn')?.value.trim() || '';
     const cPastorEn = document.getElementById('cPastorEn')?.value.trim() || '';
-    body = `유형: 파트너 교회\n교회명(KO): ${document.getElementById('cChurch').value}${cChurchEn ? `\n교회명(EN): ${cChurchEn}` : ''}\n담임목사(KO): ${document.getElementById('cPastor').value}${cPastorEn ? `\n담임목사(EN): ${cPastorEn}` : ''}\n도시: ${document.getElementById('cCity').value}\n전화: ${document.getElementById('cPhone').value}\n이메일: ${document.getElementById('cEmail').value}\n웹사이트: ${document.getElementById('cWebsite').value}\nHebron 협력교회: ${hebronCoop}\n가정교회(HCMI): ${hcmi}\n교단: ${document.getElementById('cDenom').value}\n예배시간: ${document.getElementById('cService').value}\n\n소개:\n${document.getElementById('cDesc').value}`;
+    const cDenomVal = document.getElementById('cDenom').value;
+    const cDenomOther = document.getElementById('cDenomOther')?.value.trim() || '';
+    const finalDenom = cDenomVal === '기타' && cDenomOther ? `기타 — ${cDenomOther}` : cDenomVal;
+    body = `유형: 파트너 교회\n교회명(KO): ${document.getElementById('cChurch').value}${cChurchEn ? `\n교회명(EN): ${cChurchEn}` : ''}\n담임목사(KO): ${document.getElementById('cPastor').value}${cPastorEn ? `\n담임목사(EN): ${cPastorEn}` : ''}\n도시: ${document.getElementById('cCity').value}\n전화: ${document.getElementById('cPhone').value}\n이메일: ${document.getElementById('cEmail').value}\n웹사이트: ${document.getElementById('cWebsite').value}\nHebron 협력교회: ${hebronCoop}\n가정교회(HCMI): ${hcmi}\n교단: ${finalDenom}\n예배시간: ${document.getElementById('cService').value}\n\n소개:\n${document.getElementById('cDesc').value}`;
   } else if(type === 'business') {
     valid = validate([
       {id:'bBiz',type:'required'},{id:'bName',type:'required'},
