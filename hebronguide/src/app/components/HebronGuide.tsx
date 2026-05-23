@@ -11773,6 +11773,60 @@ function GrowthShareSection({ lang }: { lang: string }) {
         </div>
       </a>
 
+      {/* 🎵 오늘의 음악 — Bloom Again Music */}
+      <a
+        href="https://youtu.be/pKsR_CTaSdk"
+        target="_blank" rel="noopener noreferrer"
+        style={{ textDecoration: "none", display: "block", marginTop: 10 }}
+      >
+        <div style={{
+          borderRadius: 14, overflow: "hidden",
+          border: "1px solid rgba(255,255,255,0.08)",
+          background: "linear-gradient(135deg, #0d1f1a 0%, #0d1117 100%)",
+        }}>
+          {/* 유튜브 썸네일 */}
+          <div style={{ position: "relative", width: "100%", aspectRatio: "16/7", overflow: "hidden" }}>
+            <img
+              src="https://img.youtube.com/vi/pKsR_CTaSdk/mqdefault.jpg"
+              alt="Bloom Again Music"
+              style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.75 }}
+            />
+            {/* 재생 버튼 오버레이 */}
+            <div style={{
+              position: "absolute", inset: 0,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              background: "rgba(0,0,0,0.25)",
+            }}>
+              <div style={{
+                width: 44, height: 44, borderRadius: "50%",
+                background: "rgba(255,255,255,0.92)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+              }}>
+                <span style={{ fontSize: 18, marginLeft: 3 }}>▶</span>
+              </div>
+            </div>
+          </div>
+          {/* 곡 정보 */}
+          <div style={{ padding: "10px 14px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", letterSpacing: ".06em", marginBottom: 3 }}>
+                🎵 {ko ? "오늘의 음악" : "Music for Today"}
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#ECFDF5", fontFamily: "'Noto Sans KR',sans-serif" }}>
+                Spring Café Romance 🌿
+              </div>
+              <div style={{ fontSize: 11, color: "rgba(236,253,245,0.5)", fontFamily: "Manrope,sans-serif", marginTop: 2 }}>
+                Bloom Again Music
+              </div>
+            </div>
+            <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(236,253,245,0.5)", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" }}>
+              {ko ? "YouTube →" : "YouTube →"}
+            </span>
+          </div>
+        </div>
+      </a>
+
     </div>
   );
 }
