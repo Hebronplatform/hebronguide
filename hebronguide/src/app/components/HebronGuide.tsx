@@ -9440,7 +9440,7 @@ function getSettleSteps(citySlug: string) {
 
 // 나라 코드 감지
 function getCountryCode(slug: string): string {
-  if (["toronto","vancouver","calgary","edmonton","ottawa","winnipeg"].includes(slug)) return "CA";
+  if (["toronto","vancouver","calgary","edmonton","ottawa","winnipeg","princgeorge"].includes(slug)) return "CA";
   if (["sydney","melbourne","brisbane","perth"].includes(slug))                          return "AU";
   if (["auckland"].includes(slug))                                                        return "NZ";
   if (["tokyo","osaka"].includes(slug))                                                   return "JP";
@@ -13597,8 +13597,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               { color:"rgba(37,99,235,0.07)", border:"rgba(37,99,235,0.2)", tc:"#93C5FD",
                 title: lang==="ko" ? "② 주정부 이민(PNP) + 취업 비자" : "② Provincial Nominee Program (PNP) + Work Visa",
                 body: lang==="ko"
-                  ? "• 온타리오 OINPt (Tech Draw) — IT·엔지니어 한인 다수 활용\n• BC PNP Skills Immigration — 밴쿠버 취업 후 주정부 추천\n• 앨버타 AAIP — 에드먼턴·캘거리 취업자 대상\n• 취업비자: LMIA 기반 Work Permit or CUSMA (NAFTA 후속)\n• SIN (Social Insurance Number) — 취업·납세·혜택 수령 필수. 도착 즉시 Service Canada 방문"
-                  : "• Ontario OINP Tech Draw — popular for Korean IT workers\n• BC PNP — after finding employment in Vancouver\n• Alberta AAIP — for workers in Edmonton/Calgary\n• Work Permit: LMIA-based or CUSMA stream\n• SIN (Social Insurance Number) — required for work/taxes. Visit Service Canada on arrival" },
+                  ? "• 온타리오 OINPt (Tech Draw) — IT·엔지니어 한인 다수 활용\n• BC PNP Skills Immigration — BC 취업 후 주정부 추천 (밴쿠버·프린스조지·켈로나 등)\n• 앨버타 AAIP — 에드먼턴·캘거리 취업자 대상\n• 취업비자: LMIA 기반 Work Permit or CUSMA (NAFTA 후속)\n• SIN (Social Insurance Number) — 취업·납세·혜택 수령 필수. 도착 즉시 Service Canada 방문\n• 💡 프린스조지·북부BC: 소도시 BC PNP 경쟁 낮아 유리"
+                  : "• Ontario OINP Tech Draw — popular for Korean IT workers\n• BC PNP — after finding employment in BC (Vancouver, Prince George, Kelowna, etc.)\n• Alberta AAIP — for workers in Edmonton/Calgary\n• Work Permit: LMIA-based or CUSMA stream\n• SIN (Social Insurance Number) — required for work/taxes. Visit Service Canada on arrival\n• 💡 Prince George/Northern BC: lower PNP competition vs Metro Vancouver" },
               { color:"rgba(16,185,129,0.07)", border:"rgba(16,185,129,0.2)", tc:"#6EE7B7",
                 title: lang==="ko" ? "③ 가족초청 + 배우자 비자" : "③ Family Sponsorship + Spousal Visa",
                 body: lang==="ko"
@@ -21234,8 +21234,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
       { emoji: "🏥",
         name: lang === "ko" ? `${city.nameKo} 건강보험 안내` : `${city.nameEn} Health Insurance Guide`, nameEn: "Health Insurance",
         desc: lang === "ko"
-          ? `healthcare.gov 에서 소득 기준 보험 확인. 또는 211 전화 → 건강보험 연결. ${["sf","la","boston","newyork","philadelphia"].includes(city.slug) ? "주(州) Medicaid 적극 활용 가능." : ["toronto","vancouver"].includes(city.slug) ? "공적 의료보험 (OHIP/MSP): 3개월 후 무료 적용." : "Medicaid 소득 기준 확인 필수."}`
-          : `Check eligibility at healthcare.gov or dial 211 for insurance help. ${["sf","la","boston","newyork","philadelphia"].includes(city.slug) ? "State Medicaid strongly recommended." : ["toronto","vancouver"].includes(city.slug) ? "Public health insurance (OHIP/MSP): free after 3 months." : "Check Medicaid income requirements."}`,
+          ? `healthcare.gov 에서 소득 기준 보험 확인. 또는 211 전화 → 건강보험 연결. ${["sf","la","boston","newyork","philadelphia"].includes(city.slug) ? "주(州) Medicaid 적극 활용 가능." : ["toronto","vancouver","princgeorge","calgary","edmonton","ottawa","winnipeg"].includes(city.slug) ? "공적 의료보험 (OHIP/MSP): 3개월 후 무료 적용." : "Medicaid 소득 기준 확인 필수."}`
+          : `Check eligibility at healthcare.gov or dial 211 for insurance help. ${["sf","la","boston","newyork","philadelphia"].includes(city.slug) ? "State Medicaid strongly recommended." : ["toronto","vancouver","princgeorge","calgary","edmonton","ottawa","winnipeg"].includes(city.slug) ? "Public health insurance (OHIP/MSP): free after 3 months." : "Check Medicaid income requirements."}`,
         tags: ["보험", "의료", "Medicaid"] },
       // 무료 취업 지원 (도시별)
       { emoji: "💼",
@@ -22644,6 +22644,29 @@ function getCityDistrictData(slug: string, lang: string) {
       { emoji: "⭐", name: "Burnaby School District 41", nameEn: "SD41 Burnaby — UBC Neighbor",
         desc: ko ? "✅ 버나비 관할. UBC 인근. Burnaby North HS·Burnaby Mountain HS. 한인·중국계 혼합. 아시안 친화적 환경.\n📍 버나비·밴쿠버 동부 | 🔗 burnabyschools.ca"
                  : "✅ Burnaby near UBC. Burnaby North & Mountain HS. Korean & Chinese mixed. Asian-friendly environment.\n📍 Burnaby, east Vancouver | 🔗 burnabyschools.ca", tags: ["버나비","UBC","아시안"] },
+    ],
+    // ── 프린스조지 학군 (SD57 + UNBC + CNC) ──
+    princgeorge: [
+      { emoji: "⭐", name: "School District 57 (SD57) — 프린스조지 공립학교", nameEn: "SD57 — Prince George Public Schools",
+        desc: ko ? "✅ BC주 공립 K-12 무료 교육. 약 22,000명 학생. French Immersion (불어 이머전) 프로그램 운영. 국제학생은 SD57 International Education 별도 신청.\n📍 2100 Ferry Ave, Prince George, BC | ☎ (250) 561-6800 | 🔗 sd57.bc.ca"
+                 : "✅ Free K-12 public education. ~22,000 students. French Immersion available. International students contact SD57 International Education.\n📍 2100 Ferry Ave, Prince George, BC | ☎ (250) 561-6800 | 🔗 sd57.bc.ca",
+        tags: ko ? ["SD57","공립","FrenchImmersion","프린스조지"] : ["SD57","Public","FrenchImmersion","PrinceGeorge"] },
+      { emoji: "⭐", name: "French Immersion — Duchess Park Secondary", nameEn: "Duchess Park Secondary — French Immersion",
+        desc: ko ? "✅ SD57 불어 이머전 고등학교. College Heights Elementary (초등 French Immersion 거점) → 덕체스파크로 진학. 이중언어 교육으로 취업·대학 유리.\n📍 Prince George, BC | 🔗 sd57.bc.ca"
+                 : "✅ SD57 French Immersion secondary school. Feeds from College Heights Elementary. Bilingual education benefits career & university.\n📍 Prince George, BC | 🔗 sd57.bc.ca",
+        tags: ko ? ["French","이머전","고등학교"] : ["French","Immersion","Secondary"] },
+      { emoji: "🎓", name: "UNBC — 북BC대학교 (종합대학)", nameEn: "University of Northern British Columbia (UNBC)",
+        desc: ko ? "✅ 프린스조지 종합대학. 학부·대학원. 비즈니스·간호·컴퓨터과학·환경학. 국제학생 건강보험 포함. U-PASS 버스 무제한. 졸업 후 PGWP → CEC → 영주권 경로.\n📍 3333 University Way, Prince George, BC | ☎ (250) 960-5555 | 🔗 unbc.ca"
+                 : "✅ Comprehensive university. Business, Nursing, CS, Environmental Studies. Int'l health insurance included. U-PASS unlimited bus. Graduate → PGWP → CEC → PR pathway.\n📍 3333 University Way | ☎ (250) 960-5555 | 🔗 unbc.ca",
+        tags: ko ? ["UNBC","대학교","영주권경로","PGWP"] : ["UNBC","University","PRPathway","PGWP"] },
+      { emoji: "🎓", name: "CNC — 뉴칼레도니아 컬리지 (직업·기술)", nameEn: "College of New Caledonia (CNC)",
+        desc: ko ? "✅ 직업·기술·디플로마 전문 컬리지. UNBC보다 학비 저렴. 간호조무사·용접·전기·요리·비즈니스. CNC → UNBC 편입 경로. ESL 과정 제공.\n📍 3330 22nd Ave, Prince George, BC | ☎ (250) 562-2131 | 🔗 cnc.bc.ca"
+                 : "✅ Vocational & diploma college. Lower tuition than UNBC. PN, Welding, Electrical, Culinary, Business. CNC → UNBC transfer pathway. ESL available.\n📍 3330 22nd Ave | ☎ (250) 562-2131 | 🔗 cnc.bc.ca",
+        tags: ko ? ["CNC","컬리지","직업훈련","편입"] : ["CNC","College","Vocational","Transfer"] },
+      { emoji: "📚", name: "LINC / IMSS 무료 영어 수업", nameEn: "LINC — Free English Classes (IMSS)",
+        desc: ko ? "✅ 이민자 무료 영어 교육 (LINC). IMSS 통해 신청. 성인 ELL·생활영어·회화 중심. 학교 재학생은 SD57 ELL 프로그램 무료 지원.\n📍 1270 2nd Ave (IMSS) | ☎ (250) 562-2900 | 🔗 imss.ca"
+                 : "✅ Free English classes for newcomers (LINC) via IMSS. Adult ELL, conversational English. K-12 students get free ELL support in all SD57 schools.\n📍 1270 2nd Ave (IMSS) | ☎ (250) 562-2900 | 🔗 imss.ca",
+        tags: ko ? ["LINC","영어수업","무료","이민자"] : ["LINC","ESL","Free","Newcomers"] },
     ],
     // ── 추가 6개 도시 학군 ──────────────────────────────────────
     atlanta: [
