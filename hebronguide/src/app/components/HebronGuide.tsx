@@ -12148,7 +12148,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
   return (
     <div style={{ margin: "12px 16px 0" }}>
       {/* ── 큰 노란 공유 버튼 ── */}
-      {/* 카카오로 전달하기 버튼 */}
+      {/* 카카오톡으로 공유하기 버튼 */}
       <button
         onClick={doNativeShare}
         style={{
@@ -12159,7 +12159,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
           fontFamily: "'Noto Sans KR',Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#1a1200",
         }}>
         <span style={{ fontSize: 20 }}>📱</span>
-        {ko ? "카카오로 전달하기" : "Share via KakaoTalk"}
+        {ko ? "카카오톡으로 공유하기" : "Share via KakaoTalk"}
       </button>
 
       {/* 카카오 채널 등록 안내 */}
@@ -12171,7 +12171,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
           borderRadius: 12, gap: 8,
         }}>
           <span style={{ fontSize: 12.5, fontWeight: 600, color: "#FEE500", fontFamily: "'Noto Sans KR',sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-            💬 {ko ? "문의·수정 요청 → 카카오 채널" : "Contact via KakaoTalk"}
+            💬 {ko ? "문의·수정 요청 → 카카오톡 채널" : "Contact via KakaoTalk Channel"}
           </span>
           <span style={{ fontSize: 11.5, fontWeight: 800, color: "#3C2A00", background: "#FEE500", borderRadius: 7, padding: "3px 9px", whiteSpace: "nowrap", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
             {ko ? "채널 추가" : "Follow"}
