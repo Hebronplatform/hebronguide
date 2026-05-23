@@ -24,6 +24,10 @@
  */
 
 import { useState, useEffect, useRef, useMemo, type ReactNode } from "react";
+
+// 🎵 글로벌 뮤직 플레이어 트리거 (탭 이동해도 재생 유지)
+let _setMusicActive: ((v: boolean) => void) | null = null;
+export function activateMusic() { _setMusicActive?.(true); }
 import svgPaths from "../../imports/svg-uguh2ql8id";
 
 /**
@@ -11682,6 +11686,73 @@ function AmericasAdSection({ lang }: { lang: string }) {
 }
 
 /* ─────────────────────────────────────────
+   🎵 FLOATING MUSIC PLAYER — 탭 이동해도 재생 유지
+   고정 하단 미니바 + 인앱 유튜브 플레이어
+───────────────────────────────────────── */
+function FloatingMusicPlayer() {
+  const [active, setActive] = useState(false);
+  const [minimized, setMinimized] = useState(false);
+
+  useEffect(() => {
+    _setMusicActive = setActive;
+    return () => { _setMusicActive = null; };
+  }, []);
+
+  if (!active) return null;
+
+  return (
+    <div style={{
+      position: "fixed", left: 0, right: 0, bottom: 68,
+      zIndex: 300, maxWidth: 430, margin: "0 auto",
+      padding: "0 12px",
+    }}>
+      <div style={{
+        background: "#0d1f1a",
+        border: "1px solid rgba(110,231,183,0.25)",
+        borderRadius: 16,
+        boxShadow: "0 -4px 24px rgba(0,0,0,0.5)",
+        overflow: "hidden",
+      }}>
+        {/* 미니바 — 항상 표시 */}
+        <div style={{
+          display: "flex", alignItems: "center", gap: 10,
+          padding: "10px 14px", cursor: "pointer",
+        }} onClick={() => setMinimized(p => !p)}>
+          <span style={{ fontSize: 16 }}>🎵</span>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+              Spring Café Romance 🌿
+            </div>
+            <div style={{ fontSize: 10, color: "rgba(110,231,183,0.6)", fontFamily: "Manrope,sans-serif" }}>
+              Bloom Again Music
+            </div>
+          </div>
+          <span style={{ fontSize: 13, color: "rgba(110,231,183,0.7)", fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>
+            {minimized ? "▲ 열기" : "▼ 닫기"}
+          </span>
+          <button
+            onClick={e => { e.stopPropagation(); setActive(false); }}
+            style={{ background: "none", border: "none", color: "rgba(236,253,245,0.3)", fontSize: 16, cursor: "pointer", padding: "0 2px", lineHeight: 1 }}
+          >✕</button>
+        </div>
+        {/* 유튜브 플레이어 — minimized 시 숨김 (DOM 유지 → 음악 계속) */}
+        <div style={{ display: minimized ? "none" : "block" }}>
+          <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%" }}>
+            <iframe
+              src="https://www.youtube.com/embed/pKsR_CTaSdk?rel=0&modestbranding=1&autoplay=1"
+              title="Spring Café Romance - Bloom Again Music"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
    VIRAL: 공유 섹션 — 카카오·문자·SNS·WhatsApp·이메일·복사
    스크린샷 디자인: 대형 노란 버튼 + 3개 보조 버튼
 ───────────────────────────────────────── */
@@ -11773,39 +11844,43 @@ function GrowthShareSection({ lang }: { lang: string }) {
         </div>
       </a>
 
-      {/* 🎵 오늘의 음악 — Bloom Again Music (인앱 재생) */}
-      <div style={{
-        marginTop: 10, borderRadius: 14, overflow: "hidden",
-        border: "1px solid rgba(255,255,255,0.08)",
-        background: "#0d1117",
-      }}>
-        {/* 곡 정보 헤더 */}
-        <div style={{ padding: "10px 14px 8px", display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 14 }}>🎵</span>
-          <div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", letterSpacing: ".05em" }}>
-              {ko ? "오늘의 음악" : "Music for Today"}
+      {/* 🎵 오늘의 음악 — 클릭 시 하단 고정 플레이어 활성화 */}
+      <button
+        onClick={() => activateMusic()}
+        style={{
+          width: "100%", marginTop: 10, padding: 0,
+          background: "none", border: "none", cursor: "pointer", textAlign: "left",
+        }}
+      >
+        <div style={{
+          borderRadius: 14, overflow: "hidden",
+          border: "1px solid rgba(110,231,183,0.2)",
+          background: "linear-gradient(135deg, #0d1f1a 0%, #0d1117 100%)",
+        }}>
+          <div style={{ position: "relative", width: "100%", aspectRatio: "16/7", overflow: "hidden" }}>
+            <img
+              src="https://img.youtube.com/vi/pKsR_CTaSdk/mqdefault.jpg"
+              alt="Bloom Again Music"
+              style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.75 }}
+            />
+            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.2)" }}>
+              <div style={{ width: 48, height: 48, borderRadius: "50%", background: "rgba(110,231,183,0.9)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 20px rgba(110,231,183,0.4)" }}>
+                <span style={{ fontSize: 20, marginLeft: 3, color: "#0d1117" }}>▶</span>
+              </div>
             </div>
-            <div style={{ fontSize: 12, fontWeight: 600, color: "#ECFDF5", fontFamily: "'Noto Sans KR',sans-serif" }}>
-              Spring Café Romance 🌿 · Bloom Again Music
+          </div>
+          <div style={{ padding: "10px 14px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", marginBottom: 2 }}>
+                🎵 {ko ? "오늘의 음악 — 탭 이동해도 계속 재생" : "Music for Today — plays while you browse"}
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#ECFDF5", fontFamily: "'Noto Sans KR',sans-serif" }}>
+                Spring Café Romance 🌿 · Bloom Again Music
+              </div>
             </div>
           </div>
         </div>
-        {/* 유튜브 인앱 플레이어 */}
-        <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%" }}>
-          <iframe
-            src="https://www.youtube.com/embed/pKsR_CTaSdk?rel=0&modestbranding=1"
-            title="Spring Café Romance - Bloom Again Music"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            style={{
-              position: "absolute", top: 0, left: 0,
-              width: "100%", height: "100%",
-              border: "none",
-            }}
-          />
-        </div>
-      </div>
+      </button>
 
     </div>
   );
@@ -26619,6 +26694,9 @@ export function HebronGuide() {
         {/* 통역 모달 */}
         {showTranslate && <TranslateModal onClose={() => setShowTranslate(false)} lang={lang}
           onNavigate={(tab) => { setActiveNav(tab); setShowTranslate(false); }} />}
+
+        {/* 🎵 고정 뮤직 플레이어 — 탭 이동해도 재생 유지 */}
+        <FloatingMusicPlayer />
 
         <BottomNav
           activeIndex={activeNav}
