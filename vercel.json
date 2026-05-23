@@ -90,6 +90,8 @@
     { "source": "/ottawa/(.*)",        "destination": "/ottawa/index.html" },
     { "source": "/winnipeg",           "destination": "/winnipeg/index.html" },
     { "source": "/winnipeg/(.*)",      "destination": "/winnipeg/index.html" },
+    { "source": "/princgeorge",        "destination": "/princgeorge/index.html" },
+    { "source": "/princgeorge/(.*)",   "destination": "/princgeorge/index.html" },
     { "source": "/phoenix",            "destination": "/phoenix/index.html" },
     { "source": "/phoenix/(.*)",       "destination": "/phoenix/index.html" },
     { "source": "/charlotte",          "destination": "/charlotte/index.html" },

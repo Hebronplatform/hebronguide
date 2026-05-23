@@ -51,7 +51,7 @@ declare -A CITY_KO=(
   ["raleigh"]="롤리"          ["columbus"]="콜럼버스"    ["minneapolis"]="미니애폴리스"
   ["tucson"]="투손"           ["fayetteville"]="페이엣빌" ["killeen"]="킬린"
   ["louisville"]="루이빌"     ["anchorage"]="앵커리지"
-  ["orlando"]="올랜도"        ["maryland"]="메릴랜드"
+  ["orlando"]="올랜도"        ["maryland"]="메릴랜드"   ["princgeorge"]="프린스조지"
   # 한국 신규
   ["bundang"]="분당·수지"
   # 국제 확장 Tier A
@@ -86,7 +86,7 @@ declare -A CITY_EN=(
   ["raleigh"]="Raleigh"       ["columbus"]="Columbus"      ["minneapolis"]="Minneapolis"
   ["tucson"]="Tucson"         ["fayetteville"]="Fayetteville" ["killeen"]="Killeen"
   ["louisville"]="Louisville" ["anchorage"]="Anchorage"
-  ["orlando"]="Orlando"       ["maryland"]="Maryland"
+  ["orlando"]="Orlando"       ["maryland"]="Maryland"    ["princgeorge"]="Prince George"
   ["bundang"]="분당·수지"
   # 국제 확장 Tier A
   ["sydney"]="Sydney"         ["melbourne"]="Melbourne"    ["brisbane"]="Brisbane"
@@ -121,7 +121,7 @@ for city in \
   kansascity philadelphia miami orangecounty mexicocity guadalajara monterrey \
   chicago dc sandiego honolulu portland denver \
   calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
-  tucson fayetteville killeen louisville anchorage \
+  tucson fayetteville killeen louisville anchorage princgeorge \
   sydney melbourne brisbane perth auckland saopaulo london \
   singapore bangkok hochiminh dubai frankfurt berlin paris \
   tokyo osaka \
@@ -208,7 +208,7 @@ REGION_MAP=(
   ["fayetteville"]="🇺🇸 미국" ["killeen"]="🇺🇸 미국"   ["louisville"]="🇺🇸 미국"
   ["anchorage"]="🇺🇸 미국"  ["tucson"]="🇺🇸 미국"      ["orangecounty"]="🇺🇸 미국"
   ["toronto"]="🇨🇦 캐나다"  ["vancouver"]="🇨🇦 캐나다" ["calgary"]="🇨🇦 캐나다"
-  ["edmonton"]="🇨🇦 캐나다" ["ottawa"]="🇨🇦 캐나다"    ["winnipeg"]="🇨🇦 캐나다"
+  ["edmonton"]="🇨🇦 캐나다" ["ottawa"]="🇨🇦 캐나다"    ["winnipeg"]="🇨🇦 캐나다"   ["princgeorge"]="🇨🇦 캐나다"
   ["mexicocity"]="🌎 중남미" ["guadalajara"]="🌎 중남미" ["monterrey"]="🌎 중남미"
   ["saopaulo"]="🌎 중남미"
   ["london"]="🇬🇧 유럽"     ["paris"]="🇬🇧 유럽"       ["berlin"]="🇬🇧 유럽"
@@ -230,7 +230,7 @@ for city in \
   seattle dallas sf newyork la houston atlanta chicago dc nashville boston miami \
   philadelphia sandiego portland denver honolulu charlotte raleigh columbus minneapolis \
   kansascity orlando maryland fayetteville killeen louisville anchorage tucson orangecounty \
-  toronto vancouver calgary edmonton ottawa winnipeg \
+  toronto vancouver calgary edmonton ottawa winnipeg princgeorge \
   mexicocity guadalajara monterrey saopaulo \
   london paris berlin frankfurt \
   sydney melbourne brisbane perth auckland \
