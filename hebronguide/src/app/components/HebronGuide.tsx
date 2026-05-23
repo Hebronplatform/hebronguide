@@ -168,13 +168,14 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-_f5f0qLaEpA?w=1200&q=90",               pos: "center 50%", alt: "Vancouver street mountain background autumn settle" },
   ],
 
-  // 🌲 프린스조지 — BC 북부 자연 도시
+  // 🌲 프린스조지 — BC 북부 ① 드론 도심 ② 숲길 ③ 강·숲 항공 ④ BC 다리 항공 ⑤ 커뮤니티 ⑥ BC 설경
+  // ① ② 실제 Prince George GPS 태그 확인 사진
   princgeorge: [
-    { url: "https://images.unsplash.com/photo-1542401886-65d6c61db217?w=1200&q=95", pos: "center 50%", alt: "British Columbia forest mountains aerial Prince George BC" },
-    { url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=95", pos: "center 40%", alt: "BC mountain lake nature landscape forest green" },
-    { url: "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=1200&q=95", pos: "center 50%", alt: "Small Canadian city street community neighborhood" },
-    { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=95", pos: "center 45%", alt: "BC mountains snow winter landscape Canada" },
-    { url: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=95", pos: "center 50%", alt: "Forest pine trees nature British Columbia settle" },
+    { url: "https://images.unsplash.com/photo-1636809723323-1157c5cf9ddf?w=1200&q=95", pos: "center 50%", alt: "Prince George BC aerial drone bridge river city overview" },
+    { url: "https://images.unsplash.com/photo-1596523444770-74d0b801ee46?w=1200&q=95", pos: "center 50%", alt: "Northern BC aerial river winding through boreal forest drone view" },
+    { url: "https://images.unsplash.com/photo-1559633546-e215cc804a02?w=1200&q=95", pos: "center 50%", alt: "Prince George BC forest service road boreal wilderness path" },
+    { url: "https://images.unsplash.com/photo-1562364692-16836a8b9b08?w=1200&q=95", pos: "center 30%", alt: "Canada community gathering outdoor people welcoming free lifestyle" },
+    { url: "https://images.unsplash.com/photo-1565010505255-cd05a670b436?w=1200&q=95", pos: "center 50%", alt: "British Columbia bridge over river aerial BC Canada landscape" },
   ],
 
   // 🚀 휴스턴 — ① 드론 공중 → ② 야경 랜드마크 → ③ NASA 특징 → ④ 사람들 → ⑤ 정착
@@ -11759,26 +11760,24 @@ function FloatingMusicPlayer() {
           <button onClick={() => setActive(false)}
             style={{ background: "none", border: "none", color: "rgba(236,253,245,0.3)", fontSize: 14, cursor: "pointer", padding: "0 2px", lineHeight: 1, flexShrink: 0 }}>✕</button>
         </div>
-        {/* 오디오 iframe — 항상 숨김 재생 */}
-        <iframe
-          key={`audio-${song.id}`}
-          src={`https://www.youtube.com/embed/${song.id}?rel=0&modestbranding=1&autoplay=1`}
-          title="audio-player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          style={{ position: "absolute", width: 1, height: 1, opacity: 0, pointerEvents: "none", border: "none" }}
-        />
-        {/* 영상 — 열기 시만 표시 */}
-        {expanded && (
+        {/* 단일 iframe — 항상 DOM에 유지 (축소해도 재생 계속)
+            expanded: 전체 영상 / collapsed: height:0 으로 숨김 */}
+        <div style={{
+          height: expanded ? "auto" : 0,
+          overflow: "hidden",
+          transition: "height 0.2s ease",
+        }}>
           <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%" }}>
             <iframe
-              src={`https://www.youtube.com/embed/${song.id}?rel=0&modestbranding=1`}
+              key={`player-${song.id}`}
+              src={`https://www.youtube.com/embed/${song.id}?rel=0&modestbranding=1&autoplay=1`}
               title={song.title}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
             />
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
