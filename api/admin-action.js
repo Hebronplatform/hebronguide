@@ -69,7 +69,7 @@ export default async function handler(req) {
   if (req.method !== 'POST') return new Response('Method not allowed', { status: 405, headers: CORS })
 
   try {
-    const { action, id, table, status, token, church } = await req.json()
+    const { action, id, table, status, token, church, business } = await req.json()
 
     // ── 토큰 인증 ────────────────────────────────────────
     if (!token || token !== ADMIN_HASH) {
@@ -150,6 +150,48 @@ export default async function handler(req) {
           throw new Error(`교회 저장 실패 (${insertRes.status}): ${errText}`)
         }
         return new Response(JSON.stringify({ ok: true, msg: `${church.name} 등록 완료` }), { headers: CORS })
+      }
+
+      case 'insert_business': {
+        // admin.html에서 { action:'insert_business', token, business: bizData } 형태로 전달
+        const biz = business
+        if (!biz || !biz.name) {
+          return new Response(JSON.stringify({ error: '사업체 데이터 없음' }), { status: 400, headers: CORS })
+        }
+        const svcKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY
+
+        // 업종에 따라 테이블 결정 (cafe → cafes, 나머지 → restaurants)
+        const bizTable = (biz.type || '').includes('카페') || (biz.type || '').includes('cafe')
+          ? 'cafes' : 'restaurants'
+
+        const bizInsertRes = await fetch(`https://vextxqzggznulwpganwt.supabase.co/rest/v1/${bizTable}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': svcKey,
+            'Authorization': `Bearer ${svcKey}`,
+            'Prefer': 'return=minimal',
+          },
+          body: JSON.stringify({
+            name:        biz.name,
+            name_en:     biz.name_en || biz.name,
+            city_slug:   biz.city_slug || '',
+            description: biz.description || '',
+            phone:       biz.phone || '',
+            email:       biz.email || '',
+            website:     biz.website || '',
+            address:     biz.address || '',
+            category:    biz.type || '',
+            active:      true,
+            source:      biz.source || 'admin_approved',
+            source_id:   biz.source_id || null,
+          }),
+        })
+        if (!bizInsertRes.ok) {
+          const errText = await bizInsertRes.text()
+          throw new Error(`사업체 저장 실패 (${bizInsertRes.status}): ${errText}`)
+        }
+        return new Response(JSON.stringify({ ok: true, msg: `${biz.name} 사업체 등록 완료 (${bizTable})` }), { headers: CORS })
       }
 
       default:
