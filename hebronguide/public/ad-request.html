@@ -59,15 +59,24 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .form-card.active{display:block;}
 .form-section-title{font-size:1rem;font-weight:900;color:var(--gold);letter-spacing:.01em;
   margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
-.field{margin-bottom:13px;}
+.field{margin-bottom:13px;position:relative;}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 @media(max-width:420px){.field-row{grid-template-columns:1fr;}}
-label{display:block;font-size:.78rem;font-weight:700;color:rgba(236,253,245,.7);margin-bottom:5px;}
+label{display:flex;align-items:center;justify-content:space-between;font-size:.78rem;font-weight:700;color:rgba(236,253,245,.7);margin-bottom:5px;}
 label .req{color:var(--gold);margin-left:2px;}
 label .opt{color:rgba(236,253,245,.3);font-weight:400;font-size:.7rem;margin-left:4px;}
+/* ✓ 완료 표시 */
+label .field-tick{display:none;color:var(--mint);font-size:.72rem;font-weight:800;
+  background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.3);
+  border-radius:99px;padding:1px 7px;margin-left:auto;flex-shrink:0;}
+.field.done label .field-tick{display:inline;}
+.field.done label .req{color:var(--mint);}
+.field.done label .opt{color:rgba(110,231,183,.5);}
+.field.done input:not(:focus),.field.done textarea:not(:focus),.field.done select:not(:focus){
+  border-color:rgba(110,231,183,.35);background:rgba(110,231,183,.03);}
 input,textarea,select{width:100%;background:#1a2535;border:1px solid var(--border2);
   border-radius:10px;padding:10px 13px;font-size:.85rem;color:var(--text);
-  font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none;
+  font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none;
   -webkit-text-fill-color:var(--text);}
 input:focus,textarea:focus,select:focus{border-color:var(--gold);background:#1e2d42;}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23C9A227'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;cursor:pointer;}
@@ -714,18 +723,62 @@ function toggleDenomOther(val) {
   if (val !== '기타') el.value = '';
 }
 
-// 교회 유형 토글 — 선택 시 카드 활성 스타일
+// 교회 유형 토글 — 선택 시 카드 활성 + ✓ 배지
 function toggleChurchType(type, checked) {
   if (type === 'hebron') {
     const el = document.getElementById('label-hebron');
     el.style.border = checked ? '1.5px solid rgba(110,231,183,0.8)' : '1.5px solid rgba(110,231,183,0.3)';
     el.style.background = checked ? 'rgba(110,231,183,0.12)' : 'rgba(110,231,183,0.05)';
+    const badge = el.querySelector('.church-type-check');
+    if (badge) badge.style.display = checked ? 'flex' : 'none';
   } else {
     const el = document.getElementById('label-hcmi');
     el.style.border = checked ? '1.5px solid rgba(201,162,39,0.8)' : '1.5px solid rgba(201,162,39,0.3)';
     el.style.background = checked ? 'rgba(201,162,39,0.12)' : 'rgba(201,162,39,0.05)';
+    const badge = el.querySelector('.church-type-check');
+    if (badge) badge.style.display = checked ? 'flex' : 'none';
   }
 }
+
+// ── 전체 필드 완료 표시 자동화 ───────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. 모든 .field 내 label에 ✓ tick span 자동 삽입
+  document.querySelectorAll('.field label').forEach(label => {
+    if (!label.querySelector('.field-tick')) {
+      const tick = document.createElement('span');
+      tick.className = 'field-tick';
+      tick.textContent = '✓';
+      label.appendChild(tick);
+    }
+  });
+
+  // 2. 교회 유형 카드에 ✓ 배지 삽입
+  ['label-hebron','label-hcmi'].forEach(id => {
+    const card = document.getElementById(id);
+    if (card && !card.querySelector('.church-type-check')) {
+      const badge = document.createElement('span');
+      badge.className = 'church-type-check';
+      badge.textContent = '✓';
+      badge.style.cssText = 'display:none;position:absolute;top:-8px;right:-8px;width:20px;height:20px;border-radius:50%;background:var(--mint);color:#0d1117;font-size:.7rem;font-weight:900;align-items:center;justify-content:center;flex-shrink:0;';
+      card.style.position = 'relative';
+      card.appendChild(badge);
+    }
+  });
+
+  // 3. 모든 input/textarea/select에 완료 감지 이벤트 추가
+  function markField(el) {
+    const field = el.closest('.field');
+    if (!field) return;
+    const val = el.value?.trim() ?? '';
+    const isEmpty = el.tagName === 'SELECT' ? (val === '' || val === '선택') : val === '';
+    field.classList.toggle('done', !isEmpty);
+  }
+
+  document.querySelectorAll('.field input, .field textarea, .field select').forEach(el => {
+    ['input','change','blur'].forEach(evt => el.addEventListener(evt, () => markField(el)));
+    markField(el); // 초기 상태 반영
+  });
+});
 
 // 유효성 검사
 function validate(fields) {
