@@ -1321,28 +1321,49 @@
         intro ? `\n${intro}` : '',
       ].filter(Boolean).join('\n')
 
-      await adminAction({
-        action: 'insert_church',
-        church: {
-          name:        nameKo,
-          name_en:     nameEn,
-          city_slug:   citySlug,
-          description: descText,
-          pastor:      pastor,
-          phone:       phone,
-          email:       email,
-          website:     website && website !== '없음' ? website : '',
-          denomination:denom,
-          service_time:service,
-          hebron_partner: hebron,
-          hcmi:        hcmi,
-          tier:        2,
-          active:      true,
-          source:      'admin_approved',
-          source_id:   row.id,
-        }
-      })
+      const churchData = {
+        name:        nameKo,
+        name_en:     nameEn,
+        city:        city,
+        city_slug:   citySlug,
+        description: descText,
+        pastor:      pastor,
+        pastor_en:   pastorEn,
+        phone:       phone,
+        email:       email,
+        website:     website && website !== '없음' ? website : '',
+        denomination:denom,
+        service_time:service,
+        hebron_partner: hebron,
+        hcmi:        hcmi,
+        tier:        2,
+        active:      true,
+        source:      'admin_approved',
+        source_id:   row.id,
+      }
+
+      await adminAction({ action: 'insert_church', church: churchData })
       toast(`⛪ ${nameKo} → churches 테이블 자동 등록 완료!`)
+
+      // 파트너 교회에 확인 이메일 자동 발송
+      if (email && email !== '없음') {
+        try {
+          const emailRes = await fetch('/api/notify-partner', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: adminToken, type: 'church', church: churchData }),
+          })
+          const emailData = await emailRes.json()
+          if (emailData.ok && !emailData.skipped) {
+            toast(`📧 ${nameKo} → ${email} 확인 이메일 발송 완료!`)
+          }
+        } catch(emailErr) {
+          console.warn('이메일 발송 실패:', emailErr.message)
+          toast(`⚠️ 등록은 완료. 이메일 발송 실패: ${emailErr.message}`)
+        }
+      } else {
+        toast(`ℹ️ ${nameKo} — 이메일 주소 없음, 이메일 발송 건너뜀`)
+      }
     } catch(e) {
       console.warn('교회 자동 등록 실패:', e.message)
       toast(`⚠️ 승인은 완료. 교회 자동 등록 실패: ${e.message}`)
