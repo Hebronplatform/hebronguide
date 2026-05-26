@@ -797,14 +797,10 @@ function toggleChurchType(type, checked) {
     const el = document.getElementById('label-hebron');
     el.style.border = checked ? '1.5px solid rgba(110,231,183,0.8)' : '1.5px solid rgba(110,231,183,0.3)';
     el.style.background = checked ? 'rgba(110,231,183,0.12)' : 'rgba(110,231,183,0.05)';
-    const badge = el.querySelector('.church-type-check');
-    if (badge) badge.style.display = checked ? 'flex' : 'none';
   } else {
     const el = document.getElementById('label-hcmi');
     el.style.border = checked ? '1.5px solid rgba(201,162,39,0.8)' : '1.5px solid rgba(201,162,39,0.3)';
     el.style.background = checked ? 'rgba(201,162,39,0.12)' : 'rgba(201,162,39,0.05)';
-    const badge = el.querySelector('.church-type-check');
-    if (badge) badge.style.display = checked ? 'flex' : 'none';
   }
 }
 
@@ -820,20 +816,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 2. 교회 유형 카드(협력교회·HCMI)에 ✓ 배지 삽입
-  ['label-hebron','label-hcmi'].forEach(id => {
-    const card = document.getElementById(id);
-    if (card && !card.querySelector('.church-type-check')) {
-      const badge = document.createElement('span');
-      badge.className = 'church-type-check';
-      badge.textContent = '✓';
-      badge.style.cssText = 'display:none;position:absolute;top:-8px;right:-8px;width:20px;height:20px;border-radius:50%;background:var(--mint);color:#0d1117;font-size:.7rem;font-weight:900;align-items:center;justify-content:center;flex-shrink:0;';
-      card.style.position = 'relative';
-      card.appendChild(badge);
-    }
-  });
-
-  // 3. 필수(*) 필드에만 완료 감지 — 값 입력 시 done 클래스 토글
+  // 2. 필수(*) 필드에만 완료 감지 — 값 입력 시 done 클래스 토글
   function markField(el) {
     const field = el.closest('.field');
     if (!field) return;
