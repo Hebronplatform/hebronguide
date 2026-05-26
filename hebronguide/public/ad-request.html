@@ -361,9 +361,35 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <input type="url" id="cWebsite" placeholder="https://www.yourchurch.com">
     </div>
 
-    <!-- 교회 유형 체크 (복수 선택 가능) -->
+    <div class="field-row">
+      <div class="field">
+        <label>교단 <span class="opt">(선택)</span></label>
+        <select id="cDenom" onchange="toggleDenomOther(this.value)">
+          <option value="">선택</option>
+          <option>장로교 (PCA / KAPC / KPCA)</option>
+          <option>침례교 (SBC / KSBC)</option>
+          <option>감리교 (UMC / KMC)</option>
+          <option>순복음 / 성결교</option>
+          <option>독립 교회</option>
+          <option value="기타">기타</option>
+        </select>
+        <input type="text" id="cDenomOther" placeholder="교단 이름을 직접 입력해 주세요"
+          style="display:none;margin-top:8px;width:100%;background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 14px;font-size:.88rem;color:var(--text);font-family:'Noto Sans KR',sans-serif;outline:none;">
+      </div>
+      <div class="field">
+        <label>주일 예배 시간 <span class="opt">(선택)</span></label>
+        <input type="text" id="cService" placeholder="1부 9:00 / 2부 11:00">
+      </div>
+    </div>
+
     <div class="field">
-      <label style="margin-bottom:10px;">교회 유형 <span class="opt">(복수 선택 가능)</span></label>
+      <label>새가족 환영 방식 및 특별 사역 <span class="opt">(선택)</span></label>
+      <textarea id="cDesc" placeholder="새가족 환영 프로그램, ESL 수업, 정착 도움, 목장 소그룹 등 교회 사역을 소개해 주세요."></textarea>
+    </div>
+
+    <!-- 교회 유형 (선택) — 새가족 소개 후 자연스럽게 선택 -->
+    <div class="field">
+      <div style="font-size:.7rem;color:rgba(236,253,245,.4);margin-bottom:8px;">(선택) 해당하는 항목을 선택하세요</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
 
         <label id="label-hebron" for="cHebronCoop" style="
@@ -397,33 +423,6 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
         </label>
 
       </div>
-      <p style="font-size:.7rem;color:rgba(236,253,245,.4);margin-top:8px;">둘 다 해당하면 모두 선택하세요</p>
-    </div>
-
-    <div class="field-row">
-      <div class="field">
-        <label>교단 <span class="opt">(선택)</span></label>
-        <select id="cDenom" onchange="toggleDenomOther(this.value)">
-          <option value="">선택</option>
-          <option>장로교 (PCA / KAPC / KPCA)</option>
-          <option>침례교 (SBC / KSBC)</option>
-          <option>감리교 (UMC / KMC)</option>
-          <option>순복음 / 성결교</option>
-          <option>독립 교회</option>
-          <option value="기타">기타</option>
-        </select>
-        <input type="text" id="cDenomOther" placeholder="교단 이름을 직접 입력해 주세요"
-          style="display:none;margin-top:8px;width:100%;background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 14px;font-size:.88rem;color:var(--text);font-family:'Noto Sans KR',sans-serif;outline:none;">
-      </div>
-      <div class="field">
-        <label>주일 예배 시간 <span class="opt">(선택)</span></label>
-        <input type="text" id="cService" placeholder="1부 9:00 / 2부 11:00">
-      </div>
-    </div>
-
-    <div class="field">
-      <label>새가족 환영 방식 및 특별 사역 <span class="opt">(선택)</span></label>
-      <textarea id="cDesc" placeholder="새가족 환영 프로그램, ESL 수업, 정착 도움, 목장 소그룹 등 교회 사역을 소개해 주세요."></textarea>
     </div>
 
     <!-- 개인정보 동의 — 교회 -->
