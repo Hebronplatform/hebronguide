@@ -14559,13 +14559,15 @@ function getCityChurches(slug: string, lang: string) {
     ],
     dc: [
       {
-        emoji: "⭐", tier: 1,
-        name: ko ? "새로운교회" : "New Church — Virginia/Maryland",
-        nameEn: "New Church",
+        emoji: "⭐", tier: 1, hcmi: true,
+        name: ko ? "새로운교회" : "New Life Church",
+        nameEn: "New Life Church",
         desc: ko
-          ? "✅ 가정교회 | 북미가사원 버지니아/메릴랜드 지역목자\n📍 Virginia / Maryland (DC 인근)\n✨ 담임: 안형준 목사"
-          : "✅ HCMI | HMI Virginia/Maryland Regional Shepherd\n📍 Virginia / Maryland (Greater DC)\n✨ Lead Pastor: Hyungjun Ahn",
-        tags: ko ? ["가정교회", "DC", "버지니아", "메릴랜드"] : ["HCMI", "DC", "Virginia", "Maryland"],
+          ? "🏠 가정교회(HCMI) | 독립 교회\n📍 Fairfax / Centreville, Virginia (DC 인근)\n✨ 담임: 안형준 목사 (Joseph Ahn)\n🕐 예배: 오후 1시\n📞 (703) 625-3979\n✉️ ahnjoseph30@gmail.com\n\n정착 도움·차편 제공·예배 후 식사 함께합니다."
+          : "🏠 HCMI Home Church | Independent\n📍 Fairfax / Centreville, Virginia (Greater DC)\n✨ Lead Pastor: Joseph Ahn\n🕐 Service: 1:00 PM\n📞 (703) 625-3979\n✉️ ahnjoseph30@gmail.com\n\nSettlement help, transportation & fellowship meal after service.",
+        tags: ko ? ["가정교회", "DC", "버지니아", "페어팩스", "정착도움", "차편"] : ["HCMI", "DC", "Virginia", "Fairfax", "Settlement"],
+        phone: "7036253979",
+        email: "ahnjoseph30@gmail.com",
       },
       {
         emoji: "⭐", tier: 1,
