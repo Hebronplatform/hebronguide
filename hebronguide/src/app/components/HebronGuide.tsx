@@ -14378,6 +14378,17 @@ function getCityChurches(slug: string, lang: string) {
           : "✅ HCMI | HMI Vancouver (Love) Regional Shepherd\n📍 Vancouver, BC, Canada\n✨ Lead Pastor: Eunjin Lee",
         tags: ko ? ["가정교회", "밴쿠버"] : ["HCMI", "Vancouver"],
       },
+      {
+        emoji: "⭐", tier: 1, hcmi: true,
+        name: ko ? "화이트락한인교회" : "White Rock Korean Methodist Church",
+        nameEn: "White Rock Korean Methodist Church",
+        desc: ko
+          ? "🏠 가정교회(HCMI) | 감리교 (UMC / KMC)\n📍 White Rock, BC, Canada (밴쿠버 남부)\n✨ 담임: 임흥빈 목사 (Ben Im)\n🕐 예배: 오전 10:30\n📞 (604) 537-8789\n✉️ whiterockkmc@gmail.com\n\n새가족모임 · 목장 사역 · 영혼 구원과 제자 양육."
+          : "🏠 HCMI Home Church | Methodist (UMC / KMC)\n📍 White Rock, BC, Canada (South Vancouver)\n✨ Lead Pastor: Ben Im\n🕐 Service: 10:30 AM\n📞 (604) 537-8789\n✉️ whiterockkmc@gmail.com\n\nNew members' fellowship · Cell group ministry · Soul-winning & disciple-making church.",
+        tags: ko ? ["가정교회", "감리교", "밴쿠버", "화이트락", "목장사역", "새가족"] : ["HCMI", "Methodist", "Vancouver", "White Rock", "Cell Group"],
+        phone: "6045378789",
+        email: "whiterockkmc@gmail.com",
+      },
     ],
     princgeorge: [
       {
@@ -14459,6 +14470,18 @@ function getCityChurches(slug: string, lang: string) {
         tags: ko ? ["의정부", "경기북부", "장로교", "귀환동포환영"] : ["Uijeongbu", "North Gyeonggi", "Presbyterian", "Returning Diaspora"],
         phone: "01032548020",
         email: "yhk8020@daum.net",
+      },
+      {
+        emoji: "⛪", tier: 2, hebronPartner: true,
+        denomination: "침례교 (SBC / KSBC)",
+        name: ko ? "에클레시아 엔크리스토 (온라인)" : "Ekklesia enchristo — Online Church",
+        nameEn: "Ekklesia enchristo",
+        desc: ko
+          ? "✅ Hebron 협력교회 | 침례교 (SBC / KSBC)\n🌐 온라인 전용 교회\n🕐 예배: 토요일 오후 9:00–10:00 (Zoom·온라인)\n☎ 010-2305-0545\n✉️ iharu2157@gmail.com\n✨ 담임: 신용철 목사 (Yongchul Shin)\n\n교회 나가기 어려운 분들을 위해 내 방에서 문을 열 수 있는 온라인 교회입니다. 해외 이주민·복귀자 누구나 참여 가능합니다."
+          : "✅ Hebron Partner | Baptist (SBC / KSBC)\n🌐 Online-only Church\n🕐 Service: Saturday 9:00–10:00 PM (Zoom · Online)\n☎ +82-10-2305-0545\n✉️ iharu2157@gmail.com\n✨ Lead Pastor: Yongchul Shin\n\nAn online church you can join from your own room — designed for those who find it difficult to attend in person. Open to diaspora and returnees worldwide.",
+        tags: ko ? ["온라인교회", "서울", "침례교", "토요예배", "해외동포환영"] : ["Online Church", "Seoul", "Baptist", "Saturday Service", "Diaspora"],
+        phone: "01023050545",
+        email: "iharu2157@gmail.com",
       },
     ],
     busan: [
