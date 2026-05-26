@@ -124,7 +124,11 @@
   .join-section h2 em{color:var(--mint);font-style:normal;}
   .join-section p{font-size:.98rem;color:var(--muted);line-height:2;max-width:540px;margin:0 auto 36px;}
   .join-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:800px;margin:0 auto 40px;}
-  .join-card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:22px 20px;text-align:left;}
+  .join-card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:22px 20px;text-align:left;cursor:pointer;transition:border-color .18s,transform .15s;text-decoration:none;display:block;color:inherit;}
+  .join-card:hover{border-color:var(--mint);transform:translateY(-3px);}
+  .join-card.card-church:hover{border-color:#C9A227;}
+  .join-card.card-biz:hover{border-color:#818CF8;}
+  .join-card.card-city:hover{border-color:#F97316;}
   .join-card-icon{font-size:1.6rem;margin-bottom:10px;}
   .join-card-title{font-size:.92rem;font-weight:800;color:#fff;margin-bottom:6px;}
   .join-card-desc{font-size:.8rem;color:var(--muted);line-height:1.75;}
@@ -406,26 +410,26 @@
   </p>
 
   <div class="join-cards">
-    <div class="join-card">
+    <a href="/#cities" class="join-card">
       <div class="join-card-icon">✈️</div>
       <div class="join-card-title"><span class="ko">이민자·이주자라면</span><span class="en">Immigrants & Expats</span></div>
       <div class="join-card-desc"><span class="ko">내 도시의 HebronGuide를 열어보세요. 병원·학교·교회·맛집이 한국어로 준비돼 있습니다.</span><span class="en">Open HebronGuide for your city. Hospitals, schools, churches, and restaurants — all ready for you.</span></div>
-    </div>
-    <div class="join-card">
+    </a>
+    <a href="/ad-request.html#church" class="join-card card-church">
       <div class="join-card-icon">⛪</div>
       <div class="join-card-title"><span class="ko">목사님·교회라면</span><span class="en">Pastors & Churches</span></div>
       <div class="join-card-desc"><span class="ko">교회를 무료로 등재하세요. 새로 도착한 성도가 공항에서부터 여러분의 교회를 만납니다.</span><span class="en">List your church for free. Newcomers will find your church from the moment they arrive.</span></div>
-    </div>
-    <div class="join-card">
+    </a>
+    <a href="/ad-request.html#business" class="join-card card-biz">
       <div class="join-card-icon">🏪</div>
       <div class="join-card-title"><span class="ko">성도·사업체라면</span><span class="en">Believers & Businesses</span></div>
       <div class="join-card-desc"><span class="ko">가게를 등재하세요. 성도의 일터가 환대의 첫 현장이 됩니다. 삶이 곧 선교입니다.</span><span class="en">List your business. A believer's workplace becomes the first place of welcome. Life itself is mission.</span></div>
-    </div>
-    <div class="join-card">
+    </a>
+    <a href="/city-request.html" class="join-card card-city">
       <div class="join-card-icon">🗺️</div>
       <div class="join-card-title"><span class="ko">내 도시가 없다면</span><span class="en">Your City Not Listed?</span></div>
       <div class="join-card-desc"><span class="ko">도시 추가를 신청해 주세요. 우선 순위로 반영합니다. 모든 도시에 환대를 심겠습니다.</span><span class="en">Request to add your city. We prioritize your request. We'll plant hospitality in every city.</span></div>
-    </div>
+    </a>
   </div>
 
   <a href="/seattle/" class="btn-hero"><span class="ko">HebronGuide 지금 열기 →</span><span class="en">Open HebronGuide Now →</span></a>

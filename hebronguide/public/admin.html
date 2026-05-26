@@ -972,14 +972,42 @@
   // ── 커뮤니티 글 렌더링 ──────────────────────────────────
   function renderCommunity(data) {
     if (!data.length) { setEmpty('커뮤니티 글이 없습니다'); return }
+
+    // 도시 신청 분리 표시
+    const cityReqs = data.filter(r => r.category === 'city_request')
+    const others   = data.filter(r => r.category !== 'city_request')
+
     document.getElementById('count-badge').textContent = `${data.length}개`
-    document.getElementById('table-content').innerHTML = `
+
+    const cityReqHtml = cityReqs.length ? `
+      <div style="margin-bottom:16px;padding:12px 16px;background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.3);border-radius:10px;">
+        <div style="font-size:.8rem;font-weight:700;color:#F97316;margin-bottom:8px;">🗺️ 도시 추가 신청 (${cityReqs.length}건)</div>
+        <table style="width:100%;">
+          <thead><tr><th>신청 도시</th><th>신청자</th><th>내용</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
+          <tbody>
+            ${cityReqs.map(r => `
+              <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" style="cursor:pointer;" title="클릭하여 전체 내용 보기">
+                <td><div class="cell-name" style="color:#F97316;">${esc(r.city || r.title || '—')}</div></td>
+                <td><div class="cell-contact">${esc(r.name || r.contact || '—')}</div></td>
+                <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;">더보기 →</span>' : ''}</div></td>
+                <td><span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 확인' : r.status === 'rejected' ? '❌ 보류' : '⏳ 대기'}</span></td>
+                <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
+                <td><div class="actions" onclick="event.stopPropagation()">
+                  ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 확인</button>` : ''}
+                  <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
+                </div></td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>` : ''
+
+    document.getElementById('table-content').innerHTML = cityReqHtml + `
       <table>
         <thead><tr>
           <th>제목·이름</th><th>내용</th><th>도시</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th>
         </tr></thead>
         <tbody>
-          ${data.map(r => `
+          ${others.map(r => `
             <tr data-id="${r.id}" data-table="community_items" data-db="main" onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기">
               <td>
                 <div class="cell-name">${esc(r.title || r.business_name || r.name || '(제목없음)')}</div>
