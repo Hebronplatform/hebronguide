@@ -10178,7 +10178,7 @@ function CommunityPulseSection({ lang }: { lang: string }) {
     { emoji: "🎯", ko: `정착 첫날부터 현지인처럼 — HebronGuide`, en: `Live like a local from Day One — HebronGuide`, time: ko ? "3시간 전" : "3h ago" },
     { emoji: "🏙️", ko: `달라스·휴스턴·애틀랜타 정보가 업데이트됐어요`, en: `Dallas, Houston, Atlanta info refreshed`, time: ko ? "3시간 전" : "3h ago" },
     { emoji: "🇰🇷", ko: `서울·부산·분당 역이민 정보도 확인해보세요`, en: `Seoul, Busan, Bundang re-migration info ready`, time: ko ? "4시간 전" : "4h ago" },
-    { emoji: "🌐", ko: `67개 도시 — 오늘도 누군가 새로 이주하고 있어요`, en: `67 cities — someone is moving today, too`, time: ko ? "5시간 전" : "5h ago" },
+    { emoji: "🌐", ko: `68개 도시 — 오늘도 누군가 새로 이주하고 있어요`, en: `68 cities — someone is moving today, too`, time: ko ? "5시간 전" : "5h ago" },
     { emoji: "💛", ko: `이 가이드가 도움이 됐나요? 주변에 공유해주세요`, en: `Did this help? Share with someone who needs it`, time: ko ? "5시간 전" : "5h ago" },
     { emoji: "🙏", ko: `낯선 땅에서 외롭지 않게 — 헤브론이 함께합니다`, en: `You're not alone in a new land — Hebron is here`, time: ko ? "6시간 전" : "6h ago" },
     // ── G2G — 세대에서 세대로 (은근히, 자연스럽게)
@@ -11761,7 +11761,7 @@ function waGwaJosa(s: string): string {
 }
 // ────────────────────────────────────────────────────────────
 
-// 도시 → 현지 한인 정체성 매핑 (67개 도시 전부 커버)
+// 도시 → 현지 한인 정체성 매핑 (68개 도시 전부 커버)
 const DIASPORA_IDENTITY: Record<string, {
   flag: string; ko: string; en: string; descKo: string; descEn: string; color: string;
 }> = {
@@ -12003,18 +12003,14 @@ function AmericasAdSection({ lang }: { lang: string }) {
 }
 
 /* ─────────────────────────────────────────
-   🎵 FLOATING MUSIC PLAYER — 플레이리스트
-   슬림 바 + 이전/다음 + 열기/닫기
+   🎵 FLOATING MUSIC PLAYER — Spotify
+   Bloom Again Music 아티스트 채널
 ───────────────────────────────────────── */
-const MUSIC_PLAYLIST = [
-  { id: "pKsR_CTaSdk", title: "Spring Café Romance 🌿" },
-  { id: "r8Bte2R56SM", title: "Bloom Again Music 🌸" },
-];
+const SPOTIFY_ARTIST_ID = "2orO6iWhVhd7kOzKmSknAf";
 
 function FloatingMusicPlayer() {
   const [active, setActive] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const [idx, setIdx] = useState(0);
 
   useEffect(() => {
     _setMusicActive = setActive;
@@ -12022,10 +12018,6 @@ function FloatingMusicPlayer() {
   }, []);
 
   if (!active) return null;
-
-  const song = MUSIC_PLAYLIST[idx];
-  const prev = () => setIdx(i => (i - 1 + MUSIC_PLAYLIST.length) % MUSIC_PLAYLIST.length);
-  const next = () => setIdx(i => (i + 1) % MUSIC_PLAYLIST.length);
 
   return (
     <div style={{
@@ -12041,46 +12033,32 @@ function FloatingMusicPlayer() {
         overflow: "hidden",
       }}>
         {/* 슬림 한 줄 바 */}
-        <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "7px 10px" }}>
-          {/* 이전 */}
-          <button onClick={prev} style={{ background: "none", border: "none", color: "rgba(110,231,183,0.6)", fontSize: 13, cursor: "pointer", padding: "0 2px", flexShrink: 0 }}>⏮</button>
-          <span style={{ fontSize: 13, flexShrink: 0 }}>🎵</span>
-          {/* 곡 제목 */}
+        <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "7px 12px" }}>
+          <span style={{ fontSize: 16, flexShrink: 0 }}>🎵</span>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 11.5, fontWeight: 700, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-              {song.title} · Bloom Again Music
+            <div style={{ fontSize: 11.5, fontWeight: 700, color: "#1DB954", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+              Bloom Again Music
             </div>
+            <div style={{ fontSize: 10, color: "rgba(110,231,183,0.6)", fontFamily: "Manrope,sans-serif" }}>Spotify</div>
           </div>
-          {/* 다음 */}
-          <button onClick={next} style={{ background: "none", border: "none", color: "rgba(110,231,183,0.6)", fontSize: 13, cursor: "pointer", padding: "0 2px", flexShrink: 0 }}>⏭</button>
-          {/* 재생 중 표시 */}
-          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#6EE7B7", flexShrink: 0 }} />
-          {/* 열기/닫기 */}
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#1DB954", flexShrink: 0 }} />
           <button onClick={() => setExpanded(p => !p)}
-            style={{ background: "none", border: "none", color: "rgba(110,231,183,0.7)", fontSize: 10, fontWeight: 700, cursor: "pointer", padding: "2px 4px", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
+            style={{ background: "none", border: "none", color: "rgba(29,185,84,0.8)", fontSize: 10, fontWeight: 700, cursor: "pointer", padding: "2px 4px", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
             {expanded ? "▼" : "▲"}
           </button>
-          {/* 닫기 */}
           <button onClick={() => setActive(false)}
             style={{ background: "none", border: "none", color: "rgba(236,253,245,0.3)", fontSize: 14, cursor: "pointer", padding: "0 2px", lineHeight: 1, flexShrink: 0 }}>✕</button>
         </div>
-        {/* 단일 iframe — 항상 DOM에 유지 (축소해도 재생 계속)
-            expanded: 전체 영상 / collapsed: height:0 으로 숨김 */}
-        <div style={{
-          height: expanded ? "auto" : 0,
-          overflow: "hidden",
-          transition: "height 0.2s ease",
-        }}>
-          <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%" }}>
-            <iframe
-              key={`player-${song.id}`}
-              src={`https://www.youtube.com/embed/${song.id}?rel=0&modestbranding=1&autoplay=1`}
-              title={song.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
-            />
-          </div>
+        {/* Spotify 임베드 플레이어 */}
+        <div style={{ height: expanded ? "auto" : 0, overflow: "hidden" }}>
+          <iframe
+            src={`https://open.spotify.com/embed/artist/${SPOTIFY_ARTIST_ID}?utm_source=generator&theme=0`}
+            width="100%"
+            height="352"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            style={{ border: "none", display: "block" }}
+          />
         </div>
       </div>
     </div>
@@ -12179,7 +12157,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
         </div>
       </a>
 
-      {/* 🎵 오늘의 음악 — 클릭 시 하단 고정 플레이어 활성화 */}
+      {/* 🎵 오늘의 음악 — Spotify · Bloom Again Music */}
       <button
         onClick={() => activateMusic()}
         style={{
@@ -12189,30 +12167,32 @@ function GrowthShareSection({ lang }: { lang: string }) {
       >
         <div style={{
           borderRadius: 14, overflow: "hidden",
-          border: "1px solid rgba(110,231,183,0.2)",
-          background: "linear-gradient(135deg, #0d1f1a 0%, #0d1117 100%)",
+          border: "1px solid rgba(29,185,84,0.3)",
+          background: "linear-gradient(135deg, #0d1f0d 0%, #0d1117 100%)",
+          display: "flex", alignItems: "center", gap: 14, padding: "12px 14px",
         }}>
-          <div style={{ position: "relative", width: "100%", aspectRatio: "16/7", overflow: "hidden" }}>
-            <img
-              src="https://img.youtube.com/vi/pKsR_CTaSdk/mqdefault.jpg"
-              alt="Bloom Again Music"
-              style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.75 }}
-            />
-            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.2)" }}>
-              <div style={{ width: 48, height: 48, borderRadius: "50%", background: "rgba(110,231,183,0.9)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 20px rgba(110,231,183,0.4)" }}>
-                <span style={{ fontSize: 20, marginLeft: 3, color: "#0d1117" }}>▶</span>
-              </div>
+          {/* Spotify 로고 영역 */}
+          <div style={{
+            width: 48, height: 48, borderRadius: 12, flexShrink: 0,
+            background: "#1DB954",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            boxShadow: "0 4px 16px rgba(29,185,84,0.35)",
+          }}>
+            <span style={{ fontSize: 22 }}>🎵</span>
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#1DB954", fontFamily: "Manrope,sans-serif", marginBottom: 3, letterSpacing: ".04em" }}>
+              {ko ? "🎵 음악 듣기 — 탭 이동해도 계속 재생" : "🎵 Music — plays while you browse"}
+            </div>
+            <div style={{ fontSize: 13, fontWeight: 800, color: "#ECFDF5", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+              Bloom Again Music
+            </div>
+            <div style={{ fontSize: 10.5, color: "rgba(236,253,245,0.5)", fontFamily: "Manrope,sans-serif", marginTop: 2 }}>
+              Spotify · Spring Café Romance 외
             </div>
           </div>
-          <div style={{ padding: "10px 14px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", marginBottom: 2 }}>
-                🎵 {ko ? "오늘의 음악 — 탭 이동해도 계속 재생" : "Music for Today — plays while you browse"}
-              </div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#ECFDF5", fontFamily: "'Noto Sans KR',sans-serif" }}>
-                Spring Café Romance 🌿 · Bloom Again Music
-              </div>
-            </div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(29,185,84,0.8)", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
+            ▶ 열기
           </div>
         </div>
       </button>
@@ -12307,7 +12287,7 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
 
 /* ─────────────────────────────────────────
    HOME: 플라이휠 소셜 프루프 바 (쿠팡 원리 ①)
-   — "312개 교회 · 67개 도시" 숫자가 신뢰를 만든다
+   — "312개 교회 · 68개 도시" 숫자가 신뢰를 만든다
 ───────────────────────────────────────── */
 function HebronFlywheelBar({ lang }: { lang: string }) {
   const stats = [
@@ -21406,7 +21386,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             icon="🤝" color="#8B5CF6" lang={lang}
             titleKo="헤브론 커넥트 — 친구·멘토·동행 파트너 매칭"
             titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
-            descKo="교인 검증 프로필로 67개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
+            descKo="교인 검증 프로필로 68개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
             descEn="Meet Koreans across 62 cities. Friends, mentors, prayer partners & business connections."
           />
           {/* 211 팁 박스 */}
@@ -26551,7 +26531,7 @@ function AppBar({ onHome }: { onHome?: () => void }) {
           {/* 헤더 */}
           <div style={{ padding: "14px 18px 10px", flexShrink: 0 }}>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#1a2535", marginBottom: 2 }}>
-              🌍 {lang === "ko" ? "67개 도시" : "67 Cities"}
+              🌍 {lang === "ko" ? "68개 도시" : "68 Cities"}
             </div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8" }}>
               {lang === "ko" ? "이사·출장·방문 도시를 선택하세요" : "Select your destination city"}
