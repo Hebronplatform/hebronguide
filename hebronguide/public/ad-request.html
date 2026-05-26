@@ -740,11 +740,11 @@ function toggleChurchType(type, checked) {
   }
 }
 
-// ── 전체 필드 완료 표시 자동화 ───────────────────────────────
+// ── 필수 필드 + 교회 유형 카드 완료 표시 ────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. 모든 .field 내 label에 ✓ tick span 자동 삽입
+  // 1. 필수(*) 필드 label에만 ✓ tick span 삽입
   document.querySelectorAll('.field label').forEach(label => {
-    if (!label.querySelector('.field-tick')) {
+    if (label.querySelector('.req') && !label.querySelector('.field-tick')) {
       const tick = document.createElement('span');
       tick.className = 'field-tick';
       tick.textContent = '✓';
@@ -752,7 +752,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 2. 교회 유형 카드에 ✓ 배지 삽입
+  // 2. 교회 유형 카드(협력교회·HCMI)에 ✓ 배지 삽입
   ['label-hebron','label-hcmi'].forEach(id => {
     const card = document.getElementById(id);
     if (card && !card.querySelector('.church-type-check')) {
@@ -765,10 +765,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 3. 모든 input/textarea/select에 완료 감지 이벤트 추가
+  // 3. 필수(*) 필드에만 완료 감지 — 값 입력 시 done 클래스 토글
   function markField(el) {
     const field = el.closest('.field');
     if (!field) return;
+    if (!field.querySelector('label .req')) return; // 필수 필드만
     const val = el.value?.trim() ?? '';
     const isEmpty = el.tagName === 'SELECT' ? (val === '' || val === '선택') : val === '';
     field.classList.toggle('done', !isEmpty);
@@ -776,7 +777,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.field input, .field textarea, .field select').forEach(el => {
     ['input','change','blur'].forEach(evt => el.addEventListener(evt, () => markField(el)));
-    markField(el); // 초기 상태 반영
+    markField(el);
   });
 });
 
