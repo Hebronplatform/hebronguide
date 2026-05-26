@@ -1,315 +1,392 @@
-# HebronGuide 확산 전략 (Expansion Strategy)
-**확정일: 2026-05-08 | 폴 김 목사 비전**  
-**핵심: BTS 글로벌 투어 도시 + 복음적 제자 만드는 교회 = HebronGuide 확산 경로**
+# HebronGuide 글로벌 확장 전략 (500 Cities by 2030)
+
+> **문서 목적**: HebronGuide (hebronguide.com) 글로벌 디아스포라 환대 선교 플랫폼의 전략 프레임워크.  
+> 현재 68개 도시 운영 중 → 2030년까지 500개 도시 목표.  
+> This framework enables other agents/models to populate, refine, and expand the global diaspora mission database.
 
 ---
 
-## 🎯 전략의 핵심 통찰
+## 1. 핵심 선교 철학 (Core Missional Philosophy)
 
-```
-       BTS가 가는 곳에는 한국 문화 관심이 이미 깨어 있다
-                          ↓
-               그 도시에 한인 디아스포라가 있다
-                          ↓
-        그 도시에 복음적·제자 만드는 교회가 있다
-                          ↓
-      HebronGuide가 도착할 준비된 토양이 된다
-```
+### 한인 디아스포라: 선교지이자 선교 세력 (Mission Field AND Mission Force)
 
-이것은 단순한 마케팅이 아닙니다.  
-**문화의 흐름과 영적 인프라를 결합한 사역적 확산**입니다.
+한인 디아스포라는 단순한 선교 대상이 아니다. 세계 193개국에 흩어진 750만 명의 한인은, 각 도시의 경제·문화·교육·신앙 생태계 안에 이미 깊이 뿌리내린 **준비된 선교 세력**이다. HebronGuide는 그들을 찾고, 연결하고, 세워서 도시를 축복하는 플랫폼이다.
 
----
+Korean diaspora are not merely a mission field — they are a prepared mission force already embedded in the economic, cultural, educational, and spiritual ecosystems of cities worldwide. HebronGuide exists to find them, connect them, and mobilize them to bless their cities.
 
-## 🌊 BTS 도시 흐름이 왜 적합한가
+### 도시: 영적·문화적·경제적·관계적 생태계 (Cities as Ecosystems)
 
-### BTS 투어 도시 = 한인 디아스포라 도시
+각 도시는 단순한 지리적 좌표가 아니다. 도시는 살아있는 생태계다:
 
-BTS의 글로벌 투어 도시는 **한인 인구 통계와 80% 이상 겹칩니다.**
+- **영적 생태계**: 교회, 예배 공동체, 신앙 네트워크
+- **문화적 생태계**: 언어, 음식, 예술, 세대 간 정체성
+- **경제적 생태계**: 비즈니스, 직업, 이민 경로, 교육 기관
+- **관계적 생태계**: 가정, 이웃, 공동체, 멘토링 망
 
-| BTS 자주 방문 도시 | 한인 인구 | 디아스포라 영향력 |
-|---|---|---|
-| LA·뉴욕·시카고 | 50만+, 15만+, 6만+ | ⭐⭐⭐⭐⭐ |
-| 토론토·밴쿠버 | 10만, 8만 | ⭐⭐⭐⭐ |
-| 도쿄·오사카 | 한인+재일동포 | ⭐⭐⭐⭐ |
-| 런던·파리 | 4만, 3만 | ⭐⭐⭐ |
-| 시드니·멜버른 | 한인 8만 | ⭐⭐⭐ |
-| 상파울루·멕시코시티 | 한인 5만 | ⭐⭐ |
-| 베를린·암스테르담 | 한인 1-2만 | ⭐⭐ |
+HebronGuide는 각 도시의 이 네 생태계 안에서 한인 디아스포라의 환대 역량을 지도에 올린다.
 
-### 왜 BTS인가 (단순히 마케팅이 아닌 이유)
+### 환대: 제1의 선교 자세 (Hospitality as Primary Missional Posture)
 
-1. **문화적 토양 준비됨**: BTS 콘서트 도시는 K-pop·한국어·한국 문화 호의도 이미 높음
-2. **ARMY 네트워크**: 자발적 확산 채널 (한인 + 비한인 모두)
-3. **언론 노출**: BTS가 가는 곳은 현지 미디어 자동 보도 → HebronGuide 인지도
-4. **시기 일치**: BTS 투어 발표 6-12개월 전 → 우리가 준비할 시간 확보
-5. **호의적 이미지**: "K-pop의 도시"에 한인 정착 가이드 = 자연스러운 흐름
+히브리어 **헤브론(Hebron)**은 "연합·연결·교제"를 뜻한다. 창세기 13:14-18에서 아브라함이 헤브론에 제단을 쌓은 것처럼, HebronGuide는 각 도시에 환대의 제단을 세운다. 환대는 프로그램이 아니라 정체성이다.
 
-### BTS 외 K-Wave 도시 흐름
+> "나그네를 대접하기를 잊지 말라 이로써 부지중에 천사들을 대접한 이들이 있었느니라." — 히브리서 13:2
 
-BTS만이 아닌 **전체 K-Wave**를 추적:
-- BLACKPINK·TWICE·NewJeans 투어 도시
-- K-드라마 인기 지역 (오징어게임·기생충 화제 도시)
-- 한국 영화제 개최지 (베를린·칸·토론토·뉴욕)
-- K-Food 트렌드 도시 (한식당 급증 지역)
+Hospitality is not a program — it is an identity. Every Korean home, campus ministry, workplace, and church is a potential Hebron altar where strangers become family.
+
+### HebronGuide의 역할: 지도·권한 부여·동원 (Map, Empower, Mobilize)
+
+1. **MAP**: 전 세계 한인 환대 자원을 가시화한다 (교회, 가정, 캠퍼스, 직장)
+2. **EMPOWER**: 환대 제공자를 훈련하고 연결하고 인증한다
+3. **MOBILIZE**: 새로 오는 이민자·유학생·여행자·VIP를 준비된 환대 공동체로 연결한다
+
+이 세 역할이 하나의 여정을 만든다: VIP(방문자) → 연결 → 공동체 → 신앙 → 섬김 → 목자
 
 ---
 
-## ⛪ 복음적 + 제자 만드는 교회 연결
+## 2. Tier 분류 체계 (Tier Classification System)
 
-### 도시 선정의 두 번째 기준
-
-각 도시에 **복음적이고 제자 만드는 교회가 있는가?**가 진출 결정의 핵심.
+### 분류 기준 (Classification Logic)
 
 ```
-교회 없는 도시 = HebronGuide 사역 토대 ❌
-교회 있어도 명목적 = 사역 동력 부족 ❌
-복음적 + 제자 만드는 교회 = 진출 ✅
+IF est_korean_population >= 50,000 OR economic_influence_score >= 5:
+    → TIER 1 (글로벌 거점)
+ELSE IF est_korean_population >= 10,000:
+    → TIER 2 (지역 중심)
+ELSE IF est_korean_population >= 3,000:
+    → TIER 3 (전략 성장)
+ELSE:
+    → TIER 4 (개척 선교)
 ```
 
-### 파트너 교회 4가지 기준
+### Tier 정의 (Tier Definitions)
 
-#### ① 복음적 (Gospel-Centered)
-- 십자가 복음 중심 설교
-- 성경 권위 인정
-- 그리스도 외 다른 구원의 길 ❌
-- 사회 봉사·문화는 결과이지 목적이 아님
+| Tier | 명칭 | 목표 도시 수 | 한인 인구 기준 | 설명 |
+|------|------|------------|--------------|------|
+| **T1** | 글로벌 거점 | ~50개 | 5만+ 또는 글로벌 영향력 | 대규모 한인 커뮤니티, 다국적 비즈니스 허브, 전략적 선교 거점 |
+| **T2** | 지역 중심 | ~150개 | 1만~5만 | 안정적 한인 교회 기반, 지역 내 디아스포라 중심 도시 |
+| **T3** | 전략 성장 | ~200개 | 3천~1만 | 성장하는 한인 커뮤니티, 대학·직장 중심 이민 증가 |
+| **T4** | 개척 선교 | ~100개 | 3천 미만 | 소규모 한인 공동체, 비한인권 선교 거점, 개척 필요 도시 |
 
-#### ② 제자 만드는 (Disciple-Making)
-- "교인 출석" ≠ "제자 형성"
-- 신앙 성장 단계가 명시됨
-- 1대1 양육 또는 소그룹 양육 시스템
-- 신자가 또 다른 제자를 만드는 재생산 구조
+**총계**: 500개 도시
 
-#### ③ 한인 친화 (Korean-Friendly)
-- 한국어 사역 또는 한국어 통역 가능
-- 1세대·1.5세대·2세대 모두 환영
-- 한인 디아스포라 사역에 비전이 있음
+### 보조 점수 체계 (Supplementary Scoring System)
 
-#### ④ HebronGuide 비전 공감
-- 사역적 환대(hospitality)에 동의
-- 직접 전도 아닌 자연스러운 빛 모델 수용
-- LLC와 교회의 구조적 분리 이해
+각 도시는 다음 5개 항목에서 1–5점으로 평가된다:
 
-### 우선순위: 가정교회 (House Church)
-
-`docs/EXECUTION_GUIDELINES.md` 영역 7의 **Tier 1 가정교회**가 이 4가지 기준에 가장 잘 부합:
-
-```
-Tier 1: 국제가정교회 사역원(IHM) 인증 가정교회
-        ⭐ 복음적 ✅
-        ⭐ 제자 만들기(목장+삶공부) ✅
-        ⭐ 신약교회 회복 비전 ✅
-        ⭐ 한인 사역 중심 ✅
-```
-
-→ **신도시 진출 시 IHM 가정교회 우선 탐색**
+| 항목 | 설명 | 가중치 |
+|------|------|--------|
+| `diaspora_significance_score` | 한인 디아스포라의 역사적·커뮤니티적 중요도 | 높음 |
+| `hospitality_potential_score` | 환대 인프라 구축 가능성 | 높음 |
+| `economic_influence_score` | 글로벌 경제 영향력 (세계 금융·무역 중심지 여부) | 중간 |
+| `migration_hub_score` | 이민·유학 유입 허브 여부 | 중간 |
+| `airport_hub` | 국제 항공 허브 여부 (boolean) | 참고용 |
 
 ---
 
-## 🗺️ 9개 도시 + BTS 흐름 매핑
+## 3. 마스터 데이터베이스 스키마 (Master Database Schema)
 
-### 현재 (Phase 1): 9개 도시 — 미국·캐나다 한인 핵심
+### 필드 정의 (Field Definitions)
 
-| 도시 | BTS 투어 이력 | 가정교회 존재 | 진출 상태 |
-|---|---|---|---|
-| 시애틀 | 2017·2018 | ✅ GMC (시애틀지구촌) | 🟢 LIVE (모델) |
-| LA | 빈번 ⭐ | ✅ 다수 | 🟢 LIVE |
-| 뉴욕 | 빈번 ⭐ | ✅ 다수 | 🟢 LIVE |
-| 토론토 | 자주 | ⏳ 탐색 필요 | 🟢 LIVE |
-| 밴쿠버 | 자주 | ⏳ 탐색 필요 | 🟢 LIVE |
-| 시카고 | 자주 | ⏳ 탐색 필요 | 🟡 다음 후보 |
-| 보스턴 | 가끔 | ⏳ 탐색 필요 | 🟢 LIVE |
-| 댈러스 | 가끔 | ✅ Eden Church | 🟢 LIVE |
-| SF | 자주 | ⏳ 탐색 필요 | 🟢 LIVE |
-
-### Phase 2 (2027): BTS 투어 다음 후보
-
-| 도시 | 한인 인구 | BTS 투어 | IHM 가정교회 |
-|---|---|---|---|
-| **시카고** | 6만 | ✅ 자주 | 🔍 확인 필요 |
-| **애틀랜타** | 10만 | ✅ 자주 | 🔍 확인 필요 |
-| **휴스턴** | 4만 | ✅ 자주 | ⭐ IHM 본부! (휴스턴 서울침례교회) |
-| **워싱턴 DC** | 8만 | 가끔 | 🔍 확인 필요 |
-| **뉴저지 (포트리)** | 15만+ | 뉴욕 영향권 | 🔍 확인 필요 |
-
-### Phase 3 (2028+): 글로벌 K-Wave 도시
-
-| 도시 | 한인 인구 | K-Wave 영향 | 우선순위 |
-|---|---|---|---|
-| **도쿄** | 50만+(재일포함) | 매우 높음 | ⭐⭐⭐⭐ |
-| **런던** | 4만 | 높음 | ⭐⭐⭐ |
-| **시드니** | 8만 | 높음 | ⭐⭐⭐ |
-| **베를린** | 1.5만 | 중간 | ⭐⭐ |
-| **상파울루** | 5만 | 중간 | ⭐⭐ |
+| 필드명 | 타입 | 설명 | 예시 |
+|--------|------|------|------|
+| `continent` | string | 대륙 | "North America" |
+| `country` | string | 국가명 (영문) | "United States" |
+| `iso_country_code` | string | ISO 3166-1 alpha-2 | "US" |
+| `city` | string | 도시명 (영문) | "Los Angeles" |
+| `metro_name` | string | 광역 도시권 명칭 | "Greater Los Angeles" |
+| `tier` | integer (1–4) | HebronGuide Tier | 1 |
+| `metro_population` | integer | 광역권 총인구 (Est.) | 13000000 |
+| `est_korean_population` | integer | 추정 한인 인구 (Est.) | 250000 |
+| `est_korean_ratio` | float | 추정 한인 비율 (Est.) | 0.019 |
+| `diaspora_significance_score` | integer (1–5) | 디아스포라 중요도 | 5 |
+| `hospitality_potential_score` | integer (1–5) | 환대 잠재력 | 5 |
+| `economic_influence_score` | integer (1–5) | 경제적 영향력 | 4 |
+| `migration_hub_score` | integer (1–5) | 이민·유학 허브 | 5 |
+| `airport_hub` | boolean | 국제 항공 허브 | true |
+| `universities_presence` | boolean | 대학교 존재 여부 | true |
+| `local_church_presence` | boolean | 한인 교회 존재 여부 | true |
+| `notes_missional` | string | 선교적 메모 | "Koreatown; largest Korean diaspora city outside Korea" |
+| `data_confidence_level` | string ("high"/"medium"/"low") | 데이터 신뢰도 | "high" |
+| `data_sources` | string | 데이터 출처 | "US Census 2020, KFCOC" |
+| `last_updated` | string (YYYY-MM-DD) | 최종 업데이트 | "2026-05-25" |
 
 ---
 
-## 📅 BTS 투어 추적 시스템
+## 4. 환대 선교 전략 요소 (Hospitality Mission Strategy Elements)
 
-### 정보 수집 채널
+### 5대 환대 유형 (Five Forms of Diaspora Hospitality)
 
-```
-공식 발표:
-  - bts.ibighit.com (Big Hit/HYBE 공식)
-  - weverse.io (BTS 공식 팬 플랫폼)
+| # | 유형 | 설명 | 주요 제공자 |
+|---|------|------|------------|
+| 1 | **Korean Home Hospitality** (가정 환대) | 한인 가정에서 식사·숙박·멘토링을 제공. 가장 깊은 환대. | 한인 가정, 장로·집사 가정 |
+| 2 | **Campus Hospitality** (캠퍼스 환대) | 대학 캠퍼스 내 유학생·이민 청년 환영. 정착 지원 포함. | 캠퍼스 미니스트리, 학생 모임 |
+| 3 | **Workplace Hospitality** (직장 환대) | 직장 내 한인 네트워크 통해 신규 이민자·취업자 연결 | 한인 비즈니스 오너, 전문직 네트워크 |
+| 4 | **Church-based Hospitality** (교회 환대) | 한인 교회 영어부·청년부 중심. 예배 후 환대, 정착 프로그램 | 한인 교회, EM(영어 미니스트리) |
+| 5 | **Digital Hospitality** (디지털 환대) | 온라인 연결, HebronGuide 앱, SNS 커뮤니티, 원격 멘토링 | HebronGuide 플랫폼, 온라인 공동체 |
 
-투어 정보:
-  - Twitter/X: @BTS_twt, @bts_bighit
-  - YouTube: HYBE LABELS
-  - 한국 언론: 연합뉴스·뉴시스 K-pop 섹션
+### Tier별 환대 전략 적용 (Tier Application Matrix)
 
-미국 투어 정보:
-  - Live Nation, AEG, Ticketmaster
-  - Pollstar (콘서트 산업 매체)
-```
+| 환대 유형 | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
+|----------|--------|--------|--------|--------|
+| Home Hospitality | ✅ | ✅ | ✅ | ✅ |
+| Campus Hospitality | ✅ (강조) | ✅ | ✅ | — |
+| Workplace Hospitality | ✅ (강조) | — | — | — |
+| Church-based Hospitality | ✅ | ✅ | — | ✅ |
+| Digital Hospitality | ✅ (강조) | ✅ | ✅ | ✅ |
 
-### 6-12개월 전 시그널
+**Tier 1**: 5가지 전부 (Digital + Workplace + Campus 특별 강조)  
+**Tier 2**: Home + Church + Campus  
+**Tier 3**: Home + Campus + Digital  
+**Tier 4**: Home + Church (개척 집중)
 
-BTS 또는 다른 K-pop 아티스트가 새 도시 발표하면:
+---
 
-```
-Week 0: 발표 감지 (Twitter·언론 모니터링)
-Week 1-2: 그 도시 한인 커뮤니티 조사
-Week 3-4: IHM 가정교회 또는 복음적 교회 검색
-Month 2: 파트너 목사님 연락·만남
-Month 3: HebronGuide 도시 콘텐츠 준비 시작
-Month 6: 도시 콘텐츠 베타 출시
-콘서트 시점: HebronGuide [도시] 정식 런치
-```
+## 5. 전략 도시 100+ 목록 (Strategic City List 100+)
 
-### 자동화 가능 영역
+> 모든 인구 수치는 추정치(Est.)입니다. 출처: UN Migration Data, 외교부 재외동포 현황, 각국 통계청 자료 등.
 
-```
-- HYBE 공식 RSS 피드 모니터링
-- Twitter 키워드 알림 ("BTS tour [city]")
-- 자동 한인 인구 통계 수집
-- IHM 사역원 디렉터리 정기 동기화
+### 북미 (North America) — 약 25개 도시
+
+| # | Country | City | Tier | Est. Korean Pop. | Hospitality Score | Notes |
+|---|---------|------|------|-----------------|-------------------|-------|
+| 1 | USA | Los Angeles | T1 | 250,000 Est. | 5 | Koreatown; 최대 한인 디아스포라 도시 |
+| 2 | USA | New York | T1 | 150,000 Est. | 5 | Flushing Koreatown; 금융·문화 허브 |
+| 3 | USA | Chicago | T1 | 80,000 Est. | 4 | 중서부 한인 중심지 |
+| 4 | USA | Seattle | T1 | 75,000 Est. | 5 | HebronGuide 본거지; 테크·항공 허브 |
+| 5 | USA | Washington D.C. | T1 | 100,000 Est. | 5 | 정치·외교·한인 밀집 |
+| 6 | USA | Atlanta | T1 | 70,000 Est. | 4 | 남동부 한인 허브 |
+| 7 | USA | Dallas | T1 | 60,000 Est. | 4 | 텍사스 한인 중심 |
+| 8 | USA | San Francisco | T1 | 55,000 Est. | 4 | 실리콘밸리 한인 테크 집중 |
+| 9 | USA | Houston | T1 | 50,000 Est. | 4 | 에너지 산업 한인 네트워크 |
+| 10 | USA | Boston | T2 | 35,000 Est. | 4 | 대학·연구 중심; 유학생 밀집 |
+| 11 | USA | Philadelphia | T2 | 25,000 Est. | 3 | 동부 교육 허브 |
+| 12 | USA | Minneapolis | T2 | 15,000 Est. | 3 | 중서부 성장 커뮤니티 |
+| 13 | USA | Portland | T2 | 20,000 Est. | 4 | 태평양 연안 한인 공동체 |
+| 14 | USA | San Diego | T2 | 30,000 Est. | 4 | 군인 가족·대학 한인 |
+| 15 | USA | Honolulu | T2 | 25,000 Est. | 4 | 최초 한인 이민 역사 도시 |
+| 16 | USA | Denver | T3 | 8,000 Est. | 3 | 내륙 성장 도시 |
+| 17 | USA | Phoenix | T3 | 10,000 Est. | 3 | 서남부 한인 성장 지역 |
+| 18 | USA | Las Vegas | T3 | 12,000 Est. | 3 | 서비스업 한인 집중 |
+| 19 | Canada | Toronto | T1 | 150,000 Est. | 5 | 캐나다 최대 한인 도시 |
+| 20 | Canada | Vancouver | T1 | 90,000 Est. | 5 | 한인 유학생·이민 1위 |
+| 21 | Canada | Calgary | T2 | 20,000 Est. | 3 | 캐나다 에너지 도시 |
+| 22 | Canada | Edmonton | T2 | 12,000 Est. | 3 | 캐나다 북부 한인 공동체 |
+| 23 | Canada | Ottawa | T2 | 10,000 Est. | 3 | 연방 정부 소재지 |
+| 24 | Mexico | Mexico City | T3 | 4,000 Est. | 3 | 중남미 최대 한인 커뮤니티 |
+| 25 | Mexico | Monterrey | T3 | 3,500 Est. | 3 | 한국 제조업 투자 거점 |
+
+### 아시아·태평양 (Asia-Pacific) — 약 30개 도시
+
+| # | Country | City | Tier | Est. Korean Pop. | Hospitality Score | Notes |
+|---|---------|------|------|-----------------|-------------------|-------|
+| 26 | China | Beijing | T1 | 100,000 Est. | 3 | 외교·비즈니스 한인 허브 |
+| 27 | China | Shanghai | T1 | 150,000 Est. | 4 | 최대 중국 내 한인 도시 |
+| 28 | China | Shenzhen | T2 | 40,000 Est. | 3 | 테크·제조 한인 집중 |
+| 29 | China | Guangzhou | T2 | 30,000 Est. | 3 | 한국 무역 거점 |
+| 30 | China | Qingdao | T2 | 50,000 Est. | 4 | 산동 한인 특구; 역사적 연결 |
+| 31 | Japan | Tokyo | T1 | 200,000 Est. | 4 | 최대 재일 한인 도시; 복음 선교 중요 |
+| 32 | Japan | Osaka | T1 | 100,000 Est. | 4 | 재일 한인 역사 중심; 코리아타운 |
+| 33 | Japan | Nagoya | T2 | 20,000 Est. | 3 | 제조업 한인 네트워크 |
+| 34 | Japan | Fukuoka | T2 | 15,000 Est. | 4 | 한국과 지리적 가장 가까운 일본 도시 |
+| 35 | Japan | Sapporo | T3 | 5,000 Est. | 3 | 북해도 유학·관광 한인 |
+| 36 | Australia | Sydney | T1 | 80,000 Est. | 5 | 호주 최대 한인 도시; 유학·이민 1위 |
+| 37 | Australia | Melbourne | T1 | 60,000 Est. | 5 | 한인 교육·의료 집중 |
+| 38 | Australia | Brisbane | T2 | 20,000 Est. | 4 | 성장하는 한인 커뮤니티 |
+| 39 | Australia | Perth | T2 | 12,000 Est. | 3 | 서호주 한인 공동체 |
+| 40 | New Zealand | Auckland | T2 | 30,000 Est. | 5 | 뉴질랜드 한인 최대 집중 |
+| 41 | New Zealand | Wellington | T3 | 5,000 Est. | 3 | 뉴질랜드 수도; 소규모 한인 |
+| 42 | Singapore | Singapore | T1 | 20,000 Est. | 5 | 동남아 비즈니스·금융 허브 |
+| 43 | Philippines | Manila | T2 | 35,000 Est. | 4 | 한인 유학·선교 허브; 어학연수 중심 |
+| 44 | Philippines | Cebu | T2 | 15,000 Est. | 4 | 한인 어학원·은퇴 이민 |
+| 45 | Thailand | Bangkok | T2 | 25,000 Est. | 4 | 동남아 한인 관광·비즈니스 중심 |
+| 46 | Vietnam | Ho Chi Minh City | T2 | 40,000 Est. | 4 | 한국 제조업·투자 1위 도시 |
+| 47 | Vietnam | Hanoi | T2 | 20,000 Est. | 3 | 베트남 정치·외교 중심 |
+| 48 | Indonesia | Jakarta | T2 | 20,000 Est. | 3 | 동남아 최대 경제 도시 |
+| 49 | Malaysia | Kuala Lumpur | T2 | 12,000 Est. | 3 | 한인 비즈니스·관광 허브 |
+| 50 | India | New Delhi | T3 | 5,000 Est. | 3 | 한인 외교·비즈니스 집중 |
+| 51 | India | Bangalore | T3 | 4,000 Est. | 3 | 인도 IT·삼성 거점 |
+| 52 | India | Chennai | T3 | 4,000 Est. | 3 | 한국 자동차·제조업 집중 |
+| 53 | Kazakhstan | Almaty | T2 | 30,000 Est. | 4 | 고려인(Koryo-saram) 중심지; 역사적 선교지 |
+| 54 | Kazakhstan | Astana | T3 | 10,000 Est. | 3 | 카자흐스탄 수도; 고려인 공동체 |
+| 55 | Uzbekistan | Tashkent | T2 | 50,000 Est. | 4 | 최대 고려인 밀집 도시 |
+
+### 유럽 (Europe) — 약 20개 도시
+
+| # | Country | City | Tier | Est. Korean Pop. | Hospitality Score | Notes |
+|---|---------|------|------|-----------------|-------------------|-------|
+| 56 | UK | London | T1 | 60,000 Est. | 5 | 유럽 최대 한인 도시; 금융·교육 허브 |
+| 57 | UK | Manchester | T3 | 5,000 Est. | 3 | 영국 북부 대학 도시 |
+| 58 | Germany | Frankfurt | T2 | 15,000 Est. | 4 | 유럽 금융 허브; 한인 비즈니스 집중 |
+| 59 | Germany | Berlin | T2 | 10,000 Est. | 4 | 간호사·광부 한인 이민 역사 |
+| 60 | Germany | Munich | T2 | 8,000 Est. | 3 | 한인 공학·자동차 산업 |
+| 61 | Germany | Hamburg | T2 | 7,000 Est. | 3 | 한국 무역·항만 연결 |
+| 62 | France | Paris | T2 | 20,000 Est. | 4 | 유럽 한인 문화 중심 |
+| 63 | Netherlands | Amsterdam | T2 | 10,000 Est. | 4 | 유럽 물류·비즈니스 허브 |
+| 64 | Sweden | Stockholm | T3 | 5,000 Est. | 3 | 북유럽 한인 공동체 |
+| 65 | Norway | Oslo | T3 | 4,000 Est. | 3 | 노르웨이 한인 이민자 |
+| 66 | Denmark | Copenhagen | T3 | 3,500 Est. | 3 | 북유럽 소규모 한인 |
+| 67 | Switzerland | Zurich | T3 | 4,000 Est. | 3 | 국제기구·금융 한인 |
+| 68 | Austria | Vienna | T3 | 3,500 Est. | 3 | 동유럽 게이트웨이 |
+| 69 | Spain | Madrid | T3 | 8,000 Est. | 3 | 스페인 한인 비즈니스 |
+| 70 | Spain | Barcelona | T3 | 5,000 Est. | 3 | 한인 유학·관광 허브 |
+| 71 | Italy | Rome | T3 | 5,000 Est. | 3 | 이탈리아 한인 공동체 |
+| 72 | Italy | Milan | T3 | 4,000 Est. | 3 | 한국 패션·무역 연결 |
+| 73 | Poland | Warsaw | T3 | 4,000 Est. | 3 | 동유럽 한인 성장 도시 |
+| 74 | Russia | Moscow | T2 | 15,000 Est. | 2 | 한인 비즈니스; 선교 복잡성 높음 |
+| 75 | Russia | Vladivostok | T3 | 8,000 Est. | 3 | 극동 러시아; 한국 근접 도시 |
+
+### 중동·아프리카 (Middle East and Africa) — 약 15개 도시
+
+| # | Country | City | Tier | Est. Korean Pop. | Hospitality Score | Notes |
+|---|---------|------|------|-----------------|-------------------|-------|
+| 76 | UAE | Dubai | T1 | 30,000 Est. | 5 | 중동 한인 비즈니스·선교 허브 |
+| 77 | UAE | Abu Dhabi | T2 | 10,000 Est. | 4 | 한국 건설·에너지 투자 중심 |
+| 78 | Saudi Arabia | Riyadh | T2 | 12,000 Est. | 2 | 한국 건설 인력 집중; 선교 제한 환경 |
+| 79 | Israel | Tel Aviv | T3 | 3,000 Est. | 4 | 성지 순례·한인 선교사 거점 |
+| 80 | Jordan | Amman | T4 | 1,500 Est. | 3 | 난민·선교 거점; 전략적 개척지 |
+| 81 | South Africa | Johannesburg | T2 | 15,000 Est. | 4 | 아프리카 최대 한인 도시; 사업·선교 |
+| 82 | South Africa | Cape Town | T3 | 5,000 Est. | 3 | 한인 관광·선교 거점 |
+| 83 | Kenya | Nairobi | T3 | 3,000 Est. | 4 | 동아프리카 한인 선교 허브 |
+| 84 | Ethiopia | Addis Ababa | T4 | 800 Est. | 4 | 한인 NGO·선교사 집중; 전략 개척지 |
+| 85 | Nigeria | Lagos | T4 | 1,000 Est. | 3 | 서아프리카 성장 경제 |
+| 86 | Ghana | Accra | T4 | 500 Est. | 4 | 서아프리카 한인 선교 거점 |
+| 87 | Egypt | Cairo | T4 | 1,000 Est. | 3 | 북아프리카 관문 도시 |
+| 88 | Morocco | Casablanca | T4 | 500 Est. | 3 | 북아프리카 비즈니스 허브 |
+| 89 | Tanzania | Dar es Salaam | T4 | 400 Est. | 3 | 동아프리카 개척 선교 |
+| 90 | Uganda | Kampala | T4 | 300 Est. | 4 | 한인 선교사 집중 지역 |
+
+### 중남미 (Latin America) — 약 15개 도시
+
+| # | Country | City | Tier | Est. Korean Pop. | Hospitality Score | Notes |
+|---|---------|------|------|-----------------|-------------------|-------|
+| 91 | Brazil | São Paulo | T1 | 60,000 Est. | 5 | 남미 최대 한인 도시; 코리아타운 |
+| 92 | Brazil | Rio de Janeiro | T3 | 5,000 Est. | 3 | 한인 관광·비즈니스 |
+| 93 | Argentina | Buenos Aires | T2 | 45,000 Est. | 4 | 남미 2위 한인 도시 |
+| 94 | Chile | Santiago | T2 | 15,000 Est. | 4 | 칠레 한인 비즈니스 허브 |
+| 95 | Peru | Lima | T2 | 12,000 Est. | 4 | 페루 한인 공동체; 선교 거점 |
+| 96 | Colombia | Bogotá | T3 | 5,000 Est. | 3 | 콜롬비아 한인 성장 |
+| 97 | Venezuela | Caracas | T3 | 4,000 Est. | 2 | 경제 불안정; 한인 이주 증가 |
+| 98 | Ecuador | Quito | T3 | 3,500 Est. | 3 | 에콰도르 한인 커뮤니티 |
+| 99 | Bolivia | Santa Cruz | T4 | 1,500 Est. | 3 | 남미 한인 선교 개척지 |
+| 100 | Paraguay | Asunción | T3 | 5,000 Est. | 3 | 남미 한인 농업·이민 역사 |
+| 101 | Uruguay | Montevideo | T3 | 3,000 Est. | 3 | 우루과이 한인 소규모 공동체 |
+| 102 | Guatemala | Guatemala City | T4 | 1,000 Est. | 4 | 중미 한인 선교 거점 |
+| 103 | Panama | Panama City | T4 | 800 Est. | 3 | 중미 비즈니스 허브 |
+| 104 | Costa Rica | San José | T4 | 1,200 Est. | 4 | 중미 친한 국가 |
+| 105 | Dominican Republic | Santo Domingo | T4 | 2,000 Est. | 3 | 카리브해 한인 공동체 |
+
+### 추가 전략 도시 (Additional Strategic Cities)
+
+| # | Country | City | Tier | Est. Korean Pop. | Hospitality Score | Notes |
+|---|---------|------|------|-----------------|-------------------|-------|
+| 106 | Cambodia | Phnom Penh | T3 | 4,000 Est. | 4 | 한인 NGO·봉제 산업 |
+| 107 | Myanmar | Yangon | T3 | 3,000 Est. | 3 | 한인 제조업·선교 |
+| 108 | Bangladesh | Dhaka | T3 | 3,500 Est. | 3 | 한국 봉제·수출 산업 |
+| 109 | Pakistan | Karachi | T4 | 500 Est. | 2 | 전략 개척; 선교 복잡 환경 |
+| 110 | Nepal | Kathmandu | T4 | 1,000 Est. | 4 | 한인 NGO·등산 선교 |
+
+---
+
+## 6. JSON 예시 (JSON Schema Example)
+
+아래는 마스터 스키마에 따른 완전한 도시 데이터 예시입니다:
+
+```json
+{
+  "continent": "North America",
+  "country": "United States",
+  "iso_country_code": "US",
+  "city": "Los Angeles",
+  "metro_name": "Greater Los Angeles",
+  "tier": 1,
+  "metro_population": 13200000,
+  "est_korean_population": 250000,
+  "est_korean_ratio": 0.019,
+  "diaspora_significance_score": 5,
+  "hospitality_potential_score": 5,
+  "economic_influence_score": 4,
+  "migration_hub_score": 5,
+  "airport_hub": true,
+  "universities_presence": true,
+  "local_church_presence": true,
+  "notes_missional": "Home to Koreatown — the largest Korean diaspora community outside Korea. Strategic gateway for Korean immigrants from Central/South America. Strong church infrastructure. Key city for Phase 1 HebronGuide launch.",
+  "data_confidence_level": "high",
+  "data_sources": "US Census Bureau 2020, Korean American Coalition, KFCOC",
+  "last_updated": "2026-05-25"
+}
 ```
 
 ---
 
-## 🎯 의사결정 5가지 질문 (새 도시 진출 전)
+## 7. 2030 로드맵 (2030 Roadmap)
 
-`docs/EXECUTION_GUIDELINES.md` 6질문에 더하여, 도시 진출 시 추가 5질문:
+### 단계별 목표 (Phase Targets)
 
-```
-1. 이 도시에 BTS 또는 K-Wave 영향력이 있는가? (문화 토양)
-2. 한인 인구 1만 명 이상인가? (디아스포라 규모)
-3. 복음적·제자 만드는 교회가 있는가? (영적 인프라)
-4. 우리가 그 교회와 신뢰 관계를 만들 수 있는가? (관계 가능성)
-5. 도시 콘텐츠 검증할 현지 협력자가 있는가? (실행 가능성)
+| 연도 | 목표 도시 수 | 누적 도시 수 | 핵심 지역 | 주요 이정표 |
+|------|------------|------------|----------|-----------|
+| **2025** | 68 | 68 | 북미·동아시아 중심 | 현재 운영 중 (Current) |
+| **2026** | +32 | **100** | 북미 완성 + 호주·유럽 확장 | Tier 1 전체 완성, 파트너 교회 50개 |
+| **2027** | +100 | **200** | 동남아·남미 진입 | Tier 2 주요 도시 완성, 환대 제공자 500명 |
+| **2028** | +100 | **300** | 중동·아프리카 개척 시작 | Tier 3 핵심 도시 진입, 지역 코디네이터 체계 구축 |
+| **2029** | +100 | **400** | 중앙아시아·동유럽 확장 | 고려인 특별 프로그램 런칭, Tier 4 파일럿 |
+| **2030** | +100 | **500** | 글로벌 500개 도시 완성 | 전 대륙 커버리지, 디지털 환대 플랫폼 완전 운영 |
 
-→ 5가지 모두 YES일 때만 진출
-   3-4번 NO면 절대 진출 ❌ (사역 동력 없음)
-```
+### 지역별 2030 목표 배분
 
----
+| 대륙 | 목표 도시 수 | 현재 비율 | 비고 |
+|------|------------|----------|------|
+| 북미 | 80 | 가장 성숙 | 미국·캐나다·멕시코 |
+| 아시아·태평양 | 150 | 최대 성장 | 동남아 집중 확장 |
+| 유럽 | 80 | 안정 성장 | 서유럽·동유럽 |
+| 중동·아프리카 | 60 | 개척 중심 | 선교 복잡 환경 포함 |
+| 중남미 | 80 | 급성장 예상 | 브라질·아르헨티나 기반 |
+| 기타 | 50 | 전략 개척 | 중앙아시아·남아시아 |
 
-## 💡 BTS·교회 연결의 영적 의미
+### 핵심 성공 지표 (Key Success Metrics)
 
-### 김구 선생 「나의 소원」 재해석
-
-> *"문화의 힘은 우리 자신을 행복하게 하고,  
-> 나아가 남에게 행복을 주기 때문이다."*
-
-**HebronGuide의 적용:**
-- BTS의 문화의 힘 = 한국·한인을 세계에 알림
-- 그 흐름을 타고 HebronGuide가 도시에 도착
-- **그 도시의 복음적 교회와 손잡고 진정한 행복(그리스도)을 전함**
-
-### 사도 바울의 선교 전략과 닮음
-
-사도 바울이 도시를 갈 때:
-1. 로마 도로(인프라)를 따라감 → BTS 투어 = 디지털 시대의 로마 도로
-2. 회당(영적 거점)을 먼저 찾음 → 가정교회 = 우리의 회당
-3. 거기서 시작해 점차 확산 → HebronGuide의 도시별 확산
-
-### 마10:16의 적용
-
-```
-🐍 지혜: BTS 투어 흐름 + 한인 통계 + 교회 매핑 = 전략적 진출
-🕊️ 순결: 교회를 마케팅 도구로 쓰지 않음
-        — 진짜 사역 협력 관계 / 교회의 비전 존중
-```
+- **환대 제공자 수**: 2026년 200명 → 2030년 5,000명
+- **연결된 한인 교회**: 2026년 50개 → 2030년 1,000개
+- **플랫폼 이용자**: 2026년 10,000명 → 2030년 500,000명
+- **VIP → 공동체 연결 건수**: 연 1,000건 (2026) → 연 50,000건 (2030)
+- **도시 데이터 신뢰도**: 2030년까지 전체의 80% "high" 수준 달성
 
 ---
 
-## ⚠️ 위반 금지 사항
+## 8. 데이터 거버넌스 및 에이전트 활용 지침
 
-### ❌ 절대 하지 말 것
+### 데이터 품질 원칙 (Data Quality Principles)
 
-1. **K-pop 흐름만 보고 영적 인프라 없는 도시 진출** → 사역 무너짐
-2. **명목적 교회와 파트너십** → 진짜 제자 만들기 ❌
-3. **교회를 사용자 확보 채널로만 활용** → 마10:16 순결 위반
-4. **BTS 이름으로 마케팅 광고** → 저작권·이미지 사용 위반
-5. **교회 내부 정치에 휘말림** → 구조적 분리 원칙 위반
+1. **추정 표시**: 독립 검증 전 모든 인구 수치는 "Est." 표기 필수
+2. **출처 명시**: 각 도시 데이터에 `data_sources` 필드 기입 필수
+3. **정기 업데이트**: 연 1회 이상 `last_updated` 갱신
+4. **신뢰도 등급**: `high` (공식 통계 기반) / `medium` (복수 추정 교차) / `low` (단일 출처 또는 오래된 자료)
 
-### ✅ 반드시 할 것
+### 에이전트·모델 활용 지침 (Agent/Model Usage Guidelines)
 
-1. **교회와의 관계가 먼저, 도시 콘텐츠는 그 다음**
-2. **목사님과 직접 만남** (이메일·전화만으로 결정 ❌)
-3. **교회의 비전과 HebronGuide 비전 명시적으로 정렬**
-4. **재정 분리 명확히 설명**
-5. **사용자 데이터·교회 데이터 절대 분리**
+이 프레임워크는 다른 AI 에이전트 또는 모델이 다음 작업을 수행할 수 있도록 설계되었습니다:
 
----
+- **데이터 채우기**: 위 스키마에 따라 신규 도시 JSON 레코드 생성
+- **Tier 재분류**: 인구 데이터 업데이트 시 자동 재분류 논리 적용
+- **선교 메모 작성**: 각 도시의 `notes_missional` 필드를 현지 리서치로 보강
+- **환대 매칭**: 도시 프로필 기반으로 최적 환대 전략 유형 추천
+- **격차 분석**: 현재 운영 도시 vs 목표 도시 간 갭 분석 및 우선순위 산정
 
-## 📊 측정 지표 (KPI)
-
-각 도시 진출 1년 후 점검:
-
-| 지표 | 성공 기준 |
-|---|---|
-| 파트너 교회 만족도 | 9/10+ |
-| 도시 MAU | 500+ (1년차) |
-| 검증된 업소 수 | 50+ |
-| 교회를 통한 추천 비율 | 30%+ |
-| Hard Rules 위반 | 0건 |
+> **This framework enables other agents/models to populate, refine, and expand the global diaspora mission database.**
 
 ---
 
-## 🎬 실행 로드맵
+## 부록: 참고 데이터 출처 (Reference Data Sources)
 
-### 2026 Q3 (지금부터)
-- [ ] BTS·HYBE 공식 채널 모니터링 시작
-- [ ] IHM 가정교회 디렉터리 정기 동기화 (월 1회)
-- [ ] Phase 2 후보 도시 5곳 IHM 가정교회 매핑
-
-### 2026 Q4
-- [ ] 시카고·휴스턴·DC 가정교회 목사님 연락
-- [ ] 휴스턴 IHM 본부와 공식 협력 논의
-- [ ] BTS 2027 투어 발표 시 즉시 대응
-
-### 2027 H1
-- [ ] Phase 2 도시 3곳 진출 (시카고·휴스턴·DC 또는 애틀랜타)
-- [ ] IHM 본부와 공식 파트너십 (가능하면)
-
-### 2027 H2~2028
-- [ ] 첫 글로벌 진출 (도쿄 또는 런던)
-- [ ] 한국 본토 재외동포재단·한국문화원 협력
+| 출처 | 설명 | URL |
+|------|------|-----|
+| 외교부 재외동포현황 | 공식 재외동포 통계 (격년 발간) | mofa.go.kr |
+| UN International Migrant Stock | 국가별 이민자 인구 통계 | un.org/en/development/desa/population |
+| Korean American Coalition (KAC) | 미국 한인 통계 | kacusa.org |
+| KFCOC (Korean Federation of Churches) | 재미 한인 교회 현황 | — |
+| World Korean Business Convention | 글로벌 한인 비즈니스 네트워크 | — |
+| Koryo-saram Research | 중앙아시아 고려인 현황 | — |
 
 ---
 
-## 📝 변경 이력
-
-| 날짜 | 변경 |
-|---|---|
-| 2026-05-08 (v1) | 초안 — BTS·교회 결합 확산 전략 |
-
----
-
-## 📚 관련 문서
-
-- [`CORE_VISION.md`](CORE_VISION.md) — WHY (황금률·지혜·순결)
-- [`EXECUTION_GUIDELINES.md`](EXECUTION_GUIDELINES.md) — 영역 3 (도시 확장) + 영역 7 (교회 등재)
-- [`DIASPORA_STRATEGY.md`](DIASPORA_STRATEGY.md) — 디아스포라 문화 확산 (콘텐츠 측)
-- [`CITY_EXPANSION_TRACKER.md`](CITY_EXPANSION_TRACKER.md) — 도시별 진행 현황
-- [`CITY_GENERATION_SYSTEM.md`](CITY_GENERATION_SYSTEM.md) — 새 도시 자동 생성
-
----
-
-*"BTS가 도시에 도착하면, 우리는 이미 그 도시에 있다.  
- 그곳의 복음적 교회와 함께, 한국 문화의 빛이 자연스럽게 흐른다."*
-
-— HebronGuide 확산 전략의 핵심
+*최종 업데이트: 2026-05-25 | HebronGuide Strategic Planning Team*  
+*문서 버전: v1.0 | 다음 검토: 2027-01-01*
