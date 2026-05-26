@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>파트너 대시보드 — HebronGuide</title>
+<meta name="robots" content="noindex, nofollow"/>
+<link rel="icon" href="/icon-192.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{
+  --bg:#0d1117;--surface:rgba(255,255,255,.05);--surface2:rgba(255,255,255,.08);
+  --border:rgba(255,255,255,.09);--border2:rgba(255,255,255,.15);
+  --gold:#C9A227;--mint:#6EE7B7;--text:#ECFDF5;--muted:rgba(236,253,245,.55);
+  --red:rgba(248,113,113,.9);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:var(--bg);scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.7;}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.96);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);padding:14px 20px;
+  display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{color:var(--gold);font-weight:900;font-size:.95rem;text-decoration:none;font-family:'Noto Sans KR',sans-serif;}
+.nav-logo span{color:var(--mint);font-size:.72rem;margin-left:8px;font-weight:400;}
+.nav-right{display:flex;gap:12px;align-items:center;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:.8rem;}
+.nav-back:hover{color:var(--mint);}
+#nav-logout{display:none;background:none;border:1px solid var(--border2);color:var(--muted);
+  padding:5px 12px;border-radius:6px;cursor:pointer;font-size:.78rem;font-family:'Noto Sans KR',sans-serif;}
+#nav-logout:hover{border-color:var(--red);color:var(--red);}
+
+/* ── CONTAINER ── */
+.wrap{max-width:640px;margin:0 auto;padding:24px 16px 80px;}
+
+/* ── LOGIN GATE ── */
+#login-gate{text-align:center;padding:60px 20px;}
+.login-icon{font-size:3rem;margin-bottom:16px;}
+.login-title{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:8px;}
+.login-sub{font-size:.85rem;color:var(--muted);line-height:1.8;margin-bottom:32px;}
+.login-box{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:28px 24px;}
+.login-box label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:8px;text-align:left;}
+.login-box input{width:100%;background:#1a2535;border:1px solid var(--border2);border-radius:10px;
+  padding:12px 14px;font-size:.9rem;color:var(--text);outline:none;font-family:'Noto Sans KR',sans-serif;margin-bottom:14px;}
+.login-box input:focus{border-color:var(--gold);}
+.btn-login{width:100%;background:linear-gradient(135deg,var(--gold),#e6b800);color:#1B2A4A;
+  border:none;padding:13px;border-radius:10px;font-size:.9rem;font-weight:900;cursor:pointer;
+  font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;}
+.btn-login:hover{opacity:.9;}
+.btn-login:disabled{opacity:.5;cursor:not-allowed;}
+.login-note{font-size:.72rem;color:var(--muted);margin-top:12px;line-height:1.7;}
+.success-msg{background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.3);
+  border-radius:10px;padding:16px;font-size:.83rem;color:var(--mint);margin-top:12px;display:none;}
+
+/* ── DASHBOARD ── */
+#dashboard{display:none;}
+
+/* 환영 헤더 */
+.welcome-card{background:linear-gradient(135deg,rgba(201,162,39,.12),rgba(110,231,183,.08));
+  border:1px solid rgba(201,162,39,.25);border-radius:16px;padding:22px 20px;margin-bottom:20px;}
+.welcome-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,162,39,.15);
+  border:1px solid rgba(201,162,39,.3);color:var(--gold);font-size:.7rem;font-weight:800;
+  padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+.welcome-name{font-size:1.2rem;font-weight:900;color:#fff;margin-bottom:4px;}
+.welcome-city{font-size:.8rem;color:var(--muted);}
+
+/* 섹션 타이틀 */
+.sec-title{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;
+  margin:24px 0 12px;display:flex;align-items:center;gap:8px;}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* 임팩트 카드 */
+.impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px;}
+.impact-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;
+  padding:16px 12px;text-align:center;}
+.impact-num{font-size:1.6rem;font-weight:900;color:var(--mint);line-height:1;font-family:'Noto Sans KR',sans-serif;}
+.impact-lbl{font-size:.65rem;color:var(--muted);margin-top:5px;line-height:1.4;}
+.impact-note{font-size:.68rem;color:rgba(236,253,245,.3);margin-top:10px;text-align:center;line-height:1.6;}
+
+/* 정보 카드 */
+.info-card{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:18px 18px;margin-bottom:12px;}
+.info-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;
+  border-bottom:1px solid var(--border);font-size:.83rem;}
+.info-row:last-child{border-bottom:none;padding-bottom:0;}
+.info-key{color:var(--muted);font-size:.75rem;flex-shrink:0;min-width:80px;}
+.info-val{color:var(--text);text-align:right;word-break:break-all;}
+.info-val a{color:var(--mint);text-decoration:none;}
+.badge-hg{background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.3);
+  color:var(--gold);font-size:.65rem;font-weight:800;padding:2px 8px;border-radius:20px;}
+.badge-hc{background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.25);
+  color:var(--mint);font-size:.65rem;font-weight:800;padding:2px 8px;border-radius:20px;}
+
+/* 버튼들 */
+.btn-primary{background:linear-gradient(135deg,var(--gold),#e6b800);color:#1B2A4A;border:none;
+  padding:11px 20px;border-radius:10px;font-size:.83rem;font-weight:900;cursor:pointer;
+  font-family:'Noto Sans KR',sans-serif;transition:all .2s;width:100%;margin-top:12px;}
+.btn-primary:hover{opacity:.9;}
+.btn-outline{background:transparent;border:1px solid var(--border2);color:var(--muted);
+  padding:10px 20px;border-radius:10px;font-size:.83rem;cursor:pointer;
+  font-family:'Noto Sans KR',sans-serif;transition:all .2s;width:100%;margin-top:8px;}
+.btn-outline:hover{border-color:var(--mint);color:var(--mint);}
+.btn-sm{background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);color:var(--mint);
+  padding:7px 14px;border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer;
+  font-family:'Noto Sans KR',sans-serif;transition:all .15s;}
+.btn-sm:hover{background:rgba(110,231,183,.2);}
+
+/* 수정 폼 */
+.edit-form{background:rgba(201,162,39,.06);border:1px solid rgba(201,162,39,.2);
+  border-radius:12px;padding:18px;margin-top:12px;display:none;}
+.edit-form .field{margin-bottom:12px;}
+.edit-form label{display:block;font-size:.75rem;font-weight:700;color:var(--muted);margin-bottom:5px;}
+.edit-form input,.edit-form textarea,.edit-form select{
+  width:100%;background:#1a2535;border:1px solid var(--border2);border-radius:8px;
+  padding:9px 12px;font-size:.83rem;color:var(--text);outline:none;
+  font-family:'Noto Sans KR',sans-serif;}
+.edit-form input:focus,.edit-form textarea:focus{border-color:var(--gold);}
+.edit-form textarea{min-height:70px;resize:vertical;}
+
+/* 이벤트 폼 */
+.event-form{background:rgba(110,231,183,.05);border:1px solid rgba(110,231,183,.15);
+  border-radius:12px;padding:18px;margin-top:12px;display:none;}
+
+/* 환대 자료 카드 */
+.hospitality-card{background:linear-gradient(135deg,rgba(110,231,183,.08),rgba(201,162,39,.05));
+  border:1px solid rgba(110,231,183,.2);border-radius:14px;padding:20px;}
+.hospitality-month{font-size:.7rem;font-weight:800;color:var(--mint);letter-spacing:.1em;margin-bottom:8px;}
+.hospitality-theme{font-size:1rem;font-weight:900;color:#fff;margin-bottom:6px;}
+.hospitality-verse{font-size:.82rem;color:rgba(236,253,245,.7);font-style:italic;
+  border-left:2px solid var(--gold);padding-left:10px;margin:10px 0;}
+.hospitality-ideas{margin-top:12px;}
+.idea-item{display:flex;gap:8px;align-items:flex-start;padding:7px 0;
+  border-bottom:1px solid rgba(255,255,255,.05);font-size:.8rem;color:var(--muted);}
+.idea-item:last-child{border-bottom:none;}
+.idea-icon{font-size:.9rem;flex-shrink:0;margin-top:1px;}
+.idea-text strong{color:var(--text);}
+
+/* 카카오 배너 */
+.kakao-banner{background:rgba(254,229,0,.08);border:1px solid rgba(254,229,0,.2);
+  border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;}
+.kakao-text{font-size:.78rem;color:rgba(236,253,245,.8);line-height:1.6;}
+.kakao-text strong{color:#FEE500;}
+.btn-kakao{background:#FEE500;color:#1B2A4A;border:none;padding:8px 16px;border-radius:8px;
+  font-size:.78rem;font-weight:900;cursor:pointer;white-space:nowrap;font-family:'Noto Sans KR',sans-serif;}
+
+/* 토스트 */
+#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:#161b22;border:1px solid var(--border2);color:var(--text);
+  padding:10px 20px;border-radius:10px;font-size:.82rem;opacity:0;
+  transition:all .3s;z-index:999;pointer-events:none;white-space:nowrap;}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* 로딩 */
+.spinner{width:36px;height:36px;border:3px solid rgba(110,231,183,.2);
+  border-top-color:var(--mint);border-radius:50%;animation:spin 1s linear infinite;margin:40px auto;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* 이달의 등록 이벤트 */
+.event-item{background:var(--surface2);border-radius:10px;padding:12px 14px;margin-bottom:8px;font-size:.82rem;}
+.event-item .event-title{font-weight:700;color:#fff;margin-bottom:3px;}
+.event-item .event-date{font-size:.72rem;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">HebronGuide <span>파트너 대시보드</span></a>
+  <div class="nav-right">
+    <a class="nav-back" href="/">← 메인</a>
+    <button id="nav-logout" onclick="logout()">로그아웃</button>
+  </div>
+</nav>
+
+<!-- ══ 로그인 게이트 ══ -->
+<div id="login-gate" class="wrap">
+  <div class="login-icon">🤝</div>
+  <div class="login-title">파트너 대시보드</div>
+  <div class="login-sub">
+    HebronGuide에 등재된 교회·사업체 파트너를 위한 공간입니다.<br>
+    등록하신 이메일로 로그인 링크를 받으세요.
+  </div>
+  <div class="login-box">
+    <label>이메일 주소</label>
+    <input type="email" id="login-email" placeholder="pastor@church.com"
+      onkeydown="if(event.key==='Enter')sendMagicLink()"/>
+    <button class="btn-login" onclick="sendMagicLink()" id="login-btn">
+      로그인 링크 받기 →
+    </button>
+    <div class="login-note">
+      📧 입력하신 이메일로 로그인 링크가 발송됩니다.<br>
+      링크는 10분간 유효합니다. 스팸 폴더도 확인해 주세요.
+    </div>
+    <div class="success-msg" id="login-success">
+      ✅ 이메일을 확인해 주세요!<br>
+      받은편지함에서 "HebronGuide 로그인" 링크를 클릭하세요.
+    </div>
+  </div>
+</div>
+
+<!-- ══ 대시보드 ══ -->
+<div id="dashboard" class="wrap">
+
+  <!-- 로딩 -->
+  <div id="dash-loading"><div class="spinner"></div></div>
+
+  <!-- 본문 (로드 후 표시) -->
+  <div id="dash-content" style="display:none;">
+
+    <!-- 환영 카드 -->
+    <div class="welcome-card">
+      <div class="welcome-badge">🤝 파트너</div>
+      <div class="welcome-name" id="partner-name">—</div>
+      <div class="welcome-city" id="partner-city">—</div>
+    </div>
+
+    <!-- ① 이달의 임팩트 -->
+    <div class="sec-title">📊 이달의 임팩트</div>
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="impact-num" id="stat-views">—</div>
+        <div class="impact-lbl">도시 방문자<br>(AI 질문 기준)</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num" id="stat-clicks">—</div>
+        <div class="impact-lbl">교회탭<br>조회 추정</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num" id="stat-new">—</div>
+        <div class="impact-lbl">이번 달<br>신규 이민자</div>
+      </div>
+    </div>
+    <div class="impact-note">
+      * 수치는 귀 파트너의 도시 전체 HebronGuide 활동을 기반으로 합니다.<br>
+      개별 교회 통계는 Vercel Analytics 연동 후 제공 예정입니다.
+    </div>
+
+    <!-- ② 내 정보 -->
+    <div class="sec-title">🏛️ 등재된 정보</div>
+    <div class="info-card">
+      <div class="info-row">
+        <span class="info-key">이름</span>
+        <span class="info-val" id="info-name">—</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">도시</span>
+        <span class="info-val" id="info-city">—</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">전화</span>
+        <span class="info-val" id="info-phone">—</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">이메일</span>
+        <span class="info-val" id="info-email">—</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">웹사이트</span>
+        <span class="info-val" id="info-website">—</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">유형</span>
+        <span class="info-val" id="info-type">—</span>
+      </div>
+    </div>
+
+    <!-- 수정 요청 -->
+    <button class="btn-sm" onclick="toggleEdit()">✏️ 정보 수정 요청</button>
+    <div class="edit-form" id="edit-form">
+      <div style="font-size:.78rem;color:var(--muted);margin-bottom:14px;line-height:1.7;">
+        수정이 필요한 내용만 입력해 주세요. 검토 후 24시간 내 반영됩니다.
+      </div>
+      <div class="field">
+        <label>수정 항목 및 내용</label>
+        <textarea id="edit-content" placeholder="예: 예배시간을 오전 11시로 변경 / 전화번호 새 번호로 수정: 010-XXXX-XXXX / 웹사이트 주소 변경 등"></textarea>
+      </div>
+      <div class="field">
+        <label>연락처 (확인용)</label>
+        <input type="tel" id="edit-contact" placeholder="010-XXXX-XXXX"/>
+      </div>
+      <button class="btn-primary" onclick="submitEdit()">수정 요청 보내기</button>
+    </div>
+
+    <!-- ③ 이벤트 등록 -->
+    <div class="sec-title">📅 이벤트 등록</div>
+    <div class="info-card" style="padding:14px 18px;">
+      <div style="font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:12px;">
+        새가족 환영 모임, 정착 세미나, 명절 행사 등을<br>
+        HebronGuide에 올려 이민자들에게 알릴 수 있습니다.
+      </div>
+      <button class="btn-sm" onclick="toggleEvent()">+ 이벤트 등록하기</button>
+      <div class="event-form" id="event-form">
+        <div class="field" style="margin-bottom:10px;">
+          <label>이벤트 제목 *</label>
+          <input type="text" id="ev-title" placeholder="예: 5월 새가족 환영 모임"/>
+        </div>
+        <div class="field" style="margin-bottom:10px;">
+          <label>날짜·시간 *</label>
+          <input type="text" id="ev-date" placeholder="예: 2026년 6월 7일 오후 2시"/>
+        </div>
+        <div class="field" style="margin-bottom:10px;">
+          <label>한 줄 소개</label>
+          <input type="text" id="ev-desc" placeholder="예: 새로 오신 분들을 위한 따뜻한 식사 모임"/>
+        </div>
+        <button class="btn-primary" onclick="submitEvent()">등록 요청</button>
+      </div>
+      <!-- 등록된 이벤트 목록 -->
+      <div id="event-list" style="margin-top:12px;"></div>
+    </div>
+
+    <!-- ④ 이달의 성경적 환대 자료 -->
+    <div class="sec-title">📖 이달의 성경적 환대</div>
+    <div class="hospitality-card" id="hospitality-card">
+      <!-- JS로 채움 -->
+    </div>
+
+    <!-- ⑤ 카카오톡 채널 -->
+    <div class="sec-title">💬 소통 채널</div>
+    <div class="kakao-banner">
+      <div class="kakao-text">
+        <strong>카카오톡 채널</strong>에서<br>
+        새 도시 소식 · 정보 수정 요청 · 파트너 네트워크 소식을 받으세요
+      </div>
+      <button class="btn-kakao" onclick="window.open('https://pf.kakao.com/_dxdxlbX','_blank')">
+        채널 추가
+      </button>
+    </div>
+
+    <!-- ⑥ 빠른 링크 -->
+    <div class="sec-title">🔗 빠른 링크</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <a href="/ad-request.html" style="text-decoration:none;">
+        <div style="background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:14px;text-align:center;font-size:.78rem;color:var(--muted);">
+          📋 파트너 신청 폼
+        </div>
+      </a>
+      <a href="/city-request.html" style="text-decoration:none;">
+        <div style="background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:14px;text-align:center;font-size:.78rem;color:var(--muted);">
+          🌍 도시 추가 신청
+        </div>
+      </a>
+      <div id="city-link-card" style="background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:14px;text-align:center;font-size:.78rem;color:var(--muted);cursor:pointer;"
+        onclick="goToMyCity()">
+        🏙️ 내 도시 가이드 보기
+      </div>
+      <a href="mailto:hebronplatform@gmail.com" style="text-decoration:none;">
+        <div style="background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:14px;text-align:center;font-size:.78rem;color:var(--muted);">
+          📧 운영팀 문의
+        </div>
+      </a>
+    </div>
+
+  </div><!-- end dash-content -->
+</div><!-- end dashboard -->
+
+<div id="toast"></div>
+
+<script>
+const SB_URL  = 'https://vextxqzggznulwpganwt.supabase.co'
+const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU5NjY4NDMsImV4cCI6MjA2MTU0Mjg0M30.YSLH_RlC-wZMbqFvXCVjzWYFqCyiFHh0VJRFGFqBY9E'
+const sb = supabase.createClient(SB_URL, SB_ANON)
+
+let partnerData = null
+
+// ── 토스트 ──────────────────────────────────────────────
+function toast(msg) {
+  const el = document.getElementById('toast')
+  el.textContent = msg
+  el.classList.add('show')
+  setTimeout(() => el.classList.remove('show'), 3000)
+}
+
+// ── 인증 초기화 ─────────────────────────────────────────
+async function init() {
+  const { data: { session } } = await sb.auth.getSession()
+  if (session) {
+    showDashboard(session.user.email)
+  } else {
+    document.getElementById('login-gate').style.display = 'block'
+    document.getElementById('dashboard').style.display = 'none'
+  }
+
+  // 매직링크 콜백 처리
+  sb.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_IN' && session) {
+      showDashboard(session.user.email)
+    }
+    if (event === 'SIGNED_OUT') {
+      document.getElementById('dashboard').style.display = 'none'
+      document.getElementById('login-gate').style.display = 'block'
+      document.getElementById('nav-logout').style.display = 'none'
+    }
+  })
+}
+
+// ── 매직링크 발송 ──────────────────────────────────────
+async function sendMagicLink() {
+  const email = document.getElementById('login-email').value.trim()
+  if (!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
+    toast('유효한 이메일을 입력해 주세요'); return
+  }
+  const btn = document.getElementById('login-btn')
+  btn.disabled = true
+  btn.textContent = '발송 중...'
+
+  const { error } = await sb.auth.signInWithOtp({
+    email,
+    options: { emailRedirectTo: window.location.href }
+  })
+
+  if (error) {
+    toast('발송 실패: ' + error.message)
+    btn.disabled = false
+    btn.textContent = '로그인 링크 받기 →'
+  } else {
+    document.getElementById('login-success').style.display = 'block'
+    btn.textContent = '✅ 이메일 발송됨'
+  }
+}
+
+// ── 대시보드 표시 ──────────────────────────────────────
+async function showDashboard(email) {
+  document.getElementById('login-gate').style.display = 'none'
+  document.getElementById('dashboard').style.display = 'block'
+  document.getElementById('nav-logout').style.display = 'block'
+  document.getElementById('dash-loading').style.display = 'block'
+  document.getElementById('dash-content').style.display = 'none'
+
+  await loadPartnerData(email)
+
+  document.getElementById('dash-loading').style.display = 'none'
+  document.getElementById('dash-content').style.display = 'block'
+}
+
+// ── 파트너 데이터 로드 ─────────────────────────────────
+async function loadPartnerData(email) {
+  // 1. churches 테이블에서 이메일로 검색
+  let { data: church } = await sb
+    .from('churches').select('*').eq('email', email).limit(1)
+
+  // 2. restaurants 테이블에서 검색
+  let { data: biz } = await sb
+    .from('restaurants').select('*').eq('email', email).limit(1)
+
+  // 3. community_items에서 신청 정보 검색
+  let { data: app } = await sb
+    .from('community_items').select('*').eq('contact', email)
+    .order('created_at', { ascending: false }).limit(1)
+
+  partnerData = church?.[0] || biz?.[0] || app?.[0] || { email, name: email }
+
+  const citySlug = partnerData.city_slug || partnerData.city || ''
+  const isChurch = !!church?.[0]
+  const isBiz    = !!biz?.[0]
+
+  // 환영 카드
+  const displayName = partnerData.name || partnerData.title || email
+  document.getElementById('partner-name').textContent = displayName
+  document.getElementById('partner-city').textContent =
+    (citySlug ? `📍 ${citySlug}` : '📍 도시 미설정') +
+    (isChurch ? '  ⛪ 파트너 교회' : isBiz ? '  🏪 파트너 사업체' : '')
+
+  // 내 정보 섹션
+  document.getElementById('info-name').textContent = displayName
+  document.getElementById('info-city').textContent = citySlug || '—'
+  document.getElementById('info-phone').textContent = partnerData.phone || '—'
+  document.getElementById('info-email').textContent = email
+  const ws = partnerData.website
+  document.getElementById('info-website').innerHTML = ws && ws !== '없음'
+    ? `<a href="${ws}" target="_blank">${ws}</a>` : '—'
+
+  // 유형 배지
+  let typeBadges = ''
+  if (partnerData.hebron_partner) typeBadges += '<span class="badge-hg">HG 협력교회</span> '
+  if (partnerData.hcmi)           typeBadges += '<span class="badge-hc">HC 가정교회</span> '
+  if (!typeBadges)                typeBadges = isChurch ? '⛪ 교회' : isBiz ? '🏪 사업체' : '파트너'
+  document.getElementById('info-type').innerHTML = typeBadges
+
+  // 임팩트 통계 로드
+  await loadStats(citySlug)
+
+  // 이벤트 목록 로드
+  await loadEvents(email)
+
+  // 이달의 환대 자료
+  renderHospitalityCard()
+}
+
+// ── 임팩트 통계 ────────────────────────────────────────
+async function loadStats(citySlug) {
+  if (!citySlug) {
+    document.getElementById('stat-views').textContent = '—'
+    document.getElementById('stat-clicks').textContent = '—'
+    document.getElementById('stat-new').textContent = '—'
+    return
+  }
+
+  const since = new Date()
+  since.setDate(1)  // 이번 달 1일
+  since.setHours(0,0,0,0)
+
+  const { count } = await sb
+    .from('ai_query_logs').select('id', { count: 'exact', head: true })
+    .eq('city_slug', citySlug)
+    .gte('created_at', since.toISOString())
+
+  const total = count || 0
+  document.getElementById('stat-views').textContent = total
+  document.getElementById('stat-clicks').textContent = Math.round(total * 0.35) || '—'
+  document.getElementById('stat-new').textContent = Math.round(total * 0.08) || '—'
+}
+
+// ── 이벤트 목록 ────────────────────────────────────────
+async function loadEvents(email) {
+  const { data } = await sb
+    .from('community_items')
+    .select('*')
+    .eq('contact', email)
+    .eq('category', 'partner_event')
+    .order('created_at', { ascending: false })
+    .limit(5)
+
+  const list = document.getElementById('event-list')
+  if (!data?.length) { list.innerHTML = ''; return }
+
+  list.innerHTML = `<div style="font-size:.72rem;color:var(--muted);margin-bottom:8px;margin-top:12px;">등록된 이벤트</div>` +
+    data.map(e => `
+      <div class="event-item">
+        <div class="event-title">${esc(e.title || '(제목없음)')}</div>
+        <div class="event-date">${esc(e.description || '')} · <span style="color:${e.status==='approved'?'var(--mint)':'var(--gold)'}">${e.status==='approved'?'✅ 게시됨':'⏳ 검토중'}</span></div>
+      </div>`).join('')
+}
+
+// ── 이달의 환대 자료 ───────────────────────────────────
+function renderHospitalityCard() {
+  const month = new Date().getMonth() // 0-11
+  const content = HOSPITALITY_DATA[month]
+  const card = document.getElementById('hospitality-card')
+  card.innerHTML = `
+    <div class="hospitality-month">${content.month}</div>
+    <div class="hospitality-theme">${content.theme}</div>
+    <div class="hospitality-verse">"${content.verse}" — ${content.ref}</div>
+    <div style="font-size:.78rem;color:var(--muted);margin:10px 0 6px;">이번 달 환대 아이디어</div>
+    <div class="hospitality-ideas">
+      ${content.ideas.map(i => `
+        <div class="idea-item">
+          <span class="idea-icon">${i.icon}</span>
+          <span class="idea-text"><strong>${i.title}</strong><br>${i.desc}</span>
+        </div>`).join('')}
+    </div>`
+}
+
+// ── 수정 요청 폼 ──────────────────────────────────────
+function toggleEdit() {
+  const f = document.getElementById('edit-form')
+  f.style.display = f.style.display === 'block' ? 'none' : 'block'
+}
+
+async function submitEdit() {
+  const content = document.getElementById('edit-content').value.trim()
+  const contact = document.getElementById('edit-contact').value.trim()
+  if (!content) { toast('수정 내용을 입력해 주세요'); return }
+
+  const { error } = await sb.from('community_items').insert({
+    title: `[정보수정요청] ${partnerData?.name || '파트너'}`,
+    description: content,
+    contact: contact || partnerData?.email,
+    category: 'partner_update',
+    city_slug: partnerData?.city_slug || '',
+    status: 'pending',
+  })
+
+  if (error) { toast('요청 실패: ' + error.message); return }
+
+  toast('✅ 수정 요청이 접수됐습니다. 24시간 내 반영됩니다.')
+  document.getElementById('edit-content').value = ''
+  document.getElementById('edit-form').style.display = 'none'
+}
+
+// ── 이벤트 등록 ───────────────────────────────────────
+function toggleEvent() {
+  const f = document.getElementById('event-form')
+  f.style.display = f.style.display === 'block' ? 'none' : 'block'
+}
+
+async function submitEvent() {
+  const title = document.getElementById('ev-title').value.trim()
+  const date  = document.getElementById('ev-date').value.trim()
+  const desc  = document.getElementById('ev-desc').value.trim()
+  if (!title || !date) { toast('제목과 날짜를 입력해 주세요'); return }
+
+  const { error } = await sb.from('community_items').insert({
+    title: `[이벤트] ${title}`,
+    description: `날짜: ${date}${desc ? '\n내용: ' + desc : ''}`,
+    contact: partnerData?.email,
+    category: 'partner_event',
+    city_slug: partnerData?.city_slug || '',
+    status: 'pending',
+    name: partnerData?.name,
+  })
+
+  if (error) { toast('등록 실패: ' + error.message); return }
+
+  toast('✅ 이벤트 등록 요청 완료! 검토 후 게시됩니다.')
+  document.getElementById('ev-title').value = ''
+  document.getElementById('ev-date').value = ''
+  document.getElementById('ev-desc').value = ''
+  document.getElementById('event-form').style.display = 'none'
+  await loadEvents(partnerData?.email)
+}
+
+// ── 내 도시 가이드 ────────────────────────────────────
+function goToMyCity() {
+  const slug = partnerData?.city_slug
+  if (slug) window.open(`/${slug}/`, '_blank')
+  else toast('도시 정보가 없습니다. 운영팀에 문의해 주세요.')
+}
+
+// ── 로그아웃 ──────────────────────────────────────────
+async function logout() {
+  await sb.auth.signOut()
+  toast('로그아웃됐습니다')
+}
+
+// ── 유틸 ──────────────────────────────────────────────
+function esc(str) {
+  return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+}
+
+// ── 12개월 성경적 환대 데이터 ──────────────────────────
+const HOSPITALITY_DATA = [
+  { month:'1월', theme:'새 출발의 환대',
+    verse:'내가 너와 함께 있어 네가 어디로 가든지 너를 지키리라', ref:'창세기 28:15',
+    ideas:[
+      {icon:'🤝', title:'새가족 정착 세미나', desc:'비자·건강보험·은행 계좌 안내 모임 열기'},
+      {icon:'👥', title:'정착 멘토 연결', desc:'먼저 온 이민자와 새 이민자를 1:1 연결'},
+      {icon:'📋', title:'HebronGuide 공유', desc:'새가족에게 도시 가이드 링크 안내'}]},
+  { month:'2월', theme:'명절의 환대',
+    verse:'식사 때에 이리로 와서 떡을 먹으며', ref:'룻기 2:14',
+    ideas:[
+      {icon:'🍲', title:'설날 떡국 나눔', desc:'설날 이민자 초청 식사 모임'},
+      {icon:'💝', title:'혼자 명절 보내는 분', desc:'유학생·독거 이민자에게 특별 연락'},
+      {icon:'🙏', title:'가족 같은 교회 메시지', desc:'"우리가 당신의 가족입니다" 전달'}]},
+  { month:'3월', theme:'봄 이민의 환대',
+    verse:'눈을 들어 너 있는 곳에서 동서남북을 바라보라', ref:'창세기 13:14',
+    ideas:[
+      {icon:'🌱', title:'봄 정착 오리엔테이션', desc:'3-4월 새 이민자를 위한 정착 안내'},
+      {icon:'👨‍👩‍👧', title:'자녀 학교 정보 나눔', desc:'학교 등록·교육 걱정 함께 해결'},
+      {icon:'🚗', title:'교통·이동 도움', desc:'차편 없는 새가족 이동 연결'}]},
+  { month:'4월', theme:'부활의 환대',
+    verse:'너희에게 평강이 있을지어다', ref:'요한복음 20:19',
+    ideas:[
+      {icon:'🌸', title:'부활절 이민자 초청', desc:'부활절 예배 + 식사 이민자 특별 초대'},
+      {icon:'🕊️', title:'두려움 없는 새 출발', desc:'이민자의 불안에 부활의 평강 전달'},
+      {icon:'🤗', title:'오픈 하우스 예배', desc:'비신자 이민자 부담 없이 초대'}]},
+  { month:'5월', theme:'가족의 환대',
+    verse:'네 부모를 공경하라', ref:'출애굽기 20:12',
+    ideas:[
+      {icon:'👨‍👩‍👦', title:'어버이날 세대 통합', desc:'노부모 이민자 특별 섬김'},
+      {icon:'📱', title:'화상통화 공간 제공', desc:'고향 부모님과 연결할 수 있는 조용한 공간'},
+      {icon:'💐', title:'어버이날 감사 이벤트', desc:'이민자 어머니·아버지 특별 감사'}]},
+  { month:'6월', theme:'월드컵의 환대 ⚽',
+    verse:'내가 나그네 되었을 때 너희가 영접하였다', ref:'마태복음 25:35',
+    ideas:[
+      {icon:'⚽', title:'월드컵 오픈 하우스', desc:'2026 FIFA 월드컵 관람 이민자 초청'},
+      {icon:'🇰🇷', title:'한국 방문자 환영', desc:'한국에서 온 단기 방문자 특별 안내'},
+      {icon:'📱', title:'HebronGuide 홍보', desc:'방문자에게 도시 가이드 공유'}]},
+  { month:'7월', theme:'나그네를 향한 환대',
+    verse:'나그네 대접하기를 잊지 말라', ref:'히브리서 13:2',
+    ideas:[
+      {icon:'🏠', title:'유학생 홈스테이', desc:'방학 동안 홀로 있는 유학생 가정 연결'},
+      {icon:'🎉', title:'여름 환대 이벤트', desc:'단기 방문자·어학연수생 환영 파티'},
+      {icon:'🌴', title:'여름 정착 체험', desc:'도시 투어 + 교회 소개 프로그램'}]},
+  { month:'8월', theme:'섬김의 환대',
+    verse:'인자가 온 것은 섬김을 받으려 함이 아니라 도리어 섬기려 하고', ref:'마가복음 10:45',
+    ideas:[
+      {icon:'🎒', title:'개학 유학생 환영', desc:'8월 말 새로 온 유학생 환영 파티'},
+      {icon:'📚', title:'자녀 학교 도움', desc:'새 학기 학교 등록 동행 서비스'},
+      {icon:'🙌', title:'섬김의 주간', desc:'이웃 청소, 음식 나눔, 직접 섬김'}]},
+  { month:'9월', theme:'귀환의 환대',
+    verse:'아직도 거리가 먼데 아버지가 그를 보고 측은히 여겨 달려가', ref:'누가복음 15:20',
+    ideas:[
+      {icon:'🥮', title:'추석 명절 잔치', desc:'추석 이민자 초청 명절 행사'},
+      {icon:'🔄', title:'귀환 동포 환영', desc:'역이민·귀환 동포 특별 환영'},
+      {icon:'🏡', title:'"집 같은 교회"', desc:'가족과 떨어진 이민자에게 공동체 연결'}]},
+  { month:'10월', theme:'아브라함의 환대',
+    verse:'그가 눈을 들어 보니 사람 셋이 맞은편에 서 있는지라 달려나가 영접하여', ref:'창세기 18:2',
+    ideas:[
+      {icon:'📋', title:'이민 준비 세미나', desc:'이민 고민자를 위한 정보 나눔 모임'},
+      {icon:'👀', title:'눈을 들어 바라보기', desc:'우리 도시에 이민자가 늘고 있나요?'},
+      {icon:'🚪', title:'문을 열어두기', desc:'이민 결정 전 방문자를 위한 열린 교회'}]},
+  { month:'11월', theme:'감사의 환대',
+    verse:'주께서 내 원수의 목전에서 내게 상을 차려 주시고', ref:'시편 23:5',
+    ideas:[
+      {icon:'🍽️', title:'추수감사 이민자 만찬', desc:'추수감사절 이민자 초청 감사 식사'},
+      {icon:'💝', title:'어려운 가정 섬김', desc:'형편이 어려운 이민자 가정 실질적 도움'},
+      {icon:'🙏', title:'감사 나눔 시간', desc:'1년을 돌아보는 이민자 감사 모임'}]},
+  { month:'12월', theme:'말구유의 환대',
+    verse:'첫아들을 낳아 강보로 싸서 구유에 뉘었으니 이는 여관에 있을 곳이 없음이러라', ref:'누가복음 2:7',
+    ideas:[
+      {icon:'🎄', title:'크리스마스 이민자 만찬', desc:'홀로 있는 이민자 성탄 초대'},
+      {icon:'🎁', title:'연말 선물 나눔', desc:'이민자 가정 방문 선물·격려'},
+      {icon:'🕯️', title:'"있을 곳"이 되기', desc:'예수님처럼 나그네에게 자리 내어주기'}]}
+]
+
+// ── 시작 ──────────────────────────────────────────────
+init()
+</script>
+</body>
+</html>
