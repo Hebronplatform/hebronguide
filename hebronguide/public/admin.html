@@ -1022,7 +1022,10 @@
                 <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
                 <div class="cell-sub">${esc(r.website || r.url || '')}</div>
               </td>
-              <td><span class="status ${r.status || 'community'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '💬 커뮤니티'}</span></td>
+              <td>
+                <span class="status ${r.status || 'community'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '💬 커뮤니티'}</span>
+                ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
+              </td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions" onclick="event.stopPropagation()">
                 ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
@@ -1064,7 +1067,10 @@
                 <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
                 <div class="cell-sub">${esc(r.contact || '')}</div>
               </td>
-              <td><span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span></td>
+              <td>
+                <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span>
+                ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
+              </td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions" onclick="event.stopPropagation()">
                 ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
@@ -1161,7 +1167,10 @@
               <td>
                 <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
               </td>
-              <td><span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span></td>
+              <td>
+                <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span>
+                ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
+              </td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions" onclick="event.stopPropagation()">
                 ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
@@ -1224,7 +1233,10 @@
                 <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
                 <div class="cell-sub">${esc(r.contact || '')}</div>
               </td>
-              <td><span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span></td>
+              <td>
+                <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span>
+                ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
+              </td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions" onclick="event.stopPropagation()">
                 ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
@@ -1557,6 +1569,8 @@
           const emailData = await emailRes.json()
           if (emailData.ok && !emailData.skipped) {
             toast(`📧 ${nameKo} → ${email} 확인 이메일 발송 완료!`)
+            // 발송 기록 저장
+            await adminAction({ action: 'mark_notified', id: row.id, table: 'community_items' }).catch(() => {})
           }
         } catch(emailErr) {
           console.warn('이메일 발송 실패:', emailErr.message)
@@ -1628,6 +1642,7 @@
                 pastor_email: pastorEmail } }),
           })
           toast(`📧 ${name} → ${email} 확인 이메일 발송!`)
+          await adminAction({ action: 'mark_notified', id: row.id, table: 'community_items' }).catch(() => {})
         } catch(e) { console.warn('사업체 이메일 실패:', e.message) }
       }
       // 추천 목사님 알림 이메일
@@ -1678,6 +1693,7 @@
               promo: { title, contact, phone, email, promoType, period, link, content } }),
           })
           toast(`📧 ${title} → ${email} 확인 이메일 발송!`)
+          await adminAction({ action: 'mark_notified', id: row.id, table: 'community_items' }).catch(() => {})
         } catch(e) { console.warn('홍보 이메일 실패:', e.message) }
       }
     } catch(e) {

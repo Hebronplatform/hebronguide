@@ -106,6 +106,10 @@ export default async function handler(req) {
         await sbFetch(table, 'DELETE', id)
         return new Response(JSON.stringify({ ok: true, msg: '삭제 완료' }), { headers: CORS })
 
+      case 'mark_notified':
+        await sbFetch('community_items', 'PATCH', id, { notified_at: new Date().toISOString() })
+        return new Response(JSON.stringify({ ok: true, msg: '발송 기록 완료' }), { headers: CORS })
+
       case 'verify_partner':
         await sbFetch('pastor_partners', 'PATCH', id, { verified: true })
         return new Response(JSON.stringify({ ok: true, msg: '인증 완료' }), { headers: CORS })
