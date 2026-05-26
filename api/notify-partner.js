@@ -48,6 +48,7 @@ export default async function handler(req, res) {
 안녕하세요, ${church.pastor || '목사님'}! 🙏
 
 ${church.name}이(가) HebronGuide 파트너 교회로 등재되었습니다.
+수고하신 섬김에 진심으로 감사드립니다.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ▶ 등재된 페이지 확인하기
@@ -63,16 +64,29 @@ ${cityUrl}
   이메일: ${church.email}
   ${church.website && church.website !== '없음' ? '웹사이트: ' + church.website : ''}
 
-수정이 필요한 정보가 있으시면 아래로 연락해 주세요:
-  📧 이메일: hebronplatform@gmail.com
-  💬 카카오톡 채널: pf.kakao.com/_dxdxlbX
+수정이 필요한 정보가 있으시면 이 이메일로 회신해 주시거나
+카카오톡 채널로 편하게 문의해 주세요.
+  📧 hebronplatform@gmail.com
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💬 HebronGuide 카카오톡 채널을 추가해 주세요!
+
+  👉 pf.kakao.com/_dxdxlbX
+
+채널을 추가하시면:
+  ✅ 새 도시 오픈 소식을 가장 먼저 받으실 수 있습니다
+  ✅ 교회 정보 수정 요청을 카카오톡으로 간편하게 보내실 수 있습니다
+  ✅ HebronGuide 업데이트·이민자 정착 정보를 공유받으실 수 있습니다
+  ✅ 파트너 교회 간 네트워크 소식도 받아보실 수 있습니다
+
+앞으로 더 원활한 소통을 위해 채널 추가를 정중히 권해 드립니다. 🙏
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 HebronGuide를 통해 많은 이주민 성도들이
 교회를 찾고 연결되기를 바랍니다. 감사합니다!
 
 "내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 HebronGuide 팀 | hebronguide.com
 68개 도시 한인 이주민 정착 가이드
 `.trim()
@@ -96,16 +110,29 @@ ${cityUrl}
   Email: ${church.email}
   ${church.website && church.website !== '없음' ? 'Website: ' + church.website : ''}
 
-If any information needs correction, please contact us:
-  📧 Email: hebronplatform@gmail.com
-  💬 KakaoTalk: pf.kakao.com/_dxdxlbX
+If any information needs correction, please reply to this email.
+  📧 hebronplatform@gmail.com
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💬 We warmly invite you to add our KakaoTalk Channel!
+
+  👉 pf.kakao.com/_dxdxlbX
+
+By adding our channel, you will:
+  ✅ Be the first to know when new cities launch
+  ✅ Send church info correction requests easily via KakaoTalk
+  ✅ Receive HebronGuide updates & diaspora settlement news
+  ✅ Stay connected with our partner church network
+
+For smoother communication going forward,
+we kindly encourage you to add our KakaoTalk channel. 🙏
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 We pray that many Korean diaspora members will find
 your church through HebronGuide. Thank you!
 
 "I was a stranger and you welcomed me." — Matthew 25:35
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 HebronGuide Team | hebronguide.com
 Korean Immigrant Settlement Guide · 68 Cities
 `.trim()
