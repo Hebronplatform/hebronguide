@@ -520,6 +520,12 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <textarea id="bDesc" placeholder="제공 서비스나 특별 혜택을 간단히 알려주세요."></textarea>
     </div>
 
+    <div class="field">
+      <label>추천 목사님 이메일 <span class="opt">(선택)</span></label>
+      <input type="email" id="bPastorEmail" placeholder="pastor@church.com">
+      <div style="font-size:.78rem;color:#9ca3af;margin-top:4px;">파트너 교회 목사님의 추천을 통해 오셨다면 입력해 주세요. 신뢰 연결에 도움이 됩니다.</div>
+    </div>
+
     <!-- 개인정보 동의 — 사업체 -->
     <label class="consent-row" style="margin:14px 0 4px;">
       <input type="checkbox" id="bConsent">
@@ -820,7 +826,8 @@ async function submitForm(type) {
       ? (document.getElementById('bCityOther')?.value.trim() || '기타 (미입력)')
       : (citySelect || '미선택');
     subject = `[사업체 등재 신청] ${document.getElementById('bBiz').value}`;
-    body = `업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n주소: ${document.getElementById('bAddress')?.value || ''}\n웹사이트: ${document.getElementById('bWebsite')?.value || ''}\n노출 도시: ${city}\n\n소개:\n${document.getElementById('bDesc').value}`;
+    const bPastorEmail = document.getElementById('bPastorEmail')?.value.trim() || '';
+    body = `업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n주소: ${document.getElementById('bAddress')?.value || ''}\n웹사이트: ${document.getElementById('bWebsite')?.value || ''}\n노출 도시: ${city}${bPastorEmail ? '\n추천목사이메일: ' + bPastorEmail : ''}\n\n소개:\n${document.getElementById('bDesc').value}`;
   } else if(type === 'promo') {
     // '기타' 선택 시 직접 입력값 유효성 확인
     const prTypeVal = document.getElementById('prType').value;

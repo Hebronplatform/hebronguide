@@ -263,6 +263,44 @@ Korean Immigrant Settlement Guide · 68 Cities`.trim()
   }
 }
 
+// ── 추천 목사 알림 이메일 ─────────────────────────────────────────────────
+function buildPastorReferralEmail(biz) {
+  const cityUrl = biz.city_slug
+    ? `https://hebronguide.com/${biz.city_slug}/`
+    : 'https://hebronguide.com/'
+
+  const ko = `
+안녕하세요, 목사님! 🙏
+
+목사님께서 추천해 주신 ${biz.biz_name || biz.name}이(가) HebronGuide에 등재되었습니다.
+귀한 연결에 감사드립니다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ 등재 확인
+${cityUrl}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  업체명: ${biz.biz_name || biz.name}
+  업종: ${biz.type || '—'}
+  도시: ${biz.city || '—'}
+  ${biz.biz_email ? '업체 이메일: ' + biz.biz_email : ''}
+
+HebronGuide는 목사님의 파트너 네트워크를 통해 성장하고 있습니다.
+이민자 정착과 교회 연결을 위해 함께해 주셔서 감사합니다.
+${KAKAO_BLOCK}
+
+HebronGuide 팀 | hebronguide.com
+"내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35`.trim()
+
+  return {
+    to: biz.email,  // pastor_email
+    subject: `[HebronGuide] 추천하신 ${biz.biz_name || biz.name} 등재 완료 안내`,
+    text: ko,
+    adminSubject: `[관리자 알림] 목사 추천 사업체 등재 · ${biz.biz_name || biz.name} · ${biz.city || ''}`,
+    adminText: `추천 목사 이메일: ${biz.email}\n업체명: ${biz.biz_name || biz.name}\n도시: ${biz.city}\n\n추천 목사님께 알림 발송 완료.`,
+  }
+}
+
 // ── 핸들러 ──────────────────────────────────────────────────────────────
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).json({})
@@ -284,11 +322,17 @@ export default async function handler(req, res) {
     // type에 따른 이메일 빌드
     let emailData
     if (type === 'business') {
-      const biz = business || church  // 하위 호환 (church 키로 넘긴 경우)
+      const biz = business || church
       if (!biz || !biz.email || biz.email === '없음' || biz.email === '') {
         return res.status(200).json({ ok: true, skipped: true, msg: '이메일 주소 없음 — 발송 건너뜀' })
       }
       emailData = buildBusinessEmail(biz)
+    } else if (type === 'pastor_referral') {
+      const biz = business || church
+      if (!biz || !biz.email || biz.email === '없음' || biz.email === '') {
+        return res.status(200).json({ ok: true, skipped: true, msg: '목사 이메일 없음 — 발송 건너뜀' })
+      }
+      emailData = buildPastorReferralEmail(biz)
     } else if (type === 'promo') {
       const p = promo || church
       if (!p || !p.email || p.email === '없음' || p.email === '') {

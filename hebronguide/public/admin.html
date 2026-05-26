@@ -1411,10 +1411,11 @@
       const contact   = get('담당자') || ''
       const phone     = get('전화') || row.phone || ''
       const email     = get('이메일') || row.contact || ''
-      const address   = get('주소') || ''
-      const website   = get('웹사이트') || ''
-      const cityRaw   = get('노출 도시') || get('도시') || row.city_slug || ''
-      const intro     = desc.split('소개:')[1]?.trim() || ''
+      const address      = get('주소') || ''
+      const website      = get('웹사이트') || ''
+      const cityRaw      = get('노출 도시') || get('도시') || row.city_slug || ''
+      const pastorEmail  = get('추천목사이메일') || ''
+      const intro        = desc.split('소개:')[1]?.trim() || ''
 
       // 도시 → slug 변환
       const citySlugMap = {
@@ -1443,17 +1444,31 @@
       })
       toast(`🏪 ${name} → 사업체 자동 등록 완료!`)
 
-      // 확인 이메일 발송
+      // 확인 이메일 발송 (사업체 담당자)
       if (email) {
         try {
           await fetch('/api/notify-partner', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ token: adminToken, type: 'business',
-              business: { name, type, contact, city: cityRaw, phone, email, website, city_slug: citySlug } }),
+              business: { name, type, contact, city: cityRaw, phone, email, website, city_slug: citySlug,
+                pastor_email: pastorEmail } }),
           })
           toast(`📧 ${name} → ${email} 확인 이메일 발송!`)
         } catch(e) { console.warn('사업체 이메일 실패:', e.message) }
+      }
+      // 추천 목사님 알림 이메일
+      if (pastorEmail) {
+        try {
+          await fetch('/api/notify-partner', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: adminToken, type: 'pastor_referral',
+              business: { name, type, city: cityRaw, phone, email: pastorEmail, website, city_slug: citySlug,
+                biz_name: name, biz_email: email } }),
+          })
+          toast(`📧 추천 목사님 → ${pastorEmail} 알림 발송!`)
+        } catch(e) { console.warn('목사 알림 실패:', e.message) }
       }
     } catch(e) {
       console.warn('사업체 자동 등록 실패:', e.message)
