@@ -69,7 +69,7 @@ export default async function handler(req) {
   if (req.method !== 'POST') return new Response('Method not allowed', { status: 405, headers: CORS })
 
   try {
-    const { action, id, table, status, token } = await req.json()
+    const { action, id, table, status, token, church } = await req.json()
 
     // ── 토큰 인증 ────────────────────────────────────────
     if (!token || token !== ADMIN_HASH) {
@@ -79,7 +79,7 @@ export default async function handler(req) {
     }
 
     // ── 입력값 검증 ──────────────────────────────────────
-    if (!id || !table) {
+    if (action !== 'insert_church' && (!id || !table)) {
       return new Response(JSON.stringify({ error: 'id, table 필수' }), {
         status: 400, headers: CORS
       })
@@ -113,6 +113,44 @@ export default async function handler(req) {
       case 'feature_story':
         await sbFetch('stories', 'PATCH', id, { featured: true })
         return new Response(JSON.stringify({ ok: true, msg: '피처드 설정 완료' }), { headers: CORS })
+
+      case 'insert_church': {
+        if (!church || !church.name) {
+          return new Response(JSON.stringify({ error: '교회 데이터 없음' }), { status: 400, headers: CORS })
+        }
+        const serviceKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY
+        const insertRes = await fetch(`https://vextxqzggznulwpganwt.supabase.co/rest/v1/churches`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': serviceKey,
+            'Authorization': `Bearer ${serviceKey}`,
+            'Prefer': 'return=minimal',
+          },
+          body: JSON.stringify({
+            name:         church.name,
+            name_en:      church.name_en || church.name,
+            city_slug:    church.city_slug || '',
+            description:  church.description || '',
+            phone:        church.phone || '',
+            email:        church.email || '',
+            website:      church.website || '',
+            denomination: church.denomination || '',
+            service_time: church.service_time || '',
+            hebron_partner: church.hebron_partner || false,
+            hcmi:         church.hcmi || false,
+            tier:         church.tier || 2,
+            active:       true,
+            source:       church.source || 'admin_approved',
+            source_id:    church.source_id || null,
+          }),
+        })
+        if (!insertRes.ok) {
+          const errText = await insertRes.text()
+          throw new Error(`교회 저장 실패 (${insertRes.status}): ${errText}`)
+        }
+        return new Response(JSON.stringify({ ok: true, msg: `${church.name} 등록 완료` }), { headers: CORS })
+      }
 
       default:
         return new Response(JSON.stringify({ error: `알 수 없는 액션: ${action}` }), {

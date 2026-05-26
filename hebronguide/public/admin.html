@@ -1270,8 +1270,83 @@
     try {
       const r = await adminAction({ action: 'update_status', id, table, status })
       toast(`✅ ${r.msg || (status === 'approved' ? '승인 완료' : '거절 완료')}`)
+
+      // 교회 신청 승인 시 → churches 테이블 자동 저장
+      if (status === 'approved' && table === 'community_items') {
+        const row = allData.find(d => d.id === id)
+        if (row && ['church','church_application'].includes(row.category)) {
+          await autoAddChurch(row)
+        }
+      }
+
       loadTabData(currentTab)
     } catch(e) { toast('❌ ' + e.message) }
+  }
+
+  // 교회 신청 → churches 테이블 자동 파싱·저장
+  async function autoAddChurch(row) {
+    try {
+      const desc = row.description || ''
+      const get = (label) => {
+        const m = desc.match(new RegExp(label + '[:\\s]+([^\\n]+)'))
+        return m ? m[1].trim() : ''
+      }
+      const nameKo  = get('교회명\\(KO\\)') || get('교회명') || row.name || ''
+      const nameEn  = get('교회명\\(EN\\)') || nameKo
+      const pastor  = get('담임목사\\(KO\\)') || get('담임목사') || ''
+      const pastorEn= get('담임목사\\(EN\\)') || pastor
+      const city    = get('도시') || row.city_slug || ''
+      const phone   = get('전화') || row.phone || ''
+      const email   = get('이메일') || row.contact || ''
+      const website = get('웹사이트') || ''
+      const denom   = get('교단') || ''
+      const service = get('예배시간') || ''
+      const intro   = desc.split('소개:')[1]?.trim() || ''
+      const hebron  = /Hebron.*협력교회.*✅|✅.*Hebron/.test(desc)
+      const hcmi    = /가정교회.*✅|HCMI.*✅|✅.*HCMI/.test(desc)
+
+      const citySlug = city.toLowerCase()
+        .replace(/[^a-z0-9]/g, '')
+        .replace('princegeorge', 'princgeorge')
+        || ''
+
+      const descText = [
+        '✅ 파트너 교회',
+        city ? `📍 ${city}` : '',
+        service ? `🕐 ${service}` : '',
+        phone ? `☎ ${phone}` : '',
+        email ? `✉️ ${email}` : '',
+        website && website !== '없음' ? `🔗 ${website}` : '',
+        pastor ? `✨ 담임: ${pastor} 목사` : '',
+        intro ? `\n${intro}` : '',
+      ].filter(Boolean).join('\n')
+
+      await adminAction({
+        action: 'insert_church',
+        church: {
+          name:        nameKo,
+          name_en:     nameEn,
+          city_slug:   citySlug,
+          description: descText,
+          pastor:      pastor,
+          phone:       phone,
+          email:       email,
+          website:     website && website !== '없음' ? website : '',
+          denomination:denom,
+          service_time:service,
+          hebron_partner: hebron,
+          hcmi:        hcmi,
+          tier:        2,
+          active:      true,
+          source:      'admin_approved',
+          source_id:   row.id,
+        }
+      })
+      toast(`⛪ ${nameKo} → churches 테이블 자동 등록 완료!`)
+    } catch(e) {
+      console.warn('교회 자동 등록 실패:', e.message)
+      toast(`⚠️ 승인은 완료. 교회 자동 등록 실패: ${e.message}`)
+    }
   }
 
   async function deleteRow(id, table, db) {
