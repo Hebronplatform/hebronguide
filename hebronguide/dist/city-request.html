@@ -114,11 +114,11 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
   <div class="hero-badge">🌏 도시 신청</div>
   <h1>
     <span class="brand">HebronGuide</span>
-    우리 도시에도 와주세요
+    우리 도시도 연결해 주세요
   </h1>
   <p class="hero-sub">
     가족이 사는 도시에 · 교회가 있는 도시에<br>
-    HebronGuide가 오기를 원하시나요?<br>
+    HebronGuide 연결을 원하시나요?<br>
     신청해 주세요. <strong style="color:var(--mint);">한 분의 신청이 그 도시를 열게 됩니다.</strong>
   </p>
 
@@ -343,25 +343,47 @@ function validate() {
   return ok;
 }
 
-function submitRequest() {
+async function submitRequest() {
   if (!validate()) return;
+
+  const btn = document.querySelector('.submit-btn');
+  if (btn) { btn.disabled = true; btn.textContent = '신청 중...'; }
+
   const city = document.getElementById('reqCity').value === '기타'
     ? document.getElementById('reqCityOther').value
     : document.getElementById('reqCity').value;
+  const name    = document.getElementById('reqName').value.trim() || '';
+  const email   = document.getElementById('reqEmail').value.trim();
+  const reason  = document.getElementById('reqReason').value.trim() || '';
+  const ref     = document.getElementById('reqRef').value.trim() || '';
+  const role    = getRole();
 
-  const body = `[HebronGuide 도시 신청]
+  const description = `역할: ${role}\n성함: ${name || '(미입력)'}\n이메일: ${email}\n신청 도시: ${city}\n신청 이유: ${reason || '(미입력)'}\n추천인: ${ref || '(미입력)'}`;
 
-역할: ${getRole()}
-성함: ${document.getElementById('reqName').value.trim() || '(미입력)'}
-이메일: ${document.getElementById('reqEmail').value.trim()}
-신청 도시: ${city}
-신청 이유: ${document.getElementById('reqReason').value.trim() || '(미입력)'}
-추천인: ${document.getElementById('reqRef').value.trim() || '(미입력)'}
-
-— hebronguide.com | `;
-
-  const subject = `[HebronGuide] 도시 신청 — ${city}`;
-  window.location.href = `mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  // ── Supabase 저장 ──────────────────────────────────────────
+  try {
+    const SB_URL  = 'https://vextxqzggznulwpganwt.supabase.co';
+    const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU5NjY4NDMsImV4cCI6MjA2MTU0Mjg0M30.YSLH_RlC-wZMbqFvXCVjzWYFqCyiFHh0VJRFGFqBY9E';
+    await fetch(`${SB_URL}/rest/v1/community_items`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SB_ANON,
+        'Authorization': `Bearer ${SB_ANON}`,
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify({
+        title:       `[도시 신청] ${city}`,
+        name:        name || email,
+        contact:     email,
+        description: description,
+        category:    'city_request',
+        city_slug:   '',
+        city:        city,
+        status:      'pending',
+      }),
+    });
+  } catch(e) { console.warn('Supabase 저장 실패:', e.message); }
 
   document.getElementById('formCard').style.display = 'none';
   document.getElementById('successBox').classList.add('show');

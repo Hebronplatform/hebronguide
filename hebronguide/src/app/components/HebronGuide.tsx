@@ -2375,6 +2375,12 @@ const TOP5_SETTLE_LA: Top5Item[] = [
     hours: "토 9am-1pm (학기 중)", rating: 4.5, ratingCount: "—",
     why: "남가주 최대 한국학교. 코리아타운·어바인·토런스 캠퍼스. 5000명+ 재학생",
     tip: "kssc.org 등록. 9월 학기 시작. 조기 마감 주의", website: "kssc.org" },
+  { rank: 11, emoji: "🛡️", nameKo: "Justin Oh Insurance — 한인 보험 전문", nameEn: "Justin Oh Insurance — Korean Insurance Specialist",
+    address: "5325 Argos St, Agoura Hills, CA 91301",
+    phone: "(213) 676-7008",
+    hours: "상담 예약 문의",
+    why: "LA 광역권 한인 보험 전문 에이전트. 메디칼(Medi-Cal)·메디케어(Medicare)·오바마케어(Covered CA)·은퇴연금·생명보험·의료 상조·장례보험 전 종목 한국어 상담 가능.",
+    tip: "✉️ weare7942@gmail.com | 한국어 상담 가능 — 전화 또는 이메일로 예약 권장" },
 ];
 
 const TOP5_EXPLORE_LA: Top5Item[] = [
