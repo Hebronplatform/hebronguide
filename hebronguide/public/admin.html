@@ -1271,11 +1271,17 @@
       const r = await adminAction({ action: 'update_status', id, table, status })
       toast(`✅ ${r.msg || (status === 'approved' ? '승인 완료' : '거절 완료')}`)
 
-      // 교회 신청 승인 시 → churches 테이블 자동 저장
+      // 승인 시 카테고리별 자동 처리
       if (status === 'approved' && table === 'community_items') {
         const row = allData.find(d => d.id === id)
-        if (row && ['church','church_application'].includes(row.category)) {
-          await autoAddChurch(row)
+        if (row) {
+          if (['church','church_application'].includes(row.category)) {
+            await autoAddChurch(row)
+          } else if (row.category === 'business') {
+            await autoAddBusiness(row)
+          } else if (row.category === 'promo') {
+            await autoAddPromo(row)
+          }
         }
       }
 
@@ -1305,9 +1311,31 @@
       const hebron  = /Hebron.*협력교회.*✅|✅.*Hebron/.test(desc)
       const hcmi    = /가정교회.*✅|HCMI.*✅|✅.*HCMI/.test(desc)
 
-      const citySlug = city.toLowerCase()
-        .replace(/[^a-z0-9]/g, '')
-        .replace('princegeorge', 'princgeorge')
+      // 한글 도시명 → slug 변환 맵 (구형 신청서 / 직접 입력 대응)
+      const churchCitySlugMap = {
+        '서울':'seoul','부산':'busan','제주':'jeju',
+        '시애틀':'seattle','달라스':'dallas','다라스':'dallas',
+        '뉴욕':'newyork','뉴저지':'newyork',
+        '로스앤젤레스':'la','엘에이':'la','l.a.':'la','la':'la',
+        '샌프란시스코':'sf','베이에어리어':'sf',
+        '휴스턴':'houston','애틀랜타':'atlanta',
+        '워싱턴':'dc','워싱턴dc':'dc','페어팩스':'dc','센터빌':'dc','버지니아':'dc','노던버지니아':'dc',
+        '시카고':'chicago','보스턴':'boston','내쉬빌':'nashville',
+        '마이애미':'miami','캔자스시티':'kansascity','필라델피아':'philadelphia',
+        '피닉스':'phoenix','미니애폴리스':'minneapolis','덴버':'denver',
+        '샌디에고':'sandiego','토론토':'toronto',
+        '밴쿠버':'vancouver','화이트락':'vancouver','white rock':'vancouver','화이트 락':'vancouver',
+        '캘거리':'calgary','에드먼튼':'edmonton','오타와':'ottawa','위니펙':'winnipeg',
+        '프린스조지':'princgeorge','prince george':'princgeorge',
+        '시드니':'sydney','멜버른':'melbourne','브리즈번':'brisbane','오클랜드':'auckland',
+        '런던':'london','도쿄':'tokyo','오사카':'osaka','싱가포르':'singapore',
+        '방콕':'bangkok','두바이':'dubai','베를린':'berlin','프랑크푸르트':'frankfurt',
+        '파리':'paris','암스테르담':'amsterdam',
+        '멕시코시티':'mexicocity','과달라하라':'guadalajara','몬테레이':'monterrey',
+      }
+      const cityLower = city.toLowerCase().trim()
+      const citySlug = churchCitySlugMap[cityLower]
+        || city.toLowerCase().replace(/[^a-z0-9]/g, '').replace('princegeorge', 'princgeorge')
         || ''
 
       const descText = [
@@ -1367,6 +1395,106 @@
     } catch(e) {
       console.warn('교회 자동 등록 실패:', e.message)
       toast(`⚠️ 승인은 완료. 교회 자동 등록 실패: ${e.message}`)
+    }
+  }
+
+  // 사업체 신청 → restaurants/cafes 테이블 자동 파싱·저장
+  async function autoAddBusiness(row) {
+    try {
+      const desc = row.description || ''
+      const get = (label) => {
+        const m = desc.match(new RegExp(label + '[:\\s]+([^\\n]+)'))
+        return m ? m[1].trim() : ''
+      }
+      const name      = get('업체명') || row.name || ''
+      const type      = get('업종') || ''
+      const contact   = get('담당자') || ''
+      const phone     = get('전화') || row.phone || ''
+      const email     = get('이메일') || row.contact || ''
+      const address   = get('주소') || ''
+      const website   = get('웹사이트') || ''
+      const cityRaw   = get('노출 도시') || get('도시') || row.city_slug || ''
+      const intro     = desc.split('소개:')[1]?.trim() || ''
+
+      // 도시 → slug 변환
+      const citySlugMap = {
+        '로스앤젤레스':'la','시애틀':'seattle','달라스':'dallas','뉴욕':'newyork',
+        'l.a.':'la','la':'la','seattle':'seattle','dallas':'dallas',
+        '샌프란시스코':'sf','sf':'sf','휴스턴':'houston','houston':'houston',
+        '애틀랜타':'atlanta','토론토':'toronto','밴쿠버':'vancouver',
+        '서울':'seoul','부산':'busan'
+      }
+      const citySlug = citySlugMap[cityRaw.toLowerCase()] || cityRaw.toLowerCase().replace(/[^a-z0-9]/g,'')
+
+      const descText = [
+        type ? `업종: ${type}` : '',
+        address ? `📍 ${address}` : '',
+        phone ? `☎ ${phone}` : '',
+        email ? `✉️ ${email}` : '',
+        website ? `🔗 ${website}` : '',
+        contact ? `담당: ${contact}` : '',
+        intro ? `\n${intro}` : '',
+      ].filter(Boolean).join('\n')
+
+      await adminAction({
+        action: 'insert_business',
+        business: { name, type, contact, city_slug: citySlug, city: cityRaw,
+          phone, email, website, description: descText, active: true, source_id: row.id }
+      })
+      toast(`🏪 ${name} → 사업체 자동 등록 완료!`)
+
+      // 확인 이메일 발송
+      if (email) {
+        try {
+          await fetch('/api/notify-partner', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: adminToken, type: 'business',
+              business: { name, type, contact, city: cityRaw, phone, email, website, city_slug: citySlug } }),
+          })
+          toast(`📧 ${name} → ${email} 확인 이메일 발송!`)
+        } catch(e) { console.warn('사업체 이메일 실패:', e.message) }
+      }
+    } catch(e) {
+      console.warn('사업체 자동 등록 실패:', e.message)
+      toast(`⚠️ 승인 완료. 사업체 자동 등록 실패: ${e.message}`)
+    }
+  }
+
+  // 홍보 신청 → 확인 이메일만 발송 (별도 테이블 없음)
+  async function autoAddPromo(row) {
+    try {
+      const desc = row.description || ''
+      const get = (label) => {
+        const m = desc.match(new RegExp(label + '[:\\s]+([^\\n]+)'))
+        return m ? m[1].trim() : ''
+      }
+      const title   = get('제목') || row.name || ''
+      const contact = get('담당자') || ''
+      const phone   = get('전화') || row.phone || ''
+      const email   = get('이메일') || row.contact || ''
+      const promoType = get('홍보유형') || ''
+      const period  = get('기간') || ''
+      const link    = get('링크') || ''
+      const content = desc.split('홍보 내용:')[1]?.trim() || ''
+
+      toast(`📣 ${title} → 홍보 신청 승인 완료!`)
+
+      // 확인 이메일 발송
+      if (email) {
+        try {
+          await fetch('/api/notify-partner', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: adminToken, type: 'promo',
+              promo: { title, contact, phone, email, promoType, period, link, content } }),
+          })
+          toast(`📧 ${title} → ${email} 확인 이메일 발송!`)
+        } catch(e) { console.warn('홍보 이메일 실패:', e.message) }
+      }
+    } catch(e) {
+      console.warn('홍보 처리 실패:', e.message)
+      toast(`⚠️ 승인 완료. 홍보 처리 실패: ${e.message}`)
     }
   }
 
