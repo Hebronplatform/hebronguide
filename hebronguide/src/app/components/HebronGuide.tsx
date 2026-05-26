@@ -25363,7 +25363,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
 /* ─────────────────────────────────────────
    데스크탑 사이드바 — lg 이상 화면에서 좌측 고정 네비게이션
 ───────────────────────────────────────── */
-function DesktopSidebar({ activeTab, onNavigate }: { activeTab: number; onNavigate: (tab: number, subTab?: number) => void }) {
+function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number; onNavigate: (tab: number, subTab?: number) => void; onSearch?: () => void }) {
   const { lang } = useI18n();
   const city = useCityConfig();
   const ko = lang === "ko";
@@ -25390,8 +25390,31 @@ function DesktopSidebar({ activeTab, onNavigate }: { activeTab: number; onNaviga
           {city.nameEn.toUpperCase()}
         </div>
       </div>
+      {/* 🔍 검색 버튼 */}
+      {onSearch && (
+        <div style={{ padding: "8px 8px 4px" }}>
+          <button onClick={onSearch}
+            style={{ width: "100%", display: "flex", alignItems: "center", gap: 10, padding: "10px 12px",
+              borderRadius: 12, border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer",
+              background: "rgba(255,255,255,0.05)", transition: "all 0.15s ease" }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(242,153,74,0.12)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(242,153,74,0.35)"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)"; }}>
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+              <circle cx="9" cy="9" r="6" stroke="rgba(236,253,245,0.5)" strokeWidth="2"/>
+              <path d="M13.5 13.5L17 17" stroke="rgba(236,253,245,0.5)" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+            <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 500, fontSize: 13,
+              color: "rgba(236,253,245,0.5)" }}>
+              {ko ? "검색..." : "Search..."}
+            </span>
+            <span style={{ marginLeft: "auto", fontFamily: "Manrope,sans-serif", fontSize: 10,
+              color: "rgba(236,253,245,0.25)", background: "rgba(255,255,255,0.07)",
+              padding: "2px 6px", borderRadius: 5 }}>⌘K</span>
+          </button>
+        </div>
+      )}
       {/* 네비게이션 */}
-      <nav style={{ flex: 1, padding: "12px 8px", overflowY: "auto" }}>
+      <nav style={{ flex: 1, padding: "8px 8px", overflowY: "auto" }}>
         {SIDEBAR_ITEMS.map(item => {
           const isActive = activeTab === item.tab;
           return (
@@ -26448,7 +26471,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
 /* ─────────────────────────────────────────
    TOP APP BAR
 ───────────────────────────────────────── */
-function AppBar({ onHome }: { onHome?: () => void }) {
+function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => void }) {
   const { lang, setLang } = useI18n();
   const currentCity = useCityConfig();
   const [showCitySheet, setShowCitySheet] = useState(false);
@@ -26524,8 +26547,26 @@ function AppBar({ onHome }: { onHome?: () => void }) {
         </button>
       </div>
 
-      {/* 우측: 언어 토글 */}
+      {/* 우측: 검색 아이콘 + 언어 토글 */}
       <div className="flex items-center gap-[8px]">
+        {/* 🔍 검색 버튼 — 항상 노출 */}
+        {onSearch && (
+          <button
+            onClick={onSearch}
+            style={{ display: "flex", alignItems: "center", justifyContent: "center",
+              width: 32, height: 32, borderRadius: 10,
+              background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)",
+              cursor: "pointer", transition: "all 0.15s", flexShrink: 0 }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(242,153,74,0.12)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(242,153,74,0.4)"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.04)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.08)"; }}
+            title={lang === "ko" ? "검색" : "Search"}
+          >
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none">
+              <circle cx="9" cy="9" r="6" stroke="#64748B" strokeWidth="2"/>
+              <path d="M13.5 13.5L17 17" stroke="#64748B" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          </button>
+        )}
         <div className="flex items-center" style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 10, padding: 2, gap: 2 }}>
           {(["ko", "en"] as const).map((l) => (
             <button key={l} onClick={() => setLang(l)}
@@ -26712,6 +26753,22 @@ export function HebronGuide() {
     if (showSearch) setSearchQuery("");
   };
 
+  // ⌘K / Ctrl+K 키보드 단축키
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        handleSearchToggle();
+      }
+      if (e.key === 'Escape' && showSearch) {
+        setShowSearch(false);
+        setSearchQuery("");
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [showSearch]);
+
   // iOS Safari autoFocus 대체 — showSearch 열릴 때 ref로 직접 포커스
   useEffect(() => {
     if (showSearch) {
@@ -26824,14 +26881,14 @@ export function HebronGuide() {
   return (
     <div className="flex min-h-screen w-full" style={{ background: "#F2F2F7" }}>
       {/* 데스크탑 사이드바 */}
-      <DesktopSidebar activeTab={activeNav} onNavigate={handleNavigate} />
+      <DesktopSidebar activeTab={activeNav} onNavigate={handleNavigate} onSearch={handleSearchToggle} />
 
       {/* 메인 콘텐츠 영역 */}
       <div
         className="flex flex-col min-h-screen mx-auto relative w-full max-w-[430px] md:max-w-[640px] lg:max-w-[960px] lg:ml-64"
         style={{ background: "#1a2535" }}
       >
-        <AppBar onHome={() => setActiveNav(0)} />
+        <AppBar onHome={() => setActiveNav(0)} onSearch={handleSearchToggle} />
 
         {/* ── 검색 오버레이 (Apple 스타일 + 음성 입력) */}
         {showSearch && (() => {
