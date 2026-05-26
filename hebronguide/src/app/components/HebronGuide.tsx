@@ -758,6 +758,7 @@ import {
   Star,
   Network,
   ShoppingBag,
+  Building2,
 } from "lucide-react";
 
 /* Quick Menu 아이콘 맵 */
@@ -25295,6 +25296,220 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
 /* ═══════════════════════════════════════════
    ── HEBRON STORE — 생태계 상품 플랫폼 ────
    ═══════════════════════════════════════════ */
+/* ─────────────────────────────────────────
+   🏢 한인 업소 디렉토리 (Business Directory)
+   Supabase restaurants + cafes 테이블 → 카테고리 필터 + 검색
+───────────────────────────────────────── */
+function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
+  const { lang } = useI18n();
+  const city = useCityConfig();
+  const ko = lang === "ko";
+  const [businesses, setBusinesses] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState("");
+  const [activeCat, setActiveCat] = useState("전체");
+
+  const CATEGORIES = [
+    { ko: "전체",    en: "All",         icon: "🏪" },
+    { ko: "의료·보험", en: "Medical",   icon: "🏥" },
+    { ko: "법률·이민", en: "Legal",     icon: "⚖️" },
+    { ko: "부동산",  en: "Real Estate", icon: "🏠" },
+    { ko: "교육",    en: "Education",   icon: "🎓" },
+    { ko: "식품·마트", en: "Grocery",   icon: "🛒" },
+    { ko: "미용·뷰티", en: "Beauty",    icon: "💅" },
+    { ko: "음식·카페", en: "Food/Café",  icon: "🍽️" },
+    { ko: "기타",    en: "Other",       icon: "📦" },
+  ];
+
+  useEffect(() => {
+    async function load() {
+      setLoading(true);
+      try {
+        const SB = `https://${projectId}.supabase.co`;
+        const headers = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
+        const slug = city.slug;
+
+        const [r1, r2] = await Promise.all([
+          fetch(`${SB}/rest/v1/restaurants?city_slug=eq.${slug}&active=eq.true&order=name.asc`, { headers }),
+          fetch(`${SB}/rest/v1/cafes?city_slug=eq.${slug}&active=eq.true&order=name.asc`, { headers }),
+        ]);
+        const [d1, d2] = await Promise.all([r1.json(), r2.json()]);
+        setBusinesses([...(Array.isArray(d1) ? d1 : []), ...(Array.isArray(d2) ? d2 : [])]);
+      } catch { setBusinesses([]); }
+      setLoading(false);
+    }
+    load();
+  }, [city.slug]);
+
+  // 카테고리 매핑
+  function matchCat(biz: any, cat: string) {
+    if (cat === "전체") return true;
+    const t = (biz.category || biz.type || biz.desc || "").toLowerCase();
+    if (cat === "의료·보험") return /의료|보험|병원|메디|health|insur|clinic|medical/.test(t);
+    if (cat === "법률·이민") return /법률|이민|변호|비자|legal|attorney|immigr|visa/.test(t);
+    if (cat === "부동산")   return /부동산|real estate|realt|아파트|렌트|rent/.test(t);
+    if (cat === "교육")     return /교육|학원|tutor|school|edu|어학|언어/.test(t);
+    if (cat === "식품·마트") return /마트|식품|grocery|food market|h-mart|한국마트/.test(t);
+    if (cat === "미용·뷰티") return /미용|뷰티|salon|네일|nail|beauty|spa|헤어|hair/.test(t);
+    if (cat === "음식·카페") return /음식|식당|레스토|카페|cafe|restaurant|coffee|분식/.test(t);
+    return true; // 기타
+  }
+
+  const filtered = businesses.filter(b => {
+    const matchQ = !query || [b.name, b.desc, b.description, b.category, b.phone].some(
+      f => (f || "").toLowerCase().includes(query.toLowerCase())
+    );
+    return matchQ && matchCat(b, activeCat);
+  });
+
+  return (
+    <div style={{ paddingBottom: 96, background: "#F2F2F7", minHeight: "100vh" }}>
+      <BackToHomeButton onHome={onHome} lang={lang} />
+      <ScreenHeader emoji="🏢"
+        titleKo="한인 업소" titleEn="Korean Business Directory"
+        descKo={`${city.nameKo} 한인 업소·서비스 디렉토리`}
+        descEn={`Korean business listings in ${city.nameEn}`}
+        accentColor="#6366F1" />
+
+      {/* 검색 */}
+      <div style={{ padding: "0 16px 12px" }}>
+        <input
+          value={query} onChange={e => setQuery(e.target.value)}
+          placeholder={ko ? "업소명·업종·전화 검색..." : "Search by name, type, phone..."}
+          style={{ width: "100%", background: "#fff", border: "1.5px solid #E2E8F0",
+            borderRadius: 12, padding: "10px 14px", fontSize: 14, outline: "none",
+            fontFamily: "'Noto Sans KR',sans-serif" }}
+        />
+      </div>
+
+      {/* 카테고리 필터 */}
+      <div style={{ padding: "0 16px 16px", display: "flex", gap: 8, overflowX: "auto", scrollbarWidth: "none" }}>
+        {CATEGORIES.map(c => {
+          const active = activeCat === c.ko;
+          return (
+            <button key={c.ko} onClick={() => setActiveCat(c.ko)}
+              style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px",
+                borderRadius: 99, border: `1.5px solid ${active ? "#6366F1" : "#E2E8F0"}`,
+                background: active ? "#EEF2FF" : "#fff", cursor: "pointer",
+                whiteSpace: "nowrap", fontFamily: "'Noto Sans KR',sans-serif",
+                fontSize: 12, fontWeight: active ? 800 : 500,
+                color: active ? "#4F46E5" : "#64748B", transition: "all .15s" }}>
+              <span>{c.icon}</span>
+              <span>{ko ? c.ko : c.en}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* 리스트 */}
+      <div style={{ padding: "0 16px" }}>
+        {loading ? (
+          <div style={{ textAlign: "center", padding: "40px 0", color: "#94A3B8", fontSize: 14 }}>
+            불러오는 중...
+          </div>
+        ) : filtered.length === 0 ? (
+          <div style={{ textAlign: "center", padding: "40px 0" }}>
+            <div style={{ fontSize: 32, marginBottom: 12 }}>🔍</div>
+            <div style={{ color: "#64748B", fontSize: 14, lineHeight: 1.8 }}>
+              {ko ? `${city.nameKo}에 등재된 업소가 없습니다.\n업소 등재를 신청해 보세요!`
+                   : `No listings yet for ${city.nameEn}.\nBe the first to register!`}
+            </div>
+            <a href="/ad-request.html#business"
+              style={{ display: "inline-block", marginTop: 16, background: "#6366F1",
+                color: "#fff", padding: "10px 24px", borderRadius: 10, textDecoration: "none",
+                fontSize: 13, fontWeight: 700 }}>
+              {ko ? "업소 등재 신청 →" : "Register Your Business →"}
+            </a>
+          </div>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {/* 결과 수 */}
+            <div style={{ fontSize: 12, color: "#94A3B8", paddingBottom: 4 }}>
+              {ko ? `${filtered.length}개 업소` : `${filtered.length} listings`}
+            </div>
+            {filtered.map((b, i) => (
+              <div key={i} style={{ background: "#fff", borderRadius: 16,
+                border: "1px solid #F1F5F9", padding: "16px 16px", boxShadow: "0 1px 4px rgba(0,0,0,0.05)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
+                  <div>
+                    <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#1E293B" }}>
+                      {b.name}
+                    </div>
+                    {b.name_en && b.name_en !== b.name && (
+                      <div style={{ fontSize: 12, color: "#94A3B8", marginTop: 1 }}>{b.name_en}</div>
+                    )}
+                  </div>
+                  {(b.category || b.type) && (
+                    <span style={{ background: "#EEF2FF", color: "#4F46E5", fontSize: 11,
+                      fontWeight: 700, padding: "3px 10px", borderRadius: 99, whiteSpace: "nowrap", marginLeft: 8 }}>
+                      {b.category || b.type}
+                    </span>
+                  )}
+                </div>
+                {(b.desc || b.description) && (
+                  <div style={{ fontSize: 13, color: "#475569", lineHeight: 1.7, marginBottom: 10 }}>
+                    {(b.desc || b.description || "").slice(0, 120)}
+                    {(b.desc || b.description || "").length > 120 ? "..." : ""}
+                  </div>
+                )}
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  {b.phone && (
+                    <a href={`tel:${b.phone}`}
+                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px",
+                        background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: 10,
+                        textDecoration: "none", fontSize: 12, color: "#16A34A", fontWeight: 700 }}>
+                      📞 {b.phone}
+                    </a>
+                  )}
+                  {b.website && b.website !== "없음" && (
+                    <a href={b.website.startsWith("http") ? b.website : `https://${b.website}`}
+                      target="_blank" rel="noopener noreferrer"
+                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px",
+                        background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: 10,
+                        textDecoration: "none", fontSize: 12, color: "#2563EB", fontWeight: 700 }}>
+                      🔗 {ko ? "웹사이트" : "Website"}
+                    </a>
+                  )}
+                  {b.email && (
+                    <a href={`mailto:${b.email}`}
+                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px",
+                        background: "#FFF7ED", border: "1px solid #FED7AA", borderRadius: 10,
+                        textDecoration: "none", fontSize: 12, color: "#C2410C", fontWeight: 700 }}>
+                      ✉️ {b.email}
+                    </a>
+                  )}
+                </div>
+                {b.address && (
+                  <div style={{ marginTop: 8, fontSize: 12, color: "#94A3B8" }}>📍 {b.address}</div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* 등재 CTA */}
+        <div style={{ marginTop: 24, background: "linear-gradient(135deg,#EEF2FF,#F0FDF4)",
+          border: "1px solid #C7D2FE", borderRadius: 16, padding: "20px 18px", textAlign: "center" }}>
+          <div style={{ fontSize: 20, marginBottom: 8 }}>🏪</div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14,
+            color: "#3730A3", marginBottom: 6 }}>
+            {ko ? "업소가 없나요?" : "Not listed yet?"}
+          </div>
+          <div style={{ fontSize: 12, color: "#6366F1", marginBottom: 14, lineHeight: 1.7 }}>
+            {ko ? "무료로 업소를 등재하고 이민자 고객을 만나세요.\n삶이 곧 선교입니다." : "List your business for free and reach Korean diaspora."}
+          </div>
+          <a href="/ad-request.html#business"
+            style={{ display: "inline-block", background: "#4F46E5", color: "#fff",
+              padding: "10px 24px", borderRadius: 10, textDecoration: "none",
+              fontSize: 13, fontWeight: 800, fontFamily: "Manrope,sans-serif" }}>
+            {ko ? "무료 등재 신청 →" : "Register Free →"}
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function StoreScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const ko = lang === "ko";
@@ -25377,6 +25592,7 @@ function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number
     { tab: 6,  emoji: "💼", labelKo: "취업",  labelEn: "Jobs" },
     { tab: 7,  emoji: "🎓", labelKo: "교육",  labelEn: "Schools" },
     { tab: 8,  emoji: "💰", labelKo: "생활비", labelEn: "Costs" },
+    { tab: 12, emoji: "🏢", labelKo: "한인 업소", labelEn: "Business" },
   ];
   return (
     <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-screen w-64 z-40"
@@ -26221,17 +26437,17 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
 ───────────────────────────────────────── */
 const MORE_SECTIONS = [
   /* ── 1행: 메인 섹션 ── */
-  { icon: Church,       labelKo: "교회",      labelEn: "Church",       tab: 2, subTab: 0, color: "#7C3AED" },
-  { icon: Map,          labelKo: "관광",      labelEn: "Tourism",      tab: 4, subTab: 0, color: "#0EA5E9" },
-  { icon: Briefcase,    labelKo: "취업",      labelEn: "Jobs",         tab: 6, subTab: 0, color: "#059669" },
-  { icon: GraduationCap,labelKo: "교육",      labelEn: "Schools",      tab: 7, subTab: 0, color: "#F59E0B" },
-  { icon: DollarSign,   labelKo: "생활비",    labelEn: "Costs",        tab: 8, subTab: 0, color: "#8B5CF6" },
-  /* ── 2행: 빠른 접근 (새 탭) ── */
-  { icon: FileText,     labelKo: "비자·이민", labelEn: "Visa",         tab: 1, subTab: 7, color: "#6366F1" },
-  { icon: Receipt,      labelKo: "세금신고",  labelEn: "Taxes",        tab: 8, subTab: 4, color: "#F97316" },
-  { icon: Scale,        labelKo: "법률상담",  labelEn: "Legal",        tab: 5, subTab: 5, color: "#64748B" },
-  { icon: BookOpen,     labelKo: "한국학교",  labelEn: "K-School",     tab: 7, subTab: 5, color: "#BE185D" },
-  { icon: Vote,         labelKo: "동포 여정",  labelEn: "Journey",     tab: 5, subTab: 6, color: "#2563EB" },
+  { icon: Church,       labelKo: "교회",      labelEn: "Church",       tab: 2,  subTab: 0, color: "#7C3AED" },
+  { icon: Map,          labelKo: "관광",      labelEn: "Tourism",      tab: 4,  subTab: 0, color: "#0EA5E9" },
+  { icon: Briefcase,    labelKo: "취업",      labelEn: "Jobs",         tab: 6,  subTab: 0, color: "#059669" },
+  { icon: GraduationCap,labelKo: "교육",      labelEn: "Schools",      tab: 7,  subTab: 0, color: "#F59E0B" },
+  { icon: DollarSign,   labelKo: "생활비",    labelEn: "Costs",        tab: 8,  subTab: 0, color: "#8B5CF6" },
+  /* ── 2행: 빠른 접근 ── */
+  { icon: Building2,    labelKo: "한인 업소", labelEn: "Business",     tab: 12, subTab: 0, color: "#4F46E5" },
+  { icon: FileText,     labelKo: "비자·이민", labelEn: "Visa",         tab: 1,  subTab: 7, color: "#6366F1" },
+  { icon: Receipt,      labelKo: "세금신고",  labelEn: "Taxes",        tab: 8,  subTab: 4, color: "#F97316" },
+  { icon: Scale,        labelKo: "법률상담",  labelEn: "Legal",        tab: 5,  subTab: 5, color: "#64748B" },
+  { icon: BookOpen,     labelKo: "한국학교",  labelEn: "K-School",     tab: 7,  subTab: 5, color: "#BE185D" },
 ];
 
 /* ─────────────────────────────────────────
@@ -26839,6 +27055,11 @@ export function HebronGuide() {
       keywords: ["생활비","cost","렌트","rent","기름","gas","세금","tax","월세",
         "환율","exchange rate","물가","price","전기세","utilities","주차","parking",
         "최저시급","minimum wage","팁","tip","shopping","쇼핑","costco","알뜰"] },
+    { tab: 12, labelKo: "한인 업소", labelEn: "Korean Business Directory",
+      keywords: ["업소","business","보험","insurance","의료","medical","병원","clinic",
+        "법률","legal","attorney","변호사","부동산","real estate","realty","교육","학원",
+        "미용","salon","beauty","뷰티","마트","grocery","식품","한인업소","directory",
+        "서비스","service","한인서비스","justin","저스틴","oh insurance","오보험"] },
   ];
 
   const handleSearch = (query: string) => {
@@ -26862,7 +27083,7 @@ export function HebronGuide() {
     }
   };
 
-  // 11개 탭 스크린 (홈·정착·교회·맛집·탐방·도움·취업·교육·생활비·사람연결·스토어)
+  // 12개 탭 스크린 (홈·정착·교회·맛집·탐방·도움·취업·교육·생활비·사람연결·스토어·한인업소)
   const screens = [
     <HomeScreen onNavigate={handleNavigate} />,                                        // 0
     <SettleScreen onHome={() => setActiveNav(0)} initialSub={settleInitialSub} />,     // 1
@@ -26876,6 +27097,7 @@ export function HebronGuide() {
     <ConnectScreen onHome={() => setActiveNav(0)} />,                                  // 9
     <StoreScreen onHome={() => setActiveNav(0)} />,                                    // 10
     <ArrivalSimulationScreen onHome={() => setActiveNav(0)} />,                        // 11
+    <BusinessDirectoryScreen onHome={() => setActiveNav(0)} />,                        // 12 🏢 한인 업소
   ];
 
   return (
