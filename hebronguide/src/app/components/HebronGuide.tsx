@@ -26918,6 +26918,9 @@ export function HebronGuide() {
   const [searchQuery, setSearchQuery] = useState("");
   const [showChat, setShowChat] = useState(false);
   const [showTranslate, setShowTranslate] = useState(false);
+  // ── Supabase 실시간 검색 결과 ──────────────────────────────
+  const [sbSearchResults, setSbSearchResults] = useState<any[]>([]);
+  const [sbSearchLoading, setSbSearchLoading] = useState(false);
   const isOnline = useOnlineStatus();
   const { showBanner, handleInstall, handleDismiss, isIOS } = useInstallPrompt();
   const { lang, setLang } = useI18n();
@@ -26994,6 +26997,42 @@ export function HebronGuide() {
       return () => clearTimeout(timer);
     }
   }, [showSearch]);
+
+  // ── Supabase 검색 — searchQuery 변경 시 restaurants+cafes+churches 쿼리 ──
+  useEffect(() => {
+    const q = searchQuery.trim();
+    if (q.length < 2) { setSbSearchResults([]); return; }
+
+    const timer = setTimeout(async () => {
+      setSbSearchLoading(true);
+      try {
+        const slug = city.slug;
+        const enc = encodeURIComponent(`%${q}%`);
+        const hdrs = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
+        const base = `https://${projectId}.supabase.co/rest/v1`;
+
+        const [r1, r2, r3] = await Promise.allSettled([
+          fetch(`${base}/restaurants?city_slug=eq.${slug}&active=eq.true&or=(name.ilike.${enc},description.ilike.${enc},category.ilike.${enc},desc.ilike.${enc})&limit=5`, { headers: hdrs }),
+          fetch(`${base}/cafes?city_slug=eq.${slug}&active=eq.true&or=(name.ilike.${enc},description.ilike.${enc},category.ilike.${enc},desc.ilike.${enc})&limit=3`, { headers: hdrs }),
+          fetch(`${base}/churches?city_slug=eq.${slug}&active=eq.true&or=(name.ilike.${enc},description.ilike.${enc},denomination.ilike.${enc})&limit=3`, { headers: hdrs }),
+        ]);
+
+        const d1 = r1.status === 'fulfilled' ? await r1.value.json() : [];
+        const d2 = r2.status === 'fulfilled' ? await r2.value.json() : [];
+        const d3 = r3.status === 'fulfilled' ? await r3.value.json() : [];
+
+        const combined = [
+          ...(Array.isArray(d1) ? d1.map((x: any) => ({ ...x, _type: 'business' })) : []),
+          ...(Array.isArray(d2) ? d2.map((x: any) => ({ ...x, _type: 'cafe' })) : []),
+          ...(Array.isArray(d3) ? d3.map((x: any) => ({ ...x, _type: 'church' })) : []),
+        ];
+        setSbSearchResults(combined);
+      } catch { setSbSearchResults([]); }
+      setSbSearchLoading(false);
+    }, 300);  // 300ms 디바운스
+
+    return () => clearTimeout(timer);
+  }, [searchQuery, city.slug]);
 
   // subTab 포함 검색 맵 — 구체적 키워드일수록 앞에 배치 (선순위 매칭)
   const SEARCH_MAP: Array<{ tab: number; subTab?: number; labelKo: string; labelEn: string; keywords: string[] }> = [
@@ -27271,6 +27310,75 @@ export function HebronGuide() {
                   </div>
                 );
               })()}
+
+              {/* ── Supabase 실시간 검색 결과 (교회·업소·카페) ── */}
+              {(sbSearchLoading || sbSearchResults.length > 0) && q.length >= 2 && (
+                <div style={{ padding: "8px 0", borderTop: "0.5px solid #F2F2F7" }}>
+                  <div style={{ padding: "4px 16px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif",
+                    fontWeight: 700, color: "#4F46E5", letterSpacing: "0.5px", textTransform: "uppercase" }}>
+                    {lang === "ko" ? "🏪 한인 업소·교회" : "🏪 Korean Businesses & Churches"}
+                  </div>
+                  {sbSearchLoading && (
+                    <div style={{ padding: "8px 16px", fontSize: 12, color: "#94A3B8" }}>검색 중...</div>
+                  )}
+                  {sbSearchResults.map((item, i) => {
+                    const isChurch = item._type === 'church';
+                    const name = item.name || '';
+                    const desc = (item.desc || item.description || '').slice(0, 80);
+                    const phone = item.phone;
+                    const email = item.email;
+                    const website = item.website;
+                    const cat = item.category || item.denomination || (isChurch ? '교회' : '업소');
+                    return (
+                      <div key={i} style={{ margin: "0 12px 8px",
+                        background: "#FAFAFA", borderRadius: 12,
+                        border: `1.5px solid ${isChurch ? "#C7D2FE" : "#E2E8F0"}`,
+                        overflow: "hidden" }}>
+                        <div style={{ padding: "10px 12px" }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
+                            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800,
+                              fontSize: 13, color: "#1E293B" }}>{name}</div>
+                            {cat && <span style={{ background: isChurch ? "#EEF2FF" : "#F0FDF4",
+                              color: isChurch ? "#4F46E5" : "#16A34A",
+                              fontSize: 10, fontWeight: 700, padding: "2px 7px",
+                              borderRadius: 99, marginLeft: 8, flexShrink: 0 }}>{cat}</span>}
+                          </div>
+                          {desc && <div style={{ fontSize: 11, color: "#64748B", lineHeight: 1.6,
+                            marginBottom: 6 }}>{desc}</div>}
+                          <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                            {phone && (
+                              <a href={`tel:${phone}`} onClick={e => e.stopPropagation()}
+                                style={{ display: "flex", alignItems: "center", gap: 4,
+                                  padding: "5px 10px", background: "#F0FDF4",
+                                  border: "1px solid #BBF7D0", borderRadius: 8,
+                                  textDecoration: "none", fontSize: 11,
+                                  color: "#16A34A", fontWeight: 700 }}>📞 {phone}</a>
+                            )}
+                            {website && website !== '없음' && (
+                              <a href={website.startsWith('http') ? website : `https://${website}`}
+                                target="_blank" rel="noopener noreferrer"
+                                onClick={e => e.stopPropagation()}
+                                style={{ display: "flex", alignItems: "center", gap: 4,
+                                  padding: "5px 10px", background: "#EFF6FF",
+                                  border: "1px solid #BFDBFE", borderRadius: 8,
+                                  textDecoration: "none", fontSize: 11,
+                                  color: "#2563EB", fontWeight: 700 }}>🔗 웹사이트</a>
+                            )}
+                            {email && (
+                              <a href={`mailto:${email}`} onClick={e => e.stopPropagation()}
+                                style={{ display: "flex", alignItems: "center", gap: 4,
+                                  padding: "5px 10px", background: "#FFF7ED",
+                                  border: "1px solid #FED7AA", borderRadius: 8,
+                                  textDecoration: "none", fontSize: 11,
+                                  color: "#C2410C", fontWeight: 700 }}>✉️ 이메일</a>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
 
               {/* 앱 내 결과 */}
               {internalMatches.length > 0 && (
