@@ -85,9 +85,10 @@ export default async function handler(req) {
       })
     }
 
-    // 허용 테이블 화이트리스트 (SQL 인젝션 방지)
+    // 허용 테이블 화이트리스트 (SQL 인젝션 방지) — 테이블 불필요 액션은 건너뜀
+    const NO_TABLE_ACTIONS = ['insert_church', 'insert_business', 'mark_notified']
     const ALLOWED_TABLES = ['community_items','content_items','pastor_partners','stories','content_reviews','churches','restaurants','cafes']
-    if (!ALLOWED_TABLES.includes(table)) {
+    if (!NO_TABLE_ACTIONS.includes(action) && !ALLOWED_TABLES.includes(table)) {
       return new Response(JSON.stringify({ error: `허용되지 않는 테이블: ${table}` }), {
         status: 400, headers: CORS
       })
