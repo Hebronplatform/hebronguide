@@ -27014,7 +27014,7 @@ export function HebronGuide() {
         // 도시 필터 없음 → 68개 도시 전체 검색
         // community_items(category=business/approved) + churches
         const [r1, r2] = await Promise.allSettled([
-          fetch(`${base}/community_items?category=eq.business&status=eq.approved&or=(title.ilike.${enc},name.ilike.${enc},description.ilike.${enc},type.ilike.${enc})&limit=10`, { headers: hdrs }),
+          fetch(`${base}/community_items?category=eq.business&status=in.(approved,published)&or=(title.ilike.${enc},name.ilike.${enc},description.ilike.${enc})&limit=10`, { headers: hdrs }),
           fetch(`${base}/churches?active=eq.true&or=(name.ilike.${enc},name_en.ilike.${enc},description.ilike.${enc},denomination.ilike.${enc})&limit=8`, { headers: hdrs }),
         ]);
 
