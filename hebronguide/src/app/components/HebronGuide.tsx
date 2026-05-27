@@ -27426,40 +27426,44 @@ export function HebronGuide() {
                 </div>
               )}
 
-              {/* 외부 검색 — Apple 스타일 */}
-              <div style={{
-                padding: "8px 14px 14px",
-                borderTop: q.length > 0 ? "1px solid rgba(120,120,128,0.12)" : "none",
-              }}>
-                {q.length > 0 && internalMatches.length === 0 && (
+              {/* 외부 검색 — 헤브론에 없을 때 보조 수단, 작게 표시 */}
+              {q.length > 0 && (
+                <div style={{
+                  padding: "8px 14px 14px",
+                  borderTop: "1px solid rgba(120,120,128,0.08)",
+                }}>
                   <div style={{ fontFamily:"-apple-system,'Noto Sans KR',sans-serif",
-                    fontSize:13, color:"#8E8E93", marginBottom:8 }}>
-                    {lang === "ko" ? `앱 내 결과 없음. 웹에서 찾기:` : `Not in app. Search web:`}
+                    fontSize:11, color:"#C7C7CC", marginBottom:7, textAlign:"center" }}>
+                    {lang === "ko"
+                      ? (sbSearchResults.length > 0 || internalMatches.length > 0
+                          ? "헤브론에 없으면 외부에서 더 찾기"
+                          : "헤브론에 아직 없음 — 외부에서 찾기")
+                      : (sbSearchResults.length > 0 || internalMatches.length > 0
+                          ? "Search outside HebronGuide"
+                          : "Not in HebronGuide yet — search outside")}
                   </div>
-                )}
-                {q.length > 0 && (
-                  <div style={{ display:"flex", gap:8 }}>
+                  <div style={{ display:"flex", gap:7 }}>
                     <a href={googleUrl} target="_blank" rel="noopener noreferrer" style={{
-                      flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:6,
-                      padding:"10px", borderRadius:12, textDecoration:"none",
-                      background:"rgba(0,122,255,0.06)", border:"1px solid rgba(0,122,255,0.15)",
+                      flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:5,
+                      padding:"7px", borderRadius:8, textDecoration:"none",
+                      background:"rgba(0,0,0,0.03)", border:"1px solid rgba(0,0,0,0.08)",
                     }}>
-                      <span style={{ fontSize:15 }}>🔍</span>
-                      <span style={{ fontFamily:"-apple-system,sans-serif", fontWeight:600,
-                        fontSize:13, color:"#007AFF" }}>Google</span>
+                      <span style={{ fontSize:12 }}>🔍</span>
+                      <span style={{ fontFamily:"-apple-system,sans-serif", fontWeight:500,
+                        fontSize:11, color:"#8E8E93" }}>Google</span>
                     </a>
                     <a href={perplexityUrl} target="_blank" rel="noopener noreferrer" style={{
-                      flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:6,
-                      padding:"10px", borderRadius:12, textDecoration:"none",
-                      background:"rgba(99,102,241,0.06)", border:"1px solid rgba(99,102,241,0.15)",
+                      flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:5,
+                      padding:"7px", borderRadius:8, textDecoration:"none",
+                      background:"rgba(0,0,0,0.03)", border:"1px solid rgba(0,0,0,0.08)",
                     }}>
-                      <span style={{ fontSize:15 }}>✦</span>
-                      <span style={{ fontFamily:"-apple-system,sans-serif", fontWeight:600,
-                        fontSize:13, color:"#6366F1" }}>AI Search</span>
+                      <span style={{ fontSize:12 }}>✦</span>
+                      <span style={{ fontFamily:"-apple-system,sans-serif", fontWeight:500,
+                        fontSize:11, color:"#8E8E93" }}>AI Search</span>
                     </a>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
             </div>
           );
