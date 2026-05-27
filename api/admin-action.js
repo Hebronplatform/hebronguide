@@ -79,7 +79,7 @@ export default async function handler(req) {
     }
 
     // ── 입력값 검증 ──────────────────────────────────────
-    if (action !== 'insert_church' && (!id || !table)) {
+    if (!['insert_church','insert_business','mark_notified'].includes(action) && (!id || !table)) {
       return new Response(JSON.stringify({ error: 'id, table 필수' }), {
         status: 400, headers: CORS
       })
