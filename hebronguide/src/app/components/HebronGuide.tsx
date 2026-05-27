@@ -26687,6 +26687,51 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
 /* ─────────────────────────────────────────
    TOP APP BAR
 ───────────────────────────────────────── */
+// ── 업데이트 공지 배너 ──────────────────────────────────────────────
+// 새 소식이 있을 때 이 BANNER_ID와 메시지만 수정하면 자동 재표시
+const BANNER_ID = "update-2026-05-27-search"; // 바꾸면 모든 사용자에게 다시 표시
+const BANNER_MSG = {
+  ko: "🔍 새 기능: 전 세계 68개 도시 한인 업소·교회 통합 검색이 열렸습니다!",
+  en: "🔍 New: Search Korean businesses & churches across 68 cities worldwide!",
+};
+const BANNER_KAKAOTALK = ""; // 카카오톡 채널 링크 (개설 후 입력)
+
+function UpdateBanner() {
+  const { lang } = useI18n();
+  const [visible, setVisible] = useState(() => {
+    try { return localStorage.getItem(BANNER_ID) !== "dismissed"; }
+    catch { return true; }
+  });
+  if (!visible) return null;
+  const dismiss = () => {
+    try { localStorage.setItem(BANNER_ID, "dismissed"); } catch {}
+    setVisible(false);
+  };
+  return (
+    <div style={{
+      background: "linear-gradient(90deg,#1a3a2a,#1e4a2e)",
+      borderBottom: "1px solid rgba(134,239,172,0.2)",
+      padding: "9px 16px 9px 14px",
+      display: "flex", alignItems: "center", gap: 8,
+      fontSize: 13, color: "#86EFAC", lineHeight: 1.4,
+    }}>
+      <span style={{ flex: 1 }}>
+        {lang === "en" ? BANNER_MSG.en : BANNER_MSG.ko}
+        {BANNER_KAKAOTALK && (
+          <a href={BANNER_KAKAOTALK} target="_blank" rel="noopener noreferrer"
+            style={{ marginLeft: 8, color: "#FDE047", textDecoration: "underline", fontSize: 12 }}>
+            {lang === "en" ? "Subscribe KakaoTalk →" : "카카오채널 구독 →"}
+          </a>
+        )}
+      </span>
+      <button onClick={dismiss}
+        style={{ background: "none", border: "none", color: "#86EFAC", fontSize: 18,
+          cursor: "pointer", padding: "0 2px", lineHeight: 1, flexShrink: 0, opacity: 0.7 }}
+        aria-label="닫기">×</button>
+    </div>
+  );
+}
+
 function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => void }) {
   const { lang, setLang } = useI18n();
   const currentCity = useCityConfig();
@@ -27161,6 +27206,9 @@ export function HebronGuide() {
         style={{ background: "#1a2535" }}
       >
         <AppBar onHome={() => setActiveNav(0)} onSearch={handleSearchToggle} />
+
+        {/* ── 업데이트 공지 배너 ── */}
+        <UpdateBanner />
 
         {/* ── 검색 오버레이 (Apple 스타일 + 음성 입력) */}
         {showSearch && (() => {
