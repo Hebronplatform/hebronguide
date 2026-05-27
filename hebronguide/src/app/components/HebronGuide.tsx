@@ -26998,7 +26998,7 @@ export function HebronGuide() {
     }
   }, [showSearch]);
 
-  // ── Supabase 검색 — searchQuery 변경 시 restaurants+cafes+churches 쿼리 ──
+  // ── Supabase 전체 도시 검색 — 도시 무관, 현재 도시 결과 우선 표시 ──
   useEffect(() => {
     const q = searchQuery.trim();
     if (q.length < 2) { setSbSearchResults([]); return; }
@@ -27006,30 +27006,37 @@ export function HebronGuide() {
     const timer = setTimeout(async () => {
       setSbSearchLoading(true);
       try {
-        const slug = city.slug;
+        const currentSlug = city.slug;
         const enc = encodeURIComponent(`%${q}%`);
         const hdrs = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
         const base = `https://${projectId}.supabase.co/rest/v1`;
 
+        // 도시 필터 없음 → 68개 도시 전체 검색
         const [r1, r2, r3] = await Promise.allSettled([
-          fetch(`${base}/restaurants?city_slug=eq.${slug}&active=eq.true&or=(name.ilike.${enc},description.ilike.${enc},category.ilike.${enc},desc.ilike.${enc})&limit=5`, { headers: hdrs }),
-          fetch(`${base}/cafes?city_slug=eq.${slug}&active=eq.true&or=(name.ilike.${enc},description.ilike.${enc},category.ilike.${enc},desc.ilike.${enc})&limit=3`, { headers: hdrs }),
-          fetch(`${base}/churches?city_slug=eq.${slug}&active=eq.true&or=(name.ilike.${enc},description.ilike.${enc},denomination.ilike.${enc})&limit=3`, { headers: hdrs }),
+          fetch(`${base}/restaurants?active=eq.true&or=(name.ilike.${enc},description.ilike.${enc},category.ilike.${enc},desc.ilike.${enc})&limit=10`, { headers: hdrs }),
+          fetch(`${base}/cafes?active=eq.true&or=(name.ilike.${enc},description.ilike.${enc},category.ilike.${enc},desc.ilike.${enc})&limit=5`, { headers: hdrs }),
+          fetch(`${base}/churches?active=eq.true&or=(name.ilike.${enc},name_en.ilike.${enc},description.ilike.${enc},denomination.ilike.${enc})&limit=8`, { headers: hdrs }),
         ]);
 
         const d1 = r1.status === 'fulfilled' ? await r1.value.json() : [];
         const d2 = r2.status === 'fulfilled' ? await r2.value.json() : [];
         const d3 = r3.status === 'fulfilled' ? await r3.value.json() : [];
 
-        const combined = [
+        const all = [
           ...(Array.isArray(d1) ? d1.map((x: any) => ({ ...x, _type: 'business' })) : []),
           ...(Array.isArray(d2) ? d2.map((x: any) => ({ ...x, _type: 'cafe' })) : []),
           ...(Array.isArray(d3) ? d3.map((x: any) => ({ ...x, _type: 'church' })) : []),
         ];
-        setSbSearchResults(combined);
+
+        // 현재 도시 결과를 맨 앞으로 정렬
+        const sorted = [
+          ...all.filter(x => x.city_slug === currentSlug),
+          ...all.filter(x => x.city_slug !== currentSlug),
+        ];
+        setSbSearchResults(sorted.slice(0, 15));
       } catch { setSbSearchResults([]); }
       setSbSearchLoading(false);
-    }, 300);  // 300ms 디바운스
+    }, 300);
 
     return () => clearTimeout(timer);
   }, [searchQuery, city.slug]);
@@ -27316,25 +27323,36 @@ export function HebronGuide() {
                 <div style={{ padding: "8px 0", borderTop: "0.5px solid #F2F2F7" }}>
                   <div style={{ padding: "4px 16px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif",
                     fontWeight: 700, color: "#4F46E5", letterSpacing: "0.5px", textTransform: "uppercase" }}>
-                    {lang === "ko" ? "🏪 한인 업소·교회" : "🏪 Korean Businesses & Churches"}
+                    {lang === "ko" ? "🌏 68개 도시 전체 검색 결과" : "🌏 Results Across 68 Cities"}
                   </div>
                   {sbSearchLoading && (
                     <div style={{ padding: "8px 16px", fontSize: 12, color: "#94A3B8" }}>검색 중...</div>
                   )}
                   {sbSearchResults.map((item, i) => {
                     const isChurch = item._type === 'church';
+                    const isCurrent = item.city_slug === city.slug;
                     const name = item.name || '';
                     const desc = (item.desc || item.description || '').slice(0, 80);
                     const phone = item.phone;
                     const email = item.email;
                     const website = item.website;
                     const cat = item.category || item.denomination || (isChurch ? '교회' : '업소');
+                    // 도시 이름 표시
+                    const cityInfo = HEBRON_CITIES.find(c => c.url?.includes(`/${item.city_slug}/`));
+                    const cityLabel = cityInfo ? `${cityInfo.flag} ${lang === 'ko' ? cityInfo.nameKo : cityInfo.nameEn}` : item.city_slug;
                     return (
                       <div key={i} style={{ margin: "0 12px 8px",
-                        background: "#FAFAFA", borderRadius: 12,
-                        border: `1.5px solid ${isChurch ? "#C7D2FE" : "#E2E8F0"}`,
+                        background: isCurrent ? "#F8FFF8" : "#FAFAFA", borderRadius: 12,
+                        border: `1.5px solid ${isCurrent ? "#86EFAC" : isChurch ? "#C7D2FE" : "#E2E8F0"}`,
                         overflow: "hidden" }}>
-                        <div style={{ padding: "10px 12px" }}>
+                        {/* 도시 라벨 */}
+                        <div style={{ padding: "5px 12px 0", display: "flex", alignItems: "center", gap: 6 }}>
+                          <span style={{ fontSize: 10, color: isCurrent ? "#16A34A" : "#94A3B8",
+                            fontWeight: isCurrent ? 800 : 500, fontFamily: "Manrope,sans-serif" }}>
+                            {cityLabel}{isCurrent ? ` · 현재 도시` : ''}
+                          </span>
+                        </div>
+                        <div style={{ padding: "6px 12px 10px" }}>
                           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
                             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800,
                               fontSize: 13, color: "#1E293B" }}>{name}</div>
