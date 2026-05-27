@@ -14,11 +14,11 @@ const CORS = {
 // 관리자 비밀번호 해시 (admin@Hebron2026!)
 const ADMIN_HASH = '614fea13745bbaa53de1c1c36b216c3cd5009df185b9f642089eb7ea76a69b90'
 
-// Supabase 프로젝트: 단일 프로젝트 (vextxqzggznulwpganwt)
-// SUPABASE_SERVICE_KEY_MAIN 은 SUPABASE_SERVICE_KEY 와 동일 키 사용
+// Supabase 프로젝트: 프론트엔드와 동일한 신규 프로젝트 (okhfjzofifmsgssgajts)
+// 구 프로젝트(vextxqzggznulwpganwt)에서 신규로 통일
 const SB_URLS = {
-  main:  'https://vextxqzggznulwpganwt.supabase.co',
-  new:   'https://vextxqzggznulwpganwt.supabase.co',
+  main:  'https://okhfjzofifmsgssgajts.supabase.co',
+  new:   'https://okhfjzofifmsgssgajts.supabase.co',
 }
 
 // 테이블 → 모두 동일 프로젝트 사용
@@ -124,7 +124,7 @@ export default async function handler(req) {
           return new Response(JSON.stringify({ error: '교회 데이터 없음' }), { status: 400, headers: CORS })
         }
         const serviceKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY
-        const insertRes = await fetch(`https://vextxqzggznulwpganwt.supabase.co/rest/v1/churches`, {
+        const insertRes = await fetch(`https://okhfjzofifmsgssgajts.supabase.co/rest/v1/churches`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -165,7 +165,7 @@ export default async function handler(req) {
         }
         const svcKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY
 
-        const bizInsertRes = await fetch(`https://vextxqzggznulwpganwt.supabase.co/rest/v1/community_items`, {
+        const bizInsertRes = await fetch(`https://okhfjzofifmsgssgajts.supabase.co/rest/v1/community_items`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -204,7 +204,7 @@ export default async function handler(req) {
         const bizTable = (biz.type || '').includes('카페') || (biz.type || '').includes('cafe')
           ? 'cafes' : 'restaurants'
 
-        const bizInsertRes = await fetch(`https://vextxqzggznulwpganwt.supabase.co/rest/v1/${bizTable}`, {
+        const bizInsertRes = await fetch(`https://okhfjzofifmsgssgajts.supabase.co/rest/v1/${bizTable}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

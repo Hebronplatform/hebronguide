@@ -57,7 +57,7 @@ BEGIN
     SELECT 1 FROM pg_policies
     WHERE tablename = 'community_items' AND policyname = 'public_select'
   ) THEN
-    EXECUTE 'CREATE POLICY "public_select" ON community_items FOR SELECT TO anon USING (status IN (''pending'', ''published''))';
+    EXECUTE 'CREATE POLICY "public_select" ON community_items FOR SELECT TO anon USING (status IN (''pending'', ''published'', ''approved''))';
   END IF;
 
   -- 인증된 관리자 전체 조회
