@@ -27012,20 +27012,24 @@ export function HebronGuide() {
         const base = `https://${projectId}.supabase.co/rest/v1`;
 
         // 도시 필터 없음 → 68개 도시 전체 검색
-        const [r1, r2, r3] = await Promise.allSettled([
-          fetch(`${base}/restaurants?active=eq.true&or=(name.ilike.${enc},description.ilike.${enc},category.ilike.${enc},desc.ilike.${enc})&limit=10`, { headers: hdrs }),
-          fetch(`${base}/cafes?active=eq.true&or=(name.ilike.${enc},description.ilike.${enc},category.ilike.${enc},desc.ilike.${enc})&limit=5`, { headers: hdrs }),
+        // community_items(category=business/approved) + churches
+        const [r1, r2] = await Promise.allSettled([
+          fetch(`${base}/community_items?category=eq.business&status=eq.approved&or=(title.ilike.${enc},name.ilike.${enc},description.ilike.${enc},type.ilike.${enc})&limit=10`, { headers: hdrs }),
           fetch(`${base}/churches?active=eq.true&or=(name.ilike.${enc},name_en.ilike.${enc},description.ilike.${enc},denomination.ilike.${enc})&limit=8`, { headers: hdrs }),
         ]);
 
         const d1 = r1.status === 'fulfilled' ? await r1.value.json() : [];
         const d2 = r2.status === 'fulfilled' ? await r2.value.json() : [];
-        const d3 = r3.status === 'fulfilled' ? await r3.value.json() : [];
 
         const all = [
-          ...(Array.isArray(d1) ? d1.map((x: any) => ({ ...x, _type: 'business' })) : []),
-          ...(Array.isArray(d2) ? d2.map((x: any) => ({ ...x, _type: 'cafe' })) : []),
-          ...(Array.isArray(d3) ? d3.map((x: any) => ({ ...x, _type: 'church' })) : []),
+          ...(Array.isArray(d1) ? d1.map((x: any) => ({
+            ...x,
+            name: x.name || x.title,
+            phone: x.phone || x.contact,
+            email: x.contact,
+            _type: 'business',
+          })) : []),
+          ...(Array.isArray(d2) ? d2.map((x: any) => ({ ...x, _type: 'church' })) : []),
         ];
 
         // 현재 도시 결과를 맨 앞으로 정렬

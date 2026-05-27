@@ -158,14 +158,49 @@ export default async function handler(req) {
       }
 
       case 'insert_business': {
-        // admin.html에서 { action:'insert_business', token, business: bizData } 형태로 전달
+        // community_items 테이블에 category='business'로 저장 (restaurants 테이블 불필요)
         const biz = business
         if (!biz || !biz.name) {
           return new Response(JSON.stringify({ error: '사업체 데이터 없음' }), { status: 400, headers: CORS })
         }
         const svcKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY
 
-        // 업종에 따라 테이블 결정 (cafe → cafes, 나머지 → restaurants)
+        const bizInsertRes = await fetch(`https://vextxqzggznulwpganwt.supabase.co/rest/v1/community_items`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': svcKey,
+            'Authorization': `Bearer ${svcKey}`,
+            'Prefer': 'return=minimal',
+          },
+          body: JSON.stringify({
+            title:       biz.name,
+            name:        biz.name,
+            category:    'business',
+            type:        biz.type || '',
+            city_slug:   biz.city_slug || '',
+            city:        biz.city || '',
+            description: biz.description || '',
+            phone:       biz.phone || '',
+            contact:     biz.email || '',
+            url:         biz.website || '',
+            status:      'approved',
+          }),
+        })
+        if (!bizInsertRes.ok) {
+          const errText = await bizInsertRes.text()
+          throw new Error(`사업체 저장 실패 (${bizInsertRes.status}): ${errText}`)
+        }
+        return new Response(JSON.stringify({ ok: true, msg: `${biz.name} 사업체 등록 완료 (community_items)` }), { headers: CORS })
+      }
+
+      case 'insert_business_legacy': {
+        // 레거시: restaurants/cafes 테이블 시도 (테이블 존재 시에만 작동)
+        const biz = business
+        if (!biz || !biz.name) {
+          return new Response(JSON.stringify({ error: '사업체 데이터 없음' }), { status: 400, headers: CORS })
+        }
+        const svcKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY
         const bizTable = (biz.type || '').includes('카페') || (biz.type || '').includes('cafe')
           ? 'cafes' : 'restaurants'
 
