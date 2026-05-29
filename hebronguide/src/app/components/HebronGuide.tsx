@@ -12376,7 +12376,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
         </div>
       </a>
 
-      {/* 🎵 오늘의 음악 — Spotify · Bloom Again Music */}
+      {/* 🎵 헤브론 찬양 — YouTube */}
       <button
         onClick={() => activateMusic()}
         style={{
@@ -12386,31 +12386,31 @@ function GrowthShareSection({ lang }: { lang: string }) {
       >
         <div style={{
           borderRadius: 14, overflow: "hidden",
-          border: "1px solid rgba(29,185,84,0.3)",
-          background: "linear-gradient(135deg, #0d1f0d 0%, #0d1117 100%)",
+          border: "1px solid rgba(255,0,0,0.3)",
+          background: "linear-gradient(135deg, #1a0000 0%, #0d1117 100%)",
           display: "flex", alignItems: "center", gap: 14, padding: "12px 14px",
         }}>
-          {/* Spotify 로고 영역 */}
+          {/* YouTube 로고 영역 */}
           <div style={{
             width: 48, height: 48, borderRadius: 12, flexShrink: 0,
-            background: "#1DB954",
+            background: "#FF0000",
             display: "flex", alignItems: "center", justifyContent: "center",
-            boxShadow: "0 4px 16px rgba(29,185,84,0.35)",
+            boxShadow: "0 4px 16px rgba(255,0,0,0.35)",
           }}>
-            <span style={{ fontSize: 22 }}>🎵</span>
+            <span style={{ fontSize: 22 }}>▶</span>
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#1DB954", fontFamily: "Manrope,sans-serif", marginBottom: 3, letterSpacing: ".04em" }}>
-              {ko ? "🎵 음악 듣기 — 탭 이동해도 계속 재생" : "🎵 Music — plays while you browse"}
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#FF4444", fontFamily: "Manrope,sans-serif", marginBottom: 3, letterSpacing: ".04em" }}>
+              {ko ? "🎵 찬양 듣기 — 탭 이동해도 계속 재생" : "🎵 Worship — plays while you browse"}
             </div>
             <div style={{ fontSize: 13, fontWeight: 800, color: "#ECFDF5", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-              Bloom Again Music
+              헤브론 찬양
             </div>
             <div style={{ fontSize: 10.5, color: "rgba(236,253,245,0.5)", fontFamily: "Manrope,sans-serif", marginTop: 2 }}>
-              Spotify · Spring Café Romance 외
+              YouTube · Hebron Worship Playlist
             </div>
           </div>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(29,185,84,0.8)", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,68,68,0.8)", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
             ▶ 열기
           </div>
         </div>
