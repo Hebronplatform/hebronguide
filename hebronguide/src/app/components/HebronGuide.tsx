@@ -26947,6 +26947,154 @@ function UpdateBanner() {
   );
 }
 
+/* ─────────────────────────────────────────
+   📲 PWA 앱 설치 안내 컴포넌트
+   - iOS/Android/PC 설치 방법 자동 감지
+   - 홈 화면에 추가 → 앱처럼 사용 가능
+   - localStorage로 dismissed 기억
+───────────────────────────────────────── */
+function AppInstallBanner() {
+  const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const { lang } = useI18n();
+  const ko = lang === "ko";
+
+  useEffect(() => {
+    if (localStorage.getItem("hg_install_dismissed")) return;
+    // 이미 설치된 경우 숨김
+    if (window.matchMedia("(display-mode: standalone)").matches) return;
+
+    // Android/Desktop: beforeinstallprompt 이벤트
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShow(true);
+    };
+    window.addEventListener("beforeinstallprompt", handler as any);
+
+    // iOS: Safari + standalone 아닌 경우
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isSafari = /safari/i.test(navigator.userAgent) && !/chrome/i.test(navigator.userAgent);
+    if (isIOS && isSafari) setShow(true);
+
+    return () => window.removeEventListener("beforeinstallprompt", handler as any);
+  }, []);
+
+  const handleInstall = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === "accepted") { setShow(false); setDeferredPrompt(null); }
+    } else {
+      setShowModal(true);
+    }
+  };
+
+  const dismiss = () => {
+    setShow(false);
+    localStorage.setItem("hg_install_dismissed", "1");
+  };
+
+  if (!show) return null;
+
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+  return (
+    <>
+      {/* 슬림 배너 */}
+      <div style={{
+        background: "linear-gradient(90deg,#1a1a2e,#16213e)",
+        borderBottom: "1px solid rgba(242,153,74,0.3)",
+        display: "flex", alignItems: "center", gap: 10,
+        padding: "8px 14px", zIndex: 200,
+      }}>
+        <span style={{ fontSize: 20 }}>📲</span>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#F2994A", fontFamily: "Manrope,sans-serif" }}>
+            {ko ? "앱으로 설치하면 더 편합니다!" : "Install as an app for quick access!"}
+          </div>
+          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.55)", fontFamily: "Manrope,sans-serif" }}>
+            {ko ? "컴퓨터·아이폰·안드로이드 모두 가능" : "Works on iPhone, Android & Computer"}
+          </div>
+        </div>
+        <button onClick={handleInstall} style={{
+          background: "#F2994A", color: "#fff", border: "none",
+          borderRadius: 8, padding: "5px 12px", fontWeight: 700,
+          fontSize: 11, cursor: "pointer", fontFamily: "Manrope,sans-serif", flexShrink: 0,
+        }}>
+          {ko ? "설치하기" : "Install"}
+        </button>
+        <button onClick={dismiss} style={{
+          background: "none", border: "none", color: "rgba(255,255,255,0.4)",
+          fontSize: 16, cursor: "pointer", padding: "0 4px", flexShrink: 0,
+        }}>×</button>
+      </div>
+
+      {/* 설치 방법 모달 */}
+      {showModal && (
+        <div style={{
+          position: "fixed", inset: 0, background: "rgba(0,0,0,0.75)",
+          zIndex: 9999, display: "flex", alignItems: "flex-end", justifyContent: "center",
+        }} onClick={() => setShowModal(false)}>
+          <div onClick={e => e.stopPropagation()} style={{
+            background: "#1a1a2e", borderRadius: "24px 24px 0 0",
+            padding: "24px 20px 36px", width: "100%", maxWidth: 480,
+            border: "1px solid rgba(242,153,74,0.3)",
+          }}>
+            <div style={{ textAlign: "center", marginBottom: 20 }}>
+              <div style={{ fontSize: 28 }}>📲</div>
+              <div style={{ fontSize: 17, fontWeight: 800, color: "#fff", fontFamily: "Manrope,sans-serif", marginTop: 6 }}>
+                {ko ? "HebronGuide 앱 설치" : "Install HebronGuide App"}
+              </div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", marginTop: 4, fontFamily: "Manrope,sans-serif" }}>
+                {ko ? "홈 화면에 추가하면 앱처럼 빠르게 실행됩니다" : "Add to home screen to launch like a native app"}
+              </div>
+            </div>
+
+            {/* iPhone/iPad */}
+            <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#F2994A", marginBottom: 8, fontFamily: "Manrope,sans-serif" }}>🍎 iPhone / iPad</div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.8)", lineHeight: 1.8, fontFamily: "Manrope,sans-serif" }}>
+                1. Safari로 hebronguide.com 접속<br/>
+                2. 하단 <strong style={{color:"#F2994A"}}>공유 버튼(□↑)</strong> 탭<br/>
+                3. <strong style={{color:"#F2994A"}}>"홈 화면에 추가"</strong> 선택 → 추가
+              </div>
+            </div>
+
+            {/* Android */}
+            <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#F2994A", marginBottom: 8, fontFamily: "Manrope,sans-serif" }}>🤖 Android</div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.8)", lineHeight: 1.8, fontFamily: "Manrope,sans-serif" }}>
+                1. Chrome으로 hebronguide.com 접속<br/>
+                2. 우측 상단 <strong style={{color:"#F2994A"}}>메뉴(⋮)</strong> 탭<br/>
+                3. <strong style={{color:"#F2994A"}}>"홈 화면에 추가"</strong> → 설치
+              </div>
+            </div>
+
+            {/* PC */}
+            <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: 14, padding: "14px 16px", marginBottom: 20 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#F2994A", marginBottom: 8, fontFamily: "Manrope,sans-serif" }}>💻 컴퓨터 (Chrome / Edge)</div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.8)", lineHeight: 1.8, fontFamily: "Manrope,sans-serif" }}>
+                1. 주소창 오른쪽 <strong style={{color:"#F2994A"}}>⊕ 설치 아이콘</strong> 클릭<br/>
+                2. <strong style={{color:"#F2994A"}}>"설치"</strong> 클릭 → 바탕화면에 앱 생성
+              </div>
+            </div>
+
+            <button onClick={() => setShowModal(false)} style={{
+              width: "100%", background: "#F2994A", color: "#fff", border: "none",
+              borderRadius: 14, padding: "14px", fontSize: 15, fontWeight: 700,
+              cursor: "pointer", fontFamily: "Manrope,sans-serif",
+            }}>
+              {ko ? "확인했습니다" : "Got it!"}
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => void }) {
   const { lang, setLang } = useI18n();
   const currentCity = useCityConfig();
@@ -27420,6 +27568,7 @@ export function HebronGuide() {
         className="flex flex-col min-h-screen mx-auto relative w-full max-w-[430px] md:max-w-[640px] lg:max-w-[960px] lg:ml-64"
         style={{ background: "#1a2535" }}
       >
+        <AppInstallBanner />
         <AppBar onHome={() => setActiveNav(0)} onSearch={handleSearchToggle} />
 
         {/* ── 업데이트 공지 배너 ── */}

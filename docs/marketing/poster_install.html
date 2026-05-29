@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HebronGuide — 설치 안내 포스터</title>
+  <style>
+    /* ─── Reset ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── Variables ──────────────────────────────────── */
+    :root {
+      --navy:   #1a1a2e;
+      --navy2:  #16213e;
+      --gold:   #F2994A;
+      --gold2:  #F7B733;
+      --white:  #ffffff;
+      --light:  #e8eaf6;
+    }
+
+    /* ─── Page / Body ────────────────────────────────── */
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background: #0f0f1a;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR',
+                   'Segoe UI', sans-serif;
+    }
+
+    /* ─── A4 Poster Shell ────────────────────────────── */
+    .poster {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--navy);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      padding: 14mm 12mm 12mm;
+      display: flex;
+      flex-direction: column;
+      gap: 7mm;
+    }
+
+    /* Decorative gradient orbs */
+    .poster::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(242,153,74,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .poster::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -50px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(22,33,62,0.8) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ─── Top bar ─────────────────────────────────────── */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid rgba(242,153,74,0.4);
+      padding-bottom: 4mm;
+    }
+    .logo-text {
+      font-size: 28pt;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .logo-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-left: 2px;
+      vertical-align: middle;
+      -webkit-text-fill-color: initial;
+    }
+    .tagline-small {
+      font-size: 7.5pt;
+      color: rgba(255,255,255,0.5);
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    /* ─── Hero Headlines ─────────────────────────────── */
+    .hero {
+      text-align: center;
+      padding: 6mm 4mm 4mm;
+    }
+    .hero-ko {
+      font-size: 22pt;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+      color: var(--white);
+      margin-bottom: 3mm;
+    }
+    .hero-ko span {
+      color: var(--gold);
+    }
+    .hero-en {
+      font-size: 11pt;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      font-style: italic;
+      margin-bottom: 6mm;
+    }
+    .sub-ko {
+      font-size: 11.5pt;
+      font-weight: 600;
+      color: var(--light);
+      margin-bottom: 1.5mm;
+    }
+    .sub-en {
+      font-size: 9pt;
+      color: rgba(255,255,255,0.5);
+    }
+    .divider {
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      border-radius: 2px;
+      margin: 4mm auto;
+    }
+
+    /* ─── Main content row ───────────────────────────── */
+    .main-row {
+      display: flex;
+      gap: 8mm;
+      align-items: flex-start;
+      flex: 1;
+    }
+
+    /* ─── QR Section ─────────────────────────────────── */
+    .qr-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3mm;
+      flex-shrink: 0;
+    }
+    .qr-box {
+      width: 52mm;
+      height: 52mm;
+      background: var(--white);
+      border-radius: 4mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Corner marks */
+    .qr-box::before, .qr-box::after {
+      content: '';
+      position: absolute;
+      width: 12px; height: 12px;
+      border-color: var(--gold);
+      border-style: solid;
+    }
+    .qr-box::before { top: 6px; left: 6px; border-width: 3px 0 0 3px; }
+    .qr-box::after  { bottom: 6px; right: 6px; border-width: 0 3px 3px 0; }
+
+    /* If qr_main.png exists alongside the HTML, it will show. */
+    .qr-img {
+      width: 44mm;
+      height: 44mm;
+      object-fit: contain;
+    }
+    /* Fallback placeholder (shown when image missing) */
+    .qr-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      width: 100%;
+      height: 100%;
+    }
+    .qr-placeholder .qr-icon {
+      font-size: 36pt;
+      line-height: 1;
+      color: var(--navy);
+    }
+    .qr-placeholder .qr-label {
+      font-size: 7.5pt;
+      color: var(--navy2);
+      font-weight: 700;
+      text-align: center;
+      padding: 0 4px;
+    }
+
+    .qr-url {
+      font-size: 9pt;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+    }
+    .qr-note {
+      font-size: 7pt;
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* ─── Install Steps ──────────────────────────────── */
+    .install-section {
+      flex: 1;
+    }
+    .install-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 4mm;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .install-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(242,153,74,0.3);
+    }
+
+    .install-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+    }
+    .install-card {
+      background: var(--navy2);
+      border: 1px solid rgba(242,153,74,0.2);
+      border-radius: 3mm;
+      padding: 3.5mm 4mm;
+      display: flex;
+      align-items: flex-start;
+      gap: 3mm;
+    }
+    .install-card:hover {
+      border-color: rgba(242,153,74,0.5);
+    }
+    .install-icon {
+      font-size: 18pt;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .install-body {}
+    .install-device {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1.5mm;
+    }
+    .install-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+    }
+    .install-steps li {
+      font-size: 8pt;
+      color: rgba(255,255,255,0.72);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: rgba(242,153,74,0.25);
+      color: var(--gold);
+      font-size: 7pt;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .step-arrow {
+      color: var(--gold);
+      font-size: 8pt;
+    }
+
+    /* ─── Feature Badges ─────────────────────────────── */
+    .features {
+      display: flex;
+      gap: 3mm;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .badge {
+      background: rgba(242,153,74,0.12);
+      border: 1px solid rgba(242,153,74,0.35);
+      border-radius: 20px;
+      padding: 2mm 4mm;
+      font-size: 8pt;
+      color: var(--light);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .badge-icon { font-size: 10pt; }
+
+    /* ─── Footer ─────────────────────────────────────── */
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 4mm;
+    }
+    .footer-logo {
+      font-size: 11pt;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .footer-url {
+      font-size: 9.5pt;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.5px;
+    }
+    .footer-copy {
+      font-size: 7pt;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ─── Print optimizations ────────────────────────── */
+    @media print {
+      html, body {
+        background: transparent !important;
+      }
+      .poster {
+        width: 210mm !important;
+        min-height: 297mm !important;
+        margin: 0 !important;
+        padding: 14mm 12mm 12mm !important;
+        page-break-after: avoid;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        color-adjust: exact;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+    }
+
+    /* ─── Screen preview padding ─────────────────────── */
+    @media screen {
+      body { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- ── TOP BAR ── -->
+  <div class="top-bar">
+    <div class="logo-text">HebronGuide<span class="logo-dot"></span></div>
+    <div class="tagline-small">
+      Korean-American Community Platform<br>
+      한인 커뮤니티 플랫폼
+    </div>
+  </div>
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="hero-ko">
+      "이 세상 어느 누구도<br>
+      <span>혼자가 아닙니다</span>"
+    </div>
+    <div class="hero-en">"No one is alone in this world"</div>
+    <div class="divider"></div>
+    <div class="sub-ko">낯선 도시에서도 — 교회 · 맛집 · 정착 정보를 한 곳에서</div>
+    <div class="sub-en">Church · Food · Settlement — All in one place</div>
+  </div>
+
+  <!-- ── FEATURES ── -->
+  <div class="features">
+    <div class="badge"><span class="badge-icon">⛪</span> 교회 찾기</div>
+    <div class="badge"><span class="badge-icon">🍜</span> 한식당 · 맛집</div>
+    <div class="badge"><span class="badge-icon">🏡</span> 정착 정보</div>
+    <div class="badge"><span class="badge-icon">📋</span> 업체 광고</div>
+    <div class="badge"><span class="badge-icon">🌎</span> 20+ 도시</div>
+  </div>
+
+  <!-- ── MAIN ROW: QR + INSTALL ── -->
+  <div class="main-row">
+
+    <!-- QR Code -->
+    <div class="qr-section">
+      <div class="qr-box">
+        <!-- When qr_main.png is in the same folder, swap the placeholder div with:
+             <img class="qr-img" src="qr_main.png" alt="HebronGuide QR" />
+        -->
+        <img
+          class="qr-img"
+          src="qr_main.png"
+          alt="HebronGuide QR"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="qr-placeholder" style="display:none;">
+          <div class="qr-icon">&#x25A6;</div>
+          <div class="qr-label">QR 코드를<br>여기에 교체</div>
+        </div>
+      </div>
+      <div class="qr-url">hebronguide.com</div>
+      <div class="qr-note">
+        카메라로 스캔하거나<br>
+        아래 방법으로 설치하세요
+      </div>
+    </div>
+
+    <!-- Install Instructions -->
+    <div class="install-section">
+      <div class="install-title">앱 설치 방법</div>
+      <div class="install-cards">
+
+        <!-- iPhone / iPad -->
+        <div class="install-card">
+          <div class="install-icon">📱</div>
+          <div class="install-body">
+            <div class="install-device">iPhone / iPad</div>
+            <ul class="install-steps">
+              <li>
+                <span class="step-num">1</span>
+                Safari로 <strong>hebronguide.com</strong> 접속
+              </li>
+              <li>
+                <span class="step-num">2</span>
+                하단 <strong>공유 버튼</strong> (□↑) 탭
+              </li>
+              <li>
+                <span class="step-num">3</span>
+                <strong>"홈 화면에 추가"</strong> 선택 → 추가
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Android -->
+        <div class="install-card">
+          <div class="install-icon">🤖</div>
+          <div class="install-body">
+            <div class="install-device">Android</div>
+            <ul class="install-steps">
+              <li>
+                <span class="step-num">1</span>
+                Chrome으로 <strong>hebronguide.com</strong> 접속
+              </li>
+              <li>
+                <span class="step-num">2</span>
+                우상단 <strong>메뉴(⋮)</strong> 탭
+              </li>
+              <li>
+                <span class="step-num">3</span>
+                <strong>"홈 화면에 추가"</strong> 또는 <strong>"앱 설치"</strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Computer -->
+        <div class="install-card">
+          <div class="install-icon">💻</div>
+          <div class="install-body">
+            <div class="install-device">컴퓨터 (PC / Mac)</div>
+            <ul class="install-steps">
+              <li>
+                <span class="step-num">1</span>
+                Chrome / Edge로 <strong>hebronguide.com</strong> 접속
+              </li>
+              <li>
+                <span class="step-num">2</span>
+                주소창 오른쪽 <strong>⊕ 아이콘</strong> 클릭
+              </li>
+              <li>
+                <span class="step-num">3</span>
+                <strong>"설치"</strong> 버튼 클릭
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    <div class="footer-logo">HebronGuide</div>
+    <div class="footer-url">hebronguide.com</div>
+    <div class="footer-copy">© 2026 Hebron Platform LLC</div>
+  </div>
+
+</div>
+</body>
+</html>
