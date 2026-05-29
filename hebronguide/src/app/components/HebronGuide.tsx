@@ -12049,15 +12049,41 @@ function AmericasAdSection({ lang }: { lang: string }) {
 }
 
 /* ─────────────────────────────────────────
-   🎵 FLOATING MUSIC PLAYER — YouTube Playlist
-   헤브론 찬양 플레이리스트
-   - mini 모드: 슬림 바 + 초소형 iframe (오디오 유지)
-   - video 모드: 전체 영상 플레이어 (3가지 크기)
-   - 크기 자유 조절 (S/M/L 프리셋)
-   - 드래그 가능 (제목 바 드래그)
+   🎵 FLOATING MUSIC PLAYER — YouTube 스케줄러
+   ─ 콘텐츠 큐: 순서대로 저장, 수동 전환
+   ─ 예약 재생: 요일+시간 지정 → 자동 팝업
+   ─ mini/video 모드, S/M/L 크기, 드래그
+   ─ 콘텐츠 추가: YT_QUEUE 배열에 항목 추가
+   ─ 예약 추가: YT_SCHEDULE 배열에 항목 추가
 ───────────────────────────────────────── */
-const YT_PLAYLIST_ID = "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig";
-const YT_SRC = `https://www.youtube.com/embed/videoseries?list=${YT_PLAYLIST_ID}&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+
+// ── 📋 콘텐츠 큐 (순서대로 저장) ──────────────
+// type: "playlist" | "video" | "channel"
+// id: YouTube playlist ID, video ID, 또는 channel ID
+const YT_QUEUE: { title: string; sub: string; type: "playlist"|"video"; id: string }[] = [
+  {
+    title: "헤브론 찬양",
+    sub: "Hebron Worship Playlist",
+    type: "playlist",
+    id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig",
+  },
+  // ── 아래에 항목 추가 ──
+  // { title: "주일 설교", sub: "시애틀지구촌교회 2026", type: "playlist", id: "PLAYLIST_ID_HERE" },
+  // { title: "특별 설교", sub: "폴 김 목사", type: "video", id: "VIDEO_ID_HERE" },
+  // { title: "성경 읽기", sub: "오늘의 말씀", type: "video", id: "VIDEO_ID_HERE" },
+];
+
+// ── ⏰ 예약 재생 스케줄 ─────────────────────────
+// day: 0=일 1=월 2=화 3=수 4=목 5=금 6=토 (또는 "daily")
+// hour/minute: 24시간 기준 (사용자 브라우저 로컬 시간)
+// queueIndex: YT_QUEUE 배열의 인덱스
+const YT_SCHEDULE: { label: string; day: number|"daily"; hour: number; minute: number; queueIndex: number }[] = [
+  // ── 아래에 예약 추가 ──
+  // { label: "주일 예배 찬양",   day: 0, hour: 10, minute: 50, queueIndex: 0 },
+  // { label: "수요 기도회 찬양", day: 3, hour: 19, minute: 30, queueIndex: 0 },
+  // { label: "매일 새벽 묵상",   day: "daily", hour: 5, minute: 30, queueIndex: 0 },
+];
+
 const YT_SIZES = [
   { label: "S", w: 260, h: 146 },
   { label: "M", w: 340, h: 191 },
@@ -12065,16 +12091,40 @@ const YT_SIZES = [
 ];
 
 function FloatingMusicPlayer() {
-  const [active, setActive]     = useState(false);
-  const [mini, setMini]         = useState(false);
-  const [sizeIdx, setSizeIdx]   = useState(1);
-  // 드래그 위치 (px, right/bottom 기준)
-  const [pos, setPos]           = useState({ right: 14, bottom: 78 });
-  const dragState               = useRef<{ startX: number; startY: number; startR: number; startB: number } | null>(null);
+  const [active, setActive]       = useState(false);
+  const [mini, setMini]           = useState(false);
+  const [sizeIdx, setSizeIdx]     = useState(1);
+  const [queueIdx, setQueueIdx]   = useState(0);
+  const [showQueue, setShowQueue] = useState(false);
+  const [pos, setPos]             = useState({ right: 14, bottom: 78 });
+  const dragState                 = useRef<{ startX: number; startY: number; startR: number; startB: number } | null>(null);
 
+  // ── 글로벌 활성화 훅 ──
   useEffect(() => {
     _setMusicActive = setActive;
     return () => { _setMusicActive = null; };
+  }, []);
+
+  // ── ⏰ 예약 재생 체커 (1분마다) ──
+  useEffect(() => {
+    if (YT_SCHEDULE.length === 0) return;
+    const check = () => {
+      const now = new Date();
+      const day  = now.getDay();
+      const h    = now.getHours();
+      const m    = now.getMinutes();
+      YT_SCHEDULE.forEach(s => {
+        const dayMatch = s.day === "daily" || s.day === day;
+        if (dayMatch && s.hour === h && s.minute === m) {
+          setQueueIdx(s.queueIndex);
+          setMini(false);
+          setActive(true);
+        }
+      });
+    };
+    check();
+    const timer = setInterval(check, 60_000);
+    return () => clearInterval(timer);
   }, []);
 
   /* 드래그 핸들러 */
@@ -12095,7 +12145,11 @@ function FloatingMusicPlayer() {
   if (!active) return null;
 
   const { w, h } = YT_SIZES[sizeIdx];
-  const barW = mini ? 220 : w;
+  const barW = mini ? 224 : w;
+  const current = YT_QUEUE[queueIdx] ?? YT_QUEUE[0];
+  const ytSrc = current.type === "playlist"
+    ? `https://www.youtube.com/embed/videoseries?list=${current.id}&rel=0&modestbranding=1&playsinline=1`
+    : `https://www.youtube.com/embed/${current.id}?rel=0&modestbranding=1&playsinline=1`;
 
   const btnStyle: React.CSSProperties = {
     background: "none", border: "none", cursor: "pointer",
@@ -12105,78 +12159,125 @@ function FloatingMusicPlayer() {
 
   return (
     <div style={{
-      position: "fixed",
-      right: pos.right, bottom: pos.bottom,
-      zIndex: 9000,
-      width: barW,
+      position: "fixed", right: pos.right, bottom: pos.bottom,
+      zIndex: 9000, width: barW,
       boxShadow: "0 4px 24px rgba(0,0,0,0.55)",
       borderRadius: mini ? 24 : 14,
       overflow: "visible",
       transition: "width 0.25s ease",
     }}>
+
       {/* ── 제목 바 (드래그 핸들) ── */}
-      <div
-        onMouseDown={onDragStart}
-        style={{
-          background: "rgba(16,20,36,0.97)",
-          border: "1px solid rgba(255,255,255,0.12)",
-          borderRadius: mini ? 24 : "14px 14px 0 0",
-          display: "flex", alignItems: "center", gap: 7,
-          padding: "7px 10px",
-          cursor: "grab", userSelect: "none",
-          borderBottom: mini ? undefined : "1px solid rgba(255,255,255,0.08)",
-        }}>
-        {/* 미니 썸네일 (mini 모드에서 오디오 유지용 — 1px iframe 숨김) */}
+      <div onMouseDown={onDragStart} style={{
+        background: "rgba(16,20,36,0.97)",
+        border: "1px solid rgba(255,255,255,0.12)",
+        borderRadius: mini ? 24 : "14px 14px 0 0",
+        display: "flex", alignItems: "center", gap: 6,
+        padding: "7px 10px",
+        cursor: "grab", userSelect: "none",
+        borderBottom: mini ? undefined : "1px solid rgba(255,255,255,0.08)",
+      }}>
         <span style={{ fontSize: 15, flexShrink: 0 }}>▶️</span>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-            헤브론 찬양
+            {current.title}
           </div>
-          <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.4)", fontFamily: "Manrope,sans-serif" }}>
-            {mini ? "🔊 오디오 재생 중" : `YouTube · ${YT_SIZES[sizeIdx].label}`}
+          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            {mini ? "🔊 재생 중" : current.sub}
           </div>
         </div>
-        {/* 크기 전환 (video 모드만) */}
+
+        {/* 큐 목록 토글 (항목 2개 이상일 때) */}
+        {YT_QUEUE.length > 1 && !mini && (
+          <button onClick={(e) => { e.stopPropagation(); setShowQueue(p => !p); }}
+            title="재생 목록"
+            style={{ ...btnStyle, fontSize: 14 }}>☰</button>
+        )}
+        {/* 이전 / 다음 (항목 2개 이상일 때) */}
+        {YT_QUEUE.length > 1 && (
+          <>
+            <button onClick={(e) => { e.stopPropagation(); setQueueIdx(i => (i - 1 + YT_QUEUE.length) % YT_QUEUE.length); }}
+              style={btnStyle} title="이전">‹</button>
+            <button onClick={(e) => { e.stopPropagation(); setQueueIdx(i => (i + 1) % YT_QUEUE.length); }}
+              style={btnStyle} title="다음">›</button>
+          </>
+        )}
+        {/* 크기 전환 */}
         {!mini && (
           <button onClick={(e) => { e.stopPropagation(); setSizeIdx(i => (i + 1) % 3); }}
-            style={{ ...btnStyle, background: "rgba(255,255,255,0.08)", fontWeight: 700, fontSize: 10, color: "#fff", padding: "3px 7px", borderRadius: 8 }}>
+            style={{ ...btnStyle, background: "rgba(255,255,255,0.08)", fontWeight: 700, fontSize: 10, color: "#fff", padding: "3px 6px", borderRadius: 7 }}>
             {YT_SIZES[sizeIdx].label}
           </button>
         )}
         {/* 최소화 / 복원 */}
-        <button
-          onClick={(e) => { e.stopPropagation(); setMini(p => !p); }}
-          title={mini ? "영상 펼치기" : "오디오만 (화면 최소화)"}
-          style={btnStyle}>
+        <button onClick={(e) => { e.stopPropagation(); setMini(p => !p); }}
+          title={mini ? "영상 펼치기" : "오디오만"} style={btnStyle}>
           {mini ? "⬜" : "⬛"}
         </button>
         {/* 닫기 */}
         <button onClick={(e) => { e.stopPropagation(); setActive(false); }} style={btnStyle}>✕</button>
       </div>
 
-      {/* ── YouTube iframe ──
-          mini 모드: 1x1px 숨김 (오디오 계속 재생)
-          video 모드: 전체 표시
-          ※ 절대 unmount 하지 않음 → 오디오 유지 핵심 */}
+      {/* ── 큐 드롭다운 ── */}
+      {showQueue && !mini && (
+        <div style={{
+          background: "rgba(16,20,36,0.97)",
+          borderLeft: "1px solid rgba(255,255,255,0.1)",
+          borderRight: "1px solid rgba(255,255,255,0.1)",
+          maxHeight: 160, overflowY: "auto",
+        }}>
+          {YT_QUEUE.map((item, i) => (
+            <div key={i}
+              onClick={() => { setQueueIdx(i); setShowQueue(false); }}
+              style={{
+                padding: "7px 12px", cursor: "pointer",
+                background: i === queueIdx ? "rgba(255,255,255,0.1)" : "transparent",
+                display: "flex", alignItems: "center", gap: 8,
+                borderBottom: "1px solid rgba(255,255,255,0.05)",
+              }}>
+              <span style={{ fontSize: 12 }}>{i === queueIdx ? "▶" : "○"}</span>
+              <div>
+                <div style={{ fontSize: 11, fontWeight: 600, color: i === queueIdx ? "#fff" : "rgba(255,255,255,0.7)", fontFamily: "Manrope,sans-serif" }}>{item.title}</div>
+                <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.35)", fontFamily: "Manrope,sans-serif" }}>{item.sub}</div>
+              </div>
+            </div>
+          ))}
+
+          {/* 예약 스케줄 표시 */}
+          {YT_SCHEDULE.length > 0 && (
+            <div style={{ padding: "6px 12px", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+              <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", marginBottom: 4, fontFamily: "Manrope,sans-serif" }}>⏰ 예약 재생</div>
+              {YT_SCHEDULE.map((s, i) => {
+                const days = ["일","월","화","수","목","금","토"];
+                const dayLabel = s.day === "daily" ? "매일" : `${days[s.day as number]}요일`;
+                return (
+                  <div key={i} style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", fontFamily: "Manrope,sans-serif", marginBottom: 2 }}>
+                    {dayLabel} {String(s.hour).padStart(2,"0")}:{String(s.minute).padStart(2,"0")} — {s.label}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ── YouTube iframe (항상 마운트 → 오디오 유지) ── */}
       <div style={{
-        width: mini ? 1 : w,
-        height: mini ? 1 : h,
-        overflow: "hidden",
-        opacity: mini ? 0 : 1,
+        width: mini ? 1 : w, height: mini ? 1 : h,
+        overflow: "hidden", opacity: mini ? 0 : 1,
         transition: "opacity 0.2s, width 0.25s, height 0.25s",
-        borderRadius: "0 0 14px 14px",
-        background: "#000",
+        borderRadius: "0 0 14px 14px", background: "#000",
         pointerEvents: mini ? "none" : "auto",
         position: mini ? "absolute" : "relative",
       }}>
         <iframe
-          src={YT_SRC}
-          width={w}
-          height={h}
+          key={queueIdx}
+          src={ytSrc}
+          width={w} height={h}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
           style={{ border: "none", display: "block" }}
-          title="헤브론 찬양 플레이리스트"
+          title={current.title}
         />
       </div>
     </div>
