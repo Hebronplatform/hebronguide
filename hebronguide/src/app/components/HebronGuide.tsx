@@ -12062,7 +12062,7 @@ function AmericasAdSection({ lang }: { lang: string }) {
 // id: YouTube playlist ID, video ID, 또는 channel ID
 const YT_QUEUE: { title: string; sub: string; type: "playlist"|"video"; id: string }[] = [
   {
-    title: "헤브론 찬양",
+    title: "헤브론 추천곡",
     sub: "Hebron Worship Playlist",
     type: "playlist",
     id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig",
@@ -12376,7 +12376,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
         </div>
       </a>
 
-      {/* 🎵 헤브론 찬양 — YouTube */}
+      {/* 🎵 헤브론 추천곡 — YouTube */}
       <button
         onClick={() => activateMusic()}
         style={{
@@ -12404,7 +12404,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
               {ko ? "🎵 찬양 듣기 — 탭 이동해도 계속 재생" : "🎵 Worship — plays while you browse"}
             </div>
             <div style={{ fontSize: 13, fontWeight: 800, color: "#ECFDF5", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-              헤브론 찬양
+              헤브론 추천곡
             </div>
             <div style={{ fontSize: 10.5, color: "rgba(236,253,245,0.5)", fontFamily: "Manrope,sans-serif", marginTop: 2 }}>
               YouTube · Hebron Worship Playlist
