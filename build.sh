@@ -41,7 +41,7 @@ declare -A CITY_KO=(
   ["la"]="로스앤젤레스"       ["toronto"]="토론토"       ["vancouver"]="밴쿠버"
   ["houston"]="휴스턴"       ["atlanta"]="애틀랜타"     ["kansascity"]="캔자스시티"
   ["philadelphia"]="필라델피아" ["miami"]="마이애미"     ["mexicocity"]="멕시코시티"
-  ["guadalajara"]="과달라하라" ["monterrey"]="몬테레이"
+  ["guadalajara"]="과달라하라" ["monterrey"]="몬테레이"  ["bogota"]="보고타"
   # 북미 확장 Tier A
   ["chicago"]="시카고"        ["dc"]="워싱턴 DC"         ["sandiego"]="샌디에고"
   ["honolulu"]="호놀룰루"     ["portland"]="포틀랜드"    ["denver"]="덴버"
@@ -76,7 +76,7 @@ declare -A CITY_EN=(
   ["houston"]="Houston"       ["atlanta"]="Atlanta"        ["kansascity"]="Kansas City"
   ["philadelphia"]="Philadelphia" ["miami"]="Miami"        ["orangecounty"]="Orange County"
   ["mexicocity"]="Mexico City"
-  ["guadalajara"]="Guadalajara"   ["monterrey"]="Monterrey"
+  ["guadalajara"]="Guadalajara"   ["monterrey"]="Monterrey"  ["bogota"]="Bogota"
   # 북미 확장 Tier A
   ["chicago"]="Chicago"       ["dc"]="Washington DC"       ["sandiego"]="San Diego"
   ["honolulu"]="Honolulu"     ["portland"]="Portland"      ["denver"]="Denver"
@@ -118,7 +118,7 @@ BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 echo "--- Deploying to cities (with city-specific SEO, build_time=$BUILD_TIME) ---"
 for city in \
   seattle dallas sf newyork nashville boston la toronto vancouver houston atlanta \
-  kansascity philadelphia miami orangecounty mexicocity guadalajara monterrey \
+  kansascity philadelphia miami orangecounty mexicocity guadalajara monterrey bogota \
   chicago dc sandiego honolulu portland denver \
   calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
   tucson fayetteville killeen louisville anchorage princgeorge \
@@ -210,7 +210,7 @@ REGION_MAP=(
   ["toronto"]="🇨🇦 캐나다"  ["vancouver"]="🇨🇦 캐나다" ["calgary"]="🇨🇦 캐나다"
   ["edmonton"]="🇨🇦 캐나다" ["ottawa"]="🇨🇦 캐나다"    ["winnipeg"]="🇨🇦 캐나다"   ["princgeorge"]="🇨🇦 캐나다"
   ["mexicocity"]="🌎 중남미" ["guadalajara"]="🌎 중남미" ["monterrey"]="🌎 중남미"
-  ["saopaulo"]="🌎 중남미"
+  ["saopaulo"]="🌎 중남미"  ["bogota"]="🌎 중남미"
   ["london"]="🇬🇧 유럽"     ["paris"]="🇬🇧 유럽"       ["berlin"]="🇬🇧 유럽"
   ["frankfurt"]="🇬🇧 유럽"
   ["sydney"]="🇦🇺 오세아니아" ["melbourne"]="🇦🇺 오세아니아" ["brisbane"]="🇦🇺 오세아니아"
@@ -231,7 +231,7 @@ for city in \
   philadelphia sandiego portland denver honolulu charlotte raleigh columbus minneapolis \
   kansascity orlando maryland fayetteville killeen louisville anchorage tucson orangecounty \
   toronto vancouver calgary edmonton ottawa winnipeg princgeorge \
-  mexicocity guadalajara monterrey saopaulo \
+  mexicocity guadalajara monterrey saopaulo bogota \
   london paris berlin frankfurt \
   sydney melbourne brisbane perth auckland \
   singapore bangkok hochiminh dubai \

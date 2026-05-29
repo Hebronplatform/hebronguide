@@ -124,6 +124,8 @@
     { "source": "/auckland/(.*)",      "destination": "/auckland/index.html" },
     { "source": "/saopaulo",           "destination": "/saopaulo/index.html" },
     { "source": "/saopaulo/(.*)",      "destination": "/saopaulo/index.html" },
+    { "source": "/bogota",             "destination": "/bogota/index.html" },
+    { "source": "/bogota/(.*)",        "destination": "/bogota/index.html" },
     { "source": "/london",             "destination": "/london/index.html" },
     { "source": "/london/(.*)",        "destination": "/london/index.html" },
     { "source": "/singapore",          "destination": "/singapore/index.html" },
