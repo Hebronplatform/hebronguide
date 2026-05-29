@@ -47,6 +47,8 @@
     .section-header.mint{background:rgba(110,231,183,.10);border:1px solid rgba(110,231,183,.25);color:var(--mint)}
     .section-header.purple{background:rgba(167,139,250,.10);border:1px solid rgba(167,139,250,.25);color:var(--purple)}
     .section-count{margin-left:auto;font-size:.78rem;font-weight:500;opacity:.75}
+    .quick-btn{padding:8px 16px;border-radius:20px;text-decoration:none;font-size:.85rem;font-weight:600;transition:.2s;white-space:nowrap}
+    .quick-btn:hover{opacity:.8;transform:translateY(-1px)}
 
     /* ── FAQ 아이템 ── */
     .faq-item{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;cursor:pointer;transition:.2s}
@@ -101,11 +103,19 @@
 <!-- 히어로 -->
 <div class="hero">
   <div class="hero-logo">💬</div>
-  <h1 class="hero-title"><span class="ko">자주 묻는 질문</span><span class="en">Frequently Asked Questions</span></h1>
+  <h1 class="hero-title"><span class="ko">자주 묻는 질문 (FAQ)</span><span class="en">Frequently Asked Questions</span></h1>
   <p class="hero-sub">
-    <span class="ko">HebronGuide 이용에 대해 궁금한 점을 모았습니다. 아래에서 답을 찾아보세요.</span>
-    <span class="en">Find answers to the most common questions about HebronGuide below.</span>
+    <span class="ko">HebronGuide는 <b>이민자·방문자·시민 모두</b>를 위한 서비스입니다.<br>목사님만을 위한 것이 아닙니다.</span>
+    <span class="en">HebronGuide is for <b>everyone</b> — immigrants, visitors, citizens, pastors, and businesses alike.</span>
   </p>
+
+  <!-- 대상별 빠른 이동 -->
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px">
+    <a href="#visitor" class="quick-btn" style="background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);color:var(--gold)">✈️ <span class="ko">이민자·방문자</span><span class="en">Immigrants</span></a>
+    <a href="#pastor" class="quick-btn" style="background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);color:var(--mint)">⛪ <span class="ko">목사님</span><span class="en">Pastors</span></a>
+    <a href="#business" class="quick-btn" style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);color:var(--purple)">🏪 <span class="ko">사업체·광고</span><span class="en">Business</span></a>
+    <a href="#general" class="quick-btn" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--text)">💡 <span class="ko">일반</span><span class="en">General</span></a>
+  </div>
 </div>
 
 <!-- 검색 -->
@@ -122,7 +132,7 @@
 <main class="main">
 
   <!-- 섹션 1 — 이민자·방문자 -->
-  <div class="section" data-section="visitor">
+  <div class="section" data-section="visitor" id="visitor">
     <div class="section-header gold">
       ✈️ <span class="ko">이민자·방문자</span><span class="en">Immigrants &amp; Visitors</span>
       <span class="section-count ko">5개 질문</span><span class="section-count en">5 Questions</span>
@@ -193,7 +203,7 @@
   </div>
 
   <!-- 섹션 2 — 파트너 목사님 -->
-  <div class="section" data-section="pastor">
+  <div class="section" data-section="pastor" id="pastor">
     <div class="section-header mint">
       ⛪ <span class="ko">파트너 목사님</span><span class="en">Partner Pastors</span>
       <span class="section-count ko">5개 질문</span><span class="section-count en">5 Questions</span>
@@ -267,43 +277,197 @@
     </div>
   </div>
 
-  <!-- 섹션 3 — 사업체 -->
-  <div class="section" data-section="business">
+  <!-- 섹션 3 — 사업체·광고 -->
+  <div class="section" data-section="business" id="business">
     <div class="section-header purple">
-      🏪 <span class="ko">사업체</span><span class="en">Businesses</span>
-      <span class="section-count ko">3개 질문</span><span class="section-count en">3 Questions</span>
+      🏪 <span class="ko">한인 사업체 · 광고</span><span class="en">Korean Businesses &amp; Advertising</span>
+      <span class="section-count ko">8개 질문</span><span class="section-count en">8 Questions</span>
     </div>
 
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="사업체 등록 무료 파트너 교회 별표 인증" data-en="business listing registration free partner church star verified">
+    <!-- 안내 배너 -->
+    <div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);border-radius:10px;padding:14px 16px;margin-bottom:16px;font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.8)">
+      <span class="ko">🏪 <b>한인 사업체라면 누구나 무료로 등록 가능합니다.</b><br>보험·법률·부동산·식당·카페·미용·이사·회계·의료·학원·무역 등 업종 불문.<br>교회 성도이신 경우 특별 인증 혜택이 있습니다.</span>
+      <span class="en">🏪 <b>Any Korean business can register for free.</b><br>Insurance, legal, real estate, restaurant, cafe, beauty, moving, accounting, medical, tutoring, trading, and more.<br>Church congregation members receive special verification benefits.</span>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="사업체 등록 무료 비용 요금" data-en="business registration free cost fee price">
       <div class="faq-q">
         <span class="faq-q-text"><span class="ko">사업체 등록은 무료인가요?</span><span class="en">Is business registration free?</span></span>
         <span class="faq-arrow">▼</span>
       </div>
       <div class="faq-a">
-        <span class="ko">네, 완전 무료입니다. 파트너 교회 담임목사님의 이메일을 함께 기입하시면 별표(⭐) 인증을 받습니다.</span>
-        <span class="en">Yes, completely free. Include your partner church's lead pastor email to receive a star (⭐) verification badge.</span>
+        <span class="ko"><b>네, 완전 무료입니다.</b> 기본 등록 비용이 없습니다. 파트너 교회 담임목사님의 이메일을 함께 기입하시면 별표(⭐) 인증을 무료로 받습니다.</span>
+        <span class="en"><b>Yes, completely free.</b> No registration cost. Include your partner church pastor's email to receive a free star (⭐) verification badge.</span>
       </div>
     </div>
 
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="사업체 등록 방법 신청 선택" data-en="business registration how apply select submit">
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="사업체 등록 방법 신청 절차 어떻게" data-en="business registration how apply process steps submit">
       <div class="faq-q">
         <span class="faq-q-text"><span class="ko">사업체 등록은 어떻게 하나요?</span><span class="en">How do I register my business?</span></span>
         <span class="faq-arrow">▼</span>
       </div>
       <div class="faq-a">
-        <span class="ko"><a href="/ad-request.html">hebronguide.com/ad-request.html</a>에서 '사업체' 선택 후 신청하시면 됩니다.</span>
-        <span class="en">Go to <a href="/ad-request.html">hebronguide.com/ad-request.html</a>, select 'Business', and submit your application.</span>
+        <span class="ko">
+          <b>3단계로 완료:</b><br>
+          1️⃣ <a href="/ad-request.html">hebronguide.com/ad-request.html</a> 접속<br>
+          2️⃣ '사업체' 탭 선택 → 업체명·업종·연락처·도시 입력<br>
+          3️⃣ '신청하기' 클릭 → 24시간 내 등록 완료 이메일 수신
+        </span>
+        <span class="en">
+          <b>3 easy steps:</b><br>
+          1️⃣ Go to <a href="/ad-request.html">hebronguide.com/ad-request.html</a><br>
+          2️⃣ Select 'Business' tab → Enter name, type, contact, city<br>
+          3️⃣ Click 'Submit' → Receive confirmation email within 24 hours
+        </span>
       </div>
     </div>
 
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="등록 정보 수정 이메일 요청 처리" data-en="listing info edit update request email processing">
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="어떤 업종 등록 가능 종류 업체" data-en="what types businesses can register kinds industry">
       <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">등록한 정보를 수정하고 싶어요.</span><span class="en">I want to update my listing information.</span></span>
+        <span class="faq-q-text"><span class="ko">어떤 업종이 등록 가능한가요?</span><span class="en">What types of businesses can register?</span></span>
         <span class="faq-arrow">▼</span>
       </div>
       <div class="faq-a">
-        <span class="ko"><a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>으로 수정 요청하시면 24시간 내 처리해드립니다. (자동화 시스템 준비 중)</span>
-        <span class="en">Email your update request to <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a> and we'll process it within 24 hours. (Self-service editing coming soon)</span>
+        <span class="ko">
+          한인이 운영하는 사업체라면 업종 불문 등록 가능합니다:<br>
+          🏥 의료·치과·한의원 | ⚖️ 법률·이민법 | 🏠 부동산·이사<br>
+          🍽️ 식당·카페 | 💇 미용·네일 | 🎓 학원·과외<br>
+          📊 회계·세무 | 🚗 자동차·렌탈 | 📦 무역·수입<br>
+          🛒 마켓·편의점 | 기타 모든 한인 업종
+        </span>
+        <span class="en">
+          Any Korean-owned business is welcome:<br>
+          🏥 Medical/Dental/Oriental Medicine | ⚖️ Legal/Immigration<br>
+          🏠 Real Estate/Moving | 🍽️ Restaurant/Cafe | 💇 Beauty/Nail<br>
+          🎓 Tutoring/Academy | 📊 Accounting/Tax | 🚗 Auto/Rental<br>
+          📦 Trade/Import | 🛒 Market/Store | And more
+        </span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="별표 인증 ⭐ 혜택 파트너 교회 어떻게" data-en="star verification badge benefit partner church how get">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">⭐ 별표 인증은 어떻게 받나요?</span><span class="en">How do I get the ⭐ verification badge?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">
+          <b>두 가지 방법:</b><br>
+          1. 신청서에 <b>파트너 교회 담임목사님 이메일</b>을 함께 기입<br>
+          2. 파트너 교회 성도임을 확인 후 자동 부여<br><br>
+          별표 인증 업체는 검색 결과에서 상위 노출됩니다.
+        </span>
+        <span class="en">
+          <b>Two ways:</b><br>
+          1. Include your <b>partner church pastor's email</b> in the registration form<br>
+          2. Automatically granted after confirming church membership<br><br>
+          Verified businesses appear higher in search results.
+        </span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="광고 홍보 어떻게 노출 검색 도시" data-en="advertising promotion how exposure visibility search city">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">광고·홍보는 어떻게 되나요?</span><span class="en">How does advertising work?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">
+          등록된 업체는 <b>해당 도시 페이지 '한인 업소' 탭</b>에 자동 노출됩니다.<br>
+          이민자·방문자가 그 도시를 검색할 때 자연스럽게 노출됩니다.<br><br>
+          <b>노출 방식:</b><br>
+          • 도시별 업소 목록에 표시<br>
+          • 앱 내 검색에서 검색 가능<br>
+          • 파트너 교회 성도들의 추천 연결
+        </span>
+        <span class="en">
+          Registered businesses are automatically shown in the <b>'Korean Business' tab</b> of their city page.<br>
+          Immigrants and visitors searching that city will naturally discover your business.<br><br>
+          <b>How you get exposure:</b><br>
+          • Listed in city business directory<br>
+          • Searchable within the app<br>
+          • Recommended through partner church members
+        </span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="등록 후 언제 노출 시간 얼마나" data-en="after registration when appear how long time visible">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">등록 후 언제부터 보이나요?</span><span class="en">When will my listing appear after registering?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">신청 후 <b>24시간 이내</b>에 검토 후 등록됩니다. 승인 완료 시 이메일로 안내드립니다.</span>
+        <span class="en">Your listing will be reviewed and activated <b>within 24 hours</b> of submission. We'll notify you by email when approved.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="등록 정보 수정 변경 업데이트" data-en="update edit change listing information modify">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">등록한 정보를 수정하고 싶어요.</span><span class="en">I want to update my listing.</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">
+          <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>으로 수정할 내용을 보내주시면 <b>24시간 내</b> 처리해드립니다.<br>
+          이메일 제목: [업체 수정 요청] 업체명
+        </span>
+        <span class="en">
+          Email <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a> with your changes and we'll update it <b>within 24 hours</b>.<br>
+          Subject line: [Business Update Request] Business Name
+        </span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="교회 성도 아닌 경우 비성도 등록 가능" data-en="non-church member not congregation can register">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">교회 성도가 아니어도 등록 가능한가요?</span><span class="en">Can I register even if I'm not a church member?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko"><b>네, 물론 가능합니다.</b> 한인이 운영하는 사업체라면 누구나 등록 가능합니다. 다만, 파트너 교회 성도이신 경우 별표(⭐) 인증 혜택을 추가로 받으실 수 있습니다.</span>
+        <span class="en"><b>Yes, absolutely.</b> Any Korean-owned business can register regardless of church membership. However, congregation members of partner churches receive an additional star (⭐) verification badge.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 섹션 4 — 일반 -->
+  <div class="section" data-section="general" id="general">
+    <div class="section-header" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:var(--text)">
+      💡 <span class="ko">일반 문의</span><span class="en">General</span>
+      <span class="section-count ko">3개 질문</span><span class="section-count en">3 Questions</span>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="HebronGuide 만든 곳 운영 헤브론 플랫폼" data-en="who made HebronGuide operated Hebron Platform">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">HebronGuide는 누가 운영하나요?</span><span class="en">Who operates HebronGuide?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">시애틀지구촌교회 김성수 목사가 25년 이민 목회 경험을 바탕으로 만들었으며, Hebron Platform LLC가 운영합니다. 모든 서비스는 한인 디아스포라 공동체를 섬기기 위해 무료로 제공됩니다.</span>
+        <span class="en">HebronGuide was created by Pastor Sung Soo Kim of GMC Seattle, based on 25 years of immigrant ministry experience, and is operated by Hebron Platform LLC. All services are provided free to serve the Korean diaspora community.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="후원 기부 도움 지원 방법" data-en="support donate contribution help how">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">HebronGuide를 후원하고 싶어요.</span><span class="en">I want to support HebronGuide.</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">감사합니다! 파트너 교회 등록, 사업체 등록, 주변에 홍보하는 것이 가장 큰 후원입니다. 재정 후원 문의는 <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>으로 연락해 주세요.</span>
+        <span class="en">Thank you! The best support is registering as a partner church, registering your business, and spreading the word. For financial support inquiries, email <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="오류 버그 문제 신고 앱 작동 안함" data-en="error bug problem report app not working issue">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">앱에서 오류·문제가 생겼어요.</span><span class="en">I found an error or problem in the app.</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko"><a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>으로 ① 어떤 페이지 ② 어떤 문제 ③ 사용 기기(iPhone/Android/PC)를 알려주시면 빠르게 수정하겠습니다.</span>
+        <span class="en">Email <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a> with: ① Which page ② What problem ③ Your device (iPhone/Android/PC). We'll fix it quickly.</span>
       </div>
     </div>
   </div>
