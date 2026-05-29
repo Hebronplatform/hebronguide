@@ -15078,8 +15078,13 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                         </div>
                       )}
                       <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 14, color: "#fff", marginBottom: 4 }}>
-                        ⛪ {c.name}
+                        ⛪ {lang === "ko" ? (c.name || c.name_en) : (c.name_en || c.name)}
                       </div>
+                      {c.name && c.name_en && c.name !== c.name_en && (
+                        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)", fontFamily: "Manrope,sans-serif", marginBottom: 2 }}>
+                          {lang === "ko" ? c.name_en : c.name}
+                        </div>
+                      )}
                       {c.denomination && (
                         <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 4, fontFamily: "Manrope,sans-serif" }}>
                           {c.denomination} {c.service_time ? `· ${c.service_time}` : ""}
