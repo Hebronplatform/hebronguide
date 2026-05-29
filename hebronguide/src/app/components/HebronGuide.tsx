@@ -12063,7 +12063,7 @@ function AmericasAdSection({ lang }: { lang: string }) {
 const YT_QUEUE: { title: string; sub: string; type: "playlist"|"video"; id: string }[] = [
   {
     title: "헤브론 추천곡",
-    sub: "Hebron Worship Playlist",
+    sub: "Hebron Picks",
     type: "playlist",
     id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig",
   },
@@ -12407,7 +12407,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
               헤브론 추천곡
             </div>
             <div style={{ fontSize: 10.5, color: "rgba(236,253,245,0.5)", fontFamily: "Manrope,sans-serif", marginTop: 2 }}>
-              YouTube · Hebron Worship Playlist
+              YouTube · Hebron Picks
             </div>
           </div>
           <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,68,68,0.8)", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
