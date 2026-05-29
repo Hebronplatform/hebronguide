@@ -478,6 +478,15 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1561592390-42c07289e9cb?w=1200&q=95", pos: "center 40%", alt: "Sao Paulo Vila Madalena residential neighborhood settle" },
   ],
 
+  // 🇨🇴 보고타 — ①몬세라테 ②라칸델라리아 ③도시생활 ④안데스산맥 ⑤거리시장
+  bogota: [
+    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=95", pos: "center 40%", alt: "Bogota Colombia cityscape Monserrate mountain aerial view" },
+    { url: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1200&q=95", pos: "center 45%", alt: "La Candelaria Bogota historic colonial district colorful" },
+    { url: "https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=1200&q=95", pos: "center 50%", alt: "Bogota Colombia urban life people community" },
+    { url: "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?w=1200&q=95", pos: "center 35%", alt: "Bogota Andes mountains green landscape Colombia" },
+    { url: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1200&q=95", pos: "center 50%", alt: "Bogota Colombia street food market culture settle" },
+  ],
+
   // 🇺🇸 워싱턴 DC — ①Capitol항공 ②백악관 ③Capitol랜드마크 ④체리블라썸사람 ⑤제퍼슨기념관
   dc: [
     { url: "https://images.unsplash.com/photo-1583176689170-990094dcd953?w=1200&q=95", pos: "center 40%", alt: "Washington DC Capitol aerial drone Constitution Avenue daytime" },
@@ -806,7 +815,7 @@ type CitySlug =
   "calgary" | "phoenix" | "charlotte" | "columbus" | "raleigh" | "minneapolis" |
   "fayetteville" | "killeen" | "anchorage" | "tucson" | "winnipeg" | "edmonton" | "ottawa" | "louisville" |
   // 국제 (Tier A)
-  "sydney" | "melbourne" | "saopaulo" | "london" | "auckland" |
+  "sydney" | "melbourne" | "saopaulo" | "london" | "auckland" | "bogota" |
   // 국제 (Tier B-C)
   "singapore" | "bangkok" | "hochiminh" | "dubai" | "frankfurt" | "paris" |
   "perth" | "brisbane" | "berlin" |
@@ -1095,6 +1104,7 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   perth:      { slug: "perth",      nameKo: "퍼스",      nameEn: "Perth",        color: "#38BDF8", heroVideo: "", population: "1.2만+", state: "W. Australia",taglineKo: "세계 최서단, 나만의 공간",         taglineEn: "World's most remote, your own space.", taglineEs: "La ciudad más remota, tu propio espacio." },
   auckland:   { slug: "auckland",   nameKo: "오클랜드",  nameEn: "Auckland",     color: "#16A34A", heroVideo: "", population: "2.5만+", state: "New Zealand", taglineKo: "키위와 함께",               taglineEn: "Together with the Kiwis.",       taglineEs: "Junto con los kiwis." },
   saopaulo:   { slug: "saopaulo",   nameKo: "상파울루",  nameEn: "São Paulo",    color: "#DC2626", heroVideo: "", population: "5만+",   state: "Brazil",      taglineKo: "남미 한인의 심장",           taglineEn: "Heart of Korean South America.",  taglineEs: "El corazón del sudamérica coreana." },
+  bogota:     { slug: "bogota",     nameKo: "보고타",    nameEn: "Bogota",       color: "#FBBF24", heroVideo: "", population: "~3천",   state: "Colombia",    taglineKo: "남미의 심장, 새로운 만남",           taglineEn: "Heart of South America, new encounters.",  taglineEs: "El corazón de Sudamérica, nuevos encuentros." },
   london:     { slug: "london",     nameKo: "런던",      nameEn: "London",       color: "#2563EB", heroVideo: "", population: "4.5만+", state: "England",     taglineKo: "안개의 도시, 새로운 역사",             taglineEn: "Write your story in the Fog.",            taglineEs: "Escribe tu historia entre la niebla." },
 
   // ── 국제 확장 Tier B-C ──────────────────────────────────────────────────
@@ -6158,6 +6168,31 @@ const TOP5_EXPLORE_SAOPAULO: Top5Item[] = [
     tip: "페리 또는 버스 이용. 주말 혼잡 — 평일 방문 추천", website: "guaruja.sp.gov.br" },
 ];
 
+/* ── 25b. BOGOTA ── */
+const TOP5_SETTLE_BOGOTA: Top5Item[] = [
+  { name:"주콜롬비아 대한민국 대사관", nameEn:"Embassy of Korea in Colombia", address:"Calle 94 No. 9-39, Bogotá", phone:"(+57) 1-616-7200", desc:"비자·여권·공증·민원. 콜롬비아 입국·체류 모든 행정 처리.", tier:1, star:true },
+  { name:"콜롬비아 이민국 (Migración Colombia)", nameEn:"Migración Colombia", address:"Calle 100 No. 11B-05, Bogotá", phone:"01-8000-520-052", desc:"체류 비자 연장·변경. 은퇴비자(Visa Pensionado) 신청.", tier:1 },
+  { name:"Bancolombia 한인 밀집 지점", nameEn:"Bancolombia", address:"Cra. 7 No. 71-21, Bogotá", phone:"(+57) 604-604-6060", desc:"콜롬비아 최대 은행. 외국인 계좌 개설 가능. 영어 서비스 일부 제공.", tier:2 },
+  { name:"보고타 한인회", nameEn:"Korean Association of Bogota", address:"Bogotá, Colombia", phone:"3142422474", desc:"한인 정착 지원·정보 제공. 행사·모임 연결.", tier:2 },
+  { name:"클리니카 델 컨트리 (응급 병원)", nameEn:"Clínica del Country", address:"Cra. 16 No. 82-57, Bogotá", phone:"(+57) 1-530-0470", desc:"보고타 최고급 사립 병원. 영어 통역 가능. 외국인 이용 편리.", tier:3 },
+];
+
+const TOP5_FOOD_BOGOTA: Top5Item[] = [
+  { name:"한식당 서울 (보고타)", nameEn:"Restaurante Seoul Bogota", address:"Cra. 13 No. 85-35, Bogotá", desc:"보고타 대표 한식당. 비빔밥·불고기·된장찌개. 한인 모임 단골.", tier:1, star:true },
+  { name:"레오 레스토랑 (콜롬비아 정통)", nameEn:"Leo Restaurante", address:"Calle 27B No. 6-75, Bogotá", desc:"월드 50 베스트 레스토랑. 콜롬비아 전통 요리 현대적 재해석. 특별한 날 강력 추천.", tier:1 },
+  { name:"메시 레스토랑 (가성비)", nameEn:"Meshi Bogota", address:"Cra. 11 No. 93A-12, Bogotá", desc:"일본·아시안 퓨전. 한인 직장인 단골. 점심 세트 저렴.", tier:2 },
+  { name:"라 마카레나 맛집 거리", nameEn:"La Macarena Food Street", address:"Cra. 4A, Bogotá (La Macarena)", desc:"보고타 핫 플레이스. 다양한 국적 식당 밀집. 가족·모임 최적.", tier:2 },
+  { name:"아레파 & 빈탕 (현지 간식)", nameEn:"Arepas & Local Street Food", address:"Bogotá 전역", desc:"콜롬비아 국민 간식 아레파. 저렴하고 든든. 정착 초기 필수 음식.", tier:3 },
+];
+
+const TOP5_EXPLORE_BOGOTA: Top5Item[] = [
+  { name:"몬세라테 산 (Monserrate)", nameEn:"Cerro de Monserrate", address:"Bogotá 동쪽 언덕", desc:"해발 3,152m 보고타 전경. 케이블카·푸니쿨라 운행. 보고타 필수 방문지.", star:true },
+  { name:"황금 박물관 (Museo del Oro)", nameEn:"Museo del Oro", address:"Cra. 6 No. 15-88, Bogotá", desc:"세계 최대 황금 유물 컬렉션. 콜롬비아 원주민 문화 이해. 무료 입장(일요일)." },
+  { name:"라 칸델라리아 역사지구", nameEn:"La Candelaria", address:"La Candelaria, Bogotá", desc:"보고타 구시가. 식민지 건축·벽화·카페. 보테로 박물관 인근. 도보 관광 최적." },
+  { name:"우사켄 (Usaquén) — 한인 거주 지역", nameEn:"Usaquén", address:"Usaquén, Bogotá", desc:"보고타 최고급 주거지. 주말 벼룩시장·레스토랑. 한인 밀집 지역." },
+  { name:"살 광산 — 시파키라 (당일치기)", nameEn:"Salt Cathedral of Zipaquirá", address:"Zipaquirá, Cundinamarca", desc:"지하 소금 성당. 세계 건축 불가사의. 보고타 근교 1시간. 버스 투어 편리." },
+];
+
 /* ── 26. LONDON ── */
 const TOP5_SETTLE_LONDON: Top5Item[] = [
   { rank: 1, emoji: "🏛️", nameKo: "런던 한인회 (KCCUK)", nameEn: "Korean Community Centre UK",
@@ -9461,6 +9496,7 @@ function getCountryCode(slug: string): string {
   if (["bangkok"].includes(slug))                                                         return "TH";
   if (["hochiminh"].includes(slug))                                                       return "VN";
   if (["saopaulo"].includes(slug))                                                        return "BR";
+  if (["bogota"].includes(slug))                                                          return "CO";
   return "US";
 }
 
@@ -11476,6 +11512,7 @@ const HEBRON_CITIES = [
   { emoji: "🌺", nameKo: "과달라하라",   nameEn: "Guadalajara",   flag: "🇲🇽", url: "/guadalajara/", status: "live", color: "#F87171" },
   { emoji: "⛰️", nameKo: "몬테레이",    nameEn: "Monterrey",     flag: "🇲🇽", url: "/monterrey/",   status: "live", color: "#C084FC" },
   { emoji: "🇧🇷", nameKo: "상파울루",  nameEn: "São Paulo",     flag: "🇧🇷", url: "/saopaulo/",    status: "live", color: "#DC2626" },
+  { emoji: "🏔️", nameKo: "보고타",    nameEn: "Bogota",        flag: "🇨🇴", url: "/bogota/",       status: "live", color: "#FBBF24" },
   // ── 오세아니아 ──
   { emoji: "🦘", nameKo: "시드니",      nameEn: "Sydney",        flag: "🇦🇺", url: "/sydney/",      status: "live", color: "#38BDF8" },
   { emoji: "☕", nameKo: "멜버른",      nameEn: "Melbourne",     flag: "🇦🇺", url: "/melbourne/",   status: "live", color: "#9333EA" },
@@ -11823,6 +11860,8 @@ const DIASPORA_IDENTITY: Record<string, {
   auckland:     { flag:"🇳🇿", ko:"재뉴질랜드 한인",  en:"Korean New Zealander",descKo:"뉴질랜드 사회의 당당한 구성원으로",   descEn:"A full participant in New Zealand society",       color:"#16A34A" },
   // 🇧🇷 브라질
   saopaulo:     { flag:"🇧🇷", ko:"재브라질 한인",    en:"Korean Brazilian",   descKo:"브라질 사회의 당당한 구성원으로",      descEn:"A full participant in Brazilian society",         color:"#DC2626" },
+  // 🇨🇴 콜롬비아
+  bogota:       { flag:"🇨🇴", ko:"콜롬비아 한인",   en:"Korean Colombian",   descKo:"안데스 고원에서 새 삶을 시작하며",     descEn:"Starting anew in the Andean highlands.",          color:"#FBBF24" },
   // 🇬🇧 영국
   london:       { flag:"🇬🇧", ko:"Korean British",   en:"Korean British",     descKo:"영국 사회의 당당한 구성원으로",        descEn:"A full participant in British society",           color:"#1E40AF" },
   // 🇩🇪 독일
@@ -13403,6 +13442,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "perth"      ? TOP5_SETTLE_PERTH :
             useCityConfig().slug === "auckland"   ? TOP5_SETTLE_AUCKLAND :
             useCityConfig().slug === "saopaulo"   ? TOP5_SETTLE_SAOPAULO :
+            useCityConfig().slug === "bogota"     ? TOP5_SETTLE_BOGOTA :
             useCityConfig().slug === "london"     ? TOP5_SETTLE_LONDON :
             useCityConfig().slug === "frankfurt"  ? TOP5_SETTLE_FRANKFURT :
             useCityConfig().slug === "berlin"     ? TOP5_SETTLE_BERLIN :
@@ -19834,6 +19874,7 @@ const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
   perth:         TOP5_FOOD_PERTH,
   auckland:      TOP5_FOOD_AUCKLAND,
   saopaulo:      TOP5_FOOD_SAOPAULO,
+  bogota:        TOP5_FOOD_BOGOTA,
   london:        TOP5_FOOD_LONDON,
   paris:         TOP5_FOOD_PARIS,
   berlin:        TOP5_FOOD_BERLIN,
@@ -20610,6 +20651,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
               slug === "perth"        ? TOP5_EXPLORE_PERTH :
               slug === "auckland"     ? TOP5_EXPLORE_AUCKLAND :
               slug === "saopaulo"     ? TOP5_EXPLORE_SAOPAULO :
+              slug === "bogota"       ? TOP5_EXPLORE_BOGOTA :
               slug === "london"       ? TOP5_EXPLORE_LONDON :
               slug === "frankfurt"    ? TOP5_EXPLORE_FRANKFURT :
               slug === "berlin"       ? TOP5_EXPLORE_BERLIN :
