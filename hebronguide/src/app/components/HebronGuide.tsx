@@ -14925,6 +14925,19 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     ? resolvePlaceItems(serverContent["churches"], lang)
     : defaultChurches;
 
+  // ── Supabase 교회 데이터 (CKSBCA + 파트너 등록 교회) ──
+  const [sbChurches, setSbChurches] = useState<any[]>([]);
+  useEffect(() => {
+    const hdrs = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
+    fetch(
+      `https://${projectId}.supabase.co/rest/v1/churches?city_slug=eq.${citySlug}&active=eq.true&order=hebron_partner.desc,tier.asc&limit=100`,
+      { headers: hdrs }
+    )
+      .then(r => r.ok ? r.json() : [])
+      .then(data => { if (Array.isArray(data) && data.length > 0) setSbChurches(data); })
+      .catch(() => {});
+  }, [citySlug]);
+
   // 커뮤니티가 직접 올린 교회 (founding-partner.html → localStorage)
   const communityChurches = (() => {
     try {
@@ -15041,9 +15054,68 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 ))}
               </div>
             )}
+            {/* ── Supabase 교회 (CKSBCA + 파트너 등록) ── */}
+            {sbChurches.length > 0 && (
+              <div style={{ marginBottom: 16 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: accent, fontFamily: "Manrope,sans-serif", marginBottom: 8, opacity: 0.85 }}>
+                  {lang === "ko" ? `⛪ 등록 교회 (${sbChurches.length}개)` : `⛪ Registered Churches (${sbChurches.length})`}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {sbChurches.map((c: any, i: number) => (
+                    <div key={"sb-" + i} style={{
+                      border: c.hebron_partner
+                        ? "1px solid rgba(110,231,183,0.45)"
+                        : "1px solid rgba(255,255,255,0.1)",
+                      borderRadius: 16,
+                      background: c.hebron_partner ? "rgba(110,231,183,0.05)" : "rgba(255,255,255,0.02)",
+                      padding: "14px 16px",
+                    }}>
+                      {c.hebron_partner && (
+                        <div style={{ marginBottom: 6 }}>
+                          <span style={{ background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.4)", color: "#6EE7B7", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>
+                            🤝 Hebron 협력교회
+                          </span>
+                        </div>
+                      )}
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 14, color: "#fff", marginBottom: 4 }}>
+                        ⛪ {c.name}
+                      </div>
+                      {c.denomination && (
+                        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 4, fontFamily: "Manrope,sans-serif" }}>
+                          {c.denomination} {c.service_time ? `· ${c.service_time}` : ""}
+                        </div>
+                      )}
+                      {c.description && (
+                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.65)", marginBottom: 8, fontFamily: "Manrope,sans-serif" }}>
+                          {c.description}
+                        </div>
+                      )}
+                      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                        {c.phone && (
+                          <a href={`tel:${c.phone}`} style={{ fontSize: 11, color: accent, fontFamily: "Manrope,sans-serif", fontWeight: 600, textDecoration: "none" }}>
+                            📞 {c.phone}
+                          </a>
+                        )}
+                        {c.website && (
+                          <a href={c.website.startsWith("http") ? c.website : `https://${c.website}`} target="_blank" rel="noopener" style={{ fontSize: 11, color: accent, fontFamily: "Manrope,sans-serif", fontWeight: 600, textDecoration: "none" }}>
+                            🌐 {lang === "ko" ? "홈페이지" : "Website"}
+                          </a>
+                        )}
+                        {c.email && (
+                          <a href={`mailto:${c.email}`} style={{ fontSize: 11, color: accent, fontFamily: "Manrope,sans-serif", fontWeight: 600, textDecoration: "none" }}>
+                            ✉️ {lang === "ko" ? "이메일" : "Email"}
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* 기존 교회 목록 */}
             {churches.length === 0
-              ? (communityChurches.length === 0 && <ComingSoonCard lang={lang} accentColor={accent} />)
+              ? (communityChurches.length === 0 && sbChurches.length === 0 && <ComingSoonCard lang={lang} accentColor={accent} />)
               : <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number; hcmi?: boolean; hebronPartner?: boolean; denomination?: string; website?: string; email?: string; phone?: string; kakao?: string; }>).map((c, i) => (
                   <div key={i} style={
