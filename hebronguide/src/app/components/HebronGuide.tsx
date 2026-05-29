@@ -12049,63 +12049,135 @@ function AmericasAdSection({ lang }: { lang: string }) {
 }
 
 /* ─────────────────────────────────────────
-   🎵 FLOATING MUSIC PLAYER — Spotify
-   Bloom Again Music 아티스트 채널
+   🎵 FLOATING MUSIC PLAYER — YouTube Playlist
+   헤브론 찬양 플레이리스트
+   - mini 모드: 슬림 바 + 초소형 iframe (오디오 유지)
+   - video 모드: 전체 영상 플레이어 (3가지 크기)
+   - 크기 자유 조절 (S/M/L 프리셋)
+   - 드래그 가능 (제목 바 드래그)
 ───────────────────────────────────────── */
-const SPOTIFY_ARTIST_ID = "2orO6iWhVhd7kOzKmSknAf";
+const YT_PLAYLIST_ID = "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig";
+const YT_SRC = `https://www.youtube.com/embed/videoseries?list=${YT_PLAYLIST_ID}&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+const YT_SIZES = [
+  { label: "S", w: 260, h: 146 },
+  { label: "M", w: 340, h: 191 },
+  { label: "L", w: 480, h: 270 },
+];
 
 function FloatingMusicPlayer() {
-  const [active, setActive] = useState(false);
-  const [expanded, setExpanded] = useState(false);
+  const [active, setActive]     = useState(false);
+  const [mini, setMini]         = useState(false);
+  const [sizeIdx, setSizeIdx]   = useState(1);
+  // 드래그 위치 (px, right/bottom 기준)
+  const [pos, setPos]           = useState({ right: 14, bottom: 78 });
+  const dragState               = useRef<{ startX: number; startY: number; startR: number; startB: number } | null>(null);
 
   useEffect(() => {
     _setMusicActive = setActive;
     return () => { _setMusicActive = null; };
   }, []);
 
+  /* 드래그 핸들러 */
+  const onDragStart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    dragState.current = { startX: e.clientX, startY: e.clientY, startR: pos.right, startB: pos.bottom };
+    const onMove = (me: MouseEvent) => {
+      if (!dragState.current) return;
+      const dx = me.clientX - dragState.current.startX;
+      const dy = me.clientY - dragState.current.startY;
+      setPos({ right: Math.max(0, dragState.current.startR - dx), bottom: Math.max(0, dragState.current.startB - dy) });
+    };
+    const onUp = () => { dragState.current = null; window.removeEventListener("mousemove", onMove); window.removeEventListener("mouseup", onUp); };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+  };
+
   if (!active) return null;
+
+  const { w, h } = YT_SIZES[sizeIdx];
+  const barW = mini ? 220 : w;
+
+  const btnStyle: React.CSSProperties = {
+    background: "none", border: "none", cursor: "pointer",
+    color: "rgba(255,255,255,0.55)", fontSize: 12, padding: "2px 5px",
+    borderRadius: 6, lineHeight: 1, flexShrink: 0,
+  };
 
   return (
     <div style={{
-      position: "fixed", left: 0, right: 0, bottom: 70,
-      zIndex: 300, maxWidth: 430, margin: "0 auto",
-      padding: "0 10px",
+      position: "fixed",
+      right: pos.right, bottom: pos.bottom,
+      zIndex: 9000,
+      width: barW,
+      boxShadow: "0 4px 24px rgba(0,0,0,0.55)",
+      borderRadius: mini ? 24 : 14,
+      overflow: "visible",
+      transition: "width 0.25s ease",
     }}>
-      <div style={{
-        background: "rgba(13,31,26,0.97)",
-        border: "1px solid rgba(110,231,183,0.3)",
-        borderRadius: expanded ? 16 : 24,
-        boxShadow: "0 2px 16px rgba(0,0,0,0.4)",
-        overflow: "hidden",
-      }}>
-        {/* 슬림 한 줄 바 */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "7px 12px" }}>
-          <span style={{ fontSize: 16, flexShrink: 0 }}>🎵</span>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 11.5, fontWeight: 700, color: "#1DB954", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-              Bloom Again Music
-            </div>
-            <div style={{ fontSize: 10, color: "rgba(110,231,183,0.6)", fontFamily: "Manrope,sans-serif" }}>Spotify</div>
+      {/* ── 제목 바 (드래그 핸들) ── */}
+      <div
+        onMouseDown={onDragStart}
+        style={{
+          background: "rgba(16,20,36,0.97)",
+          border: "1px solid rgba(255,255,255,0.12)",
+          borderRadius: mini ? 24 : "14px 14px 0 0",
+          display: "flex", alignItems: "center", gap: 7,
+          padding: "7px 10px",
+          cursor: "grab", userSelect: "none",
+          borderBottom: mini ? undefined : "1px solid rgba(255,255,255,0.08)",
+        }}>
+        {/* 미니 썸네일 (mini 모드에서 오디오 유지용 — 1px iframe 숨김) */}
+        <span style={{ fontSize: 15, flexShrink: 0 }}>▶️</span>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            헤브론 찬양
           </div>
-          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#1DB954", flexShrink: 0 }} />
-          <button onClick={() => setExpanded(p => !p)}
-            style={{ background: "none", border: "none", color: "rgba(29,185,84,0.8)", fontSize: 10, fontWeight: 700, cursor: "pointer", padding: "2px 4px", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
-            {expanded ? "▼" : "▲"}
+          <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.4)", fontFamily: "Manrope,sans-serif" }}>
+            {mini ? "🔊 오디오 재생 중" : `YouTube · ${YT_SIZES[sizeIdx].label}`}
+          </div>
+        </div>
+        {/* 크기 전환 (video 모드만) */}
+        {!mini && (
+          <button onClick={(e) => { e.stopPropagation(); setSizeIdx(i => (i + 1) % 3); }}
+            style={{ ...btnStyle, background: "rgba(255,255,255,0.08)", fontWeight: 700, fontSize: 10, color: "#fff", padding: "3px 7px", borderRadius: 8 }}>
+            {YT_SIZES[sizeIdx].label}
           </button>
-          <button onClick={() => setActive(false)}
-            style={{ background: "none", border: "none", color: "rgba(236,253,245,0.3)", fontSize: 14, cursor: "pointer", padding: "0 2px", lineHeight: 1, flexShrink: 0 }}>✕</button>
-        </div>
-        {/* Spotify 임베드 플레이어 */}
-        <div style={{ height: expanded ? "auto" : 0, overflow: "hidden" }}>
-          <iframe
-            src={`https://open.spotify.com/embed/artist/${SPOTIFY_ARTIST_ID}?utm_source=generator&theme=0`}
-            width="100%"
-            height="352"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-            style={{ border: "none", display: "block" }}
-          />
-        </div>
+        )}
+        {/* 최소화 / 복원 */}
+        <button
+          onClick={(e) => { e.stopPropagation(); setMini(p => !p); }}
+          title={mini ? "영상 펼치기" : "오디오만 (화면 최소화)"}
+          style={btnStyle}>
+          {mini ? "⬜" : "⬛"}
+        </button>
+        {/* 닫기 */}
+        <button onClick={(e) => { e.stopPropagation(); setActive(false); }} style={btnStyle}>✕</button>
+      </div>
+
+      {/* ── YouTube iframe ──
+          mini 모드: 1x1px 숨김 (오디오 계속 재생)
+          video 모드: 전체 표시
+          ※ 절대 unmount 하지 않음 → 오디오 유지 핵심 */}
+      <div style={{
+        width: mini ? 1 : w,
+        height: mini ? 1 : h,
+        overflow: "hidden",
+        opacity: mini ? 0 : 1,
+        transition: "opacity 0.2s, width 0.25s, height 0.25s",
+        borderRadius: "0 0 14px 14px",
+        background: "#000",
+        pointerEvents: mini ? "none" : "auto",
+        position: mini ? "absolute" : "relative",
+      }}>
+        <iframe
+          src={YT_SRC}
+          width={w}
+          height={h}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          style={{ border: "none", display: "block" }}
+          title="헤브론 찬양 플레이리스트"
+        />
       </div>
     </div>
   );
