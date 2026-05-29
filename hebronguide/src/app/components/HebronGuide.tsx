@@ -12401,7 +12401,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: "#FF4444", fontFamily: "Manrope,sans-serif", marginBottom: 3, letterSpacing: ".04em" }}>
-              {ko ? "🎵 음악 듣기 — 탭 이동해도 계속 재생" : "🎵 Worship — plays while you browse"}
+              {ko ? "🎵 지금 듣기 — 탭 이동해도 계속 재생" : "🎵 Worship — plays while you browse"}
             </div>
             <div style={{ fontSize: 13, fontWeight: 800, color: "#ECFDF5", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
               헤브론 추천곡
