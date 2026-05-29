@@ -16,7 +16,7 @@ const CORS = {
 const SUPABASE_URL = 'https://vextxqzggznulwpganwt.supabase.co'
 const SUPABASE_KEY = 'sb_publishable_j1cYftObx8VDVkEQAvluXg_rn20pnfX'
 const ADMIN_EMAIL  = 'hebronplatform@gmail.com'
-const FROM_EMAIL   = 'gmc.hc300@gmail.com'
+const FROM_EMAIL   = 'Hebronplatform@gmail.com'
 
 export default async function handler(req, res) {
   // CORS preflight

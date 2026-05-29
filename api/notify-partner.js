@@ -12,7 +12,7 @@ const CORS = {
 }
 
 const ADMIN_HASH = '614fea13745bbaa53de1c1c36b216c3cd5009df185b9f642089eb7ea76a69b90'
-const FROM_EMAIL = 'gmc.hc300@gmail.com'
+const FROM_EMAIL = 'Hebronplatform@gmail.com'
 const ADMIN_EMAIL = 'hebronplatform@gmail.com'
 
 const KAKAO_BLOCK = `
