@@ -285,10 +285,26 @@
       <div id="pastor-church-info">
         <div style="color:var(--muted);font-size:.9rem"><span class="spinner"></span><span class="ko">불러오는 중...</span><span class="en">Loading...</span></div>
       </div>
-      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-        <button class="btn-secondary" onclick="requestEdit()">
-          ✏️ <span class="ko">정보 수정 요청</span><span class="en">Request Update</span>
+      <div style="margin-top:14px">
+        <button class="btn-secondary" onclick="toggleEditMode()" id="edit-toggle-btn">
+          ✏️ <span class="ko">직접 수정하기</span><span class="en">Edit My Info</span>
         </button>
+      </div>
+
+      <!-- 인라인 편집 폼 (기본 숨김) -->
+      <div id="edit-form" style="display:none;margin-top:16px;border-top:1px solid var(--border);padding-top:16px">
+        <div style="font-size:.85rem;color:var(--mint);font-weight:700;margin-bottom:12px">✏️ <span class="ko">교회 정보 수정</span><span class="en">Edit Church Info</span></div>
+        <div class="input-group"><label><span class="ko">교회명 (한글)</span><span class="en">Church Name (Korean)</span></label><input type="text" id="edit-name" placeholder="산호세한인침례교회"></div>
+        <div class="input-group"><label><span class="ko">Church Name (English)</span></label><input type="text" id="edit-name-en" placeholder="San Jose Korean Baptist Church"></div>
+        <div class="input-group"><label><span class="ko">전화번호</span><span class="en">Phone</span></label><input type="tel" id="edit-phone" placeholder="408-257-5444"></div>
+        <div class="input-group"><label><span class="ko">웹사이트</span><span class="en">Website</span></label><input type="url" id="edit-website" placeholder="https://www.kbcsj.org"></div>
+        <div class="input-group"><label><span class="ko">예배 시간</span><span class="en">Service Time</span></label><input type="text" id="edit-service-time" placeholder="주일 11:00am"></div>
+        <div class="input-group"><label><span class="ko">교회 소개 (한 줄)</span><span class="en">Brief Description</span></label><input type="text" id="edit-description" placeholder="담임목사·주소·특징 등"></div>
+        <div style="display:flex;gap:10px;margin-top:4px">
+          <button class="btn-primary" style="flex:1" onclick="saveChurchEdit()"><span class="ko">저장하기</span><span class="en">Save Changes</span></button>
+          <button class="btn-secondary" onclick="toggleEditMode()"><span class="ko">취소</span><span class="en">Cancel</span></button>
+        </div>
+        <div id="edit-msg" class="login-msg" style="margin-top:8px"></div>
       </div>
     </div>
 
@@ -654,9 +670,54 @@ async function loadPendingApps() {
   } catch {}
 }
 
-// ── 정보 수정 요청 ────────────────────────────────────
-function requestEdit() {
-  window.open('/ad-request.html', '_blank')
+// ── 교회 편집 토글 ────────────────────────────────────
+function toggleEditMode() {
+  const form = document.getElementById('edit-form')
+  const isOpen = form.style.display !== 'none'
+  form.style.display = isOpen ? 'none' : 'block'
+  if (!isOpen) prefillEditForm()
+}
+
+function prefillEditForm() {
+  const info = document.getElementById('pastor-church-info')
+  const rows = info.querySelectorAll('.info-row')
+  rows.forEach(row => {
+    const label = row.querySelector('.info-label')?.textContent?.trim()
+    const value = row.querySelector('.info-value')?.textContent?.trim()
+    if (!label || !value || value === '-') return
+    if (label === '교회명') document.getElementById('edit-name').value = value
+    if (label === 'English') document.getElementById('edit-name-en').value = value
+    if (label === '전화') document.getElementById('edit-phone').value = value
+    if (label === '웹사이트') document.getElementById('edit-website').value = value
+  })
+}
+
+async function saveChurchEdit() {
+  const msg = document.getElementById('edit-msg')
+  if (!currentSession) { showMsg(msg, '로그인이 필요합니다.', 'error'); return }
+  const email = currentSession.user.email
+  const updates = {
+    name:         document.getElementById('edit-name').value.trim() || undefined,
+    name_en:      document.getElementById('edit-name-en').value.trim() || undefined,
+    phone:        document.getElementById('edit-phone').value.trim() || undefined,
+    website:      document.getElementById('edit-website').value.trim() || undefined,
+    service_time: document.getElementById('edit-service-time').value.trim() || undefined,
+    description:  document.getElementById('edit-description').value.trim() || undefined,
+  }
+  Object.keys(updates).forEach(k => updates[k] === undefined && delete updates[k])
+  try {
+    const res = await fetch(
+      `${SB_URL}/rest/v1/churches?email=eq.${encodeURIComponent(email)}`,
+      {
+        method: 'PATCH',
+        headers: { apikey: SB_ANON, Authorization: 'Bearer ' + currentSession.access_token, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify(updates)
+      }
+    )
+    if (!res.ok) throw new Error('저장 실패')
+    showMsg(msg, '✅ 저장되었습니다! 잠시 후 화면에 반영됩니다.', 'success')
+    setTimeout(() => { document.getElementById('edit-form').style.display = 'none'; loadMyChurch(email) }, 1500)
+  } catch (e) { showMsg(msg, '오류: ' + e.message, 'error') }
 }
 
 // ── 메시지 표시 ───────────────────────────────────────

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자주 묻는 질문 — HebronGuide FAQ</title>
+  <meta name="description" content="HebronGuide 자주 묻는 질문 — 이민자·방문자, 파트너 목사님, 사업체">
+  <link rel="icon" href="/icon-192.png">
+  <style>
+    :root {
+      --bg:#0d1117; --card:#161b22; --border:rgba(255,255,255,.1);
+      --gold:#C9A227; --mint:#6EE7B7; --purple:#a78bfa; --text:#e6edf3; --muted:#8b949e;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:-apple-system,'Noto Sans KR',sans-serif;min-height:100vh}
+    html[lang="en"] .ko{display:none!important}
+    html[lang="ko"] .en{display:none!important}
+
+    /* ── 상단 바 ── */
+    .lang-bar{background:rgba(255,255,255,.04);border-bottom:1px solid var(--border);padding:8px 20px;display:flex;align-items:center;justify-content:space-between}
+    .lang-bar a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:.2s}
+    .lang-bar a:hover{color:var(--mint)}
+    .lang-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:6px;cursor:pointer;font-size:.8rem;transition:.2s}
+    .lang-btn.active,.lang-btn:hover{border-color:var(--mint);color:var(--mint)}
+
+    /* ── 헤더 ── */
+    .hero{text-align:center;padding:48px 20px 36px;background:linear-gradient(180deg,rgba(201,162,39,.06) 0%,transparent 100%);border-bottom:1px solid var(--border)}
+    .hero-logo{font-size:2.4rem;margin-bottom:8px}
+    .hero-title{font-size:1.6rem;font-weight:800;margin-bottom:8px;letter-spacing:-.02em}
+    .hero-sub{color:var(--muted);font-size:.95rem;line-height:1.7;max-width:520px;margin:0 auto}
+
+    /* ── 검색 ── */
+    .search-wrap{max-width:680px;margin:28px auto 0;padding:0 20px}
+    .search-box{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;transition:.2s}
+    .search-box:focus-within{border-color:var(--mint)}
+    .search-box svg{color:var(--muted);flex-shrink:0}
+    .search-box input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:.95rem}
+    .search-box input::placeholder{color:var(--muted)}
+
+    /* ── 메인 ── */
+    .main{max-width:680px;margin:0 auto;padding:32px 20px 64px}
+
+    /* ── 섹션 헤더 ── */
+    .section{margin-bottom:36px}
+    .section-header{display:flex;align-items:center;gap:10px;padding:14px 18px;border-radius:10px;margin-bottom:16px;font-weight:700;font-size:1rem}
+    .section-header.gold{background:rgba(201,162,39,.10);border:1px solid rgba(201,162,39,.25);color:var(--gold)}
+    .section-header.mint{background:rgba(110,231,183,.10);border:1px solid rgba(110,231,183,.25);color:var(--mint)}
+    .section-header.purple{background:rgba(167,139,250,.10);border:1px solid rgba(167,139,250,.25);color:var(--purple)}
+    .section-count{margin-left:auto;font-size:.78rem;font-weight:500;opacity:.75}
+
+    /* ── FAQ 아이템 ── */
+    .faq-item{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;cursor:pointer;transition:.2s}
+    .faq-item:hover{border-color:rgba(255,255,255,.2)}
+    .faq-item.hidden{display:none}
+    .faq-q{padding:15px 18px;font-size:.9rem;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:12px;line-height:1.5;transition:.2s}
+    .faq-q-text{flex:1}
+    .faq-arrow{color:var(--muted);font-size:.7rem;flex-shrink:0;transition:transform .25s ease}
+    .faq-a{padding:0 18px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:.875rem;line-height:1.85;color:rgba(255,255,255,.72)}
+    .faq-item.open .faq-a{max-height:400px;padding:0 18px 16px}
+    .faq-item.open .faq-arrow{transform:rotate(180deg)}
+    .faq-item.open .faq-q{color:var(--mint)}
+    .faq-item.open{border-color:rgba(110,231,183,.25)}
+    .faq-a a{color:var(--mint);text-decoration:none}
+    .faq-a a:hover{text-decoration:underline}
+
+    /* ── 빈 결과 ── */
+    .no-results{text-align:center;padding:48px 20px;color:var(--muted);display:none}
+    .no-results.show{display:block}
+    .no-results-icon{font-size:2.5rem;margin-bottom:12px}
+
+    /* ── 푸터 CTA ── */
+    .footer-cta{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 24px;text-align:center;margin-top:40px}
+    .footer-cta-title{font-size:1.05rem;font-weight:700;margin-bottom:8px}
+    .footer-cta-sub{color:var(--muted);font-size:.88rem;margin-bottom:18px;line-height:1.7}
+    .footer-cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .btn-gold{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold),#e8b53a);color:#000;font-weight:700;border:none;padding:10px 20px;border-radius:8px;font-size:.9rem;cursor:pointer;text-decoration:none;transition:.2s}
+    .btn-gold:hover{opacity:.9}
+    .btn-outline{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);color:var(--text);padding:10px 20px;border-radius:8px;font-size:.9rem;cursor:pointer;text-decoration:none;transition:.2s}
+    .btn-outline:hover{border-color:var(--mint);color:var(--mint)}
+
+    @media(max-width:480px){
+      .hero-title{font-size:1.3rem}
+      .faq-q{padding:14px 14px}
+      .faq-a{padding:0 14px}
+      .faq-item.open .faq-a{padding:0 14px 14px}
+      .main{padding:24px 14px 56px}
+      .footer-cta-btns{flex-direction:column;align-items:center}
+    }
+  </style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <a href="/">← <span class="ko">HebronGuide 홈</span><span class="en">HebronGuide Home</span></a>
+  <div style="display:flex;gap:6px">
+    <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
+  </div>
+</div>
+
+<!-- 히어로 -->
+<div class="hero">
+  <div class="hero-logo">💬</div>
+  <h1 class="hero-title"><span class="ko">자주 묻는 질문</span><span class="en">Frequently Asked Questions</span></h1>
+  <p class="hero-sub">
+    <span class="ko">HebronGuide 이용에 대해 궁금한 점을 모았습니다. 아래에서 답을 찾아보세요.</span>
+    <span class="en">Find answers to the most common questions about HebronGuide below.</span>
+  </p>
+</div>
+
+<!-- 검색 -->
+<div class="search-wrap">
+  <div class="search-box">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="search-input" placeholder="질문 검색... / Search questions..." oninput="filterFaq(this.value)">
+  </div>
+</div>
+
+<!-- 메인 -->
+<main class="main">
+
+  <!-- 섹션 1 — 이민자·방문자 -->
+  <div class="section" data-section="visitor">
+    <div class="section-header gold">
+      ✈️ <span class="ko">이민자·방문자</span><span class="en">Immigrants &amp; Visitors</span>
+      <span class="section-count ko">5개 질문</span><span class="section-count en">5 Questions</span>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="HebronGuide 무료 광고 없이 한인 커뮤니티 섬기기" data-en="HebronGuide free no ads Korean community">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">HebronGuide는 무료인가요?</span><span class="en">Is HebronGuide free?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">네, 완전 무료입니다. 광고 없이 한인 커뮤니티를 섬기기 위해 만들어졌습니다.</span>
+        <span class="en">Yes, completely free. HebronGuide was built to serve the Korean community without ads.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="앱 설치 iPhone Safari 홈 화면 Android Chrome PC" data-en="install app iPhone Safari Android Chrome home screen">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">어떻게 앱으로 설치하나요?</span><span class="en">How do I install it as an app?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">
+          <b>iPhone:</b> Safari에서 공유버튼 → 홈 화면에 추가<br>
+          <b>Android:</b> Chrome에서 메뉴 → 홈 화면에 추가<br>
+          <b>PC:</b> Chrome 주소창 오른쪽 + 아이콘 클릭
+        </span>
+        <span class="en">
+          <b>iPhone:</b> Safari → Share button → Add to Home Screen<br>
+          <b>Android:</b> Chrome → Menu → Add to Home Screen<br>
+          <b>PC:</b> Click the + icon on the right side of Chrome's address bar
+        </span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="도시 목록 없음 확장 추가 요청" data-en="city not listed expansion request add city">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">내 도시가 목록에 없어요.</span><span class="en">My city isn't on the list.</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">현재 69개 도시를 서비스하고 있으며 계속 확장 중입니다. 원하는 도시를 <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>으로 알려주시면 우선 추가 검토하겠습니다.</span>
+        <span class="en">We currently serve 69 cities and are continuously expanding. Let us know your city at <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a> and we'll prioritize adding it.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="교회 정보 틀림 수정 요청 오류" data-en="church info wrong incorrect update fix error">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">교회 정보가 틀렸어요.</span><span class="en">The church info is incorrect.</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko"><a href="/ad-request.html">hebronguide.com/ad-request.html</a>에서 수정 요청하시거나 <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>으로 알려주세요.</span>
+        <span class="en">Submit a correction at <a href="/ad-request.html">hebronguide.com/ad-request.html</a> or email us at <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="영어 언어 전환 EN 버튼" data-en="English language switch button toggle">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">영어로도 볼 수 있나요?</span><span class="en">Can I view the site in English?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">네, 상단 EN 버튼을 클릭하면 영어로 전환됩니다.</span>
+        <span class="en">Yes, click the EN button at the top of the page to switch to English.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 섹션 2 — 파트너 목사님 -->
+  <div class="section" data-section="pastor">
+    <div class="section-header mint">
+      ⛪ <span class="ko">파트너 목사님</span><span class="en">Partner Pastors</span>
+      <span class="section-count ko">5개 질문</span><span class="section-count en">5 Questions</span>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="파트너 교회 혜택 표시 배지 대시보드 인사이트 사역 교인 사업체" data-en="partner church benefits badge dashboard insights ministry member business">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">파트너 교회가 되면 어떤 혜택이 있나요?</span><span class="en">What are the benefits of becoming a partner church?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">
+          ① 새 이민자가 교회를 검색할 때 우선 표시<br>
+          ② 파트너 인증 배지<br>
+          ③ 사역 인사이트 대시보드<br>
+          ④ 성도 선교 훈련 자료 공유<br>
+          ⑤ 교인 사업체 무료 등록
+        </span>
+        <span class="en">
+          ① Priority listing when new immigrants search for a church<br>
+          ② Verified partner badge<br>
+          ③ Ministry insights dashboard<br>
+          ④ Shared discipleship training resources<br>
+          ⑤ Free registration for congregation members' businesses
+        </span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="파트너 신청 방법 교회 선택 승인 이메일" data-en="partner application how apply church select approval email">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">파트너 신청은 어떻게 하나요?</span><span class="en">How do I apply to become a partner?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko"><a href="/ad-request.html">hebronguide.com/ad-request.html</a>에서 '교회' 선택 후 신청하시면 됩니다. 검토 후 24시간 내 승인 이메일을 드립니다.</span>
+        <span class="en">Go to <a href="/ad-request.html">hebronguide.com/ad-request.html</a>, select 'Church', and submit your application. You'll receive an approval email within 24 hours.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="대시보드 비밀번호 잊어버림 매직 링크 이메일 로그인" data-en="dashboard password forgot magic link email login">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">대시보드 비밀번호를 잊어버렸어요.</span><span class="en">I forgot my dashboard password.</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko"><a href="/pastor-dashboard.html">pastor-dashboard.html</a>에서 이메일 입력 후 '로그인 링크 받기'를 클릭하세요. 비밀번호 없이 로그인 후 새 비밀번호를 설정할 수 있습니다.</span>
+        <span class="en">Go to <a href="/pastor-dashboard.html">pastor-dashboard.html</a>, enter your email, and click 'Send Magic Link'. You can log in without a password and set a new one after logging in.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="교회 정보 직접 수정 대시보드 로그인 전화 웹사이트" data-en="church info edit directly dashboard login phone website">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">교회 정보를 직접 수정할 수 있나요?</span><span class="en">Can I edit my church info myself?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">네, <a href="/pastor-dashboard.html">pastor-dashboard.html</a>에 로그인하신 후 '직접 수정하기' 버튼으로 교회명·전화·웹사이트 등을 바로 수정하실 수 있습니다.</span>
+        <span class="en">Yes! After logging in at <a href="/pastor-dashboard.html">pastor-dashboard.html</a>, click the 'Edit My Info' button to directly update your church name, phone, website, and more.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="카카오톡 채널 구독 헤브론가이드 링크" data-en="KakaoTalk channel subscribe HebronGuide link">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">카카오톡 채널은 어디서 구독하나요?</span><span class="en">Where can I subscribe to the KakaoTalk channel?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko"><a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener">pf.kakao.com/_dxdxlbX</a> 링크를 클릭하거나 카카오톡에서 '헤브론가이드'를 검색하세요.</span>
+        <span class="en">Click <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener">pf.kakao.com/_dxdxlbX</a> or search 'HebronGuide' (헤브론가이드) in KakaoTalk.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 섹션 3 — 사업체 -->
+  <div class="section" data-section="business">
+    <div class="section-header purple">
+      🏪 <span class="ko">사업체</span><span class="en">Businesses</span>
+      <span class="section-count ko">3개 질문</span><span class="section-count en">3 Questions</span>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="사업체 등록 무료 파트너 교회 별표 인증" data-en="business listing registration free partner church star verified">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">사업체 등록은 무료인가요?</span><span class="en">Is business registration free?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">네, 완전 무료입니다. 파트너 교회 담임목사님의 이메일을 함께 기입하시면 별표(⭐) 인증을 받습니다.</span>
+        <span class="en">Yes, completely free. Include your partner church's lead pastor email to receive a star (⭐) verification badge.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="사업체 등록 방법 신청 선택" data-en="business registration how apply select submit">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">사업체 등록은 어떻게 하나요?</span><span class="en">How do I register my business?</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko"><a href="/ad-request.html">hebronguide.com/ad-request.html</a>에서 '사업체' 선택 후 신청하시면 됩니다.</span>
+        <span class="en">Go to <a href="/ad-request.html">hebronguide.com/ad-request.html</a>, select 'Business', and submit your application.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" data-ko="등록 정보 수정 이메일 요청 처리" data-en="listing info edit update request email processing">
+      <div class="faq-q">
+        <span class="faq-q-text"><span class="ko">등록한 정보를 수정하고 싶어요.</span><span class="en">I want to update my listing information.</span></span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko"><a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>으로 수정 요청하시면 24시간 내 처리해드립니다. (자동화 시스템 준비 중)</span>
+        <span class="en">Email your update request to <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a> and we'll process it within 24 hours. (Self-service editing coming soon)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 빈 검색 결과 -->
+  <div class="no-results" id="no-results">
+    <div class="no-results-icon">🔍</div>
+    <p><span class="ko">검색 결과가 없습니다. 다른 키워드로 검색하거나 아래 이메일로 문의해주세요.</span><span class="en">No results found. Try different keywords or contact us below.</span></p>
+    <p style="margin-top:10px"><a href="mailto:Hebronplatform@gmail.com" style="color:var(--mint)">Hebronplatform@gmail.com</a></p>
+  </div>
+
+  <!-- 푸터 CTA -->
+  <div class="footer-cta">
+    <div class="footer-cta-title"><span class="ko">아직 답을 못 찾으셨나요?</span><span class="en">Didn't find your answer?</span></div>
+    <p class="footer-cta-sub">
+      <span class="ko">파트너 신청·등록·수정 등 모든 문의는 이메일로 연락주세요. 24시간 내 답변드립니다.</span>
+      <span class="en">For all inquiries about partner applications, registrations, or updates, reach us by email. We reply within 24 hours.</span>
+    </p>
+    <div class="footer-cta-btns">
+      <a href="mailto:Hebronplatform@gmail.com" class="btn-gold">✉️ <span class="ko">이메일 문의</span><span class="en">Email Us</span></a>
+      <a href="/ad-request.html" class="btn-outline">📋 <span class="ko">파트너·사업체 신청</span><span class="en">Apply as Partner / Business</span></a>
+      <a href="/pastor-dashboard.html" class="btn-outline">⛪ <span class="ko">파트너 로그인</span><span class="en">Partner Login</span></a>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ── 언어 ──────────────────────────────────────────────
+function setLang(l) {
+  document.documentElement.lang = l
+  localStorage.setItem('hg_lang', l)
+  document.getElementById('btn-ko').classList.toggle('active', l === 'ko')
+  document.getElementById('btn-en').classList.toggle('active', l === 'en')
+}
+
+// ── FAQ 아코디언 ──────────────────────────────────────
+function toggleFaq(el) {
+  const isOpen = el.classList.contains('open')
+  // 같은 섹션 내 다른 아이템 닫기 (선택적 — 주석 처리 시 여러 개 동시 열림)
+  // el.closest('.section').querySelectorAll('.faq-item.open').forEach(i => { if(i !== el) i.classList.remove('open') })
+  el.classList.toggle('open', !isOpen)
+}
+
+// ── 검색 필터 ─────────────────────────────────────────
+function filterFaq(query) {
+  const q = query.trim().toLowerCase()
+  const lang = document.documentElement.lang || 'ko'
+  const items = document.querySelectorAll('.faq-item')
+  let visibleCount = 0
+
+  items.forEach(item => {
+    if (!q) {
+      item.classList.remove('hidden')
+      visibleCount++
+      return
+    }
+    const searchText = (item.getAttribute('data-' + lang) || '').toLowerCase()
+    const qText = item.querySelector('.faq-q-text')?.textContent?.toLowerCase() || ''
+    const aText = item.querySelector('.faq-a')?.textContent?.toLowerCase() || ''
+    const matches = searchText.includes(q) || qText.includes(q) || aText.includes(q)
+    item.classList.toggle('hidden', !matches)
+    if (matches) visibleCount++
+  })
+
+  // 섹션 헤더 표시/숨김
+  document.querySelectorAll('.section').forEach(section => {
+    const visible = section.querySelectorAll('.faq-item:not(.hidden)').length
+    section.style.display = visible === 0 && q ? 'none' : ''
+  })
+
+  // 검색 결과 없음 메시지
+  const noResults = document.getElementById('no-results')
+  noResults.classList.toggle('show', visibleCount === 0 && q.length > 0)
+}
+
+// ── 초기화 ────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  setLang(localStorage.getItem('hg_lang') || 'ko')
+})
+</script>
+</body>
+</html>
