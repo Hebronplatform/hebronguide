@@ -2,450 +2,478 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>파트너 대시보드 — HebronGuide</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="/icon-192.png">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root {
-      --bg:#0d1117; --card:#161b22; --border:rgba(255,255,255,.1);
-      --gold:#C9A227; --mint:#6EE7B7; --text:#e6edf3; --muted:#8b949e;
+      --bg: #000;
+      --card: #1c1c1e;
+      --card2: #2c2c2e;
+      --border: rgba(255,255,255,.08);
+      --gold: #F2994A;
+      --mint: #30D158;
+      --blue: #0A84FF;
+      --red: #FF453A;
+      --text: #fff;
+      --text2: rgba(255,255,255,.6);
+      --text3: rgba(255,255,255,.3);
+      --r: 16px;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:-apple-system,'Noto Sans KR',sans-serif;min-height:100vh}
-    .lang-bar{background:rgba(255,255,255,.04);border-bottom:1px solid var(--border);padding:8px 20px;display:flex;align-items:center;justify-content:space-between}
-    .lang-bar a{color:var(--muted);text-decoration:none;font-size:.85rem}
-    .lang-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:6px;cursor:pointer;font-size:.8rem;transition:.2s}
-    .lang-btn.active,.lang-btn:hover{border-color:var(--mint);color:var(--mint)}
-    html[lang="en"] .ko{display:none!important}
-    html[lang="ko"] .en{display:none!important}
-    .header{background:var(--card);border-bottom:1px solid var(--border);padding:16px 20px;display:flex;align-items:center;gap:12px}
-    .header-title{font-size:1.1rem;font-weight:700}
-    .header-sub{font-size:.8rem;color:var(--muted)}
-    .main{max-width:860px;margin:0 auto;padding:24px 16px}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
-    .card-title{font-size:.95rem;font-weight:700;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, 'SF Pro Display', 'Noto Sans KR', sans-serif; min-height: 100vh; max-width: 430px; margin: 0 auto }
 
-    /* ── 로그인 ── */
-    #login-gate{max-width:440px;margin:40px auto;padding:0 16px}
-    .login-logo{font-size:2.5rem;text-align:center;margin-bottom:12px}
-    .login-title{font-size:1.3rem;font-weight:700;text-align:center;margin-bottom:6px}
-    .login-sub{color:var(--muted);font-size:.88rem;text-align:center;margin-bottom:24px;line-height:1.6}
-    .tab-bar{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px}
-    .tab-btn{flex:1;padding:10px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;transition:.2s}
-    .tab-btn.active{background:var(--card);color:var(--mint);font-weight:700}
-    .input-group{margin-bottom:12px}
-    .input-group label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:6px}
-    .input-group input{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:.95rem;outline:none;transition:.2s}
-    .input-group input:focus{border-color:var(--mint)}
-    .btn-primary{width:100%;background:linear-gradient(135deg,var(--gold),#e8b53a);color:#000;font-weight:700;border:none;padding:12px;border-radius:8px;font-size:1rem;cursor:pointer;transition:.2s}
-    .btn-primary:hover{opacity:.9}
-    .btn-secondary{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:8px;text-decoration:none;font-size:.9rem;cursor:pointer;transition:.2s}
-    .btn-secondary:hover{border-color:var(--mint);color:var(--mint)}
-    .btn-danger{display:inline-flex;align-items:center;gap:6px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#f87171;padding:8px 16px;border-radius:8px;font-size:.88rem;cursor:pointer;transition:.2s}
-    .login-msg{margin-top:12px;font-size:.88rem;padding:10px;border-radius:6px;display:none}
-    .login-msg.success{background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.3);color:var(--mint)}
-    .login-msg.error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#f87171}
-    .divider{text-align:center;color:var(--muted);font-size:.8rem;margin:12px 0;position:relative}
-    .divider::before,.divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--border)}
-    .divider::before{left:0} .divider::after{right:0}
+    html[lang="en"] .ko { display: none !important }
+    html[lang="ko"] .en { display: none !important }
 
-    /* ── 대시보드 공통 ── */
-    #dashboard-pastor,#dashboard-admin{display:none}
-    .user-badge{display:flex;align-items:center;gap:10px;background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.2);border-radius:10px;padding:12px 16px;margin-bottom:16px}
-    .user-badge-icon{font-size:1.5rem}
-    .user-badge-name{font-weight:700;font-size:1rem}
-    .user-badge-role{font-size:.8rem;color:var(--gold)}
-    .logout-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:6px;cursor:pointer;font-size:.8rem}
-    .logout-btn:hover{border-color:#f87171;color:#f87171}
-    .admin-badge{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#f87171;border-radius:6px;padding:2px 10px;font-size:.78rem;font-weight:700}
+    /* ── 상단 바 ── */
+    .topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px 0; }
+    .topbar-back { color: var(--gold); font-size: .95rem; text-decoration: none; display: flex; align-items: center; gap: 4px }
+    .topbar-lang { display: flex; gap: 6px }
+    .lang-btn { background: var(--card2); border: none; color: var(--text2); padding: 5px 12px; border-radius: 20px; font-size: .8rem; cursor: pointer; transition: .2s }
+    .lang-btn.active { background: var(--gold); color: #000; font-weight: 700 }
 
-    /* ── 통계 ── */
-    .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
-    .stat-item{text-align:center;background:rgba(255,255,255,.04);border-radius:8px;padding:14px}
-    .stat-num{font-size:1.5rem;font-weight:700;color:var(--mint)}
-    .stat-label{font-size:.75rem;color:var(--muted);margin-top:4px}
+    /* ── 로그인 화면 ── */
+    #screen-login { padding: 20px }
+    .login-hero { text-align: center; padding: 32px 0 28px }
+    .login-icon { width: 72px; height: 72px; background: linear-gradient(135deg, var(--gold), #e8622a); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 16px; box-shadow: 0 8px 24px rgba(242,153,74,.35) }
+    .login-title { font-size: 1.6rem; font-weight: 700; letter-spacing: -.03em; margin-bottom: 8px }
+    .login-sub { color: var(--text2); font-size: .9rem; line-height: 1.6 }
 
-    /* ── 테이블 ── */
-    .data-table{width:100%;border-collapse:collapse;font-size:.85rem}
-    .data-table th{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:600;font-size:.78rem}
-    .data-table td{padding:10px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:top}
-    .data-table tr:hover td{background:rgba(255,255,255,.03)}
-    .badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.75rem;font-weight:700}
-    .badge-partner{background:rgba(110,231,183,.15);color:var(--mint);border:1px solid rgba(110,231,183,.3)}
-    .badge-pending{background:rgba(255,191,0,.15);color:#fbbf24;border:1px solid rgba(255,191,0,.3)}
+    /* 탭 스위처 */
+    .seg { display: flex; background: var(--card); border-radius: 10px; padding: 2px; margin-bottom: 24px }
+    .seg-btn { flex: 1; padding: 8px; background: none; border: none; color: var(--text2); border-radius: 8px; font-size: .9rem; cursor: pointer; transition: .2s; font-family: inherit }
+    .seg-btn.active { background: var(--card2); color: var(--text); font-weight: 600; box-shadow: 0 1px 4px rgba(0,0,0,.3) }
 
-    /* ── 내 교회 정보 ── */
-    .info-row{display:flex;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem}
-    .info-label{color:var(--muted);width:100px;flex-shrink:0}
-    .info-value{color:var(--text);flex:1}
+    /* 입력 카드 */
+    .input-card { background: var(--card); border-radius: var(--r); overflow: hidden; margin-bottom: 16px }
+    .input-row { display: flex; align-items: center; padding: 0 16px; border-bottom: 1px solid var(--border) }
+    .input-row:last-child { border-bottom: none }
+    .input-icon { font-size: 1.1rem; width: 30px; flex-shrink: 0 }
+    .input-row input { flex: 1; background: none; border: none; padding: 14px 8px; color: var(--text); font-size: 1rem; outline: none; font-family: inherit }
+    .input-row input::placeholder { color: var(--text3) }
 
-    /* ── 비밀번호 변경 ── */
-    #pw-section{display:none}
+    /* 버튼 */
+    .btn-main { width: 100%; background: var(--gold); color: #000; font-weight: 700; font-size: 1rem; border: none; padding: 15px; border-radius: var(--r); cursor: pointer; transition: .15s; font-family: inherit }
+    .btn-main:active { opacity: .85; transform: scale(.99) }
+    .btn-main.blue { background: var(--blue); color: #fff }
+    .btn-main.mint { background: var(--mint); color: #000 }
+    .btn-sub { width: 100%; background: var(--card); color: var(--text); font-size: .95rem; border: none; padding: 14px; border-radius: var(--r); cursor: pointer; transition: .15s; font-family: inherit }
+    .btn-sub:active { opacity: .8 }
+    .btn-icon { display: inline-flex; align-items: center; gap: 6px; background: var(--card2); color: var(--text2); border: none; padding: 8px 14px; border-radius: 20px; font-size: .88rem; cursor: pointer; transition: .2s; font-family: inherit }
+    .btn-icon:hover { color: var(--text) }
 
-    /* ── 링크 목록 ── */
-    .link-list{display:flex;flex-direction:column;gap:8px}
-    .link-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:rgba(255,255,255,.04);border-radius:8px;text-decoration:none;color:var(--text);transition:.2s}
-    .link-item:hover{background:rgba(110,231,183,.08);color:var(--mint)}
+    /* 메시지 */
+    .msg { padding: 12px 16px; border-radius: 10px; font-size: .88rem; margin-top: 12px; display: none }
+    .msg.ok { background: rgba(48,209,88,.12); color: var(--mint) }
+    .msg.err { background: rgba(255,69,58,.12); color: var(--red) }
 
-    .spinner{display:inline-block;width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--mint);border-radius:50%;animation:spin .8s linear infinite;margin-right:6px}
-    @keyframes spin{to{transform:rotate(360deg)}}
+    /* 안내 */
+    .guide-card { background: rgba(242,153,74,.1); border: 1px solid rgba(242,153,74,.2); border-radius: var(--r); padding: 16px; margin-bottom: 20px }
+    .guide-steps { list-style: none; margin-top: 10px }
+    .guide-steps li { display: flex; gap: 10px; padding: 6px 0; font-size: .88rem; color: var(--text2); align-items: flex-start }
+    .step-num { width: 22px; height: 22px; background: var(--gold); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .72rem; font-weight: 800; flex-shrink: 0; margin-top: 1px }
 
-    /* ── FAQ ── */
-    .faq-item{border:1px solid var(--border);border-radius:8px;margin-bottom:8px;overflow:hidden;cursor:pointer}
-    .faq-q{padding:12px 14px;font-size:.88rem;font-weight:600;display:flex;justify-content:space-between;align-items:center;transition:.2s}
-    .faq-q:hover{background:rgba(255,255,255,.04)}
-    .faq-arrow{color:var(--muted);font-size:.75rem;transition:.2s}
-    .faq-a{padding:0 14px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:.85rem;line-height:1.75;color:rgba(255,255,255,.75)}
-    .faq-item.open .faq-a{max-height:200px;padding:0 14px 14px}
-    .faq-item.open .faq-arrow{transform:rotate(180deg)}
-    .faq-item.open .faq-q{color:var(--mint)}
+    /* ── 목사 대시보드 ── */
+    #screen-pastor { display: none; padding: 0 0 40px }
+    .pastor-header { padding: 20px 20px 0; display: flex; align-items: center; justify-content: space-between }
+    .pastor-greeting { font-size: 1rem; color: var(--text2) }
+    .pastor-name { font-size: 1.4rem; font-weight: 700; letter-spacing: -.02em; margin-top: 2px }
+    .logout-icon { background: var(--card2); border: none; color: var(--text3); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem }
 
-    @media(max-width:480px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+    /* 교회 카드 (히어로) */
+    .church-hero { margin: 16px 16px 0; background: linear-gradient(135deg, #1c1c1e, #2c2c2e); border-radius: 20px; padding: 20px; border: 1px solid var(--border); position: relative; overflow: hidden }
+    .church-hero::before { content: '⛪'; position: absolute; right: -8px; top: -8px; font-size: 5rem; opacity: .06 }
+    .church-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(48,209,88,.15); color: var(--mint); border-radius: 20px; padding: 4px 10px; font-size: .78rem; font-weight: 700; margin-bottom: 10px }
+    .church-name-ko { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px }
+    .church-name-en { font-size: .88rem; color: var(--text2); margin-bottom: 14px }
+    .church-meta { display: flex; flex-wrap: wrap; gap: 8px }
+    .church-tag { background: rgba(255,255,255,.08); border-radius: 6px; padding: 4px 10px; font-size: .8rem; color: var(--text2) }
+    .church-actions { display: flex; gap: 10px; margin-top: 16px }
+    .church-actions a, .church-actions button { flex: 1; background: rgba(255,255,255,.08); border: none; color: var(--text); padding: 10px 0; border-radius: 10px; font-size: .82rem; text-align: center; text-decoration: none; cursor: pointer; font-family: inherit; transition: .2s }
+    .church-actions a:hover, .church-actions button:hover { background: rgba(255,255,255,.14) }
+
+    /* 편집 폼 */
+    .edit-section { margin: 12px 16px 0; display: none }
+    .edit-title { font-size: .8rem; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px }
+    .save-row { display: flex; gap: 10px; margin-top: 12px }
+
+    /* 빠른 실행 */
+    .section-title { font-size: .8rem; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; padding: 20px 20px 10px }
+    .quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px }
+    .quick-card { background: var(--card); border-radius: 14px; padding: 16px; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 8px; transition: .15s; border: 1px solid var(--border) }
+    .quick-card:active { opacity: .8; transform: scale(.98) }
+    .quick-icon { font-size: 1.5rem }
+    .quick-label { font-size: .85rem; font-weight: 600 }
+    .quick-sub { font-size: .75rem; color: var(--text2); line-height: 1.4 }
+
+    /* 계정 설정 */
+    .settings-list { margin: 0 16px; background: var(--card); border-radius: var(--r); overflow: hidden }
+    .settings-row { display: flex; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--border); cursor: pointer; transition: .2s }
+    .settings-row:last-child { border-bottom: none }
+    .settings-row:hover { background: var(--card2) }
+    .settings-icon { font-size: 1.1rem; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0 }
+    .settings-text { flex: 1 }
+    .settings-label { font-size: .9rem; font-weight: 500 }
+    .settings-sub { font-size: .78rem; color: var(--text2); margin-top: 1px }
+    .settings-arrow { color: var(--text3); font-size: .8rem }
+
+    /* 비밀번호 패널 */
+    #pw-panel { margin: 0 16px; display: none }
+
+    /* ── 관리자 대시보드 ── */
+    #screen-admin { display: none; padding: 0 0 40px }
+    .admin-header { background: linear-gradient(135deg, #2c0a0a, #1c1c1e); padding: 20px 20px 16px; margin-bottom: 4px }
+    .admin-badge-row { display: flex; align-items: center; justify-content: space-between }
+    .admin-badge { background: rgba(255,69,58,.2); color: var(--red); border-radius: 6px; padding: 3px 10px; font-size: .75rem; font-weight: 700 }
+    .admin-title { font-size: 1.4rem; font-weight: 700; margin-top: 8px }
+
+    .stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; padding: 16px 16px 0 }
+    .stat-box { background: var(--card); border-radius: 14px; padding: 16px 12px; text-align: center }
+    .stat-n { font-size: 1.8rem; font-weight: 700; color: var(--gold) }
+    .stat-l { font-size: .72rem; color: var(--text2); margin-top: 4px }
+
+    .list-section { padding: 16px 16px 0 }
+    .list-header { font-size: .8rem; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px }
+    .list-card { background: var(--card); border-radius: 14px; overflow: hidden; margin-bottom: 10px }
+    .list-row { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; gap: 10px; align-items: flex-start }
+    .list-row:last-child { border-bottom: none }
+    .list-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); flex-shrink: 0; margin-top: 5px }
+    .list-dot.yellow { background: #FFD60A }
+    .list-name { font-size: .9rem; font-weight: 600 }
+    .list-sub { font-size: .78rem; color: var(--text2); margin-top: 2px }
+
+    /* ── 공통 ── */
+    .spacer { height: 20px }
+    .divider-text { text-align: center; color: var(--text3); font-size: .8rem; margin: 14px 0; position: relative }
+    .divider-text::before, .divider-text::after { content: ''; position: absolute; top: 50%; width: 36%; height: 1px; background: var(--border) }
+    .divider-text::before { left: 0 } .divider-text::after { right: 0 }
+    .link-text { color: var(--gold); text-decoration: none; font-size: .88rem }
+    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; margin-right: 6px }
+    @keyframes spin { to { transform: rotate(360deg) } }
+
+    /* 스크롤 가능 */
+    .scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px }
   </style>
 </head>
 <body>
 
-<div class="lang-bar">
-  <a href="/">← <span class="ko">HebronGuide 홈</span><span class="en">HebronGuide Home</span></a>
-  <div style="display:flex;gap:6px">
-    <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
-    <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
-  </div>
-</div>
+<!-- ══════════════════════════════════════
+     로그인 화면
+══════════════════════════════════════ -->
+<div id="screen-login">
 
-<header class="header">
-  <svg style="width:32px;height:32px" viewBox="0 0 40 40" fill="none">
-    <circle cx="20" cy="20" r="20" fill="#C9A227" opacity=".15"/>
-    <path d="M20 8 L28 14 L28 26 L20 32 L12 26 L12 14 Z" stroke="#C9A227" stroke-width="1.5" fill="none"/>
-    <path d="M16 20 L20 24 L24 16" stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  <div>
-    <div class="header-title">
-      <span class="ko">파트너 대시보드</span>
-      <span class="en">Partner Dashboard</span>
+  <div class="topbar">
+    <a href="/" class="topbar-back">← <span class="ko">홈</span><span class="en">Home</span></a>
+    <div class="topbar-lang">
+      <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
     </div>
-    <div class="header-sub">HebronGuide</div>
   </div>
-</header>
 
-<!-- ══════════════════════════════════════════
-     로그인 게이트
-══════════════════════════════════════════ -->
-<div id="login-gate">
-  <div class="login-logo">⛪</div>
-  <h1 class="login-title"><span class="ko">HebronGuide 로그인</span><span class="en">HebronGuide Login</span></h1>
-  <p class="login-sub">
-    <span class="ko">파트너 목사님 또는 관리자로 로그인하세요</span>
-    <span class="en">Login as a partner pastor or administrator</span>
-  </p>
+  <div class="login-hero">
+    <div class="login-icon">⛪</div>
+    <h1 class="login-title"><span class="ko">파트너 로그인</span><span class="en">Partner Login</span></h1>
+    <p class="login-sub">
+      <span class="ko">HebronGuide 파트너 목사님·관리자</span>
+      <span class="en">For HebronGuide partner pastors &amp; admin</span>
+    </p>
+  </div>
 
-  <!-- 탭 -->
-  <div class="tab-bar">
-    <button class="tab-btn active" id="tab-pastor" onclick="switchTab('pastor')">
-      ⛪ <span class="ko">목사님 로그인</span><span class="en">Pastor Login</span>
+  <!-- 탭: 목사 / 관리자 -->
+  <div class="seg">
+    <button class="seg-btn active" id="tab-pastor" onclick="switchTab('pastor')">
+      ⛪ <span class="ko">목사님</span><span class="en">Pastor</span>
     </button>
-    <button class="tab-btn" id="tab-admin" onclick="switchTab('admin')">
+    <button class="seg-btn" id="tab-admin" onclick="switchTab('admin')">
       🔑 <span class="ko">관리자</span><span class="en">Admin</span>
     </button>
   </div>
 
-  <!-- 목사 로그인 -->
+  <!-- 목사 패널 -->
   <div id="panel-pastor">
-
     <!-- 처음 사용 안내 -->
-    <div style="background:rgba(110,231,183,.07);border:1px solid rgba(110,231,183,.2);border-radius:10px;padding:14px;margin-bottom:16px;font-size:.85rem;line-height:1.7">
-      <div style="font-weight:700;color:var(--mint);margin-bottom:6px">
-        <span class="ko">📋 처음 이용하시는 목사님께</span>
-        <span class="en">📋 First time? Here's how:</span>
+    <div class="guide-card">
+      <div style="font-size:.88rem;font-weight:700;color:var(--gold)">
+        <span class="ko">📋 처음이세요?</span><span class="en">📋 First time?</span>
       </div>
-      <span class="ko">
-        <b>Step 1.</b> 이메일 입력 → "로그인 링크 받기" 클릭<br>
-        <b>Step 2.</b> 이메일 받은편지함에서 링크 클릭<br>
-        <b>Step 3.</b> 로그인 후 → "비밀번호 설정"에서 비밀번호 등록<br>
-        <b>Step 4.</b> 다음부터 → 이메일+비밀번호로 바로 로그인 ✅
-      </span>
-      <span class="en">
-        <b>Step 1.</b> Enter email → Click "Send Magic Link"<br>
-        <b>Step 2.</b> Check your inbox and click the link<br>
-        <b>Step 3.</b> After login → Set your password<br>
-        <b>Step 4.</b> Next time → Login with email + password ✅
-      </span>
+      <ul class="guide-steps">
+        <li><span class="step-num">1</span><span class="ko">이메일 입력 → 로그인 링크 받기</span><span class="en">Enter email → Get login link</span></li>
+        <li><span class="step-num">2</span><span class="ko">이메일 링크 클릭 → 자동 로그인</span><span class="en">Click email link → Auto login</span></li>
+        <li><span class="step-num">3</span><span class="ko">이후엔 비밀번호 설정 가능</span><span class="en">Then set a password for quick access</span></li>
+      </ul>
     </div>
 
-    <div class="input-group">
-      <label><span class="ko">이메일</span><span class="en">Email</span></label>
-      <input type="email" id="pastor-email" placeholder="pastor@church.org">
+    <!-- 이메일 입력 -->
+    <div class="input-card">
+      <div class="input-row">
+        <span class="input-icon">✉️</span>
+        <input type="email" id="pastor-email" placeholder="pastor@church.org" autocomplete="email">
+      </div>
+      <div class="input-row" id="pw-row" style="display:none">
+        <span class="input-icon">🔒</span>
+        <input type="password" id="pastor-pw" placeholder="비밀번호 / Password">
+      </div>
     </div>
-    <div class="input-group" id="pw-input-group" style="display:none">
-      <label><span class="ko">비밀번호</span><span class="en">Password</span></label>
-      <input type="password" id="pastor-pw" placeholder="••••••••">
-    </div>
-    <button class="btn-primary" style="margin-bottom:10px" onclick="pastorLogin()">
-      <span class="ko" id="pastor-btn-text">로그인 링크 받기 (매직 링크)</span>
-      <span class="en" id="pastor-btn-text-en">Send Magic Link</span>
+
+    <button class="btn-main" id="pastor-btn" onclick="pastorLogin()">
+      <span class="ko" id="pastor-btn-ko">✉️ 로그인 링크 받기</span>
+      <span class="en" id="pastor-btn-en">✉️ Send Login Link</span>
     </button>
-    <div class="divider"><span class="ko">또는</span><span class="en">OR</span></div>
-    <button class="btn-secondary" style="width:100%;justify-content:center;margin-top:8px" onclick="togglePwLogin()">
-      <span class="ko" id="toggle-pw-text">비밀번호로 로그인</span>
-      <span class="en" id="toggle-pw-text-en">Login with Password</span>
+
+    <div class="divider-text" style="margin-top:16px"><span class="ko">비밀번호 있으신가요?</span><span class="en">Have a password?</span></div>
+    <button class="btn-sub" onclick="togglePw()" id="pw-toggle-btn">
+      <span class="ko" id="pw-toggle-ko">🔒 비밀번호로 로그인</span>
+      <span class="en" id="pw-toggle-en">🔒 Login with Password</span>
     </button>
-    <div id="msg-pastor" class="login-msg"></div>
-    <p style="font-size:.8rem;color:var(--muted);margin-top:16px;text-align:center;line-height:1.6">
-      <span class="ko">아직 파트너가 아니시라면 <a href="/ad-request.html" style="color:var(--mint)">파트너 신청하기 →</a></span>
-      <span class="en">Not a partner yet? <a href="/ad-request.html" style="color:var(--mint)">Apply →</a></span>
-    </p>
 
-    <!-- FAQ -->
-    <div style="margin-top:24px;border-top:1px solid var(--border);padding-top:20px">
-      <div style="font-size:.85rem;font-weight:700;color:var(--gold);margin-bottom:14px">
-        ❓ <span class="ko">자주 묻는 질문 (FAQ)</span><span class="en">Frequently Asked Questions</span>
+    <div class="msg" id="msg-pastor"></div>
+
+    <div style="text-align:center;margin-top:20px;font-size:.85rem;color:var(--text2)">
+      <span class="ko">파트너가 아니시라면 </span><span class="en">Not a partner? </span>
+      <a href="/ad-request.html" class="link-text"><span class="ko">신청하기 →</span><span class="en">Apply →</span></a>
+    </div>
+
+    <!-- FAQ 요약 -->
+    <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border)">
+      <div style="font-size:.78rem;font-weight:700;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">
+        <span class="ko">자주 묻는 질문</span><span class="en">Quick Help</span>
       </div>
-
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q"><span class="ko">🔑 비밀번호를 잊어버렸어요</span><span class="en">🔑 I forgot my password</span> <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">
-          <span class="ko">걱정 마세요! 위에서 이메일 입력 후 <b>"로그인 링크 받기"</b>를 클릭하시면 비밀번호 없이 로그인됩니다. 로그인 후 "비밀번호 설정/변경"에서 새 비밀번호를 등록하세요.</span>
-          <span class="en">No worries! Enter your email above and click <b>"Send Magic Link"</b> to login without a password. After login, go to "Set/Change Password" to create a new one.</span>
+      <div class="settings-list">
+        <div class="settings-row" onclick="openFaq('pw')">
+          <div class="settings-icon" style="background:rgba(255,69,58,.15)">🔑</div>
+          <div class="settings-text">
+            <div class="settings-label"><span class="ko">비밀번호를 잊어버렸어요</span><span class="en">Forgot password?</span></div>
+            <div class="settings-sub"><span class="ko">이메일 링크로 재로그인 후 재설정</span><span class="en">Login via link, then reset password</span></div>
+          </div>
+          <span class="settings-arrow">›</span>
+        </div>
+        <div class="settings-row" onclick="openFaq('email')">
+          <div class="settings-icon" style="background:rgba(10,132,255,.15)">✉️</div>
+          <div class="settings-text">
+            <div class="settings-label"><span class="ko">이메일이 안 왔어요</span><span class="en">Didn't get the email?</span></div>
+            <div class="settings-sub"><span class="ko">스팸함 확인 · 1-2분 대기</span><span class="en">Check spam · Wait 1-2 min</span></div>
+          </div>
+          <span class="settings-arrow">›</span>
+        </div>
+        <div class="settings-row" onclick="location.href='/faq.html'">
+          <div class="settings-icon" style="background:rgba(242,153,74,.15)">💬</div>
+          <div class="settings-text">
+            <div class="settings-label"><span class="ko">더 많은 질문 보기</span><span class="en">More questions</span></div>
+            <div class="settings-sub"><span class="ko">FAQ 전체 보기 →</span><span class="en">View full FAQ →</span></div>
+          </div>
+          <span class="settings-arrow">›</span>
         </div>
       </div>
-
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q"><span class="ko">✉️ 로그인 이메일이 안 왔어요</span><span class="en">✉️ I didn't receive the login email</span> <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">
-          <span class="ko">① 스팸(정크) 메일함을 확인해주세요.<br>② "noreply@mail.app.supabase.io" 발신자를 허용해주세요.<br>③ 1-2분 후에도 없으면 다시 시도해주세요.<br>④ 여전히 안 오면 <a href="mailto:Hebronplatform@gmail.com" style="color:var(--mint)">Hebronplatform@gmail.com</a> 으로 연락주세요.</span>
-          <span class="en">① Check your spam/junk folder.<br>② Allow emails from "noreply@mail.app.supabase.io".<br>③ Wait 1-2 min and try again.<br>④ Still nothing? Email <a href="mailto:Hebronplatform@gmail.com" style="color:var(--mint)">Hebronplatform@gmail.com</a></span>
-        </div>
-      </div>
-
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q"><span class="ko">⛪ 제 교회 정보가 틀렸어요</span><span class="en">⛪ My church info is incorrect</span> <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">
-          <span class="ko">로그인 후 대시보드에서 <b>"정보 수정 요청"</b> 버튼을 눌러주세요. 또는 <a href="mailto:Hebronplatform@gmail.com" style="color:var(--mint)">Hebronplatform@gmail.com</a> 으로 직접 알려주시면 바로 수정해드립니다.</span>
-          <span class="en">After login, click <b>"Request Update"</b> in your dashboard. Or email <a href="mailto:Hebronplatform@gmail.com" style="color:var(--mint)">Hebronplatform@gmail.com</a> directly.</span>
-        </div>
-      </div>
-
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q"><span class="ko">🔗 로그인 링크를 클릭했는데 오류가 나요</span><span class="en">🔗 The login link gives an error</span> <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">
-          <span class="ko">링크는 10분간만 유효합니다. 만료된 경우 이 페이지에서 다시 이메일을 입력하고 새 링크를 받아주세요.</span>
-          <span class="en">Links are valid for 10 minutes only. If expired, enter your email again here to get a new link.</span>
-        </div>
-      </div>
-
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q"><span class="ko">❓ 파트너가 아닌데 로그인이 돼요?</span><span class="en">❓ I'm not a partner but can still login?</span> <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">
-          <span class="ko">매직 링크는 이메일만 있으면 발송됩니다. 파트너 신청은 <a href="/ad-request.html" style="color:var(--mint)">여기서 신청</a>해주세요. 신청 완료 후 파트너 교회 정보가 대시보드에 연결됩니다.</span>
-          <span class="en">Magic links are sent to any email. To become a partner, <a href="/ad-request.html" style="color:var(--mint)">apply here</a>. Your church info will appear in the dashboard after approval.</span>
-        </div>
-      </div>
-
-      <p style="font-size:.8rem;color:var(--muted);margin-top:16px;text-align:center">
-        <span class="ko">그 외 문의: <a href="mailto:Hebronplatform@gmail.com" style="color:var(--mint)">Hebronplatform@gmail.com</a></span>
-        <span class="en">Other questions: <a href="mailto:Hebronplatform@gmail.com" style="color:var(--mint)">Hebronplatform@gmail.com</a></span>
-      </p>
     </div>
   </div>
 
-  <!-- 관리자 로그인 -->
+  <!-- 관리자 패널 -->
   <div id="panel-admin" style="display:none">
-    <div class="input-group">
-      <label><span class="ko">관리자 비밀번호</span><span class="en">Admin Password</span></label>
-      <input type="password" id="admin-pw" placeholder="••••••••" onkeydown="if(event.key==='Enter')adminLogin()">
+    <div class="input-card">
+      <div class="input-row">
+        <span class="input-icon">🔑</span>
+        <input type="password" id="admin-pw" placeholder="관리자 비밀번호 / Admin password" onkeydown="if(event.key==='Enter')adminLogin()">
+      </div>
     </div>
-    <button class="btn-primary" onclick="adminLogin()">
-      <span class="ko">관리자 로그인</span><span class="en">Admin Login</span>
+    <button class="btn-main" onclick="adminLogin()">
+      <span class="ko">관리자로 로그인</span><span class="en">Login as Admin</span>
     </button>
-    <div id="msg-admin" class="login-msg"></div>
+    <div class="msg" id="msg-admin"></div>
   </div>
+
 </div>
 
-<!-- ══════════════════════════════════════════
+<!-- ══════════════════════════════════════
      목사 대시보드
-══════════════════════════════════════════ -->
-<div id="dashboard-pastor">
-  <div class="main">
-    <div class="user-badge">
-      <div class="user-badge-icon">✝️</div>
-      <div>
-        <div class="user-badge-name" id="pastor-name">목사님</div>
-        <div class="user-badge-role"><span class="ko">HebronGuide 파트너 목사</span><span class="en">HebronGuide Partner Pastor</span></div>
-      </div>
-      <button class="logout-btn" onclick="logout()" style="margin-left:auto">
-        <span class="ko">로그아웃</span><span class="en">Logout</span>
-      </button>
+══════════════════════════════════════ -->
+<div id="screen-pastor">
+
+  <div class="topbar" style="padding-top:14px">
+    <div class="topbar-lang">
+      <button class="lang-btn" id="btn-ko2" onclick="setLang('ko')">한국어</button>
+      <button class="lang-btn" id="btn-en2" onclick="setLang('en')">EN</button>
     </div>
+    <button class="logout-icon" onclick="logout()" title="로그아웃">↩</button>
+  </div>
 
-    <!-- 내 교회 정보 -->
-    <div class="card">
-      <div class="card-title">⛪ <span class="ko">내 교회 정보</span><span class="en">My Church Info</span></div>
-      <div id="pastor-church-info">
-        <div style="color:var(--muted);font-size:.9rem"><span class="spinner"></span><span class="ko">불러오는 중...</span><span class="en">Loading...</span></div>
-      </div>
-      <div style="margin-top:14px">
-        <button class="btn-secondary" onclick="toggleEditMode()" id="edit-toggle-btn">
-          ✏️ <span class="ko">직접 수정하기</span><span class="en">Edit My Info</span>
-        </button>
-      </div>
-
-      <!-- 인라인 편집 폼 (기본 숨김) -->
-      <div id="edit-form" style="display:none;margin-top:16px;border-top:1px solid var(--border);padding-top:16px">
-        <div style="font-size:.85rem;color:var(--mint);font-weight:700;margin-bottom:12px">✏️ <span class="ko">교회 정보 수정</span><span class="en">Edit Church Info</span></div>
-        <div class="input-group"><label><span class="ko">교회명 (한글)</span><span class="en">Church Name (Korean)</span></label><input type="text" id="edit-name" placeholder="산호세한인침례교회"></div>
-        <div class="input-group"><label><span class="ko">Church Name (English)</span></label><input type="text" id="edit-name-en" placeholder="San Jose Korean Baptist Church"></div>
-        <div class="input-group"><label><span class="ko">전화번호</span><span class="en">Phone</span></label><input type="tel" id="edit-phone" placeholder="408-257-5444"></div>
-        <div class="input-group"><label><span class="ko">웹사이트</span><span class="en">Website</span></label><input type="url" id="edit-website" placeholder="https://www.kbcsj.org"></div>
-        <div class="input-group"><label><span class="ko">예배 시간</span><span class="en">Service Time</span></label><input type="text" id="edit-service-time" placeholder="주일 11:00am"></div>
-        <div class="input-group"><label><span class="ko">교회 소개 (한 줄)</span><span class="en">Brief Description</span></label><input type="text" id="edit-description" placeholder="담임목사·주소·특징 등"></div>
-        <div style="display:flex;gap:10px;margin-top:4px">
-          <button class="btn-primary" style="flex:1" onclick="saveChurchEdit()"><span class="ko">저장하기</span><span class="en">Save Changes</span></button>
-          <button class="btn-secondary" onclick="toggleEditMode()"><span class="ko">취소</span><span class="en">Cancel</span></button>
-        </div>
-        <div id="edit-msg" class="login-msg" style="margin-top:8px"></div>
-      </div>
+  <!-- 인사 -->
+  <div class="pastor-header">
+    <div>
+      <div class="pastor-greeting"><span class="ko">안녕하세요 🙏</span><span class="en">Welcome 🙏</span></div>
+      <div class="pastor-name" id="pastor-display-name">목사님</div>
     </div>
+  </div>
 
-    <!-- 비밀번호 변경 -->
-    <div class="card">
-      <div class="card-title">🔒 <span class="ko">계정 설정</span><span class="en">Account Settings</span></div>
-      <button class="btn-secondary" onclick="togglePwSection()">
-        🔑 <span class="ko">비밀번호 설정/변경</span><span class="en">Set / Change Password</span>
-      </button>
-      <div id="pw-section" style="margin-top:16px">
-        <div class="input-group">
-          <label><span class="ko">새 비밀번호</span><span class="en">New Password</span></label>
-          <input type="password" id="new-pw" placeholder="8자 이상 / Min. 8 characters">
-        </div>
-        <div class="input-group">
-          <label><span class="ko">비밀번호 확인</span><span class="en">Confirm Password</span></label>
-          <input type="password" id="confirm-pw" placeholder="••••••••">
-        </div>
-        <button class="btn-primary" onclick="changePassword()">
-          <span class="ko">비밀번호 저장</span><span class="en">Save Password</span>
-        </button>
-        <div id="pw-msg" class="login-msg"></div>
-      </div>
+  <!-- 교회 히어로 카드 -->
+  <div class="church-hero" id="church-hero">
+    <div class="church-badge">✅ <span class="ko">파트너 교회</span><span class="en">Partner Church</span></div>
+    <div class="church-name-ko" id="ch-name">—</div>
+    <div class="church-name-en" id="ch-name-en">—</div>
+    <div class="church-meta" id="ch-meta"></div>
+    <div class="church-actions">
+      <button onclick="toggleEdit()">✏️ <span class="ko">수정</span><span class="en">Edit</span></button>
+      <a id="ch-website-link" href="#" target="_blank">🌐 <span class="ko">홈페이지</span><span class="en">Website</span></a>
+      <a id="ch-phone-link" href="#">📞 <span class="ko">전화</span><span class="en">Call</span></a>
     </div>
+  </div>
 
-    <!-- 빠른 링크 -->
-    <div class="card">
-      <div class="card-title">⚡ <span class="ko">빠른 실행</span><span class="en">Quick Actions</span></div>
-      <div class="link-list">
-        <a href="/ad-request.html" class="link-item">
-          <span>⛪ <span class="ko">교회·사업체 정보 수정</span><span class="en">Update Church / Business</span></span>
-          <span style="color:var(--muted)">→</span>
-        </a>
-        <a href="/story-submit.html" class="link-item">
-          <span>📝 <span class="ko">이달의 이야기 제출</span><span class="en">Submit Story</span></span>
-          <span style="color:var(--muted)">→</span>
-        </a>
-        <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" class="link-item">
-          <span>💬 <span class="ko">카카오톡 채널 구독</span><span class="en">KakaoTalk Channel</span></span>
-          <span style="color:var(--muted)">→</span>
-        </a>
-        <a href="mailto:Hebronplatform@gmail.com" class="link-item">
-          <span>✉️ <span class="ko">HebronGuide 팀 연락</span><span class="en">Contact HebronGuide</span></span>
-          <span style="color:var(--muted)">→</span>
-        </a>
+  <!-- 교회 편집 폼 -->
+  <div class="edit-section" id="edit-section">
+    <div class="edit-title"><span class="ko">교회 정보 수정</span><span class="en">Edit Church Info</span></div>
+    <div class="input-card">
+      <div class="input-row"><span class="input-icon">🇰🇷</span><input type="text" id="e-name" placeholder="교회명 (한글)"></div>
+      <div class="input-row"><span class="input-icon">🇺🇸</span><input type="text" id="e-name-en" placeholder="Church Name (English)"></div>
+      <div class="input-row"><span class="input-icon">📞</span><input type="tel" id="e-phone" placeholder="전화번호 / Phone"></div>
+      <div class="input-row"><span class="input-icon">🌐</span><input type="url" id="e-web" placeholder="https://"></div>
+      <div class="input-row"><span class="input-icon">⏰</span><input type="text" id="e-time" placeholder="예배시간 / Service time"></div>
+      <div class="input-row"><span class="input-icon">📝</span><input type="text" id="e-desc" placeholder="한 줄 소개"></div>
+    </div>
+    <div class="save-row">
+      <button class="btn-main mint" style="flex:2" onclick="saveEdit()"><span class="ko">저장하기</span><span class="en">Save</span></button>
+      <button class="btn-sub" style="flex:1" onclick="toggleEdit()"><span class="ko">취소</span><span class="en">Cancel</span></button>
+    </div>
+    <div class="msg" id="msg-edit"></div>
+  </div>
+
+  <!-- 빠른 실행 -->
+  <div class="section-title"><span class="ko">빠른 실행</span><span class="en">Quick Actions</span></div>
+  <div class="quick-grid">
+    <a href="/ad-request.html" class="quick-card">
+      <div class="quick-icon">📋</div>
+      <div class="quick-label"><span class="ko">신청·등록</span><span class="en">Register</span></div>
+      <div class="quick-sub"><span class="ko">교회·사업체 등록</span><span class="en">Church & business</span></div>
+    </a>
+    <a href="/story-submit.html" class="quick-card">
+      <div class="quick-icon">📖</div>
+      <div class="quick-label"><span class="ko">이야기 제출</span><span class="en">Submit Story</span></div>
+      <div class="quick-sub"><span class="ko">이달의 이야기</span><span class="en">Story of the month</span></div>
+    </a>
+    <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" class="quick-card">
+      <div class="quick-icon">💬</div>
+      <div class="quick-label"><span class="ko">카카오채널</span><span class="en">KakaoTalk</span></div>
+      <div class="quick-sub"><span class="ko">소통·업데이트</span><span class="en">Updates & news</span></div>
+    </a>
+    <a href="/faq.html" class="quick-card">
+      <div class="quick-icon">❓</div>
+      <div class="quick-label">FAQ</div>
+      <div class="quick-sub"><span class="ko">자주 묻는 질문</span><span class="en">Help & answers</span></div>
+    </a>
+  </div>
+
+  <!-- 계정 설정 -->
+  <div class="section-title" style="margin-top:8px"><span class="ko">계정 설정</span><span class="en">Account</span></div>
+  <div class="settings-list" style="margin:0 16px">
+    <div class="settings-row" onclick="togglePwPanel()">
+      <div class="settings-icon" style="background:rgba(10,132,255,.15)">🔑</div>
+      <div class="settings-text">
+        <div class="settings-label"><span class="ko">비밀번호 설정/변경</span><span class="en">Set / Change Password</span></div>
+        <div class="settings-sub"><span class="ko">다음부터 빠르게 로그인</span><span class="en">For quick future logins</span></div>
+      </div>
+      <span class="settings-arrow" id="pw-panel-arrow">›</span>
+    </div>
+    <div class="settings-row" onclick="logout()">
+      <div class="settings-icon" style="background:rgba(255,69,58,.12)">↩</div>
+      <div class="settings-text">
+        <div class="settings-label" style="color:var(--red)"><span class="ko">로그아웃</span><span class="en">Logout</span></div>
       </div>
     </div>
   </div>
+
+  <!-- 비밀번호 패널 -->
+  <div id="pw-panel">
+    <div style="height:10px"></div>
+    <div class="input-card" style="margin:0 16px">
+      <div class="input-row"><span class="input-icon">🔒</span><input type="password" id="new-pw" placeholder="새 비밀번호 (8자+)"></div>
+      <div class="input-row"><span class="input-icon">🔒</span><input type="password" id="confirm-pw" placeholder="비밀번호 확인"></div>
+    </div>
+    <div style="padding:10px 16px 0">
+      <button class="btn-main blue" onclick="savePw()"><span class="ko">비밀번호 저장</span><span class="en">Save Password</span></button>
+      <div class="msg" id="msg-pw"></div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
 </div>
 
-<!-- ══════════════════════════════════════════
+<!-- ══════════════════════════════════════
      관리자 대시보드
-══════════════════════════════════════════ -->
-<div id="dashboard-admin">
-  <div class="main">
-    <div class="user-badge" style="background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.25)">
-      <div class="user-badge-icon">🔑</div>
-      <div>
-        <div class="user-badge-name">김성수 목사 (관리자)</div>
-        <div class="user-badge-role" style="color:#f87171">
-          <span class="admin-badge">ADMIN</span> 전체 관리 권한
-        </div>
-      </div>
-      <button class="logout-btn" onclick="logout()" style="margin-left:auto">로그아웃</button>
-    </div>
+══════════════════════════════════════ -->
+<div id="screen-admin">
 
-    <!-- 전체 통계 -->
-    <div class="card">
-      <div class="card-title">📊 전체 현황</div>
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-num" id="admin-stat-churches">—</div>
-          <div class="stat-label">등록 교회</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num" id="admin-stat-partners">—</div>
-          <div class="stat-label">파트너 교회</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num" id="admin-stat-pending">—</div>
-          <div class="stat-label">신청 대기</div>
-        </div>
-      </div>
+  <div class="admin-header">
+    <div class="admin-badge-row">
+      <span class="admin-badge">ADMIN</span>
+      <button class="logout-icon" onclick="logout()">↩</button>
     </div>
+    <div class="admin-title"><span class="ko">관리자 대시보드</span><span class="en">Admin Dashboard</span></div>
+    <div style="font-size:.85rem;color:var(--text2);margin-top:4px"><span class="ko">김성수 목사 · 전체 관리</span><span class="en">Pastor Kim · Full Access</span></div>
+  </div>
 
-    <!-- 최근 파트너 신청 -->
-    <div class="card">
-      <div class="card-title">🆕 최근 파트너 신청</div>
-      <div id="admin-pending-list">
-        <div style="color:var(--muted);font-size:.9rem"><span class="spinner"></span>불러오는 중...</div>
-      </div>
-    </div>
-
-    <!-- 파트너 교회 목록 -->
-    <div class="card">
-      <div class="card-title">🤝 파트너 교회 목록</div>
-      <div id="admin-partner-list">
-        <div style="color:var(--muted);font-size:.9rem"><span class="spinner"></span>불러오는 중...</div>
-      </div>
-    </div>
-
-    <!-- 최근 등록 교회 -->
-    <div class="card">
-      <div class="card-title">⛪ 최근 등록 교회 (상위 20개)</div>
-      <div style="overflow-x:auto">
-        <table class="data-table" id="admin-church-table">
-          <thead>
-            <tr>
-              <th>교회명</th>
-              <th>영문명</th>
-              <th>도시</th>
-              <th>교단</th>
-              <th>파트너</th>
-            </tr>
-          </thead>
-          <tbody id="admin-church-tbody">
-            <tr><td colspan="5" style="color:var(--muted)">불러오는 중...</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 빠른 관리 -->
-    <div class="card">
-      <div class="card-title">⚙️ 관리 메뉴</div>
-      <div class="link-list">
-        <a href="/admin.html" class="link-item">
-          <span>🏛️ 전체 관리자 패널 (admin.html)</span>
-          <span style="color:var(--muted)">→</span>
-        </a>
-        <a href="/ad-request.html" class="link-item">
-          <span>📋 파트너 신청 페이지</span>
-          <span style="color:var(--muted)">→</span>
-        </a>
-        <a href="https://supabase.com/dashboard/project/vextxqzggznulwpganwt" target="_blank" class="link-item">
-          <span>🗄️ Supabase 대시보드</span>
-          <span style="color:var(--muted)">→</span>
-        </a>
-      </div>
+  <div class="topbar" style="padding-top:0;margin-bottom:4px">
+    <div class="topbar-lang">
+      <button class="lang-btn" id="btn-ko3" onclick="setLang('ko')">한국어</button>
+      <button class="lang-btn" id="btn-en3" onclick="setLang('en')">EN</button>
     </div>
   </div>
+
+  <!-- 통계 -->
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-n" id="a-churches">—</div>
+      <div class="stat-l"><span class="ko">등록 교회</span><span class="en">Churches</span></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n" id="a-partners">—</div>
+      <div class="stat-l"><span class="ko">파트너</span><span class="en">Partners</span></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n" id="a-pending">—</div>
+      <div class="stat-l"><span class="ko">대기 신청</span><span class="en">Pending</span></div>
+    </div>
+  </div>
+
+  <!-- 최근 신청 -->
+  <div class="list-section">
+    <div class="list-header"><span class="ko">최근 신청</span><span class="en">Recent Applications</span></div>
+    <div class="list-card" id="a-pending-list">
+      <div class="list-row"><div class="spinner"></div></div>
+    </div>
+  </div>
+
+  <!-- 최근 교회 -->
+  <div class="list-section">
+    <div class="list-header"><span class="ko">최근 등록 교회</span><span class="en">Recent Churches</span></div>
+    <div class="list-card" id="a-church-list">
+      <div class="list-row"><div class="spinner"></div></div>
+    </div>
+  </div>
+
+  <!-- 관리 링크 -->
+  <div class="list-section">
+    <div class="list-header"><span class="ko">관리 메뉴</span><span class="en">Admin Menu</span></div>
+    <div class="settings-list">
+      <a href="/admin.html" class="settings-row" style="text-decoration:none">
+        <div class="settings-icon" style="background:rgba(255,69,58,.15)">🏛️</div>
+        <div class="settings-text"><div class="settings-label">전체 관리자 패널</div></div>
+        <span class="settings-arrow">›</span>
+      </a>
+      <a href="https://supabase.com/dashboard/project/vextxqzggznulwpganwt" target="_blank" class="settings-row" style="text-decoration:none">
+        <div class="settings-icon" style="background:rgba(48,209,88,.15)">🗄️</div>
+        <div class="settings-text"><div class="settings-label">Supabase DB</div></div>
+        <span class="settings-arrow">›</span>
+      </a>
+      <a href="/faq.html" class="settings-row" style="text-decoration:none">
+        <div class="settings-icon" style="background:rgba(242,153,74,.15)">💬</div>
+        <div class="settings-text"><div class="settings-label">FAQ 페이지</div></div>
+        <span class="settings-arrow">›</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
 </div>
 
 <script>
@@ -453,279 +481,211 @@ const SB_URL  = 'https://vextxqzggznulwpganwt.supabase.co'
 const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4MTUzOTIsImV4cCI6MjA5NDM5MTM5Mn0.XghaQZYtI-dq5mf8i-DPVCxtw_XBBjxGUnvaiwGQFWk'
 const ADMIN_HASH = '614fea13745bbaa53de1c1c36b216c3cd5009df185b9f642089eb7ea76a69b90'
 
-let sb = null, currentSession = null, isPwMode = false
+let sb = null, sess = null, isPw = false, myChurch = null
 
-// ── 언어 ──────────────────────────────────────────────
+// ── 언어 ─────────────────────────────────────────────
 function setLang(l) {
   document.documentElement.lang = l
   localStorage.setItem('hg_lang', l)
-  document.getElementById('btn-ko').classList.toggle('active', l==='ko')
-  document.getElementById('btn-en').classList.toggle('active', l==='en')
+  ;['btn-ko','btn-ko2','btn-ko3'].forEach(id => { const el = document.getElementById(id); if(el) el.classList.toggle('active', l==='ko') })
+  ;['btn-en','btn-en2','btn-en3'].forEach(id => { const el = document.getElementById(id); if(el) el.classList.toggle('active', l==='en') })
 }
 
-// ── 탭 전환 ───────────────────────────────────────────
+// ── 탭 ───────────────────────────────────────────────
 function switchTab(t) {
-  document.getElementById('panel-pastor').style.display = t==='pastor'?'block':'none'
-  document.getElementById('panel-admin').style.display  = t==='admin' ?'block':'none'
+  document.getElementById('panel-pastor').style.display = t==='pastor' ? 'block' : 'none'
+  document.getElementById('panel-admin').style.display  = t==='admin'  ? 'block' : 'none'
   document.getElementById('tab-pastor').classList.toggle('active', t==='pastor')
-  document.getElementById('tab-admin').classList.toggle('active',  t==='admin')
+  document.getElementById('tab-admin').classList.toggle('active', t==='admin')
 }
 
-// ── FAQ 토글 ─────────────────────────────────────────
-function toggleFaq(el) {
-  el.classList.toggle('open')
+// ── 비밀번호 토글 ─────────────────────────────────────
+function togglePw() {
+  isPw = !isPw
+  document.getElementById('pw-row').style.display = isPw ? 'flex' : 'none'
+  const ko = document.getElementById('pw-toggle-ko'), en = document.getElementById('pw-toggle-en')
+  const bko = document.getElementById('pastor-btn-ko'), ben = document.getElementById('pastor-btn-en')
+  if (isPw) { ko.textContent='✉️ 매직 링크로 전환'; en.textContent='✉️ Use Magic Link'; bko.textContent='🔒 로그인'; ben.textContent='🔒 Login' }
+  else { ko.textContent='🔒 비밀번호로 로그인'; en.textContent='🔒 Login with Password'; bko.textContent='✉️ 로그인 링크 받기'; ben.textContent='✉️ Send Login Link' }
 }
 
-// ── 비밀번호 로그인 토글 ───────────────────────────────
-function togglePwLogin() {
-  isPwMode = !isPwMode
-  document.getElementById('pw-input-group').style.display = isPwMode ? 'block' : 'none'
-  const ko = document.getElementById('pastor-btn-text')
-  const en = document.getElementById('pastor-btn-text-en')
-  const tko = document.getElementById('toggle-pw-text')
-  const ten = document.getElementById('toggle-pw-text-en')
-  if (isPwMode) {
-    ko.textContent = '로그인'; en.textContent = 'Login'
-    tko.textContent = '매직 링크로 로그인'; ten.textContent = 'Login with Magic Link'
-  } else {
-    ko.textContent = '로그인 링크 받기 (매직 링크)'; en.textContent = 'Send Magic Link'
-    tko.textContent = '비밀번호로 로그인'; ten.textContent = 'Login with Password'
-  }
+// ── SHA-256 ───────────────────────────────────────────
+async function sha256(s) {
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s))
+  return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')
 }
 
-// ── SHA-256 ──────────────────────────────────────────
-async function sha256(str) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('')
-}
-
-// ── 관리자 로그인 ─────────────────────────────────────
-async function adminLogin() {
-  const pw = document.getElementById('admin-pw').value
-  const msg = document.getElementById('msg-admin')
-  if (!pw) { showMsg(msg, '비밀번호를 입력해주세요.', 'error'); return }
-  const hash = await sha256(pw)
-  if (hash !== ADMIN_HASH) { showMsg(msg, '비밀번호가 올바르지 않습니다.', 'error'); return }
-  localStorage.setItem('hg_admin', '1')
-  showAdminDashboard()
+// ── 메시지 ────────────────────────────────────────────
+function msg(id, text, type) {
+  const el = document.getElementById(id)
+  if (!el) return
+  el.textContent = text; el.className = 'msg ' + type; el.style.display = 'block'
+  if (type === 'ok') setTimeout(() => { el.style.display = 'none' }, 3000)
 }
 
 // ── 목사 로그인 ───────────────────────────────────────
 async function pastorLogin() {
   const email = document.getElementById('pastor-email').value.trim()
-  const msg = document.getElementById('msg-pastor')
-  if (!email || !email.includes('@')) { showMsg(msg, '올바른 이메일을 입력해주세요.', 'error'); return }
-  if (!sb) { showMsg(msg, '서버 오류. 잠시 후 다시 시도해주세요.', 'error'); return }
-
-  if (isPwMode) {
+  if (!email.includes('@')) { msg('msg-pastor', '올바른 이메일을 입력해주세요.', 'err'); return }
+  if (!sb) { msg('msg-pastor', '서버 오류. 잠시 후 다시 시도해주세요.', 'err'); return }
+  if (isPw) {
     const pw = document.getElementById('pastor-pw').value
-    if (!pw) { showMsg(msg, '비밀번호를 입력해주세요.', 'error'); return }
+    if (!pw) { msg('msg-pastor', '비밀번호를 입력해주세요.', 'err'); return }
     const { data, error } = await sb.auth.signInWithPassword({ email, password: pw })
-    if (error) { showMsg(msg, '로그인 실패: ' + error.message, 'error'); return }
-    currentSession = data.session
-    showPastorDashboard(data.user)
+    if (error) { msg('msg-pastor', '로그인 실패: ' + error.message, 'err'); return }
+    sess = data.session; showPastor(data.user)
   } else {
-    const { error } = await sb.auth.signInWithOtp({
-      email,
-      options: { emailRedirectTo: window.location.href }
-    })
-    if (error) { showMsg(msg, '오류: ' + error.message, 'error'); return }
-    showMsg(msg, '✉️ 이메일을 확인해주세요! 스팸함도 확인해주세요.', 'success')
+    const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.href } })
+    if (error) { msg('msg-pastor', '오류: ' + error.message, 'err'); return }
+    msg('msg-pastor', '✅ 이메일을 확인해주세요! 스팸함도 확인해주세요.', 'ok')
   }
+}
+
+// ── 관리자 로그인 ─────────────────────────────────────
+async function adminLogin() {
+  const pw = document.getElementById('admin-pw').value
+  if (!pw) { msg('msg-admin', '비밀번호를 입력해주세요.', 'err'); return }
+  const hash = await sha256(pw)
+  if (hash !== ADMIN_HASH) { msg('msg-admin', '비밀번호가 올바르지 않습니다.', 'err'); return }
+  localStorage.setItem('hg_admin', '1')
+  showAdmin()
 }
 
 // ── 로그아웃 ─────────────────────────────────────────
 async function logout() {
   if (sb) await sb.auth.signOut()
   localStorage.removeItem('hg_admin')
-  currentSession = null
-  document.getElementById('dashboard-pastor').style.display = 'none'
-  document.getElementById('dashboard-admin').style.display = 'none'
-  document.getElementById('login-gate').style.display = 'block'
+  sess = null; myChurch = null
+  show('screen-login'); hide('screen-pastor'); hide('screen-admin')
 }
 
-// ── 목사 대시보드 표시 ────────────────────────────────
-async function showPastorDashboard(user) {
-  document.getElementById('login-gate').style.display = 'none'
-  document.getElementById('dashboard-pastor').style.display = 'block'
+// ── 목사 화면 ─────────────────────────────────────────
+async function showPastor(user) {
+  hide('screen-login'); show('screen-pastor')
   const name = user.user_metadata?.full_name || user.email?.split('@')[0] || '목사님'
-  document.getElementById('pastor-name').textContent = name
-  await loadMyChurch(user.email)
+  document.getElementById('pastor-display-name').textContent = name
+  await loadChurch(user.email)
 }
 
-// ── 내 교회 정보 로드 ─────────────────────────────────
-async function loadMyChurch(email) {
-  const el = document.getElementById('pastor-church-info')
+async function loadChurch(email) {
   try {
-    const res = await fetch(
-      `${SB_URL}/rest/v1/churches?email=eq.${encodeURIComponent(email)}&select=*&limit=1`,
-      { headers: { apikey: SB_ANON, Authorization: 'Bearer ' + SB_ANON } }
-    )
-    const data = await res.json()
-    if (!data || !data[0]) {
-      el.innerHTML = '<p style="color:var(--muted);font-size:.9rem">등록된 교회 정보가 없습니다. 파트너 신청을 먼저 해주세요.</p>'
-      return
-    }
-    const c = data[0]
-    el.innerHTML = `
-      <div class="info-row"><span class="info-label">교회명</span><span class="info-value">${c.name||'-'}</span></div>
-      <div class="info-row"><span class="info-label">English</span><span class="info-value">${c.name_en||'-'}</span></div>
-      <div class="info-row"><span class="info-label">도시</span><span class="info-value">${c.city_slug||'-'}</span></div>
-      <div class="info-row"><span class="info-label">교단</span><span class="info-value">${c.denomination||'-'}</span></div>
-      <div class="info-row"><span class="info-label">전화</span><span class="info-value">${c.phone||'-'}</span></div>
-      <div class="info-row"><span class="info-label">이메일</span><span class="info-value">${c.email||'-'}</span></div>
-      <div class="info-row"><span class="info-label">웹사이트</span><span class="info-value">${c.website?`<a href="${c.website}" target="_blank" style="color:var(--mint)">${c.website}</a>`:'-'}</span></div>
-      <div class="info-row"><span class="info-label">파트너</span><span class="info-value">${c.hebron_partner?'<span class="badge badge-partner">✅ 파트너</span>':'<span class="badge badge-pending">⏳ 대기중</span>'}</span></div>
-    `
-  } catch {
-    el.innerHTML = '<p style="color:var(--muted)">정보를 불러오지 못했습니다.</p>'
+    const r = await fetch(`${SB_URL}/rest/v1/churches?email=eq.${encodeURIComponent(email)}&limit=1`, { headers: { apikey: SB_ANON, Authorization: 'Bearer ' + SB_ANON } })
+    const [c] = await r.json()
+    if (!c) { document.getElementById('ch-name').textContent = '등록된 교회 없음'; return }
+    myChurch = c
+    document.getElementById('ch-name').textContent = c.name || '—'
+    document.getElementById('ch-name-en').textContent = c.name_en || ''
+    const meta = []
+    if (c.denomination) meta.push(`<span class="church-tag">⛪ ${c.denomination}</span>`)
+    if (c.service_time) meta.push(`<span class="church-tag">⏰ ${c.service_time}</span>`)
+    if (c.city_slug) meta.push(`<span class="church-tag">📍 ${c.city_slug}</span>`)
+    document.getElementById('ch-meta').innerHTML = meta.join('')
+    const wl = document.getElementById('ch-website-link')
+    if (c.website) { wl.href = c.website; wl.style.opacity = '1' } else { wl.style.opacity = '.4'; wl.onclick = e => e.preventDefault() }
+    const pl = document.getElementById('ch-phone-link')
+    if (c.phone) { pl.href = 'tel:' + c.phone; pl.style.opacity = '1' } else { pl.style.opacity = '.4'; pl.onclick = e => e.preventDefault() }
+  } catch {}
+}
+
+// ── 편집 ─────────────────────────────────────────────
+function toggleEdit() {
+  const el = document.getElementById('edit-section')
+  const open = el.style.display !== 'none'
+  el.style.display = open ? 'none' : 'block'
+  if (!open && myChurch) {
+    document.getElementById('e-name').value    = myChurch.name || ''
+    document.getElementById('e-name-en').value = myChurch.name_en || ''
+    document.getElementById('e-phone').value   = myChurch.phone || ''
+    document.getElementById('e-web').value     = myChurch.website || ''
+    document.getElementById('e-time').value    = myChurch.service_time || ''
+    document.getElementById('e-desc').value    = myChurch.description || ''
   }
 }
 
-// ── 비밀번호 변경 ─────────────────────────────────────
-function togglePwSection() {
-  const s = document.getElementById('pw-section')
-  s.style.display = s.style.display === 'none' ? 'block' : 'none'
+async function saveEdit() {
+  if (!sess) return
+  const updates = {}
+  const fields = [['e-name','name'],['e-name-en','name_en'],['e-phone','phone'],['e-web','website'],['e-time','service_time'],['e-desc','description']]
+  fields.forEach(([id, key]) => { const v = document.getElementById(id).value.trim(); if(v) updates[key] = v })
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/churches?email=eq.${encodeURIComponent(sess.user.email)}`, {
+      method: 'PATCH',
+      headers: { apikey: SB_ANON, Authorization: 'Bearer ' + sess.access_token, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+      body: JSON.stringify(updates)
+    })
+    if (!r.ok) throw new Error()
+    msg('msg-edit', '✅ 저장되었습니다!', 'ok')
+    setTimeout(() => { toggleEdit(); loadChurch(sess.user.email) }, 1200)
+  } catch { msg('msg-edit', '저장 실패. 다시 시도해주세요.', 'err') }
 }
 
-async function changePassword() {
+// ── 비밀번호 변경 ─────────────────────────────────────
+function togglePwPanel() {
+  const el = document.getElementById('pw-panel')
+  const open = el.style.display !== 'none'
+  el.style.display = open ? 'none' : 'block'
+  document.getElementById('pw-panel-arrow').textContent = open ? '›' : '‹'
+}
+
+async function savePw() {
   const pw = document.getElementById('new-pw').value
   const pw2 = document.getElementById('confirm-pw').value
-  const msg = document.getElementById('pw-msg')
-  if (pw.length < 8) { showMsg(msg, '비밀번호는 8자 이상이어야 합니다.', 'error'); return }
-  if (pw !== pw2) { showMsg(msg, '비밀번호가 일치하지 않습니다.', 'error'); return }
-  if (!sb) { showMsg(msg, '서버 오류.', 'error'); return }
+  if (pw.length < 8) { msg('msg-pw', '8자 이상 입력해주세요.', 'err'); return }
+  if (pw !== pw2) { msg('msg-pw', '비밀번호가 일치하지 않습니다.', 'err'); return }
   const { error } = await sb.auth.updateUser({ password: pw })
-  if (error) { showMsg(msg, '오류: ' + error.message, 'error'); return }
-  showMsg(msg, '✅ 비밀번호가 변경되었습니다!', 'success')
-  document.getElementById('new-pw').value = ''
-  document.getElementById('confirm-pw').value = ''
+  if (error) { msg('msg-pw', '오류: ' + error.message, 'err'); return }
+  msg('msg-pw', '✅ 비밀번호가 저장되었습니다!', 'ok')
+  document.getElementById('new-pw').value = ''; document.getElementById('confirm-pw').value = ''
 }
 
-// ── 관리자 대시보드 ───────────────────────────────────
-async function showAdminDashboard() {
-  document.getElementById('login-gate').style.display = 'none'
-  document.getElementById('dashboard-admin').style.display = 'block'
-  await loadAdminStats()
-  await loadAdminChurches()
-  await loadPendingApps()
-}
-
-async function loadAdminStats() {
+// ── 관리자 화면 ───────────────────────────────────────
+async function showAdmin() {
+  hide('screen-login'); show('screen-admin')
   const h = { apikey: SB_ANON, Authorization: 'Bearer ' + SB_ANON, Prefer: 'count=exact' }
   try {
-    const [r1, r2, r3] = await Promise.all([
+    const [r1,r2,r3] = await Promise.all([
       fetch(`${SB_URL}/rest/v1/churches?active=eq.true&select=id`, { headers: h }),
       fetch(`${SB_URL}/rest/v1/churches?hebron_partner=eq.true&select=id`, { headers: h }),
       fetch(`${SB_URL}/rest/v1/community_items?status=eq.pending&select=id`, { headers: h }),
     ])
-    const cr = (r) => { const m = r.headers.get('Content-Range'); return m ? m.split('/')[1] : '?' }
-    document.getElementById('admin-stat-churches').textContent = cr(r1)
-    document.getElementById('admin-stat-partners').textContent = cr(r2)
-    document.getElementById('admin-stat-pending').textContent  = cr(r3)
+    const cr = r => { const m = r.headers.get('Content-Range'); return m ? m.split('/')[1] : '?' }
+    document.getElementById('a-churches').textContent = cr(r1)
+    document.getElementById('a-partners').textContent = cr(r2)
+    document.getElementById('a-pending').textContent  = cr(r3)
   } catch {}
-}
 
-async function loadAdminChurches() {
-  const h = { apikey: SB_ANON, Authorization: 'Bearer ' + SB_ANON }
+  // 최근 신청
   try {
-    const res = await fetch(
-      `${SB_URL}/rest/v1/churches?active=eq.true&order=created_at.desc&limit=20&select=name,name_en,city_slug,denomination,hebron_partner`,
-      { headers: h }
-    )
-    const data = await res.json()
-    const tbody = document.getElementById('admin-church-tbody')
-    if (!Array.isArray(data) || !data.length) { tbody.innerHTML = '<tr><td colspan="5" style="color:var(--muted)">데이터 없음</td></tr>'; return }
-    tbody.innerHTML = data.map(c => `
-      <tr>
-        <td>${c.name||'-'}</td>
-        <td style="color:var(--muted)">${c.name_en||'-'}</td>
-        <td>${c.city_slug||'-'}</td>
-        <td>${c.denomination||'-'}</td>
-        <td>${c.hebron_partner?'<span class="badge badge-partner">파트너</span>':'—'}</td>
-      </tr>
-    `).join('')
+    const r = await fetch(`${SB_URL}/rest/v1/community_items?status=eq.pending&order=created_at.desc&limit=5&select=title,name,category,city_slug,created_at`, { headers: { apikey: SB_ANON, Authorization: 'Bearer ' + SB_ANON } })
+    const data = await r.json()
+    const el = document.getElementById('a-pending-list')
+    el.innerHTML = !data?.length ? '<div class="list-row"><span style="color:var(--text2);font-size:.88rem">대기 중인 신청 없음</span></div>'
+      : data.map(d => `<div class="list-row"><div class="list-dot yellow"></div><div><div class="list-name">${d.title||d.name||'(제목없음)'}</div><div class="list-sub">${d.category||''} · ${d.city_slug||''} · ${new Date(d.created_at).toLocaleDateString('ko-KR')}</div></div></div>`).join('')
   } catch {}
-}
 
-async function loadPendingApps() {
-  const h = { apikey: SB_ANON, Authorization: 'Bearer ' + SB_ANON }
+  // 최근 교회
   try {
-    const res = await fetch(
-      `${SB_URL}/rest/v1/community_items?status=eq.pending&order=created_at.desc&limit=10&select=title,name,category,city_slug,contact,created_at`,
-      { headers: h }
-    )
-    const data = await res.json()
-    const el = document.getElementById('admin-pending-list')
-    if (!Array.isArray(data) || !data.length) { el.innerHTML = '<p style="color:var(--muted);font-size:.9rem">대기 중인 신청이 없습니다.</p>'; return }
-    el.innerHTML = data.map(d => `
-      <div style="padding:10px 0;border-bottom:1px solid var(--border)">
-        <div style="font-weight:600;font-size:.9rem">${d.title||d.name||'(제목 없음)'}</div>
-        <div style="font-size:.8rem;color:var(--muted);margin-top:2px">
-          ${d.category||''} · ${d.city_slug||''} · ${d.contact||''}
-          <span style="margin-left:8px">${new Date(d.created_at).toLocaleDateString('ko-KR')}</span>
-        </div>
-      </div>
-    `).join('')
+    const r = await fetch(`${SB_URL}/rest/v1/churches?active=eq.true&order=created_at.desc&limit=8&select=name,city_slug,hebron_partner`, { headers: { apikey: SB_ANON, Authorization: 'Bearer ' + SB_ANON } })
+    const data = await r.json()
+    const el = document.getElementById('a-church-list')
+    el.innerHTML = !data?.length ? '<div class="list-row"><span style="color:var(--text2);font-size:.88rem">없음</span></div>'
+      : data.map(c => `<div class="list-row"><div class="list-dot" style="${c.hebron_partner?'':'background:var(--text3)'}"></div><div><div class="list-name">${c.name||'—'}</div><div class="list-sub">${c.city_slug||''} ${c.hebron_partner?'· ✅ 파트너':''}</div></div></div>`).join('')
   } catch {}
 }
 
-// ── 교회 편집 토글 ────────────────────────────────────
-function toggleEditMode() {
-  const form = document.getElementById('edit-form')
-  const isOpen = form.style.display !== 'none'
-  form.style.display = isOpen ? 'none' : 'block'
-  if (!isOpen) prefillEditForm()
-}
-
-function prefillEditForm() {
-  const info = document.getElementById('pastor-church-info')
-  const rows = info.querySelectorAll('.info-row')
-  rows.forEach(row => {
-    const label = row.querySelector('.info-label')?.textContent?.trim()
-    const value = row.querySelector('.info-value')?.textContent?.trim()
-    if (!label || !value || value === '-') return
-    if (label === '교회명') document.getElementById('edit-name').value = value
-    if (label === 'English') document.getElementById('edit-name-en').value = value
-    if (label === '전화') document.getElementById('edit-phone').value = value
-    if (label === '웹사이트') document.getElementById('edit-website').value = value
-  })
-}
-
-async function saveChurchEdit() {
-  const msg = document.getElementById('edit-msg')
-  if (!currentSession) { showMsg(msg, '로그인이 필요합니다.', 'error'); return }
-  const email = currentSession.user.email
-  const updates = {
-    name:         document.getElementById('edit-name').value.trim() || undefined,
-    name_en:      document.getElementById('edit-name-en').value.trim() || undefined,
-    phone:        document.getElementById('edit-phone').value.trim() || undefined,
-    website:      document.getElementById('edit-website').value.trim() || undefined,
-    service_time: document.getElementById('edit-service-time').value.trim() || undefined,
-    description:  document.getElementById('edit-description').value.trim() || undefined,
+// ── FAQ 팝업 ─────────────────────────────────────────
+function openFaq(type) {
+  const tips = {
+    pw: { ko:'비밀번호를 잊으셨나요?\n\n위로 돌아가서 이메일을 입력하고 "로그인 링크 받기"를 클릭하세요.\n링크를 클릭하면 비밀번호 없이 로그인됩니다.\n그 후 계정 설정에서 새 비밀번호를 등록하세요.', en:'Forgot your password?\n\nGo back, enter your email, and click "Send Login Link".\nClick the link to login without a password.\nThen set a new password in Account Settings.' },
+    email: { ko:'이메일이 안 오셨나요?\n\n① 스팸(정크) 메일함을 확인해주세요.\n② 1-2분 기다린 후 다시 시도하세요.\n③ 여전히 안 오면 Hebronplatform@gmail.com 으로 연락주세요.', en:"Didn't receive the email?\n\n① Check your spam/junk folder.\n② Wait 1-2 minutes and try again.\n③ Still nothing? Email Hebronplatform@gmail.com" }
   }
-  Object.keys(updates).forEach(k => updates[k] === undefined && delete updates[k])
-  try {
-    const res = await fetch(
-      `${SB_URL}/rest/v1/churches?email=eq.${encodeURIComponent(email)}`,
-      {
-        method: 'PATCH',
-        headers: { apikey: SB_ANON, Authorization: 'Bearer ' + currentSession.access_token, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-        body: JSON.stringify(updates)
-      }
-    )
-    if (!res.ok) throw new Error('저장 실패')
-    showMsg(msg, '✅ 저장되었습니다! 잠시 후 화면에 반영됩니다.', 'success')
-    setTimeout(() => { document.getElementById('edit-form').style.display = 'none'; loadMyChurch(email) }, 1500)
-  } catch (e) { showMsg(msg, '오류: ' + e.message, 'error') }
+  const lang = document.documentElement.lang || 'ko'
+  alert(tips[type]?.[lang] || tips[type]?.ko)
 }
 
-// ── 메시지 표시 ───────────────────────────────────────
-function showMsg(el, text, type) {
-  el.textContent = text
-  el.className = 'login-msg ' + type
-  el.style.display = 'block'
-}
+// ── 유틸 ─────────────────────────────────────────────
+function show(id) { document.getElementById(id).style.display = 'block' }
+function hide(id) { document.getElementById(id).style.display = 'none' }
 
 // ── 초기화 ────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
@@ -735,30 +695,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (typeof window.supabase !== 'undefined') {
     sb = window.supabase.createClient(SB_URL, SB_ANON)
 
-    // 관리자 세션 확인
-    if (localStorage.getItem('hg_admin') === '1') {
-      showAdminDashboard(); return
-    }
+    if (localStorage.getItem('hg_admin') === '1') { showAdmin(); return }
 
-    // 목사 세션 확인
-    const { data: { session } } = await sb.auth.getSession()
-    if (session) {
-      currentSession = session
-      showPastorDashboard(session.user); return
-    }
+    const { data: { session: s } } = await sb.auth.getSession()
+    if (s) { sess = s; showPastor(s.user); return }
 
-    // 매직 링크 콜백
     sb.auth.onAuthStateChange(async (event, s) => {
-      if (event === 'SIGNED_IN' && s) {
-        currentSession = s
-        showPastorDashboard(s.user)
-      }
+      if (event === 'SIGNED_IN' && s) { sess = s; showPastor(s.user) }
     })
   }
 
-  // 엔터키
   document.getElementById('pastor-email').addEventListener('keydown', e => { if(e.key==='Enter') pastorLogin() })
-  document.getElementById('pastor-pw').addEventListener('keydown', e => { if(e.key==='Enter') pastorLogin() })
+  document.getElementById('admin-pw').addEventListener('keydown', e => { if(e.key==='Enter') adminLogin() })
 })
 </script>
 </body>
