@@ -14411,13 +14411,13 @@ function getCityChurches(slug: string, lang: string) {
   const byCity: Record<string, ChurchEntry[]> = {
     seattle: [
       {
-        emoji: "⭐", tier: 1,
+        emoji: "⭐", tier: 1, hebronPartner: true,
         name: ko ? "시애틀지구촌교회" : "Global Mission Church of Greater Seattle",
         nameEn: "Global Mission Church of Greater Seattle",
         desc: ko
-          ? "북미가사원 시애틀 지역목자 · 세축 네기둥\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 주일연합예배 · 목장 · 삶 공부\n✨ 담임: 김성수 목사\n🔗 ijiguchon.org"
-          : "HMI Seattle Regional Shepherd · Three Axes & Four Pillars\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday Worship · Mokjang · Life Studies\n✨ Lead Pastor: Sungsoo Kim\n🔗 ijiguchon.org",
-        tags: ko ? ["린우드", "시애틀"] : ["Lynnwood", "Seattle"],
+          ? "🤝 Hebron 협력교회\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 주일연합예배 · 목장 · 삶 공부 · 새가족 환영\n✨ 담임: 김성수 목사\n🔗 ijiguchon.org"
+          : "🤝 Hebron Partner Church\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday Worship · Home Church · Life Studies · Newcomers Welcome\n✨ Lead Pastor: Sungsoo Kim\n🔗 ijiguchon.org",
+        tags: ko ? ["린우드", "시애틀", "헤브론파트너"] : ["Lynnwood", "Seattle", "HebronPartner"],
         website: "https://ijiguchon.org",
         email: "info@ijiguchon.org",
       },
@@ -14859,11 +14859,11 @@ function getCityChurches(slug: string, lang: string) {
     orlando: [
       {
         emoji: "⭐", tier: 1,
-        name: ko ? "올랜도비전교회" : "Orlando Vision Church (KPCO)",
+        name: ko ? "올랜도비전교회" : "Orlando Vision Church",
         nameEn: "Orlando Vision Church",
         desc: ko
-          ? "북미가사원 플로리다 지역 · 북미가사원장 교회\n📍 16796 E. Davenport Rd, Winter Garden, FL 34787\n✨ 담임: 남인철 목사 (북미가사원장)\n🔗 kpco.org"
-          : "HMI North America President's Church · Florida\n📍 16796 E. Davenport Rd, Winter Garden, FL 34787\n✨ Lead Pastor: Inchul Nam (HMI NA President)\n🔗 kpco.org",
+          ? "📍 16796 E. Davenport Rd, Winter Garden, FL 34787\n✨ 담임: 남인철 목사\n🔗 kpco.org"
+          : "📍 16796 E. Davenport Rd, Winter Garden, FL 34787\n✨ Lead Pastor: Inchul Nam\n🔗 kpco.org",
         tags: ko ? ["올랜도", "플로리다"] : ["Orlando", "Florida"],
         website: "http://www.kpco.org",
       },
@@ -15167,19 +15167,21 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {churches.length === 0
               ? (communityChurches.length === 0 && sbChurches.length === 0 && <ComingSoonCard lang={lang} accentColor={accent} />)
               : <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number; hebronPartner?: boolean; denomination?: string; website?: string; email?: string; phone?: string; kakao?: string; }>).map((c, i) => (
+                {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number; hebronPartner?: boolean; denomination?: string; website?: string; email?: string; phone?: string; kakao?: string; }>)
+                  .slice().sort((a, b) => (b.hebronPartner ? 1 : 0) - (a.hebronPartner ? 1 : 0) || (a.tier ?? 9) - (b.tier ?? 9))
+                  .map((c, i) => (
                   <div key={i} style={
-                    c.tier === 1
-                      ? { border: "1px solid rgba(201,162,39,0.55)", borderRadius: 16, background: "rgba(201,162,39,0.06)" }
-                      : c.tier === 2
-                        ? { border: "1px solid rgba(110,231,183,0.35)", borderRadius: 16, background: "rgba(110,231,183,0.04)" }
-                        : {}
+                    c.hebronPartner
+                      ? { border: "1.5px solid rgba(110,231,183,0.5)", borderRadius: 16, background: "rgba(110,231,183,0.06)" }
+                      : c.tier === 1
+                        ? { border: "1px solid rgba(201,162,39,0.45)", borderRadius: 16, background: "rgba(201,162,39,0.05)" }
+                        : { borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)" }
                   }>
-                    {/* 교회 유형 뱃지 + 교단 — Hebron 협력교회 / 교단명 */}
-                    {((c.hebronPartner ?? c.tier === 2) || c.denomination) ? (
+                    {/* 교회 유형 뱃지 */}
+                    {(c.hebronPartner || c.denomination) ? (
                       <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px", flexWrap: "wrap" }}>
-                        {(c.hebronPartner ?? c.tier === 2) && (
-                          <span style={{ background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.4)", color: "#6EE7B7", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700, letterSpacing: "0.02em" }}>
+                        {c.hebronPartner && (
+                          <span style={{ background: "rgba(110,231,183,0.15)", border: "1px solid rgba(110,231,183,0.45)", color: "#6EE7B7", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700, letterSpacing: "0.02em" }}>
                             🤝 Hebron 협력교회
                           </span>
                         )}
