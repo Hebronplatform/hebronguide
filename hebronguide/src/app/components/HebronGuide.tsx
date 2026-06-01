@@ -14914,8 +14914,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   type WelcomeChurchData = { name: string; desc: string; phone?: string; kakao?: string; website?: string; email?: string; };
   const [welcomeChurch, setWelcomeChurch] = useState<WelcomeChurchData | null>(null);
   const tabs = lang === "ko"
-    ? ["소개", "교회 목록", "프로그램", "새가족", "🏆 교회 네트워크"]
-    : ["About", "Churches", "Programs", "New Members", "🏆 Church Network"];
+    ? ["소개", "교회 목록", "프로그램", "새가족", "🤝 파트너 네트워크"]
+    : ["About", "Churches", "Programs", "New Members", "🤝 Partner Network"];
   const accent = "#C084FC";
   const city = useCityConfig();
   const citySlug = city.slug;
@@ -15308,38 +15308,90 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
           </InfoCard>
         )}
 
-        {/* ── TAB 5: 허브교회 네트워크 ── */}
+        {/* ── TAB 5: 파트너 교회 네트워크 ── */}
         {sub === 4 && (
           <div style={{ paddingBottom: 8 }}>
 
-            {/* 동참 초청 */}
-            <div style={{ background: "linear-gradient(160deg, rgba(201,162,39,0.10) 0%, rgba(0,0,0,0) 100%)", border: "1px solid rgba(201,162,39,0.25)", borderRadius: 18, padding: "20px 18px", marginBottom: 14 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#ECFDF5", lineHeight: 1.7, marginBottom: 10 }}>
-                {lang === "ko"
-                  ? "HebronGuide의 사명에 동의하시는 교회의 동참을 구합니다."
-                  : "We invite churches that share HebronGuide's mission to join us."}
+            {/* 사명 소개 */}
+            <div style={{ background: "linear-gradient(160deg, rgba(110,231,183,0.08) 0%, rgba(0,0,0,0) 100%)", border: "1px solid rgba(110,231,183,0.2)", borderRadius: 18, padding: "18px 18px 16px", marginBottom: 14 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#6EE7B7", marginBottom: 6 }}>
+                🤝 {lang === "ko" ? "Hebron 파트너 교회 네트워크" : "Hebron Partner Church Network"}
               </div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.8 }}>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.7)", lineHeight: 1.8 }}>
                 {lang === "ko"
-                  ? "아래 버튼으로 교회 정보를 보내주시면 운영팀이 연락드립니다."
-                  : "Send us your church info below and our team will be in touch."}
+                  ? "목사님 · 성도 · HebronGuide가 원팀이 되어 각 도시마다 환대 커뮤니티를 만들어 갑니다. 파트너 교회는 교회 탭 최상단에 노출되며 검증 배지가 부여됩니다."
+                  : "Pastors · Congregations · HebronGuide as one team, building hospitality communities in every city. Partner churches get top placement and a verified badge."}
               </div>
             </div>
 
-            {/* 등록 버튼 */}
-            <a href={`mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(
-              lang === "ko" ? "[HebronGuide] 교회 등록 신청" : "[HebronGuide] Church Registration"
-            )}&body=${encodeURIComponent(
-              lang === "ko"
-                ? "안녕하세요. {교회명} 담임목사 {성함}입니다.\nHebronGuide 교회 네트워크 등록을 신청합니다.\n\n— 교회명:\n— 담임목사:\n— 도시 / 주:\n— 교단 / 소속:\n— 교회 웹사이트:\n— 연락처 (이메일 / 전화):"
-                : "Hello. I am {Pastor Name}, lead pastor of {Church Name}.\nI would like to register with the HebronGuide network.\n\n— Church Name:\n— Lead Pastor:\n— City / State:\n— Denomination:\n— Website:\n— Contact (email / phone):"
-            )}`} style={{ display: "block", textDecoration: "none", marginBottom: 12 }}>
-              <div style={{ background: "linear-gradient(135deg, #C9A227, #B8901C)", borderRadius: 14, padding: "14px 20px", textAlign: "center", boxShadow: "0 4px 16px rgba(201,162,39,0.25)" }}>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#fff", marginBottom: 3 }}>
-                  {lang === "ko" ? "교회 등록 신청하기 →" : "Register Your Church →"}
+            {/* 아코디언 — Hebron 협력교회 */}
+            {(() => {
+              const partnerChurches = churches.filter((c: any) => c.hebronPartner);
+              const otherChurches   = churches.filter((c: any) => !c.hebronPartner);
+              return (
+                <>
+                  {/* 협력교회 폴더 (항상 열림) */}
+                  <div style={{ border: "1.5px solid rgba(110,231,183,0.35)", borderRadius: 14, marginBottom: 10, overflow: "hidden" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 16px", background: "rgba(110,231,183,0.08)" }}>
+                      <span style={{ fontSize: 14 }}>🤝</span>
+                      <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#6EE7B7", flex: 1 }}>
+                        {lang === "ko" ? `Hebron 협력교회 (${partnerChurches.length}개)` : `Hebron Partner Churches (${partnerChurches.length})`}
+                      </span>
+                      <span style={{ fontSize: 10, color: "rgba(110,231,183,0.6)", fontFamily: "Manrope,sans-serif" }}>
+                        {lang === "ko" ? "항상 표시" : "Always shown"}
+                      </span>
+                    </div>
+                    {partnerChurches.length === 0 ? (
+                      <div style={{ padding: "16px", textAlign: "center", color: "rgba(236,253,245,0.4)", fontSize: 12, fontFamily: "Manrope,sans-serif" }}>
+                        {lang === "ko" ? "이 도시의 파트너 교회가 아직 없습니다." : "No partner churches in this city yet."}
+                      </div>
+                    ) : (
+                      <div style={{ padding: "10px 10px 4px" }}>
+                        {partnerChurches.map((c: any, i: number) => (
+                          <div key={"p-" + i} style={{ border: "1px solid rgba(110,231,183,0.25)", borderRadius: 10, marginBottom: 8, background: "rgba(110,231,183,0.04)" }}>
+                            <PlaceCard {...c} accentColor="#6EE7B7" />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* 기타 교회 폴더 (접힘) */}
+                  {otherChurches.length > 0 && (() => {
+                    const [openOther, setOpenOther] = useState(false);
+                    return (
+                      <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: 14, marginBottom: 10, overflow: "hidden" }}>
+                        <button onClick={() => setOpenOther(p => !p)} style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 16px", background: "none", border: "none", width: "100%", cursor: "pointer" }}>
+                          <span style={{ fontSize: 14 }}>⛪</span>
+                          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13, color: "rgba(236,253,245,0.7)", flex: 1, textAlign: "left" }}>
+                            {lang === "ko" ? `기타 교회 (${otherChurches.length}개)` : `Other Churches (${otherChurches.length})`}
+                          </span>
+                          <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>{openOther ? "▲" : "▼"}</span>
+                        </button>
+                        {openOther && (
+                          <div style={{ padding: "0 10px 8px" }}>
+                            {otherChurches.map((c: any, i: number) => (
+                              <div key={"o-" + i} style={{ border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, marginBottom: 8 }}>
+                                <PlaceCard {...c} accentColor={accent} />
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
+                </>
+              );
+            })()}
+
+            {/* 파트너 신청 CTA */}
+            <a href="/ad-request.html#church" style={{ display: "block", textDecoration: "none", marginBottom: 12 }}>
+              <div style={{ background: "linear-gradient(135deg, rgba(110,231,183,0.9), rgba(52,211,153,0.85))", borderRadius: 14, padding: "14px 20px", textAlign: "center", boxShadow: "0 4px 16px rgba(110,231,183,0.2)" }}>
+                <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#0d1117", marginBottom: 3 }}>
+                  {lang === "ko" ? "🤝 Hebron 파트너 교회 신청하기 →" : "🤝 Apply as Hebron Partner Church →"}
                 </div>
-                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(255,255,255,0.6)" }}>
-                  hebronplatform@gmail.com
+                <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(0,0,0,0.55)" }}>
+                  {lang === "ko" ? "무료 · 검증 배지 · 최상단 노출" : "Free · Verified badge · Top placement"}
                 </div>
               </div>
             </a>
