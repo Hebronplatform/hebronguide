@@ -14415,8 +14415,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "시애틀지구촌교회" : "Global Mission Church of Greater Seattle",
         nameEn: "Global Mission Church of Greater Seattle",
         desc: ko
-          ? "🤝 Hebron 협력교회\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 주일연합예배 · 목장 · 삶 공부 · 새가족 환영\n✨ 담임: 김성수 목사\n🔗 ijiguchon.org"
-          : "🤝 Hebron Partner Church\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday Worship · Home Church · Life Studies · Newcomers Welcome\n✨ Lead Pastor: Sungsoo Kim\n🔗 ijiguchon.org",
+          ? "✨ 담임: 김성수 목사\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 주일연합예배 · 목장 · 삶 공부 · 새가족 환영\n🔗 ijiguchon.org"
+          : "✨ Lead Pastor: Sungsoo Kim\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday Worship · Home Church · Life Studies · Newcomers Welcome\n🔗 ijiguchon.org",
         tags: ko ? ["린우드", "시애틀", "헤브론파트너"] : ["Lynnwood", "Seattle", "HebronPartner"],
         website: "https://ijiguchon.org",
         email: "info@ijiguchon.org",
@@ -14426,8 +14426,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "시애틀우리교회" : "Seattle Woori Church",
         nameEn: "Seattle Woori Church",
         desc: ko
-          ? "📍 Bellevue, WA\n✨ 담임: 최요환 목사\n🏠 주일예배 · 목장 · 삶 공부 · 이민자 환영\n🔗 seattlewoori.org"
-          : "📍 Bellevue, WA\n✨ Lead Pastor: Yohwan Choi\n🏠 Sunday Worship · Mokjang · Life Studies · Welcoming Immigrants\n🔗 seattlewoori.org",
+          ? "✨ 담임: 최요환 목사\n📍 Bellevue, WA\n🏠 주일예배 · 목장 · 삶 공부 · 이민자 환영\n🔗 seattlewoori.org"
+          : "✨ Lead Pastor: Yohwan Choi\n📍 Bellevue, WA\n🏠 Sunday Worship · Mokjang · Life Studies · Welcoming Immigrants\n🔗 seattlewoori.org",
 
         tags: ko ? ["벨뷰", "시애틀"] : ["Bellevue", "Seattle"],
         website: "http://www.seattlewoori.org/#n",
@@ -14439,8 +14439,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "예닮교회" : "Yedam Church — Dallas",
         nameEn: "Yedam Church",
         desc: ko
-          ? "북미가사원 텍사스 지역목자\n📍 Dallas, TX\n✨ 담임: 이우철 목사\n🔗 ydkcdallas.org"
-          : "HMI North America Texas Regional Shepherd\n📍 Dallas, TX\n✨ Lead Pastor: Woo Chul Lee\n🔗 ydkcdallas.org",
+          ? "✨ 담임: 이우철 목사\n📍 Dallas, TX\n🔗 ydkcdallas.org"
+          : "✨ Lead Pastor: Woo Chul Lee\n📍 Dallas, TX\n🔗 ydkcdallas.org",
         tags: ko ? ["달라스", "텍사스"] : ["Dallas", "Texas"],
         website: "https://www.ydkcdallas.org",
       },
@@ -14449,8 +14449,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "에덴교회 (Eden Church at the Field)" : "Eden Church at the Field — Carrollton",
         nameEn: ko ? "Eden Church at the Field" : "에덴교회",
         desc: ko
-          ? "✅ 검증됨\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n✨ 담임: 신종우 목사\n🕐 주일예배 매주 일요일 오후 12:30\n📧 kfbcc@yahoo.com\n🏛 남침례단 · 2005년 설립\n🔗 edendallas.org"
-          : "✅ Verified\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n✨ Lead Pastor: Jong-woo Shin\n🕐 Sunday Service every Sunday 12:30 PM\n📧 kfbcc@yahoo.com\n🏛 SBC · Est. 2005\n🔗 edendallas.org",
+          ? "✨ 담임: 신종우 목사\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n🕐 주일예배 매주 일요일 오후 12:30\n📧 kfbcc@yahoo.com\n🏛 남침례단 · 2005년 설립\n🔗 edendallas.org"
+          : "✨ Lead Pastor: Jong-woo Shin\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n🕐 Sunday Service every Sunday 12:30 PM\n📧 kfbcc@yahoo.com\n🏛 SBC · Est. 2005\n🔗 edendallas.org",
         tags: ko ? ["한인교회", "캐롤튼", "달라스", "남침례단"] : ["Korean Church", "Carrollton", "Dallas", "SBC"],
         email: "kfbcc@yahoo.com",
         website: "edendallas.org",
@@ -14462,8 +14462,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "갓즈패밀리교회" : "God's Family Church — OC",
         nameEn: "God's Family Church",
         desc: ko
-          ? "북미가사원 OC 지역목자\n📍 Orange County, CA\n✨ 담임: 이경태 목사"
-          : "HMI North America OC Regional Shepherd\n📍 Orange County, CA\n✨ Lead Pastor: Kyungtae Lee",
+          ? "✨ 담임: 이경태 목사\n📍 Orange County, CA"
+          : "✨ Lead Pastor: Kyungtae Lee\n📍 Orange County, CA",
         tags: ko ? ["오렌지카운티"] : ["OC"],
       },
       {
@@ -14471,8 +14471,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "주님의마음교회" : "Lord's Heart Church — OC",
         nameEn: "Lord's Heart Church",
         desc: ko
-          ? "북미가사원 OC 지역목자\n📍 Orange County, CA\n✨ 담임: 오경탁 목사"
-          : "HMI North America OC Regional Shepherd\n📍 Orange County, CA\n✨ Lead Pastor: Kyungtack Oh",
+          ? "✨ 담임: 오경탁 목사\n📍 Orange County, CA"
+          : "✨ Lead Pastor: Kyungtack Oh\n📍 Orange County, CA",
         tags: ko ? ["오렌지카운티"] : ["OC"],
       },
       {
@@ -14480,8 +14480,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "풀러튼좋은교회" : "Fullerton Good Church",
         nameEn: "Fullerton Good Church",
         desc: ko
-          ? "✅ 등재 신청 | 박희수 담임목사.\n📍 Fullerton, CA (Orange County)\n🔗 joeunchurch.com\n✨ 풀러튼 지역 한인 정착 연결·환영 사역"
-          : "✅ Partner Church | Lead Pastor: Hee Soo Park.\n📍 Fullerton, CA (Orange County)\n🔗 joeunchurch.com\n✨ Korean immigrant welcome & settlement ministry in Fullerton",
+          ? "✨ 담임: 박희수 목사\n📍 Fullerton, CA (Orange County)\n🏠 풀러튼 지역 한인 정착 연결·환영 사역\n🔗 joeunchurch.com"
+          : "✨ Lead Pastor: Hee Soo Park\n📍 Fullerton, CA (Orange County)\n🏠 Korean immigrant welcome & settlement ministry in Fullerton\n🔗 joeunchurch.com",
         tags: ko ? ["풀러튼", "오렌지카운티", "한인교회"] : ["Fullerton", "OC", "Korean Church"],
         website: "http://www.joeunchurch.com",
       },
@@ -14492,8 +14492,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "갈릴리선교교회" : "Galilee Mission Church — LA K-Town",
         nameEn: "Galilee Mission Church",
         desc: ko
-          ? "북미가사원 LA K-Town 지역목자\n📍 LA Koreatown, CA\n✨ 담임: 한천영 목사\n🔗 gmcchurch.com"
-          : "HMI North America LA K-Town Regional Shepherd\n📍 LA Koreatown, CA\n✨ Lead Pastor: Cheonyoung Han\n🔗 gmcchurch.com",
+          ? "✨ 담임: 한천영 목사\n📍 LA Koreatown, CA\n🔗 gmcchurch.com"
+          : "✨ Lead Pastor: Cheonyoung Han\n📍 LA Koreatown, CA\n🔗 gmcchurch.com",
         tags: ko ? ["LA", "코리아타운"] : ["LA", "Koreatown"],
         website: "https://gmcchurch.com",
       },
@@ -14502,8 +14502,8 @@ function getCityChurches(slug: string, lang: string) {
         name: "Journey Christian Fellowship",
         nameEn: "Journey Christian Fellowship",
         desc: ko
-          ? "북미가사원 영어권 서부 지역목자\n📍 Ventura County, CA\n✨ Lead Pastor: Young Su McCann"
-          : "HMI North America English-Speaking West Regional Shepherd\n📍 Ventura County, CA\n✨ Lead Pastor: Young Su McCann",
+          ? "✨ Lead Pastor: Young Su McCann\n📍 Ventura County, CA"
+          : "✨ Lead Pastor: Young Su McCann\n📍 Ventura County, CA",
         tags: ko ? ["영어권", "CA"] : ["English", "CA"],
       },
     ],
@@ -14512,8 +14512,8 @@ function getCityChurches(slug: string, lang: string) {
         emoji: "⭐", tier: 1,
         name: ko ? "휴스턴서울교회" : "Seoul Church of Houston",
         desc: ko
-          ? "국제가사원장 교회 · 세축 네기둥 기준 교회\n📍 Houston, TX\n✨ 담임: 이수관 목사 (국제가사원장)\n🔗 seoulchurch.com"
-          : "International HMI President's Church · Three Axes & Four Pillars\n📍 Houston, TX\n✨ Lead Pastor: Sukwan Lee (Int'l HMI President)\n🔗 seoulchurch.com",
+          ? "✨ 담임: 이수관 목사 (국제가사원장)\n📍 Houston, TX\n🔗 seoulchurch.com"
+          : "✨ Lead Pastor: Sukwan Lee (Int'l HMI President)\n📍 Houston, TX\n🔗 seoulchurch.com",
         tags: ko ? ["휴스턴", "기준교회"] : ["Houston", "Flagship"],
         website: "https://seoulchurch.com",
       },
@@ -14521,8 +14521,8 @@ function getCityChurches(slug: string, lang: string) {
         emoji: "⭐", tier: 1,
         name: "New Life Fellowship",
         desc: ko
-          ? "북미가사원 이사 · 영어권 간사\n📍 Houston, TX\n✨ Lead Pastor: Eric Shin (신동일 목사)"
-          : "HMI North America Board & English Ministry Director\n📍 Houston, TX\n✨ Lead Pastor: Eric Shin",
+          ? "✨ Lead Pastor: Eric Shin (신동일 목사)\n📍 Houston, TX"
+          : "✨ Lead Pastor: Eric Shin\n📍 Houston, TX",
         tags: ko ? ["휴스턴", "영어권"] : ["Houston", "English"],
       },
       {
@@ -14530,8 +14530,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "뉴라이프침례교회" : "New Life Baptist Church",
         nameEn: "New Life Baptist Church",
         desc: ko
-          ? "✅ 침례교 | 건강한 교회 · 건강한 성도\n📍 1717 Katy Gap Rd. Katy, TX 77494 (임시 예배 장소)\n✨ 담임: 김한국 목사\n📞 346-527-0958\n✉️ nlbchouston@gmail.com\n🔗 newlifehouston.org"
-          : "✅ Baptist | Healthy Church · Healthy Members\n📍 1717 Katy Gap Rd. Katy, TX 77494 (Temporary Worship Venue)\n✨ Lead Pastor: Han-guk Kim\n📞 346-527-0958\n✉️ nlbchouston@gmail.com\n🔗 newlifehouston.org",
+          ? "✨ 담임: 김한국 목사\n📍 1717 Katy Gap Rd. Katy, TX 77494 (임시 예배 장소)\n🏠 건강한 교회 · 건강한 성도\n📞 346-527-0958\n✉️ nlbchouston@gmail.com\n🔗 newlifehouston.org"
+          : "✨ Lead Pastor: Han-guk Kim\n📍 1717 Katy Gap Rd. Katy, TX 77494 (Temporary Worship Venue)\n🏠 Healthy Church · Healthy Members\n📞 346-527-0958\n✉️ nlbchouston@gmail.com\n🔗 newlifehouston.org",
         tags: ko ? ["침례교", "휴스턴", "건강한교회", "건강한성도"] : ["Baptist", "Houston", "Healthy Church"],
         website: "https://newlifehouston.org",
         email: "nlbchouston@gmail.com",
@@ -14544,8 +14544,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "목민교회" : "Mokmin Church — Toronto",
         nameEn: "Mokmin Church",
         desc: ko
-          ? "북미가사원 토론토 지역목자 · 실행위원\n📍 Toronto, ON, Canada\n✨ 담임: 곽웅 목사\n🔗 mokmin.ca"
-          : "HMI North America Toronto Regional Shepherd & Executive\n📍 Toronto, ON, Canada\n✨ Lead Pastor: Woong Kwak\n🔗 mokmin.ca",
+          ? "✨ 담임: 곽웅 목사\n📍 Toronto, ON, Canada\n🔗 mokmin.ca"
+          : "✨ Lead Pastor: Woong Kwak\n📍 Toronto, ON, Canada\n🔗 mokmin.ca",
         tags: ko ? ["토론토"] : ["Toronto"],
         website: "https://mokmin.ca",
       },
@@ -14554,8 +14554,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "워터루제일교회" : "Waterloo First Church",
         nameEn: "Waterloo First Church",
         desc: ko
-          ? "북미가사원 토론토(워터루) 지역목자\n📍 Waterloo, ON, Canada\n✨ 담임: 김성은 목사\n🔗 waterlookorean.com"
-          : "HMI Toronto (Waterloo) Regional Shepherd\n📍 Waterloo, ON, Canada\n✨ Lead Pastor: Sungeun Kim\n🔗 waterlookorean.com",
+          ? "✨ 담임: 김성은 목사\n📍 Waterloo, ON, Canada\n🔗 waterlookorean.com"
+          : "✨ Lead Pastor: Sungeun Kim\n📍 Waterloo, ON, Canada\n🔗 waterlookorean.com",
         tags: ko ? ["워터루", "토론토"] : ["Waterloo", "Toronto"],
         website: "https://www.waterlookorean.com",
       },
@@ -14564,8 +14564,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "한인등대교회" : "Korean Lighthouse Church — Toronto",
         nameEn: "Korean Lighthouse Church",
         desc: ko
-          ? "북미가사원 토론토(등대) 지역목자\n📍 Toronto, ON, Canada\n✨ 담임: 안순기 목사"
-          : "HMI Toronto (Lighthouse) Regional Shepherd\n📍 Toronto, ON, Canada\n✨ Lead Pastor: Sungki Ahn",
+          ? "✨ 담임: 안순기 목사\n📍 Toronto, ON, Canada"
+          : "✨ Lead Pastor: Sungki Ahn\n📍 Toronto, ON, Canada",
         tags: ko ? ["토론토"] : ["Toronto"],
       },
     ],
@@ -14575,8 +14575,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "나의사랑하는교회 (MBC)" : "My Beloved Church — Vancouver (MBC)",
         nameEn: "My Beloved Church",
         desc: ko
-          ? "북미가사원 밴쿠버(MBC) 지역목자\n📍 Vancouver, BC, Canada\n✨ 담임: 오은식 목사"
-          : "HMI Vancouver (MBC) Regional Shepherd\n📍 Vancouver, BC, Canada\n✨ Lead Pastor: Eunsik Oh",
+          ? "✨ 담임: 오은식 목사\n📍 Vancouver, BC, Canada"
+          : "✨ Lead Pastor: Eunsik Oh\n📍 Vancouver, BC, Canada",
         tags: ko ? ["밴쿠버"] : ["Vancouver"],
       },
       {
@@ -14584,8 +14584,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "두드림교회" : "DooDream Church — Vancouver",
         nameEn: "DooDream Church",
         desc: ko
-          ? "북미가사원 밴쿠버(두드림) 지역목자\n📍 Vancouver, BC, Canada\n✨ 담임: 안대선 목사\n🔗 vandodream.ca"
-          : "HMI Vancouver (DooDream) Regional Shepherd\n📍 Vancouver, BC, Canada\n✨ Lead Pastor: Daesun Ahn\n🔗 vandodream.ca",
+          ? "✨ 담임: 안대선 목사\n📍 Vancouver, BC, Canada\n🔗 vandodream.ca"
+          : "✨ Lead Pastor: Daesun Ahn\n📍 Vancouver, BC, Canada\n🔗 vandodream.ca",
         tags: ko ? ["밴쿠버"] : ["Vancouver"],
         website: "https://www.vandodream.ca",
       },
@@ -14594,8 +14594,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "사랑의교회 (밴쿠버)" : "Love Church — Vancouver",
         nameEn: "Love Church Vancouver",
         desc: ko
-          ? "북미가사원 밴쿠버(사랑의) 지역목자\n📍 Vancouver, BC, Canada\n✨ 담임: 이은진 목사"
-          : "HMI Vancouver (Love) Regional Shepherd\n📍 Vancouver, BC, Canada\n✨ Lead Pastor: Eunjin Lee",
+          ? "✨ 담임: 이은진 목사\n📍 Vancouver, BC, Canada"
+          : "✨ Lead Pastor: Eunjin Lee\n📍 Vancouver, BC, Canada",
         tags: ko ? ["밴쿠버"] : ["Vancouver"],
       },
       {
@@ -14603,8 +14603,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "화이트락한인교회" : "White Rock Korean Methodist Church",
         nameEn: "White Rock Korean Methodist Church",
         desc: ko
-          ? "감리교 (UMC / KMC)\n📍 White Rock, BC, Canada (밴쿠버 남부)\n✨ 담임: 임흥빈 목사 (Ben Im)\n🕐 예배: 오전 10:30\n📞 (604) 537-8789\n✉️ whiterockkmc@gmail.com\n\n새가족모임 · 목장 사역 · 영혼 구원과 제자 양육."
-          : "Methodist (UMC / KMC)\n📍 White Rock, BC, Canada (South Vancouver)\n✨ Lead Pastor: Ben Im\n🕐 Service: 10:30 AM\n📞 (604) 537-8789\n✉️ whiterockkmc@gmail.com\n\nNew members' fellowship · Cell group ministry · Soul-winning & disciple-making church.",
+          ? "✨ 담임: 임흥빈 목사 (Ben Im)\n📍 White Rock, BC, Canada (밴쿠버 남부)\n🏠 새가족모임 · 목장 사역 · 영혼 구원과 제자 양육\n🕐 예배: 오전 10:30\n📞 (604) 537-8789\n✉️ whiterockkmc@gmail.com"
+          : "✨ Lead Pastor: Ben Im\n📍 White Rock, BC, Canada (South Vancouver)\n🏠 New members' fellowship · Cell group ministry · Soul-winning & disciple-making\n🕐 Service: 10:30 AM\n📞 (604) 537-8789\n✉️ whiterockkmc@gmail.com",
         tags: ko ? ["감리교", "밴쿠버", "화이트락", "목장사역", "새가족"] : ["Methodist", "Vancouver", "White Rock", "Cell Group"],
         phone: "6045378789",
         email: "whiterockkmc@gmail.com",
@@ -14617,8 +14617,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "프린스조지한인교회" : "Prince George Korean Church",
         nameEn: "Prince George Korean Church",
         desc: ko
-          ? "✅ 검증됨\n📍 Prince George, BC, Canada\n🕐 주일예배 10:30am\n☎ 604-727-0259\n✉️ pgkchurch@gmail.com\n✨ 담임: 오일권 목사 (Daniel Oh)\n🔗 pgkchurch.ca\n\n새가족모임 운영 · 한인봉사센터 연계. BC 북부 한인 이주민을 따뜻하게 환영합니다."
-          : "✅ Verified\n📍 Prince George, BC, Canada\n🕐 Sunday Service 10:30am\n☎ 604-727-0259\n✉️ pgkchurch@gmail.com\n✨ Lead Pastor: Daniel Oh\n🔗 pgkchurch.ca\n\nNew members' group & Korean community service center. Warmly welcomes Korean diaspora in northern BC.",
+          ? "✨ 담임: 오일권 목사 (Daniel Oh)\n📍 Prince George, BC, Canada\n🏠 새가족모임 운영 · 한인봉사센터 연계. BC 북부 한인 이주민을 따뜻하게 환영합니다.\n🕐 주일예배 10:30am\n☎ 604-727-0259\n✉️ pgkchurch@gmail.com\n🔗 pgkchurch.ca"
+          : "✨ Lead Pastor: Daniel Oh\n📍 Prince George, BC, Canada\n🏠 New members' group & Korean community service center. Warmly welcomes Korean diaspora in northern BC.\n🕐 Sunday Service 10:30am\n☎ 604-727-0259\n✉️ pgkchurch@gmail.com\n🔗 pgkchurch.ca",
         tags: ko ? ["프린스조지", "BC북부", "한인봉사센터", "새가족모임"] : ["Prince George", "Northern BC", "Community Center", "New Members"],
         phone: "6047270259",
         email: "pgkchurch@gmail.com",
@@ -14630,8 +14630,8 @@ function getCityChurches(slug: string, lang: string) {
         emoji: "⭐", tier: 1,
         name: ko ? "새누리선교교회 (NCMC)" : "New Community Mission Church (NCMC)",
         desc: ko
-          ? "한·영 이중언어 · 북미가사원 SF 지역목자\n📍 3399 CSM Dr., San Mateo, CA 94402\n✨ 담임: 김태훈 목사\n🕐 1부 11:30am · 2부 1:30pm (영어예배)\n📧 welcome.ncmc@gmail.com\n🔗 ncmission.org"
-          : "Korean-English Bilingual · HMI SF Regional Shepherd\n📍 3399 CSM Dr., San Mateo, CA 94402\n✨ Lead Pastor: Rev. Tae Kim\n🕐 1st 11:30am · 2nd 1:30pm (English service)\n📧 welcome.ncmc@gmail.com\n🔗 ncmission.org",
+          ? "✨ 담임: 김태훈 목사\n📍 3399 CSM Dr., San Mateo, CA 94402\n🏠 한·영 이중언어 예배\n🕐 1부 11:30am · 2부 1:30pm (영어예배)\n📧 welcome.ncmc@gmail.com\n🔗 ncmission.org"
+          : "✨ Lead Pastor: Rev. Tae Kim\n📍 3399 CSM Dr., San Mateo, CA 94402\n🏠 Korean-English Bilingual Worship\n🕐 1st 11:30am · 2nd 1:30pm (English service)\n📧 welcome.ncmc@gmail.com\n🔗 ncmission.org",
         tags: ko ? ["한영이중언어", "샌마테오"] : ["Bilingual", "San Mateo"],
         website: "https://ncmission.org", email: "welcome.ncmc@gmail.com",
       },
@@ -14640,8 +14640,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "피스토스장로교회" : "Pistos Presbyterian Church — East Bay",
         nameEn: "Pistos Presbyterian Church",
         desc: ko
-          ? "북미가사원 북가주(이스트베이) 지역목자\n📍 East Bay, CA\n✨ 담임: 조영구 목사\n🔗 gopistos.com"
-          : "HMI North CA (East Bay) Regional Shepherd\n📍 East Bay, CA\n✨ Lead Pastor: Youngku Cho\n🔗 gopistos.com",
+          ? "✨ 담임: 조영구 목사\n📍 East Bay, CA\n🔗 gopistos.com"
+          : "✨ Lead Pastor: Youngku Cho\n📍 East Bay, CA\n🔗 gopistos.com",
         tags: ko ? ["이스트베이", "SF베이"] : ["East Bay", "SF Bay"],
         website: "https://gopistos.com",
       },
@@ -14650,8 +14650,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "시온영락교회" : "Zion Young-Nak Church — San Jose",
         nameEn: "Zion Young-Nak Church",
         desc: ko
-          ? "북미가사원 북가주(산호세) 지역목자\n📍 San Jose, CA\n✨ 담임: 이기준 목사\n🔗 eternaljoychurch.org"
-          : "HMI North CA (San Jose) Regional Shepherd\n📍 San Jose, CA\n✨ Lead Pastor: Kijun Lee\n🔗 eternaljoychurch.org",
+          ? "✨ 담임: 이기준 목사\n📍 San Jose, CA\n🔗 eternaljoychurch.org"
+          : "✨ Lead Pastor: Kijun Lee\n📍 San Jose, CA\n🔗 eternaljoychurch.org",
         tags: ko ? ["산호세", "SF베이"] : ["San Jose", "SF Bay"],
         website: "https://www.eternaljoychurch.org",
       },
@@ -14662,8 +14662,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "다운교회" : "Down Church — Seoul",
         nameEn: "Down Church",
         desc: ko
-          ? "📍 서울\n✨ 담임: 석정일 목사\n🔗 downchurch.com"
-          : "📍 Seoul\n✨ Lead Pastor: Jeongil Suk\n🔗 downchurch.com",
+          ? "✨ 담임: 석정일 목사\n📍 서울\n🔗 downchurch.com"
+          : "✨ Lead Pastor: Jeongil Suk\n📍 Seoul\n🔗 downchurch.com",
         tags: ko ? ["서울"] : ["Seoul"],
         website: "https://www.downchurch.com",
       },
@@ -14673,8 +14673,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "예수생명교회 (남양주)" : "Jesus Life Church — Namyangju",
         nameEn: "JESUS LIFE CHURCH",
         desc: ko
-          ? "✅ 검증됨\n📍 경기도 남양주시\n🕐 주일예배 오전 11:00\n☎ 010-5146-0691\n✉️ core69m@gmail.com\n✨ 담임: 맹기원 목사\n\n1:1 맞춤 성경공부와 코칭을 도와드립니다. 서울 동북부 30분 거리."
-          : "✅ Verified\n📍 Namyangju, Gyeonggi\n🕐 Sunday Service 11:00am\n☎ 010-5146-0691\n✉️ core69m@gmail.com\n✨ Lead Pastor: Giweon Maeng\n\nPersonalized 1-on-1 Bible study and coaching available. 30 min from northeast Seoul.",
+          ? "✨ 담임: 맹기원 목사\n📍 경기도 남양주시\n🏠 1:1 맞춤 성경공부와 코칭을 도와드립니다. 서울 동북부 30분 거리.\n🕐 주일예배 오전 11:00\n☎ 010-5146-0691\n✉️ core69m@gmail.com"
+          : "✨ Lead Pastor: Giweon Maeng\n📍 Namyangju, Gyeonggi\n🏠 Personalized 1-on-1 Bible study and coaching available. 30 min from northeast Seoul.\n🕐 Sunday Service 11:00am\n☎ 010-5146-0691\n✉️ core69m@gmail.com",
         tags: ko ? ["남양주", "경기동북", "장로교", "성경공부", "Hebron협력"] : ["Namyangju", "Northeast Gyeonggi", "Presbyterian", "BibleStudy"],
         phone: "01051460691",
         email: "core69m@gmail.com",
@@ -14685,8 +14685,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "행복한교회 (의정부)" : "Haengbokan Church — Uijeongbu",
         nameEn: "Haengbokan Church",
         desc: ko
-          ? "✅ 검증됨\n📍 경기도 의정부시 오목로 225번길 135 트윈타워 1동 7층\n🕐 주일예배 11시\n☎ 010-3254-8020\n✉️ yhk8020@daum.net\n✨ 담임: 이현권 목사\n\n새가족부 등록 후 담임목사와 공부 후 목장가입. 서울 북부 30분 거리. 경기 북부 한인 이주민·귀환 동포를 따뜻하게 환영합니다."
-          : "✅ Verified\n📍 Twin Tower Bldg 1, 7F, 135 Omokro 225beon-gil, Uijeongbu, Gyeonggi\n🕐 Sunday Service 11am\n☎ 010-3254-8020\n✉️ yhk8020@daum.net\n✨ Lead Pastor: Hyeonkwon Lee\n\nNew members meet with the pastor before joining a small group. 30 min from northern Seoul. Warmly welcomes Korean diaspora.",
+          ? "✨ 담임: 이현권 목사\n📍 경기도 의정부시 오목로 225번길 135 트윈타워 1동 7층\n🏠 새가족부 등록 후 담임목사와 공부 후 목장가입. 서울 북부 30분 거리. 경기 북부 한인 이주민·귀환 동포를 따뜻하게 환영합니다.\n🕐 주일예배 11시\n☎ 010-3254-8020\n✉️ yhk8020@daum.net"
+          : "✨ Lead Pastor: Hyeonkwon Lee\n📍 Twin Tower Bldg 1, 7F, 135 Omokro 225beon-gil, Uijeongbu, Gyeonggi\n🏠 New members meet with the pastor before joining a small group. 30 min from northern Seoul. Warmly welcomes Korean diaspora.\n🕐 Sunday Service 11am\n☎ 010-3254-8020\n✉️ yhk8020@daum.net",
         tags: ko ? ["의정부", "경기북부", "장로교", "귀환동포환영"] : ["Uijeongbu", "North Gyeonggi", "Presbyterian", "Returning Diaspora"],
         phone: "01032548020",
         email: "yhk8020@daum.net",
@@ -14697,8 +14697,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "에클레시아 엔크리스토 (온라인)" : "Ekklesia enchristo — Online Church",
         nameEn: "Ekklesia enchristo",
         desc: ko
-          ? "✅ Hebron 협력교회 | 침례교 (SBC / KSBC)\n🌐 온라인 전용 교회\n🕐 예배: 토요일 오후 9:00–10:00 (Zoom·온라인)\n☎ 010-2305-0545\n✉️ iharu2157@gmail.com\n✨ 담임: 신용철 목사 (Yongchul Shin)\n\n교회 나가기 어려운 분들을 위해 내 방에서 문을 열 수 있는 온라인 교회입니다. 해외 이주민·복귀자 누구나 참여 가능합니다."
-          : "✅ Hebron Partner | Baptist (SBC / KSBC)\n🌐 Online-only Church\n🕐 Service: Saturday 9:00–10:00 PM (Zoom · Online)\n☎ +82-10-2305-0545\n✉️ iharu2157@gmail.com\n✨ Lead Pastor: Yongchul Shin\n\nAn online church you can join from your own room — designed for those who find it difficult to attend in person. Open to diaspora and returnees worldwide.",
+          ? "✨ 담임: 신용철 목사 (Yongchul Shin)\n📍 온라인 전용 교회 (서울)\n🏠 교회 나가기 어려운 분들을 위한 온라인 교회. 해외 이주민·복귀자 누구나 참여 가능합니다.\n🕐 예배: 토요일 오후 9:00–10:00 (Zoom)\n☎ 010-2305-0545\n✉️ iharu2157@gmail.com"
+          : "✨ Lead Pastor: Yongchul Shin\n📍 Online Church (Seoul-based)\n🏠 An online church you can join from your own room — designed for those who find it difficult to attend in person. Open to diaspora and returnees worldwide.\n🕐 Service: Saturday 9:00–10:00 PM (Zoom)\n☎ +82-10-2305-0545\n✉️ iharu2157@gmail.com",
         tags: ko ? ["온라인교회", "서울", "침례교", "토요예배", "해외동포환영"] : ["Online Church", "Seoul", "Baptist", "Saturday Service", "Diaspora"],
         phone: "01023050545",
         email: "iharu2157@gmail.com",
@@ -14738,8 +14738,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "루이빌새한장로교회" : "Louisville Saehan Presbyterian Church",
         nameEn: "Louisville Saehan Presbyterian Church",
         desc: ko
-          ? "북미가사원 켄터키 지역목자\n📍 Louisville, KY\n🏠 목장 소그룹 모임 운영\n✨ 담임: 김상헌 목사\n🔗 saehan.org"
-          : "HMI Kentucky Regional Shepherd\n📍 Louisville, KY\n🏠 Small group Mokjang meetings\n✨ Lead Pastor: Sangheon Kim\n🔗 saehan.org",
+          ? "✨ 담임: 김상헌 목사\n📍 Louisville, KY\n🏠 목장 소그룹 모임 운영\n🔗 saehan.org"
+          : "✨ Lead Pastor: Sangheon Kim\n📍 Louisville, KY\n🏠 Small group Mokjang meetings\n🔗 saehan.org",
         tags: ko ? ["루이빌", "장로교", "켄터키"] : ["Louisville", "Presbyterian", "Kentucky"],
         website: "https://www.saehan.org",
       },
@@ -14750,8 +14750,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "주님의몸된교회" : "Body of Christ Church — Nashville",
         nameEn: "Body of Christ Church",
         desc: ko
-          ? "북미가사원 테네시 지역목자\n📍 Tennessee (Nashville 지역)\n✨ 담임: 이영범 목사"
-          : "HMI Tennessee Regional Shepherd\n📍 Tennessee (Nashville area)\n✨ Lead Pastor: Youngbum Lee",
+          ? "✨ 담임: 이영범 목사\n📍 Tennessee (Nashville 지역)"
+          : "✨ Lead Pastor: Youngbum Lee\n📍 Tennessee (Nashville area)",
         tags: ko ? ["내쉬빌", "테네시"] : ["Nashville", "Tennessee"],
       },
     ],
@@ -14761,8 +14761,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "내슈아한마음교회" : "Nashua One Heart Church",
         nameEn: "Nashua One Heart Church",
         desc: ko
-          ? "북미가사원 뉴잉글랜드 지역목자\n📍 Nashua, NH (뉴잉글랜드)\n✨ 담임: 최지원 목사\n🔗 nashuahanmaum.com"
-          : "HMI New England Regional Shepherd\n📍 Nashua, NH (New England)\n✨ Lead Pastor: Jiwon Choi\n🔗 nashuahanmaum.com",
+          ? "✨ 담임: 최지원 목사\n📍 Nashua, NH (뉴잉글랜드)\n🔗 nashuahanmaum.com"
+          : "✨ Lead Pastor: Jiwon Choi\n📍 Nashua, NH (New England)\n🔗 nashuahanmaum.com",
         tags: ko ? ["보스턴", "뉴잉글랜드", "내슈아"] : ["Boston", "New England", "Nashua"],
         website: "https://www.nashuahanmaum.com",
       },
@@ -14773,8 +14773,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "한울림교회" : "Hanullim Church — New York",
         nameEn: "Hanullim Church",
         desc: ko
-          ? "북미가사원 뉴욕 지역목자\n📍 New York (Long Island)\n✨ 담임: 김원재 목사\n🔗 hpcny.org"
-          : "HMI New York Regional Shepherd\n📍 New York (Long Island)\n✨ Lead Pastor: Wonjae Kim\n🔗 hpcny.org",
+          ? "✨ 담임: 김원재 목사\n📍 New York (Long Island)\n🔗 hpcny.org"
+          : "✨ Lead Pastor: Wonjae Kim\n📍 New York (Long Island)\n🔗 hpcny.org",
         tags: ko ? ["뉴욕", "롱아일랜드"] : ["New York", "Long Island"],
         website: "https://www.hpcny.org",
       },
@@ -14783,8 +14783,8 @@ function getCityChurches(slug: string, lang: string) {
         name: "Day and Night Church",
         nameEn: "Day and Night Church",
         desc: ko
-          ? "북미가사원 영어권 동부 지역목자\n📍 New York, NY\n✨ Lead Pastor: Rein Auh"
-          : "HMI English-Speaking East Regional Shepherd\n📍 New York, NY\n✨ Lead Pastor: Rein Auh",
+          ? "✨ Lead Pastor: Rein Auh\n📍 New York, NY"
+          : "✨ Lead Pastor: Rein Auh\n📍 New York, NY",
         tags: ko ? ["뉴욕", "영어권"] : ["New York", "English"],
       },
     ],
@@ -14794,8 +14794,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "벤살렘연합감리교회" : "Bensalem UMC — Philadelphia",
         nameEn: "Bensalem United Methodist Church",
         desc: ko
-          ? "북미가사원 필라/뉴저지 지역목자\n📍 Bensalem, PA (Philadelphia 인근)\n✨ 담임: 차명훈 목사\n🔗 bkc21.org"
-          : "HMI Philadelphia/NJ Regional Shepherd\n📍 Bensalem, PA (Greater Philadelphia)\n✨ Lead Pastor: Myunghun Cha\n🔗 bkc21.org",
+          ? "✨ 담임: 차명훈 목사\n📍 Bensalem, PA (Philadelphia 인근)\n🔗 bkc21.org"
+          : "✨ Lead Pastor: Myunghun Cha\n📍 Bensalem, PA (Greater Philadelphia)\n🔗 bkc21.org",
         tags: ko ? ["필라델피아", "뉴저지"] : ["Philadelphia", "New Jersey"],
         website: "https://www.bkc21.org",
       },
@@ -14806,8 +14806,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "새로운교회" : "New Life Church",
         nameEn: "New Life Church",
         desc: ko
-          ? "독립 교회\n📍 Fairfax / Centreville, Virginia (DC 인근)\n✨ 담임: 안형준 목사 (Joseph Ahn)\n🕐 예배: 오후 1시\n📞 (703) 625-3979\n✉️ ahnjoseph30@gmail.com\n\n정착 도움·차편 제공·예배 후 식사 함께합니다."
-          : "Independent\n📍 Fairfax / Centreville, Virginia (Greater DC)\n✨ Lead Pastor: Joseph Ahn\n🕐 Service: 1:00 PM\n📞 (703) 625-3979\n✉️ ahnjoseph30@gmail.com\n\nSettlement help, transportation & fellowship meal after service.",
+          ? "✨ 담임: 안형준 목사 (Joseph Ahn)\n📍 Fairfax / Centreville, Virginia (DC 인근)\n🏠 정착 도움·차편 제공·예배 후 식사 함께합니다.\n🕐 예배: 오후 1시\n📞 (703) 625-3979\n✉️ ahnjoseph30@gmail.com"
+          : "✨ Lead Pastor: Joseph Ahn\n📍 Fairfax / Centreville, Virginia (Greater DC)\n🏠 Settlement help, transportation & fellowship meal after service.\n🕐 Service: 1:00 PM\n📞 (703) 625-3979\n✉️ ahnjoseph30@gmail.com",
         tags: ko ? ["DC", "버지니아", "페어팩스", "정착도움", "차편"] : ["DC", "Virginia", "Fairfax", "Settlement"],
         phone: "7036253979",
         email: "ahnjoseph30@gmail.com",
@@ -14817,8 +14817,8 @@ function getCityChurches(slug: string, lang: string) {
         name: "Unity Church",
         nameEn: "Unity Church",
         desc: ko
-          ? "북미가사원 영어권 중부 지역목자\n📍 Maryland (DC 인근)\n✨ Lead Pastor: Dan Eum"
-          : "HMI English-Speaking Central Regional Shepherd\n📍 Maryland (Greater DC)\n✨ Lead Pastor: Dan Eum",
+          ? "✨ Lead Pastor: Dan Eum\n📍 Maryland (DC 인근)"
+          : "✨ Lead Pastor: Dan Eum\n📍 Maryland (Greater DC)",
         tags: ko ? ["DC", "메릴랜드", "영어권"] : ["DC", "Maryland", "English"],
       },
     ],
@@ -14828,8 +14828,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "온누리성결교회" : "Onnuri Holiness Church — Oregon",
         nameEn: "Onnuri Holiness Church",
         desc: ko
-          ? "북미가사원 오레곤 지역목자\n📍 Oregon (Portland 지역)\n✨ 담임: 강재원 목사\n🔗 onnurichurch.org"
-          : "HMI Oregon Regional Shepherd\n📍 Oregon (Portland area)\n✨ Lead Pastor: Jaewon Kang\n🔗 onnurichurch.org",
+          ? "✨ 담임: 강재원 목사\n📍 Oregon (Portland 지역)\n🔗 onnurichurch.org"
+          : "✨ Lead Pastor: Jaewon Kang\n📍 Oregon (Portland area)\n🔗 onnurichurch.org",
         tags: ko ? ["포틀랜드", "오레곤"] : ["Portland", "Oregon"],
         website: "https://onnurichurch.org",
       },
@@ -14838,8 +14838,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "오레곤선교교회 (KMC)" : "Korean Mission Church of Oregon (KMC)",
         nameEn: "Korean Mission Church of Oregon",
         desc: ko
-          ? "✅ 미주성결교회 (KMC)\n📍 9100 SW Wilshire St, Portland, OR 97225\n✨ 담임: 주환준 목사\n📞 503-292-2294\n✉️ kmcoregon@gmail.com\n\n🏠 가족처럼 함께 지어져 가는 교회 공동체. 영적인 공급(은혜로운 말씀)과 육체에 필요한 섬김(점심) 함께 제공. 한국어·영어 동시 예배."
-          : "✅ Korean Mission Church (KMC)\n📍 9100 SW Wilshire St, Portland, OR 97225\n✨ Lead Pastor: Hwanjun Ju\n📞 503-292-2294\n✉️ kmcoregon@gmail.com\n\n🏠 A church community built together as family. Spiritual nourishment (Word) + physical care (lunch) provided. Bilingual Korean-English worship.",
+          ? "✨ 담임: 주환준 목사\n📍 9100 SW Wilshire St, Portland, OR 97225\n🏠 가족처럼 함께 지어져 가는 교회 공동체. 영적인 공급(은혜로운 말씀)과 육체에 필요한 섬김(점심) 함께 제공. 한국어·영어 동시 예배.\n📞 503-292-2294\n✉️ kmcoregon@gmail.com"
+          : "✨ Lead Pastor: Hwanjun Ju\n📍 9100 SW Wilshire St, Portland, OR 97225\n🏠 A church community built together as family. Spiritual nourishment (Word) + physical care (lunch) provided. Bilingual Korean-English worship.\n📞 503-292-2294\n✉️ kmcoregon@gmail.com",
         tags: ko ? ["성결교회", "포틀랜드", "한영예배", "KMC"] : ["KMC", "Portland", "Bilingual", "Oregon"],
         email: "kmcoregon@gmail.com",
         phone: "503-292-2294",
@@ -14851,8 +14851,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "도담교회" : "Dodam Church — Chicago",
         nameEn: "Dodam Church",
         desc: ko
-          ? "북미가사원 시카고 지역목자\n📍 Chicago, IL\n✨ 담임: 곽성룡 목사"
-          : "HMI Chicago Regional Shepherd\n📍 Chicago, IL\n✨ Lead Pastor: Sungyong Kwak",
+          ? "✨ 담임: 곽성룡 목사\n📍 Chicago, IL"
+          : "✨ Lead Pastor: Sungyong Kwak\n📍 Chicago, IL",
         tags: ko ? ["시카고"] : ["Chicago"],
       },
     ],
@@ -14862,8 +14862,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "올랜도비전교회" : "Orlando Vision Church",
         nameEn: "Orlando Vision Church",
         desc: ko
-          ? "📍 16796 E. Davenport Rd, Winter Garden, FL 34787\n✨ 담임: 남인철 목사\n🔗 kpco.org"
-          : "📍 16796 E. Davenport Rd, Winter Garden, FL 34787\n✨ Lead Pastor: Inchul Nam\n🔗 kpco.org",
+          ? "✨ 담임: 남인철 목사\n📍 16796 E. Davenport Rd, Winter Garden, FL 34787\n🔗 kpco.org"
+          : "✨ Lead Pastor: Inchul Nam\n📍 16796 E. Davenport Rd, Winter Garden, FL 34787\n🔗 kpco.org",
         tags: ko ? ["올랜도", "플로리다"] : ["Orlando", "Florida"],
         website: "http://www.kpco.org",
       },
@@ -14874,8 +14874,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "지구촌교회" : "Global Mission Church (Jiguchon)",
         nameEn: "Global Mission Church",
         desc: ko
-          ? "✅ 검증됨 · 귀환 동포·역이민자 환영\n📍 경기도 성남시 분당구 돌마로 52 (미션센터)\n📞 031-710-9300\n🕐 주일예배 다부제 — jiguchon.or.kr 예배시간 확인\n🌐 jiguchon.or.kr\n\n✨ 담임: 김우준 목사 · 원로: 이동원 목사\n기독교한국침례회 · 분당·수지 2개 캠퍼스\n영어예배(GEM) · 일본어·중국어·몽골어 국제예배 운영\n교인 약 3만명 · 귀환 동포 정착 상담 가능"
-          : "✅ Verified · Welcoming returning overseas Koreans\n📍 52 Dolma-ro, Bundang-gu, Seongnam-si, Gyeonggi Province\n📞 031-710-9300\n🕐 Multiple Sunday services — see jiguchon.or.kr for schedule\n🌐 jiguchon.or.kr\n\n✨ Senior Pastor: Rev. David Woo-Joon Kim · Emeritus: Rev. Daniel Dong-Won Lee\nKorea Baptist Convention · 2 campuses: Bundang & Suji\nEnglish Ministry (GEM): gmcem.org · Services in Japanese, Chinese & Mongolian\n~30,000 members · Pastoral support available for returning diaspora",
+          ? "✨ 담임: 김우준 목사 (원로: 이동원 목사)\n📍 경기도 성남시 분당구 돌마로 52 (미션센터)\n🏠 기독교한국침례회 · 분당·수지 2개 캠퍼스 · 영어예배(GEM) · 일본어·중국어·몽골어 국제예배 · 교인 약 3만명 · 귀환 동포 정착 상담 가능\n🕐 주일예배 다부제 — jiguchon.or.kr 예배시간 확인\n📞 031-710-9300\n🔗 jiguchon.or.kr"
+          : "✨ Lead Pastor: Rev. David Woo-Joon Kim (Emeritus: Rev. Daniel Dong-Won Lee)\n📍 52 Dolma-ro, Bundang-gu, Seongnam-si, Gyeonggi Province\n🏠 Korea Baptist Convention · 2 campuses: Bundang & Suji · English Ministry (GEM): gmcem.org · Japanese, Chinese & Mongolian services · ~30,000 members · Pastoral support for returning diaspora\n🕐 Multiple Sunday services — see jiguchon.or.kr for schedule\n📞 031-710-9300\n🔗 jiguchon.or.kr",
         tags: ko ? ["분당", "침례교", "이동원목사", "영어예배", "귀환동포"] : ["Bundang", "Baptist", "English Ministry", "Returnees"],
         website: "https://www.jiguchon.or.kr",
       },
@@ -14886,8 +14886,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "워싱턴지구촌교회 (Global Mission Church)" : "Global Mission Church — Silver Spring",
         nameEn: "Global Mission Church (GMC)",
         desc: ko
-          ? "메릴랜드·DC 한인 가정교회 사역\n📍 13421 Georgia Ave, Silver Spring, MD 20906\n✨ 담임: 박승진 목사 (5대, 2023.11 취임)\n🔗 gmcusa.org"
-          : "Korean house church ministry in MD/DC area\n📍 13421 Georgia Ave, Silver Spring, MD 20906\n✨ Lead Pastor: Rev. Seungjin Park (5th, installed Nov 2023)\n🔗 gmcusa.org",
+          ? "✨ 담임: 박승진 목사 (5대, 2023.11 취임)\n📍 13421 Georgia Ave, Silver Spring, MD 20906\n🏠 메릴랜드·DC 한인 가정교회 사역\n🔗 gmcusa.org"
+          : "✨ Lead Pastor: Rev. Seungjin Park (5th, installed Nov 2023)\n📍 13421 Georgia Ave, Silver Spring, MD 20906\n🏠 Korean house church ministry in MD/DC area\n🔗 gmcusa.org",
         tags: ko ? ["실버스프링", "메릴랜드"] : ["Silver Spring", "Maryland"],
         website: "https://www.gmcusa.org",
       },
@@ -14898,8 +14898,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "기쁨의교회" : "Joy Church — San Diego",
         nameEn: "Joy Church",
         desc: ko
-          ? "북미가사원 샌디에고 지역목자\n📍 San Diego, CA\n✨ 담임: 조성대 목사"
-          : "HMI San Diego Regional Shepherd\n📍 San Diego, CA\n✨ Lead Pastor: Sungdae Cho",
+          ? "✨ 담임: 조성대 목사\n📍 San Diego, CA"
+          : "✨ Lead Pastor: Sungdae Cho\n📍 San Diego, CA",
         tags: ko ? ["샌디에고"] : ["San Diego"],
       },
     ],

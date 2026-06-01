@@ -1361,211 +1361,156 @@ Key services:
 • USCIS 사건 조회: egov.uscis.gov (영수증 번호로 조회)`:`• On arrival: check I-94 at cbp.dhs.gov/i94
 • Register as overseas Korean: visit consulate (free, within 3 months)
 • 6 months before visa expiry: consult immigration attorney
-• Track USCIS case: egov.uscis.gov (use receipt number)`})]})]}),s===6?o.jsxs("div",{onClick:()=>Pe(Y=>Y+1),children:[o.jsxs("div",{style:{background:"linear-gradient(135deg,rgba(96,165,250,0.12),rgba(110,231,183,0.08))",border:"1px solid rgba(96,165,250,0.2)",borderRadius:16,padding:"16px 18px",marginBottom:16},children:[o.jsxs("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:14,color:"#ECFDF5"},children:a==="ko"?"🏁 전체 정착 현황":"🏁 Overall Settlement Progress"}),o.jsxs("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:16,color:g},children:[je," / ",Le]})]}),o.jsx("div",{style:{height:10,borderRadius:6,background:"rgba(255,255,255,0.08)",overflow:"hidden",marginBottom:8},children:o.jsx("div",{style:{height:"100%",width:`${Le>0?je/Le*100:0}%`,background:`linear-gradient(90deg,${g},#6EE7B7)`,borderRadius:6,transition:"width 0.5s ease"}})}),o.jsx("div",{style:{fontSize:11,color:"rgba(236,253,245,0.82)"},children:je===Le&&Le>0?a==="ko"?"🎉 모든 정착 단계 완료! 축하합니다!":"🎉 All settlement steps complete! Congratulations!":a==="ko"?`${Math.round(je/Le*100)}% 완료 — 계속 진행하세요 💪`:`${Math.round(je/Le*100)}% done — keep going 💪`}),o.jsxs("button",{onClick:Y=>{Y.stopPropagation(),window.confirm(a==="ko"?"모든 체크리스트를 초기화할까요?":"Reset all checklist items?")&&(me.forEach(Ke=>Ke.items.forEach((fn,hn)=>localStorage.removeItem(`hg_checklist_${Ke.prefix}_${hn}`))),Pe(Ke=>Ke+1))},style:{marginTop:10,border:"none",background:"rgba(248,113,113,0.15)",borderRadius:20,padding:"5px 14px",color:"#F87171",fontSize:11,cursor:"pointer",fontWeight:600},children:["🔄 ",a==="ko"?"전체 초기화":"Reset All"]})]}),me.map(Y=>{const Ke=Y.items.filter((fn,hn)=>localStorage.getItem(`hg_checklist_${Y.prefix}_${hn}`)==="1").length;return o.jsxs("div",{style:{marginBottom:14},children:[o.jsxs("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6,padding:"0 2px"},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:g},children:Y.label}),o.jsxs("div",{style:{fontFamily:"Manrope,sans-serif",fontSize:11,color:Ke===Y.items.length?"#6EE7B7":"rgba(236,253,245,0.4)",fontWeight:600},children:[Ke,"/",Y.items.length," ",Ke===Y.items.length?"✓":""]})]}),Y.items.map((fn,hn)=>o.jsx(Cu,{itemId:`${Y.prefix}_${hn}`,title:fn.title,desc:fn.desc,accentColor:g,showReminder:!1},`${Y.prefix}-${hn}`))]},Y.prefix)})]}):s===7?null:s===5?o.jsxs(o.Fragment,{children:[o.jsx(pr,{icon:"🏘️",color:"#2563EB",lang:a,titleKo:"헤브론 홈 — 검증된 한인 부동산 에이전트 연결",titleEn:"Hebron Home — Korean-friendly Licensed Realtor Match",descKo:"가정집·상업지·렌트·매매. 라이선스 검증된 한인 에이전트가 카운티별 시세·학군·이민자 특화 사항까지 안내합니다.",descEn:"Residential · Commercial · Rent · Buy. License-verified Korean realtors guide county-level pricing, school zones, immigrant-specific concerns."}),o.jsxs("div",{style:{marginTop:16,marginBottom:12},children:[o.jsxs("div",{style:{fontFamily:"'Noto Sans KR',sans-serif",fontWeight:700,fontSize:13,color:g,marginBottom:4},children:["🏘️ ",a==="ko"?`${m.toUpperCase()} 동네별 가이드`:`${m.toUpperCase()} Neighborhood Guide`]}),o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontSize:11,color:"rgba(236,253,245,0.85)",lineHeight:1.5},children:a==="ko"?"가족·학군·예산·통근 — 한 눈에 비교":"Family · Schools · Budget · Commute — at a glance"})]}),C.length===0?o.jsx(ic,{lang:a,accentColor:g}):C.map((Y,Ke)=>o.jsxs("div",{style:{background:"rgba(96,165,250,0.06)",border:"1px solid rgba(96,165,250,0.18)",borderRadius:14,padding:"14px 16px",marginBottom:10},children:[o.jsxs("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:6},children:[o.jsx("span",{style:{fontSize:20},children:Y.emoji}),o.jsx("div",{style:{fontFamily:"'Noto Sans KR',sans-serif",fontWeight:700,fontSize:13,color:"#ECFDF5"},children:Y.title})]}),o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontSize:11,lineHeight:1.7,color:"rgba(236,253,245,0.65)"},children:Y.desc})]},Ke)),o.jsxs("div",{style:{background:"rgba(37,99,235,0.08)",border:"1px solid rgba(37,99,235,0.25)",borderRadius:14,padding:"14px 16px",marginTop:4},children:[o.jsxs("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:11,color:"#60A5FA",marginBottom:10},children:["🔍 ",a==="ko"?"전문 부동산 검색 — 가정집 · 상업지 · 카운티 비교":"Pro Real Estate Search — Residential · Commercial · By County"]}),o.jsx("div",{style:{display:"flex",flexDirection:"column",gap:7},children:[{href:"https://www.zillow.com/",emoji:"🏠",label:"Zillow",sub:a==="ko"?"미국 1위 부동산 — 매매·렌트·시세 검색":"#1 US real estate — buy, rent, price tracking"},{href:"https://www.redfin.com/",emoji:"🔴",label:"Redfin",sub:a==="ko"?"정확한 시세·중개 수수료 절감":"Accurate pricing & lower commissions"},{href:"https://www.realtor.com/",emoji:"🏡",label:"Realtor.com",sub:a==="ko"?"MLS 공식 매물 — 가정집·상업지 분류":"Official MLS listings — residential & commercial"},{href:"https://www.loopnet.com/",emoji:"🏢",label:"LoopNet",sub:a==="ko"?"상업용 부동산 전문 — 사무실·매장·창고":"Commercial real estate — office, retail, warehouse"},{href:"https://www.apartments.com/",emoji:"🛏️",label:"Apartments.com",sub:a==="ko"?"렌트 전문 — 단지·가격 필터":"Rentals — complex & price filters"}].map((Y,Ke)=>o.jsxs("a",{href:Y.href,target:"_blank",rel:"noopener noreferrer",style:{display:"flex",alignItems:"center",gap:8,textDecoration:"none",background:"rgba(255,255,255,0.06)",borderRadius:10,padding:"9px 12px",border:"1px solid rgba(37,99,235,0.18)"},children:[o.jsx("span",{style:{fontSize:16},children:Y.emoji}),o.jsxs("div",{style:{flex:1},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:"#ECFDF5"},children:Y.label}),o.jsx("div",{style:{fontSize:10,color:"rgba(236,253,245,0.5)",marginTop:1},children:Y.sub})]}),o.jsx("span",{style:{color:"#60A5FA",fontSize:14},children:"→"})]},Ke))})]}),o.jsxs("div",{style:{background:"rgba(96,165,250,0.08)",border:"1px solid rgba(96,165,250,0.2)",borderRadius:14,padding:"14px 16px",marginTop:12},children:[o.jsxs("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:11,color:g,marginBottom:10},children:["💬 ",a==="ko"?"한인 커뮤니티 — 룸메이트·렌탈 실시간":"Korean Community — Roommates & Rentals"]}),o.jsxs("div",{style:{display:"flex",flexDirection:"column",gap:7},children:[o.jsxs("a",{href:"https://open.kakao.com/o/search/",target:"_blank",rel:"noopener noreferrer",style:{display:"flex",alignItems:"center",gap:8,textDecoration:"none",background:"rgba(255,255,255,0.06)",borderRadius:10,padding:"9px 12px",border:"1px solid rgba(96,165,250,0.2)"},children:[o.jsx("span",{style:{fontSize:16},children:"💬"}),o.jsxs("div",{style:{flex:1},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:"#ECFDF5"},children:a==="ko"?`카카오오픈채팅 '${m==="seattle"?"시애틀한인":m+"한인"}'`:`KakaoTalk '${m} Korean'`}),o.jsx("div",{style:{fontSize:10,color:"rgba(236,253,245,0.5)",marginTop:1},children:a==="ko"?"룸메이트·렌탈 실시간 정보":"Roommate & rental listings"})]}),o.jsx("span",{style:{color:g,fontSize:14},children:"→"})]}),m==="seattle"&&o.jsxs("a",{href:"https://www.wowseattle.com/",target:"_blank",rel:"noopener noreferrer",style:{display:"flex",alignItems:"center",gap:8,textDecoration:"none",background:"rgba(255,255,255,0.06)",borderRadius:10,padding:"9px 12px",border:"1px solid rgba(96,165,250,0.2)"},children:[o.jsx("span",{style:{fontSize:16},children:"🏘️"}),o.jsxs("div",{style:{flex:1},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:"#ECFDF5"},children:"WowSeattle"}),o.jsx("div",{style:{fontSize:10,color:"rgba(236,253,245,0.5)",marginTop:1},children:a==="ko"?"시애틀 한인 부동산·렌탈":"Seattle Korean realty & rentals"})]}),o.jsx("span",{style:{color:g,fontSize:14},children:"→"})]}),o.jsxs("a",{href:"https://www.koreadaily.com/",target:"_blank",rel:"noopener noreferrer",style:{display:"flex",alignItems:"center",gap:8,textDecoration:"none",background:"rgba(255,255,255,0.06)",borderRadius:10,padding:"9px 12px",border:"1px solid rgba(96,165,250,0.2)"},children:[o.jsx("span",{style:{fontSize:16},children:"📰"}),o.jsxs("div",{style:{flex:1},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:"#ECFDF5"},children:a==="ko"?"미주중앙일보 부동산":"Korea Daily Real Estate"}),o.jsx("div",{style:{fontSize:10,color:"rgba(236,253,245,0.5)",marginTop:1},children:a==="ko"?"전국 한인 부동산 매물·구인":"National Korean realty listings"})]}),o.jsx("span",{style:{color:g,fontSize:14},children:"→"})]})]})]}),o.jsx(pr,{icon:"🛏️",color:"#10B981",lang:a,titleKo:"헤브론 스테이 — 단기 임시 거주 (1-3개월)",titleEn:"Hebron Stay — Short-term Bridge Housing (1-3 mo)",descKo:"정식 임대 전 한인 가정에서 시작. 방 + 정착 안내 + 자연스러운 이웃 소개.",descEn:"Stay with a Korean family before signing a long-term lease. Room + guidance + community intro."})]}):o.jsxs(o.Fragment,{children:[o.jsxs("div",{style:{marginBottom:16},children:[o.jsxs("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6},children:[o.jsx("span",{style:{fontFamily:"Manrope,sans-serif",fontSize:11,fontWeight:600,color:"rgba(236,253,245,0.82)"},children:a==="ko"?"완료":"Progress"}),o.jsxs("span",{style:{fontFamily:"Manrope,sans-serif",fontSize:11,fontWeight:700,color:g},children:[xe," / ",v.length]})]}),o.jsx("div",{style:{height:6,borderRadius:4,background:"rgba(255,255,255,0.08)",overflow:"hidden"},children:o.jsx("div",{style:{height:"100%",width:`${v.length>0?xe/v.length*100:0}%`,background:`linear-gradient(90deg, ${g}, rgba(110,231,183,0.6))`,borderRadius:4,transition:"width 0.4s ease"}})})]}),s===0&&o.jsx(pr,{icon:"🚗",color:"#3B82F6",lang:a,titleKo:"헤브론 라이드 — 공항에서 내리는 순간부터",titleEn:"Hebron Ride — From the Moment You Land",descKo:"짐 가득, 아이 손 잡고, 낯선 공항. 한국어로 따뜻하게 맞이하는 한인 드라이버가 기다립니다.",descEn:"Bags full, kids in hand, unfamiliar airport. A warm Korean-speaking driver is already waiting for you."}),o.jsx("div",{onClick:()=>Pe(Y=>Y+1),children:v.map((Y,Ke)=>o.jsx(Cu,{itemId:`${Ne}_${Ke}`,title:Y.title,desc:Y.desc,accentColor:g,showReminder:V},`${s}-${Ke}`))}),o.jsxs("div",{style:{background:"rgba(96,165,250,0.08)",border:"1px solid rgba(96,165,250,0.2)",borderRadius:14,padding:"14px 16px",marginTop:8},children:[o.jsxs("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:11,color:g,marginBottom:10},children:["💡 ",a==="ko"?"한인 커뮤니티 연결":"Korean Community"]}),o.jsxs("div",{style:{display:"flex",flexDirection:"column",gap:7},children:[o.jsxs("a",{href:"https://open.kakao.com/o/search/%EC%8B%9C%EC%95%A0%ED%8B%80%ED%95%9C%EC%9D%B8",target:"_blank",rel:"noopener noreferrer",style:{display:"flex",alignItems:"center",gap:8,textDecoration:"none",background:"rgba(255,255,255,0.06)",borderRadius:10,padding:"9px 12px",border:"1px solid rgba(96,165,250,0.2)"},children:[o.jsx("span",{style:{fontSize:16},children:"💬"}),o.jsxs("div",{style:{flex:1},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:"#ECFDF5"},children:a==="ko"?"카카오오픈채팅 '시애틀한인'":"KakaoTalk '시애틀한인'"}),o.jsx("div",{style:{fontSize:10,color:"rgba(236,253,245,0.5)",marginTop:1},children:a==="ko"?"정착정보·중고거래·룸메이트":"Settlement tips, used goods, roommates"})]}),o.jsx("span",{style:{color:g,fontSize:14},children:"→"})]}),o.jsxs("a",{href:"https://pf.kakao.com/_dxdxlbX",target:"_blank",rel:"noopener noreferrer",style:{display:"flex",alignItems:"center",gap:8,textDecoration:"none",background:"rgba(254,229,0,0.07)",borderRadius:10,padding:"9px 12px",border:"1px solid rgba(254,229,0,0.25)"},children:[o.jsx("span",{style:{fontSize:16},children:"💬"}),o.jsxs("div",{style:{flex:1},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:"#ECFDF5"},children:a==="ko"?"HebronGuide 카카오 채널":"HebronGuide KakaoTalk Channel"}),o.jsx("div",{style:{fontSize:10,color:"rgba(236,253,245,0.5)",marginTop:1},children:a==="ko"?"정착 Q&A · 정보 공유 · 커뮤니티":"Settlement Q&A · Info · Community"})]}),o.jsx("span",{style:{color:g,fontSize:14},children:"→"})]})]})]})]})]})]}),o.jsx("div",{style:{padding:"0 16px"},children:o.jsx(Uo,{category:"settle",citySlug:m,lang:a})})]})}function Ck(r,i){const a=i==="ko";return{seattle:[{emoji:"⭐",tier:1,hebronPartner:!0,name:a?"시애틀지구촌교회":"Global Mission Church of Greater Seattle",nameEn:"Global Mission Church of Greater Seattle",desc:a?`🤝 Hebron 협력교회
+• Track USCIS case: egov.uscis.gov (use receipt number)`})]})]}),s===6?o.jsxs("div",{onClick:()=>Pe(Y=>Y+1),children:[o.jsxs("div",{style:{background:"linear-gradient(135deg,rgba(96,165,250,0.12),rgba(110,231,183,0.08))",border:"1px solid rgba(96,165,250,0.2)",borderRadius:16,padding:"16px 18px",marginBottom:16},children:[o.jsxs("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:14,color:"#ECFDF5"},children:a==="ko"?"🏁 전체 정착 현황":"🏁 Overall Settlement Progress"}),o.jsxs("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:16,color:g},children:[je," / ",Le]})]}),o.jsx("div",{style:{height:10,borderRadius:6,background:"rgba(255,255,255,0.08)",overflow:"hidden",marginBottom:8},children:o.jsx("div",{style:{height:"100%",width:`${Le>0?je/Le*100:0}%`,background:`linear-gradient(90deg,${g},#6EE7B7)`,borderRadius:6,transition:"width 0.5s ease"}})}),o.jsx("div",{style:{fontSize:11,color:"rgba(236,253,245,0.82)"},children:je===Le&&Le>0?a==="ko"?"🎉 모든 정착 단계 완료! 축하합니다!":"🎉 All settlement steps complete! Congratulations!":a==="ko"?`${Math.round(je/Le*100)}% 완료 — 계속 진행하세요 💪`:`${Math.round(je/Le*100)}% done — keep going 💪`}),o.jsxs("button",{onClick:Y=>{Y.stopPropagation(),window.confirm(a==="ko"?"모든 체크리스트를 초기화할까요?":"Reset all checklist items?")&&(me.forEach(Ke=>Ke.items.forEach((fn,hn)=>localStorage.removeItem(`hg_checklist_${Ke.prefix}_${hn}`))),Pe(Ke=>Ke+1))},style:{marginTop:10,border:"none",background:"rgba(248,113,113,0.15)",borderRadius:20,padding:"5px 14px",color:"#F87171",fontSize:11,cursor:"pointer",fontWeight:600},children:["🔄 ",a==="ko"?"전체 초기화":"Reset All"]})]}),me.map(Y=>{const Ke=Y.items.filter((fn,hn)=>localStorage.getItem(`hg_checklist_${Y.prefix}_${hn}`)==="1").length;return o.jsxs("div",{style:{marginBottom:14},children:[o.jsxs("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6,padding:"0 2px"},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:g},children:Y.label}),o.jsxs("div",{style:{fontFamily:"Manrope,sans-serif",fontSize:11,color:Ke===Y.items.length?"#6EE7B7":"rgba(236,253,245,0.4)",fontWeight:600},children:[Ke,"/",Y.items.length," ",Ke===Y.items.length?"✓":""]})]}),Y.items.map((fn,hn)=>o.jsx(Cu,{itemId:`${Y.prefix}_${hn}`,title:fn.title,desc:fn.desc,accentColor:g,showReminder:!1},`${Y.prefix}-${hn}`))]},Y.prefix)})]}):s===7?null:s===5?o.jsxs(o.Fragment,{children:[o.jsx(pr,{icon:"🏘️",color:"#2563EB",lang:a,titleKo:"헤브론 홈 — 검증된 한인 부동산 에이전트 연결",titleEn:"Hebron Home — Korean-friendly Licensed Realtor Match",descKo:"가정집·상업지·렌트·매매. 라이선스 검증된 한인 에이전트가 카운티별 시세·학군·이민자 특화 사항까지 안내합니다.",descEn:"Residential · Commercial · Rent · Buy. License-verified Korean realtors guide county-level pricing, school zones, immigrant-specific concerns."}),o.jsxs("div",{style:{marginTop:16,marginBottom:12},children:[o.jsxs("div",{style:{fontFamily:"'Noto Sans KR',sans-serif",fontWeight:700,fontSize:13,color:g,marginBottom:4},children:["🏘️ ",a==="ko"?`${m.toUpperCase()} 동네별 가이드`:`${m.toUpperCase()} Neighborhood Guide`]}),o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontSize:11,color:"rgba(236,253,245,0.85)",lineHeight:1.5},children:a==="ko"?"가족·학군·예산·통근 — 한 눈에 비교":"Family · Schools · Budget · Commute — at a glance"})]}),C.length===0?o.jsx(ic,{lang:a,accentColor:g}):C.map((Y,Ke)=>o.jsxs("div",{style:{background:"rgba(96,165,250,0.06)",border:"1px solid rgba(96,165,250,0.18)",borderRadius:14,padding:"14px 16px",marginBottom:10},children:[o.jsxs("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:6},children:[o.jsx("span",{style:{fontSize:20},children:Y.emoji}),o.jsx("div",{style:{fontFamily:"'Noto Sans KR',sans-serif",fontWeight:700,fontSize:13,color:"#ECFDF5"},children:Y.title})]}),o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontSize:11,lineHeight:1.7,color:"rgba(236,253,245,0.65)"},children:Y.desc})]},Ke)),o.jsxs("div",{style:{background:"rgba(37,99,235,0.08)",border:"1px solid rgba(37,99,235,0.25)",borderRadius:14,padding:"14px 16px",marginTop:4},children:[o.jsxs("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:11,color:"#60A5FA",marginBottom:10},children:["🔍 ",a==="ko"?"전문 부동산 검색 — 가정집 · 상업지 · 카운티 비교":"Pro Real Estate Search — Residential · Commercial · By County"]}),o.jsx("div",{style:{display:"flex",flexDirection:"column",gap:7},children:[{href:"https://www.zillow.com/",emoji:"🏠",label:"Zillow",sub:a==="ko"?"미국 1위 부동산 — 매매·렌트·시세 검색":"#1 US real estate — buy, rent, price tracking"},{href:"https://www.redfin.com/",emoji:"🔴",label:"Redfin",sub:a==="ko"?"정확한 시세·중개 수수료 절감":"Accurate pricing & lower commissions"},{href:"https://www.realtor.com/",emoji:"🏡",label:"Realtor.com",sub:a==="ko"?"MLS 공식 매물 — 가정집·상업지 분류":"Official MLS listings — residential & commercial"},{href:"https://www.loopnet.com/",emoji:"🏢",label:"LoopNet",sub:a==="ko"?"상업용 부동산 전문 — 사무실·매장·창고":"Commercial real estate — office, retail, warehouse"},{href:"https://www.apartments.com/",emoji:"🛏️",label:"Apartments.com",sub:a==="ko"?"렌트 전문 — 단지·가격 필터":"Rentals — complex & price filters"}].map((Y,Ke)=>o.jsxs("a",{href:Y.href,target:"_blank",rel:"noopener noreferrer",style:{display:"flex",alignItems:"center",gap:8,textDecoration:"none",background:"rgba(255,255,255,0.06)",borderRadius:10,padding:"9px 12px",border:"1px solid rgba(37,99,235,0.18)"},children:[o.jsx("span",{style:{fontSize:16},children:Y.emoji}),o.jsxs("div",{style:{flex:1},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:"#ECFDF5"},children:Y.label}),o.jsx("div",{style:{fontSize:10,color:"rgba(236,253,245,0.5)",marginTop:1},children:Y.sub})]}),o.jsx("span",{style:{color:"#60A5FA",fontSize:14},children:"→"})]},Ke))})]}),o.jsxs("div",{style:{background:"rgba(96,165,250,0.08)",border:"1px solid rgba(96,165,250,0.2)",borderRadius:14,padding:"14px 16px",marginTop:12},children:[o.jsxs("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:11,color:g,marginBottom:10},children:["💬 ",a==="ko"?"한인 커뮤니티 — 룸메이트·렌탈 실시간":"Korean Community — Roommates & Rentals"]}),o.jsxs("div",{style:{display:"flex",flexDirection:"column",gap:7},children:[o.jsxs("a",{href:"https://open.kakao.com/o/search/",target:"_blank",rel:"noopener noreferrer",style:{display:"flex",alignItems:"center",gap:8,textDecoration:"none",background:"rgba(255,255,255,0.06)",borderRadius:10,padding:"9px 12px",border:"1px solid rgba(96,165,250,0.2)"},children:[o.jsx("span",{style:{fontSize:16},children:"💬"}),o.jsxs("div",{style:{flex:1},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:"#ECFDF5"},children:a==="ko"?`카카오오픈채팅 '${m==="seattle"?"시애틀한인":m+"한인"}'`:`KakaoTalk '${m} Korean'`}),o.jsx("div",{style:{fontSize:10,color:"rgba(236,253,245,0.5)",marginTop:1},children:a==="ko"?"룸메이트·렌탈 실시간 정보":"Roommate & rental listings"})]}),o.jsx("span",{style:{color:g,fontSize:14},children:"→"})]}),m==="seattle"&&o.jsxs("a",{href:"https://www.wowseattle.com/",target:"_blank",rel:"noopener noreferrer",style:{display:"flex",alignItems:"center",gap:8,textDecoration:"none",background:"rgba(255,255,255,0.06)",borderRadius:10,padding:"9px 12px",border:"1px solid rgba(96,165,250,0.2)"},children:[o.jsx("span",{style:{fontSize:16},children:"🏘️"}),o.jsxs("div",{style:{flex:1},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:"#ECFDF5"},children:"WowSeattle"}),o.jsx("div",{style:{fontSize:10,color:"rgba(236,253,245,0.5)",marginTop:1},children:a==="ko"?"시애틀 한인 부동산·렌탈":"Seattle Korean realty & rentals"})]}),o.jsx("span",{style:{color:g,fontSize:14},children:"→"})]}),o.jsxs("a",{href:"https://www.koreadaily.com/",target:"_blank",rel:"noopener noreferrer",style:{display:"flex",alignItems:"center",gap:8,textDecoration:"none",background:"rgba(255,255,255,0.06)",borderRadius:10,padding:"9px 12px",border:"1px solid rgba(96,165,250,0.2)"},children:[o.jsx("span",{style:{fontSize:16},children:"📰"}),o.jsxs("div",{style:{flex:1},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:"#ECFDF5"},children:a==="ko"?"미주중앙일보 부동산":"Korea Daily Real Estate"}),o.jsx("div",{style:{fontSize:10,color:"rgba(236,253,245,0.5)",marginTop:1},children:a==="ko"?"전국 한인 부동산 매물·구인":"National Korean realty listings"})]}),o.jsx("span",{style:{color:g,fontSize:14},children:"→"})]})]})]}),o.jsx(pr,{icon:"🛏️",color:"#10B981",lang:a,titleKo:"헤브론 스테이 — 단기 임시 거주 (1-3개월)",titleEn:"Hebron Stay — Short-term Bridge Housing (1-3 mo)",descKo:"정식 임대 전 한인 가정에서 시작. 방 + 정착 안내 + 자연스러운 이웃 소개.",descEn:"Stay with a Korean family before signing a long-term lease. Room + guidance + community intro."})]}):o.jsxs(o.Fragment,{children:[o.jsxs("div",{style:{marginBottom:16},children:[o.jsxs("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6},children:[o.jsx("span",{style:{fontFamily:"Manrope,sans-serif",fontSize:11,fontWeight:600,color:"rgba(236,253,245,0.82)"},children:a==="ko"?"완료":"Progress"}),o.jsxs("span",{style:{fontFamily:"Manrope,sans-serif",fontSize:11,fontWeight:700,color:g},children:[xe," / ",v.length]})]}),o.jsx("div",{style:{height:6,borderRadius:4,background:"rgba(255,255,255,0.08)",overflow:"hidden"},children:o.jsx("div",{style:{height:"100%",width:`${v.length>0?xe/v.length*100:0}%`,background:`linear-gradient(90deg, ${g}, rgba(110,231,183,0.6))`,borderRadius:4,transition:"width 0.4s ease"}})})]}),s===0&&o.jsx(pr,{icon:"🚗",color:"#3B82F6",lang:a,titleKo:"헤브론 라이드 — 공항에서 내리는 순간부터",titleEn:"Hebron Ride — From the Moment You Land",descKo:"짐 가득, 아이 손 잡고, 낯선 공항. 한국어로 따뜻하게 맞이하는 한인 드라이버가 기다립니다.",descEn:"Bags full, kids in hand, unfamiliar airport. A warm Korean-speaking driver is already waiting for you."}),o.jsx("div",{onClick:()=>Pe(Y=>Y+1),children:v.map((Y,Ke)=>o.jsx(Cu,{itemId:`${Ne}_${Ke}`,title:Y.title,desc:Y.desc,accentColor:g,showReminder:V},`${s}-${Ke}`))}),o.jsxs("div",{style:{background:"rgba(96,165,250,0.08)",border:"1px solid rgba(96,165,250,0.2)",borderRadius:14,padding:"14px 16px",marginTop:8},children:[o.jsxs("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:11,color:g,marginBottom:10},children:["💡 ",a==="ko"?"한인 커뮤니티 연결":"Korean Community"]}),o.jsxs("div",{style:{display:"flex",flexDirection:"column",gap:7},children:[o.jsxs("a",{href:"https://open.kakao.com/o/search/%EC%8B%9C%EC%95%A0%ED%8B%80%ED%95%9C%EC%9D%B8",target:"_blank",rel:"noopener noreferrer",style:{display:"flex",alignItems:"center",gap:8,textDecoration:"none",background:"rgba(255,255,255,0.06)",borderRadius:10,padding:"9px 12px",border:"1px solid rgba(96,165,250,0.2)"},children:[o.jsx("span",{style:{fontSize:16},children:"💬"}),o.jsxs("div",{style:{flex:1},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:"#ECFDF5"},children:a==="ko"?"카카오오픈채팅 '시애틀한인'":"KakaoTalk '시애틀한인'"}),o.jsx("div",{style:{fontSize:10,color:"rgba(236,253,245,0.5)",marginTop:1},children:a==="ko"?"정착정보·중고거래·룸메이트":"Settlement tips, used goods, roommates"})]}),o.jsx("span",{style:{color:g,fontSize:14},children:"→"})]}),o.jsxs("a",{href:"https://pf.kakao.com/_dxdxlbX",target:"_blank",rel:"noopener noreferrer",style:{display:"flex",alignItems:"center",gap:8,textDecoration:"none",background:"rgba(254,229,0,0.07)",borderRadius:10,padding:"9px 12px",border:"1px solid rgba(254,229,0,0.25)"},children:[o.jsx("span",{style:{fontSize:16},children:"💬"}),o.jsxs("div",{style:{flex:1},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,color:"#ECFDF5"},children:a==="ko"?"HebronGuide 카카오 채널":"HebronGuide KakaoTalk Channel"}),o.jsx("div",{style:{fontSize:10,color:"rgba(236,253,245,0.5)",marginTop:1},children:a==="ko"?"정착 Q&A · 정보 공유 · 커뮤니티":"Settlement Q&A · Info · Community"})]}),o.jsx("span",{style:{color:g,fontSize:14},children:"→"})]})]})]})]})]})]}),o.jsx("div",{style:{padding:"0 16px"},children:o.jsx(Uo,{category:"settle",citySlug:m,lang:a})})]})}function Ck(r,i){const a=i==="ko";return{seattle:[{emoji:"⭐",tier:1,hebronPartner:!0,name:a?"시애틀지구촌교회":"Global Mission Church of Greater Seattle",nameEn:"Global Mission Church of Greater Seattle",desc:a?`✨ 담임: 김성수 목사
 📍 4900 168th St. SW., Lynnwood, WA 98037
 🏠 주일연합예배 · 목장 · 삶 공부 · 새가족 환영
-✨ 담임: 김성수 목사
-🔗 ijiguchon.org`:`🤝 Hebron Partner Church
+🔗 ijiguchon.org`:`✨ Lead Pastor: Sungsoo Kim
 📍 4900 168th St. SW., Lynnwood, WA 98037
 🏠 Sunday Worship · Home Church · Life Studies · Newcomers Welcome
-✨ Lead Pastor: Sungsoo Kim
-🔗 ijiguchon.org`,tags:a?["린우드","시애틀","헤브론파트너"]:["Lynnwood","Seattle","HebronPartner"],website:"https://ijiguchon.org",email:"info@ijiguchon.org"},{emoji:"⭐",tier:1,name:a?"시애틀우리교회":"Seattle Woori Church",nameEn:"Seattle Woori Church",desc:a?`📍 Bellevue, WA
-✨ 담임: 최요환 목사
+🔗 ijiguchon.org`,tags:a?["린우드","시애틀","헤브론파트너"]:["Lynnwood","Seattle","HebronPartner"],website:"https://ijiguchon.org",email:"info@ijiguchon.org"},{emoji:"⭐",tier:1,name:a?"시애틀우리교회":"Seattle Woori Church",nameEn:"Seattle Woori Church",desc:a?`✨ 담임: 최요환 목사
+📍 Bellevue, WA
 🏠 주일예배 · 목장 · 삶 공부 · 이민자 환영
-🔗 seattlewoori.org`:`📍 Bellevue, WA
-✨ Lead Pastor: Yohwan Choi
+🔗 seattlewoori.org`:`✨ Lead Pastor: Yohwan Choi
+📍 Bellevue, WA
 🏠 Sunday Worship · Mokjang · Life Studies · Welcoming Immigrants
-🔗 seattlewoori.org`,tags:a?["벨뷰","시애틀"]:["Bellevue","Seattle"],website:"http://www.seattlewoori.org/#n"}],dallas:[{emoji:"⭐",tier:1,name:a?"예닮교회":"Yedam Church — Dallas",nameEn:"Yedam Church",desc:a?`북미가사원 텍사스 지역목자
+🔗 seattlewoori.org`,tags:a?["벨뷰","시애틀"]:["Bellevue","Seattle"],website:"http://www.seattlewoori.org/#n"}],dallas:[{emoji:"⭐",tier:1,name:a?"예닮교회":"Yedam Church — Dallas",nameEn:"Yedam Church",desc:a?`✨ 담임: 이우철 목사
 📍 Dallas, TX
-✨ 담임: 이우철 목사
-🔗 ydkcdallas.org`:`HMI North America Texas Regional Shepherd
+🔗 ydkcdallas.org`:`✨ Lead Pastor: Woo Chul Lee
 📍 Dallas, TX
-✨ Lead Pastor: Woo Chul Lee
-🔗 ydkcdallas.org`,tags:a?["달라스","텍사스"]:["Dallas","Texas"],website:"https://www.ydkcdallas.org"},{emoji:"⛪",tier:2,name:a?"에덴교회 (Eden Church at the Field)":"Eden Church at the Field — Carrollton",nameEn:a?"Eden Church at the Field":"에덴교회",desc:a?`✅ 검증됨
+🔗 ydkcdallas.org`,tags:a?["달라스","텍사스"]:["Dallas","Texas"],website:"https://www.ydkcdallas.org"},{emoji:"⛪",tier:2,name:a?"에덴교회 (Eden Church at the Field)":"Eden Church at the Field — Carrollton",nameEn:a?"Eden Church at the Field":"에덴교회",desc:a?`✨ 담임: 신종우 목사
 📍 1401 Carrollton Pkwy, Carrollton, TX 75010
-✨ 담임: 신종우 목사
 🕐 주일예배 매주 일요일 오후 12:30
 📧 kfbcc@yahoo.com
 🏛 남침례단 · 2005년 설립
-🔗 edendallas.org`:`✅ Verified
+🔗 edendallas.org`:`✨ Lead Pastor: Jong-woo Shin
 📍 1401 Carrollton Pkwy, Carrollton, TX 75010
-✨ Lead Pastor: Jong-woo Shin
 🕐 Sunday Service every Sunday 12:30 PM
 📧 kfbcc@yahoo.com
 🏛 SBC · Est. 2005
-🔗 edendallas.org`,tags:a?["한인교회","캐롤튼","달라스","남침례단"]:["Korean Church","Carrollton","Dallas","SBC"],email:"kfbcc@yahoo.com",website:"edendallas.org"}],orangecounty:[{emoji:"⭐",tier:1,name:a?"갓즈패밀리교회":"God's Family Church — OC",nameEn:"God's Family Church",desc:a?`북미가사원 OC 지역목자
-📍 Orange County, CA
-✨ 담임: 이경태 목사`:`HMI North America OC Regional Shepherd
-📍 Orange County, CA
-✨ Lead Pastor: Kyungtae Lee`,tags:a?["오렌지카운티"]:["OC"]},{emoji:"⭐",tier:1,name:a?"주님의마음교회":"Lord's Heart Church — OC",nameEn:"Lord's Heart Church",desc:a?`북미가사원 OC 지역목자
-📍 Orange County, CA
-✨ 담임: 오경탁 목사`:`HMI North America OC Regional Shepherd
-📍 Orange County, CA
-✨ Lead Pastor: Kyungtack Oh`,tags:a?["오렌지카운티"]:["OC"]},{emoji:"⛪",tier:2,name:a?"풀러튼좋은교회":"Fullerton Good Church",nameEn:"Fullerton Good Church",desc:a?`✅ 등재 신청 | 박희수 담임목사.
+🔗 edendallas.org`,tags:a?["한인교회","캐롤튼","달라스","남침례단"]:["Korean Church","Carrollton","Dallas","SBC"],email:"kfbcc@yahoo.com",website:"edendallas.org"}],orangecounty:[{emoji:"⭐",tier:1,name:a?"갓즈패밀리교회":"God's Family Church — OC",nameEn:"God's Family Church",desc:a?`✨ 담임: 이경태 목사
+📍 Orange County, CA`:`✨ Lead Pastor: Kyungtae Lee
+📍 Orange County, CA`,tags:a?["오렌지카운티"]:["OC"]},{emoji:"⭐",tier:1,name:a?"주님의마음교회":"Lord's Heart Church — OC",nameEn:"Lord's Heart Church",desc:a?`✨ 담임: 오경탁 목사
+📍 Orange County, CA`:`✨ Lead Pastor: Kyungtack Oh
+📍 Orange County, CA`,tags:a?["오렌지카운티"]:["OC"]},{emoji:"⛪",tier:2,name:a?"풀러튼좋은교회":"Fullerton Good Church",nameEn:"Fullerton Good Church",desc:a?`✨ 담임: 박희수 목사
 📍 Fullerton, CA (Orange County)
-🔗 joeunchurch.com
-✨ 풀러튼 지역 한인 정착 연결·환영 사역`:`✅ Partner Church | Lead Pastor: Hee Soo Park.
+🏠 풀러튼 지역 한인 정착 연결·환영 사역
+🔗 joeunchurch.com`:`✨ Lead Pastor: Hee Soo Park
 📍 Fullerton, CA (Orange County)
-🔗 joeunchurch.com
-✨ Korean immigrant welcome & settlement ministry in Fullerton`,tags:a?["풀러튼","오렌지카운티","한인교회"]:["Fullerton","OC","Korean Church"],website:"http://www.joeunchurch.com"}],la:[{emoji:"⭐",tier:1,name:a?"갈릴리선교교회":"Galilee Mission Church — LA K-Town",nameEn:"Galilee Mission Church",desc:a?`북미가사원 LA K-Town 지역목자
+🏠 Korean immigrant welcome & settlement ministry in Fullerton
+🔗 joeunchurch.com`,tags:a?["풀러튼","오렌지카운티","한인교회"]:["Fullerton","OC","Korean Church"],website:"http://www.joeunchurch.com"}],la:[{emoji:"⭐",tier:1,name:a?"갈릴리선교교회":"Galilee Mission Church — LA K-Town",nameEn:"Galilee Mission Church",desc:a?`✨ 담임: 한천영 목사
 📍 LA Koreatown, CA
-✨ 담임: 한천영 목사
-🔗 gmcchurch.com`:`HMI North America LA K-Town Regional Shepherd
+🔗 gmcchurch.com`:`✨ Lead Pastor: Cheonyoung Han
 📍 LA Koreatown, CA
-✨ Lead Pastor: Cheonyoung Han
-🔗 gmcchurch.com`,tags:a?["LA","코리아타운"]:["LA","Koreatown"],website:"https://gmcchurch.com"},{emoji:"⭐",tier:1,name:"Journey Christian Fellowship",nameEn:"Journey Christian Fellowship",desc:a?`북미가사원 영어권 서부 지역목자
-📍 Ventura County, CA
-✨ Lead Pastor: Young Su McCann`:`HMI North America English-Speaking West Regional Shepherd
-📍 Ventura County, CA
-✨ Lead Pastor: Young Su McCann`,tags:a?["영어권","CA"]:["English","CA"]}],houston:[{emoji:"⭐",tier:1,name:a?"휴스턴서울교회":"Seoul Church of Houston",desc:a?`국제가사원장 교회 · 세축 네기둥 기준 교회
+🔗 gmcchurch.com`,tags:a?["LA","코리아타운"]:["LA","Koreatown"],website:"https://gmcchurch.com"},{emoji:"⭐",tier:1,name:"Journey Christian Fellowship",nameEn:"Journey Christian Fellowship",desc:`✨ Lead Pastor: Young Su McCann
+📍 Ventura County, CA`,tags:a?["영어권","CA"]:["English","CA"]}],houston:[{emoji:"⭐",tier:1,name:a?"휴스턴서울교회":"Seoul Church of Houston",desc:a?`✨ 담임: 이수관 목사 (국제가사원장)
 📍 Houston, TX
-✨ 담임: 이수관 목사 (국제가사원장)
-🔗 seoulchurch.com`:`International HMI President's Church · Three Axes & Four Pillars
+🔗 seoulchurch.com`:`✨ Lead Pastor: Sukwan Lee (Int'l HMI President)
 📍 Houston, TX
-✨ Lead Pastor: Sukwan Lee (Int'l HMI President)
-🔗 seoulchurch.com`,tags:a?["휴스턴","기준교회"]:["Houston","Flagship"],website:"https://seoulchurch.com"},{emoji:"⭐",tier:1,name:"New Life Fellowship",desc:a?`북미가사원 이사 · 영어권 간사
-📍 Houston, TX
-✨ Lead Pastor: Eric Shin (신동일 목사)`:`HMI North America Board & English Ministry Director
-📍 Houston, TX
-✨ Lead Pastor: Eric Shin`,tags:a?["휴스턴","영어권"]:["Houston","English"]},{emoji:"⛪",tier:2,name:a?"뉴라이프침례교회":"New Life Baptist Church",nameEn:"New Life Baptist Church",desc:a?`✅ 침례교 | 건강한 교회 · 건강한 성도
+🔗 seoulchurch.com`,tags:a?["휴스턴","기준교회"]:["Houston","Flagship"],website:"https://seoulchurch.com"},{emoji:"⭐",tier:1,name:"New Life Fellowship",desc:a?`✨ Lead Pastor: Eric Shin (신동일 목사)
+📍 Houston, TX`:`✨ Lead Pastor: Eric Shin
+📍 Houston, TX`,tags:a?["휴스턴","영어권"]:["Houston","English"]},{emoji:"⛪",tier:2,name:a?"뉴라이프침례교회":"New Life Baptist Church",nameEn:"New Life Baptist Church",desc:a?`✨ 담임: 김한국 목사
 📍 1717 Katy Gap Rd. Katy, TX 77494 (임시 예배 장소)
-✨ 담임: 김한국 목사
+🏠 건강한 교회 · 건강한 성도
 📞 346-527-0958
 ✉️ nlbchouston@gmail.com
-🔗 newlifehouston.org`:`✅ Baptist | Healthy Church · Healthy Members
+🔗 newlifehouston.org`:`✨ Lead Pastor: Han-guk Kim
 📍 1717 Katy Gap Rd. Katy, TX 77494 (Temporary Worship Venue)
-✨ Lead Pastor: Han-guk Kim
+🏠 Healthy Church · Healthy Members
 📞 346-527-0958
 ✉️ nlbchouston@gmail.com
-🔗 newlifehouston.org`,tags:a?["침례교","휴스턴","건강한교회","건강한성도"]:["Baptist","Houston","Healthy Church"],website:"https://newlifehouston.org",email:"nlbchouston@gmail.com",phone:"346-527-0958"}],toronto:[{emoji:"⭐",tier:1,name:a?"목민교회":"Mokmin Church — Toronto",nameEn:"Mokmin Church",desc:a?`북미가사원 토론토 지역목자 · 실행위원
+🔗 newlifehouston.org`,tags:a?["침례교","휴스턴","건강한교회","건강한성도"]:["Baptist","Houston","Healthy Church"],website:"https://newlifehouston.org",email:"nlbchouston@gmail.com",phone:"346-527-0958"}],toronto:[{emoji:"⭐",tier:1,name:a?"목민교회":"Mokmin Church — Toronto",nameEn:"Mokmin Church",desc:a?`✨ 담임: 곽웅 목사
 📍 Toronto, ON, Canada
-✨ 담임: 곽웅 목사
-🔗 mokmin.ca`:`HMI North America Toronto Regional Shepherd & Executive
+🔗 mokmin.ca`:`✨ Lead Pastor: Woong Kwak
 📍 Toronto, ON, Canada
-✨ Lead Pastor: Woong Kwak
-🔗 mokmin.ca`,tags:a?["토론토"]:["Toronto"],website:"https://mokmin.ca"},{emoji:"⭐",tier:1,name:a?"워터루제일교회":"Waterloo First Church",nameEn:"Waterloo First Church",desc:a?`북미가사원 토론토(워터루) 지역목자
+🔗 mokmin.ca`,tags:a?["토론토"]:["Toronto"],website:"https://mokmin.ca"},{emoji:"⭐",tier:1,name:a?"워터루제일교회":"Waterloo First Church",nameEn:"Waterloo First Church",desc:a?`✨ 담임: 김성은 목사
 📍 Waterloo, ON, Canada
-✨ 담임: 김성은 목사
-🔗 waterlookorean.com`:`HMI Toronto (Waterloo) Regional Shepherd
+🔗 waterlookorean.com`:`✨ Lead Pastor: Sungeun Kim
 📍 Waterloo, ON, Canada
-✨ Lead Pastor: Sungeun Kim
-🔗 waterlookorean.com`,tags:a?["워터루","토론토"]:["Waterloo","Toronto"],website:"https://www.waterlookorean.com"},{emoji:"⭐",tier:1,name:a?"한인등대교회":"Korean Lighthouse Church — Toronto",nameEn:"Korean Lighthouse Church",desc:a?`북미가사원 토론토(등대) 지역목자
-📍 Toronto, ON, Canada
-✨ 담임: 안순기 목사`:`HMI Toronto (Lighthouse) Regional Shepherd
-📍 Toronto, ON, Canada
-✨ Lead Pastor: Sungki Ahn`,tags:a?["토론토"]:["Toronto"]}],vancouver:[{emoji:"⭐",tier:1,name:a?"나의사랑하는교회 (MBC)":"My Beloved Church — Vancouver (MBC)",nameEn:"My Beloved Church",desc:a?`북미가사원 밴쿠버(MBC) 지역목자
+🔗 waterlookorean.com`,tags:a?["워터루","토론토"]:["Waterloo","Toronto"],website:"https://www.waterlookorean.com"},{emoji:"⭐",tier:1,name:a?"한인등대교회":"Korean Lighthouse Church — Toronto",nameEn:"Korean Lighthouse Church",desc:a?`✨ 담임: 안순기 목사
+📍 Toronto, ON, Canada`:`✨ Lead Pastor: Sungki Ahn
+📍 Toronto, ON, Canada`,tags:a?["토론토"]:["Toronto"]}],vancouver:[{emoji:"⭐",tier:1,name:a?"나의사랑하는교회 (MBC)":"My Beloved Church — Vancouver (MBC)",nameEn:"My Beloved Church",desc:a?`✨ 담임: 오은식 목사
+📍 Vancouver, BC, Canada`:`✨ Lead Pastor: Eunsik Oh
+📍 Vancouver, BC, Canada`,tags:a?["밴쿠버"]:["Vancouver"]},{emoji:"⭐",tier:1,name:a?"두드림교회":"DooDream Church — Vancouver",nameEn:"DooDream Church",desc:a?`✨ 담임: 안대선 목사
 📍 Vancouver, BC, Canada
-✨ 담임: 오은식 목사`:`HMI Vancouver (MBC) Regional Shepherd
+🔗 vandodream.ca`:`✨ Lead Pastor: Daesun Ahn
 📍 Vancouver, BC, Canada
-✨ Lead Pastor: Eunsik Oh`,tags:a?["밴쿠버"]:["Vancouver"]},{emoji:"⭐",tier:1,name:a?"두드림교회":"DooDream Church — Vancouver",nameEn:"DooDream Church",desc:a?`북미가사원 밴쿠버(두드림) 지역목자
-📍 Vancouver, BC, Canada
-✨ 담임: 안대선 목사
-🔗 vandodream.ca`:`HMI Vancouver (DooDream) Regional Shepherd
-📍 Vancouver, BC, Canada
-✨ Lead Pastor: Daesun Ahn
-🔗 vandodream.ca`,tags:a?["밴쿠버"]:["Vancouver"],website:"https://www.vandodream.ca"},{emoji:"⭐",tier:1,name:a?"사랑의교회 (밴쿠버)":"Love Church — Vancouver",nameEn:"Love Church Vancouver",desc:a?`북미가사원 밴쿠버(사랑의) 지역목자
-📍 Vancouver, BC, Canada
-✨ 담임: 이은진 목사`:`HMI Vancouver (Love) Regional Shepherd
-📍 Vancouver, BC, Canada
-✨ Lead Pastor: Eunjin Lee`,tags:a?["밴쿠버"]:["Vancouver"]},{emoji:"⭐",tier:1,name:a?"화이트락한인교회":"White Rock Korean Methodist Church",nameEn:"White Rock Korean Methodist Church",desc:a?`감리교 (UMC / KMC)
+🔗 vandodream.ca`,tags:a?["밴쿠버"]:["Vancouver"],website:"https://www.vandodream.ca"},{emoji:"⭐",tier:1,name:a?"사랑의교회 (밴쿠버)":"Love Church — Vancouver",nameEn:"Love Church Vancouver",desc:a?`✨ 담임: 이은진 목사
+📍 Vancouver, BC, Canada`:`✨ Lead Pastor: Eunjin Lee
+📍 Vancouver, BC, Canada`,tags:a?["밴쿠버"]:["Vancouver"]},{emoji:"⭐",tier:1,name:a?"화이트락한인교회":"White Rock Korean Methodist Church",nameEn:"White Rock Korean Methodist Church",desc:a?`✨ 담임: 임흥빈 목사 (Ben Im)
 📍 White Rock, BC, Canada (밴쿠버 남부)
-✨ 담임: 임흥빈 목사 (Ben Im)
+🏠 새가족모임 · 목장 사역 · 영혼 구원과 제자 양육
 🕐 예배: 오전 10:30
 📞 (604) 537-8789
-✉️ whiterockkmc@gmail.com
-
-새가족모임 · 목장 사역 · 영혼 구원과 제자 양육.`:`Methodist (UMC / KMC)
+✉️ whiterockkmc@gmail.com`:`✨ Lead Pastor: Ben Im
 📍 White Rock, BC, Canada (South Vancouver)
-✨ Lead Pastor: Ben Im
+🏠 New members' fellowship · Cell group ministry · Soul-winning & disciple-making
 🕐 Service: 10:30 AM
 📞 (604) 537-8789
-✉️ whiterockkmc@gmail.com
-
-New members' fellowship · Cell group ministry · Soul-winning & disciple-making church.`,tags:a?["감리교","밴쿠버","화이트락","목장사역","새가족"]:["Methodist","Vancouver","White Rock","Cell Group"],phone:"6045378789",email:"whiterockkmc@gmail.com"}],princgeorge:[{emoji:"⛪",tier:2,hebronPartner:!0,denomination:"기타",name:a?"프린스조지한인교회":"Prince George Korean Church",nameEn:"Prince George Korean Church",desc:a?`✅ 검증됨
+✉️ whiterockkmc@gmail.com`,tags:a?["감리교","밴쿠버","화이트락","목장사역","새가족"]:["Methodist","Vancouver","White Rock","Cell Group"],phone:"6045378789",email:"whiterockkmc@gmail.com"}],princgeorge:[{emoji:"⛪",tier:2,hebronPartner:!0,denomination:"기타",name:a?"프린스조지한인교회":"Prince George Korean Church",nameEn:"Prince George Korean Church",desc:a?`✨ 담임: 오일권 목사 (Daniel Oh)
 📍 Prince George, BC, Canada
+🏠 새가족모임 운영 · 한인봉사센터 연계. BC 북부 한인 이주민을 따뜻하게 환영합니다.
 🕐 주일예배 10:30am
 ☎ 604-727-0259
 ✉️ pgkchurch@gmail.com
-✨ 담임: 오일권 목사 (Daniel Oh)
-🔗 pgkchurch.ca
-
-새가족모임 운영 · 한인봉사센터 연계. BC 북부 한인 이주민을 따뜻하게 환영합니다.`:`✅ Verified
+🔗 pgkchurch.ca`:`✨ Lead Pastor: Daniel Oh
 📍 Prince George, BC, Canada
+🏠 New members' group & Korean community service center. Warmly welcomes Korean diaspora in northern BC.
 🕐 Sunday Service 10:30am
 ☎ 604-727-0259
 ✉️ pgkchurch@gmail.com
-✨ Lead Pastor: Daniel Oh
-🔗 pgkchurch.ca
-
-New members' group & Korean community service center. Warmly welcomes Korean diaspora in northern BC.`,tags:a?["프린스조지","BC북부","한인봉사센터","새가족모임"]:["Prince George","Northern BC","Community Center","New Members"],phone:"6047270259",email:"pgkchurch@gmail.com",website:"https://pgkchurch.ca"}],sf:[{emoji:"⭐",tier:1,name:a?"새누리선교교회 (NCMC)":"New Community Mission Church (NCMC)",desc:a?`한·영 이중언어 · 북미가사원 SF 지역목자
+🔗 pgkchurch.ca`,tags:a?["프린스조지","BC북부","한인봉사센터","새가족모임"]:["Prince George","Northern BC","Community Center","New Members"],phone:"6047270259",email:"pgkchurch@gmail.com",website:"https://pgkchurch.ca"}],sf:[{emoji:"⭐",tier:1,name:a?"새누리선교교회 (NCMC)":"New Community Mission Church (NCMC)",desc:a?`✨ 담임: 김태훈 목사
 📍 3399 CSM Dr., San Mateo, CA 94402
-✨ 담임: 김태훈 목사
+🏠 한·영 이중언어 예배
 🕐 1부 11:30am · 2부 1:30pm (영어예배)
 📧 welcome.ncmc@gmail.com
-🔗 ncmission.org`:`Korean-English Bilingual · HMI SF Regional Shepherd
+🔗 ncmission.org`:`✨ Lead Pastor: Rev. Tae Kim
 📍 3399 CSM Dr., San Mateo, CA 94402
-✨ Lead Pastor: Rev. Tae Kim
+🏠 Korean-English Bilingual Worship
 🕐 1st 11:30am · 2nd 1:30pm (English service)
 📧 welcome.ncmc@gmail.com
-🔗 ncmission.org`,tags:a?["한영이중언어","샌마테오"]:["Bilingual","San Mateo"],website:"https://ncmission.org",email:"welcome.ncmc@gmail.com"},{emoji:"⭐",tier:1,name:a?"피스토스장로교회":"Pistos Presbyterian Church — East Bay",nameEn:"Pistos Presbyterian Church",desc:a?`북미가사원 북가주(이스트베이) 지역목자
+🔗 ncmission.org`,tags:a?["한영이중언어","샌마테오"]:["Bilingual","San Mateo"],website:"https://ncmission.org",email:"welcome.ncmc@gmail.com"},{emoji:"⭐",tier:1,name:a?"피스토스장로교회":"Pistos Presbyterian Church — East Bay",nameEn:"Pistos Presbyterian Church",desc:a?`✨ 담임: 조영구 목사
 📍 East Bay, CA
-✨ 담임: 조영구 목사
-🔗 gopistos.com`:`HMI North CA (East Bay) Regional Shepherd
+🔗 gopistos.com`:`✨ Lead Pastor: Youngku Cho
 📍 East Bay, CA
-✨ Lead Pastor: Youngku Cho
-🔗 gopistos.com`,tags:a?["이스트베이","SF베이"]:["East Bay","SF Bay"],website:"https://gopistos.com"},{emoji:"⭐",tier:1,name:a?"시온영락교회":"Zion Young-Nak Church — San Jose",nameEn:"Zion Young-Nak Church",desc:a?`북미가사원 북가주(산호세) 지역목자
+🔗 gopistos.com`,tags:a?["이스트베이","SF베이"]:["East Bay","SF Bay"],website:"https://gopistos.com"},{emoji:"⭐",tier:1,name:a?"시온영락교회":"Zion Young-Nak Church — San Jose",nameEn:"Zion Young-Nak Church",desc:a?`✨ 담임: 이기준 목사
 📍 San Jose, CA
-✨ 담임: 이기준 목사
-🔗 eternaljoychurch.org`:`HMI North CA (San Jose) Regional Shepherd
+🔗 eternaljoychurch.org`:`✨ Lead Pastor: Kijun Lee
 📍 San Jose, CA
-✨ Lead Pastor: Kijun Lee
-🔗 eternaljoychurch.org`,tags:a?["산호세","SF베이"]:["San Jose","SF Bay"],website:"https://www.eternaljoychurch.org"}],seoul:[{emoji:"⭐",tier:1,name:a?"다운교회":"Down Church — Seoul",nameEn:"Down Church",desc:a?`📍 서울
-✨ 담임: 석정일 목사
-🔗 downchurch.com`:`📍 Seoul
-✨ Lead Pastor: Jeongil Suk
-🔗 downchurch.com`,tags:a?["서울"]:["Seoul"],website:"https://www.downchurch.com"},{emoji:"⛪",tier:2,hebronPartner:!0,denomination:"장로교 (PCA / KAPC / KPCA)",name:a?"예수생명교회 (남양주)":"Jesus Life Church — Namyangju",nameEn:"JESUS LIFE CHURCH",desc:a?`✅ 검증됨
+🔗 eternaljoychurch.org`,tags:a?["산호세","SF베이"]:["San Jose","SF Bay"],website:"https://www.eternaljoychurch.org"}],seoul:[{emoji:"⭐",tier:1,name:a?"다운교회":"Down Church — Seoul",nameEn:"Down Church",desc:a?`✨ 담임: 석정일 목사
+📍 서울
+🔗 downchurch.com`:`✨ Lead Pastor: Jeongil Suk
+📍 Seoul
+🔗 downchurch.com`,tags:a?["서울"]:["Seoul"],website:"https://www.downchurch.com"},{emoji:"⛪",tier:2,hebronPartner:!0,denomination:"장로교 (PCA / KAPC / KPCA)",name:a?"예수생명교회 (남양주)":"Jesus Life Church — Namyangju",nameEn:"JESUS LIFE CHURCH",desc:a?`✨ 담임: 맹기원 목사
 📍 경기도 남양주시
+🏠 1:1 맞춤 성경공부와 코칭을 도와드립니다. 서울 동북부 30분 거리.
 🕐 주일예배 오전 11:00
 ☎ 010-5146-0691
-✉️ core69m@gmail.com
-✨ 담임: 맹기원 목사
-
-1:1 맞춤 성경공부와 코칭을 도와드립니다. 서울 동북부 30분 거리.`:`✅ Verified
+✉️ core69m@gmail.com`:`✨ Lead Pastor: Giweon Maeng
 📍 Namyangju, Gyeonggi
+🏠 Personalized 1-on-1 Bible study and coaching available. 30 min from northeast Seoul.
 🕐 Sunday Service 11:00am
 ☎ 010-5146-0691
-✉️ core69m@gmail.com
-✨ Lead Pastor: Giweon Maeng
-
-Personalized 1-on-1 Bible study and coaching available. 30 min from northeast Seoul.`,tags:a?["남양주","경기동북","장로교","성경공부","Hebron협력"]:["Namyangju","Northeast Gyeonggi","Presbyterian","BibleStudy"],phone:"01051460691",email:"core69m@gmail.com"},{emoji:"⛪",tier:2,hebronPartner:!0,denomination:"장로교 (PCA / KAPC / KPCA)",name:a?"행복한교회 (의정부)":"Haengbokan Church — Uijeongbu",nameEn:"Haengbokan Church",desc:a?`✅ 검증됨
+✉️ core69m@gmail.com`,tags:a?["남양주","경기동북","장로교","성경공부","Hebron협력"]:["Namyangju","Northeast Gyeonggi","Presbyterian","BibleStudy"],phone:"01051460691",email:"core69m@gmail.com"},{emoji:"⛪",tier:2,hebronPartner:!0,denomination:"장로교 (PCA / KAPC / KPCA)",name:a?"행복한교회 (의정부)":"Haengbokan Church — Uijeongbu",nameEn:"Haengbokan Church",desc:a?`✨ 담임: 이현권 목사
 📍 경기도 의정부시 오목로 225번길 135 트윈타워 1동 7층
+🏠 새가족부 등록 후 담임목사와 공부 후 목장가입. 서울 북부 30분 거리. 경기 북부 한인 이주민·귀환 동포를 따뜻하게 환영합니다.
 🕐 주일예배 11시
 ☎ 010-3254-8020
-✉️ yhk8020@daum.net
-✨ 담임: 이현권 목사
-
-새가족부 등록 후 담임목사와 공부 후 목장가입. 서울 북부 30분 거리. 경기 북부 한인 이주민·귀환 동포를 따뜻하게 환영합니다.`:`✅ Verified
+✉️ yhk8020@daum.net`:`✨ Lead Pastor: Hyeonkwon Lee
 📍 Twin Tower Bldg 1, 7F, 135 Omokro 225beon-gil, Uijeongbu, Gyeonggi
+🏠 New members meet with the pastor before joining a small group. 30 min from northern Seoul. Warmly welcomes Korean diaspora.
 🕐 Sunday Service 11am
 ☎ 010-3254-8020
-✉️ yhk8020@daum.net
-✨ Lead Pastor: Hyeonkwon Lee
-
-New members meet with the pastor before joining a small group. 30 min from northern Seoul. Warmly welcomes Korean diaspora.`,tags:a?["의정부","경기북부","장로교","귀환동포환영"]:["Uijeongbu","North Gyeonggi","Presbyterian","Returning Diaspora"],phone:"01032548020",email:"yhk8020@daum.net"},{emoji:"⛪",tier:2,hebronPartner:!0,denomination:"침례교 (SBC / KSBC)",name:a?"에클레시아 엔크리스토 (온라인)":"Ekklesia enchristo — Online Church",nameEn:"Ekklesia enchristo",desc:a?`✅ Hebron 협력교회 | 침례교 (SBC / KSBC)
-🌐 온라인 전용 교회
-🕐 예배: 토요일 오후 9:00–10:00 (Zoom·온라인)
+✉️ yhk8020@daum.net`,tags:a?["의정부","경기북부","장로교","귀환동포환영"]:["Uijeongbu","North Gyeonggi","Presbyterian","Returning Diaspora"],phone:"01032548020",email:"yhk8020@daum.net"},{emoji:"⛪",tier:2,hebronPartner:!0,denomination:"침례교 (SBC / KSBC)",name:a?"에클레시아 엔크리스토 (온라인)":"Ekklesia enchristo — Online Church",nameEn:"Ekklesia enchristo",desc:a?`✨ 담임: 신용철 목사 (Yongchul Shin)
+📍 온라인 전용 교회 (서울)
+🏠 교회 나가기 어려운 분들을 위한 온라인 교회. 해외 이주민·복귀자 누구나 참여 가능합니다.
+🕐 예배: 토요일 오후 9:00–10:00 (Zoom)
 ☎ 010-2305-0545
-✉️ iharu2157@gmail.com
-✨ 담임: 신용철 목사 (Yongchul Shin)
-
-교회 나가기 어려운 분들을 위해 내 방에서 문을 열 수 있는 온라인 교회입니다. 해외 이주민·복귀자 누구나 참여 가능합니다.`:`✅ Hebron Partner | Baptist (SBC / KSBC)
-🌐 Online-only Church
-🕐 Service: Saturday 9:00–10:00 PM (Zoom · Online)
+✉️ iharu2157@gmail.com`:`✨ Lead Pastor: Yongchul Shin
+📍 Online Church (Seoul-based)
+🏠 An online church you can join from your own room — designed for those who find it difficult to attend in person. Open to diaspora and returnees worldwide.
+🕐 Service: Saturday 9:00–10:00 PM (Zoom)
 ☎ +82-10-2305-0545
-✉️ iharu2157@gmail.com
-✨ Lead Pastor: Yongchul Shin
-
-An online church you can join from your own room — designed for those who find it difficult to attend in person. Open to diaspora and returnees worldwide.`,tags:a?["온라인교회","서울","침례교","토요예배","해외동포환영"]:["Online Church","Seoul","Baptist","Saturday Service","Diaspora"],phone:"01023050545",email:"iharu2157@gmail.com"}],busan:[{emoji:"⛪",tier:2,name:a?"수영로교회":"Sooyoungro Church",desc:a?`역이민 귀환 동포 환영
+✉️ iharu2157@gmail.com`,tags:a?["온라인교회","서울","침례교","토요예배","해외동포환영"]:["Online Church","Seoul","Baptist","Saturday Service","Diaspora"],phone:"01023050545",email:"iharu2157@gmail.com"}],busan:[{emoji:"⛪",tier:2,name:a?"수영로교회":"Sooyoungro Church",desc:a?`역이민 귀환 동포 환영
 📍 부산 수영구 수영로 425
 🕐 주일예배 7부(6:30am)·1부(8am)·2부(9:30am)·3부(11:10am)·4부(1pm)·5부(3pm)·영어예배(1pm)
 🔗 sooyoungro.org
@@ -1593,113 +1538,76 @@ An online church you can join from your own room — designed for those who find
 📍 Junggu, Busan
 
 We're continuously updating church info for returning overseas Koreans.
-List your church: hebronguide.com/church-submit.html`,tags:a?["부산중구","귀환동포"]:["Jung-gu","Returnees"]}],louisville:[{emoji:"⭐",tier:1,name:a?"루이빌새한장로교회":"Louisville Saehan Presbyterian Church",nameEn:"Louisville Saehan Presbyterian Church",desc:a?`북미가사원 켄터키 지역목자
+List your church: hebronguide.com/church-submit.html`,tags:a?["부산중구","귀환동포"]:["Jung-gu","Returnees"]}],louisville:[{emoji:"⭐",tier:1,name:a?"루이빌새한장로교회":"Louisville Saehan Presbyterian Church",nameEn:"Louisville Saehan Presbyterian Church",desc:a?`✨ 담임: 김상헌 목사
 📍 Louisville, KY
 🏠 목장 소그룹 모임 운영
-✨ 담임: 김상헌 목사
-🔗 saehan.org`:`HMI Kentucky Regional Shepherd
+🔗 saehan.org`:`✨ Lead Pastor: Sangheon Kim
 📍 Louisville, KY
 🏠 Small group Mokjang meetings
-✨ Lead Pastor: Sangheon Kim
-🔗 saehan.org`,tags:a?["루이빌","장로교","켄터키"]:["Louisville","Presbyterian","Kentucky"],website:"https://www.saehan.org"}],nashville:[{emoji:"⭐",tier:1,name:a?"주님의몸된교회":"Body of Christ Church — Nashville",nameEn:"Body of Christ Church",desc:a?`북미가사원 테네시 지역목자
-📍 Tennessee (Nashville 지역)
-✨ 담임: 이영범 목사`:`HMI Tennessee Regional Shepherd
-📍 Tennessee (Nashville area)
-✨ Lead Pastor: Youngbum Lee`,tags:a?["내쉬빌","테네시"]:["Nashville","Tennessee"]}],boston:[{emoji:"⭐",tier:1,name:a?"내슈아한마음교회":"Nashua One Heart Church",nameEn:"Nashua One Heart Church",desc:a?`북미가사원 뉴잉글랜드 지역목자
+🔗 saehan.org`,tags:a?["루이빌","장로교","켄터키"]:["Louisville","Presbyterian","Kentucky"],website:"https://www.saehan.org"}],nashville:[{emoji:"⭐",tier:1,name:a?"주님의몸된교회":"Body of Christ Church — Nashville",nameEn:"Body of Christ Church",desc:a?`✨ 담임: 이영범 목사
+📍 Tennessee (Nashville 지역)`:`✨ Lead Pastor: Youngbum Lee
+📍 Tennessee (Nashville area)`,tags:a?["내쉬빌","테네시"]:["Nashville","Tennessee"]}],boston:[{emoji:"⭐",tier:1,name:a?"내슈아한마음교회":"Nashua One Heart Church",nameEn:"Nashua One Heart Church",desc:a?`✨ 담임: 최지원 목사
 📍 Nashua, NH (뉴잉글랜드)
-✨ 담임: 최지원 목사
-🔗 nashuahanmaum.com`:`HMI New England Regional Shepherd
+🔗 nashuahanmaum.com`:`✨ Lead Pastor: Jiwon Choi
 📍 Nashua, NH (New England)
-✨ Lead Pastor: Jiwon Choi
-🔗 nashuahanmaum.com`,tags:a?["보스턴","뉴잉글랜드","내슈아"]:["Boston","New England","Nashua"],website:"https://www.nashuahanmaum.com"}],newyork:[{emoji:"⭐",tier:1,name:a?"한울림교회":"Hanullim Church — New York",nameEn:"Hanullim Church",desc:a?`북미가사원 뉴욕 지역목자
+🔗 nashuahanmaum.com`,tags:a?["보스턴","뉴잉글랜드","내슈아"]:["Boston","New England","Nashua"],website:"https://www.nashuahanmaum.com"}],newyork:[{emoji:"⭐",tier:1,name:a?"한울림교회":"Hanullim Church — New York",nameEn:"Hanullim Church",desc:a?`✨ 담임: 김원재 목사
 📍 New York (Long Island)
-✨ 담임: 김원재 목사
-🔗 hpcny.org`:`HMI New York Regional Shepherd
+🔗 hpcny.org`:`✨ Lead Pastor: Wonjae Kim
 📍 New York (Long Island)
-✨ Lead Pastor: Wonjae Kim
-🔗 hpcny.org`,tags:a?["뉴욕","롱아일랜드"]:["New York","Long Island"],website:"https://www.hpcny.org"},{emoji:"⭐",tier:1,name:"Day and Night Church",nameEn:"Day and Night Church",desc:a?`북미가사원 영어권 동부 지역목자
-📍 New York, NY
-✨ Lead Pastor: Rein Auh`:`HMI English-Speaking East Regional Shepherd
-📍 New York, NY
-✨ Lead Pastor: Rein Auh`,tags:a?["뉴욕","영어권"]:["New York","English"]}],philadelphia:[{emoji:"⭐",tier:1,name:a?"벤살렘연합감리교회":"Bensalem UMC — Philadelphia",nameEn:"Bensalem United Methodist Church",desc:a?`북미가사원 필라/뉴저지 지역목자
+🔗 hpcny.org`,tags:a?["뉴욕","롱아일랜드"]:["New York","Long Island"],website:"https://www.hpcny.org"},{emoji:"⭐",tier:1,name:"Day and Night Church",nameEn:"Day and Night Church",desc:`✨ Lead Pastor: Rein Auh
+📍 New York, NY`,tags:a?["뉴욕","영어권"]:["New York","English"]}],philadelphia:[{emoji:"⭐",tier:1,name:a?"벤살렘연합감리교회":"Bensalem UMC — Philadelphia",nameEn:"Bensalem United Methodist Church",desc:a?`✨ 담임: 차명훈 목사
 📍 Bensalem, PA (Philadelphia 인근)
-✨ 담임: 차명훈 목사
-🔗 bkc21.org`:`HMI Philadelphia/NJ Regional Shepherd
+🔗 bkc21.org`:`✨ Lead Pastor: Myunghun Cha
 📍 Bensalem, PA (Greater Philadelphia)
-✨ Lead Pastor: Myunghun Cha
-🔗 bkc21.org`,tags:a?["필라델피아","뉴저지"]:["Philadelphia","New Jersey"],website:"https://www.bkc21.org"}],dc:[{emoji:"⭐",tier:1,name:a?"새로운교회":"New Life Church",nameEn:"New Life Church",desc:a?`독립 교회
+🔗 bkc21.org`,tags:a?["필라델피아","뉴저지"]:["Philadelphia","New Jersey"],website:"https://www.bkc21.org"}],dc:[{emoji:"⭐",tier:1,name:a?"새로운교회":"New Life Church",nameEn:"New Life Church",desc:a?`✨ 담임: 안형준 목사 (Joseph Ahn)
 📍 Fairfax / Centreville, Virginia (DC 인근)
-✨ 담임: 안형준 목사 (Joseph Ahn)
+🏠 정착 도움·차편 제공·예배 후 식사 함께합니다.
 🕐 예배: 오후 1시
 📞 (703) 625-3979
-✉️ ahnjoseph30@gmail.com
-
-정착 도움·차편 제공·예배 후 식사 함께합니다.`:`Independent
+✉️ ahnjoseph30@gmail.com`:`✨ Lead Pastor: Joseph Ahn
 📍 Fairfax / Centreville, Virginia (Greater DC)
-✨ Lead Pastor: Joseph Ahn
+🏠 Settlement help, transportation & fellowship meal after service.
 🕐 Service: 1:00 PM
 📞 (703) 625-3979
-✉️ ahnjoseph30@gmail.com
-
-Settlement help, transportation & fellowship meal after service.`,tags:a?["DC","버지니아","페어팩스","정착도움","차편"]:["DC","Virginia","Fairfax","Settlement"],phone:"7036253979",email:"ahnjoseph30@gmail.com"},{emoji:"⭐",tier:1,name:"Unity Church",nameEn:"Unity Church",desc:a?`북미가사원 영어권 중부 지역목자
-📍 Maryland (DC 인근)
-✨ Lead Pastor: Dan Eum`:`HMI English-Speaking Central Regional Shepherd
-📍 Maryland (Greater DC)
-✨ Lead Pastor: Dan Eum`,tags:a?["DC","메릴랜드","영어권"]:["DC","Maryland","English"]}],portland:[{emoji:"⭐",tier:1,name:a?"온누리성결교회":"Onnuri Holiness Church — Oregon",nameEn:"Onnuri Holiness Church",desc:a?`북미가사원 오레곤 지역목자
+✉️ ahnjoseph30@gmail.com`,tags:a?["DC","버지니아","페어팩스","정착도움","차편"]:["DC","Virginia","Fairfax","Settlement"],phone:"7036253979",email:"ahnjoseph30@gmail.com"},{emoji:"⭐",tier:1,name:"Unity Church",nameEn:"Unity Church",desc:a?`✨ Lead Pastor: Dan Eum
+📍 Maryland (DC 인근)`:`✨ Lead Pastor: Dan Eum
+📍 Maryland (Greater DC)`,tags:a?["DC","메릴랜드","영어권"]:["DC","Maryland","English"]}],portland:[{emoji:"⭐",tier:1,name:a?"온누리성결교회":"Onnuri Holiness Church — Oregon",nameEn:"Onnuri Holiness Church",desc:a?`✨ 담임: 강재원 목사
 📍 Oregon (Portland 지역)
-✨ 담임: 강재원 목사
-🔗 onnurichurch.org`:`HMI Oregon Regional Shepherd
+🔗 onnurichurch.org`:`✨ Lead Pastor: Jaewon Kang
 📍 Oregon (Portland area)
-✨ Lead Pastor: Jaewon Kang
-🔗 onnurichurch.org`,tags:a?["포틀랜드","오레곤"]:["Portland","Oregon"],website:"https://onnurichurch.org"},{emoji:"⛪",tier:2,name:a?"오레곤선교교회 (KMC)":"Korean Mission Church of Oregon (KMC)",nameEn:"Korean Mission Church of Oregon",desc:a?`✅ 미주성결교회 (KMC)
+🔗 onnurichurch.org`,tags:a?["포틀랜드","오레곤"]:["Portland","Oregon"],website:"https://onnurichurch.org"},{emoji:"⛪",tier:2,name:a?"오레곤선교교회 (KMC)":"Korean Mission Church of Oregon (KMC)",nameEn:"Korean Mission Church of Oregon",desc:a?`✨ 담임: 주환준 목사
 📍 9100 SW Wilshire St, Portland, OR 97225
-✨ 담임: 주환준 목사
+🏠 가족처럼 함께 지어져 가는 교회 공동체. 영적인 공급(은혜로운 말씀)과 육체에 필요한 섬김(점심) 함께 제공. 한국어·영어 동시 예배.
 📞 503-292-2294
-✉️ kmcoregon@gmail.com
-
-🏠 가족처럼 함께 지어져 가는 교회 공동체. 영적인 공급(은혜로운 말씀)과 육체에 필요한 섬김(점심) 함께 제공. 한국어·영어 동시 예배.`:`✅ Korean Mission Church (KMC)
+✉️ kmcoregon@gmail.com`:`✨ Lead Pastor: Hwanjun Ju
 📍 9100 SW Wilshire St, Portland, OR 97225
-✨ Lead Pastor: Hwanjun Ju
+🏠 A church community built together as family. Spiritual nourishment (Word) + physical care (lunch) provided. Bilingual Korean-English worship.
 📞 503-292-2294
-✉️ kmcoregon@gmail.com
-
-🏠 A church community built together as family. Spiritual nourishment (Word) + physical care (lunch) provided. Bilingual Korean-English worship.`,tags:a?["성결교회","포틀랜드","한영예배","KMC"]:["KMC","Portland","Bilingual","Oregon"],email:"kmcoregon@gmail.com",phone:"503-292-2294"}],chicago:[{emoji:"⭐",tier:1,name:a?"도담교회":"Dodam Church — Chicago",nameEn:"Dodam Church",desc:a?`북미가사원 시카고 지역목자
-📍 Chicago, IL
-✨ 담임: 곽성룡 목사`:`HMI Chicago Regional Shepherd
-📍 Chicago, IL
-✨ Lead Pastor: Sungyong Kwak`,tags:a?["시카고"]:["Chicago"]}],orlando:[{emoji:"⭐",tier:1,name:a?"올랜도비전교회":"Orlando Vision Church",nameEn:"Orlando Vision Church",desc:a?`📍 16796 E. Davenport Rd, Winter Garden, FL 34787
-✨ 담임: 남인철 목사
-🔗 kpco.org`:`📍 16796 E. Davenport Rd, Winter Garden, FL 34787
-✨ Lead Pastor: Inchul Nam
-🔗 kpco.org`,tags:a?["올랜도","플로리다"]:["Orlando","Florida"],website:"http://www.kpco.org"}],bundang:[{emoji:"⭐",tier:1,name:a?"지구촌교회":"Global Mission Church (Jiguchon)",nameEn:"Global Mission Church",desc:a?`✅ 검증됨 · 귀환 동포·역이민자 환영
+✉️ kmcoregon@gmail.com`,tags:a?["성결교회","포틀랜드","한영예배","KMC"]:["KMC","Portland","Bilingual","Oregon"],email:"kmcoregon@gmail.com",phone:"503-292-2294"}],chicago:[{emoji:"⭐",tier:1,name:a?"도담교회":"Dodam Church — Chicago",nameEn:"Dodam Church",desc:a?`✨ 담임: 곽성룡 목사
+📍 Chicago, IL`:`✨ Lead Pastor: Sungyong Kwak
+📍 Chicago, IL`,tags:a?["시카고"]:["Chicago"]}],orlando:[{emoji:"⭐",tier:1,name:a?"올랜도비전교회":"Orlando Vision Church",nameEn:"Orlando Vision Church",desc:a?`✨ 담임: 남인철 목사
+📍 16796 E. Davenport Rd, Winter Garden, FL 34787
+🔗 kpco.org`:`✨ Lead Pastor: Inchul Nam
+📍 16796 E. Davenport Rd, Winter Garden, FL 34787
+🔗 kpco.org`,tags:a?["올랜도","플로리다"]:["Orlando","Florida"],website:"http://www.kpco.org"}],bundang:[{emoji:"⭐",tier:1,name:a?"지구촌교회":"Global Mission Church (Jiguchon)",nameEn:"Global Mission Church",desc:a?`✨ 담임: 김우준 목사 (원로: 이동원 목사)
 📍 경기도 성남시 분당구 돌마로 52 (미션센터)
-📞 031-710-9300
+🏠 기독교한국침례회 · 분당·수지 2개 캠퍼스 · 영어예배(GEM) · 일본어·중국어·몽골어 국제예배 · 교인 약 3만명 · 귀환 동포 정착 상담 가능
 🕐 주일예배 다부제 — jiguchon.or.kr 예배시간 확인
-🌐 jiguchon.or.kr
-
-✨ 담임: 김우준 목사 · 원로: 이동원 목사
-기독교한국침례회 · 분당·수지 2개 캠퍼스
-영어예배(GEM) · 일본어·중국어·몽골어 국제예배 운영
-교인 약 3만명 · 귀환 동포 정착 상담 가능`:`✅ Verified · Welcoming returning overseas Koreans
-📍 52 Dolma-ro, Bundang-gu, Seongnam-si, Gyeonggi Province
 📞 031-710-9300
+🔗 jiguchon.or.kr`:`✨ Lead Pastor: Rev. David Woo-Joon Kim (Emeritus: Rev. Daniel Dong-Won Lee)
+📍 52 Dolma-ro, Bundang-gu, Seongnam-si, Gyeonggi Province
+🏠 Korea Baptist Convention · 2 campuses: Bundang & Suji · English Ministry (GEM): gmcem.org · Japanese, Chinese & Mongolian services · ~30,000 members · Pastoral support for returning diaspora
 🕐 Multiple Sunday services — see jiguchon.or.kr for schedule
-🌐 jiguchon.or.kr
-
-✨ Senior Pastor: Rev. David Woo-Joon Kim · Emeritus: Rev. Daniel Dong-Won Lee
-Korea Baptist Convention · 2 campuses: Bundang & Suji
-English Ministry (GEM): gmcem.org · Services in Japanese, Chinese & Mongolian
-~30,000 members · Pastoral support available for returning diaspora`,tags:a?["분당","침례교","이동원목사","영어예배","귀환동포"]:["Bundang","Baptist","English Ministry","Returnees"],website:"https://www.jiguchon.or.kr"}],maryland:[{emoji:"⭐",tier:1,name:a?"워싱턴지구촌교회 (Global Mission Church)":"Global Mission Church — Silver Spring",nameEn:"Global Mission Church (GMC)",desc:a?`메릴랜드·DC 한인 가정교회 사역
+📞 031-710-9300
+🔗 jiguchon.or.kr`,tags:a?["분당","침례교","이동원목사","영어예배","귀환동포"]:["Bundang","Baptist","English Ministry","Returnees"],website:"https://www.jiguchon.or.kr"}],maryland:[{emoji:"⭐",tier:1,name:a?"워싱턴지구촌교회 (Global Mission Church)":"Global Mission Church — Silver Spring",nameEn:"Global Mission Church (GMC)",desc:a?`✨ 담임: 박승진 목사 (5대, 2023.11 취임)
 📍 13421 Georgia Ave, Silver Spring, MD 20906
-✨ 담임: 박승진 목사 (5대, 2023.11 취임)
-🔗 gmcusa.org`:`Korean house church ministry in MD/DC area
+🏠 메릴랜드·DC 한인 가정교회 사역
+🔗 gmcusa.org`:`✨ Lead Pastor: Rev. Seungjin Park (5th, installed Nov 2023)
 📍 13421 Georgia Ave, Silver Spring, MD 20906
-✨ Lead Pastor: Rev. Seungjin Park (5th, installed Nov 2023)
-🔗 gmcusa.org`,tags:a?["실버스프링","메릴랜드"]:["Silver Spring","Maryland"],website:"https://www.gmcusa.org"}],sandiego:[{emoji:"⭐",tier:1,name:a?"기쁨의교회":"Joy Church — San Diego",nameEn:"Joy Church",desc:a?`북미가사원 샌디에고 지역목자
-📍 San Diego, CA
-✨ 담임: 조성대 목사`:`HMI San Diego Regional Shepherd
-📍 San Diego, CA
-✨ Lead Pastor: Sungdae Cho`,tags:a?["샌디에고"]:["San Diego"]}]}[r]??[]}function bk({onHome:r}){const{lang:i}=tn(),{content:a}=yo(),[c,m]=w.useState(0),[s,h]=w.useState(null),p=i==="ko"?["소개","교회 목록","프로그램","새가족","🏆 교회 네트워크"]:["About","Churches","Programs","New Members","🏆 Church Network"],f="#C084FC",y=Q(),S=y.slug,g=Ck(S,i),E=a.churches&&a.churches.length>0?$n(a.churches,i):g,[j,M]=w.useState([]);w.useEffect(()=>{const x={apikey:go,Authorization:`Bearer ${go}`};fetch(`https://${Er}.supabase.co/rest/v1/churches?city_slug=eq.${S}&active=eq.true&order=hebron_partner.desc,tier.asc&limit=100`,{headers:x}).then(A=>A.ok?A.json():[]).then(A=>{Array.isArray(A)&&A.length>0&&M(A)}).catch(()=>{})},[S]);const b=(()=>{try{return JSON.parse(localStorage.getItem("hg_community_churches")||"[]").filter(A=>A.citySlug===S).map(A=>({emoji:"⛪",name:A.name,nameEn:A.name,desc:i==="ko"?`${A.city} · 커뮤니티 등록 교회${A.pastor?" · "+A.pastor:""}`:`${A.city} · Community-added church${A.pastor?" · "+A.pastor:""}`,phone:A.phone||"",website:A.website||"",tags:[i==="ko"?"커뮤니티":"Community"],isCommunity:!0}))}catch{return[]}})(),I=[{emoji:"📚",name:i==="ko"?"영어 ESL 클래스":"ESL Classes",nameEn:"ESL",desc:i==="ko"?"무료 영어 수업. 대부분 교회에서 운영. 초급~중급 레벨별 반 구성":"Free English classes at most churches. Beginner to intermediate levels",tags:["무료","영어"]},{emoji:"📋",name:i==="ko"?"이민자 정착 상담":"Immigration Counseling",nameEn:"Immigration Support",desc:i==="ko"?"비자·운전면허·은행 계좌·학교 등록 등 정착 지원. 한인 자원봉사자 운영":"Visa, license, banking, school enrollment support by Korean volunteers",tags:["정착","상담"]},{emoji:"🏃",name:i==="ko"?"청년 스포츠 리그":"Youth Sports League",nameEn:"Sports",desc:i==="ko"?"교회 간 연합 농구·배구·축구 리그. 한인 2세 네트워킹 최고":"Inter-church basketball, volleyball, soccer leagues. Best 2nd-gen networking",tags:["스포츠","청년"]},{emoji:"👩‍👧",name:i==="ko"?"여성 모임·선교회":"Women's Ministry",nameEn:"Women's Ministry",desc:i==="ko"?"새 이민자 여성을 위한 생활 정보 공유, 정서적 지지 네트워크":"Life info sharing and emotional support network for newcomer women",tags:["여성","커뮤니티"]},{emoji:"🎵",name:i==="ko"?"찬양·예배팀":"Worship Team",nameEn:"Worship",desc:i==="ko"?"음악 경력자 환영. 한국어·영어 찬양 병행. 매주 리허설":"Musicians welcome. Korean and English worship. Weekly rehearsal",tags:["음악","봉사"]},{emoji:"🌱",name:i==="ko"?"새가족 환영 모임":"New Member Welcome",nameEn:"New Members",desc:i==="ko"?"처음 방문자를 위한 교회 소개·식사·멘토 연결. 무부담으로 참여":"Church intro, meal, and mentor matching for first-time visitors. No pressure",tags:["새가족","환영"]}],_=i==="ko"?[{title:"처음 방문 시 팁",desc:"대부분 교회는 방문자 환영. 미리 연락 없이 예배 시간에 방문해도 됩니다. 주차장 안내원이 도와드립니다"},{title:"예배 시간 (일반적)",desc:"주일 1부 8:00am · 2부 11:00am · 영어예배 11:00am. 교회마다 다르니 홈페이지 확인"},{title:"새가족 등록 혜택",desc:"정착 상담 · 생활 정보 · 한인 네트워크 연결. 대부분 무료 제공"},{title:"한인 교회 찾는 법",desc:`구글에서 '${y.nameKo} 한인 교회' 검색, 또는 지역 한인 교회 협회 홈페이지 참고`}]:[{title:"Tips for first visit",desc:"Most churches warmly welcome visitors. No need to call ahead — just show up at service time. Parking attendants will help"},{title:"Typical service times",desc:"Sunday 1st: 8:00am · 2nd: 11:00am · English Service: 11:00am. Check each church website for details"},{title:"New member benefits",desc:"Settlement counseling · Life info · Korean network connection. Most services free"},{title:"How to find Korean churches",desc:`Search '${y.nameEn} Korean Church' on Kakao Maps or Google, or contact your local Korean Church Association`}];return o.jsxs(o.Fragment,{children:[o.jsxs("div",{style:{paddingBottom:96},children:[o.jsx(ia,{onHome:r,lang:i}),o.jsx(ha,{emoji:"⛪",titleKo:"한인 교회",titleEn:"Korean Churches",descKo:`${Q().nameKo} — 정착 지원 · 영어수업 · 커뮤니티 네트워크`,descEn:`${Q().nameEn} — Settlement support · ESL classes · Community`,accentColor:f}),o.jsx(ko,{tabs:p,active:c,onChange:m,accentColor:f}),o.jsxs("div",{className:"pt-5 px-4 md:px-6 lg:px-8",children:[c===0&&o.jsxs(o.Fragment,{children:[o.jsxs("div",{style:{background:"linear-gradient(135deg,rgba(201,162,39,0.11) 0%,rgba(0,0,0,0) 100%)",border:"1px solid rgba(201,162,39,0.3)",borderRadius:16,padding:"20px 18px",marginBottom:12},children:[o.jsxs("div",{style:{fontSize:10,fontFamily:"Manrope,sans-serif",fontWeight:800,color:"#C9A227",letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:12,opacity:.85},children:["📖 ",i==="ko"?"HebronGuide 핵심 가치":"HebronGuide Core Values"]}),o.jsxs("div",{style:{background:"rgba(0,0,0,0.25)",borderRadius:12,padding:"14px 16px",borderLeft:"3px solid #C9A227"},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:14.5,color:"#ECFDF5",marginBottom:6},children:i==="ko"?"성경대로":"According to Scripture"}),o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontSize:12,color:"rgba(236,253,245,0.7)",lineHeight:1.85},children:i==="ko"?`새로운 도시에서 처음 만나는 공동체가
+🏠 Korean house church ministry in MD/DC area
+🔗 gmcusa.org`,tags:a?["실버스프링","메릴랜드"]:["Silver Spring","Maryland"],website:"https://www.gmcusa.org"}],sandiego:[{emoji:"⭐",tier:1,name:a?"기쁨의교회":"Joy Church — San Diego",nameEn:"Joy Church",desc:a?`✨ 담임: 조성대 목사
+📍 San Diego, CA`:`✨ Lead Pastor: Sungdae Cho
+📍 San Diego, CA`,tags:a?["샌디에고"]:["San Diego"]}]}[r]??[]}function bk({onHome:r}){const{lang:i}=tn(),{content:a}=yo(),[c,m]=w.useState(0),[s,h]=w.useState(null),p=i==="ko"?["소개","교회 목록","프로그램","새가족","🏆 교회 네트워크"]:["About","Churches","Programs","New Members","🏆 Church Network"],f="#C084FC",y=Q(),S=y.slug,g=Ck(S,i),E=a.churches&&a.churches.length>0?$n(a.churches,i):g,[j,M]=w.useState([]);w.useEffect(()=>{const x={apikey:go,Authorization:`Bearer ${go}`};fetch(`https://${Er}.supabase.co/rest/v1/churches?city_slug=eq.${S}&active=eq.true&order=hebron_partner.desc,tier.asc&limit=100`,{headers:x}).then(A=>A.ok?A.json():[]).then(A=>{Array.isArray(A)&&A.length>0&&M(A)}).catch(()=>{})},[S]);const b=(()=>{try{return JSON.parse(localStorage.getItem("hg_community_churches")||"[]").filter(A=>A.citySlug===S).map(A=>({emoji:"⛪",name:A.name,nameEn:A.name,desc:i==="ko"?`${A.city} · 커뮤니티 등록 교회${A.pastor?" · "+A.pastor:""}`:`${A.city} · Community-added church${A.pastor?" · "+A.pastor:""}`,phone:A.phone||"",website:A.website||"",tags:[i==="ko"?"커뮤니티":"Community"],isCommunity:!0}))}catch{return[]}})(),I=[{emoji:"📚",name:i==="ko"?"영어 ESL 클래스":"ESL Classes",nameEn:"ESL",desc:i==="ko"?"무료 영어 수업. 대부분 교회에서 운영. 초급~중급 레벨별 반 구성":"Free English classes at most churches. Beginner to intermediate levels",tags:["무료","영어"]},{emoji:"📋",name:i==="ko"?"이민자 정착 상담":"Immigration Counseling",nameEn:"Immigration Support",desc:i==="ko"?"비자·운전면허·은행 계좌·학교 등록 등 정착 지원. 한인 자원봉사자 운영":"Visa, license, banking, school enrollment support by Korean volunteers",tags:["정착","상담"]},{emoji:"🏃",name:i==="ko"?"청년 스포츠 리그":"Youth Sports League",nameEn:"Sports",desc:i==="ko"?"교회 간 연합 농구·배구·축구 리그. 한인 2세 네트워킹 최고":"Inter-church basketball, volleyball, soccer leagues. Best 2nd-gen networking",tags:["스포츠","청년"]},{emoji:"👩‍👧",name:i==="ko"?"여성 모임·선교회":"Women's Ministry",nameEn:"Women's Ministry",desc:i==="ko"?"새 이민자 여성을 위한 생활 정보 공유, 정서적 지지 네트워크":"Life info sharing and emotional support network for newcomer women",tags:["여성","커뮤니티"]},{emoji:"🎵",name:i==="ko"?"찬양·예배팀":"Worship Team",nameEn:"Worship",desc:i==="ko"?"음악 경력자 환영. 한국어·영어 찬양 병행. 매주 리허설":"Musicians welcome. Korean and English worship. Weekly rehearsal",tags:["음악","봉사"]},{emoji:"🌱",name:i==="ko"?"새가족 환영 모임":"New Member Welcome",nameEn:"New Members",desc:i==="ko"?"처음 방문자를 위한 교회 소개·식사·멘토 연결. 무부담으로 참여":"Church intro, meal, and mentor matching for first-time visitors. No pressure",tags:["새가족","환영"]}],_=i==="ko"?[{title:"처음 방문 시 팁",desc:"대부분 교회는 방문자 환영. 미리 연락 없이 예배 시간에 방문해도 됩니다. 주차장 안내원이 도와드립니다"},{title:"예배 시간 (일반적)",desc:"주일 1부 8:00am · 2부 11:00am · 영어예배 11:00am. 교회마다 다르니 홈페이지 확인"},{title:"새가족 등록 혜택",desc:"정착 상담 · 생활 정보 · 한인 네트워크 연결. 대부분 무료 제공"},{title:"한인 교회 찾는 법",desc:`구글에서 '${y.nameKo} 한인 교회' 검색, 또는 지역 한인 교회 협회 홈페이지 참고`}]:[{title:"Tips for first visit",desc:"Most churches warmly welcome visitors. No need to call ahead — just show up at service time. Parking attendants will help"},{title:"Typical service times",desc:"Sunday 1st: 8:00am · 2nd: 11:00am · English Service: 11:00am. Check each church website for details"},{title:"New member benefits",desc:"Settlement counseling · Life info · Korean network connection. Most services free"},{title:"How to find Korean churches",desc:`Search '${y.nameEn} Korean Church' on Kakao Maps or Google, or contact your local Korean Church Association`}];return o.jsxs(o.Fragment,{children:[o.jsxs("div",{style:{paddingBottom:96},children:[o.jsx(ia,{onHome:r,lang:i}),o.jsx(ha,{emoji:"⛪",titleKo:"한인 교회",titleEn:"Korean Churches",descKo:`${Q().nameKo} — 정착 지원 · 영어수업 · 커뮤니티 네트워크`,descEn:`${Q().nameEn} — Settlement support · ESL classes · Community`,accentColor:f}),o.jsx(ko,{tabs:p,active:c,onChange:m,accentColor:f}),o.jsxs("div",{className:"pt-5 px-4 md:px-6 lg:px-8",children:[c===0&&o.jsxs(o.Fragment,{children:[o.jsxs("div",{style:{background:"linear-gradient(135deg,rgba(201,162,39,0.11) 0%,rgba(0,0,0,0) 100%)",border:"1px solid rgba(201,162,39,0.3)",borderRadius:16,padding:"20px 18px",marginBottom:12},children:[o.jsxs("div",{style:{fontSize:10,fontFamily:"Manrope,sans-serif",fontWeight:800,color:"#C9A227",letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:12,opacity:.85},children:["📖 ",i==="ko"?"HebronGuide 핵심 가치":"HebronGuide Core Values"]}),o.jsxs("div",{style:{background:"rgba(0,0,0,0.25)",borderRadius:12,padding:"14px 16px",borderLeft:"3px solid #C9A227"},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:14.5,color:"#ECFDF5",marginBottom:6},children:i==="ko"?"성경대로":"According to Scripture"}),o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontSize:12,color:"rgba(236,253,245,0.7)",lineHeight:1.85},children:i==="ko"?`새로운 도시에서 처음 만나는 공동체가
 당신의 이웃이 되어 드립니다.`:`The community you meet in a new city
 becomes your neighbor.`})]})]}),o.jsxs("div",{style:{background:"rgba(192,132,252,0.07)",border:"1px solid rgba(192,132,252,0.22)",borderRadius:16,padding:"18px 20px",marginBottom:14},children:[o.jsx("div",{style:{fontSize:11,fontFamily:"Manrope,sans-serif",fontWeight:800,color:"#C084FC",letterSpacing:"0.06em",marginBottom:10,opacity:.85},children:i==="ko"?"⛪ HebronGuide 커뮤니티 철학":"⛪ HebronGuide Community Philosophy"}),o.jsx("div",{style:{fontSize:13,color:"rgba(236,253,245,0.88)",lineHeight:1.75,fontStyle:"italic",borderLeft:"3px solid rgba(192,132,252,0.4)",paddingLeft:12,marginBottom:8},children:i==="ko"?'"주는 것이 받는 것보다 복이 있다"':'"It is more blessed to give than to receive."'}),o.jsx("div",{style:{fontSize:12,color:"rgba(236,253,245,0.65)",lineHeight:1.7},children:i==="ko"?"새로 온 이웃에게 먼저 손을 내미는 것, 그것이 진정한 커뮤니티의 시작입니다.":"Reaching out first to newcomers — that's how real community begins."})]}),o.jsx("div",{className:"grid grid-cols-2 md:grid-cols-4 gap-[10px] mb-4",children:[{n:"50+",l:i==="ko"?"한인 교회":"Korean Churches"},{n:"20+",l:i==="ko"?"영어 예배팀":"English Services"},{n:"무료",l:i==="ko"?"ESL 수업":"ESL Classes"},{n:"365일",l:i==="ko"?"커뮤니티 활동":"Community Activities"}].map((x,A)=>o.jsxs("div",{style:{background:"rgba(192,132,252,0.1)",borderRadius:14,padding:"14px 16px",border:"1px solid rgba(192,132,252,0.2)",textAlign:"center"},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:900,fontSize:22,color:"#ECFDF5"},children:x.n}),o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontSize:11,color:"rgba(236,253,245,0.85)",marginTop:3},children:x.l})]},A))})]}),c===1&&o.jsxs(o.Fragment,{children:[b.length>0&&o.jsx("div",{className:"grid grid-cols-1 md:grid-cols-2 gap-3",style:{marginBottom:12},children:b.map((x,A)=>o.jsxs("div",{style:{border:"1px solid rgba(110,231,183,0.35)",borderRadius:16,background:"rgba(110,231,183,0.05)"},children:[o.jsx("div",{style:{display:"flex",alignItems:"center",gap:6,padding:"6px 14px 0"},children:o.jsx("span",{style:{background:"rgba(110,231,183,0.15)",border:"1px solid rgba(110,231,183,0.4)",color:"#6EE7B7",borderRadius:8,padding:"2px 8px",fontSize:10,fontFamily:"Manrope,sans-serif",fontWeight:700},children:i==="ko"?"✅ 커뮤니티 등록":"✅ Community"})}),o.jsx(_e,{...x,accentColor:"#6EE7B7"})]},"com-"+A))}),j.length>0&&o.jsxs("div",{style:{marginBottom:16},children:[j.some(x=>x.hebron_partner)&&o.jsxs("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:10},children:[o.jsx("div",{style:{height:1,flex:1,background:"rgba(110,231,183,0.2)"}}),o.jsxs("span",{style:{fontSize:10,fontWeight:800,color:"#6EE7B7",fontFamily:"Manrope,sans-serif",whiteSpace:"nowrap"},children:["🤝 ",i==="ko"?"Hebron 협력교회":"Hebron Partner Churches"]}),o.jsx("div",{style:{height:1,flex:1,background:"rgba(110,231,183,0.2)"}})]}),o.jsx("div",{className:"grid grid-cols-1 md:grid-cols-2 gap-3",children:j.filter(x=>x.hebron_partner).map((x,A)=>o.jsxs("div",{style:{border:x.hebron_partner?"1px solid rgba(110,231,183,0.45)":"1px solid rgba(255,255,255,0.1)",borderRadius:16,background:x.hebron_partner?"rgba(110,231,183,0.05)":"rgba(255,255,255,0.02)",padding:"14px 16px"},children:[x.hebron_partner&&o.jsx("div",{style:{marginBottom:6},children:o.jsx("span",{style:{background:"rgba(110,231,183,0.12)",border:"1px solid rgba(110,231,183,0.4)",color:"#6EE7B7",borderRadius:8,padding:"2px 8px",fontSize:10,fontFamily:"Manrope,sans-serif",fontWeight:700},children:"🤝 Hebron 협력교회"})}),o.jsxs("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:14,color:"#fff",marginBottom:4},children:["⛪ ",i==="ko"?x.name||x.name_en:x.name_en||x.name]}),x.name&&x.name_en&&x.name!==x.name_en&&o.jsx("div",{style:{fontSize:11,color:"rgba(255,255,255,0.45)",fontFamily:"Manrope,sans-serif",marginBottom:2},children:i==="ko"?x.name_en:x.name}),x.denomination&&o.jsxs("div",{style:{fontSize:11,color:"rgba(255,255,255,0.5)",marginBottom:4,fontFamily:"Manrope,sans-serif"},children:[x.denomination," ",x.service_time?`· ${x.service_time}`:""]}),x.description&&o.jsx("div",{style:{fontSize:12,color:"rgba(255,255,255,0.65)",marginBottom:8,fontFamily:"Manrope,sans-serif"},children:x.description}),o.jsxs("div",{style:{display:"flex",gap:8,flexWrap:"wrap"},children:[x.phone&&o.jsxs("a",{href:`tel:${x.phone}`,style:{fontSize:11,color:f,fontFamily:"Manrope,sans-serif",fontWeight:600,textDecoration:"none"},children:["📞 ",x.phone]}),x.website&&o.jsxs("a",{href:x.website.startsWith("http")?x.website:`https://${x.website}`,target:"_blank",rel:"noopener",style:{fontSize:11,color:f,fontFamily:"Manrope,sans-serif",fontWeight:600,textDecoration:"none"},children:["🌐 ",i==="ko"?"홈페이지":"Website"]}),x.email&&o.jsxs("a",{href:`mailto:${x.email}`,style:{fontSize:11,color:f,fontFamily:"Manrope,sans-serif",fontWeight:600,textDecoration:"none"},children:["✉️ ",i==="ko"?"이메일":"Email"]})]})]},"sb-"+A))}),j.some(x=>!x.hebron_partner)&&o.jsxs(o.Fragment,{children:[o.jsxs("div",{style:{display:"flex",alignItems:"center",gap:8,margin:"16px 0 10px"},children:[o.jsx("div",{style:{height:1,flex:1,background:"rgba(255,255,255,0.08)"}}),o.jsxs("span",{style:{fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.4)",fontFamily:"Manrope,sans-serif",whiteSpace:"nowrap"},children:["⛪ ",i==="ko"?"기타 등록 교회":"Other Churches"]}),o.jsx("div",{style:{height:1,flex:1,background:"rgba(255,255,255,0.08)"}})]}),o.jsx("div",{className:"grid grid-cols-1 md:grid-cols-2 gap-3",children:j.filter(x=>!x.hebron_partner).map((x,A)=>o.jsxs("div",{style:{border:"1px solid rgba(255,255,255,0.1)",borderRadius:16,background:"rgba(255,255,255,0.02)",padding:"14px 16px",opacity:.85},children:[o.jsxs("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:14,color:"#fff",marginBottom:4},children:["⛪ ",i==="ko"?x.name||x.name_en:x.name_en||x.name]}),x.denomination&&o.jsxs("div",{style:{fontSize:11,color:"rgba(255,255,255,0.5)",marginBottom:4,fontFamily:"Manrope,sans-serif"},children:[x.denomination," ",x.service_time?`· ${x.service_time}`:""]}),o.jsxs("div",{style:{display:"flex",gap:8,flexWrap:"wrap"},children:[x.phone&&o.jsxs("a",{href:`tel:${x.phone}`,style:{fontSize:11,color:f,fontFamily:"Manrope,sans-serif",fontWeight:600,textDecoration:"none"},children:["📞 ",x.phone]}),x.website&&o.jsxs("a",{href:x.website.startsWith("http")?x.website:`https://${x.website}`,target:"_blank",rel:"noopener",style:{fontSize:11,color:f,fontFamily:"Manrope,sans-serif",fontWeight:600,textDecoration:"none"},children:["🌐 ",i==="ko"?"홈페이지":"Website"]})]})]},"sb2-"+A))})]})]}),E.length===0?b.length===0&&j.length===0&&o.jsx(ic,{lang:i,accentColor:f}):o.jsx("div",{className:"grid grid-cols-1 md:grid-cols-2 gap-3",children:E.slice().sort((x,A)=>(A.hebronPartner?1:0)-(x.hebronPartner?1:0)||(x.tier??9)-(A.tier??9)).map((x,A)=>o.jsxs("div",{style:x.hebronPartner?{border:"1.5px solid rgba(110,231,183,0.5)",borderRadius:16,background:"rgba(110,231,183,0.06)"}:x.tier===1?{border:"1px solid rgba(201,162,39,0.45)",borderRadius:16,background:"rgba(201,162,39,0.05)"}:{borderRadius:16,border:"1px solid rgba(255,255,255,0.08)"},children:[x.hebronPartner||x.denomination?o.jsxs("div",{style:{display:"flex",alignItems:"center",gap:6,padding:"6px 14px 0 14px",flexWrap:"wrap"},children:[x.hebronPartner&&o.jsx("span",{style:{background:"rgba(110,231,183,0.15)",border:"1px solid rgba(110,231,183,0.45)",color:"#6EE7B7",borderRadius:8,padding:"2px 8px",fontSize:10,fontFamily:"Manrope,sans-serif",fontWeight:700,letterSpacing:"0.02em"},children:"🤝 Hebron 협력교회"}),x.denomination&&o.jsxs("span",{style:{background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.14)",color:"rgba(236,253,245,0.6)",borderRadius:8,padding:"2px 8px",fontSize:10,fontFamily:"Manrope,sans-serif",fontWeight:600,letterSpacing:"0.02em"},children:["⛪ ",x.denomination]})]}):null,o.jsx(_e,{...x,accentColor:x.tier===1?Of:f}),x.tier!==1&&x.hebronPartner&&(x.phone||x.email)&&o.jsx("div",{style:{padding:"0 14px 14px 14px"},children:o.jsxs("button",{onClick:()=>h(x),style:{width:"100%",display:"flex",alignItems:"center",justifyContent:"center",gap:6,background:"linear-gradient(135deg, rgba(110,231,183,0.85), rgba(52,211,153,0.85))",color:"#0d1117",borderRadius:10,padding:"12px 16px",fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:13,border:"none",cursor:"pointer"},children:["🌿 ",i==="ko"?"교회 방문하기":"Visit Church"]})}),x.tier!==1&&!x.hebronPartner&&(x.website||x.phone)&&o.jsx("div",{style:{padding:"0 14px 12px 14px"},children:o.jsxs("a",{href:x.website?`https://${x.website.replace(/^https?:\/\//,"")}`:`tel:${x.phone}`,target:"_blank",rel:"noopener",style:{display:"flex",alignItems:"center",justifyContent:"center",gap:6,background:"rgba(110,231,183,0.08)",border:"1px solid rgba(110,231,183,0.25)",color:"#6EE7B7",borderRadius:10,padding:"9px 16px",fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:12,textDecoration:"none"},children:["🌿 ",i==="ko"?"교회 방문하기":"Visit Church"]})}),x.tier===1&&(x.email||x.phone||x.kakao||x.website)&&o.jsxs("div",{style:{padding:"0 14px 14px 14px"},children:[o.jsxs("button",{onClick:()=>h(x),style:{width:"100%",display:"flex",alignItems:"center",justifyContent:"center",gap:6,background:"linear-gradient(135deg, rgba(201,162,39,0.9), rgba(184,144,28,0.9))",color:"#0d1117",borderRadius:10,padding:"10px 16px",fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:13,border:"none",cursor:"pointer",transition:"opacity .15s",marginBottom:8},children:["🌿 ",i==="ko"?"새가족 신청하기":"Register as New Member"]}),(x.kakao||x.phone||x.website)&&o.jsxs("div",{style:{display:"flex",gap:6,flexWrap:"wrap"},children:[x.kakao&&o.jsxs("a",{href:x.kakao,target:"_blank",rel:"noopener",style:{flex:1,minWidth:70,display:"flex",alignItems:"center",justifyContent:"center",gap:4,background:"#FEE500",borderRadius:9,padding:"8px 10px",fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:11,color:"#3A1D1D",textDecoration:"none",whiteSpace:"nowrap"},children:["💬 ",i==="ko"?"카카오":"KakaoTalk"]}),x.phone&&o.jsxs("a",{href:`tel:${x.phone}`,style:{flex:1,minWidth:70,display:"flex",alignItems:"center",justifyContent:"center",gap:4,background:"rgba(110,231,183,0.15)",border:"1px solid rgba(110,231,183,0.3)",borderRadius:9,padding:"8px 10px",fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:11,color:"#6EE7B7",textDecoration:"none",whiteSpace:"nowrap"},children:["📞 ",i==="ko"?"전화":"Call"]}),x.website&&o.jsxs("a",{href:x.website,target:"_blank",rel:"noopener",style:{flex:1,minWidth:70,display:"flex",alignItems:"center",justifyContent:"center",gap:4,background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.12)",borderRadius:9,padding:"8px 10px",fontFamily:"Manrope,sans-serif",fontWeight:700,fontSize:11,color:"rgba(236,253,245,0.7)",textDecoration:"none",whiteSpace:"nowrap"},children:["🔗 ",i==="ko"?"홈페이지":"Website"]})]})]})]},A))})]}),c===2&&o.jsx("div",{className:"grid grid-cols-1 md:grid-cols-2 gap-3",children:I.map((x,A)=>o.jsx(_e,{...x,accentColor:f},A))}),c===3&&o.jsx(sk,{title:i==="ko"?"새가족 안내":"New Member Guide",accentColor:f,children:_.map((x,A)=>o.jsx(lk,{num:A+1,title:x.title,desc:x.desc,accentColor:f},A))}),c===4&&o.jsxs("div",{style:{paddingBottom:8},children:[o.jsxs("div",{style:{background:"linear-gradient(160deg, rgba(201,162,39,0.10) 0%, rgba(0,0,0,0) 100%)",border:"1px solid rgba(201,162,39,0.25)",borderRadius:18,padding:"20px 18px",marginBottom:14},children:[o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontWeight:800,fontSize:15,color:"#ECFDF5",lineHeight:1.7,marginBottom:10},children:i==="ko"?"HebronGuide의 사명에 동의하시는 교회의 동참을 구합니다.":"We invite churches that share HebronGuide's mission to join us."}),o.jsx("div",{style:{fontFamily:"Manrope,sans-serif",fontSize:12,color:"rgba(236,253,245,0.6)",lineHeight:1.8},children:i==="ko"?"아래 버튼으로 교회 정보를 보내주시면 운영팀이 연락드립니다.":"Send us your church info below and our team will be in touch."})]}),o.jsx("a",{href:`mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(i==="ko"?"[HebronGuide] 교회 등록 신청":"[HebronGuide] Church Registration")}&body=${encodeURIComponent(i==="ko"?`안녕하세요. {교회명} 담임목사 {성함}입니다.
 HebronGuide 교회 네트워크 등록을 신청합니다.
