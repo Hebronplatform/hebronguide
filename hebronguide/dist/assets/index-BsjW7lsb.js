@@ -1377,17 +1377,15 @@ Key services:
 📍 Dallas, TX
 🔗 ydkcdallas.org`:`✨ Lead Pastor: Woo Chul Lee
 📍 Dallas, TX
-🔗 ydkcdallas.org`,tags:a?["달라스","텍사스"]:["Dallas","Texas"],website:"https://www.ydkcdallas.org"},{emoji:"⛪",tier:2,name:a?"에덴교회 (Eden Church at the Field)":"Eden Church at the Field — Carrollton",nameEn:a?"Eden Church at the Field":"에덴교회",desc:a?`✨ 담임: 신종우 목사
+🔗 ydkcdallas.org`,tags:a?["달라스","텍사스"]:["Dallas","Texas"],website:"https://www.ydkcdallas.org"},{emoji:"⭐",tier:1,hebronPartner:!0,name:a?"에덴교회 (Eden Church at the Field)":"Eden Church at the Field",nameEn:"Eden Church at the Field",desc:a?`✨ 담임: 신종우 목사
 📍 1401 Carrollton Pkwy, Carrollton, TX 75010
 🕐 주일예배 매주 일요일 오후 12:30
-📧 kfbcc@yahoo.com
-🏛 남침례단 · 2005년 설립
+🏠 새가족 환영 · 남침례단 · 2005년 설립
 🔗 edendallas.org`:`✨ Lead Pastor: Jong-woo Shin
 📍 1401 Carrollton Pkwy, Carrollton, TX 75010
 🕐 Sunday Service every Sunday 12:30 PM
-📧 kfbcc@yahoo.com
-🏛 SBC · Est. 2005
-🔗 edendallas.org`,tags:a?["한인교회","캐롤튼","달라스","남침례단"]:["Korean Church","Carrollton","Dallas","SBC"],email:"kfbcc@yahoo.com",website:"edendallas.org"}],orangecounty:[{emoji:"⭐",tier:1,name:a?"갓즈패밀리교회":"God's Family Church — OC",nameEn:"God's Family Church",desc:a?`✨ 담임: 이경태 목사
+🏠 Newcomers Welcome · SBC · Est. 2005
+🔗 edendallas.org`,tags:a?["캐롤튼","달라스","헤브론파트너"]:["Carrollton","Dallas","HebronPartner"],email:"kfbcc@yahoo.com",website:"https://edendallas.org"}],orangecounty:[{emoji:"⭐",tier:1,name:a?"갓즈패밀리교회":"God's Family Church — OC",nameEn:"God's Family Church",desc:a?`✨ 담임: 이경태 목사
 📍 Orange County, CA`:`✨ Lead Pastor: Kyungtae Lee
 📍 Orange County, CA`,tags:a?["오렌지카운티"]:["OC"]},{emoji:"⭐",tier:1,name:a?"주님의마음교회":"Lord's Heart Church — OC",nameEn:"Lord's Heart Church",desc:a?`✨ 담임: 오경탁 목사
 📍 Orange County, CA`:`✨ Lead Pastor: Kyungtack Oh

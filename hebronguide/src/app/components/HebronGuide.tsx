@@ -14445,15 +14445,15 @@ function getCityChurches(slug: string, lang: string) {
         website: "https://www.ydkcdallas.org",
       },
       {
-        emoji: "⛪", tier: 2,
-        name: ko ? "에덴교회 (Eden Church at the Field)" : "Eden Church at the Field — Carrollton",
-        nameEn: ko ? "Eden Church at the Field" : "에덴교회",
+        emoji: "⭐", tier: 1, hebronPartner: true,
+        name: ko ? "에덴교회 (Eden Church at the Field)" : "Eden Church at the Field",
+        nameEn: "Eden Church at the Field",
         desc: ko
-          ? "✨ 담임: 신종우 목사\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n🕐 주일예배 매주 일요일 오후 12:30\n📧 kfbcc@yahoo.com\n🏛 남침례단 · 2005년 설립\n🔗 edendallas.org"
-          : "✨ Lead Pastor: Jong-woo Shin\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n🕐 Sunday Service every Sunday 12:30 PM\n📧 kfbcc@yahoo.com\n🏛 SBC · Est. 2005\n🔗 edendallas.org",
-        tags: ko ? ["한인교회", "캐롤튼", "달라스", "남침례단"] : ["Korean Church", "Carrollton", "Dallas", "SBC"],
+          ? "✨ 담임: 신종우 목사\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n🕐 주일예배 매주 일요일 오후 12:30\n🏠 새가족 환영 · 남침례단 · 2005년 설립\n🔗 edendallas.org"
+          : "✨ Lead Pastor: Jong-woo Shin\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n🕐 Sunday Service every Sunday 12:30 PM\n🏠 Newcomers Welcome · SBC · Est. 2005\n🔗 edendallas.org",
+        tags: ko ? ["캐롤튼", "달라스", "헤브론파트너"] : ["Carrollton", "Dallas", "HebronPartner"],
         email: "kfbcc@yahoo.com",
-        website: "edendallas.org",
+        website: "https://edendallas.org",
       },
     ],
     orangecounty: [
