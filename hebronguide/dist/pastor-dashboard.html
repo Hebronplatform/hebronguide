@@ -338,6 +338,13 @@
     <div class="msg" id="msg-edit"></div>
   </div>
 
+  <!-- 내 도시 한인 유입 통계 -->
+  <div class="section-title" style="margin-top:8px;">
+    <span class="ko">🌍 내 도시 한인 통계</span>
+    <span class="en">🌍 Korean Population in My City</span>
+  </div>
+  <div id="city-stat-card" style="margin:0 16px 16px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;"></div>
+
   <!-- 빠른 실행 -->
   <div class="section-title"><span class="ko">빠른 실행</span><span class="en">Quick Actions</span></div>
   <div class="quick-grid">
@@ -567,11 +574,17 @@ async function showPastor(user) {
   await loadChurch(user.email)
 }
 
+async function showPastorWithCity(user, citySlug) {
+  await showPastor(user)
+  renderCityStat(citySlug || 'seattle')
+}
+
 async function loadChurch(email) {
   try {
     const r = await fetch(`${SB_URL}/rest/v1/churches?email=eq.${encodeURIComponent(email)}&limit=1`, { headers: { apikey: SB_ANON, Authorization: 'Bearer ' + SB_ANON } })
     const [c] = await r.json()
-    if (!c) { document.getElementById('ch-name').textContent = '등록된 교회 없음'; return }
+    if (!c) { document.getElementById('ch-name').textContent = '등록된 교회 없음'; renderCityStat(''); return }
+    renderCityStat(c.city_slug || '')
     myChurch = c
     document.getElementById('ch-name').textContent = c.name || '—'
     document.getElementById('ch-name-en').textContent = c.name_en || ''
@@ -681,6 +694,63 @@ function openFaq(type) {
   }
   const lang = document.documentElement.lang || 'ko'
   alert(tips[type]?.[lang] || tips[type]?.ko)
+}
+
+// ── 도시별 한인 통계 데이터 (2025 재외동포청 + US Census ACS 2022) ──
+const CITY_STATS = {
+  seattle:      { pop: '67,000',  country: '미국', trend: '↑', note: 'US Census ACS 2022' },
+  la:           { pop: '333,000', country: '미국', trend: '↑', note: 'US Census ACS 2022' },
+  sf:           { pop: '52,000',  country: '미국', trend: '↑15%', note: '외교부 2025' },
+  newyork:      { pop: '211,000', country: '미국', trend: '↓', note: 'US Census ACS 2022' },
+  dallas:       { pop: '33,000',  country: '미국', trend: '↑', note: 'US Census ACS 2022' },
+  houston:      { pop: '약 9만',  country: '미국', trend: '↑', note: '외교부 관할 기준' },
+  chicago:      { pop: '61,000',  country: '미국', trend: '→', note: 'US Census ACS 2022' },
+  atlanta:      { pop: '51,000',  country: '미국', trend: '↑10%', note: '외교부 2025' },
+  dc:           { pop: '93,000',  country: '미국', trend: '↑', note: 'US Census ACS 2022' },
+  boston:       { pop: '약 3만',  country: '미국', trend: '↑', note: '외교부 관할 기준' },
+  miami:        { pop: '약 2만',  country: '미국', trend: '↑', note: '외교부 관할 기준' },
+  philadelphia: { pop: '41,000',  country: '미국', trend: '→', note: 'US Census ACS 2022' },
+  sandiego:     { pop: '약 2만',  country: '미국', trend: '→', note: '외교부 관할 기준' },
+  toronto:      { pop: '약 10만', country: '캐나다', trend: '↑', note: '외교부 2025' },
+  vancouver:    { pop: '약 4만',  country: '캐나다', trend: '↑', note: '외교부 2025' },
+  calgary:      { pop: '약 1.5만',country: '캐나다', trend: '↑', note: '외교부 2025' },
+  princgeorge:  { pop: '약 1천',  country: '캐나다', trend: '→', note: '지역 추정' },
+  sydney:       { pop: '약 6만',  country: '호주',  trend: '↑', note: '외교부 2025 (호주 17만)' },
+  melbourne:    { pop: '약 5만',  country: '호주',  trend: '↑', note: '외교부 2025' },
+  bogota:       { pop: '약 3천',  country: '콜롬비아', trend: '→', note: '지역 추정' },
+  seoul:        { pop: '귀환동포',country: '한국',  trend: '↑', note: '역이민 증가 추세' },
+  maryland:     { pop: '약 6.5만',country: '미국',  trend: '↑', note: '외교부 DC 관할 기준' },
+  orlando:      { pop: '약 2만',  country: '미국',  trend: '↑', note: '외교부 관할 기준' },
+};
+
+function renderCityStat(citySlug) {
+  const el = document.getElementById('city-stat-card');
+  if (!el) return;
+  const s = CITY_STATS[citySlug];
+  const lang = document.documentElement.lang || 'ko';
+  if (!s) {
+    el.innerHTML = `<div style="font-size:.85rem;color:var(--muted);">${lang==='ko'?'이 도시의 통계를 준비 중입니다.':'City statistics coming soon.'}</div>`;
+    return;
+  }
+  const tColor = s.trend.includes('↑') ? 'var(--mint)' : s.trend.includes('↓') ? '#f87171' : 'var(--muted)';
+  el.innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+      <div>
+        <div style="font-size:.72rem;color:var(--muted);">${lang==='ko'?'한인 인구 추정':'Est. Korean Population'}</div>
+        <div style="font-size:1.5rem;font-weight:900;color:var(--gold);font-family:'Cinzel',serif;">${s.pop}</div>
+      </div>
+      <div style="margin-left:auto;text-align:center;">
+        <div style="font-size:1.3rem;color:${tColor};font-weight:900;">${s.trend}</div>
+        <div style="font-size:.68rem;color:var(--muted);">${lang==='ko'?'추세':'Trend'}</div>
+      </div>
+    </div>
+    <div style="font-size:.78rem;color:var(--muted);border-top:1px solid var(--border);padding-top:10px;line-height:1.7;">
+      📍 ${lang==='ko'?'국가':'Country'}: <strong style="color:var(--text);">${s.country}</strong> &nbsp;|&nbsp;
+      📊 ${lang==='ko'?'출처':'Source'}: ${s.note}
+    </div>
+    <div style="margin-top:10px;font-size:.75rem;color:rgba(236,253,245,.35);">
+      ${lang==='ko'?'* 출처: 재외동포청 2025 재외동포현황 (2024.12.31 기준) + US Census ACS 2022':'* Sources: OKA 2025 Overseas Korean Statistics + US Census ACS 2022'}
+    </div>`;
 }
 
 // ── 유틸 ─────────────────────────────────────────────
