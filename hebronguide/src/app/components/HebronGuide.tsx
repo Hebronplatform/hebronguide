@@ -14488,6 +14488,16 @@ function getCityChurches(slug: string, lang: string) {
     ],
     la: [
       {
+        emoji: "⭐", tier: 1, hebronPartner: true,
+        name: ko ? "예수마을교회" : "Jesus Village Church LA",
+        nameEn: "Jesus Village Church LA",
+        desc: ko
+          ? "✨ 담임: 정인호\n📍 Los Angeles, CA\n📞 (213) 364-0515"
+          : "✨ Lead Pastor: Inho Jung\n📍 Los Angeles, CA\n📞 (213) 364-0515",
+        tags: ko ? ["LA", "로스앤젤레스", "헤브론파트너"] : ["LA", "Los Angeles", "HebronPartner"],
+        phone: "2133640515", email: "lajvc08@daum.net",
+      },
+      {
         emoji: "⭐", tier: 1,
         name: ko ? "갈릴리선교교회" : "Galilee Mission Church — LA K-Town",
         nameEn: "Galilee Mission Church",
@@ -14571,6 +14581,16 @@ function getCityChurches(slug: string, lang: string) {
     ],
     vancouver: [
       {
+        emoji: "⭐", tier: 1, hebronPartner: true,
+        name: ko ? "화이트락한인교회" : "White Rock Korean Church",
+        nameEn: "White Rock Korean Church",
+        desc: ko
+          ? "✨ 담임: 임흥빈 목사\n📍 White Rock, BC (밴쿠버 근교)\n📞 604-537-8789"
+          : "✨ Lead Pastor: Heungbin Im\n📍 White Rock, BC (Greater Vancouver)\n📞 604-537-8789",
+        tags: ko ? ["화이트락", "밴쿠버", "헤브론파트너"] : ["White Rock", "Vancouver", "HebronPartner"],
+        phone: "6045378789", email: "whiterockkmc@gmail.com",
+      },
+      {
         emoji: "⭐", tier: 1,
         name: ko ? "나의사랑하는교회 (MBC)" : "My Beloved Church — Vancouver (MBC)",
         nameEn: "My Beloved Church",
@@ -14615,7 +14635,7 @@ function getCityChurches(slug: string, lang: string) {
         emoji: "⛪", tier: 2, hebronPartner: true,
         denomination: "기타",
         name: ko ? "프린스조지한인교회" : "Prince George Korean Church",
-        nameEn: "Prince George Korean Church",
+        nameEn: "Prince George Korean Church", hebronPartner: true,
         desc: ko
           ? "✨ 담임: 오일권 목사 (Daniel Oh)\n📍 Prince George, BC, Canada\n🏠 새가족모임 운영 · 한인봉사센터 연계. BC 북부 한인 이주민을 따뜻하게 환영합니다.\n🕐 주일예배 10:30am\n☎ 604-727-0259\n✉️ pgkchurch@gmail.com\n🔗 pgkchurch.ca"
           : "✨ Lead Pastor: Daniel Oh\n📍 Prince George, BC, Canada\n🏠 New members' group & Korean community service center. Warmly welcomes Korean diaspora in northern BC.\n🕐 Sunday Service 10:30am\n☎ 604-727-0259\n✉️ pgkchurch@gmail.com\n🔗 pgkchurch.ca",
@@ -14626,6 +14646,16 @@ function getCityChurches(slug: string, lang: string) {
       },
     ],
     sf: [
+      {
+        emoji: "⭐", tier: 1, hebronPartner: true,
+        name: ko ? "킹스웨이 교회" : "Kingsway Church",
+        nameEn: "Kingsway Church",
+        desc: ko
+          ? "✨ 담임: 강문수 목사\n📍 Fairfield · Vacaville, CA (베이에어리어)\n📞 707-803-5400"
+          : "✨ Lead Pastor: Moonsu Kang\n📍 Fairfield · Vacaville, CA (Bay Area)\n📞 707-803-5400",
+        tags: ko ? ["페어필드", "바카빌", "헤브론파트너"] : ["Fairfield", "Vacaville", "HebronPartner"],
+        phone: "7078035400", email: "400kingsway@gmail.com",
+      },
       {
         emoji: "⭐", tier: 1,
         name: ko ? "새누리선교교회 (NCMC)" : "New Community Mission Church (NCMC)",
@@ -14657,6 +14687,36 @@ function getCityChurches(slug: string, lang: string) {
       },
     ],
     seoul: [
+      {
+        emoji: "⭐", tier: 1, hebronPartner: true,
+        name: ko ? "에클레시아 엔크리스토" : "Ekklesia en Cristo",
+        nameEn: "Ekklesia en Cristo",
+        desc: ko
+          ? "✨ 담임: 신용철 목사\n📍 서울 (온라인·오프라인)\n📞 010-2305-0545"
+          : "✨ Lead Pastor: Yongcheol Shin\n📍 Seoul (Online & Offline)\n📞 010-2305-0545",
+        tags: ko ? ["서울", "헤브론파트너"] : ["Seoul", "HebronPartner"],
+        phone: "01023050545", email: "iharu2157@gmail.com",
+      },
+      {
+        emoji: "⭐", tier: 1, hebronPartner: true,
+        name: ko ? "예수생명교회" : "Jesus Life Church",
+        nameEn: "Jesus Life Church",
+        desc: ko
+          ? "✨ 담임: 맹기원 목사\n📍 경기도 남양주\n📞 010-5146-0691"
+          : "✨ Lead Pastor: Kiwon Maeng\n📍 Namyangju, Gyeonggi\n📞 010-5146-0691",
+        tags: ko ? ["남양주", "경기도", "헤브론파트너"] : ["Namyangju", "Gyeonggi", "HebronPartner"],
+        phone: "01051460691", email: "core69m@gmail.com",
+      },
+      {
+        emoji: "⭐", tier: 1, hebronPartner: true,
+        name: ko ? "행복한교회" : "Happy Church Uijeongbu",
+        nameEn: "Happy Church",
+        desc: ko
+          ? "✨ 담임: 이현권 목사\n📍 경기도 의정부시 오목로 225번길 135 트윈타워 1동 7층\n📞 010-3254-8020"
+          : "✨ Lead Pastor: Hyunkwon Lee\n📍 Uijeongbu, Gyeonggi\n📞 010-3254-8020",
+        tags: ko ? ["의정부", "경기도", "헤브론파트너"] : ["Uijeongbu", "Gyeonggi", "HebronPartner"],
+        phone: "01032548020", email: "yhk8020@daum.net",
+      },
       {
         emoji: "⭐", tier: 1,
         name: ko ? "다운교회" : "Down Church — Seoul",
@@ -14802,7 +14862,7 @@ function getCityChurches(slug: string, lang: string) {
     ],
     dc: [
       {
-        emoji: "⭐", tier: 1,
+        emoji: "⭐", tier: 1, hebronPartner: true,
         name: ko ? "새로운교회" : "New Life Church",
         nameEn: "New Life Church",
         desc: ko
