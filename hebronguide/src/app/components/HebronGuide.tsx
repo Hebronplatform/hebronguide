@@ -15057,11 +15057,19 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* ── Supabase 교회 (CKSBCA + 파트너 등록) ── */}
             {sbChurches.length > 0 && (
               <div style={{ marginBottom: 16 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: accent, fontFamily: "Manrope,sans-serif", marginBottom: 8, opacity: 0.85 }}>
-                  {lang === "ko" ? `⛪ 등록 교회 (${sbChurches.length}개)` : `⛪ Registered Churches (${sbChurches.length})`}
-                </div>
+                {/* Tier 1: Hebron 협력교회 */}
+                {sbChurches.some((c: any) => c.hebron_partner) && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                    <div style={{ height: 1, flex: 1, background: "rgba(110,231,183,0.2)" }} />
+                    <span style={{ fontSize: 10, fontWeight: 800, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" }}>
+                      🤝 {lang === "ko" ? "Hebron 협력교회" : "Hebron Partner Churches"}
+                    </span>
+                    <div style={{ height: 1, flex: 1, background: "rgba(110,231,183,0.2)" }} />
+                  </div>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {sbChurches.map((c: any, i: number) => (
+                  {sbChurches.filter((c: any) => c.hebron_partner).map((c: any, i: number) => (
+
                     <div key={"sb-" + i} style={{
                       border: c.hebron_partner
                         ? "1px solid rgba(110,231,183,0.45)"
@@ -15115,6 +15123,43 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                     </div>
                   ))}
                 </div>
+
+                {/* Tier 2+: 일반 교회 */}
+                {sbChurches.some((c: any) => !c.hebron_partner) && (
+                  <>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "16px 0 10px" }}>
+                      <div style={{ height: 1, flex: 1, background: "rgba(255,255,255,0.08)" }} />
+                      <span style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.4)", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" }}>
+                        ⛪ {lang === "ko" ? "기타 등록 교회" : "Other Churches"}
+                      </span>
+                      <div style={{ height: 1, flex: 1, background: "rgba(255,255,255,0.08)" }} />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {sbChurches.filter((c: any) => !c.hebron_partner).map((c: any, i: number) => (
+                        <div key={"sb2-" + i} style={{
+                          border: "1px solid rgba(255,255,255,0.1)",
+                          borderRadius: 16,
+                          background: "rgba(255,255,255,0.02)",
+                          padding: "14px 16px",
+                          opacity: 0.85,
+                        }}>
+                          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 14, color: "#fff", marginBottom: 4 }}>
+                            ⛪ {lang === "ko" ? (c.name || c.name_en) : (c.name_en || c.name)}
+                          </div>
+                          {c.denomination && (
+                            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 4, fontFamily: "Manrope,sans-serif" }}>
+                              {c.denomination} {c.service_time ? `· ${c.service_time}` : ""}
+                            </div>
+                          )}
+                          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                            {c.phone && <a href={`tel:${c.phone}`} style={{ fontSize: 11, color: accent, fontFamily: "Manrope,sans-serif", fontWeight: 600, textDecoration: "none" }}>📞 {c.phone}</a>}
+                            {c.website && <a href={c.website.startsWith("http") ? c.website : `https://${c.website}`} target="_blank" rel="noopener" style={{ fontSize: 11, color: accent, fontFamily: "Manrope,sans-serif", fontWeight: 600, textDecoration: "none" }}>🌐 {lang === "ko" ? "홈페이지" : "Website"}</a>}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
             )}
 
@@ -25620,13 +25665,17 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
         const SB = `https://${projectId}.supabase.co`;
         const headers = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
         const slug = city.slug;
-
-        const [r1, r2] = await Promise.all([
-          fetch(`${SB}/rest/v1/restaurants?city_slug=eq.${slug}&active=eq.true&order=name.asc`, { headers }),
-          fetch(`${SB}/rest/v1/cafes?city_slug=eq.${slug}&active=eq.true&order=name.asc`, { headers }),
-        ]);
-        const [d1, d2] = await Promise.all([r1.json(), r2.json()]);
-        setBusinesses([...(Array.isArray(d1) ? d1 : []), ...(Array.isArray(d2) ? d2 : [])]);
+        const r = await fetch(
+          `${SB}/rest/v1/community_items?category=eq.business&status=in.(approved,published)&or=(city_slug.eq.${slug},city_slug.is.null)&order=created_at.desc&limit=100`,
+          { headers }
+        );
+        const data = await r.json();
+        // 협력 사업체 먼저 (pastor_email 있으면 파트너)
+        const sorted = Array.isArray(data)
+          ? [...data.filter((b: any) => b.contact && b.contact.includes('@') && b.description?.includes('목사')),
+             ...data.filter((b: any) => !(b.contact && b.contact.includes('@') && b.description?.includes('목사')))]
+          : [];
+        setBusinesses(sorted);
       } catch { setBusinesses([]); }
       setLoading(false);
     }
