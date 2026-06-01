@@ -24492,7 +24492,12 @@ function getCityCostData(slug: string, lang: string) {
   // 나머지 도시 공통 fallback
   const generic: CostData = {
     rentHousing: [
-      { emoji: "🏠", name: ko ? "렌트 시세 — 정보 업데이트 중" : "Rent Prices — Info Being Updated",
+      { emoji: "🏠", name: ko ? "NanuriHome — 한인 부동산 플랫폼" : "NanuriHome — Korean Real Estate Platform",
+        desc: ko
+          ? "🏠 한인 이민자를 위한 부동산 정보 플랫폼\n\n✅ 한인 부동산 에이전트 연결 (한국어 상담)\n✅ 도시별 렌트비·학군·생활환경 정보\n✅ 크레딧 없이 집 구하는 방법\n✅ 렌트 계약 주의사항\n\n🔗 nanurihome.com"
+          : "🏠 Real estate platform for Korean immigrants\n\n✅ Connect with Korean-speaking agents\n✅ City rent, schools & living info\n✅ How to rent without credit history\n✅ Lease contract tips\n\n🔗 nanurihome.com",
+        tags: ko ? ["부동산", "에이전트", "한국어상담"] : ["Real Estate", "Agent", "Korean"] },
+      { emoji: "🏡", name: ko ? "렌트 시세 — 정보 업데이트 중" : "Rent Prices — Info Being Updated",
         desc: ko
           ? "📊 이 도시의 렌트 정보를 업데이트 중입니다.\n\n일반 참고:\n• 스튜디오: $1,000-2,000\n• 1BR: $1,200-2,500\n• 2BR: $1,600-3,200\n\n💡 Zillow·Apartments.com에서 현재 시세를 확인하세요\n🔗 zillow.com | apartments.com"
           : "📊 Rent data for this city is being updated.\n\nGeneral reference:\n• Studio: $1,000-2,000\n• 1BR: $1,200-2,500\n• 2BR: $1,600-3,200\n\n💡 Check current rates at Zillow or Apartments.com\n🔗 zillow.com | apartments.com",

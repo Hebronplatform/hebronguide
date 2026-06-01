@@ -3946,7 +3946,21 @@ IVA (VAT): 16% (groceries & meds exempt)
 🌐 Internet:
 • Telmex/Infinitum: MXN $400-700/mo ($22-39)
 • Megacable: MXN $350-600/mo
-💡 Expats usually use company-contracted corporate phones`,tags:["통신비","Telcel","몬테레이"]}]}},m={rentHousing:[{emoji:"🏠",name:a?"렌트 시세 — 정보 업데이트 중":"Rent Prices — Info Being Updated",desc:a?`📊 이 도시의 렌트 정보를 업데이트 중입니다.
+💡 Expats usually use company-contracted corporate phones`,tags:["통신비","Telcel","몬테레이"]}]}},m={rentHousing:[{emoji:"🏠",name:a?"NanuriHome — 한인 부동산 플랫폼":"NanuriHome — Korean Real Estate Platform",desc:a?`🏠 한인 이민자를 위한 부동산 정보 플랫폼
+
+✅ 한인 부동산 에이전트 연결 (한국어 상담)
+✅ 도시별 렌트비·학군·생활환경 정보
+✅ 크레딧 없이 집 구하는 방법
+✅ 렌트 계약 주의사항
+
+🔗 nanurihome.com`:`🏠 Real estate platform for Korean immigrants
+
+✅ Connect with Korean-speaking agents
+✅ City rent, schools & living info
+✅ How to rent without credit history
+✅ Lease contract tips
+
+🔗 nanurihome.com`,tags:a?["부동산","에이전트","한국어상담"]:["Real Estate","Agent","Korean"]},{emoji:"🏡",name:a?"렌트 시세 — 정보 업데이트 중":"Rent Prices — Info Being Updated",desc:a?`📊 이 도시의 렌트 정보를 업데이트 중입니다.
 
 일반 참고:
 • 스튜디오: $1,000-2,000
