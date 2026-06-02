@@ -1983,6 +1983,8 @@
     loadTabData('community')
     loadReviews()
     loadReports()
+    // 로그인 시 중복 교회 자동 검사
+    setTimeout(cleanDuplicates, 2000)
   }
 
   // ── 리포트 차트 로드 ─────────────────────────────────────
@@ -2107,9 +2109,14 @@
         }
       }
 
-      el.innerHTML = deactivated === 0
-        ? '✅ 중복 없음 — 모든 교회 정상입니다!'
-        : `✅ ${deactivated}개 중복 비활성화 완료<br><br>` + report.join('<br>');
+      if (deactivated === 0) {
+        el.style.display = 'none'; // 중복 없으면 숨김
+      } else {
+        el.style.display = 'block';
+        el.style.background = 'rgba(239,68,68,.08)';
+        el.style.borderColor = 'rgba(239,68,68,.25)';
+        el.innerHTML = `⚠️ <strong style="color:#f87171">${deactivated}개 중복 교회 자동 정리 완료</strong><br><br>` + report.join('<br>');
+      }
     } catch(e) {
       el.innerHTML = '❌ 오류: ' + e.message;
     }
