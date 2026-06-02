@@ -167,7 +167,11 @@
     { "source": "/orlando",            "destination": "/orlando/index.html" },
     { "source": "/orlando/(.*)",       "destination": "/orlando/index.html" },
     { "source": "/maryland",           "destination": "/maryland/index.html" },
-    { "source": "/maryland/(.*)",      "destination": "/maryland/index.html" }
+    { "source": "/maryland/(.*)",      "destination": "/maryland/index.html" },
+    { "source": "/inlandempire",       "destination": "/inlandempire/index.html" },
+    { "source": "/inlandempire/(.*)",  "destination": "/inlandempire/index.html" },
+    { "source": "/austin",             "destination": "/austin/index.html" },
+    { "source": "/austin/(.*)",        "destination": "/austin/index.html" }
   ],
 
   "headers": [

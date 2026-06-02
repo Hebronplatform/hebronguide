@@ -52,6 +52,7 @@ declare -A CITY_KO=(
   ["tucson"]="투손"           ["fayetteville"]="페이엣빌" ["killeen"]="킬린"
   ["louisville"]="루이빌"     ["anchorage"]="앵커리지"
   ["orlando"]="올랜도"        ["maryland"]="메릴랜드"   ["princgeorge"]="프린스조지"
+  ["inlandempire"]="인랜드 엠파이어" ["austin"]="오스틴"
   # 한국 신규
   ["bundang"]="분당·수지"
   # 국제 확장 Tier A
@@ -87,6 +88,7 @@ declare -A CITY_EN=(
   ["tucson"]="Tucson"         ["fayetteville"]="Fayetteville" ["killeen"]="Killeen"
   ["louisville"]="Louisville" ["anchorage"]="Anchorage"
   ["orlando"]="Orlando"       ["maryland"]="Maryland"    ["princgeorge"]="Prince George"
+  ["inlandempire"]="Inland Empire" ["austin"]="Austin"
   ["bundang"]="분당·수지"
   # 국제 확장 Tier A
   ["sydney"]="Sydney"         ["melbourne"]="Melbourne"    ["brisbane"]="Brisbane"
@@ -121,7 +123,7 @@ for city in \
   kansascity philadelphia miami orangecounty mexicocity guadalajara monterrey bogota \
   chicago dc sandiego honolulu portland denver \
   calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
-  tucson fayetteville killeen louisville anchorage princgeorge \
+  tucson fayetteville killeen louisville anchorage princgeorge inlandempire austin \
   sydney melbourne brisbane perth auckland saopaulo london \
   singapore bangkok hochiminh dubai frankfurt berlin paris \
   tokyo osaka \
@@ -207,6 +209,7 @@ REGION_MAP=(
   ["kansascity"]="🇺🇸 미국" ["orlando"]="🇺🇸 미국"     ["maryland"]="🇺🇸 미국"
   ["fayetteville"]="🇺🇸 미국" ["killeen"]="🇺🇸 미국"   ["louisville"]="🇺🇸 미국"
   ["anchorage"]="🇺🇸 미국"  ["tucson"]="🇺🇸 미국"      ["orangecounty"]="🇺🇸 미국"
+  ["inlandempire"]="🇺🇸 미국" ["austin"]="🇺🇸 미국"
   ["toronto"]="🇨🇦 캐나다"  ["vancouver"]="🇨🇦 캐나다" ["calgary"]="🇨🇦 캐나다"
   ["edmonton"]="🇨🇦 캐나다" ["ottawa"]="🇨🇦 캐나다"    ["winnipeg"]="🇨🇦 캐나다"   ["princgeorge"]="🇨🇦 캐나다"
   ["mexicocity"]="🌎 중남미" ["guadalajara"]="🌎 중남미" ["monterrey"]="🌎 중남미"
@@ -229,7 +232,7 @@ first=1
 for city in \
   seattle dallas sf newyork la houston atlanta chicago dc nashville boston miami \
   philadelphia sandiego portland denver honolulu charlotte raleigh columbus minneapolis \
-  kansascity orlando maryland fayetteville killeen louisville anchorage tucson orangecounty \
+  kansascity orlando maryland fayetteville killeen louisville anchorage tucson orangecounty inlandempire austin \
   toronto vancouver calgary edmonton ottawa winnipeg princgeorge \
   mexicocity guadalajara monterrey saopaulo bogota \
   london paris berlin frankfurt \

@@ -394,6 +394,24 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   ],
 
 
+  // 🇺🇸 인랜드 엠파이어 — ①산악배경 ②리버사이드 ③교외주택 ④산악경관 ⑤커뮤니티
+  inlandempire: [
+    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=95", pos: "center 50%", alt: "Inland Empire Southern California mountain backdrop sunset" },
+    { url: "https://images.unsplash.com/photo-1580041065738-e72023775cdc?w=1200&q=95", pos: "center 40%", alt: "Riverside California downtown city" },
+    { url: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1200&q=95", pos: "center 50%", alt: "Southern California suburban neighborhood homes" },
+    { url: "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?w=1200&q=95", pos: "center 45%", alt: "California mountains landscape Inland Empire" },
+    { url: "https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=1200&q=95", pos: "center 50%", alt: "Korean American community Southern California" },
+  ],
+
+  // 🇺🇸 오스틴 — ①스카이라인 ②6번가 ③테크캠퍼스 ④커뮤니티 ⑤힐컨트리
+  austin: [
+    { url: "https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=1200&q=95", pos: "center 40%", alt: "Austin Texas skyline Colorado River downtown" },
+    { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=95", pos: "center 50%", alt: "Austin Texas 6th Street music scene" },
+    { url: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=95", pos: "center 45%", alt: "Austin Texas tech campus modern office" },
+    { url: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1200&q=95", pos: "center 50%", alt: "Austin Texas Korean community gathering" },
+    { url: "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?w=1200&q=95", pos: "center 40%", alt: "Austin Texas hill country landscape" },
+  ],
+
   // 🇦🇺 시드니 — ① DJI 드론 → ② 오페라하우스 → ③ 본다이 비치 군중 → ④ 해안 라이프 → ⑤ 교외 주택
   // Story: 드론 하버 → 랜드마크 → 여름 해변 사람들 → 해안 절경 → 정착 교외
   sydney: [
@@ -824,7 +842,9 @@ type CitySlug =
   // 한국 — 역이민·방문 동포·한국 이주
   "seoul" | "busan" | "ansan" | "incheon" | "jeju" | "daegu" | "gwangju" | "daejeon" | "changwon" | "cheonan" | "bundang" |
   // 북미 신규
-  "orlando" | "maryland" | "princgeorge";
+  "orlando" | "maryland" | "princgeorge" |
+  // 북미 추가 신규
+  "inlandempire" | "austin";
 
 interface CityConfig {
   slug: CitySlug;
@@ -1096,6 +1116,8 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   killeen:    { slug: "killeen",    nameKo: "킬린",      nameEn: "Killeen",      color: "#16A34A", heroVideo: "", population: "4천+",   state: "Texas",       taglineKo: "포트 카바조스, 새 가족",      taglineEn: "New family at Fort Cavazos.", taglineEs: "Nueva familia en Fort Cavazos." },
   louisville: { slug: "louisville", nameKo: "루이빌",    nameEn: "Louisville",   color: "#7C3AED", heroVideo: "", population: "3천+",   state: "Kentucky",    taglineKo: "버번의 도시, 새 이야기",      taglineEn: "The Bourbon Capital, Your New Story.", taglineEs: "La capital del bourbon, tu nueva historia." },
   anchorage:  { slug: "anchorage",  nameKo: "앵커리지",  nameEn: "Anchorage",    color: "#14B8A6", heroVideo: "", population: "5천+",   state: "Alaska",      taglineKo: "가장 북쪽의 한인 도시",        taglineEn: "America's Northernmost Korean City.", taglineEs: "La ciudad coreana más al norte." },
+  inlandempire: { slug: "inlandempire", nameKo: "인랜드 엠파이어", nameEn: "Inland Empire", color: "#D97706", heroVideo: "", population: "3.2만+", state: "California",  taglineKo: "LA 동쪽, 한인 가족의 새 보금자리", taglineEn: "East of LA, the new home for Korean families.", taglineEs: "Al este de LA, el nuevo hogar de las familias coreanas." },
+  austin:     { slug: "austin",     nameKo: "오스틴",    nameEn: "Austin",       color: "#1D4ED8", heroVideo: "", population: "2만+",   state: "Texas",       taglineKo: "텍사스 테크 허브, 한인 엔지니어의 새 도시", taglineEn: "Texas tech hub, the rising city for Korean engineers.", taglineEs: "Centro tecnológico de Texas, la nueva ciudad para ingenieros coreanos." },
 
   // ── 국제 확장 Tier A ────────────────────────────────────────────────────
   sydney:     { slug: "sydney",     nameKo: "시드니",    nameEn: "Sydney",       color: "#38BDF8", heroVideo: "", population: "7만+",   state: "N.S.W.",      taglineKo: "남반구의 새로운 집",              taglineEn: "Your new home down under.", taglineEs: "Tu nuevo hogar en el hemisferio sur." },
@@ -6195,6 +6217,56 @@ const TOP5_EXPLORE_BOGOTA: Top5Item[] = [
   { name:"라 칸델라리아 역사지구", nameEn:"La Candelaria", address:"La Candelaria, Bogotá", desc:"보고타 구시가. 식민지 건축·벽화·카페. 보테로 박물관 인근. 도보 관광 최적." },
   { name:"우사켄 (Usaquén) — 한인 거주 지역", nameEn:"Usaquén", address:"Usaquén, Bogotá", desc:"보고타 최고급 주거지. 주말 벼룩시장·레스토랑. 한인 밀집 지역." },
   { name:"살 광산 — 시파키라 (당일치기)", nameEn:"Salt Cathedral of Zipaquirá", address:"Zipaquirá, Cundinamarca", desc:"지하 소금 성당. 세계 건축 불가사의. 보고타 근교 1시간. 버스 투어 편리." },
+];
+
+/* ── INLAND EMPIRE ── */
+const TOP5_SETTLE_INLANDEMPIRE: Top5Item[] = [
+  { name:"LA 총영사관 (한인 민원)", nameEn:"Korean Consulate LA", address:"3243 Wilshire Blvd, Los Angeles CA 90010", phone:"(213) 385-9300", desc:"비자·여권·공증·민원. 인랜드 엠파이어 거주자도 LA 총영사관 이용.", tier:1, star:true },
+  { name:"DMV 리버사이드", nameEn:"DMV Riverside", address:"4075 Flat Rock Dr, Riverside CA 92505", phone:"(951) 782-4217", desc:"운전면허 취득·갱신. 온라인 예약 필수.", tier:1 },
+  { name:"Inland Empire Health Plan", nameEn:"IEHP", address:"10801 6th St, Rancho Cucamonga CA 91730", phone:"(909) 890-2000", desc:"저소득층 건강보험. Medi-Cal 신청 지원. 스페인어·한국어 통역 가능.", tier:2 },
+  { name:"인랜드 엠파이어 한인회", nameEn:"Korean Association of IE", address:"Riverside, CA", phone:"(951) 683-0700", desc:"한인 정착 지원·커뮤니티 행사·네트워킹.", tier:2 },
+  { name:"Riverside City College", nameEn:"Riverside City College", address:"4800 Magnolia Ave, Riverside CA 92506", phone:"(951) 222-8000", desc:"저렴한 커뮤니티 칼리지. ESL·취업 프로그램. CC→4년제 편입 가능.", tier:3 },
+];
+
+const TOP5_FOOD_INLANDEMPIRE: Top5Item[] = [
+  { name:"서울한식 리버사이드", nameEn:"Seoul Korean BBQ Riverside", address:"Riverside, CA", desc:"인랜드 엠파이어 대표 한식당. 삼겹살·갈비·순두부.", star:true },
+  { name:"H-Mart 차이노힐스", nameEn:"H-Mart Chino Hills", address:"2800 Chino Hills Pkwy, Chino Hills CA 91709", desc:"베이에어리어 한인 식재료 마켓. 신선식품·한국 반찬 완비.", star:true },
+  { name:"BCD 순두부 온타리오", nameEn:"BCD Tofu House Ontario", address:"Ontario, CA", desc:"24시간 순두부찌개. 인랜드 엠파이어 한인 새벽 해장 명소." },
+  { name:"교촌치킨 리버사이드", nameEn:"Kyochon Riverside", address:"Riverside, CA", desc:"한국식 치킨 명가. 허니콤보·간장치킨 인기." },
+  { name:"한국마트 온타리오", nameEn:"Korean Market Ontario", address:"Ontario, CA", desc:"한국 식재료·김치·라면 구비. 인랜드 한인 생필품 쇼핑." },
+];
+
+const TOP5_EXPLORE_INLANDEMPIRE: Top5Item[] = [
+  { name:"유니버설 스튜디오 할리우드", nameEn:"Universal Studios Hollywood", address:"100 Universal City Plaza, Universal City CA 91608", desc:"LA 최고 테마파크. 인랜드에서 차로 45분. 가족 나들이 1순위.", star:true },
+  { name:"빅베어 레이크", nameEn:"Big Bear Lake", address:"Big Bear Lake, CA 92315", desc:"인랜드 엠파이어 바로 위 산악 리조트. 겨울 스키·여름 하이킹·보트. 차로 1시간.", star:true },
+  { name:"리버사이드 미션 인 & 스파", nameEn:"Mission Inn Riverside", address:"3649 Mission Inn Ave, Riverside CA 92501", desc:"국가역사문화재 호텔. 크리스마스 조명 축제로 유명. 리버사이드 랜드마크." },
+  { name:"온타리오 밀스 아울렛", nameEn:"Ontario Mills Outlet", address:"1 Mills Cir, Ontario CA 91764", desc:"남캘리포니아 최대 아울렛 쇼핑몰. 200개+ 브랜드. 한인 쇼핑 명소." },
+  { name:"조슈아 트리 국립공원", nameEn:"Joshua Tree National Park", address:"74485 National Park Dr, Twentynine Palms CA 92277", desc:"인랜드에서 차로 1.5시간. 사막 경관·별보기 명소. 봄가을 방문 추천." },
+];
+
+/* ── AUSTIN ── */
+const TOP5_SETTLE_AUSTIN: Top5Item[] = [
+  { name:"주휴스턴 대한민국 총영사관", nameEn:"Korean Consulate Houston", address:"1990 Post Oak Blvd #1250, Houston TX 77056", phone:"(713) 961-0186", desc:"오스틴 거주자는 휴스턴 총영사관 이용. 비자·여권·공증.", tier:1, star:true },
+  { name:"텍사스 DPS 오스틴", nameEn:"Texas DPS Austin", address:"5805 N Lamar Blvd, Austin TX 78751", phone:"(512) 424-2600", desc:"운전면허 취득·갱신. 텍사스 ID 발급. 온라인 예약 필수.", tier:1 },
+  { name:"센트럴 헬스 오스틴", nameEn:"Central Health Austin", address:"1111 E Cesar Chavez St, Austin TX 78702", phone:"(512) 978-8130", desc:"저소득층 의료보험. Medicaid·CHIP 신청 지원.", tier:2 },
+  { name:"오스틴 한인회", nameEn:"Korean Association of Austin", address:"Austin, TX", phone:"(512) 000-0000", desc:"한인 정착 지원·커뮤니티 네트워킹·한국어 학교.", tier:2 },
+  { name:"Austin Community College", nameEn:"Austin Community College", address:"5930 Middle Fiskville Rd, Austin TX 78752", phone:"(512) 223-7000", desc:"저렴한 커뮤니티 칼리지. ESL·IT·비즈니스 과정. 4년제 편입 지원.", tier:3 },
+];
+
+const TOP5_FOOD_AUSTIN: Top5Item[] = [
+  { name:"H-Mart 오스틴", nameEn:"H-Mart Austin", address:"12815 Ranch Rd 620 N, Austin TX 78750", desc:"오스틴 한인 마트. 신선식품·한국 식재료 완비. 푸드코트 운영.", star:true },
+  { name:"차돌박이 코리안 BBQ", nameEn:"Chadol Korean BBQ Austin", address:"Austin, TX", desc:"오스틴 한인 BBQ 명소. 차돌박이·삼겹살·불고기 인기." },
+  { name:"순두부 코리안 키친", nameEn:"Soondubu Korean Kitchen", address:"Austin, TX", desc:"텍사스 한인 순두부·비빔밥·김치찌개. 현지 교민 단골 맛집." },
+  { name:"교촌치킨 오스틴", nameEn:"Kyochon Austin", address:"Austin, TX", desc:"한국식 치킨 체인. 허니콤보·레드·간장. 오스틴 한인 치맥 명소." },
+  { name:"도시락 오스틴", nameEn:"Korean Lunch Box Austin", address:"Austin, TX", desc:"한국식 도시락·한식 백반. 삼성·테슬라 직장인 점심 단골." },
+];
+
+const TOP5_EXPLORE_AUSTIN: Top5Item[] = [
+  { name:"6번가 & 레인지 스트립", nameEn:"6th Street & Rainey Street", address:"6th St, Austin TX 78701", desc:"오스틴 최고 엔터테인먼트 거리. 라이브 음악·바·레스토랑. 오스틴의 심장.", star:true },
+  { name:"바튼 스프링스 풀", nameEn:"Barton Springs Pool", address:"2201 Barton Springs Rd, Austin TX 78746", desc:"자연 수영장. 연중 68°F 천연 샘물. 오스틴 여름 필수 방문.", star:true },
+  { name:"레이디버드 레이크 트레일", nameEn:"Lady Bird Lake Trail", address:"Lady Bird Lake, Austin TX 78701", desc:"오스틴 다운타운 호수 산책로. 카약·조깅·자전거. 스카이라인 뷰." },
+  { name:"텍사스 주립대학교 (UT Austin)", nameEn:"University of Texas at Austin", address:"110 Inner Campus Dr, Austin TX 78712", desc:"텍사스 최고 명문대. 캠퍼스 투어 가능. 한인 학생회 활발." },
+  { name:"해밀턴 풀 보존지구", nameEn:"Hamilton Pool Preserve", address:"24300 Hamilton Pool Rd, Austin TX 78738", desc:"오스틴 근교 천연 폭포·수영장. 사전 예약 필수. 텍사스 대자연." },
 ];
 
 /* ── 26. LONDON ── */
@@ -11507,6 +11579,8 @@ const HEBRON_CITIES = [
   { emoji: "☀️", nameKo: "올랜도",      nameEn: "Orlando",       flag: "🇺🇸", url: "/orlando/",     status: "live", color: "#F97316" },
   { emoji: "🍒", nameKo: "메릴랜드",    nameEn: "Maryland",      flag: "🇺🇸", url: "/maryland/",    status: "live", color: "#DC2626" },
   { emoji: "🐻", nameKo: "앵커리지",    nameEn: "Anchorage",     flag: "🇺🇸", url: "/anchorage/",   status: "live", color: "#14B8A6" },
+  { emoji: "🌄", nameKo: "인랜드 엠파이어", nameEn: "Inland Empire", flag: "🇺🇸", url: "/inlandempire/", status: "live", color: "#D97706" },
+  { emoji: "🤠", nameKo: "오스틴",      nameEn: "Austin",        flag: "🇺🇸", url: "/austin/",      status: "live", color: "#1D4ED8" },
   { emoji: "🍁", nameKo: "캘거리",      nameEn: "Calgary",       flag: "🇨🇦", url: "/calgary/",     status: "live", color: "#D97706" },
   { emoji: "🍁", nameKo: "에드먼턴",    nameEn: "Edmonton",      flag: "🇨🇦", url: "/edmonton/",    status: "live", color: "#10B981" },
   { emoji: "🏛️", nameKo: "오타와",     nameEn: "Ottawa",        flag: "🇨🇦", url: "/ottawa/",      status: "live", color: "#DC2626" },
@@ -11843,6 +11917,8 @@ const DIASPORA_IDENTITY: Record<string, {
   killeen:      { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
   louisville:   { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#7C3AED" },
   anchorage:    { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#3B82F6" },
+  inlandempire: { flag:"🇺🇸", ko:"한인 이민자",        en:"Korean American",    descKo:"LA 동쪽 새 삶을 시작하며",             descEn:"Starting anew east of Los Angeles.",              color:"#D97706" },
+  austin:       { flag:"🇺🇸", ko:"한인 이민자",        en:"Korean Texan",       descKo:"텍사스 테크 붐 속 새 삶을 시작하며",   descEn:"Starting anew in the Texas tech boom.",           color:"#1D4ED8" },
   // 🇲🇽 멕시코
   orangecounty: { flag:"🇺🇸", ko:"Korean American",    en:"Korean American",    descKo:"미국 사회의 당당한 구성원으로",         descEn:"A full participant in American society",          color:"#F97316" },
   mexicocity:   { flag:"🇲🇽", ko:"재멕시코 한인",     en:"Korean in Mexico",   descKo:"멕시코 사회의 당당한 구성원으로",      descEn:"A full participant in Mexican society",           color:"#16A34A" },
@@ -13620,6 +13696,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "perth"      ? TOP5_SETTLE_PERTH :
             useCityConfig().slug === "auckland"   ? TOP5_SETTLE_AUCKLAND :
             useCityConfig().slug === "saopaulo"   ? TOP5_SETTLE_SAOPAULO :
+            useCityConfig().slug === "inlandempire" ? TOP5_SETTLE_INLANDEMPIRE :
+            useCityConfig().slug === "austin"      ? TOP5_SETTLE_AUSTIN :
             useCityConfig().slug === "bogota"     ? TOP5_SETTLE_BOGOTA :
             useCityConfig().slug === "london"     ? TOP5_SETTLE_LONDON :
             useCityConfig().slug === "frankfurt"  ? TOP5_SETTLE_FRANKFURT :
@@ -20221,6 +20299,8 @@ const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
   auckland:      TOP5_FOOD_AUCKLAND,
   saopaulo:      TOP5_FOOD_SAOPAULO,
   bogota:        TOP5_FOOD_BOGOTA,
+  inlandempire:  TOP5_FOOD_INLANDEMPIRE,
+  austin:        TOP5_FOOD_AUSTIN,
   london:        TOP5_FOOD_LONDON,
   paris:         TOP5_FOOD_PARIS,
   berlin:        TOP5_FOOD_BERLIN,
@@ -20997,6 +21077,8 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
               slug === "perth"        ? TOP5_EXPLORE_PERTH :
               slug === "auckland"     ? TOP5_EXPLORE_AUCKLAND :
               slug === "saopaulo"     ? TOP5_EXPLORE_SAOPAULO :
+              slug === "inlandempire" ? TOP5_EXPLORE_INLANDEMPIRE :
+              slug === "austin"      ? TOP5_EXPLORE_AUSTIN :
               slug === "bogota"       ? TOP5_EXPLORE_BOGOTA :
               slug === "london"       ? TOP5_EXPLORE_LONDON :
               slug === "frankfurt"    ? TOP5_EXPLORE_FRANKFURT :
