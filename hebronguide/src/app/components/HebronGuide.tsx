@@ -2435,6 +2435,10 @@ const TOP5_EXPLORE_LA: Top5Item[] = [
     address: "Wilshire Blvd & Vermont Ave, Los Angeles CA 90010",
     why: "LA 코리아타운 야시장·쇼핑. CGV영화관·노래방·PC방·한국 뷰티숍. 한인 2세도 즐겨 찾는 한인 문화 중심",
     tip: "주차는 인근 갤러리아·쇼핑몰 주차장 이용. 금-토 저녁이 가장 활기참", website: "discoverlakow.com" },
+  { rank: 11, emoji: "💄", nameKo: "올리브영 파사디나 — 미국 1호점 (K뷰티)", nameEn: "Olive Young Pasadena — 1st US Store (K-Beauty)",
+    address: "Colorado Blvd & Fair Oaks Ave, Pasadena CA 91101",
+    why: "한국 최대 뷰티 리테일러 미국 첫 매장. 8,647 sqft 대형 매장. K뷰티 스킨케어·메이크업·헤어케어 총집합. 오픈 첫날 6,000명 방문. 한인 뷰티 애호가 필수 방문",
+    tip: "파사디나 콜로라도 블vd 중심. 메트로 Gold Line Del Mar역 도보 10분. 오픈 2024년 말 — 한류 K뷰티 열풍의 상징", website: "oliveyoung.com/us" },
 ];
 
 /* ─────────────────────────────────────────
