@@ -744,9 +744,7 @@
           <a href="/story-submit.html"  target="_blank" class="hub-link">📝 이야기 제출</a>
           <a href="/pastor-dashboard.html" target="_blank" class="hub-link">📊 목사 대시보드</a>
           <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" class="hub-link kakao">💛 카카오 채널</a>
-          <button onclick="cleanDuplicates()" class="hub-link" style="cursor:pointer;background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.3);color:#f87171;">🔍 중복 교회 자동 정리</button>
         </div>
-        <div id="dup-result" style="display:none;margin-top:12px;padding:12px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.2);border-radius:10px;font-size:.82rem;line-height:1.8;"></div>
       </div>
     </div>
 
@@ -1983,8 +1981,6 @@
     loadTabData('community')
     loadReviews()
     loadReports()
-    // 로그인 시 중복 교회 자동 검사
-    setTimeout(cleanDuplicates, 2000)
   }
 
   // ── 리포트 차트 로드 ─────────────────────────────────────
@@ -2059,66 +2055,6 @@
       }
     } catch(e) {
       console.warn('loadReports 실패:', e.message)
-    }
-  }
-
-  // ── 중복 교회 자동 검사·정리 ────────────────────────────
-  async function cleanDuplicates() {
-    const el = document.getElementById('dup-result');
-    el.style.display = 'block';
-    el.innerHTML = '<span class="spinner"></span> 중복 교회 검사 중...';
-
-    try {
-      const SB = 'https://vextxqzggznulwpganwt.supabase.co/rest/v1';
-      const SK = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3ODgxNTM5MiwiZXhwIjoyMDk0MzkxMzkyfQ.7WRbWtAMe15DbQZ3lQoho9tRJXNwdxZPuP99lz3-epI';
-      const h = { apikey: SK, Authorization: 'Bearer ' + SK, 'Content-Type': 'application/json' };
-
-      // 전체 교회 가져오기
-      const res = await fetch(`${SB}/churches?active=eq.true&select=id,name,name_en,city_slug,source,hebron_partner,created_at&limit=2000`, { headers: h });
-      const churches = await res.json();
-
-      // 도시+이름 기준 그룹핑
-      const groups = {};
-      churches.forEach(c => {
-        const key = (c.city_slug||'') + '|' + (c.name||c.name_en||'').trim().toLowerCase().replace(/\s+/g,' ');
-        if (!groups[key]) groups[key] = [];
-        groups[key].push(c);
-      });
-
-      let deactivated = 0;
-      const report = [];
-
-      for (const key of Object.keys(groups)) {
-        const group = groups[key];
-        if (group.length < 2) continue;
-
-        // 최우선 선택: partner > partner_application > 나머지
-        group.sort((a, b) => {
-          const sA = (a.hebron_partner?100:0) + (a.source==='partner_application'?10:0);
-          const sB = (b.hebron_partner?100:0) + (b.source==='partner_application'?10:0);
-          return sB - sA;
-        });
-
-        for (let i = 1; i < group.length; i++) {
-          await fetch(`${SB}/churches?id=eq.${group[i].id}`, {
-            method: 'PATCH', headers: { ...h, Prefer: 'return=minimal' },
-            body: JSON.stringify({ active: false })
-          });
-          deactivated++;
-          report.push(`🗑 ${group[i].name} (${group[i].city_slug||'?'}) [${group[i].source}]`);
-        }
-      }
-
-      if (deactivated === 0) {
-        el.style.display = 'none'; // 중복 없으면 숨김
-      } else {
-        el.style.display = 'block';
-        el.style.background = 'rgba(239,68,68,.08)';
-        el.style.borderColor = 'rgba(239,68,68,.25)';
-        el.innerHTML = `⚠️ <strong style="color:#f87171">${deactivated}개 중복 교회 자동 정리 완료</strong><br><br>` + report.join('<br>');
-      }
-    } catch(e) {
-      el.innerHTML = '❌ 오류: ' + e.message;
     }
   }
 </script>

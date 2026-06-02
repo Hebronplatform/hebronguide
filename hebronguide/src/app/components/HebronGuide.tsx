@@ -15534,7 +15534,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
 
           {/* 교회 안내 정보 */}
           <div style={{ margin: "14px 20px 4px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "14px 16px" }}>
-            {welcomeChurch.desc.split("\n")
+            {(welcomeChurch.desc || welcomeChurch.description || "").split("\n")
               .filter((l: string) => l.trim() && !l.startsWith("🔗") && !l.startsWith("✅"))
               .slice(0, 4)
               .map((line: string, i: number) => (
