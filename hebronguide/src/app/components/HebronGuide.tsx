@@ -14651,16 +14651,7 @@ function getCityChurches(slug: string, lang: string) {
       },
     ],
     sf: [
-      {
-        emoji: "⭐", tier: 1, hebronPartner: true,
-        name: ko ? "킹스웨이 교회" : "Kingsway Church",
-        nameEn: "Kingsway Church",
-        desc: ko
-          ? "✨ 담임: 강문수 목사\n📍 Fairfield · Vacaville, CA (베이에어리어)\n📞 707-803-5400"
-          : "✨ Lead Pastor: Moonsu Kang\n📍 Fairfield · Vacaville, CA (Bay Area)\n📞 707-803-5400",
-        tags: ko ? ["페어필드", "바카빌", "헤브론파트너"] : ["Fairfield", "Vacaville", "HebronPartner"],
-        phone: "7078035400", email: "400kingsway@gmail.com",
-      },
+      // 킹스웨이 교회 — Supabase에서 관리 (partner_application, city_slug: sf)
       {
         emoji: "⭐", tier: 1, hebronPartner: true,
         name: ko ? "새누리선교교회 (NCMC)" : "New Community Mission Church (NCMC)",

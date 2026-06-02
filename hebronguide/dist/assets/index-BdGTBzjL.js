@@ -1466,11 +1466,7 @@ Key services:
 🕐 Sunday Service 10:30am
 ☎ 604-727-0259
 ✉️ pgkchurch@gmail.com
-🔗 pgkchurch.ca`,tags:n?["프린스조지","BC북부","한인봉사센터","새가족모임"]:["Prince George","Northern BC","Community Center","New Members"],phone:"6047270259",email:"pgkchurch@gmail.com",website:"https://pgkchurch.ca"}],sf:[{emoji:"⭐",tier:1,hebronPartner:!0,name:n?"킹스웨이 교회":"Kingsway Church",nameEn:"Kingsway Church",desc:n?`✨ 담임: 강문수 목사
-📍 Fairfield · Vacaville, CA (베이에어리어)
-📞 707-803-5400`:`✨ Lead Pastor: Moonsu Kang
-📍 Fairfield · Vacaville, CA (Bay Area)
-📞 707-803-5400`,tags:n?["페어필드","바카빌","헤브론파트너"]:["Fairfield","Vacaville","HebronPartner"],phone:"7078035400",email:"400kingsway@gmail.com"},{emoji:"⭐",tier:1,hebronPartner:!0,name:n?"새누리선교교회 (NCMC)":"New Community Mission Church (NCMC)",desc:n?`✨ 담임: 김태훈 목사
+🔗 pgkchurch.ca`,tags:n?["프린스조지","BC북부","한인봉사센터","새가족모임"]:["Prince George","Northern BC","Community Center","New Members"],phone:"6047270259",email:"pgkchurch@gmail.com",website:"https://pgkchurch.ca"}],sf:[{emoji:"⭐",tier:1,hebronPartner:!0,name:n?"새누리선교교회 (NCMC)":"New Community Mission Church (NCMC)",desc:n?`✨ 담임: 김태훈 목사
 📍 3399 CSM Dr., San Mateo, CA 94402
 🏠 한·영 이중언어 예배
 🕐 1부 11:30am · 2부 1:30pm (영어예배)
