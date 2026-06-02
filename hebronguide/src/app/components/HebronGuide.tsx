@@ -15201,8 +15201,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* ══════════════════════════════════════════════
                 TIER 2+ — 기타 교회 (접히는 폴더)
             ══════════════════════════════════════════════ */}
-            {allOther.length > 0 && (() => {
-              return (
+            {allOther.length > 0 && (
                 <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, overflow: "hidden", marginBottom: 16 }}>
                   {/* 폴더 헤더 — 클릭해서 열기 */}
                   <button
@@ -15258,16 +15257,12 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                     </div>
                   )}
                 </div>
-              );
-            })()}
+            )}
 
             {/* 빈 경우 안내 */}
             {allPartner.length === 0 && allOther.length === 0 && (
               <ComingSoonCard lang={lang} accentColor={accent} />
             )}
-          </>
-          );
-        })()}
         {sub === 2 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {programs.map((p, i) => <PlaceCard key={i} {...p} accentColor={accent} />)}
@@ -15330,31 +15325,26 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   </div>
 
                   {/* 기타 교회 폴더 (접힘) */}
-                  {otherChurches.length > 0 && (() => {
-                    return (
-                      <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: 14, marginBottom: 10, overflow: "hidden" }}>
-                        <button onClick={() => setOpenOther(p => !p)} style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 16px", background: "none", border: "none", width: "100%", cursor: "pointer" }}>
-                          <span style={{ fontSize: 14 }}>⛪</span>
-                          <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13, color: "rgba(236,253,245,0.7)", flex: 1, textAlign: "left" }}>
-                            {lang === "ko" ? `기타 교회 (${otherChurches.length}개)` : `Other Churches (${otherChurches.length})`}
-                          </span>
-                          <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>{openOther ? "▲" : "▼"}</span>
-                        </button>
-                        {openOther && (
-                          <div style={{ padding: "0 10px 8px" }}>
-                            {otherChurches.map((c: any, i: number) => (
-                              <div key={"o-" + i} style={{ border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, marginBottom: 8 }}>
-                                <PlaceCard {...c} accentColor={accent} />
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })()}
-                </>
-              );
-            })()}
+                  {otherChurches.length > 0 && (
+                    <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: 14, marginBottom: 10, overflow: "hidden" }}>
+                      <button onClick={() => setOpenOther(p => !p)} style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 16px", background: "none", border: "none", width: "100%", cursor: "pointer" }}>
+                        <span style={{ fontSize: 14 }}>⛪</span>
+                        <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13, color: "rgba(236,253,245,0.7)", flex: 1, textAlign: "left" }}>
+                          {lang === "ko" ? `기타 교회 (${otherChurches.length}개)` : `Other Churches (${otherChurches.length})`}
+                        </span>
+                        <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>{openOther ? "▲" : "▼"}</span>
+                      </button>
+                      {openOther && (
+                        <div style={{ padding: "0 10px 8px" }}>
+                          {otherChurches.map((c: any, i: number) => (
+                            <div key={"o-" + i} style={{ border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, marginBottom: 8 }}>
+                              <PlaceCard {...c} accentColor={accent} />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
 
             {/* 파트너 신청 CTA */}
             <a href="/ad-request.html#church" style={{ display: "block", textDecoration: "none", marginBottom: 12 }}>
