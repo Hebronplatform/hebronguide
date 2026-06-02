@@ -15122,17 +15122,13 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const isHome = (c: any) => c.hcmi === true || (c.tier === 1 && c.hcmi === undefined);
   const isPartner = (c: any) => c.hebronPartner || c.hebron_partner;
 
-  // 1순위: 협력교회 + 가정교회 (초록 + ⭐)
-  const partnerAndHome = [
+  // Tier 1: 협력교회 전체 (가정교회 겸한 협력교회 먼저 → 협력교회만 다음)
+  const allPartner = [
     ...staticSorted.filter((c: any) => isPartner(c) && isHome(c)),
     ...sbChurches.filter((c: any) => isPartner(c) && isHome(c)),
-  ];
-  // 2순위: 협력교회만 (초록, 가정교회 아님)
-  const partnerOnly = [
     ...staticSorted.filter((c: any) => isPartner(c) && !isHome(c)),
     ...sbChurches.filter((c: any) => isPartner(c) && !isHome(c)),
   ];
-  const allPartner = [...partnerAndHome, ...partnerOnly];
   // 3순위: 가정교회만 (⭐, 협력교회 아님)
   const homeChurches = staticSorted.filter((c: any) => !isPartner(c) && isHome(c));
   // 4순위: 기타 교회
