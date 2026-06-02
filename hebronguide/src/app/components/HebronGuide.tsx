@@ -15038,8 +15038,10 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const staticSorted = (churches as any[]).slice().sort((a: any, b: any) =>
     (b.hebronPartner ? 1 : 0) - (a.hebronPartner ? 1 : 0) || (a.tier ?? 9) - (b.tier ?? 9)
   );
-  // 헬퍼: 가정교회 여부 (static: tier===1, Supabase: hcmi===true)
-  const isHome = (c: any) => c.tier === 1 || c.hcmi === true;
+  // 헬퍼: 가정교회 여부
+  // - 정적 데이터: tier===1이고 hcmi 필드 없음 (undefined)
+  // - Supabase: hcmi===true 인 것만 가정교회
+  const isHome = (c: any) => c.hcmi === true || (c.tier === 1 && c.hcmi === undefined);
   const isPartner = (c: any) => c.hebronPartner || c.hebron_partner;
 
   // 1순위: 협력교회 + 가정교회 (초록 + ⭐)
