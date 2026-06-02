@@ -15097,264 +15097,175 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             </div>
           </>
         )}
-        {sub === 1 && (
-          <>
-            {/* 커뮤니티 직접 등록 교회 */}
-            {communityChurches.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 12 }}>
-                {communityChurches.map((c: any, i: number) => (
-                  <div key={"com-" + i} style={{ border: "1px solid rgba(110,231,183,0.35)", borderRadius: 16, background: "rgba(110,231,183,0.05)" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0" }}>
-                      <span style={{ background: "rgba(110,231,183,0.15)", border: "1px solid rgba(110,231,183,0.4)", color: "#6EE7B7", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>
-                        {lang === "ko" ? "✅ 커뮤니티 등록" : "✅ Community"}
-                      </span>
-                    </div>
-                    <PlaceCard {...c} accentColor="#6EE7B7" />
-                  </div>
-                ))}
-              </div>
-            )}
-            {/* ── Supabase 교회 (CKSBCA + 파트너 등록) ── */}
-            {sbChurches.length > 0 && (
-              <div style={{ marginBottom: 16 }}>
-                {/* Tier 1: Hebron 협력교회 */}
-                {sbChurches.some((c: any) => c.hebron_partner) && (
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
-                    <div style={{ height: 1, flex: 1, background: "rgba(110,231,183,0.2)" }} />
-                    <span style={{ fontSize: 10, fontWeight: 800, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" }}>
-                      🤝 {lang === "ko" ? "Hebron 협력교회" : "Hebron Partner Churches"}
-                    </span>
-                    <div style={{ height: 1, flex: 1, background: "rgba(110,231,183,0.2)" }} />
-                  </div>
-                )}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {sbChurches.filter((c: any) => c.hebron_partner).map((c: any, i: number) => (
+        {sub === 1 && (() => {
+          // ── 모든 교회 통합 정렬 ──────────────────────────────
+          type AnyChurch = any;
+          const sbPartner   = sbChurches.filter((c: AnyChurch) => c.hebron_partner);
+          const sbOther     = sbChurches.filter((c: AnyChurch) => !c.hebron_partner);
+          const staticSorted = (churches as AnyChurch[]).slice().sort((a: AnyChurch, b: AnyChurch) =>
+            (b.hebronPartner ? 1 : 0) - (a.hebronPartner ? 1 : 0) || (a.tier ?? 9) - (b.tier ?? 9)
+          );
+          const staticPartner = staticSorted.filter((c: AnyChurch) => c.hebronPartner);
+          const staticOther   = staticSorted.filter((c: AnyChurch) => !c.hebronPartner);
+          const allPartner    = [...staticPartner, ...sbPartner];
+          const allOther      = [...sbOther, ...staticOther, ...communityChurches];
 
-                    <div key={"sb-" + i} style={{
-                      border: c.hebron_partner
-                        ? "1px solid rgba(110,231,183,0.45)"
-                        : "1px solid rgba(255,255,255,0.1)",
-                      borderRadius: 16,
-                      background: c.hebron_partner ? "rgba(110,231,183,0.05)" : "rgba(255,255,255,0.02)",
-                      padding: "14px 16px",
+          return (
+          <>
+            {/* ══════════════════════════════════════════════
+                TIER 1 — Hebron 협력교회 (전체 너비 피처드 카드)
+            ══════════════════════════════════════════════ */}
+            {allPartner.length > 0 && (
+              <div style={{ marginBottom: 20 }}>
+                {/* 섹션 헤더 */}
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+                  <div style={{ width: 3, height: 20, background: "#6EE7B7", borderRadius: 2 }} />
+                  <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#6EE7B7", letterSpacing: "0.05em" }}>
+                    🤝 {lang === "ko" ? "Hebron 협력교회" : "Hebron Partner Churches"}
+                  </span>
+                  <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(110,231,183,0.5)", marginLeft: "auto" }}>
+                    {allPartner.length}{lang === "ko" ? "개" : " churches"}
+                  </span>
+                </div>
+
+                {/* 협력교회 피처드 카드 (전체 너비) */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  {allPartner.map((c: AnyChurch, i: number) => (
+                    <div key={"p-" + i} style={{
+                      border: "1.5px solid rgba(110,231,183,0.45)",
+                      borderRadius: 20,
+                      background: "linear-gradient(135deg, rgba(110,231,183,0.07) 0%, rgba(0,0,0,0) 60%)",
+                      overflow: "hidden",
                     }}>
-                      {c.hebron_partner && (
-                        <div style={{ marginBottom: 6 }}>
-                          <span style={{ background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.4)", color: "#6EE7B7", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700 }}>
-                            🤝 Hebron 협력교회
-                          </span>
-                        </div>
-                      )}
-                      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 14, color: "#fff", marginBottom: 4 }}>
-                        ⛪ {lang === "ko" ? (c.name || c.name_en) : (c.name_en || c.name)}
+                      {/* 피처드 헤더 바 */}
+                      <div style={{ background: "rgba(110,231,183,0.1)", borderBottom: "1px solid rgba(110,231,183,0.2)", padding: "8px 16px", display: "flex", alignItems: "center", gap: 8 }}>
+                        <span style={{ fontSize: 10, fontWeight: 800, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", letterSpacing: "0.04em" }}>
+                          🤝 Hebron 협력교회
+                        </span>
+                        {(c.tier === 1 || c.emoji === "⭐") && (
+                          <span style={{ fontSize: 10, color: "#C9A227" }}>⭐ Tier 1</span>
+                        )}
                       </div>
-                      {c.name && c.name_en && c.name !== c.name_en && (
-                        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)", fontFamily: "Manrope,sans-serif", marginBottom: 2 }}>
-                          {lang === "ko" ? c.name_en : c.name}
+                      {/* 카드 본문 */}
+                      <div style={{ padding: "16px 18px" }}>
+                        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 16, color: "#fff", marginBottom: 4 }}>
+                          {lang === "ko" ? (c.name || c.name_en) : (c.name_en || c.name)}
                         </div>
-                      )}
-                      {c.denomination && (
-                        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 4, fontFamily: "Manrope,sans-serif" }}>
-                          {c.denomination} {c.service_time ? `· ${c.service_time}` : ""}
+                        {c.name && c.name_en && c.name !== c.name_en && (
+                          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", fontFamily: "Manrope,sans-serif", marginBottom: 6 }}>
+                            {lang === "ko" ? c.name_en : c.name}
+                          </div>
+                        )}
+                        <div style={{ fontSize: 12, color: "rgba(236,253,245,0.75)", lineHeight: 1.75, whiteSpace: "pre-line", marginBottom: 12, fontFamily: "Manrope,sans-serif" }}>
+                          {lang === "ko" ? (c.desc || c.description) : (c.desc || c.description)}
                         </div>
-                      )}
-                      {c.description && (
-                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.65)", marginBottom: 8, fontFamily: "Manrope,sans-serif" }}>
-                          {c.description}
+                        {/* 액션 버튼 */}
+                        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                          {(c.phone || c.email || c.kakao || c.website) && (
+                            <button
+                              onClick={() => setWelcomeChurch(c)}
+                              style={{
+                                flex: 1, minWidth: 120,
+                                background: "linear-gradient(135deg, rgba(110,231,183,0.9), rgba(52,211,153,0.85))",
+                                color: "#0d1117", borderRadius: 12, padding: "11px 16px",
+                                fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13,
+                                border: "none", cursor: "pointer",
+                              }}
+                            >
+                              🌿 {lang === "ko" ? "새가족 신청하기" : "New Member Info"}
+                            </button>
+                          )}
+                          {(c.website) && (
+                            <a href={c.website.startsWith("http") ? c.website : `https://${c.website}`}
+                              target="_blank" rel="noopener"
+                              style={{
+                                display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
+                                background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.15)",
+                                color: "rgba(236,253,245,0.8)", borderRadius: 12, padding: "11px 16px",
+                                fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 12, textDecoration: "none",
+                              }}>
+                              🔗 {lang === "ko" ? "홈페이지" : "Website"}
+                            </a>
+                          )}
                         </div>
-                      )}
-                      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                        {c.phone && (
-                          <a href={`tel:${c.phone}`} style={{ fontSize: 11, color: accent, fontFamily: "Manrope,sans-serif", fontWeight: 600, textDecoration: "none" }}>
-                            📞 {c.phone}
-                          </a>
-                        )}
-                        {c.website && (
-                          <a href={c.website.startsWith("http") ? c.website : `https://${c.website}`} target="_blank" rel="noopener" style={{ fontSize: 11, color: accent, fontFamily: "Manrope,sans-serif", fontWeight: 600, textDecoration: "none" }}>
-                            🌐 {lang === "ko" ? "홈페이지" : "Website"}
-                          </a>
-                        )}
-                        {c.email && (
-                          <a href={`mailto:${c.email}`} style={{ fontSize: 11, color: accent, fontFamily: "Manrope,sans-serif", fontWeight: 600, textDecoration: "none" }}>
-                            ✉️ {lang === "ko" ? "이메일" : "Email"}
-                          </a>
-                        )}
                       </div>
                     </div>
                   ))}
                 </div>
-
-                {/* Tier 2+: 일반 교회 */}
-                {sbChurches.some((c: any) => !c.hebron_partner) && (
-                  <>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "16px 0 10px" }}>
-                      <div style={{ height: 1, flex: 1, background: "rgba(255,255,255,0.08)" }} />
-                      <span style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.4)", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" }}>
-                        ⛪ {lang === "ko" ? "기타 등록 교회" : "Other Churches"}
-                      </span>
-                      <div style={{ height: 1, flex: 1, background: "rgba(255,255,255,0.08)" }} />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      {sbChurches.filter((c: any) => !c.hebron_partner).map((c: any, i: number) => (
-                        <div key={"sb2-" + i} style={{
-                          border: "1px solid rgba(255,255,255,0.1)",
-                          borderRadius: 16,
-                          background: "rgba(255,255,255,0.02)",
-                          padding: "14px 16px",
-                          opacity: 0.85,
-                        }}>
-                          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 14, color: "#fff", marginBottom: 4 }}>
-                            ⛪ {lang === "ko" ? (c.name || c.name_en) : (c.name_en || c.name)}
-                          </div>
-                          {c.denomination && (
-                            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 4, fontFamily: "Manrope,sans-serif" }}>
-                              {c.denomination} {c.service_time ? `· ${c.service_time}` : ""}
-                            </div>
-                          )}
-                          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                            {c.phone && <a href={`tel:${c.phone}`} style={{ fontSize: 11, color: accent, fontFamily: "Manrope,sans-serif", fontWeight: 600, textDecoration: "none" }}>📞 {c.phone}</a>}
-                            {c.website && <a href={c.website.startsWith("http") ? c.website : `https://${c.website}`} target="_blank" rel="noopener" style={{ fontSize: 11, color: accent, fontFamily: "Manrope,sans-serif", fontWeight: 600, textDecoration: "none" }}>🌐 {lang === "ko" ? "홈페이지" : "Website"}</a>}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </>
-                )}
               </div>
             )}
 
-            {/* 기존 교회 목록 */}
-            {churches.length === 0
-              ? (communityChurches.length === 0 && sbChurches.length === 0 && <ComingSoonCard lang={lang} accentColor={accent} />)
-              : <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {(churches as Array<{ emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; tier?: number; hebronPartner?: boolean; denomination?: string; website?: string; email?: string; phone?: string; kakao?: string; }>)
-                  .slice().sort((a, b) => (b.hebronPartner ? 1 : 0) - (a.hebronPartner ? 1 : 0) || (a.tier ?? 9) - (b.tier ?? 9))
-                  .map((c, i) => (
-                  <div key={i} style={
-                    c.hebronPartner
-                      ? { border: "1.5px solid rgba(110,231,183,0.5)", borderRadius: 16, background: "rgba(110,231,183,0.06)" }
-                      : c.tier === 1
-                        ? { border: "1px solid rgba(201,162,39,0.45)", borderRadius: 16, background: "rgba(201,162,39,0.05)" }
-                        : { borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)" }
-                  }>
-                    {/* 교회 유형 뱃지 */}
-                    {(c.hebronPartner || c.denomination) ? (
-                      <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 14px 0 14px", flexWrap: "wrap" }}>
-                        {c.hebronPartner && (
-                          <span style={{ background: "rgba(110,231,183,0.15)", border: "1px solid rgba(110,231,183,0.45)", color: "#6EE7B7", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700, letterSpacing: "0.02em" }}>
-                            🤝 Hebron 협력교회
-                          </span>
-                        )}
-                        {c.denomination && (
-                          <span style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(236,253,245,0.6)", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 600, letterSpacing: "0.02em" }}>
-                            ⛪ {c.denomination}
-                          </span>
-                        )}
-                      </div>
-                    ) : null}
-                    <PlaceCard {...c} accentColor={c.tier === 1 ? GOLD : accent} />
-                    {/* Hebron 협력교회 — 교회 방문하기 → 환영 모달 (전화·이메일 모달 내 포함) */}
-                    {c.tier !== 1 && c.hebronPartner && (c.phone || c.email) && (
-                      <div style={{ padding: "0 14px 14px 14px" }}>
-                        <button
-                          onClick={() => setWelcomeChurch(c)}
-                          style={{
-                            width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-                            background: "linear-gradient(135deg, rgba(110,231,183,0.85), rgba(52,211,153,0.85))",
-                            color: "#0d1117", borderRadius: 10, padding: "12px 16px",
-                            fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13,
-                            border: "none", cursor: "pointer",
-                          }}
-                        >
-                          🌿 {lang === "ko" ? "교회 방문하기" : "Visit Church"}
-                        </button>
-                      </div>
-                    )}
-                    {/* 방문 의사 — 일반 Tier 2·3 교회 (website 있으면) */}
-                    {c.tier !== 1 && !c.hebronPartner && (c.website || c.phone) && (
-                      <div style={{ padding: "0 14px 12px 14px" }}>
-                        <a
-                          href={c.website ? `https://${c.website.replace(/^https?:\/\//,'')}` : `tel:${c.phone}`}
-                          target="_blank" rel="noopener"
-                          style={{
-                            display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-                            background: "rgba(110,231,183,0.08)", border: "1px solid rgba(110,231,183,0.25)",
-                            color: "#6EE7B7", borderRadius: 10, padding: "9px 16px",
-                            fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12,
-                            textDecoration: "none",
-                          }}
-                        >
-                          🌿 {lang === "ko" ? "교회 방문하기" : "Visit Church"}
-                        </a>
-                      </div>
-                    )}
-                    {/* 새가족 신청 CTA — Tier 1 교회만, 연결 수단이 하나라도 있으면 표시 */}
-                    {c.tier === 1 && (c.email || c.phone || c.kakao || c.website) && (
-                      <div style={{ padding: "0 14px 14px 14px" }}>
-                        {/* 1행: 새가족 신청 (풀 너비) — 클릭 시 인앱 환영 모달 오픈 */}
-                        <button
-                          onClick={() => setWelcomeChurch(c)}
-                          style={{
-                            width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-                            background: "linear-gradient(135deg, rgba(201,162,39,0.9), rgba(184,144,28,0.9))",
-                            color: "#0d1117", borderRadius: 10, padding: "10px 16px",
-                            fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13,
-                            border: "none", cursor: "pointer", transition: "opacity .15s", marginBottom: 8,
-                          }}
-                        >
-                          🌿 {lang === "ko" ? "새가족 신청하기" : "Register as New Member"}
-                        </button>
-                        {/* 2행: 카카오·전화·홈페이지 보조 버튼 */}
-                        {(c.kakao || c.phone || c.website) && (
-                          <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                            {c.kakao && (
-                              <a href={c.kakao} target="_blank" rel="noopener"
-                                style={{
-                                  flex: 1, minWidth: 70, display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
-                                  background: "#FEE500", borderRadius: 9, padding: "8px 10px",
-                                  fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#3A1D1D",
-                                  textDecoration: "none", whiteSpace: "nowrap",
-                                }}
-                              >
-                                💬 {lang === "ko" ? "카카오" : "KakaoTalk"}
-                              </a>
+            {/* ══════════════════════════════════════════════
+                TIER 2+ — 기타 교회 (접히는 폴더)
+            ══════════════════════════════════════════════ */}
+            {allOther.length > 0 && (() => {
+              const [openOtherChurches, setOpenOtherChurches] = useState(false);
+              return (
+                <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, overflow: "hidden", marginBottom: 16 }}>
+                  {/* 폴더 헤더 — 클릭해서 열기 */}
+                  <button
+                    onClick={() => setOpenOtherChurches(p => !p)}
+                    style={{
+                      display: "flex", alignItems: "center", gap: 10, width: "100%",
+                      padding: "13px 16px", background: "rgba(255,255,255,0.03)",
+                      border: "none", cursor: "pointer", transition: "background .2s",
+                    }}
+                  >
+                    <span style={{ fontSize: 16 }}>⛪</span>
+                    <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13, color: "rgba(236,253,245,0.7)", flex: 1, textAlign: "left" }}>
+                      {lang === "ko" ? `기타 등록 교회` : `Other Churches`}
+                      <span style={{ fontWeight: 500, color: "rgba(236,253,245,0.4)", fontSize: 11, marginLeft: 6 }}>
+                        ({allOther.length}{lang === "ko" ? "개" : ""})
+                      </span>
+                    </span>
+                    <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, fontFamily: "Manrope,sans-serif", marginRight: 4 }}>
+                      {openOtherChurches
+                        ? (lang === "ko" ? "접기 ▲" : "Collapse ▲")
+                        : (lang === "ko" ? "펼치기 ▼" : "Show ▼")}
+                    </span>
+                  </button>
+
+                  {/* 폴더 내용 */}
+                  {openOtherChurches && (
+                    <div style={{ padding: "10px 10px 14px" }}>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {allOther.map((c: AnyChurch, i: number) => (
+                          <div key={"o-" + i} style={{
+                            border: c.tier === 1 ? "1px solid rgba(201,162,39,0.35)" : "1px solid rgba(255,255,255,0.08)",
+                            borderRadius: 14,
+                            background: c.tier === 1 ? "rgba(201,162,39,0.04)" : "rgba(255,255,255,0.02)",
+                            opacity: 0.9,
+                          }}>
+                            {c.isCommunity && (
+                              <div style={{ padding: "5px 12px 0" }}>
+                                <span style={{ fontSize: 9, fontWeight: 700, color: "#6EE7B7", fontFamily: "Manrope,sans-serif" }}>✅ 커뮤니티 등록</span>
+                              </div>
                             )}
-                            {c.phone && (
-                              <a href={`tel:${c.phone}`}
-                                style={{
-                                  flex: 1, minWidth: 70, display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
-                                  background: "rgba(110,231,183,0.15)", border: "1px solid rgba(110,231,183,0.3)",
-                                  borderRadius: 9, padding: "8px 10px",
-                                  fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#6EE7B7",
-                                  textDecoration: "none", whiteSpace: "nowrap",
-                                }}
-                              >
-                                📞 {lang === "ko" ? "전화" : "Call"}
-                              </a>
-                            )}
-                            {c.website && (
-                              <a href={c.website} target="_blank" rel="noopener"
-                                style={{
-                                  flex: 1, minWidth: 70, display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
-                                  background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
-                                  borderRadius: 9, padding: "8px 10px",
-                                  fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "rgba(236,253,245,0.7)",
-                                  textDecoration: "none", whiteSpace: "nowrap",
-                                }}
-                              >
-                                🔗 {lang === "ko" ? "홈페이지" : "Website"}
-                              </a>
-                            )}
+                            <PlaceCard {...c} accentColor={c.tier === 1 ? "#C9A227" : accent} />
                           </div>
-                        )}
+                        ))}
                       </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            }
+                      {/* 파트너 신청 CTA */}
+                      <a href="/ad-request.html#church" style={{ display: "block", textDecoration: "none", marginTop: 12 }}>
+                        <div style={{ background: "rgba(110,231,183,0.08)", border: "1px dashed rgba(110,231,183,0.3)", borderRadius: 12, padding: "11px 16px", textAlign: "center" }}>
+                          <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "#6EE7B7", fontWeight: 700 }}>
+                            🤝 {lang === "ko" ? "Hebron 협력교회 신청 → 최상단 노출" : "Apply as Partner → Top Placement"}
+                          </span>
+                        </div>
+                      </a>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+
+            {/* 빈 경우 안내 */}
+            {allPartner.length === 0 && allOther.length === 0 && (
+              <ComingSoonCard lang={lang} accentColor={accent} />
+            )}
           </>
-        )}
+          );
+        })()}
         {sub === 2 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {programs.map((p, i) => <PlaceCard key={i} {...p} accentColor={accent} />)}
