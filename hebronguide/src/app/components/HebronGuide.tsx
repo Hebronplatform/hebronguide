@@ -15129,10 +15129,15 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     ...staticSorted.filter((c: any) => isPartner(c) && !isHome(c)),
     ...sbChurches.filter((c: any) => isPartner(c) && !isHome(c)),
   ];
-  // 3순위: 가정교회만 (⭐, 협력교회 아님)
-  const homeChurches = staticSorted.filter((c: any) => !isPartner(c) && isHome(c));
-  // 4순위: 기타 교회
-  const allOther = [...sbChurches.filter((c: any) => !isPartner(c) && !isHome(c)), ...staticSorted.filter((c: any) => !isPartner(c) && !isHome(c)), ...communityChurches];
+  // Tier 2 폴더: 가정교회 먼저 → 일반교회 (함께 접히는 폴더)
+  const homeChurches: any[] = []; // 별도 섹션 없음 — allOther에 포함
+  const allOther = [
+    ...staticSorted.filter((c: any) => !isPartner(c) && isHome(c)),       // 가정교회 먼저
+    ...sbChurches.filter((c: any) => !isPartner(c) && isHome(c)),
+    ...sbChurches.filter((c: any) => !isPartner(c) && !isHome(c)),        // 일반교회 다음
+    ...staticSorted.filter((c: any) => !isPartner(c) && !isHome(c)),
+    ...communityChurches,
+  ];
 
   return (
     <>
