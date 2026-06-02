@@ -15110,7 +15110,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               </div>
               <div style={{ fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.7 }}>
                 {lang === "ko"
-                  ? "새로 온 이웃에게 먼저 손을 내미는 것, 그것이 진정한 커뮤니티의 시작입니다."
+                  ? "새로 온 이웃에게 먼저 손을 내미는 것, 그것이 진정한 환대 커뮤니티의 시작입니다."
                   : "Reaching out first to newcomers — that's how real community begins."}
               </div>
             </div>
