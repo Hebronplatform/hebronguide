@@ -14420,8 +14420,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "시애틀지구촌교회" : "Global Mission Church of Greater Seattle",
         nameEn: "Global Mission Church of Greater Seattle",
         desc: ko
-          ? "✨ 담임: 김성수 목사\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 주일연합예배 · 목장 · 삶 공부 · 새가족 환영\n🔗 ijiguchon.org"
-          : "✨ Lead Pastor: Sungsoo Kim\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🏠 Sunday Worship · Home Church · Life Studies · Newcomers Welcome\n🔗 ijiguchon.org",
+          ? "✨ 담임: 김성수 목사 (Sung Soo Kim)\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🕐 토요새벽 6:00am · 주일 1:00pm\n🏠 정착도움 · 목장모임 · 국제가정 · 시니어 환영\n🔗 ijiguchon.org"
+          : "✨ Lead Pastor: Sung Soo Kim\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🕐 Sat. Dawn 6:00am · Sun. 1:00pm\n🏠 Settlement Help · Home Church · International Families · Seniors Welcome\n🔗 ijiguchon.org",
         tags: ko ? ["린우드", "시애틀", "헤브론파트너"] : ["Lynnwood", "Seattle", "HebronPartner"],
         website: "https://ijiguchon.org",
         email: "info@ijiguchon.org",
