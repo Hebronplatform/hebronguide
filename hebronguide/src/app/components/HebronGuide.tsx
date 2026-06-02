@@ -10745,6 +10745,7 @@ function StepItem({ num, title, desc, accentColor = MINT }: { num: number; title
 // desc 텍스트에서 📍주소·📞전화를 추출해 Maps/전화 링크로 변환
 // 지도: Google Maps (범용) + Apple Maps (iPhone 네이티브) 동시 제공
 function renderDescWithLinks(desc: string, accentColor: string) {
+  if (!desc) return null;
   const addrMatch  = desc.match(/📍\s*([^|📞🔗\n]+)/);
   const phoneMatch = desc.match(/📞\s*([\d\s\-()+]+)/);
   // 🔗 뒤에 오는 URL 또는 도메인 감지 (공식 웹사이트)
