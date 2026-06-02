@@ -14987,6 +14987,9 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
 
   // ── Supabase 교회 데이터 (CKSBCA + 파트너 등록 교회) ──
   const [sbChurches, setSbChurches] = useState<any[]>([]);
+  // ── 아코디언 열림/닫힘 상태 ──
+  const [openOtherChurches, setOpenOtherChurches] = useState(false);
+  const [openOther, setOpenOther] = useState(false);
   useEffect(() => {
     const hdrs = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
     fetch(
@@ -15199,7 +15202,6 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 TIER 2+ — 기타 교회 (접히는 폴더)
             ══════════════════════════════════════════════ */}
             {allOther.length > 0 && (() => {
-              const [openOtherChurches, setOpenOtherChurches] = useState(false);
               return (
                 <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, overflow: "hidden", marginBottom: 16 }}>
                   {/* 폴더 헤더 — 클릭해서 열기 */}
@@ -15329,7 +15331,6 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
 
                   {/* 기타 교회 폴더 (접힘) */}
                   {otherChurches.length > 0 && (() => {
-                    const [openOther, setOpenOther] = useState(false);
                     return (
                       <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: 14, marginBottom: 10, overflow: "hidden" }}>
                         <button onClick={() => setOpenOther(p => !p)} style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 16px", background: "none", border: "none", width: "100%", cursor: "pointer" }}>
