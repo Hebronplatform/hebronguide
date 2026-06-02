@@ -14662,7 +14662,7 @@ function getCityChurches(slug: string, lang: string) {
         phone: "7078035400", email: "400kingsway@gmail.com",
       },
       {
-        emoji: "⭐", tier: 1,
+        emoji: "⭐", tier: 1, hebronPartner: true,
         name: ko ? "새누리선교교회 (NCMC)" : "New Community Mission Church (NCMC)",
         desc: ko
           ? "✨ 담임: 김태훈 목사\n📍 3399 CSM Dr., San Mateo, CA 94402\n🏠 한·영 이중언어 예배\n🕐 1부 11:30am · 2부 1:30pm (영어예배)\n📧 welcome.ncmc@gmail.com\n🔗 ncmission.org"
@@ -15047,12 +15047,25 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const staticSorted = (churches as any[]).slice().sort((a: any, b: any) =>
     (b.hebronPartner ? 1 : 0) - (a.hebronPartner ? 1 : 0) || (a.tier ?? 9) - (b.tier ?? 9)
   );
-  // Tier 1: Hebron 협력교회 (초록)
-  const allPartner = [...staticSorted.filter((c: any) => c.hebronPartner), ...sbChurches.filter((c: any) => c.hebron_partner)];
-  // Tier 2: 가정교회 (노란 별표, tier===1이고 파트너 아닌 것)
-  const homeChurches = staticSorted.filter((c: any) => !c.hebronPartner && c.tier === 1);
-  // Tier 3+: 기타 교회
-  const allOther = [...sbChurches.filter((c: any) => !c.hebron_partner), ...staticSorted.filter((c: any) => !c.hebronPartner && c.tier !== 1), ...communityChurches];
+  // 헬퍼: 가정교회 여부 (static: tier===1, Supabase: hcmi===true)
+  const isHome = (c: any) => c.tier === 1 || c.hcmi === true;
+  const isPartner = (c: any) => c.hebronPartner || c.hebron_partner;
+
+  // 1순위: 협력교회 + 가정교회 (초록 + ⭐)
+  const partnerAndHome = [
+    ...staticSorted.filter((c: any) => isPartner(c) && isHome(c)),
+    ...sbChurches.filter((c: any) => isPartner(c) && isHome(c)),
+  ];
+  // 2순위: 협력교회만 (초록, 가정교회 아님)
+  const partnerOnly = [
+    ...staticSorted.filter((c: any) => isPartner(c) && !isHome(c)),
+    ...sbChurches.filter((c: any) => isPartner(c) && !isHome(c)),
+  ];
+  const allPartner = [...partnerAndHome, ...partnerOnly];
+  // 3순위: 가정교회만 (⭐, 협력교회 아님)
+  const homeChurches = staticSorted.filter((c: any) => !isPartner(c) && isHome(c));
+  // 4순위: 기타 교회
+  const allOther = [...sbChurches.filter((c: any) => !isPartner(c) && !isHome(c)), ...staticSorted.filter((c: any) => !isPartner(c) && !isHome(c)), ...communityChurches];
 
   return (
     <>
@@ -15148,8 +15161,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                         <span style={{ fontSize: 10, fontWeight: 800, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", letterSpacing: "0.04em" }}>
                           🤝 Hebron 협력교회
                         </span>
-                        {(c.tier === 1 || c.emoji === "⭐") && (
-                          <span style={{ fontSize: 10, color: "#C9A227" }}>⭐ Tier 1</span>
+                        {isHome(c) && (
+                          <span style={{ fontSize: 12, color: "#C9A227" }}>⭐</span>
                         )}
                       </div>
                       {/* 카드 본문 */}
