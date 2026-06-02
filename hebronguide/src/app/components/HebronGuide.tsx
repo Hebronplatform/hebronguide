@@ -15038,6 +15038,13 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     { title: "How to find Korean churches", desc: `Search '${city.nameEn} Korean Church' on Kakao Maps or Google, or contact your local Korean Church Association` },
   ];
 
+  // ── 교회 통합 정렬 (컴포넌트 레벨) ──
+  const staticSorted = (churches as any[]).slice().sort((a: any, b: any) =>
+    (b.hebronPartner ? 1 : 0) - (a.hebronPartner ? 1 : 0) || (a.tier ?? 9) - (b.tier ?? 9)
+  );
+  const allPartner = [...staticSorted.filter((c: any) => c.hebronPartner), ...sbChurches.filter((c: any) => c.hebron_partner)];
+  const allOther   = [...sbChurches.filter((c: any) => !c.hebron_partner), ...staticSorted.filter((c: any) => !c.hebronPartner), ...communityChurches];
+
   return (
     <>
     <div style={{ paddingBottom: 96 }}>
@@ -15100,20 +15107,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             </div>
           </>
         )}
-        {sub === 1 && (() => {
-          // ── 모든 교회 통합 정렬 ──────────────────────────────
-          type AnyChurch = any;
-          const sbPartner   = sbChurches.filter((c: AnyChurch) => c.hebron_partner);
-          const sbOther     = sbChurches.filter((c: AnyChurch) => !c.hebron_partner);
-          const staticSorted = (churches as AnyChurch[]).slice().sort((a: AnyChurch, b: AnyChurch) =>
-            (b.hebronPartner ? 1 : 0) - (a.hebronPartner ? 1 : 0) || (a.tier ?? 9) - (b.tier ?? 9)
-          );
-          const staticPartner = staticSorted.filter((c: AnyChurch) => c.hebronPartner);
-          const staticOther   = staticSorted.filter((c: AnyChurch) => !c.hebronPartner);
-          const allPartner    = [...staticPartner, ...sbPartner];
-          const allOther      = [...sbOther, ...staticOther, ...communityChurches];
-
-          return (
+        {sub === 1 && (
           <>
             {/* ══════════════════════════════════════════════
                 TIER 1 — Hebron 협력교회 (전체 너비 피처드 카드)
@@ -15263,6 +15257,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {allPartner.length === 0 && allOther.length === 0 && (
               <ComingSoonCard lang={lang} accentColor={accent} />
             )}
+          </>
+        )}
         {sub === 2 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {programs.map((p, i) => <PlaceCard key={i} {...p} accentColor={accent} />)}
@@ -15345,6 +15341,9 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                       )}
                     </div>
                   )}
+                </>
+              );
+            })()}
 
             {/* 파트너 신청 CTA */}
             <a href="/ad-request.html#church" style={{ display: "block", textDecoration: "none", marginBottom: 12 }}>
