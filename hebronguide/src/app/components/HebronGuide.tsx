@@ -820,7 +820,7 @@ const MINT = "#6EE7B7";
 /* ─────────────────────────────────────────
    CITY CONFIG — 도시별 설정
 ───────────────────────────────────────── */
-// 현재 69개 도시 (계속 성장 중)
+// 현재 71개 도시 (계속 성장 중)
 // 작은 도시일수록 HebronGuide가 더 필요합니다 — 외롭기 때문입니다
 type CitySlug =
   // 북미 (기존 17)
@@ -9017,7 +9017,7 @@ function CompactHeroNew() {
         }}>
           <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6EE7B7", display: "inline-block", flexShrink: 0 }} />
           <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(255,255,255,0.92)", letterSpacing: "0.05em" }}>
-            {lang === "ko" ? "✦ 69개 도시의 이야기" : "✦ 68 Cities"}
+            {lang === "ko" ? "✦ 71개 도시의 이야기" : "✦ 71 Cities"}
           </span>
         </div>
         <div style={{
@@ -9151,7 +9151,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       icon: "🤝", color: "#F59E0B",
       nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
       tagKo: "친구 · 멘토 · 동행 파트너", tagEn: "Friends · Mentors · Partners",
-      userKo: "69개 도시 한인을 만납니다", userEn: "Meet Koreans across 62 cities",
+      userKo: "71개 도시 한인을 만납니다", userEn: "Meet Koreans across 71 cities",
       providerKo: "멘토로 섬기실 분 → 함께해요", providerEn: "Mentor & serve → join us",
       tab: 5, subTab: 2,
     },
@@ -10283,7 +10283,7 @@ function CommunityPulseSection({ lang }: { lang: string }) {
     { emoji: "⛪", ko: `${cityKo} 한인 교회 정보가 업데이트됐어요`, en: `Korean church info updated in ${cityEn}`, time: ko ? "방금" : "just now" },
     { emoji: "🍽️", ko: `${cityKo} 한식당 TOP 10 새로 큐레이션됐어요`, en: `Korean restaurant TOP 10 curated in ${cityEn}`, time: ko ? "2분 전" : "2m ago" },
     { emoji: "🏠", ko: `${cityKo} 정착 필수 정보가 업데이트됐어요`, en: `Settlement essentials updated for ${cityEn}`, time: ko ? "5분 전" : "5m ago" },
-    { emoji: "🌏", ko: `69개 도시 한인 커뮤니티가 함께하고 있어요`, en: `69 cities. One Korean community worldwide`, time: ko ? "8분 전" : "8m ago" },
+    { emoji: "🌏", ko: `71개 도시 한인 커뮤니티가 함께하고 있어요`, en: `71 cities. One Korean community worldwide`, time: ko ? "8분 전" : "8m ago" },
     { emoji: "✈️", ko: `공항 도착 체크리스트 — 지금 바로 시작해보세요`, en: `Airport arrival checklist — start right now`, time: ko ? "11분 전" : "11m ago" },
     { emoji: "🗺️", ko: `${cityKo} 탐방 명소 TOP 10 확인해보세요`, en: `Top 10 places to explore in ${cityEn}`, time: ko ? "15분 전" : "15m ago" },
     { emoji: "💊", ko: `건강보험 가입 방법 — ${cityKo} 기준으로 정리됐어요`, en: `Health insurance guide updated for ${cityEn}`, time: ko ? "22분 전" : "22m ago" },
@@ -10297,7 +10297,7 @@ function CommunityPulseSection({ lang }: { lang: string }) {
     { emoji: "🎯", ko: `정착 첫날부터 현지인처럼 — HebronGuide`, en: `Live like a local from Day One — HebronGuide`, time: ko ? "3시간 전" : "3h ago" },
     { emoji: "🏙️", ko: `달라스·휴스턴·애틀랜타 정보가 업데이트됐어요`, en: `Dallas, Houston, Atlanta info refreshed`, time: ko ? "3시간 전" : "3h ago" },
     { emoji: "🇰🇷", ko: `서울·부산·분당 역이민 정보도 확인해보세요`, en: `Seoul, Busan, Bundang re-migration info ready`, time: ko ? "4시간 전" : "4h ago" },
-    { emoji: "🌐", ko: `69개 도시 — 오늘도 누군가 새로 이주하고 있어요`, en: `69 cities — someone is moving today, too`, time: ko ? "5시간 전" : "5h ago" },
+    { emoji: "🌐", ko: `71개 도시 — 오늘도 누군가 새로 이주하고 있어요`, en: `71 cities — someone is moving today, too`, time: ko ? "5시간 전" : "5h ago" },
     { emoji: "💛", ko: `이 가이드가 도움이 됐나요? 주변에 공유해주세요`, en: `Did this help? Share with someone who needs it`, time: ko ? "5시간 전" : "5h ago" },
     { emoji: "🙏", ko: `낯선 땅에서 외롭지 않게 — 헤브론이 함께합니다`, en: `You're not alone in a new land — Hebron is here`, time: ko ? "6시간 전" : "6h ago" },
     // ── G2G — 세대에서 세대로 (은근히, 자연스럽게)
@@ -11884,7 +11884,7 @@ function waGwaJosa(s: string): string {
 }
 // ────────────────────────────────────────────────────────────
 
-// 도시 → 현지 한인 정체성 매핑 (69개 도시 전부 커버)
+// 도시 → 현지 한인 정체성 매핑 (71개 도시 전부 커버)
 const DIASPORA_IDENTITY: Record<string, {
   flag: string; ko: string; en: string; descKo: string; descEn: string; color: string;
 }> = {
@@ -12587,7 +12587,7 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
 
 /* ─────────────────────────────────────────
    HOME: 플라이휠 소셜 프루프 바 (쿠팡 원리 ①)
-   — "312개 교회 · 69개 도시" 숫자가 신뢰를 만든다
+   — "312개 교회 · 71개 도시" 숫자가 신뢰를 만든다
 ───────────────────────────────────────── */
 function HebronFlywheelBar({ lang }: { lang: string }) {
   const stats = [
@@ -21889,7 +21889,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             icon="🤝" color="#8B5CF6" lang={lang}
             titleKo="헤브론 커넥트 — 친구·멘토·동행 파트너 매칭"
             titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
-            descKo="교인 검증 프로필로 69개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
+            descKo="교인 검증 프로필로 71개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
             descEn="Meet Koreans across 62 cities. Friends, mentors, prayer partners & business connections."
           />
           {/* 211 팁 박스 */}
@@ -27207,8 +27207,8 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
 // 새 소식이 있을 때 이 BANNER_ID와 메시지만 수정하면 자동 재표시
 const BANNER_ID = "update-2026-05-27-search"; // 바꾸면 모든 사용자에게 다시 표시
 const BANNER_MSG = {
-  ko: "🔍 새 기능: 전 세계 69개 도시 한인 업소·교회 통합 검색이 열렸습니다!",
-  en: "🔍 New: Search Korean businesses & churches across 69 cities worldwide!",
+  ko: "🔍 새 기능: 전 세계 71개 도시 한인 업소·교회 통합 검색이 열렸습니다!",
+  en: "🔍 New: Search Korean businesses & churches across 71 cities worldwide!",
 };
 const BANNER_KAKAOTALK = ""; // 카카오톡 채널 링크 (개설 후 입력)
 
@@ -27528,7 +27528,7 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
           {/* 헤더 */}
           <div style={{ padding: "14px 18px 10px", flexShrink: 0 }}>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#1a2535", marginBottom: 2 }}>
-              🌍 {lang === "ko" ? "69개 도시" : "68 Cities"}
+              🌍 {lang === "ko" ? "71개 도시" : "71 Cities"}
             </div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8" }}>
               {lang === "ko" ? "이사·출장·방문 도시를 선택하세요" : "Select your destination city"}
@@ -27720,7 +27720,7 @@ export function HebronGuide() {
         const hdrs = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
         const base = `https://${projectId}.supabase.co/rest/v1`;
 
-        // 도시 필터 없음 → 69개 도시 전체 검색
+        // 도시 필터 없음 → 71개 도시 전체 검색
         // community_items(category=business/approved) + churches
         const [r1, r2] = await Promise.allSettled([
           fetch(`${base}/community_items?category=eq.business&status=in.(approved,published)&or=(title.ilike.${enc},name.ilike.${enc},description.ilike.${enc})&limit=10`, { headers: hdrs }),
@@ -27995,9 +27995,9 @@ export function HebronGuide() {
                 const cityMatch = HEBRON_CITIES.filter(c => c.nameEn !== "Seattle").find(c => {
                   const qLow = q.toLowerCase();
                   return (
-                    qLow.includes(c.nameKo.toLowerCase()) ||
-                    qLow.includes(c.nameEn.toLowerCase()) ||
-                    qLow.includes(c.nameEn.toLowerCase().split(" ")[0]) ||
+                    qLow.includes((c.nameKo || "").toLowerCase()) ||
+                    qLow.includes((c.nameEn || "").toLowerCase()) ||
+                    qLow.includes(((c.nameEn || "").toLowerCase().split(" ")[0])) ||
                     (c.nameEn === "San Francisco" && (qLow.includes("sf") || qLow.includes("샌프란") || qLow.includes("san francisco"))) ||
                     (c.nameEn === "Dallas" && (qLow.includes("달라") || qLow.includes("텍사스") || qLow.includes("texas"))) ||
                     (c.nameEn === "New York" && (qLow.includes("뉴욕") || qLow.includes("ny") || qLow.includes("new york"))) ||
@@ -28040,7 +28040,7 @@ export function HebronGuide() {
                 <div style={{ padding: "8px 0", borderTop: "0.5px solid #F2F2F7" }}>
                   <div style={{ padding: "4px 16px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif",
                     fontWeight: 700, color: "#4F46E5", letterSpacing: "0.5px", textTransform: "uppercase" }}>
-                    {lang === "ko" ? "🌏 69개 도시 전체 검색 결과" : "🌏 Results Across 68 Cities"}
+                    {lang === "ko" ? "🌏 71개 도시 전체 검색 결과" : "🌏 Results Across 71 Cities"}
                   </div>
                   {sbSearchLoading && (
                     <div style={{ padding: "8px 16px", fontSize: 12, color: "#94A3B8" }}>검색 중...</div>
