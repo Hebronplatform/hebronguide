@@ -15047,8 +15047,12 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const staticSorted = (churches as any[]).slice().sort((a: any, b: any) =>
     (b.hebronPartner ? 1 : 0) - (a.hebronPartner ? 1 : 0) || (a.tier ?? 9) - (b.tier ?? 9)
   );
+  // Tier 1: Hebron 협력교회 (초록)
   const allPartner = [...staticSorted.filter((c: any) => c.hebronPartner), ...sbChurches.filter((c: any) => c.hebron_partner)];
-  const allOther   = [...sbChurches.filter((c: any) => !c.hebron_partner), ...staticSorted.filter((c: any) => !c.hebronPartner), ...communityChurches];
+  // Tier 2: 가정교회 (노란 별표, tier===1이고 파트너 아닌 것)
+  const homeChurches = staticSorted.filter((c: any) => !c.hebronPartner && c.tier === 1);
+  // Tier 3+: 기타 교회
+  const allOther = [...sbChurches.filter((c: any) => !c.hebron_partner), ...staticSorted.filter((c: any) => !c.hebronPartner && c.tier !== 1), ...communityChurches];
 
   return (
     <>
@@ -15198,7 +15202,33 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             )}
 
             {/* ══════════════════════════════════════════════
-                TIER 2+ — 기타 교회 (접히는 폴더)
+                TIER 2 — 가정교회 ⭐ (노란 별표, 항상 표시)
+            ══════════════════════════════════════════════ */}
+            {homeChurches.length > 0 && (
+              <div style={{ marginBottom: 16 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                  <div style={{ height: 1, flex: 1, background: "rgba(201,162,39,0.2)" }} />
+                  <span style={{ fontSize: 10, fontWeight: 800, color: "#C9A227", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" }}>
+                    ⭐ {lang === "ko" ? "가정교회" : "Home Churches"}
+                  </span>
+                  <div style={{ height: 1, flex: 1, background: "rgba(201,162,39,0.2)" }} />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {homeChurches.map((c: any, i: number) => (
+                    <div key={"hc-" + i} style={{
+                      border: "1px solid rgba(201,162,39,0.45)",
+                      borderRadius: 16,
+                      background: "rgba(201,162,39,0.05)",
+                    }}>
+                      <PlaceCard {...c} accentColor="#C9A227" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* ══════════════════════════════════════════════
+                TIER 3+ — 기타 교회 (접히는 폴더)
             ══════════════════════════════════════════════ */}
             {allOther.length > 0 && (
                 <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, overflow: "hidden", marginBottom: 16 }}>
