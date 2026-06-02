@@ -25692,16 +25692,16 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
         const headers = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
         const slug = city.slug;
         const r = await fetch(
-          `${SB}/rest/v1/community_items?category=eq.business&status=in.(approved,published)&or=(city_slug.eq.${slug},city_slug.is.null)&order=created_at.desc&limit=100`,
+          `${SB}/rest/v1/community_items?category=eq.business&status=in.(approved,published)&city_slug=eq.${slug}&order=created_at.desc&limit=100`,
           { headers }
         );
         const data = await r.json();
-        // 협력 사업체 먼저 (pastor_email 있으면 파트너)
-        const sorted = Array.isArray(data)
-          ? [...data.filter((b: any) => b.contact && b.contact.includes('@') && b.description?.includes('목사')),
-             ...data.filter((b: any) => !(b.contact && b.contact.includes('@') && b.description?.includes('목사')))]
-          : [];
-        setBusinesses(sorted);
+        // ⭐ 파트너 사업체 먼저 (pastor 이메일 있으면 파트너)
+        if (Array.isArray(data)) {
+          const partners = data.filter((b: any) => b.contact?.includes('@') && b.email);
+          const others   = data.filter((b: any) => !(b.contact?.includes('@') && b.email));
+          setBusinesses([...partners, ...others]);
+        }
       } catch { setBusinesses([]); }
       setLoading(false);
     }
@@ -25794,9 +25794,43 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
             <div style={{ fontSize: 12, color: "#94A3B8", paddingBottom: 4 }}>
               {ko ? `${filtered.length}개 업소` : `${filtered.length} listings`}
             </div>
-            {filtered.map((b, i) => (
-              <div key={i} style={{ background: "#fff", borderRadius: 16,
-                border: "1px solid #F1F5F9", padding: "16px 16px", boxShadow: "0 1px 4px rgba(0,0,0,0.05)" }}>
+            {filtered.map((b, i) => {
+              const isPartner = !!(b.contact?.includes('@') && b.email);
+              const prevIsPartner = i > 0 && !!(filtered[i-1]?.contact?.includes('@') && filtered[i-1]?.email);
+              return (
+              <div key={i}>
+                {/* 섹션 구분선: 파트너 → 일반 전환 시 */}
+                {i === 0 && isPartner && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+                    <div style={{ height: 1, flex: 1, background: "rgba(99,102,241,0.2)" }} />
+                    <span style={{ fontSize: 10, fontWeight: 800, color: "#6366F1", whiteSpace: "nowrap" }}>
+                      ⭐ {ko ? "Hebron 협력 사업체" : "Hebron Partner Businesses"}
+                    </span>
+                    <div style={{ height: 1, flex: 1, background: "rgba(99,102,241,0.2)" }} />
+                  </div>
+                )}
+                {!isPartner && prevIsPartner && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "4px 0" }}>
+                    <div style={{ height: 1, flex: 1, background: "#F1F5F9" }} />
+                    <span style={{ fontSize: 10, color: "#94A3B8", whiteSpace: "nowrap" }}>
+                      {ko ? "기타 업소" : "Other Businesses"}
+                    </span>
+                    <div style={{ height: 1, flex: 1, background: "#F1F5F9" }} />
+                  </div>
+                )}
+              <div style={{ background: "#fff", borderRadius: 16,
+                border: isPartner ? "1.5px solid rgba(99,102,241,0.4)" : "1px solid #F1F5F9",
+                padding: "16px 16px",
+                boxShadow: isPartner ? "0 2px 12px rgba(99,102,241,0.1)" : "0 1px 4px rgba(0,0,0,0.05)" }}>
+                {isPartner && (
+                  <div style={{ marginBottom: 8 }}>
+                    <span style={{ background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.3)",
+                      color: "#4F46E5", borderRadius: 8, padding: "2px 8px", fontSize: 10,
+                      fontWeight: 700, fontFamily: "Manrope,sans-serif" }}>
+                      ⭐ Hebron 협력 사업체
+                    </span>
+                  </div>
+                )}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
                   <div>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#1E293B" }}>
@@ -25850,7 +25884,9 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
                   <div style={{ marginTop: 8, fontSize: 12, color: "#94A3B8" }}>📍 {b.address}</div>
                 )}
               </div>
-            ))}
+              </div>
+              );
+            })}
           </div>
         )}
 
