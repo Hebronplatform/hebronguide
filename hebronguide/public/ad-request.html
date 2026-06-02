@@ -509,12 +509,19 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
     <div class="field-row">
       <div class="field">
-        <label>업체 주소 <span class="opt">(선택)</span></label>
-        <input type="text" id="bAddress" placeholder="123 Main St, Seattle, WA 98101">
+        <label>업체 주소 <span class="req">*</span></label>
+        <input type="text" id="bAddress" placeholder="123 Main St, Seattle, WA 98101" required>
       </div>
       <div class="field">
         <label>웹사이트 / SNS <span class="opt">(선택)</span></label>
         <input type="url" id="bWebsite" placeholder="https://... 또는 인스타그램">
+        <div style="font-size:.74rem;color:rgba(236,253,245,.4);margin-top:5px;display:flex;align-items:center;gap:4px;">
+          💡 <span>웹사이트가 없으신가요?</span>
+          <a href="https://nanuriweb.com" target="_blank" rel="noopener"
+            style="color:var(--gold);text-decoration:none;font-weight:700;">
+            NanuriWeb 상담 →
+          </a>
+        </div>
       </div>
     </div>
 
