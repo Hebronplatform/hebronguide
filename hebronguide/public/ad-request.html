@@ -715,15 +715,20 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
     <div class="field">
       <label>채플린 유형 <span class="req">*</span><span class="field-tick">✓</span></label>
-      <select id="chType">
+      <select id="chType" onchange="toggleChTypeOther(this.value)">
         <option value="">-- 선택하세요 --</option>
         <option value="prison">교도소 채플린</option>
         <option value="immigration">이민국 채플린</option>
         <option value="hospital">병원 채플린</option>
         <option value="military">군 채플린</option>
         <option value="university">대학 채플린</option>
-        <option value="other">기타</option>
+        <option value="other">기타 (직접 입력)</option>
       </select>
+    </div>
+    <!-- 기타 직접 입력 -->
+    <div class="field" id="chTypeOtherWrap" style="display:none;">
+      <label>유형 직접 입력 <span class="req">*</span></label>
+      <input type="text" id="chTypeOther" placeholder="예: 노숙인 쉼터, 소년원, 난민센터 등">
     </div>
 
     <div class="field">
@@ -802,6 +807,13 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 const path = location.pathname;
 const cityMatch = path.match(/^\/([a-z]+)\//);
 if(cityMatch) document.getElementById('logoLink').href = '/' + cityMatch[1] + '/';
+
+// 채플린 유형 '기타' 선택 시 직접 입력 필드 토글
+function toggleChTypeOther(val) {
+  const wrap = document.getElementById('chTypeOtherWrap');
+  wrap.style.display = val === 'other' ? 'block' : 'none';
+  if (val !== 'other') document.getElementById('chTypeOther').value = '';
+}
 
 // 홍보 유형 '기타' 선택 시 직접 입력 필드 토글
 function togglePromoOther(val) {
@@ -930,22 +942,28 @@ function checkConsent(id) {
 
 // 폼 제출
 async function submitChaplain() {
-  const name    = document.getElementById('chName')?.value.trim();
-  const type    = document.getElementById('chType')?.value;
-  const org     = document.getElementById('chOrg')?.value.trim();
-  const email   = document.getElementById('chEmail')?.value.trim();
-  const phone   = document.getElementById('chPhone')?.value.trim();
-  const desc    = document.getElementById('chDesc')?.value.trim();
-  const consent = document.getElementById('chConsent')?.checked;
+  const name      = document.getElementById('chName')?.value.trim();
+  const type      = document.getElementById('chType')?.value;
+  const typeOther = document.getElementById('chTypeOther')?.value.trim();
+  const org       = document.getElementById('chOrg')?.value.trim();
+  const email     = document.getElementById('chEmail')?.value.trim();
+  const phone     = document.getElementById('chPhone')?.value.trim();
+  const desc      = document.getElementById('chDesc')?.value.trim();
+  const consent   = document.getElementById('chConsent')?.checked;
 
   if (!name || !type || !org || !email) {
     alert('성함·유형·기관·이메일은 필수입니다.');
     return;
   }
+  if (type === 'other' && !typeOther) {
+    alert('유형을 직접 입력해주세요.');
+    return;
+  }
   if (!consent) { alert('[필수] 동의 항목을 체크해주세요.'); return; }
 
-  const typeMap = { prison:'교도소', immigration:'이민국', hospital:'병원', military:'군', university:'대학', other:'기타' };
-  const body = `[채플린 파트너 신청]\n\n성함: ${name}\n유형: ${typeMap[type]||type} 채플린\n기관·지역: ${org}\n이메일: ${email}${phone?'\n전화: '+phone:''}${desc?'\n\n소개:\n'+desc:''}`;
+  const typeMap = { prison:'교도소', immigration:'이민국', hospital:'병원', military:'군', university:'대학' };
+  const typeLabel = type === 'other' ? typeOther : (typeMap[type] || type);
+  const body = `[채플린 파트너 신청]\n\n성함: ${name}\n유형: ${typeLabel} 채플린\n기관·지역: ${org}\n이메일: ${email}${phone?'\n전화: '+phone:''}${desc?'\n\n소개:\n'+desc:''}`;
 
   try {
     const res = await fetch('/api/submit-form', {
