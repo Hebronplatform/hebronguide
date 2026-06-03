@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HebronGuide QR 코드 에셋</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d1117;--gold:#C9A227;--text:#ECFDF5;--muted:rgba(236,253,245,0.55);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100vh;}
+nav{background:rgba(13,17,23,.97);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);}
+.logo{color:var(--gold);font-family:'Cinzel',serif;font-weight:900;font-size:1rem;text-decoration:none;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:.8rem;}
+
+h2{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:6px;}
+.sub{font-size:.78rem;color:var(--muted);margin-bottom:28px;}
+
+/* 인쇄 버튼 */
+.btn-print{background:var(--gold);color:#0d1117;border:none;padding:10px 24px;border-radius:10px;font-weight:900;cursor:pointer;font-size:.88rem;margin-bottom:32px;}
+.btn-print:hover{opacity:.85;}
+
+.container{max-width:900px;margin:0 auto;padding:40px 24px;}
+
+/* QR 카드 그리드 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;margin-bottom:48px;}
+
+.qr-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px;text-align:center;}
+.qr-card.gold-border{border-color:rgba(201,162,39,.5);background:rgba(201,162,39,.05);}
+.qr-wrap{background:#fff;border-radius:12px;padding:10px;display:inline-block;margin-bottom:12px;}
+.qr-size{font-size:.7rem;color:var(--muted);margin-bottom:4px;}
+.qr-label{font-size:.85rem;font-weight:800;color:#fff;margin-bottom:3px;}
+.qr-url{font-size:.7rem;color:var(--gold);}
+
+/* 광고 배너 미리보기 */
+.banner-section{margin-bottom:48px;}
+.banner{border-radius:14px;padding:20px 24px;display:flex;align-items:center;gap:20px;margin-bottom:16px;}
+.banner.dark{background:linear-gradient(135deg,#0d1117,#1a2030);border:1px solid rgba(201,162,39,.3);}
+.banner.gold{background:linear-gradient(135deg,#C9A227,#d4a020);color:#0d1117;}
+.banner-text{flex:1;}
+.banner-title{font-weight:900;font-size:1rem;margin-bottom:4px;}
+.banner-sub{font-size:.78rem;opacity:.75;line-height:1.5;}
+.banner-qr{background:#fff;border-radius:8px;padding:6px;flex-shrink:0;}
+
+/* 명함 미리보기 */
+.card-preview{background:#0d1117;border:1px solid rgba(201,162,39,.4);border-radius:12px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;max-width:400px;margin-bottom:16px;}
+.card-info .name{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;font-weight:700;}
+.card-info .title{font-size:.72rem;color:var(--muted);margin-top:2px;}
+.card-info .contact{font-size:.68rem;color:rgba(236,253,245,.6);margin-top:8px;line-height:1.7;}
+
+@media print{
+  nav,.btn-print{display:none!important;}
+  body{background:#fff;color:#000;}
+  .qr-card{border:1px solid #ddd;background:#fff;}
+  .qr-label{color:#000;}
+  .qr-url{color:#C9A227;}
+  .banner.dark{background:#f5f5f5;border:1px solid #ddd;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/seattle/" class="logo">HebronGuide</a>
+  <a href="javascript:history.back()" class="nav-back">← 돌아가기</a>
+</nav>
+
+<div class="container">
+  <div style="margin-bottom:32px;">
+    <h2>달라스 HebronGuide QR 코드 에셋</h2>
+    <div class="sub">교회 주보·포스터·명함·PPT·웹사이트에 삽입할 QR 코드 모음</div>
+    <button class="btn-print" onclick="window.print()">🖨️ 인쇄 / PDF 저장</button>
+  </div>
+
+  <!-- ★ 달라스 전용 QR 코드 — 최우선 -->
+  <h2 style="margin-bottom:6px;color:#C9A227;">⭐ 달라스 전용 QR 코드</h2>
+  <div class="sub">hebronguide.com/dallas/ 로 바로 연결 · 교회 주보·포스터·웹사이트용</div>
+  <div class="grid">
+
+    <div class="qr-card gold-border">
+      <div class="qr-size">대형 — 포스터·현수막용 (400px)</div>
+      <div class="qr-wrap">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https://hebronguide.com/dallas/&color=0d1117&bgcolor=ffffff&margin=4" width="180" height="180" alt="달라스 QR">
+      </div>
+      <div class="qr-label">달라스 정착 가이드</div>
+      <div class="qr-url">hebronguide.com/dallas/</div>
+    </div>
+
+    <div class="qr-card gold-border">
+      <div class="qr-size">중형 — 전단지·PPT·주보용 (200px)</div>
+      <div class="qr-wrap">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://hebronguide.com/dallas/&color=0d1117&bgcolor=ffffff&margin=3" width="130" height="130" alt="달라스 QR">
+      </div>
+      <div class="qr-label">달라스 정착 가이드</div>
+      <div class="qr-url">hebronguide.com/dallas/</div>
+    </div>
+
+    <div class="qr-card gold-border">
+      <div class="qr-size">소형 — 명함·스티커용 (120px)</div>
+      <div class="qr-wrap">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://hebronguide.com/dallas/&color=0d1117&bgcolor=ffffff&margin=2" width="90" height="90" alt="달라스 QR">
+      </div>
+      <div class="qr-label">달라스 정착 가이드</div>
+      <div class="qr-url">hebronguide.com/dallas/</div>
+    </div>
+
+    <div class="qr-card">
+      <div class="qr-size">파트너 신청 직접 연결</div>
+      <div class="qr-wrap">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://hebronguide.com/ad-request.html&color=0d1117&bgcolor=ffffff&margin=3" width="130" height="130" alt="파트너 신청 QR">
+      </div>
+      <div class="qr-label">파트너 신청하기</div>
+      <div class="qr-url">ad-request.html</div>
+    </div>
+
+  </div>
+
+  <!-- 홈페이지 연결 QR -->
+  <h2 style="margin-bottom:6px;margin-top:40px;">HebronGuide 홈 연결 QR</h2>
+  <div class="sub">hebronguide.com 메인 홈페이지 연결용</div>
+  <div class="grid">
+
+    <div class="qr-card">
+      <div class="qr-size">대형 — 포스터용 (300px)</div>
+      <div class="qr-wrap">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://hebronguide.com&color=0d1117&bgcolor=ffffff&margin=2" width="160" height="160" alt="QR">
+      </div>
+      <div class="qr-label">HebronGuide.com</div>
+      <div class="qr-url">메인 홈페이지</div>
+    </div>
+
+    <div class="qr-card">
+      <div class="qr-size">중형 — 전단지용 (200px)</div>
+      <div class="qr-wrap">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://hebronguide.com&color=0d1117&bgcolor=ffffff&margin=2" width="120" height="120" alt="QR">
+      </div>
+      <div class="qr-label">HebronGuide.com</div>
+      <div class="qr-url">메인 홈페이지</div>
+    </div>
+
+  </div>
+
+  <!-- 광고 배너 미리보기 -->
+  <h2 style="margin-bottom:6px;">광고 배너 미리보기</h2>
+  <div class="sub">목사님 모임·카톡·이메일에 이미지로 저장해서 사용하세요</div>
+
+  <div class="banner dark">
+    <div class="banner-text">
+      <div class="banner-title" style="color:var(--gold);">달라스 정착 가이드 — HebronGuide</div>
+      <div class="banner-sub" style="color:rgba(236,253,245,.75);">달라스에 새로 이사 오셨나요?<br>한인 마트·병원·학교·교회 정보까지<br>달라스 한인 정착의 모든 것을 hebronguide.com/dallas/ 에서 확인하세요.</div>
+    </div>
+    <div class="banner-qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://hebronguide.com/dallas/&color=0d1117&bgcolor=ffffff&margin=2" width="70" height="70" alt="QR">
+    </div>
+  </div>
+
+  <div class="banner gold">
+    <div class="banner-text">
+      <div class="banner-title">📱 HebronGuide — 이민자 환대 플랫폼</div>
+      <div class="banner-sub">QR 스캔 → 지금 바로 체험 · 파트너 교회 신청</div>
+    </div>
+    <div class="banner-qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://hebronguide.com&color=C9A227&bgcolor=ffffff&margin=2" width="70" height="70" alt="QR">
+    </div>
+  </div>
+
+  <!-- 명함 미리보기 -->
+  <h2 style="margin-bottom:12px;margin-top:40px;">명함 미리보기</h2>
+  <div class="card-preview">
+    <div class="card-info">
+      <div class="name">HebronGuide</div>
+      <div class="title">한인 이민자 · 이주자 디지털 환대 플랫폼</div>
+      <div class="contact">
+        🌐 hebronguide.com<br>
+        ✉️ hebronplatform@gmail.com<br>
+        📍 52개+ 도시 · 2개 언어
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:8px;padding:6px;">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://hebronguide.com&color=0d1117&bgcolor=ffffff&margin=2" width="70" height="70" alt="QR">
+    </div>
+  </div>
+  <div style="font-size:.72rem;color:var(--muted);">* 명함 실제 제작 시 인쇄소에 위 QR 이미지를 고해상도(600px+)로 다운로드하여 전달하세요.</div>
+
+</div>
+
+<!-- ── 메인으로 돌아가기 ── -->
+<div style="text-align:center;padding:44px 24px 64px;border-top:1px solid rgba(255,255,255,0.07);background:#0d1117;">
+  <a href="/dallas/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:900;font-size:.95rem;font-family:'Noto Sans KR',sans-serif;letter-spacing:.01em;transition:background .2s;">
+    ← &nbsp;HebronGuide 메인으로 돌아가기
+  </a>
+  <div style="margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
+    <a href="/founding-partner.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">파트너 신청</a>
+    <span style="color:rgba(255,255,255,0.12);">·</span>
+    <a href="/ad-request.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">광고 신청</a>
+    <span style="color:rgba(255,255,255,0.12);">·</span>
+    <a href="/about.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">소개</a>
+    <span style="color:rgba(255,255,255,0.12);">·</span>
+    <a href="/privacy.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">개인정보</a>
+  </div>
+  <div style="margin-top:14px;font-size:.67rem;color:rgba(236,253,245,0.18);font-family:'Noto Sans KR',sans-serif;">© 2026 Hebron Platform LLC · hebronguide.com</div>
+</div>
+<script>
+/* HebronGuide — 도시 자동 복귀 (모든 사용자가 자기 도시로) */
+(function(){
+  function detectCity(){
+    var p=new URLSearchParams(location.search);
+    if(p.get('city'))return p.get('city');
+    var ref=document.referrer;
+    if(ref){var m=ref.match(/hebronguide\.com\/([a-z]+)\//);if(m&&m[1])return m[1];}
+    var segs=location.pathname.split('/').filter(Boolean);
+    if(segs.length&&segs[0].indexOf('.')<0)return segs[0];
+    return'seattle';
+  }
+  var city=detectCity();
+  if(city!=='seattle'){
+    document.querySelectorAll('a[href*="/seattle/"]').forEach(function(a){
+      a.href=a.href.replace(/\/seattle\//g,'/'+city+'/');
+    });
+  }
+})();
+</script>
+</body>
+</html>
