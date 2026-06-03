@@ -12590,8 +12590,10 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
    — "312개 교회 · 71개 도시" 숫자가 신뢰를 만든다
 ───────────────────────────────────────── */
 function HebronFlywheelBar({ lang }: { lang: string }) {
+  // ✅ 도시 수 자동 계산 — 도시 추가 시 자동 반영 (수동 수정 불필요)
+  const LIVE_CITY_COUNT = HEBRON_CITIES.length;
   const stats = [
-    { emoji: "🌍", value: "68", label: lang === "ko" ? "개 도시" : "Cities" },
+    { emoji: "🌍", value: String(LIVE_CITY_COUNT), label: lang === "ko" ? "개 도시" : "Cities" },
     { emoji: "🤝", value: "4", label: lang === "ko" ? "기관 파트너" : "Partners" },
     { emoji: "🌐", value: "2", label: lang === "ko" ? "개 언어" : "Languages" },
   ];
