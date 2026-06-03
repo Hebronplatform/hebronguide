@@ -722,6 +722,7 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
         <option value="hospital">병원 채플린</option>
         <option value="military">군 채플린</option>
         <option value="university">대학 채플린</option>
+        <option value="fire">소방서 채플린</option>
         <option value="other">기타 (직접 입력)</option>
       </select>
     </div>
@@ -961,7 +962,7 @@ async function submitChaplain() {
   }
   if (!consent) { alert('[필수] 동의 항목을 체크해주세요.'); return; }
 
-  const typeMap = { prison:'교도소', immigration:'이민국', hospital:'병원', military:'군', university:'대학' };
+  const typeMap = { prison:'교도소', immigration:'이민국', hospital:'병원', military:'군', university:'대학', fire:'소방서' };
   const typeLabel = type === 'other' ? typeOther : (typeMap[type] || type);
   const body = `[채플린 파트너 신청]\n\n성함: ${name}\n유형: ${typeLabel} 채플린\n기관·지역: ${org}\n이메일: ${email}${phone?'\n전화: '+phone:''}${desc?'\n\n소개:\n'+desc:''}`;
 
