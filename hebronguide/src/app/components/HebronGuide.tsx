@@ -9927,7 +9927,7 @@ const CITY_EVENTS: Partial<Record<string, CityEventItem[]>> = {
     { emoji:"🎄", ko:"크리스마스 (12월25일) — 연말 예배·행사", en:"Christmas Dec 25 — Year-end Services & Events", date:"2026-12-25", type:"church" },
   ],
   seattle: [
-    { emoji:"⚽", ko:"FIFA 월드컵 시애틀 6경기 — Lumen Field (6월15일~7월6일)", en:"FIFA World Cup Seattle 6 matches — Lumen Field (Jun 15–Jul 6)", date:"2026-06-15", type:"sports", url:"https://seattlefwc26.org/matches", address:"Lumen Field, 800 Occidental Ave S, Seattle, WA" },
+    { emoji:"⚽", ko:"FIFA 월드컵 시애틀 6경기 — Lumen Field\n🗓 6/15 벨기에vs이집트 · 6/19 미국vs호주 · 6/22·6/25 조별리그 · 7/1 32강 · 7/6 16강", en:"FIFA World Cup Seattle 6 matches — Lumen Field\n🗓 Jun15 Belgium-Egypt · Jun19 USA-Australia · Round of 32 Jul1 · R16 Jul6", date:"2026-06-15", type:"sports", url:"https://seattlefwc26.org/matches", address:"Lumen Field, 800 Occidental Ave S, Seattle, WA 98134" },
     { emoji:"🎤", ko:"IVE 월드투어 — Climate Pledge Arena (8월7일)", en:"IVE World Tour SHOW WHAT I AM — Climate Pledge Arena (Aug 7)", date:"2026-08-07", type:"culture", url:"https://climatepledgearena.com/event/ive-26/", address:"Climate Pledge Arena, 334 1st Ave N, Seattle, WA" },
     { emoji:"🎉", ko:"WABA 코리아 엑스포 — 워터프런트 피어62 무료 (8월14~16일)", en:"WABA Korea Expo — Pier 62 Waterfront, Free (Aug 14-16)", date:"2026-08-14", type:"festival", url:"https://kaccwa.org/waba-expo-festival/", address:"Pier 62, Seattle Waterfront" },
     { emoji:"🌸", ko:"UW 캠퍼스 벚꽃 시즌 (3~4월)", en:"UW Campus Cherry Blossoms (Mar–Apr)", date:"2026-03", type:"festival", url:"https://www.washington.edu/cherryblossoms/", address:"University of Washington, Seattle, WA" },
