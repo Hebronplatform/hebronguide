@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HebronGuide 홈페이지 미리보기 (변경 제안)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+  :root{
+    --bg:#0a0e14;--bg2:#0d1117;--surface:rgba(255,255,255,.05);--surface2:rgba(255,255,255,.08);
+    --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+    --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;--warm:#FF9F0A;
+    --text:#ECFDF5;--muted:rgba(236,253,245,.6);--muted2:rgba(236,253,245,.38);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden;}
+
+  /* ── 미리보기 안내 배너 ── */
+  .preview-banner{background:linear-gradient(90deg,#7c3aed,#2563eb);padding:12px 24px;text-align:center;font-size:.82rem;font-weight:700;color:#fff;letter-spacing:.03em;position:sticky;top:0;z-index:999;}
+  .preview-banner span{background:rgba(255,255,255,.2);border-radius:6px;padding:2px 10px;margin:0 6px;}
+
+  /* ── 변경 구분선 ── */
+  .change-label{display:flex;align-items:center;gap:12px;padding:10px 24px;font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;}
+  .change-label.new{color:#4ade80;background:rgba(74,222,128,.06);border-top:1px solid rgba(74,222,128,.2);border-bottom:1px solid rgba(74,222,128,.2);}
+  .change-label.changed{color:#fbbf24;background:rgba(251,191,36,.06);border-top:1px solid rgba(251,191,36,.2);border-bottom:1px solid rgba(251,191,36,.2);}
+  .change-label.same{color:var(--muted2);background:rgba(255,255,255,.02);border-top:1px solid var(--border);}
+  .change-label::before{content:'';width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .change-label.new::before{background:#4ade80;}
+  .change-label.changed::before{background:#fbbf24;}
+  .change-label.same::before{background:var(--muted2);}
+
+  nav{background:rgba(10,14,20,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
+  .nav-logo{color:var(--gold);font-family:'Cinzel',serif;font-weight:900;font-size:1.05rem;text-decoration:none;}
+  .nav-links{display:flex;gap:20px;align-items:center;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;}
+  .nav-cta{background:var(--gold);color:#0d1117 !important;font-weight:800;font-size:.8rem;border-radius:20px;padding:6px 16px;}
+
+  /* ━━━ HERO (변경됨) ━━━ */
+  .hero{position:relative;text-align:center;padding:88px 24px 72px;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(201,162,39,.12) 0%,transparent 65%);pointer-events:none;}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border-radius:99px;padding:6px 18px;margin-bottom:28px;}
+  .hero-headline{font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;color:#ffffff;line-height:1.15;margin-bottom:8px;}
+  .hero-headline .accent{color:var(--gold);}
+  .hero-sub-big{font-size:clamp(1rem,2.2vw,1.4rem);color:rgba(236,253,245,.8);font-weight:300;margin:16px 0 28px;line-height:1.8;max-width:680px;margin-left:auto;margin-right:auto;}
+  .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:56px;}
+  .btn-hero{background:linear-gradient(135deg,#C9A227,#f0c040);color:#0a0e14;font-weight:900;font-size:1rem;border-radius:50px;padding:16px 36px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+  .btn-outline{background:transparent;border:1px solid var(--border2);color:var(--text);font-weight:600;font-size:.9rem;border-radius:50px;padding:15px 30px;text-decoration:none;}
+  .hero-stats{display:inline-grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:16px;overflow:hidden;max-width:600px;width:100%;}
+  .stat{background:var(--bg2);padding:20px 12px;text-align:center;}
+  .stat-n{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:900;color:var(--gold);line-height:1;}
+  .stat-l{font-size:.7rem;color:var(--muted);margin-top:4px;}
+
+  /* ━━━ THREE PATHS (새로 추가) ━━━ */
+  .paths-section{padding:80px 24px;max-width:1000px;margin:0 auto;}
+  .paths-label{font-size:.7rem;font-weight:800;color:var(--mint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;text-align:center;}
+  .paths-title{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;color:#fff;text-align:center;margin-bottom:12px;line-height:1.3;}
+  .paths-desc{text-align:center;color:var(--muted);font-size:.95rem;line-height:1.9;max-width:540px;margin:0 auto 48px;}
+  .paths-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media(max-width:700px){.paths-grid{grid-template-columns:1fr;}}
+
+  .path-card{border-radius:24px;padding:36px 28px;position:relative;overflow:hidden;cursor:pointer;transition:transform .2s;}
+  .path-card:hover{transform:translateY(-6px);}
+  .path-card.for-newcomer{background:linear-gradient(145deg,rgba(201,162,39,.12),rgba(201,162,39,.04));border:1px solid rgba(201,162,39,.3);}
+  .path-card.for-pastor{background:linear-gradient(145deg,rgba(110,231,183,.1),rgba(110,231,183,.03));border:1px solid rgba(110,231,183,.3);}
+  .path-card.for-neighbor{background:linear-gradient(145deg,rgba(129,140,248,.1),rgba(129,140,248,.03));border:1px solid rgba(129,140,248,.3);}
+
+  .path-icon{font-size:2.8rem;margin-bottom:20px;display:block;}
+  .path-who{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;}
+  .for-newcomer .path-who{color:var(--gold);}
+  .for-pastor .path-who{color:var(--mint);}
+  .for-neighbor .path-who{color:#818CF8;}
+  .path-title{font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:12px;line-height:1.3;}
+  .path-body{font-size:.88rem;color:var(--muted);line-height:1.85;margin-bottom:24px;}
+  .path-cta{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:800;text-decoration:none;border-radius:50px;padding:10px 20px;}
+  .for-newcomer .path-cta{background:rgba(201,162,39,.15);color:var(--gold);}
+  .for-pastor .path-cta{background:rgba(110,231,183,.12);color:var(--mint);}
+  .for-neighbor .path-cta{background:rgba(129,140,248,.12);color:#818CF8;}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0;}
+
+  /* ━━━ CORE TRUTH (그대로 유지) ━━━ */
+  .core-truth{padding:88px 24px;text-align:center;}
+  .core-truth-inner{max-width:800px;margin:0 auto;}
+  .core-truth h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:#fff;line-height:1.3;margin-bottom:20px;}
+  .core-truth h2 em{color:var(--gold);font-style:normal;display:block;}
+  .core-truth-desc{font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);line-height:2;max-width:620px;margin:0 auto 40px;}
+  .verses{display:flex;flex-direction:column;gap:14px;max-width:580px;margin:0 auto;}
+  .verse{background:rgba(201,162,39,.06);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:14px 20px;text-align:left;}
+  .verse p{font-size:.92rem;color:rgba(236,253,245,.85);font-style:italic;line-height:1.8;}
+  .verse cite{display:block;margin-top:5px;font-style:normal;font-size:.76rem;color:var(--gold);font-weight:700;}
+
+  /* ━━━ 나머지 섹션 자리 표시 ━━━ */
+  .placeholder-section{padding:48px 24px;text-align:center;border:2px dashed rgba(255,255,255,.1);margin:0 24px;border-radius:20px;}
+  .placeholder-section p{color:var(--muted2);font-size:.9rem;}
+
+  /* footer */
+  footer{padding:48px 24px 32px;text-align:center;background:rgba(0,0,0,.3);}
+  .footer-logo{font-family:'Cinzel',serif;color:var(--gold);font-weight:900;font-size:1rem;margin-bottom:14px;}
+  .footer-soul{font-size:.82rem;color:rgba(201,162,39,.55);font-style:italic;margin-top:10px;line-height:1.8;}
+  </style>
+</head>
+<body>
+
+<!-- ── 미리보기 안내 배너 ── -->
+<div class="preview-banner">
+  🔍 미리보기 전용 파일입니다 — 실제 사이트에 반영되지 않음
+  <span>초록 = 새로 추가</span>
+  <span>노랑 = 내용 변경</span>
+  <span>회색 = 그대로 유지</span>
+</div>
+
+<!-- NAV (그대로) -->
+<div class="change-label same">⬤ &nbsp;네비게이션 — 그대로 유지</div>
+<nav>
+  <a href="/" class="nav-logo">HebronGuide</a>
+  <div class="nav-links">
+    <a href="#cities">71개 도시</a>
+    <a href="/ad-request.html">파트너 신청</a>
+    <a href="/seattle/" class="nav-cta">지금 시작하기 →</a>
+  </div>
+</nav>
+
+<!-- ━━━━ HERO (내용 변경) ━━━━ -->
+<div class="change-label changed">✎ &nbsp;히어로 섹션 — 문구 일부 변경 (구조 동일)</div>
+<div class="hero">
+  <div class="hero-eyebrow">✦ 글로벌 환대 커뮤니티 · 제4공간</div>
+
+  <h1 class="hero-headline">
+    이 세상 어느 누구도<br>
+    <span class="accent">혼자가 아닙니다.</span>
+  </h1>
+
+  <p class="hero-sub-big">
+    처음 이 도시에 발을 디딘 날부터,<br>
+    오래 살았지만 아직 연결되지 않은 지금까지—<br>
+    <strong style="color:#fff;font-weight:700;">누군가가 기다리고 있어야 합니다.</strong>
+  </p>
+
+  <!-- 변경 포인트: 기존 "창립 정신 박스" → 더 직접적인 문구로 -->
+  <div style="max-width:620px;margin:0 auto 36px;background:rgba(201,162,39,.06);border:1px solid rgba(201,162,39,.2);border-radius:18px;padding:24px 28px;">
+    <p style="font-size:.98rem;color:rgba(236,253,245,.88);line-height:2;font-style:italic;">
+      "환대는 하나님의 마음입니다.<br>
+      그 마음을 받은 사람들이 이 도시에서 함께 섬깁니다."
+    </p>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#paths" class="btn-hero">내 도시 찾기 →</a>
+    <a href="#paths" class="btn-outline">사역자이신가요?</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">71<sup style="font-size:.9rem;">+</sup></div><div class="stat-l">서비스 도시</div></div>
+    <div class="stat"><div class="stat-n">700<sub style="font-size:.8rem;">만</sub></div><div class="stat-l">재외 한인</div></div>
+    <div class="stat"><div class="stat-n">500</div><div class="stat-l">2030 목표 도시</div></div>
+    <div class="stat"><div class="stat-n">∞</div><div class="stat-l">환대의 마음</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ━━━━ THREE PATHS (완전히 새로 추가) ━━━━ -->
+<div class="change-label new">✦ &nbsp;세 입구 섹션 — 새로 추가 (핵심 변경)</div>
+<div class="paths-section" id="paths">
+  <div class="paths-label">누구를 위한가요 · Who is this for?</div>
+  <h2 class="paths-title">당신이 어디 있든,<br>HebronGuide가 연결합니다</h2>
+  <p class="paths-desc">새로 오신 분, 이미 사역하고 계신 분, 이 도시에 오래 사셨지만 아직 연결이 필요한 분 — 모두를 위한 공간입니다.</p>
+
+  <div class="paths-grid">
+
+    <!-- 이민자·이주자 -->
+    <div class="path-card for-newcomer">
+      <span class="path-icon">✈️</span>
+      <div class="path-who">새로 오신 분께</div>
+      <h3 class="path-title">처음 이 도시에<br>오셨나요?</h3>
+      <p class="path-body">공항에서 나온 그 순간부터 — 집 찾기, 비자, 은행, 학교, 한인 교회까지. 이 도시에서 잘 살아가기 위한 모든 것.</p>
+      <a href="#cities" class="path-cta">내 도시 정착 정보 →</a>
+    </div>
+
+    <!-- 목사·성도 -->
+    <div class="path-card for-pastor">
+      <span class="path-icon">⛪</span>
+      <div class="path-who">목사·사역자·성도께</div>
+      <h3 class="path-title">이 도시에서<br>사역하고 계신가요?</h3>
+      <p class="path-body">흩어진 영혼들이 찾아옵니다. 교회들이 연합하여 이 도시를 함께 환대할 때, 하나님의 나라가 세워집니다. +헤브론과 함께하세요.</p>
+      <a href="/ad-request.html#church" class="path-cta">파트너 교회 신청 →</a>
+    </div>
+
+    <!-- 이미 살고 있는 이웃 -->
+    <div class="path-card for-neighbor">
+      <span class="path-icon">🏘️</span>
+      <div class="path-who">이미 이 도시에 사시는 분께</div>
+      <h3 class="path-title">이 도시에서<br>연결이 필요하신가요?</h3>
+      <p class="path-body">오래 살았지만 외로운 분, 이웃과 연결되고 싶은 분 — 이 도시의 따뜻한 커뮤니티를 만나보세요.</p>
+      <a href="#cities" class="path-cta">커뮤니티 찾기 →</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ━━━━ CORE TRUTH (그대로) ━━━━ -->
+<div class="change-label same">⬤ &nbsp;성경 말씀 섹션 — 그대로 유지</div>
+<div class="core-truth">
+  <div class="core-truth-inner">
+    <h2>
+      환대는 선택이 아닙니다.<br>
+      <em>부르심입니다.</em>
+    </h2>
+    <p class="core-truth-desc">
+      비행기에서 내린 그 순간, 아는 사람 하나 없는 낯선 도시에서<br>
+      따뜻한 손길 하나가 한 사람의 인생을 바꿉니다.
+    </p>
+    <div class="verses">
+      <div class="verse" style="border-left-color:var(--mint);background:rgba(110,231,183,.05);">
+        <p>"너는 일어나 그 땅을 종과 횡으로 두루 다녀보라... 이에 아브람이 헤브론에 이르러 제단을 쌓았더라"</p>
+        <cite>— 창세기 13:17-18</cite>
+      </div>
+      <div class="verse">
+        <p>"내가 나그네 되었을 때 너희가 영접하였다"</p>
+        <cite>— 마태복음 25:35</cite>
+      </div>
+      <div class="verse">
+        <p>"손님 대접하기를 잊지 말라 이로써 부지중에 천사들을 대접한 이들이 있었느니라"</p>
+        <cite>— 히브리서 13:2</cite>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ━━━━ 나머지 섹션들 자리 표시 ━━━━ -->
+<div class="change-label same">⬤ &nbsp;핵심가치·사명·비전·파트너 섹션 — 그대로 유지</div>
+<div class="placeholder-section" style="margin:40px 24px;">
+  <p style="font-size:1.4rem;margin-bottom:12px;">⬇️</p>
+  <p><strong style="color:#fff;">핵심가치 / 사명 흐름 / 비전 2030 / 함께하기 섹션</strong></p>
+  <p style="margin-top:8px;">현재 홈페이지와 완전히 동일하게 유지됩니다</p>
+</div>
+
+<div class="change-label same">⬤ &nbsp;71개 도시 그리드 — 그대로 유지 (위치만 아래로)</div>
+<div class="placeholder-section" style="margin:24px 24px 40px;">
+  <p style="font-size:1.4rem;margin-bottom:12px;">🌏</p>
+  <p><strong style="color:#fff;">71개 도시 검색 + 지역별 그리드</strong></p>
+  <p style="margin-top:8px;">내용·디자인·기능 모두 동일 — 페이지 아래쪽에 위치</p>
+</div>
+
+<footer>
+  <div class="footer-logo">HebronGuide</div>
+  <div class="footer-soul">"환대는 하나님으로부터 왔다"</div>
+  <p style="font-size:.7rem;color:var(--muted2);margin-top:12px;">© 2026 Hebron Platform LLC</p>
+</footer>
+
+<!-- 변경 요약 -->
+<div style="position:fixed;bottom:20px;right:20px;background:#1e293b;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px 20px;font-size:.78rem;color:var(--muted);max-width:240px;box-shadow:0 8px 32px rgba(0,0,0,.5);">
+  <div style="font-weight:800;color:#fff;margin-bottom:10px;font-size:.82rem;">📋 변경 요약</div>
+  <div style="margin-bottom:6px;display:flex;gap:8px;align-items:center;"><span style="color:#4ade80;font-weight:700;">●</span> 세 입구 섹션 추가</div>
+  <div style="margin-bottom:6px;display:flex;gap:8px;align-items:center;"><span style="color:#fbbf24;font-weight:700;">●</span> 히어로 문구 일부 변경</div>
+  <div style="margin-bottom:6px;display:flex;gap:8px;align-items:center;"><span style="color:var(--muted2);font-weight:700;">●</span> 나머지 모두 그대로</div>
+  <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1);color:var(--muted2);font-size:.72rem;">도시 그리드·교회 정보·맛집 등<br>모든 실제 콘텐츠 유지</div>
+</div>
+
+</body>
+</html>
