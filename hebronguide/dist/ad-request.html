@@ -566,13 +566,13 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <textarea id="bDesc" placeholder="제공 서비스나 특별 혜택을 간단히 알려주세요."></textarea>
     </div>
 
-    <!-- Hebron 협력 사업체 — 이메일 하나로 통합 -->
+    <!-- Hebron 협력 사업체 인증 -->
     <div class="field">
-      <label>파트너 교회 성도이신가요? <span class="opt">(선택)</span></label>
-      <input type="email" id="bPastorEmail" placeholder="담임목사님 이메일을 입력하세요">
+      <label>소속 교회 <span class="opt">(선택)</span></label>
+      <input type="text" id="bChurchName" placeholder="예: 시애틀지구촌교회, 달라스 에덴교회">
       <div style="font-size:.76rem;color:rgba(236,253,245,.45);margin-top:5px;line-height:1.6;">
-        입력하시면 <strong style="color:var(--mint);">🤝 Hebron 협력 사업체 ⭐ 인증 배지</strong>가 자동으로 부여됩니다.<br>
-        목사님 확인 후 최종 승인됩니다.
+        파트너 교회 성도이시면 입력해 주세요.<br>
+        확인 후 <strong style="color:var(--mint);">🤝 Hebron 협력 사업체 ⭐ 인증 배지</strong>가 부여됩니다.
       </div>
     </div>
 
@@ -1044,7 +1044,8 @@ async function submitForm(type) {
       : (citySelect || '미선택');
     subject = `[사업체 등재 신청] ${document.getElementById('bBiz').value}`;
     const bPastorEmail = document.getElementById('bPastorEmail')?.value.trim() || '';
-    body = `업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n주소: ${document.getElementById('bAddress')?.value || ''}\n웹사이트: ${document.getElementById('bWebsite')?.value || ''}\n노출 도시: ${city}${bPastorEmail ? '\n추천목사이메일: ' + bPastorEmail : ''}\n\n소개:\n${document.getElementById('bDesc').value}`;
+    const bChurchName = document.getElementById('bChurchName')?.value.trim() || '';
+    body = `업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n주소: ${document.getElementById('bAddress')?.value || ''}\n웹사이트: ${document.getElementById('bWebsite')?.value || ''}\n노출 도시: ${city}${bChurchName ? '\n소속 교회: ' + bChurchName : ''}\n\n소개:\n${document.getElementById('bDesc').value}`;
   } else if(type === 'promo') {
     // '기타' 선택 시 직접 입력값 유효성 확인
     const prTypeVal = document.getElementById('prType').value;
