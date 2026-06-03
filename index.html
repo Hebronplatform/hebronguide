@@ -165,6 +165,30 @@
   html[lang="en"] .ko{display:none!important;}
   .lang-btn{background:transparent;border:1px solid var(--border2);color:var(--muted);font-size:.75rem;font-weight:700;border-radius:20px;padding:5px 14px;cursor:pointer;transition:all .2s;font-family:'Noto Sans KR',sans-serif;letter-spacing:.04em;white-space:nowrap;}
   .lang-btn:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* ━━━ THREE PATHS ━━━ */
+  .paths-section{padding:80px 24px;max-width:1000px;margin:0 auto;}
+  .paths-label{font-size:.7rem;font-weight:800;color:var(--mint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;text-align:center;}
+  .paths-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;color:#fff;text-align:center;margin-bottom:12px;line-height:1.3;}
+  .paths-desc{text-align:center;color:var(--muted);font-size:.93rem;line-height:1.9;max-width:520px;margin:0 auto 44px;}
+  .paths-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media(max-width:700px){.paths-grid{grid-template-columns:1fr;}}
+  .path-card{border-radius:24px;padding:34px 26px;cursor:pointer;transition:transform .2s,box-shadow .2s;text-decoration:none;display:block;color:inherit;}
+  .path-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.3);}
+  .path-card.for-newcomer{background:linear-gradient(145deg,rgba(201,162,39,.12),rgba(201,162,39,.04));border:1px solid rgba(201,162,39,.3);}
+  .path-card.for-pastor{background:linear-gradient(145deg,rgba(110,231,183,.1),rgba(110,231,183,.03));border:1px solid rgba(110,231,183,.3);}
+  .path-card.for-neighbor{background:linear-gradient(145deg,rgba(129,140,248,.1),rgba(129,140,248,.03));border:1px solid rgba(129,140,248,.3);}
+  .path-icon{font-size:2.6rem;margin-bottom:18px;display:block;}
+  .path-who{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;}
+  .for-newcomer .path-who{color:var(--gold);}
+  .for-pastor .path-who{color:var(--mint);}
+  .for-neighbor .path-who{color:#818CF8;}
+  .path-title{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.35;}
+  .path-body{font-size:.85rem;color:var(--muted);line-height:1.85;margin-bottom:22px;}
+  .path-cta{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:800;text-decoration:none;border-radius:50px;padding:9px 18px;}
+  .for-newcomer .path-cta{background:rgba(201,162,39,.15);color:var(--gold);}
+  .for-pastor .path-cta{background:rgba(110,231,183,.12);color:var(--mint);}
+  .for-neighbor .path-cta{background:rgba(129,140,248,.12);color:#818CF8;}
   </style>
 </head>
 <body>
@@ -198,27 +222,27 @@
   <a href="#cities" style="text-decoration:none;"><div class="hero-eyebrow" style="cursor:pointer;">✦ <span class="ko">글로벌 환대 커뮤니티</span><span class="en">Global Hospitality Community</span></div></a>
 
   <h1 class="hero-headline">
-    <span class="ko">이 세상 어느 누구도<br><span class="accent">혼자가 아닙니다.</span></span>
-    <span class="en">No one in this world<br><span class="accent">should be alone.</span></span>
+    <span class="ko">낯선 도시,<br><span class="accent">이미 누군가 기다렸습니다.</span></span>
+    <span class="en">A new city —<br><span class="accent">someone was already waiting.</span></span>
   </h1>
 
   <p class="hero-sub-big">
-    <span class="ko">낯선 도시에서, 낯선 언어 속에서<br>소외되고 외롭고 고독함을 느끼지 않아야 합니다.<br><strong style="color:#fff;font-weight:700;">어떤 도시에서도. 어느 누구도.</strong></span>
-    <span class="en">In a foreign city, in an unfamiliar language —<br>no one should feel isolated, lonely, or forgotten.<br><strong style="color:#fff;font-weight:700;">In any city. For anyone.</strong></span>
+    <span class="ko">비행기에서 내리던 그 날—<br>아는 사람 하나 없던 그 도시에서.<br><strong style="color:#fff;font-weight:700;">이미 준비된 사람들이 있었습니다.</strong></span>
+    <span class="en">The day you stepped off the plane —<br>in a city where you knew no one.<br><strong style="color:#fff;font-weight:700;">Someone was already there for you.</strong></span>
   </p>
 
   <div class="hero-declaration">
     <p>
-      <span class="ko">"공항 문을 나서듯, 낯선 도시와 세상 속으로<br>첫발을 내딛는 그 순간부터<br>누군가가 기다리고 있어야 합니다.<br>그 누군가가 되는 것 — 이것이 헤브론입니다."</span>
-      <span class="en">"Like stepping through an airport gate into an unfamiliar world —<br>from that very first moment,<br>someone should be waiting.<br>Being that someone — this is Hebron."</span>
+      <span class="ko">"정보가 아닙니다. 사람입니다.<br>이 도시를 먼저 살아온 사람들이<br>당신의 첫날을 함께합니다."</span>
+      <span class="en">"Not just information. People.<br>Those who've lived this city before you<br>walk with you on your first day."</span>
     </p>
-    <span class="speaker ko">— HebronGuide 창립 정신</span>
-    <span class="speaker en">— HebronGuide Founding Spirit</span>
+    <span class="speaker ko">— HebronGuide</span>
+    <span class="speaker en">— HebronGuide</span>
   </div>
 
   <div class="hero-cta">
-    <a href="/seattle/" class="btn-hero"><span class="ko">지금 시작하기 →</span><span class="en">Get Started →</span></a>
-    <a href="#mission" class="btn-outline"><span class="ko">이 운동에 함께하기</span><span class="en">Join This Movement</span></a>
+    <a href="#paths" class="btn-hero"><span class="ko">내 도시 찾기 →</span><span class="en">Find My City →</span></a>
+    <a href="#paths" class="btn-outline"><span class="ko">사역자이신가요?</span><span class="en">Are you a minister?</span></a>
   </div>
 
   <div class="hero-stats">
@@ -226,6 +250,67 @@
     <div class="stat"><div class="stat-n">700<sub style="font-size:.8rem;"><span class="ko">만</span><span class="en">K</span></sub></div><div class="stat-l"><span class="ko">재외 한인</span><span class="en">Korean Diaspora</span></div></div>
     <div class="stat"><div class="stat-n">500</div><div class="stat-l"><span class="ko">2030 목표 도시</span><span class="en">2030 City Goal</span></div></div>
     <div class="stat"><div class="stat-n">∞</div><div class="stat-l"><span class="ko">환대의 마음</span><span class="en">Heart of Welcome</span></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ THREE PATHS ━━━ -->
+<div class="paths-section" id="paths">
+  <div class="paths-label"><span class="ko">누구를 위한가요</span><span class="en">Who is this for?</span></div>
+  <h2 class="paths-title">
+    <span class="ko">당신이 어디 있든,<br>HebronGuide가 연결합니다</span>
+    <span class="en">Wherever you are,<br>HebronGuide connects you</span>
+  </h2>
+  <p class="paths-desc">
+    <span class="ko">새로 오신 분, 이미 이 도시에서 섬기고 계신 분,<br>오래 살았지만 아직 연결이 필요한 분 — 모두를 위한 공간입니다.</span>
+    <span class="en">Whether you've just arrived, you're serving in this city,<br>or you've lived here long but feel unconnected — this is for you.</span>
+  </p>
+
+  <div class="paths-grid">
+
+    <a href="#cities" class="path-card for-newcomer">
+      <span class="path-icon">✈️</span>
+      <div class="path-who"><span class="ko">새로 오신 분께</span><span class="en">For Newcomers</span></div>
+      <h3 class="path-title">
+        <span class="ko">처음 이 도시에<br>오셨나요?</span>
+        <span class="en">Just arrived<br>in this city?</span>
+      </h3>
+      <p class="path-body">
+        <span class="ko">집 찾기, 비자, 은행, 학교, 병원—<br>처음이라 막막한 모든 것.<br>먼저 살아온 사람들이 알려드립니다.</span>
+        <span class="en">Housing, visa, bank, school, hospital—<br>everything that feels overwhelming at first.<br>Those who've been here before will guide you.</span>
+      </p>
+      <span class="path-cta"><span class="ko">내 도시 정착 정보 →</span><span class="en">Settlement Info →</span></span>
+    </a>
+
+    <a href="/ad-request.html#church" class="path-card for-pastor">
+      <span class="path-icon">⛪</span>
+      <div class="path-who"><span class="ko">목사·사역자·성도께</span><span class="en">For Ministers & Believers</span></div>
+      <h3 class="path-title">
+        <span class="ko">이 도시에서<br>섬기고 계신가요?</span>
+        <span class="en">Serving<br>in this city?</span>
+      </h3>
+      <p class="path-body">
+        <span class="ko">교회 안의 따뜻함을 이제 도시 안으로.<br>교회들이 연합하여 이 도시를 품을 때<br>하나님의 나라가 세워집니다.</span>
+        <span class="en">Bring the warmth of the church into the city.<br>When churches unite to embrace this city,<br>the Kingdom grows.</span>
+      </p>
+      <span class="path-cta"><span class="ko">파트너 교회 신청 →</span><span class="en">Partner Church →</span></span>
+    </a>
+
+    <a href="#cities" class="path-card for-neighbor">
+      <span class="path-icon">🏘️</span>
+      <div class="path-who"><span class="ko">이미 이 도시에 사시는 분께</span><span class="en">Already Living Here</span></div>
+      <h3 class="path-title">
+        <span class="ko">이 도시에서<br>연결이 필요하신가요?</span>
+        <span class="en">Looking for<br>connection here?</span>
+      </h3>
+      <p class="path-body">
+        <span class="ko">오래 살았지만 외로운 분,<br>이웃과 연결되고 싶은 분—<br>이 도시의 따뜻한 커뮤니티를 만나보세요.</span>
+        <span class="en">You've lived here a while but feel alone.<br>Looking to connect with neighbors—<br>meet the warm community of this city.</span>
+      </p>
+      <span class="path-cta"><span class="ko">커뮤니티 찾기 →</span><span class="en">Find Community →</span></span>
+    </a>
+
   </div>
 </div>
 
