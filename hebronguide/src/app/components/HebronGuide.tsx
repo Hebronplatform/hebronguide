@@ -7660,7 +7660,7 @@ function useInstallPrompt() {
   const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
-    const dismissed = localStorage.getItem("hg_install_dismissed");
+    const dismissed = (() => { try { return localStorage.getItem("hg_install_dismissed"); } catch { return null; } })();
     if (dismissed) return;
     const standalone = window.matchMedia("(display-mode: standalone)").matches
       || (window.navigator as any).standalone === true;
@@ -7694,7 +7694,7 @@ function useInstallPrompt() {
 
   const handleDismiss = () => {
     setShowBanner(false);
-    localStorage.setItem("hg_install_dismissed", "1");
+    try { localStorage.setItem("hg_install_dismissed", "1"); } catch (_) {}
   };
 
   return { showBanner, handleInstall, handleDismiss, isIOS };
@@ -7713,9 +7713,9 @@ async function scheduleReminder(title: string, daysLater: number) {
     if (perm !== "granted") return;
   }
   const ms = daysLater * 24 * 60 * 60 * 1000;
-  const reminders = JSON.parse(localStorage.getItem("hg_reminders") || "[]");
+  const reminders = (() => { try { return JSON.parse(localStorage.getItem("hg_reminders") || "[]"); } catch { return []; } })();
   reminders.push({ title, fireAt: Date.now() + ms });
-  localStorage.setItem("hg_reminders", JSON.stringify(reminders));
+  try { localStorage.setItem("hg_reminders", JSON.stringify(reminders)); } catch (_) {}
   new Notification("HebronGuide 알림 설정", {
     body: `"${title}" — ${daysLater}일 후 알림을 받습니다`,
     icon: "/icon-192.png",
@@ -8333,16 +8333,17 @@ function OfflineBanner() {
 ───────────────────────────────────────── */
 function useChecklist(itemId: string) {
   const key = `hg_checklist_${itemId}`;
-  const [isDone, setIsDone] = useState(() => localStorage.getItem(key) === "1");
+  const [isDone, setIsDone] = useState(() => {
+    try { return localStorage.getItem(key) === "1"; } catch { return false; }
+  });
 
   const toggle = () => {
     const next = !isDone;
     setIsDone(next);
-    if (next) {
-      localStorage.setItem(key, "1");
-    } else {
-      localStorage.removeItem(key);
-    }
+    try {
+      if (next) { localStorage.setItem(key, "1"); }
+      else { localStorage.removeItem(key); }
+    } catch (_) {}
   };
 
   return { isDone, toggle };
@@ -12516,7 +12517,7 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
       || (navigator as unknown as { standalone?: boolean }).standalone === true;
     if (isStandalone) return;
     // 이미 dismissed 했으면 숨김
-    if (localStorage.getItem("hg_pwa_dismissed")) return;
+    if ((() => { try { return localStorage.getItem("hg_pwa_dismissed"); } catch { return null; } })()) return;
     // 모바일만
     if (!/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) return;
     // 3초 후 표시
@@ -12564,7 +12565,7 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
         </div>
         <span style={{ color:"#C9A227", fontSize:18, fontWeight:700 }}>{expanded ? "∨" : "∧"}</span>
         <button
-          onClick={(e) => { e.stopPropagation(); localStorage.setItem("hg_pwa_dismissed","1"); setShow(false); }}
+          onClick={(e) => { e.stopPropagation(); try { localStorage.setItem("hg_pwa_dismissed","1"); } catch(_) {} setShow(false); }}
           style={{ background:"transparent", border:"none", color:"rgba(236,253,245,0.4)", fontSize:18, cursor:"pointer", padding:"0 4px", lineHeight:1 }}>×</button>
       </div>
 

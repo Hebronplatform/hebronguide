@@ -26,7 +26,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   const setLang = useCallback((l: Lang) => {
     setLangState(l);
     document.documentElement.lang = l;
-    localStorage.setItem("hebron-lang", l);
+    try { localStorage.setItem("hebron-lang", l); } catch (_) {}
   }, []);
 
   const t = useCallback(
