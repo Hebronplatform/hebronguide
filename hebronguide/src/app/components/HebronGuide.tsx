@@ -14532,7 +14532,7 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "에덴교회 (Eden Church at the Field)" : "Eden Church at the Field",
         nameEn: "Eden Church at the Field",
         desc: ko
-          ? "✨ 담임: 신종우 목사\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n🕐 주일예배 매주 일요일 오후 12:30\n🏠 새가족 환영 · 남침례단 · 2005년 설립\n🔗 edendallas.org"
+          ? "✨ 담임: 신종우 목사\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n🕐 주일예배 매주 일요일 오후 12:30\n🏠 새가족 환영 · 남침례회(SBC) · 2005년 설립\n🔗 edendallas.org"
           : "✨ Lead Pastor: Jong-woo Shin\n📍 1401 Carrollton Pkwy, Carrollton, TX 75010\n🕐 Sunday Service every Sunday 12:30 PM\n🏠 Newcomers Welcome · SBC · Est. 2005\n🔗 edendallas.org",
         tags: ko ? ["캐롤튼", "달라스", "헤브론파트너"] : ["Carrollton", "Dallas", "HebronPartner"],
         email: "kfbcc@yahoo.com",
@@ -15244,8 +15244,16 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                           {lang === "ko" ? (c.name || c.name_en) : (c.name_en || c.name)}
                         </div>
                         {c.name && c.name_en && c.name !== c.name_en && (
-                          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", fontFamily: "Manrope,sans-serif", marginBottom: 6 }}>
+                          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", fontFamily: "Manrope,sans-serif", marginBottom: 4 }}>
                             {lang === "ko" ? c.name_en : c.name}
+                          </div>
+                        )}
+                        {/* 담임목사 — description에서 추출 또는 denomination */}
+                        {(c.description || c.denomination) && (
+                          <div style={{ fontSize: 12, color: "rgba(110,231,183,0.8)", fontFamily: "Manrope,sans-serif", marginBottom: 4 }}>
+                            {c.denomination ? `⛪ ${c.denomination}` : ""}
+                            {c.denomination && c.service_time ? " · " : ""}
+                            {c.service_time ? `🕐 ${c.service_time}` : ""}
                           </div>
                         )}
                         <div style={{ fontSize: 12, color: "rgba(236,253,245,0.75)", lineHeight: 1.75, whiteSpace: "pre-line", marginBottom: 12, fontFamily: "Manrope,sans-serif" }}>
@@ -15345,7 +15353,15 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   {openOtherChurches && (
                     <div style={{ padding: "10px 10px 14px" }}>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {allOther.map((c: AnyChurch, i: number) => (
+                        {allOther.map((c: AnyChurch, i: number) => {
+                          // Supabase 교회: description → desc 매핑, 기본 정보 표시
+                          const enriched = {
+                            ...c,
+                            desc: c.desc || (c as any).description ||
+                              [(c as any).denomination, (c as any).service_time, (c as any).email]
+                                .filter(Boolean).join(" · ") || "",
+                          };
+                          return (
                           <div key={"o-" + i} style={{
                             border: c.tier === 1 ? "1px solid rgba(201,162,39,0.35)" : "1px solid rgba(255,255,255,0.08)",
                             borderRadius: 14,
@@ -15357,9 +15373,10 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                                 <span style={{ fontSize: 9, fontWeight: 700, color: "#6EE7B7", fontFamily: "Manrope,sans-serif" }}>✅ 커뮤니티 등록</span>
                               </div>
                             )}
-                            <PlaceCard {...c} accentColor={c.tier === 1 ? "#C9A227" : accent} />
+                            <PlaceCard {...enriched} accentColor={c.tier === 1 ? "#C9A227" : accent} />
                           </div>
-                        ))}
+                          );
+                        })}
                       </div>
                       {/* 파트너 신청 CTA */}
                       <a href="/ad-request.html#church" style={{ display: "block", textDecoration: "none", marginTop: 12 }}>
