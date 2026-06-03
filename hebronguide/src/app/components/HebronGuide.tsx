@@ -25,6 +25,30 @@
 
 import { useState, useEffect, useRef, useMemo, type ReactNode } from "react";
 
+/* ─────────────────────────────────────────
+   SAFE STORAGE — Safari private mode 포함 모든 환경 호환
+   localStorage 접근 시 SecurityError 방어 유틸리티
+   사용: safeStorage.get(key) / .set(key,val) / .remove(key)
+───────────────────────────────────────── */
+const safeStorage = {
+  get: (key: string): string | null => {
+    try { return localStorage.getItem(key); } catch { return null; }
+  },
+  set: (key: string, value: string): void => {
+    try { localStorage.setItem(key, value); } catch (_) {}
+  },
+  remove: (key: string): void => {
+    try { localStorage.removeItem(key); } catch (_) {}
+  },
+  getJSON: <T,>(key: string, fallback: T): T => {
+    try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); }
+    catch { return fallback; }
+  },
+  setJSON: (key: string, value: unknown): void => {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) {}
+  },
+};
+
 // 🎵 글로벌 뮤직 플레이어 트리거 (탭 이동해도 재생 유지)
 let _setMusicActive: ((v: boolean) => void) | null = null;
 export function activateMusic() { _setMusicActive?.(true); }
@@ -7660,7 +7684,7 @@ function useInstallPrompt() {
   const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
-    const dismissed = (() => { try { return localStorage.getItem("hg_install_dismissed"); } catch { return null; } })();
+    const dismissed = safeStorage.get("hg_install_dismissed");
     if (dismissed) return;
     const standalone = window.matchMedia("(display-mode: standalone)").matches
       || (window.navigator as any).standalone === true;
@@ -7694,7 +7718,7 @@ function useInstallPrompt() {
 
   const handleDismiss = () => {
     setShowBanner(false);
-    try { localStorage.setItem("hg_install_dismissed", "1"); } catch (_) {}
+    safeStorage.set("hg_install_dismissed", "1")
   };
 
   return { showBanner, handleInstall, handleDismiss, isIOS };
@@ -7713,9 +7737,9 @@ async function scheduleReminder(title: string, daysLater: number) {
     if (perm !== "granted") return;
   }
   const ms = daysLater * 24 * 60 * 60 * 1000;
-  const reminders = (() => { try { return JSON.parse(localStorage.getItem("hg_reminders") || "[]"); } catch { return []; } })();
+  const reminders = safeStorage.getJSON("hg_reminders", []);
   reminders.push({ title, fireAt: Date.now() + ms });
-  try { localStorage.setItem("hg_reminders", JSON.stringify(reminders)); } catch (_) {}
+  safeStorage.setJSON("hg_reminders", reminders)
   new Notification("HebronGuide 알림 설정", {
     body: `"${title}" — ${daysLater}일 후 알림을 받습니다`,
     icon: "/icon-192.png",
@@ -8334,16 +8358,13 @@ function OfflineBanner() {
 function useChecklist(itemId: string) {
   const key = `hg_checklist_${itemId}`;
   const [isDone, setIsDone] = useState(() => {
-    try { return localStorage.getItem(key) === "1"; } catch { return false; }
+    return safeStorage.get(key) === "1";
   });
 
   const toggle = () => {
     const next = !isDone;
     setIsDone(next);
-    try {
-      if (next) { localStorage.setItem(key, "1"); }
-      else { localStorage.removeItem(key); }
-    } catch (_) {}
+    if (next) { safeStorage.set(key, "1"); } else { safeStorage.remove(key); }
   };
 
   return { isDone, toggle };
@@ -9290,17 +9311,17 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
   const city = useCityConfig();
   const ko = lang === "ko";
   const [wcCollapsed, setWcCollapsed] = useState(() => {
-    try { return localStorage.getItem("wc2026_collapsed") === "1"; } catch { return false; }
+    return safeStorage.get("wc2026_collapsed") === "1";
   });
   const isWCCity = isWorldCupActive(city.slug);
 
   const collapseWC = () => {
     setWcCollapsed(true);
-    try { localStorage.setItem("wc2026_collapsed", "1"); } catch {}
+    safeStorage.set("wc2026_collapsed", "1");
   };
   const expandWC = () => {
     setWcCollapsed(false);
-    try { localStorage.removeItem("wc2026_collapsed"); } catch {}
+    safeStorage.remove("wc2026_collapsed");
   };
 
   // 여정 4단계 — 각 Row에 레이블
@@ -9740,7 +9761,7 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
     try { return JSON.parse(localStorage.getItem(`hg_arrival_checklist_${city.slug}`) || "{}"); } catch { return {}; }
   });
   const [collapsed, setCollapsed] = useState(() => {
-    try { return localStorage.getItem("hg_checklist_collapsed") === "1"; } catch { return false; }
+    return safeStorage.get("hg_checklist_collapsed") === "1";
   });
 
   const toggle = (id: string) => {
@@ -9755,11 +9776,11 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
 
   const collapse = () => {
     setCollapsed(true);
-    try { localStorage.setItem("hg_checklist_collapsed", "1"); } catch {}
+    safeStorage.set("hg_checklist_collapsed", "1");
   };
   const expand = () => {
     setCollapsed(false);
-    try { localStorage.removeItem("hg_checklist_collapsed"); } catch {}
+    safeStorage.remove("hg_checklist_collapsed");
   };
 
   if (collapsed) return (
@@ -10310,7 +10331,7 @@ function CommunityPulseSection({ lang }: { lang: string }) {
 
   const storedItems = useMemo(() => {
     try {
-      const all = JSON.parse(localStorage.getItem("hg_community_v2") || "[]");
+      const all = safeStorage.getJSON("hg_community_v2", []);
       return all.slice(0, 4).map((i: any) => ({
         emoji: i.emoji || "🌱",
         ko: `${i.citySlug || cityKo}에 ${i.name} 정보가 올라왔어요`,
@@ -11098,10 +11119,10 @@ function postToServer(item: any) {
   } catch {}
 }
 function readCommunity(): any[] {
-  try { return JSON.parse(localStorage.getItem(COMM_KEY) || "[]"); } catch { return []; }
+  return safeStorage.getJSON(COMM_KEY, []);
 }
 function writeCommunity(items: any[]) {
-  try { localStorage.setItem(COMM_KEY, JSON.stringify(items.slice(0, 200))); } catch {}
+  safeStorage.setJSON(COMM_KEY, items.slice(0, 200));
 }
 function addCommunityItem(item: any) {
   const items = readCommunity();
@@ -12517,7 +12538,7 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
       || (navigator as unknown as { standalone?: boolean }).standalone === true;
     if (isStandalone) return;
     // 이미 dismissed 했으면 숨김
-    if ((() => { try { return localStorage.getItem("hg_pwa_dismissed"); } catch { return null; } })()) return;
+    if (safeStorage.get("hg_pwa_dismissed")) return;
     // 모바일만
     if (!/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) return;
     // 3초 후 표시
@@ -12565,7 +12586,7 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
         </div>
         <span style={{ color:"#C9A227", fontSize:18, fontWeight:700 }}>{expanded ? "∨" : "∧"}</span>
         <button
-          onClick={(e) => { e.stopPropagation(); try { localStorage.setItem("hg_pwa_dismissed","1"); } catch(_) {} setShow(false); }}
+          onClick={(e) => { e.stopPropagation(); safeStorage.set("hg_pwa_dismissed", "1"); setShow(false); }}
           style={{ background:"transparent", border:"none", color:"rgba(236,253,245,0.4)", fontSize:18, cursor:"pointer", padding:"0 4px", lineHeight:1 }}>×</button>
       </div>
 
@@ -27240,12 +27261,11 @@ const BANNER_KAKAOTALK = ""; // 카카오톡 채널 링크 (개설 후 입력)
 function UpdateBanner() {
   const { lang } = useI18n();
   const [visible, setVisible] = useState(() => {
-    try { return localStorage.getItem(BANNER_ID) !== "dismissed"; }
-    catch { return true; }
+    return safeStorage.get(BANNER_ID) !== "dismissed";
   });
   if (!visible) return null;
   const dismiss = () => {
-    try { localStorage.setItem(BANNER_ID, "dismissed"); } catch {}
+    safeStorage.set(BANNER_ID, "dismissed");
     setVisible(false);
   };
   return (
@@ -27287,7 +27307,7 @@ function AppInstallBanner() {
   const ko = lang === "ko";
 
   useEffect(() => {
-    if (localStorage.getItem("hg_install_dismissed")) return;
+    if (safeStorage.get("hg_install_dismissed")) return;
     // 이미 설치된 경우 숨김
     if (window.matchMedia("(display-mode: standalone)").matches) return;
 
@@ -27319,7 +27339,7 @@ function AppInstallBanner() {
 
   const dismiss = () => {
     setShow(false);
-    localStorage.setItem("hg_install_dismissed", "1");
+    safeStorage.set("hg_install_dismissed", "1");
   };
 
   if (!show) return null;
@@ -27662,7 +27682,7 @@ export function HebronGuide() {
 
   // 도시 기억 저장 — 글로벌 허브(hebronguide.com)에서 마지막 방문 도시로 자동 이동
   useEffect(() => {
-    try { localStorage.setItem('hg_last_city', city.slug); } catch (_) {}
+    safeStorage.set('hg_last_city', city.slug);
   }, [city.slug]);
 
   // document.title 도시별 동적 업데이트
