@@ -15154,39 +15154,40 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
       <div className="pt-5 px-4 md:px-6 lg:px-8">
         {sub === 0 && (
           <>
-            {/* ── 성경대로 — HebronGuide 교회 철학의 토대 ── */}
+            {/* ── 환대는 하나님의 마음 ── */}
             <div style={{ background: "linear-gradient(135deg,rgba(201,162,39,0.11) 0%,rgba(0,0,0,0) 100%)", border: "1px solid rgba(201,162,39,0.3)", borderRadius: 16, padding: "20px 18px", marginBottom: 12 }}>
               <div style={{ fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 800, color: "#C9A227", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12, opacity: 0.85 }}>
-                📖 {lang === "ko" ? "HebronGuide 핵심 가치" : "HebronGuide Core Values"}
+                ✦ {lang === "ko" ? "이 교회들이 기다립니다" : "These churches are waiting for you"}
               </div>
-
-              {/* 핵심 원칙 */}
               <div style={{ background: "rgba(0,0,0,0.25)", borderRadius: 12, padding: "14px 16px", borderLeft: "3px solid #C9A227" }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14.5, color: "#ECFDF5", marginBottom: 6 }}>
-                  {lang === "ko" ? "성경대로" : "According to Scripture"}
+                  {lang === "ko" ? "낯선 도시에서 처음 만나는 얼굴" : "The first face you meet in a new city"}
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.7)", lineHeight: 1.85 }}>
                   {lang === "ko"
-                    ? "새로운 도시에서 처음 만나는 공동체가\n당신의 이웃이 되어 드립니다."
-                    : "The community you meet in a new city\nbecomes your neighbor."}
+                    ? "처음 이 도시에 오셨나요?\n이미 여기서 먼저 살아온 분들이 당신을 기다리고 있습니다."
+                    : "New to this city?\nPeople who've lived here before you are already waiting to welcome you."}
                 </div>
               </div>
             </div>
 
-            {/* 섬김의 정신 카드 */}
-            <div style={{ background: "rgba(192,132,252,0.07)", border: "1px solid rgba(192,132,252,0.22)", borderRadius: 16, padding: "18px 20px", marginBottom: 14 }}>
-              <div style={{ fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 800, color: "#C084FC", letterSpacing: "0.06em", marginBottom: 10, opacity: 0.85 }}>
-                {lang === "ko" ? "⛪ HebronGuide 커뮤니티 철학" : "⛪ HebronGuide Community Philosophy"}
+            {/* ── 환대 말씀 카드 ── */}
+            <div style={{ background: "rgba(110,231,183,0.06)", border: "1px solid rgba(110,231,183,0.2)", borderRadius: 16, padding: "18px 20px", marginBottom: 14 }}>
+              <div style={{ fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 800, color: "#6EE7B7", letterSpacing: "0.06em", marginBottom: 10, opacity: 0.85 }}>
+                {lang === "ko" ? "환대는 하나님의 마음입니다" : "Hospitality is the heart of God"}
               </div>
-              <div style={{ fontSize: 13, color: "rgba(236,253,245,0.88)", lineHeight: 1.75, fontStyle: "italic", borderLeft: "3px solid rgba(192,132,252,0.4)", paddingLeft: 12, marginBottom: 8 }}>
+              <div style={{ fontSize: 13, color: "rgba(236,253,245,0.88)", lineHeight: 1.8, fontStyle: "italic", borderLeft: "3px solid rgba(110,231,183,0.4)", paddingLeft: 12, marginBottom: 8 }}>
                 {lang === "ko"
-                  ? "\"주는 것이 받는 것보다 복이 있다\""
-                  : "\"It is more blessed to give than to receive.\""}
+                  ? "\"나그네 대접하기를 잊지 마십시오.\n어떤 사람들은 나그네를 대접하다가\n자기도 모르는 사이에 천사들을 대접하였습니다.\""
+                  : "\"Do not forget to show hospitality to strangers,\nfor by so doing some people have shown\nhospitality to angels without knowing it.\""}
+              </div>
+              <div style={{ fontSize: 11, color: "rgba(110,231,183,0.7)", fontWeight: 700, marginBottom: 10 }}>
+                {lang === "ko" ? "— 히브리서 13:2 (새번역)" : "— Hebrews 13:2"}
               </div>
               <div style={{ fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.7 }}>
                 {lang === "ko"
-                  ? "새로 온 이웃에게 먼저 손을 내미는 것, 그것이 진정한 환대 커뮤니티의 시작입니다."
-                  : "Reaching out first to newcomers — that's how real community begins."}
+                  ? "이 교회들은 처음 오신 분들을 가장 먼저 맞이합니다."
+                  : "These churches are the first to welcome those who are just arriving."}
               </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[10px] mb-4">
