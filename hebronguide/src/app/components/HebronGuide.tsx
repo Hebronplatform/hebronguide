@@ -14740,13 +14740,14 @@ function getCityChurches(slug: string, lang: string) {
         website: "https://ncmission.org", email: "welcome.ncmc@gmail.com",
       },
       {
-        emoji: "⭐", tier: 1,
-        name: ko ? "피스토스장로교회" : "Pistos Presbyterian Church — East Bay",
-        nameEn: "Pistos Presbyterian Church",
+        emoji: "⭐", tier: 1, hebronPartner: true,
+        name: ko ? "피스토스교회" : "Pistos Church — Oakland",
+        nameEn: "Pistos Church",
         desc: ko
-          ? "✨ 담임: 조영구 목사\n📍 East Bay, CA\n🔗 gopistos.com"
-          : "✨ Lead Pastor: Youngku Cho\n📍 East Bay, CA\n🔗 gopistos.com",
-        tags: ko ? ["이스트베이", "SF베이"] : ["East Bay", "SF Bay"],
+          ? "✨ 담임: 조영구 목사\n📍 12000 Campus Dr., Oakland CA 94619\n🕐 한어예배 오후 2:00 · 영어예배 오후 2:00\n🏠 평신도 사역자 훈련 · 자녀교육 중심 · 새가족 환영\n📞 (510) 858-6674\n🔗 gopistos.com"
+          : "✨ Lead Pastor: Younggu Cho\n📍 12000 Campus Dr., Oakland CA 94619\n🕐 Korean Service 2:00pm · English Service 2:00pm\n🏠 Lay Ministry Training · Next Gen Faith Education · Newcomers Welcome\n📞 (510) 858-6674\n🔗 gopistos.com",
+        tags: ko ? ["오클랜드", "이스트베이", "한영예배", "헤브론파트너"] : ["Oakland", "East Bay", "Bilingual", "HebronPartner"],
+        phone: "(510) 858-6674",
         website: "https://gopistos.com",
       },
       {

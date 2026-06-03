@@ -1476,11 +1476,17 @@ Key services:
 🏠 Korean-English Bilingual Worship
 🕐 1st 11:30am · 2nd 1:30pm (English service)
 📧 welcome.ncmc@gmail.com
-🔗 ncmission.org`,tags:n?["한영이중언어","샌마테오"]:["Bilingual","San Mateo"],website:"https://ncmission.org",email:"welcome.ncmc@gmail.com"},{emoji:"⭐",tier:1,name:n?"피스토스장로교회":"Pistos Presbyterian Church — East Bay",nameEn:"Pistos Presbyterian Church",desc:n?`✨ 담임: 조영구 목사
-📍 East Bay, CA
-🔗 gopistos.com`:`✨ Lead Pastor: Youngku Cho
-📍 East Bay, CA
-🔗 gopistos.com`,tags:n?["이스트베이","SF베이"]:["East Bay","SF Bay"],website:"https://gopistos.com"},{emoji:"⭐",tier:1,name:n?"시온영락교회":"Zion Young-Nak Church — San Jose",nameEn:"Zion Young-Nak Church",desc:n?`✨ 담임: 이기준 목사
+🔗 ncmission.org`,tags:n?["한영이중언어","샌마테오"]:["Bilingual","San Mateo"],website:"https://ncmission.org",email:"welcome.ncmc@gmail.com"},{emoji:"⭐",tier:1,hebronPartner:!0,name:n?"피스토스교회":"Pistos Church — Oakland",nameEn:"Pistos Church",desc:n?`✨ 담임: 조영구 목사
+📍 12000 Campus Dr., Oakland CA 94619
+🕐 한어예배 오후 2:00 · 영어예배 오후 2:00
+🏠 평신도 사역자 훈련 · 자녀교육 중심 · 새가족 환영
+📞 (510) 858-6674
+🔗 gopistos.com`:`✨ Lead Pastor: Younggu Cho
+📍 12000 Campus Dr., Oakland CA 94619
+🕐 Korean Service 2:00pm · English Service 2:00pm
+🏠 Lay Ministry Training · Next Gen Faith Education · Newcomers Welcome
+📞 (510) 858-6674
+🔗 gopistos.com`,tags:n?["오클랜드","이스트베이","한영예배","헤브론파트너"]:["Oakland","East Bay","Bilingual","HebronPartner"],phone:"(510) 858-6674",website:"https://gopistos.com"},{emoji:"⭐",tier:1,name:n?"시온영락교회":"Zion Young-Nak Church — San Jose",nameEn:"Zion Young-Nak Church",desc:n?`✨ 담임: 이기준 목사
 📍 San Jose, CA
 🔗 eternaljoychurch.org`:`✨ Lead Pastor: Kijun Lee
 📍 San Jose, CA
