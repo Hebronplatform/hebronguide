@@ -15355,11 +15355,14 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {allOther.map((c: AnyChurch, i: number) => {
                           // Supabase 교회: description → desc 매핑, 기본 정보 표시
+                          const sbDesc = (c as any).description ||
+                            [(c as any).denomination, (c as any).service_time, (c as any).email]
+                              .filter(Boolean).join(" · ");
+                          const hasInfo = !!(sbDesc || (c as any).phone || (c as any).website);
                           const enriched = {
                             ...c,
-                            desc: c.desc || (c as any).description ||
-                              [(c as any).denomination, (c as any).service_time, (c as any).email]
-                                .filter(Boolean).join(" · ") || "",
+                            desc: c.desc || sbDesc ||
+                              (lang === "ko" ? "📋 목사님, 교회 정보를 업데이트해주세요 →" : "📋 Pastor, please update your church info →"),
                           };
                           return (
                           <div key={"o-" + i} style={{
