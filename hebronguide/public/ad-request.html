@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>파트너 신청 — HebronGuide | 교회·사업체·홍보</title>
-<meta name="description" content="HebronGuide 파트너 신청 — 교회, 사업체, 홍보 문의를 한 곳에서. 71개 도시 한인 커뮤니티에 함께하세요.">
+<title>함께하세요 — HebronGuide | 교회·사업체·채플린</title>
+<meta name="description" content="낯선 도시에서 누군가 기다리는 사람이 되어주세요. 교회·사업체·채플린 파트너로 이 도시를 함께 품겠습니다.">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -24,17 +24,19 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 
 /* 히어로 */
 .hero{background:linear-gradient(135deg,rgba(201,162,39,.13),rgba(110,231,183,.08));
-  border-bottom:1px solid rgba(201,162,39,.2);padding:28px 20px 24px;text-align:center;}
-.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(201,162,39,.15);
-  border:1px solid rgba(201,162,39,.4);color:var(--gold);font-size:1.4rem;font-weight:900;
-  padding:10px 22px;border-radius:20px;margin-bottom:12px;letter-spacing:.01em;}
-.hero h1{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:6px;line-height:1.3;}
-.hero h1 span{color:var(--gold);}
-.hero p{font-size:.85rem;color:rgba(236,253,245,.72);line-height:1.8;margin-bottom:16px;}
-.stats-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+  border-bottom:1px solid rgba(201,162,39,.2);padding:36px 20px 28px;text-align:center;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(201,162,39,.12);
+  border:1px solid rgba(201,162,39,.35);color:var(--gold);font-size:.7rem;font-weight:800;
+  padding:6px 16px;border-radius:99px;margin-bottom:16px;letter-spacing:.1em;text-transform:uppercase;}
+.hero h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+.hero h1 .accent{color:var(--gold);}
+.hero-sub{font-size:.9rem;color:rgba(236,253,245,.72);line-height:1.85;margin-bottom:20px;max-width:480px;margin-left:auto;margin-right:auto;}
+.stats-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;}
 .stat-item{text-align:center;}
-.stat-num{font-size:1.25rem;font-weight:900;color:var(--gold);font-family:'Cinzel',serif;}
-.stat-lbl{font-size:.68rem;color:var(--muted);}
+.stat-num{font-size:1.2rem;font-weight:900;color:var(--gold);font-family:'Cinzel',serif;}
+.stat-lbl{font-size:.67rem;color:var(--muted);}
+/* 탭 서브라벨 */
+.tab-sub{font-size:.62rem;color:var(--muted);margin-top:2px;display:block;line-height:1.3;}
 
 /* 무료 기간 배너 + 카운트다운 */
 .promo-bar{background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.2);
@@ -234,18 +236,24 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
 <!-- 히어로 -->
 <div class="hero">
-  <div class="hero-badge">⛪ 파트너 신청하기</div>
+  <div class="hero-eyebrow">✦ +헤브론 파트너</div>
+  <h1>낯선 도시에서<br><span class="accent">기다리는 사람이 되어주세요.</span></h1>
+  <p class="hero-sub">
+    환대는 하나님의 마음입니다.<br>
+    교회 안의 따뜻함을 이제 이 도시 안으로.<br>
+    함께 이 도시를 품겠습니다.
+  </p>
   <div class="stats-row">
-    <div class="stat-item"><div class="stat-num">71</div><div class="stat-lbl">개 도시</div></div>
+    <div class="stat-item"><div class="stat-num">71+</div><div class="stat-lbl">서비스 도시</div></div>
     <div class="stat-item"><div class="stat-num">🆓</div><div class="stat-lbl">무료 등재</div></div>
-    <div class="stat-item"><div class="stat-num">2개</div><div class="stat-lbl">언어 지원</div></div>
+    <div class="stat-item"><div class="stat-num">한·영</div><div class="stat-lbl">2개 언어</div></div>
   </div>
 </div>
 
-<!-- 승인 안내 배너 -->
+<!-- 승인 안내 -->
 <div style="background:rgba(201,162,39,.07);border-bottom:1px solid rgba(201,162,39,.2);
   padding:9px 20px;text-align:center;font-size:.78rem;color:rgba(236,253,245,.7);">
-  🔐 <strong style="color:var(--gold)">모든 신청은 관리자 검토·승인 후 게시됩니다</strong>
+  🔐 <strong style="color:var(--gold)">모든 신청은 검토 후 게시됩니다 — 보통 24시간 이내</strong>
 </div>
 
 <!-- 메인 컨테이너 -->
@@ -255,25 +263,33 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
   <div class="type-tabs">
     <div class="type-tab active" onclick="switchTab('church')" id="tab-church">
       <span class="tab-icon">⛪</span>
-      <span class="tab-lbl">교회</span>
+      <span class="tab-lbl">파트너 교회</span>
+      <span class="tab-sub">도시를 함께 품기</span>
     </div>
     <div class="type-tab" onclick="switchTab('business')" id="tab-business">
       <span class="tab-icon">🏢</span>
-      <span class="tab-lbl">사업체</span>
+      <span class="tab-lbl">파트너 사업체</span>
+      <span class="tab-sub">이웃을 섬기는 사업</span>
     </div>
     <div class="type-tab" onclick="switchTab('promo')" id="tab-promo">
       <span class="tab-icon">📢</span>
       <span class="tab-lbl">광고·홍보</span>
+      <span class="tab-sub">이 도시의 좋은 소식</span>
     </div>
     <div class="type-tab" onclick="switchTab('chaplain')" id="tab-chaplain">
       <span class="tab-icon">✝️</span>
-      <span class="tab-lbl">채플린</span>
+      <span class="tab-lbl">채플린 파트너</span>
+      <span class="tab-sub">가장 필요한 그 자리</span>
     </div>
   </div>
 
   <!-- ══════════ 교회 폼 ══════════ -->
   <div class="form-card active" id="form-church">
-    <div class="form-section-title">⛪ 교회 신청</div>
+    <div class="form-section-title">⛪ 파트너 교회로 함께하기</div>
+    <p style="font-size:.85rem;color:rgba(236,253,245,.65);line-height:1.8;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);">
+      교회 안의 따뜻함을 이제 도시 안으로.<br>
+      파트너 교회는 HebronGuide에서 가장 먼저, 가장 잘 보이는 자리에 소개됩니다.
+    </p>
 
     <!-- 모범 작성 예시 -->
     <div style="background:rgba(110,231,183,.07);border:1px solid rgba(110,231,183,.2);border-radius:12px;padding:13px 15px;margin-bottom:18px;font-size:.78rem;line-height:1.8;color:rgba(236,253,245,.75);">
@@ -478,7 +494,11 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
   <!-- ══════════ 사업체 폼 ══════════ -->
   <div class="form-card" id="form-business">
-    <div class="form-section-title">🏢 등재 신청</div>
+    <div class="form-section-title">🏢 파트너 사업체로 함께하기</div>
+    <p style="font-size:.85rem;color:rgba(236,253,245,.65);line-height:1.8;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);">
+      이 도시의 이웃을 섬기는 사업체를 소개합니다.<br>
+      파트너 교회 성도이시면 협력 사업체 인증 배지가 부여됩니다.
+    </p>
 
     <div class="field-row">
       <div class="field" id="b-biz">
@@ -589,7 +609,10 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
   <!-- ══════════ 홍보 폼 ══════════ -->
   <div class="form-card" id="form-promo">
-    <div class="form-section-title">📣 홍보 신청</div>
+    <div class="form-section-title">📣 이 도시의 좋은 소식 알리기</div>
+    <p style="font-size:.85rem;color:rgba(236,253,245,.65);line-height:1.8;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);">
+      행사·이벤트·공지를 71개 도시 한인 커뮤니티에 알려드립니다.
+    </p>
     <div class="hint">
       이벤트, 행사, 모집 공고, 특별 서비스, 콘텐츠 홍보 등
       한인 커뮤니티에 알리고 싶은 모든 것을 신청하세요.
@@ -688,7 +711,11 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
   <!-- ══════════ 채플린 폼 ══════════ -->
   <div class="form-card" id="form-chaplain">
-    <div class="form-section-title">✝️ 채플린 파트너 신청</div>
+    <div class="form-section-title">✝️ 채플린 파트너로 함께하기</div>
+    <p style="font-size:.85rem;color:rgba(236,253,245,.65);line-height:1.8;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);">
+      교도소, 병원, 이민국, 소방서, 경찰서 — 가장 필요한 그 자리에서 섬기는 분들을 연결합니다.<br>
+      HebronGuide 정착 정보를 이민자들에게 소개해주실 수 있다면 큰 도움이 됩니다.
+    </p>
 
     <div class="hint" style="margin-bottom:16px;">
       <strong>채플린 파트너란?</strong><br>
@@ -783,8 +810,9 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
     <div class="success-check">✓</div>
 
-    <h2>신청 완료</h2>
-    <p class="success-sub">접수되었습니다.<br>48시간 이내에 연락드리겠습니다.</p>
+    <h2>함께해 주셔서 감사합니다</h2>
+    <p class="success-sub">접수되었습니다.<br>24시간 이내에 연락드리겠습니다.<br>
+    <span style="color:var(--gold);font-size:.82rem;">낯선 도시에서 누군가 기다리는 사람이 되어주세요.</span></p>
 
     <div class="success-name-tag">
       <strong id="successApplicantName"></strong><span id="successNameSuffix"></span>
