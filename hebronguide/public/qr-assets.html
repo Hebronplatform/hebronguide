@@ -83,7 +83,7 @@ h2{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:6px;}
         <div class="qr-url" id="url-city-lg"></div>
         <div class="btn-row">
           <button class="btn-dl" onclick="dlQR('qr-city-lg','city-poster')">⬇️ 다운로드</button>
-          <button class="btn-zoom" onclick="zoomQR(CITY_URL)">🔍 크게 보기</button>
+          <button class="btn-zoom" onclick="zoomQR(window.CITY_URL)">🔍 크게 보기</button>
         </div>
       </div>
 
@@ -94,7 +94,7 @@ h2{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:6px;}
         <div class="qr-url" id="url-city-md"></div>
         <div class="btn-row">
           <button class="btn-dl" onclick="dlQR('qr-city-md','city-bulletin')">⬇️ 다운로드</button>
-          <button class="btn-zoom" onclick="zoomQR(CITY_URL)">🔍 크게 보기</button>
+          <button class="btn-zoom" onclick="zoomQR(window.CITY_URL)">🔍 크게 보기</button>
         </div>
       </div>
 
@@ -191,40 +191,50 @@ h2{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:6px;}
 </div>
 
 <script>
-var CITY_URL = 'https://hebronguide.com';
-var URLS = {
-  'qr-city-lg':   CITY_URL,
-  'qr-city-md':   CITY_URL,
-  'qr-home-lg':   'https://hebronguide.com',
-  'qr-home-md':   'https://hebronguide.com',
-  'qr-partner':   'https://hebronguide.com/ad-request.html',
-  'qr-banner-city': CITY_URL,
-  'qr-banner-home': 'https://hebronguide.com',
-  'qr-card':      'https://hebronguide.com'
-};
-
 var OPT = function(w){ return { width:w, margin:3, errorCorrectionLevel:'H', color:{dark:'#000000',light:'#ffffff'} }; };
 
-// 도시 감지
+// 알려진 도시 목록 (드라이브 문자 등 오감지 방지)
+var KNOWN_CITIES = ['seattle','dallas','sf','newyork','la','boston','toronto','vancouver',
+  'houston','atlanta','chicago','dc','nashville','miami','inlandempire','austin',
+  'calgary','sydney','melbourne','auckland','london','berlin','paris','tokyo',
+  'singapore','bangkok','seoul','busan','taipei','hongkong','dubai'];
+
+var CITY_NAMES = {
+  dallas:'달라스', seattle:'시애틀', sf:'샌프란시스코', newyork:'뉴욕',
+  la:'로스앤젤레스', boston:'보스턴', toronto:'토론토', vancouver:'밴쿠버',
+  houston:'휴스턴', atlanta:'애틀랜타', chicago:'시카고', dc:'워싱턴 DC',
+  nashville:'내쉬빌', miami:'마이애미', inlandempire:'인랜드 엠파이어', austin:'오스틴'
+};
+
 (function(){
+  // 도시 감지 — 알려진 도시만 인식 (드라이브 문자 C: 등 차단)
   var segs = location.pathname.split('/').filter(Boolean);
-  var city = (segs.length && segs[0].indexOf('.') < 0 && segs[0] !== 'seattle') ? segs[0] : '';
+  var city = '';
+  for(var i = 0; i < segs.length; i++){
+    var s = segs[i].toLowerCase();
+    if(KNOWN_CITIES.indexOf(s) > -1){ city = s; break; }
+  }
+
+  var CITY_URL = city
+    ? 'https://hebronguide.com/' + city + '/'
+    : 'https://hebronguide.com';
+
+  // QR URL 맵 — CITY_URL 결정 후 생성
+  var URLS = {
+    'qr-city-lg':     CITY_URL,
+    'qr-city-md':     CITY_URL,
+    'qr-home-lg':     'https://hebronguide.com',
+    'qr-home-md':     'https://hebronguide.com',
+    'qr-partner':     'https://hebronguide.com/ad-request.html',
+    'qr-banner-city': CITY_URL,
+    'qr-banner-home': 'https://hebronguide.com',
+    'qr-card':        'https://hebronguide.com'
+  };
 
   if(city){
-    CITY_URL = 'https://hebronguide.com/' + city + '/';
-    URLS['qr-city-lg'] = CITY_URL;
-    URLS['qr-city-md'] = CITY_URL;
-    URLS['qr-banner-city'] = CITY_URL;
-
     document.getElementById('city-section').style.display = 'block';
     document.getElementById('url-city-lg').textContent = 'hebronguide.com/' + city + '/';
     document.getElementById('url-city-md').textContent = 'hebronguide.com/' + city + '/';
-
-    var CITY_NAMES = {
-      dallas:'달라스', seattle:'시애틀', sf:'샌프란시스코', newyork:'뉴욕',
-      la:'로스앤젤레스', boston:'보스턴', toronto:'토론토', vancouver:'밴쿠버',
-      houston:'휴스턴', atlanta:'애틀랜타', chicago:'시카고', dc:'워싱턴 DC'
-    };
     var name = CITY_NAMES[city] || city.charAt(0).toUpperCase() + city.slice(1);
     document.getElementById('cityName').textContent = name;
     document.getElementById('pageTitle').textContent = name + ' HebronGuide QR 코드';
@@ -238,12 +248,39 @@ var OPT = function(w){ return { width:w, margin:3, errorCorrectionLevel:'H', col
       '한인 정착 정보 · 한인 교회 · 맛집<br>72개+ 도시 — 무료';
   }
 
-  window.addEventListener('load', function(){
+  // QR 생성 함수 (전역)
+  window.zoomQR = function(url){
+    QRCode.toCanvas(document.getElementById('ov-canvas'), url, OPT(300), function(){
+      document.getElementById('overlay').classList.add('show');
+    });
+  };
+  window.closeQR = function(){ document.getElementById('overlay').classList.remove('show'); };
+  window.dlQR = function(canvasId, filename){
+    QRCode.toCanvas(document.createElement('canvas'), URLS[canvasId]||'https://hebronguide.com', OPT(600), function(err, canvas){
+      if(err) return;
+      var a = document.createElement('a');
+      a.href = canvas.toDataURL('image/png');
+      a.download = 'hebronguide-' + filename + '.png';
+      a.click();
+    });
+  };
+
+  // 버튼 onclick에서 CITY_URL 참조 가능하도록 전역 노출
+  window.CITY_URL = CITY_URL;
+
+  // QR 일괄 생성
+  function makeAll(){
     Object.keys(URLS).forEach(function(id){
       var el = document.getElementById(id);
-      if(el) QRCode.toCanvas(el, URLS[id], OPT(id.includes('banner')||id==='qr-card' ? 72 : id.includes('-md') ? 190 : 250));
+      if(!el) return;
+      var sz = (id.indexOf('banner') > -1 || id === 'qr-card') ? 72
+             : id.indexOf('-md') > -1 ? 190 : 250;
+      QRCode.toCanvas(el, URLS[id], OPT(sz), function(err){ if(err) console.warn(id, err); });
     });
-  });
+  }
+
+  if(document.readyState === 'complete') makeAll();
+  else window.addEventListener('load', makeAll);
 })();
 
 function zoomQR(url){
