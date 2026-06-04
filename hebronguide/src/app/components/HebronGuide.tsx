@@ -15143,23 +15143,34 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   );
   // 헬퍼: 가정교회 여부
   // - 정적 데이터: tier===1이고 hcmi 필드 없음 (undefined)
-  // - Supabase: hcmi===true 인 것만 가정교회
-  const isHome = (c: any) => c.hcmi === true || (c.tier === 1 && c.hcmi === undefined);
+  // - Supabase: hcmi===true 인 것만 가정교회 (hcmi===false → 협력교회)
+  const isHome = (c: any) => c.hcmi === true;
   const isPartner = (c: any) => c.hebronPartner || c.hebron_partner;
+
+  // ── Supabase 중복 제거: 정적 데이터에 이미 있는 교회는 sbChurches에서 제외 ──
+  const staticNameSet = new Set(
+    staticSorted.map((c: any) =>
+      (c.name ?? c.nameKo ?? '').toLowerCase().replace(/\s+/g, '')
+    )
+  );
+  const dedupedSb = sbChurches.filter((c: any) => {
+    const name = (c.name ?? '').toLowerCase().replace(/\s+/g, '');
+    return !staticNameSet.has(name);
+  });
 
   // Tier 1: 협력교회 전체 (가정교회 겸한 협력교회 먼저 → 협력교회만 다음)
   const allPartner = [
     ...staticSorted.filter((c: any) => isPartner(c) && isHome(c)),
-    ...sbChurches.filter((c: any) => isPartner(c) && isHome(c)),
+    ...dedupedSb.filter((c: any) => isPartner(c) && isHome(c)),
     ...staticSorted.filter((c: any) => isPartner(c) && !isHome(c)),
-    ...sbChurches.filter((c: any) => isPartner(c) && !isHome(c)),
+    ...dedupedSb.filter((c: any) => isPartner(c) && !isHome(c)),
   ];
   // Tier 2 폴더: 가정교회 먼저 → 일반교회 (함께 접히는 폴더)
   const homeChurches: any[] = []; // 별도 섹션 없음 — allOther에 포함
   const allOther = [
     ...staticSorted.filter((c: any) => !isPartner(c) && isHome(c)),       // 가정교회 먼저
-    ...sbChurches.filter((c: any) => !isPartner(c) && isHome(c)),
-    ...sbChurches.filter((c: any) => !isPartner(c) && !isHome(c)),        // 일반교회 다음
+    ...dedupedSb.filter((c: any) => !isPartner(c) && isHome(c)),
+    ...dedupedSb.filter((c: any) => !isPartner(c) && !isHome(c)),        // 일반교회 다음
     ...staticSorted.filter((c: any) => !isPartner(c) && !isHome(c)),
     ...communityChurches,
   ];
