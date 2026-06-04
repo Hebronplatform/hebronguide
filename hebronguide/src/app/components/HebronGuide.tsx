@@ -15453,15 +15453,15 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         {sub === 4 && (
           <div style={{ paddingBottom: 8 }}>
 
-            {/* 사명 소개 */}
+            {/* 환영 안내 — 공개 레이어 (비신자 친화) */}
             <div style={{ background: "linear-gradient(160deg, rgba(110,231,183,0.08) 0%, rgba(0,0,0,0) 100%)", border: "1px solid rgba(110,231,183,0.2)", borderRadius: 18, padding: "18px 18px 16px", marginBottom: 14 }}>
               <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#6EE7B7", marginBottom: 6 }}>
-                🤝 {lang === "ko" ? "Hebron 파트너 교회 네트워크" : "Hebron Partner Church Network"}
+                🤝 {lang === "ko" ? "이 도시에서 함께하는 교회들" : "Churches Welcoming You in This City"}
               </div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.7)", lineHeight: 1.8 }}>
                 {lang === "ko"
-                  ? "목사님 · 성도 · HebronGuide가 원팀이 되어 각 도시마다 환대 커뮤니티를 만들어 갑니다. 파트너 교회는 교회 탭 최상단에 노출되며 검증 배지가 부여됩니다."
-                  : "Pastors · Congregations · HebronGuide as one team, building hospitality communities in every city. Partner churches get top placement and a verified badge."}
+                  ? "처음 이 도시에 오신 분들을 따뜻하게 맞이하는 교회들입니다. 언어·문화·생활 적응까지 함께합니다."
+                  : "These churches are ready to warmly welcome newcomers to this city — with language, culture, and life support."}
               </div>
             </div>
 
@@ -15529,8 +15529,24 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   {lang === "ko" ? "🤝 Hebron 파트너 교회 신청하기 →" : "🤝 Apply as Hebron Partner Church →"}
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(0,0,0,0.55)" }}>
-                  {lang === "ko" ? "무료 · 검증 배지 · 최상단 노출" : "Free · Verified badge · Top placement"}
+                  {lang === "ko" ? "이 도시에서 이웃을 환영하는 교회로 함께하세요" : "Join as a welcoming church in this city"}
                 </div>
+              </div>
+            </a>
+
+            {/* 파트너 목사 전용 Slack 채널 */}
+            <a href="https://hebronguide.slack.com" target="_blank" rel="noopener" style={{ display: "block", textDecoration: "none", marginBottom: 12 }}>
+              <div style={{ background: "rgba(74,21,75,0.15)", border: "1px solid rgba(154,100,156,0.35)", borderRadius: 14, padding: "12px 18px", display: "flex", alignItems: "center", gap: 12 }}>
+                <span style={{ fontSize: 20 }}>💬</span>
+                <div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12.5, color: "#E8B4E8" }}>
+                    {lang === "ko" ? "파트너 목사 전용 — Slack 채널" : "Partner Pastors — Slack Channel"}
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10.5, color: "rgba(236,253,245,0.5)", marginTop: 2 }}>
+                    {lang === "ko" ? "파트너 교회 목사님들의 소통 공간입니다" : "A private space for Hebron partner pastors"}
+                  </div>
+                </div>
+                <span style={{ marginLeft: "auto", color: "rgba(236,253,245,0.3)", fontSize: 12 }}>→</span>
               </div>
             </a>
 
