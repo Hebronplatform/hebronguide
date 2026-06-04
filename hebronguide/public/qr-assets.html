@@ -20,7 +20,7 @@ h2{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:6px;}
 .qr-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px 20px;text-align:center;}
 .qr-card.gold{border-color:rgba(201,162,39,.5);background:rgba(201,162,39,.05);}
 .qr-card.mint{border-color:rgba(110,231,183,.35);background:rgba(110,231,183,.04);}
-.qr-wrap{background:#fff;border-radius:12px;padding:12px;display:inline-block;margin-bottom:12px;}
+.qr-wrap{background:#fff;border-radius:12px;padding:10px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px;overflow:hidden;}
 .qr-size{font-size:.7rem;color:var(--muted);margin-bottom:6px;}
 .qr-label{font-size:.88rem;font-weight:800;color:#fff;margin-bottom:3px;}
 .qr-url{font-size:.7rem;color:var(--gold);margin-bottom:14px;}
@@ -199,16 +199,16 @@ function makeQR(id, url, size){
 
 function makeAll(){
   // 홈 QR
-  makeQR('qr-home-lg',  HOME, 250);
-  makeQR('qr-home-md',  HOME, 190);
-  makeQR('qr-partner',  PARTNER_URL, 250);
-  makeQR('qr-banner-home', HOME, 72);
-  makeQR('qr-card',     HOME, 76);
+  makeQR('qr-home-lg',  HOME, 200);
+  makeQR('qr-home-md',  HOME, 160);
+  makeQR('qr-partner',  PARTNER_URL, 200);
+  makeQR('qr-banner-home', HOME, 64);
+  makeQR('qr-card',     HOME, 68);
 
   // 도시 QR
-  makeQR('qr-city-lg',  CITY_URL, 250);
-  makeQR('qr-city-md',  CITY_URL, 190);
-  makeQR('qr-banner-city', CITY_URL, 72);
+  makeQR('qr-city-lg',  CITY_URL, 200);
+  makeQR('qr-city-md',  CITY_URL, 160);
+  makeQR('qr-banner-city', CITY_URL, 64);
 }
 
 // ── 버튼 연결 ──
