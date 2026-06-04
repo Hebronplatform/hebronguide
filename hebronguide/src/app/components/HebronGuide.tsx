@@ -26095,7 +26095,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
             {ko ? "🔜 준비 중인 상품" : "🔜 Coming Soon"}
           </div>
           {([
-            { emoji: "📖", name: ko ? "Hebron 정착 가이드 (PDF)" : "Settlement Guide PDF", desc: ko ? "52개 도시 정착 정보 총정리" : "52-city settlement guide" },
+            { emoji: "📖", name: ko ? "Hebron 정착 가이드 (PDF)" : "Settlement Guide PDF", desc: ko ? "72개 도시 정착 정보 총정리" : "72-city settlement guide" },
             { emoji: "🗣️", name: "Echo — Ministry English", desc: ko ? "목회자·선교사를 위한 실전 영어" : "Real English for pastors & missionaries" },
             { emoji: "🤝", name: ko ? "Hebron Gig 서비스" : "Hebron Gig Services", desc: ko ? "한인 커뮤니티 전문가 매칭" : "Korean community service matching" },
             { emoji: "🏙️", name: ko ? "도시별 정착 키트" : "City Settlement Kit", desc: ko ? "내가 이사할 도시 맞춤 패키지" : "Personalized city moving package" },
