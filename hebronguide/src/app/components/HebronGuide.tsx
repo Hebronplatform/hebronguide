@@ -13063,21 +13063,22 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   ];
 
   const month3Ko = [
+    { title: "🤝 협력 세무사 — Solomon Tax LLC", desc: "한인 이민자·교회·목회자 세금신고 전문 | 개인·법인·교회 세무대리 | 담당: 김동은 세무사 | 📞 321-750-6774 | 🔗 solomontax.net", star: true },
+    { title: "🤝 김동은 세무사 (교회전문 세무사)", desc: "한인 이민자·교회·목회자 세금신고 전문 | 개인·법인·교회 세무대리 | 담당: 김동은 세무사 | 📞 321-750-6774 | 🔗 solomontax.net", star: true },
     { title: "신용카드 빌드 시작", desc: "Secured Card (Capital One, Discover it) 발급 → 6개월 후 일반 카드로 업그레이드 | 🔗 capitalone.com" },
     { title: "세금 ID (ITIN) 신청", desc: "SSN 없는 비자 소지자. IRS Form W-7 작성. 한인 CPA 도움 권장" },
     { title: "비자 상태·기간 재확인", desc: "I-94 만료일 체크 (cbp.dhs.gov). 연장·전환 필요시 이민 변호사 상담" },
     { title: "장기 렌탈 계약", desc: "신용 이력 부족 → 더 큰 보증금 또는 한인 집주인 우선 탐색" },
     { title: "세금신고 준비 (연말)", desc: "한국 소득 있으면 FBAR/FATCA 申告 필요. 한인 회계사 상담 필수" },
-    { title: "🤝 협력 세무사 — Solomon Tax LLC", desc: "한인 이민자·교회·목회자 세금신고 전문 | 개인·법인·교회 세무대리 | 담당: 김동은 세무사 | 📞 321-750-6774 | 🔗 solomontax.net", star: true },
-    { title: "🤝 김동은 세무사 (교회전문 세무사)", desc: "한인 이민자·교회·목회자 세금신고 전문 | 개인·법인·교회 세무대리 | 담당: 김동은 세무사 | 📞 321-750-6774 | 🔗 solomontax.net", star: true },
   ];
   const month3En = [
+    { title: "🤝 Partner CPA — Solomon Tax LLC", desc: "Korean immigrant & church/pastor tax specialist | Individual, corporate & church filing | Contact: Dong-eun Kim CPA | 📞 321-750-6774 | 🔗 solomontax.net", star: true },
+    { title: "🤝 Dong-eun Kim CPA (Church Tax Specialist)", desc: "Korean immigrant & church/pastor tax specialist | Individual, corporate & church filing | Contact: Dong-eun Kim CPA | 📞 321-750-6774 | 🔗 solomontax.net", star: true },
     { title: "Start building credit", desc: "Apply for Secured Card (Capital One, Discover it) → upgrade to regular card after 6 months | 🔗 capitalone.com" },
     { title: "Apply for ITIN", desc: "For non-SSN visa holders. File IRS Form W-7. Korean CPA help recommended" },
     { title: "Recheck visa status & expiry", desc: "Check I-94 at cbp.dhs.gov. Consult immigration attorney for extension/change" },
     { title: "Sign long-term lease", desc: "Limited credit? Offer larger deposit or look for Korean landlords first" },
     { title: "Prepare for tax season", desc: "Korea income? FBAR/FATCA filing required. Korean accountant consultation essential" },
-    { title: "🤝 Partner CPA — Solomon Tax LLC", desc: "Korean immigrant & church/pastor tax specialist | Individual, corporate & church filing | Contact: Dong-eun Kim CPA | 📞 321-750-6774 | 🔗 solomontax.net", star: true },
   ];
 
   const adminKo = citySlug === "sf" ? [
