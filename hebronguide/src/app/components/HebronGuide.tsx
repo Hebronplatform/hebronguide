@@ -13069,6 +13069,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "장기 렌탈 계약", desc: "신용 이력 부족 → 더 큰 보증금 또는 한인 집주인 우선 탐색" },
     { title: "세금신고 준비 (연말)", desc: "한국 소득 있으면 FBAR/FATCA 申告 필요. 한인 회계사 상담 필수" },
     { title: "🤝 협력 세무사 — Solomon Tax LLC", desc: "한인 이민자·교회·목회자 세금신고 전문 | 개인·법인·교회 세무대리 | 담당: 김동은 세무사 | 📞 321-750-6774 | 🔗 solomontax.net", star: true },
+    { title: "🤝 김동은 세무사 (교회전문 세무사)", desc: "한인 이민자·교회·목회자 세금신고 전문 | 개인·법인·교회 세무대리 | 담당: 김동은 세무사 | 📞 321-750-6774 | 🔗 solomontax.net", star: true },
   ];
   const month3En = [
     { title: "Start building credit", desc: "Apply for Secured Card (Capital One, Discover it) → upgrade to regular card after 6 months | 🔗 capitalone.com" },
