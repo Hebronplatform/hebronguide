@@ -14476,13 +14476,12 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                           padding: "14px 16px",
                           marginBottom: 10,
                         }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5 }}>
-                            <span style={{ fontSize: 15, lineHeight: 1 }}>⭐</span>
+                          <div style={{ marginBottom: 5 }}>
                             <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 800, fontSize: 13, color: "#C9A227" }}>
                               {item.title}
                             </span>
                           </div>
-                          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.65, color: "rgba(236,253,245,0.82)", paddingLeft: 23 }}>
+                          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.65, color: "rgba(236,253,245,0.82)" }}>
                             {item.desc}
                           </div>
                         </div>
