@@ -23,7 +23,7 @@
  * ══════════════════════════════════════════════════════════
  */
 
-import { useState, useEffect, useRef, useMemo, type ReactNode } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, useMemo, type ReactNode } from "react";
 
 /* ─────────────────────────────────────────
    SAFE STORAGE — Safari private mode 포함 모든 환경 호환
@@ -12718,7 +12718,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   const { content: serverContent } = useContent();
   const citySlug = useCityConfig().slug;
   const [sub, setSub] = useState(initialSub);
-  useEffect(() => { setSub(initialSub); }, [initialSub]);
+  useLayoutEffect(() => { setSub(initialSub); }, [initialSub]);
   const [showRegularItems, setShowRegularItems] = useState(false);
   const tabs = lang === "ko"
     ? ["1주차", "1개월", "3개월", "행정", "재정", "주택", "✅ 전체", "🛂 비자·이민"]
@@ -21621,7 +21621,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
   const [sub, setSub] = useState(initialSub);
   // QuickMenu 진입 시 서브탭 바 숨김 → "다른 도움 찾기" 버튼으로 열기
   const [showAllTabs, setShowAllTabs] = useState(!fromQuickMenu);
-  useEffect(() => { setSub(initialSub); }, [initialSub]);
+  useLayoutEffect(() => { setSub(initialSub); }, [initialSub]);
   useEffect(() => { setShowAllTabs(!fromQuickMenu); }, [fromQuickMenu]);
   const diaspora = DIASPORA_IDENTITY[city.slug] ?? { flag: "🌍", ko: "동포 여정", en: "Journey" };
   const tabs = lang === "ko"
@@ -23967,7 +23967,7 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
   const city = useCityConfig();
   const isSeattle = city.slug === "seattle";
   const [sub, setSub] = useState(initialSub);
-  useEffect(() => { setSub(initialSub); }, [initialSub]);
+  useLayoutEffect(() => { setSub(initialSub); }, [initialSub]);
   const tabs = lang === "ko"
     ? ["🏫 학군 순위", "🏛️ 지역 CC", "🎓 4년제 대학", "📝 대입 준비", "📚 학원·ESL", "🇰🇷 한국학교"]
     : ["🏫 School Districts", "🏛️ Community Colleges", "🎓 Universities", "📝 Admissions", "📚 Tutoring & ESL", "🇰🇷 Korean School"];
@@ -24834,7 +24834,7 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
   const [sub, setSub] = useState(initialSub);
-  useEffect(() => { setSub(initialSub); }, [initialSub]);
+  useLayoutEffect(() => { setSub(initialSub); }, [initialSub]);
   const city = useCityConfig();
   const isSeattle = city.slug === "seattle";
   const tabs = lang === "ko"
