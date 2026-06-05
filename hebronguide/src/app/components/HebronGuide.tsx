@@ -12719,6 +12719,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   const citySlug = useCityConfig().slug;
   const [sub, setSub] = useState(initialSub);
   useEffect(() => { setSub(initialSub); }, [initialSub]);
+  const [showRegularItems, setShowRegularItems] = useState(false);
   const tabs = lang === "ko"
     ? ["1주차", "1개월", "3개월", "행정", "재정", "주택", "✅ 전체", "🛂 비자·이민"]
     : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Housing", "✅ All", "🛂 Visa/Immigration"];
@@ -14451,19 +14452,98 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               descEn="Bags full, kids in hand, unfamiliar airport. A warm Korean-speaking driver is already waiting for you."
             />}
 
-            {/* 체크리스트 아이템 */}
-            <div onClick={() => forceUpdate(n => n + 1)}>
-              {items.map((item, i) => (
-                <ChecklistItem
-                  key={`${sub}-${i}`}
-                  itemId={`${tabPrefix}_${i}`}
-                  title={item.title}
-                  desc={item.desc}
-                  accentColor={accent}
-                  showReminder={isAdminTab}
-                />
-              ))}
-            </div>
+            {/* 체크리스트 아이템 — 3개월 탭: 협력업체 강조 + 나머지 접기 */}
+            {sub === 2 ? (() => {
+              const starItems = items.filter((it: any) => it.star);
+              const regularItems = items.filter((it: any) => !it.star);
+              return (
+                <div onClick={() => forceUpdate(n => n + 1)}>
+                  {/* ⭐ 협력업체 강조 카드 */}
+                  {starItems.length > 0 && (
+                    <div style={{ marginBottom: 12 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                        <div style={{ height: 1, flex: 1, background: "rgba(201,162,39,0.25)" }} />
+                        <span style={{ fontSize: 10, fontWeight: 800, color: "#C9A227", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" }}>
+                          ⭐ {lang === "ko" ? "협력 전문가" : "Partner Specialists"}
+                        </span>
+                        <div style={{ height: 1, flex: 1, background: "rgba(201,162,39,0.25)" }} />
+                      </div>
+                      {starItems.map((item: any, i: number) => (
+                        <div key={`star-${i}`} style={{
+                          border: "1.5px solid rgba(201,162,39,0.5)",
+                          borderRadius: 14,
+                          background: "linear-gradient(135deg, rgba(201,162,39,0.08) 0%, rgba(201,162,39,0.03) 100%)",
+                          padding: "14px 16px",
+                          marginBottom: 10,
+                        }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5 }}>
+                            <span style={{ fontSize: 15, lineHeight: 1 }}>⭐</span>
+                            <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 800, fontSize: 13, color: "#C9A227" }}>
+                              {item.title}
+                            </span>
+                          </div>
+                          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.65, color: "rgba(236,253,245,0.82)", paddingLeft: 23 }}>
+                            {item.desc}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* 나머지 항목 — 접기/펼치기 */}
+                  {regularItems.length > 0 && (
+                    <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: 14, overflow: "hidden", marginBottom: 10 }}>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setShowRegularItems(p => !p); }}
+                        style={{
+                          display: "flex", alignItems: "center", gap: 10, width: "100%",
+                          padding: "12px 16px", background: "rgba(255,255,255,0.03)",
+                          border: "none", cursor: "pointer",
+                        }}
+                      >
+                        <span style={{ fontSize: 15 }}>🗒</span>
+                        <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13, color: "rgba(236,253,245,0.7)", flex: 1, textAlign: "left" }}>
+                          {lang === "ko" ? "3개월 정착 체크리스트" : "Month 3 Checklist"}
+                          <span style={{ fontWeight: 500, color: "rgba(236,253,245,0.4)", fontSize: 11, marginLeft: 6 }}>
+                            ({regularItems.length}{lang === "ko" ? "개" : ""})
+                          </span>
+                        </span>
+                        <span style={{ color: "rgba(255,255,255,0.35)", fontSize: 12, fontFamily: "Manrope,sans-serif" }}>
+                          {showRegularItems ? (lang === "ko" ? "접기 ▲" : "Collapse ▲") : (lang === "ko" ? "펼치기 ▼" : "Show ▼")}
+                        </span>
+                      </button>
+                      {showRegularItems && (
+                        <div style={{ padding: "8px 10px 12px" }}>
+                          {regularItems.map((item: any, i: number) => (
+                            <ChecklistItem
+                              key={`reg-${i}`}
+                              itemId={`${tabPrefix}_r${i}`}
+                              title={item.title}
+                              desc={item.desc}
+                              accentColor={accent}
+                              showReminder={isAdminTab}
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })() : (
+              <div onClick={() => forceUpdate(n => n + 1)}>
+                {items.map((item, i) => (
+                  <ChecklistItem
+                    key={`${sub}-${i}`}
+                    itemId={`${tabPrefix}_${i}`}
+                    title={item.title}
+                    desc={item.desc}
+                    accentColor={accent}
+                    showReminder={isAdminTab}
+                  />
+                ))}
+              </div>
+            )}
 
             {/* 팁 배너 */}
             <div style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
