@@ -14870,44 +14870,16 @@ function getCityChurches(slug: string, lang: string) {
     ],
     seoul: [
       {
-        emoji: "⭐", tier: 1, hebronPartner: true,
-        name: ko ? "에클레시아 엔크리스토" : "Ekklesia en Cristo",
-        nameEn: "Ekklesia en Cristo",
+        emoji: "⛪", tier: 2, hebronPartner: true,
+        denomination: "침례교 (SBC / KSBC)",
+        name: ko ? "에클레시아 엔크리스토 (온라인)" : "Ekklesia enchristo — Online Church",
+        nameEn: "Ekklesia enchristo",
         desc: ko
-          ? "✨ 담임: 신용철 목사\n📍 서울 (온라인·오프라인)\n📞 010-2305-0545"
-          : "✨ Lead Pastor: Yongcheol Shin\n📍 Seoul (Online & Offline)\n📞 010-2305-0545",
-        tags: ko ? ["서울", "헤브론파트너"] : ["Seoul", "HebronPartner"],
-        phone: "01023050545", email: "iharu2157@gmail.com",
-      },
-      {
-        emoji: "⭐", tier: 1, hebronPartner: true,
-        name: ko ? "예수생명교회" : "Jesus Life Church",
-        nameEn: "Jesus Life Church",
-        desc: ko
-          ? "✨ 담임: 맹기원 목사\n📍 경기도 남양주\n📞 010-5146-0691"
-          : "✨ Lead Pastor: Kiwon Maeng\n📍 Namyangju, Gyeonggi\n📞 010-5146-0691",
-        tags: ko ? ["남양주", "경기도", "헤브론파트너"] : ["Namyangju", "Gyeonggi", "HebronPartner"],
-        phone: "01051460691", email: "core69m@gmail.com",
-      },
-      {
-        emoji: "⭐", tier: 1, hebronPartner: true,
-        name: ko ? "행복한교회" : "Happy Church Uijeongbu",
-        nameEn: "Happy Church",
-        desc: ko
-          ? "✨ 담임: 이현권 목사\n📍 경기도 의정부시 오목로 225번길 135 트윈타워 1동 7층\n📞 010-3254-8020"
-          : "✨ Lead Pastor: Hyunkwon Lee\n📍 Uijeongbu, Gyeonggi\n📞 010-3254-8020",
-        tags: ko ? ["의정부", "경기도", "헤브론파트너"] : ["Uijeongbu", "Gyeonggi", "HebronPartner"],
-        phone: "01032548020", email: "yhk8020@daum.net",
-      },
-      {
-        emoji: "⭐", tier: 1,
-        name: ko ? "다운교회" : "Down Church — Seoul",
-        nameEn: "Down Church",
-        desc: ko
-          ? "✨ 담임: 석정일 목사\n📍 서울\n🔗 downchurch.com"
-          : "✨ Lead Pastor: Jeongil Suk\n📍 Seoul\n🔗 downchurch.com",
-        tags: ko ? ["서울"] : ["Seoul"],
-        website: "https://www.downchurch.com",
+          ? "✨ 담임: 신용철 목사 (Yongchul Shin)\n📍 온라인 전용 교회 (서울)\n🏠 교회 나가기 어려운 분들을 위한 온라인 교회. 해외 이주민·복귀자 누구나 참여 가능합니다.\n🕐 예배: 토요일 오후 9:00–10:00 (Zoom)\n☎ 010-2305-0545\n✉️ iharu2157@gmail.com"
+          : "✨ Lead Pastor: Yongchul Shin\n📍 Online Church (Seoul-based)\n🏠 An online church you can join from your own room — designed for those who find it difficult to attend in person. Open to diaspora and returnees worldwide.\n🕐 Service: Saturday 9:00–10:00 PM (Zoom)\n☎ +82-10-2305-0545\n✉️ iharu2157@gmail.com",
+        tags: ko ? ["온라인교회", "서울", "침례교", "토요예배", "해외동포환영"] : ["Online Church", "Seoul", "Baptist", "Saturday Service", "Diaspora"],
+        phone: "01023050545",
+        email: "iharu2157@gmail.com",
       },
       {
         emoji: "⛪", tier: 2, hebronPartner: true,
@@ -14934,16 +14906,14 @@ function getCityChurches(slug: string, lang: string) {
         email: "yhk8020@daum.net",
       },
       {
-        emoji: "⛪", tier: 2, hebronPartner: true,
-        denomination: "침례교 (SBC / KSBC)",
-        name: ko ? "에클레시아 엔크리스토 (온라인)" : "Ekklesia enchristo — Online Church",
-        nameEn: "Ekklesia enchristo",
+        emoji: "⭐", tier: 1,
+        name: ko ? "다운교회" : "Down Church — Seoul",
+        nameEn: "Down Church",
         desc: ko
-          ? "✨ 담임: 신용철 목사 (Yongchul Shin)\n📍 온라인 전용 교회 (서울)\n🏠 교회 나가기 어려운 분들을 위한 온라인 교회. 해외 이주민·복귀자 누구나 참여 가능합니다.\n🕐 예배: 토요일 오후 9:00–10:00 (Zoom)\n☎ 010-2305-0545\n✉️ iharu2157@gmail.com"
-          : "✨ Lead Pastor: Yongchul Shin\n📍 Online Church (Seoul-based)\n🏠 An online church you can join from your own room — designed for those who find it difficult to attend in person. Open to diaspora and returnees worldwide.\n🕐 Service: Saturday 9:00–10:00 PM (Zoom)\n☎ +82-10-2305-0545\n✉️ iharu2157@gmail.com",
-        tags: ko ? ["온라인교회", "서울", "침례교", "토요예배", "해외동포환영"] : ["Online Church", "Seoul", "Baptist", "Saturday Service", "Diaspora"],
-        phone: "01023050545",
-        email: "iharu2157@gmail.com",
+          ? "✨ 담임: 석정일 목사\n📍 서울\n🔗 downchurch.com"
+          : "✨ Lead Pastor: Jeongil Suk\n📍 Seoul\n🔗 downchurch.com",
+        tags: ko ? ["서울"] : ["Seoul"],
+        website: "https://www.downchurch.com",
       },
     ],
     busan: [
@@ -27808,6 +27778,7 @@ export function HebronGuide() {
   const [helpInitialSub, setHelpInitialSub] = useState(0);
   const [eduInitialSub, setEduInitialSub] = useState(0);
   const [costInitialSub, setCostInitialSub] = useState(0);
+  const [costNavKey, setCostNavKey] = useState(0); // 탭 이동 시 CostScreen 강제 리마운트용
   // QuickMenu → 도움 탭 진입 여부 추적 (true = 서브탭바 숨김)
   const [helpFromQuickMenu, setHelpFromQuickMenu] = useState(false);
 
@@ -27820,7 +27791,10 @@ export function HebronGuide() {
         setHelpFromQuickMenu(true); // QuickMenu·검색 경유 → 서브탭바 숨김
       }
       if (tab === 7 && subTab !== undefined) setEduInitialSub(subTab);
-      if (tab === 8 && subTab !== undefined) setCostInitialSub(subTab);
+      if (tab === 8 && subTab !== undefined) {
+        setCostInitialSub(subTab);
+        setCostNavKey(k => k + 1); // 같은 subTab 재진입도 즉시 반영
+      }
       setActiveNav(tab);
     }
   };
@@ -28007,7 +27981,7 @@ export function HebronGuide() {
     <HelpScreen onHome={() => setActiveNav(0)} initialSub={helpInitialSub} fromQuickMenu={helpFromQuickMenu} />,  // 5
     <JobsScreen onHome={() => setActiveNav(0)} />,                                     // 6
     <EducationScreen onHome={() => setActiveNav(0)} initialSub={eduInitialSub} />,     // 7
-    <CostScreen onHome={() => setActiveNav(0)} initialSub={costInitialSub} />,         // 8
+    <CostScreen key={costNavKey} onHome={() => setActiveNav(0)} initialSub={costInitialSub} />,  // 8
     <ConnectScreen onHome={() => setActiveNav(0)} />,                                  // 9
     <StoreScreen onHome={() => setActiveNav(0)} />,                                    // 10
     <ArrivalSimulationScreen onHome={() => setActiveNav(0)} />,                        // 11
