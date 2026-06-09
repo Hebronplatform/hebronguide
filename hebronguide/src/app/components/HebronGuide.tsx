@@ -15201,14 +15201,14 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const isPartner = (c: any) => c.hebronPartner || c.hebron_partner;
 
   // ── Supabase 중복 제거: 정적 데이터에 이미 있는 교회는 sbChurches에서 제외 ──
-  const staticNameSet = new Set(
-    staticSorted.map((c: any) =>
-      (c.name ?? c.nameKo ?? '').toLowerCase().replace(/\s+/g, '')
-    )
+  // 부분 일치 포함: static "에클레시아 엔크리스토 (온라인)" vs Supabase "에클레시아 엔크리스토"
+  const staticNames = staticSorted.map((c: any) =>
+    (c.name ?? c.nameKo ?? '').toLowerCase().replace(/\s+/g, '')
   );
   const dedupedSb = sbChurches.filter((c: any) => {
-    const name = (c.name ?? '').toLowerCase().replace(/\s+/g, '');
-    return !staticNameSet.has(name);
+    const sbName = (c.name ?? '').toLowerCase().replace(/\s+/g, '');
+    // 완전 일치 또는 static 이름이 Supabase 이름으로 시작하면 중복으로 처리
+    return !staticNames.some(sn => sn === sbName || sn.startsWith(sbName) || sbName.startsWith(sn));
   });
 
   // Tier 1: 협력교회 전체 (가정교회 겸한 협력교회 먼저 → 협력교회만 다음)
