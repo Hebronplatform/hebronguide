@@ -1,0 +1,9 @@
+{
+  "active": true,
+  "score": "2 : 1",
+  "result": "W",
+  "opponent": { "ko": "체코", "en": "Czechia" },
+  "stage": { "ko": "조별 리그", "en": "Group Stage" },
+  "matchDate": "2026-06-16",
+  "nextMatch": { "ko": "6월 21일 vs 멕시코", "en": "Jun 21 vs Mexico" }
+}
