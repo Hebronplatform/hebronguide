@@ -87,7 +87,8 @@
   .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
   .val-card{background:var(--surface);border:1px solid var(--border2);border-radius:20px;padding:28px 24px;transition:border-color .3s,transform .3s;}
   .val-card:hover{border-color:rgba(201,162,39,.4);transform:translateY(-4px);}
-  .val-icon{font-size:2.2rem;margin-bottom:16px;}
+  .val-icon{width:44px;height:44px;margin-bottom:16px;color:rgba(201,162,39,.8);}
+  .val-icon svg{width:100%;height:100%;}
   .val-title{font-size:1rem;font-weight:900;color:#fff;margin-bottom:10px;}
   .val-body{font-size:.85rem;color:var(--muted);line-height:1.85;}
   .val-quote{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:.78rem;color:rgba(201,162,39,.7);font-style:italic;line-height:1.7;}
@@ -129,7 +130,11 @@
   .join-card.card-church:hover{border-color:#C9A227;}
   .join-card.card-biz:hover{border-color:#818CF8;}
   .join-card.card-city:hover{border-color:#F97316;}
-  .join-card-icon{font-size:1.6rem;margin-bottom:10px;}
+  .join-card-icon{width:36px;height:36px;margin-bottom:10px;color:#6EE7B7;}
+  .join-card-icon svg{width:100%;height:100%;}
+  .join-card.card-church .join-card-icon{color:#C9A227;}
+  .join-card.card-biz .join-card-icon{color:#818CF8;}
+  .join-card.card-city .join-card-icon{color:#F97316;}
   .join-card-title{font-size:.92rem;font-weight:800;color:#fff;margin-bottom:6px;}
   .join-card-desc{font-size:.8rem;color:var(--muted);line-height:1.75;}
 
@@ -389,25 +394,25 @@
 
   <div class="values-grid">
     <div class="val-card">
-      <div class="val-icon">🕊️</div>
+      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
       <div class="val-title"><span class="ko">모든 사람은 환대받을 자격이 있습니다</span><span class="en">Everyone Deserves to Be Welcomed</span></div>
       <div class="val-body"><span class="ko">국적·언어·배경과 무관하게, 이 세상에 소외되어야 할 사람은 없습니다. 낯선 도시의 첫날이 두렵지 않도록 — 그것이 우리의 출발점입니다.</span><span class="en">Regardless of nationality, language, or background — no one should be left out. So that the first day in a new city holds no fear — that is where we begin.</span></div>
       <div class="val-quote"><span class="ko">"이 세상 어느 누구도 외롭고 고독함을 느끼지 않아야 합니다."</span><span class="en">"No one in this world should ever feel lonely or forgotten."</span></div>
     </div>
     <div class="val-card">
-      <div class="val-icon">🔥</div>
+      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
       <div class="val-title"><span class="ko">삶이 먼저, 정보가 그 다음</span><span class="en">Life First, Information Follows</span></div>
       <div class="val-body"><span class="ko">정착 정보는 수단입니다. 진짜 목적은 사람과 사람을 잇는 것입니다. 병원 정보 하나, 식당 정보 하나가 관계의 시작이 됩니다.</span><span class="en">Settlement information is a means, not an end. The real purpose is connecting people to people. A hospital listing, a restaurant recommendation — these become the start of a relationship.</span></div>
       <div class="val-quote"><span class="ko">"성도의 일터가, 성도의 식탁이, 이미 누군가의 첫 번째 교회입니다."</span><span class="en">"A believer's workplace, a believer's table — already someone's first church."</span></div>
     </div>
     <div class="val-card">
-      <div class="val-icon">🌱</div>
+      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"></path><path d="M12 12C12 12 7 10 7 5a5 5 0 0 1 10 0c0 5-5 7-5 7z"></path></svg></div>
       <div class="val-title"><span class="ko">섬김이 리더십입니다</span><span class="en">Serving Is Leading</span></div>
       <div class="val-body"><span class="ko">"인자가 온 것은 섬기려 하고" — 크고자 하는 자는 섬기는 자가 되어야 합니다. HebronGuide는 권력이 아닌 섬김, 소유가 아닌 나눔으로 운영됩니다.</span><span class="en">"The Son of Man came to serve" — whoever wants to be great must be a servant. HebronGuide runs not on power but on service, not on ownership but on sharing.</span></div>
       <div class="val-quote">— <span class="ko">마가복음 10:43-45</span><span class="en">Mark 10:43-45</span></div>
     </div>
     <div class="val-card">
-      <div class="val-icon">🌍</div>
+      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
       <div class="val-title"><span class="ko">한인에서 모든 민족으로</span><span class="en">From Korean to All Nations</span></div>
       <div class="val-body"><span class="ko">한인 디아스포라로 시작했지만 궁극적으로는 모든 민족을 향해야 합니다. 중국계, 베트남계, 아랍계 — 환대에는 국경이 없습니다.</span><span class="en">We began with the Korean diaspora, but ultimately we must reach toward every nation. Chinese, Vietnamese, Arabic — hospitality knows no borders.</span></div>
       <div class="val-quote"><span class="ko">"한국인은 물론 모든 민족에게 환대 정신이 필요합니다." — 창립자</span><span class="en">"Not just Koreans — every nation needs the spirit of hospitality." — Founder</span></div>
@@ -521,22 +526,22 @@
 
   <div class="join-cards">
     <a href="/#cities" class="join-card">
-      <div class="join-card-icon">✈️</div>
+      <div class="join-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></div>
       <div class="join-card-title"><span class="ko">이민자·이주자라면</span><span class="en">Immigrants & Expats</span></div>
       <div class="join-card-desc"><span class="ko">내 도시의 HebronGuide를 열어보세요. 병원·학교·교회·맛집이 한국어로 준비돼 있습니다.</span><span class="en">Open HebronGuide for your city. Hospitals, schools, churches, and restaurants — all ready for you.</span></div>
     </a>
     <a href="/ad-request.html#church" class="join-card card-church">
-      <div class="join-card-icon">⛪</div>
+      <div class="join-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v3"></path><path d="M10.5 3.5h3"></path><path d="M4 21V11l8-6 8 6v10"></path><path d="M9 21v-5a3 3 0 0 1 6 0v5"></path><path d="M2 21h20"></path></svg></div>
       <div class="join-card-title"><span class="ko">목사님·교회라면</span><span class="en">Pastors & Churches</span></div>
       <div class="join-card-desc"><span class="ko">교회를 무료로 등재하세요. 새로 도착한 성도가 공항에서부터 여러분의 교회를 만납니다.</span><span class="en">List your church for free. Newcomers will find your church from the moment they arrive.</span></div>
     </a>
     <a href="/ad-request.html#business" class="join-card card-biz">
-      <div class="join-card-icon">🏪</div>
+      <div class="join-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></div>
       <div class="join-card-title"><span class="ko">성도·사업체라면</span><span class="en">Believers & Businesses</span></div>
       <div class="join-card-desc"><span class="ko">가게를 등재하세요. 성도의 일터가 환대의 첫 현장이 됩니다. 삶이 곧 선교입니다.</span><span class="en">List your business. A believer's workplace becomes the first place of welcome. Life itself is mission.</span></div>
     </a>
     <a href="/city-request.html" class="join-card card-city">
-      <div class="join-card-icon">🗺️</div>
+      <div class="join-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
       <div class="join-card-title"><span class="ko">내 도시가 없다면</span><span class="en">Your City Not Listed?</span></div>
       <div class="join-card-desc"><span class="ko">도시 추가를 신청해 주세요. 우선 순위로 반영합니다. 모든 도시에 환대를 심겠습니다.</span><span class="en">Request to add your city. We prioritize your request. We'll plant hospitality in every city.</span></div>
     </a>
