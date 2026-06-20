@@ -26677,6 +26677,102 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
 }
 
 /* ─────────────────────────────────────────
+   필요 게시판 — 지금 도움이 필요한 사람이 직접 올리는 카드
+   community_items 테이블 재사용 (category="need") — 운영팀이 수동 검토·연결 (Phase 1 MVP)
+───────────────────────────────────────── */
+function NeedsBoardCard({ citySlug, lang }: { citySlug: string; lang: string }) {
+  const ko = lang === "ko";
+  const [open, setOpen] = useState(false);
+  const [needType, setNeedType] = useState("");
+  const [desc, setDesc] = useState("");
+  const [contact, setContact] = useState("");
+  const [sent, setSent] = useState(false);
+
+  const NEED_TYPES = ko
+    ? ["주거", "취업", "법률", "의료", "관계·외로움", "긴급", "기타"]
+    : ["Housing", "Job", "Legal", "Medical", "Connection", "Urgent", "Other"];
+
+  const canSubmit = !!needType && !!desc.trim() && !!contact.trim();
+
+  const handleSubmit = () => {
+    if (!canSubmit) return;
+    postToServer({ category: "need", citySlug, name: needType, contact: contact.trim(), desc: desc.trim() });
+    setSent(true);
+    setNeedType(""); setDesc(""); setContact("");
+    setTimeout(() => { setSent(false); setOpen(false); }, 3000);
+  };
+
+  if (sent) return (
+    <div style={{ background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", padding: "20px 16px", marginBottom: 12, textAlign: "center" }}>
+      <div style={{ fontSize: 28, marginBottom: 8 }}>✅</div>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A", marginBottom: 4 }}>
+        {ko ? "필요가 전달되었습니다" : "Your need has been sent"}
+      </div>
+      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "#475569", lineHeight: 1.6 }}>
+        {ko ? "운영팀이 확인 후 연결해 드립니다" : "Our team will review and connect you soon"}
+      </div>
+    </div>
+  );
+
+  return (
+    <div style={{ background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", padding: "16px", marginBottom: 12 }}>
+      <div onClick={() => setOpen(!open)} style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer" }}>
+        <span style={{ fontSize: 32, flexShrink: 0 }}>🙋</span>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A", marginBottom: 3 }}>
+            {ko ? "지금 도움이 필요하신가요?" : "Need help right now?"}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#475569", lineHeight: 1.5 }}>
+            {ko ? "필요를 올리면 운영팀이 직접 연결해 드립니다" : "Post your need — our team will personally connect you"}
+          </div>
+        </div>
+        <span style={{ color: "#6EE7B7", fontSize: 18, fontWeight: 700, flexShrink: 0, transform: open ? "rotate(90deg)" : "none", transition: "transform 0.15s" }}>›</span>
+      </div>
+
+      {open && (
+        <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10 }}>
+            {NEED_TYPES.map(t => (
+              <button key={t} onClick={() => setNeedType(t)}
+                style={{
+                  padding: "6px 12px", borderRadius: 20, fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 700,
+                  border: needType === t ? "1px solid #6EE7B7" : "1px solid rgba(0,0,0,0.1)",
+                  background: needType === t ? "rgba(110,231,183,0.12)" : "#fff",
+                  color: needType === t ? "#0F9D6F" : "#475569",
+                  cursor: "pointer",
+                }}>{t}</button>
+            ))}
+          </div>
+          <textarea
+            value={desc} onChange={e => setDesc(e.target.value)}
+            placeholder={ko ? "어떤 도움이 필요하신지 적어주세요" : "Describe what you need"}
+            rows={3}
+            style={{ width: "100%", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 10, padding: "10px 12px", fontSize: 13, fontFamily: "inherit", outline: "none", resize: "none", marginBottom: 8, boxSizing: "border-box" as const, color: "#1B2A4A" }}
+          />
+          <input
+            value={contact} onChange={e => setContact(e.target.value)}
+            placeholder={ko ? "연락처 (전화 또는 이메일)" : "Contact (phone or email)"}
+            style={{ width: "100%", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 10, padding: "10px 12px", fontSize: 13, fontFamily: "inherit", outline: "none", marginBottom: 10, boxSizing: "border-box" as const, color: "#1B2A4A" }}
+          />
+          <button
+            onClick={handleSubmit}
+            disabled={!canSubmit}
+            style={{
+              width: "100%", padding: "12px 0", borderRadius: 10, border: "none",
+              background: canSubmit ? "#6EE7B7" : "rgba(0,0,0,0.06)",
+              color: canSubmit ? "#0a3a28" : "rgba(0,0,0,0.3)",
+              fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13,
+              cursor: canSubmit ? "pointer" : "default",
+            }}>
+            {ko ? "필요 보내기 →" : "Send Need →"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
    TAB 9: 사람연결 SCREEN (ConnectScreen)
 ───────────────────────────────────────── */
 function ConnectScreen({ onHome }: { onHome?: () => void }) {
@@ -26692,6 +26788,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
         descEn={`${city.nameEn} — Korean community connection services`}
         accentColor="#6EE7B7" />
       <div style={{ padding: "16px" }}>
+        <NeedsBoardCard citySlug={city.slug} lang={lang} />
         {[
           { emoji: "🚗", nameKo: "헤브론 라이드", nameEn: "Hebron Ride", descKo: "공항 픽업·일상 이동 — 한국어로 맞이하는 첫 이동", descEn: "Airport pickup & daily rides — your first ride in Korean", tab: 1, subTab: 0 },
           { emoji: "🏠", nameKo: "헤브론 스테이", nameEn: "Hebron Stay", descKo: "단기 숙박·정착 동반 — 한인 가정에서 시작하는 정착", descEn: "Short-term stay & settlement support", tab: 1, subTab: 5 },
@@ -27090,6 +27187,7 @@ const MORE_SECTIONS = [
   { icon: Receipt,      labelKo: "세금신고",  labelEn: "Taxes",        tab: 8,  subTab: 4, color: "#F97316" },
   { icon: Scale,        labelKo: "법률상담",  labelEn: "Legal",        tab: 5,  subTab: 5, color: "#64748B" },
   { icon: BookOpen,     labelKo: "한국학교",  labelEn: "K-School",     tab: 7,  subTab: 5, color: "#BE185D" },
+  { icon: Users,        labelKo: "사람 연결", labelEn: "People Connect", tab: 9, subTab: 0, color: "#6EE7B7" },
 ];
 
 /* ─────────────────────────────────────────
@@ -27157,7 +27255,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
 
           {/* 섹션 버튼 그리드 — 2행 */}
           {[MORE_SECTIONS.slice(0, 5), MORE_SECTIONS.slice(5)].map((row, rowIdx) => (
-            <div key={rowIdx} style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 8, marginBottom: rowIdx === 0 ? 8 : 16 }}>
+            <div key={rowIdx} style={{ display: "grid", gridTemplateColumns: `repeat(${row.length}, 1fr)`, gap: 8, marginBottom: rowIdx === 0 ? 8 : 16 }}>
               {rowIdx === 1 && (
                 /* 2행 라벨 */
                 <div style={{ gridColumn: "1 / -1", marginBottom: 2, paddingLeft: 2 }}>
