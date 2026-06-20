@@ -30,6 +30,23 @@ BEGIN
   END IF;
 END $$;
 
+-- ②-2 Tier A AI 신뢰도 점수 컬럼 (2026-06 추가) — 0~100, 자동게시 판단 근거 기록
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_name = 'community_items' AND column_name = 'confidence_score'
+  ) THEN
+    ALTER TABLE community_items ADD COLUMN confidence_score int;
+  END IF;
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_name = 'community_items' AND column_name = 'auto_approved'
+  ) THEN
+    ALTER TABLE community_items ADD COLUMN auto_approved boolean DEFAULT false;
+  END IF;
+END $$;
+
 -- ③ name NOT NULL 제약이 있으면 제거 (신청자명은 선택 항목)
 DO $$
 BEGIN

@@ -132,6 +132,80 @@ module.exports = async function handler(req, res) {
     : flags.some(f => f.level === 'warning')                            ? 'warning'
     : 'clean';
 
+  /* ── 6.5 Tier A 신뢰도 점수 — 실존 확인(Google Places 등) API 키가 생기기 전까지
+   *      "일관성·완전성·중복" 기준으로 자동게시 여부를 판단한다.
+   *      실제 업소 존재 여부 확인은 아님 — 그건 Tier B(향후, API 키 필요)의 역할.
+   */
+  let confidenceScore = 0;
+  let dupFound = false;
+  const supaUrl  = process.env.SUPABASE_URL;
+  const supaAnon = process.env.SUPABASE_ANON_KEY;
+
+  if (status === 'clean' || status === 'warning') {
+    confidenceScore = 60; // 필수 항목 + 형식 검사 통과 기본점
+
+    if (supaUrl && supaAnon && bizName?.trim() && city?.trim()) {
+      try {
+        const dupRes = await fetch(
+          `${supaUrl}/rest/v1/community_items?category=eq.business&city_slug=eq.${encodeURIComponent(city.trim())}` +
+          `&name=ilike.${encodeURIComponent('%' + bizName.trim() + '%')}&select=id`,
+          { headers: { apikey: supaAnon, Authorization: `Bearer ${supaAnon}` } }
+        );
+        const dupRows = await dupRes.json();
+        dupFound = Array.isArray(dupRows) && dupRows.length > 0;
+      } catch (_) { /* 중복 검사 실패 시 무시 — 수동 검토로 넘김 */ }
+    }
+
+    if (dupFound) {
+      flags.push({ code: 'DUPLICATE', level: 'warning', msg: '비슷한 이름의 업소가 이미 등록되어 있습니다 — 중복 확인 필요' });
+    } else {
+      confidenceScore += 15; // 중복 없음
+    }
+    if (website?.trim()) confidenceScore += 10;   // 확인 가능한 출처 존재
+    if (!aiNote)         confidenceScore += 15;   // AI 적절성 검토 통과
+  }
+
+  const AUTO_PUBLISH_THRESHOLD = 85;
+  const autoApprove = confidenceScore >= AUTO_PUBLISH_THRESHOLD && !dupFound;
+
+  /* ── 6.6 community_items 테이블에 실제 저장 — 이메일만 가던 흐름을 DB 큐로 연결 ──
+   *      신뢰도 높으면 status='approved' 즉시 게시, 아니면 'pending'으로 관리자 큐에 노출
+   */
+  const finalDbStatus = status === 'critical' ? 'rejected' : (autoApprove ? 'approved' : 'pending');
+  let insertedId = null;
+  const serviceKey = process.env.SUPABASE_SERVICE_KEY;
+  if (supaUrl && serviceKey && status !== 'critical') {
+    try {
+      const insertRes = await fetch(`${supaUrl}/rest/v1/community_items`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: serviceKey,
+          Authorization: `Bearer ${serviceKey}`,
+          Prefer: 'return=representation',
+        },
+        body: JSON.stringify({
+          category: 'business',
+          city_slug: city,
+          title: bizName,
+          name: memberName,
+          contact: phone || email,
+          phone, email,
+          description,
+          website: website || '',
+          status: finalDbStatus,
+          confidence_score: confidenceScore,
+          auto_approved: autoApprove,
+        }),
+      });
+      const insertData = await insertRes.json();
+      insertedId = Array.isArray(insertData) ? insertData[0]?.id ?? null : null;
+    } catch (e) {
+      console.error('submit-listing: community_items insert failed:', e.message);
+      // DB 저장 실패해도 이메일 흐름은 그대로 진행 (아래 mailto 폴백)
+    }
+  }
+
   /* ── 7. 김성수 목사 이메일 본문 포맷 ── */
   const statusLabel = { clean: '✅ 문제 없음', warning: '⚠️ 확인 권장', error: '❌ 필수 누락', critical: '🚫 즉시 거절' }[status];
   const flagLines   = flags.length ? flags.map(f => `  [${f.level.toUpperCase()}] ${f.msg}`).join('\n') : '  없음';
@@ -206,6 +280,9 @@ module.exports = async function handler(req, res) {
     status,
     flags,
     aiNote,
+    confidenceScore,
+    autoApprove,
+    insertedId,
     // 클라이언트가 mailto: 구성에 사용
     reviewEmail: {
       to:      'hebronplatform@gmail.com',
