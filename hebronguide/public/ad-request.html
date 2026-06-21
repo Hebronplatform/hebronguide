@@ -276,12 +276,9 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <span class="tab-lbl">광고·홍보</span>
       <span class="tab-sub">이 도시의 좋은 소식</span>
     </div>
-    <div class="type-tab" onclick="switchTab('chaplain')" id="tab-chaplain">
-      <span class="tab-icon">✝️</span>
-      <span class="tab-lbl">채플린 파트너</span>
-      <span class="tab-sub">가장 필요한 그 자리</span>
-    </div>
   </div>
+  <!-- 채플린 탭은 일반 방문자 화면에서 숨김 — 직접 링크(#chaplain)로만 접근 가능 -->
+  <div id="tab-chaplain" style="display:none;"></div>
 
   <!-- ══════════ 교회 폼 ══════════ -->
   <div class="form-card active" id="form-church">
@@ -905,6 +902,13 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       hebronguide.com →
     </a>
 
+  </div>
+
+  <!-- 채플린 파트너 — 일반 노출 X, 직접 안내받은 분만 -->
+  <div style="text-align:center;padding:16px 0 4px;">
+    <a href="#chaplain" onclick="switchTab('chaplain')" style="font-size:.68rem;color:rgba(236,253,245,.32);text-decoration:none;">
+      교도소·이민국·병원 채플린이신가요? →
+    </a>
   </div>
 
 </div><!-- /container -->
