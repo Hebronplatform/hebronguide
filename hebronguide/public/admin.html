@@ -7,6 +7,7 @@
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="/icon-192.png">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
     :root {
       --bg:     #0a0c10;
@@ -328,6 +329,7 @@
     }
     .tab.active { background: var(--gold); color: #0a0c10; font-weight: 700 }
     .tab:hover:not(.active) { color: var(--text) }
+    .tab svg { width: 14px; height: 14px; vertical-align: -2px; margin-right: 4px; }
 
     .filters { display: flex; gap: 8px; align-items: center; flex-wrap: wrap }
     .filter-input {
@@ -807,14 +809,14 @@
     <!-- 데이터 테이블 -->
     <div class="content-header">
       <div class="tabs">
-        <button class="tab active" onclick="switchTab('community')">💬 기타 신청</button>
-        <button class="tab" onclick="switchTab('churches')">⛪ 교회</button>
-        <button class="tab" onclick="switchTab('restaurants')">🍜 사업체·카페</button>
-        <button class="tab" onclick="switchTab('promo')">📣 홍보</button>
-        <button class="tab" onclick="switchTab('partners')">✝️ 파트너 목사</button>
-        <button class="tab" onclick="switchTab('stories')">📖 이야기</button>
-        <button class="tab" onclick="switchTab('logs')">📊 AI 로그</button>
-        <button class="tab" onclick="switchTab('planner')" style="border-color:rgba(110,231,183,.4);color:var(--mint);">🌏 글로벌 플래너</button>
+        <button class="tab active" onclick="switchTab('community')"><i data-lucide="message-circle"></i> 기타 신청</button>
+        <button class="tab" onclick="switchTab('churches')"><i data-lucide="church"></i> 교회</button>
+        <button class="tab" onclick="switchTab('restaurants')"><i data-lucide="store"></i> 사업체·카페</button>
+        <button class="tab" onclick="switchTab('promo')"><i data-lucide="megaphone"></i> 홍보</button>
+        <button class="tab" onclick="switchTab('partners')"><i data-lucide="users"></i> 파트너 목사</button>
+        <button class="tab" onclick="switchTab('stories')"><i data-lucide="book-open"></i> 이야기</button>
+        <button class="tab" onclick="switchTab('logs')"><i data-lucide="bar-chart-3"></i> AI 로그</button>
+        <button class="tab" onclick="switchTab('planner')" style="border-color:rgba(110,231,183,.4);color:var(--mint);"><i data-lucide="globe"></i> 글로벌 플래너</button>
       </div>
       <div class="filters">
         <input class="filter-input" id="search" placeholder="🔍 검색..." oninput="filterTable()">
@@ -1967,6 +1969,7 @@
 
   // ── 초기화 ───────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {
+    if (window.lucide) window.lucide.createIcons()
     if (checkSession()) {
       adminToken = PW_HASH
       initSB()
