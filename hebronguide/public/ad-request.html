@@ -19,7 +19,10 @@ body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);co
 nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);
   display:flex;justify-content:space-between;align-items:center;
   padding:14px 20px;border-bottom:1px solid var(--border);}
-.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;font-family:'Cinzel',serif;}
+.logo{text-decoration:none;display:flex;align-items:center;gap:9px;}
+.logo-mark{flex-shrink:0;}
+.logo-word{font-family:'Cinzel',serif;font-weight:900;font-size:1rem;color:#fff;letter-spacing:.01em;}
+.logo-word em{font-style:italic;font-weight:400;color:var(--gold);}
 .nav-back{color:var(--muted);text-decoration:none;font-size:.8rem;display:flex;align-items:center;gap:6px;}
 
 /* 히어로 */
@@ -230,7 +233,17 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 <body>
 
 <nav>
-  <a href="/seattle/" class="logo" id="logoLink">HebronGuide</a>
+  <a href="/seattle/" class="logo" id="logoLink">
+    <svg class="logo-mark" viewBox="0 0 70 70" width="26" height="26">
+      <circle cx="35" cy="35" r="31" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+      <polygon points="35,8 44,27 35,35 26,27" fill="#d4a017"/>
+      <polygon points="35,62 44,44 35,35 26,44" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="62,35 44,44 35,35 44,27" fill="rgba(255,255,255,0.55)"/>
+      <polygon points="8,35 26,27 35,35 26,44" fill="rgba(255,255,255,0.55)"/>
+      <circle cx="35" cy="35" r="2.8" fill="rgba(255,255,255,0.95)"/>
+    </svg>
+    <span class="logo-word">Hebron<em>Guide</em></span>
+  </a>
   <a href="javascript:history.back()" class="nav-back">← 돌아가기</a>
 </nav>
 
