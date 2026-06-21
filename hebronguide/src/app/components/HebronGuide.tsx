@@ -26229,16 +26229,17 @@ function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number
   const city = useCityConfig();
   const ko = lang === "ko";
   const SIDEBAR_ITEMS = [
-    { tab: 0,  emoji: "🏠", labelKo: "홈",    labelEn: "Home" },
-    { tab: 1,  emoji: "🛬", labelKo: "정착",  labelEn: "Settle" },
-    { tab: 2,  emoji: "⛪", labelKo: "교회",  labelEn: "Church" },
-    { tab: 3,  emoji: "🍽️", labelKo: "맛집",  labelEn: "Food" },
-    { tab: 4,  emoji: "🗺️", labelKo: "탐방",  labelEn: "Explore" },
-    { tab: 5,  emoji: "🤝", labelKo: "도움",  labelEn: "Help" },
-    { tab: 6,  emoji: "💼", labelKo: "취업",  labelEn: "Jobs" },
-    { tab: 7,  emoji: "🎓", labelKo: "교육",  labelEn: "Schools" },
-    { tab: 8,  emoji: "💰", labelKo: "생활비", labelEn: "Costs" },
-    { tab: 12, emoji: "🏢", labelKo: "한인 업소", labelEn: "Business" },
+    { tab: 0,  icon: Home,          labelKo: "홈",    labelEn: "Home" },
+    { tab: 1,  icon: Plane,         labelKo: "정착",  labelEn: "Settle" },
+    { tab: 2,  icon: Church,        labelKo: "교회",  labelEn: "Church" },
+    { tab: 3,  icon: Utensils,      labelKo: "맛집",  labelEn: "Food" },
+    { tab: 4,  icon: Map,           labelKo: "탐방",  labelEn: "Explore" },
+    { tab: 5,  icon: HeartPulse,    labelKo: "도움",  labelEn: "Help" },
+    { tab: 9,  icon: Users,         labelKo: "사람 연결", labelEn: "People Connect" },
+    { tab: 6,  icon: Briefcase,     labelKo: "취업",  labelEn: "Jobs" },
+    { tab: 7,  icon: GraduationCap, labelKo: "교육",  labelEn: "Schools" },
+    { tab: 8,  icon: DollarSign,    labelKo: "생활비", labelEn: "Costs" },
+    { tab: 12, icon: Building2,     labelKo: "한인 업소", labelEn: "Business" },
   ];
   return (
     <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-screen w-64 z-40"
@@ -26279,6 +26280,7 @@ function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number
       <nav style={{ flex: 1, padding: "8px 8px", overflowY: "auto" }}>
         {SIDEBAR_ITEMS.map(item => {
           const isActive = activeTab === item.tab;
+          const IconComp = item.icon;
           return (
             <button key={item.tab} onClick={() => onNavigate(item.tab)}
               style={{ width: "100%", display: "flex", alignItems: "center", gap: 12, padding: "10px 12px",
@@ -26286,7 +26288,7 @@ function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number
                 background: isActive ? "rgba(242,153,74,0.15)" : "transparent",
                 outline: isActive ? "1.5px solid rgba(242,153,74,0.4)" : "none",
                 transition: "all 0.15s ease" }}>
-              <span style={{ fontSize: 18 }}>{item.emoji}</span>
+              <IconComp size={18} color={isActive ? "#F2994A" : "rgba(236,253,245,0.7)"} strokeWidth={1.8} />
               <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: isActive ? 800 : 500,
                 fontSize: 13, color: isActive ? "#F2994A" : "rgba(236,253,245,0.7)" }}>
                 {ko ? item.labelKo : item.labelEn}
