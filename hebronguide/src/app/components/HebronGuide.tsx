@@ -26784,6 +26784,89 @@ function NeedsBoardCard({ citySlug, lang }: { citySlug: string; lang: string }) 
 }
 
 /* ─────────────────────────────────────────
+   서비스 관심 등록 카드 — 라이드·스테이·튜터·매칭·관광 공통
+   community_items 재사용 (category="interest_*") — 수요 검증 단계 (Phase 1)
+───────────────────────────────────────── */
+function ServiceInterestCard({ icon, color, category, nameKo, nameEn, descKo, descEn, citySlug, lang }: {
+  icon: string; color: string; category: string;
+  nameKo: string; nameEn: string; descKo: string; descEn: string;
+  citySlug: string; lang: string;
+}) {
+  const ko = lang === "ko";
+  const [open, setOpen] = useState(false);
+  const [contact, setContact] = useState("");
+  const [note, setNote] = useState("");
+  const [sent, setSent] = useState(false);
+  const Icon = QM_ICON_MAP[icon];
+  const canSubmit = !!contact.trim();
+
+  const handleSubmit = () => {
+    if (!canSubmit) return;
+    postToServer({ category, citySlug, name: nameKo, contact: contact.trim(), desc: note.trim() });
+    setSent(true);
+    setContact(""); setNote("");
+    setTimeout(() => { setSent(false); setOpen(false); }, 3000);
+  };
+
+  return (
+    <div style={{ background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", padding: "16px", marginBottom: 12 }}>
+      <div onClick={() => setOpen(!open)} style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer" }}>
+        <div style={{
+          width: 48, height: 48, borderRadius: 14, flexShrink: 0,
+          background: color, boxShadow: `0 4px 12px ${color}55`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          {Icon && <Icon size={24} color="#fff" strokeWidth={1.8} />}
+        </div>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A", marginBottom: 3 }}>
+            {ko ? nameKo : nameEn}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#475569", lineHeight: 1.5 }}>
+            {ko ? descKo : descEn}
+          </div>
+        </div>
+        <span style={{ color, fontSize: 18, fontWeight: 700, flexShrink: 0, transform: open ? "rotate(90deg)" : "none", transition: "transform 0.15s" }}>›</span>
+      </div>
+
+      {sent ? (
+        <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid rgba(0,0,0,0.06)", textAlign: "center" }}>
+          <div style={{ fontSize: 22, marginBottom: 4 }}>✅</div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13, color: "#1B2A4A" }}>
+            {ko ? "관심 등록 완료! 준비되면 연락드립니다" : "Registered! We'll reach out when ready"}
+          </div>
+        </div>
+      ) : open && (
+        <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+          <input
+            value={contact} onChange={e => setContact(e.target.value)}
+            placeholder={ko ? "연락처 (전화 또는 이메일)" : "Contact (phone or email)"}
+            style={{ width: "100%", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 10, padding: "10px 12px", fontSize: 13, fontFamily: "inherit", outline: "none", marginBottom: 8, boxSizing: "border-box" as const, color: "#1B2A4A" }}
+          />
+          <input
+            value={note} onChange={e => setNote(e.target.value)}
+            placeholder={ko ? "한마디 (선택, 예: 평일 오전 선호)" : "Note (optional)"}
+            style={{ width: "100%", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 10, padding: "10px 12px", fontSize: 13, fontFamily: "inherit", outline: "none", marginBottom: 10, boxSizing: "border-box" as const, color: "#1B2A4A" }}
+          />
+          <button
+            onClick={handleSubmit}
+            disabled={!canSubmit}
+            style={{
+              width: "100%", padding: "12px 0", borderRadius: 10, border: "none",
+              background: canSubmit ? color : "rgba(0,0,0,0.06)",
+              color: canSubmit ? "#fff" : "rgba(0,0,0,0.3)",
+              fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13,
+              cursor: canSubmit ? "pointer" : "default",
+            }}>
+            {ko ? "관심 등록 →" : "Register Interest →"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
    TAB 9: 사람연결 SCREEN (ConnectScreen)
 ───────────────────────────────────────── */
 function ConnectScreen({ onHome }: { onHome?: () => void }) {
@@ -26801,36 +26884,14 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
       <div style={{ padding: "16px" }}>
         <NeedsBoardCard citySlug={city.slug} lang={lang} />
         {[
-          { icon: "car",          color: "#3B82F6", nameKo: "헤브론 라이드", nameEn: "Hebron Ride", descKo: "공항 픽업·일상 이동 — 한국어로 맞이하는 첫 이동", descEn: "Airport pickup & daily rides — your first ride in Korean", tab: 1, subTab: 0 },
-          { icon: "home",         color: "#F59E0B", nameKo: "헤브론 스테이", nameEn: "Hebron Stay", descKo: "단기 숙박·정착 동반 — 한인 가정에서 시작하는 정착", descEn: "Short-term stay & settlement support", tab: 1, subTab: 5 },
-          { icon: "book-open",    color: "#8B5CF6", nameKo: "헤브론 튜터", nameEn: "Hebron Tutor", descKo: "수학·SAT·한국어 — 한인 선배가 직접 가르칩니다", descEn: "Math, SAT & Korean — learn from Korean mentors", tab: 7, subTab: 0 },
-          { icon: "heart",        color: "#EC4899", nameKo: "헤브론 매칭", nameEn: "Hebron Match", descKo: "진지하고 따뜻한 만남 — 같은 가치관의 사람을 찾습니다", descEn: "Thoughtful connections with shared values", tab: 2, subTab: 4 },
-          { icon: "map",          color: "#10B981", nameKo: "헤브론 관광", nameEn: "Hebron Tour", descKo: "현지 한인 가이드와 함께하는 진짜 도시 탐방", descEn: "Real city exploration with local Korean guides", tab: 4, subTab: 4 },
-        ].map((svc, i) => {
-          const SvcIcon = QM_ICON_MAP[svc.icon];
-          return (
-          <div key={i} onClick={() => onHome?.()}
-            style={{ background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", padding: "16px", marginBottom: 12, display: "flex", alignItems: "center", gap: 14, cursor: "pointer" }}>
-            <div style={{
-              width: 48, height: 48, borderRadius: 14, flexShrink: 0,
-              background: svc.color,
-              boxShadow: `0 4px 12px ${svc.color}55`,
-              display: "flex", alignItems: "center", justifyContent: "center",
-            }}>
-              {SvcIcon && <SvcIcon size={24} color="#fff" strokeWidth={1.8} />}
-            </div>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A", marginBottom: 3 }}>
-                {ko ? svc.nameKo : svc.nameEn}
-              </div>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#475569", lineHeight: 1.5 }}>
-                {ko ? svc.descKo : svc.descEn}
-              </div>
-            </div>
-            <span style={{ color: "#6EE7B7", fontSize: 18, fontWeight: 700, flexShrink: 0 }}>›</span>
-          </div>
-          );
-        })}
+          { icon: "car",       color: "#3B82F6", category: "interest_ride",  nameKo: "헤브론 라이드", nameEn: "Hebron Ride", descKo: "공항 픽업·일상 이동 — 한국어로 맞이하는 첫 이동", descEn: "Airport pickup & daily rides — your first ride in Korean" },
+          { icon: "home",      color: "#F59E0B", category: "interest_stay",  nameKo: "헤브론 스테이", nameEn: "Hebron Stay", descKo: "단기 숙박·정착 동반 — 한인 가정에서 시작하는 정착", descEn: "Short-term stay & settlement support" },
+          { icon: "book-open", color: "#8B5CF6", category: "interest_tutor", nameKo: "헤브론 튜터", nameEn: "Hebron Tutor", descKo: "수학·SAT·한국어 — 한인 선배가 직접 가르칩니다", descEn: "Math, SAT & Korean — learn from Korean mentors" },
+          { icon: "heart",     color: "#EC4899", category: "interest_match", nameKo: "헤브론 매칭", nameEn: "Hebron Match", descKo: "진지하고 따뜻한 만남 — 같은 가치관의 사람을 찾습니다", descEn: "Thoughtful connections with shared values" },
+          { icon: "map",       color: "#10B981", category: "interest_tour",  nameKo: "헤브론 관광", nameEn: "Hebron Tour", descKo: "현지 한인 가이드와 함께하는 진짜 도시 탐방", descEn: "Real city exploration with local Korean guides" },
+        ].map((svc, i) => (
+          <ServiceInterestCard key={i} {...svc} citySlug={city.slug} lang={lang} />
+        ))}
         <div style={{ background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", padding: "16px", textAlign: "center" }}>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "#64748B", lineHeight: 1.6 }}>
             {ko ? "더 많은 서비스가 곧 추가됩니다" : "More services coming soon"}
