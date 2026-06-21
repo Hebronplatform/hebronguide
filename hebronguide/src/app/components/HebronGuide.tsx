@@ -26717,7 +26717,14 @@ function NeedsBoardCard({ citySlug, lang }: { citySlug: string; lang: string }) 
   return (
     <div style={{ background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", padding: "16px", marginBottom: 12 }}>
       <div onClick={() => setOpen(!open)} style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer" }}>
-        <span style={{ fontSize: 32, flexShrink: 0 }}>🙋</span>
+        <div style={{
+          width: 48, height: 48, borderRadius: 14, flexShrink: 0,
+          background: "#EF4444",
+          boxShadow: "0 4px 12px #EF444455",
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <LifeBuoy size={24} color="#fff" strokeWidth={1.8} />
+        </div>
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A", marginBottom: 3 }}>
             {ko ? "지금 도움이 필요하신가요?" : "Need help right now?"}
@@ -26790,15 +26797,24 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
       <div style={{ padding: "16px" }}>
         <NeedsBoardCard citySlug={city.slug} lang={lang} />
         {[
-          { emoji: "🚗", nameKo: "헤브론 라이드", nameEn: "Hebron Ride", descKo: "공항 픽업·일상 이동 — 한국어로 맞이하는 첫 이동", descEn: "Airport pickup & daily rides — your first ride in Korean", tab: 1, subTab: 0 },
-          { emoji: "🏠", nameKo: "헤브론 스테이", nameEn: "Hebron Stay", descKo: "단기 숙박·정착 동반 — 한인 가정에서 시작하는 정착", descEn: "Short-term stay & settlement support", tab: 1, subTab: 5 },
-          { emoji: "📚", nameKo: "헤브론 튜터", nameEn: "Hebron Tutor", descKo: "수학·SAT·한국어 — 한인 선배가 직접 가르칩니다", descEn: "Math, SAT & Korean — learn from Korean mentors", tab: 7, subTab: 0 },
-          { emoji: "💍", nameKo: "헤브론 매칭", nameEn: "Hebron Match", descKo: "진지하고 따뜻한 만남 — 같은 가치관의 사람을 찾습니다", descEn: "Thoughtful connections with shared values", tab: 2, subTab: 4 },
-          { emoji: "🧭", nameKo: "헤브론 관광", nameEn: "Hebron Tour", descKo: "현지 한인 가이드와 함께하는 진짜 도시 탐방", descEn: "Real city exploration with local Korean guides", tab: 4, subTab: 4 },
-        ].map((svc, i) => (
+          { icon: "car",          color: "#3B82F6", nameKo: "헤브론 라이드", nameEn: "Hebron Ride", descKo: "공항 픽업·일상 이동 — 한국어로 맞이하는 첫 이동", descEn: "Airport pickup & daily rides — your first ride in Korean", tab: 1, subTab: 0 },
+          { icon: "home",         color: "#F59E0B", nameKo: "헤브론 스테이", nameEn: "Hebron Stay", descKo: "단기 숙박·정착 동반 — 한인 가정에서 시작하는 정착", descEn: "Short-term stay & settlement support", tab: 1, subTab: 5 },
+          { icon: "book-open",    color: "#8B5CF6", nameKo: "헤브론 튜터", nameEn: "Hebron Tutor", descKo: "수학·SAT·한국어 — 한인 선배가 직접 가르칩니다", descEn: "Math, SAT & Korean — learn from Korean mentors", tab: 7, subTab: 0 },
+          { icon: "heart",        color: "#EC4899", nameKo: "헤브론 매칭", nameEn: "Hebron Match", descKo: "진지하고 따뜻한 만남 — 같은 가치관의 사람을 찾습니다", descEn: "Thoughtful connections with shared values", tab: 2, subTab: 4 },
+          { icon: "map",          color: "#10B981", nameKo: "헤브론 관광", nameEn: "Hebron Tour", descKo: "현지 한인 가이드와 함께하는 진짜 도시 탐방", descEn: "Real city exploration with local Korean guides", tab: 4, subTab: 4 },
+        ].map((svc, i) => {
+          const SvcIcon = QM_ICON_MAP[svc.icon];
+          return (
           <div key={i} onClick={() => onHome?.()}
             style={{ background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", padding: "16px", marginBottom: 12, display: "flex", alignItems: "center", gap: 14, cursor: "pointer" }}>
-            <span style={{ fontSize: 32, flexShrink: 0 }}>{svc.emoji}</span>
+            <div style={{
+              width: 48, height: 48, borderRadius: 14, flexShrink: 0,
+              background: svc.color,
+              boxShadow: `0 4px 12px ${svc.color}55`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              {SvcIcon && <SvcIcon size={24} color="#fff" strokeWidth={1.8} />}
+            </div>
             <div style={{ flex: 1 }}>
               <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A", marginBottom: 3 }}>
                 {ko ? svc.nameKo : svc.nameEn}
@@ -26809,10 +26825,11 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
             </div>
             <span style={{ color: "#6EE7B7", fontSize: 18, fontWeight: 700, flexShrink: 0 }}>›</span>
           </div>
-        ))}
+          );
+        })}
         <div style={{ background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", padding: "16px", textAlign: "center" }}>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "#64748B", lineHeight: 1.6 }}>
-            {ko ? "더 많은 서비스가 곧 추가됩니다 🙏" : "More services coming soon 🙏"}
+            {ko ? "더 많은 서비스가 곧 추가됩니다" : "More services coming soon"}
           </div>
         </div>
       </div>

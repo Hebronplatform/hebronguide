@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>업소 등재 신청 — HebronGuide</title>
-<meta name="description" content="교회 성도님의 업소·서비스를 HebronGuide에 등재하세요. 새로 오신 한인 이민자들이 믿을 수 있는 분을 먼저 만납니다.">
+<meta name="description" content="한인 업소·서비스를 HebronGuide에 등재하세요. 새로 오신 한인 이민자들이 믿을 수 있는 분을 먼저 만납니다.">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -170,7 +170,7 @@ footer{
 </nav>
 
 <div class="hero">
-  <div class="hero-badge">🌿 성도 업소 등재</div>
+  <div class="hero-badge">🌿 한인 업소 등재</div>
   <h1>내 업소를 <em>환대의 도구</em>로</h1>
   <p>
     새로 이민 온 한인이 가장 먼저 찾을 때<br>
@@ -179,7 +179,7 @@ footer{
 </div>
 
 <div class="free-bar">
-  🎁 홍보 기간 <strong>완전 무료</strong> · 2026년 10월 1일까지
+  🎁 기본 등재 <strong>무료</strong>
 </div>
 
 <div class="container">
@@ -189,7 +189,7 @@ footer{
     <div class="info-title">✅ 이렇게 진행됩니다</div>
     <p>
       아래 정보를 입력하시면 <strong style="color:#fff;">AI 자동 검토</strong> 후<br>
-      HebronGuide 관리자에게 전달됩니다.<br>
+      신뢰도가 높으면 <strong style="color:#6EE7B7;">바로 게시</strong>, 아니면 관리자가 확인 후 게시합니다.<br>
       목사님 추천이 있으면 <strong style="color:#C9A227;">⭐ 인증 배지</strong>가 함께 표시됩니다.
     </p>
   </div>
@@ -206,19 +206,13 @@ footer{
           <input type="text" id="memberName" placeholder="홍길동">
         </div>
         <div class="field">
-          <label>소속 교회 <span class="opt">(선택)</span></label>
-          <input type="text" id="churchName" placeholder="시애틀OO교회">
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field">
           <label>연락 전화 <span class="req">*</span></label>
           <input type="tel" id="phone" placeholder="(206) 000-0000">
         </div>
-        <div class="field">
-          <label>이메일 <span class="opt">(선택)</span></label>
-          <input type="email" id="email" placeholder="me@email.com">
-        </div>
+      </div>
+      <div class="field">
+        <label>이메일 <span class="opt">(선택)</span></label>
+        <input type="email" id="email" placeholder="me@email.com">
       </div>
     </div>
 
@@ -312,11 +306,17 @@ footer{
         <span style="color:rgba(255,255,255,.15);font-size:1.2rem;">│</span>
         <div class="badge-without">추천 없음 — 일반 등재</div>
       </div>
-      <div class="field" style="margin-bottom:0;">
-        <label>목사님 이메일 <span class="opt">(선택)</span></label>
-        <input type="email" id="pastorEmail" placeholder="pastor@church.com">
-        <div class="hint">입력하지 않아도 등재는 됩니다</div>
+      <div class="field-row">
+        <div class="field">
+          <label>소속 교회 <span class="opt">(선택)</span></label>
+          <input type="text" id="churchName" placeholder="시애틀OO교회">
+        </div>
+        <div class="field">
+          <label>목사님 이메일 <span class="opt">(선택)</span></label>
+          <input type="email" id="pastorEmail" placeholder="pastor@church.com">
+        </div>
       </div>
+      <div class="hint">입력하지 않아도 등재는 됩니다</div>
     </div>
 
     <!-- 동의 -->
@@ -434,9 +434,13 @@ function showResult(result, data) {
     return;
   }
 
-  const icon   = isClean ? '✅' : isWarning ? '⚠️' : '📋';
-  const title  = isClean ? '신청이 접수되었습니다!' : isWarning ? '신청 접수 — 확인 후 게시' : '내용을 다시 확인해 주세요';
-  const desc   = isClean
+  const isAutoApproved = isClean && result.autoApprove;
+
+  const icon   = isAutoApproved ? '🎉' : isClean ? '✅' : isWarning ? '⚠️' : '📋';
+  const title  = isAutoApproved ? 'AI 검증 통과 — 바로 게시되었습니다!' : isClean ? '신청이 접수되었습니다!' : isWarning ? '신청 접수 — 확인 후 게시' : '내용을 다시 확인해 주세요';
+  const desc   = isAutoApproved
+    ? `<strong style="color:#6EE7B7;">${data.bizName}</strong>이 HebronGuide ${data.city} 페이지에 바로 게시되었습니다.<br>담당자가 추후 한 번 더 확인합니다.`
+    : isClean
     ? `<strong style="color:#6EE7B7;">${data.bizName}</strong> 등재 신청이 검토 대기 중입니다.<br>아래 버튼으로 담당자에게 전달해 주세요.`
     : isWarning
     ? '일부 항목 확인이 필요합니다. 담당자가 검토 후 연락드립니다.'
@@ -448,6 +452,11 @@ function showResult(result, data) {
 
   const actionHtml = isError
     ? `<a class="btn-action btn-back" href="javascript:location.reload()">← 다시 입력</a>`
+    : isAutoApproved
+    ? `
+      <a class="btn-action btn-primary" href="/${data.city}/">HebronGuide에서 확인하기 →</a>
+      ${pastorMailto ? `<a class="btn-action btn-secondary" href="${pastorMailto}">⭐ 목사님께 추천 요청 보내기</a>` : ''}
+    `
     : `
       <a class="btn-action btn-primary" href="${reviewMailto}">
         📧 Hebron 관리자에게 전달
@@ -476,7 +485,7 @@ function buildReviewBody(result, d, statusLabel) {
     `업종:     ${d.bizType}`,
     `도시:     ${d.city}`,
     `소속 교회: ${d.churchName||'—'}`,
-    `성도:     ${d.memberName}`,
+    `신청자:   ${d.memberName}`,
     `전화:     ${d.phone||'—'}`,
     `이메일:   ${d.email||'—'}`,
     `주소:     ${d.address||'—'}`,

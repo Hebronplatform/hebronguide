@@ -1026,6 +1026,7 @@
               <td>
                 <span class="status ${r.status || 'community'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '💬 커뮤니티'}</span>
                 ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
+                ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">🤖 AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
               </td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions" onclick="event.stopPropagation()">
@@ -1071,6 +1072,7 @@
               <td>
                 <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span>
                 ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
+                ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">🤖 AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
               </td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions" onclick="event.stopPropagation()">
@@ -1171,6 +1173,7 @@
               <td>
                 <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span>
                 ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
+                ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">🤖 AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
               </td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions" onclick="event.stopPropagation()">
@@ -1237,6 +1240,7 @@
               <td>
                 <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span>
                 ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
+                ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">🤖 AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
               </td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions" onclick="event.stopPropagation()">
