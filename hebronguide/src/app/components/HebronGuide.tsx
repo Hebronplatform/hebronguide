@@ -10757,20 +10757,24 @@ interface ScreenHeaderProps {
   descKo: string;
   descEn: string;
   accentColor: string;
+  light?: boolean; // true = 밝은 배경 화면용 (어두운 글자색으로 명암 확보)
 }
-function ScreenHeader({ emoji, titleKo, titleEn, descKo, descEn, accentColor }: ScreenHeaderProps) {
+function ScreenHeader({ emoji, titleKo, titleEn, descKo, descEn, accentColor, light }: ScreenHeaderProps) {
   const { lang } = useI18n();
+  const titleColor = light ? "#1B2A4A" : "#ECFDF5";
+  const descColor  = light ? "rgba(27,42,74,0.65)" : "rgba(236,253,245,0.82)";
+  const borderColor = light ? "rgba(0,0,0,0.07)" : "rgba(255,255,255,0.07)";
   return (
-    <div className="px-[20px] pt-[24px] pb-[20px]" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+    <div className="px-[20px] pt-[24px] pb-[20px]" style={{ borderBottom: `1px solid ${borderColor}` }}>
       <div className="flex items-center gap-[14px]">
         <div className="flex items-center justify-center" style={{ width: 52, height: 52, borderRadius: 16, background: `${accentColor}22`, border: `1px solid ${accentColor}44`, fontSize: 26 }}>
           {emoji}
         </div>
         <div>
-          <h2 className="m-0" style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 22, letterSpacing: "-0.5px", color: "#ECFDF5" }}>
+          <h2 className="m-0" style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 22, letterSpacing: "-0.5px", color: titleColor }}>
             {lang === "ko" ? titleKo : titleEn}
           </h2>
-          <p className="m-0 mt-[3px]" style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.82)" }}>
+          <p className="m-0 mt-[3px]" style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: descColor }}>
             {lang === "ko" ? descKo : descEn}
           </p>
         </div>
@@ -25975,7 +25979,7 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
         titleKo="한인 업소" titleEn="Korean Business Directory"
         descKo={`${city.nameKo} 한인 업소·서비스 디렉토리`}
         descEn={`Korean business listings in ${city.nameEn}`}
-        accentColor="#6366F1" />
+        accentColor="#6366F1" light />
 
       {/* 검색 */}
       <div style={{ padding: "0 16px 12px" }}>
@@ -26793,7 +26797,7 @@ function ConnectScreen({ onHome }: { onHome?: () => void }) {
       <ScreenHeader emoji="🤝" titleKo="사람 연결" titleEn="People Connect"
         descKo={`${city.nameKo} — 한인 커뮤니티 연결 서비스`}
         descEn={`${city.nameEn} — Korean community connection services`}
-        accentColor="#6EE7B7" />
+        accentColor="#10B981" light />
       <div style={{ padding: "16px" }}>
         <NeedsBoardCard citySlug={city.slug} lang={lang} />
         {[
