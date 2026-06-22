@@ -126,20 +126,24 @@
   .vision-world p{font-size:1rem;color:var(--muted);line-height:2;max-width:560px;margin:0 auto;}
   .vision-world strong{color:#fff;}
 
-  /* ━━━ JOIN ━━━ */
-  .join-section{padding:88px 24px;text-align:center;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(110,231,183,.06),transparent);}
-  .join-section h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:#fff;margin-bottom:16px;line-height:1.3;}
-  .join-section h2 em{color:var(--mint);font-style:normal;}
-  .join-section p{font-size:.98rem;color:var(--muted);line-height:2;max-width:540px;margin:0 auto 36px;}
+  /* ━━━ JOIN — 밝고 희망적인 톤으로 전환 ━━━ */
+  .join-section{padding:96px 24px;text-align:center;background:linear-gradient(165deg,#f9d77e 0%,#f0b84e 38%,#e8924a 72%,#d9763a 100%);position:relative;overflow:hidden;}
+  .join-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(255,255,255,.35),transparent 60%);pointer-events:none;}
+  .join-section>*{position:relative;z-index:1;}
+  .join-eyebrow{display:inline-block;font-size:.72rem;font-weight:900;color:#5c3a0e;letter-spacing:.16em;text-transform:uppercase;background:rgba(255,255,255,.4);border:1px solid rgba(92,58,14,.18);border-radius:99px;padding:7px 18px;margin-bottom:22px;}
+  .join-section h2{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#2b1a05;margin-bottom:18px;line-height:1.28;letter-spacing:-.01em;}
+  .join-section h2 em{color:#fff;font-style:normal;text-shadow:0 1px 12px rgba(0,0,0,.12);}
+  .join-section p{font-size:1rem;color:rgba(43,26,5,.78);line-height:1.95;max-width:560px;margin:0 auto 32px;font-weight:500;}
+  .meaning-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:44px;}
+  .meaning-chip{background:rgba(255,255,255,.55);border:1px solid rgba(43,26,5,.14);border-radius:14px;padding:13px 18px;text-align:left;max-width:230px;backdrop-filter:blur(2px);}
+  .meaning-chip .mc-label{font-size:.64rem;font-weight:900;color:#9a5f10;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
+  .meaning-chip .mc-val{font-size:.84rem;color:#2b1a05;font-weight:700;line-height:1.55;}
   .join-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:800px;margin:0 auto 40px;}
-  .join-card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:22px 20px;text-align:left;cursor:pointer;transition:border-color .18s,transform .15s;text-decoration:none;display:block;color:inherit;}
-  .join-card:hover{border-color:var(--mint);transform:translateY(-3px);}
-  .join-card.card-church:hover{border-color:#C9A227;}
-  .join-card.card-biz:hover{border-color:#818CF8;}
-  .join-card.card-city:hover{border-color:#F97316;}
+  .join-card{background:#fff;border:1px solid rgba(43,26,5,.08);border-radius:16px;padding:22px 20px;text-align:left;cursor:pointer;transition:transform .18s,box-shadow .18s;text-decoration:none;display:block;color:inherit;box-shadow:0 6px 20px rgba(43,26,5,.12);}
+  .join-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(43,26,5,.18);}
   .join-card-img{display:block;width:calc(100% + 40px);height:110px;object-fit:cover;margin:-22px -20px 18px;border-radius:14px 14px 0 0;}
-  .join-card-title{font-size:.92rem;font-weight:800;color:#fff;margin-bottom:6px;}
-  .join-card-desc{font-size:.8rem;color:var(--muted);line-height:1.75;}
+  .join-card-title{font-size:.92rem;font-weight:800;color:#1a1a1a;margin-bottom:6px;}
+  .join-card-desc{font-size:.8rem;color:#5a5a5a;line-height:1.75;}
 
   /* ━━━ CITIES ━━━ */
   .cities-section{padding:72px 24px;max-width:960px;margin:0 auto;}
@@ -537,11 +541,29 @@
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ JOIN ━━━ -->
 <div class="join-section">
-  <h2><span class="ko">당신의 <em>선한 영향력</em>이<br>세상을 바꿉니다</span><span class="en">Your <em>Good Influence</em><br>Changes the World</span></h2>
+  <div class="join-eyebrow"><span class="ko">헤브론의 뜻</span><span class="en">The Meaning of Hebron</span></div>
+
+  <h2><span class="ko">낯선 땅에서<br><em>하나님과 동행</em>한 그 이름,<br>이제 당신의 차례입니다.</span><span class="en">The name of one who<br><em>walked with God</em><br>in a foreign land. Now, it's your turn.</span></h2>
+
   <p>
-    <span class="ko">거창한 것이 아닙니다.<br>전화번호 하나, 식당 한 곳, 초대 한 마디면 충분합니다.<br><strong style="color:#fff;">지금 이 운동에 함께해 주세요.</strong></span>
-    <span class="en">It doesn't take much.<br>One phone number, one restaurant, one invitation is enough.<br><strong style="color:#fff;">Join this movement today.</strong></span>
+    <span class="ko">거창한 것이 아닙니다. 전화번호 하나, 식당 한 곳, 초대 한 마디면 충분합니다.<br><strong style="color:#fff;">그 작은 시작이 세상을 바꾸는 운동이 됩니다.</strong></span>
+    <span class="en">It doesn't take much. One phone number, one restaurant, one invitation is enough.<br><strong style="color:#fff;">That small beginning becomes a movement that changes the world.</strong></span>
   </p>
+
+  <div class="meaning-row">
+    <div class="meaning-chip">
+      <div class="mc-label"><span class="ko">이름의 뜻</span><span class="en">The Name</span></div>
+      <div class="mc-val"><span class="ko">히브리어로 "연합·동행" (חֶבְרוֹן)</span><span class="en">Hebrew for "union, companionship"</span></div>
+    </div>
+    <div class="meaning-chip">
+      <div class="mc-label"><span class="ko">그 시작</span><span class="en">The Origin</span></div>
+      <div class="mc-val"><span class="ko">창세기 13장 — 아브라함이 거류민으로 살며 하나님과 동행한 땅</span><span class="en">Genesis 13 — where Abraham lived as a stranger, walking with God</span></div>
+    </div>
+    <div class="meaning-chip">
+      <div class="mc-label"><span class="ko">가이드의 방향</span><span class="en">Where We're Headed</span></div>
+      <div class="mc-val"><span class="ko">도시 가이드 → 사람 연결 → 교회 → 그리스도</span><span class="en">City Guide → People → Church → Christ</span></div>
+    </div>
+  </div>
 
   <div class="join-cards">
     <a href="/#cities" class="join-card">
