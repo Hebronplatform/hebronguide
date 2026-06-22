@@ -1,99 +1,74 @@
 #!/usr/bin/env node
 /**
  * HebronGuide 도시 수 자동 업데이트 스크립트
- * 사용법: node scripts/update-city-count.js
  *
- * HEBRON_CITIES 배열에서 status:"live" 도시 수를 세어
- * 아래 FILES 목록의 모든 파일을 한 번에 업데이트합니다.
- * 새 도시를 HebronGuide.tsx에 추가한 뒤 반드시 실행하세요.
+ * 새 도시를 HEBRON_CITIES 배열에 추가한 후 실행:
+ *   node scripts/update-city-count.js
+ *
+ * 업데이트되는 곳:
+ *   1. /js/hg-config.js          ← 모든 HTML 페이지가 여기서 읽음 (핵심)
+ *   2. index.html meta 태그       ← JS로 못 바꾸는 SEO 태그만 직접 수정
+ *   3. HebronGuide.tsx 정적 문자열 ← 동적 LIVE_CITY_COUNT 외 나머지
+ *   4. api/city-planner.js        ← AI 시스템 프롬프트
  */
 
 const fs = require('fs');
 const path = require('path');
-
 const ROOT = path.resolve(__dirname, '..');
 
-// ── 1. 실제 도시 수 계산 ──────────────────────────────────
+// ── 1. 실제 도시 수 계산 ───────────────────────────────────
 const tsx = fs.readFileSync(
-  path.join(ROOT, 'hebronguide/src/app/components/HebronGuide.tsx'),
-  'utf8'
+  path.join(ROOT, 'hebronguide/src/app/components/HebronGuide.tsx'), 'utf8'
 );
-const matches = [...tsx.matchAll(/status:\s*["']live["']/g)];
-const COUNT = matches.length;
-console.log(`✅ 실제 live 도시 수: ${COUNT}개`);
+const COUNT = [...tsx.matchAll(/status:\s*["']live["']/g)].length;
+console.log(`✅ HEBRON_CITIES live 도시 수: ${COUNT}개`);
 
-// ── 2. 업데이트할 파일 & 패턴 목록 ──────────────────────────
-const FILES = [
-  // index.html (랜딩 페이지) — 5곳
-  {
-    file: 'index.html',
-    replacements: [
-      [/전 세계 \d+개\+ 도시\./g,        `전 세계 ${COUNT}개+ 도시.`],
-      [/\d+개 도시에서 <span>전 세계로<\/span>/g, `${COUNT}개 도시에서 <span>전 세계로</span>`],
-      [/전 세계 <span>\d+개\+ 도시<\/span>/g,   `전 세계 <span>${COUNT}개+ 도시</span>`],
-      [/ko">\d+개 도시<\/span><span class="en">\d+\+ Cities/g,
-                                          `ko">${COUNT}개 도시</span><span class="en">${COUNT}+ Cities`],
-      [/<div class="stat-n">\d+<sup/g,    `<div class="stat-n">${COUNT}<sup`],
-      [/From \d+ Cities/g,                `From ${COUNT} Cities`],
-      [/>\d+\+ Cities<\/span> Worldwide/g,`>${COUNT}+ Cities</span> Worldwide`],
-    ]
-  },
-  // api/city-planner.js — 2곳
-  {
-    file: 'api/city-planner.js',
-    replacements: [
-      [/currently serves \d+ cities worldwide/g, `currently serves ${COUNT} cities worldwide`],
-      [/2025: \d+ cities →/g,                    `2025: ${COUNT} cities →`],
-    ]
-  },
-  // hebronguide/public/partner-benefits.html — 2곳
-  {
-    file: 'hebronguide/public/partner-benefits.html',
-    replacements: [
-      [/\d+개\+ 도시 한인 디렉토리/g,   `${COUNT}개+ 도시 한인 디렉토리`],
-      [/\d+개\+ 도시 디렉토리 노출/g,   `${COUNT}개+ 도시 디렉토리 노출`],
-    ]
-  },
-  // hebronguide/public/qr-assets.html — 2곳
-  {
-    file: 'hebronguide/public/qr-assets.html',
-    replacements: [
-      [/\d+개\+ 도시 — 무료/g,  `${COUNT}개+ 도시 — 무료`],
-      [/📍 \d+개\+ 도시/g,      `📍 ${COUNT}개+ 도시`],
-    ]
-  },
-  // hebronguide/public/ad-request.html — 1곳
-  {
-    file: 'hebronguide/public/ad-request.html',
-    replacements: [
-      [/\d+개 도시 한인 커뮤니티에/g, `${COUNT}개 도시 한인 커뮤니티에`],
-    ]
-  },
-];
+// ── 2. hg-config.js 업데이트 (핵심 — 나머지 HTML은 자동 반영) ──
+const configPath = path.join(ROOT, 'hebronguide/public/js/hg-config.js');
+let cfg = fs.readFileSync(configPath, 'utf8');
+cfg = cfg.replace(/CITY_COUNT\s*=\s*\d+/, `CITY_COUNT = ${COUNT}`);
+fs.writeFileSync(configPath, cfg, 'utf8');
+console.log(`  ✅ hg-config.js → ${COUNT}`);
 
-// ── 3. 각 파일 업데이트 ──────────────────────────────────
-let totalChanged = 0;
-for (const { file, replacements } of FILES) {
-  const filePath = path.join(ROOT, file);
-  if (!fs.existsSync(filePath)) {
-    console.warn(`  ⚠️  파일 없음: ${file}`);
-    continue;
-  }
-  let content = fs.readFileSync(filePath, 'utf8');
-  let changed = 0;
-  for (const [pattern, replacement] of replacements) {
-    const before = content;
-    content = content.replace(pattern, replacement);
-    if (content !== before) changed++;
-  }
-  if (changed > 0) {
-    fs.writeFileSync(filePath, content, 'utf8');
-    console.log(`  ✅ ${file} — ${changed}곳 업데이트`);
-    totalChanged += changed;
-  } else {
-    console.log(`  ℹ️  ${file} — 변경 없음`);
-  }
+// ── 3. index.html meta 태그 (JS 접근 불가 SEO 태그) ─────────
+const idxPath = path.join(ROOT, 'index.html');
+let idx = fs.readFileSync(idxPath, 'utf8');
+const idxBefore = idx;
+idx = idx
+  .replace(/전 세계 \d+개\+ 도시\./g, `전 세계 ${COUNT}개+ 도시.`)
+  .replace(/content="전 세계 \d+개\+ 도시/g, `content="전 세계 ${COUNT}개+ 도시`);
+if (idx !== idxBefore) {
+  fs.writeFileSync(idxPath, idx, 'utf8');
+  console.log(`  ✅ index.html meta 태그 → ${COUNT}`);
 }
 
-console.log(`\n완료: 총 ${totalChanged}곳 업데이트 (도시 수: ${COUNT}개)`);
-console.log('다음 단계: git add -A && git commit -m "chore: city count → ' + COUNT + '" && git push');
+// ── 4. HebronGuide.tsx 정적 문자열 ──────────────────────────
+const tsxPath = path.join(ROOT, 'hebronguide/src/app/components/HebronGuide.tsx');
+let tsxContent = fs.readFileSync(tsxPath, 'utf8');
+const tsxBefore = tsxContent;
+// 주석의 도시 수와 정적 문자열만 교체 (LIVE_CITY_COUNT는 건드리지 않음)
+tsxContent = tsxContent
+  .replace(/\/\/ 현재 \d+개 도시/g, `// 현재 ${COUNT}개 도시`)
+  .replace(/"✦ \d+개 도시의 이야기"/g, `"✦ ${COUNT}개 도시의 이야기"`)
+  .replace(/"✦ \d+ Cities"/g, `"✦ ${COUNT} Cities"`)
+  .replace(/\d+개 도시 한인을 만납니다/g, `${COUNT}개 도시 한인을 만납니다`)
+  .replace(/Meet Koreans across \d+ cities/g, `Meet Koreans across ${COUNT} cities`);
+if (tsxContent !== tsxBefore) {
+  fs.writeFileSync(tsxPath, tsxContent, 'utf8');
+  console.log(`  ✅ HebronGuide.tsx 정적 문자열 → ${COUNT}`);
+}
+
+// ── 5. api/city-planner.js ───────────────────────────────────
+const cpPath = path.join(ROOT, 'api/city-planner.js');
+let cp = fs.readFileSync(cpPath, 'utf8');
+const cpBefore = cp;
+cp = cp
+  .replace(/currently serves \d+ cities worldwide/g, `currently serves ${COUNT} cities worldwide`)
+  .replace(/2025: \d+ cities →/g, `2025: ${COUNT} cities →`);
+if (cp !== cpBefore) {
+  fs.writeFileSync(cpPath, cp, 'utf8');
+  console.log(`  ✅ city-planner.js → ${COUNT}`);
+}
+
+console.log(`\n완료: 도시 수 ${COUNT}개로 통일됨`);
+console.log('다음: git add -A && git commit -m "chore: city count → ' + COUNT + '" && git push');
