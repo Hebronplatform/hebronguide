@@ -31,6 +31,7 @@ cp icon-192.png  public/icon-192.png
 cp icon-512.png  public/icon-512.png
 cp icon-192.png  public/apple-touch-icon.png
 cp icon-192.png  public/apple-touch-icon-precomposed.png
+cp manifest.json public/manifest.json
 cp hebronguide/dist/hebronguide-logo.svg public/hebronguide-logo.svg
 cp worldcup.json public/worldcup.json   2>/dev/null || true
 
