@@ -26244,14 +26244,25 @@ function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number
   return (
     <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-screen w-64 z-40"
       style={{ background: "#1a2535", borderRight: "1px solid rgba(255,255,255,0.08)" }}>
-      {/* 로고 */}
+      {/* 로고 — 모바일 헤더와 동일한 아이콘+워드마크 */}
       <div style={{ padding: "20px 16px 16px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-        <a href="https://hebronguide.com" style={{ textDecoration: "none" }}>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 18, color: "#F2994A", cursor: "pointer" }}>HEBRON</div>
+        <a href="https://hebronguide.com" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
+          <div className="flex items-center justify-center overflow-hidden"
+            style={{ width: 34, height: 34, borderRadius: 10, border: "1px solid rgba(242,153,74,0.25)", background: "rgba(242,153,74,0.08)", flexShrink: 0 }}>
+            <img src={logoImg} alt="HebronGuide Logo" style={{ width: 28, height: 28, objectFit: "contain" }}
+              onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; const fb = e.currentTarget.nextElementSibling as HTMLElement; if (fb) fb.style.display = "flex"; }} />
+            <span style={{ display: "none", alignItems: "center", justifyContent: "center", width: 28, height: 28, fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 13, color: "#F2994A" }}>HG</span>
+          </div>
+          <div>
+            <div style={{ lineHeight: 1 }}>
+              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, letterSpacing: "1px", color: "#F2994A" }}>HEBRON</span>
+              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 15, letterSpacing: "1px", color: "rgba(236,253,245,0.55)" }}>GUIDE</span>
+            </div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 10, color: "#6EE7B7", marginTop: 2 }}>
+              {city.nameEn.toUpperCase()}
+            </div>
+          </div>
         </a>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 11, color: "#6EE7B7", marginTop: 2 }}>
-          {city.nameEn.toUpperCase()}
-        </div>
       </div>
       {/* 🔍 검색 버튼 */}
       {onSearch && (
