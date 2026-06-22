@@ -6,10 +6,10 @@
   <link rel="apple-touch-icon" href="/icon-192.png"/>
   <link rel="icon" type="image/png" href="/icon-192.png"/>
   <title>HebronGuide — 낯선 도시, 이미 누군가 기다렸습니다</title>
-  <meta name="description" content="HebronGuide — 전 세계 72개+ 도시. 낯선 도시에서 처음 맞이하는 따뜻한 얼굴. 정보가 아닌 사람으로 연결되는 글로벌 환대 커뮤니티."/>
+  <meta name="description" content="HebronGuide — 전 세계 67개+ 도시. 낯선 도시에서 처음 맞이하는 따뜻한 얼굴. 정보가 아닌 사람으로 연결되는 글로벌 환대 커뮤니티."/>
   <meta name="theme-color" content="#0d1117"/>
   <meta property="og:title" content="HebronGuide — 낯선 도시, 이미 누군가 기다렸습니다"/>
-  <meta property="og:description" content="전 세계 72개+ 도시. 낯선 도시에서 처음 맞이하는 따뜻한 얼굴. 정보가 아닌 사람으로 연결됩니다."/>
+  <meta property="og:description" content="전 세계 67개+ 도시. 낯선 도시에서 처음 맞이하는 따뜻한 얼굴. 정보가 아닌 사람으로 연결됩니다."/>
   <meta property="og:url" content="https://hebronguide.com/"/>
   <meta property="og:image" content="https://hebronguide.com/icon-512.png"/>
   <link rel="canonical" href="https://hebronguide.com/"/>
@@ -232,7 +232,7 @@
     <a href="#values"><span class="ko">핵심가치</span><span class="en">Values</span></a>
     <a href="#mission"><span class="ko">사명</span><span class="en">Mission</span></a>
     <a href="#vision"><span class="ko">비전</span><span class="en">Vision</span></a>
-    <a href="#cities"><span class="ko">72개 도시</span><span class="en">72+ Cities</span></a>
+    <a href="#cities"><span class="ko">67개 도시</span><span class="en">67+ Cities</span></a>
     <a href="/help.html"><span class="ko">도움말</span><span class="en">Help</span></a>
     <a href="/ad-request.html"><span class="ko">파트너 신청</span><span class="en">Partner</span></a>
     <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener"
@@ -250,27 +250,52 @@
   <div id="wc-content" style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:0 32px;"></div>
   <button onclick="document.getElementById('wc-banner').style.display='none'" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.35);font-size:1.1rem;cursor:pointer;line-height:1;padding:4px 8px;">×</button>
 </div>
+<style>
+@keyframes wc-pulse{0%,100%{opacity:1}50%{opacity:.55}}
+.wc-live{animation:wc-pulse 1.6s ease-in-out infinite;display:inline-block;}
+</style>
 <script>
 (function(){
   fetch('/worldcup.json').then(function(r){return r.json();}).then(function(d){
     if(!d.active) return;
-    var n = d.nextMatch;
-    document.getElementById('wc-content').innerHTML =
-      '<span style="font-size:.62rem;font-weight:800;color:rgba(201,162,39,.7);letter-spacing:.12em;">2026 FIFA WORLD CUP</span>' +
-      '<span style="color:rgba(255,255,255,.2);">|</span>' +
-      '<span class="ko" style="font-size:.82rem;font-weight:900;color:#fff;">대한민국</span>' +
-      '<span class="en" style="font-size:.82rem;font-weight:900;color:#fff;">South Korea</span>' +
-      '<span style="font-size:.95rem;font-weight:900;color:#C9A227;letter-spacing:.06em;margin:0 2px;">' + d.score + '</span>' +
-      '<span class="ko" style="font-size:.82rem;font-weight:900;color:#fff;">' + d.opponent.ko + '</span>' +
-      '<span class="en" style="font-size:.82rem;font-weight:900;color:#fff;">' + d.opponent.en + '</span>' +
-      '<span style="color:rgba(255,255,255,.2);">|</span>' +
-      '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + d.stage.ko + '</span>' +
-      '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + d.stage.en + '</span>' +
-      (n ?
+    var html = '<span style="font-size:.62rem;font-weight:800;color:rgba(201,162,39,.7);letter-spacing:.12em;">2026 FIFA WORLD CUP</span>' +
+      '<span style="color:rgba(255,255,255,.2);">|</span>';
+
+    if(d.mode === 'upcoming' && d.nextMatchDate) {
+      var days = Math.ceil((new Date(d.nextMatchDate) - new Date()) / 86400000);
+      var dLabel = days <= 0 ? 'D-DAY' : 'D-' + days;
+      html +=
+        '<span class="wc-live" style="font-size:.7rem;font-weight:900;color:#C9A227;letter-spacing:.1em;">' + dLabel + '</span>' +
         '<span style="color:rgba(255,255,255,.2);">|</span>' +
-        '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.4);">다음: ' + n.ko + '</span>' +
-        '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.4);">Next: ' + n.en + '</span>'
-      : '');
+        '<span class="ko" style="font-size:.82rem;font-weight:900;color:#fff;">대한민국 vs ' + (d.nextOpponent ? d.nextOpponent.ko : '') + '</span>' +
+        '<span class="en" style="font-size:.82rem;font-weight:900;color:#fff;">South Korea vs ' + (d.nextOpponent ? d.nextOpponent.en : '') + '</span>' +
+        '<span style="color:rgba(255,255,255,.2);">|</span>' +
+        '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + (d.nextStage ? d.nextStage.ko : '') + '</span>' +
+        '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + (d.nextStage ? d.nextStage.en : '') + '</span>' +
+        (d.nextMatch ?
+          '<span style="color:rgba(255,255,255,.2);">|</span>' +
+          '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.4);">' + d.nextMatch.ko + '</span>' +
+          '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.4);">' + d.nextMatch.en + '</span>'
+        : '');
+    } else {
+      var n = d.nextMatch;
+      html +=
+        '<span class="ko" style="font-size:.82rem;font-weight:900;color:#fff;">대한민국</span>' +
+        '<span class="en" style="font-size:.82rem;font-weight:900;color:#fff;">South Korea</span>' +
+        '<span style="font-size:.95rem;font-weight:900;color:#C9A227;letter-spacing:.06em;margin:0 2px;">' + d.score + '</span>' +
+        '<span class="ko" style="font-size:.82rem;font-weight:900;color:#fff;">' + d.opponent.ko + '</span>' +
+        '<span class="en" style="font-size:.82rem;font-weight:900;color:#fff;">' + d.opponent.en + '</span>' +
+        '<span style="color:rgba(255,255,255,.2);">|</span>' +
+        '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + d.stage.ko + '</span>' +
+        '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + d.stage.en + '</span>' +
+        (n ?
+          '<span style="color:rgba(255,255,255,.2);">|</span>' +
+          '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.4);">다음: ' + n.ko + '</span>' +
+          '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.4);">Next: ' + n.en + '</span>'
+        : '');
+    }
+
+    document.getElementById('wc-content').innerHTML = html;
     document.getElementById('wc-banner').style.display = 'block';
   }).catch(function(){});
 })();
@@ -492,7 +517,7 @@
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ VISION 2030 ━━━ -->
 <div class="vision-section" id="vision">
   <div class="sec-label">비전 · Vision 2030</div>
-  <h2 class="sec-title"><span class="ko">72개 도시에서 <span>전 세계로</span></span><span class="en">From 72 Cities <span>to the World</span></span></h2>
+  <h2 class="sec-title"><span class="ko">67개 도시에서 <span>전 세계로</span></span><span class="en">From 67 Cities <span>to the World</span></span></h2>
   <p class="sec-desc">
     <span class="ko">한인 디아스포라가 뿌리내린 곳에서<br>모든 민족을 향한 환대의 문을 엽니다.</span>
     <span class="en">From where the Korean diaspora has planted roots,<br>we open the door of welcome to every nation.</span>
@@ -597,7 +622,7 @@
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CITIES ━━━ -->
 <div class="cities-section" id="cities">
   <div class="sec-label">서비스 도시 · Cities</div>
-  <h2 class="sec-title"><span class="ko">전 세계 <span>72개+ 도시</span></span><span class="en"><span>72+ Cities</span> Worldwide</span></h2>
+  <h2 class="sec-title"><span class="ko">전 세계 <span>67개+ 도시</span></span><span class="en"><span>67+ Cities</span> Worldwide</span></h2>
   <p class="sec-desc" style="margin-bottom:32px;"><span class="ko">한인이 사는 모든 곳 — 이민·이주·관광·방문자 모두를 위한 가이드</span><span class="en">Wherever Koreans live — a guide for immigrants, expats, travelers, and visitors</span></p>
 
   <div class="search-wrap">
