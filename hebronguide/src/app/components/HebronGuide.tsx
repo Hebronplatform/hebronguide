@@ -26229,17 +26229,17 @@ function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number
   const city = useCityConfig();
   const ko = lang === "ko";
   const SIDEBAR_ITEMS = [
-    { tab: 0,  icon: Home,          labelKo: "홈",    labelEn: "Home" },
-    { tab: 1,  icon: Plane,         labelKo: "정착",  labelEn: "Settle" },
-    { tab: 2,  icon: Church,        labelKo: "교회",  labelEn: "Church" },
-    { tab: 3,  icon: Utensils,      labelKo: "맛집",  labelEn: "Food" },
-    { tab: 4,  icon: Map,           labelKo: "탐방",  labelEn: "Explore" },
-    { tab: 5,  icon: HeartPulse,    labelKo: "도움",  labelEn: "Help" },
-    { tab: 9,  icon: Users,         labelKo: "사람 연결", labelEn: "People Connect" },
-    { tab: 6,  icon: Briefcase,     labelKo: "취업",  labelEn: "Jobs" },
-    { tab: 7,  icon: GraduationCap, labelKo: "교육",  labelEn: "Schools" },
-    { tab: 8,  icon: DollarSign,    labelKo: "생활비", labelEn: "Costs" },
-    { tab: 12, icon: Building2,     labelKo: "한인 업소", labelEn: "Business" },
+    { tab: 0,  icon: Home,          color: "#FBBF24", labelKo: "홈",    labelEn: "Home" },
+    { tab: 1,  icon: Plane,         color: "#F2994A", labelKo: "정착",  labelEn: "Settle" },
+    { tab: 2,  icon: Church,        color: "#7C3AED", labelKo: "교회",  labelEn: "Church" },
+    { tab: 3,  icon: Utensils,      color: "#EF4444", labelKo: "맛집",  labelEn: "Food" },
+    { tab: 4,  icon: Map,           color: "#06B6D4", labelKo: "탐방",  labelEn: "Explore" },
+    { tab: 5,  icon: HeartPulse,    color: "#DC2626", labelKo: "도움",  labelEn: "Help" },
+    { tab: 9,  icon: Users,         color: "#10B981", labelKo: "사람 연결", labelEn: "People Connect" },
+    { tab: 6,  icon: Briefcase,     color: "#059669", labelKo: "취업",  labelEn: "Jobs" },
+    { tab: 7,  icon: GraduationCap, color: "#8B5CF6", labelKo: "교육",  labelEn: "Schools" },
+    { tab: 8,  icon: DollarSign,    color: "#0EA5E9", labelKo: "생활비", labelEn: "Costs" },
+    { tab: 12, icon: Building2,     color: "#4F46E5", labelKo: "한인 업소", labelEn: "Business" },
   ];
   return (
     <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-screen w-64 z-40"
@@ -26288,7 +26288,14 @@ function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number
                 background: isActive ? "rgba(242,153,74,0.15)" : "transparent",
                 outline: isActive ? "1.5px solid rgba(242,153,74,0.4)" : "none",
                 transition: "all 0.15s ease" }}>
-              <IconComp size={18} color={isActive ? "#F2994A" : "rgba(236,253,245,0.7)"} strokeWidth={1.8} />
+              <div style={{
+                width: 30, height: 30, borderRadius: 9, flexShrink: 0,
+                background: item.color,
+                boxShadow: isActive ? `0 3px 10px ${item.color}77` : `0 2px 6px ${item.color}33`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <IconComp size={16} color="#fff" strokeWidth={1.8} />
+              </div>
               <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: isActive ? 800 : 500,
                 fontSize: 13, color: isActive ? "#F2994A" : "rgba(236,253,245,0.7)" }}>
                 {ko ? item.labelKo : item.labelEn}
