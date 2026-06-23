@@ -636,6 +636,48 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
   <!-- ══════════ 홍보 폼 ══════════ -->
   <div class="form-card" id="form-promo">
     <div class="form-section-title">📣 이 도시의 좋은 소식 알리기</div>
+
+    <!-- ── WABA EVENT FEATURED BANNER ── -->
+    <div id="waba-promo-banner" style="margin-bottom:20px;">
+      <a href="/event-waba-2026.html" style="display:block;text-decoration:none;">
+        <div style="background:linear-gradient(135deg,#0f1f3d 0%,#1a3a6b 50%,#0f1f3d 100%);
+          border:1px solid rgba(255,255,255,0.15);border-radius:14px;overflow:hidden;position:relative;">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c0392b,#e74c3c,#c0392b);"></div>
+          <div style="padding:14px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <div style="flex-shrink:0;background:rgba(192,57,43,0.9);border-radius:8px;padding:7px 11px;text-align:center;min-width:48px;">
+              <div style="font-family:'Cinzel',serif;font-weight:900;font-size:1rem;color:#fff;line-height:1;">AUG</div>
+              <div style="font-family:'Cinzel',serif;font-weight:900;font-size:1.2rem;color:#fff;line-height:1.1;">13<span style="font-size:.75rem;">–16</span></div>
+            </div>
+            <div style="flex:1;min-width:160px;">
+              <div style="font-size:.58rem;font-weight:800;letter-spacing:.12em;color:rgba(255,255,255,0.45);text-transform:uppercase;margin-bottom:2px;">
+                주목 이벤트 · 워싱턴주 한인상공회의소
+              </div>
+              <div style="font-family:'Cinzel',serif;font-size:.92rem;font-weight:900;color:#fff;line-height:1.2;margin-bottom:3px;">
+                WABA KOREA EXPO &amp; FESTIVAL 2026
+              </div>
+              <div style="font-size:.72rem;color:rgba(255,255,255,0.6);">
+                Pier 62, Seattle Waterfront · 벤더 모집 중 — <strong style="color:#ff8a7a;">6월 30일 마감</strong>
+              </div>
+            </div>
+            <div style="flex-shrink:0;background:rgba(192,57,43,0.85);color:#fff;font-size:.7rem;font-weight:800;
+              padding:7px 13px;border-radius:50px;white-space:nowrap;border:1px solid rgba(255,255,255,0.2);">
+              자세히 보기
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:-1px;margin-left:3px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <script>
+    (function(){
+      var exp = new Date('2026-08-17T00:00:00-07:00');
+      if(Date.now() >= exp.getTime()){
+        var b = document.getElementById('waba-promo-banner');
+        if(b) b.style.display='none';
+      }
+    })();
+    </script>
+
     <p style="font-size:.85rem;color:rgba(236,253,245,.65);line-height:1.8;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);">
       행사·이벤트·공지를 <span class="hg-city-count">71</span>개 도시 한인 커뮤니티에 알려드립니다.
     </p>
