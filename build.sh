@@ -162,6 +162,10 @@ done
 cp hebronguide/dist/registerSW.js                  public/registerSW.js                  2>/dev/null || true
 cp hebronguide/dist/manifest.webmanifest            public/manifest.webmanifest            2>/dev/null || true
 cp hebronguide/dist/ad-request.html                public/ad-request.html                2>/dev/null || true
+# 정적 이벤트 페이지 (hebronguide/public/ 직접 복사 — React 빌드 우회)
+cp hebronguide/public/event-waba-2026.html          public/event-waba-2026.html            2>/dev/null || true
+cp hebronguide/public/ad-request.html               public/ad-request.html                 2>/dev/null || true
+cp hebronguide/public/partner-benefits.html         public/partner-benefits.html           2>/dev/null || true
 cp hebronguide/dist/posters.html                   public/posters.html                   2>/dev/null || true
 # 목사님 전용 운영 문서 (앱 미연결 — URL 직접 공유)
 cp hebronguide/dist/church-guide.html              public/church-guide.html              2>/dev/null || true
