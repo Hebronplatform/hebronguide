@@ -623,7 +623,7 @@
 </div>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EVENT BANNER ━━━ -->
-<div style="padding:0 20px 12px;max-width:960px;margin:0 auto;">
+<div id="waba-event-banner" style="padding:0 20px 12px;max-width:960px;margin:0 auto;">
   <a href="/event-waba-2026.html" style="display:block;text-decoration:none;">
     <div style="background:linear-gradient(135deg,#0f1f3d 0%,#1a3a6b 50%,#0f1f3d 100%);
       border:1px solid rgba(255,255,255,0.15);border-radius:18px;overflow:hidden;
@@ -839,5 +839,16 @@ if(inp){
 <!-- ── Vercel Analytics ──────────────────────────────── -->
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
 <script defer src="/_vercel/insights/script.js"></script>
+
+<!-- ── WABA Event auto-expiry: hide after Aug 16 2026 midnight PST ── -->
+<script>
+(function(){
+  var expire = new Date('2026-08-17T00:00:00-07:00');
+  if(Date.now() >= expire.getTime()){
+    var el = document.getElementById('waba-event-banner');
+    if(el) el.style.display = 'none';
+  }
+})();
+</script>
 </body>
 </html>
