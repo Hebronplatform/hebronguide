@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HebronGuide — 커뮤니티 성장 실행 계획</title>
+  <meta name="robots" content="noindex"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+  :root{
+    --bg:#0a0e14;--bg2:#0d1117;--surface:rgba(255,255,255,.05);--surface2:rgba(255,255,255,.08);
+    --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+    --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;--warm:#FF9F0A;--indigo:#818CF8;
+    --text:#ECFDF5;--muted:rgba(236,253,245,.6);--muted2:rgba(236,253,245,.38);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;background:var(--bg);}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:200;background:rgba(10,14,20,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
+  .nav-logo{font-family:'Cinzel',serif;font-weight:700;font-size:1rem;color:var(--gold);text-decoration:none;}
+  .nav-back{color:var(--muted);text-decoration:none;font-size:.82rem;display:flex;align-items:center;gap:6px;transition:color .2s;}
+  .nav-back:hover{color:var(--gold);}
+
+  /* HERO */
+  .page-hero{padding:64px 24px 48px;text-align:center;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.1),transparent 60%);}
+  .page-tag{display:inline-block;font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);border-radius:99px;padding:5px 16px;margin-bottom:20px;}
+  .page-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:#fff;line-height:1.25;margin-bottom:14px;}
+  .page-title em{color:var(--gold);font-style:normal;}
+  .page-desc{font-size:.95rem;color:var(--muted);max-width:560px;margin:0 auto;line-height:1.9;}
+
+  /* FLYWHEEL */
+  .flywheel-wrap{max-width:700px;margin:48px auto;padding:0 24px;}
+  .flywheel{background:rgba(201,162,39,.05);border:1px solid rgba(201,162,39,.2);border-radius:20px;padding:32px 28px;text-align:center;}
+  .flywheel-title{font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px;}
+  .flywheel-flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;}
+  .fw-step{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 16px;font-size:.84rem;font-weight:700;color:#fff;}
+  .fw-step.anchor{background:rgba(201,162,39,.15);border-color:rgba(201,162,39,.4);color:var(--gold);}
+  .fw-arr{color:rgba(201,162,39,.45);font-size:1.1rem;}
+  .flywheel-sub{margin-top:16px;font-size:.82rem;color:var(--muted);line-height:1.8;}
+
+  /* PHASE SECTIONS */
+  .phases{max-width:900px;margin:0 auto;padding:0 24px 80px;}
+  .phase-block{margin-bottom:48px;}
+  .phase-header{display:flex;align-items:center;gap:16px;margin-bottom:24px;}
+  .phase-num{flex-shrink:0;width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;font-size:1.1rem;}
+  .phase-1 .phase-num{background:rgba(201,162,39,.15);color:var(--gold);border:1px solid rgba(201,162,39,.3);}
+  .phase-2 .phase-num{background:rgba(110,231,183,.12);color:var(--mint);border:1px solid rgba(110,231,183,.3);}
+  .phase-3 .phase-num{background:rgba(129,140,248,.12);color:var(--indigo);border:1px solid rgba(129,140,248,.3);}
+  .phase-meta{}
+  .phase-tag{font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;}
+  .phase-1 .phase-tag{color:var(--gold);}
+  .phase-2 .phase-tag{color:var(--mint);}
+  .phase-3 .phase-tag{color:var(--indigo);}
+  .phase-name{font-size:1.2rem;font-weight:900;color:#fff;}
+  .phase-timeline{display:inline-block;font-size:.72rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:99px;padding:3px 12px;color:var(--muted);margin-top:4px;}
+
+  /* ACTION TABLE */
+  .action-grid{display:grid;gap:12px;}
+  .action-row{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:auto 1fr auto;gap:12px 20px;align-items:start;}
+  @media(max-width:600px){.action-row{grid-template-columns:1fr;}}
+  .action-channel{display:flex;align-items:center;gap:8px;}
+  .action-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .phase-1 .action-icon{background:rgba(201,162,39,.12);}
+  .phase-2 .action-icon{background:rgba(110,231,183,.1);}
+  .phase-3 .action-icon{background:rgba(129,140,248,.1);}
+  .action-channel-name{font-size:.78rem;font-weight:700;color:var(--muted);white-space:nowrap;}
+  .action-body{}
+  .action-what{font-size:.92rem;font-weight:700;color:#fff;margin-bottom:5px;}
+  .action-how{font-size:.82rem;color:var(--muted);line-height:1.7;}
+  .action-kpi{display:flex;flex-direction:column;align-items:flex-end;gap:4px;min-width:80px;}
+  @media(max-width:600px){.action-kpi{align-items:flex-start;}}
+  .kpi-num{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:900;}
+  .phase-1 .kpi-num{color:var(--gold);}
+  .phase-2 .kpi-num{color:var(--mint);}
+  .phase-3 .kpi-num{color:var(--indigo);}
+  .kpi-label{font-size:.65rem;color:var(--muted2);text-align:right;}
+
+  /* OWNER TABLE */
+  .owner-section{max-width:900px;margin:0 auto;padding:0 24px 80px;}
+  .section-label{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;}
+  .section-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:#fff;margin-bottom:8px;}
+  .section-desc{font-size:.88rem;color:var(--muted);line-height:1.8;margin-bottom:32px;}
+  .owner-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+  .owner-card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:24px 20px;}
+  .owner-role{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
+  .owner-title{font-size:1rem;font-weight:900;color:#fff;margin-bottom:6px;}
+  .owner-who{font-size:.82rem;color:var(--mint);font-weight:700;margin-bottom:10px;}
+  .owner-tasks{list-style:none;display:flex;flex-direction:column;gap:6px;}
+  .owner-tasks li{font-size:.8rem;color:var(--muted);line-height:1.6;padding-left:14px;position:relative;}
+  .owner-tasks li::before{content:'·';position:absolute;left:0;color:var(--gold);}
+  .owner-note{margin-top:12px;font-size:.76rem;color:rgba(255,255,255,.35);border-top:1px solid var(--border);padding-top:10px;line-height:1.6;}
+
+  /* QUICK WIN */
+  .quickwin{max-width:900px;margin:0 auto 80px;padding:0 24px;}
+  .quickwin-box{background:linear-gradient(135deg,rgba(201,162,39,.12),rgba(110,231,183,.06));border:1px solid rgba(201,162,39,.3);border-radius:20px;padding:32px 28px;}
+  .quickwin-eyebrow{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;}
+  .quickwin-title{font-size:1.2rem;font-weight:900;color:#fff;margin-bottom:12px;line-height:1.4;}
+  .quickwin-body{font-size:.9rem;color:var(--muted);line-height:1.9;margin-bottom:20px;}
+  .quickwin-math{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;}
+  .math-item{background:rgba(0,0,0,.3);border-radius:12px;padding:14px 18px;text-align:center;}
+  .math-n{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:900;color:var(--gold);}
+  .math-op{font-size:.9rem;color:var(--muted);margin:0 4px;}
+  .math-l{font-size:.72rem;color:var(--muted2);margin-top:2px;}
+  .checklist{display:flex;flex-direction:column;gap:8px;}
+  .check-item{display:flex;align-items:flex-start;gap:10px;font-size:.85rem;color:var(--muted);line-height:1.6;}
+  .check-box{flex-shrink:0;width:18px;height:18px;border:1px solid rgba(201,162,39,.4);border-radius:4px;margin-top:2px;}
+
+  /* DIVIDER */
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0 24px;}
+
+  footer{padding:40px 24px 32px;text-align:center;}
+  .footer-copy{font-size:.72rem;color:var(--muted2);}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">HebronGuide</a>
+  <a href="/" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    홈으로
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-tag">내부 실행 계획 · Internal Roadmap</div>
+  <h1 class="page-title">커뮤니티 성장<br><em>3단계 실행 로드맵</em></h1>
+  <p class="page-desc">광고로 사람을 모으지 않습니다. 환대 경험이 다음 환대자를 만드는 플라이휠을 세웁니다. BTS가 한국어로 세계를 움직였듯, 헤브론은 환대로 세상을 움직입니다.</p>
+</div>
+
+<!-- FLYWHEEL -->
+<div class="flywheel-wrap">
+  <div class="flywheel">
+    <div class="flywheel-title">핵심 원리 — 환대 플라이휠</div>
+    <div class="flywheel-flow">
+      <div class="fw-step anchor">환대받은 사람</div>
+      <div class="fw-arr">→</div>
+      <div class="fw-step">정착·신뢰</div>
+      <div class="fw-arr">→</div>
+      <div class="fw-step">공동체 일원</div>
+      <div class="fw-arr">→</div>
+      <div class="fw-step anchor">다음 이민자 환대</div>
+      <div class="fw-arr">↩</div>
+    </div>
+    <p class="flywheel-sub">이 사이클이 1번 돌 때마다 HebronGuide는 광고 없이 성장합니다.<br>목표는 <strong style="color:#fff;">사이클을 빠르게 돌리는 것</strong>입니다.</p>
+  </div>
+</div>
+
+<div class="phases">
+
+  <!-- PHASE 1 -->
+  <div class="phase-block phase-1">
+    <div class="phase-header">
+      <div class="phase-num">1</div>
+      <div class="phase-meta">
+        <div class="phase-tag">Phase 1 · 씨앗 심기</div>
+        <div class="phase-name">지금 당장 할 수 있는 것</div>
+        <span class="phase-timeline">2026년 7월 — 9월</span>
+      </div>
+    </div>
+    <div class="action-grid">
+
+      <div class="action-row">
+        <div class="action-channel">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <span class="action-channel-name">카카오 채널</span>
+        </div>
+        <div class="action-body">
+          <div class="action-what">주 1회 "이 도시 이번 주 소식" 발송</div>
+          <div class="action-how">각 도시별 한인 커뮤니티 소식, 신규 등재 업소·교회 소개, 이민 정보 1개. 템플릿 고정 → 5분 안에 발행 가능.</div>
+        </div>
+        <div class="action-kpi">
+          <span class="kpi-num">500</span>
+          <span class="kpi-label">목표 구독자</span>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <div class="action-channel">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.8"><path d="M4 21V11l8-6 8 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/></svg>
+          </div>
+          <span class="action-channel-name">교회 네트워크</span>
+        </div>
+        <div class="action-body">
+          <div class="action-what">파트너 교회 주보·광고 1줄 게재 요청</div>
+          <div class="action-how">"우리 교회는 HebronGuide 파트너 교회입니다" 문구 + QR 코드 1장. 교회 1개 = 평균 성도 150명. A5 카드 인쇄본 발송.</div>
+        </div>
+        <div class="action-kpi">
+          <span class="kpi-num">10</span>
+          <span class="kpi-label">파트너 교회</span>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <div class="action-channel">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <span class="action-channel-name">카카오 오픈채팅</span>
+        </div>
+        <div class="action-body">
+          <div class="action-what">도시별 "OO 정착 나눔방" 개설</div>
+          <div class="action-how">시애틀·달라스·토론토 등 상위 도시부터 시작. 방 이름에 도시명 + HebronGuide 로고. 파트너 교회 목사님이 방장 역할.</div>
+        </div>
+        <div class="action-kpi">
+          <span class="kpi-num">5</span>
+          <span class="kpi-label">도시 오픈방</span>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <div class="action-channel">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <span class="action-channel-name">사이트 등록</span>
+        </div>
+        <div class="action-body">
+          <div class="action-what">한인 커뮤니티 사이트에 HebronGuide 등록</div>
+          <div class="action-how">미주한국일보·코리아타운·한인회 게시판에 무료 등록. "정착 도우미 플랫폼" 포지션으로 소개글 게시.</div>
+        </div>
+        <div class="action-kpi">
+          <span class="kpi-num">20</span>
+          <span class="kpi-label">등록 채널</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider" style="margin:32px 0;"></div>
+
+  <!-- PHASE 2 -->
+  <div class="phase-block phase-2">
+    <div class="phase-header">
+      <div class="phase-num">2</div>
+      <div class="phase-meta">
+        <div class="phase-tag">Phase 2 · 입소문</div>
+        <div class="phase-name">파트너가 전파자가 되는 단계</div>
+        <span class="phase-timeline">2026년 10월 — 12월</span>
+      </div>
+    </div>
+    <div class="action-grid">
+
+      <div class="action-row">
+        <div class="action-channel">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <span class="action-channel-name">증언 카드</span>
+        </div>
+        <div class="action-body">
+          <div class="action-what">"이 도시에서 도움받았어요" 실화 카드 시리즈</div>
+          <div class="action-how">환대받은 사람의 한 문장 증언 + 도시 사진. 인스타 카드·카카오 공유용. 월 2장 제작. 당사자 직접 공유 유도.</div>
+        </div>
+        <div class="action-kpi">
+          <span class="kpi-num">24</span>
+          <span class="kpi-label">연간 카드</span>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <div class="action-channel">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg>
+          </div>
+          <span class="action-channel-name">사업체 QR</span>
+        </div>
+        <div class="action-body">
+          <div class="action-what">파트너 사업체 영수증·명함에 QR 코드 부착</div>
+          <div class="action-how">도시별 QR 코드 이미지 파일 제공. "HebronGuide 파트너 가게" 스티커 세트 발송. 고객이 결제할 때 자연스럽게 앱 발견.</div>
+        </div>
+        <div class="action-kpi">
+          <span class="kpi-num">50</span>
+          <span class="kpi-label">QR 매장</span>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <div class="action-channel">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <span class="action-channel-name">목사 네트워크 줌</span>
+        </div>
+        <div class="action-body">
+          <div class="action-what">파트너 목사님 월 1회 Zoom 미팅</div>
+          <div class="action-how">각 도시 파트너 교회 담임목사님 초대. HebronGuide 업데이트 공유 + 현장 필요 청취. 목사님이 자연스럽게 홍보 대사가 됨.</div>
+        </div>
+        <div class="action-kpi">
+          <span class="kpi-num">20</span>
+          <span class="kpi-label">참여 목사님</span>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <div class="action-channel">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <span class="action-channel-name">정착 가이드 PDF</span>
+        </div>
+        <div class="action-body">
+          <div class="action-what">도시별 "첫 30일 정착 가이드" 무료 PDF</div>
+          <div class="action-how">이메일 입력 → PDF 다운로드. 이메일 리스트 구축. 시애틀·달라스·토론토부터 제작. 교회 신규 등록자에게 자동 발송.</div>
+        </div>
+        <div class="action-kpi">
+          <span class="kpi-num">1,000</span>
+          <span class="kpi-label">이메일 구독</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider" style="margin:32px 0;"></div>
+
+  <!-- PHASE 3 -->
+  <div class="phase-block phase-3">
+    <div class="phase-header">
+      <div class="phase-num">3</div>
+      <div class="phase-meta">
+        <div class="phase-tag">Phase 3 · 플라이휠</div>
+        <div class="phase-name">콘텐츠가 사람을 끌어오는 단계</div>
+        <span class="phase-timeline">2027년 —</span>
+      </div>
+    </div>
+    <div class="action-grid">
+
+      <div class="action-row">
+        <div class="action-channel">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          </div>
+          <span class="action-channel-name">YouTube · Reels</span>
+        </div>
+        <div class="action-body">
+          <div class="action-what">"처음 이민한 날" 30초 실화 시리즈</div>
+          <div class="action-how">공항 첫날 이야기. 자막 한·영·스페인어. 환대받은 장면이 핵심. 알고리즘이 아닌 진짜 이야기로 공유됨. 월 2편.</div>
+        </div>
+        <div class="action-kpi">
+          <span class="kpi-num">24</span>
+          <span class="kpi-label">연간 영상</span>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <div class="action-channel">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <span class="action-channel-name">월 1회 Zoom Q&A</span>
+        </div>
+        <div class="action-body">
+          <div class="action-what">새이민자 Zoom Q&A — 교회·사업체 파트너 참여</div>
+          <div class="action-how">"이민 첫 달 뭐가 제일 어려웠어요?" 주제. 선배 이민자 3명 패널. HebronGuide가 진행. 녹화 후 유튜브 아카이브.</div>
+        </div>
+        <div class="action-kpi">
+          <span class="kpi-num">12</span>
+          <span class="kpi-label">연간 세션</span>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <div class="action-channel">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <span class="action-channel-name">대한민국 연결</span>
+        </div>
+        <div class="action-body">
+          <div class="action-what">한국 출발 전 HebronGuide — 한국 교회와 협력</div>
+          <div class="action-how">해외 파송 전 교회에서 HebronGuide 소개. 한국 이민 준비 카페·커뮤니티에 등록. "떠나기 전에 목적지 도시를 미리 찾아보세요."</div>
+        </div>
+        <div class="action-kpi">
+          <span class="kpi-num">30</span>
+          <span class="kpi-label">협력 교회</span>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <div class="action-channel">
+          <div class="action-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <span class="action-channel-name">자동화 광고</span>
+        </div>
+        <div class="action-body">
+          <div class="action-what">사업체 자기게시 광고 시스템 (수익화)</div>
+          <div class="action-how">사업체 → 광고비 결제 → AI 자동 검토 → 도시 페이지 자동 게시. 광고 수익으로 Phase 1·2 운영비 충당.</div>
+        </div>
+        <div class="action-kpi">
+          <span class="kpi-num">$500</span>
+          <span class="kpi-label">월 목표 수익</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- OWNERS -->
+<div class="owner-section" style="padding-top:64px;">
+  <div class="section-label">담당자 · Team Roles</div>
+  <h2 class="section-title">누가 이 일을 합니까?</h2>
+  <p class="section-desc">지금 당장 모든 역할을 채울 필요는 없습니다. Phase 1은 1인이 가능합니다.<br>성장하면서 역할을 붙여갑니다.</p>
+
+  <div class="owner-grid">
+
+    <div class="owner-card">
+      <div class="owner-role">핵심 · 필수</div>
+      <div class="owner-title">커뮤니티 매니저</div>
+      <div class="owner-who">추천: 각 도시 파트너 교회 사모님 또는 청년 사역자</div>
+      <ul class="owner-tasks">
+        <li>카카오 채널 콘텐츠 주 1회 발행</li>
+        <li>오픈채팅방 운영·답변</li>
+        <li>신규 이민자 첫 연락 대응</li>
+        <li>파트너 교회·업체 관계 유지</li>
+      </ul>
+      <div class="owner-note">처음에는 폴 김 목사님이 겸임 가능. Phase 2부터 도시별 1명 선발 권장. 사례비: 도시당 월 $100–200 (광고 수익 연동)</div>
+    </div>
+
+    <div class="owner-card">
+      <div class="owner-role">콘텐츠 · 중요</div>
+      <div class="owner-title">스토리텔러</div>
+      <div class="owner-who">추천: 글 잘 쓰는 청년 성도 또는 2세 자녀</div>
+      <ul class="owner-tasks">
+        <li>환대 받은 사람 인터뷰·증언 카드 제작</li>
+        <li>도시별 정착 가이드 PDF 작성</li>
+        <li>"처음 이민한 날" 영상 스크립트</li>
+        <li>카카오·인스타 콘텐츠 디자인</li>
+      </ul>
+      <div class="owner-note">월 8시간 파트타임으로 시작 가능. 신학교 인턴십 연계 추천. 2세 청년이 하면 한·영 동시 제작 가능.</div>
+    </div>
+
+    <div class="owner-card">
+      <div class="owner-role">네트워크 · 전략</div>
+      <div class="owner-title">파트너십 디렉터</div>
+      <div class="owner-who">추천: 폴 김 목사님 (직접) 또는 신뢰하는 장로님</div>
+      <ul class="owner-tasks">
+        <li>파트너 교회 목사님 Zoom 월례 미팅 주관</li>
+        <li>신규 도시 교회 파트너십 개척</li>
+        <li>한국 본토 교회 연결 (Phase 3)</li>
+        <li>IHM·KSBC 등 교단 네트워크 활용</li>
+      </ul>
+      <div class="owner-note">가장 중요한 역할. 신뢰 관계가 곧 성장 엔진. 목사님의 기존 네트워크가 최대 자산.</div>
+    </div>
+
+    <div class="owner-card">
+      <div class="owner-role">기술 · 운영</div>
+      <div class="owner-title">플랫폼 관리자</div>
+      <div class="owner-who">추천: Claude Code + 폴 김 목사님 (현재 구조 유지)</div>
+      <ul class="owner-tasks">
+        <li>사이트 업데이트·버그 수정</li>
+        <li>새 파트너 교회·업소 등재</li>
+        <li>Supabase 데이터 관리</li>
+        <li>광고 시스템 구축 (Phase 3)</li>
+      </ul>
+      <div class="owner-note">현재 Claude Code가 이 역할을 담당. 장기적으로 개발자 1명 파트타임 채용 권장 (Phase 2 후반).</div>
+    </div>
+
+    <div class="owner-card">
+      <div class="owner-role">도시별 · 현장</div>
+      <div class="owner-title">도시 앰배서더</div>
+      <div class="owner-who">추천: 각 도시 파트너 교회 청년 1명</div>
+      <ul class="owner-tasks">
+        <li>공항 영접 자원봉사 연결</li>
+        <li>신규 이민자 첫 주 정착 동행</li>
+        <li>현지 한인 업소·병원 직접 확인</li>
+        <li>도시별 오픈채팅방 운영</li>
+      </ul>
+      <div class="owner-note">Phase 2부터 시애틀·달라스·토론토 3개 도시 우선. 자원봉사로 시작, Phase 3에서 사례비 연동 가능.</div>
+    </div>
+
+    <div class="owner-card">
+      <div class="owner-role">재무 · 투명성</div>
+      <div class="owner-title">운영 재무 담당</div>
+      <div class="owner-who">추천: 공인회계사 성도 또는 재무 전문 집사님</div>
+      <ul class="owner-tasks">
+        <li>Hebron Platform LLC 재무 관리</li>
+        <li>광고 수익 투명한 보고</li>
+        <li>파트너십 계약서 검토</li>
+        <li>교회 재정과 완전 분리 유지</li>
+      </ul>
+      <div class="owner-note">Phase 2부터 필요. 교회 자금과 LLC 자금 혼용 절대 금지. 분기별 수익 보고서 작성.</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider" style="margin:0 24px;"></div>
+
+<!-- QUICK WIN -->
+<div class="quickwin" style="padding-top:64px;">
+  <div class="quickwin-box">
+    <div class="quickwin-eyebrow">지금 당장 · First Action</div>
+    <div class="quickwin-title">가장 빠른 1개 행동 —<br>파트너 교회에 QR 카드 보내기</div>
+    <div class="quickwin-body">
+      교회 1개에 카드 1장. 설교 후 광고 30초. 성도가 카카오 채널 구독.<br>
+      이것 하나가 HebronGuide 플라이휠의 첫 바퀴입니다.
+    </div>
+    <div class="quickwin-math">
+      <div class="math-item">
+        <div class="math-n">10</div>
+        <div class="math-l">파트너 교회</div>
+      </div>
+      <div class="math-op" style="display:flex;align-items:center;">×</div>
+      <div class="math-item">
+        <div class="math-n">150</div>
+        <div class="math-l">평균 성도</div>
+      </div>
+      <div class="math-op" style="display:flex;align-items:center;">=</div>
+      <div class="math-item">
+        <div class="math-n">1,500</div>
+        <div class="math-l">잠재 구독자</div>
+      </div>
+      <div class="math-op" style="display:flex;align-items:center;color:rgba(255,255,255,.3);">·</div>
+      <div class="math-item" style="background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);">
+        <div class="math-n" style="color:var(--gold);">$0</div>
+        <div class="math-l">광고비</div>
+      </div>
+    </div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box"></div>HebronGuide 카카오 채널 개설 확인</div>
+      <div class="check-item"><div class="check-box"></div>도시별 QR 코드 이미지 생성</div>
+      <div class="check-item"><div class="check-box"></div>A5 카드 디자인 · 인쇄 (또는 디지털 이미지)</div>
+      <div class="check-item"><div class="check-box"></div>파트너 교회 목사님께 카드 전달</div>
+      <div class="check-item"><div class="check-box"></div>주보 광고 문구 제공 ("HebronGuide 파트너 교회입니다 — 카카오 채널 구독하세요")</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-copy">HebronGuide · Hebron Platform LLC · 내부 문서 · © 2026</p>
+</footer>
+
+</body>
+</html>
