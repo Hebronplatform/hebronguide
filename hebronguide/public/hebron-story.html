@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>환대의 여정 — HebronGuide</title>
+<meta name="robots" content="noindex"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;
+  --cold:#0a1424;--warm:#1a1206;
+  --sans:'Noto Sans KR',sans-serif;--serif:'Noto Serif KR',serif;--disp:'Cinzel',serif;
+}
+html,body{width:100%;height:100%;overflow:hidden;background:#05070d;font-family:var(--sans);}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#05070d;}
+
+/* 색 그레이드 오버레이 — 차가움 → 따뜻함 */
+.grade{position:absolute;inset:0;z-index:1;pointer-events:none;transition:opacity 2.2s ease, background 2.2s ease;}
+.grade.cold{background:radial-gradient(120% 120% at 50% 30%, rgba(20,40,75,.55), rgba(5,8,16,.92));opacity:1;}
+.grade.warm{background:radial-gradient(120% 120% at 50% 45%, rgba(201,162,39,.20), rgba(20,12,4,.85));opacity:1;}
+
+/* 장면 */
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:2;opacity:0;transition:opacity 1.1s ease;padding:6vh 8vw;text-align:center;}
+.scene.on{opacity:1;}
+.art{width:min(40vh,320px);height:min(40vh,320px);margin-bottom:4vh;color:#cfe0ff;
+  filter:drop-shadow(0 8px 30px rgba(0,0,0,.5));}
+.scene.warmth .art{color:var(--gold2);}
+.cap{font-family:var(--serif);font-size:clamp(1.1rem,3.2vw,2rem);font-weight:700;color:#eaf0ff;
+  line-height:1.6;max-width:24ch;text-shadow:0 2px 18px rgba(0,0,0,.6);}
+.cap .hl{color:var(--gold2);}
+.cap .mint{color:var(--mint);}
+.sub{margin-top:2.2vh;font-size:clamp(.8rem,1.8vw,1.05rem);color:rgba(220,230,255,.6);font-weight:400;letter-spacing:.02em;}
+
+/* 검색바 (장면 6) */
+.searchbar{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.1);
+  border:1px solid rgba(201,162,39,.5);border-radius:999px;padding:12px 22px;margin-bottom:3vh;
+  font-size:clamp(1rem,2.6vw,1.5rem);color:#fff;font-weight:700;}
+.searchbar .cursor{width:2px;height:1.1em;background:var(--gold2);animation:blink 1s steps(1) infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+/* 카드들 (폰 화면 미리보기) */
+.guidecards{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:3vh;}
+.gc{background:rgba(255,255,255,.06);border:1px solid rgba(201,162,39,.3);border-radius:12px;
+  padding:10px 16px;font-size:clamp(.75rem,1.8vw,1rem);color:var(--gold2);font-weight:700;}
+
+/* 엔딩 메시지 */
+.endmsg{font-family:var(--serif);font-size:clamp(1.2rem,3.6vw,2.4rem);font-weight:900;color:#fff;line-height:1.5;max-width:26ch;}
+.endmsg .strike{color:rgba(220,230,255,.45);text-decoration:line-through;text-decoration-color:rgba(248,113,113,.6);}
+.endmsg .from{color:var(--gold2);}
+.cta{margin-top:5vh;font-family:var(--disp);font-size:clamp(1.4rem,4vw,2.6rem);font-weight:900;color:var(--gold2);letter-spacing:.04em;}
+.cta-sub{margin-top:1.5vh;font-size:clamp(.85rem,2vw,1.1rem);color:rgba(220,230,255,.65);}
+
+/* 미소 표시 */
+.smile{font-family:var(--serif);color:var(--gold2);font-weight:900;
+  font-size:clamp(1.3rem,4vw,2.4rem);margin-top:1.5vh;opacity:0;transition:opacity 1.4s ease;}
+.scene.on .smile.show{opacity:1;}
+
+/* 진행 바 + 컨트롤 */
+.bar{position:fixed;left:0;bottom:0;height:4px;background:var(--gold);width:0;z-index:30;transition:width .25s linear;}
+.ctrl{position:fixed;bottom:18px;right:20px;z-index:30;display:flex;gap:8px;}
+.ctrl button{background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.2);color:#fff;
+  border-radius:8px;padding:8px 14px;font-size:.8rem;cursor:pointer;font-family:var(--sans);}
+.ctrl button:hover{border-color:var(--gold);color:var(--gold2);}
+.hint{position:fixed;bottom:20px;left:20px;z-index:30;font-size:.7rem;color:rgba(255,255,255,.3);}
+
+/* 도시 불빛 (앰비언트) */
+.lights{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity 1.5s;}
+.lights.on{opacity:.5;}
+.lights span{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(201,162,39,.7);
+  animation:twinkle 3s ease-in-out infinite;}
+@keyframes twinkle{0%,100%{opacity:.2;}50%{opacity:.9;}}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="grade cold" id="grade"></div>
+  <div class="lights" id="lights"></div>
+  <div id="sceneHost"></div>
+</div>
+<div class="bar" id="bar"></div>
+<div class="hint" id="hint">자동 재생 · 클릭=일시정지 · F=전체화면</div>
+<div class="ctrl">
+  <button onclick="restart()">⟲ 다시</button>
+  <button onclick="toggleFS()">⛶ 전체화면</button>
+</div>
+
+<script>
+/* ── 라인아트 SVG (currentColor) ── */
+const SVG = {
+  airport:`<svg class="art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50 14 L57 44 L86 56 L86 62 L55 56 L52 78 L62 84 L62 88 L50 85 L38 88 L38 84 L48 78 L45 56 L14 62 L14 56 L43 44 Z"/>
+  </svg>`,
+  hand:`<svg class="art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 84 V52 a4 4 0 018 0 V46 a4 4 0 018 0 V44 a4 4 0 018 0 V48 a4 4 0 018 0 V70 a14 14 0 01-14 14 Z"/>
+    <path d="M30 60 l-10 -6 a4 4 0 015 -6 l9 6"/>
+  </svg>`,
+  dining:`<svg class="art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 16 V44 a6 6 0 0012 0 V16 M36 16 V44"/>
+    <path d="M64 16 c-8 0 -10 14 -10 22 a4 4 0 004 4 h6 V84 M64 16 V84"/>
+  </svg>`,
+  note:`<svg class="art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="22" y="20" width="56" height="60" rx="4"/>
+    <path d="M32 38 H68 M32 50 H68 M32 62 H56"/>
+  </svg>`,
+  hotel:`<svg class="art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 70 H86 M20 70 V52 a8 8 0 018 -8 H72 a8 8 0 018 8 V70"/>
+    <path d="M30 44 V36 a4 4 0 014 -4 H66 a4 4 0 014 4 V44"/>
+    <path d="M14 70 V80 M86 70 V80"/>
+  </svg>`,
+  phone:`<svg class="art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="32" y="12" width="36" height="76" rx="6"/>
+    <path d="M44 20 H56"/><circle cx="50" cy="80" r="2"/>
+    <circle cx="50" cy="48" r="9"/><path d="M57 55 l8 8"/>
+  </svg>`,
+  wheel:`<svg class="art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="50" cy="50" r="34"/><circle cx="50" cy="50" r="9"/>
+    <path d="M50 41 V20 M42 57 L24 74 M58 57 L76 74"/>
+  </svg>`,
+  people:`<svg class="art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="36" cy="34" r="10"/><path d="M20 76 V66 a16 16 0 0132 0 V76"/>
+    <circle cx="66" cy="34" r="10"/><path d="M50 76 V66 a16 16 0 0132 0 V76"/>
+  </svg>`,
+  church:`<svg class="art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50 10 V26 M44 18 H56"/>
+    <path d="M50 28 L78 48 V82 H22 V48 Z"/>
+    <path d="M42 82 V64 a8 8 0 0116 0 V82"/>
+  </svg>`,
+  heart:`<svg class="art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50 80 C20 58 20 32 38 32 c8 0 12 6 12 6 s4 -6 12 -6 c18 0 18 26 -12 48 Z"/>
+  </svg>`
+};
+
+/* ── 장면 타임라인 ── */
+const SCENES = [
+  { dur:6500, warm:false, html:`${SVG.airport}<div class="cap">낯선 도시에, 막 도착했습니다.</div><div class="sub">한 손엔 캐리어, 가슴엔 막막함.</div>` },
+  { dur:6500, warm:false, html:`${SVG.hand}<div class="cap">공항에서, 누군가 작은 친절을 건넵니다.</div><div class="sub">길을 알려주고, 문을 잡아주고.</div>` },
+  { dur:8000, warm:false, html:`${SVG.dining}<div class="cap">식당에서 밥을 먹다,<br>주인이 말을 건넵니다.</div><div class="sub">"도움이 필요하면, 여기 한번 봐요."</div>` },
+  { dur:6500, warm:false, html:`${SVG.note}<div class="cap">냅킨 한 장에 적어준 주소 하나.</div><div class="sub" style="color:var(--gold2);font-weight:700;">HebronGuide.com</div>` },
+  { dur:8500, warm:false, html:`${SVG.hotel}<div class="cap">그날 밤, 낯선 천장을 보며 생각합니다.</div><div class="sub">'이 도시에서… 나는 어떻게 살아가지?'</div>`, lights:true },
+  { dur:9000, warm:true, html:`<div class="searchbar">HebronGuide.com<span class="cursor"></span></div>
+      <div class="guidecards"><div class="gc">우리 도시 교회</div><div class="gc">성도의 가게</div><div class="gc">운전면허·정착</div></div>
+      <div class="cap">문득, 그 주소를 검색합니다.</div><div class="smile show">그리고… 미소가 번집니다.</div>` },
+  { dur:7500, warm:true, html:`${SVG.wheel}<div class="cap warmth">전화 한 통으로,<br>운전면허도 정착도 하나씩 풀립니다.</div><div class="sub">혼자가 아니었습니다.</div>` },
+  { dur:7500, warm:true, html:`${SVG.people}<div class="cap warmth">식당에서 만난 그 사람과 다시 만나,<br>차 한 잔을 나눕니다.</div>` },
+  { dur:7000, warm:true, html:`${SVG.church}<div class="cap warmth">그렇게 <span class="mint">자연스럽게</span>,<br>한 공동체로 이어집니다.</div>` },
+  { dur:11000, warm:true, html:`<div class="endmsg">환대는 <span class="strike">교회 입구</span>가 아니라 —<br><span class="from">공항에서, 거리에서, 가게에서</span> 시작됩니다.</div>
+      <div class="cta">HebronGuide.com</div><div class="cta-sub">처음 도착한 그 날부터, 환대가 기다립니다.</div>` }
+];
+
+const host = document.getElementById('sceneHost');
+const grade = document.getElementById('grade');
+const lights = document.getElementById('lights');
+const bar = document.getElementById('bar');
+let idx=-1, timer=null, paused=false, startT=0, total=SCENES.reduce((a,s)=>a+s.dur,0);
+
+// 도시 불빛 생성
+for(let i=0;i<40;i++){ const sp=document.createElement('span');
+  sp.style.left=(Math.random()*100)+'%'; sp.style.top=(Math.random()*70+10)+'%';
+  sp.style.animationDelay=(Math.random()*3)+'s'; lights.appendChild(sp); }
+
+function showScene(n){
+  idx=n;
+  const sc=SCENES[n];
+  host.innerHTML = `<div class="scene ${sc.warm?'warmth':''}">${sc.html}</div>`;
+  requestAnimationFrame(()=>{ host.querySelector('.scene').classList.add('on'); });
+  grade.className = 'grade ' + (sc.warm?'warm':'cold');
+  lights.classList.toggle('on', !!sc.lights);
+}
+
+function play(){
+  if(idx>=0){ const cur=host.querySelector('.scene'); if(cur) cur.classList.remove('on'); }
+  const next=idx+1;
+  if(next>=SCENES.length){ return; }
+  setTimeout(()=>{ showScene(next);
+    timer=setTimeout(play, SCENES[next].dur);
+  }, idx<0?100:700);
+}
+
+let progTimer=null;
+function progress(){
+  clearInterval(progTimer);
+  progTimer=setInterval(()=>{
+    if(paused) return;
+    const el=Date.now()-startT;
+    bar.style.width=Math.min(100,(el/total)*100)+'%';
+    if(el>=total) clearInterval(progTimer);
+  },120);
+}
+
+function start(){ idx=-1; startT=Date.now(); bar.style.width='0%'; play(); progress(); }
+function restart(){ clearTimeout(timer); start(); }
+function toggleFS(){ if(!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); }
+
+// 클릭 일시정지/재개 (간단)
+document.querySelector('.stage').addEventListener('click', ()=>{
+  paused=!paused;
+  if(paused){ clearTimeout(timer); }
+  else { timer=setTimeout(play, 1500); progress(); startT=Date.now()-(parseFloat(bar.style.width)/100*total); }
+});
+document.addEventListener('keydown',e=>{ if(e.key==='f'||e.key==='F') toggleFS(); if(e.key==='r'||e.key==='R') restart(); });
+
+start();
+</script>
+</body>
+</html>
