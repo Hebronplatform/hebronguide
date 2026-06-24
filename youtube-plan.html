@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>폴 김 목사 유튜브 채널 계획서 — HebronGuide 내부 자료</title>
+  <meta name="robots" content="noindex"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+  :root{
+    --bg:#0a0e14;--surface:rgba(255,255,255,.05);--surface2:rgba(255,255,255,.08);
+    --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+    --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;--red:#f87171;--indigo:#818CF8;
+    --text:#ECFDF5;--muted:rgba(236,253,245,.6);--muted2:rgba(236,253,245,.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;background:var(--bg);}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;overflow-x:hidden;}
+
+  nav{position:sticky;top:0;z-index:200;background:rgba(10,14,20,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
+  .nav-logo{font-family:'Cinzel',serif;font-weight:700;font-size:1rem;color:var(--gold);text-decoration:none;}
+  .nav-back{color:var(--muted);text-decoration:none;font-size:.82rem;display:flex;align-items:center;gap:6px;}
+  .nav-back:hover{color:var(--gold);}
+
+  /* HERO */
+  .hero{padding:72px 24px 56px;text-align:center;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.12),transparent 65%);}
+  .hero-tag{display:inline-block;font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);border-radius:99px;padding:5px 16px;margin-bottom:20px;}
+  .hero-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#fff;line-height:1.2;margin-bottom:16px;}
+  .hero-title em{color:var(--gold);font-style:normal;}
+  .hero-name{font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);margin-bottom:8px;}
+  .hero-soul{font-size:.92rem;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.95;border-top:1px solid var(--border2);padding-top:20px;margin-top:20px;}
+  .hero-soul strong{color:#fff;}
+
+  /* BRAND CORE */
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px;}
+  .section{padding:64px 0;}
+  .section-eyebrow{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;}
+  .section-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+  .section-desc{font-size:.9rem;color:var(--muted);line-height:1.9;margin-bottom:32px;}
+
+  /* BRAND FLOW */
+  .brand-flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin:32px 0;}
+  .bf-item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 20px;text-align:center;}
+  .bf-item.gold{background:rgba(201,162,39,.15);border-color:rgba(201,162,39,.4);}
+  .bf-item.mint{background:rgba(110,231,183,.1);border-color:rgba(110,231,183,.3);}
+  .bf-label{font-size:.68rem;color:var(--muted2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;}
+  .bf-val{font-size:.95rem;font-weight:800;color:#fff;}
+  .bf-item.gold .bf-val{color:var(--gold);}
+  .bf-item.mint .bf-val{color:var(--mint);}
+  .bf-arr{color:rgba(201,162,39,.4);font-size:1.3rem;align-self:center;}
+
+  /* PILLAR CARDS */
+  .pillar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+  .pillar{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:24px 20px;}
+  .pillar-num{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:900;color:var(--gold);margin-bottom:10px;}
+  .pillar-title{font-size:1rem;font-weight:900;color:#fff;margin-bottom:6px;}
+  .pillar-desc{font-size:.82rem;color:var(--muted);line-height:1.7;}
+  .pillar-ex{margin-top:12px;font-size:.78rem;color:rgba(201,162,39,.8);font-style:italic;border-top:1px solid var(--border);padding-top:10px;line-height:1.6;}
+
+  /* SERIES TABLE */
+  .series-list{display:flex;flex-direction:column;gap:12px;}
+  .series-item{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:20px 22px;display:grid;grid-template-columns:56px 1fr auto;gap:12px 20px;align-items:start;}
+  @media(max-width:580px){.series-item{grid-template-columns:1fr;}}
+  .series-ep{font-family:'Cinzel',serif;font-size:.85rem;font-weight:900;color:var(--gold);background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);border-radius:8px;padding:6px 10px;text-align:center;white-space:nowrap;}
+  .series-body{}
+  .series-title{font-size:.92rem;font-weight:800;color:#fff;margin-bottom:4px;}
+  .series-hook{font-size:.82rem;color:var(--muted);line-height:1.65;}
+  .series-tag{font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;white-space:nowrap;}
+  .tag-story{background:rgba(201,162,39,.12);color:var(--gold);}
+  .tag-seminar{background:rgba(110,231,183,.1);color:var(--mint);}
+  .tag-pastor{background:rgba(129,140,248,.1);color:var(--indigo);}
+
+  /* CHANNEL RULES */
+  .rule-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
+  .rule-card{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:20px 18px;}
+  .rule-icon{margin-bottom:10px;}
+  .rule-title{font-size:.88rem;font-weight:800;color:#fff;margin-bottom:6px;}
+  .rule-body{font-size:.8rem;color:var(--muted);line-height:1.7;}
+  .rule-card.warn .rule-title{color:var(--red);}
+  .rule-card.warn{border-color:rgba(248,113,113,.2);background:rgba(248,113,113,.04);}
+
+  /* LAUNCH CHECKLIST */
+  .launch-box{background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.05));border:1px solid rgba(201,162,39,.3);border-radius:20px;padding:32px 28px;}
+  .check-list{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+  .check-item{display:flex;align-items:flex-start;gap:12px;font-size:.88rem;color:var(--muted);line-height:1.6;}
+  .check-box{flex-shrink:0;width:20px;height:20px;border:1.5px solid rgba(201,162,39,.5);border-radius:5px;margin-top:2px;}
+  .check-item strong{color:#fff;}
+
+  /* QUOTE */
+  .quote-block{background:rgba(201,162,39,.06);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;padding:20px 24px;margin:32px 0;}
+  .quote-text{font-size:1rem;color:#fff;line-height:1.85;font-style:italic;}
+  .quote-from{font-size:.75rem;color:var(--muted2);margin-top:8px;}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0;}
+  footer{padding:40px 24px;text-align:center;}
+  .footer-copy{font-size:.72rem;color:var(--muted2);}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">HebronGuide</a>
+  <a href="/growth-plan.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    성장 로드맵
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">내부 전략 문서 · YouTube Channel Plan</div>
+  <h1 class="hero-title">내 이름이<br><em>브랜드가 된다</em></h1>
+  <p class="hero-name">폴 김 목사 유튜브 채널 계획서</p>
+  <div class="hero-soul">
+    사람들은 플랫폼을 구독하지 않습니다.<br>
+    <strong>사람을 구독합니다.</strong><br><br>
+    폴 김 목사의 25년 목회 이야기가<br>
+    환대를 통해 세상으로 흘러가는 채널입니다.
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 브랜드 흐름 -->
+  <div class="section" style="padding-top:40px;padding-bottom:40px;text-align:center;">
+    <div class="brand-flow">
+      <div class="bf-item gold">
+        <div class="bf-label">브랜드</div>
+        <div class="bf-val">폴 김 목사</div>
+      </div>
+      <div class="bf-arr">→</div>
+      <div class="bf-item">
+        <div class="bf-label">주제</div>
+        <div class="bf-val">환대 이야기</div>
+      </div>
+      <div class="bf-arr">→</div>
+      <div class="bf-item">
+        <div class="bf-label">채널</div>
+        <div class="bf-val">YouTube</div>
+      </div>
+      <div class="bf-arr">→</div>
+      <div class="bf-item mint">
+        <div class="bf-label">목적지</div>
+        <div class="bf-val">HebronGuide</div>
+      </div>
+      <div class="bf-arr">→</div>
+      <div class="bf-item">
+        <div class="bf-label">열매</div>
+        <div class="bf-val">교회 · 그리스도</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 채널 정체성 -->
+  <div class="section">
+    <div class="section-eyebrow">Channel Identity</div>
+    <h2 class="section-title">이 채널은 무엇입니까?</h2>
+    <p class="section-desc">설교 채널이 아닙니다. 정보 채널도 아닙니다.<br>이민자의 삶 한복판에서 환대를 실천하는 한 목사의 <strong style="color:#fff;">진짜 이야기</strong>입니다.</p>
+
+    <div class="quote-block">
+      <div class="quote-text">"내가 나그네 되었을 때 너희가 영접하였다."</div>
+      <div class="quote-from">마태복음 25:35 — 이 채널의 뿌리</div>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">이름이 브랜드</div>
+        <div class="pillar-desc">채널명은 "폴 김 목사" 또는 "Paul Kim Pastor". 로고보다 얼굴이, 기관보다 사람이 신뢰를 만듭니다.</div>
+        <div class="pillar-ex">채널 설명: "환대로 세상을 바꾸는 목사. HebronGuide 대표."</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">환대가 주제</div>
+        <div class="pillar-desc">모든 영상의 핵심은 환대입니다. 이민 정보·정착 이야기·세미나 — 출발점은 항상 환대.</div>
+        <div class="pillar-ex">시청자가 느끼는 것: "이 목사님은 나를 위해 이걸 만들었다."</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">HebronGuide 연결</div>
+        <div class="pillar-desc">영상 끝에 항상 한 줄: "더 자세한 정보는 HebronGuide에서." 채널이 플랫폼의 입구.</div>
+        <div class="pillar-ex">설명란 고정: 🌐 hebronguide.com</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <div class="pillar-title">진심이 알고리즘</div>
+        <div class="pillar-desc">조회수를 위해 만들지 않습니다. 진짜 필요를 채우는 영상이 오래 살아남고, 더 많이 공유됩니다.</div>
+        <div class="pillar-ex">목표: 구독자 숫자보다 "이 영상 덕분에 정착했어요" 1개.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 콘텐츠 3축 -->
+  <div class="section">
+    <div class="section-eyebrow">Content Strategy</div>
+    <h2 class="section-title">콘텐츠 3축</h2>
+    <p class="section-desc">채널은 세 가지 유형의 영상으로 구성됩니다. 각 유형이 서로 다른 시청자를 끌어오고, 하나의 이야기로 이어집니다.</p>
+
+    <div class="pillar-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+      <div class="pillar" style="border-color:rgba(201,162,39,.3);">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div style="width:32px;height:32px;border-radius:8px;background:rgba(201,162,39,.15);display:flex;align-items:center;justify-content:center;">
+            <svg width="16" height="16" fill="none" stroke="#C9A227" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <span class="series-tag tag-story">실화 시리즈</span>
+        </div>
+        <div class="pillar-title">환대 실화</div>
+        <div class="pillar-desc">이민자의 첫날 이야기. 공항에서 만난 사람, 처음 도움받은 순간. 목사님이 직접 인터뷰하거나 경험을 나눕니다.</div>
+        <div class="pillar-ex">월 2편 · 5–10분 · 자막 한·영</div>
+      </div>
+      <div class="pillar" style="border-color:rgba(110,231,183,.3);">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div style="width:32px;height:32px;border-radius:8px;background:rgba(110,231,183,.1);display:flex;align-items:center;justify-content:center;">
+            <svg width="16" height="16" fill="none" stroke="#6EE7B7" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <span class="series-tag tag-seminar">환대 방송</span>
+        </div>
+        <div class="pillar-title">정착 세미나 Live</div>
+        <div class="pillar-desc">월 1회 온라인 세미나. 비자·세금·학교·의료 등 주제별 전문가 초청. Live 후 YouTube 아카이브.</div>
+        <div class="pillar-ex">월 1회 · 60–90분 · 녹화 편집본 별도 업로드</div>
+      </div>
+      <div class="pillar" style="border-color:rgba(129,140,248,.3);">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div style="width:32px;height:32px;border-radius:8px;background:rgba(129,140,248,.1);display:flex;align-items:center;justify-content:center;">
+            <svg width="16" height="16" fill="none" stroke="#818CF8" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <span class="series-tag tag-pastor">목사 이야기</span>
+        </div>
+        <div class="pillar-title">목사님의 목소리</div>
+        <div class="pillar-desc">왜 환대인가. 25년 목회 회고. 헤브론 이야기. 이민자를 향한 마음. 깊고 짧은 영상.</div>
+        <div class="pillar-ex">월 1편 · 3–5분 · 자막 한·영</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 첫 10개 영상 -->
+  <div class="section">
+    <div class="section-eyebrow">First 10 Videos</div>
+    <h2 class="section-title">첫 10개 영상 — 시작 대본</h2>
+    <p class="section-desc">첫 영상이 채널의 방향을 결정합니다. 순서대로 찍을 필요 없습니다. 준비되는 것부터 시작하면 됩니다.</p>
+
+    <div class="series-list">
+
+      <div class="series-item">
+        <div class="series-ep">EP 01</div>
+        <div class="series-body">
+          <div class="series-title">왜 나는 환대를 시작했나</div>
+          <div class="series-hook">목사님의 첫 번째 이야기. 25년 전 그 첫 이민자. 헤브론의 시작. 이 채널의 존재 이유.</div>
+        </div>
+        <span class="series-tag tag-pastor">목사 이야기</span>
+      </div>
+
+      <div class="series-item">
+        <div class="series-ep">EP 02</div>
+        <div class="series-body">
+          <div class="series-title">미국 첫날 — 공항에서 무슨 일이 있었나요?</div>
+          <div class="series-hook">시청자 모집 공고. "당신의 이민 첫날 이야기를 나눠주세요." 1편은 목사님 직접 경험담.</div>
+        </div>
+        <span class="series-tag tag-story">실화 시리즈</span>
+      </div>
+
+      <div class="series-item">
+        <div class="series-ep">EP 03</div>
+        <div class="series-body">
+          <div class="series-title">환대 방송 첫 세미나 — "이민 첫 달, 꼭 해야 할 것들"</div>
+          <div class="series-hook">SSN·운전면허·은행 계좌·핸드폰. 실용 정보 + 목사님 진행. Live 후 편집본 업로드.</div>
+        </div>
+        <span class="series-tag tag-seminar">환대 방송</span>
+      </div>
+
+      <div class="series-item">
+        <div class="series-ep">EP 04</div>
+        <div class="series-body">
+          <div class="series-title">HebronGuide란 무엇인가 — 내가 만든 이유</div>
+          <div class="series-hook">플랫폼 소개가 아니라 마음 소개. "왜 이걸 만들었냐"는 목사님의 목소리.</div>
+        </div>
+        <span class="series-tag tag-pastor">목사 이야기</span>
+      </div>
+
+      <div class="series-item">
+        <div class="series-ep">EP 05</div>
+        <div class="series-body">
+          <div class="series-title">실화 — "처음 시애틀에 왔을 때 이 교회가 날 살렸어요"</div>
+          <div class="series-hook">파트너 교회 성도 인터뷰. 환대받은 순간. 목사님이 직접 인터뷰어.</div>
+        </div>
+        <span class="series-tag tag-story">실화 시리즈</span>
+      </div>
+
+      <div class="series-item">
+        <div class="series-ep">EP 06</div>
+        <div class="series-body">
+          <div class="series-title">환대 방송 — "미국 의료보험, 어떻게 선택하나요?"</div>
+          <div class="series-hook">전문가 초청 세미나. 이민자에게 가장 두려운 주제 1위. 실용 + 따뜻한 진행.</div>
+        </div>
+        <span class="series-tag tag-seminar">환대 방송</span>
+      </div>
+
+      <div class="series-item">
+        <div class="series-ep">EP 07</div>
+        <div class="series-body">
+          <div class="series-title">낯선 도시에서 교회를 어떻게 찾나요?</div>
+          <div class="series-hook">HebronGuide 사용법 자연스럽게 녹인 영상. 강요 없이, 경험으로 소개.</div>
+        </div>
+        <span class="series-tag tag-pastor">목사 이야기</span>
+      </div>
+
+      <div class="series-item">
+        <div class="series-ep">EP 08</div>
+        <div class="series-body">
+          <div class="series-title">실화 — "달라스에서 한국어로 도움받은 날"</div>
+          <div class="series-hook">다른 도시 파트너 교회 이야기. 지역 다변화 시작.</div>
+        </div>
+        <span class="series-tag tag-story">실화 시리즈</span>
+      </div>
+
+      <div class="series-item">
+        <div class="series-ep">EP 09</div>
+        <div class="series-body">
+          <div class="series-title">환대 방송 — "자녀 미국 학교 보내기 A to Z"</div>
+          <div class="series-hook">부모 세대가 가장 많이 묻는 질문. 학군·등록·ESL·방과후. 전문가 + 실제 경험자 패널.</div>
+        </div>
+        <span class="series-tag tag-seminar">환대 방송</span>
+      </div>
+
+      <div class="series-item">
+        <div class="series-ep">EP 10</div>
+        <div class="series-body">
+          <div class="series-title">헤브론 — 아브라함이 나그네로 산 땅</div>
+          <div class="series-body" style="margin-top:4px;"></div>
+          <div class="series-hook">채널의 뿌리를 성경으로. 목사님 설교가 아닌 이야기. 10편째, 구독자에게 드리는 선물.</div>
+        </div>
+        <span class="series-tag tag-pastor">목사 이야기</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 채널 운영 원칙 -->
+  <div class="section">
+    <div class="section-eyebrow">Channel Rules</div>
+    <h2 class="section-title">채널 운영 원칙</h2>
+    <p class="section-desc">이 원칙이 지켜지는 한 채널은 브랜드로 성장합니다.</p>
+
+    <div class="rule-grid">
+      <div class="rule-card">
+        <div class="rule-icon"><svg width="20" height="20" fill="none" stroke="#C9A227" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="rule-title">진심만 올린다</div>
+        <div class="rule-body">조회수·구독자 숫자보다 "이 영상 덕분에 정착했어요" 한 댓글이 우선입니다. 숫자를 위해 만든 영상은 올리지 않습니다.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg width="20" height="20" fill="none" stroke="#C9A227" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div class="rule-title">월 3–4편 유지</div>
+        <div class="rule-body">실화 2편 + 세미나 1편 + 목사님 이야기 1편. 이 리듬이 채널을 살아있게 합니다. 많이보다 꾸준히.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg width="20" height="20" fill="none" stroke="#C9A227" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="rule-title">댓글에 응답한다</div>
+        <div class="rule-body">초반 100개 댓글은 목사님이 직접 답합니다. 이 행위 자체가 환대이고, 구독자를 팬으로 만듭니다.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg width="20" height="20" fill="none" stroke="#C9A227" stroke-width="1.8" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+        <div class="rule-title">끝에 HebronGuide</div>
+        <div class="rule-body">모든 영상 마지막 30초: "더 많은 정보는 HebronGuide에서." 설명란 고정 링크. 강요 없이, 자연스럽게.</div>
+      </div>
+      <div class="rule-card warn">
+        <div class="rule-icon"><svg width="20" height="20" fill="none" stroke="#f87171" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div class="rule-title">직접 전도 금지</div>
+        <div class="rule-body">영상에서 결신을 촉구하거나 종교를 강요하지 않습니다. 환대의 모습이 증거입니다. 마태복음 10:16.</div>
+      </div>
+      <div class="rule-card warn">
+        <div class="rule-icon"><svg width="20" height="20" fill="none" stroke="#f87171" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
+        <div class="rule-title">정치·논쟁 금지</div>
+        <div class="rule-body">이민 정책 논쟁, 특정 정당 언급, 사회 이슈 논쟁은 다루지 않습니다. 채널은 모든 이민자를 위한 공간.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 시작 체크리스트 -->
+  <div class="section">
+    <div class="section-eyebrow">Launch Checklist</div>
+    <h2 class="section-title">시작하려면</h2>
+    <div class="launch-box">
+      <p style="font-size:.9rem;color:var(--muted);line-height:1.8;">장비가 완벽할 필요 없습니다. 스마트폰으로 시작해도 됩니다.<br>준비가 아니라 <strong style="color:#fff;">시작</strong>이 채널을 만듭니다.</p>
+      <div class="check-list">
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div><strong>YouTube 채널 개설</strong> — "폴 김 목사" 또는 "Paul Kim Pastor" 채널명, 프로필 사진, 채널 설명 ("환대로 세상을 바꾸는 목사. HebronGuide 대표.")</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div><strong>EP 01 촬영</strong> — "왜 나는 환대를 시작했나" 5분. 스마트폰 + 자연광이면 충분합니다.</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div><strong>채널 아트 제작</strong> — 다크 배경 + "폴 김 목사 · 환대 방송" 텍스트. Claude Code가 즉시 제작 가능.</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div><strong>설명란 고정 링크</strong> — 🌐 hebronguide.com · 📣 pf.kakao.com/_dxdxlbX 추가.</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div><strong>첫 세미나 날짜 확정</strong> — EP 03 "이민 첫 달 해야 할 것들" Zoom 일정 잡기. 파트너 교회에 홍보 요청.</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div><strong>카카오 채널 연동</strong> — 세미나 공지·영상 알림을 카카오 채널로 발송. 구독자·채널 구독자 상호 성장.</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div><strong>growth-plan.html 업데이트</strong> — Phase 3 "환대 방송" 항목에 채널 URL 추가.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 마지막 말 -->
+  <div class="section" style="padding-top:0;">
+    <div class="quote-block">
+      <div class="quote-text">"내 이름이 브랜드가 되는 거지."</div>
+      <div class="quote-from">폴 김 목사 · 2026년 6월</div>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);line-height:1.9;">
+      맞습니다. 목사님의 이름이 신뢰이고, 신뢰가 HebronGuide의 문입니다.<br>
+      사람들이 폴 김 목사를 알게 되면 → 환대를 보고 → HebronGuide를 찾고 → 교회를 만납니다.<br>
+      이것이 25년 목회가 디지털로 확장되는 방식입니다.
+    </p>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+<footer>
+  <p class="footer-copy">HebronGuide · Hebron Platform LLC · 내부 문서 · © 2026</p>
+</footer>
+
+</body>
+</html>
