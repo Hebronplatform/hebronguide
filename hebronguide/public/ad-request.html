@@ -1260,17 +1260,60 @@ async function submitForm(type) {
   btn.textContent = '⏳ 제출 중...';
   btn.disabled = true;
 
-  // ── API 직접 제출 (이메일 앱 불필요)
+  // ── 교회 신청: submit-church API로 구조화 데이터 전송
+  if (type === 'church') {
+    try {
+      const sel = document.getElementById('cCitySelect')?.value || '';
+      const citySlug = sel && sel !== 'other|기타 도시' ? sel.split('|')[0] : (document.getElementById('cCity')?.value.trim() || '');
+      const cDenomVal = document.getElementById('cDenom')?.value || '';
+      const cDenomOther = document.getElementById('cDenomOther')?.value.trim() || '';
+      const finalDenom = cDenomVal === '기타' && cDenomOther ? `기타 — ${cDenomOther}` : cDenomVal;
+
+      const res = await fetch('/api/submit-church', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          churchName:   document.getElementById('cChurch')?.value.trim() || '',
+          churchNameEn: document.getElementById('cChurchEn')?.value.trim() || '',
+          denomination: finalDenom,
+          pastor:       document.getElementById('cPastor')?.value.trim() || '',
+          phone:        document.getElementById('cPhone')?.value.trim() || '',
+          email:        document.getElementById('cEmail')?.value.trim() || '',
+          website:      document.getElementById('cWebsite')?.value.trim() || '',
+          serviceTimes: document.getElementById('cService')?.value.trim() || '',
+          description:  document.getElementById('cDesc')?.value.trim() || '',
+          city:         citySlug,
+        }),
+      });
+      const data = await res.json();
+      btn.textContent = origText;
+      btn.disabled = false;
+      if (res.ok) {
+        document.querySelectorAll('.form-card').forEach(f=>f.classList.remove('active'));
+        const nameEl = document.getElementById('successApplicantName');
+        const suffixEl = document.getElementById('successNameSuffix');
+        if(nameEl) nameEl.textContent = applicantName || '';
+        if(suffixEl) suffixEl.textContent = applicantName ? '님, 안녕하세요.' : '안녕하세요.';
+        document.getElementById('successMsg').classList.add('show');
+        window.scrollTo({top:0,behavior:'smooth'});
+      } else {
+        alert(data.message || '제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+      }
+    } catch(e) {
+      btn.textContent = origText;
+      btn.disabled = false;
+      alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+    }
+    return;
+  }
+
+  // ── 나머지 신청 유형: submit-form API
   try {
-    const phoneMap = {person:'pPhone', church:'cPhone', business:'bPhone', promo:'prPhone'};
+    const phoneMap = {person:'pPhone', business:'bPhone', promo:'prPhone'};
     const phone = (document.getElementById(phoneMap[type])?.value || '').trim();
-    // 교회: 드롭다운 slug 우선 사용
-    let city = ''
-    if (type === 'church') {
-      const sel = document.getElementById('cCitySelect')?.value || ''
-      city = sel && sel !== 'other|기타 도시' ? sel.split('|')[0] : (document.getElementById('cCity')?.value.trim() || '')
-    } else if (type === 'person') {
-      city = (document.getElementById('pCity')?.value || '').trim()
+    let city = '';
+    if (type === 'person') {
+      city = (document.getElementById('pCity')?.value || '').trim();
     }
 
     const res = await fetch('/api/submit-form', {

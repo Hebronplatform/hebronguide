@@ -285,19 +285,15 @@
     </span>
   </a>
   <div class="nav-links">
-    <a href="#values"><span class="ko">핵심가치</span><span class="en">Values</span></a>
-    <a href="#mission"><span class="ko">사명</span><span class="en">Mission</span></a>
-    <a href="#vision"><span class="ko">비전</span><span class="en">Vision</span></a>
-    <a href="#cities"><span class="ko"><span class="hg-city-count">71</span>개 도시</span><span class="en"><span class="hg-city-count">71</span>+ Cities</span></a>
-    <a href="/help.html"><span class="ko">도움말</span><span class="en">Help</span></a>
-    <a href="/ad-request.html"><span class="ko">파트너 신청</span><span class="en">Partner</span></a>
+    <a href="#about"><span class="ko">회사소개</span><span class="en">About</span></a>
+    <a href="#faq">FAQ</a>
     <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener"
        style="display:inline-flex;align-items:center;gap:5px;background:#FEE500;color:#3C1E1E;font-weight:800;font-size:.78rem;border-radius:20px;padding:6px 14px;text-decoration:none;">
       <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" style="height:16px;width:auto;" alt="kakao">
       <span class="ko">채널 구독</span><span class="en">Follow</span>
     </a>
     <button class="lang-btn" onclick="toggleLang()" id="lang-btn">EN</button>
-    <a href="/seattle/" class="nav-cta"><span class="ko">지금 시작하기 →</span><span class="en">Get Started →</span></a>
+    <a href="/ad-request.html" class="nav-cta"><span class="ko">파트너 신청하기 →</span><span class="en">Partner Sign Up →</span></a>
   </div>
 </nav>
 
@@ -385,8 +381,9 @@
     <span class="speaker en">— HebronGuide</span>
   </div>
 
-  <div class="hero-cta">
-    <a href="#paths" class="btn-hero"><span class="ko">내 도시 찾기 →</span><span class="en">Find My City →</span></a>
+  <div class="hero-cta" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a href="/ad-request.html" class="btn-hero"><span class="ko">파트너 신청하기 →</span><span class="en">Become a Partner →</span></a>
+    <a href="#cities" class="btn-outline"><span class="ko">도시 가이드 열기</span><span class="en">Open City Guide</span></a>
   </div>
 
   <div class="hero-stats">
@@ -399,279 +396,234 @@
 
 <div class="divider"></div>
 
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ THREE PATHS ━━━ -->
-<div class="paths-section" id="paths">
-  <div class="paths-label"><span class="ko">누구를 위한 건가요?</span><span class="en">Who is this for?</span></div>
-  <h2 class="paths-title">
-    <span class="ko">당신이 어디 있든,<br>HebronGuide가 연결합니다</span>
-    <span class="en">Wherever you are,<br>HebronGuide connects you</span>
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PARTNERS ━━━ -->
+<div class="partner-section" id="about">
+  <div class="sec-label"><span class="ko">파트너 · Partners</span><span class="en">Partners</span></div>
+  <h2 class="sec-title">
+    <span class="ko">두 가지 방식으로<br>함께합니다</span>
+    <span class="en">Two ways<br>to join us</span>
   </h2>
-  <p class="paths-desc">
-    <span class="ko">새로 오신 분, 이미 이 도시에서 섬기고 계신 분,<br>오래 살았지만 아직 연결이 필요한 분 — 모두를 위한 공간입니다.</span>
-    <span class="en">Whether you've just arrived, you're serving in this city,<br>or you've lived here long but feel unconnected — this is for you.</span>
-  </p>
-
-  <div class="paths-grid">
-
-    <a href="#cities" class="path-card for-newcomer">
-      <span class="path-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></span>
-      <div class="path-who"><span class="ko">새로 오신 분께</span><span class="en">For Newcomers</span></div>
-      <h3 class="path-title">
-        <span class="ko">처음 이 도시에<br>오셨나요?</span>
-        <span class="en">Just arrived<br>in this city?</span>
-      </h3>
-      <p class="path-body">
-        <span class="ko">집 찾기, 비자, 은행, 학교, 병원—<br>처음이라 막막한 모든 것.<br>먼저 살아온 사람들이 알려드립니다.</span>
-        <span class="en">Housing, visa, bank, school, hospital—<br>everything that feels overwhelming at first.<br>Those who've been here before will guide you.</span>
-      </p>
-      <span class="path-cta"><span class="ko">내 도시 정착 정보 →</span><span class="en">Settlement Info →</span></span>
-    </a>
-
-    <a href="/ad-request.html" class="path-card for-pastor">
-      <span class="path-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v3"></path><path d="M10.5 3.5h3"></path><path d="M4 21V11l8-6 8 6v10"></path><path d="M9 21v-5a3 3 0 0 1 6 0v5"></path><path d="M2 21h20"></path></svg></span>
-      <div class="path-who"><span class="ko">이 도시를 섬기고 계신 분께</span><span class="en">For Ministers & Believers</span></div>
-      <h3 class="path-title">
-        <span class="ko">이 도시에서<br>섬기고 계신가요?</span>
-        <span class="en">Serving<br>in this city?</span>
-      </h3>
-      <p class="path-body">
-        <span class="ko">교회 안의 따뜻함을 이제 도시 안으로.<br>당신의 교회를 등록하면,<br>새로 온 이웃이 가장 먼저 만나는 얼굴이 됩니다.</span>
-        <span class="en">Bring the warmth of the church into the city.<br>Register your church, and become<br>the first face a newcomer meets.</span>
-      </p>
-      <span class="path-cta"><span class="ko">함께 연결하기 →</span><span class="en">Join & Connect →</span></span>
-    </a>
-
-    <a href="#cities" class="path-card for-neighbor">
-      <span class="path-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V11l4-3 4 3v10"></path><path d="M11 21V8l5-4 5 4v13"></path><path d="M3 21h18"></path><path d="M5 21v-4h4v4"></path></svg></span>
-      <div class="path-who"><span class="ko">이미 이 도시에 사시는 분께</span><span class="en">Already Living Here</span></div>
-      <h3 class="path-title">
-        <span class="ko">이 도시에서<br>연결이 필요하신가요?</span>
-        <span class="en">Looking for<br>connection here?</span>
-      </h3>
-      <p class="path-body">
-        <span class="ko">오래 살았지만 외로운 분,<br>이웃과 연결되고 싶은 분—<br>이 도시의 따뜻한 커뮤니티를 만나보세요.</span>
-        <span class="en">You've lived here a while but feel alone.<br>Looking to connect with neighbors—<br>meet the warm community of this city.</span>
-      </p>
-      <span class="path-cta"><span class="ko">커뮤니티 찾기 →</span><span class="en">Find Community →</span></span>
-    </a>
-
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CORE TRUTH ━━━ -->
-<div class="core-truth">
-  <div class="core-truth-inner">
-    <h2>
-      <span class="ko">환대는 선택이 아닙니다.<br><em>부르심입니다.</em></span>
-      <span class="en">Hospitality is not optional.<br><em>It is a calling.</em></span>
-    </h2>
-    <p class="core-truth-desc">
-      <span class="ko">비행기에서 내린 그 순간, 아는 사람 하나 없는 낯선 도시에서<br>따뜻한 손길 하나가 한 사람의 인생을 바꿉니다.<br>그 손길이 되기 위해 HebronGuide가 존재합니다.</span>
-      <span class="en">The moment you step off the plane into an unfamiliar city where you know no one —<br>one warm, extended hand can change a person's life.<br>HebronGuide exists to be that hand.</span>
-    </p>
-    <div class="verses">
-      <div class="verse" style="border-left-color:var(--mint);background:rgba(110,231,183,.05);">
-        <p style="font-weight:700;font-style:normal;color:#fff;margin-bottom:4px;font-size:.8rem;">✦ <span class="ko">오리지널 — 창세기 13:14-18</span><span class="en">Original — Genesis 13:14-18</span></p>
-        <p><span class="ko">"너는 일어나서, 이 땅을 길이로 폭으로 두루 걸어 다니며 살펴 보아라... 아브람이 헤브론에 있는 마므레 상수리나무 곁으로 옮겨 가서 살았다. 그는 거기에서 주님께 제단을 쌓았다"</span><span class="en">"Go, walk through the length and breadth of the land... Abram went to live at Hebron. There he built an altar to the LORD."</span></p>
-        <cite style="color:var(--mint);">— <span class="ko">창세기</span><span class="en">Genesis</span> 13:14-18</cite>
-      </div>
-      <div class="verse">
-        <p><span class="ko">"나그네로 있을 때에 영접하여 주었고"</span><span class="en">"I was a stranger and you welcomed me"</span></p>
-        <cite>— <span class="ko">마태복음</span><span class="en">Matthew</span> 25:35</cite>
-      </div>
-      <div class="verse">
-        <p><span class="ko">"나그네 대접하기를 잊지 마십시오. 어떤 사람들은 나그네를 대접하다가 자기도 모르는 사이에 천사들을 대접하였습니다"</span><span class="en">"Do not forget to show hospitality to strangers, for by so doing some have shown hospitality to angels without knowing it"</span></p>
-        <cite>— <span class="ko">히브리서</span><span class="en">Hebrews</span> 13:2</cite>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ VALUES ━━━ -->
-<div class="values-section" id="values">
-  <div class="sec-label">핵심가치 · Core Values</div>
-  <h2 class="sec-title"><span class="ko">우리가 믿는 것들</span><span class="en">What We Believe</span></h2>
-  <p class="sec-desc"><span class="ko">HebronGuide의 모든 결정은 이 네 가지 믿음 위에 세워집니다.</span><span class="en">Every decision at HebronGuide is built on these four beliefs.</span></p>
-
-  <div class="values-grid">
-    <div class="val-card">
-      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
-      <div class="val-title"><span class="ko">모든 사람은 환대받을 자격이 있습니다</span><span class="en">Everyone Deserves to Be Welcomed</span></div>
-      <div class="val-body"><span class="ko">국적·언어·배경과 무관하게, 이 세상에 소외되어야 할 사람은 없습니다. 낯선 도시의 첫날이 두렵지 않도록 — 그것이 우리의 출발점입니다.</span><span class="en">Regardless of nationality, language, or background — no one should be left out. So that the first day in a new city holds no fear — that is where we begin.</span></div>
-      <div class="val-quote"><span class="ko">"이 세상 어느 누구도 외롭고 고독함을 느끼지 않아야 합니다."</span><span class="en">"No one in this world should ever feel lonely or forgotten."</span></div>
-    </div>
-    <div class="val-card">
-      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
-      <div class="val-title"><span class="ko">삶이 먼저, 정보가 그 다음</span><span class="en">Life First, Information Follows</span></div>
-      <div class="val-body"><span class="ko">정착 정보는 수단입니다. 진짜 목적은 사람과 사람을 잇는 것입니다. 병원 정보 하나, 식당 정보 하나가 관계의 시작이 됩니다.</span><span class="en">Settlement information is a means, not an end. The real purpose is connecting people to people. A hospital listing, a restaurant recommendation — these become the start of a relationship.</span></div>
-      <div class="val-quote"><span class="ko">"우리의 일터가, 우리의 식탁이, 이미 누군가에게는 첫 환대의 자리입니다."</span><span class="en">"Our workplace, our table — already someone's first place of welcome."</span></div>
-    </div>
-    <div class="val-card">
-      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"></path><path d="M12 12C12 12 7 10 7 5a5 5 0 0 1 10 0c0 5-5 7-5 7z"></path></svg></div>
-      <div class="val-title"><span class="ko">섬김이 리더십입니다</span><span class="en">Serving Is Leading</span></div>
-      <div class="val-body"><span class="ko">"인자가 온 것은 섬기려 하고" — 크고자 하는 자는 섬기는 자가 되어야 합니다. HebronGuide는 권력이 아닌 섬김, 소유가 아닌 나눔으로 운영됩니다.</span><span class="en">"The Son of Man came to serve" — whoever wants to be great must be a servant. HebronGuide runs not on power but on service, not on ownership but on sharing.</span></div>
-      <div class="val-quote">— <span class="ko">마가복음 10:43-45</span><span class="en">Mark 10:43-45</span></div>
-    </div>
-    <div class="val-card">
-      <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
-      <div class="val-title"><span class="ko">한인에서 모든 민족으로</span><span class="en">From Korean to All Nations</span></div>
-      <div class="val-body"><span class="ko">한인 디아스포라로 시작했지만 궁극적으로는 모든 민족을 향해야 합니다. 중국계, 베트남계, 아랍계 — 환대에는 국경이 없습니다.</span><span class="en">We began with the Korean diaspora, but ultimately we must reach toward every nation. Chinese, Vietnamese, Arabic — hospitality knows no borders.</span></div>
-      <div class="val-quote"><span class="ko">"한국인은 물론 모든 민족에게 환대 정신이 필요합니다." — 창립자</span><span class="en">"Not just Koreans — every nation needs the spirit of hospitality." — Founder</span></div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ MISSION ━━━ -->
-<div class="mission-section" id="mission">
-  <div class="mission-inner">
-    <div class="sec-label">사명 · Mission</div>
-    <h2 class="sec-title"><span class="ko">환대가 <span>세상을 바꿉니다</span></span><span class="en">Hospitality <span>Changes the World</span></span></h2>
-    <p class="sec-desc"><span class="ko">한 사람의 따뜻한 행동이 어떻게 세상을 바꾸는지, 우리는 믿습니다.</span><span class="en">We believe one warm act from one person can change the world.</span></p>
-
-    <div class="mission-flow">
-      <div class="flow-step"><span class="ko">낯선 도시 도착</span><span class="en">Arrive in a new city</span></div>
-      <div class="flow-arr">→</div>
-      <div class="flow-step highlight">HebronGuide</div>
-      <div class="flow-arr">→</div>
-      <div class="flow-step"><span class="ko">가게에서 만난 환대</span><span class="en">Welcomed at a shop</span></div>
-      <div class="flow-arr">→</div>
-      <div class="flow-step"><span class="ko">마음의 문이 열린다</span><span class="en">The heart opens</span></div>
-      <div class="flow-arr">→</div>
-      <div class="flow-step highlight"><span class="ko">그 도시가 더 이상 낯설지 않다.</span><span class="en">The city no longer feels strange.</span></div>
-    </div>
-
-    <div class="mission-declaration">
-      <p>
-        <span class="ko">분주한 일상 속에도, 사람과 사람을 잇는 길이 있습니다.<br><br>
-        일상, 일터, 환대 — 그 평범함 속에서<br>
-        닫힌 마음의 문이 열립니다.<br><br>
-        이것이 HebronGuide가 존재하는 이유입니다.</span>
-        <span class="en">Even in the busiest everyday life, there is a way to connect people.<br><br>
-        In the ordinary — daily life, work, hospitality —<br>
-        closed hearts begin to open.<br><br>
-        This is why HebronGuide exists.</span>
-      </p>
-      <div class="stamp"><span class="ko">HebronGuide가 함께합니다.</span><span class="en">HebronGuide is with you.</span></div>
-    </div>
-
-    <div style="text-align:center;margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="/ad-request.html#church" class="btn-hero" style="font-size:.9rem;padding:13px 28px;">⛪ <span class="ko">교회 등록</span><span class="en">Register Church</span></a>
-      <a href="/ad-request.html#biz" class="btn-outline" style="font-size:.88rem;"><span class="ko">사업체 등록</span><span class="en">Register Business</span></a>
-      <a href="/ad-request.html#promo" class="btn-outline" style="font-size:.88rem;">📢 <span class="ko">광고·홍보</span><span class="en">Advertise</span></a>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ VISION 2030 ━━━ -->
-<div class="vision-section" id="vision">
-  <div class="sec-label">비전 · Vision 2030</div>
-  <h2 class="sec-title"><span class="ko"><span class="hg-city-count">71</span>개 도시에서 <span>전 세계로</span></span><span class="en">From <span class="hg-city-count">71</span> Cities <span>to the World</span></span></h2>
   <p class="sec-desc">
-    <span class="ko">한인 디아스포라가 뿌리내린 곳에서<br>모든 민족을 향한 환대의 문을 엽니다.</span>
-    <span class="en">From where the Korean diaspora has planted roots,<br>we open the door of welcome to every nation.</span>
+    <span class="ko">교회든 사업체든, 환대의 마음이 있다면 — 이미 파트너입니다.</span>
+    <span class="en">Church or business — if hospitality is in your heart, you're already a partner.</span>
   </p>
 
-  <div class="roadmap">
-    <div class="road-item current">
-      <div class="road-year"><span class="ko">2026 현재</span><span class="en">2026 Now</span></div>
-      <div class="road-num">72<span style="font-size:1rem;">+</span></div>
-      <div class="road-unit"><span class="ko">도시</span><span class="en">Cities</span></div>
-      <div class="road-desc"><span class="ko">한인 디아스포라 중심 · 한국어·영어</span><span class="en">Korean diaspora focus · KO·EN</span></div>
-    </div>
-    <div class="road-item">
-      <div class="road-year">2027</div>
-      <div class="road-num">200</div>
-      <div class="road-unit"><span class="ko">도시 목표</span><span class="en">City Goal</span></div>
-      <div class="road-desc"><span class="ko">아시아·유럽·남미 확장</span><span class="en">Asia · Europe · Latin America</span></div>
-    </div>
-    <div class="road-item">
-      <div class="road-year">2028-29</div>
-      <div class="road-num">300</div>
-      <div class="road-unit"><span class="ko">도시 목표</span><span class="en">City Goal</span></div>
-      <div class="road-desc"><span class="ko">중국계·베트남계·필리핀계 추가</span><span class="en">Chinese · Vietnamese · Filipino</span></div>
-    </div>
-    <div class="road-item">
-      <div class="road-year">2030</div>
-      <div class="road-num">500</div>
-      <div class="road-unit"><span class="ko">도시 선포</span><span class="en">City Declaration</span></div>
-      <div class="road-desc"><span class="ko">모든 민족 · World Relief 파트너십</span><span class="en">All Nations · World Relief Partnership</span></div>
-    </div>
+  <div class="partner-grid">
+
+    <a href="/ad-request.html#church" class="partner-card partner-church">
+      <div class="partner-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M4 21V11l8-6 8 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/><path d="M2 21h20"/></svg>
+      </div>
+      <div class="partner-type"><span class="ko">교회 파트너</span><span class="en">Church Partner</span></div>
+      <h3><span class="ko">선교적 교회로<br>도시를 섬기세요</span><span class="en">Serve the city<br>as a missional church</span></h3>
+      <p><span class="ko">교회를 무료 등재하면, 공항에서 내린 새 이웃이 가장 먼저 만나는 얼굴이 됩니다.</span><span class="en">Free listing — be the first face a newcomer meets after landing.</span></p>
+      <div class="partner-free"><span class="ko">무상 등재</span><span class="en">Free Listing</span></div>
+      <div class="partner-cta-label"><span class="ko">교회 등록하기 →</span><span class="en">Register Church →</span></div>
+    </a>
+
+    <a href="/ad-request.html#business" class="partner-card partner-biz">
+      <div class="partner-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+      </div>
+      <div class="partner-type"><span class="ko">사업 파트너</span><span class="en">Business Partner</span></div>
+      <h3><span class="ko">글로벌 환대 플랫폼에<br>사업체를 올리세요</span><span class="en">List your business<br>on a global hospitality platform</span></h3>
+      <p><span class="ko">식당, 병원, 학원, 법무사 — 새로 도착한 한인이 첫 번째로 찾는 곳이 됩니다.</span><span class="en">Restaurant, clinic, academy, law office — be the first stop for new Korean arrivals.</span></p>
+      <div class="partner-free"><span class="ko">기본 무료</span><span class="en">Free to Start</span></div>
+      <div class="partner-cta-label"><span class="ko">사업체 등록하기 →</span><span class="en">Register Business →</span></div>
+    </a>
+
   </div>
 
-  <div class="vision-world">
-    <p style="font-size:1rem;color:var(--muted);line-height:2.1;max-width:620px;margin:0 auto 24px;">
-      <span class="ko"><strong style="color:#fff;">2030년, 세상 어느 도시에서도</strong><br>한인이든, 중국계든, 베트남계든, 아랍계든<br>HebronGuide를 켜면 — 그 도시에서 환대받을 수 있습니다.<br><br>이것이 우리가 선포하는 <strong style="color:var(--gold);">글로벌 환대 커뮤니티</strong>의 완성입니다.</span>
-      <span class="en"><strong style="color:#fff;">By 2030, in any city in the world —</strong><br>whether Korean, Chinese, Vietnamese, or Arabic,<br>open HebronGuide and find welcome in that city.<br><br>This is the fulfillment of what we proclaim: the <strong style="color:var(--gold);">Global Hospitality Community</strong>.</span>
-    </p>
-    <div style="background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.2);border-radius:16px;padding:24px;max-width:540px;margin:0 auto;font-size:.88rem;color:rgba(236,253,245,.75);line-height:2;">
-      🤝 <strong style="color:var(--mint);"><span class="ko">World Relief 파트너십 추진 중</span><span class="en">World Relief Partnership in Progress</span></strong><br>
-      <span class="ko">22개국 880만 난민·이민자 지원 기관과 함께<br>모든 민족을 위한 디지털 환대 플랫폼을 만들어갑니다.</span>
-      <span class="en">Together with an organization serving 8.8M refugees & immigrants in 22 countries,<br>building a digital hospitality platform for every nation.</span>
-    </div>
+  <p class="partner-dna-line">
+    <span class="ko">두 파트너의 공통 기반 — <strong style="color:#fff;">환대 (歡待)</strong>. 정보가 아닌 사람을 연결합니다.</span>
+    <span class="en">One shared foundation — <strong style="color:#fff;">Hospitality</strong>. Connecting people, not just information.</span>
+  </p>
+
+  <!-- 헤브론 이야기 — 관심 있는 분만 펼쳐 읽기 -->
+  <div class="about-story-wrap">
+    <button class="about-story-toggle" onclick="toggleAboutStory(this)" aria-expanded="false">
+      <span class="ko">헤브론 이야기 — 우리는 왜 이 일을 합니까?</span>
+      <span class="en">Our Story — Why We Do This</span>
+      <svg class="about-story-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="about-story-body about-story-closed">
+
+      <div class="about-story-block">
+        <div class="about-story-label"><span class="ko">사명</span><span class="en">Mission</span></div>
+        <h3 class="about-story-h">
+          <span class="ko">낯선 도시, 이미 누군가 기다리고 있습니다</span>
+          <span class="en">In every new city, someone is already waiting for you</span>
+        </h3>
+        <p>
+          <span class="ko">공항 문을 나서는 그 순간 — 아는 사람 하나 없는 낯선 땅에서도 — 먼저 그 길을 걸어간 사람들이 당신을 위해 준비되어 있습니다. HebronGuide는 그 연결을 만듭니다.</span>
+          <span class="en">The moment you step out of the airport into an unfamiliar city — even when you know no one — people who've walked that road before you are already prepared. HebronGuide makes that connection.</span>
+        </p>
+      </div>
+
+      <div class="about-story-block">
+        <div class="about-story-label"><span class="ko">이름의 뜻</span><span class="en">The Name</span></div>
+        <h3 class="about-story-h">
+          <span class="ko">헤브론(Hebron) — 연합·교제·동반자</span>
+          <span class="en">Hebron — Union · Fellowship · Companion</span>
+        </h3>
+        <p>
+          <span class="ko">헤브론은 히브리어로 "연합, 교제, 동반자"를 뜻합니다 (חֶבְרוֹן). 아브라함이 거류민으로 살며 하나님과 동행한 땅. 우리는 모든 이민자가 새 땅에서 그 동반자를 만나도록 돕습니다.</span>
+          <span class="en">Hebron (חֶבְרוֹן) means "union, fellowship, companion" in Hebrew. The land where Abraham lived as a sojourner and walked with God. We help every immigrant find that companion in a new land.</span>
+        </p>
+        <div class="about-story-verse">
+          <p class="ko">"내가 나그네 되었을 때 너희가 영접하였다"</p>
+          <p class="en">"I was a stranger and you welcomed me"</p>
+          <cite>— <span class="ko">마태복음</span><span class="en">Matthew</span> 25:35</cite>
+        </div>
+      </div>
+
+      <div class="about-story-block">
+        <div class="about-story-label"><span class="ko">비전</span><span class="en">Vision</span></div>
+        <h3 class="about-story-h">
+          <span class="ko">2030년까지 전 세계 500개 도시</span>
+          <span class="en">500 cities worldwide by 2030</span>
+        </h3>
+        <p>
+          <span class="ko">700만 재외 한인이 사는 모든 곳에 환대의 네트워크를 세웁니다. 정보가 아닌 사람으로, 도시와 도시를, 사람과 사람을, 그리고 그리스도께 자연스럽게 연결합니다.</span>
+          <span class="en">We're building a hospitality network in every city where Korean diaspora lives — 7 million people worldwide. Connecting cities to cities, people to people, and gently pointing toward Christ.</span>
+        </p>
+        <div class="about-story-stats">
+          <div><span class="about-stat-n">71+</span><span class="about-stat-l"><span class="ko">현재 도시</span><span class="en">Cities now</span></span></div>
+          <div><span class="about-stat-n">500</span><span class="about-stat-l"><span class="ko">2030 목표</span><span class="en">Goal 2030</span></span></div>
+          <div><span class="about-stat-n">700<small class="ko">만</small><small class="en">K</small></span><span class="about-stat-l"><span class="ko">재외 한인</span><span class="en">Korean diaspora</span></span></div>
+        </div>
+      </div>
+
+      <div class="about-story-block">
+        <div class="about-story-label"><span class="ko">운영사</span><span class="en">Operator</span></div>
+        <p style="font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.9;">
+          <span class="ko">HebronGuide는 Hebron Platform LLC가 운영합니다. 문의: <a href="mailto:hebronplatform@gmail.com" style="color:var(--gold);text-decoration:none;">hebronplatform@gmail.com</a></span>
+          <span class="en">HebronGuide is operated by Hebron Platform LLC. Contact: <a href="mailto:hebronplatform@gmail.com" style="color:var(--gold);text-decoration:none;">hebronplatform@gmail.com</a></span>
+        </p>
+      </div>
+
+    </div><!-- /about-story-body -->
   </div>
 </div>
+
+<style>
+.partner-section{max-width:900px;margin:0 auto;padding:64px 24px;}
+.partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:40px 0 28px;}
+@media(max-width:640px){.partner-grid{grid-template-columns:1fr;}}
+.partner-card{display:block;text-decoration:none;border-radius:20px;padding:32px 28px;transition:transform .18s,box-shadow .18s;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);}
+.partner-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.4);}
+.partner-church{border-color:rgba(110,231,183,.25);}
+.partner-church:hover{border-color:rgba(110,231,183,.5);}
+.partner-biz{border-color:rgba(201,162,39,.25);}
+.partner-biz:hover{border-color:rgba(201,162,39,.5);}
+.partner-icon-wrap{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+.partner-church .partner-icon-wrap{background:rgba(110,231,183,.12);color:var(--mint,#6EE7B7);}
+.partner-biz .partner-icon-wrap{background:rgba(201,162,39,.12);color:var(--gold,#C9A227);}
+.partner-type{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
+.partner-church .partner-type{color:var(--mint,#6EE7B7);}
+.partner-biz .partner-type{color:var(--gold,#C9A227);}
+.partner-card h3{font-size:1.2rem;font-weight:800;color:#fff;line-height:1.4;margin:0 0 12px;}
+.partner-card p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.7;margin:0 0 20px;}
+.partner-free{display:inline-block;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:16px;}
+.partner-church .partner-free{background:rgba(110,231,183,.15);color:var(--mint,#6EE7B7);}
+.partner-biz .partner-free{background:rgba(201,162,39,.15);color:var(--gold,#C9A227);}
+.partner-cta-label{font-size:.88rem;font-weight:700;color:#fff;}
+.partner-dna-line{text-align:center;font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.8;margin-top:0;}
+
+/* 헤브론 이야기 접기/펼치기 */
+.about-story-wrap{margin-top:32px;border-top:1px solid rgba(255,255,255,.08);padding-top:24px;}
+.about-story-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:14px;color:rgba(255,255,255,.6);cursor:pointer;padding:16px 22px;font-size:.88rem;font-weight:600;text-align:left;font-family:'Noto Sans KR',sans-serif;transition:background .2s,border-color .2s;}
+.about-story-toggle:hover{background:rgba(255,255,255,.06);border-color:rgba(201,162,39,.3);color:rgba(255,255,255,.85);}
+.about-story-toggle[aria-expanded="true"]{border-color:rgba(201,162,39,.35);color:#fff;}
+.about-story-arrow{flex-shrink:0;transition:transform .25s;color:rgba(255,255,255,.3);}
+.about-story-toggle[aria-expanded="true"] .about-story-arrow{transform:rotate(180deg);color:var(--gold,#C9A227);}
+.about-story-body{padding:28px 4px 8px;display:flex;flex-direction:column;gap:28px;}
+.about-story-body.about-story-closed{display:none;}
+.about-story-block{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:24px 22px;}
+.about-story-label{font-size:.65rem;font-weight:800;color:var(--gold,#C9A227);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;}
+.about-story-h{font-size:1.05rem;font-weight:800;color:#fff;margin:0 0 12px;line-height:1.4;}
+.about-story-block p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.85;margin:0;}
+.about-story-verse{margin-top:18px;padding:14px 18px;background:rgba(201,162,39,.06);border-left:3px solid var(--gold,#C9A227);border-radius:0 10px 10px 0;}
+.about-story-verse p{font-size:.92rem;color:rgba(255,255,255,.8);font-style:italic;margin:0 0 4px;}
+.about-story-verse cite{font-style:normal;font-size:.76rem;color:var(--gold,#C9A227);font-weight:700;}
+.about-story-stats{display:flex;gap:24px;margin-top:18px;flex-wrap:wrap;}
+.about-story-stats>div{display:flex;flex-direction:column;gap:4px;}
+.about-stat-n{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:900;color:var(--gold,#C9A227);line-height:1;}
+.about-stat-l{font-size:.7rem;color:rgba(255,255,255,.45);}
+</style>
 
 <div class="divider"></div>
 
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ JOIN ━━━ -->
-<div class="join-section">
-  <div class="join-eyebrow"><span class="ko">헤브론이라는 이름</span><span class="en">The Name Hebron</span></div>
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FAQ ━━━ -->
+<div class="faq-section" id="faq">
+  <div class="sec-label">FAQ</div>
+  <h2 class="sec-title">
+    <span class="ko">자주 묻는 질문</span>
+    <span class="en">Frequently Asked Questions</span>
+  </h2>
 
-  <h2><span class="ko">낯선 땅에서도<br><em>혼자가 아니었던</em> 이름,<br>이제 당신이 그 이름이 되어주세요.</span><span class="en">A name for those who were<br><em>never alone</em><br>in a foreign land. Now, it's your turn to become that name.</span></h2>
-
-  <p>
-    <span class="ko">거창한 것이 아닙니다. 전화번호 하나, 식당 한 곳, 초대 한 마디면 충분합니다.<br><strong style="color:#fff;">그 작은 시작이 세상을 바꾸는 운동이 됩니다.</strong></span>
-    <span class="en">It doesn't take much. One phone number, one restaurant, one invitation is enough.<br><strong style="color:#fff;">That small beginning becomes a movement that changes the world.</strong></span>
-  </p>
-
-  <div class="meaning-row">
-    <div class="meaning-chip">
-      <div class="mc-label"><span class="ko">이름의 뜻</span><span class="en">The Name</span></div>
-      <div class="mc-val"><span class="ko">히브리어로 "연합·동행" (חֶבְרוֹן)</span><span class="en">Hebrew for "union, companionship"</span></div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span><span class="ko">HebronGuide는 크리스천만을 위한 서비스인가요?</span><span class="en">Is HebronGuide only for Christians?</span></span>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">
+        <span class="ko">아닙니다. HebronGuide는 모든 한인 이주자를 위한 디지털 공간입니다. 식당·병원·법무사·교회 — 이 도시에서 필요한 모든 것을 찾을 수 있습니다. 환대는 믿음의 유무와 무관합니다.</span>
+        <span class="en">No. HebronGuide is for all Korean immigrants and expats. Restaurants, clinics, legal services, churches — find everything you need. Hospitality doesn't require a shared faith.</span>
+      </div>
     </div>
-    <div class="meaning-chip">
-      <div class="mc-label"><span class="ko">그 시작</span><span class="en">The Origin</span></div>
-      <div class="mc-val"><span class="ko">창세기 13장의 한 장면 — 낯선 땅 한복판에서도, 그는 혼자가 아니었습니다</span><span class="en">Genesis 13 — even in the middle of a foreign land, he was never alone</span></div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span><span class="ko">교회·사업체 등록은 유료인가요?</span><span class="en">Is registration free for churches and businesses?</span></span>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">
+        <span class="ko">교회는 완전 무료입니다. 사업체는 기본 등재 무료, 프리미엄 노출은 선택 사항입니다.</span>
+        <span class="en">Church listing is completely free. Business basic listing is free; premium placement is optional.</span>
+      </div>
     </div>
-    <div class="meaning-chip">
-      <div class="mc-label"><span class="ko">가이드의 방향</span><span class="en">Where We're Headed</span></div>
-      <div class="mc-val"><span class="ko">도시 가이드 → 사람 연결 → 진짜 환대</span><span class="en">City Guide → People → Real Hospitality</span></div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span><span class="ko">내가 사는 도시가 없으면 어떻게 하나요?</span><span class="en">What if my city isn't listed?</span></span>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">
+        <span class="ko">도시 추가 신청을 해주세요. 우선 순위로 반영합니다. 현재 <span class="hg-city-count">71</span>개 도시 운영 중, 2030년까지 500개 목표입니다.</span>
+        <span class="en">Submit a city request and we'll prioritize it. Currently serving <span class="hg-city-count">71</span> cities — goal of 500 by 2030.</span>
+        <br><a href="/city-request.html" style="color:var(--gold,#C9A227);font-size:.85rem;text-decoration:none;display:inline-block;margin-top:8px;"><span class="ko">도시 추가 신청 →</span><span class="en">Request a city →</span></a>
+      </div>
     </div>
   </div>
-
-  <div class="join-cards">
-    <a href="/#cities" class="join-card">
-      <img class="join-card-img" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&h=220&fit=crop&auto=format&q=80" alt="이민자·이주자">
-      <div class="join-card-title"><span class="ko">이민자·이주자라면</span><span class="en">Immigrants & Expats</span></div>
-      <div class="join-card-desc"><span class="ko">내 도시의 HebronGuide를 열어보세요. 병원·학교·교회·맛집이 한국어로 준비돼 있습니다.</span><span class="en">Open HebronGuide for your city. Hospitals, schools, churches, and restaurants — all ready for you.</span></div>
-    </a>
-    <a href="/ad-request.html#church" class="join-card card-church">
-      <img class="join-card-img" src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=400&h=220&fit=crop&auto=format&q=80" alt="교회">
-      <div class="join-card-title"><span class="ko">목사님·교회라면</span><span class="en">Pastors & Churches</span></div>
-      <div class="join-card-desc"><span class="ko">교회를 무료로 등재하세요. 새로 도착한 한인이 공항에서부터 여러분의 교회를 만납니다.</span><span class="en">List your church for free. Newcomers will find your church from the moment they arrive.</span></div>
-    </a>
-    <a href="/ad-request.html#business" class="join-card card-biz">
-      <img class="join-card-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=220&fit=crop&auto=format&q=80" alt="사업체">
-      <div class="join-card-title"><span class="ko">사업체·가게라면</span><span class="en">Businesses & Shops</span></div>
-      <div class="join-card-desc"><span class="ko">가게를 등재하세요. 당신의 가게가 환대의 첫 현장이 됩니다. 일상이 곧 연결의 시작입니다.</span><span class="en">List your business. Your shop becomes the first place of welcome. Everyday life is where connection begins.</span></div>
-    </a>
-    <a href="/city-request.html" class="join-card card-city">
-      <img class="join-card-img" src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&h=220&fit=crop&auto=format&q=80" alt="도시">
-      <div class="join-card-title"><span class="ko">내 도시가 없다면</span><span class="en">Your City Not Listed?</span></div>
-      <div class="join-card-desc"><span class="ko">도시 추가를 신청해 주세요. 우선 순위로 반영합니다. 모든 도시에 환대를 심겠습니다.</span><span class="en">Request to add your city. We prioritize your request. We'll plant hospitality in every city.</span></div>
-    </a>
-  </div>
-
-  <a href="/seattle/" class="btn-hero"><span class="ko">HebronGuide 지금 열기 →</span><span class="en">Open HebronGuide Now →</span></a>
 </div>
+
+<style>
+.faq-section{max-width:720px;margin:0 auto;padding:64px 24px;}
+.faq-list{margin-top:36px;display:flex;flex-direction:column;gap:12px;}
+.faq-item{border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.04);border:none;color:#fff;cursor:pointer;padding:18px 22px;font-size:.95rem;font-weight:600;text-align:left;line-height:1.4;}
+.faq-q:hover{background:rgba(255,255,255,.07);}
+.faq-arrow{flex-shrink:0;transition:transform .2s;color:rgba(255,255,255,.4);}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-a{display:none;padding:0 22px 18px;font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.8;}
+.faq-item.open .faq-a{display:block;}
+</style>
+<script>
+function toggleAboutStory(btn){
+  var body=btn.nextElementSibling;
+  var open=btn.getAttribute('aria-expanded')==='true';
+  btn.setAttribute('aria-expanded',open?'false':'true');
+  body.classList.toggle('about-story-closed',open);
+}
+function toggleFaq(btn){
+  var item=btn.closest('.faq-item');
+  var isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open');});
+  if(!isOpen)item.classList.add('open');
+}
+</script>
+
+<div class="divider"></div>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EVENT BANNER ━━━ -->
 <div id="waba-event-banner" style="padding:0 20px 12px;max-width:960px;margin:0 auto;">

@@ -4,13 +4,17 @@
  * 흐름:
  *   교회 폼 제출
  *     → AI 자동 검토
- *     → ✅ 정상  : Supabase 자동 게시 (관리자 연락 없음)
- *     → ⚠️ 불확실 : hebronplatform@gmail.com 확인 요청만
+ *     → ✅ 정상  : Supabase 자동 게시 + 신청자 확인 이메일
+ *     → ⚠️ 불확실 : 관리자 검토 요청 + 신청자 "1~2일 내 처리" 이메일
  *     → 🚫 이단   : 즉시 차단 + 관리자 알림
  */
 
-const SUPABASE_URL = "https://okhfjzofifmsgssgajts.supabase.co";
-const SUPABASE_TABLE = "content_items"; // 실제 테이블명으로 조정
+import nodemailer from 'nodemailer';
+
+const SUPABASE_URL   = "https://okhfjzofifmsgssgajts.supabase.co";
+const SUPABASE_TABLE = "content_items";
+const ADMIN_EMAIL    = "hebronplatform@gmail.com";
+const FROM_EMAIL     = "Hebronplatform@gmail.com";
 
 // ── 이단·금지 목록 (즉시 차단) ──────────────────────
 const CULT_KEYWORDS = [
@@ -35,7 +39,7 @@ const APPROVED_DENOMS = [
   "Nazarene", "나사렛",
 ];
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -182,6 +186,34 @@ module.exports = async function handler(req, res) {
       });
     }
 
+    // ── 신청자 확인 이메일 (자동 게시 완료)
+    if (email) {
+      await sendEmail({
+        to: email,
+        subject: `[HebronGuide] ${churchName} 파트너 교회 등재가 완료되었습니다`,
+        text: [
+          `${pastor || "목사님"} 안녕하세요.`,
+          "",
+          `${churchName}이(가) HebronGuide ${city} 도시 가이드에 파트너 교회로 등재되었습니다.`,
+          "",
+          `도시 페이지에서 바로 확인하실 수 있습니다:`,
+          `https://hebronguide.com/${city}/`,
+          "",
+          `등재 정보:`,
+          `  교회명: ${churchName}`,
+          `  담임목사: ${pastor || "—"}`,
+          `  도시: ${city}`,
+          `  전화: ${phone || "—"}`,
+          `  예배시간: ${serviceTimes || "—"}`,
+          "",
+          `수정·문의: hebronplatform@gmail.com`,
+          "",
+          "── HebronGuide · hebronguide.com ──",
+          "환대로 이 도시를 섬기는 모든 교회와 함께합니다.",
+        ].join("\n"),
+      });
+    }
+
     return res.status(200).json({
       status: "published",
       message: supabaseOk
@@ -190,7 +222,7 @@ module.exports = async function handler(req, res) {
     });
   }
 
-  // ── 7. 불확실 → 관리자 확인 요청만 ─────────────
+  // ── 7. 불확실 → 관리자 검토 요청 + 신청자 대기 안내
   await notifyAdmin({
     level: "warning",
     churchName, denomination, city, phone, email, address, serviceTimes,
@@ -198,20 +230,68 @@ module.exports = async function handler(req, res) {
     reason: aiFlag || "교단 정보 없음 — 확인 후 게시 권장",
   });
 
+  if (email) {
+    await sendEmail({
+      to: email,
+      subject: `[HebronGuide] ${churchName} 파트너 신청이 접수되었습니다`,
+      text: [
+        `${pastor || "목사님"} 안녕하세요.`,
+        "",
+        `${churchName}의 HebronGuide 파트너 교회 신청이 정상적으로 접수되었습니다.`,
+        "",
+        `담당자가 1~2일 이내에 검토 후 등재 완료 안내를 드리겠습니다.`,
+        "",
+        `접수 정보:`,
+        `  교회명: ${churchName}`,
+        `  담임목사: ${pastor || "—"}`,
+        `  도시: ${city}`,
+        `  전화: ${phone || "—"}`,
+        "",
+        `문의: hebronplatform@gmail.com`,
+        "",
+        "── HebronGuide · hebronguide.com ──",
+      ].join("\n"),
+    });
+  }
+
   return res.status(200).json({
     status: "pending",
-    message: "접수되었습니다. 검토 후 1~2일 내 게시됩니다. 문의: hebronplatform@gmail.com",
+    message: "접수되었습니다. 1~2일 내 이메일로 안내드립니다.",
   });
-};
+}
 
-// ── 헬퍼: 관리자 알림 이메일 본문 ──────────────────
+// ── 헬퍼: 이메일 발송 (nodemailer + Gmail SMTP) ──────
+async function sendEmail({ to, subject, text }) {
+  const gmailPass = process.env.GMAIL_APP_PASS;
+  if (!gmailPass) {
+    console.warn("[sendEmail] GMAIL_APP_PASS not set — skipped:", subject);
+    return;
+  }
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: { user: FROM_EMAIL, pass: gmailPass },
+    });
+    await transporter.sendMail({
+      from: `"HebronGuide" <${FROM_EMAIL}>`,
+      to,
+      subject,
+      text,
+    });
+    console.log("[sendEmail] sent to", to);
+  } catch (e) {
+    console.error("[sendEmail] failed:", e.message);
+  }
+}
+
+// ── 헬퍼: 관리자 알림 이메일 ─────────────────────────
 async function notifyAdmin({ level, churchName, denomination, city,
   phone, email, address, serviceTimes, website, kakao, pastor, description, reason }) {
 
   const levelLabel = {
-    critical: "🚫 이단 의심 — 즉시 확인",
-    warning:  "⚠️ 검토 필요",
-    fallback: "📋 수동 게시 필요 (Supabase 오류)",
+    critical: "이단 의심 — 즉시 확인",
+    warning:  "검토 필요",
+    fallback: "수동 게시 필요 (Supabase 오류)",
   }[level] || "알림";
 
   const body = [
@@ -241,11 +321,11 @@ async function notifyAdmin({ level, churchName, denomination, city,
     "── HebronGuide 자동 검토 시스템 ──",
   ].join("\n");
 
-  // mailto 방식 — 실제 이메일 서비스 설정 전 폴백
-  // 추후 SendGrid / Resend 연동 시 여기서 실제 발송
-  console.log("[notifyAdmin]", levelLabel, churchName, city);
-  console.log(body);
-  // TODO: await sendEmail({ to: "hebronplatform@gmail.com", subject: `[HebronGuide] 교회 등재 — ${levelLabel} — ${churchName}`, body });
+  await sendEmail({
+    to: ADMIN_EMAIL,
+    subject: `[HebronGuide] 교회 등재 — ${levelLabel} — ${churchName}`,
+    text: body,
+  });
 }
 
 // ── 헬퍼: desc 포맷 ─────────────────────────────────
