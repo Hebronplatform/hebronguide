@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HebronGuide Ops — 운영 대시보드</title>
+  <meta name="robots" content="noindex"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+  :root{
+    --bg:#07090f;--bg2:#0a0e14;--surface:#0f1520;--surface2:#141e2e;
+    --border:#1a2540;--border2:#233060;
+    --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;--indigo:#818CF8;--warm:#FF9F0A;--red:#f87171;
+    --text:#e8f0fe;--muted:rgba(232,240,254,.55);--muted2:rgba(232,240,254,.3);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{background:var(--bg);scroll-behavior:smooth;}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+  a{text-decoration:none;color:inherit;}
+
+  /* ── 사이드바 레이아웃 ── */
+  .layout{display:flex;min-height:100vh;}
+  .sidebar{width:220px;min-width:220px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;z-index:100;overflow-y:auto;}
+  .main{margin-left:220px;flex:1;padding:32px 28px 60px;}
+  @media(max-width:768px){.sidebar{display:none;}.main{margin-left:0;padding:20px 16px 48px;}}
+
+  /* ── 사이드바 내용 ── */
+  .sb-logo{padding:22px 20px 16px;border-bottom:1px solid var(--border);}
+  .sb-logo-text{font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;color:var(--gold);}
+  .sb-logo-sub{font-size:.65rem;color:var(--muted2);margin-top:2px;letter-spacing:.06em;}
+  .sb-section{padding:16px 14px 8px;}
+  .sb-section-label{font-size:.62rem;font-weight:800;color:var(--muted2);letter-spacing:.12em;text-transform:uppercase;padding:0 6px;margin-bottom:8px;}
+  .sb-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;font-size:.8rem;color:var(--muted);cursor:pointer;transition:.15s;}
+  .sb-item:hover{background:rgba(255,255,255,.05);color:var(--text);}
+  .sb-item.active{background:rgba(201,162,39,.12);color:var(--gold);}
+  .sb-item svg{flex-shrink:0;opacity:.7;}
+  .sb-item.active svg{opacity:1;}
+  .sb-divider{height:1px;background:var(--border);margin:10px 14px;}
+  .sb-footer{padding:14px 20px;margin-top:auto;border-top:1px solid var(--border);}
+  .sb-date{font-size:.7rem;color:var(--muted2);}
+
+  /* ── 상단 헤더 ── */
+  .top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
+  .top-title{font-size:1.4rem;font-weight:900;color:#fff;}
+  .top-title span{color:var(--gold);}
+  .top-right{display:flex;gap:10px;align-items:center;}
+  .badge-live{display:flex;align-items:center;gap:6px;background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.3);border-radius:99px;padding:4px 12px;font-size:.72rem;font-weight:700;color:var(--mint);}
+  .badge-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--mint);animation:pulse 1.5s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+  /* ── 섹션 ── */
+  .section{margin-bottom:36px;}
+  .section-label{font-size:.68rem;font-weight:800;color:var(--muted2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+  /* ── 그리드 ── */
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  @media(max-width:900px){.grid-3{grid-template-columns:repeat(2,1fr);}.grid-4{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:580px){.grid-3,.grid-2,.grid-4{grid-template-columns:1fr;}}
+
+  /* ── 스탯 카드 ── */
+  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;position:relative;overflow:hidden;}
+  .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+  .sc-gold::before{background:linear-gradient(90deg,var(--gold),transparent);}
+  .sc-mint::before{background:linear-gradient(90deg,var(--mint),transparent);}
+  .sc-indigo::before{background:linear-gradient(90deg,var(--indigo),transparent);}
+  .sc-warm::before{background:linear-gradient(90deg,var(--warm),transparent);}
+  .stat-label{font-size:.68rem;font-weight:700;color:var(--muted2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
+  .stat-val{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:900;line-height:1;margin-bottom:4px;}
+  .sc-gold .stat-val{color:var(--gold);}
+  .sc-mint .stat-val{color:var(--mint);}
+  .sc-indigo .stat-val{color:var(--indigo);}
+  .sc-warm .stat-val{color:var(--warm);}
+  .stat-sub{font-size:.72rem;color:var(--muted2);}
+
+  /* ── 메인 액션 카드 ── */
+  .action-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px 22px 18px;display:flex;flex-direction:column;transition:.15s;cursor:pointer;position:relative;overflow:hidden;}
+  .action-card:hover{border-color:var(--border2);background:var(--surface2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.4);}
+  .action-card::after{content:'→';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:1rem;color:var(--muted2);transition:.15s;}
+  .action-card:hover::after{right:14px;color:var(--gold);}
+  .ac-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;flex-shrink:0;}
+  .ac-gold{background:rgba(201,162,39,.15);}
+  .ac-mint{background:rgba(110,231,183,.1);}
+  .ac-indigo{background:rgba(129,140,248,.1);}
+  .ac-warm{background:rgba(255,159,10,.1);}
+  .ac-red{background:rgba(248,113,113,.1);}
+  .ac-title{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:5px;}
+  .ac-desc{font-size:.78rem;color:var(--muted);line-height:1.6;flex:1;}
+  .ac-tag{margin-top:12px;display:inline-flex;align-items:center;gap:5px;font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+  .tag-go{color:var(--gold);}
+  .tag-ext{color:var(--mint);}
+
+  /* ── 유튜브 스케줄 카드 ── */
+  .yt-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+  .yt-header{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+  .yt-title{font-size:.95rem;font-weight:800;color:#fff;}
+  .yt-sub{font-size:.72rem;color:var(--muted2);}
+  .yt-months{display:flex;flex-direction:column;}
+  .yt-month{padding:12px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;transition:.1s;}
+  .yt-month:last-child{border-bottom:none;}
+  .yt-month:hover{background:rgba(255,255,255,.03);}
+  .yt-mon-date{font-size:.7rem;font-weight:800;color:var(--gold);width:60px;flex-shrink:0;}
+  .yt-mon-theme{font-size:.82rem;font-weight:700;color:#fff;flex:1;}
+  .yt-mon-eps{display:flex;gap:4px;}
+  .ep-dot{width:8px;height:8px;border-radius:50%;}
+  .ep-dot.story{background:var(--gold);}
+  .ep-dot.seminar{background:var(--mint);}
+  .ep-dot.pastor{background:var(--indigo);}
+
+  /* ── 퀵 링크 ── */
+  .quick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;}
+  .quick-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 14px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;transition:.15s;}
+  .quick-item:hover{border-color:var(--border2);background:var(--surface2);}
+  .qi-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;}
+  .qi-label{font-size:.78rem;font-weight:700;color:var(--text);line-height:1.3;}
+  .qi-url{font-size:.65rem;color:var(--muted2);}
+
+  /* ── 위상 트래커 ── */
+  .phase-row{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:18px;margin-bottom:10px;transition:.15s;}
+  .phase-row:hover{border-color:var(--border2);background:var(--surface2);}
+  .phase-num{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;font-size:.9rem;flex-shrink:0;}
+  .ph1-num{background:rgba(201,162,39,.15);color:var(--gold);}
+  .ph2-num{background:rgba(110,231,183,.1);color:var(--mint);}
+  .ph3-num{background:rgba(129,140,248,.1);color:var(--indigo);}
+  .phase-info{flex:1;}
+  .phase-name{font-size:.88rem;font-weight:800;color:#fff;margin-bottom:2px;}
+  .phase-period{font-size:.72rem;color:var(--muted2);}
+  .phase-status{font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:99px;white-space:nowrap;}
+  .s-now{background:rgba(201,162,39,.15);color:var(--gold);border:1px solid rgba(201,162,39,.3);}
+  .s-next{background:rgba(255,255,255,.06);color:var(--muted2);border:1px solid var(--border);}
+  .s-future{background:rgba(255,255,255,.04);color:var(--muted2);border:1px solid var(--border);}
+
+  /* ── 모달 (교회 추가) ── */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;}
+  .overlay.show{display:flex;}
+  .modal{background:var(--surface2);border:1px solid var(--border2);border-radius:18px;width:100%;max-width:460px;max-height:90vh;overflow-y:auto;padding:28px;}
+  .modal-title{font-size:1rem;font-weight:900;color:#fff;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;}
+  .modal-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.2rem;line-height:1;}
+  .field{margin-bottom:12px;}
+  .field label{display:block;font-size:.7rem;color:var(--muted2);margin-bottom:4px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+  .field input,.field select,.field textarea{width:100%;background:var(--bg2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:9px 12px;font-size:.83rem;outline:none;font-family:inherit;}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);}
+  .field select option{background:#111;}
+  .field textarea{resize:vertical;min-height:64px;}
+  .btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:11px;border-radius:9px;font-weight:800;font-size:.83rem;cursor:pointer;border:none;transition:.15s;font-family:inherit;}
+  .btn-gold{background:var(--gold);color:#0a0e14;}
+  .btn-gold:hover{background:var(--gold2);}
+  .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);margin-top:8px;}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* ── 토스트 ── */
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--surface2);border:1px solid var(--gold);color:#fff;padding:10px 22px;border-radius:10px;font-size:.83rem;z-index:999;opacity:0;pointer-events:none;transition:opacity .3s;white-space:nowrap;}
+  .toast.show{opacity:1;}
+
+  /* ── 도구 설명 ── */
+  .bg-0a0e14{background:#0a0e14;}
+  </style>
+</head>
+<body>
+
+<!-- 사이드바 -->
+<div class="layout">
+<nav class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-text">HebronGuide</div>
+    <div class="sb-logo-sub">Ops Dashboard</div>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-section-label">운영</div>
+    <a href="#overview" class="sb-item active">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      대시보드
+    </a>
+    <a href="/admin-churches.html" class="sb-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 21V11l8-6 8 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/></svg>
+      파트너 교회 CRM
+    </a>
+    <a href="/church-invite.html" class="sb-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      교회 초대 발송
+    </a>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-section-label">전략 문서</div>
+    <a href="/growth-plan.html" class="sb-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      성장 로드맵
+    </a>
+    <a href="/youtube-plan.html" class="sb-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      유튜브 채널 계획서
+    </a>
+    <a href="/youtube-schedule.html" class="sb-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      2년 방송 스케줄
+    </a>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-section-label">채널</div>
+    <a href="https://hebronguide.com" target="_blank" class="sb-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      헤브론가이드 사이트
+    </a>
+    <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" class="sb-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      카카오 채널
+    </a>
+    <a href="https://youtube.com" target="_blank" class="sb-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      유튜브 (개설 준비)
+    </a>
+  </div>
+
+  <div class="sb-divider"></div>
+  <div class="sb-footer">
+    <div class="sb-date" id="sideDate"></div>
+    <div style="margin-top:6px;font-size:.68rem;color:rgba(201,162,39,.6);font-weight:700;">폴 김 목사 · HebronGuide</div>
+  </div>
+</nav>
+
+<!-- 메인 -->
+<main class="main">
+
+  <!-- 상단 -->
+  <div class="top-bar">
+    <div>
+      <div class="top-title">Hebron<span>Guide</span> 운영 대시보드</div>
+      <div style="font-size:.75rem;color:var(--muted2);margin-top:3px;">폴 김 목사 · 김성수 | Paul Kim Pastor</div>
+    </div>
+    <div class="top-right">
+      <div class="badge-live">LIVE</div>
+      <a href="https://hebronguide.com" target="_blank" style="background:var(--gold);color:#0a0e14;font-size:.75rem;font-weight:800;padding:7px 16px;border-radius:8px;">사이트 열기 →</a>
+    </div>
+  </div>
+
+  <!-- ① 핵심 지표 -->
+  <div class="section">
+    <div class="section-label">핵심 지표</div>
+    <div class="grid-4">
+      <div class="stat-card sc-gold">
+        <div class="stat-label">파트너 교회</div>
+        <div class="stat-val" id="churchCount">—</div>
+        <div class="stat-sub">등록 교회 수</div>
+      </div>
+      <div class="stat-card sc-mint">
+        <div class="stat-label">유튜브 D-day</div>
+        <div class="stat-val" id="ytDday">—</div>
+        <div class="stat-sub">2026.10.01 개국까지</div>
+      </div>
+      <div class="stat-card sc-indigo">
+        <div class="stat-label">성장 단계</div>
+        <div class="stat-val">P1</div>
+        <div class="stat-sub">씨앗 심기 · 2026 Q3</div>
+      </div>
+      <div class="stat-card sc-warm">
+        <div class="stat-label">활성 도시</div>
+        <div class="stat-val">71+</div>
+        <div class="stat-sub">hebronguide.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 빠른 실행 -->
+  <div class="section">
+    <div class="section-label">빠른 실행</div>
+    <div class="grid-3">
+
+      <a href="/admin-churches.html" class="action-card">
+        <div class="ac-icon ac-gold">
+          <svg width="20" height="20" fill="none" stroke="#C9A227" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 21V11l8-6 8 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/></svg>
+        </div>
+        <div class="ac-title">파트너 교회 CRM</div>
+        <div class="ac-desc">교회 추가·수정·이메일 일괄 발송·CSV 내보내기. 카카오 메시지 템플릿 복사.</div>
+        <div class="ac-tag tag-go">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          관리 시작
+        </div>
+      </a>
+
+      <a href="/church-invite.html" class="action-card">
+        <div class="ac-icon ac-mint">
+          <svg width="20" height="20" fill="none" stroke="#6EE7B7" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="ac-title">교회 초대장 발송</div>
+        <div class="ac-desc">QR 카드 인쇄 + 목사님께 초대 이메일 자동 발송. 카카오 채널 구독 유도.</div>
+        <div class="ac-tag tag-go">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          초대장 보내기
+        </div>
+      </a>
+
+      <div class="action-card" onclick="openAddChurch()">
+        <div class="ac-icon ac-warm">
+          <svg width="20" height="20" fill="none" stroke="#FF9F0A" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        </div>
+        <div class="ac-title">교회 빠른 추가</div>
+        <div class="ac-desc">대시보드에서 바로 교회 등록. CRM 페이지로 이동하지 않고 즉시 추가.</div>
+        <div class="ac-tag tag-go">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          즉시 추가
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ③ 성장 로드맵 진행 현황 -->
+  <div class="section">
+    <div class="section-label">성장 로드맵 현황</div>
+    <a href="/growth-plan.html" style="display:block;">
+      <div class="phase-row">
+        <div class="phase-num ph1-num">1</div>
+        <div class="phase-info">
+          <div class="phase-name">씨앗 심기 — 지금 당장 할 수 있는 것</div>
+          <div class="phase-period">2026년 7월 — 9월 · 카카오 500구독 · 파트너 교회 10 · 오픈채팅 5도시</div>
+        </div>
+        <span class="phase-status s-now">진행 중</span>
+      </div>
+    </a>
+    <a href="/growth-plan.html" style="display:block;">
+      <div class="phase-row">
+        <div class="phase-num ph2-num">2</div>
+        <div class="phase-info">
+          <div class="phase-name">입소문 — 파트너가 전파자가 되는 단계</div>
+          <div class="phase-period">2026년 10월 — 12월 · 증언카드 · QR매장 · 목사 Zoom 네트워크</div>
+        </div>
+        <span class="phase-status s-next">다음</span>
+      </div>
+    </a>
+    <a href="/growth-plan.html" style="display:block;">
+      <div class="phase-row">
+        <div class="phase-num ph3-num">3</div>
+        <div class="phase-info">
+          <div class="phase-name">환대 방송 플라이휠</div>
+          <div class="phase-period">2027년 — · 유튜브 채널 · 세미나 · 광고 시스템 · 한국 연결</div>
+        </div>
+        <span class="phase-status s-future">예정</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- ④ 전략 문서 -->
+  <div class="section">
+    <div class="section-label">전략 문서</div>
+    <div class="grid-3">
+
+      <a href="/growth-plan.html" class="action-card">
+        <div class="ac-icon ac-gold">
+          <svg width="20" height="20" fill="none" stroke="#C9A227" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="ac-title">커뮤니티 성장 로드맵</div>
+        <div class="ac-desc">3단계 실행 계획 · 플라이휠 · 담당자 카드 · 빠른 실행 체크리스트</div>
+        <div class="ac-tag tag-go">열기</div>
+      </a>
+
+      <a href="/youtube-plan.html" class="action-card">
+        <div class="ac-icon" style="background:rgba(255,0,0,.1);">
+          <svg width="20" height="20" fill="none" stroke="#f87171" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <div class="ac-title">유튜브 채널 계획서</div>
+        <div class="ac-desc">폴킴의 환대 · 채널 정체성 · 콘텐츠 3축 · 운영 원칙 · 시작 체크리스트</div>
+        <div class="ac-tag tag-go">열기</div>
+      </a>
+
+      <a href="/youtube-schedule.html" class="action-card">
+        <div class="ac-icon ac-indigo">
+          <svg width="20" height="20" fill="none" stroke="#818CF8" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="ac-title">2년 방송 스케줄</div>
+        <div class="ac-desc">2026.10.01 개국 · 24개월 · 96편+ · 월별 주제 · 세미나 스케줄</div>
+        <div class="ac-tag tag-go">열기</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ⑤ 유튜브 다음 3개월 미리보기 -->
+  <div class="section">
+    <div class="section-label">환대 방송 — 다음 3개월</div>
+    <div class="yt-card">
+      <div class="yt-header">
+        <div>
+          <div class="yt-title">폴킴의 환대</div>
+          <div class="yt-sub">2026.10.01 개국 예정</div>
+        </div>
+        <a href="/youtube-schedule.html" style="font-size:.75rem;color:var(--gold);">전체 스케줄 →</a>
+      </div>
+      <div class="yt-months">
+        <div class="yt-month">
+          <span class="yt-mon-date">10월</span>
+          <div>
+            <div class="yt-mon-theme">왜 나는 환대를 시작했나</div>
+            <div style="font-size:.72rem;color:var(--muted2);">채널 개국 · EP01 목사님 이야기 · EP02 실화 · 세미나01 이민 첫 달</div>
+          </div>
+          <div class="yt-mon-eps">
+            <div class="ep-dot pastor"></div>
+            <div class="ep-dot story"></div>
+            <div class="ep-dot seminar"></div>
+          </div>
+        </div>
+        <div class="yt-month">
+          <span class="yt-mon-date">11월</span>
+          <div>
+            <div class="yt-mon-theme">정착의 첫 벽</div>
+            <div style="font-size:.72rem;color:var(--muted2);">이민 2주차 현실 · 한국 마트 첫날 · 세미나02 의료보험</div>
+          </div>
+          <div class="yt-mon-eps">
+            <div class="ep-dot story"></div>
+            <div class="ep-dot story"></div>
+            <div class="ep-dot seminar"></div>
+          </div>
+        </div>
+        <div class="yt-month">
+          <span class="yt-mon-date">12월</span>
+          <div>
+            <div class="yt-mon-theme">낯선 도시의 첫 크리스마스</div>
+            <div style="font-size:.72rem;color:var(--muted2);">크리스마스 특집 · 환대의 온기 · 세미나03 미국 학교</div>
+          </div>
+          <div class="yt-mon-eps">
+            <div class="ep-dot story"></div>
+            <div class="ep-dot pastor"></div>
+            <div class="ep-dot seminar"></div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:12px 22px;border-top:1px solid var(--border);display:flex;gap:16px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:5px;font-size:.72rem;color:var(--muted2);">
+          <div class="ep-dot story" style="width:10px;height:10px;"></div>실화 시리즈
+        </div>
+        <div style="display:flex;align-items:center;gap:5px;font-size:.72rem;color:var(--muted2);">
+          <div class="ep-dot seminar" style="width:10px;height:10px;"></div>환대 방송 세미나
+        </div>
+        <div style="display:flex;align-items:center;gap:5px;font-size:.72rem;color:var(--muted2);">
+          <div class="ep-dot pastor" style="width:10px;height:10px;"></div>목사님 이야기
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ 빠른 링크 -->
+  <div class="section">
+    <div class="section-label">빠른 링크</div>
+    <div class="quick-grid">
+      <a href="https://hebronguide.com" target="_blank" class="quick-item">
+        <div class="qi-icon" style="background:rgba(201,162,39,.12);">
+          <svg width="15" height="15" fill="none" stroke="#C9A227" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/></svg>
+        </div>
+        <div class="qi-label">헤브론가이드</div>
+        <div class="qi-url">hebronguide.com</div>
+      </a>
+      <a href="/admin-churches.html" class="quick-item">
+        <div class="qi-icon" style="background:rgba(201,162,39,.12);">
+          <svg width="15" height="15" fill="none" stroke="#C9A227" stroke-width="2" viewBox="0 0 24 24"><path d="M4 21V11l8-6 8 6v10"/></svg>
+        </div>
+        <div class="qi-label">교회 CRM</div>
+        <div class="qi-url">admin-churches</div>
+      </a>
+      <a href="/church-invite.html" class="quick-item">
+        <div class="qi-icon" style="background:rgba(110,231,183,.1);">
+          <svg width="15" height="15" fill="none" stroke="#6EE7B7" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
+        </div>
+        <div class="qi-label">초대장 발송</div>
+        <div class="qi-url">church-invite</div>
+      </a>
+      <a href="/growth-plan.html" class="quick-item">
+        <div class="qi-icon" style="background:rgba(201,162,39,.12);">
+          <svg width="15" height="15" fill="none" stroke="#C9A227" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="qi-label">성장 로드맵</div>
+        <div class="qi-url">growth-plan</div>
+      </a>
+      <a href="/youtube-plan.html" class="quick-item">
+        <div class="qi-icon" style="background:rgba(248,113,113,.1);">
+          <svg width="15" height="15" fill="none" stroke="#f87171" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <div class="qi-label">유튜브 계획서</div>
+        <div class="qi-url">youtube-plan</div>
+      </a>
+      <a href="/youtube-schedule.html" class="quick-item">
+        <div class="qi-icon" style="background:rgba(129,140,248,.1);">
+          <svg width="15" height="15" fill="none" stroke="#818CF8" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="qi-label">2년 스케줄</div>
+        <div class="qi-url">youtube-schedule</div>
+      </a>
+      <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" class="quick-item">
+        <div class="qi-icon" style="background:rgba(254,229,0,.1);">
+          <svg width="15" height="15" fill="none" stroke="#FEE500" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="qi-label">카카오 채널</div>
+        <div class="qi-url">pf.kakao.com/_dxdxlbX</div>
+      </a>
+      <a href="https://supabase.com/dashboard" target="_blank" class="quick-item">
+        <div class="qi-icon" style="background:rgba(110,231,183,.08);">
+          <svg width="15" height="15" fill="none" stroke="#6EE7B7" stroke-width="2" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+        </div>
+        <div class="qi-label">Supabase DB</div>
+        <div class="qi-url">supabase.com</div>
+      </a>
+      <a href="https://vercel.com/dashboard" target="_blank" class="quick-item">
+        <div class="qi-icon" style="background:rgba(255,255,255,.06);">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div class="qi-label">Vercel 배포</div>
+        <div class="qi-url">vercel.com</div>
+      </a>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<!-- 교회 빠른 추가 모달 -->
+<div class="overlay" id="addOverlay">
+  <div class="modal">
+    <div class="modal-title">
+      교회 빠른 추가
+      <button class="modal-close" onclick="closeAddChurch()">✕</button>
+    </div>
+    <div class="field"><label>교회명 *</label><input type="text" id="q-church" placeholder="예: 시애틀 열린문교회"/></div>
+    <div class="field"><label>담임 목사님 *</label><input type="text" id="q-pastor" placeholder="예: 김성민 목사"/></div>
+    <div class="field"><label>이메일</label><input type="email" id="q-email" placeholder="pastor@church.org"/></div>
+    <div class="field"><label>전화</label><input type="text" id="q-phone" placeholder="+1-206-xxx-xxxx"/></div>
+    <div class="field"><label>카카오 ID</label><input type="text" id="q-kakao" placeholder="카카오톡 아이디"/></div>
+    <div class="field"><label>도시</label><input type="text" id="q-city" placeholder="예: Seattle WA / 서울 / 시드니 — 직접 입력"/></div>
+    <div class="field">
+      <label>상태</label>
+      <select id="q-status">
+        <option value="invited">초대됨</option>
+        <option value="pending">응답 대기</option>
+        <option value="active">활성 파트너</option>
+      </select>
+    </div>
+    <div class="field"><label>메모</label><textarea id="q-notes" placeholder="연결 경로, 특이사항 등"></textarea></div>
+    <button class="btn btn-gold" onclick="quickAddChurch()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      교회 추가
+    </button>
+    <button class="btn btn-ghost" onclick="closeAddChurch()">취소</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── 날짜 표시 ──────────────────────────────────────────
+const now = new Date();
+document.getElementById('sideDate').textContent = now.toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
+
+// ── D-day 계산 ─────────────────────────────────────────
+const launch = new Date('2026-10-01');
+const today  = new Date(); today.setHours(0,0,0,0);
+const diff   = Math.ceil((launch - today) / 86400000);
+document.getElementById('ytDday').textContent = diff > 0 ? `D-${diff}` : diff === 0 ? 'TODAY' : `D+${Math.abs(diff)}`;
+
+// ── 교회 수 조회 ───────────────────────────────────────
+fetch('/api/church-crm').then(r => r.ok ? r.json() : []).then(data => {
+  if (Array.isArray(data)) document.getElementById('churchCount').textContent = data.length;
+}).catch(() => {});
+
+// ── 모달 ───────────────────────────────────────────────
+function openAddChurch(){ document.getElementById('addOverlay').classList.add('show'); }
+function closeAddChurch(){ document.getElementById('addOverlay').classList.remove('show'); }
+
+async function quickAddChurch() {
+  const body = {
+    church_name: document.getElementById('q-church').value.trim(),
+    pastor_name: document.getElementById('q-pastor').value.trim(),
+    email:       document.getElementById('q-email').value.trim(),
+    phone:       document.getElementById('q-phone').value.trim(),
+    kakao_id:    document.getElementById('q-kakao').value.trim(),
+    city:        document.getElementById('q-city').value.trim(),
+    status:      document.getElementById('q-status').value,
+    notes:       document.getElementById('q-notes').value.trim(),
+  };
+  if (!body.church_name || !body.pastor_name) { toast('교회명과 목사님 성함을 입력하세요.'); return; }
+  try {
+    const r = await fetch('/api/church-crm?action=add', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) });
+    if (r.ok) {
+      toast(`${body.church_name} 추가 완료`);
+      closeAddChurch();
+      ['q-church','q-pastor','q-email','q-phone','q-kakao','q-city','q-notes'].forEach(id => document.getElementById(id).value='');
+      fetch('/api/church-crm').then(r=>r.json()).then(d=>{ if(Array.isArray(d)) document.getElementById('churchCount').textContent=d.length; });
+    } else {
+      const d = await r.json(); toast(d.message || '추가 실패');
+    }
+  } catch(e) { toast('오류: ' + e.message); }
+}
+
+// ── 토스트 ─────────────────────────────────────────────
+let toastTimer;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove('show'), 3000);
+}
+
+// ── 사이드바 active 동기화 ─────────────────────────────
+document.querySelectorAll('.sb-item').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('.sb-item').forEach(e=>e.classList.remove('active'));
+    el.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

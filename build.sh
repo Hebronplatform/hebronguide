@@ -173,6 +173,7 @@ cp church-invite.html    public/church-invite.html    2>/dev/null || true
 cp admin-churches.html   public/admin-churches.html   2>/dev/null || true
 cp youtube-plan.html     public/youtube-plan.html     2>/dev/null || true
 cp youtube-schedule.html public/youtube-schedule.html 2>/dev/null || true
+cp ops.html              public/ops.html              2>/dev/null || true
 cp hebronguide/dist/posters.html                   public/posters.html                   2>/dev/null || true
 # 목사님 전용 운영 문서 (앱 미연결 — URL 직접 공유)
 cp hebronguide/dist/church-guide.html              public/church-guide.html              2>/dev/null || true
