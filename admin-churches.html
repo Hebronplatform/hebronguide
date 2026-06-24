@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>파트너 교회 CRM — HebronGuide Admin</title>
+<style>
+:root{
+  --bg:#0a0e14;--surface:#111827;--border:#1f2937;
+  --gold:#C9A227;--mint:#6EE7B7;--red:#f87171;
+  --text:#e5e7eb;--muted:#6b7280;
+  --card:#151c28;--row-hover:#1a2438;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;font-size:.875rem;min-height:100vh;}
+
+/* ── 헤더 ── */
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.header-logo{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:#fff;}
+.header-logo span{color:var(--gold);}
+.header-sub{font-size:.72rem;color:var(--muted);margin-top:2px;}
+.header-right{display:flex;gap:10px;align-items:center;}
+.badge-total{background:var(--gold);color:#0a0e14;font-weight:800;font-size:.72rem;padding:3px 10px;border-radius:20px;}
+
+/* ── 레이아웃 ── */
+.container{display:flex;height:calc(100vh - 56px);}
+.sidebar{width:300px;min-width:300px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+
+/* ── 사이드바 — 교회 추가 폼 ── */
+.panel-title{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;padding:16px 18px 8px;}
+.form-wrap{padding:0 18px 18px;flex:1;overflow-y:auto;}
+.form-wrap input,.form-wrap select,.form-wrap textarea{
+  width:100%;background:#0a0e14;border:1px solid var(--border);color:var(--text);
+  border-radius:8px;padding:9px 12px;font-size:.82rem;margin-bottom:8px;
+  outline:none;font-family:inherit;
+}
+.form-wrap input:focus,.form-wrap select:focus,.form-wrap textarea:focus{border-color:var(--gold);}
+.form-wrap textarea{resize:vertical;min-height:60px;}
+.form-wrap select option{background:#111;}
+.label{font-size:.7rem;color:var(--muted);margin-bottom:3px;display:block;}
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:10px;border-radius:8px;font-weight:800;font-size:.8rem;cursor:pointer;border:none;transition:.15s;}
+.btn-gold{background:var(--gold);color:#0a0e14;}
+.btn-gold:hover{background:#e0b030;}
+.btn-outline{background:transparent;color:var(--muted);border:1px solid var(--border);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.btn-danger{background:transparent;color:var(--red);border:1px solid #3f1f1f;}
+.btn-danger:hover{background:#3f1f1f;}
+.btn-sm{padding:5px 10px;font-size:.75rem;border-radius:6px;}
+
+/* ── 툴바 ── */
+.toolbar{padding:12px 20px;background:var(--card);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.search-box{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 12px;font-size:.82rem;outline:none;width:200px;}
+.search-box:focus{border-color:var(--gold);}
+.filter-select{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 12px;font-size:.82rem;outline:none;}
+.toolbar-spacer{flex:1;}
+.count-label{font-size:.75rem;color:var(--muted);}
+
+/* ── 테이블 ── */
+.table-wrap{flex:1;overflow:auto;}
+table{width:100%;border-collapse:collapse;}
+thead th{background:var(--card);padding:10px 14px;text-align:left;font-size:.7rem;font-weight:800;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:2;}
+thead th:first-child{width:36px;}
+tbody tr{border-bottom:1px solid #1a2030;cursor:pointer;transition:.1s;}
+tbody tr:hover{background:var(--row-hover);}
+tbody tr.selected{background:#1a2438;outline:1px solid var(--gold);}
+td{padding:10px 14px;vertical-align:middle;}
+.td-church{font-weight:700;color:#fff;font-size:.85rem;}
+.td-pastor{color:var(--text);}
+.td-city{color:var(--muted);font-size:.8rem;}
+.td-email,.td-phone,.td-kakao{font-size:.78rem;color:var(--muted);}
+.td-date{font-size:.75rem;color:var(--muted);}
+td.td-actions{white-space:nowrap;}
+
+/* 상태 배지 */
+.status{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:.7rem;font-weight:800;letter-spacing:.04em;}
+.status-invited{background:rgba(201,162,39,.15);color:var(--gold);}
+.status-pending{background:rgba(110,231,183,.12);color:var(--mint);}
+.status-active{background:rgba(110,231,183,.25);color:#34d399;}
+.status-inactive{background:rgba(107,114,128,.15);color:var(--muted);}
+
+/* ── 하단 액션 바 ── */
+.action-bar{padding:12px 20px;background:var(--card);border-top:1px solid var(--border);display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.selected-count{font-size:.78rem;color:var(--muted);margin-right:4px;}
+
+/* ── 이메일 패널 (슬라이드) ── */
+.email-panel{
+  position:fixed;right:0;top:0;bottom:0;width:420px;background:var(--surface);
+  border-left:1px solid var(--border);z-index:100;transform:translateX(100%);
+  transition:transform .25s ease;display:flex;flex-direction:column;
+}
+.email-panel.open{transform:translateX(0);}
+.ep-header{padding:20px 22px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.ep-title{font-size:.9rem;font-weight:800;color:#fff;}
+.ep-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.2rem;line-height:1;}
+.ep-body{flex:1;overflow-y:auto;padding:20px 22px;}
+.ep-footer{padding:16px 22px;border-top:1px solid var(--border);}
+.ep-targets{background:#0a0e14;border-radius:8px;padding:12px 14px;margin-bottom:16px;max-height:100px;overflow-y:auto;}
+.ep-target-item{font-size:.78rem;color:var(--muted);padding:2px 0;display:flex;gap:8px;}
+.ep-target-item span{color:#fff;}
+
+/* ── 카카오 패널 ── */
+.kakao-template{background:rgba(254,229,0,.05);border:1px solid rgba(254,229,0,.2);border-radius:12px;padding:16px;margin-bottom:12px;}
+.kakao-template-title{font-size:.72rem;font-weight:800;color:#FEE500;margin-bottom:8px;letter-spacing:.06em;}
+.kakao-msg{font-size:.8rem;color:var(--text);line-height:1.7;white-space:pre-wrap;background:#0a0e14;border-radius:8px;padding:12px;font-family:'Apple SD Gothic Neo',sans-serif;}
+.copy-btn{margin-top:8px;background:rgba(254,229,0,.15);border:1px solid rgba(254,229,0,.3);color:#FEE500;border-radius:6px;padding:5px 12px;font-size:.75rem;font-weight:700;cursor:pointer;}
+.copy-btn:hover{background:rgba(254,229,0,.25);}
+
+/* ── 모달 ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:200;display:none;align-items:center;justify-content:center;}
+.overlay.show{display:flex;}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;width:480px;max-height:90vh;overflow-y:auto;padding:28px;}
+.modal-title{font-size:1rem;font-weight:800;margin-bottom:20px;}
+.modal-close{float:right;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.1rem;}
+
+/* ── 토스트 ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a2438;border:1px solid var(--gold);color:#fff;padding:10px 20px;border-radius:10px;font-size:.83rem;z-index:999;opacity:0;pointer-events:none;transition:opacity .3s;}
+.toast.show{opacity:1;}
+
+/* ── 탭 ── */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 18px;}
+.tab{padding:10px 14px;font-size:.78rem;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:.15s;}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+
+/* ── 빈 상태 ── */
+.empty-state{text-align:center;padding:60px 20px;color:var(--muted);}
+.empty-state svg{margin-bottom:12px;opacity:.3;}
+.empty-state p{font-size:.85rem;}
+</style>
+</head>
+<body>
+
+<!-- 헤더 -->
+<div class="header">
+  <div>
+    <div class="header-logo">Hebron<span>Guide</span> <span style="color:var(--muted);font-size:.8rem;font-family:system-ui;">파트너 교회 CRM</span></div>
+    <div class="header-sub">Partner Church Management System</div>
+  </div>
+  <div class="header-right">
+    <span class="badge-total" id="totalBadge">0 교회</span>
+    <a href="/" style="color:var(--muted);font-size:.78rem;text-decoration:none;">← 홈</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 사이드바 — 추가 폼 -->
+  <div class="sidebar">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('add')">교회 추가</div>
+      <div class="tab" onclick="switchTab('kakao')">카카오 메시지</div>
+    </div>
+
+    <!-- 추가 폼 탭 -->
+    <div id="tabAdd" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
+      <div class="panel-title">새 파트너 교회 등록</div>
+      <div class="form-wrap">
+        <label class="label">교회명 *</label>
+        <input type="text" id="f-church" placeholder="예: 시애틀 열린문교회"/>
+        <label class="label">담임 목사님 성함 *</label>
+        <input type="text" id="f-pastor" placeholder="예: 김성민 목사"/>
+        <label class="label">이메일</label>
+        <input type="email" id="f-email" placeholder="pastor@church.org"/>
+        <label class="label">전화번호</label>
+        <input type="text" id="f-phone" placeholder="+1-206-xxx-xxxx"/>
+        <label class="label">카카오톡 ID</label>
+        <input type="text" id="f-kakao" placeholder="카카오톡 아이디"/>
+        <label class="label">도시</label>
+        <input type="text" id="f-city" list="city-list" placeholder="예: Seattle, WA"/>
+        <datalist id="city-list">
+          <option value="서울">
+          <option value="부산">
+          <option value="대구">
+          <option value="인천">
+          <option value="Seattle, WA">
+          <option value="Los Angeles, CA">
+          <option value="New York, NY">
+          <option value="Chicago, IL">
+          <option value="Dallas, TX">
+          <option value="Atlanta, GA">
+          <option value="Washington, DC">
+          <option value="San Francisco, CA">
+          <option value="Toronto, Canada">
+          <option value="Vancouver, Canada">
+          <option value="Sydney, Australia">
+          <option value="London, UK">
+          <option value="Berlin, Germany">
+          <option value="Tokyo, Japan">
+        </datalist>
+        <label class="label">상태</label>
+        <select id="f-status">
+          <option value="invited">초대됨</option>
+          <option value="pending">응답 대기</option>
+          <option value="active">활성 파트너</option>
+          <option value="inactive">비활성</option>
+        </select>
+        <label class="label">메모</label>
+        <textarea id="f-notes" placeholder="연결 경로, 특이사항 등"></textarea>
+        <button class="btn btn-gold" onclick="addChurch()">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          교회 추가
+        </button>
+        <div style="margin-top:8px;"></div>
+        <button class="btn btn-outline" onclick="clearForm()">초기화</button>
+      </div>
+    </div>
+
+    <!-- 카카오 메시지 탭 -->
+    <div id="tabKakao" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
+      <div class="panel-title">카카오 메시지 템플릿</div>
+      <div class="form-wrap" style="font-size:.8rem;">
+        <div class="kakao-template">
+          <div class="kakao-template-title">초대 메시지 (첫 연락)</div>
+          <div class="kakao-msg" id="tmpl1">안녕하세요, 목사님!
+저는 HebronGuide 대표 폴 김 목사입니다.
+
+목사님 교회를 헤브론가이드에 소개하고 싶어서 연락드렸습니다.
+
+HebronGuide는 이민자들이 새 도시에서 교회와 커뮤니티를 찾도록 돕는 플랫폼입니다.
+
+파트너 교회로 등재하시면 무료로 교회를 소개할 수 있습니다.
+
+관심 있으시면 알려주세요!
+👉 hebronguide.com</div>
+          <button class="copy-btn" onclick="copyText('tmpl1')">복사</button>
+        </div>
+        <div class="kakao-template">
+          <div class="kakao-template-title">등재 안내 (후속 연락)</div>
+          <div class="kakao-msg" id="tmpl2">목사님, 감사합니다!
+
+헤브론가이드 파트너 교회 등재는 아래 링크에서 3분이면 완료됩니다:
+
+📋 hebronguide.com/ad-request.html
+
+등재 후 HebronGuide 카카오채널에서도 소개됩니다:
+📣 pf.kakao.com/_dxdxlbX
+
+감사합니다!</div>
+          <button class="copy-btn" onclick="copyText('tmpl2')">복사</button>
+        </div>
+        <div class="kakao-template">
+          <div class="kakao-template-title">Zoom 초대 (월례 모임)</div>
+          <div class="kakao-msg" id="tmpl3">목사님, 안녕하세요!
+
+이번 달 파트너 목사님 Zoom 모임에 초대드립니다.
+
+각 도시에서 어떻게 이민자를 섬기고 계신지 나누는 시간입니다.
+
+일시: (날짜·시간 입력)
+링크: (Zoom 링크 입력)
+
+참석 가능하시면 답장 주세요!</div>
+          <button class="copy-btn" onclick="copyText('tmpl3')">복사</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 메인 — 테이블 -->
+  <div class="main">
+    <div class="toolbar">
+      <input class="search-box" type="text" placeholder="교회명, 목사, 도시 검색…" id="searchInput" oninput="renderTable()"/>
+      <select class="filter-select" id="filterStatus" onchange="renderTable()">
+        <option value="">전체 상태</option>
+        <option value="invited">초대됨</option>
+        <option value="pending">응답 대기</option>
+        <option value="active">활성 파트너</option>
+        <option value="inactive">비활성</option>
+      </select>
+      <div class="toolbar-spacer"></div>
+      <span class="count-label" id="countLabel">0건</span>
+      <button class="btn btn-outline btn-sm" onclick="exportCSV()">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        엑셀 내보내기
+      </button>
+    </div>
+
+    <div class="table-wrap" id="tableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th><input type="checkbox" id="checkAll" onchange="toggleAll(this)"/></th>
+            <th>교회명</th>
+            <th>담임 목사</th>
+            <th>도시</th>
+            <th>이메일</th>
+            <th>전화</th>
+            <th>카카오 ID</th>
+            <th>상태</th>
+            <th>마지막 연락</th>
+            <th>등록일</th>
+            <th>관리</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M8 8h8M8 16h5"/></svg>
+        <p>등록된 교회가 없습니다. 왼쪽 폼에서 추가하세요.</p>
+      </div>
+    </div>
+
+    <!-- 하단 액션 바 -->
+    <div class="action-bar" id="actionBar" style="display:none;">
+      <span class="selected-count" id="selectedCount"></span>
+      <button class="btn btn-gold btn-sm" onclick="openEmailPanel()">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        이메일 발송
+      </button>
+      <button class="btn btn-outline btn-sm" onclick="clearSelection()">선택 해제</button>
+      <button class="btn btn-danger btn-sm" onclick="deleteSelected()">삭제</button>
+    </div>
+  </div>
+</div>
+
+<!-- 이메일 발송 패널 -->
+<div class="email-panel" id="emailPanel">
+  <div class="ep-header">
+    <div class="ep-title">이메일 일괄 발송</div>
+    <button class="ep-close" onclick="closeEmailPanel()">✕</button>
+  </div>
+  <div class="ep-body">
+    <div class="panel-title" style="padding:0 0 8px;">발송 대상</div>
+    <div class="ep-targets" id="epTargets"></div>
+    <label class="label">이메일 제목</label>
+    <input type="text" id="epSubject" style="width:100%;background:#0a0e14;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:9px 12px;font-size:.82rem;margin-bottom:12px;outline:none;" placeholder="[HebronGuide] 파트너 교회 초대"/>
+    <label class="label">메시지 (비워두면 기본 초대문 사용)</label>
+    <textarea id="epMsg" style="width:100%;background:#0a0e14;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:9px 12px;font-size:.82rem;min-height:140px;resize:vertical;outline:none;font-family:inherit;" placeholder="직접 메시지를 입력하거나 비워두시면 기본 초대문이 발송됩니다."></textarea>
+  </div>
+  <div class="ep-footer">
+    <button class="btn btn-gold" onclick="sendEmails()" id="sendBtn">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      <span id="sendBtnTxt">발송하기</span>
+    </button>
+  </div>
+</div>
+
+<!-- 편집 모달 -->
+<div class="overlay" id="editOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeEdit()">✕</button>
+    <div class="modal-title">교회 정보 수정</div>
+    <input type="hidden" id="edit-id"/>
+    <label class="label">교회명 *</label>
+    <input type="text" id="edit-church" style="width:100%;background:#0a0e14;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:9px 12px;font-size:.82rem;margin-bottom:8px;outline:none;"/>
+    <label class="label">담임 목사님 성함 *</label>
+    <input type="text" id="edit-pastor" style="width:100%;background:#0a0e14;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:9px 12px;font-size:.82rem;margin-bottom:8px;outline:none;"/>
+    <label class="label">이메일</label>
+    <input type="email" id="edit-email" style="width:100%;background:#0a0e14;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:9px 12px;font-size:.82rem;margin-bottom:8px;outline:none;"/>
+    <label class="label">전화번호</label>
+    <input type="text" id="edit-phone" style="width:100%;background:#0a0e14;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:9px 12px;font-size:.82rem;margin-bottom:8px;outline:none;"/>
+    <label class="label">카카오톡 ID</label>
+    <input type="text" id="edit-kakao" style="width:100%;background:#0a0e14;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:9px 12px;font-size:.82rem;margin-bottom:8px;outline:none;"/>
+    <label class="label">도시</label>
+    <input type="text" id="edit-city" list="city-list" style="width:100%;background:#0a0e14;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:9px 12px;font-size:.82rem;margin-bottom:8px;outline:none;"/>
+    <label class="label">상태</label>
+    <select id="edit-status" style="width:100%;background:#0a0e14;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:9px 12px;font-size:.82rem;margin-bottom:8px;outline:none;">
+      <option value="invited">초대됨</option>
+      <option value="pending">응답 대기</option>
+      <option value="active">활성 파트너</option>
+      <option value="inactive">비활성</option>
+    </select>
+    <label class="label">메모</label>
+    <textarea id="edit-notes" style="width:100%;background:#0a0e14;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:9px 12px;font-size:.82rem;min-height:60px;resize:vertical;outline:none;font-family:inherit;margin-bottom:12px;"></textarea>
+    <button class="btn btn-gold" onclick="saveEdit()">저장</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = '/api/church-crm';
+let churches = [];
+let selectedIds = new Set();
+
+/* ── 초기 로드 ──────────────────────────────────── */
+async function loadChurches() {
+  try {
+    const r = await fetch(API);
+    if (r.ok) {
+      churches = await r.json();
+      if (!Array.isArray(churches)) churches = [];
+    }
+  } catch(_) {
+    churches = [];
+  }
+  renderTable();
+}
+loadChurches();
+
+/* ── 탭 전환 ─────────────────────────────────────── */
+function switchTab(t) {
+  document.querySelectorAll('.tab').forEach((el,i) => el.classList.toggle('active', (i===0&&t==='add')||(i===1&&t==='kakao')));
+  document.getElementById('tabAdd').style.display = t==='add' ? 'flex' : 'none';
+  document.getElementById('tabKakao').style.display = t==='kakao' ? 'flex' : 'none';
+}
+
+/* ── 렌더 ────────────────────────────────────────── */
+function renderTable() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const st = document.getElementById('filterStatus').value;
+  const filtered = churches.filter(c => {
+    const match = !q ||
+      (c.church_name||'').toLowerCase().includes(q) ||
+      (c.pastor_name||'').toLowerCase().includes(q) ||
+      (c.city||'').toLowerCase().includes(q) ||
+      (c.email||'').toLowerCase().includes(q);
+    const statusMatch = !st || c.status === st;
+    return match && statusMatch;
+  });
+
+  document.getElementById('countLabel').textContent = `${filtered.length}건`;
+  document.getElementById('totalBadge').textContent = `${churches.length} 교회`;
+  document.getElementById('emptyState').style.display = filtered.length ? 'none' : 'block';
+
+  const STATUS_LABEL = {invited:'초대됨',pending:'응답 대기',active:'활성 파트너',inactive:'비활성'};
+
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = filtered.map(c => `
+    <tr class="${selectedIds.has(c.id)?'selected':''}" onclick="toggleRow(event,'${c.id}')">
+      <td><input type="checkbox" ${selectedIds.has(c.id)?'checked':''} onclick="event.stopPropagation();toggleRow(event,'${c.id}')"/></td>
+      <td class="td-church">${esc(c.church_name)}</td>
+      <td class="td-pastor">${esc(c.pastor_name)}</td>
+      <td class="td-city">${esc(c.city||'—')}</td>
+      <td class="td-email">${c.email ? `<a href="mailto:${esc(c.email)}" style="color:var(--gold);text-decoration:none;">${esc(c.email)}</a>` : '—'}</td>
+      <td class="td-phone">${esc(c.phone||'—')}</td>
+      <td class="td-kakao">${esc(c.kakao_id||'—')}</td>
+      <td><span class="status status-${c.status||'invited'}">${STATUS_LABEL[c.status]||c.status}</span></td>
+      <td class="td-date">${fmtDate(c.last_contact)}</td>
+      <td class="td-date">${fmtDate(c.created_at)}</td>
+      <td class="td-actions" onclick="event.stopPropagation()">
+        <button class="btn btn-outline btn-sm" onclick="openEdit('${c.id}')" style="margin-right:4px;">수정</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteOne('${c.id}')">삭제</button>
+      </td>
+    </tr>
+  `).join('');
+
+  updateActionBar();
+}
+
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fmtDate(d){ if(!d) return '—'; const dt=new Date(d); return dt.toLocaleDateString('ko-KR',{month:'short',day:'numeric',year:'2-digit'}); }
+
+/* ── 선택 ────────────────────────────────────────── */
+function toggleRow(e, id) {
+  if(e.target.tagName==='A'||e.target.tagName==='BUTTON') return;
+  if(selectedIds.has(id)) selectedIds.delete(id); else selectedIds.add(id);
+  renderTable();
+}
+function toggleAll(cb) {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const st = document.getElementById('filterStatus').value;
+  const filtered = churches.filter(c => {
+    const match = !q || (c.church_name||'').toLowerCase().includes(q)||(c.pastor_name||'').toLowerCase().includes(q)||(c.city||'').toLowerCase().includes(q);
+    const statusMatch = !st || c.status===st;
+    return match&&statusMatch;
+  });
+  if(cb.checked) filtered.forEach(c=>selectedIds.add(c.id));
+  else selectedIds.clear();
+  renderTable();
+}
+function clearSelection(){ selectedIds.clear(); renderTable(); }
+function updateActionBar(){
+  const bar = document.getElementById('actionBar');
+  bar.style.display = selectedIds.size ? 'flex' : 'none';
+  document.getElementById('selectedCount').textContent = `${selectedIds.size}개 선택됨`;
+}
+
+/* ── 추가 ────────────────────────────────────────── */
+async function addChurch() {
+  const church_name = document.getElementById('f-church').value.trim();
+  const pastor_name = document.getElementById('f-pastor').value.trim();
+  if(!church_name||!pastor_name){ toast('교회명과 목사님 성함을 입력하세요.'); return; }
+  const body = {
+    church_name, pastor_name,
+    email: document.getElementById('f-email').value.trim(),
+    phone: document.getElementById('f-phone').value.trim(),
+    kakao_id: document.getElementById('f-kakao').value.trim(),
+    city: document.getElementById('f-city').value.trim(),
+    status: document.getElementById('f-status').value,
+    notes: document.getElementById('f-notes').value.trim(),
+  };
+  try {
+    const r = await fetch(`${API}?action=add`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(r.ok){ toast(`${church_name} 추가 완료`); clearForm(); loadChurches(); }
+    else { const d=await r.json(); toast(d.message||'추가 실패'); }
+  } catch(e){ toast('오류: '+e.message); }
+}
+function clearForm(){ ['f-church','f-pastor','f-email','f-phone','f-kakao','f-city','f-notes'].forEach(id=>document.getElementById(id).value=''); document.getElementById('f-status').value='invited'; }
+
+/* ── 수정 ────────────────────────────────────────── */
+function openEdit(id) {
+  const c = churches.find(x=>x.id===id); if(!c) return;
+  ['id','church','pastor','email','phone','kakao','city','notes'].forEach(f=>{
+    const el = document.getElementById('edit-'+f);
+    if(el) el.value = c[f==='church'?'church_name':f==='pastor'?'pastor_name':f] || '';
+  });
+  document.getElementById('edit-status').value = c.status||'invited';
+  document.getElementById('editOverlay').classList.add('show');
+}
+function closeEdit(){ document.getElementById('editOverlay').classList.remove('show'); }
+async function saveEdit() {
+  const id = document.getElementById('edit-id').value;
+  const body = {
+    id,
+    church_name: document.getElementById('edit-church').value.trim(),
+    pastor_name: document.getElementById('edit-pastor').value.trim(),
+    email: document.getElementById('edit-email').value.trim()||null,
+    phone: document.getElementById('edit-phone').value.trim()||null,
+    kakao_id: document.getElementById('edit-kakao').value.trim()||null,
+    city: document.getElementById('edit-city').value.trim()||null,
+    status: document.getElementById('edit-status').value,
+    notes: document.getElementById('edit-notes').value.trim()||null,
+  };
+  try {
+    const r = await fetch(`${API}?action=update`, {method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(r.ok){ toast('수정 완료'); closeEdit(); loadChurches(); }
+    else { const d=await r.json(); toast(d.message||'수정 실패'); }
+  } catch(e){ toast('오류: '+e.message); }
+}
+
+/* ── 삭제 ────────────────────────────────────────── */
+async function deleteOne(id) {
+  const c = churches.find(x=>x.id===id);
+  if(!confirm(`"${c?.church_name}" 교회를 삭제할까요?`)) return;
+  await doDelete([id]);
+}
+async function deleteSelected() {
+  if(!selectedIds.size) return;
+  if(!confirm(`${selectedIds.size}개 교회를 삭제할까요?`)) return;
+  await doDelete([...selectedIds]);
+}
+async function doDelete(ids) {
+  for(const id of ids) {
+    await fetch(`${API}?action=delete`, {method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});
+  }
+  selectedIds.clear();
+  toast(`${ids.length}개 삭제 완료`);
+  loadChurches();
+}
+
+/* ── 이메일 발송 패널 ────────────────────────────── */
+function openEmailPanel() {
+  const targets = churches.filter(c=>selectedIds.has(c.id));
+  const epTargets = document.getElementById('epTargets');
+  epTargets.innerHTML = targets.map(c=>`
+    <div class="ep-target-item">
+      <span>${esc(c.church_name)}</span>
+      <span style="color:var(--muted)">${esc(c.pastor_name)}</span>
+      <span style="color:${c.email?'var(--mint)':'var(--red)'}">${c.email?esc(c.email):'이메일 없음'}</span>
+    </div>
+  `).join('');
+  document.getElementById('emailPanel').classList.add('open');
+}
+function closeEmailPanel(){ document.getElementById('emailPanel').classList.remove('open'); }
+async function sendEmails() {
+  const ids = [...selectedIds];
+  const subject = document.getElementById('epSubject').value.trim();
+  const customMsg = document.getElementById('epMsg').value.trim();
+  const btn = document.getElementById('sendBtn');
+  const btnTxt = document.getElementById('sendBtnTxt');
+  btn.disabled = true; btnTxt.textContent = '발송 중…';
+  try {
+    const r = await fetch(`${API}?action=send-email`, {
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ids, subject:subject||undefined, customMsg:customMsg||undefined})
+    });
+    const d = await r.json();
+    toast(`${d.sent}건 발송 완료${d.failed?`, ${d.failed}건 실패`:''}`);
+    closeEmailPanel();
+    loadChurches();
+  } catch(e){ toast('발송 실패: '+e.message); }
+  finally{ btn.disabled=false; btnTxt.textContent='발송하기'; }
+}
+
+/* ── CSV 내보내기 ─────────────────────────────────── */
+function exportCSV() {
+  const rows = [['교회명','담임 목사','도시','이메일','전화','카카오 ID','상태','마지막 연락','등록일','메모']];
+  const STATUS_LABEL = {invited:'초대됨',pending:'응답 대기',active:'활성 파트너',inactive:'비활성'};
+  for(const c of churches) {
+    rows.push([c.church_name,c.pastor_name,c.city||'',c.email||'',c.phone||'',c.kakao_id||'',STATUS_LABEL[c.status]||c.status,fmtDate(c.last_contact),fmtDate(c.created_at),c.notes||'']);
+  }
+  const csv = '﻿' + rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download = `HebronGuide_파트너교회_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  toast('엑셀 파일 다운로드 완료');
+}
+
+/* ── 카카오 복사 ─────────────────────────────────── */
+function copyText(id) {
+  const txt = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(txt).then(()=>toast('메시지 복사됨'));
+}
+
+/* ── 토스트 ─────────────────────────────────────── */
+let toastTimer;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove('show'),3000);
+}
+</script>
+</body>
+</html>
