@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>폴킴의 환대 — 2년 방송 스케줄 · HebronGuide 내부 자료</title>
+  <meta name="robots" content="noindex"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+  :root{
+    --bg:#0a0e14;--surface:rgba(255,255,255,.05);--border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+    --gold:#C9A227;--mint:#6EE7B7;--indigo:#818CF8;--warm:#FF9F0A;--red:#f87171;
+    --text:#ECFDF5;--muted:rgba(236,253,245,.6);--muted2:rgba(236,253,245,.35);
+    --y1:#C9A227;--y2:#6EE7B7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;background:var(--bg);}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden;}
+
+  nav{position:sticky;top:0;z-index:200;background:rgba(10,14,20,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
+  .nav-logo{font-family:'Cinzel',serif;font-weight:700;font-size:1rem;color:var(--gold);text-decoration:none;}
+  .nav-links{display:flex;gap:20px;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.8rem;}
+  .nav-links a:hover{color:var(--gold);}
+
+  /* HERO */
+  .hero{padding:72px 24px 56px;text-align:center;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(201,162,39,.14),transparent 65%);}
+  .hero-tag{display:inline-block;font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);border-radius:99px;padding:5px 16px;margin-bottom:20px;}
+  .channel-name{font-size:clamp(2.4rem,6vw,4rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:8px;font-family:'Cinzel',serif;}
+  .channel-name em{color:var(--gold);font-style:normal;}
+  .channel-sub{font-size:clamp(.95rem,2vw,1.15rem);color:var(--muted);margin-bottom:24px;letter-spacing:.04em;}
+  .channel-en{font-size:.85rem;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:32px;}
+  .channel-tagline{font-size:1rem;color:#fff;max-width:480px;margin:0 auto;line-height:1.9;border-top:1px solid var(--border2);padding-top:24px;}
+  .channel-tagline span{color:var(--gold);font-weight:800;}
+
+  /* NAME OPTIONS */
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
+  .section{padding:56px 0;}
+  .section-eyebrow{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;}
+  .section-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+  .section-desc{font-size:.9rem;color:var(--muted);line-height:1.9;margin-bottom:28px;}
+
+  .name-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:12px;}
+  .name-card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:22px 20px;position:relative;}
+  .name-card.pick{background:rgba(201,162,39,.1);border-color:rgba(201,162,39,.5);}
+  .name-pick-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gold);color:#0a0e14;font-size:.65rem;font-weight:900;letter-spacing:.1em;padding:3px 12px;border-radius:99px;white-space:nowrap;}
+  .name-ko{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:4px;}
+  .name-en{font-size:.8rem;color:var(--muted2);margin-bottom:10px;letter-spacing:.06em;}
+  .name-reason{font-size:.8rem;color:var(--muted);line-height:1.65;}
+
+  /* DIVIDER */
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0;}
+
+  /* YEAR HEADER */
+  .year-block{margin-bottom:64px;}
+  .year-header{display:flex;align-items:center;gap:20px;padding:28px 32px;border-radius:20px;margin-bottom:32px;}
+  .y1-header{background:linear-gradient(135deg,rgba(201,162,39,.15),rgba(201,162,39,.05));border:1px solid rgba(201,162,39,.35);}
+  .y2-header{background:linear-gradient(135deg,rgba(110,231,183,.12),rgba(110,231,183,.03));border:1px solid rgba(110,231,183,.3);}
+  .year-badge{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:1.4rem;font-weight:900;flex-shrink:0;}
+  .y1-badge{background:rgba(201,162,39,.2);color:var(--gold);}
+  .y2-badge{background:rgba(110,231,183,.15);color:var(--mint);}
+  .year-meta{}
+  .year-period{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+  .y1-period{color:var(--gold);}
+  .y2-period{color:var(--mint);}
+  .year-title{font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:4px;}
+  .year-desc{font-size:.85rem;color:var(--muted);}
+
+  /* MONTH GRID */
+  .month-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+  .month-card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:20px 20px 16px;transition:.15s;}
+  .month-card:hover{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.07);}
+  .month-card.launch{border-color:rgba(201,162,39,.5);background:rgba(201,162,39,.07);}
+  .month-card.anniv{border-color:rgba(110,231,183,.4);background:rgba(110,231,183,.06);}
+  .month-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .month-date{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+  .y1 .month-date{color:var(--gold);}
+  .y2 .month-date{color:var(--mint);}
+  .month-badge{font-size:.65rem;font-weight:800;letter-spacing:.06em;padding:3px 9px;border-radius:99px;}
+  .b-launch{background:rgba(201,162,39,.2);color:var(--gold);}
+  .b-anniv{background:rgba(110,231,183,.15);color:var(--mint);}
+  .b-special{background:rgba(129,140,248,.15);color:var(--indigo);}
+  .month-theme{font-size:1rem;font-weight:800;color:#fff;margin-bottom:6px;line-height:1.35;}
+  .month-sub{font-size:.78rem;color:var(--muted);margin-bottom:14px;line-height:1.55;}
+  .ep-list{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--border);padding-top:12px;}
+  .ep-row{display:flex;align-items:flex-start;gap:8px;}
+  .ep-type{flex-shrink:0;font-size:.62rem;font-weight:800;letter-spacing:.05em;padding:2px 7px;border-radius:99px;margin-top:2px;}
+  .t-story{background:rgba(201,162,39,.12);color:var(--gold);}
+  .t-seminar{background:rgba(110,231,183,.1);color:var(--mint);}
+  .t-pastor{background:rgba(129,140,248,.1);color:var(--indigo);}
+  .ep-title{font-size:.8rem;color:var(--muted);line-height:1.5;}
+
+  /* STATS BAR */
+  .stats-bar{display:flex;flex-wrap:wrap;gap:16px;background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:16px;padding:24px 28px;margin-bottom:40px;}
+  .stat-item{text-align:center;flex:1;min-width:80px;}
+  .stat-n{font-family:'Cinzel',serif;font-size:1.6rem;font-weight:900;color:var(--gold);}
+  .stat-l{font-size:.7rem;color:var(--muted2);margin-top:2px;}
+
+  /* QUOTE */
+  .quote-block{background:rgba(201,162,39,.06);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;padding:20px 24px;margin:32px 0;}
+  .quote-text{font-size:1rem;color:#fff;line-height:1.85;font-style:italic;}
+  .quote-from{font-size:.75rem;color:var(--muted2);margin-top:8px;}
+
+  footer{padding:40px 24px;text-align:center;}
+  .footer-copy{font-size:.72rem;color:var(--muted2);}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">HebronGuide</a>
+  <div class="nav-links">
+    <a href="/youtube-plan.html">채널 계획서</a>
+    <a href="/growth-plan.html">성장 로드맵</a>
+    <a href="/">홈</a>
+  </div>
+</nav>
+
+<!-- HERO — 채널 이름 발표 -->
+<div class="hero">
+  <div class="hero-tag">채널명 확정 · 2년 방송 스케줄</div>
+  <h1 class="channel-name"><em>폴킴</em>의 환대</h1>
+  <p class="channel-sub">이민자를 위한 환대 방송</p>
+  <p class="channel-en">Paul Kim · Hospitality Broadcasting</p>
+  <div class="channel-tagline">
+    <span>김성수 목사</span>가 직접 말하는<br>
+    환대의 이야기 · 정착의 지혜 · 헤브론의 마음<br><br>
+    <span style="color:var(--muted);font-size:.88rem;font-weight:400;">구독자에게 묻지 않습니다 — 그냥 환대합니다.</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 채널명 후보 -->
+  <div class="section" style="padding-top:40px;">
+    <div class="section-eyebrow">Channel Name</div>
+    <h2 class="section-title">채널명 — 최종 추천</h2>
+    <p class="section-desc">이름 하나가 채널의 방향을 결정합니다. 목사님 이름 + 한 단어가 가장 강합니다.</p>
+
+    <div class="name-grid">
+      <div class="name-card pick">
+        <div class="name-pick-badge">★ 추천</div>
+        <div class="name-ko">폴킴의 환대</div>
+        <div class="name-en">Paul Kim · Hospitality</div>
+        <div class="name-reason">이름이 브랜드, 환대가 정체성. "환대"는 YouTube에 없는 단어 — 검색하면 목사님만 나옵니다. 짧고 기억에 남습니다.</div>
+      </div>
+      <div class="name-card">
+        <div class="name-ko">김성수 목사의 환대 방송</div>
+        <div class="name-en">Rev. Kim Sungsu</div>
+        <div class="name-reason">한국어 이름을 전면에. 한국 시청자에게 친근. "방송"이라는 단어로 채널 성격 명확.</div>
+      </div>
+      <div class="name-card">
+        <div class="name-ko">낯선 도시에서 — 폴킴</div>
+        <div class="name-en">In a Strange City</div>
+        <div class="name-reason">이민자의 감정을 정확히 포착. 시적이고 클릭을 유도. 단, 채널 성격이 모호할 수 있음.</div>
+      </div>
+      <div class="name-card">
+        <div class="name-ko">폴킴 환대TV</div>
+        <div class="name-en">Paul Kim Hospitality TV</div>
+        <div class="name-reason">"TV" 형식으로 방송국 이미지. 세미나·시리즈·특집 구성에 어울림.</div>
+      </div>
+    </div>
+    <p style="font-size:.82rem;color:var(--muted);margin-top:8px;">※ 채널 URL: youtube.com/@paulkim-hwandae 또는 @폴킴환대</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 2년 총계 -->
+  <div class="section">
+    <div class="section-eyebrow">2-Year Overview</div>
+    <h2 class="section-title">2년 방송 — 전체 계획</h2>
+    <p class="section-desc">2026년 10월 1일 개국 · 2028년 9월 종결 (3년차 재계획)</p>
+
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-n">24</div>
+        <div class="stat-l">방송 개월</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-n">24</div>
+        <div class="stat-l">세미나 (월 1회)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-n">48</div>
+        <div class="stat-l">실화 시리즈</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-n">24</div>
+        <div class="stat-l">목사님 이야기</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-n">96+</div>
+        <div class="stat-l">총 영상 편수</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-n" style="color:var(--mint);">$0</div>
+        <div class="stat-l">광고비</div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <div class="quote-text">"내 이름이 브랜드가 되는 거지."</div>
+      <div class="quote-from">폴 김 목사 · 2026.06 — 이 채널의 출발점</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- YEAR 1 -->
+  <div class="section">
+    <div class="year-block">
+      <div class="year-header y1-header">
+        <div class="year-badge y1-badge">Y1</div>
+        <div class="year-meta">
+          <div class="year-period y1-period">Year 1 · 2026.10 — 2027.09</div>
+          <div class="year-title">씨앗 — 환대를 심는 해</div>
+          <div class="year-desc">목사님의 이름과 환대 이야기를 세상에 처음 내놓는 해. 진심이 구독자를 만든다.</div>
+        </div>
+      </div>
+
+      <div class="month-grid">
+
+        <!-- 2026.10 -->
+        <div class="month-card launch y1">
+          <div class="month-top">
+            <span class="month-date">2026 · 10월</span>
+            <span class="month-badge b-launch">개국</span>
+          </div>
+          <div class="month-theme">왜 나는 환대를 시작했나</div>
+          <div class="month-sub">채널 오픈. 목사님의 첫 말. 25년 목회와 환대의 시작.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-pastor">목사</span><span class="ep-title">EP01 — 왜 나는 환대를 시작했나 (채널 첫 영상)</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">EP02 — 미국 첫날, 공항에서 무슨 일이 있었나요?</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 01 — 이민 첫 달, 꼭 해야 할 것들 (SSN·면허·계좌)</span></div>
+          </div>
+        </div>
+
+        <!-- 2026.11 -->
+        <div class="month-card y1">
+          <div class="month-top">
+            <span class="month-date">2026 · 11월</span>
+          </div>
+          <div class="month-theme">정착의 첫 벽</div>
+          <div class="month-sub">이민자가 가장 먼저 부딪히는 현실. 정보 + 경험담.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">아무도 안 알려줬던 것들 — 이민 2주차 현실</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">처음 한국 마트를 찾았던 날 — 시애틀 실화</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 02 — 미국 의료보험 A to Z</span></div>
+          </div>
+        </div>
+
+        <!-- 2026.12 -->
+        <div class="month-card y1">
+          <div class="month-top">
+            <span class="month-date">2026 · 12월</span>
+            <span class="month-badge b-special">크리스마스</span>
+          </div>
+          <div class="month-theme">낯선 도시의 첫 크리스마스</div>
+          <div class="month-sub">명절 시즌, 이민자의 외로움 + 환대의 온기.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">혼자 보낸 첫 크리스마스 — 그리고 교회가 문을 열었다</span></div>
+            <div class="ep-row"><span class="ep-type t-pastor">목사</span><span class="ep-title">환대는 계절을 가리지 않는다 — 크리스마스 특집</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 03 — 이민자 가정의 미국 학교 보내기</span></div>
+          </div>
+        </div>
+
+        <!-- 2027.01 -->
+        <div class="month-card y1">
+          <div class="month-top">
+            <span class="month-date">2027 · 1월</span>
+            <span class="month-badge b-special">새해</span>
+          </div>
+          <div class="month-theme">새 출발 — 새 도시에서</div>
+          <div class="month-sub">새해 이민자들을 위한 희망 메시지. HebronGuide 소개 자연스럽게.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-pastor">목사</span><span class="ep-title">HebronGuide를 만든 이유 — 내 마음 이야기</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">1월 1일, 나는 달라스에 있었다</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 04 — 미국 세금 신고 기초 (이민자 편)</span></div>
+          </div>
+        </div>
+
+        <!-- 2027.02 -->
+        <div class="month-card y1">
+          <div class="month-top">
+            <span class="month-date">2027 · 2월</span>
+          </div>
+          <div class="month-theme">일자리 — 이민자의 도전</div>
+          <div class="month-sub">직장 찾기, 영어 장벽, 경력 인정. 가장 많이 묻는 주제.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">의사였는데 미국에서 다시 시작한 이야기</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">내 영어가 이 정도인데 취직이 될까요?</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 05 — 이민자 취업·이력서·인터뷰 전략</span></div>
+          </div>
+        </div>
+
+        <!-- 2027.03 -->
+        <div class="month-card y1">
+          <div class="month-top">
+            <span class="month-date">2027 · 3월</span>
+          </div>
+          <div class="month-theme">자녀 교육 — 두 나라 사이에서</div>
+          <div class="month-sub">한국계 자녀 양육의 현실. 정체성·학업·교회 연결.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">엄마는 한국어, 아이는 영어 — 우리 가족 이야기</span></div>
+            <div class="ep-row"><span class="ep-type t-pastor">목사</span><span class="ep-title">2세 자녀에게 어떻게 믿음을 전할 것인가</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 06 — 미국 공립학교 시스템 완전 정복</span></div>
+          </div>
+        </div>
+
+        <!-- 2027.04 -->
+        <div class="month-card y1">
+          <div class="month-top">
+            <span class="month-date">2027 · 4월</span>
+          </div>
+          <div class="month-theme">커뮤니티 — 혼자가 아니다</div>
+          <div class="month-sub">한인 커뮤니티 소개. 교회·사업체·모임의 역할.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">한인 교회가 날 살렸다 — 토론토 실화</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">카카오채팅방에서 만난 이웃</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 07 — 도시별 한인 네트워크 완전 가이드</span></div>
+          </div>
+        </div>
+
+        <!-- 2027.05 -->
+        <div class="month-card y1">
+          <div class="month-top">
+            <span class="month-date">2027 · 5월</span>
+          </div>
+          <div class="month-theme">창업 — 이민자의 꿈</div>
+          <div class="month-sub">작은 사업으로 뿌리 내린 이민자들 이야기.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">한식당 하나로 시애틀에 정착한 이야기</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">미국에서 사업 등록 — 내가 직접 해봤다</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 08 — 이민자 창업 A to Z (LLC·세금·보험)</span></div>
+          </div>
+        </div>
+
+        <!-- 2027.06 -->
+        <div class="month-card y1">
+          <div class="month-top">
+            <span class="month-date">2027 · 6월</span>
+          </div>
+          <div class="month-theme">도시 탐방 — 내가 사는 도시</div>
+          <div class="month-sub">각 도시의 한인 이야기. HebronGuide 도시 소개와 연동.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">시애틀에서 10년 — 이 도시가 내 집이 된 날</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">달라스 한인타운의 숨겨진 이야기</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 09 — 미국 내 이사 · 도시 이동 완전 가이드</span></div>
+          </div>
+        </div>
+
+        <!-- 2027.07 -->
+        <div class="month-card y1">
+          <div class="month-top">
+            <span class="month-date">2027 · 7월</span>
+          </div>
+          <div class="month-theme">비자 · 영주권 · 시민권</div>
+          <div class="month-sub">이민자의 법적 여정. 불안과 희망 사이.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">영주권 받던 날 — 10년 기다림의 끝</span></div>
+            <div class="ep-row"><span class="ep-type t-pastor">목사</span><span class="ep-title">이 땅의 나그네 — 영주권보다 더 중요한 것</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 10 — 비자·영주권·시민권 최신 가이드 (이민 변호사 초청)</span></div>
+          </div>
+        </div>
+
+        <!-- 2027.08 -->
+        <div class="month-card y1">
+          <div class="month-top">
+            <span class="month-date">2027 · 8월</span>
+          </div>
+          <div class="month-theme">환대받은 사람들의 이야기</div>
+          <div class="month-sub">1년 방송의 결실. 시청자 증언 모음 특집.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">구독자 특집 — "폴킴의 환대 덕분에 정착했습니다" 모음</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">파트너 교회 성도의 정착 6개월 후기</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 11 — 이민 후 정신건강 · 우울감 · 코이노니아</span></div>
+          </div>
+        </div>
+
+        <!-- 2027.09 -->
+        <div class="month-card anniv y1">
+          <div class="month-top">
+            <span class="month-date">2027 · 9월</span>
+            <span class="month-badge b-anniv">1주년</span>
+          </div>
+          <div class="month-theme">1년의 환대 — 감사합니다</div>
+          <div class="month-sub">개국 1주년 특집. 지나온 길 + 앞으로의 계획 공유.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-pastor">목사</span><span class="ep-title">1년 방송 회고 — 내가 배운 환대의 의미</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">1년간 채널이 연결한 사람들의 이야기</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 12 — 1주년 특집 Live · 구독자와의 대화</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- YEAR 2 -->
+    <div class="year-block" style="padding-top:56px;">
+      <div class="year-header y2-header">
+        <div class="year-badge y2-badge">Y2</div>
+        <div class="year-meta">
+          <div class="year-period y2-period">Year 2 · 2027.10 — 2028.09</div>
+          <div class="year-title">열매 — 환대가 세상으로 나가는 해</div>
+          <div class="year-desc">채널이 브랜드가 된 해. 이민자를 넘어 한인 디아스포라 전체로 확장. 한국과 연결.</div>
+        </div>
+      </div>
+
+      <div class="month-grid">
+
+        <!-- 2027.10 -->
+        <div class="month-card y2">
+          <div class="month-top">
+            <span class="month-date">2027 · 10월</span>
+            <span class="month-badge b-launch">2년차 개막</span>
+          </div>
+          <div class="month-theme">더 깊은 환대 — 2년차 시작</div>
+          <div class="month-sub">더 넓은 주제, 더 많은 도시. 한국과 연결 시작.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-pastor">목사</span><span class="ep-title">2년차를 시작하며 — 환대는 운동이다</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">한국에서 캐나다로 — 밴쿠버 이민자 이야기</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 13 — 캐나다 이민 특집 (토론토·밴쿠버)</span></div>
+          </div>
+        </div>
+
+        <!-- 2027.11 -->
+        <div class="month-card y2">
+          <div class="month-top">
+            <span class="month-date">2027 · 11월</span>
+          </div>
+          <div class="month-theme">2세 — 두 나라 사이의 정체성</div>
+          <div class="month-sub">한국계 미국인 2세의 이야기. 부모와 자녀의 간극.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">나는 한국인인가 미국인인가 — 2세 청년 인터뷰</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">부모님이 이민자인 것이 자랑스러운 날</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 14 — 이민자 가정의 세대 통합 전략</span></div>
+          </div>
+        </div>
+
+        <!-- 2027.12 -->
+        <div class="month-card y2">
+          <div class="month-top">
+            <span class="month-date">2027 · 12월</span>
+            <span class="month-badge b-special">크리스마스</span>
+          </div>
+          <div class="month-theme">환대의 열매들</div>
+          <div class="month-sub">2년차 크리스마스. 환대받은 사람이 환대하는 사람이 된 이야기.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">3년 전 환대받은 내가, 올해는 환대했습니다</span></div>
+            <div class="ep-row"><span class="ep-type t-pastor">목사</span><span class="ep-title">헤브론 — 아브라함이 나그네로 산 땅</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 15 — 이민자의 노후 준비 (은퇴·401K·사회보장)</span></div>
+          </div>
+        </div>
+
+        <!-- 2028.01 -->
+        <div class="month-card y2">
+          <div class="month-top">
+            <span class="month-date">2028 · 1월</span>
+          </div>
+          <div class="month-theme">글로벌 — 세계 각 도시의 한인들</div>
+          <div class="month-sub">미국을 넘어 호주·영국·독일·싱가포르.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">시드니 한인 이야기 — 환태평양의 한인</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">런던에서 한국 교회를 찾다</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 16 — 호주·영국 이민 특집</span></div>
+          </div>
+        </div>
+
+        <!-- 2028.02 -->
+        <div class="month-card y2">
+          <div class="month-top">
+            <span class="month-date">2028 · 2월</span>
+          </div>
+          <div class="month-theme">대한민국 — 뿌리를 찾아서</div>
+          <div class="month-sub">한국과 연결. 출국 전 준비. 한국 교회와 협력.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-pastor">목사</span><span class="ep-title">미국에 오기 전 한국에서 알았더라면</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">한국 출발 전날 밤 — 그 두려움</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 17 — 한국에서 미국 이민 준비 A to Z</span></div>
+          </div>
+        </div>
+
+        <!-- 2028.03 -->
+        <div class="month-card y2">
+          <div class="month-top">
+            <span class="month-date">2028 · 3월</span>
+          </div>
+          <div class="month-theme">교회 — 이민자와 하나님</div>
+          <div class="month-sub">신앙 이야기를 직접 꺼내는 첫 달. 자연스러운 흐름으로.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">미국에 와서 처음으로 교회를 나간 날</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">교회에서 만난 사람들이 내 가족이 됐다</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 18 — 이민자를 위한 도시별 교회 찾기 (HebronGuide 연동)</span></div>
+          </div>
+        </div>
+
+        <!-- 2028.04 -->
+        <div class="month-card y2">
+          <div class="month-top">
+            <span class="month-date">2028 · 4월</span>
+          </div>
+          <div class="month-theme">가정 — 이민자 가족의 힘</div>
+          <div class="month-sub">이민의 무게를 함께 짊어진 가족 이야기.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">남편이 먼저 오고 6개월 후 아내가 왔다</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">부모님을 미국으로 초청하던 날</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 19 — 가족 초청 비자 · 부모 영주권 가이드</span></div>
+          </div>
+        </div>
+
+        <!-- 2028.05 -->
+        <div class="month-card y2">
+          <div class="month-top">
+            <span class="month-date">2028 · 5월</span>
+          </div>
+          <div class="month-theme">환대가 선교다</div>
+          <div class="month-sub">신앙과 환대의 연결을 공개적으로. 선교의 새 정의.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-pastor">목사</span><span class="ep-title">환대가 선교다 — 설교보다 밥 한 끼</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">밥 한 끼로 시작된 인생 이야기</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 20 — 이민자를 위한 재정 계획 (저축·투자·보험)</span></div>
+          </div>
+        </div>
+
+        <!-- 2028.06 -->
+        <div class="month-card y2">
+          <div class="month-top">
+            <span class="month-date">2028 · 6월</span>
+          </div>
+          <div class="month-theme">청년 — 다음 세대의 환대</div>
+          <div class="month-sub">이민자 2세 청년들이 직접 나서는 달.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">2세 청년이 신입 이민자를 돕는 이야기</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">한국어도 영어도 아닌 — 나만의 언어</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 21 — 이민자 청년 진로 · 대학 · 장학금</span></div>
+          </div>
+        </div>
+
+        <!-- 2028.07 -->
+        <div class="month-card y2">
+          <div class="month-top">
+            <span class="month-date">2028 · 7월</span>
+          </div>
+          <div class="month-theme">환대의 지도 — HebronGuide 2년</div>
+          <div class="month-sub">채널과 HebronGuide의 연결 결과를 보여주는 달.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-pastor">목사</span><span class="ep-title">HebronGuide가 2년 동안 연결한 것들</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">유튜브에서 HebronGuide를 찾아 정착한 이야기</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 22 — 한인 이민자 커뮤니티의 미래</span></div>
+          </div>
+        </div>
+
+        <!-- 2028.08 -->
+        <div class="month-card y2">
+          <div class="month-top">
+            <span class="month-date">2028 · 8월</span>
+          </div>
+          <div class="month-theme">구독자가 만든 환대</div>
+          <div class="month-sub">채널이 씨앗을 심은 환대들. 시청자가 주인공.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">구독자 특집 2 — 2년 만에 내가 환대하는 사람이 됐다</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">파트너 교회 10곳, 2년의 이야기</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 23 — 은퇴 후 이민 · 시니어 정착 가이드</span></div>
+          </div>
+        </div>
+
+        <!-- 2028.09 -->
+        <div class="month-card anniv y2">
+          <div class="month-top">
+            <span class="month-date">2028 · 9월</span>
+            <span class="month-badge b-anniv">2주년</span>
+          </div>
+          <div class="month-theme">2년의 환대 — 우리가 만든 지도</div>
+          <div class="month-sub">2주년 특집. 지나온 2년 + 3년차 비전 공개.</div>
+          <div class="ep-list">
+            <div class="ep-row"><span class="ep-type t-pastor">목사</span><span class="ep-title">2년 회고 — 환대가 바꾼 것들</span></div>
+            <div class="ep-row"><span class="ep-type t-story">실화</span><span class="ep-title">2년 만에 96편의 영상이 연결한 이야기들</span></div>
+            <div class="ep-row"><span class="ep-type t-seminar">세미나</span><span class="ep-title">환대 방송 24 — 2주년 특집 Live · 3년차를 향해</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 마지막 -->
+  <div class="divider"></div>
+  <div class="section" style="padding-bottom:40px;">
+    <div class="quote-block">
+      <div class="quote-text">"구독자에게 묻지 않습니다 — 그냥 환대합니다."</div>
+      <div class="quote-from">폴킴의 환대 · 채널 정신</div>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);line-height:1.9;max-width:600px;">
+      2년 96편의 영상이 끝나면 하나의 지도가 완성됩니다.<br>
+      폴 김 목사가 25년 동안 환대한 사람들의 이야기 — 그것이 HebronGuide입니다.<br><br>
+      <strong style="color:#fff;">시작은 2026년 10월 1일.</strong><br>
+      첫 영상 하나면 됩니다.
+    </p>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+<footer>
+  <p class="footer-copy">HebronGuide · Hebron Platform LLC · 내부 문서 · © 2026</p>
+</footer>
+
+</body>
+</html>
