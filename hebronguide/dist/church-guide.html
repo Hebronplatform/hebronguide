@@ -735,7 +735,7 @@ footer{background:linear-gradient(135deg,#1a2535,#0d1117);color:rgba(236,253,245
     <div class="contact-icon">📧</div>
     <div class="contact-body">
       <div class="c-label"><span class="ko">이메일 문의</span><span class="en">Email Inquiry</span></div>
-      <div class="c-val">hebronplatform@gmail.com</div>
+      <div class="c-val">Hebronplatform@gmail.com</div>
       <div class="c-sub"><span class="ko">48시간 이내 답변 · hebronguide.com</span><span class="en">Response within 48 hours · hebronguide.com</span></div>
     </div>
   </div>
@@ -840,7 +840,7 @@ function submitCityRequest(e){
   var city=document.getElementById('req_city').value.trim();
   var msg=document.getElementById('req_msg').value.trim();
   var body='[도시 추가 신청]\n\n성함: '+name+'\n이메일: '+email+'\n교회명: '+church+'\n요청 도시: '+city+(msg?'\n\n현황:\n'+msg:'');
-  var mailto='mailto:hebronplatform@gmail.com?cc='+encodeURIComponent(email)+'&subject='+encodeURIComponent('[HebronGuide] 도시 추가 신청 — '+city)+'&body='+encodeURIComponent(body);
+  var mailto='mailto:Hebronplatform@gmail.com?cc='+encodeURIComponent(email)+'&subject='+encodeURIComponent('[HebronGuide] 도시 추가 신청 — '+city)+'&body='+encodeURIComponent(body);
   window.location.href=mailto;
   document.getElementById('cityReqForm').style.display='none';
   document.getElementById('cityReqThanks').style.display='block';
