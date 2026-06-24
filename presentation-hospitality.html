@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>HebronGuide — 글로벌 환대 플랫폼 | 김성수 목사</title>
+<meta name="robots" content="noindex"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#07090f;--surface:#0f1520;--surface2:#141e2e;
+  --border:rgba(201,162,39,.18);
+  --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;--indigo:#818CF8;
+  --warm:#FF9F0A;--red:#f87171;
+  --text:#f0f4ff;--muted:rgba(240,244,255,.62);--muted2:rgba(240,244,255,.35);
+  --serif:'Noto Serif KR',serif;
+  --sans:'Noto Sans KR',sans-serif;
+  --display:'Cinzel',serif;
+}
+html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-family:var(--sans);}
+
+/* ── 슬라이드 컨테이너 ── */
+.deck{width:100vw;height:100vh;position:relative;overflow:hidden;}
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:5vw 8vw;
+  opacity:0;pointer-events:none;transition:opacity .55s ease;
+  text-align:center;
+}
+.slide.active{opacity:1;pointer-events:auto;}
+
+/* 배경 변형 */
+.slide::before{content:'';position:absolute;inset:0;z-index:0;}
+.bg-dark::before{background:linear-gradient(150deg,#07090f 0%,#0c1225 100%);}
+.bg-story::before{background:linear-gradient(150deg,#0a0710 0%,#150c20 100%);}
+.bg-crisis::before{background:linear-gradient(150deg,#0f0a0a 0%,#200a0a 100%);}
+.bg-theology::before{background:linear-gradient(150deg,#060c14 0%,#0a1830 100%);}
+.bg-platform::before{background:linear-gradient(150deg,#06100e 0%,#0a2018 100%);}
+.bg-challenge::before{background:linear-gradient(150deg,#0c0c06 0%,#1a1800 60%,#2a1500 100%);}
+.bg-gold::before{background:linear-gradient(150deg,#120e00 0%,#1e1500 60%,#0f0900 100%);}
+
+.slide>*{position:relative;z-index:1;}
+
+/* ── 공통 텍스트 ── */
+.part-badge{
+  font-family:var(--display);font-size:.75rem;font-weight:700;letter-spacing:.22em;
+  color:var(--gold);border:1px solid rgba(201,162,39,.35);
+  padding:5px 18px;border-radius:99px;margin-bottom:22px;display:inline-block;
+}
+.slide-title{
+  font-family:var(--serif);font-size:clamp(1.6rem,4.5vw,3.2rem);font-weight:900;
+  color:#fff;line-height:1.2;margin-bottom:16px;
+}
+.slide-title em{color:var(--gold);font-style:normal;}
+.slide-sub{
+  font-size:clamp(.85rem,2vw,1.15rem);color:var(--muted);
+  line-height:1.85;max-width:72ch;margin:0 auto;
+}
+.slide-sub strong{color:#fff;}
+.verse{
+  font-family:var(--serif);font-size:clamp(1rem,2.5vw,1.5rem);
+  color:var(--mint);font-style:italic;line-height:1.7;
+  margin:20px auto;max-width:60ch;
+}
+.verse cite{display:block;font-size:.8em;color:var(--muted2);margin-top:6px;font-style:normal;}
+
+/* ── 타이틀 슬라이드 ── */
+.title-eyebrow{
+  font-family:var(--display);font-size:clamp(.7rem,1.6vw,1rem);
+  letter-spacing:.3em;color:var(--gold);margin-bottom:14px;
+}
+.title-main{
+  font-family:var(--display);font-size:clamp(2rem,6vw,4.5rem);
+  font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px;
+}
+.title-main em{color:var(--gold);}
+.title-desc{
+  font-size:clamp(.85rem,1.8vw,1.1rem);color:var(--muted);line-height:1.8;
+  max-width:60ch;margin:0 auto 28px;
+}
+.presenter{
+  display:inline-flex;align-items:center;gap:12px;
+  background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.25);
+  border-radius:99px;padding:8px 22px;
+  font-size:.85rem;color:var(--gold);font-weight:700;
+}
+
+/* ── 스탯 그리드 ── */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;width:100%;max-width:900px;margin:24px auto 0;}
+.stat-box{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:18px 12px;}
+.stat-num{font-family:var(--display);font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;color:var(--red);line-height:1;}
+.stat-lbl{font-size:.72rem;color:var(--muted2);margin-top:5px;line-height:1.4;}
+.stat-box.m .stat-num{color:var(--mint);}
+.stat-box.g .stat-num{color:var(--gold);}
+.stat-box.i .stat-num{color:var(--indigo);}
+
+/* ── 갭 카드 ── */
+.gap-row{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;width:100%;max-width:800px;margin:20px auto 0;}
+.gap-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:14px;padding:20px 24px;text-align:center;}
+.gap-card-lbl{font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-bottom:8px;}
+.gap-card-main{font-size:1rem;font-weight:800;color:#fff;line-height:1.4;}
+.gap-card.know .gap-card-main{color:var(--mint);}
+.gap-card.do .gap-card-main{color:var(--red);}
+.gap-arrow{font-family:var(--display);font-size:2rem;color:var(--gold);}
+.gap-label{font-size:.7rem;color:var(--muted2);margin-top:4px;}
+
+/* ── 4축 환대 지수 ── */
+.axis-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;width:100%;max-width:780px;margin:20px auto 0;}
+.axis-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:14px;padding:18px 20px;text-align:left;}
+.axis-icon{font-size:1.4rem;margin-bottom:8px;}
+.axis-title{font-size:.88rem;font-weight:800;color:#fff;margin-bottom:4px;}
+.axis-verse{font-size:.72rem;color:var(--gold);font-style:italic;margin-bottom:6px;}
+.axis-desc{font-size:.74rem;color:var(--muted);line-height:1.55;}
+.axis-num{font-family:var(--display);font-size:1.4rem;font-weight:900;color:var(--mint);float:right;margin-top:-2px;}
+
+/* ── 생태계 플로우 ── */
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;margin:20px auto 0;max-width:900px;}
+.flow-step{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:.8rem;color:#fff;font-weight:700;white-space:nowrap;}
+.flow-step.highlight{background:rgba(201,162,39,.12);border-color:rgba(201,162,39,.4);color:var(--gold);}
+.flow-arr{color:var(--muted2);font-size:1rem;}
+
+/* ── 열국 바 ── */
+.nation-strip{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px auto 0;max-width:820px;}
+.nation-chip{background:rgba(110,231,183,.07);border:1px solid rgba(110,231,183,.2);border-radius:6px;padding:5px 12px;font-size:.75rem;color:var(--mint);}
+
+/* ── 도전 카드 ── */
+.challenge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;max-width:900px;margin:20px auto 0;}
+.ch-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:left;}
+.ch-num{font-family:var(--display);font-size:1.6rem;font-weight:900;color:var(--gold);margin-bottom:6px;}
+.ch-title{font-size:.88rem;font-weight:800;color:#fff;margin-bottom:6px;}
+.ch-desc{font-size:.74rem;color:var(--muted);line-height:1.6;}
+
+/* ── 네비게이션 ── */
+.nav{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;z-index:200;}
+.nav-btn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;}
+.nav-btn:hover{background:rgba(201,162,39,.2);border-color:var(--gold);}
+.nav-progress{display:flex;gap:5px;align-items:center;}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:.15s;}
+.nav-dot.on{background:var(--gold);width:18px;border-radius:3px;}
+.nav-counter{font-size:.72rem;color:var(--muted2);font-family:var(--display);}
+
+/* ── 시간 표시 ── */
+.time-chip{position:fixed;top:18px;right:22px;font-size:.68rem;color:var(--muted2);font-family:var(--display);z-index:200;background:rgba(0,0,0,.4);padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.08);}
+
+/* ── 파트 구분선 ── */
+.part-line{width:60px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:0 auto 20px;}
+
+/* ── QR 영역 ── */
+.qr-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
+.qr-card{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:14px 20px;text-align:center;}
+.qr-url{font-size:.78rem;color:var(--mint);font-weight:700;margin-top:6px;}
+.qr-lbl{font-size:.65rem;color:var(--muted2);}
+
+/* ── 인용 카드 ── */
+.quote-card{background:rgba(255,255,255,.03);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:18px 24px;text-align:left;max-width:700px;margin:16px auto 0;}
+.quote-text{font-family:var(--serif);font-size:clamp(.9rem,2vw,1.2rem);color:var(--text);line-height:1.8;}
+.quote-attr{font-size:.74rem;color:var(--muted2);margin-top:8px;}
+
+/* ── 두 열 레이아웃 ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;width:100%;max-width:900px;margin:20px auto 0;}
+.col-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:14px;padding:20px 22px;text-align:left;}
+.col-card-title{font-size:.88rem;font-weight:800;color:var(--gold);margin-bottom:8px;letter-spacing:.05em;}
+.col-card li{font-size:.78rem;color:var(--muted);margin-bottom:6px;line-height:1.6;list-style:none;padding-left:16px;position:relative;}
+.col-card li::before{content:'›';position:absolute;left:0;color:var(--gold);}
+
+/* ── 큰 키워드 ── */
+.keyword-strip{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:18px auto;max-width:800px;}
+.kw{font-family:var(--display);font-size:clamp(1rem,2.5vw,1.6rem);font-weight:900;padding:8px 22px;border-radius:10px;}
+.kw1{color:var(--gold);border:2px solid rgba(201,162,39,.35);}
+.kw2{color:var(--mint);border:2px solid rgba(110,231,183,.3);}
+.kw3{color:var(--indigo);border:2px solid rgba(129,140,248,.3);}
+</style>
+</head>
+<body>
+<div class="time-chip" id="timer">00:00</div>
+
+<div class="deck" id="deck">
+
+<!-- ===== SLIDE 1 — 타이틀 ===== -->
+<div class="slide bg-dark active">
+  <div class="title-eyebrow">선교적 상상력 제4공간 · 주상락 교수님 학습공동체</div>
+  <div class="title-main"><em>환대</em>가 세상을<br>바꿀 수 있는가</div>
+  <div class="title-desc">
+    HebronGuide — 글로벌 환대 플랫폼<br>
+    디지털 시대, 흩어진 성도가 세상을 그리스도께 인도하는 길
+  </div>
+  <div class="presenter">김성수 목사 · Paul Kim · 시애틀 · 2026</div>
+</div>
+
+<!-- ===== SLIDE 2 — 25년 전, 한 질문 ===== -->
+<div class="slide bg-story">
+  <div class="part-badge">PART 1 · 나의 이야기</div>
+  <div class="slide-title">한 질문이 25년을 만들었습니다</div>
+  <div class="part-line"></div>
+  <div class="quote-card">
+    <div class="quote-text">"환대받지 못한 사람이,<br>어떻게 환대하는 사람이 되었는가?"</div>
+    <div class="quote-attr">2001년 6월, 시애틀 도착 첫 날 — 김성수</div>
+  </div>
+  <div class="slide-sub" style="margin-top:22px;">
+    교회를 개척하러 왔습니다. 가진 것은 없었습니다.<br>
+    이 도시는 저에게 문을 열어주지 않았습니다.<br>
+    <strong>그러나 — 몇 사람이 있었습니다.</strong>
+  </div>
+</div>
+
+<!-- ===== SLIDE 3 — 불교인 매니저 ===== -->
+<div class="slide bg-story">
+  <div class="slide-title">예수님의 손은<br>뜻밖의 곳에서 오셨습니다</div>
+  <div class="part-line"></div>
+  <div class="quote-card">
+    <div class="quote-text">"여기 빈 아파트 키입니다. 기도처로 사용하세요.<br>단, 다른 사람에게는 이야기하지 마세요."</div>
+    <div class="quote-attr">타이완 출신 불교인 아파트 매니저 — 시애틀, 2001</div>
+  </div>
+  <div class="slide-sub" style="margin-top:20px;">
+    그리스도인이 아니었습니다. 그러나 그가 문을 열어 주었습니다.<br>
+    그 아파트 매니저가 <strong>그리스도인이었다면</strong> 얼마나 좋았겠습니까.<br>
+    하나님을 사랑하고, 이웃을 섬기기로 헌신한 사람이었다면.<br><br>
+    <strong>그래서 HebronGuide가 시작되었습니다.</strong>
+  </div>
+</div>
+
+<!-- ===== SLIDE 4 — 마태복음 25:35 ===== -->
+<div class="slide bg-story">
+  <div class="verse">
+    "내가 나그네 되었을 때에 너희가 영접하였다."
+    <cite>— 마태복음 25:35 (새번역)</cite>
+  </div>
+  <div class="slide-sub" style="margin-top:10px;">
+    그날 그 나그네는 바로 저였습니다.<br>
+    그 손이 이제 <strong>우리의 손</strong>이 되어야 할 때입니다.
+  </div>
+  <div class="keyword-strip" style="margin-top:28px;">
+    <span class="kw kw1">認識 recognition</span>
+    <span class="kw kw2">受容 acceptance</span>
+    <span class="kw kw3">提供 provision</span>
+    <span class="kw kw1">連結 connection</span>
+  </div>
+  <div class="slide-sub" style="margin-top:14px;font-size:.8rem;">
+    환대는 단순한 친절이 아닙니다. <strong>하나님의 본성</strong>입니다.
+  </div>
+</div>
+
+<!-- ===== SLIDE 5 — 환대를 경험한 사람들 ===== -->
+<div class="slide bg-dark">
+  <div class="part-badge">환대 경험의 목소리</div>
+  <div class="slide-title">환대를 경험한 사람들은<br>이렇게 말합니다</div>
+  <div class="two-col">
+    <div class="col-card">
+      <div class="col-card-title">경험한 순간</div>
+      <ul>
+        <li>처음 밥을 얻어먹고 <strong>울었다</strong></li>
+        <li>낯선 도시에서 <strong>이름을 불러준</strong> 사람</li>
+        <li>아픈 날 온 <strong>문자 한 통</strong></li>
+        <li>공항에서 픽업 나온 <strong>처음 보는 성도</strong></li>
+        <li>비 오는 날 <strong>우산을 내밀어 준</strong> 가게 주인</li>
+      </ul>
+    </div>
+    <div class="col-card">
+      <div class="col-card-title">그들의 공통 고백</div>
+      <ul>
+        <li>"그 사람을 <strong>평생 잊을 수가 없다</strong>"</li>
+        <li>"그때 내가 <strong>다시 사람이 된 것 같았다</strong>"</li>
+        <li>"그분이 왜 친절한지 물었더니 <strong>교회 다닌다고 했다</strong>"</li>
+        <li>"그날 이후 <strong>교회에 가게 되었다</strong>"</li>
+        <li>"그 기억이 <strong>내 인생의 전환점</strong>이 되었다"</li>
+      </ul>
+    </div>
+  </div>
+  <div class="slide-sub" style="margin-top:18px;">
+    그들은 그 경험을 <strong>"환대"</strong>라 부르지 않았습니다.<br>
+    언어가 없었을 뿐 — <strong>그 순간을 평생 기억합니다.</strong>
+  </div>
+</div>
+
+<!-- ===== SLIDE 6 — 탈기독교 시대의 위기 ===== -->
+<div class="slide bg-crisis">
+  <div class="part-badge">PART 2 · 세상은 교회를 어떻게 보는가</div>
+  <div class="slide-title">우리 자녀들은<br>교회를 <em>떠나고</em> 있습니다</div>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="stat-num">59%</div><div class="stat-lbl">20대 청년<br>교회 이탈률</div></div>
+    <div class="stat-box"><div class="stat-num">28%</div><div class="stat-lbl">미국인 "종교 없음"<br>(1990년대 10%)</div></div>
+    <div class="stat-box"><div class="stat-num">21%</div><div class="stat-lbl">Z세대<br>무신론·불가지론</div></div>
+    <div class="stat-box"><div class="stat-num">8%↓</div><div class="stat-lbl">신학대학원<br>입학 감소</div></div>
+  </div>
+  <div class="slide-sub" style="margin-top:18px;">
+    이 숫자가 말하는 것: <strong>교회가 소금의 맛을 잃어가고 있습니다.</strong>
+  </div>
+</div>
+
+<!-- ===== SLIDE 7 — Barna 통계 ===== -->
+<div class="slide bg-crisis">
+  <div class="slide-title">세상은 그리스도인을<br>이렇게 봅니다</div>
+  <div class="part-line" style="background:linear-gradient(90deg,var(--red),transparent);"></div>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="stat-num">87%</div><div class="stat-lbl">"그리스도인은<br><strong>판단적이다</strong>"</div></div>
+    <div class="stat-box"><div class="stat-num">85%</div><div class="stat-lbl">"그리스도인은<br><strong>위선적이다</strong>"</div></div>
+    <div class="stat-box"><div class="stat-num">78%</div><div class="stat-lbl">"그리스도인은<br><strong>시대착오적이다</strong>"</div></div>
+    <div class="stat-box"><div class="stat-num">50%</div><div class="stat-lbl">교회 청년도<br>"우리 교회가 판단적"</div></div>
+  </div>
+  <div class="slide-sub" style="margin-top:18px;">
+    — Barna Research 비기독교인 청년 조사<br><br>
+    <strong>문을 잠근 것은 세상이 아닙니다. 우리가 잠갔습니다.</strong>
+  </div>
+</div>
+
+<!-- ===== SLIDE 8 — 동의와 실천 사이 ===== -->
+<div class="slide bg-crisis">
+  <div class="slide-title">우리는 알고 있습니다<br>그러나 — <em>실천하고 있는가?</em></div>
+  <div class="gap-row">
+    <div class="gap-card know">
+      <div class="gap-card-lbl">성경이 말하는 것</div>
+      <div class="gap-card-main">"손님 대접하기를 잊지 말라" 히 13:2<br>"나그네를 영접하라" 마 25:35<br>"대접하기를 힘쓰라" 롬 12:13</div>
+      <div class="gap-label">모든 교회가 동의합니다</div>
+    </div>
+    <div class="gap-arrow">→<br><span style="font-size:.65rem;color:var(--red);">GAP</span></div>
+    <div class="gap-card do">
+      <div class="gap-card-lbl">실제 경험</div>
+      <div class="gap-card-main">처음 온 방문자 — 아무도 인사 안 함<br>이름을 다음 주도 모름<br>식사 후 신자끼리만 어울림<br>심문처럼 들리는 "어떻게 오셨어요?"</div>
+      <div class="gap-label">훈련이 없어서입니다</div>
+    </div>
+  </div>
+  <div class="slide-sub" style="margin-top:16px;">
+    신학교에서 설교학, 상담학, 성경 해석학은 가르칩니다.<br>
+    <strong>환대학(Hospitality Studies)은 없습니다.</strong>
+  </div>
+</div>
+
+<!-- ===== SLIDE 9 — 환대의 성경적 배경 ===== -->
+<div class="slide bg-theology">
+  <div class="part-badge">PART 3 · 환대의 신학</div>
+  <div class="slide-title">φιλοξενία<br><em>필로세니아</em> — 낯선 자를 사랑함</div>
+  <div class="two-col">
+    <div class="col-card">
+      <div class="col-card-title">구약 — 나그네 환대 명령</div>
+      <ul>
+        <li>아브라함 — 달려나가 나그네를 맞이함 (창 18:2)</li>
+        <li>나그네를 압제하지 말라 (출 22:21)</li>
+        <li>이방인을 이스라엘 백성처럼 (레 19:34)</li>
+        <li>롯 — 천사를 자기 집으로 강권함 (창 19:3)</li>
+      </ul>
+    </div>
+    <div class="col-card">
+      <div class="col-card-title">신약 — 환대가 선교의 언어</div>
+      <ul>
+        <li>바울 — 아굴라·브리스길라 집에 머묾 (행 18:3)</li>
+        <li>루디아 — "내 집에 들어와 머무르라" (행 16:15)</li>
+        <li>대위임령의 실행 방식이 환대였음 (행 2:44-47)</li>
+        <li>히브리서 — "천사를 영접한 이도 있었다" (히 13:2)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="slide-sub" style="margin-top:16px;">
+    환대는 전략이 아닙니다. <strong>하나님의 본성입니다.</strong><br>
+    요한복음 1:14 — 하나님이 육신이 되어 우리 가운데 <em>거하셨다</em>.<br>
+    하나님이 먼저 우리를 환대하셨습니다.
+  </div>
+</div>
+
+<!-- ===== SLIDE 10 — 왜 환대인가 ===== -->
+<div class="slide bg-theology">
+  <div class="slide-title">왜 환대인가<br><em>대위임령 없이 대환대 없다</em></div>
+  <div class="part-line"></div>
+  <div class="flow">
+    <div class="flow-step">대위임령 마 28:19-20</div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step highlight">"가서 모든 민족을<br>제자로 삼으라"</div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step">그런데 — 상대방이<br>문을 열어야 들어간다</div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step highlight">그 문을 여는 것이<br><strong>환대</strong></div>
+  </div>
+  <div class="two-col" style="margin-top:18px;">
+    <div class="col-card" style="border-color:rgba(248,113,113,.3);">
+      <div class="col-card-title" style="color:var(--red);">환대 없는 전도</div>
+      <ul>
+        <li>문 잠긴 집에 메시지 던지기</li>
+        <li>관계 없는 복음 — 들리지 않음</li>
+        <li>87%가 "판단적"이라고 느끼는 이유</li>
+      </ul>
+    </div>
+    <div class="col-card" style="border-color:rgba(110,231,183,.3);">
+      <div class="col-card-title" style="color:var(--mint);">환대 있는 전도</div>
+      <ul>
+        <li>문이 열려 있고 초대받은 상태</li>
+        <li>신뢰가 먼저, 복음이 자연스럽게 흐름</li>
+        <li>행 2:47 — "날마다 더하여 주셨다"</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 11 — 환대 지수 ===== -->
+<div class="slide bg-theology">
+  <div class="slide-title">환대를 어떻게<br>가르칠 것인가 — <em>4축 환대 지수</em></div>
+  <div class="axis-grid">
+    <div class="axis-card">
+      <div class="axis-num">1</div>
+      <div class="axis-title">인식 Recognition</div>
+      <div class="axis-verse">"아버지가 먼저 알아봄" — 눅 15:20</div>
+      <div class="axis-desc">"당신이 여기 있다는 걸 알고 있습니다"<br>이름을 부르는 것. 눈을 맞추는 것.</div>
+    </div>
+    <div class="axis-card">
+      <div class="axis-num">2</div>
+      <div class="axis-title">수용 Acceptance</div>
+      <div class="axis-verse">"그리스도처럼 받으라" — 롬 15:7</div>
+      <div class="axis-desc">조건 없이 받아들임. 심문 없음.<br>판단 없이 먼저 자리를 마련함.</div>
+    </div>
+    <div class="axis-card">
+      <div class="axis-num">3</div>
+      <div class="axis-title">제공 Provision</div>
+      <div class="axis-verse">"주리고 목마를 때" — 마 25:35</div>
+      <div class="axis-desc">실질적 필요를 채워주는 것.<br>정보·식사·공간·도움·연락처.</div>
+    </div>
+    <div class="axis-card">
+      <div class="axis-num">4</div>
+      <div class="axis-title">연결 Connection</div>
+      <div class="axis-verse">"모든 것을 함께" — 행 2:44</div>
+      <div class="axis-desc">공동체로 이어주는 것.<br>한 사람의 환대가 한 공동체가 됨.</div>
+    </div>
+  </div>
+  <div class="slide-sub" style="margin-top:14px;font-size:.78rem;">
+    각 축 1~5점 → 최대 20점 · <strong>아브라함의 환대 (창 18장) = 20점</strong>
+  </div>
+</div>
+
+<!-- ===== SLIDE 12 — 제4공간 ===== -->
+<div class="slide bg-platform">
+  <div class="part-badge">PART 4 · 제4공간과 HebronGuide</div>
+  <div class="slide-title">제4공간<br>온·오프라인이 만나는 <em>환대의 마당</em></div>
+  <div class="flow" style="flex-direction:column;gap:12px;align-items:stretch;max-width:600px;">
+    <div class="flow-step" style="border-color:rgba(255,255,255,.15);">제1공간 — 가정 (Home)</div>
+    <div class="flow-step" style="border-color:rgba(255,255,255,.15);">제2공간 — 일터·학교 (Work)</div>
+    <div class="flow-step" style="border-color:rgba(255,255,255,.15);">제3공간 — 카페·광장·교회 (Oldenburg, 1989)</div>
+    <div class="flow-step highlight" style="font-size:.95rem;padding:16px;">제4공간 — 온·오프라인이 함께 만나는 환대의 마당<br><span style="font-size:.72rem;color:var(--muted);">주상락 교수 / Jeremy Rifkin 공감시대(2009)</span></div>
+  </div>
+  <div class="slide-sub" style="margin-top:16px;">
+    "정보는 연결되었지만 마음은 외롭습니다." — Rifkin<br>
+    <strong>공감시대(Empathic Era)에 가장 그리스도교적인 응답 = 환대</strong>
+  </div>
+</div>
+
+<!-- ===== SLIDE 13 — HebronGuide는 마당이다 ===== -->
+<div class="slide bg-platform">
+  <div class="slide-title">HebronGuide는<br><em>플랫폼이 아니라 마당입니다</em></div>
+  <div class="two-col">
+    <div class="col-card">
+      <div class="col-card-title">생태계 이전 (Before)</div>
+      <ul>
+        <li>이민자 도착 → 혼자 검색</li>
+        <li>교회를 모름. 성도 가게 못 찾음</li>
+        <li>언어 장벽. 마음이 닫힘</li>
+        <li>복음을 듣지 못함</li>
+        <li>교회는 성장하지 않음</li>
+      </ul>
+    </div>
+    <div class="col-card" style="border-color:rgba(110,231,183,.3);">
+      <div class="col-card-title" style="color:var(--mint);">생태계 이후 (After)</div>
+      <ul>
+        <li>도착 → HebronGuide 오픈</li>
+        <li>공항에서부터 교회를 만남</li>
+        <li>성도 가게에서 <strong>첫 번째 환대</strong></li>
+        <li>신뢰 → 마음 열림 → 복음</li>
+        <li>"날마다 더하여 주셨다" 행 2:47</li>
+      </ul>
+    </div>
+  </div>
+  <div class="slide-sub" style="margin-top:16px;">
+    씨앗 심는 마당 — 교단의 벽 없이<br>
+    만남의 마당 — 낯선 이와 성도의 접점<br>
+    <strong>운동의 마당 — 글로벌 환대 커뮤니티</strong>
+  </div>
+</div>
+
+<!-- ===== SLIDE 14 — 흩어진 성도 ===== -->
+<div class="slide bg-platform">
+  <div class="slide-title">세상 속 흩어진 성도가<br><em>세상을 바꿉니다</em></div>
+  <div class="verse">
+    "모든 사람에게 호감을 샀다.<br>주님께서는 구원받는 사람들을 날마다 더하여 주셨다."
+    <cite>— 사도행전 2:47 (새번역)</cite>
+  </div>
+  <div class="flow">
+    <div class="flow-step">성도의 일터<br>= 선교 현장</div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step highlight">환대 경험</div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step">마음 열림</div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step highlight">복음으로</div>
+    <div class="flow-arr">→</div>
+    <div class="flow-step">교회 성장</div>
+  </div>
+  <div class="slide-sub" style="margin-top:18px;">
+    교회 건물 <em>안에서</em> 일어나는 환대가 아닙니다.<br>
+    <strong>세상 한 복판에서, 성도의 일상이 선교가 됩니다.</strong><br>
+    성도의 식탁이 이미 누군가의 첫 번째 교회입니다.
+  </div>
+</div>
+
+<!-- ===== SLIDE 15 — 68개 도시 ===== -->
+<div class="slide bg-platform">
+  <div class="slide-title">지금 이 순간<br><em>68개+ 도시</em>에서 작동 중</div>
+  <div class="stat-grid">
+    <div class="stat-box m"><div class="stat-num">68+</div><div class="stat-lbl">글로벌 도시<br>Live 운영</div></div>
+    <div class="stat-box g"><div class="stat-num">730만</div><div class="stat-lbl">재외 한인<br>선교 대상</div></div>
+    <div class="stat-box i"><div class="stat-num">500+</div><div class="stat-lbl">2030년 목표<br>도시 수</div></div>
+    <div class="stat-box"><div class="stat-num">24/7</div><div class="stat-lbl">언제 어디서나<br>환대 연결</div></div>
+  </div>
+  <div class="nation-strip" style="margin-top:18px;">
+    <span class="nation-chip">🇺🇸 미국 30+</span>
+    <span class="nation-chip">🇨🇦 캐나다 7</span>
+    <span class="nation-chip">🇦🇺 호주 5</span>
+    <span class="nation-chip">🇬🇧 유럽 4</span>
+    <span class="nation-chip">🌎 중남미 5</span>
+    <span class="nation-chip">🌏 동남아·중동 4</span>
+    <span class="nation-chip">🇯🇵 일본 2</span>
+    <span class="nation-chip">🇰🇷 한국 10+</span>
+  </div>
+  <div class="slide-sub" style="margin-top:14px;">
+    <strong>"2030년, 세상 어느 도시에서도 HebronGuide를 켜면 — 환대받을 수 있습니다."</strong>
+  </div>
+</div>
+
+<!-- ===== SLIDE 16 — 라이브 체험 ===== -->
+<div class="slide bg-dark">
+  <div class="part-badge">★ LIVE 체험</div>
+  <div class="slide-title">지금 직접<br>열어보십시오</div>
+  <div class="slide-sub" style="margin-top:10px;">채팅창 링크를 클릭하시거나 아래 주소를 입력하십시오</div>
+  <div class="qr-row">
+    <div class="qr-card">
+      <div style="width:100px;height:100px;background:rgba(201,162,39,.08);border:2px solid rgba(201,162,39,.3);border-radius:8px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--muted2);">QR코드</div>
+      <div class="qr-url">hebronguide.com</div>
+      <div class="qr-lbl">메인 사이트</div>
+    </div>
+    <div class="qr-card">
+      <div style="width:100px;height:100px;background:rgba(110,231,183,.06);border:2px solid rgba(110,231,183,.25);border-radius:8px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--muted2);">QR코드</div>
+      <div class="qr-url" style="color:var(--gold);">hebronguide.com/church-guide</div>
+      <div class="qr-lbl">교회 무료 등재</div>
+    </div>
+  </div>
+  <div class="slide-sub" style="margin-top:20px;">
+    셀폰이든 PC든 상관없습니다. 도시를 선택해서 교회와 성도 가게를 보십시오.<br>
+    <strong>홈화면에 추가하면 앱처럼 사용할 수 있습니다.</strong><br><br>
+    <em>여러분의 도시가 없으시면 — 도시 추가를 신청해 주십시오.</em>
+  </div>
+</div>
+
+<!-- ===== SLIDE 17 — 임팩트 3겹 ===== -->
+<div class="slide bg-platform">
+  <div class="slide-title">환대 한 번이<br><em>세 겹</em>으로 살립니다</div>
+  <div class="challenge-grid">
+    <div class="ch-card">
+      <div class="ch-num">1</div>
+      <div class="ch-title">한 사람의 인생</div>
+      <div class="ch-desc">낯선 도시에서 처음 받은 환대가 그 사람의 인생 전환점이 됩니다.<br><br>개인이 삽니다.</div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-num">2</div>
+      <div class="ch-title">성도의 일상</div>
+      <div class="ch-desc">성도의 가게와 식탁이 선교의 현장이 됩니다. 삶이 곧 예배입니다.<br><br>커뮤니티가 삽니다.</div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-num">3</div>
+      <div class="ch-title">교회의 존재 목적</div>
+      <div class="ch-desc">교회가 환대의 통로로 드러납니다. 존재 이유가 다시 빛납니다.<br><br>교회가 삽니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 18 — 도전과 과제 ===== -->
+<div class="slide bg-challenge">
+  <div class="part-badge">PART 5 · 도전과 과제</div>
+  <div class="slide-title">이제 <em>우리가</em><br>달려나가야 합니다</div>
+  <div class="challenge-grid">
+    <div class="ch-card">
+      <div class="ch-num" style="color:var(--mint);">①</div>
+      <div class="ch-title">환대를 배우라</div>
+      <div class="ch-desc">설교학은 있는데 환대학이 없습니다. 4축 환대 지수를 교육 과정에 넣으십시오. 이름을 기억하는 것부터 시작합니다.</div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-num" style="color:var(--gold);">②</div>
+      <div class="ch-title">일터가 선교지</div>
+      <div class="ch-desc">교회 건물 밖이 진짜 선교지입니다. 성도의 가게를 HebronGuide에 등재하는 것 — 그것이 선교 헌신입니다.</div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-num" style="color:var(--indigo);">③</div>
+      <div class="ch-title">교단 벽을 낮추라</div>
+      <div class="ch-desc">환대는 교단을 가리지 않습니다. 함께 이 마당을 만들어 가는 것 — 그것이 오늘 우리에게 주어진 사명입니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 19 — 열국 비전 ===== -->
+<div class="slide bg-gold">
+  <div class="verse" style="font-size:clamp(1.1rem,3vw,1.8rem);color:var(--gold2);">
+    "각 나라와 족속과 백성과 방언에서<br>아무도 셀 수 없는 큰 무리가..."
+    <cite style="color:rgba(201,162,39,.7);">— 요한계시록 7:9 (새번역)</cite>
+  </div>
+  <div class="slide-sub" style="margin-top:16px;">
+    한인, 중국계, 베트남계, 필리핀계, 아랍계, 모든 민족이<br>
+    <strong>하나님께 영광을 돌리는 그날을 위해 — 오늘 우리가 시작합니다.</strong>
+  </div>
+  <div class="nation-strip" style="margin-top:20px;">
+    <span class="nation-chip" style="background:rgba(201,162,39,.1);border-color:rgba(201,162,39,.3);color:var(--gold);">🌍 한인 디아스포라 730만</span>
+    <span class="nation-chip" style="background:rgba(201,162,39,.1);border-color:rgba(201,162,39,.3);color:var(--gold);">→ 2027 다민족 확장</span>
+    <span class="nation-chip" style="background:rgba(201,162,39,.1);border-color:rgba(201,162,39,.3);color:var(--gold);">→ 2030 500개 도시</span>
+    <span class="nation-chip" style="background:rgba(201,162,39,.1);border-color:rgba(201,162,39,.3);color:var(--gold);">→ 모든 민족</span>
+  </div>
+  <div style="margin-top:22px;font-family:var(--display);font-size:1rem;font-weight:700;color:rgba(201,162,39,.55);letter-spacing:.2em;">SOLI DEO GLORIA</div>
+</div>
+
+<!-- ===== SLIDE 20 — 4가지 참여 ===== -->
+<div class="slide bg-dark">
+  <div class="part-badge">오늘 바로 시작하십시오</div>
+  <div class="slide-title">4가지 <em>참여 방법</em></div>
+  <div class="challenge-grid" style="grid-template-columns:repeat(2,1fr);">
+    <div class="ch-card" style="border-color:rgba(110,231,183,.3);">
+      <div class="ch-num" style="color:var(--mint);font-size:1.1rem;">이민자·이주자</div>
+      <div class="ch-desc" style="font-size:.82rem;">내 도시의 HebronGuide를 열어보세요. 이미 환대가 기다립니다.<br><strong>hebronguide.com</strong></div>
+    </div>
+    <div class="ch-card" style="border-color:rgba(201,162,39,.3);">
+      <div class="ch-num" style="color:var(--gold);font-size:1.1rem;">목사님·교회</div>
+      <div class="ch-desc" style="font-size:.82rem;">교회를 무료로 등재하세요. 새로 도착한 성도가 공항에서부터 만납니다.<br><strong>hebronguide.com/church-guide</strong></div>
+    </div>
+    <div class="ch-card" style="border-color:rgba(129,140,248,.3);">
+      <div class="ch-num" style="color:var(--indigo);font-size:1.1rem;">성도·사업체</div>
+      <div class="ch-desc" style="font-size:.82rem;">가게를 등재하세요. 성도의 일터가 환대의 첫 현장이 됩니다.<br><strong>hebronguide.com/ad-request</strong></div>
+    </div>
+    <div class="ch-card" style="border-color:rgba(255,159,10,.3);">
+      <div class="ch-num" style="color:var(--warm);font-size:1.1rem;">내 도시가 없다면</div>
+      <div class="ch-desc" style="font-size:.82rem;">도시 추가를 신청해 주세요. 모든 도시에 환대를 심겠습니다.<br><strong>hebronguide.com</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 21 — 클로징 ===== -->
+<div class="slide bg-gold">
+  <div class="title-main" style="font-size:clamp(1.5rem,4vw,3rem);color:#fff;">
+    환대가 세상을 바꿉니다<br>
+    <em style="color:var(--gold2);">함께 이 운동에 동참해 주시겠습니까?</em>
+  </div>
+  <div class="slide-sub" style="margin-top:16px;">
+    교회가 살고, 커뮤니티가 살고, 개인이 살고,<br>
+    모든 나라와 민족이 주님께 돌아와 <strong>하나님께 영광을 돌립시다.</strong>
+  </div>
+  <div class="qr-row" style="margin-top:22px;">
+    <div class="qr-card" style="background:rgba(201,162,39,.08);border-color:rgba(201,162,39,.35);">
+      <div class="qr-url">hebronguide.com</div>
+      <div class="qr-lbl" style="color:rgba(201,162,39,.6);">지금 바로 열어보세요</div>
+    </div>
+    <div class="qr-card" style="background:rgba(201,162,39,.08);border-color:rgba(201,162,39,.35);">
+      <div class="qr-url" style="color:var(--gold2);">ssamsamgrakjoo@gmail.com</div>
+      <div class="qr-lbl" style="color:rgba(201,162,39,.6);">파트너십 문의</div>
+    </div>
+  </div>
+  <div style="margin-top:22px;font-family:var(--display);font-size:1.1rem;font-weight:900;color:rgba(201,162,39,.6);letter-spacing:.25em;">SOLI DEO GLORIA</div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- 네비게이션 -->
+<div class="nav" id="nav">
+  <button class="nav-btn" id="prevBtn" onclick="go(-1)">‹</button>
+  <div class="nav-progress" id="dots"></div>
+  <button class="nav-btn" id="nextBtn" onclick="go(1)">›</button>
+  <div class="nav-counter"><span id="cur">1</span>/<span id="tot"></span></div>
+</div>
+
+<script>
+const slides = Array.from(document.querySelectorAll('.slide'));
+let cur = 0;
+
+// 도트 생성
+const dotsEl = document.getElementById('dots');
+const totEl  = document.getElementById('tot');
+totEl.textContent = slides.length;
+slides.forEach((_,i)=>{
+  const d = document.createElement('div');
+  d.className = 'nav-dot' + (i===0?' on':'');
+  d.onclick = ()=>show(i);
+  dotsEl.appendChild(d);
+});
+
+function show(n){
+  slides[cur].classList.remove('active');
+  dotsEl.children[cur].classList.remove('on');
+  cur = Math.max(0,Math.min(slides.length-1,n));
+  slides[cur].classList.add('active');
+  dotsEl.children[cur].classList.add('on');
+  document.getElementById('cur').textContent = cur+1;
+}
+function go(d){ show(cur+d); }
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ') go(1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') go(-1);
+  if(e.key==='Home') show(0);
+  if(e.key==='End') show(slides.length-1);
+});
+
+// 터치 스와이프
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx;
+  if(Math.abs(dx)>50) go(dx<0?1:-1);
+},{passive:true});
+
+// 타이머
+const t0=Date.now();
+setInterval(()=>{
+  const s=Math.floor((Date.now()-t0)/1000);
+  const m=Math.floor(s/60).toString().padStart(2,'0');
+  const ss=(s%60).toString().padStart(2,'0');
+  document.getElementById('timer').textContent=m+':'+ss;
+  if(s>=1200) document.getElementById('timer').style.color='var(--red)';
+  else if(s>=1080) document.getElementById('timer').style.color='var(--warm)';
+},1000);
+</script>
+</body>
+</html>
