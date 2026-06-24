@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HebronGuide — 파트너 교회 초대 카드</title>
+  <meta name="robots" content="noindex"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+  :root{
+    --bg:#0a0e14;--bg2:#0d1117;--surface:rgba(255,255,255,.05);--border:rgba(255,255,255,.1);
+    --border2:rgba(255,255,255,.16);--gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;
+    --text:#ECFDF5;--muted:rgba(236,253,245,.6);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+  /* NAV */
+  nav{background:rgba(10,14,20,.97);border-bottom:1px solid var(--border);height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;}
+  .nav-logo{font-family:'Cinzel',serif;font-weight:700;font-size:.95rem;color:var(--gold);text-decoration:none;}
+  .nav-back{color:var(--muted);text-decoration:none;font-size:.8rem;display:flex;align-items:center;gap:5px;}
+  .nav-back:hover{color:var(--gold);}
+
+  /* LAYOUT */
+  .wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+  @media(max-width:700px){.wrap{grid-template-columns:1fr;}}
+
+  /* ── CARD PREVIEW ── */
+  .card-col{}
+  .col-label{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;}
+
+  /* The actual printable card */
+  .qr-card{
+    background:#fff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+    width:100%;
+    max-width:400px;
+  }
+  .card-top{
+    background:linear-gradient(135deg,#0a0e14 0%,#1a2035 100%);
+    padding:28px 28px 24px;
+    position:relative;
+    overflow:hidden;
+  }
+  .card-top::before{
+    content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;
+    background:radial-gradient(circle,rgba(201,162,39,.18) 0%,transparent 65%);
+    pointer-events:none;
+  }
+  .card-logo{font-family:'Cinzel',serif;font-weight:900;font-size:1.4rem;color:#fff;margin-bottom:4px;}
+  .card-logo em{color:#C9A227;font-style:normal;}
+  .card-tagline{font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.06em;}
+  .card-headline{margin-top:20px;font-size:1.05rem;font-weight:900;color:#fff;line-height:1.5;}
+  .card-headline em{color:#C9A227;font-style:normal;}
+  .card-sub{margin-top:8px;font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.7;}
+
+  .card-qr-wrap{
+    background:#f8f7f4;
+    padding:24px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+  }
+  .card-qr-box{flex-shrink:0;background:#fff;padding:8px;border-radius:10px;border:1px solid #e8e4dc;}
+  #qrcode canvas, #qrcode img{display:block;}
+  .card-qr-info{}
+  .card-qr-step{font-size:.75rem;font-weight:700;color:#1a1a1a;margin-bottom:8px;}
+  .card-qr-steps{list-style:none;display:flex;flex-direction:column;gap:5px;}
+  .card-qr-steps li{font-size:.72rem;color:#5a5a5a;line-height:1.5;padding-left:14px;position:relative;}
+  .card-qr-steps li::before{content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:#C9A227;}
+
+  .card-bottom{
+    background:linear-gradient(90deg,#C9A227,#f0c040);
+    padding:12px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .card-bottom-text{font-size:.72rem;font-weight:800;color:#0a0e14;}
+  .card-bottom-url{font-size:.7rem;color:rgba(10,14,20,.65);font-family:'Cinzel',serif;}
+
+  .print-btn{margin-top:16px;width:100%;max-width:400px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0a0e14;font-weight:900;font-size:.9rem;border:none;border-radius:10px;padding:14px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;}
+  .print-btn:hover{opacity:.9;}
+
+  /* ── SEND FORM ── */
+  .form-col{}
+  .send-form{background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:18px;padding:28px 24px;}
+  .send-form h2{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:6px;}
+  .send-form p{font-size:.83rem;color:var(--muted);line-height:1.7;margin-bottom:24px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:6px;}
+  .field input, .field select, .field textarea{
+    width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border2);
+    border-radius:10px;color:var(--text);font-size:.88rem;font-family:'Noto Sans KR',sans-serif;
+    padding:11px 14px;outline:none;transition:border-color .2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--gold);}
+  .field input::placeholder, .field textarea::placeholder{color:rgba(255,255,255,.25);}
+  .field textarea{resize:vertical;min-height:90px;}
+  .field select option{background:#1a2035;color:#fff;}
+  .send-btn{width:100%;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0a0e14;font-weight:900;font-size:.95rem;border:none;border-radius:10px;padding:15px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:8px;}
+  .send-btn:hover{opacity:.9;}
+  .send-btn:disabled{opacity:.5;cursor:not-allowed;}
+  .send-result{margin-top:14px;padding:14px 16px;border-radius:10px;font-size:.85rem;display:none;}
+  .send-result.ok{background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.3);color:var(--mint);}
+  .send-result.err{background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.25);color:#ff8080;}
+
+  /* MESSAGE PREVIEW */
+  .msg-preview{margin-top:28px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:20px;}
+  .msg-preview-label{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;}
+  .msg-preview-body{font-size:.82rem;color:var(--muted);line-height:2;white-space:pre-wrap;}
+
+  /* PRINT STYLES */
+  @media print{
+    body{background:#fff !important;}
+    nav, .form-col, .col-label, .print-btn, .msg-preview{display:none !important;}
+    .wrap{display:block;padding:0;}
+    .card-col{display:flex;justify-content:center;}
+    .qr-card{max-width:none;width:148mm;box-shadow:none;border-radius:0;}
+  }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Hebron<em style="color:var(--gold)">Guide</em></a>
+  <a href="/growth-plan.html" class="nav-back">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    성장 계획으로
+  </a>
+</nav>
+
+<div class="wrap">
+
+  <!-- LEFT: CARD PREVIEW -->
+  <div class="card-col">
+    <div class="col-label">인쇄용 QR 카드 미리보기</div>
+
+    <div class="qr-card" id="printCard">
+      <div class="card-top">
+        <div class="card-logo">Hebron<em>Guide</em></div>
+        <div class="card-tagline">낯선 도시, 이미 누군가 기다렸습니다</div>
+        <div class="card-headline">
+          우리 교회가 <em>HebronGuide</em><br>파트너 교회입니다
+        </div>
+        <div class="card-sub">
+          이민·이주 오신 분들을 위한 글로벌 환대 플랫폼.<br>
+          카카오 채널을 구독하고 정착 정보를 받아보세요.
+        </div>
+      </div>
+
+      <div class="card-qr-wrap">
+        <div class="card-qr-box">
+          <div id="qrcode"></div>
+        </div>
+        <div class="card-qr-info">
+          <div class="card-qr-step">카카오 채널 구독하기</div>
+          <ul class="card-qr-steps">
+            <li>카카오톡 앱 열기</li>
+            <li>QR 코드 스캔</li>
+            <li>채널 구독 → 정착 정보 수신</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card-bottom">
+        <span class="card-bottom-text">hebronguide.com</span>
+        <span class="card-bottom-url">Global Hospitality Network</span>
+      </div>
+    </div>
+
+    <button class="print-btn" onclick="window.print()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      인쇄하기 (A5)
+    </button>
+  </div>
+
+  <!-- RIGHT: SEND FORM -->
+  <div class="form-col">
+    <div class="col-label">파트너 교회 초대 발송</div>
+
+    <div class="send-form">
+      <h2>교회 초대 이메일 자동 발송</h2>
+      <p>교회 정보를 입력하면 담임목사님께 초대 이메일이 자동으로 발송됩니다. QR 카드 이미지와 안내 메시지가 포함됩니다.</p>
+
+      <div class="field">
+        <label>교회명 *</label>
+        <input type="text" id="churchName" placeholder="예) 시애틀지구촌교회"/>
+      </div>
+      <div class="field">
+        <label>담임목사님 성함 *</label>
+        <input type="text" id="pastorName" placeholder="예) 김철수"/>
+      </div>
+      <div class="field">
+        <label>이메일 *</label>
+        <input type="email" id="churchEmail" placeholder="예) pastor@church.com"/>
+      </div>
+      <div class="field">
+        <label>도시</label>
+        <select id="citySelect">
+          <option value="시애틀">시애틀 (Seattle)</option>
+          <option value="달라스">달라스 (Dallas)</option>
+          <option value="토론토">토론토 (Toronto)</option>
+          <option value="LA">LA (Los Angeles)</option>
+          <option value="뉴욕">뉴욕 (New York)</option>
+          <option value="샌프란시스코">샌프란시스코 (SF)</option>
+          <option value="휴스턴">휴스턴 (Houston)</option>
+          <option value="애틀랜타">애틀랜타 (Atlanta)</option>
+          <option value="밴쿠버">밴쿠버 (Vancouver)</option>
+          <option value="시드니">시드니 (Sydney)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>추가 메모 (선택)</label>
+        <textarea id="memo" placeholder="예) 지인 소개, 이전 연락 내용 등"></textarea>
+      </div>
+
+      <button class="send-btn" id="sendBtn" onclick="sendInvite()">
+        초대 이메일 보내기 →
+      </button>
+      <div class="send-result" id="sendResult"></div>
+    </div>
+
+    <!-- MESSAGE PREVIEW -->
+    <div class="msg-preview">
+      <div class="msg-preview-label">발송 메시지 미리보기</div>
+      <div class="msg-preview-body" id="msgPreview">교회명과 담임목사님 성함을 입력하면
+메시지 미리보기가 표시됩니다.</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// QR 코드 생성
+new QRCode(document.getElementById('qrcode'), {
+  text: 'https://pf.kakao.com/_dxdxlbX',
+  width: 100,
+  height: 100,
+  colorDark: '#0a0e14',
+  colorLight: '#ffffff',
+  correctLevel: QRCode.CorrectLevel.H
+});
+
+// 메시지 미리보기 업데이트
+function updatePreview(){
+  var church = document.getElementById('churchName').value || '(교회명)';
+  var pastor = document.getElementById('pastorName').value || '(목사님)';
+  var city   = document.getElementById('citySelect').value;
+  var msg =
+'제목: [HebronGuide] ' + church + ' — 파트너 교회 초대\n\n' +
+pastor + ' 목사님, 안녕하세요.\n\n' +
+'저는 HebronGuide 대표 폴 김 목사입니다.\n\n' +
+city + '에 새로 도착하는 한인 이민자들을 위해\n' +
+'목사님의 교회가 첫 번째 얼굴이 되어 주시기를 부탁드립니다.\n\n' +
+'HebronGuide는 전 세계 71개+ 도시에서\n' +
+'새 이민자가 처음 맞이하는 따뜻한 커뮤니티입니다.\n\n' +
+'[파트너 교회 혜택]\n' +
+'  · 교회 무료 등재 (hebronguide.com/' + city.toLowerCase() + '/)\n' +
+'  · 카카오 채널 소개 (1,500명+ 구독자)\n' +
+'  · 정착 도움 요청 연결\n' +
+'  · 매월 파트너 목사님 Zoom 교류\n\n' +
+'[함께하시려면]\n' +
+'아래 링크에서 교회 등재 신청 (무료, 3분):\n' +
+'https://hebronguide.com/ad-request.html\n\n' +
+'카카오 채널 구독:\n' +
+'https://pf.kakao.com/_dxdxlbX\n\n' +
+'"낯선 도시, 이미 누군가 기다리고 있습니다."\n' +
+'그 누군가가 목사님의 교회가 되어 주시기를 바랍니다.\n\n' +
+'감사합니다.\n' +
+'폴 김 목사 | HebronGuide\n' +
+'hebronplatform@gmail.com\n' +
+'hebronguide.com';
+  document.getElementById('msgPreview').textContent = msg;
+}
+
+['churchName','pastorName','citySelect'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', updatePreview);
+  document.getElementById(id).addEventListener('change', updatePreview);
+});
+updatePreview();
+
+// 발송
+async function sendInvite(){
+  var church = document.getElementById('churchName').value.trim();
+  var pastor = document.getElementById('pastorName').value.trim();
+  var email  = document.getElementById('churchEmail').value.trim();
+  var city   = document.getElementById('citySelect').value;
+  var memo   = document.getElementById('memo').value.trim();
+
+  if(!church || !pastor || !email){
+    alert('교회명, 목사님 성함, 이메일은 필수입니다.');
+    return;
+  }
+
+  var btn = document.getElementById('sendBtn');
+  btn.disabled = true;
+  btn.textContent = '발송 중...';
+
+  try {
+    var res = await fetch('/api/send-church-invite', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({churchName: church, pastorName: pastor, email: email, city: city, memo: memo})
+    });
+    var data = await res.json();
+    var el = document.getElementById('sendResult');
+    el.style.display = 'block';
+    if(res.ok){
+      el.className = 'send-result ok';
+      el.textContent = pastor + ' 목사님께 초대 이메일이 발송되었습니다. (' + email + ')';
+    } else {
+      el.className = 'send-result err';
+      el.textContent = data.message || '발송 실패. 다시 시도해주세요.';
+    }
+  } catch(e){
+    var el = document.getElementById('sendResult');
+    el.style.display = 'block';
+    el.className = 'send-result err';
+    el.textContent = '네트워크 오류. 잠시 후 다시 시도해주세요.';
+  }
+
+  btn.disabled = false;
+  btn.textContent = '초대 이메일 보내기 →';
+}
+</script>
+</body>
+</html>
