@@ -32,7 +32,7 @@ function buildInviteHtml({ churchName, pastorName, city, customMsg }) {
     : `<p style="font-size:.9rem;color:#444;line-height:1.85;margin:0 0 16px;">
         저는 <strong>HebronGuide</strong> 대표 폴 김 목사입니다.<br><br>
         <strong>${city || '해당 도시'}</strong>에 새로 도착하는 한인 이민자들을 위해<br>
-        <strong style="color:#C9A227;">${churchName}</strong>이 첫 번째 얼굴이 되어 주시기를 부탁드립니다.
+        <strong style="color:#C9A227;">${churchName}</strong>이 첫 환대자가 되어 주시기를 바랍니다.
        </p>`;
   return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"/></head>
 <body style="margin:0;padding:0;background:#f4f1ea;font-family:'Apple SD Gothic Neo',sans-serif;">
