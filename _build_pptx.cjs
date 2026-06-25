@@ -12,6 +12,7 @@ const C = {
   gold:"C9A227", gold2:"F0C040", mint:"6EE7B7", indigo:"818CF8",
   warm:"FF9F0A", red:"F87171", white:"F2F5FF", mut:"9AA6C0", mut2:"6A748C"
 };
+const QRD = JSON.parse(require("fs").readFileSync("_qr_data.json","utf8"));  // 실제 QR data URI
 
 /* ── 발표자 노트 (사람 톤, plain text) ── */
 const NOTES = [
@@ -313,13 +314,14 @@ function stats(s, arr, y){
   badge(s, "LIVE 체험", 0.9, 0.75);
   title(s, [{text:"지금 직접 ",options:{color:C.white}},{text:"열어보십시오",options:{color:C.gold2}}], 0.9, 1.2, 11.5, 32);
   const bw=4.6, gap=0.7, sx=(W-(bw*2+gap))/2, y=2.5, bh=2.0;
-  [["hebronguide.com","메인 사이트",C.mint],["hebronguide.com/church-guide","교회 무료 등재",C.gold]].forEach((b,i)=>{
+  [["hebronguide.com","메인 사이트",C.mint,QRD.main],["hebronguide.com/church-guide","교회 무료 등재",C.gold,QRD.church]].forEach((b,i)=>{
     const x=sx+i*(bw+gap);
     card(s, x, y, bw, bh, C.card);
-    s.addShape(p.shapes.ROUNDED_RECTANGLE, { x:x+bw/2-0.55, y:y+0.25, w:1.1, h:1.1, rectRadius:0.08, fill:{color:"0E1320"}, line:{color:b[2],width:1.5} });
-    s.addText("QR", { x:x+bw/2-0.55, y:y+0.25, w:1.1, h:1.1, fontFace:F, fontSize:13, color:C.mut2, align:"center", valign:"middle", margin:0 });
-    s.addText(b[0], { x:x+0.2, y:y+1.42, w:bw-0.4, h:0.35, fontFace:F, fontSize:14, bold:true, color:b[2], align:"center", margin:0 });
-    s.addText(b[1], { x:x+0.2, y:y+1.72, w:bw-0.4, h:0.28, fontFace:F, fontSize:11, color:C.mut2, align:"center", margin:0 });
+    const qs=1.25;                       // QR 흰 카드 크기
+    s.addShape(p.shapes.ROUNDED_RECTANGLE, { x:x+bw/2-qs/2, y:y+0.2, w:qs, h:qs, rectRadius:0.06, fill:{color:"FFFFFF"}, line:{color:b[2],width:1} });
+    s.addImage({ data:b[3], x:x+bw/2-qs/2+0.1, y:y+0.3, w:qs-0.2, h:qs-0.2 });
+    s.addText(b[0], { x:x+0.2, y:y+1.55, w:bw-0.4, h:0.32, fontFace:F, fontSize:13.5, bold:true, color:b[2], align:"center", margin:0 });
+    s.addText(b[1]+"  ·  스캔하면 바로 연결", { x:x+0.2, y:y+1.85, w:bw-0.4, h:0.26, fontFace:F, fontSize:10, color:C.mut2, align:"center", margin:0 });
   });
   const chips=["71개+ 도시 LIVE","검증된 교회","성도의 가게","정착 정보"];
   const chw=2.3, cg=0.3, ctot=chw*4+cg*3, csx=(W-ctot)/2, cy=4.9;
