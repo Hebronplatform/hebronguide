@@ -95,10 +95,29 @@ export default async function handler(req, res) {
   const action = req.query.action;
 
   // ── GET: 목록 조회 ─────────────────────────────────────
+  // community_items(type=churches) + church_partners 병합 조회
   if (req.method === 'GET' && !action) {
-    const r = await supa('church_partners?order=created_at.desc&select=*');
-    const data = await r.json();
-    return res.status(r.status).json(data);
+    // 1) 자가 등록된 교회 (submit-form → community_items)
+    const r1 = await supa('community_items?type=eq.churches&order=submitted_at.desc&select=id,name,city_slug,contact_email,contact_phone,submitted_at,active');
+    const d1 = r1.ok ? await r1.json() : [];
+    const fromForm = (Array.isArray(d1) ? d1 : []).map(c => ({
+      id: c.id,
+      church_name: c.name,
+      city: c.city_slug,
+      email: c.contact_email,
+      phone: c.contact_phone,
+      status: c.active ? 'registered' : 'pending',
+      created_at: c.submitted_at,
+      source: 'form',
+    }));
+
+    // 2) 수동 등록 파트너 (church_partners — 없으면 빈 배열)
+    const r2 = await supa('church_partners?order=created_at.desc&select=*');
+    const d2 = r2.ok ? await r2.json() : [];
+    const fromCrm = Array.isArray(d2) ? d2.map(c => ({ ...c, source: 'crm' })) : [];
+
+    const merged = [...fromCrm, ...fromForm];
+    return res.status(200).json(merged);
   }
 
   // ── POST: 교회 추가 ────────────────────────────────────
