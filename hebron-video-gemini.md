@@ -1,7 +1,10 @@
 # 환대의 여정 — Gemini(Veo) 영상 만들기 (복사해서 바로 붙이기)
 
-> 공항 → 거리의 환대 → 정착 → 교회로 이어지는 60~75초 스토리.
-> **메시지:** 환대는 교회 입구가 아니라 공항·거리·가게에서 시작된다.
+> **메시지(양방향):** 성도와 교회가 HebronGuide에 *등록*해 환대를 준비하고,
+> 비신자가 HebronGuide로 *연결*되어 → 교회로 인도된다.
+> 환대는 교회 입구가 아니라 공항·거리·가게에서 시작된다.
+>
+> 순서: CLIP 0a·0b (성도·교회 등록 = 준비) → CLIP 1~8 (비신자 도착→환대→정착→교회).
 
 ---
 
@@ -30,6 +33,16 @@
 ## 3. 클립별 프롬프트 (각 ~8초 · 영어 그대로 복사)
 
 > 각 프롬프트에 인물·톤 묘사가 반복되어 있습니다(클립 간 일관성 유지를 위해 그대로 두세요).
+
+### CLIP 0a — 성도가 가게를 등록 (준비하는 쪽 · 따뜻)
+```
+Cinematic, photorealistic, 24fps, warm light. A Korean small-business owner in their 40s stands behind the counter of their cozy shop or restaurant, smiling gently while registering their business on a website using a smartphone. A welcoming, hopeful mood. Warm golden tones. No on-screen text.
+```
+
+### CLIP 0b — 교회가 문을 엽니다 (등록 · 환영)
+```
+Cinematic, photorealistic, 24fps, warm light. A friendly Korean pastor in their 50s stands at the open doors of a small church, smiling warmly and holding a phone, as if registering the church to welcome newcomers. Soft golden light spills from the doorway. Hopeful, inviting. No on-screen text.
+```
 
 ### CLIP 1 — 공항 도착 (차가운 톤)
 ```

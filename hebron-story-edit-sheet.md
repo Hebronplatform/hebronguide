@@ -20,23 +20,34 @@
 
 ---
 
-## 장면별 편집표
+## 이야기 구조 (양방향)
+```
+[준비] 성도가 가게 등록 · 교회가 등록   →   환대를 미리 준비
+   ↓
+[연결] 비신자 도착 → 거리·가게에서 환대 → HebronGuide 검색 → 정착
+   ↓
+[인도] 등록된 교회·공동체로 자연스럽게 인도
+```
 
-| # | 시간 | 화면(자막) | 스톡 검색어 (Pexels/Pixabay) | 색·연출 |
+## 장면별 편집표 (2분 기준 · 1분은 ★표만)
+
+| # | 시간(2분) | 화면(자막) | 스톡 검색어 (Pexels/Pixabay) | 색·연출 |
 |---|---|---|---|---|
-| 1 | 0:00–0:07 | 낯선 도시에 막 도착 | `airport arrivals walking suitcase`, `airport terminal traveler` | 차가운 블루, 약간 외롭게 |
-| 2 | 0:07–0:14 | 공항에서 작은 친절 | `helping stranger directions`, `airport help traveler` | 차가움 + 살짝 따뜻한 빛 |
-| 3 | 0:14–0:22 | 식당 주인이 말 건넴 | `restaurant owner talking customer`, `small cozy restaurant asian` | 따뜻한 조명 시작 |
-| 4 | 0:22–0:28 | 냅킨에 적은 주소 | `writing on napkin closeup`, `hand writing note cafe` | 클로즈업, 중립 |
-| 5 | 0:28–0:37 | 호텔 밤, 외로움 | `lonely hotel room night`, `person lying bed thinking window city` | 가장 차가움, 조용 |
-| 6 | 0:37–0:46 | 폰 검색 → 미소 | `person smiling phone night`, `looking at smartphone relief smile` | 여기서부터 따뜻하게 전환 |
-| 7 | 0:46–0:54 | 정착 몽타주 | `driving car happy`, `signing documents`, `new apartment moving boxes` | 골든아워, 빠른 컷 |
-| 8 | 0:54–1:02 | 재회·차 한 잔 | `two friends coffee laughing cafe`, `coffee conversation warm` | 따뜻·친밀 |
-| 9 | 1:02–1:09 | 공동체로 인도 | `diverse community gathering warm`, `friends welcome hug group` | 가장 따뜻, 희망적 |
-| 10 | 1:09–1:15 | 메시지 자막 | `open door warm light`, `sunrise hope` (배경) | 골드, 자막 강조 |
-| 11 | 1:15–1:20 | CTA — HebronGuide.com | 따뜻한 배경 + 로고/주소 텍스트 | 골드 마무리 |
+| ★1 | 0:00–0:09 | **성도가 가게를 등록** | `small business owner using phone shop`, `cafe owner smartphone counter` | 따뜻, 폰 화면에 등록 |
+| ★2 | 0:09–0:18 | **교회가 문을 엶(등록)** | `church open doors welcome`, `pastor smiling phone church` | 따뜻, 환영의 분위기 |
+| ★3 | 0:18–0:27 | 비신자, 막막하게 도착 | `airport arrivals walking suitcase`, `traveler lonely terminal` | 차가운 블루로 전환 |
+| 4 | 0:27–0:37 | 공항·거리의 작은 친절 | `helping stranger directions`, `airport help traveler` | 차가움 + 따뜻한 빛 |
+| ★5 | 0:37–0:47 | 식당 주인(성도)이 말 건넴 | `restaurant owner talking customer`, `cozy restaurant asian` | 따뜻한 조명 시작 |
+| 6 | 0:47–0:56 | 냅킨에 적은 주소 | `writing on napkin closeup`, `hand writing note cafe` | 클로즈업 |
+| 7 | 0:56–1:06 | 호텔 밤, 막막 | `lonely hotel room night`, `person lying bed window city` | 가장 차가움 |
+| ★8 | 1:06–1:16 | 폰 검색 → 교회·가게·정착정보 → 미소 | `person smiling phone night`, `browsing app relief smile` | 따뜻하게 전환 |
+| 9 | 1:16–1:26 | 정착 몽타주(면허·집) | `driving car happy`, `signing documents`, `new apartment` | 골든아워 |
+| ★10 | 1:26–1:36 | 재회 → 공동체로 | `two friends coffee laughing`, `diverse community welcome hug` | 가장 따뜻 |
+| 11 | 1:36–1:46 | 메시지: 등록→연결→인도 | `open door warm light`, `sunrise hope` (배경) | 골드, 자막 강조 |
+| ★12 | 1:46–2:00 | CTA — 교회·성도님 등록하세요 | 따뜻한 배경 + HebronGuide.com 텍스트 | 골드 마무리 |
 
-> 각 클립은 6~9초면 충분. 길면 앞뒤를 잘라 감정만 남기세요.
+> **1분 버전**은 ★표 장면(1,2,3,5,8,10,12) 중심으로 각 5~6초.
+> 각 클립은 6~10초면 충분. 길면 앞뒤를 잘라 감정만 남기세요.
 
 ---
 
