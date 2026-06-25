@@ -11,7 +11,7 @@
 
 import nodemailer from 'nodemailer';
 
-const SUPABASE_URL   = "https://okhfjzofifmsgssgajts.supabase.co";
+const SUPABASE_URL   = "https://vextxqzggznulwpganwt.supabase.co";
 const SUPABASE_TABLE = "content_items";
 const ADMIN_EMAIL    = "hebronplatform@gmail.com";
 const FROM_EMAIL     = "Hebronplatform@gmail.com";
@@ -159,7 +159,7 @@ export default async function handler(req, res) {
     };
 
     let supabaseOk = false;
-    const svcKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const svcKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY;
     if (svcKey) {
       try {
         const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`, {

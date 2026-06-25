@@ -1,11 +1,11 @@
 import nodemailer from 'nodemailer';
 
-const SUPABASE_URL   = 'https://okhfjzofifmsgssgajts.supabase.co';
+const SUPABASE_URL   = 'https://vextxqzggznulwpganwt.supabase.co';
 const FROM_EMAIL     = 'Hebronplatform@gmail.com';
 const ADMIN_EMAIL    = 'hebronplatform@gmail.com';
 
 function supa(path, opts = {}) {
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const key = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY;
   return fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
     ...opts,
     headers: {
