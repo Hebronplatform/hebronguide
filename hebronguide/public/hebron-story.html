@@ -130,12 +130,20 @@ const SVG = {
   </svg>`,
   heart:`<svg class="art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M50 80 C20 58 20 32 38 32 c8 0 12 6 12 6 s4 -6 12 -6 c18 0 18 26 -12 48 Z"/>
+  </svg>`,
+  store:`<svg class="art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 42 V80 H78 V42"/>
+    <path d="M16 42 L24 24 H76 L84 42 Z"/>
+    <path d="M44 80 V58 H58 V80"/>
+    <circle cx="68" cy="38" r="2.5"/>
   </svg>`
 };
 
 /* ── 장면 타임라인 ── */
 const SCENES = [
-  { dur:6500, warm:false, html:`${SVG.airport}<div class="cap">낯선 도시에, 막 도착했습니다.</div><div class="sub">한 손엔 캐리어, 가슴엔 막막함.</div>` },
+  { dur:7000, warm:true, html:`${SVG.store}<div class="cap warmth">한 성도가, 자기 가게를<br><span style="color:var(--gold2)">HebronGuide</span>에 등록합니다.</div><div class="sub">환대를 미리 준비합니다.</div>` },
+  { dur:7000, warm:true, html:`${SVG.church}<div class="cap warmth">한 교회가, 낯선 이를 위해<br>문을 엽니다.</div><div class="sub">HebronGuide에 교회를 등록합니다.</div>` },
+  { dur:6500, warm:false, html:`${SVG.airport}<div class="cap">그 준비 위에 —<br>한 사람이 막막하게 도착합니다.</div><div class="sub">한 손엔 캐리어, 가슴엔 막막함.</div>` },
   { dur:6500, warm:false, html:`${SVG.hand}<div class="cap">공항에서, 누군가 작은 친절을 건넵니다.</div><div class="sub">길을 알려주고, 문을 잡아주고.</div>` },
   { dur:8000, warm:false, html:`${SVG.dining}<div class="cap">식당에서 밥을 먹다,<br>주인이 말을 건넵니다.</div><div class="sub">"도움이 필요하면, 여기 한번 봐요."</div>` },
   { dur:6500, warm:false, html:`${SVG.note}<div class="cap">냅킨 한 장에 적어준 주소 하나.</div><div class="sub" style="color:var(--gold2);font-weight:700;">HebronGuide.com</div>` },
@@ -146,8 +154,9 @@ const SCENES = [
   { dur:7500, warm:true, html:`${SVG.wheel}<div class="cap warmth">전화 한 통으로,<br>운전면허도 정착도 하나씩 풀립니다.</div><div class="sub">혼자가 아니었습니다.</div>` },
   { dur:7500, warm:true, html:`${SVG.people}<div class="cap warmth">식당에서 만난 그 사람과 다시 만나,<br>차 한 잔을 나눕니다.</div>` },
   { dur:7000, warm:true, html:`${SVG.church}<div class="cap warmth">그렇게 <span class="mint">자연스럽게</span>,<br>한 공동체로 이어집니다.</div>` },
+  { dur:8000, warm:true, html:`<div class="endmsg">성도가 <span class="from">등록</span>하고,<br>비신자가 <span class="from">연결</span>되고,<br>교회로 <span class="from">인도</span>됩니다.</div>` },
   { dur:11000, warm:true, html:`<div class="endmsg">환대는 <span class="strike">교회 입구</span>가 아니라 —<br><span class="from">공항에서, 거리에서, 가게에서</span> 시작됩니다.</div>
-      <div class="cta">HebronGuide.com</div><div class="cta-sub">처음 도착한 그 날부터, 환대가 기다립니다.</div>` }
+      <div class="cta">HebronGuide.com</div><div class="cta-sub">교회와 성도님, 지금 등록하세요.</div>` }
 ];
 
 const host = document.getElementById('sceneHost');
