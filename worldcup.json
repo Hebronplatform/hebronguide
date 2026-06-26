@@ -1,13 +1,9 @@
 {
-  "active": true,
-  "mode": "upcoming",
-  "nextMatchDate": "2026-06-24",
-  "nextOpponent": { "ko": "남아프리카공화국", "en": "South Africa" },
-  "nextStage": { "ko": "조별 리그 최종전", "en": "Group Stage Final" },
-  "nextMatch": { "ko": "6월 24일 vs 남아공", "en": "Jun 24 vs South Africa" },
+  "active": false,
+  "mode": "result",
   "score": "0 : 1",
   "result": "L",
-  "opponent": { "ko": "멕시코", "en": "Mexico" },
-  "stage": { "ko": "조별 리그 (조 2위)", "en": "Group Stage (2nd in Group)" },
-  "matchDate": "2026-06-18"
+  "opponent": { "ko": "남아프리카공화국", "en": "South Africa" },
+  "stage": { "ko": "조별 리그 최종전", "en": "Group Stage Final" },
+  "matchDate": "2026-06-24"
 }
