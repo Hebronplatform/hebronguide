@@ -12,7 +12,7 @@
 import nodemailer from 'nodemailer';
 
 const SUPABASE_URL   = "https://vextxqzggznulwpganwt.supabase.co";
-const SUPABASE_TABLE = "content_items";
+const SUPABASE_TABLE = "community_items";  // admin.html churches 탭이 조회하는 테이블
 const ADMIN_EMAIL    = "hebronplatform@gmail.com";
 const FROM_EMAIL     = "Hebronplatform@gmail.com";
 
@@ -38,6 +38,35 @@ const APPROVED_DENOMS = [
   "Anglican", "성공회",
   "Nazarene", "나사렛",
 ];
+
+// ── Supabase community_items INSERT ──────────────────────────
+async function saveToSupabase(itemData) {
+  const svcKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY;
+  if (!svcKey) {
+    console.warn("[submit-church] SUPABASE_SERVICE_KEY not set — skipping DB insert");
+    return false;
+  }
+  try {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`, {
+      method: "POST",
+      headers: {
+        "apikey": svcKey,
+        "Authorization": `Bearer ${svcKey}`,
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal",
+      },
+      body: JSON.stringify(itemData),
+    });
+    if (!r.ok) {
+      const err = await r.text().catch(() => "");
+      console.error("[submit-church] Supabase error", r.status, err);
+    }
+    return r.ok;
+  } catch (e) {
+    console.error("[submit-church] Supabase fetch error:", e.message);
+    return false;
+  }
+}
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -137,44 +166,26 @@ export default async function handler(req, res) {
   // 교단 있고 AI OK → 자동 게시
   // 교단 없거나 AI 의심 → 관리자 확인 요청
 
-  // ── 6. Supabase 자동 게시 (clean) ───────────────
+  // ── 6. Supabase 저장 (승인 여부와 무관하게 community_items에 저장) ──
   if (!needsReview) {
-    const descKo = buildDesc({ pastor, address, serviceTimes, website, kakao, description });
     const item = {
-      type: "churches",
-      city_slug: city,
-      emoji: "⛪",
-      name: churchName,
-      name_en: churchNameEn || churchName,
-      desc: descKo,
-      desc_en: buildDescEn({ pastor, address, serviceTimes, website, kakao, description }),
-      tags: buildTags(denomination, city),
-      active: true,
-      order: 500,            // 중간 우선순위
-      contact_phone: phone || null,
-      contact_email: email || null,
-      contact_kakao: kakao || null,
-      contact_website: website || null,
+      category:     "church",
+      type:         "churches",
+      city_slug:    city,
+      emoji:        "⛪",
+      name:         churchName,
+      name_en:      churchNameEn || churchName,
+      description:  buildDesc({ pastor, address, serviceTimes, website, kakao, description }),
+      pastor:       pastor || null,
+      phone:        phone || null,
+      email:        email || null,
+      website:      website || null,
+      denomination: denomination || null,
+      status:       "approved",
       submitted_at: new Date().toISOString(),
     };
 
-    let supabaseOk = false;
-    const svcKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY;
-    if (svcKey) {
-      try {
-        const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`, {
-          method: "POST",
-          headers: {
-            "apikey": svcKey,
-            "Authorization": `Bearer ${svcKey}`,
-            "Content-Type": "application/json",
-            "Prefer": "return=minimal",
-          },
-          body: JSON.stringify(item),
-        });
-        supabaseOk = sbRes.status < 300;
-      } catch (_) { /* Supabase 실패 시 아래 이메일 폴백 */ }
-    }
+    const supabaseOk = await saveToSupabase(item);
 
     if (!supabaseOk) {
       // Supabase 실패 → 관리자에게 수동 처리 요청
@@ -182,7 +193,7 @@ export default async function handler(req, res) {
         level: "fallback",
         churchName, denomination, city, phone, email, address, serviceTimes,
         website, kakao, pastor, description,
-        reason: "Supabase 자동 게시 실패 — 수동 등록 필요",
+        reason: "Supabase 저장 실패(서비스키 미설정?) — 수동 등록 필요",
       });
     }
 
@@ -222,7 +233,24 @@ export default async function handler(req, res) {
     });
   }
 
-  // ── 7. 불확실 → 관리자 검토 요청 + 신청자 대기 안내
+  // ── 7. 불확실 → Supabase pending 저장 + 관리자 검토 요청
+  await saveToSupabase({
+    category:     "church",
+    type:         "churches",
+    city_slug:    city,
+    emoji:        "⛪",
+    name:         churchName,
+    name_en:      churchNameEn || churchName,
+    description:  buildDesc({ pastor, address, serviceTimes, website, kakao, description }),
+    pastor:       pastor || null,
+    phone:        phone || null,
+    email:        email || null,
+    website:      website || null,
+    denomination: denomination || null,
+    status:       "pending",
+    submitted_at: new Date().toISOString(),
+  });
+
   await notifyAdmin({
     level: "warning",
     churchName, denomination, city, phone, email, address, serviceTimes,
