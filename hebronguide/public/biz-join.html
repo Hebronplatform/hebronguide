@@ -225,8 +225,6 @@ select option,select optgroup{background:#0d1117;color:#e6edf3}
 </div>
 
 <script>
-const SUPABASE_URL = 'https://vextxqzggznulwpganwt.supabase.co'
-const SUPABASE_KEY = 'sb_publishable_j1cYftObx8VDVkEQAvluXg_rn20pnfX'
 
 let selectedCat = ''
 
@@ -263,49 +261,40 @@ async function submitBiz() {
   btn.disabled = true
 
   const data = {
-    name:        document.getElementById('biz_name').value.trim(),   // 업체명
-    pastor:      document.getElementById('biz_owner').value.trim(),  // 대표자 (pastor 컬럼 재활용)
+    name:        document.getElementById('biz_name').value.trim(),
+    owner:       document.getElementById('biz_owner').value.trim(),
     phone:       document.getElementById('biz_phone').value.trim(),
     email:       document.getElementById('biz_email').value.trim(),
     website:     document.getElementById('biz_web').value.trim(),
-    description: [
-      `업종: ${selectedCat}`,
-      document.getElementById('biz_address').value.trim() ? `주소: ${document.getElementById('biz_address').value.trim()}` : '',
-      document.getElementById('biz_desc').value.trim() ? `소개: ${document.getElementById('biz_desc').value.trim()}` : '',
-    ].filter(Boolean).join(' | '),
-    category:    'business',
+    address:     document.getElementById('biz_address').value.trim(),
+    description: document.getElementById('biz_desc').value.trim(),
+    category:    selectedCat,
     city_slug:   document.getElementById('biz_city').value,
-    status:      'pending',
   }
 
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/community_items`, {
+    const res = await fetch('/api/register-business', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SUPABASE_KEY,
-        'Authorization': `Bearer ${SUPABASE_KEY}`,
-        'Prefer': 'return=minimal',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     })
-    if (!res.ok) throw new Error('저장 실패')
+    const json = await res.json()
+    if (!res.ok || json.status === 'rejected') throw new Error(json.error || json.message || '저장 실패')
 
     document.getElementById('form-section').style.display = 'none'
     document.getElementById('success').style.display = 'block'
-    document.getElementById('s-biz').textContent   = data.title
+    document.getElementById('s-biz').textContent   = data.name
     document.getElementById('s-cat').textContent   = selectedCat
     document.getElementById('s-city').textContent  = data.city_slug
     document.getElementById('s-phone').textContent = data.phone
     window.scrollTo({top:0, behavior:'smooth'})
   } catch(e) {
-    btn.textContent = '🏪 사업체 등록 신청하기'
+    btn.textContent = '사업체 등록 신청하기'
     btn.disabled = false
-    // 이메일 폴백
-    const bizName = document.getElementById('biz_name').value.trim()
-    const owner   = document.getElementById('biz_owner').value.trim()
-    const city    = document.getElementById('biz_city').value
-    const phone   = document.getElementById('biz_phone').value.trim()
+    const bizName = data.name || document.getElementById('biz_name').value.trim()
+    const owner   = data.owner || ''
+    const city    = data.city_slug || ''
+    const phone   = data.phone || ''
     const body = `HebronGuide 사업체 등록 신청\n\n업체명: ${bizName}\n업종: ${selectedCat}\n대표자: ${owner}\n도시: ${city}\n전화: ${phone}`
     const mailto = `mailto:hebronplatform@gmail.com?subject=[사업체 등록] ${encodeURIComponent(bizName)}&body=${encodeURIComponent(body)}`
     document.getElementById('email-fallback').style.display = 'block'

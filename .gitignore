@@ -10,3 +10,5 @@
 # Vercel build output (build.sh가 dist/에서 복사 — Vercel이 자동 생성)
 # 루트 public만 무시 (hebronguide/public은 Vite source 자산이므로 필요)
 /public/
+
+.vercel
