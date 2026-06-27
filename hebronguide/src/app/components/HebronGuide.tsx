@@ -21080,6 +21080,108 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
   );
 }
 
+/* getCityNature — 시애틀 외 주요 도시 자연·야외 콘텐츠 */
+function getCityNature(slug: string, lang: string): Array<{emoji:string; name:string; nameEn:string; desc:string; tags:string[]}> {
+  const ko = lang === "ko";
+  switch (slug) {
+    case "la": return [
+      { emoji: "🏔️", name: "그리피스 파크", nameEn: "Griffith Park", desc: ko ? "LA 도심 속 4,000에이커 자연공원. 천문대 하이킹(왕복 3.5마일)·LA 전망 최고. 무료입장, 일출·일몰 강추" : "4,000-acre urban park in LA. Observatory hike (3.5mi RT) with best city views. Free — go at sunrise or sunset", tags: ["무료","전망","도시"] },
+      { emoji: "🥾", name: "래니언 캐니언", nameEn: "Runyon Canyon", desc: ko ? "할리우드 힐스 인기 하이킹. 왕복 3.2마일, 개 동반 OK. 정상에서 다운타운·바다 파노라마" : "Hollywood Hills popular trail. 3.2mi RT, dog-friendly. Panoramic views of downtown & ocean from the summit", tags: ["반려견","할리우드","인기"] },
+      { emoji: "🌵", name: "조슈아 트리 국립공원", nameEn: "Joshua Tree National Park", desc: ko ? "모하비·콜로라도 사막 교차점. LA에서 2시간. 기이한 바위·별밤 캠핑 압도적. 10~4월 최적, 여름 폭염 주의. 🔗 nps.gov" : "Where Mojave & Colorado Deserts meet. 2hrs from LA. Otherworldly boulders & unmatched stargazing. Best Oct-Apr; extreme heat in summer. 🔗 nps.gov", tags: ["캠핑","사막","별밤"] },
+      { emoji: "🌊", name: "말리부 크리크 주립공원", nameEn: "Malibu Creek State Park", desc: ko ? "말리부 내륙 산악 공원. 왕복 약 7마일, M*A*S*H 촬영지 세트장 터. 수영 구멍(Rock Pool)도 인기" : "Mountain park inland from Malibu. ~7mi RT to the M*A*S*H filming site. Rock Pool swimming hole is a summer favorite", tags: ["트레킹","수영","말리부"] },
+      { emoji: "⛷️", name: "빅베어 레이크", nameEn: "Big Bear Lake", desc: ko ? "LA에서 2시간, 해발 2,067m. 겨울 스키·보드, 여름 하이킹·카약. 한인 스키 모임 활발. 에어비앤비 산장 많음. 🔗 bigbear.com" : "2hrs from LA, 6,752ft elevation. Winter skiing, summer hiking & kayaking. Active Korean ski groups. Many cabin rentals. 🔗 bigbear.com", tags: ["스키","캠핑","2시간"] },
+    ];
+    case "dallas": return [
+      { emoji: "🚶", name: "화이트 록 레이크", nameEn: "White Rock Lake Park", desc: ko ? "달라스 도심 9마일 호수 산책로. 자전거·카약·낚시. 무료. 아침 조깅 한인 모임 활발" : "9-mile loop around a city lake. Biking, kayaking & fishing — all free. Popular morning run spot for the Korean community", tags: ["무료","자전거","도심"] },
+      { emoji: "🦕", name: "다이노소어 밸리 주립공원", nameEn: "Dinosaur Valley State Park", desc: ko ? "달라스에서 1.5시간. 백악기 공룡 발자국이 강바닥에 그대로! 수영·캠핑 가능. 텍사스 가장 독특한 자연명소. 🔗 tpwd.texas.gov" : "1.5hrs from Dallas. Cretaceous dinosaur tracks in the river bed — real & in-situ! Swimming & camping. Texas most unique natural site. 🔗 tpwd.texas.gov", tags: ["공룡","가족","수영"] },
+      { emoji: "🏜️", name: "팔로 두로 캐니언", nameEn: "Palo Duro Canyon State Park", desc: ko ? "텍사스 그랜드캐니언. 달라스 서쪽 5시간 드라이브. 붉은 협곡 캠핑·승마·MTB. 여름 야외극장 공연 유명. 🔗 tpwd.texas.gov" : "Texas Grand Canyon. 5hrs west of Dallas. Red canyon camping, horseback riding & MTB. Famous outdoor musical in summer. 🔗 tpwd.texas.gov", tags: ["협곡","캠핑","드라이브"] },
+      { emoji: "🚣", name: "레이크 루이즈빌", nameEn: "Lake Lewisville", desc: ko ? "달라스 북쪽 30분. 카약·수상스키·캠핑. 여름 가족 물놀이 1순위. 무료 비치 포인트 여럿" : "30min north of Dallas. Kayaking, wakeboarding & camping. Top family water spot in summer. Several free beach access points", tags: ["카약","수상스키","30분"] },
+      { emoji: "🌿", name: "씨더 릿지 보존지", nameEn: "Cedar Ridge Preserve", desc: ko ? "달라스 서남쪽 20분. 6마일 트레킹·조류관찰. 무료, 주말 가이드 투어 있음" : "20min SW of Dallas. 6mi of trails & birdwatching. Free entry — guided tours on weekends", tags: ["트레킹","조류","무료"] },
+    ];
+    case "newyork": return [
+      { emoji: "🌳", name: "센트럴 파크", nameEn: "Central Park", desc: ko ? "맨해튼 중심 843에이커 공원. 조깅·자전거·로우보트·여름 무료 콘서트. 봄 벚꽃 4월 최고. 항상 무료" : "843-acre park at the heart of Manhattan. Jogging, biking, rowboats & free summer concerts. Cherry blossoms in April. Always free", tags: ["무료","봄꽃","도심"] },
+      { emoji: "🥾", name: "해리만 주립공원", nameEn: "Harriman State Park", desc: ko ? "맨해튼에서 1시간. 200마일+ 트레일, 전망 대 여럿. 한인 하이킹 클럽 집결지. 봄·가을 단풍 절경" : "1hr from Manhattan. 200+ miles of trails, multiple summits. Favorite meetup spot for Korean hiking clubs. Stunning fall foliage", tags: ["하이킹","1시간","단풍"] },
+      { emoji: "🏔️", name: "베어 마운틴", nameEn: "Bear Mountain State Park", desc: ko ? "맨해튼 북쪽 1시간. 퍼너포 호수·전망대·스케이트장. 여름 수영, 가을 단풍 드라이브 최고" : "1hr north of Manhattan. Perkins Memorial Tower, Hessian Lake & skating rink. Best for summer swimming & fall foliage drives", tags: ["전망대","드라이브","가을"] },
+      { emoji: "🏖️", name: "파이어 아일랜드", nameEn: "Fire Island National Seashore", desc: ko ? "롱아일랜드 남쪽 페리 25분. 차 없는 해변 섬. 흰 모래사장·자연 보호구역. 여름 주말 예약 필수. 🔗 nps.gov" : "25min ferry from Long Island. Car-free barrier island. White sand beaches & wildlife refuge. Book summer weekends early. 🔗 nps.gov", tags: ["해변","페리","여름"] },
+      { emoji: "⛺", name: "캐츠킬스 마운틴", nameEn: "Catskill Mountains", desc: ko ? "맨해튼 북쪽 2시간. 카유가 폭포·트레킹·캠핑. 한인 여름 수련회 인기 지역. 겨울 스키장도 있음" : "2hrs north of NYC. Kaaterskill Falls, hiking & camping. Popular for Korean church retreats in summer. Skiing in winter", tags: ["캠핑","폭포","2시간"] },
+    ];
+    case "houston": return [
+      { emoji: "🌲", name: "메모리얼 파크", nameEn: "Memorial Park", desc: ko ? "휴스턴 도심 내 1,400에이커. 3마일 루프 트레일·자전거도로·테니스. 무료. 한인 아침 조깅 모임 활발" : "1,400-acre urban park. 3-mile running loop, bike trails & tennis — all free. Popular morning spot for the Korean community", tags: ["무료","조깅","도심"] },
+      { emoji: "🏖️", name: "갤버스턴 아일랜드", nameEn: "Galveston Island", desc: ko ? "휴스턴 남쪽 1시간 해변 도시. 멕시코만 모래사장·수족관·역사지구. 여름 가족 1박 2일 코스 정석. 🔗 galveston.com" : "Beach city 1hr south on the Gulf of Mexico. Sandy beaches, aquarium & historic district. Classic family overnight trip. 🔗 galveston.com", tags: ["해변","가족","1시간"] },
+      { emoji: "🐊", name: "브라조스 벤드 주립공원", nameEn: "Brazos Bend State Park", desc: ko ? "휴스턴 남서쪽 1시간. 진짜 악어를 트레일에서 목격! 망원경 별 관측 유명. 캠핑·낚시 가능. 🔗 tpwd.texas.gov" : "1hr SW of Houston. Real alligators on the trails — keep distance! Famous stargazing. Camping & fishing available. 🔗 tpwd.texas.gov", tags: ["악어","별관측","캠핑"] },
+      { emoji: "🏕️", name: "헌츠빌 주립공원", nameEn: "Huntsville State Park", desc: ko ? "휴스턴 북쪽 1.5시간. 소나무 숲 캠핑·카약·낚시. 피니 크리크 호수. 한인 가족 캠핑 추천 1순위" : "1.5hrs north of Houston. Pine forest camping, kayaking & fishing at Lake Raven. Top pick for Korean family camping", tags: ["캠핑","카약","소나무"] },
+    ];
+    case "chicago": return [
+      { emoji: "🚴", name: "레이크프런트 트레일", nameEn: "Chicago Lakefront Trail", desc: ko ? "미시간 호수를 따라 26마일 포장 트레일. 자전거·롤러·조깅. 무료. 여름 일몰이 압도적" : "26-mile paved trail along Lake Michigan. Biking, rollerblading & running — free. The summer sunset over the lake is spectacular", tags: ["자전거","무료","호수"] },
+      { emoji: "🏖️", name: "인디애나 듄스 국립공원", nameEn: "Indiana Dunes National Park", desc: ko ? "시카고에서 1시간 — 가장 가까운 국립공원. 미시간 호수 모래 언덕·수영·트레킹. 여름 주말 이른 출발 권장. 🔗 nps.gov" : "1hr from Chicago — the city nearest national park. Sand dunes, Lake Michigan swimming & hiking. Arrive early on summer weekends. 🔗 nps.gov", tags: ["사구","수영","1시간"] },
+      { emoji: "🌿", name: "모턴 수목원", nameEn: "Morton Arboretum", desc: ko ? "시카고 서쪽 30분, 1,700에이커 나무 정원. 봄 벚꽃·가을 단풍 최고. 입장료 있음, 회원권 가치 있음. 🔗 mortonarb.org" : "30min west of Chicago. 1,700-acre tree museum. Best cherry blossoms in spring & brilliant fall color. Admission fee — membership pays off. 🔗 mortonarb.org", tags: ["수목원","봄꽃","단풍"] },
+      { emoji: "💧", name: "스타브드 록 주립공원", nameEn: "Starved Rock State Park", desc: ko ? "시카고에서 1.5시간. 협곡·폭포 18개. 봄 해빙 폭포 장관. 캠핑·캐빈 예약 경쟁 치열, 일찍 예약. 🔗 starvedrockstatepark.org" : "1.5hrs from Chicago. 18 canyons & waterfalls. Spring snowmelt creates spectacular falls. Camping & cabins fill up fast — book early. 🔗 starvedrockstatepark.org", tags: ["폭포","협곡","캠핑"] },
+    ];
+    case "dc": return [
+      { emoji: "🌳", name: "록 크리크 파크", nameEn: "Rock Creek Park", desc: ko ? "워싱턴 DC 안에 있는 2,000에이커 국립공원. 자전거·트레킹·승마. 무료. 주말 차량 통제 구간 있음" : "2,000-acre national park inside Washington DC. Biking, hiking & horseback riding — all free. Car-free sections on weekends", tags: ["무료","자전거","도심"] },
+      { emoji: "💦", name: "그레이트 폴스 파크", nameEn: "Great Falls Park", desc: ko ? "DC 서쪽 30분. 포토맥 강 폭포 장관. 왕복 2-4마일 트레일. 봄 수량 최고. 🔗 nps.gov" : "30min west of DC. Dramatic Potomac River waterfalls. Several 2-4mi trail options. Best water flow in spring. 🔗 nps.gov", tags: ["폭포","30분","봄"] },
+      { emoji: "🏔️", name: "셰넌도어 국립공원", nameEn: "Shenandoah National Park", desc: ko ? "DC 서쪽 1.5시간. 스카이라인 드라이브(105마일)·애팔래치안 트레일. 가을 단풍 버지니아 최고. 입장료 있음. 🔗 nps.gov" : "1.5hrs west of DC. 105-mile Skyline Drive & Appalachian Trail. Best fall foliage in Virginia. Entrance fee required. 🔗 nps.gov", tags: ["단풍","드라이브","1.5시간"] },
+      { emoji: "🐴", name: "아사티그 아일랜드", nameEn: "Assateague Island National Seashore", desc: ko ? "DC 동쪽 3시간. 야생 조랑말이 해변에서 방목! 캠핑·낚시·수영. 예약 필수. 🔗 nps.gov" : "3hrs east of DC. Wild ponies roam the beach freely. Camping, fishing & swimming. Reserve early. 🔗 nps.gov", tags: ["야생마","캠핑","해변"] },
+    ];
+    case "atlanta": return [
+      { emoji: "🗿", name: "스톤 마운틴 파크", nameEn: "Stone Mountain Park", desc: ko ? "애틀랜타 동쪽 30분. 세계 최대 화강암 돔 등반(왕복 1.6마일). 레이저 쇼·스카이하이크 추가. 주차비 있음. 🔗 stonemountainpark.com" : "30min east of Atlanta. Hike the world largest exposed granite dome (1.6mi RT). Laser show & SkyHike available. Parking fee. 🔗 stonemountainpark.com", tags: ["화강암","가족","30분"] },
+      { emoji: "🚣", name: "채터후치 강 국립공원", nameEn: "Chattahoochee River NRA", desc: ko ? "애틀랜타 북부 도심 통과 강. 여름 튜빙·낚시·하이킹. 무료 구간 여럿. 한인 가족 여름 나들이 정석" : "River running through north Atlanta. Summer tubing, fishing & hiking. Several free access points. Classic Korean family summer outing", tags: ["튜빙","낚시","무료"] },
+      { emoji: "🌄", name: "블루 릿지 마운틴스", nameEn: "Blue Ridge Mountains (North GA)", desc: ko ? "애틀랜타 북쪽 1.5시간. 애팔래치안 트레일 시작점·블루 릿지 레이크·래프팅. 가을 단풍 조지아 최고" : "1.5hrs north of Atlanta. Appalachian Trail start, Blue Ridge Lake & whitewater rafting. Best fall colors in Georgia", tags: ["단풍","래프팅","1.5시간"] },
+      { emoji: "💧", name: "아미칼로라 폭포 주립공원", nameEn: "Amicalola Falls State Park", desc: ko ? "조지아 최고 폭포(73m). 애팔래치안 트레일 공식 출발점. 애틀랜타 북쪽 1.5시간. 캠핑·로지 예약 가능. 🔗 gastateparks.org" : "Georgia tallest waterfall (240ft). Official approach trail for the Appalachian Trail. 1.5hrs north of Atlanta. Camping & lodge available. 🔗 gastateparks.org", tags: ["폭포","AT","캠핑"] },
+    ];
+    case "toronto": return [
+      { emoji: "🌿", name: "루지 국립도시공원", nameEn: "Rouge National Urban Park", desc: ko ? "토론토 동부 캐나다 최대 도시 국립공원. 하이킹·자전거·조류관찰. 무료. 봄 연어 산란 장관. 🔗 pc.gc.ca" : "Canada largest urban national park in east Toronto. Hiking, biking & birdwatching — free. Spring salmon run is spectacular. 🔗 pc.gc.ca", tags: ["무료","국립공원","도시"] },
+      { emoji: "💦", name: "나이아가라 폭포", nameEn: "Niagara Falls", desc: ko ? "토론토 남쪽 1.5시간. 세계 3대 폭포. 혼블로워 보트 투어·야간 조명 쇼. 캐나다 쪽 전망이 훨씬 좋음. 🔗 niagarafallstourism.com" : "1.5hrs south of Toronto. One of the world great waterfalls. Hornblower boat tour & nightly light show. Canadian side has far better views. 🔗 niagarafallstourism.com", tags: ["폭포","필수","1.5시간"] },
+      { emoji: "🏕️", name: "알곤퀸 주립공원", nameEn: "Algonquin Provincial Park", desc: ko ? "토론토 북쪽 2.5시간 캐나다 상징 공원. 무스·수달·독수리 야생동물. 카누 캠핑 천국. 가을 단풍 온타리오 최고. 🔗 ontarioparks.com" : "2.5hrs north of Toronto. Ontario iconic park. Moose, otters & bald eagles. Canoe camping paradise. Best fall foliage in Ontario. 🔗 ontarioparks.com", tags: ["카누","단풍","야생동물"] },
+      { emoji: "⛷️", name: "블루 마운틴 리조트", nameEn: "Blue Mountain Resort", desc: ko ? "토론토 북쪽 1.5시간. 온타리오 최대 스키장. 겨울 스키·보드, 여름 마운틴바이크·짚라인. 한인 스키 모임 다수. 🔗 bluemountain.ca" : "1.5hrs north of Toronto. Ontario largest ski resort. Winter skiing, summer MTB & zip-lining. Many Korean ski groups. 🔗 bluemountain.ca", tags: ["스키","리조트","1.5시간"] },
+    ];
+    case "vancouver": return [
+      { emoji: "🌲", name: "스탠리 파크", nameEn: "Stanley Park", desc: ko ? "밴쿠버 도심 옆 1,001에이커 공원. 9마일 해변 산책로·자전거 대여·수족관. 무료. 밴쿠버 필수 1순위. 🔗 vancouver.ca" : "1,001-acre park next to downtown. 9-mile seawall walk, bike rentals & aquarium. Free entry. Vancouver #1 must-visit. 🔗 vancouver.ca", tags: ["무료","자전거","도심"] },
+      { emoji: "🏔️", name: "개리발디 주립공원", nameEn: "Garibaldi Provincial Park", desc: ko ? "밴쿠버 북쪽 1시간. 에메랄드빛 개리발디 호수 트레킹(왕복 18km). 7~9월 눈 녹은 후 최고. 캠핑 예약 필수. 🔗 bcparks.ca" : "1hr north of Vancouver. Iconic turquoise Garibaldi Lake hike (18km RT). Best Jul-Sep after snowmelt. Camping reservation essential. 🔗 bcparks.ca", tags: ["에메랄드","트레킹","1시간"] },
+      { emoji: "⛷️", name: "휘슬러 블랙콤", nameEn: "Whistler Blackcomb", desc: ko ? "밴쿠버 북쪽 1.5시간. 북미 최대 스키 리조트. 겨울 스키·보드, 여름 산악 자전거. 한인 스키 모임 활발. 🔗 whistlerblackcomb.com" : "1.5hrs north of Vancouver. Largest ski resort in North America. Winter skiing, summer MTB. Very active Korean ski community. 🔗 whistlerblackcomb.com", tags: ["스키","북미1위","1.5시간"] },
+      { emoji: "🚣", name: "딥 코브 카약", nameEn: "Deep Cove Kayaking", desc: ko ? "밴쿠버 동쪽 30분. 해안 카약 출발지. 모래 해변·유명 도넛 가게. 쿼리 록 트레일 하이킹 연계 가능. 🔗 deepcovekayak.com" : "30min east of Vancouver. Top sea kayak launch point. Sandy beach & famous donut shop. Combine with the Quarry Rock Trail. 🔗 deepcovekayak.com", tags: ["카약","30분","인스타"] },
+      { emoji: "🌉", name: "린 캐니언 파크", nameEn: "Lynn Canyon Park", desc: ko ? "밴쿠버 북쪽 30분. 무료 출렁다리(카필라노보다 훨씬 저렴). 폭포·수영 구멍·트레킹. 완전 무료. 🔗 lynncanyon.ca" : "30min north of Vancouver. Free suspension bridge — much cheaper than Capilano! Waterfalls, swimming holes & trails. Completely free. 🔗 lynncanyon.ca", tags: ["무료","출렁다리","폭포"] },
+    ];
+    case "miami": return [
+      { emoji: "🐊", name: "에버글레이즈 국립공원", nameEn: "Everglades National Park", desc: ko ? "마이애미 서쪽 1시간. 세계 유일 아열대 야생지. 악어·매너티·열대새. 에어보트 투어 강추. 11~4월 건기가 최적. 🔗 nps.gov" : "1hr west of Miami. World only subtropical wilderness. Alligators, manatees & tropical birds. Airboat tour highly recommended. Best Nov-Apr. 🔗 nps.gov", tags: ["악어","에어보트","국립공원"] },
+      { emoji: "🤿", name: "비스케인 국립공원", nameEn: "Biscayne National Park", desc: ko ? "마이애미 남쪽 30분. 95%가 수중 국립공원. 스노클링·스쿠버·유리바닥 보트. 산호초·열대어 천국. 🔗 nps.gov" : "30min south of Miami. 95% underwater national park. Snorkeling, scuba & glass-bottom boat tours. Coral reefs & tropical fish paradise. 🔗 nps.gov", tags: ["스노클링","산호초","30분"] },
+      { emoji: "🏖️", name: "빌 백스 케이프 플로리다", nameEn: "Bill Baggs Cape Florida SP", desc: ko ? "키 비스케인 최남단 해변. 1825년 등대. 마이애미 최고 해변 중 하나. 자전거 대여·피크닉. 입장료 있음. 🔗 floridastateparks.org" : "Southernmost beach on Key Biscayne with an 1825 lighthouse. One of Miami best beaches. Bike rentals & picnic areas. Small entry fee. 🔗 floridastateparks.org", tags: ["해변","등대","자전거"] },
+      { emoji: "🚵", name: "올레타 리버 주립공원", nameEn: "Oleta River State Park", desc: ko ? "마이애미 북쪽 20분. 플로리다 최대 도시 주립공원. MTB 트레일·카약·캠핑. 맹그로브 카약 특히 유명. 🔗 floridastateparks.org" : "20min north of Miami. Florida largest urban state park. MTB trails, kayaking & camping. Mangrove kayaking is especially popular. 🔗 floridastateparks.org", tags: ["MTB","카약","맹그로브"] },
+    ];
+    case "denver": return [
+      { emoji: "🏔️", name: "록키 마운틴 국립공원", nameEn: "Rocky Mountain National Park", desc: ko ? "덴버 북서쪽 1.5시간. 3,000m+ 고산 트레킹. Trail Ridge Road(북미 최고 포장 관통 도로). 무스·곰 야생동물. 입장료 있음. 🔗 nps.gov" : "1.5hrs NW of Denver. 3,000m+ alpine hiking. Trail Ridge Road — highest paved through-road in North America. Moose & bears. Entrance fee. 🔗 nps.gov", tags: ["고산","국립공원","1.5시간"] },
+      { emoji: "🔴", name: "레드 록스 야외공연장", nameEn: "Red Rocks Park & Amphitheatre", desc: ko ? "덴버 서쪽 30분. 붉은 사암 지형 자연 공연장. 무료 트레킹·일출 요가. 콘서트 없는 날도 하이킹 명소. 🔗 redrocksonline.com" : "30min west of Denver. Natural sandstone amphitheatre. Free hiking & sunrise yoga. A spectacular hike even on non-concert days. 🔗 redrocksonline.com", tags: ["붉은바위","무료","공연"] },
+      { emoji: "🌄", name: "가든 오브 더 갓스", nameEn: "Garden of the Gods", desc: ko ? "덴버 남쪽 1시간 콜로라도 스프링스. 수직 붉은 사암 기둥 자연공원. 무료 입장. 파이크스 피크 연계 가능. 🔗 gardenofgods.com" : "1hr south in Colorado Springs. Towering red sandstone formations. Free admission. Combine with a Pikes Peak trip. 🔗 gardenofgods.com", tags: ["무료","사암","콜로라도"] },
+      { emoji: "🚗", name: "마운트 에반스 전망 도로", nameEn: "Mount Evans Scenic Byway", desc: ko ? "덴버 서쪽 1.5시간. 북미 최고 포장도로(4,347m). 차를 타고 정상까지! 야생 산양 볼 수 있음. 6~9월 운영" : "1.5hrs west of Denver. Highest paved road in North America (14,264ft). Drive to the summit! Wild mountain goats. Open Jun-Sep only", tags: ["드라이브","4347m","산양"] },
+    ];
+    case "portland": return [
+      { emoji: "🌲", name: "포레스트 파크", nameEn: "Forest Park", desc: ko ? "포틀랜드 도심 5,200에이커 — 미국 최대 도시 공원. 80마일+ 트레일. 무료. 비 와도 상쾌한 침엽수림" : "5,200 acres in Portland — the largest urban forest in the US. 80+ miles of trails. Free. Beautiful conifer canopy even in rain", tags: ["무료","도시숲","트레킹"] },
+      { emoji: "💧", name: "멀트노마 폭포", nameEn: "Multnomah Falls", desc: ko ? "포틀랜드 동쪽 30분. 189m 2단 폭포. 미국 방문객 최다 자연명소 중 하나. 다리까지 왕복 2.2마일. 무료. 🔗 multnomahfallslodge.com" : "30min east of Portland. 620ft two-tiered waterfall — one of the most-visited natural sites in the US. 2.2mi RT to the bridge. Free. 🔗 multnomahfallslodge.com", tags: ["폭포","무료","30분"] },
+      { emoji: "🏞️", name: "컬럼비아 리버 고지", nameEn: "Columbia River Gorge", desc: ko ? "포틀랜드 동쪽 드라이브. 폭포 수십 개·와인드서핑·협곡 전망. 후드 리버까지 1.5시간 드라이브. 봄 야생화 장관" : "Scenic drive east of Portland. Dozens of waterfalls, world-class windsurfing & gorge overlooks. 1.5hrs to Hood River. Spring wildflowers stunning", tags: ["드라이브","폭포","협곡"] },
+      { emoji: "⛷️", name: "마운트 후드", nameEn: "Mount Hood", desc: ko ? "포틀랜드 동쪽 1시간. 오리건 최고봉(3,426m). 여름 하이킹, 겨울 스키. 팀버라인 로지 호텔(샤이닝 촬영지!) 🔗 timberlinelodge.com" : "1hr east of Portland. Oregon highest peak (11,240ft). Summer hiking, winter skiing. Timberline Lodge — filming site for The Shining! 🔗 timberlinelodge.com", tags: ["스키","하이킹","1시간"] },
+    ];
+    case "honolulu": return [
+      { emoji: "🌋", name: "다이아몬드 헤드", nameEn: "Diamond Head State Monument", desc: ko ? "와이키키 바로 옆 화산 분화구 정상 하이킹. 왕복 1.6마일(고도 232m). 호놀룰루 전경 압도적. 예약제, 이른 아침 추천. 🔗 hawaiistateparks.org" : "Iconic crater hike right next to Waikiki. 1.6mi RT (762ft elevation). Sweeping Honolulu panorama. Timed reservations — go early. 🔗 hawaiistateparks.org", tags: ["화산","전망","필수"] },
+      { emoji: "💧", name: "마노아 폭포 트레일", nameEn: "Manoa Falls Trail", desc: ko ? "호놀룰루 도심 15분. 열대 우림 속 짧고 쉬운 폭포 트레킹(왕복 1.6마일). 쥬라기 공원 촬영지. 비 온 후 수량 최고" : "15min from Honolulu. Short easy rainforest waterfall hike (1.6mi RT). Jurassic Park filming location. Best after rain. Small parking fee", tags: ["우림","폭포","15분"] },
+      { emoji: "🏄", name: "카일루아 해변", nameEn: "Kailua Beach", desc: ko ? "오아후 동쪽 40분. 오아후 최고 해변 평가 여럿. 에메랄드 바다·하얀 모래·카약 투어. 와이키키보다 훨씬 한적. 🔗 kailuabeachpark.com" : "40min east of Honolulu. Consistently rated Oahu best beach. Turquoise water, white sand & kayak tours. Much less crowded than Waikiki. 🔗 kailuabeachpark.com", tags: ["해변","카약","에메랄드"] },
+      { emoji: "🏋️", name: "코코 헤드 계단 트레일", nameEn: "Koko Head Crater Trail", desc: ko ? "1,048개 계단 철도 침목 트레킹! 40분 내외. 정상에서 하나우마 베이 전망. 현지인 이른 아침 운동 코스. 무료" : "1,048 railway tie steps straight up the crater wall. ~40 min to top. Hanauma Bay views from summit. Local early morning workout spot. Free", tags: ["계단","무료","도전"] },
+    ];
+    case "boston": return [
+      { emoji: "🌿", name: "블루 힐스 리저베이션", nameEn: "Blue Hills Reservation", desc: ko ? "보스턴 남쪽 30분. 7,000에이커 보존지. 그레이트 블루 힐 정상 트레킹(왕복 4마일). 가을 단풍 뉴잉글랜드 최고" : "30min south of Boston. 7,000-acre reservation. Great Blue Hill summit hike (4mi RT). Exceptional New England fall foliage", tags: ["트레킹","단풍","30분"] },
+      { emoji: "🏖️", name: "케이프 코드", nameEn: "Cape Cod National Seashore", desc: ko ? "보스턴 동쪽 1.5시간. 낚시 마을·백사장·등대 드라이브. 여름 랍스터 필수. 국립해안 구역은 무료. 🔗 nps.gov" : "1.5hrs east of Boston. Fishing villages, white-sand beaches & lighthouse drives. Summer lobster rolls are essential. National seashore sections free. 🔗 nps.gov", tags: ["해변","랍스터","1.5시간"] },
+      { emoji: "🏔️", name: "화이트 마운틴스 (NH)", nameEn: "White Mountains, New Hampshire", desc: ko ? "보스턴 북쪽 2시간. 뉴잉글랜드 최고 하이킹. 마운트 워싱턴(1,917m). 가을 단풍 완벽. 🔗 visitwhitemountains.com" : "2hrs north of Boston. Best hiking in New England. Mount Washington (6,288ft) with historic cog railway. Perfect fall foliage. 🔗 visitwhitemountains.com", tags: ["고산","단풍","2시간"] },
+      { emoji: "🌊", name: "아카디아 국립공원 (메인)", nameEn: "Acadia National Park, Maine", desc: ko ? "보스턴 북쪽 3시간. 미국 동부 최고 해안 국립공원. 카딜락 마운틴 일출(미동부 최초). 자전거 도로망 훌륭. 입장료 있음. 🔗 nps.gov" : "3hrs north of Boston. Best coastal national park on the East Coast. Cadillac Mountain sunrise — first sunrise in the continental US in season. Excellent carriage roads for biking. 🔗 nps.gov", tags: ["일출","해안","3시간"] },
+    ];
+    case "austin": return [
+      { emoji: "💧", name: "바튼 스프링스 풀", nameEn: "Barton Springs Pool", desc: ko ? "오스틴 도심 천연 샘물 수영장. 연중 20도 유지. 입장료 저렴($5). 여름 오스틴 주민 피서 1순위. 바튼 크리크 트레일 연계. 🔗 austintexas.gov" : "Natural spring-fed pool in the heart of Austin. Year-round 68F water. Cheap entry ($5). Locals top summer escape. Connect to Barton Creek Greenbelt trails. 🔗 austintexas.gov", tags: ["수영","천연","도심"] },
+      { emoji: "🪨", name: "인챈티드 록", nameEn: "Enchanted Rock State Natural Area", desc: ko ? "오스틴 서쪽 2시간. 분홍빛 화강암 돔(334m). 정상 전망 압도적. 밤 별 관측도 최고. 예약제, 주말 일찍 마감. 🔗 tpwd.texas.gov" : "2hrs west of Austin. Pink granite dome (1,095ft summit). Panoramic hilltop views. Excellent stargazing. Timed entry — weekends sell out. 🔗 tpwd.texas.gov", tags: ["화강암","별관측","2시간"] },
+      { emoji: "🏊", name: "해밀턴 풀 보존지", nameEn: "Hamilton Pool Preserve", desc: ko ? "오스틴 서쪽 45분. 무너진 그로토 속 에메랄드 수영 구멍. 사진 명소 압도적. 수영 가능 시 예약 필수. 🔗 traviscountytx.gov" : "45min west of Austin. Collapsed grotto with a stunning emerald swimming hole. Incredible photo op. Reservation required when swimming is open. 🔗 traviscountytx.gov", tags: ["수영","에메랄드","사진"] },
+      { emoji: "🌊", name: "페더날레스 폭포 주립공원", nameEn: "Pedernales Falls State Park", desc: ko ? "오스틴 서쪽 1시간. 석회암 계단 폭포·수영·캠핑·낚시. 텍사스 힐 컨트리 야생화 봄에 절정. 입장료 저렴. 🔗 tpwd.texas.gov" : "1hr west of Austin. Limestone step waterfalls, swimming, camping & fishing. Texas Hill Country wildflowers peak in spring. Low entrance fee. 🔗 tpwd.texas.gov", tags: ["폭포","캠핑","봄꽃"] },
+    ];
+    default: return [];
+  }
+}
+
 /* ─────────────────────────────────────────
    TAB 5: 탐방 SCREEN
 ───────────────────────────────────────── */
@@ -21089,14 +21191,20 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
   const city = useCityConfig();
   const isSeattle = city.slug === "seattle";
   const [sub, setSub] = useState(0);
+  const cityNature = getCityNature(city.slug, lang);
+  const hasNature = isSeattle || cityNature.length > 0 || (serverContent["nature"]?.length ?? 0) > 0;
   // 비시애틀 도시: 지역·자연·문화·스포츠 탭은 시애틀 전용 데이터라 숨김
   const tabs = isSeattle
     ? (lang === "ko"
         ? ["지역안내", "자연·여행", "문화·예술", "스포츠", "🧭 헤브론관광"]
         : ["Areas", "Nature", "Culture & Art", "Sports", "🧭 Hebron Tour"])
-    : (lang === "ko"
-        ? ["탐방 TOP5", "🧭 헤브론관광"]
-        : ["Explore TOP5", "🧭 Hebron Tour"]);
+    : hasNature
+      ? (lang === "ko"
+          ? ["탐방 TOP5", "자연·여행", "🧭 헤브론관광"]
+          : ["Explore TOP5", "Nature", "🧭 Hebron Tour"])
+      : (lang === "ko"
+          ? ["탐방 TOP5", "🧭 헤브론관광"]
+          : ["Explore TOP5", "🧭 Hebron Tour"]);
   const accent = "#34D399";
 
   const areas = [
@@ -21141,14 +21249,16 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
   ];
 
   const resolvedAreas   = serverContent["areas"]   ? resolvePlaceItems(serverContent["areas"],   lang) : areas;
-  const resolvedNature  = serverContent["nature"]  ? resolvePlaceItems(serverContent["nature"],  lang) : nature;
+  const resolvedNature  = serverContent["nature"]  ? resolvePlaceItems(serverContent["nature"],  lang) : (isSeattle ? nature : cityNature);
   const resolvedCulture = serverContent["culture"] ? resolvePlaceItems(serverContent["culture"], lang) : culture;
   const resolvedSports  = serverContent["sports"]  ? resolvePlaceItems(serverContent["sports"],  lang) : sports;
   // 시애틀: sub 0-3 = 지역·자연·문화·스포츠, sub 4 = 헤브론관광
   // 비시애틀: sub 0 = TOP5만, sub 1 = 헤브론관광
-  const content = isSeattle ? [resolvedAreas, resolvedNature, resolvedCulture, resolvedSports][sub] : null;
+  const content = isSeattle
+    ? [resolvedAreas, resolvedNature, resolvedCulture, resolvedSports][sub]
+    : (hasNature && sub === 1) ? resolvedNature : null;
   // 헤브론관광 서브탭 인덱스 (도시마다 다름)
-  const hebronTourSub = isSeattle ? 4 : 1;
+  const hebronTourSub = isSeattle ? 4 : hasNature ? 2 : 1;
 
   return (
     <div style={{ paddingBottom: 96 }}>
@@ -21156,10 +21266,14 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
       <ScreenHeader emoji="🗺️" titleKo="탐방" titleEn="Explore"
         descKo={isSeattle
           ? `${city.nameKo} — 지역안내 · 자연 · 문화 · 스포츠`
-          : `${city.nameKo} — ${lang === "ko" ? "검증된 탐방 명소 TOP 10" : "Top 10 verified spots"}`}
+          : hasNature
+            ? `${city.nameKo} — ${lang === "ko" ? "탐방 TOP5 · 자연·여행" : "Explore TOP5 & Nature"}`
+            : `${city.nameKo} — ${lang === "ko" ? "검증된 탐방 명소 TOP 10" : "Top 10 verified spots"}`}
         descEn={isSeattle
           ? `${city.nameEn} — Areas, Nature, Culture & Sports`
-          : `${city.nameEn} — Top 10 verified spots`}
+          : hasNature
+            ? `${city.nameEn} — Explore TOP5 & Nature`
+            : `${city.nameEn} — Top 10 verified spots`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5">
@@ -21245,7 +21359,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
         )}
         <div className="px-4 md:px-6 lg:px-8">
           {/* 시애틀 전용: 지역·자연·문화·스포츠 서브탭 콘텐츠 */}
-          {isSeattle && sub <= 3 && content && (
+          {content && ((isSeattle && sub <= 3) || (!isSeattle && sub === 1)) && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             </div>
