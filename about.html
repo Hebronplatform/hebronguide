@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HebronGuide — About</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: #0d1b3e;
+    color: #fff;
+    font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topbar { height: 4px; background: linear-gradient(90deg, #B8860B, #e8b84b, #B8860B); }
+
+  /* 언어 탭 */
+  .lang-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    background: rgba(0,0,0,0.3);
+    padding: 0;
+  }
+  .tab {
+    flex: 1; max-width: 140px;
+    padding: 14px 0;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .tab.active {
+    color: #e8b84b;
+    border-bottom-color: #B8860B;
+  }
+
+  /* 콘텐츠 */
+  .content { display: none; flex: 1; padding: 40px 28px 60px; max-width: 540px; margin: 0 auto; width: 100%; }
+  .content.active { display: block; }
+
+  .logo {
+    font-size: 30px; font-weight: 700; color: #fff;
+    letter-spacing: -0.5px; margin-bottom: 4px;
+  }
+  .logo span { color: #e8b84b; }
+
+  .tagline {
+    font-size: 13px; color: #B8860B; font-weight: 600;
+    letter-spacing: 1px; margin-bottom: 28px;
+  }
+
+  .divider {
+    width: 36px; height: 2px;
+    background: linear-gradient(90deg, #B8860B, transparent);
+    margin-bottom: 28px;
+  }
+
+  .body-text {
+    font-size: 14px;
+    line-height: 1.95;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 20px;
+  }
+  .body-text strong { color: #fff; font-weight: 600; }
+
+  .verse {
+    background: rgba(184,134,11,0.1);
+    border-left: 3px solid #B8860B;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    margin-top: 28px;
+    font-style: italic;
+  }
+
+  /* 사이트 이동 버튼 */
+  .site-btn {
+    display: block;
+    margin-top: 32px;
+    background: linear-gradient(135deg, #B8860B, #e8b84b);
+    color: #0a1628;
+    text-align: center;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<!-- 언어 탭 -->
+<div class="lang-tabs">
+  <div class="tab active" onclick="setLang('ko')">🇰🇷 한국어</div>
+  <div class="tab" onclick="setLang('en')">🌐 English</div>
+  <div class="tab" onclick="setLang('es')">🇪🇸 Español</div>
+</div>
+
+<!-- 한국어 -->
+<div id="ko" class="content active">
+  <div class="logo">Hebron<span>Guide</span></div>
+  <div class="tagline">글로벌 환대 커뮤니티</div>
+  <div class="divider"></div>
+  <p class="body-text">
+    HebronGuide는 낯선 도시에 새로 온 모든 이를 환대하는
+    <strong>글로벌 커뮤니티 플랫폼</strong>입니다.
+  </p>
+  <p class="body-text">
+    한인 이민자를 섬기는 것으로 시작했지만, 우리의 비전은 더 큽니다.
+    <strong>모든 도시, 모든 언어, 모든 민족</strong>—
+    누구든 새 땅에 발을 딛는 순간 혼자가 아니도록,
+    교회·비즈니스·생활 정보를 하나로 연결합니다.
+  </p>
+  <div class="verse">
+    "내가 나그네 되었을 때에 너희가 영접하였고"<br>
+    — 마태복음 25:35
+  </div>
+  <a class="site-btn" href="https://hebronguide.com">헤브론가이드 바로가기 →</a>
+</div>
+
+<!-- English -->
+<div id="en" class="content">
+  <div class="logo">Hebron<span>Guide</span></div>
+  <div class="tagline">Global Hospitality Community</div>
+  <div class="divider"></div>
+  <p class="body-text">
+    HebronGuide is a <strong>global community platform</strong>
+    that welcomes everyone who arrives in an unfamiliar city.
+  </p>
+  <p class="body-text">
+    We started by serving Korean immigrants, but our vision is bigger.
+    <strong>Every city. Every language. Every people.</strong>
+    We connect newcomers with local churches, trusted businesses,
+    and the practical resources they need — so no one navigates a new place alone.
+  </p>
+  <div class="verse">
+    "I was a stranger and you welcomed me."<br>
+    — Matthew 25:35
+  </div>
+  <a class="site-btn" href="https://hebronguide.com">Visit HebronGuide →</a>
+</div>
+
+<!-- Español -->
+<div id="es" class="content">
+  <div class="logo">Hebron<span>Guide</span></div>
+  <div class="tagline">Comunidad Global de Hospitalidad</div>
+  <div class="divider"></div>
+  <p class="body-text">
+    HebronGuide es una <strong>plataforma comunitaria global</strong>
+    que da la bienvenida a todos los que llegan a una ciudad desconocida.
+  </p>
+  <p class="body-text">
+    Comenzamos sirviendo a inmigrantes coreanos, pero nuestra visión es mayor.
+    <strong>Cada ciudad. Cada idioma. Cada pueblo.</strong>
+    Conectamos a los recién llegados con iglesias locales, negocios de confianza
+    y los recursos que necesitan — para que nadie navegue solo en un lugar nuevo.
+  </p>
+  <div class="verse">
+    "Fui forastero, y me acogisteis."<br>
+    — Mateo 25:35
+  </div>
+  <a class="site-btn" href="https://hebronguide.com">Visitar HebronGuide →</a>
+</div>
+
+<div class="footer">Hebron Platform LLC · Seattle, WA · hebronguide.com</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(lang).classList.add('active');
+  event.target.classList.add('active');
+}
+// 브라우저 언어 자동 감지
+const bl = navigator.language.split('-')[0];
+if (bl === 'es') {
+  document.querySelector('[onclick="setLang('es')"]').click();
+} else if (bl !== 'ko') {
+  document.querySelector('[onclick="setLang('en')"]').click();
+}
+</script>
+</body>
+</html>
