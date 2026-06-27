@@ -660,7 +660,10 @@
       <span class="topbar-badge">ADMIN</span>
       <span style="font-size:.75rem;color:var(--muted)" id="admin-email"></span>
     </div>
-    <button class="logout-btn" onclick="logout()">로그아웃</button>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <a href="/ops.html" style="background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);color:#C9A227;padding:5px 12px;border-radius:6px;font-size:.78rem;font-weight:700;text-decoration:none;" onmouseover="this.style.background='rgba(201,162,39,.2)'" onmouseout="this.style.background='rgba(201,162,39,.1)'">&#8592; 상황판</a>
+      <button class="logout-btn" onclick="logout()">로그아웃</button>
+    </div>
   </div>
 
   <div class="main">

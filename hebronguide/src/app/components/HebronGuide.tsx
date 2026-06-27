@@ -25875,6 +25875,124 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
   );
 }
 
+function SupportScreen({ onHome }: { onHome?: () => void }) {
+  const { lang } = useI18n();
+  const city = useCityConfig();
+  const ko = lang === "ko";
+  const [orgs, setOrgs] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function load() {
+      setLoading(true);
+      try {
+        const SB = `https://${projectId}.supabase.co`;
+        const headers = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
+        const slug = city.slug;
+        const r = await fetch(
+          `${SB}/rest/v1/community_items?type=eq.support&status=eq.approved&city_slug=eq.${slug}&order=order.asc&limit=100`,
+          { headers }
+        );
+        const data = await r.json();
+        if (Array.isArray(data)) setOrgs(data);
+      } catch { setOrgs([]); }
+      setLoading(false);
+    }
+    load();
+  }, [city.slug]);
+
+  return (
+    <div style={{ paddingBottom: 96, background: "#F2F2F7", minHeight: "100vh" }}>
+      <BackToHomeButton onHome={onHome} lang={lang} />
+      <ScreenHeader emoji="🤝"
+        titleKo="지원기관" titleEn="Support Organizations"
+        descKo={`${city.nameKo} 정착 지원 기관·서비스`}
+        descEn={`Settlement support resources in ${city.nameEn}`}
+        accentColor="#10B981" light />
+
+      <div style={{ padding: "0 16px" }}>
+        {loading ? (
+          <div style={{ textAlign: "center", padding: "40px 0", color: "#94A3B8", fontSize: 14 }}>
+            {ko ? "불러오는 중..." : "Loading..."}
+          </div>
+        ) : orgs.length === 0 ? (
+          <div style={{ textAlign: "center", padding: "40px 0" }}>
+            <LifeBuoy size={40} color="#10B981" style={{ margin: "0 auto 12px" }} />
+            <div style={{ color: "#64748B", fontSize: 14, lineHeight: 1.8 }}>
+              {ko ? "준비 중입니다." : "Coming soon."}
+            </div>
+          </div>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <div style={{ fontSize: 12, color: "#94A3B8", paddingBottom: 4, paddingTop: 12 }}>
+              {ko ? `${orgs.length}개 기관` : `${orgs.length} organizations`}
+            </div>
+            {orgs.map((org, i) => (
+              <div key={i} style={{ background: "#fff", borderRadius: 16,
+                border: "1px solid #D1FAE5", padding: "16px",
+                boxShadow: "0 1px 4px rgba(16,185,129,0.08)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    {org.emoji && <span style={{ fontSize: 20 }}>{org.emoji}</span>}
+                    <div>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#1E293B" }}>
+                        {ko ? org.name : (org.name_en || org.name)}
+                      </div>
+                      {org.name_en && org.name !== org.name_en && (
+                        <div style={{ fontSize: 12, color: "#94A3B8", marginTop: 1 }}>
+                          {ko ? org.name_en : org.name}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  {Array.isArray(org.tags) && org.tags.length > 0 && (
+                    <span style={{ background: "#ECFDF5", color: "#059669", fontSize: 11,
+                      fontWeight: 700, padding: "3px 10px", borderRadius: 99,
+                      whiteSpace: "nowrap" as const, marginLeft: 8 }}>
+                      {org.tags[0]}
+                    </span>
+                  )}
+                </div>
+                {(org.description || org.description_en) && (
+                  <div style={{ fontSize: 13, color: "#475569", lineHeight: 1.7, marginBottom: 10 }}>
+                    {(ko
+                      ? (org.description || "")
+                      : (org.description_en || org.description || "")
+                    ).slice(0, 150)}
+                    {(ko
+                      ? (org.description || "")
+                      : (org.description_en || org.description || "")
+                    ).length > 150 ? "..." : ""}
+                  </div>
+                )}
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" as const }}>
+                  {org.phone && (
+                    <a href={`tel:${org.phone}`}
+                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px",
+                        background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: 10,
+                        textDecoration: "none", fontSize: 12, color: "#16A34A", fontWeight: 700 }}>
+                      {org.phone}
+                    </a>
+                  )}
+                  {org.website && org.website !== "없음" && (
+                    <a href={org.website.startsWith("http") ? org.website : `https://${org.website}`}
+                      target="_blank" rel="noopener noreferrer"
+                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px",
+                        background: "#ECFDF5", border: "1px solid #6EE7B7", borderRadius: 10,
+                        textDecoration: "none", fontSize: 12, color: "#059669", fontWeight: 700 }}>
+                      {ko ? "웹사이트" : "Website"}
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function StoreScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const ko = lang === "ko";
@@ -25958,6 +26076,7 @@ function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number
     { tab: 7,  icon: GraduationCap, color: "#8B5CF6", labelKo: "援먯쑁",  labelEn: "Schools" },
     { tab: 8,  icon: DollarSign,    color: "#0EA5E9", labelKo: "?앺솢鍮?", labelEn: "Costs" },
     { tab: 12, icon: Building2,     color: "#4F46E5", labelKo: "?쒖씤 ?낆냼", labelEn: "Business" },
+    { tab: 13, icon: LifeBuoy,      color: "#10B981", labelKo: "지원기관",    labelEn: "Support Orgs" },
   ];
   return (
     <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-screen w-64 z-40"
@@ -27913,7 +28032,7 @@ export function HebronGuide() {
     }
   };
 
-  // 12媛????ㅽ겕由?(?댟룹젙李㈑룰탳?뙿룸쭧吏뫢룻깘諛㈑룸룄?쨌痍⑥뾽쨌援먯쑁쨌?앺솢鍮꽷룹궗?뚯뿰寃걔룹뒪?좎뼱쨌?쒖씤?낆냼)
+  // 13媛????ㅽ겕由?(?댟룹젙李㈑룰탳?뙿룸쭧吏뫢룻깘諛㈑룸룄?쨌痍⑥뾽쨌援먯쑁쨌?앺솢鍮꽷룹궗?뚯뿰寃걔룹뒪?좎뼱쨌?쒖씤?낆냼)
 
   const screens = [
     <HomeScreen onNavigate={handleNavigate} />,                                        // 0
@@ -27929,6 +28048,7 @@ export function HebronGuide() {
     <StoreScreen onHome={() => setActiveNav(0)} />,                                    // 10
     <ArrivalSimulationScreen onHome={() => setActiveNav(0)} />,                        // 11
     <BusinessDirectoryScreen onHome={() => setActiveNav(0)} />,                        // 12 ?룫 ?쒖씤 ?낆냼
+    <SupportScreen onHome={() => setActiveNav(0)} />,                                  // 13 ?뙆?? 吏?원기관
   ];
 
   return (
