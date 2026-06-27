@@ -57,7 +57,7 @@
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
   /* ── 지표 카드 ───────────────────────────────── */
-  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;}
   @media(max-width:800px){.kpi-row{grid-template-columns:repeat(2,1fr);}}
   .kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;position:relative;overflow:hidden;}
   .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
@@ -65,6 +65,8 @@
   .kpi.k-m::before{background:linear-gradient(90deg,var(--mint),transparent);}
   .kpi.k-i::before{background:linear-gradient(90deg,var(--indigo),transparent);}
   .kpi.k-w::before{background:linear-gradient(90deg,var(--warm),transparent);}
+  .kpi.k-r::before{background:linear-gradient(90deg,var(--red),transparent);}
+  .kpi.k-r .kpi-val{color:var(--red);}
   .kpi-lbl{font-size:.63rem;font-weight:700;color:var(--muted2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
   .kpi-val{font-family:'Cinzel',serif;font-size:1.7rem;font-weight:900;line-height:1;margin-bottom:3px;}
   .kpi.k-g .kpi-val{color:var(--gold);}
@@ -281,6 +283,11 @@
         <div class="kpi-val">71+</div>
         <div class="kpi-sub">글로벌 허브</div>
       </div>
+      <div class="kpi k-r" style="cursor:pointer;" onclick="location.href='/admin.html'">
+        <div class="kpi-lbl">신청 대기</div>
+        <div class="kpi-val" id="pendingCount">—</div>
+        <div class="kpi-sub">교회·업소 검토 필요</div>
+      </div>
     </div>
   </div>
 
@@ -461,28 +468,54 @@
     </div>
   </div>
 
-  <!-- ⑦ 관리·운영 툴 -->
+  <!-- ⑦ 파트너 관리 · 운영 툴 -->
   <div class="section" id="admin" style="padding-top:28px;">
-    <div class="section-hd"><span class="section-lbl">관리·운영 툴</span></div>
-    <div class="card-grid g4">
-      <a href="/admin.html" class="mcard">
-        <div class="mcard-icon bi-g"><svg width="14" height="14" fill="none" stroke="#C9A227" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
-        <div class="mcard-body"><div class="mcard-title">관리자 대시보드</div><div class="mcard-url">admin.html</div></div>
-        <span class="mcard-arr">›</span>
+    <div class="section-hd"><span class="section-lbl">파트너 관리 · 운영 툴</span></div>
+
+    <!-- 메인 CTA — 파트너 신청 관리 (admin.html) -->
+    <a href="/admin.html" style="display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:12px;transition:.15s;text-decoration:none;color:inherit;" onmouseover="this.style.borderColor='rgba(248,113,113,.45)';this.style.background='var(--surface2)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--surface)'">
+      <div class="bcard-icon bi-r"><svg width="20" height="20" fill="none" stroke="#f87171" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <div style="flex:1;">
+        <div style="font-size:.92rem;font-weight:800;color:#fff;margin-bottom:3px;">파트너 신청 관리</div>
+        <div style="font-size:.75rem;color:var(--muted);">교회·업소 신청 검토 · 승인·거절 · AI 점수 · 전체 데이터 테이블</div>
+      </div>
+      <span id="pendingBadge" style="display:none;background:rgba(248,113,113,.15);border:1px solid rgba(248,113,113,.4);color:#f87171;font-size:.7rem;font-weight:800;padding:4px 12px;border-radius:99px;white-space:nowrap;margin-right:4px;"></span>
+      <span style="color:var(--muted2);font-size:1rem;">→</span>
+    </a>
+
+    <!-- 서브 대시보드 2열 -->
+    <div class="card-grid g2" style="margin-bottom:12px;">
+      <a href="/admin-churches.html" class="bcard">
+        <div class="bcard-icon bi-g"><svg width="18" height="18" fill="none" stroke="#C9A227" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 21V11l8-6 8 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/></svg></div>
+        <div class="bcard-title">교회 CRM</div>
+        <div class="bcard-desc">파트너 교회 목록 · 추가·수정 · 이메일 발송 · CSV</div>
+        <div class="bcard-tag bt-g">교회 관리 →</div>
+        <span class="bcard-arr">→</span>
       </a>
+      <a href="/partner-dashboard.html" class="bcard">
+        <div class="bcard-icon bi-w"><svg width="18" height="18" fill="none" stroke="#FF9F0A" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg></div>
+        <div class="bcard-title">사업체 파트너</div>
+        <div class="bcard-desc">등록 업소 현황 · 상태 관리 · 연락처 확인</div>
+        <div class="bcard-tag" style="color:var(--warm);">업소 관리 →</div>
+        <span class="bcard-arr">→</span>
+      </a>
+    </div>
+
+    <!-- 기타 운영 툴 -->
+    <div class="card-grid g4">
       <a href="/admin-community.html" class="mcard">
         <div class="mcard-icon bi-m"><svg width="14" height="14" fill="none" stroke="#6EE7B7" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-        <div class="mcard-body"><div class="mcard-title">커뮤니티 데이터 관리</div><div class="mcard-url">admin-community.html</div></div>
+        <div class="mcard-body"><div class="mcard-title">커뮤니티 데이터</div><div class="mcard-url">admin-community.html</div></div>
         <span class="mcard-arr">›</span>
       </a>
       <a href="/pastor-dashboard.html" class="mcard">
         <div class="mcard-icon bi-g"><svg width="14" height="14" fill="none" stroke="#C9A227" stroke-width="2" viewBox="0 0 24 24"><path d="M4 21V11l8-6 8 6v10"/></svg></div>
-        <div class="mcard-body"><div class="mcard-title">파트너 교회 대시보드</div><div class="mcard-url">pastor-dashboard.html</div></div>
+        <div class="mcard-body"><div class="mcard-title">목사 대시보드</div><div class="mcard-url">pastor-dashboard.html</div></div>
         <span class="mcard-arr">›</span>
       </a>
-      <a href="/partner-dashboard.html" class="mcard">
-        <div class="mcard-icon bi-w"><svg width="14" height="14" fill="none" stroke="#FF9F0A" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg></div>
-        <div class="mcard-body"><div class="mcard-title">사업체 파트너 대시보드</div><div class="mcard-url">partner-dashboard.html</div></div>
+      <a href="/church-invite.html" class="mcard">
+        <div class="mcard-icon bi-m"><svg width="14" height="14" fill="none" stroke="#6EE7B7" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="mcard-body"><div class="mcard-title">교회 초대장</div><div class="mcard-url">church-invite.html</div></div>
         <span class="mcard-arr">›</span>
       </a>
       <a href="/launch-checklist.html" class="mcard">
@@ -512,7 +545,7 @@
       </a>
       <a href="/ad-request.html" class="mcard">
         <div class="mcard-icon bi-w"><svg width="14" height="14" fill="none" stroke="#FF9F0A" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
-        <div class="mcard-body"><div class="mcard-title">교회·업소 등재 신청</div><div class="mcard-url">ad-request.html</div></div>
+        <div class="mcard-body"><div class="mcard-title">등재 신청 폼</div><div class="mcard-url">ad-request.html</div></div>
         <span class="mcard-arr">›</span>
       </a>
       <a href="/partner-resources.html" class="mcard">
@@ -622,6 +655,20 @@ document.getElementById('ytDday2').textContent = diff > 0 ? diff : 0;
 // 교회 수
 fetch('/api/church-crm').then(r=>r.ok?r.json():[]).then(d=>{
   if(Array.isArray(d)) document.getElementById('churchCount').textContent = d.length;
+}).catch(()=>{});
+
+// 신청 대기 수 (Supabase community_items pending)
+const SUPA_URL = 'https://vextxqzggznulwpganwt.supabase.co';
+const SUPA_KEY = 'sb_publishable_j1cYftObx8VDVkEQAvluXg_rn20pnfX';
+fetch(`${SUPA_URL}/rest/v1/community_items?status=eq.pending&select=id`, {
+  headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}` }
+}).then(r=>r.ok?r.json():[]).then(d=>{
+  const n = Array.isArray(d) ? d.length : 0;
+  document.getElementById('pendingCount').textContent = n || '0';
+  if (n > 0) {
+    const badge = document.getElementById('pendingBadge');
+    if (badge) { badge.textContent = n + '건 대기'; badge.style.display = 'inline-flex'; }
+  }
 }).catch(()=>{});
 
 // 모달

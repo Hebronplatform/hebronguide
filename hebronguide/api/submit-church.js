@@ -11,8 +11,8 @@
 
 import nodemailer from 'nodemailer';
 
-const SUPABASE_URL   = "https://okhfjzofifmsgssgajts.supabase.co";
-const SUPABASE_TABLE = "content_items";
+const SUPABASE_URL   = process.env.SUPABASE_URL || "https://vextxqzggznulwpganwt.supabase.co";
+const SUPABASE_TABLE = "community_items";
 const ADMIN_EMAIL    = "hebronplatform@gmail.com";
 const FROM_EMAIL     = "Hebronplatform@gmail.com";
 
@@ -139,22 +139,25 @@ export default async function handler(req, res) {
 
   // ── 6. Supabase 자동 게시 (clean) ───────────────
   if (!needsReview) {
-    const descKo = buildDesc({ pastor, address, serviceTimes, website, kakao, description });
+    const descKo = [
+      denomination ? `교단: ${denomination}` : "",
+      pastor       ? `목사: ${pastor}` : "",
+      address      ? `주소: ${address}` : "",
+      serviceTimes ? `예배: ${serviceTimes}` : "",
+      description  || "",
+      website      ? `홈페이지: ${website}` : "",
+      kakao        ? `카카오: ${kakao}` : "",
+    ].filter(Boolean).join("\n");
     const item = {
-      type: "churches",
+      category: "church",
+      status:   "approved",
       city_slug: city,
-      emoji: "⛪",
-      name: churchName,
-      name_en: churchNameEn || churchName,
-      desc: descKo,
-      desc_en: buildDescEn({ pastor, address, serviceTimes, website, kakao, description }),
-      tags: buildTags(denomination, city),
-      active: true,
-      order: 500,            // 중간 우선순위
-      contact_phone: phone || null,
-      contact_email: email || null,
-      contact_kakao: kakao || null,
-      contact_website: website || null,
+      name:      churchName,
+      description: descKo,
+      contact:   email || phone || "",
+      phone:     phone || null,
+      email:     email || null,
+      website:   website || null,
       submitted_at: new Date().toISOString(),
     };
 
@@ -229,6 +232,42 @@ export default async function handler(req, res) {
     website, kakao, pastor, description,
     reason: aiFlag || "교단 정보 없음 — 확인 후 게시 권장",
   });
+
+  // admin.html 검토 대기열 노출 (community_items pending)
+  const pendingSvcKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (SUPABASE_URL && pendingSvcKey) {
+    try {
+      await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`, {
+        method: "POST",
+        headers: {
+          "apikey": pendingSvcKey,
+          "Authorization": `Bearer ${pendingSvcKey}`,
+          "Content-Type": "application/json",
+          "Prefer": "return=minimal",
+        },
+        body: JSON.stringify({
+          category: "church",
+          status:   "pending",
+          city_slug: city,
+          name:     churchName,
+          description: [
+            denomination ? `교단: ${denomination}` : "",
+            pastor       ? `목사: ${pastor}` : "",
+            address      ? `주소: ${address}` : "",
+            serviceTimes ? `예배: ${serviceTimes}` : "",
+            description  || "",
+            website      ? `홈페이지: ${website}` : "",
+            kakao        ? `카카오: ${kakao}` : "",
+          ].filter(Boolean).join("\n"),
+          contact:  email || phone || "",
+          phone:    phone || null,
+          email:    email || null,
+          website:  website || null,
+          submitted_at: new Date().toISOString(),
+        }),
+      });
+    } catch (_) { /* DB 실패 시 이메일 폴백 진행 */ }
+  }
 
   if (email) {
     await sendEmail({
