@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paul Kim — Hebron Platform LLC</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#1a1a2e; min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:40px 20px; font-family:'Montserrat','Noto Sans KR',sans-serif; gap:32px;
+  }
+  .section-label {
+    color:#8899aa; font-size:11px; letter-spacing:2px;
+    text-transform:uppercase; text-align:center; margin-bottom:12px;
+  }
+  .card {
+    width:560px; height:312px; border-radius:10px; position:relative;
+    box-shadow:0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(184,134,11,0.3);
+    overflow:hidden;
+  }
+
+  /* ════════════ 앞면 ════════════ */
+  .front { background:linear-gradient(135deg,#0d1b3e 0%,#1B2F5E 60%,#162548 100%); }
+  .front::before {
+    content:''; position:absolute; left:0; top:0; bottom:0; width:5px;
+    background:linear-gradient(180deg,#B8860B,#e8b84b,#B8860B);
+  }
+  .front::after {
+    content:''; position:absolute; right:-60px; top:-60px;
+    width:220px; height:220px; border-radius:50%;
+    border:1px solid rgba(184,134,11,0.12);
+  }
+  .front-inner {
+    position:absolute; inset:0;
+    display:flex; padding:0 32px 0 46px;
+    align-items:center; justify-content:space-between; gap:20px;
+  }
+  .front-left { display:flex; flex-direction:column; flex:1; min-width:0; }
+  .eyebrow {
+    font-size:9px; font-weight:600; letter-spacing:3.5px;
+    color:#B8860B; text-transform:uppercase; margin-bottom:10px;
+  }
+  .name-en {
+    font-size:28px; font-weight:700; color:#fff;
+    letter-spacing:1px; line-height:1; margin-bottom:4px;
+  }
+  .name-kr {
+    font-family:'Noto Sans KR',sans-serif; font-size:14px; font-weight:300;
+    color:rgba(255,255,255,0.5); letter-spacing:4px; margin-bottom:16px;
+  }
+  .divider {
+    width:40px; height:1px;
+    background:linear-gradient(90deg,#B8860B,transparent); margin-bottom:14px;
+  }
+  .title { font-size:11px; font-weight:600; color:#e8b84b; letter-spacing:1.5px; margin-bottom:14px; }
+
+  /* 다국어 순환 */
+  .multilang { position:relative; height:40px; overflow:hidden; margin-bottom:14px; }
+  .ml {
+    position:absolute; top:0; left:0; right:0; opacity:0;
+    animation:cycle 24s infinite;
+    display:flex; flex-direction:column; gap:3px;
+  }
+  .ml:nth-child(1) { animation-delay:0s;  }
+  .ml:nth-child(2) { animation-delay:3s;  }
+  .ml:nth-child(3) { animation-delay:6s;  }
+  .ml:nth-child(4) { animation-delay:9s;  }
+  .ml:nth-child(5) { animation-delay:12s; }
+  .ml:nth-child(6) { animation-delay:15s; }
+  .ml:nth-child(7) { animation-delay:18s; }
+  .ml:nth-child(8) { animation-delay:21s; }
+  @keyframes cycle {
+    0%   { opacity:0; transform:translateY(5px); }
+    4%   { opacity:1; transform:translateY(0); }
+    29%  { opacity:1; transform:translateY(0); }
+    33%  { opacity:0; transform:translateY(-5px); }
+    100% { opacity:0; }
+  }
+  .ml-main { font-size:10.5px; font-weight:700; color:rgba(255,255,255,0.88); letter-spacing:0.4px; }
+  .ml-sub  { font-size:8.5px;  font-weight:400; color:rgba(255,255,255,0.38); letter-spacing:0.2px; }
+
+  /* 연락처 */
+  .contact { display:flex; flex-direction:column; gap:5px; }
+  .contact-row { display:flex; align-items:center; gap:7px; }
+  .dot { width:4px; height:4px; border-radius:50%; background:#B8860B; flex-shrink:0; }
+  .ct  { font-size:9.5px; color:rgba(255,255,255,0.55); letter-spacing:0.2px; }
+
+  /* 앞면 QR */
+  .front-right { display:flex; flex-direction:column; align-items:center; gap:6px; flex-shrink:0; }
+  .qr-wrap {
+    background:#fff; border-radius:8px; padding:10px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.4), 0 0 0 2px rgba(184,134,11,0.5);
+  }
+  .qr-wrap img { width:90px; height:90px; display:block; }
+  .qr-site { font-size:8px; font-weight:600; color:#B8860B; letter-spacing:1.5px; text-align:center; text-transform:uppercase; }
+  .qr-hint { font-size:7px; color:rgba(255,255,255,0.28); text-align:center; margin-top:1px; }
+
+  /* ════════════ 뒷면 ════════════ */
+  .back { background:linear-gradient(160deg,#0a1628 0%,#0f1e3d 100%); }
+  .back::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg,#B8860B,#e8b84b,#B8860B);
+  }
+  .back-inner {
+    position:absolute; inset:0;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    padding:24px 44px 20px;
+  }
+  .back-tag {
+    font-size:9px; font-weight:500; color:rgba(255,255,255,0.32);
+    letter-spacing:2.5px; text-transform:uppercase; text-align:center; margin-bottom:4px;
+  }
+  .back-kr {
+    font-family:'Noto Sans KR',sans-serif; font-size:14px; font-weight:700;
+    color:#fff; letter-spacing:1px; text-align:center; margin-bottom:2px;
+  }
+  .back-en {
+    font-size:9px; font-weight:500; color:rgba(255,255,255,0.28);
+    letter-spacing:2px; text-transform:uppercase; text-align:center; margin-bottom:20px;
+  }
+
+  /* QR 4개 그리드 */
+  .qr-grid {
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:16px; width:100%; max-width:440px;
+  }
+  .qr-item { display:flex; flex-direction:column; align-items:center; gap:5px; }
+  .qr-item.hero .qb { box-shadow:0 3px 16px rgba(184,134,11,0.5), 0 0 0 2px #B8860B; }
+  .qr-item.hero .qn { color:#e8b84b; }
+  .qb {
+    background:#fff; border-radius:6px; padding:7px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.35), 0 0 0 1px rgba(184,134,11,0.18);
+    position:relative;
+  }
+  .qb img { width:70px; height:70px; display:block; }
+  .hero-badge {
+    position:absolute; top:-9px; left:50%; transform:translateX(-50%);
+    background:#B8860B; color:#0a1628; font-size:7px; font-weight:700;
+    letter-spacing:1px; padding:2px 7px; border-radius:3px; white-space:nowrap;
+  }
+  .qn  { font-size:8px; font-weight:700; color:#B8860B; letter-spacing:0.5px; text-align:center; text-transform:uppercase; }
+  .qu  { font-size:7px; color:rgba(255,255,255,0.32); text-align:center; }
+  .ql  { font-size:7px; color:rgba(184,134,11,0.6); text-align:center; margin-top:1px; }
+
+  .back-footer {
+    margin-top:14px; display:flex; align-items:center; gap:8px;
+  }
+  .bl { width:40px; height:1px; background:rgba(184,134,11,0.35); }
+  .bt { font-size:8px; color:rgba(255,255,255,0.22); letter-spacing:2px; text-transform:uppercase; }
+</style>
+</head>
+<body>
+
+  <!-- ── 앞면 ── -->
+  <div>
+    <div class="section-label">&#9658; 앞면 (Front)</div>
+    <div class="card front">
+      <div class="front-inner">
+        <div class="front-left">
+          <div class="eyebrow">Hebron Platform LLC</div>
+          <div class="name-en">Paul Kim</div>
+          <div class="name-kr">김 성 수</div>
+          <div class="divider"></div>
+          <div class="title">CEO &amp; Founder</div>
+
+          <!-- 8개 언어 순환 -->
+          <div class="multilang">
+            <div class="ml"><span class="ml-main">글로벌 환대 커뮤니티</span><span class="ml-sub">교회 · 비즈니스 · 생활 · 모든 도시 · 모든 언어</span></div>
+            <div class="ml"><span class="ml-main">Global Hospitality Community</span><span class="ml-sub">Church · Business · Life · Every City · Every Language</span></div>
+            <div class="ml"><span class="ml-main">Comunidad Global de Hospitalidad</span><span class="ml-sub">Iglesia · Negocios · Vida · Cada Ciudad · Cada Idioma</span></div>
+            <div class="ml"><span class="ml-main">全球款待社区</span><span class="ml-sub">教会 · 商业 · 生活 · 每座城市 · 每种语言</span></div>
+            <div class="ml"><span class="ml-main">Global na Komunidad ng Mabuting Pagtanggap</span><span class="ml-sub">Simbahan · Negosyo · Buhay · Bawat Lungsod</span></div>
+            <div class="ml"><span class="ml-main">Cộng Đồng Hiếu Khách Toàn Cầu</span><span class="ml-sub">Nhà thờ · Kinh doanh · Cuộc sống · Mọi thành phố</span></div>
+            <div class="ml"><span class="ml-main">グローバル・ホスピタリティ・コミュニティ</span><span class="ml-sub">教会 · ビジネス · 生活 · すべての都市</span></div>
+            <div class="ml"><span class="ml-main">वैश्विक आतिथ्य समुदाय</span><span class="ml-sub">चर्च · व्यवसाय · जीवन · हर शहर · हर भाषा</span></div>
+          </div>
+
+          <!-- 연락처 -->
+          <div class="contact">
+            <div class="contact-row"><div class="dot"></div><span class="ct">hebronplatform@gmail.com</span></div>
+            <div class="contact-row"><div class="dot"></div><span class="ct">hebronguide.com</span></div>
+            <div class="contact-row"><div class="dot"></div><span class="ct">Seattle, WA</span></div>
+          </div>
+        </div>
+
+        <!-- 앞면 QR -->
+        <div class="front-right">
+          <div class="qr-wrap">
+            <img src="data:image/png;base64,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" alt="HebronGuide">
+          </div>
+          <div class="qr-site">HebronGuide</div>
+          <div class="qr-hint">뒷면 QR → 사이트 연결</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 뒷면 ── -->
+  <div>
+    <div class="section-label">&#9658; 뒷면 (Back) — QR 스캔 → 각 사이트 직접 연결</div>
+    <div class="card back">
+      <div class="back-inner">
+        <div class="back-tag">Scan QR · 스캔하면 바로 연결됩니다</div>
+        <div class="back-kr">모든 도시 · 모든 언어 · 모든 민족을 환대합니다</div>
+        <div class="back-en">Every City · Every Language · Every People</div>
+
+        <div class="qr-grid">
+          <div class="qr-item hero">
+            <div class="qb">
+              <div class="hero-badge">GLOBAL</div>
+              <img src="data:image/png;base64,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" alt="HebronGuide">
+            </div>
+            <div class="qn">HebronGuide</div>
+            <div class="qu">hebronguide.com</div>
+            <div class="ql">한·EN·ES·中·TL·VI·JP·HI</div>
+          </div>
+          <div class="qr-item">
+            <div class="qb"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAAFKCAIAAAD0S4FSAAAGNklEQVR4nO3dwZEkNRCAURYRBkGQEbGREUGQR5MAshY8he2757xPz9c/V34plb99Pp+fgKKfTz8AMEXekCVvyJI3ZMkbsuQNWfKGLHlDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8iSN2TJG7J+7Pzj337/42e9xyX+/uvPkeeuP8n1W+18Czt/eeezmnrnN9r5nJ3ekCVvyJI3ZMkbsuQNWfKGLHlDlrwha+uG0DdONU3txOrdW3ru25/a8TY14WfXGvBt8oYseUOWvCFL3pAlb8iSN2TJG7LkDVlbU2s7pmaAzk2erZ2btLtzXmrt3DtPPXdqi9ua0xuy5A1Z8oYseUOWvCFL3pAlb8iSN2TJG7K2bgid2hB25z2P50xNy62dmy2bmh7r3Uzq9IYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhqyDU2vnprimnLvl89xz185Nj925Ta33m1xzekOWvCFL3pAlb8iSN2TJG7LkDVnyhqyxqbWuMEbb+rcMfVUU5/r9IYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhixTaz/gzlsgp/a0TU28rd25l+7c5645vSFL3pAlb8iSN2TJG7LkDVnyhix5Q5a8IWtsam1q29aUqUmstanbNtfunDybuh92h9MbsuQNWfKGLHlDlrwhS96QJW/IkjdkyRuyvp7n+ek/vnPmaced81JrUxNRU6a+7xvnLJ3ekCVvyJI3ZMkbsuQNWfKGLHlDlrwhS96QtTW1BtzM6Q1Z8oYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhix5Q5a8IUvekCVvyJI3ZMkbsuQNWfKGLHlD1v/xPRe5RmqRagAAAABJRU5ErkJggg==" alt="NanuriWeb"></div>
+            <div class="qn">NanuriWeb</div>
+            <div class="qu">nanuriweb.com</div>
+          </div>
+          <div class="qr-item">
+            <div class="qb"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAAFKCAIAAAD0S4FSAAAGJUlEQVR4nO3dwY0cNxBAUa/hMByEM3JszshBOI/2VSdCEkUU+89799X09OiDl0Lx63me34Ci36cfADhF3pAlb8iSN2TJG7LkDVnyhix5Q5a8IUvekCVvyJI3ZMkbsuQNWfKGLHlDlrwhS96QJW/I+mPnj//86+9f9RyX+O/ff346b3fexp2fu/6Xd/52bept3GnnbTi9IUvekCVvyJI3ZMkbsuQNWfKGLHlDlrwha2tqbW1n2uacc1NN56a4dqbHzv3Ldz7V2qf9n3R6Q5a8IUvekCVvyJI3ZMkbsuQNWfKGLHlD1sGptbWp6bEd56apzpmalvu0d7U29X2d3pAlb8iSN2TJG7LkDVnyhix5Q5a8IUvekDU2tdZz54zX1B2g5zbP8f2c3pAlb8iSN2TJG7LkDVnyhix5Q5a8IUvekGVq7Qecm8SamvG6c+fZnU/1Rk5vyJI3ZMkbsuQNWfKGLHlDlrwhS96QJW/IGpta+7TJpJ3NZG98V3funlt743tec3pDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUPWwam13i2QU3di3nmP5xvvAL3zqc5xekOWvCFL3pAlb8iSN2TJG7LkDVnyhix5Q9bX8zzTz/ARPu2Wz7Vzt6nyLac3ZMkbsuQNWfKGLHlDlrwhS96QJW/Ikjdkjd0QunZuqsm81Peb2rV253t+4zdyekOWvCFL3pAlb8iSN2TJG7LkDVnyhix5Q9bWrrU3zvGsTd2nuTY1wzf1G0091dQveO4bOb0hS96QJW/IkjdkyRuy5A1Z8oYseUOWvCFr8IbQO+/ifPEWyJ139OJs2dqL7+jUTJvTG7LkDVnyhix5Q5a8IUvekCVvyJI3ZMkbsrZuCL3zJsc5d86HnfoW7vz279yW54ZQ4IvJG7LkDVnyhix5Q5a8IUvekCVvyJI3ZA3eENqbTDo1e3Tnjahz+8PmnmrOnVOYTm/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8ganFo7JY/QsyG27NT+cDvP6tR1584AnZuGtHpDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUOWqbX/mamJtx1zc1qnJu3unC2b+5yd3pAlb8iSN2TJG7LkDVnyhix5Q5a8IUvekHVsau3O+aEdO7u6XrxX9NQzz73fF3+xTm/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8ganFo7tSHsTnO3bZ66ufLFGzPv/CTnXtnpDVnyhix5Q5a8IUvekCVvyJI3ZMkbsuQNWd8+n8/pZwBGOL0hS96QJW/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhix5Q5a8IUvekCVvyPobsnk8BO2eI5MAAAAASUVORK5CYII=" alt="NanuriHome"></div>
+            <div class="qn">NanuriHome</div>
+            <div class="qu">nanuriHome.com</div>
+          </div>
+          <div class="qr-item">
+            <div class="qb"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAAFKCAIAAAD0S4FSAAAGL0lEQVR4nO3d3Y2kNRAAURYRBkGQEbGREUGQR5MAshY8he2757xPz9c/V34plb99Pp+fgKKfTz8AMEXekCVvyJI3ZMkbsuQNWfKGLHlDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8i6ZeePf/3t9696jkv89ecf//lv15/G+pXn/nZt7pV3zH0LL9r5NJzekCVvyJI3ZMkbsuQNWfKGLHlDlrwha+uG0DdONU3txOrdW3ru25/a8TY14WfXGvBt8oYseUOWvCFL3pAlb8iSN2TJG7LkDVlbU2s7pmaAzk2erZ2btLtzXmrt3DtPPXdqi9ua0xuy5A1Z8oYseUOWvCFL3pAlb8iSN2TJG7K2bgid2hB25z2P50xNy62dmy2bmh7r3Uzq9IYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhqyDU2vnprimnLvl89xz185Nj925Ta33m1xzekOWvCFL3pAlb8iSN2TJG7LkDVnyhqyxqbWuMEbb+rcMfVUU5/r9IYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhixTaz/gzlsgp/a0TU28rd25l+7c5645vSFL3pAlb8iSN2TJG7LkDVnyhix5Q5a8IWtsam1q29aUqUmstanbNtfunDybuh92h9MbsuQNWfKGLHlDlrwhS96QJW/IkjdkyRuyvp7n+ek/vnPmaced81JrUxNRU6a+7xvnLJ3ekCVvyJI3ZMkbsuQNWfKGLHlDlrwhS96QtTW1BtzM6Q1Z8oYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhix5Q5a8IUvekCVvyJI3ZMkbsuQNWfKGLHlD1v/xPRe5RmqRagAAAABJRU5ErkJggg==" alt="KChurch911"></div>
+            <div class="qn">KChurch911</div>
+            <div class="qu">kchurch911.com</div>
+          </div>
+        </div>
+
+        <div class="back-footer">
+          <div class="bl"></div>
+          <div class="bt">Hebron Platform LLC · Seattle, WA</div>
+          <div class="bl"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

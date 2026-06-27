@@ -1,248 +1,857 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paul Kim — Hebron Platform LLC</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    background:#1a1a2e; min-height:100vh;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:40px 20px; font-family:'Montserrat','Noto Sans KR',sans-serif; gap:32px;
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
+  <link rel="manifest" href="/manifest.json"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" href="/icon-192.png"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="HebronGuide"/>
+  <title>HebronGuide — 낯선 도시, 이미 누군가 기다렸습니다</title>
+  <meta name="description" content="HebronGuide — 전 세계 71개+ 도시. 낯선 도시에서 처음 맞이하는 따뜻한 얼굴. 정보가 아닌 사람으로 연결되는 글로벌 환대 커뮤니티."/>
+  <meta name="theme-color" content="#0d1117"/>
+  <meta property="og:title" content="HebronGuide — 낯선 도시, 이미 누군가 기다렸습니다"/>
+  <meta property="og:description" content="전 세계 71개+ 도시. 낯선 도시에서 처음 맞이하는 따뜻한 얼굴. 정보가 아닌 사람으로 연결됩니다."/>
+  <meta property="og:url" content="https://hebronguide.com/"/>
+  <meta property="og:image" content="https://hebronguide.com/icon-512.png"/>
+  <link rel="canonical" href="https://hebronguide.com/"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+  :root{
+    --bg:#0a0e14;--bg2:#0d1117;--surface:rgba(255,255,255,.05);--surface2:rgba(255,255,255,.08);
+    --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+    --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;--warm:#FF9F0A;
+    --text:#ECFDF5;--muted:rgba(236,253,245,.6);--muted2:rgba(236,253,245,.38);
   }
-  .section-label {
-    color:#8899aa; font-size:11px; letter-spacing:2px;
-    text-transform:uppercase; text-align:center; margin-bottom:12px;
-  }
-  .card {
-    width:560px; height:312px; border-radius:10px; position:relative;
-    box-shadow:0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(184,134,11,0.3);
-    overflow:hidden;
-  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;background:var(--bg);}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;overflow-x:hidden;}
 
-  /* ════════════ 앞면 ════════════ */
-  .front { background:linear-gradient(135deg,#0d1b3e 0%,#1B2F5E 60%,#162548 100%); }
-  .front::before {
-    content:''; position:absolute; left:0; top:0; bottom:0; width:5px;
-    background:linear-gradient(180deg,#B8860B,#e8b84b,#B8860B);
-  }
-  .front::after {
-    content:''; position:absolute; right:-60px; top:-60px;
-    width:220px; height:220px; border-radius:50%;
-    border:1px solid rgba(184,134,11,0.12);
-  }
-  .front-inner {
-    position:absolute; inset:0;
-    display:flex; padding:0 32px 0 46px;
-    align-items:center; justify-content:space-between; gap:20px;
-  }
-  .front-left { display:flex; flex-direction:column; flex:1; min-width:0; }
-  .eyebrow {
-    font-size:9px; font-weight:600; letter-spacing:3.5px;
-    color:#B8860B; text-transform:uppercase; margin-bottom:10px;
-  }
-  .name-en {
-    font-size:28px; font-weight:700; color:#fff;
-    letter-spacing:1px; line-height:1; margin-bottom:4px;
-  }
-  .name-kr {
-    font-family:'Noto Sans KR',sans-serif; font-size:14px; font-weight:300;
-    color:rgba(255,255,255,0.5); letter-spacing:4px; margin-bottom:16px;
-  }
-  .divider {
-    width:40px; height:1px;
-    background:linear-gradient(90deg,#B8860B,transparent); margin-bottom:14px;
-  }
-  .title { font-size:11px; font-weight:600; color:#e8b84b; letter-spacing:1.5px; margin-bottom:14px; }
+  /* NAV */
+  nav{position:sticky;top:0;z-index:200;background:rgba(10,14,20,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
+  .nav-logo{text-decoration:none;display:flex;align-items:center;gap:10px;}
+  .nav-logo-mark{flex-shrink:0;}
+  .nav-logo-text{display:flex;flex-direction:column;line-height:1;}
+  .nav-logo-word{font-family:'Cinzel',serif;font-weight:700;font-size:1.12rem;color:#fff;letter-spacing:.01em;}
+  .nav-logo-word em{font-style:italic;font-weight:400;color:var(--gold);}
+  .nav-logo-tag{font-size:.52rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:3px;}
+  .nav-links{display:flex;gap:16px;align-items:center;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;transition:color .2s;white-space:nowrap;}
+  .nav-links a:hover{color:var(--gold);}
+  .nav-cta{background:var(--gold);color:#0d1117 !important;font-weight:800;font-size:.8rem;border-radius:20px;padding:6px 16px;}
+  .nav-cta:hover{background:var(--gold2) !important;}
+  @media(max-width:980px){.nav-logo-tag{display:none;}}
+  @media(max-width:640px){.nav-links{display:none;}}
 
-  /* 다국어 순환 */
-  .multilang { position:relative; height:40px; overflow:hidden; margin-bottom:14px; }
-  .ml {
-    position:absolute; top:0; left:0; right:0; opacity:0;
-    animation:cycle 24s infinite;
-    display:flex; flex-direction:column; gap:3px;
-  }
-  .ml:nth-child(1) { animation-delay:0s;  }
-  .ml:nth-child(2) { animation-delay:3s;  }
-  .ml:nth-child(3) { animation-delay:6s;  }
-  .ml:nth-child(4) { animation-delay:9s;  }
-  .ml:nth-child(5) { animation-delay:12s; }
-  .ml:nth-child(6) { animation-delay:15s; }
-  .ml:nth-child(7) { animation-delay:18s; }
-  .ml:nth-child(8) { animation-delay:21s; }
-  @keyframes cycle {
-    0%   { opacity:0; transform:translateY(5px); }
-    4%   { opacity:1; transform:translateY(0); }
-    29%  { opacity:1; transform:translateY(0); }
-    33%  { opacity:0; transform:translateY(-5px); }
-    100% { opacity:0; }
-  }
-  .ml-main { font-size:10.5px; font-weight:700; color:rgba(255,255,255,0.88); letter-spacing:0.4px; }
-  .ml-sub  { font-size:8.5px;  font-weight:400; color:rgba(255,255,255,0.38); letter-spacing:0.2px; }
+  /* ━━━ HERO ━━━ */
+  .hero{position:relative;text-align:center;padding:88px 24px 72px;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(201,162,39,.12) 0%,transparent 65%);pointer-events:none;z-index:0;}
+  .hero::after{content:'';position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(110,231,183,.07) 0%,transparent 60%);pointer-events:none;z-index:0;}
+  .hero>*{position:relative;z-index:1;}
 
-  /* 연락처 */
-  .contact { display:flex; flex-direction:column; gap:5px; }
-  .contact-row { display:flex; align-items:center; gap:7px; }
-  .dot { width:4px; height:4px; border-radius:50%; background:#B8860B; flex-shrink:0; }
-  .ct  { font-size:9.5px; color:rgba(255,255,255,0.55); letter-spacing:0.2px; }
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border-radius:99px;padding:6px 18px;margin-bottom:28px;}
 
-  /* 앞면 QR */
-  .front-right { display:flex; flex-direction:column; align-items:center; gap:6px; flex-shrink:0; }
-  .qr-wrap {
-    background:#fff; border-radius:8px; padding:10px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.4), 0 0 0 2px rgba(184,134,11,0.5);
-  }
-  .qr-wrap img { width:90px; height:90px; display:block; }
-  .qr-site { font-size:8px; font-weight:600; color:#B8860B; letter-spacing:1.5px; text-align:center; text-transform:uppercase; }
-  .qr-hint { font-size:7px; color:rgba(255,255,255,0.28); text-align:center; margin-top:1px; }
+  .hero-pre{font-size:clamp(1rem,1.9vw,1.3rem);color:rgba(236,253,245,.6);font-style:italic;font-weight:300;margin-bottom:20px;line-height:1.6;max-width:600px;margin-left:auto;margin-right:auto;}
 
-  /* ════════════ 뒷면 ════════════ */
-  .back { background:linear-gradient(160deg,#0a1628 0%,#0f1e3d 100%); }
-  .back::before {
-    content:''; position:absolute; top:0; left:0; right:0; height:4px;
-    background:linear-gradient(90deg,#B8860B,#e8b84b,#B8860B);
-  }
-  .back-inner {
-    position:absolute; inset:0;
-    display:flex; flex-direction:column;
-    align-items:center; justify-content:center;
-    padding:24px 44px 20px;
-  }
-  .back-tag {
-    font-size:9px; font-weight:500; color:rgba(255,255,255,0.32);
-    letter-spacing:2.5px; text-transform:uppercase; text-align:center; margin-bottom:4px;
-  }
-  .back-kr {
-    font-family:'Noto Sans KR',sans-serif; font-size:14px; font-weight:700;
-    color:#fff; letter-spacing:1px; text-align:center; margin-bottom:2px;
-  }
-  .back-en {
-    font-size:9px; font-weight:500; color:rgba(255,255,255,0.28);
-    letter-spacing:2px; text-transform:uppercase; text-align:center; margin-bottom:20px;
-  }
+  .hero-headline{font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;color:#ffffff;line-height:1.15;margin-bottom:8px;letter-spacing:-.02em;}
+  .hero-headline .accent{color:var(--gold);}
+  .hero-headline .accent2{color:var(--mint);}
 
-  /* QR 4개 그리드 */
-  .qr-grid {
-    display:grid; grid-template-columns:repeat(4,1fr);
-    gap:16px; width:100%; max-width:440px;
-  }
-  .qr-item { display:flex; flex-direction:column; align-items:center; gap:5px; }
-  .qr-item.hero .qb { box-shadow:0 3px 16px rgba(184,134,11,0.5), 0 0 0 2px #B8860B; }
-  .qr-item.hero .qn { color:#e8b84b; }
-  .qb {
-    background:#fff; border-radius:6px; padding:7px;
-    box-shadow:0 3px 12px rgba(0,0,0,0.35), 0 0 0 1px rgba(184,134,11,0.18);
-    position:relative;
-  }
-  .qb img { width:70px; height:70px; display:block; }
-  .hero-badge {
-    position:absolute; top:-9px; left:50%; transform:translateX(-50%);
-    background:#B8860B; color:#0a1628; font-size:7px; font-weight:700;
-    letter-spacing:1px; padding:2px 7px; border-radius:3px; white-space:nowrap;
-  }
-  .qn  { font-size:8px; font-weight:700; color:#B8860B; letter-spacing:0.5px; text-align:center; text-transform:uppercase; }
-  .qu  { font-size:7px; color:rgba(255,255,255,0.32); text-align:center; }
-  .ql  { font-size:7px; color:rgba(184,134,11,0.6); text-align:center; margin-top:1px; }
+  .hero-sub-big{font-size:clamp(1.1rem,2.5vw,1.6rem);color:rgba(236,253,245,.85);font-weight:300;margin:16px 0 28px;line-height:1.7;max-width:700px;margin-left:auto;margin-right:auto;}
 
-  .back-footer {
-    margin-top:14px; display:flex; align-items:center; gap:8px;
-  }
-  .bl { width:40px; height:1px; background:rgba(184,134,11,0.35); }
-  .bt { font-size:8px; color:rgba(255,255,255,0.22); letter-spacing:2px; text-transform:uppercase; }
-</style>
+  .hero-declaration{max-width:640px;margin:0 auto 40px;background:rgba(201,162,39,.06);border:1px solid rgba(201,162,39,.2);border-radius:18px;padding:24px 28px;}
+  .hero-declaration p{font-size:1rem;color:rgba(236,253,245,.88);line-height:2;font-style:italic;}
+  .hero-declaration .speaker{display:block;font-style:normal;font-size:.78rem;color:var(--gold);font-weight:700;margin-top:8px;}
+
+  .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:56px;}
+  .btn-hero{background:linear-gradient(135deg,#C9A227,#f0c040);color:#0a0e14;font-weight:900;font-size:1rem;border-radius:50px;padding:16px 36px;text-decoration:none;transition:opacity .2s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(201,162,39,.3);}
+  .btn-hero:hover{opacity:.9;}
+  .btn-outline{background:transparent;border:1px solid var(--border2);color:var(--text);font-weight:600;font-size:.9rem;border-radius:50px;padding:15px 30px;text-decoration:none;transition:all .2s;}
+  .btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+
+  .hero-stats{display:inline-grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:16px;overflow:hidden;max-width:600px;width:100%;}
+  .stat{background:var(--bg2);padding:20px 12px;text-align:center;}
+  .stat-n{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:900;color:var(--gold);line-height:1;}
+  .stat-l{font-size:.7rem;color:var(--muted);margin-top:4px;}
+  @media(max-width:480px){.hero-stats{grid-template-columns:repeat(2,1fr);}}
+
+  /* ━━━ CORE TRUTH ━━━ */
+  .core-truth{padding:88px 24px;text-align:center;background:linear-gradient(180deg,var(--bg) 0%,rgba(13,17,23,1) 100%);}
+  .core-truth-inner{max-width:800px;margin:0 auto;}
+  .core-truth h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:#fff;line-height:1.3;margin-bottom:20px;}
+  .core-truth h2 em{color:var(--gold);font-style:normal;display:block;}
+  .core-truth-desc{font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);line-height:2;max-width:620px;margin:0 auto 40px;}
+  .verses{display:flex;flex-direction:column;gap:14px;max-width:580px;margin:0 auto;}
+  .verse{background:rgba(201,162,39,.06);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:14px 20px;text-align:left;}
+  .verse p{font-size:.92rem;color:rgba(236,253,245,.85);font-style:italic;line-height:1.8;}
+  .verse cite{display:block;margin-top:5px;font-style:normal;font-size:.76rem;color:var(--gold);font-weight:700;}
+
+  /* ━━━ VALUES ━━━ */
+  .values-section{padding:88px 24px;max-width:1000px;margin:0 auto;}
+  .sec-label{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;text-align:center;}
+  .sec-title{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;color:#fff;text-align:center;margin-bottom:14px;line-height:1.3;}
+  .sec-title span{color:var(--gold);}
+  .sec-desc{text-align:center;color:var(--muted);font-size:.95rem;line-height:1.9;max-width:560px;margin:0 auto 48px;}
+
+  .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
+  .val-card{background:var(--surface);border:1px solid var(--border2);border-radius:20px;padding:28px 24px;transition:border-color .3s,transform .3s;}
+  .val-card:hover{border-color:rgba(201,162,39,.4);transform:translateY(-4px);}
+  .val-icon{width:44px;height:44px;margin-bottom:16px;color:rgba(201,162,39,.8);}
+  .val-icon svg{width:100%;height:100%;}
+  .val-title{font-size:1rem;font-weight:900;color:#fff;margin-bottom:10px;}
+  .val-body{font-size:.85rem;color:var(--muted);line-height:1.85;}
+  .val-quote{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:.78rem;color:rgba(201,162,39,.7);font-style:italic;line-height:1.7;}
+
+  /* ━━━ MISSION FLOW ━━━ */
+  .mission-section{padding:88px 24px;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,162,39,.06),transparent);}
+  .mission-inner{max-width:800px;margin:0 auto;text-align:center;}
+  .mission-flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin:40px 0;}
+  .flow-step{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:14px 20px;font-size:.88rem;color:var(--text);font-weight:700;}
+  .flow-arr{color:rgba(201,162,39,.5);font-size:1.2rem;font-weight:300;}
+  .flow-step.highlight{background:rgba(201,162,39,.12);border-color:rgba(201,162,39,.35);color:var(--gold);}
+  .mission-declaration{background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.06));border:1px solid rgba(201,162,39,.25);border-radius:20px;padding:32px;margin-top:40px;}
+  .mission-declaration p{font-size:1.05rem;color:rgba(236,253,245,.88);line-height:2.1;}
+  .mission-declaration strong{color:#fff;font-weight:900;}
+  .mission-declaration .stamp{font-size:1.15rem;font-weight:900;color:var(--gold);border-top:1px solid rgba(201,162,39,.2);padding-top:16px;margin-top:16px;}
+
+  /* ━━━ VISION 2030 ━━━ */
+  .vision-section{padding:88px 24px;max-width:900px;margin:0 auto;}
+  .roadmap{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:40px 0;}
+  .road-item{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:22px 18px;text-align:center;}
+  .road-year{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:900;color:var(--gold);margin-bottom:8px;}
+  .road-num{font-size:1.8rem;font-weight:900;color:#fff;line-height:1;}
+  .road-unit{font-size:.75rem;color:var(--muted);}
+  .road-desc{font-size:.78rem;color:var(--muted);margin-top:8px;line-height:1.6;}
+  .road-item.current{border-color:rgba(201,162,39,.4);background:rgba(201,162,39,.06);}
+  .road-item.current .road-num{color:var(--gold);}
+  .vision-world{text-align:center;margin-top:40px;}
+  .vision-world p{font-size:1rem;color:var(--muted);line-height:2;max-width:560px;margin:0 auto;}
+  .vision-world strong{color:#fff;}
+
+  /* ━━━ JOIN — 밝고 희망적인 톤으로 전환 ━━━ */
+  .join-section{padding:96px 24px;text-align:center;background:linear-gradient(165deg,#f9d77e 0%,#f0b84e 38%,#e8924a 72%,#d9763a 100%);position:relative;overflow:hidden;}
+  .join-section::after{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1500534623283-312aade485b7?w=1600&q=70') center/cover;opacity:.22;mix-blend-mode:multiply;pointer-events:none;}
+  .join-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(255,255,255,.35),transparent 60%);pointer-events:none;z-index:1;}
+  .join-section>*{position:relative;z-index:1;}
+  .join-eyebrow{display:inline-block;font-size:.72rem;font-weight:900;color:#5c3a0e;letter-spacing:.16em;text-transform:uppercase;background:rgba(255,255,255,.4);border:1px solid rgba(92,58,14,.18);border-radius:99px;padding:7px 18px;margin-bottom:22px;}
+  .join-section h2{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#2b1a05;margin-bottom:18px;line-height:1.28;letter-spacing:-.01em;}
+  .join-section h2 em{color:#fff;font-style:normal;text-shadow:0 1px 12px rgba(0,0,0,.12);}
+  .join-section p{font-size:1rem;color:rgba(43,26,5,.78);line-height:1.95;max-width:560px;margin:0 auto 32px;font-weight:500;}
+  .meaning-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:44px;}
+  .meaning-chip{background:rgba(255,255,255,.55);border:1px solid rgba(43,26,5,.14);border-radius:14px;padding:13px 18px;text-align:left;max-width:230px;backdrop-filter:blur(2px);}
+  .meaning-chip .mc-label{font-size:.64rem;font-weight:900;color:#9a5f10;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
+  .meaning-chip .mc-val{font-size:.84rem;color:#2b1a05;font-weight:700;line-height:1.55;}
+  .join-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:800px;margin:0 auto 40px;}
+  .join-card{background:#fff;border:1px solid rgba(43,26,5,.08);border-radius:16px;padding:22px 20px;text-align:left;cursor:pointer;transition:transform .18s,box-shadow .18s;text-decoration:none;display:block;color:inherit;box-shadow:0 6px 20px rgba(43,26,5,.12);}
+  .join-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(43,26,5,.18);}
+  .join-card-img{display:block;width:calc(100% + 40px);height:110px;object-fit:cover;margin:-22px -20px 18px;border-radius:14px 14px 0 0;}
+  .join-card-title{font-size:.92rem;font-weight:800;color:#1a1a1a;margin-bottom:6px;}
+  .join-card-desc{font-size:.8rem;color:#5a5a5a;line-height:1.75;}
+
+  /* ━━━ CITIES ━━━ */
+  .cities-section{padding:72px 24px;max-width:960px;margin:0 auto;}
+  .search-wrap{max-width:400px;margin:0 auto 32px;position:relative;}
+  .search-wrap input{width:100%;padding:13px 20px 13px 44px;border-radius:50px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:.9rem;font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color .2s;}
+  .search-wrap input:focus{border-color:var(--gold);}
+  .search-wrap input::placeholder{color:var(--muted);}
+  .search-wrap::before{content:'🔍';position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:.85rem;}
+  .region-block{margin-bottom:24px;}
+  .region-label{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .region-label::after{content:'';flex:1;height:1px;background:var(--border);}
+  .city-pills{display:flex;flex-wrap:wrap;gap:7px;}
+  .city-pill{background:var(--surface);border:1px solid var(--border2);border-radius:99px;padding:6px 15px;font-size:.8rem;color:var(--text);text-decoration:none;transition:all .2s;white-space:nowrap;}
+  .city-pill:hover{background:rgba(201,162,39,.1);border-color:rgba(201,162,39,.35);color:var(--gold);}
+  .city-pill.featured{background:rgba(201,162,39,.08);border-color:rgba(201,162,39,.3);color:var(--gold);font-weight:700;}
+
+  /* ━━━ DIVIDER ━━━ */
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0;}
+
+  /* ━━━ FOOTER ━━━ */
+  footer{padding:48px 24px 32px;text-align:center;background:rgba(0,0,0,.3);}
+  .footer-logo{font-family:'Cinzel',serif;color:var(--gold);font-weight:900;font-size:1rem;margin-bottom:14px;}
+  .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:5px 18px;margin-bottom:16px;}
+  .footer-links a{color:var(--muted);text-decoration:none;font-size:.78rem;transition:color .2s;}
+  .footer-links a:hover{color:var(--gold);}
+  .footer-copy{font-size:.7rem;color:var(--muted2);}
+  .footer-soul{font-size:.82rem;color:rgba(201,162,39,.55);font-style:italic;margin-top:10px;line-height:1.8;}
+
+  /* ── 한/영 전환 ── */
+  html[lang="ko"] .en{display:none!important;}
+  html[lang="en"] .ko{display:none!important;}
+  .lang-btn{background:transparent;border:1px solid var(--border2);color:var(--muted);font-size:.75rem;font-weight:700;border-radius:20px;padding:5px 14px;cursor:pointer;transition:all .2s;font-family:'Noto Sans KR',sans-serif;letter-spacing:.04em;white-space:nowrap;}
+  .lang-btn:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* ━━━ THREE PATHS ━━━ */
+  .paths-section{padding:80px 24px;max-width:1000px;margin:0 auto;}
+  .paths-label{font-size:.7rem;font-weight:800;color:var(--mint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;text-align:center;}
+  .paths-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;color:#fff;text-align:center;margin-bottom:12px;line-height:1.3;}
+  .paths-desc{text-align:center;color:var(--muted);font-size:.93rem;line-height:1.9;max-width:520px;margin:0 auto 44px;}
+  .paths-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media(max-width:700px){.paths-grid{grid-template-columns:1fr;}}
+  .path-card{border-radius:24px;padding:34px 26px;cursor:pointer;transition:transform .2s,box-shadow .2s;text-decoration:none;display:block;color:inherit;}
+  .path-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.3);}
+  .path-card.for-newcomer{background:linear-gradient(145deg,rgba(201,162,39,.12),rgba(201,162,39,.04));border:1px solid rgba(201,162,39,.3);}
+  .path-card.for-pastor{background:linear-gradient(145deg,rgba(110,231,183,.1),rgba(110,231,183,.03));border:1px solid rgba(110,231,183,.3);}
+  .path-card.for-neighbor{background:linear-gradient(145deg,rgba(129,140,248,.1),rgba(129,140,248,.03));border:1px solid rgba(129,140,248,.3);}
+  .path-icon{width:44px;height:44px;margin-bottom:18px;display:block;}
+  .path-icon svg{width:100%;height:100%;}
+  .path-who{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;}
+  .for-newcomer .path-who{color:var(--gold);}
+  .for-pastor .path-who{color:var(--mint);}
+  .for-neighbor .path-who{color:#818CF8;}
+  .for-newcomer .path-icon{color:var(--gold);}
+  .for-pastor .path-icon{color:var(--mint);}
+  .for-neighbor .path-icon{color:#818CF8;}
+  .path-title{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.35;}
+  .path-body{font-size:.85rem;color:var(--muted);line-height:1.85;margin-bottom:22px;}
+  .path-cta{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:800;text-decoration:none;border-radius:50px;padding:9px 18px;}
+  .for-newcomer .path-cta{background:rgba(201,162,39,.15);color:var(--gold);}
+  .for-pastor .path-cta{background:rgba(110,231,183,.12);color:var(--mint);}
+  .for-neighbor .path-cta{background:rgba(129,140,248,.12);color:#818CF8;}
+  </style>
 </head>
 <body>
 
-  <!-- ── 앞면 ── -->
-  <div>
-    <div class="section-label">▸ 앞면 (Front)</div>
-    <div class="card front">
-      <div class="front-inner">
-        <div class="front-left">
-          <div class="eyebrow">Hebron Platform LLC</div>
-          <div class="name-en">Paul Kim</div>
-          <div class="name-kr">김 성 수</div>
-          <div class="divider"></div>
-          <div class="title">CEO &amp; Founder</div>
+<!-- 루트(/) 는 항상 랜딩 페이지 표시 — 자동 리디렉트 없음 -->
 
-          <!-- 8개 언어 순환 -->
-          <div class="multilang">
-            <div class="ml"><span class="ml-main">🇰🇷 글로벌 환대 커뮤니티</span><span class="ml-sub">교회 · 비즈니스 · 생활 · 모든 도시 · 모든 언어</span></div>
-            <div class="ml"><span class="ml-main">🌐 Global Hospitality Community</span><span class="ml-sub">Church · Business · Life · Every City · Every Language</span></div>
-            <div class="ml"><span class="ml-main">🇪🇸 Comunidad Global de Hospitalidad</span><span class="ml-sub">Iglesia · Negocios · Vida · Cada Ciudad · Cada Idioma</span></div>
-            <div class="ml"><span class="ml-main">🇨🇳 全球款待社区</span><span class="ml-sub">教会 · 商业 · 生活 · 每座城市 · 每种语言</span></div>
-            <div class="ml"><span class="ml-main">🇵🇭 Global na Komunidad ng Mabuting Pagtanggap</span><span class="ml-sub">Simbahan · Negosyo · Buhay · Bawat Lungsod</span></div>
-            <div class="ml"><span class="ml-main">🇻🇳 Cộng Đồng Hiếu Khách Toàn Cầu</span><span class="ml-sub">Nhà thờ · Kinh doanh · Cuộc sống · Mọi thành phố</span></div>
-            <div class="ml"><span class="ml-main">🇯🇵 グローバル・ホスピタリティ・コミュニティ</span><span class="ml-sub">教会 · ビジネス · 生活 · すべての都市</span></div>
-            <div class="ml"><span class="ml-main">🇮🇳 वैश्विक आतिथ्य समुदाय</span><span class="ml-sub">चर्च · व्यवसाय · जीवन · हर शहर · हर भाषा</span></div>
-          </div>
+<!-- ━━━━━━━━━━━ TOP ALERT BANNER (WABA) ━━━━━━━━━━━ -->
+<div id="waba-top-bar" style="
+  background:linear-gradient(90deg,#c0392b 0%,#1a3a6b 40%,#1a3a6b 60%,#c0392b 100%);
+  position:sticky;top:0;z-index:300;
+  display:flex;align-items:center;justify-content:center;gap:0;
+  padding:0;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.15);">
+  <!-- animated ticker line -->
+  <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,0.15);"></div>
+  <a href="/event-waba-2026.html" style="
+    display:flex;align-items:center;gap:10px;
+    text-decoration:none;flex:1;
+    padding:9px 16px;overflow:hidden;">
+    <!-- badge -->
+    <span style="
+      flex-shrink:0;background:rgba(255,255,255,0.15);
+      border:1px solid rgba(255,255,255,0.3);
+      border-radius:4px;padding:2px 8px;
+      font-size:.6rem;font-weight:900;letter-spacing:.1em;color:#fff;text-transform:uppercase;
+      white-space:nowrap;">
+      LIVE
+    </span>
+    <!-- date -->
+    <span style="flex-shrink:0;font-size:.72rem;font-weight:900;color:rgba(255,255,255,0.9);white-space:nowrap;">
+      AUG 13–16
+    </span>
+    <!-- divider -->
+    <span style="flex-shrink:0;color:rgba(255,255,255,0.3);font-size:.8rem;">|</span>
+    <!-- title -->
+    <span style="font-size:.75rem;font-weight:800;color:#fff;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+      WABA Korea Expo &amp; Festival 2026 &nbsp;—&nbsp; Seattle Waterfront Pier 62 &nbsp;·&nbsp; 벤더 모집 중 &nbsp;·&nbsp; 마감 6/30
+    </span>
+    <!-- arrow -->
+    <span style="flex-shrink:0;font-size:.72rem;color:rgba(255,255,255,0.7);margin-left:4px;">→</span>
+  </a>
+  <!-- close -->
+  <button onclick="document.getElementById('waba-top-bar').style.display='none'" style="
+    flex-shrink:0;background:none;border:none;cursor:pointer;
+    color:rgba(255,255,255,0.5);font-size:1rem;line-height:1;
+    padding:0 14px 0 4px;height:36px;display:flex;align-items:center;"
+    aria-label="닫기">&#215;</button>
+</div>
+<script>
+(function(){
+  var exp = new Date('2026-08-17T00:00:00-07:00');
+  if(Date.now() >= exp.getTime()){
+    var b = document.getElementById('waba-top-bar');
+    if(b) b.style.display = 'none';
+  }
+})();
+</script>
 
-          <!-- 연락처 -->
-          <div class="contact">
-            <div class="contact-row"><div class="dot"></div><span class="ct">hebronplatform@gmail.com</span></div>
-            <div class="contact-row"><div class="dot"></div><span class="ct">hebronguide.com</span></div>
-            <div class="contact-row"><div class="dot"></div><span class="ct">Seattle, WA</span></div>
-          </div>
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <svg class="nav-logo-mark" viewBox="0 0 70 70" width="30" height="30">
+      <circle cx="35" cy="35" r="31" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+      <polygon points="35,8 44,27 35,35 26,27" fill="#d4a017"/>
+      <polygon points="35,62 44,44 35,35 26,44" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="62,35 44,44 35,35 44,27" fill="rgba(255,255,255,0.55)"/>
+      <polygon points="8,35 26,27 35,35 26,44" fill="rgba(255,255,255,0.55)"/>
+      <circle cx="35" cy="35" r="2.8" fill="rgba(255,255,255,0.95)"/>
+    </svg>
+    <span class="nav-logo-text">
+      <span class="nav-logo-word">Hebron<em>Guide</em></span>
+      <span class="nav-logo-tag">Know your city · Find your people</span>
+    </span>
+  </a>
+  <div class="nav-links">
+    <a href="#about"><span class="ko">회사소개</span><span class="en">About</span></a>
+    <a href="#faq">FAQ</a>
+    <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener"
+       style="display:inline-flex;align-items:center;gap:5px;background:#FEE500;color:#3C1E1E;font-weight:800;font-size:.78rem;border-radius:20px;padding:6px 14px;text-decoration:none;">
+      <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" style="height:16px;width:auto;" alt="kakao">
+      <span class="ko">채널 구독</span><span class="en">Follow</span>
+    </a>
+    <button class="lang-btn" onclick="toggleLang()" id="lang-btn">EN</button>
+    <a href="/ad-request.html" class="nav-cta"><span class="ko">파트너 신청하기 →</span><span class="en">Partner Sign Up →</span></a>
+  </div>
+</nav>
+
+<!-- ━━━ WORLDCUP BANNER ━━━ -->
+<div id="wc-banner" style="display:none;background:linear-gradient(90deg,rgba(201,162,39,.1),rgba(201,162,39,.04),rgba(201,162,39,.1));border-bottom:1px solid rgba(201,162,39,.2);padding:9px 16px;text-align:center;position:relative;">
+  <div id="wc-content" style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:0 32px;"></div>
+  <button onclick="document.getElementById('wc-banner').style.display='none'" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.35);font-size:1.1rem;cursor:pointer;line-height:1;padding:4px 8px;">×</button>
+</div>
+<style>
+@keyframes wc-pulse{0%,100%{opacity:1}50%{opacity:.55}}
+.wc-live{animation:wc-pulse 1.6s ease-in-out infinite;display:inline-block;}
+</style>
+<script>
+(function(){
+  fetch('/worldcup.json').then(function(r){return r.json();}).then(function(d){
+    if(!d.active) return;
+    var html = '<span style="font-size:.62rem;font-weight:800;color:rgba(201,162,39,.7);letter-spacing:.12em;">2026 FIFA WORLD CUP</span>' +
+      '<span style="color:rgba(255,255,255,.2);">|</span>';
+
+    if(d.mode === 'upcoming' && d.nextMatchDate) {
+      var days = Math.ceil((new Date(d.nextMatchDate) - new Date()) / 86400000);
+      var dLabel = days <= 0 ? 'D-DAY' : 'D-' + days;
+      html +=
+        '<span class="wc-live" style="font-size:.7rem;font-weight:900;color:#C9A227;letter-spacing:.1em;">' + dLabel + '</span>' +
+        '<span style="color:rgba(255,255,255,.2);">|</span>' +
+        '<span class="ko" style="font-size:.82rem;font-weight:900;color:#fff;">대한민국 vs ' + (d.nextOpponent ? d.nextOpponent.ko : '') + '</span>' +
+        '<span class="en" style="font-size:.82rem;font-weight:900;color:#fff;">South Korea vs ' + (d.nextOpponent ? d.nextOpponent.en : '') + '</span>' +
+        '<span style="color:rgba(255,255,255,.2);">|</span>' +
+        '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + (d.nextStage ? d.nextStage.ko : '') + '</span>' +
+        '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + (d.nextStage ? d.nextStage.en : '') + '</span>' +
+        (d.nextMatch ?
+          '<span style="color:rgba(255,255,255,.2);">|</span>' +
+          '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.4);">' + d.nextMatch.ko + '</span>' +
+          '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.4);">' + d.nextMatch.en + '</span>'
+        : '');
+    } else {
+      var n = d.nextMatch;
+      html +=
+        '<span class="ko" style="font-size:.82rem;font-weight:900;color:#fff;">대한민국</span>' +
+        '<span class="en" style="font-size:.82rem;font-weight:900;color:#fff;">South Korea</span>' +
+        '<span style="font-size:.95rem;font-weight:900;color:#C9A227;letter-spacing:.06em;margin:0 2px;">' + d.score + '</span>' +
+        '<span class="ko" style="font-size:.82rem;font-weight:900;color:#fff;">' + d.opponent.ko + '</span>' +
+        '<span class="en" style="font-size:.82rem;font-weight:900;color:#fff;">' + d.opponent.en + '</span>' +
+        '<span style="color:rgba(255,255,255,.2);">|</span>' +
+        '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + d.stage.ko + '</span>' +
+        '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + d.stage.en + '</span>' +
+        (n ?
+          '<span style="color:rgba(255,255,255,.2);">|</span>' +
+          '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.4);">다음: ' + n.ko + '</span>' +
+          '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.4);">Next: ' + n.en + '</span>'
+        : '');
+    }
+
+    document.getElementById('wc-content').innerHTML = html;
+    document.getElementById('wc-banner').style.display = 'block';
+  }).catch(function(){});
+})();
+</script>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO ━━━ -->
+<div class="hero">
+  <a href="#cities" style="text-decoration:none;"><div class="hero-eyebrow" style="cursor:pointer;">✦ <span class="ko">글로벌 환대 커뮤니티</span><span class="en">Global Hospitality Community</span></div></a>
+
+  <p class="hero-pre">
+    <span class="ko">공항 문을 나서듯, 낯선 도시로 첫발을 내딛는 그 순간—<br>아는 사람 하나 없는 그곳에서도.</span>
+    <span class="en">The moment you step out of the airport into a new city —<br>even in a place where you know no one.</span>
+  </p>
+
+  <h1 class="hero-headline">
+    <span class="ko">이미 누군가,<br><span class="accent">당신을 기다리고 있었습니다.</span></span>
+    <span class="en">Someone was already there,<br><span class="accent">waiting for you.</span></span>
+  </h1>
+
+  <p class="hero-sub-big">
+    <span class="ko">이 세상 어느 누구도 <strong style="color:#fff;font-weight:700;">혼자가 아닙니다.</strong></span>
+    <span class="en">No one in this world is <strong style="color:#fff;font-weight:700;">truly alone.</strong></span>
+  </p>
+
+  <div class="hero-declaration">
+    <p>
+      <span class="ko">"정보가 아닙니다. 사람입니다.<br>이 도시를 먼저 살아온 사람들이<br>당신의 첫날을 함께합니다.<br><br>그 누군가가 되는 것 — 이것이 헤브론입니다."</span>
+      <span class="en">"Not just information. People.<br>Those who've lived this city before you<br>walk with you on your first day.<br><br>Being that someone for you — this is Hebron."</span>
+    </p>
+    <span class="speaker ko">— HebronGuide</span>
+    <span class="speaker en">— HebronGuide</span>
+  </div>
+
+  <div class="hero-cta" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a href="/ad-request.html" class="btn-hero"><span class="ko">파트너 신청하기 →</span><span class="en">Become a Partner →</span></a>
+    <a href="#cities" class="btn-outline"><span class="ko">도시 가이드 열기</span><span class="en">Open City Guide</span></a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n"><span class="hg-city-count">71</span><sup style="font-size:.9rem;">+</sup></div><div class="stat-l"><span class="ko">서비스 도시</span><span class="en">Cities</span></div></div>
+    <div class="stat"><div class="stat-n">700<sub style="font-size:.8rem;"><span class="ko">만</span><span class="en">K</span></sub></div><div class="stat-l"><span class="ko">재외 한인</span><span class="en">Korean Diaspora</span></div></div>
+    <div class="stat"><div class="stat-n">500</div><div class="stat-l"><span class="ko">2030 목표 도시</span><span class="en">2030 City Goal</span></div></div>
+    <div class="stat"><div class="stat-n">∞</div><div class="stat-l"><span class="ko">환대의 마음</span><span class="en">Heart of Welcome</span></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PARTNERS ━━━ -->
+<div class="partner-section" id="about">
+  <div class="sec-label"><span class="ko">파트너 · Partners</span><span class="en">Partners</span></div>
+  <h2 class="sec-title">
+    <span class="ko">두 가지 방식으로<br>함께합니다</span>
+    <span class="en">Two ways<br>to join us</span>
+  </h2>
+  <p class="sec-desc">
+    <span class="ko">교회든 사업체든, 환대의 마음이 있다면 — 이미 파트너입니다.</span>
+    <span class="en">Church or business — if hospitality is in your heart, you're already a partner.</span>
+  </p>
+
+  <div class="partner-grid">
+
+    <a href="/ad-request.html#church" class="partner-card partner-church">
+      <div class="partner-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M4 21V11l8-6 8 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/><path d="M2 21h20"/></svg>
+      </div>
+      <div class="partner-type"><span class="ko">교회 파트너</span><span class="en">Church Partner</span></div>
+      <h3><span class="ko">선교적 교회로<br>도시를 섬기세요</span><span class="en">Serve the city<br>as a missional church</span></h3>
+      <p><span class="ko">교회를 무료 등재하면, 공항에서 내린 새 이웃이 가장 먼저 만나는 얼굴이 됩니다.</span><span class="en">Free listing — be the first face a newcomer meets after landing.</span></p>
+      <div class="partner-free"><span class="ko">무상 등재</span><span class="en">Free Listing</span></div>
+      <div class="partner-cta-label"><span class="ko">교회 등록하기 →</span><span class="en">Register Church →</span></div>
+    </a>
+
+    <a href="/ad-request.html#business" class="partner-card partner-biz">
+      <div class="partner-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+      </div>
+      <div class="partner-type"><span class="ko">사업 파트너</span><span class="en">Business Partner</span></div>
+      <h3><span class="ko">글로벌 환대 플랫폼에<br>사업체를 올리세요</span><span class="en">List your business<br>on a global hospitality platform</span></h3>
+      <p><span class="ko">식당, 병원, 학원, 법무사 — 새로 도착한 한인이 첫 번째로 찾는 곳이 됩니다.</span><span class="en">Restaurant, clinic, academy, law office — be the first stop for new Korean arrivals.</span></p>
+      <div class="partner-free"><span class="ko">기본 무료</span><span class="en">Free to Start</span></div>
+      <div class="partner-cta-label"><span class="ko">사업체 등록하기 →</span><span class="en">Register Business →</span></div>
+    </a>
+
+  </div>
+
+  <p class="partner-dna-line">
+    <span class="ko">두 파트너의 공통 기반 — <strong style="color:#fff;">환대 (歡待)</strong>. 정보가 아닌 사람을 연결합니다.</span>
+    <span class="en">One shared foundation — <strong style="color:#fff;">Hospitality</strong>. Connecting people, not just information.</span>
+  </p>
+
+  <!-- 헤브론 이야기 — 관심 있는 분만 펼쳐 읽기 -->
+  <div class="about-story-wrap">
+    <button class="about-story-toggle" onclick="toggleAboutStory(this)" aria-expanded="false">
+      <span class="ko">헤브론 이야기 — 우리는 왜 이 일을 합니까?</span>
+      <span class="en">Our Story — Why We Do This</span>
+      <svg class="about-story-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="about-story-body about-story-closed">
+
+      <div class="about-story-block">
+        <div class="about-story-label"><span class="ko">사명</span><span class="en">Mission</span></div>
+        <h3 class="about-story-h">
+          <span class="ko">낯선 도시, 이미 누군가 기다리고 있습니다</span>
+          <span class="en">In every new city, someone is already waiting for you</span>
+        </h3>
+        <p>
+          <span class="ko">공항 문을 나서는 그 순간 — 아는 사람 하나 없는 낯선 땅에서도 — 먼저 그 길을 걸어간 사람들이 당신을 위해 준비되어 있습니다. HebronGuide는 그 연결을 만듭니다.</span>
+          <span class="en">The moment you step out of the airport into an unfamiliar city — even when you know no one — people who've walked that road before you are already prepared. HebronGuide makes that connection.</span>
+        </p>
+      </div>
+
+      <div class="about-story-block">
+        <div class="about-story-label"><span class="ko">이름의 뜻</span><span class="en">The Name</span></div>
+        <h3 class="about-story-h">
+          <span class="ko">헤브론(Hebron) — 연합·교제·동반자</span>
+          <span class="en">Hebron — Union · Fellowship · Companion</span>
+        </h3>
+        <p>
+          <span class="ko">헤브론은 히브리어로 "연합, 교제, 동반자"를 뜻합니다 (חֶבְרוֹן). 아브라함이 거류민으로 살며 하나님과 동행한 땅. 우리는 모든 이민자가 새 땅에서 그 동반자를 만나도록 돕습니다.</span>
+          <span class="en">Hebron (חֶבְרוֹן) means "union, fellowship, companion" in Hebrew. The land where Abraham lived as a sojourner and walked with God. We help every immigrant find that companion in a new land.</span>
+        </p>
+        <div class="about-story-verse">
+          <p class="ko">"내가 나그네 되었을 때 너희가 영접하였다"</p>
+          <p class="en">"I was a stranger and you welcomed me"</p>
+          <cite>— <span class="ko">마태복음</span><span class="en">Matthew</span> 25:35</cite>
         </div>
+      </div>
 
-        <!-- 앞면 QR -->
-        <div class="front-right">
-          <div class="qr-wrap">
-            <img src="data:image/png;base64,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" alt="HebronGuide">
-          </div>
-          <div class="qr-site">HebronGuide</div>
-          <div class="qr-hint">📲 뒷면 QR → 사이트 연결</div>
+      <div class="about-story-block">
+        <div class="about-story-label"><span class="ko">비전</span><span class="en">Vision</span></div>
+        <h3 class="about-story-h">
+          <span class="ko">2030년까지 전 세계 500개 도시</span>
+          <span class="en">500 cities worldwide by 2030</span>
+        </h3>
+        <p>
+          <span class="ko">대한민국에서 출발해 세계 71개+ 도시로 — BTS가 한국어로 세계를 움직였듯, 환대의 네트워크는 본국에서 시작해 디아스포라로, 디아스포라에서 다시 본국으로 흐릅니다. 그리고...</span>
+          <span class="en">Starting from Korea, reaching 71+ cities worldwide — just as BTS moved the world in Korean, our hospitality network flows from the homeland to the diaspora, and from the diaspora back home. And...</span>
+        </p>
+        <div class="about-story-stats">
+          <div><span class="about-stat-n">71+</span><span class="about-stat-l"><span class="ko">현재 도시</span><span class="en">Cities now</span></span></div>
+          <div><span class="about-stat-n">500</span><span class="about-stat-l"><span class="ko">2030 목표</span><span class="en">Goal 2030</span></span></div>
+          <div><span class="about-stat-n">700<small class="ko">만</small><small class="en">K</small></span><span class="about-stat-l"><span class="ko">재외 한인</span><span class="en">Korean diaspora</span></span></div>
         </div>
+      </div>
+
+      <div class="about-story-block">
+        <div class="about-story-label"><span class="ko">운영사</span><span class="en">Operator</span></div>
+        <p style="font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.9;">
+          <span class="ko">HebronGuide는 Hebron Platform LLC가 운영합니다. 문의: <a href="mailto:Hebronplatform@gmail.com" style="color:var(--gold);text-decoration:none;">Hebronplatform@gmail.com</a></span>
+          <span class="en">HebronGuide is operated by Hebron Platform LLC. Contact: <a href="mailto:Hebronplatform@gmail.com" style="color:var(--gold);text-decoration:none;">Hebronplatform@gmail.com</a></span>
+        </p>
+      </div>
+
+    </div><!-- /about-story-body -->
+  </div>
+</div>
+
+<style>
+.partner-section{max-width:900px;margin:0 auto;padding:64px 24px;}
+.partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:40px 0 28px;}
+@media(max-width:640px){.partner-grid{grid-template-columns:1fr;}}
+.partner-card{display:block;text-decoration:none;border-radius:20px;padding:32px 28px;transition:transform .18s,box-shadow .18s;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);}
+.partner-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.4);}
+.partner-church{border-color:rgba(110,231,183,.25);}
+.partner-church:hover{border-color:rgba(110,231,183,.5);}
+.partner-biz{border-color:rgba(201,162,39,.25);}
+.partner-biz:hover{border-color:rgba(201,162,39,.5);}
+.partner-icon-wrap{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+.partner-church .partner-icon-wrap{background:rgba(110,231,183,.12);color:var(--mint,#6EE7B7);}
+.partner-biz .partner-icon-wrap{background:rgba(201,162,39,.12);color:var(--gold,#C9A227);}
+.partner-type{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
+.partner-church .partner-type{color:var(--mint,#6EE7B7);}
+.partner-biz .partner-type{color:var(--gold,#C9A227);}
+.partner-card h3{font-size:1.2rem;font-weight:800;color:#fff;line-height:1.4;margin:0 0 12px;}
+.partner-card p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.7;margin:0 0 20px;}
+.partner-free{display:inline-block;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:16px;}
+.partner-church .partner-free{background:rgba(110,231,183,.15);color:var(--mint,#6EE7B7);}
+.partner-biz .partner-free{background:rgba(201,162,39,.15);color:var(--gold,#C9A227);}
+.partner-cta-label{font-size:.88rem;font-weight:700;color:#fff;}
+.partner-dna-line{text-align:center;font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.8;margin-top:0;}
+
+/* 헤브론 이야기 접기/펼치기 */
+.about-story-wrap{margin-top:32px;border-top:1px solid rgba(255,255,255,.08);padding-top:24px;}
+.about-story-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:14px;color:rgba(255,255,255,.6);cursor:pointer;padding:16px 22px;font-size:.88rem;font-weight:600;text-align:left;font-family:'Noto Sans KR',sans-serif;transition:background .2s,border-color .2s;}
+.about-story-toggle:hover{background:rgba(255,255,255,.06);border-color:rgba(201,162,39,.3);color:rgba(255,255,255,.85);}
+.about-story-toggle[aria-expanded="true"]{border-color:rgba(201,162,39,.35);color:#fff;}
+.about-story-arrow{flex-shrink:0;transition:transform .25s;color:rgba(255,255,255,.3);}
+.about-story-toggle[aria-expanded="true"] .about-story-arrow{transform:rotate(180deg);color:var(--gold,#C9A227);}
+.about-story-body{padding:28px 4px 8px;display:flex;flex-direction:column;gap:28px;}
+.about-story-body.about-story-closed{display:none;}
+.about-story-block{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:24px 22px;}
+.about-story-label{font-size:.65rem;font-weight:800;color:var(--gold,#C9A227);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;}
+.about-story-h{font-size:1.05rem;font-weight:800;color:#fff;margin:0 0 12px;line-height:1.4;}
+.about-story-block p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.85;margin:0;}
+.about-story-verse{margin-top:18px;padding:14px 18px;background:rgba(201,162,39,.06);border-left:3px solid var(--gold,#C9A227);border-radius:0 10px 10px 0;}
+.about-story-verse p{font-size:.92rem;color:rgba(255,255,255,.8);font-style:italic;margin:0 0 4px;}
+.about-story-verse cite{font-style:normal;font-size:.76rem;color:var(--gold,#C9A227);font-weight:700;}
+.about-story-stats{display:flex;gap:24px;margin-top:18px;flex-wrap:wrap;}
+.about-story-stats>div{display:flex;flex-direction:column;gap:4px;}
+.about-stat-n{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:900;color:var(--gold,#C9A227);line-height:1;}
+.about-stat-l{font-size:.7rem;color:rgba(255,255,255,.45);}
+</style>
+
+<div class="divider"></div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FAQ ━━━ -->
+<div class="faq-section" id="faq">
+  <div class="sec-label">FAQ</div>
+  <h2 class="sec-title">
+    <span class="ko">자주 묻는 질문</span>
+    <span class="en">Frequently Asked Questions</span>
+  </h2>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span><span class="ko">HebronGuide는 크리스천만을 위한 서비스인가요?</span><span class="en">Is HebronGuide only for Christians?</span></span>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">
+        <span class="ko">아닙니다. HebronGuide는 모든 한인 이주자를 위한 디지털 공간입니다. 식당·병원·법무사·교회 — 이 도시에서 필요한 모든 것을 찾을 수 있습니다. 환대는 믿음의 유무와 무관합니다.</span>
+        <span class="en">No. HebronGuide is for all Korean immigrants and expats. Restaurants, clinics, legal services, churches — find everything you need. Hospitality doesn't require a shared faith.</span>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span><span class="ko">교회·사업체 등록은 유료인가요?</span><span class="en">Is registration free for churches and businesses?</span></span>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">
+        <span class="ko">교회는 완전 무료입니다. 사업체는 기본 등재 무료, 프리미엄 노출은 선택 사항입니다.</span>
+        <span class="en">Church listing is completely free. Business basic listing is free; premium placement is optional.</span>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span><span class="ko">내가 사는 도시가 없으면 어떻게 하나요?</span><span class="en">What if my city isn't listed?</span></span>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">
+        <span class="ko">도시 추가 신청을 해주세요. 우선 순위로 반영합니다. 현재 <span class="hg-city-count">71</span>개 도시 운영 중, 2030년까지 500개 목표입니다.</span>
+        <span class="en">Submit a city request and we'll prioritize it. Currently serving <span class="hg-city-count">71</span> cities — goal of 500 by 2030.</span>
+        <br><a href="/city-request.html" style="color:var(--gold,#C9A227);font-size:.85rem;text-decoration:none;display:inline-block;margin-top:8px;"><span class="ko">도시 추가 신청 →</span><span class="en">Request a city →</span></a>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ── 뒷면 ── -->
-  <div>
-    <div class="section-label">▸ 뒷면 (Back) — QR 스캔 → 각 사이트 직접 연결</div>
-    <div class="card back">
-      <div class="back-inner">
-        <div class="back-tag">Scan QR · 스캔하면 바로 연결됩니다</div>
-        <div class="back-kr">모든 도시 · 모든 언어 · 모든 민족을 환대합니다</div>
-        <div class="back-en">Every City · Every Language · Every People</div>
+<style>
+.faq-section{max-width:720px;margin:0 auto;padding:64px 24px;}
+.faq-list{margin-top:36px;display:flex;flex-direction:column;gap:12px;}
+.faq-item{border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.04);border:none;color:#fff;cursor:pointer;padding:18px 22px;font-size:.95rem;font-weight:600;text-align:left;line-height:1.4;}
+.faq-q:hover{background:rgba(255,255,255,.07);}
+.faq-arrow{flex-shrink:0;transition:transform .2s;color:rgba(255,255,255,.4);}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-a{display:none;padding:0 22px 18px;font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.8;}
+.faq-item.open .faq-a{display:block;}
+</style>
+<script>
+function toggleAboutStory(btn){
+  var body=btn.nextElementSibling;
+  var open=btn.getAttribute('aria-expanded')==='true';
+  btn.setAttribute('aria-expanded',open?'false':'true');
+  body.classList.toggle('about-story-closed',open);
+}
+function toggleFaq(btn){
+  var item=btn.closest('.faq-item');
+  var isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open');});
+  if(!isOpen)item.classList.add('open');
+}
+</script>
 
-        <div class="qr-grid">
-          <div class="qr-item hero">
-            <div class="qb">
-              <div class="hero-badge">🌍 GLOBAL</div>
-              <img src="data:image/png;base64,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" alt="HebronGuide">
-            </div>
-            <div class="qn">HebronGuide</div>
-            <div class="qu">hebronguide.com</div>
-            <div class="ql">한·EN·ES·中·TL·VI·JP·HI</div>
+<div class="divider"></div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EVENT BANNER ━━━ -->
+<div id="waba-event-banner" style="padding:0 20px 12px;max-width:960px;margin:0 auto;">
+  <a href="/event-waba-2026.html" style="display:block;text-decoration:none;">
+    <div style="background:linear-gradient(135deg,#0f1f3d 0%,#1a3a6b 50%,#0f1f3d 100%);
+      border:1px solid rgba(255,255,255,0.15);border-radius:18px;overflow:hidden;
+      box-shadow:0 4px 24px rgba(0,0,0,0.4);position:relative;">
+      <!-- Red accent bar -->
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#c0392b,#e74c3c,#c0392b);"></div>
+      <div style="padding:18px 20px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <!-- Date badge -->
+        <div style="flex-shrink:0;background:rgba(192,57,43,0.9);border-radius:10px;padding:8px 13px;text-align:center;min-width:54px;">
+          <div style="font-family:'Cinzel',serif;font-weight:900;font-size:1.25rem;color:#fff;line-height:1;">AUG</div>
+          <div style="font-family:'Cinzel',serif;font-weight:900;font-size:1.5rem;color:#fff;line-height:1.1;">13<span style="font-size:.9rem;">–16</span></div>
+        </div>
+        <!-- Event info -->
+        <div style="flex:1;min-width:180px;">
+          <div style="font-size:.65rem;font-weight:800;letter-spacing:.12em;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:3px;">
+            시애틀 · 워싱턴주 한인상공회의소
           </div>
-          <div class="qr-item">
-            <div class="qb"><img src="data:image/png;base64,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" alt="NanuriWeb"></div>
-            <div class="qn">NanuriWeb</div>
-            <div class="qu">nanuriweb.com</div>
+          <div style="font-family:'Cinzel',serif;font-size:1.05rem;font-weight:900;color:#fff;line-height:1.25;margin-bottom:4px;">
+            WABA KOREA EXPO &amp; FESTIVAL 2026
           </div>
-          <div class="qr-item">
-            <div class="qb"><img src="data:image/png;base64,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" alt="NanuriHome"></div>
-            <div class="qn">NanuriHome</div>
-            <div class="qu">nanuriHome.com</div>
-          </div>
-          <div class="qr-item">
-            <div class="qb"><img src="data:image/png;base64,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" alt="KChurch911"></div>
-            <div class="qn">KChurch911</div>
-            <div class="qu">kchurch911.com</div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,0.65);">
+            Pier 62, Seattle Waterfront — 벤더 모집 중 · 6월 30일 마감
           </div>
         </div>
-
-        <div class="back-footer">
-          <div class="bl"></div>
-          <div class="bt">Hebron Platform LLC · Seattle, WA</div>
-          <div class="bl"></div>
+        <!-- CTA -->
+        <div style="flex-shrink:0;background:rgba(192,57,43,0.85);color:#fff;font-size:.75rem;font-weight:800;
+          padding:9px 16px;border-radius:50px;white-space:nowrap;border:1px solid rgba(255,255,255,0.2);">
+          자세히 보기
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:-1px;margin-left:4px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
       </div>
     </div>
+  </a>
+</div>
+
+<div class="divider"></div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CITIES ━━━ -->
+<div class="cities-section" id="cities">
+  <div class="sec-label">서비스 도시 · Cities</div>
+  <h2 class="sec-title"><span class="ko">전 세계 <span><span class="hg-city-count">71</span>개+ 도시</span></span><span class="en"><span><span class="hg-city-count">71</span>+ Cities</span> Worldwide</span></h2>
+  <p class="sec-desc" style="margin-bottom:32px;"><span class="ko">대한민국에서 출발해 세계로 — 한인이 사는 모든 곳, 돌아오는 모든 곳</span><span class="en">From Korea to the world — every city Koreans go to, and every city they come home to</span></p>
+
+  <div class="search-wrap">
+    <input id="citySearch" type="text" placeholder="도시 검색 · Search city (뉴욕, Tokyo, Seoul...)"/>
   </div>
 
+  <div id="cityRegions">
+    <div class="region-block"><div class="region-label">🇺🇸 <span class="ko">미국</span><span class="en">USA</span></div><div class="city-pills">
+      <a href="/seattle/" class="city-pill featured">🏔️ <span class="ko">시애틀</span><span class="en">Seattle</span></a>
+      <a href="/la/" class="city-pill">🌴 LA</a>
+      <a href="/newyork/" class="city-pill">🗽 <span class="ko">뉴욕</span><span class="en">New York</span></a>
+      <a href="/sf/" class="city-pill">🌉 <span class="ko">샌프란시스코</span><span class="en">San Francisco</span></a>
+      <a href="/dallas/" class="city-pill">🤠 <span class="ko">달라스</span><span class="en">Dallas</span></a>
+      <a href="/houston/" class="city-pill">🛢️ <span class="ko">휴스턴</span><span class="en">Houston</span></a>
+      <a href="/chicago/" class="city-pill">🌆 <span class="ko">시카고</span><span class="en">Chicago</span></a>
+      <a href="/atlanta/" class="city-pill">🍑 <span class="ko">애틀랜타</span><span class="en">Atlanta</span></a>
+      <a href="/boston/" class="city-pill">🦞 <span class="ko">보스턴</span><span class="en">Boston</span></a>
+      <a href="/nashville/" class="city-pill">🎸 <span class="ko">내쉬빌</span><span class="en">Nashville</span></a>
+      <a href="/miami/" class="city-pill">🌊 <span class="ko">마이애미</span><span class="en">Miami</span></a>
+      <a href="/dc/" class="city-pill">🏛️ <span class="ko">워싱턴 DC</span><span class="en">Washington DC</span></a>
+      <a href="/philadelphia/" class="city-pill">🔔 <span class="ko">필라델피아</span><span class="en">Philadelphia</span></a>
+      <a href="/sandiego/" class="city-pill">☀️ <span class="ko">샌디에고</span><span class="en">San Diego</span></a>
+      <a href="/orangecounty/" class="city-pill">🍊 <span class="ko">오렌지카운티</span><span class="en">Orange County</span></a>
+      <a href="/portland/" class="city-pill">🌲 <span class="ko">포틀랜드</span><span class="en">Portland</span></a>
+      <a href="/denver/" class="city-pill">⛰️ <span class="ko">덴버</span><span class="en">Denver</span></a>
+      <a href="/phoenix/" class="city-pill">🌵 <span class="ko">피닉스</span><span class="en">Phoenix</span></a>
+      <a href="/honolulu/" class="city-pill">🌺 <span class="ko">호놀룰루</span><span class="en">Honolulu</span></a>
+      <a href="/kansascity/" class="city-pill">🎷 <span class="ko">캔자스시티</span><span class="en">Kansas City</span></a>
+      <a href="/minneapolis/" class="city-pill">❄️ <span class="ko">미니애폴리스</span><span class="en">Minneapolis</span></a>
+      <a href="/charlotte/" class="city-pill">🏙️ <span class="ko">샬럿</span><span class="en">Charlotte</span></a>
+      <a href="/raleigh/" class="city-pill">🔬 <span class="ko">롤리</span><span class="en">Raleigh</span></a>
+      <a href="/columbus/" class="city-pill">🏈 <span class="ko">콜럼버스</span><span class="en">Columbus</span></a>
+      <a href="/louisville/" class="city-pill">🥃 <span class="ko">루이빌</span><span class="en">Louisville</span></a>
+      <a href="/orlando/" class="city-pill">☀️ <span class="ko">올랜도</span><span class="en">Orlando</span></a>
+      <a href="/maryland/" class="city-pill">🍒 <span class="ko">메릴랜드</span><span class="en">Maryland</span></a>
+      <a href="/tucson/" class="city-pill">🌵 <span class="ko">투손</span><span class="en">Tucson</span></a>
+      <a href="/fayetteville/" class="city-pill">⚔️ <span class="ko">페이엣빌</span><span class="en">Fayetteville</span></a>
+      <a href="/killeen/" class="city-pill">🪖 <span class="ko">킬린</span><span class="en">Killeen</span></a>
+      <a href="/anchorage/" class="city-pill">🐻 <span class="ko">앵커리지</span><span class="en">Anchorage</span></a>
+    </div></div>
+
+    <div class="region-block"><div class="region-label">🇨🇦 <span class="ko">캐나다</span><span class="en">Canada</span></div><div class="city-pills">
+      <a href="/toronto/" class="city-pill">🍁 <span class="ko">토론토</span><span class="en">Toronto</span></a>
+      <a href="/vancouver/" class="city-pill">🍁 <span class="ko">밴쿠버</span><span class="en">Vancouver</span></a>
+      <a href="/calgary/" class="city-pill">🍁 <span class="ko">캘거리</span><span class="en">Calgary</span></a>
+      <a href="/edmonton/" class="city-pill">🍁 <span class="ko">에드먼턴</span><span class="en">Edmonton</span></a>
+      <a href="/ottawa/" class="city-pill">🏛️ <span class="ko">오타와</span><span class="en">Ottawa</span></a>
+      <a href="/winnipeg/" class="city-pill">🌾 <span class="ko">위니펙</span><span class="en">Winnipeg</span></a>
+    </div></div>
+
+    <div class="region-block"><div class="region-label">🌎 <span class="ko">중남미</span><span class="en">Latin America</span></div><div class="city-pills">
+      <a href="/mexicocity/" class="city-pill">🌮 <span class="ko">멕시코시티</span><span class="en">Mexico City</span></a>
+      <a href="/guadalajara/" class="city-pill">🌺 <span class="ko">과달라하라</span><span class="en">Guadalajara</span></a>
+      <a href="/monterrey/" class="city-pill">⛰️ <span class="ko">몬테레이</span><span class="en">Monterrey</span></a>
+      <a href="/saopaulo/" class="city-pill">🇧🇷 <span class="ko">상파울루</span><span class="en">São Paulo</span></a>
+    </div></div>
+
+    <div class="region-block"><div class="region-label">🌏 <span class="ko">오세아니아</span><span class="en">Oceania</span></div><div class="city-pills">
+      <a href="/sydney/" class="city-pill">🦘 <span class="ko">시드니</span><span class="en">Sydney</span></a>
+      <a href="/melbourne/" class="city-pill">☕ <span class="ko">멜버른</span><span class="en">Melbourne</span></a>
+      <a href="/brisbane/" class="city-pill">🌞 <span class="ko">브리즈번</span><span class="en">Brisbane</span></a>
+      <a href="/perth/" class="city-pill">🌊 <span class="ko">퍼스</span><span class="en">Perth</span></a>
+      <a href="/auckland/" class="city-pill">🥝 <span class="ko">오클랜드</span><span class="en">Auckland</span></a>
+    </div></div>
+
+    <div class="region-block"><div class="region-label">🌍 <span class="ko">유럽·중동</span><span class="en">Europe·Middle East</span></div><div class="city-pills">
+      <a href="/london/" class="city-pill">🎡 <span class="ko">런던</span><span class="en">London</span></a>
+      <a href="/paris/" class="city-pill">🗼 <span class="ko">파리</span><span class="en">Paris</span></a>
+      <a href="/berlin/" class="city-pill">🧱 <span class="ko">베를린</span><span class="en">Berlin</span></a>
+      <a href="/frankfurt/" class="city-pill">🏦 <span class="ko">프랑크푸르트</span><span class="en">Frankfurt</span></a>
+      <a href="/dubai/" class="city-pill">🏙️ <span class="ko">두바이</span><span class="en">Dubai</span></a>
+    </div></div>
+
+    <div class="region-block"><div class="region-label">🌏 <span class="ko">동남아시아</span><span class="en">Southeast Asia</span></div><div class="city-pills">
+      <a href="/singapore/" class="city-pill">🦁 <span class="ko">싱가포르</span><span class="en">Singapore</span></a>
+      <a href="/bangkok/" class="city-pill">🏯 <span class="ko">방콕</span><span class="en">Bangkok</span></a>
+      <a href="/hochiminh/" class="city-pill">🛵 <span class="ko">호치민</span><span class="en">Ho Chi Minh</span></a>
+    </div></div>
+
+    <div class="region-block"><div class="region-label">🇯🇵 <span class="ko">일본</span><span class="en">Japan</span></div><div class="city-pills">
+      <a href="/tokyo/" class="city-pill">⛩️ <span class="ko">도쿄</span><span class="en">Tokyo</span></a>
+      <a href="/osaka/" class="city-pill">🐙 <span class="ko">오사카</span><span class="en">Osaka</span></a>
+    </div></div>
+
+    <div class="region-block"><div class="region-label">🇰🇷 <span class="ko">대한민국 — 뿌리 · 본국</span><span class="en">Korea — The Root</span></div><div class="city-pills">
+      <a href="/seoul/" class="city-pill featured">🏯 <span class="ko">서울</span><span class="en">Seoul</span></a>
+      <a href="/busan/" class="city-pill">🌊 <span class="ko">부산</span><span class="en">Busan</span></a>
+      <a href="/incheon/" class="city-pill">✈️ <span class="ko">인천</span><span class="en">Incheon</span></a>
+      <a href="/daegu/" class="city-pill">🍎 <span class="ko">대구</span><span class="en">Daegu</span></a>
+      <a href="/gwangju/" class="city-pill">🎨 <span class="ko">광주</span><span class="en">Gwangju</span></a>
+      <a href="/daejeon/" class="city-pill">🔬 <span class="ko">대전</span><span class="en">Daejeon</span></a>
+      <a href="/jeju/" class="city-pill">🌿 <span class="ko">제주</span><span class="en">Jeju</span></a>
+      <a href="/ansan/" class="city-pill">🌏 <span class="ko">안산</span><span class="en">Ansan</span></a>
+      <a href="/changwon/" class="city-pill">🌸 <span class="ko">창원</span><span class="en">Changwon</span></a>
+      <a href="/cheonan/" class="city-pill">🏛️ <span class="ko">천안·아산</span><span class="en">Cheonan·Asan</span></a>
+      <a href="/bundang/" class="city-pill">🏡 <span class="ko">분당·수지</span><span class="en">Bundang·Suji</span></a>
+    </div></div>
+  </div>
+
+  <div style="text-align:center;margin-top:40px;">
+    <a href="/seattle/" class="btn-hero"><span class="ko">지금 내 도시 찾기 →</span><span class="en">Find My City →</span></a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<footer>
+  <a href="https://hebronguide.com/" style="text-decoration:none;"><div class="footer-logo">HebronGuide</div></a>
+  <div class="footer-links">
+    <a href="/about.html"><span class="ko">회사소개</span><span class="en">About</span></a>
+    <a href="/help.html"><span class="ko">도움말</span><span class="en">Help</span></a>
+    <a href="/ad-request.html"><span class="ko">파트너 신청</span><span class="en">Partner</span></a>
+    <a href="/privacy.html"><span class="ko">개인정보처리방침</span><span class="en">Privacy</span></a>
+    <a href="/terms.html"><span class="ko">이용약관</span><span class="en">Terms</span></a>
+  </div>
+  <div style="margin-bottom:10px;">
+    <a href="mailto:Hebronplatform@gmail.com" style="color:rgba(201,162,39,0.7);font-size:.8rem;font-family:'Noto Sans KR',sans-serif;text-decoration:none;">
+      Hebronplatform@gmail.com
+    </a>
+  </div>
+  <div class="footer-copy">© 2026 Hebron Platform LLC. All rights reserved.</div>
+  <div class="footer-soul">
+    <span class="ko">"이 세상 어느 누구도, 소외되고 외롭고 고독함을 느끼지 않아야 합니다.<br>어떤 도시에서도. 어느 누구도."</span>
+    <span class="en">"No one in this world should ever feel isolated, lonely, or forgotten.<br>In any city. For anyone."</span>
+  </div>
+</footer>
+
+<script>
+// 한/영 전환
+function toggleLang(){
+  var html=document.documentElement;
+  var btn=document.getElementById('lang-btn');
+  if(html.lang==='ko'){
+    html.lang='en';
+    btn.textContent='한국어';
+    localStorage.setItem('hg_lang','en');
+  } else {
+    html.lang='ko';
+    btn.textContent='EN';
+    localStorage.setItem('hg_lang','ko');
+  }
+}
+// 저장된 언어 복원
+(function(){
+  var saved=localStorage.getItem('hg_lang');
+  if(saved==='en'){
+    document.documentElement.lang='en';
+    var btn=document.getElementById('lang-btn');
+    if(btn)btn.textContent='한국어';
+  }
+})();
+
+var inp=document.getElementById('citySearch');
+if(inp){
+  inp.addEventListener('input',function(){
+    var q=this.value.trim().toLowerCase();
+    document.querySelectorAll('.region-block').forEach(function(b){
+      var pills=b.querySelectorAll('.city-pill'),v=0;
+      pills.forEach(function(p){
+        var show=!q||p.textContent.toLowerCase().includes(q)||(p.getAttribute('href')||'').includes(q);
+        p.style.display=show?'':'none';
+        if(show)v++;
+      });
+      b.style.display=(q&&v===0)?'none':'';
+    });
+  });
+}
+</script>
+
+<!-- ── 도시 수 단일 진실 공급원 ─────────────────────────── -->
+<script src="/js/hg-config.js"></script>
+<!-- ── Vercel Analytics ──────────────────────────────── -->
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+<!-- ── WABA Event auto-expiry: hide after Aug 16 2026 midnight PST ── -->
+<script>
+(function(){
+  var expire = new Date('2026-08-17T00:00:00-07:00');
+  if(Date.now() >= expire.getTime()){
+    var el = document.getElementById('waba-event-banner');
+    if(el) el.style.display = 'none';
+  }
+})();
+</script>
 </body>
 </html>
