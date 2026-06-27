@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<title>HebronGuide — 재외 한인 글로벌 정착 가이드</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="재외 한인 700만을 위한 도시별 정착 가이드 | Settlement guide for Korean diaspora worldwide"/>
+<meta property="og:title" content="HebronGuide — 도시마다 뿌리내리는 방법이 있다"/>
+<meta property="og:description" content="시애틀·달라스·SF·뉴욕 — 공항을 나서는 첫날부터 함께합니다"/>
+<meta property="og:url" content="https://hebronguide.com"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Noto+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:        #1a1a14;
+    --ink-soft:   #3a3a2e;
+    --ink-mute:   #7a7a6a;
+    --ink-faint:  #b5b5a0;
+    --bg:         #f8f6f0;
+    --bg-card:    #ffffff;
+    --rule:       #e8e4d8;
+    --gold:       #c9a227;
+    --mint:       #2d9e6b;
+    --live:       #10b981;
+    --coming-q1:  #c9a227;
+    --coming-q2:  #94a3b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', system-ui, sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(248,246,240,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--rule);
+    padding: 13px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { display: flex; align-items: baseline; gap: 8px; text-decoration: none; }
+  .brand-name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 21px; font-weight: 500; letter-spacing: -0.3px; color: var(--ink);
+  }
+  .brand-name em { font-style: italic; font-weight: 300; color: var(--gold); }
+  .brand-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--ink-mute); letter-spacing: 0.4px;
+  }
+  .nav-right {
+    display: flex; align-items: center; gap: 20px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-mute);
+  }
+  .live-pill {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25);
+    border-radius: 20px; padding: 4px 12px;
+    color: var(--live); font-weight: 500;
+  }
+  .live-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--live);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:.45; transform:scale(1); }
+    50%      { opacity:1;   transform:scale(1.35); }
+  }
+  .nav-codex {
+    color: var(--ink-mute); text-decoration: none; letter-spacing: 0.4px;
+    transition: color .15s;
+  }
+  .nav-codex:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 960px; margin: 0 auto;
+    padding: 88px 40px 56px; text-align: center;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: 24px;
+  }
+  .hero-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(48px, 8vw, 100px);
+    font-weight: 400; line-height: 1.0; letter-spacing: -2.5px;
+    color: var(--ink); margin-bottom: 26px;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-desc {
+    font-size: 16.5px; line-height: 1.75; color: var(--ink-soft);
+    max-width: 520px; margin: 0 auto 52px;
+  }
+
+  /* ── STATS ── */
+  .stats-row {
+    display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    margin-bottom: 72px;
+  }
+  .stat {
+    text-align: center; padding: 24px 40px;
+    border-right: 1px solid var(--rule);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-val {
+    font-family: 'Fraunces', serif; font-size: 38px; font-weight: 500;
+    letter-spacing: -1.5px; color: var(--ink); line-height: 1;
+  }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--ink-mute); margin-top: 6px;
+  }
+
+  /* ── CITY GRID ── */
+  .cities-wrap {
+    max-width: 960px; margin: 0 auto; padding: 0 40px 80px;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--ink-faint); margin-bottom: 24px;
+  }
+  .city-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 14px;
+  }
+  .city-card {
+    background: var(--bg-card); border: 1px solid var(--rule);
+    border-radius: 20px; padding: 22px 24px;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    position: relative;
+  }
+  .city-card.live:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.09);
+    border-color: var(--gold);
+  }
+  .city-card.coming {
+    opacity: .6; cursor: default; pointer-events: none;
+  }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .city-flag { font-size: 30px; line-height: 1; }
+  .badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    font-weight: 500; letter-spacing: .8px; padding: 4px 10px;
+    border-radius: 20px; white-space: nowrap;
+  }
+  .badge-live   { background:rgba(16,185,129,.1);  color:var(--live);      border:1px solid rgba(16,185,129,.3); }
+  .badge-q1     { background:rgba(201,162,39,.09); color:var(--coming-q1); border:1px solid rgba(201,162,39,.28); }
+  .badge-q2     { background:rgba(148,163,184,.1); color:var(--coming-q2); border:1px solid rgba(148,163,184,.28); }
+  .city-name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 26px; font-weight: 400; letter-spacing: -.5px;
+    color: var(--ink); line-height: 1.08;
+  }
+  .city-name-ko {
+    font-size: 12.5px; color: var(--ink-mute); margin-top: 3px;
+  }
+  .city-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .city-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--ink-mute); background: var(--bg);
+    border: 1px solid var(--rule); padding: 3px 9px; border-radius: 20px;
+  }
+  .card-arrow { font-size: 18px; color: var(--gold); align-self: flex-end; }
+
+  /* ── GLOBAL STRIP ── */
+  .global-wrap {
+    max-width: 960px; margin: 0 auto; padding: 0 40px 100px;
+  }
+  .global-strip {
+    background: var(--bg-card); border: 1px solid var(--rule);
+    border-radius: 16px; padding: 18px 24px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .global-strip-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--ink-faint);
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .global-chips { display: flex; gap: 7px; flex-wrap: wrap; }
+  .global-chip {
+    font-size: 12px; color: var(--ink-mute);
+    background: var(--bg); border: 1px solid var(--rule);
+    border-radius: 20px; padding: 4px 12px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--rule); padding: 28px 40px;
+    max-width: 960px; margin: 0 auto;
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 10px;
+  }
+  .footer-brand {
+    font-family: 'Fraunces', serif; font-size: 15px;
+    font-weight: 400; color: var(--ink-mute); letter-spacing: -.2px;
+  }
+  .footer-brand em { font-style: italic; color: var(--gold); }
+  .footer-links {
+    display: flex; gap: 18px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: .5px; color: var(--ink-faint);
+  }
+  .footer-links a { color: inherit; text-decoration: none; transition: color .15s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    nav { padding: 12px 20px; }
+    .nav-right .nav-codex { display: none; }
+    .hero { padding: 56px 20px 40px; }
+    .stats-row { gap: 0; }
+    .stat { padding: 18px 20px; }
+    .stat-val { font-size: 28px; }
+    .cities-wrap, .global-wrap { padding-left: 20px; padding-right: 20px; }
+    footer { padding: 20px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="brand">
+    <div class="brand-name">Hebron<em>Guide</em></div>
+    <div class="brand-sub">/ global</div>
+  </a>
+  <div class="nav-right">
+    <div class="live-pill">
+      <span class="live-dot"></span>
+      Seattle LIVE
+    </div>
+    <a href="/codex.html" class="nav-codex">Codex ↗</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">재외 한인 700만을 위한 정착 가이드 · For the Korean Diaspora Worldwide</div>
+  <h1 class="hero-title">
+    도시마다<br/><em>뿌리내리는</em><br/>방법이 있다.
+  </h1>
+  <p class="hero-desc">
+    공항을 나서는 첫날부터 — 비자, 집, 학교, 교회, 친구.<br/>
+    HebronGuide는 당신이 있는 그 도시에서 시작합니다.
+  </p>
+
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-val">700만+</div>
+      <div class="stat-label">재외 한인</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">1</div>
+      <div class="stat-label">라이브 도시</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">5</div>
+      <div class="stat-label">2027 예정</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">20+</div>
+      <div class="stat-label">2030 목표</div>
+    </div>
+  </div>
+</section>
+
+<!-- CITY GRID -->
+<section class="cities-wrap">
+  <div class="section-label">도시를 선택하세요 · Choose Your City</div>
+  <div class="city-grid">
+
+    <!-- SEATTLE ✅ LIVE -->
+    <a href="/seattle" class="city-card live">
+      <div class="card-top">
+        <div class="city-flag">🌲</div>
+        <span class="badge badge-live">● LIVE</span>
+      </div>
+      <div>
+        <div class="city-name">Seattle</div>
+        <div class="city-name-ko">시애틀 · Washington</div>
+      </div>
+      <div class="city-tags">
+        <span class="city-tag">정착 가이드</span>
+        <span class="city-tag">한인 교회</span>
+        <span class="city-tag">카페·맛집</span>
+        <span class="city-tag">AI 컨시어지</span>
+        <span class="city-tag">실시간 날씨</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <!-- DALLAS Q1 2027 -->
+    <div class="city-card coming">
+      <div class="card-top">
+        <div class="city-flag">🤠</div>
+        <span class="badge badge-q1">Q1 2027</span>
+      </div>
+      <div>
+        <div class="city-name">Dallas</div>
+        <div class="city-name-ko">달라스 · Texas</div>
+      </div>
+      <div class="city-tags">
+        <span class="city-tag">한인 7만+</span>
+        <span class="city-tag">무소득세</span>
+        <span class="city-tag">한인타운</span>
+      </div>
+    </div>
+
+    <!-- SAN FRANCISCO Q1 2027 -->
+    <div class="city-card coming">
+      <div class="card-top">
+        <div class="city-flag">🌉</div>
+        <span class="badge badge-q1">Q1 2027</span>
+      </div>
+      <div>
+        <div class="city-name">San Francisco</div>
+        <div class="city-name-ko">샌프란시스코 · California</div>
+      </div>
+      <div class="city-tags">
+        <span class="city-tag">실리콘밸리</span>
+        <span class="city-tag">테크 이민</span>
+        <span class="city-tag">Bay Area</span>
+      </div>
+    </div>
+
+    <!-- NEW YORK Q1 2027 -->
+    <div class="city-card coming">
+      <div class="card-top">
+        <div class="city-flag">🗽</div>
+        <span class="badge badge-q1">Q1 2027</span>
+      </div>
+      <div>
+        <div class="city-name">New York</div>
+        <div class="city-name-ko">뉴욕 · New York</div>
+      </div>
+      <div class="city-tags">
+        <span class="city-tag">한인 10만+</span>
+        <span class="city-tag">플러싱</span>
+        <span class="city-tag">K-타운</span>
+      </div>
+    </div>
+
+    <!-- NASHVILLE Q2 2027 -->
+    <div class="city-card coming">
+      <div class="card-top">
+        <div class="city-flag">🎵</div>
+        <span class="badge badge-q2">Q2 2027</span>
+      </div>
+      <div>
+        <div class="city-name">Nashville</div>
+        <div class="city-name-ko">내슈빌 · Tennessee</div>
+      </div>
+      <div class="city-tags">
+        <span class="city-tag">급성장 도시</span>
+        <span class="city-tag">한인 증가</span>
+        <span class="city-tag">저렴한 생활비</span>
+      </div>
+    </div>
+
+    <!-- VANCOUVER Q2 2027 -->
+    <div class="city-card coming">
+      <div class="card-top">
+        <div class="city-flag">🍁</div>
+        <span class="badge badge-q2">Q2 2027</span>
+      </div>
+      <div>
+        <div class="city-name">Vancouver</div>
+        <div class="city-name-ko">밴쿠버 · Canada</div>
+      </div>
+      <div class="city-tags">
+        <span class="city-tag">한인 5만+</span>
+        <span class="city-tag">유학생</span>
+        <span class="city-tag">이민 친화</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GLOBAL 2030+ -->
+<section class="global-wrap">
+  <div class="global-strip">
+    <div class="global-strip-label">2030+ Global</div>
+    <div class="global-chips">
+      <span class="global-chip">🇨🇦 Toronto</span>
+      <span class="global-chip">🇬🇧 London</span>
+      <span class="global-chip">🇦🇺 Sydney</span>
+      <span class="global-chip">🇩🇪 Frankfurt</span>
+      <span class="global-chip">🇯🇵 Tokyo</span>
+      <span class="global-chip">🇸🇬 Singapore</span>
+      <span class="global-chip">🇫🇷 Paris</span>
+      <span class="global-chip">+ more</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Hebron<em>Guide</em> · guide.hebronapp.com</div>
+  <div class="footer-links">
+    <a href="/seattle">Seattle</a>
+    <a href="/codex.html">Codex</a>
+    <a href="https://kchurch911.com">Kchurch911</a>
+  </div>
+</footer>
+
+</body>
+</html>

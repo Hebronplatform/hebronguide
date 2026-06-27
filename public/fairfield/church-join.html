@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>교회 등록 — HebronGuide</title>
+<meta name="description" content="HebronGuide 파트너 교회 등록. 30초면 완료됩니다.">
+<meta property="og:title" content="⛪ HebronGuide 교회 등록 (30초 완료)">
+<meta property="og:description" content="전 세계 69개 도시 한인 이주자에게 첫 번째로 연결되는 교회가 되세요.">
+<meta property="og:image" content="https://hebronguide.com/icon-512.png">
+<meta property="og:url" content="https://hebronguide.com/church-join.html">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh;display:flex;flex-direction:column}
+
+/* 헤더 */
+.header{background:rgba(13,17,23,.97);border-bottom:1px solid rgba(255,255,255,.1);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{color:#C9A227;font-weight:900;font-size:1rem;text-decoration:none}
+.back{color:#8b949e;font-size:.82rem;text-decoration:none}
+.back:hover{color:#6EE7B7}
+
+/* 히어로 */
+.hero{text-align:center;padding:32px 20px 24px;background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.05))}
+.hero-badge{display:inline-block;background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.3);color:#C9A227;border-radius:20px;padding:4px 14px;font-size:.75rem;font-weight:800;margin-bottom:12px}
+.hero h1{font-size:1.6rem;font-weight:900;margin-bottom:8px}
+.hero p{color:#8b949e;font-size:.85rem;line-height:1.6}
+
+/* 진행 단계 */
+.steps{display:flex;justify-content:center;gap:0;margin:20px auto;max-width:300px}
+.step{flex:1;text-align:center;position:relative}
+.step-dot{width:28px;height:28px;border-radius:50%;background:#161b22;border:2px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 4px;font-size:.75rem;font-weight:700;color:#8b949e;transition:.3s}
+.step-dot.active{background:#C9A227;border-color:#C9A227;color:#000}
+.step-dot.done{background:#6EE7B7;border-color:#6EE7B7;color:#000}
+.step-line{position:absolute;top:14px;left:50%;right:-50%;height:2px;background:rgba(255,255,255,.08);z-index:0}
+.step:last-child .step-line{display:none}
+.step-label{font-size:.68rem;color:#8b949e}
+.step-label.active{color:#C9A227;font-weight:700}
+
+/* 폼 */
+.form-wrap{max-width:480px;margin:0 auto;padding:20px 16px 60px;flex:1}
+.form-card{background:#161b22;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px 20px}
+.form-title{font-size:.8rem;font-weight:800;color:#C9A227;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+
+.field{margin-bottom:14px}
+label{display:block;font-size:.8rem;font-weight:700;color:rgba(230,237,243,.7);margin-bottom:6px}
+label .req{color:#C9A227;margin-left:2px}
+label .opt{color:rgba(230,237,243,.3);font-weight:400;font-size:.72rem;margin-left:4px}
+input,select,textarea{width:100%;background:#0d1117;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;font-size:.9rem;color:#e6edf3;font-family:'Noto Sans KR',sans-serif;outline:none;transition:.2s;-webkit-appearance:none}
+input:focus,select:focus,textarea:focus{border-color:#C9A227;background:#111827}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23C9A227'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;cursor:pointer}
+select option,select optgroup{background:#0d1117;color:#e6edf3}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* 버튼 */
+.btn-submit{width:100%;background:linear-gradient(135deg,#C9A227,#e8b53a);color:#000;font-weight:900;border:none;padding:14px;border-radius:12px;font-size:1rem;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:16px;transition:.2s;box-shadow:0 4px 16px rgba(201,162,39,.3)}
+.btn-submit:hover{box-shadow:0 6px 24px rgba(201,162,39,.45);transform:translateY(-1px)}
+.btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+/* 오류 */
+.field.error input,.field.error select{border-color:#EF4444}
+.error-msg{font-size:.73rem;color:#FCA5A5;margin-top:4px;display:none}
+.field.error .error-msg{display:block}
+
+/* 안내 박스 */
+.info-box{background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.15);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:.78rem;color:rgba(230,237,243,.7);line-height:1.7}
+.info-box strong{color:#6EE7B7}
+
+/* 성공 화면 */
+#success{display:none;text-align:center;padding:40px 20px}
+#success.show{display:block}
+.success-icon{font-size:4rem;margin-bottom:16px}
+.success-title{font-size:1.4rem;font-weight:900;margin-bottom:8px}
+.success-sub{color:#8b949e;font-size:.88rem;line-height:1.8;margin-bottom:20px}
+.success-card{background:#161b22;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;margin:0 auto 20px;max-width:360px;text-align:left}
+.success-row{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.success-row:last-child{border-bottom:none}
+.success-row .ico{font-size:1rem;flex-shrink:0;margin-top:2px}
+.success-row .txt{font-size:.82rem;color:rgba(230,237,243,.75);line-height:1.5}
+.btn-home{display:inline-block;background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.3);color:#C9A227;padding:10px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem;margin-top:4px}
+
+/* 카카오 구독 배너 */
+.kakao-banner{background:#FEE500;border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:16px;cursor:pointer;text-decoration:none}
+.kakao-banner img{height:24px;width:auto;flex-shrink:0}
+.kakao-banner-text{color:#3C1E1E}
+.kakao-banner-title{font-size:.88rem;font-weight:800}
+.kakao-banner-sub{font-size:.75rem;opacity:.7}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="/" class="logo">HebronGuide</a>
+  <a href="/church-guide.html" class="back">← 교회 안내</a>
+</div>
+
+<!-- 히어로 -->
+<div class="hero">
+  <div class="hero-badge">⛪ 30초 교회 등록</div>
+  <h1>파트너 교회로 등록하세요</h1>
+  <p>전 세계 한인 이주자가 새 도시에서<br>가장 먼저 만나는 교회가 됩니다.</p>
+</div>
+
+<!-- 진행 단계 -->
+<div class="steps">
+  <div class="step">
+    <div class="step-dot active" id="dot1">1</div>
+    <div class="step-line"></div>
+    <div class="step-label active">기본 정보</div>
+  </div>
+  <div class="step">
+    <div class="step-dot" id="dot2">2</div>
+    <div class="step-line"></div>
+    <div class="step-label">연락처</div>
+  </div>
+  <div class="step">
+    <div class="step-dot" id="dot3">✓</div>
+    <div class="step-label">완료</div>
+  </div>
+</div>
+
+<div class="form-wrap">
+
+  <!-- ── Step 1: 기본 정보 ── -->
+  <div id="step1">
+    <div class="form-card">
+      <div class="form-title">① 교회 기본 정보</div>
+
+      <div class="field-row">
+        <div class="field" id="f-church">
+          <label>교회명 <span class="req">*</span></label>
+          <input type="text" id="churchName" placeholder="시애틀좋은교회">
+          <div class="error-msg">교회명을 입력해 주세요</div>
+        </div>
+        <div class="field" id="f-pastor">
+          <label>담임목사 <span class="req">*</span></label>
+          <input type="text" id="pastorName" placeholder="김헤브론 목사">
+          <div class="error-msg">목사 성함을 입력해 주세요</div>
+        </div>
+      </div>
+
+      <div class="field" id="f-city">
+        <label>도시 <span class="req">*</span></label>
+        <select id="cityName">
+          <option value="">도시 선택</option>
+          <optgroup label="🇺🇸 미국">
+            <option>시애틀 Seattle, WA</option>
+            <option>로스앤젤레스 LA, CA</option>
+            <option>뉴욕 New York, NY</option>
+            <option>달라스 Dallas, TX</option>
+            <option>SF 베이에어리어 Bay Area, CA</option>
+            <option>휴스턴 Houston, TX</option>
+            <option>애틀랜타 Atlanta, GA</option>
+            <option>시카고 Chicago, IL</option>
+            <option>워싱턴DC Washington DC</option>
+            <option>보스턴 Boston, MA</option>
+            <option>마이애미 Miami, FL</option>
+            <option>내쉬빌 Nashville, TN</option>
+            <option>호놀룰루 Honolulu, HI</option>
+            <option>기타 미국</option>
+          </optgroup>
+          <optgroup label="🇨🇦 캐나다">
+            <option>토론토 Toronto, ON</option>
+            <option>밴쿠버 Vancouver, BC</option>
+            <option>캘거리 Calgary, AB</option>
+            <option>기타 캐나다</option>
+          </optgroup>
+          <optgroup label="🇰🇷 한국">
+            <option>서울</option><option>부산</option>
+            <option>인천</option><option>기타 한국</option>
+          </optgroup>
+          <optgroup label="🌏 기타">
+            <option>시드니 Sydney</option>
+            <option>런던 London</option>
+            <option>도쿄 Tokyo</option>
+            <option>싱가포르 Singapore</option>
+            <option>기타 도시</option>
+          </optgroup>
+        </select>
+        <div class="error-msg">도시를 선택해 주세요</div>
+      </div>
+
+      <button class="btn-submit" onclick="goStep2()">다음 → 연락처 입력</button>
+    </div>
+  </div>
+
+  <!-- ── Step 2: 연락처 ── -->
+  <div id="step2" style="display:none">
+    <div class="form-card">
+      <div class="form-title">② 연락처 (1개만 필수)</div>
+
+      <div class="field" id="f-phone">
+        <label>전화번호 <span class="req">*</span></label>
+        <input type="tel" id="churchPhone" placeholder="(206) 000-0000" autocomplete="tel">
+        <div class="error-msg">전화번호를 입력해 주세요</div>
+      </div>
+
+      <div class="field">
+        <label>이메일 <span class="opt">(선택)</span></label>
+        <input type="email" id="churchEmail" placeholder="pastor@church.com" autocomplete="email">
+        <div style="font-size:.72rem;color:#8b949e;margin-top:4px">승인 결과를 이메일로 받으실 수 있습니다</div>
+      </div>
+
+      <div class="field">
+        <label>홈페이지 <span class="opt">(선택)</span></label>
+        <input type="url" id="churchWeb" placeholder="https://www.yourchurch.com" autocomplete="url">
+      </div>
+
+      <div class="field">
+        <label>카카오 ID <span class="opt">(선택)</span></label>
+        <input type="text" id="kakaoId" placeholder="카카오톡 아이디">
+      </div>
+
+      <div class="info-box">
+        <strong>📋 등록 후 과정:</strong><br>
+        ① 신청 접수 → ② 관리자 검토 (24-48시간) → ③ HebronGuide 교회 탭 게시
+      </div>
+
+      <div style="display:flex;gap:10px">
+        <button onclick="goStep1()" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8b949e;padding:13px;border-radius:12px;cursor:pointer;font-size:.9rem;font-family:'Noto Sans KR',sans-serif">← 이전</button>
+        <button class="btn-submit" style="flex:2;margin-top:0" onclick="submitChurch()" id="submitBtn">⛪ 등록 신청하기</button>
+      </div>
+
+      <!-- 이메일 폴백 (오류 시 자동 표시) -->
+      <div id="email-fallback" style="display:none;margin-top:14px;background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.25);border-radius:12px;padding:14px 16px;text-align:center">
+        <div style="font-size:.85rem;font-weight:700;color:#C9A227;margin-bottom:8px">⚠️ 시스템 오류 — 이메일로 신청하세요</div>
+        <div style="font-size:.78rem;color:#8b949e;margin-bottom:12px;line-height:1.6">입력하신 정보가 이메일로 자동 채워집니다.<br>전송 후 24-48시간 내 처리해 드립니다.</div>
+        <a id="email-fallback-link" href="#" style="display:inline-block;background:#C9A227;color:#000;font-weight:800;padding:10px 24px;border-radius:10px;text-decoration:none;font-size:.9rem">✉️ 이메일로 신청하기</a>
+        <div style="font-size:.72rem;color:#8b949e;margin-top:8px">hebronplatform@gmail.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 성공 ── -->
+  <div id="success">
+    <div class="success-icon">🙏</div>
+    <div class="success-title">등록 신청 완료!</div>
+    <div class="success-sub" id="successSub">접수되었습니다. 24-48시간 내에 연락드리겠습니다.</div>
+
+    <div class="success-card">
+      <div class="success-row"><span class="ico">⛪</span><span class="txt" id="s-church"></span></div>
+      <div class="success-row"><span class="ico">👤</span><span class="txt" id="s-pastor"></span></div>
+      <div class="success-row"><span class="ico">📍</span><span class="txt" id="s-city"></span></div>
+      <div class="success-row"><span class="ico">📞</span><span class="txt" id="s-phone"></span></div>
+    </div>
+
+    <!-- 카카오 채널 구독 유도 -->
+    <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" class="kakao-banner">
+      <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="kakao">
+      <div class="kakao-banner-text">
+        <div class="kakao-banner-title">HebronGuide 카카오 채널 구독</div>
+        <div class="kakao-banner-sub">새 도시 오픈·승인 결과를 카카오로 받으세요</div>
+      </div>
+    </a>
+
+    <a href="/" class="btn-home">🏠 HebronGuide 홈으로</a>
+  </div>
+
+</div>
+
+<script>
+
+// Step 전환
+function goStep2() {
+  const church = document.getElementById('churchName').value.trim()
+  const pastor = document.getElementById('pastorName').value.trim()
+  const city   = document.getElementById('cityName').value
+
+  let ok = true
+  if (!church) { setError('f-church', true); ok = false } else setError('f-church', false)
+  if (!pastor) { setError('f-pastor', true); ok = false } else setError('f-pastor', false)
+  if (!city)   { setError('f-city',   true); ok = false } else setError('f-city',   false)
+  if (!ok) return
+
+  document.getElementById('step1').style.display = 'none'
+  document.getElementById('step2').style.display = 'block'
+  document.getElementById('dot1').classList.replace('active','done')
+  document.getElementById('dot2').classList.add('active')
+  document.getElementById('dot1').textContent = '✓'
+  window.scrollTo({top:0, behavior:'smooth'})
+}
+
+function goStep1() {
+  document.getElementById('step2').style.display = 'none'
+  document.getElementById('step1').style.display = 'block'
+  document.getElementById('dot2').classList.remove('active')
+  document.getElementById('dot1').classList.replace('done','active')
+  document.getElementById('dot1').textContent = '1'
+  window.scrollTo({top:0, behavior:'smooth'})
+}
+
+// 제출
+async function submitChurch() {
+  const phone = document.getElementById('churchPhone').value.trim()
+  if (!phone) { setError('f-phone', true); return }
+  setError('f-phone', false)
+
+  const btn = document.getElementById('submitBtn')
+  btn.textContent = '⏳ 등록 중...'
+  btn.disabled = true
+
+  const kakao = document.getElementById('kakaoId').value.trim()
+  const web   = document.getElementById('churchWeb').value.trim()
+
+  const data = {
+    name:      document.getElementById('churchName').value.trim(),
+    pastor:    document.getElementById('pastorName').value.trim(),
+    phone:     phone,
+    email:     document.getElementById('churchEmail').value.trim(),
+    website:   web,
+    kakao:     kakao,
+    city_slug: document.getElementById('cityName').value,
+  }
+
+  try {
+    const res = await fetch('/api/register-church', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+
+    const json = await res.json()
+    if (!res.ok || json.status === 'rejected') {
+      throw new Error(json.error || json.message || `HTTP ${res.status}`)
+    }
+
+    // 성공 화면
+    document.getElementById('step2').style.display = 'none'
+    document.getElementById('success').style.display = 'block'
+    document.getElementById('dot2').classList.replace('active','done')
+    document.getElementById('dot2').textContent = '✓'
+    document.getElementById('dot3').classList.add('done')
+
+    document.getElementById('s-church').textContent = data.name
+    document.getElementById('s-pastor').textContent = data.pastor
+    document.getElementById('s-city').textContent   = data.city_slug
+    document.getElementById('s-phone').textContent  = phone
+    window.scrollTo({top:0, behavior:'smooth'})
+
+  } catch(e) {
+    btn.textContent = '⛪ 등록 신청하기'
+    btn.disabled = false
+    console.error('등록 오류:', e.message)
+    // 오류 메시지 화면에 표시 (진단용)
+    document.getElementById('email-fallback').style.display = 'block'
+    document.getElementById('email-fallback').insertAdjacentHTML('afterbegin',
+      `<div style="font-size:.75rem;color:#f87171;margin-bottom:8px;word-break:break-all">오류: ${e.message}</div>`)
+    const church = document.getElementById('churchName').value.trim()
+    const pastor = document.getElementById('pastorName').value.trim()
+    const city   = document.getElementById('cityName').value
+    const phone  = document.getElementById('churchPhone').value.trim()
+    const email  = document.getElementById('churchEmail').value.trim()
+    const web    = document.getElementById('churchWeb').value.trim()
+    const body = `HebronGuide 교회 등록 신청\n\n교회명: ${church}\n담임목사: ${pastor}\n도시: ${city}\n전화: ${phone}\n이메일: ${email}\n홈페이지: ${web}`
+    const mailto = `mailto:hebronplatform@gmail.com?subject=[교회 등록] ${encodeURIComponent(church)}&body=${encodeURIComponent(body)}`
+    document.getElementById('email-fallback-link').href = mailto
+    document.getElementById('step2').scrollIntoView({behavior:'smooth'})
+  }
+}
+
+function showEmailFallback() {
+  const church = document.getElementById('churchName').value.trim()
+  const pastor = document.getElementById('pastorName').value.trim()
+  const city   = document.getElementById('cityName').value
+  const phone  = document.getElementById('churchPhone').value.trim()
+  const email  = document.getElementById('churchEmail').value.trim()
+  const web    = document.getElementById('churchWeb').value.trim()
+
+  const body = `HebronGuide 교회 등록 신청\n\n교회명: ${church}\n담임목사: ${pastor}\n도시: ${city}\n전화: ${phone}\n이메일: ${email}\n홈페이지: ${web}`
+  const mailto = `mailto:hebronplatform@gmail.com?subject=[교회 등록] ${encodeURIComponent(church)}&body=${encodeURIComponent(body)}`
+
+  document.getElementById('email-fallback').style.display = 'block'
+  document.getElementById('email-fallback-link').href = mailto
+  document.getElementById('step2').scrollIntoView({behavior:'smooth'})
+}
+
+function setError(id, show) {
+  document.getElementById(id)?.classList.toggle('error', show)
+}
+</script>
+</body>
+</html>

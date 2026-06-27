@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회사소개 | HebronGuide</title>
+<meta name="description" content="HebronGuide — 한인 이민자·이주자와 교회를 잇는 디지털 환대 플랫폼. 52개+ 도시, 2개 언어.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.07);
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);
+  --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;
+  --text:#ECFDF5;--muted:rgba(236,253,245,0.55);
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:var(--bg);}
+body{font-family:'Noto Sans KR',-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
+.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;letter-spacing:.02em;font-family:'Cinzel',serif;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:.8rem;transition:color .2s;display:flex;align-items:center;gap:6px;}
+.nav-back:hover{color:var(--gold);}
+
+/* HERO */
+.hero{text-align:center;padding:64px 24px 48px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.10),transparent);}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:.72rem;color:var(--gold);letter-spacing:.12em;font-weight:700;margin-bottom:14px;text-transform:uppercase;}
+h1{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.7rem,4vw,2.6rem);font-weight:900;color:#fff;line-height:1.3;margin-bottom:16px;}
+h1 span{color:var(--gold);}
+.hero-sub{font-size:.95rem;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.9;}
+.verse{display:inline-block;margin-top:28px;background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.22);border-radius:12px;padding:14px 24px;font-size:.88rem;color:rgba(236,253,245,.8);font-style:italic;line-height:1.7;}
+.verse cite{display:block;margin-top:6px;font-style:normal;font-size:.78rem;color:var(--gold);font-weight:700;}
+
+/* CONTAINER */
+.container{max-width:680px;margin:0 auto;padding:48px 20px 80px;}
+
+/* SECTION CARD */
+.section-card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:28px 28px;margin-bottom:20px;}
+@media(max-width:480px){.section-card{padding:22px 18px;}}
+.section-label{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.section-title{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:12px;}
+.section-body{font-size:.9rem;color:var(--muted);line-height:1.85;}
+.section-body strong{color:var(--text);font-weight:700;}
+
+/* STAT ROW */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;}
+@media(max-width:420px){.stat-row{grid-template-columns:1fr 1fr;}}
+.stat-item{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:16px 12px;text-align:center;}
+.stat-num{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:900;color:var(--gold);}
+.stat-label{font-size:.72rem;color:var(--muted);margin-top:4px;}
+
+/* PILLAR LIST */
+.pillar-list{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:10px;}
+.pillar-list li{display:flex;align-items:flex-start;gap:12px;font-size:.88rem;color:var(--muted);}
+.pillar-list li .icon{width:28px;height:28px;flex-shrink:0;background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.25);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;}
+.pillar-list li .txt strong{display:block;font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:2px;}
+
+/* INFO TABLE */
+.info-table{width:100%;margin-top:12px;border-collapse:collapse;}
+.info-table tr{border-bottom:1px solid var(--border);}
+.info-table tr:last-child{border-bottom:none;}
+.info-table td{padding:10px 0;font-size:.88rem;vertical-align:top;}
+.info-table td:first-child{color:var(--muted);white-space:nowrap;padding-right:20px;width:100px;}
+.info-table td:last-child{color:var(--text);}
+.info-table a{color:var(--mint);text-decoration:none;}
+.info-table a:hover{text-decoration:underline;}
+
+/* FOOTER */
+footer{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padding:32px 24px;text-align:center;}
+.footer-logo{font-family:'Cinzel',serif;color:var(--gold);font-weight:900;font-size:.9rem;margin-bottom:10px;}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 20px;margin-bottom:12px;}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:.8rem;transition:color .2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-copy{font-size:.72rem;color:rgba(236,253,245,.3);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">HebronGuide</a>
+  <a href="javascript:history.back()" class="nav-back">← 돌아가기</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">About HebronGuide</div>
+  <h1>한인 이민자와 교회를 잇는<br><span>디지털 환대 플랫폼</span></h1>
+  <p class="hero-sub">새로운 땅에 도착한 모든 한인이 홀로 헤매지 않도록.<br>정보·공동체·커뮤니티가 한 자리에 모입니다.</p>
+  <div class="verse">
+    "내가 나그네 되었을 때 너희가 영접하였다"
+    <cite></cite>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section-card">
+    <div class="section-label">플랫폼 소개</div>
+    <div class="section-title">HebronGuide란?</div>
+    <p class="section-body">
+      HebronGuide는 전 세계 한인 이민자·이주자가 새로운 도시에서 빠르게 정착하고,
+      신뢰할 수 있는 한인 교회·커뮤니티와 연결될 수 있도록 돕는
+      <strong>디지털 환대 플랫폼</strong>입니다.<br><br>
+      공항에서 나온 첫날부터 활용할 수 있는 생활 정보, 검증된 업소 정보,
+      그리고 환대하는 교회 네트워크를 한국어·영어로 제공합니다.
+    </p>
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-num" id="cityCountStat">67</div>
+        <div class="stat-label">서비스 도시</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">지원 언어</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">환대의 마음</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-label">설립 비전</div>
+    <div class="section-title">왜 HebronGuide인가?</div>
+    <p class="section-body">
+      <strong>Hebron 관리자</strong>(Hebron Platform)의 25년 목회 경험에서 시작되었습니다.
+      새로운 땅에 도착한 한인 이민자들이 정보 부재로 홀로 어려움을 겪는 현실을 보며,
+      교회가 먼저 찾아가는 디지털 환대의 문을 열기로 했습니다.<br><br>
+      Hebron(헤브론)은 히브리어로 <strong>"연합·교제·동반자"(חֶבְרוֹן)</strong>를 의미합니다.
+      아브라함이 거류민으로 살며 하나님과 동행한 땅, 그 이름처럼
+      이민자들이 새 땅에서 하나님과 동행하도록 돕는 것이 우리의 사명입니다.
+    </p>
+  </div>
+
+  <div class="section-card">
+    <div class="section-label">핵심 가치</div>
+    <div class="section-title">우리가 섬기는 방법</div>
+    <ul class="pillar-list">
+      <li>
+        <div class="icon">🏙️</div>
+        <div class="txt">
+          <strong>정착 정보 섬김</strong>
+          도착 첫날부터 필요한 생활·행정·교육·의료 정보를 검증된 형태로 제공합니다.
+        </div>
+      </li>
+      <li>
+        <div class="icon">⛪</div>
+        <div class="txt">
+          <strong>교회 연결</strong>
+          환대하는 한인 교회와 신뢰로 연결합니다. 강요 없이, 자연스럽게.
+        </div>
+      </li>
+      <li>
+        <div class="icon">🌐</div>
+        <div class="txt">
+          <strong>다국어 환대</strong>
+          한국어·영어로 모든 한인 이민자를 환영합니다.
+        </div>
+      </li>
+      <li>
+        <div class="icon">✅</div>
+        <div class="txt">
+          <strong>검증된 정보</strong>
+          AI 추측이 아닌, 직접 확인된 정보만 게재합니다. 투명성이 우리의 권위입니다.
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-card">
+    <div class="section-label">운영 정보</div>
+    <div class="section-title">회사 정보</div>
+    <table class="info-table">
+      <tr><td>운영사</td><td>Hebron Platform LLC</td></tr>
+      <tr><td>설립 비전</td><td>Hebron 관리자 / Hebron Platform</td></tr>
+      <tr><td>서비스</td><td>hebronguide.com</td></tr>
+      <tr><td>서비스 지역</td><td>전 세계 <span id="cityCountTable">69</span>개 도시 (미국·캐나다·멕시코·한국·유럽·오세아니아·아시아·중동)</td></tr>
+      <tr><td>지원 언어</td><td>한국어 · 영어</td></tr>
+      <tr><td>이메일</td><td><a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a></td></tr>
+    </table>
+  </div>
+
+</div>
+
+
+<!-- ── 메인으로 돌아가기 ── -->
+<div style="text-align:center;padding:36px 24px 16px;">
+  <a href="/seattle/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:13px 32px;border-radius:50px;font-weight:900;font-size:.9rem;font-family:'Noto Sans KR',sans-serif;">
+    ← &nbsp;HebronGuide 메인으로 돌아가기
+  </a>
+</div>
+<footer>
+  <div class="footer-logo">HebronGuide</div>
+  <div class="footer-links">
+    <a href="about.html">회사소개</a>
+    <a href="privacy.html">개인정보처리방침</a>
+    <a href="terms.html">이용약관</a>
+  </div>
+  <div class="footer-copy">© 2026 Hebron Platform LLC. All rights reserved.</div>
+</footer>
+
+<script>
+/* ── 도시 수 자동 업데이트 — 이 숫자 하나만 바꾸면 페이지 전체 반영 ── */
+const HEBRON_CITY_COUNT = 69; // ← 도시 추가 시 여기만 수정
+document.querySelectorAll('#cityCountStat, #cityCountTable').forEach(function(el){
+  el.textContent = HEBRON_CITY_COUNT;
+});
+
+/* HebronGuide — 도시 자동 복귀 (모든 사용자가 자기 도시로) */
+(function(){
+  function detectCity(){
+    var p=new URLSearchParams(location.search);
+    if(p.get('city'))return p.get('city');
+    var ref=document.referrer;
+    if(ref){var m=ref.match(/hebronguide\.com\/([a-z]+)\//);if(m&&m[1])return m[1];}
+    var segs=location.pathname.split('/').filter(Boolean);
+    if(segs.length&&segs[0].indexOf('.')<0)return segs[0];
+    return'seattle';
+  }
+  var city=detectCity();
+  if(city!=='seattle'){
+    document.querySelectorAll('a[href*="/seattle/"]').forEach(function(a){
+      a.href=a.href.replace(/\/seattle\//g,'/'+city+'/');
+    });
+  }
+})();
+</script>
+</body>
+</html>

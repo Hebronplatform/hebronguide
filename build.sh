@@ -52,7 +52,9 @@ declare -A CITY_KO=(
   ["winnipeg"]="위니펙"       ["phoenix"]="피닉스"       ["charlotte"]="샬럿"
   ["raleigh"]="롤리"          ["columbus"]="콜럼버스"    ["minneapolis"]="미니애폴리스"
   ["tucson"]="투손"           ["fayetteville"]="페이엣빌" ["killeen"]="킬린"
+  ["fairfield"]="페어필드"    ["waynesville"]="웨인즈빌"
   ["louisville"]="루이빌"     ["anchorage"]="앵커리지"
+  ["tampa"]="탬파"
   ["orlando"]="올랜도"        ["maryland"]="메릴랜드"   ["princgeorge"]="프린스조지"
   ["inlandempire"]="인랜드 엠파이어" ["austin"]="오스틴"
   # 한국 신규
@@ -88,7 +90,9 @@ declare -A CITY_EN=(
   ["winnipeg"]="Winnipeg"     ["phoenix"]="Phoenix"        ["charlotte"]="Charlotte"
   ["raleigh"]="Raleigh"       ["columbus"]="Columbus"      ["minneapolis"]="Minneapolis"
   ["tucson"]="Tucson"         ["fayetteville"]="Fayetteville" ["killeen"]="Killeen"
+  ["fairfield"]="Fairfield"   ["waynesville"]="Waynesville"
   ["louisville"]="Louisville" ["anchorage"]="Anchorage"
+  ["tampa"]="Tampa"
   ["orlando"]="Orlando"       ["maryland"]="Maryland"    ["princgeorge"]="Prince George"
   ["inlandempire"]="Inland Empire" ["austin"]="Austin"
   ["bundang"]="분당·수지"
@@ -125,7 +129,8 @@ for city in \
   kansascity philadelphia miami orangecounty mexicocity guadalajara monterrey bogota \
   chicago dc sandiego honolulu portland denver \
   calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
-  tucson fayetteville killeen louisville anchorage princgeorge inlandempire austin \
+  tucson fayetteville killeen fairfield waynesville louisville anchorage princgeorge inlandempire austin \
+  tampa \
   sydney melbourne brisbane perth auckland saopaulo london \
   singapore bangkok hochiminh dubai frankfurt berlin paris \
   tokyo osaka \
@@ -227,6 +232,7 @@ REGION_MAP=(
   ["raleigh"]="🇺🇸 미국"    ["columbus"]="🇺🇸 미국"    ["minneapolis"]="🇺🇸 미국"
   ["kansascity"]="🇺🇸 미국" ["orlando"]="🇺🇸 미국"     ["maryland"]="🇺🇸 미국"
   ["fayetteville"]="🇺🇸 미국" ["killeen"]="🇺🇸 미국"   ["louisville"]="🇺🇸 미국"
+  ["fairfield"]="🇺🇸 미국"  ["waynesville"]="🇺🇸 미국" ["tampa"]="🇺🇸 미국"
   ["anchorage"]="🇺🇸 미국"  ["tucson"]="🇺🇸 미국"      ["orangecounty"]="🇺🇸 미국"
   ["inlandempire"]="🇺🇸 미국" ["austin"]="🇺🇸 미국"
   ["toronto"]="🇨🇦 캐나다"  ["vancouver"]="🇨🇦 캐나다" ["calgary"]="🇨🇦 캐나다"
@@ -251,7 +257,7 @@ first=1
 for city in \
   seattle dallas sf newyork la houston atlanta chicago dc nashville boston miami \
   philadelphia sandiego portland denver honolulu charlotte raleigh columbus minneapolis \
-  kansascity orlando maryland fayetteville killeen louisville anchorage tucson orangecounty inlandempire austin \
+  kansascity tampa orlando maryland fayetteville killeen fairfield waynesville louisville anchorage tucson orangecounty inlandempire austin \
   toronto vancouver calgary edmonton ottawa winnipeg princgeorge \
   mexicocity guadalajara monterrey saopaulo bogota \
   london paris berlin frankfurt \

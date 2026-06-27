@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HebronGuide — 홍보 자료 키트</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0d1117;
+      --gold:    #C9A227;
+      --gold-lt: #e8bf4d;
+      --mint:    #6EE7B7;
+      --text:    #ECFDF5;
+      --muted:   #8FA7A0;
+      --surface: #161b22;
+      --border:  #30363d;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* ── Layout ── */
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    .page-title {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .page-subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    section { margin-bottom: 5rem; }
+
+    .section-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.6rem;
+      margin-bottom: 2rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Print Button ── */
+    .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: #0d1117;
+      border: none;
+      padding: 0.75rem 1.75rem;
+      border-radius: 6px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .btn-print:hover { background: var(--gold-lt); }
+
+    /* ════════════════════════════════════
+       SECTION 1 & 2 — POSTER CARDS
+    ════════════════════════════════════ */
+    .posters-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 700px) { .posters-grid { grid-template-columns: 1fr; } }
+
+    /* Church Poster — gold variant */
+    .poster-card {
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .poster-church {
+      background: #0d1117;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 40px rgba(201,162,39,0.15);
+    }
+    .poster-user {
+      background: #0a1a14;
+      border: 2px solid var(--mint);
+      box-shadow: 0 0 40px rgba(110,231,183,0.12);
+    }
+
+    .poster-logo {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 2rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.3rem;
+    }
+    .poster-church .poster-logo { color: var(--gold); }
+    .poster-user  .poster-logo { color: var(--mint); }
+
+    .poster-subtitle {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .poster-church .poster-subtitle { color: var(--gold-lt); }
+    .poster-user  .poster-subtitle { color: var(--mint); }
+
+    .poster-tagline {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+      max-width: 240px;
+      line-height: 1.5;
+    }
+
+    .qr-wrap {
+      background: #fff;
+      border-radius: 12px;
+      padding: 8px;
+      margin-bottom: 1.2rem;
+      line-height: 0;
+    }
+    .qr-wrap img { border-radius: 6px; display: block; }
+
+    .poster-scan-text {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .poster-church .poster-scan-text { color: var(--gold); }
+    .poster-user  .poster-scan-text { color: var(--mint); }
+
+    .poster-details {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .poster-verse {
+      font-size: 0.75rem;
+      color: #5a6a64;
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+
+    .poster-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .poster-feature-tag {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 99px;
+      background: rgba(110,231,183,0.12);
+      color: var(--mint);
+      border: 1px solid rgba(110,231,183,0.25);
+    }
+
+    /* ════════════════════════════════════
+       SECTION 3 — SNS CARD PREVIEWS
+    ════════════════════════════════════ */
+    .sns-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .sns-card-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .sns-card-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* Square 1:1 */
+    .sns-card-square {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #0d1117;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      gap: 0.9rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .sns-card-square::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 20%, rgba(201,162,39,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 80%, rgba(110,231,183,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .sns-card-square .card-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      position: relative;
+    }
+    .sns-card-square .card-tagline {
+      font-size: 0.8rem;
+      color: var(--text);
+      font-weight: 700;
+      text-align: center;
+      position: relative;
+    }
+    .sns-card-square .card-sub {
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-align: center;
+      position: relative;
+    }
+
+    /* Story 9:16 */
+    .sns-card-story {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #0d1117;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .sns-card-story::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 10%, rgba(201,162,39,0.12) 0%, transparent 50%),
+                  radial-gradient(ellipse at 50% 90%, rgba(110,231,183,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .sns-card-story .card-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      position: relative;
+    }
+    .sns-card-story .card-headline {
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.4;
+      position: relative;
+    }
+    .sns-card-story .card-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      width: 100%;
+      position: relative;
+    }
+    .sns-card-story .card-bullets li {
+      font-size: 0.72rem;
+      color: var(--mint);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .sns-card-story .card-bullets li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    /* Wide 1200×628 */
+    .sns-card-wide {
+      width: 100%;
+      aspect-ratio: 1200 / 628;
+      background: #0d1117;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2rem;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+      grid-column: 1 / -1;
+    }
+    .sns-card-wide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(201,162,39,0.09) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .sns-card-wide .wide-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      position: relative;
+    }
+    .sns-card-wide .wide-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+    }
+    .sns-card-wide .wide-headline {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .sns-card-wide .wide-sub {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .sns-card-wide .wide-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .sns-card-wide .wide-scan {
+      font-size: 0.62rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ════════════════════════════════════
+       SECTION 4 — SNS SHARE BUTTONS
+    ════════════════════════════════════ */
+    .share-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .share-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-decoration: none;
+    }
+    .share-btn:hover .share-icon { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.4); }
+    .share-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      flex-shrink: 0;
+    }
+    .share-label {
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 500;
+    }
+    .share-btn:hover .share-label { color: var(--text); }
+
+    /* Individual platform colors */
+    .icon-kakao    { background: #FEE500; }
+    .icon-whatsapp { background: #25D366; }
+    .icon-facebook { background: #1877F2; }
+    .icon-instagram { background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #F77737 100%); }
+    .icon-threads  { background: #000000; border: 1px solid #333; }
+    .icon-x        { background: #000000; border: 1px solid #333; }
+    .icon-line     { background: #00B900; }
+    .icon-sms      { background: #555; }
+    .icon-copy     { background: transparent; border: 2px solid var(--gold); }
+
+    /* Share section sub-heading */
+    .share-sub-heading {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.8rem;
+      margin-top: 1.5rem;
+      font-weight: 500;
+    }
+
+    /* ════════════════════════════════════
+       SECTION 5 — PRINT GUIDE
+    ════════════════════════════════════ */
+    .print-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .print-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .print-note strong { color: var(--text); }
+    .print-tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .print-tip-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--gold);
+    }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--surface);
+      border: 1px solid var(--gold);
+      color: var(--text);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      transition: transform 0.3s;
+      z-index: 999;
+      white-space: nowrap;
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 4rem 0;
+    }
+
+    /* ════════════════════════════════════
+       PRINT CSS
+    ════════════════════════════════════ */
+    @media print {
+      nav, .btn-print, .no-print,
+      #section-sns-cards, #section-share, #section-print-guide,
+      .section-heading.no-print-heading { display: none !important; }
+
+      .poster-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        border: 2px solid #000 !important;
+        box-shadow: none !important;
+        background: #fff !important;
+        color: #000 !important;
+      }
+      .poster-logo { color: #000 !important; }
+      .poster-subtitle { color: #333 !important; }
+      .poster-tagline, .poster-details, .poster-verse { color: #444 !important; }
+      .poster-scan-text { color: #000 !important; }
+      .poster-feature-tag { background: #eee !important; color: #333 !important; border-color: #ccc !important; }
+      .posters-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      body { background: white; }
+      main { padding: 1rem; }
+      #section-posters { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="no-print">
+  <a href="/" class="nav-logo">HebronGuide</a>
+  <a href="/" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    돌아가기
+  </a>
+</nav>
+
+<main>
+  <h1 class="page-title">홍보 자료 키트</h1>
+  <p class="page-subtitle">HebronGuide 포스터, SNS 카드, 공유 버튼 — 교회·업소·온라인 배포용</p>
+
+  <!-- ════ SECTION 1 & 2 — POSTERS ════ -->
+  <section id="section-posters">
+    <h2 class="section-heading">SECTION 1 &amp; 2 — 포스터 (인쇄용)</h2>
+
+    <div class="posters-grid">
+
+      <!-- Church Poster -->
+      <div class="poster-card poster-church">
+        <div class="poster-logo">HebronGuide</div>
+        <div class="poster-subtitle">파트너 교회 모집</div>
+        <div class="poster-tagline">한인 이민자·이주자와 교회를<br>잇는 디지털 환대 플랫폼</div>
+
+        <div class="qr-wrap">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https%3A%2F%2Fhebronguide.com%2Ffounding-partner.html&color=0d1117&bgcolor=ffffff&margin=2"
+            alt="파트너 교회 신청 QR"
+            width="280" height="280"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="poster-scan-text">스캔하여 신청하세요 · hebronguide.com</div>
+        <div class="poster-details">
+          도시별 선착순 12개<br>
+          2026년 12월 30일까지
+        </div>
+        <div class="poster-verse">
+          "내가 나그네 되었을 때에 영접하였고"<br>
+          
+        </div>
+      </div>
+
+      <!-- User Poster -->
+      <div class="poster-card poster-user">
+        <div class="poster-logo">HebronGuide</div>
+        <div class="poster-subtitle">한인 이민자 정착 가이드</div>
+        <div class="poster-tagline">52개+ 도시 · 한국어·영어·스페인어 · 무료</div>
+
+        <div class="qr-wrap">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https%3A%2F%2Fhebronguide.com&color=0d1117&bgcolor=ffffff&margin=2"
+            alt="HebronGuide QR"
+            width="280" height="280"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="poster-scan-text">지금 스캔하세요 · 앱처럼 설치 가능</div>
+
+        <div class="poster-features">
+          <span class="poster-feature-tag">맛집</span>
+          <span class="poster-feature-tag">정착 정보</span>
+          <span class="poster-feature-tag">교회</span>
+          <span class="poster-feature-tag">취업</span>
+          <span class="poster-feature-tag">의료</span>
+          <span class="poster-feature-tag">법률</span>
+        </div>
+
+        <div class="poster-details">
+          미국 전역 52개+ 도시<br>
+          모바일에서 앱처럼 설치하세요
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:1.5rem;" class="no-print">
+      <button class="btn-print" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        포스터 인쇄하기
+      </button>
+    </div>
+  </section>
+
+  <div class="divider no-print"></div>
+
+  <!-- ════ SECTION 3 — SNS CARD PREVIEWS ════ -->
+  <section id="section-sns-cards" class="no-print">
+    <h2 class="section-heading">SECTION 3 — SNS 공유 카드 미리보기</h2>
+
+    <div class="sns-cards-grid">
+
+      <!-- a) Square 1080×1080 -->
+      <div class="sns-card-wrapper">
+        <div class="sns-card-label">정사각형 1080×1080 (Instagram)</div>
+        <div class="sns-card-square">
+          <div class="card-logo">HebronGuide</div>
+          <div class="qr-wrap">
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fhebronguide.com&color=0d1117&bgcolor=ffffff&margin=2"
+              alt="QR" width="120" height="120" loading="lazy"
+            />
+          </div>
+          <div class="card-tagline">스캔하면 무료 정착 가이드</div>
+          <div class="card-sub">52개+ 도시 · 한국어 · 무료</div>
+        </div>
+      </div>
+
+      <!-- b) Story 9:16 -->
+      <div class="sns-card-wrapper">
+        <div class="sns-card-label">스토리 1080×1920 (Instagram · Threads)</div>
+        <div class="sns-card-story">
+          <div class="card-logo">HebronGuide</div>
+          <div class="qr-wrap">
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fhebronguide.com&color=0d1117&bgcolor=ffffff&margin=2"
+              alt="QR" width="160" height="160" loading="lazy"
+            />
+          </div>
+          <div class="card-headline">한인 이민자를 위한<br>디지털 환대 플랫폼</div>
+          <ul class="card-bullets">
+            <li>52개+ 미국 도시 커버리지</li>
+            <li>한국어 · 영어 · 스페인어</li>
+            <li>맛집 · 교회 · 의료 · 취업</li>
+            <li>앱처럼 설치 가능 · 완전 무료</li>
+          </ul>
+          <div style="font-size:0.68rem;color:var(--gold);font-weight:700;">hebronguide.com</div>
+        </div>
+      </div>
+
+      <!-- c) Wide 1200×628 -->
+      <div class="sns-card-wrapper" style="grid-column: 1 / -1;">
+        <div class="sns-card-label">가로형 배너 1200×628 (Facebook · X)</div>
+        <div class="sns-card-wide">
+          <div class="wide-left">
+            <div class="wide-logo">HebronGuide</div>
+            <div class="wide-headline">한인 이민자 정착 가이드<br>미국 전역 52개+ 도시</div>
+            <div class="wide-sub">한국어 · 영어 · 스페인어 · 완전 무료<br>맛집 · 교회 · 의료 · 취업 · 정착 정보</div>
+          </div>
+          <div class="wide-right">
+            <div class="qr-wrap">
+              <img
+                src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fhebronguide.com&color=0d1117&bgcolor=ffffff&margin=2"
+                alt="QR" width="120" height="120" loading="lazy"
+              />
+            </div>
+            <div class="wide-scan">스캔하세요</div>
+            <div style="font-size:0.6rem;color:var(--muted);">hebronguide.com</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider no-print"></div>
+
+  <!-- ════ SECTION 4 — SNS SHARE BUTTONS ════ -->
+  <section id="section-share" class="no-print">
+    <h2 class="section-heading">SECTION 4 — SNS로 바로 공유하기</h2>
+
+    <div class="share-sub-heading">일반 사용자 링크 공유</div>
+    <div class="share-grid" id="share-grid-user"></div>
+
+    <div class="share-sub-heading">파트너 교회 신청 링크 공유</div>
+    <div class="share-grid" id="share-grid-church"></div>
+  </section>
+
+  <div class="divider no-print"></div>
+
+  <!-- ════ SECTION 5 — PRINT GUIDE ════ -->
+  <section id="section-print-guide" class="no-print">
+    <h2 class="section-heading">SECTION 5 — 인쇄 &amp; 배포 안내</h2>
+
+    <div class="print-box">
+      <div>
+        <button class="btn-print" onclick="window.print()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          인쇄하기 (포스터)
+        </button>
+      </div>
+
+      <div class="print-tip">
+        <svg class="print-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span class="print-note"><strong>인쇄 시 배경 그래픽 포함 옵션을 켜주세요.</strong><br>
+        Chrome: 인쇄 → 세부사항 더보기 → "배경 그래픽" 체크</span>
+      </div>
+
+      <div class="print-tip">
+        <svg class="print-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span class="print-note"><strong>포스터를 한인 업소에 부착해 주세요.</strong><br>
+        식당 · 세탁소 · 학원 · 미용실 · 교회 게시판 등</span>
+      </div>
+
+      <div class="print-tip">
+        <svg class="print-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span class="print-note"><strong>최적 인쇄 크기:</strong> A4 (210×297mm) 또는 Letter (8.5×11인치)<br>
+        컬러 인쇄 권장 · 용지는 광택지(glossy) 사용 시 더욱 선명</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script>
+  const SHARE_URL        = 'https://hebronguide.com';
+  const SHARE_CHURCH_URL = 'https://hebronguide.com/founding-partner.html';
+  const SHARE_TEXT       = '📱 HebronGuide — 한인 이민자 정착 가이드. 52개+ 도시, 무료.';
+  const SHARE_TEXT_CHURCH = '⛪ HebronGuide 파트너 교회 모집. 한인 이민자·이주자와 교회를 잇는 디지털 환대 플랫폼.';
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  function isMobile() {
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  }
+
+  function encodeShare(text) { return encodeURIComponent(text); }
+
+  /* ── Platform action builders ── */
+  const platforms = [
+    {
+      id: 'kakao',
+      label: 'KakaoTalk',
+      iconClass: 'icon-kakao',
+      svg: `<svg viewBox="0 0 36 36" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 5C10.268 5 4 9.925 4 16.04c0 3.814 2.389 7.176 6.017 9.232l-1.534 5.572a.5.5 0 00.744.557L15.637 27.5c.777.09 1.565.138 2.363.138 7.732 0 14-4.925 14-11.04C32 10.925 25.732 5 18 5z" fill="#3A1D00"/>
+      </svg>`,
+      action(url, text) {
+        if (isMobile()) {
+          window.location.href = `kakaotalk://msg/send?msg=${encodeShare(text + '\n' + url)}`;
+          setTimeout(() => {
+            navigator.clipboard.writeText(text + '\n' + url).then(() => showToast('링크 복사됨 — KakaoTalk에 붙여넣기 하세요'));
+          }, 1200);
+        } else {
+          navigator.clipboard.writeText(text + '\n' + url).then(() => showToast('링크 복사됨 — KakaoTalk에 붙여넣기 하세요'));
+        }
+      }
+    },
+    {
+      id: 'whatsapp',
+      label: 'WhatsApp',
+      iconClass: 'icon-whatsapp',
+      svg: `<svg viewBox="0 0 36 36" width="28" height="28" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 3C9.716 3 3 9.716 3 18c0 2.71.712 5.252 1.958 7.455L3 33l7.793-2.04A14.938 14.938 0 0018 33c8.284 0 15-6.716 15-15S26.284 3 18 3zm0 27.273a12.242 12.242 0 01-6.241-1.706l-.447-.265-4.626 1.213 1.233-4.515-.292-.466A12.226 12.226 0 015.727 18C5.727 11.19 11.19 5.727 18 5.727S30.273 11.19 30.273 18 24.81 30.273 18 30.273zm6.716-9.17c-.369-.184-2.177-1.074-2.515-1.196-.338-.123-.584-.184-.83.184-.245.368-.951 1.196-1.166 1.441-.215.246-.43.277-.799.092-.368-.184-1.558-.574-2.968-1.83-1.096-.977-1.837-2.183-2.051-2.551-.215-.368-.023-.566.162-.75.165-.163.368-.43.552-.644.184-.215.245-.368.368-.614.123-.245.061-.46-.03-.644-.092-.184-.83-2-.136-2.735-.359-.718-.73-.621-.83-.633l-.706-.012c-.245 0-.644.092-.982.46s-1.289 1.258-1.289 3.07 1.32 3.56 1.504 3.805c.184.246 2.6 3.97 6.3 5.566.881.38 1.569.608 2.104.778.884.282 1.688.243 2.325.147.709-.105 2.177-.89 2.484-1.748.307-.859.307-1.596.215-1.749-.092-.152-.338-.245-.706-.429z"/>
+      </svg>`,
+      action(url, text) {
+        window.open(`https://wa.me/?text=${encodeShare(text + '\n' + url)}`, '_blank');
+      }
+    },
+    {
+      id: 'facebook',
+      label: 'Facebook',
+      iconClass: 'icon-facebook',
+      svg: `<svg viewBox="0 0 36 36" width="28" height="28" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.5 18h-2.5v10h-4V18H12v-3.5h2V12.5C14 9.967 15.29 8 18.25 8H21v3.5h-1.75c-.793 0-1.25.4-1.25 1.5V14.5H21L20.5 18z"/>
+      </svg>`,
+      action(url, text) {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeShare(url)}&quote=${encodeShare(text)}`, '_blank');
+      }
+    },
+    {
+      id: 'instagram',
+      label: 'Instagram',
+      iconClass: 'icon-instagram',
+      svg: `<svg viewBox="0 0 36 36" width="28" height="28" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 8.5c-2.58 0-2.9.011-3.915.057-.013 0-1.016.043-1.62.18-.744.17-1.4.454-2 .998-.6.544-.912 1.155-1.1 1.834-.17.607-.22 1.244-.237 1.6C9.012 14.1 9 14.4 9 18s.012 3.9.128 4.83c.017.356.068.993.238 1.6.188.68.5 1.29 1.1 1.834.6.544 1.255.828 2 .998.604.137 1.607.18 1.62.18C15.1 27.489 15.42 27.5 18 27.5s2.9-.011 3.914-.057c.014 0 1.017-.043 1.62-.18.745-.17 1.401-.454 2.001-.998.6-.543.912-1.154 1.1-1.834.17-.607.22-1.244.237-1.6.116-.93.128-1.23.128-4.831s-.012-3.9-.128-4.83c-.017-.356-.068-.993-.237-1.6-.188-.679-.5-1.29-1.1-1.834-.6-.544-1.256-.828-2-.998-.604-.137-1.607-.18-1.62-.18C20.9 8.511 20.58 8.5 18 8.5zm0 1.712c2.536 0 2.836.01 3.839.055.924.042 1.426.196 1.76.326.443.172.759.377 1.09.695.332.318.55.617.73 1.038.137.317.303.793.348 1.67.049.947.058 1.232.058 3.627s-.009 2.68-.058 3.627c-.045.877-.211 1.353-.348 1.67-.18.421-.398.72-.73 1.038-.331.318-.647.523-1.09.695-.334.13-.836.284-1.76.326-1.003.046-1.303.055-3.839.055s-2.836-.009-3.84-.055c-.923-.042-1.425-.196-1.759-.326-.443-.172-.759-.377-1.09-.695-.332-.318-.55-.617-.73-1.038-.138-.317-.303-.793-.348-1.67-.049-.947-.058-1.232-.058-3.627s.009-2.68.058-3.627c.045-.877.21-1.353.348-1.67.18-.421.398-.72.73-1.038.331-.318.647-.523 1.09-.695.334-.13.836-.284 1.76-.326 1.003-.046 1.303-.055 3.839-.055zm0 2.91a4.878 4.878 0 100 9.756 4.878 4.878 0 000-9.756zm0 8.044a3.166 3.166 0 110-6.332 3.166 3.166 0 010 6.332zm6.21-8.237a1.14 1.14 0 11-2.28 0 1.14 1.14 0 012.28 0z"/>
+      </svg>`,
+      action(url, text) {
+        if (isMobile()) {
+          navigator.clipboard.writeText(text + '\n' + url).then(() => showToast('링크 복사됨 — Instagram 스토리에 붙여넣기 하세요'));
+          window.location.href = 'instagram://';
+        } else {
+          navigator.clipboard.writeText(text + '\n' + url).then(() => showToast('링크 복사됨 — instagram.com에서 공유하세요'));
+          window.open('https://www.instagram.com', '_blank');
+        }
+      }
+    },
+    {
+      id: 'threads',
+      label: 'Threads',
+      iconClass: 'icon-threads',
+      svg: `<svg viewBox="0 0 36 36" width="28" height="28" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24.036 16.78c-.18-.084-.363-.162-.55-.235C23.09 13.62 21.35 12 18.52 12h-.07c-1.72 0-3.17.74-4.06 2.08l1.68 1.15c.66-.99 1.7-1.54 2.38-1.54h.05c.92 0 1.61.27 2.06.8.33.38.55.9.67 1.56a14.48 14.48 0 00-2.16-.07c-2.48.14-4.08 1.55-3.97 3.52.06 1 .58 1.86 1.46 2.43.74.48 1.7.72 2.68.67 1.31-.07 2.34-.57 3.06-1.5.55-.72.9-1.65 1.05-2.82.63.38 1.1.88 1.36 1.5.46 1.09.49 2.88-.96 4.32-1.27 1.26-2.79 1.81-5.08 1.82-2.55-.01-4.47-.84-5.72-2.46-1.17-1.51-1.77-3.7-1.79-6.5.02-2.8.62-5 1.79-6.5 1.25-1.62 3.17-2.45 5.72-2.46 2.56.01 4.38.85 5.59 2.48.59.79.98 1.7 1.19 2.65l2-.52c-.26-1.22-.74-2.32-1.44-3.27C22.81 7.16 20.46 6 17.5 6h-.01C14.55 6 12.1 7.16 10.43 9.31c-1.49 1.93-2.26 4.62-2.29 7.99v.01.01c.03 3.37.8 6.06 2.29 7.99 1.67 2.15 4.12 3.31 7.06 3.32h.01c2.56-.01 4.5-.7 6.16-2.34 2.14-2.1 2.08-4.74 1.38-6.35-.5-1.17-1.46-2.12-3-2.84zm-5.24 4.72c-1.09.06-2.23-.43-2.29-1.48-.04-.77.54-1.63 2.3-1.73.2-.01.4-.02.6-.02.54 0 1.05.05 1.53.14-.17 2.14-1.12 3.02-2.14 3.09z"/>
+      </svg>`,
+      action(url, text) {
+        window.open(`https://threads.net/intent/post?text=${encodeShare(text + '\n' + url)}`, '_blank');
+      }
+    },
+    {
+      id: 'x',
+      label: 'X (Twitter)',
+      iconClass: 'icon-x',
+      svg: `<svg viewBox="0 0 36 36" width="28" height="28" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.547 16.14L27.46 8h-1.637l-6.005 6.98L14.95 8H9l7.258 10.558L9 28h1.637l6.349-7.38L22.05 28H28l-7.453-11.86zm-2.248 2.613l-.736-1.052-5.852-8.369h2.52l4.726 6.759.736 1.052 6.146 8.79H23.34l-5.04-7.18z"/>
+      </svg>`,
+      action(url, text) {
+        window.open(`https://twitter.com/intent/tweet?url=${encodeShare(url)}&text=${encodeShare(text)}`, '_blank');
+      }
+    },
+    {
+      id: 'line',
+      label: 'Line',
+      iconClass: 'icon-line',
+      svg: `<svg viewBox="0 0 36 36" width="28" height="28" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 16.28C30 10.61 24.18 6 17 6S4 10.61 4 16.28c0 5.07 4.49 9.32 10.56 10.12.41.09.97.27 1.11.62.13.32.08.81.04 1.13l-.18 1.07c-.05.32-.25 1.26 1.1.69s7.27-4.28 9.92-7.33h.01C29.24 20.5 30 18.48 30 16.28zM13.5 19.5h-3a.5.5 0 01-.5-.5v-6a.5.5 0 011 0v5.5h2.5a.5.5 0 010 1zm2 0a.5.5 0 01-1 0v-6a.5.5 0 011 0v6zm6.5 0h-3a.5.5 0 01-.5-.5v-6a.5.5 0 011 0v5.5H22a.5.5 0 010 1zm4-4.5h-2.5V13a.5.5 0 00-1 0v6a.5.5 0 00.5.5H26a.5.5 0 000-1h-2.5V17H26a.5.5 0 000-1h-2.5V13.5H26a.5.5 0 000-1z"/>
+      </svg>`,
+      action(url, text) {
+        window.open(`https://social-plugins.line.me/lineit/share?url=${encodeShare(url)}&text=${encodeShare(text)}`, '_blank');
+      }
+    },
+    {
+      id: 'sms',
+      label: 'SMS/문자',
+      iconClass: 'icon-sms',
+      svg: `<svg viewBox="0 0 36 36" width="28" height="28" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M28 6H8a2 2 0 00-2 2v14a2 2 0 002 2h4l4 6 4-6h8a2 2 0 002-2V8a2 2 0 00-2-2zm-3 9H11a1 1 0 010-2h14a1 1 0 010 2zm0-4H11a1 1 0 010-2h14a1 1 0 010 2z"/>
+      </svg>`,
+      action(url, text) {
+        const body = encodeShare(text + '\n' + url);
+        window.location.href = `sms:?body=${body}`;
+      }
+    },
+    {
+      id: 'copy',
+      label: '링크 복사',
+      iconClass: 'icon-copy',
+      svg: `<svg viewBox="0 0 36 36" width="28" height="28" fill="none" stroke="#C9A227" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 13v-1a4 4 0 014-4h10a4 4 0 014 4v10a4 4 0 01-4 4h-1"/>
+        <rect x="6" y="15" width="16" height="16" rx="2"/>
+      </svg>`,
+      action(url) {
+        navigator.clipboard.writeText(url).then(() => showToast('링크가 클립보드에 복사되었습니다!'));
+      }
+    }
+  ];
+
+  function buildShareGrid(containerId, url, text) {
+    const grid = document.getElementById(containerId);
+    platforms.forEach(p => {
+      const btn = document.createElement('button');
+      btn.className = 'share-btn';
+      btn.setAttribute('aria-label', p.label + ' 공유');
+      btn.innerHTML = `
+        <div class="share-icon ${p.iconClass}">${p.svg}</div>
+        <span class="share-label">${p.label}</span>
+      `;
+      btn.addEventListener('click', () => {
+        // Try native share API on mobile first (only for non-copy buttons)
+        if (p.id !== 'copy' && p.id !== 'instagram' && isMobile() && navigator.share) {
+          navigator.share({ title: 'HebronGuide', text: text, url: url }).catch(() => p.action(url, text));
+        } else {
+          p.action(url, text);
+        }
+      });
+      grid.appendChild(btn);
+    });
+  }
+
+  buildShareGrid('share-grid-user',   SHARE_URL,        SHARE_TEXT);
+  buildShareGrid('share-grid-church', SHARE_CHURCH_URL, SHARE_TEXT_CHURCH);
+</script>
+
+
+<!-- ── 메인으로 돌아가기 ── -->
+<div style="text-align:center;padding:44px 24px 64px;border-top:1px solid rgba(255,255,255,0.07);background:#0d1117;">
+  <a href="/seattle/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:900;font-size:.95rem;font-family:'Noto Sans KR',sans-serif;letter-spacing:.01em;transition:background .2s;">
+    ← &nbsp;HebronGuide 메인으로 돌아가기
+  </a>
+  <div style="margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
+    <a href="/founding-partner.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">파트너 신청</a>
+    <span style="color:rgba(255,255,255,0.12);">·</span>
+    <a href="/ad-request.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">광고 신청</a>
+    <span style="color:rgba(255,255,255,0.12);">·</span>
+    <a href="/about.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">소개</a>
+    <span style="color:rgba(255,255,255,0.12);">·</span>
+    <a href="/privacy.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">개인정보</a>
+  </div>
+  <div style="margin-top:14px;font-size:.67rem;color:rgba(236,253,245,0.18);font-family:'Noto Sans KR',sans-serif;">© 2026 Hebron Platform LLC · hebronguide.com</div>
+</div>
+<script>
+/* HebronGuide — 도시 자동 복귀 (모든 사용자가 자기 도시로) */
+(function(){
+  function detectCity(){
+    var p=new URLSearchParams(location.search);
+    if(p.get('city'))return p.get('city');
+    var ref=document.referrer;
+    if(ref){var m=ref.match(/hebronguide\.com\/([a-z]+)\//);if(m&&m[1])return m[1];}
+    var segs=location.pathname.split('/').filter(Boolean);
+    if(segs.length&&segs[0].indexOf('.')<0)return segs[0];
+    return'seattle';
+  }
+  var city=detectCity();
+  if(city!=='seattle'){
+    document.querySelectorAll('a[href*="/seattle/"]').forEach(function(a){
+      a.href=a.href.replace(/\/seattle\//g,'/'+city+'/');
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>운영 철학 | HebronGuide Operating Philosophy</title>
+<meta name="description" content="HebronGuide 운영 철학 — 이 세상 어느 누구도 혼자가 아닙니다. 핵심가치·사명·비전·운영원칙."/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0a0e14;--bg2:#0d1117;--surface:rgba(255,255,255,.05);--surface2:rgba(255,255,255,.08);
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+  --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;
+  --text:#ECFDF5;--muted:rgba(236,253,245,.6);--muted2:rgba(236,253,245,.38);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:var(--bg);}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;min-height:100vh;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,14,20,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
+.logo{color:var(--gold);font-family:'Cinzel',serif;font-weight:900;font-size:1.05rem;text-decoration:none;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:.82rem;transition:color .2s;display:flex;align-items:center;gap:6px;}
+.nav-back:hover{color:var(--gold);}
+
+/* HERO */
+.hero{text-align:center;padding:80px 24px 64px;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(201,162,39,.12),transparent);}
+.hero-eyebrow{display:inline-block;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border-radius:20px;padding:5px 18px;margin-bottom:24px;}
+.hero h1{font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;color:#fff;line-height:1.25;margin-bottom:16px;}
+.hero h1 em{color:var(--gold);font-style:normal;display:block;}
+.hero-sub{font-size:clamp(.95rem,2vw,1.1rem);color:var(--muted);max-width:580px;margin:0 auto 32px;line-height:2;}
+.hero-date{font-size:.78rem;color:var(--muted2);margin-top:8px;}
+
+/* CONTENT */
+.content{max-width:720px;margin:0 auto;padding:48px 24px 80px;}
+
+/* SECTION */
+.phil-section{margin-bottom:56px;}
+.phil-num{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;}
+.phil-title{font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:18px;line-height:1.3;}
+.phil-title em{color:var(--gold);font-style:normal;}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:48px 0;}
+
+/* TEXT */
+.lead{font-size:1rem;color:rgba(236,253,245,.85);line-height:2;margin-bottom:16px;}
+.body-text{font-size:.92rem;color:var(--muted);line-height:2;margin-bottom:12px;}
+.body-text strong{color:#fff;}
+.body-text em{color:var(--gold);font-style:italic;}
+
+/* QUOTE BOX */
+.quote-box{background:rgba(201,162,39,.06);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;padding:18px 22px;margin:20px 0;}
+.quote-box p{font-size:.95rem;color:rgba(236,253,245,.88);font-style:italic;line-height:1.9;}
+.quote-box cite{display:block;margin-top:8px;font-style:normal;font-size:.75rem;color:var(--gold);font-weight:700;}
+
+/* VERSE */
+.verse-block{display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+.verse{background:rgba(201,162,39,.05);border-left:2px solid rgba(201,162,39,.3);border-radius:0 10px 10px 0;padding:12px 16px;}
+.verse p{font-size:.88rem;color:rgba(236,253,245,.82);font-style:italic;line-height:1.8;}
+.verse cite{display:block;margin-top:4px;font-style:normal;font-size:.73rem;color:var(--gold);font-weight:700;}
+
+/* VALUES GRID */
+.val-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:20px;}
+.val-card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:24px 20px;}
+.val-icon{font-size:1.8rem;margin-bottom:12px;}
+.val-title{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:8px;}
+.val-body{font-size:.83rem;color:var(--muted);line-height:1.85;}
+
+/* FLOW */
+.flow{display:flex;align-items:center;flex-wrap:wrap;gap:8px;background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:20px;margin:20px 0;}
+.flow-step{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:8px 16px;font-size:.82rem;color:var(--text);font-weight:600;}
+.flow-step.hi{background:rgba(201,162,39,.1);border-color:rgba(201,162,39,.3);color:var(--gold);}
+.flow-arr{color:rgba(201,162,39,.4);font-size:1rem;}
+
+/* ROADMAP */
+.roadmap{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:20px 0;}
+.road-item{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:18px 14px;text-align:center;}
+.road-item.current{border-color:rgba(201,162,39,.35);background:rgba(201,162,39,.06);}
+.road-year{font-size:.72rem;font-weight:700;color:var(--gold);margin-bottom:6px;}
+.road-num{font-size:1.6rem;font-weight:900;color:#fff;line-height:1;}
+.road-unit{font-size:.7rem;color:var(--muted);margin-top:2px;}
+.road-desc{font-size:.72rem;color:var(--muted2);margin-top:6px;line-height:1.6;}
+
+/* PRINCIPLES */
+.prin-list{display:flex;flex-direction:column;gap:16px;margin-top:16px;}
+.prin-item{display:flex;gap:14px;align-items:flex-start;}
+.prin-num{width:32px;height:32px;flex-shrink:0;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;color:var(--gold);margin-top:2px;}
+.prin-body{}
+.prin-title{font-size:.9rem;font-weight:800;color:#fff;margin-bottom:4px;}
+.prin-desc{font-size:.83rem;color:var(--muted);line-height:1.8;}
+
+/* DONOT */
+.donot-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
+@media(max-width:480px){.donot-grid{grid-template-columns:1fr;}}
+.donot-item{background:rgba(255,59,48,.04);border:1px solid rgba(255,59,48,.12);border-radius:10px;padding:12px 14px;}
+.donot-label{font-size:.82rem;font-weight:700;color:rgba(255,100,100,.8);margin-bottom:3px;}
+.donot-why{font-size:.75rem;color:var(--muted);}
+
+/* PROMISE */
+.promise-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:20px;}
+.promise-card{background:linear-gradient(135deg,rgba(201,162,39,.08),rgba(110,231,183,.04));border:1px solid rgba(201,162,39,.2);border-radius:14px;padding:20px 18px;}
+.promise-to{font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
+.promise-text{font-size:.85rem;color:rgba(236,253,245,.82);line-height:1.85;}
+
+/* CLOSING */
+.closing{text-align:center;padding:56px 24px;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(201,162,39,.08),transparent);border-top:1px solid var(--border);margin-top:32px;}
+.closing-quote{font-size:clamp(.95rem,2vw,1.15rem);color:rgba(236,253,245,.85);font-style:italic;line-height:2.1;max-width:560px;margin:0 auto 24px;}
+.closing-sig{font-size:.85rem;color:var(--muted);margin-top:16px;}
+.closing-note{font-size:.78rem;color:var(--muted2);margin-top:20px;line-height:1.9;}
+
+/* FOOTER */
+footer{padding:32px 24px;text-align:center;background:rgba(0,0,0,.3);}
+.footer-logo{font-family:'Cinzel',serif;color:var(--gold);font-weight:900;font-size:.9rem;margin-bottom:10px;}
+.footer-copy{font-size:.7rem;color:var(--muted2);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://hebronguide.com" class="logo">HebronGuide</a>
+  <a href="javascript:history.back()" class="nav-back">← 돌아가기</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">✦ 운영 철학 · Operating Philosophy</div>
+  <h1>이 세상 어느 누구도<br><em>혼자가 아닙니다.</em></h1>
+  <p class="hero-sub">
+    No one in this world should be alone.<br>
+    In any city. For anyone.<br>
+    HebronGuide의 모든 결정은 이 한 문장 위에 세워집니다.
+  </p>
+  <div class="hero-date">제정일 2026-05-19 · HebronGuide 운영팀 · Hebron Platform LLC</div>
+</div>
+
+<div class="content">
+
+  <!-- 1. 설립 이유 -->
+  <div class="phil-section">
+    <div class="phil-num">01 · 설립의 이유 · WHY WE EXIST</div>
+    <h2 class="phil-title">우리는 왜 여기에 <em>있는가</em></h2>
+    <p class="lead">
+      25년의 목회 현장에서, 우리는 반복되는 장면을 목격했습니다.
+    </p>
+    <p class="body-text">
+      비행기에서 내려 공항 문을 나서는 순간 — <strong>아는 사람도, 아는 길도, 아는 언어도 없는 그 자리에 홀로 서 있는 사람들.</strong>
+      정보가 없어서, 연결이 없어서, 커뮤니티가 없어서 홀로 어려움을 겪는 한인 이민자들.
+    </p>
+    <p class="body-text">
+      교회는 안에서 기다리고 있었지만, 그 사람들은 교회 문까지 오지 못했습니다.
+    </p>
+    <div class="quote-box">
+      <p>"HebronGuide는 그 간격을 메우기 위해 태어났습니다.<br>공항에서부터, 세상 한 복판에서부터,<br>그들이 있는 곳으로 먼저 찾아가는 디지털 환대의 문을 열기 위해."</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 2. 이름의 의미 -->
+  <div class="phil-section">
+    <div class="phil-num">02 · 이름의 의미 · THE NAME</div>
+    <h2 class="phil-title">Hebron — <em>연합·교제·동반자</em></h2>
+    <p class="body-text">
+      <strong>Hebron(헤브론)</strong>은 히브리어로 <strong>"연합·교제·동반자"(חֶבְרוֹן)</strong>를 의미합니다.
+    </p>
+    <p class="body-text">
+      아브라함이 거류민으로 살며 하나님과 동행한 땅.<br>
+      낯선 땅에서도 동반자가 있었던 땅.<br>
+      이민자들이 새 땅에서 하나님과 동행하도록 돕는 것 — 그것이 헤브론의 정신입니다.
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 3. 성경적 근거 -->
+  <div class="phil-section">
+    <div class="phil-num">03 · 성경적 근거 · BIBLICAL FOUNDATION</div>
+    <h2 class="phil-title">모든 것의 기초, <em>성경대로</em></h2>
+    <p class="body-text">
+      성경이 그렇다고 하면 그런 줄 알고, 아니라고 하면 아닌 줄 알고,<br>
+      하라고 하면 하고, 하지 말라고 하면 하지 않는다.<br>
+      <strong>이것이 HebronGuide 모든 결정의 최종 심급입니다.</strong>
+    </p>
+    <div class="quote-box" style="border-left-color:var(--mint);background:rgba(110,231,183,.05);">
+      <p style="color:rgba(236,253,245,.95);font-size:1rem;font-weight:700;font-style:normal;margin-bottom:10px;">✦ 오리지널 — 창세기 13:14-18 · Genesis 13:14-18</p>
+      <p>"롯이 아브람을 떠난 후에 여호와께서 아브람에게 이르시되 너는 눈을 들어 너 있는 곳에서 북쪽과 남쪽 그리고 동쪽과 서쪽을 바라보라. 보이는 땅을 내가 너와 네 자손에게 주리니 영원히 이르리라... 너는 일어나 그 땅을 종과 횡으로 두루 다녀보라 내가 그것을 네게 주리라. <strong style="color:#fff;font-style:normal;">이에 아브람이 장막을 옮겨 헤브론에 있는 마므레 상수리 수풀에 이르러 거주하며 거기서 여호와를 위하여 제단을 쌓았더라.</strong>"</p>
+      <p style="margin-top:10px;font-size:.82rem;color:rgba(110,231,183,.6);">"Go, walk through the length and breadth of the land, for I am giving it to you. So Abram went to live at Hebron... There he built an altar to the LORD."</p>
+      <cite style="color:var(--mint);">— 창세기 13:14-18 · Genesis 13:14-18</cite>
+    </div>
+    <p class="body-text" style="margin-top:8px;">
+      거류민으로 낯선 땅을 걷던 아브람처럼 — 이민자들이 새 땅에서도 하나님과 동행하며 제단을 쌓을 수 있도록.<br>
+      <strong>헤브론은 그 이름 그대로, 나그네가 정착하고 예배하는 땅입니다.</strong>
+    </p>
+
+    <div class="verse-block" style="margin-top:20px;">
+      <div class="verse">
+        <p>"내가 나그네 되었을 때 너희가 영접하였다"<br><em style="font-size:.82rem;color:rgba(236,253,245,.5);">"I was a stranger and you welcomed me"</em></p>
+        <cite>— 마태복음 25:35 · Matthew 25:35</cite>
+      </div>
+      <div class="verse">
+        <p>"손님 대접하기를 잊지 말라 이로써 부지중에 천사들을 대접한 이들이 있었느니라"<br><em style="font-size:.82rem;color:rgba(236,253,245,.5);">"Do not neglect to show hospitality to strangers"</em></p>
+        <cite>— 히브리서 13:2 · Hebrews 13:2</cite>
+      </div>
+      <div class="verse">
+        <p>"모든 민족을 제자로 삼아"<br><em style="font-size:.82rem;color:rgba(236,253,245,.5);">"Make disciples of all nations"</em></p>
+        <cite>— 마태복음 28:19 · Matthew 28:19</cite>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 4. 핵심 가치 -->
+  <div class="phil-section">
+    <div class="phil-num">04 · 핵심 가치 · CORE VALUES</div>
+    <h2 class="phil-title">우리가 <em>믿는 것들</em></h2>
+    <p class="body-text">HebronGuide의 모든 결정은 이 네 가지 믿음 위에 세워집니다.</p>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-icon">🕊️</div>
+        <div class="val-title">모든 사람은 환대받을 자격이 있습니다</div>
+        <div class="val-body">국적·언어·배경과 무관하게, 이 세상에 소외되어야 할 사람은 없습니다. 낯선 도시의 첫날이 두렵지 않도록 — 그것이 우리의 출발점입니다.</div>
+      </div>
+      <div class="val-card">
+        <div class="val-icon">🔥</div>
+        <div class="val-title">삶이 먼저, 정보가 그 다음</div>
+        <div class="val-body">정착 정보는 수단입니다. 진짜 목적은 사람과 사람을 잇는 것입니다. 성도의 일터가, 성도의 식탁이, 이미 누군가의 첫 번째 교회입니다.</div>
+      </div>
+      <div class="val-card">
+        <div class="val-icon">🌱</div>
+        <div class="val-title">섬김이 리더십입니다</div>
+        <div class="val-body">크고자 하는 자는 섬기는 자가 되어야 합니다. HebronGuide는 권력이 아닌 섬김, 소유가 아닌 나눔, 강요가 아닌 환대로 운영됩니다. 섬김은 전략이 아니라 정체성입니다.</div>
+      </div>
+      <div class="val-card">
+        <div class="val-icon">🌍</div>
+        <div class="val-title">한인에서 모든 민족으로</div>
+        <div class="val-body">한인 디아스포라로 시작했지만, 하나님의 나라는 모든 민족을 향합니다. 중국계, 베트남계, 아랍계 — 환대에는 국경이 없습니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 5. 사명 -->
+  <div class="phil-section">
+    <div class="phil-num">05 · 사명 · MISSION</div>
+    <h2 class="phil-title">환대가 <em>세상을 바꿉니다</em></h2>
+    <p class="body-text">성도 개인의 일상, 성도의 일터, 성도의 환대로 먼저 닫힌 마음의 문들을 열어야 합니다.</p>
+    <p class="body-text">그리스도인들의 신앙 생활 생태계 안에서 기쁜 소식 밖에 있는 외롭고 소외된 자들의 마음을 열 때, 교회 존재의 목적과 가치를 찾게 됩니다.</p>
+    <div class="flow">
+      <div class="flow-step">낯선 도시 도착</div>
+      <div class="flow-arr">→</div>
+      <div class="flow-step hi">HebronGuide 발견</div>
+      <div class="flow-arr">→</div>
+      <div class="flow-step">성도의 가게에서 환대</div>
+      <div class="flow-arr">→</div>
+      <div class="flow-step">마음의 문이 열린다</div>
+      <div class="flow-arr">→</div>
+      <div class="flow-step hi">밝은 세상이 열린다.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 6. 비전 -->
+  <div class="phil-section">
+    <div class="phil-num">06 · 비전 · VISION 2030</div>
+    <h2 class="phil-title">69개 도시에서 <em>전 세계로</em></h2>
+    <p class="body-text">2030년, 세상 어느 도시에서도 — 한인이든, 중국계든, 베트남계든, 아랍계든 — HebronGuide를 켜면 그 도시에서 환대받을 수 있습니다.<br>이것이 우리가 선포하는 <strong>글로벌 환대 커뮤니티</strong>의 완성입니다.</p>
+    <div class="roadmap">
+      <div class="road-item current">
+        <div class="road-year">2026 현재</div>
+        <div class="road-num">67<span style="font-size:.9rem;">+</span></div>
+        <div class="road-unit">도시</div>
+        <div class="road-desc">한인 디아스포라 · 한국어·영어</div>
+      </div>
+      <div class="road-item">
+        <div class="road-year">2027</div>
+        <div class="road-num">200</div>
+        <div class="road-unit">도시 목표</div>
+        <div class="road-desc">아시아·유럽·남미 확장</div>
+      </div>
+      <div class="road-item">
+        <div class="road-year">2028-29</div>
+        <div class="road-num">300</div>
+        <div class="road-unit">도시 목표</div>
+        <div class="road-desc">중국계·베트남계·필리핀계</div>
+      </div>
+      <div class="road-item">
+        <div class="road-year">2030</div>
+        <div class="road-num">500</div>
+        <div class="road-unit">도시 선포</div>
+        <div class="road-desc">모든 민족 · World Relief</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 7. 운영 원칙 -->
+  <div class="phil-section">
+    <div class="phil-num">07 · 운영 원칙 · OPERATING PRINCIPLES</div>
+    <h2 class="phil-title">우리가 <em>일하는 방법</em></h2>
+    <div class="prin-list">
+      <div class="prin-item">
+        <div class="prin-num">1</div>
+        <div class="prin-body">
+          <div class="prin-title">황금률 — 무엇이든지 남에게 대접받고자 하는 대로 (마태복음 7:12)</div>
+          <div class="prin-desc">모든 콘텐츠, 모든 서비스, 모든 관계에 예외 없이 황금률을 적용합니다.</div>
+        </div>
+      </div>
+      <div class="prin-item">
+        <div class="prin-num">2</div>
+        <div class="prin-body">
+          <div class="prin-title">직접 찾아가는 환대</div>
+          <div class="prin-desc">새신자 환영은 교회 문 안에서 시작되지 않습니다. 세상 한 복판에서, 공항에서, 식당에서, 직장에서 — 성도의 삶이 먼저 찾아갑니다.</div>
+        </div>
+      </div>
+      <div class="prin-item">
+        <div class="prin-num">3</div>
+        <div class="prin-body">
+          <div class="prin-title">검증된 정보만</div>
+          <div class="prin-desc">AI 추측이 아닌, 직접 확인된 정보만 제공합니다. 투명성이 우리의 권위입니다.</div>
+        </div>
+      </div>
+      <div class="prin-item">
+        <div class="prin-num">4</div>
+        <div class="prin-body">
+          <div class="prin-title">강요 없는 연결</div>
+          <div class="prin-desc">직접 전도 없이, 자연스럽게. 환대가 먼저, 신뢰가 그 다음, 관계가 따라옵니다.</div>
+        </div>
+      </div>
+      <div class="prin-item">
+        <div class="prin-num">5</div>
+        <div class="prin-body">
+          <div class="prin-title">무료 접근성 — 기본 기능 영구 무료</div>
+          <div class="prin-desc">돈이 없어서 정보를 얻지 못하는 이민자는 없어야 합니다. 기본 기능은 영구 무료입니다.</div>
+        </div>
+      </div>
+      <div class="prin-item">
+        <div class="prin-num">6</div>
+        <div class="prin-body">
+          <div class="prin-title">안식과 지속성</div>
+          <div class="prin-desc">일요일은 상업 활동 없음. 쉼이 있어야 섬길 수 있습니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 8. 하지 않는 것 -->
+  <div class="phil-section">
+    <div class="phil-num">08 · 우리가 하지 않는 것 · WHAT WE DO NOT DO</div>
+    <h2 class="phil-title">원칙의 경계선</h2>
+    <div class="donot-grid">
+      <div class="donot-item"><div class="donot-label">직접 전도 ✕</div><div class="donot-why">강요는 환대가 아닙니다</div></div>
+      <div class="donot-item"><div class="donot-label">미검증 정보 ✕</div><div class="donot-why">신뢰가 우리의 자산입니다</div></div>
+      <div class="donot-item"><div class="donot-label">데이터 판매 ✕</div><div class="donot-why">사람은 상품이 아닙니다</div></div>
+      <div class="donot-item"><div class="donot-label">이단 등재 ✕</div><div class="donot-why">진리가 기준입니다</div></div>
+      <div class="donot-item"><div class="donot-label">정치 편향 ✕</div><div class="donot-why">성경이 유일한 기준입니다</div></div>
+      <div class="donot-item"><div class="donot-label">민족주의 ✕</div><div class="donot-why">환대에는 국경이 없습니다</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 9. 약속 -->
+  <div class="phil-section">
+    <div class="phil-num">09 · 우리의 약속 · OUR PROMISE</div>
+    <h2 class="phil-title">HebronGuide가 <em>드리는 약속</em></h2>
+    <div class="promise-grid">
+      <div class="promise-card">
+        <div class="promise-to">이민자·이주자에게</div>
+        <div class="promise-text">당신은 혼자가 아닙니다.<br>공항에서부터, 우리가 함께합니다.</div>
+      </div>
+      <div class="promise-card">
+        <div class="promise-to">목사님·교회에게</div>
+        <div class="promise-text">세상으로 나가는 환대를<br>디지털로 함께 만들겠습니다.</div>
+      </div>
+      <div class="promise-card">
+        <div class="promise-to">성도·사업체에게</div>
+        <div class="promise-text">당신의 일상이, 일터가,<br>이미 선교의 현장입니다.</div>
+      </div>
+      <div class="promise-card">
+        <div class="promise-to">모든 민족에게</div>
+        <div class="promise-text">2030년, 어느 도시에서도<br>환대받을 수 있는 세상을 만들겠습니다.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CLOSING -->
+<div class="closing">
+  <div class="closing-quote">
+    "공항 문을 나서듯, 낯선 도시와 세상 속으로<br>
+    첫발을 내딛는 그 순간부터<br>
+    누군가가 기다리고 있어야 합니다.<br>
+    그 누군가가 되는 것 — 이것이 헤브론입니다."
+  </div>
+  <div class="closing-sig">
+    <strong style="color:#fff;">HebronGuide 운영팀</strong><br>
+    HebronGuide Founder & CEO · Hebron Platform LLC
+  </div>
+  <div class="closing-note">
+    이 철학은 살아있는 문서입니다.<br>
+    경험과 성장을 통해 계속 다듬어집니다.<br>
+    그러나 그 심장 — <strong style="color:var(--gold);">환대, 섬김, 모든 민족</strong> — 은 변하지 않습니다.
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">HebronGuide</div>
+  <div class="footer-copy">© 2026 Hebron Platform LLC · hebronguide.com</div>
+</footer>
+
+</body>
+</html>

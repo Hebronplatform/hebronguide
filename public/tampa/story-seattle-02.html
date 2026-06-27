@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>나도 모르게 달려갔습니다 — HebronGuide 이달의 이야기</title>
+<meta name="description" content="아버지를 피해 미국에 왔습니다. 그런데 14년 후 버스 정류장에서 아버지를 발견했을 때, 나도 모르게 달려갔습니다.">
+<meta property="og:title" content="나도 모르게 달려갔습니다 — HebronGuide">
+<meta property="og:description" content="아버지를 피해 미국에 왔습니다. 그런데 달려갔습니다. 그 이야기.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;--surface:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.16);
+  --gold:#C9A227;--mint:#6EE7B7;--text:#ECFDF5;--muted:rgba(236,253,245,0.6);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:var(--bg);}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;min-height:100vh;}
+html[lang="ko"] .en{display:none!important;}
+html[lang="en"] .ko{display:none!important;}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
+.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;font-family:'Cinzel',serif;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-tag{font-size:.72rem;color:var(--muted);background:rgba(255,255,255,0.06);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;}
+.lang-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:rgba(236,253,245,.75);font-size:.7rem;font-weight:700;border-radius:20px;padding:5px 13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s;}
+.lang-btn:hover{background:rgba(201,162,39,.15);border-color:rgba(201,162,39,.4);color:var(--gold);}
+
+.hero{text-align:center;padding:60px 24px 44px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.1),transparent);}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:99px;padding:6px 18px;margin-bottom:24px;}
+.story-title{font-family:'Noto Serif KR',serif;font-size:clamp(1.9rem,6vw,3rem);font-weight:700;color:#fff;line-height:1.3;margin-bottom:14px;}
+.story-title-en{font-family:Georgia,serif;font-size:clamp(1.5rem,4.5vw,2.2rem);font-weight:700;color:#fff;line-height:1.3;margin-bottom:14px;}
+.story-sub{font-size:.95rem;color:var(--muted);max-width:480px;margin:0 auto 10px;line-height:2;}
+.story-loc{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(201,162,39,.75);font-weight:700;background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.2);border-radius:99px;padding:4px 16px;margin-top:12px;}
+.divider{width:50px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:30px auto;}
+
+.wrap{max-width:660px;margin:0 auto;padding:0 24px 72px;}
+.scene{margin-bottom:40px;}
+.slabel{font-size:.67rem;font-weight:800;color:rgba(201,162,39,.42);letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.05);}
+.sp{font-family:'Noto Serif KR',serif;font-size:1.02rem;color:rgba(236,253,245,.88);line-height:2.1;margin-bottom:20px;}
+.sp-en{font-family:Georgia,serif;font-size:.98rem;color:rgba(236,253,245,.88);line-height:2.05;margin-bottom:20px;}
+.sp strong,.sp-en strong{color:#fff;}
+
+.quote{background:rgba(201,162,39,.06);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;padding:18px 22px;margin:20px 0 24px;}
+.qt{font-family:'Noto Serif KR',serif;font-size:.97rem;color:rgba(236,253,245,.9);line-height:2.1;font-style:italic;}
+.qt-en{font-family:Georgia,serif;font-size:.93rem;color:rgba(236,253,245,.9);line-height:2.05;font-style:italic;}
+.qs{font-size:.71rem;color:rgba(201,162,39,.6);font-weight:700;margin-top:10px;font-style:normal;}
+
+.inner{color:rgba(110,231,183,.85);font-style:italic;padding-left:20px;border-left:2px solid rgba(110,231,183,.2);margin:16px 0 20px;font-family:'Noto Serif KR',serif;font-size:.95rem;line-height:2.05;}
+.inner-en{color:rgba(110,231,183,.85);font-style:italic;padding-left:20px;border-left:2px solid rgba(110,231,183,.2);margin:16px 0 20px;font-family:Georgia,serif;font-size:.92rem;line-height:2;}
+
+.climax{background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.05));border:1px solid rgba(201,162,39,.3);border-radius:18px;padding:30px 26px;margin:36px 0;text-align:center;}
+.ct{font-family:'Noto Serif KR',serif;font-size:1.08rem;font-weight:700;color:#fff;line-height:2.1;}
+.ct-en{font-family:Georgia,serif;font-size:1.03rem;font-weight:700;color:#fff;line-height:2.05;}
+
+.hope{text-align:center;padding:8px 0 28px;}
+.hope p{font-family:'Noto Serif KR',serif;font-size:1rem;color:rgba(236,253,245,.68);line-height:2.3;margin-bottom:4px;}
+.hope p.en{font-family:Georgia,serif;font-size:.95rem;}
+
+.link-card{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:14px 18px;text-decoration:none;margin-bottom:10px;transition:border-color .2s;}
+.link-card:hover{border-color:rgba(201,162,39,.4);}
+.link-title{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:2px;}
+.link-desc{font-size:.76rem;color:var(--muted);}
+
+.share-bar{text-align:center;margin:32px 0 24px;}
+.share-hint{font-size:.82rem;color:var(--muted);margin-bottom:14px;}
+.share-btns{display:flex;justify-content:center;gap:10px;}
+.btn-share{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:99px;padding:10px 20px;cursor:pointer;font-size:.8rem;font-weight:700;font-family:'Noto Sans KR',sans-serif;color:var(--text);}
+.btn-kakao{background:rgba(254,229,0,.1);border-color:rgba(254,229,0,.3);color:#fee900;}
+
+.src-box{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px 20px;margin-top:24px;}
+.src-title{font-size:.67rem;font-weight:800;color:rgba(255,255,255,.28);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+.src{font-size:.78rem;color:rgba(236,253,245,.37);line-height:1.9;padding-left:10px;border-left:1px solid rgba(255,255,255,.07);margin-bottom:6px;}
+.src a{color:rgba(110,231,183,.4);text-decoration:none;}
+.src strong{color:rgba(236,253,245,.55);}
+
+.next{text-align:center;padding:40px 24px;border-top:1px solid var(--border);}
+.next-lbl{font-size:.7rem;font-weight:800;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
+.btn-next{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:.9rem;border-radius:50px;padding:13px 30px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;}
+
+footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-align:center;padding:24px;font-size:.73rem;color:rgba(236,253,245,.26);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://hebronguide.com" class="logo">HebronGuide</a>
+  <div class="nav-right">
+    <span class="nav-tag ko">이달의 이야기</span>
+    <span class="nav-tag en">Story of the Month</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="badge">📖 <span class="ko">이달의 이야기 · 2026년 7월</span><span class="en">Story of the Month · July 2026</span></div>
+
+  <h1 class="story-title ko">"나도 모르게<br>달려갔습니다"</h1>
+  <h1 class="story-title-en en">"Without Knowing It,<br>I Ran to Him"</h1>
+
+  <p class="story-sub ko">아버지를 피해 미국에 왔습니다.<br>그런데 14년 후, 버스 정류장에서 아버지를 보는 순간 —</p>
+  <p class="story-sub en">He came to America to escape his father.<br>Then, 14 years later, he saw his father at a bus stop —</p>
+
+  <div class="story-loc">🏔️ <span class="ko">시애틀 · 린우드, 워싱턴 · 한국</span><span class="en">Seattle, Washington · Korea</span></div>
+  <div class="divider"></div>
+</div>
+
+<div class="wrap">
+
+  <!-- S1: 버스 정류장 (in media res) -->
+  <div class="scene">
+    <div class="slabel ko">1막 — 버스 정류장 · 한국 · 2013년 봄</div>
+    <div class="slabel en">Act 1 — Bus Stop · Korea · Spring 2013</div>
+
+    <p class="sp ko">차가 잠시 멈춰 섰습니다. 차창 너머로 버스 정류장이 보였습니다.</p>
+    <p class="sp-en en">The car stopped briefly. Through the window, he saw a bus stop.</p>
+
+    <p class="sp ko">그 자리에, 양복을 단정히 입은 노인 한 분이 서 계셨습니다. 아버지였습니다.</p>
+    <p class="sp-en en">There stood an elderly man in a neat suit. His father.</p>
+
+    <p class="sp ko">아버지가 미국에서 온 아들을 마중 나온 것이었습니다. 도로 중간이었습니다. 차가 멈출 수 있는 곳이 아니었습니다. 그런데 — 나도 모르게 차 문이 열렸습니다. 나도 모르게 내렸습니다. 나도 모르게 달려갔습니다.</p>
+    <p class="sp-en en">His father had come out to welcome his son arriving from America. They were in the middle of the road. Not a place to stop. And yet — without knowing it, the door opened. Without knowing it, he stepped out. Without knowing it, he ran.</p>
+
+    <div class="quote">
+      <p class="qt ko">"밝게 미소 지으며, 성수야~! 네가 온다고 해서 기다리고 있었지."</p>
+      <p class="qt-en en">"With a bright smile — 'Sung-su~! I knew you were coming, so I waited here.'"</p>
+      <p class="qs ko">— 김 목사, 「아버지가 그립습니다」, 2013.11.22</p>
+      <p class="qs en">— Rev. K., "I Miss My Father," Nov. 22, 2013</p>
+    </div>
+
+    <div class="inner ko">"우리 아버지가 맞나?" 싶었습니다. 울컥하는 감정을 참았습니다.</div>
+    <div class="inner-en en">"Is this really my father?" He swallowed the wave of emotion that rose in him.</div>
+  </div>
+
+  <!-- S2: 어린 시절 -->
+  <div class="scene">
+    <div class="slabel ko">2막 — 사당동 · 서울 · 1970년대</div>
+    <div class="slabel en">Act 2 — Sadang-dong, Seoul · 1970s</div>
+
+    <p class="sp ko">이 아들은 목사의 아들로 태어났습니다. 4형제 중 둘째였습니다. 아버지는 교회를 개척하는 분이었습니다.</p>
+    <p class="sp-en en">This son was born into a pastor's family. Second of four brothers. His father was a church planter.</p>
+
+    <p class="sp ko">초등학교 시절, 아버지와 함께 벽돌 실은 리어카를 끌었습니다. 아버지가 앞에서 끌고, 아들이 뒤에서 밀었습니다. 고사리 같은 손으로. 사실은 따라가기도 벅찼습니다. 그런데 아버지가 뒤를 돌아보며 말했습니다.</p>
+    <p class="sp-en en">In elementary school, he helped his father pull a cart loaded with bricks. Father pulling in front, son pushing behind. With tiny hands. He could barely keep up. Then his father turned and said:</p>
+
+    <div class="quote">
+      <p class="qt ko">"성수가 뒤에서 밀어 주니까 리어카가 절로 가네~!"</p>
+      <p class="qt-en en">"Because Sung-su is pushing from behind, the cart just rolls on its own~!"</p>
+      <p class="qs ko">— 김 목사, 「아버지가 그립습니다」, 2013.11.22</p>
+      <p class="qs en">— Rev. K., "I Miss My Father," Nov. 22, 2013</p>
+    </div>
+
+    <p class="sp ko">그것이 아들이 참여한 첫 번째 교회 건축이었습니다.</p>
+    <p class="sp-en en">It was the son's first participation in building a church.</p>
+  </div>
+
+  <!-- S3: 반항과 떠남 -->
+  <div class="scene">
+    <div class="slabel ko">3막 — 고3 · 그리고 미국행</div>
+    <div class="slabel en">Act 3 — Senior Year · Then America</div>
+
+    <p class="sp ko">고등학교 3학년이 되던 해, 아버지는 또 새 교회를 개척하러 떠났습니다. 아들에게는 가장 중요한 시기였습니다. 아버지는 없었습니다.</p>
+    <p class="sp-en en">The year he reached his senior year of high school, his father left again to plant a new church. It was the most important period of his son's life. Father was not there.</p>
+
+    <div class="inner ko">"하나님의 말씀을 전하는 목사님이 자식의 가장 중요한 시기에 어떻게 이렇게 방치하고 떠날 수 있는가?"</div>
+    <div class="inner-en en">"How could a pastor who preaches God's word abandon his child during the most critical time of his life?"</div>
+
+    <p class="sp ko">아버지에 대한 신뢰가 무너졌고, 신앙도 흔들렸습니다. 6개월의 영적 방황 끝에 스스로 하나님을 찾았고, 결국 목사가 되었습니다. 아버지가 원하던 대로.</p>
+    <p class="sp-en en">His trust in his father collapsed, and his faith shook. After six months of spiritual wandering, he found God on his own — and became a pastor. As his father had wanted.</p>
+
+    <p class="sp ko">그리고 미국으로 왔습니다.</p>
+    <p class="sp-en en">And then he came to America.</p>
+
+    <div class="quote">
+      <p class="qt ko">"죄송하게도 젊은 날, 제가 미국에 들어온 가장 큰 이유 중 하나가 아버지를 멀리 떠나는 것이었습니다."</p>
+      <p class="qt-en en">"Shamefully, one of the main reasons I came to America in my younger years was to get far away from my father."</p>
+      <p class="qs ko">— 김 목사, 「아버지가 그립습니다」, 2013.11.22</p>
+      <p class="qs en">— Rev. K., "I Miss My Father," Nov. 22, 2013</p>
+    </div>
+  </div>
+
+  <!-- S4: 14년의 목회 + 고백 -->
+  <div class="scene">
+    <div class="slabel ko">4막 — 린우드 · 14년</div>
+    <div class="slabel en">Act 4 — Lynnwood · 14 Years</div>
+
+    <p class="sp ko">아버지를 피해 미국에 온 그 사람이, 린우드에 교회를 개척했습니다. 반기는 사람이 없는 낯선 땅에서. 아파트 거실을 예배실로 삼아 시작했습니다.</p>
+    <p class="sp-en en">The man who came to America to escape his father planted a church in Lynnwood. In an unfamiliar land where no one welcomed him. Starting with an apartment living room as a sanctuary.</p>
+
+    <p class="sp ko">14년이 흘렀습니다. 그 사이 그는 한 고백을 썼습니다.</p>
+    <p class="sp-en en">Fourteen years passed. And he wrote a confession.</p>
+
+    <div class="quote">
+      <p class="qt ko">"지난 14년간 앞만 보고 왔던 것 같습니다. 이렇다 할 취미활동이나 쉼의 시간도 없이 일에 묻혀 달려온 세월이었습니다. 그 동안 사랑하는 사람들에게 원하지 않는 상처와 실망을 많이 주었다는 자책감이 들었습니다... 내 의사와 관계없이 목사의 아들로 태어나 자라면서 받아온 상한 감정이 치유되지 못했었습니다."</p>
+      <p class="qt-en en">"For the past 14 years, I think I've only looked forward. Years buried in work without any real hobbies or rest. I felt deep guilt that I'd caused people I love unintended pain and disappointment... Wounds from growing up as a pastor's son, not by my own choice, had never healed."</p>
+      <p class="qs ko">— 김 목사, 「지구촌 영적 가족께 띄우는 서신」, 2016.06.19</p>
+      <p class="qs en">— Rev. K., "A Letter to Our Spiritual Family," Jun. 19, 2016</p>
+    </div>
+
+    <p class="sp ko">아버지를 피해 온 아들이, 14년의 목회 끝에 깨달았습니다. 그가 아버지로부터 받은 상처가 — 그가 가장 사랑하는 사람들에게 전해지고 있었다는 것을.</p>
+    <p class="sp-en en">The son who had fled his father realized, after 14 years of ministry: the wounds he had received from his father were being passed on to the very people he loved most.</p>
+
+    <div class="inner ko">"가슴이 아팠습니다. 눈물이 납니다."</div>
+    <div class="inner-en en">"My heart ached. Tears came."</div>
+  </div>
+
+  <!-- S5: 버스 정류장 + 아버지의 죽음 -->
+  <div class="scene">
+    <div class="slabel ko">5막 — 그 후 · 바통</div>
+    <div class="slabel en">Act 5 — After · The Baton</div>
+
+    <p class="sp ko">버스 정류장에서 아버지를 향해 달려갔던 그 날이 마지막이었습니다. 며칠 후 아버지는 세상을 떠났습니다.</p>
+    <p class="sp-en en">The day he ran to his father at the bus stop was the last time. A few days later, his father passed away.</p>
+
+    <p class="sp ko">아들은 아버지에게 편지를 썼습니다.</p>
+    <p class="sp-en en">The son wrote his father a letter.</p>
+
+    <div class="quote">
+      <p class="qt ko">"아버지 ~! 이제 목사님의 달려갈 길, 그 사명을 다 마치셨으니 천국에서 예수님 품에 안기어 푹 쉬십시오. 이제는 제가 그 바통을 잡고 달리겠습니다."</p>
+      <p class="qt-en en">"Father — you have completed your race and your calling. Rest now in Jesus' arms in heaven. I will take up that baton and run."</p>
+      <p class="qs ko">— 김 목사, 「아버지가 그립습니다」, 2013.11.22</p>
+      <p class="qs en">— Rev. K., "I Miss My Father," Nov. 22, 2013</p>
+    </div>
+  </div>
+
+  <!-- 클라이맥스 -->
+  <div class="climax">
+    <p class="ct ko">
+      아버지를 피해 미국에 온 아들은<br>
+      그 낯선 땅에서 교회를 세웠습니다.<br><br>
+      반기는 사람이 없어 막막했던 그 경험으로<br>
+      모든 낯선 이를 반기는 공동체를 만들었습니다.<br><br>
+      아버지의 바통을 이어받아 달리는 그 길에서<br>
+      HebronGuide가 태어났습니다.<br><br>
+      <span style="color:var(--gold);">
+        공항 문을 나서는 모든 이민자에게<br>
+        "기다리고 있었지"라고 말하기 위해.
+      </span>
+    </p>
+    <p class="ct-en en">
+      The son who fled his father<br>
+      built a church in that unfamiliar land.<br><br>
+      From the experience of arriving where no one welcomed him,<br>
+      he built a community that welcomes every stranger.<br><br>
+      Running with his father's baton —<br>
+      HebronGuide was born.<br><br>
+      <span style="color:var(--gold);">
+        To say to every immigrant stepping out of the airport:<br>
+        "I was waiting for you."
+      </span>
+    </p>
+  </div>
+
+  <!-- 희망·재미·감사 -->
+  <div class="hope">
+
+    <!-- 재미 -->
+    <p class="sp ko" style="color:rgba(236,253,245,.55);line-height:2.2;font-size:.95rem;">
+      한 가지 궁금하지 않으셨나요? 😊<br>
+      왜 아버지는 <em>양복</em>을 입고 버스 정류장에 나오셨을까요.<br>
+      귀한 분이 오시기 때문이었겠지요.<br>
+      아들이. 귀한 아들이 오기 때문에.
+    </p>
+    <p class="sp-en en" style="color:rgba(236,253,245,.55);font-family:Georgia,serif;line-height:2.1;font-size:.92rem;">
+      Did you wonder — why did he wear a <em>suit</em> to a bus stop? 😊<br>
+      Because someone important was coming.<br>
+      His son. His precious son was coming.
+    </p>
+
+    <div style="height:1px;background:rgba(255,255,255,.06);margin:20px 0;"></div>
+
+    <!-- 감사 -->
+    <p class="sp ko" style="color:rgba(110,231,183,.7);line-height:2.2;font-size:.95rem;font-style:italic;">
+      아버지께 감사드립니다.<br>
+      기다려 주셔서. 양복 입고 나와 주셔서.<br>
+      아들이 달려오기를 기대하며 거기 서 계셔주셔서.<br><br>
+      그 기다림이 바통이 됐습니다.
+    </p>
+    <p class="sp-en en" style="color:rgba(110,231,183,.7);font-family:Georgia,serif;line-height:2.1;font-size:.92rem;font-style:italic;">
+      Thank you, Father.<br>
+      For waiting. For wearing a suit to a bus stop.<br>
+      For standing there, hoping your son would run to you.<br><br>
+      That waiting became a baton.
+    </p>
+
+    <div style="height:1px;background:rgba(255,255,255,.06);margin:20px 0;"></div>
+
+    <!-- 희망 -->
+    <p class="sp ko" style="color:rgba(236,253,245,.7);line-height:2.3;text-align:center;">
+      HebronGuide도 기다립니다.<br>
+      공항 문 앞에서. 식당 입구에서. 교회 주차장에서.<br>
+      양복은 없어도 — 마음으로.<br><br>
+      <strong style="color:var(--gold);font-size:1.05rem;">그 사람이 되어주세요.</strong>
+    </p>
+    <p class="sp-en en" style="color:rgba(236,253,245,.7);font-family:Georgia,serif;line-height:2.2;text-align:center;">
+      HebronGuide waits too.<br>
+      At airport doors. Restaurant entrances. Church parking lots.<br>
+      No suit — but with the heart.<br><br>
+      <strong style="color:var(--gold);font-size:1.02rem;">Be that person.</strong>
+    </p>
+  </div>
+
+  <!-- 관련 링크 -->
+  <div style="margin-bottom:32px;">
+    <div style="font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">
+      <span class="ko">이 이야기와 연결된 곳</span>
+      <span class="en">Connected to This Story</span>
+    </div>
+    <a href="https://hebronguide.com/story-seattle-01.html" class="link-card">
+      <span style="font-size:1.3rem;flex-shrink:0;">📖</span>
+      <div>
+        <div class="link-title ko">첫 번째 이야기 — "반기는 사람이 없었습니다"</div>
+        <div class="link-title en">Story #1 — "There Was No One to Welcome Me"</div>
+        <div class="link-desc ko">같은 목사님의 교회 개척 이야기 · 시애틀</div>
+        <div class="link-desc en">The same pastor's church planting story · Seattle</div>
+      </div>
+      <span style="margin-left:auto;color:rgba(201,162,39,.5);">→</span>
+    </a>
+    <a href="https://hebronguide.com/seattle/" class="link-card">
+      <span style="font-size:1.3rem;flex-shrink:0;">🏔️</span>
+      <div>
+        <div class="link-title ko">시애틀 HebronGuide</div>
+        <div class="link-title en">Seattle HebronGuide</div>
+        <div class="link-desc ko">정착 정보 · 병원 · 학교 · 교회</div>
+        <div class="link-desc en">Settlement · Hospital · School · Church</div>
+      </div>
+      <span style="margin-left:auto;color:rgba(201,162,39,.5);">→</span>
+    </a>
+    <a href="https://ijiguchon.org" target="_blank" rel="noopener" class="link-card">
+      <span style="font-size:1.3rem;flex-shrink:0;">⛪</span>
+      <div>
+        <div class="link-title">시애틀지구촌교회</div>
+        <div class="link-desc ko">린우드, WA · ijiguchon.org</div>
+        <div class="link-desc en">Lynnwood, WA · ijiguchon.org</div>
+      </div>
+      <span style="margin-left:auto;color:rgba(201,162,39,.5);">↗</span>
+    </a>
+  </div>
+
+  <!-- 공유 -->
+  <div class="share-bar">
+    <p class="share-hint ko">이 이야기가 마음에 닿았다면 나눠주세요.</p>
+    <p class="share-hint en">If this story moved you, please share it.</p>
+    <div class="share-btns">
+      <button class="btn-share btn-kakao" onclick="shareStory()">💬 <span class="ko">카카오톡</span><span class="en">KakaoTalk</span></button>
+      <button class="btn-share" onclick="copyLink()">🔗 <span class="ko">링크 복사</span><span class="en">Copy Link</span></button>
+    </div>
+  </div>
+
+  <!-- 출처 -->
+  <div class="src-box">
+    <div class="src-title ko">출처</div>
+    <div class="src-title en">Sources</div>
+    <p class="src"><strong>김 목사</strong>, 「아버지가 그립습니다」, 시애틀지구촌교회 목회자 칼럼, 2013.11.22 — <a href="https://ijiguchon.org" target="_blank" rel="noopener">ijiguchon.org</a></p>
+    <p class="src"><strong>김 목사</strong>, 「지구촌 영적 가족께 띄우는 서신」, 시애틀지구촌교회 목회자 칼럼, 2016.06.19 — <a href="https://ijiguchon.org" target="_blank" rel="noopener">ijiguchon.org</a></p>
+    <p class="src"><strong>김 목사</strong>, 「시애틀 지구촌교회 11년간의 회고와 감사」, 2013.08.18</p>
+    <p class="src ko">이 이야기는 위 칼럼들의 실제 원문을 바탕으로 편집·재구성했습니다. 직접 인용은 원문 그대로입니다.</p>
+    <p class="src en">This story is edited and reconstructed from the original columns cited above. Direct quotations are verbatim.</p>
+  </div>
+
+</div>
+
+<div class="next">
+  <div class="next-lbl ko">다음 이야기도 기다립니다</div>
+  <div class="next-lbl en">More stories are coming</div>
+  <br>
+  <a href="https://hebronguide.com" class="btn-next">
+    <span class="ko">🌍 전 세계 도시 보기</span>
+    <span class="en">🌍 Explore All Cities</span>
+  </a>
+</div>
+
+<footer>
+  <div>HebronGuide · <span class="ko">글로벌 환대 커뮤니티</span><span class="en">Global Hospitality Community</span> · © 2026 Hebron Platform LLC</div>
+</footer>
+
+<script>
+function toggleLang(){
+  var html=document.documentElement,btn=document.getElementById('lang-btn');
+  if(html.lang==='ko'){html.lang='en';btn.textContent='한국어';}
+  else{html.lang='ko';btn.textContent='EN';}
+  localStorage.setItem('hg_lang',html.lang);
+}
+(function(){
+  var s=localStorage.getItem('hg_lang');
+  if(s==='en'){document.documentElement.lang='en';var b=document.getElementById('lang-btn');if(b)b.textContent='한국어';}
+})();
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href).then(function(){
+    alert(document.documentElement.lang==='en'?'Link copied!':'링크가 복사됐습니다!');
+  });
+}
+function shareStory(){
+  var ko=document.documentElement.lang==='ko';
+  var title=ko?'"나도 모르게 달려갔습니다" — HebronGuide':'"Without Knowing It, I Ran to Him" — HebronGuide';
+  var text=ko?'아버지를 피해 미국에 왔습니다. 그런데 버스 정류장에서 — 나도 모르게 달려갔습니다. ':'He came to America to escape his father. But at the bus stop — without knowing it, he ran. ';
+  if(navigator.share){navigator.share({title:title,text:text,url:window.location.href});}
+  else{navigator.clipboard.writeText(text+window.location.href).then(function(){alert(ko?'복사됐습니다! 카카오톡에 붙여넣기 하세요.':'Copied! Paste into KakaoTalk.');});}
+}
+</script>
+</body>
+</html>

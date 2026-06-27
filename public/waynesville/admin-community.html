@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>커뮤니티 데이터 관리 | HebronGuide Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d1117;--gold:#C9A227;--mint:#6EE7B7;--text:#ECFDF5;--muted:rgba(236,253,245,.55);--surface:rgba(255,255,255,.04);--border:rgba(255,255,255,.1);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+nav{background:rgba(13,17,23,.97);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;}
+.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;}
+.page{max-width:900px;margin:0 auto;padding:32px 20px 80px;}
+h1{font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:4px;}
+.sub{color:var(--muted);font-size:.85rem;margin-bottom:28px;}
+
+/* 로그인 */
+.login-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;max-width:400px;margin:60px auto;}
+.login-box h2{font-size:1rem;font-weight:800;color:#fff;margin-bottom:16px;text-align:center;}
+input[type=password]{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:inherit;font-size:.9rem;outline:none;margin-bottom:12px;}
+input[type=password]:focus{border-color:var(--gold);}
+.btn{width:100%;background:linear-gradient(135deg,var(--gold),#d4a020);color:#0d1117;border:none;padding:12px;border-radius:10px;font-weight:900;font-size:.9rem;cursor:pointer;font-family:inherit;}
+.btn:hover{opacity:.9;}
+.btn-outline{background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.3);color:var(--mint);margin-top:10px;}
+
+/* 대시보드 */
+#dashboard{display:none;}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;}
+.stat-num{font-size:2rem;font-weight:900;color:var(--gold);font-family:'Cinzel',serif;}
+.stat-label{font-size:.75rem;color:var(--muted);margin-top:4px;}
+
+/* 필터 + 액션 */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+select,input[type=text]{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:inherit;font-size:.82rem;outline:none;}
+select:focus,input[type=text]:focus{border-color:var(--gold);}
+.btn-sm{padding:8px 16px;border:none;border-radius:8px;font-weight:700;font-size:.82rem;cursor:pointer;font-family:inherit;}
+.btn-dl{background:linear-gradient(135deg,var(--mint),#34d399);color:#0d1117;}
+.btn-refresh{background:rgba(255,255,255,.08);color:var(--text);}
+
+/* 테이블 */
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;font-size:.8rem;}
+th{background:rgba(201,162,39,.1);color:var(--gold);padding:10px 12px;text-align:left;font-weight:800;white-space:nowrap;}
+td{padding:10px 12px;border-top:1px solid rgba(255,255,255,.05);color:rgba(236,253,245,.8);vertical-align:top;}
+tr:hover td{background:rgba(255,255,255,.03);}
+.badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:.7rem;font-weight:700;}
+.cat-church{background:rgba(192,132,252,.2);color:#C084FC;}
+.cat-food{background:rgba(239,68,68,.2);color:#F87171;}
+.cat-settle{background:rgba(249,115,22,.2);color:#FB923C;}
+.cat-explore{background:rgba(6,182,212,.2);color:#22D3EE;}
+.cat-help{background:rgba(220,38,38,.2);color:#FCA5A5;}
+.cat-job{background:rgba(5,150,105,.2);color:#34D399;}
+.cat-edu{background:rgba(139,92,246,.2);color:#A78BFA;}
+.empty{text-align:center;padding:48px;color:var(--muted);}
+
+.error-msg{color:#FCA5A5;font-size:.85rem;text-align:center;margin-top:8px;}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/seattle/" class="logo">HebronGuide</a>
+  <span style="font-size:.8rem;color:var(--muted);">관리자 · 커뮤니티 데이터</span>
+</nav>
+
+<!-- 로그인 -->
+<div id="loginBox" class="page">
+  <div class="login-box">
+    <h2>🔐 관리자 로그인</h2>
+    <input type="password" id="pwInput" placeholder="관리자 비밀번호" onkeydown="if(event.key==='Enter')login()">
+    <button class="btn" onclick="login()">로그인</button>
+    <div class="error-msg" id="loginErr" style="display:none;">비밀번호가 틀렸습니다.</div>
+  </div>
+</div>
+
+<!-- 대시보드 -->
+<div id="dashboard" class="page">
+  <h1>📊 커뮤니티 데이터 현황</h1>
+  <p class="sub">HebronGuide 앱에서 커뮤니티가 올린 모든 정보</p>
+
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num" id="statTotal">-</div><div class="stat-label">총 등록 수</div></div>
+    <div class="stat"><div class="stat-num" id="statChurch">-</div><div class="stat-label">교회</div></div>
+    <div class="stat"><div class="stat-num" id="statFood">-</div><div class="stat-label">맛집</div></div>
+  </div>
+
+  <div class="toolbar">
+    <select id="filterCat" onchange="renderTable()">
+      <option value="">전체 카테고리</option>
+      <option value="church">⛪ 교회</option>
+      <option value="food">🍽️ 맛집</option>
+      <option value="settle">🏠 정착</option>
+      <option value="explore">🗺️ 탐방</option>
+      <option value="help">🤝 도움</option>
+      <option value="job">💼 취업</option>
+      <option value="edu">📚 교육</option>
+    </select>
+    <input type="text" id="filterSearch" placeholder="이름 검색..." oninput="renderTable()">
+    <button class="btn-sm btn-refresh" onclick="loadData()">🔄 새로고침</button>
+    <button class="btn-sm btn-dl" onclick="downloadCSV()">⬇ Excel/CSV 다운로드</button>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>날짜</th>
+          <th>카테고리</th>
+          <th>도시</th>
+          <th>이름/상호명</th>
+          <th>연락처</th>
+          <th>소개</th>
+          <th>웹사이트</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr><td colspan="7" class="empty">데이터를 불러오는 중...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// Supabase 설정 (anon key — 읽기는 service role key 필요, 아래 설명 참조)
+const SUPA_URL  = "https://vextxqzggznulwpganwt.supabase.co";
+const ANON_KEY  = "sb_publishable_j1cYftObx8VDVkEQAvluXg_rn20pnfX";
+// 관리자는 Supabase 대시보드 → community_items 테이블에서 직접 CSV 다운로드 가능
+
+let adminPw = "";
+let allItems = [];
+// service role key — 설정하면 전체 데이터 조회 가능
+// Supabase 대시보드 → Settings → API → service_role key 복사 후 입력
+let serviceKey = "";
+
+const CAT_LABELS = {
+  church:'⛪ 교회', food:'🍽️ 맛집', settle:'🏠 정착',
+  explore:'🗺️ 탐방', help:'🤝 도움', job:'💼 취업', edu:'📚 교육'
+};
+
+async function login() {
+  const pw = document.getElementById('pwInput').value.trim();
+  if (!pw) return;
+  // service_role key는 길이가 길고 eyJ로 시작
+  if (pw.startsWith('eyJ') && pw.length > 100) {
+    serviceKey = pw;
+    document.getElementById('loginBox').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadData();
+    return;
+  }
+  // 기존 admin 비밀번호 확인 (Edge Function)
+  try {
+    const BASE = `${SUPA_URL}/functions/v1/make-server-21f2cd69`;
+    const res = await fetch(`${BASE}/admin/verify`, {
+      method: 'POST', headers: { 'Authorization': `Bearer ${pw}` }
+    });
+    const data = await res.json();
+    if (data.success) {
+      adminPw = pw;
+      document.getElementById('loginBox').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      loadData();
+    } else {
+      document.getElementById('loginErr').style.display = 'block';
+    }
+  } catch { document.getElementById('loginErr').style.display = 'block'; }
+}
+
+async function loadData() {
+  try {
+    let res;
+    if (serviceKey) {
+      // Supabase REST API — service role key로 직접 조회
+      res = await fetch(`${SUPA_URL}/rest/v1/community_items?order=created_at.desc&limit=1000`, {
+        headers: {
+          'apikey': serviceKey,
+          'Authorization': `Bearer ${serviceKey}`,
+        }
+      });
+      allItems = await res.json();
+    } else {
+      // Edge Function 경유
+      const BASE = `${SUPA_URL}/functions/v1/make-server-21f2cd69`;
+      res = await fetch(`${BASE}/community/all`, {
+        headers: { 'Authorization': `Bearer ${adminPw}` }
+      });
+      const data = await res.json();
+      allItems = data.items || [];
+    }
+    updateStats();
+    renderTable();
+  } catch (e) {
+    document.getElementById('tableBody').innerHTML =
+      `<tr><td colspan="7" class="empty">데이터 로드 실패: ${e}<br><small>Supabase service_role key를 사용해 주세요</small></td></tr>`;
+  }
+}
+
+function updateStats() {
+  document.getElementById('statTotal').textContent = allItems.length;
+  document.getElementById('statChurch').textContent = allItems.filter(i => i.category === 'church').length;
+  document.getElementById('statFood').textContent = allItems.filter(i => i.category === 'food').length;
+}
+
+function renderTable() {
+  const cat = document.getElementById('filterCat').value;
+  const search = document.getElementById('filterSearch').value.toLowerCase();
+  const filtered = allItems.filter(i =>
+    (!cat || i.category === cat) &&
+    (!search || (i.name||'').toLowerCase().includes(search) || (i.city_slug||'').includes(search))
+  );
+
+  if (filtered.length === 0) {
+    document.getElementById('tableBody').innerHTML =
+      '<tr><td colspan="7" class="empty">등록된 정보가 없습니다</td></tr>';
+    return;
+  }
+
+  document.getElementById('tableBody').innerHTML = filtered.map(i => `
+    <tr>
+      <td style="white-space:nowrap;color:var(--muted)">${(i.created_at||'').slice(0,10)}</td>
+      <td><span class="badge cat-${i.category||''}">${CAT_LABELS[i.category]||i.category||'-'}</span></td>
+      <td>${i.city_slug||'-'}</td>
+      <td><strong style="color:#fff">${i.name||'-'}</strong></td>
+      <td>${i.contact ? `<a href="tel:${i.contact}" style="color:var(--mint)">${i.contact}</a>` : '-'}</td>
+      <td style="max-width:200px;word-break:break-word">${i.description||'-'}</td>
+      <td>${i.website ? `<a href="${i.website}" target="_blank" style="color:var(--mint)">🔗</a>` : '-'}</td>
+    </tr>
+  `).join('');
+}
+
+function downloadCSV() {
+  // 현재 필터 기준으로 CSV 생성
+  const cat = document.getElementById('filterCat').value;
+  const search = document.getElementById('filterSearch').value.toLowerCase();
+  const items = allItems.filter(i =>
+    (!cat || i.category === cat) &&
+    (!search || (i.name||'').toLowerCase().includes(search))
+  );
+
+  const BOM = '﻿'; // Excel 한글 깨짐 방지
+  const header = ['날짜','카테고리','도시','이름/상호명','연락처','소개','웹사이트'];
+  const rows = items.map(i => [
+    (i.created_at||'').slice(0,19),
+    CAT_LABELS[i.category]||i.category||'',
+    i.city_slug||'',
+    i.name||'',
+    i.contact||'',
+    i.description||'',
+    i.website||'',
+  ].map(v => `"${String(v).replace(/"/g,'""')}"`).join(','));
+
+  const csv = BOM + [header.join(','), ...rows].join('\r\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `hebronguide-community-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+<script>
+/* HebronGuide — 도시 자동 복귀 (모든 사용자가 자기 도시로) */
+(function(){
+  function detectCity(){
+    var p=new URLSearchParams(location.search);
+    if(p.get('city'))return p.get('city');
+    var ref=document.referrer;
+    if(ref){var m=ref.match(/hebronguide\.com\/([a-z]+)\//);if(m&&m[1])return m[1];}
+    var segs=location.pathname.split('/').filter(Boolean);
+    if(segs.length&&segs[0].indexOf('.')<0)return segs[0];
+    return'seattle';
+  }
+  var city=detectCity();
+  if(city!=='seattle'){
+    document.querySelectorAll('a[href*="/seattle/"]').forEach(function(a){
+      a.href=a.href.replace(/\/seattle\//g,'/'+city+'/');
+    });
+  }
+})();
+</script>
+</body>
+</html>

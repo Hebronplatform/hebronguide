@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>도움말 & 문의 — HebronGuide</title>
+<meta name="description" content="HebronGuide 24시간 도움말 센터. AI 즉시 답변 · 자주 묻는 질문 · 카카오·이메일 문의">
+<meta property="og:title" content="HebronGuide 도움말 센터">
+<meta property="og:description" content="24시간 AI 즉시 답변 · FAQ · 직접 문의">
+<meta property="og:url" content="https://hebronguide.com/help.html">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d1117;--card:#161b22;--border:rgba(255,255,255,.1);--gold:#C9A227;--mint:#6EE7B7;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+html[lang="en"] .ko{display:none!important}
+html[lang="ko"] .en{display:none!important}
+
+/* 헤더 */
+.header{background:rgba(13,17,23,.97);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none}
+.header-right{display:flex;align-items:center;gap:10px}
+.lang-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:.78rem;transition:.2s}
+.lang-btn.active,.lang-btn:hover{border-color:var(--mint);color:var(--mint)}
+
+/* 히어로 */
+.hero{text-align:center;padding:36px 20px 28px;background:linear-gradient(135deg,rgba(110,231,183,.08),rgba(201,162,39,.05))}
+.hero-badge{display:inline-block;background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.3);color:var(--mint);border-radius:20px;padding:4px 14px;font-size:.75rem;font-weight:800;margin-bottom:12px}
+.hero h1{font-size:1.7rem;font-weight:900;margin-bottom:8px}
+.hero p{color:var(--muted);font-size:.88rem;line-height:1.7}
+
+/* 메인 */
+.main{max-width:760px;margin:0 auto;padding:24px 16px 60px}
+
+/* ── AI 채팅 ── */
+.chat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:20px}
+.chat-header{background:linear-gradient(135deg,rgba(110,231,183,.1),rgba(201,162,39,.05));padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.chat-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--mint),var(--gold));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.chat-name{font-weight:700;font-size:.92rem}
+.chat-status{font-size:.72rem;color:var(--mint);display:flex;align-items:center;gap:4px}
+.chat-status::before{content:'';width:6px;height:6px;background:var(--mint);border-radius:50%;display:inline-block}
+.chat-messages{height:280px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:85%;padding:10px 14px;border-radius:12px;font-size:.85rem;line-height:1.6}
+.msg.bot{background:rgba(255,255,255,.06);border:1px solid var(--border);align-self:flex-start;border-radius:4px 12px 12px 12px}
+.msg.user{background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.2);align-self:flex-end;border-radius:12px 4px 12px 12px;color:var(--mint)}
+.msg.typing{color:var(--muted);font-style:italic}
+.chat-input-row{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--border)}
+.chat-input{flex:1;background:#0d1117;border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:.88rem;color:var(--text);font-family:inherit;outline:none;transition:.2s;resize:none;height:44px;min-height:44px}
+.chat-input:focus{border-color:var(--mint)}
+.btn-send{background:var(--mint);color:#000;border:none;border-radius:10px;padding:10px 16px;font-weight:800;cursor:pointer;font-size:.88rem;transition:.2s;white-space:nowrap}
+.btn-send:hover{background:#5dd5a8}
+.btn-send:disabled{opacity:.5;cursor:not-allowed}
+
+/* 빠른 질문 태그 */
+.quick-tags{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px}
+.quick-tag{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:.78rem;color:var(--muted);cursor:pointer;transition:.2s}
+.quick-tag:hover{border-color:var(--mint);color:var(--mint)}
+
+/* ── FAQ ── */
+.section-title{font-size:.75rem;font-weight:800;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.faq-search{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 14px;font-size:.88rem;color:var(--text);outline:none;margin-bottom:14px;font-family:inherit;transition:.2s}
+.faq-search:focus{border-color:var(--mint)}
+.faq-list{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:.2s}
+.faq-item:hover{border-color:rgba(255,255,255,.18)}
+.faq-q{padding:14px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:.88rem;font-weight:600;user-select:none}
+.faq-q .arrow{color:var(--muted);transition:.2s;flex-shrink:0;margin-left:8px}
+.faq-item.open .arrow{transform:rotate(180deg);color:var(--mint)}
+.faq-a{display:none;padding:0 16px 14px;font-size:.83rem;color:var(--muted);line-height:1.8;border-top:1px solid var(--border)}
+.faq-item.open .faq-a{display:block}
+.faq-item.hidden{display:none}
+
+/* ── 연락처 ── */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:20px}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 16px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:8px;transition:.2s}
+.contact-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.contact-icon{font-size:1.6rem}
+.contact-title{font-weight:700;font-size:.9rem}
+.contact-sub{font-size:.78rem;color:var(--muted);line-height:1.5}
+.contact-action{font-size:.8rem;color:var(--gold);font-weight:700;margin-top:auto}
+
+/* 토스트 */
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 20px;font-size:.88rem;opacity:0;transition:.3s;z-index:999;pointer-events:none}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div id="toast"></div>
+
+<!-- 헤더 -->
+<div class="header">
+  <a href="/" class="logo">HebronGuide</a>
+  <div class="header-right">
+    <a href="/register.html" style="color:var(--muted);text-decoration:none;font-size:.82rem" class="ko">등록하기</a>
+    <a href="/register.html" style="color:var(--muted);text-decoration:none;font-size:.82rem" class="en">Register</a>
+    <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
+  </div>
+</div>
+
+<!-- 히어로 -->
+<div class="hero">
+  <div class="hero-badge">💬 24시간 도움말 센터</div>
+  <h1 class="ko">무엇이든 물어보세요</h1>
+  <h1 class="en">Ask Us Anything</h1>
+  <p class="ko">AI가 즉시 답변합니다 · 해결 안 되면 직접 연결해 드립니다</p>
+  <p class="en">AI answers instantly · We'll connect you directly if needed</p>
+</div>
+
+<div class="main">
+
+  <!-- ① AI 채팅 -->
+  <div style="margin-bottom:8px" class="section-title">🤖 <span class="ko">AI 즉시 답변</span><span class="en">AI Instant Answer</span></div>
+
+  <div class="chat-card">
+    <div class="chat-header">
+      <div class="chat-avatar">🌿</div>
+      <div>
+        <div class="chat-name">HebronGuide AI</div>
+        <div class="chat-status ko">지금 온라인 · 평균 응답 2초</div>
+        <div class="chat-status en">Online now · Avg response 2 sec</div>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chat-messages">
+      <div class="msg bot ko">안녕하세요! 🙏 HebronGuide AI입니다.<br>비자, 교회, 식당, 정착 — 무엇이든 물어보세요.</div>
+      <div class="msg bot en">Hello! 🙏 I'm the HebronGuide AI.<br>Visa, church, food, settling in — ask me anything.</div>
+    </div>
+
+    <!-- 빠른 질문 -->
+    <div class="quick-tags">
+      <div class="quick-tag ko" onclick="quickAsk('비자 신청 방법')">📋 비자 신청</div>
+      <div class="quick-tag ko" onclick="quickAsk('한인 교회 찾기')">⛪ 교회 찾기</div>
+      <div class="quick-tag ko" onclick="quickAsk('건강보험 가입 방법')">🏥 건강보험</div>
+      <div class="quick-tag ko" onclick="quickAsk('운전면허 취득')">🚗 운전면허</div>
+      <div class="quick-tag ko" onclick="quickAsk('은행 계좌 개설')">🏦 은행 개설</div>
+      <div class="quick-tag en" onclick="quickAsk('how to apply for visa')">📋 Visa</div>
+      <div class="quick-tag en" onclick="quickAsk('find korean church')">⛪ Church</div>
+      <div class="quick-tag en" onclick="quickAsk('health insurance')">🏥 Insurance</div>
+    </div>
+
+    <div class="chat-input-row">
+      <textarea class="chat-input" id="chat-input" placeholder="질문을 입력하세요... / Type your question..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="btn-send" id="btn-send" onclick="sendMessage()">
+        <span class="ko">전송</span><span class="en">Send</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ② FAQ -->
+  <div class="section-title" style="margin-top:28px">❓ <span class="ko">자주 묻는 질문</span><span class="en">FAQ</span></div>
+
+  <input class="faq-search ko" placeholder="🔍 질문 검색..." oninput="filterFAQ(this.value)">
+  <input class="faq-search en" placeholder="🔍 Search questions..." oninput="filterFAQ(this.value)" style="display:none">
+
+  <div class="faq-list" id="faq-list">
+
+    <!-- 정착 -->
+    <div class="faq-item" data-tags="비자 visa 체류 신분">
+      <div class="faq-q" onclick="toggleFAQ(this)">
+        <span class="ko">🛂 미국 비자 종류별 체류 신분 차이가 뭔가요?</span>
+        <span class="en">🛂 What are the different US visa categories?</span>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">F-1(유학), J-1(교환), H-1B(취업), L-1(주재원), O-1(특기자), EB(영주권) 등이 있습니다. 각 비자마다 취업 가능 여부, 체류 기간, 갱신 조건이 다릅니다. USCIS.gov에서 공식 확인하시고, 이민 변호사 상담을 권장합니다.</span>
+        <span class="en">Common categories: F-1 (student), J-1 (exchange), H-1B (work), L-1 (intracompany), O-1 (extraordinary ability), EB (green card). Each differs in work authorization, stay period, and renewal conditions. Check USCIS.gov for official info.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" data-tags="건강보험 health insurance 의료">
+      <div class="faq-q" onclick="toggleFAQ(this)">
+        <span class="ko">🏥 미국 건강보험 어떻게 가입하나요?</span>
+        <span class="en">🏥 How do I get health insurance in the US?</span>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">① 직장 제공 보험 — 고용주가 제공하면 입사 시 가입<br>② ACA 마켓플레이스 — healthcare.gov (Open Enrollment: 11월~1월)<br>③ Medicaid — 저소득층 무료 (주마다 다름)<br>④ 학교 보험 — 유학생은 학교 제공 보험 의무 가입<br>도착 직후 최우선으로 처리하세요!</span>
+        <span class="en">① Employer insurance — enroll at job start<br>② ACA Marketplace — healthcare.gov (Open Enrollment: Nov-Jan)<br>③ Medicaid — free for low-income (varies by state)<br>④ Student insurance — international students usually required<br>Make this your top priority upon arrival!</span>
+      </div>
+    </div>
+
+    <div class="faq-item" data-tags="은행 bank 계좌 account 개설">
+      <div class="faq-q" onclick="toggleFAQ(this)">
+        <span class="ko">🏦 미국 은행 계좌 개설 시 필요한 서류는?</span>
+        <span class="en">🏦 What documents do I need to open a US bank account?</span>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">필수: 여권 + 비자 + SSN(또는 ITIN) + 미국 주소<br>SSN 없어도 가능한 은행: Chase, Bank of America, Wells Fargo (여권+비자+주소만으로 가능한 경우 있음)<br>한인 직원 있는 지점 방문을 추천합니다.</span>
+        <span class="en">Required: Passport + Visa + SSN (or ITIN) + US address<br>Some banks (Chase, BofA, Wells Fargo) may open accounts with just passport+visa+address.<br>Recommend visiting a branch with Korean-speaking staff.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" data-tags="운전면허 driver license 취득">
+      <div class="faq-q" onclick="toggleFAQ(this)">
+        <span class="ko">🚗 한국 면허증으로 미국에서 운전할 수 있나요?</span>
+        <span class="en">🚗 Can I drive in the US with my Korean license?</span>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">입국 후 일정 기간(주마다 다름, 보통 30~90일) 한국 면허+국제면허(IDP)로 운전 가능합니다. 이후 해당 주 DMV에서 필기+실기 시험을 통해 현지 면허 취득 필요. 국제면허(IDP)는 한국 출발 전 발급받으세요.</span>
+        <span class="en">You can drive with a Korean license + International Driving Permit (IDP) for a limited period (usually 30-90 days, varies by state). After that, visit your local DMV for written + driving tests. Get your IDP before leaving Korea.</span>
+      </div>
+    </div>
+
+    <!-- 교회 -->
+    <div class="faq-item" data-tags="교회 church 찾기 등록">
+      <div class="faq-q" onclick="toggleFAQ(this)">
+        <span class="ko">⛪ 내 도시의 한인 교회를 어떻게 찾나요?</span>
+        <span class="en">⛪ How do I find a Korean church in my city?</span>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">HebronGuide 해당 도시 페이지 → 교회 탭을 확인하세요. Tier1⭐ 교회는 새가족 환영 프로그램이 있습니다. 또는 <a href="/church-join.html" style="color:var(--mint)">교회 등록 신청</a>으로 교회를 추가할 수도 있습니다.</span>
+        <span class="en">Visit your city page on HebronGuide → Church tab. Tier1⭐ churches have newcomer welcome programs. You can also <a href="/church-join.html" style="color:var(--mint)">register a church</a> to add it to our directory.</span>
+      </div>
+    </div>
+
+    <!-- HebronGuide 사용 -->
+    <div class="faq-item" data-tags="HebronGuide 사용 등록 비용 무료">
+      <div class="faq-q" onclick="toggleFAQ(this)">
+        <span class="ko">💰 HebronGuide 이용 비용이 있나요?</span>
+        <span class="en">💰 Is HebronGuide free to use?</span>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">개인 이용자에게 완전 무료입니다. 교회·사업체 등재도 2026년 10월까지 무료입니다. HebronGuide는 이민자를 섬기는 플랫폼입니다 (막10:45).</span>
+        <span class="en">Completely free for individual users. Church and business listings are also free until October 2026. HebronGuide is a platform that serves immigrants (Mark 10:45).</span>
+      </div>
+    </div>
+
+    <div class="faq-item" data-tags="교회 사업체 등록 how register">
+      <div class="faq-q" onclick="toggleFAQ(this)">
+        <span class="ko">📝 교회·사업체를 HebronGuide에 등록하려면?</span>
+        <span class="en">📝 How do I register my church or business?</span>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">⛪ 교회: <a href="/church-join.html" style="color:var(--mint)">church-join.html</a> (30초 완료)<br>🏪 사업체: <a href="/biz-join.html" style="color:var(--mint)">biz-join.html</a> (30초 완료)<br>검토 후 24-48시간 내 게시됩니다.</span>
+        <span class="en">⛪ Church: <a href="/church-join.html" style="color:var(--mint)">church-join.html</a> (30 sec)<br>🏪 Business: <a href="/biz-join.html" style="color:var(--mint)">biz-join.html</a> (30 sec)<br>Posted within 24-48 hours after review.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" data-tags="이야기 story 제출 submit">
+      <div class="faq-q" onclick="toggleFAQ(this)">
+        <span class="ko">📖 이야기를 제출하면 어떻게 되나요?</span>
+        <span class="en">📖 What happens when I submit a story?</span>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <span class="ko">HebronGuide 팀이 K-드라마 5막(도착→아픔→만남→변화→희망)으로 재구성합니다. 이름·장소는 가명 처리 또는 익명으로 바꿉니다. 완성본 확인 후 출판 동의를 받습니다. <a href="/story-submit.html" style="color:var(--mint)">이야기 제출하기 →</a></span>
+        <span class="en">Our team dramatizes your story into a K-drama 5-act structure. Names and locations are changed to pseudonyms or anonymized. You review the final version before publication. <a href="/story-submit.html" style="color:var(--mint)">Submit a story →</a></span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ③ 직접 연락 -->
+  <div class="section-title" style="margin-top:28px">📞 <span class="ko">직접 연락하기</span><span class="en">Contact Us Directly</span></div>
+
+  <div class="contact-grid">
+    <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" class="contact-card">
+      <div class="contact-icon">💛</div>
+      <div class="contact-title ko">카카오 채널</div>
+      <div class="contact-title en">KakaoTalk Channel</div>
+      <div class="contact-sub ko">가장 빠른 소통 창구.<br>채널 구독 후 소식·문의</div>
+      <div class="contact-sub en">Fastest communication.<br>Subscribe for updates & support</div>
+      <div class="contact-action ko">채널 구독하기 →</div>
+      <div class="contact-action en">Subscribe →</div>
+    </a>
+
+    <a href="mailto:Hebronplatform@gmail.com?subject=HebronGuide 문의" class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div class="contact-title">Email</div>
+      <div class="contact-sub ko">Hebronplatform@gmail.com<br>24-48시간 내 답변</div>
+      <div class="contact-sub en">Hebronplatform@gmail.com<br>Response within 24-48 hrs</div>
+      <div class="contact-action ko">이메일 보내기 →</div>
+      <div class="contact-action en">Send email →</div>
+    </a>
+
+    <a href="/register.html" class="contact-card">
+      <div class="contact-icon">📋</div>
+      <div class="contact-title ko">등록·신청</div>
+      <div class="contact-title en">Register / Apply</div>
+      <div class="contact-sub ko">교회·사업체·이야기·<br>파트너 목사 등록</div>
+      <div class="contact-sub en">Church, business, story,<br>partner pastor registration</div>
+      <div class="contact-action ko">등록하기 →</div>
+      <div class="contact-action en">Register →</div>
+    </a>
+  </div>
+
+</div>
+
+<script>
+// ── 언어 ────────────────────────────────────────────────────
+function setLang(lang) {
+  document.documentElement.lang = lang
+  localStorage.setItem('hg_lang', lang)
+  document.getElementById('btn-ko').classList.toggle('active', lang==='ko')
+  document.getElementById('btn-en').classList.toggle('active', lang==='en')
+  // FAQ 검색창 토글
+  document.querySelectorAll('.faq-search').forEach((el,i) => {
+    el.style.display = (i===0 && lang==='ko') || (i===1 && lang==='en') ? '' : 'none'
+  })
+}
+const _lang = localStorage.getItem('hg_lang') || 'ko'
+setLang(_lang)
+
+// ── AI 채팅 ─────────────────────────────────────────────────
+const chatBox = document.getElementById('chat-messages')
+const citySlug = (location.pathname.match(/^\/([a-z]+)\//) || [])[1] || 'seattle'
+
+function addMsg(text, type) {
+  const div = document.createElement('div')
+  div.className = `msg ${type}`
+  div.innerHTML = text
+  chatBox.appendChild(div)
+  chatBox.scrollTop = chatBox.scrollHeight
+  return div
+}
+
+async function sendMessage() {
+  const input = document.getElementById('chat-input')
+  const btn = document.getElementById('btn-send')
+  const q = input.value.trim()
+  if (!q) return
+
+  addMsg(q, 'user')
+  input.value = ''
+  input.style.height = '44px'
+  btn.disabled = true
+
+  const typing = addMsg('<span class="ko">생각 중...</span><span class="en">Thinking...</span>', 'bot typing')
+
+  try {
+    const lang = document.documentElement.lang || 'ko'
+    const res = await fetch('/api/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userMessage: q,
+        systemPrompt: `당신은 HebronGuide 도움말 AI입니다. 전 세계 한인 이주자·이민자를 위한 정착 정보를 제공합니다. 비자·건강보험·은행·교회·식당·생활 정보를 친절하고 정확하게 답변하세요. 불확실한 정보는 "직접 확인을 권장합니다"라고 안내하세요. 언어: ${lang === 'ko' ? '한국어로 답변' : 'Answer in English'}. 최대 3문장으로 간결하게.`
+      })
+    })
+    const data = await res.json()
+    typing.remove()
+    addMsg(data.reply || '잠시 후 다시 시도해 주세요.', 'bot')
+  } catch {
+    typing.remove()
+    addMsg('<span class="ko">잠시 후 다시 시도해 주세요. 또는 아래 이메일로 문의해 주세요.</span><span class="en">Please try again shortly or contact us via email below.</span>', 'bot')
+  }
+  btn.disabled = false
+  input.focus()
+}
+
+function quickAsk(q) {
+  document.getElementById('chat-input').value = q
+  sendMessage()
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage() }
+}
+
+function autoResize(el) {
+  el.style.height = '44px'
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px'
+}
+
+// ── FAQ ─────────────────────────────────────────────────────
+function toggleFAQ(el) {
+  const item = el.closest('.faq-item')
+  const isOpen = item.classList.contains('open')
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'))
+  if (!isOpen) item.classList.add('open')
+}
+
+function filterFAQ(q) {
+  const kw = q.toLowerCase()
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const tags = (item.dataset.tags || '').toLowerCase()
+    const text = item.textContent.toLowerCase()
+    item.classList.toggle('hidden', kw && !tags.includes(kw) && !text.includes(kw))
+  })
+}
+
+// ── 토스트 ───────────────────────────────────────────────────
+function toast(msg) {
+  const el = document.getElementById('toast')
+  el.textContent = msg
+  el.classList.add('show')
+  setTimeout(() => el.classList.remove('show'), 2500)
+}
+</script>
+</body>
+</html>

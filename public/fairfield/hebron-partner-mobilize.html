@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>성도와 함께하는 VIP 환대 — 헤브론 파트너 교회 협력 문서</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:#0d1117;scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;color:#ECFDF5;line-height:1.8;min-height:100vh;padding-bottom:72px;}
+
+/* ── 스티키 액션바 (항상 하단 고정) ── */
+.sticky-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:999;
+  display:flex;gap:0;
+  background:rgba(13,17,23,.97);
+  backdrop-filter:blur(16px);
+  border-top:1px solid rgba(255,255,255,.1);
+  box-shadow:0 -4px 24px rgba(0,0,0,.5);
+  padding:10px 12px;
+  gap:8px;
+}
+.sticky-bar a, .sticky-bar button{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+  border-radius:12px;padding:12px 8px;
+  font-family:'Noto Sans KR',sans-serif;font-weight:800;font-size:.82rem;
+  text-decoration:none;cursor:pointer;border:none;
+  transition:opacity .2s;
+  white-space:nowrap;
+}
+.sticky-bar a:hover,.sticky-bar button:hover{opacity:.85;}
+.sbar-primary{background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;}
+.sbar-secondary{background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.3)!important;color:#6EE7B7;}
+.sbar-ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)!important;color:rgba(236,253,245,.65);}
+
+/* ── 인라인 빠른 연결 (섹션 끝 미니 CTA) ── */
+.quick-cta{
+  display:flex;gap:8px;margin:16px 0 8px;flex-wrap:wrap;
+}
+.qbtn{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:'Noto Sans KR',sans-serif;font-size:.76rem;font-weight:700;
+  border-radius:99px;padding:7px 16px;text-decoration:none;
+  border:1px solid;transition:opacity .2s;
+}
+.qbtn:hover{opacity:.8;}
+.qbtn-gold{color:#C9A227;border-color:rgba(201,162,39,.35);background:rgba(201,162,39,.08);}
+.qbtn-mint{color:#6EE7B7;border-color:rgba(110,231,183,.3);background:rgba(110,231,183,.06);}
+.qbtn-white{color:rgba(236,253,245,.65);border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.04);}
+
+@media print{
+  body{background:#fff;color:#111;}
+  header,footer{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .card{background:#f8f8f8!important;border:1px solid #ddd!important;}
+  .no-print{display:none!important;}
+  .lang-bar{display:none!important;}
+}
+
+/* ── 언어 토글 ── */
+.lang-bar{
+  position:sticky;top:0;z-index:200;
+  display:flex;justify-content:flex-end;align-items:center;
+  padding:10px 20px;gap:6px;
+  background:rgba(13,17,23,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.lang-btn{
+  padding:6px 16px;border-radius:99px;font-size:.72rem;font-weight:800;
+  font-family:'Noto Sans KR',sans-serif;cursor:pointer;
+  border:1px solid rgba(255,255,255,.15);
+  background:transparent;color:rgba(236,253,245,.4);
+  transition:all .2s;letter-spacing:.04em;
+}
+.lang-btn.active{
+  background:rgba(110,231,183,.15);
+  border-color:rgba(110,231,183,.5);
+  color:#6EE7B7;
+}
+.lang-btn:hover:not(.active){color:rgba(236,253,245,.7);border-color:rgba(255,255,255,.3);}
+
+header{
+  background:linear-gradient(160deg,#1a2535 0%,#0d1117 100%);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:40px 24px 36px;
+  text-align:center;
+}
+.priv-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);
+  border-radius:99px;padding:5px 18px;
+  font-size:.7rem;font-weight:800;color:#fca5a5;letter-spacing:.07em;
+  margin-bottom:18px;
+}
+header h1{
+  font-family:'Noto Serif KR',serif;
+  font-size:1.75rem;font-weight:700;line-height:1.35;
+  color:#fff;margin-bottom:10px;
+}
+header h1 em{color:#6EE7B7;font-style:normal;}
+header .lead{
+  font-size:.88rem;color:rgba(236,253,245,.55);line-height:2;
+  max-width:480px;margin:0 auto;
+}
+.container{max-width:620px;margin:0 auto;padding:36px 20px 100px;}
+.sec{margin:44px 0 18px;}
+.sec-label{font-size:.68rem;font-weight:800;color:#6EE7B7;letter-spacing:.12em;margin-bottom:8px;}
+.sec h2{font-family:'Noto Serif KR',serif;font-size:1.2rem;font-weight:700;color:#fff;line-height:1.4;}
+.card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;padding:22px 24px;margin-bottom:14px;
+  position:relative;overflow:hidden;
+}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.card.green::before{background:linear-gradient(180deg,#6EE7B7,#34d399);}
+.card.gold::before{background:linear-gradient(180deg,#C9A227,#b8901c);}
+.card.purple::before{background:linear-gradient(180deg,#a78bfa,#7c3aed);}
+.card.blue::before{background:linear-gradient(180deg,#60a5fa,#2563eb);}
+.card-title{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:7px;}
+.card-body{font-size:.84rem;color:rgba(236,253,245,.68);line-height:1.9;}
+.card-body strong{color:#ECFDF5;font-weight:700;}
+.card-body em{color:#6EE7B7;font-style:normal;font-weight:700;}
+.mindshift{
+  background:linear-gradient(135deg,rgba(110,231,183,.08),rgba(201,162,39,.06));
+  border:1px solid rgba(110,231,183,.2);border-radius:16px;padding:22px 24px;margin:20px 0;
+}
+.mindshift .q{font-family:'Noto Serif KR',serif;font-size:1rem;font-weight:700;color:#6EE7B7;margin-bottom:6px;line-height:1.5;}
+.mindshift .a{font-size:.85rem;color:rgba(236,253,245,.75);line-height:1.9;}
+.steps{display:flex;flex-direction:column;gap:14px;}
+.step{display:flex;gap:16px;align-items:flex-start;}
+.step-num{
+  min-width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,#1a2535,#273444);
+  border:1.5px solid rgba(110,231,183,.35);
+  color:#6EE7B7;font-weight:900;font-size:.85rem;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.step-title{font-size:.9rem;font-weight:800;color:#fff;margin-bottom:3px;}
+.step-desc{font-size:.82rem;color:rgba(236,253,245,.6);line-height:1.75;}
+.biz-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}
+.biz-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;}
+.biz-emoji{font-size:1.4rem;margin-bottom:4px;}
+.biz-name{font-size:.82rem;font-weight:700;color:#fff;margin-bottom:2px;}
+.biz-desc{font-size:.72rem;color:rgba(236,253,245,.5);line-height:1.5;}
+.verse-box{
+  background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.2);
+  border-radius:14px;padding:18px 22px;margin:20px 0;text-align:center;
+}
+.verse-text{font-family:'Noto Serif KR',serif;font-size:.92rem;color:rgba(236,253,245,.85);line-height:1.85;font-style:italic;margin-bottom:8px;}
+.verse-ref{font-size:.75rem;color:#C9A227;font-weight:700;}
+.covenant{
+  background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.06));
+  border:1px solid rgba(201,162,39,.3);border-radius:16px;padding:24px;
+}
+.covenant h3{font-family:'Noto Serif KR',serif;font-size:1rem;font-weight:700;color:#C9A227;margin-bottom:14px;}
+.covenant ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.covenant li{display:flex;align-items:flex-start;gap:10px;font-size:.85rem;color:rgba(236,253,245,.75);line-height:1.75;}
+.covenant li::before{content:'✦';color:#C9A227;flex-shrink:0;margin-top:2px;font-size:.75rem;}
+.contact{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;padding:18px 20px;display:flex;align-items:center;gap:16px;text-decoration:none;
+}
+.contact-icon{font-size:2rem;flex-shrink:0;}
+.contact-label{font-size:.72rem;color:rgba(236,253,245,.35);margin-bottom:2px;}
+.contact-value{font-size:.95rem;font-weight:800;color:#6EE7B7;}
+footer{
+  background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.06);
+  text-align:center;padding:28px 24px;font-size:.72rem;color:rgba(236,253,245,.2);line-height:2;
+}
+footer strong{color:rgba(236,253,245,.4);}
+.info-box{
+  background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.15);
+  border-radius:12px;padding:14px 18px;margin-bottom:18px;
+  font-size:.82rem;color:rgba(236,253,245,.7);line-height:1.9;
+}
+</style>
+</head>
+<body>
+
+<!-- 스티키 액션바 — 항상 하단 고정 -->
+<div class="sticky-bar no-print">
+  <a href="https://hebronguide.com/ad-request.html" target="_blank" rel="noopener" class="sbar-primary"
+     data-ko="⛪ 등재 신청하기" data-en="⛪ Register Now"></a>
+  <a href="https://hebronguide.com" target="_blank" rel="noopener" class="sbar-secondary"
+     data-ko="🌍 HebronGuide.com" data-en="🌍 HebronGuide.com"></a>
+  <a href="mailto:hebronplatform@gmail.com?subject=[HebronGuide] 등재 문의" class="sbar-ghost"
+     data-ko="📧 문의" data-en="📧 Contact"></a>
+</div>
+
+<!-- 언어 토글 + 로고 -->
+<div class="lang-bar no-print">
+  <a href="https://hebronguide.com" style="margin-right:auto;display:flex;align-items:center;">
+    <img src="https://hebronguide.com/hebronguide-logo.svg" alt="HebronGuide" height="28" style="opacity:.9;">
+  </a>
+  <button class="lang-btn active" id="btn-ko" onclick="setLang('ko')">한국어</button>
+  <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
+  <span style="margin-left:8px;font-size:.68rem;color:rgba(236,253,245,.2);">|</span>
+  <a onclick="window.print()" style="font-size:.72rem;color:rgba(201,162,39,.5);cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-left:8px;">🖨️</a>
+</div>
+
+<header>
+  <div class="priv-badge" data-ko="🔒 헤브론 파트너 교회 전용 — 비공개 협력 문서" data-en="🔒 Hebron Partner Church Only — Private Document"></div>
+  <h1 data-ko="성도와 함께하는<br><em>VIP 환대</em> 협력" data-en="<em>VIP Hospitality</em><br>Collaboration with Church Members"></h1>
+  <p class="lead" data-ko="교회 성도들이 자신의 업종을 헤브론가이드에 올리는 것은<br>단순한 홍보가 아닙니다. 새로운 이민자를 맞이하는<br><strong style='color:#fff;'>환대의 손길</strong>입니다." data-en="When church members list their businesses on HebronGuide,<br>it is not simply marketing. It is an act of<br><strong style='color:#fff;'>hospitality</strong> toward newly arrived immigrants."></p>
+</header>
+
+<div class="container">
+
+  <!-- 성경 구절 -->
+  <div class="verse-box">
+    <div class="verse-text"
+      data-ko="&ldquo;내가 나그네 되었을 때 너희가 영접하였고,<br>헐벗었을 때에 옷을 입혔고,<br>병들었을 때에 돌보았고,<br>옥에 갇혔을 때에 와서 보았느니라&rdquo;"
+      data-en="&ldquo;I was a stranger and you welcomed me,<br>I was naked and you clothed me,<br>I was sick and you visited me,<br>I was in prison and you came to me.&rdquo;">
+    </div>
+    <div class="verse-ref" data-ko="마태복음 25:35–36" data-en="Matthew 25:35–36"></div>
+  </div>
+
+  <!-- SECTION 01 -->
+  <div class="sec">
+    <div class="sec-label">SECTION 01</div>
+    <h2 data-ko="성도의 업종 등재 —<br>홍보가 아니라 환대입니다" data-en="Member Business Listings —<br>Not Marketing, but Hospitality"></h2>
+  </div>
+
+  <div class="mindshift">
+    <div class="q"
+      data-ko="❓ &ldquo;내 가게를 올리는 게 교회와 무슨 관계가 있나요?&rdquo;"
+      data-en="❓ &ldquo;What does listing my business have to do with the church?&rdquo;">
+    </div>
+    <div class="a"
+      data-ko="새로 이민 온 한인이 처음 도착한 날 가장 필요한 것은 신뢰할 수 있는 정보입니다.<br>내 교회 성도가 운영하는 가게, 사무실, 클리닉이 가이드에 올라와 있다면 —<br>그 새가족은 낯선 도시에서 <strong>교회 공동체에 의해 먼저 돌봄 받는 경험</strong>을 합니다.<br>이것이 VIP 환대입니다."
+      data-en="When a newly arrived Korean immigrant lands in a new city, what they need most is trustworthy information.<br>If the guide already lists businesses run by fellow church members —<br>that newcomer experiences <strong>being cared for by the church community before they even walk through the doors</strong>.<br>This is VIP Hospitality.">
+    </div>
+  </div>
+
+  <div class="mindshift">
+    <div class="q"
+      data-ko="💡 의식의 전환: &ldquo;홍보&rdquo;에서 &ldquo;환대&rdquo;로"
+      data-en="💡 Mindshift: From &ldquo;Marketing&rdquo; to &ldquo;Hospitality&rdquo;">
+    </div>
+    <div class="a"
+      data-ko="기존 생각: <strong style='color:rgba(236,253,245,.4);'>&ldquo;내 가게를 더 알리고 싶다&rdquo; → 홍보</strong><br>새로운 시각: <strong style='color:#6EE7B7;'>&ldquo;새 이민자에게 내가 섬길 수 있다&rdquo; → 환대의 도구</strong><br><br>성도의 업종이 가이드에 올라오는 순간,<br>그 성도는 <em>파송받은 환대 사역자</em>가 됩니다."
+      data-en="Old mindset: <strong style='color:rgba(236,253,245,.4);'>&ldquo;I want more people to know my business.&rdquo; → Marketing</strong><br>New perspective: <strong style='color:#6EE7B7;'>&ldquo;I can serve a newly arrived immigrant.&rdquo; → A tool of hospitality</strong><br><br>The moment a member's business is listed on the guide,<br>that member becomes <em>a sent minister of hospitality</em>.">
+    </div>
+  </div>
+
+  <!-- Section 01 인라인 CTA -->
+  <div class="quick-cta">
+    <a href="https://hebronguide.com/ad-request.html" target="_blank" rel="noopener" class="qbtn qbtn-gold"
+       data-ko="→ 지금 등재 신청" data-en="→ Register Now"></a>
+    <a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener" class="qbtn qbtn-mint"
+       data-ko="📱 가이드 미리보기" data-en="📱 Preview the Guide"></a>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="sec">
+    <div class="sec-label">SECTION 02</div>
+    <h2 data-ko="어떤 업종이 새가족에게<br>가장 필요한가" data-en="What Industries Are<br>Most Needed by New Arrivals"></h2>
+  </div>
+
+  <p style="font-size:.84rem;color:rgba(236,253,245,.55);margin-bottom:14px;"
+    data-ko="이민자가 도착 첫 주에 반드시 필요한 것들입니다. 우리 교회 성도 중에 아래 분야가 있다면 꼭 등재를 권유해 주세요."
+    data-en="These are what immigrants absolutely need in their first week. If any church members work in these fields, encourage them to be listed.">
+  </p>
+
+  <div class="biz-grid">
+    <div class="biz-item">
+      <div class="biz-emoji">🏥</div>
+      <div class="biz-name" data-ko="의료 · 한의원" data-en="Medical · Korean Medicine"></div>
+      <div class="biz-desc" data-ko="한국어 진료 가능한 가정의, 한의원, 치과, 안과" data-en="Korean-speaking GP, acupuncture, dental, ophthalmology"></div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">⚖️</div>
+      <div class="biz-name" data-ko="법률 · 이민법" data-en="Legal · Immigration Law"></div>
+      <div class="biz-desc" data-ko="이민 서류, 비자, 시민권 관련 법률 상담" data-en="Immigration documents, visa, citizenship legal counsel"></div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">🏠</div>
+      <div class="biz-name" data-ko="부동산" data-en="Real Estate"></div>
+      <div class="biz-desc" data-ko="집 구하기, 렌트, 첫 주택 구매 도움" data-en="Finding housing, renting, first home purchase guidance"></div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">📚</div>
+      <div class="biz-name" data-ko="교육 · 학원" data-en="Education · Tutoring"></div>
+      <div class="biz-desc" data-ko="자녀 영어, 한국학교, SAT/ACT, 대학 상담" data-en="Children's English, Korean school, SAT/ACT, college counseling"></div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">💰</div>
+      <div class="biz-name" data-ko="세무 · 회계" data-en="Tax · Accounting"></div>
+      <div class="biz-desc" data-ko="세금 신고, SSN, ITIN, 소상공인 회계" data-en="Tax filing, SSN, ITIN, small business accounting"></div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">🍽️</div>
+      <div class="biz-name" data-ko="한식당 · 카페" data-en="Korean Restaurant · Café"></div>
+      <div class="biz-desc" data-ko="한국 음식이 그리운 새 이민자의 첫 위로" data-en="The first comfort for a homesick new immigrant"></div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">✂️</div>
+      <div class="biz-name" data-ko="미용 · 뷰티" data-en="Hair · Beauty"></div>
+      <div class="biz-desc" data-ko="한국식 헤어, 네일, 피부 관리 서비스" data-en="Korean-style hair, nails, skincare services"></div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">🚗</div>
+      <div class="biz-name" data-ko="자동차 · 운전" data-en="Auto · Driving"></div>
+      <div class="biz-desc" data-ko="중고차 구매 도움, 운전면허 취득 안내" data-en="Used car purchase help, driver's license guidance"></div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">📦</div>
+      <div class="biz-name" data-ko="이사 · 물류" data-en="Moving · Logistics"></div>
+      <div class="biz-desc" data-ko="공항 픽업, 이사 도움, 짐 보관" data-en="Airport pickup, moving help, storage"></div>
+    </div>
+    <div class="biz-item">
+      <div class="biz-emoji">💼</div>
+      <div class="biz-name" data-ko="취업 · 커리어" data-en="Jobs · Career"></div>
+      <div class="biz-desc" data-ko="이력서, 인터뷰 코칭, 직업 소개" data-en="Resume, interview coaching, job placement"></div>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="sec">
+    <div class="sec-label">SECTION 03</div>
+    <h2 data-ko="성도에게 어떻게<br>이야기를 꺼내는가" data-en="How to Bring It Up<br>with Church Members"></h2>
+  </div>
+
+  <div class="card green">
+    <div class="card-title"
+      data-ko="📢 주보 또는 광고 시간 — 1분 안내문 (예시)"
+      data-en="📢 Bulletin / Announcement — 1-Minute Script (example)">
+    </div>
+    <div class="card-body"
+      data-ko="<em>&ldquo;우리 교회가 연계된 헤브론가이드는 전 세계 한인 이민자들이 새 도시에서 정착할 때 가장 먼저 찾는 가이드입니다. 성도님이 운영하시는 업종이나 서비스를 등재해 주시면, 새로 오시는 분들이 믿을 수 있는 분을 먼저 만나는 축복이 됩니다. 이것이 우리의 환대 사역입니다. 등재는 무료이며, 담당 목사님께 말씀해 주세요.&rdquo;</em>"
+      data-en="<em>&ldquo;HebronGuide, which our church partners with, is the first guide Korean immigrants turn to when settling in a new city. If you list your business or service, newcomers will have the blessing of meeting someone they can trust right away. This is our ministry of hospitality. Listing is free — just let your pastor know.&rdquo;</em>">
+    </div>
+  </div>
+
+  <div class="card gold">
+    <div class="card-title"
+      data-ko="💬 소그룹 목장 나눔 질문 (목자 활용)"
+      data-en="💬 Small Group Discussion Question (for group leaders)">
+    </div>
+    <div class="card-body"
+      data-ko="<strong>&ldquo;만약 하나님이 새로 이민 온 한인에게 누군가를 먼저 보내주신다면, 그 &lsquo;누군가&rsquo;가 나일 수도 있다는 생각을 해 본 적 있으신가요?&rdquo;</strong><br><br>이 질문 이후, 헤브론가이드 등재를 <em>구체적인 환대의 실천 방법</em>으로 제안하세요."
+      data-en="<strong>&ldquo;If God were to send someone ahead to welcome a newly arrived Korean immigrant, have you ever thought that &lsquo;someone&rsquo; could be you?&rdquo;</strong><br><br>After this question, propose listing on HebronGuide as <em>a concrete way to put hospitality into practice</em>.">
+    </div>
+  </div>
+
+  <div class="card purple">
+    <div class="card-title"
+      data-ko="📱 성도에게 보내는 카카오 메시지 (복붙 사용)"
+      data-en="📱 Message to Send Church Members (copy &amp; paste)">
+    </div>
+    <div class="card-body"
+      data-ko="<em>&ldquo;집사님, 안녕하세요. 목사입니다 🙏<br><br>헤브론가이드에 집사님 업소를 직접 올리실 수 있어요.<br>새로 이민 온 분들이 집사님을 먼저 만나게 됩니다. 무료입니다.<br><br>👉 hebronguide.com/member-listing.html<br><br>신청하실 때 목사 이메일 칸에 제 이메일을 넣어 주시면<br>제가 추천 확인을 해드리겠습니다. 감사합니다 🌿&rdquo;</em>"
+      data-en="<em>&ldquo;Hello, this is Pastor [Name] 🙏<br><br>You can now list your business directly on HebronGuide.<br>Newly arrived Korean immigrants will find you first. It&rsquo;s free.<br><br>👉 hebronguide.com/member-listing.html<br><br>When filling out the form, enter my email in the pastor field and I&rsquo;ll send an endorsement. Thank you 🌿&rdquo;</em>">
+    </div>
+  </div>
+
+  <!-- Section 03 인라인 CTA -->
+  <div class="quick-cta">
+    <a href="https://hebronguide.com/ad-request.html" target="_blank" rel="noopener" class="qbtn qbtn-gold"
+       data-ko="→ 성도에게 보낼 등재 링크" data-en="→ Listing Link for Members"></a>
+    <a href="https://hebronguide.com/church-guide.html" target="_blank" rel="noopener" class="qbtn qbtn-white"
+       data-ko="📄 교회 안내 자료" data-en="📄 Church Guide"></a>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="sec">
+    <div class="sec-label">SECTION 04</div>
+    <h2 data-ko="등재 절차 — 성도가 직접, 목사님이 추천" data-en="Listing Process — Members Submit, Pastors Endorse"></h2>
+  </div>
+
+  <div class="info-box"
+    data-ko="✅ <strong style='color:#6EE7B7;'>성도가 직접 등재 신청</strong>합니다. 목사님은 데이터를 수집·전달하는 것이 아니라 <strong style='color:#6EE7B7;'>추천(endorsement)으로 사역적 권위</strong>를 행사합니다.<br>AI가 자동 검토하여 문제 있는 것만 Hebron 관리자에게 알립니다."
+    data-en="✅ <strong style='color:#6EE7B7;'>Members submit their own listings directly.</strong> Pastors do not collect or forward data — instead, they exercise <strong style='color:#6EE7B7;'>pastoral authority through endorsement.</strong><br>AI auto-reviews all submissions. Only flagged items are sent to HebronGuide 운영팀.">
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title" data-ko="성도가 링크로 직접 신청" data-en="Member submits directly via link"></div>
+        <div class="step-desc"
+          data-ko="<strong style='color:#6EE7B7;'>hebronguide.com/member-listing.html</strong><br>성도가 직접 업소명·업종·연락처·한 줄 소개를 입력합니다"
+          data-en="<strong style='color:#6EE7B7;'>hebronguide.com/member-listing.html</strong><br>Member enters business name, type, contact, and one-line description"></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title" data-ko="AI 자동 검토" data-en="AI auto-review"></div>
+        <div class="step-desc" data-ko="필수 항목·연락처 형식·금지 키워드·과장 표현을 자동 확인합니다" data-en="Required fields, contact format, forbidden keywords, and overstatements are checked automatically"></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title" data-ko="목사님은 추천만 — 클릭 한 번" data-en="Pastor endorses — one click"></div>
+        <div class="step-desc"
+          data-ko="성도가 목사님 이메일을 입력하면 추천 요청이 자동 발송됩니다.<br>목사님은 &ldquo;추천합니다&rdquo; 한 줄 답장만 하시면 됩니다 → <strong style='color:#C9A227;'>⭐ 인증 배지</strong>"
+          data-en="If the member enters the pastor's email, an endorsement request is sent automatically.<br>Pastor simply replies &ldquo;I endorse this&rdquo; → <strong style='color:#C9A227;'>⭐ Verified badge</strong>"></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title" data-ko="Hebron 관리자는 문제 있는 것만 확인" data-en="Hebron 관리자 reviews only flagged items"></div>
+        <div class="step-desc"
+          data-ko="AI가 ⚠️ 또는 🚫 플래그를 붙인 신청만 이메일로 보고됩니다.<br>깨끗한 신청은 자동으로 처리됩니다"
+          data-en="Only submissions flagged ⚠️ or 🚫 by AI are reported by email.<br>Clean submissions are processed automatically"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="sec">
+    <div class="sec-label">SECTION 05</div>
+    <h2 data-ko="이것이 만들어가는<br>연대의 생태계" data-en="The Solidarity Ecosystem<br>This Creates"></h2>
+  </div>
+
+  <div class="card blue">
+    <div class="card-title"
+      data-ko="🌍 교회 공동체가 연대하면 이런 일이 생깁니다"
+      data-en="🌍 When the Church Community Comes Together">
+    </div>
+    <div class="card-body"
+      data-ko="시애틀 한 교회 성도 20명이 각자의 업종을 올리면:<br><br>• 한국어 진료 가능한 가정의 → <em>의료 공백 없는 도착</em><br>• 이민법 전문 변호사 → <em>서류 걱정 없는 시작</em><br>• 부동산 성도 → <em>안전한 집 먼저 찾기</em><br>• 한식당 성도 → <em>첫날 밥 한 끼의 위로</em><br>• 학원 성도 → <em>아이들 학교 걱정 덜기</em><br><br>이것이 쌓이면 — 새 이민자는 <strong>교회 공동체가 이미 준비되어 기다리고 있었음</strong>을 느낍니다.<br>선교보다 앞선, 삶으로 보여주는 환대입니다."
+      data-en="When 20 members of one church in Seattle list their businesses:<br><br>• Korean-speaking family doctor → <em>No medical gap on arrival</em><br>• Immigration attorney → <em>No paperwork anxiety from day one</em><br>• Real estate member → <em>A safe home found first</em><br>• Restaurant member → <em>A comforting meal on the first day</em><br>• Tutoring member → <em>One less worry about the kids&rsquo; school</em><br><br>When this builds up — new immigrants feel that <strong>the church community was already prepared and waiting for them</strong>.<br>Hospitality that precedes proclamation. A life that speaks before words.">
+    </div>
+  </div>
+
+  <div class="mindshift">
+    <div class="q"
+      data-ko="🎯 VIP 환대의 핵심: &ldquo;준비된 교회&rdquo;"
+      data-en="🎯 The Heart of VIP Hospitality: &ldquo;A Prepared Church&rdquo;">
+    </div>
+    <div class="a"
+      data-ko="새 이민자가 도착하기 전에 이미 가이드에 우리 교회 성도의 업소가 올라가 있다면 —<br>그 순간부터 교회는 <em>반응하는 교회</em>가 아니라 <strong>준비된 교회</strong>가 됩니다.<br><br>준비된 교회는 새가족을 놀라게 합니다.<br>놀람은 감동이 되고, 감동은 공동체로 이어집니다."
+      data-en="Before a new immigrant even arrives, if the guide already lists businesses run by our church members —<br>from that moment, the church is not a <em>reactive church</em>, but a <strong>prepared church</strong>.<br><br>A prepared church surprises new arrivals.<br>Surprise becomes moved hearts. Moved hearts become community.">
+    </div>
+  </div>
+
+  <!-- Section 05 인라인 CTA — 비전 읽고 가장 행동하고 싶은 순간 -->
+  <div class="quick-cta">
+    <a href="https://hebronguide.com/ad-request.html" target="_blank" rel="noopener" class="qbtn qbtn-gold"
+       data-ko="✦ 우리 교회도 준비된 교회가 되겠습니다 →" data-en="✦ Our Church Will Be a Prepared Church →"></a>
+  </div>
+
+  <!-- SECTION 06 -->
+  <div class="sec">
+    <div class="sec-label">SECTION 06</div>
+    <h2 data-ko="헤브론 파트너 교회<br>환대 협력 서약" data-en="Hebron Partner Church<br>Hospitality Pledge"></h2>
+  </div>
+
+  <div class="covenant">
+    <h3 data-ko="🤝 우리 교회는 이렇게 협력합니다" data-en="🤝 Our Church Commits to the Following"></h3>
+    <ul>
+      <li><span data-ko="성도들에게 VIP 환대의 의미를 정기적으로 나누겠습니다" data-en="We will regularly share the meaning of VIP Hospitality with our members"></span></li>
+      <li><span data-ko="성도의 업종 정보를 목회자가 직접 수집하여 헤브론가이드에 전달하겠습니다" data-en="Our pastor will personally collect and forward member business information to HebronGuide"></span></li>
+      <li><span data-ko="새로 이민 온 성도가 헤브론가이드를 통해 연결될 때 따뜻하게 환영하겠습니다" data-en="We will warmly welcome any newcomers connected to us through HebronGuide"></span></li>
+      <li><span data-ko="새가족에게 교회 성도 업소를 먼저 소개하는 문화를 만들겠습니다" data-en="We will cultivate a culture of introducing church member businesses to newcomers first"></span></li>
+      <li><span data-ko="이 협력이 홍보가 아닌 환대임을 성도들이 이해하도록 돕겠습니다" data-en="We will help our members understand that this is hospitality, not advertising"></span></li>
+    </ul>
+  </div>
+
+  <!-- ═══ CTA + QR ═══ -->
+  <div class="sec" style="margin-bottom:14px;">
+    <div class="sec-label" data-ko="지금 시작하세요" data-en="GET STARTED NOW"></div>
+    <h2 data-ko="읽으셨다면, 지금 바로 시작할 수 있습니다" data-en="You've Read It — Now Take the First Step"></h2>
+  </div>
+
+  <!-- 등재 신청 CTA -->
+  <div style="background:linear-gradient(135deg,rgba(110,231,183,.1),rgba(201,162,39,.07));border:1px solid rgba(110,231,183,.25);border-radius:18px;padding:26px 24px;margin-bottom:16px;">
+
+    <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
+      <!-- QR: 등재 신청 -->
+      <div style="flex-shrink:0;text-align:center;">
+        <div style="background:#fff;border-radius:12px;padding:8px;display:inline-block;box-shadow:0 4px 16px rgba(0,0,0,.4);">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fhebronguide.com%2Fad-request.html&color=0d1117&bgcolor=ffffff&margin=4"
+               alt="등재 신청 QR" width="120" height="120" loading="lazy">
+        </div>
+        <div style="font-size:.65rem;color:rgba(110,231,183,.6);margin-top:6px;font-weight:700;" data-ko="📱 QR 스캔" data-en="📱 Scan QR"></div>
+        <button onclick="downloadQR('register')" style="margin-top:6px;background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);color:rgba(110,231,183,.7);font-size:.62rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;"
+          data-ko="⬇ QR 저장" data-en="⬇ Save QR"></button>
+      </div>
+
+      <!-- 텍스트 + 버튼 -->
+      <div style="flex:1;min-width:180px;">
+        <div style="font-size:.75rem;font-weight:800;color:#6EE7B7;letter-spacing:.08em;margin-bottom:6px;" data-ko="⛪ 교회 · 사업체 등재 신청" data-en="⛪ Register Church or Business"></div>
+        <div style="font-size:.88rem;color:rgba(236,253,245,.8);line-height:1.85;margin-bottom:14px;"
+          data-ko="성도 사업체 무료 등재 · 교회 정보 게시<br><strong style='color:#fff;'>언제나 무료</strong>"
+          data-en="Free member business listing · Church info posting<br><strong style='color:#fff;'>Always free</strong>">
+        </div>
+        <a href="https://hebronguide.com/ad-request.html" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:.88rem;border-radius:50px;padding:12px 24px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;"
+           data-ko="→ 지금 등재 신청하기"
+           data-en="→ Register Now">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HebronGuide 메인 사이트 -->
+  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:20px 22px;margin-bottom:16px;">
+    <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;">
+      <!-- QR: 메인 사이트 -->
+      <div style="flex-shrink:0;text-align:center;">
+        <div style="background:#fff;border-radius:12px;padding:8px;display:inline-block;box-shadow:0 4px 16px rgba(0,0,0,.4);">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fhebronguide.com&color=0d1117&bgcolor=ffffff&margin=4"
+               alt="HebronGuide QR" width="120" height="120" loading="lazy">
+        </div>
+        <div style="font-size:.65rem;color:rgba(201,162,39,.6);margin-top:6px;font-weight:700;" data-ko="📱 QR 스캔" data-en="📱 Scan QR"></div>
+        <button onclick="downloadQR('main')" style="margin-top:6px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);color:rgba(201,162,39,.7);font-size:.62rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;"
+          data-ko="⬇ QR 저장" data-en="⬇ Save QR"></button>
+      </div>
+
+      <div style="flex:1;min-width:180px;">
+        <div style="font-size:.75rem;font-weight:800;color:#C9A227;letter-spacing:.08em;margin-bottom:6px;">🌍 HebronGuide.com</div>
+        <div style="font-size:.88rem;color:rgba(236,253,245,.7);line-height:1.85;margin-bottom:12px;"
+          data-ko="전 세계 69개+ 도시 · 한인 이민자 정착 가이드<br>성도들이 직접 보여줄 수 있는 가이드"
+          data-en="69+ cities worldwide · Korean immigrant settlement guide<br>A guide members can show others directly">
+        </div>
+        <a href="https://hebronguide.com" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:7px;background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);color:#C9A227;font-weight:700;font-size:.82rem;border-radius:20px;padding:8px 18px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;"
+           data-ko="→ HebronGuide.com 바로가기"
+           data-en="→ Visit HebronGuide.com">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 카카오톡 공유 -->
+  <div style="background:rgba(254,229,0,.06);border:1px solid rgba(254,229,0,.2);border-radius:14px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;gap:14px;">
+    <span style="font-size:1.5rem;flex-shrink:0;">💬</span>
+    <div>
+      <div style="font-size:.8rem;font-weight:800;color:#fee900;margin-bottom:4px;"
+        data-ko="카카오톡으로 성도에게 바로 공유하세요"
+        data-en="Share directly with members via KakaoTalk">
+      </div>
+      <div style="font-size:.78rem;color:rgba(236,253,245,.55);line-height:1.8;"
+        data-ko="위 링크나 QR을 카카오톡으로 성도에게 전달하시면 됩니다.<br>성도가 직접 신청하면 목사님께 추천 확인 이메일이 자동 발송됩니다."
+        data-en="Share the link or QR above via KakaoTalk to your members.<br>When a member submits, an endorsement request is automatically sent to you.">
+      </div>
+    </div>
+  </div>
+
+  <!-- 연락처 -->
+  <div class="sec" style="margin-bottom:14px;">
+    <div class="sec-label">CONTACT</div>
+    <h2 data-ko="등재 요청 · 문의" data-en="Listing Requests · Inquiries"></h2>
+  </div>
+
+  <a class="contact" href="mailto:hebronplatform@gmail.com?subject=[HebronGuide] 업소 등재 요청">
+    <div class="contact-icon">📧</div>
+    <div>
+      <div class="contact-label" data-ko="Hebron 관리자 · HebronGuide" data-en="Hebron 관리자 · HebronGuide"></div>
+      <div class="contact-value">hebronplatform@gmail.com</div>
+    </div>
+  </a>
+
+</div>
+
+<footer>
+  <strong>HebronGuide</strong> — <span data-ko="이민자·이주자를 위한 디지털 환대 플랫폼" data-en="A Digital Hospitality Platform for Immigrants &amp; Newcomers"></span><br>
+  <span data-ko="🔒 헤브론 파트너 교회 전용 비공개 문서 · 외부 공유 금지" data-en="🔒 Hebron Partner Church Private Document · Do Not Share Externally"></span><br>
+  <span style="font-size:.65rem;" data-ko="© 2026 Hebron Platform LLC · &ldquo;내가 나그네 되었을 때 너희가 영접하였다&rdquo; — 마 25:35" data-en="© 2026 Hebron Platform LLC · &ldquo;I was a stranger and you welcomed me.&rdquo; — Matt. 25:35"></span>
+</footer>
+
+<script>
+// ── 언어 데이터 초기화 ──
+const LANG_KEY = 'hg_partner_lang';
+let currentLang = localStorage.getItem(LANG_KEY) || 'ko';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem(LANG_KEY, lang);
+  document.documentElement.lang = lang;
+
+  // 모든 data-ko / data-en 요소 교체
+  document.querySelectorAll('[data-ko]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val !== null) el.innerHTML = val;
+  });
+
+  // 버튼 상태
+  document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+  // title
+  document.title = lang === 'ko'
+    ? '성도와 함께하는 VIP 환대 — 헤브론 파트너 교회 협력 문서'
+    : 'VIP Hospitality Collaboration — Hebron Partner Church Document';
+}
+
+// 페이지 로드 시 적용
+document.addEventListener('DOMContentLoaded', () => setLang(currentLang));
+
+// CTA 버튼 (data-ko/en으로 처리됨) — 이미 setLang에서 자동 처리됨
+// QR 저장 편의 함수
+function downloadQR(type) {
+  var urls = {
+    register: 'https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https%3A%2F%2Fhebronguide.com%2Fad-request.html&color=0d1117&bgcolor=ffffff&margin=12',
+    main:     'https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https%3A%2F%2Fhebronguide.com&color=0d1117&bgcolor=ffffff&margin=12'
+  };
+  var a = document.createElement('a');
+  a.href = urls[type];
+  a.download = 'hebronguide-' + type + '-qr.png';
+  a.target = '_blank';
+  a.click();
+}
+</script>
+
+</body>
+</html>

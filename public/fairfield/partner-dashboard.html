@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>사업체 파트너 대시보드 — HebronGuide</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/icon-192.png">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root{--bg:#000;--card:#1c1c1e;--card2:#2c2c2e;--border:rgba(255,255,255,.08);--gold:#F2994A;--mint:#30D158;--blue:#0A84FF;--red:#FF453A;--text:#fff;--text2:rgba(255,255,255,.6);--text3:rgba(255,255,255,.3);--r:16px}
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+    body{background:var(--bg);color:var(--text);font-family:-apple-system,'Noto Sans KR',sans-serif;min-height:100vh;max-width:430px;margin:0 auto}
+    html[lang="en"] .ko{display:none!important}
+    html[lang="ko"] .en{display:none!important}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px 0}
+    .topbar-back{color:var(--gold);font-size:.95rem;text-decoration:none}
+    .lang-btn{background:var(--card2);border:none;color:var(--text2);padding:5px 12px;border-radius:20px;font-size:.8rem;cursor:pointer}
+    .lang-btn.active{background:var(--gold);color:#000;font-weight:700}
+    #screen-login{padding:20px}
+    .login-hero{text-align:center;padding:32px 0 28px}
+    .login-icon{width:72px;height:72px;background:linear-gradient(135deg,#6B46C1,#4F46E5);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 16px;box-shadow:0 8px 24px rgba(107,70,193,.35)}
+    .login-title{font-size:1.5rem;font-weight:700;margin-bottom:8px}
+    .login-sub{color:var(--text2);font-size:.9rem;line-height:1.6}
+    .input-card{background:var(--card);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+    .input-row{display:flex;align-items:center;padding:0 16px;border-bottom:1px solid var(--border)}
+    .input-row:last-child{border-bottom:none}
+    .input-icon{font-size:1.1rem;width:30px;flex-shrink:0}
+    .input-row input{flex:1;background:none;border:none;padding:14px 8px;color:var(--text);font-size:1rem;outline:none;font-family:inherit}
+    .input-row input::placeholder{color:var(--text3)}
+    .btn-main{width:100%;background:var(--gold);color:#000;font-weight:700;font-size:1rem;border:none;padding:15px;border-radius:var(--r);cursor:pointer;font-family:inherit}
+    .btn-main.purple{background:linear-gradient(135deg,#6B46C1,#4F46E5);color:#fff}
+    .btn-main.green{background:var(--mint);color:#000}
+    .btn-sub{width:100%;background:var(--card);color:var(--text);font-size:.95rem;border:none;padding:14px;border-radius:var(--r);cursor:pointer;font-family:inherit;margin-top:10px}
+    .msg{padding:12px 16px;border-radius:10px;font-size:.88rem;margin-top:12px;display:none}
+    .msg.ok{background:rgba(48,209,88,.12);color:var(--mint)}
+    .msg.err{background:rgba(255,69,58,.12);color:var(--red)}
+    .divider-text{text-align:center;color:var(--text3);font-size:.8rem;margin:14px 0;position:relative}
+    .divider-text::before,.divider-text::after{content:'';position:absolute;top:50%;width:36%;height:1px;background:var(--border)}
+    .divider-text::before{left:0}.divider-text::after{right:0}
+    .link-text{color:var(--gold);text-decoration:none;font-size:.88rem}
+    #screen-biz{display:none;padding:0 0 40px}
+    .biz-header{padding:20px 20px 0;display:flex;align-items:center;justify-content:space-between}
+    .biz-greeting{font-size:1rem;color:var(--text2)}
+    .biz-name{font-size:1.4rem;font-weight:700;margin-top:2px}
+    .logout-icon{background:var(--card2);border:none;color:var(--text3);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem}
+    .biz-hero{margin:16px 16px 0;background:linear-gradient(135deg,#1a1a2e,#2c2c3e);border-radius:20px;padding:20px;border:1px solid var(--border);position:relative;overflow:hidden}
+    .biz-hero::before{content:'🏪';position:absolute;right:-8px;top:-8px;font-size:5rem;opacity:.06}
+    .biz-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(48,209,88,.15);color:var(--mint);border-radius:20px;padding:4px 10px;font-size:.78rem;font-weight:700;margin-bottom:10px}
+    .biz-badge.pending{background:rgba(255,191,0,.15);color:#FFD60A}
+    .biz-title-name{font-size:1.2rem;font-weight:700;margin-bottom:4px}
+    .biz-type-text{font-size:.88rem;color:var(--text2);margin-bottom:14px}
+    .biz-meta{display:flex;flex-wrap:wrap;gap:8px}
+    .biz-tag{background:rgba(255,255,255,.08);border-radius:6px;padding:4px 10px;font-size:.8rem;color:var(--text2)}
+    .biz-actions{display:flex;gap:10px;margin-top:16px}
+    .biz-actions a,.biz-actions button{flex:1;background:rgba(255,255,255,.08);border:none;color:var(--text);padding:10px 0;border-radius:10px;font-size:.82rem;text-align:center;text-decoration:none;cursor:pointer;font-family:inherit}
+    .edit-section{margin:12px 16px 0;display:none}
+    .edit-title{font-size:.8rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+    .save-row{display:flex;gap:10px;margin-top:12px}
+    .section-title{font-size:.8rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;padding:20px 20px 10px}
+    .stat-card{margin:0 16px;background:var(--card);border-radius:var(--r);padding:16px;margin-bottom:10px}
+    .stat-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)}
+    .stat-row:last-child{border-bottom:none}
+    .stat-label{font-size:.88rem;color:var(--text2)}
+    .stat-value{font-size:.88rem;font-weight:700;color:var(--gold)}
+    .quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
+    .quick-card{background:var(--card);border-radius:14px;padding:16px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:8px;border:1px solid var(--border)}
+    .quick-icon{font-size:1.5rem}
+    .quick-label{font-size:.85rem;font-weight:600}
+    .quick-sub{font-size:.75rem;color:var(--text2);line-height:1.4}
+    .settings-list{margin:0 16px;background:var(--card);border-radius:var(--r);overflow:hidden}
+    .settings-row{display:flex;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer}
+    .settings-row:last-child{border-bottom:none}
+    .settings-icon{font-size:1.1rem;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-right:12px;flex-shrink:0}
+    .settings-label{font-size:.9rem;font-weight:500;flex:1}
+    .settings-sub{font-size:.78rem;color:var(--text2);margin-top:1px}
+    .settings-arrow{color:var(--text3);font-size:.8rem}
+    #pw-panel{margin:0 16px;display:none}
+    .spinner{display:inline-block;width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+
+<!-- 로그인 -->
+<div id="screen-login">
+  <div class="topbar">
+    <a href="/" class="topbar-back">← <span class="ko">홈</span><span class="en">Home</span></a>
+    <div style="display:flex;gap:6px">
+      <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+
+  <div class="login-hero">
+    <div class="login-icon">🏪</div>
+    <h1 class="login-title"><span class="ko">사업체 파트너 로그인</span><span class="en">Business Partner Login</span></h1>
+    <p class="login-sub"><span class="ko">HebronGuide 파트너 사업체 전용</span><span class="en">For HebronGuide partner businesses</span></p>
+  </div>
+
+  <div class="input-card">
+    <div class="input-row">
+      <span class="input-icon">✉️</span>
+      <input type="email" id="biz-email" placeholder="business@email.com" autocomplete="email">
+    </div>
+    <div class="input-row" id="biz-pw-row" style="display:none">
+      <span class="input-icon">🔒</span>
+      <input type="password" id="biz-pw" placeholder="비밀번호">
+    </div>
+  </div>
+
+  <button class="btn-main purple" onclick="bizLogin()">
+    <span class="ko" id="biz-btn-ko">✉️ 로그인 링크 받기</span>
+    <span class="en" id="biz-btn-en">✉️ Send Login Link</span>
+  </button>
+  <div class="divider-text" style="margin-top:16px"><span class="ko">비밀번호 있으신가요?</span><span class="en">Have a password?</span></div>
+  <button class="btn-sub" onclick="toggleBizPw()" id="biz-pw-toggle">
+    <span class="ko">🔒 비밀번호로 로그인</span><span class="en">🔒 Login with Password</span>
+  </button>
+  <div class="msg" id="msg-biz"></div>
+  <div style="text-align:center;margin-top:20px;font-size:.85rem;color:var(--text2)">
+    <span class="ko">아직 파트너가 아니시라면 </span><span class="en">Not a partner? </span>
+    <a href="/ad-request.html#business" class="link-text"><span class="ko">사업체 등록하기 →</span><span class="en">Register →</span></a>
+  </div>
+  <div style="text-align:center;margin-top:10px;font-size:.82rem;color:var(--text3)">
+    <span class="ko">목사님이신가요? </span><span class="en">Are you a pastor? </span>
+    <a href="/pastor-dashboard.html" class="link-text"><span class="ko">목사 대시보드 →</span><span class="en">Pastor Dashboard →</span></a>
+  </div>
+</div>
+
+<!-- 사업체 대시보드 -->
+<div id="screen-biz">
+  <div class="topbar" style="padding-top:14px">
+    <div style="display:flex;gap:6px">
+      <button class="lang-btn" id="btn-ko2" onclick="setLang('ko')">한국어</button>
+      <button class="lang-btn" id="btn-en2" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="logout-icon" onclick="logout()">↩</button>
+  </div>
+
+  <div class="biz-header">
+    <div>
+      <div class="biz-greeting"><span class="ko">안녕하세요 🏪</span><span class="en">Welcome 🏪</span></div>
+      <div class="biz-name" id="biz-display-name">파트너님</div>
+    </div>
+  </div>
+
+  <!-- 사업체 카드 -->
+  <div class="biz-hero">
+    <div class="biz-badge" id="biz-status-badge">⭐ Hebron 협력 사업체</div>
+    <div class="biz-title-name" id="biz-title-name">—</div>
+    <div class="biz-type-text" id="biz-type-text">—</div>
+    <div class="biz-meta" id="biz-meta"></div>
+    <div class="biz-actions">
+      <button onclick="toggleBizEdit()">✏️ <span class="ko">수정</span><span class="en">Edit</span></button>
+      <a id="biz-website-link" href="#" target="_blank">🌐 <span class="ko">홈페이지</span><span class="en">Website</span></a>
+      <a id="biz-phone-link" href="#">📞 <span class="ko">전화</span><span class="en">Call</span></a>
+    </div>
+  </div>
+
+  <!-- 편집 폼 -->
+  <div class="edit-section" id="biz-edit-section">
+    <div class="edit-title"><span class="ko">사업체 정보 수정</span><span class="en">Edit Business Info</span></div>
+    <div class="input-card">
+      <div class="input-row"><span class="input-icon">🏪</span><input type="text" id="e-biz-name" placeholder="업체명"></div>
+      <div class="input-row"><span class="input-icon">🏷️</span><input type="text" id="e-biz-type" placeholder="업종"></div>
+      <div class="input-row"><span class="input-icon">📞</span><input type="tel" id="e-biz-phone" placeholder="전화번호"></div>
+      <div class="input-row"><span class="input-icon">🌐</span><input type="url" id="e-biz-web" placeholder="https://"></div>
+      <div class="input-row"><span class="input-icon">📝</span><input type="text" id="e-biz-desc" placeholder="한 줄 소개"></div>
+    </div>
+    <div class="save-row">
+      <button class="btn-main green" style="flex:2" onclick="saveBizEdit()"><span class="ko">저장하기</span><span class="en">Save</span></button>
+      <button class="btn-sub" style="flex:1;margin:0" onclick="toggleBizEdit()"><span class="ko">취소</span><span class="en">Cancel</span></button>
+    </div>
+    <div class="msg" id="msg-biz-edit"></div>
+  </div>
+
+  <!-- 내 도시 한인 통계 -->
+  <div class="section-title"><span class="ko">🌍 내 도시 한인 통계</span><span class="en">🌍 Korean Population</span></div>
+  <div id="biz-city-stat" class="stat-card" style="color:var(--text2);font-size:.88rem">
+    <span class="spinner"></span><span class="ko">불러오는 중...</span><span class="en">Loading...</span>
+  </div>
+
+  <!-- 빠른 실행 -->
+  <div class="section-title"><span class="ko">빠른 실행</span><span class="en">Quick Actions</span></div>
+  <div class="quick-grid">
+    <a href="/ad-request.html#business" class="quick-card">
+      <div class="quick-icon">📋</div>
+      <div class="quick-label"><span class="ko">정보 수정 신청</span><span class="en">Request Update</span></div>
+      <div class="quick-sub"><span class="ko">상세 수정 요청</span><span class="en">Detailed changes</span></div>
+    </a>
+    <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" class="quick-card">
+      <div class="quick-icon">💬</div>
+      <div class="quick-label"><span class="ko">카카오채널</span><span class="en">KakaoTalk</span></div>
+      <div class="quick-sub"><span class="ko">소식·업데이트</span><span class="en">Updates</span></div>
+    </a>
+    <a href="/faq.html#business" class="quick-card">
+      <div class="quick-icon">❓</div>
+      <div class="quick-label">FAQ</div>
+      <div class="quick-sub"><span class="ko">자주 묻는 질문</span><span class="en">Help</span></div>
+    </a>
+    <a href="mailto:Hebronplatform@gmail.com" class="quick-card">
+      <div class="quick-icon">✉️</div>
+      <div class="quick-label"><span class="ko">문의하기</span><span class="en">Contact</span></div>
+      <div class="quick-sub">HebronGuide</div>
+    </a>
+  </div>
+
+  <!-- 계정 설정 -->
+  <div class="section-title" style="margin-top:8px"><span class="ko">계정 설정</span><span class="en">Account</span></div>
+  <div class="settings-list">
+    <div class="settings-row" onclick="togglePwPanel()">
+      <div class="settings-icon" style="background:rgba(10,132,255,.15)">🔑</div>
+      <div>
+        <div class="settings-label"><span class="ko">비밀번호 설정/변경</span><span class="en">Set / Change Password</span></div>
+        <div class="settings-sub"><span class="ko">다음부터 빠르게 로그인</span><span class="en">For quick future logins</span></div>
+      </div>
+      <span class="settings-arrow" style="margin-left:auto">›</span>
+    </div>
+    <div class="settings-row" onclick="logout()">
+      <div class="settings-icon" style="background:rgba(255,69,58,.12)">↩</div>
+      <div class="settings-label" style="color:var(--red)"><span class="ko">로그아웃</span><span class="en">Logout</span></div>
+    </div>
+  </div>
+
+  <div id="pw-panel">
+    <div style="height:10px"></div>
+    <div class="input-card" style="margin:0 16px">
+      <div class="input-row"><span class="input-icon">🔒</span><input type="password" id="new-pw" placeholder="새 비밀번호 (8자+)"></div>
+      <div class="input-row"><span class="input-icon">🔒</span><input type="password" id="confirm-pw" placeholder="비밀번호 확인"></div>
+    </div>
+    <div style="padding:10px 16px 0">
+      <button class="btn-main" style="background:var(--blue)" onclick="savePw()"><span class="ko">비밀번호 저장</span><span class="en">Save Password</span></button>
+      <div class="msg" id="msg-pw"></div>
+    </div>
+  </div>
+  <div style="height:40px"></div>
+</div>
+
+<script>
+const SB_URL='https://vextxqzggznulwpganwt.supabase.co'
+const SB_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4MTUzOTIsImV4cCI6MjA5NDM5MTM5Mn0.XghaQZYtI-dq5mf8i-DPVCxtw_XBBjxGUnvaiwGQFWk'
+const CITY_STATS={seattle:{pop:'67,000',country:'미국',trend:'↑'},la:{pop:'333,000',country:'미국',trend:'↑'},sf:{pop:'52,000',country:'미국',trend:'↑'},newyork:{pop:'211,000',country:'미국',trend:'↓'},dallas:{pop:'33,000',country:'미국',trend:'↑'},houston:{pop:'약 9만',country:'미국',trend:'↑'},chicago:{pop:'61,000',country:'미국',trend:'→'},atlanta:{pop:'51,000',country:'미국',trend:'↑'},dc:{pop:'93,000',country:'미국',trend:'↑'},toronto:{pop:'약 10만',country:'캐나다',trend:'↑'},vancouver:{pop:'약 4만',country:'캐나다',trend:'↑'},orlando:{pop:'약 2만',country:'미국',trend:'↑'},maryland:{pop:'약 6.5만',country:'미국',trend:'↑'},bogota:{pop:'약 3천',country:'콜롬비아',trend:'→'},seoul:{pop:'귀환동포',country:'한국',trend:'↑'}}
+let sb=null,sess=null,isPwMode=false,myBiz=null
+
+function setLang(l){document.documentElement.lang=l;localStorage.setItem('hg_lang',l);['btn-ko','btn-ko2'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.toggle('active',l==='ko')});['btn-en','btn-en2'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.toggle('active',l==='en')})}
+
+function toggleBizPw(){isPwMode=!isPwMode;document.getElementById('biz-pw-row').style.display=isPwMode?'flex':'none';const ko=document.getElementById('biz-btn-ko'),en=document.getElementById('biz-btn-en'),t=document.getElementById('biz-pw-toggle');if(isPwMode){ko.textContent='🔒 로그인';en.textContent='🔒 Login';t.innerHTML='<span class="ko">✉️ 매직 링크로 로그인</span><span class="en">✉️ Magic Link</span>'}else{ko.textContent='✉️ 로그인 링크 받기';en.textContent='✉️ Send Login Link';t.innerHTML='<span class="ko">🔒 비밀번호로 로그인</span><span class="en">🔒 Password Login</span>'}}
+
+async function bizLogin(){const email=document.getElementById('biz-email').value.trim();const msgEl=document.getElementById('msg-biz');if(!email.includes('@')){showMsg(msgEl,'올바른 이메일을 입력해주세요.','err');return}if(!sb){showMsg(msgEl,'서버 오류.','err');return}if(isPwMode){const pw=document.getElementById('biz-pw').value;if(!pw){showMsg(msgEl,'비밀번호를 입력해주세요.','err');return}const{data,error}=await sb.auth.signInWithPassword({email,password:pw});if(error){showMsg(msgEl,'로그인 실패: '+error.message,'err');return}sess=data.session;showBizDashboard(data.user)}else{const{error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:window.location.href}});if(error){showMsg(msgEl,'오류: '+error.message,'err');return}showMsg(msgEl,'✅ 이메일을 확인해주세요! 스팸함도 확인해주세요.','ok')}}
+
+async function logout(){if(sb)await sb.auth.signOut();sess=null;myBiz=null;document.getElementById('screen-biz').style.display='none';document.getElementById('screen-login').style.display='block'}
+
+async function showBizDashboard(user){document.getElementById('screen-login').style.display='none';document.getElementById('screen-biz').style.display='block';const name=user.user_metadata?.full_name||user.email?.split('@')[0]||'파트너님';document.getElementById('biz-display-name').textContent=name;await loadMyBiz(user.email)}
+
+async function loadMyBiz(email){try{const r=await fetch(`${SB_URL}/rest/v1/community_items?contact=eq.${encodeURIComponent(email)}&category=eq.business&limit=1`,{headers:{apikey:SB_ANON,Authorization:'Bearer '+SB_ANON}});const[b]=await r.json();if(!b){document.getElementById('biz-title-name').textContent='등록된 사업체 없음';document.getElementById('biz-city-stat').innerHTML='<a href="/ad-request.html#business" style="color:var(--gold)">사업체 등록하기 →</a>';return}myBiz=b;document.getElementById('biz-title-name').textContent=b.name||b.title||'—';document.getElementById('biz-type-text').textContent=b.type||b.description?.split('.')[0]||'—';const meta=[];if(b.city_slug||b.city)meta.push(`<span class="biz-tag">📍 ${b.city||b.city_slug}</span>`);if(b.phone)meta.push(`<span class="biz-tag">📞 ${b.phone}</span>`);const badge=document.getElementById('biz-status-badge');if(b.status==='approved'){badge.className='biz-badge';badge.textContent='⭐ Hebron 협력 사업체'}else{badge.className='biz-badge pending';badge.textContent='⏳ 승인 대기'}document.getElementById('biz-meta').innerHTML=meta.join('');const wl=document.getElementById('biz-website-link');if(b.url||b.website){wl.href=b.url||b.website;wl.style.opacity='1'}else{wl.style.opacity='.4';wl.onclick=e=>e.preventDefault()}const pl=document.getElementById('biz-phone-link');if(b.phone){pl.href='tel:'+b.phone;pl.style.opacity='1'}else{pl.style.opacity='.4';pl.onclick=e=>e.preventDefault()}renderBizCityStat(b.city_slug||'')}catch(e){document.getElementById('biz-title-name').textContent='정보를 불러오지 못했습니다.'}}
+
+function renderBizCityStat(slug){const el=document.getElementById('biz-city-stat');const s=CITY_STATS[slug];const lang=document.documentElement.lang||'ko';if(!s){el.innerHTML=`<span style="color:var(--text2);font-size:.88rem">${lang==='ko'?'이 도시의 통계를 준비 중입니다.':'City statistics coming soon.'}</span>`;return}const tc=s.trend.includes('↑')?'var(--mint)':s.trend.includes('↓')?'#f87171':'var(--text2)';el.innerHTML=`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text2);font-size:.88rem">${lang==='ko'?'한인 인구 추정':'Est. Korean Pop.'}</span><span style="color:var(--gold);font-weight:700">${s.pop}</span></div><div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text2);font-size:.88rem">${lang==='ko'?'국가':'Country'}</span><span style="color:var(--text);font-weight:700">${s.country}</span></div><div style="display:flex;justify-content:space-between;padding:8px 0"><span style="color:var(--text2);font-size:.88rem">${lang==='ko'?'추세':'Trend'}</span><span style="color:${tc};font-weight:700">${s.trend}</span></div><div style="font-size:.7rem;color:var(--text3);margin-top:8px;">출처: 재외동포청 2025 + US Census ACS 2022</div>`}
+
+function toggleBizEdit(){const el=document.getElementById('biz-edit-section');const open=el.style.display!=='none';el.style.display=open?'none':'block';if(!open&&myBiz){document.getElementById('e-biz-name').value=myBiz.name||myBiz.title||'';document.getElementById('e-biz-type').value=myBiz.type||'';document.getElementById('e-biz-phone').value=myBiz.phone||'';document.getElementById('e-biz-web').value=myBiz.url||myBiz.website||'';document.getElementById('e-biz-desc').value=myBiz.description||''}}
+
+async function saveBizEdit(){if(!sess||!myBiz)return;const updates={name:document.getElementById('e-biz-name').value.trim(),type:document.getElementById('e-biz-type').value.trim(),phone:document.getElementById('e-biz-phone').value.trim(),url:document.getElementById('e-biz-web').value.trim(),description:document.getElementById('e-biz-desc').value.trim()};try{const r=await fetch(`${SB_URL}/rest/v1/community_items?id=eq.${myBiz.id}`,{method:'PATCH',headers:{apikey:SB_ANON,Authorization:'Bearer '+sess.access_token,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(updates)});if(!r.ok)throw new Error();showMsg(document.getElementById('msg-biz-edit'),'✅ 저장되었습니다!','ok');setTimeout(()=>{toggleBizEdit();loadMyBiz(sess.user.email)},1200)}catch{showMsg(document.getElementById('msg-biz-edit'),'저장 실패. 다시 시도해주세요.','err')}}
+
+function togglePwPanel(){const el=document.getElementById('pw-panel');el.style.display=el.style.display==='none'?'block':'none'}
+
+async function savePw(){const pw=document.getElementById('new-pw').value;const pw2=document.getElementById('confirm-pw').value;const msgEl=document.getElementById('msg-pw');if(pw.length<8){showMsg(msgEl,'8자 이상 입력해주세요.','err');return}if(pw!==pw2){showMsg(msgEl,'비밀번호가 일치하지 않습니다.','err');return}const{error}=await sb.auth.updateUser({password:pw});if(error){showMsg(msgEl,'오류: '+error.message,'err');return}showMsg(msgEl,'✅ 비밀번호가 저장되었습니다!','ok');document.getElementById('new-pw').value='';document.getElementById('confirm-pw').value=''}
+
+function showMsg(el,text,type){el.textContent=text;el.className='msg '+type;el.style.display='block';if(type==='ok')setTimeout(()=>{el.style.display='none'},3000)}
+
+document.addEventListener('DOMContentLoaded',async()=>{setLang(localStorage.getItem('hg_lang')||'ko');if(typeof window.supabase!=='undefined'){sb=window.supabase.createClient(SB_URL,SB_ANON);const{data:{session:s}}=await sb.auth.getSession();if(s){sess=s;showBizDashboard(s.user);return}sb.auth.onAuthStateChange(async(event,s)=>{if(event==='SIGNED_IN'&&s){sess=s;showBizDashboard(s.user)}})}document.getElementById('biz-email').addEventListener('keydown',e=>{if(e.key==='Enter')bizLogin()});document.getElementById('biz-pw').addEventListener('keydown',e=>{if(e.key==='Enter')bizLogin()})})
+</script>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>3년 후 떠날 걸 알았습니다 — HebronGuide 이달의 이야기</title>
+<meta name="description" content="어차피 3년 후 떠날 텐데, 정들면 뭐가 남나. 달라스 주재원이 처음부터 마음을 닫은 이유.">
+<meta property="og:title" content="3년 후 떠날 걸 알았습니다 — HebronGuide">
+<meta property="og:description" content="어차피 3년 후 떠날 텐데, 정들면 뭐가 남나. 그런데 그게 아니었습니다.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;--surface:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.16);
+  --gold:#C9A227;--mint:#6EE7B7;--text:#ECFDF5;--muted:rgba(236,253,245,0.6);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:var(--bg);}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;min-height:100vh;}
+html[lang="ko"] .en{display:none!important;}
+html[lang="en"] .ko{display:none!important;}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
+.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;font-family:'Cinzel',serif;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-tag{font-size:.72rem;color:var(--muted);background:rgba(255,255,255,0.06);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;}
+.lang-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:rgba(236,253,245,.75);font-size:.7rem;font-weight:700;border-radius:20px;padding:5px 13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
+.lang-btn:hover{background:rgba(201,162,39,.15);border-color:rgba(201,162,39,.4);color:var(--gold);}
+
+.hero{text-align:center;padding:60px 24px 44px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.1),transparent);}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:99px;padding:6px 18px;margin-bottom:24px;}
+.story-title{font-family:'Noto Serif KR',serif;font-size:clamp(1.9rem,6vw,2.9rem);font-weight:700;color:#fff;line-height:1.3;margin-bottom:14px;}
+.story-title-en{font-family:Georgia,serif;font-size:clamp(1.5rem,4.5vw,2.1rem);font-weight:700;color:#fff;line-height:1.3;margin-bottom:14px;}
+.story-sub{font-size:.95rem;color:var(--muted);max-width:480px;margin:0 auto 10px;line-height:2.1;}
+.story-loc{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(201,162,39,.75);font-weight:700;background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.2);border-radius:99px;padding:4px 16px;margin-top:12px;}
+.divider{width:50px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:30px auto;}
+
+.wrap{max-width:660px;margin:0 auto;padding:0 24px 72px;}
+.scene{margin-bottom:40px;}
+.slabel{font-size:.67rem;font-weight:800;color:rgba(201,162,39,.42);letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.05);}
+.sp{font-family:'Noto Serif KR',serif;font-size:1.02rem;color:rgba(236,253,245,.88);line-height:2.1;margin-bottom:20px;}
+.sp-en{font-family:Georgia,serif;font-size:.98rem;color:rgba(236,253,245,.88);line-height:2.05;margin-bottom:20px;}
+.sp strong,.sp-en strong{color:#fff;}
+
+.quote{background:rgba(201,162,39,.06);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;padding:18px 22px;margin:20px 0 24px;}
+.qt{font-family:'Noto Serif KR',serif;font-size:.97rem;color:rgba(236,253,245,.9);line-height:2.1;font-style:italic;}
+.qt-en{font-family:Georgia,serif;font-size:.93rem;color:rgba(236,253,245,.9);line-height:2.05;font-style:italic;}
+.qs{font-size:.71rem;color:rgba(201,162,39,.6);font-weight:700;margin-top:10px;font-style:normal;}
+
+.inner{color:rgba(110,231,183,.85);font-style:italic;padding-left:20px;border-left:2px solid rgba(110,231,183,.2);margin:16px 0 20px;font-family:'Noto Serif KR',serif;font-size:.95rem;line-height:2.05;}
+.inner-en{color:rgba(110,231,183,.85);font-style:italic;padding-left:20px;border-left:2px solid rgba(110,231,183,.2);margin:16px 0 20px;font-family:Georgia,serif;font-size:.92rem;line-height:2;}
+
+.dialogue{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:15px 18px;margin:14px 0;}
+.d-who{font-size:.67rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;}
+.d-line{font-family:'Noto Serif KR',serif;font-size:.94rem;color:rgba(236,253,245,.9);line-height:1.95;font-style:italic;}
+.d-line-en{font-family:Georgia,serif;font-size:.91rem;color:rgba(236,253,245,.9);line-height:1.9;font-style:italic;}
+
+.climax{background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.05));border:1px solid rgba(201,162,39,.3);border-radius:18px;padding:30px 26px;margin:36px 0;text-align:center;}
+.ct{font-family:'Noto Serif KR',serif;font-size:1.08rem;font-weight:700;color:#fff;line-height:2.1;}
+.ct-en{font-family:Georgia,serif;font-size:1.02rem;font-weight:700;color:#fff;line-height:2.05;}
+
+.link-card{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:14px 18px;text-decoration:none;margin-bottom:10px;transition:border-color .2s;}
+.link-card:hover{border-color:rgba(201,162,39,.4);}
+.link-title{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:2px;}
+.link-desc{font-size:.76rem;color:var(--muted);}
+
+.share-bar{text-align:center;margin:32px 0 24px;}
+.share-hint{font-size:.82rem;color:var(--muted);margin-bottom:14px;}
+.share-btns{display:flex;justify-content:center;gap:10px;}
+.btn-share{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:99px;padding:10px 20px;cursor:pointer;font-size:.8rem;font-weight:700;font-family:'Noto Sans KR',sans-serif;color:var(--text);}
+.btn-kakao{background:rgba(254,229,0,.1);border-color:rgba(254,229,0,.3);color:#fee900;}
+
+.src-box{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px 20px;margin-top:24px;}
+.src-title{font-size:.67rem;font-weight:800;color:rgba(255,255,255,.28);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+.src{font-size:.78rem;color:rgba(236,253,245,.37);line-height:1.9;padding-left:10px;border-left:1px solid rgba(255,255,255,.07);margin-bottom:6px;}
+.src a{color:rgba(110,231,183,.4);text-decoration:none;}
+.src strong{color:rgba(236,253,245,.55);}
+
+.next{text-align:center;padding:40px 24px;border-top:1px solid var(--border);}
+.next-lbl{font-size:.7rem;font-weight:800;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
+.btn-next{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:.9rem;border-radius:50px;padding:13px 30px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;}
+
+footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-align:center;padding:24px;font-size:.73rem;color:rgba(236,253,245,.26);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://hebronguide.com" class="logo">HebronGuide</a>
+  <div class="nav-right">
+    <span class="nav-tag ko">이달의 이야기</span>
+    <span class="nav-tag en">Story of the Month</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="badge">📖 <span class="ko">이달의 이야기 · 2026년 8월</span><span class="en">Story of the Month · August 2026</span></div>
+
+  <h1 class="story-title ko">"3년 후 떠날 걸<br>알았습니다"</h1>
+  <h1 class="story-title-en en">"I Knew I'd Leave<br>in Three Years"</h1>
+
+  <p class="story-sub ko">그래서 처음부터 마음을 닫았습니다.<br>어차피 헤어질 텐데, 정들면 뭐가 남나.</p>
+  <p class="story-sub en">So he kept his heart closed from the beginning.<br>If he was going to leave anyway, what was the point of getting attached?</p>
+
+  <div class="story-loc">🤠 <span class="ko">달라스, 텍사스</span><span class="en">Dallas, Texas</span></div>
+  <div class="divider"></div>
+</div>
+
+<div class="wrap">
+
+  <!-- S1 -->
+  <div class="scene">
+    <div class="slabel ko">1막 — 달라스 · 첫날</div>
+    <div class="slabel en">Act 1 — Dallas · Day One</div>
+
+    <p class="sp ko">박재원 씨(가명)는 한국 대기업에서 달라스 주재원으로 발령이 났습니다. 미국은 처음이었습니다. 아내와 초등학생 두 아이, 그리고 트렁크 열 개.</p>
+    <p class="sp-en en">Jaewon Park (pseudonym) received a transfer to Dallas as a Korean corporate expat. His first time in America. His wife, two elementary school children, and ten pieces of luggage.</p>
+
+    <p class="sp ko">DFW 공항에서 나오며 그는 마음속으로 계산했습니다. 3년. 회사에서 정한 임기. 1,095일 후에는 돌아간다.</p>
+    <p class="sp-en en">Walking out of DFW Airport, he made a quiet calculation. Three years. That was the company's set term. In 1,095 days, he would go home.</p>
+
+    <div class="inner ko">"3년이면 충분히 짧다. 정들 필요 없다."</div>
+    <div class="inner-en en">"Three years is short enough. No need to get attached."</div>
+
+    <p class="sp ko">그것이 박재원 씨의 달라스 생존 전략이었습니다.</p>
+    <p class="sp-en en">That was Jaewon's survival strategy for Dallas.</p>
+  </div>
+
+  <!-- S2 -->
+  <div class="scene">
+    <div class="slabel ko">2막 — 닫힌 마음</div>
+    <div class="slabel en">Act 2 — A Closed Heart</div>
+
+    <p class="sp ko">교회도 나갔습니다. 안 나가면 이상하니까. 한인교회 예배당에 앉아 찬송가를 따라 불렀습니다. 옆 사람이 인사를 건넬 때 짧게 받았습니다. "네, 안녕하세요." 그리고 끝.</p>
+    <p class="sp-en en">He went to church too. It would seem strange not to. He sat in a Korean church sanctuary and sang along to hymns. When the person next to him said hello, he gave a short reply. "Yes, hello." That was it.</p>
+
+    <p class="sp ko">목장 모임에 초대받았습니다. 사양했습니다. 바쁘다고. 피곤하다고. 사실은 두려웠습니다. 가까워지면 — 3년 후 헤어질 때 더 아프니까.</p>
+    <p class="sp-en en">He was invited to a home group. He declined. Said he was busy. Said he was tired. Truth was, he was afraid. If he got close — saying goodbye in three years would hurt more.</p>
+
+    <div class="quote">
+      <p class="qt ko">"이별이 싫습니다. 정과 마음을 나누던 사람들이 떠날 때 참 고통스럽습니다."</p>
+      <p class="qt-en en">"I hate farewells. When people I've shared my heart with leave — it's truly painful."</p>
+      <p class="qs ko">— 김성수 목사, 「거룩한 이별연습」, 2017.06.11</p>
+      <p class="qs en">— Rev. Kim Sung-su, "Practicing Holy Farewells," Jun. 11, 2017</p>
+    </div>
+
+    <p class="sp ko">박재원 씨도 알고 있었습니다. 이별이 얼마나 아픈지. 한국을 떠나올 때, 어머니가 공항에서 울었습니다. 손을 잡고 "밥은 잘 먹어야 해"라고만 했습니다. 다른 말은 못 했습니다. 아이들 친구들이 마지막 날 학교 앞에 나와 있었습니다. 초등학교 2학년짜리들이 적은 편지에는 맞춤법 틀린 글씨로 "보고싶을거야"라고 씌어 있었습니다.</p>
+    <p class="sp-en en">Jaewon knew how much farewells hurt. When he left Korea, his mother cried at the airport. She just held his hand and said, "Make sure you eat well." She couldn't say anything else. His children's friends stood outside the school on their last day. In letters written by second-graders, with shaky handwriting and misspelled words: "Im gonna miss you."</p>
+
+    <p class="sp ko">그 날 밤, 아이들이 잠든 뒤 박재원 씨는 화장실에서 혼자 앉아 있었습니다. 아이들 편지를 다시 꺼내 봤습니다. 접었습니다. 짐 박스 제일 밑에 넣었습니다. 그래서 더 이상 그런 아픔은 만들지 않겠다고 결심했습니다.</p>
+    <p class="sp-en en">That night, after the children fell asleep, Jaewon sat alone in the bathroom. He took out the letters again. Folded them. Placed them at the bottom of a moving box. And decided — no more of that pain.</p>
+
+    <div class="inner ko">정들면 헤어질 때 아프다. 그러면 처음부터 정들지 않으면 된다. 그게 맞는 것 같았습니다. 달라스에서는.</div>
+    <div class="inner-en en">Getting attached means it hurts when you say goodbye. So don't get attached in the first place. That seemed right. In Dallas.</div>
+  </div>
+
+  <!-- S3 -->
+  <div class="scene">
+    <div class="slabel ko">3막 — 어느 토요일 저녁</div>
+    <div class="slabel en">Act 3 — One Saturday Evening</div>
+
+    <p class="sp ko">6개월이 지났습니다. 아내가 목장에 가겠다고 했습니다. 혼자 가기 싫다고 따라오라고 했습니다. 박재원 씨는 마지못해 따라갔습니다.</p>
+    <p class="sp-en en">Six months passed. His wife said she wanted to go to the home group. She said she didn't want to go alone, and asked him to come. He followed, reluctantly.</p>
+
+    <p class="sp ko">작은 아파트 거실이었습니다. 여섯 가정이 모였습니다. 음식을 함께 만들었습니다. 아이들은 방에서 뛰어놀았습니다. 식탁에 앉아 한 주의 감사를 나누는 시간이었습니다.</p>
+    <p class="sp-en en">A small apartment living room. Six families gathered. They cooked together. Children ran and played in the back room. They sat at the table and shared what they were grateful for that week.</p>
+
+    <p class="sp ko">목자가 박재원 씨에게 물었습니다.</p>
+    <p class="sp-en en">The home group leader asked Jaewon:</p>
+
+    <div class="dialogue">
+      <div class="d-who ko">목자</div>
+      <div class="d-who en">Home Group Leader</div>
+      <div class="d-line ko">"재원 씨, 이번 주 가장 감사했던 것 하나만 말씀해 주시겠어요?"</div>
+      <div class="d-line-en en">"Jaewon, could you share just one thing you were grateful for this week?"</div>
+    </div>
+
+    <p class="sp ko">박재원 씨는 잠시 생각했습니다. 감사한 것. 달라스에서. 주재원 생활 6개월. 뭐가 있지?</p>
+    <p class="sp-en en">Jaewon paused to think. Grateful for something. In Dallas. Six months as an expat. What was there?</p>
+
+    <p class="sp ko">그런데 — 말하다 보니 생각보다 많았습니다. 아이들이 영어를 제법 하기 시작한 것. 아내가 처음으로 혼자 마트에 다녀온 것. 회사에서 프로젝트 하나가 잘 풀린 것.</p>
+    <p class="sp-en en">But — as he started talking, there was more than he expected. His children starting to speak English. His wife going to the grocery store alone for the first time. A work project that had finally come together.</p>
+
+    <p class="sp ko">옆 사람이 고개를 끄덕였습니다. "저도요." 또 다른 사람이 웃었습니다. "우리 아이도 딱 그 단계였어요." 박재원 씨는 자신도 모르게 웃고 있었습니다.</p>
+    <p class="sp-en en">The person next to him nodded. "Me too." Someone else laughed. "Our kid was at exactly that stage." Jaewon found himself smiling without realizing it.</p>
+
+    <div class="inner ko">처음이었습니다. 달라스에서 웃은 것이.</div>
+    <div class="inner-en en">It was the first time. The first time he had smiled in Dallas.</div>
+  </div>
+
+  <!-- S4 -->
+  <div class="scene">
+    <div class="slabel ko">4막 — 3년이 지나고</div>
+    <div class="slabel en">Act 4 — Three Years Later</div>
+
+    <p class="sp ko">3년이 다 되었습니다. 귀국 발령이 났습니다. 이사 날짜가 정해졌습니다.</p>
+    <p class="sp-en en">Three years had passed. The transfer back to Korea had come. The moving date was set.</p>
+
+    <p class="sp ko">목장 식구들이 송별 모임을 열었습니다. 아이들이 그림을 그려왔습니다. 목자 아내가 박재원 씨 아내가 좋아하는 음식을 만들었습니다. 처음 온 날 어색하게 서 있던 그 아파트 거실이었습니다.</p>
+    <p class="sp-en en">The home group held a farewell gathering. The children drew pictures. The leader's wife cooked the food Jaewon's wife loved. It was the same apartment living room where he had stood awkwardly that very first evening.</p>
+
+    <p class="sp ko">박재원 씨는 인사말을 준비했었습니다. 짧게 하려고. 그런데 — 막상 서니 말이 나오지 않았습니다. 한참 후에 겨우 말했습니다.</p>
+    <p class="sp-en en">Jaewon had prepared a few brief words. Keep it short. But — standing there, the words wouldn't come. After a long moment, he finally managed to say:</p>
+
+    <div class="dialogue">
+      <div class="d-who ko">박재원 씨</div>
+      <div class="d-who en">Jaewon</div>
+      <div class="d-line ko">"처음에는 안 정들려고 했습니다. 어차피 떠날 텐데. 그런데... 있을 때 잘 할 걸 하는 마음뿐입니다. 정말로."</div>
+      <div class="d-line-en en">"At first I tried not to get attached. I knew I'd be leaving anyway. But now... all I feel is that I should have given more while I was here. I really mean that."</div>
+    </div>
+
+    <div class="quote">
+      <p class="qt ko">"있을 때 잘 할 걸, 미안한 마음뿐입니다."</p>
+      <p class="qt-en en">"I should have given more while I was here. All I feel is regret."</p>
+      <p class="qs ko">— 김성수 목사, 「거룩한 이별연습」, 2017.06.11</p>
+      <p class="qs en">— Rev. Kim Sung-su, "Practicing Holy Farewells," Jun. 11, 2017</p>
+    </div>
+  </div>
+
+  <!-- 클라이맥스 -->
+  <div class="climax">
+    <p class="ct ko">
+      이별이 두려워 마음을 닫았던 그가<br>
+      결국 가장 깊은 이별을 경험했습니다.<br><br>
+      그리고 깨달았습니다.<br>
+      정들지 않으면 아프지 않은 게 아니라 —<br>
+      <strong>정들지 않으면 살지 않는 것이었다는 것을.</strong><br><br>
+      <span style="color:var(--gold);">
+        주재원으로 오는 모든 이에게,<br>
+        이 도시가 그냥 지나가는 곳이 아니라<br>
+        진짜 살았던 곳이 되기를.
+      </span>
+    </p>
+    <p class="ct-en en">
+      The man who had closed his heart afraid of farewells<br>
+      ended up experiencing the deepest goodbye of all.<br><br>
+      And he realized —<br>
+      not getting attached doesn't mean it won't hurt.<br>
+      <strong>Not getting attached means not really living.</strong><br><br>
+      <span style="color:var(--gold);">
+        For everyone who comes as an expat —<br>
+        may this city be not just a place you passed through,<br>
+        but a place where you truly lived.
+      </span>
+    </p>
+  </div>
+
+  <!-- 희망·재미·감사 -->
+  <div style="text-align:center;padding:8px 0 32px;">
+
+    <!-- 재미 -->
+    <p class="sp ko" style="color:rgba(236,253,245,.55);font-family:'Noto Serif KR',serif;line-height:2.2;font-size:.95rem;">
+      박재원 씨는 한국에 돌아가서 이런 말을 했다고 합니다. 😄<br>
+      "달라스 3년 살면서 제일 그리운 게 뭔지 알아요?<br>
+      목장 아주머니 감자탕이에요."<br>
+      3년 동안 맵찔이 소리 들으면서 먹었는데 — 그래도 그리워졌다고.
+    </p>
+    <p class="sp-en en" style="color:rgba(236,253,245,.55);font-family:Georgia,serif;line-height:2.1;font-size:.92rem;">
+      Back in Korea, Jaewon said something like this: 😄<br>
+      "You know what I miss most about Dallas?<br>
+      The gamja-tang at the home group house."<br>
+      Three years of "that's too spicy" — and he still missed it.
+    </p>
+
+    <div style="height:1px;background:rgba(255,255,255,.06);margin:20px 0;"></div>
+
+    <!-- 감사 -->
+    <p class="sp ko" style="color:rgba(110,231,183,.7);font-family:'Noto Serif KR',serif;line-height:2.2;font-size:.95rem;font-style:italic;">
+      목장 식구들에게 감사드립니다.<br>
+      3년 후 떠날 사람에게도 먼저 말 걸어주셔서.<br>
+      밥 같이 먹자고 불러주셔서.<br>
+      감사한 것 하나 말해보라고 기다려 주셔서.
+    </p>
+    <p class="sp-en en" style="color:rgba(110,231,183,.7);font-family:Georgia,serif;line-height:2.1;font-size:.92rem;font-style:italic;">
+      Thank you, home group family.<br>
+      For reaching out first — to someone who was leaving in three years.<br>
+      For saying, "Come eat with us."<br>
+      For waiting while he found something to be grateful for.
+    </p>
+
+    <div style="height:1px;background:rgba(255,255,255,.06);margin:20px 0;"></div>
+
+    <!-- 희망 -->
+    <p class="sp ko" style="color:rgba(236,253,245,.7);font-family:'Noto Serif KR',serif;line-height:2.3;text-align:center;">
+      지금 이 순간도 달라스에는<br>
+      3년짜리 마음을 들고 온 사람들이 있습니다.<br>
+      그들에게 먼저 말 걸어주는 사람이 있습니다.<br><br>
+      "이번 주 감사한 것 하나만 말해주실래요?"<br><br>
+      <strong style="color:var(--gold);font-size:1.05rem;">그 한 마디가 달라스를 집으로 만듭니다.</strong>
+    </p>
+    <p class="sp-en en" style="color:rgba(236,253,245,.7);font-family:Georgia,serif;line-height:2.2;text-align:center;">
+      Right now, there are people in Dallas<br>
+      who arrived with a three-year heart.<br>
+      And there are people who speak to them first.<br><br>
+      "Could you share just one thing you're grateful for this week?"<br><br>
+      <strong style="color:var(--gold);font-size:1.02rem;">That one sentence makes Dallas feel like home.</strong>
+    </p>
+  </div>
+
+  <!-- 링크 -->
+  <div style="margin-bottom:32px;">
+    <div style="font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">
+      <span class="ko">이 이야기와 연결된 곳</span>
+      <span class="en">Connected to This Story</span>
+    </div>
+    <a href="https://hebronguide.com/dallas/" class="link-card">
+      <span style="font-size:1.3rem;flex-shrink:0;">🤠</span>
+      <div>
+        <div class="link-title ko">달라스 HebronGuide</div>
+        <div class="link-title en">Dallas HebronGuide</div>
+        <div class="link-desc ko">정착 정보 · 병원 · 학교 · 교회 · 한인 마트</div>
+        <div class="link-desc en">Settlement · Hospital · School · Church · Korean grocery</div>
+      </div>
+      <span style="margin-left:auto;color:rgba(201,162,39,.5);">→</span>
+    </a>
+    <a href="https://hebronguide.com/story-seattle-01.html" class="link-card">
+      <span style="font-size:1.3rem;flex-shrink:0;">📖</span>
+      <div>
+        <div class="link-title ko">#1 "반기는 사람이 없었습니다" — 시애틀</div>
+        <div class="link-title en">#1 "There Was No One to Welcome Me" — Seattle</div>
+        <div class="link-desc ko">HebronGuide 창립자의 이야기</div>
+        <div class="link-desc en">The story behind HebronGuide's founding</div>
+      </div>
+      <span style="margin-left:auto;color:rgba(201,162,39,.5);">→</span>
+    </a>
+    <a href="https://hebronguide.com/story-submit.html" class="link-card">
+      <span style="font-size:1.3rem;flex-shrink:0;">✍️</span>
+      <div>
+        <div class="link-title ko">목사님의 이야기를 나눠주세요</div>
+        <div class="link-title en">Share Your Story, Pastor</div>
+        <div class="link-desc ko">전 세계 69개+ 도시 이야기 수집 중</div>
+        <div class="link-desc en">Collecting stories from 69+ cities worldwide</div>
+      </div>
+      <span style="margin-left:auto;color:rgba(201,162,39,.5);">→</span>
+    </a>
+  </div>
+
+  <!-- 공유 -->
+  <div class="share-bar">
+    <p class="share-hint ko">3년짜리 마음으로 온 분들께 전해주세요.</p>
+    <p class="share-hint en">Share this with someone who came with a three-year heart.</p>
+    <div class="share-btns">
+      <button class="btn-share btn-kakao" onclick="shareStory()">💬 <span class="ko">카카오톡</span><span class="en">KakaoTalk</span></button>
+      <button class="btn-share" onclick="copyLink()">🔗 <span class="ko">링크 복사</span><span class="en">Copy Link</span></button>
+    </div>
+  </div>
+
+  <!-- 출처 -->
+  <div class="src-box">
+    <div class="src-title ko">출처 및 참고</div>
+    <div class="src-title en">Sources & References</div>
+    <p class="src"><strong>김성수 목사</strong>, 「거룩한 이별연습」, 시애틀지구촌교회 목회자 칼럼, 2017.06.11 — <a href="https://ijiguchon.org" target="_blank" rel="noopener">ijiguchon.org</a></p>
+    <p class="src ko">이 이야기는 실제 주재원 공동체의 경험을 바탕으로 재구성한 복합 서사입니다. 등장인물의 이름과 세부 사항은 변경했습니다. 감정과 상황의 본질은 사실입니다.</p>
+    <p class="src en">This story is a composite narrative reconstructed from real expat community experiences. Names and details have been changed. The emotional truth is real.</p>
+    <p class="src">HebronGuide 이야기 스튜디오 — <a href="https://hebronguide.com/story-submit.html" target="_blank">story-submit.html</a></p>
+  </div>
+</div>
+
+<div class="next">
+  <div class="next-lbl ko">모든 도시의 이야기가 모이고 있습니다</div>
+  <div class="next-lbl en">Stories from every city are gathering</div>
+  <br>
+  <a href="https://hebronguide.com" class="btn-next">
+    <span class="ko">🌍 전 세계 69개+ 도시</span>
+    <span class="en">🌍 69+ Cities Worldwide</span>
+  </a>
+</div>
+
+<footer>
+  <div>HebronGuide · <span class="ko">글로벌 환대 커뮤니티</span><span class="en">Global Hospitality Community</span> · © 2026 Hebron Platform LLC</div>
+</footer>
+
+<script>
+function toggleLang(){
+  var html=document.documentElement,btn=document.getElementById('lang-btn');
+  if(html.lang==='ko'){html.lang='en';btn.textContent='한국어';}
+  else{html.lang='ko';btn.textContent='EN';}
+  localStorage.setItem('hg_lang',html.lang);
+}
+(function(){
+  var s=localStorage.getItem('hg_lang');
+  if(s==='en'){document.documentElement.lang='en';var b=document.getElementById('lang-btn');if(b)b.textContent='한국어';}
+})();
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href).then(function(){
+    alert(document.documentElement.lang==='en'?'Link copied!':'링크가 복사됐습니다!');
+  });
+}
+function shareStory(){
+  var ko=document.documentElement.lang==='ko';
+  var title=ko?'"3년 후 떠날 걸 알았습니다" — HebronGuide 달라스':'"I Knew I\'d Leave in Three Years" — HebronGuide Dallas';
+  var text=ko?'어차피 3년 후 떠날 텐데, 정들면 뭐가 남나. 마음을 닫았던 달라스 주재원 이야기. ':'He knew he\'d leave in 3 years — so he kept his heart closed. A Dallas expat story. ';
+  if(navigator.share){navigator.share({title:title,text:text,url:window.location.href});}
+  else{navigator.clipboard.writeText(text+window.location.href).then(function(){alert(ko?'복사됐습니다! 카카오톡에 붙여넣기 하세요.':'Copied! Paste into KakaoTalk.');});}
+}
+</script>
+</body>
+</html>

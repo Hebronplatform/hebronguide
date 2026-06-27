@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>업소 등재 신청 — HebronGuide</title>
+<meta name="description" content="한인 업소·서비스를 HebronGuide에 등재하세요. 새로 오신 한인 이민자들이 믿을 수 있는 분을 먼저 만납니다.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:#0d1117;scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;color:#ECFDF5;min-height:100vh;}
+
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,17,23,.96);backdrop-filter:blur(12px);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 24px;border-bottom:1px solid rgba(255,255,255,.07);
+}
+.logo{text-decoration:none;display:flex;align-items:center;gap:9px;}
+.logo-mark{flex-shrink:0;}
+.logo-word{font-weight:900;font-size:1rem;color:#fff;letter-spacing:.01em;}
+.logo-word em{font-style:italic;font-weight:400;color:#C9A227;}
+.nav-back{color:rgba(236,253,245,.4);text-decoration:none;font-size:.8rem;}
+.nav-back:hover{color:#6EE7B7;}
+
+/* 헤더 */
+.hero{
+  background:linear-gradient(160deg,#1a2535 0%,#0d1117 100%);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  padding:32px 24px 28px;text-align:center;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.3);
+  border-radius:99px;padding:5px 18px;
+  font-size:.72rem;font-weight:800;color:#6EE7B7;letter-spacing:.06em;
+  margin-bottom:14px;
+}
+.hero h1{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:8px;line-height:1.3;}
+.hero h1 em{color:#6EE7B7;font-style:normal;}
+.hero p{font-size:.85rem;color:rgba(236,253,245,.55);line-height:1.9;}
+
+/* 무료 배너 */
+.free-bar{
+  background:linear-gradient(135deg,rgba(110,231,183,.12),rgba(201,162,39,.08));
+  border-top:2px solid rgba(110,231,183,.35);
+  text-align:center;padding:12px 24px;
+  font-size:.82rem;color:rgba(236,253,245,.75);font-weight:700;
+}
+.free-bar strong{color:#6EE7B7;}
+
+/* 컨테이너 */
+.container{max-width:540px;margin:0 auto;padding:28px 20px 80px;}
+
+/* 안내 박스 */
+.info-box{
+  background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.2);
+  border-radius:14px;padding:16px 18px;margin-bottom:22px;
+}
+.info-box .info-title{font-size:.85rem;font-weight:800;color:#C9A227;margin-bottom:6px;}
+.info-box p{font-size:.8rem;color:rgba(236,253,245,.7);line-height:1.85;}
+
+/* 폼 카드 */
+.form-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;padding:24px 22px;margin-bottom:14px;
+}
+.card-title{
+  font-size:.88rem;font-weight:800;color:#fff;margin-bottom:16px;
+  padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;gap:8px;
+}
+
+/* 필드 */
+.field{margin-bottom:14px;}
+.field label{
+  display:block;font-size:.78rem;font-weight:700;
+  color:rgba(236,253,245,.6);margin-bottom:5px;
+}
+.field label .req{color:#f87171;margin-left:2px;}
+.field label .opt{color:rgba(236,253,245,.3);font-size:.72rem;font-weight:400;margin-left:4px;}
+.field input,.field select,.field textarea{
+  width:100%;background:rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.12);border-radius:10px;
+  padding:11px 14px;font-size:.88rem;color:#ECFDF5;
+  font-family:'Noto Sans KR',sans-serif;outline:none;
+  transition:border-color .2s;-webkit-appearance:none;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#6EE7B7;}
+.field select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23666'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;
+}
+.field select option{background:#1a2535;}
+.field textarea{min-height:72px;resize:vertical;line-height:1.7;}
+.field .hint{font-size:.72rem;color:rgba(236,253,245,.35);margin-top:4px;line-height:1.6;}
+
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:420px){.field-row{grid-template-columns:1fr;}}
+
+/* 목사 추천 카드 */
+.pastor-card{
+  background:rgba(110,231,183,.05);border:1px solid rgba(110,231,183,.18);
+  border-radius:14px;padding:16px 18px;margin-bottom:14px;
+}
+.pastor-title{font-size:.85rem;font-weight:800;color:#6EE7B7;margin-bottom:4px;}
+.pastor-desc{font-size:.78rem;color:rgba(236,253,245,.55);line-height:1.75;margin-bottom:12px;}
+
+/* 배지 미리보기 */
+.badge-preview{
+  display:flex;gap:12px;align-items:center;
+  background:rgba(0,0,0,.25);border-radius:10px;padding:10px 14px;
+}
+.badge-with{font-size:.78rem;color:#fff;font-weight:700;}
+.badge-chip{
+  background:rgba(201,162,39,.2);border:1px solid rgba(201,162,39,.5);
+  color:#C9A227;font-size:.68rem;font-weight:800;border-radius:6px;
+  padding:2px 7px;
+}
+.badge-without{font-size:.78rem;color:rgba(236,253,245,.4);}
+
+/* 동의 */
+.agree-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;}
+.agree-row input[type=checkbox]{width:17px;height:17px;margin-top:2px;accent-color:#6EE7B7;flex-shrink:0;cursor:pointer;}
+.agree-row label{font-size:.8rem;color:rgba(236,253,245,.7);cursor:pointer;line-height:1.6;}
+
+/* 제출 버튼 */
+.btn-submit{
+  width:100%;background:linear-gradient(135deg,#6EE7B7,#34d399);
+  color:#0d1117;border:none;padding:14px;border-radius:13px;
+  font-size:.95rem;font-weight:900;cursor:pointer;
+  font-family:'Noto Sans KR',sans-serif;
+  transition:all .2s;box-shadow:0 4px 16px rgba(110,231,183,.3);
+  margin-top:18px;
+}
+.btn-submit:hover{box-shadow:0 6px 24px rgba(110,231,183,.4);transform:translateY(-1px);}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+
+/* 결과 화면 */
+#resultBox{display:none;padding:28px 0;}
+.result-icon{font-size:2.8rem;text-align:center;margin-bottom:12px;}
+.result-title{font-size:1.1rem;font-weight:900;text-align:center;margin-bottom:6px;}
+.result-desc{font-size:.84rem;color:rgba(236,253,245,.6);text-align:center;line-height:1.8;margin-bottom:20px;}
+.flag-list{
+  background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);
+  border-radius:12px;padding:14px 16px;margin-bottom:16px;
+}
+.flag-list .flag-item{font-size:.8rem;color:rgba(239,68,68,.85);line-height:1.8;}
+.action-btns{display:flex;flex-direction:column;gap:10px;}
+.btn-action{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  border-radius:12px;padding:13px 16px;font-size:.9rem;font-weight:800;
+  font-family:'Noto Sans KR',sans-serif;cursor:pointer;border:none;
+  text-decoration:none;transition:opacity .15s;
+}
+.btn-primary{background:linear-gradient(135deg,#C9A227,#b8901c);color:#fff;}
+.btn-secondary{background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.3);color:#6EE7B7;}
+.btn-back{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:rgba(236,253,245,.5);}
+.btn-action:hover{opacity:.85;}
+
+footer{
+  background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.06);
+  text-align:center;padding:24px;font-size:.7rem;color:rgba(236,253,245,.2);line-height:2;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/seattle/" class="logo">
+    <svg class="logo-mark" viewBox="0 0 70 70" width="26" height="26">
+      <circle cx="35" cy="35" r="31" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+      <polygon points="35,8 44,27 35,35 26,27" fill="#d4a017"/>
+      <polygon points="35,62 44,44 35,35 26,44" fill="rgba(255,255,255,0.82)"/>
+      <polygon points="62,35 44,44 35,35 44,27" fill="rgba(255,255,255,0.55)"/>
+      <polygon points="8,35 26,27 35,35 26,44" fill="rgba(255,255,255,0.55)"/>
+      <circle cx="35" cy="35" r="2.8" fill="rgba(255,255,255,0.95)"/>
+    </svg>
+    <span class="logo-word">Hebron<em>Guide</em></span>
+  </a>
+  <a href="javascript:history.back()" class="nav-back">← 돌아가기</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🌿 한인 업소 등재</div>
+  <h1>내 업소를 <em>환대의 도구</em>로</h1>
+  <p>
+    새로 이민 온 한인이 가장 먼저 찾을 때<br>
+    믿을 수 있는 분이 먼저 연결됩니다
+  </p>
+</div>
+
+<div class="free-bar">
+  🎁 기본 등재 <strong>무료</strong>
+</div>
+
+<div class="container">
+
+  <!-- 안내 -->
+  <div class="info-box">
+    <div class="info-title">✅ 이렇게 진행됩니다</div>
+    <p>
+      아래 정보를 입력하시면 <strong style="color:#fff;">AI 자동 검토</strong> 후<br>
+      신뢰도가 높으면 <strong style="color:#6EE7B7;">바로 게시</strong>, 아니면 관리자가 확인 후 게시합니다.<br>
+      목사님 추천이 있으면 <strong style="color:#C9A227;">⭐ 인증 배지</strong>가 함께 표시됩니다.
+    </p>
+  </div>
+
+  <!-- 폼 -->
+  <div id="formArea">
+
+    <!-- 신청자 정보 -->
+    <div class="form-card">
+      <div class="card-title">👤 신청자 정보</div>
+      <div class="field-row">
+        <div class="field">
+          <label>성함 <span class="req">*</span></label>
+          <input type="text" id="memberName" placeholder="홍길동">
+        </div>
+        <div class="field">
+          <label>연락 전화 <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="(206) 000-0000">
+        </div>
+      </div>
+      <div class="field">
+        <label>이메일 <span class="opt">(선택)</span></label>
+        <input type="email" id="email" placeholder="me@email.com">
+      </div>
+    </div>
+
+    <!-- 업소 정보 -->
+    <div class="form-card">
+      <div class="card-title">🏪 업소 · 서비스 정보</div>
+      <div class="field-row">
+        <div class="field">
+          <label>업종 <span class="req">*</span></label>
+          <select id="bizType">
+            <option value="">선택하세요</option>
+            <optgroup label="🏥 의료·건강">
+              <option>가정의·클리닉</option>
+              <option>한의원·침술</option>
+              <option>치과</option>
+              <option>약국</option>
+            </optgroup>
+            <optgroup label="⚖️ 법률·재정">
+              <option>이민법·법률</option>
+              <option>세무·회계</option>
+              <option>보험</option>
+            </optgroup>
+            <optgroup label="🏠 생활·주거">
+              <option>부동산</option>
+              <option>이사·물류</option>
+              <option>자동차·운전</option>
+            </optgroup>
+            <optgroup label="📚 교육">
+              <option>학원·튜터링</option>
+              <option>한국학교</option>
+              <option>대학·유학 상담</option>
+            </optgroup>
+            <optgroup label="🍽️ 음식·생활">
+              <option>한식당·카페</option>
+              <option>미용·뷰티</option>
+              <option>여행사</option>
+            </optgroup>
+            <optgroup label="💼 비즈니스">
+              <option>취업·커리어</option>
+              <option>소상공인 지원</option>
+              <option>기타</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="field">
+          <label>도시 <span class="req">*</span></label>
+          <select id="city">
+            <option value="">선택하세요</option>
+            <option>시애틀</option><option>달라스</option><option>LA</option>
+            <option>뉴욕</option><option>내쉬빌</option><option>보스턴</option>
+            <option>토론토</option><option>밴쿠버</option><option>휴스턴</option>
+            <option>애틀랜타</option><option>시카고</option><option>워싱턴 DC</option>
+            <option>마이애미</option><option>필라델피아</option><option>샌프란시스코</option>
+            <option>시드니</option><option>멜버른</option><option>오클랜드</option>
+            <option>런던</option><option>도쿄</option><option>오사카</option>
+            <option>기타</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>업소명 · 서비스명 <span class="req">*</span></label>
+        <input type="text" id="bizName" placeholder="예: 홍길동 한의원 · ABC 이민법 사무소">
+      </div>
+      <div class="field">
+        <label>주소 <span class="opt">(선택)</span></label>
+        <input type="text" id="address" placeholder="123 Main St, Seattle WA 98101">
+      </div>
+      <div class="field">
+        <label>홈페이지 <span class="opt">(선택)</span></label>
+        <input type="url" id="website" placeholder="https://...">
+      </div>
+      <div class="field">
+        <label>한 줄 소개 <span class="opt">(선택)</span></label>
+        <textarea id="description" placeholder="예: 한국어 진료 가능, 이민자 첫 방문 환영, 20년 경력..."></textarea>
+        <div class="hint">새 이민자에게 가장 도움이 되는 내용으로 적어 주세요</div>
+      </div>
+    </div>
+
+    <!-- 목사 추천 -->
+    <div class="pastor-card">
+      <div class="pastor-title">⭐ 목사님 추천 (선택)</div>
+      <div class="pastor-desc">
+        소속 목사님 이메일을 입력하시면 추천 요청 이메일이 자동 전송됩니다.<br>
+        목사님이 추천하시면 가이드에 ⭐ 인증 배지가 표시됩니다.
+      </div>
+      <div class="badge-preview" style="margin-bottom:12px;">
+        <div>
+          <div class="badge-with">⭐ 추천 있음</div>
+          <div class="badge-chip">목사 인증</div>
+        </div>
+        <span style="color:rgba(255,255,255,.15);font-size:1.2rem;">│</span>
+        <div class="badge-without">추천 없음 — 일반 등재</div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>소속 교회 <span class="opt">(선택)</span></label>
+          <input type="text" id="churchName" placeholder="시애틀OO교회">
+        </div>
+        <div class="field">
+          <label>목사님 이메일 <span class="opt">(선택)</span></label>
+          <input type="email" id="pastorEmail" placeholder="pastor@church.com">
+        </div>
+      </div>
+      <div class="hint">입력하지 않아도 등재는 됩니다</div>
+    </div>
+
+    <!-- 동의 -->
+    <div class="agree-row">
+      <input type="checkbox" id="agree1">
+      <label for="agree1">HebronGuide <a href="/terms.html" target="_blank" style="color:#6EE7B7;">이용약관</a> 및 <a href="/privacy.html" target="_blank" style="color:#6EE7B7;">개인정보처리방침</a>에 동의합니다</label>
+    </div>
+    <div class="agree-row">
+      <input type="checkbox" id="agree2">
+      <label for="agree2">입력한 정보가 사실임을 확인합니다</label>
+    </div>
+
+    <button class="btn-submit" id="btnSubmit" onclick="submitListing()">
+      🌿 등재 신청하기
+    </button>
+
+  </div><!-- /formArea -->
+
+  <!-- 결과 화면 -->
+  <div id="resultBox"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <strong>HebronGuide</strong> — 이민자·이주자를 위한 디지털 환대 플랫폼<br>
+  Hebron 관리자 · hebronplatform@gmail.com · hebronguide.com
+</footer>
+
+<script>
+async function submitListing() {
+  const btn = document.getElementById('btnSubmit');
+
+  // 필수 동의 확인
+  if (!document.getElementById('agree1').checked || !document.getElementById('agree2').checked) {
+    alert('동의 항목을 모두 체크해 주세요.');
+    return;
+  }
+
+  const data = {
+    memberName:  document.getElementById('memberName').value.trim(),
+    churchName:  document.getElementById('churchName').value.trim(),
+    pastorEmail: document.getElementById('pastorEmail').value.trim(),
+    phone:       document.getElementById('phone').value.trim(),
+    email:       document.getElementById('email').value.trim(),
+    bizType:     document.getElementById('bizType').value,
+    bizName:     document.getElementById('bizName').value.trim(),
+    address:     document.getElementById('address').value.trim(),
+    website:     document.getElementById('website').value.trim(),
+    description: document.getElementById('description').value.trim(),
+    city:        document.getElementById('city').value,
+  };
+
+  // 기본 필드 확인
+  if (!data.memberName || !data.bizName || !data.bizType || !data.city) {
+    alert('필수 항목(성함·업소명·업종·도시)을 입력해 주세요.');
+    return;
+  }
+  if (!data.phone && !data.email) {
+    alert('전화번호 또는 이메일 중 하나는 입력해 주세요.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '🔍 AI 검토 중...';
+
+  let result = null;
+  try {
+    const res = await fetch('/api/submit-listing', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    result = await res.json();
+  } catch (_) {
+    // API 실패 시 → 클라이언트 기본 검사만 사용
+    result = { status: 'clean', flags: [], reviewEmail: null, endorseEmail: null };
+  }
+
+  // 결과 처리
+  showResult(result, data);
+}
+
+function showResult(result, data) {
+  document.getElementById('formArea').style.display = 'none';
+  const box = document.getElementById('resultBox');
+  box.style.display = 'block';
+
+  const isCritical = result.status === 'critical';
+  const isError    = result.status === 'error';
+  const isWarning  = result.status === 'warning';
+  const isClean    = result.status === 'clean';
+
+  // 이메일 제목·본문 구성
+  const statusLabel = { clean:'✅ 문제 없음', warning:'⚠️ 확인 권장', error:'❌ 필수 누락', critical:'🚫 즉시 거절' }[result.status] || '검토 필요';
+  const reviewSubj = encodeURIComponent(`[HebronGuide] 업소 등재 신청 — ${data.bizName} (${statusLabel})`);
+  const reviewBody = encodeURIComponent(buildReviewBody(result, data, statusLabel));
+  const reviewMailto = `mailto:hebronplatform@gmail.com?subject=${reviewSubj}&body=${reviewBody}`;
+
+  let pastorMailto = '';
+  if (data.pastorEmail && !isCritical) {
+    const pSubj = encodeURIComponent(`[HebronGuide] 성도 업소 추천 요청 — ${data.bizName}`);
+    const pBody = encodeURIComponent(buildEndorseBody(data));
+    pastorMailto = `mailto:${data.pastorEmail}?subject=${pSubj}&body=${pBody}`;
+  }
+
+  if (isCritical) {
+    box.innerHTML = `
+      <div class="result-icon">🚫</div>
+      <div class="result-title" style="color:#f87171;">등재가 어렵습니다</div>
+      <div class="result-desc">아래 사유로 등재가 불가합니다.<br>문의: hebronplatform@gmail.com</div>
+      <div class="flag-list">${(result.flags||[]).map(f=>`<div class="flag-item">• ${f.msg}</div>`).join('')}</div>
+      <div class="action-btns">
+        <a class="btn-action btn-back" href="javascript:location.reload()">← 다시 입력</a>
+      </div>`;
+    return;
+  }
+
+  const isAutoApproved = isClean && result.autoApprove;
+
+  const icon   = isAutoApproved ? '🎉' : isClean ? '✅' : isWarning ? '⚠️' : '📋';
+  const title  = isAutoApproved ? 'AI 검증 통과 — 바로 게시되었습니다!' : isClean ? '신청이 접수되었습니다!' : isWarning ? '신청 접수 — 확인 후 게시' : '내용을 다시 확인해 주세요';
+  const desc   = isAutoApproved
+    ? `<strong style="color:#6EE7B7;">${data.bizName}</strong>이 HebronGuide ${data.city} 페이지에 바로 게시되었습니다.<br>담당자가 추후 한 번 더 확인합니다.`
+    : isClean
+    ? `<strong style="color:#6EE7B7;">${data.bizName}</strong> 등재 신청이 검토 대기 중입니다.<br>아래 버튼으로 담당자에게 전달해 주세요.`
+    : isWarning
+    ? '일부 항목 확인이 필요합니다. 담당자가 검토 후 연락드립니다.'
+    : '필수 항목을 확인해 주세요.';
+
+  const flagHtml = (result.flags||[]).length && !isClean
+    ? `<div class="flag-list">${result.flags.map(f=>`<div class="flag-item">• ${f.msg}</div>`).join('')}</div>`
+    : '';
+
+  const actionHtml = isError
+    ? `<a class="btn-action btn-back" href="javascript:location.reload()">← 다시 입력</a>`
+    : isAutoApproved
+    ? `
+      <a class="btn-action btn-primary" href="/${data.city}/">HebronGuide에서 확인하기 →</a>
+      ${pastorMailto ? `<a class="btn-action btn-secondary" href="${pastorMailto}">⭐ 목사님께 추천 요청 보내기</a>` : ''}
+    `
+    : `
+      <a class="btn-action btn-primary" href="${reviewMailto}">
+        📧 Hebron 관리자에게 전달
+      </a>
+      ${pastorMailto ? `<a class="btn-action btn-secondary" href="${pastorMailto}">⭐ 목사님께 추천 요청 보내기</a>` : ''}
+      <a class="btn-action btn-back" href="/seattle/">← 헤브론가이드로 돌아가기</a>
+    `;
+
+  box.innerHTML = `
+    <div class="result-icon">${icon}</div>
+    <div class="result-title" style="color:${isClean?'#6EE7B7':isWarning?'#fbbf24':'#f87171'};">${title}</div>
+    <div class="result-desc">${desc}</div>
+    ${flagHtml}
+    <div class="action-btns">${actionHtml}</div>
+  `;
+}
+
+function buildReviewBody(result, d, statusLabel) {
+  const flags = (result.flags||[]).length
+    ? result.flags.map(f => `  [${f.level.toUpperCase()}] ${f.msg}`).join('\n')
+    : '  없음';
+  return [
+    `[HebronGuide] 업소 등재 신청 — ${statusLabel}`,
+    '',
+    `업소명:   ${d.bizName}`,
+    `업종:     ${d.bizType}`,
+    `도시:     ${d.city}`,
+    `소속 교회: ${d.churchName||'—'}`,
+    `신청자:   ${d.memberName}`,
+    `전화:     ${d.phone||'—'}`,
+    `이메일:   ${d.email||'—'}`,
+    `주소:     ${d.address||'—'}`,
+    `웹사이트:  ${d.website||'—'}`,
+    `소개:     ${d.description||'—'}`,
+    '',
+    `── AI 검토 결과 (${statusLabel}) ──`,
+    flags,
+    '',
+    result.status === 'clean'
+      ? '→ 자동 승인 대기. 별도 조치 불필요.'
+      : '→ 확인 후 수동 처리 필요.',
+    '',
+    '── HebronGuide 자동 검토 시스템 ──',
+  ].join('\n');
+}
+
+function buildEndorseBody(d) {
+  return [
+    `목사님, 안녕하세요.`,
+    `${d.churchName||'교회'} 성도 ${d.memberName}님이`,
+    `아래 업소를 HebronGuide에 등재 신청하셨습니다.`,
+    '',
+    `업소명: ${d.bizName}`,
+    `업종:   ${d.bizType}`,
+    `도시:   ${d.city}`,
+    '',
+    `추천하시면 가이드에 ⭐ 인증 배지가 표시됩니다.`,
+    `아래 주소로 "추천합니다" 한 줄만 보내 주세요:`,
+    `hebronplatform@gmail.com`,
+    `제목: [추천] ${d.bizName}`,
+    '',
+    '── HebronGuide · hebronguide.com ──',
+  ].join('\n');
+}
+</script>
+
+<script>
+/* HebronGuide — 도시 자동 복귀 (모든 사용자가 자기 도시로) */
+(function(){
+  function detectCity(){
+    var p=new URLSearchParams(location.search);
+    if(p.get('city'))return p.get('city');
+    var ref=document.referrer;
+    if(ref){var m=ref.match(/hebronguide\.com\/([a-z]+)\//);if(m&&m[1])return m[1];}
+    var segs=location.pathname.split('/').filter(Boolean);
+    if(segs.length&&segs[0].indexOf('.')<0)return segs[0];
+    return'seattle';
+  }
+  var city=detectCity();
+  if(city!=='seattle'){
+    document.querySelectorAll('a[href*="/seattle/"]').forEach(function(a){
+      a.href=a.href.replace(/\/seattle\//g,'/'+city+'/');
+    });
+  }
+})();
+</script>
+</body>
+</html>

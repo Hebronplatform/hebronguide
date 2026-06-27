@@ -1,0 +1,1517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Hebron Codex · hebronguide.com/codex</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Hebron Codex — parchment palette, intentionally low-contrast, timeless */
+    --bg:        #efeae0;
+    --bg-warm:   #e8e1d2;
+    --bg-deep:   #ded4bf;
+    --ink:       #1f1d18;
+    --ink-soft:  #4a463c;
+    --ink-mute:  #857e6e;
+    --ink-faint: #b5ad99;
+    --rule:      #cfc5ad;
+    --accent:    #7a2f1a;   /* old-leather red — Hebrew manuscript initials */
+    --accent-deep: #5a2012;
+    --gold:      #a0763a;   /* muted gilt */
+    --moss:      #4f5a3a;
+    --serif:     'Fraunces', 'Noto Serif KR', Georgia, serif;
+    --serif-ko:  'Noto Serif KR', 'Fraunces', serif;
+    --sans:      'Inter', 'Noto Sans KR', system-ui, sans-serif;
+    --sans-ko:   'Noto Sans KR', 'Inter', sans-serif;
+    --mono:      'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+  body {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "onum" 1, "pnum" 1, "liga" 1, "calt" 1;
+  }
+
+  /* Paper texture — a subtle noise to feel like aged parchment */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(160,118,58,0.06) 0, transparent 55%),
+      radial-gradient(circle at 85% 70%, rgba(122,47,26,0.04) 0, transparent 60%),
+      radial-gradient(circle at 50% 90%, rgba(79,90,58,0.05) 0, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.10 0 0 0 0 0.07 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .codex { position: relative; z-index: 2; }
+
+  /* ═══ Top address bar — consistent with hebronguide.com system ═══ */
+  .address {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(239,234,224,0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+  }
+  .address-inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 10px 40px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .address-path {
+    display: flex; align-items: center; gap: 6px;
+    text-transform: lowercase;
+  }
+  .address-path .dim { color: var(--ink-faint); }
+  .address-path .seg { color: var(--ink-soft); }
+  .address-path .here { color: var(--accent); }
+  .address-spacer { flex: 1; }
+  .address-meta { display: flex; gap: 18px; }
+  .address-meta span::before { content: '· '; color: var(--ink-faint); }
+  .address-meta span:first-child::before { content: ''; }
+  .live-dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); margin-right: 6px;
+    animation: pulse 2.4s ease-in-out infinite;
+    vertical-align: middle;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 0.4; transform: scale(1); }
+    50%     { opacity: 1;   transform: scale(1.3); }
+  }
+
+  /* ═══ Masthead ═══ */
+  .masthead {
+    max-width: 1280px; margin: 0 auto;
+    padding: 80px 40px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .masthead-brand {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 24px;
+  }
+  .masthead-brand .brand-mark {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: clamp(56px, 9vw, 132px);
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .masthead h1 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--accent);
+  }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    text-align: right;
+    line-height: 1.9;
+  }
+  .masthead-meta .label { color: var(--ink-faint); }
+  .masthead-meta .val   { color: var(--ink-soft); }
+
+  /* ═══ Preface ═══ */
+  .preface {
+    max-width: 1280px; margin: 0 auto;
+    padding: 56px 40px 80px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 40px;
+  }
+  .preface-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding-top: 8px;
+  }
+  .preface-body {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 620px;
+  }
+  .preface-body p { margin: 0 0 1em; }
+  .preface-body p:last-child { margin-bottom: 0; }
+  .preface-body .drop {
+    float: left;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    font-size: 88px;
+    line-height: 0.85;
+    padding: 8px 12px 0 0;
+    color: var(--accent);
+  }
+
+  /* ═══ Table of Contents ═══ */
+  .toc {
+    max-width: 1280px; margin: 0 auto;
+    padding: 72px 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .toc-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 40px;
+  }
+  .toc-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px 80px;
+  }
+  .toc-item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px dotted var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    transition: color 0.2s;
+  }
+  .toc-item:hover { color: var(--accent); }
+  .toc-item:hover .toc-num { color: var(--accent); }
+  .toc-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-mute);
+  }
+  .toc-name {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+  }
+  .toc-name .sub {
+    display: block;
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+  .toc-page {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.08em;
+  }
+
+  /* ═══ Chapter layout ═══ */
+  .chapter {
+    max-width: 1280px; margin: 0 auto;
+    padding: 120px 40px 60px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 40px;
+  }
+  .chapter:last-child { border-bottom: none; }
+
+  .chapter-marginalia {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    line-height: 2;
+  }
+  .chapter-marginalia .roman {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .chapter-marginalia .note {
+    margin-top: 40px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-mute);
+    letter-spacing: 0;
+    text-transform: none;
+    padding-left: 12px;
+    border-left: 1px solid var(--rule);
+  }
+
+  .chapter-body { max-width: 680px; }
+
+  .chapter-aside {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    line-height: 1.9;
+    padding-top: 12px;
+  }
+  .chapter-aside .tag {
+    display: inline-block;
+    padding: 3px 8px;
+    background: var(--bg-deep);
+    color: var(--ink-soft);
+    border-radius: 2px;
+    margin: 2px 4px 2px 0;
+    font-size: 9px;
+  }
+
+  h2.chapter-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-variation-settings: "opsz" 96, "SOFT" 100;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    color: var(--ink);
+  }
+  h2.chapter-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .chapter-kicker {
+    font-family: var(--serif-ko);
+    font-size: 16px;
+    color: var(--ink-mute);
+    margin: 0 0 48px;
+    font-style: italic;
+  }
+
+  .lede {
+    font-family: var(--serif);
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 40px;
+  }
+  .lede .drop {
+    float: left;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    font-size: 104px;
+    line-height: 0.85;
+    padding: 10px 14px 0 0;
+    color: var(--accent);
+  }
+
+  p.body {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0 0 1.3em;
+  }
+  p.body.ko {
+    font-family: var(--serif-ko);
+    font-size: 16px;
+  }
+
+  /* Scripture block — the gravitational center */
+  .scripture {
+    margin: 56px 0;
+    padding: 48px 56px;
+    background: var(--bg-warm);
+    border-left: 3px solid var(--accent);
+    position: relative;
+  }
+  .scripture::before {
+    content: '';
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 20px; height: 20px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%237a2f1a' stroke-width='0.8'><path d='M10 2 L10 18 M2 10 L18 10'/></svg>");
+    opacity: 0.4;
+  }
+  .scripture-ref {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .scripture-verse {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 60, "SOFT" 100;
+    font-size: 22px;
+    line-height: 1.6;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .scripture-verse .verse-num {
+    font-style: normal;
+    font-size: 11px;
+    vertical-align: super;
+    color: var(--accent);
+    margin-right: 4px;
+    font-family: var(--mono);
+    letter-spacing: 0;
+  }
+  .scripture-verse p { margin: 0 0 1em; }
+  .scripture-verse p:last-child { margin-bottom: 0; }
+  .scripture-ko {
+    font-family: var(--serif-ko);
+    font-style: normal;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ink-mute);
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* Four Promises — signature section */
+  .promises {
+    margin: 72px 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .promise {
+    display: grid;
+    grid-template-columns: 140px 1fr 240px;
+    gap: 32px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .promise-verb {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--accent);
+    font-style: italic;
+  }
+  .promise-verb .num {
+    display: block;
+    font-size: 12px;
+    font-family: var(--mono);
+    letter-spacing: 0.18em;
+    font-style: normal;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+  .promise-meaning {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .promise-meaning .ko {
+    display: block;
+    font-family: var(--serif-ko);
+    font-size: 14px;
+    color: var(--ink-mute);
+    margin-top: 8px;
+  }
+  .promise-practice {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    line-height: 1.6;
+  }
+  .promise-practice .arrow { color: var(--accent); margin: 0 6px; }
+  .promise-practice strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  /* Principles list — numbered */
+  .principles {
+    margin: 40px 0;
+    list-style: none;
+    padding: 0;
+    counter-reset: p;
+  }
+  .principles li {
+    counter-increment: p;
+    padding: 24px 0 24px 64px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .principles li::before {
+    content: counter(p, decimal-leading-zero);
+    position: absolute;
+    left: 0; top: 24px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  .principles li .gloss {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    line-height: 1.55;
+  }
+  .principles li .gloss-ko {
+    display: block;
+    font-family: var(--serif-ko);
+    font-size: 13px;
+    color: var(--ink-mute);
+    margin-top: 2px;
+  }
+
+  /* Correspondence table — Scripture ↔ System */
+  .correspondence {
+    margin: 56px 0;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .correspondence-header {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr;
+    gap: 24px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .correspondence-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px dotted var(--rule);
+    align-items: baseline;
+  }
+  .correspondence-row:last-child { border-bottom: none; }
+  .correspondence-verb {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .correspondence-scripture {
+    font-family: var(--serif);
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .correspondence-system {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .correspondence-system strong {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .correspondence-system span {
+    color: var(--ink-mute);
+  }
+
+  /* Voice — sample utterances */
+  .voice-set {
+    margin: 40px 0;
+    display: grid;
+    gap: 24px;
+  }
+  .voice-pair {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    background: var(--bg-warm);
+    border-left: 2px solid var(--rule);
+  }
+  .voice-pair.good { border-left-color: var(--moss); }
+  .voice-pair.bad  { border-left-color: #a0503a; opacity: 0.85; }
+  .voice-pair .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .voice-pair.good .tag { color: var(--moss); }
+  .voice-pair.bad  .tag { color: #8a3a28; }
+  .voice-pair .sample {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .voice-pair .sample-ko {
+    font-family: var(--serif-ko);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+
+  /* Design Language tokens */
+  .tokens {
+    margin: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .token {
+    padding: 20px;
+    background: var(--bg-warm);
+    border-top: 2px solid var(--ink);
+  }
+  .token-name {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .token-value {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .token-gloss {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-mute);
+    line-height: 1.5;
+  }
+  .swatch {
+    width: 100%; height: 48px;
+    border: 1px solid var(--rule);
+    margin-bottom: 12px;
+  }
+
+  /* Amendments — ledger style */
+  .ledger {
+    margin: 32px 0;
+    border-top: 2px solid var(--ink);
+  }
+  .ledger-row {
+    display: grid;
+    grid-template-columns: 120px 80px 1fr;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px dotted var(--rule);
+    align-items: baseline;
+  }
+  .ledger-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+  }
+  .ledger-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--accent);
+  }
+  .ledger-entry {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .ledger-entry strong {
+    font-weight: 500;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .ledger-entry .rationale {
+    font-style: italic;
+    color: var(--ink-mute);
+    font-size: 14px;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* Succession */
+  .succession-quote {
+    margin: 48px 0;
+    padding: 48px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+  }
+  .succession-quote blockquote {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 32px;
+    line-height: 1.35;
+    color: var(--ink);
+    margin: 0;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .succession-quote cite {
+    display: block;
+    margin-top: 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  /* Colophon */
+  .colophon {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 80px 40px 120px;
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 40px;
+    border-top: 1px solid var(--rule);
+  }
+  .colophon-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .colophon-body {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-mute);
+    max-width: 560px;
+  }
+  .colophon-body p { margin: 0 0 1em; }
+
+  .signoff {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 48px;
+    color: var(--accent);
+    margin-top: 48px;
+    line-height: 1;
+  }
+
+  /* Print preparation — reads as an actual document */
+  @media print {
+    body::before, body::after { display: none; }
+    .address { display: none; }
+    .chapter, .masthead, .preface, .toc, .colophon {
+      page-break-inside: avoid;
+    }
+    .chapter { page-break-before: always; }
+  }
+
+  /* Smaller screens: collapse to single column */
+  @media (max-width: 960px) {
+    .masthead, .preface, .toc, .chapter, .colophon {
+      grid-template-columns: 1fr;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .toc-list { grid-template-columns: 1fr; }
+    .promise { grid-template-columns: 80px 1fr; }
+    .promise-practice { grid-column: 2; }
+    .correspondence-header, .correspondence-row {
+      grid-template-columns: 80px 1fr;
+    }
+    .correspondence-system { grid-column: 2; }
+    .tokens { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="codex">
+
+  <!-- ═══ Address bar ═══ -->
+  <nav class="address">
+    <div class="address-inner">
+      <div class="address-path">
+        <span class="dim">https://</span>
+        <span class="seg">hebronguide.com</span>
+        <span class="dim">/</span>
+        <span class="here">codex</span>
+      </div>
+      <div class="address-spacer"></div>
+      <div class="address-meta">
+        <span><span class="live-dot"></span>Living document</span>
+        <span>Edition I · 2026</span>
+        <span>Read time ~22 min</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ Masthead ═══ -->
+  <header class="masthead">
+    <div>
+      <div class="masthead-brand">
+        <span class="brand-mark">✦</span> &nbsp;Hebron&nbsp;&nbsp;·&nbsp;&nbsp;a document for the generations
+      </div>
+      <h1>The Hebron <em>Codex</em></h1>
+    </div>
+    <div class="masthead-meta">
+      <div><span class="label">EDITION</span> &nbsp;&nbsp;<span class="val">I / 2026</span></div>
+      <div><span class="label">ISSUED</span> &nbsp;&nbsp;<span class="val">April · 2026</span></div>
+      <div><span class="label">LANGUAGES</span> &nbsp;<span class="val">EN · 한국어</span></div>
+      <div><span class="label">STATUS</span> &nbsp;&nbsp;&nbsp;<span class="val">Living</span></div>
+    </div>
+  </header>
+
+  <!-- ═══ Preface ═══ -->
+  <section class="preface">
+    <div class="preface-label">PREFACE</div>
+    <div class="preface-body">
+      <p><span class="drop">T</span>his document exists because information has a short half-life, but promises do not. What a newcomer needed to know in 2023 is already half-wrong in 2026. The wait time for a Social Security card will change. The exchange rate will change. The cities themselves will rise and settle. But the reason we meet the stranger at the gate — that does not change.</p>
+      <p>The Codex is the part of Hebron that does not change. It is written so that when this service is no longer ours — when our children or their friends carry it forward — they will know what we agreed to keep, and what we permitted them to alter.</p>
+      <p>Everything outside the Codex may be rewritten. What is inside may only be <em>amended</em>, with reason, and in writing.</p>
+    </div>
+    <div class="preface-label" style="text-align:right;">약속의 문서</div>
+  </section>
+
+  <!-- ═══ TOC ═══ -->
+  <section class="toc">
+    <div class="toc-title">· CONTENTS ·</div>
+    <div class="toc-list">
+      <a class="toc-item" href="#ch1">
+        <span class="toc-num">I</span>
+        <span class="toc-name">Theology<span class="sub">The land we are given — Genesis 13:14–18</span></span>
+        <span class="toc-page">p. 01</span>
+      </a>
+      <a class="toc-item" href="#ch2">
+        <span class="toc-num">II</span>
+        <span class="toc-name">Philosophy<span class="sub">Four promises · four practices</span></span>
+        <span class="toc-page">p. 04</span>
+      </a>
+      <a class="toc-item" href="#ch-gold">
+        <span class="toc-num">II·½</span>
+        <span class="toc-name">The Golden Rule<span class="sub">Our single operating test — Matthew 7:12</span></span>
+        <span class="toc-page">p. 06</span>
+      </a>
+      <a class="toc-item" href="#ch3">
+        <span class="toc-num">III</span>
+        <span class="toc-name">Principles<span class="sub">What will not be broken</span></span>
+        <span class="toc-page">p. 07</span>
+      </a>
+      <a class="toc-item" href="#ch4">
+        <span class="toc-num">IV</span>
+        <span class="toc-name">Practices<span class="sub">What may be rewritten</span></span>
+        <span class="toc-page">p. 10</span>
+      </a>
+      <a class="toc-item" href="#ch5">
+        <span class="toc-num">V</span>
+        <span class="toc-name">Voice<span class="sub">How we speak to the one arriving</span></span>
+        <span class="toc-page">p. 13</span>
+      </a>
+      <a class="toc-item" href="#ch6">
+        <span class="toc-num">VI</span>
+        <span class="toc-name">Design Language<span class="sub">Color · type · motion · voice UI</span></span>
+        <span class="toc-page">p. 16</span>
+      </a>
+      <a class="toc-item" href="#ch7">
+        <span class="toc-num">VII</span>
+        <span class="toc-name">Succession<span class="sub">Carrying Hebron across generations — Genesis 23</span></span>
+        <span class="toc-page">p. 19</span>
+      </a>
+      <a class="toc-item" href="#ch8">
+        <span class="toc-num">VIII</span>
+        <span class="toc-name">Amendments<span class="sub">The ledger of changes</span></span>
+        <span class="toc-page">p. 21</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════ CHAPTER I · THEOLOGY ═══════════ -->
+  <section class="chapter" id="ch1">
+    <aside class="chapter-marginalia">
+      <span class="roman">I</span>
+      THEOLOGY
+      <div class="note">The origin is not a business idea. It is a piece of land, a torn family, and a man told to lift his eyes.</div>
+    </aside>
+    <div class="chapter-body">
+      <h2 class="chapter-title">The Land We Are <em>Given</em></h2>
+      <p class="chapter-kicker">이주자의 여정은 '봄'에서 시작됩니다 — 창세기 13:14–18</p>
+
+      <p class="lede"><span class="drop">A</span>bram had just parted from Lot. The land could not hold them both, and so the younger man had chosen the well-watered plain and gone east, toward Sodom. Abram was left standing alone on a dry ridge with an old wife, no son, and a promise he could not yet see.</p>
+
+      <p class="body">Then God spoke. Not about strategy. Not about provision. Four verbs, in this order:</p>
+
+      <div class="scripture">
+        <div class="scripture-ref">Genesis 13 · 14–18 · KJV</div>
+        <div class="scripture-verse">
+          <p><span class="verse-num">14</span>Lift up now thine eyes, and look from the place where thou art northward, and southward, and eastward, and westward:</p>
+          <p><span class="verse-num">15</span>For all the land which thou seest, to thee will I give it, and to thy seed for ever.</p>
+          <p><span class="verse-num">17</span>Arise, walk through the land in the length of it and in the breadth of it; for I will give it unto thee.</p>
+          <p><span class="verse-num">18</span>Then Abram removed his tent, and came and dwelt by the oaks of Mamre, which is in Hebron, and built there an altar unto the Lord.</p>
+        </div>
+        <div class="scripture-ko">
+          <strong>14</strong> 여호와께서 아브람에게 이르시되 너는 눈을 들어 너 있는 곳에서 동서남북을 바라보라 <strong>15</strong> 보이는 땅을 내가 너와 네 자손에게 주리니 영원히 이르리라 <strong>17</strong> 너는 일어나 그 땅을 종과 횡으로 두루 다녀 보라 내가 그것을 네게 주리라 <strong>18</strong> 이에 아브람이 장막을 옮겨 헤브론에 있는 마므레 상수리 수풀에 이르러 거주하며 거기서 여호와를 위하여 제단을 쌓았더라
+        </div>
+      </div>
+
+      <p class="body">This is not a verse we chose because it is moving. It is the verse that made the word <em>Hebron</em> possible in the first place. Before the cave of Machpelah, before Sarah was buried, before the name became a city — there was a tent, four oaks, and an altar. A migrant set down his bag and, before anything else, gave thanks.</p>
+
+      <p class="body">And four verbs were placed in our hands. <em>Look. Walk. Dwell. Build.</em> They are addressed to a man who has just lost the choice of the better land. They are addressed, in every generation since, to the one arriving with less than they hoped for.</p>
+
+      <p class="body">Hebron is not a service. It is the name of those four verbs, answered for someone who is afraid.</p>
+    </div>
+    <aside class="chapter-aside">
+      <div class="tag">Gen 13</div>
+      <div class="tag">Origin</div>
+      <div class="tag">Hebron</div>
+      <div class="tag">Mamre</div>
+      <div class="tag">Altar</div>
+      <div style="margin-top:40px;color:var(--ink-mute);font-family:var(--serif);font-style:italic;font-size:13px;letter-spacing:0;text-transform:none;line-height:1.55;">Read on a plane, on a moving train, or in the apartment of a stranger. The document will still work.</div>
+    </aside>
+  </section>
+
+  <!-- ═══════════ CHAPTER II · PHILOSOPHY ═══════════ -->
+  <section class="chapter" id="ch2">
+    <aside class="chapter-marginalia">
+      <span class="roman">II</span>
+      PHILOSOPHY
+      <div class="note">The four verbs of Genesis 13 are not decoration. They are the shape of the product.</div>
+    </aside>
+    <div class="chapter-body">
+      <h2 class="chapter-title">Four <em>Promises</em>, Four Practices</h2>
+      <p class="chapter-kicker">성경 본문이 제품 구조를 낳습니다.</p>
+
+      <p class="lede">We do not start with a product and borrow a verse to decorate it. The verse was given first. It has always had a structure — four verbs, in order. Everything Hebron does is one of these, answered for a newcomer.</p>
+
+      <div class="promises">
+        <div class="promise">
+          <div class="promise-verb">
+            <span class="num">PROMISE I</span>
+            Look.
+          </div>
+          <div class="promise-meaning">
+            <em>Lift up your eyes.</em> Before you can walk a city, someone must show you what is actually around you — the rain, the cost of rice, the quiet streets at 8pm, the weight of this season's light.
+            <span class="ko">눈을 들어 바라보라. 걷기 전에, 지금 이 도시의 진짜 모습을 봐야 합니다.</span>
+          </div>
+          <div class="promise-practice">
+            <strong>Practice — SEE / Ambient Layer</strong>
+            Today's weather, exchange rate, permit wait times, which neighborhood is in bloom. Refreshed continuously. Never more than a day old.
+          </div>
+        </div>
+
+        <div class="promise">
+          <div class="promise-verb">
+            <span class="num">PROMISE II</span>
+            Walk.
+          </div>
+          <div class="promise-meaning">
+            <em>Walk through it, length and breadth.</em> A guide is not a book. A book is finished. A land is walked. Hebron moves with the newcomer through the actual streets — and changes when they do.
+            <span class="ko">걸어서 경험하라. 책이 아니라 동반자가 됩니다.</span>
+          </div>
+          <div class="promise-practice">
+            <strong>Practice — LIVING GUIDE</strong>
+            Dynamic routes. Voice-first concierge. Updates that follow the user, not the server schedule. Never a static PDF.
+          </div>
+        </div>
+
+        <div class="promise">
+          <div class="promise-verb">
+            <span class="num">PROMISE III</span>
+            Dwell.
+          </div>
+          <div class="promise-meaning">
+            <em>Abram pitched his tent by the oaks of Mamre.</em> Arrival is not a transaction — it is a tent going up. It needs neighbors who are already there, who know which well still gives water.
+            <span class="ko">먼저 온 이웃이 기다리고 있어야 합니다.</span>
+          </div>
+          <div class="promise-practice">
+            <strong>Practice — COMMUNITY LAYER</strong>
+            Every city has at least one named neighbor — a real person, reachable. Notes from people who arrived last week. Answers from those who arrived last year.
+          </div>
+        </div>
+
+        <div class="promise">
+          <div class="promise-verb">
+            <span class="num">PROMISE IV</span>
+            Build.
+          </div>
+          <div class="promise-meaning">
+            <em>And built there an altar unto the Lord.</em> The first act of settling was not a house, not a well, not a market. It was thanksgiving. A guide that forgets this builds nothing worth keeping.
+            <span class="ko">집을 짓기 전에 먼저 제단을 쌓았습니다. 감사가 먼저입니다.</span>
+          </div>
+          <div class="promise-practice">
+            <strong>Practice — ALTAR FIRST</strong>
+            Every arrival is received with welcome before it is handed a checklist. Every city has a moment for thanks. Those who have arrived serve those who are arriving — that is the altar.
+          </div>
+        </div>
+      </div>
+
+      <p class="body" style="margin-top:48px;">This is the shape of the product because it is the shape of the promise. When we build a new feature, we ask which verb it belongs to. If it belongs to none of them, we do not ship it.</p>
+    </div>
+    <aside class="chapter-aside">
+      <div class="tag">Four Verbs</div>
+      <div class="tag">Structure</div>
+      <div class="tag">Product DNA</div>
+    </aside>
+  </section>
+
+  <!-- ═══════════ CHAPTER II·½ · THE GOLDEN RULE ═══════════ -->
+  <section class="chapter" id="ch-gold">
+    <aside class="chapter-marginalia">
+      <span class="roman">II·½</span>
+      THE GOLDEN RULE
+      <div class="note">Before the ten, there is one. Every Principle is a translation of this sentence into a specific situation.</div>
+    </aside>
+    <div class="chapter-body">
+      <h2 class="chapter-title">The Single <em>Operating</em> Test</h2>
+      <p class="chapter-kicker">모든 운영의 한 가지 기준 — 마태복음 7:12</p>
+
+      <p class="lede"><span class="drop">I</span>f the four verbs of Genesis 13 are the <em>shape</em> of Hebron, the Golden Rule is its <em>operating system</em>. It is the sentence we hold against every decision — a feature, a price, a message, a silence — and if the decision fails this one test, we do not ship it.</p>
+
+      <div class="scripture">
+        <div class="scripture-ref">Matthew 7 · 12 · KJV</div>
+        <div class="scripture-verse">
+          <p><span class="verse-num">12</span>Therefore all things whatsoever ye would that men should do to you, do ye even so to them: for this is the law and the prophets.</p>
+        </div>
+        <div class="scripture-ko">
+          <strong>12</strong> 그러므로 무엇이든지 남에게 대접을 받고자 하는 대로 너희도 남을 대접하라 이것이 율법이요 선지자니라
+        </div>
+      </div>
+
+      <p class="body">Jesus collapses the entire weight of "the law and the prophets" — every commandment of the covenant — into one portable sentence. A tired migrant, without a lawyer, without a pastor, without a guide, can still carry this sentence across a border and apply it.</p>
+
+      <p class="body">We adopt it for the same reason. A steward of Hebron in 2050 will face questions we cannot foresee. They will not have us in the room. They will have this sentence.</p>
+
+      <h3 style="font-family:var(--serif);font-weight:400;font-variation-settings:'opsz' 72,'SOFT' 100;font-size:28px;font-style:italic;color:var(--ink);margin:56px 0 16px;">The Operating Test, in four questions.</h3>
+
+      <p class="body">Before any decision affecting a newcomer — a feature launched, a fee charged, a message sent, a question declined — the steward asks these four, in this order. If any answer is "no," the decision is revised or withheld.</p>
+
+      <ol class="principles" style="counter-reset:p;">
+        <li>
+          <strong>Would I want this done to me, arriving tired, in a language not my own?</strong>
+          <span class="gloss">The test of empathy. Imagine yourself on the other side of the screen, at 2 a.m., with a child asleep beside you.</span>
+          <span class="gloss-ko">내가 지친 몸으로, 낯선 언어로 도착했다면 — 이것을 받고 싶을까?</span>
+        </li>
+        <li>
+          <strong>Would I want this done to my own child, or my own mother?</strong>
+          <span class="gloss">The test of kinship. Everyone arriving is someone's child or someone's parent. Act accordingly.</span>
+          <span class="gloss-ko">내 아이에게, 내 부모님에게 이렇게 해드리고 싶은가?</span>
+        </li>
+        <li>
+          <strong>If the newcomer could read every internal note about this decision, would we still make it?</strong>
+          <span class="gloss">The test of transparency. No private reasoning we would be ashamed for the user to see.</span>
+          <span class="gloss-ko">이 결정의 내부 메모를 사용자가 전부 본다 해도 — 그래도 할 것인가?</span>
+        </li>
+        <li>
+          <strong>Would a steward in 2050, reading this in the Codex, recognize it as the work of Hebron?</strong>
+          <span class="gloss">The test of succession. We are not the last generation of this service. Build as if watched.</span>
+          <span class="gloss-ko">2050년의 후계자가 이 기록을 읽을 때 — 이것이 'Hebron답다'고 할까?</span>
+        </li>
+      </ol>
+
+      <h3 style="font-family:var(--serif);font-weight:400;font-variation-settings:'opsz' 72,'SOFT' 100;font-size:28px;font-style:italic;color:var(--ink);margin:64px 0 16px;">The relation to the Principles.</h3>
+
+      <p class="body">The ten Principles that follow are not independent rules. Each is the Golden Rule applied to a recurring situation we have already seen.</p>
+
+      <div class="correspondence">
+        <div class="correspondence-header">
+          <span>SITUATION</span>
+          <span>THE ASK</span>
+          <span>PRINCIPLE IT BECAME</span>
+        </div>
+        <div class="correspondence-row">
+          <span class="correspondence-verb" style="font-size:20px;">Arrival</span>
+          <span class="correspondence-scripture">Would I want to be processed, or greeted?</span>
+          <span class="correspondence-system"><strong>Principle 1</strong><span>The newcomer is received, not processed.</span></span>
+        </div>
+        <div class="correspondence-row">
+          <span class="correspondence-verb" style="font-size:20px;">Stale fact</span>
+          <span class="correspondence-scripture">Would I want to be misled by an old number?</span>
+          <span class="correspondence-system"><strong>Principle 2</strong><span>Information dated, or marked as stale.</span></span>
+        </div>
+        <div class="correspondence-row">
+          <span class="correspondence-verb" style="font-size:20px;">Loneliness</span>
+          <span class="correspondence-scripture">Would I want an anonymous page, or a named person?</span>
+          <span class="correspondence-system"><strong>Principle 3</strong><span>Every city has a named neighbor.</span></span>
+        </div>
+        <div class="correspondence-row">
+          <span class="correspondence-verb" style="font-size:20px;">Upsell</span>
+          <span class="correspondence-scripture">Would I want to be sold what I do not need?</span>
+          <span class="correspondence-system"><strong>Principle 6</strong><span>Do not sell what the newcomer does not need.</span></span>
+        </div>
+        <div class="correspondence-row">
+          <span class="correspondence-verb" style="font-size:20px;">First week</span>
+          <span class="correspondence-scripture">Would I want to be charged at the door?</span>
+          <span class="correspondence-system"><strong>Principle 7</strong><span>The first arrival is free.</span></span>
+        </div>
+      </div>
+
+      <p class="body" style="margin-top:48px;"><strong>In practice.</strong> When a proposal reaches an internal review — a new feature, a partnership, a pricing change, an AI answer shown to a user — the reviewer writes one sentence at the top of the document: <em>"Golden Rule check — would I want this done to me?"</em> The answer is written below, in one sentence. If the answer is evasive, the proposal does not advance. This is not bureaucracy. It is the simplest test we have found that a five-year-old can understand and a fifty-year-old cannot outmaneuver.</p>
+
+      <div class="succession-quote" style="margin-top:64px;">
+        <blockquote>"This is the law and the prophets — and, for us, the entire operations manual."</blockquote>
+        <cite>— Hebron Codex · On the Golden Rule</cite>
+      </div>
+    </div>
+    <aside class="chapter-aside">
+      <div class="tag">Matt 7:12</div>
+      <div class="tag">Operating OS</div>
+      <div class="tag">Four Questions</div>
+      <div class="tag">Portable</div>
+      <div style="margin-top:40px;color:var(--ink-mute);font-family:var(--serif);font-style:italic;font-size:13px;letter-spacing:0;text-transform:none;line-height:1.55;">A steward without us in the room still has this sentence.</div>
+    </aside>
+  </section>
+
+  <!-- ═══════════ CHAPTER III · PRINCIPLES ═══════════ -->
+  <section class="chapter" id="ch3">
+    <aside class="chapter-marginalia">
+      <span class="roman">III</span>
+      PRINCIPLES
+      <div class="note">These are the parts that may not be changed without amendment.</div>
+    </aside>
+    <div class="chapter-body">
+      <h2 class="chapter-title">What Will Not Be <em>Broken</em></h2>
+      <p class="chapter-kicker">불변의 약속. 깨면 Hebron이 아닙니다.</p>
+
+      <p class="lede">Ten principles. They are not strategy. They are the definition of the service. A future steward may argue them, but may not ignore them.</p>
+
+      <ol class="principles">
+        <li>
+          <strong>The newcomer is received, not processed.</strong>
+          <span class="gloss">A human greeting precedes any checklist. Always.</span>
+          <span class="gloss-ko">환영이 먼저, 체크리스트는 나중.</span>
+        </li>
+        <li>
+          <strong>Information shorter than a year old, or marked as stale.</strong>
+          <span class="gloss">If we cannot date it, we cannot publish it.</span>
+          <span class="gloss-ko">날짜를 보장할 수 없는 정보는 게시하지 않습니다.</span>
+        </li>
+        <li>
+          <strong>Every city has at least one named neighbor.</strong>
+          <span class="gloss">Anonymous information is half a guide. A real human must be reachable.</span>
+          <span class="gloss-ko">익명 정보만으로는 가이드가 아닙니다.</span>
+        </li>
+        <li>
+          <strong>Two first languages — English and Korean — and always "request your language."</strong>
+          <span class="gloss">No city is launched without both. No newcomer is told we do not speak theirs.</span>
+          <span class="gloss-ko">영어·한국어 필수. 그 외 언어는 "요청하세요"가 기본 응답.</span>
+        </li>
+        <li>
+          <strong>Voice is a peer to the screen.</strong>
+          <span class="gloss">Every action reachable by touch must be reachable by spoken request. From 2026 onward.</span>
+          <span class="gloss-ko">음성은 화면과 동등한 입력입니다. 2026년부터 표준.</span>
+        </li>
+        <li>
+          <strong>The guide does not sell what the newcomer does not need.</strong>
+          <span class="gloss">Referral incentives must be disclosed or refused. Trust is the asset.</span>
+          <span class="gloss-ko">필요 없는 것은 팔지 않습니다. 리퍼럴은 공개하거나 거절합니다.</span>
+        </li>
+        <li>
+          <strong>The first arrival is free.</strong>
+          <span class="gloss">The first week of help costs nothing. The altar does not charge at the door.</span>
+          <span class="gloss-ko">도착 첫 주간의 도움은 무료입니다. 제단은 문 앞에서 돈을 받지 않습니다.</span>
+        </li>
+        <li>
+          <strong>The document is open, the software is answerable.</strong>
+          <span class="gloss">The Codex is public. Decisions that cross it must be justified in writing.</span>
+          <span class="gloss-ko">Codex는 공개 문서. 이를 어기는 결정은 문서로 설명해야 합니다.</span>
+        </li>
+        <li>
+          <strong>Every city inherits from the Codex, not from the previous city.</strong>
+          <span class="gloss">Seattle is not the template. The Codex is the template. Cities express it.</span>
+          <span class="gloss-ko">새 도시는 Seattle을 복제하지 않고, Codex를 해석합니다.</span>
+        </li>
+        <li>
+          <strong>The service will one day be handed on. Build accordingly.</strong>
+          <span class="gloss">Write as if a stranger will maintain this in 2050. They will.</span>
+          <span class="gloss-ko">2050년의 후계자가 유지할 것처럼 만듭니다. 실제로 그렇게 될 테니까요.</span>
+        </li>
+      </ol>
+    </div>
+    <aside class="chapter-aside">
+      <div class="tag">Unbreakable</div>
+      <div class="tag">10 of them</div>
+      <div class="tag">Amendable only</div>
+    </aside>
+  </section>
+
+  <!-- ═══════════ CHAPTER IV · PRACTICES ═══════════ -->
+  <section class="chapter" id="ch4">
+    <aside class="chapter-marginalia">
+      <span class="roman">IV</span>
+      PRACTICES
+      <div class="note">The Principles bind. The Practices bend. Name the difference, in writing.</div>
+    </aside>
+    <div class="chapter-body">
+      <h2 class="chapter-title">What May Be <em>Rewritten</em></h2>
+      <p class="chapter-kicker">운영의 지혜. 시대마다 바뀔 수 있습니다.</p>
+
+      <p class="lede">Principles say <em>what</em>. Practices say <em>how, for now</em>. This chapter expects to be edited in every edition. That is its job.</p>
+
+      <p class="body"><strong>How we onboard a city.</strong> At present, each new city is opened by finding one anchor neighbor, translating the first arrival checklist into the local Korean dialect of the diaspora there, and running a private beta with twelve newcomers before the URL is made public. This cadence may change.</p>
+
+      <p class="body"><strong>How we verify community posts.</strong> At present, community updates are AI-summarized and human-reviewed within 24 hours before publication. A community member with three approved posts earns the ability to publish directly. This policy may change.</p>
+
+      <p class="body"><strong>How we price premium services.</strong> At present, concierge hours, translation, and accompaniment-on-arrival are paid services beyond the first free week. Prices are listed in local currency and Korean Won. Margin targets are reviewed annually.</p>
+
+      <p class="body"><strong>How we integrate AI.</strong> At present, the Concierge runs on a third-party model; answers are grounded in our verified Living Data and the current city's Codex-derived voice. The specific provider may change. The voice must not.</p>
+
+      <p class="body"><strong>How we handle a stale claim.</strong> A published fact that drifts out of date is downgraded to a dated advisory, not deleted. Newcomers see "last verified: <em>date</em>" and a one-tap "is this still true?" that routes to the city neighbor.</p>
+
+      <p class="body" style="margin-top:40px;font-style:italic;color:var(--ink-mute);">Every practice in this chapter carries an implicit footnote: <em>until we learn better.</em> The Principles do not.</p>
+    </div>
+    <aside class="chapter-aside">
+      <div class="tag">Operational</div>
+      <div class="tag">Revisable</div>
+      <div class="tag">Dated</div>
+    </aside>
+  </section>
+
+  <!-- ═══════════ CHAPTER V · VOICE ═══════════ -->
+  <section class="chapter" id="ch5">
+    <aside class="chapter-marginalia">
+      <span class="roman">V</span>
+      VOICE
+      <div class="note">The newcomer is tired. Speak accordingly.</div>
+    </aside>
+    <div class="chapter-body">
+      <h2 class="chapter-title">How We <em>Speak</em></h2>
+      <p class="chapter-kicker">지친 여행자에게 말하는 법.</p>
+
+      <p class="lede">The person arriving is rarely well-rested. They have been on a flight, or in a visa office, or negotiating with a landlord in a second language. Our sentences have to be shorter than we think, warmer than we think, and never in the mode of "content marketing."</p>
+
+      <p class="body"><strong>Rules.</strong> Second person, not third. Present tense, not future. Concrete nouns, not categories ("two days," not "a short wait"). When in doubt, <em>name a person</em>. When a sentence feels clever, cut it.</p>
+
+      <div class="voice-set">
+        <div class="voice-pair good">
+          <div class="tag">Voice — We</div>
+          <div class="sample">"If your flight lands this week, book your SSN appointment tonight. It is running eleven days."</div>
+          <div class="sample-ko">"이번 주 도착이면 오늘 밤에 SSN 예약 잡으세요. 지금 11일 걸립니다."</div>
+        </div>
+        <div class="voice-pair bad">
+          <div class="tag">Voice — Not us</div>
+          <div class="sample">"Seattle offers a range of essential administrative services tailored to the needs of incoming residents."</div>
+          <div class="sample-ko">"시애틀은 이주민의 니즈에 맞춘 다양한 필수 행정 서비스를 제공합니다."</div>
+        </div>
+
+        <div class="voice-pair good">
+          <div class="tag">Voice — We</div>
+          <div class="sample">"Min-jun landed two hours ago. He says the consulate route worked. Ask him if you want the exact number."</div>
+          <div class="sample-ko">"민준 씨가 2시간 전에 도착했어요. 영사관 경로로 됐다고 합니다. 전화번호 필요하면 말씀하세요."</div>
+        </div>
+        <div class="voice-pair bad">
+          <div class="tag">Voice — Not us</div>
+          <div class="sample">"Recent user feedback indicates that consulate-mediated processes demonstrate high success rates."</div>
+          <div class="sample-ko">"최근 사용자 피드백에 따르면 영사관 중개 프로세스가 높은 성공률을 보입니다."</div>
+        </div>
+
+        <div class="voice-pair good">
+          <div class="tag">Voice — We</div>
+          <div class="sample">"Welcome. You don't need to do anything yet. Sit down, read this when you can."</div>
+          <div class="sample-ko">"잘 오셨어요. 지금 당장 뭘 하실 필요 없어요. 좀 앉으시고, 준비되시면 읽어보세요."</div>
+        </div>
+        <div class="voice-pair bad">
+          <div class="tag">Voice — Not us</div>
+          <div class="sample">"Get started in three easy steps! Your Seattle journey begins now!"</div>
+          <div class="sample-ko">"3단계로 시작하세요! 당신의 시애틀 여정이 시작됩니다!"</div>
+        </div>
+      </div>
+
+      <p class="body" style="margin-top:40px;"><strong>In voice interfaces.</strong> All of the above, and shorter. Never a list of more than three items read aloud. Always a pause where the user can interrupt. Always a named person when one is relevant. Never "Hi there!" — always "Welcome."</p>
+    </div>
+    <aside class="chapter-aside">
+      <div class="tag">Warm</div>
+      <div class="tag">Second person</div>
+      <div class="tag">Concrete</div>
+      <div class="tag">Named</div>
+    </aside>
+  </section>
+
+  <!-- ═══════════ CHAPTER VI · DESIGN LANGUAGE ═══════════ -->
+  <section class="chapter" id="ch6">
+    <aside class="chapter-marginalia">
+      <span class="roman">VI</span>
+      DESIGN LANGUAGE
+      <div class="note">Light, type, motion, and — now — voice. The senses of the guide.</div>
+    </aside>
+    <div class="chapter-body">
+      <h2 class="chapter-title">The <em>Senses</em></h2>
+      <p class="chapter-kicker">색 · 타이포 · 동작 · 그리고 음성.</p>
+
+      <p class="lede">The guide has a body. A body has senses. Each city will express these senses in its own key — Seattle in rain-greens, Dallas in dusk-amber, Jerusalem in limestone white — but the grammar is shared.</p>
+
+      <p class="body"><strong>Color.</strong> Each city has a three-part palette: a <em>ground</em> (the city's daylight), an <em>accent</em> (its emblematic color — Seattle's cherry pink, Dallas's sunset), and a <em>shadow</em> (its deep night). Colors are selected from the actual light of the place, not from abstract brand taste.</p>
+
+      <div class="tokens">
+        <div class="token">
+          <div class="swatch" style="background:#efeae0;"></div>
+          <div class="token-name">CODEX · GROUND</div>
+          <div class="token-value">#efeae0</div>
+          <div class="token-gloss">Parchment. The document's own daylight.</div>
+        </div>
+        <div class="token">
+          <div class="swatch" style="background:#7a2f1a;"></div>
+          <div class="token-name">CODEX · ACCENT</div>
+          <div class="token-value">#7a2f1a</div>
+          <div class="token-gloss">Old-leather red. The ink of a contract, not a brand.</div>
+        </div>
+        <div class="token">
+          <div class="swatch" style="background:#1f1d18;"></div>
+          <div class="token-name">CODEX · SHADOW</div>
+          <div class="token-value">#1f1d18</div>
+          <div class="token-gloss">Near-black, never pure. A printed book's deepest ink.</div>
+        </div>
+      </div>
+
+      <p class="body" style="margin-top:40px;"><strong>Type.</strong> Two families, always. A serif for the document's memory (Fraunces, with optical sizes so headlines and body use different cuts of the same face), and a monospaced sans for the machine's side — timestamps, addresses, anything that must not lie.</p>
+
+      <p class="body"><strong>Motion.</strong> Nothing moves to impress. Things move because the world is moving: weather shifts, a petal falls, a clock advances thirty seconds. The newcomer's eye is already tired; we do not compete with it.</p>
+
+      <p class="body"><strong>Voice UI.</strong> The Genesis 13 verbs apply to the microphone too. <em>Look</em> — always tell the user what you heard before answering. <em>Walk</em> — keep the answer short enough to be followed while walking. <em>Dwell</em> — pause long enough for the user to interrupt. <em>Build</em> — end with gratitude, or with the next small action, not with a marketing flourish.</p>
+
+      <p class="body"><strong>Sound.</strong> The guide speaks. It does not chirp. It does not play stock UI sounds. When a voice greeting is triggered, the voice is calm, unhurried, and belongs to a specific human — not a brand.</p>
+
+      <div class="correspondence">
+        <div class="correspondence-header">
+          <span>VERB</span>
+          <span>SCRIPTURE</span>
+          <span>SYSTEM</span>
+        </div>
+        <div class="correspondence-row">
+          <span class="correspondence-verb">Look.</span>
+          <span class="correspondence-scripture">"Lift up now thine eyes, and look…"</span>
+          <span class="correspondence-system"><strong>Ambient Layer</strong><span>Today's weather, exchange rate, wait times, seasonal light</span></span>
+        </div>
+        <div class="correspondence-row">
+          <span class="correspondence-verb">Walk.</span>
+          <span class="correspondence-scripture">"Arise, walk through the land, in length and breadth…"</span>
+          <span class="correspondence-system"><strong>Living Guide</strong><span>Dynamic routes, voice companion, continuously updated</span></span>
+        </div>
+        <div class="correspondence-row">
+          <span class="correspondence-verb">Dwell.</span>
+          <span class="correspondence-scripture">"He removed his tent and dwelt by the oaks of Mamre…"</span>
+          <span class="correspondence-system"><strong>Community Layer</strong><span>Named neighbors, weekly notes, reachable humans</span></span>
+        </div>
+        <div class="correspondence-row">
+          <span class="correspondence-verb">Build.</span>
+          <span class="correspondence-scripture">"…and built there an altar unto the Lord."</span>
+          <span class="correspondence-system"><strong>Concierge · Altar First</strong><span>Welcome before checklist; thanksgiving before commerce</span></span>
+        </div>
+      </div>
+
+      <p class="body" style="margin-top:48px;"><em>The design language is not a mood board. It is a translation of a 4,000-year-old passage into color, type, motion, and sound. When a question about design cannot be decided, the question to ask is: which verb is this serving?</em></p>
+    </div>
+    <aside class="chapter-aside">
+      <div class="tag">Color</div>
+      <div class="tag">Type</div>
+      <div class="tag">Motion</div>
+      <div class="tag">Voice</div>
+      <div class="tag">Sound</div>
+    </aside>
+  </section>
+
+  <!-- ═══════════ CHAPTER VII · SUCCESSION ═══════════ -->
+  <section class="chapter" id="ch7">
+    <aside class="chapter-marginalia">
+      <span class="roman">VII</span>
+      SUCCESSION
+      <div class="note">Hebron is also the first burial ground of the covenant. A service that does not plan for succession is not a covenant.</div>
+    </aside>
+    <div class="chapter-body">
+      <h2 class="chapter-title">Carrying This, <em>Forward</em></h2>
+      <p class="chapter-kicker">세대를 건너는 약속 — 창세기 23장</p>
+
+      <p class="lede"><span class="drop">W</span>e chose the name Hebron because it is the city where Abram first pitched his tent. But we keep the name because it is also where Sarah was buried — in the cave of Machpelah, the first piece of land the covenant family owned. Arrival and succession share the same address.</p>
+
+      <div class="scripture">
+        <div class="scripture-ref">Genesis 23 · 17–19 · KJV</div>
+        <div class="scripture-verse">
+          <p><span class="verse-num">17</span>And the field of Ephron, which was in Machpelah, which was before Mamre, the field, and the cave which was therein, and all the trees that were in the field, that were in all the borders round about, were made sure</p>
+          <p><span class="verse-num">18</span>Unto Abraham for a possession in the presence of the children of Heth, before all that went in at the gate of his city.</p>
+          <p><span class="verse-num">19</span>And after this, Abraham buried Sarah his wife in the cave of the field of Machpelah before Mamre: the same is Hebron in the land of Canaan.</p>
+        </div>
+        <div class="scripture-ko">
+          <strong>19</strong> 그 후에 아브라함이 그의 아내 사라를 가나안 땅 마므레 앞 막벨라 밭 굴에 장사하였으니 마므레는 곧 헤브론이라
+        </div>
+      </div>
+
+      <p class="body">What Genesis 13 opens, Genesis 23 closes: Hebron is the ground that receives the newcomer at the start <em>and</em> at the end. In our case: we receive the arriving, and we will one day be received by those who come after us.</p>
+
+      <p class="body"><strong>Therefore.</strong> This service will be handed on. The Codex is the instrument of that handing. A steward who cannot read and keep the Codex cannot steward the service.</p>
+
+      <p class="body"><strong>Rules of succession.</strong> (1) The Codex is published in full and timestamped. (2) No generation may remove a Principle without adding an Amendment explaining the reason and dated with the names of those who approved it. (3) Every steward, before taking responsibility, reads the document aloud, in English and Korean, with at least one other person present. This is not ceremony. It is the test that they know what they are receiving.</p>
+
+      <div class="succession-quote">
+        <blockquote>"Though we have not seen the generation that will carry this, we write for them as if they are at the next table."</blockquote>
+        <cite>— Hebron Codex · Rule of Succession · I</cite>
+      </div>
+    </div>
+    <aside class="chapter-aside">
+      <div class="tag">Gen 23</div>
+      <div class="tag">Machpelah</div>
+      <div class="tag">Succession</div>
+      <div class="tag">Inheritance</div>
+    </aside>
+  </section>
+
+  <!-- ═══════════ CHAPTER VIII · AMENDMENTS ═══════════ -->
+  <section class="chapter" id="ch8">
+    <aside class="chapter-marginalia">
+      <span class="roman">VIII</span>
+      AMENDMENTS
+      <div class="note">The ledger. Every deviation recorded, dated, named.</div>
+    </aside>
+    <div class="chapter-body">
+      <h2 class="chapter-title">The <em>Ledger</em></h2>
+      <p class="chapter-kicker">시대별 개정 기록.</p>
+
+      <p class="lede">This chapter will, in time, grow long. That is its purpose. What is added here is the explanation a future generation will ask of us: <em>why did you add this, and what did you intend?</em></p>
+
+      <div class="ledger">
+        <div class="ledger-row">
+          <div class="ledger-date">2026 · 04 · 18</div>
+          <div class="ledger-num">A·001</div>
+          <div class="ledger-entry">
+            <strong>Origin text anchored to Genesis 13:14–18.</strong>
+            The Codex adopts the four verbs — Look, Walk, Dwell, Build — as the structural spine of the product. Genesis 23 is designated as the closing frame for succession.
+            <span class="rationale">Rationale: Hebron's name emerges in verse 13:18, before the burial narrative. The four verbs of 13:14–17 are the earliest shape of the covenant with the migrant — they precede, and therefore govern, everything else.</span>
+          </div>
+        </div>
+
+        <div class="ledger-row">
+          <div class="ledger-date">2026 · 04 · 19</div>
+          <div class="ledger-num">A·002</div>
+          <div class="ledger-entry">
+            <strong>Living Landing formalized as the first expression of the four verbs.</strong>
+            The three product layers (Ambient, Community, AI Concierge) are amended to four, matching the verbs: SEE (Ambient), WALK (Living Guide), DWELL (Community), BUILD (Altar-first concierge).
+            <span class="rationale">Rationale: three layers were operationally convenient but theologically incomplete. The fourth — thanksgiving before transaction — was implicit. It is now explicit.</span>
+          </div>
+        </div>
+
+        <div class="ledger-row">
+          <div class="ledger-date">2026 · 04 · 21</div>
+          <div class="ledger-num">A·003</div>
+          <div class="ledger-entry">
+            <strong>Voice admitted as a peer to the screen.</strong>
+            Principle V is adopted: every touch action must have a voice counterpart. Effective immediately for new features; existing features to conform by 2026 · 12 · 31.
+            <span class="rationale">Rationale: the MZ and Gen Z generations, arriving in our cities from 2026 onward, search by voice before text. A guide that requires typing excludes the generation it was built for.</span>
+          </div>
+        </div>
+
+        <div class="ledger-row">
+          <div class="ledger-date">2026 · 04 · 21</div>
+          <div class="ledger-num">A·004</div>
+          <div class="ledger-entry">
+            <strong>The Golden Rule adopted as the operating test.</strong>
+            Matthew 7:12 is installed as Chapter II·½ — the single sentence against which every decision is measured, before the ten Principles are consulted. A four-question review protocol is established for internal proposals.
+            <span class="rationale">Rationale: a steward facing an unforeseen 2050 situation will not have this room, this team, or our debates. They will have one sentence, in two languages, that a child can read and an adult cannot outmaneuver. The Principles are its local translations; this is the source.</span>
+          </div>
+        </div>
+
+        <div class="ledger-row">
+          <div class="ledger-date">2026 · 04 · 21</div>
+          <div class="ledger-num">A·005</div>
+          <div class="ledger-entry">
+            <strong>URL hierarchy fixed.</strong>
+            <code style="font-family:var(--mono);font-size:13px;color:var(--accent);">hebronguide.com</code> is reserved for the Codex and the global promise; each city lives under a slug — <code style="font-family:var(--mono);font-size:13px;color:var(--accent);">/seattle</code>, <code style="font-family:var(--mono);font-size:13px;color:var(--accent);">/dallas</code>, <code style="font-family:var(--mono);font-size:13px;color:var(--accent);">/nyc</code> — as a local expression of the same Codex.
+            <span class="rationale">Rationale: address is promise. The root must carry what does not change; cities carry what does.</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="body" style="margin-top:56px;font-style:italic;color:var(--ink-mute);">Future amendments will be added here by date, number, title, and rationale. Nothing is removed from this ledger. A withdrawal is itself an amendment.</p>
+    </div>
+    <aside class="chapter-aside">
+      <div class="tag">Ledger</div>
+      <div class="tag">Dated</div>
+      <div class="tag">Reasoned</div>
+      <div class="tag">Never erased</div>
+    </aside>
+  </section>
+
+  <!-- ═══════════ COLOPHON ═══════════ -->
+  <footer class="colophon">
+    <div class="colophon-label">COLOPHON</div>
+    <div class="colophon-body">
+      <p>Typeset in Fraunces (optical sizes 9 to 144) for the document's memory, Noto Serif KR for its Korean voice, and JetBrains Mono for its machine side. Colors chosen from old paper and the ink of a contract.</p>
+      <p>Written in Seattle, April 2026. To be read in every city that follows — and, God willing, by the stewards who come after us.</p>
+
+      <div class="signoff">Hebron.</div>
+    </div>
+    <div class="colophon-label" style="text-align:right;">Edition I · 2026</div>
+  </footer>
+
+</div>
+</body>
+</html>
