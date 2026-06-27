@@ -25000,7 +25000,7 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                 {[
                   // 시애틀 전용 자원
                   ...(isSeattle ? [
-                    { href: "https://www.spl.org", emoji: "📚", label: lang === "ko" ? "시애틀 공공도서관 (SPL)" : "Seattle Public Library (SPL)", sub: lang === "ko" ? "무료 인터넷·eBook(Libby)·Kanopy 영화·언어학습(Mango — 무료!)" : "Free internet, eBooks (Libby), Kanopy movies, Mango Languages (free!)" },
+                    { href: "https://www.spl.org", emoji: "📚", label: lang === "ko" ? "시애틀 공공도서관 (SPL)" : "Seattle Public Library (SPL)", sub: lang === "ko" ? "무료 인터넷·eBook(Libby·Hoopla)·Kanopy 영화·언어학습(Mango — 무료!)" : "Free internet, eBooks (Libby·Hoopla), Kanopy movies, Mango Languages (free!)" },
                     { href: "https://www.seattleartmuseum.org", emoji: "🎨", label: lang === "ko" ? "시애틀 미술관 (SAM)" : "Seattle Art Museum (SAM)", sub: lang === "ko" ? "매달 첫째 목요일 오후 5-9시 무료 입장" : "FREE first Thursday of every month, 5-9PM" },
                     { href: "https://www.zoo.org", emoji: "🦁", label: lang === "ko" ? "우들랜드 파크 동물원" : "Woodland Park Zoo", sub: lang === "ko" ? "시애틀 거주자 할인 요금 적용" : "Reduced price for Seattle residents" },
                     { href: "https://discoverpass.wa.gov", emoji: "🌲", label: lang === "ko" ? "Discover Pass ($30/년)" : "Discover Pass ($30/yr)", sub: lang === "ko" ? "워싱턴주 전체 주립공원·해변 무제한 입장" : "All WA state parks & beaches — unlimited access" },
@@ -25011,6 +25011,8 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                   ]),
                   // 전 도시 공통
                   { href: "https://www.vitataxhelp.org", emoji: "📋", label: lang === "ko" ? "VITA 무료 세금신고" : "VITA Free Tax Filing", sub: lang === "ko" ? "소득 $67K 이하 — 1월~4월 무료 세금 신고" : "Income under $67K — FREE tax prep Jan-April" },
+                  { href: "https://www.nl.go.kr", emoji: "📖", label: lang === "ko" ? "한국어 전자책 (국립중앙도서관)" : "Korean eBooks (National Library of Korea)", sub: lang === "ko" ? "한국 책 무료 열람 · 밀리의서재·리디(구독)로 더 풍부하게" : "Read Korean books free · Millie·Ridi (subscription) for more" },
+                  { href: "https://www.gutenberg.org", emoji: "📕", label: lang === "ko" ? "무료 고전 eBook (Project Gutenberg)" : "Free Classic eBooks (Project Gutenberg)", sub: lang === "ko" ? "저작권 만료 고전 7만권+ 100% 무료·합법" : "70,000+ public-domain classics — 100% free & legal" },
                 ].map((link, i) => (
                   <a key={i} href={link.href} target="_blank" rel="noopener noreferrer"
                     style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(52,211,153,0.15)" }}>
