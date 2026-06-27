@@ -1,632 +1,414 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HebronGuide — Global Hospitality Community</title>
+<title>Paul Kim 비즈니스 명함 — 음성 안내</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&family=Noto+Sans:wght@300;400;700&family=Montserrat:wght@300;400;600;700&display=swap');
-
-  :root {
-    --navy: #1B2F5E;
-    --gold: #B8860B;
-    --gold-light: #e8b84b;
-    --white: #ffffff;
-    --bg: #0d1b3e;
-    --bg2: #0a1628;
-    --text-dim: rgba(255,255,255,0.55);
-    --text-bright: rgba(255,255,255,0.9);
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{
+    background:#1a1a2e; min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:40px 20px; font-family:'Montserrat','Noto Sans KR',sans-serif; gap:32px;
   }
+  h2{ color:#B8860B; font-size:13px; font-weight:500; letter-spacing:3px; text-transform:uppercase; text-align:center; margin-bottom:4px; }
+  .label{ color:#8899aa; font-size:11px; letter-spacing:2px; text-transform:uppercase; text-align:center; margin-bottom:14px; }
 
-  * { margin:0; padding:0; box-sizing:border-box; }
+  /* ── 카드 ── */
+  .card{ width:560px; height:312px; border-radius:10px; position:relative;
+    box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 0 1px rgba(184,134,11,0.3); overflow:hidden; }
 
-  body {
-    background: var(--bg);
-    color: var(--white);
-    font-family: 'Noto Sans', 'Noto Sans KR', 'Montserrat', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
+  /* 앞면 */
+  .front{ background:linear-gradient(135deg,#0d1b3e 0%,#1B2F5E 60%,#162548 100%); }
+  .front::before{ content:''; position:absolute; left:0;top:0;bottom:0; width:5px;
+    background:linear-gradient(180deg,#B8860B,#e8b84b,#B8860B); }
+  .front::after{ content:''; position:absolute; right:-60px;top:-60px;
+    width:220px;height:220px; border-radius:50%; border:1px solid rgba(184,134,11,0.12); }
+  .front-inner{ position:absolute;inset:0; display:flex; padding:0 32px 0 46px;
+    align-items:center; justify-content:space-between; gap:20px; }
+  .front-left{ display:flex; flex-direction:column; flex:1; min-width:0; }
+  .front-eyebrow{ font-size:9px;font-weight:600;letter-spacing:3.5px;color:#B8860B;text-transform:uppercase;margin-bottom:10px; }
+  .front-name-en{ font-size:28px;font-weight:700;color:#fff;letter-spacing:1px;line-height:1;margin-bottom:4px; }
+  .front-name-kr{ font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:300;color:rgba(255,255,255,0.55);letter-spacing:4px;margin-bottom:14px; }
+  .front-divider{ width:40px;height:1px;background:linear-gradient(90deg,#B8860B,transparent);margin-bottom:12px; }
+  .front-title{ font-size:11px;font-weight:600;color:#e8b84b;letter-spacing:1.5px;margin-bottom:5px; }
+
+  /* 다국어 순환 */
+  .multilang-wrap{ position:relative;height:36px;overflow:hidden;margin-bottom:12px; }
+  .multilang-line{ position:absolute;top:0;left:0;right:0; opacity:0;
+    animation:langCycle 24s infinite; display:flex;flex-direction:column;gap:2px; }
+  .multilang-line:nth-child(1){ animation-delay:0s; }
+  .multilang-line:nth-child(2){ animation-delay:3s; }
+  .multilang-line:nth-child(3){ animation-delay:6s; }
+  .multilang-line:nth-child(4){ animation-delay:9s; }
+  .multilang-line:nth-child(5){ animation-delay:12s; }
+  .multilang-line:nth-child(6){ animation-delay:15s; }
+  .multilang-line:nth-child(7){ animation-delay:18s; }
+  .multilang-line:nth-child(8){ animation-delay:21s; }
+  @keyframes langCycle{
+    0%   { opacity:0; transform:translateY(5px); }
+    4%   { opacity:1; transform:translateY(0); }
+    29%  { opacity:1; transform:translateY(0); }
+    33%  { opacity:0; transform:translateY(-5px); }
+    100% { opacity:0; }
   }
+  .lang-main{ font-size:10px;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:0.4px; }
+  .lang-sub { font-size:8px; font-weight:400;color:rgba(255,255,255,0.38);letter-spacing:0.2px; }
 
-  /* ── 상단 골드 바 ── */
-  .topbar {
-    height: 4px;
-    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  /* QR 안내 */
+  .qr-hint{ display:flex;align-items:center;gap:6px;padding:5px 10px;
+    background:rgba(184,134,11,0.1);border:1px solid rgba(184,134,11,0.25);
+    border-radius:20px;width:fit-content; }
+  .qr-hint-text{ font-size:8px;font-weight:500;color:rgba(255,255,255,0.5);letter-spacing:0.3px;white-space:nowrap; }
+  .qr-hint-text strong{ color:#B8860B;font-weight:700; }
+
+  /* 앞면 QR */
+  .front-right{ display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0; }
+  .main-qr-wrap{ background:white;border-radius:8px;padding:10px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.4),0 0 0 2px rgba(184,134,11,0.5); }
+  .main-qr-wrap img{ width:90px;height:90px;display:block; }
+  .qr-label-main{ font-size:8px;font-weight:600;color:#B8860B;letter-spacing:1.5px;text-align:center;text-transform:uppercase; }
+  .qr-sublabel{ font-size:7px;color:rgba(255,255,255,0.3);text-align:center;margin-top:1px; }
+
+  /* 뒷면 */
+  .back{ background:linear-gradient(160deg,#0a1628 0%,#0f1e3d 100%); }
+  .back::before{ content:'';position:absolute;top:0;left:0;right:0;height:4px;
+    background:linear-gradient(90deg,#B8860B,#e8b84b,#B8860B); }
+  .back-inner{ position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;padding:24px 40px 20px; }
+  .back-tagline{ font-size:9px;font-weight:500;color:rgba(255,255,255,0.36);letter-spacing:2.5px;text-transform:uppercase;text-align:center;margin-bottom:4px; }
+  .back-headline-kr{ font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;color:#fff;letter-spacing:1px;text-align:center;margin-bottom:2px; }
+  .back-headline-en{ font-size:9px;font-weight:500;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:18px; }
+  .qr-grid{ display:grid;grid-template-columns:repeat(4,1fr);gap:14px;width:100%;max-width:460px; }
+  .qr-item{ display:flex;flex-direction:column;align-items:center;gap:5px; }
+  .qr-item.featured .qr-box{ box-shadow:0 3px 16px rgba(184,134,11,0.55),0 0 0 2px #B8860B; }
+  .qr-item.featured .qr-name{ color:#e8b84b; }
+  .qr-box{ background:white;border-radius:6px;padding:7px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.4),0 0 0 1px rgba(184,134,11,0.2);position:relative; }
+  .qr-box img{ width:68px;height:68px;display:block; }
+  .global-badge{ position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+    background:#B8860B;color:#0a1628;font-size:7px;font-weight:700;
+    letter-spacing:1px;padding:2px 6px;border-radius:3px;white-space:nowrap; }
+  .qr-name{ font-size:8px;font-weight:700;color:#B8860B;letter-spacing:0.5px;text-align:center;text-transform:uppercase; }
+  .qr-url { font-size:7px;color:rgba(255,255,255,0.36);text-align:center; }
+  .qr-langs{ font-size:7px;color:rgba(184,134,11,0.65);text-align:center;margin-top:1px; }
+  .back-footer{ margin-top:14px;display:flex;align-items:center;gap:8px; }
+  .back-footer-line{ width:40px;height:1px;background:rgba(184,134,11,0.4); }
+  .back-footer-text{ font-size:8px;font-weight:500;color:rgba(255,255,255,0.24);letter-spacing:2px;text-transform:uppercase; }
+
+  /* ── 음성 컨트롤 패널 ── */
+  .voice-panel{
+    background:rgba(255,255,255,0.03); border:1px solid rgba(184,134,11,0.25);
+    border-radius:14px; padding:24px 28px; max-width:560px; width:100%;
   }
+  .voice-title{ font-size:10px;font-weight:700;color:#B8860B;letter-spacing:3px;
+    text-transform:uppercase;margin-bottom:16px;text-align:center; }
 
-  /* ── 언어 선택 ── */
-  .lang-bar {
-    background: rgba(0,0,0,0.3);
-    padding: 10px 24px;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
+  /* 현재 재생 표시 */
+  .now-playing{
+    display:flex;align-items:center;gap:12px;
+    background:rgba(184,134,11,0.08);border:1px solid rgba(184,134,11,0.2);
+    border-radius:10px;padding:12px 16px;margin-bottom:16px;
+    min-height:52px;
   }
-
-  .lang-btn {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(184,134,11,0.3);
-    color: rgba(255,255,255,0.6);
-    border-radius: 20px;
-    padding: 5px 14px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: inherit;
+  .wave-bars{ display:flex;align-items:center;gap:3px;flex-shrink:0; }
+  .wave-bar{
+    width:3px;background:#B8860B;border-radius:2px;
+    animation:wave 0.8s ease-in-out infinite;
   }
-
-  .lang-btn:hover, .lang-btn.active {
-    background: var(--gold);
-    color: #0a1628;
-    border-color: var(--gold);
-    font-weight: 700;
+  .wave-bar:nth-child(1){ height:6px;  animation-delay:0s; }
+  .wave-bar:nth-child(2){ height:14px; animation-delay:0.1s; }
+  .wave-bar:nth-child(3){ height:20px; animation-delay:0.2s; }
+  .wave-bar:nth-child(4){ height:14px; animation-delay:0.3s; }
+  .wave-bar:nth-child(5){ height:6px;  animation-delay:0.4s; }
+  .wave-bar.paused{ animation:none; height:4px !important; background:rgba(184,134,11,0.3); }
+  @keyframes wave{
+    0%,100%{ transform:scaleY(0.4); }
+    50%     { transform:scaleY(1); }
   }
+  .now-playing-text{ flex:1; }
+  .now-lang{ font-size:11px;font-weight:700;color:#fff;margin-bottom:2px; }
+  .now-script{ font-size:9.5px;color:rgba(255,255,255,0.45);line-height:1.5;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; }
 
-  /* ── 히어로 ── */
-  .hero {
-    text-align: center;
-    padding: 60px 24px 48px;
-    position: relative;
+  /* 메인 버튼 */
+  .btn-row{ display:flex;gap:10px;margin-bottom:16px; }
+  .btn-play{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
+    background:linear-gradient(135deg,#B8860B,#e8b84b);
+    color:#0a1628;border:none;border-radius:10px;padding:12px;
+    font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;
+    cursor:pointer;transition:all 0.2s;letter-spacing:0.5px;
   }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 600px; height: 300px;
-    background: radial-gradient(ellipse, rgba(184,134,11,0.08) 0%, transparent 70%);
-    pointer-events: none;
+  .btn-play:hover{ transform:translateY(-1px);box-shadow:0 6px 20px rgba(184,134,11,0.4); }
+  .btn-play:active{ transform:translateY(0); }
+  .btn-stop{
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);
+    border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 18px;
+    font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;
+    cursor:pointer;transition:all 0.2s;
   }
+  .btn-stop:hover{ background:rgba(255,60,60,0.12);border-color:rgba(255,60,60,0.3);color:#ff6b6b; }
 
-  .hero-eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 16px;
+  /* 언어 선택 그리드 */
+  .lang-grid{ display:grid;grid-template-columns:repeat(4,1fr);gap:8px; }
+  .lang-btn{
+    display:flex;flex-direction:column;align-items:center;gap:4px;
+    background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+    border-radius:8px;padding:10px 6px;cursor:pointer;transition:all 0.2s;
+    font-family:'Montserrat',sans-serif;
   }
+  .lang-btn:hover{ background:rgba(184,134,11,0.1);border-color:rgba(184,134,11,0.35); }
+  .lang-btn.active{ background:rgba(184,134,11,0.15);border-color:#B8860B; }
+  .lang-flag{ font-size:18px; }
+  .lang-name{ font-size:8.5px;font-weight:600;color:rgba(255,255,255,0.6);text-align:center; }
+  .lang-btn.active .lang-name{ color:#e8b84b; }
 
-  .hero-logo {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 52px;
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: -1px;
-    line-height: 1;
-    margin-bottom: 8px;
+  /* 속도 조절 */
+  .speed-row{ display:flex;align-items:center;gap:10px;margin-top:12px; }
+  .speed-label{ font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;flex-shrink:0; }
+  .speed-btn{
+    font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;cursor:pointer;
+    border:1px solid rgba(184,134,11,0.2);background:rgba(255,255,255,0.04);
+    color:rgba(255,255,255,0.5);font-family:'Montserrat',sans-serif;transition:all 0.2s;
   }
-
-  .hero-logo span { color: var(--gold-light); }
-
-  .hero-tagline {
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--text-dim);
-    letter-spacing: 1px;
-    margin-bottom: 32px;
-    line-height: 1.7;
-  }
-
-  .hero-tagline strong {
-    color: var(--white);
-    font-weight: 600;
-  }
-
-  /* ── 글로벌 비전 태그 ── */
-  .vision-tags {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 48px;
-  }
-
-  .vtag {
-    background: rgba(184,134,11,0.12);
-    border: 1px solid rgba(184,134,11,0.35);
-    border-radius: 20px;
-    padding: 6px 16px;
-    font-size: 12px;
-    color: var(--gold-light);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-  }
-
-  /* ── 메인 콘텐츠 (언어별 전환) ── */
-  .content-section { display: none; }
-  .content-section.active { display: block; }
-
-  /* ── 소개 카드 ── */
-  .intro-card {
-    max-width: 680px;
-    margin: 0 auto 48px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(184,134,11,0.2);
-    border-radius: 16px;
-    padding: 36px 40px;
-    text-align: left;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .intro-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 4px;
-    background: linear-gradient(180deg, var(--gold), var(--gold-light), var(--gold));
-    border-radius: 4px 0 0 4px;
-  }
-
-  .intro-card h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 16px;
-    line-height: 1.4;
-  }
-
-  .intro-card p {
-    font-size: 14px;
-    color: var(--text-dim);
-    line-height: 1.9;
-    margin-bottom: 12px;
-  }
-
-  .intro-card p:last-child { margin-bottom: 0; }
-
-  .intro-card p strong { color: var(--gold-light); font-weight: 600; }
-
-  /* ── 3축 아이콘 그리드 ── */
-  .pillars {
-    max-width: 680px;
-    margin: 0 auto 48px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
-  .pillar {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    padding: 24px 16px;
-    text-align: center;
-    transition: border-color 0.2s;
-  }
-
-  .pillar:hover { border-color: rgba(184,134,11,0.4); }
-
-  .pillar-icon {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
-
-  .pillar-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .pillar-desc {
-    font-size: 12px;
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
-
-  /* ── 글로벌 도시 ── */
-  .cities-section {
-    max-width: 680px;
-    margin: 0 auto 48px;
-    text-align: center;
-  }
-
-  .section-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-
-  .cities-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .city-tag {
-    background: rgba(27,47,94,0.6);
-    border: 1px solid rgba(184,134,11,0.2);
-    border-radius: 6px;
-    padding: 6px 14px;
-    font-size: 12px;
-    color: rgba(255,255,255,0.65);
-  }
-
-  .city-tag.active-city {
-    border-color: var(--gold);
-    color: var(--gold-light);
-    background: rgba(184,134,11,0.1);
-  }
-
-  /* ── 플랫폼 연결 ── */
-  .platforms {
-    max-width: 680px;
-    margin: 0 auto 48px;
-  }
-
-  .platform-row {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 14px 20px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.07);
-    cursor: pointer;
-    transition: all 0.2s;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .platform-row:hover {
-    background: rgba(184,134,11,0.08);
-    border-color: rgba(184,134,11,0.3);
-  }
-
-  .platform-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--gold);
-    flex-shrink: 0;
-  }
-
-  .platform-info { flex: 1; }
-
-  .platform-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 2px;
-  }
-
-  .platform-desc {
-    font-size: 11px;
-    color: var(--text-dim);
-  }
-
-  .platform-url {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    color: var(--gold);
-    font-weight: 600;
-  }
-
-  /* ── 연락처 ── */
-  .contact-section {
-    max-width: 680px;
-    margin: 0 auto 60px;
-    text-align: center;
-    padding: 32px;
-    background: rgba(27,47,94,0.4);
-    border: 1px solid rgba(184,134,11,0.25);
-    border-radius: 16px;
-  }
-
-  .contact-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 4px;
-  }
-
-  .contact-title {
-    font-size: 12px;
-    color: var(--gold);
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .contact-link {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(184,134,11,0.3);
-    border-radius: 8px;
-    padding: 8px 20px;
-    font-size: 12px;
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    transition: all 0.2s;
-  }
-
-  .contact-link:hover {
-    background: var(--gold);
-    color: #0a1628;
-    font-weight: 700;
-  }
-
-  /* ── 하단 ── */
-  .footer {
-    text-align: center;
-    padding: 24px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    font-size: 11px;
-    color: rgba(255,255,255,0.25);
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 1px;
-  }
-
-  @media (max-width: 600px) {
-    .hero-logo { font-size: 36px; }
-    .pillars { grid-template-columns: 1fr; }
-    .intro-card { padding: 24px 20px; }
-    .platforms { padding: 0 8px; }
-  }
+  .speed-btn.active{ background:rgba(184,134,11,0.15);border-color:#B8860B;color:#e8b84b; }
 </style>
 </head>
 <body>
 
-<div class="topbar"></div>
+<h2>Business Card — 음성 안내 버전</h2>
+<div class="label">Paul Kim · Hebron Platform LLC</div>
 
-<!-- 언어 선택 -->
-<div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('en')">🌐 English</button>
-  <button class="lang-btn" onclick="setLang('ko')">🇰🇷 한국어</button>
-  <button class="lang-btn" onclick="setLang('es')">🇪🇸 Español</button>
-  <button class="lang-btn" onclick="setLang('zh')">🇨🇳 中文</button>
-  <button class="lang-btn" onclick="setLang('tl')">🇵🇭 Filipino</button>
-  <button class="lang-btn" onclick="setLang('vi')">🇻🇳 Tiếng Việt</button>
-  <button class="lang-btn" onclick="setLang('ja')">🇯🇵 日本語</button>
-  <button class="lang-btn" onclick="setLang('hi')">🇮🇳 हिन्दी</button>
-</div>
-
-<!-- 히어로 (공통) -->
-<div class="hero">
-  <div class="hero-eyebrow">Hebron Platform LLC · Seattle, WA</div>
-  <div class="hero-logo">Hebron<span>Guide</span></div>
-  <div class="hero-tagline" id="hero-tagline">
-    <strong>Global Hospitality Community</strong><br>
-    Where every newcomer finds welcome — in every city, in every language.
-  </div>
-  <div class="vision-tags">
-    <span class="vtag">🌍 Multi-ethnic</span>
-    <span class="vtag">🏙️ Multi-city</span>
-    <span class="vtag">🗣️ Multi-lingual</span>
-    <span class="vtag">🤝 Community-driven</span>
-  </div>
-</div>
-
-<!-- ── ENGLISH ── -->
-<div id="lang-en" class="content-section active">
-  <div class="intro-card">
-    <h3>A global hub for those who are new — wherever they are.</h3>
-    <p>HebronGuide started in Seattle to serve Korean immigrants. But our vision is far bigger: a <strong>global hospitality community</strong> that welcomes anyone arriving in an unfamiliar city — in their own language, with practical help for real life.</p>
-    <p>We connect newcomers with <strong>local churches, trusted businesses, and community resources</strong> — so that no one has to navigate a new city alone. From hospital to DMV to housing, we're the guide that's always there when you need it most.</p>
-    <p>Rooted in the biblical call to welcome the stranger (Matthew 25:35), HebronGuide is expanding city by city, language by language — building a worldwide network of radical hospitality.</p>
-  </div>
-  <div class="pillars">
-    <div class="pillar"><div class="pillar-icon">⛪</div><div class="pillar-name">Church</div><div class="pillar-desc">Find a faith community that speaks your language and understands your journey.</div></div>
-    <div class="pillar"><div class="pillar-icon">💼</div><div class="pillar-name">Business</div><div class="pillar-desc">Connect with trusted local businesses, services, and professionals in your community.</div></div>
-    <div class="pillar"><div class="pillar-icon">🏠</div><div class="pillar-name">Life</div><div class="pillar-desc">Everything you need: housing, schools, clinics, DMV, grocery — all in one place.</div></div>
-  </div>
-</div>
-
-<!-- ── 한국어 ── -->
-<div id="lang-ko" class="content-section">
-  <div class="intro-card">
-    <h3>낯선 도시에서, 당신 곁에 있는 가이드.</h3>
-    <p>HebronGuide는 시애틀 한인 이민자를 섬기는 것으로 시작했습니다. 그러나 우리의 비전은 훨씬 더 큽니다 — <strong>세계 모든 도시에서, 모든 언어로, 모든 민족의 새 이웃을 환대하는 글로벌 커뮤니티</strong>를 만드는 것입니다.</p>
-    <p>낯선 곳에 도착한 첫날, 병원·DMV·학교·은행·주택 정보를 모국어로 제공하고, <strong>지역 교회·신뢰할 수 있는 비즈니스·커뮤니티 자원</strong>을 연결합니다. 아무도 새 도시를 혼자 헤쳐 나가지 않아도 되도록.</p>
-    <p>"내가 나그네였을 때 너희가 영접하였다" (마태복음 25:35) — 성경적 환대의 명령 위에 세워진 HebronGuide는 도시마다, 언어마다, 그 범위를 넓혀가고 있습니다.</p>
-  </div>
-  <div class="pillars">
-    <div class="pillar"><div class="pillar-icon">⛪</div><div class="pillar-name">교회</div><div class="pillar-desc">내 언어로 예배하고, 내 이야기를 이해하는 신앙 공동체를 찾으세요.</div></div>
-    <div class="pillar"><div class="pillar-icon">💼</div><div class="pillar-name">비즈니스</div><div class="pillar-desc">한인 소상공인, 전문직, 지역 서비스를 신뢰할 수 있는 네트워크로 연결합니다.</div></div>
-    <div class="pillar"><div class="pillar-icon">🏠</div><div class="pillar-name">생활</div><div class="pillar-desc">주택·학교·병원·DMV·마트까지, 정착에 필요한 모든 정보를 한 곳에서.</div></div>
-  </div>
-</div>
-
-<!-- ── ESPAÑOL ── -->
-<div id="lang-es" class="content-section">
-  <div class="intro-card">
-    <h3>Una guía para quienes llegan a una nueva ciudad.</h3>
-    <p>HebronGuide comenzó en Seattle para servir a los inmigrantes coreanos. Pero nuestra visión es mucho más amplia: crear una <strong>comunidad global de hospitalidad</strong> que dé la bienvenida a cualquier recién llegado — en su idioma, con ayuda práctica para la vida real.</p>
-    <p>Conectamos a los recién llegados con <strong>iglesias locales, negocios de confianza y recursos comunitarios</strong>. Desde el hospital hasta el DMV y la vivienda, somos la guía que siempre está cuando más la necesitas.</p>
-    <p>Inspirados en el llamado bíblico de acoger al extranjero (Mateo 25:35), HebronGuide se expande ciudad por ciudad, idioma por idioma, construyendo una red mundial de hospitalidad radical.</p>
-  </div>
-  <div class="pillars">
-    <div class="pillar"><div class="pillar-icon">⛪</div><div class="pillar-name">Iglesia</div><div class="pillar-desc">Encuentra una comunidad de fe que hable tu idioma y entienda tu camino.</div></div>
-    <div class="pillar"><div class="pillar-icon">💼</div><div class="pillar-name">Negocios</div><div class="pillar-desc">Conéctate con negocios y profesionales locales de confianza en tu comunidad.</div></div>
-    <div class="pillar"><div class="pillar-icon">🏠</div><div class="pillar-name">Vida</div><div class="pillar-desc">Todo lo que necesitas: vivienda, escuelas, clínicas, DMV, supermercados.</div></div>
-  </div>
-</div>
-
-<!-- ── 中文 ── -->
-<div id="lang-zh" class="content-section">
-  <div class="intro-card">
-    <h3>为每一位初来乍到者提供的全球向导。</h3>
-    <p>HebronGuide 从西雅图服务韩国移民开始，但我们的愿景远不止于此：建立一个<strong>全球款待社区</strong>——以每个人自己的语言，在每座城市迎接每一位新来者。</p>
-    <p>我们将新移民与<strong>本地教会、可信赖的商业机构和社区资源</strong>相连接。从医院到车管所，从住房到学校，我们是你最需要时永远在身边的向导。</p>
-    <p>根植于圣经对接待陌生人的呼召（马太福音25:35），HebronGuide 正在一座城市接一座城市、一种语言接一种语言地扩展，建立全球款待网络。</p>
-  </div>
-  <div class="pillars">
-    <div class="pillar"><div class="pillar-icon">⛪</div><div class="pillar-name">教会</div><div class="pillar-desc">找到一个说你语言、理解你故事的信仰社群。</div></div>
-    <div class="pillar"><div class="pillar-icon">💼</div><div class="pillar-name">商业</div><div class="pillar-desc">连接社区内可信赖的本地商家、服务和专业人士。</div></div>
-    <div class="pillar"><div class="pillar-icon">🏠</div><div class="pillar-name">生活</div><div class="pillar-desc">住房、学校、诊所、车管所、超市——一站式生活指南。</div></div>
-  </div>
-</div>
-
-<!-- ── FILIPINO ── -->
-<div id="lang-tl" class="content-section">
-  <div class="intro-card">
-    <h3>Isang gabay para sa mga bagong dating — saan man sila naroroon.</h3>
-    <p>Nagsimula ang HebronGuide sa Seattle para sa mga Korean immigrant. Ngunit ang aming bisyon ay mas malawak: isang <strong>global na komunidad ng mabuting pagtanggap</strong> na tinatanggap ang sinumang bagong dating — sa kanilang sariling wika, na may praktikal na tulong para sa tunay na buhay.</p>
-    <p>Ikinukonekta namin ang mga bagong dating sa <strong>mga lokal na simbahan, mapagkakatiwalaang negosyo, at mga mapagkukunan ng komunidad</strong>. Mula sa ospital hanggang sa DMV at pabahay — kami ang gabay na laging nandito kapag kailangan mo.</p>
-  </div>
-  <div class="pillars">
-    <div class="pillar"><div class="pillar-icon">⛪</div><div class="pillar-name">Simbahan</div><div class="pillar-desc">Humanap ng isang komunidad ng pananampalataya na nagsasalita ng iyong wika.</div></div>
-    <div class="pillar"><div class="pillar-icon">💼</div><div class="pillar-name">Negosyo</div><div class="pillar-desc">Kumonekta sa mga mapagkakatiwalaang lokal na negosyo at propesyonal.</div></div>
-    <div class="pillar"><div class="pillar-icon">🏠</div><div class="pillar-name">Buhay</div><div class="pillar-desc">Lahat ng kailangan mo: pabahay, paaralan, klinika, DMV, supermarket.</div></div>
-  </div>
-</div>
-
-<!-- ── TIẾNG VIỆT ── -->
-<div id="lang-vi" class="content-section">
-  <div class="intro-card">
-    <h3>Người hướng dẫn cho những ai mới đến — ở bất cứ đâu.</h3>
-    <p>HebronGuide bắt đầu tại Seattle để phục vụ người nhập cư Hàn Quốc. Nhưng tầm nhìn của chúng tôi rộng hơn nhiều: xây dựng một <strong>cộng đồng hiếu khách toàn cầu</strong> chào đón bất kỳ ai mới đến — bằng ngôn ngữ của họ, với sự giúp đỡ thiết thực cho cuộc sống thực.</p>
-    <p>Chúng tôi kết nối người mới đến với <strong>các nhà thờ địa phương, doanh nghiệp đáng tin cậy và tài nguyên cộng đồng</strong>. Từ bệnh viện đến DMV và nhà ở — chúng tôi là người hướng dẫn luôn ở đây khi bạn cần nhất.</p>
-  </div>
-  <div class="pillars">
-    <div class="pillar"><div class="pillar-icon">⛪</div><div class="pillar-name">Nhà thờ</div><div class="pillar-desc">Tìm một cộng đồng đức tin nói ngôn ngữ của bạn và hiểu hành trình của bạn.</div></div>
-    <div class="pillar"><div class="pillar-icon">💼</div><div class="pillar-name">Kinh doanh</div><div class="pillar-desc">Kết nối với các doanh nghiệp và chuyên gia địa phương đáng tin cậy.</div></div>
-    <div class="pillar"><div class="pillar-icon">🏠</div><div class="pillar-name">Cuộc sống</div><div class="pillar-desc">Tất cả những gì bạn cần: nhà ở, trường học, phòng khám, DMV, siêu thị.</div></div>
-  </div>
-</div>
-
-<!-- ── 日本語 ── -->
-<div id="lang-ja" class="content-section">
-  <div class="intro-card">
-    <h3>新しい街に来たすべての人のためのガイド。</h3>
-    <p>HebronGuideはシアトルの韓国系移民を支援することから始まりました。しかし私たちのビジョンははるかに大きい——<strong>すべての都市で、すべての言語で、すべての民族の新しい隣人を歓迎するグローバル・ホスピタリティ・コミュニティ</strong>を作ることです。</p>
-    <p>私たちは新しく来た方々を<strong>地域の教会、信頼できるビジネス、コミュニティリソース</strong>につなぎます。病院からDMV、住宅まで——あなたが最も必要なときに、いつでも傍にいるガイドです。</p>
-  </div>
-  <div class="pillars">
-    <div class="pillar"><div class="pillar-icon">⛪</div><div class="pillar-name">教会</div><div class="pillar-desc">あなたの言語を話し、あなたの旅を理解する信仰コミュニティを見つけよう。</div></div>
-    <div class="pillar"><div class="pillar-icon">💼</div><div class="pillar-name">ビジネス</div><div class="pillar-desc">地域の信頼できるビジネスや専門家とつながろう。</div></div>
-    <div class="pillar"><div class="pillar-icon">🏠</div><div class="pillar-name">生活</div><div class="pillar-desc">住宅・学校・クリニック・DMV・スーパーまで、一か所で。</div></div>
-  </div>
-</div>
-
-<!-- ── हिन्दी ── -->
-<div id="lang-hi" class="content-section">
-  <div class="intro-card">
-    <h3>हर नए शहर में आने वाले के लिए एक मार्गदर्शिका।</h3>
-    <p>HebronGuide की शुरुआत सिएटल में कोरियाई प्रवासियों की सेवा से हुई। लेकिन हमारा दृष्टिकोण कहीं बड़ा है — एक <strong>वैश्विक आतिथ्य समुदाय</strong> बनाना जो हर नए व्यक्ति का स्वागत करे — उनकी भाषा में, व्यावहारिक मदद के साथ।</p>
-    <p>हम नए आने वालों को <strong>स्थानीय चर्च, विश्वसनीय व्यवसायों और सामुदायिक संसाधनों</strong> से जोड़ते हैं। अस्पताल से लेकर DMV और आवास तक — हम वह मार्गदर्शिका हैं जो आपकी सबसे ज़रूरत के वक्त हमेशा मौजूद है।</p>
-  </div>
-  <div class="pillars">
-    <div class="pillar"><div class="pillar-icon">⛪</div><div class="pillar-name">चर्च</div><div class="pillar-desc">एक ऐसा विश्वास समुदाय खोजें जो आपकी भाषा बोले।</div></div>
-    <div class="pillar"><div class="pillar-icon">💼</div><div class="pillar-name">व्यवसाय</div><div class="pillar-desc">विश्वसनीय स्थानीय व्यवसायों और पेशेवरों से जुड़ें।</div></div>
-    <div class="pillar"><div class="pillar-icon">🏠</div><div class="pillar-name">जीवन</div><div class="pillar-desc">आवास, स्कूल, क्लिनिक, DMV, सुपरमार्केट — सब एक जगह।</div></div>
-  </div>
-</div>
-
-<!-- 글로벌 도시 (공통) -->
-<div class="cities-section">
-  <div class="section-label">Current & Expanding Cities · 현재 & 확장 도시</div>
-  <div class="cities-grid">
-    <span class="city-tag active-city">📍 Seattle, WA</span>
-    <span class="city-tag active-city">📍 Portland, OR</span>
-    <span class="city-tag">Los Angeles, CA</span>
-    <span class="city-tag">New York, NY</span>
-    <span class="city-tag">Dallas, TX</span>
-    <span class="city-tag">Chicago, IL</span>
-    <span class="city-tag">Atlanta, GA</span>
-    <span class="city-tag">Seoul, Korea</span>
-    <span class="city-tag">Toronto, Canada</span>
-    <span class="city-tag">Sydney, Australia</span>
-    <span class="city-tag" style="color:rgba(184,134,11,0.6); border-color:rgba(184,134,11,0.2);">+ Your City</span>
-  </div>
-</div>
-
-<!-- 플랫폼 연결 -->
-<div class="platforms" style="max-width:680px; margin: 0 auto 48px;">
-  <div class="section-label" style="text-align:center; margin-bottom:16px;">Connected Platforms · 연결 플랫폼</div>
-  <a class="platform-row" href="https://nanuriweb.com" target="_blank">
-    <div class="platform-dot"></div>
-    <div class="platform-info">
-      <div class="platform-name">NanuriWeb</div>
-      <div class="platform-desc">Web services for Korean-owned small businesses</div>
+<!-- 앞면 -->
+<div>
+  <div class="label" style="margin-bottom:10px;">▸ 앞면 (Front)</div>
+  <div class="card front">
+    <div class="front-inner">
+      <div class="front-left">
+        <div class="front-eyebrow">Hebron Platform LLC</div>
+        <div class="front-name-en">Paul Kim</div>
+        <div class="front-name-kr">김 성 수</div>
+        <div class="front-divider"></div>
+        <div class="front-title">CEO &amp; Founder</div>
+        <div class="multilang-wrap">
+          <div class="multilang-line"><span class="lang-main">🇰🇷 글로벌 환대 커뮤니티</span><span class="lang-sub">교회 · 비즈니스 · 생활 · 모든 도시 · 모든 언어</span></div>
+          <div class="multilang-line"><span class="lang-main">🌐 Global Hospitality Community</span><span class="lang-sub">Church · Business · Life · Every City · Every Language</span></div>
+          <div class="multilang-line"><span class="lang-main">🇪🇸 Comunidad Global de Hospitalidad</span><span class="lang-sub">Iglesia · Negocios · Vida · Cada Ciudad · Cada Idioma</span></div>
+          <div class="multilang-line"><span class="lang-main">🇨🇳 全球款待社区</span><span class="lang-sub">教会 · 商业 · 生活 · 每座城市 · 每种语言</span></div>
+          <div class="multilang-line"><span class="lang-main">🇵🇭 Global na Komunidad ng Mabuting Pagtanggap</span><span class="lang-sub">Simbahan · Negosyo · Buhay · Bawat Lungsod</span></div>
+          <div class="multilang-line"><span class="lang-main">🇻🇳 Cộng Đồng Hiếu Khách Toàn Cầu</span><span class="lang-sub">Nhà thờ · Kinh doanh · Cuộc sống · Mọi thành phố</span></div>
+          <div class="multilang-line"><span class="lang-main">🇯🇵 グローバル・ホスピタリティ・コミュニティ</span><span class="lang-sub">教会 · ビジネス · 生活 · すべての都市</span></div>
+          <div class="multilang-line"><span class="lang-main">🇮🇳 वैश्विक आतिथ्य समुदाय</span><span class="lang-sub">चर्च · व्यवसाय · जीवन · हर शहर · हर भाषा</span></div>
+        </div>
+        <div class="qr-hint">
+          <span style="font-size:10px;">📲</span>
+          <span class="qr-hint-text">뒷면 <strong>QR 스캔</strong> → 홈페이지 바로 연결</span>
+        </div>
+      </div>
+      <div class="front-right">
+        <div class="main-qr-wrap">
+          <img src="data:image/png;base64,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" alt="HebronGuide QR">
+        </div>
+        <div class="qr-label-main">HebronGuide</div>
+        <div class="qr-sublabel">hebronguide.com</div>
+      </div>
     </div>
-    <div class="platform-url">nanuriweb.com →</div>
-  </a>
-  <a class="platform-row" href="https://nanuriHome.com" target="_blank">
-    <div class="platform-dot"></div>
-    <div class="platform-info">
-      <div class="platform-name">NanuriHome</div>
-      <div class="platform-desc">Housing & real estate settlement services</div>
-    </div>
-    <div class="platform-url">nanuriHome.com →</div>
-  </a>
-  <a class="platform-row" href="https://kchurch911.com" target="_blank">
-    <div class="platform-dot"></div>
-    <div class="platform-info">
-      <div class="platform-name">KChurch911</div>
-      <div class="platform-desc">Church planting & ministry ecosystem hub</div>
-    </div>
-    <div class="platform-url">kchurch911.com →</div>
-  </a>
-</div>
-
-<!-- 연락처 -->
-<div class="contact-section">
-  <div class="contact-name">Paul Kim 김성수</div>
-  <div class="contact-title">CEO & Founder · Hebron Platform LLC · Seattle, WA</div>
-  <div class="contact-links">
-    <a class="contact-link" href="mailto:hebronplatform@gmail.com">✉ hebronplatform@gmail.com</a>
-    <a class="contact-link" href="https://hebronguide.com" target="_blank">🌐 hebronguide.com</a>
-    <a class="contact-link" href="https://kchurch911.com" target="_blank">🔗 kchurch911.com</a>
   </div>
 </div>
 
-<div class="footer">
-  © 2026 Hebron Platform LLC · Seattle, WA · "Go — look around" (Genesis 13:14)
+<!-- 뒷면 -->
+<div>
+  <div class="label" style="margin-bottom:10px;">▸ 뒷면 (Back)</div>
+  <div class="card back">
+    <div class="back-inner">
+      <div class="back-tagline">Global Hospitality Community · 글로벌 환대 커뮤니티</div>
+      <div class="back-headline-kr">모든 도시 · 모든 언어 · 모든 민족을 환대합니다</div>
+      <div class="back-headline-en">Every City · Every Language · Every People</div>
+      <div class="qr-grid">
+        <div class="qr-item featured">
+          <div class="qr-box">
+            <div class="global-badge">🌍 GLOBAL</div>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAAFKCAIAAAD0S4FSAAAGSUlEQVR4nO3dwZHcNhBAUa9LYTgIZ+TYnJGDUB70VSdUSdgWwL/v3WfI4fAXLl3Ax/M8fwBFf56+AWCKvCFL3pAlb8iSN2TJG7LkDVnyhix5Q5a8IUvekCVvyJI3ZMkbsuQNWfKGLHlDlrwhS96Q9W3nw3/9/c9n3cclvv/37+lb+K3e+A+u/6M3/qK1nXfS6g1Z8oYseUOWvCFL3pAlb8iSN2TJG7LkDVlbU2trd06A7Uw1rT+7M0116rNrc3e1Njd51nsn16zekCVvyJI3ZMkbsuQNWfKGLHlDlrwhS96QNTi1ttabTDo1l7ZjbuJtblpuTu+dtHpDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUPWsam1njv3Wtvx1c7i7LF6Q5a8IUvekCVvyJI3ZMkbsuQNWfKGLHlDlqm1T3NqZ7K56bFT03J8Fqs3ZMkbsuQNWfKGLHlDlrwhS96QJW/IkjdkHZtaM/P0o1P7tO2YOwP0zr3l3sjqDVnyhix5Q5a8IUvekCVvyJI3ZMkbsuQNWYNTa1/tBMmvdp7mG3/vnXc1x+oNWfKGLHlDlrwhS96QJW/IkjdkyRuy5A1ZW1Nrvb2p1u78vad2Yrvz/NA7/6NTrN6QJW/IkjdkyRuy5A1Z8oYseUOWvCFL3pB17ITQuZmnO/fTOnWu5Z1P49S03J1PY+7dsHpDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUPWx/M8v/zhN06e7Uw1nZqImptq2rnnU//v3L9w58TbznO2ekOWvCFL3pAlb8iSN2TJG7LkDVnyhix5Q9bg1NqOO+e01k7Nw73xTMxTT+PON3bu/7V6Q5a8IUvekCVvyJI3ZMkbsuQNWfKGLHlD1tbU2tqp6aI79wDbuW5v17o7r9ubHbR6Q5a8IUvekCVvyJI3ZMkbsuQNWfKGLHlD1rdTF56bajp1kuOp6845NcW1/uZTk4U7Tk28Wb0hS96QJW/IkjdkyRuy5A1Z8oYseUOWvCFra2rtjbupnbLze3ee86kd4N6419qcU/N/Vm/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8ga3GttbuZp7pvvPItzx6nf+8bZsh13nh9q9YYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhqxXnhC6MwM0N9PWmwA79YtOffOOO6f0rN6QJW/IkjdkyRuy5A1Z8oYseUOWvCFL3pC1NbU2NwE2N+Xz1fZae6O501TX5qYS7bUGfDJ5Q5a8IUvekCVvyJI3ZMkbsuQNWfKGrMG91ubm0k7tiLbjzuue2rdsbrasN++4881Wb8iSN2TJG7LkDVnyhix5Q5a8IUvekCVvyNqaWrtz9ujOPc/eeK7l2p0nk945PXaK1Ruy5A1Z8oYseUOWvCFL3pAlb8iSN2TJG7IGTwhdmzs/1F191jevnbrunfd8age4Nas3ZMkbsuQNWfKGLHlDlrwhS96QJW/IkjdkHdtrbeeb75wQWrvzLM479w879V6tze0AN/d7rd6QJW/IkjdkyRuy5A1Z8oYseUOWvCFL3pD18TzP6Xt4jTsnwO7c4+3OXevW3riL25rVG7LkDVnyhix5Q5a8IUvekCVvyJI3ZMkbsi7da+2UN06e3bnz3Buf5Buvu2b1hix5Q5a8IUvekCVvyJI3ZMkbsuQNWfKGrK2ptTWnT/5oZ/Jsx9xM250zi6feujvfdqs3ZMkbsuQNWfKGLHlDlrwhS96QJW/IkjdkDU6trc3NPJ2aAJtz57M6NbX2xt3jTt2z1Ruy5A1Z8oYseUOWvCFL3pAlb8iSN2TJG7KOTa31vHG27NT+cDvP6tR1584AnZuGtHpDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUOWqbWfsDO3dOqzczNec/e8Nvc05n7v2tyzsnpDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUPWx/M8v/zhuWmbOXdOU825867W3rhr3Z1P0uoNWfKGLHlDlrwhS96QJW/IkjdkyRuy5A1Zg3utzc0e3enOvdbW7ryrHXM7os2x1xrw0+QNWfKGLHlDlrwhS96QJW/IkjdkyRuytvZaA25m9YYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhix5Q5a8IUvekCVvyJI3ZMkbsuQNWfKGLHlDlrwh63+2dC4e+2BdaAAAAABJRU5ErkJggg==" alt="HebronGuide">
+          </div>
+          <div class="qr-name">HebronGuide</div>
+          <div class="qr-url">hebronguide.com</div>
+          <div class="qr-langs">한·EN·ES·中·TL·VI·JP·HI</div>
+        </div>
+        <div class="qr-item">
+          <div class="qr-box"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAAFKCAIAAAD0S4FSAAAGNklEQVR4nO3dwZEkNRBAUYZYMzACj7ANjzACPwoPFAxakarf7913qra7f+iSkfp6nucXoOjX6RcATpE3ZMkbsuQNWfKGLHlDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8iSN2TJG7J+7Pzj337/42e9xyX+/uvPkeeuP8n1W+18Czt/eeezmnrnN9r5nJ3ekCVvyJI3ZMkbsuQNWfKGLHlDlrwhS96QtTW1tjY1AbY2NdU09dxzc2nnZtrO/XI+7Tfp9IYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhqyDU2tr5yZ1zk0mTW0Im9rENvXcKW/8Ta45vSFL3pAlb8iSN2TJG7LkDVnyhix5Q5a8IWtsau3TnJsAe+Ms3dq5v/xpnN6QJW/IkjdkyRuy5A1Z8oYseUOWvCFL3pBlau0bzk1i7XjjfZrm0v4fTm/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8gam1rrTSbdOZd2bhPbjp0db2+c0pvi9IYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhqyDU2vnprimnLvl89xz185Nj925Ta33m1xzekOWvCFL3pAlb8iSN2TJG7LkDVnyhix5Q9bX8zzT7xAxNdN27i/fqbcR7RynN2TJG7LkDVnyhix5Q5a8IUvekCVvyJI3ZF06tXbnFNfUfNi5Oa2p+0Pv3MS2duddq2tOb8iSN2TJG7LkDVnyhix5Q5a8IUvekCVvyDo4tTY1xXXnvZZvnGnbcedc2qdN6Tm9IUvekCVvyJI3ZMkbsuQNWfKGLHlDlrwh68e5Pz014/XGGzPvnIc75853ntrSd47TG7LkDVnyhix5Q5a8IUvekCVvyJI3ZMkbsrZ2rd251WzHnfvhpp575yzdnb+NOzexOb0hS96QJW/IkjdkyRuy5A1Z8oYseUOWvCHr4A2ha1NTa57775975zvv6E28rTm9IUvekCVvyJI3ZMkbsuQNWfKGLHlDlrwha+uG0DdONU3txOrdW3ru25/a8TY14WfXGvBt8oYseUOWvCFL3pAlb8iSN2TJG7LkDVlbU2s7pmaAzk2erZ2btLtzXmrt3DtPPXdqi9ua0xuy5A1Z8oYseUOWvCFL3pAlb8iSN2TJG7K2bgid2hB25z2P50xNy62dmy2bmh7r3Uzq9IYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhqxLd63tmLo/dMe5575xf9jUXFpvp53TG7LkDVnyhix5Q5a8IUvekCVvyJI3ZMkbssam1qac2xA29Vzzfz+LXWvAa8gbsuQNWfKGLHlDlrwhS96QJW/IkjdkBafWehuz7vTGObw7n3vud+X0hix5Q5a8IUvekCVvyJI3ZMkbsuQNWfKGrEun1s7NPN05W/bGfWnnNpOtTf2P3jil5/SGLHlDlrwhS96QJW/IkjdkyRuy5A1Z8oasr+d5/vM/fuN9mlOmtri9cbfcG7/ftanP2ekNWfKGLHlDlrwhS96QJW/IkjdkyRuy5A1ZW1Nrn2Zqn9Ybp7imJu12TH3Odq0B3yZvyJI3ZMkbsuQNWfKGLHlDlrwhS96QtXVD6BunqdamJqJ2njt15+nOt3/ulzP1OU9N2q05vSFL3pAlb8iSN2TJG7LkDVnyhix5Q5a8IWtram1talJnbWpf2o6pPW13foNrd84dTn0LTm/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8g6OLW2dm7bVm9uae3T9oe98R7Pqd+G0xuy5A1Z8oYseUOWvCFL3pAlb8iSN2TJG7LGptZ6pvZpnZulOzeXdufEW2+nndMbsuQNWfKGLHlDlrwhS96QJW/IkjdkyRuyTK19w9TGrHOzVr29dFPzfzv/o3Pfr9MbsuQNWfKGLHlDlrwhS96QJW/IkjdkyRuyxqbWprZtnTO1qevOGa8dUzNtO7Nl5567w+kNWfKGLHlDlrwhS96QJW/IkjdkyRuy5A1ZB6fWzs3i3Gnqts0dU+/8xgmwN96X6vSGLHlDlrwhS96QJW/IkjdkyRuy5A1Z8oasr+d5pt8BOMLpDVnyhix5Q5a8IUvekCVvyJI3ZMkbsuQNWfKGLHlDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUPWP7pGOgZVyT+gAAAAAElFTkSuQmCC" alt="NanuriWeb"></div>
+          <div class="qr-name">NanuriWeb</div><div class="qr-url">nanuriweb.com</div>
+        </div>
+        <div class="qr-item">
+          <div class="qr-box"><img src="data:image/png;base64,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" alt="NanuriHome"></div>
+          <div class="qr-name">NanuriHome</div><div class="qr-url">nanuriHome.com</div>
+        </div>
+        <div class="qr-item">
+          <div class="qr-box"><img src="data:image/png;base64,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" alt="KChurch911"></div>
+          <div class="qr-name">KChurch911</div><div class="qr-url">kchurch911.com</div>
+        </div>
+      </div>
+      <div class="back-footer">
+        <div class="back-footer-line"></div>
+        <div class="back-footer-text">Hebron Platform LLC · Seattle, WA</div>
+        <div class="back-footer-line"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 음성 컨트롤 패널 -->
+<div class="voice-panel">
+  <div class="voice-title">🔊 음성 안내 — Voice Guide</div>
+
+  <!-- 현재 재생 표시 -->
+  <div class="now-playing" id="nowPlaying">
+    <div class="wave-bars" id="waveBars">
+      <div class="wave-bar paused"></div>
+      <div class="wave-bar paused"></div>
+      <div class="wave-bar paused"></div>
+      <div class="wave-bar paused"></div>
+      <div class="wave-bar paused"></div>
+    </div>
+    <div class="now-playing-text">
+      <div class="now-lang" id="nowLang">언어를 선택하고 재생하세요</div>
+      <div class="now-script" id="nowScript">Select a language and press play</div>
+    </div>
+  </div>
+
+  <!-- 재생/정지 버튼 -->
+  <div class="btn-row">
+    <button class="btn-play" id="btnPlay" onclick="togglePlay()">
+      <span id="playIcon">▶</span>
+      <span id="playText">음성 재생</span>
+    </button>
+    <button class="btn-stop" onclick="stopVoice()">■ 정지</button>
+  </div>
+
+  <!-- 언어 선택 -->
+  <div class="lang-grid" id="langGrid">
+    <button class="lang-btn active" data-lang="ko" onclick="selectLang(this)">
+      <span class="lang-flag">🇰🇷</span><span class="lang-name">한국어</span>
+    </button>
+    <button class="lang-btn" data-lang="en" onclick="selectLang(this)">
+      <span class="lang-flag">🌐</span><span class="lang-name">English</span>
+    </button>
+    <button class="lang-btn" data-lang="es" onclick="selectLang(this)">
+      <span class="lang-flag">🇪🇸</span><span class="lang-name">Español</span>
+    </button>
+    <button class="lang-btn" data-lang="zh" onclick="selectLang(this)">
+      <span class="lang-flag">🇨🇳</span><span class="lang-name">中文</span>
+    </button>
+    <button class="lang-btn" data-lang="tl" onclick="selectLang(this)">
+      <span class="lang-flag">🇵🇭</span><span class="lang-name">Filipino</span>
+    </button>
+    <button class="lang-btn" data-lang="vi" onclick="selectLang(this)">
+      <span class="lang-flag">🇻🇳</span><span class="lang-name">Tiếng Việt</span>
+    </button>
+    <button class="lang-btn" data-lang="ja" onclick="selectLang(this)">
+      <span class="lang-flag">🇯🇵</span><span class="lang-name">日本語</span>
+    </button>
+    <button class="lang-btn" data-lang="hi" onclick="selectLang(this)">
+      <span class="lang-flag">🇮🇳</span><span class="lang-name">हिन्दी</span>
+    </button>
+  </div>
+
+  <!-- 속도 조절 -->
+  <div class="speed-row">
+    <span class="speed-label">속도</span>
+    <button class="speed-btn" data-rate="0.8" onclick="setSpeed(this)">느리게</button>
+    <button class="speed-btn active" data-rate="1.0" onclick="setSpeed(this)">보통</button>
+    <button class="speed-btn" data-rate="1.3" onclick="setSpeed(this)">빠르게</button>
+  </div>
 </div>
 
 <script>
-function setLang(lang) {
-  // 모든 섹션 숨기기
-  document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+const SCRIPTS = {"ko": "안녕하세요. 헤브론 가이드에 오신 것을 환영합니다. 저희는 모든 도시에서, 모든 언어로, 모든 민족을 환대하는 글로벌 커뮤니티입니다. 교회, 비즈니스, 생활 정보를 연결하여 낯선 도시에서도 혼자가 아닌 삶을 만들어 드립니다.", "en": "Welcome to HebronGuide. We are a global hospitality community welcoming everyone, in every city, in every language. We connect newcomers with local churches, trusted businesses, and community resources — so no one navigates a new city alone.", "es": "Bienvenido a HebronGuide. Somos una comunidad global de hospitalidad que da la bienvenida a todos, en cada ciudad, en cada idioma. Conectamos a los recién llegados con iglesias locales, negocios de confianza y recursos comunitarios.", "zh": "欢迎来到 HebronGuide。我们是一个全球款待社区，在每座城市，以每种语言，欢迎所有人。我们将新移民与本地教会、可信赖的商业机构和社区资源相连接。", "tl": "Maligayang pagdating sa HebronGuide. Kami ay isang pandaigdigang komunidad ng mabuting pagtanggap na tinatanggap ang lahat, sa bawat lungsod, sa bawat wika. Ikinukonekta namin ang mga bagong dating sa mga lokal na simbahan at mapagkakatiwalaang negosyo.", "vi": "Chào mừng đến với HebronGuide. Chúng tôi là một cộng đồng hiếu khách toàn cầu, chào đón mọi người, ở mọi thành phố, bằng mọi ngôn ngữ. Chúng tôi kết nối người mới đến với các nhà thờ địa phương và doanh nghiệp đáng tin cậy.", "ja": "HebronGuide へようこそ。私たちはグローバルなホスピタリティコミュニティです。すべての都市で、すべての言語で、すべての人を歓迎します。新しく来た方々を地域の教会、信頼できるビジネス、コミュニティリソースとつなぎます。", "hi": "HebronGuide में आपका स्वागत है। हम एक वैश्विक आतिथ्य समुदाय हैं जो हर शहर में, हर भाषा में, सभी का स्वागत करता है। हम नए आने वालों को स्थानीय चर्च, विश्वसनीय व्यवसायों और सामुदायिक संसाधनों से जोड़ते हैं।"};
+const META    = {"ko": ["ko-KR", "🇰🇷 한국어"], "en": ["en-US", "🌐 English"], "es": ["es-ES", "🇪🇸 Español"], "zh": ["zh-CN", "🇨🇳 中文"], "tl": ["tl-PH", "🇵🇭 Filipino"], "vi": ["vi-VN", "🇻🇳 Tiếng Việt"], "ja": ["ja-JP", "🇯🇵 日本語"], "hi": ["hi-IN", "🇮🇳 हिन्दी"]};
+
+let currentLang = 'ko';
+let currentRate = 1.0;
+let isPlaying   = false;
+let utterance   = null;
+
+// 페이지 로드 시 브라우저 언어 자동 감지
+window.addEventListener('load', () => {
+  const bl = navigator.language.split('-')[0];
+  const supported = ['ko','en','es','zh','tl','vi','ja','hi'];
+  const detected  = supported.includes(bl) ? bl : 'en';
+  const btn = document.querySelector(`[data-lang="${detected}"]`);
+  if (btn) selectLang(btn);
+});
+
+function selectLang(btn) {
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-
-  // 선택 언어 표시
-  document.getElementById('lang-' + lang).classList.add('active');
-  event.target.classList.add('active');
-
-  // 히어로 태그라인 언어별 변경
-  const taglines = {
-    en: '<strong>Global Hospitality Community</strong><br>Where every newcomer finds welcome — in every city, in every language.',
-    ko: '<strong>글로벌 환대 커뮤니티</strong><br>모든 도시에서, 모든 언어로 — 새로 온 모든 이를 환영합니다.',
-    es: '<strong>Comunidad Global de Hospitalidad</strong><br>Donde cada recién llegado encuentra bienvenida — en cada ciudad, en cada idioma.',
-    zh: '<strong>全球款待社区</strong><br>在每座城市，以每种语言——欢迎每一位新来者。',
-    tl: '<strong>Global na Komunidad ng Mabuting Pagtanggap</strong><br>Kung saan ang bawat bagong dating ay tinatanggap — sa bawat lungsod, sa bawat wika.',
-    vi: '<strong>Cộng Đồng Hiếu Khách Toàn Cầu</strong><br>Nơi mọi người mới đến đều được chào đón — ở mọi thành phố, bằng mọi ngôn ngữ.',
-    ja: '<strong>グローバル・ホスピタリティ・コミュニティ</strong><br>すべての都市で、すべての言語で — すべての新来者を歓迎します。',
-    hi: '<strong>वैश्विक आतिथ्य समुदाय</strong><br>हर शहर में, हर भाषा में — हर नए आने वाले का स्वागत।'
-  };
-  document.getElementById('hero-tagline').innerHTML = taglines[lang] || taglines['en'];
+  btn.classList.add('active');
+  currentLang = btn.dataset.lang;
+  const [code, label] = META[currentLang];
+  document.getElementById('nowLang').textContent   = label;
+  document.getElementById('nowScript').textContent = SCRIPTS[currentLang];
+  if (isPlaying) { stopVoice(); setTimeout(() => startVoice(), 100); }
 }
 
-// 브라우저 언어 자동 감지
-const bl = navigator.language.split('-')[0];
-const supported = ['ko','es','zh','tl','vi','ja','hi'];
-if (supported.includes(bl)) {
-  const btn = document.querySelector(\`.lang-btn[onclick="setLang('\${bl}')"]\`);
-  if (btn) { btn.click(); }
+function togglePlay() {
+  if (isPlaying) { stopVoice(); }
+  else           { startVoice(); }
+}
+
+function startVoice() {
+  if (!window.speechSynthesis) {
+    alert('이 브라우저는 음성 기능을 지원하지 않습니다.');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const [langCode] = META[currentLang];
+  utterance          = new SpeechSynthesisUtterance(SCRIPTS[currentLang]);
+  utterance.lang     = langCode;
+  utterance.rate     = currentRate;
+  utterance.pitch    = 1.0;
+  utterance.volume   = 1.0;
+
+  // 사용 가능한 음성 중 해당 언어 선택
+  const voices = window.speechSynthesis.getVoices();
+  const match  = voices.find(v => v.lang.startsWith(langCode.split('-')[0]));
+  if (match) utterance.voice = match;
+
+  utterance.onstart = () => {
+    isPlaying = true;
+    document.getElementById('playIcon').textContent = '⏸';
+    document.getElementById('playText').textContent = '일시정지';
+    document.querySelectorAll('.wave-bar').forEach(b => b.classList.remove('paused'));
+  };
+  utterance.onend = utterance.onerror = () => {
+    isPlaying = false;
+    document.getElementById('playIcon').textContent = '▶';
+    document.getElementById('playText').textContent = '음성 재생';
+    document.querySelectorAll('.wave-bar').forEach(b => b.classList.add('paused'));
+  };
+
+  window.speechSynthesis.speak(utterance);
+}
+
+function stopVoice() {
+  window.speechSynthesis.cancel();
+  isPlaying = false;
+  document.getElementById('playIcon').textContent = '▶';
+  document.getElementById('playText').textContent = '음성 재생';
+  document.querySelectorAll('.wave-bar').forEach(b => b.classList.add('paused'));
+}
+
+function setSpeed(btn) {
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentRate = parseFloat(btn.dataset.rate);
+  if (isPlaying) { stopVoice(); setTimeout(() => startVoice(), 100); }
+}
+
+// 음성 목록 로드 (Chrome은 비동기)
+if (window.speechSynthesis) {
+  window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
 }
 </script>
 </body>
