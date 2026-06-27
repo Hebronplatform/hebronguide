@@ -154,7 +154,11 @@
   /* ━━━ CITIES ━━━ */
   .cities-section{padding:72px 24px;max-width:960px;margin:0 auto;}
   .search-wrap{max-width:400px;margin:0 auto 32px;position:relative;}
-  .search-wrap input{width:100%;padding:13px 20px 13px 44px;border-radius:50px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:.9rem;font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color .2s;}
+  .search-wrap input{width:100%;padding:13px 48px 13px 44px;border-radius:50px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:.9rem;font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color .2s;}
+  #cityMic{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:transparent;color:var(--muted);cursor:pointer;border-radius:50%;transition:all .2s;}
+  #cityMic:hover{color:var(--gold);background:rgba(201,162,39,.12);}
+  #cityMic.listening{color:#EF4444;background:rgba(239,68,68,.12);animation:micPulse 1s infinite;}
+  @keyframes micPulse{0%,100%{opacity:1;}50%{opacity:.5;}}
   .search-wrap input:focus{border-color:var(--gold);}
   .search-wrap input::placeholder{color:var(--muted);}
   .search-wrap::before{content:'🔍';position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:.85rem;}
@@ -673,6 +677,9 @@ function toggleFaq(btn){
 
   <div class="search-wrap">
     <input id="citySearch" type="text" placeholder="도시 검색 · Search city (뉴욕, Tokyo, Seoul...)"/>
+    <button id="cityMic" type="button" aria-label="음성으로 도시 검색 · Search by voice" title="음성 검색">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+    </button>
   </div>
 
   <div id="cityRegions">
@@ -835,6 +842,29 @@ if(inp){
       b.style.display=(q&&v===0)?'none':'';
     });
   });
+
+  // ── 음성으로 도시 검색 (Web Speech API) ──
+  var mic=document.getElementById('cityMic');
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(mic){
+    if(!SR){ mic.style.display='none'; }
+    else{
+      var rec=new SR(); rec.interimResults=false; rec.maxAlternatives=1;
+      var listening=false;
+      rec.onstart=function(){ listening=true; mic.classList.add('listening'); };
+      rec.onend=function(){ listening=false; mic.classList.remove('listening'); };
+      rec.onerror=function(){ listening=false; mic.classList.remove('listening'); };
+      rec.onresult=function(e){
+        var t=(e.results[0][0].transcript||'').trim().replace(/[.。]\s*$/,'');
+        if(t){ inp.value=t; inp.dispatchEvent(new Event('input',{bubbles:true})); inp.focus(); }
+      };
+      mic.addEventListener('click',function(){
+        if(listening){ rec.stop(); return; }
+        rec.lang=document.documentElement.lang==='en'?'en-US':'ko-KR';
+        try{ rec.start(); }catch(_){}
+      });
+    }
+  }
 }
 </script>
 
