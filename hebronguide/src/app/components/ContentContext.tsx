@@ -127,9 +127,13 @@ export function ContentProvider({ children }: { children: ReactNode }) {
       const citySlug = getCitySlug();
       const map: Partial<Record<ContentType, any[]>> = {};
 
-      // churches는 별도 테이블
-      const churches = await fetchChurches(citySlug);
-      if (churches.length > 0) map['churches'] = churches;
+      // churches: 별도 테이블 + community_items(type='churches') 합치기
+      const [churches, communityChurches] = await Promise.all([
+        fetchChurches(citySlug),
+        fetchCommunityItems(citySlug, 'churches'),
+      ]);
+      const allChurches = [...churches, ...communityChurches];
+      if (allChurches.length > 0) map['churches'] = allChurches;
 
       // community_items 기반 타입들
       const communityTypes: ContentType[] = [
