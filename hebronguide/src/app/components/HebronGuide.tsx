@@ -12180,7 +12180,9 @@ const MUSIC_GENRES: MusicGenre[] = [
   ]},
   { id: "gospel",    label: "성가",   items: [] },
   { id: "ccm",       label: "CCM",    items: [] },
-  { id: "children",  label: "어린이", items: [] },
+  { id: "children",  label: "어린이", items: [
+    { type: "video", id: "r8Bte2R56SM", sub: "김찬후" },
+  ]},
   { id: "jazz",      label: "Jazz",   items: [
     { type: "video",    id: "vHJ_qxHaz5Y", sub: "Joy — Vintage Attic Jazz" },
   ]},
