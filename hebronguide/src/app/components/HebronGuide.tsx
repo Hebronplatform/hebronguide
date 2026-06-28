@@ -12167,16 +12167,24 @@ function AmericasAdSection({ lang }: { lang: string }) {
    ─ 예약 추가: YT_SCHEDULE 배열에 항목 추가
 ───────────────────────────────────────── */
 
-// ── 🎵 장르 목록 ──────────────────────────────
-// ytId: null = 준비 중 (콘텐츠 추가 전)
-const MUSIC_GENRES: { id: string; label: string; ytType: "playlist"|"video"; ytId: string|null }[] = [
-  { id: "praise",    label: "찬양",   ytType: "playlist", ytId: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig" },
-  { id: "meditation",label: "묵상",   ytType: "playlist", ytId: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk" },
-  { id: "gospel",    label: "성가",   ytType: "video",    ytId: "R-WGkU31ifQ" },
-  { id: "ccm",       label: "CCM",    ytType: "playlist", ytId: null },
-  { id: "children",  label: "어린이", ytType: "playlist", ytId: null },
-  { id: "jazz",      label: "Jazz",   ytType: "playlist", ytId: null },
-  { id: "request",   label: "신청곡", ytType: "video",    ytId: null },
+// ── 🎵 장르 목록 (장르별 서브큐 지원) ──────────────
+type GenreItem = { type: "playlist"|"video"; id: string; sub: string };
+type MusicGenre = { id: string; label: string; items: GenreItem[] };
+
+const MUSIC_GENRES: MusicGenre[] = [
+  { id: "praise",    label: "찬양",   items: [
+    { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "헤브론 추천곡" },
+  ]},
+  { id: "meditation",label: "묵상",   items: [] },
+  { id: "gospel",    label: "성가",   items: [] },
+  { id: "ccm",       label: "CCM",    items: [] },
+  { id: "children",  label: "어린이", items: [] },
+  { id: "jazz",      label: "Jazz",   items: [
+    { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "Joy's Jazz" },
+    { type: "video",    id: "vHJ_qxHaz5Y",                         sub: "Vintage Attic Jazz" },
+    { type: "video",    id: "R-WGkU31ifQ",                         sub: "오일권 목사" },
+  ]},
+  { id: "request",   label: "신청곡", items: [] },
 ];
 
 type MusicReqItem = { id: string; video_id: string; requester_name: string; time_pref: string; genre: string };
@@ -12193,7 +12201,7 @@ function FloatingMusicPlayer() {
   const [mini, setMini]               = useState(false);
   const [sizeIdx, setSizeIdx]         = useState(1);
   const [activeGenre, setActiveGenre] = useState("praise");
-  const [reqIdx, setReqIdx]           = useState(0);
+  const [subIdx, setSubIdx]           = useState(0);
   const [communityQueue, setCommunityQueue] = useState<MusicReqItem[]>([]);
   const [showRequest, setShowRequest] = useState(false);
   const [reqForm, setReqForm]         = useState({ url: "", name: "", timePref: "언제나", message: "" });
@@ -12251,14 +12259,19 @@ function FloatingMusicPlayer() {
   const barW = mini ? 224 : w;
   const curGenre = MUSIC_GENRES.find(g => g.id === activeGenre) ?? MUSIC_GENRES[0];
 
+  // 현재 장르의 서브큐: request는 communityQueue, 나머지는 genre.items
+  const curItems: { type?: string; id: string; sub: string }[] =
+    activeGenre === "request"
+      ? communityQueue.map(r => ({ id: r.video_id, sub: r.requester_name || "익명" }))
+      : curGenre.items;
+  const curItem = curItems[subIdx % Math.max(curItems.length, 1)];
+
   let ytSrc = "";
-  if (activeGenre === "request" && communityQueue.length > 0) {
-    const req = communityQueue[reqIdx % communityQueue.length];
-    ytSrc = `https://www.youtube.com/embed/${req.video_id}?rel=0&modestbranding=1&playsinline=1&autoplay=1`;
-  } else if (curGenre.ytId) {
-    ytSrc = curGenre.ytType === "playlist"
-      ? `https://www.youtube.com/embed/videoseries?list=${curGenre.ytId}&rel=0&modestbranding=1&playsinline=1`
-      : `https://www.youtube.com/embed/${curGenre.ytId}?rel=0&modestbranding=1&playsinline=1`;
+  if (curItem?.id) {
+    const itemType = (curItem as GenreItem).type ?? "video";
+    ytSrc = itemType === "playlist"
+      ? `https://www.youtube.com/embed/videoseries?list=${curItem.id}&rel=0&modestbranding=1&playsinline=1`
+      : `https://www.youtube.com/embed/${curItem.id}?rel=0&modestbranding=1&playsinline=1`;
   }
 
   const btnStyle: React.CSSProperties = {
@@ -12330,14 +12343,14 @@ function FloatingMusicPlayer() {
             overflowX: "auto", scrollbarWidth: "none" as const,
           }}>
             {MUSIC_GENRES.map(g => (
-              <button key={g.id} onClick={() => { setActiveGenre(g.id); setReqIdx(0); }}
+              <button key={g.id} onClick={() => { setActiveGenre(g.id); setSubIdx(0); }}
                 style={{
                   background: activeGenre === g.id ? "rgba(110,231,183,0.15)" : "none",
                   border: "none", borderBottom: activeGenre === g.id ? "2px solid rgba(110,231,183,0.8)" : "2px solid transparent",
                   cursor: "pointer", whiteSpace: "nowrap" as const,
                   padding: "4px 8px 5px", fontSize: 10,
                   fontWeight: activeGenre === g.id ? 700 : 500,
-                  color: activeGenre === g.id ? "rgba(110,231,183,1)" : ((!g.ytId && g.id !== "request") ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.55)"),
+                  color: activeGenre === g.id ? "rgba(110,231,183,1)" : ((g.items.length === 0 && g.id !== "request") ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.55)"),
                   fontFamily: "Manrope,sans-serif", borderRadius: "6px 6px 0 0",
                 }}>
                 {g.label}
@@ -12361,9 +12374,7 @@ function FloatingMusicPlayer() {
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" as const, overflow: "hidden", textOverflow: "ellipsis" }}>
               {curGenre.label}
-              {activeGenre === "request" && communityQueue.length > 0
-                ? ` — ${communityQueue[reqIdx % communityQueue.length]?.requester_name || "익명"}`
-                : ""}
+              {curItem?.sub ? ` — ${curItem.sub}` : ""}
             </div>
             <div style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", fontFamily: "Manrope,sans-serif" }}>
               {mini ? "재생 중" : "Hebron Music"}
@@ -12374,11 +12385,11 @@ function FloatingMusicPlayer() {
           <button onClick={(e) => { e.stopPropagation(); setShowRequest(p => !p); setReqStatus("idle"); }}
             title="곡 신청" style={{ ...btnStyle, fontWeight: 700, fontSize: 16, color: showRequest ? "rgba(110,231,183,0.9)" : "rgba(255,255,255,0.5)" }}>+</button>
 
-          {/* 신청곡 이전/다음 */}
-          {activeGenre === "request" && communityQueue.length > 1 && (
+          {/* 서브큐 이전/다음 (2개 이상일 때) */}
+          {curItems.length > 1 && (
             <>
-              <button onClick={(e) => { e.stopPropagation(); setReqIdx(i => (i - 1 + communityQueue.length) % communityQueue.length); }} style={btnStyle}>‹</button>
-              <button onClick={(e) => { e.stopPropagation(); setReqIdx(i => (i + 1) % communityQueue.length); }} style={btnStyle}>›</button>
+              <button onClick={(e) => { e.stopPropagation(); setSubIdx(i => (i - 1 + curItems.length) % curItems.length); }} style={btnStyle}>‹</button>
+              <button onClick={(e) => { e.stopPropagation(); setSubIdx(i => (i + 1) % curItems.length); }} style={btnStyle}>›</button>
             </>
           )}
 
@@ -12405,7 +12416,7 @@ function FloatingMusicPlayer() {
           position: mini ? "absolute" : "relative",
         }}>
           {ytSrc ? (
-            <iframe key={activeGenre + reqIdx} src={ytSrc} width={w} height={h}
+            <iframe key={activeGenre + subIdx} src={ytSrc} width={w} height={h}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen style={{ border: "none", display: "block" }} title={curGenre.label} />
           ) : (
