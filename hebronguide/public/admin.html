@@ -718,7 +718,7 @@
       <div class="chart-card">
         <div class="chart-title">카테고리 요약</div>
         <table class="summary-table">
-          <thead><tr><th>항목</th><th>총계</th><th>대기</th><th>승인</th></tr></thead>
+          <thead><tr><th>항목</th><th>총계</th><th>PENDING</th><th>LIVE</th></tr></thead>
           <tbody id="summary-tbody">
             <tr><td><span class="dot" style="background:#C9A227"></span>커뮤니티 신청</td>
                 <td id="sum-community-total">—</td><td id="sum-community-pending">—</td><td id="sum-community-approved">—</td></tr>
@@ -828,9 +828,9 @@
         </select>
         <select class="filter-select" id="status-filter" onchange="filterTable()">
           <option value="">모든 상태</option>
-          <option value="pending">대기중</option>
-          <option value="approved">승인됨</option>
-          <option value="rejected">거절됨</option>
+          <option value="pending">PENDING</option>
+          <option value="approved">LIVE</option>
+          <option value="rejected">REJECTED</option>
         </select>
         <span class="count-badge" id="count-badge"></span>
       </div>
@@ -839,6 +839,50 @@
     <div class="table-card">
       <div id="table-content">
         <div class="loading"><span class="spinner"></span>데이터 로딩 중...</div>
+      </div>
+    </div>
+
+    <!-- 용어 설명 Legend -->
+    <div style="margin-top:40px;padding:20px 24px;background:var(--surface);border:1px solid var(--border);border-radius:12px;">
+      <div style="font-size:.7rem;font-weight:800;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:16px;">Status Legend</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;">
+
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(251,191,36,.1);color:var(--yellow);border:1px solid rgba(251,191,36,.2);">PENDING</span>
+          <span style="font-size:.8rem;color:var(--muted);">검토 대기 — 아직 관리자가 확인하지 않은 신청</span>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2);">LIVE</span>
+          <span style="font-size:.8rem;color:var(--muted);">게시 중 — 앱 도시 페이지에 지금 표시되고 있음</span>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2);">APPROVED</span>
+          <span style="font-size:.8rem;color:var(--muted);">승인 완료 — 검토 후 LIVE로 전환된 신청 기록</span>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2);">REJECTED</span>
+          <span style="font-size:.8rem;color:var(--muted);">거절됨 — 앱에 표시하지 않기로 결정</span>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2);">INACTIVE</span>
+          <span style="font-size:.8rem;color:var(--muted);">비활성 — 임시 숨김 처리 (삭제가 아님)</span>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(110,231,183,.08);color:var(--mint);border:1px solid rgba(110,231,183,.2);">VERIFIED</span>
+          <span style="font-size:.8rem;color:var(--muted);">인증 완료 — 파트너 목사 신원 확인됨</span>
+        </div>
+
+      </div>
+      <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:flex;gap:24px;flex-wrap:wrap;">
+        <div style="font-size:.7rem;font-weight:800;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;width:100%;margin-bottom:6px;">Actions</div>
+        <div style="font-size:.8rem;color:var(--muted);"><span style="color:var(--green);font-weight:700;">Approve</span> — 신청 승인 → LIVE 전환, 교회·사업체는 자동 등록</div>
+        <div style="font-size:.8rem;color:var(--muted);"><span style="color:var(--red);font-weight:700;">Reject</span> — 거절 → 앱에서 숨김</div>
+        <div style="font-size:.8rem;color:var(--muted);"><span style="color:var(--mint);font-weight:700;">Verify</span> — 파트너 목사 인증 확인</div>
       </div>
     </div>
 
@@ -988,7 +1032,7 @@
     const approved = rest.filter(r => r.status === 'approved')
 
     // 뱃지: 실제 검토 대기 건수만
-    document.getElementById('count-badge').textContent = `${pending.length + cityReqs.filter(r=>r.status!=='approved').length}개 대기`
+    document.getElementById('count-badge').textContent = `${pending.length + cityReqs.filter(r=>r.status!=='approved').length} PENDING`
 
     function itemRow(r) {
       return `<tr data-id="${r.id}" data-table="community_items" data-db="main" onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기">
@@ -1003,13 +1047,13 @@
           <div class="cell-sub">${esc(r.website || r.url || '')}</div>
         </td>
         <td>
-          <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span>
+          <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? 'LIVE' : r.status === 'rejected' ? 'REJECTED' : 'PENDING'}</span>
           ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">AI ${r.confidence_score}점${r.auto_approved ? ' · 자동' : ''}</div>` : ''}
         </td>
         <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
         <td><div class="actions" onclick="event.stopPropagation()">
-          ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
-          ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
+          ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">Approve</button>` : ''}
+          ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">Reject</button>` : ''}
           <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
         </div></td>
       </tr>`
@@ -1027,10 +1071,10 @@
                 <td><div class="cell-name" style="color:#F97316;">${esc(r.city || r.title || '—')}</div></td>
                 <td><div class="cell-contact">${esc(r.name || r.contact || '—')}</div></td>
                 <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}</div></td>
-                <td><span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 확인' : r.status === 'rejected' ? '❌ 보류' : '⏳ 대기'}</span></td>
+                <td><span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? 'LIVE' : r.status === 'rejected' ? 'REJECTED' : 'PENDING'}</span></td>
                 <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
                 <td><div class="actions" onclick="event.stopPropagation()">
-                  ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 확인</button>` : ''}
+                  ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">Approve</button>` : ''}
                   <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
                 </div></td>
               </tr>`).join('')}
@@ -1041,7 +1085,7 @@
     // 검토 대기 섹션
     const pendingHtml = pending.length ? `
       <div style="padding:14px 16px 8px;background:rgba(251,191,36,.07);border-bottom:1px solid rgba(251,191,36,.18);">
-        <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--yellow);">⏳ 검토 대기 — ${pending.length}건</span>
+        <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--yellow);">PENDING — ${pending.length}</span>
       </div>
       <table>
         <thead><tr><th>제목·이름</th><th>내용</th><th>도시</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
@@ -1052,7 +1096,7 @@
     const approvedHtml = approved.length ? `
       <details style="margin-top:12px;">
         <summary style="padding:12px 16px;background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.12);border-radius:8px;cursor:pointer;font-size:.72rem;font-weight:700;color:var(--green);list-style:none;">
-          ✅ 게시 중인 콘텐츠 — ${approved.length}건 (클릭하여 펼치기)
+          LIVE — ${approved.length} items (클릭하여 펼치기)
         </summary>
         <table style="margin-top:4px;">
           <thead><tr><th>제목·이름</th><th>내용</th><th>도시</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
@@ -1060,7 +1104,7 @@
         </table>
       </details>` : ''
 
-    document.getElementById('table-content').innerHTML = cityReqHtml + (pending.length || approved.length ? pendingHtml + approvedHtml : '<div style="padding:32px;text-align:center;color:var(--muted);">검토 대기 항목 없음</div>')
+    document.getElementById('table-content').innerHTML = cityReqHtml + (pending.length || approved.length ? pendingHtml + approvedHtml : '<div style="padding:32px;text-align:center;color:var(--muted);">No pending items</div>')
   }
 
   // ── 교회 렌더링 (등록 교회 + 신청 대기) ─────────────────
@@ -1088,14 +1132,14 @@
             <div class="cell-sub">${esc(r.email || '')}</div>
           </td>
           <td>
-            <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span>
+            <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? 'LIVE' : r.status === 'rejected' ? 'REJECTED' : 'PENDING'}</span>
             ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
             ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
           </td>
           <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
           <td><div class="actions" onclick="event.stopPropagation()">
-            ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
-            ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
+            ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">Approve</button>` : ''}
+            ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">Reject</button>` : ''}
             <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
           </div></td>
         </tr>`).join('')
@@ -1105,7 +1149,7 @@
     const pendingSection = pending.length ? `
       <div style="padding:14px 16px 8px;background:rgba(251,191,36,.07);border-bottom:1px solid rgba(251,191,36,.18);">
         <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--yellow);">
-          ⏳ 검토 대기 — ${pending.length}건
+          PENDING — ${pending.length}
         </span>
         <span style="font-size:.7rem;color:var(--muted);margin-left:8px;">행을 클릭하면 전체 내용 확인</span>
       </div>
@@ -1115,12 +1159,17 @@
       </table>` : ''
 
     // 최근 승인 섹션 (approved, 접을 수 있게)
+    const unnotified = approved.filter(r => !r.notified_at)
     const approvedSection = approved.length ? `
-      <div style="padding:14px 16px 8px;background:rgba(74,222,128,.05);border-bottom:1px solid rgba(74,222,128,.12);">
+      <div style="padding:14px 16px 8px;background:rgba(74,222,128,.05);border-bottom:1px solid rgba(74,222,128,.12);display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
         <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--green);">
-          ✅ 최근 승인 완료 — ${approved.length}건
+          APPROVED — ${approved.length}
         </span>
-        <span style="font-size:.7rem;color:var(--muted);margin-left:8px;">아래 "등록 교회"에 이미 반영됨</span>
+        <span style="font-size:.7rem;color:var(--muted);">아래 "등록 교회"에 이미 반영됨</span>
+        ${unnotified.length ? `
+        <button class="btn-sm btn-approve" style="margin-left:auto;" onclick="resendChurchEmails()">
+          확인 이메일 재발송 (${unnotified.length}건)
+        </button>` : `<span style="font-size:.7rem;color:var(--mint);margin-left:auto;">이메일 전송 완료</span>`}
       </div>
       <table>
         <thead><tr><th>이름·교회명</th><th>내용</th><th>도시·주소</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
@@ -1147,7 +1196,7 @@
               <td><div class="cell-desc">${esc((r.desc || r.description || '').slice(0, 60))}</div></td>
               <td><span class="cell-city">${esc(r.city_slug || r.city || '—')}</span></td>
               <td><span class="status ${r.tier === 1 ? 'approved' : 'community'}">Tier ${r.tier || '?'}</span></td>
-              <td><span class="status ${r.active ? 'approved' : 'rejected'}">${r.active ? '✅ 활성' : '⏸ 비활성'}</span></td>
+              <td><span class="status ${r.active ? 'approved' : 'rejected'}">${r.active ? 'LIVE' : 'INACTIVE'}</span></td>
               <td><div class="actions" onclick="event.stopPropagation()">
                 <button class="btn-sm btn-edit" onclick="editRow('${r.id}','churches')">✏️ 수정</button>
                 <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','churches','main')">🗑</button>
@@ -1176,9 +1225,9 @@
               <td style="font-size:.8rem">${esc(r.church_name || '—')}</td>
               <td><span class="cell-city">${esc(r.city_slug || '—')}</span></td>
               <td><span class="status community">Tier ${r.tier || 1}</span></td>
-              <td><span class="status ${r.verified ? 'approved' : 'pending'}">${r.verified ? '✅ 인증' : '⏳ 대기'}</span></td>
+              <td><span class="status ${r.verified ? 'approved' : 'pending'}">${r.verified ? 'VERIFIED' : 'PENDING'}</span></td>
               <td><div class="actions">
-                ${!r.verified ? `<button class="btn-sm btn-approve" onclick="verifyPartner('${r.id}')">✅ 인증</button>` : ''}
+                ${!r.verified ? `<button class="btn-sm btn-approve" onclick="verifyPartner('${r.id}')">Verify</button>` : ''}
                 <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','pastor_partners','new')">🗑</button>
               </div></td>
             </tr>`).join('')}
@@ -1195,7 +1244,7 @@
     const appSection = applications && applications.length ? `
       <div style="padding:14px 16px 8px;background:rgba(201,162,39,.07);border-bottom:1px solid rgba(201,162,39,.18);">
         <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--gold);text-transform:uppercase;">
-          ⏳ 사업체 등재 신청 대기 — ${applications.length}건
+          PENDING — ${applications.length}
         </span>
         <span style="font-size:.7rem;color:var(--muted);margin-left:8px;">행 클릭 → 전체 내용</span>
       </div>
@@ -1216,14 +1265,14 @@
                 <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
               </td>
               <td>
-                <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span>
+                <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? 'LIVE' : r.status === 'rejected' ? 'REJECTED' : 'PENDING'}</span>
                 ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
                 ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">🤖 AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
               </td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions" onclick="event.stopPropagation()">
-                ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
-                ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
+                ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">Approve</button>` : ''}
+                ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">Reject</button>` : ''}
                 <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
               </div></td>
             </tr>`).join('')}
@@ -1244,7 +1293,7 @@
               <td class="cell-name">${esc(r.name || '—')}</td>
               <td><div class="cell-desc">${esc((r.desc || r.description || '').slice(0,60))}</div></td>
               <td><span class="cell-city">${esc(r.city_slug || r.city || '—')}</span></td>
-              <td><span class="status ${r.active ? 'approved' : 'rejected'}">${r.active ? '✅ 활성' : '⏸ 비활성'}</span></td>
+              <td><span class="status ${r.active ? 'approved' : 'rejected'}">${r.active ? 'LIVE' : 'INACTIVE'}</span></td>
               <td><div class="actions" onclick="event.stopPropagation()">
                 <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','restaurants','main')">🗑</button>
               </div></td>
@@ -1283,14 +1332,14 @@
                 <div class="cell-sub">${esc(r.contact || '')}</div>
               </td>
               <td>
-                <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span>
+                <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? 'LIVE' : r.status === 'rejected' ? 'REJECTED' : 'PENDING'}</span>
                 ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
                 ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">🤖 AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
               </td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions" onclick="event.stopPropagation()">
-                ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
-                ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
+                ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">Approve</button>` : ''}
+                ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">Reject</button>` : ''}
                 <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
               </div></td>
             </tr>`).join('')}
@@ -1522,6 +1571,45 @@
 
       loadTabData(currentTab)
     } catch(e) { toast('❌ ' + e.message) }
+  }
+
+  // 미발송 파트너 교회 확인 이메일 일괄 재발송
+  async function resendChurchEmails() {
+    try {
+      const { data: rows } = await sbNew.from('community_items')
+        .select('*')
+        .eq('category', 'church')
+        .in('status', ['approved', 'migrated'])
+        .is('notified_at', null)
+      if (!rows || !rows.length) { toast('발송할 항목이 없습니다'); return }
+
+      toast(`📧 ${rows.length}건 발송 시작...`)
+      let ok = 0, fail = 0
+      for (const row of rows) {
+        const desc = row.description || ''
+        const get = (label) => { const m = desc.match(new RegExp(label + '[:\\s]+([^\\n]+)')); return m ? m[1].trim() : '' }
+        const nameKo  = get('교회명\\(KO\\)') || get('교회명') || row.name || ''
+        const nameEn  = get('교회명\\(EN\\)') || row.name_en || ''
+        const email   = get('이메일') || row.email || ''
+        const citySlug = row.city_slug || ''
+        if (!email || email === '없음') { fail++; continue }
+        try {
+          const res = await fetch('/api/notify-partner', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: adminToken, type: 'church',
+              church: { name: nameKo, name_en: nameEn, email, city_slug: citySlug } })
+          })
+          const d = await res.json()
+          if (d.ok && !d.skipped) {
+            await adminAction({ action: 'mark_notified', id: row.id, table: 'community_items' }).catch(() => {})
+            ok++
+          } else { fail++ }
+        } catch { fail++ }
+      }
+      toast(`완료 — 발송 ${ok}건 성공 / ${fail}건 실패`)
+      loadTabData('churches')
+    } catch(e) { toast('재발송 실패: ' + e.message) }
   }
 
   // 교회 신청 → churches 테이블 자동 파싱·저장
@@ -1874,7 +1962,7 @@
         const label = labelMap[k] || k
         let val = String(v)
         if (k === 'created_at' || k === 'updated_at') val = new Date(v).toLocaleString('ko-KR')
-        if (k === 'status') val = v === 'approved' ? '✅ 승인' : v === 'rejected' ? '❌ 거절' : v === 'pending' ? '⏳ 대기' : v
+        if (k === 'status') val = v === 'approved' ? 'LIVE' : v === 'rejected' ? 'REJECTED' : v === 'pending' ? 'PENDING' : v
         return `<div class="modal-field">
           <div class="modal-label">${label}</div>
           <div class="modal-value">${esc(val)}</div>
@@ -1885,8 +1973,8 @@
     const actEl = document.getElementById('modalActions')
     actEl.innerHTML = ''
     if (tableKey === 'community') {
-      if (r.status !== 'approved') actEl.innerHTML += `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved');closeDetailModal()">✅ 승인</button>`
-      if (r.status !== 'rejected') actEl.innerHTML += `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected');closeDetailModal()">❌ 거절</button>`
+      if (r.status !== 'approved') actEl.innerHTML += `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved');closeDetailModal()">Approve</button>`
+      if (r.status !== 'rejected') actEl.innerHTML += `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected');closeDetailModal()">Reject</button>`
       actEl.innerHTML += `<button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new');closeDetailModal()">🗑 삭제</button>`
     }
 

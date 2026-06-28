@@ -230,31 +230,12 @@ export default async function handler(req, res) {
       });
     }
 
-    // ── 신청자 확인 이메일 (자동 게시 완료)
+    // ── 파트너 환영 편지 (등재 완료)
     if (email) {
       await sendEmail({
         to: email,
-        subject: `[HebronGuide] ${churchName} 파트너 교회 등재가 완료되었습니다`,
-        text: [
-          `${pastor || "목사님"} 안녕하세요.`,
-          "",
-          `${churchName}이(가) HebronGuide ${city} 도시 가이드에 파트너 교회로 등재되었습니다.`,
-          "",
-          `도시 페이지에서 바로 확인하실 수 있습니다:`,
-          `https://hebronguide.com/${city}/`,
-          "",
-          `등재 정보:`,
-          `  교회명: ${churchName}`,
-          `  담임목사: ${pastor || "—"}`,
-          `  도시: ${city}`,
-          `  전화: ${phone || "—"}`,
-          `  예배시간: ${serviceTimes || "—"}`,
-          "",
-          `수정·문의: hebronplatform@gmail.com`,
-          "",
-          "── HebronGuide · hebronguide.com ──",
-          "환대로 이 도시를 섬기는 모든 교회와 함께합니다.",
-        ].join("\n"),
+        subject: `[HebronGuide] ${pastor || "목사님"}, 환대 운동에 함께해 주셔서 감사합니다`,
+        text: partnerWelcomeLetter({ pastor, churchName, city, phone, serviceTimes, approved: true }),
       });
     }
 
@@ -293,24 +274,8 @@ export default async function handler(req, res) {
   if (email) {
     await sendEmail({
       to: email,
-      subject: `[HebronGuide] ${churchName} 파트너 신청이 접수되었습니다`,
-      text: [
-        `${pastor || "목사님"} 안녕하세요.`,
-        "",
-        `${churchName}의 HebronGuide 파트너 교회 신청이 정상적으로 접수되었습니다.`,
-        "",
-        `담당자가 1~2일 이내에 검토 후 등재 완료 안내를 드리겠습니다.`,
-        "",
-        `접수 정보:`,
-        `  교회명: ${churchName}`,
-        `  담임목사: ${pastor || "—"}`,
-        `  도시: ${city}`,
-        `  전화: ${phone || "—"}`,
-        "",
-        `문의: hebronplatform@gmail.com`,
-        "",
-        "── HebronGuide · hebronguide.com ──",
-      ].join("\n"),
+      subject: `[HebronGuide] ${pastor || "목사님"}, 환대 운동에 함께해 주셔서 감사합니다`,
+      text: partnerWelcomeLetter({ pastor, churchName, city, phone, serviceTimes, approved: false }),
     });
   }
 
@@ -386,6 +351,64 @@ async function notifyAdmin({ level, churchName, denomination, city,
     subject: `[HebronGuide] 교회 등재 — ${levelLabel} — ${churchName}`,
     text: body,
   });
+}
+
+// ── 헬퍼: 파트너 환영 편지 (한 통으로 모든 것을 전달) ──────────
+function partnerWelcomeLetter({ pastor, churchName, city, phone, serviceTimes, approved }) {
+  const citySlug = normalizeCitySlug(city) || city;
+  const cityUrl  = `https://hebronguide.com/${citySlug}/`;
+  const pendingNote = approved ? "" : [
+    "",
+    "※ 교단 정보 등 일부 내용을 담당자가 확인 후 1~2일 내 도시 페이지에 정식 게재합니다.",
+    "   카카오채널은 지금 바로 참여하실 수 있습니다.",
+  ].join("\n");
+
+  return [
+    `${pastor || "목사님"}, 안녕하세요.`,
+    "",
+    `${churchName}이(가) HebronGuide 파트너 교회로 등재 신청해 주셔서 진심으로 감사드립니다.`,
+    `단순한 디렉터리 등록이 아닙니다.`,
+    `목사님은 오늘, 이 도시 한인 이민자·유학생·주재원을 함께 섬기는`,
+    `환대 운동의 일원이 되셨습니다.`,
+    pendingNote,
+    "",
+    "━━━ 우리가 함께 만드는 것 ━━━━━━━━━━━━━━━━━━━━",
+    "",
+    "낯선 도시에 처음 도착한 누군가가",
+    "HebronGuide에서 목사님 교회를 발견하고,",
+    "파트너 사업체에서 첫 도움을 받고,",
+    "자연스럽게 교회 공동체 안으로 연결됩니다.",
+    "",
+    "    교회  +  사업체  +  HebronGuide",
+    "    셋이 손을 잡는 환대 구조입니다.",
+    "",
+    "    \"내가 나그네 되었을 때 너희가 영접하였다\"",
+    "    — 마태복음 25:35 (새번역)",
+    "",
+    "━━━ 지금 바로 하실 두 가지 ━━━━━━━━━━━━━━━━━━━",
+    "",
+    "1. 카카오채널 친구추가 — 파트너 교회·사업체 소통 공간",
+    "   새 이민자 연결 요청, 도시 소식, 파트너 협업이 여기서 시작됩니다.",
+    "   → https://pf.kakao.com/_dxdxlbX",
+    "",
+    `2. 도시 페이지에서 교회 확인`,
+    `   → ${cityUrl}`,
+    "",
+    "━━━ HebronGuide 파트너 교회 혜택 ━━━━━━━━━━━━━━━━",
+    "",
+    "· 도시 검색 이민자에게 교회를 가장 먼저 연결",
+    "· 파트너 사업체와 환대 협력 채널 연결",
+    "  (사업체는 새 이민자에게 교회를 소개하고, 교회는 생활 정보를 안내합니다)",
+    "· 교회 정보 수정·업데이트 무료 지원",
+    "· 도시별 파트너 교회 네트워크 참여",
+    "",
+    "정보 수정·문의: hebronplatform@gmail.com",
+    "(이 이메일로 회신하시면 됩니다)",
+    "",
+    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+    "HebronGuide · hebronguide.com",
+    "하나님 나라를 위한 환대의 디지털 첫 관문",
+  ].filter(l => l !== null && l !== undefined).join("\n");
 }
 
 // ── 헬퍼: desc 포맷 (admin.html autoAddChurch가 파싱 가능한 구조) ─
