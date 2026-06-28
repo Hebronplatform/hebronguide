@@ -15169,7 +15169,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         desc: lang === "ko"
           ? `${c.city} · 커뮤니티 등록 교회${c.pastor ? " · " + c.pastor : ""}`
           : `${c.city} · Community-added church${c.pastor ? " · " + c.pastor : ""}`,
-        phone: c.phone || "", website: c.website || "",
+        website: c.website || "",
+        // phone/email은 개인정보 보호를 위해 공개 표시하지 않음
         tags: [lang === "ko" ? "커뮤니티" : "Community"],
         isCommunity: true,
       }));
@@ -15452,11 +15453,13 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                         {allOther.map((c: AnyChurch, i: number) => {
                           // Supabase 교회: description → desc 매핑, 기본 정보 표시
                           const sbDesc = (c as any).description ||
-                            [(c as any).denomination, (c as any).service_time, (c as any).email]
+                            [(c as any).denomination, (c as any).service_time]
                               .filter(Boolean).join(" · ");
-                          const hasInfo = !!(sbDesc || (c as any).phone || (c as any).website);
+                          const hasInfo = !!(sbDesc || (c as any).website);
                           const enriched = {
                             ...c,
+                            phone: undefined,   // 목사 개인 연락처 공개 차단
+                            email: undefined,   // 목사 개인 이메일 공개 차단
                             desc: c.desc || sbDesc ||
                               (lang === "ko" ? "📋 목사님, 교회 정보를 업데이트해주세요 →" : "📋 Pastor, please update your church info →"),
                           };

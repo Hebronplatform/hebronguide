@@ -17,12 +17,28 @@ const ADMIN_EMAIL    = "hebronplatform@gmail.com";
 const FROM_EMAIL     = "Hebronplatform@gmail.com";
 
 // ── 이단·금지 목록 (즉시 차단) ──────────────────────
+// 2026-06-28 업데이트: 신천지 위장 단체 3,400+건 보고 — 변형 명칭 추가
 const CULT_KEYWORDS = [
-  "신천지", "통일교", "JMS", "정명석", "하나님의교회",
-  "여호와의증인", "몰몬교", "LDS", "구원파", "다락방",
-  "지방교회", "이만희", "세계일보", "안상홍", "새일교회",
-  "Shincheonji", "Unification Church", "Jehovah",
-  "Church of Jesus Christ of Latter", "Mormon",
+  // 신천지 & 변형
+  "신천지", "신천지예수교", "이만희", "만국성회", "만국성전", "시온산제단",
+  "Shincheonji", "SCJ증인", "새이스라엘성전",
+  // 통일교 & 변형
+  "통일교", "세계평화통일가정연합", "문선명", "세계일보",
+  "Unification Church", "Family Federation",
+  // JMS
+  "JMS", "정명석", "기독교복음선교회", "섭리교",
+  // 구원파
+  "구원파", "기독교복음침례회", "기쁜소식선교회",
+  // 하나님의교회
+  "하나님의교회", "안상홍", "안상홍증인회", "하나님의교회세계복음선교협회",
+  "새일교회",
+  // 여호와의증인 & 몰몬교
+  "여호와의증인", "몰몬교", "LDS", "예수그리스도후기성도",
+  "Church of Jesus Christ of Latter", "Jehovah", "Mormon",
+  // 전능신교(동방번개)
+  "전능신교", "동방번개교", "전능하신하나님교회",
+  // 기타
+  "지방교회", "다락방", "류광수",
 ];
 
 // ── 도시 슬러그 정규화 ───────────────────────────────
@@ -165,14 +181,20 @@ export default async function handler(req, res) {
         },
         body: JSON.stringify({
           model: "claude-haiku-20240307",
-          max_tokens: 150,
+          max_tokens: 200,
           system: [
-            "You are HebronGuide's church listing reviewer.",
+            "You are HebronGuide's church screening system.",
             "HebronGuide is a Korean immigrant community platform by an SBC/IHM church network.",
-            "Check if this church submission seems legitimate and theologically sound.",
-            "Flag ONLY if: (1) sounds cult-like despite no keyword match,",
-            "(2) description is clearly spam/fake, (3) obviously not a church.",
-            "Reply ONLY valid JSON: {\"ok\":true} or {\"ok\":false,\"note\":\"Korean reason\"}",
+            "CRITICAL: In 2026, 3,400+ disguised Shincheonji (신천지) organizations were identified.",
+            "They disguise as: 독서모임(book clubs), 인문학강의(humanities lectures), 심리상담(counseling).",
+            "Their pattern: diverse activities → funnel everyone to 성경 공부 → recruit to cult.",
+            "They constantly rename when exposed and have NO denomination affiliation.",
+            "Flag as NOT OK if: (1) cult-like despite no keyword match,",
+            "(2) no denomination + unusual Bible study emphasis without clear church identity,",
+            "(3) sounds like cultural/educational org, not a church,",
+            "(4) description mentions 계시록 집중 or 특별성경공부 without denomination,",
+            "(5) clearly spam or fake.",
+            "Reply ONLY valid JSON: {\"ok\":true} or {\"ok\":false,\"note\":\"Korean reason (max 50 chars)\"}",
           ].join(" "),
           messages: [{
             role: "user",
@@ -196,9 +218,11 @@ export default async function handler(req, res) {
   );
 
   // ── 5. 최종 판단 ─────────────────────────────────
-  const needsReview = aiFlag || (!denomination?.trim());
+  // 2026-06-28: 신천지 위장 단체는 교단 소속이 없음 → 교단 없음 = 강화된 검토 필수
+  const missingDenom = !denomination?.trim();
+  const needsReview = aiFlag || missingDenom;
   // 교단 있고 AI OK → 자동 게시
-  // 교단 없거나 AI 의심 → 관리자 확인 요청
+  // 교단 없거나 AI 의심 → 관리자 확인 요청 (이단 위장 방지)
 
   // ── 6. Supabase 저장 (승인 여부와 무관하게 community_items에 저장) ──
   if (!needsReview) {
@@ -268,7 +292,9 @@ export default async function handler(req, res) {
     level: "warning",
     churchName, denomination, city, phone, email, address, serviceTimes,
     website, kakao, pastor, description,
-    reason: aiFlag || "교단 정보 없음 — 확인 후 게시 권장",
+    reason: aiFlag || (missingDenom
+      ? "교단 정보 없음 — 신천지 위장 단체는 교단 소속 없음. 반드시 확인 후 게시"
+      : "AI 검토 필요"),
   });
 
   if (email) {
