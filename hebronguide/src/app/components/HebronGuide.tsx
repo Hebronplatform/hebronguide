@@ -12182,8 +12182,8 @@ const MUSIC_GENRES: MusicGenre[] = [
   { id: "ccm",       label: "CCM",    items: [] },
   { id: "children",  label: "어린이", items: [] },
   { id: "jazz",      label: "Jazz",   items: [
-    { type: "video",    id: "vHJ_qxHaz5Y", sub: "Vintage Attic Jazz" },
-    { type: "video",    id: "R-WGkU31ifQ", sub: "" },
+    { type: "video",    id: "vHJ_qxHaz5Y", sub: "Joy — Vintage Attic Jazz" },
+    { type: "video",    id: "R-WGkU31ifQ", sub: "Joy" },
   ]},
   { id: "request",   label: "신청곡", items: [] },
 ];
