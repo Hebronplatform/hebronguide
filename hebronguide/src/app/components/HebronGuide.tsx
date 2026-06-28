@@ -12167,32 +12167,20 @@ function AmericasAdSection({ lang }: { lang: string }) {
    ─ 예약 추가: YT_SCHEDULE 배열에 항목 추가
 ───────────────────────────────────────── */
 
-// ── 📋 콘텐츠 큐 (순서대로 저장) ──────────────
-// type: "playlist" | "video" | "channel"
-// id: YouTube playlist ID, video ID, 또는 channel ID
-const YT_QUEUE: { title: string; sub: string; type: "playlist"|"video"; id: string }[] = [
-  {
-    title: "헤브론 추천곡",
-    sub: "Hebron Picks",
-    type: "playlist",
-    id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig",
-  },
-  // ── 아래에 항목 추가 ──
-  // { title: "주일 설교", sub: "시애틀지구촌교회 2026", type: "playlist", id: "PLAYLIST_ID_HERE" },
-  // { title: "특별 설교", sub: "폴 김 목사", type: "video", id: "VIDEO_ID_HERE" },
-  // { title: "성경 읽기", sub: "오늘의 말씀", type: "video", id: "VIDEO_ID_HERE" },
+// ── 🎵 장르 목록 ──────────────────────────────
+// ytId: null = 준비 중 (콘텐츠 추가 전)
+const MUSIC_GENRES: { id: string; label: string; ytType: "playlist"|"video"; ytId: string|null }[] = [
+  { id: "praise",    label: "찬양",   ytType: "playlist", ytId: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig" },
+  { id: "meditation",label: "묵상",   ytType: "playlist", ytId: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk" },
+  { id: "gospel",    label: "성가",   ytType: "video",    ytId: "R-WGkU31ifQ" },
+  { id: "ccm",       label: "CCM",    ytType: "playlist", ytId: null },
+  { id: "children",  label: "어린이", ytType: "playlist", ytId: null },
+  { id: "jazz",      label: "Jazz",   ytType: "playlist", ytId: null },
+  { id: "request",   label: "신청곡", ytType: "video",    ytId: null },
 ];
 
-// ── ⏰ 예약 재생 스케줄 ─────────────────────────
-// day: 0=일 1=월 2=화 3=수 4=목 5=금 6=토 (또는 "daily")
-// hour/minute: 24시간 기준 (사용자 브라우저 로컬 시간)
-// queueIndex: YT_QUEUE 배열의 인덱스
-const YT_SCHEDULE: { label: string; day: number|"daily"; hour: number; minute: number; queueIndex: number }[] = [
-  // ── 아래에 예약 추가 ──
-  // { label: "주일 예배 찬양",   day: 0, hour: 10, minute: 50, queueIndex: 0 },
-  // { label: "수요 기도회 찬양", day: 3, hour: 19, minute: 30, queueIndex: 0 },
-  // { label: "매일 새벽 묵상",   day: "daily", hour: 5, minute: 30, queueIndex: 0 },
-];
+type MusicReqItem = { id: string; video_id: string; requester_name: string; time_pref: string; genre: string };
+
 
 const YT_SIZES = [
   { label: "S", w: 260, h: 146 },
@@ -12201,43 +12189,33 @@ const YT_SIZES = [
 ];
 
 function FloatingMusicPlayer() {
-  const [active, setActive]       = useState(false);
-  const [mini, setMini]           = useState(false);
-  const [sizeIdx, setSizeIdx]     = useState(1);
-  const [queueIdx, setQueueIdx]   = useState(0);
-  const [showQueue, setShowQueue] = useState(false);
-  const [pos, setPos]             = useState({ right: 14, bottom: 78 });
-  const dragState                 = useRef<{ startX: number; startY: number; startR: number; startB: number } | null>(null);
+  const [active, setActive]           = useState(false);
+  const [mini, setMini]               = useState(false);
+  const [sizeIdx, setSizeIdx]         = useState(1);
+  const [activeGenre, setActiveGenre] = useState("praise");
+  const [reqIdx, setReqIdx]           = useState(0);
+  const [communityQueue, setCommunityQueue] = useState<MusicReqItem[]>([]);
+  const [showRequest, setShowRequest] = useState(false);
+  const [reqForm, setReqForm]         = useState({ url: "", name: "", timePref: "언제나", message: "" });
+  const [reqStatus, setReqStatus]     = useState<"idle"|"loading"|"success"|"error">("idle");
+  const [pos, setPos]                 = useState({ right: 14, bottom: 78 });
+  const dragState                     = useRef<{ startX: number; startY: number; startR: number; startB: number } | null>(null);
 
-  // ── 글로벌 활성화 훅 ──
+  // 글로벌 활성화 훅
   useEffect(() => {
     _setMusicActive = setActive;
     return () => { _setMusicActive = null; };
   }, []);
 
-  // ── ⏰ 예약 재생 체커 (1분마다) ──
+  // 승인된 신청곡 fetch
   useEffect(() => {
-    if (YT_SCHEDULE.length === 0) return;
-    const check = () => {
-      const now = new Date();
-      const day  = now.getDay();
-      const h    = now.getHours();
-      const m    = now.getMinutes();
-      YT_SCHEDULE.forEach(s => {
-        const dayMatch = s.day === "daily" || s.day === day;
-        if (dayMatch && s.hour === h && s.minute === m) {
-          setQueueIdx(s.queueIndex);
-          setMini(false);
-          setActive(true);
-        }
-      });
-    };
-    check();
-    const timer = setInterval(check, 60_000);
-    return () => clearInterval(timer);
-  }, []);
+    if (!active) return;
+    fetch(`https://${projectId}.supabase.co/rest/v1/music_requests?status=eq.approved&order=created_at.asc&limit=20`, {
+      headers: { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` },
+    }).then(r => r.json()).then(d => Array.isArray(d) && setCommunityQueue(d)).catch(() => {});
+  }, [active]);
 
-  /* 드래그 핸들러 */
+  // 드래그 핸들러
   const onDragStart = (e: React.MouseEvent) => {
     e.preventDefault();
     dragState.current = { startX: e.clientX, startY: e.clientY, startR: pos.right, startB: pos.bottom };
@@ -12252,14 +12230,36 @@ function FloatingMusicPlayer() {
     window.addEventListener("mouseup", onUp);
   };
 
+  // 곡 신청 제출
+  const submitRequest = async () => {
+    if (!reqForm.url.trim()) return;
+    setReqStatus("loading");
+    try {
+      const res = await fetch("/api/submit-music-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(reqForm),
+      });
+      if (res.ok) { setReqStatus("success"); setReqForm({ url: "", name: "", timePref: "언제나", message: "" }); }
+      else setReqStatus("error");
+    } catch { setReqStatus("error"); }
+  };
+
   if (!active) return null;
 
   const { w, h } = YT_SIZES[sizeIdx];
   const barW = mini ? 224 : w;
-  const current = YT_QUEUE[queueIdx] ?? YT_QUEUE[0];
-  const ytSrc = current.type === "playlist"
-    ? `https://www.youtube.com/embed/videoseries?list=${current.id}&rel=0&modestbranding=1&playsinline=1`
-    : `https://www.youtube.com/embed/${current.id}?rel=0&modestbranding=1&playsinline=1`;
+  const curGenre = MUSIC_GENRES.find(g => g.id === activeGenre) ?? MUSIC_GENRES[0];
+
+  let ytSrc = "";
+  if (activeGenre === "request" && communityQueue.length > 0) {
+    const req = communityQueue[reqIdx % communityQueue.length];
+    ytSrc = `https://www.youtube.com/embed/${req.video_id}?rel=0&modestbranding=1&playsinline=1&autoplay=1`;
+  } else if (curGenre.ytId) {
+    ytSrc = curGenre.ytType === "playlist"
+      ? `https://www.youtube.com/embed/videoseries?list=${curGenre.ytId}&rel=0&modestbranding=1&playsinline=1`
+      : `https://www.youtube.com/embed/${curGenre.ytId}?rel=0&modestbranding=1&playsinline=1`;
+  }
 
   const btnStyle: React.CSSProperties = {
     background: "none", border: "none", cursor: "pointer",
@@ -12268,129 +12268,157 @@ function FloatingMusicPlayer() {
   };
 
   return (
-    <div style={{
-      position: "fixed", right: pos.right, bottom: pos.bottom,
-      zIndex: 9000, width: barW,
-      boxShadow: "0 4px 24px rgba(0,0,0,0.55)",
-      borderRadius: mini ? 24 : 14,
-      overflow: "visible",
-      transition: "width 0.25s ease",
-    }}>
-
-      {/* ── 제목 바 (드래그 핸들) ── */}
-      <div onMouseDown={onDragStart} style={{
-        background: "rgba(16,20,36,0.97)",
-        border: "1px solid rgba(255,255,255,0.12)",
-        borderRadius: mini ? 24 : "14px 14px 0 0",
-        display: "flex", alignItems: "center", gap: 6,
-        padding: "7px 10px",
-        cursor: "grab", userSelect: "none",
-        borderBottom: mini ? undefined : "1px solid rgba(255,255,255,0.08)",
-      }}>
-        <span style={{ fontSize: 15, flexShrink: 0 }}>▶️</span>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-            {current.title}
-          </div>
-          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-            {mini ? "🔊 재생 중" : current.sub}
-          </div>
-        </div>
-
-        {/* 큐 목록 토글 (항목 2개 이상일 때) */}
-        {YT_QUEUE.length > 1 && !mini && (
-          <button onClick={(e) => { e.stopPropagation(); setShowQueue(p => !p); }}
-            title="재생 목록"
-            style={{ ...btnStyle, fontSize: 14 }}>☰</button>
-        )}
-        {/* 이전 / 다음 (항목 2개 이상일 때) */}
-        {YT_QUEUE.length > 1 && (
-          <>
-            <button onClick={(e) => { e.stopPropagation(); setQueueIdx(i => (i - 1 + YT_QUEUE.length) % YT_QUEUE.length); }}
-              style={btnStyle} title="이전">‹</button>
-            <button onClick={(e) => { e.stopPropagation(); setQueueIdx(i => (i + 1) % YT_QUEUE.length); }}
-              style={btnStyle} title="다음">›</button>
-          </>
-        )}
-        {/* 크기 전환 */}
-        {!mini && (
-          <button onClick={(e) => { e.stopPropagation(); setSizeIdx(i => (i + 1) % 3); }}
-            style={{ ...btnStyle, background: "rgba(255,255,255,0.08)", fontWeight: 700, fontSize: 10, color: "#fff", padding: "3px 6px", borderRadius: 7 }}>
-            {YT_SIZES[sizeIdx].label}
-          </button>
-        )}
-        {/* 최소화 / 복원 */}
-        <button onClick={(e) => { e.stopPropagation(); setMini(p => !p); }}
-          title={mini ? "영상 펼치기" : "오디오만"} style={btnStyle}>
-          {mini ? "⬜" : "⬛"}
-        </button>
-        {/* 닫기 */}
-        <button onClick={(e) => { e.stopPropagation(); setActive(false); }} style={btnStyle}>✕</button>
-      </div>
-
-      {/* ── 큐 드롭다운 ── */}
-      {showQueue && !mini && (
+    <>
+      {/* ── 곡 신청 모달 ── */}
+      {showRequest && (
         <div style={{
-          background: "rgba(16,20,36,0.97)",
-          borderLeft: "1px solid rgba(255,255,255,0.1)",
-          borderRight: "1px solid rgba(255,255,255,0.1)",
-          maxHeight: 160, overflowY: "auto",
+          position: "fixed", right: pos.right,
+          bottom: pos.bottom + (mini ? 40 : h + 72),
+          zIndex: 9001, width: Math.max(barW, 280),
+          background: "rgba(16,20,36,0.98)", border: "1px solid rgba(255,255,255,0.15)",
+          borderRadius: 14, padding: 14, boxShadow: "0 4px 28px rgba(0,0,0,0.7)",
         }}>
-          {YT_QUEUE.map((item, i) => (
-            <div key={i}
-              onClick={() => { setQueueIdx(i); setShowQueue(false); }}
-              style={{
-                padding: "7px 12px", cursor: "pointer",
-                background: i === queueIdx ? "rgba(255,255,255,0.1)" : "transparent",
-                display: "flex", alignItems: "center", gap: 8,
-                borderBottom: "1px solid rgba(255,255,255,0.05)",
-              }}>
-              <span style={{ fontSize: 12 }}>{i === queueIdx ? "▶" : "○"}</span>
-              <div>
-                <div style={{ fontSize: 11, fontWeight: 600, color: i === queueIdx ? "#fff" : "rgba(255,255,255,0.7)", fontFamily: "Manrope,sans-serif" }}>{item.title}</div>
-                <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.35)", fontFamily: "Manrope,sans-serif" }}>{item.sub}</div>
-              </div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: "#fff", fontFamily: "Manrope,sans-serif" }}>곡 신청</span>
+            <button onClick={() => { setShowRequest(false); setReqStatus("idle"); }} style={btnStyle}>✕</button>
+          </div>
+          {reqStatus === "success" ? (
+            <div style={{ textAlign: "center", padding: "16px 0" }}>
+              <div style={{ fontSize: 13, color: "rgba(110,231,183,1)", fontFamily: "Manrope,sans-serif", marginTop: 4 }}>신청되었습니다!</div>
+              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", fontFamily: "Manrope,sans-serif", marginTop: 4 }}>검토 후 신청곡 탭에서 재생됩니다.</div>
             </div>
-          ))}
-
-          {/* 예약 스케줄 표시 */}
-          {YT_SCHEDULE.length > 0 && (
-            <div style={{ padding: "6px 12px", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-              <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", marginBottom: 4, fontFamily: "Manrope,sans-serif" }}>⏰ 예약 재생</div>
-              {YT_SCHEDULE.map((s, i) => {
-                const days = ["일","월","화","수","목","금","토"];
-                const dayLabel = s.day === "daily" ? "매일" : `${days[s.day as number]}요일`;
-                return (
-                  <div key={i} style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", fontFamily: "Manrope,sans-serif", marginBottom: 2 }}>
-                    {dayLabel} {String(s.hour).padStart(2,"0")}:{String(s.minute).padStart(2,"0")} — {s.label}
-                  </div>
-                );
-              })}
-            </div>
+          ) : (
+            <>
+              {(["url","name","message"] as const).map((field, fi) => (
+                <input key={fi} type="text"
+                  placeholder={field === "url" ? "YouTube 링크 (필수)" : field === "name" ? "이름 (선택)" : "메모 (선택)"}
+                  value={reqForm[field]}
+                  onChange={e => setReqForm(p => ({ ...p, [field]: e.target.value }))}
+                  style={{ width: "100%", boxSizing: "border-box", padding: "7px 10px", marginBottom: 7, borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.06)", color: "#fff", fontSize: 11, fontFamily: "Manrope,sans-serif", outline: "none" }}
+                />
+              ))}
+              <select value={reqForm.timePref} onChange={e => setReqForm(p => ({ ...p, timePref: e.target.value }))}
+                style={{ width: "100%", boxSizing: "border-box", padding: "7px 10px", marginBottom: 10, borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(16,20,36,0.97)", color: "rgba(255,255,255,0.7)", fontSize: 11, fontFamily: "Manrope,sans-serif", outline: "none" }}>
+                {["언제나","새벽 (5-7시)","아침 (9-11시)","오후 (1-5시)","저녁 (7-10시)"].map(t => <option key={t} value={t}>{t}</option>)}
+              </select>
+              <button onClick={submitRequest} disabled={reqStatus === "loading" || !reqForm.url.trim()}
+                style={{ width: "100%", padding: "8px", borderRadius: 8, border: "none", cursor: reqForm.url.trim() ? "pointer" : "not-allowed", background: reqForm.url.trim() ? "rgba(110,231,183,0.85)" : "rgba(255,255,255,0.1)", color: reqForm.url.trim() ? "#0d1117" : "rgba(255,255,255,0.3)", fontSize: 12, fontWeight: 700, fontFamily: "Manrope,sans-serif" }}>
+                {reqStatus === "loading" ? "신청 중..." : "신청하기"}
+              </button>
+              {reqStatus === "error" && <div style={{ fontSize: 10, color: "#f87171", textAlign: "center", marginTop: 6, fontFamily: "Manrope,sans-serif" }}>오류가 발생했습니다. 다시 시도해주세요.</div>}
+            </>
           )}
         </div>
       )}
 
-      {/* ── YouTube iframe (항상 마운트 → 오디오 유지) ── */}
+      {/* ── 메인 플레이어 ── */}
       <div style={{
-        width: mini ? 1 : w, height: mini ? 1 : h,
-        overflow: "hidden", opacity: mini ? 0 : 1,
-        transition: "opacity 0.2s, width 0.25s, height 0.25s",
-        borderRadius: "0 0 14px 14px", background: "#000",
-        pointerEvents: mini ? "none" : "auto",
-        position: mini ? "absolute" : "relative",
+        position: "fixed", right: pos.right, bottom: pos.bottom,
+        zIndex: 9000, width: barW,
+        boxShadow: "0 4px 24px rgba(0,0,0,0.55)",
+        borderRadius: mini ? 24 : 14,
+        overflow: "visible",
+        transition: "width 0.25s ease",
       }}>
-        <iframe
-          key={queueIdx}
-          src={ytSrc}
-          width={w} height={h}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          style={{ border: "none", display: "block" }}
-          title={current.title}
-        />
+
+        {/* 장르 탭 */}
+        {!mini && (
+          <div style={{
+            background: "rgba(16,20,36,0.97)", border: "1px solid rgba(255,255,255,0.12)",
+            borderBottom: "none", borderRadius: "14px 14px 0 0",
+            display: "flex", gap: 2, padding: "6px 8px 0",
+            overflowX: "auto", scrollbarWidth: "none" as const,
+          }}>
+            {MUSIC_GENRES.map(g => (
+              <button key={g.id} onClick={() => { setActiveGenre(g.id); setReqIdx(0); }}
+                style={{
+                  background: activeGenre === g.id ? "rgba(110,231,183,0.15)" : "none",
+                  border: "none", borderBottom: activeGenre === g.id ? "2px solid rgba(110,231,183,0.8)" : "2px solid transparent",
+                  cursor: "pointer", whiteSpace: "nowrap" as const,
+                  padding: "4px 8px 5px", fontSize: 10,
+                  fontWeight: activeGenre === g.id ? 700 : 500,
+                  color: activeGenre === g.id ? "rgba(110,231,183,1)" : ((!g.ytId && g.id !== "request") ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.55)"),
+                  fontFamily: "Manrope,sans-serif", borderRadius: "6px 6px 0 0",
+                }}>
+                {g.label}
+                {g.id === "request" && communityQueue.length > 0 ? ` ${communityQueue.length}` : ""}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* 제목 바 (드래그 핸들) */}
+        <div onMouseDown={onDragStart} style={{
+          background: "rgba(16,20,36,0.97)",
+          border: "1px solid rgba(255,255,255,0.12)",
+          borderTop: mini ? undefined : "none",
+          borderRadius: mini ? 24 : 0,
+          display: "flex", alignItems: "center", gap: 6,
+          padding: "7px 10px", cursor: "grab", userSelect: "none" as const,
+          borderBottom: mini ? undefined : "1px solid rgba(255,255,255,0.08)",
+        }}>
+          <span style={{ fontSize: 13, flexShrink: 0 }}>▶</span>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" as const, overflow: "hidden", textOverflow: "ellipsis" }}>
+              {curGenre.label}
+              {activeGenre === "request" && communityQueue.length > 0
+                ? ` — ${communityQueue[reqIdx % communityQueue.length]?.requester_name || "익명"}`
+                : ""}
+            </div>
+            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", fontFamily: "Manrope,sans-serif" }}>
+              {mini ? "재생 중" : "Hebron Music"}
+            </div>
+          </div>
+
+          {/* 곡 신청 버튼 */}
+          <button onClick={(e) => { e.stopPropagation(); setShowRequest(p => !p); setReqStatus("idle"); }}
+            title="곡 신청" style={{ ...btnStyle, fontWeight: 700, fontSize: 16, color: showRequest ? "rgba(110,231,183,0.9)" : "rgba(255,255,255,0.5)" }}>+</button>
+
+          {/* 신청곡 이전/다음 */}
+          {activeGenre === "request" && communityQueue.length > 1 && (
+            <>
+              <button onClick={(e) => { e.stopPropagation(); setReqIdx(i => (i - 1 + communityQueue.length) % communityQueue.length); }} style={btnStyle}>‹</button>
+              <button onClick={(e) => { e.stopPropagation(); setReqIdx(i => (i + 1) % communityQueue.length); }} style={btnStyle}>›</button>
+            </>
+          )}
+
+          {/* 크기 전환 */}
+          {!mini && (
+            <button onClick={(e) => { e.stopPropagation(); setSizeIdx(i => (i + 1) % 3); }}
+              style={{ ...btnStyle, background: "rgba(255,255,255,0.08)", fontWeight: 700, fontSize: 10, color: "#fff", padding: "3px 6px", borderRadius: 7 }}>
+              {YT_SIZES[sizeIdx].label}
+            </button>
+          )}
+          <button onClick={(e) => { e.stopPropagation(); setMini(p => !p); }} title={mini ? "영상 펼치기" : "오디오만"} style={btnStyle}>
+            {mini ? "□" : "▬"}
+          </button>
+          <button onClick={(e) => { e.stopPropagation(); setActive(false); }} style={btnStyle}>✕</button>
+        </div>
+
+        {/* YouTube iframe */}
+        <div style={{
+          width: mini ? 1 : w, height: mini ? 1 : h,
+          overflow: "hidden", opacity: mini ? 0 : 1,
+          transition: "opacity 0.2s, width 0.25s, height 0.25s",
+          borderRadius: "0 0 14px 14px", background: "#000",
+          pointerEvents: mini ? "none" : "auto",
+          position: mini ? "absolute" : "relative",
+        }}>
+          {ytSrc ? (
+            <iframe key={activeGenre + reqIdx} src={ytSrc} width={w} height={h}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen style={{ border: "none", display: "block" }} title={curGenre.label} />
+          ) : (
+            <div style={{ width: w, height: h, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" as const, gap: 8 }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", fontFamily: "Manrope,sans-serif", textAlign: "center" as const, padding: "0 16px" }}>
+                {activeGenre === "request" ? "신청곡이 없습니다. + 버튼으로 신청해보세요!" : "콘텐츠 준비 중입니다."}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
