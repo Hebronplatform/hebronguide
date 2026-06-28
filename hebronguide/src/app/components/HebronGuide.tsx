@@ -15458,8 +15458,6 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                           const hasInfo = !!(sbDesc || (c as any).website);
                           const enriched = {
                             ...c,
-                            phone: undefined,   // 목사 개인 연락처 공개 차단
-                            email: undefined,   // 목사 개인 이메일 공개 차단
                             desc: c.desc || sbDesc ||
                               (lang === "ko" ? "📋 목사님, 교회 정보를 업데이트해주세요 →" : "📋 Pastor, please update your church info →"),
                           };
