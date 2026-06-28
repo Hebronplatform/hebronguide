@@ -12177,7 +12177,9 @@ const MUSIC_GENRES: MusicGenre[] = [
   ]},
   { id: "meditation",label: "묵상",   items: [] },
   { id: "gospel",    label: "성가",   items: [] },
-  { id: "ccm",       label: "CCM",    items: [] },
+  { id: "ccm",       label: "CCM",    items: [
+    { type: "playlist", id: "PLHl4MfXsebn1E8TdmjP-hZSkX8cDk7vV3", sub: "Bloom Again Music" },
+  ]},
   { id: "children",  label: "어린이", items: [] },
   { id: "jazz",      label: "Jazz",   items: [
     { type: "video",    id: "vHJ_qxHaz5Y", sub: "Vintage Attic Jazz" },
