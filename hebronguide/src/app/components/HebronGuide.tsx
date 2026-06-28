@@ -12183,7 +12183,7 @@ const MUSIC_GENRES: MusicGenre[] = [
   { id: "children",  label: "어린이", items: [] },
   { id: "jazz",      label: "Jazz",   items: [
     { type: "video",    id: "vHJ_qxHaz5Y", sub: "Vintage Attic Jazz" },
-    { type: "video",    id: "R-WGkU31ifQ", sub: "오일권 목사" },
+    { type: "video",    id: "R-WGkU31ifQ", sub: "" },
   ]},
   { id: "request",   label: "신청곡", items: [] },
 ];
