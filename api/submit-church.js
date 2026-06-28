@@ -25,6 +25,40 @@ const CULT_KEYWORDS = [
   "Church of Jesus Christ of Latter", "Mormon",
 ];
 
+// ── 도시 슬러그 정규화 ───────────────────────────────
+function normalizeCitySlug(input) {
+  if (!input) return input;
+  const map = {
+    '서울':'seoul','남양주':'seoul','의정부':'seoul','분당':'bundang',
+    'la':'la','l.a.':'la','로스앤젤레스':'la','los angeles':'la','치노밸리':'la','chino valley':'la',
+    'seattle':'seattle','시애틀':'seattle',
+    'dallas':'dallas','달라스':'dallas','dfw':'dallas',
+    'new york':'newyork','newyork':'newyork','nyc':'newyork','뉴욕':'newyork',
+    'houston':'houston','휴스턴':'houston',
+    'atlanta':'atlanta','애틀랜타':'atlanta',
+    'miami':'miami','마이애미':'miami',
+    'philadelphia':'philadelphia','필라델피아':'philadelphia',
+    'boston':'boston','보스턴':'boston',
+    'nashville':'nashville','내쉬빌':'nashville',
+    'san francisco':'sf','sf':'sf','샌프란시스코':'sf',
+    'kansas city':'kansascity','캔자스시티':'kansascity',
+    'tampa':'tampa','탬파':'tampa',
+    'fairfield':'fairfield','페어필드':'fairfield','vacaville':'fairfield',
+    'waynesville':'waynesville','웨인즈빌':'waynesville',
+    'chicago':'chicago','시카고':'chicago',
+    'dc':'dc','washington':'dc','washington dc':'dc',
+    'fairfax':'dc','페어팩스':'dc','페어펙스':'dc',
+    'virginia':'dc','maryland':'dc','메릴랜드':'dc','워싱턴':'dc',
+    'toronto':'toronto','토론토':'toronto',
+    'vancouver':'vancouver','밴쿠버':'vancouver',
+    'white rock':'vancouver','화이트락':'vancouver',
+    'prince george':'princgeorge','prince george, bc':'princgeorge','프린스조지':'princgeorge',
+    'bogota':'bogota','bogotá':'bogota','보고타':'bogota',
+  };
+  const key = input.trim().toLowerCase();
+  return map[key] || key.replace(/[^a-z0-9]/g,'').replace('princegeorge','princgeorge') || input;
+}
+
 // ── 공인 교단 (자동 승인 강화) ───────────────────────
 const APPROVED_DENOMS = [
   "SBC", "침례교", "Baptist",
@@ -171,16 +205,15 @@ export default async function handler(req, res) {
     const item = {
       category:     "church",
       type:         "churches",
-      city_slug:    city,
+      city_slug:    normalizeCitySlug(city) || city,
       emoji:        "⛪",
       name:         churchName,
       name_en:      churchNameEn || churchName,
-      description:  buildDesc({ pastor, address, serviceTimes, website, kakao, description }),
+      description:  buildDesc({ denomination, pastor, address, serviceTimes, website, kakao, description }),
       pastor:       pastor || null,
       phone:        phone || null,
       email:        email || null,
       website:      website || null,
-      denomination: denomination || null,
       status:       "approved",
       submitted_at: new Date().toISOString(),
     };
@@ -237,16 +270,15 @@ export default async function handler(req, res) {
   await saveToSupabase({
     category:     "church",
     type:         "churches",
-    city_slug:    city,
+    city_slug:    normalizeCitySlug(city) || city,
     emoji:        "⛪",
     name:         churchName,
     name_en:      churchNameEn || churchName,
-    description:  buildDesc({ pastor, address, serviceTimes, website, kakao, description }),
+    description:  buildDesc({ denomination, pastor, address, serviceTimes, website, kakao, description }),
     pastor:       pastor || null,
     phone:        phone || null,
     email:        email || null,
     website:      website || null,
-    denomination: denomination || null,
     status:       "pending",
     submitted_at: new Date().toISOString(),
   });
@@ -356,26 +388,16 @@ async function notifyAdmin({ level, churchName, denomination, city,
   });
 }
 
-// ── 헬퍼: desc 포맷 ─────────────────────────────────
-function buildDesc({ pastor, address, serviceTimes, website, kakao, description }) {
-  const lines = ["✅ 게시됨"];
-  if (pastor) lines.push(`👤 ${pastor} 목사`);
-  if (address) lines.push(`📍 ${address}`);
-  if (serviceTimes) lines.push(`⛪ ${serviceTimes}`);
-  if (description) lines.push(description);
-  if (website) lines.push(`🔗 ${website}`);
-  if (kakao) lines.push(`💬 ${kakao}`);
-  return lines.join("\n");
-}
-
-function buildDescEn({ pastor, address, serviceTimes, website, kakao, description }) {
-  const lines = ["✅ Verified"];
-  if (pastor) lines.push(`👤 Pastor ${pastor}`);
-  if (address) lines.push(`📍 ${address}`);
-  if (serviceTimes) lines.push(`⛪ ${serviceTimes}`);
-  if (description) lines.push(description);
-  if (website) lines.push(`🔗 ${website}`);
-  if (kakao) lines.push(`💬 ${kakao}`);
+// ── 헬퍼: desc 포맷 (admin.html autoAddChurch가 파싱 가능한 구조) ─
+function buildDesc({ denomination, pastor, address, serviceTimes, website, kakao, description }) {
+  const lines = [];
+  if (denomination) lines.push(`교단: ${denomination}`);
+  if (pastor)       lines.push(`담임목사: ${pastor}`);
+  if (address)      lines.push(`주소: ${address}`);
+  if (serviceTimes) lines.push(`예배시간: ${serviceTimes}`);
+  if (description)  lines.push(description);
+  if (website && website !== '없음') lines.push(`웹사이트: ${website}`);
+  if (kakao)        lines.push(`카카오: ${kakao}`);
   return lines.join("\n");
 }
 

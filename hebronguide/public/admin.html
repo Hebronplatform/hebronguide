@@ -945,7 +945,7 @@
         renderCommunity(allData)
       } else if (tab === 'churches') {
         const { data: churchData } = await sbMain.from('churches').select('*').order('created_at', { ascending: false }).limit(200)
-        const { data: appData } = await sbMain.from('community_items').select('*').eq('category', 'church').order('created_at', { ascending: false }).limit(100)
+        const { data: appData } = await sbMain.from('community_items').select('*').eq('category', 'church').neq('status', 'migrated').order('created_at', { ascending: false }).limit(100)
         allData = churchData || []
         renderChurches(allData, appData || [])
       } else if (tab === 'restaurants') {
@@ -982,23 +982,51 @@
   function renderCommunity(data) {
     if (!data.length) { setEmpty('커뮤니티 글이 없습니다'); return }
 
-    // 도시 신청 분리 표시
     const cityReqs = data.filter(r => r.category === 'city_request')
-    const others   = data.filter(r => r.category !== 'city_request')
+    const rest     = data.filter(r => r.category !== 'city_request')
+    const pending  = rest.filter(r => !r.status || r.status === 'pending')
+    const approved = rest.filter(r => r.status === 'approved')
 
-    document.getElementById('count-badge').textContent = `${data.length}개`
+    // 뱃지: 실제 검토 대기 건수만
+    document.getElementById('count-badge').textContent = `${pending.length + cityReqs.filter(r=>r.status!=='approved').length}개 대기`
 
+    function itemRow(r) {
+      return `<tr data-id="${r.id}" data-table="community_items" data-db="main" onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기">
+        <td>
+          <div class="cell-name">${esc(r.title || r.business_name || r.name || '(제목없음)')}</div>
+          <div class="cell-sub">${esc(r.category || r.type || '')}</div>
+        </td>
+        <td><div class="cell-desc">${esc((r.description || r.content || '').slice(0, 60))}${(r.description || r.content || '').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">더보기 →</span>' : ''}</div></td>
+        <td><span class="cell-city">${esc(r.city_slug || r.city || '—')}</span></td>
+        <td>
+          <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
+          <div class="cell-sub">${esc(r.website || r.url || '')}</div>
+        </td>
+        <td>
+          <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span>
+          ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">AI ${r.confidence_score}점${r.auto_approved ? ' · 자동' : ''}</div>` : ''}
+        </td>
+        <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
+        <td><div class="actions" onclick="event.stopPropagation()">
+          ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
+          ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
+          <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
+        </div></td>
+      </tr>`
+    }
+
+    // 도시 신청 섹션
     const cityReqHtml = cityReqs.length ? `
       <div style="margin-bottom:16px;padding:12px 16px;background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.3);border-radius:10px;">
-        <div style="font-size:.8rem;font-weight:700;color:#F97316;margin-bottom:8px;">🗺️ 도시 추가 신청 (${cityReqs.length}건)</div>
+        <div style="font-size:.8rem;font-weight:700;color:#F97316;margin-bottom:8px;">도시 추가 신청 (${cityReqs.length}건)</div>
         <table style="width:100%;">
           <thead><tr><th>신청 도시</th><th>신청자</th><th>내용</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
           <tbody>
             ${cityReqs.map(r => `
-              <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" style="cursor:pointer;" title="클릭하여 전체 내용 보기">
+              <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" style="cursor:pointer;">
                 <td><div class="cell-name" style="color:#F97316;">${esc(r.city || r.title || '—')}</div></td>
                 <td><div class="cell-contact">${esc(r.name || r.contact || '—')}</div></td>
-                <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;">더보기 →</span>' : ''}</div></td>
+                <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}</div></td>
                 <td><span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 확인' : r.status === 'rejected' ? '❌ 보류' : '⏳ 대기'}</span></td>
                 <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
                 <td><div class="actions" onclick="event.stopPropagation()">
@@ -1010,84 +1038,96 @@
         </table>
       </div>` : ''
 
-    document.getElementById('table-content').innerHTML = cityReqHtml + `
+    // 검토 대기 섹션
+    const pendingHtml = pending.length ? `
+      <div style="padding:14px 16px 8px;background:rgba(251,191,36,.07);border-bottom:1px solid rgba(251,191,36,.18);">
+        <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--yellow);">⏳ 검토 대기 — ${pending.length}건</span>
+      </div>
       <table>
-        <thead><tr>
-          <th>제목·이름</th><th>내용</th><th>도시</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th>
-        </tr></thead>
-        <tbody>
-          ${others.map(r => `
-            <tr data-id="${r.id}" data-table="community_items" data-db="main" onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기">
-              <td>
-                <div class="cell-name">${esc(r.title || r.business_name || r.name || '(제목없음)')}</div>
-                <div class="cell-sub">${esc(r.category || r.type || '')}</div>
-              </td>
-              <td><div class="cell-desc">${esc((r.description || r.content || '').slice(0, 60))}${(r.description || r.content || '').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">더보기 →</span>' : ''}</div></td>
-              <td><span class="cell-city">${esc(r.city_slug || r.city || '—')}</span></td>
-              <td>
-                <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
-                <div class="cell-sub">${esc(r.website || r.url || '')}</div>
-              </td>
-              <td>
-                <span class="status ${r.status || 'community'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '💬 커뮤니티'}</span>
-                ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
-                ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">🤖 AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
-              </td>
-              <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
-              <td><div class="actions" onclick="event.stopPropagation()">
-                ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
-                ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
-                <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
-              </div></td>
-            </tr>`).join('')}
-        </tbody>
-      </table>`
+        <thead><tr><th>제목·이름</th><th>내용</th><th>도시</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
+        <tbody>${pending.map(itemRow).join('')}</tbody>
+      </table>` : ''
+
+    // 승인 완료 콘텐츠 (접힘 처리)
+    const approvedHtml = approved.length ? `
+      <details style="margin-top:12px;">
+        <summary style="padding:12px 16px;background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.12);border-radius:8px;cursor:pointer;font-size:.72rem;font-weight:700;color:var(--green);list-style:none;">
+          ✅ 게시 중인 콘텐츠 — ${approved.length}건 (클릭하여 펼치기)
+        </summary>
+        <table style="margin-top:4px;">
+          <thead><tr><th>제목·이름</th><th>내용</th><th>도시</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
+          <tbody>${approved.map(itemRow).join('')}</tbody>
+        </table>
+      </details>` : ''
+
+    document.getElementById('table-content').innerHTML = cityReqHtml + (pending.length || approved.length ? pendingHtml + approvedHtml : '<div style="padding:32px;text-align:center;color:var(--muted);">검토 대기 항목 없음</div>')
   }
 
   // ── 교회 렌더링 (등록 교회 + 신청 대기) ─────────────────
   function renderChurches(data, applications) {
-    const totalCount = data.length + (applications ? applications.length : 0)
-    if (!totalCount) { setEmpty('등록된 교회가 없습니다'); return }
+    const apps = applications || []
+    const pending  = apps.filter(r => r.status === 'pending' || !r.status)
+    const approved = apps.filter(r => r.status === 'approved')
+    const rejected = apps.filter(r => r.status === 'rejected')
+
+    const totalCount = data.length + pending.length
+    if (!totalCount && !apps.length) { setEmpty('등록된 교회가 없습니다'); return }
     document.getElementById('count-badge').textContent = `${totalCount}개`
 
-    const appSection = applications && applications.length ? `
-      <div style="padding:14px 16px 8px;background:rgba(201,162,39,.07);border-bottom:1px solid rgba(201,162,39,.18);">
-        <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--gold);text-transform:uppercase;">
-          ⏳ 교회 파트너 신청 대기 — ${applications.length}건
+    function appRows(list) {
+      return list.map(r => `
+        <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기" style="background:rgba(201,162,39,.03)">
+          <td>
+            <div class="cell-name">${esc(r.name || '(이름없음)')}</div>
+            <div class="cell-sub">${esc(r.category || '')}</div>
+          </td>
+          <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">더보기 →</span>' : ''}</div></td>
+          <td><span class="cell-city">${esc(r.city_slug || r.city || '—')}</span></td>
+          <td>
+            <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
+            <div class="cell-sub">${esc(r.email || '')}</div>
+          </td>
+          <td>
+            <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span>
+            ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
+            ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
+          </td>
+          <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
+          <td><div class="actions" onclick="event.stopPropagation()">
+            ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
+            ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
+            <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
+          </div></td>
+        </tr>`).join('')
+    }
+
+    // 대기 섹션 (pending만)
+    const pendingSection = pending.length ? `
+      <div style="padding:14px 16px 8px;background:rgba(251,191,36,.07);border-bottom:1px solid rgba(251,191,36,.18);">
+        <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--yellow);">
+          ⏳ 검토 대기 — ${pending.length}건
         </span>
         <span style="font-size:.7rem;color:var(--muted);margin-left:8px;">행을 클릭하면 전체 내용 확인</span>
       </div>
       <table>
-        <thead><tr>
-          <th>이름·교회명</th><th>내용</th><th>도시·주소</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th>
-        </tr></thead>
-        <tbody>
-          ${applications.map(r => `
-            <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기" style="background:rgba(201,162,39,.03)">
-              <td>
-                <div class="cell-name">${esc(r.name || '(이름없음)')}</div>
-                <div class="cell-sub">${esc(r.category || '')}</div>
-              </td>
-              <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">더보기 →</span>' : ''}</div></td>
-              <td><span class="cell-city">${esc(r.city_slug || r.city || '—')}</span></td>
-              <td>
-                <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
-                <div class="cell-sub">${esc(r.contact || '')}</div>
-              </td>
-              <td>
-                <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '✅ 승인' : r.status === 'rejected' ? '❌ 거절' : '⏳ 대기'}</span>
-                ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
-                ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">🤖 AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
-              </td>
-              <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
-              <td><div class="actions" onclick="event.stopPropagation()">
-                ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">✅ 승인</button>` : ''}
-                ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">❌ 거절</button>` : ''}
-                <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
-              </div></td>
-            </tr>`).join('')}
-        </tbody>
+        <thead><tr><th>이름·교회명</th><th>내용</th><th>도시·주소</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
+        <tbody>${appRows(pending)}</tbody>
       </table>` : ''
+
+    // 최근 승인 섹션 (approved, 접을 수 있게)
+    const approvedSection = approved.length ? `
+      <div style="padding:14px 16px 8px;background:rgba(74,222,128,.05);border-bottom:1px solid rgba(74,222,128,.12);">
+        <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--green);">
+          ✅ 최근 승인 완료 — ${approved.length}건
+        </span>
+        <span style="font-size:.7rem;color:var(--muted);margin-left:8px;">아래 "등록 교회"에 이미 반영됨</span>
+      </div>
+      <table>
+        <thead><tr><th>이름·교회명</th><th>내용</th><th>도시·주소</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
+        <tbody>${appRows(approved)}</tbody>
+      </table>` : ''
+
+    const appSection = pendingSection + approvedSection
 
     const churchSection = data.length ? `
       ${applications && applications.length ? `<div style="padding:14px 16px 8px;background:rgba(110,231,183,.05);border-top:1px solid rgba(110,231,183,.12);border-bottom:1px solid rgba(255,255,255,.05);">
@@ -1494,78 +1534,111 @@
       }
       const nameKo  = get('교회명\\(KO\\)') || get('교회명') || row.name || ''
       const nameEn  = get('교회명\\(EN\\)') || nameKo
-      const pastor  = get('담임목사\\(KO\\)') || get('담임목사') || ''
-      const pastorEn= get('담임목사\\(EN\\)') || pastor
-      const city    = get('도시') || row.city_slug || ''
+      const pastor  = get('담임목사\\(KO\\)') || get('담임목사') || row.pastor || ''
+      const city    = get('도시슬러그') || get('도시') || row.city_slug || ''
       const phone   = get('전화') || row.phone || ''
-      const email   = get('이메일') || row.contact || ''
-      const website = get('웹사이트') || ''
+      const email   = get('이메일') || row.email || ''      // ← row.contact → row.email
+      const website = get('웹사이트') || get('홈페이지') || row.website || ''
       const denom   = get('교단') || ''
       const service = get('예배시간') || ''
-      const intro   = desc.split('소개:')[1]?.trim() || ''
-      const hebron  = /Hebron.*협력교회.*✅|✅.*Hebron/.test(desc)
-      const hcmi    = /가정교회.*✅|HCMI.*✅|✅.*HCMI/.test(desc)
+      const hebron  = /Hebron.*협력교회.*✅|✅.*Hebron/i.test(desc) || Array.isArray(row.tags) && row.tags.includes('hebron_partner')
+      const hcmi    = /가정교회.*✅|HCMI.*✅|✅.*HCMI/i.test(desc)  || Array.isArray(row.tags) && row.tags.includes('hcmi')
 
-      // 한글 도시명 → slug 변환 맵 (구형 신청서 / 직접 입력 대응)
-      const churchCitySlugMap = {
-        '서울':'seoul','부산':'busan','제주':'jeju',
-        '시애틀':'seattle','달라스':'dallas','다라스':'dallas',
-        '뉴욕':'newyork','뉴저지':'newyork',
-        '로스앤젤레스':'la','엘에이':'la','l.a.':'la','la':'la',
-        '샌프란시스코':'sf','베이에어리어':'sf',
-        '휴스턴':'houston','애틀랜타':'atlanta',
-        '워싱턴':'dc','워싱턴dc':'dc','페어팩스':'dc','센터빌':'dc','버지니아':'dc','노던버지니아':'dc',
-        '시카고':'chicago','보스턴':'boston','내쉬빌':'nashville',
-        '마이애미':'miami','캔자스시티':'kansascity','필라델피아':'philadelphia',
-        '피닉스':'phoenix','미니애폴리스':'minneapolis','덴버':'denver',
-        '샌디에고':'sandiego','토론토':'toronto',
-        '밴쿠버':'vancouver','화이트락':'vancouver','white rock':'vancouver','화이트 락':'vancouver',
-        '캘거리':'calgary','에드먼튼':'edmonton','오타와':'ottawa','위니펙':'winnipeg',
-        '프린스조지':'princgeorge','prince george':'princgeorge',
-        '시드니':'sydney','멜버른':'melbourne','브리즈번':'brisbane','오클랜드':'auckland',
-        '런던':'london','도쿄':'tokyo','오사카':'osaka','싱가포르':'singapore',
-        '방콕':'bangkok','두바이':'dubai','베를린':'berlin','프랑크푸르트':'frankfurt',
-        '파리':'paris','암스테르담':'amsterdam',
-        '멕시코시티':'mexicocity','과달라하라':'guadalajara','몬테레이':'monterrey',
+      // ── 도시 슬러그 정규화 ──────────────────────────────
+      const citySlugMap = {
+        '서울':'seoul','남양주':'seoul','의정부':'seoul','분당':'bundang','부산':'busan','제주':'jeju',
+        'la':'la','l.a.':'la','로스앤젤레스':'la','엘에이':'la','los angeles':'la',
+        '치노밸리':'la','chino valley':'la','chino hills':'la','inland empire':'la',
+        'seattle':'seattle','시애틀':'seattle',
+        'dallas':'dallas','달라스':'dallas','다라스':'dallas','dfw':'dallas',
+        'new york':'newyork','newyork':'newyork','nyc':'newyork','뉴욕':'newyork','뉴저지':'newyork',
+        'houston':'houston','휴스턴':'houston',
+        'atlanta':'atlanta','애틀랜타':'atlanta',
+        'miami':'miami','마이애미':'miami',
+        'philadelphia':'philadelphia','필라델피아':'philadelphia','philly':'philadelphia',
+        'boston':'boston','보스턴':'boston',
+        'nashville':'nashville','내쉬빌':'nashville',
+        'san francisco':'sf','sf':'sf','샌프란시스코':'sf','베이에어리어':'sf',
+        'kansas city':'kansascity','kansascity':'kansascity','캔자스시티':'kansascity',
+        'tampa':'tampa','탬파':'tampa',
+        'fairfield':'fairfield','페어필드':'fairfield','vacaville':'fairfield','fairfield/vacaville':'fairfield',
+        'waynesville':'waynesville','웨인즈빌':'waynesville',
+        'chicago':'chicago','시카고':'chicago',
+        'phoenix':'phoenix','피닉스':'phoenix',
+        'minneapolis':'minneapolis','미니애폴리스':'minneapolis',
+        'denver':'denver','덴버':'denver',
+        'san diego':'sandiego','sandiego':'sandiego','샌디에고':'sandiego',
+        'dc':'dc','washington':'dc','washington dc':'dc',
+        'fairfax':'dc','페어팩스':'dc','페어펙스':'dc',
+        'virginia':'dc','va':'dc','northern virginia':'dc','노던버지니아':'dc','버지니아':'dc',
+        'maryland':'dc','메릴랜드':'dc','워싱턴':'dc','워싱턴dc':'dc',
+        'centreville':'dc','센터빌':'dc',
+        'toronto':'toronto','토론토':'toronto',
+        'vancouver':'vancouver','밴쿠버':'vancouver',
+        'white rock':'vancouver','화이트락':'vancouver','화이트 락':'vancouver',
+        'calgary':'calgary','캘거리':'calgary',
+        'edmonton':'edmonton','에드먼튼':'edmonton',
+        'ottawa':'ottawa','오타와':'ottawa',
+        'winnipeg':'winnipeg','위니펙':'winnipeg',
+        'prince george':'princgeorge','prince george, bc':'princgeorge','프린스조지':'princgeorge',
+        'bogota':'bogota','bogotá':'bogota','보고타':'bogota',
+        'mexico city':'mexicocity','mexicocity':'mexicocity','멕시코시티':'mexicocity',
+        'guadalajara':'guadalajara','과달라하라':'guadalajara',
+        'monterrey':'monterrey','몬테레이':'monterrey',
+        'tokyo':'tokyo','도쿄':'tokyo','osaka':'osaka','오사카':'osaka',
+        'singapore':'singapore','싱가포르':'singapore',
+        'bangkok':'bangkok','방콕':'bangkok',
+        'dubai':'dubai','두바이':'dubai',
+        'london':'london','런던':'london',
+        'berlin':'berlin','베를린':'berlin',
+        'frankfurt':'frankfurt','프랑크푸르트':'frankfurt',
+        'paris':'paris','파리':'paris',
+        'amsterdam':'amsterdam','암스테르담':'amsterdam',
+        'sydney':'sydney','시드니':'sydney',
+        'melbourne':'melbourne','멜버른':'melbourne',
+        'brisbane':'brisbane','브리즈번':'brisbane',
+        'auckland':'auckland','오클랜드':'auckland',
       }
-      const cityLower = city.toLowerCase().trim()
-      const citySlug = churchCitySlugMap[cityLower]
+      const cityKey  = city.toLowerCase().trim()
+      const citySlug = citySlugMap[cityKey]
         || city.toLowerCase().replace(/[^a-z0-9]/g, '').replace('princegeorge', 'princgeorge')
         || ''
 
+      // community_items city_slug도 정규화 업데이트
+      if (citySlug && citySlug !== (row.city_slug || '').toLowerCase()) {
+        adminAction({ action: 'update_city_slug', id: row.id, city_slug: citySlug }).catch(() => {})
+      }
+
       const descText = [
-        '✅ 파트너 교회',
-        city ? `📍 ${city}` : '',
-        service ? `🕐 ${service}` : '',
-        phone ? `☎ ${phone}` : '',
-        email ? `✉️ ${email}` : '',
-        website && website !== '없음' ? `🔗 ${website}` : '',
-        pastor ? `✨ 담임: ${pastor} 목사` : '',
-        intro ? `\n${intro}` : '',
+        denom   ? `교단: ${denom}` : '',
+        pastor  ? `담임목사: ${pastor}` : '',
+        service ? `예배시간: ${service}` : '',
+        phone   ? `전화: ${phone}` : '',
+        email   ? `이메일: ${email}` : '',
+        website && website !== '없음' ? `웹사이트: ${website}` : '',
       ].filter(Boolean).join('\n')
 
       const churchData = {
-        name:        nameKo,
-        name_en:     nameEn,
-        city:        city,
-        city_slug:   citySlug,
-        description: descText,
-        pastor:      pastor,
-        pastor_en:   pastorEn,
-        phone:       phone,
-        email:       email,
-        website:     website && website !== '없음' ? website : '',
-        denomination:denom,
-        service_time:service,
+        name:           nameKo,
+        name_en:        nameEn,
+        city_slug:      citySlug,
+        description:    descText || desc,
+        phone,
+        email,
+        website:        website !== '없음' ? website : '',
+        denomination:   denom,
+        service_time:   service,
         hebron_partner: hebron,
-        hcmi:        hcmi,
-        tier:        2,
-        active:      true,
-        source:      'admin_approved',
-        source_id:   row.id,
+        hcmi,
+        tier:           (hebron || hcmi) ? 1 : 2,  // ← 항상 2였던 버그 수정
+        active:         true,
+        source:         'admin_approved',
+        source_id:      row.id,
       }
 
       await adminAction({ action: 'insert_church', church: churchData })
+      // 중복 표시 방지: community_items 상태를 'migrated'로 변경
+      await adminAction({ action: 'update_status', id: row.id, table: 'community_items', status: 'migrated' }).catch(() => {})
       toast(`⛪ ${nameKo} → churches 테이블 자동 등록 완료!`)
 
       // 파트너 교회에 확인 이메일 자동 발송

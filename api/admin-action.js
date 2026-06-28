@@ -33,6 +33,68 @@ const TABLE_DB = {
   cafes:            'new',
 }
 
+// ── 도시 슬러그 정규화 ─────────────────────────────────
+function normalizeCitySlug(input) {
+  if (!input) return '';
+  const map = {
+    '서울':'seoul','남양주':'seoul','의정부':'seoul','분당':'bundang',
+    '부산':'busan','제주':'jeju',
+    'la':'la','l.a.':'la','로스앤젤레스':'la','엘에이':'la',
+    'los angeles':'la','치노밸리':'la','chino valley':'la','chino hills':'la','inland empire':'la',
+    'seattle':'seattle','시애틀':'seattle',
+    'dallas':'dallas','달라스':'dallas','다라스':'dallas','dfw':'dallas',
+    'new york':'newyork','newyork':'newyork','nyc':'newyork','뉴욕':'newyork','뉴저지':'newyork',
+    'houston':'houston','휴스턴':'houston',
+    'atlanta':'atlanta','애틀랜타':'atlanta',
+    'miami':'miami','마이애미':'miami',
+    'philadelphia':'philadelphia','필라델피아':'philadelphia','philly':'philadelphia',
+    'boston':'boston','보스턴':'boston',
+    'nashville':'nashville','내쉬빌':'nashville',
+    'san francisco':'sf','sf':'sf','샌프란시스코':'sf','bay area':'sf','베이에어리어':'sf',
+    'kansas city':'kansascity','kansascity':'kansascity','캔자스시티':'kansascity',
+    'tampa':'tampa','탬파':'tampa',
+    'fairfield':'fairfield','페어필드':'fairfield','vacaville':'fairfield','fairfield/vacaville':'fairfield',
+    'waynesville':'waynesville','웨인즈빌':'waynesville',
+    'chicago':'chicago','시카고':'chicago',
+    'phoenix':'phoenix','피닉스':'phoenix',
+    'minneapolis':'minneapolis','미니애폴리스':'minneapolis',
+    'denver':'denver','덴버':'denver',
+    'san diego':'sandiego','sandiego':'sandiego','샌디에고':'sandiego',
+    'dc':'dc','washington':'dc','washington dc':'dc',
+    'fairfax':'dc','페어팩스':'dc','페어펙스':'dc',
+    'virginia':'dc','va':'dc','northern virginia':'dc','노던버지니아':'dc','버지니아':'dc',
+    'maryland':'dc','메릴랜드':'dc','워싱턴':'dc','워싱턴dc':'dc',
+    'centreville':'dc','센터빌':'dc','bethesda':'dc','rockville':'dc',
+    'toronto':'toronto','토론토':'toronto',
+    'vancouver':'vancouver','밴쿠버':'vancouver',
+    'white rock':'vancouver','화이트락':'vancouver','화이트 락':'vancouver',
+    'calgary':'calgary','캘거리':'calgary',
+    'edmonton':'edmonton','에드먼튼':'edmonton',
+    'ottawa':'ottawa','오타와':'ottawa',
+    'winnipeg':'winnipeg','위니펙':'winnipeg',
+    'prince george':'princgeorge','prince george, bc':'princgeorge','프린스조지':'princgeorge',
+    'bogota':'bogota','bogotá':'bogota','보고타':'bogota',
+    'mexico city':'mexicocity','mexicocity':'mexicocity','멕시코시티':'mexicocity',
+    'guadalajara':'guadalajara','과달라하라':'guadalajara',
+    'monterrey':'monterrey','몬테레이':'monterrey',
+    'tokyo':'tokyo','도쿄':'tokyo','osaka':'osaka','오사카':'osaka',
+    'singapore':'singapore','싱가포르':'singapore',
+    'bangkok':'bangkok','방콕':'bangkok',
+    'dubai':'dubai','두바이':'dubai',
+    'london':'london','런던':'london',
+    'berlin':'berlin','베를린':'berlin',
+    'frankfurt':'frankfurt','프랑크푸르트':'frankfurt',
+    'paris':'paris','파리':'paris',
+    'amsterdam':'amsterdam','암스테르담':'amsterdam',
+    'sydney':'sydney','시드니':'sydney',
+    'melbourne':'melbourne','멜버른':'melbourne',
+    'brisbane':'brisbane','브리즈번':'brisbane',
+    'auckland':'auckland','오클랜드':'auckland',
+  };
+  const key = input.trim().toLowerCase();
+  return map[key] || key.replace(/[^a-z0-9]/g, '').replace('princegeorge', 'princgeorge') || input;
+}
+
 async function sbFetch(table, method, id, body = null) {
   const db = TABLE_DB[table] || 'new'
   const url = `${SB_URLS[db]}/rest/v1/${table}?id=eq.${encodeURIComponent(id)}`
@@ -68,7 +130,7 @@ export default async function handler(req) {
   if (req.method !== 'POST') return new Response('Method not allowed', { status: 405, headers: CORS })
 
   try {
-    const { action, id, table, status, token, church, business } = await req.json()
+    const { action, id, table, status, token, church, business, city_slug } = await req.json()
 
     // ── 토큰 인증 ────────────────────────────────────────
     if (!token || token !== ADMIN_HASH) {
@@ -78,14 +140,14 @@ export default async function handler(req) {
     }
 
     // ── 입력값 검증 ──────────────────────────────────────
-    if (!['insert_church','insert_business','mark_notified'].includes(action) && (!id || !table)) {
+    if (!['insert_church','insert_business','mark_notified','update_city_slug'].includes(action) && (!id || !table)) {
       return new Response(JSON.stringify({ error: 'id, table 필수' }), {
         status: 400, headers: CORS
       })
     }
 
     // 허용 테이블 화이트리스트 (SQL 인젝션 방지) — 테이블 불필요 액션은 건너뜀
-    const NO_TABLE_ACTIONS = ['insert_church', 'insert_business', 'mark_notified']
+    const NO_TABLE_ACTIONS = ['insert_church', 'insert_business', 'mark_notified', 'update_city_slug']
     const ALLOWED_TABLES = ['community_items','content_items','pastor_partners','stories','content_reviews','churches','restaurants','cafes']
     if (!NO_TABLE_ACTIONS.includes(action) && !ALLOWED_TABLES.includes(table)) {
       return new Response(JSON.stringify({ error: `허용되지 않는 테이블: ${table}` }), {
@@ -122,38 +184,82 @@ export default async function handler(req) {
         if (!church || !church.name) {
           return new Response(JSON.stringify({ error: '교회 데이터 없음' }), { status: 400, headers: CORS })
         }
-        const serviceKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY
-        const insertRes = await fetch(`https://vextxqzggznulwpganwt.supabase.co/rest/v1/churches`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': serviceKey,
-            'Authorization': `Bearer ${serviceKey}`,
-            'Prefer': 'return=minimal',
-          },
+        const svcKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY
+        const SB = 'https://vextxqzggznulwpganwt.supabase.co'
+        const sbHeaders = {
+          'Content-Type': 'application/json',
+          'apikey': svcKey,
+          'Authorization': `Bearer ${svcKey}`,
+          'Prefer': 'return=minimal',
+        }
+
+        const slug      = normalizeCitySlug(church.city_slug || church.city || '')
+        const isPartner = church.hebron_partner || false
+        const isHcmi    = church.hcmi || false
+        const tier      = (isPartner || isHcmi) ? 1 : 2
+
+        // ── 이메일 기준 중복 체크 ──────────────────────────
+        let existingId  = null
+        let existingRec = null
+        const emailVal  = (church.email || '').trim()
+        if (emailVal && emailVal !== '없음' && emailVal.includes('@')) {
+          const chkRes = await fetch(
+            `${SB}/rest/v1/churches?email=eq.${encodeURIComponent(emailVal)}&select=id,hebron_partner,tier&limit=1`,
+            { headers: { apikey: svcKey, Authorization: `Bearer ${svcKey}` } }
+          )
+          if (chkRes.ok) {
+            const rows = await chkRes.json()
+            if (rows.length > 0) { existingId = rows[0].id; existingRec = rows[0] }
+          }
+        }
+
+        if (existingId) {
+          // ── 기존 교회 업데이트 (더 자세한 정보로 보강) ──
+          const patch = { city_slug: slug }
+          if (church.denomination)                              patch.denomination = church.denomination
+          if (church.service_time)                              patch.service_time = church.service_time
+          if (church.phone)                                     patch.phone        = church.phone
+          if (church.website && church.website !== '없음')      patch.website      = church.website
+          if (church.description)                               patch.description  = church.description
+          if (isPartner && !existingRec.hebron_partner)         patch.hebron_partner = true
+          if (isHcmi)                                           patch.hcmi         = true
+          if ((isPartner || isHcmi) && (existingRec.tier || 2) > 1) patch.tier    = 1
+          const upRes = await fetch(`${SB}/rest/v1/churches?id=eq.${existingId}`, {
+            method: 'PATCH', headers: sbHeaders, body: JSON.stringify(patch),
+          })
+          if (!upRes.ok) throw new Error(`교회 업데이트 실패 (${upRes.status}): ${await upRes.text()}`)
+          return new Response(JSON.stringify({ ok: true, msg: `${church.name} 기존 정보 업데이트`, updated: true }), { headers: CORS })
+        }
+
+        // ── 신규 교회 등록 ─────────────────────────────────
+        const insRes = await fetch(`${SB}/rest/v1/churches`, {
+          method: 'POST', headers: sbHeaders,
           body: JSON.stringify({
-            name:         church.name,
-            name_en:      church.name_en || church.name,
-            city_slug:    church.city_slug || '',
-            description:  church.description || '',
-            phone:        church.phone || '',
-            email:        church.email || '',
-            website:      church.website || '',
-            denomination: church.denomination || '',
-            service_time: church.service_time || '',
-            hebron_partner: church.hebron_partner || false,
-            hcmi:         church.hcmi || false,
-            tier:         church.tier || 2,
-            active:       true,
-            source:       church.source || 'admin_approved',
-            source_id:    church.source_id || null,
+            name:           church.name,
+            name_en:        church.name_en || church.name,
+            city_slug:      slug,
+            description:    church.description || '',
+            phone:          church.phone || '',
+            email:          emailVal,
+            website:        (church.website && church.website !== '없음') ? church.website : '',
+            denomination:   church.denomination || '',
+            service_time:   church.service_time || '',
+            hebron_partner: isPartner,
+            hcmi:           isHcmi,
+            tier,
+            active:         true,
+            source:         church.source || 'admin_approved',
+            source_id:      church.source_id || null,
           }),
         })
-        if (!insertRes.ok) {
-          const errText = await insertRes.text()
-          throw new Error(`교회 저장 실패 (${insertRes.status}): ${errText}`)
-        }
+        if (!insRes.ok) throw new Error(`교회 저장 실패 (${insRes.status}): ${await insRes.text()}`)
         return new Response(JSON.stringify({ ok: true, msg: `${church.name} 등록 완료` }), { headers: CORS })
+      }
+
+      case 'update_city_slug': {
+        if (!id) return new Response(JSON.stringify({ error: 'id 필수' }), { status: 400, headers: CORS })
+        await sbFetch('community_items', 'PATCH', id, { city_slug: normalizeCitySlug(city_slug || '') || city_slug })
+        return new Response(JSON.stringify({ ok: true, msg: 'city_slug 업데이트 완료' }), { headers: CORS })
       }
 
       case 'insert_business': {
