@@ -12173,7 +12173,7 @@ type MusicGenre = { id: string; label: string; items: GenreItem[] };
 
 const MUSIC_GENRES: MusicGenre[] = [
   { id: "praise",    label: "찬양",   items: [
-    { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "헤브론 추천곡" },
+    { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "" },
   ]},
   { id: "meditation",label: "묵상",   items: [
     { type: "playlist", id: "PLHl4MfXsebn1E8TdmjP-hZSkX8cDk7vV3", sub: "Bloom Again Music" },
