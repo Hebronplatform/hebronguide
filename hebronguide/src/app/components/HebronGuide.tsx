@@ -12175,11 +12175,11 @@ const MUSIC_GENRES: MusicGenre[] = [
   { id: "praise",    label: "찬양",   items: [
     { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "헤브론 추천곡" },
   ]},
-  { id: "meditation",label: "묵상",   items: [] },
-  { id: "gospel",    label: "성가",   items: [] },
-  { id: "ccm",       label: "CCM",    items: [
+  { id: "meditation",label: "묵상",   items: [
     { type: "playlist", id: "PLHl4MfXsebn1E8TdmjP-hZSkX8cDk7vV3", sub: "Bloom Again Music" },
   ]},
+  { id: "gospel",    label: "성가",   items: [] },
+  { id: "ccm",       label: "CCM",    items: [] },
   { id: "children",  label: "어린이", items: [] },
   { id: "jazz",      label: "Jazz",   items: [
     { type: "video",    id: "vHJ_qxHaz5Y", sub: "Vintage Attic Jazz" },
