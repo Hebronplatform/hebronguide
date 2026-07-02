@@ -20,6 +20,10 @@
 HebronGuide 등재 업소 중 공식 웹사이트가 없는 한인 업소에 제작 서비스 제안.  
 업소는 HebronGuide에 등재 + 자체 웹사이트 확보. HebronGuide는 제작 수익 확보.
 
+> **⭐ 플래그십 확장 — 한인회 디지털 네트워크**: 웹제작 서비스의 최상급 쐐기는 **한인회 홈페이지**다.
+> 페더럴웨이 한인회(2026-07)를 플래그십으로 전국 한인회 네트워크로 확장 → HebronGuide가 허브.
+> 상세 정본: [`KOREAN_ASSOCIATION_NETWORK.md`](KOREAN_ASSOCIATION_NETWORK.md)
+
 **서비스 패키지**
 
 | 패키지 | 포함 내용 | 가격 |
