@@ -12622,6 +12622,64 @@ function GrowthShareSection({ lang }: { lang: string }) {
         </div>
       </button>
 
+      {/* 이 도시 소식 (광고·소식) — 큐레이션과 분리, 동시 최대 3개 */}
+      <CityNewsSection lang={ko ? "ko" : "en"} />
+
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   이 도시 소식 (광고·소식) — 파트너 광고 자동 게시 표시
+   · community_items(type=citynews) — 해당 도시 + 전 도시('all')
+   · 동시 최대 3개 노출, 종료일 지난 광고는 ContentContext에서 이미 제외
+───────────────────────────────────────── */
+function CityNewsSection({ lang }: { lang: string }) {
+  const ko = lang === "ko";
+  const { content: serverContent } = useContent();
+  const items = serverContent["citynews"]
+    ? resolvePlaceItems(serverContent["citynews"] as any, lang).slice(0, 3)
+    : [];
+  if (items.length === 0) return null;
+
+  return (
+    <div style={{ marginTop: 14 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
+        <span style={{ fontSize: 13, fontWeight: 800, color: "#ECFDF5", fontFamily: "Manrope,sans-serif" }}>
+          {ko ? "이 도시 소식" : "City News"}
+        </span>
+        <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(201,162,39,0.9)", background: "rgba(201,162,39,0.12)", border: "1px solid rgba(201,162,39,0.3)", borderRadius: 6, padding: "1px 6px", fontFamily: "Manrope,sans-serif" }}>
+          {ko ? "광고·소식" : "Sponsored"}
+        </span>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {items.map((it: any) => {
+          const website = (it.tags || []).find?.((t: string) => /^https?:\/\//.test(t)) || it.website;
+          const inner = (
+            <div style={{
+              display: "flex", alignItems: "flex-start", gap: 10, padding: "11px 13px",
+              background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.09)",
+              borderRadius: 12,
+            }}>
+              <span style={{ fontSize: 18, flexShrink: 0, lineHeight: 1.2 }}>{it.emoji || "📣"}</span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 12.5, fontWeight: 700, color: "#ECFDF5", fontFamily: "Manrope,sans-serif", marginBottom: 2 }}>
+                  {it.name}
+                </div>
+                <div style={{ fontSize: 11, color: "rgba(236,253,245,0.6)", fontFamily: "Manrope,sans-serif", lineHeight: 1.5, whiteSpace: "pre-wrap" as const }}>
+                  {it.desc}
+                </div>
+              </div>
+              {website && (
+                <span style={{ fontSize: 15, color: "rgba(201,162,39,0.8)", flexShrink: 0 }}>›</span>
+              )}
+            </div>
+          );
+          return website
+            ? <a key={it.id} href={website} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>{inner}</a>
+            : <div key={it.id}>{inner}</div>;
+        })}
+      </div>
     </div>
   );
 }
@@ -27801,10 +27859,10 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
             </div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 11.5, fontWeight: 800, color: "#92400E", letterSpacing: "0.1px", marginBottom: 2, fontFamily: "Manrope, sans-serif" }}>
-                {lang === "ko" ? "파트너 비즈니스" : "Partner Business"}
+                {lang === "ko" ? "파트너 신청 (비즈니스·교회·광고)" : "Partner Application (Business·Church·Ad)"}
               </div>
               <div style={{ fontSize: 10.5, color: "#C9A227", fontWeight: 700, fontFamily: "Manrope, sans-serif" }}>
-                {lang === "ko" ? "광고, 파트너 신청 문의 →" : "Ad & Partnership Inquiry →"}
+                {lang === "ko" ? "사업체·교회·광고·홍보 신청 →" : "Business·Church·Ad·Promo →"}
               </div>
             </div>
             <div style={{ fontSize: 16, color: "#C9A227", fontWeight: 700 }}>›</div>

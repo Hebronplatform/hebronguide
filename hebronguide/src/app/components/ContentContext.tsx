@@ -17,6 +17,7 @@ export const CONTENT_TYPES = [
   "community", "links",
   "settle_week1", "settle_month1", "settle_month3", "settle_admin", "settle_finance",
   "support",
+  "citynews",  // 광고·소식 (특정 도시 + 전 도시 'all')
 ] as const;
 
 export type ContentType = typeof CONTENT_TYPES[number];
@@ -117,6 +118,39 @@ async function fetchCommunityItems(citySlug: string, type: string): Promise<Plac
   }
 }
 
+// 광고·소식: 해당 도시 + 전 도시('all'), 승인건만. 종료일(⏳END:YYYY-MM-DD⏳) 지난 건 제외.
+async function fetchCityNews(citySlug: string): Promise<PlaceItem[]> {
+  try {
+    const url = `${SUPABASE_REST}/community_items?type=eq.citynews&status=eq.approved`
+      + `&city_slug=in.(${encodeURIComponent(citySlug)},all)&order=created_at.desc&limit=20`;
+    const res = await fetch(url, { headers: sbHeaders() });
+    if (!res.ok) return [];
+    const rows: any[] = await res.json();
+    const today = new Date();
+    return rows.map(r => {
+      const raw = r.description || '';
+      const m = raw.match(/⏳END:(\d{4}-\d{2}-\d{2})⏳\s*/);
+      const endDate = m ? new Date(m[1] + 'T23:59:59') : null;
+      const cleanDesc = raw.replace(/⏳END:\d{4}-\d{2}-\d{2}⏳\s*/, '');
+      return {
+        id: String(r.id),
+        emoji: r.emoji || '📣',
+        name: r.name || r.title || '',
+        nameEn: r.name_en || r.name || r.title || '',
+        desc: cleanDesc,
+        descEn: cleanDesc,
+        tags: Array.isArray(r.tags) ? r.tags : [],
+        active: r.status === 'approved',
+        order: r.order ?? 500,
+        website: r.website || '',
+        _endDate: endDate,
+      } as PlaceItem & { _endDate: Date | null; website: string };
+    }).filter((it: any) => !it._endDate || it._endDate >= today);
+  } catch {
+    return [];
+  }
+}
+
 export function ContentProvider({ children }: { children: ReactNode }) {
   const [content, setContent] = useState<Partial<Record<ContentType, any[]>>>({});
   const [loading, setLoading] = useState(true);
@@ -151,6 +185,10 @@ export function ContentProvider({ children }: { children: ReactNode }) {
       results.forEach(([type, data]) => {
         if (data.length > 0) map[type] = data;
       });
+
+      // 광고·소식 (도시 + 전 도시, 만료 필터)
+      const cityNews = await fetchCityNews(citySlug);
+      if (cityNews.length > 0) map['citynews'] = cityNews;
 
       setContent(map);
     } catch (e) {

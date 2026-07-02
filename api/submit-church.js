@@ -219,10 +219,14 @@ export default async function handler(req, res) {
 
   // ── 5. 최종 판단 ─────────────────────────────────
   // 2026-06-28: 신천지 위장 단체는 교단 소속이 없음 → 교단 없음 = 강화된 검토 필수
+  // 2026-07-02 홍보 기간(~10/1): 이단 키워드 + AI 심사는 하드 관문으로 유지하되,
+  //   "교단 없음"만으로는 자동 게시를 막지 않음 (AI가 위장 단체를 걸러냄).
+  const PROMO_AUTO_PUBLISH_UNTIL = new Date("2026-10-01T00:00:00-07:00");
+  const inPromo = new Date() < PROMO_AUTO_PUBLISH_UNTIL;
   const missingDenom = !denomination?.trim();
-  const needsReview = aiFlag || missingDenom;
-  // 교단 있고 AI OK → 자동 게시
-  // 교단 없거나 AI 의심 → 관리자 확인 요청 (이단 위장 방지)
+  // 이단 키워드는 위 2단계에서 이미 차단됨. 여기서는 AI 플래그가 유일한 하드 관문.
+  // 평시: 교단 없거나 AI 의심 → 검토. 홍보 기간: AI 의심만 → 검토(교단 없어도 자동 게시).
+  const needsReview = inPromo ? !!aiFlag : (aiFlag || missingDenom);
 
   // ── 6. Supabase 저장 (승인 여부와 무관하게 community_items에 저장) ──
   if (!needsReview) {

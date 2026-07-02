@@ -279,10 +279,10 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
   </div>
 </div>
 
-<!-- 승인 안내 -->
-<div style="background:rgba(201,162,39,.07);border-bottom:1px solid rgba(201,162,39,.2);
-  padding:9px 20px;text-align:center;font-size:.78rem;color:rgba(236,253,245,.7);">
-  🔐 <strong style="color:var(--gold)">모든 신청은 검토 후 게시됩니다 — 보통 24시간 이내</strong>
+<!-- 자동 등재 안내 -->
+<div style="background:rgba(110,231,183,.1);border-bottom:1px solid rgba(110,231,183,.25);
+  padding:9px 20px;text-align:center;font-size:.78rem;color:rgba(236,253,245,.8);">
+  <strong style="color:var(--gold)">신청하시면 바로 도시 페이지에 등재됩니다</strong>
 </div>
 
 <!-- 메인 컨테이너 -->
@@ -311,7 +311,7 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
   <!-- ══════════ 교회 폼 ══════════ -->
   <div class="form-card" id="form-church">
-    <div class="form-section-title">⛪ 파트너 교회로 함께하기</div>
+    <div class="form-section-title">교회 등록하기</div>
     <p style="font-size:.85rem;color:rgba(236,253,245,.65);line-height:1.8;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);">
       교회 안의 따뜻함을 이제 도시 안으로.<br>
       파트너 교회는 HebronGuide에서 가장 먼저, 가장 잘 보이는 자리에 소개됩니다.
@@ -520,7 +520,7 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
   <!-- ══════════ 사업체 폼 ══════════ -->
   <div class="form-card active" id="form-business">
-    <div class="form-section-title">🏢 파트너 사업체로 함께하기</div>
+    <div class="form-section-title">사업체 등록하기</div>
     <p style="font-size:.85rem;color:rgba(236,253,245,.65);line-height:1.8;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);">
       이 도시의 이웃을 섬기는 사업체를 소개합니다.<br>
       파트너 교회 성도이시면 협력 사업체 인증 배지가 부여됩니다.
@@ -635,7 +635,7 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 
   <!-- ══════════ 홍보 폼 ══════════ -->
   <div class="form-card" id="form-promo">
-    <div class="form-section-title">📣 이 도시의 좋은 소식 알리기</div>
+    <div class="form-section-title">광고 등록하기</div>
 
     <!-- ── WABA EVENT FEATURED BANNER ── -->
     <div id="waba-promo-banner" style="margin-bottom:20px;">
@@ -725,6 +725,30 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
         <label>홍보 기간 종료 <span class="opt">(선택)</span></label>
         <input type="date" id="prEnd">
       </div>
+    </div>
+
+    <div class="field" id="pr-city">
+      <label>광고 노출 도시 <span class="req">*</span></label>
+      <select id="prCitySelect" onchange="togglePrCityOther(this.value)">
+        <option value="">도시를 선택해 주세요</option>
+        <option value="전 도시">🌐 전 도시 (전국) — 검토 후 게시</option>
+        <option value="시애틀">🌲 시애틀 Seattle, WA</option>
+        <option value="로스앤젤레스">🌴 LA · OC Los Angeles / Orange County, CA</option>
+        <option value="SF">🌉 SF San Francisco Bay Area, CA</option>
+        <option value="뉴욕">🗽 뉴욕 New York, NY</option>
+        <option value="달라스">🤠 달라스 Dallas, TX</option>
+        <option value="휴스턴">🚀 휴스턴 Houston, TX</option>
+        <option value="시카고">🫘 시카고 Chicago, IL</option>
+        <option value="워싱턴DC">🏛️ DC · 메릴랜드 Washington DC / Maryland</option>
+        <option value="토론토">🍁 토론토 Toronto, ON</option>
+        <option value="밴쿠버">🏔️ 밴쿠버 Vancouver, BC</option>
+        <option value="서울">🏯 서울 Seoul, Korea</option>
+        <option value="기타">📍 기타 도시 (직접 입력)</option>
+      </select>
+      <input type="text" id="prCityOther" placeholder="예: 보스턴, MA / 애틀랜타, GA / 도쿄, 일본"
+        style="display:none;margin-top:8px;" />
+      <div class="error-msg" id="prCity-error">광고를 노출할 도시를 선택해 주세요</div>
+      <div style="font-size:.74rem;color:rgba(236,253,245,.4);margin-top:5px;">목록 도시는 즉시 게시, 그 외 직접 입력 도시는 확인 후 게시됩니다.</div>
     </div>
 
     <div class="field-row">
@@ -956,7 +980,7 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
     <div class="success-check">✓</div>
 
     <h2>함께해 주셔서 감사합니다</h2>
-    <p class="success-sub">접수되었습니다.<br>24시간 이내에 연락드리겠습니다.<br>
+    <p class="success-sub">신청이 완료되었습니다.<br>바로 도시 페이지에 등재됩니다.<br>
     <span style="color:var(--gold);font-size:.82rem;">낯선 도시에서 누군가 기다리는 사람이 되어주세요.</span></p>
 
     <div class="success-name-tag">
@@ -1110,6 +1134,13 @@ function toggleCityOther(val) {
   if (val !== '기타') el.value = '';
 }
 
+function togglePrCityOther(val) {
+  const el = document.getElementById('prCityOther');
+  if (!el) return;
+  el.style.display = val === '기타' ? 'block' : 'none';
+  if (val !== '기타') el.value = '';
+}
+
 // 동의 체크 확인
 function checkConsent(id) {
   const el = document.getElementById(id);
@@ -1163,9 +1194,24 @@ async function submitChaplain() {
   }
 }
 
+// 한글 도시명·드롭다운 값 → 도시 슬러그 (자동 게시 매칭용)
+function cityNameToSlug(v) {
+  if (!v) return '';
+  const map = {
+    '전 도시':'all','전도시':'all','전국':'all',
+    '시애틀':'seattle','로스앤젤레스':'la','SF':'sf','뉴욕':'newyork','달라스':'dallas',
+    '휴스턴':'houston','시카고':'chicago','워싱턴DC':'dc','토론토':'toronto','밴쿠버':'vancouver',
+    '서울':'seoul','애틀랜타':'atlanta','보스턴':'boston','내쉬빌':'nashville','필라델피아':'philadelphia',
+    '마이애미':'miami','캔자스시티':'kansascity','탬파':'tampa','도쿄':'tokyo','오사카':'osaka',
+  };
+  return map[String(v).trim()] || '';
+}
+
 async function submitForm(type) {
   let valid = false;
   let subject = '', body = '';
+  // 구조화 자동 게시 필드 (사업체·홍보)
+  let itemType = '', citySlug = '', bizName = '', website = '', desc = '';
 
   if(type === 'person') {
     valid = validate([
@@ -1226,6 +1272,14 @@ async function submitForm(type) {
     const bPastorEmail = document.getElementById('bPastorEmail')?.value.trim() || '';
     const bChurchName = document.getElementById('bChurchName')?.value.trim() || '';
     body = `업체명: ${document.getElementById('bBiz').value}\n업종: ${document.getElementById('bType').value}\n담당자: ${document.getElementById('bName').value}\n전화: ${document.getElementById('bPhone').value}\n이메일: ${document.getElementById('bEmail').value}\n주소: ${document.getElementById('bAddress')?.value || ''}\n웹사이트: ${document.getElementById('bWebsite')?.value || ''}\n노출 도시: ${city}${bChurchName ? '\n소속 교회: ' + bChurchName : ''}\n\n소개:\n${document.getElementById('bDesc').value}`;
+    // 자동 게시용 구조화 필드 (도시 선택 시에만 도시 페이지에 뜸)
+    itemType = 'businesses';
+    citySlug = cityNameToSlug(citySelect);
+    bizName  = document.getElementById('bBiz').value.trim();
+    website  = document.getElementById('bWebsite')?.value.trim() || '';
+    const bTypeVal = document.getElementById('bType')?.value || '';
+    desc = [bTypeVal ? '['+bTypeVal+']' : '', document.getElementById('bDesc').value.trim(),
+            document.getElementById('bAddress')?.value.trim() || ''].filter(Boolean).join(' · ');
   } else if(type === 'promo') {
     // '기타' 선택 시 직접 입력값 유효성 확인
     const prTypeVal = document.getElementById('prType').value;
@@ -1243,9 +1297,25 @@ async function submitForm(type) {
       {id:'prPhone',type:'required'}
     ]);
     if(!valid) return;
+    // 광고 노출 도시 필수 (기타 선택 시 직접 입력값도 필수)
+    const prCitySel = document.getElementById('prCitySelect')?.value || '';
+    const prCityOtherVal = document.getElementById('prCityOther')?.value.trim() || '';
+    if(!prCitySel || (prCitySel === '기타' && !prCityOtherVal)){
+      document.getElementById('prCity-error').style.display='block';
+      (prCitySel === '기타' ? document.getElementById('prCityOther') : document.getElementById('prCitySelect')).scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    document.getElementById('prCity-error').style.display='none';
     if(!checkConsent('prConsent')) return;
+    const prCityDisplay = prCitySel === '기타' ? prCityOtherVal : prCitySel;
     subject = `[홍보 신청] ${document.getElementById('prTitle').value}`;
-    body = `유형: 홍보\n제목: ${document.getElementById('prTitle').value}\n홍보유형: ${finalPromoType}\n기간: ${document.getElementById('prStart').value} ~ ${document.getElementById('prEnd').value}\n담당자: ${document.getElementById('prContact').value}\n전화: ${document.getElementById('prPhone').value}\n이메일: ${document.getElementById('prEmail').value}\n링크: ${document.getElementById('prUrl').value}\n\n홍보 내용:\n${document.getElementById('prDesc').value}\n\n[관리자 검토·승인 후 게시 예정]`;
+    body = `유형: 홍보\n제목: ${document.getElementById('prTitle').value}\n홍보유형: ${finalPromoType}\n노출 도시: ${prCityDisplay}\n기간: ${document.getElementById('prStart').value} ~ ${document.getElementById('prEnd').value}\n담당자: ${document.getElementById('prContact').value}\n전화: ${document.getElementById('prPhone').value}\n이메일: ${document.getElementById('prEmail').value}\n링크: ${document.getElementById('prUrl').value}\n\n홍보 내용:\n${document.getElementById('prDesc').value}`;
+    // 자동 게시용 구조화 필드 (특정 도시=즉시 게시 / 전 도시·기타=검토 후 게시)
+    itemType = 'citynews';
+    citySlug = cityNameToSlug(prCityDisplay);
+    bizName  = document.getElementById('prTitle').value.trim();
+    website  = document.getElementById('prUrl')?.value.trim() || '';
+    desc = [finalPromoType, document.getElementById('prDesc').value.trim()].filter(Boolean).join(' · ');
   }
 
   // ── 신청자 이름·이메일 추출 (폼별)
@@ -1324,6 +1394,9 @@ async function submitForm(type) {
         name:  applicantName,
         email: applicantEmail,
         phone, city,
+        // 구조화 자동 게시 필드 (사업체·광고)
+        itemType, citySlug, bizName, website, desc,
+        endDate: (type === 'promo' ? (document.getElementById('prEnd')?.value || '') : ''),
       }),
     });
 
