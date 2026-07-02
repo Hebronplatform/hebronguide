@@ -8804,7 +8804,12 @@ const WORLD_CUP_2026 = {
                "mexicocity", "guadalajara", "monterrey"] as CitySlug[],
 };
 
+// 2026-07-01 한국 32강 좌절 → 원정 응원단 전원 귀국.
+// 광고 타깃(응원 오신 분들)이 사라져 배너·카드 비활성화. 데이터는 2030 재사용 위해 보존.
+const WORLD_CUP_KOREA_ACTIVE = false;
+
 function isWorldCupActive(slug: CitySlug): boolean {
+  if (!WORLD_CUP_KOREA_ACTIVE) return false;
   if (!WORLD_CUP_2026.hostCities.includes(slug)) return false;
   const now = new Date();
   return now >= WORLD_CUP_2026.startDate && now <= WORLD_CUP_2026.endDate;
@@ -12169,24 +12174,27 @@ function AmericasAdSection({ lang }: { lang: string }) {
 
 // ── 🎵 장르 목록 (장르별 서브큐 지원) ──────────────
 type GenreItem = { type: "playlist"|"video"; id: string; sub: string };
-type MusicGenre = { id: string; label: string; items: GenreItem[] };
+type MusicGenre = { id: string; labelKo: string; labelEn: string; items: GenreItem[] };
 
 const MUSIC_GENRES: MusicGenre[] = [
-  { id: "praise",    label: "찬양",   items: [
+  { id: "lofi",     labelKo: "로파이",       labelEn: "Lo-Fi",          items: [] },
+  { id: "piano",    labelKo: "피아노 워십",  labelEn: "Piano Worship",  items: [
     { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "" },
   ]},
-  { id: "meditation",label: "묵상",   items: [
+  { id: "ambient",  labelKo: "앰비언트",     labelEn: "Ambient Prayer", items: [] },
+  { id: "acoustic", labelKo: "어쿠스틱",     labelEn: "Soft Acoustic",  items: [
     { type: "playlist", id: "PLHl4MfXsebn1E8TdmjP-hZSkX8cDk7vV3", sub: "Bloom Again Music" },
   ]},
-  { id: "gospel",    label: "성가",   items: [] },
-  { id: "ccm",       label: "CCM",    items: [] },
-  { id: "children",  label: "어린이", items: [
+  { id: "nature",   labelKo: "자연음 피아노",labelEn: "Nature Piano",   items: [] },
+  { id: "scripture",labelKo: "말씀 묵상",    labelEn: "Scripture",      items: [] },
+  { id: "ccminst",  labelKo: "CCM 연주",     labelEn: "CCM Inst.",      items: [] },
+  { id: "jazz",     labelKo: "재즈",         labelEn: "Jazz",           items: [
+    { type: "video", id: "vHJ_qxHaz5Y", sub: "Joy — Vintage Attic Jazz" },
+  ]},
+  { id: "children", labelKo: "어린이",       labelEn: "Kids",           items: [
     { type: "video", id: "r8Bte2R56SM", sub: "김찬후" },
   ]},
-  { id: "jazz",      label: "Jazz",   items: [
-    { type: "video",    id: "vHJ_qxHaz5Y", sub: "Joy — Vintage Attic Jazz" },
-  ]},
-  { id: "request",   label: "신청곡", items: [] },
+  { id: "request",  labelKo: "신청곡",       labelEn: "Requests",       items: [] },
 ];
 
 type MusicReqItem = { id: string; video_id: string; requester_name: string; time_pref: string; genre: string };
@@ -12202,8 +12210,9 @@ function FloatingMusicPlayer() {
   const [active, setActive]           = useState(false);
   const [mini, setMini]               = useState(false);
   const [sizeIdx, setSizeIdx]         = useState(1);
-  const [activeGenre, setActiveGenre] = useState("praise");
+  const [activeGenre, setActiveGenre] = useState("piano");
   const [subIdx, setSubIdx]           = useState(0);
+  const [musicLang, setMusicLang]     = useState<"ko"|"en">("ko");
   const [communityQueue, setCommunityQueue] = useState<MusicReqItem[]>([]);
   const [showRequest, setShowRequest] = useState(false);
   const [reqForm, setReqForm]         = useState({ url: "", name: "", timePref: "언제나", message: "" });
@@ -12341,7 +12350,7 @@ function FloatingMusicPlayer() {
           <div style={{
             background: "rgba(16,20,36,0.97)", border: "1px solid rgba(255,255,255,0.12)",
             borderBottom: "none", borderRadius: "14px 14px 0 0",
-            display: "flex", gap: 2, padding: "6px 8px 0",
+            display: "flex", alignItems: "flex-end", gap: 2, padding: "6px 8px 0",
             overflowX: "auto", scrollbarWidth: "none" as const,
           }}>
             {MUSIC_GENRES.map(g => (
@@ -12355,10 +12364,16 @@ function FloatingMusicPlayer() {
                   color: activeGenre === g.id ? "rgba(110,231,183,1)" : ((g.items.length === 0 && g.id !== "request") ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.55)"),
                   fontFamily: "Manrope,sans-serif", borderRadius: "6px 6px 0 0",
                 }}>
-                {g.label}
+                {musicLang === "ko" ? g.labelKo : g.labelEn}
                 {g.id === "request" && communityQueue.length > 0 ? ` ${communityQueue.length}` : ""}
               </button>
             ))}
+            <button onClick={() => setMusicLang(l => l === "ko" ? "en" : "ko")}
+              style={{ marginLeft: "auto", flexShrink: 0, display: "flex", alignItems: "center", gap: 1, background: "none", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 6, padding: "2px 6px", cursor: "pointer", marginBottom: 4, fontFamily: "Manrope,sans-serif" }}>
+              <span style={{ fontSize: 9, fontWeight: musicLang === "ko" ? 800 : 500, color: musicLang === "ko" ? "rgba(110,231,183,0.9)" : "rgba(255,255,255,0.3)" }}>한</span>
+              <span style={{ fontSize: 8, color: "rgba(255,255,255,0.2)" }}>/</span>
+              <span style={{ fontSize: 9, fontWeight: musicLang === "en" ? 800 : 500, color: musicLang === "en" ? "rgba(110,231,183,0.9)" : "rgba(255,255,255,0.3)" }}>EN</span>
+            </button>
           </div>
         )}
 
@@ -12375,7 +12390,7 @@ function FloatingMusicPlayer() {
           <span style={{ fontSize: 13, flexShrink: 0 }}>▶</span>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" as const, overflow: "hidden", textOverflow: "ellipsis" }}>
-              {curGenre.label}
+              {musicLang === "ko" ? curGenre.labelKo : curGenre.labelEn}
               {curItem?.sub ? ` — ${curItem.sub}` : ""}
             </div>
             <div style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", fontFamily: "Manrope,sans-serif" }}>
@@ -12552,17 +12567,17 @@ function GrowthShareSection({ lang }: { lang: string }) {
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: "#FF4444", fontFamily: "Manrope,sans-serif", marginBottom: 3, letterSpacing: ".04em" }}>
-              {ko ? "🎵 지금 듣기 — 탭 이동해도 계속 재생" : "🎵 Worship — plays while you browse"}
+              {ko ? "🎵 지금 듣기 — 탭 이동해도 계속 재생" : "🎵 Music — plays while you browse"}
             </div>
             <div style={{ fontSize: 13, fontWeight: 800, color: "#ECFDF5", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-              헤브론 추천곡
+              {ko ? "헤브론 뮤직" : "Hebron Music"}
             </div>
             <div style={{ fontSize: 10.5, color: "rgba(236,253,245,0.5)", fontFamily: "Manrope,sans-serif", marginTop: 2 }}>
-              YouTube · Hebron Picks
+              {ko ? "YouTube · 10개 장르" : "YouTube · 10 Genres"}
             </div>
           </div>
           <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,68,68,0.8)", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
-            ▶ 열기
+            {ko ? "▶ 열기" : "▶ Open"}
           </div>
         </div>
       </button>
