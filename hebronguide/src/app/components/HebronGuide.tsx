@@ -1196,6 +1196,19 @@ function useCityConfig(): CityConfig {
   return CITY_CONFIGS[slug] ?? CITY_CONFIGS.seattle;
 }
 
+// 카카오 오픈채팅(도시별 한인 커뮤니티) 검색 링크·라벨 — 도시명 기준으로 자동 생성
+function kakaoOpenChat(slug: string) {
+  const nameKo = CITY_CONFIGS[slug as CitySlug]?.nameKo ?? "";
+  // "훼더럴웨이"처럼 중점(·)이 든 이름은 검색어에서 제거 (예: "천안·아산" → "천안")
+  const base = nameKo.split("·")[0];
+  const term = `${base}한인`;
+  return {
+    term,
+    url: `https://open.kakao.com/o/search/${encodeURIComponent(term)}`,
+    label: `카카오오픈채팅 '${term}'`,
+  };
+}
+
 /* ─────────────────────────────────────────
    도시별 인구·언어·민족 분포 통계
    출처: US Census ACS 2023 / Stats Canada 2021 / INEGI 2020
@@ -14604,12 +14617,12 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 💬 {lang === "ko" ? "한인 커뮤니티 — 룸메이트·렌탈 실시간" : "Korean Community — Roommates & Rentals"}
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                <a href="https://open.kakao.com/o/search/" target="_blank" rel="noopener noreferrer"
+                <a href={kakaoOpenChat(citySlug).url} target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
                   <span style={{ fontSize: 16 }}>💬</span>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
-                      {lang === "ko" ? `카카오오픈채팅 '${citySlug === "seattle" ? "시애틀한인" : citySlug + "한인"}'` : `KakaoTalk '${citySlug} Korean'`}
+                      {lang === "ko" ? kakaoOpenChat(citySlug).label : `KakaoTalk '${kakaoOpenChat(citySlug).term}'`}
                     </div>
                     <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "룸메이트·렌탈 실시간 정보" : "Roommate & rental listings"}</div>
                   </div>
@@ -14775,12 +14788,12 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             <div style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
               <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}>💡 {lang === "ko" ? "한인 커뮤니티 연결" : "Korean Community"}</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                <a href="https://open.kakao.com/o/search/%EC%8B%9C%EC%95%A0%ED%8B%80%ED%95%9C%EC%9D%B8" target="_blank" rel="noopener noreferrer"
+                <a href={kakaoOpenChat(citySlug).url} target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
                   <span style={{ fontSize: 16 }}>💬</span>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
-                      {lang === "ko" ? "카카오오픈채팅 '시애틀한인'" : "KakaoTalk '시애틀한인'"}
+                      {lang === "ko" ? kakaoOpenChat(citySlug).label : `KakaoTalk '${kakaoOpenChat(citySlug).term}'`}
                     </div>
                     <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "정착정보·중고거래·룸메이트" : "Settlement tips, used goods, roommates"}</div>
                   </div>
