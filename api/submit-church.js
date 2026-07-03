@@ -267,6 +267,23 @@ export default async function handler(req, res) {
       });
     }
 
+    // ── 관리자 알림 (자동 게시 포함 — 모든 교회 신청을 admin.html + 이메일 두 곳으로) ──
+    await sendEmail({
+      to: ADMIN_EMAIL,
+      subject: `[HebronGuide] 교회 등재 (자동 게시) — ${churchName}`,
+      text: [
+        `${churchName}이(가) 헤브론가이드에 자동 게시되었습니다.`,
+        "─────────────────────────────────────",
+        `도시: ${city || "—"}`,
+        `담임: ${pastor || "—"}`,
+        `교단: ${denomination || "—"}`,
+        `연락: ${phone || "—"} / ${email || "—"}`,
+        `웹사이트: ${website || "—"}`,
+        "─────────────────────────────────────",
+        "관리: hebronguide.com/admin.html (교회 섹션)",
+      ].join("\n"),
+    });
+
     return res.status(200).json({
       status: "published",
       message: supabaseOk
