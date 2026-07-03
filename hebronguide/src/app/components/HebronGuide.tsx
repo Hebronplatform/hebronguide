@@ -20641,8 +20641,43 @@ const TOP5_FOOD_WINNIPEG: Top5Item[] = [
 ];
 
 // 도시 slug → 검증된 맛집 TOP5 목록 반환 (맛집 탭 카드용)
+// 훼더럴웨이 한인 맛집 — Pacific Hwy S(99번 도로) 한인 상권 중심.
+// 이가네·쏘문난집은 검증된 데이터(코드 기존). H마트·서울순두부·아지트는 웹 출처(주소·전화 확인).
+const TOP5_FOOD_FEDERALWAY: Top5Item[] = [
+  { rank: 1, emoji: "🍜", nameKo: "이가네 전통 설렁탕", nameEn: "Yi's Traditional Korean Beef Soup",
+    address: "31248 Pacific Hwy S Ste E, Federal Way WA 98003",
+    phone: "(253) 946-1101", hours: "매일 8:30am-9pm", rating: 4.7, ratingCount: "635+",
+    why: "24시간 끓인 사골국물, Yelp 4.7성 635리뷰, 아침부터 영업하는 해장국 명소",
+    tip: "웨이팅 있을 수 있음. 아침 일찍 방문 추천", website: "yistraditional.com" },
+  { rank: 2, emoji: "🥩", nameKo: "쏘문난집", nameEn: "So Moon Nan Jib",
+    address: "33324 Pacific Hwy S, Federal Way WA 98003",
+    phone: "(253) 815-8888", hours: "월화·목-일 11am-10pm (수 휴무)", rating: 4.3, ratingCount: "667+",
+    why: "페더럴웨이 한인 커뮤니티 1위 BBQ, 수제 반찬 10종+, 갈비·불고기 조합 추천",
+    tip: "수요일 휴무", website: "yelp.com/biz/so-moon-nan-jib-federal-way" },
+  { rank: 3, emoji: "🛒", nameKo: "H마트 훼더럴웨이", nameEn: "H Mart Federal Way",
+    address: "31217 Pacific Hwy S, Federal Way WA 98003",
+    phone: "(253) 528-0500", hours: "매일 8am-9:30pm",
+    why: "훼더럴웨이 한인 상권 앵커. 한국 식품·정육·수산·베이커리·푸드코트. 주차 100대+",
+    tip: "1층 푸드코트에서 분식·순대 식사 가능", website: "hmartus.com/federalway" },
+  { rank: 4, emoji: "🍲", nameKo: "서울순두부", nameEn: "Seoul Tofu House",
+    address: "31406 Pacific Hwy S, Federal Way WA 98003",
+    phone: "(206) 429-2345", hours: "월-금 10am-10pm",
+    why: "뚝배기 순두부 전문. H마트 인근. 진한 국물·반찬 인기",
+    tip: "점심 혼잡. H마트 쇼핑과 함께", website: "order.online/business/seoul-tofu-house-12896567" },
+  { rank: 5, emoji: "🍚", nameKo: "아지트 한식당", nameEn: "AGIT Korean Restaurant",
+    address: "33310 Pacific Hwy S #404, Federal Way WA 98003",
+    phone: "(253) 517-7378", hours: "화-일 11am-9pm",
+    why: "정통 한식·백반. 99번 도로 한인 상권 내 위치",
+    tip: "", website: "agitkoreanrestaurantwa.com" },
+  { rank: 6, emoji: "🍢", nameKo: "문스 키친", nameEn: "Moon's Kitchen",
+    address: "31260 Pacific Hwy S, Federal Way WA 98003",
+    why: "한국 분식·길거리음식. 떡볶이·김밥·간편식",
+    tip: "", website: "themoonskitchen.com" },
+];
+
 const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
   seattle:       TOP5_RESTAURANTS,
+  federalway:    TOP5_FOOD_FEDERALWAY,
   dallas:        TOP5_RESTAURANTS_DALLAS,
   sf:            TOP5_RESTAURANTS_SF,
   newyork:       TOP5_RESTAURANTS_NEWYORK,
