@@ -12203,19 +12203,27 @@ function AmericasAdSection({ lang }: { lang: string }) {
 type GenreItem = { type: "playlist"|"video"; id: string; sub: string };
 type TimeSlot = { id: string; labelKo: string; labelEn: string; icon: string; hourStart: number; hourEnd: number; items: GenreItem[] };
 
-// 낮·저녁 공통 "코지" 재생목록 — Joy Kim(The Mason Nook)
+// 오후 "코지" 재생목록 — Joy Kim(The Mason Nook, 사모님 작품)
 const COZY_ITEMS: GenreItem[] = [
   { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook — Cozy Jazz BGM (Joy Kim)" },
 ];
 
+// 시간대별 추천 배경음악 (5구간, 24시간 커버)
+// · 오후 = 사모님 Mason Nook 유지 / 나머지 = 검증된 크리스천 연주곡(Alone With God 등)
+// · 콘텐츠는 언제든 교체 가능 — sub 라벨로 출처 표기
 const TIME_SLOTS: TimeSlot[] = [
-  { id: "dawn",    labelKo: "새벽 묵상", labelEn: "Dawn Devotion", icon: "🌅", hourStart: 5,  hourEnd: 9,  items: [
-    { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "Piano Worship" },
+  { id: "dawn",      labelKo: "새벽",  labelEn: "Dawn",      icon: "🌅", hourStart: 5,  hourEnd: 8,  items: [
+    { type: "playlist", id: "PLpNBopEHnm3DZj97bgFCVWwtRQu3KKvFG", sub: "Alone With God — 피아노 워십 (묵상)" },
   ]},
-  { id: "day",     labelKo: "낮 활력",   labelEn: "Daytime Lift",  icon: "☀️", hourStart: 9,  hourEnd: 17, items: COZY_ITEMS },
-  { id: "evening", labelKo: "저녁 쉼",   labelEn: "Evening Rest",  icon: "🌇", hourStart: 17, hourEnd: 22, items: COZY_ITEMS },
-  { id: "night",   labelKo: "밤 고요",   labelEn: "Night Quiet",   icon: "🌙", hourStart: 22, hourEnd: 5,  items: [
-    { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "Piano Worship" },
+  { id: "morning",   labelKo: "오전",  labelEn: "Morning",   icon: "☀️", hourStart: 8,  hourEnd: 12, items: [
+    { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "Piano Worship (찬양)" },
+  ]},
+  { id: "afternoon", labelKo: "오후",  labelEn: "Afternoon", icon: "🌤️", hourStart: 12, hourEnd: 17, items: COZY_ITEMS },
+  { id: "evening",   labelKo: "저녁",  labelEn: "Evening",   icon: "🌇", hourStart: 17, hourEnd: 22, items: [
+    { type: "video", id: "FZfVGbXrxiI", sub: "Time Alone With God — 3시간 묵상 피아노" },
+  ]},
+  { id: "night",     labelKo: "밤",    labelEn: "Night",     icon: "🌙", hourStart: 22, hourEnd: 5,  items: [
+    { type: "video", id: "AZvjsWle4MQ", sub: "Alone With God — 말씀과 함께 (밤 묵상)" },
   ]},
 ];
 
