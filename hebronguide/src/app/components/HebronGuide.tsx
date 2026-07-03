@@ -10090,7 +10090,7 @@ function getCityEvents(slug: string): CityEventItem[] {
     && slug !== "ansan" && slug !== "incheon" && slug !== "changwon" && slug !== "cheonan"
     && slug !== "bundang")
     ? (CITY_EVENTS["_us_common"] ?? []) : [];
-  return [...specific, ...usCommon].slice(0, 5);
+  return [...specific, ...usCommon].slice(0, 10);
 }
 
 function CityEventsSection({ lang }: { lang: string }) {
@@ -21472,11 +21472,11 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
         : ["Areas", "Nature", "Culture & Art", "Sports", "🧭 Hebron Tour"])
     : hasNature
       ? (lang === "ko"
-          ? ["탐방 TOP5", "자연·여행", "🧭 헤브론관광"]
-          : ["Explore TOP5", "Nature", "🧭 Hebron Tour"])
+          ? ["탐방 TOP10", "자연·여행", "🧭 헤브론관광"]
+          : ["Explore TOP10", "Nature", "🧭 Hebron Tour"])
       : (lang === "ko"
-          ? ["탐방 TOP5", "🧭 헤브론관광"]
-          : ["Explore TOP5", "🧭 Hebron Tour"]);
+          ? ["탐방 TOP10", "🧭 헤브론관광"]
+          : ["Explore TOP10", "🧭 Hebron Tour"]);
   const accent = "#34D399";
 
   const areas = [
@@ -21539,12 +21539,12 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
         descKo={isSeattle
           ? `${city.nameKo} — 지역안내 · 자연 · 문화 · 스포츠`
           : hasNature
-            ? `${city.nameKo} — ${lang === "ko" ? "탐방 TOP5 · 자연·여행" : "Explore TOP5 & Nature"}`
+            ? `${city.nameKo} — ${lang === "ko" ? "탐방 TOP10 · 자연·여행" : "Explore TOP10 & Nature"}`
             : `${city.nameKo} — ${lang === "ko" ? "검증된 탐방 명소 TOP 10" : "Top 10 verified spots"}`}
         descEn={isSeattle
           ? `${city.nameEn} — Areas, Nature, Culture & Sports`
           : hasNature
-            ? `${city.nameEn} — Explore TOP5 & Nature`
+            ? `${city.nameEn} — Explore TOP10 & Nature`
             : `${city.nameEn} — Top 10 verified spots`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
