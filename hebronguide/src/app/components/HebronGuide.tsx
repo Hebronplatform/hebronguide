@@ -15373,9 +15373,21 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const citySlug = city.slug;
 
   const defaultChurches = getCityChurches(citySlug, lang);
-  const churches = (serverContent["churches"] && serverContent["churches"].length > 0)
+  // ⚠️ 하드코딩 협력교회(hebronPartner)를 '항상' 포함해야 최상단 협력교회 카드가 유지된다.
+  //    serverContent(교회)는 hebron_partner 필드를 담지 않으므로, 대체가 아니라 병합한다.
+  const serverChurches = (serverContent["churches"] && serverContent["churches"].length > 0)
     ? resolvePlaceItems(serverContent["churches"], lang)
-    : defaultChurches;
+    : [];
+  const _defChurchNames = new Set(
+    defaultChurches.map((c: any) => (c.name ?? c.nameKo ?? "").toLowerCase().replace(/\s+/g, ""))
+  );
+  const churches = [
+    ...defaultChurches,
+    ...serverChurches.filter((c: any) => {
+      const n = (c.name ?? "").toLowerCase().replace(/\s+/g, "");
+      return n && !_defChurchNames.has(n);
+    }),
+  ];
 
   // ── Supabase 교회 데이터 (CKSBCA + 파트너 등록 교회) ──
   const [sbChurches, setSbChurches] = useState<any[]>([]);
