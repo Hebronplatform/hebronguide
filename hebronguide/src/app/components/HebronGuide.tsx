@@ -12217,6 +12217,7 @@ const TIME_SLOTS: TimeSlot[] = [
   ]},
   { id: "morning",   labelKo: "오전",  labelEn: "Morning",   icon: "☀️", hourStart: 8,  hourEnd: 12, items: [
     { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "Piano Worship (찬양)" },
+    { type: "video",    id: "R-WGkU31ifQ", sub: "오일권 목사" },
   ]},
   { id: "afternoon", labelKo: "오후",  labelEn: "Afternoon", icon: "🌤️", hourStart: 12, hourEnd: 17, items: COZY_ITEMS },
   { id: "evening",   labelKo: "저녁",  labelEn: "Evening",   icon: "🌇", hourStart: 17, hourEnd: 22, items: [
