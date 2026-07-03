@@ -20673,6 +20673,46 @@ const TOP5_FOOD_FEDERALWAY: Top5Item[] = [
     address: "31260 Pacific Hwy S, Federal Way WA 98003",
     why: "한국 분식·길거리음식. 떡볶이·김밥·간편식",
     tip: "", website: "themoonskitchen.com" },
+  { rank: 7, emoji: "🔥", nameKo: "조선 코리안 BBQ", nameEn: "Chosun Korean BBQ",
+    address: "Federal Way, WA",
+    why: "한국식 숯불 BBQ. 갈비·불고기·전통 면요리",
+    tip: "저녁 모임·회식 적합", website: "chosunkbbq.com" },
+  { rank: 8, emoji: "🥩", nameKo: "해송 코리안 BBQ", nameEn: "Hae Song Korean BBQ",
+    address: "Federal Way, WA",
+    why: "불고기·돌솥비빔밥·냉면. 프라임 고기 BBQ",
+    tip: "", website: "haesong-bbq.com" },
+];
+
+// 훼더럴웨이 탐방·가보고 싶은 곳 (실제 명소 — 웹 조사 검증)
+const TOP5_EXPLORE_FEDERALWAY: Top5Item[] = [
+  { rank: 1, emoji: "🌲", nameKo: "대시 포인트 주립공원", nameEn: "Dash Point State Park",
+    address: "5700 SW Dash Point Rd, Federal Way WA 98023", hours: "매일 8am-일몰",
+    why: "퓨젓사운드 해변 + 숲 하이킹·자전거 트레일. 캠핑 가능. 가족 나들이·산책 1순위",
+    tip: "썰물 때 해변 넓게 열림. 주차료 Discover Pass 필요" },
+  { rank: 2, emoji: "🌳", nameKo: "퍼시픽 분재 박물관", nameEn: "Pacific Bonsai Museum",
+    address: "2515 S 336th St, Federal Way WA 98003", hours: "화-일 10am-4pm (월 휴관)",
+    why: "미국 내 단 2곳뿐인 분재 전문 박물관. 한국·일본·중국 분재 컬렉션 — 한인에게 특별한 문화 명소",
+    tip: "입장 기부제(권장 $12). 옆 철쭉정원과 함께 방문", website: "pacificbonsaimuseum.org" },
+  { rank: 3, emoji: "🌸", nameKo: "철쭉 식물원", nameEn: "Rhododendron Species Botanical Garden",
+    address: "2525 S 336th St, Federal Way WA 98003",
+    why: "세계 최대급 철쭉 종 컬렉션(700종+). 3월 중순~5월 중순 절정. 분재박물관 바로 옆",
+    tip: "봄 개화기 방문 추천", website: "rhodygarden.org" },
+  { rank: 4, emoji: "🎢", nameKo: "와일드 웨이브스 테마·워터파크", nameEn: "Wild Waves Theme & Water Park",
+    address: "36201 Enchanted Pkwy S, Federal Way WA 98003",
+    why: "70에이커 규모. 43개 놀이기구 + 워터파크(파도풀·워터슬라이드). 여름 가족 나들이 명소",
+    tip: "여름 시즌 운영. 시즌권 있음", website: "wildwaves.com" },
+  { rank: 5, emoji: "🎭", nameKo: "훼더럴웨이 공연예술센터 (PAEC)", nameEn: "Federal Way Performing Arts & Event Center",
+    address: "31510 Pete von Reichbauer Way S, Federal Way WA 98003",
+    why: "45,000sqft 지역 대표 공연장. Mt. Rainier 뷰. 공연·한인 커뮤니티 행사 개최지",
+    tip: "공연 일정 홈페이지 확인", website: "fwpaec.org" },
+  { rank: 6, emoji: "🌊", nameKo: "듀마스 베이 센터", nameEn: "Dumas Bay Centre",
+    address: "3200 SW Dash Point Rd, Federal Way WA 98023",
+    why: "퓨젓사운드 뷰 공원 + Knutzen 가족극장. 조용한 산책·리트릿·모임 장소",
+    tip: "해질녘 바다 전망 좋음" },
+  { rank: 7, emoji: "🥾", nameKo: "웨스트 하일보스 습지공원", nameEn: "West Hylebos Wetlands Park",
+    address: "411 S 348th St, Federal Way WA 98003",
+    why: "보드워크 습지 산책로. 도심 속 자연·조류 관찰. 아이와 함께 짧은 트레일",
+    tip: "무료. 비 온 뒤 미끄럼 주의" },
 ];
 
 const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
@@ -21553,6 +21593,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
           <Top5Banner items={(() => {
             const slug = useCityConfig().slug;
             const base =
+              slug === "federalway"   ? TOP5_EXPLORE_FEDERALWAY :
               slug === "dallas"       ? TOP5_EXPLORE_DALLAS :
               slug === "sf"           ? TOP5_EXPLORE_SF :
               slug === "newyork"      ? TOP5_EXPLORE_NEWYORK :
