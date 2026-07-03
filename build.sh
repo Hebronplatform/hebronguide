@@ -38,7 +38,7 @@ cp worldcup.json public/worldcup.json   2>/dev/null || true
 # 3. 도시별 메타데이터 정의 (한국어명·영어명·주/지역)
 declare -A CITY_KO=(
   # 기존 17개 도시
-  ["seattle"]="시애틀"       ["dallas"]="달라스"        ["sf"]="샌프란시스코"
+  ["seattle"]="시애틀"       ["federalway"]="훼더럴웨이"  ["dallas"]="달라스"        ["sf"]="샌프란시스코"
   ["newyork"]="뉴욕"         ["nashville"]="내쉬빌"     ["boston"]="보스턴"
   ["la"]="로스앤젤레스"       ["toronto"]="토론토"       ["vancouver"]="밴쿠버"
   ["houston"]="휴스턴"       ["atlanta"]="애틀랜타"     ["kansascity"]="캔자스시티"
@@ -75,7 +75,7 @@ declare -A CITY_KO=(
 )
 declare -A CITY_EN=(
   # 기존 17개 도시
-  ["seattle"]="Seattle"       ["dallas"]="Dallas"          ["sf"]="San Francisco"
+  ["seattle"]="Seattle"       ["federalway"]="Federal Way"  ["dallas"]="Dallas"          ["sf"]="San Francisco"
   ["newyork"]="New York"      ["nashville"]="Nashville"    ["boston"]="Boston"
   ["la"]="Los Angeles"        ["toronto"]="Toronto"        ["vancouver"]="Vancouver"
   ["houston"]="Houston"       ["atlanta"]="Atlanta"        ["kansascity"]="Kansas City"
@@ -125,7 +125,7 @@ echo "  OK: dist/ 서브디렉토리 정리 완료"
 BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 echo "--- Deploying to cities (with city-specific SEO, build_time=$BUILD_TIME) ---"
 for city in \
-  seattle dallas sf newyork nashville boston la toronto vancouver houston atlanta \
+  seattle federalway dallas sf newyork nashville boston la toronto vancouver houston atlanta \
   kansascity philadelphia miami orangecounty mexicocity guadalajara monterrey bogota \
   chicago dc sandiego honolulu portland denver \
   calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
@@ -223,7 +223,7 @@ echo "  OK: ver.txt → $(cat public/ver.txt)"
 # build.sh의 CITY_KO/CITY_EN 배열이 유일한 소스. 도시 추가 시 여기만 수정하면 admin 자동 반영.
 echo "--- Generating cities.json for admin panel ---"
 REGION_MAP=(
-  ["seattle"]="🇺🇸 미국"    ["dallas"]="🇺🇸 미국"     ["sf"]="🇺🇸 미국"
+  ["seattle"]="🇺🇸 미국"    ["federalway"]="🇺🇸 미국"  ["dallas"]="🇺🇸 미국"     ["sf"]="🇺🇸 미국"
   ["newyork"]="🇺🇸 미국"    ["la"]="🇺🇸 미국"         ["houston"]="🇺🇸 미국"
   ["atlanta"]="🇺🇸 미국"    ["chicago"]="🇺🇸 미국"     ["dc"]="🇺🇸 미국"
   ["nashville"]="🇺🇸 미국"  ["boston"]="🇺🇸 미국"      ["miami"]="🇺🇸 미국"
@@ -255,7 +255,7 @@ REGION_MAP=(
 printf '[' > public/cities.json
 first=1
 for city in \
-  seattle dallas sf newyork la houston atlanta chicago dc nashville boston miami \
+  seattle federalway dallas sf newyork la houston atlanta chicago dc nashville boston miami \
   philadelphia sandiego portland denver honolulu charlotte raleigh columbus minneapolis \
   kansascity tampa orlando maryland fayetteville killeen fairfield waynesville louisville anchorage tucson orangecounty inlandempire austin \
   toronto vancouver calgary edmonton ottawa winnipeg princgeorge \

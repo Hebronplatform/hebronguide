@@ -868,7 +868,9 @@ type CitySlug =
   // 북미 신규
   "orlando" | "maryland" | "princgeorge" |
   // 북미 추가 신규
-  "inlandempire" | "austin";
+  "inlandempire" | "austin" |
+  // 워싱턴주 확장 — FWKAA 파트너 (한인회 네트워크 플래그십)
+  "federalway";
 
 interface CityConfig {
   slug: CitySlug;
@@ -909,6 +911,15 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
     population: "15만+", state: "Washington",
     taglineKo: "도시를 알고, 사람을 찾다", taglineEn: "Know your city. Find your people.",
     taglineEs: "Conoce tu ciudad. Encuentra tu gente.",
+  },
+  federalway: {
+    // FWKAA(훼더럴웨이 한인회) 파트너 도시 — 시애틀 남부 King County. 한인회 네트워크 플래그십.
+    // 히어로 영상은 거짓 표상 방지 위해 비움 → 도시 색 그라디언트 폴백 사용.
+    slug: "federalway", nameKo: "훼더럴웨이", nameEn: "Federal Way", color: "#14B8A6",
+    heroVideo: "",
+    population: "한인 밀집", state: "Washington",
+    taglineKo: "훼더럴웨이에서 함께 정착하다", taglineEn: "Settle together in Federal Way.",
+    taglineEs: "Establécete junto a otros en Federal Way.",
   },
   dallas: {
     slug: "dallas", nameKo: "달라스", nameEn: "Dallas", color: "#F59E0B",
@@ -11577,6 +11588,7 @@ function Top3NeighborhoodsSection() {
 ───────────────────────────────────────── */
 const HEBRON_CITIES = [
   { emoji: "🌲", nameKo: "시애틀",       nameEn: "Seattle",       flag: "🇺🇸", url: "/seattle/",     status: "live", color: "#0EA5E9" },
+  { emoji: "🌊", nameKo: "훼더럴웨이",   nameEn: "Federal Way",   flag: "🇺🇸", url: "/federalway/",  status: "live", color: "#14B8A6" },
   { emoji: "🤠", nameKo: "달라스",       nameEn: "Dallas",        flag: "🇺🇸", url: "/dallas/",      status: "live", color: "#F59E0B" },
   { emoji: "🌉", nameKo: "샌프란시스코", nameEn: "San Francisco", flag: "🇺🇸", url: "/sf/",          status: "live", color: "#8B5CF6" },
   { emoji: "🗽", nameKo: "뉴욕",         nameEn: "New York",      flag: "🇺🇸", url: "/newyork/",     status: "live", color: "#EF4444" },
