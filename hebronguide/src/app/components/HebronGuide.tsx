@@ -12220,7 +12220,7 @@ const TIME_SLOTS: TimeSlot[] = [
     { type: "video",    id: "R-WGkU31ifQ", sub: "" },
   ]},
   { id: "afternoon", labelKo: "오후",  labelEn: "Afternoon", icon: "🌤️", hourStart: 12, hourEnd: 17, items: [
-    { type: "playlist", id: "PLHl4MfXsebn14zs3Rj-8W23TS9WO8-Pgb", sub: "" },
+    { type: "playlist", id: "PLHl4MfXsebn14zs3Rj-8W23TS9WO8-Pgb", sub: "Bloom Again Music" },
   ]},
   { id: "evening",   labelKo: "저녁",  labelEn: "Evening",   icon: "🌇", hourStart: 17, hourEnd: 22, items: [
     { type: "video", id: "FZfVGbXrxiI", sub: "Time Alone With God — 3시간 묵상 피아노" },
