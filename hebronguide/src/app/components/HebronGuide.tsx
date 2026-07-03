@@ -12203,9 +12203,9 @@ function AmericasAdSection({ lang }: { lang: string }) {
 type GenreItem = { type: "playlist"|"video"; id: string; sub: string };
 type TimeSlot = { id: string; labelKo: string; labelEn: string; icon: string; hourStart: number; hourEnd: number; items: GenreItem[] };
 
-// 오후 "코지" 재생목록 — Joy Kim(The Mason Nook, 사모님 작품)
-const COZY_ITEMS: GenreItem[] = [
-  { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook — Cozy Jazz BGM (Joy Kim)" },
+// Joy Jazz — 시간대 무관 '장르' (별도 탭, 언제든 재생). 사모님 The Mason Nook 작품.
+const JAZZ_ITEMS: GenreItem[] = [
+  { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook — Cozy Jazz (Joy)" },
 ];
 
 // 시간대별 추천 배경음악 (5구간, 24시간 커버)
@@ -12217,9 +12217,11 @@ const TIME_SLOTS: TimeSlot[] = [
   ]},
   { id: "morning",   labelKo: "오전",  labelEn: "Morning",   icon: "☀️", hourStart: 8,  hourEnd: 12, items: [
     { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "Piano Worship (찬양)" },
-    { type: "video",    id: "R-WGkU31ifQ", sub: "오일권 목사" },
+    { type: "video",    id: "R-WGkU31ifQ", sub: "" },
   ]},
-  { id: "afternoon", labelKo: "오후",  labelEn: "Afternoon", icon: "🌤️", hourStart: 12, hourEnd: 17, items: COZY_ITEMS },
+  { id: "afternoon", labelKo: "오후",  labelEn: "Afternoon", icon: "🌤️", hourStart: 12, hourEnd: 17, items: [
+    { type: "playlist", id: "PLHl4MfXsebn14zs3Rj-8W23TS9WO8-Pgb", sub: "" },
+  ]},
   { id: "evening",   labelKo: "저녁",  labelEn: "Evening",   icon: "🌇", hourStart: 17, hourEnd: 22, items: [
     { type: "video", id: "FZfVGbXrxiI", sub: "Time Alone With God — 3시간 묵상 피아노" },
   ]},
@@ -12253,7 +12255,7 @@ function FloatingMusicPlayer() {
   const [active, setActive]           = useState(false);
   const [mini, setMini]               = useState(false);
   const [sizeIdx, setSizeIdx]         = useState(1);
-  const [mode, setMode]               = useState<"auto"|"children"|"request">("auto");
+  const [mode, setMode]               = useState<"auto"|"jazz"|"children"|"request">("auto");
   const [slotIdx, setSlotIdx]         = useState(getCurrentSlotIdx());
   const [subIdx, setSubIdx]           = useState(0);
   const [musicLang, setMusicLang]     = useState<"ko"|"en">("ko");
@@ -12318,6 +12320,7 @@ function FloatingMusicPlayer() {
   const curItems: { type?: string; id: string; sub: string }[] =
     mode === "request" ? communityQueue.map(r => ({ id: r.video_id, sub: r.requester_name || "익명" }))
     : mode === "children" ? CHILDREN_ITEMS
+    : mode === "jazz" ? JAZZ_ITEMS
     : curSlot.items;
   const curItem = curItems[subIdx % Math.max(curItems.length, 1)];
 
@@ -12415,6 +12418,18 @@ function FloatingMusicPlayer() {
               }}>
               {curSlot.icon} {musicLang === "ko" ? curSlot.labelKo : curSlot.labelEn}
             </button>
+            <button onClick={() => { setMode("jazz"); setSubIdx(0); }}
+              style={{
+                background: mode === "jazz" ? "rgba(110,231,183,0.15)" : "none",
+                border: "none", borderBottom: mode === "jazz" ? "2px solid rgba(110,231,183,0.8)" : "2px solid transparent",
+                cursor: "pointer", whiteSpace: "nowrap" as const,
+                padding: "4px 8px 5px", fontSize: 10,
+                fontWeight: mode === "jazz" ? 700 : 500,
+                color: mode === "jazz" ? "rgba(110,231,183,1)" : "rgba(255,255,255,0.55)",
+                fontFamily: "Manrope,sans-serif", borderRadius: "6px 6px 0 0",
+              }}>
+              Jazz
+            </button>
             <button onClick={() => { setMode("children"); setSubIdx(0); }}
               style={{
                 background: mode === "children" ? "rgba(110,231,183,0.15)" : "none",
@@ -12464,6 +12479,7 @@ function FloatingMusicPlayer() {
             <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" as const, overflow: "hidden", textOverflow: "ellipsis" }}>
               {mode === "request" ? (musicLang === "ko" ? "신청곡" : "Requests")
                 : mode === "children" ? (musicLang === "ko" ? "어린이" : "Kids")
+                : mode === "jazz" ? "Jazz"
                 : `${curSlot.icon} ${musicLang === "ko" ? curSlot.labelKo : curSlot.labelEn}`}
               {curItem?.sub ? ` — ${curItem.sub}` : ""}
             </div>
