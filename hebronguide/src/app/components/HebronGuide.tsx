@@ -12201,46 +12201,25 @@ function AmericasAdSection({ lang }: { lang: string }) {
 // 장르 탭 대신 접속 시각에 맞는 음악이 자동 재생. HebronGuide는 음악 스트리밍이 아니라
 // 정착 가이드이므로, 장르를 고르게 하기보다 "지금 이 시간에 어울리는 배경음악"을 건넨다.
 type GenreItem = { type: "playlist"|"video"; id: string; sub: string };
-type TimeSlot = { id: string; labelKo: string; labelEn: string; icon: string; hourStart: number; hourEnd: number; items: GenreItem[] };
 
-// Joy Jazz — 시간대 무관 '장르' (별도 탭, 언제든 재생). 사모님 The Mason Nook 작품.
+// Jazz 탭 — 사모님 Joy Kim(The Mason Nook) 작품
 const JAZZ_ITEMS: GenreItem[] = [
-  { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook — Cozy Jazz (Joy)" },
+  { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook — Cozy Jazz (Joy Kim)" },
 ];
 
-// 시간대별 추천 배경음악 (5구간, 24시간 커버)
-// · 오후 = 사모님 Mason Nook 유지 / 나머지 = 검증된 크리스천 연주곡(Alone With God 등)
-// · 콘텐츠는 언제든 교체 가능 — sub 라벨로 출처 표기
-const TIME_SLOTS: TimeSlot[] = [
-  { id: "dawn",      labelKo: "새벽",  labelEn: "Dawn",      icon: "🌅", hourStart: 5,  hourEnd: 8,  items: [
-    { type: "playlist", id: "PLpNBopEHnm3DZj97bgFCVWwtRQu3KKvFG", sub: "Alone With God — 피아노 워십 (묵상)" },
-  ]},
-  { id: "morning",   labelKo: "오전",  labelEn: "Morning",   icon: "☀️", hourStart: 8,  hourEnd: 12, items: [
-    { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "Piano Worship (찬양)" },
-    { type: "video",    id: "R-WGkU31ifQ", sub: "" },
-  ]},
-  { id: "afternoon", labelKo: "오후",  labelEn: "Afternoon", icon: "🌤️", hourStart: 12, hourEnd: 17, items: [
-    { type: "playlist", id: "PLHl4MfXsebn14zs3Rj-8W23TS9WO8-Pgb", sub: "Bloom Again Music" },
-  ]},
-  { id: "evening",   labelKo: "저녁",  labelEn: "Evening",   icon: "🌇", hourStart: 17, hourEnd: 22, items: [
-    { type: "video", id: "FZfVGbXrxiI", sub: "Time Alone With God — 3시간 묵상 피아노" },
-  ]},
-  { id: "night",     labelKo: "밤",    labelEn: "Night",     icon: "🌙", hourStart: 22, hourEnd: 5,  items: [
-    { type: "video", id: "AZvjsWle4MQ", sub: "Alone With God — 말씀과 함께 (밤 묵상)" },
-  ]},
+// 추천곡 탭 — Jazz 외 모든 추천곡을 순서대로 (‹ › 로 넘김)
+const RECOMMENDED_ITEMS: GenreItem[] = [
+  { type: "playlist", id: "PLpNBopEHnm3DZj97bgFCVWwtRQu3KKvFG", sub: "Alone With God — 피아노 워십" },
+  { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "Piano Worship (찬양)" },
+  { type: "video",    id: "R-WGkU31ifQ", sub: "" },
+  { type: "playlist", id: "PLHl4MfXsebn14zs3Rj-8W23TS9WO8-Pgb", sub: "Bloom Again Music" },
+  { type: "video",    id: "FZfVGbXrxiI", sub: "Time Alone With God — 묵상 피아노" },
+  { type: "video",    id: "AZvjsWle4MQ", sub: "Alone With God — 말씀과 함께" },
 ];
 
 const CHILDREN_ITEMS: GenreItem[] = [
   { type: "video", id: "r8Bte2R56SM", sub: "김찬후" },
 ];
-
-function getCurrentSlotIdx(): number {
-  const h = new Date().getHours();
-  const idx = TIME_SLOTS.findIndex(s =>
-    s.hourStart < s.hourEnd ? (h >= s.hourStart && h < s.hourEnd) : (h >= s.hourStart || h < s.hourEnd)
-  );
-  return idx === -1 ? 0 : idx;
-}
 
 type MusicReqItem = { id: string; video_id: string; requester_name: string; time_pref: string; genre: string };
 
@@ -12256,7 +12235,6 @@ function FloatingMusicPlayer() {
   const [mini, setMini]               = useState(false);
   const [sizeIdx, setSizeIdx]         = useState(1);
   const [mode, setMode]               = useState<"auto"|"jazz"|"children"|"request">("auto");
-  const [slotIdx, setSlotIdx]         = useState(getCurrentSlotIdx());
   const [subIdx, setSubIdx]           = useState(0);
   const [musicLang, setMusicLang]     = useState<"ko"|"en">("ko");
   const [communityQueue, setCommunityQueue] = useState<MusicReqItem[]>([]);
@@ -12314,14 +12292,13 @@ function FloatingMusicPlayer() {
 
   const { w, h } = YT_SIZES[sizeIdx];
   const barW = mini ? 224 : w;
-  const curSlot = TIME_SLOTS[slotIdx] ?? TIME_SLOTS[0];
 
-  // 모드별 서브큐: auto는 시간대 items, children은 어린이 고정곡, request는 커뮤니티 신청곡
+  // 모드별 서브큐: auto=추천곡 순서, jazz=Joy Kim, children=어린이, request=신청곡
   const curItems: { type?: string; id: string; sub: string }[] =
     mode === "request" ? communityQueue.map(r => ({ id: r.video_id, sub: r.requester_name || "익명" }))
     : mode === "children" ? CHILDREN_ITEMS
     : mode === "jazz" ? JAZZ_ITEMS
-    : curSlot.items;
+    : RECOMMENDED_ITEMS;
   const curItem = curItems[subIdx % Math.max(curItems.length, 1)];
 
   let ytSrc = "";
@@ -12401,12 +12378,8 @@ function FloatingMusicPlayer() {
             overflowX: "auto", scrollbarWidth: "none" as const,
           }}>
             <button
-              onClick={() => {
-                if (mode !== "auto") { setMode("auto"); setSlotIdx(getCurrentSlotIdx()); }
-                else setSlotIdx(i => (i + 1) % TIME_SLOTS.length);
-                setSubIdx(0);
-              }}
-              title={musicLang === "ko" ? "탭하면 다른 시간대 음악도 들을 수 있어요" : "Tap to browse other times of day"}
+              onClick={() => { setMode("auto"); setSubIdx(0); }}
+              title={musicLang === "ko" ? "‹ › 로 다음 추천곡" : "Use ‹ › for next pick"}
               style={{
                 background: mode === "auto" ? "rgba(110,231,183,0.15)" : "none",
                 border: "none", borderBottom: mode === "auto" ? "2px solid rgba(110,231,183,0.8)" : "2px solid transparent",
@@ -12416,7 +12389,7 @@ function FloatingMusicPlayer() {
                 color: mode === "auto" ? "rgba(110,231,183,1)" : "rgba(255,255,255,0.55)",
                 fontFamily: "Manrope,sans-serif", borderRadius: "6px 6px 0 0",
               }}>
-              {curSlot.icon} {musicLang === "ko" ? curSlot.labelKo : curSlot.labelEn}
+              {musicLang === "ko" ? "추천곡" : "Picks"}
             </button>
             <button onClick={() => { setMode("jazz"); setSubIdx(0); }}
               style={{
@@ -12480,7 +12453,7 @@ function FloatingMusicPlayer() {
               {mode === "request" ? (musicLang === "ko" ? "신청곡" : "Requests")
                 : mode === "children" ? (musicLang === "ko" ? "어린이" : "Kids")
                 : mode === "jazz" ? "Jazz"
-                : `${curSlot.icon} ${musicLang === "ko" ? curSlot.labelKo : curSlot.labelEn}`}
+                : (musicLang === "ko" ? "추천곡" : "Picks")}
               {curItem?.sub ? ` — ${curItem.sub}` : ""}
             </div>
             <div style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", fontFamily: "Manrope,sans-serif" }}>
@@ -12523,9 +12496,9 @@ function FloatingMusicPlayer() {
           position: mini ? "absolute" : "relative",
         }}>
           {ytSrc ? (
-            <iframe key={mode + slotIdx + subIdx} src={ytSrc} width={w} height={h}
+            <iframe key={mode + subIdx} src={ytSrc} width={w} height={h}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen style={{ border: "none", display: "block" }} title={musicLang === "ko" ? curSlot.labelKo : curSlot.labelEn} />
+              allowFullScreen style={{ border: "none", display: "block" }} title="Hebron Music" />
           ) : (
             <div style={{ width: w, height: h, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" as const, gap: 8 }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
