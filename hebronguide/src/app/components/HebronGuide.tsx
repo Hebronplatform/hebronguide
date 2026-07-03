@@ -21331,6 +21331,16 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
     { emoji: "🧴", name: "한국 식재료 전문점", nameEn: "Korean Specialty Grocery", desc: lang === "ko" ? "H-Mart 외 소규모 한국 반찬·김치·떡 전문점. 린우드·페더럴웨이" : "Small-batch kimchi, banchan & tteok specialty shops beyond H-Mart", tags: ["반찬", "김치", "전문점"] },
   ];
 
+  // ─── 훼더럴웨이 마켓 (한인 우선 + 리뷰 좋은 아시안·미국 마켓)
+  const federalwayShopping = [
+    { emoji: "🛒", name: "H마트 훼더럴웨이", nameEn: "H Mart Federal Way", desc: lang === "ko" ? "✅ 한인 마켓 1순위. 한국 식품·정육·수산·베이커리·푸드코트. 📍 31217 Pacific Hwy S | ☎ (253) 528-0500 | 매일 8am-9:30pm" : "✅ #1 Korean market. Produce, meat, seafood, bakery, food court. 📍 31217 Pacific Hwy S | ☎ (253) 528-0500 | Daily 8am-9:30pm", tags: ["한인마트", "한국식품", "우선"] },
+    { emoji: "🏮", name: "아시안 패밀리 마켓", nameEn: "Asian Family Market", desc: lang === "ko" ? "한국·중국·베트남·필리핀 식품 종합 아시안 마켓. 리뷰 양호" : "Pan-Asian grocery — Korean, Chinese, Vietnamese, Filipino. Well-reviewed", tags: ["아시안마트", "타민족"] },
+    { emoji: "🥩", name: "홍콩 마켓", nameEn: "Hong Kong Market", desc: lang === "ko" ? "저렴한 정육·아시안 식품. 육류 가격 좋음" : "Affordable meat & Asian groceries. Great meat prices", tags: ["아시안마트", "정육"] },
+    { emoji: "🛍️", name: "윈코 푸드", nameEn: "WinCo Foods", desc: lang === "ko" ? "저가·대용량 미국 마켓. 벌크 코너. 리뷰 좋음" : "Low-price bulk American grocery. Well-reviewed", tags: ["미국마트", "저가", "벌크"] },
+    { emoji: "🌺", name: "트레이더 조스", nameEn: "Trader Joe's", desc: lang === "ko" ? "깔끔·품질 좋은 미국 마켓. 냉동식품·스낵 인기" : "Clean, well-stocked American market. Great frozen & snacks", tags: ["미국마트", "품질"] },
+    { emoji: "🏪", name: "세이프웨이", nameEn: "Safeway", desc: lang === "ko" ? "대형 미국 슈퍼마켓. 📍 1207 S 320th St, Federal Way" : "Large American supermarket. 📍 1207 S 320th St, Federal Way", tags: ["미국마트", "대형"] },
+  ];
+
   // ─── 도시별 맛집: serverContent 우선, 없으면 도시 고유 fallback
   // 카페·상권·쇼핑은 시애틀만 상세 데이터, 타 도시는 [] → "추가 중" UI
   const cityTop5Restaurants = top5ToPlaceCards(CITY_RESTAURANT_TOP5_MAP[citySlug] ?? [], lang);
@@ -21340,7 +21350,7 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
     : (CITY_CAFE_MAP[citySlug] ?? []);
   const resolvedRestaurants = serverContent["restaurants"] ? resolvePlaceItems(serverContent["restaurants"], lang) : (isSeattle ? seattleRestaurants : cityTop5Restaurants);
   const resolvedBusinesses  = serverContent["businesses"]  ? resolvePlaceItems(serverContent["businesses"], lang)  : (isSeattle ? seattleBusinesses : (citySlug === "federalway" ? federalwayBusinesses : []));
-  const resolvedShopping    = serverContent["shopping"]    ? resolvePlaceItems(serverContent["shopping"], lang)    : (isSeattle ? seattleShopping    : []);
+  const resolvedShopping    = serverContent["shopping"]    ? resolvePlaceItems(serverContent["shopping"], lang)    : (isSeattle ? seattleShopping : (citySlug === "federalway" ? federalwayShopping : []));
 
   // 카테고리 필터 적용 (Yelp 인사이트)
   const filteredRestaurants = foodFilter === "전체"
