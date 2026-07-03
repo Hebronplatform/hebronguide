@@ -21306,6 +21306,15 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
     { emoji: "🔑", name: "한인 부동산", nameEn: "Korean Real Estate", desc: lang === "ko" ? "WowSeattle 검증 | 백수경 ☎ (206) 334-5454 | 박나리 ☎ (425) 246-1453 | 🔗 wowseattle.com" : "WowSeattle verified | Baik Sukyung ☎ (206) 334-5454 | Park Nari ☎ (425) 246-1453 | 🔗 wowseattle.com", tags: ["부동산", "렌탈", "검증됨"] },
   ];
 
+  // ─── 훼더럴웨이 한인 서비스 업소 (의료·회계 — 천진 한의원은 검증됨, 나머지는 웹 출처)
+  const federalwayBusinesses = [
+    { emoji: "🏥", name: "천진 한의원", nameEn: "Chunjin Oriental Medicine", desc: lang === "ko" ? "✅ 검증됨 | 침술·한약. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058" : "✅ Verified | Acupuncture & herbal medicine. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058", tags: ["한의원", "페더럴웨이", "검증됨"] },
+    { emoji: "🏥", name: "동도 한의원", nameEn: "Dong Do Acupuncture Clinic", desc: lang === "ko" ? "침구·한방. 33720 9th Ave S, Federal Way WA 98003" : "Acupuncture & herbal medicine. 33720 9th Ave S, Federal Way WA 98003", tags: ["한의원", "침술", "페더럴웨이"] },
+    { emoji: "🌿", name: "한방 웰니스 센터", nameEn: "Acupuncture & Herbal Wellness Center", desc: lang === "ko" ? "침·한약·부항·추나 마사지. 33710 9th Ave S #2, Federal Way WA 98003" : "Acupuncture, herbs, cupping & Tui Na. 33710 9th Ave S #2, Federal Way WA 98003", tags: ["한의원", "침술", "페더럴웨이"] },
+    { emoji: "💉", name: "Dr. Kay Kim 침구한의", nameEn: "Kay Kim, LAc — Northwest Wellness", desc: lang === "ko" ? "한인 침구·동양의학. Federal Way | ☎ (253) 927-0660" : "Korean acupuncturist / East Asian medicine. Federal Way | ☎ (253) 927-0660", tags: ["한의원", "침술", "페더럴웨이"] },
+    { emoji: "🧮", name: "D.W. Kim CPA", nameEn: "D W Kim CPA", desc: lang === "ko" ? "한인 회계·세무 전문. Federal Way, WA" : "Korean-American CPA / tax. Federal Way, WA", tags: ["회계", "세무", "페더럴웨이"] },
+  ];
+
   // ─── 시애틀 전용 쇼핑 데이터
   const seattleShopping = [
     { emoji: "🛒", name: "H-Mart + Galleria", nameEn: "Lynnwood Korean Shopping Center", desc: lang === "ko" ? "H-Mart 옆 갤러리아 쇼핑몰. 한국 브랜드 의류·잡화·미용용품" : "Galleria mall next to H-Mart. Korean brand clothing, accessories & beauty products", tags: ["갤러리아", "한국브랜드", "쇼핑몰"] },
@@ -21322,7 +21331,7 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
     : isSeattle ? seattleCafes
     : (CITY_CAFE_MAP[citySlug] ?? []);
   const resolvedRestaurants = serverContent["restaurants"] ? resolvePlaceItems(serverContent["restaurants"], lang) : (isSeattle ? seattleRestaurants : cityTop5Restaurants);
-  const resolvedBusinesses  = serverContent["businesses"]  ? resolvePlaceItems(serverContent["businesses"], lang)  : (isSeattle ? seattleBusinesses  : []);
+  const resolvedBusinesses  = serverContent["businesses"]  ? resolvePlaceItems(serverContent["businesses"], lang)  : (isSeattle ? seattleBusinesses : (citySlug === "federalway" ? federalwayBusinesses : []));
   const resolvedShopping    = serverContent["shopping"]    ? resolvePlaceItems(serverContent["shopping"], lang)    : (isSeattle ? seattleShopping    : []);
 
   // 카테고리 필터 적용 (Yelp 인사이트)
