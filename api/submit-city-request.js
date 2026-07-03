@@ -5,7 +5,7 @@ import nodemailer from 'nodemailer'
 
 const SUPABASE_URL  = 'https://vextxqzggznulwpganwt.supabase.co'
 // anon 키 (fallback) — 서비스 키 미설정 시 사용. status=pending 삽입은 RLS 허용.
-const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU5NjY4NDMsImV4cCI6MjA2MTU0Mjg0M30.YSLH_RlC-wZMbqFvXCVjzWYFqCyiFHh0VJRFGFqBY9E'
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4MTUzOTIsImV4cCI6MjA5NDM5MTM5Mn0.XghaQZYtI-dq5mf8i-DPVCxtw_XBBjxGUnvaiwGQFWk'
 const ADMIN_EMAIL   = 'hebronplatform@gmail.com'
 const FROM_EMAIL    = 'Hebronplatform@gmail.com'
 

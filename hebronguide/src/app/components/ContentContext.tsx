@@ -90,7 +90,11 @@ async function fetchChurches(citySlug: string): Promise<PlaceItem[]> {
       tags: [r.denomination, r.city_slug].filter(Boolean),
       active: r.active ?? true,
       order: r.tier ?? 2,
-    }));
+      // 협력교회 최상단 노출 유지 — hebron_partner/tier/hcmi 보존 (없으면 판별 실패해 사라짐)
+      hebron_partner: r.hebron_partner === true,
+      tier: r.tier ?? 2,
+      hcmi: r.hcmi === true,
+    })) as any;
   } catch {
     return [];
   }
