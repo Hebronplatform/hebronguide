@@ -359,30 +359,14 @@ async function submitRequest() {
 
   const description = `역할: ${role || '(미선택)'}\n성함: ${name || '(미입력)'}\n이메일: ${email}\n신청 도시: ${city}\n신청 이유: ${reason || '(미입력)'}\n추천인: ${ref || '(미입력)'}`;
 
-  // ── Supabase 저장 ──────────────────────────────────────────
+  // ── 서버 API: Supabase 저장 + 관리자 이메일 알림 ──────────────
   try {
-    const SB_URL  = 'https://vextxqzggznulwpganwt.supabase.co';
-    const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU5NjY4NDMsImV4cCI6MjA2MTU0Mjg0M30.YSLH_RlC-wZMbqFvXCVjzWYFqCyiFHh0VJRFGFqBY9E';
-    await fetch(`${SB_URL}/rest/v1/community_items`, {
+    await fetch('/api/submit-city-request', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SB_ANON,
-        'Authorization': `Bearer ${SB_ANON}`,
-        'Prefer': 'return=minimal',
-      },
-      body: JSON.stringify({
-        title:       `[도시 신청] ${city}`,
-        name:        name || email,
-        contact:     email,
-        description: description,
-        category:    'city_request',
-        city_slug:   '',
-        city:        city,
-        status:      'pending',
-      }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ role, name, email, city, reason, ref }),
     });
-  } catch(e) { console.warn('Supabase 저장 실패:', e.message); }
+  } catch(e) { console.warn('신청 전송 실패:', e.message); }
 
   document.getElementById('formCard').style.display = 'none';
   document.getElementById('successBox').classList.add('show');
