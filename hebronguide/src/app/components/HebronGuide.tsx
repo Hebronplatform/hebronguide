@@ -20681,6 +20681,15 @@ const TOP5_FOOD_FEDERALWAY: Top5Item[] = [
     address: "Federal Way, WA",
     why: "불고기·돌솥비빔밥·냉면. 프라임 고기 BBQ",
     tip: "", website: "haesong-bbq.com" },
+  { rank: 9, emoji: "🥣", nameKo: "무봉리 순대", nameEn: "Moobongri Soondae",
+    address: "33320 Pacific Hwy S Ste 101, Federal Way WA 98003",
+    phone: "(253) 517-9233", hours: "매일 9am-10pm",
+    why: "정통 순대·순대국 전문. 얼큰한 순대국밥. 해장·든든한 한 끼",
+    tip: "H마트 인근 한인 상권", website: "moobongri.com" },
+  { rank: 10, emoji: "🍗", nameKo: "코카투스 치킨", nameEn: "Cockatoo's Chicken",
+    address: "Federal Way, WA",
+    why: "한국식 치킨·차바키·떡볶이·김치찌개. 야식·모임 인기",
+    tip: "", website: "cockatooschicken.com" },
 ];
 
 // 훼더럴웨이 탐방·가보고 싶은 곳 (실제 명소 — 웹 조사 검증)
@@ -20713,6 +20722,18 @@ const TOP5_EXPLORE_FEDERALWAY: Top5Item[] = [
     address: "411 S 348th St, Federal Way WA 98003",
     why: "보드워크 습지 산책로. 도심 속 자연·조류 관찰. 아이와 함께 짧은 트레일",
     tip: "무료. 비 온 뒤 미끄럼 주의" },
+  { rank: 8, emoji: "🏞️", nameKo: "스틸 레이크 공원", nameEn: "Steel Lake Park",
+    address: "2410 S 312th St, Federal Way WA 98003",
+    why: "호수 공원. 여름 물놀이·피크닉·놀이터. 인근 커뮤니티 센터. 가족 나들이 명소",
+    tip: "여름 주말 붐빔. 무료 주차" },
+  { rank: 9, emoji: "🏊", nameKo: "킹카운티 아쿠아틱 센터", nameEn: "Weyerhaeuser King County Aquatic Center",
+    address: "650 SW Campus Dr, Federal Way WA 98023",
+    why: "올림픽 규격 수영장(1990 굿윌게임 개최). 수영·다이빙·강습. 실내 연중 이용",
+    tip: "일반 개방 시간 홈페이지 확인" },
+  { rank: 10, emoji: "⚾", nameKo: "셀러브레이션 공원", nameEn: "Celebration Park",
+    address: "Federal Way, WA (S 324th St 인근)",
+    why: "대형 커뮤니티 공원. 야구·축구장·산책로. 지역 스포츠·행사 중심지",
+    tip: "주말 경기 많음. 넓은 주차장" },
 ];
 
 const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
