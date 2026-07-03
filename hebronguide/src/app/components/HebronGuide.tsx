@@ -12562,6 +12562,8 @@ function GrowthShareSection({ lang }: { lang: string }) {
 
   return (
     <div style={{ margin: "12px 16px 0" }}>
+      {/* ── 도시 파트너 한인회 배너 (해당 도시만) ── */}
+      <CityPartnerBanner lang={lang} />
       {/* ── 큰 노란 공유 버튼 ── */}
       {/* 카카오톡으로 공유하기 버튼 */}
       <button
@@ -12637,6 +12639,58 @@ function GrowthShareSection({ lang }: { lang: string }) {
       {/* 이 도시 소식 (광고·소식) — 큐레이션과 분리, 동시 최대 3개 */}
       <CityNewsSection lang={ko ? "ko" : "en"} />
 
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────
+   도시 파트너 한인회 배너 — 한인회 네트워크 플래그십
+   · 도시별 파트너 한인회를 등록하면 해당 도시 홈에 자동 표시
+   · 새 한인회 추가 = PARTNER_ASSOCIATIONS에 항목만 추가 (재사용)
+───────────────────────────────────────── */
+type PartnerAssociation = {
+  nameKo: string; nameEn: string;
+  address?: string; phone?: string; email?: string; website?: string;
+};
+const PARTNER_ASSOCIATIONS: Partial<Record<CitySlug, PartnerAssociation>> = {
+  federalway: {
+    nameKo: "훼더럴웨이 한인회",
+    nameEn: "Federal Way Korean American Association",
+    address: "33301 1st Way S #C115, Federal Way, WA 98003",
+    phone: "(253) 326-5499",
+    email: "wafwkaa@gmail.com",
+    // website: 계약 후 확정 시 추가
+  },
+};
+
+function CityPartnerBanner({ lang }: { lang: string }) {
+  const ko = lang === "ko";
+  const city = useCityConfig();
+  const p = PARTNER_ASSOCIATIONS[city.slug];
+  if (!p) return null;
+
+  return (
+    <div style={{
+      marginBottom: 12, padding: "14px 16px", borderRadius: 14,
+      background: "linear-gradient(135deg, rgba(20,184,166,0.14), rgba(16,20,36,0.6))",
+      border: "1px solid rgba(20,184,166,0.35)",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
+        <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: "0.08em", color: "rgba(20,184,166,1)", background: "rgba(20,184,166,0.15)", border: "1px solid rgba(20,184,166,0.4)", borderRadius: 6, padding: "2px 7px", fontFamily: "Manrope,sans-serif" }}>
+          {ko ? "공식 파트너" : "OFFICIAL PARTNER"}
+        </span>
+      </div>
+      <div style={{ fontSize: 14, fontWeight: 800, color: "#ECFDF5", fontFamily: "'Noto Sans KR',Manrope,sans-serif", marginBottom: 3 }}>
+        {ko ? p.nameKo : p.nameEn}
+      </div>
+      <div style={{ fontSize: 11, color: "rgba(236,253,245,0.6)", fontFamily: "Manrope,sans-serif", lineHeight: 1.6 }}>
+        {p.address && <div>{p.address}</div>}
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" as const, marginTop: 2 }}>
+          {p.phone && <a href={`tel:${p.phone.replace(/[^0-9+]/g, "")}`} style={{ color: "rgba(20,184,166,0.95)", textDecoration: "none", fontWeight: 700 }}>{p.phone}</a>}
+          {p.email && <a href={`mailto:${p.email}`} style={{ color: "rgba(20,184,166,0.95)", textDecoration: "none", fontWeight: 700 }}>{p.email}</a>}
+          {p.website && <a href={p.website} target="_blank" rel="noopener noreferrer" style={{ color: "rgba(20,184,166,0.95)", textDecoration: "none", fontWeight: 700 }}>{ko ? "홈페이지 →" : "Website →"}</a>}
+        </div>
+      </div>
     </div>
   );
 }
