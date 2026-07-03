@@ -15985,6 +15985,14 @@ function top5ToPlaceCards(items: Top5Item[], lang: string) {
 // ── 도시별 카페 데이터 (카페 탭 sub=0 용)
 type CafeItem = { emoji: string; name: string; nameEn: string; desc: string; tags: string[] };
 const CITY_CAFE_MAP: Record<string, CafeItem[]> = {
+  federalway: [
+    { emoji: "☕", name: "서울 베이커리", nameEn: "Seoul Bakery — Federal Way",
+      desc: "크로플·빙수·모카 로프로 유명한 한국 베이커리 카페. H마트 단지 내. 📍 31217 Pacific Hwy S C-103, Federal Way WA 98003 | ☎ (253) 839-6200 | 🔗 facebook.com/seoulbakeryfw", tags: ["베이커리", "빙수", "크로플"] },
+    { emoji: "🧋", name: "카페 서울", nameEn: "Cafe Seoul — Federal Way",
+      desc: "수제 음료·빙수·김밥·크로플. 식물과 K-pop 감성의 모던 카페. 📍 1805 S 316th St A102, Federal Way WA 98003", tags: ["감성카페", "빙수", "K-pop"] },
+    { emoji: "🍰", name: "카페 스팟", nameEn: "Cafe Spot — Federal Way",
+      desc: "감성 한국 카페. 디저트·수제 음료. 99번 도로 한인 상권. 📍 33304 Pacific Hwy S Ste 301, Federal Way WA 98003", tags: ["감성카페", "디저트", "페더럴웨이"] },
+  ],
   dallas: [
     { emoji: "☕", name: "Tous Les Jours 뚜레쥬르 — 캐롤튼", nameEn: "Tous Les Jours — Carrollton",
       desc: "H-Mart 단지 내 한국 베이커리·카페. 소금빵·크림치즈 소보로·쉬폰 케이크. 📍 2625 Old Denton Rd Ste 118, Carrollton TX 75007 | ☎ (972) 242-8870 | 매일 7am-9pm | 🔗 tljus.com", tags: ["베이커리", "캐롤튼", "한국빵"] },
