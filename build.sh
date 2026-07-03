@@ -255,16 +255,17 @@ REGION_MAP=(
 printf '[' > public/cities.json
 first=1
 for city in \
-  seattle federalway dallas sf newyork la houston atlanta chicago dc nashville boston miami \
-  philadelphia sandiego portland denver honolulu charlotte raleigh columbus minneapolis \
-  kansascity tampa orlando maryland fayetteville killeen fairfield waynesville louisville anchorage tucson orangecounty inlandempire austin \
-  toronto vancouver calgary edmonton ottawa winnipeg princgeorge \
-  mexicocity guadalajara monterrey saopaulo bogota \
-  london paris berlin frankfurt \
-  sydney melbourne brisbane perth auckland \
-  singapore bangkok hochiminh dubai \
+  seattle federalway dallas sf newyork nashville boston la toronto vancouver houston atlanta \
+  kansascity philadelphia miami orangecounty mexicocity guadalajara monterrey bogota \
+  chicago dc sandiego honolulu portland denver \
+  calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
+  tucson fayetteville killeen fairfield waynesville louisville anchorage princgeorge inlandempire austin \
+  tampa \
+  sydney melbourne brisbane perth auckland saopaulo london \
+  singapore bangkok hochiminh dubai frankfurt berlin paris \
   tokyo osaka \
-  seoul busan incheon ansan daejeon daegu gwangju jeju bundang changwon cheonan; do
+  seoul busan ansan incheon jeju daegu gwangju daejeon changwon cheonan bundang \
+  orlando maryland; do
   KO="${CITY_KO[$city]:-$city}"
   EN="${CITY_EN[$city]:-$city}"
   REGION="${REGION_MAP[$city]:-기타}"
@@ -275,6 +276,25 @@ for city in \
 done
 printf ']' >> public/cities.json
 echo "  OK: cities.json → $(wc -c < public/cities.json) bytes, $(grep -o '"slug"' public/cities.json | wc -l) cities"
+
+# 8-b. 도시 수 공개 엔드포인트 city-count.js (자동 생성)
+# 목적: NanuriWeb 등 외부 사이트가 <script>로 포함 → 도시 추가 시 자동 동기화 (CORS 불필요)
+# 사용법(외부): <script src="https://hebronguide.com/city-count.js"></script>
+#   + 숫자 표시 요소에 class="hg-city-count", "72+" 표시엔 class="hg-city-count-plus"
+CITY_N=$(grep -o '"slug"' public/cities.json | wc -l | tr -d ' ')
+cat > public/city-count.js <<EOF
+/* HebronGuide 도시 수 — build.sh 자동 생성. 수동 수정 금지. */
+window.HG_CITY_COUNT = ${CITY_N};
+(function(){
+  function apply(){
+    document.querySelectorAll('.hg-city-count').forEach(function(e){ e.textContent = ${CITY_N}; });
+    document.querySelectorAll('.hg-city-count-plus').forEach(function(e){ e.textContent = '${CITY_N}+'; });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);
+  else apply();
+})();
+EOF
+echo "  OK: city-count.js → ${CITY_N} 도시"
 
 # 9. SEO JSON-LD 구조화 데이터 삽입 — 구글 검색 시 HebronGuide 노출
 # 효과: "시애틀지구촌교회", "달라스 한인 교회" 등 검색 → HebronGuide 연결
