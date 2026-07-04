@@ -113,13 +113,14 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   ],
 
   // 🌲 훼더럴웨이 — 지역 사진은 실제 페더럴웨이만(거짓 표상 금지, Wikimedia 검증), 인물은 공동체·환대 대표 이미지(타 도시와 동일 방식)
-  // Story: 지역 상징 Mount Rainier → 도시 랜드마크 Pacific Bonsai Museum → Dash Point 해변 → Picnic Point 물가 → Ridge Trail 전망 → 공동체 환대(사람들)
+  // Story: 드론 항공(Dumas Bay) → 지역 상징 Mount Rainier → 도시 City Hall → 한우리정원 2컷(입구 사인 → 팔각정, FWKAA 조성 "하나됨") → Dash Point 해변 → 공동체 환대(사람들)
   federalway: [
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Over_Dumas_Bay_%28Unsplash%29.jpg/1280px-Over_Dumas_Bay_%28Unsplash%29.jpg", pos: "center 50%", alt: "Aerial drone view over Dumas Bay Federal Way Puget Sound coastline" },
     { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Mount_Rainier_over_Tacoma.jpg/1280px-Mount_Rainier_over_Tacoma.jpg", pos: "center 45%", alt: "Mount Rainier over Puget Sound near Federal Way Washington landmark" },
-    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Pacific_Bonsai_Museum_306_-_Dwarf_schefflera.jpg/1280px-Pacific_Bonsai_Museum_306_-_Dwarf_schefflera.jpg", pos: "center 50%", alt: "Pacific Bonsai Museum Federal Way cultural landmark bonsai" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/20230315_080236_Federal_Way_City_Hall.jpg/1280px-20230315_080236_Federal_Way_City_Hall.jpg", pos: "center 40%", alt: "Federal Way City Hall civic building Washington" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Hanwoori_Garden_4671.jpg/1280px-Hanwoori_Garden_4671.jpg", pos: "center 50%", alt: "Hanwoori Korean Garden 한우리정원 Federal Way entrance sign traditional Korean roof" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Hanwoori_Garden_4715.jpg/1280px-Hanwoori_Garden_4715.jpg", pos: "center 40%", alt: "Hanwoori Korean Garden 한우리정원 Federal Way — traditional Korean pavilion Palgakjeong" },
     { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Dash_Point_State_Park.jpg/1280px-Dash_Point_State_Park.jpg", pos: "center 50%", alt: "Dash Point State Park beach Puget Sound Federal Way" },
-    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Picnic_Point_7210.jpg/1280px-Picnic_Point_7210.jpg", pos: "center 50%", alt: "Picnic Point Puget Sound shoreline Federal Way Dash Point" },
-    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Dash_Point_State_Park_viewpoint_in_Ridge_Trail.jpg/1280px-Dash_Point_State_Park_viewpoint_in_Ridge_Trail.jpg", pos: "center 45%", alt: "Dash Point State Park Ridge Trail viewpoint Federal Way forest" },
     { url: "https://images.pexels.com/photos/5384501/pexels-photo-5384501.jpeg?auto=compress&cs=tinysrgb&w=1280", pos: "center 50%", alt: "Diverse friends gathering outdoors park warm welcome community hospitality" },
   ],
 
