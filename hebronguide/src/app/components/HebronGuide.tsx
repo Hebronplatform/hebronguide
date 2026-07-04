@@ -120,7 +120,7 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Dash_Point_State_Park.jpg/1280px-Dash_Point_State_Park.jpg", pos: "center 50%", alt: "Dash Point State Park beach Puget Sound Federal Way" },
     { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Picnic_Point_7210.jpg/1280px-Picnic_Point_7210.jpg", pos: "center 50%", alt: "Picnic Point Puget Sound shoreline Federal Way Dash Point" },
     { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Dash_Point_State_Park_viewpoint_in_Ridge_Trail.jpg/1280px-Dash_Point_State_Park_viewpoint_in_Ridge_Trail.jpg", pos: "center 45%", alt: "Dash Point State Park Ridge Trail viewpoint Federal Way forest" },
-    { url: "https://images.unsplash.com/photo-1562364692-16836a8b9b08?w=1200&q=95", pos: "center 50%", alt: "Community gathering outdoor people warm welcome hospitality" },
+    { url: "https://images.pexels.com/photos/5384501/pexels-photo-5384501.jpeg?auto=compress&cs=tinysrgb&w=1280", pos: "center 50%", alt: "Diverse friends gathering outdoors park warm welcome community hospitality" },
   ],
 
   // 🤠 달라스 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
