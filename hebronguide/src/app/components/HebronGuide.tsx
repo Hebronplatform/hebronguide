@@ -112,6 +112,16 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1694138104709-61504d9b3a1d?w=1200&q=95", pos: "center 50%", alt: "Fremont neighborhood couple sidewalk Seattle settle home" },
   ],
 
+  // 🌲 훼더럴웨이 — 실제 페더럴웨이 지역 사진만 (거짓 표상 금지, 전부 Wikimedia Commons 검증)
+  // Story: 지역 상징 Mount Rainier → Dash Point State Park 해변(퓨젓 사운드) → Picnic Point 물가 → PNW 숲 → Ridge Trail 전망
+  federalway: [
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Mount_Rainier_over_Tacoma.jpg/1280px-Mount_Rainier_over_Tacoma.jpg", pos: "center 45%", alt: "Mount Rainier over Puget Sound near Federal Way Washington landmark" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Dash_Point_State_Park.jpg/1280px-Dash_Point_State_Park.jpg", pos: "center 50%", alt: "Dash Point State Park beach Puget Sound Federal Way" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Picnic_Point_7210.jpg/1280px-Picnic_Point_7210.jpg", pos: "center 50%", alt: "Picnic Point Puget Sound shoreline Federal Way Dash Point" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Understory_2501.jpg/1280px-Understory_2501.jpg", pos: "center 50%", alt: "Pacific Northwest evergreen forest understory Dash Point Federal Way" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Dash_Point_State_Park_viewpoint_in_Ridge_Trail.jpg/1280px-Dash_Point_State_Park_viewpoint_in_Ridge_Trail.jpg", pos: "center 45%", alt: "Dash Point State Park Ridge Trail viewpoint Federal Way forest" },
+  ],
+
   // 🤠 달라스 — ① 도착 → ② 랜드마크 → ③ 특징 → ④ 사람들 → ⑤ 정착
   // Story: 달라스 항공 → Reunion Tower 야경 → Texas BBQ → 가족 야외 → 동네 풍경
   dallas: [
@@ -914,7 +924,7 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   },
   federalway: {
     // FWKAA(훼더럴웨이 한인회) 파트너 도시 — 시애틀 남부 King County. 한인회 네트워크 플래그십.
-    // 히어로 영상은 거짓 표상 방지 위해 비움 → 도시 색 그라디언트 폴백 사용.
+    // 히어로: CITY_HERO_SLIDES.federalway 사용 (실제 Dash Point·Mount Rainier 사진, 슬라이드가 영상보다 우선).
     slug: "federalway", nameKo: "훼더럴웨이", nameEn: "Federal Way", color: "#14B8A6",
     heroVideo: "",
     population: "한인 밀집", state: "Washington",
