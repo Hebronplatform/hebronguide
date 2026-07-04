@@ -113,12 +113,12 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   ],
 
   // 🌲 훼더럴웨이 — 실제 페더럴웨이 지역 사진만 (거짓 표상 금지, 전부 Wikimedia Commons 검증)
-  // Story: 지역 상징 Mount Rainier → Dash Point State Park 해변(퓨젓 사운드) → Picnic Point 물가 → PNW 숲 → Ridge Trail 전망
+  // Story: 지역 상징 Mount Rainier → 도시 랜드마크 Pacific Bonsai Museum → Dash Point 해변(퓨젓 사운드) → Picnic Point 물가 → Ridge Trail 전망
   federalway: [
     { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Mount_Rainier_over_Tacoma.jpg/1280px-Mount_Rainier_over_Tacoma.jpg", pos: "center 45%", alt: "Mount Rainier over Puget Sound near Federal Way Washington landmark" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Pacific_Bonsai_Museum_306_-_Dwarf_schefflera.jpg/1280px-Pacific_Bonsai_Museum_306_-_Dwarf_schefflera.jpg", pos: "center 50%", alt: "Pacific Bonsai Museum Federal Way cultural landmark bonsai" },
     { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Dash_Point_State_Park.jpg/1280px-Dash_Point_State_Park.jpg", pos: "center 50%", alt: "Dash Point State Park beach Puget Sound Federal Way" },
     { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Picnic_Point_7210.jpg/1280px-Picnic_Point_7210.jpg", pos: "center 50%", alt: "Picnic Point Puget Sound shoreline Federal Way Dash Point" },
-    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Understory_2501.jpg/1280px-Understory_2501.jpg", pos: "center 50%", alt: "Pacific Northwest evergreen forest understory Dash Point Federal Way" },
     { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Dash_Point_State_Park_viewpoint_in_Ridge_Trail.jpg/1280px-Dash_Point_State_Park_viewpoint_in_Ridge_Trail.jpg", pos: "center 45%", alt: "Dash Point State Park Ridge Trail viewpoint Federal Way forest" },
   ],
 
