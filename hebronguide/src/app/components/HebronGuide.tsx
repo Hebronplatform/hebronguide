@@ -12197,24 +12197,37 @@ function AmericasAdSection({ lang }: { lang: string }) {
    ─ 예약 추가: YT_SCHEDULE 배열에 항목 추가
 ───────────────────────────────────────── */
 
-// ── 🎵 시간대별 자동 선곡 ──────────────
-// 장르 탭 대신 접속 시각에 맞는 음악이 자동 재생. HebronGuide는 음악 스트리밍이 아니라
-// 정착 가이드이므로, 장르를 고르게 하기보다 "지금 이 시간에 어울리는 배경음악"을 건넨다.
+// ── 🎵 헤브론 뮤직 — 언제 들어도 좋은 5장르 ──────────────
+// CCM · 연주 찬양 · Jazz(Joy Kim) · Bloom Again · Lo-Fi + 어린이 + 신청곡.
+// 시간대 자동 선곡을 폐지하고, 사용자가 원하는 장르를 직접 고르게 한다.
 type GenreItem = { type: "playlist"|"video"; id: string; sub: string };
+type MusicGenre = { id: string; labelKo: string; labelEn: string; items: GenreItem[] };
 
-// Jazz 탭 — 사모님 Joy Kim(The Mason Nook) 작품
-const JAZZ_ITEMS: GenreItem[] = [
-  { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook — Cozy Jazz (Joy Kim)" },
-];
-
-// 추천곡 탭 — Jazz 외 모든 추천곡을 순서대로 (‹ › 로 넘김)
-const RECOMMENDED_ITEMS: GenreItem[] = [
-  { type: "playlist", id: "PLpNBopEHnm3DZj97bgFCVWwtRQu3KKvFG", sub: "Alone With God — 피아노 워십" },
-  { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "Piano Worship (찬양)" },
-  { type: "video",    id: "R-WGkU31ifQ", sub: "" },
-  { type: "playlist", id: "PLHl4MfXsebn14zs3Rj-8W23TS9WO8-Pgb", sub: "Bloom Again Music" },
-  { type: "video",    id: "FZfVGbXrxiI", sub: "Time Alone With God — 묵상 피아노" },
-  { type: "video",    id: "AZvjsWle4MQ", sub: "Alone With God — 말씀과 함께" },
+// 언제 들어도 좋은 5장르 — 각 장르에 검증된 실제 유튜브 플레이리스트/영상만 사용
+const MUSIC_GENRES: MusicGenre[] = [
+  // ① CCM — 미국에서 가장 즐겨 부르는 워십 (Bethel·Hillsong·Elevation = CCLI Top)
+  { id: "ccm", labelKo: "CCM", labelEn: "CCM", items: [
+    { type: "playlist", id: "PLJ1rBJxbu-K3EPz1MWy5Q0hyPycL9fASe", sub: "Bethel · Hillsong · Elevation — CCLI Top 워십" },
+  ] },
+  // ② 연주 찬양 — 피아노·묵상 워십
+  { id: "worship", labelKo: "연주 찬양", labelEn: "Worship", items: [
+    { type: "playlist", id: "PLpNBopEHnm3DZj97bgFCVWwtRQu3KKvFG", sub: "Alone With God — 피아노 워십" },
+    { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "Piano Worship (찬양)" },
+    { type: "video",    id: "R-WGkU31ifQ", sub: "" },
+  ] },
+  // ③ Jazz — 사모님 Joy Kim(The Mason Nook) 작품
+  { id: "jazz", labelKo: "Jazz", labelEn: "Jazz", items: [
+    { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook — Cozy Jazz (Joy Kim)" },
+  ] },
+  // ④ Bloom Again Music — 힐링·어쿠스틱 감성
+  { id: "bloom", labelKo: "Bloom Again", labelEn: "Bloom Again", items: [
+    { type: "playlist", id: "PLHl4MfXsebn14zs3Rj-8W23TS9WO8-Pgb", sub: "Bloom Again Music" },
+    { type: "video",    id: "kMPNHuehfCs", sub: "Overflow — Summer Healing" },
+  ] },
+  // ⑤ Lo-Fi — 공부·기도·묵상용 크리스천 로파이
+  { id: "lofi", labelKo: "Lo-Fi", labelEn: "Lo-Fi", items: [
+    { type: "playlist", id: "PLyqZUennuDvBqYBSu8UD5LAucMql_uXJh", sub: "Christian Lo-Fi — 잔잔한 배경음악" },
+  ] },
 ];
 
 const CHILDREN_ITEMS: GenreItem[] = [
@@ -12234,7 +12247,7 @@ function FloatingMusicPlayer() {
   const [active, setActive]           = useState(false);
   const [mini, setMini]               = useState(false);
   const [sizeIdx, setSizeIdx]         = useState(1);
-  const [mode, setMode]               = useState<"auto"|"jazz"|"children"|"request">("auto");
+  const [mode, setMode]               = useState<string>("ccm"); // 장르 id | "children" | "request"
   const [subIdx, setSubIdx]           = useState(0);
   const [musicLang, setMusicLang]     = useState<"ko"|"en">("ko");
   const [communityQueue, setCommunityQueue] = useState<MusicReqItem[]>([]);
@@ -12293,12 +12306,11 @@ function FloatingMusicPlayer() {
   const { w, h } = YT_SIZES[sizeIdx];
   const barW = mini ? 224 : w;
 
-  // 모드별 서브큐: auto=추천곡 순서, jazz=Joy Kim, children=어린이, request=신청곡
+  // 모드별 서브큐: 장르 id → MUSIC_GENRES, children=어린이, request=신청곡
   const curItems: { type?: string; id: string; sub: string }[] =
     mode === "request" ? communityQueue.map(r => ({ id: r.video_id, sub: r.requester_name || "익명" }))
     : mode === "children" ? CHILDREN_ITEMS
-    : mode === "jazz" ? JAZZ_ITEMS
-    : RECOMMENDED_ITEMS;
+    : (MUSIC_GENRES.find(g => g.id === mode)?.items ?? MUSIC_GENRES[0].items);
   const curItem = curItems[subIdx % Math.max(curItems.length, 1)];
 
   let ytSrc = "";
@@ -12314,6 +12326,17 @@ function FloatingMusicPlayer() {
     color: "rgba(255,255,255,0.55)", fontSize: 12, padding: "2px 5px",
     borderRadius: 6, lineHeight: 1, flexShrink: 0,
   };
+
+  // 장르 탭 버튼 공통 스타일 (active 여부에 따라)
+  const tabBtnStyle = (isActive: boolean): React.CSSProperties => ({
+    background: isActive ? "rgba(110,231,183,0.15)" : "none",
+    border: "none", borderBottom: isActive ? "2px solid rgba(110,231,183,0.8)" : "2px solid transparent",
+    cursor: "pointer", whiteSpace: "nowrap" as const,
+    padding: "4px 8px 5px", fontSize: 10,
+    fontWeight: isActive ? 700 : 500,
+    color: isActive ? "rgba(110,231,183,1)" : "rgba(255,255,255,0.55)",
+    fontFamily: "Manrope,sans-serif", borderRadius: "6px 6px 0 0", flexShrink: 0,
+  });
 
   return (
     <>
@@ -12377,54 +12400,19 @@ function FloatingMusicPlayer() {
             display: "flex", alignItems: "flex-end", gap: 2, padding: "6px 8px 0",
             overflowX: "auto", scrollbarWidth: "none" as const,
           }}>
-            <button
-              onClick={() => { setMode("auto"); setSubIdx(0); }}
-              title={musicLang === "ko" ? "‹ › 로 다음 추천곡" : "Use ‹ › for next pick"}
-              style={{
-                background: mode === "auto" ? "rgba(110,231,183,0.15)" : "none",
-                border: "none", borderBottom: mode === "auto" ? "2px solid rgba(110,231,183,0.8)" : "2px solid transparent",
-                cursor: "pointer", whiteSpace: "nowrap" as const,
-                padding: "4px 8px 5px", fontSize: 10,
-                fontWeight: mode === "auto" ? 700 : 500,
-                color: mode === "auto" ? "rgba(110,231,183,1)" : "rgba(255,255,255,0.55)",
-                fontFamily: "Manrope,sans-serif", borderRadius: "6px 6px 0 0",
-              }}>
-              {musicLang === "ko" ? "추천곡" : "Picks"}
-            </button>
-            <button onClick={() => { setMode("jazz"); setSubIdx(0); }}
-              style={{
-                background: mode === "jazz" ? "rgba(110,231,183,0.15)" : "none",
-                border: "none", borderBottom: mode === "jazz" ? "2px solid rgba(110,231,183,0.8)" : "2px solid transparent",
-                cursor: "pointer", whiteSpace: "nowrap" as const,
-                padding: "4px 8px 5px", fontSize: 10,
-                fontWeight: mode === "jazz" ? 700 : 500,
-                color: mode === "jazz" ? "rgba(110,231,183,1)" : "rgba(255,255,255,0.55)",
-                fontFamily: "Manrope,sans-serif", borderRadius: "6px 6px 0 0",
-              }}>
-              Jazz
-            </button>
+            {/* 5장르(CCM·연주찬양·Jazz·Bloom Again·Lo-Fi) + 어린이 + 신청곡 */}
+            {MUSIC_GENRES.map(g => (
+              <button key={g.id} onClick={() => { setMode(g.id); setSubIdx(0); }}
+                style={tabBtnStyle(mode === g.id)}>
+                {musicLang === "ko" ? g.labelKo : g.labelEn}
+              </button>
+            ))}
             <button onClick={() => { setMode("children"); setSubIdx(0); }}
-              style={{
-                background: mode === "children" ? "rgba(110,231,183,0.15)" : "none",
-                border: "none", borderBottom: mode === "children" ? "2px solid rgba(110,231,183,0.8)" : "2px solid transparent",
-                cursor: "pointer", whiteSpace: "nowrap" as const,
-                padding: "4px 8px 5px", fontSize: 10,
-                fontWeight: mode === "children" ? 700 : 500,
-                color: mode === "children" ? "rgba(110,231,183,1)" : "rgba(255,255,255,0.55)",
-                fontFamily: "Manrope,sans-serif", borderRadius: "6px 6px 0 0",
-              }}>
+              style={tabBtnStyle(mode === "children")}>
               {musicLang === "ko" ? "어린이" : "Kids"}
             </button>
             <button onClick={() => { setMode("request"); setSubIdx(0); }}
-              style={{
-                background: mode === "request" ? "rgba(110,231,183,0.15)" : "none",
-                border: "none", borderBottom: mode === "request" ? "2px solid rgba(110,231,183,0.8)" : "2px solid transparent",
-                cursor: "pointer", whiteSpace: "nowrap" as const,
-                padding: "4px 8px 5px", fontSize: 10,
-                fontWeight: mode === "request" ? 700 : 500,
-                color: mode === "request" ? "rgba(110,231,183,1)" : "rgba(255,255,255,0.55)",
-                fontFamily: "Manrope,sans-serif", borderRadius: "6px 6px 0 0",
-              }}>
+              style={tabBtnStyle(mode === "request")}>
               {musicLang === "ko" ? "신청곡" : "Requests"}
               {communityQueue.length > 0 ? ` ${communityQueue.length}` : ""}
             </button>
@@ -12452,8 +12440,7 @@ function FloatingMusicPlayer() {
             <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" as const, overflow: "hidden", textOverflow: "ellipsis" }}>
               {mode === "request" ? (musicLang === "ko" ? "신청곡" : "Requests")
                 : mode === "children" ? (musicLang === "ko" ? "어린이" : "Kids")
-                : mode === "jazz" ? "Jazz"
-                : (musicLang === "ko" ? "추천곡" : "Picks")}
+                : (() => { const g = MUSIC_GENRES.find(x => x.id === mode); return g ? (musicLang === "ko" ? g.labelKo : g.labelEn) : "CCM"; })()}
               {curItem?.sub ? ` — ${curItem.sub}` : ""}
             </div>
             <div style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", fontFamily: "Manrope,sans-serif" }}>
@@ -12638,7 +12625,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
               {ko ? "헤브론 뮤직" : "Hebron Music"}
             </div>
             <div style={{ fontSize: 10.5, color: "rgba(236,253,245,0.5)", fontFamily: "Manrope,sans-serif", marginTop: 2 }}>
-              {ko ? "YouTube · 지금 이 시간에 어울리는 음악" : "YouTube · Music for this time of day"}
+              {ko ? "YouTube · CCM · 찬양 · Jazz · Lo-Fi" : "YouTube · CCM · Worship · Jazz · Lo-Fi"}
             </div>
           </div>
           <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,68,68,0.8)", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
