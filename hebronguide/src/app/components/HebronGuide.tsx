@@ -12204,29 +12204,36 @@ type GenreItem = { type: "playlist"|"video"; id: string; sub: string };
 type MusicGenre = { id: string; labelKo: string; labelEn: string; items: GenreItem[] };
 
 // 언제 들어도 좋은 5장르 — 각 장르에 검증된 실제 유튜브 플레이리스트/영상만 사용
+// 순서: 연주·배경(Piano·Healing·Lo-Fi·Jazz) → 보컬(CCM) → 기능(Kids·Requests).
+// 첫 방문자에게 잔잔한 연주곡을 먼저 흐르게 해 부담 없는 환대 — 기본재생 = Piano.
 const MUSIC_GENRES: MusicGenre[] = [
-  // ① CCM — 미국에서 가장 즐겨 부르는 워십 (Bethel·Hillsong·Elevation = CCLI Top)
-  { id: "ccm", labelKo: "CCM", labelEn: "CCM", items: [
-    { type: "playlist", id: "PLJ1rBJxbu-K3EPz1MWy5Q0hyPycL9fASe", sub: "Bethel · Hillsong · Elevation — CCLI Top 워십" },
-  ] },
-  // ② 연주 찬양 — 피아노·묵상 워십
-  { id: "worship", labelKo: "연주 찬양", labelEn: "Worship", items: [
+  // ① 연주 찬양(Piano) — 피아노·묵상 워십. 기본재생.
+  { id: "worship", labelKo: "Piano", labelEn: "Piano", items: [
     { type: "playlist", id: "PLpNBopEHnm3DZj97bgFCVWwtRQu3KKvFG", sub: "Alone With God — 피아노 워십" },
     { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "Piano Worship (찬양)" },
     { type: "video",    id: "R-WGkU31ifQ", sub: "" },
   ] },
-  // ③ Jazz — 사모님 Joy Kim(The Mason Nook) 작품
-  { id: "jazz", labelKo: "Jazz", labelEn: "Jazz", items: [
-    { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook — Cozy Jazz (Joy Kim)" },
-  ] },
-  // ④ Bloom Again Music — 힐링·어쿠스틱 감성
-  { id: "bloom", labelKo: "Bloom Again", labelEn: "Bloom Again", items: [
+  // ② Healing — 어쿠스틱·앰비언트 연주곡 (Bloom Again Music 채널)
+  { id: "bloom", labelKo: "Healing", labelEn: "Healing", items: [
     { type: "playlist", id: "PLHl4MfXsebn14zs3Rj-8W23TS9WO8-Pgb", sub: "Bloom Again Music" },
     { type: "video",    id: "kMPNHuehfCs", sub: "Overflow — Summer Healing" },
   ] },
-  // ⑤ Lo-Fi — 공부·기도·묵상용 크리스천 로파이
+  // ③ Lo-Fi — 공부·기도·묵상용 크리스천 로파이
   { id: "lofi", labelKo: "Lo-Fi", labelEn: "Lo-Fi", items: [
     { type: "playlist", id: "PLyqZUennuDvBqYBSu8UD5LAucMql_uXJh", sub: "Christian Lo-Fi — 잔잔한 배경음악" },
+  ] },
+  // ④ Jazz — 사모님 Joy Kim(The Mason Nook) 작품. 연주 그룹의 마지막.
+  { id: "jazz", labelKo: "Jazz", labelEn: "Jazz", items: [
+    { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook — Cozy Jazz (Joy Kim)" },
+  ] },
+  // ⑤ CCM — 유일한 보컬. 교리적으로 견고하고 교단 초월로 존중받는 현대 워십/찬송만 선별
+  //    (CityAlight·Getty). 특정 교회 브랜드(Hillsong·Bethel·Elevation) 논란 회피 — 곡은 정통, 신뢰가 해자.
+  { id: "ccm", labelKo: "CCM", labelEn: "CCM", items: [
+    { type: "video", id: "16KYvfIc2bE", sub: "In Christ Alone — Keith & Kristyn Getty" },
+    { type: "video", id: "hwc2d1Xt8gM", sub: "Yet Not I But Through Christ — CityAlight" },
+    { type: "video", id: "hlEumrEMFQ4", sub: "Christ Our Hope in Life and Death — Getty · CityAlight" },
+    { type: "video", id: "nmBcTrDu4O4", sub: "There is One Gospel — CityAlight" },
+    { type: "video", id: "4Zj4oo2w_lo", sub: "Christus Victor (Amen) — Keith & Kristyn Getty" },
   ] },
 ];
 
@@ -12247,7 +12254,7 @@ function FloatingMusicPlayer() {
   const [active, setActive]           = useState(false);
   const [mini, setMini]               = useState(false);
   const [sizeIdx, setSizeIdx]         = useState(1);
-  const [mode, setMode]               = useState<string>("ccm"); // 장르 id | "children" | "request"
+  const [mode, setMode]               = useState<string>("worship"); // 기본재생 Piano. 장르 id | "children" | "request"
   const [subIdx, setSubIdx]           = useState(0);
   const [musicLang, setMusicLang]     = useState<"ko"|"en">("ko");
   const [communityQueue, setCommunityQueue] = useState<MusicReqItem[]>([]);
@@ -12409,11 +12416,11 @@ function FloatingMusicPlayer() {
             ))}
             <button onClick={() => { setMode("children"); setSubIdx(0); }}
               style={tabBtnStyle(mode === "children")}>
-              {musicLang === "ko" ? "어린이" : "Kids"}
+              Kids
             </button>
             <button onClick={() => { setMode("request"); setSubIdx(0); }}
               style={tabBtnStyle(mode === "request")}>
-              {musicLang === "ko" ? "신청곡" : "Requests"}
+              Requests
               {communityQueue.length > 0 ? ` ${communityQueue.length}` : ""}
             </button>
             <button onClick={() => setMusicLang(l => l === "ko" ? "en" : "ko")}
@@ -12438,9 +12445,9 @@ function FloatingMusicPlayer() {
           <span style={{ fontSize: 13, flexShrink: 0 }}>▶</span>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" as const, overflow: "hidden", textOverflow: "ellipsis" }}>
-              {mode === "request" ? (musicLang === "ko" ? "신청곡" : "Requests")
-                : mode === "children" ? (musicLang === "ko" ? "어린이" : "Kids")
-                : (() => { const g = MUSIC_GENRES.find(x => x.id === mode); return g ? (musicLang === "ko" ? g.labelKo : g.labelEn) : "CCM"; })()}
+              {mode === "request" ? "Requests"
+                : mode === "children" ? "Kids"
+                : (() => { const g = MUSIC_GENRES.find(x => x.id === mode); return g ? g.labelEn : "Piano"; })()}
               {curItem?.sub ? ` — ${curItem.sub}` : ""}
             </div>
             <div style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", fontFamily: "Manrope,sans-serif" }}>
