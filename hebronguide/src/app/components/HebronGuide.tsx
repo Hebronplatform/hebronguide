@@ -878,7 +878,7 @@ type CitySlug =
   // 한국 — 역이민·방문 동포·한국 이주
   "seoul" | "busan" | "ansan" | "incheon" | "jeju" | "daegu" | "gwangju" | "daejeon" | "changwon" | "cheonan" | "bundang" |
   // 북미 신규
-  "orlando" | "maryland" | "princgeorge" |
+  "orlando" | "maryland" | "princgeorge" | "virginia" |
   // 북미 추가 신규
   "inlandempire" | "austin" |
   // 워싱턴주 확장 — FWKAA 파트너 (한인회 네트워크 플래그십)
@@ -1201,6 +1201,7 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   bundang:    { slug: "bundang",    nameKo: "분당·수지", nameEn: "Bundang",      color: "#7C3AED", heroVideo: "", population: "5만+",    state: "Korea",       taglineKo: "귀환 동포의 새 보금자리, 분당·수지", taglineEn: "New home for returning diaspora — Bundang & Suji.", taglineEs: "Nuevo hogar para la diáspora coreana." },
   orlando:    { slug: "orlando",    nameKo: "올랜도",    nameEn: "Orlando",      color: "#F97316", heroVideo: "", population: "3천+",    state: "Florida",     taglineKo: "선샤인 스테이트의 한인 커뮤니티",    taglineEn: "Korean Community in the Sunshine State.", taglineEs: "Comunidad coreana en Florida." },
   maryland:   { slug: "maryland",   nameKo: "메릴랜드",  nameEn: "Maryland",     color: "#DC2626", heroVideo: "", population: "2만+",    state: "Maryland",    taglineKo: "DC의 보금자리, 메릴랜드 한인 커뮤니티", taglineEn: "Home of DC's Korean community — Montgomery County.", taglineEs: "La comunidad coreana del área de DC." },
+  virginia:   { slug: "virginia",   nameKo: "버지니아",  nameEn: "Virginia",     color: "#0F766E", heroVideo: "", population: "3만+",    state: "Virginia",    taglineKo: "애넌데일에서 블루리지까지, 버지니아 한인", taglineEn: "Virginia's Korean community — Annandale to Blue Ridge.", taglineEs: "La comunidad coreana de Virginia." },
 };
 
 function useCityConfig(): CityConfig {
@@ -11649,6 +11650,7 @@ const HEBRON_CITIES = [
   { emoji: "☀️", nameKo: "올랜도",      nameEn: "Orlando",       flag: "🇺🇸", url: "/orlando/",     status: "live", color: "#F97316" },
   { emoji: "🌊", nameKo: "탬파",        nameEn: "Tampa",         flag: "🇺🇸", url: "/tampa/",        status: "live", color: "#0EA5E9" },
   { emoji: "🍒", nameKo: "메릴랜드",    nameEn: "Maryland",      flag: "🇺🇸", url: "/maryland/",    status: "live", color: "#DC2626" },
+  { emoji: "🏞️", nameKo: "버지니아",    nameEn: "Virginia",      flag: "🇺🇸", url: "/virginia/",    status: "live", color: "#0F766E" },
   { emoji: "🐻", nameKo: "앵커리지",    nameEn: "Anchorage",     flag: "🇺🇸", url: "/anchorage/",   status: "live", color: "#14B8A6" },
   { emoji: "🌄", nameKo: "인랜드 엠파이어", nameEn: "Inland Empire", flag: "🇺🇸", url: "/inlandempire/", status: "live", color: "#D97706" },
   { emoji: "🤠", nameKo: "오스틴",      nameEn: "Austin",        flag: "🇺🇸", url: "/austin/",      status: "live", color: "#1D4ED8" },
@@ -24643,6 +24645,24 @@ function getCityUniversities(slug: string, lang: string) {
         desc: ko ? "✅ 웨이크포레스트(롤리 북쪽 ~25분) 소재 남침례회(SBC) 6대 신학교. 목회·선교. 학부 The College at Southeastern 병설.\n📍 120 S Wingate St, Wake Forest NC | 🔗 sebts.edu"
                  : "✅ SBC's 6 seminaries — in Wake Forest (~25 min N of Raleigh). Ministry & missions. Undergrad The College at Southeastern.\n📍 120 S Wingate St, Wake Forest NC | 🔗 sebts.edu",
         tags: ["신학교","SEBTS","남침례회"] },
+    ],
+    virginia: [
+      { emoji: "🎓", name: "George Mason University (GMU)", nameEn: "George Mason — 페어팩스 (북버지니아·한인)",
+        desc: ko ? "✅ 페어팩스 소재 공립 종합대(북버지니아 한인 밀집 애넌데일 인근). 경영·정책·CS. 학비 저렴. 한인 학생 많음.\n📍 Fairfax VA | 🔗 gmu.edu"
+                 : "✅ Public univ in Fairfax (near Annandale Korean hub, N. Virginia). Business, policy & CS. Affordable. Many Korean students.\n📍 Fairfax VA | 🔗 gmu.edu",
+        tags: ["GMU","페어팩스","공립"] },
+      { emoji: "🎓", name: "University of Virginia (UVA)", nameEn: "UVA — 샬러츠빌 (공립 명문)",
+        desc: ko ? "샬러츠빌 소재 공립 명문(제퍼슨 설립). 경영·법·의대. 공립 아이비급.\n📍 Charlottesville VA | 🔗 virginia.edu"
+                 : "Public elite in Charlottesville (founded by Jefferson). Business, law & medicine. 'Public Ivy'.\n📍 Charlottesville VA | 🔗 virginia.edu",
+        tags: ["UVA","샬러츠빌","공립명문"] },
+      { emoji: "🎓", name: "Virginia Tech (버지니아텍)", nameEn: "Virginia Tech — 블랙스버그 (공학)",
+        desc: ko ? "블랙스버그 소재 공립 공대 강자. 공학·건축·IT. 학비 저렴.\n🔗 vt.edu"
+                 : "Public univ in Blacksburg, strong engineering. Architecture & IT. Affordable.\n🔗 vt.edu",
+        tags: ["버지니아텍","공학","블랙스버그"] },
+      { emoji: "🎓", name: "Liberty University School of Divinity (리버티 신학교)", nameEn: "Liberty — 신학교 (복음주의, 온라인 최대)",
+        desc: ko ? "✅ 린치버그 소재 미국 최대 복음주의 대학 내 신학교(Rawlings School of Divinity). 온라인 신학 교육 최대 — 전국 한인 목회자 다수 이수. 학부·M.Div·박사.\n📍 Lynchburg VA | 🔗 liberty.edu"
+                 : "✅ Divinity school (Rawlings) at the largest evangelical university, Lynchburg. Largest online theology programs — many Korean pastors nationwide. Undergrad, MDiv & doctoral.\n📍 Lynchburg VA | 🔗 liberty.edu",
+        tags: ["신학교","리버티","온라인"] },
     ],
   };
   return D[slug] ?? [

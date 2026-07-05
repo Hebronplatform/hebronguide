@@ -55,7 +55,7 @@ declare -A CITY_KO=(
   ["fairfield"]="페어필드"    ["waynesville"]="웨인즈빌"
   ["louisville"]="루이빌"     ["anchorage"]="앵커리지"
   ["tampa"]="탬파"
-  ["orlando"]="올랜도"        ["maryland"]="메릴랜드"   ["princgeorge"]="프린스조지"
+  ["orlando"]="올랜도"        ["maryland"]="메릴랜드"   ["princgeorge"]="프린스조지"   ["virginia"]="버지니아"
   ["inlandempire"]="인랜드 엠파이어" ["austin"]="오스틴"
   # 한국 신규
   ["bundang"]="분당·수지"
@@ -93,7 +93,7 @@ declare -A CITY_EN=(
   ["fairfield"]="Fairfield"   ["waynesville"]="Waynesville"
   ["louisville"]="Louisville" ["anchorage"]="Anchorage"
   ["tampa"]="Tampa"
-  ["orlando"]="Orlando"       ["maryland"]="Maryland"    ["princgeorge"]="Prince George"
+  ["orlando"]="Orlando"       ["maryland"]="Maryland"    ["princgeorge"]="Prince George"   ["virginia"]="Virginia"
   ["inlandempire"]="Inland Empire" ["austin"]="Austin"
   ["bundang"]="분당·수지"
   # 국제 확장 Tier A
@@ -135,7 +135,7 @@ for city in \
   singapore bangkok hochiminh dubai frankfurt berlin paris \
   tokyo osaka \
   seoul busan ansan incheon jeju daegu gwangju daejeon changwon cheonan bundang \
-  orlando maryland; do
+  orlando maryland virginia; do
   mkdir -p public/$city
   cp -r hebronguide/dist/* public/$city/
 
@@ -230,7 +230,7 @@ REGION_MAP=(
   ["philadelphia"]="🇺🇸 미국" ["sandiego"]="🇺🇸 미국"  ["portland"]="🇺🇸 미국"
   ["denver"]="🇺🇸 미국"     ["honolulu"]="🇺🇸 미국"    ["charlotte"]="🇺🇸 미국"
   ["raleigh"]="🇺🇸 미국"    ["columbus"]="🇺🇸 미국"    ["minneapolis"]="🇺🇸 미국"
-  ["kansascity"]="🇺🇸 미국" ["orlando"]="🇺🇸 미국"     ["maryland"]="🇺🇸 미국"
+  ["kansascity"]="🇺🇸 미국" ["orlando"]="🇺🇸 미국"     ["maryland"]="🇺🇸 미국"    ["virginia"]="🇺🇸 미국"
   ["fayetteville"]="🇺🇸 미국" ["killeen"]="🇺🇸 미국"   ["louisville"]="🇺🇸 미국"
   ["fairfield"]="🇺🇸 미국"  ["waynesville"]="🇺🇸 미국" ["tampa"]="🇺🇸 미국"
   ["anchorage"]="🇺🇸 미국"  ["tucson"]="🇺🇸 미국"      ["orangecounty"]="🇺🇸 미국"
@@ -265,7 +265,7 @@ for city in \
   singapore bangkok hochiminh dubai frankfurt berlin paris \
   tokyo osaka \
   seoul busan ansan incheon jeju daegu gwangju daejeon changwon cheonan bundang \
-  orlando maryland; do
+  orlando maryland virginia; do
   KO="${CITY_KO[$city]:-$city}"
   EN="${CITY_EN[$city]:-$city}"
   REGION="${REGION_MAP[$city]:-기타}"
