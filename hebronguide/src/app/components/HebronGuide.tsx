@@ -24488,6 +24488,60 @@ function getCityUniversities(slug: string, lang: string) {
                  : "Emory's theology school. United Methodist (UMC). M.Div & doctoral. Member of Atlanta Theological Association.\n🔗 candler.emory.edu",
         tags: ["신학대학","감리교","Emory"] },
     ],
+    dallas: [
+      { emoji: "🎓", name: "UT Dallas (UTD)", nameEn: "University of Texas at Dallas — 리처드슨",
+        desc: ko ? "✅ 리처드슨 소재(캐롤튼 코리아타운 인근). 컴퓨터과학·공학·경영 강점. 한인 유학생 매우 많음. 주립 학비 저렴.\n📍 800 W Campbell Rd, Richardson TX | 🔗 utdallas.edu"
+                 : "✅ Richardson (near Carrollton Koreatown). Strong CS, engineering & business. Very large Korean student body. Affordable in-state.\n📍 800 W Campbell Rd, Richardson TX | 🔗 utdallas.edu",
+        tags: ["UTD","리처드슨","CS"] },
+      { emoji: "🎓", name: "Southern Methodist University (SMU)", nameEn: "SMU — 사립 명문 (경영·법)",
+        desc: ko ? "댈러스 유니버시티파크 소재 사립 명문. 경영(Cox)·법대·예술. 학비 높음(~$60,000/년).\n📍 6425 Boaz Ln, Dallas TX | 🔗 smu.edu"
+                 : "Private elite in University Park, Dallas. Cox Business, law & arts. High tuition (~$60,000/yr).\n📍 6425 Boaz Ln, Dallas TX | 🔗 smu.edu",
+        tags: ["SMU","사립","경영"] },
+      { emoji: "🎓", name: "University of North Texas (UNT)", nameEn: "UNT — 덴튼 (음악·예술)",
+        desc: ko ? "덴튼 소재 공립 종합대. 음악대(재즈) 세계적. 학비 저렴. 한인 학생 많음.\n📍 1155 Union Cir, Denton TX | 🔗 unt.edu"
+                 : "Public univ in Denton. World-renowned music (jazz). Affordable. Many Korean students.\n📍 1155 Union Cir, Denton TX | 🔗 unt.edu",
+        tags: ["UNT","덴튼","음악"] },
+      { emoji: "🎓", name: "Dallas Theological Seminary (DTS, 달라스 신학교)", nameEn: "DTS — 신학대학 (복음주의)",
+        desc: ko ? "✅ 댈러스 소재 대표 복음주의 신학교. 세대주의 신학. 한인 유학생·목회자 대거. 목회학(Th.M)·성경·상담.\n📍 3909 Swiss Ave, Dallas TX | 🔗 dts.edu"
+                 : "✅ Leading evangelical seminary in Dallas. Dispensational theology. Very large Korean pastor/student community. Th.M, Bible & counseling.\n📍 3909 Swiss Ave, Dallas TX | 🔗 dts.edu",
+        tags: ["신학대학","DTS","복음주의"] },
+    ],
+    la: [
+      { emoji: "🎓", name: "UCLA", nameEn: "University of California, Los Angeles — 공립 최상위",
+        desc: ko ? "✅ 웨스트우드 소재 UC 최상위 공립. 전 분야 세계권. 한인 재학생 매우 많음. 주립 학비 ~$14,000/년.\n📍 Los Angeles CA | 🔗 ucla.edu"
+                 : "✅ UC top public in Westwood. World-class across fields. Very large Korean student body. In-state ~$14,000/yr.\n📍 Los Angeles CA | 🔗 ucla.edu",
+        tags: ["UCLA","공립","최상위"] },
+      { emoji: "🎓", name: "USC (남가주대)", nameEn: "University of Southern California — 사립 명문",
+        desc: ko ? "코리아타운 인근 사립 명문. 영화·경영·공학. 한인 유학생 최다급. 학비 높음(~$68,000/년).\n📍 Los Angeles CA | 🔗 usc.edu"
+                 : "Private elite near Koreatown. Film, business & engineering. Among the largest Korean student bodies. ~$68,000/yr.\n📍 Los Angeles CA | 🔗 usc.edu",
+        tags: ["USC","사립","영화"] },
+      { emoji: "🎓", name: "Cal State LA / Cal State Fullerton", nameEn: "CSU — 실용·저렴 공립",
+        desc: ko ? "캘스테이트 계열 공립. 학비 저렴(~$7,000/년), 실용 전공·직장인 친화. 한인 밀집 지역 접근성.\n🔗 calstatela.edu | fullerton.edu"
+                 : "Cal State system publics. Affordable (~$7,000/yr), practical majors, working-adult friendly. Near Korean areas.\n🔗 calstatela.edu | fullerton.edu",
+        tags: ["CSU","저렴","실용"] },
+      { emoji: "🎓", name: "Fuller Theological Seminary (풀러 신학교)", nameEn: "Fuller — 신학대학 (복음주의 최대)",
+        desc: ko ? "✅ 패서디나 소재 세계 최대급 초교파 복음주의 신학교. 한인 유학생 최다. 목회학·선교·상담(심리).\n📍 135 N Oakland Ave, Pasadena CA | 🔗 fuller.edu"
+                 : "✅ Pasadena. One of the largest multidenominational evangelical seminaries. Largest Korean student body. M.Div, missions & psychology.\n📍 135 N Oakland Ave, Pasadena CA | 🔗 fuller.edu",
+        tags: ["신학대학","풀러","복음주의"] },
+    ],
+    boston: [
+      { emoji: "🎓", name: "Harvard University (하버드)", nameEn: "Harvard — 케임브리지 (세계 최정상)",
+        desc: ko ? "✅ 케임브리지 소재 세계 최정상 사립. 전 분야. 한인 유학생 활발.\n📍 Cambridge MA | 🔗 harvard.edu"
+                 : "✅ World-top private in Cambridge. All fields. Active Korean student community.\n📍 Cambridge MA | 🔗 harvard.edu",
+        tags: ["하버드","사립","최정상"] },
+      { emoji: "🎓", name: "MIT (매사추세츠공대)", nameEn: "MIT — 케임브리지 (공학·과학)",
+        desc: ko ? "케임브리지 소재. 공학·과학·경영 세계 최정상. 한인 유학생·연구원 다수.\n📍 Cambridge MA | 🔗 mit.edu"
+                 : "Cambridge. World-top in engineering, science & management. Many Korean students/researchers.\n📍 Cambridge MA | 🔗 mit.edu",
+        tags: ["MIT","공학","과학"] },
+      { emoji: "🎓", name: "Boston University (BU)", nameEn: "Boston University — 대형 사립 종합",
+        desc: ko ? "보스턴 시내 대형 사립 종합대. 경영·커뮤니케이션·의대. 한인 유학생 매우 많음.\n📍 Boston MA | 🔗 bu.edu"
+                 : "Large private research univ in Boston. Business, communication & medicine. Very large Korean student body.\n📍 Boston MA | 🔗 bu.edu",
+        tags: ["BU","사립","종합"] },
+      { emoji: "🎓", name: "Gordon-Conwell Theological Seminary (고든콘웰)", nameEn: "GCTS — 신학대학 (한인 프로그램)",
+        desc: ko ? "✅ 사우스해밀턴(보스턴 북부) 소재 대표 복음주의 신학교. 한인학생회(KSA)·한국어 목회 프로그램(GCI Korea) 운영.\n📍 130 Essex St, South Hamilton MA | 🔗 gordonconwell.edu"
+                 : "✅ Leading evangelical seminary in South Hamilton (N of Boston). Korean Student Association & Korean ministry programs (GCI Korea).\n📍 130 Essex St, South Hamilton MA | 🔗 gordonconwell.edu",
+        tags: ["신학대학","고든콘웰","한인"] },
+    ],
   };
   return D[slug] ?? [
     { emoji: "🎓", name: ko ? "지역 4년제 대학" : "Local Universities",
