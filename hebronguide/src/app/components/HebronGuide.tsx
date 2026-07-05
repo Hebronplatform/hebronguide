@@ -878,7 +878,7 @@ type CitySlug =
   // 한국 — 역이민·방문 동포·한국 이주
   "seoul" | "busan" | "ansan" | "incheon" | "jeju" | "daegu" | "gwangju" | "daejeon" | "changwon" | "cheonan" | "bundang" |
   // 북미 신규
-  "orlando" | "maryland" | "princgeorge" | "virginia" |
+  "orlando" | "maryland" | "princgeorge" | "virginia" | "neworleans" |
   // 북미 추가 신규
   "inlandempire" | "austin" |
   // 워싱턴주 확장 — FWKAA 파트너 (한인회 네트워크 플래그십)
@@ -1202,6 +1202,7 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   orlando:    { slug: "orlando",    nameKo: "올랜도",    nameEn: "Orlando",      color: "#F97316", heroVideo: "", population: "3천+",    state: "Florida",     taglineKo: "선샤인 스테이트의 한인 커뮤니티",    taglineEn: "Korean Community in the Sunshine State.", taglineEs: "Comunidad coreana en Florida." },
   maryland:   { slug: "maryland",   nameKo: "메릴랜드",  nameEn: "Maryland",     color: "#DC2626", heroVideo: "", population: "2만+",    state: "Maryland",    taglineKo: "DC의 보금자리, 메릴랜드 한인 커뮤니티", taglineEn: "Home of DC's Korean community — Montgomery County.", taglineEs: "La comunidad coreana del área de DC." },
   virginia:   { slug: "virginia",   nameKo: "버지니아",  nameEn: "Virginia",     color: "#0F766E", heroVideo: "", population: "3만+",    state: "Virginia",    taglineKo: "애넌데일에서 블루리지까지, 버지니아 한인", taglineEn: "Virginia's Korean community — Annandale to Blue Ridge.", taglineEs: "La comunidad coreana de Virginia." },
+  neworleans: { slug: "neworleans", nameKo: "뉴올리언스", nameEn: "New Orleans",   color: "#7E22CE", heroVideo: "", population: "3천+",    state: "Louisiana",   taglineKo: "재즈의 도시, 뉴올리언스 새 출발", taglineEn: "Jazz city — your new start in New Orleans.", taglineEs: "La ciudad del jazz, Nueva Orleans." },
 };
 
 function useCityConfig(): CityConfig {
@@ -11651,6 +11652,7 @@ const HEBRON_CITIES = [
   { emoji: "🌊", nameKo: "탬파",        nameEn: "Tampa",         flag: "🇺🇸", url: "/tampa/",        status: "live", color: "#0EA5E9" },
   { emoji: "🍒", nameKo: "메릴랜드",    nameEn: "Maryland",      flag: "🇺🇸", url: "/maryland/",    status: "live", color: "#DC2626" },
   { emoji: "🏞️", nameKo: "버지니아",    nameEn: "Virginia",      flag: "🇺🇸", url: "/virginia/",    status: "live", color: "#0F766E" },
+  { emoji: "⚜️", nameKo: "뉴올리언스",  nameEn: "New Orleans",   flag: "🇺🇸", url: "/neworleans/",  status: "live", color: "#7E22CE" },
   { emoji: "🐻", nameKo: "앵커리지",    nameEn: "Anchorage",     flag: "🇺🇸", url: "/anchorage/",   status: "live", color: "#14B8A6" },
   { emoji: "🌄", nameKo: "인랜드 엠파이어", nameEn: "Inland Empire", flag: "🇺🇸", url: "/inlandempire/", status: "live", color: "#D97706" },
   { emoji: "🤠", nameKo: "오스틴",      nameEn: "Austin",        flag: "🇺🇸", url: "/austin/",      status: "live", color: "#1D4ED8" },
@@ -24663,6 +24665,24 @@ function getCityUniversities(slug: string, lang: string) {
         desc: ko ? "✅ 린치버그 소재 미국 최대 복음주의 대학 내 신학교(Rawlings School of Divinity). 온라인 신학 교육 최대 — 전국 한인 목회자 다수 이수. 학부·M.Div·박사.\n📍 Lynchburg VA | 🔗 liberty.edu"
                  : "✅ Divinity school (Rawlings) at the largest evangelical university, Lynchburg. Largest online theology programs — many Korean pastors nationwide. Undergrad, MDiv & doctoral.\n📍 Lynchburg VA | 🔗 liberty.edu",
         tags: ["신학교","리버티","온라인"] },
+    ],
+    neworleans: [
+      { emoji: "🎓", name: "Tulane University (튤레인)", nameEn: "Tulane — 사립 명문 (의대·공중보건)",
+        desc: ko ? "✅ 뉴올리언스 소재 사립 명문. 의대·공중보건·법. 남부 명문. 학비 높음.\n📍 New Orleans LA | 🔗 tulane.edu"
+                 : "✅ Private elite in New Orleans. Medicine, public health & law. Southern powerhouse.\n📍 New Orleans LA | 🔗 tulane.edu",
+        tags: ["튤레인","사립","의대"] },
+      { emoji: "🎓", name: "University of New Orleans (UNO)", nameEn: "UNO — 공립 (저렴·실용)",
+        desc: ko ? "뉴올리언스 공립 종합대. 공학·경영·호텔경영. 학비 저렴.\n🔗 uno.edu"
+                 : "Public univ in New Orleans. Engineering, business & hospitality. Affordable.\n🔗 uno.edu",
+        tags: ["UNO","공립","저렴"] },
+      { emoji: "🎓", name: "Loyola University New Orleans (로욜라)", nameEn: "Loyola — 예수회 사립",
+        desc: ko ? "뉴올리언스 예수회 가톨릭 사립대. 법·경영·음악. 소규모.\n🔗 loyno.edu"
+                 : "Jesuit Catholic private univ in New Orleans. Law, business & music. Small.\n🔗 loyno.edu",
+        tags: ["로욜라","예수회","사립"] },
+      { emoji: "🎓", name: "New Orleans Baptist Theological Seminary (NOBTS, 남침례신학교)", nameEn: "NOBTS — 신학교 (남침례회 6대, 대학원)",
+        desc: ko ? "✅ 뉴올리언스 소재 남침례회(SBC) 6대 신학교. 목회·선교·상담. 학부 Leavell College 병설.\n📍 3939 Gentilly Blvd, New Orleans LA | 🔗 nobts.edu"
+                 : "✅ New Orleans. One of SBC's 6 seminaries. Ministry, missions & counseling. Undergrad Leavell College.\n📍 3939 Gentilly Blvd, New Orleans LA | 🔗 nobts.edu",
+        tags: ["신학교","NOBTS","남침례회"] },
     ],
   };
   return D[slug] ?? [
