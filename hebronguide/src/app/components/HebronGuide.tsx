@@ -24075,6 +24075,16 @@ function getCityCC(slug: string, lang: string) {
                  : "UDEM (private) & UANL (public, Nuevo León State Univ) Spanish & language programs.\nOpen to foreigners. Affordable tuition.\n🔗 udem.edu.mx | uanl.mx",
         tags: ["UDEM","UANL","스페인어"] },
     ],
+    kansascity: [
+      { emoji: "🏛️", name: "Johnson County Community College (JCCC)", nameEn: "JCCC — 오버랜드파크 (캔자스 최대 CC)",
+        desc: ko ? "✅ 오버랜드파크(KS) 소재. 캔자스주 최대 CC. 4년제 편입(KU·K-State) 최적. 학비 저렴. 한인 많은 존슨카운티.\n📍 12345 College Blvd, Overland Park KS | 🔗 jccc.edu"
+                 : "✅ Overland Park, KS. Kansas's largest CC. Best for transfer to KU/K-State. Affordable. In Korean-friendly Johnson County.\n📍 12345 College Blvd, Overland Park KS | 🔗 jccc.edu",
+        tags: ["JCCC","오버랜드파크","편입"] },
+      { emoji: "🏛️", name: "Metropolitan Community College (MCC)", nameEn: "MCC-KC — 캔자스시티 MO (5개 캠퍼스)",
+        desc: ko ? "캔자스시티(MO) 공립 CC 시스템. 5개 캠퍼스(펜밸리·롱뷰·마플우즈 등). ESL·직업훈련·4년제 편입. 학비 저렴.\n🔗 mcckc.edu"
+                 : "KC (MO) public CC system. 5 campuses (Penn Valley, Longview, Maple Woods, etc.). ESL, career training & 4-yr transfer. Affordable.\n🔗 mcckc.edu",
+        tags: ["MCC","캔자스시티MO","ESL"] },
+    ],
   };
   return D[slug] ?? [
     { emoji: "🏛️", name: ko ? "지역 커뮤니티 칼리지" : "Local Community College",
@@ -24431,6 +24441,50 @@ function getCityEthnicEateries(slug: string, lang: string) {
   ];
 }
 
+// 도시별 4년제 대학 — 미보유 도시는 시애틀 데이터 대신 '수집 중' 폴백(오정보 방지). getCityCC 패턴.
+function getCityUniversities(slug: string, lang: string) {
+  const ko = lang === "ko";
+  type Item = { emoji: string; name: string; nameEn?: string; desc: string; tags: string[] };
+  const D: Record<string, Item[]> = {
+    kansascity: [
+      { emoji: "🎓", name: "University of Missouri–Kansas City (UMKC)", nameEn: "UMKC — KC 시내 주립 연구대학",
+        desc: ko ? "✅ 캔자스시티 시내 소재, KC 광역 최대 대학. 의대(6년 BA/MD)·치대·약대·법대·음악원(Conservatory) 강점. 국제학생 ESL(Applied Language Institute) 운영.\n📍 5100 Rockhill Rd, Kansas City MO | 🔗 umkc.edu"
+                 : "✅ In Kansas City — largest university in the metro. Strong medicine (6-yr BA/MD), dentistry, pharmacy, law & Conservatory. ESL via Applied Language Institute.\n📍 5100 Rockhill Rd, Kansas City MO | 🔗 umkc.edu",
+        tags: ["UMKC","주립","의대·치대"] },
+      { emoji: "🎓", name: "University of Kansas (KU)", nameEn: "KU — 로렌스 (캔자스 플래그십)",
+        desc: ko ? "✅ 로렌스 소재 (KC 서쪽 약 45분). 캔자스주 대표 공립 연구대학(R1). 경영·공학·저널리즘 강점. 의대(KU Medical Center)는 캔자스시티 소재.\n📍 1450 Jayhawk Blvd, Lawrence KS | 🔗 ku.edu"
+                 : "✅ Lawrence (~45 min west of KC). Kansas flagship public research (R1). Strong business, engineering & journalism. KU Medical Center is in KC.\n📍 1450 Jayhawk Blvd, Lawrence KS | 🔗 ku.edu",
+        tags: ["KU","플래그십","공학·경영"] },
+      { emoji: "🎓", name: "Kansas State University (K-State)", nameEn: "K-State — 맨해튼 (공학·농학)",
+        desc: ko ? "맨해튼(KS) 소재 랜드그랜트 대학. 공학·건축·농학·수의학 강점. 학비 상대적으로 저렴.\n📍 Manhattan KS | 🔗 k-state.edu"
+                 : "Land-grant university in Manhattan, KS. Strong engineering, architecture, agriculture & veterinary medicine. Affordable tuition.\n📍 Manhattan KS | 🔗 k-state.edu",
+        tags: ["K-State","공학","농학"] },
+      { emoji: "🎓", name: "Rockhurst University", nameEn: "Rockhurst — KC 예수회 사립",
+        desc: ko ? "캔자스시티 시내 예수회(Jesuit) 사립대 (UMKC 인근). 소규모 정예. 경영·간호·물리치료 강점.\n📍 1100 Rockhurst Rd, Kansas City MO | 🔗 rockhurst.edu"
+                 : "Jesuit private university in KC (near UMKC). Small & focused. Strong business, nursing & physical therapy.\n📍 1100 Rockhurst Rd, Kansas City MO | 🔗 rockhurst.edu",
+        tags: ["Rockhurst","예수회","사립"] },
+      { emoji: "🎓", name: "Park University", nameEn: "Park University — 파크빌 (KC 광역)",
+        desc: ko ? "파크빌(MO) 소재 사립대. 온라인·야간 과정 풍부 (직장인·군인 친화). 경영·항공·교육.\n📍 8700 NW River Park Dr, Parkville MO | 🔗 park.edu"
+                 : "Private university in Parkville, MO. Rich online & evening programs (working adults & military). Business, aviation & education.\n📍 8700 NW River Park Dr, Parkville MO | 🔗 park.edu",
+        tags: ["Park","온라인","직장인"] },
+      { emoji: "🎓", name: "Midwestern Baptist Theological Seminary (미드웨스턴 침례신학교)", nameEn: "MBTS — 신학대학 (Spurgeon College)",
+        desc: ko ? "✅ 캔자스시티 소재 남침례회(SBC) 신학교. 학부 Spurgeon College 운영. 목회학(M.Div)·신학 석·박사. 온라인 과정 풍부.\n📍 5001 N Oak Trafficway, Kansas City MO | 🔗 mbts.edu"
+                 : "✅ Southern Baptist (SBC) seminary in KC. Houses Spurgeon College (undergrad). M.Div, ThM & PhD. Rich online programs.\n📍 5001 N Oak Trafficway, Kansas City MO | 🔗 mbts.edu",
+        tags: ["신학대학","침례교","MBTS"] },
+      { emoji: "🎓", name: "Nazarene Theological Seminary (나사렛 신학교)", nameEn: "NTS — 신학대학",
+        desc: ko ? "캔자스시티 소재 나사렛교회 공식 신학교. 목회학 석사(M.Div)·상담·선교. 인근 MidAmerica Nazarene University(올레이스 KS)는 4년제 학부.\n📍 1700 E Meyer Blvd, Kansas City MO | 🔗 nts.edu"
+                 : "Church of the Nazarene's seminary in KC. M.Div, counseling & missions. Nearby MidAmerica Nazarene University (Olathe, KS) is the 4-yr undergrad.\n📍 1700 E Meyer Blvd, Kansas City MO | 🔗 nts.edu",
+        tags: ["신학대학","나사렛","NTS"] },
+    ],
+  };
+  return D[slug] ?? [
+    { emoji: "🎓", name: ko ? "지역 4년제 대학" : "Local Universities",
+      desc: ko ? "이 도시의 4년제 대학 정보를 수집 중입니다.\n💡 collegeboard.org 또는 각 대학 국제학생처(International Office)에서 확인하세요."
+               : "University information for this city is being collected.\n💡 Check collegeboard.org or each school's International Student Office.",
+      tags: ["대학","진학","편입"] },
+  ];
+}
+
 function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSub?: number }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
@@ -24623,14 +24677,15 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       tags: lang === "ko" ? ["AP한국어", "대입", "학점인정"] : ["AP Korean", "College", "Credit"] },
   ];
 
-  // 도시별 CC·한국학교 데이터 오버라이드 (시애틀 제외)
+  // 도시별 CC·4년제대학·한국학교 데이터 오버라이드 (시애틀 제외)
   const cityCC = isSeattle ? communityColleges : getCityCC(city.slug, lang);
+  const cityUniv = isSeattle ? universities : getCityUniversities(city.slug, lang);
   const cityKoreanSchools = isSeattle ? koreanSchools : getCityKoreanSchool(city.slug, lang);
 
   const allEdu = serverContent["education"] ? resolvePlaceItems(serverContent["education"], lang) : null;
   const subData = allEdu
     ? [allEdu.slice(0, 6), allEdu.slice(6, 12), allEdu.slice(12, 17), allEdu.slice(17, 22), allEdu.slice(22, 27), allEdu.slice(27)]
-    : [districts, cityCC, universities, admissions, tutoringEsl, cityKoreanSchools];
+    : [districts, cityCC, cityUniv, admissions, tutoringEsl, cityKoreanSchools];
   const content = subData[sub] ?? [];
 
   /* ── 탭별 하단 팁 ── */
