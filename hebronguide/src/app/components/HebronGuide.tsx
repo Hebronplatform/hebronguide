@@ -11391,22 +11391,23 @@ function FloatingHomeButton({ activeNav, onHome }: { activeNav: number; onHome: 
    APP GRID (홈 스크린 앱 런처)
 ───────────────────────────────────────── */
 interface AppGridItem {
-  emoji: string;
+  icon: React.ElementType;
   label: string;
   labelEn: string;
   tabIndex: number;
   color: string;
 }
 
+// 아이콘·색은 사이드바(SIDEBAR_ITEMS)·더보기(MORE_SECTIONS)와 섹션별로 동일한 정본 사용
 const APP_GRID_ITEMS: AppGridItem[] = [
-  { emoji: "🛬", label: "정착 가이드",  labelEn: "Settlement",  tabIndex: 1, color: "#60A5FA" },
-  { emoji: "⛪", label: "교회 찾기",   labelEn: "Churches",    tabIndex: 2, color: "#C084FC" },
-  { emoji: "🍽️", label: "맛집·카페",  labelEn: "Dining",      tabIndex: 3, color: "#FB923C" },
-  { emoji: "🗺️", label: "관광",   labelEn: "Tourism",     tabIndex: 4, color: "#34D399" },
-  { emoji: "🆘", label: "도움·지원",   labelEn: "Help",        tabIndex: 5, color: "#F87171" },
-  { emoji: "💼", label: "취업 정보",   labelEn: "Jobs",        tabIndex: 6, color: "#FBBF24" },
-  { emoji: "🎓", label: "교육·학군",   labelEn: "Education",   tabIndex: 7, color: "#A78BFA" },
-  { emoji: "💰", label: "생활비",      labelEn: "Living Cost", tabIndex: 8, color: "#34D399" },
+  { icon: Plane,         label: "정착 가이드", labelEn: "Settlement",  tabIndex: 1, color: "#F2994A" },
+  { icon: Church,        label: "교회 찾기",   labelEn: "Churches",    tabIndex: 2, color: "#7C3AED" },
+  { icon: Utensils,      label: "맛집·카페",   labelEn: "Dining",      tabIndex: 3, color: "#EF4444" },
+  { icon: Map,           label: "관광",        labelEn: "Tourism",     tabIndex: 4, color: "#06B6D4" },
+  { icon: HeartPulse,    label: "도움·지원",   labelEn: "Help",        tabIndex: 5, color: "#DC2626" },
+  { icon: Briefcase,     label: "취업 정보",   labelEn: "Jobs",        tabIndex: 6, color: "#059669" },
+  { icon: GraduationCap, label: "교육·학군",   labelEn: "Education",   tabIndex: 7, color: "#8B5CF6" },
+  { icon: DollarSign,    label: "생활비",      labelEn: "Living Cost", tabIndex: 8, color: "#0EA5E9" },
 ];
 
 function AppGrid({ onNavigate }: { onNavigate?: (tab: number) => void }) {
@@ -11441,9 +11442,8 @@ function AppGrid({ onNavigate }: { onNavigate?: (tab: number) => void }) {
               background: `${item.color}18`,
               border: `1px solid ${item.color}33`,
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 20,
             }}>
-              {item.emoji}
+              <item.icon size={22} color={item.color} strokeWidth={1.8} />
             </div>
             <span style={{
               fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 600, fontSize: 10,
@@ -26758,7 +26758,7 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
             {ko ? "업소가 없나요?" : "Not listed yet?"}
           </div>
           <div style={{ fontSize: 12, color: "#6366F1", marginBottom: 14, lineHeight: 1.7 }}>
-            {ko ? "무료로 업소를 등재하고 이민자 고객을 만나세요.\n삶이 곧 선교입니다." : "List your business for free and reach Korean diaspora."}
+            {ko ? "무료로 업소를 등재하고 이민자 고객을 만나세요." : "List your business for free and reach Korean diaspora."}
           </div>
           <a href="/ad-request.html#business"
             style={{ display: "inline-block", background: "#4F46E5", color: "#fff",
@@ -26856,7 +26856,7 @@ function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number
     { tab: 7,  icon: GraduationCap, color: "#8B5CF6", labelKo: "교육",  labelEn: "Schools" },
     { tab: 8,  icon: DollarSign,    color: "#0EA5E9", labelKo: "생활비", labelEn: "Costs" },
     { tab: 12, icon: Building2,     color: "#4F46E5", labelKo: "한인 업소", labelEn: "Business" },
-    { tab: 13, icon: LifeBuoy,      color: "#10B981", labelKo: "지원기관",    labelEn: "Support Orgs" },
+    { tab: 13, icon: LifeBuoy,      color: "#14B8A6", labelKo: "지원기관",    labelEn: "Support Orgs" },
   ];
   return (
     <aside className="hidden lg:flex flex-col fixed left-0 top-0 h-screen w-64 z-40"
@@ -27896,17 +27896,18 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
 const MORE_SECTIONS = [
   /* ── 1행: 메인 섹션 ── */
   { icon: Church,       labelKo: "교회",      labelEn: "Church",       tab: 2,  subTab: 0, color: "#7C3AED" },
-  { icon: Map,          labelKo: "관광",      labelEn: "Tourism",      tab: 4,  subTab: 0, color: "#0EA5E9" },
+  { icon: Map,          labelKo: "관광",      labelEn: "Tourism",      tab: 4,  subTab: 0, color: "#06B6D4" },
   { icon: Briefcase,    labelKo: "취업",      labelEn: "Jobs",         tab: 6,  subTab: 0, color: "#059669" },
-  { icon: GraduationCap,labelKo: "교육",      labelEn: "Schools",      tab: 7,  subTab: 0, color: "#F59E0B" },
-  { icon: DollarSign,   labelKo: "생활비",    labelEn: "Costs",        tab: 8,  subTab: 0, color: "#8B5CF6" },
+  { icon: GraduationCap,labelKo: "교육",      labelEn: "Schools",      tab: 7,  subTab: 0, color: "#8B5CF6" },
+  { icon: DollarSign,   labelKo: "생활비",    labelEn: "Costs",        tab: 8,  subTab: 0, color: "#0EA5E9" },
   /* ── 2행: 빠른 접근 ── */
   { icon: Building2,    labelKo: "한인 업소", labelEn: "Business",     tab: 12, subTab: 0, color: "#4F46E5" },
+  { icon: LifeBuoy,     labelKo: "지원기관",  labelEn: "Support",      tab: 13, subTab: 0, color: "#14B8A6" },
   { icon: FileText,     labelKo: "비자·이민", labelEn: "Visa",         tab: 1,  subTab: 7, color: "#6366F1" },
   { icon: Receipt,      labelKo: "세금신고",  labelEn: "Taxes",        tab: 8,  subTab: 4, color: "#F97316" },
   { icon: Scale,        labelKo: "법률상담",  labelEn: "Legal",        tab: 5,  subTab: 5, color: "#64748B" },
   { icon: BookOpen,     labelKo: "한국학교",  labelEn: "K-School",     tab: 7,  subTab: 5, color: "#BE185D" },
-  { icon: Users,        labelKo: "사람 연결", labelEn: "People Connect", tab: 9, subTab: 0, color: "#6EE7B7" },
+  { icon: Users,        labelKo: "사람 연결", labelEn: "People Connect", tab: 9, subTab: 0, color: "#10B981" },
 ];
 
 /* ─────────────────────────────────────────
@@ -27973,7 +27974,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
           <div style={{ width: 36, height: 4, borderRadius: 2, background: "#E5E7EB", margin: "0 auto 16px" }} />
 
           {/* 섹션 버튼 그리드 — 2행 */}
-          {[MORE_SECTIONS.slice(0, 5), MORE_SECTIONS.slice(5)].map((row, rowIdx) => (
+          {[MORE_SECTIONS.slice(0, 6), MORE_SECTIONS.slice(6)].map((row, rowIdx) => (
             <div key={rowIdx} style={{ display: "grid", gridTemplateColumns: `repeat(${row.length}, 1fr)`, gap: 8, marginBottom: rowIdx === 0 ? 8 : 16 }}>
               {rowIdx === 1 && (
                 /* 2행 라벨 */
