@@ -24505,6 +24505,10 @@ function getCityUniversities(slug: string, lang: string) {
         desc: ko ? "✅ 댈러스 소재 대표 복음주의 신학교. 세대주의 신학. 한인 유학생·목회자 대거. 목회학(Th.M)·성경·상담.\n📍 3909 Swiss Ave, Dallas TX | 🔗 dts.edu"
                  : "✅ Leading evangelical seminary in Dallas. Dispensational theology. Very large Korean pastor/student community. Th.M, Bible & counseling.\n📍 3909 Swiss Ave, Dallas TX | 🔗 dts.edu",
         tags: ["신학교","DTS","복음주의"] },
+      { emoji: "🎓", name: "Southwestern Baptist Theological Seminary (SWBTS, 남침례신학교)", nameEn: "SWBTS — 신학교 (남침례회 6대, 대학원)",
+        desc: ko ? "✅ 포트워스 소재 남침례회(SBC) 6대 신학교. 목회·성경·교회음악. 한인 목회자 다수. 학부 Texas Baptist College 병설.\n📍 2001 W Seminary Dr, Fort Worth TX | 🔗 swbts.edu"
+                 : "✅ Fort Worth. One of SBC's 6 seminaries. Ministry, Bible & church music. Many Korean pastors. Undergrad Texas Baptist College.\n📍 2001 W Seminary Dr, Fort Worth TX | 🔗 swbts.edu",
+        tags: ["신학교","SWBTS","남침례회"] },
     ],
     la: [
       { emoji: "🎓", name: "UCLA", nameEn: "University of California, Los Angeles — 공립 최상위",
@@ -24523,6 +24527,10 @@ function getCityUniversities(slug: string, lang: string) {
         desc: ko ? "✅ 패서디나 소재 세계 최대급 초교파 복음주의 신학교. 한인 유학생 최다. 목회학·선교·상담(심리).\n📍 135 N Oakland Ave, Pasadena CA | 🔗 fuller.edu"
                  : "✅ Pasadena. One of the largest multidenominational evangelical seminaries. Largest Korean student body. M.Div, missions & psychology.\n📍 135 N Oakland Ave, Pasadena CA | 🔗 fuller.edu",
         tags: ["신학교","풀러","복음주의"] },
+      { emoji: "🎓", name: "Gateway Seminary (게이트웨이 신학교)", nameEn: "Gateway — 신학교 (남침례회 6대, 대학원)",
+        desc: ko ? "온타리오(LA 동쪽 이너 엠파이어) 소재 남침례회(SBC) 6대 신학교. (구 Golden Gate) 목회·상담. 한인 목회자 접근성.\n📍 3210 E Guasti Rd, Ontario CA | 🔗 gs.edu"
+                 : "SBC's 6 seminaries — in Ontario (Inland Empire, E of LA). Formerly Golden Gate. Ministry & counseling.\n📍 3210 E Guasti Rd, Ontario CA | 🔗 gs.edu",
+        tags: ["신학교","게이트웨이","남침례회"] },
     ],
     boston: [
       { emoji: "🎓", name: "Harvard University (하버드)", nameEn: "Harvard — 케임브리지 (세계 최정상)",
@@ -24607,6 +24615,34 @@ function getCityUniversities(slug: string, lang: string) {
         desc: ko ? "휴스턴 소재 초교파·다문화 신학교(대학원). 선교·목회·상담.\n🔗 hgst.edu"
                  : "Multidenominational, multicultural seminary (graduate) in Houston. Missions, ministry & counseling.\n🔗 hgst.edu",
         tags: ["신학교","HGST","초교파"] },
+    ],
+    louisville: [
+      { emoji: "🎓", name: "University of Louisville (UofL)", nameEn: "UofL — 공립 종합 (의대·공학)",
+        desc: ko ? "루이빌 소재 공립 종합 연구대. 의대·공학·경영. 학비 저렴.\n📍 Louisville KY | 🔗 louisville.edu"
+                 : "Public research univ in Louisville. Medicine, engineering & business. Affordable.\n📍 Louisville KY | 🔗 louisville.edu",
+        tags: ["UofL","공립","의대"] },
+      { emoji: "🎓", name: "Bellarmine University (벨라민)", nameEn: "Bellarmine — 사립 (간호·보건)",
+        desc: ko ? "루이빌 소재 가톨릭 사립대. 간호·물리치료·보건. 소규모 정예.\n🔗 bellarmine.edu"
+                 : "Catholic private univ in Louisville. Nursing, PT & health. Small & focused.\n🔗 bellarmine.edu",
+        tags: ["벨라민","사립","보건"] },
+      { emoji: "🎓", name: "Southern Baptist Theological Seminary (SBTS, 남침례신학교)", nameEn: "SBTS — 신학교 (남침례회 6대·최대, 대학원)",
+        desc: ko ? "✅ 루이빌 소재 남침례회(SBC) 최고(母)신학교. 6대 중 최대. 한인 목회자·유학생 대거. 학부 Boyce College 병설.\n📍 2825 Lexington Rd, Louisville KY | 🔗 sbts.edu"
+                 : "✅ SBC's flagship/oldest seminary in Louisville. Largest of the 6. Very large Korean pastor/student community. Undergrad Boyce College.\n📍 2825 Lexington Rd, Louisville KY | 🔗 sbts.edu",
+        tags: ["신학교","SBTS","남침례회"] },
+    ],
+    raleigh: [
+      { emoji: "🎓", name: "North Carolina State University (NC State)", nameEn: "NC State — 롤리 공립 (공학·농학)",
+        desc: ko ? "✅ 롤리 소재 공립 연구대(R1). 공학·농학·디자인. 리서치 트라이앵글 중심. 학비 저렴. 한인 학생 많음.\n📍 Raleigh NC | 🔗 ncsu.edu"
+                 : "✅ Public research (R1) in Raleigh. Engineering, agriculture & design. Research Triangle hub. Affordable. Many Korean students.\n📍 Raleigh NC | 🔗 ncsu.edu",
+        tags: ["NCState","공립","공학"] },
+      { emoji: "🎓", name: "UNC-Chapel Hill / Duke (인근)", nameEn: "UNC & Duke — 리서치 트라이앵글",
+        desc: ko ? "롤리 인근(30~40분) 명문. UNC 채플힐(공립 최상위)·듀크(사립 최정상, 더럼). 의대·경영·법.\n🔗 unc.edu | duke.edu"
+                 : "Elite universities ~30-40 min from Raleigh. UNC Chapel Hill (top public) & Duke (top private, Durham). Medicine, business & law.\n🔗 unc.edu | duke.edu",
+        tags: ["UNC","듀크","트라이앵글"] },
+      { emoji: "🎓", name: "Southeastern Baptist Theological Seminary (SEBTS, 남침례신학교)", nameEn: "SEBTS — 신학교 (남침례회 6대, 대학원)",
+        desc: ko ? "✅ 웨이크포레스트(롤리 북쪽 ~25분) 소재 남침례회(SBC) 6대 신학교. 목회·선교. 학부 The College at Southeastern 병설.\n📍 120 S Wingate St, Wake Forest NC | 🔗 sebts.edu"
+                 : "✅ SBC's 6 seminaries — in Wake Forest (~25 min N of Raleigh). Ministry & missions. Undergrad The College at Southeastern.\n📍 120 S Wingate St, Wake Forest NC | 🔗 sebts.edu",
+        tags: ["신학교","SEBTS","남침례회"] },
     ],
   };
   return D[slug] ?? [
