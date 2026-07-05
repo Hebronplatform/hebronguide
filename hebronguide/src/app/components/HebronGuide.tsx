@@ -24542,6 +24542,72 @@ function getCityUniversities(slug: string, lang: string) {
                  : "✅ Leading evangelical seminary in South Hamilton (N of Boston). Korean Student Association & Korean ministry programs (GCI Korea).\n📍 130 Essex St, South Hamilton MA | 🔗 gordonconwell.edu",
         tags: ["신학교","고든콘웰","한인"] },
     ],
+    newyork: [
+      { emoji: "🎓", name: "Columbia University (컬럼비아)", nameEn: "Columbia — 아이비 세계 최정상",
+        desc: ko ? "✅ 맨해튼 모닝사이드 소재 아이비 세계 최정상. 전 분야. 한인 유학생 활발.\n📍 New York NY | 🔗 columbia.edu"
+                 : "✅ Ivy League, world-top, Morningside Manhattan. All fields. Active Korean student community.\n📍 New York NY | 🔗 columbia.edu",
+        tags: ["컬럼비아","아이비","최정상"] },
+      { emoji: "🎓", name: "New York University (NYU)", nameEn: "NYU — 맨해튼 대형 사립",
+        desc: ko ? "맨해튼 대형 사립. 경영(Stern)·예술(Tisch)·법. 한인 유학생 최다급. 학비 높음.\n📍 New York NY | 🔗 nyu.edu"
+                 : "Large private in Manhattan. Stern business, Tisch arts & law. Among the largest Korean student bodies. High tuition.\n📍 New York NY | 🔗 nyu.edu",
+        tags: ["NYU","맨해튼","경영·예술"] },
+      { emoji: "🎓", name: "Stony Brook University (SUNY)", nameEn: "Stony Brook — 롱아일랜드 공립 연구",
+        desc: ko ? "✅ 롱아일랜드 소재 SUNY 최상위 공립 연구대. 이공계 강점. 학비 저렴. 한인 학생 매우 많음.\n📍 Stony Brook NY | 🔗 stonybrook.edu"
+                 : "✅ Top SUNY public research univ on Long Island. Strong STEM. Affordable. Very large Korean student body.\n📍 Stony Brook NY | 🔗 stonybrook.edu",
+        tags: ["스토니브룩","SUNY","이공계"] },
+      { emoji: "🎓", name: "CUNY (Baruch·Hunter·Queens)", nameEn: "CUNY — 저렴 공립 계열",
+        desc: ko ? "뉴욕시립대 계열. 저렴 공립(경영 Baruch·인문 Hunter·퀸즈칼리지). 실용·직장인 친화.\n🔗 cuny.edu"
+                 : "City University of NY system. Affordable public (Baruch business, Hunter, Queens). Practical & working-adult friendly.\n🔗 cuny.edu",
+        tags: ["CUNY","저렴","공립"] },
+      { emoji: "🎓", name: "Union Theological Seminary (유니온 신학교)", nameEn: "UTS — 신학교 (초교파, 대학원)",
+        desc: ko ? "맨해튼 할렘(컬럼비아대 인근) 초교파 신학교(대학원). M.Div·신학 석·박사.\n📍 3041 Broadway, New York NY | 🔗 utsnyc.edu"
+                 : "Nondenominational seminary (graduate) in Harlem, near Columbia. M.Div, STM & PhD.\n📍 3041 Broadway, New York NY | 🔗 utsnyc.edu",
+        tags: ["신학교","유니온","초교파"] },
+    ],
+    sf: [
+      { emoji: "🎓", name: "UC Berkeley (버클리)", nameEn: "UC Berkeley — 공립 최상위",
+        desc: ko ? "✅ UC 최상위 공립. 전 분야 세계권. 한인 재학생 많음. 주립 학비 ~$14,000/년.\n📍 Berkeley CA | 🔗 berkeley.edu"
+                 : "✅ Top UC public. World-class across fields. Large Korean student body. In-state ~$14,000/yr.\n📍 Berkeley CA | 🔗 berkeley.edu",
+        tags: ["버클리","공립","최상위"] },
+      { emoji: "🎓", name: "Stanford University (스탠퍼드)", nameEn: "Stanford — 사립 최정상",
+        desc: ko ? "팔로알토 소재 사립 최정상. 공학·경영·CS. 실리콘밸리 중심. 한인 유학생·연구원 다수.\n📍 Stanford CA | 🔗 stanford.edu"
+                 : "Private top in Palo Alto. Engineering, business & CS. Silicon Valley hub. Many Korean students/researchers.\n📍 Stanford CA | 🔗 stanford.edu",
+        tags: ["스탠퍼드","사립","최정상"] },
+      { emoji: "🎓", name: "San Jose State / SF State", nameEn: "SJSU · SFSU — 저렴 공립",
+        desc: ko ? "베이 지역 저렴 공립. SJSU(실리콘밸리 취업 강점)·SFSU(시내). 실용 전공.\n🔗 sjsu.edu | sfsu.edu"
+                 : "Affordable Bay Area publics. SJSU (Silicon Valley jobs) & SFSU (in-city). Practical majors.\n🔗 sjsu.edu | sfsu.edu",
+        tags: ["SJSU","SFSU","저렴"] },
+      { emoji: "🎓", name: "Graduate Theological Union (GTU 신학교)", nameEn: "GTU — 신학교 컨소시엄 (대학원)",
+        desc: ko ? "✅ 버클리 소재 8개 신학교 컨소시엄(대학원). 신학 석·박사. UC버클리 인접.\n📍 2400 Ridge Rd, Berkeley CA | 🔗 gtu.edu"
+                 : "✅ Berkeley consortium of 8 seminaries (graduate). Theology MA & PhD. Adjacent to UC Berkeley.\n📍 2400 Ridge Rd, Berkeley CA | 🔗 gtu.edu",
+        tags: ["신학교","GTU","버클리"] },
+      { emoji: "🎓", name: "Western Seminary San Jose (웨스턴 신학교)", nameEn: "Western — 신학교 (복음주의, 대학원)",
+        desc: ko ? "산호세 소재 복음주의 신학교(대학원). 목회·상담(MFT). 베이 한인 목회자 접근성.\n🔗 westernseminary.edu"
+                 : "Evangelical seminary (graduate) in San Jose. Ministry & counseling (MFT).\n🔗 westernseminary.edu",
+        tags: ["신학교","웨스턴","복음주의"] },
+    ],
+    houston: [
+      { emoji: "🎓", name: "Rice University (라이스)", nameEn: "Rice — 사립 최정상",
+        desc: ko ? "✅ 휴스턴 소재 사립 최정상. STEM·경영·건축. 소규모 정예. 한인 유학생 활발.\n📍 Houston TX | 🔗 rice.edu"
+                 : "✅ Private top in Houston. STEM, business & architecture. Small & selective. Active Korean students.\n📍 Houston TX | 🔗 rice.edu",
+        tags: ["라이스","사립","STEM"] },
+      { emoji: "🎓", name: "University of Houston (UH)", nameEn: "UH — 대형 공립 종합",
+        desc: ko ? "휴스턴 대형 공립 종합대. 공학·경영·에너지. 학비 저렴. 한인 학생 많음.\n📍 Houston TX | 🔗 uh.edu"
+                 : "Large public research univ in Houston. Engineering, business & energy. Affordable. Many Korean students.\n📍 Houston TX | 🔗 uh.edu",
+        tags: ["UH","공립","저렴"] },
+      { emoji: "🎓", name: "Texas A&M University (텍사스 A&M)", nameEn: "TAMU — 칼리지스테이션 (공학)",
+        desc: ko ? "칼리지스테이션 소재(휴스턴 북서 ~90분). 공학·농학 대형 공립. 학비 저렴.\n🔗 tamu.edu"
+                 : "College Station (~90 min NW of Houston). Large public, engineering & agriculture. Affordable.\n🔗 tamu.edu",
+        tags: ["A&M","공학","저렴"] },
+      { emoji: "🎓", name: "Houston Theological Seminary (휴스턴 신학교)", nameEn: "HTS @ HCU — 신학교 (복음주의, 대학원)",
+        desc: ko ? "휴스턴 크리스천대(HCU) 내 복음주의 신학교(대학원). 목회·성경.\n🔗 hc.edu/houston-theological-seminary"
+                 : "Evangelical seminary (graduate) within Houston Christian University. Ministry & Bible.\n🔗 hc.edu/houston-theological-seminary",
+        tags: ["신학교","HCU","복음주의"] },
+      { emoji: "🎓", name: "Houston Graduate School of Theology (HGST)", nameEn: "HGST — 신학교 (초교파, 대학원)",
+        desc: ko ? "휴스턴 소재 초교파·다문화 신학교(대학원). 선교·목회·상담.\n🔗 hgst.edu"
+                 : "Multidenominational, multicultural seminary (graduate) in Houston. Missions, ministry & counseling.\n🔗 hgst.edu",
+        tags: ["신학교","HGST","초교파"] },
+    ],
   };
   return D[slug] ?? [
     { emoji: "🎓", name: ko ? "지역 4년제 대학" : "Local Universities",
