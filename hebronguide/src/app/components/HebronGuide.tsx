@@ -24457,14 +24457,14 @@ function getCityUniversities(slug: string, lang: string) {
         desc: ko ? "파크빌(MO) 소재 사립대. 온라인·야간 과정 풍부 (직장인·군인 친화). 경영·항공·교육.\n📍 8700 NW River Park Dr, Parkville MO | 🔗 park.edu"
                  : "Private university in Parkville, MO. Rich online & evening programs (working adults & military). Business, aviation & education.\n📍 8700 NW River Park Dr, Parkville MO | 🔗 park.edu",
         tags: ["Park","온라인","직장인"] },
-      { emoji: "🎓", name: "Midwestern Baptist Theological Seminary (미드웨스턴 침례신학교)", nameEn: "MBTS — 신학대학 (Spurgeon College)",
+      { emoji: "🎓", name: "Midwestern Baptist Theological Seminary (미드웨스턴 침례신학교)", nameEn: "MBTS — 신학대학원 (Spurgeon College)",
         desc: ko ? "✅ 캔자스시티 소재 남침례회(SBC) 신학교. 학부 Spurgeon College 운영. 목회학(M.Div)·신학 석·박사. 온라인 과정 풍부.\n📍 5001 N Oak Trafficway, Kansas City MO | 🔗 mbts.edu"
                  : "✅ Southern Baptist (SBC) seminary in KC. Houses Spurgeon College (undergrad). M.Div, ThM & PhD. Rich online programs.\n📍 5001 N Oak Trafficway, Kansas City MO | 🔗 mbts.edu",
-        tags: ["신학대학","침례교","MBTS"] },
-      { emoji: "🎓", name: "Nazarene Theological Seminary (나사렛 신학교)", nameEn: "NTS — 신학대학",
+        tags: ["신학대학원","침례교","MBTS"] },
+      { emoji: "🎓", name: "Nazarene Theological Seminary (나사렛 신학교)", nameEn: "NTS — 신학대학원",
         desc: ko ? "캔자스시티 소재 나사렛교회 공식 신학교. 목회학 석사(M.Div)·상담·선교. 인근 MidAmerica Nazarene University(올레이스 KS)는 4년제 학부.\n📍 1700 E Meyer Blvd, Kansas City MO | 🔗 nts.edu"
                  : "Church of the Nazarene's seminary in KC. M.Div, counseling & missions. Nearby MidAmerica Nazarene University (Olathe, KS) is the 4-yr undergrad.\n📍 1700 E Meyer Blvd, Kansas City MO | 🔗 nts.edu",
-        tags: ["신학대학","나사렛","NTS"] },
+        tags: ["신학대학원","나사렛","NTS"] },
     ],
     atlanta: [
       { emoji: "🎓", name: "Georgia Institute of Technology (조지아텍)", nameEn: "Georgia Tech — 공대 세계 최정상",
@@ -24479,14 +24479,14 @@ function getCityUniversities(slug: string, lang: string) {
         desc: ko ? "애틀랜타 다운타운 공립 종합대. 경영·정책·예술. 합격 문턱 상대적 낮고 학비 저렴(주립 ~$10,000/년). 한인 학생 많음.\n🔗 gsu.edu"
                  : "Public research univ in downtown Atlanta. Business, policy & arts. More accessible admissions, affordable (~$10,000/yr in-state). Many Korean students.\n🔗 gsu.edu",
         tags: ["GSU","다운타운","공립"] },
-      { emoji: "🎓", name: "Columbia Theological Seminary (컬럼비아 신학교)", nameEn: "CTS — 신학대학 (장로교)",
+      { emoji: "🎓", name: "Columbia Theological Seminary (컬럼비아 신학교)", nameEn: "CTS — 신학대학원 (장로교)",
         desc: ko ? "디케이터 소재 미국장로교(PCUSA) 신학교. 목회학(M.Div)·신학 석·박사. 한인 목회자·유학생 다수. 애틀랜타 신학협회(ATA) 소속.\n📍 701 S Columbia Dr, Decatur GA | 🔗 ctsnet.edu"
                  : "Presbyterian (PCUSA) seminary in Decatur. M.Div, ThM & PhD. Many Korean pastors & students. Member of Atlanta Theological Association.\n📍 701 S Columbia Dr, Decatur GA | 🔗 ctsnet.edu",
-        tags: ["신학대학","장로교","CTS"] },
-      { emoji: "🎓", name: "Candler School of Theology (캔들러 신학대학)", nameEn: "Candler @ Emory — 신학대학 (감리교)",
+        tags: ["신학대학원","장로교","CTS"] },
+      { emoji: "🎓", name: "Candler School of Theology (캔들러 신학대학)", nameEn: "Candler @ Emory — 신학대학원 (감리교)",
         desc: ko ? "에모리대 신학대학원. 연합감리교(UMC) 계열. 목회학 석사·신학 박사. 애틀랜타 신학협회 소속.\n🔗 candler.emory.edu"
                  : "Emory's theology school. United Methodist (UMC). M.Div & doctoral. Member of Atlanta Theological Association.\n🔗 candler.emory.edu",
-        tags: ["신학대학","감리교","Emory"] },
+        tags: ["신학대학원","감리교","Emory"] },
     ],
     dallas: [
       { emoji: "🎓", name: "UT Dallas (UTD)", nameEn: "University of Texas at Dallas — 리처드슨",
@@ -24501,10 +24501,10 @@ function getCityUniversities(slug: string, lang: string) {
         desc: ko ? "덴튼 소재 공립 종합대. 음악대(재즈) 세계적. 학비 저렴. 한인 학생 많음.\n📍 1155 Union Cir, Denton TX | 🔗 unt.edu"
                  : "Public univ in Denton. World-renowned music (jazz). Affordable. Many Korean students.\n📍 1155 Union Cir, Denton TX | 🔗 unt.edu",
         tags: ["UNT","덴튼","음악"] },
-      { emoji: "🎓", name: "Dallas Theological Seminary (DTS, 달라스 신학교)", nameEn: "DTS — 신학대학 (복음주의)",
+      { emoji: "🎓", name: "Dallas Theological Seminary (DTS, 달라스 신학교)", nameEn: "DTS — 신학대학원 (복음주의)",
         desc: ko ? "✅ 댈러스 소재 대표 복음주의 신학교. 세대주의 신학. 한인 유학생·목회자 대거. 목회학(Th.M)·성경·상담.\n📍 3909 Swiss Ave, Dallas TX | 🔗 dts.edu"
                  : "✅ Leading evangelical seminary in Dallas. Dispensational theology. Very large Korean pastor/student community. Th.M, Bible & counseling.\n📍 3909 Swiss Ave, Dallas TX | 🔗 dts.edu",
-        tags: ["신학대학","DTS","복음주의"] },
+        tags: ["신학대학원","DTS","복음주의"] },
     ],
     la: [
       { emoji: "🎓", name: "UCLA", nameEn: "University of California, Los Angeles — 공립 최상위",
@@ -24519,10 +24519,10 @@ function getCityUniversities(slug: string, lang: string) {
         desc: ko ? "캘스테이트 계열 공립. 학비 저렴(~$7,000/년), 실용 전공·직장인 친화. 한인 밀집 지역 접근성.\n🔗 calstatela.edu | fullerton.edu"
                  : "Cal State system publics. Affordable (~$7,000/yr), practical majors, working-adult friendly. Near Korean areas.\n🔗 calstatela.edu | fullerton.edu",
         tags: ["CSU","저렴","실용"] },
-      { emoji: "🎓", name: "Fuller Theological Seminary (풀러 신학교)", nameEn: "Fuller — 신학대학 (복음주의 최대)",
+      { emoji: "🎓", name: "Fuller Theological Seminary (풀러 신학교)", nameEn: "Fuller — 신학대학원 (복음주의 최대)",
         desc: ko ? "✅ 패서디나 소재 세계 최대급 초교파 복음주의 신학교. 한인 유학생 최다. 목회학·선교·상담(심리).\n📍 135 N Oakland Ave, Pasadena CA | 🔗 fuller.edu"
                  : "✅ Pasadena. One of the largest multidenominational evangelical seminaries. Largest Korean student body. M.Div, missions & psychology.\n📍 135 N Oakland Ave, Pasadena CA | 🔗 fuller.edu",
-        tags: ["신학대학","풀러","복음주의"] },
+        tags: ["신학대학원","풀러","복음주의"] },
     ],
     boston: [
       { emoji: "🎓", name: "Harvard University (하버드)", nameEn: "Harvard — 케임브리지 (세계 최정상)",
@@ -24537,10 +24537,10 @@ function getCityUniversities(slug: string, lang: string) {
         desc: ko ? "보스턴 시내 대형 사립 종합대. 경영·커뮤니케이션·의대. 한인 유학생 매우 많음.\n📍 Boston MA | 🔗 bu.edu"
                  : "Large private research univ in Boston. Business, communication & medicine. Very large Korean student body.\n📍 Boston MA | 🔗 bu.edu",
         tags: ["BU","사립","종합"] },
-      { emoji: "🎓", name: "Gordon-Conwell Theological Seminary (고든콘웰)", nameEn: "GCTS — 신학대학 (한인 프로그램)",
+      { emoji: "🎓", name: "Gordon-Conwell Theological Seminary (고든콘웰)", nameEn: "GCTS — 신학대학원 (한인 프로그램)",
         desc: ko ? "✅ 사우스해밀턴(보스턴 북부) 소재 대표 복음주의 신학교. 한인학생회(KSA)·한국어 목회 프로그램(GCI Korea) 운영.\n📍 130 Essex St, South Hamilton MA | 🔗 gordonconwell.edu"
                  : "✅ Leading evangelical seminary in South Hamilton (N of Boston). Korean Student Association & Korean ministry programs (GCI Korea).\n📍 130 Essex St, South Hamilton MA | 🔗 gordonconwell.edu",
-        tags: ["신학대학","고든콘웰","한인"] },
+        tags: ["신학대학원","고든콘웰","한인"] },
     ],
   };
   return D[slug] ?? [
