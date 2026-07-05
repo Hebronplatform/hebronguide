@@ -24075,16 +24075,6 @@ function getCityCC(slug: string, lang: string) {
                  : "UDEM (private) & UANL (public, Nuevo León State Univ) Spanish & language programs.\nOpen to foreigners. Affordable tuition.\n🔗 udem.edu.mx | uanl.mx",
         tags: ["UDEM","UANL","스페인어"] },
     ],
-    kansascity: [
-      { emoji: "🏛️", name: "Johnson County Community College (JCCC)", nameEn: "JCCC — 오버랜드파크 (캔자스 최대 CC)",
-        desc: ko ? "✅ 오버랜드파크(KS) 소재. 캔자스주 최대 CC. 4년제 편입(KU·K-State) 최적. 학비 저렴. 한인 많은 존슨카운티.\n📍 12345 College Blvd, Overland Park KS | 🔗 jccc.edu"
-                 : "✅ Overland Park, KS. Kansas's largest CC. Best for transfer to KU/K-State. Affordable. In Korean-friendly Johnson County.\n📍 12345 College Blvd, Overland Park KS | 🔗 jccc.edu",
-        tags: ["JCCC","오버랜드파크","편입"] },
-      { emoji: "🏛️", name: "Metropolitan Community College (MCC)", nameEn: "MCC-KC — 캔자스시티 MO (5개 캠퍼스)",
-        desc: ko ? "캔자스시티(MO) 공립 CC 시스템. 5개 캠퍼스(펜밸리·롱뷰·마플우즈 등). ESL·직업훈련·4년제 편입. 학비 저렴.\n🔗 mcckc.edu"
-                 : "KC (MO) public CC system. 5 campuses (Penn Valley, Longview, Maple Woods, etc.). ESL, career training & 4-yr transfer. Affordable.\n🔗 mcckc.edu",
-        tags: ["MCC","캔자스시티MO","ESL"] },
-    ],
   };
   return D[slug] ?? [
     { emoji: "🏛️", name: ko ? "지역 커뮤니티 칼리지" : "Local Community College",
@@ -24475,6 +24465,28 @@ function getCityUniversities(slug: string, lang: string) {
         desc: ko ? "캔자스시티 소재 나사렛교회 공식 신학교. 목회학 석사(M.Div)·상담·선교. 인근 MidAmerica Nazarene University(올레이스 KS)는 4년제 학부.\n📍 1700 E Meyer Blvd, Kansas City MO | 🔗 nts.edu"
                  : "Church of the Nazarene's seminary in KC. M.Div, counseling & missions. Nearby MidAmerica Nazarene University (Olathe, KS) is the 4-yr undergrad.\n📍 1700 E Meyer Blvd, Kansas City MO | 🔗 nts.edu",
         tags: ["신학대학","나사렛","NTS"] },
+    ],
+    atlanta: [
+      { emoji: "🎓", name: "Georgia Institute of Technology (조지아텍)", nameEn: "Georgia Tech — 공대 세계 최정상",
+        desc: ko ? "✅ 애틀랜타 미드타운. 공학·컴퓨터과학 세계 최정상 공립. 한인 유학생·재학생 많음. 주립 학비 ~$12,000/년.\n📍 North Ave NW, Atlanta GA | 🔗 gatech.edu"
+                 : "✅ Midtown Atlanta. World-top public in engineering & CS. Large Korean student community. In-state ~$12,000/yr.\n📍 North Ave NW, Atlanta GA | 🔗 gatech.edu",
+        tags: ["조지아텍","공대","CS"] },
+      { emoji: "🎓", name: "Emory University (에모리)", nameEn: "Emory — 사립 명문 (의대·경영)",
+        desc: ko ? "애틀랜타 사립 명문. 의대·경영·법대 강점. QS 세계권. 한인 유학생 다수. 학비 ~$60,000/년.\n📍 201 Dowman Dr, Atlanta GA | 🔗 emory.edu"
+                 : "Private elite in Atlanta. Strong medicine, business & law. Large Korean student body. ~$60,000/yr.\n📍 201 Dowman Dr, Atlanta GA | 🔗 emory.edu",
+        tags: ["에모리","사립","의대"] },
+      { emoji: "🎓", name: "Georgia State University (조지아주립)", nameEn: "GSU — 다운타운 종합대",
+        desc: ko ? "애틀랜타 다운타운 공립 종합대. 경영·정책·예술. 합격 문턱 상대적 낮고 학비 저렴(주립 ~$10,000/년). 한인 학생 많음.\n🔗 gsu.edu"
+                 : "Public research univ in downtown Atlanta. Business, policy & arts. More accessible admissions, affordable (~$10,000/yr in-state). Many Korean students.\n🔗 gsu.edu",
+        tags: ["GSU","다운타운","공립"] },
+      { emoji: "🎓", name: "Columbia Theological Seminary (컬럼비아 신학교)", nameEn: "CTS — 신학대학 (장로교)",
+        desc: ko ? "디케이터 소재 미국장로교(PCUSA) 신학교. 목회학(M.Div)·신학 석·박사. 한인 목회자·유학생 다수. 애틀랜타 신학협회(ATA) 소속.\n📍 701 S Columbia Dr, Decatur GA | 🔗 ctsnet.edu"
+                 : "Presbyterian (PCUSA) seminary in Decatur. M.Div, ThM & PhD. Many Korean pastors & students. Member of Atlanta Theological Association.\n📍 701 S Columbia Dr, Decatur GA | 🔗 ctsnet.edu",
+        tags: ["신학대학","장로교","CTS"] },
+      { emoji: "🎓", name: "Candler School of Theology (캔들러 신학대학)", nameEn: "Candler @ Emory — 신학대학 (감리교)",
+        desc: ko ? "에모리대 신학대학원. 연합감리교(UMC) 계열. 목회학 석사·신학 박사. 애틀랜타 신학협회 소속.\n🔗 candler.emory.edu"
+                 : "Emory's theology school. United Methodist (UMC). M.Div & doctoral. Member of Atlanta Theological Association.\n🔗 candler.emory.edu",
+        tags: ["신학대학","감리교","Emory"] },
     ],
   };
   return D[slug] ?? [
