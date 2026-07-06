@@ -21915,6 +21915,24 @@ const CITY_CONSULATE: Record<string, { ko: string; en: string; phone: string; ur
   princgeorge:  { ko: "주밴쿠버 총영사관 (BC 관할)", en: "Korean Consulate General Vancouver",     phone: "(604) 681-9581", url: "overseas.mofa.go.kr/ca-vancouver-ko" },
   winnipeg:     { ko: "주토론토 총영사관 (매니토바 관할)", en: "Korean Consulate General Toronto", phone: "(416) 920-3809", url: "overseas.mofa.go.kr/ca-toronto-ko" },
   ottawa:       { ko: "주캐나다 대한민국 대사관", en: "Korean Embassy — Ottawa",                  phone: "(613) 244-5010", url: "overseas.mofa.go.kr/ca-ko" },
+  // ── 국제 도시 (각국 대사관·총영사관) ──
+  tokyo:        { ko: "주일본 대한민국 대사관",     en: "Korean Embassy — Tokyo",                phone: "+81-3-3452-7611", url: "overseas.mofa.go.kr/jp-ko" },
+  osaka:        { ko: "주오사카 대한민국 총영사관", en: "Korean Consulate General Osaka",         phone: "+81-6-4256-2345", url: "overseas.mofa.go.kr/jp-osaka-ko" },
+  sydney:       { ko: "주시드니 대한민국 총영사관", en: "Korean Consulate General Sydney",        phone: "+61-2-9210-0200", url: "overseas.mofa.go.kr/au-sydney-ko" },
+  brisbane:     { ko: "주시드니 총영사관 (QLD 관할)", en: "Korean Consulate General Sydney",      phone: "+61-2-9210-0200", url: "overseas.mofa.go.kr/au-sydney-ko" },
+  perth:        { ko: "주시드니 총영사관 (호주)",   en: "Korean Consulate General Sydney",        phone: "+61-2-9210-0200", url: "overseas.mofa.go.kr/au-sydney-ko" },
+  melbourne:    { ko: "주멜버른 대한민국 분관",     en: "Korean Consulate — Melbourne",          phone: "+61-2-9210-0200", url: "overseas.mofa.go.kr/au-sydney-ko" },
+  auckland:     { ko: "주오클랜드 대한민국 분관",   en: "Korean Consulate — Auckland",           phone: "+64-9-379-0818",  url: "overseas.mofa.go.kr/nz-auckland-ko" },
+  london:       { ko: "주영국 대한민국 대사관",     en: "Korean Embassy — London",               phone: "+44-20-7227-5500", url: "overseas.mofa.go.kr/gb-ko" },
+  paris:        { ko: "주프랑스 대한민국 대사관",   en: "Korean Embassy — Paris",                phone: "+33-1-4753-0101", url: "overseas.mofa.go.kr/fr-ko" },
+  frankfurt:    { ko: "주프랑크푸르트 대한민국 총영사관", en: "Korean Consulate General Frankfurt", phone: "+49-69-956752-0", url: "overseas.mofa.go.kr/de-frankfurt-ko" },
+  berlin:       { ko: "주독일 대한민국 대사관",     en: "Korean Embassy — Berlin",               phone: "+49-30-26065-0",  url: "overseas.mofa.go.kr/de-ko" },
+  singapore:    { ko: "주싱가포르 대한민국 대사관", en: "Korean Embassy — Singapore",            phone: "+65-6256-1188",   url: "overseas.mofa.go.kr/sg-ko" },
+  bangkok:      { ko: "주태국 대한민국 대사관",     en: "Korean Embassy — Bangkok",              phone: "+66-2-247-7537",  url: "overseas.mofa.go.kr/th-ko" },
+  hochiminh:    { ko: "주호치민 대한민국 총영사관", en: "Korean Consulate General Ho Chi Minh",  phone: "+84-28-3822-5757", url: "overseas.mofa.go.kr/vn-hochiminh-ko" },
+  dubai:        { ko: "주두바이 대한민국 총영사관", en: "Korean Consulate General Dubai",        phone: "+971-4-344-9200", url: "overseas.mofa.go.kr/ae-dubai-ko" },
+  saopaulo:     { ko: "주상파울루 대한민국 총영사관", en: "Korean Consulate General São Paulo",  phone: "+55-11-3141-1278", url: "overseas.mofa.go.kr/br-saopaulo-ko" },
+  bogota:       { ko: "주콜롬비아 대한민국 대사관", en: "Korean Embassy — Bogota",               phone: "+57-1-616-7200",  url: "overseas.mofa.go.kr/co-ko" },
 };
 
 /* ─────────────────────────────────────────
