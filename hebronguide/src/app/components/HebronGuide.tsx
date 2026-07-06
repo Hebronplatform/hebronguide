@@ -9641,6 +9641,89 @@ function getCountryCode(slug: string): string {
   return "US";
 }
 
+// 국가별 대표 부동산 포털 (주택 탭 — 국제도시 미국식 누출 방지). 각 URL·순위 웹검증(2026-07).
+function getRealtyPortals(slug: string, lang: string): Array<{ href: string; emoji: string; label: string; sub: string }> {
+  const cc = getCountryCode(slug);
+  const ko = lang === "ko";
+  const P = (href: string, emoji: string, label: string, subKo: string, subEn: string) => ({ href, emoji, label, sub: ko ? subKo : subEn });
+  switch (cc) {
+    case "CA": return [
+      P("https://www.realtor.ca/", "🏠", "REALTOR.ca", "캐나다 1위 부동산 — MLS 공식 매물", "#1 Canada real estate — official MLS"),
+      P("https://rentals.ca/", "🛏️", "Rentals.ca", "캐나다 렌트 전문 — 도시별 시세", "Canada rentals — by-city pricing"),
+      P("https://www.kijiji.ca/", "💬", "Kijiji", "지역 직거래 렌트·룸메이트", "Local classifieds — rentals & roommates"),
+    ];
+    case "AU": return [
+      P("https://www.realestate.com.au/", "🏠", "realestate.com.au (REA)", "호주 1위 부동산 — 매매·렌트", "#1 Australia real estate — buy & rent"),
+      P("https://www.domain.com.au/", "🏡", "Domain", "호주 2위 — 시세·경매 정보", "Australia #2 — pricing & auctions"),
+    ];
+    case "NZ": return [
+      P("https://www.trademe.co.nz/a/property", "🏠", "Trade Me Property", "뉴질랜드 1위 부동산·렌트", "#1 NZ property & rentals"),
+      P("https://www.realestate.co.nz/", "🏡", "realestate.co.nz", "뉴질랜드 공식 부동산 포털", "NZ official property portal"),
+    ];
+    case "JP": return [
+      P("https://suumo.jp/", "🏠", "SUUMO (스모)", "일본 1위 부동산 — 임대·매매", "#1 Japan real estate — rent & buy"),
+      P("https://www.homes.co.jp/", "🏡", "LIFULL HOME'S (홈즈)", "일본 대형 부동산 포털", "Major Japan property portal"),
+    ];
+    case "KR": return [
+      P("https://www.zigbang.com/", "🏠", "직방 Zigbang", "한국 1위 부동산 앱 — 원룸·전월세", "#1 Korea app — studios, jeonse/rent"),
+      P("https://www.dabangapp.com/", "🏡", "다방 Dabang", "원룸·투룸 렌트 전문", "Studio & 2-room rentals"),
+      P("https://land.naver.com/", "🗺", "네이버 부동산", "매물·시세 종합 (아파트·빌라)", "Listings & pricing (apts, villas)"),
+    ];
+    case "MX": return [
+      P("https://www.inmuebles24.com/", "🏠", "Inmuebles24", "멕시코 1위 부동산 — 매매·렌트", "#1 Mexico real estate — buy & rent"),
+      P("https://www.vivanuncios.com.mx/", "💬", "Vivanuncios", "지역 직거래 렌트·매물", "Local classifieds — rentals"),
+    ];
+    case "UK": return [
+      P("https://www.rightmove.co.uk/", "🏠", "Rightmove", "영국 1위 부동산 — 매매·렌트", "#1 UK property — buy & rent"),
+      P("https://www.zoopla.co.uk/", "🏡", "Zoopla", "영국 시세·매물 종합", "UK pricing & listings"),
+      P("https://www.spareroom.co.uk/", "🛏️", "SpareRoom", "룸메이트·방 렌트 전문", "Rooms & flatshares"),
+    ];
+    case "DE": return [
+      P("https://www.immobilienscout24.de/", "🏠", "ImmoScout24", "독일 1위 부동산 — 임대·매매", "#1 Germany real estate — rent & buy"),
+      P("https://www.immowelt.de/", "🏡", "Immowelt", "독일 대형 부동산 포털", "Major Germany portal"),
+      P("https://www.wg-gesucht.de/", "🛏️", "WG-Gesucht", "셰어하우스·룸메이트 (WG)", "Shared flats & roommates (WG)"),
+    ];
+    case "FR": return [
+      P("https://www.seloger.com/", "🏠", "SeLoger", "프랑스 1위 부동산 — 임대·매매", "#1 France real estate — rent & buy"),
+      P("https://www.leboncoin.fr/", "💬", "Leboncoin", "지역 직거래 렌트·매물", "Local classifieds — rentals"),
+      P("https://www.bienici.com/", "🗺", "Bien'ici", "3D 지도 매물 검색", "3D-map property search"),
+    ];
+    case "AE": return [
+      P("https://www.bayut.com/", "🏠", "Bayut", "UAE 최대 부동산 — 매매·렌트", "UAE's largest — buy & rent"),
+      P("https://www.propertyfinder.ae/", "🏡", "Property Finder", "UAE 검증 매물 1위", "#1 verified UAE listings"),
+      P("https://www.dubizzle.com/", "💬", "Dubizzle", "지역 직거래 렌트·룸메이트", "Local classifieds — rentals & roommates"),
+    ];
+    case "SG": return [
+      P("https://www.propertyguru.com.sg/", "🏠", "PropertyGuru", "싱가포르 최대 부동산 포털", "Singapore's largest portal"),
+      P("https://www.99.co/", "🏡", "99.co", "싱가포르 매물·렌트 검색", "SG listings & rentals"),
+    ];
+    case "TH": return [
+      P("https://www.ddproperty.com/", "🏠", "DDproperty", "태국 대표 부동산 포털", "Thailand's leading portal"),
+      P("https://www.fazwaz.com/", "🏡", "FazWaz", "태국 렌트·매매 (외국인 친화)", "TH rent & buy (expat-friendly)"),
+    ];
+    case "VN": return [
+      P("https://batdongsan.com.vn/", "🏠", "Batdongsan", "베트남 1위 부동산 포털", "#1 Vietnam property portal"),
+      P("https://www.nhatot.com/", "💬", "Nhà Tốt", "지역 직거래 렌트·매물", "Local classifieds — rentals"),
+    ];
+    case "BR": return [
+      P("https://www.zapimoveis.com.br/", "🏠", "ZAP Imóveis", "브라질 1위 부동산 — 매매·렌트", "#1 Brazil real estate — buy & rent"),
+      P("https://www.quintoandar.com.br/", "🛏️", "QuintoAndar", "렌트 전문 (검증 매물)", "Rentals (verified listings)"),
+      P("https://www.vivareal.com.br/", "🏡", "VivaReal", "브라질 대형 매물 포털", "Major Brazil listings portal"),
+    ];
+    case "CO": return [
+      P("https://www.metrocuadrado.com/", "🏠", "Metrocuadrado", "콜롬비아 1위 부동산", "#1 Colombia real estate"),
+      P("https://www.fincaraiz.com.co/", "🏡", "Fincaraíz", "콜롬비아 전문 매물 포털", "Colombia specialist portal"),
+    ];
+    default: return [ // US
+      P("https://www.zillow.com/", "🏠", "Zillow", "미국 1위 부동산 — 매매·렌트·시세 검색", "#1 US real estate — buy, rent, price tracking"),
+      P("https://www.redfin.com/", "🔴", "Redfin", "정확한 시세·중개 수수료 절감", "Accurate pricing & lower commissions"),
+      P("https://www.realtor.com/", "🏡", "Realtor.com", "MLS 공식 매물 — 가정집·상업지 분류", "Official MLS listings — residential & commercial"),
+      P("https://www.loopnet.com/", "🏢", "LoopNet", "상업용 부동산 전문 — 사무실·매장·창고", "Commercial real estate — office, retail, warehouse"),
+      P("https://www.apartments.com/", "🛏️", "Apartments.com", "렌트 전문 — 단지·가격 필터", "Rentals — complex & price filters"),
+    ];
+  }
+}
+
 // 나라별 Day 1 체크리스트 — 현지 기관·제도 용어
 function getDayOneItems(slug: string) {
   const cc = getCountryCode(slug);
@@ -15161,16 +15244,10 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             {/* 부동산 검색 — 가정집·상업지 분류 */}
             <div style={{ background: "rgba(37,99,235,0.08)", border: "1px solid rgba(37,99,235,0.25)", borderRadius: 14, padding: "14px 16px", marginTop: 4 }}>
               <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#60A5FA", marginBottom: 10 }}>
-                🔍 {lang === "ko" ? "전문 부동산 검색 — 가정집 · 상업지 · 카운티 비교" : "Pro Real Estate Search — Residential · Commercial · By County"}
+                🔍 {lang === "ko" ? "전문 부동산 검색 — 가정집 · 상업지 · 지역별" : "Pro Real Estate Search — Residential · Commercial · By Area"}
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                {[
-                  { href: "https://www.zillow.com/", emoji: "🏠", label: "Zillow", sub: lang === "ko" ? "미국 1위 부동산 — 매매·렌트·시세 검색" : "#1 US real estate — buy, rent, price tracking" },
-                  { href: "https://www.redfin.com/", emoji: "🔴", label: "Redfin", sub: lang === "ko" ? "정확한 시세·중개 수수료 절감" : "Accurate pricing & lower commissions" },
-                  { href: "https://www.realtor.com/", emoji: "🏡", label: "Realtor.com", sub: lang === "ko" ? "MLS 공식 매물 — 가정집·상업지 분류" : "Official MLS listings — residential & commercial" },
-                  { href: "https://www.loopnet.com/", emoji: "🏢", label: "LoopNet", sub: lang === "ko" ? "상업용 부동산 전문 — 사무실·매장·창고" : "Commercial real estate — office, retail, warehouse" },
-                  { href: "https://www.apartments.com/", emoji: "🛏️", label: "Apartments.com", sub: lang === "ko" ? "렌트 전문 — 단지·가격 필터" : "Rentals — complex & price filters" },
-                ].map((link, i) => (
+                {getRealtyPortals(citySlug, lang).map((link, i) => (
                   <a key={i} href={link.href} target="_blank" rel="noopener noreferrer"
                     style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(37,99,235,0.18)" }}>
                     <span style={{ fontSize: 16 }}>{link.emoji}</span>
