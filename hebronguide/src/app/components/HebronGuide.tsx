@@ -22131,7 +22131,18 @@ function getCityEmergencyData(slug: string, lang: string) {
       safetyTipsEn: "• Avoid solo travel in unfamiliar areas at night\n• Use only Uber/DiDi — no street taxis\n• Tap water not safe — always drink bottled\n• Check security at expat compounds/gated communities\n• Extreme summer heat (42°C) — stay hydrated\n• Use private hospitals (Christus Muguerza) for medical care",
     },
   };
-  return D[slug] ?? D.seattle;
+  // 폴백: 시애틀 데이터 누출 금지 → 도시 무관 범용(북미 911 기준). 미등록 도시는 대부분 미국·캐나다.
+  return D[slug] ?? {
+    erName: ko ? "가까운 병원 응급실" : "Nearest Hospital ER",
+    erPhone: "911",
+    erAddr: ko ? "📍 응급 시 911. Google Maps에서 'emergency room near me' 검색" : "📍 Call 911. Search 'emergency room near me' on Google Maps",
+    policeNE: ko ? "911 (긴급) · 비긴급은 지역 경찰서 검색" : "911 (emergency) · search local police for non-emergency",
+    gasName: ko ? "가스 누출 — 즉시 대피 후 911" : "Gas Leak — Evacuate & call 911",
+    gasPhone: "911",
+    consulatePhone: CITY_CONSULATE[slug]?.phone ?? "(202) 939-5600",
+    safetyTips: ko ? "• 모든 긴급상황: 911\n• 낯선 지역 야간 단독 이동 주의\n• 앱 기반 차량(Uber/Lyft) 이용\n• 여권·비자 사본 별도 보관\n• 가까운 병원·경찰서 위치 미리 확인" : "",
+    safetyTipsEn: "• All emergencies: 911\n• Avoid unfamiliar areas alone at night\n• Use app-based rides (Uber/Lyft)\n• Keep copies of passport & visa\n• Locate nearest hospital & police in advance",
+  };
 }
 
 function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?: () => void; initialSub?: number; fromQuickMenu?: boolean }) {
