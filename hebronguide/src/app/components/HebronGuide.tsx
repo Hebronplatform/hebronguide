@@ -9724,6 +9724,55 @@ function getRealtyPortals(slug: string, lang: string): Array<{ href: string; emo
   }
 }
 
+// 캐나다 재정 — 주(州)별 은행·세금 (재정 탭 국제 누출 수정). 세율·판매세 웹검증(2026-07):
+// AB 8~15%·PST없음/GST5%만, MB 10.8~17.4%·GST5+RST7=12%, ON 5.05~13.16%·HST13%, BC 5.06~20.5%·GST5+PST7=12%.
+function getCanadaFinance(slug: string, lang: string): Array<{ title: string; desc: string }> {
+  const ko = lang === "ko";
+  const prov = ["toronto", "ottawa"].includes(slug) ? "ON"
+    : ["vancouver", "princgeorge"].includes(slug) ? "BC"
+    : ["calgary", "edmonton"].includes(slug) ? "AB"
+    : "MB"; // winnipeg
+  const regionalKo: Record<string, { title: string; desc: string }> = {
+    ON: { title: "Simplii Financial / EQ Bank", desc: "Simplii(CIBC 계열): 수수료 없는 온라인 뱅킹. EQ Bank: 이자율 높은 저축계좌. 신규 이민자 친화" },
+    BC: { title: "VanCity 신협 (BC 최대)", desc: "BC 최대 신협. 친환경·지역사회 중심. 수수료 낮음 | 🔗 vancity.com" },
+    AB: { title: "ATB Financial (앨버타 주립 은행)", desc: "앨버타 주정부 소유 은행. 지역 밀착·신규 이민자 계좌 개설 친화 | 🔗 atb.com" },
+    MB: { title: "Simplii Financial / EQ Bank", desc: "Simplii(CIBC 계열): 수수료 없는 온라인 뱅킹. EQ Bank: 이자율 높은 저축계좌. 위니펙에서도 이용 가능" },
+  };
+  const regionalEn: Record<string, { title: string; desc: string }> = {
+    ON: { title: "Simplii Financial / EQ Bank", desc: "Simplii (CIBC subsidiary): fee-free online banking. EQ Bank: high-interest savings. Newcomer-friendly" },
+    BC: { title: "VanCity Credit Union (BC's largest)", desc: "BC's largest credit union. Lower fees, community-focused | 🔗 vancity.com" },
+    AB: { title: "ATB Financial (Alberta provincial bank)", desc: "Bank owned by the Alberta government. Local, newcomer-friendly account opening | 🔗 atb.com" },
+    MB: { title: "Simplii Financial / EQ Bank", desc: "Simplii (CIBC subsidiary): fee-free online banking. EQ Bank: high-interest savings. Available in Winnipeg too" },
+  };
+  const taxKo: Record<string, string> = {
+    ON: "연방 소득세(15%~33%) + 온타리오 주 소득세(5.05%~13.16%)\n판매세: 온타리오 HST 13%\n→ 의료보험 무료 (OHIP) = 세금 많지만 혜택 큼!",
+    BC: "연방 소득세(15%~33%) + BC 주 소득세(5.06%~20.5%)\n판매세: BC GST 5%+PST 7%=12%\n→ 의료보험 무료 (MSP) = 세금 많지만 혜택 큼!",
+    AB: "연방 소득세(15%~33%) + 앨버타 주 소득세(8%~15% 누진)\n판매세: ✅ PST 없음! GST 5%만 — 캐나다에서 판매세 가장 유리\n→ 의료보험 무료 (Alberta Health) = 캐나다 내 최저 세부담 주",
+    MB: "연방 소득세(15%~33%) + 매니토바 주 소득세(10.8%~17.4%)\n판매세: GST 5%+RST(PST) 7%=12%\n→ 의료보험 무료 (Manitoba Health)",
+  };
+  const taxEn: Record<string, string> = {
+    ON: "Federal income tax (15%–33%) + Ontario provincial tax (5.05%–13.16%)\nSales: Ontario HST 13%\n→ FREE healthcare (OHIP) — more tax but big benefits!",
+    BC: "Federal income tax (15%–33%) + BC provincial tax (5.06%–20.5%)\nSales: BC GST 5%+PST 7%=12%\n→ FREE healthcare (MSP) — more tax but big benefits!",
+    AB: "Federal income tax (15%–33%) + Alberta provincial tax (8%–15% progressive)\nSales: ✅ NO PST! GST 5% only — lowest sales tax in Canada\n→ FREE healthcare (Alberta Health) = lowest overall tax burden in Canada",
+    MB: "Federal income tax (15%–33%) + Manitoba provincial tax (10.8%–17.4%)\nSales: GST 5%+RST(PST) 7%=12%\n→ FREE healthcare (Manitoba Health)",
+  };
+  const regional = ko ? regionalKo : regionalEn;
+  const tax = ko ? taxKo : taxEn;
+  return ko ? [
+    { title: "RBC / TD / Scotiabank / CIBC", desc: "캐나다 5대 은행. 한인 직원 있는 지점 찾기. SIN + 여권으로 개설 | 🔗 rbc.com | 🔗 td.com" },
+    regional[prov],
+    { title: "캐나다 세금 안내", desc: tax[prov] },
+    { title: "캐나다 신용 빌드 시작", desc: "미국 신용 이력은 캐나다에서 인정 안 됨! Secured Credit Card로 캐나다 신용 별도 구축" },
+    { title: "RRSP / TFSA (캐나다 은퇴·저축)", desc: "RRSP: 세전 소득 공제 (한국 연금 IRP와 유사). TFSA: 세후 기여, 운용 수익 비과세. 두 계좌 모두 최대한 활용!" },
+  ] : [
+    { title: "RBC / TD / Scotiabank / CIBC", desc: "Canada's Big 5 banks. Find branches with Korean staff. SIN + passport to open | 🔗 rbc.com | 🔗 td.com" },
+    regional[prov],
+    { title: "Canadian Tax Overview", desc: tax[prov] },
+    { title: "Building Canadian Credit", desc: "US credit history is NOT recognized in Canada! Start fresh with a Secured Credit Card at your Canadian bank" },
+    { title: "RRSP / TFSA (Canadian Retirement & Savings)", desc: "RRSP: Pre-tax deduction (similar to US Traditional IRA). TFSA: After-tax, all growth TAX-FREE. Max both accounts!" },
+  ];
+}
+
 // 나라별 Day 1 체크리스트 — 현지 기관·제도 용어
 function getDayOneItems(slug: string) {
   const cc = getCountryCode(slug);
@@ -14215,13 +14264,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "✅ 텍사스 세금 혜택 (매우 유리!)", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 8.25% (텍사스 최고)\n재산세: 높음 (주택 소유 시 연 $5,000-15,000+)\n→ 연봉 대비 실수령액이 CA·NY보다 훨씬 높음!" },
     { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
     { title: "은퇴 계좌 (401K/IRA)", desc: "소득세 없음 → Roth IRA 매우 유리! 세후 기여 후 복리 성장" },
-  ] : citySlug === "toronto" || citySlug === "vancouver" ? [
-    { title: "RBC / TD / Scotiabank", desc: "캐나다 5대 은행. 한인 직원 있는 지점 찾기. SIN + 여권으로 개설 | 🔗 rbc.com | 🔗 td.com" },
-    { title: citySlug === "toronto" ? "Hanmi Bank Toronto 없음 → Simplii / EQ Bank" : "VanCity 신협 (밴쿠버 추천)", desc: citySlug === "toronto" ? "Simplii Financial(CIBC 계열): 수수료 없는 온라인 뱅킹. EQ Bank: 이자율 높은 저축계좌" : "VanCity: 밴쿠버 최대 신협. 친환경·지역사회 중심. 수수료 낮음 | 🔗 vancity.com" },
-    { title: "캐나다 세금 안내", desc: citySlug === "toronto" ? "연방 소득세(15%~33%) + 온타리오 주 소득세(5.05%~13.16%)\n캐나다 HST(판매세): 온타리오 13%\n→ 의료보험 무료 (OHIP) = 세금 많지만 혜택도 큼!" : "연방 소득세(15%~33%) + BC 주 소득세(5.06%~20.5%)\n캐나다 GST+PST(판매세): BC 5%+7%=12%\n→ 의료보험 무료 (MSP) = 세금 많지만 혜택 큼!" },
-    { title: "캐나다 신용 빌드 시작", desc: "미국 신용 이력은 캐나다에서 인정 안 됨! Secured Credit Card로 캐나다 신용 별도 구축" },
-    { title: "RRSP / TFSA (캐나다 은퇴·저축)", desc: "RRSP: 세전 소득 공제 (한국 연금 IRP와 유사). TFSA: 세후 기여, 운용 수익 비과세. 두 계좌 모두 최대한 활용!" },
-  ] : citySlug === "mexicocity" || citySlug === "guadalajara" || citySlug === "monterrey" ? [
+  ] : getCountryCode(citySlug) === "CA" ? getCanadaFinance(citySlug, "ko")
+  : citySlug === "mexicocity" || citySlug === "guadalajara" || citySlug === "monterrey" ? [
     { title: "BBVA México / Santander / Citibanamex", desc: "멕시코 주요 은행. 여권+RFC+주소 증명으로 개설. ATM 수수료 주의 | 🔗 bbva.mx" },
     { title: "Banorte (멕시코 토종 은행)", desc: "멕시코 최대 국내 은행. 몬테레이 본부. 주재원에게도 친숙 | 🔗 banorte.com" },
     { title: "멕시코 세금 안내", desc: "연방 ISR (소득세): 1.92%~35% (누진)\nIVA (부가가치세): 16% (식료품·의약품 면세)\nRFC 없으면 취업·사업·은행 계좌 불가!\n→ 현지 회계사(contador) 상담 필수" },
@@ -14294,13 +14338,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "✅ Texas Tax Advantage (Major Benefit!)", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: 8.25% (Texas max)\nProperty Tax: High if you own ($5,000-15,000+/yr)\n→ Take-home pay much higher vs CA or NY!" },
     { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
     { title: "Retirement accounts (401K/IRA)", desc: "No state income tax → Roth IRA is very attractive! After-tax contributions grow tax-free" },
-  ] : citySlug === "toronto" || citySlug === "vancouver" ? [
-    { title: "RBC / TD / Scotiabank", desc: "Canada's Big 5 banks. Find branches with Korean staff. SIN + passport to open | 🔗 rbc.com | 🔗 td.com" },
-    { title: citySlug === "toronto" ? "Simplii Financial / EQ Bank" : "VanCity Credit Union (Vancouver)", desc: citySlug === "toronto" ? "Simplii Financial (CIBC subsidiary): fee-free online banking. EQ Bank: high-interest savings account" : "VanCity: Vancouver's largest credit union. Lower fees, community-focused | 🔗 vancity.com" },
-    { title: "Canadian Tax Overview", desc: citySlug === "toronto" ? "Federal income tax (15%–33%) + Ontario provincial tax (5.05%–13.16%)\nOntario HST: 13%\n→ More tax than US, but FREE healthcare (OHIP) makes up for it!" : "Federal income tax (15%–33%) + BC provincial tax (5.06%–20.5%)\nBC GST+PST: 5%+7%=12%\n→ More tax than US, but FREE healthcare (MSP) included!" },
-    { title: "Building Canadian Credit", desc: "US credit history is NOT recognized in Canada! Start fresh with a Secured Credit Card at your Canadian bank" },
-    { title: "RRSP / TFSA (Canadian Retirement & Savings)", desc: "RRSP: Pre-tax deduction (similar to US Traditional IRA). TFSA: After-tax, all growth TAX-FREE. Max both accounts!" },
-  ] : citySlug === "mexicocity" || citySlug === "guadalajara" || citySlug === "monterrey" ? [
+  ] : getCountryCode(citySlug) === "CA" ? getCanadaFinance(citySlug, "en")
+  : citySlug === "mexicocity" || citySlug === "guadalajara" || citySlug === "monterrey" ? [
     { title: "BBVA México / Santander / Citibanamex", desc: "Mexico's major banks. Passport + RFC + address proof required. Watch ATM fees | 🔗 bbva.mx" },
     { title: "Banorte (Mexico's Largest Domestic Bank)", desc: "Mexico's biggest domestic bank. HQ in Monterrey. Good for business accounts | 🔗 banorte.com" },
     { title: "Mexico Tax Overview", desc: "Federal ISR (income tax): 1.92%–35% (progressive)\nIVA (VAT): 16% (groceries & meds exempt)\nNo RFC = no job, no bank account, no business!\n→ Hire a local contador (accountant) — essential" },
