@@ -26083,6 +26083,230 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
         { icon: "🚖", name: "카카오택시 (공항→천안)", desc: ko ? "약 80,000-100,000원. 교통 상황에 따라 할증" : "₩80,000-100,000. Surge pricing may apply in traffic", price: "₩80,000-100,000", time: "70분" },
       ],
     },
+    philadelphia: {
+      airport: "필라델피아 국제공항", airportCode: "PHL",
+      transport: [
+        { icon: "🚆", name: "SEPTA Airport Line", desc: ko ? "공항 → 센터시티(30th St·Jefferson) 직행 통근열차" : "Airport → Center City (30th St / Jefferson) regional rail", price: "$6.75", time: "약 25분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "Zone 픽업. 앱 필수" : "Zone pickup. App required", price: "$30-45", time: "약 25분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    dc: {
+      airport: "워싱턴 덜레스 국제공항 (DCA·BWI도 이용)", airportCode: "IAD",
+      transport: [
+        { icon: "🚇", name: "Silver Line Metro", desc: ko ? "덜레스공항역 → DC 다운타운 직결(2022 개통)" : "Dulles Airport station → Downtown DC (Silver Line, opened 2022)", price: "$6", time: "약 50분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "레이건(DCA)이 다운타운 더 가까움. 애넌데일 40분" : "DCA is closer to downtown. 40 min to Annandale", price: "$50-70", time: "약 40분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    chicago: {
+      airport: "오헤어 국제공항", airportCode: "ORD",
+      transport: [
+        { icon: "🚆", name: "CTA Blue Line", desc: ko ? "공항 → 다운타운(Loop) 24시간 운행. 가장 저렴" : "Airport → Downtown (Loop), runs 24h. Cheapest", price: "$5", time: "약 45분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "지정 픽업구역. 미드웨이(MDW)도 이용" : "Designated pickup. Midway (MDW) also serves the city", price: "$35-55", time: "약 40분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    miami: {
+      airport: "마이애미 국제공항", airportCode: "MIA",
+      transport: [
+        { icon: "🚆", name: "Metrorail Orange Line", desc: ko ? "MIA Mover → Metrorail → 다운타운" : "MIA Mover → Metrorail Orange → Downtown", price: "$2.25", time: "약 30분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "Ground Transportation층 호출" : "Hail from Ground Transportation", price: "$25-40", time: "약 25분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    portland: {
+      airport: "포틀랜드 국제공항", airportCode: "PDX",
+      transport: [
+        { icon: "🚆", name: "MAX Red Line", desc: ko ? "공항 → 다운타운 직행 경전철" : "Airport → Downtown direct light rail", price: "$2.80", time: "약 40분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "앱 호출. 오리건은 판매세 없음" : "App-based. No sales tax in Oregon", price: "$30-45", time: "약 25분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    denver: {
+      airport: "덴버 국제공항", airportCode: "DEN",
+      transport: [
+        { icon: "🚆", name: "RTD A Line", desc: ko ? "공항 → Union Station 직행 통근열차" : "Airport → Union Station commuter rail", price: "$10.15", time: "약 40분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "앱 호출. 공항이 시내에서 먼 편" : "App-based. Airport is far from downtown", price: "$45-65", time: "약 35분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    phoenix: {
+      airport: "피닉스 스카이하버 국제공항", airportCode: "PHX",
+      transport: [
+        { icon: "🚆", name: "Sky Train + Valley Metro Rail", desc: ko ? "무료 Sky Train → 44th St역 → 경전철 다운타운" : "Free Sky Train → 44th St → Valley Metro light rail", price: "$2", time: "약 40분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "공항이 시내와 가까움" : "Airport is close to downtown", price: "$20-35", time: "약 20분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    sandiego: {
+      airport: "샌디에고 국제공항", airportCode: "SAN",
+      transport: [
+        { icon: "🚌", name: "MTS Route 992", desc: ko ? "공항 → 다운타운 버스. 매우 가까움" : "Airport → Downtown bus. Very close", price: "$2.50", time: "약 15분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "다운타운 초근접" : "Very close to downtown", price: "$15-25", time: "약 10분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    kansascity: {
+      airport: "캔자스시티 국제공항", airportCode: "MCI",
+      transport: [
+        { icon: "🚌", name: "RideKC 229", desc: ko ? "공항 → 다운타운 버스. 대부분 차량 이용" : "Airport → Downtown bus. Car recommended", price: "$1.50", time: "약 45분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "오버랜드파크(KS) 한인 상권 30분" : "30 min to Overland Park (KS) Korean area", price: "$40-55", time: "약 30분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    minneapolis: {
+      airport: "미니애폴리스-세인트폴 국제공항", airportCode: "MSP",
+      transport: [
+        { icon: "🚆", name: "METRO Blue Line", desc: ko ? "공항 → 다운타운 직행 경전철" : "Airport → Downtown light rail", price: "$2", time: "약 25분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "겨울 방한 필수" : "Dress warm in winter", price: "$30-45", time: "약 20분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    charlotte: {
+      airport: "샬럿 더글러스 국제공항", airportCode: "CLT",
+      transport: [
+        { icon: "🚌", name: "CATS Sprinter", desc: ko ? "공항 → Uptown(다운타운) 급행버스" : "Airport → Uptown express bus", price: "$2.20", time: "약 25분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "공항이 시내와 가까움" : "Airport close to city", price: "$20-35", time: "약 15분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    raleigh: {
+      airport: "롤리-더럼 국제공항", airportCode: "RDU",
+      transport: [
+        { icon: "🚌", name: "GoTriangle", desc: ko ? "RDU → 롤리·더럼 버스. 대부분 차량" : "RDU → Raleigh/Durham bus. Car recommended", price: "$2.50", time: "약 40분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "모리스빌 한인 상권 인근" : "Near Morrisville Korean area", price: "$25-40", time: "약 20분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    columbus: {
+      airport: "존 글렌 콜럼버스 국제공항", airportCode: "CMH",
+      transport: [
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "공항 시내 근접. 대중교통 제한적" : "Close to downtown. Limited transit", price: "$20-30", time: "약 15분" },
+        { icon: "🚌", name: "COTA 버스", desc: ko ? "제한적 노선. 차량 권장" : "Limited routes. Car recommended", price: "$2", time: "약 30분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    honolulu: {
+      airport: "다니엘 K. 이노우에 국제공항", airportCode: "HNL",
+      transport: [
+        { icon: "🚆", name: "Skyline + TheBus", desc: ko ? "신설 Skyline 철도 + TheBus 20번(와이키키)" : "New Skyline rail + TheBus 20 (Waikiki)", price: "$3", time: "약 40분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "와이키키 25분" : "25 min to Waikiki", price: "$30-45", time: "약 25분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    orlando: {
+      airport: "올랜도 국제공항", airportCode: "MCO",
+      transport: [
+        { icon: "🚆", name: "Brightline / Lynx", desc: ko ? "Brightline 고속열차 또는 Lynx 버스" : "Brightline high-speed rail or Lynx bus", price: "$3-", time: "약 30분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "앱 호출" : "App-based", price: "$30-45", time: "약 25분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    tampa: {
+      airport: "탬파 국제공항", airportCode: "TPA",
+      transport: [
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "공항 시내 근접. 편리" : "Close to city. Convenient", price: "$20-35", time: "약 20분" },
+        { icon: "🚌", name: "HART 버스", desc: ko ? "제한적 노선. 차량 권장" : "Limited routes. Car recommended", price: "$2", time: "약 35분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    louisville: {
+      airport: "루이빌 무하마드 알리 국제공항", airportCode: "SDF",
+      transport: [
+        { icon: "🚌", name: "TARC 2번", desc: ko ? "공항 → 다운타운 버스" : "Airport → Downtown bus", price: "$1.75", time: "약 20분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "공항 시내 근접" : "Close to downtown", price: "$20-30", time: "약 15분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    austin: {
+      airport: "오스틴-버그스트롬 국제공항", airportCode: "AUS",
+      transport: [
+        { icon: "🚌", name: "CapMetro 20", desc: ko ? "공항 → 다운타운 버스" : "Airport → Downtown bus", price: "$1.25", time: "약 30분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "앱 호출" : "App-based", price: "$20-35", time: "약 20분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    anchorage: {
+      airport: "테드 스티븐스 앵커리지 국제공항", airportCode: "ANC",
+      transport: [
+        { icon: "🚗", name: "Uber / Lyft / 택시", desc: ko ? "공항 시내 근접. 겨울 방한 필수" : "Close to city. Dress warm in winter", price: "$20-30", time: "약 15분" },
+        { icon: "🚌", name: "People Mover", desc: ko ? "제한적 버스. 차량 권장" : "Limited bus. Car recommended", price: "$2", time: "약 30분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    neworleans: {
+      airport: "루이 암스트롱 뉴올리언스 국제공항", airportCode: "MSY",
+      transport: [
+        { icon: "🚌", name: "Airport Express / E-2", desc: ko ? "공항 → 다운타운 버스" : "Airport → Downtown bus", price: "$1.50-", time: "약 40분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "앱 호출" : "App-based", price: "$35-45", time: "약 25분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    federalway: {
+      airport: "시애틀-타코마 국제공항 (페더럴웨이 관문)", airportCode: "SEA",
+      transport: [
+        { icon: "🚌", name: "Sound Transit 574", desc: ko ? "SEA공항 → 페더럴웨이 직행 버스" : "SEA airport → Federal Way direct bus", price: "$3.50", time: "약 30분" },
+        { icon: "🚆", name: "Link Light Rail (연장)", desc: ko ? "Federal Way Link 연장 연결 (SeaTac↔페더럴웨이)" : "Federal Way Link extension (SeaTac↔Federal Way)", price: "$3.50", time: "약 35분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스. FWKAA 연계" : "Korean-speaking pickup. FWKAA linked", price: "협의", time: "맞춤" },
+      ],
+    },
+    maryland: {
+      airport: "볼티모어-워싱턴 국제공항 (IAD·DCA도 이용)", airportCode: "BWI",
+      transport: [
+        { icon: "🚆", name: "MARC / Light Rail", desc: ko ? "BWI → 볼티모어·DC 통근열차·경전철" : "BWI → Baltimore/DC MARC train & light rail", price: "$4-9", time: "약 40분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "몽고메리·엘리컷시티 한인 상권 방향" : "Toward Montgomery / Ellicott City Korean areas", price: "$40-70", time: "약 40분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    virginia: {
+      airport: "워싱턴 덜레스 국제공항 (북버지니아 관문)", airportCode: "IAD",
+      transport: [
+        { icon: "🚇", name: "Silver Line Metro", desc: ko ? "덜레스 → 애넌데일·페어팩스 연결" : "Dulles → Annandale/Fairfax connection", price: "$6", time: "약 50분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "린치버그(리버티대)는 LYH 별도" : "Lynchburg (Liberty) uses LYH separately", price: "$40-60", time: "약 40분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    inlandempire: {
+      airport: "온타리오 국제공항 (LAX도 이용)", airportCode: "ONT",
+      transport: [
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "리버사이드·온타리오 근접. LAX는 1시간+" : "Close to Riverside/Ontario. LAX is 1hr+", price: "$25-40", time: "약 20분" },
+        { icon: "🚆", name: "Metrolink", desc: ko ? "통근열차로 LA 연결" : "Metrolink commuter rail to LA", price: "$10-", time: "가변" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    tucson: {
+      airport: "투싼 국제공항", airportCode: "TUS",
+      transport: [
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "공항 시내 근접" : "Close to city", price: "$20-30", time: "약 15분" },
+        { icon: "🚌", name: "Sun Tran 25", desc: ko ? "공항 → 다운타운 버스" : "Airport → Downtown bus", price: "$1.75", time: "약 35분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    mexicocity: {
+      airport: "베니토 후아레스 국제공항", airportCode: "MEX",
+      transport: [
+        { icon: "🚇", name: "Metro 5호선 / Metrobús", desc: ko ? "공항 인근 지하철·메트로버스. 매우 저렴" : "Metro/Metrobús near airport. Very cheap", price: "MXN 5-30", time: "약 40분" },
+        { icon: "🚗", name: "Uber", desc: ko ? "공식 택시 또는 Uber 권장(안전)" : "Authorized taxi or Uber recommended (safety)", price: "$10-20", time: "약 40분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    guadalajara: {
+      airport: "과달라하라 국제공항", airportCode: "GDL",
+      transport: [
+        { icon: "🚗", name: "Uber / 공식 택시", desc: ko ? "공항 → 시내. Uber 권장" : "Airport → city. Uber recommended", price: "$10-15", time: "약 30분" },
+        { icon: "🚌", name: "공항버스", desc: ko ? "제한적. 차량 권장" : "Limited. Car recommended", price: "MXN 20-", time: "약 40분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    monterrey: {
+      airport: "몬테레이 국제공항", airportCode: "MTY",
+      transport: [
+        { icon: "🚗", name: "Uber / 공식 택시", desc: ko ? "공항 → 시내. Uber 권장" : "Airport → city. Uber recommended", price: "$10-15", time: "약 30분" },
+        { icon: "🚌", name: "공항버스", desc: ko ? "제한적. 차량 권장" : "Limited. Car recommended", price: "MXN 20-", time: "약 40분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
   };
 
   const cityAirport = CITY_AIRPORT[city.slug] ?? {
