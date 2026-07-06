@@ -24145,6 +24145,41 @@ function getCityJobData(slug: string, lang: string) {
   };
 
   // 기본값: 범용 데이터 (데이터 없는 도시)
+  const cc = getCountryCode(slug);
+  const workVisaKo: Record<string, string> = {
+    US: "• H-1B: 전문직 스폰서 필요\n• L-1: 사내 이동 (한국→미국)\n• OPT/STEM OPT: 유학 후 1-3년\n• EB-2/EB-3: 취업 영주권\n• E-2: 한국인 투자 비자",
+    CA: "• LMIA 기반 취업허가\n• Express Entry (영주권)\n• PGWP: 유학 후 취업\n• PNP: 주정부 지명\n• Start-up Visa",
+    JP: "• 취업비자(기술·인문지식·국제업무)\n• 특정기능(1·2호)\n• 경영·관리\n• 고도전문직\n• 영주권(요건 충족 시)",
+    AU: "• TSS(482): 스폰서 취업\n• Skilled(189/190): 기술이민 영주\n• Graduate(485): 졸업 후\n• Employer Nomination(186)",
+    NZ: "• Accredited Employer Work Visa\n• Skilled Migrant: 영주\n• Post-study Work Visa",
+    UK: "• Skilled Worker(스폰서)\n• Graduate 비자(2년)\n• Global Talent\n• Health & Care\n• ILR: 영주권(5년)",
+    FR: "• Passeport Talent\n• Salarié(취업)\n• Carte de séjour\n• 유학 후 APS",
+    DE: "• EU Blue Card(고급인력)\n• 취업비자\n• Chancenkarte(구직)\n• 정착허가(Niederlassung)",
+    SG: "• Employment Pass(EP)\n• S Pass\n• Tech.Pass\n• PR: 영주권",
+    TH: "• Non-B + 워크퍼밋\n• SMART Visa\n• LTR Visa",
+    VN: "• 워크퍼밋 + 임시거주증(TRC)\n• 투자자 비자",
+    AE: "• 고용주 스폰서 취업 + 에미리트 ID\n• Golden Visa(10년)\n• Green Visa",
+    BR: "• 취업비자(VITEM V)\n• 영주(투자·가족) + RNM 등록",
+    CO: "• Migrant(M) 비자 + Cédula\n• Resident(R) 비자",
+    MX: "• 임시거주(취업) + RFC\n• 영주비자\n• INM 등록",
+  };
+  const workVisaEn: Record<string, string> = {
+    US: "• H-1B: specialty occupation, needs sponsor\n• L-1: intracompany transfer\n• OPT/STEM OPT: 1-3 yrs post-study\n• EB-2/EB-3: employment green card\n• E-2: Korean investor visa",
+    CA: "• LMIA work permit\n• Express Entry (PR)\n• PGWP: post-study work\n• PNP: provincial nominee\n• Start-up Visa",
+    JP: "• Work visa (Engineer/Specialist)\n• Specified Skilled Worker\n• Business Manager\n• Highly Skilled Professional\n• PR (if eligible)",
+    AU: "• TSS(482): sponsored\n• Skilled(189/190): PR\n• Graduate(485)\n• Employer Nomination(186)",
+    NZ: "• Accredited Employer Work Visa\n• Skilled Migrant: residence\n• Post-study Work Visa",
+    UK: "• Skilled Worker (sponsor)\n• Graduate visa (2 yrs)\n• Global Talent\n• Health & Care\n• ILR: settlement (5 yrs)",
+    FR: "• Passeport Talent\n• Salarié (employee)\n• Carte de séjour\n• Post-study APS",
+    DE: "• EU Blue Card\n• Work visa\n• Chancenkarte (job seeker)\n• Settlement permit",
+    SG: "• Employment Pass (EP)\n• S Pass\n• Tech.Pass\n• PR",
+    TH: "• Non-B + Work Permit\n• SMART Visa\n• LTR Visa",
+    VN: "• Work Permit + TRC\n• Investor visa",
+    AE: "• Employer-sponsored + Emirates ID\n• Golden Visa (10 yrs)\n• Green Visa",
+    BR: "• Work visa (VITEM V)\n• Permanent (invest/family) + RNM",
+    CO: "• Migrant(M) visa + Cédula\n• Resident(R) visa",
+    MX: "• Temporary Resident (work) + RFC\n• Permanent visa\n• INM registration",
+  };
   const generic = {
     main: [
       { emoji: "💻", name: ko ? `${slug} 테크·IT 취업` : `${slug} Tech & IT Jobs`,
@@ -24165,12 +24200,11 @@ function getCityJobData(slug: string, lang: string) {
                  : "Korean small business near community: Korean food, beauty, real estate, insurance. E-2 investor visa for startup. Korean Chamber mentoring. Capital $50K-$200K", tags: ["자영업","창업","E-2"] },
     ],
     visa: [
-      { emoji: "💼", name: ko ? "취업 비자 기본 안내" : "Work Visa Basics",
-        desc: ko ? "• H-1B: 전문직 스폰서 필요\n• L-1: 사내 이동 (한국→미국)\n• OPT/STEM OPT: 유학 후 1-3년\n• EB-2/EB-3: 취업 영주권\n• E-2: 한국인 투자 비자"
-                 : "• H-1B: Specialty occupation, needs sponsor\n• L-1: Intracompany transfer Korea→US\n• OPT/STEM OPT: 1-3 years post-study\n• EB-2/EB-3: Employment green card\n• E-2: Korean investor visa", tags: ["H-1B","비자","영주권"] },
+      { emoji: "💼", name: ko ? "취업 비자·체류 안내" : "Work Visa Basics",
+        desc: ko ? (workVisaKo[cc] ?? workVisaKo.US) : (workVisaEn[cc] ?? workVisaEn.US), tags: ["비자","취업","체류"] },
       { emoji: "💡", name: ko ? "한인 취업 네트워크" : "Korean Job Networks",
-        desc: ko ? "• 한인 상공회의소 지역 지부\n• LinkedIn 한인 그룹 검색\n• 한인 교회 취업 소그룹\n• 211 전화 → 취업 서비스 연결"
-                 : "• Local Korean Chamber of Commerce\n• Search Korean groups on LinkedIn\n• Korean church job small groups\n• Dial 211 for employment services", tags: ["네트워크","취업","커뮤니티"] },
+        desc: ko ? "• 한인 상공회의소·한인회 지역 지부\n• LinkedIn 한인 그룹 검색\n• 한인 교회 취업 소그룹\n• 현지 정착지원 기관 연계"
+                 : "• Local Korean Chamber of Commerce / Korean Assoc.\n• Search Korean groups on LinkedIn\n• Korean church job small groups\n• Local settlement support services", tags: ["네트워크","취업","커뮤니티"] },
     ],
   };
 
