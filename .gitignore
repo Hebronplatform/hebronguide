@@ -12,3 +12,25 @@
 /public/
 
 .vercel
+
+# ── 안전 정리 (2026-07-06): 커밋 대상에서 제외 — 파일은 디스크에 유지 ──
+# 비밀 설정 (MCP 서버 키·토큰) — 절대 커밋 금지
+.mcp.json
+# Python 캐시
+__pycache__/
+*.pyc
+# OneDrive 동기 문서·기획물 (코드 repo 아님, 대용량)
+. HebronGuide*/
+HebronGuide (Remix) (Remix)/
+_hebron_codex/
+.Hebron-faith-os/
+Store/
+09_Partners/
+memory/
+# 대용량 바이너리 문서·미디어 (docs/*.md 정본은 계속 추적됨)
+*.docx
+*.pdf
+*.pptx
+*.jpg
+# 대용량 단일 HTML 생성물 (15MB)
+hebronguide-home.standalone.html
