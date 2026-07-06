@@ -26307,6 +26307,198 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
         { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
       ],
     },
+    calgary: {
+      airport: "캘거리 국제공항", airportCode: "YYC",
+      transport: [
+        { icon: "🚌", name: "Calgary Transit 300", desc: ko ? "공항 → 다운타운 급행버스" : "Airport → Downtown express bus", price: "CA$11.25", time: "약 45분" },
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "겨울 방한 필수" : "Dress warm in winter", price: "CA$40-55", time: "약 30분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    fayetteville: {
+      airport: "페이엣빌 지역공항 (RDU도 이용)", airportCode: "FAY",
+      transport: [
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "포트 브래그(군) 인근. 군인 가족 다수" : "Near Fort Bragg. Many military families", price: "$20-30", time: "약 20분" },
+        { icon: "🚗", name: "RDU 경유", desc: ko ? "국제선은 롤리(RDU) 경유 1시간+" : "Intl flights via Raleigh (RDU), 1hr+", price: "가변", time: "1시간+" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    killeen: {
+      airport: "킬린-포트캐배존스 지역공항 (AUS도 이용)", airportCode: "GRK",
+      transport: [
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "포트 캐배존스(군) 인근" : "Near Fort Cavazos (military)", price: "$15-25", time: "약 15분" },
+        { icon: "🚗", name: "오스틴(AUS) 경유", desc: ko ? "국제선은 오스틴 공항 1시간" : "Intl flights via Austin (AUS), 1hr", price: "가변", time: "1시간" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    winnipeg: {
+      airport: "위니펙 국제공항", airportCode: "YWG",
+      transport: [
+        { icon: "🚌", name: "Winnipeg Transit 15", desc: ko ? "공항 → 다운타운 버스" : "Airport → Downtown bus", price: "CA$3.15", time: "약 30분" },
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "겨울 극한 방한" : "Extreme cold in winter", price: "CA$25-35", time: "약 20분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    edmonton: {
+      airport: "에드먼턴 국제공항", airportCode: "YEG",
+      transport: [
+        { icon: "🚌", name: "Route 747", desc: ko ? "공항 → Century Park역 버스" : "Airport → Century Park station bus", price: "CA$5", time: "약 40분" },
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "공항이 시내에서 먼 편" : "Airport is far from city", price: "CA$50-65", time: "약 40분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    ottawa: {
+      airport: "오타와 국제공항", airportCode: "YOW",
+      transport: [
+        { icon: "🚌", name: "OC Transpo 97", desc: ko ? "공항 → 다운타운 버스" : "Airport → Downtown bus", price: "CA$3.75", time: "약 30분" },
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "캐나다 수도. 공항 근접" : "Canada's capital. Close to city", price: "CA$30-40", time: "약 20분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    princgeorge: {
+      airport: "프린스조지 공항", airportCode: "YXS",
+      transport: [
+        { icon: "🚗", name: "택시 / 렌터카", desc: ko ? "인천→밴쿠버 직항 후 YXS 국내선 연결" : "Incheon→Vancouver, then YXS domestic. Car recommended", price: "CA$20-30", time: "약 15분" },
+        { icon: "🚌", name: "공항 셔틀", desc: ko ? "제한적. 차량 필수 지역" : "Limited. Car essential", price: "가변", time: "가변" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    tokyo: {
+      airport: "나리타(NRT) / 하네다(HND) 국제공항", airportCode: "NRT/HND",
+      transport: [
+        { icon: "🚆", name: "나리타 익스프레스 / 게이세이 스카이라이너", desc: ko ? "나리타 → 도쿄·시나가와 직행. 하네다는 모노레일" : "Narita → Tokyo/Shinagawa. Haneda via Monorail", price: "¥1,300-3,000", time: "약 40-60분" },
+        { icon: "🚗", name: "택시 / Uber", desc: ko ? "나리타 택시는 매우 비쌈. 전철 권장" : "Narita taxi is very expensive. Use train", price: "¥20,000+", time: "60-90분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    osaka: {
+      airport: "간사이 국제공항", airportCode: "KIX",
+      transport: [
+        { icon: "🚆", name: "JR 하루카 / 난카이 라피트", desc: ko ? "공항 → 신오사카·난바 직행 특급" : "Airport → Shin-Osaka/Namba limited express", price: "¥1,200-1,700", time: "약 40-50분" },
+        { icon: "🚗", name: "택시 / Uber", desc: ko ? "전철이 훨씬 저렴·빠름" : "Train is cheaper & faster", price: "¥15,000+", time: "약 50분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    sydney: {
+      airport: "시드니 킹스포드 스미스 국제공항", airportCode: "SYD",
+      transport: [
+        { icon: "🚆", name: "Airport Link (T8)", desc: ko ? "공항 → 시내 Central역 직행 기차" : "Airport → Central Station direct train", price: "AU$20", time: "약 15분" },
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "공항이 시내와 가까움" : "Close to city", price: "AU$45-60", time: "약 20분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    melbourne: {
+      airport: "멜버른 국제공항 (툴라마린)", airportCode: "MEL",
+      transport: [
+        { icon: "🚌", name: "SkyBus", desc: ko ? "공항 → 서던크로스역 직행" : "Airport → Southern Cross Station", price: "AU$23", time: "약 30분" },
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "앱 호출" : "App-based", price: "AU$55-75", time: "약 30분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    brisbane: {
+      airport: "브리즈번 국제공항", airportCode: "BNE",
+      transport: [
+        { icon: "🚆", name: "Airtrain", desc: ko ? "공항 → 시내 직행 기차" : "Airport → City direct train", price: "AU$21", time: "약 20분" },
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "앱 호출" : "App-based", price: "AU$45-55", time: "약 25분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    perth: {
+      airport: "퍼스 국제공항", airportCode: "PER",
+      transport: [
+        { icon: "🚆", name: "Airport Line", desc: ko ? "공항 → 시내 직행 기차(신설)" : "Airport → City direct train (new)", price: "AU$5", time: "약 20분" },
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "앱 호출" : "App-based", price: "AU$40-50", time: "약 20분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    auckland: {
+      airport: "오클랜드 국제공항", airportCode: "AKL",
+      transport: [
+        { icon: "🚌", name: "SkyDrive 버스", desc: ko ? "공항 → 시내 버스" : "Airport → City bus", price: "NZ$18", time: "약 50분" },
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "앱 호출" : "App-based", price: "NZ$50-70", time: "약 35분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    london: {
+      airport: "런던 히스로 국제공항", airportCode: "LHR",
+      transport: [
+        { icon: "🚆", name: "Heathrow Express / Piccadilly", desc: ko ? "Express(빠름)·Piccadilly선(저렴)·Elizabeth선" : "Express (fast) / Piccadilly (cheap) / Elizabeth line", price: "£5.60-25", time: "약 30-60분" },
+        { icon: "🚗", name: "Uber / 블랙캡", desc: ko ? "블랙캡은 비쌈. 전철 권장" : "Black cab is pricey. Use train", price: "£60-90", time: "약 45분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    paris: {
+      airport: "샤를 드골 국제공항", airportCode: "CDG",
+      transport: [
+        { icon: "🚆", name: "RER B", desc: ko ? "공항 → 파리 시내 직행 광역전철" : "Airport → Paris center regional express", price: "€11.80", time: "약 40분" },
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "정액 택시 요금(시내 €56)" : "Flat taxi fare (€56 to center)", price: "€56", time: "약 45분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    frankfurt: {
+      airport: "프랑크푸르트 국제공항", airportCode: "FRA",
+      transport: [
+        { icon: "🚆", name: "S-Bahn S8 / S9", desc: ko ? "공항 → 프랑크푸르트 중앙역 직행" : "Airport → Frankfurt Hauptbahnhof direct", price: "€5.80", time: "약 15분" },
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "앱 호출" : "App-based", price: "€35-45", time: "약 20분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    berlin: {
+      airport: "베를린 브란덴부르크 국제공항", airportCode: "BER",
+      transport: [
+        { icon: "🚆", name: "FEX / S-Bahn", desc: ko ? "공항 → 베를린 중앙역 급행·S반" : "Airport → Berlin Hbf (FEX/S-Bahn)", price: "€4.40", time: "약 30-45분" },
+        { icon: "🚗", name: "Uber / 택시", desc: ko ? "앱 호출" : "App-based", price: "€40-50", time: "약 40분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    saopaulo: {
+      airport: "상파울루 과룰류스 국제공항", airportCode: "GRU",
+      transport: [
+        { icon: "🚌", name: "Airport Bus / CPTM", desc: ko ? "공항버스 또는 Connect 열차" : "Airport bus or Connect train", price: "R$10-", time: "약 50분" },
+        { icon: "🚗", name: "Uber / 99", desc: ko ? "안전상 Uber·99 앱 권장" : "Use Uber/99 apps (safety)", price: "R$80-120", time: "약 45분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    bogota: {
+      airport: "엘도라도 국제공항", airportCode: "BOG",
+      transport: [
+        { icon: "🚌", name: "TransMilenio", desc: ko ? "공항 인근 간선급행버스(BRT)" : "BRT near airport", price: "COP 3,000-", time: "약 40분" },
+        { icon: "🚗", name: "Uber / 공식 택시", desc: ko ? "안전상 앱 택시 권장" : "Use app taxis (safety)", price: "$8-15", time: "약 30분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    singapore: {
+      airport: "창이 국제공항", airportCode: "SIN",
+      transport: [
+        { icon: "🚆", name: "MRT (East-West Line)", desc: ko ? "공항 → 시내 직결 지하철" : "Airport → City MRT direct", price: "S$2-3", time: "약 45분" },
+        { icon: "🚗", name: "Grab / 택시", desc: ko ? "깨끗·안전. 앱 호출" : "Clean & safe. App-based", price: "S$20-30", time: "약 25분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    bangkok: {
+      airport: "수완나품 국제공항", airportCode: "BKK",
+      transport: [
+        { icon: "🚆", name: "Airport Rail Link", desc: ko ? "공항 → 시내(파야타이) 직행" : "Airport → City (Phaya Thai) direct", price: "฿45", time: "약 30분" },
+        { icon: "🚗", name: "Grab / 택시", desc: ko ? "공식 택시 미터기 사용" : "Use metered official taxi", price: "฿300-500", time: "약 45분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    hochiminh: {
+      airport: "떤선녓 국제공항", airportCode: "SGN",
+      transport: [
+        { icon: "🚌", name: "버스 109 / 152", desc: ko ? "공항 → 시내 버스. 매우 저렴" : "Airport → City bus. Very cheap", price: "₫8,000-", time: "약 45분" },
+        { icon: "🚗", name: "Grab", desc: ko ? "그랩 앱 권장(바가지 방지)" : "Use Grab app (avoid overcharge)", price: "$5-10", time: "약 30분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    dubai: {
+      airport: "두바이 국제공항", airportCode: "DXB",
+      transport: [
+        { icon: "🚆", name: "Dubai Metro (Red Line)", desc: ko ? "공항 → 시내 직결 지하철" : "Airport → City Metro direct", price: "AED 3-8", time: "약 30분" },
+        { icon: "🚗", name: "Careem / 택시", desc: ko ? "공식 택시·Careem 앱" : "Official taxi / Careem app", price: "AED 40-70", time: "약 25분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
   };
 
   const cityAirport = CITY_AIRPORT[city.slug] ?? {
