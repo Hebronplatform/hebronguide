@@ -26537,7 +26537,51 @@ function getCityCostData(slug: string, lang: string) {
     ],
   };
 
-  return DATA[slug] || generic;
+  // 비-US(캐나다·국제·한국) 폴백 — 미국식(연방세·FBAR·VITA·미국 통신사·Zillow) 누출 방지.
+  // 렌트 포털은 getRealtyPortals(국가별) 재사용, 세금은 정착 '재정' 탭 연계.
+  const dom = (u: string) => u.replace(/^https?:\/\/(www\.)?/, "").replace(/\/.*$/, "");
+  const portals = getRealtyPortals(slug, lang);
+  const p1 = portals[0]; const p2 = portals[1];
+  const genericIntl: CostData = {
+    rentHousing: [
+      { emoji: "🏠", name: ko ? "NanuriHome — 한인 부동산 플랫폼" : "NanuriHome — Korean Real Estate Platform",
+        desc: ko
+          ? "🏠 한인 이민자를 위한 부동산 정보 플랫폼\n\n✅ 한인 부동산 에이전트 연결 (한국어 상담)\n✅ 도시별 렌트비·학군·생활환경 정보\n✅ 렌트 계약 주의사항\n\n🔗 nanurihome.com"
+          : "🏠 Real estate platform for Korean immigrants\n\n✅ Connect with Korean-speaking agents\n✅ City rent, schools & living info\n✅ Lease contract tips\n\n🔗 nanurihome.com",
+        tags: ko ? ["부동산", "에이전트", "한국어상담"] : ["Real Estate", "Agent", "Korean"] },
+      { emoji: "🏡", name: ko ? "현지 부동산 포털 (현지 통화)" : "Local Real Estate Portals",
+        desc: ko
+          ? `📊 렌트 시세는 현지 통화·현지 포털 기준으로 확인하세요.\n\n대표 포털:\n• ${p1.label} 🔗 ${dom(p1.href)}${p2 ? `\n• ${p2.label} 🔗 ${dom(p2.href)}` : ""}\n\n💡 도시별 생활비 비교: numbeo.com/cost-of-living/`
+          : `📊 Check rent in the local currency on local portals.\n\nMajor portals:\n• ${p1.label} 🔗 ${dom(p1.href)}${p2 ? `\n• ${p2.label} 🔗 ${dom(p2.href)}` : ""}\n\n💡 Compare city costs: numbeo.com/cost-of-living/`,
+        tags: ko ? ["렌트", "현지포털"] : ["Rent", "Local Portals"] },
+    ],
+    taxLiving: [
+      { emoji: "💵", name: ko ? "세금 — 현지 기준" : "Taxes — Local Rules",
+        desc: ko
+          ? "현지 소득세·부가세(VAT/GST)는 정착 '재정' 탭에서 국가별로 확인하세요.\n\n⚠️ 해외 이주자 유의:\n• 한국 국적자: 해외 소득·계좌 신고 요건 확인 (국세청)\n• 미국 시민·영주권자: FBAR·FATCA 등 미국 신고 의무 유지\n💡 현지 회계사 상담 권장"
+          : "Check local income tax & VAT/GST by country in the settlement 'Finance' tab.\n\n⚠️ For immigrants:\n• Korean nationals: verify overseas income/account reporting (NTS)\n• US citizens/green-card holders: FBAR/FATCA obligations continue\n💡 Consult a local accountant",
+        tags: ko ? ["세금", "현지", "재정탭"] : ["Tax", "Local", "Finance"] },
+      { emoji: "🛒", name: ko ? "생활비 비교" : "Cost of Living",
+        desc: ko
+          ? "이 도시의 상세 생활비 정보를 준비 중입니다.\n\n💡 도시별 생활비 비교: numbeo.com/cost-of-living/"
+          : "Detailed cost of living data for this city is being prepared.\n\n💡 Compare city costs: numbeo.com/cost-of-living/",
+        tags: ko ? ["생활비", "비교"] : ["Living Cost", "Compare"] },
+    ],
+    transportPhone: [
+      { emoji: "⛽", name: ko ? "교통 정보" : "Transport",
+        desc: ko
+          ? "현지 대중교통·차량 경로는 Google Maps로 확인하세요.\n🔗 maps.google.com"
+          : "Use Google Maps for local transit and driving routes.\n🔗 maps.google.com",
+        tags: ko ? ["교통", "지도"] : ["Transit", "Maps"] },
+      { emoji: "📱", name: ko ? "통신비" : "Phone & Internet",
+        desc: ko
+          ? "📱 현지 통신사를 이용하세요.\n• 도착 초기: 선불 유심(prepaid SIM) 권장 — 공항·통신사 매장\n• 장기: 현지 후불 요금제 (신분증·거주증 필요)\n🌐 인터넷은 거주지별 공급자 확인"
+          : "📱 Use local carriers.\n• On arrival: a prepaid SIM is easiest (airport/carrier stores)\n• Long-term: a local postpaid plan (ID/residence proof)\n🌐 Internet providers vary by address",
+        tags: ko ? ["통신비", "선불유심", "인터넷"] : ["Phone", "Prepaid SIM", "Internet"] },
+    ],
+  };
+
+  return DATA[slug] || (getCountryCode(slug) === "US" ? generic : genericIntl);
 }
 
 /* ─────────────────────────────────────────
