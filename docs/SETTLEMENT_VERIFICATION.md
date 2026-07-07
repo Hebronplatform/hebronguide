@@ -60,8 +60,24 @@
 ### 🇺🇸 미국·🇲🇽 멕시코 (financeKo/En 기존 검증분)
 US 주별(WA·CA·NY·TX·TN·GA·PA·KS·MO·FL·MA 등) + MX(ISR 1.92~35%·IVA 16%·RFC) — 기존 커밋에서 검증됨. 세율 연 1회 재검증.
 
-## 매니페스트 — 미검증 대기 (재정 나머지 11개국)
-🇯🇵 🇰🇷 🇦🇺 🇬🇧 🇩🇪 🇫🇷 🇸🇬 🇹🇭 🇻🇳 🇦🇪 🇧🇷 🇨🇴 🇳🇿 — 배치 진행하며 각 국가 은행·세금 웹검증 후 위 표에 추가.
+### 🌏 국제 13개국 (`getIntlFinance`) — 국가별 (2026-07-06 완료·commit 8847868)
+| 국가 | 소득세 | 부가세 | 주요 은행 | 연금 | 출처 |
+|---|---|---|---|---|---|
+| 🇯🇵 JP | 5~45%(+지방 10%) | 소비세 10%(식품8%) | MUFG·SMBC·미즈호+신한재팬(SBJ) | 후생연금 | pwc, japan-guide |
+| 🇰🇷 KR(역이민) | 6~45%(+지방 10%), 외국인 19% 선택 | VAT 10% | KB·신한·우리·하나·NH | 국민연금 | pwc korea |
+| 🇦🇺 AU | 최고 45% | GST 10% | Commonwealth·ANZ·Westpac·NAB | 슈퍼 12% | ato.gov.au |
+| 🇳🇿 NZ | 10.5~39% | GST 15% | ANZ·ASB·BNZ·Westpac | KiwiSaver 3.5% | ird.govt.nz |
+| 🇬🇧 UK | 20/40/45%(공제£12,570) | VAT 20% | HSBC·Barclays·Lloyds·NatWest | ISA·직장연금 | gov.uk |
+| 🇩🇪 DE | 14~45%(€12,348 면세) | VAT 19%(경감7%) | Deutsche·Commerzbank·Sparkasse·N26 | 법정연금·Riester | taxsummaries |
+| 🇫🇷 FR | 최고 45%, 투자 PFU 31.4% | TVA 20% | BNP·Crédit Agricole·Société Générale | PER·Livret A | taxsummaries |
+| 🇸🇬 SG | 0~24% | GST 9% | DBS·OCBC·UOB | CPF(PR/시민) | iras.gov.sg |
+| 🇦🇪 AE | 0%(무세) | VAT 5% | Emirates NBD·FAB·ADCB·Mashreq | 없음(gratuity) | savoryandpartners |
+| 🇹🇭 TH | 0~35% | VAT 7%(26-09까지·표준10%) | Bangkok Bank·Kasikorn·SCB | SSF | rd.go.th |
+| 🇻🇳 VN | 5~35%(비거주 20%) | VAT 8%(26말까지·표준10%) | Vietcombank·BIDV·신한베트남 | BHXH | acclime, pwc |
+| 🇧🇷 BR | IRPF 0~27.5%(월R$5000 면세) | 주별 ICMS | Itaú·Bradesco·BB | INSS | taxsummaries, kpmg |
+| 🇨🇴 CO | 최고 39% | IVA 19% | Bancolombia·Davivienda·BBVA | Colpensiones/AFP·EPS | taxratesbycountry |
+
+**전 재정 배치 완료.** 남은 것: 생활비(getCityCostData)·헤브론 스토어 폴백 점검, 주택 koreadaily 미세건.
 
 ---
 *생성 2026-07-06 · 정본: 이 문서 · 관련 [[project-settlement-audit]]*
