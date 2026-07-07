@@ -6,6 +6,13 @@ set -e
 
 echo "=== HebronGuide Deploy Start ==="
 
+# ── 도시 수 자동 동기화 (명령 실행 불필요 — 배포할 때마다 자동) ──
+# 실제 HEBRON_CITIES의 status:"live" 개수를 세어
+# hg-config.js·index.html·HebronGuide.tsx·city-planner.js·ad-request.html을 통일.
+# React 빌드 '전에' 실행해야 최신 숫자로 빌드·복사됨. 실패해도 배포는 계속.
+echo "--- 도시 수 자동 동기화 ---"
+node scripts/update-city-count.js || echo "  ⚠️ city-count 동기화 건너뜀 (빌드 계속)"
+
 # 0. React 앱 빌드 (Vercel에서만 실행 — $VERCEL=1 자동 설정됨)
 # 이유: 로컬에서 빌드 후 커밋하면 JS 해시가 배포마다 바뀌어
 #       Vercel CDN 전파 중 일부 노드가 이전 파일을 서비스 → 검정 화면 발생
