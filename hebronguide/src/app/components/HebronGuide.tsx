@@ -13268,6 +13268,22 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
 
       <SettlementEssentialsSection onNavigate={onNavigate} />
       <CityHubSection lang={lang} />
+      {/* 이야기 스튜디오 배너 — 참여 유도 (LIVE, 클릭 가능) */}
+      <a href="/story-submit.html" style={{ textDecoration: "none", margin: "12px 16px 0", background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", overflow: "hidden", display: "flex", alignItems: "stretch" }}>
+        <div style={{ width: 5, background: "linear-gradient(180deg,#6EE7B7,#C9A227)", flexShrink: 0 }} />
+        <div style={{ flex: 1, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12 }}>
+          <span style={{ fontSize: 28, flexShrink: 0 }}>✍️</span>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A", marginBottom: 3 }}>
+              {ko ? "이야기 스튜디오 — 당신의 이야기를 들려주세요" : "Story Studio — Share Your Story"}
+            </div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#475569", lineHeight: 1.5 }}>
+              {ko ? "환대를 경험했거나 베푼 이야기가 전 세계 이민자에게 희망이 됩니다." : "Your hospitality story becomes hope for immigrants worldwide."}
+            </div>
+          </div>
+          <span style={{ fontSize: 18, color: "#C9A227", flexShrink: 0 }}>→</span>
+        </div>
+      </a>
       {/* 헤브론 스토어 배너 — Coming Soon */}
       <div style={{ margin: "12px 16px 0", background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", overflow: "hidden", display: "flex", alignItems: "stretch" }}>
         {/* 왼쪽 골드 액센트 바 */}
