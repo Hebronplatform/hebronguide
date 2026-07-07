@@ -285,10 +285,21 @@ printf ']' >> public/cities.json
 echo "  OK: cities.json → $(wc -c < public/cities.json) bytes, $(grep -o '"slug"' public/cities.json | wc -l) cities"
 
 # 8-b. 도시 수 공개 엔드포인트 city-count.js (자동 생성)
-# 목적: NanuriWeb 등 외부 사이트가 <script>로 포함 → 도시 추가 시 자동 동기화 (CORS 불필요)
+# 목적: NanuriWeb 등 외부 사이트 + index.html 이 <script>로 포함 → 도시 추가 시 자동 동기화 (CORS 불필요)
 # 사용법(외부): <script src="https://hebronguide.com/city-count.js"></script>
 #   + 숫자 표시 요소에 class="hg-city-count", "72+" 표시엔 class="hg-city-count-plus"
-CITY_N=$(grep -o '"slug"' public/cities.json | wc -l | tr -d ' ')
+#
+# ⚠️ 단일 숫자 원칙: 이 파일의 숫자는 update-city-count.js 가 hg-config.js 에 기록한
+#    SSOT(HEBRON_CITIES 의 status:"live" 개수)에서 가져온다. 그래야 hg-config.js 를 쓰는
+#    페이지(ad-request 등)와 city-count.js 를 쓰는 페이지(index)가 '항상 같은 숫자'가 된다.
+#    배포 루프(cities.json) 개수와 어긋나면 아래에서 경보를 띄운다.
+DEPLOY_N=$(grep -o '"slug"' public/cities.json | wc -l | tr -d ' ')
+SSOT_N=$(grep -oE 'CITY_COUNT[[:space:]]*=[[:space:]]*[0-9]+' hebronguide/public/js/hg-config.js | grep -oE '[0-9]+' | head -1)
+CITY_N=${SSOT_N:-$DEPLOY_N}
+if [ -n "$SSOT_N" ] && [ "$SSOT_N" != "$DEPLOY_N" ]; then
+  echo "  ⚠️ 도시 수 불일치! status:live=$SSOT_N vs 실제 배포=$DEPLOY_N"
+  echo "     → HEBRON_CITIES(status:live)와 build.sh 배포 루프를 맞추세요. (표시는 SSOT $CITY_N 사용)"
+fi
 cat > public/city-count.js <<EOF
 /* HebronGuide 도시 수 — build.sh 자동 생성. 수동 수정 금지. */
 window.HG_CITY_COUNT = ${CITY_N};
@@ -301,7 +312,7 @@ window.HG_CITY_COUNT = ${CITY_N};
   else apply();
 })();
 EOF
-echo "  OK: city-count.js → ${CITY_N} 도시"
+echo "  OK: city-count.js → ${CITY_N} 도시 (SSOT=status:live${SSOT_N:+ $SSOT_N}, 배포=$DEPLOY_N)"
 
 # 9. SEO JSON-LD 구조화 데이터 삽입 — 구글 검색 시 HebronGuide 노출
 # 효과: "시애틀지구촌교회", "달라스 한인 교회" 등 검색 → HebronGuide 연결
