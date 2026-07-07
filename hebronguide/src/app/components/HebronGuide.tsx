@@ -856,7 +856,7 @@ const MINT = "#6EE7B7";
 /* ─────────────────────────────────────────
    CITY CONFIG — 도시별 설정
 ───────────────────────────────────────── */
-// 현재 75개 도시 (계속 성장 중)
+// 현재 77개 도시 (계속 성장 중)
 // 작은 도시일수록 HebronGuide가 더 필요합니다 — 외롭기 때문입니다
 type CitySlug =
   // 북미 (기존 17)
@@ -9082,7 +9082,7 @@ function CompactHeroNew() {
         }}>
           <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6EE7B7", display: "inline-block", flexShrink: 0 }} />
           <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(255,255,255,0.92)", letterSpacing: "0.05em" }}>
-            {lang === "ko" ? "✦ 75개 도시의 이야기" : "✦ 75 Cities"}
+            {lang === "ko" ? "✦ 77개 도시의 이야기" : "✦ 77 Cities"}
           </span>
         </div>
         <div style={{
@@ -9216,7 +9216,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       icon: "🤝", color: "#F59E0B",
       nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
       tagKo: "친구 · 멘토 · 동행 파트너", tagEn: "Friends · Mentors · Partners",
-      userKo: "75개 도시 한인을 만납니다", userEn: "Meet Koreans across 75 cities",
+      userKo: "77개 도시 한인을 만납니다", userEn: "Meet Koreans across 77 cities",
       providerKo: "멘토로 섬기실 분 → 함께해요", providerEn: "Mentor & serve → join us",
       tab: 5, subTab: 2,
     },
@@ -23485,7 +23485,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             titleKo="헤브론 커넥트 — 친구·멘토·동행 파트너 매칭"
             titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
             descKo="교인 검증 프로필로 75개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
-            descEn="Meet Koreans across 62 cities. Friends, mentors, prayer partners & business connections."
+            descEn="Meet Koreans across 77 cities. Friends, mentors, prayer partners & business connections."
           />
           {/* 211 팁 박스 */}
           <a href="tel:211" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>

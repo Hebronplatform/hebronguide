@@ -10,6 +10,7 @@
  *   2. index.html meta 태그       ← JS로 못 바꾸는 SEO 태그만 직접 수정
  *   3. HebronGuide.tsx 정적 문자열 ← 동적 LIVE_CITY_COUNT 외 나머지
  *   4. api/city-planner.js        ← AI 시스템 프롬프트
+ *   5. ad-request.html            ← 파트너 통합 신청 페이지 meta·하드코딩 숫자
  */
 
 const fs = require('fs');
@@ -68,6 +69,19 @@ cp = cp
 if (cp !== cpBefore) {
   fs.writeFileSync(cpPath, cp, 'utf8');
   console.log(`  ✅ city-planner.js → ${COUNT}`);
+}
+
+// ── 6. ad-request.html (파트너 통합 신청 — meta + 하드코딩 도시 수) ──
+const adPath = path.join(ROOT, 'hebronguide/public/ad-request.html');
+let ad = fs.readFileSync(adPath, 'utf8');
+const adBefore = ad;
+ad = ad
+  .replace(/등재하고 \d+개\+ 도시/g, `등재하고 ${COUNT}개+ 도시`)
+  .replace(/파트너 신청 — \d+개\+ 도시/g, `파트너 신청 — ${COUNT}개+ 도시`)
+  .replace(/hg-city-count">\d+</g, `hg-city-count">${COUNT}<`);
+if (ad !== adBefore) {
+  fs.writeFileSync(adPath, ad, 'utf8');
+  console.log(`  ✅ ad-request.html → ${COUNT}`);
 }
 
 console.log(`\n완료: 도시 수 ${COUNT}개로 통일됨`);
