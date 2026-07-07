@@ -9773,6 +9773,209 @@ function getCanadaFinance(slug: string, lang: string): Array<{ title: string; de
   ];
 }
 
+// 국제 재정 — 국가별 은행·세금·연금 (재정 탭 국제 누출 수정). 세율·부가세·은행 웹검증(2026-07).
+// 국가 내 재정은 동일하므로 cc(국가코드)로 분기. CA는 getCanadaFinance(주별)에서 별도 처리.
+function getIntlFinance(slug: string, lang: string): Array<{ title: string; desc: string }> {
+  const cc = getCountryCode(slug);
+  const ko = lang === "ko";
+  const koData: Record<string, { title: string; desc: string }[]> = {
+    JP: [
+      { title: "MUFG · SMBC · 미즈호 (3대 메가뱅크)", desc: "일본 3대 은행. 외국인 계좌는 창구 방문·재류카드 필요(입국 6개월 이후 개설 원활). 급여계좌로 널리 사용 | 🔗 bk.mufg.jp" },
+      { title: "신한은행 재팬 (SBJ은행)", desc: "재일 한인 특화 은행. 한국어 서비스. 도쿄·오사카·후쿠오카 지점. 한국⇄일본 송금 유리 | 🔗 sbjbank.co.jp" },
+      { title: "일본 세금 안내", desc: "소득세 5%~45% 누진 + 지방세(주민세) 약 10%\n소비세: 10% (식품·신문 8%)\n→ 연금은 후생연금(회사원)·국민연금 가입" },
+      { title: "일본 신용·현금 문화", desc: "미국 신용 이력 인정 안 됨. 신용카드보다 현금·IC카드(Suica/PASMO) 사용 많음. 신용은 현지에서 별도 구축" },
+      { title: "한국⇄일본 송금", desc: "SBJ은행·Wise(구 TransferWise) 활용. 환율·수수료 비교 | 🔗 wise.com" },
+    ],
+    KR: [
+      { title: "KB국민 · 신한 · 우리 · 하나 · NH농협 (5대 은행)", desc: "재외동포(F-4)·귀국 동포도 여권·외국인등록증/재외국민 신고로 계좌 개설. 모바일뱅킹 강력 | 🔗 kbstar.com" },
+      { title: "재외동포 금융·비대면 계좌", desc: "일부 은행은 재외국민 대상 비대면 개설 지원. 해외 소득·자산은 한국 세무 신고 요건 확인 필요" },
+      { title: "한국 세금 안내", desc: "소득세 6%~45% 누진 + 지방소득세 10%(부가)\n부가가치세(VAT): 10%\n→ 외국인 근로자는 19% 단일세율 선택 가능(요건 확인)" },
+      { title: "국민연금·건강보험", desc: "국민연금(NPS) 가입 의무(외국인 포함). 건강보험은 6개월 이상 체류 시 지역가입 → 의료 접근성 우수" },
+      { title: "신용·주거(전세/월세)", desc: "미국 신용 이력 미인정 → 한국 신용점수 별도. 전세/월세 제도 이해 필수(직방·다방 앱)" },
+    ],
+    AU: [
+      { title: "Commonwealth · ANZ · Westpac · NAB (4대 은행)", desc: "호주 4대 은행. 여권+비자로 도착 전/후 온라인 개설 가능. TFN 연결 필요 | 🔗 commbank.com.au" },
+      { title: "슈퍼애뉴에이션 (Super) 의무", desc: "고용주가 급여의 12%를 퇴직연금(Super)에 의무 납입. 펀드 선택 가능 — 수수료·수익률 비교 권장" },
+      { title: "호주 세금 안내", desc: "소득세 최고 45% 누진(무세 구간 있음)\nGST(판매세): 10%\n→ TFN(세금번호) 없으면 최고세율 원천징수 주의" },
+      { title: "호주 신용 빌드", desc: "미국 신용 이력 인정 안 됨. 현지 은행 계좌·공과금·통신 납부 이력으로 신용 구축" },
+      { title: "메디케어(Medicare)", desc: "영주권자·시민 공공 의료보험. 임시 비자는 사보험 필요할 수 있음 — 비자 조건 확인" },
+    ],
+    NZ: [
+      { title: "ANZ · ASB · BNZ · Westpac (4대 은행)", desc: "뉴질랜드 주요 은행. 여권+비자로 개설. IRD 번호 연결 필요 | 🔗 anz.co.nz" },
+      { title: "KiwiSaver (은퇴 저축)", desc: "자동 가입형 은퇴 저축(기여율 3.5%~). 고용주 매칭+정부 보조. 첫 주택 구입에도 인출 가능" },
+      { title: "뉴질랜드 세금 안내", desc: "소득세 10.5%~39% 누진\nGST(판매세): 15% (거의 전 품목)\n→ IRD 번호 없으면 높은 세율 원천징수" },
+      { title: "신용·정착", desc: "미국 신용 이력 미인정. 현지 은행·공과금 이력으로 신용 구축" },
+      { title: "공공 의료", desc: "영주권·2년+ 근로비자는 공공 의료 대상. 그 외 여행자보험/사보험 확인" },
+    ],
+    UK: [
+      { title: "HSBC · Barclays · Lloyds · NatWest (주요 은행)", desc: "영국 주요 은행. BRP/비자+주소증명으로 개설. Monzo·Starling(디지털)도 신규 이민자 친화 | 🔗 hsbc.co.uk" },
+      { title: "ISA · 연금 (은퇴·저축)", desc: "ISA: 연 £20,000까지 비과세 저축·투자. 직장연금(workplace pension) 자동 가입 — 고용주 매칭 챙기기" },
+      { title: "영국 세금 안내", desc: "소득세 20%(기본)/40%/45%, 개인공제 £12,570\nVAT(부가세): 20%\nNational Insurance(사회보험료) 별도 → NI 번호 신청 필수" },
+      { title: "영국 신용 빌드", desc: "미국 신용 이력 인정 안 됨. 선거인명부 등록·은행·공과금으로 신용점수(Experian 등) 구축" },
+      { title: "NHS 의료", desc: "거주자 공공 의료(NHS) 무료. 비자에 따라 이민 건강 부담금(IHS) 납부 후 이용" },
+    ],
+    DE: [
+      { title: "Deutsche Bank · Commerzbank · Sparkasse", desc: "독일 주요 은행. Anmeldung(주소등록)+여권으로 개설. N26·DKB(디지털)는 영어·신규 이민자 친화 | 🔗 db.com" },
+      { title: "공적연금·리스터 (은퇴)", desc: "법정연금(gesetzliche Rentenversicherung) 의무 가입. 추가로 Riester·기업연금 활용" },
+      { title: "독일 세금 안내", desc: "소득세 14%~45% 누진(첫 €12,348 면세)\nVAT(부가세): 19% (식품 등 7%)\n→ 교회세(Kirchensteuer) 종교 등록 시 부과. 세무번호(Steuer-ID) 필요" },
+      { title: "SCHUFA 신용", desc: "독일 신용평가는 SCHUFA. 미국 이력 미인정 → 계좌·계약 이력으로 SCHUFA 점수 구축(임대 필수)" },
+      { title: "건강보험 의무", desc: "공보험(GKV) 또는 사보험(PKV) 가입 의무. 대부분 공보험 → 의료 접근성 우수" },
+    ],
+    FR: [
+      { title: "BNP Paribas · Crédit Agricole · Société Générale", desc: "프랑스 3대 은행. 거주증명+체류증으로 개설. RIB(계좌정보)는 공과금·급여에 필수 | 🔗 bnpparibas.com" },
+      { title: "연금·저축 (PER · Livret A)", desc: "PER: 은퇴저축(세제혜택). Livret A: 비과세 예금(전 국민). 직장연금도 확인" },
+      { title: "프랑스 세금 안내", desc: "소득세 최고 45% 누진\nVAT(TVA): 20%\n투자소득 정률(PFU) 31.4%(2026)\n→ 사회보장분담금(cotisations) 별도" },
+      { title: "신용·정착", desc: "미국 신용 이력 미인정. 프랑스는 신용점수보다 은행 거래·소득 증빙 중시. 임대 시 보증인(garant) 요구 흔함" },
+      { title: "공공 의료(Sécu)", desc: "사회보장(Sécurité sociale)+보완보험(mutuelle)으로 의료비 대부분 커버" },
+    ],
+    SG: [
+      { title: "DBS · OCBC · UOB (3대 은행)", desc: "싱가포르 3대 은행. 여권+취업패스(EP)+주소로 개설. 디지털 뱅킹 강력 | 🔗 dbs.com.sg" },
+      { title: "CPF (중앙적립기금)", desc: "영주권자·시민은 CPF 의무(은퇴·의료·주택). 취업패스(EP) 외국인은 비대상 → 별도 저축 계획 필요" },
+      { title: "싱가포르 세금 안내", desc: "소득세 0%~24% 누진(낮은 편)\nGST(판매세): 9%(2026)\n→ 자본이득세·상속세 없음. 세율 낮아 유리" },
+      { title: "신용·주거", desc: "미국 신용 이력 미인정. 현지 은행·카드 이력으로 구축. 주거는 HDB(공공)·콘도 임대" },
+      { title: "송금·의료", desc: "Wise·현지 은행 송금. 의료는 사보험 권장(EP 외국인) | 🔗 wise.com" },
+    ],
+    AE: [
+      { title: "Emirates NBD · FAB · ADCB · Mashreq", desc: "UAE 주요 은행. 여권+거주비자(Emirates ID)로 개설. 급여계좌(WPS) 널리 사용 | 🔗 emiratesnbd.com" },
+      { title: "✅ UAE 세금 혜택", desc: "개인 소득세 0%! (무세)\nVAT(부가세): 5% (낮음)\n→ 실수령액 매우 높음. 단 기업은 법인세 9% 도입됨" },
+      { title: "은퇴·저축 (본인 책임)", desc: "외국인 공적연금 없음. 본인이 저축·투자 계획 수립 필수. 계약종료 보상금(gratuity) 확인" },
+      { title: "신용·주거", desc: "미국 신용 이력 미인정. 현지 은행 거래로 구축. 주거는 대부분 연세(연 단위 임대) — 목돈 준비" },
+      { title: "한국⇄UAE 송금·의료", desc: "Wise·은행 송금. 의료는 고용주 제공 사보험 의무(에미리트별 상이) | 🔗 wise.com" },
+    ],
+    TH: [
+      { title: "Bangkok Bank · Kasikornbank · SCB", desc: "태국 주요 은행. 여권+장기비자+주소로 개설. 관광비자는 개설 어려움 — 취업/장기비자 권장 | 🔗 bangkokbank.com" },
+      { title: "은퇴·저축", desc: "공적 사회보장(SSF) 근로자 대상. 외국인은 사적 저축·본국 연금 병행 권장" },
+      { title: "태국 세금 안내", desc: "소득세 0%~35% 누진\nVAT(부가세): 7% (2026-09까지 경감, 표준 10%)\n→ 183일+ 체류 시 세법상 거주자" },
+      { title: "신용·주거", desc: "미국 신용 이력 미인정. 현지 거래로 구축. 콘도 임대 흔함(외국인 콘도 소유 가능)" },
+      { title: "송금·의료", desc: "Wise·은행 송금. 의료는 사보험 권장(방콕 사립병원 우수) | 🔗 wise.com" },
+    ],
+    VN: [
+      { title: "Vietcombank · BIDV · 신한베트남", desc: "베트남 주요 은행 + 신한베트남(한인 특화·한국어). 여권+비자+거주증으로 개설 | 🔗 shinhan.com.vn" },
+      { title: "은퇴·사회보험", desc: "사회보험(BHXH) 근로자 대상. 외국인 근로자도 일부 가입. 본국 연금 병행 권장" },
+      { title: "베트남 세금 안내", desc: "소득세 5%~35% 누진(비거주자 20% 정률)\nVAT(부가세): 8% (2026말까지 경감, 표준 10%)\n→ 183일+ 체류 시 거주자" },
+      { title: "신용·주거", desc: "미국 신용 이력 미인정. 현금·현지 계좌 중심. 아파트 임대(외국인 소유 제한 있음)" },
+      { title: "한국⇄베트남 송금", desc: "신한베트남·Wise 활용. 한인 밀집(푸미흥 등) 지역 지점 편리 | 🔗 wise.com" },
+    ],
+    BR: [
+      { title: "Itaú · Bradesco · Banco do Brasil", desc: "브라질 주요 은행. 여권+CPF(납세자번호)+주소로 개설. CPF 없으면 금융·거래 불가 | 🔗 itau.com.br" },
+      { title: "INSS (사회보장·연금)", desc: "INSS 사회보장 기여(연금·의료). 자영업자도 가입. 사적연금(previdência privada) 병행" },
+      { title: "브라질 세금 안내", desc: "소득세 IRPF 0%~27.5% 누진(2026 월 R$5,000까지 면세)\n주별 ICMS(판매세)·서비스세 별도\n→ CPF 필수, 현지 회계사(contador) 권장" },
+      { title: "신용·정착", desc: "미국 신용 이력 미인정. 브라질 신용은 CPF 기반(Serasa). 현지 거래로 구축" },
+      { title: "한국⇄브라질 송금", desc: "Wise·은행 송금. 상파울루 봉헤치루(한인타운) 한인 회계·금융 도움 | 🔗 wise.com" },
+    ],
+    CO: [
+      { title: "Bancolombia · Davivienda · BBVA Colombia", desc: "콜롬비아 주요 은행. 여권+세두라(cédula de extranjería)+주소로 개설 | 🔗 bancolombia.com" },
+      { title: "연금·사회보장", desc: "연금(공적 Colpensiones 또는 사적 AFP)+건강보험(EPS) 기여. 근로자 의무" },
+      { title: "콜롬비아 세금 안내", desc: "소득세 최고 39% 누진\nVAT(IVA): 19%\n→ 183일+ 체류 시 세법상 거주자. RUT(납세등록) 필요" },
+      { title: "신용·주거", desc: "미국 신용 이력 미인정. 현지 거래로 구축(Datacrédito). estrato(계층) 제도로 공과금 차등" },
+      { title: "한국⇄콜롬비아 송금", desc: "Wise·은행 송금. 환율·수수료 비교 | 🔗 wise.com" },
+    ],
+  };
+  const enData: Record<string, { title: string; desc: string }[]> = {
+    JP: [
+      { title: "MUFG · SMBC · Mizuho (3 megabanks)", desc: "Japan's big 3. Foreigners open at the counter with a Residence Card (smoother after 6 months in Japan). Common for salary accounts | 🔗 bk.mufg.jp" },
+      { title: "Shinhan Bank Japan (SBJ Bank)", desc: "Serves the Korean community in Japan. Korean-language service. Tokyo, Osaka, Fukuoka branches. Favorable Korea⇄Japan transfers | 🔗 sbjbank.co.jp" },
+      { title: "Japan Tax Overview", desc: "Income tax 5%–45% progressive + local (resident) tax ~10%\nConsumption tax: 10% (food & newspapers 8%)\n→ Enroll in Employees' Pension (workers) or National Pension" },
+      { title: "Japan Credit & Cash Culture", desc: "US credit history not recognized. Cash & IC cards (Suica/PASMO) used more than credit cards. Build local credit fresh" },
+      { title: "Korea⇄Japan Transfers", desc: "Use SBJ Bank or Wise (formerly TransferWise). Compare rates & fees | 🔗 wise.com" },
+    ],
+    KR: [
+      { title: "KB · Shinhan · Woori · Hana · NH (5 major banks)", desc: "Overseas Koreans (F-4) & returnees open with passport + ARC/overseas-national registration. Powerful mobile banking | 🔗 kbstar.com" },
+      { title: "Overseas-Korean & Remote Accounts", desc: "Some banks offer remote opening for overseas nationals. Check Korean tax filing rules for foreign income/assets" },
+      { title: "Korea Tax Overview", desc: "Income tax 6%–45% progressive + 10% local income surtax\nVAT: 10%\n→ Foreign workers may elect a flat 19% rate (check eligibility)" },
+      { title: "National Pension & Health Insurance", desc: "National Pension (NPS) mandatory (incl. foreigners). Health insurance via 6+ month residency → strong medical access" },
+      { title: "Credit & Housing (jeonse/wolse)", desc: "US credit not recognized → separate Korean credit score. Learn the jeonse/wolse rental system (Zigbang/Dabang apps)" },
+    ],
+    AU: [
+      { title: "Commonwealth · ANZ · Westpac · NAB (Big 4)", desc: "Australia's big 4. Open online before/after arrival with passport + visa. Link your TFN | 🔗 commbank.com.au" },
+      { title: "Superannuation (Super) — mandatory", desc: "Employer pays 12% of salary into retirement (Super). You choose the fund — compare fees & returns" },
+      { title: "Australia Tax Overview", desc: "Income tax up to 45% progressive (tax-free threshold applies)\nGST: 10%\n→ No TFN = withholding at the top rate" },
+      { title: "Building Australian Credit", desc: "US credit not recognized. Build via local bank account, utilities & telecom payment history" },
+      { title: "Medicare", desc: "Public health insurance for PR/citizens. Temporary visas may need private cover — check visa conditions" },
+    ],
+    NZ: [
+      { title: "ANZ · ASB · BNZ · Westpac (Big 4)", desc: "NZ's major banks. Open with passport + visa. Link your IRD number | 🔗 anz.co.nz" },
+      { title: "KiwiSaver (retirement savings)", desc: "Auto-enrol retirement savings (3.5%+ contributions). Employer match + govt contribution. Can withdraw for a first home" },
+      { title: "New Zealand Tax Overview", desc: "Income tax 10.5%–39% progressive\nGST: 15% (almost everything)\n→ No IRD number = higher withholding" },
+      { title: "Credit & Settling In", desc: "US credit not recognized. Build via local bank & utility history" },
+      { title: "Public Healthcare", desc: "PR & 2yr+ work visas covered. Otherwise get travel/private insurance" },
+    ],
+    UK: [
+      { title: "HSBC · Barclays · Lloyds · NatWest (major banks)", desc: "UK's major banks. Open with BRP/visa + proof of address. Monzo/Starling (digital) are newcomer-friendly | 🔗 hsbc.co.uk" },
+      { title: "ISA & Pension (retirement/savings)", desc: "ISA: up to £20,000/yr tax-free savings/investing. Workplace pension auto-enrolment — grab the employer match" },
+      { title: "UK Tax Overview", desc: "Income tax 20% (basic)/40%/45%, personal allowance £12,570\nVAT: 20%\nNational Insurance separate → apply for an NI number" },
+      { title: "Building UK Credit", desc: "US credit not recognized. Build your score (Experian etc.) via electoral roll registration, bank & utilities" },
+      { title: "NHS Healthcare", desc: "Free public healthcare (NHS) for residents. Pay the Immigration Health Surcharge (IHS) per visa, then use it" },
+    ],
+    DE: [
+      { title: "Deutsche Bank · Commerzbank · Sparkasse", desc: "Germany's major banks. Open with Anmeldung (address registration) + passport. N26/DKB (digital) are English & newcomer-friendly | 🔗 db.com" },
+      { title: "Public Pension & Riester", desc: "Statutory pension (gesetzliche Rentenversicherung) mandatory. Add Riester or a company pension" },
+      { title: "Germany Tax Overview", desc: "Income tax 14%–45% progressive (first €12,348 tax-free)\nVAT: 19% (food etc. 7%)\n→ Church tax (Kirchensteuer) if religiously registered. Need a Steuer-ID" },
+      { title: "SCHUFA Credit", desc: "German credit scoring is SCHUFA. US history not recognized → build via account & contract history (essential for renting)" },
+      { title: "Mandatory Health Insurance", desc: "Public (GKV) or private (PKV) insurance is mandatory. Most use public → strong medical access" },
+    ],
+    FR: [
+      { title: "BNP Paribas · Crédit Agricole · Société Générale", desc: "France's big 3. Open with proof of residence + residence permit. Your RIB (account details) is essential for bills & salary | 🔗 bnpparibas.com" },
+      { title: "Pension & Savings (PER, Livret A)", desc: "PER: retirement savings (tax benefits). Livret A: tax-free savings (universal). Check workplace pension too" },
+      { title: "France Tax Overview", desc: "Income tax up to 45% progressive\nVAT (TVA): 20%\nFlat tax on investment income (PFU) 31.4% (2026)\n→ Social contributions (cotisations) separate" },
+      { title: "Credit & Settling In", desc: "US credit not recognized. France weighs bank history & income proof over scores. A guarantor (garant) is often required to rent" },
+      { title: "Public Healthcare (Sécu)", desc: "Social security (Sécurité sociale) + top-up insurance (mutuelle) covers most medical costs" },
+    ],
+    SG: [
+      { title: "DBS · OCBC · UOB (big 3)", desc: "Singapore's big 3. Open with passport + Employment Pass + address. Powerful digital banking | 🔗 dbs.com.sg" },
+      { title: "CPF (Central Provident Fund)", desc: "Mandatory for PR/citizens (retirement, health, housing). EP-holder foreigners are excluded → plan your own savings" },
+      { title: "Singapore Tax Overview", desc: "Income tax 0%–24% progressive (low)\nGST: 9% (2026)\n→ No capital gains or estate tax. Low rates are favorable" },
+      { title: "Credit & Housing", desc: "US credit not recognized. Build via local bank & card history. Housing: HDB (public) or condo rentals" },
+      { title: "Transfers & Healthcare", desc: "Wise or local bank transfers. Private insurance recommended (EP foreigners) | 🔗 wise.com" },
+    ],
+    AE: [
+      { title: "Emirates NBD · FAB · ADCB · Mashreq", desc: "UAE's major banks. Open with passport + residence visa (Emirates ID). Salary accounts (WPS) widely used | 🔗 emiratesnbd.com" },
+      { title: "✅ UAE Tax Advantage", desc: "0% personal income tax!\nVAT: 5% (low)\n→ Very high take-home. Note: 9% corporate tax now applies to businesses" },
+      { title: "Retirement (self-directed)", desc: "No state pension for foreigners. Plan your own savings/investments. Check your end-of-service gratuity" },
+      { title: "Credit & Housing", desc: "US credit not recognized. Build via local banking. Rentals are often annual (paid yearly) — prepare a lump sum" },
+      { title: "Korea⇄UAE Transfers & Healthcare", desc: "Wise or bank transfers. Employer-provided private health insurance is mandatory (varies by emirate) | 🔗 wise.com" },
+    ],
+    TH: [
+      { title: "Bangkok Bank · Kasikornbank · SCB", desc: "Thailand's major banks. Open with passport + long-stay visa + address. Tourist visas struggle — use a work/long-stay visa | 🔗 bangkokbank.com" },
+      { title: "Retirement & Savings", desc: "Social Security Fund (SSF) for employees. Foreigners: combine private savings & home-country pension" },
+      { title: "Thailand Tax Overview", desc: "Income tax 0%–35% progressive\nVAT: 7% (reduced through Sep 2026; standard 10%)\n→ Tax resident if 183+ days" },
+      { title: "Credit & Housing", desc: "US credit not recognized. Build locally. Condo rentals common (foreigners can own condos)" },
+      { title: "Transfers & Healthcare", desc: "Wise or bank transfers. Private insurance recommended (Bangkok private hospitals are excellent) | 🔗 wise.com" },
+    ],
+    VN: [
+      { title: "Vietcombank · BIDV · Shinhan Vietnam", desc: "Vietnam's major banks + Shinhan Vietnam (Korean-friendly, Korean language). Open with passport + visa + residence card | 🔗 shinhan.com.vn" },
+      { title: "Retirement & Social Insurance", desc: "Social insurance (BHXH) for employees; some foreign workers included. Combine with home-country pension" },
+      { title: "Vietnam Tax Overview", desc: "Income tax 5%–35% progressive (non-residents flat 20%)\nVAT: 8% (reduced through end-2026; standard 10%)\n→ Tax resident if 183+ days" },
+      { title: "Credit & Housing", desc: "US credit not recognized. Cash & local accounts dominate. Apartment rentals (foreign ownership limited)" },
+      { title: "Korea⇄Vietnam Transfers", desc: "Use Shinhan Vietnam or Wise. Bank branches convenient in Korean-dense areas (Phu My Hung etc.) | 🔗 wise.com" },
+    ],
+    BR: [
+      { title: "Itaú · Bradesco · Banco do Brasil", desc: "Brazil's major banks. Open with passport + CPF (taxpayer ID) + address. No CPF = no finance/transactions | 🔗 itau.com.br" },
+      { title: "INSS (social security & pension)", desc: "INSS social security (pension, health). Self-employed contribute too. Add private pension (previdência privada)" },
+      { title: "Brazil Tax Overview", desc: "Income tax IRPF 0%–27.5% progressive (2026: tax-free up to R$5,000/mo)\nState ICMS (sales) & service tax separate\n→ CPF required; a local accountant (contador) recommended" },
+      { title: "Credit & Settling In", desc: "US credit not recognized. Brazilian credit is CPF-based (Serasa). Build via local transactions" },
+      { title: "Korea⇄Brazil Transfers", desc: "Wise or bank transfers. Korean accountants/finance help in São Paulo's Bom Retiro (Koreatown) | 🔗 wise.com" },
+    ],
+    CO: [
+      { title: "Bancolombia · Davivienda · BBVA Colombia", desc: "Colombia's major banks. Open with passport + cédula de extranjería + address | 🔗 bancolombia.com" },
+      { title: "Pension & Social Security", desc: "Pension (public Colpensiones or private AFP) + health insurance (EPS) contributions. Mandatory for workers" },
+      { title: "Colombia Tax Overview", desc: "Income tax up to 39% progressive\nVAT (IVA): 19%\n→ Tax resident if 183+ days. Need a RUT (tax registration)" },
+      { title: "Credit & Settling In", desc: "US credit not recognized. Build locally (Datacrédito). Housing: the estrato (tier) system sets utility rates" },
+      { title: "Korea⇄Colombia Transfers", desc: "Wise or bank transfers. Compare rates & fees | 🔗 wise.com" },
+    ],
+  };
+  const data = ko ? koData : enData;
+  return data[cc] ?? (ko ? [
+    { title: "현지 주거래 은행", desc: "여권·비자·주소증명으로 현지 은행 계좌 개설. 한인 커뮤니티 추천 지점 문의" },
+    { title: "현지 세금 확인", desc: "소득세·부가세(VAT) 사전 확인. 현지 회계사 상담 권장" },
+    { title: "신용·송금", desc: "미국 신용 이력 미인정 → 현지 별도 구축. 송금은 Wise 활용 | 🔗 wise.com" },
+  ] : [
+    { title: "Local primary bank", desc: "Open a local account with passport, visa & proof of address. Ask the Korean community for recommended branches" },
+    { title: "Check local taxes", desc: "Confirm income tax & VAT in advance. A local accountant is recommended" },
+    { title: "Credit & Transfers", desc: "US credit not recognized → build locally. Use Wise for transfers | 🔗 wise.com" },
+  ]);
+}
+
 // 나라별 Day 1 체크리스트 — 현지 기관·제도 용어
 function getDayOneItems(slug: string) {
   const cc = getCountryCode(slug);
@@ -14313,7 +14516,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "✅ WA 세금 혜택", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 약 10.25% (시애틀)\n→ 연봉 대비 실수령액이 CA·NY보다 훨씬 높음!" },
     { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
     { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. 소득세 없음 → Roth IRA 전략도 유리" },
-  ] : [
+  ] : getCountryCode(citySlug) !== "US" ? getIntlFinance(citySlug, "ko")
+  : [
     { title: "Chase Total Checking", desc: "한인 커뮤니티 추천 1위. 전국 ATM 많음. $500 개설 보너스 이벤트 자주 있음 | 🔗 chase.com" },
     { title: `${city.nameKo} 주 세금 확인`, desc: `주 소득세·판매세 사전 확인 필수. 연봉 협상 전 반드시 실수령액 계산 | 🔗 smartasset.com/taxes` },
     { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
@@ -14387,7 +14591,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "✅ Washington State Tax Advantage", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: ~10.25% in Seattle\n→ Take-home pay much higher vs CA or NY!" },
     { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
     { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. No state income tax → Roth IRA also attractive in WA" },
-  ] : [
+  ] : getCountryCode(citySlug) !== "US" ? getIntlFinance(citySlug, "en")
+  : [
     { title: "Chase Total Checking", desc: "#1 in Korean community. Many ATMs nationwide. Frequent $500 opening bonus | 🔗 chase.com" },
     { title: `${city.nameEn} State Tax Check`, desc: `Confirm state income & sales tax before salary negotiation. Calculate your real take-home pay | 🔗 smartasset.com/taxes` },
     { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
