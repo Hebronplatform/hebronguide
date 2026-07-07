@@ -15533,6 +15533,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                     <span style={{ color: accent, fontSize: 14 }}>→</span>
                   </a>
                 )}
+                {/* 미주중앙일보 = 북미 한인 디아스포라 부동산 보드 → US·CA만 노출 (한국·국제도시엔 부적절) */}
+                {(getCountryCode(citySlug) === "US" || getCountryCode(citySlug) === "CA") && (
                 <a href="https://www.koreadaily.com/" target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
                   <span style={{ fontSize: 16 }}>📰</span>
@@ -15542,6 +15544,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                   </div>
                   <span style={{ color: accent, fontSize: 14 }}>→</span>
                 </a>
+                )}
               </div>
             </div>
 
@@ -28498,7 +28501,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
             {ko ? "🔜 준비 중인 상품" : "🔜 Coming Soon"}
           </div>
           {([
-            { emoji: "📖", name: ko ? "Hebron 정착 가이드 (PDF)" : "Settlement Guide PDF", desc: ko ? "75개 도시 정착 정보 총정리" : "72-city settlement guide" },
+            { emoji: "📖", name: ko ? "Hebron 정착 가이드 (PDF)" : "Settlement Guide PDF", desc: ko ? "75개 도시 정착 정보 총정리" : "75-city settlement guide" },
             { emoji: "🗣️", name: "Echo — Ministry English", desc: ko ? "목회자·선교사를 위한 실전 영어" : "Real English for pastors & missionaries" },
             { emoji: "🤝", name: ko ? "Hebron Gig 서비스" : "Hebron Gig Services", desc: ko ? "한인 커뮤니티 전문가 매칭" : "Korean community service matching" },
             { emoji: "🏙️", name: ko ? "도시별 정착 키트" : "City Settlement Kit", desc: ko ? "내가 이사할 도시 맞춤 패키지" : "Personalized city moving package" },
