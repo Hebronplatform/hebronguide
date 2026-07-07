@@ -24,7 +24,13 @@
     { "source": "/dallas/index.html",  "destination": "/dallas/",  "permanent": true },
     { "source": "/sf/index.html",      "destination": "/sf/",      "permanent": true },
     { "source": "/home",               "destination": "/",         "permanent": true },
-    { "source": "/guide",              "destination": "/",         "permanent": true }
+    { "source": "/guide",              "destination": "/",         "permanent": true },
+    { "source": "/church-guide.html",    "destination": "/church-partner.html", "permanent": true },
+    { "source": "/church-submit.html",   "destination": "/church-partner.html", "permanent": true },
+    { "source": "/partner-church.html",  "destination": "/church-partner.html", "permanent": true },
+    { "source": "/church-join.html",     "destination": "/church-partner.html", "permanent": true },
+    { "source": "/church-bulletin.html", "destination": "/church-partner.html", "permanent": true },
+    { "source": "/church-notice.html",   "destination": "/church-partner.html", "permanent": true }
   ],
 
   "rewrites": [
