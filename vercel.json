@@ -25,12 +25,17 @@
     { "source": "/sf/index.html",      "destination": "/sf/",      "permanent": true },
     { "source": "/home",               "destination": "/",         "permanent": true },
     { "source": "/guide",              "destination": "/",         "permanent": true },
-    { "source": "/church-guide.html",    "destination": "/church-partner.html", "permanent": true },
-    { "source": "/church-submit.html",   "destination": "/church-partner.html", "permanent": true },
-    { "source": "/partner-church.html",  "destination": "/church-partner.html", "permanent": true },
-    { "source": "/church-join.html",     "destination": "/church-partner.html", "permanent": true },
-    { "source": "/church-bulletin.html", "destination": "/church-partner.html", "permanent": true },
-    { "source": "/church-notice.html",   "destination": "/church-partner.html", "permanent": true }
+    { "source": "/church-partner.html",   "destination": "/ad-request.html", "permanent": true },
+    { "source": "/church-guide.html",      "destination": "/ad-request.html", "permanent": true },
+    { "source": "/church-submit.html",     "destination": "/ad-request.html", "permanent": true },
+    { "source": "/partner-church.html",    "destination": "/ad-request.html", "permanent": true },
+    { "source": "/church-join.html",       "destination": "/ad-request.html", "permanent": true },
+    { "source": "/church-bulletin.html",   "destination": "/ad-request.html", "permanent": true },
+    { "source": "/church-notice.html",     "destination": "/ad-request.html", "permanent": true },
+    { "source": "/founding-partner.html",  "destination": "/ad-request.html", "permanent": true },
+    { "source": "/church-abc-korean.html", "destination": "/ad-request.html", "permanent": true },
+    { "source": "/ksbc-partner.html",      "destination": "/ad-request.html", "permanent": true },
+    { "source": "/partner-benefits.html",  "destination": "/ad-request.html", "permanent": true }
   ],
 
   "rewrites": [

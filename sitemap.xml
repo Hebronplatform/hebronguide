@@ -17,9 +17,9 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- ══ 교회 파트너 초청 ══════════════════════════════════ -->
+  <!-- ══ 파트너 신청 (교회·사업체·광고 통합) ══════════════════ -->
   <url>
-    <loc>https://hebronguide.com/church-partner.html</loc>
+    <loc>https://hebronguide.com/ad-request.html</loc>
     <lastmod>2026-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
