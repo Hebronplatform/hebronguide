@@ -27,10 +27,10 @@ CORE MISSIONAL PHILOSOPHY:
 4. Hebron's role is to map, empower, and mobilize diaspora communities to bless their cities.
 
 TIER CLASSIFICATION:
-- Tier 1 (Global Hubs, ~50 cities): Korean population 50,000+ OR global influence score 5
-- Tier 2 (Regional Hubs, ~150 cities): Korean population 10,000–50,000
-- Tier 3 (Strategic Growth, ~200 cities): Korean population 3,000–10,000
-- Tier 4 (Pioneering, ~100 cities): Korean population <3,000
+- Tier 1 (Global Hubs, ~77 cities): Korean population 50,000+ OR global influence score 5
+- Tier 2 (Regional Hubs, ~77 cities): Korean population 10,000–50,000
+- Tier 3 (Strategic Growth, ~77 cities): Korean population 3,000–10,000
+- Tier 4 (Pioneering, ~77 cities): Korean population <3,000
 
 Classification logic:
 IF est_korean_population >= 50000 OR economic_influence_score >= 5 THEN Tier 1
