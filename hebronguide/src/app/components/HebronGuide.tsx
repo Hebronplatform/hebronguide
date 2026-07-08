@@ -30114,7 +30114,7 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
           </div>
           <div style={{ lineHeight: 1 }}>
             <div>
-              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "1.5px", color: "#fff" }}>HEBRON</span>
+              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "1.5px", color: "#1a2e6c" }}>HEBRON</span>
               <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 500, fontStyle: "italic", fontSize: 13, letterSpacing: "1.5px", color: "#C9A227" }}>GUIDE</span>
             </div>
           </div>
