@@ -3,7 +3,7 @@
   <!-- ═══ COMPASS ICON (70×70, center 35,35) ═══ -->
 
   <!-- Outer ring -->
-  <circle cx="35" cy="35" r="31" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+  <circle cx="35" cy="35" r="34" fill="#1a2e6c"/><circle cx="35" cy="35" r="31" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
 
   <!-- N point — Gold (Genesis 1314: "Look North") -->
   <polygon points="35,8 44,27 35,35 26,27" fill="#C9A227"/>
