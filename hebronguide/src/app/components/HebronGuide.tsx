@@ -30268,7 +30268,15 @@ function CityCard({ c, currentCity, lang, onClose }: {
         transition: "all 0.15s",
       }}
     >
-      <span style={{ fontSize: 20, flexShrink: 0 }}>{c.emoji}</span>
+      <span style={{
+        flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center",
+        minWidth: 36, height: 26, padding: "0 6px", borderRadius: 7,
+        background: CITY_DESIGN[c.nameEn]?.gradient ?? c.color,
+        fontFamily: "Manrope, sans-serif", fontWeight: 900,
+        fontSize: (CITY_DESIGN[c.nameEn]?.code ?? c.nameEn.slice(0,3)).length > 3 ? 10 : 12,
+        letterSpacing: "0.5px", color: CITY_DESIGN[c.nameEn]?.textColor ?? "#fff",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.12)",
+      }}>{CITY_DESIGN[c.nameEn]?.code ?? c.nameEn.slice(0,3).toUpperCase()}</span>
       <div style={{ minWidth: 0 }}>
         <div style={{ fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontWeight: 700,
           fontSize: 12, color: isCurrent ? "#F2994A" : "#1a2535",
