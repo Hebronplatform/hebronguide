@@ -28594,8 +28594,8 @@ function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number
           </div>
           <div>
             <div style={{ lineHeight: 1 }}>
-              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, letterSpacing: "1px", color: "#F2994A" }}>HEBRON</span>
-              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 500, fontStyle: "italic", fontSize: 15, letterSpacing: "1px", color: "rgba(236,253,245,0.55)" }}>GUIDE</span>
+              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, letterSpacing: "1px", color: "#fff" }}>HEBRON</span>
+              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 500, fontStyle: "italic", fontSize: 15, letterSpacing: "1px", color: "#C9A227" }}>GUIDE</span>
             </div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 10, color: "#6EE7B7", marginTop: 2 }}>
               {city.nameEn.toUpperCase()}
@@ -30114,8 +30114,8 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
           </div>
           <div style={{ lineHeight: 1 }}>
             <div>
-              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "1.5px", color: "#F2994A" }}>HEBRON</span>
-              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 500, fontStyle: "italic", fontSize: 13, letterSpacing: "1.5px", color: "#64748B" }}>GUIDE</span>
+              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "1.5px", color: "#fff" }}>HEBRON</span>
+              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 500, fontStyle: "italic", fontSize: 13, letterSpacing: "1.5px", color: "#C9A227" }}>GUIDE</span>
             </div>
           </div>
         </button>
