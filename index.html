@@ -183,6 +183,14 @@
   .footer-links a:hover{color:var(--gold);}
   .footer-copy{font-size:.7rem;color:var(--muted2);}
   .footer-soul{font-size:.82rem;color:rgba(201,162,39,.55);font-style:italic;margin-top:10px;line-height:1.8;}
+  .footer-share{margin-bottom:20px;}
+  .footer-share-label{display:block;font-size:.74rem;color:var(--muted);letter-spacing:.03em;margin-bottom:11px;}
+  .footer-share-icons{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;}
+  .footer-share-icons button{width:38px;height:38px;border-radius:50%;border:1px solid rgba(201,162,39,.28);background:rgba(201,162,39,.06);color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0;transition:transform .16s,background .16s,color .16s,border-color .16s;}
+  .footer-share-icons button:hover{background:var(--gold);color:#0d1117;border-color:var(--gold);transform:translateY(-2px);}
+  .footer-share-icons button svg{width:18px;height:18px;fill:currentColor;display:block;}
+  #hgShareToast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(10px);background:#161d29;color:#fff;border:1px solid rgba(201,162,39,.4);padding:10px 20px;border-radius:24px;font-size:.82rem;z-index:99999;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;}
+  #hgShareToast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
   /* ── 한/영 전환 ── */
   html[lang="ko"] .en{display:none!important;}
@@ -829,6 +837,18 @@ function toggleFaq(btn){
 
 <footer>
   <a href="https://hebronguide.com/" style="text-decoration:none;"><div class="footer-logo">HebronGuide</div></a>
+  <div class="footer-share">
+    <span class="footer-share-label"><span class="ko">이 곳을 필요한 이웃에게 나눠주세요</span><span class="en">Share HebronGuide with someone who needs it</span></span>
+    <div class="footer-share-icons">
+      <button type="button" data-share="x" aria-label="X에 공유"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644Z"/></svg></button>
+      <button type="button" data-share="facebook" aria-label="Facebook에 공유"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073Z"/></svg></button>
+      <button type="button" data-share="threads" aria-label="Threads에 공유"><svg viewBox="0 0 24 24"><path d="M17.3 11.2c-.1-.05-.2-.1-.3-.14-.18-3.28-1.97-5.15-4.98-5.17h-.04c-1.8 0-3.3.77-4.22 2.17l1.66 1.14c.69-1.04 1.76-1.26 2.56-1.26h.03c1 0 1.76.29 2.25.86.36.42.6 1 .72 1.73-.9-.15-1.86-.19-2.9-.13-2.9.17-4.77 1.86-4.65 4.2.07 1.2.66 2.22 1.68 2.88.86.56 1.97.83 3.13.77 1.53-.08 2.73-.66 3.57-1.72.63-.8 1.04-1.85 1.22-3.16.75.45 1.3 1.05 1.6 1.76.53 1.2.56 3.18-1.05 4.79-1.4 1.4-3.1 2.02-5.66 2.04-2.85-.02-5-.94-6.4-2.72C4.32 17.5 3.65 15.6 3.62 13.2c.03-2.4.7-4.3 1.98-5.66C6.9 6.13 9.05 5.2 11.9 5.2c2.87.02 5.03.95 6.44 2.75.69.88 1.2 1.98 1.55 3.27l1.94-.52c-.42-1.58-1.07-2.94-1.95-4.05C18.06 4.3 15.34 3.02 11.9 3h-.02c-3.43.02-6.07 1.3-7.86 3.8C2.35 9.02 1.5 12 1.47 15.16v.03c.03 3.15.88 6.12 2.55 8.36C5.8 22.69 8.45 24 11.88 24h.02c3.05-.02 5.2-.83 6.98-2.6 2.32-2.32 2.25-5.23 1.48-6.96-.55-1.25-1.6-2.26-3.06-2.94Zm-4.9 5.16c-1.28.07-2.62-.5-2.68-1.72-.05-.9.64-1.9 2.76-2.02.24-.02.48-.02.71-.02.77 0 1.5.08 2.15.22-.24 3.02-1.66 3.47-2.94 3.54Z"/></svg></button>
+      <button type="button" data-share="kakao" aria-label="카카오톡으로 공유"><svg viewBox="0 0 24 24"><path d="M12 3C6.48 3 2 6.54 2 10.9c0 2.82 1.87 5.29 4.68 6.69-.15.53-.96 3.34-.99 3.56 0 0-.02.18.1.25.11.07.24.02.24.02.32-.05 3.7-2.43 4.28-2.83.55.08 1.12.12 1.69.12 5.52 0 10-3.54 10-7.9S17.52 3 12 3Z"/></svg></button>
+      <button type="button" data-share="linkedin" aria-label="LinkedIn에 공유"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065Zm1.782 13.019H3.555V9h3.564v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z"/></svg></button>
+      <button type="button" data-share="copy" aria-label="링크 복사"><svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1ZM8 13h8v-2H8v2Zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5Z"/></svg></button>
+      <button type="button" data-share="native" aria-label="공유" style="display:none;"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92Z"/></svg></button>
+    </div>
+  </div>
   <div class="footer-links">
     <a href="/about.html"><span class="ko">회사소개</span><span class="en">About</span></a>
     <a href="/help.html"><span class="ko">도움말</span><span class="en">Help</span></a>
@@ -847,6 +867,52 @@ function toggleFaq(btn){
     <span class="en">"No one in this world should ever feel isolated, lonely, or forgotten.<br>In any city. For anyone."</span>
   </div>
 </footer>
+<script>
+(function(){
+  var SITE = 'https://hebronguide.com/';
+  var MSG = 'HebronGuide — 낯선 도시, 이미 누군가 기다렸습니다. 전 세계 한인 정착 가이드';
+  var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  function toast(m){
+    var t = document.getElementById('hgShareToast');
+    if(!t){ t = document.createElement('div'); t.id = 'hgShareToast'; document.body.appendChild(t); }
+    t.textContent = m; t.classList.add('show');
+    clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove('show'); }, 2400);
+  }
+  function legacyCopy(text, done){
+    var ta=document.createElement('textarea'); ta.value=text;
+    ta.style.position='fixed'; ta.style.top='0'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    var ok=false; try{ ok=document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta); if(ok) done();
+  }
+  function copy(text, msg){
+    var done=function(){ toast(msg); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(function(){ legacyCopy(text, done); });
+    } else {
+      legacyCopy(text, done);
+    }
+  }
+  var actions = {
+    x: function(){ window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(MSG)+'&url='+encodeURIComponent(SITE), '_blank', 'noopener,width=600,height=520'); },
+    facebook: function(){ window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(SITE), '_blank', 'noopener,width=600,height=520'); },
+    threads: function(){ window.open('https://www.threads.net/intent/post?text='+encodeURIComponent(MSG+' '+SITE), '_blank', 'noopener'); },
+    linkedin: function(){ window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(SITE), '_blank', 'noopener,width=600,height=520'); },
+    kakao: function(){
+      if(isMobile){ window.location.href = 'kakaotalk://msg/send?msg='+encodeURIComponent(MSG+'\n'+SITE);
+        setTimeout(function(){ copy(MSG+'\n'+SITE, '링크 복사됨 — 카카오톡에 붙여넣기 하세요'); }, 1300); }
+      else { copy(MSG+'\n'+SITE, '링크 복사됨 — 카카오톡에 붙여넣기 하세요'); }
+    },
+    copy: function(){ copy(SITE, '링크가 복사되었습니다 · Link copied'); },
+    native: function(){ if(navigator.share) navigator.share({ title:'HebronGuide', text:MSG, url:SITE }); }
+  };
+  document.querySelectorAll('.footer-share-icons button[data-share]').forEach(function(b){
+    var k = b.getAttribute('data-share');
+    if(k === 'native'){ if(navigator.share && isMobile) b.style.display = 'inline-flex'; }
+    b.addEventListener('click', function(){ (actions[k] || function(){})(); });
+  });
+})();
+</script>
 
 <script>
 // 한/영 전환
