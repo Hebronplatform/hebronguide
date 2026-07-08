@@ -230,6 +230,14 @@
   #hgWorldMap{height:440px;border-radius:16px;border:1px solid rgba(201,162,39,.25);background:#0b0f16;z-index:1;}
   .hg-cluster{background:var(--gold);color:#2a1c02;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;box-shadow:0 0 0 4px rgba(201,162,39,.22);}
   .hg-pin{width:12px;height:12px;background:var(--gold);border:2px solid #0d1117;border-radius:50%;box-shadow:0 0 6px rgba(201,162,39,.6);}
+  .hg-future{border-radius:50%;background:transparent;box-shadow:0 0 5px currentColor;}
+  .hg-legend{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin:2px 0 16px;}
+  .hg-legend .lg-live{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--gold);}
+  .hg-legend button{background:none;border:1px solid rgba(255,255,255,.12);cursor:pointer;display:flex;align-items:center;gap:6px;color:#cfd6e4;padding:5px 12px;border-radius:20px;font:inherit;font-size:.75rem;transition:opacity .15s;}
+  .hg-legend button.off{opacity:.38;}
+  .hg-legend .sw{width:12px;height:12px;border-radius:50%;flex:none;}
+  .hg-legend .sw-ring{width:11px;height:11px;border-radius:50%;flex:none;background:transparent;}
+  .hg-legend .lg-goal{font-size:.75rem;color:var(--muted);border-left:1px solid rgba(255,255,255,.12);padding-left:12px;}
   .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#161d29;color:#fff;border:1px solid rgba(201,162,39,.3);}
   .leaflet-popup-content{margin:10px 14px;font-size:.85rem;line-height:1.5;}
   .leaflet-popup-content b{color:#fff;}
@@ -705,8 +713,16 @@ function toggleFaq(btn){
       <div class="hg-map-stat"><b class="hg-city-count">77</b><span>도시 · Cities</span></div>
       <div class="hg-map-stat"><b id="hgStatCountries">16</b><span>국가 · Countries</span></div>
       <div class="hg-map-stat"><b id="hgStatRegions">8</b><span>지역권 · Regions</span></div>
+      <div class="hg-map-stat"><b style="color:#6EE7B7;">500</b><span>2030 목표 · Goal</span></div>
     </div>
-    <div id="hgWorldMap" role="img" aria-label="HebronGuide 전 세계 서비스 도시 분포 지도 — 거점을 눌러 도시 정착 가이드로 이동"></div>
+    <div class="hg-legend">
+      <span class="lg-live"><span class="sw" style="background:var(--gold);"></span>지금 진출 (<span class="hg-city-count">77</span>)</span>
+      <button type="button" data-year="2027"><span class="sw-ring" style="border:2px solid #6EE7B7;"></span>2027 예정</button>
+      <button type="button" data-year="2028"><span class="sw-ring" style="border:2px solid #60A5FA;"></span>2028 예정</button>
+      <button type="button" data-year="2029"><span class="sw-ring" style="border:2px solid #A78BFA;"></span>2029 예정</button>
+      <span class="lg-goal">2030 · 500개 도시 비전</span>
+    </div>
+    <div id="hgWorldMap" role="img" aria-label="HebronGuide 전 세계 서비스 도시 분포 지도 — 금색은 현재 진출 도시, 색 링은 연도별 진출 예정 도시. 거점을 눌러 이동"></div>
   </div>
 
   <div class="search-wrap">
@@ -926,8 +942,18 @@ if(inp){
     }
   });
 
-  fetch('/cities.json').then(function(r){ return r.json(); }).then(function(cities){
+  // 연도별 예정 도시 레이어 (토글 가능)
+  var YEAR_COLORS = { 2027:'#6EE7B7', 2028:'#60A5FA', 2029:'#A78BFA' };
+  var yearLayers = { 2027:L.layerGroup(), 2028:L.layerGroup(), 2029:L.layerGroup() };
+
+  Promise.all([
+    fetch('/cities.json').then(function(r){ return r.json(); }).catch(function(){ return []; }),
+    fetch('/roadmap.json').then(function(r){ return r.json(); }).catch(function(){ return []; })
+  ]).then(function(res){
+    var cities = res[0] || [], future = res[1] || [];
     var pts = [], countries = {}, regions = {};
+
+    // 현재 진출 도시 (금색 · 클러스터)
     cities.forEach(function(c){
       if (c.region) regions[c.region] = 1;
       if (c.country) countries[c.country] = 1;
@@ -941,10 +967,35 @@ if(inp){
       pts.push([c.lat, c.lng]);
     });
     map.addLayer(cluster);
-    if (pts.length) map.fitBounds(pts, { padding:[40,40], maxZoom: 4 });
+
+    // 진출 예정 도시 (연도별 색 · 속 빈 링)
+    future.forEach(function(f){
+      if (!f.lat || !f.lng) return;
+      var col = YEAR_COLORS[f.year] || '#9aa4b2';
+      var m = L.marker([f.lat, f.lng], {
+        icon: L.divIcon({ html: '<div class="hg-future" style="width:13px;height:13px;border:2.5px solid '+col+';color:'+col+'"></div>', className: '', iconSize: [13,13], iconAnchor: [6.5,6.5] }),
+        title: f.nameKo + ' (' + f.year + ' 예정)'
+      });
+      m.bindPopup('<b>'+f.nameKo+'</b><br><span style="color:'+col+';font-weight:800;">'+f.year+' 진출 예정</span><br><span style="color:#8b93a1;font-size:.82em;">'+(f.country||'')+' · 후보</span>');
+      if (yearLayers[f.year]) yearLayers[f.year].addLayer(m);
+      pts.push([f.lat, f.lng]);
+    });
+    Object.keys(yearLayers).forEach(function(y){ map.addLayer(yearLayers[y]); });
+
+    if (pts.length) map.fitBounds(pts, { padding:[40,40], maxZoom: 3 });
     var cn = Object.keys(countries).length, rn = Object.keys(regions).length;
     var ce = document.getElementById('hgStatCountries'); if (ce && cn) ce.textContent = cn;
     var re = document.getElementById('hgStatRegions'); if (re && rn) re.textContent = rn;
+
+    // 범례 연도 토글
+    document.querySelectorAll('.hg-legend button[data-year]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var lyr = yearLayers[btn.getAttribute('data-year')];
+        if (!lyr) return;
+        if (map.hasLayer(lyr)) { map.removeLayer(lyr); btn.classList.add('off'); }
+        else { map.addLayer(lyr); btn.classList.remove('off'); }
+      });
+    });
   }).catch(function(){ el.style.display = 'none'; });
 })();
 </script>
