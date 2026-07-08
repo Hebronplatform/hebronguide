@@ -9,20 +9,11 @@
   {"nameKo":"산티아고","nameEn":"Santiago","country":"칠레","region":"남미","year":2027,"lat":-33.4489,"lng":-70.6693},
   {"nameKo":"아순시온","nameEn":"Asuncion","country":"파라과이","region":"남미","year":2027,"lat":-25.2637,"lng":-57.5759},
 
-  {"nameKo":"이스탄불","nameEn":"Istanbul","country":"튀르키예","region":"중동","year":2028,"lat":41.0082,"lng":28.9784},
-  {"nameKo":"텔아비브","nameEn":"Tel Aviv","country":"이스라엘","region":"중동","year":2028,"lat":32.0853,"lng":34.7818},
-  {"nameKo":"도하","nameEn":"Doha","country":"카타르","region":"중동","year":2028,"lat":25.2854,"lng":51.5310},
-  {"nameKo":"리야드","nameEn":"Riyadh","country":"사우디아라비아","region":"중동","year":2028,"lat":24.7136,"lng":46.6753},
-  {"nameKo":"요하네스버그","nameEn":"Johannesburg","country":"남아공","region":"아프리카","year":2028,"lat":-26.2041,"lng":28.0473},
-  {"nameKo":"카이로","nameEn":"Cairo","country":"이집트","region":"아프리카","year":2028,"lat":30.0444,"lng":31.2357},
-  {"nameKo":"나이로비","nameEn":"Nairobi","country":"케냐","region":"아프리카","year":2028,"lat":-1.2921,"lng":36.8219},
-  {"nameKo":"아디스아바바","nameEn":"Addis Ababa","country":"에티오피아","region":"아프리카","year":2028,"lat":9.0300,"lng":38.7400},
+  {"nameKo":"이스탄불","nameEn":"Istanbul","country":"튀르키예","region":"중동·아프리카","year":2028,"lat":41.0082,"lng":28.9784},
+  {"nameKo":"도하","nameEn":"Doha","country":"카타르","region":"중동·아프리카","year":2028,"lat":25.2854,"lng":51.5310},
+  {"nameKo":"요하네스버그","nameEn":"Johannesburg","country":"남아공","region":"중동·아프리카","year":2028,"lat":-26.2041,"lng":28.0473},
 
-  {"nameKo":"타슈켄트","nameEn":"Tashkent","country":"우즈베키스탄","region":"중앙아시아","year":2029,"lat":41.2995,"lng":69.2401},
-  {"nameKo":"알마티","nameEn":"Almaty","country":"카자흐스탄","region":"중앙아시아","year":2029,"lat":43.2220,"lng":76.8512},
-  {"nameKo":"비슈케크","nameEn":"Bishkek","country":"키르기스스탄","region":"중앙아시아","year":2029,"lat":42.8746,"lng":74.5698},
-  {"nameKo":"모스크바","nameEn":"Moscow","country":"러시아","region":"동유럽","year":2029,"lat":55.7558,"lng":37.6173},
-  {"nameKo":"바르샤바","nameEn":"Warsaw","country":"폴란드","region":"동유럽","year":2029,"lat":52.2297,"lng":21.0122},
-  {"nameKo":"프라하","nameEn":"Prague","country":"체코","region":"동유럽","year":2029,"lat":50.0755,"lng":14.4378},
-  {"nameKo":"부다페스트","nameEn":"Budapest","country":"헝가리","region":"동유럽","year":2029,"lat":47.4979,"lng":19.0402}
+  {"nameKo":"타슈켄트","nameEn":"Tashkent","country":"우즈베키스탄","region":"중앙아·동유럽","year":2029,"lat":41.2995,"lng":69.2401},
+  {"nameKo":"알마티","nameEn":"Almaty","country":"카자흐스탄","region":"중앙아·동유럽","year":2029,"lat":43.2220,"lng":76.8512},
+  {"nameKo":"바르샤바","nameEn":"Warsaw","country":"폴란드","region":"중앙아·동유럽","year":2029,"lat":52.2297,"lng":21.0122}
 ]
