@@ -931,12 +931,13 @@ if(inp){
   map.on('mouseout', function(){ map.scrollWheelZoom.disable(); });
 
   var cluster = L.markerClusterGroup({
-    showCoverageOnHover: false, maxClusterRadius: 38, spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false, maxClusterRadius: 58, spiderfyOnMaxZoom: true, disableClusteringAtZoom: 6,
     iconCreateFunction: function(c){
       var n = c.getChildCount();
-      var s = n < 10 ? 34 : n < 30 ? 42 : 50;
+      var s = n < 5 ? 38 : n < 15 ? 48 : n < 30 ? 56 : 64;
+      var fs = n < 5 ? 15 : n < 30 ? 18 : 21;
       return L.divIcon({
-        html: '<div class="hg-cluster" style="width:'+s+'px;height:'+s+'px;font-size:'+(s>44?'15px':'13px')+'">'+n+'</div>',
+        html: '<div class="hg-cluster" style="width:'+s+'px;height:'+s+'px;font-size:'+fs+'px">'+n+'</div>',
         className: '', iconSize: [s,s]
       });
     }
