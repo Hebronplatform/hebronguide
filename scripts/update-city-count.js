@@ -47,7 +47,10 @@ function syncCount(t) {
     .replace(/across \d+ cities/gi, `across ${COUNT} cities`)
     .replace(/serves? \d+ cities/gi, `serves ${COUNT} cities`)
     .replace(/\b\d+ cities\b/g, `${COUNT} cities`)          // en 총계 ("N cities. One community")
-    .replace(/\d+-city\b/g, `${COUNT}-city`);
+    .replace(/\d+-city\b/g, `${COUNT}-city`)
+    // .hg-city-count 스팬의 fallback 텍스트 (JS 미로드 시 대비 — 런타임엔 city-count.js가 갱신)
+    .replace(/hg-city-count">\d+</g, `hg-city-count">${COUNT}<`)
+    .replace(/hg-city-count-plus">\d+/g, `hg-city-count-plus">${COUNT}`);
 }
 
 let changed = [];

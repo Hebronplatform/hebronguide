@@ -218,6 +218,27 @@
   .for-pastor .path-cta{background:rgba(110,231,183,.12);color:var(--mint);}
   .for-neighbor .path-cta{background:rgba(129,140,248,.12);color:#818CF8;}
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css"/>
+  <style>
+  .hg-map-wrap{max-width:1000px;margin:0 auto 40px;}
+  .hg-map-stats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;}
+  .hg-map-stat{text-align:center;padding:6px 22px;border-left:1px solid rgba(255,255,255,.1);}
+  .hg-map-stat:first-child{border-left:none;}
+  .hg-map-stat b{display:block;font-size:1.7rem;color:var(--gold);line-height:1.15;font-weight:900;}
+  .hg-map-stat span{font-size:.72rem;color:var(--muted);letter-spacing:.02em;}
+  #hgWorldMap{height:440px;border-radius:16px;border:1px solid rgba(201,162,39,.25);background:#0b0f16;z-index:1;}
+  .hg-cluster{background:var(--gold);color:#2a1c02;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;box-shadow:0 0 0 4px rgba(201,162,39,.22);}
+  .hg-pin{width:12px;height:12px;background:var(--gold);border:2px solid #0d1117;border-radius:50%;box-shadow:0 0 6px rgba(201,162,39,.6);}
+  .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#161d29;color:#fff;border:1px solid rgba(201,162,39,.3);}
+  .leaflet-popup-content{margin:10px 14px;font-size:.85rem;line-height:1.5;}
+  .leaflet-popup-content b{color:#fff;}
+  .hg-popup-link{color:var(--gold);font-weight:800;text-decoration:none;}
+  .leaflet-container{font-family:inherit;background:#0b0f16;}
+  .leaflet-bar a{background:#161d29;color:var(--gold);border-color:rgba(201,162,39,.3);}
+  .leaflet-bar a:hover{background:#1e2735;}
+  @media(max-width:640px){#hgWorldMap{height:340px;}.hg-map-stat{padding:6px 16px;}.hg-map-stat b{font-size:1.4rem;}}
+  </style>
 </head>
 <body>
 
@@ -396,7 +417,7 @@
   </div>
 
   <div class="hero-stats">
-    <div class="stat"><div class="stat-n"><span class="hg-city-count">75</span><sup style="font-size:.9rem;">+</sup></div><div class="stat-l"><span class="ko">서비스 도시</span><span class="en">Cities</span></div></div>
+    <div class="stat"><div class="stat-n"><span class="hg-city-count">77</span><sup style="font-size:.9rem;">+</sup></div><div class="stat-l"><span class="ko">서비스 도시</span><span class="en">Cities</span></div></div>
     <div class="stat"><div class="stat-n">700<sub style="font-size:.8rem;"><span class="ko">만</span><span class="en">K</span></sub></div><div class="stat-l"><span class="ko">재외 한인</span><span class="en">Korean Diaspora</span></div></div>
     <div class="stat"><div class="stat-n">500</div><div class="stat-l"><span class="ko">2030 목표 도시</span><span class="en">2030 City Goal</span></div></div>
     <div class="stat"><div class="stat-n">∞</div><div class="stat-l"><span class="ko">환대의 마음</span><span class="en">Heart of Welcome</span></div></div>
@@ -598,8 +619,8 @@
         <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="faq-a">
-        <span class="ko">도시 추가 신청을 해주세요. 우선 순위로 반영합니다. 현재 <span class="hg-city-count">75</span>개 도시 운영 중, 2030년까지 500개 목표입니다.</span>
-        <span class="en">Submit a city request and we'll prioritize it. Currently serving <span class="hg-city-count">75</span> cities — goal of 500 by 2030.</span>
+        <span class="ko">도시 추가 신청을 해주세요. 우선 순위로 반영합니다. 현재 <span class="hg-city-count">77</span>개 도시 운영 중, 2030년까지 500개 목표입니다.</span>
+        <span class="en">Submit a city request and we'll prioritize it. Currently serving <span class="hg-city-count">77</span> cities — goal of 500 by 2030.</span>
         <br><a href="/city-request.html" style="color:var(--gold,#C9A227);font-size:.85rem;text-decoration:none;display:inline-block;margin-top:8px;"><span class="ko">도시 추가 신청 →</span><span class="en">Request a city →</span></a>
       </div>
     </div>
@@ -676,8 +697,17 @@ function toggleFaq(btn){
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CITIES ━━━ -->
 <div class="cities-section" id="cities">
   <div class="sec-label">서비스 도시 · Cities</div>
-  <h2 class="sec-title"><span class="ko">전 세계 <span><span class="hg-city-count">75</span>개+ 도시</span></span><span class="en"><span><span class="hg-city-count">75</span>+ Cities</span> Worldwide</span></h2>
+  <h2 class="sec-title"><span class="ko">전 세계 <span><span class="hg-city-count">77</span>개+ 도시</span></span><span class="en"><span><span class="hg-city-count">77</span>+ Cities</span> Worldwide</span></h2>
   <p class="sec-desc" style="margin-bottom:32px;"><span class="ko">대한민국에서 출발해 세계로 — 한인이 사는 모든 곳, 돌아오는 모든 곳</span><span class="en">From Korea to the world — every city Koreans go to, and every city they come home to</span></p>
+
+  <div class="hg-map-wrap">
+    <div class="hg-map-stats">
+      <div class="hg-map-stat"><b class="hg-city-count">77</b><span>도시 · Cities</span></div>
+      <div class="hg-map-stat"><b id="hgStatCountries">16</b><span>국가 · Countries</span></div>
+      <div class="hg-map-stat"><b id="hgStatRegions">8</b><span>지역권 · Regions</span></div>
+    </div>
+    <div id="hgWorldMap" role="img" aria-label="HebronGuide 전 세계 서비스 도시 분포 지도 — 거점을 눌러 도시 정착 가이드로 이동"></div>
+  </div>
 
   <div class="search-wrap">
     <input id="citySearch" type="text" placeholder="도시 검색 · Search city (뉴욕, Tokyo, Seoul...)"/>
@@ -869,6 +899,55 @@ if(inp){
 
 <!-- ── 도시 수 단일 진실 공급원 (build.sh 자동 생성 — 도시 추가 시 자동 갱신) ── -->
 <script src="/city-count.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+<script>
+(function(){
+  var el = document.getElementById('hgWorldMap');
+  if (!el || !window.L) return;
+  var map = L.map(el, { scrollWheelZoom:false, worldCopyJump:true, minZoom:1 }).setView([25,10], 2);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    maxZoom: 12, subdomains: 'abcd',
+    attribution: '&copy; OpenStreetMap &copy; CARTO'
+  }).addTo(map);
+  // 페이지 스크롤 방해 방지: 지도 클릭 시에만 휠 줌 활성화
+  el.addEventListener('click', function(){ map.scrollWheelZoom.enable(); });
+  map.on('mouseout', function(){ map.scrollWheelZoom.disable(); });
+
+  var cluster = L.markerClusterGroup({
+    showCoverageOnHover: false, maxClusterRadius: 38, spiderfyOnMaxZoom: true,
+    iconCreateFunction: function(c){
+      var n = c.getChildCount();
+      var s = n < 10 ? 34 : n < 30 ? 42 : 50;
+      return L.divIcon({
+        html: '<div class="hg-cluster" style="width:'+s+'px;height:'+s+'px;font-size:'+(s>44?'15px':'13px')+'">'+n+'</div>',
+        className: '', iconSize: [s,s]
+      });
+    }
+  });
+
+  fetch('/cities.json').then(function(r){ return r.json(); }).then(function(cities){
+    var pts = [], countries = {}, regions = {};
+    cities.forEach(function(c){
+      if (c.region) regions[c.region] = 1;
+      if (c.country) countries[c.country] = 1;
+      if (!c.lat || !c.lng) return;
+      var m = L.marker([c.lat, c.lng], {
+        icon: L.divIcon({ html: '<div class="hg-pin"></div>', className: '', iconSize: [12,12], iconAnchor: [6,6] }),
+        title: c.nameKo
+      });
+      m.bindPopup('<b>'+c.nameKo+'</b><br><a class="hg-popup-link" href="/'+c.slug+'/">정착 가이드 열기 →</a>');
+      cluster.addLayer(m);
+      pts.push([c.lat, c.lng]);
+    });
+    map.addLayer(cluster);
+    if (pts.length) map.fitBounds(pts, { padding:[40,40], maxZoom: 4 });
+    var cn = Object.keys(countries).length, rn = Object.keys(regions).length;
+    var ce = document.getElementById('hgStatCountries'); if (ce && cn) ce.textContent = cn;
+    var re = document.getElementById('hgStatRegions'); if (re && rn) re.textContent = rn;
+  }).catch(function(){ el.style.display = 'none'; });
+})();
+</script>
 <!-- ── Vercel Analytics ──────────────────────────────── -->
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
 <script defer src="/_vercel/insights/script.js"></script>

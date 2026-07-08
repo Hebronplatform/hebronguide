@@ -241,7 +241,7 @@ REGION_MAP=(
   ["fayetteville"]="🇺🇸 미국" ["killeen"]="🇺🇸 미국"   ["louisville"]="🇺🇸 미국"
   ["fairfield"]="🇺🇸 미국"  ["waynesville"]="🇺🇸 미국" ["tampa"]="🇺🇸 미국"
   ["anchorage"]="🇺🇸 미국"  ["tucson"]="🇺🇸 미국"      ["orangecounty"]="🇺🇸 미국"
-  ["inlandempire"]="🇺🇸 미국" ["austin"]="🇺🇸 미국"
+  ["inlandempire"]="🇺🇸 미국" ["austin"]="🇺🇸 미국"    ["phoenix"]="🇺🇸 미국"
   ["toronto"]="🇨🇦 캐나다"  ["vancouver"]="🇨🇦 캐나다" ["calgary"]="🇨🇦 캐나다"
   ["edmonton"]="🇨🇦 캐나다" ["ottawa"]="🇨🇦 캐나다"    ["winnipeg"]="🇨🇦 캐나다"   ["princgeorge"]="🇨🇦 캐나다"
   ["mexicocity"]="🌎 중남미" ["guadalajara"]="🌎 중남미" ["monterrey"]="🌎 중남미"
@@ -257,6 +257,35 @@ REGION_MAP=(
   ["ansan"]="🇰🇷 한국"      ["daejeon"]="🇰🇷 한국"    ["daegu"]="🇰🇷 한국"
   ["gwangju"]="🇰🇷 한국"    ["jeju"]="🇰🇷 한국"       ["bundang"]="🇰🇷 한국"
   ["changwon"]="🇰🇷 한국"   ["cheonan"]="🇰🇷 한국"
+)
+
+# 도시별 좌표 + 국가 (지도 자동 표시용) — "위도,경도,국가(한글)"
+# 좌표는 실제 한인 커뮤니티 허브 기준(추측 아님): orangecounty=부에나파크, maryland=엘리콧시티,
+# virginia=애난데일, fairfield=CA(프로젝트 contact 확인), waynesville=MO(프로젝트 contact 확인).
+# 새 도시 추가 시 여기에 한 줄 넣으면 랜딩 지도에 자동으로 핀이 뜬다. 없으면 지도에서만 생략(배포는 정상).
+declare -A CITY_GEO=(
+  ["seattle"]="47.6062,-122.3321,미국"   ["federalway"]="47.3223,-122.3126,미국"  ["dallas"]="32.7767,-96.7970,미국"      ["sf"]="37.7749,-122.4194,미국"
+  ["newyork"]="40.7128,-74.0060,미국"    ["nashville"]="36.1627,-86.7816,미국"    ["boston"]="42.3601,-71.0589,미국"      ["la"]="34.0522,-118.2437,미국"
+  ["houston"]="29.7604,-95.3698,미국"    ["atlanta"]="33.7490,-84.3880,미국"      ["kansascity"]="39.0997,-94.5786,미국"  ["philadelphia"]="39.9526,-75.1652,미국"
+  ["miami"]="25.7617,-80.1918,미국"      ["orangecounty"]="33.8703,-117.9865,미국" ["chicago"]="41.8781,-87.6298,미국"    ["dc"]="38.9072,-77.0369,미국"
+  ["sandiego"]="32.7157,-117.1611,미국"  ["honolulu"]="21.3069,-157.8583,미국"    ["portland"]="45.5152,-122.6784,미국"   ["denver"]="39.7392,-104.9903,미국"
+  ["phoenix"]="33.4484,-112.0740,미국"   ["charlotte"]="35.2271,-80.8431,미국"    ["raleigh"]="35.7796,-78.6382,미국"     ["columbus"]="39.9612,-82.9988,미국"
+  ["minneapolis"]="44.9778,-93.2650,미국" ["tucson"]="32.2226,-110.9747,미국"     ["fayetteville"]="35.0527,-78.8784,미국" ["killeen"]="31.1171,-97.7278,미국"
+  ["fairfield"]="38.2494,-122.0400,미국" ["waynesville"]="37.8286,-92.2001,미국"  ["louisville"]="38.2527,-85.7585,미국"  ["anchorage"]="61.2181,-149.9003,미국"
+  ["inlandempire"]="34.0633,-117.2898,미국" ["austin"]="30.2672,-97.7431,미국"    ["tampa"]="27.9506,-82.4572,미국"       ["orlando"]="28.5383,-81.3792,미국"
+  ["maryland"]="39.2673,-76.7983,미국"   ["virginia"]="38.8304,-77.1964,미국"     ["neworleans"]="29.9511,-90.0715,미국"
+  ["toronto"]="43.6532,-79.3832,캐나다"  ["vancouver"]="49.2827,-123.1207,캐나다" ["calgary"]="51.0447,-114.0719,캐나다"  ["edmonton"]="53.5461,-113.4938,캐나다"
+  ["ottawa"]="45.4215,-75.6972,캐나다"   ["winnipeg"]="49.8951,-97.1384,캐나다"   ["princgeorge"]="53.9171,-122.7497,캐나다"
+  ["mexicocity"]="19.4326,-99.1332,멕시코" ["guadalajara"]="20.6597,-103.3496,멕시코" ["monterrey"]="25.6866,-100.3161,멕시코"
+  ["saopaulo"]="-23.5505,-46.6333,브라질" ["bogota"]="4.7110,-74.0721,콜롬비아"
+  ["london"]="51.5074,-0.1278,영국"      ["paris"]="48.8566,2.3522,프랑스"        ["berlin"]="52.5200,13.4050,독일"       ["frankfurt"]="50.1109,8.6821,독일"
+  ["sydney"]="-33.8688,151.2093,호주"    ["melbourne"]="-37.8136,144.9631,호주"   ["brisbane"]="-27.4698,153.0251,호주"   ["perth"]="-31.9505,115.8605,호주"
+  ["auckland"]="-36.8485,174.7633,뉴질랜드"
+  ["singapore"]="1.3521,103.8198,싱가포르" ["bangkok"]="13.7563,100.5018,태국"    ["hochiminh"]="10.8231,106.6297,베트남" ["dubai"]="25.2048,55.2708,UAE"
+  ["tokyo"]="35.6762,139.6503,일본"      ["osaka"]="34.6937,135.5023,일본"
+  ["seoul"]="37.5665,126.9780,한국"      ["busan"]="35.1796,129.0756,한국"        ["ansan"]="37.3219,126.8309,한국"       ["incheon"]="37.4563,126.7052,한국"
+  ["jeju"]="33.4996,126.5312,한국"       ["daegu"]="35.8714,128.6014,한국"        ["gwangju"]="35.1595,126.8526,한국"     ["daejeon"]="36.3504,127.3845,한국"
+  ["changwon"]="35.2280,128.6811,한국"   ["cheonan"]="36.8151,127.1139,한국"      ["bundang"]="37.3595,127.1052,한국"
 )
 
 printf '[' > public/cities.json
@@ -276,9 +305,12 @@ for city in \
   KO="${CITY_KO[$city]:-$city}"
   EN="${CITY_EN[$city]:-$city}"
   REGION="${REGION_MAP[$city]:-기타}"
+  GEO="${CITY_GEO[$city]}"
+  LAT="${GEO%%,*}"; GEO_REST="${GEO#*,}"; LNG="${GEO_REST%%,*}"; CTRY="${GEO_REST##*,}"
+  [ -z "$GEO" ] && { LAT=0; LNG=0; CTRY=""; }
   [ $first -eq 0 ] && printf ',' >> public/cities.json
-  printf '{"slug":"%s","nameKo":"%s","nameEn":"%s","region":"%s"}' \
-    "$city" "$KO" "$EN" "$REGION" >> public/cities.json
+  printf '{"slug":"%s","nameKo":"%s","nameEn":"%s","region":"%s","country":"%s","lat":%s,"lng":%s}' \
+    "$city" "$KO" "$EN" "$REGION" "$CTRY" "${LAT:-0}" "${LNG:-0}" >> public/cities.json
   first=0
 done
 printf ']' >> public/cities.json
