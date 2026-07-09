@@ -882,7 +882,9 @@ type CitySlug =
   // 북미 추가 신규
   "inlandempire" | "austin" |
   // 워싱턴주 확장 — FWKAA 파트너 (한인회 네트워크 플래그십)
-  "federalway";
+  "federalway" |
+  // 뉴욕 광역권 — 뉴저지 (버겐 카운티 한인 밀집)
+  "newjersey";
 
 interface CityConfig {
   slug: CitySlug;
@@ -979,6 +981,13 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
     population: "15만+", state: "New York",
     taglineKo: "뉴욕에서 찾는 나의 자리", taglineEn: "Find your place in New York.",
     taglineEs: "Encuentra tu lugar en Nueva York.",
+  },
+  newjersey: {
+    slug: "newjersey", nameKo: "뉴저지", nameEn: "New Jersey", color: "#0EA5E9",
+    heroVideo: "",
+    population: "6만+", state: "New Jersey",
+    taglineKo: "뉴저지에서 시작하는 우리 이야기", taglineEn: "Your story begins in New Jersey.",
+    taglineEs: "Tu historia comienza en Nueva Jersey.",
   },
   nashville: {
     slug: "nashville", nameKo: "내쉬빌", nameEn: "Nashville", color: "#10B981",
@@ -11954,6 +11963,7 @@ const HEBRON_CITIES = [
   { emoji: "🤠", nameKo: "달라스",       nameEn: "Dallas",        flag: "🇺🇸", url: "/dallas/",      status: "live", color: "#F59E0B" },
   { emoji: "🌉", nameKo: "샌프란시스코", nameEn: "San Francisco", flag: "🇺🇸", url: "/sf/",          status: "live", color: "#8B5CF6" },
   { emoji: "🗽", nameKo: "뉴욕",         nameEn: "New York",      flag: "🇺🇸", url: "/newyork/",     status: "live", color: "#EF4444" },
+  { emoji: "🌆", nameKo: "뉴저지",       nameEn: "New Jersey",    flag: "🇺🇸", url: "/newjersey/",   status: "live", color: "#0EA5E9" },
   { emoji: "🎵", nameKo: "내쉬빌",       nameEn: "Nashville",     flag: "🇺🇸", url: "/nashville/",   status: "live", color: "#10B981" },
   { emoji: "🦞", nameKo: "보스턴",       nameEn: "Boston",        flag: "🇺🇸", url: "/boston/",      status: "live", color: "#3B82F6" },
   { emoji: "🎬", nameKo: "LA",           nameEn: "Los Angeles",   flag: "🇺🇸", url: "/la/",          status: "live", color: "#F97316" },
@@ -12055,6 +12065,7 @@ const CITY_DESIGN: Record<string, { code: string; gradient: string; textColor: s
   "Mexico City":   { code: "MEX", gradient: "linear-gradient(135deg, #365314, #65A30D)", textColor: "#ECFCCB" },
   "Guadalajara":   { code: "GDL", gradient: "linear-gradient(135deg, #7F1D1D, #EF4444)", textColor: "#FEE2E2" },
   "Monterrey":     { code: "MTY", gradient: "linear-gradient(135deg, #4A1D96, #A855F7)", textColor: "#F3E8FF" },
+  "New Jersey":    { code: "EWR", gradient: "linear-gradient(135deg, #0C4A6E, #0EA5E9)", textColor: "#E0F2FE" },
 };
 
 function CityHubSection({ lang }: { lang: string }) {
@@ -22776,6 +22787,7 @@ const CITY_CONSULATE: Record<string, { ko: string; en: string; phone: string; ur
   dallas:       { ko: "주달라스 대한민국 출장소",   en: "Korean Consulate Branch Dallas",        phone: "(214) 750-9090", url: "overseas.mofa.go.kr/us-dallas-ko" },
   sf:           { ko: "주샌프란시스코 총영사관",    en: "Korean Consulate General San Francisco", phone: "(415) 921-2251", url: "overseas.mofa.go.kr/us-sanfrancisco-ko" },
   newyork:      { ko: "주뉴욕 대한민국 총영사관",   en: "Korean Consulate General New York",     phone: "(646) 674-6000", url: "overseas.mofa.go.kr/us-newyork-ko" },
+  newjersey:    { ko: "주뉴욕 대한민국 총영사관 (뉴저지 관할)", en: "Korean Consulate General New York", phone: "(646) 674-6000", url: "overseas.mofa.go.kr/us-newyork-ko" },
   nashville:    { ko: "주애틀랜타 총영사관 (관할)", en: "Korean Consulate General Atlanta",      phone: "(404) 522-1611", url: "overseas.mofa.go.kr/us-atlanta-ko" },
   boston:       { ko: "주보스턴 대한민국 총영사관", en: "Korean Consulate General Boston",       phone: "(617) 641-2830", url: "overseas.mofa.go.kr/us-boston-ko" },
   la:           { ko: "주LA 대한민국 총영사관",    en: "Korean Consulate General Los Angeles",   phone: "(213) 385-9300", url: "overseas.mofa.go.kr/us-losangeles-ko" },

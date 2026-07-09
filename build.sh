@@ -47,7 +47,7 @@ cp worldcup.json public/worldcup.json   2>/dev/null || true
 declare -A CITY_KO=(
   # 기존 17개 도시
   ["seattle"]="시애틀"       ["federalway"]="훼더럴웨이"  ["dallas"]="달라스"        ["sf"]="샌프란시스코"
-  ["newyork"]="뉴욕"         ["nashville"]="내쉬빌"     ["boston"]="보스턴"
+  ["newyork"]="뉴욕"         ["newjersey"]="뉴저지"     ["nashville"]="내쉬빌"     ["boston"]="보스턴"
   ["la"]="로스앤젤레스"       ["toronto"]="토론토"       ["vancouver"]="밴쿠버"
   ["houston"]="휴스턴"       ["atlanta"]="애틀랜타"     ["kansascity"]="캔자스시티"
   ["philadelphia"]="필라델피아" ["miami"]="마이애미"     ["mexicocity"]="멕시코시티"
@@ -84,7 +84,7 @@ declare -A CITY_KO=(
 declare -A CITY_EN=(
   # 기존 17개 도시
   ["seattle"]="Seattle"       ["federalway"]="Federal Way"  ["dallas"]="Dallas"          ["sf"]="San Francisco"
-  ["newyork"]="New York"      ["nashville"]="Nashville"    ["boston"]="Boston"
+  ["newyork"]="New York"      ["newjersey"]="New Jersey"    ["nashville"]="Nashville"    ["boston"]="Boston"
   ["la"]="Los Angeles"        ["toronto"]="Toronto"        ["vancouver"]="Vancouver"
   ["houston"]="Houston"       ["atlanta"]="Atlanta"        ["kansascity"]="Kansas City"
   ["philadelphia"]="Philadelphia" ["miami"]="Miami"        ["orangecounty"]="Orange County"
@@ -133,7 +133,7 @@ echo "  OK: dist/ 서브디렉토리 정리 완료"
 BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 echo "--- Deploying to cities (with city-specific SEO, build_time=$BUILD_TIME) ---"
 for city in \
-  seattle federalway dallas sf newyork nashville boston la toronto vancouver houston atlanta \
+  seattle federalway dallas sf newyork newjersey nashville boston la toronto vancouver houston atlanta \
   kansascity philadelphia miami orangecounty mexicocity guadalajara monterrey bogota \
   chicago dc sandiego honolulu portland denver \
   calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
@@ -232,7 +232,7 @@ echo "  OK: ver.txt → $(cat public/ver.txt)"
 echo "--- Generating cities.json for admin panel ---"
 REGION_MAP=(
   ["seattle"]="🇺🇸 미국"    ["federalway"]="🇺🇸 미국"  ["dallas"]="🇺🇸 미국"     ["sf"]="🇺🇸 미국"
-  ["newyork"]="🇺🇸 미국"    ["la"]="🇺🇸 미국"         ["houston"]="🇺🇸 미국"
+  ["newyork"]="🇺🇸 미국"    ["newjersey"]="🇺🇸 미국"   ["la"]="🇺🇸 미국"         ["houston"]="🇺🇸 미국"
   ["atlanta"]="🇺🇸 미국"    ["chicago"]="🇺🇸 미국"     ["dc"]="🇺🇸 미국"
   ["nashville"]="🇺🇸 미국"  ["boston"]="🇺🇸 미국"      ["miami"]="🇺🇸 미국"
   ["philadelphia"]="🇺🇸 미국" ["sandiego"]="🇺🇸 미국"  ["portland"]="🇺🇸 미국"
@@ -266,7 +266,7 @@ REGION_MAP=(
 # 새 도시 추가 시 여기에 한 줄 넣으면 랜딩 지도에 자동으로 핀이 뜬다. 없으면 지도에서만 생략(배포는 정상).
 declare -A CITY_GEO=(
   ["seattle"]="47.6062,-122.3321,미국"   ["federalway"]="47.3223,-122.3126,미국"  ["dallas"]="32.7767,-96.7970,미국"      ["sf"]="37.7749,-122.4194,미국"
-  ["newyork"]="40.7128,-74.0060,미국"    ["nashville"]="36.1627,-86.7816,미국"    ["boston"]="42.3601,-71.0589,미국"      ["la"]="34.0522,-118.2437,미국"
+  ["newyork"]="40.7128,-74.0060,미국"    ["newjersey"]="40.8484,-73.9915,미국"  ["nashville"]="36.1627,-86.7816,미국"    ["boston"]="42.3601,-71.0589,미국"      ["la"]="34.0522,-118.2437,미국"
   ["houston"]="29.7604,-95.3698,미국"    ["atlanta"]="33.7490,-84.3880,미국"      ["kansascity"]="39.0997,-94.5786,미국"  ["philadelphia"]="39.9526,-75.1652,미국"
   ["miami"]="25.7617,-80.1918,미국"      ["orangecounty"]="33.8703,-117.9865,미국" ["chicago"]="41.8781,-87.6298,미국"    ["dc"]="38.9072,-77.0369,미국"
   ["sandiego"]="32.7157,-117.1611,미국"  ["honolulu"]="21.3069,-157.8583,미국"    ["portland"]="45.5152,-122.6784,미국"   ["denver"]="39.7392,-104.9903,미국"
@@ -292,7 +292,7 @@ declare -A CITY_GEO=(
 printf '[' > public/cities.json
 first=1
 for city in \
-  seattle federalway dallas sf newyork nashville boston la toronto vancouver houston atlanta \
+  seattle federalway dallas sf newyork newjersey nashville boston la toronto vancouver houston atlanta \
   kansascity philadelphia miami orangecounty mexicocity guadalajara monterrey bogota \
   chicago dc sandiego honolulu portland denver \
   calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
