@@ -737,17 +737,41 @@ function submitStory(e){
     'Q5. 지금 이야기는 / Where Is the Story Now\n' + q5 +
     (extra ? '\n\n── 추가 사항 / Additional Notes ──\n' + extra : '');
 
-  var subject = '[HebronGuide Story] ' + city + ' — ' + name;
-  var mailto = 'mailto:hebronplatform@gmail.com' +
-    '?cc=' + encodeURIComponent(email) +
-    '&subject=' + encodeURIComponent(subject) +
-    '&body=' + encodeURIComponent(body);
+  var subject = '[HebronGuide Story] ' + city + ' — ' + (name || '익명');
 
-  window.location.href = mailto;
-  document.getElementById('storyForm').style.display='none';
-  var t=document.getElementById('thankYou');
-  t.style.display='block';
-  t.scrollIntoView({behavior:'smooth'});
+  var btn = document.querySelector('#storyForm [type="submit"]');
+  var btnLabel = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = '보내는 중…'; }
+
+  function reset(){ if (btn) { btn.disabled = false; btn.textContent = btnLabel; } }
+  function showThanks(){
+    document.getElementById('storyForm').style.display='none';
+    var t=document.getElementById('thankYou');
+    t.style.display='block';
+    t.scrollIntoView({behavior:'smooth'});
+  }
+
+  // mailto → /api/submit-story (AI 게이트 + Supabase 저장 + 관리자 이메일).
+  // 감사 화면은 '실제 저장 성공' 응답에서만 — 이메일앱 유무로 오인되던 문제 해결.
+  fetch('/api/submit-story', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: 'story_studio',   // 2층 큐레이션 (5막)
+      role: type,             // 인물 유형 (목사·평신도·이민자)
+      name: name, email: email,
+      city: city, city_slug: city,
+      content: body,          // 5개 질문 재구성 텍스트
+      title: subject,
+    }),
+  })
+  .then(function(r){ return r.json().catch(function(){ return {}; }); })
+  .then(function(d){
+    if (d && d.rejected) { alert(d.message || '이 내용은 지금 게시하기 어렵습니다.'); reset(); return; }
+    if (d && (d.ok || d.saved)) { showThanks(); }
+    else { alert((d && d.error) || '제출에 문제가 있었습니다. 잠시 후 다시 시도해 주세요.'); reset(); }
+  })
+  .catch(function(){ alert('네트워크 오류입니다. 잠시 후 다시 시도해 주세요.'); reset(); });
 }
 </script>
 </body>
