@@ -74,20 +74,20 @@ export default async function handler(req, res) {
         Authorization: `Bearer ${key}`,
         Prefer: 'return=representation',
       },
+      // ⚠️ community_items 실제 컬럼만 사용 (contact_kakao·denomination·submitted_at·city 없음 → 넣으면 42703로 저장 실패)
       body: JSON.stringify({
         category:    'church',
         type:        'churches',
         city_slug:   city_slug.trim(),
+        title:       name.trim(),
         name:        name.trim(),
         pastor:      pastor || null,
+        contact:     phone || email || null,
         phone:       phone || null,
         email:       email || null,
         website:     website || null,
-        contact_kakao: kakao || null,
-        description: description || null,
-        denomination: denomination || null,
+        description: [description, denomination && `교단: ${denomination}`, kakao && `카카오: ${kakao}`].filter(Boolean).join(' · ') || null,
         status:      'pending',
-        submitted_at: new Date().toISOString(),
       }),
     });
     const data = await r.json();
