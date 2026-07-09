@@ -94,12 +94,10 @@ export default async function handler(req, res) {
           name:         name || role || '익명',
           contact:      email || '',
           description:  text,
-          city_slug:    city_slug || '',
-          city:         city || '',
+          city_slug:    city_slug || city || '',
           status,
           confidence_score: confidence,
           auto_approved:    autoApproved,
-          submitted_at: new Date().toISOString(),
         }),
       })
       savedOk = r.ok || r.status === 201 || r.status === 204
