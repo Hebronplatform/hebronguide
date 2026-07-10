@@ -130,6 +130,7 @@ export default async function handler(req, res) {
     churchNameEn,  // 교회명 (영어)
     denomination,  // 교단·소속
     pastor,        // 담당 목사
+    pastorEn,      // 담당 목사 (영어)
     phone,         // 전화
     email,         // 이메일
     website,       // 홈페이지
@@ -138,6 +139,8 @@ export default async function handler(req, res) {
     serviceTimes,  // 예배 시간
     description,   // 한 줄 소개
     city,          // 도시 슬러그 (seattle, dallas…)
+    hebronPartner, // ☑ Hebron 협력교회 신청 (bool) — admin autoAddChurch 승격 열쇠
+    hcmi,          // ☑ 가정교회(HCMI) (bool)
   } = req.body || {};
 
   // ── 1. 필수 항목 확인 ──────────────────────────────
@@ -226,7 +229,8 @@ export default async function handler(req, res) {
   const missingDenom = !denomination?.trim();
   // 이단 키워드는 위 2단계에서 이미 차단됨. 여기서는 AI 플래그가 유일한 하드 관문.
   // 평시: 교단 없거나 AI 의심 → 검토. 홍보 기간: AI 의심만 → 검토(교단 없어도 자동 게시).
-  const needsReview = inPromo ? !!aiFlag : (aiFlag || missingDenom);
+  // 협력교회(파트너) 신청건은 반드시 목사님 검토 큐로 — 공개 체크박스만으로 자동 승격 금지(Hard Rule)
+  const needsReview = (inPromo ? !!aiFlag : (aiFlag || missingDenom)) || !!hebronPartner;
 
   // ── 6. Supabase 저장 (승인 여부와 무관하게 community_items에 저장) ──
   if (!needsReview) {
@@ -237,7 +241,7 @@ export default async function handler(req, res) {
       emoji:        "⛪",
       name:         churchName,
       name_en:      churchNameEn || churchName,
-      description:  buildDesc({ denomination, pastor, address, serviceTimes, website, kakao, description }),
+      description:  buildDesc({ denomination, pastor, pastorEn, address, serviceTimes, website, kakao, description, hebronPartner, hcmi }),
       pastor:       pastor || null,
       phone:        phone || null,
       email:        email || null,
@@ -459,15 +463,18 @@ function partnerWelcomeLetter({ pastor, churchName, city, phone, serviceTimes, a
 }
 
 // ── 헬퍼: desc 포맷 (admin.html autoAddChurch가 파싱 가능한 구조) ─
-function buildDesc({ denomination, pastor, address, serviceTimes, website, kakao, description }) {
+function buildDesc({ denomination, pastor, pastorEn, address, serviceTimes, website, kakao, description, hebronPartner, hcmi }) {
   const lines = [];
   if (denomination) lines.push(`교단: ${denomination}`);
-  if (pastor)       lines.push(`담임목사: ${pastor}`);
+  if (pastor)       lines.push(`담임목사: ${pastor}${pastorEn ? ` (${pastorEn})` : ''}`);
   if (address)      lines.push(`주소: ${address}`);
   if (serviceTimes) lines.push(`예배시간: ${serviceTimes}`);
   if (description)  lines.push(description);
   if (website && website !== '없음') lines.push(`웹사이트: ${website}`);
   if (kakao)        lines.push(`카카오: ${kakao}`);
+  // 파트너 마커 — admin.html autoAddChurch가 이 문자열을 읽어 hebron_partner/hcmi=true로 승격
+  if (hebronPartner) lines.push(`Hebron 협력교회: ✅`);
+  if (hcmi)          lines.push(`가정교회(HCMI): ✅`);
   return lines.join("\n");
 }
 

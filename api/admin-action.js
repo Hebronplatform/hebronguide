@@ -220,6 +220,7 @@ export default async function handler(req) {
           if (church.service_time)                              patch.service_time = church.service_time
           if (church.phone)                                     patch.phone        = church.phone
           if (church.website && church.website !== '없음')      patch.website      = church.website
+          if (church.address)                                   patch.address      = church.address
           if (church.description)                               patch.description  = church.description
           if (isPartner && !existingRec.hebron_partner)         patch.hebron_partner = true
           if (isHcmi)                                           patch.hcmi         = true
@@ -242,6 +243,7 @@ export default async function handler(req) {
             phone:          church.phone || '',
             email:          emailVal,
             website:        (church.website && church.website !== '없음') ? church.website : '',
+            address:        church.address || '',
             denomination:   church.denomination || '',
             service_time:   church.service_time || '',
             hebron_partner: isPartner,

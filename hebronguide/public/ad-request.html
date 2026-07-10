@@ -464,6 +464,11 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <input type="url" id="cWebsite" placeholder="https://www.yourchurch.com">
     </div>
 
+    <div class="field">
+      <label>교회 주소 <span class="opt">(선택)</span></label>
+      <input type="text" id="cAddress" placeholder="예: 123 Main St, City, ST 00000">
+    </div>
+
     <div class="field-row">
       <div class="field">
         <label>교단 <span class="opt">(선택)</span></label>
@@ -1349,12 +1354,17 @@ async function submitForm(type) {
           churchNameEn: document.getElementById('cChurchEn')?.value.trim() || '',
           denomination: finalDenom,
           pastor:       document.getElementById('cPastor')?.value.trim() || '',
+          pastorEn:     document.getElementById('cPastorEn')?.value.trim() || '',
           phone:        document.getElementById('cPhone')?.value.trim() || '',
           email:        document.getElementById('cEmail')?.value.trim() || '',
           website:      document.getElementById('cWebsite')?.value.trim() || '',
+          address:      document.getElementById('cAddress')?.value.trim() || '',
           serviceTimes: document.getElementById('cService')?.value.trim() || '',
           description:  document.getElementById('cDesc')?.value.trim() || '',
           city:         citySlug,
+          // 파트너 신청 플래그 — admin autoAddChurch가 협력교회로 승격하는 열쇠
+          hebronPartner: document.getElementById('cHebronCoop')?.checked || false,
+          hcmi:          document.getElementById('cHcmi')?.checked || false,
         }),
       });
       const data = await res.json();

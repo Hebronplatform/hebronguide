@@ -1629,6 +1629,7 @@
       const website = get('웹사이트') || get('홈페이지') || row.website || ''
       const denom   = get('교단') || ''
       const service = get('예배시간') || ''
+      const address = get('주소') || row.address || ''
       const hebron  = /Hebron.*협력교회.*✅|✅.*Hebron/i.test(desc) || Array.isArray(row.tags) && row.tags.includes('hebron_partner')
       const hcmi    = /가정교회.*✅|HCMI.*✅|✅.*HCMI/i.test(desc)  || Array.isArray(row.tags) && row.tags.includes('hcmi')
 
@@ -1639,7 +1640,8 @@
         '치노밸리':'la','chino valley':'la','chino hills':'la','inland empire':'la',
         'seattle':'seattle','시애틀':'seattle',
         'dallas':'dallas','달라스':'dallas','다라스':'dallas','dfw':'dallas',
-        'new york':'newyork','newyork':'newyork','nyc':'newyork','뉴욕':'newyork','뉴저지':'newyork',
+        'new york':'newyork','newyork':'newyork','nyc':'newyork','뉴욕':'newyork',
+        'new jersey':'newjersey','newjersey':'newjersey','nj':'newjersey','뉴저지':'newjersey','뉴져지':'newjersey','버겐카운티':'newjersey','bergen':'newjersey',
         'houston':'houston','휴스턴':'houston',
         'atlanta':'atlanta','애틀랜타':'atlanta',
         'miami':'miami','마이애미':'miami',
@@ -1700,6 +1702,7 @@
       const descText = [
         denom   ? `교단: ${denom}` : '',
         pastor  ? `담임목사: ${pastor}` : '',
+        address ? `주소: ${address}` : '',
         service ? `예배시간: ${service}` : '',
         phone   ? `전화: ${phone}` : '',
         email   ? `이메일: ${email}` : '',
@@ -1714,6 +1717,7 @@
         phone,
         email,
         website:        website !== '없음' ? website : '',
+        address,
         denomination:   denom,
         service_time:   service,
         hebron_partner: hebron,
