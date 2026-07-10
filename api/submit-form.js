@@ -103,14 +103,21 @@ export default async function handler(req, res) {
       ? itemType.toLowerCase() : ''
     // 전 도시(all) 광고는 파급이 크므로 자동 게시 제외 → 검토 후 게시.
     // 특정 도시 + 슬러그 매칭 시에만 홍보 기간 자동 게시.
-    const autoPublish = inPromo && !!displayType && !!slug && !isAllCities
+    // 협력 사업체 신청건은 자동 게시 제외 → 반드시 목사님 검토 후 승인 (Hard Rule: 미검증 파트너 자동연결 금지)
+    const wantsPartner = !!req.body.hebronPartner
+    const autoPublish = inPromo && !!displayType && !!slug && !isAllCities && !wantsPartner
     const itemStatus = autoPublish ? 'approved' : 'pending'
+    // 협력 사업체는 pending이라도 '표시형 레코드'로 저장 → 목사님 승인(status→approved) 즉시 최상단 노출
+    const hasDisplayShape = !!displayType && !!slug && !isAllCities
+    const useDisplayRecord = autoPublish || (wantsPartner && hasDisplayShape)
+    // 파트너 마커는 서버가 심음(사용자가 자유 텍스트로 위조 불가) — 도시 페이지가 이 마커로 협력 사업체를 격상
+    const partnerMark = wantsPartner ? '🤝Hebron파트너✅ ' : ''
 
     // 종료일 토큰 — 프론트가 파싱해 지난 광고 자동 숨김 (별도 컬럼 없이 description에 저장)
     const endTok = /^\d{4}-\d{2}-\d{2}$/.test(String(endDate || '')) ? `⏳END:${endDate}⏳ ` : ''
 
     // ── 1. Supabase 저장 ─────────────────────────────────────
-    const record = autoPublish
+    const record = useDisplayRecord
       ? {
           // 도시 페이지가 실제로 읽는 구조화 레코드
           type:        displayType,
@@ -118,11 +125,11 @@ export default async function handler(req, res) {
           city_slug:   slug,
           emoji:       displayType === 'businesses' ? '🏪' : '📣',
           name:        bizName || name || subject,
-          description: (displayType === 'citynews' ? endTok : '') + (desc || body),
+          description: (displayType === 'citynews' ? endTok : '') + partnerMark + (desc || body),
           website:     website || null,
           contact:     email || '',
           phone:       phone || '',
-          status:      'approved',
+          status:      itemStatus,
           submitted_at: new Date().toISOString(),
         }
       : {

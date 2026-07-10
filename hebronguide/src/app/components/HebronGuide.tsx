@@ -28289,10 +28289,11 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
           { headers }
         );
         const data = await r.json();
-        // ⭐ 파트너 사업체 먼저 (pastor 이메일 있으면 파트너)
+        // ⭐ 협력 사업체 먼저 — 서버가 심은 파트너 마커/tags 기준 (신청+목사님 승인건만)
+        const isPartnerBiz = (b: any) => /Hebron.*파트너.*✅|파트너.*사업체.*✅|협력.*사업체.*✅/i.test(`${b?.description || ''} ${b?.desc || ''}`) || (Array.isArray(b?.tags) && b.tags.includes('hebron_partner'));
         if (Array.isArray(data)) {
-          const partners = data.filter((b: any) => b.contact?.includes('@') && b.email);
-          const others   = data.filter((b: any) => !(b.contact?.includes('@') && b.email));
+          const partners = data.filter(isPartnerBiz);
+          const others   = data.filter((b: any) => !isPartnerBiz(b));
           setBusinesses([...partners, ...others]);
         }
       } catch { setBusinesses([]); }
@@ -28388,8 +28389,9 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
               {ko ? `${filtered.length}개 업소` : `${filtered.length} listings`}
             </div>
             {filtered.map((b, i) => {
-              const isPartner = !!(b.contact?.includes('@') && b.email);
-              const prevIsPartner = i > 0 && !!(filtered[i-1]?.contact?.includes('@') && filtered[i-1]?.email);
+              const partnerMark = (x: any) => /Hebron.*파트너.*✅|파트너.*사업체.*✅|협력.*사업체.*✅/i.test(`${x?.description || ''} ${x?.desc || ''}`) || (Array.isArray(x?.tags) && x.tags.includes('hebron_partner'));
+              const isPartner = partnerMark(b);
+              const prevIsPartner = i > 0 && partnerMark(filtered[i-1]);
               return (
               <div key={i}>
                 {/* 섹션 구분선: 파트너 → 일반 전환 시 */}
@@ -28442,8 +28444,8 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
                 </div>
                 {(b.desc || b.description) && (
                   <div style={{ fontSize: 13, color: "#475569", lineHeight: 1.7, marginBottom: 10 }}>
-                    {(b.desc || b.description || "").slice(0, 120)}
-                    {(b.desc || b.description || "").length > 120 ? "..." : ""}
+                    {(b.desc || b.description || "").replace(/🤝Hebron파트너✅\s*/g, "").slice(0, 120)}
+                    {(b.desc || b.description || "").replace(/🤝Hebron파트너✅\s*/g, "").length > 120 ? "..." : ""}
                   </div>
                 )}
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>

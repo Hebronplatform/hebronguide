@@ -624,9 +624,20 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <label>소속 교회 <span class="opt">(선택)</span></label>
       <input type="text" id="bChurchName" placeholder="예: 시애틀지구촌교회">
       <div style="font-size:.76rem;color:rgba(236,253,245,.45);margin-top:5px;line-height:1.6;">
-        파트너 교회 성도이시면 입력해 주세요.<br>
-        확인 후 <strong style="color:var(--mint);">🤝 Hebron 협력 사업체 ⭐ 인증 배지</strong>가 부여됩니다.
+        파트너 교회 성도이시면 입력해 주세요.
       </div>
+    </div>
+
+    <!-- Hebron 협력 사업체 신청 (선택) -->
+    <div class="field">
+      <div style="font-size:.82rem;font-weight:700;color:var(--mint);margin-bottom:8px;">🤝 Hebron 파트너 신청 <span style="font-weight:400;color:rgba(236,253,245,.4);font-size:.72rem;">(선택)</span></div>
+      <label id="label-bhebron" for="bHebronPartner" class="partner-label" style="min-width:160px;">
+        <input type="checkbox" id="bHebronPartner">
+        <div>
+          <div style="font-size:.88rem;font-weight:800;color:var(--mint);">🤝 Hebron 협력 사업체로 신청</div>
+          <div style="font-size:.72rem;color:rgba(236,253,245,.45);margin-top:2px;">확인 후 사업체 목록 최상단 노출 · ⭐ 인증 배지</div>
+        </div>
+      </label>
     </div>
 
     <!-- 개인정보 동의 — 사업체 -->
@@ -1409,6 +1420,8 @@ async function submitForm(type) {
         // 구조화 자동 게시 필드 (사업체·광고)
         itemType, citySlug, bizName, website, desc,
         endDate: (type === 'promo' ? (document.getElementById('prEnd')?.value || '') : ''),
+        // 협력 사업체 신청 — 승인 후 최상단 배지 노출 (마커는 서버가 심음)
+        hebronPartner: (type === 'business' && document.getElementById('bHebronPartner')?.checked) || false,
       }),
     });
 
