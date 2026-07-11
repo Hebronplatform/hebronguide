@@ -895,7 +895,8 @@
   const MAIN_KEY   = 'sb_publishable_j1cYftObx8VDVkEQAvluXg_rn20pnfX'
   const NEW_URL    = 'https://vextxqzggznulwpganwt.supabase.co'
   const NEW_KEY    = 'sb_publishable_j1cYftObx8VDVkEQAvluXg_rn20pnfX'
-  const SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3ODgxNTM5MiwiZXhwIjoyMDk0MzkxMzkyfQ.7WRbWtAMe15DbQZ3lQoho9tRJXNwdxZPuP99lz3-epI'
+  // 보안: 서비스 키는 절대 이 파일에 두지 않는다 (공개 배포 페이지).
+  // 쓰기 작업은 전부 adminAction(서버, 토큰 게이트)을 통한다. 2026-07-11 유출 제거 — 키 회전 필요.
 
   let sbMain = null, sbNew = null, session = null
   let currentTab = 'community'
