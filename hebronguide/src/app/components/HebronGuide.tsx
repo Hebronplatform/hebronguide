@@ -16376,6 +16376,11 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   // - Supabase: hcmi===true 인 것만 가정교회 (hcmi===false → 협력교회)
   const isHome = (c: any) => c.hcmi === true;
   const isPartner = (c: any) => c.hebronPartner || c.hebron_partner;
+  // 이모티콘 금지 원칙(목사님 지시) — 기존 데이터의 줄머리 이모지를 렌더 시 제거
+  const stripEmoji = (s: string) => (s || "")
+    .split("\n")
+    .map(l => l.replace(/^[\s\p{Extended_Pictographic}️‍]+/u, ""))
+    .join("\n");
 
   // ── Supabase 중복 제거: 정적 데이터에 이미 있는 교회는 sbChurches에서 제외 ──
   // 부분 일치 포함: static "에클레시아 엔크리스토 (온라인)" vs Supabase "에클레시아 엔크리스토"
@@ -16479,7 +16484,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
                   <div style={{ width: 3, height: 20, background: "#6EE7B7", borderRadius: 2 }} />
                   <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#6EE7B7", letterSpacing: "0.05em" }}>
-                    🤝 {lang === "ko" ? "Hebron 협력교회" : "Hebron Partner Churches"}
+                    {lang === "ko" ? "Hebron 협력교회" : "Hebron Partner Churches"}
                   </span>
                   <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(110,231,183,0.5)", marginLeft: "auto" }}>
                     {allPartner.length}{lang === "ko" ? "개" : " churches"}
@@ -16498,10 +16503,10 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                       {/* 피처드 헤더 바 */}
                       <div style={{ background: "rgba(110,231,183,0.1)", borderBottom: "1px solid rgba(110,231,183,0.2)", padding: "8px 16px", display: "flex", alignItems: "center", gap: 8 }}>
                         <span style={{ fontSize: 10, fontWeight: 800, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", letterSpacing: "0.04em" }}>
-                          🤝 Hebron 협력교회
+                          Hebron 협력교회
                         </span>
                         {isHome(c) && (
-                          <span style={{ fontSize: 12, color: "#C9A227" }}>⭐</span>
+                          <span style={{ fontSize: 9, fontWeight: 800, color: "#C9A227", fontFamily: "Manrope,sans-serif" }}>{lang === "ko" ? "가정교회" : "House Church"}</span>
                         )}
                       </div>
                       {/* 카드 본문 */}
@@ -16517,13 +16522,13 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                         {/* 담임목사 — description에서 추출 또는 denomination */}
                         {(c.description || c.denomination) && (
                           <div style={{ fontSize: 12, color: "rgba(110,231,183,0.8)", fontFamily: "Manrope,sans-serif", marginBottom: 4 }}>
-                            {c.denomination ? `⛪ ${c.denomination}` : ""}
+                            {c.denomination ? `${c.denomination}` : ""}
                             {c.denomination && c.service_time ? " · " : ""}
-                            {c.service_time ? `🕐 ${c.service_time}` : ""}
+                            {c.service_time ? `${c.service_time}` : ""}
                           </div>
                         )}
                         <div style={{ fontSize: 12, color: "rgba(236,253,245,0.75)", lineHeight: 1.75, whiteSpace: "pre-line", marginBottom: 12, fontFamily: "Manrope,sans-serif" }}>
-                          {lang === "ko" ? (c.desc || c.description) : (c.desc || c.description)}
+                          {stripEmoji(c.desc || c.description)}
                         </div>
                         {/* 액션 버튼 */}
                         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
@@ -16538,7 +16543,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                                 border: "none", cursor: "pointer",
                               }}
                             >
-                              🌿 {lang === "ko" ? "새가족 신청하기" : "New Member Info"}
+                              {lang === "ko" ? "새가족 신청하기" : "New Member Info"}
                             </button>
                           )}
                           {(c.website) && (
@@ -16550,7 +16555,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                                 color: "rgba(236,253,245,0.8)", borderRadius: 12, padding: "11px 16px",
                                 fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 12, textDecoration: "none",
                               }}>
-                              🔗 {lang === "ko" ? "홈페이지" : "Website"}
+                              {lang === "ko" ? "홈페이지" : "Website"}
                             </a>
                           )}
                         </div>
@@ -16569,7 +16574,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
                   <div style={{ height: 1, flex: 1, background: "rgba(201,162,39,0.2)" }} />
                   <span style={{ fontSize: 10, fontWeight: 800, color: "#C9A227", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" }}>
-                    ⭐ {lang === "ko" ? "가정교회" : "Home Churches"}
+                    {lang === "ko" ? "가정교회" : "Home Churches"}
                   </span>
                   <div style={{ height: 1, flex: 1, background: "rgba(201,162,39,0.2)" }} />
                 </div>
@@ -16601,7 +16606,6 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                       border: "none", cursor: "pointer", transition: "background .2s",
                     }}
                   >
-                    <span style={{ fontSize: 16 }}>⛪</span>
                     <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13, color: "rgba(236,253,245,0.7)", flex: 1, textAlign: "left" }}>
                       {lang === "ko" ? `기타 등록 교회` : `Other Churches`}
                       <span style={{ fontWeight: 500, color: "rgba(236,253,245,0.4)", fontSize: 11, marginLeft: 6 }}>
@@ -16627,8 +16631,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                           const hasInfo = !!(sbDesc || (c as any).website);
                           const enriched = {
                             ...c,
-                            desc: c.desc || sbDesc ||
-                              (lang === "ko" ? "📋 목사님, 교회 정보를 업데이트해주세요 →" : "📋 Pastor, please update your church info →"),
+                            desc: stripEmoji(c.desc || sbDesc) ||
+                              (lang === "ko" ? "목사님, 교회 정보를 업데이트해주세요 →" : "Pastor, please update your church info →"),
                           };
                           return (
                           <div key={"o-" + i} style={{
@@ -16651,7 +16655,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                       <a href="/ad-request.html#church" style={{ display: "block", textDecoration: "none", marginTop: 12 }}>
                         <div style={{ background: "rgba(110,231,183,0.08)", border: "1px dashed rgba(110,231,183,0.3)", borderRadius: 12, padding: "11px 16px", textAlign: "center" }}>
                           <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "#6EE7B7", fontWeight: 700 }}>
-                            🤝 {lang === "ko" ? "Hebron 협력교회 신청 → 최상단 노출" : "Apply as Partner → Top Placement"}
+                            {lang === "ko" ? "Hebron 협력교회 신청 → 최상단 노출" : "Apply as Partner → Top Placement"}
                           </span>
                         </div>
                       </a>
@@ -16686,7 +16690,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* 환영 안내 — 공개 레이어 (비신자 친화) */}
             <div style={{ background: "linear-gradient(160deg, rgba(110,231,183,0.08) 0%, rgba(0,0,0,0) 100%)", border: "1px solid rgba(110,231,183,0.2)", borderRadius: 18, padding: "18px 18px 16px", marginBottom: 14 }}>
               <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#6EE7B7", marginBottom: 6 }}>
-                🤝 {lang === "ko" ? "이 도시에서 함께하는 교회들" : "Churches Welcoming You in This City"}
+                {lang === "ko" ? "이 도시에서 함께하는 교회들" : "Churches Welcoming You in This City"}
               </div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.7)", lineHeight: 1.8 }}>
                 {lang === "ko"
@@ -16704,7 +16708,6 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   {/* 협력교회 폴더 (항상 열림) */}
                   <div style={{ border: "1.5px solid rgba(110,231,183,0.35)", borderRadius: 14, marginBottom: 10, overflow: "hidden" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 16px", background: "rgba(110,231,183,0.08)" }}>
-                      <span style={{ fontSize: 14 }}>🤝</span>
                       <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#6EE7B7", flex: 1 }}>
                         {lang === "ko" ? `Hebron 협력교회 (${partnerChurches.length}개)` : `Hebron Partner Churches (${partnerChurches.length})`}
                       </span>
@@ -16731,7 +16734,6 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   {otherChurches.length > 0 && (
                     <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: 14, marginBottom: 10, overflow: "hidden" }}>
                       <button onClick={() => setOpenOther(p => !p)} style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 16px", background: "none", border: "none", width: "100%", cursor: "pointer" }}>
-                        <span style={{ fontSize: 14 }}>⛪</span>
                         <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13, color: "rgba(236,253,245,0.7)", flex: 1, textAlign: "left" }}>
                           {lang === "ko" ? `기타 교회 (${otherChurches.length}개)` : `Other Churches (${otherChurches.length})`}
                         </span>
@@ -16852,25 +16854,25 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {welcomeChurch.kakao && (
               <a href={welcomeChurch.kakao} target="_blank" rel="noopener noreferrer"
                 style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "#FEE500", borderRadius: 13, padding: "14px 16px", fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#3A1D1D", textDecoration: "none" }}>
-                💬 {lang === "ko" ? "카카오채널로 연락하기" : "Contact via KakaoTalk"}
+                {lang === "ko" ? "카카오채널로 연락하기" : "Contact via KakaoTalk"}
               </a>
             )}
             {welcomeChurch.phone && (
               <a href={`tel:${welcomeChurch.phone}`}
                 style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "rgba(110,231,183,0.22)", border: "1.5px solid rgba(110,231,183,0.55)", borderRadius: 13, padding: "15px 16px", fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#6EE7B7", textDecoration: "none" }}>
-                📞 {lang === "ko" ? `전화 연결 · ${welcomeChurch.phone}` : `Call · ${welcomeChurch.phone}`}
+                {lang === "ko" ? `전화 연결 · ${welcomeChurch.phone}` : `Call · ${welcomeChurch.phone}`}
               </a>
             )}
             {welcomeChurch.website && (
               <a href={welcomeChurch.website} target="_blank" rel="noopener noreferrer"
                 style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 13, padding: "14px 16px", fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 14, color: "rgba(236,253,245,0.8)", textDecoration: "none" }}>
-                🔗 {lang === "ko" ? "홈페이지 방문" : "Visit Website"}
+                {lang === "ko" ? "홈페이지 방문" : "Visit Website"}
               </a>
             )}
             {welcomeChurch.email && (
               <a href={`mailto:${welcomeChurch.email}?subject=${encodeURIComponent(lang === "ko" ? `[HebronGuide] ${welcomeChurch.name} 새가족 문의` : `[HebronGuide] ${welcomeChurch.name} New Member Inquiry`)}`}
                 style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 13, padding: "12px 16px", fontFamily: "Manrope,sans-serif", fontWeight: 600, fontSize: 13, color: "rgba(236,253,245,0.42)", textDecoration: "none" }}>
-                ✉️ {lang === "ko" ? "이메일 문의" : "Email Inquiry"}
+                {lang === "ko" ? "이메일 문의" : "Email Inquiry"}
               </a>
             )}
             <button onClick={() => setWelcomeChurch(null)}
