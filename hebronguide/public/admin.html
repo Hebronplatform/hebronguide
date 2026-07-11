@@ -1621,7 +1621,7 @@
         return m ? m[1].trim() : ''
       }
       const nameKo  = get('교회명\\(KO\\)') || get('교회명') || row.name || ''
-      const nameEn  = get('교회명\\(EN\\)') || nameKo
+      const nameEn  = get('교회명\\(EN\\)') || row.name_en || nameKo   // row.name_en 폴백 — 승격 시 영문명 유실 방지
       const pastor  = get('담임목사\\(KO\\)') || get('담임목사') || row.pastor || ''
       const city    = get('도시슬러그') || get('도시') || row.city_slug || ''
       const phone   = get('전화') || row.phone || ''
