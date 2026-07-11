@@ -895,7 +895,8 @@
   const MAIN_KEY   = 'sb_publishable_j1cYftObx8VDVkEQAvluXg_rn20pnfX'
   const NEW_URL    = 'https://vextxqzggznulwpganwt.supabase.co'
   const NEW_KEY    = 'sb_publishable_j1cYftObx8VDVkEQAvluXg_rn20pnfX'
-  const SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3ODgxNTM5MiwiZXhwIjoyMDk0MzkxMzkyfQ.7WRbWtAMe15DbQZ3lQoho9tRJXNwdxZPuP99lz3-epI'
+  // 보안: 서비스 키는 절대 이 파일에 두지 않는다 (공개 배포 페이지).
+  // 쓰기 작업은 전부 adminAction(서버, 토큰 게이트)을 통한다. 2026-07-11 유출 제거 — 키 회전 필요.
 
   let sbMain = null, sbNew = null, session = null
   let currentTab = 'community'
@@ -1414,8 +1415,8 @@
             500도시 2030 전략 프레임워크 기반 AI 플래너 · Tier 분류 · 도시 확장 전략 · 환대 선교 설계
           </div>
           <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
-            ${['다음 추가할 10개 도시 추천해줘','동남아시아 Tier 2 확장 계획 만들어줘',
-               '현재 69개 도시의 Tier 분류 현황 분석해줘','유럽 한인 디아스포라 전략 짜줘',
+            ${['다음 추가할 77개 도시 추천해줘','동남아시아 Tier 2 확장 계획 만들어줘',
+               '현재 77개 도시의 Tier 분류 현황 분석해줘','유럽 한인 디아스포라 전략 짜줘',
                '새 도시 JSON 스키마 예시 만들어줘'].map(q =>
               `<button onclick="plannerAsk('${q.replace(/'/g,"\\'")}')
                 style="background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);
@@ -1621,7 +1622,7 @@
         return m ? m[1].trim() : ''
       }
       const nameKo  = get('교회명\\(KO\\)') || get('교회명') || row.name || ''
-      const nameEn  = get('교회명\\(EN\\)') || nameKo
+      const nameEn  = get('교회명\\(EN\\)') || row.name_en || nameKo   // row.name_en 폴백 — 승격 시 영문명 유실 방지
       const pastor  = get('담임목사\\(KO\\)') || get('담임목사') || row.pastor || ''
       const city    = get('도시슬러그') || get('도시') || row.city_slug || ''
       const phone   = get('전화') || row.phone || ''
@@ -1629,6 +1630,7 @@
       const website = get('웹사이트') || get('홈페이지') || row.website || ''
       const denom   = get('교단') || ''
       const service = get('예배시간') || ''
+      const address = get('주소') || row.address || ''
       const hebron  = /Hebron.*협력교회.*✅|✅.*Hebron/i.test(desc) || Array.isArray(row.tags) && row.tags.includes('hebron_partner')
       const hcmi    = /가정교회.*✅|HCMI.*✅|✅.*HCMI/i.test(desc)  || Array.isArray(row.tags) && row.tags.includes('hcmi')
 
@@ -1639,7 +1641,8 @@
         '치노밸리':'la','chino valley':'la','chino hills':'la','inland empire':'la',
         'seattle':'seattle','시애틀':'seattle',
         'dallas':'dallas','달라스':'dallas','다라스':'dallas','dfw':'dallas',
-        'new york':'newyork','newyork':'newyork','nyc':'newyork','뉴욕':'newyork','뉴저지':'newyork',
+        'new york':'newyork','newyork':'newyork','nyc':'newyork','뉴욕':'newyork',
+        'new jersey':'newjersey','newjersey':'newjersey','nj':'newjersey','뉴저지':'newjersey','뉴져지':'newjersey','버겐카운티':'newjersey','bergen':'newjersey',
         'houston':'houston','휴스턴':'houston',
         'atlanta':'atlanta','애틀랜타':'atlanta',
         'miami':'miami','마이애미':'miami',
@@ -1700,6 +1703,7 @@
       const descText = [
         denom   ? `교단: ${denom}` : '',
         pastor  ? `담임목사: ${pastor}` : '',
+        address ? `주소: ${address}` : '',
         service ? `예배시간: ${service}` : '',
         phone   ? `전화: ${phone}` : '',
         email   ? `이메일: ${email}` : '',
@@ -1714,6 +1718,7 @@
         phone,
         email,
         website:        website !== '없음' ? website : '',
+        address,
         denomination:   denom,
         service_time:   service,
         hebron_partner: hebron,
