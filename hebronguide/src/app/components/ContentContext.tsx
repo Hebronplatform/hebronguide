@@ -75,18 +75,24 @@ async function fetchChurches(citySlug: string): Promise<PlaceItem[]> {
     const res = await fetch(url, { headers: sbHeaders() });
     if (!res.ok) return [];
     const rows: any[] = await res.json();
+    // ⚠️ 구조화 필드를 '보존'해야 협력교회 카드(HebronGuide.tsx)가 영문명·교단·예배시간·
+    //    전화·홈페이지 버튼을 풍성하게 렌더한다. 예전엔 desc 한 줄로 조합하고 필드를 버려
+    //    모든 DB 교회가 얇게(버튼 없이) 떴다. (2026-07 근본 수정 — 시애틀 하드코딩 교회와 동일 표준)
     return rows.map(r => ({
       id: String(r.id),
       emoji: '⛪',
       name: r.name || '',
       nameEn: r.name_en || r.name || '',
-      desc: [
-        r.denomination ? `[${r.denomination}]` : '',
-        r.description || '',
-        r.phone ? `☎ ${r.phone}` : '',
-        r.website ? `🔗 ${r.website}` : '',
-      ].filter(Boolean).join(' '),
+      name_en: r.name_en || '',                 // 카드 영문 부제 (snake_case로 읽음)
+      desc: r.description || '',                 // 깨끗한 소개만 (조합 금지 — 카드가 구조화 필드로 렌더)
       descEn: r.description || '',
+      description: r.description || '',
+      denomination: r.denomination || '',        // ⛪ 교단 줄
+      service_time: r.service_time || '',        // 🕐 예배시간 줄
+      phone: r.phone || '',                      // 🌿 새가족 버튼
+      email: r.email || '',
+      website: r.website || '',                  // 🔗 홈페이지 버튼
+      address: r.address || '',
       tags: [r.denomination, r.city_slug].filter(Boolean),
       active: r.active ?? true,
       order: r.tier ?? 2,
