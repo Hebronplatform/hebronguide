@@ -178,6 +178,26 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
     </div>
   </div>
 
+  <!-- 이번 달 주제 캠페인 -->
+  <div style="max-width:600px;margin:16px auto 6px;background:linear-gradient(160deg,rgba(201,162,39,.10) 0%,rgba(139,0,0,.06) 100%);border:1px solid rgba(201,162,39,.32);border-radius:16px;padding:22px 24px;text-align:left">
+    <div style="font-size:.72rem;font-weight:800;letter-spacing:.12em;color:rgba(232,212,139,.85);text-transform:uppercase;margin-bottom:8px" class="ko">이번 달, 우리가 함께 모으는 이야기</div>
+    <div style="font-size:.72rem;font-weight:800;letter-spacing:.12em;color:rgba(232,212,139,.85);text-transform:uppercase;margin-bottom:8px" class="en">This month, the story we gather together</div>
+    <div style="font-family:'Noto Serif KR',serif;font-size:1.5rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:12px" class="ko">처음 도착한 그날 밤</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:12px" class="en">The First Night You Arrived</div>
+    <div style="font-size:.95rem;color:rgba(236,253,245,.82);line-height:2" class="ko">
+      비행기에서 내려 낯선 공기를 처음 들이쉰 그 밤을, 기억하시나요.<br>
+      아는 얼굴 하나 없던 도시에서 누군가 말없이 건넨 따뜻한 밥 한 그릇, 하룻밤 잠자리, 서툰 길을 함께 걸어준 손 —<br>
+      그 작은 환대가 아직 마음에 남아 있다면, 그 밤의 이야기를 들려주세요.<br>
+      <span style="color:rgba(232,212,139,.95)">당신의 그 밤이, 지금 혼자 도착해 잠 못 이루는 누군가에게 “괜찮아요, 당신은 혼자가 아니에요”라는 한마디가 됩니다.</span>
+    </div>
+    <div style="font-size:.95rem;color:rgba(236,253,245,.82);line-height:2" class="en">
+      Do you remember the night you first breathed the air of a strange city?<br>
+      In a place where not one face was familiar, someone quietly handed you a warm bowl of rice, a place to sleep, a hand to walk the unfamiliar streets with —<br>
+      if that small kindness still lives in your heart, tell us about that night.<br>
+      <span style="color:rgba(232,212,139,.95)">Your night can become the words, “It's okay — you are not alone,” for someone arriving alone tonight.</span>
+    </div>
+  </div>
+
   <div class="city-count">
     <span class="city-pill-sm">🇺🇸 미국 31개 도시</span>
     <span class="city-pill-sm">🇨🇦 캐나다 6개</span>
@@ -639,6 +659,20 @@ Ex: She now serves as the new members coordinator at the Korean church in Dubai.
       </label>
     </div>
 
+    <!-- 선집(eBook) 수록 동의 — 따뜻한 초대, 선택 -->
+    <div class="agree-box" style="background:linear-gradient(160deg,rgba(201,162,39,.08),rgba(0,0,0,0));border-color:rgba(201,162,39,.28)">
+      <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;">
+        <input type="checkbox" id="s_ebook" style="width:18px;height:18px;margin-top:3px;flex-shrink:0;accent-color:var(--gold);">
+        <span style="font-size:.85rem;color:rgba(236,253,245,.82);line-height:1.95;">
+          <span class="ko">이 이야기가 다른 분들의 이야기와 함께 엮여, 무료로 나누는 <strong style="color:rgba(232,212,139,.95)">「환대 이야기집」</strong>의 한 페이지가 되어도 좋습니다.<br>
+          언젠가 낯선 도시에서 밤잠 설치던 누군가가 이 책을 펼쳤다가, 당신의 그 밤에서 위로를 얻기를 바라며 —<br>
+          <span style="color:var(--muted);font-size:.78rem">저작권은 언제나 당신께 있고, 팔지 않으며, 원치 않으시면 넣지 않습니다.</span></span>
+          <span class="en">I'm glad for this story to be woven together with others into a free collection, <strong style="color:rgba(232,212,139,.95)">“Stories of Welcome,”</strong> so that someday someone lying awake in a strange city might open its pages and find comfort in your night.<br>
+          <span style="color:var(--muted);font-size:.78rem">The copyright always remains yours; it is never sold, and never included against your wish.</span></span>
+        </span>
+      </label>
+    </div>
+
     <div class="submit-area">
       <button type="submit" class="btn-submit">
         ✦ <span class="ko">이야기 제출하기</span><span class="en">Submit My Story</span>
@@ -763,6 +797,8 @@ function submitStory(e){
       city: city, city_slug: city,
       content: body,          // 5개 질문 재구성 텍스트
       title: subject,
+      ebookConsent: document.getElementById('s_ebook') ? document.getElementById('s_ebook').checked : false,
+      theme: 'first-night',   // 이번 달 주제: 처음 도착한 그날 밤
     }),
   })
   .then(function(r){ return r.json().catch(function(){ return {}; }); })

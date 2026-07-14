@@ -24,8 +24,13 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
   try {
-    const { type, role, name, email, city, city_slug, content, title } = req.body || {}
+    const { type, role, name, email, city, city_slug, content, title, ebookConsent, theme } = req.body || {}
     const tier = type === 'story_studio' ? 'story_studio' : 'story_share'
+    // 선집(eBook) 후보 태깅 — admin에서 'ebook_ok'로 골라 봄. 주제 캠페인도 태그로 묶음.
+    const tags = [
+      ...(ebookConsent ? ['ebook_ok'] : []),
+      ...(theme ? [`theme:${theme}`] : []),
+    ]
     const text = (content || '').trim()
     if (!text || text.length < 10) return res.status(400).json({ error: '이야기 내용을 조금 더 입력해 주세요' })
     if (!city && !city_slug)       return res.status(400).json({ error: '도시를 선택해 주세요' })
@@ -98,6 +103,7 @@ export default async function handler(req, res) {
           status,
           confidence_score: confidence,
           auto_approved:    autoApproved,
+          ...(tags.length ? { tags } : {}),
         }),
       })
       savedOk = r.ok || r.status === 201 || r.status === 204
@@ -138,8 +144,8 @@ export default async function handler(req, res) {
       return res.status(200).json({
         ok: true, saved: savedOk, email: emailOk, status, auto: autoApproved,
         message: status === 'approved'
-          ? '이야기가 공유되었습니다. 나눠주셔서 감사합니다! 🙏'
-          : '이야기가 접수되었습니다. 확인 후 게시됩니다. 감사합니다! 🙏',
+          ? '당신의 이야기가 도착했습니다. 이 한 편이 누군가의 밤을 밝힐 거예요. 나눠주셔서 고맙습니다.'
+          : '당신의 이야기가 잘 도착했습니다. 마음을 담아 읽어본 뒤 함께 나누겠습니다. 고맙습니다.',
       })
     }
     return res.status(500).json({ error: '저장에 실패했습니다. 잠시 후 다시 시도해 주세요.' })
