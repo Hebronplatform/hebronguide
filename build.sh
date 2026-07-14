@@ -180,6 +180,7 @@ cp hebronguide/public/event-waba-2026.html          public/event-waba-2026.html 
 cp hebronguide/public/waba-poster-volunteers-2026.jpg public/waba-poster-volunteers-2026.jpg 2>/dev/null || true
 cp hebronguide/public/waba-poster-official-2026.jpg   public/waba-poster-official-2026.jpg   2>/dev/null || true
 cp hebronguide/public/ad-request.html               public/ad-request.html                 2>/dev/null || true
+cp hebronguide/public/story-invite.html             public/story-invite.html               2>/dev/null || true
 cp hebronguide/public/partner-benefits.html         public/partner-benefits.html           2>/dev/null || true
 cp hebronguide/public/qr-preview.html               public/qr-preview.html                 2>/dev/null || true
 # 파트너 교회 관리 시스템 (루트 정적 파일 직접 복사)
