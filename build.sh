@@ -177,7 +177,6 @@ cp hebronguide/dist/manifest.webmanifest            public/manifest.webmanifest 
 cp hebronguide/dist/ad-request.html                public/ad-request.html                2>/dev/null || true
 # 정적 이벤트 페이지 (hebronguide/public/ 직접 복사 — React 빌드 우회)
 cp hebronguide/public/event-waba-2026.html          public/event-waba-2026.html            2>/dev/null || true
-cp hebronguide/public/waba-poster-2026.jpg          public/waba-poster-2026.jpg            2>/dev/null || true
 cp hebronguide/public/waba-poster-volunteers-2026.jpg public/waba-poster-volunteers-2026.jpg 2>/dev/null || true
 cp hebronguide/public/ad-request.html               public/ad-request.html                 2>/dev/null || true
 cp hebronguide/public/partner-benefits.html         public/partner-benefits.html           2>/dev/null || true
