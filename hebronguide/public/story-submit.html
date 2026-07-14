@@ -34,15 +34,29 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 /* HERO — 문 안, 조용히 앉아 쓰는 방 (story-invite 밤 문밖의 잔잔한 변주) */
 .hero{position:relative;overflow:hidden;text-align:center;padding:60px 24px 46px;
   background:linear-gradient(180deg,#0a0e15 0%,#12131b 58%,#1b1610 100%);}
-.hero .scene{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.hero .scene{position:absolute;inset:-18px;pointer-events:none;transition:transform .35s cubic-bezier(.2,.7,.3,1);will-change:transform;}
 .hero .veil{position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(ellipse 62% 66% at 50% 44%,rgba(9,12,18,.74),transparent 80%);}
 .hero .inner{position:relative;z-index:3;}
+/* ── 살아있는 방: 문빛 호흡 · 등불 일렁임 · 잔불 · 창 불빛 점멸 ── */
 @keyframes doorFlicker{0%,100%{opacity:.92}42%{opacity:.66}63%{opacity:1}80%{opacity:.78}}
-@keyframes emberDrift{0%{opacity:0;transform:translateY(8px)}28%{opacity:.85}100%{opacity:0;transform:translateY(-30px)}}
+@keyframes crackBreath{0%,100%{transform:scaleY(1);opacity:.9}50%{transform:scaleY(1.05);opacity:1}}
+@keyframes haloBreath{0%,100%{opacity:.82;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+@keyframes poolShimmer{0%,100%{opacity:.78;transform:scale(1)}50%{opacity:1;transform:scale(1.035)}}
+@keyframes emberDrift{0%{opacity:0;transform:translateY(8px) translateX(0)}22%{opacity:.9}70%{opacity:.55}100%{opacity:0;transform:translateY(-34px) translateX(-6px)}}
+@keyframes emberDrift2{0%{opacity:0;transform:translateY(6px) translateX(0)}26%{opacity:.8}100%{opacity:0;transform:translateY(-42px) translateX(8px)}}
+@keyframes winkle{0%,100%{opacity:.25}50%{opacity:.85}}
 .hero .doorlight{animation:doorFlicker 5.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+.hero #doorCrackEl{animation:crackBreath 6.5s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+.hero #doorHalo{animation:haloBreath 8s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+.hero #lampPoolEl{animation:poolShimmer 9s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
 .hero .ember{animation:emberDrift 7.2s ease-in-out infinite;transform-box:fill-box;}
-@media (prefers-reduced-motion:reduce){.hero .doorlight,.hero .ember{animation:none;}}
+.hero .ember.e2{animation-name:emberDrift2;}
+.hero .glint{animation:winkle 5s ease-in-out infinite;}
+@media (prefers-reduced-motion:reduce){
+  .hero .doorlight,.hero .ember,.hero #doorCrackEl,.hero #doorHalo,.hero #lampPoolEl,.hero .glint{animation:none;}
+  .hero .scene{transition:none;transform:none!important;}
+}
 .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:99px;padding:6px 18px;margin-bottom:22px;}
 .hero h1{font-family:'Noto Serif KR',serif;font-size:clamp(1.7rem,5vw,2.4rem);font-weight:700;color:#fff;line-height:1.4;margin-bottom:16px;}
 .hero h1 em{color:var(--gold);font-style:normal;}
@@ -170,20 +184,29 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
         <stop offset="100%" stop-color="#F2C171"/>
       </linearGradient>
     </defs>
-    <!-- 오른쪽: 살짝 열린 문틈으로 새어 드는 따뜻한 빛 -->
-    <ellipse cx="1030" cy="235" rx="360" ry="300" fill="url(#doorGlow)"/>
+    <!-- 오른쪽: 살짝 열린 문틈으로 새어 드는 따뜻한 빛 (호흡) -->
+    <ellipse id="doorHalo" cx="1030" cy="235" rx="360" ry="300" fill="url(#doorGlow)"/>
     <g class="doorlight">
       <polygon points="1018,150 1018,372 640,460 1200,460" fill="#F4C978" opacity="0.09"/>
-      <rect x="1013" y="86" width="9" height="292" rx="4" fill="url(#doorCrack)"/>
+      <rect id="doorCrackEl" x="1013" y="86" width="9" height="292" rx="4" fill="url(#doorCrack)"/>
     </g>
-    <!-- 책상 위 등불 같은 따뜻한 웅덩이 (쓰는 자리) -->
-    <ellipse cx="440" cy="428" rx="460" ry="150" fill="url(#lampPool)"/>
-    <!-- 잔불 몇 점이 조용히 떠오른다 -->
+    <!-- 저 멀리 방 밖, 켜졌다 꺼지는 창 불빛 몇 -->
+    <g fill="#F4C978">
+      <rect class="glint" style="animation-delay:0s"   x="150" y="150" width="9" height="13" rx="1"/>
+      <rect class="glint" style="animation-delay:1.8s" x="196" y="196" width="8" height="12" rx="1"/>
+      <rect class="glint" style="animation-delay:3.4s" x="86"  y="212" width="8" height="12" rx="1"/>
+      <rect class="glint" style="animation-delay:2.6s" x="252" y="132" width="8" height="12" rx="1"/>
+    </g>
+    <!-- 책상 위 등불 같은 따뜻한 웅덩이 (쓰는 자리, 일렁임) -->
+    <ellipse id="lampPoolEl" cx="440" cy="428" rx="460" ry="150" fill="url(#lampPool)"/>
+    <!-- 잔불 몇 점이 조용히 떠오른다 (여러 갈래) -->
     <g fill="#F6CE86">
-      <circle class="ember" style="animation-delay:0s"   cx="986"  cy="300" r="2.3"/>
-      <circle class="ember" style="animation-delay:2.4s" cx="1044" cy="332" r="1.7"/>
-      <circle class="ember" style="animation-delay:4.3s" cx="1008" cy="268" r="2"/>
-      <circle class="ember" style="animation-delay:5.7s" cx="1062" cy="292" r="1.5"/>
+      <circle class="ember"    style="animation-delay:0s"   cx="986"  cy="300" r="2.3"/>
+      <circle class="ember e2" style="animation-delay:1.6s" cx="1044" cy="332" r="1.7"/>
+      <circle class="ember"    style="animation-delay:3.1s" cx="1008" cy="268" r="2"/>
+      <circle class="ember e2" style="animation-delay:4.4s" cx="1062" cy="292" r="1.5"/>
+      <circle class="ember"    style="animation-delay:5.6s" cx="1024" cy="312" r="1.9"/>
+      <circle class="ember e2" style="animation-delay:6.6s" cx="998"  cy="286" r="1.4"/>
     </g>
   </svg>
   <div class="veil"></div>
@@ -860,6 +883,24 @@ function submitStory(e){
   })
   .catch(function(){ alert('네트워크 오류입니다. 잠시 후 다시 시도해 주세요.'); reset(); });
 }
+
+/* 히어로 장면 미세 패럴랙스 — 스크롤·포인터에 빛이 살짝 따라 움직인다 (모션 최소화 존중) */
+(function(){
+  var hero=document.querySelector('.hero'), scene=document.querySelector('.hero .scene');
+  if(!hero||!scene) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var px=0,py=0,sy=0,raf=0;
+  function apply(){ raf=0; scene.style.transform='translate3d('+px.toFixed(1)+'px,'+(py+sy).toFixed(1)+'px,0)'; }
+  function schedule(){ if(!raf) raf=requestAnimationFrame(apply); }
+  hero.addEventListener('pointermove',function(e){
+    var r=hero.getBoundingClientRect();
+    px=((e.clientX-r.left)/r.width-0.5)*10;
+    py=((e.clientY-r.top)/r.height-0.5)*8;
+    schedule();
+  });
+  hero.addEventListener('pointerleave',function(){ px=0; py=0; schedule(); });
+  window.addEventListener('scroll',function(){ sy=Math.min(window.scrollY,420)*0.032; schedule(); },{passive:true});
+})();
 </script>
 </body>
 </html>
