@@ -16290,8 +16290,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   type WelcomeChurchData = { name: string; desc: string; phone?: string; kakao?: string; website?: string; email?: string; };
   const [welcomeChurch, setWelcomeChurch] = useState<WelcomeChurchData | null>(null);
   const tabs = lang === "ko"
-    ? ["소개", "교회 목록", "프로그램", "새가족", "🤝 파트너 네트워크"]
-    : ["About", "Churches", "Programs", "New Members", "🤝 Partner Network"];
+    ? ["소개", "교회 목록", "프로그램", "새가족", "파트너 네트워크"]
+    : ["About", "Churches", "Programs", "New Members", "Partner Network"];
   const accent = "#C084FC";
   const city = useCityConfig();
   const citySlug = city.slug;
@@ -16686,6 +16686,30 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         {/* ── TAB 5: 파트너 교회 네트워크 ── */}
         {sub === 4 && (
           <div style={{ paddingBottom: 8 }}>
+
+            {/* 서북미 목자연합수련회 (2026-07-18) — PNW 도시에만, 행사 후 자동 숨김 */}
+            {["seattle", "federalway", "vancouver", "portland"].includes(citySlug) && Date.now() < new Date("2026-07-19T00:00:00-07:00").getTime() && (
+              <a href="https://ijiguchon.github.io/ShepherdsUnitedRetreat/" target="_blank" rel="noopener"
+                style={{ display: "block", textDecoration: "none", marginBottom: 14 }}>
+                <div style={{ background: "linear-gradient(135deg, rgba(201,168,76,0.14) 0%, rgba(139,0,0,0.08) 100%)", border: "1px solid rgba(201,168,76,0.4)", borderRadius: 18, padding: "16px 18px", position: "relative", overflow: "hidden" }}>
+                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "linear-gradient(90deg,#8B0000,#C9A84C,#8B0000)" }} />
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 10, letterSpacing: "0.1em", color: "#E8D48B", textTransform: "uppercase", marginBottom: 5 }}>
+                    {lang === "ko" ? "시애틀지구촌교회 · 서북미 목자연합수련회" : "GMC of Greater Seattle · PNW Shepherds' Retreat"}
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#fff", marginBottom: 4 }}>
+                    {lang === "ko" ? "리셋을 통한 회복" : "Reset for Restoration"}
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.72)", lineHeight: 1.7 }}>
+                    {lang === "ko"
+                      ? "7월 18일(토) 9AM–5PM · Lynnwood, WA — 서북미 가정교회 목자·목녀를 초청합니다"
+                      : "Sat Jul 18, 9AM–5PM · Lynnwood, WA — for house church shepherds across the Pacific Northwest"}
+                  </div>
+                  <div style={{ display: "inline-block", marginTop: 10, background: "rgba(201,168,76,0.9)", color: "#1A1A2E", fontSize: 12, fontWeight: 800, padding: "7px 14px", borderRadius: 50, fontFamily: "Manrope,sans-serif" }}>
+                    {lang === "ko" ? "초청의 글·일정 보기 →" : "View Invitation & Schedule →"}
+                  </div>
+                </div>
+              </a>
+            )}
 
             {/* 환영 안내 — 공개 레이어 (비신자 친화) */}
             <div style={{ background: "linear-gradient(160deg, rgba(110,231,183,0.08) 0%, rgba(0,0,0,0) 100%)", border: "1px solid rgba(110,231,183,0.2)", borderRadius: 18, padding: "18px 18px 16px", marginBottom: 14 }}>
