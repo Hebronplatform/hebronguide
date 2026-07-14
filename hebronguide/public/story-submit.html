@@ -7,7 +7,7 @@
 <meta name="description" content="전 세계 77개+ 도시. 환대를 경험했거나 베푼 당신의 이야기를 나눠주세요. HebronGuide가 K-드라마처럼 극적으로 재구성해 전 세계에 전합니다.">
 <meta property="og:title" content="이야기를 나눠주세요 — HebronGuide Story Studio">
 <meta property="og:description" content="전 세계 77개+ 도시, 환대를 경험했거나 베푼 모든 이의 이야기를 수집합니다.">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&family=Cinzel:wght@700;900&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0d1117;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.07);
@@ -31,14 +31,25 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .lang-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:rgba(236,253,245,.75);font-size:.7rem;font-weight:700;letter-spacing:.06em;border-radius:20px;padding:5px 13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s;}
 .lang-btn:hover{background:rgba(201,162,39,.15);border-color:rgba(201,162,39,.4);color:var(--gold);}
 
-/* HERO */
-.hero{text-align:center;padding:56px 24px 44px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.11),transparent);}
+/* HERO — 문 안, 조용히 앉아 쓰는 방 (story-invite 밤 문밖의 잔잔한 변주) */
+.hero{position:relative;overflow:hidden;text-align:center;padding:60px 24px 46px;
+  background:linear-gradient(180deg,#0a0e15 0%,#12131b 58%,#1b1610 100%);}
+.hero .scene{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.hero .veil{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 62% 66% at 50% 44%,rgba(9,12,18,.74),transparent 80%);}
+.hero .inner{position:relative;z-index:3;}
+@keyframes doorFlicker{0%,100%{opacity:.92}42%{opacity:.66}63%{opacity:1}80%{opacity:.78}}
+@keyframes emberDrift{0%{opacity:0;transform:translateY(8px)}28%{opacity:.85}100%{opacity:0;transform:translateY(-30px)}}
+.hero .doorlight{animation:doorFlicker 5.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+.hero .ember{animation:emberDrift 7.2s ease-in-out infinite;transform-box:fill-box;}
+@media (prefers-reduced-motion:reduce){.hero .doorlight,.hero .ember{animation:none;}}
 .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:99px;padding:6px 18px;margin-bottom:22px;}
 .hero h1{font-family:'Noto Serif KR',serif;font-size:clamp(1.7rem,5vw,2.4rem);font-weight:700;color:#fff;line-height:1.4;margin-bottom:16px;}
 .hero h1 em{color:var(--gold);font-style:normal;}
 .hero-sub{font-size:.95rem;color:var(--muted);max-width:540px;margin:0 auto 22px;line-height:2.1;}
 .city-count{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:10px;}
-.city-pill-sm{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:99px;padding:4px 12px;font-size:.74rem;color:var(--muted);}
+.city-pill-sm{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:99px;padding:4px 12px 4px 10px;font-size:.74rem;color:var(--muted);}
+.city-pill-sm::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.55;margin-right:7px;vertical-align:middle;}
 .divider{width:50px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:28px auto 0;}
 
 /* 세계 지도 도시 카운터 */
@@ -135,15 +146,49 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
 <nav>
   <a href="https://hebronguide.com" class="logo">HebronGuide</a>
   <div class="nav-right">
-    <span class="nav-tag ko">📖 이야기 스튜디오</span>
-    <span class="nav-tag en">📖 Story Studio</span>
+    <span class="nav-tag ko">이야기 스튜디오</span>
+    <span class="nav-tag en">Story Studio</span>
     <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="badge">✦ HebronGuide Story Studio · Global</div>
+  <svg class="scene" viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="doorGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#F4C978" stop-opacity="0.5"/>
+        <stop offset="46%" stop-color="#C98A4A" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#C98A4A" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="lampPool" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#E8B44A" stop-opacity="0.16"/>
+        <stop offset="100%" stop-color="#E8B44A" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="doorCrack" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#FFEBBC"/>
+        <stop offset="100%" stop-color="#F2C171"/>
+      </linearGradient>
+    </defs>
+    <!-- 오른쪽: 살짝 열린 문틈으로 새어 드는 따뜻한 빛 -->
+    <ellipse cx="1030" cy="235" rx="360" ry="300" fill="url(#doorGlow)"/>
+    <g class="doorlight">
+      <polygon points="1018,150 1018,372 640,460 1200,460" fill="#F4C978" opacity="0.09"/>
+      <rect x="1013" y="86" width="9" height="292" rx="4" fill="url(#doorCrack)"/>
+    </g>
+    <!-- 책상 위 등불 같은 따뜻한 웅덩이 (쓰는 자리) -->
+    <ellipse cx="440" cy="428" rx="460" ry="150" fill="url(#lampPool)"/>
+    <!-- 잔불 몇 점이 조용히 떠오른다 -->
+    <g fill="#F6CE86">
+      <circle class="ember" style="animation-delay:0s"   cx="986"  cy="300" r="2.3"/>
+      <circle class="ember" style="animation-delay:2.4s" cx="1044" cy="332" r="1.7"/>
+      <circle class="ember" style="animation-delay:4.3s" cx="1008" cy="268" r="2"/>
+      <circle class="ember" style="animation-delay:5.7s" cx="1062" cy="292" r="1.5"/>
+    </g>
+  </svg>
+  <div class="veil"></div>
+  <div class="inner">
+  <div class="badge">HebronGuide Story Studio · Global</div>
 
   <h1 class="ko">당신의 이야기,<br><em>전 세계로 흘러갑니다.</em></h1>
   <h1 class="en">Your Story,<br><em>Carried Across the World.</em></h1>
@@ -161,7 +206,7 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
 
   <!-- 기록의 사명 배너 -->
   <div style="display:inline-flex;align-items:flex-start;gap:12px;background:rgba(110,231,183,.07);border:1px solid rgba(110,231,183,.2);border-radius:14px;padding:18px 20px;max-width:540px;margin:0 auto 8px;text-align:left">
-    <span style="font-size:1.4rem;flex-shrink:0">✍️</span>
+    <span style="flex-shrink:0;width:3px;align-self:stretch;min-height:64px;background:linear-gradient(180deg,var(--gold),rgba(201,162,39,.15));border-radius:2px"></span>
     <div>
       <div class="ko" style="font-size:.95rem;color:rgba(236,253,245,.85);line-height:2.1;font-weight:500">
         누구에게나 이야기가 있습니다.<br>
@@ -203,16 +248,17 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
   </div>
 
   <div class="city-count">
-    <span class="city-pill-sm">🇺🇸 미국 31개 도시</span>
-    <span class="city-pill-sm">🇨🇦 캐나다 6개</span>
-    <span class="city-pill-sm">🌎 중남미 4개</span>
-    <span class="city-pill-sm">🇬🇧 유럽 4개</span>
-    <span class="city-pill-sm">🇦🇺 오세아니아 5개</span>
-    <span class="city-pill-sm">🇯🇵 일본 2개</span>
-    <span class="city-pill-sm">🇰🇷 한국 11개</span>
-    <span class="city-pill-sm">🌏 동남아·중동 4개</span>
+    <span class="city-pill-sm">미국 31개 도시</span>
+    <span class="city-pill-sm">캐나다 6개</span>
+    <span class="city-pill-sm">중남미 4개</span>
+    <span class="city-pill-sm">유럽 4개</span>
+    <span class="city-pill-sm">오세아니아 5개</span>
+    <span class="city-pill-sm">일본 2개</span>
+    <span class="city-pill-sm">한국 11개</span>
+    <span class="city-pill-sm">동남아·중동 4개</span>
   </div>
   <div class="divider"></div>
+  </div><!-- /.inner -->
 </div>
 
 <!-- 통계 -->
