@@ -28,6 +28,7 @@
 - 다운로드용 원본: 프로젝트 `Ad/HebronGuide-promo-{ko,en,es}.png`
 
 **등록처 연결:** 게시글의 링크 = `hebronguide.com/ad-request.html`. (이 링크를 공유하면 미리보기 이미지로 한국어 카드가 뜸.)
+- **스페인어 유입은 `?lang=es`로**: 스페인어 카드·문안의 링크는 `hebronguide.com/ad-request.html?lang=es` → 히스패닉 사용자가 **들어오는 즉시 등록 폼이 스페인어**로 뜸(교회·사업체 폼 전체 번역 완료). 페이지 상단 언어 바(한국어·English / Español)로 언제든 전환 가능.
 
 ## 3. 주간 리듬 (일요일 제외)
 
@@ -53,7 +54,7 @@
 > Lo primero que busca un recién llegado en una ciudad nueva — iglesias, restaurantes, negocios.
 > Ese primer lugar aún está libre.
 > Registra tu iglesia o negocio — coreano, americano o hispano — gratis, en más de 78 ciudades. Se publica en cuanto se verifica.
-> → Registro gratis: hebronguide.com/ad-request.html
+> → Registro gratis: hebronguide.com/ad-request.html?lang=es
 
 **Instagram 해시태그(선택):** #한인교회 #한인업소 #이민생활 #KoreanChurch #KoreanAmerican #IglesiaHispana #Seattle #디아스포라
 
