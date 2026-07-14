@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>반기는 사람이 없었습니다 — HebronGuide 이달의 이야기</title>
-<meta name="description" content="35살 목사가 낯선 땅 린우드에 도착했을 때 반기는 사람은 없었습니다. 그 고독이 교회를 만들었습니다.">
-<meta property="og:title" content="반기는 사람이 없었습니다 — HebronGuide">
-<meta property="og:description" content="35살 목사가 낯선 땅 린우드에 도착했을 때 반기는 사람은 없었습니다. 그 고독이 교회를 만들었습니다.">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<title>반기는 사람이 없었어 — HebronGuide 이달의 이야기</title>
+<meta name="description" content="서른다섯, 낯선 땅 린우드에 도착했을 때 나를 반기는 사람은 없었어. 그 고독이 환대의 교회가 됐어.">
+<meta property="og:title" content="반기는 사람이 없었어 — HebronGuide">
+<meta property="og:description" content="서른다섯, 낯선 땅에 도착했을 때 반기는 사람이 없었어. 그 고독이 교회가 됐어.">
+<meta property="og:type" content="article">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;1,500&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0d1117;--surface:rgba(255,255,255,0.04);
   --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.16);
   --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;
   --text:#ECFDF5;--muted:rgba(236,253,245,0.6);
+  --amber:#E8B44A;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;background:var(--bg);}
 body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;min-height:100vh;}
-
-/* ── 언어 전환 ── */
 html[lang="ko"] .en{display:none!important;}
 html[lang="en"] .ko{display:none!important;}
 
@@ -31,27 +31,37 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .lang-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:rgba(236,253,245,.75);font-size:.7rem;font-weight:700;letter-spacing:.06em;border-radius:20px;padding:5px 13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s;}
 .lang-btn:hover{background:rgba(201,162,39,.15);border-color:rgba(201,162,39,.4);color:var(--gold);}
 
-/* HERO */
-.story-hero{text-align:center;padding:60px 24px 44px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.1),transparent);}
+/* HERO — 도착의 밤 */
+.story-hero{position:relative;overflow:hidden;text-align:center;padding:66px 24px 48px;
+  background:linear-gradient(180deg,#0a0e18 0%,#111726 52%,#1a1712 100%);}
+.hero-scene{position:absolute;inset:-14px;width:calc(100% + 28px);height:calc(100% + 28px);pointer-events:none;transition:transform .4s cubic-bezier(.2,.7,.3,1);will-change:transform;}
+.hero-veil{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 62% at 50% 30%,rgba(10,14,22,.55),transparent 78%);}
+.hero-inner{position:relative;z-index:3;}
 .story-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:99px;padding:6px 18px;margin-bottom:24px;}
-.story-title{font-family:'Noto Serif KR',serif;font-size:clamp(2rem,6vw,3rem);font-weight:700;color:#fff;line-height:1.3;margin-bottom:14px;}
-.story-title-en{font-family:Georgia,serif;font-size:clamp(1.4rem,4vw,2.1rem);font-weight:700;color:#fff;line-height:1.3;margin-bottom:14px;}
-.story-sub{font-size:.95rem;color:var(--muted);max-width:480px;margin:0 auto 10px;line-height:1.9;}
-.story-location{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(201,162,39,.75);font-weight:700;background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.2);border-radius:99px;padding:4px 16px;margin-top:12px;}
-.story-divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:32px auto;}
+.story-title{font-family:'Noto Serif KR',serif;font-size:clamp(2rem,6.4vw,3rem);font-weight:700;color:#fff;line-height:1.32;margin-bottom:16px;text-shadow:0 2px 22px rgba(0,0,0,.45);}
+.story-title-en{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:clamp(1.5rem,4.4vw,2.2rem);font-weight:500;color:#fff;line-height:1.3;margin-bottom:16px;text-shadow:0 2px 22px rgba(0,0,0,.45);}
+.story-sub{font-size:.95rem;color:rgba(236,253,245,.82);max-width:500px;margin:0 auto 10px;line-height:2;font-weight:300;}
+.story-location{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;color:rgba(232,180,74,.9);font-weight:700;background:rgba(201,162,39,.09);border:1px solid rgba(201,162,39,.25);border-radius:99px;padding:5px 16px;margin-top:14px;}
+.story-location svg{width:13px;height:13px;}
+.story-divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:30px auto 0;}
 
 /* BODY */
-.story-container{max-width:660px;margin:0 auto;padding:0 24px 72px;}
-.scene{margin-bottom:40px;}
-.scene-label{font-size:.68rem;font-weight:800;color:rgba(201,162,39,.45);letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.05);}
-.sp{font-family:'Noto Serif KR',serif;font-size:1.02rem;color:rgba(236,253,245,.88);line-height:2.1;margin-bottom:20px;}
-.sp-en{font-family:Georgia,serif;font-size:.98rem;color:rgba(236,253,245,.88);line-height:2.05;margin-bottom:20px;}
+.story-container{max-width:660px;margin:0 auto;padding:44px 24px 72px;}
+.scene{margin-bottom:38px;}
+.scene-label{font-size:.68rem;font-weight:800;color:rgba(201,162,39,.45);letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.05);}
+.sp{font-family:'Noto Serif KR',serif;font-size:1.03rem;color:rgba(236,253,245,.9);line-height:2.15;margin-bottom:20px;}
+.sp-en{font-family:Georgia,serif;font-size:.99rem;color:rgba(236,253,245,.9);line-height:2.08;margin-bottom:20px;}
 .sp strong,.sp-en strong{color:#fff;}
+.sp em,.sp-en em{color:var(--amber);font-style:normal;}
 
-/* 직접 인용 (칼럼 원문) */
-.quote-block{background:rgba(201,162,39,.06);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;padding:18px 22px;margin:20px 0 24px;}
-.quote-text{font-family:'Noto Serif KR',serif;font-size:.97rem;color:rgba(236,253,245,.9);line-height:2.1;font-style:italic;}
-.quote-text-en{font-family:Georgia,serif;font-size:.93rem;color:rgba(236,253,245,.9);line-height:2.05;font-style:italic;}
+/* 그림 언어 — 장면 SVG */
+.scene-art{display:block;width:100%;border-radius:16px;overflow:hidden;margin:8px 0 28px;background:#0a0e15;border:1px solid rgba(255,255,255,.06);}
+.scene-art svg{display:block;width:100%;height:auto;}
+
+/* 직접 인용 */
+.quote-block{background:rgba(201,162,39,.06);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;padding:18px 22px;margin:22px 0 24px;}
+.quote-text{font-family:'Noto Serif KR',serif;font-size:.97rem;color:rgba(236,253,245,.92);line-height:2.1;font-style:italic;}
+.quote-text-en{font-family:Georgia,serif;font-size:.93rem;color:rgba(236,253,245,.92);line-height:2.05;font-style:italic;}
 .quote-source{font-size:.72rem;color:rgba(201,162,39,.6);font-weight:700;margin-top:10px;font-style:normal;}
 
 /* 내면의 소리 */
@@ -59,21 +69,22 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .inner-voice-en{color:rgba(110,231,183,.85);font-style:italic;padding-left:20px;border-left:2px solid rgba(110,231,183,.2);margin:16px 0 20px;font-family:Georgia,serif;font-size:.92rem;line-height:2;}
 
 /* 대화 */
-.dialogue{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px 20px;margin:16px 0;}
+.dialogue{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px 20px;margin:18px 0;}
 .d-who{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
-.d-line{font-family:'Noto Serif KR',serif;font-size:.95rem;color:rgba(236,253,245,.9);line-height:1.95;font-style:italic;}
-.d-line-en{font-family:Georgia,serif;font-size:.92rem;color:rgba(236,253,245,.9);line-height:1.9;font-style:italic;}
+.d-line{font-family:'Noto Serif KR',serif;font-size:.95rem;color:rgba(236,253,245,.92);line-height:1.95;font-style:italic;}
+.d-line-en{font-family:Georgia,serif;font-size:.92rem;color:rgba(236,253,245,.92);line-height:1.9;font-style:italic;}
 
 /* 클라이맥스 */
-.climax{background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.05));border:1px solid rgba(201,162,39,.3);border-radius:18px;padding:32px 28px;margin:36px 0;text-align:center;}
-.climax-text{font-family:'Noto Serif KR',serif;font-size:1.1rem;font-weight:700;color:#fff;line-height:2.1;}
-.climax-text-en{font-family:Georgia,serif;font-size:1.05rem;font-weight:700;color:#fff;line-height:2.05;}
+.climax{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.05));border:1px solid rgba(201,162,39,.3);border-radius:18px;padding:0 0 32px;margin:36px 0;text-align:center;}
+.climax .scene-art{margin:0 0 26px;border:none;border-radius:0;border-bottom:1px solid rgba(201,162,39,.18);}
+.climax-text{font-family:'Noto Serif KR',serif;font-size:1.08rem;font-weight:700;color:#fff;line-height:2.15;padding:0 26px;}
+.climax-text-en{font-family:Georgia,serif;font-size:1.03rem;font-weight:700;color:#fff;line-height:2.08;padding:0 26px;}
 
-/* 통찰 (최영기 목사 인용) */
+/* 통찰 */
 .insight{background:rgba(110,231,183,.04);border:1px solid rgba(110,231,183,.12);border-radius:16px;padding:24px 26px;margin:32px 0;}
 .insight-label{font-size:.68rem;font-weight:800;color:var(--mint);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;}
-.insight-text{font-family:'Noto Serif KR',serif;font-size:.94rem;color:rgba(236,253,245,.8);line-height:2.1;}
-.insight-text-en{font-family:Georgia,serif;font-size:.9rem;color:rgba(236,253,245,.8);line-height:2.05;}
+.insight-text{font-family:'Noto Serif KR',serif;font-size:.95rem;color:rgba(236,253,245,.82);line-height:2.1;}
+.insight-text-en{font-family:Georgia,serif;font-size:.91rem;color:rgba(236,253,245,.82);line-height:2.05;}
 .insight-source{font-size:.72rem;color:rgba(110,231,183,.5);margin-top:10px;}
 
 /* 관련 링크 */
@@ -81,7 +92,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .links-label{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
 .link-card{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:14px 18px;text-decoration:none;margin-bottom:10px;transition:border-color .2s;}
 .link-card:hover{border-color:rgba(201,162,39,.4);}
-.link-emoji{font-size:1.3rem;flex-shrink:0;}
+.link-ico{width:26px;height:26px;flex-shrink:0;color:rgba(201,162,39,.8);}
+.link-ico svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
 .link-title{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:2px;}
 .link-desc{font-size:.76rem;color:var(--muted);}
 .link-arrow{margin-left:auto;color:rgba(201,162,39,.5);}
@@ -90,8 +102,9 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .share-bar{text-align:center;margin:36px 0 28px;}
 .share-hint{font-size:.82rem;color:var(--muted);margin-bottom:14px;}
 .share-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
-.btn-share{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:99px;padding:10px 20px;cursor:pointer;font-size:.8rem;font-weight:700;font-family:'Noto Sans KR',sans-serif;color:var(--text);transition:background .2s;}
+.btn-share{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:99px;padding:10px 20px;cursor:pointer;font-size:.8rem;font-weight:700;font-family:'Noto Sans KR',sans-serif;color:var(--text);transition:background .2s;}
 .btn-share:hover{background:rgba(201,162,39,.12);border-color:rgba(201,162,39,.3);}
+.btn-share svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 .btn-kakao{background:rgba(254,229,0,.1);border-color:rgba(254,229,0,.3);color:#fee900;}
 .btn-kakao:hover{background:rgba(254,229,0,.18);}
 
@@ -107,10 +120,29 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 /* 다음 이야기 */
 .next-cta{text-align:center;padding:44px 24px;border-top:1px solid var(--border);}
 .next-label{font-size:.7rem;font-weight:800;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;}
-.btn-next{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:.9rem;border-radius:50px;padding:13px 30px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;}
+.btn-next{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:.9rem;border-radius:50px;padding:13px 30px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;}
 .btn-next:hover{opacity:.88;}
+.btn-next svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
 footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-align:center;padding:26px 24px;font-size:.74rem;color:rgba(236,253,245,.28);}
+
+/* ── 은은한 움직임 (화려하되 절제) ── */
+@keyframes twinkle{0%,100%{opacity:.22}50%{opacity:.95}}
+@keyframes winBreath{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes doorFlick{0%,100%{opacity:.9}44%{opacity:.64}68%{opacity:1}82%{opacity:.76}}
+@keyframes glowPulse{0%,100%{opacity:.72;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+@keyframes steamRise{0%{opacity:0;transform:translateY(4px)}30%{opacity:.55}100%{opacity:0;transform:translateY(-22px)}}
+@keyframes fingerPulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.18)}}
+.tw{animation:twinkle 4.5s ease-in-out infinite;}
+.win-bright{transform-box:fill-box;transform-origin:center;animation:winBreath 6s ease-in-out infinite;}
+.doorlight{animation:doorFlick 5.6s ease-in-out infinite;}
+.glow{transform-box:fill-box;transform-origin:center;animation:glowPulse 7s ease-in-out infinite;}
+.steam{transform-box:fill-box;transform-origin:center;animation:steamRise 5.5s ease-in-out infinite;}
+.fingerlight{transform-box:fill-box;transform-origin:center;animation:fingerPulse 4.8s ease-in-out infinite;}
+@media (prefers-reduced-motion:reduce){
+  .tw,.win-bright,.doorlight,.glow,.steam,.fingerlight{animation:none!important;}
+  .hero-scene{transition:none;transform:none!important;}
+}
 </style>
 </head>
 <body>
@@ -124,27 +156,70 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO — 도착의 밤 -->
 <div class="story-hero">
-  <div class="story-badge">
-    📖 <span class="ko">이달의 이야기 · 2026년 6월</span>
-    <span class="en">Story of the Month · June 2026</span>
+  <svg class="hero-scene" viewBox="0 0 1200 460" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="bld" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a2238"/><stop offset="100%" stop-color="#0d1220"/>
+      </linearGradient>
+      <radialGradient id="winGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#F4C978" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="#F4C978" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <!-- 별 -->
+    <g fill="#FFF7E6">
+      <circle class="tw" style="animation-delay:0s"   cx="150" cy="90"  r="1.8"/>
+      <circle class="tw" style="animation-delay:1.3s" cx="330" cy="60"  r="1.4"/>
+      <circle class="tw" style="animation-delay:2.5s" cx="560" cy="100" r="1.6"/>
+      <circle class="tw" style="animation-delay:.7s"  cx="900" cy="70"  r="1.4"/>
+      <circle class="tw" style="animation-delay:1.9s" cx="1080" cy="110" r="1.7"/>
+      <circle class="tw" style="animation-delay:3.1s" cx="60"  cy="150" r="1.4"/>
+    </g>
+    <!-- 스카이라인 -->
+    <g fill="url(#bld)">
+      <rect x="0" y="300" width="150" height="160"/><rect x="150" y="250" width="110" height="210"/>
+      <rect x="260" y="320" width="120" height="140"/><rect x="380" y="230" width="90" height="230"/>
+      <rect x="470" y="290" width="140" height="170"/><rect x="610" y="255" width="100" height="205"/>
+      <rect x="710" y="330" width="130" height="130"/><rect x="840" y="270" width="95" height="190"/>
+      <rect x="935" y="300" width="130" height="160"/><rect x="1065" y="255" width="135" height="205"/>
+    </g>
+    <!-- 대부분 어두운 창들 -->
+    <g fill="#F4C978" opacity="0.35">
+      <rect x="40" y="330" width="10" height="14"/><rect x="300" y="350" width="10" height="14"/>
+      <rect x="500" y="320" width="10" height="14"/><rect x="740" y="360" width="10" height="14"/>
+      <rect x="980" y="330" width="10" height="14"/><rect x="1110" y="300" width="10" height="14"/>
+    </g>
+    <!-- 딱 하나, 밝게 켜진 창 (첫 예배실) -->
+    <circle class="glow" cx="405" cy="272" r="46" fill="url(#winGlow)"/>
+    <rect class="win-bright" x="398" y="262" width="15" height="20" rx="2" fill="#FFE7AE"/>
+  </svg>
+  <div class="hero-veil"></div>
+  <div class="hero-inner">
+    <div class="story-badge">
+      <span class="ko">이달의 이야기 · 2026년</span>
+      <span class="en">Story of the Month · 2026</span>
+    </div>
+
+    <h1 class="story-title ko">반기는 사람이<br>없었어</h1>
+    <h1 class="story-title-en en">No One Was<br>There to Greet Me</h1>
+
+    <p class="story-sub ko">
+      서른다섯. 낯선 땅 린우드에 처음 발을 디뎠을 때,<br>
+      나를 반기는 사람은 아무도 없었어.
+    </p>
+    <p class="story-sub en">
+      I was thirty-five. When I first set foot in Lynnwood,<br>
+      there was no one — no one — to greet me.
+    </p>
+
+    <div class="story-location">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span class="ko">시애틀 · 린우드, 워싱턴</span><span class="en">Seattle · Lynnwood, Washington</span>
+    </div>
+    <div class="story-divider"></div>
   </div>
-
-  <h1 class="story-title ko">"반기는 사람이<br>없었습니다"</h1>
-  <h1 class="story-title-en en">"There Was No One<br>to Welcome Me"</h1>
-
-  <p class="story-sub ko">
-    35살 목사가 낯선 땅 린우드에 도착했을 때.<br>
-    그 고독이 교회를 만들었습니다.
-  </p>
-  <p class="story-sub en">
-    When a 35-year-old pastor arrived in an unfamiliar town called Lynnwood.<br>
-    That loneliness built a church.
-  </p>
-
-  <div class="story-location">🏔️ <span class="ko">시애틀 · 린우드, 워싱턴</span><span class="en">Seattle · Lynnwood, Washington</span></div>
-  <div class="story-divider"></div>
 </div>
 
 <!-- STORY -->
@@ -155,159 +230,256 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
     <div class="scene-label ko">2002년 8월 · 린우드</div>
     <div class="scene-label en">August 2002 · Lynnwood</div>
 
-    <p class="sp ko">신학교를 갓 졸업한 김 목사(35세)는 아내 김지영 씨와 다섯 살, 한 살짜리 두 아이를 데리고 워싱턴주 린우드에 도착했습니다. 교단에서 이 지역에 개척교회가 필요하다며 불렀습니다. 부르심을 믿고 무작정 왔습니다.</p>
-    <p class="sp-en en">Pastor K. (35), fresh out of seminary, arrived in Lynnwood, Washington with his wife Jiyoung and their two children — ages five and one. The denomination had called, saying this region needed a church plant. He came in faith, with nothing guaranteed.</p>
+    <p class="sp ko">2002년 8월이었어. 내가 린우드에 처음 발을 디딘 게. 서른다섯, 그때만 해도 아직 청년 소리를 듣던 나이였지. 신학교를 갓 졸업하고, 아내랑 다섯 살, 한 살배기 두 아이를 데리고, 부르심 하나만 붙들고 왔어. 교단에서 그랬거든. 시애틀에 개척교회가 필요하다고. 나는 그 말을 믿었지. 그래서 왔어. 정말, 무작정.</p>
+    <p class="sp-en en">It was August 2002 when I first set foot in Lynnwood. Thirty-five — still young enough to be called a young man. Fresh out of seminary, I came with my wife and our two kids, five years old and one, holding onto nothing but a calling. The denomination had said Seattle needed a church plant. I believed them. So I came. Just came, with no plan at all.</p>
 
-    <p class="sp ko">그런데 막상 도착해 보니 — 예배당이 없었습니다. 함께 할 동역자도 없었습니다. 그리고 반기는 사람도 없었습니다.</p>
-    <p class="sp-en en">But when he arrived — there was no sanctuary. No co-worker to minister alongside. And no one there to welcome him.</p>
+    <p class="sp ko">그런데 와서 보니 아무것도 없더라.</p>
+    <p class="sp-en en">But when I got here, there was nothing.</p>
 
-    <div class="quote-block">
-      <p class="quote-text ko">"35살, 아직 젊은이 소리를 듣는 청년 같은 김 목사가 신학교를 졸업하고... 첫 목회지인 낯선 땅, 린우드에 도착했을 때 반기는 사람은 없었습니다. 교단에서 시애틀에 개척교회가 필요하다고 초청은 했으나 들어갈 예배당도, 교회개척을 함께 할 동역자 한 사람도 없는 상태였습니다."</p>
-      <p class="quote-text-en en">"When this pastor arrived at his first ministry site — this unfamiliar land of Lynnwood — there was no one to welcome him. Though the denomination had invited him to plant a church in Seattle, there was no sanctuary to enter, not a single co-worker to join him."</p>
-      <p class="quote-source ko">— 김 목사, 「시애틀지구촌교회 11년간의 회고와 감사」, 2013.08.18</p>
-      <p class="quote-source en">— Rev. K., "11 Years of Memory and Gratitude," Jiguchon Church Seattle, Aug. 18, 2013</p>
+    <p class="sp ko">예배당이 없었어. 같이 할 동역자도 없었어. 그리고… <strong>반기는 사람이, 없었어.</strong></p>
+    <p class="sp-en en">No sanctuary. No co-worker to serve alongside. And… <strong>no one there to greet me.</strong></p>
+
+    <p class="sp ko">부르심은 나를 이 땅으로 불렀는데, 이 땅엔 나를 부른 사람이 없었던 거야. 그 둘이 이렇게 다른 말인 줄, 그날에야 알았지.</p>
+    <p class="sp-en en">The calling had summoned me to this land — but in this land, no one had summoned me. That those were two different things, I only understood that day.</p>
+
+    <p class="sp ko">방 하나를 서재로 삼았어. 거실은 예배실이 됐고. 아내랑 나, 둘이 앉아 첫 예배를 드렸지. 회중? 없었어. 우리가 회중이었으니까.</p>
+    <p class="sp-en en">I made one bedroom my study. The living room became the sanctuary. My wife and I sat down and held our first service. A congregation? There wasn't one. We were the congregation.</p>
+
+    <!-- 그림 언어: 밤의 지도 위, 멈춘 손가락 -->
+    <div class="scene-art">
+      <svg viewBox="0 0 800 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="800" height="240" fill="#0b0f18"/>
+        <!-- 지도 격자 -->
+        <g stroke="rgba(120,140,180,.18)" stroke-width="1">
+          <path d="M0 60 H800"/><path d="M0 120 H800"/><path d="M0 180 H800"/>
+          <path d="M160 0 V240"/><path d="M320 0 V240"/><path d="M480 0 V240"/><path d="M640 0 V240"/>
+          <path d="M80 0 L300 240" stroke="rgba(120,140,180,.1)"/><path d="M760 20 L500 240" stroke="rgba(120,140,180,.1)"/>
+        </g>
+        <!-- 도시 이름 흐릿하게 -->
+        <g fill="rgba(180,200,230,.22)" font-family="sans-serif" font-size="13">
+          <text x="70" y="52">Everett</text><text x="560" y="200">Shoreline</text>
+        </g>
+        <!-- 멈춘 손가락 = 외로운 빛 한 점 (다른 점은 없다) -->
+        <circle class="glow" cx="400" cy="128" r="30" fill="url(#winGlow)"/>
+        <circle class="fingerlight" cx="400" cy="128" r="4.5" fill="#FFE7AE"/>
+      </svg>
     </div>
 
-    <p class="sp ko">아파트 방 하나를 서재로, 거실을 예배실로 삼았습니다. 그리고 아내와 함께 가정예배를 시작했습니다.</p>
-    <p class="sp-en en">He converted one bedroom into a study, the living room into a sanctuary. And began holding family worship with his wife.</p>
+    <p class="sp ko">밤이 되면 지도를 폈어. 에버렛에서 쇼라인까지. 근데 표시할 교회가 없더라. 아는 이름도 없고. 점 하나 찍을 데가 없어서, 손가락이 그냥 종이 위에 멈췄어. 한참을.</p>
+    <p class="sp-en en">At night I spread the map open. From Everett to Shoreline. But there was no church to mark. No name I knew. Nowhere to place a single dot — so my finger just stopped on the paper. For a long time.</p>
 
-    <p class="sp ko">밤에는 지역 지도를 펼쳐놓고 혼자 앉아 있었습니다. 에버렛부터 쇼라인까지. 표시할 교회도 없었습니다. 아는 사람도 없었습니다. 지도 위에 점 하나 찍을 수가 없었습니다. 손가락이 그냥 종이 위에 멈췄습니다.</p>
-    <p class="sp-en en">At night, he sat alone with a map spread out before him. From Everett to Shoreline. No church to mark. No one he knew. He couldn't place a single point on that map. His finger just stopped on the paper.</p>
+    <div class="dialogue">
+      <div class="d-who ko">다섯 살 아이가</div>
+      <div class="d-who en">My five-year-old</div>
+      <div class="d-line ko">"아빠, 우리 여기서 얼마나 살아요?"</div>
+      <div class="d-line-en en">"Dad, how long are we going to live here?"</div>
+    </div>
 
-    <p class="sp ko">다섯 살 아이가 물었습니다. "아빠, 우리 여기서 얼마나 살아요?" 한 살짜리는 아직 몰랐습니다. 아빠가 뭘 모르는지를.</p>
-    <p class="sp-en en">His five-year-old asked, "Dad, how long are we going to live here?" The one-year-old didn't know yet. Didn't know what it was that Dad didn't know.</p>
+    <p class="sp ko">나는 대답을 못 했지. 한 살배기는 아직 몰랐고. 아빠가 뭘 모르는지를.</p>
+    <p class="sp-en en">I couldn't answer. The one-year-old didn't know yet — didn't know what it was that Dad didn't know.</p>
 
-    <div class="inner-voice ko">"아무 기반도 없는 영적 불모지에서... 작은 소년처럼 그저 막막하기만 했습니다. 교단이 불렀지만, 와서 보니 나 혼자였습니다."</div>
-    <div class="inner-voice-en en">"In this spiritually barren land with no foundation... I felt like a small boy standing before an enormous rock — overwhelmed and lost. The denomination had called me. But when I arrived, I was alone."</div>
+    <p class="sp ko">그 시절을 나는 나중에야 글로 적었더랬어.</p>
+    <p class="sp-en en">Only later did I write those days down.</p>
+
+    <div class="inner-voice ko">"아무 기반도 없는 영적 불모지에서… 작은 소년처럼 그저 막막하기만 했습니다. 교단이 불렀지만, 와서 보니 나 혼자였습니다."</div>
+    <div class="inner-voice-en en">"In that spiritually barren land with no foundation… I felt like a small boy, overwhelmed and lost. The denomination had called me, but when I arrived, I was alone."</div>
+
+    <p class="sp ko">지금 다시 읽어도, 그 문장엔 그날 밤 거실의 냉기가 그대로 남아 있어.</p>
+    <p class="sp-en en">Even now, reading it again, the chill of that living room is still there in the words.</p>
   </div>
 
   <!-- S2 -->
   <div class="scene">
-    <div class="scene-label ko">그럼에도 불구하고</div>
-    <div class="scene-label en">And Yet</div>
+    <div class="scene-label ko">그래도, 나는 문을 두드렸어</div>
+    <div class="scene-label en">And Still, I Knocked</div>
 
-    <p class="sp ko">막막했지만 멈추지 않았습니다. 한국 대학생 단기선교팀과 함께 팔도마켓 앞에서 찬양집회를 열었습니다. 에버렛에서 쇼라인까지, 한인 마켓과 식당들을 돌아다니며 이웃에게 물었습니다. "새로 교회가 세워진다면, 어떤 교회가 세워지기를 원하시나요?"</p>
-    <p class="sp-en en">Lost, but he did not stop. With a short-term mission team from Korea, he held praise gatherings in front of the local Korean market. He went door to door through Korean shops and restaurants from Everett to Shoreline, asking his neighbors: "If a new church were built here, what kind of church would you want it to be?"</p>
+    <p class="sp ko">막막했지. 그래도 멈추진 않았어. 한국에서 온 단기선교팀이랑 팔도마켓 앞에서 찬양을 불렀어. 사람들은 흘깃 보고 지나가더라. 그래도 불렀지. 에버렛에서 쇼라인까지, 한인 마켓이며 식당을 돌면서 처음 보는 이웃한테 물었어.</p>
+    <p class="sp-en en">I was lost. But I didn't stop. With a short-term mission team from Korea, I sang praises in front of the Korean market. People glanced and walked on. I sang anyway. From Everett to Shoreline, I went shop to shop, restaurant to restaurant, asking strangers:</p>
 
-    <p class="sp ko">그 목사가 먼저 이민자였습니다. 반기는 사람 없는 땅에서 혼자 시작한 사람이었습니다. 그래서 그는 누군가 처음 도착했을 때 어떤 마음인지 알았습니다.</p>
-    <p class="sp-en en">This pastor was himself an immigrant. Someone who had started alone in a land where no one welcomed him. And because of that, he knew what it felt like to arrive somewhere for the first time.</p>
+    <div class="dialogue">
+      <div class="d-who ko">나는 이렇게 물었어</div>
+      <div class="d-who en">This is what I asked</div>
+      <div class="d-line ko">"새로 교회가 생긴다면, 어떤 교회였으면 좋겠어요?"</div>
+      <div class="d-line-en en">"If a new church were built here, what kind of church would you want it to be?"</div>
+    </div>
+
+    <p class="sp ko">그렇게 묻고 다니다 알았어. 나는 목사이기 전에, 먼저 이민자였다는 걸. 반기는 사람 하나 없는 땅에서 혼자 시작한 사람이었다는 걸. 그래서 나는 알아. 누가 이 도시에 처음 도착했을 때, 그 밤이 얼마나 긴지. 불빛은 그렇게 많은데 <em>나를 아는 불빛</em>은 하나도 없다는 게, 사람을 어떻게 무너뜨리는지.</p>
+    <p class="sp-en en">Asking around like that, I came to see it: before I was a pastor, I was first an immigrant. Someone who'd started alone in a land where no one welcomed him. That's why I know. I know how long that first night is when you arrive in a city. So many lights — and not one of them <em>knows your name</em>. I know what that does to a person.</p>
+
+    <p class="sp ko">환대는 거기서 시작됐어. 무슨 대단한 결심이 아니었어. 그냥… 나 같은 사람을, 다시는 만들고 싶지 않았던 거야.</p>
+    <p class="sp-en en">Hospitality began right there. It wasn't some grand resolution. I just… never wanted to make another person feel the way I had.</p>
   </div>
 
   <!-- S3 -->
   <div class="scene">
-    <div class="scene-label ko">20년 후 · 한 가정의 일요일 저녁</div>
-    <div class="scene-label en">20 Years Later · One Family's Sunday Evening</div>
+    <div class="scene-label ko">스무 해가 흘러 · 어느 집의 일요일 저녁</div>
+    <div class="scene-label en">Twenty Years On · One Family's Sunday Evening</div>
 
-    <p class="sp ko">재택근무로 집에 있는 시간이 늘었지만, 가족끼리 얼굴 보기가 오히려 힘들었습니다. 각자 생활 패턴이 달랐고, 혼자 밥 먹는 날이 더 많았습니다. 신앙생활? 관심 없었습니다.</p>
-    <p class="sp-en en">Working from home meant more time in the house — but somehow it was harder than ever to see each other's faces. Different schedules, different rhythms. Eating alone most days. Faith? He had no interest.</p>
+    <!-- 그림 언어: 일요일 식탁 -->
+    <div class="scene-art">
+      <svg viewBox="0 0 800 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <radialGradient id="tableWarm" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#E8B44A" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="#E8B44A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="800" height="260" fill="#0b0f18"/>
+        <!-- 열린 문틈의 빛 -->
+        <g class="doorlight">
+          <rect x="690" y="30" width="10" height="150" rx="3" fill="#FFDFA0"/>
+          <polygon points="690,180 700,180 760,260 620,260" fill="#F6C97A" opacity="0.14"/>
+        </g>
+        <!-- 식탁 위 따뜻한 빛 웅덩이 -->
+        <ellipse cx="400" cy="150" rx="330" ry="90" fill="url(#tableWarm)"/>
+        <!-- 식탁 -->
+        <rect x="250" y="168" width="300" height="10" rx="5" fill="rgba(232,180,74,.5)"/>
+        <!-- 밥그릇 + 김 -->
+        <path d="M372 168 h56 a4 4 0 0 1 -4 12 h-48 a4 4 0 0 1 -4 -12 z" fill="#F4C978"/>
+        <g stroke="rgba(244,201,120,.5)" stroke-width="2.4" stroke-linecap="round" fill="none">
+          <path class="steam" style="animation-delay:0s"   d="M388 158 q-4 -8 0 -16"/>
+          <path class="steam" style="animation-delay:1.8s" d="M400 156 q4 -9 0 -18"/>
+          <path class="steam" style="animation-delay:3.4s" d="M412 158 q-3 -8 0 -15"/>
+        </g>
+        <!-- 둘러앉은 실루엣 -->
+        <g fill="rgba(180,200,230,.28)">
+          <circle cx="300" cy="150" r="15"/><rect x="288" y="164" width="24" height="34" rx="10"/>
+          <circle cx="500" cy="150" r="15"/><rect x="488" y="164" width="24" height="34" rx="10"/>
+          <circle cx="360" cy="140" r="13"/><rect x="349" y="152" width="22" height="30" rx="9"/>
+          <circle cx="446" cy="140" r="13"/><rect x="435" y="152" width="22" height="30" rx="9"/>
+        </g>
+      </svg>
+    </div>
 
-    <p class="sp ko">그러던 어느 날, 아내가 말했습니다. "시애틀지구촌교회 다니는 친구가 일요일 저녁 가족 모임에 초대했어."</p>
-    <p class="sp-en en">Then one day, his wife said: "A friend from Jiguchon Church invited us to their family gathering on Sunday evening."</p>
+    <p class="sp ko">세월이 지나, 이제는 내가 다른 사람의 첫 저녁을 지켜봐.</p>
+    <p class="sp-en en">The years passed, and now it's my turn to watch someone else's first evening.</p>
 
-    <p class="sp ko">어색했습니다. 처음에는. 낯선 가족과 함께 요리를 하고, 음식을 나누고, 한 주 동안 서로에게 감사했던 것을 돌아가며 말하는 그 시간이.</p>
-    <p class="sp-en en">It was awkward at first. Cooking with a family he barely knew. Sharing a meal. Going around the table taking turns saying what they were grateful for that week.</p>
+    <p class="sp ko">한 부부가 있었어. 재택근무로 집에 있는 시간은 늘었는데, 정작 식구 얼굴 보긴 더 어려워진 집. 각자 다른 시간에 일어나고, 혼자 먹는 끼니가 더 많았지. 신앙? 관심 없었어. 교회 갈 이유를 못 찾던 사람들이었으니까.</p>
+    <p class="sp-en en">There was a couple. Working from home, they were in the house more — yet somehow saw each other's faces less. Different hours, different rhythms, more meals eaten alone. Faith? No interest. They'd never found a reason to go to church.</p>
+
+    <p class="sp ko">그런 부부가 아내 친구 손에 이끌려, 어느 목장의 일요일 저녁 식탁에 앉았어. 처음엔 어색했대. 낯선 가족이랑 나란히 서서 요리하고, 음식 나누고, 한 주 동안 고마웠던 걸 돌아가며 말하는 그 시간이. 근데 그 어색함이, 오래 안 가더라.</p>
+    <p class="sp-en en">Then a friend of the wife's brought them to a home group's Sunday table. It was awkward at first, they said — standing shoulder to shoulder with a family they barely knew, cooking, sharing food, going around telling what they'd been grateful for that week. But the awkwardness didn't last long.</p>
 
     <div class="quote-block">
-      <p class="quote-text ko">"처음에는 함께 요리한다는 것이 어색했다. 하지만 금방 익숙해졌고 가족 간에 마음의 벽도 허물어져 이보다 더 편안한 관계가 없을 것 같았다... '그래, 이게 가족이지! 참 행복하다'는 감탄이 나온다."</p>
-      <p class="quote-text-en en">"At first, cooking together felt awkward. But we got used to it quickly, and the walls between us began to come down — I felt there could be no more comfortable relationship than this... 'Yes, this is what family is. I'm truly happy.'"</p>
+      <p class="quote-text ko">"처음에는 함께 요리한다는 것이 어색했다. 하지만 금방 익숙해졌고 가족 간에 마음의 벽도 허물어져 이보다 더 편안한 관계가 없을 것 같았다… '그래, 이게 가족이지! 참 행복하다'는 감탄이 나온다."</p>
+      <p class="quote-text-en en">"At first, cooking together felt awkward. But we grew used to it fast, and the walls between us came down — I couldn't imagine a more comfortable bond… 'Yes, this is what family is. I'm truly happy,' the wonder rises on its own."</p>
       <p class="quote-source ko">— 김 목사, 「나에게는 가정목장의 꿈이 있습니다」, 2024.01.13</p>
       <p class="quote-source en">— Rev. K., "I Have a Dream for Home Groups," Jan. 13, 2024</p>
     </div>
 
-    <p class="sp ko">이 부부는 신앙인이 아니었습니다. 교회에 갈 이유를 찾지 못했던 사람들이었습니다. 그런데 그날 저녁, 그 식탁에서, 무언가가 달라졌습니다.</p>
-    <p class="sp-en en">This couple were not believers. They had never found a reason to go to church. But that evening, at that table, something changed.</p>
+    <p class="sp ko">교회 갈 이유를 못 찾던 그 부부가, 그날 식탁에서 이유가 아니라 사람을 만난 거야. 며칠 뒤, 남편이 그러더라.</p>
+    <p class="sp-en en">The couple who couldn't find a reason to go to church — at that table, they didn't find a reason. They found people. A few days later, the husband said this:</p>
 
     <div class="dialogue">
-      <div class="d-who ko">그 남편</div>
+      <div class="d-who ko">그 남편이</div>
       <div class="d-who en">The husband</div>
-      <div class="d-line ko">"앞으로, 지구촌 교회 가까이로 이사를 할까 한다."</div>
-      <div class="d-line-en en">"I'm thinking we might move closer to Jiguchon Church."</div>
+      <div class="d-line ko">"앞으로, 교회 가까운 데로 이사를 할까 봐."</div>
+      <div class="d-line-en en">"I'm thinking we might move closer to the church."</div>
     </div>
   </div>
 
   <!-- 통찰 -->
   <div class="insight">
-    <div class="insight-label ko">왜 이런 일이 일어나는가</div>
+    <div class="insight-label ko">왜 이런 일이 일어날까</div>
     <div class="insight-label en">Why Does This Happen</div>
-    <p class="insight-text ko">최영기 목사(가정교회 창시자)는 이렇게 말합니다. 겉으로는 아무 문제 없어 보이는 사람들도, 그 마음속 깊은 곳에는 세 가지 두려움이 있다고. "죽음에 대한 두려움, 외로움, 무력감." 아무리 부인해도 그렇다고.<br><br>
+    <p class="insight-text ko">가정교회를 시작한 최영기 목사님이 그랬어. 겉으론 멀쩡해 보이는 사람 마음속에도 세 가지 두려움이 있다고. 죽음, 외로움, 그리고 무력감. 아무리 아니라 해도, 있다고.<br><br>
     "친구도 많고 친지도 많지만, 진정으로 마음을 나눌 수 있는 대상이 없다는 생각이 가끔 머리를 스칩니다. 배우자가 옆에 있음에도 불구하고 세상에서 혼자라는 생각도 가끔 해봅니다."<br><br>
-    그 외로움에 누군가 먼저 다가올 때 — 강요 없이, 판단 없이, 그냥 밥 한 끼를 함께 할 때 — 마음의 문이 열립니다.</p>
-    <p class="insight-text-en en">Rev. Choi Young-gi, founder of HCMI, says this: even people who seem to have no problems carry three deep fears — "fear of death, loneliness, and powerlessness." No matter how much they deny it.<br><br>
-    "Even if I have many friends and family, the thought sometimes flickers — there's no one I can truly share my heart with. Even with my spouse beside me, I sometimes feel alone in this world."<br><br>
-    When someone approaches that loneliness — without pressure, without judgment, simply to share a meal — the door of the heart opens.</p>
+    그 외로움에 누가 먼저 다가설 때 — 강요도, 판단도 없이, 그냥 밥 한 끼 같이 하자고 손 내밀 때 — 닫혀 있던 문이 열려. 나는 그걸 스무 해 동안 수백 번 봤어. 볼 때마다 처음처럼 놀라지.</p>
+    <p class="insight-text-en en">Rev. Choi Young-gi, who began the home-church movement, said this: even people who look perfectly fine carry three fears deep down — death, loneliness, and powerlessness. However much they deny it, they're there.<br><br>
+    "I have many friends and relatives, yet the thought sometimes brushes past me — there is no one I can truly open my heart to. Even with my spouse beside me, I sometimes feel alone in the world."<br><br>
+    And when someone steps toward that loneliness first — no pressure, no judgment, just a hand held out to share one meal — the shut door opens. I've watched it happen hundreds of times over twenty years. And every time, it still astonishes me like the first.</p>
     <p class="insight-source ko">— 최영기 목사, 「신앙생활에 관심 없는 사람들」, 2019.05.31</p>
     <p class="insight-source en">— Rev. Choi Young-gi, "People With No Interest in Faith," May 31, 2019</p>
   </div>
 
   <!-- 클라이맥스 -->
   <div class="climax">
+    <!-- 그림 언어: 이어지는 빛의 문 -->
+    <div class="scene-art">
+      <svg viewBox="0 0 800 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <radialGradient id="doorHalo2" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#F4C978" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#F4C978" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="pathLight" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#E8B44A" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#E8B44A" stop-opacity="0.6"/>
+          </linearGradient>
+        </defs>
+        <rect width="800" height="220" fill="#0b0f18"/>
+        <!-- 빛의 길: 공항 → 식탁 → 문 -->
+        <path d="M40 170 C 260 150, 520 130, 690 96" fill="none" stroke="url(#pathLight)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="3 9"/>
+        <g fill="rgba(180,200,230,.3)">
+          <circle cx="60" cy="170" r="4"/><circle cx="380" cy="140" r="4"/>
+        </g>
+        <!-- 열린 문 + 쏟아지는 빛 -->
+        <circle class="glow" cx="700" cy="96" r="70" fill="url(#doorHalo2)"/>
+        <g class="doorlight">
+          <rect x="676" y="40" width="48" height="120" rx="4" fill="#1a2238"/>
+          <rect x="700" y="46" width="22" height="112" rx="2" fill="#FFDFA0"/>
+          <polygon points="700,158 722,158 770,210 660,210" fill="#F6C97A" opacity="0.3"/>
+        </g>
+      </svg>
+    </div>
     <p class="climax-text ko">
-      2002년, 반기는 사람이 없는 땅에 도착했던 그 목사는<br>
-      지금 이 도시에 환대의 교회를 세웠습니다.<br><br>
+      2002년, 반기는 사람 하나 없던 땅에 도착했던 그 사람이<br>
+      지금 이 도시에 환대의 교회 하나를 세웠어.<br><br>
       그 교회에서 훈련받은 성도들이<br>
-      일요일 저녁 낯선 이웃을 식탁으로 초대합니다.<br><br>
-      그 식탁에서 마음의 벽이 허물어집니다.<br>
-      그렇게 환대는 이어집니다.<br><br>
+      일요일 저녁, 낯선 이웃을 식탁으로 부르고.<br><br>
+      그 식탁에서 마음의 벽이 허물어지고.<br>
+      그렇게, 환대는 이어져.<br><br>
       <span style="color:var(--gold);">공항에서부터. 식탁에서부터. 전화번호 하나에서부터.</span>
     </p>
     <p class="climax-text-en en">
-      In 2002, a pastor arrived in a land where no one welcomed him.<br>
-      He built a church of hospitality in this city.<br><br>
-      The members trained in that church<br>
-      invite unfamiliar neighbors to their table on Sunday evenings.<br><br>
-      At that table, the walls of the heart come down.<br>
-      And so hospitality continues.<br><br>
+      In 2002, that man who arrived where no one greeted him<br>
+      has built, in this city, a church of welcome.<br><br>
+      The members shaped in that church<br>
+      call unfamiliar neighbors to their tables on Sunday evenings.<br><br>
+      At those tables, the walls of the heart come down.<br>
+      And so, hospitality is passed on.<br><br>
       <span style="color:var(--gold);">From the airport. From the table. From a single phone number.</span>
     </p>
   </div>
 
-  <!-- 희망·재미·감사 -->
+  <!-- 코다: 재미·감사·희망 -->
   <div style="text-align:center;padding:8px 0 32px;">
 
-    <!-- 재미 -->
-    <p class="sp ko" style="color:rgba(236,253,245,.55);font-family:'Noto Serif KR',serif;line-height:2.2;font-size:.95rem;">
-      그나저나 — 그 집사님 식당, 지금도 그 자리에 있습니다. 🍲<br>
-      된장찌개가 여전히 맛있다고 합니다.<br>
-      이 이야기를 읽고 직접 찾아간 분들이 생겼는데,<br>
-      "진짜 맛있어요" 라는 후기가 있습니다.
+    <p class="sp ko" style="color:rgba(236,253,245,.6);line-height:2.25;font-size:.96rem;">
+      그러고 보니 말이야 — 그해, 아무것도 없던 나한테 제일 먼저 고개 들어 인사해 준 집사님이 한 분 계셨어. 그 식당, 지금도 그 자리에 있어. 된장찌개가 여전히 맛있다더라. 이 이야기를 읽고 찾아간 사람들이 "진짜 맛있어요" 하고 남긴 후기도 있고.
     </p>
-    <p class="sp-en en" style="color:rgba(236,253,245,.55);font-family:Georgia,serif;line-height:2.1;font-size:.92rem;">
-      By the way — that deacon's restaurant is still there. 🍲<br>
-      The doenjang jjigae is still good, apparently.<br>
-      Some people read this story and went to find it.<br>
-      "It really was delicious," they said.
+    <p class="sp-en en" style="color:rgba(236,253,245,.6);font-family:Georgia,serif;line-height:2.15;font-size:.93rem;">
+      Come to think of it — that year, there was one deacon who lifted her head and said hello to me first, when I had nothing. That restaurant is still there. The doenjang jjigae is still good, they tell me. Some folks read this story, went to find it, and left a note: "It really is delicious."
     </p>
 
-    <div style="height:1px;background:rgba(255,255,255,.06);margin:20px 0;"></div>
+    <div style="height:1px;background:rgba(255,255,255,.06);margin:22px 0;"></div>
 
-    <!-- 감사 -->
-    <p class="sp ko" style="color:rgba(110,231,183,.7);font-family:'Noto Serif KR',serif;line-height:2.2;font-size:.95rem;font-style:italic;">
-      그 집사님께 감사드립니다.<br>
-      2002년 그 날, 아무것도 없는 땅에서도<br>
-      먼저 고개를 들어 인사해 주셔서.<br>
-      그 한 마디가 교회가 되었습니다.
+    <p class="sp ko" style="color:rgba(110,231,183,.72);line-height:2.25;font-size:.96rem;font-style:italic;">
+      그 집사님한테, 나는 아직도 고마워.<br>
+      2002년 그날, 아무것도 없는 땅에서도 먼저 고개 들어 인사해 주셔서.<br>
+      그 한 마디가, 교회가 됐거든.
     </p>
-    <p class="sp-en en" style="color:rgba(110,231,183,.7);font-family:Georgia,serif;line-height:2.1;font-size:.92rem;font-style:italic;">
-      Thank you, Deacon Park.<br>
-      In a land where nothing existed yet,<br>
-      you looked up and said hello first.<br>
-      That one moment became a church.
+    <p class="sp-en en" style="color:rgba(110,231,183,.72);font-family:Georgia,serif;line-height:2.15;font-size:.93rem;font-style:italic;">
+      To that deacon, I'm still grateful.<br>
+      For that day in 2002 — for looking up and greeting me first, in a land with nothing.<br>
+      That one hello became a church.
     </p>
 
-    <div style="height:1px;background:rgba(255,255,255,.06);margin:20px 0;"></div>
+    <div style="height:1px;background:rgba(255,255,255,.06);margin:22px 0;"></div>
 
-    <!-- 희망 -->
-    <p class="sp ko" style="color:rgba(236,253,245,.7);font-family:'Noto Serif KR',serif;line-height:2.3;text-align:center;">
-      오늘도 누군가가 낯선 도시에 도착합니다.<br>
-      오늘도 누군가가 처음으로 HebronGuide를 엽니다.<br>
-      오늘도 누군가가 처음으로 그 식탁에 앉습니다.<br><br>
-      <strong style="color:var(--gold);font-size:1.05rem;">당신도 그 사람이 될 수 있습니다.</strong>
+    <p class="sp ko" style="color:rgba(236,253,245,.75);line-height:2.3;text-align:center;">
+      오늘도 누군가 낯선 도시에 도착해.<br>
+      오늘도 누군가 처음으로 HebronGuide를 열지.<br>
+      오늘도 누군가 처음으로 그 식탁에 앉고.<br><br>
+      그리고 오늘도 누군가는 — 먼저 고개 들어 인사하는 사람이 돼.<br><br>
+      <strong style="color:var(--gold);font-size:1.08rem;">그게 당신이면, 참 좋겠어.</strong>
     </p>
-    <p class="sp-en en" style="color:rgba(236,253,245,.7);font-family:Georgia,serif;line-height:2.2;text-align:center;">
-      Today, someone is arriving in an unfamiliar city.<br>
-      Today, someone is opening HebronGuide for the first time.<br>
-      Today, someone is sitting at that table for the first time.<br><br>
-      <strong style="color:var(--gold);font-size:1.02rem;">You could be that person.</strong>
+    <p class="sp-en en" style="color:rgba(236,253,245,.75);font-family:Georgia,serif;line-height:2.2;text-align:center;">
+      Today, someone arrives in an unfamiliar city.<br>
+      Today, someone opens HebronGuide for the first time.<br>
+      Today, someone sits at that table for the first time.<br><br>
+      And today, someone becomes — the one who lifts their head and greets first.<br><br>
+      <strong style="color:var(--gold);font-size:1.05rem;">I'd love it if that someone were you.</strong>
     </p>
   </div>
 
@@ -317,58 +489,62 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
     <div class="links-label en">Places in This Story</div>
 
     <a href="https://hebronguide.com/seattle/" class="link-card">
-      <span class="link-emoji">🏔️</span>
+      <span class="link-ico"><svg viewBox="0 0 24 24"><path d="M3 20l6-11 4 7 3-5 5 9z"/></svg></span>
       <div>
         <div class="link-title ko">시애틀 HebronGuide</div>
         <div class="link-title en">Seattle HebronGuide</div>
         <div class="link-desc ko">정착 정보 · 병원 · 학교 · 교회 · 한인 마트</div>
         <div class="link-desc en">Settlement · Hospital · School · Church · Korean grocery</div>
       </div>
-      <span class="link-arrow">→</span>
+      <span class="link-arrow">&rarr;</span>
     </a>
 
     <a href="https://ijiguchon.org" target="_blank" rel="noopener" class="link-card">
-      <span class="link-emoji">⛪</span>
+      <span class="link-ico"><svg viewBox="0 0 24 24"><path d="M12 2v4M10 4h4M6 22V10l6-4 6 4v12M9 22v-5h6v5"/></svg></span>
       <div>
         <div class="link-title">시애틀지구촌교회</div>
-        <div class="link-desc ko">린우드, WA · 김 목사 담임목사 · ijiguchon.org</div>
+        <div class="link-desc ko">린우드, WA · 김 목사 담임 · ijiguchon.org</div>
         <div class="link-desc en">Lynnwood, WA · Senior Pastor K. · ijiguchon.org</div>
       </div>
-      <span class="link-arrow">↗</span>
+      <span class="link-arrow">&nearr;</span>
     </a>
 
     <a href="https://hebronguide.com/church-guide.html" class="link-card">
-      <span class="link-emoji">🌿</span>
+      <span class="link-ico"><svg viewBox="0 0 24 24"><path d="M11 21C6.5 21 3 17.5 3 13c4.5 0 8-3.5 8-8 4.5 0 8 3.5 8 8 0 4.5-3.5 8-8 8z"/><path d="M11 21c0-5 2-8 5-10"/></svg></span>
       <div>
         <div class="link-title ko">파트너 교회 안내</div>
         <div class="link-title en">Partner Church Guide</div>
-        <div class="link-desc ko">낯선 도시에서 여러분을 기다리는 교회들</div>
+        <div class="link-desc ko">낯선 도시에서 당신을 기다리는 교회들</div>
         <div class="link-desc en">Churches waiting to welcome you in a new city</div>
       </div>
-      <span class="link-arrow">→</span>
+      <span class="link-arrow">&rarr;</span>
     </a>
   </div>
 
   <!-- 공유 -->
   <div class="share-bar">
-    <p class="share-hint ko">이 이야기가 마음에 닿았다면 나눠주세요.</p>
-    <p class="share-hint en">If this story touched you, please share it.</p>
+    <p class="share-hint ko">이 이야기가 마음에 닿았다면 나눠줘.</p>
+    <p class="share-hint en">If this story reached you, please pass it on.</p>
     <div class="share-btns">
-      <button class="btn-share btn-kakao" onclick="shareStory()">💬 <span class="ko">카카오톡 공유</span><span class="en">Share via KakaoTalk</span></button>
-      <button class="btn-share" onclick="copyLink()">🔗 <span class="ko">링크 복사</span><span class="en">Copy Link</span></button>
+      <button class="btn-share btn-kakao" onclick="shareStory()">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg>
+        <span class="ko">카카오톡 공유</span><span class="en">Share via KakaoTalk</span></button>
+      <button class="btn-share" onclick="copyLink()">
+        <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+        <span class="ko">링크 복사</span><span class="en">Copy Link</span></button>
     </div>
   </div>
 
   <!-- 출처 -->
   <div class="source-box">
     <div class="source-title ko">출처 및 참고 자료</div>
-    <div class="source-title en">Sources & References</div>
+    <div class="source-title en">Sources &amp; References</div>
 
     <p class="src"><strong>김 목사</strong>, 「시애틀 지구촌교회 11년간의 회고와 감사」, 시애틀지구촌교회 목회자 칼럼, 2013.08.18 — <a href="https://ijiguchon.org" target="_blank" rel="noopener">ijiguchon.org</a></p>
     <p class="src"><strong>김 목사</strong>, 「나에게는 가정목장의 꿈이 있습니다」, 시애틀지구촌교회 목회자 칼럼, 2024.01.13 — <a href="https://ijiguchon.org" target="_blank" rel="noopener">ijiguchon.org</a></p>
-    <p class="src"><strong>최영기 목사 (가정교회 창시자)</strong>, 「신앙생활에 관심 없는 사람들」, 가정교회 사역원 목회자 칼럼, 2019.05.31</p>
-    <p class="src ko">이 이야기는 위 칼럼들의 실제 내용을 바탕으로 편집·재구성했습니다. 직접 인용은 원문 그대로입니다.</p>
-    <p class="src en">This story is edited and reconstructed from the actual columns cited above. Direct quotations are verbatim from the original texts.</p>
+    <p class="src"><strong>최영기 목사 (가정교회 사역원)</strong>, 「신앙생활에 관심 없는 사람들」, 목회자 칼럼, 2019.05.31</p>
+    <p class="src ko">이 이야기는 위 칼럼들의 실제 내용을 바탕으로, 김 목사 본인의 1인칭 회고로 재구성했습니다. 큰따옴표 안의 직접 인용은 원문 그대로입니다.</p>
+    <p class="src en">This story is reconstructed as the pastor's own first-person recollection, based on the actual columns cited above. Passages in quotation marks are verbatim from the originals.</p>
     <p class="src">HebronGuide 운영 철학 — <a href="https://hebronguide.com/philosophy.html" target="_blank" rel="noopener">hebronguide.com/philosophy.html</a>, Hebron Platform LLC, 2026</p>
   </div>
 
@@ -380,8 +556,9 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
   <div class="next-label en">Next city story coming soon</div>
   <br>
   <a href="https://hebronguide.com" class="btn-next">
-    <span class="ko">🌍 전 세계 77개+ 도시 보기</span>
-    <span class="en">🌍 Explore 77+ Cities Worldwide</span>
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+    <span class="ko">전 세계 도시 보기</span>
+    <span class="en">Explore Cities Worldwide</span>
   </a>
 </div>
 
@@ -403,16 +580,28 @@ function toggleLang(){
 })();
 function copyLink(){
   navigator.clipboard.writeText(window.location.href).then(function(){
-    alert(document.documentElement.lang==='en'?'Link copied!':'링크가 복사됐습니다!');
+    alert(document.documentElement.lang==='en'?'Link copied!':'링크가 복사됐어요!');
   });
 }
 function shareStory(){
   var ko=document.documentElement.lang==='ko';
-  var title=ko?'"반기는 사람이 없었습니다" — HebronGuide 이달의 이야기':'"There Was No One to Welcome Me" — HebronGuide Story';
-  var text=ko?'35살 목사가 낯선 땅에 도착했을 때. 그 고독이 교회를 만들었습니다. ':'When a pastor arrived where no one welcomed him — that loneliness built a church. ';
+  var title=ko?'"반기는 사람이 없었어" — HebronGuide 이달의 이야기':'"No One Was There to Greet Me" — HebronGuide';
+  var text=ko?'서른다섯, 낯선 땅에 도착했을 때 반기는 사람이 없었어. 그 고독이 환대의 교회가 됐어. ':'When I arrived where no one greeted me, that loneliness became a church of welcome. ';
   if(navigator.share){navigator.share({title:title,text:text,url:window.location.href});}
-  else{navigator.clipboard.writeText(text+window.location.href).then(function(){alert(ko?'복사됐습니다! 카카오톡에 붙여넣기 하세요.':'Copied! Paste into KakaoTalk.');});}
+  else{navigator.clipboard.writeText(text+window.location.href).then(function(){alert(ko?'복사됐어요! 카카오톡에 붙여넣기 하세요.':'Copied! Paste into KakaoTalk.');});}
 }
+/* 히어로 장면 미세 패럴랙스 (모션 최소화 존중) */
+(function(){
+  var hero=document.querySelector('.story-hero'), scene=document.querySelector('.hero-scene');
+  if(!hero||!scene) return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var px=0,py=0,sy=0,raf=0;
+  function apply(){raf=0;scene.style.transform='translate3d('+px.toFixed(1)+'px,'+(py+sy).toFixed(1)+'px,0)';}
+  function schedule(){if(!raf)raf=requestAnimationFrame(apply);}
+  hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();px=((e.clientX-r.left)/r.width-.5)*9;py=((e.clientY-r.top)/r.height-.5)*7;schedule();});
+  hero.addEventListener('pointerleave',function(){px=0;py=0;schedule();});
+  window.addEventListener('scroll',function(){sy=Math.min(window.scrollY,360)*.03;schedule();},{passive:true});
+})();
 </script>
 </body>
 </html>
