@@ -13020,6 +13020,7 @@ type PartnerAssociation = {
   address?: string; phone?: string; email?: string; website?: string;
 };
 const PARTNER_ASSOCIATIONS: Partial<Record<CitySlug, PartnerAssociation>> = {
+  /* HIDE-FWKAA 2026-07-15 — 페더럴웨이 한인회 공식 파트너 배너 임시 내림 (복구: 이 블록 주석 해제)
   federalway: {
     nameKo: "훼더럴웨이 한인회",
     nameEn: "Federal Way Korean American Association",
@@ -13028,6 +13029,7 @@ const PARTNER_ASSOCIATIONS: Partial<Record<CitySlug, PartnerAssociation>> = {
     email: "wafwkaa@gmail.com",
     // website: 계약 후 확정 시 추가
   },
+  */
 };
 
 function CityPartnerBanner({ lang }: { lang: string }) {
