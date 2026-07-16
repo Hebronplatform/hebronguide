@@ -16,8 +16,8 @@
 import crypto from 'node:crypto'
 
 const SUPABASE_URL = 'https://vextxqzggznulwpganwt.supabase.co'
-// 실행 시크릿의 SHA-256 (2026-07-11 발급 — 원문은 세션 스크래치패드에만 존재)
-const RUN_HASH = 'caf15eb418cdefc3faa540a7d44cab390b623e2c55673e77df78ebfca8c19b4c'
+// 실행 시크릿의 SHA-256 (2026-07-16 재발급 — 원문은 세션 스크래치패드에만 존재)
+const RUN_HASH = '223dab1ae41ac3ae5a9eaa05aefc2aa1a2aec961ade2a79874edf6b2aabf49f7'
 
 function svcHeaders(key, representation = true) {
   return {
@@ -53,6 +53,33 @@ const MIGRATIONS = {
       return {
         ok: r.ok, status: r.status, updated: rows.length,
         churches: rows.map(x => ({ name: x.name, city_slug: x.city_slug })),
+      }
+    },
+  },
+
+  // 서번트교회(NJ) — 오타 수정(서버트→서번트) + 주소·소개 보강
+  // 근거: 공식 홈페이지 servantchurchnj.com 검증 (주소·캠퍼스·사역). 담임·전화·예배시간은 기존 등록값 유지.
+  'servant-nj-fill-2026-07': {
+    desc: '서번트교회(NJ): 오타 수정 + 주소·소개 보강 (홈페이지 검증)',
+    enabled: true,
+    async run(key) {
+      const patch = {
+        name: '서번트교회',
+        address: '580 Sylvan Ave, Suite 2A, Englewood Cliffs, NJ 07632',
+        description:
+          '담임 주상락 목사 (Sam Joo)\n' +
+          '애틀랜타 섬기는교회(Servant Church)의 뉴저지 캠퍼스\n' +
+          '소그룹·선교적 사역 중심의 공동체\n' +
+          '위치: 580 Sylvan Ave, Suite 2A, Englewood Cliffs, NJ (Georgia Central University 뉴저지 캠퍼스)',
+      }
+      const r = await fetch(
+        `${SUPABASE_URL}/rest/v1/churches?id=eq.dfd67bcc-1b3d-45f4-bf22-8ace2bd12b81`,
+        { method: 'PATCH', headers: svcHeaders(key), body: JSON.stringify(patch) }
+      )
+      const rows = r.ok ? await r.json() : []
+      return {
+        ok: r.ok, status: r.status, updated: rows.length,
+        church: rows[0] ? { name: rows[0].name, address: rows[0].address } : null,
       }
     },
   },
