@@ -34,7 +34,8 @@
     { "source": "/church-notice.html",     "destination": "/ad-request.html", "permanent": true },
     { "source": "/founding-partner.html",  "destination": "/ad-request.html", "permanent": true },
     { "source": "/church-abc-korean.html", "destination": "/ad-request.html", "permanent": true },
-    { "source": "/ksbc-partner.html",      "destination": "/ad-request.html", "permanent": true }
+    { "source": "/ksbc-partner.html",      "destination": "/ad-request.html", "permanent": true },
+    { "source": "/ksbc-invite.html",       "destination": "/ad-request.html", "permanent": true }
   ],
 
   "rewrites": [
