@@ -447,6 +447,18 @@
     .btn-delete:hover  { border-color: var(--red); color: var(--red) }
     .btn-edit    { background: rgba(201,162,39,.08);  border-color: rgba(201,162,39,.2);  color: var(--gold) }
     .btn-edit:hover    { background: rgba(201,162,39,.16) }
+    /* 수정 모달 */
+    .ed-overlay{position:fixed;inset:0;background:rgba(0,0,0,.62);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+    .ed-modal{background:#161a24;border:1px solid rgba(255,255,255,.12);border-radius:14px;width:min(580px,100%);max-height:88vh;display:flex;flex-direction:column;overflow:hidden}
+    .ed-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.08);color:#fff;font-size:14px}
+    .ed-x{background:none;border:none;color:#9aa0ad;font-size:16px;cursor:pointer}
+    .ed-body{padding:16px 18px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+    .ed-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .ed-row.col{flex-direction:column;align-items:stretch;gap:5px}
+    .ed-row span{font-weight:600;color:#9aa0ad;font-size:12px}
+    .ed-row input[type=text],.ed-row input[type=number],.ed-row textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:8px 10px;color:#eef1f6;font-family:inherit;font-size:13px;width:100%}
+    .ed-row textarea{resize:vertical}
+    .ed-foot{display:flex;justify-content:flex-end;gap:8px;padding:12px 18px;border-top:1px solid rgba(255,255,255,.08)}
 
     /* ── 빈 상태 / 로딩 ── */
     .empty   { text-align: center; padding: 48px 20px; color: var(--muted) }
@@ -1055,7 +1067,7 @@
         <td><div class="actions" onclick="event.stopPropagation()">
           ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">Approve</button>` : ''}
           ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">Reject</button>` : ''}
-          <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
+          <button class="btn-sm btn-edit" onclick="event.stopPropagation();editRow('${r.id}','community_items')">✏️ 수정</button><button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
         </div></td>
       </tr>`
     }
@@ -1076,7 +1088,7 @@
                 <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
                 <td><div class="actions" onclick="event.stopPropagation()">
                   ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">Approve</button>` : ''}
-                  <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
+                  <button class="btn-sm btn-edit" onclick="event.stopPropagation();editRow('${r.id}','community_items')">✏️ 수정</button><button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
                 </div></td>
               </tr>`).join('')}
           </tbody>
@@ -1141,7 +1153,7 @@
           <td><div class="actions" onclick="event.stopPropagation()">
             ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">Approve</button>` : ''}
             ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">Reject</button>` : ''}
-            <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
+            <button class="btn-sm btn-edit" onclick="event.stopPropagation();editRow('${r.id}','community_items')">✏️ 수정</button><button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
           </div></td>
         </tr>`).join('')
     }
@@ -1274,7 +1286,7 @@
               <td><div class="actions" onclick="event.stopPropagation()">
                 ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">Approve</button>` : ''}
                 ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">Reject</button>` : ''}
-                <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
+                <button class="btn-sm btn-edit" onclick="event.stopPropagation();editRow('${r.id}','community_items')">✏️ 수정</button><button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
               </div></td>
             </tr>`).join('')}
         </tbody>
@@ -1341,7 +1353,7 @@
               <td><div class="actions" onclick="event.stopPropagation()">
                 ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">Approve</button>` : ''}
                 ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">Reject</button>` : ''}
-                <button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
+                <button class="btn-sm btn-edit" onclick="event.stopPropagation();editRow('${r.id}','community_items')">✏️ 수정</button><button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
               </div></td>
             </tr>`).join('')}
         </tbody>
@@ -1903,8 +1915,70 @@
     } catch(e) { toast('❌ ' + e.message) }
   }
 
+  // ── 등재 항목 직접 수정 (모달) ────────────────────────────
   function editRow(id, table) {
-    alert(`${table} ID: ${id}\n\n현재 직접 수정은 Supabase 대시보드에서:\nhttps://supabase.com/dashboard/project/vextxqzggznulwpganwt/editor`)
+    const r = ((typeof allData !== 'undefined' && allData) || []).find(d => String(d.id) === String(id))
+    if (!r) { toast('❌ 행 데이터를 찾을 수 없습니다. 새로고침 후 다시 시도하세요.'); return }
+    const FIELDS = {
+      churches: [
+        ['name','교회명(한글)','text'], ['name_en','교회명(영문)','text'],
+        ['description','소개 (줄바꿈 가능)','textarea'],
+        ['denomination','교단','text'], ['service_time','예배시간','text'],
+        ['address','주소','text'], ['phone','전화','text'], ['email','이메일','text'],
+        ['website','홈페이지','text'], ['city_slug','도시','text'],
+        ['tier','Tier (1 협력 / 2 일반)','number'],
+        ['hebron_partner','협력교회','bool'], ['hcmi','가정교회','bool'], ['active','노출(LIVE)','bool'],
+      ],
+      community_items: [
+        ['name','이름','text'], ['name_en','영문명','text'], ['title','제목','text'],
+        ['description','내용 (줄바꿈 가능)','textarea'],
+        ['category','카테고리','text'], ['city_slug','도시','text'],
+        ['address','주소','text'], ['phone','전화','text'], ['email','이메일','text'],
+        ['website','홈페이지','text'], ['status','상태(approved/pending/rejected)','text'],
+      ],
+      restaurants: [
+        ['name','이름','text'], ['description','소개','textarea'], ['address','주소','text'],
+        ['phone','전화','text'], ['website','홈페이지','text'], ['city_slug','도시','text'],
+      ],
+    }
+    const spec = (FIELDS[table] || FIELDS.community_items).filter(([k]) => k in r)
+    const inputs = spec.map(([k, label, type]) => {
+      const v = r[k]
+      if (type === 'bool')
+        return `<label class="ed-row"><span>${label}</span><input type="checkbox" data-k="${k}" ${(v === true || v === 'true') ? 'checked' : ''}></label>`
+      if (type === 'textarea')
+        return `<label class="ed-row col"><span>${label}</span><textarea data-k="${k}" rows="4">${esc(v == null ? '' : String(v))}</textarea></label>`
+      return `<label class="ed-row col"><span>${label}</span><input type="${type === 'number' ? 'number' : 'text'}" data-k="${k}" value="${esc(v == null ? '' : String(v))}"></label>`
+    }).join('')
+    const overlay = document.createElement('div')
+    overlay.className = 'ed-overlay'
+    overlay.innerHTML = `<div class="ed-modal">
+      <div class="ed-head"><b>수정 · ${esc(r.name || r.title || r.business_name || table)}</b><button class="ed-x">✕</button></div>
+      <div class="ed-body">${inputs}</div>
+      <div class="ed-foot"><button class="btn-sm ed-cancel">취소</button><button class="btn-sm btn-approve ed-save">저장</button></div>
+    </div>`
+    document.body.appendChild(overlay)
+    const close = () => overlay.remove()
+    overlay.querySelector('.ed-x').onclick = close
+    overlay.querySelector('.ed-cancel').onclick = close
+    overlay.onclick = (e) => { if (e.target === overlay) close() }
+    overlay.querySelector('.ed-save').onclick = async () => {
+      const patch = {}
+      overlay.querySelectorAll('[data-k]').forEach(el => {
+        const k = el.getAttribute('data-k')
+        patch[k] = el.type === 'checkbox' ? el.checked : el.value
+      })
+      const saveBtn = overlay.querySelector('.ed-save')
+      saveBtn.textContent = '저장 중…'; saveBtn.disabled = true
+      try {
+        const res = await adminAction({ action: 'update_record', table, id, patch })
+        toast('✅ ' + (res.msg || '수정 완료'))
+        close()
+        loadTabData(currentTab)
+      } catch (e) {
+        toast('❌ ' + e.message); saveBtn.textContent = '저장'; saveBtn.disabled = false
+      }
+    }
   }
 
   // ── 검색·필터 ────────────────────────────────────────────

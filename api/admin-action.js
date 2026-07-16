@@ -130,7 +130,7 @@ export default async function handler(req) {
   if (req.method !== 'POST') return new Response('Method not allowed', { status: 405, headers: CORS })
 
   try {
-    const { action, id, table, status, token, church, business, city_slug } = await req.json()
+    const { action, id, table, status, token, church, business, city_slug, patch } = await req.json()
 
     // ── 토큰 인증 ────────────────────────────────────────
     if (!token || token !== ADMIN_HASH) {
@@ -163,6 +163,25 @@ export default async function handler(req) {
         }
         await sbFetch(table, 'PATCH', id, { status })
         return new Response(JSON.stringify({ ok: true, msg: `${status === 'approved' ? '승인' : '거절'} 완료` }), { headers: CORS })
+
+      case 'update_record': {
+        // 등재 항목 직접 수정 — 테이블별 허용 필드만 PATCH (안전)
+        const EDITABLE = {
+          churches:        ['name','name_en','description','denomination','service_time','address','phone','email','website','tier','hebron_partner','hcmi','active','city_slug'],
+          community_items: ['name','name_en','title','business_name','description','category','city_slug','city','address','phone','email','website','status','tags'],
+          restaurants:     ['name','name_en','description','address','phone','email','website','city_slug','category'],
+        }
+        const allow = EDITABLE[table]
+        if (!allow) return new Response(JSON.stringify({ error: `수정 불가 테이블: ${table}` }), { status: 400, headers: CORS })
+        const clean = {}
+        for (const k of Object.keys(patch || {})) if (allow.includes(k)) clean[k] = patch[k]
+        // 타입 보정
+        if ('tier' in clean) clean.tier = Number(clean.tier) || null
+        for (const b of ['hebron_partner','hcmi','active']) if (b in clean) clean[b] = clean[b] === true || clean[b] === 'true'
+        if (Object.keys(clean).length === 0) return new Response(JSON.stringify({ error: '수정할 필드가 없습니다' }), { status: 400, headers: CORS })
+        await sbFetch(table, 'PATCH', id, clean)
+        return new Response(JSON.stringify({ ok: true, msg: `수정 완료 (${Object.keys(clean).length}개 필드)`, fields: Object.keys(clean) }), { headers: CORS })
+      }
 
       case 'delete':
         await sbFetch(table, 'DELETE', id)
