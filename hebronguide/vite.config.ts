@@ -83,6 +83,9 @@ export default defineConfig({
         // 아이콘·이미지만 precache (안 바뀌는 것만)
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         globPatterns: ['**/*.{ico,png,svg}'], // JS·CSS·woff2 precache 제거
+        // 홍보·공유용 대형 이미지는 precache 제외 (오프라인 캐시 불필요 + 2MB 한도 초과로 빌드 실패 방지)
+        globIgnores: ['**/promo-card-*.png', '**/poster-*.png', '**/*-poster*.png', '**/HebronGuide-*.png'],
+        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024, // 안전망: 4MB
         navigateFallback: null,
         skipWaiting: true,
         clientsClaim: true,
