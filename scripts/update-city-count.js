@@ -30,7 +30,17 @@ console.log(`✅ HEBRON_CITIES live 도시 수: ${COUNT}개`);
 // ── 2. 총계 도시 수 문구 통일 함수 ────────────────────────────
 // 오직 "전체 도시 총계"를 가리키는 문구만 매칭한다.
 function syncCount(t) {
-  return t
+  // ── 목표 수치 보호 (2026-07-16) ─────────────────────────────
+  // <span class="hg-goal">500</span> 로 표시된 숫자는 "현재 총계"가 아니라 "목표"다.
+  // 예: "2030년까지 전 세계 500개 도시" — 현재 도시 수로 덮어쓰면 목표가 사라진다.
+  // 치환 전에 잠시 치워두고(placeholder), 모든 치환이 끝난 뒤 원래대로 복원한다.
+  const goalStash = [];
+  t = t.replace(/<span class="hg-goal">[\s\S]*?<\/span>/g, (m) => {
+    goalStash.push(m);
+    return `@@HGGOAL${goalStash.length - 1}@@`;
+  });
+
+  t = t
     // ── 한국어 총계 ──
     .replace(/전 세계 \d+개\+ 도시/g, `전 세계 ${COUNT}개+ 도시`)
     .replace(/전 세계 \d+개 도시/g, `전 세계 ${COUNT}개 도시`)
@@ -51,6 +61,9 @@ function syncCount(t) {
     // .hg-city-count 스팬의 fallback 텍스트 (JS 미로드 시 대비 — 런타임엔 city-count.js가 갱신)
     .replace(/hg-city-count">\d+</g, `hg-city-count">${COUNT}<`)
     .replace(/hg-city-count-plus">\d+/g, `hg-city-count-plus">${COUNT}`);
+
+  // 보호해둔 목표 수치(hg-goal) 원상 복원
+  return t.replace(/@@HGGOAL(\d+)@@/g, (_, i) => goalStash[Number(i)]);
 }
 
 let changed = [];
