@@ -304,12 +304,12 @@ export default async function handler(req) {
             name:        biz.name,
             category:    'business',
             type:        biz.type || '',
-            city_slug:   biz.city_slug || '',
-            city:        biz.city || '',
+            // ⚠️ community_items 실제 컬럼만 사용 (city·url 없음 → 넣으면 42703로 저장 실패)
+            city_slug:   biz.city_slug || biz.city || '',
             description: biz.description || '',
             phone:       biz.phone || '',
             contact:     biz.email || '',
-            url:         biz.website || '',
+            website:     biz.website || '',
             status:      'approved',
           }),
         })

@@ -247,7 +247,6 @@ export default async function handler(req, res) {
       email:        email || null,
       website:      website || null,
       status:       "approved",
-      submitted_at: new Date().toISOString(),
     };
 
     const supabaseOk = await saveToSupabase(item);
@@ -297,7 +296,8 @@ export default async function handler(req, res) {
   }
 
   // ── 7. 불확실 → Supabase pending 저장 + 관리자 검토 요청
-  await saveToSupabase({
+  // ⚠️ community_items 실제 컬럼만 사용 (submitted_at·city·contact_email 없음 → 넣으면 42703로 저장 실패)
+  const pendingSaved = await saveToSupabase({
     category:     "church",
     type:         "churches",
     city_slug:    normalizeCitySlug(city) || city,
@@ -310,16 +310,19 @@ export default async function handler(req, res) {
     email:        email || null,
     website:      website || null,
     status:       "pending",
-    submitted_at: new Date().toISOString(),
   });
 
   await notifyAdmin({
     level: "warning",
     churchName, denomination, city, phone, email, address, serviceTimes,
     website, kakao, pastor, description,
-    reason: aiFlag || (missingDenom
-      ? "교단 정보 없음 — 신천지 위장 단체는 교단 소속 없음. 반드시 확인 후 게시"
-      : "AI 검토 필요"),
+    reason: [
+      aiFlag || (missingDenom
+        ? "교단 정보 없음 — 신천지 위장 단체는 교단 소속 없음. 반드시 확인 후 게시"
+        : "AI 검토 필요"),
+      // 저장 실패를 조용히 넘기면 이메일만 오고 대시보드엔 안 뜬다 → 반드시 알린다
+      pendingSaved ? "" : "⚠️ DB 저장 실패 — 대시보드에 뜨지 않습니다. 이 메일 내용으로 수동 등록해 주세요.",
+    ].filter(Boolean).join("\n"),
   });
 
   if (email) {

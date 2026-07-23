@@ -83,7 +83,6 @@ export default async function handler(req, res) {
           description || '',
         ].filter(Boolean).join(' | ') || null,
         status:       'pending',
-        submitted_at: new Date().toISOString(),
       }),
     });
     const data = await r.json();

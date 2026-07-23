@@ -38,10 +38,9 @@ export default async function handler(req, res) {
           contact:     email,
           description,
           category:    'city_request',
+          // ⚠️ community_items 실제 컬럼만 사용 (city·submitted_at 없음 → 넣으면 42703로 저장 실패)
           city_slug:   '',
-          city,
           status:      'pending',
-          submitted_at: new Date().toISOString(),
         }),
       })
       savedOk = r.ok || r.status === 201 || r.status === 204

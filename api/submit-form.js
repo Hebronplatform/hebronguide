@@ -130,7 +130,6 @@ export default async function handler(req, res) {
           contact:     email || '',
           phone:       phone || '',
           status:      itemStatus,
-          submitted_at: new Date().toISOString(),
         }
       : {
           // 문의 접수 (표시 안 됨 — 관리자 검토용)
@@ -141,7 +140,6 @@ export default async function handler(req, res) {
           phone:       phone || '',
           city_slug:   slug || city || '',
           status:      'pending',
-          submitted_at: new Date().toISOString(),
         }
     // status='approved' 삽입은 RLS를 우회하는 서비스 키 필요 (anon 키는 pending만 허용될 수 있음)
     const writeKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY || SUPABASE_KEY

@@ -98,16 +98,17 @@ export default async function handler(req, res) {
   // community_items(type=churches) + church_partners 병합 조회
   if (req.method === 'GET' && !action) {
     // 1) 자가 등록된 교회 (submit-form → community_items)
-    const r1 = await supa('community_items?type=eq.churches&order=submitted_at.desc&select=id,name,city_slug,contact_email,contact_phone,submitted_at,active');
+    // ⚠️ community_items 실제 컬럼만 사용 (submitted_at·contact_email·contact_phone·active 없음 → 42703로 조회 실패)
+    const r1 = await supa('community_items?type=eq.churches&order=created_at.desc&select=id,name,city_slug,email,contact,phone,created_at,status');
     const d1 = r1.ok ? await r1.json() : [];
     const fromForm = (Array.isArray(d1) ? d1 : []).map(c => ({
       id: c.id,
       church_name: c.name,
       city: c.city_slug,
-      email: c.contact_email,
-      phone: c.contact_phone,
-      status: c.active ? 'registered' : 'pending',
-      created_at: c.submitted_at,
+      email: c.email || c.contact,
+      phone: c.phone,
+      status: c.status === 'approved' ? 'registered' : 'pending',
+      created_at: c.created_at,
       source: 'form',
     }));
 
