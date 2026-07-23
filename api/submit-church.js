@@ -63,8 +63,14 @@ function normalizeCitySlug(input) {
     'waynesville':'waynesville','웨인즈빌':'waynesville',
     'chicago':'chicago','시카고':'chicago',
     'dc':'dc','washington':'dc','washington dc':'dc',
-    'fairfax':'dc','페어팩스':'dc','페어펙스':'dc',
-    'virginia':'dc','maryland':'dc','메릴랜드':'dc','워싱턴':'dc',
+    'fairfax':'dc','페어팩스':'dc','페어펙스':'dc','워싱턴':'dc',
+    // 버지니아·메릴랜드는 독립 도시로 신설됨 → 더 이상 dc로 흡수하지 않는다
+    'virginia':'virginia','버지니아':'virginia',
+    'maryland':'maryland','메릴랜드':'maryland',
+    // 미 남부 신규 (2026-07)
+    'memphis':'memphis','멤피스':'memphis','memphis, tn':'memphis',
+    'huntsville':'huntsville','헌츠빌':'huntsville',
+    'huntsville, alabama':'huntsville','huntsville, al':'huntsville','madison, al':'huntsville',
     'toronto':'toronto','토론토':'toronto',
     'vancouver':'vancouver','밴쿠버':'vancouver',
     'white rock':'vancouver','화이트락':'vancouver',
