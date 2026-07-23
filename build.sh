@@ -41,7 +41,6 @@ cp icon-192.png  public/apple-touch-icon-precomposed.png
 cp manifest.json public/manifest.json
 cp roadmap.json  public/roadmap.json  2>/dev/null || true
 cp hebronguide/dist/hebronguide-logo.svg public/hebronguide-logo.svg
-cp worldcup.json public/worldcup.json   2>/dev/null || true
 cp present.html  public/present.html    2>/dev/null || true   # 발표 슬라이드 뷰어(자체완결형, 루트 1회 복사)
 
 # 3. 도시별 메타데이터 정의 (한국어명·영어명·주/지역)
@@ -148,6 +147,27 @@ for city in \
   mkdir -p public/$city
   cp -r hebronguide/dist/* public/$city/
 
+  # ── 배포 용량 최적화: 시애틀 외 도시는 무거운 번들(js·css)을 복사하지 않는다 ──
+  # 근거 ① vite.config.ts 의 base 가 '/seattle/' 이라 모든 도시 index.html 이
+  #        /seattle/assets/... 를 '절대경로'로 참조한다 → 도시 폴더의 js·css 는 애초에 서비스되지 않는 죽은 파일.
+  # 근거 ② 단, sw.js 의 precache 목록은 상대경로 "assets/icon-192-*.png" 를 요구한다.
+  #        png 를 지우면 vercel.json 의 /{city}/(.*) rewrite 에 걸려 index.html 이 200 으로 응답하고
+  #        워크박스가 HTML 을 PNG 로 캐싱한다(404 보다 나쁜 조용한 손상) → png 는 반드시 남긴다.
+  # ⚠️ vite base 가 '/seattle/' 이 아니게 되거나 index.html 이 상대경로 자산을 쓰게 되면
+  #    이 최적화는 즉시 무효다 — 그때는 이 블록을 통째로 지울 것.
+  #
+  # 같은 이유로 홍보 이미지(도시당 7.3MB)도 복사하지 않는다.
+  #   promo-card-*.png · waba-poster-* 는 아래 '루트 공유 파일' 단계에서 public/ 루트에 따로 복사되고,
+  #   이를 참조하는 ad-request.html · event-waba-2026.html 은 절대경로
+  #   (https://hebronguide.com/... 또는 /waba-...)만 사용한다 → 도시 폴더 사본은 요청되지 않는다.
+  #   sw.js precache 목록에도 없다(아이콘·manifest 만 등재).
+  #
+  # 효과: 도시당 약 12MB → 약 2.2MB. public/ 전체 약 900MB → 약 180MB.
+  if [ "$city" != "seattle" ]; then
+    rm -f public/$city/assets/*.js public/$city/assets/*.css
+    rm -f public/$city/promo-card-*.png public/$city/waba-poster-*.jpg
+  fi
+
   KO="${CITY_KO[$city]}"
   EN="${CITY_EN[$city]}"
 
@@ -171,6 +191,17 @@ for city in \
 
   echo "  OK: $city → ${KO} (${EN})"
 done
+
+# 4-b. 용량 회귀 경보 — 대용량 파일이 다시 도시마다 복제되기 시작하면 알린다.
+# dist 에 큰 파일이 하나 들어오면 도시 수만큼(현재 76배) 불어난다.
+# 실제 사고 이력: present.html(1.68MB) 추가 → PWA precache 가 홍보 이미지까지 잡아 빌드 EXIT 1.
+# 대표 도시(dallas)만 검사하면 충분하다 — 모든 비-시애틀 도시가 동일 구성이다.
+BIG=$(find public/dallas -type f -size +500k 2>/dev/null | head -5)
+if [ -n "$BIG" ]; then
+  echo "  ⚠️ 도시 폴더에 500KB 초과 파일이 있습니다 (도시 수만큼 복제됨):"
+  echo "$BIG" | sed 's#^public/dallas/#     - #'
+  echo "     → 루트에서만 서비스해도 되는 파일이면 위 도시 루프의 rm 목록에 추가하세요."
+fi
 
 # 5. 루트 공유 파일
 cp hebronguide/dist/registerSW.js                  public/registerSW.js                  2>/dev/null || true

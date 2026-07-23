@@ -353,62 +353,6 @@
   </div>
 </nav>
 
-<!-- ━━━ WORLDCUP BANNER ━━━ -->
-<div id="wc-banner" style="display:none;background:linear-gradient(90deg,rgba(201,162,39,.1),rgba(201,162,39,.04),rgba(201,162,39,.1));border-bottom:1px solid rgba(201,162,39,.2);padding:9px 16px;text-align:center;position:relative;">
-  <div id="wc-content" style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:0 32px;"></div>
-  <button onclick="document.getElementById('wc-banner').style.display='none'" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.35);font-size:1.1rem;cursor:pointer;line-height:1;padding:4px 8px;">×</button>
-</div>
-<style>
-@keyframes wc-pulse{0%,100%{opacity:1}50%{opacity:.55}}
-.wc-live{animation:wc-pulse 1.6s ease-in-out infinite;display:inline-block;}
-</style>
-<script>
-(function(){
-  fetch('/worldcup.json').then(function(r){return r.json();}).then(function(d){
-    if(!d.active) return;
-    var html = '<span style="font-size:.62rem;font-weight:800;color:rgba(201,162,39,.7);letter-spacing:.12em;">2026 FIFA WORLD CUP</span>' +
-      '<span style="color:rgba(255,255,255,.2);">|</span>';
-
-    if(d.mode === 'upcoming' && d.nextMatchDate) {
-      var days = Math.ceil((new Date(d.nextMatchDate) - new Date()) / 86400000);
-      var dLabel = days <= 0 ? 'D-DAY' : 'D-' + days;
-      html +=
-        '<span class="wc-live" style="font-size:.7rem;font-weight:900;color:#C9A227;letter-spacing:.1em;">' + dLabel + '</span>' +
-        '<span style="color:rgba(255,255,255,.2);">|</span>' +
-        '<span class="ko" style="font-size:.82rem;font-weight:900;color:#fff;">대한민국 vs ' + (d.nextOpponent ? d.nextOpponent.ko : '') + '</span>' +
-        '<span class="en" style="font-size:.82rem;font-weight:900;color:#fff;">South Korea vs ' + (d.nextOpponent ? d.nextOpponent.en : '') + '</span>' +
-        '<span style="color:rgba(255,255,255,.2);">|</span>' +
-        '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + (d.nextStage ? d.nextStage.ko : '') + '</span>' +
-        '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + (d.nextStage ? d.nextStage.en : '') + '</span>' +
-        (d.nextMatch ?
-          '<span style="color:rgba(255,255,255,.2);">|</span>' +
-          '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.4);">' + d.nextMatch.ko + '</span>' +
-          '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.4);">' + d.nextMatch.en + '</span>'
-        : '');
-    } else {
-      var n = d.nextMatch;
-      html +=
-        '<span class="ko" style="font-size:.82rem;font-weight:900;color:#fff;">대한민국</span>' +
-        '<span class="en" style="font-size:.82rem;font-weight:900;color:#fff;">South Korea</span>' +
-        '<span style="font-size:.95rem;font-weight:900;color:#C9A227;letter-spacing:.06em;margin:0 2px;">' + d.score + '</span>' +
-        '<span class="ko" style="font-size:.82rem;font-weight:900;color:#fff;">' + d.opponent.ko + '</span>' +
-        '<span class="en" style="font-size:.82rem;font-weight:900;color:#fff;">' + d.opponent.en + '</span>' +
-        '<span style="color:rgba(255,255,255,.2);">|</span>' +
-        '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + d.stage.ko + '</span>' +
-        '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.5);">' + d.stage.en + '</span>' +
-        (n ?
-          '<span style="color:rgba(255,255,255,.2);">|</span>' +
-          '<span class="ko" style="font-size:.7rem;color:rgba(255,255,255,.4);">다음: ' + n.ko + '</span>' +
-          '<span class="en" style="font-size:.7rem;color:rgba(255,255,255,.4);">Next: ' + n.en + '</span>'
-        : '');
-    }
-
-    document.getElementById('wc-content').innerHTML = html;
-    document.getElementById('wc-banner').style.display = 'block';
-  }).catch(function(){});
-})();
-</script>
-
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO ━━━ -->
 <div class="hero">
   <a href="#cities" style="text-decoration:none;"><div class="hero-eyebrow" style="cursor:pointer;">✦ <span class="ko">글로벌 환대 커뮤니티</span><span class="en">Global Hospitality Community</span></div></a>
