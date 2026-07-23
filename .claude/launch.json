@@ -1,17 +1,1 @@
-{
-  "version": "0.0.1",
-  "configurations": [
-    {
-      "name": "hebronguide-dev",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--prefix", "hebronguide"],
-      "port": 5173
-    },
-    {
-      "name": "landing-static",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["http-server", ".", "-p", "4321", "-c-1"],
-      "port": 4321
-    }
-  ]
-}
+{"version":"0.0.1","configurations":[{"name":"HebronGuide-dev","runtimeExecutable":"npm","runtimeArgs":["--prefix","hebronguide","run","dev","--","--port","5173","--strictPort"],"port":5173},{"name":"HebronGuide-static","runtimeExecutable":"npx","runtimeArgs":["serve","-p","5502","hebronguide/public"],"port":5502},{"name":"HebronGuide-root","runtimeExecutable":"npx","runtimeArgs":["serve","-p","5503","."],"port":5503}]}
