@@ -741,7 +741,7 @@ footer{background:linear-gradient(135deg,#1a2535,#0d1117);color:rgba(236,253,245
   </div>
 
   <!-- 현재 도시 -->
-  <div class="section-title"><span class="dot"></span><span class="ko">현재 운영 도시 (69개+)</span><span class="en">Currently Active Cities (68+)</span></div>
+  <div class="section-title"><span class="dot"></span><span class="ko">현재 운영 도시 (<span class="hg-city-count">78</span>개+)</span><span class="en">Currently Active Cities (<span class="hg-city-count-plus">78+</span>)</span></div>
   <div style="background:var(--light-card);border:1px solid var(--light-border);border-radius:14px;padding:16px 18px;">
     <div class="city-chips">
       <span class="city-chip">🇺🇸 <span class="ko">시애틀</span><span class="en">Seattle</span></span>
@@ -765,8 +765,8 @@ footer{background:linear-gradient(135deg,#1a2535,#0d1117);color:rgba(236,253,245
       <span class="city-chip">🇯🇵 <span class="ko">도쿄</span><span class="en">Tokyo</span></span>
       <span class="city-chip">🇰🇷 <span class="ko">서울</span><span class="en">Seoul</span></span>
       <span class="city-chip" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">
-        <span class="ko">+ 78개 도시 (총 69개+)</span>
-        <span class="en">+ 47 more cities (68+ total)</span>
+        <span class="ko">+ 더 많은 도시 (총 <span class="hg-city-count">78</span>개+)</span>
+        <span class="en">+ more cities (<span class="hg-city-count-plus">78+</span> total)</span>
       </span>
     </div>
   </div>
@@ -846,5 +846,7 @@ function submitCityRequest(e){
   document.getElementById('cityReqThanks').style.display='block';
 }
 </script>
+<!-- 도시 수 단일 진실 공급원 -->
+<script src="/js/hg-config.js"></script>
 </body>
 </html>

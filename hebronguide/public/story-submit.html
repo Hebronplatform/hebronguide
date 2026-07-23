@@ -270,10 +270,11 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
     </div>
   </div>
 
-  <div class="city-count">
-    <span class="city-pill-sm">미국 31개 도시</span>
-    <span class="city-pill-sm">캐나다 6개</span>
-    <span class="city-pill-sm">중남미 4개</span>
+  <!-- 지역별 도시 수 — 아래 도시 선택 목록에서 자동 계산(드리프트 방지). JS 미동작 시 아래 값이 폴백 -->
+  <div class="city-count" id="cityCount">
+    <span class="city-pill-sm">미국 41개 도시</span>
+    <span class="city-pill-sm">캐나다 7개</span>
+    <span class="city-pill-sm">중남미 5개</span>
     <span class="city-pill-sm">유럽 4개</span>
     <span class="city-pill-sm">오세아니아 5개</span>
     <span class="city-pill-sm">일본 2개</span>
@@ -506,7 +507,10 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
             <option value="" class="en">── Select a city ──</option>
             <optgroup label="🇺🇸 미국 서부 US West">
               <option>시애틀 Seattle, WA</option>
+              <option>훼더럴웨이 Federal Way, WA</option>
               <option>로스앤젤레스 Los Angeles, CA</option>
+              <option>인랜드 엠파이어 Inland Empire, CA</option>
+              <option>페어필드 Fairfield, CA</option>
               <option>샌프란시스코 San Francisco, CA</option>
               <option>오렌지카운티 Orange County, CA</option>
               <option>샌디에고 San Diego, CA</option>
@@ -520,6 +524,10 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
             <optgroup label="🇺🇸 미국 중·남부 US South &amp; Midwest">
               <option>달라스 Dallas, TX</option>
               <option>휴스턴 Houston, TX</option>
+              <option>오스틴 Austin, TX</option>
+              <option>뉴올리언스 New Orleans, LA</option>
+              <option>탬파 Tampa, FL</option>
+              <option>웨인즈빌 Waynesville, NC</option>
               <option>시카고 Chicago, IL</option>
               <option>애틀랜타 Atlanta, GA</option>
               <option>마이애미 Miami, FL</option>
@@ -537,7 +545,9 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
             </optgroup>
             <optgroup label="🇺🇸 미국 동부 US East">
               <option>뉴욕 New York, NY</option>
+              <option>뉴저지 New Jersey, NJ</option>
               <option>워싱턴 DC Washington DC</option>
+              <option>버지니아 Virginia, VA</option>
               <option>보스턴 Boston, MA</option>
               <option>필라델피아 Philadelphia, PA</option>
               <option>메릴랜드 Maryland, MD</option>
@@ -545,6 +555,7 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
             <optgroup label="🇨🇦 캐나다 Canada">
               <option>토론토 Toronto, ON</option>
               <option>밴쿠버 Vancouver, BC</option>
+              <option>프린스조지 Prince George, BC</option>
               <option>캘거리 Calgary, AB</option>
               <option>에드먼턴 Edmonton, AB</option>
               <option>오타와 Ottawa, ON</option>
@@ -555,6 +566,7 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
               <option>과달라하라 Guadalajara</option>
               <option>몬테레이 Monterrey</option>
               <option>상파울루 São Paulo, Brazil</option>
+              <option>보고타 Bogotá, Colombia</option>
             </optgroup>
             <optgroup label="🇬🇧 유럽 Europe">
               <option>런던 London, UK</option>
@@ -794,6 +806,31 @@ Ex: She now serves as the new members coordinator at the Korean church in Dubai.
 <script src="/js/hg-config.js"></script>
 
 <script>
+/* 지역별 도시 수 — 도시 선택 목록(optgroup)에서 직접 세어 표시.
+   목록에 도시를 추가하면 칩 숫자가 자동으로 따라온다(수동 동기화 불필요). */
+(function(){
+  var box = document.getElementById('cityCount');
+  var sel = document.getElementById('s_city');
+  if (!box || !sel) return;
+  var groups = sel.querySelectorAll('optgroup');
+  var us = 0, out = [];
+  for (var i = 0; i < groups.length; i++) {
+    var label = groups[i].label || '';
+    var n = groups[i].querySelectorAll('option').length;
+    if (label.indexOf('기타') > -1 || label.indexOf('Other') > -1) continue;
+    // 미국 3개 그룹(서부·중남부·동부)은 하나로 합산
+    if (label.indexOf('미국') > -1) { us += n; continue; }
+    var ko = label.replace(/[^가-힣·]/g, '').trim();   // 한글 지역명만
+    if (ko) out.push({ ko: ko, n: n });
+  }
+  var html = '';
+  if (us) html += '<span class="city-pill-sm">미국 ' + us + '개 도시</span>';
+  for (var j = 0; j < out.length; j++) {
+    html += '<span class="city-pill-sm">' + out[j].ko + ' ' + out[j].n + '개</span>';
+  }
+  if (html) box.innerHTML = html;
+})();
+
 /* 언어 전환 */
 function toggleLang(){
   var html=document.documentElement,btn=document.getElementById('lang-btn');
