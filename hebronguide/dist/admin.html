@@ -995,7 +995,7 @@
         const d1 = r1.status === 'fulfilled' ? (r1.value.data || []) : []
         const d2 = r2.status === 'fulfilled' ? (r2.value.data || []) : []
         // 교회·사업체·홍보 신청은 각 전용 탭에서 처리 → 여기서 제외
-        const ROUTED_CATS = ['church', 'church_application', 'business', 'promo']
+        const ROUTED_CATS = ['church', 'church_application', 'business', 'promo', 'story_studio', 'story_share']
         allData = [...d1, ...d2]
           .filter(r => !ROUTED_CATS.includes(r.category))
           .sort((a,b) => new Date(b.created_at||0) - new Date(a.created_at||0))
@@ -1020,8 +1020,18 @@
         allData = data || []
         renderPartners(allData)
       } else if (tab === 'stories') {
-        const { data } = await sbNew.from('stories').select('*').order('created_at', { ascending: false })
-        allData = data || []
+        // 발행본(stories) + 제출 원고(community_items story_studio·story_share) 함께 조회
+        // — 제출은 community_items로 들어오므로 이 탭에서 함께 보이지 않으면 "이야기 0"으로 오인된다
+        const [rPub, rSub] = await Promise.allSettled([
+          sbNew.from('stories').select('*').order('created_at', { ascending: false }),
+          sbNew.from('community_items').select('*')
+            .in('category', ['story_studio', 'story_share'])
+            .order('created_at', { ascending: false }),
+        ])
+        const pub = (rPub.status === 'fulfilled' ? (rPub.value.data || []) : []).map(r => ({ ...r, _kind: 'published' }))
+        const sub = (rSub.status === 'fulfilled' ? (rSub.value.data || []) : []).map(r => ({ ...r, _kind: 'submission' }))
+        allData = [...sub, ...pub].sort((a, b) =>
+          new Date(b.created_at || b.published_at || 0) - new Date(a.created_at || a.published_at || 0))
         renderStories(allData)
       } else if (tab === 'logs') {
         const { data } = await sbNew.from('ai_query_logs').select('*').order('created_at', { ascending: false }).limit(100)
@@ -1363,15 +1373,29 @@
   // ── 이야기 렌더링 ────────────────────────────────────────
   function renderStories(data) {
     if (!data.length) { setEmpty('등록된 이야기가 없습니다'); return }
-    document.getElementById('count-badge').textContent = `${data.length}개`
+    const subCount = data.filter(r => r._kind === 'submission').length
+    document.getElementById('count-badge').textContent =
+      subCount ? `${data.length}개 (제출 ${subCount})` : `${data.length}개`
     document.getElementById('table-content').innerHTML = `
       <table>
         <thead><tr>
-          <th>제목</th><th>도시</th><th>파일</th><th>featured</th><th>날짜</th><th>액션</th>
+          <th>구분</th><th>제목</th><th>도시</th><th>파일·제출자</th><th>상태</th><th>날짜</th><th>액션</th>
         </tr></thead>
         <tbody>
-          ${data.map(r => `
+          ${data.map(r => r._kind === 'submission' ? `
+            <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기" style="cursor:pointer;background:rgba(201,162,39,.03)">
+              <td><span class="status community">제출</span></td>
+              <td class="cell-name">${esc(r.title || r.name || '—')}</td>
+              <td><span class="cell-city">${esc(r.city_slug || '—')}</span></td>
+              <td style="font-size:.78rem">${esc(r.name || '익명')}${r.contact ? ` · ${esc(r.contact)}` : ''}</td>
+              <td><span class="status ${r.status === 'approved' ? 'approved' : 'community'}">${r.status === 'approved' ? '자동게시' : '검토대기'}</span></td>
+              <td class="cell-date">${fmtDate(r.created_at)}</td>
+              <td><div class="actions">
+                <button class="btn-sm btn-delete" onclick="event.stopPropagation();deleteRow('${r.id}','community_items','new')">🗑</button>
+              </div></td>
+            </tr>` : `
             <tr>
+              <td><span class="status approved">발행</span></td>
               <td class="cell-name">${esc(r.title_ko || '—')}</td>
               <td><span class="cell-city">${esc(r.city_slug || '—')}</span></td>
               <td><a href="${esc(r.html_file || '#')}" target="_blank" style="color:var(--mint);font-size:.78rem">${esc(r.slug || '—')}</a></td>
@@ -1427,8 +1451,8 @@
             500도시 2030 전략 프레임워크 기반 AI 플래너 · Tier 분류 · 도시 확장 전략 · 환대 선교 설계
           </div>
           <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
-            ${['다음 추가할 78개 도시 추천해줘','동남아시아 Tier 2 확장 계획 만들어줘',
-               '현재 78개 도시의 Tier 분류 현황 분석해줘','유럽 한인 디아스포라 전략 짜줘',
+            ${['다음 추가할 80개 도시 추천해줘','동남아시아 Tier 2 확장 계획 만들어줘',
+               '현재 80개 도시의 Tier 분류 현황 분석해줘','유럽 한인 디아스포라 전략 짜줘',
                '새 도시 JSON 스키마 예시 만들어줘'].map(q =>
               `<button onclick="plannerAsk('${q.replace(/'/g,"\\'")}')
                 style="background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);
@@ -2009,12 +2033,20 @@
       sbMain.from('restaurants').select('id', { count: 'exact', head: true }),
       sbNew.from('pastor_partners').select('id', { count: 'exact', head: true }),
       sbNew.from('stories').select('id', { count: 'exact', head: true }),
+      // 제출 원고도 이야기 수에 포함 — 발행본만 세면 제출이 와도 0으로 보인다
+      sbNew.from('community_items').select('id', { count: 'exact', head: true })
+        .in('category', ['story_studio', 'story_share']),
     ]
     const results = await Promise.allSettled(counts)
     const ids = ['st-community','st-churches','st-restaurants','st-partners','st-stories']
-    results.forEach((r, i) => {
+    results.slice(0, ids.length).forEach((r, i) => {
       document.getElementById(ids[i]).textContent = r.status === 'fulfilled' ? (r.value.count ?? '?') : '?'
     })
+    // 이야기 = 발행본 + 제출 원고
+    const pubR = results[4], subR = results[5]
+    if (pubR.status === 'fulfilled' && subR.status === 'fulfilled') {
+      document.getElementById('st-stories').textContent = (pubR.value.count ?? 0) + (subR.value.count ?? 0)
+    }
   }
 
   // ── 상세 모달 ─────────────────────────────────────────────
@@ -2277,11 +2309,12 @@
       document.getElementById('sum-community-approved').textContent= approved
 
       // 교회·식당·파트너·이야기 상세 집계
-      const [ch, rs, pr, st] = await Promise.allSettled([
+      const [ch, rs, pr, st, stSub] = await Promise.allSettled([
         sbMain.from('churches').select('active'),
         sbMain.from('restaurants').select('active'),
         sbNew.from('pastor_partners').select('verified'),
         sbNew.from('stories').select('featured'),
+        sbNew.from('community_items').select('id').in('category', ['story_studio', 'story_share']),
       ])
       if (ch.status==='fulfilled' && ch.value.data) {
         const d = ch.value.data
@@ -2301,7 +2334,8 @@
       }
       if (st.status==='fulfilled' && st.value.data) {
         const d = st.value.data
-        document.getElementById('sum-stories-total').textContent    = d.length
+        const subN = (stSub.status==='fulfilled' && stSub.value.data) ? stSub.value.data.length : 0
+        document.getElementById('sum-stories-total').textContent    = d.length + subN
         document.getElementById('sum-stories-featured').textContent = d.filter(r=>r.featured).length
       }
     } catch(e) {

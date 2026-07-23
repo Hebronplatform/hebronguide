@@ -64,7 +64,7 @@ declare -A CITY_KO=(
   ["louisville"]="루이빌"     ["anchorage"]="앵커리지"
   ["tampa"]="탬파"
   ["orlando"]="올랜도"        ["maryland"]="메릴랜드"   ["princgeorge"]="프린스조지"   ["virginia"]="버지니아"   ["neworleans"]="뉴올리언스"
-  ["inlandempire"]="인랜드 엠파이어" ["austin"]="오스틴"
+  ["inlandempire"]="인랜드 엠파이어" ["austin"]="오스틴"   ["huntsville"]="헌츠빌"   ["memphis"]="멤피스"
   # 한국 신규
   ["bundang"]="분당·수지"
   # 국제 확장 Tier A
@@ -102,7 +102,7 @@ declare -A CITY_EN=(
   ["louisville"]="Louisville" ["anchorage"]="Anchorage"
   ["tampa"]="Tampa"
   ["orlando"]="Orlando"       ["maryland"]="Maryland"    ["princgeorge"]="Prince George"   ["virginia"]="Virginia"   ["neworleans"]="New Orleans"
-  ["inlandempire"]="Inland Empire" ["austin"]="Austin"
+  ["inlandempire"]="Inland Empire" ["austin"]="Austin"   ["huntsville"]="Huntsville"   ["memphis"]="Memphis"
   ["bundang"]="분당·수지"
   # 국제 확장 Tier A
   ["sydney"]="Sydney"         ["melbourne"]="Melbourne"    ["brisbane"]="Brisbane"
@@ -143,7 +143,7 @@ for city in \
   singapore bangkok hochiminh dubai frankfurt berlin paris \
   tokyo osaka \
   seoul busan ansan incheon jeju daegu gwangju daejeon changwon cheonan bundang \
-  orlando maryland virginia neworleans; do
+  orlando maryland virginia neworleans huntsville memphis; do
   mkdir -p public/$city
   cp -r hebronguide/dist/* public/$city/
 
@@ -280,6 +280,7 @@ REGION_MAP=(
   ["fairfield"]="🇺🇸 미국"  ["waynesville"]="🇺🇸 미국" ["tampa"]="🇺🇸 미국"
   ["anchorage"]="🇺🇸 미국"  ["tucson"]="🇺🇸 미국"      ["orangecounty"]="🇺🇸 미국"
   ["inlandempire"]="🇺🇸 미국" ["austin"]="🇺🇸 미국"    ["phoenix"]="🇺🇸 미국"
+  ["huntsville"]="🇺🇸 미국"  ["memphis"]="🇺🇸 미국"
   ["toronto"]="🇨🇦 캐나다"  ["vancouver"]="🇨🇦 캐나다" ["calgary"]="🇨🇦 캐나다"
   ["edmonton"]="🇨🇦 캐나다" ["ottawa"]="🇨🇦 캐나다"    ["winnipeg"]="🇨🇦 캐나다"   ["princgeorge"]="🇨🇦 캐나다"
   ["mexicocity"]="🌎 중남미" ["guadalajara"]="🌎 중남미" ["monterrey"]="🌎 중남미"
@@ -312,6 +313,7 @@ declare -A CITY_GEO=(
   ["fairfield"]="38.2494,-122.0400,미국" ["waynesville"]="37.8286,-92.2001,미국"  ["louisville"]="38.2527,-85.7585,미국"  ["anchorage"]="61.2181,-149.9003,미국"
   ["inlandempire"]="34.0633,-117.2898,미국" ["austin"]="30.2672,-97.7431,미국"    ["tampa"]="27.9506,-82.4572,미국"       ["orlando"]="28.5383,-81.3792,미국"
   ["maryland"]="39.2673,-76.7983,미국"   ["virginia"]="38.8304,-77.1964,미국"     ["neworleans"]="29.9511,-90.0715,미국"
+  ["huntsville"]="34.7304,-86.5861,미국"  ["memphis"]="35.1495,-90.0490,미국"
   ["toronto"]="43.6532,-79.3832,캐나다"  ["vancouver"]="49.2827,-123.1207,캐나다" ["calgary"]="51.0447,-114.0719,캐나다"  ["edmonton"]="53.5461,-113.4938,캐나다"
   ["ottawa"]="45.4215,-75.6972,캐나다"   ["winnipeg"]="49.8951,-97.1384,캐나다"   ["princgeorge"]="53.9171,-122.7497,캐나다"
   ["mexicocity"]="19.4326,-99.1332,멕시코" ["guadalajara"]="20.6597,-103.3496,멕시코" ["monterrey"]="25.6866,-100.3161,멕시코"
@@ -339,7 +341,7 @@ for city in \
   singapore bangkok hochiminh dubai frankfurt berlin paris \
   tokyo osaka \
   seoul busan ansan incheon jeju daegu gwangju daejeon changwon cheonan bundang \
-  orlando maryland virginia neworleans; do
+  orlando maryland virginia neworleans huntsville memphis; do
   KO="${CITY_KO[$city]:-$city}"
   EN="${CITY_EN[$city]:-$city}"
   REGION="${REGION_MAP[$city]:-기타}"

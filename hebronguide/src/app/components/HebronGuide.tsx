@@ -421,6 +421,27 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
   ],
 
   // 🇺🇸 루이빌 — ①선셋항공 ②야경 ③특색 ④사람 ⑤정착
+  // 🚀 헌츠빌 — ① 다운타운 항공(드론) → ② 새턴 V 로켓(도시 상징) → ③ 다운타운 거리 → ④ 빅스프링 공원 → ⑤ 몬테사노 전망 → ⑥ 공동체 사람들
+  // 전부 Wikimedia Commons 실검증(카테고리 확인) — 버밍햄 등 타 도시 사진 혼입 없음
+  huntsville: [
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Downtown_Huntsville_Aerial_-_September_2022_%2852636349501%29.jpg/1280px-Downtown_Huntsville_Aerial_-_September_2022_%2852636349501%29.jpg", pos: "center 50%", alt: "Aerial drone view of downtown Huntsville Alabama" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Saturn_V_SA-500D%2C_US_Space_and_Rocket_Center%2C_Huntsville%2C_AL.jpg/1280px-Saturn_V_SA-500D%2C_US_Space_and_Rocket_Center%2C_Huntsville%2C_AL.jpg", pos: "center 45%", alt: "Saturn V rocket at US Space and Rocket Center Huntsville Alabama landmark" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Scenic_downtown_Huntsville%2C_Alabama_LCCN2010639650.tif/lossy-page1-1280px-Scenic_downtown_Huntsville%2C_Alabama_LCCN2010639650.tif.jpg", pos: "center 50%", alt: "Scenic downtown Huntsville Alabama street" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Big_Spring_International_Park%2C_Huntsville_AL_20160715_1.jpg/1280px-Big_Spring_International_Park%2C_Huntsville_AL_20160715_1.jpg", pos: "center 50%", alt: "Big Spring International Park Huntsville Alabama" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Monte_Sano_State_Park_Lodge_Overlook.jpg/1280px-Monte_Sano_State_Park_Lodge_Overlook.jpg", pos: "center 45%", alt: "Monte Sano State Park overlook near Huntsville Alabama" },
+    { url: "https://images.pexels.com/photos/5384501/pexels-photo-5384501.jpeg?auto=compress&cs=tinysrgb&w=1280", pos: "center 50%", alt: "Diverse friends gathering outdoors warm welcome community hospitality" },
+  ],
+
+  // 🎸 멤피스 — ① 미시시피 강 다리 항공 → ② 강변 스카이라인 → ③ 다운타운 → ④ 피라미드 랜드마크 → ⑤ 강변 공원 → ⑥ 공동체 사람들
+  memphis: [
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Hernando_De_Soto_Bridge_aerial_view.jpg/1280px-Hernando_De_Soto_Bridge_aerial_view.jpg", pos: "center 50%", alt: "Aerial view of Hernando de Soto Bridge Mississippi River Memphis Tennessee" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Memphis%2C_TN_skyline_along_the_Mississippi_River.jpg/1280px-Memphis%2C_TN_skyline_along_the_Mississippi_River.jpg", pos: "center 50%", alt: "Memphis Tennessee skyline along the Mississippi River" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Downtown_Memphis%2C_Tennessee_%282026%29.jpg/1280px-Downtown_Memphis%2C_Tennessee_%282026%29.jpg", pos: "center 45%", alt: "Downtown Memphis Tennessee cityscape" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Pyramid_Arena_Memphis_TN.jpg/1280px-Pyramid_Arena_Memphis_TN.jpg", pos: "center 45%", alt: "Memphis Pyramid landmark Tennessee" },
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Riverside_memphis_-_panoramio.jpg/1280px-Riverside_memphis_-_panoramio.jpg", pos: "center 50%", alt: "Riverside park along the Mississippi River in Memphis Tennessee" },
+    { url: "https://images.pexels.com/photos/5384501/pexels-photo-5384501.jpeg?auto=compress&cs=tinysrgb&w=1280", pos: "center 50%", alt: "Diverse friends gathering outdoors warm welcome community hospitality" },
+  ],
+
   louisville: [
     { url: "https://images.unsplash.com/photo-A9LoLmADuRk?w=1200&q=95", pos: "center 40%", alt: "Louisville Kentucky Big 4 Walking Bridge skyline dusk illuminated Ohio River" },
     { url: "https://images.unsplash.com/photo-VNGVZ6m4WfU?w=1200&q=95", pos: "center 40%", alt: "Louisville Kentucky skyline dusk Ohio River reflection Clarksville Indiana" },
@@ -856,7 +877,7 @@ const MINT = "#6EE7B7";
 /* ─────────────────────────────────────────
    CITY CONFIG — 도시별 설정
 ───────────────────────────────────────── */
-// 현재 78개 도시 (계속 성장 중)
+// 현재 80개 도시 (계속 성장 중)
 // 작은 도시일수록 HebronGuide가 더 필요합니다 — 외롭기 때문입니다
 type CitySlug =
   // 북미 (기존 17)
@@ -884,7 +905,10 @@ type CitySlug =
   // 워싱턴주 확장 — FWKAA 파트너 (한인회 네트워크 플래그십)
   "federalway" |
   // 뉴욕 광역권 — 뉴저지 (버겐 카운티 한인 밀집)
-  "newjersey";
+  "newjersey" |
+  // 미 남부 확장 — 한인회·한인교회 군집 확인 후 신설 (2026-07)
+  // 헌츠빌: 북앨라배마 한인회(NAKA) 활동 중 · 멤피스: 한인 교회 4곳 군집
+  "huntsville" | "memphis";
 
 interface CityConfig {
   slug: CitySlug;
@@ -1212,6 +1236,8 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   maryland:   { slug: "maryland",   nameKo: "메릴랜드",  nameEn: "Maryland",     color: "#DC2626", heroVideo: "", population: "2만+",    state: "Maryland",    taglineKo: "DC의 보금자리, 메릴랜드 한인 커뮤니티", taglineEn: "Home of DC's Korean community — Montgomery County.", taglineEs: "La comunidad coreana del área de DC." },
   virginia:   { slug: "virginia",   nameKo: "버지니아",  nameEn: "Virginia",     color: "#0F766E", heroVideo: "", population: "3만+",    state: "Virginia",    taglineKo: "애넌데일에서 블루리지까지, 버지니아 한인", taglineEn: "Virginia's Korean community — Annandale to Blue Ridge.", taglineEs: "La comunidad coreana de Virginia." },
   neworleans: { slug: "neworleans", nameKo: "뉴올리언스", nameEn: "New Orleans",   color: "#7E22CE", heroVideo: "", population: "3천+",    state: "Louisiana",   taglineKo: "재즈의 도시, 뉴올리언스 새 출발", taglineEn: "Jazz city — your new start in New Orleans.", taglineEs: "La ciudad del jazz, Nueva Orleans." },
+  huntsville: { slug: "huntsville", nameKo: "헌츠빌",    nameEn: "Huntsville",   color: "#2563EB", heroVideo: "", population: "1천4백+", state: "Alabama",     taglineKo: "로켓 시티에서 새로 시작하는 한인 가정", taglineEn: "Rocket City — a new start for Korean families.", taglineEs: "Ciudad Cohete, un nuevo comienzo." },
+  memphis:    { slug: "memphis",    nameKo: "멤피스",    nameEn: "Memphis",      color: "#B45309", heroVideo: "", population: "6백+",    state: "Tennessee",   taglineKo: "미시시피 강가의 한인 교회 공동체", taglineEn: "Korean church community on the Mississippi.", taglineEs: "Comunidad coreana junto al Misisipi." },
 };
 
 function useCityConfig(): CityConfig {
@@ -2041,6 +2067,77 @@ const TOP5_EXPLORE_NEWYORK: Top5Item[] = [
 /* ─────────────────────────────────────────
    내쉬빌 전용 데이터
 ───────────────────────────────────────── */
+// ── 멤피스 한식·아시안 맛집 ──────────────────────────────
+// 한인 인구가 작아 한식당 수가 적습니다. 검증된 곳 위주로 정리하고,
+// 부족한 부분은 한인 마트 즉석 식품·현지 아시안 식당으로 보완했습니다.
+const TOP5_RESTAURANTS_MEMPHIS: Top5Item[] = [
+  { rank: 1, emoji: "🥩", nameKo: "DWJ Korean Restaurant — 핵스크로스", nameEn: "DWJ Korean Restaurant — Hacks Cross",
+    address: "3750 Hacks Cross Rd, Memphis TN 38125",
+    phone: "(901) 746-8057", hours: "매장 문의",
+    rating: 4.2, ratingCount: "80+",
+    why: "🥩 한식·BBQ\n멤피스 대표 한식당. 갈비·불고기·찌개에 스시까지. 저먼타운·콜리어빌 한인 가정의 외식 1순위",
+    tip: "한인 교회가 모인 동남부 지역과 가깝습니다", website: "yelp.com/biz/dwj-korean-restaurant-memphis" },
+  { rank: 2, emoji: "🍲", nameKo: "DWJ Korean BBQ — 하이랜드", nameEn: "DWJ Korean BBQ — Highland",
+    address: "551 S Highland St, Memphis TN 38111",
+    phone: "(901) 249-2214", hours: "매장 문의",
+    rating: 4.1, ratingCount: "20+",
+    why: "🥩 BBQ\n멤피스 대학교(U of M) 인근 지점. 유학생·젊은 층이 많이 찾는 한국식 바비큐",
+    tip: "University of Memphis 학생이라면 걸어갈 수 있는 거리", website: "yelp.com/biz/dwj-korean-bbq-memphis" },
+  { rank: 3, emoji: "🏪", nameKo: "아시아나 마켓 & 상가 한식당", nameEn: "Asiana Market & adjoining Korean eatery",
+    address: "5940 Mt. Moriah Rd, Memphis TN 38115",
+    phone: "(901) 363-8902", hours: "월-토 10am-8pm · 일 1pm-7pm",
+    rating: 4.4, ratingCount: "10+",
+    why: "✅ 반찬·김치\n1996년부터 이어온 한인 마트. 같은 상가에 한식당이 함께 있어 장보기와 식사를 한 번에. 반찬을 사다 놓으면 정착 초기 식비가 확 줄어듭니다",
+    tip: "정착 첫 주에 반찬·김치·쌀을 여기서 한 번에 준비하세요", website: "asianamarketmemphis.com" },
+  { rank: 4, emoji: "🍜", nameKo: "The Crazy Noodle — 아시안 국수", nameEn: "The Crazy Noodle",
+    address: "2015 Madison Ave, Memphis TN 38104",
+    phone: "매장 문의", hours: "매장 문의",
+    rating: 4.3, ratingCount: "300+",
+    why: "🍜 국수\n한국식 국수·비빔밥을 내는 미드타운 캐주얼 식당. 현지인에게도 인기가 높아 미국 친구를 데려가기 좋습니다",
+    tip: "⚠️ 영업시간이 자주 바뀝니다. 방문 전 확인 권장", website: "yelp.com/search?cflt=korean&find_loc=Memphis,+TN" },
+  { rank: 5, emoji: "🍗", nameKo: "Bonchon — 코도바 (한국식 치킨)", nameEn: "Bonchon Cordova — Korean Fried Chicken",
+    address: "코도바(Cordova) 지역 — 매장 확인 필요",
+    phone: "매장 문의", hours: "매장 문의",
+    rating: 4.0, ratingCount: "100+",
+    why: "🍗 치킨\n한국식 양념·간장 치킨 체인. 한인 교회가 모인 코도바 지역에 있어 예배 후 모임 장소로 자주 쓰입니다",
+    tip: "⚠️ 지점 주소·영업 여부는 방문 전 확인하세요", website: "bonchon.com" },
+];
+
+// ── 헌츠빌 한식 맛집 ─────────────────────────────────────
+// 두 곳 모두 주일(일요일) 휴무입니다.
+const TOP5_RESTAURANTS_HUNTSVILLE: Top5Item[] = [
+  { rank: 1, emoji: "🍲", nameKo: "가람 한식당 (GaRam)", nameEn: "Garam Korean Restaurant — Huntsville",
+    address: "600 Jordan Ln NW Ste 1, Huntsville AL 35816",
+    phone: "(256) 519-2374", hours: "월-목 11am-2pm, 4-8pm · 금·토 11am-2pm, 4-8:30pm · 일 휴무",
+    rating: 4.4, ratingCount: "116+",
+    why: "🍲 국물·가정식\n헌츠빌 한인들의 '고향 밥집'. 찌개·국수·덮밥. 브레이크 타임이 있으니 시간 확인 필수",
+    tip: "일요일 휴무. 점심(11am-2pm)과 저녁(4pm~) 사이 쉬는 시간이 있습니다", website: "huntsville.org/listing/garam-korean-restaurant/835" },
+  { rank: 2, emoji: "🍣", nameKo: "하루 한식·스시 (Haru)", nameEn: "Haru Korean & Sushi — Madison",
+    address: "8760 Madison Blvd Ste L, Madison AL 35758",
+    phone: "(256) 270-9677", hours: "월-금 11am-2pm, 5-8pm · 토·일 휴무",
+    rating: 4.4, ratingCount: "85+",
+    why: "🍣 한식·스시\n매디슨 소재 가족 운영 식당. 한식과 스시를 함께 냅니다. 한인 가정이 많은 매디슨 지역 중심",
+    tip: "주말(토·일) 휴무 — 평일에만 갈 수 있습니다", website: "yelp.com/biz/haru-madison-2" },
+  { rank: 3, emoji: "🏪", nameKo: "Far East Market (헌츠빌·매디슨)", nameEn: "Far East Market — 2 locations",
+    address: "헌츠빌·매디슨 2개 지점 (매디슨점이 더 큼)",
+    phone: "매장 문의", hours: "매장별 상이",
+    rating: 4.2, ratingCount: "50+",
+    why: "🏪 한국 식품\n헌츠빌에는 H-Mart가 없습니다. 한국 라면·장류·냉동식품은 이곳에서. 매디슨 지점이 규모가 더 큽니다",
+    tip: "품목이 부족하면 Weee!(sayweee.com) 온라인 배송을 함께 쓰세요", website: "sayweee.com" },
+  { rank: 4, emoji: "🏪", nameKo: "Thanh Hung Super Market", nameEn: "Thanh Hung Super Market",
+    address: "헌츠빌 — 매장 확인 권장",
+    phone: "매장 문의", hours: "매장 문의",
+    rating: 4.3, ratingCount: "100+",
+    why: "🏪 아시안 마트\n지역 최대 규모 아시안 마켓. 청과 코너가 좋고 한국 식품도 상당수 취급합니다. 매디슨에서 가장 가까운 대형 매장",
+    tip: "⚠️ Holiday International Market은 휴업 중이니 이곳을 이용하세요", website: "" },
+  { rank: 5, emoji: "🍖", nameKo: "현지 남부 음식 — Southern BBQ", nameEn: "Local Southern BBQ",
+    address: "헌츠빌 전역",
+    phone: "—", hours: "—",
+    rating: 4.5, ratingCount: "다수",
+    why: "🍖 현지 음식\n한식당이 두 곳뿐이라 아쉬울 때, 앨라배마 남부식 바비큐(풀드포크·립)가 훌륭한 대안입니다. 미국 이웃·직장 동료와 어울리기에도 좋습니다",
+    tip: "직장 동료에게 '어디가 제일 맛있냐'고 물어보세요 — 헌츠빌에서 가장 빠른 친해지는 법입니다", website: "huntsville.org" },
+];
+
 const TOP5_RESTAURANTS_NASHVILLE: Top5Item[] = [
   { rank: 1, emoji: "🥩", nameKo: "Honey B's Korean BBQ — 내쉬빌", nameEn: "Honey B's Korean BBQ — Nashville",
     address: "2111 Gallatin Pike N, Madison TN 37115",
@@ -2102,6 +2199,67 @@ const TOP5_RESTAURANTS_NASHVILLE: Top5Item[] = [
     rating: 4.1, ratingCount: "130+",
     why: "매디슨 H-Mart 단지 분식. 떡볶이·김밥·라면·튀김. 유학생·직장인 점심 단골",
     tip: "H-Mart 푸드코트와 함께 한인타운 분식 코스", website: "yelp.com/biz/seoul-bunsik-madison-tn" },
+];
+
+// ── 멤피스 정착 TOP5 ──────────────────────────────────────
+// 한인 인구는 작지만(약 650명) 한인 교회가 4곳 있는 도시. 교회가 사실상의 커뮤니티 허브.
+// ✅ = 공식 사이트에서 주소·전화 직접 대조 확인 (2026-07-23)
+const TOP5_SETTLE_MEMPHIS: Top5Item[] = [
+  { rank: 1, emoji: "🏪", nameKo: "아시아나 마켓 (한인 마트)", nameEn: "Asiana Market — Korean Grocery",
+    address: "5940 Mt. Moriah Rd, Memphis TN 38115",
+    phone: "(901) 363-8902", hours: "월-토 10am-8pm · 일 1pm-7pm",
+    why: "✅ 1996년부터 가족이 운영해 온 멤피스 유일의 한인 마트. 김치·반찬·정육·라면·화장품까지. 멤피스 한인 정보가 모이는 곳 — 도착하면 가장 먼저 들르세요",
+    tip: "같은 상가에 한식당이 함께 있습니다. 마트 게시판에서 방·차·구인 정보 확인", website: "asianamarketmemphis.com" },
+  { rank: 2, emoji: "⛪", nameKo: "멤피스한인침례교회", nameEn: "Korean Baptist Church of Memphis",
+    address: "9650 E. Shelby Dr, Collierville TN 38017",
+    phone: "(901) 240-8834", hours: "주일 예배",
+    why: "✅ 콜리어빌 소재 한인 침례교회. 남침례회(SBC) 계열. 새로 오신 분들의 정착을 돕는 오랜 전통",
+    tip: "예배 시간은 전화 또는 홈페이지에서 확인하세요", website: "kbcm.org" },
+  { rank: 3, emoji: "⛪", nameKo: "멤피스 한인교회", nameEn: "Korean Church of Memphis",
+    address: "7565 Macon Rd, Cordova TN 38018",
+    phone: "(901) 292-0430", hours: "주일 예배",
+    why: "코도바 소재 장로교 계열 한인 교회. 멤피스 한인 커뮤니티의 오랜 구심점",
+    tip: "⚠️ 전화번호가 자료마다 달라 방문 전 확인을 권합니다", website: "kcomemphis.org" },
+  { rank: 4, emoji: "🏛️", nameKo: "멤피스 한인회", nameEn: "Korean Association of Memphis",
+    address: "5982 Mt Moriah Rd, Memphis TN 38115",
+    phone: "확인 필요", hours: "문의",
+    why: "멤피스 한인회. 아시아나 마켓 바로 옆에 위치. 정착·통역·커뮤니티 연결",
+    tip: "⚠️ 온라인 정보가 적어 홈페이지가 확인되지 않습니다. 한인 마트나 교회를 통해 연락처를 얻는 것이 빠릅니다", website: "" },
+  { rank: 5, emoji: "🚗", nameKo: "테네시 DDS — 운전면허", nameEn: "Tennessee DDS — Driver License",
+    address: "테네시주 DDS 멤피스 지소 (온라인 예약)",
+    phone: "(866) 849-3548", hours: "월-금",
+    why: "테네시 이주 후 30일 내 면허 전환 의무 (다른 주보다 빠릅니다!)\n⚠️ TN은 SSN 없이도 ITIN으로 신청 가능",
+    tip: "🔗 tn.gov/safety 온라인 예약 필수. 한국 면허 소지자 필기 면제 여부 확인", website: "tn.gov/safety" },
+];
+
+// ── 헌츠빌 정착 TOP5 ──────────────────────────────────────
+// 북앨라배마 한인회(NAKA)가 살아 있는 도시 — 한인회가 첫 관문.
+const TOP5_SETTLE_HUNTSVILLE: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "북앨라배마 한인회 (NAKA)", nameEn: "North Alabama Korean Association",
+    address: "216 Timber Creek Dr, Madison AL 35757",
+    phone: "(256) 417-1511", hours: "이메일 문의 nakahsv@gmail.com",
+    why: "✅ 헌츠빌·매디슨 한인 커뮤니티의 중심. 501(c)(3) 정식 비영리. 한국학교 운영, 문화 행사, 주애틀랜타 총영사관 순회영사 안내까지. 헌츠빌에 오셨다면 가장 먼저 연락하세요",
+    tip: "K-Pop 커버 콘테스트·애틀랜타 체전 등 행사가 활발합니다. 페이스북·인스타그램도 운영", website: "nakahsv.com" },
+  { rank: 2, emoji: "📚", nameKo: "북앨라배마 한국학교", nameEn: "North Alabama Korean School",
+    address: "한인회(NAKA) 운영",
+    phone: "(256) 417-1511", hours: "학기 중 주말",
+    why: "✅ 한인회가 운영하는 한국어 학교. 2세 자녀의 한국어·한국 문화 교육. 학부모 네트워크가 자연스럽게 형성되는 곳",
+    tip: "학기 시작 전 등록 문의. 자녀가 있는 가정은 여기서 이웃을 만나게 됩니다", website: "nakahsv.com" },
+  { rank: 3, emoji: "⛪", nameKo: "헌츠빌 제일순복음교회", nameEn: "Huntsville Korean First Assembly of God",
+    address: "2904 Pike Ave NW, Huntsville AL 35810",
+    phone: "확인 권장", hours: "주일 예배",
+    why: "헌츠빌 한인 교회. 하나님의성회(AG) 계열. 한국어 예배와 정착 지원",
+    tip: "⚠️ 방문 전 예배 시간 확인을 권합니다", website: "huntsvillegoodchurch.com" },
+  { rank: 4, emoji: "🏪", nameKo: "한인·아시안 마켓 (매디슨·헌츠빌)", nameEn: "Korean & Asian Markets",
+    address: "Far East Market (헌츠빌·매디슨 2곳) · Seoul Oriental Groceries · Thanh Hung Super Market",
+    phone: "각 매장 문의", hours: "매장별 상이",
+    why: "헌츠빌에는 대형 H-Mart가 없습니다. 대신 Far East Market(매디슨 지점이 더 큼)과 Thanh Hung(규모 최대)에서 한국 식품을 구할 수 있습니다",
+    tip: "⚠️ Holiday International Market은 휴업 중(2026년 기준). 방문 전 영업 확인 필수. 부족한 품목은 Weee! 온라인 배송 이용", website: "sayweee.com" },
+  { rank: 5, emoji: "🚗", nameKo: "앨라배마 ALEA — 운전면허", nameEn: "Alabama ALEA — Driver License",
+    address: "앨라배마주 면허 시험장 (헌츠빌·매디슨 카운티)",
+    phone: "(334) 517-2800", hours: "월-금",
+    why: "앨라배마 이주 후 30일 내 면허 전환. 헌츠빌은 대중교통이 약해 차와 면허가 사실상 생활 필수입니다",
+    tip: "🔗 alea.gov 온라인 예약. 차량 등록은 매디슨 카운티 세무서(License Dept)에서 별도 진행", website: "alea.gov" },
 ];
 
 const TOP5_SETTLE_NASHVILLE: Top5Item[] = [
@@ -8683,6 +8841,7 @@ function LiveDataBar() {
     philadelphia: "America/New_York", miami: "America/New_York",
     mexicocity: "America/Mexico_City", guadalajara: "America/Mexico_City",
     monterrey: "America/Monterrey",
+    memphis: "America/Chicago", huntsville: "America/Chicago",
   };
 
   // 도시별 시간 코드 (표시용)
@@ -8692,6 +8851,7 @@ function LiveDataBar() {
     vancouver: "YVR", houston: "HOU", atlanta: "ATL", kansascity: "MCI",
     philadelphia: "PHL", miami: "MIA", mexicocity: "MEX",
     guadalajara: "GDL", monterrey: "MTY",
+    memphis: "MEM", huntsville: "HSV",
   };
 
   const isSeattle = city.slug === "seattle";
@@ -9091,7 +9251,7 @@ function CompactHeroNew() {
         }}>
           <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6EE7B7", display: "inline-block", flexShrink: 0 }} />
           <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(255,255,255,0.92)", letterSpacing: "0.05em" }}>
-            {lang === "ko" ? "✦ 78개 도시의 이야기" : "✦ 78 Cities"}
+            {lang === "ko" ? "✦ 80개 도시의 이야기" : "✦ 80 Cities"}
           </span>
         </div>
         <div style={{
@@ -9225,7 +9385,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       icon: "🤝", color: "#F59E0B",
       nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
       tagKo: "친구 · 멘토 · 동행 파트너", tagEn: "Friends · Mentors · Partners",
-      userKo: "78개 도시 한인을 만납니다", userEn: "Meet Koreans across 78 cities",
+      userKo: "80개 도시 한인을 만납니다", userEn: "Meet Koreans across 80 cities",
       providerKo: "멘토로 섬기실 분 → 함께해요", providerEn: "Mentor & serve → join us",
       tab: 5, subTab: 2,
     },
@@ -10692,7 +10852,7 @@ function CommunityPulseSection({ lang }: { lang: string }) {
     { emoji: "⛪", ko: `${cityKo} 한인 교회 정보가 업데이트됐어요`, en: `Korean church info updated in ${cityEn}`, time: ko ? "방금" : "just now" },
     { emoji: "🍽️", ko: `${cityKo} 한식당 TOP 10 새로 큐레이션됐어요`, en: `Korean restaurant TOP 10 curated in ${cityEn}`, time: ko ? "2분 전" : "2m ago" },
     { emoji: "🏠", ko: `${cityKo} 정착 필수 정보가 업데이트됐어요`, en: `Settlement essentials updated for ${cityEn}`, time: ko ? "5분 전" : "5m ago" },
-    { emoji: "🌏", ko: `78개 도시 한인 커뮤니티가 함께하고 있어요`, en: `78 cities. One Korean community worldwide`, time: ko ? "8분 전" : "8m ago" },
+    { emoji: "🌏", ko: `80개 도시 한인 커뮤니티가 함께하고 있어요`, en: `80 cities. One Korean community worldwide`, time: ko ? "8분 전" : "8m ago" },
     { emoji: "✈️", ko: `공항 도착 체크리스트 — 지금 바로 시작해보세요`, en: `Airport arrival checklist — start right now`, time: ko ? "11분 전" : "11m ago" },
     { emoji: "🗺️", ko: `${cityKo} 탐방 명소 TOP 10 확인해보세요`, en: `Top 10 places to explore in ${cityEn}`, time: ko ? "15분 전" : "15m ago" },
     { emoji: "💊", ko: `건강보험 가입 방법 — ${cityKo} 기준으로 정리됐어요`, en: `Health insurance guide updated for ${cityEn}`, time: ko ? "22분 전" : "22m ago" },
@@ -10706,7 +10866,7 @@ function CommunityPulseSection({ lang }: { lang: string }) {
     { emoji: "🎯", ko: `정착 첫날부터 현지인처럼 — HebronGuide`, en: `Live like a local from Day One — HebronGuide`, time: ko ? "3시간 전" : "3h ago" },
     { emoji: "🏙️", ko: `달라스·휴스턴·애틀랜타 정보가 업데이트됐어요`, en: `Dallas, Houston, Atlanta info refreshed`, time: ko ? "3시간 전" : "3h ago" },
     { emoji: "🇰🇷", ko: `서울·부산·분당 역이민 정보도 확인해보세요`, en: `Seoul, Busan, Bundang re-migration info ready`, time: ko ? "4시간 전" : "4h ago" },
-    { emoji: "🌐", ko: `78개 도시 — 오늘도 누군가 새로 이주하고 있어요`, en: `78 cities — someone is moving today, too`, time: ko ? "5시간 전" : "5h ago" },
+    { emoji: "🌐", ko: `80개 도시 — 오늘도 누군가 새로 이주하고 있어요`, en: `80 cities — someone is moving today, too`, time: ko ? "5시간 전" : "5h ago" },
     { emoji: "💛", ko: `이 가이드가 도움이 됐나요? 주변에 공유해주세요`, en: `Did this help? Share with someone who needs it`, time: ko ? "5시간 전" : "5h ago" },
     { emoji: "🙏", ko: `낯선 땅에서 외롭지 않게 — 헤브론이 함께합니다`, en: `You're not alone in a new land — Hebron is here`, time: ko ? "6시간 전" : "6h ago" },
     // ── G2G — 세대에서 세대로 (은근히, 자연스럽게)
@@ -12001,6 +12161,8 @@ const HEBRON_CITIES = [
   { emoji: "🐻", nameKo: "앵커리지",    nameEn: "Anchorage",     flag: "🇺🇸", url: "/anchorage/",   status: "live", color: "#14B8A6" },
   { emoji: "🌄", nameKo: "인랜드 엠파이어", nameEn: "Inland Empire", flag: "🇺🇸", url: "/inlandempire/", status: "live", color: "#D97706" },
   { emoji: "🤠", nameKo: "오스틴",      nameEn: "Austin",        flag: "🇺🇸", url: "/austin/",      status: "live", color: "#1D4ED8" },
+  { emoji: "🚀", nameKo: "헌츠빌",      nameEn: "Huntsville",    flag: "🇺🇸", url: "/huntsville/",  status: "live", color: "#2563EB" },
+  { emoji: "🎸", nameKo: "멤피스",      nameEn: "Memphis",       flag: "🇺🇸", url: "/memphis/",     status: "live", color: "#B45309" },
   { emoji: "🍁", nameKo: "캘거리",      nameEn: "Calgary",       flag: "🇨🇦", url: "/calgary/",     status: "live", color: "#D97706" },
   { emoji: "🍁", nameKo: "에드먼턴",    nameEn: "Edmonton",      flag: "🇨🇦", url: "/edmonton/",    status: "live", color: "#10B981" },
   { emoji: "🏛️", nameKo: "오타와",     nameEn: "Ottawa",        flag: "🇨🇦", url: "/ottawa/",      status: "live", color: "#DC2626" },
@@ -12305,7 +12467,7 @@ function waGwaJosa(s: string): string {
 }
 // ────────────────────────────────────────────────────────────
 
-// 도시 → 현지 한인 정체성 매핑 (78개 도시 전부 커버)
+// 도시 → 현지 한인 정체성 매핑 (80개 도시 전부 커버)
 const DIASPORA_IDENTITY: Record<string, {
   flag: string; ko: string; en: string; descKo: string; descEn: string; color: string;
 }> = {
@@ -13205,7 +13367,7 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
 
 /* ─────────────────────────────────────────
    HOME: 플라이휠 소셜 프루프 바 (쿠팡 원리 ①)
-   — "312개 교회 · 78개 도시" 숫자가 신뢰를 만든다
+   — "312개 교회 · 80개 도시" 숫자가 신뢰를 만든다
 ───────────────────────────────────────── */
 function HebronFlywheelBar({ lang }: { lang: string }) {
   // ✅ 도시 수 자동 계산 — 도시 추가 시 자동 반영 (수동 수정 불필요)
@@ -13564,6 +13726,18 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 뉴올리언스 SSA 오피스 | ssa.gov/locator" },
     { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명. Chase, Capital One, Whitney Bank 방문" },
     { title: "한인 커뮤니티 연결", desc: "카카오오픈채팅 '뉴올리언스한인', 지역 한인 마트·한인 교회" },
+  ] : citySlug === "memphis" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 한인 교회가 모인 코도바(Cordova)·저먼타운·콜리어빌 인근 권장" },
+    { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통. 선불폰부터 시작" },
+    { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 멤피스 SSA 오피스 | ssa.gov/locator" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명. First Horizon(멤피스 본사), Regions, Chase 방문" },
+    { title: "한인 커뮤니티 연결", desc: "아시아나 마켓(한인 마트)에서 정보 얻기. 멤피스 한인교회·한인침례교회 등 4곳" },
+  ] : citySlug === "huntsville" ? [
+    { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 한인 가정이 많은 매디슨(Madison)·리서치파크 인근 권장" },
+    { title: "차량 먼저 확보", desc: "헌츠빌은 대중교통이 약해 차가 사실상 필수. 렌터카로 시작해 중고차 구입 권장" },
+    { title: "SSN 신청", desc: "고용 비자 소지자 입국 10일 후 신청. 📍 헌츠빌 SSA 오피스 | ssa.gov/locator" },
+    { title: "은행 계좌 개설 준비", desc: "여권·비자·주소 증명. Regions, Redstone Federal Credit Union(지역 최대), Truist 방문" },
+    { title: "한인 커뮤니티 연결", desc: "북앨라배마 한인회(NAKA) nakahsv.com · (256) 417-1511 — 가장 먼저 연락하세요" },
   ] : citySlug === "fayetteville" ? [
     { title: "임시 거주지 확보", desc: "에어비앤비·단기 렌탈. 포트 브래그(군) 인근. 군인 가족 한인 커뮤니티 권장" },
     { title: "휴대폰 개통", desc: "T-Mobile, AT&T, Mint Mobile. 여권+비자로 개통. 군 기지 내 통신사도 이용" },
@@ -13956,6 +14130,18 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. New Orleans SSA office | ssa.gov/locator" },
     { title: "Prepare bank account", desc: "Bring passport, visa, address proof. Chase, Capital One, Whitney Bank" },
     { title: "Connect to Korean community", desc: "KakaoTalk '뉴올리언스한인', local Korean markets & churches" },
+  ] : citySlug === "memphis" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. Near Cordova, Germantown, Collierville — where Korean churches cluster" },
+    { title: "Activate phone", desc: "T-Mobile, AT&T, Mint Mobile. Passport + visa sufficient. Prepaid is fine" },
+    { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. Memphis SSA office | ssa.gov/locator" },
+    { title: "Prepare bank account", desc: "Bring passport, visa, address proof. First Horizon (Memphis-based), Regions, Chase" },
+    { title: "Connect to Korean community", desc: "Asiana Market for local info. Four Korean churches across the metro" },
+  ] : citySlug === "huntsville" ? [
+    { title: "Secure temporary housing", desc: "Airbnb or short-term rental. Madison and Research Park areas — where Korean families live" },
+    { title: "Get a car first", desc: "Transit is limited; a car is essential. Start with a rental, then buy used" },
+    { title: "Apply for SSN", desc: "Work visa holders: apply 10 days after arrival. Huntsville SSA office | ssa.gov/locator" },
+    { title: "Prepare bank account", desc: "Bring passport, visa, address proof. Regions, Redstone Federal Credit Union, Truist" },
+    { title: "Connect to Korean community", desc: "North Alabama Korean Association — nakahsv.com · (256) 417-1511. Call them first" },
   ] : citySlug === "fayetteville" ? [
     { title: "Secure temporary housing", desc: "Airbnb or short-term rental. Near Fort Bragg. Military-family Korean community" },
     { title: "Activate phone", desc: "T-Mobile, AT&T, Mint Mobile. Passport + visa sufficient. On-base carriers also available" },
@@ -14852,6 +15038,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "sf"       ? TOP5_SETTLE_SF :
             useCityConfig().slug === "newyork"  ? TOP5_SETTLE_NEWYORK :
             useCityConfig().slug === "nashville"? TOP5_SETTLE_NASHVILLE :
+            useCityConfig().slug === "memphis"   ? TOP5_SETTLE_MEMPHIS :
+            useCityConfig().slug === "huntsville"? TOP5_SETTLE_HUNTSVILLE :
             useCityConfig().slug === "boston"   ? TOP5_SETTLE_BOSTON :
             useCityConfig().slug === "la"        ? TOP5_SETTLE_LA :
             useCityConfig().slug === "toronto"   ? TOP5_SETTLE_TORONTO :
@@ -16120,6 +16308,69 @@ function getCityChurches(slug: string, lang: string) {
           : "✨ Lead Pastor: Sangheon Kim\n📍 Louisville, KY\n🏠 Small group Mokjang meetings\n🔗 saehan.org",
         tags: ko ? ["루이빌", "장로교", "켄터키"] : ["Louisville", "Presbyterian", "Kentucky"],
         website: "https://www.saehan.org",
+      },
+    ],
+    memphis: [
+      {
+        emoji: "⭐", tier: 2,
+        name: ko ? "저먼타운침례교회" : "Germantown Korean Baptist Church",
+        nameEn: "Germantown Korean Baptist Church",
+        desc: ko
+          ? "✨ 담임: 윤원상 목사\n📍 3891 S Germantown Rd, Memphis TN 38125\n🕐 주일예배 11:00am\n🔗 gtkbc.org\n\n예수님을 닮아가는 따뜻한 공동체입니다."
+          : "✨ Lead Pastor: Wonsang Yoon\n📍 3891 S Germantown Rd, Memphis TN 38125\n🕐 Sunday 11:00am\n🔗 gtkbc.org\n\nA warm community growing to resemble Jesus.",
+        tags: ko ? ["멤피스", "침례교", "SBC"] : ["Memphis", "Baptist", "SBC"],
+        website: "https://www.gtkbc.org",
+      },
+      {
+        emoji: "⛪", tier: 2,
+        name: ko ? "멤피스한인침례교회" : "Korean Baptist Church of Memphis",
+        nameEn: "Korean Baptist Church of Memphis",
+        desc: ko
+          ? "✅ 검증됨\n📍 9650 E Shelby Dr, Collierville TN 38017\n☎️ (901) 240-8834\n🔗 kbcm.org"
+          : "✅ Verified\n📍 9650 E Shelby Dr, Collierville TN 38017\n☎️ (901) 240-8834\n🔗 kbcm.org",
+        tags: ko ? ["콜리어빌", "침례교"] : ["Collierville", "Baptist"],
+        website: "https://kbcm.org",
+      },
+      {
+        emoji: "⛪", tier: 3,
+        name: ko ? "멤피스 한인교회" : "Korean Church of Memphis",
+        nameEn: "Korean Church of Memphis",
+        desc: ko
+          ? "📍 7565 Macon Rd, Cordova TN 38018\n🔗 kcomemphis.org\n\n장로교 계열. \"말씀이 살아서 역사하는 교회\"\n⚠️ 전화번호가 자료마다 달라 방문 전 확인을 권합니다."
+          : "📍 7565 Macon Rd, Cordova TN 38018\n🔗 kcomemphis.org\n\nPresbyterian. Please confirm the phone number before visiting.",
+        tags: ko ? ["코도바", "장로교"] : ["Cordova", "Presbyterian"],
+        website: "http://www.kcomemphis.org",
+      },
+      {
+        emoji: "⛪", tier: 3,
+        name: ko ? "멤피스한인그리스도의교회" : "Memphis Korean Church of Christ",
+        nameEn: "Memphis Korean Church of Christ",
+        desc: ko
+          ? "📍 10611 Collierville Rd, Collierville TN 38017\n☎️ (901) 861-6455\n\n🔍 추가 검증 중"
+          : "📍 10611 Collierville Rd, Collierville TN 38017\n☎️ (901) 861-6455\n\n🔍 Verification in progress",
+        tags: ko ? ["콜리어빌", "그리스도의교회"] : ["Collierville", "Church of Christ"],
+      },
+    ],
+    huntsville: [
+      {
+        emoji: "⭐", tier: 2,
+        name: ko ? "헌츠빌 더블레싱교회" : "The Blessing Church Huntsville",
+        nameEn: "The Blessing Church Huntsville",
+        desc: ko
+          ? "✨ 담임: 이재윤 목사\n📍 228 Mt Zion Rd, Huntsville AL 35806\n🕐 주일예배 11:00am\n🔗 theblessingchurch25.com\n\n복음 전파 사명을 감당하는 선교적 교회로 세워지길 소망합니다."
+          : "✨ Lead Pastor: Jaeyoon Lee\n📍 228 Mt Zion Rd, Huntsville AL 35806\n🕐 Sunday 11:00am\n🔗 theblessingchurch25.com\n\nA missional church seeking to carry out the calling of the gospel.",
+        tags: ko ? ["헌츠빌", "침례교", "SBC"] : ["Huntsville", "Baptist", "SBC"],
+        website: "https://theblessingchurch25.com",
+      },
+      {
+        emoji: "⛪", tier: 3,
+        name: ko ? "헌츠빌 제일순복음교회" : "Huntsville Korean First Assembly of God",
+        nameEn: "Huntsville Korean First Assembly of God Church",
+        desc: ko
+          ? "📍 2904 Pike Ave NW, Huntsville AL 35810\n🔗 huntsvillegoodchurch.com\n\n하나님의성회(AG) 계열 한인 교회.\n⚠️ 예배 시간은 방문 전 확인을 권합니다."
+          : "📍 2904 Pike Ave NW, Huntsville AL 35810\n🔗 huntsvillegoodchurch.com\n\nAssemblies of God Korean church. Please confirm service times before visiting.",
+        tags: ko ? ["헌츠빌", "순복음"] : ["Huntsville", "Assemblies of God"],
+        website: "https://www.huntsvillegoodchurch.com",
       },
     ],
     nashville: [
@@ -21715,6 +21966,8 @@ const CITY_RESTAURANT_TOP5_MAP: Record<string, Top5Item[]> = {
   sf:            TOP5_RESTAURANTS_SF,
   newyork:       TOP5_RESTAURANTS_NEWYORK,
   nashville:     TOP5_RESTAURANTS_NASHVILLE,
+  memphis:       TOP5_RESTAURANTS_MEMPHIS,
+  huntsville:    TOP5_RESTAURANTS_HUNTSVILLE,
   boston:        TOP5_RESTAURANTS_BOSTON,
   la:            TOP5_RESTAURANTS_LA,
   toronto:       TOP5_RESTAURANTS_TORONTO,
@@ -22706,7 +22959,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                   {[
                     { n: lang === "ko" ? "현지 한인" : "Local Korean", d: lang === "ko" ? "오래 살아온 분" : "Long-time residents" },
-                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "78개+ 도시" : "62+ cities" },
+                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "80개+ 도시" : "62+ cities" },
                     { n: lang === "ko" ? "소규모 투어" : "Small Group", d: lang === "ko" ? "개인 맞춤" : "Personal touch" },
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
@@ -22817,6 +23070,9 @@ const CITY_CONSULATE: Record<string, { ko: string; en: string; phone: string; ur
   newyork:      { ko: "주뉴욕 대한민국 총영사관",   en: "Korean Consulate General New York",     phone: "(646) 674-6000", url: "overseas.mofa.go.kr/us-newyork-ko" },
   newjersey:    { ko: "주뉴욕 대한민국 총영사관 (뉴저지 관할)", en: "Korean Consulate General New York", phone: "(646) 674-6000", url: "overseas.mofa.go.kr/us-newyork-ko" },
   nashville:    { ko: "주애틀랜타 총영사관 (관할)", en: "Korean Consulate General Atlanta",      phone: "(404) 522-1611", url: "overseas.mofa.go.kr/us-atlanta-ko" },
+  // 테네시·앨라배마 모두 주애틀랜타 총영사관 관할
+  memphis:      { ko: "주애틀랜타 총영사관 (테네시 관할)", en: "Korean Consulate General Atlanta", phone: "(404) 522-1611", url: "overseas.mofa.go.kr/us-atlanta-ko" },
+  huntsville:   { ko: "주애틀랜타 총영사관 (앨라배마 관할)", en: "Korean Consulate General Atlanta", phone: "(404) 522-1611", url: "overseas.mofa.go.kr/us-atlanta-ko" },
   boston:       { ko: "주보스턴 대한민국 총영사관", en: "Korean Consulate General Boston",       phone: "(617) 641-2830", url: "overseas.mofa.go.kr/us-boston-ko" },
   la:           { ko: "주LA 대한민국 총영사관",    en: "Korean Consulate General Los Angeles",   phone: "(213) 385-9300", url: "overseas.mofa.go.kr/us-losangeles-ko" },
   toronto:      { ko: "주토론토 대한민국 총영사관", en: "Korean Consulate General Toronto",      phone: "(416) 920-3809", url: "overseas.mofa.go.kr/ca-toronto-ko" },
@@ -23524,8 +23780,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             icon="🤝" color="#8B5CF6" lang={lang}
             titleKo="헤브론 커넥트 — 친구·멘토·동행 파트너 매칭"
             titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
-            descKo="교인 검증 프로필로 78개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
-            descEn="Meet Koreans across 78 cities. Friends, mentors, prayer partners & business connections."
+            descKo="교인 검증 프로필로 80개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
+            descEn="Meet Koreans across 80 cities. Friends, mentors, prayer partners & business connections."
           />
           {/* 211 팁 박스 */}
           <a href="tel:211" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>
@@ -24155,7 +24411,7 @@ function getCityJobData(slug: string, lang: string) {
                    : "• KAAFNY — Korean finance professionals NYC\n• Flushing Korean Chamber of Commerce\n• KITA New York branch\n• Korea Society network", tags: ["KAAFNY","KITA","뉴욕"] },
       ],
     },
-    // ── 추가 78개 도시 취업 데이터 ──────────────────────────────────
+    // ── 추가 80개 도시 취업 데이터 ──────────────────────────────────
     atlanta: {
       main: [
         { emoji: "✈️", name: "Delta Air Lines", nameEn: "Delta Air Lines — World HQ",
@@ -24820,7 +25076,7 @@ function getCityDistrictData(slug: string, lang: string) {
                  : "✅ Free English classes for newcomers (LINC) via IMSS. Adult ELL, conversational English. K-12 students get free ELL support in all SD57 schools.\n📍 1270 2nd Ave (IMSS) | ☎ (250) 562-2900 | 🔗 imss.ca",
         tags: ko ? ["LINC","영어수업","무료","이민자"] : ["LINC","ESL","Free","Newcomers"] },
     ],
-    // ── 추가 78개 도시 학군 ──────────────────────────────────────
+    // ── 추가 80개 도시 학군 ──────────────────────────────────────
     atlanta: [
       { emoji: "⭐", name: "Gwinnett County Public Schools", nameEn: "GCPS — Duluth/Suwanee",
         desc: ko ? "✅ 귀넷카운티. GA 최대 학군·한인 밀집. Niche A. Duluth HS·Peachtree Ridge HS. 한인 학생 비율 높음.\n📍 둘루스·스와니·로렌스빌 | 🔗 gcpsk12.org"
@@ -24878,7 +25134,7 @@ function getCityDistrictData(slug: string, lang: string) {
         desc: ko ? "마이애미 북쪽. 렌트 저렴. Tri-Rail 통근 가능. 성장하는 한인 커뮤니티.\n📍 포트로더데일·홀리우드·펨브로크 | 🔗 browardschools.com"
                  : "North of Miami. Lower rent. Tri-Rail commute. Growing Korean community.\n📍 Fort Lauderdale, Hollywood, Pembroke | 🔗 browardschools.com", tags: ["브로워드","포트로더데일","저렴"] },
     ],
-    // ── 멕시코 78개 도시 — 멕시코 교육 시스템 안내 ──────────────
+    // ── 멕시코 80개 도시 — 멕시코 교육 시스템 안내 ──────────────
     mexicocity: [
       { emoji: "⭐", name: ko ? "코리안 스쿨 멕시코 (한국학교)" : "Korean School of Mexico",
         desc: ko ? "✅ 공식 확인 | 재멕시코 한국 교육원 산하 한국학교. 주재원 자녀·한인 2세 교육.\n📍 멕시코시티 폴랑코 인근\n✨ 한국어·한국 교육과정 + 현지 스페인어 교육 병행\n🔗 overseas.mofa.go.kr/mx-ko (대사관 → 교육정보)"
@@ -24928,6 +25184,26 @@ function getCityCC(slug: string, lang: string) {
   const ko = lang === "ko";
   type Item = { emoji: string; name: string; nameEn?: string; desc: string; tags: string[] };
   const D: Record<string, Item[]> = {
+    memphis: [
+      { emoji: "🏛️", name: "Southwest Tennessee Community College", nameEn: "Southwest TN CC — 멤피스 (유일한 공립 2년제)",
+        desc: ko ? "✅ 멤피스 유일의 공립 커뮤니티 칼리지. 간호·물류·IT 강세(멤피스는 FedEx 물류 중심지). University of Memphis 편입 협약.\n📍 5983 Macon Cove, Memphis TN | 🔗 southwest.tn.edu"
+                 : "✅ Memphis's public community college. Nursing, logistics & IT (Memphis is a FedEx logistics hub). Transfer agreement with U of Memphis.\n📍 5983 Macon Cove, Memphis TN | 🔗 southwest.tn.edu",
+        tags: ["멤피스","편입","물류·간호"] },
+      { emoji: "🏛️", name: "Tennessee College of Applied Technology — Memphis", nameEn: "TCAT Memphis — 기술·자격증 과정",
+        desc: ko ? "용접·자동차·전기·간호조무 등 실무 기술 자격증 중심. 단기 과정으로 빠른 취업 가능. 학비 저렴.\n🔗 tcatmemphis.edu"
+                 : "Hands-on technical certificates: welding, automotive, electrical, practical nursing. Short programs, fast to employment. Low tuition.\n🔗 tcatmemphis.edu",
+        tags: ["기술","자격증","단기"] },
+    ],
+    huntsville: [
+      { emoji: "🏛️", name: "Calhoun Community College", nameEn: "Calhoun CC — 헌츠빌·디케이터 (앨라배마 최대 2년제)",
+        desc: ko ? "✅ 앨라배마 최대 커뮤니티 칼리지. 헌츠빌 캠퍼스(2006년 개교) 있음. UAH·Athens State 편입 최적. 항공우주 관련 기술 과정.\n📍 Huntsville & Decatur AL | 🔗 calhoun.edu"
+                 : "✅ Alabama's largest community college. Huntsville campus opened 2006. Best transfer path to UAH and Athens State.\n📍 Huntsville & Decatur AL | 🔗 calhoun.edu",
+        tags: ["헌츠빌","편입","최대규모"] },
+      { emoji: "🏛️", name: "Drake State Community & Technical College", nameEn: "Drake State — 헌츠빌 (기술 특화)",
+        desc: ko ? "헌츠빌 소재 공립 2년제. 용접·기계·전자·간호 등 기술 과정 중심. 방위산업·제조업 취업 연계.\n📍 3421 Meridian St N, Huntsville AL | 🔗 drakestate.edu"
+                 : "Public two-year college in Huntsville. Welding, machining, electronics & nursing. Ties to defense and manufacturing employers.\n📍 3421 Meridian St N, Huntsville AL | 🔗 drakestate.edu",
+        tags: ["헌츠빌","기술","취업연계"] },
+    ],
     seattle: [
       { emoji: "🏛️", name: "Edmonds College", nameEn: "Edmonds College — 린우드 (한인 추천 #1)",
         desc: ko ? "✅ 린우드 소재. 4년제 편입 최적. UW·WSU 편입률 높음. ESL 풍부. 학비 ~$4,500/학기.\n📍 20000 68th Ave W, Lynnwood | 🔗 edcc.edu"
@@ -25705,6 +25981,50 @@ function getCityUniversities(slug: string, lang: string) {
                  : "✅ Divinity school (Rawlings) at the largest evangelical university, Lynchburg. Largest online theology programs — many Korean pastors nationwide. Undergrad, MDiv & doctoral.\n📍 Lynchburg VA | 🔗 liberty.edu",
         tags: ["신학교","리버티","온라인"] },
     ],
+    memphis: [
+      { emoji: "🎓", name: "University of Memphis (멤피스 대학교)", nameEn: "U of M — 주립 종합 (R1 연구중심)",
+        desc: ko ? "✅ 멤피스 유일의 주립 종합대. 공학·경영·음대·교육. 주내 학비 저렴, 한국 유학생 많음.\n📍 Memphis TN | 🔗 memphis.edu"
+                 : "✅ Memphis's public research university (R1). Engineering, business, music & education. Affordable in-state.\n📍 Memphis TN | 🔗 memphis.edu",
+        tags: ["멤피스대","주립","연구중심"] },
+      { emoji: "🎓", name: "Rhodes College (로즈 칼리지)", nameEn: "Rhodes — 사립 리버럴아츠 명문",
+        desc: ko ? "✅ 전미 상위 리버럴아츠 칼리지. 소규모 정예. 장로교 배경. 의대·법대 진학률 높음.\n📍 2000 N Parkway, Memphis TN | 🔗 rhodes.edu"
+                 : "✅ Top national liberal arts college. Small and selective. Presbyterian heritage. Strong pre-med & pre-law.\n📍 2000 N Parkway, Memphis TN | 🔗 rhodes.edu",
+        tags: ["로즈","리버럴아츠","사립"] },
+      { emoji: "🎓", name: "Christian Brothers University (CBU)", nameEn: "CBU — 가톨릭계 사립",
+        desc: ko ? "멤피스 가톨릭(라살회) 사립대. 공학·간호·경영. 소규모 학급, 실무 중심.\n🔗 cbu.edu"
+                 : "Catholic (Lasallian) private univ in Memphis. Engineering, nursing & business. Small classes.\n🔗 cbu.edu",
+        tags: ["CBU","가톨릭","사립"] },
+      { emoji: "🎓", name: "Mid-America Baptist Theological Seminary (미드아메리카 침례신학교)", nameEn: "MABTS — 신학교 (남침례회 협력)",
+        desc: ko ? "✅ 남침례회(SBC) 협력 신학교. 목회·선교·성경. 학부 과정 병설. 2024년 알링턴(대멤피스)으로 이전.\n📍 Arlington TN (대멤피스) | 🔗 mabts.edu"
+                 : "✅ SBC-affiliated seminary. Ministry, missions & biblical studies. Undergrad programs included. Relocated to Arlington (greater Memphis).\n📍 Arlington TN | 🔗 mabts.edu",
+        tags: ["신학교","남침례회","MABTS"] },
+      { emoji: "🎓", name: "Memphis Theological Seminary (멤피스 신학교)", nameEn: "MTS — 신학교 (컴벌랜드 장로교)",
+        desc: ko ? "멤피스 소재 컴벌랜드 장로교 신학교. 목회학석사(M.Div)·목회상담. 도심 사역 중심.\n📍 168 E Parkway S, Memphis TN | 🔗 memphisseminary.edu"
+                 : "Cumberland Presbyterian seminary in Memphis. M.Div and pastoral counseling. Urban ministry focus.\n📍 168 E Parkway S, Memphis TN | 🔗 memphisseminary.edu",
+        tags: ["신학교","장로교","MTS"] },
+    ],
+    huntsville: [
+      { emoji: "🎓", name: "University of Alabama in Huntsville (UAH)", nameEn: "UAH — 주립 (항공우주·공학 강세)",
+        desc: ko ? "✅ 헌츠빌 주립 연구중심대. NASA·방위산업과 직결된 항공우주·전기공학이 최강. 취업 연계 우수.\n📍 301 Sparkman Dr, Huntsville AL | 🔗 uah.edu"
+                 : "✅ Public research university in Huntsville. Aerospace & electrical engineering tied to NASA and defense industry.\n📍 301 Sparkman Dr, Huntsville AL | 🔗 uah.edu",
+        tags: ["UAH","주립","항공우주"] },
+      { emoji: "🎓", name: "Alabama A&M University (앨라배마 A&M)", nameEn: "AAMU — 주립 (HBCU·농업·STEM)",
+        desc: ko ? "헌츠빌 노멀 소재 주립 HBCU. 농업·공학·교육. 학비 저렴, 캠퍼스 규모 큼.\n📍 Normal AL (헌츠빌) | 🔗 aamu.edu"
+                 : "Public HBCU land-grant university in Normal (Huntsville). Agriculture, engineering & education. Affordable.\n📍 Normal AL | 🔗 aamu.edu",
+        tags: ["AAMU","주립","HBCU"] },
+      { emoji: "🎓", name: "Oakwood University (오크우드)", nameEn: "Oakwood — 사립 (제칠일안식일예수재림교 계열)",
+        desc: ko ? "헌츠빌 사립 HBCU. 간호·생물·경영·신학. ※ 제칠일안식일예수재림교(SDA) 재단 — 교단 배경 확인 후 결정하세요.\n🔗 oakwood.edu"
+                 : "Private HBCU in Huntsville. Nursing, biology, business & theology. Note: Seventh-day Adventist affiliated.\n🔗 oakwood.edu",
+        tags: ["오크우드","사립","교단확인"] },
+      { emoji: "🎓", name: "Athens State University (에이선스 주립)", nameEn: "Athens State — 주립 (3·4학년 편입 전용)",
+        desc: ko ? "헌츠빌 서쪽 에이선스 소재 주립대. 2년제 졸업 후 3·4학년만 다니는 편입 전용 학교. 학비 매우 저렴.\n📍 Athens AL (헌츠빌 30분) | 🔗 athens.edu"
+                 : "Public upper-division university west of Huntsville. Junior/senior years only, for community college transfers. Very affordable.\n📍 Athens AL | 🔗 athens.edu",
+        tags: ["편입전용","주립","저렴"] },
+      { emoji: "🎓", name: "Beeson Divinity School (비슨 신학교, 샘포드대)", nameEn: "Beeson — 신학교 (버밍햄, 초교파 복음주의)",
+        desc: ko ? "헌츠빌에는 신학교가 없어 버밍햄(약 1시간 40분)의 비슨 신학교가 가장 가깝습니다. 샘포드대 부설, 초교파 복음주의.\n📍 Birmingham AL | 🔗 beesondivinity.com"
+                 : "No seminary in Huntsville itself; Beeson in Birmingham (~1h40m) is nearest. Interdenominational evangelical, at Samford University.\n📍 Birmingham AL | 🔗 beesondivinity.com",
+        tags: ["신학교","복음주의","버밍햄"] },
+    ],
     neworleans: [
       { emoji: "🎓", name: "Tulane University (튤레인)", nameEn: "Tulane — 사립 명문 (의대·공중보건)",
         desc: ko ? "✅ 뉴올리언스 소재 사립 명문. 의대·공중보건·법. 남부 명문. 학비 높음.\n📍 New Orleans LA | 🔗 tulane.edu"
@@ -25972,7 +26292,7 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
             icon="📚" color="#8B5CF6" lang={lang}
             titleKo="헤브론 튜터 — 한인 선배가 직접 가르칩니다"
             titleEn="Hebron Tutor — Learn from Korean Community Mentors"
-            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 78개+ 도시 가능."
+            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 80개+ 도시 가능."
             descEn="Math, SAT, AP, Korean tutoring. Carefully selected Korean tutors. Online across 52+ cities."
           />
         </div>
@@ -27326,6 +27646,22 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
         { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
       ],
     },
+    memphis: {
+      airport: "멤피스 국제공항", airportCode: "MEM",
+      transport: [
+        { icon: "🚌", name: "MATA Route 2", desc: ko ? "공항 → 다운타운 시내버스" : "Airport → Downtown city bus", price: "$1.75-", time: "약 45분" },
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "앱 호출. 한인 교회 밀집지(코도바·콜리어빌)까지 30~40분" : "App-based. 30–40 min to Cordova/Collierville Korean churches", price: "$25-40", time: "약 20분" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스" : "Korean-speaking pickup", price: "협의", time: "맞춤" },
+      ],
+    },
+    huntsville: {
+      airport: "헌츠빌 국제공항", airportCode: "HSV",
+      transport: [
+        { icon: "🚗", name: "Uber / Lyft", desc: ko ? "앱 호출. 대중교통이 약해 사실상 필수" : "App-based. Transit is limited — effectively required", price: "$20-30", time: "약 15분" },
+        { icon: "🚙", name: "렌터카", desc: ko ? "공항 내 영업소. 헌츠빌은 자동차 없이 생활이 어렵습니다" : "On-site counters. A car is essential in Huntsville", price: "$40-70/일", time: "즉시" },
+        { icon: "👤", name: "헤브론 라이드", desc: ko ? "한국어 픽업 서비스. 북앨라배마 한인회(NAKA) 연계" : "Korean-speaking pickup. Linked with NAKA", price: "협의", time: "맞춤" },
+      ],
+    },
     federalway: {
       airport: "시애틀-타코마 국제공항 (페더럴웨이 관문)", airportCode: "SEA",
       transport: [
@@ -28559,7 +28895,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
             {ko ? "🔜 준비 중인 상품" : "🔜 Coming Soon"}
           </div>
           {([
-            { emoji: "📖", name: ko ? "Hebron 정착 가이드 (PDF)" : "Settlement Guide PDF", desc: ko ? "78개 도시 정착 정보 총정리" : "78-city settlement guide" },
+            { emoji: "📖", name: ko ? "Hebron 정착 가이드 (PDF)" : "Settlement Guide PDF", desc: ko ? "80개 도시 정착 정보 총정리" : "80-city settlement guide" },
             { emoji: "🗣️", name: "Echo — Ministry English", desc: ko ? "목회자·선교사를 위한 실전 영어" : "Real English for pastors & missionaries" },
             { emoji: "🤝", name: ko ? "Hebron Gig 서비스" : "Hebron Gig Services", desc: ko ? "한인 커뮤니티 전문가 매칭" : "Korean community service matching" },
             { emoji: "🏙️", name: ko ? "도시별 정착 키트" : "City Settlement Kit", desc: ko ? "내가 이사할 도시 맞춤 패키지" : "Personalized city moving package" },
@@ -29915,8 +30251,8 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
 // 새 소식이 있을 때 이 BANNER_ID와 메시지만 수정하면 자동 재표시
 const BANNER_ID = "update-2026-05-27-search"; // 바꾸면 모든 사용자에게 다시 표시
 const BANNER_MSG = {
-  ko: "🔍 새 기능: 전 세계 78개 도시 한인 업소·교회 통합 검색이 열렸습니다!",
-  en: "🔍 New: Search Korean businesses & churches across 78 cities worldwide!",
+  ko: "🔍 새 기능: 전 세계 80개 도시 한인 업소·교회 통합 검색이 열렸습니다!",
+  en: "🔍 New: Search Korean businesses & churches across 80 cities worldwide!",
 };
 const BANNER_KAKAOTALK = ""; // 카카오톡 채널 링크 (개설 후 입력)
 
@@ -30235,7 +30571,7 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
           {/* 헤더 */}
           <div style={{ padding: "14px 18px 10px", flexShrink: 0 }}>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#1a2535", marginBottom: 2 }}>
-              🌍 {lang === "ko" ? "78개 도시" : "78 Cities"}
+              🌍 {lang === "ko" ? "80개 도시" : "80 Cities"}
             </div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8" }}>
               {lang === "ko" ? "이사·출장·방문 도시를 선택하세요" : "Select your destination city"}
@@ -30440,7 +30776,7 @@ export function HebronGuide() {
         const hdrs = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
         const base = `https://${projectId}.supabase.co/rest/v1`;
 
-        // 도시 필터 없음 → 78개 도시 전체 검색
+        // 도시 필터 없음 → 80개 도시 전체 검색
         // community_items(category=business/approved) + churches
         const [r1, r2] = await Promise.allSettled([
           fetch(`${base}/community_items?category=eq.business&status=in.(approved,published)&or=(title.ilike.${enc},name.ilike.${enc},description.ilike.${enc})&limit=10`, { headers: hdrs }),
@@ -30761,7 +31097,7 @@ export function HebronGuide() {
                 <div style={{ padding: "8px 0", borderTop: "0.5px solid #F2F2F7" }}>
                   <div style={{ padding: "4px 16px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif",
                     fontWeight: 700, color: "#4F46E5", letterSpacing: "0.5px", textTransform: "uppercase" }}>
-                    {lang === "ko" ? "🌏 78개 도시 전체 검색 결과" : "🌏 Results across 78 cities"}
+                    {lang === "ko" ? "🌏 80개 도시 전체 검색 결과" : "🌏 Results across 80 cities"}
                   </div>
                   {sbSearchLoading && (
                     <div style={{ padding: "8px 16px", fontSize: 12, color: "#94A3B8" }}>검색 중...</div>
