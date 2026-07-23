@@ -856,7 +856,7 @@ const MINT = "#6EE7B7";
 /* ─────────────────────────────────────────
    CITY CONFIG — 도시별 설정
 ───────────────────────────────────────── */
-// 현재 77개 도시 (계속 성장 중)
+// 현재 78개 도시 (계속 성장 중)
 // 작은 도시일수록 HebronGuide가 더 필요합니다 — 외롭기 때문입니다
 type CitySlug =
   // 북미 (기존 17)
@@ -9091,7 +9091,7 @@ function CompactHeroNew() {
         }}>
           <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6EE7B7", display: "inline-block", flexShrink: 0 }} />
           <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, color: "rgba(255,255,255,0.92)", letterSpacing: "0.05em" }}>
-            {lang === "ko" ? "✦ 77개 도시의 이야기" : "✦ 77 Cities"}
+            {lang === "ko" ? "✦ 78개 도시의 이야기" : "✦ 78 Cities"}
           </span>
         </div>
         <div style={{
@@ -9225,7 +9225,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
       icon: "🤝", color: "#F59E0B",
       nameKo: "헤브론 커넥트", nameEn: "Hebron Connect",
       tagKo: "친구 · 멘토 · 동행 파트너", tagEn: "Friends · Mentors · Partners",
-      userKo: "77개 도시 한인을 만납니다", userEn: "Meet Koreans across 77 cities",
+      userKo: "78개 도시 한인을 만납니다", userEn: "Meet Koreans across 78 cities",
       providerKo: "멘토로 섬기실 분 → 함께해요", providerEn: "Mentor & serve → join us",
       tab: 5, subTab: 2,
     },
@@ -10692,7 +10692,7 @@ function CommunityPulseSection({ lang }: { lang: string }) {
     { emoji: "⛪", ko: `${cityKo} 한인 교회 정보가 업데이트됐어요`, en: `Korean church info updated in ${cityEn}`, time: ko ? "방금" : "just now" },
     { emoji: "🍽️", ko: `${cityKo} 한식당 TOP 10 새로 큐레이션됐어요`, en: `Korean restaurant TOP 10 curated in ${cityEn}`, time: ko ? "2분 전" : "2m ago" },
     { emoji: "🏠", ko: `${cityKo} 정착 필수 정보가 업데이트됐어요`, en: `Settlement essentials updated for ${cityEn}`, time: ko ? "5분 전" : "5m ago" },
-    { emoji: "🌏", ko: `77개 도시 한인 커뮤니티가 함께하고 있어요`, en: `77 cities. One Korean community worldwide`, time: ko ? "8분 전" : "8m ago" },
+    { emoji: "🌏", ko: `78개 도시 한인 커뮤니티가 함께하고 있어요`, en: `78 cities. One Korean community worldwide`, time: ko ? "8분 전" : "8m ago" },
     { emoji: "✈️", ko: `공항 도착 체크리스트 — 지금 바로 시작해보세요`, en: `Airport arrival checklist — start right now`, time: ko ? "11분 전" : "11m ago" },
     { emoji: "🗺️", ko: `${cityKo} 탐방 명소 TOP 10 확인해보세요`, en: `Top 10 places to explore in ${cityEn}`, time: ko ? "15분 전" : "15m ago" },
     { emoji: "💊", ko: `건강보험 가입 방법 — ${cityKo} 기준으로 정리됐어요`, en: `Health insurance guide updated for ${cityEn}`, time: ko ? "22분 전" : "22m ago" },
@@ -10706,7 +10706,7 @@ function CommunityPulseSection({ lang }: { lang: string }) {
     { emoji: "🎯", ko: `정착 첫날부터 현지인처럼 — HebronGuide`, en: `Live like a local from Day One — HebronGuide`, time: ko ? "3시간 전" : "3h ago" },
     { emoji: "🏙️", ko: `달라스·휴스턴·애틀랜타 정보가 업데이트됐어요`, en: `Dallas, Houston, Atlanta info refreshed`, time: ko ? "3시간 전" : "3h ago" },
     { emoji: "🇰🇷", ko: `서울·부산·분당 역이민 정보도 확인해보세요`, en: `Seoul, Busan, Bundang re-migration info ready`, time: ko ? "4시간 전" : "4h ago" },
-    { emoji: "🌐", ko: `77개 도시 — 오늘도 누군가 새로 이주하고 있어요`, en: `77 cities — someone is moving today, too`, time: ko ? "5시간 전" : "5h ago" },
+    { emoji: "🌐", ko: `78개 도시 — 오늘도 누군가 새로 이주하고 있어요`, en: `78 cities — someone is moving today, too`, time: ko ? "5시간 전" : "5h ago" },
     { emoji: "💛", ko: `이 가이드가 도움이 됐나요? 주변에 공유해주세요`, en: `Did this help? Share with someone who needs it`, time: ko ? "5시간 전" : "5h ago" },
     { emoji: "🙏", ko: `낯선 땅에서 외롭지 않게 — 헤브론이 함께합니다`, en: `You're not alone in a new land — Hebron is here`, time: ko ? "6시간 전" : "6h ago" },
     // ── G2G — 세대에서 세대로 (은근히, 자연스럽게)
@@ -12305,7 +12305,7 @@ function waGwaJosa(s: string): string {
 }
 // ────────────────────────────────────────────────────────────
 
-// 도시 → 현지 한인 정체성 매핑 (77개 도시 전부 커버)
+// 도시 → 현지 한인 정체성 매핑 (78개 도시 전부 커버)
 const DIASPORA_IDENTITY: Record<string, {
   flag: string; ko: string; en: string; descKo: string; descEn: string; color: string;
 }> = {
@@ -13205,7 +13205,7 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
 
 /* ─────────────────────────────────────────
    HOME: 플라이휠 소셜 프루프 바 (쿠팡 원리 ①)
-   — "312개 교회 · 77개 도시" 숫자가 신뢰를 만든다
+   — "312개 교회 · 78개 도시" 숫자가 신뢰를 만든다
 ───────────────────────────────────────── */
 function HebronFlywheelBar({ lang }: { lang: string }) {
   // ✅ 도시 수 자동 계산 — 도시 추가 시 자동 반영 (수동 수정 불필요)
@@ -22706,7 +22706,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                   {[
                     { n: lang === "ko" ? "현지 한인" : "Local Korean", d: lang === "ko" ? "오래 살아온 분" : "Long-time residents" },
-                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "77개+ 도시" : "62+ cities" },
+                    { n: lang === "ko" ? "한국어 안내" : "Korean Tour", d: lang === "ko" ? "78개+ 도시" : "62+ cities" },
                     { n: lang === "ko" ? "소규모 투어" : "Small Group", d: lang === "ko" ? "개인 맞춤" : "Personal touch" },
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
@@ -23524,8 +23524,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             icon="🤝" color="#8B5CF6" lang={lang}
             titleKo="헤브론 커넥트 — 친구·멘토·동행 파트너 매칭"
             titleEn="Hebron Connect — Friend, Mentor & Prayer Partner Matching"
-            descKo="교인 검증 프로필로 77개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
-            descEn="Meet Koreans across 77 cities. Friends, mentors, prayer partners & business connections."
+            descKo="교인 검증 프로필로 78개 도시 한인 연결. 친구·멘토·기도·비즈니스 파트너 찾기."
+            descEn="Meet Koreans across 78 cities. Friends, mentors, prayer partners & business connections."
           />
           {/* 211 팁 박스 */}
           <a href="tel:211" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>
@@ -24155,7 +24155,7 @@ function getCityJobData(slug: string, lang: string) {
                    : "• KAAFNY — Korean finance professionals NYC\n• Flushing Korean Chamber of Commerce\n• KITA New York branch\n• Korea Society network", tags: ["KAAFNY","KITA","뉴욕"] },
       ],
     },
-    // ── 추가 77개 도시 취업 데이터 ──────────────────────────────────
+    // ── 추가 78개 도시 취업 데이터 ──────────────────────────────────
     atlanta: {
       main: [
         { emoji: "✈️", name: "Delta Air Lines", nameEn: "Delta Air Lines — World HQ",
@@ -24820,7 +24820,7 @@ function getCityDistrictData(slug: string, lang: string) {
                  : "✅ Free English classes for newcomers (LINC) via IMSS. Adult ELL, conversational English. K-12 students get free ELL support in all SD57 schools.\n📍 1270 2nd Ave (IMSS) | ☎ (250) 562-2900 | 🔗 imss.ca",
         tags: ko ? ["LINC","영어수업","무료","이민자"] : ["LINC","ESL","Free","Newcomers"] },
     ],
-    // ── 추가 77개 도시 학군 ──────────────────────────────────────
+    // ── 추가 78개 도시 학군 ──────────────────────────────────────
     atlanta: [
       { emoji: "⭐", name: "Gwinnett County Public Schools", nameEn: "GCPS — Duluth/Suwanee",
         desc: ko ? "✅ 귀넷카운티. GA 최대 학군·한인 밀집. Niche A. Duluth HS·Peachtree Ridge HS. 한인 학생 비율 높음.\n📍 둘루스·스와니·로렌스빌 | 🔗 gcpsk12.org"
@@ -24878,7 +24878,7 @@ function getCityDistrictData(slug: string, lang: string) {
         desc: ko ? "마이애미 북쪽. 렌트 저렴. Tri-Rail 통근 가능. 성장하는 한인 커뮤니티.\n📍 포트로더데일·홀리우드·펨브로크 | 🔗 browardschools.com"
                  : "North of Miami. Lower rent. Tri-Rail commute. Growing Korean community.\n📍 Fort Lauderdale, Hollywood, Pembroke | 🔗 browardschools.com", tags: ["브로워드","포트로더데일","저렴"] },
     ],
-    // ── 멕시코 77개 도시 — 멕시코 교육 시스템 안내 ──────────────
+    // ── 멕시코 78개 도시 — 멕시코 교육 시스템 안내 ──────────────
     mexicocity: [
       { emoji: "⭐", name: ko ? "코리안 스쿨 멕시코 (한국학교)" : "Korean School of Mexico",
         desc: ko ? "✅ 공식 확인 | 재멕시코 한국 교육원 산하 한국학교. 주재원 자녀·한인 2세 교육.\n📍 멕시코시티 폴랑코 인근\n✨ 한국어·한국 교육과정 + 현지 스페인어 교육 병행\n🔗 overseas.mofa.go.kr/mx-ko (대사관 → 교육정보)"
@@ -25972,7 +25972,7 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
             icon="📚" color="#8B5CF6" lang={lang}
             titleKo="헤브론 튜터 — 한인 선배가 직접 가르칩니다"
             titleEn="Hebron Tutor — Learn from Korean Community Mentors"
-            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 77개+ 도시 가능."
+            descKo="수학·SAT·AP·한국어 과외. 꼼꼼히 확인된 한인 튜터. 온라인으로 78개+ 도시 가능."
             descEn="Math, SAT, AP, Korean tutoring. Carefully selected Korean tutors. Online across 52+ cities."
           />
         </div>
@@ -28559,7 +28559,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
             {ko ? "🔜 준비 중인 상품" : "🔜 Coming Soon"}
           </div>
           {([
-            { emoji: "📖", name: ko ? "Hebron 정착 가이드 (PDF)" : "Settlement Guide PDF", desc: ko ? "77개 도시 정착 정보 총정리" : "77-city settlement guide" },
+            { emoji: "📖", name: ko ? "Hebron 정착 가이드 (PDF)" : "Settlement Guide PDF", desc: ko ? "78개 도시 정착 정보 총정리" : "78-city settlement guide" },
             { emoji: "🗣️", name: "Echo — Ministry English", desc: ko ? "목회자·선교사를 위한 실전 영어" : "Real English for pastors & missionaries" },
             { emoji: "🤝", name: ko ? "Hebron Gig 서비스" : "Hebron Gig Services", desc: ko ? "한인 커뮤니티 전문가 매칭" : "Korean community service matching" },
             { emoji: "🏙️", name: ko ? "도시별 정착 키트" : "City Settlement Kit", desc: ko ? "내가 이사할 도시 맞춤 패키지" : "Personalized city moving package" },
@@ -29915,8 +29915,8 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
 // 새 소식이 있을 때 이 BANNER_ID와 메시지만 수정하면 자동 재표시
 const BANNER_ID = "update-2026-05-27-search"; // 바꾸면 모든 사용자에게 다시 표시
 const BANNER_MSG = {
-  ko: "🔍 새 기능: 전 세계 77개 도시 한인 업소·교회 통합 검색이 열렸습니다!",
-  en: "🔍 New: Search Korean businesses & churches across 77 cities worldwide!",
+  ko: "🔍 새 기능: 전 세계 78개 도시 한인 업소·교회 통합 검색이 열렸습니다!",
+  en: "🔍 New: Search Korean businesses & churches across 78 cities worldwide!",
 };
 const BANNER_KAKAOTALK = ""; // 카카오톡 채널 링크 (개설 후 입력)
 
@@ -30235,7 +30235,7 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
           {/* 헤더 */}
           <div style={{ padding: "14px 18px 10px", flexShrink: 0 }}>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 16, color: "#1a2535", marginBottom: 2 }}>
-              🌍 {lang === "ko" ? "77개 도시" : "77 Cities"}
+              🌍 {lang === "ko" ? "78개 도시" : "78 Cities"}
             </div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#94A3B8" }}>
               {lang === "ko" ? "이사·출장·방문 도시를 선택하세요" : "Select your destination city"}
@@ -30440,7 +30440,7 @@ export function HebronGuide() {
         const hdrs = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
         const base = `https://${projectId}.supabase.co/rest/v1`;
 
-        // 도시 필터 없음 → 77개 도시 전체 검색
+        // 도시 필터 없음 → 78개 도시 전체 검색
         // community_items(category=business/approved) + churches
         const [r1, r2] = await Promise.allSettled([
           fetch(`${base}/community_items?category=eq.business&status=in.(approved,published)&or=(title.ilike.${enc},name.ilike.${enc},description.ilike.${enc})&limit=10`, { headers: hdrs }),
@@ -30761,7 +30761,7 @@ export function HebronGuide() {
                 <div style={{ padding: "8px 0", borderTop: "0.5px solid #F2F2F7" }}>
                   <div style={{ padding: "4px 16px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif",
                     fontWeight: 700, color: "#4F46E5", letterSpacing: "0.5px", textTransform: "uppercase" }}>
-                    {lang === "ko" ? "🌏 77개 도시 전체 검색 결과" : "🌏 Results across 77 cities"}
+                    {lang === "ko" ? "🌏 78개 도시 전체 검색 결과" : "🌏 Results across 78 cities"}
                   </div>
                   {sbSearchLoading && (
                     <div style={{ padding: "8px 16px", fontSize: 12, color: "#94A3B8" }}>검색 중...</div>

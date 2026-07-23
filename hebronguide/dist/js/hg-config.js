@@ -7,7 +7,7 @@
  * 수정 후: node scripts/update-city-count.js 실행 → git push
  */
 window.HG = window.HG || {};
-window.HG.CITY_COUNT = 75;   // ← 도시 추가 시 이 숫자만 바꾸세요
+window.HG.CITY_COUNT = 78;   // ← 도시 추가 시 이 숫자만 바꾸세요
 
 // 페이지 로드 후 .hg-city-count 요소 전체를 자동 업데이트
 document.addEventListener('DOMContentLoaded', function () {

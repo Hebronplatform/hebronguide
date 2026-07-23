@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>처음 도착한 그날 밤 — HebronGuide 이야기 초대</title>
+<meta name="description" content="처음 낯선 도시에 도착하던 밤, 누군가 건넨 환대의 기억을 들려주세요. HebronGuide 환대 이야기집.">
+<meta property="og:title" content="처음 도착한 그날 밤 — 당신의 이야기를 찾습니다">
+<meta property="og:description" content="그건 밥이 아니라, 사람이었습니다. 당신의 그 밤이 누군가의 첫 밤을 덜 외롭게 합니다.">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF7EF; --cream2:#F3EADA; --ink:#2A2620; --ink-soft:#5B5348;
+    --gold:#B9922E; --gold-soft:#C9A84C; --night:#1A2440; --night2:#3A2B4A; --amber:#E8B44A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased;}
+  .en{display:none;} body.lang-en .ko{display:none;} body.lang-en .en{display:block;}
+  body.lang-en span.en{display:inline;} .langbar{position:fixed;top:14px;right:14px;z-index:20;display:flex;gap:4px;background:rgba(26,36,64,.55);backdrop-filter:blur(8px);border-radius:999px;padding:4px;}
+  .langbar button{border:none;background:none;color:rgba(255,255,255,.7);font-weight:700;font-size:.72rem;padding:5px 12px;border-radius:999px;cursor:pointer;font-family:inherit;}
+  .langbar button.on{background:var(--gold-soft);color:#1A1A2E;}
+
+  /* ── HERO — 밤이 호박빛으로 번지다 ── */
+  .hero{position:relative;min-height:74vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+    text-align:center;overflow:hidden;padding:0 24px 54px;
+    background:linear-gradient(180deg,#141d38 0%,#22284a 42%,#4a3550 66%,#8a5a3e 84%,#c98a4a 100%);}
+  .hero svg.scene{position:absolute;inset:0;width:100%;height:100%;}
+  .hero .veil{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 92%,rgba(232,180,74,.35),transparent 70%);}
+  .hero .inner{position:relative;z-index:3;max-width:680px;}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,236,200,.8);margin-bottom:16px;}
+  .hero h1{font-family:'Noto Serif KR',serif;font-weight:700;color:#fff;line-height:1.32;
+    font-size:clamp(1.9rem,6vw,3rem);text-shadow:0 2px 24px rgba(0,0,0,.4);}
+  .hero h1.en{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;}
+  .hero .sub{margin-top:16px;color:rgba(255,247,235,.9);font-size:clamp(.9rem,2.4vw,1.02rem);line-height:1.9;font-weight:300;}
+
+  /* ── PULL QUOTE ── */
+  .quote{background:var(--cream);text-align:center;padding:66px 26px 58px;position:relative;}
+  .quote::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:54px;height:2px;background:var(--gold);}
+  .quote .q{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(1.5rem,5vw,2.3rem);color:var(--ink);line-height:1.5;}
+  .quote .q.en{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;}
+  .quote .q em{color:var(--gold);font-style:normal;}
+  .quote .qs{margin-top:14px;color:var(--ink-soft);font-size:.92rem;}
+
+  /* ── BODY ── */
+  .body-wrap{max-width:660px;margin:0 auto;padding:8px 28px 20px;}
+  .body-wrap p{font-size:1.02rem;color:var(--ink);line-height:2.05;margin-bottom:20px;}
+  .body-wrap p.lead{font-family:'Noto Serif KR',serif;font-size:1.12rem;color:var(--ink);}
+  .divider{width:100%;max-width:660px;height:1px;background:linear-gradient(90deg,transparent,rgba(185,146,46,.4),transparent);margin:8px auto 34px;}
+
+  /* ── CTA ── */
+  .cta-zone{background:linear-gradient(160deg,var(--cream2),var(--cream));text-align:center;padding:52px 26px 60px;}
+  .cta-zone .small{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+  .cta-zone .line{font-family:'Noto Serif KR',serif;font-size:1.2rem;color:var(--ink);margin-bottom:26px;line-height:1.7;}
+  .cta-zone .line.en{font-family:'Playfair Display',serif;font-style:italic;}
+  .btn{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--night),#2c3a63);color:#fff;
+    text-decoration:none;font-weight:700;font-size:1rem;padding:16px 34px;border-radius:999px;
+    box-shadow:0 10px 30px rgba(26,36,64,.28);transition:transform .15s,box-shadow .15s;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(26,36,64,.34);}
+  .btn .arrow{width:16px;height:16px;}
+  .assure{margin-top:18px;font-size:.82rem;color:var(--ink-soft);}
+  .share{margin-top:26px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .share button{border:1px solid rgba(42,38,32,.18);background:#fff;color:var(--ink-soft);border-radius:999px;
+    padding:9px 18px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;}
+  .share button:hover{border-color:var(--gold);color:var(--gold);}
+
+  footer{background:var(--night);color:rgba(255,255,255,.7);text-align:center;padding:26px 24px;font-size:.8rem;line-height:1.9;}
+  footer a{color:var(--gold-soft);text-decoration:none;}
+  footer .mark{font-family:'Playfair Display',serif;font-weight:700;color:#fff;letter-spacing:.02em;}
+
+  /* ── 은은한 움직임 — 이야기를 상상하게 (화려하되 절제) ── */
+  @keyframes twinkle{0%,100%{opacity:.25}50%{opacity:.95}}
+  @keyframes breathe{0%,100%{opacity:.8;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+  @keyframes flicker{0%,100%{opacity:.85}40%{opacity:.62}62%{opacity:1}78%{opacity:.72}}
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes driftGlow{0%,100%{opacity:.9}50%{opacity:.55}}
+  .star{animation:twinkle 4.5s ease-in-out infinite;}
+  #moonCore{transform-box:fill-box;transform-origin:center;animation:breathe 7s ease-in-out infinite;}
+  #moonHalo{animation:driftGlow 7s ease-in-out infinite;}
+  .doorlight{animation:flicker 5.5s ease-in-out infinite;}
+  .hero .inner{animation:rise 1.2s cubic-bezier(.2,.7,.3,1) both;}
+  .quote .q{animation:rise 1s ease-out both;}
+  @media (prefers-reduced-motion:reduce){
+    .star,#moonCore,#moonHalo,.doorlight,.hero .inner,.quote .q{animation:none;}
+  }
+</style>
+</head>
+<body class="lang-ko">
+
+<div class="langbar">
+  <button id="b-ko" class="on" onclick="setLang('ko')">한국어</button>
+  <button id="b-en" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="scene" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="moon" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFF3D6" stop-opacity="0.95"/>
+        <stop offset="35%" stop-color="#FBE3A8" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#FBE3A8" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="bld" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#20294a"/>
+        <stop offset="100%" stop-color="#151d38"/>
+      </linearGradient>
+    </defs>
+    <!-- soft moon glow -->
+    <circle id="moonHalo" cx="880" cy="215" r="300" fill="url(#moon)"/>
+    <circle id="moonCore" cx="880" cy="215" r="66" fill="#FFF6E0" opacity="0.9"/>
+    <!-- stars -->
+    <g fill="#FFF7E6">
+      <circle class="star" style="animation-delay:0s" cx="180" cy="120" r="2"/><circle class="star" style="animation-delay:1.1s" cx="320" cy="80" r="1.6"/>
+      <circle class="star" style="animation-delay:2.2s" cx="520" cy="140" r="1.8"/><circle class="star" style="animation-delay:.6s" cx="1040" cy="110" r="1.6"/>
+      <circle class="star" style="animation-delay:1.7s" cx="1120" cy="200" r="2"/><circle class="star" style="animation-delay:3s" cx="60" cy="200" r="1.6"/>
+    </g>
+    <!-- skyline silhouette -->
+    <g fill="url(#bld)">
+      <rect x="0" y="560" width="150" height="200"/><rect x="150" y="500" width="110" height="260"/>
+      <rect x="260" y="580" width="120" height="180"/><rect x="380" y="470" width="90" height="290"/>
+      <rect x="470" y="540" width="140" height="220"/><rect x="610" y="500" width="100" height="260"/>
+      <rect x="710" y="590" width="130" height="170"/><rect x="840" y="520" width="95" height="240"/>
+      <rect x="935" y="560" width="130" height="200"/><rect x="1065" y="500" width="135" height="260"/>
+    </g>
+    <!-- warm-lit windows -->
+    <g fill="#F4C978">
+      <rect x="30" y="590" width="12" height="16" opacity=".9"/><rect x="70" y="620" width="12" height="16" opacity=".7"/>
+      <rect x="180" y="530" width="12" height="16" opacity=".85"/><rect x="220" y="560" width="12" height="16" opacity=".6"/>
+      <rect x="410" y="500" width="12" height="16" opacity=".9"/><rect x="410" y="540" width="12" height="16" opacity=".7"/>
+      <rect x="500" y="580" width="12" height="16" opacity=".8"/><rect x="640" y="540" width="12" height="16" opacity=".85"/>
+      <rect x="860" y="560" width="12" height="16" opacity=".7"/><rect x="980" y="600" width="12" height="16" opacity=".8"/>
+      <rect x="1100" y="540" width="12" height="16" opacity=".9"/><rect x="1130" y="580" width="12" height="16" opacity=".6"/>
+    </g>
+    <!-- one open door, light spilling (the welcome) -->
+    <g class="doorlight">
+      <rect x="748" y="678" width="34" height="82" fill="#FFDFA0"/>
+      <polygon points="748,760 782,760 812,760 718,760" fill="#F6C97A" opacity="0.55"/>
+      <polygon points="758,678 772,678 800,760 730,760" fill="#FBE3A8" opacity="0.28"/>
+    </g>
+  </svg>
+  <div class="veil"></div>
+  <div class="inner">
+    <div class="kicker"><span class="ko">HebronGuide 이야기 · 이번 달 초대</span><span class="en">HebronGuide Stories · This Month's Invitation</span></div>
+    <h1 class="ko">처음 도착한 그날 밤</h1>
+    <h1 class="en">The First Night You Arrived</h1>
+    <div class="sub ko">낯선 도시의 첫 밤은, 유난히 길었습니다.<br>불빛은 그렇게 많은데, 나를 아는 불빛은 하나도 없던 밤.</div>
+    <div class="sub en">The first night in a strange city was long.<br>So many lights — and not one of them knew your name.</div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="quote">
+  <div class="q ko">그건 밥이 아니라, <em>사람</em>이었습니다.</div>
+  <div class="q en">It wasn't rice they gave you. <em>It was themselves.</em></div>
+  <div class="qs ko">그런 밤에 누군가 아무것도 묻지 않고 건넨 따뜻한 밥 한 그릇.</div>
+  <div class="qs en">A warm bowl of rice, handed to you on such a night — with no questions asked.</div>
+</section>
+
+<!-- BODY -->
+<div class="body-wrap">
+  <p class="lead ko">그 사람을, 그 밤을 아직 기억하시나요.</p>
+  <p class="lead en">Do you still remember that person, that night?</p>
+  <p class="ko">환대를 받았던 밤이든, 누군가에게 조용히 손을 내밀었던 밤이든 좋습니다. 우리는 그 짧은 기억들을 모아 무료로 나누는 「환대 이야기집」 한 권으로 엮으려 합니다. 언젠가 낯선 도시에서 잠 못 드는 누군가가, 이 책의 한 페이지에서 당신의 그 밤을 만나 이렇게 생각하도록 — “아, 나만 그런 밤을 지나온 게 아니었구나.”</p>
+  <p class="en">A night you were welcomed, or a night you quietly reached out to someone — either is precious. We are gathering these small memories into one free book, <em>Stories of Welcome</em>, so that someday someone lying awake in a strange city might meet your night on a single page and think — “So I wasn't the only one who lived through a night like that.”</p>
+</div>
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-zone">
+  <div class="small ko">당신의 그 밤을 들려주세요</div>
+  <div class="small en">Tell us about your night</div>
+  <div class="line ko">당신의 그 밤이, 오늘 어느 도시에 막 도착한<br>누군가의 첫 밤을 조금 덜 외롭게 합니다.</div>
+  <div class="line en">Your night can make someone's first night,<br>in some city tonight, a little less lonely.</div>
+  <a class="btn" href="/story-submit.html">
+    <span class="ko">이야기 남기기</span><span class="en">Share your story</span>
+    <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+  <div class="assure ko">익명도 괜찮습니다 · 10분이면 됩니다 · 저작권은 언제나 쓰신 분께 있습니다</div>
+  <div class="assure en">Anonymous is fine · Ten minutes · The copyright always remains yours</div>
+  <div class="share">
+    <button onclick="copyLink()"><span class="ko">링크 복사</span><span class="en">Copy link</span></button>
+    <button onclick="shareNative()"><span class="ko">공유하기</span><span class="en">Share</span></button>
+  </div>
+</section>
+
+<footer>
+  <div class="mark">HebronGuide</div>
+  <div><span class="ko">이 땅에 여는 빛의 나라, 그 환대의 문</span><span class="en">A land of light on this earth — the door of welcome</span></div>
+  <div><a href="/">hebronguide.com</a></div>
+</footer>
+
+<script>
+function setLang(l){
+  document.body.className = 'lang-' + l;
+  document.getElementById('b-ko').classList.toggle('on', l==='ko');
+  document.getElementById('b-en').classList.toggle('on', l==='en');
+  document.documentElement.lang = l;
+}
+function copyLink(){
+  navigator.clipboard.writeText('https://hebronguide.com/story-invite.html').then(function(){
+    alert(document.body.classList.contains('lang-en') ? 'Link copied.' : '링크가 복사되었습니다.');
+  }).catch(function(){});
+}
+function shareNative(){
+  var t = document.body.classList.contains('lang-en') ? 'The First Night You Arrived — HebronGuide' : '처음 도착한 그날 밤 — HebronGuide';
+  if(navigator.share){ navigator.share({title:t, url:'https://hebronguide.com/story-invite.html'}).catch(function(){}); }
+  else { copyLink(); }
+}
+</script>
+</body>
+</html>

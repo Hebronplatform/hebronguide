@@ -4,10 +4,10 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>이야기를 나눠주세요 — HebronGuide 이야기 스튜디오</title>
-<meta name="description" content="전 세계 69개+ 도시. 목사님이 목회 현장에서 경험한 이야기를 나눠주세요. HebronGuide가 K-드라마처럼 극적으로 재구성해 전 세계에 전합니다.">
+<meta name="description" content="전 세계 78개+ 도시. 환대를 경험했거나 베푼 당신의 이야기를 나눠주세요. HebronGuide가 K-드라마처럼 극적으로 재구성해 전 세계에 전합니다.">
 <meta property="og:title" content="이야기를 나눠주세요 — HebronGuide Story Studio">
-<meta property="og:description" content="전 세계 69개+ 도시 목사님들의 목회 이야기를 수집합니다.">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<meta property="og:description" content="전 세계 78개+ 도시, 환대를 경험했거나 베푼 모든 이의 이야기를 수집합니다.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&family=Cinzel:wght@700;900&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0d1117;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.07);
@@ -31,14 +31,39 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .lang-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:rgba(236,253,245,.75);font-size:.7rem;font-weight:700;letter-spacing:.06em;border-radius:20px;padding:5px 13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s;}
 .lang-btn:hover{background:rgba(201,162,39,.15);border-color:rgba(201,162,39,.4);color:var(--gold);}
 
-/* HERO */
-.hero{text-align:center;padding:56px 24px 44px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.11),transparent);}
+/* HERO — 문 안, 조용히 앉아 쓰는 방 (story-invite 밤 문밖의 잔잔한 변주) */
+.hero{position:relative;overflow:hidden;text-align:center;padding:60px 24px 46px;
+  background:linear-gradient(180deg,#0a0e15 0%,#12131b 58%,#1b1610 100%);}
+.hero .scene{position:absolute;inset:-18px;pointer-events:none;transition:transform .35s cubic-bezier(.2,.7,.3,1);will-change:transform;}
+.hero .veil{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 62% 66% at 50% 44%,rgba(9,12,18,.74),transparent 80%);}
+.hero .inner{position:relative;z-index:3;}
+/* ── 살아있는 방: 문빛 호흡 · 등불 일렁임 · 잔불 · 창 불빛 점멸 ── */
+@keyframes doorFlicker{0%,100%{opacity:.92}42%{opacity:.66}63%{opacity:1}80%{opacity:.78}}
+@keyframes crackBreath{0%,100%{transform:scaleY(1);opacity:.9}50%{transform:scaleY(1.05);opacity:1}}
+@keyframes haloBreath{0%,100%{opacity:.82;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+@keyframes poolShimmer{0%,100%{opacity:.78;transform:scale(1)}50%{opacity:1;transform:scale(1.035)}}
+@keyframes emberDrift{0%{opacity:0;transform:translateY(8px) translateX(0)}22%{opacity:.9}70%{opacity:.55}100%{opacity:0;transform:translateY(-34px) translateX(-6px)}}
+@keyframes emberDrift2{0%{opacity:0;transform:translateY(6px) translateX(0)}26%{opacity:.8}100%{opacity:0;transform:translateY(-42px) translateX(8px)}}
+@keyframes winkle{0%,100%{opacity:.25}50%{opacity:.85}}
+.hero .doorlight{animation:doorFlicker 5.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+.hero #doorCrackEl{animation:crackBreath 6.5s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+.hero #doorHalo{animation:haloBreath 8s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+.hero #lampPoolEl{animation:poolShimmer 9s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+.hero .ember{animation:emberDrift 7.2s ease-in-out infinite;transform-box:fill-box;}
+.hero .ember.e2{animation-name:emberDrift2;}
+.hero .glint{animation:winkle 5s ease-in-out infinite;}
+@media (prefers-reduced-motion:reduce){
+  .hero .doorlight,.hero .ember,.hero #doorCrackEl,.hero #doorHalo,.hero #lampPoolEl,.hero .glint{animation:none;}
+  .hero .scene{transition:none;transform:none!important;}
+}
 .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:99px;padding:6px 18px;margin-bottom:22px;}
 .hero h1{font-family:'Noto Serif KR',serif;font-size:clamp(1.7rem,5vw,2.4rem);font-weight:700;color:#fff;line-height:1.4;margin-bottom:16px;}
 .hero h1 em{color:var(--gold);font-style:normal;}
 .hero-sub{font-size:.95rem;color:var(--muted);max-width:540px;margin:0 auto 22px;line-height:2.1;}
 .city-count{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:10px;}
-.city-pill-sm{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:99px;padding:4px 12px;font-size:.74rem;color:var(--muted);}
+.city-pill-sm{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:99px;padding:4px 12px 4px 10px;font-size:.74rem;color:var(--muted);}
+.city-pill-sm::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.55;margin-right:7px;vertical-align:middle;}
 .divider{width:50px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:28px auto 0;}
 
 /* 세계 지도 도시 카운터 */
@@ -135,33 +160,76 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
 <nav>
   <a href="https://hebronguide.com" class="logo">HebronGuide</a>
   <div class="nav-right">
-    <span class="nav-tag ko">📖 이야기 스튜디오</span>
-    <span class="nav-tag en">📖 Story Studio</span>
+    <span class="nav-tag ko">이야기 스튜디오</span>
+    <span class="nav-tag en">Story Studio</span>
     <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="badge">✦ HebronGuide Story Studio · Global</div>
+  <svg class="scene" viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="doorGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#F4C978" stop-opacity="0.5"/>
+        <stop offset="46%" stop-color="#C98A4A" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#C98A4A" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="lampPool" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#E8B44A" stop-opacity="0.16"/>
+        <stop offset="100%" stop-color="#E8B44A" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="doorCrack" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#FFEBBC"/>
+        <stop offset="100%" stop-color="#F2C171"/>
+      </linearGradient>
+    </defs>
+    <!-- 오른쪽: 살짝 열린 문틈으로 새어 드는 따뜻한 빛 (호흡) -->
+    <ellipse id="doorHalo" cx="1030" cy="235" rx="360" ry="300" fill="url(#doorGlow)"/>
+    <g class="doorlight">
+      <polygon points="1018,150 1018,372 640,460 1200,460" fill="#F4C978" opacity="0.09"/>
+      <rect id="doorCrackEl" x="1013" y="86" width="9" height="292" rx="4" fill="url(#doorCrack)"/>
+    </g>
+    <!-- 저 멀리 방 밖, 켜졌다 꺼지는 창 불빛 몇 -->
+    <g fill="#F4C978">
+      <rect class="glint" style="animation-delay:0s"   x="150" y="150" width="9" height="13" rx="1"/>
+      <rect class="glint" style="animation-delay:1.8s" x="196" y="196" width="8" height="12" rx="1"/>
+      <rect class="glint" style="animation-delay:3.4s" x="86"  y="212" width="8" height="12" rx="1"/>
+      <rect class="glint" style="animation-delay:2.6s" x="252" y="132" width="8" height="12" rx="1"/>
+    </g>
+    <!-- 책상 위 등불 같은 따뜻한 웅덩이 (쓰는 자리, 일렁임) -->
+    <ellipse id="lampPoolEl" cx="440" cy="428" rx="460" ry="150" fill="url(#lampPool)"/>
+    <!-- 잔불 몇 점이 조용히 떠오른다 (여러 갈래) -->
+    <g fill="#F6CE86">
+      <circle class="ember"    style="animation-delay:0s"   cx="986"  cy="300" r="2.3"/>
+      <circle class="ember e2" style="animation-delay:1.6s" cx="1044" cy="332" r="1.7"/>
+      <circle class="ember"    style="animation-delay:3.1s" cx="1008" cy="268" r="2"/>
+      <circle class="ember e2" style="animation-delay:4.4s" cx="1062" cy="292" r="1.5"/>
+      <circle class="ember"    style="animation-delay:5.6s" cx="1024" cy="312" r="1.9"/>
+      <circle class="ember e2" style="animation-delay:6.6s" cx="998"  cy="286" r="1.4"/>
+    </g>
+  </svg>
+  <div class="veil"></div>
+  <div class="inner">
+  <div class="badge">HebronGuide Story Studio · Global</div>
 
-  <h1 class="ko">목사님이 경험한 이야기,<br><em>전 세계로 흘러갑니다.</em></h1>
+  <h1 class="ko">당신의 이야기,<br><em>전 세계로 흘러갑니다.</em></h1>
   <h1 class="en">Your Story,<br><em>Carried Across the World.</em></h1>
 
   <p class="hero-sub ko">
     시애틀에서 런던까지, 두바이에서 상파울루까지.<br>
-    전 세계 69개+ 도시 목사님들이 목회 현장에서 경험한 이야기를 수집합니다.<br>
+    전 세계 78개+ 도시. 환대를 경험했거나 베푼 모든 이의 이야기를 수집합니다.<br>
     그 이야기를 K-드라마처럼 재구성해 — 매달 새 도시의 이야기로 — 전합니다.
   </p>
   <p class="hero-sub en">
     From Seattle to London. Dubai to São Paulo.<br>
-    We collect real stories from pastors in 69+ cities worldwide.<br>
+    We collect stories from everyone who has known or offered hospitality — across 75+ cities.<br>
     Each story is dramatized and published monthly — bringing hope to someone arriving alone.
   </p>
 
   <!-- 기록의 사명 배너 -->
   <div style="display:inline-flex;align-items:flex-start;gap:12px;background:rgba(110,231,183,.07);border:1px solid rgba(110,231,183,.2);border-radius:14px;padding:18px 20px;max-width:540px;margin:0 auto 8px;text-align:left">
-    <span style="font-size:1.4rem;flex-shrink:0">✍️</span>
+    <span style="flex-shrink:0;width:3px;align-self:stretch;min-height:64px;background:linear-gradient(180deg,var(--gold),rgba(201,162,39,.15));border-radius:2px"></span>
     <div>
       <div class="ko" style="font-size:.95rem;color:rgba(236,253,245,.85);line-height:2.1;font-weight:500">
         누구에게나 이야기가 있습니다.<br>
@@ -178,23 +246,48 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
     </div>
   </div>
 
+  <!-- 이번 달 주제 캠페인 -->
+  <div style="max-width:600px;margin:16px auto 6px;background:linear-gradient(160deg,rgba(201,162,39,.10) 0%,rgba(139,0,0,.06) 100%);border:1px solid rgba(201,162,39,.32);border-radius:16px;padding:22px 24px;text-align:left">
+    <div style="font-size:.72rem;font-weight:800;letter-spacing:.12em;color:rgba(232,212,139,.85);text-transform:uppercase;margin-bottom:8px" class="ko">이번 달, 우리가 함께 모으는 이야기</div>
+    <div style="font-size:.72rem;font-weight:800;letter-spacing:.12em;color:rgba(232,212,139,.85);text-transform:uppercase;margin-bottom:8px" class="en">This month, the story we gather together</div>
+    <div style="font-family:'Noto Serif KR',serif;font-size:1.5rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:12px" class="ko">처음 도착한 그날 밤</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:12px" class="en">The First Night You Arrived</div>
+    <div style="font-size:.98rem;color:rgba(236,253,245,.85);line-height:2.05" class="ko">
+      낯선 도시의 첫 밤은, 유난히 길었습니다.<br>
+      불빛은 그렇게 많은데, 나를 아는 불빛은 하나도 없던 밤.<br>
+      그런 밤에 누군가 아무것도 묻지 않고 따뜻한 밥 한 그릇을 건넸다면 —<br>
+      <span style="color:rgba(232,212,139,.95)">그건 밥이 아니라, 사람이었습니다.</span><br>
+      그 사람을, 그 밤을 기억한다면 들려주세요.<br>
+      당신의 그 밤이, 오늘 어느 도시에 막 도착한 누군가의 첫 밤을 조금 덜 외롭게 할 테니까요.
+    </div>
+    <div style="font-size:.98rem;color:rgba(236,253,245,.85);line-height:2.05" class="en">
+      The first night in a strange city was long.<br>
+      So many lights — and not one of them knew your name.<br>
+      On a night like that, if someone handed you a warm bowl of rice and asked for nothing,<br>
+      <span style="color:rgba(232,212,139,.95)">it wasn't rice they gave you. It was themselves.</span><br>
+      If you remember that person, that night — tell us.<br>
+      Because your night can make someone's first night, in some city tonight, a little less lonely.
+    </div>
+  </div>
+
   <div class="city-count">
-    <span class="city-pill-sm">🇺🇸 미국 31개 도시</span>
-    <span class="city-pill-sm">🇨🇦 캐나다 6개</span>
-    <span class="city-pill-sm">🌎 중남미 4개</span>
-    <span class="city-pill-sm">🇬🇧 유럽 4개</span>
-    <span class="city-pill-sm">🇦🇺 오세아니아 5개</span>
-    <span class="city-pill-sm">🇯🇵 일본 2개</span>
-    <span class="city-pill-sm">🇰🇷 한국 11개</span>
-    <span class="city-pill-sm">🌏 동남아·중동 4개</span>
+    <span class="city-pill-sm">미국 31개 도시</span>
+    <span class="city-pill-sm">캐나다 6개</span>
+    <span class="city-pill-sm">중남미 4개</span>
+    <span class="city-pill-sm">유럽 4개</span>
+    <span class="city-pill-sm">오세아니아 5개</span>
+    <span class="city-pill-sm">일본 2개</span>
+    <span class="city-pill-sm">한국 11개</span>
+    <span class="city-pill-sm">동남아·중동 4개</span>
   </div>
   <div class="divider"></div>
+  </div><!-- /.inner -->
 </div>
 
 <!-- 통계 -->
 <div class="world-stats">
   <div class="stat-item">
-    <div class="stat-num">67<span style="font-size:1.1rem;">+</span></div>
+    <div class="stat-num">75<span style="font-size:1.1rem;">+</span></div>
     <div class="stat-label ko">전 세계 도시</div>
     <div class="stat-label en">Cities Worldwide</div>
   </div>
@@ -398,7 +491,7 @@ footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-
         <div class="field">
           <label class="ko">이메일 * (결과 확인용)</label>
           <label class="en">Email * (for review)</label>
-          <input type="email" id="s_email" placeholder="pastor@church.org" required autocomplete="email">
+          <input type="email" id="s_email" placeholder="you@email.com" required autocomplete="email">
         </div>
         <div class="field">
           <label class="ko">소속 교회 <span style="font-weight:400;color:var(--muted);font-size:.75rem">(선택)</span></label>
@@ -639,13 +732,28 @@ Ex: She now serves as the new members coordinator at the Korean church in Dubai.
       </label>
     </div>
 
+    <!-- 선집(eBook) 수록 동의 — 따뜻한 초대, 선택 -->
+    <div class="agree-box" style="background:linear-gradient(160deg,rgba(201,162,39,.08),rgba(0,0,0,0));border-color:rgba(201,162,39,.28)">
+      <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;">
+        <input type="checkbox" id="s_ebook" style="width:18px;height:18px;margin-top:3px;flex-shrink:0;accent-color:var(--gold);">
+        <span style="font-size:.85rem;color:rgba(236,253,245,.82);line-height:1.95;">
+          <span class="ko">당신의 그 밤을, 다른 이들의 밤과 함께 묶어 <strong style="color:rgba(232,212,139,.95)">「환대 이야기집」</strong>이라는 한 권으로 엮어도 좋습니다.<br>
+          어느 도시에서 오늘도 잠 못 드는 누군가가 이 책의 한 페이지에서 당신을 만나, 이렇게 생각하기를 — “아, 나만 그런 밤을 지나온 게 아니었구나.”<br>
+          <span style="color:var(--muted);font-size:.78rem">저작권은 언제나 당신의 것이고, 팔지 않으며, 원치 않으시면 넣지 않습니다.</span></span>
+          <span class="en">Your night — bound together with others into one book, <strong style="color:rgba(232,212,139,.95)">“Stories of Welcome.”</strong><br>
+          So that someone lying awake tonight, in some city, might meet you on a single page and think — “So I wasn't the only one who lived through a night like that.”<br>
+          <span style="color:var(--muted);font-size:.78rem">The copyright is always yours; it is never sold, and never included against your wish.</span></span>
+        </span>
+      </label>
+    </div>
+
     <div class="submit-area">
       <button type="submit" class="btn-submit">
         ✦ <span class="ko">이야기 제출하기</span><span class="en">Submit My Story</span>
       </button>
       <p class="submit-note ko">
         48시간 이내 HebronGuide팀이 연락드립니다.<br>
-        목사님의 이야기 하나가 전 세계 이민자들에게 희망이 됩니다.
+        당신의 이야기 하나가 전 세계 나그네에게 희망이 됩니다.
       </p>
       <p class="submit-note en">
         Our team will contact you within 48 hours.<br>
@@ -678,7 +786,7 @@ Ex: She now serves as the new members coordinator at the Korean church in Dubai.
 </div>
 
 <footer>
-  <div>HebronGuide Story Studio · © 2026 Hebron Platform LLC · <span class="ko">전 세계 69개+ 도시</span><span class="en">68+ Cities Worldwide</span></div>
+  <div>HebronGuide Story Studio · © 2026 Hebron Platform LLC · <span class="ko">전 세계 78개+ 도시</span><span class="en">78+ Cities Worldwide</span></div>
   <div style="margin-top:5px;opacity:.7;">hebronplatform@gmail.com · hebronguide.com</div>
 </footer>
 
@@ -737,18 +845,62 @@ function submitStory(e){
     'Q5. 지금 이야기는 / Where Is the Story Now\n' + q5 +
     (extra ? '\n\n── 추가 사항 / Additional Notes ──\n' + extra : '');
 
-  var subject = '[HebronGuide Story] ' + city + ' — ' + name;
-  var mailto = 'mailto:hebronplatform@gmail.com' +
-    '?cc=' + encodeURIComponent(email) +
-    '&subject=' + encodeURIComponent(subject) +
-    '&body=' + encodeURIComponent(body);
+  var subject = '[HebronGuide Story] ' + city + ' — ' + (name || '익명');
 
-  window.location.href = mailto;
-  document.getElementById('storyForm').style.display='none';
-  var t=document.getElementById('thankYou');
-  t.style.display='block';
-  t.scrollIntoView({behavior:'smooth'});
+  var btn = document.querySelector('#storyForm [type="submit"]');
+  var btnLabel = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = '보내는 중…'; }
+
+  function reset(){ if (btn) { btn.disabled = false; btn.textContent = btnLabel; } }
+  function showThanks(){
+    document.getElementById('storyForm').style.display='none';
+    var t=document.getElementById('thankYou');
+    t.style.display='block';
+    t.scrollIntoView({behavior:'smooth'});
+  }
+
+  // mailto → /api/submit-story (AI 게이트 + Supabase 저장 + 관리자 이메일).
+  // 감사 화면은 '실제 저장 성공' 응답에서만 — 이메일앱 유무로 오인되던 문제 해결.
+  fetch('/api/submit-story', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: 'story_studio',   // 2층 큐레이션 (5막)
+      role: type,             // 인물 유형 (목사·평신도·이민자)
+      name: name, email: email,
+      city: city, city_slug: city,
+      content: body,          // 5개 질문 재구성 텍스트
+      title: subject,
+      ebookConsent: document.getElementById('s_ebook') ? document.getElementById('s_ebook').checked : false,
+      theme: 'first-night',   // 이번 달 주제: 처음 도착한 그날 밤
+    }),
+  })
+  .then(function(r){ return r.json().catch(function(){ return {}; }); })
+  .then(function(d){
+    if (d && d.rejected) { alert(d.message || '이 내용은 지금 게시하기 어렵습니다.'); reset(); return; }
+    if (d && (d.ok || d.saved)) { showThanks(); }
+    else { alert((d && d.error) || '제출에 문제가 있었습니다. 잠시 후 다시 시도해 주세요.'); reset(); }
+  })
+  .catch(function(){ alert('네트워크 오류입니다. 잠시 후 다시 시도해 주세요.'); reset(); });
 }
+
+/* 히어로 장면 미세 패럴랙스 — 스크롤·포인터에 빛이 살짝 따라 움직인다 (모션 최소화 존중) */
+(function(){
+  var hero=document.querySelector('.hero'), scene=document.querySelector('.hero .scene');
+  if(!hero||!scene) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var px=0,py=0,sy=0,raf=0;
+  function apply(){ raf=0; scene.style.transform='translate3d('+px.toFixed(1)+'px,'+(py+sy).toFixed(1)+'px,0)'; }
+  function schedule(){ if(!raf) raf=requestAnimationFrame(apply); }
+  hero.addEventListener('pointermove',function(e){
+    var r=hero.getBoundingClientRect();
+    px=((e.clientX-r.left)/r.width-0.5)*10;
+    py=((e.clientY-r.top)/r.height-0.5)*8;
+    schedule();
+  });
+  hero.addEventListener('pointerleave',function(){ px=0; py=0; schedule(); });
+  window.addEventListener('scroll',function(){ sy=Math.min(window.scrollY,420)*0.032; schedule(); },{passive:true});
+})();
 </script>
 </body>
 </html>

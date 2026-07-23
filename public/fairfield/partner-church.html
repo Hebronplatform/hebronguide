@@ -207,9 +207,7 @@ tbody tr:hover td{background:rgba(255,255,255,.02);}
   cursor:pointer;margin-top:14px;transition:opacity .15s;}
 .btn-submit:hover{opacity:.88;}
 .fnote{font-size:.68rem;color:var(--muted);text-align:center;margin-top:6px;}
-#ok{display:none;background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.3);
-  border-radius:10px;padding:16px;color:var(--mint);font-weight:700;text-align:center;
-  margin-top:12px;font-size:.88rem;}
+#ok{display:none;}
 
 /* FOOTER */
 footer{background:#070c12;border-top:1px solid var(--border);
@@ -563,9 +561,29 @@ footer strong{color:var(--text);}
         </div>
 
         <div style="margin-top:22px;padding:14px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.2);border-radius:10px;">
-          <p style="font-size:.79rem;color:var(--mint);font-weight:700;margin-bottom:5px;">📧 직접 이메일 문의</p>
+          <p style="font-size:.79rem;color:var(--mint);font-weight:700;margin-bottom:5px;">직접 이메일 문의</p>
           <p style="font-size:.79rem;color:var(--muted);">Hebronplatform@gmail.com</p>
           <p style="font-size:.75rem;color:var(--muted);margin-top:4px;">허브교회 신청 · 제작 문의 · 목사님 네트워크</p>
+        </div>
+
+        <!-- 이단 위장 경고 박스 -->
+        <div style="margin-top:16px;padding:14px 14px 12px;background:rgba(248,113,113,.06);
+          border:1px solid rgba(248,113,113,.2);border-radius:10px;">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <p style="font-size:.79rem;color:#f87171;font-weight:700;">이단 위장 단체 주의</p>
+          </div>
+          <p style="font-size:.75rem;color:var(--muted);line-height:1.65;margin-bottom:7px;">
+            신천지 등 이단은 <strong style="color:rgba(236,253,245,.6);">독서모임·인문학 강의·심리상담</strong>을
+            위장 수단으로 사용합니다. 노출되면 이름을 바꿔 재등장합니다.
+          </p>
+          <p style="font-size:.75rem;color:var(--muted);line-height:1.65;">
+            HebronGuide는 교단 확인 + AI 검토 + 운영팀 수동 검증으로
+            이단 단체를 차단합니다.
+          </p>
+          <div style="margin-top:9px;padding-top:8px;border-top:1px solid rgba(248,113,113,.15);">
+            <p style="font-size:.72rem;color:rgba(248,113,113,.7);">의심 단체 신고: Hebronplatform@gmail.com</p>
+          </div>
         </div>
       </div>
 
@@ -604,8 +622,8 @@ footer strong{color:var(--text);}
           <div class="frow">
             <div class="fg"><label>도시 / 주 <span class="req">*</span></label>
               <input type="text" name="위치" placeholder="San Mateo, CA" required></div>
-            <div class="fg"><label>교단 / 소속</label>
-              <input type="text" name="교단" placeholder="SBC · IHM · 독립…"></div>
+            <div class="fg"><label>교단 / 소속 <span class="req">*</span></label>
+              <input type="text" name="교단" placeholder="SBC · IHM · 장로교 · 침례교 · 독립…" required></div>
           </div>
           <div class="fg"><label>교회 주소</label>
             <input type="text" name="주소" placeholder="3399 CSM Dr., San Mateo, CA 94402"></div>
@@ -691,10 +709,103 @@ footer strong{color:var(--text);}
             <textarea name="추가요청" placeholder="특별 요청, 참고 사이트 URL, 궁금한 점 등"></textarea>
           </div>
 
-          <button type="submit" class="btn-submit">📨 신청서 제출하기</button>
-          <p class="fnote">* 개인정보는 파트너 교회 신청 목적으로만 사용됩니다.</p>
+          <!-- 이단 자기선언 (필수) -->
+          <div style="margin:14px 0 10px;padding:12px 14px;background:rgba(248,113,113,.06);
+            border:1px solid rgba(248,113,113,.25);border-radius:10px;">
+            <label class="chk" style="align-items:flex-start;gap:10px;color:rgba(236,253,245,.75);">
+              <input type="checkbox" name="비이단확인" value="확인" required
+                style="margin-top:2px;width:14px;height:14px;accent-color:#f87171;flex-shrink:0;">
+              <span style="font-size:.78rem;line-height:1.6;">
+                본 교회는 신천지·통일교·JMS·하나님의교회·여호와의증인·몰몬교 등
+                이단·사이비 단체가 아님을 확인합니다.
+                <span style="color:#f87171;font-weight:700;">허위 신청 시 등재 취소 및 법적 책임이 따를 수 있습니다.</span>
+              </span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-submit">신청서 제출하기</button>
+          <p class="fnote">* 연락처·이메일은 내부 확인 목적으로만 사용되며 공개되지 않습니다.</p>
         </form>
-        <div id="ok">🙏 신청서가 접수되었습니다!<br>24시간 내 연락드리겠습니다.<br><br><span style="font-size:.8rem;color:var(--muted)">문의: HebronPlatform@gmail.com</span></div>
+        <div id="ok" style="padding:32px 20px 24px;">
+
+          <!-- 헤브론 십자가 아이콘 -->
+          <div style="display:flex;justify-content:center;margin-bottom:18px;">
+            <div style="width:56px;height:56px;border-radius:16px;background:rgba(110,231,183,.12);
+              border:1px solid rgba(110,231,183,.3);display:flex;align-items:center;justify-content:center;">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="2" stroke-linecap="round">
+                <path d="M12 2v20M2 12h20"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 제목 -->
+          <div style="font-size:1.15rem;font-weight:900;color:#6EE7B7;margin-bottom:6px;text-align:center;">
+            환대 운동에 오신 것을 환영합니다
+          </div>
+          <div style="font-size:.82rem;color:rgba(236,253,245,.6);margin-bottom:22px;text-align:center;line-height:1.6;">
+            입력하신 이메일로 상세 안내를 보내드렸습니다
+          </div>
+
+          <!-- 3기둥 구조 -->
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+            border-radius:12px;padding:18px 16px;margin-bottom:20px;">
+            <div style="font-size:.72rem;font-weight:800;color:rgba(201,162,39,.8);
+              letter-spacing:.06em;text-align:center;margin-bottom:14px;">우리가 함께 만드는 것</div>
+            <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;
+              align-items:center;gap:6px;text-align:center;">
+              <div>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="1.5" style="display:block;margin:0 auto 5px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+                <div style="font-size:.72rem;font-weight:700;color:#6EE7B7;">교회</div>
+              </div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.3);">+</div>
+              <div>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.5" style="display:block;margin:0 auto 5px;"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2"/><path d="M12 12v6"/></svg>
+                <div style="font-size:.72rem;font-weight:700;color:#C9A227;">사업체</div>
+              </div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.3);">+</div>
+              <div>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(236,253,245,.7)" stroke-width="1.5" style="display:block;margin:0 auto 5px;"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <div style="font-size:.72rem;font-weight:700;color:rgba(236,253,245,.7);">HebronGuide</div>
+              </div>
+            </div>
+            <div style="text-align:center;margin-top:14px;font-size:.75rem;color:rgba(236,253,245,.5);line-height:1.6;">
+              낯선 도시에 도착한 새 이민자가 교회를 발견하고<br>
+              파트너 사업체에서 정착 도움을 받으며<br>
+              자연스럽게 공동체 안으로 연결됩니다
+            </div>
+            <div style="text-align:center;margin-top:12px;font-size:.73rem;color:rgba(110,231,183,.7);font-style:italic;">
+              "내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35 (새번역)
+            </div>
+          </div>
+
+          <!-- 카카오 CTA (1순위) -->
+          <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener"
+            style="display:flex;align-items:center;justify-content:center;gap:10px;
+            background:#FEE500;color:#3C1E1E;padding:14px 24px;border-radius:12px;
+            font-weight:800;font-size:.92rem;text-decoration:none;margin-bottom:10px;
+            font-family:'Noto Sans KR',sans-serif;transition:opacity .15s;"
+            onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+            <svg width="20" height="20" viewBox="0 0 48 48" fill="#3C1E1E"><path d="M24 4C12.95 4 4 11.82 4 21.4c0 6.12 3.84 11.49 9.6 14.62l-2.44 8.88 10.08-6.66c.89.12 1.8.18 2.76.18 11.05 0 20-7.82 20-17.4S35.05 4 24 4z"/></svg>
+            카카오채널 친구추가 — 파트너 소통 공간
+          </a>
+
+          <!-- 도시 페이지 링크 (2순위) -->
+          <a id="ok-city-link" href="#" target="_blank" rel="noopener"
+            style="display:flex;align-items:center;justify-content:center;gap:8px;
+            background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);
+            color:#C9A227;padding:11px 20px;border-radius:12px;font-weight:700;
+            font-size:.85rem;text-decoration:none;margin-bottom:16px;transition:opacity .15s;"
+            onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            도시 페이지에서 교회 확인하기
+          </a>
+
+          <!-- 문의 -->
+          <div style="text-align:center;font-size:.72rem;color:rgba(236,253,245,.35);">
+            정보 수정 · 문의: HebronPlatform@gmail.com
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
@@ -758,32 +869,67 @@ function toggleLang() {
     : '새로운 곳에 온 사람에게 먼저 손을 내미는 것 — 그것이 진정한 환대입니다';
 }
 
-// Form submit
+// Form submit → /api/submit-church
 const form = document.getElementById('pForm');
 form.addEventListener('submit', async function(e) {
-  const action = form.getAttribute('action');
-  if(action.includes('YOUR_FORM_ID')) {
-    e.preventDefault();
-    const fd = new FormData(form);
-    const lines = [];
-    fd.forEach((v,k)=>{ if(!k.startsWith('_') && v) lines.push(k + ': ' + v); });
-    const subject = encodeURIComponent('[HebronGuide] 파트너 교회 신청 — ' + (fd.get('교회명_한국어') || ''));
-    window.location.href = 'mailto:HebronPlatform@gmail.com?subject=' + subject
-      + '&body=' + encodeURIComponent(lines.join('\n'));
-    return;
-  }
   e.preventDefault();
   const btn = form.querySelector('.btn-submit');
   btn.disabled = true;
   btn.textContent = '전송 중…';
-  const res = await fetch(action, {method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}});
-  if(res.ok) {
-    form.style.display = 'none';
-    document.getElementById('ok').style.display = 'block';
-  } else {
+
+  const fd = new FormData(form);
+  const body = {
+    churchName:   fd.get('교회명_한국어') || '',
+    churchNameEn: fd.get('교회명_영어')  || '',
+    denomination: fd.get('교단')         || '',
+    pastor:       fd.get('담임목사')     || '',
+    phone:        fd.get('연락처')       || '',
+    email:        fd.get('이메일')       || '',
+    website:      fd.get('웹사이트')     || '',
+    address:      fd.get('주소')         || '',
+    serviceTimes: fd.get('주일예배')     || '',
+    description:  fd.get('교회소개')     || '',
+    city:         fd.get('위치')         || '',
+  };
+
+  try {
+    const res = await fetch('/api/submit-church', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    if (res.ok && data.status !== 'error') {
+      // 도시 슬러그 추출해서 도시 페이지 링크 설정
+      const cityRaw = (body.city || 'seattle').trim().toLowerCase();
+      const cityMap = {
+        '시애틀':'seattle','seattle':'seattle',
+        '달라스':'dallas','dallas':'dallas','dfw':'dallas',
+        'la':'la','로스앤젤레스':'la','los angeles':'la',
+        '뉴욕':'newyork','new york':'newyork','nyc':'newyork',
+        '휴스턴':'houston','houston':'houston',
+        '애틀랜타':'atlanta','atlanta':'atlanta',
+        '마이애미':'miami','miami':'miami',
+        '필라델피아':'philadelphia','philadelphia':'philadelphia',
+        '보스턴':'boston','boston':'boston',
+        '내쉬빌':'nashville','nashville':'nashville',
+        'sf':'sf','샌프란시스코':'sf','san francisco':'sf',
+        '캔자스시티':'kansascity','kansas city':'kansascity',
+        '토론토':'toronto','toronto':'toronto',
+        '밴쿠버':'vancouver','vancouver':'vancouver',
+      };
+      const slug = cityMap[cityRaw] || cityRaw.replace(/[^a-z0-9]/g,'') || 'seattle';
+      const cityLink = document.getElementById('ok-city-link');
+      if (cityLink) cityLink.href = `https://hebronguide.com/${slug}/`;
+      form.style.display = 'none';
+      document.getElementById('ok').style.display = 'block';
+    } else {
+      throw new Error(data.message || '서버 오류');
+    }
+  } catch(err) {
     btn.disabled = false;
     btn.textContent = '📨 신청서 제출하기';
-    alert('전송 오류가 발생했습니다.\nHebronPlatform@gmail.com 으로 직접 문의해 주세요.');
+    alert('오류가 발생했습니다: ' + err.message + '\n\nHebronPlatform@gmail.com 으로 직접 문의해 주세요.');
   }
 });
 </script>

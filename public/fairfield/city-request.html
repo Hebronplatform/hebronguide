@@ -122,7 +122,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
     신청해 주세요. <strong style="color:var(--mint);">한 분의 신청이 그 도시를 열게 됩니다.</strong>
   </p>
 
-  <div class="city-count">🏙️ 현재 69개 도시 운영 중 · 계속 확장 중</div>
+  <div class="city-count">🏙️ 현재 75개 도시 운영 중 · 계속 확장 중</div>
 
   <!-- 시적 메시지 -->
   <div class="poem">
@@ -136,7 +136,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
       당신이 추천하면, <strong>교회와 교회가 이어집니다.</strong>
     </p>
     <div class="poem-ref">
-      "너희는 가서 모든 민족을 제자로 삼아" 
+      "내가 나그네로 있을 때에, 너희가 나를 영접하였다" — 마태복음 25:35
     </div>
   </div>
 </div>
@@ -145,15 +145,15 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
 <div class="container">
   <div class="form-card" id="formCard">
     <div class="form-title">📍 도시 신청서</div>
-    <div class="form-sub">목회자·성도 누구든지 신청하실 수 있습니다.<br>신청 후 도시 준비 현황을 이메일로 알려드립니다.</div>
+    <div class="form-sub">누구든지 신청하실 수 있습니다.<br>신청 후 도시 준비 현황을 이메일로 알려드립니다.</div>
 
-    <!-- 역할 -->
+    <!-- 역할 (선택) -->
     <div class="field">
-      <label>나는 <span class="req">*</span></label>
+      <label>나는 <span class="opt">(선택)</span></label>
       <div class="role-grid">
-        <label class="role-btn"><input type="radio" name="role" value="목회자"> 목회자</label>
-        <label class="role-btn"><input type="radio" name="role" value="성도"> 성도</label>
         <label class="role-btn"><input type="radio" name="role" value="이민자·이주자"> 이민자 / 이주자</label>
+        <label class="role-btn"><input type="radio" name="role" value="주민"> 지역 주민</label>
+        <label class="role-btn"><input type="radio" name="role" value="목회자·성도"> 목회자 / 성도</label>
         <label class="role-btn"><input type="radio" name="role" value="기타"> 기타</label>
       </div>
     </div>
@@ -161,7 +161,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
     <!-- 이름 -->
     <div class="field">
       <label>성함 <span class="opt">(선택)</span></label>
-      <input type="text" id="reqName" placeholder="예: 홍길동 집사">
+      <input type="text" id="reqName" placeholder="예: 홍길동">
     </div>
 
     <!-- 이메일 -->
@@ -269,7 +269,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
     <div class="share-nudge">
       <p>
         <strong style="color:var(--gold);">입소문이 강물을 만듭니다.</strong><br>
-        목사님, 성도님, 가족에게 이 링크를 전해 주세요.
+        가족과 이웃, 주변 분들께 이 링크를 전해 주세요.
       </p>
       <div class="sns-row">
         <button class="sns-btn" onclick="shareKakao()">
@@ -312,7 +312,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
 
 <script>
 const SHARE_URL = 'https://hebronguide.com/city-request.html';
-const SHARE_TEXT = '🌏 우리 도시에 HebronGuide를 신청해요 — 69개 도시 한인 이민자 환대 플랫폼. 가족이 사는 도시에, 교회가 있는 도시에 신청해 주세요.';
+const SHARE_TEXT = '🌏 우리 도시에 HebronGuide를 신청해요 — 75개 도시 한인 이민자 환대 플랫폼. 가족이 사는 도시에, 교회가 있는 도시에 신청해 주세요.';
 
 function checkOtherCity() {
   const val = document.getElementById('reqCity').value;
@@ -338,7 +338,6 @@ function validate() {
   else ef?.classList.remove('error');
   if (!city) { cf?.classList.add('error'); ok = false; }
   else cf?.classList.remove('error');
-  if (!role) { alert('역할을 선택해 주세요 (목회자·성도·이민자·기타)'); ok = false; }
   if (!document.getElementById('agree1').checked) { alert('동의 항목을 체크해 주세요.'); ok = false; }
   return ok;
 }
@@ -358,32 +357,16 @@ async function submitRequest() {
   const ref     = document.getElementById('reqRef').value.trim() || '';
   const role    = getRole();
 
-  const description = `역할: ${role}\n성함: ${name || '(미입력)'}\n이메일: ${email}\n신청 도시: ${city}\n신청 이유: ${reason || '(미입력)'}\n추천인: ${ref || '(미입력)'}`;
+  const description = `역할: ${role || '(미선택)'}\n성함: ${name || '(미입력)'}\n이메일: ${email}\n신청 도시: ${city}\n신청 이유: ${reason || '(미입력)'}\n추천인: ${ref || '(미입력)'}`;
 
-  // ── Supabase 저장 ──────────────────────────────────────────
+  // ── 서버 API: Supabase 저장 + 관리자 이메일 알림 ──────────────
   try {
-    const SB_URL  = 'https://vextxqzggznulwpganwt.supabase.co';
-    const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU5NjY4NDMsImV4cCI6MjA2MTU0Mjg0M30.YSLH_RlC-wZMbqFvXCVjzWYFqCyiFHh0VJRFGFqBY9E';
-    await fetch(`${SB_URL}/rest/v1/community_items`, {
+    await fetch('/api/submit-city-request', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SB_ANON,
-        'Authorization': `Bearer ${SB_ANON}`,
-        'Prefer': 'return=minimal',
-      },
-      body: JSON.stringify({
-        title:       `[도시 신청] ${city}`,
-        name:        name || email,
-        contact:     email,
-        description: description,
-        category:    'city_request',
-        city_slug:   '',
-        city:        city,
-        status:      'pending',
-      }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ role, name, email, city, reason, ref }),
     });
-  } catch(e) { console.warn('Supabase 저장 실패:', e.message); }
+  } catch(e) { console.warn('신청 전송 실패:', e.message); }
 
   document.getElementById('formCard').style.display = 'none';
   document.getElementById('successBox').classList.add('show');
