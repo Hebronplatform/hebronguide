@@ -34,3 +34,6 @@ memory/
 *.jpg
 # 대용량 단일 HTML 생성물 (15MB)
 hebronguide-home.standalone.html
+
+# 내부 금융·결제 설정 문서 (공개 저장소 노출 방지 — 수취 계정·법인 계좌 절차 포함)
+HebronGuide_Payment_Guide.html
