@@ -8,7 +8,6 @@
    
 
     "api/submit-form.js":        { "maxDuration": 15 },
-    "api/register-church.js":    { "maxDuration": 15 },
     "api/register-business.js":  { "maxDuration": 15 }
   },
 
