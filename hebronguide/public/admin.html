@@ -1131,6 +1131,34 @@
   }
 
   // ── 교회 렌더링 (등록 교회 + 신청 대기) ─────────────────
+  // 교회 표시 통일 — 옛 데이터는 name에 목사 이름이 들어감(교회명은 설명 속).
+  // 원본은 그대로 두고, 목록에는 항상 [교회명 크게 / 목사 작게]로 보이게 추출한다.
+  function _churchGet(desc, label) {
+    const m = (desc || '').match(new RegExp(label + '[:\\s]+([^\\n]+)'))
+    return m ? m[1].trim() : ''
+  }
+  function _looksLikePastor(nm) {
+    const s = (nm || '').trim()
+    if (!s) return false
+    // "○○교회/채플/미션/처치"면 교회명 → 목사 아님
+    if (/(교회|채플|미션|처치|커뮤니티|church|chapel|mission)/i.test(s)) return false
+    // "○○ 목사/목/전도사"로 끝나거나 순수 사람 이름(짧고 공백 적음)
+    return /(목사|전도사|목$)/.test(s) || (s.replace(/\s/g, '').length <= 4 && !/\d/.test(s))
+  }
+  function churchNameOf(r) {
+    if (r.name && !_looksLikePastor(r.name)) return r.name   // name이 이미 교회명
+    const desc = r.description || ''
+    const title = (r.title || '').replace(/^\[+\s*교회\s*파트너\s*신청\s*\]+\s*/, '').replace(/\s*\]+\s*$/, '').trim()
+    return _churchGet(desc, '교회명\\(KO\\)') || _churchGet(desc, '교회명')
+        || title || r.name || '(교회명 미상)'
+  }
+  function churchPastorOf(r) {
+    const desc = r.description || ''
+    const p = r.pastor || _churchGet(desc, '담임목사') || _churchGet(desc, '목사')
+    if (p) return p.replace(/\s*\(.*?\)\s*$/, '')            // 영문 병기 제거
+    return _looksLikePastor(r.name) ? r.name : ''
+  }
+
   function renderChurches(data, applications) {
     const apps = applications || []
     const pending  = apps.filter(r => r.status === 'pending' || !r.status)
@@ -1145,8 +1173,8 @@
       return list.map(r => `
         <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기" style="background:rgba(201,162,39,.03)">
           <td>
-            <div class="cell-name">${esc(r.name || '(이름없음)')}</div>
-            <div class="cell-sub">${esc(r.category || '')}</div>
+            <div class="cell-name">${esc(r.category==='church' ? churchNameOf(r) : (r.name || '(이름없음)'))}</div>
+            <div class="cell-sub">${esc(r.category==='church' ? (churchPastorOf(r) || 'church') : (r.category || ''))}</div>
           </td>
           <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">더보기 →</span>' : ''}</div></td>
           <td><span class="cell-city">${esc(r.city_slug || r.city || '—')}</span></td>
