@@ -170,7 +170,7 @@
   @keyframes micPulse{0%,100%{opacity:1;}50%{opacity:.5;}}
   .search-wrap input:focus{border-color:var(--gold);}
   .search-wrap input::placeholder{color:var(--muted);}
-  .search-wrap::before{content:'🔍';position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:.85rem;}
+  .search-wrap::before{content:'';position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:.85rem;}
   .region-block{margin-bottom:24px;}
   .region-label{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
   .region-label::after{content:'';flex:1;height:1px;background:var(--border);}
@@ -355,7 +355,7 @@
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO ━━━ -->
 <div class="hero">
-  <a href="#cities" style="text-decoration:none;"><div class="hero-eyebrow" style="cursor:pointer;">✦ <span class="ko">글로벌 환대 커뮤니티</span><span class="en">Global Hospitality Community</span></div></a>
+  <a href="#cities" style="text-decoration:none;"><div class="hero-eyebrow" style="cursor:pointer;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3l1.7 5.6L19 10l-5.3 1.4L12 17l-1.7-5.6L5 10l5.3-1.4z"/></svg> <span class="ko">글로벌 환대 커뮤니티</span><span class="en">Global Hospitality Community</span></div></a>
 
   <p class="hero-pre">
     <span class="ko">공항 문을 나서듯, 낯선 도시로 첫발을 내딛는 그 순간—<br>아는 사람 하나 없는 그곳에서도.</span>
@@ -384,7 +384,7 @@
   <div class="hero-cta" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
     <a href="/ad-request.html" class="btn-hero"><span class="ko">파트너 신청하기 →</span><span class="en">Become a Partner →</span></a>
     <a href="#cities" class="btn-outline"><span class="ko">도시 가이드 열기</span><span class="en">Open City Guide</span></a>
-    <a href="/story-submit.html" class="btn-outline"><span class="ko">✍️ 당신의 이야기 들려주기</span><span class="en">✍️ Share Your Story</span></a>
+    <a href="/story-submit.html" class="btn-outline"><span class="ko"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> 당신의 이야기 들려주기</span><span class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Share Your Story</span></a>
   </div>
 
   <div class="hero-stats">
@@ -739,7 +739,7 @@ function toggleFaq(btn){
   </div>
 
   <div id="cityRegions">
-    <div class="region-block"><div class="region-label">🇺🇸 <span class="ko">미국</span><span class="en">USA</span></div><div class="city-pills"><a href="/seattle/" class="city-pill featured"><span class="ko">시애틀</span><span class="en">Seattle</span></a>
+    <div class="region-block"><div class="region-label"><span class="ko">미국</span><span class="en">USA</span></div><div class="city-pills"><a href="/seattle/" class="city-pill featured"><span class="ko">시애틀</span><span class="en">Seattle</span></a>
       <a href="/federalway/" class="city-pill"><span class="ko">훼더럴웨이</span><span class="en">Federal Way</span></a>
       <a href="/la/" class="city-pill">LA</a>
       <a href="/newyork/" class="city-pill"><span class="ko">뉴욕</span><span class="en">New York</span></a>
@@ -778,7 +778,7 @@ function toggleFaq(btn){
       <a href="/anchorage/" class="city-pill"><span class="ko">앵커리지</span><span class="en">Anchorage</span></a>
     </div></div>
 
-    <div class="region-block"><div class="region-label">🇨🇦 <span class="ko">캐나다</span><span class="en">Canada</span></div><div class="city-pills"><a href="/toronto/" class="city-pill"><span class="ko">토론토</span><span class="en">Toronto</span></a>
+    <div class="region-block"><div class="region-label"><span class="ko">캐나다</span><span class="en">Canada</span></div><div class="city-pills"><a href="/toronto/" class="city-pill"><span class="ko">토론토</span><span class="en">Toronto</span></a>
       <a href="/vancouver/" class="city-pill"><span class="ko">밴쿠버</span><span class="en">Vancouver</span></a>
       <a href="/calgary/" class="city-pill"><span class="ko">캘거리</span><span class="en">Calgary</span></a>
       <a href="/edmonton/" class="city-pill"><span class="ko">에드먼턴</span><span class="en">Edmonton</span></a>
@@ -786,36 +786,36 @@ function toggleFaq(btn){
       <a href="/winnipeg/" class="city-pill"><span class="ko">위니펙</span><span class="en">Winnipeg</span></a>
     </div></div>
 
-    <div class="region-block"><div class="region-label">🌎 <span class="ko">중남미</span><span class="en">Latin America</span></div><div class="city-pills"><a href="/mexicocity/" class="city-pill"><span class="ko">멕시코시티</span><span class="en">Mexico City</span></a>
+    <div class="region-block"><div class="region-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a13 13 0 0 1 0 17 13 13 0 0 1 0-17z"/></svg> <span class="ko">중남미</span><span class="en">Latin America</span></div><div class="city-pills"><a href="/mexicocity/" class="city-pill"><span class="ko">멕시코시티</span><span class="en">Mexico City</span></a>
       <a href="/guadalajara/" class="city-pill"><span class="ko">과달라하라</span><span class="en">Guadalajara</span></a>
       <a href="/monterrey/" class="city-pill"><span class="ko">몬테레이</span><span class="en">Monterrey</span></a>
       <a href="/saopaulo/" class="city-pill"><span class="ko">상파울루</span><span class="en">São Paulo</span></a>
     </div></div>
 
-    <div class="region-block"><div class="region-label">🌏 <span class="ko">오세아니아</span><span class="en">Oceania</span></div><div class="city-pills"><a href="/sydney/" class="city-pill"><span class="ko">시드니</span><span class="en">Sydney</span></a>
+    <div class="region-block"><div class="region-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a13 13 0 0 1 0 17 13 13 0 0 1 0-17z"/></svg> <span class="ko">오세아니아</span><span class="en">Oceania</span></div><div class="city-pills"><a href="/sydney/" class="city-pill"><span class="ko">시드니</span><span class="en">Sydney</span></a>
       <a href="/melbourne/" class="city-pill"><span class="ko">멜버른</span><span class="en">Melbourne</span></a>
       <a href="/brisbane/" class="city-pill"><span class="ko">브리즈번</span><span class="en">Brisbane</span></a>
       <a href="/perth/" class="city-pill"><span class="ko">퍼스</span><span class="en">Perth</span></a>
       <a href="/auckland/" class="city-pill"><span class="ko">오클랜드</span><span class="en">Auckland</span></a>
     </div></div>
 
-    <div class="region-block"><div class="region-label">🌍 <span class="ko">유럽·중동</span><span class="en">Europe·Middle East</span></div><div class="city-pills"><a href="/london/" class="city-pill"><span class="ko">런던</span><span class="en">London</span></a>
+    <div class="region-block"><div class="region-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a13 13 0 0 1 0 17 13 13 0 0 1 0-17z"/></svg> <span class="ko">유럽·중동</span><span class="en">Europe·Middle East</span></div><div class="city-pills"><a href="/london/" class="city-pill"><span class="ko">런던</span><span class="en">London</span></a>
       <a href="/paris/" class="city-pill"><span class="ko">파리</span><span class="en">Paris</span></a>
       <a href="/berlin/" class="city-pill"><span class="ko">베를린</span><span class="en">Berlin</span></a>
       <a href="/frankfurt/" class="city-pill"><span class="ko">프랑크푸르트</span><span class="en">Frankfurt</span></a>
       <a href="/dubai/" class="city-pill"><span class="ko">두바이</span><span class="en">Dubai</span></a>
     </div></div>
 
-    <div class="region-block"><div class="region-label">🌏 <span class="ko">동남아시아</span><span class="en">Southeast Asia</span></div><div class="city-pills"><a href="/singapore/" class="city-pill"><span class="ko">싱가포르</span><span class="en">Singapore</span></a>
+    <div class="region-block"><div class="region-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a13 13 0 0 1 0 17 13 13 0 0 1 0-17z"/></svg> <span class="ko">동남아시아</span><span class="en">Southeast Asia</span></div><div class="city-pills"><a href="/singapore/" class="city-pill"><span class="ko">싱가포르</span><span class="en">Singapore</span></a>
       <a href="/bangkok/" class="city-pill"><span class="ko">방콕</span><span class="en">Bangkok</span></a>
       <a href="/hochiminh/" class="city-pill"><span class="ko">호치민</span><span class="en">Ho Chi Minh</span></a>
     </div></div>
 
-    <div class="region-block"><div class="region-label">🇯🇵 <span class="ko">일본</span><span class="en">Japan</span></div><div class="city-pills"><a href="/tokyo/" class="city-pill"><span class="ko">도쿄</span><span class="en">Tokyo</span></a>
+    <div class="region-block"><div class="region-label"><span class="ko">일본</span><span class="en">Japan</span></div><div class="city-pills"><a href="/tokyo/" class="city-pill"><span class="ko">도쿄</span><span class="en">Tokyo</span></a>
       <a href="/osaka/" class="city-pill"><span class="ko">오사카</span><span class="en">Osaka</span></a>
     </div></div>
 
-    <div class="region-block"><div class="region-label">🇰🇷 <span class="ko">대한민국 — 뿌리 · 본국</span><span class="en">Korea — The Root</span></div><div class="city-pills"><a href="/seoul/" class="city-pill featured"><span class="ko">서울</span><span class="en">Seoul</span></a>
+    <div class="region-block"><div class="region-label"><span class="ko">대한민국 — 뿌리 · 본국</span><span class="en">Korea — The Root</span></div><div class="city-pills"><a href="/seoul/" class="city-pill featured"><span class="ko">서울</span><span class="en">Seoul</span></a>
       <a href="/busan/" class="city-pill"><span class="ko">부산</span><span class="en">Busan</span></a>
       <a href="/incheon/" class="city-pill"><span class="ko">인천</span><span class="en">Incheon</span></a>
       <a href="/daegu/" class="city-pill"><span class="ko">대구</span><span class="en">Daegu</span></a>

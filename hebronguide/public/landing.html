@@ -498,9 +498,9 @@ function LayerLabel({ n, en, ko, lang, mood }) {
 
 function WeatherTabs({ weather, setWeather, t }) {
   const opts = [
-    { k:'drizzle',  icon:'☂', label_en:'Drizzle',  label_ko:'비' },
-    { k:'overcast', icon:'☁', label_en:'Overcast', label_ko:'흐림' },
-    { k:'clear',    icon:'☀', label_en:'Clear',    label_ko:'맑음' },
+    { k:'drizzle',  icon:'', label_en:'Drizzle',  label_ko:'비' },
+    { k:'overcast', icon:'', label_en:'Overcast', label_ko:'흐림' },
+    { k:'clear',    icon:'', label_en:'Clear',    label_ko:'맑음' },
   ];
   return (
     <div style={{ display:'flex', background:'rgba(255,255,255,0.5)', borderRadius:20, padding:3, gap:2, border:'1px solid rgba(0,0,0,0.08)' }}>
@@ -908,7 +908,7 @@ function SegmentGlobalSaaS() {
               <ul style={{ margin:'16px 0 0', padding:0, listStyle:'none' }}>
                 {current.stats.map((s, i) => (
                   <li key={i} style={{ display:'flex', alignItems:'flex-start', gap:10, padding:'10px 0', borderBottom:i<current.stats.length-1?'1px solid #e2e8f0':'none' }}>
-                    <span style={{ color:'#0f172a', fontSize:13, marginTop:2 }}>✓</span>
+                    <span style={{ color:'#0f172a', fontSize:13, marginTop:2 }}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4.5 12.5 9 17 19.5 6.5"/></svg></span>
                     <span style={{ fontSize:14.5, color:'#334155', lineHeight:1.5 }}>{t(s.en, s.ko)}</span>
                   </li>
                 ))}
@@ -2503,9 +2503,9 @@ window.EditorialVariant = EditorialVariant;
 function WarmVariant() {
   const [mood, setMood] = React.useState(null);
   const moods = [
-    { id: 'arriving', emoji: '✈', label: '곧 도착해요', days: 'D-14 ~ D-0' },
-    { id: 'settling', emoji: '📦', label: '정착 중', days: '1~3개월차' },
-    { id: 'living', emoji: '🏡', label: '생활 중', days: '3개월+' },
+    { id: 'arriving', emoji: '', label: '곧 도착해요', days: 'D-14 ~ D-0' },
+    { id: 'settling', emoji: '', label: '정착 중', days: '1~3개월차' },
+    { id: 'living', emoji: '', label: '생활 중', days: '3개월+' },
   ];
 
   return (
@@ -2573,7 +2573,7 @@ function WarmVariant() {
             {mood && (
               <div style={warmStyles.moodResult}>
                 <div style={{ fontSize: 14, color: '#5c3a1f', lineHeight: 1.5 }}>
-                  ✓ <b>{moods.find(m => m.id === mood).label}</b>에 맞는 우선순위 12가지를 준비했어요.
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4.5 12.5 9 17 19.5 6.5"/></svg> <b>{moods.find(m => m.id === mood).label}</b>에 맞는 우선순위 12가지를 준비했어요.
                 </div>
                 <button style={warmStyles.primaryBtn}>내 여정 보기 →</button>
               </div>
@@ -2631,10 +2631,10 @@ function WarmVariant() {
           </div>
           <div style={warmStyles.hoodGrid}>
             {[
-              { n: 'Bellevue', kr: '벨뷰', r: '★★★★★', note: '한인 밀집 · 학군 최고', rent: '$2,800' },
-              { n: 'Lynnwood', kr: '린우드', r: '★★★★☆', note: '한인마트 · 합리적', rent: '$2,100' },
-              { n: 'Issaquah', kr: '이사콰', r: '★★★★★', note: '자연 · 조용함', rent: '$2,600' },
-              { n: 'Federal Way', kr: '페더럴웨이', r: '★★★☆☆', note: '저렴 · 통근 길어', rent: '$1,800' },
+              { n: 'Bellevue', kr: '벨뷰', r: '', note: '한인 밀집 · 학군 최고', rent: '$2,800' },
+              { n: 'Lynnwood', kr: '린우드', r: '', note: '한인마트 · 합리적', rent: '$2,100' },
+              { n: 'Issaquah', kr: '이사콰', r: '', note: '자연 · 조용함', rent: '$2,600' },
+              { n: 'Federal Way', kr: '페더럴웨이', r: '', note: '저렴 · 통근 길어', rent: '$1,800' },
             ].map((h, i) => (
               <div key={i} style={warmStyles.hoodCard}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
@@ -2750,8 +2750,8 @@ function UtilityVariant() {
   ];
 
   const quickActions = [
-    { icon: '⬡', label: 'SSN 예약', desc: 'ssa.gov 바로가기', hot: true },
-    { icon: '⬢', label: 'DOL 예약', desc: '면허시험 슬롯 확인', hot: false },
+    { icon: '', label: 'SSN 예약', desc: 'ssa.gov 바로가기', hot: true },
+    { icon: '', label: 'DOL 예약', desc: '면허시험 슬롯 확인', hot: false },
     { icon: '◈', label: '렌트 계산기', desc: '월급 기준 적정 렌트', hot: false },
     { icon: '◉', label: '학교 조회', desc: '주소→배정학교 검색', hot: false },
   ];
@@ -2807,7 +2807,7 @@ function UtilityVariant() {
 
         <div style={{ marginTop: 'auto', padding: 14, borderTop: `1px solid ${c.line}` }}>
           <button onClick={() => setDark(!dark)} style={{ ...utilStyles.sideItem, width: '100%', color: c.text }}>
-            <span style={{ width: 16, fontSize: 13 }}>{dark ? '☀' : '☾'}</span>
+            <span style={{ width: 16, fontSize: 13 }}>{dark ? '' : ''}</span>
             <span>{dark ? 'Light' : 'Dark'}</span>
           </button>
         </div>
@@ -2971,7 +2971,7 @@ function TweaksPanel({ tweaks, setTweak }) {
             { k:'showSegGlobal', label:'SEG · Global SaaS' },
             { k:'showSegEditorial', label:'SEG · Bilingual Editorial' },
             { k:'showSegImmersive', label:'SEG · Split Immersion' },
-            { k:'showLiving', label:'🌸 Living Landing (Seattle · Apr 2026)' },
+            { k:'showLiving', label:' Living Landing (Seattle · Apr 2026)' },
           ].map(item => (
             <label key={item.k} style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'8px 0', fontSize:12.5, cursor:'pointer' }}>
               <span>{item.label}</span>
@@ -2984,7 +2984,7 @@ function TweaksPanel({ tweaks, setTweak }) {
         </div>
       ) : (
         <button onClick={()=>setOpen(true)} style={{ background:'#1a1a1a', color:'#fff', border:'none', padding:'10px 16px', borderRadius:24, fontSize:12, fontWeight:600, cursor:'pointer', boxShadow:'0 4px 20px rgba(0,0,0,0.2)' }}>
-          ⚙ Tweaks
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.5 5.5l2 2M16.5 16.5l2 2M18.5 5.5l-2 2M7.5 16.5l-2 2"/></svg> Tweaks
         </button>
       )}
     </div>

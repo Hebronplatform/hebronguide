@@ -1837,7 +1837,7 @@
           toast(`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3.5 21 19H3z"/><path d="M12 10v4"/><path d="M12 16.5h.01"/></svg> 등록은 완료. 이메일 발송 실패: ${emailErr.message}`)
         }
       } else {
-        toast(`ℹ️ ${nameKo} — 이메일 주소 없음, 이메일 발송 건너뜀`)
+        toast(`ℹ ${nameKo} — 이메일 주소 없음, 이메일 발송 건너뜀`)
       }
     } catch(e) {
       console.warn('교회 자동 등록 실패:', e.message)

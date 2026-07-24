@@ -71,14 +71,14 @@
 
 <!-- 인터랙티브 (단일 헤더) -->
 <div class="tabs" id="mainTabs">
-  <button class="tab on"  onclick="go('seattle')">🏙️ 시애틀</button>
-  <button class="tab"     onclick="go('seoul')">🇰🇷 서울</button>
-  <button class="tab"     onclick="go('newyork')">🗽 뉴욕</button>
-  <button class="tab"     onclick="go('dallas')">🤠 달라스</button>
-  <button class="tab"     onclick="go('la')">🌴 LA</button>
-  <button class="tab"     onclick="go('tokyo')">🗼 도쿄</button>
-  <button class="tab"     onclick="go('london')">🇬🇧 런던</button>
-  <button class="tab"     onclick="go('miami')">🌊 마이애미</button>
+  <button class="tab on"  onclick="go('seattle')">시애틀</button>
+  <button class="tab"     onclick="go('seoul')">서울</button>
+  <button class="tab"     onclick="go('newyork')">뉴욕</button>
+  <button class="tab"     onclick="go('dallas')">달라스</button>
+  <button class="tab"     onclick="go('la')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M5 20c0-8 5-14 14-15-1 9-7 14-14 15z"/><path d="M9 16c2-3 5-5 8-6"/></svg> LA</button>
+  <button class="tab"     onclick="go('tokyo')">도쿄</button>
+  <button class="tab"     onclick="go('london')">런던</button>
+  <button class="tab"     onclick="go('miami')">마이애미</button>
 </div>
 
 <div class="hero" id="hero">
@@ -116,38 +116,38 @@
 
 <script>
 const C = {
-  seattle: { color:"#2E86C1", flag:"🇺🇸", nameKo:"시애틀", nameEn:"Seattle",
+  seattle: { color:"#2E86C1", flag:"", nameKo:"시애틀", nameEn:"Seattle",
     tagline:"Space Needle · 에메랄드 시티 한인 커뮤니티",
     slides:["https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=900&q=85",
             "https://images.unsplash.com/photo-1502175353174-a7a70e73b362?w=900&q=85",
             "https://images.unsplash.com/photo-1437809781432-a957377661ee?w=900&q=85"] },
-  seoul: { color:"#E74C3C", flag:"🇰🇷", nameKo:"서울", nameEn:"Seoul",
+  seoul: { color:"#E74C3C", flag:"", nameKo:"서울", nameEn:"Seoul",
     tagline:"경복궁 · N서울타워 · 역이민 한인 허브",
     slides:["https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=900&q=85",
             "https://images.unsplash.com/photo-1583425423688-5be5e8a9fcba?w=900&q=85"] },
-  newyork: { color:"#7D3C98", flag:"🇺🇸", nameKo:"뉴욕", nameEn:"New York",
+  newyork: { color:"#7D3C98", flag:"", nameKo:"뉴욕", nameEn:"New York",
     tagline:"Brooklyn Bridge · Manhattan Skyline",
     slides:["https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?w=900&q=85",
             "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=900&q=85",
             "https://images.unsplash.com/photo-1546436836-07a91091f160?w=900&q=85"] },
-  dallas: { color:"#D68910", flag:"🇺🇸", nameKo:"달라스", nameEn:"Dallas",
+  dallas: { color:"#D68910", flag:"", nameKo:"달라스", nameEn:"Dallas",
     tagline:"Reunion Tower · 텍사스 DFW 한인 커뮤니티",
     slides:["https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=900&q=85",
             "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=900&q=85"] },
-  la: { color:"#F39C12", flag:"🇺🇸", nameKo:"로스앤젤레스", nameEn:"Los Angeles",
+  la: { color:"#F39C12", flag:"", nameKo:"로스앤젤레스", nameEn:"Los Angeles",
     tagline:"Griffith Observatory · Hollywood · 코리아타운",
     slides:["https://images.unsplash.com/photo-1580655653885-65763b2597d0?w=900&q=85",
             "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=900&q=85",
             "https://images.unsplash.com/photo-1496588152823-86ff7695e68f?w=900&q=85"] },
-  tokyo: { color:"#DC2626", flag:"🇯🇵", nameKo:"도쿄", nameEn:"Tokyo",
+  tokyo: { color:"#DC2626", flag:"", nameKo:"도쿄", nameEn:"Tokyo",
     tagline:"시부야 스크램블 · 센소지 · 신오쿠보",
     slides:["https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=900&q=85",
             "https://images.unsplash.com/photo-1547860742-31c4c657e153?w=900&q=85"] },
-  london: { color:"#2563EB", flag:"🇬🇧", nameKo:"런던", nameEn:"London",
+  london: { color:"#2563EB", flag:"", nameKo:"런던", nameEn:"London",
     tagline:"Big Ben · Tower Bridge · 안개의 도시",
     slides:["https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=85",
             "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=900&q=85"] },
-  miami: { color:"#06B6D4", flag:"🇺🇸", nameKo:"마이애미", nameEn:"Miami",
+  miami: { color:"#06B6D4", flag:"", nameKo:"마이애미", nameEn:"Miami",
     tagline:"South Beach · Art Deco · 에메랄드 바다",
     slides:["https://images.unsplash.com/photo-1535498730771-e735b998cd64?w=900&q=85",
             "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&q=85"] },

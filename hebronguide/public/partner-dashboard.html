@@ -45,7 +45,7 @@
     .biz-name{font-size:1.4rem;font-weight:700;margin-top:2px}
     .logout-icon{background:var(--card2);border:none;color:var(--text3);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem}
     .biz-hero{margin:16px 16px 0;background:linear-gradient(135deg,#1a1a2e,#2c2c3e);border-radius:20px;padding:20px;border:1px solid var(--border);position:relative;overflow:hidden}
-    .biz-hero::before{content:'🏪';position:absolute;right:-8px;top:-8px;font-size:5rem;opacity:.06}
+    .biz-hero::before{content:'';position:absolute;right:-8px;top:-8px;font-size:5rem;opacity:.06}
     .biz-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(48,209,88,.15);color:var(--mint);border-radius:20px;padding:4px 10px;font-size:.78rem;font-weight:700;margin-bottom:10px}
     .biz-badge.pending{background:rgba(255,191,0,.15);color:#FFD60A}
     .biz-title-name{font-size:1.2rem;font-weight:700;margin-bottom:4px}
@@ -93,29 +93,29 @@
   </div>
 
   <div class="login-hero">
-    <div class="login-icon">🏪</div>
+    <div class="login-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 9.5 5 4.5h14l1 5"/><path d="M4 9.5a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5.5 12v8h13v-8"/></svg></div>
     <h1 class="login-title"><span class="ko">사업체 파트너 로그인</span><span class="en">Business Partner Login</span></h1>
     <p class="login-sub"><span class="ko">HebronGuide 파트너 사업체 전용</span><span class="en">For HebronGuide partner businesses</span></p>
   </div>
 
   <div class="input-card">
     <div class="input-row">
-      <span class="input-icon">✉️</span>
+      <span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span>
       <input type="email" id="biz-email" placeholder="business@email.com" autocomplete="email">
     </div>
     <div class="input-row" id="biz-pw-row" style="display:none">
-      <span class="input-icon">🔒</span>
+      <span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
       <input type="password" id="biz-pw" placeholder="비밀번호">
     </div>
   </div>
 
   <button class="btn-main purple" onclick="bizLogin()">
-    <span class="ko" id="biz-btn-ko">✉️ 로그인 링크 받기</span>
-    <span class="en" id="biz-btn-en">✉️ Send Login Link</span>
+    <span class="ko" id="biz-btn-ko"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> 로그인 링크 받기</span>
+    <span class="en" id="biz-btn-en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> Send Login Link</span>
   </button>
   <div class="divider-text" style="margin-top:16px"><span class="ko">비밀번호 있으신가요?</span><span class="en">Have a password?</span></div>
   <button class="btn-sub" onclick="toggleBizPw()" id="biz-pw-toggle">
-    <span class="ko">🔒 비밀번호로 로그인</span><span class="en">🔒 Login with Password</span>
+    <span class="ko"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> 비밀번호로 로그인</span><span class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Login with Password</span>
   </button>
   <div class="msg" id="msg-biz"></div>
   <div style="text-align:center;margin-top:20px;font-size:.85rem;color:var(--text2)">
@@ -140,21 +140,21 @@
 
   <div class="biz-header">
     <div>
-      <div class="biz-greeting"><span class="ko">안녕하세요 🏪</span><span class="en">Welcome 🏪</span></div>
+      <div class="biz-greeting"><span class="ko">안녕하세요 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 9.5 5 4.5h14l1 5"/><path d="M4 9.5a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5.5 12v8h13v-8"/></svg></span><span class="en">Welcome <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 9.5 5 4.5h14l1 5"/><path d="M4 9.5a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5.5 12v8h13v-8"/></svg></span></div>
       <div class="biz-name" id="biz-display-name">파트너님</div>
     </div>
   </div>
 
   <!-- 사업체 카드 -->
   <div class="biz-hero">
-    <div class="biz-badge" id="biz-status-badge">⭐ Hebron 협력 사업체</div>
+    <div class="biz-badge" id="biz-status-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3.5l2.6 5.3 5.9.8-4.3 4.1 1 5.8L12 16.8 6.8 19.5l1-5.8L3.5 9.6l5.9-.8z"/></svg> Hebron 협력 사업체</div>
     <div class="biz-title-name" id="biz-title-name">—</div>
     <div class="biz-type-text" id="biz-type-text">—</div>
     <div class="biz-meta" id="biz-meta"></div>
     <div class="biz-actions">
-      <button onclick="toggleBizEdit()">✏️ <span class="ko">수정</span><span class="en">Edit</span></button>
-      <a id="biz-website-link" href="#" target="_blank">🌐 <span class="ko">홈페이지</span><span class="en">Website</span></a>
-      <a id="biz-phone-link" href="#">📞 <span class="ko">전화</span><span class="en">Call</span></a>
+      <button onclick="toggleBizEdit()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> <span class="ko">수정</span><span class="en">Edit</span></button>
+      <a id="biz-website-link" href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a13 13 0 0 1 0 17 13 13 0 0 1 0-17z"/></svg> <span class="ko">홈페이지</span><span class="en">Website</span></a>
+      <a id="biz-phone-link" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M5 4h3.5l1.2 5-2 1.3a12 12 0 0 0 5 5l1.3-2 5 1.2V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg> <span class="ko">전화</span><span class="en">Call</span></a>
     </div>
   </div>
 
@@ -162,11 +162,11 @@
   <div class="edit-section" id="biz-edit-section">
     <div class="edit-title"><span class="ko">사업체 정보 수정</span><span class="en">Edit Business Info</span></div>
     <div class="input-card">
-      <div class="input-row"><span class="input-icon">🏪</span><input type="text" id="e-biz-name" placeholder="업체명"></div>
-      <div class="input-row"><span class="input-icon">🏷️</span><input type="text" id="e-biz-type" placeholder="업종"></div>
-      <div class="input-row"><span class="input-icon">📞</span><input type="tel" id="e-biz-phone" placeholder="전화번호"></div>
-      <div class="input-row"><span class="input-icon">🌐</span><input type="url" id="e-biz-web" placeholder="https://"></div>
-      <div class="input-row"><span class="input-icon">📝</span><input type="text" id="e-biz-desc" placeholder="한 줄 소개"></div>
+      <div class="input-row"><span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 9.5 5 4.5h14l1 5"/><path d="M4 9.5a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5.5 12v8h13v-8"/></svg></span><input type="text" id="e-biz-name" placeholder="업체명"></div>
+      <div class="input-row"><span class="input-icon"></span><input type="text" id="e-biz-type" placeholder="업종"></div>
+      <div class="input-row"><span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M5 4h3.5l1.2 5-2 1.3a12 12 0 0 0 5 5l1.3-2 5 1.2V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><input type="tel" id="e-biz-phone" placeholder="전화번호"></div>
+      <div class="input-row"><span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a13 13 0 0 1 0 17 13 13 0 0 1 0-17z"/></svg></span><input type="url" id="e-biz-web" placeholder="https://"></div>
+      <div class="input-row"><span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M6 3.5h8l4 4V20.5H6z"/><path d="M14 3.5v4h4"/><path d="M9 12h6"/><path d="M9 15.5h4"/></svg></span><input type="text" id="e-biz-desc" placeholder="한 줄 소개"></div>
     </div>
     <div class="save-row">
       <button class="btn-main green" style="flex:2" onclick="saveBizEdit()"><span class="ko">저장하기</span><span class="en">Save</span></button>
@@ -176,7 +176,7 @@
   </div>
 
   <!-- 내 도시 한인 통계 -->
-  <div class="section-title"><span class="ko">🌍 내 도시 한인 통계</span><span class="en">🌍 Korean Population</span></div>
+  <div class="section-title"><span class="ko"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a13 13 0 0 1 0 17 13 13 0 0 1 0-17z"/></svg> 내 도시 한인 통계</span><span class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a13 13 0 0 1 0 17 13 13 0 0 1 0-17z"/></svg> Korean Population</span></div>
   <div id="biz-city-stat" class="stat-card" style="color:var(--text2);font-size:.88rem">
     <span class="spinner"></span><span class="ko">불러오는 중...</span><span class="en">Loading...</span>
   </div>
@@ -185,22 +185,22 @@
   <div class="section-title"><span class="ko">빠른 실행</span><span class="en">Quick Actions</span></div>
   <div class="quick-grid">
     <a href="/ad-request.html#business" class="quick-card">
-      <div class="quick-icon">📋</div>
+      <div class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="6" y="5" width="12" height="16" rx="2"/><path d="M9.5 5V4a2.5 2.5 0 0 1 5 0v1"/><path d="M9 4.5h6"/></svg></div>
       <div class="quick-label"><span class="ko">정보 수정 신청</span><span class="en">Request Update</span></div>
       <div class="quick-sub"><span class="ko">상세 수정 요청</span><span class="en">Detailed changes</span></div>
     </a>
     <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" class="quick-card">
-      <div class="quick-icon">💬</div>
+      <div class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 5h16v11H9l-4 4V5z"/></svg></div>
       <div class="quick-label"><span class="ko">카카오채널</span><span class="en">KakaoTalk</span></div>
       <div class="quick-sub"><span class="ko">소식·업데이트</span><span class="en">Updates</span></div>
     </a>
     <a href="/faq.html#business" class="quick-card">
-      <div class="quick-icon">❓</div>
+      <div class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .8-1 1.7"/><path d="M12 17h.01"/></svg></div>
       <div class="quick-label">FAQ</div>
       <div class="quick-sub"><span class="ko">자주 묻는 질문</span><span class="en">Help</span></div>
     </a>
     <a href="mailto:Hebronplatform@gmail.com" class="quick-card">
-      <div class="quick-icon">✉️</div>
+      <div class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg></div>
       <div class="quick-label"><span class="ko">문의하기</span><span class="en">Contact</span></div>
       <div class="quick-sub">HebronGuide</div>
     </a>
@@ -210,7 +210,7 @@
   <div class="section-title" style="margin-top:8px"><span class="ko">계정 설정</span><span class="en">Account</span></div>
   <div class="settings-list">
     <div class="settings-row" onclick="togglePwPanel()">
-      <div class="settings-icon" style="background:rgba(10,132,255,.15)">🔑</div>
+      <div class="settings-icon" style="background:rgba(10,132,255,.15)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="8" cy="15" r="3.5"/><path d="M10.5 12.5 20 3"/><path d="M16 7l3 3"/></svg></div>
       <div>
         <div class="settings-label"><span class="ko">비밀번호 설정/변경</span><span class="en">Set / Change Password</span></div>
         <div class="settings-sub"><span class="ko">다음부터 빠르게 로그인</span><span class="en">For quick future logins</span></div>
@@ -226,8 +226,8 @@
   <div id="pw-panel">
     <div style="height:10px"></div>
     <div class="input-card" style="margin:0 16px">
-      <div class="input-row"><span class="input-icon">🔒</span><input type="password" id="new-pw" placeholder="새 비밀번호 (8자+)"></div>
-      <div class="input-row"><span class="input-icon">🔒</span><input type="password" id="confirm-pw" placeholder="비밀번호 확인"></div>
+      <div class="input-row"><span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><input type="password" id="new-pw" placeholder="새 비밀번호 (8자+)"></div>
+      <div class="input-row"><span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><input type="password" id="confirm-pw" placeholder="비밀번호 확인"></div>
     </div>
     <div style="padding:10px 16px 0">
       <button class="btn-main" style="background:var(--blue)" onclick="savePw()"><span class="ko">비밀번호 저장</span><span class="en">Save Password</span></button>
@@ -245,25 +245,25 @@ let sb=null,sess=null,isPwMode=false,myBiz=null
 
 function setLang(l){document.documentElement.lang=l;localStorage.setItem('hg_lang',l);['btn-ko','btn-ko2'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.toggle('active',l==='ko')});['btn-en','btn-en2'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.toggle('active',l==='en')})}
 
-function toggleBizPw(){isPwMode=!isPwMode;document.getElementById('biz-pw-row').style.display=isPwMode?'flex':'none';const ko=document.getElementById('biz-btn-ko'),en=document.getElementById('biz-btn-en'),t=document.getElementById('biz-pw-toggle');if(isPwMode){ko.textContent='🔒 로그인';en.textContent='🔒 Login';t.innerHTML='<span class="ko">✉️ 매직 링크로 로그인</span><span class="en">✉️ Magic Link</span>'}else{ko.textContent='✉️ 로그인 링크 받기';en.textContent='✉️ Send Login Link';t.innerHTML='<span class="ko">🔒 비밀번호로 로그인</span><span class="en">🔒 Password Login</span>'}}
+function toggleBizPw(){isPwMode=!isPwMode;document.getElementById('biz-pw-row').style.display=isPwMode?'flex':'none';const ko=document.getElementById('biz-btn-ko'),en=document.getElementById('biz-btn-en'),t=document.getElementById('biz-pw-toggle');if(isPwMode){ko.textContent=' 로그인';en.textContent=' Login';t.innerHTML='<span class="ko">매직 링크로 로그인</span><span class="en">Magic Link</span>'}else{ko.textContent=' 로그인 링크 받기';en.textContent=' Send Login Link';t.innerHTML='<span class="ko">비밀번호로 로그인</span><span class="en">Password Login</span>'}}
 
-async function bizLogin(){const email=document.getElementById('biz-email').value.trim();const msgEl=document.getElementById('msg-biz');if(!email.includes('@')){showMsg(msgEl,'올바른 이메일을 입력해주세요.','err');return}if(!sb){showMsg(msgEl,'서버 오류.','err');return}if(isPwMode){const pw=document.getElementById('biz-pw').value;if(!pw){showMsg(msgEl,'비밀번호를 입력해주세요.','err');return}const{data,error}=await sb.auth.signInWithPassword({email,password:pw});if(error){showMsg(msgEl,'로그인 실패: '+error.message,'err');return}sess=data.session;showBizDashboard(data.user)}else{const{error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:window.location.href}});if(error){showMsg(msgEl,'오류: '+error.message,'err');return}showMsg(msgEl,'✅ 이메일을 확인해주세요! 스팸함도 확인해주세요.','ok')}}
+async function bizLogin(){const email=document.getElementById('biz-email').value.trim();const msgEl=document.getElementById('msg-biz');if(!email.includes('@')){showMsg(msgEl,'올바른 이메일을 입력해주세요.','err');return}if(!sb){showMsg(msgEl,'서버 오류.','err');return}if(isPwMode){const pw=document.getElementById('biz-pw').value;if(!pw){showMsg(msgEl,'비밀번호를 입력해주세요.','err');return}const{data,error}=await sb.auth.signInWithPassword({email,password:pw});if(error){showMsg(msgEl,'로그인 실패: '+error.message,'err');return}sess=data.session;showBizDashboard(data.user)}else{const{error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:window.location.href}});if(error){showMsg(msgEl,'오류: '+error.message,'err');return}showMsg(msgEl,' 이메일을 확인해주세요! 스팸함도 확인해주세요.','ok')}}
 
 async function logout(){if(sb)await sb.auth.signOut();sess=null;myBiz=null;document.getElementById('screen-biz').style.display='none';document.getElementById('screen-login').style.display='block'}
 
 async function showBizDashboard(user){document.getElementById('screen-login').style.display='none';document.getElementById('screen-biz').style.display='block';const name=user.user_metadata?.full_name||user.email?.split('@')[0]||'파트너님';document.getElementById('biz-display-name').textContent=name;await loadMyBiz(user.email)}
 
-async function loadMyBiz(email){try{const r=await fetch(`${SB_URL}/rest/v1/community_items?contact=eq.${encodeURIComponent(email)}&category=eq.business&limit=1`,{headers:{apikey:SB_ANON,Authorization:'Bearer '+SB_ANON}});const[b]=await r.json();if(!b){document.getElementById('biz-title-name').textContent='등록된 사업체 없음';document.getElementById('biz-city-stat').innerHTML='<a href="/ad-request.html#business" style="color:var(--gold)">사업체 등록하기 →</a>';return}myBiz=b;document.getElementById('biz-title-name').textContent=b.name||b.title||'—';document.getElementById('biz-type-text').textContent=b.type||b.description?.split('.')[0]||'—';const meta=[];if(b.city_slug||b.city)meta.push(`<span class="biz-tag">📍 ${b.city||b.city_slug}</span>`);if(b.phone)meta.push(`<span class="biz-tag">📞 ${b.phone}</span>`);const badge=document.getElementById('biz-status-badge');if(b.status==='approved'){badge.className='biz-badge';badge.textContent='⭐ Hebron 협력 사업체'}else{badge.className='biz-badge pending';badge.textContent='⏳ 승인 대기'}document.getElementById('biz-meta').innerHTML=meta.join('');const wl=document.getElementById('biz-website-link');if(b.url||b.website){wl.href=b.url||b.website;wl.style.opacity='1'}else{wl.style.opacity='.4';wl.onclick=e=>e.preventDefault()}const pl=document.getElementById('biz-phone-link');if(b.phone){pl.href='tel:'+b.phone;pl.style.opacity='1'}else{pl.style.opacity='.4';pl.onclick=e=>e.preventDefault()}renderBizCityStat(b.city_slug||'')}catch(e){document.getElementById('biz-title-name').textContent='정보를 불러오지 못했습니다.'}}
+async function loadMyBiz(email){try{const r=await fetch(`${SB_URL}/rest/v1/community_items?contact=eq.${encodeURIComponent(email)}&category=eq.business&limit=1`,{headers:{apikey:SB_ANON,Authorization:'Bearer '+SB_ANON}});const[b]=await r.json();if(!b){document.getElementById('biz-title-name').textContent='등록된 사업체 없음';document.getElementById('biz-city-stat').innerHTML='<a href="/ad-request.html#business" style="color:var(--gold)">사업체 등록하기 →</a>';return}myBiz=b;document.getElementById('biz-title-name').textContent=b.name||b.title||'—';document.getElementById('biz-type-text').textContent=b.type||b.description?.split('.')[0]||'—';const meta=[];if(b.city_slug||b.city)meta.push(`<span class="biz-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 21s6.5-6 6.5-11a6.5 6.5 0 1 0-13 0c0 5 6.5 11 6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg> ${b.city||b.city_slug}</span>`);if(b.phone)meta.push(`<span class="biz-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M5 4h3.5l1.2 5-2 1.3a12 12 0 0 0 5 5l1.3-2 5 1.2V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg> ${b.phone}</span>`);const badge=document.getElementById('biz-status-badge');if(b.status==='approved'){badge.className='biz-badge';badge.textContent=' Hebron 협력 사업체'}else{badge.className='biz-badge pending';badge.textContent='⏳ 승인 대기'}document.getElementById('biz-meta').innerHTML=meta.join('');const wl=document.getElementById('biz-website-link');if(b.url||b.website){wl.href=b.url||b.website;wl.style.opacity='1'}else{wl.style.opacity='.4';wl.onclick=e=>e.preventDefault()}const pl=document.getElementById('biz-phone-link');if(b.phone){pl.href='tel:'+b.phone;pl.style.opacity='1'}else{pl.style.opacity='.4';pl.onclick=e=>e.preventDefault()}renderBizCityStat(b.city_slug||'')}catch(e){document.getElementById('biz-title-name').textContent='정보를 불러오지 못했습니다.'}}
 
 function renderBizCityStat(slug){const el=document.getElementById('biz-city-stat');const s=CITY_STATS[slug];const lang=document.documentElement.lang||'ko';if(!s){el.innerHTML=`<span style="color:var(--text2);font-size:.88rem">${lang==='ko'?'이 도시의 통계를 준비 중입니다.':'City statistics coming soon.'}</span>`;return}const tc=s.trend.includes('↑')?'var(--mint)':s.trend.includes('↓')?'#f87171':'var(--text2)';el.innerHTML=`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text2);font-size:.88rem">${lang==='ko'?'한인 인구 추정':'Est. Korean Pop.'}</span><span style="color:var(--gold);font-weight:700">${s.pop}</span></div><div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text2);font-size:.88rem">${lang==='ko'?'국가':'Country'}</span><span style="color:var(--text);font-weight:700">${s.country}</span></div><div style="display:flex;justify-content:space-between;padding:8px 0"><span style="color:var(--text2);font-size:.88rem">${lang==='ko'?'추세':'Trend'}</span><span style="color:${tc};font-weight:700">${s.trend}</span></div><div style="font-size:.7rem;color:var(--text3);margin-top:8px;">출처: 재외동포청 2025 + US Census ACS 2022</div>`}
 
 function toggleBizEdit(){const el=document.getElementById('biz-edit-section');const open=el.style.display!=='none';el.style.display=open?'none':'block';if(!open&&myBiz){document.getElementById('e-biz-name').value=myBiz.name||myBiz.title||'';document.getElementById('e-biz-type').value=myBiz.type||'';document.getElementById('e-biz-phone').value=myBiz.phone||'';document.getElementById('e-biz-web').value=myBiz.url||myBiz.website||'';document.getElementById('e-biz-desc').value=myBiz.description||''}}
 
-async function saveBizEdit(){if(!sess||!myBiz)return;const updates={name:document.getElementById('e-biz-name').value.trim(),type:document.getElementById('e-biz-type').value.trim(),phone:document.getElementById('e-biz-phone').value.trim(),url:document.getElementById('e-biz-web').value.trim(),description:document.getElementById('e-biz-desc').value.trim()};try{const r=await fetch(`${SB_URL}/rest/v1/community_items?id=eq.${myBiz.id}`,{method:'PATCH',headers:{apikey:SB_ANON,Authorization:'Bearer '+sess.access_token,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(updates)});if(!r.ok)throw new Error();showMsg(document.getElementById('msg-biz-edit'),'✅ 저장되었습니다!','ok');setTimeout(()=>{toggleBizEdit();loadMyBiz(sess.user.email)},1200)}catch{showMsg(document.getElementById('msg-biz-edit'),'저장 실패. 다시 시도해주세요.','err')}}
+async function saveBizEdit(){if(!sess||!myBiz)return;const updates={name:document.getElementById('e-biz-name').value.trim(),type:document.getElementById('e-biz-type').value.trim(),phone:document.getElementById('e-biz-phone').value.trim(),url:document.getElementById('e-biz-web').value.trim(),description:document.getElementById('e-biz-desc').value.trim()};try{const r=await fetch(`${SB_URL}/rest/v1/community_items?id=eq.${myBiz.id}`,{method:'PATCH',headers:{apikey:SB_ANON,Authorization:'Bearer '+sess.access_token,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(updates)});if(!r.ok)throw new Error();showMsg(document.getElementById('msg-biz-edit'),' 저장되었습니다!','ok');setTimeout(()=>{toggleBizEdit();loadMyBiz(sess.user.email)},1200)}catch{showMsg(document.getElementById('msg-biz-edit'),'저장 실패. 다시 시도해주세요.','err')}}
 
 function togglePwPanel(){const el=document.getElementById('pw-panel');el.style.display=el.style.display==='none'?'block':'none'}
 
-async function savePw(){const pw=document.getElementById('new-pw').value;const pw2=document.getElementById('confirm-pw').value;const msgEl=document.getElementById('msg-pw');if(pw.length<8){showMsg(msgEl,'8자 이상 입력해주세요.','err');return}if(pw!==pw2){showMsg(msgEl,'비밀번호가 일치하지 않습니다.','err');return}const{error}=await sb.auth.updateUser({password:pw});if(error){showMsg(msgEl,'오류: '+error.message,'err');return}showMsg(msgEl,'✅ 비밀번호가 저장되었습니다!','ok');document.getElementById('new-pw').value='';document.getElementById('confirm-pw').value=''}
+async function savePw(){const pw=document.getElementById('new-pw').value;const pw2=document.getElementById('confirm-pw').value;const msgEl=document.getElementById('msg-pw');if(pw.length<8){showMsg(msgEl,'8자 이상 입력해주세요.','err');return}if(pw!==pw2){showMsg(msgEl,'비밀번호가 일치하지 않습니다.','err');return}const{error}=await sb.auth.updateUser({password:pw});if(error){showMsg(msgEl,'오류: '+error.message,'err');return}showMsg(msgEl,' 비밀번호가 저장되었습니다!','ok');document.getElementById('new-pw').value='';document.getElementById('confirm-pw').value=''}
 
 function showMsg(el,text,type){el.textContent=text;el.className='msg '+type;el.style.display='block';if(type==='ok')setTimeout(()=>{el.style.display='none'},3000)}
 

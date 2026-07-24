@@ -622,7 +622,7 @@
 
 <!-- ── CELEBRATION BANNER ── -->
 <div class="celebration" id="celebrationBanner">
-  <div class="celebration-title" id="celebrationTitle">🎉 Phase 완료!</div>
+  <div class="celebration-title" id="celebrationTitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 20l5-13 8 8z"/><path d="M14 6a2 2 0 0 1 3 0M17 4v3M20 8h.01"/></svg> Phase 완료!</div>
   <div class="celebration-sub" id="celebrationSub">다음 단계로 진행합니다</div>
 </div>
 
@@ -687,7 +687,7 @@
     <div class="active-header">
       <div>
         <div class="active-title" id="activeSectionTitle">
-          🎯 지금 바로 해야 할 일
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg> 지금 바로 해야 할 일
           <span class="phase-tag" id="activePhasTag"></span>
         </div>
         <div class="active-subtitle">현재 집중 과제 TOP 5 — 완료하면 다음 단계가 자동으로 나타납니다</div>
@@ -1017,10 +1017,10 @@ let _lastActivePhase = null;
 //  IMPACT HELPERS
 // ═══════════════════════════════════════════════════════════
 const IMPACT_LABELS = {
-  critical: '🔴 긴급',
-  high:     '🟠 높음',
-  medium:   '🟡 중간',
-  low:      '⚪ 낮음'
+  critical: ' 긴급',
+  high:     ' 높음',
+  medium:   ' 중간',
+  low:      ' 낮음'
 };
 
 const PHASE_LABELS = {
@@ -1059,10 +1059,10 @@ function showCelebration(phaseNum) {
   const banner = document.getElementById('celebrationBanner');
   const title = document.getElementById('celebrationTitle');
   const sub = document.getElementById('celebrationSub');
-  title.textContent = `🎉 Phase ${phaseNum} 완료! +5 달성`;
+  title.textContent = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 20l5-13 8 8z"/><path d="M14 6a2 2 0 0 1 3 0M17 4v3M20 8h.01"/></svg> Phase ${phaseNum} 완료! +5 달성`;
   sub.textContent = phaseNum < 4
     ? `Phase ${phaseNum + 1} 과제가 자동으로 펼쳐집니다`
-    : '축하합니다! 모든 출시 과제를 완료했습니다 🏆';
+    : '축하합니다! 모든 출시 과제를 완료했습니다 ';
   banner.classList.add('visible');
   launchConfetti();
   setTimeout(() => banner.classList.remove('visible'), 4000);
@@ -1110,7 +1110,7 @@ function render() {
   document.getElementById('statWaiting').textContent = tasks.length - totalDone - active.length;
 
   const desc = pct === 100
-    ? '모든 출시 과제 완료! 🎉'
+    ? '모든 출시 과제 완료! '
     : `${tasks.length - totalDone}개 과제 남음 — ${PHASE_LABELS[currentPhase]}`;
   document.getElementById('overallDesc').textContent = desc;
 
@@ -1121,7 +1121,7 @@ function render() {
     const isActive = p.phase === currentPhase;
     const cls = isDone ? 'done' : (isActive ? 'active' : '');
     const badgeCls = isDone ? 'badge-done' : (isActive ? 'badge-active' : 'badge-wait');
-    const badgeText = isDone ? '완료 ✅' : (isActive ? '진행중' : '대기');
+    const badgeText = isDone ? '완료 ' : (isActive ? '진행중' : '대기');
     const barCls = isDone ? 'c-green' : (isActive ? 'c-gold' : 'c-dim');
     return `
       <div class="phase-item ${cls}">
@@ -1140,10 +1140,10 @@ function render() {
   // ── Active section header ──
   const sectionTitle = document.getElementById('activeSectionTitle');
   if (pct === 100) {
-    sectionTitle.innerHTML = '🏆 모든 과제 완료!';
+    sectionTitle.innerHTML = ' 모든 과제 완료!';
     document.getElementById('activePhasTag').textContent = '';
   } else {
-    sectionTitle.innerHTML = `🎯 지금 바로 해야 할 일 <span class="phase-tag" id="activePhasTag">${PHASE_LABELS[currentPhase]}</span>`;
+    sectionTitle.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg> 지금 바로 해야 할 일 <span class="phase-tag" id="activePhasTag">${PHASE_LABELS[currentPhase]}</span>`;
   }
 
   // ── Active tasks cards ──
@@ -1152,7 +1152,7 @@ function render() {
   if (pct === 100) {
     grid.innerHTML = `
       <div class="all-done-msg">
-        <div class="emoji">🎉</div>
+        <div class="emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 20l5-13 8 8z"/><path d="M14 6a2 2 0 0 1 3 0M17 4v3M20 8h.01"/></svg></div>
         <h2>출시 준비 완료!</h2>
         <p>20개 과제를 모두 완료했습니다. HebronGuide를 세상에 내보낼 준비가 됐습니다.</p>
       </div>
@@ -1185,14 +1185,14 @@ function render() {
 }
 
 function renderTaskCard(task, isNew = false) {
-  const impactLabel = IMPACT_LABELS[task.impact] || '⚪';
+  const impactLabel = IMPACT_LABELS[task.impact] || '';
   const linkHtml = task.link
     ? `<a class="task-link" href="${task.link}" target="_blank" rel="noopener">↗ 바로가기</a>`
     : '';
 
   const btnHtml = task.completed
     ? `<button class="undo-btn" onclick="toggleTask('${task.id}')">↩ 취소</button>`
-    : `<button class="complete-btn" onclick="toggleTask('${task.id}')">✅ 완료</button>`;
+    : `<button class="complete-btn" onclick="toggleTask('${task.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4.5 12.5 9 17 19.5 6.5"/></svg> 완료</button>`;
 
   return `
     <div class="task-card impact-${task.impact} ${task.completed ? 'completed' : ''} ${isNew ? 'task-new' : ''}" id="card-${task.id}">
@@ -1226,7 +1226,7 @@ function renderAllTasks(tasks, phaseInfos) {
     const pInfo = phaseInfos.find(p => p.phase === phase);
     const rows = pTasks.map(t => `
       <div class="mini-task ${t.completed ? 'completed' : ''}" onclick="toggleTask('${t.id}')">
-        <div class="mini-checkbox">${t.completed ? '✓' : ''}</div>
+        <div class="mini-checkbox">${t.completed ? '' : ''}</div>
         <div class="mini-task-title">${t.title}</div>
         <div class="mini-cat">${t.category}</div>
       </div>
