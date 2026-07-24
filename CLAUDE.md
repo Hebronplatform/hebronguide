@@ -131,6 +131,8 @@ HebronGuide는 부분이 전체에 얽혀 있다 — **Vite 빌드 · 서비스�
 
 > 🚨 **api 서버리스 함수는 12개 이하 (Vercel Hobby 한도 · 절대 원칙, 2026-07-24 사고).** `api/*.js` 하나당 함수 1개. 13개+면 **배포가 조용히 실패**한다(빌드 로그: "api 함수 ESM→CommonJS 컴파일" 단계에서 멈춤). **로컬 `npm run build`로는 절대 재현 안 됨** — Hobby 한도는 Vercel 배포에만 적용. 실제 사고: send-welcome.js 추가로 16개 → 9.4시간 조용히 배포 실패, 로컬 빌드는 계속 EXIT 0이라 lock·Node·vercel.json을 헛짚음. **새 api 추가 시 반드시 `ls api/*.js | wc -l` 확인**, 12 초과하면 여러 submit-*/register-*를 하나의 라우터(action 분기)로 통합하거나 미사용 함수 제거. 진단은 Vercel **빌드 로그**(Deployment 탭, Runtime Logs 아님)가 유일.
 
+> 🚨 **vercel.json 유령 참조 = 배포 하드 실패 (2026-07-24 사고).** `functions`·`crons`가 **존재하지 않는 api 파일**을 가리키면 배포가 즉시 실패한다. api 파일을 **삭제/이름변경하면 vercel.json의 `functions`(maxDuration)·`crons`(path) 참조도 반드시 동반 정리**하라. 실제 사고 2건: ① city-reviewer.js 삭제 후 cron `path:/api/city-reviewer` 방치 ② register-church.js 삭제 후 functions `api/register-church.js` 방치 → 둘 다 배포 실패. **api 파일 삭제 후 검증**: `for r in $(grep -oE 'api/[a-z-]+\.js' vercel.json | sort -u); do [ -f "$r" ] || echo "유령: $r"; done`. 이 역시 로컬 빌드로 재현 불가 — Vercel 배포에서만 검사.
+
 ### Claude Code 자동 준수 (매 변경 시)
 
 ```
