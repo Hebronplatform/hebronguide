@@ -62,11 +62,16 @@ function normalizeCitySlug(input) {
     'fairfield':'fairfield','페어필드':'fairfield','vacaville':'fairfield',
     'waynesville':'waynesville','웨인즈빌':'waynesville',
     'chicago':'chicago','시카고':'chicago',
-    'dc':'dc','washington':'dc','washington dc':'dc',
-    'fairfax':'dc','페어팩스':'dc','페어펙스':'dc','워싱턴':'dc',
-    // 버지니아·메릴랜드는 독립 도시로 신설됨 → 더 이상 dc로 흡수하지 않는다
-    'virginia':'virginia','버지니아':'virginia',
-    'maryland':'maryland','메릴랜드':'maryland',
+    // 워싱턴 D.C. 자체(정부·업무·관광)만 dc. 워싱턴만 단독일 때 dc로.
+    'dc':'dc','washington':'dc','washington dc':'dc','워싱턴':'dc','워싱턴dc':'dc',
+    // DC / 버지니아 / 메릴랜드는 거리가 멀어 별도 허브 (2026-07 폴 김 목사 정립).
+    // NoVA(북버지니아) 도시는 버지니아 허브로
+    'virginia':'virginia','버지니아':'virginia','va':'virginia',
+    'fairfax':'virginia','페어팩스':'virginia','페어펙스':'virginia',
+    'centreville':'virginia','센터빌':'virginia','woodbridge':'virginia','우드브리지':'virginia',
+    // 메릴랜드 도시는 메릴랜드 허브로
+    'maryland':'maryland','메릴랜드':'maryland','md':'maryland',
+    'silver spring':'maryland','실버스프링':'maryland','ellicott city':'maryland','엘리콧시티':'maryland',
     // 미 남부 신규 (2026-07)
     'memphis':'memphis','멤피스':'memphis','memphis, tn':'memphis',
     'huntsville':'huntsville','헌츠빌':'huntsville',

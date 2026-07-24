@@ -40,7 +40,10 @@ function normalizeCitySlug(input) {
     '달라스':'dallas','dallas':'dallas','dfw':'dallas',
     '휴스턴':'houston','houston':'houston',
     '시카고':'chicago','chicago':'chicago',
-    '워싱턴dc':'dc','dc':'dc','메릴랜드':'dc','워싱턴':'dc','washington':'dc',
+    // DC / 버지니아 / 메릴랜드는 별도 허브 (거리 멂, 2026-07 폴 김 목사 정립)
+    '워싱턴dc':'dc','dc':'dc','워싱턴':'dc','washington':'dc',
+    '메릴랜드':'maryland','maryland':'maryland','실버스프링':'maryland',
+    '버지니아':'virginia','virginia':'virginia','페어팩스':'virginia','센터빌':'virginia','우드브리지':'virginia',
     '토론토':'toronto','toronto':'toronto',
     '밴쿠버':'vancouver','vancouver':'vancouver',
     '서울':'seoul','seoul':'seoul',

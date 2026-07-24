@@ -60,11 +60,15 @@ function normalizeCitySlug(input) {
     'minneapolis':'minneapolis','미니애폴리스':'minneapolis',
     'denver':'denver','덴버':'denver',
     'san diego':'sandiego','sandiego':'sandiego','샌디에고':'sandiego',
-    'dc':'dc','washington':'dc','washington dc':'dc',
-    'fairfax':'dc','페어팩스':'dc','페어펙스':'dc',
-    'virginia':'dc','va':'dc','northern virginia':'dc','노던버지니아':'dc','버지니아':'dc',
-    'maryland':'dc','메릴랜드':'dc','워싱턴':'dc','워싱턴dc':'dc',
-    'centreville':'dc','센터빌':'dc','bethesda':'dc','rockville':'dc',
+    // DC / 버지니아 / 메릴랜드는 거리가 멀어 별도 허브 (2026-07 폴 김 목사 정립).
+    // 워싱턴 D.C. 자체(정부·업무·관광)만 dc.
+    'dc':'dc','washington':'dc','washington dc':'dc','워싱턴':'dc','워싱턴dc':'dc',
+    // NoVA(북버지니아) → 버지니아 허브
+    'virginia':'virginia','va':'virginia','northern virginia':'virginia','노던버지니아':'virginia','버지니아':'virginia',
+    'fairfax':'virginia','페어팩스':'virginia','페어펙스':'virginia','centreville':'virginia','센터빌':'virginia','woodbridge':'virginia','우드브리지':'virginia',
+    // 메릴랜드 → 메릴랜드 허브
+    'maryland':'maryland','메릴랜드':'maryland','md':'maryland',
+    'silver spring':'maryland','실버스프링':'maryland','bethesda':'maryland','rockville':'maryland','ellicott city':'maryland','엘리콧시티':'maryland',
     'toronto':'toronto','토론토':'toronto',
     'vancouver':'vancouver','밴쿠버':'vancouver',
     'white rock':'vancouver','화이트락':'vancouver','화이트 락':'vancouver',

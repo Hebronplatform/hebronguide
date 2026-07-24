@@ -1692,19 +1692,11 @@ Assemblies of God Korean church. Please confirm service times before visiting.`,
 📍 Bensalem, PA (Philadelphia 인근)
 🔗 bkc21.org`:`✨ Lead Pastor: Myunghun Cha
 📍 Bensalem, PA (Greater Philadelphia)
-🔗 bkc21.org`,tags:n?["필라델피아","뉴저지"]:["Philadelphia","New Jersey"],website:"https://www.bkc21.org"}],dc:[{emoji:"⭐",tier:1,hebronPartner:!0,name:n?"새로운교회":"New Life Church",nameEn:"New Life Church",desc:n?`✨ 담임: 안형준 목사 (Joseph Ahn)
-📍 Fairfax / Centreville, Virginia (DC 인근)
-🏠 정착 도움·차편 제공·예배 후 식사 함께합니다.
-🕐 예배: 오후 1시
-📞 (703) 625-3979
-✉️ ahnjoseph30@gmail.com`:`✨ Lead Pastor: Joseph Ahn
-📍 Fairfax / Centreville, Virginia (Greater DC)
-🏠 Settlement help, transportation & fellowship meal after service.
-🕐 Service: 1:00 PM
-📞 (703) 625-3979
-✉️ ahnjoseph30@gmail.com`,tags:n?["DC","버지니아","페어팩스","정착도움","차편"]:["DC","Virginia","Fairfax","Settlement"],phone:"7036253979",email:"ahnjoseph30@gmail.com"},{emoji:"⭐",tier:1,name:"Unity Church",nameEn:"Unity Church",desc:n?`✨ Lead Pastor: Dan Eum
-📍 Maryland (DC 인근)`:`✨ Lead Pastor: Dan Eum
-📍 Maryland (Greater DC)`,tags:n?["DC","메릴랜드","영어권"]:["DC","Maryland","English"]}],portland:[{emoji:"⭐",tier:1,name:n?"온누리성결교회":"Onnuri Holiness Church — Oregon",nameEn:"Onnuri Holiness Church",desc:n?`✨ 담임: 강재원 목사
+🔗 bkc21.org`,tags:n?["필라델피아","뉴저지"]:["Philadelphia","New Jersey"],website:"https://www.bkc21.org"}],dc:[{emoji:"🧭",tier:1,hebronPartner:!0,name:n?"한인 교회는 버지니아·메릴랜드에":"Korean Churches in Virginia & Maryland",nameEn:"Korean Churches in Virginia & Maryland",desc:n?`✨ 워싱턴 D.C. 안은 정부·업무·관광 중심이라 한인 거주가 적습니다.
+한인 교회와 공동체는 대부분 남쪽 버지니아(페어팩스·센터빌·우드브리지)와 북쪽 메릴랜드(실버스프링 등)에 있습니다.
+🏠 홈 화면에서 '버지니아' 또는 '메릴랜드'를 선택하시면 그 지역 교회를 만나실 수 있습니다.`:`✨ Downtown Washington, D.C. is centered on government, work, and tourism, with few Korean residents.
+Korean churches and community life are mostly in Virginia to the south (Fairfax, Centreville, Woodbridge) and Maryland to the north (Silver Spring, etc.).
+🏠 From the home screen, choose 'Virginia' or 'Maryland' to find churches in those hubs.`,tags:n?["DC","버지니아","메릴랜드","안내"]:["DC","Virginia","Maryland","Guide"]}],portland:[{emoji:"⭐",tier:1,name:n?"온누리성결교회":"Onnuri Holiness Church — Oregon",nameEn:"Onnuri Holiness Church",desc:n?`✨ 담임: 강재원 목사
 📍 Oregon (Portland 지역)
 🔗 onnurichurch.org`:`✨ Lead Pastor: Jaewon Kang
 📍 Oregon (Portland area)
@@ -1738,7 +1730,18 @@ Assemblies of God Korean church. Please confirm service times before visiting.`,
 🔗 gmcusa.org`:`✨ Lead Pastor: Rev. Seungjin Park (5th, installed Nov 2023)
 📍 13421 Georgia Ave, Silver Spring, MD 20906
 🏠 Korean house church ministry in MD/DC area
-🔗 gmcusa.org`,tags:n?["실버스프링","메릴랜드"]:["Silver Spring","Maryland"],website:"https://www.gmcusa.org"}],virginia:[{emoji:"⭐",tier:2,name:n?"뉴웨이 한인 침례교회":"New Way Korean Baptist Church",nameEn:"New Way Korean Baptist Church",desc:n?`✨ 담임: 고영민 목사
+🔗 gmcusa.org`,tags:n?["실버스프링","메릴랜드"]:["Silver Spring","Maryland"],website:"https://www.gmcusa.org"},{emoji:"⭐",tier:1,name:"Unity Church",nameEn:"Unity Church",desc:`✨ Lead Pastor: Dan Eum
+📍 Maryland`,tags:n?["메릴랜드","영어권"]:["Maryland","English"]}],virginia:[{emoji:"⭐",tier:1,hebronPartner:!0,hcmi:!0,name:n?"새로운교회":"New Life Church",nameEn:"New Life Church",desc:n?`✨ 담임: 안형준 목사 (Joseph Ahn)
+📍 Fairfax / Centreville, Virginia
+🏠 정착 도움·차편 제공·예배 후 식사 함께합니다.
+🕐 예배: 오후 1시
+📞 (703) 625-3979
+✉️ ahnjoseph30@gmail.com`:`✨ Lead Pastor: Joseph Ahn
+📍 Fairfax / Centreville, Virginia
+🏠 Settlement help, transportation & fellowship meal after service.
+🕐 Service: 1:00 PM
+📞 (703) 625-3979
+✉️ ahnjoseph30@gmail.com`,tags:n?["버지니아","페어팩스","센터빌","정착도움","차편"]:["Virginia","Fairfax","Centreville","Settlement"],phone:"7036253979",email:"ahnjoseph30@gmail.com"},{emoji:"⭐",tier:2,name:n?"뉴웨이 한인 침례교회":"New Way Korean Baptist Church",nameEn:"New Way Korean Baptist Church",desc:n?`✨ 담임: 고영민 목사
 📍 14806 Blackburn Rd, Woodbridge VA 22191
 🕐 주일예배 12:00pm
 📞 (404) 547-3418
