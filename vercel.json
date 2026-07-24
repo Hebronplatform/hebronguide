@@ -12,13 +12,6 @@
     "api/register-business.js":  { "maxDuration": 15 }
   },
 
-  "crons": [
-    {
-      "path": "/api/city-reviewer",
-      "schedule": "0 9 * * 1"
-    }
-  ],
-
   "redirects": [
     { "source": "/seattle/index.html", "destination": "/seattle/", "permanent": true },
     { "source": "/dallas/index.html",  "destination": "/dallas/",  "permanent": true },

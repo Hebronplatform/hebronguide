@@ -126,8 +126,10 @@ Claude Code가 이 프로젝트에서 작업할 때 반드시 따르는 규칙�
 > **"부분을 고치다 다른 기능을 마비시키는 일이 반복돼. 위험하면 그때그때 `#`로 알려주거나 제안해줘."**
 > — 폴 김 목사 (2026-07-16)
 
-HebronGuide는 부분이 전체에 얽혀 있다 — **Vite 빌드 · 서비스워커(PWA precache) · vercel.json 라우팅/리다이렉트 · build.sh 도시 복제 · 모든 도시가 공유하는 단일 JS 번들 · Supabase RLS.** 한 곳 수정이 **조용히** 다른 곳을 마비시킨다.
+HebronGuide는 부분이 전체에 얽혀 있다 — **Vite 빌드 · 서비스워커(PWA precache) · vercel.json 라우팅/리다이렉트 · build.sh 도시 복제 · 모든 도시가 공유하는 단일 JS 번들 · Supabase RLS · Vercel Hobby 서버리스 함수 한도.** 한 곳 수정이 **조용히** 다른 곳을 마비시킨다.
 > 실제 사고: present.html(1.68MB) 추가 → PWA precache가 홍보 이미지까지 잡아 `npm run build` **EXIT 1** → 그 뒤 모든 배포가 조용히 실패(ver.txt 정지, 여러 기능 미배포). / vercel.json 리다이렉트가 실제 페이지(partner-benefits.html)를 가려 클릭 먹통.
+
+> 🚨 **api 서버리스 함수는 12개 이하 (Vercel Hobby 한도 · 절대 원칙, 2026-07-24 사고).** `api/*.js` 하나당 함수 1개. 13개+면 **배포가 조용히 실패**한다(빌드 로그: "api 함수 ESM→CommonJS 컴파일" 단계에서 멈춤). **로컬 `npm run build`로는 절대 재현 안 됨** — Hobby 한도는 Vercel 배포에만 적용. 실제 사고: send-welcome.js 추가로 16개 → 9.4시간 조용히 배포 실패, 로컬 빌드는 계속 EXIT 0이라 lock·Node·vercel.json을 헛짚음. **새 api 추가 시 반드시 `ls api/*.js | wc -l` 확인**, 12 초과하면 여러 submit-*/register-*를 하나의 라우터(action 분기)로 통합하거나 미사용 함수 제거. 진단은 Vercel **빌드 로그**(Deployment 탭, Runtime Logs 아님)가 유일.
 
 ### Claude Code 자동 준수 (매 변경 시)
 
