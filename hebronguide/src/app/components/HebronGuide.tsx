@@ -16316,9 +16316,11 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "저먼타운침례교회" : "Germantown Korean Baptist Church",
         nameEn: "Germantown Korean Baptist Church",
         desc: ko
-          ? "✨ 담임: 윤원상 목사\n📍 3891 S Germantown Rd, Memphis TN 38125\n🕐 주일예배 11:00am\n🔗 gtkbc.org\n\n개척교회 — 예수님을 닮아가며 함께 세워갈 성도를 기다리는 새 교회입니다."
-          : "✨ Lead Pastor: Wonsang Yoon\n📍 3891 S Germantown Rd, Memphis TN 38125\n🕐 Sunday 11:00am\n🔗 gtkbc.org\n\nA new church plant — growing to resemble Jesus, welcoming those who will build it together.",
-        tags: ko ? ["멤피스", "침례교", "SBC"] : ["Memphis", "Baptist", "SBC"],
+          ? "✨ 담임: 윤원상 목사\n교단: 침례교 (SBC / KSBC)\n📍 3891 S Germantown Rd, Memphis TN 38125\n🕐 주일예배 11:00am\n📞 (901) 753-7676\n✉️ wonsangyoon@gmail.com\n🔗 gtkbc.org\n\n개척교회 — 예수님을 닮아가며 함께 세워갈 성도를 기다리는 새 교회입니다."
+          : "✨ Lead Pastor: Wonsang Yoon\nDenomination: Baptist (SBC / KSBC)\n📍 3891 S Germantown Rd, Memphis TN 38125\n🕐 Sunday 11:00am\n📞 (901) 753-7676\n✉️ wonsangyoon@gmail.com\n🔗 gtkbc.org\n\nA new church plant — growing to resemble Jesus, welcoming those who will build it together.",
+        tags: ko ? ["멤피스", "침례교", "SBC", "개척교회"] : ["Memphis", "Baptist", "SBC", "Church Plant"],
+        phone: "9017537676",
+        email: "wonsangyoon@gmail.com",
         website: "https://www.gtkbc.org",
       },
       {
@@ -16357,9 +16359,11 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "헌츠빌 더블레싱교회" : "The Blessing Church Huntsville",
         nameEn: "The Blessing Church Huntsville",
         desc: ko
-          ? "✨ 담임: 이재윤 목사\n📍 228 Mt Zion Rd, Huntsville AL 35806\n🕐 주일예배 11:00am\n🔗 theblessingchurch25.com\n\n복음 전파 사명을 감당하는 선교적 교회로 세워지길 소망합니다."
-          : "✨ Lead Pastor: Jaeyoon Lee\n📍 228 Mt Zion Rd, Huntsville AL 35806\n🕐 Sunday 11:00am\n🔗 theblessingchurch25.com\n\nA missional church seeking to carry out the calling of the gospel.",
+          ? "✨ 담임: 이재윤 목사\n교단: 침례교 (SBC / KSBC)\n📍 228 Mt Zion Rd, Huntsville AL 35806\n🕐 주일예배 11:00am\n📞 (469) 231-5946\n✉️ theblessingchurch25@gmail.com\n🔗 theblessingchurch25.com\n\n복음 전파 사명을 감당하는 선교적 교회로 세워지길 소망합니다."
+          : "✨ Lead Pastor: Jaeyoon Lee\nDenomination: Baptist (SBC / KSBC)\n📍 228 Mt Zion Rd, Huntsville AL 35806\n🕐 Sunday 11:00am\n📞 (469) 231-5946\n✉️ theblessingchurch25@gmail.com\n🔗 theblessingchurch25.com\n\nA missional church seeking to carry out the calling of the gospel.",
         tags: ko ? ["헌츠빌", "침례교", "SBC"] : ["Huntsville", "Baptist", "SBC"],
+        phone: "4692315946",
+        email: "theblessingchurch25@gmail.com",
         website: "https://theblessingchurch25.com",
       },
       {
@@ -16538,8 +16542,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "뉴웨이 한인 침례교회" : "New Way Korean Baptist Church",
         nameEn: "New Way Korean Baptist Church",
         desc: ko
-          ? "✨ 담임: 고영민 목사\n📍 14806 Blackburn Rd, Woodbridge VA 22191\n🕐 주일예배 12:00pm\n📞 (404) 547-3418\n\n개척교회 — 2026년 3월 8일 첫 예배. 현재 10여 명이 가족과 같은 마음으로 예배드리며 함께 세워갈 성도를 기다립니다."
-          : "✨ Lead Pastor: Youngmin Ko\n📍 14806 Blackburn Rd, Woodbridge VA 22191\n🕐 Sunday 12:00pm\n📞 (404) 547-3418\n\nA new church plant — first service March 8, 2026. About 10 members worship as family, welcoming those who will build it together.",
+          ? "✨ 담임: 고영민 목사\n교단: 침례교 (SBC / KSBC)\n📍 14806 Blackburn Rd, Woodbridge VA 22191\n🕐 주일예배 12:00pm\n📞 (404) 547-3418\n✉️ nwkbc2026@gmail.com\n\n개척교회 — 2026년 3월 8일 첫 예배. 현재 10여 명이 가족과 같은 마음으로 예배드리며 함께 세워갈 성도를 기다립니다."
+          : "✨ Lead Pastor: Youngmin Ko\nDenomination: Baptist (SBC / KSBC)\n📍 14806 Blackburn Rd, Woodbridge VA 22191\n🕐 Sunday 12:00pm\n📞 (404) 547-3418\n✉️ nwkbc2026@gmail.com\n\nA new church plant — first service March 8, 2026. About 10 members worship as family, welcoming those who will build it together.",
         tags: ko ? ["버지니아", "우드브리지", "침례교", "SBC", "개척교회"] : ["Virginia", "Woodbridge", "Baptist", "SBC", "Church Plant"],
         phone: "4045473418",
         email: "nwkbc2026@gmail.com",

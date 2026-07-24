@@ -1156,13 +1156,14 @@
           </td>
           <td>
             <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? 'LIVE' : r.status === 'rejected' ? 'REJECTED' : 'PENDING'}</span>
-            ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">📧 ${fmtDate(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">📧 발송 미확인</div>` : ''}
+            ${(r.tags||[]).includes('welcome_sent') ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;">✉️ 환영편지 발송됨</div>` : (r.category==='church' && r.status==='approved') ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;">✉️ 환영편지 미발송</div>` : ''}
             ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
           </td>
           <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
           <td><div class="actions" onclick="event.stopPropagation()">
             ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">Approve</button>` : ''}
             ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">Reject</button>` : ''}
+            ${r.category==='church' ? `<button class="btn-sm btn-approve" onclick="event.stopPropagation();sendWelcome('${r.id}')">✉️ ${(r.tags||[]).includes('welcome_sent') ? '환영 재발송' : '환영메일'}</button>` : ''}
             <button class="btn-sm btn-edit" onclick="event.stopPropagation();editRow('${r.id}','community_items')">✏️ 수정</button><button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')">🗑</button>
           </div></td>
         </tr>`).join('')
@@ -1182,7 +1183,7 @@
       </table>` : ''
 
     // 최근 승인 섹션 (approved, 접을 수 있게)
-    const unnotified = approved.filter(r => !r.notified_at)
+    const unnotified = approved.filter(r => !(r.tags || []).includes('welcome_sent'))
     const approvedSection = approved.length ? `
       <div style="padding:14px 16px 8px;background:rgba(74,222,128,.05);border-bottom:1px solid rgba(74,222,128,.12);display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
         <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--green);">
@@ -1610,14 +1611,38 @@
     } catch(e) { toast('❌ ' + e.message) }
   }
 
-  // 미발송 파트너 교회 확인 이메일 일괄 재발송
+  // 개별 교회에 환영·축하 편지 (재)발송 — send-welcome.js(Node 런타임, Gmail SMTP)
+  // 발송 성공 시 tags에 welcome_sent 마커 → 대시보드에 '발송됨' 표시
+  async function sendWelcome(id) {
+    try {
+      const { data: r } = await sbMain.from('community_items').select('*').eq('id', id).single()
+      if (!r) { toast('교회 정보를 찾을 수 없습니다'); return }
+      const email = r.email || r.contact || ''
+      if (!email || email === '없음') { toast('받는 이메일이 없습니다. 먼저 이메일을 등록하세요'); return }
+      const desc = r.description || ''
+      const get = (label) => { const m = desc.match(new RegExp(label + '[:\\s]+([^\\n]+)')); return m ? m[1].trim() : '' }
+      const pastor = r.pastor || get('담임목사') || get('목사') || ''
+      const name   = r.name || get('교회명\\(KO\\)') || get('교회명') || ''
+      toast('📧 환영 편지 발송 중...')
+      const res = await fetch('/api/send-welcome', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: adminToken, id, email, pastor, churchName: name,
+          city: r.city_slug || r.city || '', approved: r.status === 'approved' })
+      })
+      const d = await res.json().catch(() => ({}))
+      if (d.ok) { toast('✉️ 환영 편지를 보냈습니다' + (d.marked ? '' : ' (상태표시 저장 실패)')); loadTabData('churches') }
+      else toast('발송 실패: ' + (d.error || '알 수 없는 오류'))
+    } catch (e) { toast('발송 실패: ' + e.message) }
+  }
+
+  // 미발송 파트너 교회 확인 이메일 일괄 재발송 — tags(welcome_sent) 기준
   async function resendChurchEmails() {
     try {
-      const { data: rows } = await sbNew.from('community_items')
+      const { data: all } = await sbMain.from('community_items')
         .select('*')
         .eq('category', 'church')
         .in('status', ['approved', 'migrated'])
-        .is('notified_at', null)
+      const rows = (all || []).filter(r => !(r.tags || []).includes('welcome_sent'))
       if (!rows || !rows.length) { toast('발송할 항목이 없습니다'); return }
 
       toast(`📧 ${rows.length}건 발송 시작...`)
@@ -1625,23 +1650,18 @@
       for (const row of rows) {
         const desc = row.description || ''
         const get = (label) => { const m = desc.match(new RegExp(label + '[:\\s]+([^\\n]+)')); return m ? m[1].trim() : '' }
-        const nameKo  = get('교회명\\(KO\\)') || get('교회명') || row.name || ''
-        const nameEn  = get('교회명\\(EN\\)') || row.name_en || ''
-        const email   = get('이메일') || row.email || ''
-        const citySlug = row.city_slug || ''
+        const nameKo = get('교회명\\(KO\\)') || get('교회명') || row.name || ''
+        const email  = row.email || row.contact || get('이메일') || ''
+        const pastor = row.pastor || get('담임목사') || get('목사') || ''
         if (!email || email === '없음') { fail++; continue }
         try {
-          const res = await fetch('/api/notify-partner', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: adminToken, type: 'church',
-              church: { name: nameKo, name_en: nameEn, email, city_slug: citySlug } })
+          const res = await fetch('/api/send-welcome', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: adminToken, id: row.id, email, pastor,
+              churchName: nameKo, city: row.city_slug || row.city || '', approved: row.status === 'approved' })
           })
-          const d = await res.json()
-          if (d.ok && !d.skipped) {
-            await adminAction({ action: 'mark_notified', id: row.id, table: 'community_items' }).catch(() => {})
-            ok++
-          } else { fail++ }
+          const d = await res.json().catch(() => ({}))
+          if (d.ok) ok++; else fail++
         } catch { fail++ }
       }
       toast(`완료 — 발송 ${ok}건 성공 / ${fail}건 실패`)

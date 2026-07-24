@@ -1632,16 +1632,22 @@ List your church: hebronguide.com/church-submit.html`,tags:n?["부산중구","�
 📍 Louisville, KY
 🏠 Small group Mokjang meetings
 🔗 saehan.org`,tags:n?["루이빌","장로교","켄터키"]:["Louisville","Presbyterian","Kentucky"],website:"https://www.saehan.org"}],memphis:[{emoji:"⭐",tier:2,name:n?"저먼타운침례교회":"Germantown Korean Baptist Church",nameEn:"Germantown Korean Baptist Church",desc:n?`✨ 담임: 윤원상 목사
+교단: 침례교 (SBC / KSBC)
 📍 3891 S Germantown Rd, Memphis TN 38125
 🕐 주일예배 11:00am
+📞 (901) 753-7676
+✉️ wonsangyoon@gmail.com
 🔗 gtkbc.org
 
 개척교회 — 예수님을 닮아가며 함께 세워갈 성도를 기다리는 새 교회입니다.`:`✨ Lead Pastor: Wonsang Yoon
+Denomination: Baptist (SBC / KSBC)
 📍 3891 S Germantown Rd, Memphis TN 38125
 🕐 Sunday 11:00am
+📞 (901) 753-7676
+✉️ wonsangyoon@gmail.com
 🔗 gtkbc.org
 
-A new church plant — growing to resemble Jesus, welcoming those who will build it together.`,tags:n?["멤피스","침례교","SBC"]:["Memphis","Baptist","SBC"],website:"https://www.gtkbc.org"},{emoji:"⛪",tier:2,name:n?"멤피스한인침례교회":"Korean Baptist Church of Memphis",nameEn:"Korean Baptist Church of Memphis",desc:n?`✅ 검증됨
+A new church plant — growing to resemble Jesus, welcoming those who will build it together.`,tags:n?["멤피스","침례교","SBC","개척교회"]:["Memphis","Baptist","SBC","Church Plant"],phone:"9017537676",email:"wonsangyoon@gmail.com",website:"https://www.gtkbc.org"},{emoji:"⛪",tier:2,name:n?"멤피스한인침례교회":"Korean Baptist Church of Memphis",nameEn:"Korean Baptist Church of Memphis",desc:n?`✅ 검증됨
 📍 9650 E Shelby Dr, Collierville TN 38017
 ☎️ (901) 240-8834
 🔗 kbcm.org`:`✅ Verified
@@ -1661,16 +1667,22 @@ Presbyterian. Please confirm the phone number before visiting.`,tags:n?["코도�
 ☎️ (901) 861-6455
 
 🔍 Verification in progress`,tags:n?["콜리어빌","그리스도의교회"]:["Collierville","Church of Christ"]}],huntsville:[{emoji:"⭐",tier:2,name:n?"헌츠빌 더블레싱교회":"The Blessing Church Huntsville",nameEn:"The Blessing Church Huntsville",desc:n?`✨ 담임: 이재윤 목사
+교단: 침례교 (SBC / KSBC)
 📍 228 Mt Zion Rd, Huntsville AL 35806
 🕐 주일예배 11:00am
+📞 (469) 231-5946
+✉️ theblessingchurch25@gmail.com
 🔗 theblessingchurch25.com
 
 복음 전파 사명을 감당하는 선교적 교회로 세워지길 소망합니다.`:`✨ Lead Pastor: Jaeyoon Lee
+Denomination: Baptist (SBC / KSBC)
 📍 228 Mt Zion Rd, Huntsville AL 35806
 🕐 Sunday 11:00am
+📞 (469) 231-5946
+✉️ theblessingchurch25@gmail.com
 🔗 theblessingchurch25.com
 
-A missional church seeking to carry out the calling of the gospel.`,tags:n?["헌츠빌","침례교","SBC"]:["Huntsville","Baptist","SBC"],website:"https://theblessingchurch25.com"},{emoji:"⛪",tier:3,name:n?"헌츠빌 제일순복음교회":"Huntsville Korean First Assembly of God",nameEn:"Huntsville Korean First Assembly of God Church",desc:n?`📍 2904 Pike Ave NW, Huntsville AL 35810
+A missional church seeking to carry out the calling of the gospel.`,tags:n?["헌츠빌","침례교","SBC"]:["Huntsville","Baptist","SBC"],phone:"4692315946",email:"theblessingchurch25@gmail.com",website:"https://theblessingchurch25.com"},{emoji:"⛪",tier:3,name:n?"헌츠빌 제일순복음교회":"Huntsville Korean First Assembly of God",nameEn:"Huntsville Korean First Assembly of God Church",desc:n?`📍 2904 Pike Ave NW, Huntsville AL 35810
 🔗 huntsvillegoodchurch.com
 
 하나님의성회(AG) 계열 한인 교회.
@@ -1742,14 +1754,18 @@ Korean churches and community life are mostly in Virginia to the south (Fairfax,
 🕐 Service: 1:00 PM
 📞 (703) 625-3979
 ✉️ ahnjoseph30@gmail.com`,tags:n?["버지니아","페어팩스","센터빌","정착도움","차편"]:["Virginia","Fairfax","Centreville","Settlement"],phone:"7036253979",email:"ahnjoseph30@gmail.com"},{emoji:"⭐",tier:2,name:n?"뉴웨이 한인 침례교회":"New Way Korean Baptist Church",nameEn:"New Way Korean Baptist Church",desc:n?`✨ 담임: 고영민 목사
+교단: 침례교 (SBC / KSBC)
 📍 14806 Blackburn Rd, Woodbridge VA 22191
 🕐 주일예배 12:00pm
 📞 (404) 547-3418
+✉️ nwkbc2026@gmail.com
 
 개척교회 — 2026년 3월 8일 첫 예배. 현재 10여 명이 가족과 같은 마음으로 예배드리며 함께 세워갈 성도를 기다립니다.`:`✨ Lead Pastor: Youngmin Ko
+Denomination: Baptist (SBC / KSBC)
 📍 14806 Blackburn Rd, Woodbridge VA 22191
 🕐 Sunday 12:00pm
 📞 (404) 547-3418
+✉️ nwkbc2026@gmail.com
 
 A new church plant — first service March 8, 2026. About 10 members worship as family, welcoming those who will build it together.`,tags:n?["버지니아","우드브리지","침례교","SBC","개척교회"]:["Virginia","Woodbridge","Baptist","SBC","Church Plant"],phone:"4045473418",email:"nwkbc2026@gmail.com"}],sandiego:[{emoji:"⭐",tier:1,name:n?"기쁨의교회":"Joy Church — San Diego",nameEn:"Joy Church",desc:n?`✨ 담임: 조성대 목사
 📍 San Diego, CA`:`✨ Lead Pastor: Sungdae Cho

@@ -240,8 +240,10 @@ export default async function handler(req, res) {
   const missingDenom = !denomination?.trim();
   // 이단 키워드는 위 2단계에서 이미 차단됨. 여기서는 AI 플래그가 유일한 하드 관문.
   // 평시: 교단 없거나 AI 의심 → 검토. 홍보 기간: AI 의심만 → 검토(교단 없어도 자동 게시).
-  // 협력교회(파트너) 신청건은 반드시 목사님 검토 큐로 — 공개 체크박스만으로 자동 승격 금지(Hard Rule)
-  const needsReview = (inPromo ? !!aiFlag : (aiFlag || missingDenom)) || !!hebronPartner;
+  // 2026-07 폴 김 목사 정립 — 선(先)승격 후(後)확인:
+  //   협력교회 신청도 이단·AI 관문만 통과하면 자동 승격(게시)한다. 목사님은 사후에 확인·연락.
+  //   ※ 이단 방어(CULT_KEYWORDS + AI 게이트)는 그대로 하드 관문으로 유지 — 위장 단체 자동 승격 방지.
+  const needsReview = (inPromo ? !!aiFlag : (aiFlag || missingDenom));
 
   // ── 6. Supabase 저장 (승인 여부와 무관하게 community_items에 저장) ──
   if (!needsReview) {
@@ -252,7 +254,7 @@ export default async function handler(req, res) {
       emoji:        "⛪",
       name:         churchName,
       name_en:      churchNameEn || churchName,
-      description:  buildDesc({ denomination, pastor, pastorEn, address, serviceTimes, website, kakao, description, hebronPartner, hcmi }),
+      description:  buildDesc({ denomination, pastor, pastorEn, address, serviceTimes, phone, email, website, kakao, description, hebronPartner, hcmi }),
       pastor:       pastor || null,
       phone:        phone || null,
       email:        email || null,
@@ -284,9 +286,12 @@ export default async function handler(req, res) {
     // ── 관리자 알림 (자동 게시 포함 — 모든 교회 신청을 admin.html + 이메일 두 곳으로) ──
     await sendEmail({
       to: ADMIN_EMAIL,
-      subject: `[HebronGuide] 교회 등재 (자동 게시) — ${churchName}`,
+      subject: `[HebronGuide] 교회 등재 (자동 게시)${hebronPartner ? " · 협력교회 승격" : ""} — ${churchName}`,
       text: [
         `${churchName}이(가) 헤브론가이드에 자동 게시되었습니다.`,
+        hebronPartner
+          ? "★ 협력교회로 자동 승격되었습니다 — 확인 후 필요하면 목사님이 직접 연락해 주세요."
+          : "",
         "─────────────────────────────────────",
         `도시: ${city || "—"}`,
         `담임: ${pastor || "—"}`,
@@ -295,7 +300,7 @@ export default async function handler(req, res) {
         `웹사이트: ${website || "—"}`,
         "─────────────────────────────────────",
         "관리: hebronguide.com/admin.html (교회 섹션)",
-      ].join("\n"),
+      ].filter(Boolean).join("\n"),
     });
 
     return res.status(200).json({
@@ -315,7 +320,7 @@ export default async function handler(req, res) {
     emoji:        "⛪",
     name:         churchName,
     name_en:      churchNameEn || churchName,
-    description:  buildDesc({ denomination, pastor, address, serviceTimes, website, kakao, description }),
+    description:  buildDesc({ denomination, pastor, address, serviceTimes, phone, email, website, kakao, description }),
     pastor:       pastor || null,
     phone:        phone || null,
     email:        email || null,
@@ -477,12 +482,23 @@ function partnerWelcomeLetter({ pastor, churchName, city, phone, serviceTimes, a
 }
 
 // ── 헬퍼: desc 포맷 (admin.html autoAddChurch가 파싱 가능한 구조) ─
-function buildDesc({ denomination, pastor, pastorEn, address, serviceTimes, website, kakao, description, hebronPartner, hcmi }) {
+// 전화 포맷: 미국 10자리는 (xxx) xxx-xxxx, 그 외는 원본 유지
+function fmtPhone(p) {
+  const d = String(p || "").replace(/[^\d]/g, "");
+  if (d.length === 10) return `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
+  if (d.length === 11 && d[0] === "1") return `(${d.slice(1,4)}) ${d.slice(4,7)}-${d.slice(7)}`;
+  return String(p || "").trim();
+}
+
+function buildDesc({ denomination, pastor, pastorEn, address, serviceTimes, phone, email, website, kakao, description, hebronPartner, hcmi }) {
   const lines = [];
   if (denomination) lines.push(`교단: ${denomination}`);
   if (pastor)       lines.push(`담임목사: ${pastor}${pastorEn ? ` (${pastorEn})` : ''}`);
   if (address)      lines.push(`주소: ${address}`);
   if (serviceTimes) lines.push(`예배시간: ${serviceTimes}`);
+  // 신청자가 공개 목적으로 제출한 교회 연락처 — 카드에 함께 노출 (2026-07 폴 김 목사 지시)
+  if (phone)        lines.push(`전화: ${fmtPhone(phone)}`);
+  if (email)        lines.push(`이메일: ${email}`);
   if (description)  lines.push(description);
   if (website && website !== '없음') lines.push(`웹사이트: ${website}`);
   if (kakao)        lines.push(`카카오: ${kakao}`);
