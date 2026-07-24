@@ -264,6 +264,9 @@
   .hg-legend .sw{width:12px;height:12px;border-radius:50%;flex:none;}
   .hg-legend .sw-ring{width:11px;height:11px;border-radius:50%;flex:none;background:transparent;}
   .hg-legend .lg-goal{font-size:.75rem;color:var(--muted);border-left:1px solid rgba(255,255,255,.12);padding-left:12px;}
+  .hg-roadmap-steps{text-align:center;font-size:.75rem;color:var(--muted);margin:14px 0 0;line-height:1.7;letter-spacing:.01em;}
+  .hg-roadmap-steps b{color:var(--gold);font-weight:800;}
+  .hg-roadmap-steps .hg-goal{color:var(--mint);}
   .hg-map-note{text-align:center;font-size:.72rem;color:var(--muted2,rgba(255,255,255,.4));margin:12px 0 0;line-height:1.6;}
   .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#161d29;color:#fff;border:1px solid rgba(201,162,39,.3);}
   .leaflet-popup-content{margin:10px 14px;font-size:.85rem;line-height:1.5;}
@@ -771,10 +774,11 @@ function toggleFaq(btn){
       <button type="button" data-year="2027"><span class="sw-ring" style="border:2px solid #6EE7B7;"></span>2027 예정</button>
       <button type="button" data-year="2028"><span class="sw-ring" style="border:2px solid #60A5FA;"></span>2028 예정</button>
       <button type="button" data-year="2029"><span class="sw-ring" style="border:2px solid #A78BFA;"></span>2029 예정</button>
-      <span class="lg-goal">2030 · 80개 도시 비전</span>
+      <span class="lg-goal">2030 · <span class="hg-goal">500</span>개 도시 비전</span>
     </div>
     <div id="hgWorldMap" role="img" aria-label="HebronGuide 전 세계 서비스 도시 분포 지도 — 금색은 현재 진출 도시, 색 링은 연도별 진출 예정 도시. 거점을 눌러 이동"></div>
-    <p class="hg-map-note"><span class="ko">※ 2028년 이후는 진출 방향(지역)을 보여주는 비전이며, 상황에 따라 조정됩니다.</span><span class="en">※ Beyond 2027 shows directional regions — a vision that may adjust over time.</span></p>
+    <p class="hg-roadmap-steps"><span class="ko">단계별 목표 · 2026 <b>100</b> → 2027 <b>200</b> → 2028 <b>300</b> → 2029 <b>400</b> → 2030 <b><span class="hg-goal">500</span></b></span><span class="en">Phase targets · 2026 <b>100</b> → 2027 <b>200</b> → 2028 <b>300</b> → 2029 <b>400</b> → 2030 <b><span class="hg-goal">500</span></b> cities</span></p>
+    <p class="hg-map-note"><span class="ko">※ 단계별 목표는 비전이며, 지도의 색 링은 현재 확정된 진출 예정 도시입니다. 상황에 따라 조정됩니다.</span><span class="en">※ Phase targets are a vision; colored rings show cities already confirmed for expansion. Subject to change.</span></p>
   </div>
 
   <div class="search-wrap">
