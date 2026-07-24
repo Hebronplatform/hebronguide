@@ -824,12 +824,12 @@
     <!-- 데이터 테이블 -->
     <div class="content-header">
       <div class="tabs">
-        <button class="tab active" onclick="switchTab('community')"><i data-lucide="message-circle"></i> 기타 신청</button>
-        <button class="tab" onclick="switchTab('churches')"><i data-lucide="church"></i> 교회</button>
+        <button class="tab active" onclick="switchTab('churches')"><i data-lucide="church"></i> 교회</button>
         <button class="tab" onclick="switchTab('restaurants')"><i data-lucide="store"></i> 사업체·카페</button>
         <button class="tab" onclick="switchTab('promo')"><i data-lucide="megaphone"></i> 홍보</button>
-        <button class="tab" onclick="switchTab('partners')"><i data-lucide="users"></i> 파트너 목사</button>
         <button class="tab" onclick="switchTab('stories')"><i data-lucide="book-open"></i> 이야기</button>
+        <button class="tab" onclick="switchTab('partners')"><i data-lucide="users"></i> 파트너 목사</button>
+        <button class="tab" onclick="switchTab('community')"><i data-lucide="message-circle"></i> 기타 신청</button>
         <button class="tab" onclick="switchTab('logs')"><i data-lucide="bar-chart-3"></i> AI 로그</button>
         <button class="tab" onclick="switchTab('planner')" style="border-color:rgba(110,231,183,.4);color:var(--mint);"><i data-lucide="globe"></i> 글로벌 플래너</button>
       </div>
@@ -975,7 +975,7 @@
   function switchTab(tab) {
     currentTab = tab
     document.querySelectorAll('.tab').forEach((t, i) => {
-      const tabs = ['community','churches','restaurants','promo','partners','stories','logs','planner']
+      const tabs = ['churches','restaurants','promo','stories','partners','community','logs','planner']
       t.classList.toggle('active', tabs[i] === tab)
     })
     document.getElementById('search').value = ''
@@ -2309,7 +2309,7 @@
     document.getElementById('admin-email').textContent = user.email || ''
     loadCityFilter()
     loadStats()
-    loadTabData('community')
+    loadTabData('churches')
     loadReviews()
     loadReports()
   }
