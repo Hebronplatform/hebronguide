@@ -1,207 +1,645 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HebronGuide — About</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
-  * { margin:0; padding:0; box-sizing:border-box; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="HebronGuide — 전 세계 한인 이민자를 위한 정착 정보, 커뮤니티, 환대의 플랫폼. 80개+ 도시, 2개 언어." />
+  <meta property="og:title" content="회사소개 | HebronGuide" />
+  <meta property="og:description" content="낯선 도시에 도착한 모든 한인이 혼자가 아니도록. 정보·커뮤니티·환대가 한자리에." />
+  <meta property="og:url" content="https://hebronguide.com/about.html" />
+  <meta name="theme-color" content="#0d1117" />
+  <title>회사소개 · About | HebronGuide</title>
+  <style>
+    /* ─────────────────────────────────────────
+       HebronGuide — about.html
+       Updated: 2026-07-26
+       Brand guide: HebronGuide_About_BrandGuide.md
+    ───────────────────────────────────────── */
+    :root {
+      --bg:         #0d1117;
+      --bg2:        #161b22;
+      --bg3:        #1c2330;
+      --border:     rgba(255,255,255,0.08);
+      --accent:     #c8a96e;
+      --accent2:    #e8c97e;
+      --blue:       #4a9eda;
+      --text:       #e6edf3;
+      --muted:      #8b949e;
+      --max-w:      680px;
+      --r:          10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    background: #0d1b3e;
-    color: #fff;
-    font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+    html { scroll-behavior: smooth; }
 
-  .topbar { height: 4px; background: linear-gradient(90deg, #B8860B, #e8b84b, #B8860B); }
+    body {
+      font-family: 'Noto Sans KR', -apple-system, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 16px;
+    }
 
-  /* 언어 탭 */
-  .lang-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    background: rgba(0,0,0,0.3);
-    padding: 0;
-  }
-  .tab {
-    flex: 1; max-width: 140px;
-    padding: 14px 0;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.4);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-    letter-spacing: 0.5px;
-  }
-  .tab.active {
-    color: #e8b84b;
-    border-bottom-color: #B8860B;
-  }
+    a { color: inherit; text-decoration: none; }
 
-  /* 콘텐츠 */
-  .content { display: none; flex: 1; padding: 40px 28px 60px; max-width: 540px; margin: 0 auto; width: 100%; }
-  .content.active { display: block; }
+    /* ── TOP NAV ── */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,17,23,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo img {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      flex-shrink: 0;
+    }
+    .nav-logo em {
+      font-style: normal;
+      color: inherit;  /* 금색 제거 — 색 경계가 두 단어처럼 보이는 시각 오류 방지 */
+    }
+    .nav-back {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
 
-  .logo {
-    font-size: 30px; font-weight: 700; color: #fff;
-    letter-spacing: -0.5px; margin-bottom: 4px;
-  }
-  .logo span { color: #e8b84b; }
+    /* ── LANG TOGGLE ── */
+    .lang-bar {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 20px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .lang-btn {
+      padding: 4px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.18s;
+      font-family: inherit;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: #0d1117;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
 
-  .tagline {
-    font-size: 13px; color: #B8860B; font-weight: 600;
-    letter-spacing: 1px; margin-bottom: 28px;
-  }
+    /* ── HERO ── */
+    .hero {
+      padding: 72px 20px 64px;
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 0%, rgba(200,169,110,0.12) 0%, transparent 65%),
+                  var(--bg);
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .hero h1 {
+      font-size: clamp(1.9rem, 5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .hero h1 .line2 {
+      color: var(--accent2);
+    }
+    .hero-sub {
+      color: #c9d1d9;
+      font-size: 1rem;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
 
-  .divider {
-    width: 36px; height: 2px;
-    background: linear-gradient(90deg, #B8860B, transparent);
-    margin-bottom: 28px;
-  }
+    /* ── SECTIONS ── */
+    .sections { padding: 20px 20px 60px; }
 
-  .body-text {
-    font-size: 14px;
-    line-height: 1.95;
-    color: rgba(255,255,255,0.72);
-    margin-bottom: 20px;
-  }
-  .body-text strong { color: #fff; font-weight: 600; }
+    .section {
+      max-width: var(--max-w);
+      margin: 0 auto 52px;
+    }
 
-  .verse {
-    background: rgba(184,134,11,0.1);
-    border-left: 3px solid #B8860B;
-    padding: 14px 18px;
-    border-radius: 0 8px 8px 0;
-    font-size: 13px;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.7;
-    margin-top: 28px;
-    font-style: italic;
-  }
+    .section-tag {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: block;
+    }
 
-  /* 사이트 이동 버튼 */
-  .site-btn {
-    display: block;
-    margin-top: 32px;
-    background: linear-gradient(135deg, #B8860B, #e8b84b);
-    color: #0a1628;
-    text-align: center;
-    padding: 14px;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 14px;
-    text-decoration: none;
-    letter-spacing: 0.5px;
-  }
+    .section h2 {
+      font-size: clamp(1.3rem, 3vw, 1.75rem);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+      color: var(--text);
+    }
 
-  .footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 11px;
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 1px;
-  }
-</style>
+    .section p {
+      color: rgba(230,237,243,0.85);
+      margin-bottom: 14px;
+      font-size: 0.97rem;
+    }
+    .section p:last-child { margin-bottom: 0; }
+
+    blockquote {
+      border-left: 2px solid var(--accent);
+      padding: 12px 20px;
+      margin: 20px 0;
+      background: rgba(200,169,110,0.06);
+      border-radius: 0 var(--r) var(--r) 0;
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ── VALUES CARDS ── */
+    .values {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .val-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 18px 22px;
+    }
+    .val-card strong {
+      display: block;
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .val-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* ── VISION TIMELINE ── */
+    .timeline {
+      display: flex;
+      overflow-x: auto;
+      gap: 0;
+      margin-top: 24px;
+      padding-bottom: 4px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .timeline::-webkit-scrollbar { display: none; }
+
+    .tl-step {
+      flex: 1;
+      min-width: 90px;
+      text-align: center;
+      position: relative;
+      padding: 16px 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+    }
+    .tl-step:first-child { border-radius: var(--r) 0 0 var(--r); }
+    .tl-step:last-child  { border-radius: 0 var(--r) var(--r) 0; }
+    .tl-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 60%;
+      background: var(--border);
+    }
+    .tl-step.current { background: rgba(200,169,110,0.1); border-color: rgba(200,169,110,0.3); }
+    .tl-year { font-size: 10px; color: var(--muted); display: block; margin-bottom: 4px; }
+    .tl-num  { font-size: 1.5rem; font-weight: 800; color: var(--text); display: block; }
+    .tl-step.current .tl-num { color: var(--accent2); }
+    .tl-label { font-size: 10px; color: var(--muted); margin-top: 2px; display: block; }
+
+    /* ── PARTNERSHIP BOX ── */
+    .partner-box {
+      background: linear-gradient(135deg, rgba(200,169,110,0.12) 0%, rgba(74,158,218,0.08) 100%);
+      border: 1px solid rgba(200,169,110,0.25);
+      border-radius: 14px;
+      padding: 36px 32px;
+      margin-top: 16px;
+    }
+    .partner-box p {
+      font-size: 0.97rem;
+      margin-bottom: 20px;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--accent);
+      color: #0d1117;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.01em;
+      transition: background 0.18s;
+    }
+    .cta-btn:hover { background: var(--accent2); }
+
+    /* ── ABOUT TABLE ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 8px;
+    }
+    @media (max-width: 460px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 14px 18px;
+    }
+    .about-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .about-value {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .about-value a { color: var(--blue); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      max-width: var(--max-w);
+      margin: 0 auto 52px;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── FOOTER ── */
+    .back-link {
+      display: block;
+      text-align: center;
+      padding: 24px 20px;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--text); }
+
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px 20px;
+      margin-bottom: 14px;
+    }
+    .footer-links a {
+      font-size: 13px;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(139,148,158,0.6);
+    }
+
+    /* ── LANG SWITCHING ── */
+    [data-ko], [data-en] { }
+    body.en [data-ko] { display: none !important; }
+    body:not(.en) [data-en] { display: none !important; }
+  </style>
 </head>
 <body>
 
-<div class="topbar"></div>
+  <!-- ── NAV ── -->
+  <nav class="top-nav">
+    <a class="nav-logo" href="https://hebronguide.com/">
+      <img src="https://hebronguide.com/icon-192.png" alt="HebronGuide 로고 — 창 13:14-18 사방 나침반" />
+      Hebron<em>Guide</em>
+    </a>
+    <a class="nav-back" href="javascript:history.back()">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span data-ko>돌아가기</span>
+      <span data-en>Back</span>
+    </a>
+  </nav>
 
-<!-- 언어 탭 -->
-<div class="lang-tabs">
-  <div class="tab active" onclick="setLang('ko')">한국어</div>
-  <div class="tab" onclick="setLang('en')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a13 13 0 0 1 0 17 13 13 0 0 1 0-17z"/></svg> English</div>
-  <div class="tab" onclick="setLang('es')">Español</div>
-</div>
-
-<!-- 한국어 -->
-<div id="ko" class="content active">
-  <div class="logo">Hebron<span>Guide</span></div>
-  <div class="tagline">글로벌 환대 커뮤니티</div>
-  <div class="divider"></div>
-  <p class="body-text">
-    HebronGuide는 낯선 도시에 새로 온 모든 이를 환대하는
-    <strong>글로벌 커뮤니티 플랫폼</strong>입니다.
-  </p>
-  <p class="body-text">
-    한인 이민자를 섬기는 것으로 시작했지만, 우리의 비전은 더 큽니다.
-    <strong>모든 도시, 모든 언어, 모든 민족</strong>—
-    누구든 새 땅에 발을 딛는 순간 혼자가 아니도록,
-    교회·비즈니스·생활 정보를 하나로 연결합니다.
-  </p>
-  <div class="verse">
-    "내가 나그네 되었을 때에 너희가 영접하였고"<br>
-    — 마태복음 25:35
+  <!-- ── LANG BAR ── -->
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+    <button class="lang-btn" onclick="setLang('en')">English</button>
   </div>
-  <a class="site-btn" href="https://hebronguide.com">헤브론가이드 바로가기 →</a>
-</div>
 
-<!-- English -->
-<div id="en" class="content">
-  <div class="logo">Hebron<span>Guide</span></div>
-  <div class="tagline">Global Hospitality Community</div>
-  <div class="divider"></div>
-  <p class="body-text">
-    HebronGuide is a <strong>global community platform</strong>
-    that welcomes everyone who arrives in an unfamiliar city.
-  </p>
-  <p class="body-text">
-    We started by serving Korean immigrants, but our vision is bigger.
-    <strong>Every city. Every language. Every people.</strong>
-    We connect newcomers with local churches, trusted businesses,
-    and the practical resources they need — so no one navigates a new place alone.
-  </p>
-  <div class="verse">
-    "I was a stranger and you welcomed me."<br>
-    — Matthew 25:35
-  </div>
-  <a class="site-btn" href="https://hebronguide.com">Visit HebronGuide →</a>
-</div>
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <img src="https://hebronguide.com/icon-192.png"
+         alt="HebronGuide — 창 13:14-18 동서남북 사방 나침반"
+         style="width:64px;height:64px;border-radius:15px;margin-bottom:20px;box-shadow:0 4px 24px rgba(0,0,0,0.4);" />
+    <span class="hero-eyebrow">
+      <span data-ko>회사소개</span>
+      <span data-en>About HebronGuide</span>
+    </span>
+    <h1>
+      <span data-ko>새로운 도시, 첫날—<br><span class="line2">당신은 혼자가 아닙니다.</span></span>
+      <span data-en>A New City. Day One.<br><span class="line2">You Are Not Alone.</span></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-ko>전 세계 한인 이민자를 위한 정착 정보, 커뮤니티, 환대의 플랫폼.</span>
+      <span data-en>A digital hospitality platform for Korean immigrants worldwide — connecting you to the information, community, and people you need, from day one.</span>
+    </p>
+  </header>
 
-<!-- Español -->
-<div id="es" class="content">
-  <div class="logo">Hebron<span>Guide</span></div>
-  <div class="tagline">Comunidad Global de Hospitalidad</div>
-  <div class="divider"></div>
-  <p class="body-text">
-    HebronGuide es una <strong>plataforma comunitaria global</strong>
-    que da la bienvenida a todos los que llegan a una ciudad desconocida.
-  </p>
-  <p class="body-text">
-    Comenzamos sirviendo a inmigrantes coreanos, pero nuestra visión es mayor.
-    <strong>Cada ciudad. Cada idioma. Cada pueblo.</strong>
-    Conectamos a los recién llegados con iglesias locales, negocios de confianza
-    y los recursos que necesitan — para que nadie navegue solo en un lugar nuevo.
-  </p>
-  <div class="verse">
-    "Fui forastero, y me acogisteis."<br>
-    — Mateo 25:35
-  </div>
-  <a class="site-btn" href="https://hebronguide.com">Visitar HebronGuide →</a>
-</div>
+  <!-- ── MAIN CONTENT ── -->
+  <main class="sections">
 
-<div class="footer">Hebron Platform LLC · Seattle, WA · hebronguide.com</div>
+    <!-- WHAT IS HEBRONGUIDE -->
+    <div class="section">
+      <span class="section-tag" data-ko>플랫폼 소개</span>
+      <span class="section-tag" data-en>Platform</span>
 
-<script>
-function setLang(lang) {
-  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(lang).classList.add('active');
-  event.target.classList.add('active');
-}
-// 브라우저 언어 자동 감지
-const bl = navigator.language.split('-')[0];
-if (bl === 'es') {
-  document.querySelector('[onclick="setLang('es')"]').click();
-} else if (bl !== 'ko') {
-  document.querySelector('[onclick="setLang('en')"]').click();
-}
-</script>
+      <h2>
+        <span data-ko>HebronGuide란?</span>
+        <span data-en>What is HebronGuide?</span>
+      </h2>
+
+      <p data-ko>낯선 도시에 도착한 한인이 가장 먼저 찾는 곳이 되고자 합니다. 생활·행정·의료·교육 정보부터 신뢰할 수 있는 지역 업소, 한인 커뮤니티와 교회까지—검증된 정보를 한국어·영어로 제공합니다.</p>
+      <p data-ko>정보가 필요한 분에게는 나침반이, 누군가를 환영하고 싶은 분에게는 플랫폼이 됩니다.</p>
+
+      <p data-en>HebronGuide is your first stop in a new city. From daily essentials and administrative paperwork to trusted local businesses and Korean community churches — we provide verified, practical information in both Korean and English.</p>
+      <p data-en>Whether you need a compass or a community, we're here.</p>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- OUR STORY -->
+    <div class="section">
+      <span class="section-tag" data-ko>우리의 이야기</span>
+      <span class="section-tag" data-en>Our Story</span>
+
+      <h2>
+        <span data-ko>왜 HebronGuide인가?</span>
+        <span data-en>Why HebronGuide?</span>
+      </h2>
+
+      <p data-ko>25년간 이민자 교회를 섬긴 목사의 질문에서 시작됐습니다.</p>
+      <p data-en>It started with a simple question from a pastor who spent 25 years serving immigrant communities.</p>
+
+      <blockquote>
+        <span data-ko>"왜 새로 도착한 사람들은 가장 중요한 첫 몇 달을 홀로 헤매야 할까?"</span>
+        <span data-en>"Why do people arriving in a new city spend their most critical first months navigating entirely alone?"</span>
+      </blockquote>
+
+      <p data-ko>정보의 부재, 신뢰할 곳 없는 낯선 도시, 아는 사람 하나 없는 밤—그 간격을 좁히고 싶었습니다.</p>
+      <p data-en>The lack of reliable information, nowhere trustworthy to turn, evenings without a familiar face — we built HebronGuide to close that gap.</p>
+
+      <p data-ko><strong style="color:var(--accent)">Hebron(헤브론)</strong>은 히브리어로 <em>연합·교제·동반자</em>를 뜻합니다. 그 이름처럼, 누구도 처음을 혼자 시작하지 않도록.</p>
+      <p data-en><strong style="color:var(--accent)">Hebron (הֶבְרוֹן)</strong> means <em>fellowship, partnership, and belonging</em> in Hebrew. No one should have to begin alone.</p>
+
+      <!-- LOGO MEANING CARD -->
+      <div style="display:flex;align-items:flex-start;gap:18px;margin-top:28px;padding:20px 22px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);">
+        <img src="https://hebronguide.com/icon-192.png" alt="HebronGuide 로고" style="width:52px;height:52px;border-radius:10px;flex-shrink:0;margin-top:2px;" />
+        <div>
+          <div style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;" data-ko>로고가 담은 이야기</div>
+          <div style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;" data-en>The Story Behind the Logo</div>
+          <p style="font-size:0.88rem;color:var(--muted);margin:0;" data-ko>나침반 모양의 사방(四方) 별은 "눈을 들어 동서남북을 바라보라"는 말씀에서 왔습니다. 어느 방향으로 흩어졌든, 그곳에 이미 연결의 손이 뻗어 있다는 선언입니다. 금색 북방 포인트가 첫 방향을 가리키고, 중심의 흰 점이 모든 방향이 만나는 곳—헤브론을 상징합니다.</p>
+          <p style="font-size:0.88rem;color:var(--muted);margin:0;" data-en>The four-pointed compass star is a declaration: wherever you've scattered — north, south, east, or west — a connection already reaches there. The gold north-point marks the first direction; the white center dot where all directions meet is Hebron itself.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- HOW WE WORK -->
+    <div class="section">
+      <span class="section-tag" data-ko>우리의 방식</span>
+      <span class="section-tag" data-en>How We Work</span>
+
+      <h2>
+        <span data-ko>섬김의 방식</span>
+        <span data-en>Our Principles</span>
+      </h2>
+
+      <div class="values">
+        <div class="val-card">
+          <strong data-ko>검증된 정보만</strong>
+          <strong data-en>Verified Information Only</strong>
+          <p data-ko>직접 확인한 정보만 게재합니다. 틀리면 고칩니다. 투명성이 우리의 신뢰입니다.</p>
+          <p data-en>We publish only what we've confirmed. If we're wrong, we fix it. Transparency is our credibility.</p>
+        </div>
+        <div class="val-card">
+          <strong data-ko>황금률</strong>
+          <strong data-en>The Golden Rule</strong>
+          <p data-ko>받고 싶은 대로 대접합니다. 코드 한 줄, 콘텐츠 한 문장에도 같은 기준입니다.</p>
+          <p data-en>We treat every person the way we'd want to be treated — in every line of code, every piece of content.</p>
+        </div>
+        <div class="val-card">
+          <strong data-ko>연결, 강요 없이</strong>
+          <strong data-en>Connection, Not Pressure</strong>
+          <p data-ko>커뮤니티와 교회를 소개하되, 선택은 당신의 것입니다. 우리는 문을 열 뿐입니다.</p>
+          <p data-en>We introduce community and churches — but the choice is always yours. We only open the door.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- VISION -->
+    <div class="section">
+      <span class="section-tag" data-ko>비전</span>
+      <span class="section-tag" data-en>Vision</span>
+
+      <h2>
+        <span data-ko>2030년, 어느 도시에서도 혼자가 아니도록</span>
+        <span data-en>By 2030, No One Starts Alone — Anywhere</span>
+      </h2>
+
+      <p data-ko>80개 도시에서 시작해, 2030년 500개 도시로. 어디에 도착하든, 첫날부터 기댈 수 있도록.</p>
+      <p data-en>From 80 cities today to 500 cities by 2030. Wherever you land, you'll never start alone.</p>
+
+      <div class="timeline">
+        <div class="tl-step current">
+          <span class="tl-year" data-ko>현재</span>
+          <span class="tl-year" data-en>Now</span>
+          <span class="tl-num">80</span>
+          <span class="tl-label" data-ko>도시</span>
+          <span class="tl-label" data-en>Cities</span>
+        </div>
+        <div class="tl-step">
+          <span class="tl-year">2026</span>
+          <span class="tl-num">100</span>
+          <span class="tl-label" data-ko>도시</span>
+          <span class="tl-label" data-en>Cities</span>
+        </div>
+        <div class="tl-step">
+          <span class="tl-year">2027</span>
+          <span class="tl-num">200</span>
+          <span class="tl-label" data-ko>도시</span>
+          <span class="tl-label" data-en>Cities</span>
+        </div>
+        <div class="tl-step">
+          <span class="tl-year">2028</span>
+          <span class="tl-num">300</span>
+          <span class="tl-label" data-ko>도시</span>
+          <span class="tl-label" data-en>Cities</span>
+        </div>
+        <div class="tl-step">
+          <span class="tl-year">2029</span>
+          <span class="tl-num">400</span>
+          <span class="tl-label" data-ko>도시</span>
+          <span class="tl-label" data-en>Cities</span>
+        </div>
+        <div class="tl-step">
+          <span class="tl-year">2030</span>
+          <span class="tl-num">500</span>
+          <span class="tl-label" data-ko>도시</span>
+          <span class="tl-label" data-en>Cities</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- PARTNERSHIP -->
+    <div class="section">
+      <span class="section-tag" data-ko>파트너십</span>
+      <span class="section-tag" data-en>Partnership</span>
+
+      <h2>
+        <span data-ko>교회·단체와 함께합니다</span>
+        <span data-en>Partnering with Churches &amp; Organizations</span>
+      </h2>
+
+      <div class="partner-box">
+        <p data-ko>HebronGuide는 환대하는 교회·단체와 협력합니다. 새로 도착한 한인이 자연스럽게 지역 커뮤니티와 연결되도록—전도지가 아닌, 신뢰와 관계로. 파트너 교회는 그 도시의 첫 번째 문이 됩니다.</p>
+        <p data-en>HebronGuide works alongside welcoming churches and organizations. We connect newly arrived Koreans with local communities — not through flyers, but through trust and relationship. Partner churches become the first door in their city.</p>
+        <a class="cta-btn" href="https://hebronguide.com/ad-request.html">
+          <span data-ko>파트너십 문의하기</span>
+          <span data-en>Inquire About Partnership</span>
+          →
+        </a>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ABOUT INFO -->
+    <div class="section">
+      <span class="section-tag" data-ko>운영 정보</span>
+      <span class="section-tag" data-en>About</span>
+
+      <div class="about-grid">
+        <div class="about-item">
+          <div class="about-label" data-ko>운영사</div>
+          <div class="about-label" data-en>Operated by</div>
+          <div class="about-value">Hebron Platform LLC</div>
+        </div>
+        <div class="about-item">
+          <div class="about-label" data-ko>서비스 지역</div>
+          <div class="about-label" data-en>Service Area</div>
+          <div class="about-value" data-ko>전 세계 80개 도시</div>
+          <div class="about-value" data-en>80+ cities worldwide</div>
+        </div>
+        <div class="about-item">
+          <div class="about-label" data-ko>지원 언어</div>
+          <div class="about-label" data-en>Languages</div>
+          <div class="about-value">한국어 · English</div>
+        </div>
+        <div class="about-item">
+          <div class="about-label" data-ko>문의</div>
+          <div class="about-label" data-en>Contact</div>
+          <div class="about-value"><a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── BACK LINK ── -->
+  <a class="back-link" href="https://hebronguide.com/seattle/">
+    <span data-ko>← HebronGuide 메인으로 돌아가기</span>
+    <span data-en>← Back to HebronGuide</span>
+  </a>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://hebronguide.com/about.html" data-ko>회사소개</a>
+      <a href="https://hebronguide.com/about.html" data-en>About</a>
+      <a href="https://hebronguide.com/ad-request.html" data-ko>파트너 신청</a>
+      <a href="https://hebronguide.com/ad-request.html" data-en>Partner</a>
+      <a href="https://hebronguide.com/privacy.html" data-ko>개인정보처리방침</a>
+      <a href="https://hebronguide.com/privacy.html" data-en>Privacy</a>
+      <a href="https://hebronguide.com/terms.html" data-ko>이용약관</a>
+      <a href="https://hebronguide.com/terms.html" data-en>Terms</a>
+    </div>
+    <div class="footer-copy">© 2026 Hebron Platform LLC. All rights reserved.</div>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      document.body.className = lang === 'en' ? 'en' : '';
+      document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+      });
+      localStorage.setItem('hg-lang', lang);
+    }
+    // Restore last language preference
+    const saved = localStorage.getItem('hg-lang');
+    if (saved === 'en') setLang('en');
+  </script>
 </body>
 </html>
