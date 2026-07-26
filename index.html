@@ -257,6 +257,7 @@
   .hg-cluster{background:var(--gold);color:#2a1c02;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;box-shadow:0 0 0 4px rgba(201,162,39,.22);}
   .hg-pin{width:12px;height:12px;background:var(--gold);border:2px solid #0d1117;border-radius:50%;box-shadow:0 0 6px rgba(201,162,39,.6);}
   .hg-future{border-radius:50%;background:transparent;box-shadow:0 0 5px currentColor;}
+  .hg-continent-label{color:rgba(255,255,255,.28);font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;pointer-events:none;text-shadow:0 1px 3px rgba(0,0,0,.6);}
   .hg-legend{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin:2px 0 16px;}
   .hg-legend .lg-live{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--gold);}
   .hg-legend button{background:none;border:1px solid rgba(255,255,255,.12);cursor:pointer;display:flex;align-items:center;gap:6px;color:#cfd6e4;padding:5px 12px;border-radius:20px;font:inherit;font-size:.75rem;transition:opacity .15s;}
@@ -1041,10 +1042,27 @@ if(inp){
   var el = document.getElementById('hgWorldMap');
   if (!el || !window.L) return;
   var map = L.map(el, { scrollWheelZoom:false, worldCopyJump:true, minZoom:1 }).setView([25,10], 2);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  // dark_nolabels: CARTO 원본 다국어 라벨(포르투갈어·독일어·아랍어·중국어 혼재) 제거.
+  // 아래에서 HebronGuide 자체 영어 대륙 라벨을 별도로 얹는다.
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
     maxZoom: 12, subdomains: 'abcd',
     attribution: '&copy; OpenStreetMap &copy; CARTO'
   }).addTo(map);
+
+  // 영어로 통일된 대륙 라벨 (배경 지도 자체 라벨을 대체)
+  [
+    ['NORTH AMERICA', 48, -100],
+    ['SOUTH AMERICA', -16, -60],
+    ['EUROPE', 54, 15],
+    ['AFRICA', 2, 20],
+    ['ASIA', 48, 95],
+    ['AUSTRALIA', -25, 135]
+  ].forEach(function(c){
+    L.marker([c[1], c[2]], {
+      icon: L.divIcon({ html: '<div class="hg-continent-label">'+c[0]+'</div>', className: '', iconSize: [140,16], iconAnchor: [70,8] }),
+      interactive: false, zIndexOffset: -1000
+    }).addTo(map);
+  });
   // 페이지 스크롤 방해 방지: 지도 클릭 시에만 휠 줌 활성화
   el.addEventListener('click', function(){ map.scrollWheelZoom.enable(); });
   map.on('mouseout', function(){ map.scrollWheelZoom.disable(); });
