@@ -28913,7 +28913,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
           {ko ? "헤브론 스토어" : "Hebron Store"}
         </div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 14, color: "#64748B", lineHeight: 1.6 }}>
-          {ko ? "한인 이민자를 위한 정착 도구·서비스를 곧 선보입니다." : "Settlement tools & services for Korean immigrants — coming soon."}
+          {ko ? "새로 정착하는 모든 이를 위한 도구·서비스를 곧 선보입니다." : "Settlement tools & services for every newcomer — coming soon."}
         </div>
       </div>
       <div style={{ margin: "28px 20px 0", background: "#fff", borderRadius: 20, boxShadow: "0 4px 20px rgba(0,0,0,0.07)", overflow: "hidden" }}>

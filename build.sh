@@ -267,7 +267,7 @@ echo "  OK: ver.txt → $(cat public/ver.txt)"
 # 8. cities.json 자동 생성 — admin.html 도시 필터 자동 업데이트
 # build.sh의 CITY_KO/CITY_EN 배열이 유일한 소스. 도시 추가 시 여기만 수정하면 admin 자동 반영.
 echo "--- Generating cities.json for admin panel ---"
-REGION_MAP=(
+declare -A REGION_MAP=(
   ["seattle"]="🇺🇸 미국"    ["federalway"]="🇺🇸 미국"  ["dallas"]="🇺🇸 미국"     ["sf"]="🇺🇸 미국"
   ["newyork"]="🇺🇸 미국"    ["newjersey"]="🇺🇸 미국"   ["la"]="🇺🇸 미국"         ["houston"]="🇺🇸 미국"
   ["atlanta"]="🇺🇸 미국"    ["chicago"]="🇺🇸 미국"     ["dc"]="🇺🇸 미국"

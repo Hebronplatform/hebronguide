@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>이야기 작성 도우미 — HebronGuide Story Studio</title>
+<meta name="description" content="환대의 경험을 다섯 단계로 정리하면, HebronGuide가 사명 중심 이야기로 엮어드립니다.">
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbf6ec;--surface:#ffffff;--surface2:#fdf9f0;
+  --border:rgba(38,29,14,0.10);--border2:rgba(38,29,14,0.18);
+  --gold:#b8862e;--gold2:#8a5a12;--mint:#1f8a63;
+  --text:#2b2013;--muted:rgba(43,32,19,0.62);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:var(--bg);}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh;}
+.icon{width:1em;height:1em;vertical-align:-.15em;flex:none;}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(251,246,236,.96);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
+.logo{color:var(--gold2);font-weight:900;font-size:1rem;text-decoration:none;font-family:'Cinzel',serif;display:flex;align-items:center;gap:8px;}
+.nav-tag{font-size:.72rem;color:var(--muted);background:var(--surface2);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;}
+.nav-actions{display:flex;gap:8px;align-items:center;}
+.nav-btn{background:var(--surface);border:1px solid var(--border2);color:var(--muted);font-size:.74rem;font-weight:700;border-radius:20px;padding:7px 14px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;display:flex;align-items:center;gap:6px;transition:.2s;}
+.nav-btn:hover{background:#fbeecb;border-color:rgba(184,134,46,.5);color:var(--gold2);}
+
+/* ── HERO STRIP ── */
+.hero-strip{padding:34px 24px 22px;text-align:center;background:linear-gradient(180deg,#fff6e2 0%,#fbf6ec 100%);border-bottom:1px solid var(--border);}
+.hero-strip h1{font-family:'Noto Serif KR',serif;font-size:clamp(1.35rem,3vw,1.9rem);font-weight:700;color:var(--text);margin-bottom:8px;}
+.hero-strip p{font-size:.88rem;color:var(--muted);max-width:520px;margin:0 auto;}
+
+/* ── PROGRESS ── */
+.progress-wrap{display:flex;justify-content:center;gap:6px;padding:18px 16px;flex-wrap:wrap;background:var(--surface2);border-bottom:1px solid var(--border);}
+.step-pill{flex-shrink:0;padding:6px 14px;border-radius:20px;font-size:.76rem;font-weight:700;color:var(--muted);background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:.2s;white-space:nowrap;}
+.step-pill.active{background:#fbeecb;border-color:rgba(184,134,46,.5);color:var(--gold2);}
+.step-pill.done{background:rgba(31,138,99,.1);border-color:rgba(31,138,99,.35);color:var(--mint);}
+.step-arrow{color:var(--border2);font-size:.8rem;align-self:center;}
+
+/* ── MAIN 2-column ── */
+.main{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1280px;margin:0 auto;min-height:calc(100vh - 260px);}
+@media(max-width:880px){.main{grid-template-columns:1fr;}}
+
+.form-panel{padding:32px 40px 60px;border-right:1px solid var(--border);}
+@media(max-width:880px){.form-panel{border-right:none;border-bottom:1px solid var(--border);padding:28px 20px 40px;}}
+
+.step-card{display:none;}
+.step-card.active{display:block;animation:fadeIn .35s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+.step-card h2{font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:9px;}
+.step-card h2 svg{color:var(--gold2);width:1.15em;height:1.15em;}
+.step-desc{font-size:.82rem;color:var(--muted);margin-bottom:22px;}
+
+label{display:block;font-size:.78rem;font-weight:700;color:var(--text);margin:18px 0 7px;}
+label:first-of-type{margin-top:0;}
+.req{color:var(--gold2);}
+input[type=text],select,textarea{
+  width:100%;padding:11px 14px;background:var(--surface);border:1px solid var(--border2);
+  border-radius:10px;color:var(--text);font-family:inherit;font-size:.88rem;transition:border-color .2s;
+}
+input[type=text]:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);}
+textarea{min-height:88px;resize:vertical;line-height:1.65;}
+::placeholder{color:rgba(43,32,19,.35);}
+.hint{font-size:.72rem;color:var(--muted);margin-top:5px;}
+
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{padding:7px 14px;border-radius:20px;font-size:.78rem;font-weight:600;color:var(--muted);
+  background:var(--surface);border:1px solid var(--border2);cursor:pointer;transition:.15s;user-select:none;}
+.tag:hover{border-color:rgba(184,134,46,.45);}
+.tag.on{background:#fbeecb;border-color:var(--gold);color:var(--gold2);font-weight:800;}
+
+.framework-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:520px){.framework-grid{grid-template-columns:1fr;}}
+.fw-card{border:1px solid var(--border2);border-radius:12px;padding:14px 16px;cursor:pointer;background:var(--surface);transition:.15s;}
+.fw-card:hover{border-color:rgba(184,134,46,.4);}
+.fw-card.selected{border-color:var(--gold);background:#fdf3dc;}
+.fw-card h4{font-size:.86rem;font-weight:800;color:var(--gold2);margin-bottom:4px;}
+.fw-card p{font-size:.72rem;color:var(--muted);line-height:1.55;}
+
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:10px;}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-size:.84rem;font-weight:800;cursor:pointer;
+  font-family:inherit;display:inline-flex;align-items:center;gap:7px;transition:.15s;white-space:nowrap;}
+.btn-primary{background:var(--gold);color:#fff;}
+.btn-primary:hover{background:var(--gold2);}
+.btn-accent{background:linear-gradient(135deg,#c9973a,#a9711f);color:#fff;}
+.btn-accent:hover{filter:brightness(1.06);}
+.btn-outline{background:transparent;border:1px solid var(--border2);color:var(--muted);}
+.btn-outline:hover{border-color:rgba(184,134,46,.45);color:var(--gold2);}
+.btn-block{width:100%;justify-content:center;margin-bottom:9px;}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+
+.notice-box{background:rgba(31,138,99,.08);border:1px solid rgba(31,138,99,.28);border-radius:10px;
+  padding:13px 16px;font-size:.8rem;color:var(--mint);margin-bottom:18px;display:flex;gap:9px;align-items:flex-start;}
+
+/* ── PREVIEW PANEL ── */
+.preview-panel{background:#fffdf8;padding:0;display:flex;flex-direction:column;position:sticky;top:0;align-self:flex-start;height:100vh;border-left:1px solid var(--border);}
+@media(max-width:880px){.preview-panel{position:static;height:auto;min-height:340px;border-left:none;}}
+.preview-header{padding:18px 26px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.preview-header h3{font-size:.86rem;font-weight:800;color:var(--muted);display:flex;align-items:center;gap:8px;}
+.preview-body{flex:1;overflow-y:auto;padding:28px 30px;font-size:.92rem;}
+.placeholder-msg{text-align:center;color:var(--muted);padding:60px 20px;font-size:.86rem;line-height:1.8;}
+.placeholder-msg .icon{width:34px;height:34px;margin:0 auto 14px;color:rgba(184,134,46,.45);}
+
+.story-title{font-family:'Noto Serif KR',serif;font-size:1.3rem;font-weight:700;color:var(--text);
+  border-bottom:2px solid var(--gold);padding-bottom:12px;margin-bottom:6px;}
+.story-sub{color:var(--muted);font-size:.74rem;margin-bottom:22px;}
+.section-head{font-size:.88rem;font-weight:800;color:var(--gold2);margin:22px 0 8px;display:flex;align-items:center;gap:8px;}
+.section-head::before{content:'';width:4px;height:15px;background:var(--gold);border-radius:2px;}
+blockquote{border-left:3px solid var(--gold);background:#fdf6e6;padding:11px 16px;
+  border-radius:0 8px 8px 0;margin:10px 0;font-style:italic;color:rgba(43,32,19,.82);}
+.checklist{list-style:none;padding:0;}
+.checklist li{position:relative;padding-left:22px;margin:4px 0;color:var(--text);}
+.checklist li::before{content:'';position:absolute;left:0;top:.45em;width:11px;height:11px;
+  background:currentColor;color:var(--mint);opacity:.95;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 12.5 9 17 19.5 6.5' fill='none' stroke='black' stroke-width='3'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 12.5 9 17 19.5 6.5' fill='none' stroke='black' stroke-width='3'/%3E%3C/svg%3E") center/contain no-repeat;}
+.cta-box{background:linear-gradient(135deg,#fff6e2,#fdecc4);border:1px solid rgba(184,134,46,.35);
+  border-radius:12px;padding:22px;margin-top:26px;text-align:center;}
+.cta-box p{color:var(--text);font-size:.86rem;margin-bottom:12px;}
+.cta-box a{display:inline-block;background:var(--gold2);color:#fff;padding:9px 22px;border-radius:8px;
+  text-decoration:none;font-weight:800;font-size:.82rem;}
+
+.analysis-card{margin:0 30px 26px;padding:16px 18px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;}
+.analysis-card h4{font-size:.76rem;font-weight:800;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em;}
+.fw-row{display:flex;flex-wrap:wrap;gap:6px;}
+.fw-badge{font-size:.7rem;font-weight:700;padding:4px 11px;border-radius:14px;background:#fbeecb;color:var(--gold2);}
+.fw-badge.sp{background:rgba(31,138,99,.12);color:var(--mint);}
+
+/* ── Submit box (Step5) ── */
+.submit-box{margin-top:22px;padding:20px;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;}
+.submit-box .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:520px){.submit-box .row2{grid-template-columns:1fr;}}
+.checkbox-row{display:flex;align-items:flex-start;gap:9px;margin-top:14px;font-size:.78rem;color:var(--muted);}
+.checkbox-row input{margin-top:3px;width:16px;height:16px;flex-shrink:0;accent-color:var(--gold);}
+
+/* ── Modal ── */
+.modal-bg{position:fixed;inset:0;background:rgba(43,32,19,.45);display:none;align-items:center;justify-content:center;z-index:200;padding:20px;}
+.modal-bg.open{display:flex;}
+.modal{background:#fffdf8;border:1px solid var(--border2);border-radius:16px;padding:28px;max-width:640px;width:100%;max-height:82vh;overflow-y:auto;position:relative;}
+.modal-close{position:absolute;top:16px;right:16px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;width:32px;height:32px;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.modal h2{font-size:1.05rem;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.modal p{font-size:.8rem;color:var(--muted);margin-bottom:16px;}
+table{width:100%;border-collapse:collapse;font-size:.78rem;}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--border);}
+th{color:var(--gold2);font-weight:800;}
+td{color:var(--muted);}
+.modal-foot{margin-top:18px;background:#fdf3dc;border-radius:8px;padding:13px 15px;font-size:.76rem;color:rgba(43,32,19,.85);}
+
+/* ── Toast ── */
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(120%);
+  background:#fffdf8;color:var(--gold2);border:1px solid var(--gold);padding:11px 22px;border-radius:30px;
+  font-size:.82rem;font-weight:700;transition:transform .3s ease;z-index:300;display:flex;align-items:center;gap:8px;
+  box-shadow:0 8px 24px rgba(43,32,19,.15);}
+#toast.show{transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo" style="display:flex;align-items:center;gap:9px;">
+    <span aria-hidden="true" style="display:inline-block;width:30px;height:30px;flex:none;
+      background:url('/hebronguide-logo.svg') no-repeat left center;background-size:115.7px 30px;"></span>
+    <span>HebronGuide</span>
+  </a>
+  <span class="nav-tag">이야기 작성 도우미</span>
+  <div class="nav-actions">
+    <button class="nav-btn" onclick="openModal()">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M8 16v-4"/><path d="M12 16V8"/><path d="M16 16v-6"/></svg>
+      구조 설명
+    </button>
+    <button class="nav-btn" onclick="resetAll()">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 13.5-5.5L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 0 1-13.5 5.5L4 16"/><path d="M4 20v-4h4"/></svg>
+      초기화
+    </button>
+  </div>
+</nav>
+
+<div class="hero-strip">
+  <h1>당신의 경험을, 이야기의 뼈대로</h1>
+  <p>다섯 가지 질문에 답하면, 오른쪽에서 이야기가 실시간으로 만들어집니다.
+     완성하면 그대로 이야기 스튜디오에 제출할 수 있습니다.</p>
+</div>
+
+<div class="progress-wrap" id="progressBar"></div>
+
+<div class="main">
+
+  <!-- ══════ FORM PANEL ══════ -->
+  <div class="form-panel" id="formPanel">
+
+    <!-- STEP 1 -->
+    <div class="step-card active" id="step1">
+      <h2><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg> 1 — 기본 정보</h2>
+      <div class="step-desc">작성자와 이 이야기를 읽을 대상을 설정합니다.</div>
+
+      <label>이름 / 닉네임 <span class="req">*</span></label>
+      <input type="text" id="f_name" placeholder="예: 김목사, 박권사, 이집사" oninput="liveUpdate()">
+
+      <label>소속 교회 / 공동체</label>
+      <input type="text" id="f_church" placeholder="예: 시애틀지구촌교회, ○○ 가정교회" oninput="liveUpdate()">
+
+      <label>지역 (도시/국가)</label>
+      <input type="text" id="f_city" placeholder="예: 시애틀, 서울, 토론토" oninput="liveUpdate()">
+
+      <label>대상 독자 <span class="req">*</span></label>
+      <select id="f_audience" onchange="liveUpdate()">
+        <option value="">선택하세요</option>
+        <option value="pastor">목회자 / 사역자 (신학적 언어 중심)</option>
+        <option value="immigrant">이민자 / 정착민 (공감·실생활 중심)</option>
+        <option value="general">일반 성도 (감동·이야기 중심)</option>
+        <option value="partner">외부 파트너 / 기관 (영향력·사명 중심)</option>
+      </select>
+
+      <label>이야기 목적 <span class="req">*</span></label>
+      <div class="tag-row" id="purposeTags">
+        <div class="tag" data-val="recruit" onclick="toggleTag(this,'purpose')">공동 저자 모집</div>
+        <div class="tag" data-val="inspire" onclick="toggleTag(this,'purpose')">환대 도전·영감</div>
+        <div class="tag" data-val="fund" onclick="toggleTag(this,'purpose')">사역 지원 요청</div>
+        <div class="tag" data-val="witness" onclick="toggleTag(this,'purpose')">간증·교훈</div>
+        <div class="tag" data-val="brand" onclick="toggleTag(this,'purpose')">소개·홍보</div>
+      </div>
+
+      <div class="nav-row">
+        <span></span>
+        <button class="btn btn-primary" onclick="goStep(2)">다음 — 환대 경험 →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step-card" id="step2">
+      <h2><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-6h4v6"/></svg> 2 — 환대 경험</h2>
+      <div class="step-desc">실제 경험을 구체적으로 적을수록 이야기가 살아납니다.</div>
+
+      <label>환대의 대상 (누구를?) <span class="req">*</span></label>
+      <input type="text" id="f_who" placeholder="예: 갓 이민 온 낯선 가족, 눈물 흘리던 유학생" oninput="liveUpdate()">
+
+      <label>환대의 장면 (어떤 상황?) <span class="req">*</span></label>
+      <textarea id="f_scene" placeholder="예: 크리스마스 이브, 갈 곳 없는 가족이 우리 집 문을 두드렸습니다." oninput="liveUpdate()"></textarea>
+
+      <label>구체적으로 했던 행동</label>
+      <div class="tag-row" id="actionTags">
+        <div class="tag" data-val="table" onclick="toggleTag(this,'action')">식탁 나눔</div>
+        <div class="tag" data-val="room" onclick="toggleTag(this,'action')">공간 제공</div>
+        <div class="tag" data-val="listen" onclick="toggleTag(this,'action')">경청·위로</div>
+        <div class="tag" data-val="settle" onclick="toggleTag(this,'action')">정착 도움</div>
+        <div class="tag" data-val="pray" onclick="toggleTag(this,'action')">함께 기도</div>
+        <div class="tag" data-val="drive" onclick="toggleTag(this,'action')">이동 지원</div>
+        <div class="tag" data-val="finance" onclick="toggleTag(this,'action')">재정 지원</div>
+        <div class="tag" data-val="mentor" onclick="toggleTag(this,'action')">멘토링</div>
+      </div>
+
+      <label>가장 기억에 남는 순간</label>
+      <textarea id="f_moment" placeholder="예: &quot;이렇게 따뜻한 밥을 먹어본 게 얼마만인지 모르겠어요&quot;라는 말을 들었을 때..." oninput="liveUpdate()"></textarea>
+
+      <div class="nav-row">
+        <button class="btn btn-outline" onclick="goStep(1)">← 이전</button>
+        <button class="btn btn-primary" onclick="goStep(3)">다음 — 변화와 결과 →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-card" id="step3">
+      <h2><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 5.6L19 10l-5.3 1.4L12 17l-1.7-5.6L5 10l5.3-1.4z"/></svg> 3 — 변화와 결과</h2>
+      <div class="step-desc">환대 이후 일어난 변화를 솔직하게 기록합니다. 완벽한 성공이 아니어도 됩니다.</div>
+
+      <label>상대방에게 일어난 변화</label>
+      <textarea id="f_change_them" placeholder="예: 그 가족이 교회에 나오기 시작했습니다. 1년 후 세례를 받았습니다." oninput="liveUpdate()"></textarea>
+
+      <label>나(우리 가정)에게 일어난 변화</label>
+      <textarea id="f_change_me" placeholder="예: 환대하면서 오히려 제 믿음이 더 자랐습니다." oninput="liveUpdate()"></textarea>
+
+      <label>어려웠던 점 · 시행착오 (솔직하게)</label>
+      <textarea id="f_struggle" placeholder="예: 처음엔 너무 피곤했습니다. 경계를 어떻게 그어야 할지 몰랐습니다." oninput="liveUpdate()"></textarea>
+      <div class="hint">시행착오와 솔직한 고백이 오히려 독자의 공감을 얻습니다.</div>
+
+      <label>하나님을 경험한 순간</label>
+      <textarea id="f_god" placeholder="예: '네가 그것을 내게 하였느니라'(마 25:40) 말씀이 그 순간 떠올랐습니다." oninput="liveUpdate()"></textarea>
+
+      <div class="nav-row">
+        <button class="btn btn-outline" onclick="goStep(2)">← 이전</button>
+        <button class="btn btn-primary" onclick="goStep(4)">다음 — 이야기 구조 →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step-card" id="step4">
+      <h2><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg> 4 — 이야기 구조</h2>
+      <div class="step-desc">이야기를 어떤 흐름으로 전달할지 선택합니다. 여러 개 고르면 자동으로 섞입니다.</div>
+
+      <label>주 구조</label>
+      <div class="framework-grid">
+        <div class="fw-card selected" data-fw="aida" onclick="toggleFw(this)">
+          <h4>공감 → 소망</h4>
+          <p>주의 → 관심 → 열망 → 행동<br>가장 널리 쓰이는 기본 구조</p>
+        </div>
+        <div class="fw-card" data-fw="pas" onclick="toggleFw(this)">
+          <h4>고난 → 회복</h4>
+          <p>어려움 → 고조 → 해결<br>고통에서 공감을 거쳐 소망으로</p>
+        </div>
+        <div class="fw-card" data-fw="sb" onclick="toggleFw(this)">
+          <h4>동행자 구조</h4>
+          <p>독자가 주인공, HebronGuide가 동행자<br>도전·실패 방지·회복</p>
+        </div>
+        <div class="fw-card" data-fw="hj" onclick="toggleFw(this)">
+          <h4>부르심의 여정</h4>
+          <p>일상 → 부르심 → 시련 → 변화<br>깊은 감동의 간증 구조</p>
+        </div>
+      </div>
+
+      <label>강조할 요소 (복수 선택)</label>
+      <div class="tag-row" id="emphTags">
+        <div class="tag" data-val="mission" onclick="toggleTag(this,'emph')">사명</div>
+        <div class="tag" data-val="proof" onclick="toggleTag(this,'emph')">실제 증언</div>
+        <div class="tag" data-val="urgency" onclick="toggleTag(this,'emph')">긴박감</div>
+        <div class="tag" data-val="authority" onclick="toggleTag(this,'emph')">말씀의 무게</div>
+        <div class="tag" data-val="hope" onclick="toggleTag(this,'emph')">소망</div>
+        <div class="tag" data-val="community" onclick="toggleTag(this,'emph')">공동체</div>
+      </div>
+
+      <label>마무리 초대 문구 (CTA)</label>
+      <input type="text" id="f_cta" placeholder="예: 당신의 이야기를 나눠주세요 → hebronguide.com/story-submit.html" oninput="liveUpdate()" value="당신의 이야기를 나눠주세요 → hebronguide.com/story-submit.html">
+
+      <label>마감 · 긴박감 요소 (선택)</label>
+      <input type="text" id="f_deadline" placeholder="예: 2026년 9월 30일까지" oninput="liveUpdate()">
+
+      <div class="nav-row">
+        <button class="btn btn-outline" onclick="goStep(3)">← 이전</button>
+        <button class="btn btn-accent" onclick="generateStory()">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 5.6L19 10l-5.3 1.4L12 17l-1.7-5.6L5 10l5.3-1.4z"/></svg>
+          이야기 완성하기
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step-card" id="step5">
+      <h2><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9 17 19.5 6.5"/></svg> 5 — 완성</h2>
+      <div class="step-desc">이야기를 검토하고, 저장하거나 바로 제출하세요.</div>
+
+      <div class="notice-box">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1.1em;height:1.1em;flex-shrink:0;margin-top:.1em;"><path d="M4.5 12.5 9 17 19.5 6.5"/></svg>
+        이야기가 만들어졌습니다. 오른쪽에서 전체 내용을 확인하세요.
+      </div>
+
+      <label>제목 수정 (선택)</label>
+      <input type="text" id="f_title_edit" placeholder="자동 생성된 제목을 수정할 수 있습니다" oninput="liveUpdate()">
+
+      <label>마무리 메시지 추가 (선택)</label>
+      <textarea id="f_closing" placeholder="예: 이 이야기가 누군가에게 작은 등불이 되기를 바랍니다." oninput="liveUpdate()" style="min-height:70px;"></textarea>
+
+      <div style="margin-top:22px;">
+        <button class="btn btn-primary btn-block" onclick="copyStory()">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="5" width="12" height="16" rx="2"/><path d="M9.5 5V4a2.5 2.5 0 0 1 5 0v1"/><path d="M9 4.5h6"/></svg>
+          전체 텍스트 복사
+        </button>
+        <button class="btn btn-outline btn-block" onclick="downloadTXT()">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h8l4 4V20.5H6z"/><path d="M14 3.5v4h4"/></svg>
+          TXT 파일로 저장
+        </button>
+      </div>
+
+      <!-- ── 제출 (기존 /api/submit-story 재사용 — 새 함수 생성 없음) ── -->
+      <div class="submit-box">
+        <label style="margin-top:0;">이메일 <span class="req">*</span></label>
+        <input type="text" id="f_email" placeholder="you@email.com" oninput="checkSubmitReady()">
+        <div class="row2">
+          <div>
+            <label>이야기집 수록 동의</label>
+            <select id="f_ebook"><option value="no">아니오</option><option value="yes">예</option></select>
+          </div>
+          <div>
+            <label>역할</label>
+            <select id="f_role_submit">
+              <option value="목회자·사역자">목회자·사역자</option>
+              <option value="이민자·정착민">이민자·정착민</option>
+              <option value="일반 성도">일반 성도</option>
+              <option value="외부 파트너·기관">외부 파트너·기관</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-accent btn-block" style="margin-top:16px;" id="submitBtn" onclick="submitToStudio()">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
+          이야기 스튜디오로 제출하기
+        </button>
+        <div class="hint">제출하면 AI 검토 후 검토대기 상태로 접수되며, 확인 메일을 보내드립니다.</div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn btn-outline" onclick="goStep(4)">← 수정하기</button>
+        <button class="btn btn-outline" onclick="resetAll()">새 이야기 시작</button>
+      </div>
+    </div>
+
+  </div><!-- /form-panel -->
+
+  <!-- ══════ PREVIEW PANEL ══════ -->
+  <div class="preview-panel">
+    <div class="preview-header">
+      <h3>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h8l4 4V20.5H6z"/><path d="M14 3.5v4h4"/><path d="M9 12h6"/><path d="M9 15.5h4"/></svg>
+        실시간 미리보기
+      </h3>
+    </div>
+    <div class="preview-body" id="preview">
+      <div class="placeholder-msg">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+        <div>왼쪽 폼을 작성하면<br>이야기가 실시간으로 만들어집니다.</div>
+      </div>
+    </div>
+
+    <div class="analysis-card" id="fwAnalysis" style="display:none;">
+      <h4>적용된 구조</h4>
+      <div class="fw-row" id="fwBadges"></div>
+      <div style="margin-top:8px;color:var(--muted);font-size:.78rem;" id="fwDesc"></div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- Structure Modal -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></svg>
+    </button>
+    <h2>
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M8 16v-4"/><path d="M12 16V8"/><path d="M16 16v-6"/></svg>
+      이야기 구조 설명
+    </h2>
+    <p>이 도구는 아래 네 가지 이야기 구조를 자동으로 혼합하여 사명 중심 이야기를 만듭니다.</p>
+    <table>
+      <tr><th>구조</th><th>흐름</th><th>HebronGuide 적용</th></tr>
+      <tr><td><strong>공감 → 소망</strong></td><td>주의·관심·열망·행동</td><td>낯선 도시의 밤 → 만남 → 변화</td></tr>
+      <tr><td><strong>고난 → 회복</strong></td><td>어려움·고조·해결</td><td>이민자의 고통 → 환대 → 회복</td></tr>
+      <tr><td><strong>동행자 구조</strong></td><td>주인공은 독자</td><td>독자가 주인공, HebronGuide는 동행자</td></tr>
+      <tr><td><strong>부르심의 여정</strong></td><td>일상·부르심·시련·변화</td><td>순종 → 시련 → 변화의 간증</td></tr>
+    </table>
+    <div class="modal-foot">
+      <strong>핵심:</strong> 성과·수익의 언어가 아니라 사명·변화의 언어로. 강조점은 &quot;나&quot;가 아니라 &quot;이야기가 누구를 살리는가&quot;입니다.
+    </div>
+    <button class="btn btn-primary btn-block" style="margin-top:16px;" onclick="closeModal()">닫기</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ═══════════════════════════════════
+// STATE
+// ═══════════════════════════════════
+let currentStep = 1;
+const tagState = { purpose:[], action:[], emph:[] };
+const fwState = new Set(['aida']);
+
+const STEPS = [
+  { id:1, label:'기본 정보' },
+  { id:2, label:'환대 경험' },
+  { id:3, label:'변화와 결과' },
+  { id:4, label:'이야기 구조' },
+  { id:5, label:'완성' },
+];
+
+function buildProgress() {
+  const bar = document.getElementById('progressBar');
+  bar.innerHTML = '';
+  STEPS.forEach((s, i) => {
+    if (i > 0) bar.innerHTML += `<span class="step-arrow">›</span>`;
+    const cls = s.id === currentStep ? 'active' : s.id < currentStep ? 'done' : '';
+    bar.innerHTML += `<div class="step-pill ${cls}" onclick="goStep(${s.id})">${s.id}. ${s.label}</div>`;
+  });
+}
+buildProgress();
+
+function goStep(n) {
+  document.getElementById('step'+currentStep).classList.remove('active');
+  currentStep = n;
+  document.getElementById('step'+n).classList.add('active');
+  buildProgress();
+  liveUpdate();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function toggleTag(el, group) {
+  const val = el.dataset.val;
+  el.classList.toggle('on');
+  if (tagState[group].includes(val)) {
+    tagState[group] = tagState[group].filter(v => v !== val);
+  } else {
+    tagState[group].push(val);
+  }
+  liveUpdate();
+}
+
+function toggleFw(el) {
+  const fw = el.dataset.fw;
+  el.classList.toggle('selected');
+  if (fwState.has(fw)) fwState.delete(fw); else fwState.add(fw);
+  liveUpdate();
+}
+
+const g  = id => (document.getElementById(id)||{}).value || '';
+const gg = id => (document.getElementById(id)||{}).value?.trim() || '';
+
+const actionLabels = {
+  table:'식탁 나눔', room:'공간 제공', listen:'경청·위로',
+  settle:'정착 도움', pray:'함께 기도', drive:'이동 지원',
+  finance:'재정 지원', mentor:'멘토링'
+};
+const audienceMap = {
+  pastor:'목회자·사역자', immigrant:'이민자·정착민',
+  general:'일반 성도', partner:'외부 파트너·기관'
+};
+
+const PLACEHOLDER = `
+  <div class="placeholder-msg">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:34px;height:34px;margin:0 auto 14px;color:rgba(201,162,39,.4);"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+    <div>왼쪽 폼을 작성하면<br>이야기가 실시간으로 만들어집니다.</div>
+  </div>`;
+
+function liveUpdate() {
+  const name  = gg('f_name');
+  const who   = gg('f_who');
+  const scene = gg('f_scene');
+  if (!name && !who && !scene) {
+    document.getElementById('preview').innerHTML = PLACEHOLDER;
+    document.getElementById('fwAnalysis').style.display='none';
+    return;
+  }
+  renderPreview();
+}
+
+function generateStory() {
+  const name = gg('f_name'), who = gg('f_who'), scene = gg('f_scene'), audience = g('f_audience');
+  if (!name || !who || !scene || !audience) {
+    showToast('이름·환대 대상·장면·대상 독자는 꼭 채워주세요');
+    return;
+  }
+  renderPreview();
+  goStep(5);
+  showToast('이야기가 만들어졌습니다');
+}
+
+function renderPreview() {
+  const name       = gg('f_name')     || '작성자';
+  const church     = gg('f_church');
+  const city       = gg('f_city');
+  const audience   = g('f_audience');
+  const who        = gg('f_who')      || '한 사람';
+  const scene      = gg('f_scene')    || '';
+  const moment     = gg('f_moment')   || '';
+  const changeThem = gg('f_change_them') || '';
+  const changeMe   = gg('f_change_me')   || '';
+  const struggle   = gg('f_struggle')    || '';
+  const godMoment  = gg('f_god')         || '';
+  const cta        = gg('f_cta')         || '당신의 이야기를 나눠주세요 → hebronguide.com/story-submit.html';
+  const deadline   = gg('f_deadline');
+  const titleEdit  = gg('f_title_edit');
+  const closing    = gg('f_closing');
+
+  const actions = tagState.action.map(v => actionLabels[v]).filter(Boolean);
+  const emph    = tagState.emph;
+
+  const title = titleEdit || buildTitle(name, who);
+  const audienceStr = audienceMap[audience] || '모든 분';
+  const sub = `${name}${church ? ' · '+church : ''}${city ? ' · '+city : ''} · 대상: ${audienceStr}`;
+
+  let html = `<div class="story-title">${escHtml(title)}</div>`;
+  html += `<div class="story-sub">${escHtml(sub)}</div>`;
+
+  if (scene) {
+    html += `<div class="section-head">그날의 장면</div>`;
+    html += `<blockquote>${escHtml(scene)}</blockquote>`;
+  }
+
+  if (fwState.has('hj') || fwState.has('sb')) {
+    html += `<div class="section-head">이야기의 시작</div>`;
+    html += `<p><strong>${escHtml(who)}</strong>을(를) 만났을 때, 솔직히 처음에는 망설였습니다.</p>`;
+    if (struggle) html += `<p>${escHtml(struggle)}</p>`;
+  }
+
+  if (actions.length) {
+    html += `<div class="section-head">그래서 한 일</div>`;
+    html += `<ul class="checklist">` + actions.map(a => `<li>${a}</li>`).join('') + `</ul>`;
+  }
+
+  if (moment) {
+    html += `<div class="section-head">가장 기억에 남는 순간</div>`;
+    html += `<blockquote>${escHtml(moment)}</blockquote>`;
+  }
+
+  if (changeThem || changeMe) {
+    html += `<div class="section-head">일어난 변화</div>`;
+    if (changeThem) html += `<p><strong>상대방의 변화:</strong> ${escHtml(changeThem)}</p>`;
+    if (changeMe)   html += `<p><strong>나·우리 가정의 변화:</strong> ${escHtml(changeMe)}</p>`;
+  }
+
+  if (godMoment) {
+    html += `<div class="section-head">하나님을 경험한 순간</div>`;
+    html += `<blockquote>${escHtml(godMoment)}</blockquote>`;
+  }
+
+  if (emph.includes('mission') || tagState.purpose.includes('inspire')) {
+    html += `<div class="section-head">이것이 우리가 믿는 것입니다</div>`;
+    html += `<p>이야기를 나누는 것은 자랑이 아니라, <strong>하나님 나라의 이야기를 함께 기록</strong>하는 일입니다.</p>
+    <p>사람을 변화시키는 것은 완벽한 이론이 아니라 <strong>진실한 이야기</strong>입니다. 당신이 걸어온 길이, 누군가에게 가장 절실한 길잡이가 될 수 있습니다.</p>`;
+  }
+
+  if (deadline && emph.includes('urgency')) {
+    html += `<p style="color:var(--gold2);font-weight:700;">${escHtml(deadline)}</p>`;
+  }
+
+  if (closing) html += `<p style="font-style:italic;color:var(--muted);">${escHtml(closing)}</p>`;
+
+  const ctaUrl  = cta.includes('http') ? cta.match(/https?:\/\/[^\s]+/)?.[0] || '#' : '#';
+  const ctaText = cta.replace(/https?:\/\/[^\s]+/, '').replace(/→\s*$/, '').trim() || 'HebronGuide와 함께 시작하기';
+  html += `<div class="cta-box">
+    <p><strong>HebronGuide는 당신의 이야기를 기다리고 있습니다.</strong><br>
+    당신의 순종과 환대가 누군가의 새로운 시작이 될 수 있습니다.</p>
+    <a href="${ctaUrl}" target="_blank" rel="noopener">${escHtml(ctaText)}</a>
+  </div>`;
+
+  document.getElementById('preview').innerHTML = html;
+  renderBadges();
+}
+
+function buildTitle(name, who) {
+  if (name && who) return `${name}의 환대 이야기 — ${who}을(를) 만났을 때`;
+  if (name) return `${name}의 환대 이야기`;
+  return '환대 이야기 — 당신의 이야기가 누군가의 삶을 살립니다';
+}
+
+function renderBadges() {
+  const panel  = document.getElementById('fwAnalysis');
+  const badges = document.getElementById('fwBadges');
+  const desc   = document.getElementById('fwDesc');
+  if (!fwState.size) { panel.style.display='none'; return; }
+  panel.style.display='block';
+
+  const map = {
+    aida: '공감 → 소망',
+    pas:  '고난 → 회복',
+    sb:   '동행자 구조',
+    hj:   '부르심의 여정',
+  };
+  badges.innerHTML = '';
+  const descs = [];
+  fwState.forEach(fw => {
+    if (map[fw]) { badges.innerHTML += `<span class="fw-badge">${map[fw]}</span>`; descs.push(map[fw]); }
+  });
+
+  const emphLabels = { mission:'사명', proof:'실제 증언', urgency:'긴박감', authority:'말씀의 무게', hope:'소망', community:'공동체' };
+  tagState.emph.forEach(e => {
+    if (emphLabels[e]) badges.innerHTML += `<span class="fw-badge sp">${emphLabels[e]}</span>`;
+  });
+  desc.textContent = `적용: ${descs.join(' + ')}`;
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
+// ═══════════════════════════════════
+// EXPORT (복사·다운로드)
+// ═══════════════════════════════════
+function copyStory() {
+  const text = document.getElementById('preview').innerText;
+  if (!text || text.includes('왼쪽 폼을 작성하면')) { showToast('먼저 이야기를 작성해주세요.'); return; }
+  navigator.clipboard.writeText(text).then(() => showToast('클립보드에 복사되었습니다'));
+}
+
+function downloadTXT() {
+  const text = document.getElementById('preview').innerText;
+  if (!text || text.includes('왼쪽 폼')) { showToast('먼저 이야기를 작성해주세요.'); return; }
+  const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `HebronGuide_환대이야기_${gg('f_name') || 'story'}.txt`;
+  a.click();
+  showToast('TXT 파일이 저장되었습니다');
+}
+
+// ═══════════════════════════════════
+// SUBMIT — 기존 /api/submit-story 재사용 (새 서버리스 함수 생성 안 함)
+// ═══════════════════════════════════
+function checkSubmitReady(){ /* 즉시 검증은 제출 시 수행 */ }
+
+function submitToStudio() {
+  const text  = document.getElementById('preview').innerText;
+  const email = gg('f_email');
+  const name  = gg('f_name');
+  const city  = gg('f_city');
+  const role  = g('f_role_submit');
+  const ebook = g('f_ebook') === 'yes';
+
+  if (!text || text.includes('왼쪽 폼을 작성하면')) { showToast('먼저 이야기를 완성해주세요.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('올바른 이메일을 입력해주세요.'); return; }
+  if (text.trim().length < 40) { showToast('이야기를 조금만 더 채워주세요.'); return; }
+
+  const btn = document.getElementById('submitBtn');
+  const origHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.textContent = '제출하는 중...';
+
+  fetch('/api/submit-story', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: 'story_studio',
+      role: role,
+      name: name,
+      email: email,
+      city: city || '미기재',
+      city_slug: city || '',
+      content: text,
+      title: gg('f_title_edit') || buildTitle(name, gg('f_who')),
+      ebookConsent: ebook,
+      theme: 'story-generator',
+    }),
+  })
+  .then(r => r.json().catch(() => ({})))
+  .then(d => {
+    btn.disabled = false; btn.innerHTML = origHTML;
+    if (d && d.rejected) { showToast(d.message || '이 내용은 지금 게시하기 어렵습니다.'); return; }
+    if (d && (d.ok || d.saved)) {
+      showToast('이야기 스튜디오에 제출되었습니다');
+    } else {
+      showToast((d && d.error) || '제출에 문제가 있었습니다.');
+    }
+  })
+  .catch(() => {
+    btn.disabled = false; btn.innerHTML = origHTML;
+    showToast('네트워크 오류입니다. 잠시 후 다시 시도해주세요.');
+  });
+}
+
+// ═══════════════════════════════════
+// MODAL / TOAST / RESET
+// ═══════════════════════════════════
+function openModal()  { document.getElementById('modalBg').classList.add('open'); }
+function closeModal() { document.getElementById('modalBg').classList.remove('open'); }
+document.getElementById('modalBg').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalBg')) closeModal();
+});
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+function resetAll() {
+  if (!confirm('모든 내용을 초기화할까요?')) return;
+  ['f_name','f_church','f_city','f_who','f_scene','f_moment','f_change_them',
+   'f_change_me','f_struggle','f_god','f_cta','f_deadline','f_title_edit','f_closing','f_email']
+    .forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('f_audience').value='';
+  document.getElementById('f_cta').value='당신의 이야기를 나눠주세요 → hebronguide.com/story-submit.html';
+  Object.keys(tagState).forEach(k => { tagState[k]=[]; });
+  document.querySelectorAll('.tag').forEach(t => t.classList.remove('on'));
+  fwState.clear(); fwState.add('aida');
+  document.querySelectorAll('.fw-card').forEach(c => c.classList.toggle('selected', c.dataset.fw==='aida'));
+  document.getElementById('preview').innerHTML = PLACEHOLDER;
+  document.getElementById('fwAnalysis').style.display='none';
+  goStep(1);
+  showToast('초기화되었습니다');
+}
+</script>
+</body>
+</html>

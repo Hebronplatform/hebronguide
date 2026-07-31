@@ -155,7 +155,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.96);backdrop-fil
 </nav>
 
 <div class="hero">
-  <div class="hero-badge">📦 파트너 자료실</div>
+  <div class="hero-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 8l8-4 8 4-8 4z"/><path d="M4 8v8l8 4 8-4V8"/><path d="M12 12v8"/></svg> 파트너 자료실</div>
   <h1>교회가 <span>직접 나눌</span> 수 있는 자료</h1>
   <p>QR 코드·주보 인서트·포스터·SNS 카드를 다운로드하거나 인쇄해서<br>
   교인들과 이웃에게 HebronGuide를 소개해 주세요.</p>
@@ -164,7 +164,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.96);backdrop-fil
 <div class="wrap">
 
   <!-- 사용법 -->
-  <div class="sec-title">📖 사용 방법</div>
+  <div class="sec-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M5 4.5A2 2 0 0 1 7 3h11v15H7a2 2 0 0 0-2 2z"/><path d="M5 18.5A2 2 0 0 1 7 21h11"/></svg> 사용 방법</div>
   <div class="how-card">
     <div class="how-step">
       <div class="how-num">1</div>
@@ -186,10 +186,10 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.96);backdrop-fil
 
   <!-- 탭 -->
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('qr')">🔲 QR 코드</button>
-    <button class="tab-btn" onclick="switchTab('bulletin')">📋 주보 인서트</button>
-    <button class="tab-btn" onclick="switchTab('poster')">🖼️ 포스터</button>
-    <button class="tab-btn" onclick="switchTab('sns')">📱 SNS 카드</button>
+    <button class="tab-btn active" onclick="switchTab('qr')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="7"/></svg> QR 코드</button>
+    <button class="tab-btn" onclick="switchTab('bulletin')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="6" y="5" width="12" height="16" rx="2"/><path d="M9.5 5V4a2.5 2.5 0 0 1 5 0v1"/><path d="M9 4.5h6"/></svg> 주보 인서트</button>
+    <button class="tab-btn" onclick="switchTab('poster')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M6 3h9l3 3v15H6z"/><path d="M14 3v4h4"/></svg> 포스터</button>
+    <button class="tab-btn" onclick="switchTab('sns')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg> SNS 카드</button>
   </div>
 
   <!-- ①  QR 코드 탭 -->
@@ -198,7 +198,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.96);backdrop-fil
       각 도시 HebronGuide 페이지의 QR 코드입니다.<br>
       PNG로 다운로드해서 주보·카카오톡·게시판 등 어디서든 사용하세요.
     </div>
-    <input class="search-box" type="text" placeholder="🔍 도시 검색 (예: 시애틀, Toronto, 서울...)" oninput="filterCities(this.value)"/>
+    <input class="search-box" type="text" placeholder=" 도시 검색 (예: 시애틀, Toronto, 서울...)" oninput="filterCities(this.value)"/>
     <div class="qr-grid" id="qr-grid">
       <!-- JS로 채움 -->
     </div>
@@ -235,13 +235,13 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.96);backdrop-fil
           </div>
         </div>
         <div class="action-row">
-          <button class="btn-action btn-gold" onclick="printBulletin()">🖨️ 인쇄하기</button>
-          <button class="btn-action btn-mint" onclick="downloadBulletin()">💾 이미지 저장</button>
+          <button class="btn-action btn-gold" onclick="printBulletin()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M7 8V4h10v4"/><rect x="4" y="8" width="16" height="8" rx="2"/><path d="M7 14h10v6H7z"/></svg> 인쇄하기</button>
+          <button class="btn-action btn-mint" onclick="downloadBulletin()">이미지 저장</button>
         </div>
       </div>
       <div class="how-card" style="max-width:260px;flex:1;">
         <div style="font-size:.78rem;color:var(--muted);line-height:1.9;">
-          <strong style="color:var(--text);">📋 활용 방법</strong><br>
+          <strong style="color:var(--text);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="6" y="5" width="12" height="16" rx="2"/><path d="M9.5 5V4a2.5 2.5 0 0 1 5 0v1"/><path d="M9 4.5h6"/></svg> 활용 방법</strong><br>
           • 주보 인쇄 시 뒷면에 포함<br>
           • 새가족 환영 봉투에 동봉<br>
           • 교회 안내 테이블에 배치<br>
@@ -279,13 +279,13 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.96);backdrop-fil
           <div class="poster-verse">"내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35</div>
         </div>
         <div class="action-row">
-          <button class="btn-action btn-gold" onclick="window.print()">🖨️ 인쇄하기 (A4)</button>
-          <button class="btn-action btn-mint" onclick="downloadPoster()">💾 이미지 저장</button>
+          <button class="btn-action btn-gold" onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M7 8V4h10v4"/><rect x="4" y="8" width="16" height="8" rx="2"/><path d="M7 14h10v6H7z"/></svg> 인쇄하기 (A4)</button>
+          <button class="btn-action btn-mint" onclick="downloadPoster()">이미지 저장</button>
         </div>
       </div>
       <div class="how-card" style="max-width:240px;flex:1;">
         <div style="font-size:.78rem;color:var(--muted);line-height:1.9;">
-          <strong style="color:var(--text);">🖼️ 활용 방법</strong><br>
+          <strong style="color:var(--text);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M6 3h9l3 3v15H6z"/><path d="M14 3v4h4"/></svg> 활용 방법</strong><br>
           • 교회 게시판 부착<br>
           • 한인 마트·식당 게시<br>
           • 이민자 센터·관공서<br>
@@ -315,13 +315,13 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.96);backdrop-fil
           <div class="sns-tag">한인 이민자 정착 가이드 · 무료</div>
         </div>
         <div class="action-row">
-          <button class="btn-action btn-gold" onclick="downloadSns()">💾 이미지 저장</button>
-          <button class="btn-action btn-mint" onclick="copyLink()">🔗 링크 복사</button>
+          <button class="btn-action btn-gold" onclick="downloadSns()">이미지 저장</button>
+          <button class="btn-action btn-mint" onclick="copyLink()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M9.5 14.5 14.5 9.5"/><path d="M8 12 6 14a3 3 0 0 0 4.2 4.2l2-2"/><path d="M16 12l2-2a3 3 0 0 0-4.2-4.2l-2 2"/></svg> 링크 복사</button>
         </div>
       </div>
       <div class="how-card" style="max-width:240px;flex:1;">
         <div style="font-size:.78rem;color:var(--muted);line-height:1.9;">
-          <strong style="color:var(--text);">📱 공유 방법</strong><br>
+          <strong style="color:var(--text);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg> 공유 방법</strong><br>
           • 카카오톡 단체방 공유<br>
           • 인스타그램 스토리·피드<br>
           • 교회 밴드·카페 게시<br>
@@ -421,7 +421,7 @@ function buildQrGrid(filter = '') {
       </div>
       <div class="qr-city">${c.ko}</div>
       <div class="qr-url">hebronguide.com/${c.slug}/</div>
-      <button class="btn-dl" onclick="downloadQr('${c.slug}','${c.ko}')">⬇ PNG 저장</button>
+      <button class="btn-dl" onclick="downloadQr('${c.slug}','${c.ko}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg> PNG 저장</button>
     </div>`).join('')
 }
 
