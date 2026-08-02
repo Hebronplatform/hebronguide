@@ -908,7 +908,11 @@ type CitySlug =
   "newjersey" |
   // 미 남부 확장 — 한인회·한인교회 군집 확인 후 신설 (2026-07)
   // 헌츠빌: 북앨라배마 한인회(NAKA) 활동 중 · 멤피스: 한인 교회 4곳 군집
-  "huntsville" | "memphis";
+  "huntsville" | "memphis" |
+  // ⚠️ 누락 복구 (2026-07-25) — HEBRON_CITIES에는 status:"live"로 있으나
+  // CitySlug·CITY_CONFIGS에 빠져 있어 useCityConfig()가 시애틀로 폴백되던 3개 도시.
+  // 즉 /tampa/·/fairfield/·/waynesville/ 방문 시 "시애틀" 이름·색·태그라인이 표시됐다.
+  "fairfield" | "waynesville" | "tampa";
 
 interface CityConfig {
   slug: CitySlug;
@@ -1238,6 +1242,12 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   neworleans: { slug: "neworleans", nameKo: "뉴올리언스", nameEn: "New Orleans",   color: "#7E22CE", heroVideo: "", population: "3천+",    state: "Louisiana",   taglineKo: "재즈의 도시, 뉴올리언스 새 출발", taglineEn: "Jazz city — your new start in New Orleans.", taglineEs: "La ciudad del jazz, Nueva Orleans." },
   huntsville: { slug: "huntsville", nameKo: "헌츠빌",    nameEn: "Huntsville",   color: "#2563EB", heroVideo: "", population: "1천4백+", state: "Alabama",     taglineKo: "로켓 시티에서 새로 시작하는 한인 가정", taglineEn: "Rocket City — a new start for Korean families.", taglineEs: "Ciudad Cohete, un nuevo comienzo." },
   memphis:    { slug: "memphis",    nameKo: "멤피스",    nameEn: "Memphis",      color: "#B45309", heroVideo: "", population: "6백+",    state: "Tennessee",   taglineKo: "미시시피 강가의 한인 교회 공동체", taglineEn: "Korean church community on the Mississippi.", taglineEs: "Comunidad coreana junto al Misisipi." },
+  // ⚠️ 누락 복구 (2026-07-25) — HEBRON_CITIES에만 있고 여기 없어 시애틀로 폴백되던 3개.
+  // 색·이름은 HEBRON_CITIES, 주(州)는 build.sh CITY_GEO 좌표로 확정.
+  // population은 검증된 한인 인구 수치가 없어 "—" (Hard Rule: AI 추측 데이터 금지). 화면 미표시 필드.
+  fairfield:   { slug: "fairfield",   nameKo: "페어필드",  nameEn: "Fairfield",    color: "#10B981", heroVideo: "", population: "—", state: "California",  taglineKo: "트래비스 공군기지, 새로운 이웃",  taglineEn: "Travis AFB — your new neighbors.",       taglineEs: "Base Travis, tus nuevos vecinos." },
+  waynesville: { slug: "waynesville", nameKo: "웨인즈빌",  nameEn: "Waynesville",  color: "#7C3AED", heroVideo: "", population: "—", state: "Missouri",    taglineKo: "포트 레너드우드, 함께 걷는 길",  taglineEn: "Fort Leonard Wood — walking together.",  taglineEs: "Fort Leonard Wood, caminando juntos." },
+  tampa:       { slug: "tampa",       nameKo: "탬파",      nameEn: "Tampa",        color: "#0EA5E9", heroVideo: "", population: "—", state: "Florida",     taglineKo: "걸프 해안에서 시작하는 첫날",    taglineEn: "Your first day on the Gulf Coast.",      taglineEs: "Tu primer día en la Costa del Golfo." },
 };
 
 function useCityConfig(): CityConfig {

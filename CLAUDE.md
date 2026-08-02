@@ -453,6 +453,7 @@ HebronGuide는 부분이 전체에 얽혀 있다 — **Vite 빌드 · 서비스�
 | 문서 위생 자체 | `DOC_HYGIENE.md` |
 | **파트너 철학·서약·수익나눔 원칙** | `HEBRON_PARTNER_CODEX.md` |
 | 4차 줌 네트워크 전략·스크립트 | `PASTOR_NETWORK_PLAYBOOK.md` |
+| **플랫폼 원칙 — 없어서는 안 될 존재가 되는 길** (희소한 쪽=새로 온 사람 · 해자=검증 · 도시별 확장 · 아마존은 메커니즘만) | `PLATFORM_PRINCIPLES.md` |
 | 마케팅 전략 + **경쟁 벤치마킹·한인 접근** | `MARKETING_STRATEGY.md` |
 | **글로벌 한인 크리스천 커뮤니티 로드맵** (모으기·지속수익화 3층) | `GLOBAL_COMMUNITY_ROADMAP.md` |
 | **디아스포라 이주 물결 전략** (예비이민자 관문·2030/4050 세그먼트·나그네 신학, 물질주의 프레임 배격) | `DIASPORA_MIGRATION_STRATEGY.md` |
