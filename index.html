@@ -84,6 +84,37 @@
   .hero-declaration p{font-size:1rem;color:rgba(236,253,245,.88);line-height:2;font-style:italic;}
   .hero-declaration .speaker{display:block;font-style:normal;font-size:.78rem;color:var(--gold);font-weight:700;margin-top:8px;}
 
+  .hero-intro{font-size:clamp(.95rem,1.7vw,1.12rem);line-height:2;color:rgba(236,253,245,.72);
+    margin:0 auto 26px;max-width:560px;font-weight:300;}
+  .hero-intro b{color:#fff;font-weight:700;}
+  .hero-intro b.free{color:var(--mint);font-weight:800;letter-spacing:.02em;}
+
+  /* ── 히어로 도시 바로가기 ── */
+  .hero-jump{max-width:620px;margin:0 auto 20px;position:relative;}
+  .hj-box{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.06);
+    border:1px solid rgba(201,162,39,.35);border-radius:14px;padding:15px 18px;transition:border-color .2s,background .2s;}
+  .hj-box:focus-within{border-color:var(--gold);background:rgba(255,255,255,.09);}
+  .hj-ico{width:20px;height:20px;flex:none;color:var(--gold);}
+  .hj-box input{flex:1;background:none;border:0;outline:none;color:#fff;font-size:1rem;
+    font-family:'Noto Sans KR',sans-serif;min-width:0;}
+  .hj-box input::placeholder{color:rgba(236,253,245,.42);}
+  .hj-list{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:40;
+    background:#141a24;border:1px solid rgba(255,255,255,.14);border-radius:14px;
+    overflow:hidden;display:none;box-shadow:0 18px 40px rgba(0,0,0,.5);max-height:320px;overflow-y:auto;}
+  .hj-list.on{display:block;}
+  .hj-list a{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:13px 18px;color:#ECFDF5;text-decoration:none;font-size:.95rem;border-bottom:1px solid rgba(255,255,255,.05);}
+  .hj-list a:last-child{border-bottom:0;}
+  .hj-list a:hover,.hj-list a.sel{background:rgba(201,162,39,.16);color:var(--gold);}
+  .hj-list .hj-en{font-size:.8rem;color:var(--muted,rgba(236,253,245,.5));}
+  .hj-none{padding:15px 18px;color:rgba(236,253,245,.5);font-size:.9rem;}
+  .hj-quick{margin-top:13px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+    gap:8px;font-size:.8rem;color:rgba(236,253,245,.45);}
+  .hj-quick a{color:rgba(236,253,245,.8);text-decoration:none;border:1px solid rgba(255,255,255,.16);
+    border-radius:99px;padding:5px 13px;transition:all .18s;}
+  .hj-quick a:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,162,39,.1);}
+  @media(max-width:480px){.hero-jump{max-width:100%;}.hj-box{padding:13px 15px;}}
+
   .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:22px;}
   .hero-trust{font-size:.82rem;line-height:1.85;color:rgba(236,253,245,.6);margin:0 auto 44px;max-width:560px;letter-spacing:.01em;}
   .hero-trust em{font-style:normal;color:var(--mint);opacity:.9;}
@@ -425,26 +456,40 @@
     <span class="en">No one in this world is <strong style="color:#fff;font-weight:700;">truly alone.</strong></span>
   </p>
 
-  <div class="hero-declaration">
-    <p>
-      <span class="ko">"정보가 아닙니다. 사람입니다.<br>이 도시를 먼저 살아온 사람들이<br>당신의 첫날을 함께합니다.<br><br>그 누군가가 되는 것 — 이것이 헤브론입니다."</span>
-      <span class="en">"Not just information. People.<br>Those who've lived this city before you<br>walk with you on your first day.<br><br>Being that someone for you — this is Hebron."</span>
-    </p>
-    <span class="speaker ko">— HebronGuide</span>
-    <span class="speaker en">— HebronGuide</span>
+  <!-- 세 줄 소개 — 관심 있는 사람만 아래로 -->
+  <p class="hero-intro">
+    <span class="ko">낯선 도시의 안내자<br>
+    <b>도시 · 교회 · 업소 · 사람</b>을 잇습니다<br>
+    <b class="free">전부 무료</b></span>
+    <span class="en">Your guide in an unfamiliar city<br>
+    <b>City · Church · Business · People</b><br>
+    <b class="free">Always free</b></span>
+  </p>
+
+  <!-- 바로 이동하는 도시 검색 — 첫 화면에서 앱까지 한 번에 -->
+  <div class="hero-jump">
+    <div class="hj-box">
+      <svg class="hj-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="heroCity" type="text" autocomplete="off" aria-label="도시 이름을 입력하세요"
+             placeholder="도시 이름을 입력하세요 — 시애틀, 뉴욕, Toronto…"/>
+    </div>
+    <div id="heroCityList" class="hj-list" role="listbox" aria-label="검색된 도시"></div>
+    <div class="hj-quick">
+      <span class="ko">자주 찾는 곳</span><span class="en">Popular</span>
+      <a href="/seattle/">시애틀</a><a href="/la/">LA</a><a href="/newyork/">뉴욕</a>
+      <a href="/dallas/">달라스</a><a href="/toronto/">토론토</a><a href="/seoul/">서울</a>
+    </div>
   </div>
 
   <div class="hero-cta" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-    <a href="#cities" class="btn-hero"><span class="ko">내 도시 찾기 →</span><span class="en">Find My City →</span></a>
+    <a href="#cities" class="btn-outline"><span class="ko">전체 도시 보기</span><span class="en">All Cities</span></a>
     <a href="/story-submit.html" class="btn-outline"><span class="ko">환대 이야기 나누기</span><span class="en">Share a Story of Welcome</span></a>
   </div>
 
   <!-- 신뢰 고지 — 소개해 주시는 분(교회·한인회·단체)이 가장 먼저 확인하고 싶어하는 것 -->
   <p class="hero-trust">
-    <span class="ko">이용료 없음 · 회원가입 없음 · 개인정보 수집 없음 · 광고 강요 없음<br>
-    <em>누구에게나 열려 있고, 소개하셔도 부담 드리지 않습니다.</em></span>
-    <span class="en">No fees · No sign-up · No data collection · No ads pushed<br>
-    <em>Open to everyone — share it freely, with nothing owed.</em></span>
+    <span class="ko"><em>소개하셔도 부담 드리지 않습니다.</em></span>
+    <span class="en"><em>Share it freely — nothing owed.</em></span>
   </p>
 
   <div class="hero-stats">
@@ -459,14 +504,14 @@
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PARTNERS ━━━ -->
 <div class="partner-section" id="partner">
-  <div class="sec-label"><span class="ko">파트너 · Partners</span><span class="en">Partners</span></div>
+  <div class="sec-label"><span class="ko">등록하기 · Register</span><span class="en">Register</span></div>
   <h2 class="sec-title">
-    <span class="ko">두 가지 방식으로<br>함께합니다</span>
-    <span class="en">Two ways<br>to join us</span>
+    <span class="ko">교회 등록 · 업체 등록<br><span style="color:var(--mint);">모두 무료입니다</span></span>
+    <span class="en">Register a church or a business<br><span style="color:var(--mint);">Always free</span></span>
   </h2>
   <p class="sec-desc">
-    <span class="ko">교회든 사업체든, 환대의 마음이 있다면 — 이미 파트너입니다.</span>
-    <span class="en">Church or business — if hospitality is in your heart, you're already a partner.</span>
+    <span class="ko">등록비도, 수수료도, 광고비도 없습니다. 낯선 이를 맞이할 마음만 있으면 됩니다.</span>
+    <span class="en">No listing fee, no commission, no ad spend — just a heart to welcome a stranger.</span>
   </p>
 
   <div class="partner-grid">
@@ -475,10 +520,10 @@
       <div class="partner-icon-wrap">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M4 21V11l8-6 8 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/><path d="M2 21h20"/></svg>
       </div>
-      <div class="partner-type"><span class="ko">교회 파트너</span><span class="en">Church Partner</span></div>
+      <div class="partner-type"><span class="ko">교회 등록</span><span class="en">Church</span></div>
       <h3><span class="ko">선교적 교회로<br>도시를 섬기세요</span><span class="en">Serve the city<br>as a missional church</span></h3>
       <p><span class="ko">교회를 무료 등재하면, 공항에서 내린 새 이웃이 가장 먼저 만나는 얼굴이 됩니다.</span><span class="en">Free listing — be the first face a newcomer meets after landing.</span></p>
-      <div class="partner-free"><span class="ko">무상 등재</span><span class="en">Free Listing</span></div>
+      <div class="partner-free"><span class="ko">등록 무료</span><span class="en">Free</span></div>
       <div class="partner-cta-label"><span class="ko">교회 등록하기 →</span><span class="en">Register Church →</span></div>
     </a>
 
@@ -486,10 +531,10 @@
       <div class="partner-icon-wrap">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
       </div>
-      <div class="partner-type"><span class="ko">사업 파트너</span><span class="en">Business Partner</span></div>
+      <div class="partner-type"><span class="ko">업체 등록</span><span class="en">Business</span></div>
       <h3><span class="ko">글로벌 환대 플랫폼에<br>사업체를 올리세요</span><span class="en">List your business<br>on a global hospitality platform</span></h3>
       <p><span class="ko">식당, 병원, 학원, 법무사 — 새로 도착한 한인이 첫 번째로 찾는 곳이 됩니다.</span><span class="en">Restaurant, clinic, academy, law office — be the first stop for new Korean arrivals.</span></p>
-      <div class="partner-free"><span class="ko">기본 무료</span><span class="en">Free to Start</span></div>
+      <div class="partner-free"><span class="ko">등록 무료</span><span class="en">Free</span></div>
       <div class="partner-cta-label"><span class="ko">사업체 등록하기 →</span><span class="en">Register Business →</span></div>
     </a>
 
@@ -837,10 +882,16 @@ function toggleFaq(btn){
       <a href="/fayetteville/" class="city-pill"><span class="ko">페이엣빌</span><span class="en">Fayetteville</span></a>
       <a href="/killeen/" class="city-pill"><span class="ko">킬린</span><span class="en">Killeen</span></a>
       <a href="/anchorage/" class="city-pill"><span class="ko">앵커리지</span><span class="en">Anchorage</span></a>
+      <a href="/austin/" class="city-pill"><span class="ko">오스틴</span><span class="en">Austin</span></a>
+      <a href="/tampa/" class="city-pill"><span class="ko">탬파</span><span class="en">Tampa</span></a>
+      <a href="/inlandempire/" class="city-pill"><span class="ko">인랜드 엠파이어</span><span class="en">Inland Empire</span></a>
+      <a href="/fairfield/" class="city-pill"><span class="ko">페어필드</span><span class="en">Fairfield</span></a>
+      <a href="/waynesville/" class="city-pill"><span class="ko">웨인즈빌</span><span class="en">Waynesville</span></a>
     </div></div>
 
     <div class="region-block"><div class="region-label"><span class="ko">캐나다</span><span class="en">Canada</span></div><div class="city-pills"><a href="/toronto/" class="city-pill"><span class="ko">토론토</span><span class="en">Toronto</span></a>
       <a href="/vancouver/" class="city-pill"><span class="ko">밴쿠버</span><span class="en">Vancouver</span></a>
+      <a href="/princgeorge/" class="city-pill"><span class="ko">프린스조지</span><span class="en">Prince George</span></a>
       <a href="/calgary/" class="city-pill"><span class="ko">캘거리</span><span class="en">Calgary</span></a>
       <a href="/edmonton/" class="city-pill"><span class="ko">에드먼턴</span><span class="en">Edmonton</span></a>
       <a href="/ottawa/" class="city-pill"><span class="ko">오타와</span><span class="en">Ottawa</span></a>
@@ -851,6 +902,7 @@ function toggleFaq(btn){
       <a href="/guadalajara/" class="city-pill"><span class="ko">과달라하라</span><span class="en">Guadalajara</span></a>
       <a href="/monterrey/" class="city-pill"><span class="ko">몬테레이</span><span class="en">Monterrey</span></a>
       <a href="/saopaulo/" class="city-pill"><span class="ko">상파울루</span><span class="en">São Paulo</span></a>
+      <a href="/bogota/" class="city-pill"><span class="ko">보고타</span><span class="en">Bogotá</span></a>
     </div></div>
 
     <div class="region-block"><div class="region-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a13 13 0 0 1 0 17 13 13 0 0 1 0-17z"/></svg> <span class="ko">오세아니아</span><span class="en">Oceania</span></div><div class="city-pills"><a href="/sydney/" class="city-pill"><span class="ko">시드니</span><span class="en">Sydney</span></a>
@@ -1001,6 +1053,49 @@ function toggleLang(){
     var btn=document.getElementById('lang-btn');
     if(btn)btn.textContent='한국어';
   }
+})();
+
+/* ── 히어로 도시 바로가기 — 입력 즉시 이동 ──
+   도시 목록은 아래 #cityRegions의 실제 링크에서 읽는다(중복 정의 없음). */
+(function(){
+  var box=document.getElementById('heroCity'), list=document.getElementById('heroCityList');
+  if(!box||!list) return;
+  var CITIES=[], sel=-1;
+  function load(){
+    CITIES=[].slice.call(document.querySelectorAll('#cityRegions .city-pill')).map(function(a){
+      var ko=(a.querySelector('.ko')||{}).textContent||'', en=(a.querySelector('.en')||{}).textContent||'';
+      return { href:a.getAttribute('href')||'', ko:ko.trim(), en:en.trim(),
+               key:(ko+' '+en+' '+(a.getAttribute('href')||'')).toLowerCase() };
+    }).filter(function(c){ return c.href && c.ko; });
+  }
+  function render(items){
+    if(!items.length){ list.innerHTML='<div class="hj-none">그 도시는 아직 없습니다. 아래에서 도시 추가를 요청해 주세요.</div>'; list.classList.add('on'); return; }
+    list.innerHTML=items.slice(0,7).map(function(c,i){
+      return '<a href="'+c.href+'" role="option"'+(i===0?' class="sel"':'')+'>'
+           + '<span>'+c.ko+'</span><span class="hj-en">'+c.en+'</span></a>';
+    }).join('');
+    sel=0; list.classList.add('on');
+  }
+  function close(){ list.classList.remove('on'); sel=-1; }
+  box.addEventListener('input',function(){
+    if(!CITIES.length) load();
+    var q=this.value.trim().toLowerCase();
+    if(!q){ close(); return; }
+    render(CITIES.filter(function(c){ return c.key.indexOf(q)>-1; }));
+  });
+  box.addEventListener('keydown',function(e){
+    var opts=list.querySelectorAll('a');
+    if(e.key==='Enter'){ if(opts[sel]){ e.preventDefault(); location.href=opts[sel].getAttribute('href'); } return; }
+    if(e.key==='Escape'){ close(); return; }
+    if(e.key!=='ArrowDown'&&e.key!=='ArrowUp') return;
+    if(!opts.length) return;
+    e.preventDefault();
+    opts[sel]&&opts[sel].classList.remove('sel');
+    sel=(e.key==='ArrowDown')?(sel+1)%opts.length:(sel-1+opts.length)%opts.length;
+    opts[sel].classList.add('sel'); opts[sel].scrollIntoView({block:'nearest'});
+  });
+  box.addEventListener('focus',function(){ if(!CITIES.length) load(); });
+  document.addEventListener('click',function(e){ if(!e.target.closest('.hero-jump')) close(); });
 })();
 
 var inp=document.getElementById('citySearch');
