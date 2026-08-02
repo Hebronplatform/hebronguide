@@ -72,10 +72,10 @@
   .hero .hero-trust em{color:#8a5f10;}
   .hero .btn-outline{border-color:rgba(58,39,8,.28);color:#3a2708;background:rgba(255,255,255,.42);}
   .hero .btn-outline:hover{background:#fff;border-color:#9a6b12;color:#241704;}
-  .hero .hero-stats{background:rgba(255,255,255,.34);border-color:rgba(58,39,8,.14);}
-  .hero .stat{border-color:rgba(58,39,8,.12);}
-  .hero .stat-n{color:#9a6b12;}
-  .hero .stat-l{color:rgba(58,39,8,.62);}
+  .hero .hero-stats{background:rgba(122,79,10,.16);border-color:rgba(122,79,10,.2);}
+  .hero .hero-stats .stat{background:rgba(255,255,255,.62);border-color:rgba(122,79,10,.14);}
+  .hero .hero-stats .stat-n{color:#9a6b12;}
+  .hero .hero-stats .stat-l{color:rgba(58,39,8,.66);}
   .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(201,162,39,.12) 0%,transparent 65%);pointer-events:none;z-index:0;}
   .hero::after{content:'';position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(110,231,183,.07) 0%,transparent 60%);pointer-events:none;z-index:0;}
   .hero>*{position:relative;z-index:1;}
@@ -132,7 +132,7 @@
   .hero-intro b.free{color:var(--mint);font-weight:800;letter-spacing:.02em;}
 
   /* ── 히어로 도시 바로가기 ── */
-  .hero-jump{max-width:620px;margin:0 auto 20px;position:relative;}
+  .hero-jump{max-width:620px;margin:0 auto 20px;position:relative;z-index:50;}
   .hj-box{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.06);
     border:1px solid rgba(201,162,39,.35);border-radius:14px;padding:15px 18px;transition:border-color .2s,background .2s;}
   .hj-box:focus-within{border-color:var(--gold);background:rgba(255,255,255,.09);}
@@ -156,6 +156,24 @@
     border-radius:99px;padding:5px 13px;transition:all .18s;}
   .hj-quick a:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,162,39,.1);}
   @media(max-width:480px){.hero-jump{max-width:100%;}.hj-box{padding:13px 15px;}}
+
+  /* 밝은 히어로 위 — 명암 대비 확보 (흰 배경 카드 + 진한 글씨) */
+  .hero .hj-box{background:#fff;border:1px solid rgba(122,79,10,.3);
+    box-shadow:0 6px 22px rgba(122,79,10,.14);}
+  .hero .hj-box:focus-within{background:#fff;border-color:#9a6b12;
+    box-shadow:0 8px 28px rgba(122,79,10,.24);}
+  .hero .hj-ico{color:#9a6b12;}
+  .hero .hj-box input{color:#241704;}
+  .hero .hj-box input::placeholder{color:rgba(58,39,8,.5);}
+  .hero .hj-list{background:#fff;border-color:rgba(122,79,10,.25);
+    box-shadow:0 18px 40px rgba(122,79,10,.22);}
+  .hero .hj-list a{color:#241704;border-bottom-color:rgba(58,39,8,.08);}
+  .hero .hj-list a:hover,.hero .hj-list a.sel{background:rgba(242,184,102,.28);color:#7a4f0a;}
+  .hero .hj-list .hj-en{color:rgba(58,39,8,.55);}
+  .hero .hj-none{color:rgba(58,39,8,.6);}
+  .hero .hj-quick{color:rgba(58,39,8,.6);}
+  .hero .hj-quick a{color:#3a2708;border-color:rgba(122,79,10,.32);background:rgba(255,255,255,.55);font-weight:600;}
+  .hero .hj-quick a:hover{background:#fff;border-color:#9a6b12;color:#7a4f0a;}
 
   .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:22px;}
   .hero-trust{font-size:.82rem;line-height:1.85;color:rgba(236,253,245,.6);margin:0 auto 44px;max-width:560px;letter-spacing:.01em;}
