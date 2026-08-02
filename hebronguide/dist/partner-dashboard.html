@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>사업체 파트너 대시보드 — HebronGuide</title>
+  <title>사업체 협력 대시보드 — HebronGuide</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="/icon-192.png">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -94,8 +94,8 @@
 
   <div class="login-hero">
     <div class="login-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 9.5 5 4.5h14l1 5"/><path d="M4 9.5a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5.5 12v8h13v-8"/></svg></div>
-    <h1 class="login-title"><span class="ko">사업체 파트너 로그인</span><span class="en">Business Partner Login</span></h1>
-    <p class="login-sub"><span class="ko">HebronGuide 파트너 사업체 전용</span><span class="en">For HebronGuide partner businesses</span></p>
+    <h1 class="login-title"><span class="ko">사업체 협력 로그인</span><span class="en">Business Partner Login</span></h1>
+    <p class="login-sub"><span class="ko">HebronGuide 협력 업체 전용</span><span class="en">For HebronGuide partner businesses</span></p>
   </div>
 
   <div class="input-card">
@@ -119,7 +119,7 @@
   </button>
   <div class="msg" id="msg-biz"></div>
   <div style="text-align:center;margin-top:20px;font-size:.85rem;color:var(--text2)">
-    <span class="ko">아직 파트너가 아니시라면 </span><span class="en">Not a partner? </span>
+    <span class="ko">아직 등록 전이시라면 </span><span class="en">Not a partner? </span>
     <a href="/ad-request.html#business" class="link-text"><span class="ko">사업체 등록하기 →</span><span class="en">Register →</span></a>
   </div>
   <div style="text-align:center;margin-top:10px;font-size:.82rem;color:var(--text3)">
@@ -141,7 +141,7 @@
   <div class="biz-header">
     <div>
       <div class="biz-greeting"><span class="ko">안녕하세요 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 9.5 5 4.5h14l1 5"/><path d="M4 9.5a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5.5 12v8h13v-8"/></svg></span><span class="en">Welcome <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 9.5 5 4.5h14l1 5"/><path d="M4 9.5a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5.5 12v8h13v-8"/></svg></span></div>
-      <div class="biz-name" id="biz-display-name">파트너님</div>
+      <div class="biz-name" id="biz-display-name">협력님</div>
     </div>
   </div>
 
@@ -251,7 +251,7 @@ async function bizLogin(){const email=document.getElementById('biz-email').value
 
 async function logout(){if(sb)await sb.auth.signOut();sess=null;myBiz=null;document.getElementById('screen-biz').style.display='none';document.getElementById('screen-login').style.display='block'}
 
-async function showBizDashboard(user){document.getElementById('screen-login').style.display='none';document.getElementById('screen-biz').style.display='block';const name=user.user_metadata?.full_name||user.email?.split('@')[0]||'파트너님';document.getElementById('biz-display-name').textContent=name;await loadMyBiz(user.email)}
+async function showBizDashboard(user){document.getElementById('screen-login').style.display='none';document.getElementById('screen-biz').style.display='block';const name=user.user_metadata?.full_name||user.email?.split('@')[0]||'협력님';document.getElementById('biz-display-name').textContent=name;await loadMyBiz(user.email)}
 
 async function loadMyBiz(email){try{const r=await fetch(`${SB_URL}/rest/v1/community_items?contact=eq.${encodeURIComponent(email)}&category=eq.business&limit=1`,{headers:{apikey:SB_ANON,Authorization:'Bearer '+SB_ANON}});const[b]=await r.json();if(!b){document.getElementById('biz-title-name').textContent='등록된 사업체 없음';document.getElementById('biz-city-stat').innerHTML='<a href="/ad-request.html#business" style="color:var(--gold)">사업체 등록하기 →</a>';return}myBiz=b;document.getElementById('biz-title-name').textContent=b.name||b.title||'—';document.getElementById('biz-type-text').textContent=b.type||b.description?.split('.')[0]||'—';const meta=[];if(b.city_slug||b.city)meta.push(`<span class="biz-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 21s6.5-6 6.5-11a6.5 6.5 0 1 0-13 0c0 5 6.5 11 6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg> ${b.city||b.city_slug}</span>`);if(b.phone)meta.push(`<span class="biz-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M5 4h3.5l1.2 5-2 1.3a12 12 0 0 0 5 5l1.3-2 5 1.2V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg> ${b.phone}</span>`);const badge=document.getElementById('biz-status-badge');if(b.status==='approved'){badge.className='biz-badge';badge.textContent=' Hebron 협력 사업체'}else{badge.className='biz-badge pending';badge.textContent='⏳ 승인 대기'}document.getElementById('biz-meta').innerHTML=meta.join('');const wl=document.getElementById('biz-website-link');if(b.url||b.website){wl.href=b.url||b.website;wl.style.opacity='1'}else{wl.style.opacity='.4';wl.onclick=e=>e.preventDefault()}const pl=document.getElementById('biz-phone-link');if(b.phone){pl.href='tel:'+b.phone;pl.style.opacity='1'}else{pl.style.opacity='.4';pl.onclick=e=>e.preventDefault()}renderBizCityStat(b.city_slug||'')}catch(e){document.getElementById('biz-title-name').textContent='정보를 불러오지 못했습니다.'}}
 

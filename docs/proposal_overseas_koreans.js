@@ -279,7 +279,7 @@ const doc = new Document({
           ]}),
           new TableRow({ children: [
             cell("재외동포 네트워크 구축", { size: 20, shade: GRAY, width: 4680 }),
-            cell("72개 도시 글로벌 환대 커뮤니티", { size: 20, width: 4680 }),
+            cell("72개 도시 글로벌 환대 가이드", { size: 20, width: 4680 }),
           ]}),
           new TableRow({ children: [
             cell("디지털 기반 서비스 확대", { size: 20, shade: GRAY, width: 4680 }),

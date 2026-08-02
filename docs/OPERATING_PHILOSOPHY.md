@@ -173,8 +173,8 @@ HebronGuide — 환대의 디지털 첫 관문 (마 25:35)
 
 ## 7. 비전 — VISION 2030
 
-**글로벌 환대 커뮤니티**  
-*Global Hospitality Community*
+**글로벌 환대 가이드**  
+*Global Hospitality Guide*
 
 | 연도 | 목표 | 방향 |
 |---|---|---|

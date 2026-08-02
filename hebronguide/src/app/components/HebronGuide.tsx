@@ -9297,7 +9297,7 @@ function CompactHeroNew() {
           <span style={{ fontSize: 11, color: "#C9A227", fontWeight: 900, lineHeight: 1 }}>✦</span>
           <span style={{ fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 800,
             color: "rgba(255,255,255,0.97)", letterSpacing: "0.04em" }}>
-            {lang === "ko" ? "글로벌 환대 커뮤니티" : "Global Hospitality Community"}
+            {lang === "ko" ? "글로벌 환대 가이드" : "Global Hospitality Guide"}
           </span>
         </div>
       </a>

@@ -707,7 +707,7 @@
         <div class="stat-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3v18"/><path d="M7 8.5h10"/></svg></div>
         <div>
           <div class="stat-num" id="st-partners">—</div>
-          <div class="stat-label">파트너 목사</div>
+          <div class="stat-label">협력 목사</div>
         </div>
       </div>
       <div class="stat-card">
@@ -738,7 +738,7 @@
                 <td id="sum-churches-total">—</td><td>—</td><td id="sum-churches-active">—</td></tr>
             <tr><td><span class="dot" style="background:#60a5fa"></span>식당·카페</td>
                 <td id="sum-restaurants-total">—</td><td>—</td><td id="sum-restaurants-active">—</td></tr>
-            <tr><td><span class="dot" style="background:#a78bfa"></span>파트너 목사</td>
+            <tr><td><span class="dot" style="background:#a78bfa"></span>협력 목사</td>
                 <td id="sum-partners-total">—</td><td id="sum-partners-pending">—</td><td id="sum-partners-verified">—</td></tr>
             <tr><td><span class="dot" style="background:#f87171"></span>이야기</td>
                 <td id="sum-stories-total">—</td><td>—</td><td id="sum-stories-featured">—</td></tr>
@@ -828,7 +828,7 @@
         <button class="tab" onclick="switchTab('restaurants')"><i data-lucide="store"></i> 사업체·카페</button>
         <button class="tab" onclick="switchTab('promo')"><i data-lucide="megaphone"></i> 홍보</button>
         <button class="tab" onclick="switchTab('stories')"><i data-lucide="book-open"></i> 이야기</button>
-        <button class="tab" onclick="switchTab('partners')"><i data-lucide="users"></i> 파트너 목사</button>
+        <button class="tab" onclick="switchTab('partners')"><i data-lucide="users"></i> 협력 목사</button>
         <button class="tab" onclick="switchTab('community')"><i data-lucide="message-circle"></i> 기타 신청</button>
         <button class="tab" onclick="switchTab('logs')"><i data-lucide="bar-chart-3"></i> AI 로그</button>
         <button class="tab" onclick="switchTab('planner')" style="border-color:rgba(110,231,183,.4);color:var(--mint);"><i data-lucide="globe"></i> 글로벌 플래너</button>
@@ -886,7 +886,7 @@
 
         <div style="display:flex;align-items:flex-start;gap:10px;">
           <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(110,231,183,.08);color:var(--mint);border:1px solid rgba(110,231,183,.2);">VERIFIED</span>
-          <span style="font-size:.8rem;color:var(--muted);">인증 완료 — 파트너 목사 신원 확인됨</span>
+          <span style="font-size:.8rem;color:var(--muted);">인증 완료 — 협력 목사 신원 확인됨</span>
         </div>
 
       </div>
@@ -894,7 +894,7 @@
         <div style="font-size:.7rem;font-weight:800;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;width:100%;margin-bottom:6px;">Actions</div>
         <div style="font-size:.8rem;color:var(--muted);"><span style="color:var(--green);font-weight:700;">Approve</span> — 신청 승인 → LIVE 전환, 교회·사업체는 자동 등록</div>
         <div style="font-size:.8rem;color:var(--muted);"><span style="color:var(--red);font-weight:700;">Reject</span> — 거절 → 앱에서 숨김</div>
-        <div style="font-size:.8rem;color:var(--muted);"><span style="color:var(--mint);font-weight:700;">Verify</span> — 파트너 목사 인증 확인</div>
+        <div style="font-size:.8rem;color:var(--muted);"><span style="color:var(--mint);font-weight:700;">Verify</span> — 협력 목사 인증 확인</div>
       </div>
     </div>
 
@@ -1148,7 +1148,7 @@
   function churchNameOf(r) {
     if (r.name && !_looksLikePastor(r.name)) return r.name   // name이 이미 교회명
     const desc = r.description || ''
-    const title = (r.title || '').replace(/^\[+\s*교회\s*파트너\s*신청\s*\]+\s*/, '').replace(/\s*\]+\s*$/, '').trim()
+    const title = (r.title || '').replace(/^\[+\s*교회\s*(?:파트너|협력)\s*신청\s*\]+\s*/, '').replace(/\s*\]+\s*$/, '').trim()
     return _churchGet(desc, '교회명\\(KO\\)') || _churchGet(desc, '교회명')
         || title || r.name || '(교회명 미상)'
   }
@@ -1260,9 +1260,9 @@
     document.getElementById('table-content').innerHTML = `<div class="table-wrap">${appSection}${churchSection}</div>`
   }
 
-  // ── 파트너 목사 렌더링 ───────────────────────────────────
+  // ── 협력 목사 렌더링 ───────────────────────────────────
   function renderPartners(data) {
-    if (!data.length) { setEmpty('파트너 목사가 없습니다'); return }
+    if (!data.length) { setEmpty('협력 목사가 없습니다'); return }
     document.getElementById('count-badge').textContent = `${data.length}명`
     document.getElementById('table-content').innerHTML = `
       <table>
@@ -1663,7 +1663,7 @@
     } catch (e) { toast('발송 실패: ' + e.message) }
   }
 
-  // 미발송 파트너 교회 확인 이메일 일괄 재발송 — tags(welcome_sent) 기준
+  // 미발송 협력교회 확인 이메일 일괄 재발송 — tags(welcome_sent) 기준
   async function resendChurchEmails() {
     try {
       const { data: all } = await sbMain.from('community_items')
@@ -1818,7 +1818,7 @@
       await adminAction({ action: 'update_status', id: row.id, table: 'community_items', status: 'migrated' }).catch(() => {})
       toast(`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 2v5"/><path d="M9.5 4.5h5"/><path d="M6 22V11l6-4 6 4v11"/><path d="M10 22v-5h4v5"/></svg> ${nameKo} → churches 테이블 자동 등록 완료!`)
 
-      // 파트너 교회에 확인 이메일 자동 발송
+      // 협력교회에 확인 이메일 자동 발송
       if (email && email !== '없음') {
         try {
           const emailRes = await fetch('/api/notify-partner', {
@@ -2356,7 +2356,7 @@
       document.getElementById('sum-community-pending').textContent = pending
       document.getElementById('sum-community-approved').textContent= approved
 
-      // 교회·식당·파트너·이야기 상세 집계
+      // 교회·식당·협력·이야기 상세 집계
       const [ch, rs, pr, st, stSub] = await Promise.allSettled([
         sbMain.from('churches').select('active'),
         sbMain.from('restaurants').select('active'),
