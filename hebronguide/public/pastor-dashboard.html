@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>파트너 대시보드 — HebronGuide</title>
+  <title>협력 대시보드 — HebronGuide</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="/icon-192.png">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -175,9 +175,9 @@
 
   <div class="login-hero">
     <div class="login-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 2v5"/><path d="M9.5 4.5h5"/><path d="M6 22V11l6-4 6 4v11"/><path d="M10 22v-5h4v5"/></svg></div>
-    <h1 class="login-title"><span class="ko">파트너 로그인</span><span class="en">Partner Login</span></h1>
+    <h1 class="login-title"><span class="ko">협력 로그인</span><span class="en">Partner Login</span></h1>
     <p class="login-sub">
-      <span class="ko">HebronGuide 파트너 목사님·관리자</span>
+      <span class="ko">HebronGuide 협력 목사님·관리자</span>
       <span class="en">For HebronGuide partner pastors &amp; admin</span>
     </p>
   </div>
@@ -232,7 +232,7 @@
     <div class="msg" id="msg-pastor"></div>
 
     <div style="text-align:center;margin-top:20px;font-size:.85rem;color:var(--text2)">
-      <span class="ko">파트너가 아니시라면 </span><span class="en">Not a partner? </span>
+      <span class="ko">아직 등록 전이시라면 </span><span class="en">Not a partner? </span>
       <a href="/ad-request.html" class="link-text"><span class="ko">신청하기 →</span><span class="en">Apply →</span></a>
     </div>
 
@@ -309,7 +309,7 @@
 
   <!-- 교회 히어로 카드 -->
   <div class="church-hero" id="church-hero">
-    <div class="church-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4.5 12.5 9 17 19.5 6.5"/></svg> <span class="ko">파트너 교회</span><span class="en">Partner Church</span></div>
+    <div class="church-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4.5 12.5 9 17 19.5 6.5"/></svg> <span class="ko">협력교회</span><span class="en">Partner Church</span></div>
     <div class="church-name-ko" id="ch-name">—</div>
     <div class="church-name-en" id="ch-name-en">—</div>
     <div class="church-meta" id="ch-meta"></div>
@@ -443,7 +443,7 @@
     </div>
     <div class="stat-box">
       <div class="stat-n" id="a-partners">—</div>
-      <div class="stat-l"><span class="ko">파트너</span><span class="en">Partners</span></div>
+      <div class="stat-l"><span class="ko">협력</span><span class="en">Partners</span></div>
     </div>
     <div class="stat-box">
       <div class="stat-n" id="a-pending">—</div>
@@ -692,7 +692,7 @@ async function showAdmin() {
     const data = await r.json()
     const el = document.getElementById('a-church-list')
     el.innerHTML = !data?.length ? '<div class="list-row"><span style="color:var(--text2);font-size:.88rem">없음</span></div>'
-      : data.map(c => `<div class="list-row"><div class="list-dot" style="${c.hebron_partner?'':'background:var(--text3)'}"></div><div><div class="list-name">${c.name||'—'}</div><div class="list-sub">${c.city_slug||''} ${c.hebron_partner?'· 파트너':''}</div></div></div>`).join('')
+      : data.map(c => `<div class="list-row"><div class="list-dot" style="${c.hebron_partner?'':'background:var(--text3)'}"></div><div><div class="list-name">${c.name||'—'}</div><div class="list-sub">${c.city_slug||''} ${c.hebron_partner?'· 협력':''}</div></div></div>`).join('')
   } catch {}
 }
 
