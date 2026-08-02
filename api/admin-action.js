@@ -134,7 +134,8 @@ export default async function handler(req) {
   if (req.method !== 'POST') return new Response('Method not allowed', { status: 405, headers: CORS })
 
   try {
-    const { action, id, table, status, token, church, business, city_slug, patch } = await req.json()
+    const { action, id, table, status, token, church, business, city_slug, patch,
+            select, order, inCol, inVals, eqCol, eqVal, neqCol, neqVal, limit } = await req.json()
 
     // ── 토큰 인증 ────────────────────────────────────────
     if (!token || token !== ADMIN_HASH) {
@@ -144,7 +145,12 @@ export default async function handler(req) {
     }
 
     // ── 입력값 검증 ──────────────────────────────────────
-    if (!['insert_church','insert_business','mark_notified','update_city_slug'].includes(action) && (!id || !table)) {
+    // 'list'는 id 없이 table만 필요 (아래 ALLOWED_TABLES 화이트리스트는 그대로 적용됨)
+    if (action === 'list') {
+      if (!table) {
+        return new Response(JSON.stringify({ error: 'table 필수' }), { status: 400, headers: CORS })
+      }
+    } else if (!['insert_church','insert_business','mark_notified','update_city_slug'].includes(action) && (!id || !table)) {
       return new Response(JSON.stringify({ error: 'id, table 필수' }), {
         status: 400, headers: CORS
       })
@@ -161,6 +167,35 @@ export default async function handler(req) {
 
     // ── 액션 처리 ────────────────────────────────────────
     switch (action) {
+      // 관리자 전용 조회 — 서비스 키로 RLS 우회.
+      // anon 키는 승인된 행만 읽을 수 있으므로(RLS), 대기·거절 신청서는 반드시 이 경로로 읽어야 한다.
+      case 'list': {
+        const svcKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY
+        if (!svcKey) throw new Error('서비스 키 미설정: Vercel → Settings → Environment Variables')
+
+        const p = new URLSearchParams()
+        p.set('select', (typeof select === 'string' && /^[\w,*\s]+$/.test(select)) ? select : '*')
+        if (typeof order === 'string' && /^\w+$/.test(order)) p.set('order', `${order}.desc`)
+        if (typeof inCol === 'string' && /^\w+$/.test(inCol) && Array.isArray(inVals) && inVals.length) {
+          const vals = inVals.slice(0, 50).map(v => `"${String(v).replace(/[",()]/g, '')}"`).join(',')
+          p.set(inCol, `in.(${vals})`)
+        }
+        if (typeof eqCol === 'string' && /^\w+$/.test(eqCol) && eqVal != null) {
+          p.append(eqCol, `eq.${String(eqVal)}`)
+        }
+        if (typeof neqCol === 'string' && /^\w+$/.test(neqCol) && neqVal != null) {
+          p.append(neqCol, `neq.${String(neqVal)}`)
+        }
+        p.set('limit', String(Math.min(Number(limit) || 2000, 5000)))
+
+        const listRes = await fetch(`${SB_URLS[TABLE_DB[table] || 'new']}/rest/v1/${table}?${p}`, {
+          headers: { apikey: svcKey, Authorization: `Bearer ${svcKey}` },
+        })
+        if (!listRes.ok) throw new Error(`조회 실패 (${listRes.status}): ${await listRes.text()}`)
+        const rows = await listRes.json()
+        return new Response(JSON.stringify({ ok: true, rows, count: rows.length }), { headers: CORS })
+      }
+
       case 'update_status':
         if (!['approved','rejected','pending'].includes(status)) {
           return new Response(JSON.stringify({ error: '잘못된 status 값' }), { status: 400, headers: CORS })

@@ -983,16 +983,33 @@
   }
 
   // ── 데이터 로드 ──────────────────────────────────────────
+  // ── 관리자 전용 조회 ───────────────────────────
+  // community_items에는 신청자 이메일·전화가 들어 있다. RLS가 anon에게는 승인된 행만 허용하므로
+  // 대기·거절 신청서는 반드시 서비스 키를 쓰는 서버(api/admin-action)를 거쳐 읽는다.
+  async function adminList(table, opts = {}) {
+    const res = await fetch('/api/admin-action', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'list', token: adminToken, table, ...opts }),
+    })
+    const j = await res.json().catch(() => ({}))
+    if (!res.ok || !j.ok) throw new Error(j.error || `조회 실패 (${res.status})`)
+    return j.rows || []
+  }
+  // 개수만 필요한 곳 — 기존 { count } 형태를 유지해 호출부를 그대로 둔다
+  const adminCount = (table, opts = {}) =>
+    adminList(table, { ...opts, select: 'id' }).then(rows => ({ count: rows.length }))
+
   async function loadTabData(tab) {
     setTableLoading()
     try {
       if (tab === 'community') {
         // community_items + content_items 두 테이블 합쳐서 조회
         const [r1, r2] = await Promise.allSettled([
-          sbNew.from('community_items').select('*').order('created_at', { ascending: false }),
+          adminList('community_items', { order: 'created_at' }),
           sbNew.from('content_items').select('*').order('created_at', { ascending: false }),
         ])
-        const d1 = r1.status === 'fulfilled' ? (r1.value.data || []) : []
+        const d1 = r1.status === 'fulfilled' ? (r1.value || []) : []
         const d2 = r2.status === 'fulfilled' ? (r2.value.data || []) : []
         // 교회·사업체·홍보 신청은 각 전용 탭에서 처리 → 여기서 제외
         const ROUTED_CATS = ['church', 'church_application', 'business', 'promo', 'story_studio', 'story_share']
@@ -1002,17 +1019,23 @@
         renderCommunity(allData)
       } else if (tab === 'churches') {
         const { data: churchData } = await sbMain.from('churches').select('*').order('created_at', { ascending: false }).limit(200)
-        const { data: appData } = await sbMain.from('community_items').select('*').eq('category', 'church').neq('status', 'migrated').order('created_at', { ascending: false }).limit(100)
+        const appData = await adminList('community_items', {
+          eqCol: 'category', eqVal: 'church', neqCol: 'status', neqVal: 'migrated', order: 'created_at',
+        }).catch(() => []).limit(100)
         allData = churchData || []
         renderChurches(allData, appData || [])
       } else if (tab === 'restaurants') {
         const { data: dataR } = await sbMain.from('restaurants').select('*').order('created_at', { ascending: false }).limit(100)
         const { data: dataC } = await sbMain.from('cafes').select('*').order('created_at', { ascending: false }).limit(100)
-        const { data: bizApps } = await sbMain.from('community_items').select('*').eq('category', 'business').order('created_at', { ascending: false }).limit(100)
+        const bizApps = await adminList('community_items', {
+          eqCol: 'category', eqVal: 'business', order: 'created_at',
+        }).catch(() => []).limit(100)
         allData = [...(dataR || []), ...(dataC || [])]
         renderRestaurants(allData, bizApps || [])
       } else if (tab === 'promo') {
-        const { data: promoApps } = await sbMain.from('community_items').select('*').eq('category', 'promo').order('created_at', { ascending: false }).limit(100)
+        const promoApps = await adminList('community_items', {
+          eqCol: 'category', eqVal: 'promo', order: 'created_at',
+        }).catch(() => []).limit(100)
         allData = promoApps || []
         renderPromo(allData)
       } else if (tab === 'partners') {
@@ -1024,12 +1047,12 @@
         // — 제출은 community_items로 들어오므로 이 탭에서 함께 보이지 않으면 "이야기 0"으로 오인된다
         const [rPub, rSub] = await Promise.allSettled([
           sbNew.from('stories').select('*').order('created_at', { ascending: false }),
-          sbNew.from('community_items').select('*')
-            .in('category', ['story_studio', 'story_share'])
-            .order('created_at', { ascending: false }),
+          adminList('community_items', {
+            order: 'created_at', inCol: 'category', inVals: ['story_studio', 'story_share'],
+          }),
         ])
         const pub = (rPub.status === 'fulfilled' ? (rPub.value.data || []) : []).map(r => ({ ...r, _kind: 'published' }))
-        const sub = (rSub.status === 'fulfilled' ? (rSub.value.data || []) : []).map(r => ({ ...r, _kind: 'submission' }))
+        const sub = (rSub.status === 'fulfilled' ? (rSub.value || []) : []).map(r => ({ ...r, _kind: 'submission' }))
         allData = [...sub, ...pub].sort((a, b) =>
           new Date(b.created_at || b.published_at || 0) - new Date(a.created_at || a.published_at || 0))
         renderStories(allData)
@@ -1643,7 +1666,7 @@
   // 발송 성공 시 tags에 welcome_sent 마커 → 대시보드에 '발송됨' 표시
   async function sendWelcome(id) {
     try {
-      const { data: r } = await sbMain.from('community_items').select('*').eq('id', id).single()
+      const r = (await adminList('community_items', { eqCol: 'id', eqVal: id, limit: 1 }))[0]
       if (!r) { toast('교회 정보를 찾을 수 없습니다'); return }
       const email = r.email || r.contact || ''
       if (!email || email === '없음') { toast('받는 이메일이 없습니다. 먼저 이메일을 등록하세요'); return }
@@ -1666,10 +1689,9 @@
   // 미발송 협력교회 확인 이메일 일괄 재발송 — tags(welcome_sent) 기준
   async function resendChurchEmails() {
     try {
-      const { data: all } = await sbMain.from('community_items')
-        .select('*')
-        .eq('category', 'church')
-        .in('status', ['approved', 'migrated'])
+      const all = await adminList('community_items', {
+        eqCol: 'category', eqVal: 'church', inCol: 'status', inVals: ['approved', 'migrated'],
+      })
       const rows = (all || []).filter(r => !(r.tags || []).includes('welcome_sent'))
       if (!rows || !rows.length) { toast('발송할 항목이 없습니다'); return }
 
@@ -2076,14 +2098,13 @@
   // ── 통계 로드 ────────────────────────────────────────────
   async function loadStats() {
     const counts = [
-      sbNew.from('community_items').select('id', { count: 'exact', head: true }),
+      adminCount('community_items'),
       sbMain.from('churches').select('id', { count: 'exact', head: true }),
       sbMain.from('restaurants').select('id', { count: 'exact', head: true }),
       sbNew.from('pastor_partners').select('id', { count: 'exact', head: true }),
       sbNew.from('stories').select('id', { count: 'exact', head: true }),
       // 제출 원고도 이야기 수에 포함 — 발행본만 세면 제출이 와도 0으로 보인다
-      sbNew.from('community_items').select('id', { count: 'exact', head: true })
-        .in('category', ['story_studio', 'story_share']),
+      adminCount('community_items', { inCol: 'category', inVals: ['story_studio', 'story_share'] }),
     ]
     const results = await Promise.allSettled(counts)
     const ids = ['st-community','st-churches','st-restaurants','st-partners','st-stories']
@@ -2317,9 +2338,8 @@
   // ── 리포트 차트 로드 ─────────────────────────────────────
   async function loadReports() {
     try {
-      // 도시별 신청 현황
-      const { data: communityData } = await sbNew
-        .from('community_items').select('city_slug, status')
+      // 도시별 신청 현황 — 대기 건도 세야 하므로 서버 경유
+      const communityData = await adminList('community_items', { select: 'city_slug,status' })
       if (!communityData) return
 
       document.getElementById('reports-section').style.display = 'grid'
@@ -2362,7 +2382,8 @@
         sbMain.from('restaurants').select('active'),
         sbNew.from('pastor_partners').select('verified'),
         sbNew.from('stories').select('featured'),
-        sbNew.from('community_items').select('id').in('category', ['story_studio', 'story_share']),
+        adminList('community_items', { select: 'id', inCol: 'category', inVals: ['story_studio', 'story_share'] })
+          .then(rows => ({ data: rows })),
       ])
       if (ch.status==='fulfilled' && ch.value.data) {
         const d = ch.value.data
