@@ -946,7 +946,7 @@ HebronGuide는 정치적 좌파도 우파도 아니다.
 - **교훈**: 타 지역·향후 적용 시 참고
 ```
 
-📖 상세 변경 이력은 [`docs/CHANGELOG.md`](docs/CHANGELOG.md) (생성 예정)에 이전.
+📖 상세 변경 이력: [`docs/CHANGELOG.md`](docs/CHANGELOG.md) — 결정과 교훈 중심 기록.
 
 ---
 
