@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="robots" content="noindex, nofollow">
+<title>이 달의 도시 — 검수 | HebronGuide</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0d1117;--card:rgba(255,255,255,.04);--line:rgba(255,255,255,.1);
+        --gold:#C9A227;--mint:#6EE7B7;--text:#ECFDF5;--muted:rgba(236,253,245,.55);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);
+       line-height:1.7;padding:0 0 60px;}
+  header{padding:34px 24px 26px;border-bottom:1px solid var(--line);text-align:center;}
+  h1{font-size:1.5rem;font-weight:900;letter-spacing:-.01em;}
+  .sub{color:var(--muted);font-size:.88rem;margin-top:8px;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px;}
+  .now{margin:26px 0 30px;background:rgba(201,162,39,.09);border:1px solid rgba(201,162,39,.3);
+       border-radius:14px;padding:16px 20px;font-size:.92rem;}
+  .now b{color:var(--gold);}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;
+        padding:22px;margin-bottom:20px;}
+  .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px;}
+  .name{font-size:1.18rem;font-weight:900;}
+  .en{color:var(--muted);font-size:.82rem;}
+  .tag{margin-left:auto;font-size:.7rem;font-weight:800;letter-spacing:.06em;
+       border-radius:99px;padding:4px 12px;}
+  .ok{background:rgba(110,231,183,.14);color:var(--mint);border:1px solid rgba(110,231,183,.35);}
+  .draft{background:rgba(255,255,255,.06);color:var(--muted);border:1px solid var(--line);}
+  .why{color:var(--muted);font-size:.85rem;margin-bottom:14px;}
+  /* 실제 첫 화면과 같은 배경 위에서 봐야 판단이 맞다 */
+  .stage{background:linear-gradient(168deg,#fdf3dc 0%,#fbe3ad 34%,#f7cf86 66%,#f2b866 100%);
+         border-radius:12px;padding:10px 8px;}
+  .stage svg{width:100%;height:auto;display:block;}
+  .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center;}
+  .chip{font-size:.74rem;color:var(--muted);border:1px solid var(--line);
+        border-radius:99px;padding:4px 11px;}
+  .sw{width:15px;height:15px;border-radius:4px;display:inline-block;vertical-align:-3px;
+      margin-right:5px;border:1px solid rgba(255,255,255,.25);}
+  .note{margin-top:30px;padding:18px 20px;background:var(--card);border:1px solid var(--line);
+        border-radius:14px;font-size:.85rem;color:var(--muted);}
+  .note b{color:var(--text);}
+  .note code{background:rgba(255,255,255,.07);border-radius:5px;padding:1px 6px;font-size:.82rem;}
+  a.back{display:inline-block;margin-top:22px;color:var(--gold);text-decoration:none;font-size:.85rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>이 달의 도시 — 검수</h1>
+  <div class="sub">첫 화면 문 옆에 설 도시입니다. 눈으로 보고 승인해 주세요.</div>
+</header>
+
+<div class="wrap">
+  <div class="now" id="now"></div>
+  <div id="cards"></div>
+
+  <div class="note">
+    <b>승인하는 법</b><br>
+    보시고 괜찮으면 그대로 두시고, 고칠 곳이 있으면 말씀해 주세요.<br>
+    <code>초안</code> 표시된 도시는 <b>실제 화면에 뜨지 않습니다.</b>
+    <code>hero-themes.js</code>에서 <code>approved:true</code>가 되어야 올라갑니다.<br><br>
+    <b>도시를 고르는 기준</b> — 국제 행사가 있거나, 그 달에 주목받아야 할 도시.
+    랜드마크는 <b>실제로 그 도시에 있는 것만</b> 그립니다(거짓 표상 금지).
+    작은 크기에서 못 알아볼 도시는 넣지 않습니다.
+  </div>
+
+  <a class="back" href="/">← 첫 화면으로</a>
+</div>
+
+<script src="/hero-themes.js"></script>
+<script>
+(function(){
+  var T = window.HebronHeroThemes;
+  var MONTH_KO = ['','1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+
+  // 실제 index.html 히어로와 같은 뼈대 — 문·사람은 고정, 도시 블록만 테마가 바뀐다
+  function frame(id){
+    return '<svg viewBox="0 0 460 250" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+      '<defs><clipPath id="dw'+id+'"><path d="M202 216 V120 Q202 94 230 94 Q258 94 258 120 V216 Z"/></clipPath>' +
+      '<linearGradient id="sky'+id+'" x1="230" y1="94" x2="230" y2="216" gradientUnits="userSpaceOnUse">' +
+      '<stop/><stop offset=".52"/><stop offset="1"/></linearGradient>' +
+      '<linearGradient id="bm'+id+'" x1="230" y1="86" x2="230" y2="216" gradientUnits="userSpaceOnUse">' +
+      '<stop stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>' +
+      '</linearGradient></defs>' +
+      '<path d="M230 22 l4.5 13 13 4.5 -13 4.5 -4.5 13 -4.5 -13 -13 -4.5 13 -4.5z" fill="#c07f0a"/>' +
+      '<path d="M44 216 H416" stroke="#8a5f10" stroke-opacity=".35" stroke-width="1.6" stroke-linecap="round"/>' +
+      '<g class="heb-city"></g>' +
+      '<g clip-path="url(#dw'+id+')">' +
+        '<rect x="196" y="86" width="68" height="134" fill="url(#sky'+id+')"/>' +
+        '<circle cx="212" cy="115" r="8.5" fill="#fff" fill-opacity=".9"/>' +
+        '<path d="M238 130 q3.5 -5.5 9 -2 q4.5 -5 8.5 1.5 q4 1 2 4.5 h-21 q-2.5 -2.5 1.5 -4z" fill="#fff" fill-opacity=".92"/>' +
+        '<path d="M203 159 q3 -5 8 -1.5 q4 -4.5 7.5 1.5 q3.5 1 1.5 4 h-18.5 q-2.5 -2 1.5 -4z" fill="#fff" fill-opacity=".76"/>' +
+        '<path d="M196 198 H264" stroke="#5ba3cf" stroke-opacity=".38" stroke-width="1.4"/>' +
+      '</g>' +
+      '<path d="M208 88 L252 88 L288 216 L172 216 Z" fill="url(#bm'+id+')" opacity=".5"/>' +
+      '<path d="M190 216 V118 Q190 80 230 80 Q270 80 270 118 V216" stroke="#7a4f0a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M202 216 V120 Q202 94 230 94 Q258 94 258 120 V216" stroke="#7a4f0a" stroke-opacity=".45" stroke-width="1.6"/>' +
+      '<path d="M202 216 L166 202 V96 L202 106" stroke="#a86c0c" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>' +
+      '<path d="M184 110 V198" stroke="#a86c0c" stroke-opacity=".5" stroke-width="1.4"/>' +
+      '<circle cx="234" cy="132" r="8.5" stroke="#241704" stroke-width="2.2" fill="#fff" fill-opacity=".5"/>' +
+      '<circle cx="231" cy="130.4" r="1.05" fill="#241704"/><circle cx="237" cy="130.4" r="1.05" fill="#241704"/>' +
+      '<path d="M230.6 134.6 Q234 138.4 237.4 134.6" stroke="#241704" stroke-width="1.5" stroke-linecap="round"/>' +
+      '<path d="M234 141 V180 M234 180 L225 205 M234 180 L243 205 M234 152 L220 166 M234 152 L250 139" stroke="#241704" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<circle cx="118" cy="150" r="7.5" stroke="#0f7a5a" stroke-width="2.2" fill="#fff" fill-opacity=".45"/>' +
+      '<circle cx="115.6" cy="148.7" r=".95" fill="#0f7a5a"/><circle cx="120.6" cy="148.7" r=".95" fill="#0f7a5a"/>' +
+      '<path d="M115.3 152.4 Q118 155.6 120.9 152.4" stroke="#0f7a5a" stroke-width="1.4" stroke-linecap="round"/>' +
+      '<path d="M118 158 V187 M118 168 L108 158 M118 168 L129 174 M118 187 L110 209 M118 187 L126 209" stroke="#0f7a5a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<rect x="129" y="174" width="13" height="13" rx="2" stroke="#0f7a5a" stroke-width="1.9"/>' +
+      '<path d="M133 174 v-3 h5 v3" stroke="#0f7a5a" stroke-width="1.6" stroke-linecap="round"/>' +
+      '<path d="M118 216 C152 210 170 212 190 216" stroke="#7a4f0a" stroke-opacity=".5" stroke-width="1.6" stroke-dasharray="1.5 8" stroke-linecap="round"/>' +
+      '</svg>';
+  }
+
+  // 받침 유무로 조사 결정 (CLAUDE.md 한국어 조사 원칙 — "이(가)" 병기 금지)
+  function iGa(w){
+    var c = (w || '').charCodeAt((w || '').length - 1);
+    if (c < 0xAC00 || c > 0xD7A3) return '가';
+    return ((c - 0xAC00) % 28) ? '이' : '가';
+  }
+
+  // 이번 달 안내
+  var m = new Date().getMonth() + 1;
+  var live = T.pick(m), liveKo = T.THEMES[live].ko;
+  document.getElementById('now').innerHTML =
+    '지금 <b>' + MONTH_KO[m] + '</b> 첫 화면에는 <b>' + liveKo + '</b>' + iGa(liveKo) + ' 서 있습니다.';
+
+  // 월 배정 역인덱스
+  var when = {};
+  Object.keys(T.SCHEDULE).forEach(function(k){
+    (when[T.SCHEDULE[k]] = when[T.SCHEDULE[k]] || []).push(MONTH_KO[k]);
+  });
+
+  var html = '';
+  Object.keys(T.THEMES).forEach(function(slug, i){
+    var t = T.THEMES[slug];
+    html +=
+      '<div class="card">' +
+        '<div class="head">' +
+          '<span class="name">' + t.ko + '</span>' +
+          '<span class="en">' + t.en + '</span>' +
+          '<span class="tag ' + (t.approved ? 'ok">승인됨' : 'draft">초안') + '</span>' +
+        '</div>' +
+        '<div class="why">' + t.why + (when[slug] ? ' · ' + when[slug].join(', ') : ' · 배정 없음') + '</div>' +
+        '<div class="stage" id="stage-' + slug + '">' + frame(i) + '</div>' +
+        '<div class="meta">' +
+          t.marks.map(function(x){ return '<span class="chip">' + x + '</span>'; }).join('') +
+          '<span class="chip"><i class="sw" style="background:' + t.ink + '"></i>도시 선</span>' +
+          '<span class="chip"><i class="sw" style="background:' + t.far + '"></i>먼 배경</span>' +
+          '<span class="chip"><i class="sw" style="background:' + t.sky[0] + '"></i>하늘</span>' +
+        '</div>' +
+      '</div>';
+  });
+  document.getElementById('cards').innerHTML = html;
+
+  // 각 카드에 테마 칠하기
+  Object.keys(T.THEMES).forEach(function(slug, i){
+    var svg = document.querySelector('#stage-' + slug + ' svg');
+    if (!svg) return;
+    var t = T.THEMES[slug];
+    svg.querySelector('.heb-city').innerHTML =
+      t.art.replace(/\{ink\}/g, t.ink).replace(/\{far\}/g, t.far);
+    var stops = svg.querySelectorAll('#sky' + i + ' stop');
+    for (var k = 0; k < stops.length && k < 3; k++) stops[k].setAttribute('stop-color', t.sky[k]);
+  });
+})();
+</script>
+
+</body>
+</html>

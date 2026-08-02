@@ -227,6 +227,9 @@ cp youtube-schedule.html public/youtube-schedule.html 2>/dev/null || true
 cp ops.html              public/ops.html              2>/dev/null || true
 cp hero-preview.html          public/hero-preview.html          2>/dev/null || true
 cp index-preview.html         public/index-preview.html         2>/dev/null || true
+# 이 달의 도시 테마 — 첫 화면(index.html)과 검수 페이지가 같은 파일을 읽는다
+cp hero-themes.js             public/hero-themes.js             2>/dev/null || true
+cp hero-theme-preview.html    public/hero-theme-preview.html    2>/dev/null || true
 cp presentation-hospitality.html public/presentation-hospitality.html 2>/dev/null || true
 cp hebron-story.html          public/hebron-story.html          2>/dev/null || true
 cp hebronguide/dist/posters.html                   public/posters.html                   2>/dev/null || true

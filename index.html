@@ -1165,6 +1165,9 @@ function toggleFaq(btn){
 })();
 </script>
 
+<!-- 이 달의 도시 테마 — 승인된 것만 담겨 있다 (/hero-theme-preview.html 에서 검수) -->
+<script src="/hero-themes.js"></script>
+
 <script>
 // 한/영 전환
 function toggleLang(){
@@ -1235,6 +1238,13 @@ function toggleLang(){
   document.addEventListener('click',function(e){ if(!e.target.closest('.hero-jump')) close(); });
 
   /* 문 클릭 → 검색으로 (문을 열려면 도시 이름을 말해야 한다) */
+  /* 이 달의 도시 — 승인된 테마만, 매달 1일 자동 교체 (hero-themes.js) */
+  (function(){
+    var T=window.HebronHeroThemes; if(!T) return;          // 스크립트 없으면 시애틀 원본 유지
+    var svg=document.querySelector('.hero-door svg'); if(!svg) return;
+    try{ T.paint(svg, T.pick(new Date().getMonth()+1)); }catch(e){}
+  })();
+
   var door=document.getElementById('heroDoor');
   if(door) door.addEventListener('click',function(){
     door.classList.add('is-open');            // 문이 활짝 열린다
