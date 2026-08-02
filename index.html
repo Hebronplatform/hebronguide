@@ -84,7 +84,9 @@
   .hero-declaration p{font-size:1rem;color:rgba(236,253,245,.88);line-height:2;font-style:italic;}
   .hero-declaration .speaker{display:block;font-style:normal;font-size:.78rem;color:var(--gold);font-weight:700;margin-top:8px;}
 
-  .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:56px;}
+  .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:22px;}
+  .hero-trust{font-size:.82rem;line-height:1.85;color:rgba(236,253,245,.6);margin:0 auto 44px;max-width:560px;letter-spacing:.01em;}
+  .hero-trust em{font-style:normal;color:var(--mint);opacity:.9;}
   .btn-hero{background:linear-gradient(135deg,#C9A227,#f0c040);color:#0a0e14;font-weight:900;font-size:1rem;border-radius:50px;padding:16px 36px;text-decoration:none;transition:opacity .2s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(201,162,39,.3);}
   .btn-hero:hover{opacity:.9;}
   .btn-outline{background:transparent;border:1px solid var(--border2);color:var(--text);font-weight:600;font-size:.9rem;border-radius:50px;padding:15px 30px;text-decoration:none;transition:all .2s;}
@@ -362,7 +364,7 @@
       <span class="ko">채널 구독</span><span class="en">Follow</span>
     </a>
     <button class="lang-btn" onclick="toggleLang()" id="lang-btn">EN</button>
-    <a href="/ad-request.html" class="nav-cta"><span class="ko">파트너 신청하기 →</span><span class="en">Partner Sign Up →</span></a>
+    <a href="#cities" class="nav-cta"><span class="ko">내 도시 찾기 →</span><span class="en">Find My City →</span></a>
   </div>
 </nav>
 
@@ -432,15 +434,22 @@
   </div>
 
   <div class="hero-cta" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-    <a href="/ad-request.html" class="btn-hero"><span class="ko">파트너 신청하기 →</span><span class="en">Become a Partner →</span></a>
-    <a href="#cities" class="btn-outline"><span class="ko">도시 가이드 열기</span><span class="en">Open City Guide</span></a>
-    <a href="/story-submit.html" class="btn-outline"><span class="ko"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> 당신의 이야기 들려주기</span><span class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Share Your Story</span></a>
+    <a href="#cities" class="btn-hero"><span class="ko">내 도시 찾기 →</span><span class="en">Find My City →</span></a>
+    <a href="/story-submit.html" class="btn-outline"><span class="ko">환대 이야기 나누기</span><span class="en">Share a Story of Welcome</span></a>
   </div>
+
+  <!-- 신뢰 고지 — 소개해 주시는 분(교회·한인회·단체)이 가장 먼저 확인하고 싶어하는 것 -->
+  <p class="hero-trust">
+    <span class="ko">이용료 없음 · 회원가입 없음 · 개인정보 수집 없음 · 광고 강요 없음<br>
+    <em>누구에게나 열려 있고, 소개하셔도 부담 드리지 않습니다.</em></span>
+    <span class="en">No fees · No sign-up · No data collection · No ads pushed<br>
+    <em>Open to everyone — share it freely, with nothing owed.</em></span>
+  </p>
 
   <div class="hero-stats">
     <div class="stat"><div class="stat-n"><span class="hg-city-count">80</span><sup style="font-size:.9rem;">+</sup></div><div class="stat-l"><span class="ko">서비스 도시</span><span class="en">Cities</span></div></div>
     <div class="stat"><div class="stat-n">700<sub style="font-size:.8rem;"><span class="ko">만</span><span class="en">K</span></sub></div><div class="stat-l"><span class="ko">재외 한인</span><span class="en">Korean Diaspora</span></div></div>
-    <div class="stat"><div class="stat-n">500</div><div class="stat-l"><span class="ko">2030 목표 도시</span><span class="en">2030 City Goal</span></div></div>
+    <div class="stat"><div class="stat-n">4</div><div class="stat-l"><span class="ko">잇는 관계</span><span class="en">Connections</span></div></div>
     <div class="stat"><div class="stat-n">∞</div><div class="stat-l"><span class="ko">환대의 마음</span><span class="en">Heart of Welcome</span></div></div>
   </div>
 </div>
@@ -531,17 +540,17 @@
       <div class="about-story-block">
         <div class="about-story-label"><span class="ko">비전</span><span class="en">Vision</span></div>
         <h3 class="about-story-h">
-          <span class="ko">2030년까지 전 세계 <span class="hg-goal">500</span>개 도시</span>
-          <span class="en"><span class="hg-goal">500</span> cities worldwide by 2030</span>
+          <span class="ko">당신을 이어주는, 믿을 수 있는 가이드</span>
+          <span class="en">A guide you can trust — connecting you</span>
         </h3>
         <p>
-          <span class="ko">낯선 도시에 도착한 한 사람의 밤에서 시작해, 지금 전 세계 <span class="hg-city-count">80</span>개+ 도시로 이어졌습니다. 환대는 흩어진 곳에서 자라 다시 서로에게 흘러갑니다. 2030년까지 <span class="hg-goal">500</span>개 도시로. 어디에 도착하든, 첫 밤이 혼자가 아니도록.</span>
-          <span class="en">It began with one person's night in an unfamiliar city, and has reached <span class="hg-city-count">80</span>+ cities worldwide. Hospitality grows where we are scattered, and flows back to one another. By 2030, <span class="hg-goal">500</span> cities — so that wherever you arrive, your first night is never alone.</span>
+          <span class="ko">낯선 도시에 도착한 한 사람의 밤에서 시작했습니다. HebronGuide는 <strong style="color:#fff;font-weight:700;">사람과 새 도시</strong>를, <strong style="color:#fff;font-weight:700;">사람과 교회</strong>를, <strong style="color:#fff;font-weight:700;">사람과 사업체</strong>를, 그리고 <strong style="color:#fff;font-weight:700;">사람과 사람</strong>을 잇습니다. 어디에 도착하든, 첫 밤이 혼자가 아니도록.</span>
+          <span class="en">It began with one person's night in an unfamiliar city. HebronGuide connects <strong style="color:#fff;font-weight:700;">people to a new city</strong>, <strong style="color:#fff;font-weight:700;">people to churches</strong>, <strong style="color:#fff;font-weight:700;">people to local businesses</strong>, and <strong style="color:#fff;font-weight:700;">people to people</strong> — so that wherever you arrive, your first night is never alone.</span>
         </p>
         <div class="about-story-stats">
-          <div><span class="about-stat-n"><span class="hg-city-count">80</span>+</span><span class="about-stat-l"><span class="ko">현재 도시</span><span class="en">Cities now</span></span></div>
-          <div><span class="about-stat-n"><span class="hg-goal">500</span></span><span class="about-stat-l"><span class="ko">2030 목표</span><span class="en">Goal 2030</span></span></div>
-          <div><span class="about-stat-n">700<small class="ko">만</small><small class="en">K</small></span><span class="about-stat-l"><span class="ko">재외 한인</span><span class="en">Korean diaspora</span></span></div>
+          <div><span class="about-stat-n"><span class="hg-city-count">80</span>+</span><span class="about-stat-l"><span class="ko">함께하는 도시</span><span class="en">Cities</span></span></div>
+          <div><span class="about-stat-n">4</span><span class="about-stat-l"><span class="ko">잇는 관계</span><span class="en">Connections</span></span></div>
+          <div><span class="about-stat-n">∞</span><span class="about-stat-l"><span class="ko">환대의 마음</span><span class="en">Heart of welcome</span></span></div>
         </div>
       </div>
 
@@ -640,8 +649,8 @@
         <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="faq-a">
-        <span class="ko">도시 추가 신청을 해주세요. 우선 순위로 반영합니다. 현재 <span class="hg-city-count">80</span>개 도시 운영 중, 2030년까지 500개 목표입니다.</span>
-        <span class="en">Submit a city request and we'll prioritize it. Currently serving <span class="hg-city-count">80</span> cities — goal of 500 by 2030.</span>
+        <span class="ko">도시 추가 신청을 해주세요. 필요가 있는 곳부터 하나씩 만들어 갑니다. 현재 <span class="hg-city-count">80</span>개 도시와 함께하고 있습니다.</span>
+        <span class="en">Submit a city request. We build them one at a time, wherever the need is real. Currently walking with <span class="hg-city-count">80</span> cities.</span>
         <br><a href="/city-request.html" style="color:var(--gold,#C9A227);font-size:.85rem;text-decoration:none;display:inline-block;margin-top:8px;"><span class="ko">도시 추가 신청 →</span><span class="en">Request a city →</span></a>
       </div>
     </div>
@@ -768,18 +777,18 @@ function toggleFaq(btn){
       <div class="hg-map-stat"><b class="hg-city-count">80</b><span>도시 · Cities</span></div>
       <div class="hg-map-stat"><b id="hgStatCountries">16</b><span>국가 · Countries</span></div>
       <div class="hg-map-stat"><b id="hgStatRegions">8</b><span>지역권 · Regions</span></div>
-      <div class="hg-map-stat"><b style="color:#6EE7B7;">500</b><span>2030 목표 · Goal</span></div>
+      <div class="hg-map-stat"><b style="color:#6EE7B7;">∞</b><span>환대 · Welcome</span></div>
     </div>
     <div class="hg-legend">
       <span class="lg-live"><span class="sw" style="background:var(--gold);"></span>지금 진출 (<span class="hg-city-count">80</span>)</span>
       <button type="button" data-year="2027"><span class="sw-ring" style="border:2px solid #6EE7B7;"></span>2027 예정</button>
       <button type="button" data-year="2028"><span class="sw-ring" style="border:2px solid #60A5FA;"></span>2028 예정</button>
       <button type="button" data-year="2029"><span class="sw-ring" style="border:2px solid #A78BFA;"></span>2029 예정</button>
-      <span class="lg-goal">2030 · <span class="hg-goal">500</span>개 도시 비전</span>
+      <span class="lg-goal"><span class="ko">필요가 있는 곳부터</span><span class="en">Where the need is real</span></span>
     </div>
     <div id="hgWorldMap" role="img" aria-label="HebronGuide 전 세계 서비스 도시 분포 지도 — 금색은 현재 진출 도시, 색 링은 연도별 진출 예정 도시. 거점을 눌러 이동"></div>
-    <p class="hg-roadmap-steps"><span class="ko">단계별 목표 · 2026 <b>100</b> → 2027 <b>200</b> → 2028 <b>300</b> → 2029 <b>400</b> → 2030 <b><span class="hg-goal">500</span></b></span><span class="en">Phase targets · 2026 <b>100</b> → 2027 <b>200</b> → 2028 <b>300</b> → 2029 <b>400</b> → 2030 <b><span class="hg-goal">500</span></b> cities</span></p>
-    <p class="hg-map-note"><span class="ko">※ 단계별 목표는 비전이며, 지도의 색 링은 현재 확정된 진출 예정 도시입니다. 상황에 따라 조정됩니다.</span><span class="en">※ Phase targets are a vision; colored rings show cities already confirmed for expansion. Subject to change.</span></p>
+    <p class="hg-roadmap-steps"><span class="ko"><b>사람과 새 도시</b> · <b>사람과 교회</b> · <b>사람과 사업체</b> · <b>사람과 사람</b>을 잇습니다</span><span class="en">Connecting <b>people to a new city</b> · <b>to churches</b> · <b>to local businesses</b> · <b>to one another</b></span></p>
+    <p class="hg-map-note"><span class="ko">※ 색 링은 요청이 있어 준비 중인 도시입니다. 숫자를 늘리는 것이 목적이 아니라, 필요가 있는 곳에 하나씩 닿는 것이 목적입니다.</span><span class="en">※ Colored rings are cities being prepared because someone asked. The goal is not a bigger number — it is reaching one more place where the need is real.</span></p>
   </div>
 
   <div class="search-wrap">
