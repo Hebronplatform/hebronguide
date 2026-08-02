@@ -160,6 +160,8 @@
   .hj-quick a{color:rgba(236,253,245,.8);text-decoration:none;border:1px solid rgba(255,255,255,.16);
     border-radius:99px;padding:5px 13px;transition:all .18s;}
   .hj-quick a:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,162,39,.1);}
+  .hj-verb{margin-top:12px;font-size:.88rem;font-weight:800;letter-spacing:.005em;
+    color:rgba(236,253,245,.5);}
   @media(max-width:480px){.hero-jump{max-width:100%;}.hj-box{padding:13px 15px;}}
 
   /* 밝은 히어로 위 — 명암 대비 확보 (흰 배경 카드 + 진한 글씨) */
@@ -179,6 +181,7 @@
   .hero .hj-quick{color:rgba(58,39,8,.6);}
   .hero .hj-quick a{color:#3a2708;border-color:rgba(122,79,10,.32);background:rgba(255,255,255,.55);font-weight:600;}
   .hero .hj-quick a:hover{background:#fff;border-color:#9a6b12;color:#7a4f0a;}
+  .hero .hj-verb{color:#7a4f0a;}
 
   .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:22px;}
   .hero-trust{font-size:.82rem;line-height:1.85;color:rgba(236,253,245,.6);margin:0 auto 44px;max-width:560px;letter-spacing:.01em;}
@@ -548,6 +551,10 @@
       <span class="ko">자주 찾는 곳</span><span class="en">Popular</span>
       <a href="/seattle/">시애틀</a><a href="/la/">LA</a><a href="/newyork/">뉴욕</a>
       <a href="/dallas/">달라스</a><a href="/toronto/">토론토</a><a href="/seoul/">서울</a>
+    </div>
+    <div class="hj-verb">
+      <span class="ko">가기 전에, 헤브로닝.</span>
+      <span class="en">Hebron it before you go.</span>
     </div>
   </div>
 
@@ -1055,7 +1062,7 @@ function toggleFaq(btn){
 <script>
 (function(){
   var SITE = 'https://hebronguide.com/';
-  var MSG = 'HebronGuide — 낯선 도시, 이미 누군가 기다렸습니다. 전 세계 글로벌 환대 커뮤니티';
+  var MSG = '가기 전에, 헤브로닝. 낯선 도시에 이미 누군가 기다리고 있습니다. 80개 도시, 100% 무료.';
   var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   function toast(m){
     var t = document.getElementById('hgShareToast');
