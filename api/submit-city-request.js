@@ -7,7 +7,7 @@ const SUPABASE_URL  = 'https://vextxqzggznulwpganwt.supabase.co'
 // anon(공개) 키 — RLS로 보호되는 게시 키. service_role이 아니므로 소스 노출은 안전(Supabase 설계).
 // 그래도 회전 편의를 위해 환경변수를 우선한다. status=pending 삽입은 RLS 허용.
 const SUPABASE_ANON = process.env.SUPABASE_ANON_KEY
-  || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4MTUzOTIsImV4cCI6MjA5NDM5MTM5Mn0.XghaQZYtI-dq5mf8i-DPVCxtw_XBBjxGUnvaiwGQFWk'
+  || 'sb_publishable_j1cYftObx8VDVkEQAvluXg_rn20pnfX'
 const ADMIN_EMAIL   = 'hebronplatform@gmail.com'
 const FROM_EMAIL    = 'Hebronplatform@gmail.com'
 

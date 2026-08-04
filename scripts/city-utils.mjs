@@ -5,7 +5,7 @@ export const SUPABASE_URL = 'https://vextxqzggznulwpganwt.supabase.co';
 // 공개(anon) 키 — hebronguide/utils/supabase/info.tsx와 동일 (role:anon, 공개 설계).
 // 서비스 키는 절대 이 파일·레포에 두지 않는다 (Vercel env 전용).
 export const SUPABASE_ANON_KEY =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZleHR4cXpnZ3pudWx3cGdhbnd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4MTUzOTIsImV4cCI6MjA5NDM5MTM5Mn0.XghaQZYtI-dq5mf8i-DPVCxtw_XBBjxGUnvaiwGQFWk';
+  'sb_publishable_j1cYftObx8VDVkEQAvluXg_rn20pnfX';
 
 export function anonHeaders() {
   return { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}`, 'Content-Type': 'application/json' };
