@@ -834,7 +834,7 @@
         <button class="tab" onclick="switchTab('planner')" style="border-color:rgba(110,231,183,.4);color:var(--mint);"><i data-lucide="globe"></i> 글로벌 플래너</button>
       </div>
       <div class="filters">
-        <input class="filter-input" id="search" placeholder="<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg> 검색..." oninput="filterTable()">
+        <input class="filter-input" id="search" placeholder="검색..." oninput="filterTable()">
         <select class="filter-select" id="city-filter" onchange="filterTable()">
           <option value="">모든 도시 (로딩중…)</option>
         </select>
@@ -1020,22 +1020,23 @@
       } else if (tab === 'churches') {
         const { data: churchData } = await sbMain.from('churches').select('*').order('created_at', { ascending: false }).limit(200)
         const appData = await adminList('community_items', {
-          eqCol: 'category', eqVal: 'church', neqCol: 'status', neqVal: 'migrated', order: 'created_at',
-        }).catch(() => []).limit(100)
+          eqCol: 'category', eqVal: 'church', neqCol: 'status', neqVal: 'migrated',
+          order: 'created_at', limit: 100,
+        }).catch(() => [])
         allData = churchData || []
         renderChurches(allData, appData || [])
       } else if (tab === 'restaurants') {
         const { data: dataR } = await sbMain.from('restaurants').select('*').order('created_at', { ascending: false }).limit(100)
         const { data: dataC } = await sbMain.from('cafes').select('*').order('created_at', { ascending: false }).limit(100)
         const bizApps = await adminList('community_items', {
-          eqCol: 'category', eqVal: 'business', order: 'created_at',
-        }).catch(() => []).limit(100)
+          eqCol: 'category', eqVal: 'business', order: 'created_at', limit: 100,
+        }).catch(() => [])
         allData = [...(dataR || []), ...(dataC || [])]
         renderRestaurants(allData, bizApps || [])
       } else if (tab === 'promo') {
         const promoApps = await adminList('community_items', {
-          eqCol: 'category', eqVal: 'promo', order: 'created_at',
-        }).catch(() => []).limit(100)
+          eqCol: 'category', eqVal: 'promo', order: 'created_at', limit: 100,
+        }).catch(() => [])
         allData = promoApps || []
         renderPromo(allData)
       } else if (tab === 'partners') {

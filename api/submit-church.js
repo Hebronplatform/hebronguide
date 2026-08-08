@@ -101,11 +101,13 @@ const APPROVED_DENOMS = [
 ];
 
 // ── Supabase community_items INSERT ──────────────────────────
+// 저장 결과를 { ok, error } 로 돌려준다.
+// error 에는 Supabase가 실제로 한 말을 담는다 — 추측 문구로 덮지 않는다.
 async function saveToSupabase(itemData) {
   const svcKey = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY;
   if (!svcKey) {
     console.warn("[submit-church] SUPABASE_SERVICE_KEY not set — skipping DB insert");
-    return false;
+    return { ok: false, error: "서비스 키가 Vercel 환경변수에 없습니다 (SUPABASE_SERVICE_KEY_MAIN)" };
   }
   try {
     const r = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`, {
@@ -118,14 +120,21 @@ async function saveToSupabase(itemData) {
       },
       body: JSON.stringify(itemData),
     });
-    if (!r.ok) {
-      const err = await r.text().catch(() => "");
-      console.error("[submit-church] Supabase error", r.status, err);
+    if (r.ok) return { ok: true, error: "" };
+
+    const body = await r.text().catch(() => "");
+    console.error("[submit-church] Supabase error", r.status, body);
+    // 자주 나오는 두 가지는 사람 말로 풀어준다.
+    let hint = "";
+    if (r.status === 401 || /Invalid API key/i.test(body)) {
+      hint = " → 서비스 키가 무효입니다. Supabase가 새 키 체계(sb_secret_...)로 바뀌었는지 확인하고 Vercel 환경변수를 갱신하세요.";
+    } else if (/PGRST204|42703|column .* does not exist/i.test(body)) {
+      hint = " → community_items 에 없는 컬럼을 보냈습니다. 실제 컬럼만 사용하세요.";
     }
-    return r.ok;
+    return { ok: false, error: `HTTP ${r.status} ${body.slice(0, 200)}${hint}` };
   } catch (e) {
     console.error("[submit-church] Supabase fetch error:", e.message);
-    return false;
+    return { ok: false, error: `네트워크 오류: ${e.message}` };
   }
 }
 
@@ -262,7 +271,8 @@ export default async function handler(req, res) {
       status:       "approved",
     };
 
-    const supabaseOk = await saveToSupabase(item);
+    const saveRes = await saveToSupabase(item);
+    const supabaseOk = saveRes.ok;
 
     if (!supabaseOk) {
       // Supabase 실패 → 관리자에게 수동 처리 요청
@@ -270,7 +280,8 @@ export default async function handler(req, res) {
         level: "fallback",
         churchName, denomination, city, phone, email, address, serviceTimes,
         website, kakao, pastor, description,
-        reason: "Supabase 저장 실패(서비스키 미설정?) — 수동 등록 필요",
+        reason: `Supabase 저장 실패 — 수동 등록 필요
+실제 오류: ${saveRes.error}`,
       });
     }
 
@@ -313,7 +324,7 @@ export default async function handler(req, res) {
 
   // ── 7. 불확실 → Supabase pending 저장 + 관리자 검토 요청
   // ⚠️ community_items 실제 컬럼만 사용 (submitted_at·city·contact_email 없음 → 넣으면 42703로 저장 실패)
-  const pendingSaved = await saveToSupabase({
+  const pendingRes = await saveToSupabase({
     category:     "church",
     type:         "churches",
     city_slug:    normalizeCitySlug(city) || city,
@@ -337,7 +348,8 @@ export default async function handler(req, res) {
         ? "교단 정보 없음 — 신천지 위장 단체는 교단 소속 없음. 반드시 확인 후 게시"
         : "AI 검토 필요"),
       // 저장 실패를 조용히 넘기면 이메일만 오고 대시보드엔 안 뜬다 → 반드시 알린다
-      pendingSaved ? "" : "⚠️ DB 저장 실패 — 대시보드에 뜨지 않습니다. 이 메일 내용으로 수동 등록해 주세요.",
+      pendingRes.ok ? "" : `⚠️ DB 저장 실패 — 대시보드에 뜨지 않습니다. 이 메일 내용으로 수동 등록해 주세요.
+실제 오류: ${pendingRes.error}`,
     ].filter(Boolean).join("\n"),
   });
 
