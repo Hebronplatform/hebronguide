@@ -616,8 +616,13 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
     </div>
 
     <div class="field">
-      <label>교회 주소 <span class="opt">(선택)</span><span class="lbl-en">Church Address</span><span class="lbl-es">Dirección de la iglesia</span></label>
-      <input type="text" id="cAddress" placeholder="예: 123 Main St, City, ST 00000">
+      <label>교회 주소 <span class="req">*</span><span class="lbl-en">Church Address</span><span class="lbl-es">Dirección de la iglesia</span></label>
+      <input type="text" id="cAddress" placeholder="예: 123 Main St, City, ST 00000" required>
+      <div style="margin-top:6px;font-size:.76rem;color:var(--muted);line-height:1.6;">
+        <span class="ko">새로 온 분이 찾아올 수 있어야 합니다. 주소가 없으면 목록에 있어도 갈 수가 없습니다.</span>
+        <span class="en">A newcomer has to be able to find you.</span>
+      </div>
+      <div class="error-msg" id="cAddress-error">교회 주소를 적어 주세요</div>
     </div>
 
     <div class="field-row">
@@ -1495,7 +1500,10 @@ async function submitForm(type) {
   } else if(type === 'church') {
     valid = validate([
       {id:'cChurch',type:'required'},{id:'cPastor',type:'required'},
-      {id:'cPhone',type:'required'}
+      {id:'cPhone',type:'required'},
+      // 주소 필수 (2026-08 폴 김 목사 결정) — 환대를 준비한 교회는 찾아올 길을 알려준다.
+      // 안 적는 교회는 아직 준비가 안 된 것이므로 목록에 넣지 않는 편이 낫다.
+      {id:'cAddress',type:'required'}
     ]);
     if(!valid) return;
     // 도시 선택 확인
