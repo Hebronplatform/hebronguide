@@ -336,6 +336,7 @@
   html[lang="ko"] .en{display:none!important;}
   html[lang="en"] .ko{display:none!important;}
   .lang-btn{background:transparent;border:1px solid var(--border2);color:var(--muted);font-size:.75rem;font-weight:700;border-radius:20px;padding:5px 14px;cursor:pointer;transition:all .2s;font-family:'Noto Sans KR',sans-serif;letter-spacing:.04em;white-space:nowrap;}
+  .lang-btn{display:inline-flex;align-items:center;gap:6px;}
   .lang-btn:hover{border-color:var(--gold);color:var(--gold);}
 
   /* ━━━ THREE PATHS ━━━ */
@@ -477,15 +478,15 @@
   <div class="nav-links">
     <a href="/about.html"><span class="ko">회사소개</span><span class="en">About</span></a>
     <a href="#faq">FAQ</a>
-    <a href="#cities"><span class="ko">도시 검색</span><span class="en">Cities</span></a>
     <a href="/story-submit.html"><span class="ko">이야기</span><span class="en">Stories</span></a>
     <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener"
        style="display:inline-flex;align-items:center;gap:5px;background:#FEE500;color:#3C1E1E;font-weight:800;font-size:.78rem;border-radius:20px;padding:6px 14px;text-decoration:none;">
       <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" style="height:16px;width:auto;" alt="kakao">
       <span class="ko">채널 구독</span><span class="en">Follow</span>
     </a>
-    <button class="lang-btn" onclick="toggleLang()" id="lang-btn">EN</button>
-    <a href="#cities" class="nav-cta"><span class="ko">내 도시 찾기 →</span><span class="en">Find My City →</span></a>
+    <button class="lang-btn" onclick="toggleLang()" id="lang-btn"
+            aria-label="언어 바꾸기 · Change language" title="언어 바꾸기 · Change language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;flex:none"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span id="lang-label">English</span></button>
+    <a href="#cities" class="nav-cta" onclick="return focusCitySearch()"><span class="ko">내 도시 찾기 →</span><span class="en">Find My City →</span></a>
   </div>
 </nav>
 
@@ -1170,17 +1171,32 @@ function toggleFaq(btn){
 <script src="/hero-themes.js"></script>
 
 <script>
+// 입구는 하나 — CTA를 누르면 지도로 보내지 않고 검색창에 커서를 둔다.
+// 도시 이름만 치면 바로 그 도시로 간다. 둘러보고 싶은 사람은 '전체 도시 보기'로.
+// ⚠️ HTML의 onclick 은 전역 함수만 본다 — IIFE 안에 두면 안 된다.
+function focusCitySearch(){
+  var inp = document.getElementById('heroCity');
+  if(!inp) return true;                       // 폴백: 기본 링크(#cities)
+  var box = document.querySelector('.hero-jump') || inp;
+  box.scrollIntoView({behavior:'smooth', block:'center'});
+  setTimeout(function(){ try{ inp.focus({preventScroll:true}); }catch(e){ inp.focus(); } }, 420);
+  return false;
+}
+
 // 한/영 전환
 function toggleLang(){
   var html=document.documentElement;
   var btn=document.getElementById('lang-btn');
+  // 버튼에는 '지금 언어'가 아니라 '누르면 될 언어'를 그 언어로 쓴다.
+  // 'EN' 같은 약자는 지금 상태인지 바꿀 대상인지 헷갈린다.
+  var label=document.getElementById('lang-label');
   if(html.lang==='ko'){
     html.lang='en';
-    btn.textContent='한국어';
+    if(label)label.textContent='한국어'; else btn.textContent='한국어';
     localStorage.setItem('hg_lang','en');
   } else {
     html.lang='ko';
-    btn.textContent='EN';
+    if(label)label.textContent='English'; else btn.textContent='English';
     localStorage.setItem('hg_lang','ko');
   }
 }
@@ -1189,8 +1205,8 @@ function toggleLang(){
   var saved=localStorage.getItem('hg_lang');
   if(saved==='en'){
     document.documentElement.lang='en';
-    var btn=document.getElementById('lang-btn');
-    if(btn)btn.textContent='한국어';
+    var label=document.getElementById('lang-label');
+    if(label)label.textContent='한국어';
   }
 })();
 
