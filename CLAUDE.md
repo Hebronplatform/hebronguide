@@ -453,6 +453,7 @@ HebronGuide는 부분이 전체에 얽혀 있다 — **Vite 빌드 · 서비스�
 | 문서 위생 자체 | `DOC_HYGIENE.md` |
 | **파트너 철학·서약·수익나눔 원칙** | `HEBRON_PARTNER_CODEX.md` |
 | 4차 줌 네트워크 전략·스크립트 | `PASTOR_NETWORK_PLAYBOOK.md` |
+| **시애틀 세 교회 — 6개월 첫 걸음** (행2:42-47 · 3교회 · 성장목표 없음 · 소프트웨어 최소) | `SEATTLE_PILOT_3CHURCHES.md` |
 | **말이 문을 연다 — 표현 원칙** (거래 연상어 금지·조급함 금지·설명 대신 보여주기·명령 대신 질문·AI 냄새 제거) | `WORDS_OPEN_DOORS.md` |
 | **사용자 검증 인터뷰** (5명 · 홍보 금지·과거행동만·결과 판정표) | `USER_VALIDATION_INTERVIEW.md` |
 | **플랫폼 원칙 — 없어서는 안 될 존재가 되는 길** (희소한 쪽=새로 온 사람 · 해자=검증 · 도시별 확장 · 아마존은 메커니즘만) | `PLATFORM_PRINCIPLES.md` |
