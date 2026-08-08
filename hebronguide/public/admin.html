@@ -634,6 +634,17 @@
     }
     tbody tr { cursor: pointer; }
     tbody tr:hover td { background: rgba(201,162,39,.06) !important; }
+  /* ── 다중 선택 ── */
+  .pick{width:16px;height:16px;cursor:pointer;accent-color:var(--gold);vertical-align:middle;margin:0;}
+  td.pick-cell,th.pick-cell{width:38px;text-align:center;padding-left:14px;padding-right:0;}
+  tr.picked{background:rgba(201,162,39,.10)!important;}
+  .bulkbar{position:sticky;top:0;z-index:50;display:none;align-items:center;gap:10px;flex-wrap:wrap;
+    padding:11px 16px;background:#1a1f2e;border-bottom:1px solid rgba(201,162,39,.45);
+    box-shadow:0 4px 14px rgba(0,0,0,.45);}
+  .bulkbar.on{display:flex;}
+  .bulkbar .cnt{font-size:.82rem;font-weight:800;color:var(--gold);}
+  .bulkbar .hint{font-size:.72rem;color:var(--muted);}
+  .bulkbar .sp{margin-left:auto;}
   </style>
 </head>
 <body>
@@ -1219,7 +1230,10 @@
 
     function appRows(list) {
       return list.map(r => `
-        <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기" style="background:rgba(201,162,39,.03)">
+        <tr data-pick-id="${r.id}" onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" title="클릭하여 전체 내용 보기" style="background:rgba(201,162,39,.03)">
+          <td class="pick-cell" onclick="event.stopPropagation()">
+            <input type="checkbox" class="pick" value="${r.id}" data-status="${esc(r.status||'pending')}" onchange="onPick(this)">
+          </td>
           <td>
             <div class="cell-name">${esc(r.category==='church' ? churchNameOf(r) : (r.name || '(이름없음)'))}</div>
             <div class="cell-sub">${esc(r.category==='church' ? (churchPastorOf(r) || 'church') : (r.category || ''))}</div>
@@ -1254,7 +1268,7 @@
         <span style="font-size:.7rem;color:var(--muted);margin-left:8px;">행을 클릭하면 전체 내용 확인</span>
       </div>
       <table>
-        <thead><tr><th>이름·교회명</th><th>내용</th><th>도시·주소</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
+        <thead><tr><th class="pick-cell"><input type="checkbox" class="pick" onchange="pickAll(this)" title="이 표 전체 선택"></th><th>이름·교회명</th><th>내용</th><th>도시·주소</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
         <tbody>${appRows(pending)}</tbody>
       </table>` : ''
 
@@ -1272,7 +1286,7 @@
         </button>` : `<span style="font-size:.7rem;color:var(--mint);margin-left:auto;">이메일 전송 완료</span>`}
       </div>
       <table>
-        <thead><tr><th>이름·교회명</th><th>내용</th><th>도시·주소</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
+        <thead><tr><th class="pick-cell"><input type="checkbox" class="pick" onchange="pickAll(this)" title="이 표 전체 선택"></th><th>이름·교회명</th><th>내용</th><th>도시·주소</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
         <tbody>${appRows(approved)}</tbody>
       </table>` : ''
 
@@ -1305,7 +1319,97 @@
         </tbody>
       </table>` : ''
 
-    document.getElementById('table-content').innerHTML = `<div class="table-wrap">${appSection}${churchSection}</div>`
+    const bulkBar = `
+      <div class="bulkbar" id="bulkbar">
+        <span class="cnt" id="bulk-count">0건 선택</span>
+        <span class="hint">체크한 신청을 한 번에 처리합니다</span>
+        <span class="sp"></span>
+        <button class="btn-sm btn-approve" onclick="bulkStatus('approved')">선택 승인</button>
+        <button class="btn-sm btn-reject"  onclick="bulkStatus('rejected')">선택 거절</button>
+        <button class="btn-sm btn-edit"    onclick="clearPicks()">선택 해제</button>
+      </div>`
+
+    document.getElementById('table-content').innerHTML =
+      `<div class="table-wrap">${bulkBar}${appSection}${churchSection}</div>`
+    refreshBulkBar()
+  }
+
+  // ── 다중 선택 ────────────────────────────────────────────
+  // 목록을 하나씩 누르는 대신 체크해서 한 번에 처리한다.
+  function picked() {
+    return [...document.querySelectorAll('.pick[value]:checked')]
+  }
+  function onPick(cb) {
+    const tr = cb.closest('tr'); if (tr) tr.classList.toggle('picked', cb.checked)
+    refreshBulkBar()
+  }
+  function pickAll(head) {
+    // 머리글 체크박스가 속한 '그 표'만 대상 (대기/승인 표가 서로 간섭하지 않게)
+    const table = head.closest('table'); if (!table) return
+    table.querySelectorAll('tbody .pick[value]').forEach(cb => {
+      cb.checked = head.checked
+      const tr = cb.closest('tr'); if (tr) tr.classList.toggle('picked', cb.checked)
+    })
+    refreshBulkBar()
+  }
+  function clearPicks() {
+    document.querySelectorAll('.pick').forEach(cb => { cb.checked = false; cb.indeterminate = false })
+    document.querySelectorAll('tr.picked').forEach(tr => tr.classList.remove('picked'))
+    refreshBulkBar()
+  }
+  function refreshBulkBar() {
+    const bar = document.getElementById('bulkbar'); if (!bar) return
+    const n = picked().length
+    bar.classList.toggle('on', n > 0)
+    const label = document.getElementById('bulk-count')
+    if (label) label.textContent = `${n}건 선택`
+    // 머리글 체크박스를 표별 상태에 맞춘다 (일부만 선택 → 중간 표시)
+    document.querySelectorAll('table').forEach(t => {
+      const head = t.querySelector('thead .pick'); if (!head) return
+      const all = [...t.querySelectorAll('tbody .pick[value]')]
+      const on  = all.filter(c => c.checked).length
+      head.checked = all.length > 0 && on === all.length
+      head.indeterminate = on > 0 && on < all.length
+    })
+  }
+
+  // 선택한 신청을 한 번에 승인/거절. 개별 처리와 같은 경로를 쓰되 화면 갱신은 마지막에 한 번만.
+  async function bulkStatus(status) {
+    const rows = picked().filter(cb => (cb.dataset.status || '') !== status)
+    const skipped = picked().length - rows.length
+    if (!rows.length) { toast(skipped ? '이미 모두 그 상태입니다' : '선택된 항목이 없습니다'); return }
+
+    const word = status === 'approved' ? '승인' : '거절'
+    if (!confirm(`${rows.length}건을 ${word}합니다.` + (skipped ? `\n(이미 ${word}된 ${skipped}건은 건너뜁니다)` : '') + '\n계속할까요?')) return
+
+    const bar = document.getElementById('bulk-count')
+    let ok = 0; const failed = []
+    for (let i = 0; i < rows.length; i++) {
+      const id = rows[i].value
+      if (bar) bar.textContent = `처리 중 ${i + 1}/${rows.length}`
+      try {
+        await adminAction({ action: 'update_status', id, table: 'community_items', status })
+        // 승인이면 개별 처리와 동일하게 실제 등재까지 이어간다
+        if (status === 'approved') {
+          const row = allData.find(d => d.id === id)
+          if (row) {
+            if (['church','church_application'].includes(row.category))      await autoAddChurch(row)
+            else if (row.category === 'business')                            await autoAddBusiness(row)
+            else if (row.category === 'promo')                               await autoAddPromo(row)
+          }
+        }
+        ok++
+      } catch (e) {
+        failed.push((rows[i].closest('tr')?.querySelector('.cell-name')?.textContent || id) + ': ' + e.message)
+      }
+    }
+
+    toast(failed.length
+      ? `${ok}건 ${word} 완료 · ${failed.length}건 실패`
+      : `${ok}건 ${word} 완료`)
+    if (failed.length) console.error('[일괄 처리 실패]\n' + failed.join('\n'))
+    clearPicks()
+    loadTabData(currentTab)
   }
 
   // ── 협력 목사 렌더링 ───────────────────────────────────
