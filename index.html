@@ -178,7 +178,7 @@
   .hj-quick a{color:rgba(236,253,245,.8);text-decoration:none;border:1px solid rgba(255,255,255,.16);
     border-radius:99px;padding:5px 13px;transition:all .18s;}
   .hj-quick a:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,162,39,.1);}
-  .hj-verb{margin-top:12px;font-size:.88rem;font-weight:800;letter-spacing:.005em;
+  .hj-verb{margin-bottom:11px;font-size:.88rem;font-weight:800;letter-spacing:.005em;
     color:rgba(236,253,245,.5);}
   @media(max-width:480px){.hero-jump{max-width:100%;}.hj-box{padding:13px 15px;}}
 
@@ -560,36 +560,40 @@
     <!-- 나그네 → 문으로 이어지는 길 -->
     <path d="M118 216 C152 210 170 212 190 216" stroke="#7a4f0a" stroke-opacity=".5" stroke-width="1.6" stroke-dasharray="1.5 8" stroke-linecap="round"/>
   </svg>
-  <span class="hero-door-hint"><span class="ko">문을 열어보세요</span><span class="en">Open the door</span></span>
+  <span class="hero-door-hint"><span class="ko">문을 클릭하세요</span><span class="en">Click the door</span></span>
   </button>
 
   <p class="hero-pre">
-    <span class="ko">공항을 나서면 아는 얼굴 하나 없습니다.<br>그 첫날 밤을 우리는 압니다.</span>
-    <span class="en">You walk out of the airport. Not one familiar face.<br>We know that first night.</span>
+    <span class="ko">공항을 나서면 아는 얼굴 하나 없습니다.<br>그 첫날 밤의 고독을 우리는 압니다. 그러나 당신은 혼자가 아닙니다.</span>
+    <span class="en">You walk out of the airport. Not one familiar face.<br>We know the loneliness of that first night. But you are not alone.</span>
   </p>
 
   <h1 class="hero-headline">
-    <span class="ko">이미 누군가,<br><span class="accent">당신을 기다리고 있었습니다.</span></span>
-    <span class="en">Someone was already there,<br><span class="accent">waiting for you.</span></span>
+    <span class="ko">이미 누군가,<br><span class="accent">당신을 기다리고 있으니까요.</span></span>
+    <span class="en">Someone is already<br><span class="accent">waiting for you.</span></span>
   </h1>
 
   <p class="hero-sub-big">
-    <span class="ko">그러니 <strong style="color:#fff;font-weight:700;">혼자가 아닙니다.</strong></span>
-    <span class="en">So <strong style="color:#fff;font-weight:700;">you are not alone.</strong></span>
+    <span class="ko"><strong style="font-weight:700;">Hebron 입니다.</strong></span>
+    <span class="en"><strong style="font-weight:700;">This is Hebron.</strong></span>
   </p>
 
   <!-- 세 줄 소개 — 관심 있는 사람만 아래로 -->
   <p class="hero-intro">
     <span class="ko">살 만한 동네, 갈 만한 교회, 믿을 만한 가게.<br>
-    먼저 와 본 사람이 알려드립니다.<br>
-    <b class="free">찾는 것도 무료</b><b class="free noad">등록도 무료</b></span>
+    먼저 살아본 사람이 알려 드립니다.<br>
+</span>
     <span class="en">Where to live, where to worship, who to trust.<br>
-    From people who arrived before you.<br>
-    <b class="free">Free to search</b><b class="free noad">Free to list</b></span>
+    From people who have lived there.<br>
+</span>
   </p>
 
   <!-- 바로 이동하는 도시 검색 — 첫 화면에서 앱까지 한 번에 -->
   <div class="hero-jump">
+    <div class="hj-verb">
+      <span class="ko">출발 전에 '헤브로닝' 하세요~</span>
+      <span class="en">Hebron it before you go.</span>
+    </div>
     <div class="hj-box">
       <svg class="hj-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
       <input id="heroCity" type="text" autocomplete="off" aria-label="도시 이름을 입력하세요"
@@ -600,10 +604,6 @@
       <span class="ko">자주 찾는 곳</span><span class="en">Popular</span>
       <a href="/seattle/">시애틀</a><a href="/la/">LA</a><a href="/newyork/">뉴욕</a>
       <a href="/dallas/">달라스</a><a href="/toronto/">토론토</a><a href="/seoul/">서울</a>
-    </div>
-    <div class="hj-verb">
-      <span class="ko">가기 전에, 헤브로닝.</span>
-      <span class="en">Hebron it before you go.</span>
     </div>
   </div>
 
@@ -1105,7 +1105,7 @@ function toggleFaq(btn){
 <script>
 (function(){
   var SITE = 'https://hebronguide.com/';
-  var MSG = '가기 전에, 헤브로닝. 먼저 간 사람들이 살 동네·교회·가게를 확인해 적어두었습니다. 80개 도시, 무료.';
+  var MSG = '출발 전에, 헤브로닝. 먼저 간 사람들이 살 동네·교회·가게를 확인해 적어두었습니다. 80개 도시, 무료.';
   var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   function toast(m){
     var t = document.getElementById('hgShareToast');
