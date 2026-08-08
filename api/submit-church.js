@@ -61,6 +61,10 @@ function normalizeCitySlug(input) {
     'tampa':'tampa','탬파':'tampa',
     'fairfield':'fairfield','페어필드':'fairfield','vacaville':'fairfield',
     'waynesville':'waynesville','웨인즈빌':'waynesville',
+    // 리스빌 = 포트 존슨(구 포트 폭) 기지 도시. 주소의 'LA'는 루이지애나 — 로스앤젤레스 아님.
+    'leesville':'leesville','리스빌':'leesville','leesville la':'leesville',
+    'leesville louisiana':'leesville','fort johnson':'leesville','포트존슨':'leesville',
+    'fort polk':'leesville','포트폭':'leesville',
     'chicago':'chicago','시카고':'chicago',
     // 워싱턴 D.C. 자체(정부·업무·관광)만 dc. 워싱턴만 단독일 때 dc로.
     'dc':'dc','washington':'dc','washington dc':'dc','워싱턴':'dc','워싱턴dc':'dc',

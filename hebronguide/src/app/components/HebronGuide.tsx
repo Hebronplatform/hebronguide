@@ -912,7 +912,7 @@ type CitySlug =
   // ⚠️ 누락 복구 (2026-07-25) — HEBRON_CITIES에는 status:"live"로 있으나
   // CitySlug·CITY_CONFIGS에 빠져 있어 useCityConfig()가 시애틀로 폴백되던 3개 도시.
   // 즉 /tampa/·/fairfield/·/waynesville/ 방문 시 "시애틀" 이름·색·태그라인이 표시됐다.
-  "fairfield" | "waynesville" | "tampa";
+  "fairfield" | "waynesville" | "tampa" | "leesville";
 
 interface CityConfig {
   slug: CitySlug;
@@ -1247,6 +1247,7 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
   // population은 검증된 한인 인구 수치가 없어 "—" (Hard Rule: AI 추측 데이터 금지). 화면 미표시 필드.
   fairfield:   { slug: "fairfield",   nameKo: "페어필드",  nameEn: "Fairfield",    color: "#10B981", heroVideo: "", population: "—", state: "California",  taglineKo: "트래비스 공군기지, 새로운 이웃",  taglineEn: "Travis AFB — your new neighbors.",       taglineEs: "Base Travis, tus nuevos vecinos." },
   waynesville: { slug: "waynesville", nameKo: "웨인즈빌",  nameEn: "Waynesville",  color: "#7C3AED", heroVideo: "", population: "—", state: "Missouri",    taglineKo: "포트 레너드우드, 함께 걷는 길",  taglineEn: "Fort Leonard Wood — walking together.",  taglineEs: "Fort Leonard Wood, caminando juntos." },
+  leesville:   { slug: "leesville",   nameKo: "리스빌",    nameEn: "Leesville",    color: "#0891B2", heroVideo: "", population: "—", state: "Louisiana",   taglineKo: "포트 존슨, 낯선 첫 밤을 함께",   taglineEn: "Fort Johnson — you are not alone here.", taglineEs: "Fort Johnson, no estás solo aquí." },
   tampa:       { slug: "tampa",       nameKo: "탬파",      nameEn: "Tampa",        color: "#0EA5E9", heroVideo: "", population: "—", state: "Florida",     taglineKo: "걸프 해안에서 시작하는 첫날",    taglineEn: "Your first day on the Gulf Coast.",      taglineEs: "Tu primer día en la Costa del Golfo." },
 };
 
@@ -12162,6 +12163,7 @@ const HEBRON_CITIES = [
   { emoji: "🪖", nameKo: "킬린",        nameEn: "Killeen",       flag: "🇺🇸", url: "/killeen/",     status: "live", color: "#F59E0B" },
   { emoji: "🪖", nameKo: "페어필드",    nameEn: "Fairfield",     flag: "🇺🇸", url: "/fairfield/",   status: "live", color: "#10B981" },
   { emoji: "🪖", nameKo: "웨인즈빌",    nameEn: "Waynesville",   flag: "🇺🇸", url: "/waynesville/", status: "live", color: "#7C3AED" },
+  { emoji: "🪖", nameKo: "리스빌",      nameEn: "Leesville",     flag: "🇺🇸", url: "/leesville/",   status: "live", color: "#0891B2" },
   { emoji: "🥃", nameKo: "루이빌",      nameEn: "Louisville",    flag: "🇺🇸", url: "/louisville/",  status: "live", color: "#7C3AED" },
   { emoji: "☀️", nameKo: "올랜도",      nameEn: "Orlando",       flag: "🇺🇸", url: "/orlando/",     status: "live", color: "#F97316" },
   { emoji: "🌊", nameKo: "탬파",        nameEn: "Tampa",         flag: "🇺🇸", url: "/tampa/",        status: "live", color: "#0EA5E9" },

@@ -60,7 +60,7 @@ declare -A CITY_KO=(
   ["winnipeg"]="위니펙"       ["phoenix"]="피닉스"       ["charlotte"]="샬럿"
   ["raleigh"]="롤리"          ["columbus"]="콜럼버스"    ["minneapolis"]="미니애폴리스"
   ["tucson"]="투손"           ["fayetteville"]="페이엣빌" ["killeen"]="킬린"
-  ["fairfield"]="페어필드"    ["waynesville"]="웨인즈빌"
+  ["fairfield"]="페어필드"    ["waynesville"]="웨인즈빌"   ["leesville"]="리스빌"
   ["louisville"]="루이빌"     ["anchorage"]="앵커리지"
   ["tampa"]="탬파"
   ["orlando"]="올랜도"        ["maryland"]="메릴랜드"   ["princgeorge"]="프린스조지"   ["virginia"]="버지니아"   ["neworleans"]="뉴올리언스"
@@ -98,7 +98,7 @@ declare -A CITY_EN=(
   ["winnipeg"]="Winnipeg"     ["phoenix"]="Phoenix"        ["charlotte"]="Charlotte"
   ["raleigh"]="Raleigh"       ["columbus"]="Columbus"      ["minneapolis"]="Minneapolis"
   ["tucson"]="Tucson"         ["fayetteville"]="Fayetteville" ["killeen"]="Killeen"
-  ["fairfield"]="Fairfield"   ["waynesville"]="Waynesville"
+  ["fairfield"]="Fairfield"   ["waynesville"]="Waynesville"  ["leesville"]="Leesville"
   ["louisville"]="Louisville" ["anchorage"]="Anchorage"
   ["tampa"]="Tampa"
   ["orlando"]="Orlando"       ["maryland"]="Maryland"    ["princgeorge"]="Prince George"   ["virginia"]="Virginia"   ["neworleans"]="New Orleans"
@@ -137,7 +137,7 @@ for city in \
   kansascity philadelphia miami orangecounty mexicocity guadalajara monterrey bogota \
   chicago dc sandiego honolulu portland denver \
   calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
-  tucson fayetteville killeen fairfield waynesville louisville anchorage princgeorge inlandempire austin \
+  tucson fayetteville killeen fairfield waynesville leesville louisville anchorage princgeorge inlandempire austin \
   tampa \
   sydney melbourne brisbane perth auckland saopaulo london \
   singapore bangkok hochiminh dubai frankfurt berlin paris \
@@ -280,7 +280,7 @@ declare -A REGION_MAP=(
   ["raleigh"]="🇺🇸 미국"    ["columbus"]="🇺🇸 미국"    ["minneapolis"]="🇺🇸 미국"
   ["kansascity"]="🇺🇸 미국" ["orlando"]="🇺🇸 미국"     ["maryland"]="🇺🇸 미국"    ["virginia"]="🇺🇸 미국"    ["neworleans"]="🇺🇸 미국"
   ["fayetteville"]="🇺🇸 미국" ["killeen"]="🇺🇸 미국"   ["louisville"]="🇺🇸 미국"
-  ["fairfield"]="🇺🇸 미국"  ["waynesville"]="🇺🇸 미국" ["tampa"]="🇺🇸 미국"
+  ["fairfield"]="🇺🇸 미국"  ["waynesville"]="🇺🇸 미국" ["tampa"]="🇺🇸 미국" ["leesville"]="🇺🇸 미국"
   ["anchorage"]="🇺🇸 미국"  ["tucson"]="🇺🇸 미국"      ["orangecounty"]="🇺🇸 미국"
   ["inlandempire"]="🇺🇸 미국" ["austin"]="🇺🇸 미국"    ["phoenix"]="🇺🇸 미국"
   ["huntsville"]="🇺🇸 미국"  ["memphis"]="🇺🇸 미국"
@@ -313,7 +313,7 @@ declare -A CITY_GEO=(
   ["sandiego"]="32.7157,-117.1611,미국"  ["honolulu"]="21.3069,-157.8583,미국"    ["portland"]="45.5152,-122.6784,미국"   ["denver"]="39.7392,-104.9903,미국"
   ["phoenix"]="33.4484,-112.0740,미국"   ["charlotte"]="35.2271,-80.8431,미국"    ["raleigh"]="35.7796,-78.6382,미국"     ["columbus"]="39.9612,-82.9988,미국"
   ["minneapolis"]="44.9778,-93.2650,미국" ["tucson"]="32.2226,-110.9747,미국"     ["fayetteville"]="35.0527,-78.8784,미국" ["killeen"]="31.1171,-97.7278,미국"
-  ["fairfield"]="38.2494,-122.0400,미국" ["waynesville"]="37.8286,-92.2001,미국"  ["louisville"]="38.2527,-85.7585,미국"  ["anchorage"]="61.2181,-149.9003,미국"
+  ["fairfield"]="38.2494,-122.0400,미국" ["waynesville"]="37.8286,-92.2001,미국"  ["leesville"]="31.1435,-93.2610,미국"  ["louisville"]="38.2527,-85.7585,미국"  ["anchorage"]="61.2181,-149.9003,미국"
   ["inlandempire"]="34.0633,-117.2898,미국" ["austin"]="30.2672,-97.7431,미국"    ["tampa"]="27.9506,-82.4572,미국"       ["orlando"]="28.5383,-81.3792,미국"
   ["maryland"]="39.2673,-76.7983,미국"   ["virginia"]="38.8304,-77.1964,미국"     ["neworleans"]="29.9511,-90.0715,미국"
   ["huntsville"]="34.7304,-86.5861,미국"  ["memphis"]="35.1495,-90.0490,미국"
@@ -338,7 +338,7 @@ for city in \
   kansascity philadelphia miami orangecounty mexicocity guadalajara monterrey bogota \
   chicago dc sandiego honolulu portland denver \
   calgary edmonton ottawa winnipeg phoenix charlotte raleigh columbus minneapolis \
-  tucson fayetteville killeen fairfield waynesville louisville anchorage princgeorge inlandempire austin \
+  tucson fayetteville killeen fairfield waynesville leesville louisville anchorage princgeorge inlandempire austin \
   tampa \
   sydney melbourne brisbane perth auckland saopaulo london \
   singapore bangkok hochiminh dubai frankfurt berlin paris \
