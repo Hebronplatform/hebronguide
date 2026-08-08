@@ -993,8 +993,32 @@
       body: JSON.stringify({ action: 'list', token: adminToken, table, ...opts }),
     })
     const j = await res.json().catch(() => ({}))
-    if (!res.ok || !j.ok) throw new Error(j.error || `조회 실패 (${res.status})`)
+    if (!res.ok || !j.ok) {
+      const msg = j.error || `조회 실패 (${res.status})`
+      // "신청이 없다"와 "신청을 못 읽는다"는 전혀 다른 상태다. 절대 조용히 넘기지 않는다.
+      showDataError(msg)
+      throw new Error(msg)
+    }
     return j.rows || []
+  }
+
+  // 데이터를 읽지 못했을 때 화면 최상단에 계속 떠 있는 경고
+  function showDataError(msg) {
+    let bar = document.getElementById('data-error-bar')
+    if (!bar) {
+      bar = document.createElement('div')
+      bar.id = 'data-error-bar'
+      bar.style.cssText = 'position:sticky;top:0;z-index:9999;background:#7f1d1d;color:#fff;' +
+        'padding:12px 18px;font-size:.86rem;line-height:1.6;border-bottom:1px solid #b91c1c'
+      document.body.prepend(bar)
+    }
+    const keyIssue = /Invalid API key|401/i.test(msg)
+    bar.innerHTML =
+      '<b>신청 목록을 읽지 못했습니다 — 목록이 비어 보이는 것은 신청이 없다는 뜻이 아닙니다.</b><br>' +
+      msg.replace(/</g, '&lt;') +
+      (keyIssue
+        ? '<br>→ Supabase 서비스 키가 무효입니다. Vercel 환경변수 SUPABASE_SERVICE_KEY_MAIN 을 새 키(sb_secret_…)로 교체하세요.'
+        : '')
   }
   // 개수만 필요한 곳 — 기존 { count } 형태를 유지해 호출부를 그대로 둔다
   const adminCount = (table, opts = {}) =>
@@ -1022,7 +1046,7 @@
         const appData = await adminList('community_items', {
           eqCol: 'category', eqVal: 'church', neqCol: 'status', neqVal: 'migrated',
           order: 'created_at', limit: 100,
-        }).catch(() => [])
+        })
         allData = churchData || []
         renderChurches(allData, appData || [])
       } else if (tab === 'restaurants') {
@@ -1030,13 +1054,13 @@
         const { data: dataC } = await sbMain.from('cafes').select('*').order('created_at', { ascending: false }).limit(100)
         const bizApps = await adminList('community_items', {
           eqCol: 'category', eqVal: 'business', order: 'created_at', limit: 100,
-        }).catch(() => [])
+        })
         allData = [...(dataR || []), ...(dataC || [])]
         renderRestaurants(allData, bizApps || [])
       } else if (tab === 'promo') {
         const promoApps = await adminList('community_items', {
           eqCol: 'category', eqVal: 'promo', order: 'created_at', limit: 100,
-        }).catch(() => [])
+        })
         allData = promoApps || []
         renderPromo(allData)
       } else if (tab === 'partners') {
