@@ -575,9 +575,38 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
         </optgroup>
         <option value="other|기타 도시">기타 도시 (직접 입력)</option>
       </select>
-      <!-- 기타 도시 직접 입력 -->
-      <input type="text" id="cCity" placeholder="도시명을 직접 입력해 주세요"
-        style="display:none;margin-top:8px;width:100%;background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 14px;font-size:.88rem;color:var(--text);font-family:'Noto Sans KR',sans-serif;outline:none;">
+      <!-- 기타 도시: 우편번호로 위치를 확정한다 (자유 입력은 오등재를 만든다) -->
+      <div id="cOtherBox" style="display:none;margin-top:10px;">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <select id="cCountry" onchange="cPostalLookup()"
+            style="flex:0 0 130px;background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 12px;font-size:.88rem;color:var(--text);font-family:'Noto Sans KR',sans-serif;outline:none;">
+            <option value="us">미국</option>
+            <option value="ca">캐나다</option>
+            <option value="jp">일본</option>
+            <option value="gb">영국</option>
+            <option value="au">호주</option>
+            <option value="nz">뉴질랜드</option>
+            <option value="de">독일</option>
+            <option value="fr">프랑스</option>
+            <option value="nl">네덜란드</option>
+            <option value="es">스페인</option>
+            <option value="mx">멕시코</option>
+            <option value="sg">싱가포르</option>
+            <option value="th">태국</option>
+            <option value="kr">한국</option>
+            <option value="other">그 외 나라</option>
+          </select>
+          <input type="text" id="cPostal" placeholder="우편번호 (예: 71446)" autocomplete="postal-code"
+            oninput="cPostalLookup()"
+            style="flex:1 1 160px;min-width:150px;background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 14px;font-size:.88rem;color:var(--text);font-family:'Noto Sans KR',sans-serif;outline:none;">
+        </div>
+        <div id="cPostalMsg" style="margin-top:8px;font-size:.82rem;line-height:1.6;color:var(--muted);"></div>
+        <!-- 우편번호로 확인 못 하는 나라(한국 등)를 위한 예외 경로 -->
+        <input type="text" id="cCity" placeholder="도시명을 직접 입력해 주세요 (예: 서울, 대한민국)"
+          style="display:none;margin-top:8px;width:100%;background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 14px;font-size:.88rem;color:var(--text);font-family:'Noto Sans KR',sans-serif;outline:none;">
+        <input type="hidden" id="cResolvedSlug">
+        <input type="hidden" id="cResolvedGeo">
+      </div>
       <div class="error-msg" id="cCity-error">교회 도시를 선택해 주세요</div>
     </div>
 
@@ -1206,16 +1235,100 @@ function switchTab(type) {
 
 // 교회 도시 선택 핸들러
 function handleChurchCity(val) {
+  const box   = document.getElementById('cOtherBox');
   const input = document.getElementById('cCity');
   if (val === 'other|기타 도시') {
-    input.style.display = 'block';
+    box.style.display = 'block';
     input.value = '';
-    input.focus();
+    document.getElementById('cResolvedSlug').value = '';
+    document.getElementById('cResolvedGeo').value  = '';
+    document.getElementById('cPostal').focus();
   } else {
-    input.style.display = 'none';
+    box.style.display = 'none';
+    document.getElementById('cResolvedSlug').value = '';
     // value 형식: "slug|도시표시명"
     input.value = val ? val.split('|')[1] || '' : '';
   }
+}
+
+// ── 우편번호로 도시를 확정한다 ─────────────────────────────────
+// 자유 입력은 'Leesville Louisiana' 같은 값을 만들어 어느 도시에도 안 뜨게 한다(2026-08 사고).
+// 우편번호는 도시·주·좌표를 한 번에 확정하고, 사용자도 화면에서 눈으로 확인한다.
+var _cHubs = null, _cPostalTimer = null;
+async function _loadHubs() {
+  if (_cHubs) return _cHubs;
+  try { _cHubs = await (await fetch('/cities.json')).json() } catch(e) { _cHubs = [] }
+  return _cHubs;
+}
+function _km(a, b, c, d) {                        // 하버사인
+  const R = 6371, r = Math.PI / 180;
+  const dLat = (c - a) * r, dLng = (d - b) * r;
+  const x = Math.sin(dLat/2)**2 + Math.cos(a*r) * Math.cos(c*r) * Math.sin(dLng/2)**2;
+  return Math.round(2 * R * Math.asin(Math.sqrt(x)));
+}
+function cPostalLookup() {
+  clearTimeout(_cPostalTimer);
+  _cPostalTimer = setTimeout(_cPostalRun, 500);   // 타이핑이 멈춘 뒤에 조회
+}
+async function _cPostalRun() {
+  const country = document.getElementById('cCountry').value;
+  const code    = (document.getElementById('cPostal').value || '').trim();
+  const msg     = document.getElementById('cPostalMsg');
+  const manual  = document.getElementById('cCity');
+  const slugEl  = document.getElementById('cResolvedSlug');
+  const geoEl   = document.getElementById('cResolvedGeo');
+
+  slugEl.value = ''; geoEl.value = '';
+
+  // 예외 경로 — 우편번호로 확인할 수 없는 나라는 도시명을 직접 받는다
+  if (country === 'kr' || country === 'other') {
+    msg.innerHTML = '<span style="color:var(--muted)">이 나라는 우편번호 확인이 지원되지 않습니다. 도시명을 적어주세요.</span>';
+    manual.style.display = 'block';
+    return;
+  }
+  if (!code) { msg.textContent = ''; manual.style.display = 'none'; return; }
+
+  msg.innerHTML = '<span style="color:var(--muted)">확인 중…</span>';
+  let data = null;
+  try {
+    const r = await fetch('https://api.zippopotam.us/' + country + '/' + encodeURIComponent(code));
+    if (r.ok) data = await r.json();
+  } catch(e) { /* 네트워크 실패는 아래 폴백으로 */ }
+
+  const place = data && data.places && data.places[0];
+  if (!place) {
+    // 확인 실패 → 막지 않는다. 직접 입력으로 넘긴다.
+    msg.innerHTML = '<span style="color:var(--yellow)">우편번호를 확인하지 못했습니다. 도시명을 직접 적어주세요.</span>';
+    manual.style.display = 'block';
+    return;
+  }
+
+  const city  = place['place name'];
+  const state = place['state'] || '';
+  const lat   = parseFloat(place.latitude), lng = parseFloat(place.longitude);
+  manual.style.display = 'none';
+  manual.value = state ? (city + ', ' + state) : city;
+  geoEl.value  = lat + ',' + lng;
+
+  // 가장 가까운 헤브론 도시를 찾아 알려준다
+  const hubs = await _loadHubs();
+  let best = null;
+  hubs.forEach(h => {
+    if (!h.lat || !h.lng) return;
+    const d = _km(lat, lng, h.lat, h.lng);
+    if (!best || d < best.d) best = { d, h };
+  });
+
+  let tail;
+  if (best && best.d <= 60) {
+    slugEl.value = best.h.slug;
+    tail = '<br><span style="color:var(--mint)">→ ' + best.h.nameKo + ' 페이지에 등재됩니다 (약 ' + best.d + 'km)</span>';
+  } else if (best) {
+    tail = '<br><span style="color:var(--gold)">가까운 헤브론 도시가 없습니다 (' + best.h.nameKo + '까지 ' + best.d + 'km) — 새 도시로 신청됩니다</span>';
+  } else {
+    tail = '';
+  }
+  msg.innerHTML = '<span style="color:var(--mint);font-weight:700">' + city + (state ? ', ' + state : '') + '</span>' + tail;
 }
 
 // 교단 기타 선택 시 직접 입력 필드 토글
@@ -1392,7 +1505,9 @@ async function submitForm(type) {
       document.getElementById('cCitySelect').scrollIntoView({behavior:'smooth', block:'center'});
       return;
     }
-    if (citySelVal === 'other|기타 도시' && !document.getElementById('cCity')?.value.trim()) {
+    if (citySelVal === 'other|기타 도시'
+        && !document.getElementById('cResolvedSlug')?.value
+        && !document.getElementById('cCity')?.value.trim()) {
       document.getElementById('cCity-error').style.display = 'block';
       document.getElementById('cCity').focus();
       return;
@@ -1491,7 +1606,11 @@ async function submitForm(type) {
   if (type === 'church') {
     try {
       const sel = document.getElementById('cCitySelect')?.value || '';
-      const citySlug = sel && sel !== 'other|기타 도시' ? sel.split('|')[0] : (document.getElementById('cCity')?.value.trim() || '');
+      // '기타'라도 우편번호로 허브가 확정됐으면 그 슬러그를 쓴다 (자유 텍스트가 슬러그가 되는 것을 막는다)
+    const resolved = document.getElementById('cResolvedSlug')?.value || '';
+    const citySlug = sel && sel !== 'other|기타 도시'
+      ? sel.split('|')[0]
+      : (resolved || document.getElementById('cCity')?.value.trim() || '');
       const cDenomVal = document.getElementById('cDenom')?.value || '';
       const cDenomOther = document.getElementById('cDenomOther')?.value.trim() || '';
       const finalDenom = cDenomVal === '기타' && cDenomOther ? `기타 — ${cDenomOther}` : cDenomVal;
@@ -1508,7 +1627,12 @@ async function submitForm(type) {
           phone:        document.getElementById('cPhone')?.value.trim() || '',
           email:        document.getElementById('cEmail')?.value.trim() || '',
           website:      document.getElementById('cWebsite')?.value.trim() || '',
-          address:      document.getElementById('cAddress')?.value.trim() || '',
+          address:      (function(){
+                      const a = document.getElementById('cAddress')?.value.trim() || '';
+                      const z = document.getElementById('cPostal')?.value.trim() || '';
+                      // 우편번호를 남겨두면 나중에 위치를 다시 확인할 수 있다
+                      return (z && a.indexOf(z) === -1) ? (a ? a + ' ' + z : z) : a;
+                    })(),
           serviceTimes: document.getElementById('cService')?.value.trim() || '',
           description:  document.getElementById('cDesc')?.value.trim() || '',
           city:         citySlug,
