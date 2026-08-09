@@ -18,7 +18,7 @@
       why: '헤브론이 시작된 도시',
       ink: '#0f7a5a',                                   // 도시 선 — 상록수 초록
       far: '#3f86b5',                                   // 먼 배경 — 설산 청회색
-      sky: ['#7ec8ef', '#c2e7fa', '#f6fcff'],           // 맑은 하늘
+      sky: ['#3fa9e8', '#9fd8f7', '#eefaff'],           // 맑은 하늘
       art:
         '<path d="M278 216 L308 166 L338 216" stroke="{far}" stroke-opacity=".42" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>' +
         '<path d="M297 185 L302 179 L307 184 L312 178 L319 185" stroke="{far}" stroke-opacity=".62" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>' +
@@ -38,7 +38,7 @@
       why: '북미 한인이 가장 많이 도착하는 관문',
       ink: '#4054a8',                                   // 도시 선 — 심야의 인디고
       far: '#2f8f7a',                                   // 자유의 여신상 — 청동 녹청
-      sky: ['#8ea4e8', '#cfd9f7', '#f6f4ff'],           // 새벽 보랏빛 하늘
+      sky: ['#5c73e0', '#b8c4f5', '#f2efff'],           // 새벽 보랏빛 하늘
       art:
         // 자유의 여신상 — 받침대·옷자락·왕관·횃불
         '<path d="M276 216 V198 H292 V216" stroke="{far}" stroke-opacity=".7" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>' +
@@ -68,7 +68,7 @@
       why: '캐나다 한인 사회의 중심',
       ink: '#c0392b',                                   // 도시 선 — 단풍 붉은빛
       far: '#8a6d3b',                                   // 먼 배경 — 가을 갈색
-      sky: ['#6fd0c8', '#bdf0ea', '#f2fffd'],           // 청록빛 호수 하늘
+      sky: ['#2fc4b6', '#9eeae2', '#eefffd'],           // 청록빛 호수 하늘
       art:
         // 블록 두 동 (왼쪽)
         '<path d="M280 216 V184 H291 V216" stroke="{ink}" stroke-opacity=".68" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>' +
