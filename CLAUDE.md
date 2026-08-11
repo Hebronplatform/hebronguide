@@ -454,6 +454,7 @@ HebronGuide는 부분이 전체에 얽혀 있다 — **Vite 빌드 · 서비스�
 | **파트너 철학·서약·수익나눔 원칙** | `HEBRON_PARTNER_CODEX.md` |
 | 4차 줌 네트워크 전략·스크립트 | `PASTOR_NETWORK_PLAYBOOK.md` |
 | **시애틀 세 교회 — 6개월 첫 걸음** (행2:42-47 · 3교회 · 성장목표 없음 · 소프트웨어 최소) | `SEATTLE_PILOT_3CHURCHES.md` |
+| **세 사이트 AI 노출** (HebronGuide·ijiguchon.org·NanuriWeb 실측과 적용 · 예배시간이 최우선) | `THREE_SITES_AEO.md` |
 | **도구는 변해도 본질은 변하지 않는다 — AI 노출 터널** (핵심 원리 · 7단계 터널 · 두 엔티티 상호인용 · 답할 질문) | `AI_EXPOSURE_TUNNEL.md` |
 | **엔티티 등기** (이재홍 GEO 프레임워크 적용 · 등기 상태 실측 · 영어 엔티티) | `AEO_ENTITY_MAPPING.md` |
 | **AEO — AI가 우리를 어떻게 소개하는가** (llms.txt를 사실에 맞추기 · 뾰족한 근거만 · 이름 세트 고정 · 답할 질문 먼저) | `AEO_PRINCIPLES.md` |
