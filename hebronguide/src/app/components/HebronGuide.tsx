@@ -24007,6 +24007,11 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
                   desc: ko ? "노타리오(Notario) 사기 신고 → 연방 FTC: reportfraud.ftc.gov\n이민 사기는 중범죄!\n⚠️ 이민 서류는 반드시 변호사(Attorney) 또는 BIA 공인 대리인에게만!\n한국어 상담 → Language Line: 800-752-6096"
                            : "Report Notario fraud → FTC: reportfraud.ftc.gov\nImmigration fraud is a serious crime!\n⚠️ Only use licensed attorneys or BIA-accredited reps!\nKorean hotline → Language Line: 800-752-6096",
                   tags: ko ? ["이민사기","신고","보호"] : ["Immigration Fraud","Report","Protection"] },
+                // 중고거래 사기 — 정착 첫 달이 피해 정점이라 이민사기와 나란히 둔다 (2026-08)
+                { emoji: "🛒", name: ko ? "⚠️ 중고거래 사기 주의 (전국)" : "⚠️ Beware Secondhand Scams (Nationwide)",
+                  desc: ko ? "정착 첫 달에 가구·가전·차를 중고로 사면서 가장 많이 당합니다.\n1. 돈은 만나서, 물건 받고 — Zelle·Venmo·Cash App 은 보낸 뒤 되돌릴 수 없습니다\n2. '안전결제' 링크를 보내오면 100% 사기 — 진짜 결제는 앱 안에서만 이뤄집니다\n3. 판매자가 '대리인을 보낸다'면 거절 — 판매자·구매자를 동시에 속이는 수법입니다\n4. 인증샷은 합성됩니다 — 영상통화로 물건을 보여달라고 하세요\n5. 거래는 경찰서 주차장(Safe Exchange Zone)에서 — 대부분 무료 개방\n6. '같은 한국 사람'이라 방심하지 마세요. 한인 단톡방 사기가 늘고 있습니다\n신고 → IC3.gov (FBI) · reportfraud.ftc.gov (FTC)\n체류 신분과 상관없이 신고할 수 있습니다. 피해자는 처벌받지 않습니다."
+                           : "Newcomers get hit hardest in the first month, buying used furniture, appliances, a car.\n1. Pay in person, after you see the item — Zelle/Venmo/Cash App cannot be reversed\n2. Any 'secure payment' link sent to you is a scam — real payment happens inside the app\n3. If the seller sends 'a representative', walk away — that scam fools buyer and seller at once\n4. Photos can be faked — ask for a video call showing the item\n5. Meet at a police station Safe Exchange Zone — most are free and open to all\n6. Being fellow Koreans is not proof — scams in Korean group chats are rising\nReport → IC3.gov (FBI) · reportfraud.ftc.gov (FTC)\nYou can report regardless of immigration status. Victims are not penalized.",
+                  tags: ko ? ["중고거래","사기","안전거래"] : ["Secondhand","Scam","Safe Trade"] },
               ];
               if (slug === "seattle") return [
                 { emoji: "⚖️", name: ko ? "NWIRP — 서북미 이민권 프로젝트 ✅" : "NWIRP — NW Immigrant Rights Project ✅",

@@ -2024,7 +2024,23 @@ HebronGuide ${s.nameEn} medical directory coming soon.`,tags:["Medical","Korean"
 한국어 상담 → Language Line: 800-752-6096`:`Report Notario fraud → FTC: reportfraud.ftc.gov
 Immigration fraud is a serious crime!
 ⚠️ Only use licensed attorneys or BIA-accredited reps!
-Korean hotline → Language Line: 800-752-6096`,tags:w?["이민사기","신고","보호"]:["Immigration Fraud","Report","Protection"]}];return b==="seattle"?[{emoji:"⚖️",name:w?"NWIRP — 서북미 이민권 프로젝트 ✅":"NWIRP — NW Immigrant Rights Project ✅",desc:w?`시애틀 최대 이민 법률 무료 기관. 영주권·추방방어·DACA·망명.
+Korean hotline → Language Line: 800-752-6096`,tags:w?["이민사기","신고","보호"]:["Immigration Fraud","Report","Protection"]},{emoji:"🛒",name:w?"⚠️ 중고거래 사기 주의 (전국)":"⚠️ Beware Secondhand Scams (Nationwide)",desc:w?`정착 첫 달에 가구·가전·차를 중고로 사면서 가장 많이 당합니다.
+1. 돈은 만나서, 물건 받고 — Zelle·Venmo·Cash App 은 보낸 뒤 되돌릴 수 없습니다
+2. '안전결제' 링크를 보내오면 100% 사기 — 진짜 결제는 앱 안에서만 이뤄집니다
+3. 판매자가 '대리인을 보낸다'면 거절 — 판매자·구매자를 동시에 속이는 수법입니다
+4. 인증샷은 합성됩니다 — 영상통화로 물건을 보여달라고 하세요
+5. 거래는 경찰서 주차장(Safe Exchange Zone)에서 — 대부분 무료 개방
+6. '같은 한국 사람'이라 방심하지 마세요. 한인 단톡방 사기가 늘고 있습니다
+신고 → IC3.gov (FBI) · reportfraud.ftc.gov (FTC)
+체류 신분과 상관없이 신고할 수 있습니다. 피해자는 처벌받지 않습니다.`:`Newcomers get hit hardest in the first month, buying used furniture, appliances, a car.
+1. Pay in person, after you see the item — Zelle/Venmo/Cash App cannot be reversed
+2. Any 'secure payment' link sent to you is a scam — real payment happens inside the app
+3. If the seller sends 'a representative', walk away — that scam fools buyer and seller at once
+4. Photos can be faked — ask for a video call showing the item
+5. Meet at a police station Safe Exchange Zone — most are free and open to all
+6. Being fellow Koreans is not proof — scams in Korean group chats are rising
+Report → IC3.gov (FBI) · reportfraud.ftc.gov (FTC)
+You can report regardless of immigration status. Victims are not penalized.`,tags:w?["중고거래","사기","안전거래"]:["Secondhand","Scam","Safe Trade"]}];return b==="seattle"?[{emoji:"⚖️",name:w?"NWIRP — 서북미 이민권 프로젝트 ✅":"NWIRP — NW Immigrant Rights Project ✅",desc:w?`시애틀 최대 이민 법률 무료 기관. 영주권·추방방어·DACA·망명.
 📍 615 2nd Ave Ste 400, Seattle | 📞 800-445-5771 | 🔗 nwirp.org
 무료 (저소득 우선). 한국어 통역 가능`:`Seattle's largest free immigration legal org. Green card, deportation defense, DACA, asylum.
 📍 615 2nd Ave Ste 400, Seattle | 📞 800-445-5771 | 🔗 nwirp.org
