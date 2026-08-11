@@ -418,7 +418,11 @@ AI가 인용한 것은 전부 — 홈페이지에 "글자로" 적힌 구체적 �
   "@context": "https://schema.org",
   "@type": "Church",
   "name": "시애틀지구촌교회",
-  "alternateName": ["Global Mission Church of Greater Seattle", "GMC Seattle"],
+  "alternateName": [
+    "Global Mission Church of Greater Seattle",
+    "시애틀 지구촌교회",
+    "GMC Seattle"
+  ],
   "url": "https://www.ijiguchon.org",
   "telephone": "+1-425-350-0191",
   "foundingDate": "2001",
