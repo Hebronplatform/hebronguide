@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AI가 우리 교회를 알고 있을까? — 무료 자가진단 | HebronGuide</title>
+<meta name="description" content="사람들이 이제 검색 대신 AI에게 먼저 묻습니다. 우리 교회·가게가 AI 답변에 나오는지 직접 확인해 보세요. 무료, 가입 없음.">
+<meta property="og:title" content="AI가 우리 교회를 알고 있을까? — 무료 자가진단">
+<meta property="og:description" content="질문 세트를 만들어 드립니다. 눌러서 직접 확인하세요. 무료.">
+<link rel="canonical" href="https://hebronguide.com/ai-check.html">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0d1117;--card:#161b26;--card2:#1b2230;--line:rgba(255,255,255,.1);
+        --gold:#C9A227;--mint:#6EE7B7;--red:#f87171;--yellow:#FBBF24;
+        --text:#ECFDF5;--muted:rgba(236,253,245,.56);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);
+       line-height:1.8;padding-bottom:80px;}
+  .wrap{max-width:680px;margin:0 auto;padding:0 20px;}
+
+  header{padding:44px 20px 30px;text-align:center;border-bottom:1px solid var(--line);}
+  h1{font-size:clamp(1.35rem,4.6vw,1.75rem);font-weight:900;line-height:1.45;}
+  .sub{color:var(--muted);font-size:.92rem;margin-top:12px;}
+  .free{display:inline-block;margin-top:15px;font-size:.72rem;font-weight:800;letter-spacing:.1em;
+        color:var(--mint);border:1px solid rgba(110,231,183,.35);background:rgba(110,231,183,.09);
+        border-radius:99px;padding:5px 15px;}
+
+  .why{margin:26px 0;background:var(--card);border:1px solid var(--line);border-radius:14px;
+       padding:18px 20px;font-size:.9rem;color:var(--muted);}
+  .why b{color:var(--text);}
+
+  .form{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:20px;}
+  label{display:block;font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:7px;}
+  input,select{width:100%;background:#0a0e14;border:1px solid var(--line);border-radius:10px;
+    padding:12px 14px;color:var(--text);font-size:.95rem;font-family:inherit;margin-bottom:16px;}
+  input:focus,select:focus{outline:none;border-color:var(--gold);}
+  .row{display:flex;gap:12px;}
+  .row>div{flex:1;}
+  button.go{width:100%;background:linear-gradient(135deg,#C9A227,#e0b83a);color:#0d1117;border:0;
+    font-family:inherit;font-weight:900;font-size:1rem;border-radius:12px;padding:15px;cursor:pointer;}
+
+  .steps{display:none;}
+  .steps.on{display:block;}
+  .note{background:rgba(251,191,36,.09);border:1px solid rgba(251,191,36,.3);border-radius:12px;
+        padding:15px 18px;font-size:.88rem;margin-bottom:20px;}
+  .note b{color:var(--yellow);}
+
+  .q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 19px;margin-bottom:12px;}
+  .q.done{border-color:rgba(110,231,183,.4);}
+  .q-top{display:flex;gap:9px;align-items:flex-start;margin-bottom:4px;}
+  .tag{flex:none;font-size:.63rem;font-weight:800;letter-spacing:.05em;border-radius:99px;padding:2px 9px;margin-top:3px;}
+  .t-sharp{background:rgba(110,231,183,.14);color:var(--mint);border:1px solid rgba(110,231,183,.3);}
+  .t-broad{background:rgba(255,255,255,.06);color:var(--muted);border:1px solid var(--line);}
+  .t-en{background:rgba(201,162,39,.12);color:var(--gold);border:1px solid rgba(201,162,39,.3);}
+  .q-text{font-size:.96rem;font-weight:700;line-height:1.6;}
+  .q-why{font-size:.78rem;color:var(--muted);margin-top:3px;}
+  .engines{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
+  .engines a{font-size:.76rem;font-weight:700;color:var(--text);text-decoration:none;
+    background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:7px 13px;}
+  .engines a:hover{border-color:var(--gold);color:var(--gold);}
+  .mark{display:flex;gap:8px;margin-top:12px;padding-top:11px;border-top:1px dashed var(--line);}
+  .mark button{flex:1;background:transparent;border:1px solid var(--line);color:var(--muted);
+    font-family:inherit;font-size:.78rem;font-weight:700;border-radius:8px;padding:8px;cursor:pointer;}
+  .mark button.on-y{background:rgba(110,231,183,.16);border-color:var(--mint);color:var(--mint);}
+  .mark button.on-n{background:rgba(248,113,113,.14);border-color:var(--red);color:var(--red);}
+
+  .result{display:none;margin-top:26px;background:var(--card);border:1px solid var(--line);
+          border-radius:18px;padding:22px;}
+  .result.on{display:block;}
+  .score{font-size:2.2rem;font-weight:900;color:var(--gold);line-height:1;}
+  .score small{font-size:.9rem;color:var(--muted);font-weight:700;}
+  .cond{margin-top:18px;}
+  .cond-row{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line);}
+  .cond-row b{flex:none;width:52px;font-size:.85rem;}
+  .cond-row span{font-size:.86rem;color:var(--muted);}
+  .verdict{margin-top:18px;padding:15px 17px;border-radius:12px;font-size:.9rem;line-height:1.8;}
+  .v-good{background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.3);}
+  .v-bad{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);}
+
+  footer{margin-top:40px;text-align:center;font-size:.8rem;color:var(--muted);}
+  footer a{color:var(--gold);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>AI가 우리 교회를<br>알고 있을까요?</h1>
+    <div class="sub">
+      사람들이 이제 검색창 대신 AI에게 먼저 묻습니다.<br>
+      그 답에 우리가 없으면, 찾아올 길이 없습니다.
+    </div>
+    <span class="free">무료 · 가입 없음 · 아무것도 저장하지 않습니다</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="why">
+    <b>이 도구는 대신 물어봐 주지 않습니다.</b> 질문을 만들어 드리고, 목사님이 직접 눌러
+    확인하시게 합니다. <b>자기 계정으로 물으면 AI가 이전 대화를 기억해 우리 편을 들어줍니다.</b>
+    그건 진짜 답이 아닙니다. 그래서 <b>로그인하지 않은 창</b>에서 확인하시게 안내합니다.
+  </div>
+
+  <div class="form">
+    <label>이름 — AI가 이렇게 불러주길 원하는 그대로</label>
+    <input id="name" placeholder="예: 시애틀지구촌교회" autocomplete="off">
+
+    <div class="row">
+      <div>
+        <label>도시·동네</label>
+        <input id="city" placeholder="예: 시애틀 린우드" autocomplete="off">
+      </div>
+      <div>
+        <label>무엇인가요</label>
+        <select id="kind">
+          <option value="church">교회</option>
+          <option value="biz">가게·업소</option>
+          <option value="org">단체·기관</option>
+        </select>
+      </div>
+    </div>
+
+    <label>남들과 다른 점 한 가지 <span style="color:rgba(236,253,245,.35)">(가장 중요합니다)</span></label>
+    <input id="edge" placeholder="예: 성경적 가정교회 / 목장" autocomplete="off">
+
+    <button class="go" onclick="build()">질문 만들기</button>
+  </div>
+
+  <div class="steps" id="steps">
+    <div class="note">
+      <b>먼저 이렇게 하세요.</b> 브라우저에서 <b>시크릿 창</b>(Chrome: Ctrl+Shift+N,
+      Mac: ⌘+Shift+N)을 하나 여세요. 그 창에서 아래 버튼들을 누르시면 됩니다.
+      로그인된 채로 물으면 답이 왜곡됩니다.
+    </div>
+    <div id="qs"></div>
+
+    <div class="result" id="result">
+      <div class="score"><span id="pct">0</span>%<small> — 우리가 언급된 비율</small></div>
+      <div class="cond" id="cond"></div>
+      <div id="verdict"></div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="/">← HebronGuide</a> ·
+    <a href="/gathering.html">이번 주 식탁의 자리</a>
+  </footer>
+</div>
+
+<script>
+/* AI 자가진단 — 서버 함수 없이 동작한다.
+   api/*.js 가 Vercel Hobby 한도 12개에 꽉 차 있어 함수를 못 늘리기도 하지만,
+   더 중요한 이유는 정확성이다. 로그인된 계정으로 물으면 AI가 이전 대화를 기억해
+   우리를 편들어 준다. 사람이 시크릿 창에서 직접 보는 것이 유일하게 정확한 방법이다. */
+
+function esc(t){ return String(t==null?'':t).replace(/[&<>"]/g,function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+/* 뭉툭한 질문과 뾰족한 질문을 함께 준다 — 대비가 곧 배움이다 */
+function makeQuestions(name, city, kind, edge){
+  var c = city || '', e = edge || '';
+  var list = [];
+
+  list.push({ t:'broad', q: c + ' ' + (kind==='church'?'한인 교회':'한인 가게') + ' 추천해줘',
+              why:'붐비는 자리입니다. 여기서 나오면 아주 좋지만, 안 나와도 정상입니다.' });
+
+  if (kind === 'church') {
+    if (e) list.push({ t:'sharp', q: c + '에서 ' + e + ' 하는 한인 교회 있어?',
+                       why:'남들과 다른 점을 그대로 넣은 질문. 여기가 우리 자리입니다.' });
+    list.push({ t:'sharp', q: c + '에 막 이사 왔는데 처음 온 사람 잘 맞아주는 한인 교회 알려줘',
+                why:'실제로 사람들이 이렇게 묻습니다. 절실한 사람의 말입니다.' });
+    list.push({ t:'sharp', q: c + ' 한인 교회 중에 예배 시간이랑 주소 알려줘',
+                why:'예배 시간이 어디에도 없으면 AI가 답을 못 합니다.' });
+    list.push({ t:'en', q: 'Korean church in ' + (c||'Seattle') + (e?' with house church small groups':''),
+                why:'영어로 묻는 2세·타민족·배우자도 있습니다.' });
+  } else {
+    if (e) list.push({ t:'sharp', q: c + '에서 ' + e + ' 잘하는 곳 추천해줘',
+                       why:'남들과 다른 점을 그대로 넣은 질문. 여기가 우리 자리입니다.' });
+    list.push({ t:'sharp', q: c + ' 근처에 ' + (e||'한인') + ' 처음 가는 사람도 편한 곳 있어?',
+                why:'실제 사람들의 말투입니다.' });
+    list.push({ t:'en', q: 'Korean ' + (e||'business') + ' in ' + (c||'Seattle'),
+                why:'영어권 고객도 있습니다.' });
+  }
+
+  list.push({ t:'sharp', q: name + ' 어떤 곳이야?',
+              why:'이름을 직접 물었을 때조차 모르면, 등기 자체가 안 된 것입니다.' });
+
+  return list;
+}
+
+var ENGINES = [
+  { n:'ChatGPT',    u:'https://chatgpt.com/?q=' },
+  { n:'Perplexity', u:'https://www.perplexity.ai/search?q=' },
+  { n:'Claude',     u:'https://claude.ai/new?q=' },
+  { n:'Gemini',     u:'https://gemini.google.com/app' },
+  { n:'구글',        u:'https://www.google.com/search?q=' }
+];
+
+var QS = [];
+
+function build(){
+  var name = document.getElementById('name').value.trim();
+  var city = document.getElementById('city').value.trim();
+  var kind = document.getElementById('kind').value;
+  var edge = document.getElementById('edge').value.trim();
+  if (!name){ alert('이름을 적어 주세요.'); return; }
+
+  QS = makeQuestions(name, city, kind, edge).map(function(q){ q.hit = null; return q; });
+
+  var LBL = { broad:'붐비는 자리', sharp:'뾰족한 질문', en:'영어' };
+  var html = QS.map(function(q, i){
+    var links = ENGINES.map(function(en){
+      var href = en.u.indexOf('?') > -1 ? en.u + encodeURIComponent(q.q) : en.u;
+      return '<a href="' + href + '" target="_blank" rel="noopener">' + en.n + '</a>';
+    }).join('');
+    return '<div class="q" id="q' + i + '">' +
+      '<div class="q-top"><span class="tag t-' + q.t + '">' + LBL[q.t] + '</span>' +
+      '<div><div class="q-text">' + esc(q.q) + '</div>' +
+      '<div class="q-why">' + esc(q.why) + '</div></div></div>' +
+      '<div class="engines">' + links + '</div>' +
+      '<div class="mark">' +
+        '<button onclick="mark(' + i + ',true)">우리가 나왔다</button>' +
+        '<button onclick="mark(' + i + ',false)">안 나왔다</button>' +
+      '</div></div>';
+  }).join('');
+
+  document.getElementById('qs').innerHTML = html;
+  document.getElementById('steps').classList.add('on');
+  document.getElementById('steps').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function mark(i, hit){
+  QS[i].hit = hit;
+  var box = document.getElementById('q' + i);
+  var bs = box.querySelectorAll('.mark button');
+  bs[0].className = hit ? 'on-y' : '';
+  bs[1].className = hit ? '' : 'on-n';
+  box.classList.toggle('done', true);
+  report();
+}
+
+function report(){
+  var done = QS.filter(function(q){ return q.hit !== null; });
+  if (!done.length) return;
+  var hit = done.filter(function(q){ return q.hit; });
+  var pct = Math.round(100 * hit.length / done.length);
+
+  var nameQ  = QS[QS.length - 1];                                  // "○○ 어떤 곳이야?"
+  var sharp  = QS.filter(function(q){ return q.t === 'sharp' && q.hit !== null; });
+  var sharpHit = sharp.filter(function(q){ return q.hit; }).length;
+
+  var know = nameQ.hit === true;                                   // ① 인지
+  var fit  = sharp.length > 0 && sharpHit > 0;                     // ② 적합
+  var mark3 = function(ok){ return ok ? '<b style="color:#6EE7B7">있음</b>' : '<b style="color:#f87171">없음</b>'; };
+
+  document.getElementById('pct').textContent = pct;
+  document.getElementById('cond').innerHTML =
+    '<div class="cond-row"><b>① 인지</b><span>' + mark3(know) +
+      ' — 이름을 물었을 때 아는가</span></div>' +
+    '<div class="cond-row"><b>② 적합</b><span>' + mark3(fit) +
+      ' — 뾰족한 질문에서 답으로 나오는가</span></div>' +
+    '<div class="cond-row"><b>③ 최신</b><span>' +
+      '<b style="color:#FBBF24">직접 확인</b> — 답에 나온 주소·전화·예배 시간이 지금 맞습니까?</span></div>';
+
+  var v = '';
+  if (!know) {
+    v = '<div class="verdict v-bad"><b>이름조차 모릅니다.</b><br>' +
+        '홈페이지에 <b>정식 이름·주소·전화·시간</b>을 글자로 적는 것부터입니다. ' +
+        '사진 속 글자는 AI가 못 읽습니다.</div>';
+  } else if (!fit) {
+    v = '<div class="verdict v-bad"><b>알기는 아는데, 추천은 안 합니다.</b><br>' +
+        '남들과 다른 점이 안 드러난 것입니다. ' +
+        '<b>그 한 가지를 모든 곳에 똑같은 말로</b> 적으세요. ' +
+        '넓은 말("좋은 교회")로는 절대 안 나옵니다.</div>';
+  } else {
+    v = '<div class="verdict v-good"><b>뾰족한 자리를 잡고 있습니다.</b><br>' +
+        '이제 <b>③최신</b>을 지키세요. 예배 시간·주소가 바뀌면 바로 고쳐야 합니다. ' +
+        '오래된 정보는 AI가 스스로 걸러냅니다.</div>';
+  }
+  document.getElementById('verdict').innerHTML = v;
+  document.getElementById('result').classList.add('on');
+}
+</script>
+
+</body>
+</html>

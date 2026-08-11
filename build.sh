@@ -231,6 +231,7 @@ cp index-preview.html         public/index-preview.html         2>/dev/null || t
 cp hero-themes.js             public/hero-themes.js             2>/dev/null || true
 # 목장 모임 — 처음 온 사람이 앉을 식탁을 찾는 자리 (구글 시트를 그대로 읽음)
 cp gathering.html             public/gathering.html             2>/dev/null || true
+cp ai-check.html              public/ai-check.html              2>/dev/null || true
 # SQL 적용 따라하기 (목사님 전용 · noindex)
 cp sql-guide.html             public/sql-guide.html             2>/dev/null || true
 cp hero-theme-preview.html    public/hero-theme-preview.html    2>/dev/null || true
