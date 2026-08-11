@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="robots" content="noindex, nofollow">
+<title>신청자 연락처 보호하기 — 5분 안내</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0d1117;--card:#161b26;--line:rgba(255,255,255,.1);
+        --gold:#C9A227;--mint:#6EE7B7;--red:#f87171;
+        --text:#ECFDF5;--muted:rgba(236,253,245,.58);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);
+       line-height:1.85;padding-bottom:70px;}
+  .wrap{max-width:640px;margin:0 auto;padding:0 20px;}
+
+  header{padding:38px 20px 26px;border-bottom:1px solid var(--line);text-align:center;}
+  h1{font-size:1.42rem;font-weight:900;line-height:1.4;}
+  .sub{color:var(--muted);font-size:.9rem;margin-top:10px;}
+  .time{display:inline-block;margin-top:14px;font-size:.75rem;font-weight:800;letter-spacing:.1em;
+        color:var(--gold);border:1px solid rgba(201,162,39,.35);border-radius:99px;
+        padding:5px 15px;background:rgba(201,162,39,.08);}
+
+  .why{margin:26px 0 30px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);
+       border-radius:14px;padding:18px 20px;font-size:.92rem;}
+  .why b{color:var(--red);}
+
+  /* 단계 */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;
+        padding:22px 22px 20px;margin-bottom:16px;position:relative;}
+  .step.done{border-color:rgba(110,231,183,.45);}
+  .num{display:inline-flex;align-items:center;justify-content:center;
+       width:30px;height:30px;border-radius:50%;background:var(--gold);color:#0d1117;
+       font-weight:900;font-size:.95rem;margin-bottom:12px;}
+  .step h2{font-size:1.05rem;font-weight:800;margin-bottom:12px;line-height:1.5;}
+  .step p{font-size:.92rem;color:var(--muted);margin-bottom:10px;}
+  .step p b{color:var(--text);}
+
+  .go{display:inline-flex;align-items:center;gap:7px;background:rgba(110,231,183,.13);
+      border:1px solid rgba(110,231,183,.4);color:var(--mint);font-weight:800;font-size:.88rem;
+      border-radius:10px;padding:11px 18px;text-decoration:none;margin:6px 0 12px;word-break:break-all;}
+
+  .see{background:rgba(255,255,255,.04);border-left:3px solid var(--gold);
+       border-radius:0 10px 10px 0;padding:12px 16px;margin:12px 0;font-size:.88rem;}
+  .see .lbl{font-size:.7rem;font-weight:800;letter-spacing:.1em;color:var(--gold);
+            display:block;margin-bottom:5px;}
+
+  .chk{display:flex;gap:11px;align-items:flex-start;margin-top:14px;padding-top:14px;
+       border-top:1px dashed var(--line);cursor:pointer;user-select:none;}
+  .chk input{width:19px;height:19px;accent-color:var(--mint);margin-top:3px;flex:none;cursor:pointer;}
+  .chk span{font-size:.9rem;font-weight:700;}
+
+  /* SQL 상자 */
+  .sqlbox{position:relative;margin:12px 0;}
+  pre{background:#0a0e14;border:1px solid var(--line);border-radius:12px;
+      padding:16px 16px 16px;overflow-x:auto;font-size:.76rem;line-height:1.75;
+      font-family:'Courier New',monospace;color:#cfe;}
+  .copy{width:100%;margin-top:8px;background:var(--gold);color:#0d1117;border:0;
+        font-family:inherit;font-weight:900;font-size:.92rem;border-radius:10px;
+        padding:13px;cursor:pointer;}
+  .copy.ok{background:var(--mint);}
+
+  .oops{margin-top:30px;background:rgba(255,255,255,.03);border:1px solid var(--line);
+        border-radius:14px;padding:20px 22px;}
+  .oops h3{font-size:.95rem;font-weight:800;color:var(--red);margin-bottom:10px;}
+  .oops p{font-size:.88rem;color:var(--muted);margin-bottom:10px;}
+  details{margin-top:10px;}
+  summary{cursor:pointer;font-size:.86rem;color:var(--gold);font-weight:700;}
+
+  .done-msg{margin-top:26px;text-align:center;padding:22px;border-radius:14px;
+            background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.35);
+            display:none;}
+  .done-msg.on{display:block;}
+  .done-msg b{color:var(--mint);font-size:1.02rem;}
+  footer{margin-top:34px;text-align:center;font-size:.8rem;}
+  footer a{color:var(--gold);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>신청자 연락처 보호하기</h1>
+    <div class="sub">순서대로 따라만 하시면 됩니다</div>
+    <span class="time">5분</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="why">
+    <b>지금 상태</b> — 교회·업소가 등록하며 남긴 <b>이메일과 전화번호</b>가
+    승인 전까지 밖에서도 보입니다. 아래 순서를 마치면 승인된 것만 보이게 됩니다.
+  </div>
+
+  <!-- 1 -->
+  <div class="step" id="s1">
+    <span class="num">1</span>
+    <h2>먼저, 지금 화면을 눈에 담아 둡니다</h2>
+    <p>나중에 비교해야 하니 <b>지금 모습을 기억</b>해 두는 단계입니다.</p>
+    <a class="go" href="https://hebronguide.com/admin.html" target="_blank" rel="noopener">대시보드 열기 →</a>
+    <p>로그인하시고 <b>교회</b> 칸을 눌러 보세요.</p>
+    <div class="see">
+      <span class="lbl">확인할 것</span>
+      교회 목록이 <b>보이면</b> 정상입니다. 다음으로 가세요.<br>
+      아무것도 <b>안 보이면</b> 여기서 멈추고 저에게 알려주세요.
+    </div>
+    <label class="chk"><input type="checkbox" data-s="1"><span>교회 목록이 보였습니다</span></label>
+  </div>
+
+  <!-- 2 -->
+  <div class="step" id="s2">
+    <span class="num">2</span>
+    <h2>Supabase에서 명령창을 엽니다</h2>
+    <a class="go" href="https://supabase.com/dashboard/project/vextxqzggznulwpganwt/sql/new" target="_blank" rel="noopener">SQL 창 열기 →</a>
+    <p>글자를 쓸 수 있는 <b>큰 빈 칸</b>이 나옵니다. 안 열리면 로그인 후 다시 눌러 주세요.</p>
+    <label class="chk"><input type="checkbox" data-s="2"><span>빈 칸이 보입니다</span></label>
+  </div>
+
+  <!-- 3 -->
+  <div class="step" id="s3">
+    <span class="num">3</span>
+    <h2>아래 버튼을 누르고, 빈 칸에 붙여넣습니다</h2>
+    <div class="sqlbox">
+<pre id="sql">ALTER TABLE public.community_items ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "public read"                      ON public.community_items;
+DROP POLICY IF EXISTS "Public read"                      ON public.community_items;
+DROP POLICY IF EXISTS "public_read"                      ON public.community_items;
+DROP POLICY IF EXISTS "Enable read access for all users" ON public.community_items;
+DROP POLICY IF EXISTS "community_items_select_all"       ON public.community_items;
+DROP POLICY IF EXISTS "anon_read_approved"               ON public.community_items;
+
+CREATE POLICY "anon_read_approved"
+  ON public.community_items
+  FOR SELECT
+  TO anon, authenticated
+  USING (status = 'approved');
+
+DROP POLICY IF EXISTS "anon_insert_submission" ON public.community_items;
+
+CREATE POLICY "anon_insert_submission"
+  ON public.community_items
+  FOR INSERT
+  TO anon, authenticated
+  WITH CHECK (true);</pre>
+      <button class="copy" id="copyBtn">위 내용 복사하기</button>
+    </div>
+    <p>복사한 뒤 빈 칸을 한 번 누르고 <b>Ctrl + V</b> (맥은 <b>⌘ + V</b>) 를 누르세요.</p>
+    <label class="chk"><input type="checkbox" data-s="3"><span>빈 칸에 글자가 들어갔습니다</span></label>
+  </div>
+
+  <!-- 4 -->
+  <div class="step" id="s4">
+    <span class="num">4</span>
+    <h2>초록색 <b>Run</b> 단추를 누릅니다</h2>
+    <p>오른쪽 아래에 있습니다. <b>Ctrl + Enter</b> 를 눌러도 됩니다.</p>
+    <div class="see">
+      <span class="lbl">확인할 것</span>
+      아래에 <b>Success</b> 라고 뜨면 된 것입니다.<br>
+      빨간 글씨가 뜨면 그 글씨를 사진 찍어 저에게 보내주세요.
+    </div>
+    <label class="chk"><input type="checkbox" data-s="4"><span>Success 라고 떴습니다</span></label>
+  </div>
+
+  <!-- 5 -->
+  <div class="step" id="s5">
+    <span class="num">5</span>
+    <h2>대시보드가 그대로인지 봅니다</h2>
+    <p><b>가장 중요한 단계</b>입니다. 1번에서 본 화면과 같아야 합니다.</p>
+    <a class="go" href="https://hebronguide.com/admin.html" target="_blank" rel="noopener">대시보드 다시 열기 →</a>
+    <p>새로 고침(<b>F5</b>)하고 <b>교회</b> 칸을 눌러 보세요.</p>
+    <div class="see">
+      <span class="lbl">확인할 것</span>
+      1번과 <b>똑같이 보이면</b> 끝났습니다.<br>
+      <b>비어 보이면</b> 아래 '되돌리기'를 여세요.
+    </div>
+    <label class="chk"><input type="checkbox" data-s="5"><span>1번과 똑같이 보입니다</span></label>
+  </div>
+
+  <div class="done-msg" id="doneMsg">
+    <b>다 하셨습니다.</b><br>
+    저에게 <b>"SQL 했어"</b> 라고 한 마디만 주세요.<br>
+    제가 밖에서 정말 안 보이는지 확인해 드리겠습니다.
+  </div>
+
+  <div class="oops">
+    <h3>혹시 잘못되면</h3>
+    <p>겁내지 않으셔도 됩니다. 아래를 붙여넣고 <b>Run</b> 하면 <b>1분 만에 원래대로</b> 돌아갑니다.
+       지워지는 자료는 없습니다.</p>
+    <details>
+      <summary>되돌리는 명령 보기</summary>
+      <div class="sqlbox">
+<pre id="undo">DROP POLICY IF EXISTS "anon_read_approved"     ON public.community_items;
+DROP POLICY IF EXISTS "anon_insert_submission" ON public.community_items;
+
+CREATE POLICY "anon_read_approved"
+  ON public.community_items
+  FOR SELECT
+  TO anon, authenticated
+  USING (true);
+
+CREATE POLICY "anon_insert_submission"
+  ON public.community_items
+  FOR INSERT
+  TO anon, authenticated
+  WITH CHECK (true);</pre>
+        <button class="copy" id="undoBtn">되돌리는 명령 복사하기</button>
+      </div>
+    </details>
+  </div>
+
+  <footer><a href="/ops.html">← 상황판으로</a></footer>
+</div>
+
+<script>
+/* 복사 — 초등학생도 누르면 되게 버튼 하나로 */
+function wire(btnId, preId, label){
+  var b = document.getElementById(btnId), p = document.getElementById(preId);
+  b.addEventListener('click', function(){
+    var t = p.textContent;
+    function ok(){ b.textContent = '복사됐습니다. 이제 붙여넣으세요'; b.classList.add('ok');
+                   setTimeout(function(){ b.textContent = label; b.classList.remove('ok'); }, 2600); }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(ok, fallback);
+    } else fallback();
+    function fallback(){                       // 구형 브라우저·비보안 문맥에서도 되게
+      var a = document.createElement('textarea');
+      a.value = t; a.style.position = 'fixed'; a.style.opacity = '0';
+      document.body.appendChild(a); a.select();
+      try { document.execCommand('copy'); ok(); } catch(e){ alert('복사가 안 됩니다. 글자를 직접 긁어서 복사해 주세요.'); }
+      document.body.removeChild(a);
+    }
+  });
+}
+wire('copyBtn', 'sql',  '위 내용 복사하기');
+wire('undoBtn', 'undo', '되돌리는 명령 복사하기');
+
+/* 체크하면 그 단계가 초록으로 — 어디까지 했는지 눈에 보이게 */
+var boxes = document.querySelectorAll('.chk input');
+boxes.forEach(function(cb){
+  cb.addEventListener('change', function(){
+    document.getElementById('s' + cb.dataset.s).classList.toggle('done', cb.checked);
+    var all = [].every.call(boxes, function(x){ return x.checked; });
+    document.getElementById('doneMsg').classList.toggle('on', all);
+  });
+});
+</script>
+
+</body>
+</html>
