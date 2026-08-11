@@ -1035,6 +1035,33 @@
   const adminCount = (table, opts = {}) =>
     adminList(table, { ...opts, select: 'id' }).then(rows => ({ count: rows.length }))
 
+  // ── 사기 위험 신호 배지 ───────────────────────────
+  // register-business 가 tags 에 risk:* 를 남긴다. 자동 거절은 하지 않으므로
+  // 승인 버튼을 누르기 전에 사람이 반드시 눈으로 보게 한다.
+  const RISK_LABEL = {
+    'risk:no_phone':    '전화 없음',
+    'risk:no_address':  '주소 없음',
+    'risk:untraceable': '카톡·텔레그램만',
+    'risk:prepay':      '선입금 유도',
+    'risk:urgency':     '조급함 유도',
+    'risk:toogood':     '과도한 보장',
+    'risk:thin':        '소개 부실',
+  }
+  function riskBadges(r) {
+    const hits = (r.tags || []).filter(t => String(t).startsWith('risk:'))
+    if (!hits.length) return ''
+    const score = r.confidence_score
+    const danger = hits.length >= 3 || (score != null && score <= 50)
+    const color = danger ? 'var(--red)' : 'var(--yellow)'
+    return `<div style="margin-top:5px;display:flex;flex-wrap:wrap;gap:4px;align-items:center">
+      <span style="font-size:.6rem;font-weight:800;letter-spacing:.06em;color:${color}">
+        ${danger ? '확인 필요' : '주의'} ${hits.length}
+      </span>
+      ${hits.map(t => `<span style="font-size:.6rem;color:${color};border:1px solid ${color};
+        border-radius:99px;padding:1px 7px;opacity:.9">${esc(RISK_LABEL[t] || t)}</span>`).join('')}
+    </div>`
+  }
+
   async function loadTabData(tab) {
     setTableLoading()
     try {
@@ -1247,6 +1274,7 @@
           <td>
             <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? 'LIVE' : r.status === 'rejected' ? 'REJECTED' : 'PENDING'}</span>
             ${(r.tags||[]).includes('welcome_sent') ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> 환영편지 발송됨</div>` : (r.category==='church' && r.status==='approved') ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> 환영편지 미발송</div>` : ''}
+            ${riskBadges(r)}
             ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
           </td>
           <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>

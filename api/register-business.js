@@ -18,6 +18,66 @@ const CULT_KEYWORDS = [
   '신천지','통일교','JMS','하나님의교회','여호와의증인','몰몬교','구원파','다단계','MLM',
 ];
 
+/* ── 사기 위험 신호 감지 ─────────────────────────────────────────
+   KBS 중고거래 사기 취재(2026-08) 분석 → 업소 등록에 적용.
+   HebronGuide에 등재되면 "여기 있으니 믿을 만하다"가 된다.
+   그 신뢰를 사기꾼이 빌려 쓰는 것이 가장 큰 위험이다.
+
+   ⚠️ 자동 거절하지 않는다. 한인 소상공인은 실제로 카톡으로 영업하고
+      홈페이지가 없는 경우가 많다. 기계가 자르면 정직한 사람이 먼저 잘린다.
+      신호를 세어 목사님께 보여드리고, 승인 여부는 사람이 정한다.
+─────────────────────────────────────────────────────────────── */
+const RISK_MONEY = [
+  '선입금', '먼저 입금', '계좌이체', '계좌 이체', '보증금', '예치금',
+  '송금', '입금하시면', '입금 후', 'zelle', 'venmo', 'cashapp', 'cash app',
+  '비트코인', '코인', '기프트카드', 'gift card',
+];
+const RISK_URGENT = [
+  '급처', '급매', '오늘만', '선착순', '마감임박', '한정', '즉시',
+  '빨리', '서둘', '기회를 놓치',
+];
+const RISK_TOOGOOD = [
+  '무조건', '100% 보장', '보장합니다', '최저가', '반값', '공짜', '免',
+  '수익 보장', '고수익', '월 수익',
+];
+
+function scanRisk({ name, owner, phone, email, website, address, description, category }) {
+  const text = [name, owner, address, description, category].filter(Boolean).join(' ').toLowerCase();
+  const flags = [];
+
+  // ① 실체를 확인할 방법이 없다 — 가장 중요한 신호
+  if (!String(phone || '').trim())   flags.push({ tag: 'risk:no_phone',   ko: '전화번호 없음' });
+  if (!String(address || '').trim()) flags.push({ tag: 'risk:no_address', ko: '주소 없음' });
+
+  // ② 추적 안 되는 채널만 남긴다 — 사기의 전형
+  const hasKakaoOnly = /카카오|카톡|kakao|텔레그램|telegram|라인|line\s*id/.test(text)
+                       && !String(phone || '').trim();
+  if (hasKakaoOnly) flags.push({ tag: 'risk:untraceable', ko: '전화 없이 카톡·텔레그램만' });
+
+  // ③ 돈을 먼저 보내게 하는 말
+  const money = RISK_MONEY.filter(k => text.includes(k));
+  if (money.length) flags.push({ tag: 'risk:prepay', ko: `선입금 유도 표현 (${money[0]})` });
+
+  // ④ 조급하게 만드는 말 — 방송에서 반복 확인된 수법
+  const urgent = RISK_URGENT.filter(k => text.includes(k));
+  if (urgent.length) flags.push({ tag: 'risk:urgency', ko: `조급함 유도 (${urgent[0]})` });
+
+  // ⑤ 너무 좋은 조건 — "5만원 생각했는데 2만원"이 첫 신호였다
+  const toogood = RISK_TOOGOOD.filter(k => text.includes(k));
+  if (toogood.length) flags.push({ tag: 'risk:toogood', ko: `과도한 보장 (${toogood[0]})` });
+
+  // ⑥ 설명이 없다 — 실제로 운영하는 곳은 할 말이 있다
+  if (String(description || '').trim().length < 10) {
+    flags.push({ tag: 'risk:thin', ko: '소개가 거의 없음' });
+  }
+
+  // 0~100. 낮을수록 위험. 대시보드가 이미 confidence_score를 표시한다.
+  const score = Math.max(0, 100 - flags.length * 18);
+  return { flags, score, tags: flags.map(f => f.tag) };
+}
+
+
+
 async function sendMail({ to, subject, text, html }) {
   const pass = process.env.GMAIL_APP_PASS;
   if (!pass) { console.warn('[register-business] GMAIL_APP_PASS not set'); return; }
@@ -55,6 +115,9 @@ export default async function handler(req, res) {
     return res.status(200).json({ status: 'rejected', message: '등재가 어렵습니다. 문의: hebronplatform@gmail.com' });
   }
 
+  // 사기 위험 신호 — 세기만 하고 막지 않는다. 판단은 승인하는 사람이 한다.
+  const risk = scanRisk({ name, owner, phone, email, website, address, description, category });
+
   // Supabase community_items 저장
   const key = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY;
   let insertedId = null;
@@ -83,6 +146,8 @@ export default async function handler(req, res) {
           description || '',
         ].filter(Boolean).join(' | ') || null,
         status:       'pending',
+        tags:             risk.tags.length ? risk.tags : null,
+        confidence_score: risk.score,
       }),
     });
     const data = await r.json();
