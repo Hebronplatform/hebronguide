@@ -441,12 +441,14 @@ AI가 인용한 것은 전부 — 홈페이지에 "글자로" 적힌 구체적 �
     {
       "@type": "Organization",
       "name": "국제가정교회사역원",
-      "alternateName": "House Church Ministries International"
+      "alternateName": "House Church Ministries",
+      "url": "https://housechurchministries.org"
     },
     {
       "@type": "Organization",
-      "name": "GMN 글로벌 미션 네트워크",
-      "alternateName": "Global Mission Network"
+      "name": "GMN 글로벌 미니스트리 네트워크",
+      "alternateName": "Global Ministry Network",
+      "url": "https://www.gmncenter.com"
     }
   ],
   "inLanguage": ["ko", "en"],
