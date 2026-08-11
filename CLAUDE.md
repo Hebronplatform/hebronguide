@@ -454,6 +454,7 @@ HebronGuide는 부분이 전체에 얽혀 있다 — **Vite 빌드 · 서비스�
 | **파트너 철학·서약·수익나눔 원칙** | `HEBRON_PARTNER_CODEX.md` |
 | 4차 줌 네트워크 전략·스크립트 | `PASTOR_NETWORK_PLAYBOOK.md` |
 | **시애틀 세 교회 — 6개월 첫 걸음** (행2:42-47 · 3교회 · 성장목표 없음 · 소프트웨어 최소) | `SEATTLE_PILOT_3CHURCHES.md` |
+| **AEO — AI가 우리를 어떻게 소개하는가** (llms.txt를 사실에 맞추기 · 뾰족한 근거만 · 이름 세트 고정 · 답할 질문 먼저) | `AEO_PRINCIPLES.md` |
 | **틈새 전략 — 아무도 밥상을 차려주지 않는다** (실측 자산 · Quibi/Duolingo/Craigslist 사례 · 하지 말아야 할 것) | `NICHE_STRATEGY.md` |
 | **목장 모임 안전** (첫 방문 혼자 두지 않기 · 다음 날 확인 연락 · 먼저 내리고 나중에 확인 · 시트 권한) | `GATHERING_SAFETY.md` |
 | **낯선 사람을 집에 들이는 법** (에어비앤비 신뢰 구조 · 카우치서핑 실패 · 시나리오 7개 · 광고 도입 3원칙) | `PLATFORM_TRUST_PLAYBOOK.md` |

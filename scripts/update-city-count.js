@@ -97,6 +97,12 @@ for (const f of fs.readdirSync(pubDir)) {
   if (f.endsWith('.html')) syncFile(path.join(pubDir, f), `public/${f}`);
 }
 
+// ── 5-b. llms.txt (AI가 우리를 소개받는 문서) ────────────────
+// 2026-08-11 사고: 자동 갱신 대상이 아니라 2026-07-09에 멈춰 있었고,
+// 목사님이 8/2에 지운 "2030년 500개 목표"를 AI에게는 계속 말하고 있었다.
+// 화면에서 지운 문장이 여기 남으면 AI가 그걸 인용한다.
+syncFile(path.join(ROOT, 'llms.txt'), 'llms.txt');
+
 // ── 6. HebronGuide.tsx 정적 문자열 (동적 LIVE_CITY_COUNT 상수는 미접촉) ──
 syncFile(tsxPath, 'HebronGuide.tsx');
 

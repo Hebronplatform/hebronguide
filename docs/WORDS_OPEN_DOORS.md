@@ -221,6 +221,9 @@ grep -o "—" index.html | wc -l
 
 # 법인명이 사용자 화면에 샜는지 (terms·privacy·ops 외에 나오면 안 됨)
 grep -rl "Hebron Platform" hebronguide/public/*.html index.html
+
+# ⚠️ AI가 읽는 문서 — 화면에서 지운 말이 여기 남으면 AI가 인용한다 (2026-08-11 사고)
+grep -n "파트너\|500개\|2030\|기본 무료\|프리미엄\|검증한" llms.txt
 ```
 
 ---
