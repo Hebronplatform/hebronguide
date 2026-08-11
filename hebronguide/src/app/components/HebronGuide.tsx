@@ -16579,6 +16579,31 @@ function getCityChurches(slug: string, lang: string) {
   return byCity[slug] ?? [];
 }
 
+/* 이번 주 식탁의 자리 — 목장 모임이 '실제로 있을 때만' 교회 화면에 안내가 뜬다.
+   빈 페이지로 보내는 것이 안 보내는 것보다 나쁘다. 시애틀 파일럿(2026-08). */
+const GATHERING_SHEET = "1uaQudM68JnwR9u7T5-5wifpCJnRb6_oeQZuSV5DmWmA";
+function useGatheringCount(citySlug: string) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (citySlug !== "seattle") return;            // 지금은 시애틀만
+    let alive = true;
+    fetch(`https://docs.google.com/spreadsheets/d/${GATHERING_SHEET}/gviz/tq?tqx=out:csv`)
+      .then(r => (r.ok ? r.text() : Promise.reject(r.status)))
+      .then(t => {
+        const rows = t.split(String.fromCharCode(10)).slice(1);
+        // 요일이나 시간이 적힌 줄만 '갈 수 있는 모임'으로 센다
+        const n = rows.filter(r => {
+          const c = r.split('","').map(x => x.replace(/^"|"$/g, "").trim());
+          return c[0] && (c[1] || c[2]);
+        }).length;
+        if (alive) setCount(n);
+      })
+      .catch(() => { /* 실패하면 그냥 안 뜬다 — 화면은 멀쩡하다 */ });
+    return () => { alive = false; };
+  }, [citySlug]);
+  return count;
+}
+
 function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
@@ -16591,6 +16616,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const accent = "#C084FC";
   const city = useCityConfig();
   const citySlug = city.slug;
+  const gatheringCount = useGatheringCount(citySlug);
 
   const defaultChurches = getCityChurches(citySlug, lang);
   // ⚠️ 하드코딩 협력교회(hebronPartner)를 '항상' 포함해야 최상단 협력교회 카드가 유지된다.
@@ -16715,6 +16741,27 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         descEn={`${useCityConfig().nameEn} — Settlement support · ESL classes · Community`}
         accentColor={accent} />
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
+      {gatheringCount > 0 && (
+        <div className="px-4 md:px-6 lg:px-8" style={{ paddingTop: 16 }}>
+          <a href="/gathering.html" style={{
+            display: "block", textDecoration: "none",
+            background: "linear-gradient(135deg,rgba(201,162,39,0.14) 0%,rgba(110,231,183,0.05) 100%)",
+            border: "1px solid rgba(201,162,39,0.34)", borderRadius: 16, padding: "16px 18px",
+          }}>
+            <div style={{ fontSize: 10, fontWeight: 800, color: "#C9A227", letterSpacing: "0.1em" }}>
+              {lang === "ko" ? "이번 주" : "THIS WEEK"}
+            </div>
+            <div style={{ fontSize: 16, fontWeight: 800, color: "#fff", marginTop: 6, lineHeight: 1.45 }}>
+              {lang === "ko" ? "식탁의 자리가 있습니다" : "There is a place at the table"}
+            </div>
+            <div style={{ fontSize: 13, color: "rgba(236,253,245,0.62)", marginTop: 5, lineHeight: 1.7 }}>
+              {lang === "ko"
+                ? `함께 저녁 먹는 모임 ${gatheringCount}곳 · 교인이 아니어도 괜찮습니다`
+                : `${gatheringCount} tables this week · You don't have to be a member`}
+            </div>
+          </a>
+        </div>
+      )}
       <div className="pt-5 px-4 md:px-6 lg:px-8">
         {sub === 0 && (
           <>
