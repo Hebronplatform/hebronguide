@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AI가 인용하는 소개문 만들기 — 무료 | HebronGuide</title>
+<meta name="description" content="사람들이 AI에게 먼저 묻는 시대입니다. AI가 그대로 인용할 수 있는 소개문을 만들어 드립니다. 무료, 가입 없음.">
+<meta property="og:title" content="AI가 인용하는 소개문 만들기 — 무료">
+<meta property="og:description" content="빈칸을 채우면 어디에나 붙일 수 있는 소개문이 나옵니다. 무료.">
+<link rel="canonical" href="https://hebronguide.com/ai-intro.html">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0d1117;--card:#161b26;--card2:#1b2230;--line:rgba(255,255,255,.1);
+        --gold:#C9A227;--mint:#6EE7B7;--red:#f87171;--yellow:#FBBF24;
+        --text:#ECFDF5;--muted:rgba(236,253,245,.56);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);
+       line-height:1.8;padding-bottom:80px;}
+  .wrap{max-width:700px;margin:0 auto;padding:0 20px;}
+
+  header{padding:44px 20px 30px;text-align:center;border-bottom:1px solid var(--line);}
+  h1{font-size:clamp(1.35rem,4.6vw,1.75rem);font-weight:900;line-height:1.45;}
+  .sub{color:var(--muted);font-size:.92rem;margin-top:12px;}
+  .free{display:inline-block;margin-top:15px;font-size:.72rem;font-weight:800;letter-spacing:.1em;
+        color:var(--mint);border:1px solid rgba(110,231,183,.35);background:rgba(110,231,183,.09);
+        border-radius:99px;padding:5px 15px;}
+
+  h2{font-size:1.02rem;font-weight:900;margin:30px 0 12px;}
+  .lesson{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 19px;margin-bottom:18px;}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+  .vs>div{border-radius:10px;padding:11px 13px;font-size:.85rem;}
+  .vs .bad{background:rgba(248,113,113,.09);border:1px solid rgba(248,113,113,.25);color:rgba(236,253,245,.72);}
+  .vs .good{background:rgba(110,231,183,.09);border:1px solid rgba(110,231,183,.28);}
+  .vs b{display:block;font-size:.68rem;letter-spacing:.06em;margin-bottom:5px;}
+  .vs .bad b{color:var(--red);}
+  .vs .good b{color:var(--mint);}
+  @media(max-width:520px){.vs{grid-template-columns:1fr;}}
+
+  .form{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;}
+  label{display:block;font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:6px;}
+  label i{font-style:normal;color:var(--gold);}
+  input,select,textarea{width:100%;background:#0a0e14;border:1px solid var(--line);border-radius:10px;
+    padding:12px 14px;color:var(--text);font-size:.95rem;font-family:inherit;margin-bottom:15px;}
+  textarea{resize:vertical;min-height:64px;line-height:1.65;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);}
+  .hint{font-size:.75rem;color:rgba(236,253,245,.4);margin:-11px 0 15px;}
+  .row{display:flex;gap:12px;}
+  .row>div{flex:1;}
+  details{margin-bottom:16px;}
+  summary{cursor:pointer;font-size:.85rem;font-weight:700;color:var(--gold);padding:9px 0;list-style:none;}
+  summary::-webkit-details-marker{display:none;}
+  summary::before{content:"+ ";font-weight:900;}
+  details[open] summary::before{content:"− ";}
+  button.go{width:100%;background:linear-gradient(135deg,#C9A227,#e0b83a);color:#0d1117;border:0;
+    font-family:inherit;font-weight:900;font-size:1rem;border-radius:12px;padding:15px;cursor:pointer;}
+
+  .out{display:none;margin-top:26px;}
+  .out.on{display:block;}
+  .block{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 19px;margin-bottom:14px;}
+  .block-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:9px;}
+  .block-t{font-size:.85rem;font-weight:900;color:var(--gold);}
+  .block-where{font-size:.72rem;color:var(--muted);}
+  .copy{flex:none;background:var(--card2);border:1px solid var(--line);color:var(--text);
+    font-family:inherit;font-size:.75rem;font-weight:700;border-radius:8px;padding:6px 13px;cursor:pointer;}
+  .copy.done{background:rgba(110,231,183,.16);border-color:var(--mint);color:var(--mint);}
+  pre{white-space:pre-wrap;word-break:break-word;font-family:'Noto Sans KR',monospace;
+      font-size:.87rem;line-height:1.75;background:#0a0e14;border-radius:10px;padding:14px 15px;}
+  pre.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.74rem;line-height:1.6;
+           max-height:280px;overflow:auto;}
+  .warn{background:rgba(251,191,36,.09);border:1px solid rgba(251,191,36,.3);border-radius:12px;
+        padding:15px 18px;font-size:.87rem;margin-bottom:16px;}
+  .warn b{color:var(--yellow);}
+  footer{margin-top:40px;text-align:center;font-size:.8rem;color:var(--muted);}
+  footer a{color:var(--gold);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>AI가 인용하는<br>소개문 만들기</h1>
+    <div class="sub">
+      사람들이 이제 검색창 대신 AI에게 먼저 묻습니다.<br>
+      AI는 <b>글자로 적힌 구체적인 사실</b>만 인용합니다.
+    </div>
+    <span class="free">무료 · 가입 없음 · 아무것도 저장하지 않습니다</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <h2>먼저 — AI는 이런 말을 못 씁니다</h2>
+
+  <div class="lesson">
+    AI는 답을 하나만 내놓습니다. 그래서 <b>넓은 말로는 절대 뽑히지 않습니다.</b>
+    "친절한 곳" "좋은 교회" 같은 말은 어디에나 있어서 아무 데도 가리키지 못합니다.
+    <div class="vs">
+      <div class="bad"><b>못 쓴다</b>배송이 빠른 회사<br>친절한 치과<br>좋은 한인 교회</div>
+      <div class="good"><b>인용한다</b>서울 전역 1시간 이내<br>라미네이트 · 리뷰 5.0<br>가정에서 모이는 가정교회</div>
+    </div>
+  </div>
+
+  <div class="lesson">
+    <b>사진 속 글자는 한 자도 못 읽습니다.</b>
+    영업시간·주소·전화를 예쁜 이미지로 만들어 두셨다면, AI에게는 그 페이지가 비어 있는 것과 같습니다.
+    <b>반드시 텍스트로</b> 적으십시오.
+  </div>
+
+  <h2>이제 빈칸을 채우십시오</h2>
+
+  <div class="form">
+    <label>이름 <i>*</i> — AI가 이렇게 불러주길 원하는 그대로</label>
+    <input id="name" placeholder="예: 시애틀지구촌교회" autocomplete="off">
+
+    <div class="row">
+      <div>
+        <label>도시·동네 <i>*</i></label>
+        <input id="city" placeholder="예: 시애틀 린우드" autocomplete="off">
+      </div>
+      <div>
+        <label>무엇인가요 <i>*</i></label>
+        <select id="kind">
+          <option value="한인 교회">한인 교회</option>
+          <option value="한인 가게">한인 가게·식당</option>
+          <option value="한인 서비스">서비스·전문직</option>
+          <option value="한인 단체">단체·기관</option>
+        </select>
+      </div>
+    </div>
+
+    <label>남들과 다른 점 한 가지 <i>*</i> — 가장 중요합니다</label>
+    <input id="edge" placeholder="예: 가정에서 모이는 가정교회 / 반죽부터 매일 직접 / 이민법 전문 20년">
+    <div class="hint">넓은 말은 쓰지 마십시오. 숫자·이름·구체적인 것 하나면 됩니다.</div>
+
+    <details>
+      <summary>더 채우면 훨씬 강해집니다 (선택)</summary>
+      <div class="row">
+        <div>
+          <label>영문 이름</label>
+          <input id="nameEn" placeholder="Global Mission Church of Greater Seattle">
+        </div>
+        <div>
+          <label>시작한 해</label>
+          <input id="year" placeholder="2001" inputmode="numeric">
+        </div>
+      </div>
+      <label>시간 — 숫자로. 시간대까지</label>
+      <input id="hours" placeholder="예: 주일 오전 11시 (태평양시, PT) / 화~토 11:00–21:00">
+      <div class="hint">"오전에 엽니다"는 못 씁니다. 숫자여야 AI가 답합니다.</div>
+      <div class="row">
+        <div>
+          <label>전화</label>
+          <input id="tel" placeholder="425-350-0191">
+        </div>
+        <div>
+          <label>웹사이트</label>
+          <input id="web" placeholder="www.example.org">
+        </div>
+      </div>
+      <label>한 가지 더 — 있으면</label>
+      <textarea id="extra" placeholder="예: 어린이·청소년 새 세대 사역이 있습니다. / 온라인으로 어디서나 함께합니다. / 주차 무료."></textarea>
+    </details>
+
+    <button class="go" onclick="make()">소개문 만들기</button>
+  </div>
+
+  <div class="out" id="out">
+    <div class="warn">
+      <b>지어내지 마십시오.</b> 사실이 아닌 것을 적으면 AI가 그것을 확신 있게 퍼뜨립니다.
+      사람은 목록을 보고 "이상하네" 하지만, AI는 그대로 인용합니다.
+      <b>모르는 칸은 비워 두는 편이 낫습니다.</b>
+    </div>
+    <div id="blocks"></div>
+    <div class="warn" style="background:rgba(110,231,183,.08);border-color:rgba(110,231,183,.3);">
+      <b style="color:var(--mint);">어디에 쓰든 이 문장만 쓰십시오.</b>
+      홈페이지·구글 프로필·디렉토리·SNS에 <b>서로 다른 말</b>로 올리면
+      AI가 <b>다른 곳 두 개</b>로 봅니다. 이름과 문장을 하나로 고정하는 것이 핵심입니다.
+    </div>
+  </div>
+
+  <footer>
+    <a href="/ai-check.html">← AI가 우리를 아는지 먼저 확인하기</a> · <a href="/">HebronGuide</a>
+  </footer>
+</div>
+
+<script>
+/* 소개문 생성기 — 서버 없이 브라우저에서만 동작한다. 아무것도 전송하지 않는다. */
+
+function esc(t){ return String(t==null?'':t).replace(/[&<>"]/g,function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function v(id){ return document.getElementById(id).value.trim(); }
+
+/* 한국어 조사 — 받침 유무로 갈린다 */
+function hasJong(s){
+  if(!s) return false;
+  var c = s.charCodeAt(s.length - 1);
+  if (c < 0xAC00 || c > 0xD7A3) return false;
+  return (c - 0xAC00) % 28 !== 0;
+}
+function eunNeun(s){ return hasJong(s) ? '은' : '는'; }
+
+function period(s){
+  if (!s) return '';
+  return /[.!?。]$/.test(s) ? s : s + '.';
+}
+
+function make(){
+  var name = v('name'), city = v('city'), kind = v('kind'), edge = v('edge');
+  if (!name || !city || !edge){ alert('별표(*) 세 칸은 채워 주세요.'); return; }
+
+  var nameEn = v('nameEn'), year = v('year'), hours = v('hours'),
+      tel = v('tel'), web = v('web'), extra = v('extra');
+
+  var full = name + (nameEn ? ' (' + nameEn + ')' : '');
+  var thisYear = new Date().getFullYear();
+  var yrs = (year && +year > 1800 && +year <= thisYear) ? (thisYear - +year) : 0;
+
+  /* 짧게 — 한 줄 */
+  var short = city + ' ' + kind + '. ' + period(edge);
+
+  /* 보통 — 디렉토리·프로필용 */
+  var mid = full + eunNeun(nameEn ? ')' : name) + ' ' + city + '의 ' + kind + '입니다. ' + period(edge);
+  if (year) mid += ' ' + year + '년에 시작해 ' + (yrs > 1 ? yrs + '년째입니다.' : '운영하고 있습니다.');
+  if (hours) mid += ' ' + period(hours);
+  if (extra) mid += ' ' + period(extra);
+  var line2 = [];
+  if (tel) line2.push('전화 ' + tel);
+  if (web) line2.push(web);
+  if (line2.length) mid += '\n' + line2.join(' · ');
+
+  /* 붙여넣기용 첫 화면 블록 */
+  var head = full + '\n' + city + ' ' + kind + ' — ' + period(edge);
+  if (hours) head += '\n' + hours;
+  if (extra) head += '\n' + extra;
+  var tail = [];
+  if (year) tail.push(year + '년 시작');
+  if (tel) tail.push('전화 ' + tel);
+  if (web) tail.push(web);
+  if (tail.length) head += '\n' + tail.join(' · ');
+
+  /* 구조화 데이터 */
+  var isChurch = kind.indexOf('교회') > -1;
+  var ld = {
+    '@context': 'https://schema.org',
+    '@type': isChurch ? 'Church' : 'LocalBusiness',
+    name: name,
+    description: (city + ' ' + kind + '. ' + period(edge) + (extra ? ' ' + period(extra) : '')),
+    inLanguage: ['ko', 'en']
+  };
+  if (nameEn) ld.alternateName = nameEn;
+  if (web) ld.url = /^https?:/.test(web) ? web : 'https://' + web;
+  if (tel) ld.telephone = tel;
+  if (year) ld.foundingDate = year;
+  ld.areaServed = { '@type': 'Place', name: city };
+
+  var out = [
+    { t: '첫 화면에 붙일 블록', w: '홈페이지 맨 위 · 반드시 텍스트로', body: head },
+    { t: '짧게 (한 줄)', w: 'SNS 소개 · 명함 · 간판 문구', body: short },
+    { t: '보통', w: '구글 비즈니스 프로필 · 디렉토리 · HebronGuide 등록', body: mid },
+    { t: '구조화 데이터 (JSON-LD)', w: '홈페이지 <head> 안에 그대로', code: true,
+      body: '<script type="application/ld+json">\n' + JSON.stringify(ld, null, 2) + '\n<\/script>' }
+  ];
+
+  document.getElementById('blocks').innerHTML = out.map(function(o, i){
+    return '<div class="block">' +
+      '<div class="block-top"><div>' +
+        '<div class="block-t">' + esc(o.t) + '</div>' +
+        '<div class="block-where">' + esc(o.w) + '</div>' +
+      '</div><button class="copy" onclick="cp(' + i + ',this)">복사</button></div>' +
+      '<pre id="p' + i + '"' + (o.code ? ' class="code"' : '') + '>' + esc(o.body) + '</pre>' +
+    '</div>';
+  }).join('');
+
+  document.getElementById('out').classList.add('on');
+  document.getElementById('out').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function cp(i, btn){
+  var t = document.getElementById('p' + i).textContent;
+  var done = function(){ btn.textContent = '복사됨'; btn.className = 'copy done';
+                         setTimeout(function(){ btn.textContent = '복사'; btn.className = 'copy'; }, 1600); };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(done, function(){ legacy(t, done); });
+  } else legacy(t, done);
+}
+function legacy(t, done){
+  var a = document.createElement('textarea');
+  a.value = t; a.style.position = 'fixed'; a.style.opacity = '0';
+  document.body.appendChild(a); a.select();
+  try { document.execCommand('copy'); done(); } catch(e){ alert('복사가 안 됩니다. 직접 선택해 복사해 주세요.'); }
+  document.body.removeChild(a);
+}
+</script>
+
+</body>
+</html>
