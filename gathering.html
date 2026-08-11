@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>이번 주, 식탁의 자리 — HebronGuide 시애틀</title>
+<meta name="description" content="시애틀에 막 오셨다면. 이번 주 함께 앉을 식탁이 있습니다. 교인이 아니어도 괜찮습니다.">
+<meta property="og:title" content="이번 주, 식탁의 자리 — 시애틀">
+<meta property="og:description" content="처음 오신 분도 괜찮습니다. 몸만 오세요.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241704; --ink2:#3a2708; --muted:rgba(58,39,8,.62);
+    --gold:#9a6b12; --deep:#7a4f0a; --green:#0f7a5a;
+    --line:rgba(122,79,10,.22); --card:rgba(255,255,255,.62);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;color:var(--ink2);line-height:1.75;
+       background:linear-gradient(168deg,#fdf3dc 0%,#fbe3ad 34%,#f7cf86 66%,#f2b866 100%);
+       background-attachment:fixed;min-height:100vh;padding-bottom:60px;}
+  html[lang="ko"] .en{display:none!important;}
+  html[lang="en"] .ko{display:none!important;}
+
+  .wrap{max-width:620px;margin:0 auto;padding:0 20px;}
+
+  header{text-align:center;padding:46px 20px 30px;}
+  .eyebrow{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.14em;
+    color:var(--gold);border:1px solid var(--line);border-radius:99px;
+    padding:5px 15px;background:rgba(255,255,255,.5);margin-bottom:20px;}
+  h1{font-family:'Noto Serif KR',serif;font-size:clamp(1.55rem,5.4vw,2.15rem);
+     font-weight:700;color:var(--ink);line-height:1.42;letter-spacing:-.01em;}
+  .lede{margin-top:14px;font-size:.97rem;color:var(--muted);line-height:1.95;}
+
+  /* 모임 카드 */
+  .list{margin-top:8px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+        padding:18px 20px;margin-bottom:12px;
+        box-shadow:0 3px 14px rgba(122,79,10,.07);}
+  .c-top{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;}
+  .c-name{font-size:1.06rem;font-weight:900;color:var(--ink);}
+  .c-when{margin-left:auto;font-size:.88rem;font-weight:700;color:var(--deep);
+          background:rgba(255,255,255,.7);border:1px solid var(--line);
+          border-radius:99px;padding:3px 12px;white-space:nowrap;}
+  .c-where{margin-top:7px;font-size:.88rem;color:var(--muted);display:flex;gap:7px;align-items:flex-start;}
+  .c-where svg{width:15px;height:15px;flex:none;margin-top:4px;stroke:var(--gold);}
+  .c-note{margin-top:11px;padding-top:11px;border-top:1px dashed var(--line);
+          font-size:.9rem;color:var(--ink2);line-height:1.8;}
+
+  .state{background:var(--card);border:1px dashed var(--line);border-radius:16px;
+         padding:30px 22px;text-align:center;color:var(--muted);font-size:.92rem;line-height:1.9;}
+
+  /* 처음 오는 분께 */
+  .fear{margin-top:30px;background:rgba(255,255,255,.55);border:1px solid var(--line);
+        border-radius:18px;padding:24px 22px;}
+  .fear h2{font-family:'Noto Serif KR',serif;font-size:1.08rem;font-weight:700;
+           color:var(--ink);margin-bottom:16px;}
+  .qa{margin-bottom:14px;}
+  .qa:last-child{margin-bottom:0;}
+  .q{font-size:.9rem;font-weight:700;color:var(--deep);}
+  .a{font-size:.9rem;color:var(--muted);margin-top:2px;line-height:1.8;}
+
+  .cta{margin-top:26px;text-align:center;}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;
+       font-weight:800;font-size:.95rem;border-radius:99px;padding:14px 30px;
+       text-decoration:none;box-shadow:0 5px 18px rgba(15,122,90,.26);}
+  .cta-sub{margin-top:11px;font-size:.82rem;color:var(--muted);}
+
+  footer{margin-top:40px;text-align:center;font-size:.78rem;color:rgba(58,39,8,.45);}
+  footer a{color:var(--gold);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="eyebrow">시애틀 · SEATTLE</span>
+    <h1>이번 주,<br>식탁의 자리가 있습니다.</h1>
+    <p class="lede">
+      막 도착하셨다면 저녁 한 끼가 제일 어렵습니다.<br>
+      혼자 드시지 않으셔도 됩니다.
+    </p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="list" id="list">
+    <div class="state">불러오는 중입니다…</div>
+  </div>
+
+  <!-- 처음 가는 사람의 실제 두려움에 답하는 자리 -->
+  <div class="fear">
+    <h2>처음 오시는 분께</h2>
+    <div class="qa">
+      <div class="q">교인이 아니어도 되나요?</div>
+      <div class="a">됩니다. 믿음을 묻지 않습니다. 함께 먹고 이야기하는 자리입니다.</div>
+    </div>
+    <div class="qa">
+      <div class="q">뭘 가져가야 하나요?</div>
+      <div class="a">몸만 오세요. 준비해 오시면 오히려 미안해합니다.</div>
+    </div>
+    <div class="qa">
+      <div class="q">얼마나 있어야 하나요?</div>
+      <div class="a">두 시간쯤입니다. 사정이 있으면 먼저 일어나셔도 괜찮습니다.</div>
+    </div>
+    <div class="qa">
+      <div class="q">아이를 데려가도 되나요?</div>
+      <div class="a">각 모임의 한 줄 소개를 봐 주세요. 아이들 환영이라 적힌 곳이 있습니다.</div>
+    </div>
+    <div class="qa">
+      <div class="q">한국말이 서툰데요</div>
+      <div class="a">영어도 편하게 하셔도 되는 모임이 있습니다. 소개에 적혀 있습니다.</div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <a class="btn" id="askBtn" href="#">가보고 싶어요</a>
+    <div class="cta-sub">연락 주시면 장소를 알려드리고, 처음이면 마중 나갑니다.</div>
+  </div>
+
+  <footer>
+    <a href="/">← HebronGuide 첫 화면</a>
+  </footer>
+</div>
+
+<script>
+/* 목장 모임 — 구글 시트를 그대로 읽는다.
+   목자들이 쓰던 도구를 바꾸지 않는 것이 중요하다. 새 도구를 배우게 하면 아무도 안 올린다.
+   시트가 공개(게시)되어 있어야 하며, 서버 함수는 쓰지 않는다(Vercel 함수 한도와 무관). */
+var SHEET_ID = '1uaQudM68JnwR9u7T5-5wifpCJnRb6_oeQZuSV5DmWmA';
+var CONTACT  = 'https://pf.kakao.com/_dxdxlbX';   // 카카오 채널 — 개인 연락처를 노출하지 않는다
+
+document.getElementById('askBtn').href = CONTACT;
+
+var PIN = '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+          '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+
+function esc(t){ return String(t == null ? '' : t).replace(/[&<>"]/g, function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+/* 따옴표 안의 쉼표를 지키는 CSV 파서 */
+function parseCsv(text){
+  var rows = [], row = [], cell = '', q = false;
+  for (var i = 0; i < text.length; i++){
+    var c = text[i];
+    if (q){
+      if (c === '"'){ if (text[i+1] === '"'){ cell += '"'; i++; } else q = false; }
+      else cell += c;
+    } else {
+      if (c === '"') q = true;
+      else if (c === ','){ row.push(cell); cell = ''; }
+      else if (c === '\n'){ row.push(cell); rows.push(row); row = []; cell = ''; }
+      else if (c !== '\r') cell += c;
+    }
+  }
+  if (cell !== '' || row.length){ row.push(cell); rows.push(row); }
+  return rows;
+}
+
+/* 열 이름으로 찾는다 — 시트에 칸을 더해도 코드를 안 고치게 */
+function colFinder(head){
+  return function(){
+    for (var a = 0; a < arguments.length; a++){
+      for (var i = 0; i < head.length; i++){
+        if ((head[i] || '').replace(/\s/g,'').indexOf(arguments[a]) !== -1) return i;
+      }
+    }
+    return -1;
+  };
+}
+
+function render(rows){
+  var box = document.getElementById('list');
+  if (!rows.length){ box.innerHTML = ''; return false; }
+
+  var head = rows[0], find = colFinder(head);
+  var iName = find('목장','이름'), iDay = find('요일'), iTime = find('시간'),
+      iPlace = find('장소','동네'), iNote = find('소개','한줄','비고','안내');
+
+  var html = '', shown = 0;
+  for (var r = 1; r < rows.length; r++){
+    var v = rows[r];
+    var name  = iName  > -1 ? (v[iName]  || '').trim() : '';
+    var day   = iDay   > -1 ? (v[iDay]   || '').trim() : '';
+    var time  = iTime  > -1 ? (v[iTime]  || '').trim() : '';
+    var place = iPlace > -1 ? (v[iPlace] || '').trim() : '';
+    var note  = iNote  > -1 ? (v[iNote]  || '').trim() : '';
+
+    // 요일과 시간이 없으면 아직 정해지지 않은 모임 — 처음 오는 사람에게 보여도 갈 수가 없다
+    if (!name || (!day && !time)) continue;
+    shown++;
+
+    html += '<div class="card">' +
+      '<div class="c-top"><span class="c-name">' + esc(name) + '</span>' +
+      (day || time ? '<span class="c-when">' + esc((day + ' ' + time).trim()) + '</span>' : '') +
+      '</div>' +
+      (place ? '<div class="c-where">' + PIN + '<span>' + esc(place) + '</span></div>' : '') +
+      (note  ? '<div class="c-note">' + esc(note) + '</div>' : '') +
+      '</div>';
+  }
+
+  if (!shown){ box.innerHTML = ''; return false; }
+  box.innerHTML = html;
+  return true;
+}
+
+function waiting(){
+  document.getElementById('list').innerHTML =
+    '<div class="state">이번 주 모임을 준비하고 있습니다.<br>' +
+    '<a href="' + CONTACT + '" style="color:#9a6b12;font-weight:700;">연락 주시면</a> 자리를 알아봐 드립니다.</div>';
+}
+
+fetch('https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&t=' + Date.now())
+  .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
+  .then(function(t){ if (!render(parseCsv(t))) waiting(); })
+  .catch(function(){ waiting(); });   // 시트가 비공개거나 실패해도 화면은 살아 있어야 한다
+</script>
+
+</body>
+</html>

@@ -229,6 +229,8 @@ cp hero-preview.html          public/hero-preview.html          2>/dev/null || t
 cp index-preview.html         public/index-preview.html         2>/dev/null || true
 # 이 달의 도시 테마 — 첫 화면(index.html)과 검수 페이지가 같은 파일을 읽는다
 cp hero-themes.js             public/hero-themes.js             2>/dev/null || true
+# 목장 모임 — 처음 온 사람이 앉을 식탁을 찾는 자리 (구글 시트를 그대로 읽음)
+cp gathering.html             public/gathering.html             2>/dev/null || true
 cp hero-theme-preview.html    public/hero-theme-preview.html    2>/dev/null || true
 cp presentation-hospitality.html public/presentation-hospitality.html 2>/dev/null || true
 cp hebron-story.html          public/hebron-story.html          2>/dev/null || true

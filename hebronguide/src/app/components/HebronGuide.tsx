@@ -12742,25 +12742,28 @@ type MusicGenre = { id: string; labelKo: string; labelEn: string; items: GenreIt
 // 언제 들어도 좋은 5장르 — 각 장르에 검증된 실제 유튜브 플레이리스트/영상만 사용
 // 순서: 연주·배경(Piano·Healing·Lo-Fi·Jazz) → 보컬(CCM) → 기능(Kids·Requests).
 // 첫 방문자에게 잔잔한 연주곡을 먼저 흐르게 해 부담 없는 환대 — 기본재생 = Piano.
+// 언제 들어도 좋은 5장르 — 각 장르에 검증된 실제 유튜브 플레이리스트/영상만 사용
+// 순서: Healing·Jazz 를 앞에 (2026-08-08 폴 김 목사).
+//       기본재생은 순서와 무관하게 id "worship"(Piano)로 고정 — FloatingMusicPlayer의 useState.
 const MUSIC_GENRES: MusicGenre[] = [
-  // ① 연주 찬양(Piano) — 피아노·묵상 워십. 기본재생.
-  { id: "worship", labelKo: "Piano", labelEn: "Piano", items: [
-    { type: "playlist", id: "PLpNBopEHnm3DZj97bgFCVWwtRQu3KKvFG", sub: "Alone With God — 피아노 워십" },
-    { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "Piano Worship (찬양)" },
-    { type: "video",    id: "R-WGkU31ifQ", sub: "" },
-  ] },
   // ② Healing — 어쿠스틱·앰비언트 연주곡 (Bloom Again Music 채널)
   { id: "bloom", labelKo: "Healing", labelEn: "Healing", items: [
     { type: "playlist", id: "PLHl4MfXsebn14zs3Rj-8W23TS9WO8-Pgb", sub: "Bloom Again Music" },
     { type: "video",    id: "kMPNHuehfCs", sub: "Overflow — Summer Healing" },
   ] },
-  // ③ Lo-Fi — 공부·기도·묵상용 크리스천 로파이
-  { id: "lofi", labelKo: "Lo-Fi", labelEn: "Lo-Fi", items: [
-    { type: "playlist", id: "PLyqZUennuDvBqYBSu8UD5LAucMql_uXJh", sub: "Christian Lo-Fi — 잔잔한 배경음악" },
-  ] },
-  // ④ Jazz — 사모님 Joy Kim(The Mason Nook) 작품. 연주 그룹의 마지막.
+  // ③ Jazz — 사모님 Joy Kim(The Mason Nook) 작품. 연주 그룹의 마지막.
   { id: "jazz", labelKo: "Jazz", labelEn: "Jazz", items: [
     { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook — Cozy Jazz (Joy Kim)" },
+  ] },
+  // ④ 연주 찬양(Piano) — 피아노·묵상 워십. 기본재생.
+  { id: "worship", labelKo: "Piano", labelEn: "Piano", items: [
+    { type: "playlist", id: "PLpNBopEHnm3DZj97bgFCVWwtRQu3KKvFG", sub: "Alone With God — 피아노 워십" },
+    { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "Piano Worship (찬양)" },
+    { type: "video",    id: "R-WGkU31ifQ", sub: "" },
+  ] },
+  // ⑤ Lo-Fi — 공부·기도·묵상용 크리스천 로파이
+  { id: "lofi", labelKo: "Lo-Fi", labelEn: "Lo-Fi", items: [
+    { type: "playlist", id: "PLyqZUennuDvBqYBSu8UD5LAucMql_uXJh", sub: "Christian Lo-Fi — 잔잔한 배경음악" },
   ] },
   // ⑤ CCM — 유일한 보컬. 교리적으로 견고하고 교단 초월로 존중받는 현대 워십/찬송만 선별
   //    (CityAlight·Getty). 특정 교회 브랜드(Hillsong·Bethel·Elevation) 논란 회피 — 곡은 정통, 신뢰가 해자.
