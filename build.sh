@@ -233,6 +233,7 @@ cp hero-themes.js             public/hero-themes.js             2>/dev/null || t
 cp gathering.html             public/gathering.html             2>/dev/null || true
 cp ai-check.html              public/ai-check.html              2>/dev/null || true
 cp ai-intro.html              public/ai-intro.html              2>/dev/null || true
+cp seattle-gmc.html           public/seattle-gmc.html           2>/dev/null || true
 # SQL 적용 따라하기 (목사님 전용 · noindex)
 cp sql-guide.html             public/sql-guide.html             2>/dev/null || true
 cp hero-theme-preview.html    public/hero-theme-preview.html    2>/dev/null || true
