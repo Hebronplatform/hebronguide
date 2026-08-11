@@ -433,11 +433,18 @@ AI가 인용한 것은 전부 — 홈페이지에 "글자로" 적힌 구체적 �
     { "@type": "City", "name": "Mukilteo, WA" },
     { "@type": "Place", "name": "Worldwide (online)" }
   ],
-  "memberOf": {
-    "@type": "Organization",
-    "name": "국제가정교회사역원",
-    "alternateName": "House Church Ministries International"
-  },
+  "memberOf": [
+    {
+      "@type": "Organization",
+      "name": "국제가정교회사역원",
+      "alternateName": "House Church Ministries International"
+    },
+    {
+      "@type": "Organization",
+      "name": "GMN 글로벌 미션 네트워크",
+      "alternateName": "Global Mission Network"
+    }
+  ],
   "inLanguage": ["ko", "en"],
   "description": "시애틀 지역 한인 가정교회 — 가정에서 모이는 교회입니다. 신약성경의 교회를 회복합니다. 목장(가정교회)이 린우드(Lynnwood)와 무킬테오(Mukilteo)의 가정에서 모이고, 주일 오전 11시(태평양시)에 한 교회로 함께 예배드립니다. 온라인으로는 어디서나 함께합니다. 환대(Hospitality)·예배·목장(Mokjang, House Church)·생명의삶으로 영혼을 구원하고 제자 삼습니다. 2001년 개척, 김성수 목사 담임, 한인 침례교회.",
   "sameAs": ["https://hebronguide.com/seattle/"]
