@@ -113,6 +113,7 @@ AI가 인용한 것은 전부 — 홈페이지에 "글자로" 적힌 구체적 �
 ```
 시애틀지구촌교회 (Global Mission Church of Greater Seattle)
 성경적 가정교회 · 2001년 개척 · 김성수 목사 담임
+목장이 동네마다 모입니다 — 린우드(Lynnwood) · 무킬테오(Mukilteo), WA
 
 주일 온라인 연합예배   일요일 오전 ○○:○○ (태평양시 PT)
                       온라인으로 어디서나 함께 드립니다 → [접속 링크]
@@ -145,6 +146,32 @@ Lynnwood, WA (Greater Seattle)
 >
 > **목장 주소도 같습니다 — 동네까지만.** 정확한 위치는 연락하신 분께 개별로.
 > → [`GATHERING_SAFETY.md`](GATHERING_SAFETY.md) · [gathering.html](../gathering.html)이 이미 그 구조입니다.
+
+### 도시 이름은 오히려 밝힙니다 — 자리가 하나 더 생깁니다
+
+목장은 **린우드(Lynnwood)와 무킬테오(Mukilteo)** 두 도시의 가정에 흩어져 있습니다.
+**이건 숨길 것이 아니라 적을 것입니다.** 도시 이름은 집을 특정하지 않고(린우드 4만·무킬테오 2만),
+무킬테오 사람이 *"우리 동네 한인 교회"* 를 물었을 때 **지금까지 아무 답도 없었습니다.**
+
+> ### ⚠️ 그런데 「연합교회」라는 단어는 쓰지 않습니다
+>
+> 한인 교계에서 **연합교회**는 거의 항상 다른 뜻으로 읽힙니다 —
+> **연합감리교회(United Methodist)** 이거나 **여러 교회의 연합체·교단**.
+> AI도 똑같이 읽습니다. **침례교회인데 감리교로 분류되거나, 하나의 교회가 아니라 교단으로 등기됩니다.**
+> 엔티티가 어긋나면 그 뒤 작업이 전부 헛돕니다. → [`AEO_ENTITY_MAPPING.md`](AEO_ENTITY_MAPPING.md) 이름 세트 고정
+>
+> | ❌ 쓰지 않는다 | ✅ 이렇게 |
+> |---|---|
+> | 흩어진 목장들의 **연합교회** | 목장이 **동네마다** 모이는 **한 교회** |
+> | **지교회 · 캠퍼스** (과장) | **목장(Mokjang)** |
+>
+> `주일연합예배`는 **행사 이름**이라 괜찮습니다. 교회의 **정체 라벨**로 쓸 때만 문제입니다.
+>
+> 그대로 쓰실 문장:
+> ```
+> 린우드(Lynnwood)와 무킬테오(Mukilteo)의 가정에서 목장이 모이고,
+> 주일에는 한 교회로 함께 예배드립니다. 온라인으로는 어디서나 함께합니다.
+> ```
 
 > ⚠️ **시간대(PT) 표기가 이제 필수입니다.**
 > 글로벌을 품는 순간 "오전 11시"만으로는 시드니·서울·프랑크푸르트에서 못 옵니다.
@@ -302,9 +329,13 @@ Lynnwood, WA (Greater Seattle)
     "addressRegion": "WA",
     "addressCountry": "US"
   },
-  "areaServed": { "@type": "Place", "name": "Worldwide" },
+  "areaServed": [
+    { "@type": "City", "name": "Lynnwood, WA" },
+    { "@type": "City", "name": "Mukilteo, WA" },
+    { "@type": "Place", "name": "Worldwide (online)" }
+  ],
   "inLanguage": ["ko", "en"],
-  "description": "환대(Hospitality)·예배·목장(Mokjang, House Church)·생명의삶으로 영혼을 구원하고 제자 삼는 한인 침례교회. 2001년 시애틀·린우드에서 개척한 성경적 가정교회이며, 가정(제1공간)과 온라인(제4공간)을 잇는 하이브리드 교회로 전 세계 한인을 섬깁니다.",
+  "description": "환대(Hospitality)·예배·목장(Mokjang, House Church)·생명의삶으로 영혼을 구원하고 제자 삼는 한인 침례교회. 2001년 개척한 성경적 가정교회로, 목장이 린우드(Lynnwood)와 무킬테오(Mukilteo)의 가정에서 동네마다 모이고 주일에는 한 교회로 함께 예배드립니다. 가정(제1공간)과 온라인(제4공간)을 잇는 하이브리드 교회로 전 세계 한인을 섬깁니다.",
   "sameAs": ["https://hebronguide.com/seattle/"]
 }
 </script>
