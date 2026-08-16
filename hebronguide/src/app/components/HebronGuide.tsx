@@ -30773,6 +30773,15 @@ export function HebronGuide() {
   const [searchQuery, setSearchQuery] = useState("");
   const [showChat, setShowChat] = useState(false);
   const [showTranslate, setShowTranslate] = useState(false);
+
+  // ?tab=church|business — admin.html 승인 후 "확인" 버튼이 여는 딥링크.
+  // 승인한 교회·업소가 실제로 어느 자리에 떴는지 한 번에 보기 위한 것이다.
+  // 파라미터가 없으면 아무 일도 하지 않으므로 일반 방문에는 영향이 없다.
+  useEffect(() => {
+    const tab = new URLSearchParams(window.location.search).get("tab");
+    const idx = tab === "church" ? 2 : tab === "business" ? 12 : -1;
+    if (idx >= 0) setActiveNav(idx);
+  }, []);
   // ── Supabase 실시간 검색 결과 ──────────────────────────────
   const [sbSearchResults, setSbSearchResults] = useState<any[]>([]);
   const [sbSearchLoading, setSbSearchLoading] = useState(false);
