@@ -903,7 +903,7 @@
 
         <div style="display:flex;align-items:flex-start;gap:10px;">
           <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2);">REJECTED</span>
-          <span style="font-size:.8rem;color:var(--muted);">거절됨 — 앱에 표시하지 않기로 결정</span>
+          <span style="font-size:.8rem;color:var(--muted);">보류됨 — 앱에 표시하지 않음 (되돌릴 수 있습니다)</span>
         </div>
 
         <div style="display:flex;align-items:flex-start;gap:10px;">
@@ -1226,7 +1226,7 @@
           <div class="cell-name">${esc(r.title || r.business_name || r.name || '(제목없음)')}</div>
           <div class="cell-sub">${esc(r.category || r.type || '')}</div>
         </td>
-        <td><div class="cell-desc">${esc((r.description || r.content || '').slice(0, 60))}${(r.description || r.content || '').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">더보기 →</span>' : ''}</div></td>
+        <td><div class="cell-desc">${esc((r.description || r.content || '').slice(0, 60))}${(r.description || r.content || '').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">전체보기</span>' : ''}</div></td>
         <td>${geoCell(r)}</td>
         <td>
           <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
@@ -1251,7 +1251,7 @@
       <div style="margin-bottom:16px;padding:12px 16px;background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.3);border-radius:10px;">
         <div style="font-size:.8rem;font-weight:700;color:#F97316;margin-bottom:8px;">도시 추가 신청 (${cityReqs.length}건)</div>
         <table style="width:100%;">
-          <thead><tr><th>신청 도시</th><th>신청자</th><th>내용</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
+          <thead><tr><th>신청 도시</th><th>신청자</th><th>등록내용</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
           <tbody>
             ${cityReqs.map(r => `
               <tr onclick="showDetail(${JSON.stringify(r).replace(/"/g,'&quot;')}, 'community')" style="cursor:pointer;">
@@ -1276,7 +1276,7 @@
         <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--yellow);">PENDING — ${pending.length}</span>
       </div>
       <table>
-        <thead><tr><th>제목·이름</th><th>내용</th><th>도시</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
+        <thead><tr><th>제목·이름</th><th>등록내용</th><th>도시</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
         <tbody>${pending.map(itemRow).join('')}</tbody>
       </table>` : ''
 
@@ -1287,7 +1287,7 @@
           LIVE — ${approved.length} items (클릭하여 펼치기)
         </summary>
         <table style="margin-top:4px;">
-          <thead><tr><th>제목·이름</th><th>내용</th><th>도시</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
+          <thead><tr><th>제목·이름</th><th>등록내용</th><th>도시</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
           <tbody>${approved.map(itemRow).join('')}</tbody>
         </table>
       </details>` : ''
@@ -1344,7 +1344,7 @@
             <div class="cell-name">${esc(r.category==='church' ? churchNameOf(r) : (r.name || '(이름없음)'))}</div>
             <div class="cell-sub">${esc(r.category==='church' ? (churchPastorOf(r) || 'church') : (r.category || ''))}</div>
           </td>
-          <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">더보기 →</span>' : ''}</div></td>
+          <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">전체보기</span>' : ''}</div></td>
           <td>${geoCell(r)}</td>
           <td>
             <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
@@ -1376,7 +1376,7 @@
         <span style="font-size:.7rem;color:var(--muted);margin-left:8px;">행을 클릭하면 전체 내용 확인</span>
       </div>
       <table>
-        <thead><tr><th class="pick-cell"><input type="checkbox" class="pick" onchange="pickAll(this)" title="이 표 전체 선택"></th><th>이름·교회명</th><th>내용</th><th>도시·주소</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
+        <thead><tr><th class="pick-cell"><input type="checkbox" class="pick" onchange="pickAll(this)" title="이 표 전체 선택"></th><th>이름·교회명</th><th>등록내용</th><th>도시·주소</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
         <tbody>${appRows(pending)}</tbody>
       </table>` : ''
 
@@ -1394,7 +1394,7 @@
         </button>` : `<span style="font-size:.7rem;color:var(--mint);margin-left:auto;">이메일 전송 완료</span>`}
       </div>
       <table>
-        <thead><tr><th class="pick-cell"><input type="checkbox" class="pick" onchange="pickAll(this)" title="이 표 전체 선택"></th><th>이름·교회명</th><th>내용</th><th>도시·주소</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
+        <thead><tr><th class="pick-cell"><input type="checkbox" class="pick" onchange="pickAll(this)" title="이 표 전체 선택"></th><th>이름·교회명</th><th>등록내용</th><th>도시·주소</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th></tr></thead>
         <tbody>${appRows(approved)}</tbody>
       </table>` : ''
 
@@ -1433,7 +1433,7 @@
         <span class="hint">체크한 신청을 한 번에 처리합니다</span>
         <span class="sp"></span>
         <button class="btn-sm btn-approve" onclick="bulkStatus('approved')">선택 승인</button>
-        <button class="btn-sm btn-reject"  onclick="bulkStatus('rejected')">선택 거절</button>
+        <button class="btn-sm btn-reject"  onclick="bulkStatus('rejected')">선택 보류</button>
         <button class="btn-sm btn-edit"    onclick="clearPicks()">선택 해제</button>
       </div>`
 
@@ -1487,7 +1487,7 @@
     const skipped = picked().length - rows.length
     if (!rows.length) { toast(skipped ? '이미 모두 그 상태입니다' : '선택된 항목이 없습니다'); return }
 
-    const word = status === 'approved' ? '승인' : '거절'
+    const word = status === 'approved' ? '승인' : '보류'
     if (!confirm(`${rows.length}건을 ${word}합니다.` + (skipped ? `\n(이미 ${word}된 ${skipped}건은 건너뜁니다)` : '') + '\n계속할까요?')) return
 
     const bar = document.getElementById('bulk-count')
@@ -1562,7 +1562,7 @@
       </div>
       <table>
         <thead><tr>
-          <th>이름·업체명</th><th>내용</th><th>도시</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th>
+          <th>이름·업체명</th><th>등록내용</th><th>도시</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th>
         </tr></thead>
         <tbody>
           ${applications.map(r => `
@@ -1571,7 +1571,7 @@
                 <div class="cell-name">${esc(r.name || '(이름없음)')}</div>
                 <div class="cell-sub">사업체 신청</div>
               </td>
-              <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">더보기 →</span>' : ''}</div></td>
+              <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">전체보기</span>' : ''}</div></td>
               <td>${geoCell(r)}</td>
               <td>
                 <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
@@ -1630,7 +1630,7 @@
       </div>
       <table>
         <thead><tr>
-          <th>제목·담당자</th><th>내용</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th>
+          <th>제목·담당자</th><th>등록내용</th><th>연락처</th><th>상태</th><th>날짜</th><th>액션</th>
         </tr></thead>
         <tbody>
           ${data.map(r => `
@@ -1639,7 +1639,7 @@
                 <div class="cell-name">${esc(r.name || '(이름없음)')}</div>
                 <div class="cell-sub">홍보 신청</div>
               </td>
-              <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">더보기 →</span>' : ''}</div></td>
+              <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}${(r.description||'').length > 60 ? ' <span style="color:var(--gold);font-size:.75rem;font-weight:700;">전체보기</span>' : ''}</div></td>
               <td>
                 <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
                 <div class="cell-sub">${esc(r.contact || '')}</div>
@@ -1881,7 +1881,7 @@
   async function updateStatus(id, table, db, status) {
     try {
       const r = await adminAction({ action: 'update_status', id, table, status })
-      toast(`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4.5 12.5 9 17 19.5 6.5"/></svg> ${r.msg || (status === 'approved' ? '승인 완료' : '거절 완료')}`)
+      toast(`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4.5 12.5 9 17 19.5 6.5"/></svg> ${r.msg || (status === 'approved' ? '승인 완료' : '보류 완료')}`)
 
       // 승인 시 카테고리별 자동 처리
       if (status === 'approved' && table === 'community_items') {
@@ -2363,12 +2363,12 @@
   function showDetail(r, tableKey) {
     const labelMap = {
       name: '이름·교회명', title: '제목', business_name: '사업체명',
-      description: '내용 (전체)', content: '내용 (전체)',
+      description: '등록내용', content: '등록내용',
       city_slug: '도시', city: '도시', address: '주소',
       phone: '전화', contact: '연락처', email: '이메일',
       website: '웹사이트', url: 'URL',
       category: '카테고리', type: '유형', status: '상태',
-      denomination: '교단', tier: 'Tier',
+      denomination: '', tier: 'Tier',
       created_at: '신청일시', updated_at: '수정일시',
     }
     const skipKeys = ['id','user_id','auth_uid']
@@ -2384,9 +2384,12 @@
         let val = String(v)
         if (k === 'created_at' || k === 'updated_at') val = new Date(v).toLocaleString('ko-KR')
         if (k === 'status') val = v === 'approved' ? '게시' : v === 'rejected' ? '보류' : v === 'pending' ? '대기' : v
+        // 신청 본문의 "교단:" 같은 라벨 접두는 팝업에서 뺀다 — 값만 보면 안다
+        if (k === 'description' || k === 'content') val = val.replace(/^교단[:\s]*/gm, '')
+        const multi = (k === 'description' || k === 'content')
         return `<div class="modal-field">
           <div class="modal-label">${label}</div>
-          <div class="modal-value">${esc(val)}</div>
+          <div class="modal-value"${multi ? ' style="white-space:pre-wrap;line-height:1.65"' : ''}>${esc(val)}</div>
         </div>`
       }).join('')
 
