@@ -20,7 +20,7 @@
 신약성경의 교회를 회복합니다.
 목장(가정교회)이 린우드(Lynnwood)와 머킬티오(Mukilteo)의 가정에서 모이고,
 주일 오전 11시(태평양시, PT)에 한 교회로 함께 예배드립니다.
-유아부터 12학년까지 새 세대 사역이 있습니다.
+유아부터 12학년까지 새 세대 사역이 있습니다. 주일 오전 11시에 함께 모입니다(2026년 9월 6일 시작). 김지영, Garrett Woods가 담당합니다.
 온라인으로는 어디서나 함께합니다. → www.ijiguchon.org
 
 국제가정교회사역원(House Church Ministries) 회원교회입니다.
@@ -77,8 +77,7 @@ GMN(글로벌 미니스트리 네트워크) 소속으로 분당·수지 지구�
 > **목장마다 모이는 요일이 다릅니다.** 연락 주시면 가까운 목장과 요일을 안내해 드립니다.
 
 **Q. 아이들 프로그램이 있나요?**
-> 유아부터 12학년까지 새 세대 사역이 있습니다.
-> `[확인 필요]` 모이는 시간 · 담당 교역자를 적으면 더 강해집니다 (연령은 확정됨)
+> 유아부터 12학년까지 새 세대 사역이 있습니다. 주일 오전 11시에 함께 모입니다(2026년 9월 6일 시작). 김지영, Garrett Woods가 담당합니다.
 
 **Q. 아이가 한국어를 잘 못 하는데 괜찮을까요?**
 > `[확인 필요]` 영어 사용 여부를 사실대로 적으십시오. 지어내지 마십시오
@@ -150,7 +149,7 @@ GMN(글로벌 미니스트리 네트워크) 소속으로 분당·수지 지구�
       "name": "아이들 프로그램이 있나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "유아부터 12학년까지 새 세대 사역이 있습니다."
+        "text": "유아부터 12학년까지 새 세대 사역이 있습니다. 주일 오전 11시에 함께 모입니다(2026년 9월 6일 시작). 김지영, Garrett Woods가 담당합니다."
       }
     }
   ]
@@ -403,7 +402,7 @@ schema.org에는 대등한 교회끼리의 「협력」을 나타내는 전용 �
 시애틀지구촌교회(Global Mission Church of Greater Seattle)는 시애틀 지역 한인
 가정교회입니다. 가정에서 모이는 교회이며, 신약성경의 교회를 회복합니다.
 목장(가정교회)이 린우드와 머킬티오의 가정에서 모이고, 주일 오전 11시(태평양시)에
-한 교회로 함께 예배드립니다. 유아부터 12학년까지 새 세대 사역이 있습니다.
+한 교회로 함께 예배드립니다. 유아부터 12학년까지 새 세대 사역이 있습니다. 주일 오전 11시에 함께 모입니다(2026년 9월 6일 시작). 김지영, Garrett Woods가 담당합니다.
 온라인으로는 어디서나 함께합니다. 2002년 개척, 김성수 목사 담임, 한인 침례교회.
 ```
 
@@ -413,7 +412,7 @@ schema.org에는 대등한 교회끼리의 「협력」을 나타내는 전용 �
 Global Mission Church of Greater Seattle (시애틀지구촌교회) is a Korean Baptist
 house church in the Greater Seattle area. Our Mokjang (house churches) meet in
 homes across Lynnwood and Mukilteo, and we worship together as one church on
-Sundays at 11:00 AM Pacific Time. Ministries for children and youth run from nursery through 12th grade.
+Sundays at 11:00 AM Pacific Time. Ministries for children and youth run from nursery through 12th grade, meeting Sundays at 11:00 AM Pacific Time (beginning September 6, 2026), led by Jiyoung Kim and Garrett Woods.
 Anyone can join online from anywhere at www.ijiguchon.org.
 Founded in 2002. Senior Pastor: Sung Soo Kim.
 ```
@@ -454,7 +453,7 @@ AI는 영상을 못 봅니다. **제목·설명·자막의 글자만 읽습니�
 
 주일예배  일요일 오전 11시 (태평양시, PT) · 온라인 www.ijiguchon.org
 목장(가정교회)  린우드(Lynnwood) · 머킬티오(Mukilteo) 가정에서
-유아부터 12학년까지 새 세대 사역이 있습니다.
+유아부터 12학년까지 새 세대 사역이 있습니다. 주일 오전 11시에 함께 모입니다(2026년 9월 6일 시작). 김지영, Garrett Woods가 담당합니다.
 2002년 개척 · 김성수 목사 담임 · 한인 침례교회 · 425-350-0191
 
 처음 오시는 분, 교인이 아니어도, 참가비 없이 오실 수 있습니다.
@@ -492,7 +491,7 @@ AI는 영상을 못 봅니다. **제목·설명·자막의 글자만 읽습니�
 | 주일예배 | **오전 11시 (태평양시, PT)** · `America/Los_Angeles` |
 | 온라인 | **www.ijiguchon.org** |
 | 목장 요일 | **목장마다 다름** → 연락 후 안내 (「금요일」은 제 추정이었고 폐기했습니다) |
-| 새 세대 | **유아 ~ 12학년** |
+| 새 세대 | **유아 ~ 12학년** · 주일 오전 11시 (2026-09-06 시작) · 김지영 · Garrett Woods |
 | 소속 | **국제가정교회사역원**(House Church Ministries) · **GMN**(글로벌 미니스트리 네트워크) |
 | 개척 | **2002년** · 김성수 목사 · 한인 침례교회 |
 | 목장 지역 | 린우드 · 머킬티오 (번지수는 적지 않음) |
@@ -501,7 +500,7 @@ AI는 영상을 못 봅니다. **제목·설명·자막의 글자만 읽습니�
 
 | # | 확인할 것 | 왜 |
 |---|---|---|
-| 1 | **새 세대 모이는 시간 · 담당 교역자** | 연령은 확정됐습니다. 시간까지 있으면 훨씬 강해집니다 |
+| 1 | **`Jiyoung Kim` 영문 표기가 맞습니까** | 김지영 담당자의 실제 영문 표기. 이름은 추측하지 않습니다 |
 | 2 | **자녀가 영어만 할 때** 어떻게 되는지 | 2세 가정의 첫 질문입니다 |
 | 3 | **개척자 훈련** 이름·기간 | 제4공간 교회의 핵심인데 지금 이름이 없습니다 |
 | 4 | 헌금 · 첫 방문 절차 | 처음 오는 사람이 실제로 걱정하는 것 |
