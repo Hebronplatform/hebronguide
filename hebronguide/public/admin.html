@@ -447,17 +447,24 @@
       transition: .15s;
       white-space: nowrap;
     }
-    .btn-approve { background: rgba(74,222,128,.08);  border-color: rgba(74,222,128,.25); color: var(--green) }
-    .btn-approve:hover { background: rgba(74,222,128,.18) }
-    .btn-reject  { background: rgba(248,113,113,.08); border-color: rgba(248,113,113,.25); color: var(--red) }
-    .btn-reject:hover  { background: rgba(248,113,113,.18) }
-    .btn-delete  { background: transparent; border-color: var(--border); color: var(--muted) }
+    /* 버튼은 기본이 무채색이다 — 상태 뱃지(게시·대기·보류)와 색이 겹치면
+       무엇이 "지금 상태"이고 무엇이 "누를 것"인지 구분이 안 된다.
+       색은 ① 마우스를 올렸을 때(무엇을 하는 버튼인지) ② 누른 뒤(내가 한 일)에만 켜진다. */
+    .btn-sm      { background: transparent; border-color: var(--border2); color: var(--muted); text-decoration: none }
+    .btn-sm:hover{ border-color: var(--muted); color: var(--text) }
+
+    .btn-approve:hover { background: rgba(74,222,128,.16);  border-color: rgba(74,222,128,.45); color: var(--green) }
+    .btn-reject:hover  { background: rgba(248,113,113,.16); border-color: rgba(248,113,113,.45); color: var(--red) }
+    .btn-edit:hover    { background: rgba(201,162,39,.16);  border-color: rgba(201,162,39,.45); color: var(--gold) }
     .btn-delete:hover  { border-color: var(--red); color: var(--red) }
-    .btn-edit    { background: rgba(201,162,39,.08);  border-color: rgba(201,162,39,.2);  color: var(--gold) }
-    .btn-edit:hover    { background: rgba(201,162,39,.16) }
-    /* 승인된 항목이 실제로 뜬 자리로 바로 여는 버튼 */
-    .btn-live    { background: rgba(110,231,183,.08); border-color: rgba(110,231,183,.28); color: var(--mint); text-decoration: none }
-    .btn-live:hover    { background: rgba(110,231,183,.18) }
+    .btn-live:hover    { background: rgba(110,231,183,.16); border-color: rgba(110,231,183,.45); color: var(--mint) }
+
+    /* 누른 뒤 — 색이 남는다. 어느 교회를 이미 확인했는지 한눈에 보인다. */
+    .btn-live.done  { background: rgba(110,231,183,.16); border-color: rgba(110,231,183,.5); color: var(--mint); font-weight: 700 }
+    .btn-live.done::after { content: " ✓"; font-weight: 900 }
+
+    /* 누르는 순간 잠깐 눌린 느낌 */
+    .btn-sm:active { transform: translateY(1px) }
     /* 주소에서 읽어낸 나라·주·도시 — 슬러그와 같은 줄에 */
     .geo-line    { display: flex; align-items: baseline; gap: 6px; white-space: nowrap }
     .cell-geo    { font-size: 10px; color: var(--muted); letter-spacing: -.2px }
@@ -1113,6 +1120,21 @@
     return `<div class="geo-line" title="${esc(a.raw || '주소 없음')}"><span class="cell-city">${slug}</span><span class="cell-geo">${geo}</span></div>`
   }
 
+  // 「확인」을 누른 항목을 기억한다.
+  // 승인·보류·재발송은 상태 칸에 흔적이 남지만 확인은 남지 않아,
+  // 어느 교회를 이미 눈으로 봤는지 알 수 없었다.
+  const CHECKED_KEY = 'hg_admin_checked'
+  function checkedSet() {
+    try { return new Set(JSON.parse(localStorage.getItem(CHECKED_KEY) || '[]')) } catch { return new Set() }
+  }
+  function markChecked(id, el) {
+    try {
+      const set = checkedSet(); set.add(id)
+      localStorage.setItem(CHECKED_KEY, JSON.stringify([...set].slice(-3000)))
+    } catch {}
+    if (el) el.classList.add('done')
+  }
+
   // 승인된 항목이 실제로 떠 있는 자리로 바로 연다 (도시 페이지 + 해당 탭)
   function liveLink(r) {
     if (r.status !== 'approved') return ''
@@ -1121,7 +1143,8 @@
     const tab = r.category === 'church' ? 'church' : r.category === 'business' ? 'business' : ''
     const url = `https://hebronguide.com/${city}/${tab ? `?tab=${tab}` : ''}`
     const label = '확인'
-    return `<a class="btn-sm btn-live" href="${url}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="${esc(r.name || '')} — ${esc(city)} 페이지에서 확인"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg> ${label}</a>`
+    const done = checkedSet().has(r.id) ? ' done' : ''
+    return `<a class="btn-sm btn-live${done}" href="${url}" target="_blank" rel="noopener" onclick="event.stopPropagation();markChecked('${r.id}', this)" title="${esc(r.name || '')} — ${esc(city)} 페이지에서 확인"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg> ${label}</a>`
   }
 
   function riskBadges(r) {
