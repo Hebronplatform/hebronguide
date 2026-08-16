@@ -10156,12 +10156,24 @@ function getIntlFinance(slug: string, lang: string): Array<{ title: string; desc
   ]);
 }
 
+// 체크리스트 아이콘 — 이모지 대신 SVG 라인 아이콘(currentColor)
+// 이모지는 기기·OS마다 다르게 그려지고 판박이로 보인다. 선 아이콘은 어디서나 같다.
+function ChecklistIcon({ children }: { children: React.ReactNode }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7}
+         strokeLinecap="round" strokeLinejoin="round"
+         style={{ width: 18, height: 18, flexShrink: 0 }} aria-hidden="true">
+      {children}
+    </svg>
+  );
+}
+
 // 나라별 Day 1 체크리스트 — 현지 기관·제도 용어
 function getDayOneItems(slug: string) {
   const cc = getCountryCode(slug);
   return [
     {
-      id: "sim", emoji: "📱",
+      id: "sim", icon: <ChecklistIcon><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10.75 18.5h2.5"/></ChecklistIcon>,
       ko: cc === "KR" ? "기존 번호 재개통 또는 알뜰폰" : "SIM 카드 등록",
       en: cc === "KR" ? "Reactivate number or get MVNO" : "Get a SIM card",
       sub_ko: cc === "CA" ? "Public Mobile·Koodo $27~30/월"
@@ -10186,7 +10198,7 @@ function getDayOneItems(slug: string) {
             : "T-Mobile $30/mo recommended",
     },
     {
-      id: "bank", emoji: "🏦",
+      id: "bank", icon: <ChecklistIcon><path d="M3 9.5 12 4l9 5.5"/><path d="M5.5 11v7M9.8 11v7M14.2 11v7M18.5 11v7"/><path d="M3 21h18"/></ChecklistIcon>,
       ko: cc === "KR" ? "기존 계좌 재활성화" : "은행 계좌 개설",
       en: cc === "KR" ? "Reactivate existing account" : "Open a bank account",
       sub_ko: cc === "CA" ? "Scotiabank·TD·Koho — 한인 지점 多"
@@ -10211,14 +10223,14 @@ function getDayOneItems(slug: string) {
             : "Chase or Bank of America — bring ID",
     },
     {
-      id: "housing", emoji: "🏠",
+      id: "housing", icon: <ChecklistIcon><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.3V21h13V9.3"/><path d="M10 21v-5.5h4V21"/></ChecklistIcon>,
       ko: cc === "KR" ? "부동산 앱으로 월세 계약" : "거주지 확정",
       en: cc === "KR" ? "Find rental via real estate app" : "Secure housing",
       sub_ko: "에어비앤비 → 장기 렌트 순서로",
       sub_en: "Airbnb → long-term rental",
     },
     {
-      id: "license", emoji: "🚗",
+      id: "license", icon: <ChecklistIcon><path d="M4 16.5V13l1.8-4.2A2 2 0 0 1 7.6 7.5h8.8a2 2 0 0 1 1.8 1.3L20 13v3.5"/><path d="M4.5 13h15"/><circle cx="7.5" cy="16.8" r="1.4"/><circle cx="16.5" cy="16.8" r="1.4"/></ChecklistIcon>,
       ko: cc === "KR" ? "운전면허 갱신·재발급" : "운전면허 전환",
       en: cc === "KR" ? "Renew driver's license" : "Transfer driver's license",
       sub_ko: cc === "CA" ? "ON·BC·AB 등 한국 면허 직접 교환 가능"
@@ -10237,7 +10249,7 @@ function getDayOneItems(slug: string) {
             : "Required within 90 days of arrival",
     },
     {
-      id: "id_number", emoji: "🪪",
+      id: "id_number", icon: <ChecklistIcon><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><circle cx="8.3" cy="10.8" r="1.9"/><path d="M5.4 15.6c.6-1.2 1.7-1.9 2.9-1.9s2.3.7 2.9 1.9"/><path d="M14.5 10h4M14.5 13.5h4"/></ChecklistIcon>,
       ko: cc === "CA" ? "SIN 신청" : cc === "AU" ? "TFN 신청"
         : cc === "NZ" ? "IRD 번호 신청" : cc === "JP" ? "마이넘버 신고"
         : cc === "KR" ? "주민등록 재등록" : cc === "UK" ? "NI 번호 신청"
@@ -10270,7 +10282,7 @@ function getDayOneItems(slug: string) {
             : "Social Security Administration — 10 days after arrival",
     },
     {
-      id: "health", emoji: "🏥",
+      id: "health", icon: <ChecklistIcon><path d="M5 21V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v15"/><path d="M3 21h18"/><path d="M12 8.5v6M9 11.5h6"/></ChecklistIcon>,
       ko: "건강보험 등록",
       en: "Get health insurance",
       sub_ko: cc === "CA" ? "주정부 건강보험 (OHIP·MSP·RAMQ) 3개월 대기"
@@ -10295,14 +10307,14 @@ function getDayOneItems(slug: string) {
             : "Work / Medicaid / Marketplace",
     },
     {
-      id: "school", emoji: "📚",
+      id: "school", icon: <ChecklistIcon><path d="M12 6.6C10.5 5.1 8.6 4.6 4 4.6v12.8c4.6 0 6.5.5 8 2"/><path d="M12 6.6c1.5-1.5 3.4-2 8-2v12.8c-4.6 0-6.5.5-8 2"/><path d="M12 6.6v12.8"/></ChecklistIcon>,
       ko: cc === "JP" ? "일본어 교실 등록" : cc === "KR" ? "한국 생활 재적응 프로그램" : "학교·어학원 등록",
       en: cc === "JP" ? "Japanese language class" : cc === "KR" ? "Korean readaptation programs" : "School / ESL enrollment",
       sub_ko: cc === "JP" ? "지자체 무료 일본어 강좌 활용" : cc === "KR" ? "지역 평생학습관·귀환 동포 지원" : "공립 ESL 무료 운영",
       sub_en: cc === "JP" ? "Free Japanese classes at local municipality" : cc === "KR" ? "Community center returnee programs" : "Public ESL classes are free",
     },
     {
-      id: "doctor", emoji: "👨‍⚕️",
+      id: "doctor", icon: <ChecklistIcon><path d="M6 3v5.5a4 4 0 0 0 8 0V3"/><path d="M4.3 3h3.4M12.3 3h3.4"/><path d="M10 12.5V14a5 5 0 0 0 5 5 3.8 3.8 0 0 0 3.8-3.8v-.9"/><circle cx="18.8" cy="12.6" r="1.9"/></ChecklistIcon>,
       ko: cc === "KR" ? "한국 의료 시스템 재가입" : "주치의 등록",
       en: cc === "KR" ? "Re-enter Korean medical system" : "Find a primary care doctor",
       sub_ko: cc === "UK" ? "NHS GP 등록 — 주소 근처 GP 검색" : cc === "KR" ? "건강검진 예약 권장 (국가건강검진)" : "첫 방문 전 보험 확인 필수",
@@ -10347,7 +10359,11 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
       border: "1.5px solid rgba(242,153,74,0.35)", borderRadius: 14, padding: "12px 16px",
       display: "flex", alignItems: "center", gap: 12, cursor: "pointer", textAlign: "left",
     }}>
-      <span style={{ fontSize: 20 }}>📋</span>
+      <span style={{ display: "flex", color: "#F2994A" }}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }} aria-hidden="true">
+          <rect x="5" y="4" width="14" height="17" rx="2" /><path d="M9 4V3.2A1.2 1.2 0 0 1 10.2 2h3.6A1.2 1.2 0 0 1 15 3.2V4" /><path d="M8.8 10.5h6.4M8.8 14.5h4" />
+        </svg>
+      </span>
       <div style={{ flex: 1 }}>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A" }}>
           {ko ? `정착 체크리스트 — ${done}/${total} 완료` : `Arrival Checklist — ${done}/${total} done`}
@@ -10365,8 +10381,11 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
       {/* 헤더 */}
       <div style={{ padding: "14px 16px 10px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
         <div>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 15, color: "#1B2A4A" }}>
-            📋 {ko ? "정착 체크리스트" : "Arrival Checklist"}
+          <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 15, color: "#1B2A4A", display: "flex", alignItems: "center", gap: 7 }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F2994A" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" style={{ width: 17, height: 17, flexShrink: 0 }} aria-hidden="true">
+              <rect x="5" y="4" width="14" height="17" rx="2" /><path d="M9 4V3.2A1.2 1.2 0 0 1 10.2 2h3.6A1.2 1.2 0 0 1 15 3.2V4" /><path d="M8.8 10.5h6.4M8.8 14.5h4" />
+            </svg>
+            {ko ? "정착 체크리스트" : "Arrival Checklist"}
           </div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#64748B", marginTop: 2 }}>
             {ko ? `${done}/${total} 완료 · ${pct}%` : `${done}/${total} done · ${pct}%`}
@@ -10394,7 +10413,7 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
             }}>
               {checks[item.id] && <span style={{ color: "#0d1117", fontWeight: 900, fontSize: 13 }}>✓</span>}
             </div>
-            <span style={{ fontSize: 18, flexShrink: 0 }}>{item.emoji}</span>
+            <span style={{ display: "flex", flexShrink: 0, color: checks[item.id] ? "#CBD5E1" : "#F2994A" }}>{item.icon}</span>
             <div style={{ flex: 1 }}>
               <div style={{ fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13, color: checks[item.id] ? "#94A3B8" : "#1B2A4A", textDecoration: checks[item.id] ? "line-through" : "none" }}>
                 {ko ? item.ko : item.en}
@@ -10412,16 +10431,19 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
           <button
             onClick={() => {
               const msg = ko
-                ? `✅ 정착 체크리스트 완료! 이 앱 덕분에 순조롭게 정착했어요 → hebronguide.com`
-                : `✅ Arrival checklist complete! HebronGuide made settling in so much easier → hebronguide.com`;
+                ? `정착 체크리스트 다 채웠습니다. 이 앱 덕분에 순조롭게 정착했어요 → hebronguide.com`
+                : `Arrival checklist complete. HebronGuide made settling in so much easier → hebronguide.com`;
               if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
                 window.location.href = `kakaotalk://msg/send?msg=${encodeURIComponent(msg)}`;
               } else {
                 navigator.clipboard?.writeText(msg).then(() => alert(ko ? "복사됐습니다! 카카오톡에 붙여넣기 하세요." : "Copied! Paste into KakaoTalk or any chat."));
               }
             }}
-            style={{ width: "100%", background: "linear-gradient(135deg,#6EE7B7,#34d399)", color: "#0d1117", border: "none", borderRadius: 12, padding: "12px", fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, cursor: "pointer" }}>
-            🎉 {ko ? "정착 완료! — 지인에게 공유하기" : "Done! — Share with a friend"}
+            style={{ width: "100%", background: "linear-gradient(135deg,#6EE7B7,#34d399)", color: "#0d1117", border: "none", borderRadius: 12, padding: "12px", fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 17, height: 17, flexShrink: 0 }} aria-hidden="true">
+              <circle cx="12" cy="12" r="9" /><path d="M8 12.3l2.7 2.7L16 9.7" />
+            </svg>
+            {ko ? "정착 완료 — 지인에게 공유하기" : "Done — Share with a friend"}
           </button>
         </div>
       )}
