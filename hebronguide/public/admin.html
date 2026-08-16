@@ -389,13 +389,13 @@
     /* ── 셀 스타일 ── */
     /* 한 줄에 더 담기 위해 10px — 이름·교회명 (2026-08-11 폴 김 목사)
        nowrap 필수: 없으면 "시애틀지 / 구촌교회" 처럼 세로로 쪼개져 더 못 읽는다 */
-    .cell-name { font-weight: 700; font-size: 10px; max-width: 170px; line-height: 1.5;
+    .cell-name { font-weight: 700; font-size: 10px; max-width: 130px; line-height: 1.5;
                  white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
     .cell-sub  { font-size: 10px; color: var(--muted); margin-top: 1px;
                  white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
     .cell-desc {
       color: var(--muted);
-      max-width: 150px;
+      max-width: 120px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -466,6 +466,8 @@
     /* 누르는 순간 잠깐 눌린 느낌 */
     .btn-sm:active { transform: translateY(1px) }
     /* 주소에서 읽어낸 나라·주·도시 — 슬러그와 같은 줄에 */
+    .status-cell { display: flex; align-items: center; gap: 5px; white-space: nowrap }
+    .st-mark     { font-size: 9px; letter-spacing: -.2px }
     .geo-line    { display: flex; align-items: baseline; gap: 6px; white-space: nowrap }
     .cell-geo    { font-size: 10px; color: var(--muted); letter-spacing: -.2px }
     .cell-geo b  { color: var(--mint); font-weight: 700 }
@@ -1081,7 +1083,8 @@
     const desc = r.description || ''
     const m = desc.match(/주소[:\s]+([^\n]+)/)
     const raw = String((m ? m[1] : '') || r.address || '').trim()
-    if (!raw) return { raw: '', country: '', state: '', city: '' }
+    const none = { raw, country: '', state: '', city: '' }
+    if (!raw) return none
 
     // 한국 주소 — 시/도 + 시/군/구
     if (/[가-힣]/.test(raw) && /(특별시|광역시|[가-힣]+도|[가-힣]+시|[가-힣]+군)/.test(raw)) {
@@ -1089,18 +1092,37 @@
       if (k) return { raw, country: 'KR 대한민국', state: k[1] || '', city: k[2] || '' }
     }
 
-    // 북미 주소 — "..., City, ST 12345" / "..., City, ON A1A 1A1"
-    const na = raw.match(/,\s*([A-Za-z][A-Za-z .'\-]{1,40}?)\s*,\s*([A-Za-z]{2})\b[ ,]*([A-Z0-9][A-Z0-9\- ]{2,9})?\s*$/)
-    if (na) {
-      const st = na[2].toUpperCase()
-      if (US_STATES.has(st)) return { raw, country: 'US 미국', state: st, city: na[1].trim() }
-      if (CA_PROV.has(st))   return { raw, country: 'CA 캐나다', state: st, city: na[1].trim() }
-    }
-    // 도시 없이 주만 있는 경우 — "... WA 98037"
-    const only = raw.match(/\b([A-Z]{2})\s+\d{5}(-\d{4})?\s*$/)
-    if (only && US_STATES.has(only[1])) return { raw, country: 'US 미국', state: only[1], city: '' }
+    // 꼬리부터 걷어낸다 — 나라 표기 → 우편번호 순
+    let t = raw
+      .replace(/[,\s]+(U\.?S\.?A\.?|United States(?: of America)?|America)\.?\s*$/i, '')
+      .replace(/[,\s]+Canada\.?\s*$/i, '')
+      .replace(/[,\s]+\d{5}(-\d{4})?\s*$/, '')
+      .replace(/[,\s]+[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d\s*$/i, '')
+      .replace(/[,\s]+$/, '')
 
-    return { raw, country: '', state: '', city: '' }
+    // 끝에 남은 두 글자가 주(州)인가
+    const st2 = t.match(/[,\s]+([A-Za-z]{2})$/)
+    if (!st2) return none
+    const st = st2[1].toUpperCase()
+    const isUS = US_STATES.has(st), isCA = CA_PROV.has(st)
+    if (!isUS && !isCA) return none
+
+    // 주 앞이 도시. 쉼표가 있으면 마지막 조각, 없으면 도로 표기를 만날 때까지 뒤에서 모은다.
+    const before = t.slice(0, t.length - st2[0].length).replace(/[,\s]+$/, '')
+    let city = ''
+    if (before.includes(',')) {
+      city = before.split(',').pop().trim()
+    } else {
+      const SUFFIX = /^(st|street|ave|avenue|rd|road|dr|drive|blvd|boulevard|ln|lane|way|ct|court|pl|place|pkwy|parkway|hwy|highway|cir|circle|ter|terrace|ste|suite|apt|unit|fl|floor|bldg|n|s|e|w|ne|nw|se|sw|north|south|east|west)\.?$/i
+      const words = before.split(/\s+/), take = []
+      for (let i = words.length - 1; i >= 0 && take.length < 3; i--) {
+        const w = words[i]
+        if (/^[\d#]/.test(w) || SUFFIX.test(w)) break
+        take.unshift(w)
+      }
+      city = take.join(' ')
+    }
+    return { raw, country: isUS ? 'US 미국' : 'CA 캐나다', state: st, city }
   }
 
   // 도시 칸 — 슬러그와 나라·주·도시를 한 줄에. 좁으면 10px로 줄여서라도 한 줄 유지.
@@ -1147,19 +1169,29 @@
     return `<a class="btn-sm btn-live${done}" href="${url}" target="_blank" rel="noopener" onclick="event.stopPropagation();markChecked('${r.id}', this)" title="${esc(r.name || '')} — ${esc(city)} 페이지에서 확인"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg> ${label}</a>`
   }
 
+  // 상태 칸은 한 줄로. 뱃지·편지·위험·AI점수를 세로로 쌓으면 행 높이가 들쭉날쭉해
+  // "상태"가 복잡해 보인다. 가로로 이어 붙이고 넘치면 잘라낸다.
+  function statusCell(r) {
+    const cls  = r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'
+    const word = r.status === 'approved' ? '게시'     : r.status === 'rejected' ? '보류'     : '대기'
+    const mail = (r.tags || []).includes('welcome_sent')
+      ? `<span class="st-mark" style="color:var(--mint)">편지발송</span>`
+      : (r.category === 'church' && r.status === 'approved'
+          ? `<span class="st-mark" style="color:rgba(248,113,113,.75)">미발송</span>` : '')
+    const ai = r.confidence_score != null
+      ? `<span class="st-mark" style="color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'}">AI ${r.confidence_score}</span>` : ''
+    return `<div class="status-cell"><span class="status ${cls}">${word}</span>${mail}${riskBadges(r)}${ai}</div>`
+  }
+
   function riskBadges(r) {
     const hits = (r.tags || []).filter(t => String(t).startsWith('risk:'))
     if (!hits.length) return ''
     const score = r.confidence_score
     const danger = hits.length >= 3 || (score != null && score <= 50)
     const color = danger ? 'var(--red)' : 'var(--yellow)'
-    return `<div style="margin-top:5px;display:flex;flex-wrap:wrap;gap:4px;align-items:center">
-      <span style="font-size:.6rem;font-weight:800;letter-spacing:.06em;color:${color}">
-        ${danger ? '확인 필요' : '주의'} ${hits.length}
-      </span>
-      ${hits.map(t => `<span style="font-size:.6rem;color:${color};border:1px solid ${color};
-        border-radius:99px;padding:1px 7px;opacity:.9">${esc(RISK_LABEL[t] || t)}</span>`).join('')}
-    </div>`
+    return `<span class="st-mark" style="color:${color};font-weight:800">${danger ? '확인' : '주의'} ${hits.length}</span>${''}<span style="display:none">
+      ${hits.map(t => esc(RISK_LABEL[t] || t)).join(' · ')}
+    </span>`
   }
 
   async function loadTabData(tab) {
@@ -1256,9 +1288,7 @@
           <div class="cell-sub">${esc(r.website || r.url || '')}</div>
         </td>
         <td>
-          <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '게시' : r.status === 'rejected' ? '보류' : '대기'}</span>
-          ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">AI ${r.confidence_score}점${r.auto_approved ? ' · 자동' : ''}</div>` : ''}
-        </td>
+          ${statusCell(r)}</td>
         <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
         <td><div class="actions" onclick="event.stopPropagation()">
           ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">승인</button>` : ''}
@@ -1281,7 +1311,7 @@
                 <td><div class="cell-name" style="color:#F97316;">${esc(r.city || r.title || '—')}</div></td>
                 <td><div class="cell-contact">${esc(r.name || r.contact || '—')}</div></td>
                 <td><div class="cell-desc">${esc((r.description || '').slice(0, 60))}</div></td>
-                <td><span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '게시' : r.status === 'rejected' ? '보류' : '대기'}</span></td>
+                <td>${statusCell(r)}</td>
                 <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
                 <td><div class="actions" onclick="event.stopPropagation()">
                   ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">승인</button>` : ''}
@@ -1374,17 +1404,13 @@
             <div class="cell-sub">${esc(r.email || '')}</div>
           </td>
           <td>
-            <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '게시' : r.status === 'rejected' ? '보류' : '대기'}</span>
-            ${(r.tags||[]).includes('welcome_sent') ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> 편지발송</div>` : (r.category==='church' && r.status==='approved') ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> 미발송</div>` : ''}
-            ${riskBadges(r)}
-            ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;">AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
-          </td>
+            ${statusCell(r)}</td>
           <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
           <td><div class="actions" onclick="event.stopPropagation()">
             ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">승인</button>` : ''}
             ${liveLink(r)}
             ${r.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${r.id}','community_items','new','rejected')">보류</button>` : ''}
-            ${r.category==='church' ? `<button class="btn-sm btn-approve" onclick="event.stopPropagation();sendWelcome('${r.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> ${(r.tags||[]).includes('welcome_sent') ? '재발송' : '환영'}</button>` : ''}
+            ${r.category==='church' ? `<button class="btn-sm btn-approve" onclick="event.stopPropagation();sendWelcome('${r.id}', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> ${(r.tags||[]).includes('welcome_sent') ? '재발송' : '환영'}</button>` : ''}
             <button class="btn-sm btn-edit" onclick="event.stopPropagation();editRow('${r.id}','community_items')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> 수정</button><button class="btn-sm btn-delete" onclick="deleteRow('${r.id}','community_items','new')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 6.5h16"/><path d="M9 6.5V4.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><path d="M6.5 6.5 7.3 20a1 1 0 0 0 1 1h7.4a1 1 0 0 0 1-1l.8-13.5"/></svg></button>
           </div></td>
         </tr>`).join('')
@@ -1600,10 +1626,7 @@
                 <div class="cell-contact">${esc(r.phone || r.contact || '—')}</div>
               </td>
               <td>
-                <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '게시' : r.status === 'rejected' ? '보류' : '대기'}</span>
-                ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> ${fmtDateInline(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> 발송 미확인</div>` : ''}
-                ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="5.5" y="8" width="13" height="10" rx="2"/><path d="M12 4v4"/><circle cx="12" cy="4" r="1"/><path d="M9.5 12.5v1.5"/><path d="M14.5 12.5v1.5"/><path d="M3 12.5v3"/><path d="M21 12.5v3"/></svg> AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
-              </td>
+                ${statusCell(r)}</td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions" onclick="event.stopPropagation()">
                 ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">승인</button>` : ''}
@@ -1668,10 +1691,7 @@
                 <div class="cell-sub">${esc(r.contact || '')}</div>
               </td>
               <td>
-                <span class="status ${r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}">${r.status === 'approved' ? '게시' : r.status === 'rejected' ? '보류' : '대기'}</span>
-                ${r.notified_at ? `<div style="font-size:.65rem;color:var(--mint);margin-top:3px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> ${fmtDateInline(r.notified_at)} 발송완료</div>` : r.status==='approved' ? `<div style="font-size:.65rem;color:rgba(248,113,113,.7);margin-top:3px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> 발송 미확인</div>` : ''}
-                ${r.confidence_score != null ? `<div style="font-size:.65rem;color:${r.auto_approved ? 'var(--mint)' : 'var(--yellow)'};margin-top:3px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="5.5" y="8" width="13" height="10" rx="2"/><path d="M12 4v4"/><circle cx="12" cy="4" r="1"/><path d="M9.5 12.5v1.5"/><path d="M14.5 12.5v1.5"/><path d="M3 12.5v3"/><path d="M21 12.5v3"/></svg> AI ${r.confidence_score}점${r.auto_approved ? ' · 자동게시' : ''}</div>` : ''}
-              </td>
+                ${statusCell(r)}</td>
               <td><div class="cell-date">${fmtDate(r.created_at)}</div></td>
               <td><div class="actions" onclick="event.stopPropagation()">
                 ${r.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${r.id}','community_items','new','approved')">승인</button>` : ''}
@@ -1926,7 +1946,14 @@
 
   // 개별 교회에 환영·축하 편지 (재)발송 — send-welcome.js(Node 런타임, Gmail SMTP)
   // 발송 성공 시 tags에 welcome_sent 마커 → 대시보드에 '발송됨' 표시
-  async function sendWelcome(id) {
+  // 발송 중인 id — 같은 교회에 두 번 나가는 것을 막는다.
+  // 버튼을 빠르게 두 번 누르면 요청이 두 번 나가 실제로 편지가 두 통 갔다.
+  const sendingWelcome = new Set()
+
+  async function sendWelcome(id, btn) {
+    if (sendingWelcome.has(id)) { toast('이미 보내는 중입니다'); return }
+    sendingWelcome.add(id)
+    if (btn) { btn.disabled = true; btn.style.opacity = '.5'; btn.style.pointerEvents = 'none' }
     try {
       const r = (await adminList('community_items', { eqCol: 'id', eqVal: id, limit: 1 }))[0]
       if (!r) { toast('교회 정보를 찾을 수 없습니다'); return }
@@ -1946,6 +1973,10 @@
       if (d.ok) { toast('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> 환영 편지를 보냈습니다' + (d.marked ? '' : ' (상태표시 저장 실패)')); loadTabData('churches') }
       else toast('발송 실패: ' + (d.error || '알 수 없는 오류'))
     } catch (e) { toast('발송 실패: ' + e.message) }
+    finally {
+      sendingWelcome.delete(id)
+      if (btn) { btn.disabled = false; btn.style.opacity = ''; btn.style.pointerEvents = '' }
+    }
   }
 
   // 미발송 협력교회 확인 이메일 일괄 재발송 — tags(welcome_sent) 기준
