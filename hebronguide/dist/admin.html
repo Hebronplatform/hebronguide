@@ -2368,7 +2368,7 @@
       phone: '전화', contact: '연락처', email: '이메일',
       website: '웹사이트', url: 'URL',
       category: '카테고리', type: '유형', status: '상태',
-      denomination: '', tier: 'Tier',
+      denomination: '교단', tier: 'Tier',
       created_at: '신청일시', updated_at: '수정일시',
     }
     const skipKeys = ['id','user_id','auth_uid']
@@ -2384,8 +2384,6 @@
         let val = String(v)
         if (k === 'created_at' || k === 'updated_at') val = new Date(v).toLocaleString('ko-KR')
         if (k === 'status') val = v === 'approved' ? '게시' : v === 'rejected' ? '보류' : v === 'pending' ? '대기' : v
-        // 신청 본문의 "교단:" 같은 라벨 접두는 팝업에서 뺀다 — 값만 보면 안다
-        if (k === 'description' || k === 'content') val = val.replace(/^교단[:\s]*/gm, '')
         const multi = (k === 'description' || k === 'content')
         return `<div class="modal-field">
           <div class="modal-label">${label}</div>
