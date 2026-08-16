@@ -20,7 +20,7 @@
 신약성경의 교회를 회복합니다.
 목장(가정교회)이 린우드(Lynnwood)와 무킬테오(Mukilteo)의 가정에서 모이고,
 주일 오전 11시(태평양시, PT)에 한 교회로 함께 예배드립니다.
-어린이·청소년 새 세대 사역이 있습니다.
+유아부터 12학년까지 새 세대 사역이 있습니다.
 온라인으로는 어디서나 함께합니다. → www.ijiguchon.org
 
 국제가정교회사역원(House Church Ministries) 회원교회입니다.
@@ -74,12 +74,11 @@ GMN(글로벌 미니스트리 네트워크) 소속으로 분당·수지 지구�
 
 **Q. 목장은 어디서 모이나요?**
 > 린우드(Lynnwood)와 무킬테오(Mukilteo)의 가정에서 모입니다.
-> 모이는 요일과 자세한 위치는 연락 주시면 안내해 드립니다.
-> `[확인 필요]` 요일을 공개할지, 연락 후 안내할지 정하십시오
+> **목장마다 모이는 요일이 다릅니다.** 연락 주시면 가까운 목장과 요일을 안내해 드립니다.
 
 **Q. 아이들 프로그램이 있나요?**
-> 어린이·청소년 새 세대 사역이 있습니다.
-> `[확인 필요]` 연령 구분 · 모이는 시간 · 담당 교역자를 적으면 훨씬 강해집니다
+> 유아부터 12학년까지 새 세대 사역이 있습니다.
+> `[확인 필요]` 모이는 시간 · 담당 교역자를 적으면 더 강해집니다 (연령은 확정됨)
 
 **Q. 아이가 한국어를 잘 못 하는데 괜찮을까요?**
 > `[확인 필요]` 영어 사용 여부를 사실대로 적으십시오. 지어내지 마십시오
@@ -95,7 +94,8 @@ GMN(글로벌 미니스트리 네트워크) 소속으로 분당·수지 지구�
 
 **Q. 어느 교단인가요?**
 > 한인 침례교회입니다. 2001년 개척하여 25년째입니다. 김성수 목사가 담임합니다.
-> `[확인 필요]` 소속 노회·총회·가정교회 사역 단체가 있으면 이름을 적으십시오. 가장 강한 신뢰 근거입니다
+> 국제가정교회사역원(House Church Ministries) 회원교회이며,
+> GMN(글로벌 미니스트리 네트워크) 동역·협력교회입니다.
 
 **Q. 헌금을 해야 하나요?**
 > `[확인 필요]`
@@ -150,7 +150,7 @@ GMN(글로벌 미니스트리 네트워크) 소속으로 분당·수지 지구�
       "name": "아이들 프로그램이 있나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "어린이·청소년 새 세대 사역이 있습니다."
+        "text": "유아부터 12학년까지 새 세대 사역이 있습니다."
       }
     }
   ]
@@ -403,7 +403,7 @@ schema.org에는 대등한 교회끼리의 「협력」을 나타내는 전용 �
 시애틀지구촌교회(Global Mission Church of Greater Seattle)는 시애틀 지역 한인
 가정교회입니다. 가정에서 모이는 교회이며, 신약성경의 교회를 회복합니다.
 목장(가정교회)이 린우드와 무킬테오의 가정에서 모이고, 주일 오전 11시(태평양시)에
-한 교회로 함께 예배드립니다. 어린이·청소년 새 세대 사역이 있습니다.
+한 교회로 함께 예배드립니다. 유아부터 12학년까지 새 세대 사역이 있습니다.
 온라인으로는 어디서나 함께합니다. 2001년 개척, 김성수 목사 담임, 한인 침례교회.
 ```
 
@@ -413,7 +413,7 @@ schema.org에는 대등한 교회끼리의 「협력」을 나타내는 전용 �
 Global Mission Church of Greater Seattle (시애틀지구촌교회) is a Korean Baptist
 house church in the Greater Seattle area. Our Mokjang (house churches) meet in
 homes across Lynnwood and Mukilteo, and we worship together as one church on
-Sundays at 11:00 AM Pacific Time. Children's and youth ministries are available.
+Sundays at 11:00 AM Pacific Time. Ministries for children and youth run from nursery through 12th grade.
 Anyone can join online from anywhere at www.ijiguchon.org.
 Founded in 2001. Senior Pastor: Sung Soo Kim.
 ```
@@ -454,7 +454,7 @@ AI는 영상을 못 봅니다. **제목·설명·자막의 글자만 읽습니�
 
 주일예배  일요일 오전 11시 (태평양시, PT) · 온라인 www.ijiguchon.org
 목장(가정교회)  린우드(Lynnwood) · 무킬테오(Mukilteo) 가정에서
-어린이·청소년 새 세대 사역이 있습니다.
+유아부터 12학년까지 새 세대 사역이 있습니다.
 2001년 개척 · 김성수 목사 담임 · 한인 침례교회 · 425-350-0191
 
 처음 오시는 분, 교인이 아니어도, 참가비 없이 오실 수 있습니다.
