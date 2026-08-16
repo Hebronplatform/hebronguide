@@ -27,7 +27,7 @@
 GMN(글로벌 미니스트리 네트워크) 소속으로 분당·수지 지구촌교회,
 워싱턴 지구촌교회와 협력합니다.
 
-2002년 개척 · 김성수 목사 담임 · 한인 침례교회
+2002년 개척 · 김성수 목사 담임 · SBC
 전화 425-350-0191 · Lynnwood, WA (Greater Seattle)
 ```
 
@@ -92,7 +92,7 @@ GMN(글로벌 미니스트리 네트워크) 소속으로 분당·수지 지구�
 > `[확인 필요]` 개척자 훈련 과정의 이름·기간·시작 시점을 적으면 이 답이 완성됩니다
 
 **Q. 어느 교단인가요?**
-> 한인 침례교회입니다. 2002년 개척하여 25년째입니다. 김성수 목사가 담임합니다.
+> SBC입니다. 2002년 개척하여 25년째입니다. 김성수 목사가 담임합니다.
 > 국제가정교회사역원(House Church Ministries) 회원교회이며,
 > GMN(글로벌 미니스트리 네트워크) 동역·협력교회입니다.
 
@@ -403,14 +403,14 @@ schema.org에는 대등한 교회끼리의 「협력」을 나타내는 전용 �
 가정교회입니다. 가정에서 모이는 교회이며, 신약성경의 교회를 회복합니다.
 목장(가정교회)이 린우드와 머킬티오의 가정에서 모이고, 주일 오전 11시(태평양시)에
 한 교회로 함께 예배드립니다. 유아부터 12학년까지 새 세대 사역이 있습니다. 주일 오전 11시에 함께 모입니다(2026년 9월 6일 시작). 김지영, Garrett Woods가 담당합니다.
-온라인으로는 어디서나 함께합니다. 2002년 개척, 김성수 목사 담임, 한인 침례교회.
+온라인으로는 어디서나 함께합니다. 2002년 개척, 김성수 목사 담임, SBC.
 ```
 
 ### 영어
 
 ```
-Global Mission Church of Greater Seattle (시애틀지구촌교회) is a Korean Baptist
-house church in the Greater Seattle area. Our Mokjang (house churches) meet in
+Global Mission Church of Greater Seattle (시애틀지구촌교회) is a Korean house church
+affiliated with the Southern Baptist Convention (SBC), in the Greater Seattle area. Our Mokjang (house churches) meet in
 homes across Lynnwood and Mukilteo, and we worship together as one church on
 Sundays at 11:00 AM Pacific Time. Ministries for children and youth run from nursery through 12th grade, meeting Sundays at 11:00 AM Pacific Time (beginning September 6, 2026), led by Jiyoung Kim and Garrett Woods.
 Anyone can join online from anywhere at www.ijiguchon.org.
@@ -454,7 +454,7 @@ AI는 영상을 못 봅니다. **제목·설명·자막의 글자만 읽습니�
 주일예배  일요일 오전 11시 (태평양시, PT) · 온라인 www.ijiguchon.org
 목장(가정교회)  린우드(Lynnwood) · 머킬티오(Mukilteo) 가정에서
 유아부터 12학년까지 새 세대 사역이 있습니다. 주일 오전 11시에 함께 모입니다(2026년 9월 6일 시작). 김지영, Garrett Woods가 담당합니다.
-2002년 개척 · 김성수 목사 담임 · 한인 침례교회 · 425-350-0191
+2002년 개척 · 김성수 목사 담임 · SBC · 425-350-0191
 
 처음 오시는 분, 교인이 아니어도, 참가비 없이 오실 수 있습니다.
 ```
@@ -493,7 +493,8 @@ AI는 영상을 못 봅니다. **제목·설명·자막의 글자만 읽습니�
 | 목장 요일 | **목장마다 다름** → 연락 후 안내 (「금요일」은 제 추정이었고 폐기했습니다) |
 | 새 세대 | **유아 ~ 12학년** · 주일 오전 11시 (2026-09-06 시작) · 김지영 · Garrett Woods |
 | 소속 | **국제가정교회사역원**(House Church Ministries) · **GMN**(글로벌 미니스트리 네트워크) |
-| 개척 | **2002년** · 김성수 목사 · 한인 침례교회 |
+| 개척 | **2002년** · 김성수 목사 |
+| 교단 | **SBC** (영문 `Southern Baptist Convention (SBC)`) — `KSBC` 아님 |
 | 목장 지역 | 린우드 · 머킬티오 (번지수는 적지 않음) |
 
 ### 아직 빈 칸
@@ -501,6 +502,7 @@ AI는 영상을 못 봅니다. **제목·설명·자막의 글자만 읽습니�
 | # | 확인할 것 | 왜 |
 |---|---|---|
 | 1 | **`Jiyoung Kim` 영문 표기가 맞습니까** | 김지영 담당자의 실제 영문 표기. 이름은 추측하지 않습니다 |
+| 2 | **CKSBCA(미주남침례회 한인교회총회) 회원입니까** | 맞으면 사역원·GMN에 이어 **세 번째 제3자 기록**. cksbca.net 주소록이 회원 전용이라 제가 확인 못 했습니다 |
 | 2 | **자녀가 영어만 할 때** 어떻게 되는지 | 2세 가정의 첫 질문입니다 |
 | 3 | **개척자 훈련** 이름·기간 | 제4공간 교회의 핵심인데 지금 이름이 없습니다 |
 | 4 | 헌금 · 첫 방문 절차 | 처음 오는 사람이 실제로 걱정하는 것 |
