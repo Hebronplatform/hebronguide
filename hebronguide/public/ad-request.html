@@ -422,11 +422,8 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <span class="tab-lbl">교회 등록</span>
       <span class="tab-sub"><span class="x-en">Church</span><span class="x-es">Iglesia Colaboradora</span></span>
     </div>
-    <div class="type-tab" onclick="switchTab('promo')" id="tab-promo">
-      <span class="tab-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-3 9-10 9H4a2 2 0 0 0 0 4h1l1 5h4l1-5c6.2-.5 9-8 9-8V4z"/><line x1="4" y1="13" x2="4" y2="17"/></svg></span>
-      <span class="tab-lbl">광고·홍보</span>
-      <span class="tab-sub"><span class="x-en">Advertise</span><span class="x-es">Anuncio</span></span>
-    </div>
+    <!-- 광고·홍보 탭 제거(2026-07): 등재(무료)와 광고(유료 $30) 분리. 광고는 별도 '광고 신청' 흐름으로.
+         #form-promo·#hero-promo는 숨긴 채 보존 → Phase 3 광고 신청에서 재활용. -->
   </div>
   <!-- 채플린 탭은 일반 방문자 화면에서 숨김 — 직접 링크(#chaplain)로만 접근 가능 -->
   <div id="tab-chaplain" style="display:none;"></div>
@@ -1232,7 +1229,8 @@ function switchTab(type) {
 
 // 페이지 로드 시 해시로 탭 자동 선택
 (function() {
-  const hashMap = { church:'church', biz:'business', business:'business', promo:'promo', person:'business', chaplain:'chaplain' };
+  // 광고 탭 제거(2026-07): #promo 딥링크는 무해하게 기본 탭(업체)로 폴백. Phase 3에서 광고 신청 페이지로 연결 예정.
+  const hashMap = { church:'church', biz:'business', business:'business', promo:'business', person:'business', chaplain:'chaplain' };
   const hash = location.hash.replace('#','');
   const type = hashMap[hash];
   if (type) switchTab(type);
