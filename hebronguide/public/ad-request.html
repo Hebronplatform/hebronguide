@@ -67,12 +67,13 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .container{max-width:560px;margin:0 auto;padding:24px 16px 100px;}
 
 /* 유형 탭 */
-.type-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:20px;}
-.type-tab{display:flex;flex-direction:column;align-items:center;gap:4px;
-  padding:12px 4px 10px;border-radius:14px;border:1.5px solid var(--border2);
+.type-tabs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px;}
+.type-tab{display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:20px 8px 18px;border-radius:16px;border:1.5px solid var(--border2);
   background:var(--surface);cursor:pointer;transition:all .18s;-webkit-tap-highlight-color:transparent;}
-.type-tab .tab-icon{font-size:1.4rem;}
-.type-tab .tab-lbl{font-size:.72rem;font-weight:700;color:var(--muted);text-align:center;line-height:1.2;font-family:'Noto Sans KR',sans-serif;}
+.type-tab .tab-icon{font-size:1.8rem;}
+.type-tab .tab-icon svg{width:28px;height:28px;}
+.type-tab .tab-lbl{font-size:.9rem;font-weight:800;color:var(--muted);text-align:center;line-height:1.2;font-family:'Noto Sans KR',sans-serif;}
 .type-tab.active{border-color:var(--gold);background:rgba(201,162,39,.12);}
 .type-tab.active .tab-lbl{color:var(--gold);}
 
@@ -405,10 +406,8 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 <!-- 메인 컨테이너 -->
 <div class="container">
 
-  <div class="lang-bar" role="group" aria-label="Language / Idioma">
-    <button type="button" id="lang-koen" class="active" onclick="setFormLang('koen')">한국어 · English</button>
-    <button type="button" id="lang-es" onclick="setFormLang('es')">Español</button>
-  </div>
+  <!-- 언어 바 제거(2026-07): 한/영 2언어만 취급. 한·영은 라벨에 인라인 병기(.lbl-en)로 항상 표시.
+       스페인어(x-es·form-es)는 숨긴 채 dead로 남김 — 나중 정리. -->
 
   <!-- 유형 탭 선택 -->
   <div class="type-tabs">
@@ -1721,27 +1720,8 @@ async function submitForm(type) {
 </script>
 <script>
 /* 폼 언어 전환 (한·영 ↔ 스페인어). 스페인어 카드는 ?lang=es 로 들어와 자동 전환 */
-function setFormLang(l){
-  var es = (l === 'es');
-  document.body.classList.toggle('form-es', es);
-  var a = document.getElementById('lang-koen'), b = document.getElementById('lang-es');
-  if(a && b){ a.classList.toggle('active', !es); b.classList.toggle('active', es); }
-  try{ document.documentElement.lang = es ? 'es' : 'ko'; }catch(e){}
-  // 스페인어 모드에서 주요 입력 예시(placeholder)도 스페인어로
-  var PH = {
-    bBiz:'ej: Restaurante Hebrón', bCityOther:'ej: Boston, MA / Atlanta, GA / Ciudad de México',
-    bDesc:'Describa brevemente su servicio o una oferta especial.',
-    cChurch:'ej: Iglesia Buena de Seattle', cCity:'Escriba el nombre de su ciudad',
-    cDesc:'Presente brevemente su iglesia'
-  };
-  for(var id in PH){
-    var el = document.getElementById(id);
-    if(!el) continue;
-    if(es){ if(el.dataset.phKo==null) el.dataset.phKo = el.getAttribute('placeholder')||''; el.setAttribute('placeholder', PH[id]); }
-    else if(el.dataset.phKo!=null){ el.setAttribute('placeholder', el.dataset.phKo); }
-  }
-}
-(function(){ try{ if((new URLSearchParams(location.search).get('lang')||'')==='es') setFormLang('es'); }catch(e){} })();
+// 스페인어 폼 토글 제거(2026-07): 한/영 2언어만 취급. setFormLang·?lang=es 자동전환 제거.
+// (x-es/form-es CSS는 남아있으나 트리거가 없어 비활성 — 한/영 인라인만 표시)
 </script>
 <script src="/js/hg-config.js"></script>
 </body>

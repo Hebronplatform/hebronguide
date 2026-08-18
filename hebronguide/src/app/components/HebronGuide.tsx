@@ -30653,7 +30653,7 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
           </button>
         )}
         <div className="flex items-center" style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 10, padding: 2, gap: 2 }}>
-          {(["ko", "en", "es"] as const).map((l) => (
+          {(["ko", "en"] as const).map((l) => (
             <button key={l} onClick={() => setLang(l)}
               className="flex items-center justify-center border-0 cursor-pointer"
               style={{ height: 24, paddingLeft: 8, paddingRight: 8, borderRadius: 7,
@@ -30852,8 +30852,7 @@ export function HebronGuide() {
   };
 
   const handleLangCycle = () => {
-    const order = ["ko", "en", "es"] as const;
-    setLang(order[(order.indexOf(lang as typeof order[number]) + 1) % order.length]);
+    setLang(lang === "ko" ? "en" : "ko");
   };
 
   const searchInputRef = useRef<HTMLInputElement>(null);
