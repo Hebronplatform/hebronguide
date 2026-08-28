@@ -67,12 +67,13 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .container{max-width:560px;margin:0 auto;padding:24px 16px 100px;}
 
 /* 유형 탭 */
-.type-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:20px;}
-.type-tab{display:flex;flex-direction:column;align-items:center;gap:4px;
-  padding:12px 4px 10px;border-radius:14px;border:1.5px solid var(--border2);
+.type-tabs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px;}
+.type-tab{display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:20px 8px 18px;border-radius:16px;border:1.5px solid var(--border2);
   background:var(--surface);cursor:pointer;transition:all .18s;-webkit-tap-highlight-color:transparent;}
-.type-tab .tab-icon{font-size:1.4rem;}
-.type-tab .tab-lbl{font-size:.72rem;font-weight:700;color:var(--muted);text-align:center;line-height:1.2;font-family:'Noto Sans KR',sans-serif;}
+.type-tab .tab-icon{font-size:1.8rem;}
+.type-tab .tab-icon svg{width:28px;height:28px;}
+.type-tab .tab-lbl{font-size:.9rem;font-weight:800;color:var(--muted);text-align:center;line-height:1.2;font-family:'Noto Sans KR',sans-serif;}
 .type-tab.active{border-color:var(--gold);background:rgba(201,162,39,.12);}
 .type-tab.active .tab-lbl{color:var(--gold);}
 
@@ -405,10 +406,8 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
 <!-- 메인 컨테이너 -->
 <div class="container">
 
-  <div class="lang-bar" role="group" aria-label="Language / Idioma">
-    <button type="button" id="lang-koen" class="active" onclick="setFormLang('koen')">한국어 · English</button>
-    <button type="button" id="lang-es" onclick="setFormLang('es')">Español</button>
-  </div>
+  <!-- 언어 바 제거(2026-07): 한/영 2언어만 취급. 한·영은 라벨에 인라인 병기(.lbl-en)로 항상 표시.
+       스페인어(x-es·form-es)는 숨긴 채 dead로 남김 — 나중 정리. -->
 
   <!-- 유형 탭 선택 -->
   <div class="type-tabs">
@@ -422,11 +421,8 @@ textarea{min-height:75px;resize:vertical;line-height:1.7;}
       <span class="tab-lbl">교회 등록</span>
       <span class="tab-sub"><span class="x-en">Church</span><span class="x-es">Iglesia Colaboradora</span></span>
     </div>
-    <div class="type-tab" onclick="switchTab('promo')" id="tab-promo">
-      <span class="tab-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-3 9-10 9H4a2 2 0 0 0 0 4h1l1 5h4l1-5c6.2-.5 9-8 9-8V4z"/><line x1="4" y1="13" x2="4" y2="17"/></svg></span>
-      <span class="tab-lbl">광고·홍보</span>
-      <span class="tab-sub"><span class="x-en">Advertise</span><span class="x-es">Anuncio</span></span>
-    </div>
+    <!-- 광고·홍보 탭 제거(2026-07): 등재(무료)와 광고(유료 $30) 분리. 광고는 별도 '광고 신청' 흐름으로.
+         #form-promo·#hero-promo는 숨긴 채 보존 → Phase 3 광고 신청에서 재활용. -->
   </div>
   <!-- 채플린 탭은 일반 방문자 화면에서 숨김 — 직접 링크(#chaplain)로만 접근 가능 -->
   <div id="tab-chaplain" style="display:none;"></div>
@@ -1232,7 +1228,8 @@ function switchTab(type) {
 
 // 페이지 로드 시 해시로 탭 자동 선택
 (function() {
-  const hashMap = { church:'church', biz:'business', business:'business', promo:'promo', person:'business', chaplain:'chaplain' };
+  // 광고 탭 제거(2026-07): #promo 딥링크는 무해하게 기본 탭(업체)로 폴백. Phase 3에서 광고 신청 페이지로 연결 예정.
+  const hashMap = { church:'church', biz:'business', business:'business', promo:'business', person:'business', chaplain:'chaplain' };
   const hash = location.hash.replace('#','');
   const type = hashMap[hash];
   if (type) switchTab(type);
@@ -1723,27 +1720,8 @@ async function submitForm(type) {
 </script>
 <script>
 /* 폼 언어 전환 (한·영 ↔ 스페인어). 스페인어 카드는 ?lang=es 로 들어와 자동 전환 */
-function setFormLang(l){
-  var es = (l === 'es');
-  document.body.classList.toggle('form-es', es);
-  var a = document.getElementById('lang-koen'), b = document.getElementById('lang-es');
-  if(a && b){ a.classList.toggle('active', !es); b.classList.toggle('active', es); }
-  try{ document.documentElement.lang = es ? 'es' : 'ko'; }catch(e){}
-  // 스페인어 모드에서 주요 입력 예시(placeholder)도 스페인어로
-  var PH = {
-    bBiz:'ej: Restaurante Hebrón', bCityOther:'ej: Boston, MA / Atlanta, GA / Ciudad de México',
-    bDesc:'Describa brevemente su servicio o una oferta especial.',
-    cChurch:'ej: Iglesia Buena de Seattle', cCity:'Escriba el nombre de su ciudad',
-    cDesc:'Presente brevemente su iglesia'
-  };
-  for(var id in PH){
-    var el = document.getElementById(id);
-    if(!el) continue;
-    if(es){ if(el.dataset.phKo==null) el.dataset.phKo = el.getAttribute('placeholder')||''; el.setAttribute('placeholder', PH[id]); }
-    else if(el.dataset.phKo!=null){ el.setAttribute('placeholder', el.dataset.phKo); }
-  }
-}
-(function(){ try{ if((new URLSearchParams(location.search).get('lang')||'')==='es') setFormLang('es'); }catch(e){} })();
+// 스페인어 폼 토글 제거(2026-07): 한/영 2언어만 취급. setFormLang·?lang=es 자동전환 제거.
+// (x-es/form-es CSS는 남아있으나 트리거가 없어 비활성 — 한/영 인라인만 표시)
 </script>
 <script src="/js/hg-config.js"></script>
 </body>
