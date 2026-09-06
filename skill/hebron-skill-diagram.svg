@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 965" width="1040" height="965" font-family="Malgun Gothic, Noto Sans CJK KR, Apple SD Gothic Neo, sans-serif">
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#9A6A10"/>
+  </marker>
+  <marker id="ahg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#9AA4A3"/>
+  </marker>
+  <marker id="aht" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#17564F"/>
+  </marker>
+</defs>
+
+<rect width="1040" height="965" fill="#F7F8F8"/>
+
+<!-- ================= PANEL 1 ================= -->
+<rect x="24" y="40" width="992" height="390" fill="#FFFFFF" stroke="#DDE2E1"/>
+
+<text x="48" y="80" font-size="21" font-weight="700" fill="#101418">① 스킬이란 무엇인가</text>
+<text x="48" y="106" font-size="14" fill="#69737B">매번 말로 설명하던 것을, 한 번 문서로 적어두고 자동으로 불러 쓰는 것입니다.</text>
+
+<!-- lane A -->
+<text x="48" y="140" font-size="11.5" font-weight="600" fill="#9AA4A3" letter-spacing="1.6">스킬 없이 — 지금까지</text>
+
+<rect x="48" y="150" width="280" height="76" fill="#FAFBFB" stroke="#E2E6E5"/>
+<text x="66" y="180" font-size="15" font-weight="600" fill="#5A6468">매번 처음부터 설명</text>
+<text x="66" y="203" font-size="12.5" fill="#8A9391">“이런 기준으로 심사해줘…” 5~10분</text>
+
+<line x1="330" y1="188" x2="368" y2="188" stroke="#9AA4A3" stroke-width="1.5" marker-end="url(#ahg)"/>
+
+<rect x="372" y="150" width="250" height="76" fill="#FAFBFB" stroke="#E2E6E5"/>
+<text x="390" y="180" font-size="15" font-weight="600" fill="#5A6468">그때그때 다른 해석</text>
+<text x="390" y="203" font-size="12.5" fill="#8A9391">빠뜨리는 항목이 생긴다</text>
+
+<line x1="624" y1="188" x2="662" y2="188" stroke="#9AA4A3" stroke-width="1.5" marker-end="url(#ahg)"/>
+
+<rect x="666" y="150" width="302" height="76" fill="#FAFBFB" stroke="#E2E6E5"/>
+<text x="684" y="180" font-size="15" font-weight="600" fill="#5A6468">결과 형식이 매번 다름</text>
+<text x="684" y="203" font-size="12.5" fill="#8A9391">모아 놓으면 서로 비교가 안 된다</text>
+
+<path d="M817,226 L817,252 L188,252 L188,230" fill="none" stroke="#9AA4A3" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ahg)"/>
+<rect x="392" y="242" width="222" height="20" fill="#FFFFFF"/>
+<text x="503" y="257" font-size="12.5" fill="#8A9391" text-anchor="middle">다음 교회에도, 그 다음에도 — 처음부터</text>
+
+<!-- lane B -->
+<text x="48" y="298" font-size="11.5" font-weight="600" fill="#9A6A10" letter-spacing="1.6">스킬을 만들면</text>
+
+<rect x="48" y="308" width="280" height="76" fill="#FDF8EE" stroke="#E8D3A6"/>
+<text x="66" y="338" font-size="15" font-weight="600" fill="#101418">규칙을 한 번 적어둔다</text>
+<text x="66" y="361" font-size="12.5" fill="#7A6534">SKILL.md — 기준 · 서식 · 금지사항</text>
+
+<line x1="330" y1="346" x2="368" y2="346" stroke="#9A6A10" stroke-width="1.5" marker-end="url(#ah)"/>
+
+<rect x="372" y="308" width="250" height="76" fill="#FDF8EE" stroke="#E8D3A6"/>
+<text x="390" y="338" font-size="15" font-weight="600" fill="#101418">열쇠말 한마디</text>
+<text x="390" y="361" font-size="12.5" fill="#7A6534">“시애틀 OO교회 심사해줘”</text>
+
+<line x1="624" y1="346" x2="662" y2="346" stroke="#9A6A10" stroke-width="1.5" marker-end="url(#ah)"/>
+
+<rect x="666" y="308" width="302" height="76" fill="#FDF8EE" stroke="#E8D3A6"/>
+<text x="684" y="338" font-size="15" font-weight="600" fill="#101418">같은 기준, 같은 서식</text>
+<text x="684" y="361" font-size="12.5" fill="#7A6534">판정 · JSON · 통보문 초안</text>
+
+<path d="M817,384 L817,408 L188,408 L188,388" fill="none" stroke="#9A6A10" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+<rect x="352" y="398" width="302" height="20" fill="#FFFFFF"/>
+<text x="503" y="413" font-size="12.5" fill="#9A6A10" text-anchor="middle">열 번을 해도 동일 — 기준을 고치면 전부에 반영된다</text>
+
+<!-- ================= PANEL 2 ================= -->
+<rect x="24" y="470" width="992" height="465" fill="#FFFFFF" stroke="#DDE2E1"/>
+
+<text x="48" y="510" font-size="21" font-weight="700" fill="#101418">② 두 스킬이 HebronGuide 어디에 꽂히는가</text>
+<text x="48" y="536" font-size="14" fill="#69737B">지금 손으로 하고 계신 두 가지 반복 작업을 그대로 대체합니다.</text>
+
+<text x="48" y="566" font-size="11.5" font-weight="600" fill="#9AA4A3" letter-spacing="1.4">들어오는 요청</text>
+<text x="400" y="566" font-size="11.5" font-weight="600" fill="#9A6A10" letter-spacing="1.4">스킬이 하는 일</text>
+<text x="690" y="566" font-size="11.5" font-weight="600" fill="#9AA4A3" letter-spacing="1.4">나오는 결과</text>
+
+<!-- row 1 -->
+<rect x="48" y="578" width="310" height="86" fill="#FAFBFB" stroke="#E2E6E5"/>
+<text x="66" y="608" font-size="15" font-weight="600" fill="#101418">“훼더럴웨이도 만들어 주세요”</text>
+<text x="66" y="631" font-size="12.5" fill="#8A9391">도시 추가 요청 —</text>
+<text x="66" y="650" font-size="12.5" fill="#8A9391">지금은 손으로 복제 (메타태그 오류 발생)</text>
+
+<line x1="360" y1="621" x2="396" y2="621" stroke="#9A6A10" stroke-width="1.5" marker-end="url(#ah)"/>
+
+<rect x="400" y="578" width="250" height="86" fill="#FDF8EE" stroke="#E8D3A6"/>
+<text x="418" y="608" font-size="14.5" font-weight="600" fill="#9A6A10">hebron-city-pack</text>
+<text x="418" y="631" font-size="12.5" fill="#7A6534">16개 섹션 리서치</text>
+<text x="418" y="650" font-size="12.5" fill="#7A6534">숫자마다 출처·확인일 기록</text>
+
+<line x1="652" y1="621" x2="688" y2="621" stroke="#9A6A10" stroke-width="1.5" marker-end="url(#ah)"/>
+
+<rect x="692" y="578" width="276" height="86" fill="#FAFBFB" stroke="#E2E6E5"/>
+<text x="710" y="608" font-size="14.5" font-weight="600" fill="#101418">city.json · SEO 메타 · gaps.md</text>
+<text x="710" y="631" font-size="12.5" fill="#8A9391">status: draft</text>
+<text x="710" y="650" font-size="12.5" fill="#8A9391">— 사람이 확인한 뒤에만 LIVE</text>
+
+<!-- row 2 -->
+<rect x="48" y="686" width="310" height="86" fill="#FAFBFB" stroke="#E2E6E5"/>
+<text x="66" y="716" font-size="15" font-weight="600" fill="#101418">교회 · 업체 등록 신청</text>
+<text x="66" y="739" font-size="12.5" fill="#8A9391">ad-request.html 로 들어온다 —</text>
+<text x="66" y="758" font-size="12.5" fill="#8A9391">지금은 대시보드에서 눈으로 확인</text>
+
+<line x1="360" y1="729" x2="396" y2="729" stroke="#9A6A10" stroke-width="1.5" marker-end="url(#ah)"/>
+
+<rect x="400" y="686" width="250" height="86" fill="#FDF8EE" stroke="#E8D3A6"/>
+<text x="418" y="716" font-size="14.5" font-weight="600" fill="#9A6A10">hebron-partner-verify</text>
+<text x="418" y="739" font-size="12.5" fill="#7A6534">환대 4축 채점 (인식·수용·제공·연결)</text>
+<text x="418" y="758" font-size="12.5" fill="#7A6534">레드플래그 8개 점검</text>
+
+<line x1="652" y1="729" x2="688" y2="729" stroke="#9A6A10" stroke-width="1.5" marker-end="url(#ah)"/>
+
+<rect x="692" y="686" width="276" height="86" fill="#FAFBFB" stroke="#E2E6E5"/>
+<text x="710" y="714" font-size="14.5" font-weight="600" fill="#101418">Open → Verified → Trusted</text>
+<text x="710" y="737" font-size="12.5" fill="#8A9391">판정 + partner.json + 통보문 초안</text>
+<text x="710" y="756" font-size="12.5" fill="#8A9391">등록은 막지 않고 등급으로 표시</text>
+
+<!-- feedback -->
+<line x1="800" y1="812" x2="800" y2="778" stroke="#17564F" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#aht)"/>
+<text x="812" y="795" font-size="12" fill="#17564F">Trusted 승급 근거</text>
+
+<!-- bottom strip -->
+<rect x="48" y="812" width="300" height="66" fill="#F0F6F4" stroke="#C8DCD7"/>
+<text x="66" y="840" font-size="14.5" font-weight="600" fill="#17564F">믿을 수 있는 사람을 만난다</text>
+<text x="66" y="862" font-size="12.5" fill="#4A7B74">도착자 ← 검증된 교회·업체</text>
+
+<line x1="350" y1="845" x2="386" y2="845" stroke="#17564F" stroke-width="1.5" marker-end="url(#aht)"/>
+
+<rect x="390" y="812" width="250" height="66" fill="#F0F6F4" stroke="#C8DCD7"/>
+<text x="408" y="840" font-size="14.5" font-weight="600" fill="#17564F">환대가 실제로 일어난다</text>
+<text x="408" y="862" font-size="12.5" fill="#4A7B74">공항 픽업 · 첫 주 숙소 · 동행</text>
+
+<line x1="642" y1="845" x2="678" y2="845" stroke="#17564F" stroke-width="1.5" marker-end="url(#aht)"/>
+
+<rect x="682" y="812" width="286" height="66" fill="#F0F6F4" stroke="#C8DCD7"/>
+<text x="700" y="840" font-size="14.5" font-weight="600" fill="#17564F">받은 사람이 이야기를 남긴다</text>
+<text x="700" y="862" font-size="12.5" fill="#4A7B74">이 증언 하나가 Trusted를 만든다</text>
+
+<line x1="48" y1="898" x2="968" y2="898" stroke="#E2E6E5"/>
+<text x="48" y="920" font-size="12.5" fill="#8A9391">두 스킬 모두 <tspan font-weight="600" fill="#A63A2E">최종 승인은 사람이 합니다.</tspan> 스킬은 초안까지 만들고, 등재와 발송은 폴님 확인 뒤에 이뤄집니다.</text>
+
+</svg>

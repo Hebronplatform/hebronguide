@@ -1,0 +1,460 @@
+<title>환대의 고속도로</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --ink:#101418;
+  --ink-2:#3A4249;
+  --ink-3:#69737B;
+  --ground:#F3F5F4;
+  --card:#FFFFFF;
+  --line:#DDE2E1;
+  --line-soft:#E8ECEB;
+  --gold:#9A6A10;
+  --gold-bright:#D69A2D;
+  --teal:#17564F;
+  --risk:#A63A2E;
+  --ok:#2F6B4A;
+
+  --serif:"Gowun Batang", "Nanum Myeongjo", Georgia, serif;
+  --sans:"IBM Plex Sans KR", "Malgun Gothic", -apple-system, system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "Courier New", monospace;
+
+  --col:68ch;
+  --wide:1040px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#E6EBEA;
+    --ink-2:#AEB9B8;
+    --ink-3:#7E8A8A;
+    --ground:#0F1416;
+    --card:#161C1F;
+    --line:#283134;
+    --line-soft:#1F272A;
+    --gold:#E0A93F;
+    --gold-bright:#E0A93F;
+    --teal:#5FBFAF;
+    --risk:#E08076;
+    --ok:#6FB98C;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E6EBEA;
+  --ink-2:#AEB9B8;
+  --ink-3:#7E8A8A;
+  --ground:#0F1416;
+  --card:#161C1F;
+  --line:#283134;
+  --line-soft:#1F272A;
+  --gold:#E0A93F;
+  --gold-bright:#E0A93F;
+  --teal:#5FBFAF;
+  --risk:#E08076;
+  --ok:#6FB98C;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:17px;
+  line-height:1.78;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--wide);margin:0 auto;padding:0 28px 120px}
+.col{max-width:var(--col);}
+
+/* ---------- masthead ---------- */
+.mast{
+  padding:88px 0 52px;
+  border-bottom:1px solid var(--line);
+  display:flex;flex-direction:column;gap:26px;
+}
+.kicker{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold);font-weight:500;
+}
+h1{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(2.9rem,7.5vw,4.6rem);
+  line-height:1.06;margin:0;letter-spacing:-.02em;
+  text-wrap:balance;
+}
+.dek{
+  font-family:var(--serif);font-size:clamp(1.1rem,2.4vw,1.35rem);
+  line-height:1.62;color:var(--ink-2);max-width:54ch;margin:0;
+}
+.meta{
+  font-family:var(--mono);font-size:12px;color:var(--ink-3);
+  display:flex;flex-wrap:wrap;gap:6px 22px;
+}
+
+/* ---------- sections ---------- */
+section{padding:64px 0 0}
+.eyebrow{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+  display:flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+h2{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(1.7rem,3.6vw,2.3rem);line-height:1.22;
+  margin:0 0 20px;letter-spacing:-.01em;text-wrap:balance;
+}
+h3{
+  font-family:var(--sans);font-weight:600;font-size:1.02rem;
+  margin:34px 0 8px;letter-spacing:-.005em;
+}
+p{margin:0 0 18px;max-width:var(--col)}
+strong{font-weight:600;color:var(--ink)}
+em{font-style:normal;color:var(--gold);font-weight:500}
+a{color:var(--teal);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px;border-radius:2px}
+
+.pull{
+  font-family:var(--serif);font-size:1.28rem;line-height:1.6;
+  color:var(--ink);border-left:2px solid var(--gold-bright);
+  padding:4px 0 4px 22px;margin:28px 0;max-width:56ch;
+}
+.pull cite{display:block;font-family:var(--mono);font-style:normal;
+  font-size:11.5px;color:var(--ink-3);margin-top:12px;letter-spacing:.03em}
+
+/* ---------- stat strip ---------- */
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));
+  gap:1px;background:var(--line);border:1px solid var(--line);margin:28px 0 8px;
+}
+.stat{background:var(--card);padding:20px 18px}
+.stat b{
+  display:block;font-family:var(--mono);font-weight:500;
+  font-size:1.85rem;line-height:1;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;
+}
+.stat span{display:block;font-size:12.5px;color:var(--ink-3);margin-top:9px;line-height:1.4}
+.note{font-size:13.5px;color:var(--ink-3);line-height:1.65;max-width:var(--col)}
+
+/* ---------- diagnosis cards ---------- */
+.diag{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
+.d{background:var(--card);padding:26px 26px 24px;display:grid;gap:10px}
+.d-top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.d-tag{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 9px;border:1px solid currentColor;border-radius:2px;font-weight:500;white-space:nowrap;
+}
+.sev-hi{color:var(--risk)} .sev-mid{color:var(--gold)} .sev-lo{color:var(--teal)}
+.d h3{margin:0;font-size:1.14rem;font-weight:600}
+.d-quote{
+  font-family:var(--serif);font-size:.99rem;color:var(--ink-2);
+  line-height:1.6;padding-left:16px;border-left:1px solid var(--line);
+}
+.d p{margin:0;font-size:15.5px;line-height:1.72;max-width:none}
+.d .fix{font-size:15px;color:var(--ink-2)}
+.d .fix b{color:var(--gold);font-weight:600}
+
+/* ---------- ladder ---------- */
+.ladder{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin:26px 0 10px}
+.rung{background:var(--card);padding:20px 24px;display:grid;grid-template-columns:118px 1fr;gap:20px;align-items:start}
+.rung-name{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.02em;padding-top:2px}
+.r1 .rung-name{color:var(--ink-3)} .r2 .rung-name{color:var(--teal)} .r3 .rung-name{color:var(--gold)}
+.rung-body{font-size:15.5px;line-height:1.68}
+.rung-body b{display:block;font-weight:600;margin-bottom:3px;font-size:15.5px}
+.rung-body span{color:var(--ink-2)}
+
+/* ---------- roadmap ---------- */
+.phases{display:grid;gap:0;margin-top:8px;border-top:1px solid var(--line)}
+.ph{
+  display:grid;grid-template-columns:104px 1fr;gap:28px;
+  padding:34px 0;border-bottom:1px solid var(--line);
+}
+.ph-mark{font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--ink-3);letter-spacing:.03em}
+.ph-mark b{display:block;font-size:2rem;font-weight:500;color:var(--gold);line-height:1;margin-bottom:8px;font-variant-numeric:tabular-nums}
+.ph h3{margin:0 0 6px;font-size:1.28rem;font-family:var(--serif);font-weight:700}
+.ph .goal{font-size:14.5px;color:var(--ink-2);margin:0 0 18px;max-width:60ch}
+ul.tasks{list-style:none;padding:0;margin:0;display:grid;gap:11px}
+ul.tasks li{
+  position:relative;padding-left:20px;font-size:15.5px;line-height:1.68;
+  max-width:62ch;color:var(--ink-2);
+}
+ul.tasks li::before{
+  content:"";position:absolute;left:0;top:.72em;width:7px;height:1px;background:var(--gold-bright);
+}
+ul.tasks li b{color:var(--ink);font-weight:600}
+.kpi{
+  margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--ink-3);
+  border-top:1px dashed var(--line);padding-top:12px;line-height:1.7;
+}
+.kpi b{color:var(--teal);font-weight:500}
+
+/* ---------- week list ---------- */
+.week{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
+.w{background:var(--card);padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:8px 24px;align-items:start}
+.w-main b{font-weight:600;font-size:1.02rem}
+.w-main p{margin:6px 0 0;font-size:15px;color:var(--ink-2);max-width:58ch;line-height:1.68}
+.w-tool{
+  font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--gold);
+  white-space:nowrap;padding-top:4px;
+}
+
+/* ---------- not-doing ---------- */
+.nots{display:grid;gap:14px;margin-top:8px;max-width:var(--col)}
+.not{display:grid;grid-template-columns:22px 1fr;gap:14px;align-items:start}
+.not-x{font-family:var(--mono);color:var(--risk);font-size:15px;line-height:1.7}
+.not b{font-weight:600}
+.not span{color:var(--ink-2);font-size:15.5px;line-height:1.7}
+
+/* ---------- sources ---------- */
+.src{border-top:1px solid var(--line);margin-top:76px;padding-top:26px;
+  font-size:13.5px;color:var(--ink-3);line-height:1.8;max-width:var(--col)}
+.src h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;margin:0 0 12px}
+.src ol{padding-left:20px;margin:0;display:grid;gap:7px}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 20px 88px}
+  .mast{padding:56px 0 40px}
+  .ph{grid-template-columns:1fr;gap:14px}
+  .ph-mark{display:flex;align-items:baseline;gap:12px}
+  .ph-mark b{margin-bottom:0}
+  .rung{grid-template-columns:1fr;gap:8px}
+  .w{grid-template-columns:1fr}
+  .w-tool{padding-top:0}
+}
+@media (prefers-reduced-motion:no-preference){
+  a{transition:color .15s ease}
+}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker">HebronGuide · 발전 전략 2026–2030</div>
+  <h1>환대의 고속도로</h1>
+  <p class="dek">발표는 잘 끝났습니다. 그런데 진짜 숙제는 Q&amp;A 17분에 들어 있었습니다. 개발자들이 던진 질문 다섯 개가, 앞으로 3년의 로드맵입니다.</p>
+  <div class="meta">
+    <span>Builders Lounge 4차 · 38분 32초</span>
+    <span>분석일 2026-08-30</span>
+    <span>hebronguide.com</span>
+  </div>
+</header>
+
+<section>
+  <div class="eyebrow">01 — 지금 서 있는 자리</div>
+  <h2>두 달 된 플랫폼이 이미 8개 지역권에 있다</h2>
+  <p>발표에서 밝힌 숫자와, 오늘 사이트에서 확인한 숫자를 나란히 놓습니다. 차이 자체가 첫 번째 정비 대상입니다.</p>
+
+  <div class="stats">
+    <div class="stat"><b>82<span style="font-size:.55em">+</span></b><span>서비스 도시<br>(발표 시점 86)</span></div>
+    <div class="stat"><b>16</b><span>국가 · 8개 지역권</span></div>
+    <div class="stat"><b>655</b><span>등록 교회<br>(발표 시점 “700 가까이”)</span></div>
+    <div class="stat"><b>~20</b><span>등록 업체 — 공급의 병목</span></div>
+    <div class="stat"><b>2</b><span>개월 — 서비스 연령</span></div>
+  </div>
+  <p class="note">※ 홈 상단은 “82+”, 도시 페이지 히어로는 “82개 도시의 이야기”, 그 아래 통계 블록은 “81개 도시”, 발표는 “86개”입니다. 네 개의 숫자가 동시에 살아 있습니다. 신뢰를 파는 플랫폼에서 자기 숫자가 어긋나 있는 것은 기능 결함보다 무겁습니다.</p>
+
+  <p style="margin-top:24px">그리고 훼더럴웨이 페이지의 <span style="font-family:var(--mono);font-size:.88em">keywords</span> 메타태그가 아직 시애틀 키워드 그대로입니다. 도시를 손으로 복제하고 있다는 증거이고, 정확히 이 지점이 자동화 대상입니다.</p>
+</section>
+
+<section>
+  <div class="eyebrow">02 — 영상이 남긴 다섯 개의 숙제</div>
+  <h2>질문은 이미 다 나왔다</h2>
+  <p>발표 21분, Q&amp;A 17분. 참석 개발자들이 짚은 문제를 심각도 순으로 정리합니다. 인용은 모두 영상에서 실제로 나온 말입니다.</p>
+
+  <div class="diag">
+
+    <div class="d">
+      <div class="d-top"><span class="d-tag sev-hi">치명 · 지금</span><h3>신뢰의 공백 — 검증이 사람 한 명에게 걸려 있다</h3></div>
+      <p class="d-quote">“처음에는 제가 장치를 다 만들어 넣어놨어요. 그랬더니 아무도 안 들어왔죠. 그래서 다시 오픈을 했습니다. (…) 제가 대시보드를 갖고 있어요. 누가 들어오면 딱 다 봐요.”</p>
+      <p>수동 검토는 655개까지는 버텼습니다. 6,500개에서는 무너집니다. 더 위험한 것은 참석자가 직접 지적한 것 — <strong>한인 사회의 사기가 교회 관계망을 타고 흐른다</strong>는 사실입니다. 사고 한 건이 “믿을 수 있는 사람”이라는 상품 전체를 무효화합니다.</p>
+      <p class="fix"><b>해법</b> — 검증을 문지기가 아니라 <em>표지판</em>으로 바꿉니다. 등록은 계속 열어두고, 신뢰를 3단계 뱃지로 표현합니다. 심사 자체는 스킬로 표준화합니다.</p>
+    </div>
+
+    <div class="d">
+      <div class="d-top"><span class="d-tag sev-hi">치명 · 지금</span><h3>공급 부족 — 환대자가 모자란다</h3></div>
+      <p class="d-quote">“환대는 수요는 많다고 생각해요.” / “교회 다닌다고 다 환대의 마음을 갖고 있는 것 같지가 않아요. 제가 목회자로서 그게 너무 안타까워요.”</p>
+      <p>마켓플레이스의 공급측 부족을 창업자가 스스로 진단했습니다. 그런데 지금 등록된 655개 교회 대부분은 <strong>등록만 되어 있고 준비되지는 않은 상태</strong>일 가능성이 큽니다. 도착자를 보냈는데 아무도 안 나오면, 그 한 번으로 그 사람은 다시 오지 않습니다.</p>
+      <p class="fix"><b>해법</b> — 등록과 준비를 분리합니다. “당신 교회는 환대 준비가 되어 있느냐”를 이미 물어보고 계십니다. 그 질문을 <em>환대 4축 채점표</em>로 만들어 공급자에게 되돌려주면, 심사가 곧 교육이 됩니다.</p>
+    </div>
+
+    <div class="d">
+      <div class="d-top"><span class="d-tag sev-mid">중대 · 90일</span><h3>종교 이분법 — “크리스천 사이트네, 나 있으면 안 되겠네”</h3></div>
+      <p class="d-quote">“맞는데 이거 크리스찬 사이트네? 나 있으면 안 되겠네. 나갈 수 있잖아요. 거부감이 생길 수 있잖아요.”</p>
+      <p>본인이 먼저 던진 자기 비판입니다. FAQ 첫 항목에 이미 답이 있습니다 — “아닙니다. 낯선 도시에 도착한 모든 이를 위한 공간입니다.” 문제는 <strong>그 답이 FAQ에만 있다는 것</strong>입니다. 도시 페이지 16개 섹션 중 교회는 하나뿐인데, 브랜드 언어는 여전히 교회를 앞세웁니다.</p>
+      <p class="fix"><b>해법</b> — 이분법을 없애는 가장 좋은 증거는 <em>비신자 업체의 Trusted 뱃지</em>입니다. 불교인 아파트 매니저가 문을 열어준 이야기가 이 플랫폼의 창세기라면, 그 자리가 상품 안에 실제로 있어야 합니다.</p>
+    </div>
+
+    <div class="d">
+      <div class="d-top"><span class="d-tag sev-mid">중대 · 90일</span><h3>확산 — “10페이지 중 1, 2페이지 와 있다”</h3></div>
+      <p class="d-quote">“만들어서 사람들에게 도움이 될 거라고 생각해서 만들었는데 그걸 어떻게 알릴 것인가. 어떻게 퍼뜨릴 것인가. 그건 누구나 똑같이 가지고 있는 고민인 것 같고요.”</p>
+      <p>지금의 유입은 25년 목회 네트워크입니다. 강력하지만 한계가 명확하고, 한 사람의 전화 통화 수에 묶여 있습니다. 다만 이미 가진 자산이 하나 있습니다 — <strong>82개 도시 × 16개 섹션의 SEO 랜딩페이지</strong>. “시애틀 한인 정착”을 검색하는 사람은 이미 존재합니다.</p>
+      <p class="fix"><b>해법</b> — 전화가 아니라 <em>검색</em>이 다음 채널입니다. 도시 페이지의 메타·구조화 데이터를 정돈하고, 도시당 최소 한 명의 실명 연락처를 채워 페이지를 “정보”에서 “사람”으로 바꿉니다.</p>
+    </div>
+
+    <div class="d">
+      <div class="d-top"><span class="d-tag sev-lo">구조 · 1년</span><h3>데이터 — 추천을 하려면 데이터가 있어야 한다</h3></div>
+      <p class="d-quote">“이런 분이 계신데 멕시코를 추천해줄 수 있으려면 데이터가 있어야 되는 거거든요.”</p>
+      <p>은퇴 이주 상담 같은 질문에 답하려면 생활비·비자·의료 데이터가 필요합니다. 지금은 없습니다. 다만 이것은 <strong>지금 풀 문제가 아닙니다.</strong> 마켓플레이스가 “정보를 잘 정리해 주는 곳”으로 정체성이 옮겨가면 위키피디아·구글과 경쟁하게 되고, 그 싸움은 이길 수 없습니다.</p>
+      <p class="fix"><b>해법</b> — 데이터는 <em>사람이 남긴 스토리</em>에서 쌓습니다. 검증된 환대 사례가 곧 데이터입니다. 별도 데이터 수집 프로젝트를 지금 시작하지 않습니다.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">03 — 핵심 전환</div>
+  <h2>위키가 아니라 마켓플레이스다</h2>
+  <p>영상에서 가장 중요한 순간은 이 문답입니다.</p>
+
+  <blockquote class="pull">
+    “위키피디아처럼 자료를 잘 정리해서 제공하는 게 목적인 제품인지, 아니면 환대를 해주는 사람과 환대를 원하는 사람을 매칭시켜주는 매칭 플랫폼인가요?”<br><br>
+    “<strong>그겁니다. 아, 이거입니다.</strong>”
+    <cite>Builders Lounge 4차 · 32분 38초</cite>
+  </blockquote>
+
+  <p>이 한 문장이 향후 모든 우선순위를 결정합니다. 마켓플레이스는 세 가지가 있어야 성립합니다 — <strong>공급 · 수요 · 신뢰</strong>. 지금 상태를 이 셋으로 다시 보면 무엇을 먼저 할지가 자동으로 정해집니다.</p>
+
+  <h3>신뢰를 등급으로 표현한다</h3>
+  <p>검증을 진입 조건으로 걸면 아무도 안 들어옵니다(이미 겪으셨습니다). 검증을 없애면 사고가 납니다. 답은 <strong>둘 다 하는 것</strong> — 문은 열어두고, 신뢰의 정도를 눈에 보이게 만듭니다.</p>
+
+  <div class="ladder">
+    <div class="rung r1">
+      <div class="rung-name">OPEN</div>
+      <div class="rung-body"><b>등록된 곳입니다</b><span>신청 즉시 등재. 뱃지 없음. 콜드스타트를 막지 않는 층.</span></div>
+    </div>
+    <div class="rung r2">
+      <div class="rung-name">🤝 VERIFIED</div>
+      <div class="rung-body"><b>실제로 운영 중임을 확인했습니다</b><span>웹·지도·리뷰·연락 검증 통과. 사람이 존재한다는 사실만 보증.</span></div>
+    </div>
+    <div class="rung r3">
+      <div class="rung-name">🏛 TRUSTED</div>
+      <div class="rung-body"><b>이 도시에서 이미 누군가를 맞이한 곳입니다</b><span>실제 환대 사례 1건 이상 확인. <strong>심사자 판단만으로는 줄 수 없는 등급</strong> — 받은 사람이 증언해야 올라간다.</span></div>
+    </div>
+  </div>
+  <p class="note">Trusted를 “받은 사람의 증언”으로만 열어두는 것이 이 설계의 핵심입니다. 스토리 수집이 마케팅 활동이 아니라 <em>신뢰 인프라</em>가 되고, 플레이스홀더 페르소나를 실제 간증으로 바꾸는 작업에 구조적 동력이 생깁니다.</p>
+</section>
+
+<section>
+  <div class="eyebrow">04 — 로드맵</div>
+  <h2>세 국면</h2>
+  <p>단계에 번호를 붙인 이유는 실제로 순서가 있기 때문입니다. 신뢰 없이 확산하면 사고가 나고, 확산 없이 생태계를 말하면 이상론입니다.</p>
+
+  <div class="phases">
+
+    <div class="ph">
+      <div class="ph-mark"><b>01</b>0–90일<br>정비</div>
+      <div>
+        <h3>숫자를 정직하게, 검증을 반복 가능하게</h3>
+        <p class="goal">지금 있는 82개 도시를 늘리지 않습니다. 있는 것을 신뢰할 수 있게 만듭니다.</p>
+        <ul class="tasks">
+          <li><b>숫자 단일화</b> — 도시 수를 한 곳에서 관리하고 전 페이지가 그것을 참조하도록. 홈·도시 히어로·통계 블록의 82/82/81 불일치 제거.</li>
+          <li><b>메타태그 감사</b> — 82개 도시 페이지의 <span style="font-family:var(--mono);font-size:.9em">keywords</span>·<span style="font-family:var(--mono);font-size:.9em">description</span>이 해당 도시로 교체되어 있는지 전수 확인. 훼더럴웨이 건과 같은 복제 잔재 제거.</li>
+          <li><b>3단 뱃지 도입</b> — 기존 655개 교회를 전부 Open으로 시작. 소급 심사하지 않고 접촉하는 순서대로 올립니다.</li>
+          <li><b>파일럿 20건</b> — 시애틀·훼더럴웨이 교회·업체 20곳을 <em>hebron-partner-verify</em>로 심사해 기준을 실전에서 교정.</li>
+          <li><b>스토리 수집 개시</b> — 이미 만들어 둔 인터뷰 가이드로 Trusted 1호를 만듭니다. 목표는 <b>3건</b>. 많이가 아니라 진짜.</li>
+        </ul>
+        <div class="kpi"><b>측정</b> · Verified 뱃지 50건 · Trusted 3건 · 메타태그 오류 0건 · 도시 수 표기 불일치 0건</div>
+      </div>
+    </div>
+
+    <div class="ph">
+      <div class="ph-mark"><b>02</b>90–365일<br>공급과 유입</div>
+      <div>
+        <h3>도시마다 한 사람, 검색마다 한 페이지</h3>
+        <p class="goal">“사이버에 떠 있는” 도시를 없애고, 목회 네트워크 밖의 유입 경로를 하나 만듭니다.</p>
+        <ul class="tasks">
+          <li><b>도시당 실명 1인</b> — 82개 도시 전부에 연락 가능한 사람 최소 1명. 없는 도시는 “준비 중”으로 정직하게 표기. <strong>사람 없는 도시를 Live로 두지 않습니다.</strong></li>
+          <li><b>업체 공급 확대</b> — 20 → 200. 교회는 폴님이 전화로 되지만 업체는 안 됩니다. 도시별 업체 모집 메시지를 표준화합니다.</li>
+          <li><b>World Relief 파트너십 성사</b> — 도시 페이지의 “도움” 섹션이 기관 파트너의 착지점입니다. 기관용 영문 자료는 이 섹션을 근거로 만듭니다.</li>
+          <li><b>SEO를 두 번째 채널로</b> — 구조화 데이터(LocalBusiness/Organization) 적용, 도시별 검색어 실측, 상위 10개 도시 우선 보강.</li>
+          <li><b>도시 확장 재개</b> — <em>hebron-city-pack</em>으로 요청 기반 확장. 무작정 늘리지 않고 <strong>요청 + 사람 확보</strong> 두 조건을 다 만족할 때만.</li>
+        </ul>
+        <div class="kpi"><b>측정</b> · 실명 연락처 보유 도시 비율 82/82 · 등록 업체 200 · Trusted 30건 · 검색 유입이 전체 유입의 20% 이상</div>
+      </div>
+    </div>
+
+    <div class="ph">
+      <div class="ph-mark"><b>03</b>2027–2030<br>생태계</div>
+      <div>
+        <h3>고속도로에 휴게소를 짓는다</h3>
+        <p class="goal">본인의 비유를 그대로 씁니다 — 도로를 놓았으면, 그 위에서 사람들이 먹고 자고 만나야 합니다. 자립 구조는 여기서 나옵니다.</p>
+        <ul class="tasks">
+          <li><b>500 도시</b> — 다만 도시 수는 목표가 아니라 결과입니다. 진짜 목표는 <strong>Trusted 밀도</strong>입니다.</li>
+          <li><b>수익 구조</b> — 사용자 무료·교회 무료는 유지. 업체 프리미엄 노출과 기관 파트너십이 재원입니다. 도네이션은 <em>환대 수준이 충분히 올라간 뒤</em>에 — 본인 판단이 옳습니다.</li>
+          <li><b>안전 인프라</b> — 신고 창구, 강등 절차, 미성년자 보호 정책. 규모가 커지면 반드시 온다고 참석자가 예고했습니다.</li>
+          <li><b>에코시스템 연결</b> — HebronAltar·HebronLingua·HebronShepherd·KChurch911이 도착자 여정의 뒷단으로 붙습니다. 다만 HebronGuide는 끝까지 <strong>첫날 도착 가이드</strong>로 남습니다.</li>
+        </ul>
+        <div class="kpi"><b>측정</b> · Trusted 비율 30% 이상 · 사고 신고 처리 SLA · 플랫폼 운영비 자립률</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">05 — 이번 주</div>
+  <h2>당장 할 수 있는 네 가지</h2>
+  <p>오늘 만든 스킬 두 개가 이 네 가지를 바로 실행합니다.</p>
+
+  <div class="week">
+    <div class="w">
+      <div class="w-main"><b>도시 수 표기 통일</b><p>82인지 86인지 하나로 정하고 홈·도시 히어로·통계 블록을 맞춥니다. “82개 도시 이상, 계속 확장 중” 같은 범위 표현이면 유지비가 0에 가깝습니다.</p></div>
+      <div class="w-tool">수동 · 30분</div>
+    </div>
+    <div class="w">
+      <div class="w-main"><b>시애틀 교회 5곳 시범 심사</b><p>가장 잘 아는 교회부터. 채점표가 현실과 맞는지 여기서 확인하고 기준을 고칩니다.</p></div>
+      <div class="w-tool">hebron-partner-verify</div>
+    </div>
+    <div class="w">
+      <div class="w-main"><b>훼더럴웨이 메타태그 수정</b><p>시애틀 키워드가 남아 있습니다. 고치면서 나머지 81개 도시에도 같은 문제가 있는지 표본 확인.</p></div>
+      <div class="w-tool">hebron-city-pack §7</div>
+    </div>
+    <div class="w">
+      <div class="w-main"><b>Trusted 1호 만들기</b><p>실제로 환대를 받은 분 한 명. 인터뷰 가이드는 이미 있습니다. 이 한 건이 페르소나 플레이스홀더를 대체하는 첫 조각입니다.</p></div>
+      <div class="w-tool">인터뷰 가이드</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">06 — 하지 않을 것</div>
+  <h2>정체성을 지키는 목록</h2>
+  <p>무엇을 안 할지가 무엇을 할지만큼 중요합니다. 아래는 유혹이 오겠지만 거절할 항목입니다.</p>
+
+  <div class="nots">
+    <div class="not"><span class="not-x">✕</span><span><b>캘린더·행사 기능</b> — 이미 검토하고 거절하신 판단이 맞습니다. HebronGuide는 첫날 도착 가이드이지 이벤트 플랫폼이 아닙니다. 언제 들어와도 유효한 정보만 남깁니다.</span></div>
+    <div class="not"><span class="not-x">✕</span><span><b>정보량 경쟁</b> — 생활비·비자 정보를 아무리 쌓아도 구글을 이길 수 없습니다. 파는 것은 정보가 아니라 <strong>사람</strong>입니다.</span></div>
+    <div class="not"><span class="not-x">✕</span><span><b>사람 없는 도시 Live</b> — 도시 수는 늘어도 신뢰는 줄어듭니다. 500이라는 숫자를 위해 빈 페이지를 켜지 않습니다.</span></div>
+    <div class="not"><span class="not-x">✕</span><span><b>이른 도네이션</b> — 환대 문화가 형성되기 전의 금전 흐름은 사기의 통로가 됩니다. 본인 판단대로 미룹니다.</span></div>
+    <div class="not"><span class="not-x">✕</span><span><b>과잉 검증으로의 회귀</b> — 처음 실패의 원인입니다. 검증은 문을 잠그는 게 아니라 등급을 붙이는 일입니다.</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">07 — 남는 한 줄</div>
+  <h2>세계관이 스펙이 된 제품</h2>
+  <p>이 프로젝트의 방어선은 기술이 아닙니다. 누구나 바이브 코딩으로 정착 가이드를 만들 수 있습니다. 복제할 수 없는 것은 <strong>25년 동안 한 도시에서 쌓인 관계</strong>와, 낯선 이에게 열쇠를 받아본 사람만이 가진 확신입니다.</p>
+  <blockquote class="pull">
+    “저는 도시 속에 믿을 수 있는 사람과 연결시켜주는 게 저의 궁극 목적입니다.”
+    <cite>Builders Lounge 4차 · 14분 17초</cite>
+  </blockquote>
+  <p>그러니 앞으로 3년의 모든 결정은 한 문장으로 판정할 수 있습니다 — <em>이것이 믿을 수 있는 사람을 한 명 더 만들어내는가.</em> 도시 수도, 기능도, 파트너십도 이 질문 뒤에 놓입니다.</p>
+</section>
+
+<div class="src">
+  <h4>출처</h4>
+  <ol>
+    <li>「목사님이 바이브 코딩에 빠져서 만든 앱 | 86개 도시로 퍼진 HebronGuide 개발기 — Builders Lounge 4차 모임」, Catch Up AI, 38:32. 전체 자막 기준. <a href="https://youtu.be/vXPCbt47rok">youtu.be/vXPCbt47rok</a></li>
+    <li>HebronGuide 홈 — 도시 목록·통계·FAQ, 2026-08-30 확인. <a href="https://hebronguide.com/">hebronguide.com</a></li>
+    <li>HebronGuide 훼더럴웨이 페이지 — 16개 섹션 구조·메타태그, 2026-08-30 확인. <a href="https://hebronguide.com/federalway/">hebronguide.com/federalway/</a></li>
+  </ol>
+  <p style="margin-top:18px;font-size:13px">숫자는 모두 위 세 출처에서 직접 확인한 값입니다. 추정치는 사용하지 않았고, 발표 시점과 사이트 현재 값이 다른 경우 양쪽을 함께 표기했습니다.</p>
+</div>
+
+</div>

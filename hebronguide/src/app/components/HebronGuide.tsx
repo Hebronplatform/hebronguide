@@ -17177,7 +17177,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* 브랜드 푸터 */}
             <div style={{ textAlign: "center", padding: "12px 0 8px", fontFamily: "Manrope,sans-serif", color: "rgba(236,253,245,0.45)", fontSize: 10, letterSpacing: "0.04em" }}>
               <div style={{ marginBottom: 5 }}>
-                © 2026 Hebron Platform LLC · 1 Cor. 10:31 ·{" "}
+                © 2026 Hebron Platform LLC · 무단 전재·복제 금지 · 1 Cor. 10:31 ·{" "}
                 <a href="https://hebronguide.com/privacy.html" target="_blank" rel="noopener" style={{ color: "inherit", textDecoration: "none" }}>개인정보처리방침</a>
                 {" · "}
                 <a href="https://hebronguide.com/terms.html" target="_blank" rel="noopener" style={{ color: "inherit", textDecoration: "none" }}>서비스 약관</a>
