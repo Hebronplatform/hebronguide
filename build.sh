@@ -234,6 +234,7 @@ cp gathering.html             public/gathering.html             2>/dev/null || t
 cp ai-check.html              public/ai-check.html              2>/dev/null || true
 cp ai-intro.html              public/ai-intro.html              2>/dev/null || true
 cp seattle-gmc.html           public/seattle-gmc.html           2>/dev/null || true
+cp seattle-aid.html           public/seattle-aid.html           2>/dev/null || true
 cp church-kit.html            public/church-kit.html            2>/dev/null || true
 # SQL 적용 따라하기 (목사님 전용 · noindex)
 cp sql-guide.html             public/sql-guide.html             2>/dev/null || true
