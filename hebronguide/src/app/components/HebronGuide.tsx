@@ -10168,12 +10168,19 @@ function ChecklistIcon({ children }: { children: React.ReactNode }) {
   );
 }
 
+// 정착은 하루에 끝나지 않는다. 진짜 고생은 2주차부터 온다.
+const SETTLE_PHASES = [
+  { id: "d1", en: "First week",  ko: "도착 첫 주" },
+  { id: "w2", en: "Weeks 2\u20134", ko: "2~4주차" },
+  { id: "m2", en: "Months 2\u20133", ko: "2~3개월째" },
+] as const;
+
 // 나라별 Day 1 체크리스트 — 현지 기관·제도 용어
 function getDayOneItems(slug: string) {
   const cc = getCountryCode(slug);
   return [
     {
-      id: "sim", icon: <ChecklistIcon><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10.75 18.5h2.5"/></ChecklistIcon>,
+      id: "sim", phase: "d1", icon: <ChecklistIcon><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10.75 18.5h2.5"/></ChecklistIcon>,
       ko: cc === "KR" ? "기존 번호 재개통 또는 알뜰폰" : "SIM 카드 등록",
       en: cc === "KR" ? "Reactivate number or get MVNO" : "Get a SIM card",
       sub_ko: cc === "CA" ? "Public Mobile·Koodo $27~30/월"
@@ -10198,7 +10205,7 @@ function getDayOneItems(slug: string) {
             : "T-Mobile $30/mo recommended",
     },
     {
-      id: "bank", icon: <ChecklistIcon><path d="M3 9.5 12 4l9 5.5"/><path d="M5.5 11v7M9.8 11v7M14.2 11v7M18.5 11v7"/><path d="M3 21h18"/></ChecklistIcon>,
+      id: "bank", phase: "d1", icon: <ChecklistIcon><path d="M3 9.5 12 4l9 5.5"/><path d="M5.5 11v7M9.8 11v7M14.2 11v7M18.5 11v7"/><path d="M3 21h18"/></ChecklistIcon>,
       ko: cc === "KR" ? "기존 계좌 재활성화" : "은행 계좌 개설",
       en: cc === "KR" ? "Reactivate existing account" : "Open a bank account",
       sub_ko: cc === "CA" ? "Scotiabank·TD·Koho — 한인 지점 多"
@@ -10223,14 +10230,14 @@ function getDayOneItems(slug: string) {
             : "Chase or Bank of America — bring ID",
     },
     {
-      id: "housing", icon: <ChecklistIcon><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.3V21h13V9.3"/><path d="M10 21v-5.5h4V21"/></ChecklistIcon>,
+      id: "housing", phase: "d1", icon: <ChecklistIcon><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.3V21h13V9.3"/><path d="M10 21v-5.5h4V21"/></ChecklistIcon>,
       ko: cc === "KR" ? "부동산 앱으로 월세 계약" : "거주지 확정",
       en: cc === "KR" ? "Find rental via real estate app" : "Secure housing",
       sub_ko: "에어비앤비 → 장기 렌트 순서로",
       sub_en: "Airbnb → long-term rental",
     },
     {
-      id: "license", icon: <ChecklistIcon><path d="M4 16.5V13l1.8-4.2A2 2 0 0 1 7.6 7.5h8.8a2 2 0 0 1 1.8 1.3L20 13v3.5"/><path d="M4.5 13h15"/><circle cx="7.5" cy="16.8" r="1.4"/><circle cx="16.5" cy="16.8" r="1.4"/></ChecklistIcon>,
+      id: "license", phase: "d1", icon: <ChecklistIcon><path d="M4 16.5V13l1.8-4.2A2 2 0 0 1 7.6 7.5h8.8a2 2 0 0 1 1.8 1.3L20 13v3.5"/><path d="M4.5 13h15"/><circle cx="7.5" cy="16.8" r="1.4"/><circle cx="16.5" cy="16.8" r="1.4"/></ChecklistIcon>,
       ko: cc === "KR" ? "운전면허 갱신·재발급" : "운전면허 전환",
       en: cc === "KR" ? "Renew driver's license" : "Transfer driver's license",
       sub_ko: cc === "CA" ? "ON·BC·AB 등 한국 면허 직접 교환 가능"
@@ -10249,7 +10256,7 @@ function getDayOneItems(slug: string) {
             : "Required within 90 days of arrival",
     },
     {
-      id: "id_number", icon: <ChecklistIcon><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><circle cx="8.3" cy="10.8" r="1.9"/><path d="M5.4 15.6c.6-1.2 1.7-1.9 2.9-1.9s2.3.7 2.9 1.9"/><path d="M14.5 10h4M14.5 13.5h4"/></ChecklistIcon>,
+      id: "id_number", phase: "d1", icon: <ChecklistIcon><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><circle cx="8.3" cy="10.8" r="1.9"/><path d="M5.4 15.6c.6-1.2 1.7-1.9 2.9-1.9s2.3.7 2.9 1.9"/><path d="M14.5 10h4M14.5 13.5h4"/></ChecklistIcon>,
       ko: cc === "CA" ? "SIN 신청" : cc === "AU" ? "TFN 신청"
         : cc === "NZ" ? "IRD 번호 신청" : cc === "JP" ? "마이넘버 신고"
         : cc === "KR" ? "주민등록 재등록" : cc === "UK" ? "NI 번호 신청"
@@ -10282,7 +10289,7 @@ function getDayOneItems(slug: string) {
             : "Social Security Administration — 10 days after arrival",
     },
     {
-      id: "health", icon: <ChecklistIcon><path d="M5 21V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v15"/><path d="M3 21h18"/><path d="M12 8.5v6M9 11.5h6"/></ChecklistIcon>,
+      id: "health", phase: "d1", icon: <ChecklistIcon><path d="M5 21V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v15"/><path d="M3 21h18"/><path d="M12 8.5v6M9 11.5h6"/></ChecklistIcon>,
       ko: "건강보험 등록",
       en: "Get health insurance",
       sub_ko: cc === "CA" ? "주정부 건강보험 (OHIP·MSP·RAMQ) 3개월 대기"
@@ -10307,18 +10314,107 @@ function getDayOneItems(slug: string) {
             : "Work / Medicaid / Marketplace",
     },
     {
-      id: "school", icon: <ChecklistIcon><path d="M12 6.6C10.5 5.1 8.6 4.6 4 4.6v12.8c4.6 0 6.5.5 8 2"/><path d="M12 6.6c1.5-1.5 3.4-2 8-2v12.8c-4.6 0-6.5.5-8 2"/><path d="M12 6.6v12.8"/></ChecklistIcon>,
+      id: "school", phase: "d1", icon: <ChecklistIcon><path d="M12 6.6C10.5 5.1 8.6 4.6 4 4.6v12.8c4.6 0 6.5.5 8 2"/><path d="M12 6.6c1.5-1.5 3.4-2 8-2v12.8c-4.6 0-6.5.5-8 2"/><path d="M12 6.6v12.8"/></ChecklistIcon>,
       ko: cc === "JP" ? "일본어 교실 등록" : cc === "KR" ? "한국 생활 재적응 프로그램" : "학교·어학원 등록",
       en: cc === "JP" ? "Japanese language class" : cc === "KR" ? "Korean readaptation programs" : "School / ESL enrollment",
       sub_ko: cc === "JP" ? "지자체 무료 일본어 강좌 활용" : cc === "KR" ? "지역 평생학습관·귀환 동포 지원" : "공립 ESL 무료 운영",
       sub_en: cc === "JP" ? "Free Japanese classes at local municipality" : cc === "KR" ? "Community center returnee programs" : "Public ESL classes are free",
     },
     {
-      id: "doctor", icon: <ChecklistIcon><path d="M6 3v5.5a4 4 0 0 0 8 0V3"/><path d="M4.3 3h3.4M12.3 3h3.4"/><path d="M10 12.5V14a5 5 0 0 0 5 5 3.8 3.8 0 0 0 3.8-3.8v-.9"/><circle cx="18.8" cy="12.6" r="1.9"/></ChecklistIcon>,
+      id: "doctor", phase: "d1", icon: <ChecklistIcon><path d="M6 3v5.5a4 4 0 0 0 8 0V3"/><path d="M4.3 3h3.4M12.3 3h3.4"/><path d="M10 12.5V14a5 5 0 0 0 5 5 3.8 3.8 0 0 0 3.8-3.8v-.9"/><circle cx="18.8" cy="12.6" r="1.9"/></ChecklistIcon>,
       ko: cc === "KR" ? "한국 의료 시스템 재가입" : "주치의 등록",
       en: cc === "KR" ? "Re-enter Korean medical system" : "Find a primary care doctor",
       sub_ko: cc === "UK" ? "NHS GP 등록 — 주소 근처 GP 검색" : cc === "KR" ? "건강검진 예약 권장 (국가건강검진)" : "첫 방문 전 보험 확인 필수",
       sub_en: cc === "UK" ? "Register with NHS GP near your address" : cc === "KR" ? "Schedule national health checkup" : "Confirm insurance before your first visit",
+    },
+    // ── 2~4주차 — 여기서부터가 진짜 고생이다 ─────────────────────────
+    {
+      id: "credit", phase: "w2", icon: <ChecklistIcon><rect x="2.5" y="6" width="19" height="13" rx="2"/><path d="M2.5 10.5h19"/><path d="M6 15h3"/></ChecklistIcon>,
+      ko: cc === "KR" ? "신용카드·체크카드 정리" : "신용(credit) 쌓기 시작",
+      en: cc === "KR" ? "Sort out cards and accounts" : "Start building credit",
+      sub_ko: cc === "US" || cc === "" ? "SSN 받은 즉시 시작. Secured Card로 6개월 — 늦으면 집·차가 계속 막힌다"
+            : cc === "CA" ? "SIN 받은 즉시. Secured Card 또는 통신비 자동이체부터"
+            : cc === "UK" ? "선거인명부 등록이 신용의 시작. Credit Builder 카드"
+            : cc === "KR" ? "해외 신용은 이어지지 않는다. 국내 카드 새로 발급"
+            : "현지 신용 기록을 일찍 시작할수록 유리하다",
+      sub_en: cc === "US" || cc === "" ? "Start the day you get your SSN. Secured card, 6 months — housing and cars stay blocked without it"
+            : cc === "CA" ? "Right after your SIN. Secured card or autopay a phone bill"
+            : cc === "UK" ? "Register on the electoral roll first, then a credit builder card"
+            : cc === "KR" ? "Overseas credit does not transfer. Apply for a local card"
+            : "Start a local credit record as early as you can",
+    },
+    {
+      id: "lease", phase: "w2", icon: <ChecklistIcon><path d="M4 10.5 12 4l8 6.5"/><path d="M6 9.6V20h12V9.6"/><path d="M10 20v-4.5h4V20"/><path d="M15.5 12.5h2"/></ChecklistIcon>,
+      ko: "장기 렌트 계약",
+      en: "Sign a longer lease",
+      sub_ko: cc === "US" || cc === "CA" || cc === "" ? "신용이 없으면 보증금을 더 내거나 고용주 레터·보증인으로 푼다. 미리 물어보면 된다"
+            : cc === "KR" ? "전세·월세 확정일자와 전입신고를 같은 날에"
+            : "신용 기록이 없을 때 대안을 미리 물어보십시오",
+      sub_en: cc === "US" || cc === "CA" || cc === "" ? "No credit? Offer a larger deposit, an employer letter, or a co-signer. Ask before you apply"
+            : cc === "KR" ? "File your move-in report and lease date the same day"
+            : "Ask about alternatives when you have no local credit history",
+    },
+    {
+      id: "utilities", phase: "w2", icon: <ChecklistIcon><path d="M13 2.5 5.5 13.5H11l-.8 8L18.5 10H13z"/></ChecklistIcon>,
+      ko: "전기·인터넷 개통",
+      en: "Set up power and internet",
+      sub_ko: cc === "US" || cc === "CA" || cc === "" ? "신용이 없으면 보증금을 요구한다. 나중에 돌려받는다"
+            : "입주 전에 신청해야 이사 당일 쓸 수 있다",
+      sub_en: cc === "US" || cc === "CA" || cc === "" ? "Expect a deposit without credit — it is refunded later"
+            : "Apply before move-in day so it works when you arrive",
+    },
+    {
+      id: "car", phase: "w2", icon: <ChecklistIcon><path d="M4 16.5V13l1.8-4.2A2 2 0 0 1 7.6 7.5h8.8a2 2 0 0 1 1.8 1.3L20 13v3.5"/><path d="M4.5 13h15"/><circle cx="7.5" cy="16.8" r="1.4"/><circle cx="16.5" cy="16.8" r="1.4"/></ChecklistIcon>,
+      ko: cc === "KR" || cc === "JP" || cc === "SG" ? "교통카드·정기권" : "자동차와 보험",
+      en: cc === "KR" || cc === "JP" || cc === "SG" ? "Transit card or pass" : "Car and insurance",
+      sub_ko: cc === "US" || cc === "" ? "대부분의 도시에서 차가 없으면 생활이 안 된다. 보험료는 신용점수로 정해진다"
+            : cc === "CA" ? "주마다 보험 제도가 다르다(BC는 ICBC 단일). 먼저 확인"
+            : cc === "KR" || cc === "JP" || cc === "SG" ? "대중교통이 촘촘하다. 차는 급하지 않다"
+            : "차가 필요한 도시인지 먼저 확인하십시오",
+      sub_en: cc === "US" || cc === "" ? "Most cities need a car. Your insurance price is set by your credit score"
+            : cc === "CA" ? "Insurance differs by province (BC uses ICBC). Check first"
+            : cc === "KR" || cc === "JP" || cc === "SG" ? "Transit is dense here — a car can wait"
+            : "Check whether this city needs a car at all",
+    },
+    // ── 2~3개월째 — 자리를 잡는 시기 ─────────────────────────────────
+    {
+      id: "license_test", phase: "m2", icon: <ChecklistIcon><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/><path d="M12 3.5v5M4.4 16.2l4.3-2.5M19.6 16.2l-4.3-2.5"/></ChecklistIcon>,
+      ko: cc === "KR" ? "면허 갱신·적성검사" : "운전면허 실기시험",
+      en: cc === "KR" ? "Renew your licence" : "Road test",
+      sub_ko: cc === "US" || cc === "" ? "필기와 실기가 따로다. 예약이 몇 주씩 밀린다 — 먼저 잡아 두십시오"
+            : cc === "CA" ? "단계 면허(G1·G2 등). 대기 기간이 있다"
+            : "예약이 밀리니 일찍 잡으십시오",
+      sub_en: cc === "US" || cc === "" ? "Written and road tests are separate. Appointments book out weeks ahead — reserve early"
+            : cc === "CA" ? "Graduated licensing (G1/G2). There are waiting periods"
+            : "Appointments fill up — book early",
+    },
+    {
+      id: "school_docs", phase: "m2", icon: <ChecklistIcon><path d="M4 5.5h16v13H4z"/><path d="M8 9.5h8M8 13h5"/><path d="M9 5.5V3.5h6v2"/></ChecklistIcon>,
+      ko: "자녀 학교 서류",
+      en: "School paperwork",
+      sub_ko: cc === "US" || cc === "CA" || cc === "" ? "예방접종 기록은 현지 양식으로 다시 받아야 하는 경우가 많다. 거주증명도 함께"
+            : "재학증명·성적증명 번역본을 미리 준비하십시오",
+      sub_en: cc === "US" || cc === "CA" || cc === "" ? "Immunisation records often must be reissued on a local form. Bring proof of address too"
+            : "Prepare translated school records in advance",
+    },
+    {
+      id: "tax", phase: "m2", icon: <ChecklistIcon><path d="M6 3h12v18l-3-1.8-3 1.8-3-1.8L6 21z"/><path d="M9.5 8.5h5M9.5 12h5M9.5 15.5h3"/></ChecklistIcon>,
+      ko: "세금 신고 준비",
+      en: "Get ready for taxes",
+      sub_ko: cc === "US" || cc === "" ? "첫 해에 가장 많이 놀란다. W-2·1099를 모아 두고, 한미 조세조약을 확인하십시오"
+            : cc === "CA" ? "T4를 모아 두십시오. 첫 해 신고가 각종 혜택의 기준이 된다"
+            : cc === "KR" ? "연말정산 또는 종합소득세 — 해외 소득이 있으면 함께 신고"
+            : "첫 해 신고 기준을 미리 확인하십시오",
+      sub_en: cc === "US" || cc === "" ? "The first year surprises everyone. Keep your W-2s and 1099s; check the tax treaty"
+            : cc === "CA" ? "Keep your T4s. Your first return sets your benefit eligibility"
+            : "Check the filing rules for your first year",
+    },
+    {
+      id: "community", phase: "m2", icon: <ChecklistIcon><path d="M3 19v-1.2a3.2 3.2 0 0 1 3.2-3.2h3.6A3.2 3.2 0 0 1 13 17.8V19"/><circle cx="8" cy="8.5" r="3"/><path d="M15.5 19v-1.2a3.2 3.2 0 0 0-1.6-2.8"/><path d="M16 6.2a3 3 0 0 1 0 5.6"/></ChecklistIcon>,
+      ko: "앉을 자리 찾기",
+      en: "Find your table",
+      sub_ko: "석 달쯤에 외로움이 옵니다. 일이 아니라 사람입니다 — 교회·목장·커뮤니티",
+      sub_en: "Loneliness usually arrives around month three. Not paperwork — people",
     },
   ];
 }
@@ -10399,7 +10495,24 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
       </div>
       {/* 체크 항목 */}
       <div style={{ padding: "8px 0" }}>
-        {DAY1_ITEMS.map((item) => (
+        {SETTLE_PHASES.map((ph) => {
+          const items = DAY1_ITEMS.filter((i) => i.phase === ph.id);
+          if (!items.length) return null;
+          const dn = items.filter((i) => checks[i.id]).length;
+          return (
+          <div key={ph.id}>
+            <div style={{
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              padding: "10px 16px 4px", fontFamily: "Manrope,sans-serif",
+            }}>
+              <span style={{ fontWeight: 800, fontSize: 11, letterSpacing: ".04em", color: "#F2994A", textTransform: "uppercase" }}>
+                {ko ? ph.ko : ph.en}
+              </span>
+              <span style={{ fontWeight: 700, fontSize: 10, color: dn === items.length ? "#34d399" : "#94A3B8" }}>
+                {dn}/{items.length}
+              </span>
+            </div>
+          {items.map((item) => (
           <button key={item.id} onClick={() => toggle(item.id)} style={{
             width: "100%", background: "none", border: "none", cursor: "pointer",
             padding: "9px 16px", display: "flex", alignItems: "center", gap: 12, textAlign: "left",
@@ -10423,7 +10536,10 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
               </div>
             </div>
           </button>
-        ))}
+          ))}
+          </div>
+          );
+        })}
       </div>
       {/* 완료 시 공유 버튼 */}
       {allDone && (
@@ -30653,7 +30769,7 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
           </button>
         )}
         <div className="flex items-center" style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 10, padding: 2, gap: 2 }}>
-          {(["ko", "en"] as const).map((l) => (
+          {(["en", "ko"] as const).map((l) => (
             <button key={l} onClick={() => setLang(l)}
               className="flex items-center justify-center border-0 cursor-pointer"
               style={{ height: 24, paddingLeft: 8, paddingRight: 8, borderRadius: 7,
