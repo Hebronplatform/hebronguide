@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="robots" content="noindex, nofollow">
-<title>신청자 연락처 보호하기 — 5분 안내</title>
+<title>두 가지만 하시면 됩니다 — 연락처 보호 · 교회 목록 정리 | HebronGuide</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#0d1117;--card:#161b26;--line:rgba(255,255,255,.1);
@@ -81,9 +81,9 @@
 
 <header>
   <div class="wrap">
-    <h1>신청자 연락처 보호하기</h1>
-    <div class="sub">순서대로 따라만 하시면 됩니다</div>
-    <span class="time">5분</span>
+    <h1>두 가지만 하시면 됩니다</h1>
+    <div class="sub">① 신청자 연락처 보호 &nbsp;·&nbsp; ② 교회 목록 정리<br><span style="opacity:.75">순서대로 따라만 하시면 됩니다</span></div>
+    <span class="time">10분</span>
   </div>
 </header>
 
@@ -93,6 +93,9 @@
     <b>지금 상태</b> — 교회·업소가 등록하며 남긴 <b>이메일과 전화번호</b>가
     승인 전까지 밖에서도 보입니다. 아래 순서를 마치면 승인된 것만 보이게 됩니다.
   </div>
+
+  <h2 style="margin:30px 0 4px;font-size:1.15rem;">첫 번째 — 신청자 연락처 보호</h2>
+  <p style="color:var(--muted);font-size:.88rem;margin-bottom:14px;">1~5단계입니다.</p>
 
   <!-- 1 -->
   <div class="step" id="s1">
@@ -179,6 +182,166 @@ CREATE POLICY "anon_insert_submission"
     <label class="chk"><input type="checkbox" data-s="5"><span>1번과 똑같이 보입니다</span></label>
   </div>
 
+  <h2 style="margin:44px 0 4px;font-size:1.15rem;">두 번째 — 교회 목록 정리</h2>
+  <p style="color:var(--muted);font-size:.88rem;margin-bottom:14px;">6~8단계입니다. 첫 번째와 같은 화면에서 하시면 됩니다.</p>
+
+  <div class="why">
+    <b>지금 상태</b> — 교회 목록에 <b>이름 대신 주소가 들어간 곳</b>이 있고
+    (<span style="opacity:.8">예: 4019 NE 17th St. Renton Korean Baptist Church</span>),
+    교단 본부가 교회처럼 섞여 있고, <b>시애틀지구촌교회가 아예 없습니다</b>.
+  </div>
+
+  <!-- 6 -->
+  <div class="step" id="s6">
+    <span class="num">6</span>
+    <h2>지금 시애틀 교회 목록을 눈에 담아 둡니다</h2>
+    <a class="go" href="https://hebronguide.com/seattle/?tab=church" target="_blank" rel="noopener">시애틀 교회 목록 열기 →</a>
+    <div class="see">
+      <span class="lbl">확인할 것</span>
+      <b>시애틀지구촌교회가 없습니다.</b> 이름 자리에 주소가 들어간 곳도 보입니다.<br>
+      끝난 뒤에 달라지는지 보시려고 먼저 봐 두는 것입니다.
+    </div>
+    <label class="chk"><input type="checkbox" data-s="6"><span>지금 목록을 봤습니다</span></label>
+  </div>
+
+  <!-- 7 -->
+  <div class="step" id="s7">
+    <span class="num">7</span>
+    <h2>아래를 복사해서 붙여넣고 <b>Run</b></h2>
+    <p>첫 번째와 같은 자리입니다. 빈 칸을 한 번 지우고 붙여넣으세요.</p>
+    <div class="sqlbox">
+<pre id="sql2">-- ============================================================================
+-- 017_church_cleanup.sql
+-- 교회 데이터 정리 + 시애틀지구촌교회 등재
+--
+-- 적용: Supabase 대시보드 → SQL Editor → 붙여넣고 Run
+--
+-- 이 파일이 하는 일
+--   ① 이름 앞에 주소가 붙어버린 7곳 — 이름과 주소를 나눈다
+--   ② 앞이 잘린 1곳 — 21st Century Mission Church (낮은울타리교회)
+--   ③ 교회가 아니거나 이름이 소실된 10곳 — 지우지 않고 목록에서만 내린다
+--   ④ 시애틀지구촌교회 등재 — 지금 교회 목록에 없다
+--
+-- 손대지 않는 것 (확인할 수 없어서)
+--   &#x27;Korean Baptist Church of&#x27; · &#x27;Global Mission Church of&#x27; 등 &#x27;of&#x27; 뒤가 잘린 7곳
+--   → CKSBCA 원본 명단이 있어야 복구된다
+--   &#x27;Federal Way Korean Baptist Church&#x27; · &#x27;St. Cloud Korean Baptist Church&#x27;
+--   &#x27;The Way for You &amp; Me B.C&#x27; → 멀쩡한 이름. 자동 검사가 잘못 잡았던 것
+-- ============================================================================
+
+begin;
+
+-- ── ① 이름 앞에 붙은 주소를 떼어낸다 ───────────────────────────────────
+-- 전: 26 Park St. #A Alhambra Korean Baptist Church
+update public.churches set name = &#x27;Alhambra Korean Baptist Church&#x27;, name_en = &#x27;Alhambra Korean Baptist Church&#x27;, address = &#x27;26 Park St. #A&#x27;
+  where id = &#x27;5eb1e92c-494e-470a-afa5-6b33479d922d&#x27;;
+
+-- 전: 1102 Hamal #111 Irvine Korean Baptist Church
+update public.churches set name = &#x27;Irvine Korean Baptist Church&#x27;, name_en = &#x27;Irvine Korean Baptist Church&#x27;, address = &#x27;1102 Hamal #111&#x27;
+  where id = &#x27;900112bc-e4a0-4536-a13a-e48aa24a5007&#x27;;
+
+-- 전: 621 Rock Elm Dr. Auburn Korean Baptist Church
+update public.churches set name = &#x27;Auburn Korean Baptist Church&#x27;, name_en = &#x27;Auburn Korean Baptist Church&#x27;, address = &#x27;621 Rock Elm Dr.&#x27;
+  where id = &#x27;b1775b0d-943a-4d1c-86bc-19bd578dc2ce&#x27;;
+
+-- 전: 3590 Hanover Dr. Buford Korean Baptist Church
+update public.churches set name = &#x27;Buford Korean Baptist Church&#x27;, name_en = &#x27;Buford Korean Baptist Church&#x27;, address = &#x27;3590 Hanover Dr.&#x27;
+  where id = &#x27;ce3de46a-ab51-45a0-ae7f-47a81df60d96&#x27;;
+
+-- 전: 4604 Lafite Ln. Colleyville Korean Baptist Church
+update public.churches set name = &#x27;Colleyville Korean Baptist Church&#x27;, name_en = &#x27;Colleyville Korean Baptist Church&#x27;, address = &#x27;4604 Lafite Ln.&#x27;
+  where id = &#x27;3abb7a04-1d32-4e00-bcc9-ba2ef4729953&#x27;;
+
+-- 전: 1328 S. 84th St. Tacoma Korean Baptist Church
+update public.churches set name = &#x27;Tacoma Korean Baptist Church&#x27;, name_en = &#x27;Tacoma Korean Baptist Church&#x27;
+  where id = &#x27;de994d7d-38e6-4862-8348-6ddc4b9f478c&#x27;;
+
+-- 전: 4019 NE 17th St. Renton Korean Baptist Church
+update public.churches set name = &#x27;Renton Korean Baptist Church&#x27;, name_en = &#x27;Renton Korean Baptist Church&#x27;, address = &#x27;4019 NE 17th St.&#x27;
+  where id = &#x27;638ea8bd-06e5-4cf2-ac70-944fcd4b966c&#x27;;
+
+-- ── ② 앞이 잘린 이름 복구 ──────────────────────────────────────────────
+-- 전: st Century Mission Church  (낮은울타리교회 — 2026-08-11 외부 진단 리포트에서 확인)
+update public.churches set name = &#x27;21st Century Mission Church&#x27;, name_en = &#x27;21st Century Mission Church&#x27;
+  where id = &#x27;8d420ab2-afc7-4267-8551-ff073aba0f67&#x27;;
+
+-- ── ③ 목록에서 내린다 (지우지 않는다 — 원본이 오면 되살린다) ───────────
+update public.churches set active = false  -- Northwest Baptist Convention · 교단 본부 — 교회가 아님 (Northwest Baptist Convention)
+  where id = &#x27;d7f24709-7302-4f77-9a4c-0af4534360a9&#x27;;
+update public.churches set active = false  -- Baptist General Convention Texas · 교단 본부 — 교회가 아님 (Baptist General Convention Texas)
+  where id = &#x27;947999be-ddfe-4109-8ea7-4766bdb93f6c&#x27;;
+update public.churches set active = false  -- New Jersey Network of · 교단 네트워크 — 교회가 아님
+  where id = &#x27;c20d0fdd-a4ad-46d2-b12a-8291479107ba&#x27;;
+update public.churches set active = false  -- Chambers Rd · 이름 소실 — 길 이름만 남음
+  where id = &#x27;d147e3a2-856b-44ba-a17e-6c42c229ba60&#x27;;
+update public.churches set active = false  -- Coriolanus Dr · 이름 소실 — 길 이름만 남음
+  where id = &#x27;12a2d400-7ef4-4f6f-9af8-c7d437e0a9d8&#x27;;
+update public.churches set active = false  -- Brianwood Dr · 이름 소실 — 길 이름만 남음
+  where id = &#x27;3e0084be-b207-436e-8f5c-df3bff6c4017&#x27;;
+update public.churches set active = false  -- Tranbarger St · 이름 소실 — 길 이름만 남음
+  where id = &#x27;09376d08-62ce-40e4-b012-926d6efa1590&#x27;;
+update public.churches set active = false  -- Florida Blvd. #A · 이름 소실 — 길 이름만 남음
+  where id = &#x27;d8d10630-081d-498e-929e-cd2123f09165&#x27;;
+update public.churches set active = false  -- Belhaven Ave · 이름 소실 — 길 이름만 남음
+  where id = &#x27;b5105fdb-10a6-42e6-950c-7c5f9641a447&#x27;;
+update public.churches set active = false  -- 185th St. Ct. E · 이름 소실 — 길 이름만 남음
+  where id = &#x27;9ab1efaa-fc5b-4c08-a8a8-058655fc261b&#x27;;
+
+-- ── ④ 시애틀지구촌교회 등재 ────────────────────────────────────────────
+-- 지금 교회 목록에 없다. 주소(번지수)는 넣지 않는다 — 본부가 자택이기 때문.
+insert into public.churches
+  (name, name_en, city_slug, phone, website, denomination, service_time,
+   tier, hcmi, active, status, source, description)
+select
+  &#x27;시애틀지구촌교회&#x27;,
+  &#x27;Global Mission Church of Greater Seattle&#x27;,
+  &#x27;seattle&#x27;,
+  &#x27;425-350-0191&#x27;,
+  &#x27;https://www.ijiguchon.org&#x27;,
+  &#x27;SBC&#x27;,
+  &#x27;주일 오전 11시 (태평양시) · 온라인 www.ijiguchon.org&#x27;,
+  1,
+  true,
+  true,
+  &#x27;approved&#x27;,
+  &#x27;hebronguide&#x27;,
+  &#x27;시애틀 지역 한인 가정교회 — 가정에서 모이는 교회입니다. 목장은 린우드(Lynnwood)와 머킬티오(Mukilteo)의 가정에서 모이고(목장마다 요일이 다릅니다), 주일 오전 11시(태평양시)에 한 교회로 함께 예배드립니다. 온라인으로는 어디서나 함께합니다. 유아부터 12학년까지 새 세대 사역이 있습니다. 교인이 아니어도, 참가비 없이 오실 수 있습니다. 2002년 개척, 김성수 대표목사, SBC. GMN(글로벌 미니스트리 네트워크) 소속이며 국제가정교회사역원 회원교회입니다.&#x27;
+where not exists (
+  select 1 from public.churches where name = &#x27;시애틀지구촌교회&#x27;
+);  -- 두 번 실행해도 중복되지 않습니다
+
+commit;
+
+-- ── 확인 ───────────────────────────────────────────────────────────────
+-- 실행 뒤 이걸 돌려보시면 결과가 보입니다.
+select name, city_slug, service_time, tier, active
+  from public.churches
+ where city_slug = &#x27;seattle&#x27; and active
+ order by tier nulls last, name;</pre>
+      <button class="copy" id="copyBtn2">위 내용 복사하기</button>
+    </div>
+    <div class="see">
+      <span class="lbl">확인할 것</span>
+      <b>Success</b> 라고 뜨면 된 것입니다.<br>
+      마지막에 시애틀 교회 목록이 표로 나옵니다 — 거기에 <b>시애틀지구촌교회</b>가 보이면 성공입니다.
+    </div>
+    <label class="chk"><input type="checkbox" data-s="7"><span>Success 가 떴고 목록에 보입니다</span></label>
+  </div>
+
+  <!-- 8 -->
+  <div class="step" id="s8">
+    <span class="num">8</span>
+    <h2>앱에서도 보이는지 봅니다</h2>
+    <a class="go" href="https://hebronguide.com/seattle/?tab=church" target="_blank" rel="noopener">시애틀 교회 목록 다시 열기 →</a>
+    <p>새로 고침(<b>F5</b>)하세요.</p>
+    <div class="see">
+      <span class="lbl">확인할 것</span>
+      <b>시애틀지구촌교회</b>가 목록에 있습니다.<br>
+      이름 자리에 주소가 있던 곳들이 제 이름으로 바뀌었습니다.
+    </div>
+    <label class="chk"><input type="checkbox" data-s="8"><span>목록에 제대로 보입니다</span></label>
+  </div>
+
   <div class="done-msg" id="doneMsg">
     <b>다 하셨습니다.</b><br>
     저에게 <b>"SQL 했어"</b> 라고 한 마디만 주세요.<br>
@@ -209,7 +372,34 @@ CREATE POLICY "anon_insert_submission"
         <button class="copy" id="undoBtn">되돌리는 명령 복사하기</button>
       </div>
     </details>
-  </div>
+      <details style="margin-top:10px;">
+      <summary>교회 목록 정리를 되돌리는 명령 보기</summary>
+      <div class="sqlbox">
+<pre id="undo2">begin;
+update public.churches set name = &#x27;26 Park St. #A Alhambra Korean Baptist Church&#x27;, name_en = &#x27;26 Park St. #A Alhambra Korean Baptist Church&#x27;, address = NULL where id = &#x27;5eb1e92c-494e-470a-afa5-6b33479d922d&#x27;;
+update public.churches set name = &#x27;1102 Hamal #111 Irvine Korean Baptist Church&#x27;, name_en = &#x27;1102 Hamal #111 Irvine Korean Baptist Church&#x27;, address = NULL where id = &#x27;900112bc-e4a0-4536-a13a-e48aa24a5007&#x27;;
+update public.churches set name = &#x27;621 Rock Elm Dr. Auburn Korean Baptist Church&#x27;, name_en = &#x27;621 Rock Elm Dr. Auburn Korean Baptist Church&#x27;, address = NULL where id = &#x27;b1775b0d-943a-4d1c-86bc-19bd578dc2ce&#x27;;
+update public.churches set name = &#x27;3590 Hanover Dr. Buford Korean Baptist Church&#x27;, name_en = &#x27;3590 Hanover Dr. Buford Korean Baptist Church&#x27;, address = NULL where id = &#x27;ce3de46a-ab51-45a0-ae7f-47a81df60d96&#x27;;
+update public.churches set name = &#x27;4604 Lafite Ln. Colleyville Korean Baptist Church&#x27;, name_en = &#x27;4604 Lafite Ln. Colleyville Korean Baptist Church&#x27;, address = NULL where id = &#x27;3abb7a04-1d32-4e00-bcc9-ba2ef4729953&#x27;;
+update public.churches set name = &#x27;1328 S. 84th St. Tacoma Korean Baptist Church&#x27;, name_en = &#x27;1328 S. 84th St. Tacoma Korean Baptist Church&#x27;, address = &#x27;1328 S. 84th St. Tacoma, WA 98444&#x27; where id = &#x27;de994d7d-38e6-4862-8348-6ddc4b9f478c&#x27;;
+update public.churches set name = &#x27;4019 NE 17th St. Renton Korean Baptist Church&#x27;, name_en = &#x27;4019 NE 17th St. Renton Korean Baptist Church&#x27;, address = NULL where id = &#x27;638ea8bd-06e5-4cf2-ac70-944fcd4b966c&#x27;;
+update public.churches set name = &#x27;st Century Mission Church&#x27;, name_en = &#x27;st Century Mission Church&#x27; where id = &#x27;8d420ab2-afc7-4267-8551-ff073aba0f67&#x27;;
+update public.churches set active = true where id = &#x27;d7f24709-7302-4f77-9a4c-0af4534360a9&#x27;;
+update public.churches set active = true where id = &#x27;947999be-ddfe-4109-8ea7-4766bdb93f6c&#x27;;
+update public.churches set active = true where id = &#x27;c20d0fdd-a4ad-46d2-b12a-8291479107ba&#x27;;
+update public.churches set active = true where id = &#x27;d147e3a2-856b-44ba-a17e-6c42c229ba60&#x27;;
+update public.churches set active = true where id = &#x27;12a2d400-7ef4-4f6f-9af8-c7d437e0a9d8&#x27;;
+update public.churches set active = true where id = &#x27;3e0084be-b207-436e-8f5c-df3bff6c4017&#x27;;
+update public.churches set active = true where id = &#x27;09376d08-62ce-40e4-b012-926d6efa1590&#x27;;
+update public.churches set active = true where id = &#x27;d8d10630-081d-498e-929e-cd2123f09165&#x27;;
+update public.churches set active = true where id = &#x27;b5105fdb-10a6-42e6-950c-7c5f9641a447&#x27;;
+update public.churches set active = true where id = &#x27;9ab1efaa-fc5b-4c08-a8a8-058655fc261b&#x27;;
+delete from public.churches where name = &#x27;시애틀지구촌교회&#x27; and source = &#x27;hebronguide&#x27;;
+commit;</pre>
+        <button class="copy" id="undoBtn2">되돌리는 명령 복사하기</button>
+      </div>
+    </details>
+</div>
 
   <footer><a href="/ops.html">← 상황판으로</a></footer>
 </div>
@@ -236,6 +426,8 @@ function wire(btnId, preId, label){
 }
 wire('copyBtn', 'sql',  '위 내용 복사하기');
 wire('undoBtn', 'undo', '되돌리는 명령 복사하기');
+wire('copyBtn2', 'sql2', '위 내용 복사하기');
+wire('undoBtn2', 'undo2', '되돌리는 명령 복사하기');
 
 /* 체크하면 그 단계가 초록으로 — 어디까지 했는지 눈에 보이게 */
 var boxes = document.querySelectorAll('.chk input');
