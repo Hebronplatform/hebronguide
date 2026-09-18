@@ -4,6 +4,10 @@ Claude Code가 이 프로젝트에서 작업할 때 반드시 따르는 규칙�
 
 > **이 문서는 빠른 참조용 요약입니다. 상세 내용은 `docs/` 폴더 참조.**  
 > 시작점: [`docs/README.md`](docs/README.md)
+>
+> **UI를 만들거나 고칠 때는 먼저** — 디자인 정본 [`../../HEBRON_DESIGN_SYSTEM.md`](../../HEBRON_DESIGN_SYSTEM.md) · 상위 지침 [`../../CLAUDE.md`](../../CLAUDE.md) · 이 문서의 ["디자인 규칙"](#-디자인-규칙) 절(제품 개성·문서화된 예외).
+>
+> **한국어 글을 쓰거나 고칠 때는** — 글쓰기 정본 [`../../HEBRON_WRITING_ENGINE.md`](../../HEBRON_WRITING_ENGINE.md).
 
 ---
 
@@ -581,12 +585,17 @@ TOP5 맛집·정착·탐방 / 거주지 / 면허 시스템 / 세금 / 이민 / �
 📖 [`docs/EXECUTION_GUIDELINES.md`](docs/EXECUTION_GUIDELINES.md) 영역 2
 
 ### 표시 체계
+
+이모지 대신 **글자 라벨 + 색 배지 + SVG 아이콘**으로 표시합니다(위 "디자인 규칙" 절).
+
 | 표시 | 의미 |
 |---|---|
-| `✅ 검증됨` | 공식 사이트·직접 확인 |
-| `🔗 웹사이트` | 사용자가 직접 확인 가능 |
-| `★ Yelp 4.2` | Yelp 검증 별점 |
+| `검증됨` 배지 (민트 테두리 + 체크 SVG) | 공식 사이트·직접 확인 |
+| `웹사이트` 링크 (링크 SVG + 글자 라벨) | 사용자가 직접 확인 가능 |
+| `Yelp 4.2` (별 SVG + 숫자) | Yelp 검증 별점 |
 | (표시 없음) | 미검증 → 공개 보류 |
+
+> 기존 데이터 문자열에 남은 이모지는 **일괄 치환하지 않습니다** — 해당 화면을 고칠 때 함께 바꿉니다.
 
 ### 5단계 절차
 ```
@@ -950,18 +959,101 @@ HebronGuide는 정치적 좌파도 우파도 아니다.
 
 ## 🎨 디자인 규칙
 
-- **테마**: 다크 (`#0d1117` 배경)
-- **포인트**: 금색 `#C9A227`, 민트 `#6EE7B7`
-- **획일성 배격 · 자유와 다양성 (핵심 원리, 2026-07-13 목사님 명확화)**: 진짜 원칙은 "이모지 금지"가 아니라 **"어디서나 똑같은 판박이·범용 템플릿을 거부하고, 페이지·문안마다 개성 있게 만든다"**이다. 목사님은 자유롭고 다양한 것을 좋아한다.
-  - **이모지 회피**: 표준 이모지 세트는 획일성의 대표라 UI에 넣지 않는다(텍스트 라벨·색 배지·CSS/SVG 아이콘으로 대체). 기존 데이터의 이모지 접두는 렌더 시 제거(예: ChurchScreen `stripEmoji`). 사용자가 입력한 원문은 보존.
-  - **개성 있게**: 원본 SVG 일러스트·은은한 애니메이션·페이지별 다른 색/톤/구성을 적극 활용(예: story-invite.html은 기본 다크가 아니라 밤→호박빛 따뜻한 구성 + 원본 SVG). "안전하게 다 똑같이"보다 자유롭고 다채롭게 — 단, 화려하되 절제.
-- **검증 링크 형식**:
+> **정본**: [`../../HEBRON_DESIGN_SYSTEM.md`](../../HEBRON_DESIGN_SYSTEM.md) (Hebron Master Design System v1.0)
+> **상위 지침**: [`../../CLAUDE.md`](../../CLAUDE.md)
+
+All UI must follow the Hebron Master Design System.
+Do not introduce arbitrary fonts.
+Use: Korean → Pretendard Variable · English → Geist · Monospace → Geist Mono.
+Use semantic design tokens. Reuse existing components. Preserve accessibility. Preserve responsive behavior. Do not redesign unrelated areas.
+
+고치기 전에 먼저 읽습니다(Inspect before modify). 관계없는 영역은 다시 디자인하지 않습니다.
+
+### 제품 개성 — Hospitality · Community · International · Welcoming
+
+HebronGuide는 처음 그 도시에 도착한 사람이 여는 첫 문입니다. 화면도 그래야 합니다.
+
+- **환대(Hospitality)** — 먼저 반기고, 강요하지 않습니다. 거래를 연상시키는 말과 조급하게 만드는 시각 장치를 쓰지 않습니다.
+- **공동체(Community)** — 정보보다 사람이 먼저 보이게 합니다. 사람·교회·모임이 화면 아래로 밀려나지 않게 합니다.
+- **국제성(International)** — 한국어와 영어가 같은 무게로 보이게 합니다. 도시·지역 구분은 글자와 지역 블록으로 합니다(랜딩 `#cityRegions`의 `.city-pill::before`가 위치 핀을 CSS로 붙입니다 — 국기·이모지를 쓰지 않습니다).
+- **획일성 배격 · 자유와 다양성** (핵심 원리, 2026-07-13 목사님 명확화) — 진짜 원칙은 "이모지 금지"가 아니라 **"어디서나 똑같은 판박이·범용 템플릿을 거부하고, 페이지·문안마다 개성 있게 만든다"** 입니다. 원본 SVG 일러스트 · 은은한 애니메이션 · 페이지마다 다른 색과 구성을 적극 활용합니다(예: `story-invite.html`은 기본 다크가 아니라 밤에서 호박빛으로 가는 따뜻한 구성 + 원본 SVG). 단 **화려하되 절제** 합니다.
+
+개성이 정본을 이기지는 않습니다. **개성은 색·구성·일러스트에서, 정본은 글꼴·간격·계층·접근성·컴포넌트에서.**
+
+### 이모지 대신 텍스트 라벨·SVG 아이콘
+
+표준 이모지 세트는 획일성의 대표라 UI에 넣지 않습니다. **텍스트 라벨 · 색 배지 · CSS/SVG 아이콘**으로 대체합니다.
+사용자가 입력한 원문은 그대로 보존하고, 기존 데이터의 이모지 접두는 **렌더할 때** 제거합니다(예: ChurchScreen의 `stripEmoji`).
+
+검증 링크 예시 — 이모지 대신 인라인 SVG + 글자 라벨:
+
 ```html
 <div style="display:flex;flex-wrap:wrap;gap:8px;">
-  <a href="URL" target="_blank" rel="noopener" 
-     style="color:#6EE7B7;font-weight:700;">🔗 라벨</a>
+  <a href="URL" target="_blank" rel="noopener"
+     style="display:inline-flex;align-items:center;gap:6px;min-height:44px;
+            color:#6EE7B7;font-weight:700;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+      <path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/>
+      <path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>
+    </svg>
+    라벨
+  </a>
 </div>
 ```
+
+- 아이콘은 `aria-hidden="true"` — 뜻은 **옆의 글자 라벨**이 전합니다. 색이나 아이콘만으로 정보를 전달하지 않습니다.
+- 누르는 링크·버튼은 **44px**를 확보하고, **12px 미만 글자는 쓰지 않습니다.**
+- 새 컴포넌트를 만들기 전에 기존 것을 먼저 찾습니다(`hebronguide/src/app/components/` · 랜딩 `index.html`의 기존 클래스).
+
+### 문서화된 예외 (v1.1에서 점진 이전)
+
+아래는 **지금 코드에서 실제로 쓰이고 있는 값**입니다. 지금 화면을 바꾸지 않습니다.
+순서는 **보존(Preserve) → 정규화(Normalize) → 개선(Improve)** 입니다.
+
+**1. 글꼴 — 현재 실제로 불러오는 것 (정본 3종과 다름)**
+
+| 곳 | 불러오는 글꼴 | 쓰임 |
+|---|---|---|
+| 랜딩 `index.html` (Google Fonts) | **Noto Sans KR** 300·400·500·700·900 · **Cinzel** 700·900 | body = Noto Sans KR / 로고·숫자·연도 = Cinzel |
+| React 앱 `hebronguide/src/styles/fonts.css` | **Manrope** 300~800 · **Noto Sans KR** 400·500·700 | UI = Manrope / 본문 = Noto Sans KR |
+| 앱 토큰 `hebronguide/src/styles/theme.css` | `--hebron-font-display: 'Cinzel','Georgia',serif` · `--hebron-font-body: 'Noto Sans KR',…` · `--hebron-font-ui: 'Manrope',…` | (앱은 Cinzel 웹폰트를 로드하지 않아 Georgia로 폴백) |
+
+- 랜딩 `.hg-drawer-brand`만 `'Playfair Display'`를 지정하지만 **그 글꼴을 불러오지 않아 실제 화면은 serif 폴백**입니다 — 이전할 때 정리합니다(지금 손대면 화면이 바뀌므로 그대로 둡니다).
+- 정본은 Pretendard Variable · Geist · Geist Mono입니다. **랜딩과 앱은 서로 다른 파일**이므로 **같은 회차에 함께** 교체해야 두 화면이 갈리지 않습니다. 그때까지 새 페이지도 위 글꼴을 따릅니다.
+- 정본은 굵기 **900을 쓰지 않습니다.** 이전할 때 Cinzel 900·Noto Sans KR 900은 800으로 내립니다.
+
+**2. 다크 브랜드 색 — 앱 토큰 `hebronguide/src/styles/theme.css` (출처 `_hebron_codex/design-tokens/hebron-tokens.css`)**
+
+| 역할 | 값 |
+|---|---|
+| 배경·표면 | `--hebron-bg #0d1117` · `--hebron-surface #1a2535` · `--hebron-surface-2 #212d3d` · `--hebron-surface-3 #273444` |
+| 금색 | `--hebron-gold #C9A227` · light `#f0c040` · dark `#B8901C` |
+| 민트 | `--hebron-mint #6EE7B7` · `#34d399` · `#10b981` |
+| 글자 | `--hebron-text-1 #ECFDF5` · text-2 `rgba(236,253,245,0.70)` · text-3 `…0.45` · text-4 `…0.28` |
+| 테두리 | `rgba(255,255,255,0.08)` · `0.14` · `0.22` |
+| 상태 | red `#f87171` · green `#4ade80` · yellow `#fbbf24` |
+
+→ 값은 그대로 두고, v1.1에서 **이름만** semantic token(`--color-background` · `--color-surface` · `--color-text-primary` · `--color-accent` · `--color-success` …)으로 옮깁니다.
+→ `theme.css`의 `:root`에는 shadcn 기본 라이트 토큰(`--background #ffffff` 등)이 남아 있고, 브랜드 색은 `.dark`에 연결되어 있습니다(HebronGuide는 항상 다크). 이 이중 구조도 v1.1 정리 대상입니다.
+
+**3. 랜딩 `index.html`은 앱과 다른 팔레트를 씁니다 (별도 파일)**
+
+`--bg #0b1018` · `--bg2 #101726` · `--gold #C9A227` · `--gold2 #f0c040` · `--mint #6EE7B7` · `--warm #FF9F0A` · `--text #ECFDF5` · `--muted rgba(236,253,245,.6)` · `--muted2 rgba(236,253,245,.38)` · surface/border는 흰색 알파.
+
+→ 배경이 앱(`#0d1117`)과 미세하게 다릅니다. **지금 맞추지 않습니다.** v1.1에서 두 파일을 같은 토큰 이름으로 통일할 때 함께 정합니다.
+
+**4. 도시별 고유 색 (`CITY_CONFIGS[slug].color`) — 유지**
+
+시애틀 `#0EA5E9` · 훼더럴웨이 `#14B8A6` · 달라스 `#F59E0B` · 샌프란시스코 `#8B5CF6` · 뉴욕 `#EF4444` · 뉴저지 `#0EA5E9` · 내쉬빌 `#10B981` · 보스턴 `#3B82F6` · LA `#F97316` · 토론토 `#06B6D4` · 밴쿠버 `#22C55E` · 휴스턴 `#EA580C` … (전체는 `HebronGuide.tsx`의 `CITY_CONFIGS`)
+
+→ 도시 고유성은 이 프로젝트의 핵심이므로 **덮어쓰지 않습니다.** v1.1에서 `--color-city-accent` 같은 semantic token으로 감싸기만 합니다. 도시 색만으로 정보를 전달하지 않도록 글자 라벨을 함께 둡니다.
+
+**5. 기존 데이터·문자열 안의 이모지 — 일괄 치환 금지**
+
+`HebronGuide.tsx`의 도시 데이터·안내 문구에는 아직 이모지가 섞여 있습니다. **일괄 찾아바꾸기를 하지 않습니다**(단일 공유 번들이라 회귀 위험이 큽니다 — 위 "회귀 방지" 절). 새 UI에는 넣지 않고, 그 화면을 고칠 때 그 자리에서 텍스트 라벨·SVG로 바꿉니다.
+
+**6. 다크 모드 전용** — 밝은 테마는 지원하지 않습니다. 필요해지면 semantic light token으로 **추가**합니다(교체가 아니라 추가).
 
 ---
 

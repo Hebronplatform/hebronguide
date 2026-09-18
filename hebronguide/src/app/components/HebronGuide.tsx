@@ -11608,7 +11608,64 @@ function renderDescWithLinks(desc: string, accentColor: string) {
   );
 }
 
-function PlaceCard({ emoji, name, nameEn, desc, tags, accentColor = MINT }: { emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; accentColor?: string }) {
+/* -----------------------------------------
+   연락 버튼 줄 - 홈페이지 · 이메일 · 전화
+   교회를 찾는 사람이 이름 다음으로 찾는 것은 "어떻게 닿나" 하나뿐이다.
+   desc 안에 이미 같은 정보가 들어 있으면 중복해서 그리지 않는다.
+----------------------------------------- */
+function ContactRow({ website, email, phone, desc, accentColor }:
+  { website?: string; email?: string; phone?: string; desc?: string; accentColor: string }) {
+  const { lang } = useI18n();
+  const ko = lang === "ko";
+  const d = desc || "";
+  const clean = (v?: string) => {
+    const t = (v ?? "").trim();
+    return t && !["null", "N/A", "-", "undefined"].includes(t) ? t : "";
+  };
+  const web = clean(website), mail = clean(email), tel = clean(phone);
+  const showWeb  = !!web  && !d.includes("\u{1F517}");
+  const showTel  = !!tel  && !d.includes("\u{1F4DE}");
+  const showMail = !!mail && mail.includes("@");
+  if (!showWeb && !showTel && !showMail) return null;
+
+  const btn: React.CSSProperties = {
+    display: "inline-flex", alignItems: "center", gap: 5, textDecoration: "none",
+    background: accentColor + "18", border: "1px solid " + accentColor + "33",
+    borderRadius: 20, padding: "8px 12px", minHeight: 36,
+    fontFamily: "Manrope,sans-serif", fontSize: 11, fontWeight: 700, color: accentColor,
+  };
+  const Ico = ({ children }: { children: React.ReactNode }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}
+         strokeLinecap="round" strokeLinejoin="round"
+         style={{ width: 13, height: 13, flexShrink: 0 }} aria-hidden="true">{children}</svg>
+  );
+
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>
+      {showWeb && (
+        <a href={/^https?:\/\//i.test(web) ? web : "https://" + web}
+           target="_blank" rel="noopener noreferrer" style={btn}>
+          <Ico><circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18" /></Ico>
+          {ko ? "홈페이지" : "Website"}
+        </a>
+      )}
+      {showMail && (
+        <a href={"mailto:" + mail} style={btn}>
+          <Ico><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3.6 7 8.4 6 8.4-6" /></Ico>
+          {ko ? "이메일" : "Email"}
+        </a>
+      )}
+      {showTel && (
+        <a href={"tel:" + tel.replace(/[^\d+]/g, "")} style={btn}>
+          <Ico><path d="M5 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L15 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 3 5.2A2 2 0 0 1 5 3z" /></Ico>
+          {ko ? "전화" : "Call"}
+        </a>
+      )}
+    </div>
+  );
+}
+
+function PlaceCard({ emoji, name, nameEn, desc, tags, accentColor = MINT, website, email, phone }: { emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; accentColor?: string; website?: string; email?: string; phone?: string }) {
   return (
     <div className="transition-all duration-200 hover:scale-[1.02] hover:border-opacity-20" style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: "14px 16px", border: "1px solid rgba(255,255,255,0.07)" }}>
       <div className="flex items-start gap-[12px]">
@@ -11619,6 +11676,7 @@ function PlaceCard({ emoji, name, nameEn, desc, tags, accentColor = MINT }: { em
           <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 14, color: "#ECFDF5" }}>{name}</div>
           {nameEn && <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{nameEn}</div>}
           {renderDescWithLinks(desc, accentColor)}
+          <ContactRow website={website} email={email} phone={phone} desc={desc} accentColor={accentColor} />
           {tags && (
             <div className="flex flex-wrap gap-[5px] mt-[8px]">
               {tags.map((tag, i) => (
@@ -16112,8 +16170,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "시애틀지구촌교회" : "Global Mission Church of Greater Seattle",
         nameEn: "Global Mission Church of Greater Seattle",
         desc: ko
-          ? "✨ 담임: 김성수 목사 (Sung Soo Kim)\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🕐 토요새벽 6:00am · 주일 1:00pm\n🏠 정착도움 · 가정교회 · 한미가족 · 시니어 환영 · 1.5세·2세·영어회중 환영\n🔗 ijiguchon.org"
-          : "✨ Lead Pastor: Sung Soo Kim\n📍 4900 168th St. SW., Lynnwood, WA 98037\n🕐 Sat. Dawn 6:00am · Sun. 1:00pm\n🏠 Settlement Help · Home Church · Korean-American Families · Seniors Welcome · 1.5 & 2nd Gen · English Congregation Welcome\n🔗 ijiguchon.org",
+          ? "\u2728 대표목사: 김성수 목사\n\ud83d\udd50 주일 오전 11시 (태평양시) · 온라인으로 어디서나 함께\n\ud83c\udfe0 가정에서 모이는 교회 · 목장은 린우드·머킬티오 가정에서\n\ud83c\udf31 새 세대 사역 (유아~12학년)\n\ud83d\udcde 425-350-0191\n\ud83d\udd17 ijiguchon.org"
+          : "\u2728 Lead Pastor: Sung Soo Kim\n\ud83d\udd50 Sundays 11:00 AM (Pacific) · Join online from anywhere\n\ud83c\udfe0 A church that meets in homes · Mokjang in Lynnwood & Mukilteo\n\ud83c\udf31 Next generation ministry (infants–12th grade)\n\ud83d\udcde 425-350-0191\n\ud83d\udd17 ijiguchon.org",
         tags: ko ? ["린우드", "시애틀", "헤브론파트너"] : ["Lynnwood", "Seattle", "HebronPartner"],
         website: "https://ijiguchon.org",
         email: "info@ijiguchon.org",
@@ -16939,19 +16997,40 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   : "These churches are the first to welcome those who are just arriving."}
               </div>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-[10px] mb-4">
-              {[
-                { n: "50+", l: lang === "ko" ? "한인 교회" : "Korean Churches" },
-                { n: "20+", l: lang === "ko" ? "영어 예배팀" : "English Services" },
-                { n: "무료", l: lang === "ko" ? "ESL 수업" : "ESL Classes" },
-                { n: "365일", l: lang === "ko" ? "커뮤니티 활동" : "Community Activities" },
-              ].map((s, i) => (
-                <div key={i} style={{ background: "rgba(192,132,252,0.1)", borderRadius: 14, padding: "14px 16px", border: "1px solid rgba(192,132,252,0.2)", textAlign: "center" }}>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 22, color: "#ECFDF5" }}>{s.n}</div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.85)", marginTop: 3 }}>{s.l}</div>
+            {/* -- 한눈에 보는 숫자 - 전부 눌러서 바로 갈 수 있다 --
+                지어낸 숫자를 쓰지 않는다. 아래 목록에 실제로 있는 교회만 센다. */}
+            {(() => {
+              const total = allPartner.length + allOther.length;
+              const homeCount = [...allPartner, ...allOther].filter((c: any) => isHome(c)).length;
+              const goList = () => { setOpenOtherChurches(true); setSub(1); };
+              const tiles: { n: string; l: string; go: () => void }[] = [
+                { n: total > 0 ? String(total) : "\u2014",
+                  l: lang === "ko" ? "한인 교회" : "Korean Churches", go: goList },
+              ];
+              if (homeCount > 0) tiles.push({ n: String(homeCount),
+                  l: lang === "ko" ? "가정교회" : "House Churches", go: goList });
+              tiles.push({ n: lang === "ko" ? "무료" : "Free",
+                  l: lang === "ko" ? "ESL 영어수업" : "ESL Classes", go: () => setSub(2) });
+              tiles.push({ n: lang === "ko" ? "처음" : "New",
+                  l: lang === "ko" ? "새가족 안내" : "New Member Guide", go: () => setSub(3) });
+              return (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-[10px] mb-4">
+                  {tiles.map((t, i) => (
+                    <button key={i} onClick={t.go} type="button"
+                      className="transition-all duration-200 hover:scale-[1.03]"
+                      style={{ background: "rgba(192,132,252,0.1)", borderRadius: 14, padding: "14px 16px",
+                               border: "1px solid rgba(192,132,252,0.2)", textAlign: "center",
+                               cursor: "pointer", width: "100%", minHeight: 74 }}>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 22, color: "#ECFDF5" }}>{t.n}</div>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.85)", marginTop: 3 }}>{t.l}</div>
+                      <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9.5, color: "#C084FC", marginTop: 5, fontWeight: 700 }}>
+                        {lang === "ko" ? "바로 보기 \u2192" : "Open \u2192"}
+                      </div>
+                    </button>
+                  ))}
                 </div>
-              ))}
-            </div>
+              );
+            })()}
           </>
         )}
         {sub === 1 && (
@@ -17133,10 +17212,16 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                         })}
                       </div>
                       {/* 파트너 신청 CTA */}
-                      <a href="/ad-request.html#church" style={{ display: "block", textDecoration: "none", marginTop: 12 }}>
-                        <div style={{ background: "rgba(110,231,183,0.08)", border: "1px dashed rgba(110,231,183,0.3)", borderRadius: 12, padding: "11px 16px", textAlign: "center" }}>
-                          <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "#6EE7B7", fontWeight: 700 }}>
-                            {lang === "ko" ? "Hebron 협력교회 신청 → 최상단 노출" : "Apply as Partner → Top Placement"}
+                      {/* 크기로 줄 세우지 않는다. 스스로 등록하고, 환대할 준비가 되면 연결한다. */}
+                      <a href="/church-join.html" style={{ display: "block", textDecoration: "none", marginTop: 12 }}>
+                        <div style={{ background: "rgba(110,231,183,0.08)", border: "1px dashed rgba(110,231,183,0.3)", borderRadius: 12, padding: "13px 16px", textAlign: "center" }}>
+                          <span style={{ display: "block", fontFamily: "Manrope,sans-serif", fontSize: 12.5, color: "#6EE7B7", fontWeight: 700 }}>
+                            {lang === "ko" ? "우리 교회도 등록하기 →" : "Register your church →"}
+                          </span>
+                          <span style={{ display: "block", fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.6)", fontWeight: 500, marginTop: 4, lineHeight: 1.6 }}>
+                            {lang === "ko"
+                              ? "교회 크기는 보지 않습니다. 환대할 준비가 되었다면 연결합니다"
+                              : "Size doesn\u2019t matter here. If you\u2019re ready to welcome someone, we\u2019ll connect you"}
                           </span>
                         </div>
                       </a>
