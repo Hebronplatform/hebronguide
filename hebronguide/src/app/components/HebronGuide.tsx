@@ -10413,7 +10413,7 @@ function getDayOneItems(slug: string) {
       id: "community", phase: "m2", icon: <ChecklistIcon><path d="M3 19v-1.2a3.2 3.2 0 0 1 3.2-3.2h3.6A3.2 3.2 0 0 1 13 17.8V19"/><circle cx="8" cy="8.5" r="3"/><path d="M15.5 19v-1.2a3.2 3.2 0 0 0-1.6-2.8"/><path d="M16 6.2a3 3 0 0 1 0 5.6"/></ChecklistIcon>,
       ko: "앉을 자리 찾기",
       en: "Find your table",
-      sub_ko: "석 달쯤에 외로움이 옵니다. 일이 아니라 사람입니다 — 교회·목장·커뮤니티",
+      sub_ko: "석 달쯤에 외로움이 옵니다. 일이 아니라 사람입니다 — 교회·가정교회·커뮤니티",
       sub_en: "Loneliness usually arrives around month three. Not paperwork — people",
     },
   ];
@@ -16173,7 +16173,7 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "시애틀지구촌교회" : "Global Mission Church of Greater Seattle",
         nameEn: "Global Mission Church of Greater Seattle",
         desc: ko
-          ? "\u2728 대표목사: 김성수 목사\n\ud83d\udd50 주일 오전 11시 (태평양시) · 온라인으로 어디서나 함께\n\ud83c\udfe0 가정에서 모이는 교회 · 목장은 린우드·머킬티오 가정에서\n\ud83c\udf31 새 세대 사역 (유아~12학년)\n\ud83d\udcde 425-350-0191\n\ud83d\udd17 ijiguchon.org"
+          ? "\u2728 대표목사: 김성수 목사\n\ud83d\udd50 주일 오전 11시 (태평양시) · 온라인으로 어디서나 함께\n\ud83c\udfe0 가정에서 모이는 교회 · 린우드·머킬티오 가정에서 모입니다\n\ud83c\udf31 새 세대 사역 (유아~12학년)\n\ud83d\udcde 425-350-0191\n\ud83d\udd17 ijiguchon.org"
           : "\u2728 Lead Pastor: Sung Soo Kim\n\ud83d\udd50 Sundays 11:00 AM (Pacific) · Join online from anywhere\n\ud83c\udfe0 A church that meets in homes · House churches in Lynnwood & Mukilteo\n\ud83c\udf31 Next generation ministry (infants–12th grade)\n\ud83d\udcde 425-350-0191\n\ud83d\udd17 ijiguchon.org",
         tags: ko ? ["린우드", "시애틀", "헤브론파트너"] : ["Lynnwood", "Seattle", "HebronPartner"],
         website: "https://ijiguchon.org",
@@ -17294,30 +17294,6 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                     fontSize: 12, fontWeight: 800, padding: "8px 15px", borderRadius: 50,
                     fontFamily: "Manrope,sans-serif" }}>
                     {lang === "ko" ? "강의 일정 보기 \u2192" : "View Schedule \u2192"}
-                  </div>
-                </div>
-              </a>
-            )}
-
-            {/* 서북미 목자연합수련회 (2026-07-18) — PNW 도시에만, 행사 후 자동 숨김 */}
-            {["seattle", "federalway", "vancouver", "portland"].includes(citySlug) && Date.now() < new Date("2026-07-19T00:00:00-07:00").getTime() && (
-              <a href="https://ijiguchon.github.io/ShepherdsUnitedRetreat/" target="_blank" rel="noopener"
-                style={{ display: "block", textDecoration: "none", marginBottom: 14 }}>
-                <div style={{ background: "linear-gradient(135deg, rgba(201,168,76,0.14) 0%, rgba(139,0,0,0.08) 100%)", border: "1px solid rgba(201,168,76,0.4)", borderRadius: 18, padding: "16px 18px", position: "relative", overflow: "hidden" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "linear-gradient(90deg,#8B0000,#C9A84C,#8B0000)" }} />
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 10, letterSpacing: "0.1em", color: "#E8D48B", textTransform: "uppercase", marginBottom: 5 }}>
-                    {lang === "ko" ? "시애틀지구촌교회 · 서북미 목자연합수련회" : "GMC of Greater Seattle · PNW Shepherds' Retreat"}
-                  </div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#fff", marginBottom: 4 }}>
-                    {lang === "ko" ? "리셋을 통한 회복" : "Reset for Restoration"}
-                  </div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.72)", lineHeight: 1.7 }}>
-                    {lang === "ko"
-                      ? "7월 18일(토) 9AM–5PM · Lynnwood, WA — 서북미 가정교회 목자·목녀를 초청합니다"
-                      : "Sat Jul 18, 9AM–5PM · Lynnwood, WA — for house church shepherds across the Pacific Northwest"}
-                  </div>
-                  <div style={{ display: "inline-block", marginTop: 10, background: "rgba(201,168,76,0.9)", color: "#1A1A2E", fontSize: 12, fontWeight: 800, padding: "7px 14px", borderRadius: 50, fontFamily: "Manrope,sans-serif" }}>
-                    {lang === "ko" ? "초청의 글·일정 보기 →" : "View Invitation & Schedule →"}
                   </div>
                 </div>
               </a>
@@ -31213,7 +31189,7 @@ export function HebronGuide() {
         "총영사관","consulate","여권","passport","공증","notary","재외국민","거주","housing",
         "운전면허","dol","건강보험","학교등록","신용카드","credit"] },
     { tab: 2, labelKo: "교회", labelEn: "Church",
-      keywords: ["교회","church","예배","worship","목장",,"house church",
+      keywords: ["교회","church","예배","worship","목장","가정교회","house church",
         "gmc","지구촌","global mission","성경","bible","목사","pastor","신앙","faith"] },
     { tab: 3, labelKo: "맛집·카페", labelEn: "Food",
       keywords: ["맛집","food","카페","cafe","식당","bbq","한식","coffee","restaurant",
