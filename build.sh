@@ -165,7 +165,7 @@ for city in \
   # 효과: 도시당 약 12MB → 약 2.2MB. public/ 전체 약 900MB → 약 180MB.
   if [ "$city" != "seattle" ]; then
     rm -f public/$city/assets/*.js public/$city/assets/*.css
-    rm -f public/$city/promo-card-*.png public/$city/waba-poster-*.jpg
+    rm -f public/$city/promo-card-*.png public/$city/waba-poster-*.jpg public/$city/planting-seed-*.jpg
   fi
 
   KO="${CITY_KO[$city]}"
@@ -216,6 +216,10 @@ cp hebronguide/public/promo-card-es.png             public/promo-card-es.png    
 cp hebronguide/public/waba-poster-official-2026.jpg   public/waba-poster-official-2026.jpg   2>/dev/null || true
 cp hebronguide/public/ad-request.html               public/ad-request.html                 2>/dev/null || true
 cp hebronguide/public/story-invite.html             public/story-invite.html               2>/dev/null || true
+# 2nd Planting Seed Conference (2026-11) — 포스터는 이미지라 루트 복사가 없으면 404 가 난다
+cp hebronguide/public/event-planting-seed-2026.html  public/event-planting-seed-2026.html   2>/dev/null || true
+cp hebronguide/public/planting-seed-poster.html      public/planting-seed-poster.html       2>/dev/null || true
+cp hebronguide/public/planting-seed-2026-poster.jpg  public/planting-seed-2026-poster.jpg   2>/dev/null || true
 cp hebronguide/public/partner-benefits.html         public/partner-benefits.html           2>/dev/null || true
 cp hebronguide/public/qr-preview.html               public/qr-preview.html                 2>/dev/null || true
 # 파트너 교회 관리 시스템 (루트 정적 파일 직접 복사)
