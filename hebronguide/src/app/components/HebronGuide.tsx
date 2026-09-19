@@ -17253,6 +17253,49 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         {sub === 4 && (
           <div style={{ paddingBottom: 8 }}>
 
+            {/* 2nd Planting Seed Conference "환대" (2026-11-23~25) — 행사 다음 날 자동 숨김 */}
+            {Date.now() < new Date("2026-11-26T00:00:00+09:00").getTime() && (
+              <a href="/event-planting-seed-2026.html" target="_blank" rel="noopener"
+                style={{ display: "block", textDecoration: "none", marginBottom: 14 }}>
+                <div style={{
+                  background: "linear-gradient(150deg, rgba(232,163,61,0.16) 0%, rgba(194,100,58,0.06) 55%, rgba(0,0,0,0) 100%)",
+                  border: "1px solid rgba(232,163,61,0.42)", borderRadius: 18,
+                  padding: "17px 19px", position: "relative", overflow: "hidden",
+                }}>
+                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3,
+                    background: "linear-gradient(90deg,#C2643A,#F5C76E,#C2643A)" }} />
+                  <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 7 }}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#E8A33D" strokeWidth={1.6}
+                         strokeLinecap="round" strokeLinejoin="round"
+                         style={{ width: 15, height: 15, flexShrink: 0 }} aria-hidden="true">
+                      <path d="M12 21v-8" /><path d="M12 13c0-3.3 2.7-6 6-6 0 3.3-2.7 6-6 6z" />
+                      <path d="M12 15c0-2.8-2.2-5-5-5 0 2.8 2.2 5 5 5z" /><path d="M5 21h14" />
+                    </svg>
+                    <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 9.5,
+                      letterSpacing: "0.13em", color: "#E8A33D", textTransform: "uppercase" }}>
+                      2nd Planting Seed Conference
+                    </span>
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 16,
+                    color: "#fff", marginBottom: 5, lineHeight: 1.45 }}>
+                    {lang === "ko" ? "교회개척 컨퍼런스 \u300c환대\u300d" : "Church Planting Conference \u2014 Hospitality"}
+                  </div>
+                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12,
+                    color: "rgba(250,243,232,0.68)", lineHeight: 1.75 }}>
+                    {lang === "ko"
+                      ? "11월 23~25일 · 소망수양관 · 강의 10개 \u2014 건물은 교회를 만들지 못합니다"
+                      : "Nov 23\u201325 \u00b7 Somang Retreat Center \u00b7 10 sessions"}
+                  </div>
+                  <div style={{ display: "inline-block", marginTop: 11,
+                    background: "linear-gradient(135deg,#E8A33D 0%,#C2643A 100%)", color: "#17120a",
+                    fontSize: 12, fontWeight: 800, padding: "8px 15px", borderRadius: 50,
+                    fontFamily: "Manrope,sans-serif" }}>
+                    {lang === "ko" ? "강의 일정 보기 \u2192" : "View Schedule \u2192"}
+                  </div>
+                </div>
+              </a>
+            )}
+
             {/* 서북미 목자연합수련회 (2026-07-18) — PNW 도시에만, 행사 후 자동 숨김 */}
             {["seattle", "federalway", "vancouver", "portland"].includes(citySlug) && Date.now() < new Date("2026-07-19T00:00:00-07:00").getTime() && (
               <a href="https://ijiguchon.github.io/ShepherdsUnitedRetreat/" target="_blank" rel="noopener"
