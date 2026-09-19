@@ -220,6 +220,9 @@ cp hebronguide/public/story-invite.html             public/story-invite.html    
 cp hebronguide/public/event-planting-seed-2026.html  public/event-planting-seed-2026.html   2>/dev/null || true
 cp hebronguide/public/planting-seed-poster.html      public/planting-seed-poster.html       2>/dev/null || true
 cp hebronguide/public/planting-seed-2026-poster.jpg  public/planting-seed-2026-poster.jpg   2>/dev/null || true
+# 환대 게시판 — 행사 목록(events.json)과 게시판 페이지. 루트 복사가 없으면 404 가 난다
+cp hebronguide/public/hospitality-board.html        public/hospitality-board.html          2>/dev/null || true
+cp hebronguide/public/events.json                   public/events.json                     2>/dev/null || true
 cp hebronguide/public/partner-benefits.html         public/partner-benefits.html           2>/dev/null || true
 cp hebronguide/public/qr-preview.html               public/qr-preview.html                 2>/dev/null || true
 # 파트너 교회 관리 시스템 (루트 정적 파일 직접 복사)

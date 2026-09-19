@@ -13692,6 +13692,66 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
    HOME: 플라이휠 소셜 프루프 바 (쿠팡 원리 ①)
    — "312개 교회 · 82개 도시" 숫자가 신뢰를 만든다
 ───────────────────────────────────────── */
+/* ─────────────────────────────────────────
+   환대 게시판 — 홈 화면 작은 공지 배너
+   events.json 을 읽어 '아직 안 끝난 행사'가 있을 때만 뜬다.
+   새 행사는 events.json 에 한 덩어리만 더하면 된다. 코드를 안 고친다.
+───────────────────────────────────────── */
+function BoardBanner() {
+  const { lang } = useI18n();
+  const ko = lang === "ko";
+  const [ev, setEv] = useState<any | null>(null);
+  const [more, setMore] = useState(0);
+
+  useEffect(() => {
+    let alive = true;
+    // 앱은 /seattle/ 같은 도시 폴더에서 돈다. 상대 경로를 먼저 보고, 없으면 루트를 본다.
+    const load = () =>
+      fetch("events.json", { cache: "no-store" })
+        .then(r => (r.ok ? r : Promise.reject(r.status)))
+        .catch(() => fetch("/events.json", { cache: "no-store" }));
+    load()
+      .then(r => (r.ok ? r.json() : { events: [] }))
+      .then(d => {
+        if (!alive) return;
+        const today = new Date(); today.setHours(0, 0, 0, 0);
+        const live = (d.events || [])
+          .filter((e: any) => !e.until || new Date(e.until + "T00:00:00") >= today)
+          .sort((a: any, b: any) => ((a.until || "") < (b.until || "") ? -1 : 1));
+        if (live.length) { setEv(live[0]); setMore(live.length - 1); }
+      })
+      .catch(() => { /* 못 읽으면 그냥 안 뜬다 — 화면은 멀쩡하다 */ });
+    return () => { alive = false; };
+  }, []);
+
+  if (!ev) return null;
+  return (
+    <a href="/hospitality-board.html" style={{ display: "block", textDecoration: "none", margin: "10px 16px 0" }}>
+      <div style={{
+        display: "flex", alignItems: "center", gap: 10,
+        background: "linear-gradient(135deg, rgba(232,163,61,0.13) 0%, rgba(110,231,183,0.06) 100%)",
+        border: "1px solid rgba(232,163,61,0.32)", borderRadius: 14, padding: "11px 14px",
+      }}>
+        <Megaphone size={16} strokeWidth={2} color="#E8A33D" style={{ flexShrink: 0 }} />
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontFamily: "'Noto Sans KR',Manrope,sans-serif", fontWeight: 800, fontSize: 12.5,
+            color: "#ECFDF5", lineHeight: 1.4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+            {ko ? ev.titleKo : (ev.titleEn || ev.titleKo)}
+          </div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.62)", marginTop: 2 }}>
+            {(ko ? ev.whenKo : ev.whenEn) || ""}
+            {more > 0 && (ko ? ` · 외 ${more}건` : ` · +${more} more`)}
+          </div>
+        </div>
+        <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, fontWeight: 800,
+          color: "#F5C76E", flexShrink: 0 }}>
+          {ko ? "환대 게시판 \u2192" : "Board \u2192"}
+        </span>
+      </div>
+    </a>
+  );
+}
+
 function HebronFlywheelBar({ lang }: { lang: string }) {
   // 도시 수 자동 계산 — 도시 추가 시 자동 반영 (수동 수정 불필요)
   const LIVE_CITY_COUNT = HEBRON_CITIES.length;
@@ -17368,49 +17428,6 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         {/* ── TAB 5: 파트너 교회 네트워크 ── */}
         {sub === 4 && (
           <div style={{ paddingBottom: 8 }}>
-
-            {/* 2nd Planting Seed Conference "환대" (2026-11-23~25) — 행사 다음 날 자동 숨김 */}
-            {Date.now() < new Date("2026-11-26T00:00:00+09:00").getTime() && (
-              <a href="/event-planting-seed-2026.html" target="_blank" rel="noopener"
-                style={{ display: "block", textDecoration: "none", marginBottom: 14 }}>
-                <div style={{
-                  background: "linear-gradient(150deg, rgba(232,163,61,0.16) 0%, rgba(194,100,58,0.06) 55%, rgba(0,0,0,0) 100%)",
-                  border: "1px solid rgba(232,163,61,0.42)", borderRadius: 18,
-                  padding: "17px 19px", position: "relative", overflow: "hidden",
-                }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3,
-                    background: "linear-gradient(90deg,#C2643A,#F5C76E,#C2643A)" }} />
-                  <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 7 }}>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#E8A33D" strokeWidth={1.6}
-                         strokeLinecap="round" strokeLinejoin="round"
-                         style={{ width: 15, height: 15, flexShrink: 0 }} aria-hidden="true">
-                      <path d="M12 21v-8" /><path d="M12 13c0-3.3 2.7-6 6-6 0 3.3-2.7 6-6 6z" />
-                      <path d="M12 15c0-2.8-2.2-5-5-5 0 2.8 2.2 5 5 5z" /><path d="M5 21h14" />
-                    </svg>
-                    <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 9.5,
-                      letterSpacing: "0.13em", color: "#E8A33D", textTransform: "uppercase" }}>
-                      2nd Planting Seed Conference
-                    </span>
-                  </div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 16,
-                    color: "#fff", marginBottom: 5, lineHeight: 1.45 }}>
-                    {lang === "ko" ? "교회개척 컨퍼런스 \u300c환대\u300d" : "Church Planting Conference \u2014 Hospitality"}
-                  </div>
-                  <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12,
-                    color: "rgba(250,243,232,0.68)", lineHeight: 1.75 }}>
-                    {lang === "ko"
-                      ? "11월 23~25일 · 소망수양관 · 강의 10개 \u2014 건물은 교회를 만들지 못합니다"
-                      : "Nov 23\u201325 \u00b7 Somang Retreat Center \u00b7 10 sessions"}
-                  </div>
-                  <div style={{ display: "inline-block", marginTop: 11,
-                    background: "linear-gradient(135deg,#E8A33D 0%,#C2643A 100%)", color: "#17120a",
-                    fontSize: 12, fontWeight: 800, padding: "8px 15px", borderRadius: 50,
-                    fontFamily: "Manrope,sans-serif" }}>
-                    {lang === "ko" ? "강의 일정 보기 \u2192" : "View Schedule \u2192"}
-                  </div>
-                </div>
-              </a>
-            )}
 
             {/* 환영 안내 — 공개 레이어 (비신자 친화) */}
             <div style={{ background: "linear-gradient(160deg, rgba(110,231,183,0.08) 0%, rgba(0,0,0,0) 100%)", border: "1px solid rgba(110,231,183,0.2)", borderRadius: 18, padding: "18px 18px 16px", marginBottom: 14 }}>
@@ -31390,6 +31407,7 @@ export function HebronGuide() {
 
         {/* ── 업데이트 공지 배너 ── */}
         <UpdateBanner />
+        <BoardBanner />
 
         {/* ── 검색 오버레이 (Apple 스타일 + 음성 입력) */}
         {showSearch && (() => {

@@ -1,0 +1,35 @@
+{
+  "_읽어주세요": [
+    "환대 게시판에 올라가는 행사 목록입니다.",
+    "새 행사는 아래 배열에 한 덩어리를 더하면 됩니다. 코드를 고칠 필요가 없습니다.",
+    "until 날짜가 지나면 게시판과 홈 배너에서 저절로 사라집니다.",
+    "",
+    "실을 것: 주최가 확인되고 · 날짜·장소·참가비가 다 적혀 있고 · 신청하는 길이 열려 있는 행사.",
+    "하나라도 비면 싣지 않습니다. 막다른 길은 싣지 않습니다.",
+    "돈을 받지 않습니다. 돈을 받으면 '실을 만한가'의 기준이 흔들립니다."
+  ],
+  "events": [
+    {
+      "id": "planting-seed-2026",
+      "titleKo": "2nd PLANTING SEED CONFERENCE 「환대」",
+      "titleEn": "2nd Planting Seed Conference — Hospitality",
+      "kindKo": "교회개척 컨퍼런스",
+      "kindEn": "Church Planting Conference",
+      "leadKo": "건물은 교회를 만들지 못합니다. 주인이 바뀐 한 사람이 교회입니다",
+      "leadEn": "A building cannot make a church. One changed person is the church",
+      "whenKo": "2026년 11월 23일(월) ~ 25일(수)",
+      "whenEn": "Nov 23–25, 2026",
+      "whereKo": "소망수양관",
+      "whereEn": "Somang Retreat Center",
+      "hostKo": "라이트하우스무브먼트",
+      "hostEn": "Lighthouse Movement",
+      "feeKo": "20만 원",
+      "feeEn": "KRW 200,000",
+      "page": "/event-planting-seed-2026.html",
+      "poster": "/planting-seed-2026-poster.jpg",
+      "until": "2026-11-26",
+      "sponsored": true,
+      "cities": "all"
+    }
+  ]
+}

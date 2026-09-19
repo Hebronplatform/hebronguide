@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>환대 게시판 — 컨퍼런스 · 수련회 · 무료 강좌 | HebronGuide</title>
+<meta name="description" content="한인 교회와 공동체의 환대 행사를 모읍니다. 컨퍼런스·수련회·교회 행사·무료 강좌. 광고비를 받지 않습니다. 지난 행사는 저절로 내려갑니다.">
+<meta property="og:title" content="환대 게시판 — HebronGuide">
+<meta property="og:description" content="컨퍼런스 · 수련회 · 무료 강좌 — 한 자리에서.">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+<link rel="manifest" href="/manifest.json"/>
+<style>
+:root{
+  --bg:#0b0e14; --bg2:#111621;
+  --surface:rgba(255,255,255,.045); --surface2:rgba(255,255,255,.075);
+  --border:rgba(255,255,255,.09); --border2:rgba(255,255,255,.17);
+  --mint:#6EE7B7; --gold:#C9A227; --amber:#E8A33D;
+  --text:#ECFDF5; --muted:rgba(236,253,245,.58); --muted2:rgba(236,253,245,.34);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:var(--bg);scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;
+  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;}
+
+nav{position:sticky;top:0;z-index:20;background:rgba(11,14,20,.96);backdrop-filter:blur(12px);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:13px 20px;border-bottom:1px solid var(--border);gap:12px;}
+.logo{text-decoration:none;display:flex;align-items:center;min-height:44px;}
+.logo b{font-family:'Cinzel',serif;font-weight:900;font-size:1rem;color:#fff;}
+.logo b em{font-style:italic;font-weight:400;color:var(--gold);}
+.back{color:var(--muted);text-decoration:none;font-size:.82rem;
+  display:inline-flex;align-items:center;gap:6px;min-height:44px;}
+
+header.hero{padding:40px 20px 30px;
+  background:radial-gradient(900px 420px at 50% -10%, rgba(110,231,183,.13) 0%, rgba(110,231,183,0) 60%),
+             linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);}
+.hero-in{max-width:760px;margin:0 auto;}
+.kick{font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mint);margin-bottom:12px;}
+h1{font-size:clamp(1.6rem,5.4vw,2.3rem);font-weight:900;line-height:1.25;letter-spacing:-.02em;margin-bottom:12px;}
+.sub{font-size:.95rem;color:var(--muted);line-height:1.9;}
+
+main{max-width:760px;margin:0 auto;padding:26px 20px 70px;}
+
+.card{display:block;text-decoration:none;color:inherit;
+  border:1px solid var(--border);border-radius:20px;overflow:hidden;background:var(--surface);
+  margin-bottom:14px;transition:transform .18s,border-color .18s;}
+.card:hover{transform:translateY(-2px);border-color:var(--border2);}
+.card-in{display:flex;gap:0;align-items:stretch;}
+.shot{width:33%;min-width:118px;max-width:190px;object-fit:cover;background:rgba(255,255,255,.05);display:block;}
+.body{flex:1;padding:16px 18px;min-width:0;}
+.kind{display:inline-block;font-size:.66rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:6px;}
+.t{font-size:1.02rem;font-weight:800;line-height:1.45;margin-bottom:6px;letter-spacing:-.01em;}
+.lead{font-size:.85rem;color:var(--muted);line-height:1.75;margin-bottom:10px;}
+.facts{display:flex;flex-wrap:wrap;gap:6px;}
+.f{display:inline-flex;align-items:center;gap:5px;background:var(--surface2);border:1px solid var(--border);
+  border-radius:50px;padding:5px 11px;font-size:.74rem;font-weight:700;color:var(--text);}
+.f svg{width:12px;height:12px;color:var(--mint);flex-shrink:0;}
+.spon{display:inline-block;margin-top:9px;font-size:.72rem;color:var(--mint);font-weight:700;}
+@media(max-width:560px){
+  .card-in{flex-direction:column;}
+  .shot{width:100%;max-width:none;height:200px;}
+}
+
+.empty{border:1px dashed var(--border2);border-radius:18px;padding:34px 22px;text-align:center;color:var(--muted);}
+.empty b{display:block;color:var(--text);font-size:1rem;margin-bottom:7px;}
+
+.rules{margin-top:30px;border:1px solid var(--border);border-radius:18px;background:var(--surface);padding:20px 22px;}
+.rules h2{font-size:.95rem;font-weight:800;margin-bottom:12px;}
+.rules ol{margin:0;padding-left:18px;}
+.rules li{font-size:.86rem;color:var(--muted);line-height:1.95;margin-bottom:4px;}
+.rules li b{color:var(--text);}
+.rules .note{margin-top:13px;padding-top:13px;border-top:1px solid var(--border);
+  font-size:.83rem;color:var(--muted2);line-height:1.85;}
+.rules .note b{color:var(--mint);}
+.rules a{color:var(--mint);text-decoration:none;font-weight:700;}
+
+footer{border-top:1px solid var(--border);padding:24px 20px 44px;text-align:center;}
+footer p{font-size:.76rem;color:var(--muted2);line-height:1.9;}
+footer a{color:var(--muted);text-decoration:none;}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/"><b>HEBRON<em>Guide</em></b></a>
+  <a class="back" href="/">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    홈으로
+  </a>
+</nav>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="kick">Hospitality Board</div>
+    <h1>환대 게시판</h1>
+    <p class="sub">
+      컨퍼런스 · 수련회 · 교회 행사 · 무료 강좌를 한자리에 모읍니다.<br>
+      <b style="color:var(--mint);font-weight:700;">광고비를 받지 않습니다.</b> 지난 행사는 저절로 내려갑니다.
+    </p>
+  </div>
+</header>
+
+<main>
+  <div id="list" aria-live="polite"></div>
+
+  <section class="rules">
+    <h2>싣는 기준 — 네 가지</h2>
+    <ol>
+      <li><b>주최가 누구인지 확인됩니다.</b></li>
+      <li><b>날짜 · 장소 · 참가비가 다 적혀 있습니다.</b> 하나라도 비면 싣지 않습니다.</li>
+      <li><b>신청하는 길이 열려 있습니다.</b> 막다른 길은 싣지 않습니다.</li>
+      <li><b>끝나면 저절로 사라집니다.</b> 지난 행사가 남아 있으면 신뢰가 깎입니다.</li>
+    </ol>
+    <p class="note">
+      <b>돈을 받지 않는 이유가 있습니다.</b>
+      받는 순간 「실을 만한가」의 기준이 돈에 흔들립니다. 무료면 기준만 지키면 됩니다.<br>
+      행사를 알리고 싶으시면 <a href="/ad-request.html">연락 주세요</a> — 위 네 가지만 맞으면 무료로 싣습니다.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <p>
+    행사 정보는 주최 측이 밝힌 것입니다. 신청 전에 주최 측 공지를 한번 더 확인해 주세요.<br>
+    &copy; 2026 Hebron Platform LLC · <a href="/">hebronguide.com</a> · 1 Cor. 10:31
+  </p>
+</footer>
+
+<script>
+(function () {
+  var ko = (document.documentElement.lang || 'ko') !== 'en';
+  try { var s = localStorage.getItem('hg_lang'); if (s === 'en') ko = false; if (s === 'ko') ko = true; } catch (e) {}
+
+  var ICON = {
+    cal: '<path d="M3 4.5h18v17H3z"/><path d="M3 10h18M8 2.5v4M16 2.5v4"/>',
+    pin: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>',
+    home:'<path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/>',
+    won: '<path d="M3 7h18"/><path d="m5 7 3.5 10L12 9l3.5 8L19 7"/><path d="M4 12h16"/>'
+  };
+  function chip(k, txt) {
+    if (!txt) return '';
+    return '<span class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+      + 'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICON[k] + '</svg>'
+      + String(txt).replace(/[<>&]/g, '') + '</span>';
+  }
+
+  var box = document.getElementById('list');
+  // 루트에도, 도시 폴더에도 있을 수 있다. 상대 경로를 먼저 본다.
+  function load() {
+    return fetch('events.json', { cache: 'no-store' })
+      .then(function (r) { if (r.ok) return r; throw 0; })
+      .catch(function () { return fetch('/events.json', { cache: 'no-store' }); });
+  }
+  load()
+    .then(function (r) { return r.ok ? r.json() : { events: [] }; })
+    .then(function (data) {
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var live = (data.events || []).filter(function (e) {
+        if (!e.until) return true;
+        var d = new Date(e.until + 'T00:00:00');
+        return d >= today;                       // 끝난 행사는 저절로 내려간다
+      }).sort(function (a, b) { return (a.until || '') < (b.until || '') ? -1 : 1; });
+
+      if (!live.length) {
+        box.innerHTML = '<div class="empty"><b>' + (ko ? '지금 올라온 행사가 없습니다' : 'No events right now')
+          + '</b>' + (ko ? '새 행사가 열리면 여기에 모입니다.' : 'New events will appear here.') + '</div>';
+        return;
+      }
+      box.innerHTML = live.map(function (e) {
+        var poster = e.poster
+          ? '<img class="shot" src="' + e.poster + '" alt="" loading="lazy">' : '';
+        return '<a class="card" href="' + e.page + '"><div class="card-in">' + poster
+          + '<div class="body">'
+          + '<span class="kind">' + (ko ? (e.kindKo || '') : (e.kindEn || '')) + '</span>'
+          + '<div class="t">' + (ko ? e.titleKo : (e.titleEn || e.titleKo)) + '</div>'
+          + '<div class="lead">' + (ko ? (e.leadKo || '') : (e.leadEn || '')) + '</div>'
+          + '<div class="facts">'
+          + chip('cal', ko ? e.whenKo : e.whenEn)
+          + chip('pin', ko ? e.whereKo : e.whereEn)
+          + chip('home', ko ? e.hostKo : e.hostEn)
+          + chip('won', ko ? e.feeKo : e.feeEn)
+          + '</div>'
+          + (e.sponsored ? '<span class="spon">' + (ko ? 'HebronGuide가 후원하는 행사입니다' : 'Sponsored by HebronGuide') + '</span>' : '')
+          + '</div></div></a>';
+      }).join('');
+    })
+    .catch(function () {
+      box.innerHTML = '<div class="empty"><b>' + (ko ? '목록을 불러오지 못했습니다' : 'Could not load')
+        + '</b>' + (ko ? '잠시 뒤에 다시 열어 주세요.' : 'Please try again shortly.') + '</div>';
+    });
+})();
+</script>
+</body>
+</html>
