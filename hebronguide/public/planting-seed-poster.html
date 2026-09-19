@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>2nd PLANTING SEED CONFERENCE 「환대」 포스터 | HebronGuide</title>
+<meta name="robots" content="index,follow">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#0b0a08;}
+
+/* 포스터는 4:5 비율 안에서 모든 크기를 cqw(컨테이너 너비 비율)로 잡는다.
+   그래야 폰에서도, 행사 페이지 안 iframe에서도, 인쇄에서도 같은 그림이 된다. */
+.stage{width:100%;max-width:1080px;margin:0 auto;}
+.poster{
+  container-type:inline-size;
+  position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;
+  background:
+    radial-gradient(120% 80% at 8% 2%, #F2F1EE 0%, rgba(242,241,238,0) 46%),
+    radial-gradient(130% 90% at 92% 10%, #EDEAE3 0%, rgba(237,234,227,0) 42%),
+    linear-gradient(168deg,#EFEDE8 0%,#F0DFB2 38%,#E9C169 62%,#E3A93F 82%,#DE9A2C 100%);
+}
+/* 종이 결 */
+.poster::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;mix-blend-mode:multiply;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(120,90,40,.10) 0 1px, transparent 1px),
+    radial-gradient(circle at 70% 60%, rgba(120,90,40,.09) 0 1px, transparent 1px),
+    radial-gradient(circle at 45% 85%, rgba(120,90,40,.08) 0 1px, transparent 1px);
+  background-size:7px 7px, 11px 11px, 5px 5px;
+}
+.ink{color:#17150F;}
+
+/* 왼쪽 30% = 제호(위) + 정보(아래) · 오른쪽 70% = 세 기둥 */
+.grid{position:absolute;inset:0;z-index:4;display:grid;
+  grid-template-columns:30.5cqw 1fr;padding:5.0cqw 4.2cqw 4.2cqw 5.0cqw;gap:2.0cqw;}
+.left{display:flex;flex-direction:column;justify-content:space-between;min-width:0;}
+.right{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5cqw;min-width:0;}
+
+/* ── 제호 ───────────────────────────────── */
+.head .n2{display:flex;align-items:center;gap:1.8cqw;}
+.head .n2 b{font-family:'Cinzel',serif;font-weight:900;font-size:6.1cqw;line-height:.9;}
+.head .n2 i{display:block;height:2px;flex:1;background:#17150F;opacity:.85;}
+.head .t{font-family:'Cinzel',serif;font-weight:900;font-size:4.7cqw;line-height:1.12;margin-top:1.0cqw;}
+
+/* ── 환대 (세로) — 오른쪽 위, 3기둥 빈 자리에 얹는다 ─ */
+.hd{position:absolute;right:0;top:-1.0cqw;z-index:1;text-align:center;pointer-events:none;}
+.hd span{display:block;font-family:'Noto Sans KR',sans-serif;font-weight:900;
+  font-size:13.2cqw;line-height:.98;letter-spacing:-.03em;}
+.hd em{display:block;font-style:normal;font-size:4.6cqw;line-height:1;margin:.3cqw 0 .1cqw;opacity:.88;}
+
+/* ── 기둥 ───────────────────────────────── */
+.col{display:flex;flex-direction:column;gap:1.1cqw;position:relative;z-index:2;}
+.col.b{margin-top:0;}
+.col.a{margin-top:22.5cqw;}
+.col.c{margin-top:44.5cqw;}
+
+.card{background:#fff;padding:1.55cqw 1.6cqw;box-shadow:0 .4cqw 1.4cqw rgba(90,60,10,.12);}
+.dayc{padding:2.5cqw 1.6cqw 1.9cqw;text-align:center;}
+.dayc .d{font-family:'Cinzel',serif;font-weight:700;font-size:4.1cqw;line-height:1;}
+.dayc .m{font-family:'Cinzel',serif;font-weight:900;font-size:4.3cqw;line-height:1.1;
+  color:#D9A33A;letter-spacing:.02em;margin-top:.4cqw;}
+
+.les{font-family:'Cinzel',serif;font-weight:700;font-size:1.42cqw;letter-spacing:.2em;
+  display:flex;align-items:center;gap:.8cqw;color:#2B2720;}
+.les i{flex:1;height:1px;background:#C9B98F;}
+.les b{font-weight:700;letter-spacing:0;}
+.who{font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:2.26cqw;
+  line-height:1.3;margin-top:.6cqw;color:#17150F;}
+.org{font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:1.44cqw;word-break:keep-all;
+  line-height:1.35;margin-top:.2cqw;color:#7A7365;}
+.top{font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:2.48cqw;
+  line-height:1.32;margin-top:1.1cqw;color:#17150F;letter-spacing:-.015em;}
+
+/* ── 왼쪽 아래 정보 ─────────────────────── */
+.foot{min-width:0;}
+.when{font-family:'Cinzel',serif;font-weight:900;font-size:5.4cqw;line-height:1.02;}
+.when small{display:block;font-size:4.3cqw;}
+.where{font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:3.1cqw;
+  letter-spacing:.34em;margin-top:.7cqw;}
+.rule{height:1px;background:#17150F;opacity:.42;margin:1.7cqw 0 1.3cqw;}
+.meta{font-family:'Noto Sans KR',sans-serif;font-size:1.74cqw;line-height:1.78;color:#221F18;}
+.meta b{font-weight:700;}
+.meta .sp{display:block;height:.9cqw;}
+
+/* ── 로고 ───────────────────────────────── */
+.brand{margin-top:1.9cqw;}
+.brand .lh{display:flex;flex-direction:column;align-items:center;width:20cqw;}
+.brand svg{width:3.4cqw;height:3.4cqw;color:#17150F;}
+.brand .nm{font-family:'Cinzel',serif;font-weight:700;font-size:2.02cqw;letter-spacing:.18em;margin-top:.4cqw;}
+.brand .sb{font-family:'Cinzel',serif;font-weight:700;font-size:1.24cqw;letter-spacing:.38em;color:#4A4437;}
+.brand .lhline{width:20cqw;height:1px;background:#17150F;opacity:.5;margin:.6cqw 0;}
+.spon{margin-top:1.4cqw;}
+.spon .k{font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:1.6cqw;color:#2B2720;}
+.spon .v{font-family:'Noto Sans KR',sans-serif;font-weight:900;font-size:2.5cqw;margin-top:.2cqw;}
+.spon .v em{font-style:normal;font-family:'Cinzel',serif;font-weight:900;font-size:2.2cqw;}
+
+/* ── 아래 도구 막대 (포스터 바깥) ─────────── */
+.bar{max-width:1080px;margin:0 auto;padding:16px 18px 40px;
+  font-family:'Noto Sans KR',sans-serif;color:rgba(250,243,232,.62);font-size:13px;line-height:1.8;}
+.bar a{color:#E8A33D;text-decoration:none;font-weight:700;}
+.bar .row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px;}
+.bar button,.bar .lnk{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:10px 18px;
+  border-radius:50px;border:1px solid rgba(232,163,61,.45);background:rgba(232,163,61,.12);
+  color:#F5C76E;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:700;
+  cursor:pointer;text-decoration:none;}
+@media print{
+  html,body{background:#fff;}
+  .bar{display:none;}
+  .stage{max-width:none;}
+  @page{size:auto;margin:0;}
+}
+</style>
+</head>
+<body>
+
+<div class="stage">
+<div class="poster ink" id="poster">
+
+  <div class="grid">
+
+    <div class="left">
+      <div class="head">
+        <div class="n2"><b>2nd</b><i></i></div>
+        <div class="t">PLANTING SEED<br>CONFERENCE</div>
+      </div>
+      <div class="foot">
+    <div class="when">2026.11.<small>23 &mdash; 25.</small></div>
+    <div class="where">소망수양관</div>
+    <div class="rule"></div>
+    <div class="meta">
+      <b>기도회 인도</b> &middot; 김선교 선교사<br>
+      <b>전체 진행</b><br>
+      안창국 목사 : 010-7209-2779<br>
+      김희중 목사 : 010-3319-8733
+      <span class="sp"></span>
+      <b>참가비</b> : 20만 원<br>
+      <b>계좌안내</b> : 1000-7614-4298<br>
+      토스뱅크 / 김희중
+    </div>
+
+    <div class="brand">
+      <div class="lh">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2.4 13 5h-2l1-2.6z"/><path d="M9.4 21h5.2"/>
+          <path d="M10 21V9.5h4V21"/><path d="M8.2 9.5h7.6L12 5.6 8.2 9.5z"/>
+          <path d="M6 13.2 3.4 11.6M18 13.2l2.6-1.6"/>
+        </svg>
+        <div class="nm">LIGHTHOUSE</div>
+        <div class="lhline"></div>
+        <div class="sb">MOVEMENT</div>
+      </div>
+      <div class="spon">
+        <div class="k">후원</div>
+        <div class="v">규장 &nbsp; <em>GODpeople</em></div>
+      </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="hd"><span>환</span><em>&#10033;</em><span>대</span></div>
+      <div class="col a">
+      <div class="card dayc"><div class="d">1day</div><div class="m">NOV.23</div></div>
+      <div class="card">
+        <div class="les">LESSON<i></i><b>1</b></div>
+        <div class="who">임형규 목사</div><div class="org">라이트하우스 서울숲</div>
+        <div class="top">환대하지<br>못하는 교회</div>
+      </div>
+      <div class="card">
+        <div class="les">LESSON<i></i><b>2</b></div>
+        <div class="who">김관성 목사</div><div class="org">라이트하우스 낮은담</div>
+        <div class="top">낮은 데로 가는<br>교회</div>
+      </div>
+      <div class="card">
+        <div class="les">LESSON<i></i><b>3</b></div>
+        <div class="who">홍민기 목사</div><div class="org">라이트하우스무브먼트 대표</div>
+        <div class="top">교회는 누구를<br>위해 존재하는가</div>
+      </div>
+    </div>
+      <div class="col b">
+      <div class="card dayc"><div class="d">2day</div><div class="m">NOV.24</div></div>
+      <div class="card">
+        <div class="les">LESSON<i></i><b>4</b></div>
+        <div class="who">김대혁 교수</div><div class="org">총신대</div>
+        <div class="top">낯선 사람을<br>향한 설교</div>
+      </div>
+      <div class="card">
+        <div class="les">LESSON<i></i><b>5</b></div>
+        <div class="who">김남호 대표</div><div class="org">나인후르츠</div>
+        <div class="top">환대의 철학</div>
+      </div>
+      <div class="card">
+        <div class="les">LESSON<i></i><b>6</b></div>
+        <div class="who">이정규 목사</div><div class="org">서울시광교회</div>
+        <div class="top">낯선 사람에게<br>들리는 설교</div>
+      </div>
+      <div class="card">
+        <div class="les">LESSON<i></i><b>7</b></div>
+        <div class="who">여진구 대표</div><div class="org">규장 / 갓피플 대표</div>
+        <div class="top">하나님은 이런<br>사람을 쓰시더라</div>
+      </div>
+      <div class="card">
+        <div class="les">LESSON<i></i><b>8</b></div>
+        <div class="who">김선일 교수</div><div class="org">웨스트민스터 신학대학교</div>
+        <div class="top">환대하는<br>강소교회</div>
+      </div>
+    </div>
+      <div class="col c">
+      <div class="card dayc"><div class="d">3day</div><div class="m">NOV.25</div></div>
+      <div class="card">
+        <div class="les">LESSON<i></i><b>9</b></div>
+        <div class="who">최재영 목사</div><div class="org">라이트하우스 파주</div>
+        <div class="top">라이트하우스의<br>환대</div>
+      </div>
+      <div class="card">
+        <div class="les">LESSON<i></i><b>10</b></div>
+        <div class="who">김동은 목사</div><div class="org">라이트하우스BOC</div>
+        <div class="top">선교적 교회와<br>일터에서의 환대</div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<div class="bar">
+  <div class="row">
+    <button onclick="window.print()">인쇄 &middot; PDF로 저장</button>
+    <a class="lnk" href="/event-planting-seed-2026.html">행사 안내 보기</a>
+  </div>
+  2nd PLANTING SEED CONFERENCE 「환대」 &middot; 2026.11.23&ndash;25 &middot; 소망수양관 &middot; 주최 라이트하우스무브먼트<br>
+  <a href="/">HebronGuide</a>는 이 행사를 후원합니다.
+</div>
+
+<script>
+// 행사 페이지 안(iframe)에 얹힐 때는 아래 도구 막대를 숨긴다
+if (window.self !== window.top) {
+  var b = document.querySelector(".bar"); if (b) b.style.display = "none";
+  document.documentElement.style.background = "transparent";
+  document.body.style.background = "transparent";
+}
+</script>
+</body>
+</html>
