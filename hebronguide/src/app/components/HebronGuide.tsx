@@ -9298,7 +9298,7 @@ function CompactHeroNew() {
           <span style={{ fontSize: 11, color: "#C9A227", fontWeight: 900, lineHeight: 1 }}>✦</span>
           <span style={{ fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 800,
             color: "rgba(255,255,255,0.97)", letterSpacing: "0.04em" }}>
-            {lang === "ko" ? "글로벌 환대 가이드" : "Global Hospitality Guide"}
+            {lang === "ko" ? "글로벌 환대 플랫폼" : "Global Hospitality Platform"}
           </span>
         </div>
       </a>
@@ -11674,7 +11674,10 @@ function PlaceCard({ emoji, name, nameEn, desc, tags, accentColor = MINT, websit
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 14, color: "#ECFDF5" }}>{name}</div>
-          {nameEn && <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{nameEn}</div>}
+          {/* 영어 모드에서는 name 이 이미 영문명이라 같은 이름이 두 번 나왔다. 같으면 한 줄만 그린다. */}
+          {nameEn && nameEn.trim().toLowerCase() !== (name || "").trim().toLowerCase() && (
+            <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{nameEn}</div>
+          )}
           {renderDescWithLinks(desc, accentColor)}
           <ContactRow website={website} email={email} phone={phone} desc={desc} accentColor={accentColor} />
           {tags && (
@@ -16171,7 +16174,7 @@ function getCityChurches(slug: string, lang: string) {
         nameEn: "Global Mission Church of Greater Seattle",
         desc: ko
           ? "\u2728 대표목사: 김성수 목사\n\ud83d\udd50 주일 오전 11시 (태평양시) · 온라인으로 어디서나 함께\n\ud83c\udfe0 가정에서 모이는 교회 · 목장은 린우드·머킬티오 가정에서\n\ud83c\udf31 새 세대 사역 (유아~12학년)\n\ud83d\udcde 425-350-0191\n\ud83d\udd17 ijiguchon.org"
-          : "\u2728 Lead Pastor: Sung Soo Kim\n\ud83d\udd50 Sundays 11:00 AM (Pacific) · Join online from anywhere\n\ud83c\udfe0 A church that meets in homes · Mokjang in Lynnwood & Mukilteo\n\ud83c\udf31 Next generation ministry (infants–12th grade)\n\ud83d\udcde 425-350-0191\n\ud83d\udd17 ijiguchon.org",
+          : "\u2728 Lead Pastor: Sung Soo Kim\n\ud83d\udd50 Sundays 11:00 AM (Pacific) · Join online from anywhere\n\ud83c\udfe0 A church that meets in homes · House churches in Lynnwood & Mukilteo\n\ud83c\udf31 Next generation ministry (infants–12th grade)\n\ud83d\udcde 425-350-0191\n\ud83d\udd17 ijiguchon.org",
         tags: ko ? ["린우드", "시애틀", "헤브론파트너"] : ["Lynnwood", "Seattle", "HebronPartner"],
         website: "https://ijiguchon.org",
         email: "info@ijiguchon.org",
@@ -16182,7 +16185,7 @@ function getCityChurches(slug: string, lang: string) {
         nameEn: "Seattle Woori Church",
         desc: ko
           ? "✨ 담임: 최요환 목사\n📍 Bellevue, WA\n🏠 주일예배 · 목장 · 삶 공부 · 이민자 환영\n🔗 seattlewoori.org"
-          : "✨ Lead Pastor: Yohwan Choi\n📍 Bellevue, WA\n🏠 Sunday Worship · Mokjang · Life Studies · Welcoming Immigrants\n🔗 seattlewoori.org",
+          : "✨ Lead Pastor: Yohwan Choi\n📍 Bellevue, WA\n🏠 Sunday Worship · House Church · Life Studies · Welcoming Immigrants\n🔗 seattlewoori.org",
 
         tags: ko ? ["벨뷰", "시애틀"] : ["Bellevue", "Seattle"],
         website: "http://www.seattlewoori.org/#n",
@@ -16380,7 +16383,7 @@ function getCityChurches(slug: string, lang: string) {
         desc: ko
           ? "✨ 담임: 임흥빈 목사 (Ben Im)\n📍 White Rock, BC, Canada (밴쿠버 남부)\n🏠 새가족모임 · 목장 사역 · 영혼 구원과 제자 양육\n🕐 예배: 오전 10:30\n📞 (604) 537-8789\n✉️ whiterockkmc@gmail.com"
           : "✨ Lead Pastor: Ben Im\n📍 White Rock, BC, Canada (South Vancouver)\n🏠 New members' fellowship · Cell group ministry · Soul-winning & disciple-making\n🕐 Service: 10:30 AM\n📞 (604) 537-8789\n✉️ whiterockkmc@gmail.com",
-        tags: ko ? ["감리교", "밴쿠버", "화이트락", "목장사역", "새가족"] : ["Methodist", "Vancouver", "White Rock", "Cell Group"],
+        tags: ko ? ["감리교", "밴쿠버", "화이트락", "목장사역", "새가족"] : ["Methodist", "Vancouver", "White Rock", "House Church"],
         phone: "6045378789",
         email: "whiterockkmc@gmail.com",
       },
@@ -16516,7 +16519,7 @@ function getCityChurches(slug: string, lang: string) {
         nameEn: "Louisville Saehan Presbyterian Church",
         desc: ko
           ? "✨ 담임: 김상헌 목사\n📍 Louisville, KY\n🏠 목장 소그룹 모임 운영\n🔗 saehan.org"
-          : "✨ Lead Pastor: Sangheon Kim\n📍 Louisville, KY\n🏠 Small group Mokjang meetings\n🔗 saehan.org",
+          : "✨ Lead Pastor: Sangheon Kim\n📍 Louisville, KY\n🏠 House church small groups\n🔗 saehan.org",
         tags: ko ? ["루이빌", "장로교", "켄터키"] : ["Louisville", "Presbyterian", "Kentucky"],
         website: "https://www.saehan.org",
       },
@@ -17063,7 +17066,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                       {/* 피처드 헤더 바 */}
                       <div style={{ background: "rgba(110,231,183,0.1)", borderBottom: "1px solid rgba(110,231,183,0.2)", padding: "8px 16px", display: "flex", alignItems: "center", gap: 8 }}>
                         <span style={{ fontSize: 10, fontWeight: 800, color: "#6EE7B7", fontFamily: "Manrope,sans-serif", letterSpacing: "0.04em" }}>
-                          Hebron 협력교회
+                          {lang === "ko" ? "Hebron 협력교회" : "Hebron Partner Church"}
                         </span>
                         {isHome(c) && (
                           <span style={{ fontSize: 9, fontWeight: 800, color: "#C9A227", fontFamily: "Manrope,sans-serif" }}>{lang === "ko" ? "가정교회" : "House Church"}</span>

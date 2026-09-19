@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script>
+/* 언어 결정 — 고른 것 > 윈도우·브라우저 언어 > 영어. 우선 두 언어만. */
+(function(){
+  var lang=null;
+  try{ var s=localStorage.getItem('hg_lang'); if(s==='ko'||s==='en') lang=s; }catch(e){}
+  if(!lang){
+    var p=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||''];
+    lang='en';
+    for(var i=0;i<p.length;i++){ if(String(p[i]||'').toLowerCase().indexOf('ko')===0){ lang='ko'; break; } }
+  }
+  document.documentElement.lang=lang;
+})();
+</script>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J74CX611KK"></script>
 <script>
@@ -20,7 +33,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <meta name="apple-mobile-web-app-title" content="HebronGuide"/>
   <title>HebronGuide — 낯선 도시, 이미 누군가 기다렸습니다</title>
-  <meta name="description" content="HebronGuide — 전 세계 82개+ 도시. 낯선 도시에서 처음 맞이하는 따뜻한 얼굴. 정보가 아닌 사람으로 연결되는 글로벌 환대 가이드."/>
+  <meta name="description" content="HebronGuide — 전 세계 82개+ 도시. 낯선 도시에서 처음 맞이하는 따뜻한 얼굴. 정보가 아닌 사람으로 연결되는 글로벌 환대 플랫폼."/>
   <meta name="theme-color" content="#0d1117"/>
   <meta property="og:title" content="HebronGuide — 낯선 도시, 이미 누군가 기다렸습니다"/>
   <meta property="og:description" content="전 세계 82개+ 도시. 낯선 도시에서 처음 맞이하는 따뜻한 얼굴. 정보가 아닌 사람으로 연결됩니다."/>
@@ -1174,14 +1187,10 @@ function closeMenu(){
 }
 document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu(); });
 
-// 저장된 언어 복원
+// 언어 버튼 글자만 맞춘다. 실제 언어는 문서 머리의 이른 스크립트가 이미 정했다.
 (function(){
-  var saved=localStorage.getItem('hg_lang');
-  if(saved==='en'){
-    document.documentElement.lang='en';
-    var label=document.getElementById('lang-label');
-    if(label)label.textContent='한국어';
-  }
+  var label=document.getElementById('lang-label');
+  if(label) label.textContent = (document.documentElement.lang==='en') ? '한국어' : 'English';
 })();
 
 /* ── 히어로 도시 바로가기 — 입력 즉시 이동 ──
