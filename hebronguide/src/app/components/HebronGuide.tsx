@@ -9548,11 +9548,12 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
   };
 
   // 여정 4단계 — 각 Row에 레이블
+  // 이모지 대신 SVG 아이콘 — 이미 있는 QM_ICON_MAP 을 그대로 쓴다 (목사님 지시 2026-09-19)
   const PHASES = [
-    { labelKo: "✈️ Day 0 — 도착·입국",   labelEn: "✈️ Day 0 — Arrival & Entry" },
-    { labelKo: "🏠 첫 주 — 생활 기반",    labelEn: "🏠 Week 1 — Essential Setup" },
-    { labelKo: "🌿 생활 · 커뮤니티",       labelEn: "🌿 Daily Life & Community" },
-    { labelKo: "📈 심화 · 성장",           labelEn: "📈 Growth & More" },
+    { icon: "plane-landing", labelKo: "Day 0 — 도착·입국", labelEn: "Day 0 — Arrival & Entry" },
+    { icon: "home",          labelKo: "첫 주 — 생활 기반",  labelEn: "Week 1 — Essential Setup" },
+    { icon: "users",         labelKo: "생활 · 커뮤니티",     labelEn: "Daily Life & Community" },
+    { icon: "book-open",     labelKo: "심화 · 성장",         labelEn: "Growth & More" },
   ];
 
   const renderQMItem = (item: typeof QUICK_MENU[0], i: number) => {
@@ -9664,11 +9665,18 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
         <div key={phase} style={{ marginBottom: phase < 3 ? 18 : 0 }}>
           {/* 단계 레이블 */}
           <div style={{
+            display: "flex", alignItems: "center", gap: 5,
             fontFamily: "-apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif",
             fontWeight: 600, fontSize: 11, color: "#8E8E93",
             letterSpacing: "0.2px", marginBottom: 12, paddingLeft: 2,
           }}>
-            {ko ? PHASES[phase].labelKo : PHASES[phase].labelEn}
+            {(() => {
+              const PhaseIcon = QM_ICON_MAP[PHASES[phase].icon];
+              return PhaseIcon
+                ? <PhaseIcon size={13} color="#8E8E93" strokeWidth={2} />
+                : null;
+            })()}
+            <span>{ko ? PHASES[phase].labelKo : PHASES[phase].labelEn}</span>
           </div>
           {/* 4열 아이콘 그리드 */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", columnGap: 8 }}>
@@ -13586,10 +13594,11 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
 function HebronFlywheelBar({ lang }: { lang: string }) {
   // ✅ 도시 수 자동 계산 — 도시 추가 시 자동 반영 (수동 수정 불필요)
   const LIVE_CITY_COUNT = HEBRON_CITIES.length;
+  // 이모지 대신 SVG — 이미 있는 QM_ICON_MAP 을 쓴다 (목사님 지시 2026-09-19)
   const stats = [
-    { emoji: "🌍", value: String(LIVE_CITY_COUNT), label: lang === "ko" ? "개 도시" : "Cities" },
-    { emoji: "🤝", value: "4", label: lang === "ko" ? "기관 파트너" : "Partners" },
-    { emoji: "🌐", value: "2", label: lang === "ko" ? "개 언어" : "Languages" },
+    { icon: "map",    value: String(LIVE_CITY_COUNT), label: lang === "ko" ? "개 도시" : "Cities" },
+    { icon: "users",  value: "4", label: lang === "ko" ? "기관 파트너" : "Partners" },
+    { icon: "book-open", value: "2", label: lang === "ko" ? "개 언어" : "Languages" },
   ];
   return (
     <div style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
@@ -13601,7 +13610,10 @@ function HebronFlywheelBar({ lang }: { lang: string }) {
             padding: "10px 16px",
             borderRight: i < stats.length - 1 ? "1px solid rgba(0,0,0,0.06)" : "none",
           }}>
-            <span style={{ fontSize: 14 }}>{s.emoji}</span>
+            {(() => {
+              const StatIcon = QM_ICON_MAP[s.icon];
+              return StatIcon ? <StatIcon size={14} color="#8E8E93" strokeWidth={2} /> : null;
+            })()}
             <div>
               <span style={{ fontFamily: "-apple-system,'SF Pro Display',Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1C1C1E", letterSpacing: "-0.3px" }}>{s.value}</span>
               <span style={{ fontFamily: "-apple-system,'SF Pro Text',Manrope,sans-serif", fontSize: 11, color: "#8E8E93", marginLeft: 3 }}>{s.label}</span>
@@ -30591,8 +30603,8 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
 // 새 소식이 있을 때 이 BANNER_ID와 메시지만 수정하면 자동 재표시
 const BANNER_ID = "update-2026-05-27-search"; // 바꾸면 모든 사용자에게 다시 표시
 const BANNER_MSG = {
-  ko: "🔍 새 기능: 전 세계 82개 도시 한인 업소·교회 통합 검색이 열렸습니다!",
-  en: "🔍 New: Search Korean businesses & churches across 82 cities worldwide!",
+  ko: "새 기능: 전 세계 82개 도시 한인 업소·교회 통합 검색이 열렸습니다!",
+  en: "New: Search Korean businesses & churches across 82 cities worldwide!",
 };
 const BANNER_KAKAOTALK = ""; // 카카오톡 채널 링크 (개설 후 입력)
 
