@@ -843,7 +843,118 @@ import {
   Network,
   ShoppingBag,
   Building2,
+  Check,
+  CircleCheck,
+  Handshake,
+  Leaf,
+  Lightbulb,
+  Megaphone,
+  Newspaper,
+  PenLine,
+  PlaneLanding,
+  Smartphone,
+  Sparkles,
+  StickyNote,
+  Store,
+  Trophy,
+  Coffee,
+  Landmark,
+  Beef,
+  Hospital,
+  Soup,
+  Waves,
+  Drumstick,
+  Bed,
+  Palette,
+  School,
+  TrainFront,
+  Flower2,
+  Mountain,
+  Umbrella,
+  Banknote,
+  Building,
+  Laptop,
+  Fish,
+  Fuel,
+  Salad,
+  PartyPopper,
+  Bus,
+  Rocket,
+  Pill,
+  Trees,
+  Flame,
+  Wallet,
+  ClipboardList,
+  Headphones,
+  Compass,
+  Upload,
+  TriangleAlert,
+  PlaneTakeoff,
+  Sprout,
+  Baby,
+  Ticket,
+  Shirt,
+  Dumbbell,
+  Scissors,
+  Wrench,
 } from "lucide-react";
+
+
+/* ─────────────────────────────────────────
+   이모지 -> SVG 아이콘 (목사님 지시 2026-09-19)
+   이모지를 '변수로' 받는 자리(ScreenHeader·알림·카드)를 위한 대응표.
+   매핑이 없으면 원래 글자를 그대로 그린다 — 빈칸이 생기지 않는다.
+───────────────────────────────────────── */
+const EMOJI_ICON: Record<string, React.ComponentType<{ size?: number; strokeWidth?: number; color?: string }>> = {
+  "\u2615": Coffee, "\uD83C\uDFDB\uFE0F": Landmark, "\uD83C\uDFDB": Landmark,
+  "\uD83E\uDD69": Beef, "\uD83C\uDF96": GraduationCap, "\uD83C\uDF93": GraduationCap,
+  "\uD83C\uDFEA": Store, "\uD83C\uDFE5": Hospital, "\u2B50": Star,
+  "\uD83C\uDF5C": Soup, "\uD83C\uDF72": Soup, "\uD83C\uDF5B": Utensils,
+  "\uD83C\uDF7D\uFE0F": Utensils, "\uD83C\uDF7D": Utensils, "\uD83E\uDD62": Utensils,
+  "\uD83C\uDF57": Drumstick, "\uD83C\uDF56": Beef, "\uD83E\uDD58": Soup,
+  "\uD83E\uDD57": Salad, "\uD83C\uDF63": Fish, "\uD83D\uDC1F": Fish,
+  "\uD83C\uDF2E": Utensils, "\uD83E\uDDCB": Coffee, "\uD83C\uDF5B\uFE0F": Utensils,
+  "\uD83C\uDF5B ": Utensils, "\uD83C\uDF5A": Soup, "\uD83C\uDF5B\u200D": Utensils,
+  "\uD83C\uDF0A": Waves, "\uD83C\uDF3F": Leaf, "\uD83D\uDE97": Car,
+  "\uD83D\uDCBC": Briefcase, "\u2696\uFE0F": Scale, "\u2696": Scale,
+  "\uD83C\uDFE0": Home, "\uD83C\uDFD8\uFE0F": Building, "\uD83C\uDFD8": Building,
+  "\uD83C\uDFA8": Palette, "\uD83D\uDED2": ShoppingCart, "\uD83D\uDCDA": BookOpen,
+  "\uD83C\uDFEB": School, "\u26EA": Church, "\uD83D\uDE87": TrainFront,
+  "\uD83D\uDE86": TrainFront, "\uD83D\uDE8C": Bus, "\uD83C\uDF38": Flower2,
+  "\uD83C\uDFD4\uFE0F": Mountain, "\uD83C\uDFD4": Mountain, "\uD83D\uDCA1": Lightbulb,
+  "\uD83D\uDD25": Flame, "\uD83D\uDC8A": Pill, "\uD83C\uDFD9\uFE0F": Building2,
+  "\uD83C\uDFD9": Building2, "\uD83D\uDCF1": Smartphone, "\uD83C\uDFD6\uFE0F": Umbrella,
+  "\uD83C\uDFD6": Umbrella, "\uD83D\uDCB5": Banknote, "\uD83D\uDCB0": Banknote,
+  "\uD83D\uDCB5\uFE0F": Banknote, "\uD83C\uDF32": Trees, "\uD83C\uDF33": Trees,
+  "\uD83D\uDCF0": Newspaper, "\uD83C\uDF09": Waves, "\uD83C\uDF06": Building2,
+  "\uD83C\uDFE6": Landmark, "\uD83D\uDCCB": ClipboardList, "\uD83D\uDCBB": Laptop,
+  "\uD83C\uDF0D": Globe, "\uD83C\uDF0E": Globe, "\uD83C\uDF0F": Globe, "\uD83C\uDF10": Globe,
+  "\u26FD": Fuel, "\uD83C\uDF89": PartyPopper, "\u26BD": Trophy, "\uD83C\uDFC8": Trophy,
+  "\uD83C\uDFC6": Trophy, "\uD83E\uDD1D": Handshake, "\uD83D\uDE80": Rocket,
+  "\uD83D\uDEC2": Building2, "\uD83C\uDF3A": Flower2, "\uD83C\uDF3C": Flower2,
+  "\u2708\uFE0F": Plane, "\u2708": Plane, "\uD83D\uDEEC": PlaneLanding,
+  "\uD83D\uDEEB": PlaneTakeoff, "\uD83D\uDCAC": MessageCircle, "\uD83D\uDD0D": Search,
+  "\uD83D\uDDFA\uFE0F": Map, "\uD83D\uDDFA": Map, "\uD83C\uDFDE\uFE0F": Trees,
+  "\uD83C\uDFDE": Trees, "\uD83C\uDFE2": Building2, "\uD83D\uDCE2": Megaphone,
+  "\uD83D\uDD04": RefreshCw, "\u2705": CircleCheck, "\u2713": Check,
+  "\uD83C\uDF31": Sprout, "\uD83D\uDC64": Users, "\uD83D\uDC65": Users,
+  "\uD83C\uDFA7": Headphones, "\uD83E\uDDED": Compass, "\uD83D\uDCE4": Upload,
+  "\uD83D\uDCF2": Smartphone, "\u26A0\uFE0F": TriangleAlert, "\u26A0": TriangleAlert,
+  "\uD83D\uDECD\uFE0F": ShoppingBag, "\uD83D\uDECD": ShoppingBag,
+  "\uD83C\uDF7F": Utensils, "\uD83C\uDFAB": Ticket, "\uD83D\uDC55": Shirt,
+  "\uD83C\uDFCB\uFE0F": Dumbbell, "\u2702\uFE0F": Scissors, "\uD83D\uDD27": Wrench,
+  "\uD83D\uDECB\uFE0F": Home, "\uD83D\uDC76": Baby, "\uD83C\uDFEB\uFE0F": School,
+  "\u2726": Sparkles, "\uD83C\uDF1F": Sparkles, "\uD83C\uDF3E": Sprout,
+};
+
+/** 이모지 자리를 SVG 로 그린다. 대응표에 없으면 원래 글자를 그대로 둔다. */
+function EmojiIcon({ emoji, size = 18, strokeWidth = 1.8, color }:
+  { emoji?: string; size?: number; strokeWidth?: number; color?: string }) {
+  if (!emoji) return null;
+  const Ico = EMOJI_ICON[emoji] || EMOJI_ICON[emoji.replace(/\uFE0F/g, "")];
+  if (!Ico) return <span style={{ fontSize: size }}>{emoji}</span>;
+  return <Ico size={size} strokeWidth={strokeWidth} color={color} />;
+}
 
 /* Quick Menu 아이콘 맵 */
 const QM_ICON_MAP: Record<string, React.ComponentType<{size?: number; color?: string; strokeWidth?: number}>> = {
@@ -2098,7 +2209,7 @@ const TOP5_RESTAURANTS_MEMPHIS: Top5Item[] = [
     address: "5940 Mt. Moriah Rd, Memphis TN 38115",
     phone: "(901) 363-8902", hours: "월-토 10am-8pm · 일 1pm-7pm",
     rating: 4.4, ratingCount: "10+",
-    why: "✅ 반찬·김치\n1996년부터 이어온 한인 마트. 같은 상가에 한식당이 함께 있어 장보기와 식사를 한 번에. 반찬을 사다 놓으면 정착 초기 식비가 확 줄어듭니다",
+    why: "반찬·김치\n1996년부터 이어온 한인 마트. 같은 상가에 한식당이 함께 있어 장보기와 식사를 한 번에. 반찬을 사다 놓으면 정착 초기 식비가 확 줄어듭니다",
     tip: "정착 첫 주에 반찬·김치·쌀을 여기서 한 번에 준비하세요", website: "asianamarketmemphis.com" },
   { rank: 4, emoji: "🍜", nameKo: "The Crazy Noodle — 아시안 국수", nameEn: "The Crazy Noodle",
     address: "2015 Madison Ave, Memphis TN 38104",
@@ -2214,17 +2325,17 @@ const TOP5_RESTAURANTS_NASHVILLE: Top5Item[] = [
 
 // ── 멤피스 정착 TOP5 ──────────────────────────────────────
 // 한인 인구는 작지만(약 650명) 한인 교회가 4곳 있는 도시. 교회가 사실상의 커뮤니티 허브.
-// ✅ = 공식 사이트에서 주소·전화 직접 대조 확인 (2026-07-23)
+// = 공식 사이트에서 주소·전화 직접 대조 확인 (2026-07-23)
 const TOP5_SETTLE_MEMPHIS: Top5Item[] = [
   { rank: 1, emoji: "🏪", nameKo: "아시아나 마켓 (한인 마트)", nameEn: "Asiana Market — Korean Grocery",
     address: "5940 Mt. Moriah Rd, Memphis TN 38115",
     phone: "(901) 363-8902", hours: "월-토 10am-8pm · 일 1pm-7pm",
-    why: "✅ 1996년부터 가족이 운영해 온 멤피스 유일의 한인 마트. 김치·반찬·정육·라면·화장품까지. 멤피스 한인 정보가 모이는 곳 — 도착하면 가장 먼저 들르세요",
+    why: "1996년부터 가족이 운영해 온 멤피스 유일의 한인 마트. 김치·반찬·정육·라면·화장품까지. 멤피스 한인 정보가 모이는 곳 — 도착하면 가장 먼저 들르세요",
     tip: "같은 상가에 한식당이 함께 있습니다. 마트 게시판에서 방·차·구인 정보 확인", website: "asianamarketmemphis.com" },
   { rank: 2, emoji: "⛪", nameKo: "멤피스한인침례교회", nameEn: "Korean Baptist Church of Memphis",
     address: "9650 E. Shelby Dr, Collierville TN 38017",
     phone: "(901) 240-8834", hours: "주일 예배",
-    why: "✅ 콜리어빌 소재 한인 침례교회. 남침례회(SBC) 계열. 새로 오신 분들의 정착을 돕는 오랜 전통",
+    why: "콜리어빌 소재 한인 침례교회. 남침례회(SBC) 계열. 새로 오신 분들의 정착을 돕는 오랜 전통",
     tip: "예배 시간은 전화 또는 홈페이지에서 확인하세요", website: "kbcm.org" },
   { rank: 3, emoji: "⛪", nameKo: "멤피스 한인교회", nameEn: "Korean Church of Memphis",
     address: "7565 Macon Rd, Cordova TN 38018",
@@ -2249,12 +2360,12 @@ const TOP5_SETTLE_HUNTSVILLE: Top5Item[] = [
   { rank: 1, emoji: "🏛️", nameKo: "북앨라배마 한인회 (NAKA)", nameEn: "North Alabama Korean Association",
     address: "216 Timber Creek Dr, Madison AL 35757",
     phone: "(256) 417-1511", hours: "이메일 문의 nakahsv@gmail.com",
-    why: "✅ 헌츠빌·매디슨 한인 커뮤니티의 중심. 501(c)(3) 정식 비영리. 한국학교 운영, 문화 행사, 주애틀랜타 총영사관 순회영사 안내까지. 헌츠빌에 오셨다면 가장 먼저 연락하세요",
+    why: "헌츠빌·매디슨 한인 커뮤니티의 중심. 501(c)(3) 정식 비영리. 한국학교 운영, 문화 행사, 주애틀랜타 총영사관 순회영사 안내까지. 헌츠빌에 오셨다면 가장 먼저 연락하세요",
     tip: "K-Pop 커버 콘테스트·애틀랜타 체전 등 행사가 활발합니다. 페이스북·인스타그램도 운영", website: "nakahsv.com" },
   { rank: 2, emoji: "📚", nameKo: "북앨라배마 한국학교", nameEn: "North Alabama Korean School",
     address: "한인회(NAKA) 운영",
     phone: "(256) 417-1511", hours: "학기 중 주말",
-    why: "✅ 한인회가 운영하는 한국어 학교. 2세 자녀의 한국어·한국 문화 교육. 학부모 네트워크가 자연스럽게 형성되는 곳",
+    why: "한인회가 운영하는 한국어 학교. 2세 자녀의 한국어·한국 문화 교육. 학부모 네트워크가 자연스럽게 형성되는 곳",
     tip: "학기 시작 전 등록 문의. 자녀가 있는 가정은 여기서 이웃을 만나게 됩니다", website: "nakahsv.com" },
   { rank: 3, emoji: "⛪", nameKo: "헌츠빌 제일순복음교회", nameEn: "Huntsville Korean First Assembly of God",
     address: "2904 Pike Ave NW, Huntsville AL 35810",
@@ -2945,7 +3056,7 @@ const TOP5_SETTLE_VANCOUVER: Top5Item[] = [
   { rank: 3, emoji: "🚗", nameKo: "ICBC — BC 드라이버 라이선스", nameEn: "ICBC — BC Driver's Licence",
     address: "가까운 ICBC Driver Licensing Office",
     phone: "(800) 950-1498",
-    why: "BC주 운전면허. 한국 면허 소지자 → 지식 시험(Knowledge Test) 면제!\n✅ BC는 한국과 교환 협정 → 도로주행시험만 응시\n⚠️ 90일 내 BC 면허로 전환 의무",
+    why: "BC주 운전면허. 한국 면허 소지자 → 지식 시험(Knowledge Test) 면제!\nBC는 한국과 교환 협정 → 도로주행시험만 응시\n⚠️ 90일 내 BC 면허로 전환 의무",
     tip: "🔗 icbc.com 온라인 예약. 한국 면허 지참 시 지식시험 면제 확인 요청", website: "icbc.com" },
   { rank: 4, emoji: "🏥", nameKo: "MSP — BC 무료 의료보험", nameEn: "MSP — BC Medical Services Plan",
     address: "Health Insurance BC (온라인 신청 가능)",
@@ -4865,52 +4976,52 @@ const TOP5_SETTLE_PRINCGEORGE: Top5Item[] = [
   { rank: 1, emoji: "🤝", nameKo: "IMSS — 이민자·다문화 서비스 협회", nameEn: "Immigrant and Multicultural Services Society (IMSS)",
     address: "1270 2nd Ave, Prince George, BC V2L 3B3",
     phone: "(250) 562-2900", hours: "월-목 9am-4:30pm, 금 9am-4pm",
-    why: "✅ BC주 공인 이민자 정착기관. 한국어 통역·정착 상담·취업 지원·영어 수업 모두 무료. 프린스조지 도착 후 첫 방문지",
+    why: "BC주 공인 이민자 정착기관. 한국어 통역·정착 상담·취업 지원·영어 수업 모두 무료. 프린스조지 도착 후 첫 방문지",
     tip: "한국어 상담 가능. 방문 전 전화 예약 권장", website: "imss.ca" },
   { rank: 2, emoji: "📋", nameKo: "Service Canada — SIN (사회보험번호)", nameEn: "Service Canada Centre — Social Insurance Number",
     address: "1363 4th Ave, Prince George, BC V2L 3J6",
     phone: "1-800-206-7218", hours: "월-금 8:30am-4pm",
-    why: "✅ 캐나다 취업 전 SIN 필수. PR카드·노동허가증+여권 지참. 당일 발급 가능",
+    why: "캐나다 취업 전 SIN 필수. PR카드·노동허가증+여권 지참. 당일 발급 가능",
     tip: "온라인 예약 권장. servicecanada.gc.ca", website: "servicecanada.gc.ca" },
   { rank: 3, emoji: "🚗", nameKo: "Service BC / ICBC 운전면허 오피스", nameEn: "Service BC / ICBC Driver Licensing",
     address: "1044 5th Ave, Prince George, BC V2L 5G4",
     phone: "(250) 565-4488", hours: "월-금 9am-4:30pm",
-    why: "✅ BC 운전면허 발급·차량등록·BC Services Card (건강보험카드). 한국 면허 전환 필요 (90일 이내)",
+    why: "BC 운전면허 발급·차량등록·BC Services Card (건강보험카드). 한국 면허 전환 필요 (90일 이내)",
     tip: "도로시험: 4001 15th Ave에서 진행. 지식시험은 당일 가능", website: "icbc.com" },
   { rank: 4, emoji: "🏥", nameKo: "MSP — BC 의료보험 (건강보험)", nameEn: "BC Medical Services Plan (MSP)",
     address: "온라인 신청: www2.gov.bc.ca",
     phone: "1-800-663-7100", hours: "월-금 8am-4:30pm",
-    why: "✅ BC주 모든 주민 의무 가입. 3개월 대기 기간 있음 (이민자). 임시 민간보험 필요 (Blue Cross 등)",
+    why: "BC주 모든 주민 의무 가입. 3개월 대기 기간 있음 (이민자). 임시 민간보험 필요 (Blue Cross 등)",
     tip: "ICBC 오피스에서 Photo BC Services Card 동시 발급", website: "www2.gov.bc.ca" },
   { rank: 5, emoji: "🏥", nameKo: "북BC대학병원 (UHNBC) — 응급실", nameEn: "University Hospital of Northern BC — Emergency",
     address: "1475 Edmonton St, Prince George, BC V2M 1S2",
     phone: "(250) 565-2000", hours: "24시간",
-    why: "✅ BC 북부 최대 종합병원 (Level III 외상센터). 응급 24시간. 한국어 통역 요청 가능 (입원 시)",
+    why: "BC 북부 최대 종합병원 (Level III 외상센터). 응급 24시간. 한국어 통역 요청 가능 (입원 시)",
     tip: "응급실 외 Walk-in 이용 가능. 811 (HealthLink BC) 무료 간호사 상담", website: "northernhealth.ca" },
   { rank: 6, emoji: "🛒", nameKo: "마르케 인터내셔널 — 아시안 식품점", nameEn: "Marquee International Food & Gifts",
     address: "1193 5th Ave, Prince George, BC V2L 3L1",
     phone: "(250) 596-7000", hours: "월-토 10am-6pm, 일 12pm-5pm",
-    why: "✅ 프린스조지 유일 아시안 식품점. 한국 라면·고추장·참기름·냉동 만두. 한인 이민자 필수 방문",
+    why: "프린스조지 유일 아시안 식품점. 한국 라면·고추장·참기름·냉동 만두. 한인 이민자 필수 방문",
     tip: "재고가 제한적. 밴쿠버 방문 시 H-Mart에서 대량 구매 권장", website: "marqueeint.ca" },
   { rank: 7, emoji: "✈️", nameKo: "프린스조지 공항 (YXS)", nameEn: "Prince George Airport (YXS)",
     address: "2881 Airport Road, Prince George, BC V2N 0G2",
     phone: "(250) 614-7000", hours: "항공편에 따라 운영",
-    why: "✅ 밴쿠버(YVR) 직항 약 1시간. Air Canada·WestJet 운항. 본국 방문 시 밴쿠버 경유",
+    why: "밴쿠버(YVR) 직항 약 1시간. Air Canada·WestJet 운항. 본국 방문 시 밴쿠버 경유",
     tip: "인천→밴쿠버 직항 후 YXS 국내선 연결 최적 루트", website: "pgairport.ca" },
   { rank: 8, emoji: "🏦", nameKo: "RBC 로열뱅크 — 뉴캐나다 패키지", nameEn: "RBC Royal Bank — New to Canada Banking",
     address: "550 Victoria St, Prince George, BC V2L 2K1",
     phone: "(250) 960-4530", hours: "월-금 9:30am-5pm, 토 9:30am-4pm",
-    why: "✅ 이민자 전용 '뉴투캐나다' 패키지: 1년 수수료 무료. 영어+한국어 가능 직원 배치",
+    why: "이민자 전용 '뉴투캐나다' 패키지: 1년 수수료 무료. 영어+한국어 가능 직원 배치",
     tip: "여권+PR카드+거주지 증명 지참. 도착 후 가능한 빨리 개설", website: "rbc.com" },
   { rank: 9, emoji: "🏙️", nameKo: "프린스조지 시청 / 311 서비스", nameEn: "City of Prince George — 311 Service",
     address: "1100 Patricia Blvd, Prince George, BC V2L 3V9",
     phone: "311 또는 250-561-7600", hours: "월-금 8:30am-5pm",
-    why: "✅ 쓰레기수거·공원·허가증·지역 서비스 모든 문의. 311 전화로 한국어 통역 요청 가능",
+    why: "쓰레기수거·공원·허가증·지역 서비스 모든 문의. 311 전화로 한국어 통역 요청 가능",
     tip: "버스 스케줄·리크리에이션 등록·이웃 민원 모두 311", website: "princegeorge.ca" },
   { rank: 10, emoji: "🚌", nameKo: "BC Transit 버스 — 프린스조지", nameEn: "BC Transit Prince George",
     address: "시내 전역 18개 노선",
     phone: "(250) 563-0011", hours: "노선별 상이 (6am-11pm)",
-    why: "✅ 대중교통 18개 노선. 1회 C$2.50. 월정기권 절약. UNBC 학생 U-PASS 무제한",
+    why: "대중교통 18개 노선. 1회 C$2.50. 월정기권 절약. UNBC 학생 U-PASS 무제한",
     tip: "Route 10: 다운타운↔UNBC | Route 11: 다운타운↔Hart Hwy", website: "bctransit.com/prince-george" },
   // ── 추가 항목 11-25 ──
   { rank: 11, emoji: "🌐", nameKo: "BC Hydro — 전기 개설", nameEn: "BC Hydro — New Electricity Account",
@@ -8388,7 +8499,7 @@ function ComingSoonCard({ lang, accentColor }: { lang: string; accentColor?: str
       background: "rgba(255,255,255,0.03)", border: "1px dashed rgba(255,255,255,0.12)",
       borderRadius: 16, padding: "28px 20px", textAlign: "center", marginBottom: 16,
     }}>
-      <div style={{ fontSize: 28, marginBottom: 10 }}>🌿</div>
+      <div style={{ marginBottom: 10 }}><Leaf size={24} strokeWidth={2} /></div>
       <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14,
         color: accentColor ?? "rgba(236,253,245,0.7)", marginBottom: 6 }}>
         {lang === "ko" ? "준비 중입니다" : "Coming Soon"}
@@ -8407,7 +8518,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
   return (
     <div style={{ marginBottom: 24 }}>
       <div style={{ padding: "0 16px", marginBottom: 12, display: "flex", alignItems: "center", gap: 6 }}>
-        <span style={{ fontSize: 16 }}>⭐</span>
+        <Star size={14} strokeWidth={2} />
         <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 15, color: "#ECFDF5" }}>
           {lang === "ko" ? "TOP 10 베스트 — 검증된 추천" : "TOP 10 Best — Verified Picks"}
         </span>
@@ -8431,7 +8542,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
               }}>
                 {item.rank}
               </div>
-              <span style={{ fontSize: 20 }}>{item.emoji}</span>
+              <EmojiIcon emoji={item.emoji} size={18} />
               <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13,
                 color: "#ECFDF5", lineHeight: 1.3 }}>
                 {lang === "ko" ? item.nameKo : item.nameEn}
@@ -8483,7 +8594,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
                   target="_blank" rel="noopener noreferrer"
                   style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
                     background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.3)", borderRadius: 20, padding: "3px 8px" }}>
-                  <span style={{ fontSize: 10 }}>🌐</span>
+                  <Globe size={9} strokeWidth={2} />
                   <span style={{ fontSize: 10, color: "#6EE7B7", fontWeight: 700 }}>공식 사이트</span>
                 </a>
               )}
@@ -8517,7 +8628,7 @@ function InstallBanner({ onInstall, onDismiss, isIOS }: { onInstall: () => void;
       WebkitBackdropFilter: "blur(20px)",
       boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
     }}>
-      <span style={{ fontSize: 26, marginTop: 2 }}>📱</span>
+      <span style={{ marginTop: 2 }}><Smartphone size={22} strokeWidth={2} /></span>
       <div style={{ flex: 1 }}>
         <div style={{ fontWeight: 700, fontSize: 14, color: "#e6edf3", fontFamily: "Manrope,sans-serif", marginBottom: 3 }}>
           HebronGuide 앱으로 추가하기
@@ -8629,7 +8740,7 @@ function ChecklistItem({ itemId, title, desc, accentColor = MINT, showReminder =
         display: "flex", alignItems: "center", justifyContent: "center",
         marginTop: 1, transition: "all 0.2s ease",
       }}>
-        {isDone && <span style={{ color: "#0d1117", fontSize: 13, fontWeight: 900, lineHeight: 1 }}>✓</span>}
+        {isDone && <span style={{ color: "#0d1117", fontWeight: 900, lineHeight: 1 }}><Check size={11} strokeWidth={2} /></span>}
       </div>
       <div style={{ flex: 1 }}>
         <div style={{
@@ -9048,14 +9159,11 @@ function WorldCupBanner() {
       position: "relative", overflow: "hidden",
     }}>
       {/* 배경 장식 */}
-      <div style={{
-        position: "absolute", top: -20, right: -10, fontSize: 80,
-        opacity: 0.12, fontWeight: 900,
-      }}>⚽</div>
+      <div style={{ position: "absolute", top: -20, right: -10, opacity: 0.12, fontWeight: 900 }}><Trophy size={69} strokeWidth={2} /></div>
 
       <div style={{ position: "relative" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
-          <span style={{ fontSize: 18 }}>🏆</span>
+          <Trophy size={15} strokeWidth={2} />
           <span style={{
             fontFamily: "Manrope, sans-serif", fontWeight: 800, fontSize: 11,
             color: "#fff", letterSpacing: "1px", opacity: 0.9,
@@ -9295,7 +9403,7 @@ function CompactHeroNew() {
           display: "flex", alignItems: "center", gap: 4,
           cursor: "pointer",
         }}>
-          <span style={{ fontSize: 11, color: "#C9A227", fontWeight: 900, lineHeight: 1 }}>✦</span>
+          <span style={{ color: "#C9A227", fontWeight: 900, lineHeight: 1 }}><Sparkles size={9} strokeWidth={2} /></span>
           <span style={{ fontSize: 11, fontFamily: "Manrope,sans-serif", fontWeight: 800,
             color: "rgba(255,255,255,0.97)", letterSpacing: "0.04em" }}>
             {lang === "ko" ? "글로벌 환대 플랫폼" : "Global Hospitality Platform"}
@@ -9513,7 +9621,7 @@ function HebronServicesAd({ lang, onNavigate }: { lang: string; onNavigate?: (ta
 
       {/* 하단 파트너십 메시지 */}
       <div style={{ marginTop: 12, background: "rgba(201,162,39,0.08)", border: "1px solid rgba(201,162,39,0.2)", borderRadius: 10, padding: "10px 14px", display: "flex", alignItems: "center", gap: 10 }}>
-        <span style={{ fontSize: 16 }}>🤝</span>
+        <Handshake size={14} strokeWidth={2} />
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 11, color: "#C9A227" }}>
             {ko ? "모두가 행복한 파트너십" : "A Partnership Where Everyone Wins"}
@@ -9610,7 +9718,7 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
             border: "none", borderRadius: 20, padding: "7px 14px", cursor: "pointer",
             boxShadow: "0 2px 10px rgba(200,16,46,0.25)",
           }}>
-            <span style={{ fontSize: 16 }}>⚽</span>
+            <Trophy size={14} strokeWidth={2} />
             <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12, color: "#fff" }}>
               {ko ? "FIFA 월드컵 2026 — 탭하여 열기" : "FIFA World Cup 2026 — Tap to expand"}
             </span>
@@ -9624,7 +9732,7 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
             boxShadow: "0 4px 20px rgba(200,16,46,0.3)",
             position: "relative",
           }}>
-            <div style={{ position: "absolute", right: -8, top: -12, fontSize: 72, opacity: 0.12, userSelect: "none" }}>⚽</div>
+            <div style={{ position: "absolute", right: -8, top: -12, opacity: 0.12, userSelect: "none" }}><Trophy size={62} strokeWidth={2} /></div>
             <div style={{ padding: "12px 14px" }}>
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
                 <div style={{ flex: 1 }}>
@@ -9935,13 +10043,13 @@ function getCanadaFinance(slug: string, lang: string): Array<{ title: string; de
   const taxKo: Record<string, string> = {
     ON: "연방 소득세(15%~33%) + 온타리오 주 소득세(5.05%~13.16%)\n판매세: 온타리오 HST 13%\n→ 의료보험 무료 (OHIP) = 세금 많지만 혜택 큼!",
     BC: "연방 소득세(15%~33%) + BC 주 소득세(5.06%~20.5%)\n판매세: BC GST 5%+PST 7%=12%\n→ 의료보험 무료 (MSP) = 세금 많지만 혜택 큼!",
-    AB: "연방 소득세(15%~33%) + 앨버타 주 소득세(8%~15% 누진)\n판매세: ✅ PST 없음! GST 5%만 — 캐나다에서 판매세 가장 유리\n→ 의료보험 무료 (Alberta Health) = 캐나다 내 최저 세부담 주",
+    AB: "연방 소득세(15%~33%) + 앨버타 주 소득세(8%~15% 누진)\n판매세: PST 없음! GST 5%만 — 캐나다에서 판매세 가장 유리\n→ 의료보험 무료 (Alberta Health) = 캐나다 내 최저 세부담 주",
     MB: "연방 소득세(15%~33%) + 매니토바 주 소득세(10.8%~17.4%)\n판매세: GST 5%+RST(PST) 7%=12%\n→ 의료보험 무료 (Manitoba Health)",
   };
   const taxEn: Record<string, string> = {
     ON: "Federal income tax (15%–33%) + Ontario provincial tax (5.05%–13.16%)\nSales: Ontario HST 13%\n→ FREE healthcare (OHIP) — more tax but big benefits!",
     BC: "Federal income tax (15%–33%) + BC provincial tax (5.06%–20.5%)\nSales: BC GST 5%+PST 7%=12%\n→ FREE healthcare (MSP) — more tax but big benefits!",
-    AB: "Federal income tax (15%–33%) + Alberta provincial tax (8%–15% progressive)\nSales: ✅ NO PST! GST 5% only — lowest sales tax in Canada\n→ FREE healthcare (Alberta Health) = lowest overall tax burden in Canada",
+    AB: "Federal income tax (15%–33%) + Alberta provincial tax (8%–15% progressive)\nSales: NO PST! GST 5% only — lowest sales tax in Canada\n→ FREE healthcare (Alberta Health) = lowest overall tax burden in Canada",
     MB: "Federal income tax (15%–33%) + Manitoba provincial tax (10.8%–17.4%)\nSales: GST 5%+RST(PST) 7%=12%\n→ FREE healthcare (Manitoba Health)",
   };
   const regional = ko ? regionalKo : regionalEn;
@@ -10025,7 +10133,7 @@ function getIntlFinance(slug: string, lang: string): Array<{ title: string; desc
     ],
     AE: [
       { title: "Emirates NBD · FAB · ADCB · Mashreq", desc: "UAE 주요 은행. 여권+거주비자(Emirates ID)로 개설. 급여계좌(WPS) 널리 사용 | 🔗 emiratesnbd.com" },
-      { title: "✅ UAE 세금 혜택", desc: "개인 소득세 0%! (무세)\nVAT(부가세): 5% (낮음)\n→ 실수령액 매우 높음. 단 기업은 법인세 9% 도입됨" },
+      { title: "UAE 세금 혜택", desc: "개인 소득세 0%! (무세)\nVAT(부가세): 5% (낮음)\n→ 실수령액 매우 높음. 단 기업은 법인세 9% 도입됨" },
       { title: "은퇴·저축 (본인 책임)", desc: "외국인 공적연금 없음. 본인이 저축·투자 계획 수립 필수. 계약종료 보상금(gratuity) 확인" },
       { title: "신용·주거", desc: "미국 신용 이력 미인정. 현지 은행 거래로 구축. 주거는 대부분 연세(연 단위 임대) — 목돈 준비" },
       { title: "한국⇄UAE 송금·의료", desc: "Wise·은행 송금. 의료는 고용주 제공 사보험 의무(에미리트별 상이) | 🔗 wise.com" },
@@ -10118,7 +10226,7 @@ function getIntlFinance(slug: string, lang: string): Array<{ title: string; desc
     ],
     AE: [
       { title: "Emirates NBD · FAB · ADCB · Mashreq", desc: "UAE's major banks. Open with passport + residence visa (Emirates ID). Salary accounts (WPS) widely used | 🔗 emiratesnbd.com" },
-      { title: "✅ UAE Tax Advantage", desc: "0% personal income tax!\nVAT: 5% (low)\n→ Very high take-home. Note: 9% corporate tax now applies to businesses" },
+      { title: "UAE Tax Advantage", desc: "0% personal income tax!\nVAT: 5% (low)\n→ Very high take-home. Note: 9% corporate tax now applies to businesses" },
       { title: "Retirement (self-directed)", desc: "No state pension for foreigners. Plan your own savings/investments. Check your end-of-service gratuity" },
       { title: "Credit & Housing", desc: "US credit not recognized. Build via local banking. Rentals are often annual (paid yearly) — prepare a lump sum" },
       { title: "Korea⇄UAE Transfers & Healthcare", desc: "Wise or bank transfers. Employer-provided private health insurance is mandatory (varies by emirate) | 🔗 wise.com" },
@@ -10532,7 +10640,7 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
               display: "flex", alignItems: "center", justifyContent: "center",
               transition: "all .2s",
             }}>
-              {checks[item.id] && <span style={{ color: "#0d1117", fontWeight: 900, fontSize: 13 }}>✓</span>}
+              {checks[item.id] && <span style={{ color: "#0d1117", fontWeight: 900 }}><Check size={11} strokeWidth={2} /></span>}
             </div>
             <span style={{ display: "flex", flexShrink: 0, color: checks[item.id] ? "#CBD5E1" : "#F2994A" }}>{item.icon}</span>
             <div style={{ flex: 1 }}>
@@ -10818,7 +10926,7 @@ function CityEventsSection({ lang }: { lang: string }) {
             onTouchEnd={e => (e.currentTarget.style.transform = "scale(1)")}
           >
             <div style={{ fontFamily:"Manrope,sans-serif", fontSize:11.5, fontWeight:700, color:"#1B2A4A", lineHeight:1.4 }}>
-              {ev.emoji} {ko ? ev.ko : ev.en}
+              <EmojiIcon emoji={ev.emoji} size={15} /> {ko ? ev.ko : ev.en}
             </div>
             <div style={{ display:"flex", alignItems:"center", gap:6, marginTop:4 }}>
               <div style={{ fontFamily:"Manrope,sans-serif", fontSize:9.5, color:"rgba(0,0,0,0.38)" }}>{ev.date}</div>
@@ -10866,7 +10974,7 @@ function CityEventsSection({ lang }: { lang: string }) {
 
           {/* 이벤트 제목 */}
           <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:15, color:"#1B2A4A", lineHeight:1.5, marginBottom:10 }}>
-            {selected.emoji} {ko ? selected.ko : selected.en}
+            <EmojiIcon emoji={selected.emoji} size={16} /> {ko ? selected.ko : selected.en}
           </div>
 
           {/* 장소 */}
@@ -11081,7 +11189,7 @@ function CommunityPulseSection({ lang }: { lang: string }) {
       <div style={{ transition: `opacity ${fade ? "0.3s" : "0.1s"} ease`, opacity: fade ? 1 : 0 }}>
         {visible.map((p, i) => (
           <div key={`${offset}-${i}`} style={{ display: "flex", alignItems: "center", gap: 10, paddingBottom: i < 2 ? 9 : 0, marginBottom: i < 2 ? 9 : 0, borderBottom: i < 2 ? "1px solid rgba(0,0,0,0.05)" : "none" }}>
-            <span style={{ fontSize: 16 }}>{p.emoji}</span>
+            <EmojiIcon emoji={p.emoji} size={14} />
             <div style={{ flex: 1, fontFamily: "-apple-system,'Noto Sans KR',sans-serif", fontSize: 12, color: "#475569", lineHeight: 1.4 }}>
               {ko ? p.ko : p.en}
             </div>
@@ -11110,7 +11218,7 @@ function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
         <div style={{ fontFamily: "'Noto Sans KR', Manrope, sans-serif", fontWeight: 800, fontSize: 13,
           color: "#ECFDF5", letterSpacing: "-0.2px", display: "flex", alignItems: "center", gap: 6 }}>
-          <span style={{ fontSize: 15 }}>🛬</span>
+          <PlaneLanding size={13} strokeWidth={2} />
           {lang === "ko" ? "정착 필수" : "Settlement Essentials"}
         </div>
         <button onClick={() => onNavigate?.(1)} style={{
@@ -11143,7 +11251,7 @@ function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 17, flexShrink: 0,
             }}>
-              {step.emoji}
+              <EmojiIcon emoji={step.emoji} size={20} />
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontFamily: "'Noto Sans KR', sans-serif", fontWeight: 700,
@@ -11438,7 +11546,7 @@ function AnnouncementBanner() {
   const { t } = useI18n();
   return (
     <div className="flex items-center gap-[10px] px-[14px] py-[10px] rounded-[14px]" style={{ background: "linear-gradient(135deg, rgba(201,162,39,0.12) 0%, rgba(201,162,39,0.06) 100%)", border: "1px solid rgba(201,162,39,0.25)" }}>
-      <span style={{ fontSize: 14 }}>📢</span>
+      <Megaphone size={12} strokeWidth={2} />
       <div className="flex flex-col gap-[1px] flex-1 min-w-0">
         <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: GOLD }}>{t("announce.tag")} · {t("announce.title")}</span>
         <span className="truncate" style={{ fontFamily: "Manrope,sans-serif", fontWeight: 400, fontSize: 10, color: "rgba(201,162,39,0.65)" }}>{t("announce.body")}</span>
@@ -11471,8 +11579,8 @@ function ScreenHeader({ emoji, titleKo, titleEn, descKo, descEn, accentColor, li
   return (
     <div className="px-[20px] pt-[24px] pb-[20px]" style={{ borderBottom: `1px solid ${borderColor}` }}>
       <div className="flex items-center gap-[14px]">
-        <div className="flex items-center justify-center" style={{ width: 52, height: 52, borderRadius: 16, background: `${accentColor}22`, border: `1px solid ${accentColor}44`, fontSize: 26 }}>
-          {emoji}
+        <div className="flex items-center justify-center" style={{ width: 52, height: 52, borderRadius: 16, background: `${accentColor}22`, border: `1px solid ${accentColor}44`, color: accentColor }}>
+          <EmojiIcon emoji={emoji} size={26} strokeWidth={1.7} />
         </div>
         <div>
           <h2 className="m-0" style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 22, letterSpacing: "-0.5px", color: titleColor }}>
@@ -11606,7 +11714,7 @@ function renderDescWithLinks(desc: string, accentColor: string) {
               style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
                 background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.3)",
                 borderRadius: 20, padding: "3px 10px" }}>
-              <span style={{ fontSize: 11 }}>🌐</span>
+              <Globe size={9} strokeWidth={2} />
               <span style={{ fontSize: 10, color: "#6EE7B7", fontWeight: 700 }}>공식 웹사이트</span>
             </a>
           )}
@@ -11677,8 +11785,8 @@ function PlaceCard({ emoji, name, nameEn, desc, tags, accentColor = MINT, websit
   return (
     <div className="transition-all duration-200 hover:scale-[1.02] hover:border-opacity-20" style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: "14px 16px", border: "1px solid rgba(255,255,255,0.07)" }}>
       <div className="flex items-start gap-[12px]">
-        <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 13, background: `${accentColor}18`, fontSize: 20 }}>
-          {emoji}
+        <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 13, background: `${accentColor}18`, color: accentColor }}>
+          <EmojiIcon emoji={emoji} size={20} strokeWidth={1.8} />
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 14, color: "#ECFDF5" }}>{name}</div>
@@ -11793,7 +11901,7 @@ function CityRequestForm({ lang }: { lang: string }) {
           color: "#6EE7B7",
         }}>
         {sent
-          ? (ko ? "✅ 신청이 전달되었습니다!" : "✅ Request Sent!")
+          ? (ko ? "신청이 전달되었습니다!" : "Request Sent!")
           : (ko ? "도시 추가 요청하기 →" : "Request My City →")}
       </button>
     </div>
@@ -11939,7 +12047,7 @@ function CommunityItemCard({ item, lang }: { item: any; lang: string }) {
         <span style={{ fontSize: 18 }}>{item.emoji || "🌱"}</span>
         <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#ECFDF5" }}>{item.name}</span>
         <span style={{ marginLeft: "auto", background: "rgba(110,231,183,0.15)", border: "1px solid rgba(110,231,183,0.35)", color: "#6EE7B7", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Manrope,sans-serif", fontWeight: 700, flexShrink: 0 }}>
-          ✅ {lang === "ko" ? "커뮤니티" : lang === "es" ? "Comunidad" : "Community"}
+          {lang === "ko" ? "커뮤니티" : lang === "es" ? "Comunidad" : "Community"}
         </span>
       </div>
       {desc && <div style={{ fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.65, marginBottom: 6 }}>{desc}</div>}
@@ -11985,17 +12093,18 @@ function CommunitySection({ category, citySlug, lang }: { category: string; city
 
   if (sent) return (
     <div style={{ marginTop: 20, background: "rgba(110,231,183,0.08)", border: "1px solid rgba(110,231,183,0.25)", borderRadius: 12, padding: "14px 16px", textAlign: "center", color: "#6EE7B7", fontSize: 13, fontWeight: 700 }}>
-      ✅ {ko ? "의견을 보내주셔서 감사합니다. 검토 후 반영하겠습니다." : "Thank you! We'll review and update soon."}
+      {ko ? "의견을 보내주셔서 감사합니다. 검토 후 반영하겠습니다." : "Thank you! We'll review and update soon."}
     </div>
   );
 
   return (
     <div style={{ marginTop: 20 }}>
       <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "14px 16px" }}>
-        <div style={{ fontSize: 12, color: "rgba(236,253,245,0.45)", marginBottom: 10 }}>
-          💬 {ko
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 6, fontSize: 12, color: "rgba(236,253,245,0.45)", marginBottom: 10 }}>
+          <MessageCircle size={13} strokeWidth={2} style={{ flexShrink: 0, marginTop: 2 }} />
+          <span>{ko
             ? `이 ${label.ko} 섹션에 추가했으면 하는 정보가 있으신가요?`
-            : `Anything to add to this ${label.en} section?`}
+            : `Anything to add to this ${label.en} section?`}</span>
         </div>
         <textarea
           value={text}
@@ -12047,12 +12156,7 @@ function BackToHomeButton({ onHome, lang }: { onHome?: () => void; lang: string 
       onMouseEnter={e => (e.currentTarget.style.background = "rgba(242,153,74,0.15)")}
       onMouseLeave={e => (e.currentTarget.style.background = "rgba(242,153,74,0.08)")}
     >
-      <div style={{
-        width: 28, height: 28, borderRadius: 8,
-        background: "rgba(242,153,74,0.2)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        fontSize: 14, flexShrink: 0,
-      }}>🏠</div>
+      <div style={{ width: 28, height: 28, borderRadius: 8, background: "rgba(242, 153, 74, 0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Home size={12} strokeWidth={2} /></div>
       <div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#F2994A" }}>
           {lang === "ko" ? "← 홈으로" : "← Home"}
@@ -12101,9 +12205,7 @@ function FloatingHomeButton({ activeNav, onHome }: { activeNav: number; onHome: 
         (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(242,153,74,0.45)";
       }}
       title="홈으로"
-    >
-      🏠
-    </button>
+    ><EmojiIcon emoji={"🏠"} size={18} /></button>
   );
 }
 
@@ -12278,7 +12380,7 @@ function Top3NeighborhoodsSection() {
               <img src={h.img} alt={h.nameKo} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 30%, rgba(13,17,23,0.85) 100%)" }} />
               <div style={{ position: "absolute", top: 12, left: 12, display: "flex", gap: 8, alignItems: "center" }}>
-                <span style={{ fontSize: 22 }}>{h.emoji}</span>
+                <EmojiIcon emoji={h.emoji} size={19} />
                 <span style={{ background: h.color, color: "#0d1117", fontWeight: 800, fontSize: 11, padding: "3px 10px", borderRadius: 20 }}>
                   #{h.rank} {lang === "ko" ? h.tagKo : h.tagEn}
                 </span>
@@ -12293,7 +12395,7 @@ function Top3NeighborhoodsSection() {
             <div style={{ padding: "12px 14px 14px", display: "flex", flexDirection: "column", gap: 6 }}>
               {(lang === "ko" ? h.pointsKo : h.pointsEn).map((pt, i) => (
                 <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
-                  <span style={{ color: h.color, fontSize: 12, marginTop: 1, flexShrink: 0 }}>✓</span>
+                  <span style={{ color: h.color, marginTop: 1, flexShrink: 0 }}><Check size={10} strokeWidth={2} /></span>
                   <span style={{ fontSize: 12, color: "rgba(230,237,243,0.75)", lineHeight: 1.5 }}>{pt}</span>
                 </div>
               ))}
@@ -12461,7 +12563,7 @@ function CityHubSection({ lang }: { lang: string }) {
       <div style={{ padding: "0 16px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2 }}>
-            <span style={{ fontSize: 15 }}>🌍</span>
+            <Globe size={13} strokeWidth={2} />
             <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A" }}>
               {lang === "ko" ? "다른 도시 HebronGuide" : "HebronGuide Cities"}
             </span>
@@ -12621,7 +12723,7 @@ function KoreanCultureCalendarSection({ onNavigate }: { onNavigate?: (tab: numbe
             boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
-              <span style={{ fontSize: 18 }}>{h.emoji}</span>
+              <EmojiIcon emoji={h.emoji} size={16} />
               <span style={{
                 fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10,
                 color: "#DC2626", letterSpacing: "0.3px",
@@ -12830,7 +12932,7 @@ function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: numbe
               onTouchStart={e => { (e.currentTarget as HTMLElement).style.transform = "scale(0.95)"; }}
               onTouchEnd={e => { (e.currentTarget as HTMLElement).style.transform = "scale(1)"; }}
             >
-              <span style={{ fontSize: 22 }}>{step.emoji}</span>
+              <EmojiIcon emoji={step.emoji} size={19} />
               <div style={{
                 fontFamily: "-apple-system, 'Noto Sans KR', sans-serif",
                 fontWeight: 700, fontSize: 11, color: step.color, letterSpacing: "-0.2px", textAlign: "center",
@@ -12855,7 +12957,7 @@ function KoreanAmericanJourneySection({ onNavigate }: { onNavigate?: (tab: numbe
         borderRadius: 12, border: `1px solid ${identity.color}1a`,
         display: "flex", alignItems: "center", gap: 10,
       }}>
-        <span style={{ fontSize: 16 }}>💡</span>
+        <Lightbulb size={14} strokeWidth={2} />
         <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "#475569", lineHeight: 1.5, flex: 1 }}>
           {ko
             ? `HebronGuide는 정착 가이드를 넘어 ${city.nameKo}에서 ${identity.ko}${roJosa(identity.ko)} 성장하는 전 여정을 함께합니다.`
@@ -12916,8 +13018,7 @@ function AmericasAdSection({ lang }: { lang: string }) {
         borderRadius: 12, padding: "14px 16px",
         display: "flex", alignItems: "center", gap: 12,
       }}>
-        <div style={{ width: 44, height: 44, borderRadius: 10, background: "rgba(96,165,250,0.12)", flexShrink: 0,
-          display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🌎</div>
+        <div style={{ width: 44, height: 44, borderRadius: 10, background: "rgba(96, 165, 250, 0.12)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}><Globe size={17} strokeWidth={2} /></div>
         <div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(96,165,250,0.7)", fontWeight: 700, marginBottom: 2 }}>
             {ko ? "미주 추천 광고 슬롯" : "Americas Ad Slot"}
@@ -13104,7 +13205,7 @@ function FloatingMusicPlayer() {
         }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
             <span style={{ fontSize: 12, fontWeight: 700, color: "#fff", fontFamily: "Manrope,sans-serif" }}>곡 신청</span>
-            <button onClick={() => { setShowRequest(false); setReqStatus("idle"); }} style={btnStyle}>✕</button>
+            <button onClick={() => { setShowRequest(false); setReqStatus("idle"); }} style={btnStyle}><EmojiIcon emoji={"✕"} size={18} /></button>
           </div>
           {reqStatus === "success" ? (
             <div style={{ textAlign: "center", padding: "16px 0" }}>
@@ -13223,7 +13324,7 @@ function FloatingMusicPlayer() {
           <button onClick={(e) => { e.stopPropagation(); setMini(p => !p); }} title={mini ? "영상 펼치기" : "오디오만"} style={btnStyle}>
             {mini ? "□" : "▬"}
           </button>
-          <button onClick={(e) => { e.stopPropagation(); setActive(false); }} style={btnStyle}>✕</button>
+          <button onClick={(e) => { e.stopPropagation(); setActive(false); }} style={btnStyle}><EmojiIcon emoji={"✕"} size={18} /></button>
         </div>
 
         {/* YouTube iframe */}
@@ -13326,7 +13427,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
           boxShadow: "0 4px 16px rgba(254,229,0,0.28)",
           fontFamily: "'Noto Sans KR',Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#1a1200",
         }}>
-        <span style={{ fontSize: 20 }}>📱</span>
+        <Smartphone size={17} strokeWidth={2} />
         {ko ? "카카오톡으로 공유하기" : "Share via KakaoTalk"}
       </button>
 
@@ -13555,7 +13656,7 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
       <div
         onClick={() => setExpanded(v => !v)}
         style={{ padding:"12px 14px", display:"flex", alignItems:"center", gap:10, cursor:"pointer" }}>
-        <span style={{ fontSize:22 }}>📱</span>
+        <Smartphone size={19} strokeWidth={2} />
         <div style={{ flex:1 }}>
           <div style={{ fontFamily:"Manrope,sans-serif", fontWeight:800, fontSize:13, color:"#ECFDF5" }}>
             {ko ? "홈 화면에 추가하면 앱처럼 쓸 수 있어요" : "Add to home screen for app-like experience"}
@@ -13592,7 +13693,7 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
    — "312개 교회 · 82개 도시" 숫자가 신뢰를 만든다
 ───────────────────────────────────────── */
 function HebronFlywheelBar({ lang }: { lang: string }) {
-  // ✅ 도시 수 자동 계산 — 도시 추가 시 자동 반영 (수동 수정 불필요)
+  // 도시 수 자동 계산 — 도시 추가 시 자동 반영 (수동 수정 불필요)
   const LIVE_CITY_COUNT = HEBRON_CITIES.length;
   // 이모지 대신 SVG — 이미 있는 QM_ICON_MAP 을 쓴다 (목사님 지시 2026-09-19)
   const stats = [
@@ -13632,7 +13733,7 @@ function FoundingPartnerBanner({ lang, onNavigate }: { lang: string; onNavigate?
   return (
     <a href="/founding-partner.html" style={{ textDecoration: "none", display: "block" }}>
       <div style={{ margin: "12px 16px 0", background: "linear-gradient(135deg, #FEF3C7, #FDE68A)", border: "1.5px solid #F59E0B", borderRadius: 14, padding: "12px 16px", display: "flex", alignItems: "center", gap: 12, cursor: "pointer", boxShadow: "0 2px 12px rgba(245,158,11,0.18)" }}>
-        <span style={{ fontSize: 22, flexShrink: 0 }}>🌟</span>
+        <span style={{ flexShrink: 0 }}><Sparkles size={19} strokeWidth={2} /></span>
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12.5, color: "#78350F", lineHeight: 1.3, marginBottom: 3 }}>
             {lang === "ko" ? "⛪ 교회 정보를 HebronGuide에 올려 주세요" : "⛪ Add your church to HebronGuide"}
@@ -13673,7 +13774,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       <a href="/story-submit.html" style={{ textDecoration: "none", margin: "12px 16px 0", background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", overflow: "hidden", display: "flex", alignItems: "stretch" }}>
         <div style={{ width: 5, background: "linear-gradient(180deg,#6EE7B7,#C9A227)", flexShrink: 0 }} />
         <div style={{ flex: 1, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12 }}>
-          <span style={{ fontSize: 28, flexShrink: 0 }}>✍️</span>
+          <span style={{ flexShrink: 0 }}><PenLine size={24} strokeWidth={2} /></span>
           <div style={{ flex: 1 }}>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A", marginBottom: 3 }}>
               {ko ? "이야기 스튜디오 — 당신의 이야기를 들려주세요" : "Story Studio — Share Your Story"}
@@ -13690,7 +13791,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
         {/* 왼쪽 골드 액센트 바 */}
         <div style={{ width: 5, background: "linear-gradient(180deg,#F2994A,#d4a020)", flexShrink: 0 }} />
         <div style={{ flex: 1, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12 }}>
-          <span style={{ fontSize: 28, flexShrink: 0 }}>🛒</span>
+          <span style={{ flexShrink: 0 }}><ShoppingCart size={24} strokeWidth={2} /></span>
           <div style={{ flex: 1 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3 }}>
               <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A" }}>
@@ -13721,8 +13822,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   useLayoutEffect(() => { setSub(initialSub); }, [initialSub]);
   const [showRegularItems, setShowRegularItems] = useState(false);
   const tabs = lang === "ko"
-    ? ["1주차", "1개월", "3개월", "행정", "재정", "주택", "✅ 전체", "🛂 비자·이민"]
-    : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Housing", "✅ All", "🛂 Visa/Immigration"];
+    ? ["1주차", "1개월", "3개월", "행정", "재정", "주택", "전체", "🛂 비자·이민"]
+    : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Housing", "All", "🛂 Visa/Immigration"];
 
   const city = useCityConfig();
   const isSeattle = citySlug === "seattle";
@@ -14541,7 +14642,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
 
   // ── 도시별 정착 1개월 데이터 ──
   const month1Ko = citySlug === "toronto" || citySlug === "vancouver" ? [
-    { title: "운전면허 전환", desc: citySlug === "toronto" ? "온타리오 G 시스템. 한국 면허 소지자 → G1 필기 면제 가능! drivetest.ca 예약 필수" : "BC ICBC. ✅ 한국 면허 → 지식 시험 면제! 도로주행만. 90일 내 전환 의무. icbc.com" },
+    { title: "운전면허 전환", desc: citySlug === "toronto" ? "온타리오 G 시스템. 한국 면허 소지자 → G1 필기 면제 가능! drivetest.ca 예약 필수" : "BC ICBC. 한국 면허 → 지식 시험 면제! 도로주행만. 90일 내 전환 의무. icbc.com" },
     { title: "의료보험 신청", desc: citySlug === "toronto" ? "OHIP 온타리오 무료 의료보험. 3개월 대기 → 그 후 무료. 대기 중 민간 보험 임시 가입 권장 | 🔗 ontario.ca/ohip" : "BC MSP 무료 의료보험. 3개월 대기 → 그 후 무료. 대기 중 민간 보험 임시 가입 | 🔗 hibc.gov.bc.ca" },
     { title: "자녀 학교 등록", desc: "거주 증명(임대 계약서) 필수. 공립학교 무료. ESL 지원 가능" },
     { title: "중고차 구매 고려", desc: "대중교통 괜찮지만 교외 이동 시 차량 유용. CARFAX 확인, 한인 딜러 활용" },
@@ -14589,7 +14690,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "우편함 주소 확보", desc: "영구 주소 없으면 UPS Store 사서함 대안" },
   ] : [
     // seattle default
-    { title: "WA 운전면허 취득", desc: "✅ 한국어 필기시험 가능! 영어·한국어 선택. → 도로주행시험. Everett·Bellevue DOL 권장 | 🔗 dol.wa.gov" },
+    { title: "WA 운전면허 취득", desc: "한국어 필기시험 가능! 영어·한국어 선택. → 도로주행시험. Everett·Bellevue DOL 권장 | 🔗 dol.wa.gov" },
     { title: "건강보험 등록", desc: "직장 보험 없으면 Washington Apple Health (Medicaid) 또는 WA Healthplanfinder 마켓플레이스 | 🔗 wahealthplanfinder.org" },
     { title: "자녀 학교 등록", desc: "해당 학군 거주 증명 필수 (임대 계약서). 공립학교 무료, 영어 ESL 지원" },
     { title: "중고차 구매 고려", desc: "대중교통 제한적 → 차량 필수. CARFAX 확인, 한인 딜러 활용 가능 | 🔗 carfax.com" },
@@ -14597,7 +14698,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   ];
 
   const month1En = citySlug === "toronto" || citySlug === "vancouver" ? [
-    { title: "Transfer Driver's Licence", desc: citySlug === "toronto" ? "Ontario G system. Korean licence holders may skip G1 written test! drivetest.ca appointment required" : "BC ICBC. ✅ Korean licence: Knowledge test EXEMPT! Road test only. Must transfer within 90 days. icbc.com" },
+    { title: "Transfer Driver's Licence", desc: citySlug === "toronto" ? "Ontario G system. Korean licence holders may skip G1 written test! drivetest.ca appointment required" : "BC ICBC. Korean licence: Knowledge test EXEMPT! Road test only. Must transfer within 90 days. icbc.com" },
     { title: "Apply for Health Insurance", desc: citySlug === "toronto" ? "OHIP — free Ontario health insurance. 3-month wait then ALL care is free. Get temporary private insurance during wait | 🔗 ontario.ca/ohip" : "BC MSP — free health insurance. 3-month wait then ALL care is free. Temporary private insurance during wait | 🔗 hibc.gov.bc.ca" },
     { title: "Enroll children in school", desc: "Proof of residency required (lease). Public school free. ESL support available" },
     { title: "Consider buying a used car", desc: "Transit is decent but suburbs need a car. Check CARFAX; Korean dealers available" },
@@ -14645,7 +14746,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "Secure a mailing address", desc: "No permanent address? UPS Store mailbox as alternative" },
   ] : [
     // seattle default
-    { title: "Get WA Driver License", desc: "✅ Written test available in Korean! (English or Korean choice) → road test. Everett or Bellevue DOL recommended | 🔗 dol.wa.gov" },
+    { title: "Get WA Driver License", desc: "Written test available in Korean! (English or Korean choice) → road test. Everett or Bellevue DOL recommended | 🔗 dol.wa.gov" },
     { title: "Enroll in health insurance", desc: "No employer plan? Try Washington Apple Health (Medicaid) or WA Healthplanfinder marketplace | 🔗 wahealthplanfinder.org" },
     { title: "Enroll children in school", desc: "Proof of residency required (lease agreement). Public school is free; ESL support available" },
     { title: "Consider buying a used car", desc: "Public transit is limited → car is essential. Check CARFAX; Korean dealers can help | 🔗 carfax.com" },
@@ -14709,7 +14810,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "캐나다 은행 계좌 개설", desc: "RBC·TD·Scotiabank·CIBC 추천. SIN + 여권으로 개설 가능\n신용 이력 없어도 Secured Credit Card로 시작 | 🔗 rbc.com" },
   ] : citySlug === "vancouver" ? [
     { title: "SIN 신청 (캐나다 사회보험번호)", desc: "📍 Service Canada 오피스 방문 | 영주권·취업허가 후 즉시 신청\n🇨🇦 취업·세금·은행 계좌 모두 필요 | 🔗 canada.ca/sin" },
-    { title: "BC 운전면허 (ICBC)", desc: "🔗 icbc.com 온라인 예약\n✅ 한국 면허 소지자 지식 시험 면제! → 도로주행시험만 응시\n90일 내 BC 면허 전환 의무" },
+    { title: "BC 운전면허 (ICBC)", desc: "🔗 icbc.com 온라인 예약\n한국 면허 소지자 지식 시험 면제! → 도로주행시험만 응시\n90일 내 BC 면허 전환 의무" },
     { title: "MSP 의료보험 신청", desc: "BC 무료 의료보험. 이주 후 3개월 대기 → 그 후 모든 의료 무료!\n온라인 신청: hibc.gov.bc.ca | 대기 기간 민간 의료보험 임시 가입 권장 | 🔗 gov.bc.ca/msp" },
     { title: "캐나다 이민 (IRCC)", desc: "BC PNP(주정부 이민)·테크파일럿·유학·취업허가. USCIS 대신 IRCC.\n밴쿠버 한인 이민 변호사 다수 활동 | 🔗 canada.ca/immigration" },
     { title: "BC 은행 계좌 개설", desc: "RBC·TD·Scotiabank·CIBC·VanCity(밴쿠버 신협) 추천\nSIN + 여권으로 개설 가능. 신용 이력 없어도 Secured Card로 시작 | 🔗 rbc.com" },
@@ -14769,7 +14870,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "한국 대사관 등록 (CDMX)", desc: "장기 체류자 재외국민 등록. 몬테레이 → 멕시코시티 대사관 관할\n📞 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko" },
   ] : isSeattle ? [
     { title: "SSN 신청", desc: "사회보장청(SSA) 오피스 | 📍 915 2nd Ave #3605, Seattle WA | 📞 800-772-1213 | 🔗 ssa.gov" },
-    { title: "WA 운전면허 (DOL)", desc: "✅ 한국어 필기 가능! Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
+    { title: "WA 운전면허 (DOL)", desc: "한국어 필기 가능! Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
     { title: "WA Healthplanfinder (건강보험)", desc: "WA 주 마켓플레이스. Washington Apple Health (Medicaid) 소득 기준 무료. 🔗 wahealthplanfinder.org" },
     { title: "ITIN 신청", desc: "세금 신고용 개인 번호 | IRS Form W-7 | 한인 CPA 통해 신청 권장 | 🔗 irs.gov/itin" },
     { title: "영주권·비자 갱신 + 시민권", desc: "USCIS: uscis.gov | 린우드·벨뷰 이민 변호사 다수 활동\n시민권(N-400): 영주권 5년 후. 한인 교회 시민권 클래스 운영" },
@@ -14818,7 +14919,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "Canadian Bank Account", desc: "RBC, TD, Scotiabank, CIBC recommended. SIN + passport sufficient to open\nNo credit history? Start with Secured Credit Card | 🔗 rbc.com" },
   ] : citySlug === "vancouver" ? [
     { title: "SIN Application (Social Insurance Number)", desc: "📍 Visit Service Canada office | Apply immediately after PR/work permit\n🇨🇦 Required for employment, taxes & banking in Canada | 🔗 canada.ca/sin" },
-    { title: "BC Driver's Licence (ICBC)", desc: "🔗 icbc.com online appointment\n✅ Korean licence holders: Knowledge test EXEMPT! → Road test only\nMust transfer to BC licence within 90 days of moving" },
+    { title: "BC Driver's Licence (ICBC)", desc: "🔗 icbc.com online appointment\nKorean licence holders: Knowledge test EXEMPT! → Road test only\nMust transfer to BC licence within 90 days of moving" },
     { title: "MSP Health Insurance", desc: "BC's FREE health insurance. 3-month wait after moving → then ALL healthcare is free!\nApply online: hibc.gov.bc.ca | Get temporary private insurance during wait | 🔗 gov.bc.ca/msp" },
     { title: "Canadian Immigration (IRCC)", desc: "BC PNP, Tech Pilot, study/work permits. IRCC instead of USCIS.\nMany Korean immigration lawyers in Vancouver | 🔗 canada.ca/immigration" },
     { title: "BC Bank Account", desc: "RBC, TD, Scotiabank, CIBC, VanCity (Vancouver credit union) recommended\nSIN + passport to open. No credit history? Start with Secured Card | 🔗 rbc.com" },
@@ -14878,7 +14979,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "Korean Embassy Registration (CDMX)", desc: "Monterrey is under Korean Embassy Mexico City jurisdiction\n📞 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko" },
   ] : isSeattle ? [
     { title: "SSN Application", desc: "Social Security Office | 📍 915 2nd Ave #3605, Seattle WA | 📞 800-772-1213 | 🔗 ssa.gov" },
-    { title: "WA Driver License (DOL)", desc: "✅ Written test available in Korean! Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
+    { title: "WA Driver License (DOL)", desc: "Written test available in Korean! Lynnwood DOL: 18023 Hwy 99 N | Everett DOL: 3601 Wetmore Ave | 🔗 dol.wa.gov" },
     { title: "WA Healthplanfinder (Health Insurance)", desc: "WA state marketplace. Washington Apple Health (Medicaid) — income-based free. 🔗 wahealthplanfinder.org" },
     { title: "ITIN Application", desc: "Tax ID for non-SSN holders | IRS Form W-7 | Korean CPA assistance recommended | 🔗 irs.gov/itin" },
     { title: "Green Card / Visa Renewal + Citizenship", desc: "USCIS: uscis.gov | Immigration attorneys in Lynnwood & Bellevue\nCitizenship (N-400): Eligible 5 years after green card. Korean churches offer civics prep classes" },
@@ -14905,7 +15006,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   ] : citySlug === "dallas" || citySlug === "houston" ? [
     { title: "Chase Total Checking / Wells Fargo", desc: "한인 커뮤니티 추천. 텍사스 전역 ATM 풍부 | 🔗 chase.com" },
     { title: "Prosperity Bank / Comerica Bank", desc: "텍사스 지역 은행. 한인 딜러·사업체 활용도 높음" },
-    { title: "✅ 텍사스 세금 혜택 (매우 유리!)", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 8.25% (텍사스 최고)\n재산세: 높음 (주택 소유 시 연 $5,000-15,000+)\n→ 연봉 대비 실수령액이 CA·NY보다 훨씬 높음!" },
+    { title: "텍사스 세금 혜택 (매우 유리!)", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 8.25% (텍사스 최고)\n재산세: 높음 (주택 소유 시 연 $5,000-15,000+)\n→ 연봉 대비 실수령액이 CA·NY보다 훨씬 높음!" },
     { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
     { title: "은퇴 계좌 (401K/IRA)", desc: "소득세 없음 → Roth IRA 매우 유리! 세후 기여 후 복리 성장" },
   ] : getCountryCode(citySlug) === "CA" ? getCanadaFinance(citySlug, "ko")
@@ -14923,7 +15024,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "MBTA 교통 카드 (CharlieCard)", desc: "보스턴 지하철·버스 통합 카드. 월정기권 $90. 학생 50% 할인 | 🔗 mbta.com" },
   ] : citySlug === "nashville" ? [
     { title: "Chase Total Checking / Avenue Bank", desc: "내쉬빌 한인 커뮤니티 추천. 전국 ATM 풍부 | 🔗 chase.com" },
-    { title: "✅ 테네시 세금 혜택", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 9.25% (식료품 포함 — TN은 식료품 세금 있음)\n→ 텍사스와 함께 세금 가장 유리한 주 중 하나" },
+    { title: "테네시 세금 혜택", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 9.25% (식료품 포함 — TN은 식료품 세금 있음)\n→ 텍사스와 함께 세금 가장 유리한 주 중 하나" },
     { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
     { title: "은퇴 계좌 (401K/IRA)", desc: "소득세 없음 → Roth IRA 매우 유리! 세후 기여 후 복리 성장" },
     { title: "내쉬빌 한인 CPA 네트워크", desc: "내쉬빌 한인회·교회 통해 한인 CPA 연결. 세금 신고·FBAR·FATCA 상담" },
@@ -14947,14 +15048,14 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. KC 한인 CPA 한인회·교회 통해 연결" },
   ] : citySlug === "miami" ? [
     { title: "Chase Total Checking / Bank of America", desc: "한인 커뮤니티 추천. 마이애미 전역 ATM 풍부 | 🔗 chase.com" },
-    { title: "✅ 플로리다 세금 혜택", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 7% (마이애미데이드 카운티)\n→ 히스패닉 비즈니스 환경 + 세금 혜택 = 라틴아메리카 한인 사업 허브" },
+    { title: "플로리다 세금 혜택", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 7% (마이애미데이드 카운티)\n→ 히스패닉 비즈니스 환경 + 세금 혜택 = 라틴아메리카 한인 사업 허브" },
     { title: "스페인어 뱅킹 환경", desc: "도랄 지역 은행은 스페인어 주 언어. 한인 직원 있는 지점 미리 확인 권장" },
     { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
     { title: "은퇴 계좌 (401K/IRA)", desc: "소득세 없음 → Roth IRA 매우 유리! 마이애미 한인 CPA 한인회 통해 연결" },
   ] : isSeattle ? [
     { title: "Chase Total Checking", desc: "한인 커뮤니티 추천 1위. 전국 ATM 많음. $500 개설 보너스 이벤트 자주 있음 | 🔗 chase.com" },
     { title: "WA Federal Credit Union (시애틀 전용)", desc: "시애틀 한인 선호 신협. 자동차 대출 금리 경쟁력 있음 | 🔗 wafederal.com" },
-    { title: "✅ WA 세금 혜택", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 약 10.25% (시애틀)\n→ 연봉 대비 실수령액이 CA·NY보다 훨씬 높음!" },
+    { title: "WA 세금 혜택", desc: "주 소득세 없음! (No State Income Tax)\n판매세(Sales Tax): 약 10.25% (시애틀)\n→ 연봉 대비 실수령액이 CA·NY보다 훨씬 높음!" },
     { title: "신용카드 빌드 순서", desc: "Secured → 1년 후 Quicksilver/Freedom → 2년 후 Chase Sapphire 목표" },
     { title: "은퇴 계좌 (401K/IRA)", desc: "직장 401K 매칭 100% 챙기기. 소득세 없음 → Roth IRA 전략도 유리" },
   ] : getCountryCode(citySlug) !== "US" ? getIntlFinance(citySlug, "ko")
@@ -14980,7 +15081,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   ] : citySlug === "dallas" || citySlug === "houston" ? [
     { title: "Chase Total Checking / Wells Fargo", desc: "Korean community recommended. Abundant ATMs in Texas | 🔗 chase.com" },
     { title: "Prosperity Bank / Comerica Bank", desc: "Texas regional banks. Good for Korean dealers and small businesses" },
-    { title: "✅ Texas Tax Advantage (Major Benefit!)", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: 8.25% (Texas max)\nProperty Tax: High if you own ($5,000-15,000+/yr)\n→ Take-home pay much higher vs CA or NY!" },
+    { title: "Texas Tax Advantage (Major Benefit!)", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: 8.25% (Texas max)\nProperty Tax: High if you own ($5,000-15,000+/yr)\n→ Take-home pay much higher vs CA or NY!" },
     { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
     { title: "Retirement accounts (401K/IRA)", desc: "No state income tax → Roth IRA is very attractive! After-tax contributions grow tax-free" },
   ] : getCountryCode(citySlug) === "CA" ? getCanadaFinance(citySlug, "en")
@@ -14992,7 +15093,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "Building Mexican Credit", desc: "Mexican credit history is separate from US/Canadian credit. Start with a Secured Card at your primary bank (BBVA etc.)" },
   ] : citySlug === "nashville" ? [
     { title: "Chase Total Checking / Wells Fargo", desc: "Korean community recommended. Nashville-area ATMs | 🔗 chase.com" },
-    { title: "✅ Tennessee Tax Advantage", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: 9.25% (food is taxed in TN — bring snacks from KY!)\n→ Among the most tax-friendly states along with Texas" },
+    { title: "Tennessee Tax Advantage", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: 9.25% (food is taxed in TN — bring snacks from KY!)\n→ Among the most tax-friendly states along with Texas" },
     { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
     { title: "Retirement accounts (401K/IRA)", desc: "No state income tax → Roth IRA is very attractive! After-tax contributions compound tax-free" },
     { title: "Nashville Korean CPA Network", desc: "Connect through Nashville Korean Association or Korean churches for Korean-speaking CPAs. FBAR, FATCA, TN tax consultation" },
@@ -15022,14 +15123,14 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { title: "UMB Bank (KC Regional)", desc: "Kansas City's hometown bank. Good for local business banking | 🔗 umb.com" },
   ] : citySlug === "miami" ? [
     { title: "Chase Total Checking / Bank of America", desc: "Korean community recommended. Miami-area ATMs abundant | 🔗 chase.com" },
-    { title: "✅ Florida Tax Advantage", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: 7% (Miami-Dade County)\n→ Hispanic business culture + tax advantage = Latin America Korean business hub" },
+    { title: "Florida Tax Advantage", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: 7% (Miami-Dade County)\n→ Hispanic business culture + tax advantage = Latin America Korean business hub" },
     { title: "Spanish-language Banking Environment", desc: "Doral area banks operate primarily in Spanish. Find branches with Korean or English staff in advance" },
     { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
     { title: "Retirement accounts (401K/IRA)", desc: "No state income tax → Roth IRA very attractive! Miami Korean CPA through Korean Association" },
   ] : isSeattle ? [
     { title: "Chase Total Checking", desc: "#1 in Korean community. Many ATMs nationwide. Frequent $500 opening bonus | 🔗 chase.com" },
     { title: "WA Federal Credit Union (Seattle only)", desc: "Seattle Korean community favorite. Competitive auto loan rates | 🔗 wafederal.com" },
-    { title: "✅ Washington State Tax Advantage", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: ~10.25% in Seattle\n→ Take-home pay much higher vs CA or NY!" },
+    { title: "Washington State Tax Advantage", desc: "No State Income Tax! (No State Income Tax)\nSales Tax: ~10.25% in Seattle\n→ Take-home pay much higher vs CA or NY!" },
     { title: "Credit building order", desc: "Secured → Quicksilver/Freedom (1yr) → Chase Sapphire (2yr target)" },
     { title: "Retirement accounts (401K/IRA)", desc: "Max employer 401K match. No state income tax → Roth IRA also attractive in WA" },
   ] : getCountryCode(citySlug) !== "US" ? getIntlFinance(citySlug, "en")
@@ -15404,7 +15505,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             {/* 공통 핵심 체크포인트 */}
             <div style={{ background: "rgba(201,162,39,0.07)", border: "1px solid rgba(201,162,39,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 4 }}>
               <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#FDE68A", marginBottom: 4 }}>
-                ✅ {lang === "ko" ? "공통 핵심 절차" : "Universal Key Steps"}
+                {lang === "ko" ? "공통 핵심 절차" : "Universal Key Steps"}
               </div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.85, color: "rgba(236,253,245,0.65)", whiteSpace: "pre-line" }}>
                 {lang === "ko"
@@ -15682,13 +15783,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             {[
               { emoji: "🥝", name: lang === "ko" ? "뉴질랜드 비자 종류" : "New Zealand Visa Types",
                 desc: lang === "ko"
-                  ? "✅ 주요 비자 유형:\n• Accredited Employer Work Visa (AEWV) — 인증 고용주 스폰서. NZ의 핵심 취업비자\n• Skilled Migrant Category (SMC) — 포인트 기반 기술이민 영주권. 160점 이상\n• Working Holiday Visa — 한-NZ 협정. 만 30세 이하, 최대 23개월\n• Student Visa → Post-Study Work Visa — 졸업 후 최대 3년 취업 허가\n• Partner/Spouse Visa — NZ 시민권자·영주권자 배우자\n• Residence from Work — 취업비자 2년 후 영주권 신청 가능\n\n📞 Immigration NZ: immigration.govt.nz"
-                  : "✅ Key visa types:\n• Accredited Employer Work Visa (AEWV) — employer-sponsored. Primary NZ work visa\n• Skilled Migrant Category (SMC) — points-based residence (160+ points)\n• Working Holiday Visa — Korea-NZ agreement. Age ≤30, up to 23 months\n• Student Visa → Post-Study Work Visa — up to 3 years work after graduation\n• Partner/Spouse Visa — for partners of NZ citizens or residents\n• Residence from Work — apply for residency after 2 years on work visa\n\n📞 Immigration NZ: immigration.govt.nz",
+                  ? "주요 비자 유형:\n• Accredited Employer Work Visa (AEWV) — 인증 고용주 스폰서. NZ의 핵심 취업비자\n• Skilled Migrant Category (SMC) — 포인트 기반 기술이민 영주권. 160점 이상\n• Working Holiday Visa — 한-NZ 협정. 만 30세 이하, 최대 23개월\n• Student Visa → Post-Study Work Visa — 졸업 후 최대 3년 취업 허가\n• Partner/Spouse Visa — NZ 시민권자·영주권자 배우자\n• Residence from Work — 취업비자 2년 후 영주권 신청 가능\n\n📞 Immigration NZ: immigration.govt.nz"
+                  : "Key visa types:\n• Accredited Employer Work Visa (AEWV) — employer-sponsored. Primary NZ work visa\n• Skilled Migrant Category (SMC) — points-based residence (160+ points)\n• Working Holiday Visa — Korea-NZ agreement. Age ≤30, up to 23 months\n• Student Visa → Post-Study Work Visa — up to 3 years work after graduation\n• Partner/Spouse Visa — for partners of NZ citizens or residents\n• Residence from Work — apply for residency after 2 years on work visa\n\n📞 Immigration NZ: immigration.govt.nz",
                 tags: lang === "ko" ? ["AEWV", "SMC", "워킹홀리데이"] : ["AEWV", "SMC", "Working Holiday"] },
               { emoji: "📋", name: lang === "ko" ? "IRD 번호·NHI 등록 (필수!)" : "IRD Number & NHI Registration (Critical!)",
                 desc: lang === "ko"
-                  ? "✅ 도착 즉시 처리할 것:\n\n• IRD 번호 (세금 ID) — ird.govt.nz 온라인 신청. 근무 시작 전 필수\n• NHI 번호 (National Health Index) — GP 첫 방문 시 자동 발급. 무료\n• ACC (사고보상공사) — 취업자는 자동 가입. 업무·일상 부상 모두 보장\n• 은행 계좌 — 여권 + IRD 번호 + 거주지 증명으로 개설 (BNZ·ANZ·Kiwibank)\n\n💡 IRD 번호 없으면 급여에서 최고 세율(39%) 원천징수됨. 첫날 신청!"
-                  : "✅ Do immediately on arrival:\n\n• IRD Number (tax ID) — apply online at ird.govt.nz. Required before starting work\n• NHI Number (National Health Index) — issued at first GP visit. Free\n• ACC (Accident Compensation Corporation) — automatic for workers. Covers work & everyday injuries\n• Bank account — passport + IRD number + proof of address (BNZ, ANZ, Kiwibank)\n\n💡 Without an IRD number, you'll be taxed at the highest rate (39%). Apply on day one!",
+                  ? "도착 즉시 처리할 것:\n\n• IRD 번호 (세금 ID) — ird.govt.nz 온라인 신청. 근무 시작 전 필수\n• NHI 번호 (National Health Index) — GP 첫 방문 시 자동 발급. 무료\n• ACC (사고보상공사) — 취업자는 자동 가입. 업무·일상 부상 모두 보장\n• 은행 계좌 — 여권 + IRD 번호 + 거주지 증명으로 개설 (BNZ·ANZ·Kiwibank)\n\n💡 IRD 번호 없으면 급여에서 최고 세율(39%) 원천징수됨. 첫날 신청!"
+                  : "Do immediately on arrival:\n\n• IRD Number (tax ID) — apply online at ird.govt.nz. Required before starting work\n• NHI Number (National Health Index) — issued at first GP visit. Free\n• ACC (Accident Compensation Corporation) — automatic for workers. Covers work & everyday injuries\n• Bank account — passport + IRD number + proof of address (BNZ, ANZ, Kiwibank)\n\n💡 Without an IRD number, you'll be taxed at the highest rate (39%). Apply on day one!",
                 tags: lang === "ko" ? ["IRD번호", "NHI", "ACC"] : ["IRD Number", "NHI", "ACC"] },
               { emoji: "📅", name: lang === "ko" ? "비자 연장·영주권 신청" : "Visa Extension & Residency Application",
                 desc: lang === "ko"
@@ -15697,17 +15798,17 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 tags: lang === "ko" ? ["비자연장", "SMC", "영주권"] : ["Visa Extension", "SMC", "Residency"] },
               { emoji: "🏠", name: lang === "ko" ? "뉴질랜드 정착 핵심 정보" : "NZ Settlement Essentials",
                 desc: lang === "ko"
-                  ? "✅ 정착 체크리스트:\n\n• GP (주치의) 등록 — 도착 즉시. NHI 발급·처방전·전문의 의뢰\n• 운전면허 전환 — 한국 면허 → NZ 면허 (첫 12개월 내). NZTA 사무소 방문\n• KiwiSaver 가입 — NZ 퇴직연금. 고용주 3% 매칭 + 정부 보조\n• 자녀 학교 — 거주 구역 내 공립학교 무료 (Ministry of Education: education.govt.nz)\n• 한인 커뮤니티 — 오클랜드 Korean Association of NZ (kaofnz.org.nz)"
-                  : "✅ Settlement checklist:\n\n• Register with a GP (general practitioner) — immediately. NHI, prescriptions, specialist referrals\n• Driver licence conversion — Korean licence → NZ licence (within first 12 months). Visit NZTA office\n• KiwiSaver enrolment — NZ retirement savings. 3% employer match + government contribution\n• Children's school — free public school in your zone (education.govt.nz)\n• Korean community — Korean Association of NZ: kaofnz.org.nz",
+                  ? "정착 체크리스트:\n\n• GP (주치의) 등록 — 도착 즉시. NHI 발급·처방전·전문의 의뢰\n• 운전면허 전환 — 한국 면허 → NZ 면허 (첫 12개월 내). NZTA 사무소 방문\n• KiwiSaver 가입 — NZ 퇴직연금. 고용주 3% 매칭 + 정부 보조\n• 자녀 학교 — 거주 구역 내 공립학교 무료 (Ministry of Education: education.govt.nz)\n• 한인 커뮤니티 — 오클랜드 Korean Association of NZ (kaofnz.org.nz)"
+                  : "Settlement checklist:\n\n• Register with a GP (general practitioner) — immediately. NHI, prescriptions, specialist referrals\n• Driver licence conversion — Korean licence → NZ licence (within first 12 months). Visit NZTA office\n• KiwiSaver enrolment — NZ retirement savings. 3% employer match + government contribution\n• Children's school — free public school in your zone (education.govt.nz)\n• Korean community — Korean Association of NZ: kaofnz.org.nz",
                 tags: lang === "ko" ? ["GP등록", "KiwiSaver", "운전면허"] : ["GP", "KiwiSaver", "Driver Licence"] },
               { emoji: "🇰🇷", name: lang === "ko" ? "주오클랜드 한국 총영사관" : "Korean Consulate General Auckland",
                 desc: lang === "ko"
-                  ? "✅ 주소: 2 Kitchener St, Auckland CBD\n📞 +64-9-379-0818\n영업시간: 월-금 9am-12pm, 1:30pm-4:30pm (예약 권장)\n\n주요 서비스:\n• 여권 발급·갱신\n• 재외국민 등록 (도착 후 필수)\n• 공증·영사 확인\n• 국적·병역 상담\n\n🔗 nzl.mofa.go.kr"
-                  : "✅ Address: 2 Kitchener St, Auckland CBD\n📞 +64-9-379-0818\nHours: Mon-Fri 9am-12pm, 1:30pm-4:30pm (appointment recommended)\n\nKey services:\n• Passport issuance & renewal\n• Overseas Korean registration (required after arrival)\n• Notarization & consular certification\n• Nationality & military service consultation\n\n🔗 nzl.mofa.go.kr",
+                  ? "주소: 2 Kitchener St, Auckland CBD\n📞 +64-9-379-0818\n영업시간: 월-금 9am-12pm, 1:30pm-4:30pm (예약 권장)\n\n주요 서비스:\n• 여권 발급·갱신\n• 재외국민 등록 (도착 후 필수)\n• 공증·영사 확인\n• 국적·병역 상담\n\n🔗 nzl.mofa.go.kr"
+                  : "Address: 2 Kitchener St, Auckland CBD\n📞 +64-9-379-0818\nHours: Mon-Fri 9am-12pm, 1:30pm-4:30pm (appointment recommended)\n\nKey services:\n• Passport issuance & renewal\n• Overseas Korean registration (required after arrival)\n• Notarization & consular certification\n• Nationality & military service consultation\n\n🔗 nzl.mofa.go.kr",
                 tags: lang === "ko" ? ["총영사관", "여권", "재외국민"] : ["Consulate", "Passport", "Registration"] },
             ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#818CF8", marginBottom: 4 }}>🥝 {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#818CF8", marginBottom: 4 }}><EmojiIcon emoji={"🥝"} size={13} /> {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
                 {lang === "ko"
                   ? "• 도착 즉시: ird.govt.nz에서 IRD 번호 신청\n• GP 등록: 도착 첫 주 내 (NHI 번호 발급)\n• 비자 만료 4개월 전: 연장·영주권 신청 준비\n• 재외국민 등록: 오클랜드 한국 총영사관 방문"
@@ -15723,13 +15824,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             {[
               { emoji: "🇧🇷", name: lang === "ko" ? "브라질 비자 종류" : "Brazil Visa Types",
                 desc: lang === "ko"
-                  ? "✅ 주요 비자 유형:\n• VITEM V (취업비자) — 브라질 고용주 스폰서 필수. 2년 갱신\n• VITEM IX (투자자비자) — 법인 설립 + 투자금 R$ 500,000 이상\n• VITEC (기술연수) — 기술 협력·연수 목적\n• VIPER (영주비자) — 4년 임시거주 후 신청 가능. 취업자·투자자·배우자\n• VICONJ (가족결합) — 브라질 시민권자·영주권자 배우자·자녀\n• 워킹홀리데이 — 한-브라질 협정 (만 18-30세, 최대 1년)\n\n📞 Polícia Federal: pf.gov.br"
-                  : "✅ Key visa types:\n• VITEM V (Work Visa) — Brazilian employer sponsorship required. 2-year renewal\n• VITEM IX (Investor Visa) — company formation + R$ 500,000+ investment\n• VITEC (Technical Training) — technology cooperation & training\n• VIPER (Permanent Visa) — apply after 4 years temporary residence\n• VICONJ (Family Reunification) — spouse/children of Brazilian citizen/resident\n• Working Holiday — Korea-Brazil agreement (age 18-30, up to 1 year)\n\n📞 Polícia Federal: pf.gov.br",
+                  ? "주요 비자 유형:\n• VITEM V (취업비자) — 브라질 고용주 스폰서 필수. 2년 갱신\n• VITEM IX (투자자비자) — 법인 설립 + 투자금 R$ 500,000 이상\n• VITEC (기술연수) — 기술 협력·연수 목적\n• VIPER (영주비자) — 4년 임시거주 후 신청 가능. 취업자·투자자·배우자\n• VICONJ (가족결합) — 브라질 시민권자·영주권자 배우자·자녀\n• 워킹홀리데이 — 한-브라질 협정 (만 18-30세, 최대 1년)\n\n📞 Polícia Federal: pf.gov.br"
+                  : "Key visa types:\n• VITEM V (Work Visa) — Brazilian employer sponsorship required. 2-year renewal\n• VITEM IX (Investor Visa) — company formation + R$ 500,000+ investment\n• VITEC (Technical Training) — technology cooperation & training\n• VIPER (Permanent Visa) — apply after 4 years temporary residence\n• VICONJ (Family Reunification) — spouse/children of Brazilian citizen/resident\n• Working Holiday — Korea-Brazil agreement (age 18-30, up to 1 year)\n\n📞 Polícia Federal: pf.gov.br",
                 tags: lang === "ko" ? ["VITEM", "VIPER", "취업비자"] : ["VITEM", "VIPER", "Work Visa"] },
               { emoji: "📋", name: lang === "ko" ? "CPF·CTPS·RNE 등록 (필수!)" : "CPF · CTPS · RNE Registration (Critical!)",
                 desc: lang === "ko"
-                  ? "✅ 도착 즉시 처리할 것:\n\n• CPF (세금 ID) — 브라질 국세청(Receita Federal) 또는 한국 영사관에서 신청. 은행·계약 필수\n• RNE/CIE (외국인등록증) — Polícia Federal 방문. 비자 발급 후 90일 내\n• CTPS (노동수첩) — 취업 시 고용주가 디지털 CTPS 등록. Ministry of Labour\n• 은행 계좌 — CPF + RNE + 거주지 증명으로 개설 (Itaú·Bradesco·Nubank)\n• SUS 건강보험 — 전국민 무료 의료. UBS(지역보건소) 방문하여 카드 발급\n\n💡 CPF 없으면 브라질에서 거의 아무것도 못함. 첫날 신청!"
-                  : "✅ Do immediately on arrival:\n\n• CPF (tax ID) — apply at Receita Federal or Korean consulate. Required for banking & contracts\n• RNE/CIE (Foreigners' ID Card) — visit Polícia Federal within 90 days of visa\n• CTPS (Work Permit Card) — employer registers digital CTPS on hiring. Ministry of Labour\n• Bank account — CPF + RNE + proof of address (Itaú, Bradesco, Nubank)\n• SUS (Public Health) — free healthcare for all residents. Visit local UBS for card\n\n💡 Without CPF you can barely do anything in Brazil. Apply on day one!",
+                  ? "도착 즉시 처리할 것:\n\n• CPF (세금 ID) — 브라질 국세청(Receita Federal) 또는 한국 영사관에서 신청. 은행·계약 필수\n• RNE/CIE (외국인등록증) — Polícia Federal 방문. 비자 발급 후 90일 내\n• CTPS (노동수첩) — 취업 시 고용주가 디지털 CTPS 등록. Ministry of Labour\n• 은행 계좌 — CPF + RNE + 거주지 증명으로 개설 (Itaú·Bradesco·Nubank)\n• SUS 건강보험 — 전국민 무료 의료. UBS(지역보건소) 방문하여 카드 발급\n\n💡 CPF 없으면 브라질에서 거의 아무것도 못함. 첫날 신청!"
+                  : "Do immediately on arrival:\n\n• CPF (tax ID) — apply at Receita Federal or Korean consulate. Required for banking & contracts\n• RNE/CIE (Foreigners' ID Card) — visit Polícia Federal within 90 days of visa\n• CTPS (Work Permit Card) — employer registers digital CTPS on hiring. Ministry of Labour\n• Bank account — CPF + RNE + proof of address (Itaú, Bradesco, Nubank)\n• SUS (Public Health) — free healthcare for all residents. Visit local UBS for card\n\n💡 Without CPF you can barely do anything in Brazil. Apply on day one!",
                 tags: lang === "ko" ? ["CPF", "RNE", "SUS"] : ["CPF", "RNE", "SUS"] },
               { emoji: "📅", name: lang === "ko" ? "비자 연장·영주권 신청" : "Visa Extension & Permanent Residency",
                 desc: lang === "ko"
@@ -15738,13 +15839,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 tags: lang === "ko" ? ["VIPER", "영주권", "비자연장"] : ["VIPER", "Permanent", "Extension"] },
               { emoji: "🏠", name: lang === "ko" ? "브라질 정착 핵심 정보" : "Brazil Settlement Essentials",
                 desc: lang === "ko"
-                  ? "✅ 정착 체크리스트:\n\n• 운전면허 전환 — 한국 면허 → 브라질 CNH. DETRAN 방문 (각 주 교통국)\n• INSS (사회보험) — 취업자 자동 공제. 의료·연금·출산급여 포함\n• 자녀 학교 — 공립학교 무료. 시립 교육부(SME)에 거주지 증명 제출\n• 한인 커뮤니티 — 상파울루 봉헤찌루(Bom Retiro)·리베르다지(Liberdade) 한인 밀집 지역\n• 한국학교 — Escola Coreana de São Paulo (한국 교육원 산하)"
-                  : "✅ Settlement checklist:\n\n• Driver licence conversion — Korean → Brazilian CNH. Visit DETRAN (state traffic authority)\n• INSS (Social Insurance) — auto-deducted for employees. Covers healthcare, pension, maternity\n• Children's school — free public school. Submit proof of residence to municipal SME\n• Korean community — Bom Retiro & Liberdade districts in São Paulo\n• Korean school — Escola Coreana de São Paulo (under Korean Education Center)",
+                  ? "정착 체크리스트:\n\n• 운전면허 전환 — 한국 면허 → 브라질 CNH. DETRAN 방문 (각 주 교통국)\n• INSS (사회보험) — 취업자 자동 공제. 의료·연금·출산급여 포함\n• 자녀 학교 — 공립학교 무료. 시립 교육부(SME)에 거주지 증명 제출\n• 한인 커뮤니티 — 상파울루 봉헤찌루(Bom Retiro)·리베르다지(Liberdade) 한인 밀집 지역\n• 한국학교 — Escola Coreana de São Paulo (한국 교육원 산하)"
+                  : "Settlement checklist:\n\n• Driver licence conversion — Korean → Brazilian CNH. Visit DETRAN (state traffic authority)\n• INSS (Social Insurance) — auto-deducted for employees. Covers healthcare, pension, maternity\n• Children's school — free public school. Submit proof of residence to municipal SME\n• Korean community — Bom Retiro & Liberdade districts in São Paulo\n• Korean school — Escola Coreana de São Paulo (under Korean Education Center)",
                 tags: lang === "ko" ? ["INSS", "운전면허", "자녀학교"] : ["INSS", "Driver Licence", "School"] },
               { emoji: "🇰🇷", name: lang === "ko" ? "주상파울루 한국 총영사관" : "Korean Consulate General São Paulo",
                 desc: lang === "ko"
-                  ? "✅ 주소: Av. Paulista 37, 8° andar, Bela Vista, São Paulo\n📞 +55-11-3141-1278\n영업시간: 월-금 9am-12pm, 2pm-5pm\n\n주요 서비스:\n• 여권 발급·갱신\n• 재외국민 등록 (도착 후 필수)\n• CPF 신청 대리 (현지 한인 대상)\n• 공증·영사 확인\n\n🔗 bra-saopaulo.mofa.go.kr"
-                  : "✅ Address: Av. Paulista 37, 8th fl, Bela Vista, São Paulo\n📞 +55-11-3141-1278\nHours: Mon-Fri 9am-12pm, 2pm-5pm\n\nKey services:\n• Passport issuance & renewal\n• Overseas Korean registration (required after arrival)\n• CPF application assistance (for local Koreans)\n• Notarization & consular certification\n\n🔗 bra-saopaulo.mofa.go.kr",
+                  ? "주소: Av. Paulista 37, 8° andar, Bela Vista, São Paulo\n📞 +55-11-3141-1278\n영업시간: 월-금 9am-12pm, 2pm-5pm\n\n주요 서비스:\n• 여권 발급·갱신\n• 재외국민 등록 (도착 후 필수)\n• CPF 신청 대리 (현지 한인 대상)\n• 공증·영사 확인\n\n🔗 bra-saopaulo.mofa.go.kr"
+                  : "Address: Av. Paulista 37, 8th fl, Bela Vista, São Paulo\n📞 +55-11-3141-1278\nHours: Mon-Fri 9am-12pm, 2pm-5pm\n\nKey services:\n• Passport issuance & renewal\n• Overseas Korean registration (required after arrival)\n• CPF application assistance (for local Koreans)\n• Notarization & consular certification\n\n🔗 bra-saopaulo.mofa.go.kr",
                 tags: lang === "ko" ? ["총영사관", "여권", "CPF"] : ["Consulate", "Passport", "CPF"] },
             ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
@@ -15764,13 +15865,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             {[
               { emoji: "🇲🇽", name: lang === "ko" ? "멕시코 비자 종류" : "Mexico Visa Types",
                 desc: lang === "ko"
-                  ? "✅ 주요 비자 유형:\n• 한국인 무비자 입국 — 관광·상용 최대 180일. 입국 시 허가 기간 확인 필수\n• Residente Temporal (임시거주자) — 취업·유학·투자·가족결합. 1-4년, 갱신 가능\n• Residente Temporal Estudiante — 학생 임시거주. 재학 기간 유효\n• Residente Permanente (영주) — 4년 임시거주 후 신청. 또는 멕시코인 배우자\n• IMMEX (제조업 취업) — 마낄라도라 공장 취업 외국인 특수 허가\n• 원격근무 비자 (디지털노마드) — 2024년 도입. Residente Temporal 내 처리\n\n📞 INM (이민청): inm.gob.mx"
-                  : "✅ Key visa types:\n• Visa-free entry for Koreans — tourism/business up to 180 days. Check permitted stay on arrival\n• Residente Temporal (Temporary Resident) — work, study, invest, family. 1-4 years, renewable\n• Residente Temporal Estudiante — student temporary residence. Valid for study duration\n• Residente Permanente (Permanent) — after 4 years temp residence, or spouse of Mexican national\n• IMMEX (Manufacturing Work) — special permit for maquiladora factory workers\n• Digital Nomad option — handled within Residente Temporal framework (introduced 2024)\n\n📞 INM: inm.gob.mx",
+                  ? "주요 비자 유형:\n• 한국인 무비자 입국 — 관광·상용 최대 180일. 입국 시 허가 기간 확인 필수\n• Residente Temporal (임시거주자) — 취업·유학·투자·가족결합. 1-4년, 갱신 가능\n• Residente Temporal Estudiante — 학생 임시거주. 재학 기간 유효\n• Residente Permanente (영주) — 4년 임시거주 후 신청. 또는 멕시코인 배우자\n• IMMEX (제조업 취업) — 마낄라도라 공장 취업 외국인 특수 허가\n• 원격근무 비자 (디지털노마드) — 2024년 도입. Residente Temporal 내 처리\n\n📞 INM (이민청): inm.gob.mx"
+                  : "Key visa types:\n• Visa-free entry for Koreans — tourism/business up to 180 days. Check permitted stay on arrival\n• Residente Temporal (Temporary Resident) — work, study, invest, family. 1-4 years, renewable\n• Residente Temporal Estudiante — student temporary residence. Valid for study duration\n• Residente Permanente (Permanent) — after 4 years temp residence, or spouse of Mexican national\n• IMMEX (Manufacturing Work) — special permit for maquiladora factory workers\n• Digital Nomad option — handled within Residente Temporal framework (introduced 2024)\n\n📞 INM: inm.gob.mx",
                 tags: lang === "ko" ? ["ResidenteTemporal", "INM", "무비자"] : ["Residente Temporal", "INM", "Visa-Free"] },
               { emoji: "📋", name: lang === "ko" ? "RFC·CURP·IMSS 등록 (필수!)" : "RFC · CURP · IMSS Registration (Critical!)",
                 desc: lang === "ko"
-                  ? "✅ 도착 즉시 처리할 것:\n\n• CURP (주민등록번호) — 멕시코 신분증 번호. gob.mx 온라인 발급 (무료). 입국 후 발급 가능\n• RFC (세금 ID) — SAT(세무청) 방문 또는 앱 신청. 취업·사업·은행 필수\n• IMSS 가입 — 취업자 고용주가 등록. 의료·연금·출산급여. 확인: imss.gob.mx\n• 은행 계좌 — CURP + RFC + 거주지 증명. BBVA·Banamex·HSBC Mexico\n• 외국인 거주증 (CURP 카드) — INM 발급. Residente Temporal 카드와 함께 소지\n\n💡 CURP는 멕시코 모든 행정 절차의 기본. 가장 먼저 발급!"
-                  : "✅ Do immediately on arrival:\n\n• CURP (Population Registry Code) — Mexico's ID number. Apply free at gob.mx. Available after entry\n• RFC (Tax ID) — apply at SAT office or via app. Required for work, business, banking\n• IMSS enrollment — employer registers on hiring. Covers healthcare, pension, maternity\n• Bank account — CURP + RFC + proof of address (BBVA, Banamex, HSBC Mexico)\n• Foreign Resident Card — issued by INM. Carry with Residente Temporal card\n\n💡 CURP is the foundation of all administrative procedures in Mexico. Get it first!",
+                  ? "도착 즉시 처리할 것:\n\n• CURP (주민등록번호) — 멕시코 신분증 번호. gob.mx 온라인 발급 (무료). 입국 후 발급 가능\n• RFC (세금 ID) — SAT(세무청) 방문 또는 앱 신청. 취업·사업·은행 필수\n• IMSS 가입 — 취업자 고용주가 등록. 의료·연금·출산급여. 확인: imss.gob.mx\n• 은행 계좌 — CURP + RFC + 거주지 증명. BBVA·Banamex·HSBC Mexico\n• 외국인 거주증 (CURP 카드) — INM 발급. Residente Temporal 카드와 함께 소지\n\n💡 CURP는 멕시코 모든 행정 절차의 기본. 가장 먼저 발급!"
+                  : "Do immediately on arrival:\n\n• CURP (Population Registry Code) — Mexico's ID number. Apply free at gob.mx. Available after entry\n• RFC (Tax ID) — apply at SAT office or via app. Required for work, business, banking\n• IMSS enrollment — employer registers on hiring. Covers healthcare, pension, maternity\n• Bank account — CURP + RFC + proof of address (BBVA, Banamex, HSBC Mexico)\n• Foreign Resident Card — issued by INM. Carry with Residente Temporal card\n\n💡 CURP is the foundation of all administrative procedures in Mexico. Get it first!",
                 tags: lang === "ko" ? ["CURP", "RFC", "IMSS"] : ["CURP", "RFC", "IMSS"] },
               { emoji: "📅", name: lang === "ko" ? "비자 연장·영주권 신청" : "Visa Extension & Permanent Residency",
                 desc: lang === "ko"
@@ -15779,13 +15880,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 tags: lang === "ko" ? ["연장", "영주권", "INM"] : ["Extension", "Permanent", "INM"] },
               { emoji: "🏠", name: lang === "ko" ? "멕시코 정착 핵심 정보" : "Mexico Settlement Essentials",
                 desc: lang === "ko"
-                  ? "✅ 정착 체크리스트:\n\n• 운전면허 전환 — 한국 면허 → 멕시코 면허. 각 주 교통국(Secretaría de Movilidad) 방문\n• 의료보험 — IMSS(취업자) 또는 INSABI/Seguro Popular(자영업자·무직). 가까운 클리닉 등록\n• 자녀 학교 — 공립학교 무료. SEP(교육부) 통해 CURP로 등록\n• 한인 커뮤니티 — 멕시코시티: Polanco·Lomas de Chapultepec 한인 밀집. 한국 기업 주재원 多\n• 한국학교 — 멕시코시티 한국교육원 (education.go.kr/mexico)"
-                  : "✅ Settlement checklist:\n\n• Driver licence conversion — Korean → Mexican licence. Visit state traffic authority (Secretaría de Movilidad)\n• Healthcare — IMSS (employed) or INSABI/Seguro Popular (self-employed/unemployed). Register at local clinic\n• Children's school — free public school. Register via SEP (Education Ministry) using CURP\n• Korean community — Mexico City: Polanco & Lomas de Chapultepec districts. Many Korean company employees\n• Korean school — Centro Educativo Coreano en México (education.go.kr/mexico)",
+                  ? "정착 체크리스트:\n\n• 운전면허 전환 — 한국 면허 → 멕시코 면허. 각 주 교통국(Secretaría de Movilidad) 방문\n• 의료보험 — IMSS(취업자) 또는 INSABI/Seguro Popular(자영업자·무직). 가까운 클리닉 등록\n• 자녀 학교 — 공립학교 무료. SEP(교육부) 통해 CURP로 등록\n• 한인 커뮤니티 — 멕시코시티: Polanco·Lomas de Chapultepec 한인 밀집. 한국 기업 주재원 多\n• 한국학교 — 멕시코시티 한국교육원 (education.go.kr/mexico)"
+                  : "Settlement checklist:\n\n• Driver licence conversion — Korean → Mexican licence. Visit state traffic authority (Secretaría de Movilidad)\n• Healthcare — IMSS (employed) or INSABI/Seguro Popular (self-employed/unemployed). Register at local clinic\n• Children's school — free public school. Register via SEP (Education Ministry) using CURP\n• Korean community — Mexico City: Polanco & Lomas de Chapultepec districts. Many Korean company employees\n• Korean school — Centro Educativo Coreano en México (education.go.kr/mexico)",
                 tags: lang === "ko" ? ["IMSS", "운전면허", "자녀학교"] : ["IMSS", "Driver Licence", "School"] },
               { emoji: "🇰🇷", name: lang === "ko" ? "주멕시코 한국 대사관" : "Korean Embassy Mexico City",
                 desc: lang === "ko"
-                  ? "✅ 주소: 211 Lope de Armendáriz, Lomas de Virreyes, Mexico City\n📞 +52-55-5202-9866\n영업시간: 월-금 9am-12pm, 2pm-5pm (예약 권장)\n\n주요 서비스:\n• 여권 발급·갱신\n• 재외국민 등록 (도착 후 필수)\n• 공증·영사 확인\n• 한인 법률 긴급 지원\n\n🔗 mex.mofa.go.kr"
-                  : "✅ Address: 211 Lope de Armendáriz, Lomas de Virreyes, Mexico City\n📞 +52-55-5202-9866\nHours: Mon-Fri 9am-12pm, 2pm-5pm (appointment recommended)\n\nKey services:\n• Passport issuance & renewal\n• Overseas Korean registration (required after arrival)\n• Notarization & consular certification\n• Emergency legal assistance for Koreans\n\n🔗 mex.mofa.go.kr",
+                  ? "주소: 211 Lope de Armendáriz, Lomas de Virreyes, Mexico City\n📞 +52-55-5202-9866\n영업시간: 월-금 9am-12pm, 2pm-5pm (예약 권장)\n\n주요 서비스:\n• 여권 발급·갱신\n• 재외국민 등록 (도착 후 필수)\n• 공증·영사 확인\n• 한인 법률 긴급 지원\n\n🔗 mex.mofa.go.kr"
+                  : "Address: 211 Lope de Armendáriz, Lomas de Virreyes, Mexico City\n📞 +52-55-5202-9866\nHours: Mon-Fri 9am-12pm, 2pm-5pm (appointment recommended)\n\nKey services:\n• Passport issuance & renewal\n• Overseas Korean registration (required after arrival)\n• Notarization & consular certification\n• Emergency legal assistance for Koreans\n\n🔗 mex.mofa.go.kr",
                 tags: lang === "ko" ? ["대사관", "여권", "재외국민"] : ["Embassy", "Passport", "Registration"] },
             ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
@@ -15805,13 +15906,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             {[
               { emoji: "🛂", name: lang === "ko" ? "비자 종류 한눈에 보기" : "Visa Types Overview",
                 desc: lang === "ko"
-                  ? "✅ 주요 비자 유형:\n• F-1 (학생비자) — 대학/어학원 재학 중. OPT·CPT 취업 가능\n• J-1 (교환방문) — 인턴십·연구원·교환학생. DS-2019 필요\n• H-1B (전문직) — 매년 4월 추첨. 스폰서 고용주 필요. 연봉 $60K+\n• O-1 (특기자) — 뛰어난 능력 증명 필요. 추첨 없음\n• L-1 (주재원) — 다국적기업 전근. A(관리직)/B(전문직)\n• E-2 (투자자) — 투자금 $100K+ 권장. 한미조약 혜택\n• EB-3/EB-5 (영주권) — 취업이민/투자이민. 우선순위 날짜 확인 필수"
-                  : "✅ Key visa types:\n• F-1 (Student) — enrolled in university/language school. OPT/CPT work authorized\n• J-1 (Exchange Visitor) — intern, researcher, exchange student. DS-2019 required\n• H-1B (Specialty Occupation) — lottery every April. Employer sponsor required\n• O-1 (Extraordinary Ability) — no lottery. Must prove exceptional talent\n• L-1 (Intracompany) — transfer within multinational. A (managers) / B (specialists)\n• E-2 (Treaty Investor) — ~$100K+ investment. Korea-US treaty benefit\n• EB-3/EB-5 (Green Card) — employment/investor immigration. Check priority dates",
+                  ? "주요 비자 유형:\n• F-1 (학생비자) — 대학/어학원 재학 중. OPT·CPT 취업 가능\n• J-1 (교환방문) — 인턴십·연구원·교환학생. DS-2019 필요\n• H-1B (전문직) — 매년 4월 추첨. 스폰서 고용주 필요. 연봉 $60K+\n• O-1 (특기자) — 뛰어난 능력 증명 필요. 추첨 없음\n• L-1 (주재원) — 다국적기업 전근. A(관리직)/B(전문직)\n• E-2 (투자자) — 투자금 $100K+ 권장. 한미조약 혜택\n• EB-3/EB-5 (영주권) — 취업이민/투자이민. 우선순위 날짜 확인 필수"
+                  : "Key visa types:\n• F-1 (Student) — enrolled in university/language school. OPT/CPT work authorized\n• J-1 (Exchange Visitor) — intern, researcher, exchange student. DS-2019 required\n• H-1B (Specialty Occupation) — lottery every April. Employer sponsor required\n• O-1 (Extraordinary Ability) — no lottery. Must prove exceptional talent\n• L-1 (Intracompany) — transfer within multinational. A (managers) / B (specialists)\n• E-2 (Treaty Investor) — ~$100K+ investment. Korea-US treaty benefit\n• EB-3/EB-5 (Green Card) — employment/investor immigration. Check priority dates",
                 tags: lang === "ko" ? ["비자유형", "F-1", "H-1B"] : ["Visa Types", "F-1", "H-1B"] },
               { emoji: "📋", name: lang === "ko" ? "I-94 체류 기간 확인 (필수!)" : "Check I-94 Stay Duration (Critical!)",
                 desc: lang === "ko"
-                  ? "✅ 반드시 해야 할 일:\n1. cbp.dhs.gov/i94 접속\n2. 여권 정보 입력 → 현재 I-94 조회\n3. '입국 허가 만료일' 확인 (비자 만료일과 다를 수 있음!)\n4. D/S = Duration of Status (학생·교환방문 비자는 I-20/DS-2019 기간)\n\n⚠️ 비자 스티커 날짜 ≠ 체류 허용 기간. I-94 날짜가 실제 체류 기한!"
-                  : "✅ Must do:\n1. Go to cbp.dhs.gov/i94\n2. Enter passport info → view current I-94\n3. Check 'Admitted Until Date' (different from visa expiry date!)\n4. D/S = Duration of Status (F-1/J-1 holders: see your I-20/DS-2019)\n\n⚠️ Visa stamp date ≠ allowed stay period. I-94 date is your real deadline!",
+                  ? "반드시 해야 할 일:\n1. cbp.dhs.gov/i94 접속\n2. 여권 정보 입력 → 현재 I-94 조회\n3. '입국 허가 만료일' 확인 (비자 만료일과 다를 수 있음!)\n4. D/S = Duration of Status (학생·교환방문 비자는 I-20/DS-2019 기간)\n\n⚠️ 비자 스티커 날짜 ≠ 체류 허용 기간. I-94 날짜가 실제 체류 기한!"
+                  : "Must do:\n1. Go to cbp.dhs.gov/i94\n2. Enter passport info → view current I-94\n3. Check 'Admitted Until Date' (different from visa expiry date!)\n4. D/S = Duration of Status (F-1/J-1 holders: see your I-20/DS-2019)\n\n⚠️ Visa stamp date ≠ allowed stay period. I-94 date is your real deadline!",
                 tags: lang === "ko" ? ["I-94", "체류기간", "필수확인"] : ["I-94", "Stay Duration", "Critical"] },
               { emoji: "📅", name: lang === "ko" ? "비자 연장·전환 절차" : "Visa Extension & Change of Status",
                 desc: lang === "ko"
@@ -15820,26 +15921,26 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 tags: lang === "ko" ? ["비자연장", "I-539", "USCIS"] : ["Extension", "I-539", "USCIS"] },
               { emoji: "🏠", name: lang === "ko" ? "영주권 (그린카드) 경로" : "Green Card Pathways",
                 desc: lang === "ko"
-                  ? "✅ 주요 영주권 취득 경로:\n\n취업이민 (EB):\n• EB-1A: 특기자 (자기청원 가능)\n• EB-1C: 다국적기업 관리자 (L-1A 후 전환)\n• EB-2 NIW: 국익면제 (자기청원, 연구·의료 분야 유리)\n• EB-3: 전문직/숙련직 (스폰서 필요, 대기 길 수 있음)\n• EB-5: 투자이민 (미국 내 $800K~$1.05M 투자)\n\n가족이민:\n• IR-1/CR-1: 미국 시민권자 배우자\n• F-2A: 영주권자 배우자·미성년 자녀 (대기 있음)\n\n💡 현재 우선순위 날짜: travel.state.gov → Visa Bulletin 확인"
-                  : "✅ Main green card pathways:\n\nEmployment-Based:\n• EB-1A: Extraordinary ability (self-petition possible)\n• EB-1C: Multinational manager (L-1A → EB-1C)\n• EB-2 NIW: National Interest Waiver (self-petition, great for researchers)\n• EB-3: Professionals/skilled workers (sponsor required, wait times vary)\n• EB-5: Investor ($800K–$1.05M investment in the US)\n\nFamily-Based:\n• IR-1/CR-1: Spouse of US citizen\n• F-2A: Spouse/minor children of LPR (wait time applies)\n\n💡 Check current priority dates: travel.state.gov → Visa Bulletin",
+                  ? "주요 영주권 취득 경로:\n\n취업이민 (EB):\n• EB-1A: 특기자 (자기청원 가능)\n• EB-1C: 다국적기업 관리자 (L-1A 후 전환)\n• EB-2 NIW: 국익면제 (자기청원, 연구·의료 분야 유리)\n• EB-3: 전문직/숙련직 (스폰서 필요, 대기 길 수 있음)\n• EB-5: 투자이민 (미국 내 $800K~$1.05M 투자)\n\n가족이민:\n• IR-1/CR-1: 미국 시민권자 배우자\n• F-2A: 영주권자 배우자·미성년 자녀 (대기 있음)\n\n💡 현재 우선순위 날짜: travel.state.gov → Visa Bulletin 확인"
+                  : "Main green card pathways:\n\nEmployment-Based:\n• EB-1A: Extraordinary ability (self-petition possible)\n• EB-1C: Multinational manager (L-1A → EB-1C)\n• EB-2 NIW: National Interest Waiver (self-petition, great for researchers)\n• EB-3: Professionals/skilled workers (sponsor required, wait times vary)\n• EB-5: Investor ($800K–$1.05M investment in the US)\n\nFamily-Based:\n• IR-1/CR-1: Spouse of US citizen\n• F-2A: Spouse/minor children of LPR (wait time applies)\n\n💡 Check current priority dates: travel.state.gov → Visa Bulletin",
                 tags: lang === "ko" ? ["영주권", "EB", "그린카드"] : ["Green Card", "EB", "NIW"] },
               { emoji: "⚖️", name: lang === "ko" ? `무료 이민 법률 지원${isSeattle ? " (시애틀)" : ""}` : `Free Immigration Legal Help${isSeattle ? " (Seattle)" : ""}`,
                 desc: lang === "ko"
                   ? isSeattle
-                    ? "✅ 시애틀 무료/저비용 이민 법률 기관:\n\n• NWIRP (서북미 이민권 프로젝트): 📞 800-445-5771 | nwirp.org — 영주권·추방방어·DACA 무료\n• OneAmerica: 425-251-0900 | weareoneamerica.org — 시민권 지원·이민자 권익 옹호\n• PAIR Project: pairproject.org — 망명 신청자 무료 법률\n• NW Justice Project: 206-464-1519 — 저소득 이민자 무료 법률 (민사 한정)\n• KCSC (한인생활상담소): 425-776-2400 — 한국어 이민 초기 상담\n\n⚠️ 비전문가나 노타리오 (notario)에게 이민 서류 맡기지 마세요!"
-                    : `✅ 전국 무료 이민 법률 자원:\n\n• ILRC (이민법률자원센터): ilrc.org — 전국 이민 법률 지원\n• Immigration Advocates Network: immigrationadvocates.org — 도시별 무료 이민 법률 기관 검색\n• USCIS 공식 무료 법률 기관 목록: uscis.gov/freelegalhelpoffers\n• National Immigration Law Center: nilc.org\n\n⚠️ 비전문가나 노타리오 (notario)에게 이민 서류 맡기지 마세요!`
+                    ? "시애틀 무료/저비용 이민 법률 기관:\n\n• NWIRP (서북미 이민권 프로젝트): 📞 800-445-5771 | nwirp.org — 영주권·추방방어·DACA 무료\n• OneAmerica: 425-251-0900 | weareoneamerica.org — 시민권 지원·이민자 권익 옹호\n• PAIR Project: pairproject.org — 망명 신청자 무료 법률\n• NW Justice Project: 206-464-1519 — 저소득 이민자 무료 법률 (민사 한정)\n• KCSC (한인생활상담소): 425-776-2400 — 한국어 이민 초기 상담\n\n⚠️ 비전문가나 노타리오 (notario)에게 이민 서류 맡기지 마세요!"
+                    : `전국 무료 이민 법률 자원:\n\n• ILRC (이민법률자원센터): ilrc.org — 전국 이민 법률 지원\n• Immigration Advocates Network: immigrationadvocates.org — 도시별 무료 이민 법률 기관 검색\n• USCIS 공식 무료 법률 기관 목록: uscis.gov/freelegalhelpoffers\n• National Immigration Law Center: nilc.org\n\n⚠️ 비전문가나 노타리오 (notario)에게 이민 서류 맡기지 마세요!`
                   : isSeattle
-                    ? "✅ Free/low-cost immigration legal resources in Seattle:\n\n• NWIRP: 📞 800-445-5771 | nwirp.org — green card, deportation defense, DACA\n• OneAmerica: 425-251-0900 | weareoneamerica.org — citizenship, immigrant rights\n• PAIR Project: pairproject.org — free legal help for asylum seekers\n• NW Justice Project: 206-464-1519 — free civil legal aid for low-income\n• KCSC: 425-776-2400 — Korean-language immigration consultation\n\n⚠️ Never use unlicensed notarios for immigration documents!"
-                    : `✅ National free immigration legal resources:\n\n• ILRC (Immigration Legal Resource Center): ilrc.org\n• Immigration Advocates Network: immigrationadvocates.org — search free legal aid by city\n• USCIS free legal services: uscis.gov/freelegalhelpoffers\n• National Immigration Law Center: nilc.org\n\n⚠️ Never use unlicensed notarios for immigration documents!`,
+                    ? "Free/low-cost immigration legal resources in Seattle:\n\n• NWIRP: 📞 800-445-5771 | nwirp.org — green card, deportation defense, DACA\n• OneAmerica: 425-251-0900 | weareoneamerica.org — citizenship, immigrant rights\n• PAIR Project: pairproject.org — free legal help for asylum seekers\n• NW Justice Project: 206-464-1519 — free civil legal aid for low-income\n• KCSC: 425-776-2400 — Korean-language immigration consultation\n\n⚠️ Never use unlicensed notarios for immigration documents!"
+                    : `National free immigration legal resources:\n\n• ILRC (Immigration Legal Resource Center): ilrc.org\n• Immigration Advocates Network: immigrationadvocates.org — search free legal aid by city\n• USCIS free legal services: uscis.gov/freelegalhelpoffers\n• National Immigration Law Center: nilc.org\n\n⚠️ Never use unlicensed notarios for immigration documents!`,
                 tags: lang === "ko" ? ["무료법률", "이민상담", "전국"] : ["Free Legal", "Immigration", "National"] },
               { emoji: "🇰🇷", name: lang === "ko" ? `${consulate.ko} 서비스` : `${consulate.en} Services`,
                 desc: lang === "ko"
-                  ? `✅ 검증됨 | 📞 ${consulate.phone}\n영업시간: 월-금 8:30am-4pm (예약 필수)\n\n주요 서비스:\n• 여권 발급·갱신 (온라인 예약 필수)\n• 공증·영사 확인\n• 재외국민 등록 (도미 직후 필수!)\n• 국적·병역 상담\n\n🔗 ${consulate.url}\n💡 민원24(mw.go.kr)로 한국 서류 온라인 발급 후 영사 확인 절차 단축 가능`
-                  : `✅ Verified | 📞 ${consulate.phone}\nHours: Mon-Fri 8:30am-4pm (appointment required)\n\nKey services:\n• Passport issuance & renewal\n• Notarization & consular certification\n• Overseas Korean registration (do right after arrival!)\n• Nationality & military service consultation\n\n🔗 ${consulate.url}`,
+                  ? `검증됨 | 📞 ${consulate.phone}\n영업시간: 월-금 8:30am-4pm (예약 필수)\n\n주요 서비스:\n• 여권 발급·갱신 (온라인 예약 필수)\n• 공증·영사 확인\n• 재외국민 등록 (도미 직후 필수!)\n• 국적·병역 상담\n\n🔗 ${consulate.url}\n💡 민원24(mw.go.kr)로 한국 서류 온라인 발급 후 영사 확인 절차 단축 가능`
+                  : `Verified | 📞 ${consulate.phone}\nHours: Mon-Fri 8:30am-4pm (appointment required)\n\nKey services:\n• Passport issuance & renewal\n• Notarization & consular certification\n• Overseas Korean registration (do right after arrival!)\n• Nationality & military service consultation\n\n🔗 ${consulate.url}`,
                 tags: lang === "ko" ? ["총영사관", "여권", "공증"] : ["Consulate", "Passport", "Notary"] },
             ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#818CF8", marginBottom: 4 }}>🛂 {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#818CF8", marginBottom: 4 }}><EmojiIcon emoji={"🛂"} size={13} /> {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
                 {lang === "ko"
                   ? "• 도착 즉시: cbp.dhs.gov/i94 에서 I-94 확인\n• 재외국민 등록: 영사관 방문 (무료, 도착 3개월 내)\n• 비자 만료 6개월 전: 이민 변호사 상담 시작\n• USCIS 사건 조회: egov.uscis.gov (영수증 번호로 조회)"
@@ -15921,7 +16022,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               : areaItems.map((area, i) => (
               <div key={i} style={{ background: "rgba(96,165,250,0.06)", border: "1px solid rgba(96,165,250,0.18)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                  <span style={{ fontSize: 20 }}>{area.emoji}</span>
+                  <EmojiIcon emoji={area.emoji} size={18} />
                   <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13, color: "#ECFDF5" }}>{area.title}</div>
                 </div>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.65)" }}>{area.desc}</div>
@@ -15937,7 +16038,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 {getRealtyPortals(citySlug, lang).map((link, i) => (
                   <a key={i} href={link.href} target="_blank" rel="noopener noreferrer"
                     style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(37,99,235,0.18)" }}>
-                    <span style={{ fontSize: 16 }}>{link.emoji}</span>
+                    <EmojiIcon emoji={link.emoji} size={14} />
                     <div style={{ flex: 1 }}>
                       <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>{link.label}</div>
                       <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{link.sub}</div>
@@ -15956,7 +16057,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                 <a href={kakaoOpenChat(citySlug).url} target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
-                  <span style={{ fontSize: 16 }}>💬</span>
+                  <MessageCircle size={14} strokeWidth={2} />
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
                       {lang === "ko" ? kakaoOpenChat(citySlug).label : `KakaoTalk '${kakaoOpenChat(citySlug).term}'`}
@@ -15968,7 +16069,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 {citySlug === "seattle" && (
                   <a href="https://www.wowseattle.com/" target="_blank" rel="noopener noreferrer"
                     style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
-                    <span style={{ fontSize: 16 }}>🏘️</span>
+                    <Building2 size={14} strokeWidth={2} />
                     <div style={{ flex: 1 }}>
                       <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>WowSeattle</div>
                       <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "시애틀 한인 부동산·렌탈" : "Seattle Korean realty & rentals"}</div>
@@ -15980,7 +16081,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 {(getCountryCode(citySlug) === "US" || getCountryCode(citySlug) === "CA") && (
                 <a href="https://www.koreadaily.com/" target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
-                  <span style={{ fontSize: 16 }}>📰</span>
+                  <Newspaper size={14} strokeWidth={2} />
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>{lang === "ko" ? "미주중앙일보 부동산" : "Korea Daily Real Estate"}</div>
                     <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "전국 한인 부동산 매물·구인" : "National Korean realty listings"}</div>
@@ -16080,7 +16181,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                           border: "none", cursor: "pointer",
                         }}
                       >
-                        <span style={{ fontSize: 15 }}>🗒</span>
+                        <StickyNote size={13} strokeWidth={2} />
                         <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13, color: "rgba(236,253,245,0.7)", flex: 1, textAlign: "left" }}>
                           {lang === "ko" ? "3개월 정착 체크리스트" : "Month 3 Checklist"}
                           <span style={{ fontWeight: 500, color: "rgba(236,253,245,0.4)", fontSize: 11, marginLeft: 6 }}>
@@ -16126,11 +16227,11 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
 
             {/* 팁 배너 */}
             <div style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}>💡 {lang === "ko" ? "한인 커뮤니티 연결" : "Korean Community"}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? "한인 커뮤니티 연결" : "Korean Community"}</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                 <a href={kakaoOpenChat(citySlug).url} target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
-                  <span style={{ fontSize: 16 }}>💬</span>
+                  <MessageCircle size={14} strokeWidth={2} />
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
                       {lang === "ko" ? kakaoOpenChat(citySlug).label : `KakaoTalk '${kakaoOpenChat(citySlug).term}'`}
@@ -16141,7 +16242,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 </a>
                 <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(254,229,0,0.07)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(254,229,0,0.25)" }}>
-                  <span style={{ fontSize: 16 }}>💬</span>
+                  <MessageCircle size={14} strokeWidth={2} />
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
                       {lang === "ko" ? "HebronGuide 카카오 채널" : "HebronGuide KakaoTalk Channel"}
@@ -16170,7 +16271,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
 /* ─────────────────────────────────────────
    도시별 한인 교회 데이터
    출처: 각 교회 공식 웹사이트 / 공개 정보 기준
-   검증 상태: ✅ 공식 사이트 확인됨 | 🔍 추가 검증 필요
+   검증 상태: 공식 사이트 확인됨 | 🔍 추가 검증 필요
 ───────────────────────────────────────── */
 function getCityChurches(slug: string, lang: string) {
   const ko = lang === "ko";
@@ -16510,8 +16611,8 @@ function getCityChurches(slug: string, lang: string) {
         emoji: "⛪", tier: 2,
         name: ko ? "해운대교회" : "Haeundae Church",
         desc: ko
-          ? "✅ 검증됨\n📍 부산 해운대구 해운대로 352\n🕐 주일예배 1부(9am)·2부(11am)·3부(1pm)\n🔗 haeundaechurch.or.kr\n\n✨ 해운대 중심부, 귀환 동포·이민자 정착 상담 가능"
-          : "✅ Verified\n📍 352 Haeundaero, Haeundae-gu, Busan\n🕐 Sunday: 9am / 11am / 1pm\n🔗 haeundaechurch.or.kr\n\n✨ Located in central Haeundae. Pastoral counseling available for returnees",
+          ? "검증됨\n📍 부산 해운대구 해운대로 352\n🕐 주일예배 1부(9am)·2부(11am)·3부(1pm)\n🔗 haeundaechurch.or.kr\n\n✨ 해운대 중심부, 귀환 동포·이민자 정착 상담 가능"
+          : "Verified\n📍 352 Haeundaero, Haeundae-gu, Busan\n🕐 Sunday: 9am / 11am / 1pm\n🔗 haeundaechurch.or.kr\n\n✨ Located in central Haeundae. Pastoral counseling available for returnees",
         tags: ko ? ["해운대", "귀환동포", "부산중심"] : ["Haeundae", "Returnees", "Central Busan"],
         website: "https://haeundaechurch.or.kr",
       },
@@ -16554,8 +16655,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "멤피스한인침례교회" : "Korean Baptist Church of Memphis",
         nameEn: "Korean Baptist Church of Memphis",
         desc: ko
-          ? "✅ 검증됨\n📍 9650 E Shelby Dr, Collierville TN 38017\n☎️ (901) 240-8834\n🔗 kbcm.org"
-          : "✅ Verified\n📍 9650 E Shelby Dr, Collierville TN 38017\n☎️ (901) 240-8834\n🔗 kbcm.org",
+          ? "검증됨\n📍 9650 E Shelby Dr, Collierville TN 38017\n☎️ (901) 240-8834\n🔗 kbcm.org"
+          : "Verified\n📍 9650 E Shelby Dr, Collierville TN 38017\n☎️ (901) 240-8834\n🔗 kbcm.org",
         tags: ko ? ["콜리어빌", "침례교"] : ["Collierville", "Baptist"],
         website: "https://kbcm.org",
       },
@@ -17218,7 +17319,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                           }}>
                             {c.isCommunity && (
                               <div style={{ padding: "5px 12px 0" }}>
-                                <span style={{ fontSize: 9, fontWeight: 700, color: "#6EE7B7", fontFamily: "Manrope,sans-serif" }}>✅ 커뮤니티 등록</span>
+                                <span style={{ fontSize: 9, fontWeight: 700, color: "#6EE7B7", fontFamily: "Manrope,sans-serif" }}><EmojiIcon emoji={"✅"} size={13} /> 커뮤니티 등록</span>
                               </div>
                             )}
                             <PlaceCard {...enriched} accentColor={c.tier === 1 ? "#C9A227" : accent} />
@@ -17393,7 +17494,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             {/* 파트너 목사 전용 Slack 채널 */}
             <a href="https://hebronguide.slack.com" target="_blank" rel="noopener" style={{ display: "block", textDecoration: "none", marginBottom: 12 }}>
               <div style={{ background: "rgba(74,21,75,0.15)", border: "1px solid rgba(154,100,156,0.35)", borderRadius: 14, padding: "12px 18px", display: "flex", alignItems: "center", gap: 12 }}>
-                <span style={{ fontSize: 20 }}>💬</span>
+                <MessageCircle size={17} strokeWidth={2} />
                 <div>
                   <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 12.5, color: "#E8B4E8" }}>
                     {lang === "ko" ? "파트너 목사 전용 — Slack 채널" : "Partner Pastors — Slack Channel"}
@@ -17447,7 +17548,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
 
           {/* 환영 헤더 */}
           <div style={{ padding: "16px 22px 4px", textAlign: "center" }}>
-            <div style={{ fontSize: 36, marginBottom: 6 }}>🌿</div>
+            <div style={{ marginBottom: 6 }}><Leaf size={31} strokeWidth={2} /></div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 12, letterSpacing: ".1em", color: "#6EE7B7", marginBottom: 5 }}>
               {lang === "ko" ? "환영합니다" : "WELCOME"}
             </div>
@@ -17523,7 +17624,7 @@ function top5ToPlaceCards(items: Top5Item[], lang: string) {
     nameEn: item.nameEn,
     desc: lang === "ko"
       ? [
-          "✅ 검증됨",
+          "검증됨",
           item.address ? `📍 ${item.address}` : "",
           item.phone ? `📞 ${item.phone}` : "",
           item.hours ? `⏰ ${item.hours}` : "",
@@ -17532,7 +17633,7 @@ function top5ToPlaceCards(items: Top5Item[], lang: string) {
           item.website ? `🔗 ${item.website}` : "",
         ].filter(Boolean).join("\n")
       : [
-          "✅ Verified",
+          "Verified",
           item.address ? `📍 ${item.address}` : "",
           item.phone ? `📞 ${item.phone}` : "",
           item.hours ? `⏰ ${item.hours}` : "",
@@ -22409,7 +22510,7 @@ function GroceryMartContent({ lang, accent }: { lang: string; accent: string }) 
   }) => (
     <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: 14, padding: "14px", marginBottom: 10 }}>
       <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 6 }}>
-        <span style={{ fontSize: 22, flexShrink: 0 }}>{emoji}</span>
+        <span style={{ flexShrink: 0, color: "#6EE7B7" }}><EmojiIcon emoji={emoji} size={20} /></span>
         <div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#ECFDF5", lineHeight: 1.3 }}>
             {ko ? name : nameEn}
@@ -22419,7 +22520,7 @@ function GroceryMartContent({ lang, accent }: { lang: string; accent: string }) 
       <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 13, color: "rgba(236,253,245,0.75)", lineHeight: 1.7, paddingLeft: 32 }}>{desc}</div>
       {tip && (
         <div style={{ margin: "8px 0 0 32px", background: "rgba(56,189,248,0.08)", border: "1px solid rgba(56,189,248,0.2)", borderRadius: 10, padding: "8px 12px", display: "flex", gap: 6 }}>
-          <span style={{ fontSize: 14, flexShrink: 0 }}>💡</span>
+          <span style={{ flexShrink: 0 }}><Lightbulb size={12} strokeWidth={2} /></span>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.6 }}>{tip}</div>
         </div>
       )}
@@ -22554,7 +22655,7 @@ function GroceryMartContent({ lang, accent }: { lang: string; accent: string }) 
             fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12,
             transition: "all 0.15s ease",
           }}>
-            {s.emoji} {ko ? s.labelKo : s.labelEn}
+            <EmojiIcon emoji={s.emoji} size={15} /> {ko ? s.labelKo : s.labelEn}
           </button>
         ))}
       </div>
@@ -22589,14 +22690,14 @@ function AmericaWorldContent({ lang, citySlug, accent }: { lang: string; citySlu
       <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 13, color: "rgba(236,253,245,0.75)", lineHeight: 1.7, paddingLeft: 32 }}>{desc}</div>
       {phrase && (
         <div style={{ margin: "10px 0 0 32px", background: "rgba(201,162,39,0.12)", border: "1px solid rgba(201,162,39,0.3)", borderRadius: 10, padding: "10px 12px" }}>
-          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#C9A227", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: 5 }}>💬 {ko ? "이렇게 말하세요" : "Say this"}</div>
+          <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 9, color: "#C9A227", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: 5 }}><EmojiIcon emoji={"💬"} size={13} /> {ko ? "이렇게 말하세요" : "Say this"}</div>
           <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, color: "#ECFDF5", fontWeight: 700, marginBottom: 3 }}>"{phrase}"</div>
           {phraseKo && <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.88)" }}>{phraseKo}</div>}
         </div>
       )}
       {tip && (
         <div style={{ margin: "8px 0 0 32px", background: "rgba(56,189,248,0.08)", border: "1px solid rgba(56,189,248,0.2)", borderRadius: 10, padding: "8px 12px", display: "flex", gap: 6 }}>
-          <span style={{ fontSize: 14, flexShrink: 0 }}>💡</span>
+          <span style={{ flexShrink: 0 }}><Lightbulb size={12} strokeWidth={2} /></span>
           <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.8)", lineHeight: 1.6 }}>{tip}</div>
         </div>
       )}
@@ -22782,7 +22883,7 @@ function AmericaWorldContent({ lang, citySlug, accent }: { lang: string; citySlu
                 transition: "all 0.18s cubic-bezier(0.16,1,0.3,1)",
                 boxShadow: active ? `0 2px 10px ${accent}44` : "none",
               }}>
-                <span>{s.emoji}</span>
+                <EmojiIcon emoji={s.emoji} size={16} />
                 <span>{ko ? s.labelKo : s.labelEn}</span>
               </button>
             );
@@ -22831,56 +22932,56 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
 
   const isSeattle = citySlug === "seattle";
 
-  // ─── 시애틀 전용 카페 데이터 ✅ 검증됨 (2026-04-30)
+  // ─── 시애틀 전용 카페 데이터 검증됨 (2026-04-30)
   // 타 도시는 serverContent 우선, 없으면 [] → "추가 중" UI 표시
   const seattleCafes = [
-    { emoji: "☕", name: "K-Cafe Dabang", nameEn: "K-Cafe Dabang — Lynnwood", desc: lang === "ko" ? "✅ 검증됨 | 한인타운 한국식 카페. 빙수·크로플. 3333 184th St SW Ste X | ☎ (425) 678-8276 | 월-목 8am-9pm" : "✅ Verified | Korean-style café. Bingsu & croffles. 3333 184th St SW Ste X | ☎ (425) 678-8276 | M-Th 8am-9pm", tags: ["린우드", "빙수", "검증됨"] },
-    { emoji: "🍱", name: "Ko Hyang Zip (H-Mart)", nameEn: "Ko Hyang Zip — H-Mart Food Court", desc: lang === "ko" ? "✅ 검증됨 | H-Mart 내 한식 푸드코트. 분식·국밥·덮밥. 3301 184th St SW | ☎ (425) 582-2691 | 월-금 10am-8pm" : "✅ Verified | Korean food court inside H-Mart. 3301 184th St SW | ☎ (425) 582-2691 | M-F 10am-8pm", tags: ["H-Mart", "분식", "검증됨"] },
+    { emoji: "☕", name: "K-Cafe Dabang", nameEn: "K-Cafe Dabang — Lynnwood", desc: lang === "ko" ? "검증됨 | 한인타운 한국식 카페. 빙수·크로플. 3333 184th St SW Ste X | ☎ (425) 678-8276 | 월-목 8am-9pm" : "Verified | Korean-style café. Bingsu & croffles. 3333 184th St SW Ste X | ☎ (425) 678-8276 | M-Th 8am-9pm", tags: ["린우드", "빙수", "검증됨"] },
+    { emoji: "🍱", name: "Ko Hyang Zip (H-Mart)", nameEn: "Ko Hyang Zip — H-Mart Food Court", desc: lang === "ko" ? "검증됨 | H-Mart 내 한식 푸드코트. 분식·국밥·덮밥. 3301 184th St SW | ☎ (425) 582-2691 | 월-금 10am-8pm" : "Verified | Korean food court inside H-Mart. 3301 184th St SW | ☎ (425) 582-2691 | M-F 10am-8pm", tags: ["H-Mart", "분식", "검증됨"] },
     { emoji: "🍵", name: "LUMI Dessert Cafe", nameEn: "LUMI Dessert Cafe", desc: lang === "ko" ? "한인 디저트 카페. 공식 사이트에서 위치·시간 확인 | 🔗 lumidessertcafe.com" : "Korean dessert café. Check address & hours at official site | 🔗 lumidessertcafe.com", tags: ["디저트", "카페", "확인중"] },
   ];
 
-  // ─── 시애틀 전용 맛집 데이터 ✅ 검증됨 (2026-04-30)
+  // ─── 시애틀 전용 맛집 데이터 검증됨 (2026-04-30)
   // 타 도시는 CITY_RESTAURANT_TOP5_MAP에서 해당 도시 TOP5를 PlaceCard 포맷으로 변환
   const seattleRestaurants = [
     { emoji: "🥩", name: "Baekjeong Korean BBQ ★ Yelp 3.9", nameEn: "Baekjeong Korean BBQ — Lynnwood",
       desc: lang === "ko"
-        ? "✅ 검증됨 | 🥩 BBQ\n고기 무한리필 + 직원이 직접 구워줌. 무제한 밑반찬. 알더우드몰 주차 무료.\n📍 3000 184th St SW Ste 922 | 📞 (425) 490-6328 | 월-목 11:30am-10pm\n🔗 yelp.com/biz/baekjeong-korean-bbq-lynnwood"
-        : "✅ Verified | 🥩 BBQ\nAll-you-can-eat + staff grills meat tableside. Free parking at Alderwood Mall.\n📍 3000 184th St SW Ste 922 | 📞 (425) 490-6328 | M-Th 11:30am-10pm\n🔗 yelp.com/biz/baekjeong-korean-bbq-lynnwood",
+        ? "검증됨 | 🥩 BBQ\n고기 무한리필 + 직원이 직접 구워줌. 무제한 밑반찬. 알더우드몰 주차 무료.\n📍 3000 184th St SW Ste 922 | 📞 (425) 490-6328 | 월-목 11:30am-10pm\n🔗 yelp.com/biz/baekjeong-korean-bbq-lynnwood"
+        : "Verified | 🥩 BBQ\nAll-you-can-eat + staff grills meat tableside. Free parking at Alderwood Mall.\n📍 3000 184th St SW Ste 922 | 📞 (425) 490-6328 | M-Th 11:30am-10pm\n🔗 yelp.com/biz/baekjeong-korean-bbq-lynnwood",
       tags: ["BBQ", "갈비", "린우드", "검증됨"] },
     { emoji: "🍖", name: "강남 한식당 Yelp 4.1", nameEn: "Gangnam Korean Restaurant — Lynnwood",
       desc: lang === "ko"
-        ? "✅ 검증됨 | 🍲 국물·한식\n집밥 같은 한식. 갈비탕·순두부·비빔밥. 매일 10am까지 늦게 운영.\n📍 19505 44th Ave W, Lynnwood | 📞 (425) 678-0337 | 매일 10am-10:45pm\n🔗 gangnamlynnwood.com"
-        : "✅ Verified | 🍲 Soup & Stew\nHomestyle Korean food. Galbitang, sundubu, bibimbap. Open late daily.\n📍 19505 44th Ave W, Lynnwood | 📞 (425) 678-0337 | Daily 10am-10:45pm\n🔗 gangnamlynnwood.com",
+        ? "검증됨 | 🍲 국물·한식\n집밥 같은 한식. 갈비탕·순두부·비빔밥. 매일 10am까지 늦게 운영.\n📍 19505 44th Ave W, Lynnwood | 📞 (425) 678-0337 | 매일 10am-10:45pm\n🔗 gangnamlynnwood.com"
+        : "Verified | 🍲 Soup & Stew\nHomestyle Korean food. Galbitang, sundubu, bibimbap. Open late daily.\n📍 19505 44th Ave W, Lynnwood | 📞 (425) 678-0337 | Daily 10am-10:45pm\n🔗 gangnamlynnwood.com",
       tags: ["국물", "한식", "린우드", "검증됨"] },
     { emoji: "🍗", name: "소담치킨 숄라인 ★ Yelp 4.2", nameEn: "Sodam Chicken — Shoreline",
       desc: lang === "ko"
-        ? "✅ 검증됨 | 🍗 치킨\n한국식 바삭 양념·간장·순살치킨. 치맥 가능. 배달도 OK.\n📍 17551 15th Ave NE, Shoreline | 📞 (206) 397-4119\n🔗 yelp.com/search?find_desc=소담치킨+shoreline"
-        : "✅ Verified | 🍗 Chicken\nKorean-style fried chicken: soy garlic, sweet spicy. Beer available. Delivery OK.\n📍 17551 15th Ave NE, Shoreline | 📞 (206) 397-4119\n🔗 yelp.com/search?find_desc=sodam+chicken+shoreline",
+        ? "검증됨 | 🍗 치킨\n한국식 바삭 양념·간장·순살치킨. 치맥 가능. 배달도 OK.\n📍 17551 15th Ave NE, Shoreline | 📞 (206) 397-4119\n🔗 yelp.com/search?find_desc=소담치킨+shoreline"
+        : "Verified | 🍗 Chicken\nKorean-style fried chicken: soy garlic, sweet spicy. Beer available. Delivery OK.\n📍 17551 15th Ave NE, Shoreline | 📞 (206) 397-4119\n🔗 yelp.com/search?find_desc=sodam+chicken+shoreline",
       tags: ["치킨", "숄라인", "검증됨"] },
     { emoji: "🥩", name: "해남갈비 숄라인 ★ Yelp 4.0", nameEn: "Haenam Galbi — Shoreline",
       desc: lang === "ko"
-        ? "✅ 검증됨 | 🥩 BBQ·갈비\n숯불 갈비 전문. 재래식 방식. 한국 느낌 그대로.\n📍 15001 Aurora Ave N, Shoreline | 📞 (206) 367-7843\n🔗 yelp.com/search?find_desc=해남갈비+shoreline"
-        : "✅ Verified | 🥩 BBQ\nCharcoal galbi specialist. Traditional Korean style.\n📍 15001 Aurora Ave N, Shoreline | 📞 (206) 367-7843\n🔗 yelp.com/search?find_desc=haenam+galbi+shoreline",
+        ? "검증됨 | 🥩 BBQ·갈비\n숯불 갈비 전문. 재래식 방식. 한국 느낌 그대로.\n📍 15001 Aurora Ave N, Shoreline | 📞 (206) 367-7843\n🔗 yelp.com/search?find_desc=해남갈비+shoreline"
+        : "Verified | 🥩 BBQ\nCharcoal galbi specialist. Traditional Korean style.\n📍 15001 Aurora Ave N, Shoreline | 📞 (206) 367-7843\n🔗 yelp.com/search?find_desc=haenam+galbi+shoreline",
       tags: ["BBQ", "갈비", "숄라인", "검증됨"] },
     { emoji: "🍽️", name: "Ka Won Korean BBQ ★ Yelp 4.1", nameEn: "Ka Won Korean BBQ — Lynnwood",
       desc: lang === "ko"
-        ? "✅ 검증됨 | 🥩 BBQ\nHwy 99 한인타운 BBQ. 직접 구이·신선 고기. 현지 한인 단골 많음.\n📍 15004 Hwy 99 Ste A, Lynnwood | 📞 (425) 787-6484\n🔗 kawonlynnwood.com"
-        : "✅ Verified | 🥩 BBQ\nLocal Korean favorite on Hwy 99. Fresh cuts, self-grill.\n📍 15004 Hwy 99 Ste A, Lynnwood | 📞 (425) 787-6484\n🔗 kawonlynnwood.com",
+        ? "검증됨 | 🥩 BBQ\nHwy 99 한인타운 BBQ. 직접 구이·신선 고기. 현지 한인 단골 많음.\n📍 15004 Hwy 99 Ste A, Lynnwood | 📞 (425) 787-6484\n🔗 kawonlynnwood.com"
+        : "Verified | 🥩 BBQ\nLocal Korean favorite on Hwy 99. Fresh cuts, self-grill.\n📍 15004 Hwy 99 Ste A, Lynnwood | 📞 (425) 787-6484\n🔗 kawonlynnwood.com",
       tags: ["BBQ", "린우드", "검증됨"] },
   ];
 
-  // ─── 시애틀 전용 한인상권 데이터 ✅ 검증됨 (2026-04-30)
+  // ─── 시애틀 전용 한인상권 데이터 검증됨 (2026-04-30)
   const seattleBusinesses = [
-    { emoji: "🏪", name: "H-Mart Lynnwood", nameEn: "H-Mart — Korean Supermarket", desc: lang === "ko" ? "✅ 검증됨 | 3301 184th St SW, Lynnwood | ☎ (425) 776-0858 | 매일 8am-9:30pm | 🔗 hmartus.com/lynnwood" : "✅ Verified | 3301 184th St SW, Lynnwood | ☎ (425) 776-0858 | Daily 8am-9:30pm | 🔗 hmartus.com/lynnwood", tags: ["마트", "린우드", "검증됨"] },
-    { emoji: "🏦", name: "UniBank (유니뱅크)", nameEn: "UniBank — Korean-American Bank", desc: lang === "ko" ? "✅ 검증됨 | 한국계 은행. 19315 Highway 99, Lynnwood | ☎ (425) 275-9700 | 🔗 unibankusa.com" : "✅ Verified | Korean-American bank. 19315 Highway 99, Lynnwood | ☎ (425) 275-9700 | 🔗 unibankusa.com", tags: ["은행", "한국어", "검증됨"] },
-    { emoji: "🏥", name: "천진 한의원", nameEn: "Chunjin Oriental Medicine — Federal Way", desc: lang === "ko" ? "✅ 검증됨 | 침술·한약. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058" : "✅ Verified | Acupuncture & herbal medicine. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058", tags: ["한의원", "페더럴웨이", "검증됨"] },
-    { emoji: "✂️", name: "엠마 스킨케어", nameEn: "Emma Skincare — Lynnwood", desc: lang === "ko" ? "✅ 검증됨 | 한인 스킨케어·에스테틱. 17424 Hwy 99 #B-204, Lynnwood | ☎ (425) 525-9955" : "✅ Verified | Korean skincare & aesthetics. 17424 Hwy 99 #B-204, Lynnwood | ☎ (425) 525-9955", tags: ["스킨케어", "린우드", "검증됨"] },
+    { emoji: "🏪", name: "H-Mart Lynnwood", nameEn: "H-Mart — Korean Supermarket", desc: lang === "ko" ? "검증됨 | 3301 184th St SW, Lynnwood | ☎ (425) 776-0858 | 매일 8am-9:30pm | 🔗 hmartus.com/lynnwood" : "Verified | 3301 184th St SW, Lynnwood | ☎ (425) 776-0858 | Daily 8am-9:30pm | 🔗 hmartus.com/lynnwood", tags: ["마트", "린우드", "검증됨"] },
+    { emoji: "🏦", name: "UniBank (유니뱅크)", nameEn: "UniBank — Korean-American Bank", desc: lang === "ko" ? "검증됨 | 한국계 은행. 19315 Highway 99, Lynnwood | ☎ (425) 275-9700 | 🔗 unibankusa.com" : "Verified | Korean-American bank. 19315 Highway 99, Lynnwood | ☎ (425) 275-9700 | 🔗 unibankusa.com", tags: ["은행", "한국어", "검증됨"] },
+    { emoji: "🏥", name: "천진 한의원", nameEn: "Chunjin Oriental Medicine — Federal Way", desc: lang === "ko" ? "검증됨 | 침술·한약. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058" : "Verified | Acupuncture & herbal medicine. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058", tags: ["한의원", "페더럴웨이", "검증됨"] },
+    { emoji: "✂️", name: "엠마 스킨케어", nameEn: "Emma Skincare — Lynnwood", desc: lang === "ko" ? "검증됨 | 한인 스킨케어·에스테틱. 17424 Hwy 99 #B-204, Lynnwood | ☎ (425) 525-9955" : "Verified | Korean skincare & aesthetics. 17424 Hwy 99 #B-204, Lynnwood | ☎ (425) 525-9955", tags: ["스킨케어", "린우드", "검증됨"] },
     { emoji: "🔑", name: "한인 부동산", nameEn: "Korean Real Estate", desc: lang === "ko" ? "WowSeattle 검증 | 백수경 ☎ (206) 334-5454 | 박나리 ☎ (425) 246-1453 | 🔗 wowseattle.com" : "WowSeattle verified | Baik Sukyung ☎ (206) 334-5454 | Park Nari ☎ (425) 246-1453 | 🔗 wowseattle.com", tags: ["부동산", "렌탈", "검증됨"] },
   ];
 
   // ─── 훼더럴웨이 한인 서비스 업소 (의료·회계 — 천진 한의원은 검증됨, 나머지는 웹 출처)
   const federalwayBusinesses = [
-    { emoji: "🏥", name: "천진 한의원", nameEn: "Chunjin Oriental Medicine", desc: lang === "ko" ? "✅ 검증됨 | 침술·한약. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058" : "✅ Verified | Acupuncture & herbal medicine. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058", tags: ["한의원", "페더럴웨이", "검증됨"] },
+    { emoji: "🏥", name: "천진 한의원", nameEn: "Chunjin Oriental Medicine", desc: lang === "ko" ? "검증됨 | 침술·한약. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058" : "Verified | Acupuncture & herbal medicine. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058", tags: ["한의원", "페더럴웨이", "검증됨"] },
     { emoji: "🏥", name: "동도 한의원", nameEn: "Dong Do Acupuncture Clinic", desc: lang === "ko" ? "침구·한방. 33720 9th Ave S, Federal Way WA 98003" : "Acupuncture & herbal medicine. 33720 9th Ave S, Federal Way WA 98003", tags: ["한의원", "침술", "페더럴웨이"] },
     { emoji: "🌿", name: "한방 웰니스 센터", nameEn: "Acupuncture & Herbal Wellness Center", desc: lang === "ko" ? "침·한약·부항·추나 마사지. 33710 9th Ave S #2, Federal Way WA 98003" : "Acupuncture, herbs, cupping & Tui Na. 33710 9th Ave S #2, Federal Way WA 98003", tags: ["한의원", "침술", "페더럴웨이"] },
     { emoji: "💉", name: "Dr. Kay Kim 침구한의", nameEn: "Kay Kim, LAc — Northwest Wellness", desc: lang === "ko" ? "한인 침구·동양의학. Federal Way | ☎ (253) 927-0660" : "Korean acupuncturist / East Asian medicine. Federal Way | ☎ (253) 927-0660", tags: ["한의원", "침술", "페더럴웨이"] },
@@ -22897,7 +22998,7 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
 
   // ─── 훼더럴웨이 마켓 (한인 우선 + 리뷰 좋은 아시안·미국 마켓)
   const federalwayShopping = [
-    { emoji: "🛒", name: "H마트 훼더럴웨이", nameEn: "H Mart Federal Way", desc: lang === "ko" ? "✅ 한인 마켓 1순위. 한국 식품·정육·수산·베이커리·푸드코트. 📍 31217 Pacific Hwy S | ☎ (253) 528-0500 | 매일 8am-9:30pm" : "✅ #1 Korean market. Produce, meat, seafood, bakery, food court. 📍 31217 Pacific Hwy S | ☎ (253) 528-0500 | Daily 8am-9:30pm", tags: ["한인마트", "한국식품", "우선"] },
+    { emoji: "🛒", name: "H마트 훼더럴웨이", nameEn: "H Mart Federal Way", desc: lang === "ko" ? "한인 마켓 1순위. 한국 식품·정육·수산·베이커리·푸드코트. 📍 31217 Pacific Hwy S | ☎ (253) 528-0500 | 매일 8am-9:30pm" : "#1 Korean market. Produce, meat, seafood, bakery, food court. 📍 31217 Pacific Hwy S | ☎ (253) 528-0500 | Daily 8am-9:30pm", tags: ["한인마트", "한국식품", "우선"] },
     { emoji: "🏮", name: "아시안 패밀리 마켓", nameEn: "Asian Family Market", desc: lang === "ko" ? "한국·중국·베트남·필리핀 식품 종합 아시안 마켓. 리뷰 양호" : "Pan-Asian grocery — Korean, Chinese, Vietnamese, Filipino. Well-reviewed", tags: ["아시안마트", "타민족"] },
     { emoji: "🥩", name: "홍콩 마켓", nameEn: "Hong Kong Market", desc: lang === "ko" ? "저렴한 정육·아시안 식품. 육류 가격 좋음" : "Affordable meat & Asian groceries. Great meat prices", tags: ["아시안마트", "정육"] },
     { emoji: "🛍️", name: "윈코 푸드", nameEn: "WinCo Foods", desc: lang === "ko" ? "저가·대용량 미국 마켓. 벌크 코너. 리뷰 좋음" : "Low-price bulk American grocery. Well-reviewed", tags: ["미국마트", "저가", "벌크"] },
@@ -22957,7 +23058,7 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
                     transition: "all 0.15s ease",
                     boxShadow: isActive ? `0 2px 8px ${accent}44` : "none",
                   }}>
-                  <span>{f.emoji}</span>
+                  <EmojiIcon emoji={f.emoji} size={16} />
                   <span>{f.label}</span>
                 </button>
               );
@@ -23352,7 +23453,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                   <div key={i} style={{ background: "rgba(6,182,212,0.08)", border: "1px solid rgba(6,182,212,0.2)", borderRadius: 14, padding: "14px 16px" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                        <span style={{ fontSize: 18 }}>{pkg.emoji}</span>
+                        <EmojiIcon emoji={pkg.emoji} size={16} />
                         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#ECFDF5" }}>
                           {lang === "ko" ? pkg.nameKo : pkg.nameEn}
                         </div>
@@ -23714,22 +23815,22 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
   // 시애틀 전용 의료 항목 (시애틀 이외 도시에 노출 금지)
   const medicalSeattle = lang === "ko" ? [
     { emoji: "🏥", name: "닥터 김 클리닉 (한인 가정의학과)", nameEn: "Korean Family Medicine — Lynnwood", desc: "한국어 진료 가능. 📍 Lynnwood | 📞 (425) 744-9200 | 🔗 yelp.com/search?find_desc=Korean+doctor+lynnwood", tags: ["가정의학", "한국어", "린우드"] },
-    { emoji: "🏥", name: "스웨디시 메디컬 센터", nameEn: "Swedish Medical Center", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | 한국어 통역 ✅ | 응급실 포함 | 🔗 swedish.org", tags: ["종합병원", "시애틀", "통역"] },
-    { emoji: "🏥", name: "UW 메디컬 센터", nameEn: "UW Medical Center", desc: "📍 1959 NE Pacific St, Seattle | 📞 (206) 598-3300 | 한국어 통역 ✅ | 워싱턴주 최대 학술병원 | 🔗 uwmedicine.org", tags: ["대학병원", "시애틀", "통역"] },
-    { emoji: "🦷", name: "켄트 임플란트 치과", nameEn: "Kent Implant Dental", desc: "한인 치과. 📍 306 Washington Ave S, Kent | 📞 (253) 981-3816 ✅ | 임플란트 전문", tags: ["치과", "켄트", "임플란트"] },
+    { emoji: "🏥", name: "스웨디시 메디컬 센터", nameEn: "Swedish Medical Center", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | 한국어 통역 | 응급실 포함 | 🔗 swedish.org", tags: ["종합병원", "시애틀", "통역"] },
+    { emoji: "🏥", name: "UW 메디컬 센터", nameEn: "UW Medical Center", desc: "📍 1959 NE Pacific St, Seattle | 📞 (206) 598-3300 | 한국어 통역 | 워싱턴주 최대 학술병원 | 🔗 uwmedicine.org", tags: ["대학병원", "시애틀", "통역"] },
+    { emoji: "🦷", name: "켄트 임플란트 치과", nameEn: "Kent Implant Dental", desc: "한인 치과. 📍 306 Washington Ave S, Kent | 📞 (253) 981-3816 | 임플란트 전문", tags: ["치과", "켄트", "임플란트"] },
     { emoji: "🦷", name: "린우드 한인 치과 (다수)", nameEn: "Lynnwood Korean Dentists", desc: "린우드 지역 한인 치과 다수. kSeattle·WowSeattle 업소록 참조 | 🔗 kseattle.com", tags: ["치과", "린우드", "한국어"] },
-    { emoji: "🧠", name: "ACRS 정신건강 (한국어 상담사)", nameEn: "ACRS", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | 한국어 상담사 상주 ✅ | 슬라이딩 스케일 | 🔗 acrs.org", tags: ["정신건강", "한국어", "상담"] },
+    { emoji: "🧠", name: "ACRS 정신건강 (한국어 상담사)", nameEn: "ACRS", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | 한국어 상담사 상주 | 슬라이딩 스케일 | 🔗 acrs.org", tags: ["정신건강", "한국어", "상담"] },
     { emoji: "🏛️", name: "킹카운티 공중보건소 ✅", nameEn: "King County Public Health", desc: "무료·저비용 의료, WIC 영양, 예방접종. 📞 206-296-4600 | 🔗 kingcounty.gov/health", tags: ["공공의료", "무료", "WIC"] },
     { emoji: "🏥", name: "시애틀 무료 클리닉 ✅", nameEn: "Free Clinic of Greater Seattle", desc: "무보험자 무료 의료. 📞 206-520-5000 | 🔗 freeclinic.net", tags: ["무료", "무보험", "의료"] },
     { emoji: "🏥", name: "헬스포인트 (슬라이딩 스케일) ✅", nameEn: "HealthPoint", desc: "소득 기반 할인 진료. 한국어 통역 가능. 📞 1-800-440-1561 | 🔗 healthpointchc.org", tags: ["슬라이딩스케일", "한국어", "저비용"] },
     { emoji: "🧠", name: "NAMI 워싱턴 ✅", nameEn: "NAMI Washington", desc: "정신건강 정보·지원·교육. 📞 800-782-9264 | 🔗 namiwa.org", tags: ["정신건강", "지원", "무료"] },
   ] : [
     { emoji: "🏥", name: "Korean Family Medicine Clinic", desc: "Korean-speaking physician. 📍 Lynnwood | 📞 (425) 744-9200", tags: ["Family Med", "Korean", "Lynnwood"] },
-    { emoji: "🏥", name: "Swedish Medical Center", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | Korean interpreter ✅ | 🔗 swedish.org", tags: ["Hospital", "Seattle", "Interpreter"] },
-    { emoji: "🏥", name: "UW Medical Center", desc: "📍 1959 NE Pacific St, Seattle | 📞 (206) 598-3300 | Korean interpreter ✅ | 🔗 uwmedicine.org", tags: ["Hospital", "Seattle", "Interpreter"] },
+    { emoji: "🏥", name: "Swedish Medical Center", desc: "📍 747 Broadway, Seattle | 📞 (206) 386-6000 | Korean interpreter | 🔗 swedish.org", tags: ["Hospital", "Seattle", "Interpreter"] },
+    { emoji: "🏥", name: "UW Medical Center", desc: "📍 1959 NE Pacific St, Seattle | 📞 (206) 598-3300 | Korean interpreter | 🔗 uwmedicine.org", tags: ["Hospital", "Seattle", "Interpreter"] },
     { emoji: "🦷", name: "Kent Implant Dental", desc: "Korean dental clinic. 📍 306 Washington Ave S, Kent | 📞 (253) 981-3816 ✅", tags: ["Dental", "Kent", "Implant"] },
     { emoji: "🦷", name: "Lynnwood Korean Dentists", desc: "Multiple Korean clinics in Lynnwood. See kseattle.com", tags: ["Dental", "Lynnwood", "Korean"] },
-    { emoji: "🧠", name: "ACRS Mental Health", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | Korean counselors ✅ | 🔗 acrs.org", tags: ["Mental Health", "Korean", "Counseling"] },
+    { emoji: "🧠", name: "ACRS Mental Health", desc: "📍 3639 MLK Jr Way S, Seattle | 📞 (206) 695-7600 | Korean counselors | 🔗 acrs.org", tags: ["Mental Health", "Korean", "Counseling"] },
     { emoji: "🏛️", name: "King County Public Health ✅", desc: "Free/low-cost care, WIC, immunizations. 📞 206-296-4600 | 🔗 kingcounty.gov/health", tags: ["Public Health", "Free", "WIC"] },
     { emoji: "🏥", name: "Free Clinic of Greater Seattle ✅", desc: "Free medical care for uninsured. 📞 206-520-5000 | 🔗 freeclinic.net", tags: ["Free", "Uninsured", "Medical"] },
     { emoji: "🏥", name: "HealthPoint Community Health ✅", desc: "Sliding scale fees. Korean interpreter available. 📞 1-800-440-1561 | 🔗 healthpointchc.org", tags: ["Sliding Scale", "Korean", "Low-cost"] },
@@ -24021,7 +24122,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
           </div>
           {/* 안전 팁 — 도시별 */}
           <div style={{ margin: "16px 16px 0", background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.18)", borderRadius: 14, padding: "14px 16px" }}>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 6 }}>💡 {lang === "ko" ? `${city.nameKo} 안전 팁` : `${city.nameEn} Safety Tips`}</div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 6 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? `${city.nameKo} 안전 팁` : `${city.nameEn} Safety Tips`}</div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
               {lang === "ko" ? em.safetyTips : em.safetyTipsEn}
             </div>
@@ -24043,7 +24144,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             {medicalItems.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
           <div style={{ background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.18)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>⚠️ {lang === "ko" ? "의료 정보 안내" : "Medical Info Note"}</div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"⚠"} size={13} /> {lang === "ko" ? "의료 정보 안내" : "Medical Info Note"}</div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.7, color: "rgba(236,253,245,0.6)" }}>
               {lang === "ko"
                 ? "전화번호·주소는 변경될 수 있습니다. 방문 전 반드시 공식 웹사이트 또는 전화로 확인하세요. 응급 상황 → 911"
@@ -24182,39 +24283,39 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             🍎 {lang === "ko" ? "식품 지원" : "FOOD ASSISTANCE"}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
-            <PlaceCard emoji="🌾" name={lang === "ko" ? "노스웨스트 하비스트 ✅ 검증됨" : "Northwest Harvest ✅ Verified"} nameEn={lang === "ko" ? "무료 푸드뱅크 네트워크" : "Free Food Bank Network"} desc={lang === "ko" ? "워싱턴주 전역 무료 푸드뱅크 네트워크. 📞 1-800-722-6924 | 🔗 northwestharvest.org" : "Free food bank network across Washington State. 📞 1-800-722-6924 | 🔗 northwestharvest.org"} tags={lang === "ko" ? ["푸드뱅크", "무료", "식품"] : ["Food Bank", "Free", "Food"]} accentColor={accent} />
-            <PlaceCard emoji="🥫" name={lang === "ko" ? "푸드 라이프라인 ✅ 검증됨" : "Food Lifeline ✅ Verified"} nameEn={lang === "ko" ? "긴급 식품 지원" : "Emergency Food Assistance"} desc={lang === "ko" ? "긴급 식품 지원 서비스. 📞 206-545-6600 | 🔗 foodlifeline.org" : "Emergency food assistance for families in need. 📞 206-545-6600 | 🔗 foodlifeline.org"} tags={lang === "ko" ? ["긴급식품", "무료", "가족"] : ["Emergency", "Free", "Family"]} accentColor={accent} />
-            <PlaceCard emoji="📞" name={lang === "ko" ? "킹카운티 2-1-1 ✅ 검증됨" : "King County 2-1-1 ✅ Verified"} nameEn={lang === "ko" ? "무료 서비스 연결 핫라인" : "Free Services Hotline"} desc={lang === "ko" ? "전화 211 — 식품·의료·주거·법률 무료 서비스 즉시 연결. 한국어 통역 가능" : "Dial 211 — connects to all free services (food, medical, housing, legal). Korean interpreter available"} tags={lang === "ko" ? ["211", "무료연결", "한국어"] : ["211", "Free", "Korean"]} accentColor={accent} />
+            <PlaceCard emoji="🌾" name={lang === "ko" ? "노스웨스트 하비스트 검증됨" : "Northwest Harvest Verified"} nameEn={lang === "ko" ? "무료 푸드뱅크 네트워크" : "Free Food Bank Network"} desc={lang === "ko" ? "워싱턴주 전역 무료 푸드뱅크 네트워크. 📞 1-800-722-6924 | 🔗 northwestharvest.org" : "Free food bank network across Washington State. 📞 1-800-722-6924 | 🔗 northwestharvest.org"} tags={lang === "ko" ? ["푸드뱅크", "무료", "식품"] : ["Food Bank", "Free", "Food"]} accentColor={accent} />
+            <PlaceCard emoji="🥫" name={lang === "ko" ? "푸드 라이프라인 검증됨" : "Food Lifeline Verified"} nameEn={lang === "ko" ? "긴급 식품 지원" : "Emergency Food Assistance"} desc={lang === "ko" ? "긴급 식품 지원 서비스. 📞 206-545-6600 | 🔗 foodlifeline.org" : "Emergency food assistance for families in need. 📞 206-545-6600 | 🔗 foodlifeline.org"} tags={lang === "ko" ? ["긴급식품", "무료", "가족"] : ["Emergency", "Free", "Family"]} accentColor={accent} />
+            <PlaceCard emoji="📞" name={lang === "ko" ? "킹카운티 2-1-1 검증됨" : "King County 2-1-1 Verified"} nameEn={lang === "ko" ? "무료 서비스 연결 핫라인" : "Free Services Hotline"} desc={lang === "ko" ? "전화 211 — 식품·의료·주거·법률 무료 서비스 즉시 연결. 한국어 통역 가능" : "Dial 211 — connects to all free services (food, medical, housing, legal). Korean interpreter available"} tags={lang === "ko" ? ["211", "무료연결", "한국어"] : ["211", "Free", "Korean"]} accentColor={accent} />
           </div>
 
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "rgba(236,253,245,0.45)", marginBottom: 8, letterSpacing: "0.05em" }}>
             ⚖️ {lang === "ko" ? "법률 지원" : "LEGAL AID"}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
-            <PlaceCard emoji="⚖️" name={lang === "ko" ? "노스웨스트 저스티스 프로젝트 ✅ 검증됨" : "Northwest Justice Project ✅ Verified"} nameEn={lang === "ko" ? "무료 법률 지원" : "Free Legal Help"} desc={lang === "ko" ? "이민·고용·주거 무료 법률 지원. 📞 1-888-201-1014 | 🔗 nwjustice.org" : "Free immigration, employment & housing legal help. 📞 1-888-201-1014 | 🔗 nwjustice.org"} tags={lang === "ko" ? ["이민법률", "무료", "주거"] : ["Immigration", "Free", "Housing"]} accentColor={accent} />
-            <PlaceCard emoji="🏛️" name={lang === "ko" ? "KCBA 프로보노 ✅ 검증됨" : "KCBA Pro Bono ✅ Verified"} nameEn={lang === "ko" ? "무료 법률 상담" : "Free Legal Consultations"} desc={lang === "ko" ? "킹카운티 변호사협회 무료 법률 상담. 📞 206-267-7100" : "King County Bar Association free legal consultations. 📞 206-267-7100"} tags={lang === "ko" ? ["변호사", "무료", "상담"] : ["Attorney", "Free", "Consult"]} accentColor={accent} />
+            <PlaceCard emoji="⚖️" name={lang === "ko" ? "노스웨스트 저스티스 프로젝트 검증됨" : "Northwest Justice Project Verified"} nameEn={lang === "ko" ? "무료 법률 지원" : "Free Legal Help"} desc={lang === "ko" ? "이민·고용·주거 무료 법률 지원. 📞 1-888-201-1014 | 🔗 nwjustice.org" : "Free immigration, employment & housing legal help. 📞 1-888-201-1014 | 🔗 nwjustice.org"} tags={lang === "ko" ? ["이민법률", "무료", "주거"] : ["Immigration", "Free", "Housing"]} accentColor={accent} />
+            <PlaceCard emoji="🏛️" name={lang === "ko" ? "KCBA 프로보노 검증됨" : "KCBA Pro Bono Verified"} nameEn={lang === "ko" ? "무료 법률 상담" : "Free Legal Consultations"} desc={lang === "ko" ? "킹카운티 변호사협회 무료 법률 상담. 📞 206-267-7100" : "King County Bar Association free legal consultations. 📞 206-267-7100"} tags={lang === "ko" ? ["변호사", "무료", "상담"] : ["Attorney", "Free", "Consult"]} accentColor={accent} />
           </div>
 
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "rgba(236,253,245,0.45)", marginBottom: 8, letterSpacing: "0.05em" }}>
             💰 {lang === "ko" ? "세금·재정 지원" : "TAX & FINANCIAL ASSISTANCE"}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
-            <PlaceCard emoji="🧾" name={lang === "ko" ? "VITA 무료 세금 신고 ✅ 검증됨" : "VITA Free Tax Filing ✅ Verified"} nameEn={lang === "ko" ? "자원봉사 세금 지원 프로그램" : "Volunteer Income Tax Assistance"} desc={lang === "ko" ? "1월~4월 무료 세금 신고 서비스. 한인 이민자 대부분 모름! 🔗 vitataxhelp.org" : "Free tax filing Jan–April. Most Korean immigrants don't know about this! 🔗 vitataxhelp.org"} tags={lang === "ko" ? ["무료세금", "1~4월", "중요"] : ["Free Tax", "Jan-Apr", "Important"]} accentColor={accent} />
+            <PlaceCard emoji="🧾" name={lang === "ko" ? "VITA 무료 세금 신고 검증됨" : "VITA Free Tax Filing Verified"} nameEn={lang === "ko" ? "자원봉사 세금 지원 프로그램" : "Volunteer Income Tax Assistance"} desc={lang === "ko" ? "1월~4월 무료 세금 신고 서비스. 한인 이민자 대부분 모름! 🔗 vitataxhelp.org" : "Free tax filing Jan–April. Most Korean immigrants don't know about this! 🔗 vitataxhelp.org"} tags={lang === "ko" ? ["무료세금", "1~4월", "중요"] : ["Free Tax", "Jan-Apr", "Important"]} accentColor={accent} />
           </div>
 
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "rgba(236,253,245,0.45)", marginBottom: 8, letterSpacing: "0.05em" }}>
             🏠 {lang === "ko" ? "주거 지원" : "HOUSING ASSISTANCE"}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
-            <PlaceCard emoji="🏠" name={lang === "ko" ? "킹카운티 주거청 ✅ 검증됨" : "King County Housing Authority ✅ Verified"} nameEn={lang === "ko" ? "저렴한 공공주거" : "Affordable Public Housing"} desc={lang === "ko" ? "저렴한 주거 대기자 명단 신청. 📞 206-574-1100 | 🔗 kcha.org" : "Affordable housing waiting list applications. 📞 206-574-1100 | 🔗 kcha.org"} tags={lang === "ko" ? ["공공주거", "대기자", "저렴"] : ["Public Housing", "Waitlist", "Affordable"]} accentColor={accent} />
+            <PlaceCard emoji="🏠" name={lang === "ko" ? "킹카운티 주거청 검증됨" : "King County Housing Authority Verified"} nameEn={lang === "ko" ? "저렴한 공공주거" : "Affordable Public Housing"} desc={lang === "ko" ? "저렴한 주거 대기자 명단 신청. 📞 206-574-1100 | 🔗 kcha.org" : "Affordable housing waiting list applications. 📞 206-574-1100 | 🔗 kcha.org"} tags={lang === "ko" ? ["공공주거", "대기자", "저렴"] : ["Public Housing", "Waitlist", "Affordable"]} accentColor={accent} />
           </div>
 
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "rgba(236,253,245,0.45)", marginBottom: 8, letterSpacing: "0.05em" }}>
             🚌 {lang === "ko" ? "대중교통" : "TRANSPORTATION"}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
-            <PlaceCard emoji="🚌" name={lang === "ko" ? "킹카운티 메트로 ✅ 검증됨" : "King County Metro ✅ Verified"} nameEn={lang === "ko" ? "시애틀 버스 시스템" : "Seattle Bus System"} desc={lang === "ko" ? "시애틀 광역 버스 시스템. 📞 206-553-3000 | 🔗 kingcounty.gov/metro" : "Seattle regional bus system. 📞 206-553-3000 | 🔗 kingcounty.gov/metro"} tags={lang === "ko" ? ["버스", "대중교통", "시애틀"] : ["Bus", "Transit", "Seattle"]} accentColor={accent} />
-            <PlaceCard emoji="💳" name={lang === "ko" ? "ORCA 카드 ✅ 검증됨" : "ORCA Card ✅ Verified"} nameEn={lang === "ko" ? "대중교통 통합 카드" : "Integrated Transit Card"} desc={lang === "ko" ? "버스·링크 라이트레일·페리 통합. orca.com 또는 H-Mart 구매 가능 | 🔗 orca.com" : "Integrated bus, Link light rail & ferry card. Buy at orca.com or H-Mart | 🔗 orca.com"} tags={lang === "ko" ? ["ORCA", "링크", "페리"] : ["ORCA", "Link", "Ferry"]} accentColor={accent} />
+            <PlaceCard emoji="🚌" name={lang === "ko" ? "킹카운티 메트로 검증됨" : "King County Metro Verified"} nameEn={lang === "ko" ? "시애틀 버스 시스템" : "Seattle Bus System"} desc={lang === "ko" ? "시애틀 광역 버스 시스템. 📞 206-553-3000 | 🔗 kingcounty.gov/metro" : "Seattle regional bus system. 📞 206-553-3000 | 🔗 kingcounty.gov/metro"} tags={lang === "ko" ? ["버스", "대중교통", "시애틀"] : ["Bus", "Transit", "Seattle"]} accentColor={accent} />
+            <PlaceCard emoji="💳" name={lang === "ko" ? "ORCA 카드 검증됨" : "ORCA Card Verified"} nameEn={lang === "ko" ? "대중교통 통합 카드" : "Integrated Transit Card"} desc={lang === "ko" ? "버스·링크 라이트레일·페리 통합. orca.com 또는 H-Mart 구매 가능 | 🔗 orca.com" : "Integrated bus, Link light rail & ferry card. Buy at orca.com or H-Mart | 🔗 orca.com"} tags={lang === "ko" ? ["ORCA", "링크", "페리"] : ["ORCA", "Link", "Ferry"]} accentColor={accent} />
           </div>
 
           <a href="tel:211" style={{ display: "block", marginTop: 8, textDecoration: "none" }}>
@@ -24234,14 +24335,14 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
                   {lang === "ko" ? "📱 211 전화하기" : "📱 Call 211"}
                 </div>
                 <span style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.82)" }}>
-                  {lang === "ko" ? "✅ 검증됨 · 한국어 통역 가능" : "✅ Verified · Korean interpreter available"}
+                  {lang === "ko" ? "검증됨 · 한국어 통역 가능" : "Verified · Korean interpreter available"}
                 </span>
               </div>
             </div>
           </a>
 
           <div style={{ background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.18)", borderRadius: 14, padding: "14px 16px", marginTop: 12 }}>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>💡 {lang === "ko" ? "이 자원들을 모르셨나요?" : "Did You Know These Resources Existed?"}</div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? "이 자원들을 모르셨나요?" : "Did You Know These Resources Existed?"}</div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
               {lang === "ko"
                 ? "• VITA 무료 세금 신고 — 매년 수백 달러 절약 가능\n• 211 서비스 — 한 번의 전화로 모든 지원 연결\n• 무료 클리닉 — 보험 없어도 의료 서비스 이용 가능\n• NW 저스티스 — 이민 법률 무료 상담 가능"
@@ -24475,7 +24576,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             })().map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
           <div style={{ background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 12 }}>
-            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>⚖️ {lang === "ko" ? "법률 도움 받는 첫 단계" : "First Step to Get Legal Help"}</div>
+            <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"⚖"} size={13} /> {lang === "ko" ? "법률 도움 받는 첫 단계" : "First Step to Get Legal Help"}</div>
             <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
               {lang === "ko"
                 ? `1. 이민 긴급 → 위 무료 법률 기관 전화\n2. 한국어 통역 필요 → Language Line: 800-752-6096\n3. 이민 사기 신고 → FTC: reportfraud.ftc.gov\n4. 멕시코 거주 → 한국 대사관: 55-5202-9866\n5. 캐나다 거주 → Legal Aid 해당 주 연락`
@@ -24504,13 +24605,13 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
               // ── 투표 정보 (도시별) ──
               const votingCard: KAItem = slug === "toronto" ? {
                 emoji: "🗳️", name: ko ? "선거 참여 (캐나다 연방·온타리오 주)" : "Voting (Federal & Ontario Provincial)",
-                desc: ko ? "✅ 캐나다 시민권자 의무이자 권리!\n연방 유권자 등록: 🔗 elections.ca\n온타리오 주 선거: 🔗 elections.on.ca\n• 온타인 우편 투표 가능\n• 한국어 안내 요청 가능\n\n시민권 후 첫 번째 = 유권자 등록!"
-                           : "✅ Your right & duty as a Canadian citizen!\nFederal: 🔗 elections.ca\nOntario: 🔗 elections.on.ca\n• Mail-in voting available\n• Korean interpretation available\n\nFirst after citizenship = voter registration!",
+                desc: ko ? "캐나다 시민권자 의무이자 권리!\n연방 유권자 등록: 🔗 elections.ca\n온타리오 주 선거: 🔗 elections.on.ca\n• 온타인 우편 투표 가능\n• 한국어 안내 요청 가능\n\n시민권 후 첫 번째 = 유권자 등록!"
+                           : "Your right & duty as a Canadian citizen!\nFederal: 🔗 elections.ca\nOntario: 🔗 elections.on.ca\n• Mail-in voting available\n• Korean interpretation available\n\nFirst after citizenship = voter registration!",
                 tags: ko ? ["투표","캐나다","온타리오"] : ["Voting","Canada","Ontario"],
               } : slug === "vancouver" ? {
                 emoji: "🗳️", name: ko ? "선거 참여 (캐나다 연방·BC 주)" : "Voting (Federal & BC Provincial)",
-                desc: ko ? "✅ 캐나다 시민권자 의무이자 권리!\n연방: 🔗 elections.ca\nBC 주: 🔗 elections.bc.ca\n• 우편 투표 가능\n• 한국어 안내 요청 가능"
-                         : "✅ Your right & duty as a Canadian citizen!\nFederal: 🔗 elections.ca\nBC: 🔗 elections.bc.ca\n• Mail-in voting available\n• Korean interpretation available",
+                desc: ko ? "캐나다 시민권자 의무이자 권리!\n연방: 🔗 elections.ca\nBC 주: 🔗 elections.bc.ca\n• 우편 투표 가능\n• 한국어 안내 요청 가능"
+                         : "Your right & duty as a Canadian citizen!\nFederal: 🔗 elections.ca\nBC: 🔗 elections.bc.ca\n• Mail-in voting available\n• Korean interpretation available",
                 tags: ko ? ["투표","캐나다","BC"] : ["Voting","Canada","BC"],
               } : slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey" ? {
                 emoji: "🏛️", name: ko ? "영사 서비스 & 재외국민 등록" : "Consular Services & Overseas Korean Registration",
@@ -24519,31 +24620,31 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
                 tags: ko ? ["재외국민","대사관","영사서비스"] : ["Overseas Korean","Embassy","Consular"],
               } : slug === "newyork" ? {
                 emoji: "🗳️", name: ko ? "투표·시민 참여 (뉴욕/뉴저지)" : "Voting & Civic Participation (NY/NJ)",
-                desc: ko ? "✅ 시민권자 의무이자 권리!\nNY 유권자 등록: 🔗 vote.nyc\nNJ 유권자 등록: 🔗 vote.nj.gov\n• NJ: 우편 투표 가능\n• 한국어 투표 안내 가능 (플러싱)\n📞 NY 한국어 선거 정보: NAKASEC 📞 888-508-5500"
-                           : "✅ Your right & duty as a US citizen!\nNY Registration: 🔗 vote.nyc\nNJ Registration: 🔗 vote.nj.gov\n• NJ: mail-in voting available\n• Korean voting guides available in Flushing\n📞 Korean election info: NAKASEC 📞 888-508-5500",
+                desc: ko ? "시민권자 의무이자 권리!\nNY 유권자 등록: 🔗 vote.nyc\nNJ 유권자 등록: 🔗 vote.nj.gov\n• NJ: 우편 투표 가능\n• 한국어 투표 안내 가능 (플러싱)\n📞 NY 한국어 선거 정보: NAKASEC 📞 888-508-5500"
+                           : "Your right & duty as a US citizen!\nNY Registration: 🔗 vote.nyc\nNJ Registration: 🔗 vote.nj.gov\n• NJ: mail-in voting available\n• Korean voting guides available in Flushing\n📞 Korean election info: NAKASEC 📞 888-508-5500",
                 tags: ko ? ["투표","뉴욕","뉴저지"] : ["Voting","NY","NJ"],
               } : slug === "la" ? {
                 emoji: "🗳️", name: ko ? "투표·시민 참여 (캘리포니아)" : "Voting & Civic Participation (California)",
-                desc: ko ? "✅ 시민권자 의무이자 권리!\nCA 유권자 등록: 🔗 registertovote.ca.gov\n• CA: 우편 투표 100%! 자동 발송\n• 등록 마감: 선거일 15일 전\n• 한국어 투표 안내: KAGC 📞 213-477-5353\n• KoreanVoter.org 무료 시민권 지원"
-                           : "✅ Your right & duty as a US citizen!\nCA voter registration: 🔗 registertovote.ca.gov\n• CA: 100% mail-in ballots! Auto-mailed\n• Registration deadline: 15 days before election\n• Korean voting guide: KAGC 📞 213-477-5353",
+                desc: ko ? "시민권자 의무이자 권리!\nCA 유권자 등록: 🔗 registertovote.ca.gov\n• CA: 우편 투표 100%! 자동 발송\n• 등록 마감: 선거일 15일 전\n• 한국어 투표 안내: KAGC 📞 213-477-5353\n• KoreanVoter.org 무료 시민권 지원"
+                           : "Your right & duty as a US citizen!\nCA voter registration: 🔗 registertovote.ca.gov\n• CA: 100% mail-in ballots! Auto-mailed\n• Registration deadline: 15 days before election\n• Korean voting guide: KAGC 📞 213-477-5353",
                 tags: ko ? ["투표","캘리포니아","LA"] : ["Voting","California","LA"],
               } : {
                 // US cities default voting
                 emoji: "🗳️", name: ko ? "투표·시민 참여 — 내 한 표가 바꾼다" : "Voting & Civic Participation",
-                desc: ko ? `✅ 시민권자 의무이자 권리!\n유권자 등록: 🔗 vote.gov (전국 통합)\n한국어 투표 정보: NAKASEC 📞 888-508-5500\n\n${slug === "seattle" ? "• WA주 — 우편 투표 100%! 자동 발송\n• King County Elections 📞 206-296-8683" : slug === "dallas" || slug === "houston" ? "• 텍사스: 투표소 방문 또는 부재자 투표\n• vote.texas.gov" : slug === "nashville" ? "• TN: 투표소 방문 필수 (우편 투표 제한적)\n• sos.tn.gov/elections" : slug === "boston" ? "• MA: 우편 투표 가능\n• vote.gov/states/massachusetts" : slug === "atlanta" ? "• GA: 부재자 투표 사전 신청 필요\n• mvp.sos.ga.gov" : slug === "philadelphia" ? "• PA: 우편 투표 가능\n• vote.pa.gov" : slug === "kansascity" ? "• KS/MO: 부재자 투표 가능\n• vote.gov" : "• FL: 우편 투표 사전 신청\n• dos.fl.gov/elections"}\n\n시민권 후 첫 번째 = 유권자 등록!`
-                           : `✅ Your right & duty as a US citizen!\nVoter registration: 🔗 vote.gov (nationwide)\nKorean voting info: NAKASEC 📞 888-508-5500\n\n${slug === "seattle" ? "• WA: 100% mail-in ballots! Auto-mailed\n• King County Elections 📞 206-296-8683" : slug === "dallas" || slug === "houston" ? "• Texas: in-person or absentee voting\n• vote.texas.gov" : slug === "nashville" ? "• TN: in-person voting required (limited mail)\n• sos.tn.gov/elections" : slug === "boston" ? "• MA: mail-in voting available\n• vote.gov/states/massachusetts" : slug === "atlanta" ? "• GA: absentee ballot application required\n• mvp.sos.ga.gov" : slug === "philadelphia" ? "• PA: mail-in voting available\n• vote.pa.gov" : slug === "kansascity" ? "• KS/MO: absentee voting available\n• vote.gov" : "• FL: absentee ballot advance application\n• dos.fl.gov/elections"}\n\nFirst after citizenship = register to vote!`,
+                desc: ko ? `시민권자 의무이자 권리!\n유권자 등록: 🔗 vote.gov (전국 통합)\n한국어 투표 정보: NAKASEC 📞 888-508-5500\n\n${slug === "seattle" ? "• WA주 — 우편 투표 100%! 자동 발송\n• King County Elections 📞 206-296-8683" : slug === "dallas" || slug === "houston" ? "• 텍사스: 투표소 방문 또는 부재자 투표\n• vote.texas.gov" : slug === "nashville" ? "• TN: 투표소 방문 필수 (우편 투표 제한적)\n• sos.tn.gov/elections" : slug === "boston" ? "• MA: 우편 투표 가능\n• vote.gov/states/massachusetts" : slug === "atlanta" ? "• GA: 부재자 투표 사전 신청 필요\n• mvp.sos.ga.gov" : slug === "philadelphia" ? "• PA: 우편 투표 가능\n• vote.pa.gov" : slug === "kansascity" ? "• KS/MO: 부재자 투표 가능\n• vote.gov" : "• FL: 우편 투표 사전 신청\n• dos.fl.gov/elections"}\n\n시민권 후 첫 번째 = 유권자 등록!`
+                           : `Your right & duty as a US citizen!\nVoter registration: 🔗 vote.gov (nationwide)\nKorean voting info: NAKASEC 📞 888-508-5500\n\n${slug === "seattle" ? "• WA: 100% mail-in ballots! Auto-mailed\n• King County Elections 📞 206-296-8683" : slug === "dallas" || slug === "houston" ? "• Texas: in-person or absentee voting\n• vote.texas.gov" : slug === "nashville" ? "• TN: in-person voting required (limited mail)\n• sos.tn.gov/elections" : slug === "boston" ? "• MA: mail-in voting available\n• vote.gov/states/massachusetts" : slug === "atlanta" ? "• GA: absentee ballot application required\n• mvp.sos.ga.gov" : slug === "philadelphia" ? "• PA: mail-in voting available\n• vote.pa.gov" : slug === "kansascity" ? "• KS/MO: absentee voting available\n• vote.gov" : "• FL: absentee ballot advance application\n• dos.fl.gov/elections"}\n\nFirst after citizenship = register to vote!`,
                 tags: ko ? ["투표","시민참여","유권자등록"] : ["Voting","Civic","Voter Registration"],
               };
               // ── 도서관 (도시별) ──
               const libraryCard: KAItem = slug === "toronto" ? {
                 emoji: "📚", name: ko ? "토론토 공립 도서관 (TPL)" : "Toronto Public Library (TPL)",
-                desc: ko ? "✅ 무료 도서관 카드로 수백만 달러 자원!\n• ESL 영어 수업 무료\n• 시민권 시험 준비 자료\n• 한국어 도서·잡지\n• 인터넷·프린터 무료\n• LinkedIn Learning 무제한\n📞 416-393-7131 | 🔗 torontopubliclibrary.ca"
-                           : "✅ Free library card = millions in resources!\n• Free ESL classes\n• Citizenship test prep\n• Korean books & magazines\n• Free internet & printing\n• Unlimited LinkedIn Learning\n📞 416-393-7131 | 🔗 torontopubliclibrary.ca",
+                desc: ko ? "무료 도서관 카드로 수백만 달러 자원!\n• ESL 영어 수업 무료\n• 시민권 시험 준비 자료\n• 한국어 도서·잡지\n• 인터넷·프린터 무료\n• LinkedIn Learning 무제한\n📞 416-393-7131 | 🔗 torontopubliclibrary.ca"
+                           : "Free library card = millions in resources!\n• Free ESL classes\n• Citizenship test prep\n• Korean books & magazines\n• Free internet & printing\n• Unlimited LinkedIn Learning\n📞 416-393-7131 | 🔗 torontopubliclibrary.ca",
                 tags: ko ? ["도서관","무료ESL","TPL"] : ["Library","Free ESL","TPL"],
               } : slug === "vancouver" ? {
                 emoji: "📚", name: ko ? "밴쿠버 공립 도서관 (VPL)" : "Vancouver Public Library (VPL)",
-                desc: ko ? "✅ 무료 도서관 카드!\n• ESL 영어 수업 무료\n• 한국어 도서·잡지\n• 인터넷·프린터 무료\n• LinkedIn Learning 무제한\n• 코퀴틀람: Coquitlam Public Library\n📞 604-331-3603 | 🔗 vpl.ca"
-                           : "✅ Free library card!\n• Free ESL classes\n• Korean books & magazines\n• Free internet & printing\n• Unlimited LinkedIn Learning\n• Coquitlam: Coquitlam Public Library\n📞 604-331-3603 | 🔗 vpl.ca",
+                desc: ko ? "무료 도서관 카드!\n• ESL 영어 수업 무료\n• 한국어 도서·잡지\n• 인터넷·프린터 무료\n• LinkedIn Learning 무제한\n• 코퀴틀람: Coquitlam Public Library\n📞 604-331-3603 | 🔗 vpl.ca"
+                           : "Free library card!\n• Free ESL classes\n• Korean books & magazines\n• Free internet & printing\n• Unlimited LinkedIn Learning\n• Coquitlam: Coquitlam Public Library\n📞 604-331-3603 | 🔗 vpl.ca",
                 tags: ko ? ["도서관","무료ESL","VPL"] : ["Library","Free ESL","VPL"],
               } : slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey" ? {
                 emoji: "📚", name: ko ? "한국문화원 멕시코 & 스페인어 학습" : "Korean Cultural Center Mexico & Spanish Study",
@@ -24554,8 +24655,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
                 // US cities library — city-specific
                 emoji: "📚",
                 name: ko ? `${slug === "seattle" ? "킹카운티 도서관" : slug === "dallas" ? "달라스 공립 도서관" : slug === "sf" ? "샌프란시스코 공립 도서관" : slug === "newyork" ? "뉴욕 공립 도서관 (NYPL)" : slug === "la" ? "LA 공립 도서관 (LAPL)" : slug === "houston" ? "휴스턴 공립 도서관 (HPL)" : slug === "boston" ? "보스턴 공립 도서관 (BPL)" : slug === "nashville" ? "내쉬빌 공립 도서관 (NPL)" : slug === "atlanta" ? "풀턴·귀넷 카운티 도서관" : slug === "philadelphia" ? "필라델피아 자유 도서관 (FLP)" : slug === "kansascity" ? "캔자스시티 공립 도서관 (KCPL)" : "마이애미데이드 공립 도서관"} — 무료 자원` : `${slug === "seattle" ? "King County Library (KCLS)" : slug === "dallas" ? "Dallas Public Library" : slug === "sf" ? "San Francisco Public Library" : slug === "newyork" ? "New York Public Library (NYPL)" : slug === "la" ? "LA Public Library (LAPL)" : slug === "houston" ? "Houston Public Library (HPL)" : slug === "boston" ? "Boston Public Library (BPL)" : slug === "nashville" ? "Nashville Public Library (NPL)" : slug === "atlanta" ? "Fulton & Gwinnett County Libraries" : slug === "philadelphia" ? "Free Library of Philadelphia (FLP)" : slug === "kansascity" ? "Kansas City Public Library (KCPL)" : "Miami-Dade Public Library"} — Free Resources`,
-                desc: ko ? `✅ 무료 도서관 카드로 수백만 달러 자원!\n• ESL 영어 수업 무료\n• 시민권 시험 준비 자료\n• 취업·이력서 워크샵\n• 한국어 도서·잡지\n• 인터넷·프린터 무료\n• LinkedIn Learning 무제한\n🔗 ${slug === "seattle" ? "kcls.org" : slug === "dallas" ? "dpl.lib.tx.us" : slug === "sf" ? "sfpl.org" : slug === "newyork" ? "nypl.org" : slug === "la" ? "lapl.org" : slug === "houston" ? "houstonlibrary.org" : slug === "boston" ? "bpl.org" : slug === "nashville" ? "library.nashville.org" : slug === "atlanta" ? "fulcolibrary.org | gwinnettpl.org" : slug === "philadelphia" ? "freelibrary.org" : slug === "kansascity" ? "kclibrary.org" : "mdpls.org"}`
-                           : `✅ Free library card = millions in resources!\n• Free ESL classes\n• Citizenship test prep\n• Job search & resume workshops\n• Korean books & magazines\n• Free internet & printing\n• Unlimited LinkedIn Learning\n🔗 ${slug === "seattle" ? "kcls.org" : slug === "dallas" ? "dpl.lib.tx.us" : slug === "sf" ? "sfpl.org" : slug === "newyork" ? "nypl.org" : slug === "la" ? "lapl.org" : slug === "houston" ? "houstonlibrary.org" : slug === "boston" ? "bpl.org" : slug === "nashville" ? "library.nashville.org" : slug === "atlanta" ? "fulcolibrary.org | gwinnettpl.org" : slug === "philadelphia" ? "freelibrary.org" : slug === "kansascity" ? "kclibrary.org" : "mdpls.org"}`,
+                desc: ko ? `무료 도서관 카드로 수백만 달러 자원!\n• ESL 영어 수업 무료\n• 시민권 시험 준비 자료\n• 취업·이력서 워크샵\n• 한국어 도서·잡지\n• 인터넷·프린터 무료\n• LinkedIn Learning 무제한\n🔗 ${slug === "seattle" ? "kcls.org" : slug === "dallas" ? "dpl.lib.tx.us" : slug === "sf" ? "sfpl.org" : slug === "newyork" ? "nypl.org" : slug === "la" ? "lapl.org" : slug === "houston" ? "houstonlibrary.org" : slug === "boston" ? "bpl.org" : slug === "nashville" ? "library.nashville.org" : slug === "atlanta" ? "fulcolibrary.org | gwinnettpl.org" : slug === "philadelphia" ? "freelibrary.org" : slug === "kansascity" ? "kclibrary.org" : "mdpls.org"}`
+                           : `Free library card = millions in resources!\n• Free ESL classes\n• Citizenship test prep\n• Job search & resume workshops\n• Korean books & magazines\n• Free internet & printing\n• Unlimited LinkedIn Learning\n🔗 ${slug === "seattle" ? "kcls.org" : slug === "dallas" ? "dpl.lib.tx.us" : slug === "sf" ? "sfpl.org" : slug === "newyork" ? "nypl.org" : slug === "la" ? "lapl.org" : slug === "houston" ? "houstonlibrary.org" : slug === "boston" ? "bpl.org" : slug === "nashville" ? "library.nashville.org" : slug === "atlanta" ? "fulcolibrary.org | gwinnettpl.org" : slug === "philadelphia" ? "freelibrary.org" : slug === "kansascity" ? "kclibrary.org" : "mdpls.org"}`,
                 tags: ko ? ["도서관","무료ESL","취업"] : ["Library","Free ESL","Jobs"],
               };
               // ── 공공혜택 (도시·국가별) ──
@@ -24579,8 +24680,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
               const eventsCard: KAItem = {
                 emoji: "🗺️",
                 name: ko ? `${city.nameKo} 한인 문화 행사 캘린더` : `${city.nameEn} Korean Cultural Events`,
-                desc: ko ? `✅ 연간 주요 한인 행사:\n• 설날 행사: 한인회 & 지역 교회 (1-2월)\n• 광복절: 8월 15일 (총영사관/대사관 주관)\n• 추석 행사: 가을 (9-10월)\n${slug === "seattle" ? "• 코리안 페스티벌: 여름 (린우드 H-Mart)\n🔗 seattlekorean.org" : slug === "dallas" ? "• DFW 한인 문화 축제: 여름 (캐롤튼)\n🔗 달라스한인회 카카오" : slug === "sf" ? "• 베이에리어 코리아 페스티벌: 여름 (산호세)\n🔗 sfbaykorean.org" : slug === "newyork" ? "• 코리아 퍼레이드: 봄 (맨해튼 6번가)\n🔗 koreanparade.org" : slug === "la" ? "• LA 한인 축제: 9월 (코리아타운)\n🔗 lakoreanfestival.com" : slug === "houston" ? "• 휴스턴 코리아 페스티벌: 봄 (슈거랜드)\n🔗 houstonkorean.net" : slug === "boston" ? "• 보스턴 코리아: 문화 행사 상시\n🔗 bostonkorea.com" : slug === "nashville" ? "• 내쉬빌 코리아 페스티벌: 여름\n🔗 내쉬빌한인회 카카오" : slug === "toronto" ? "• 토론토 코리아 페스티벌: 여름 (노스욕)\n🔗 koreafestivaltoronto.com" : slug === "vancouver" ? "• 코퀴틀람 코리안 페스티벌: 여름\n🔗 밴쿠버한인회" : slug === "atlanta" ? "• 애틀랜타 코리아 페스티벌: 여름 (둘루스)\n🔗 atlantakorean.org" : slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey" ? "• 한국 문화의 날 (주멕시코 한국문화원)\n🔗 mexico.korean-culture.org" : "🔗 지역 한인회 카카오 단톡방"}`
-                           : `✅ Annual Korean community events:\n• Lunar New Year: Korean Association & churches (Jan-Feb)\n• Independence Day: Aug 15 (Consulate/Embassy)\n• Chuseok: fall (Sep-Oct)\n${slug === "seattle" ? "• Korean Festival: summer (Lynnwood H-Mart)\n🔗 seattlekorean.org" : slug === "dallas" ? "• DFW Korean Cultural Festival: summer (Carrollton)\n🔗 Dallas Korean Association KakaoTalk" : slug === "sf" ? "• Bay Area Korea Festival: summer (San Jose)\n🔗 sfbaykorean.org" : slug === "newyork" ? "• Korea Parade: spring (Manhattan 6th Ave)\n🔗 koreanparade.org" : slug === "la" ? "• LA Korean Festival: September (Koreatown)\n🔗 lakoreanfestival.com" : slug === "houston" ? "• Houston Korea Festival: spring (Sugar Land)\n🔗 houstonkorean.net" : slug === "boston" ? "• Boston Korea: cultural events year-round\n🔗 bostonkorea.com" : slug === "nashville" ? "• Nashville Korea Festival: summer\n🔗 Nashville Korean Association KakaoTalk" : slug === "toronto" ? "• Toronto Korea Festival: summer (North York)\n🔗 koreafestivaltoronto.com" : slug === "vancouver" ? "• Coquitlam Korean Festival: summer\n🔗 Vancouver Korean Association" : slug === "atlanta" ? "• Atlanta Korea Festival: summer (Duluth)\n🔗 atlantakorean.org" : slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey" ? "• Korea Cultural Day (Korean Cultural Center Mexico)\n🔗 mexico.korean-culture.org" : "🔗 Local Korean Association KakaoTalk"}`,
+                desc: ko ? `연간 주요 한인 행사:\n• 설날 행사: 한인회 & 지역 교회 (1-2월)\n• 광복절: 8월 15일 (총영사관/대사관 주관)\n• 추석 행사: 가을 (9-10월)\n${slug === "seattle" ? "• 코리안 페스티벌: 여름 (린우드 H-Mart)\n🔗 seattlekorean.org" : slug === "dallas" ? "• DFW 한인 문화 축제: 여름 (캐롤튼)\n🔗 달라스한인회 카카오" : slug === "sf" ? "• 베이에리어 코리아 페스티벌: 여름 (산호세)\n🔗 sfbaykorean.org" : slug === "newyork" ? "• 코리아 퍼레이드: 봄 (맨해튼 6번가)\n🔗 koreanparade.org" : slug === "la" ? "• LA 한인 축제: 9월 (코리아타운)\n🔗 lakoreanfestival.com" : slug === "houston" ? "• 휴스턴 코리아 페스티벌: 봄 (슈거랜드)\n🔗 houstonkorean.net" : slug === "boston" ? "• 보스턴 코리아: 문화 행사 상시\n🔗 bostonkorea.com" : slug === "nashville" ? "• 내쉬빌 코리아 페스티벌: 여름\n🔗 내쉬빌한인회 카카오" : slug === "toronto" ? "• 토론토 코리아 페스티벌: 여름 (노스욕)\n🔗 koreafestivaltoronto.com" : slug === "vancouver" ? "• 코퀴틀람 코리안 페스티벌: 여름\n🔗 밴쿠버한인회" : slug === "atlanta" ? "• 애틀랜타 코리아 페스티벌: 여름 (둘루스)\n🔗 atlantakorean.org" : slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey" ? "• 한국 문화의 날 (주멕시코 한국문화원)\n🔗 mexico.korean-culture.org" : "🔗 지역 한인회 카카오 단톡방"}`
+                           : `Annual Korean community events:\n• Lunar New Year: Korean Association & churches (Jan-Feb)\n• Independence Day: Aug 15 (Consulate/Embassy)\n• Chuseok: fall (Sep-Oct)\n${slug === "seattle" ? "• Korean Festival: summer (Lynnwood H-Mart)\n🔗 seattlekorean.org" : slug === "dallas" ? "• DFW Korean Cultural Festival: summer (Carrollton)\n🔗 Dallas Korean Association KakaoTalk" : slug === "sf" ? "• Bay Area Korea Festival: summer (San Jose)\n🔗 sfbaykorean.org" : slug === "newyork" ? "• Korea Parade: spring (Manhattan 6th Ave)\n🔗 koreanparade.org" : slug === "la" ? "• LA Korean Festival: September (Koreatown)\n🔗 lakoreanfestival.com" : slug === "houston" ? "• Houston Korea Festival: spring (Sugar Land)\n🔗 houstonkorean.net" : slug === "boston" ? "• Boston Korea: cultural events year-round\n🔗 bostonkorea.com" : slug === "nashville" ? "• Nashville Korea Festival: summer\n🔗 Nashville Korean Association KakaoTalk" : slug === "toronto" ? "• Toronto Korea Festival: summer (North York)\n🔗 koreafestivaltoronto.com" : slug === "vancouver" ? "• Coquitlam Korean Festival: summer\n🔗 Vancouver Korean Association" : slug === "atlanta" ? "• Atlanta Korea Festival: summer (Duluth)\n🔗 atlantakorean.org" : slug === "mexicocity" || slug === "guadalajara" || slug === "monterrey" ? "• Korea Cultural Day (Korean Cultural Center Mexico)\n🔗 mexico.korean-culture.org" : "🔗 Local Korean Association KakaoTalk"}`,
                 tags: ko ? ["한인행사","문화","커뮤니티"] : ["Korean Events","Culture","Community"],
               };
               return [votingCard, libraryCard, benefitsCard, eventsCard];
@@ -24608,7 +24709,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ fontSize: 20 }}>🔍</span>
+              <Search size={17} strokeWidth={2} />
               <div style={{ textAlign: "left" }}>
                 <div style={{ fontWeight: 800, fontSize: 13, color: "#F87171" }}>
                   {lang === "ko" ? "다른 도움도 필요하세요?" : "Need other help?"}
@@ -24642,11 +24743,11 @@ function getCityJobData(slug: string, lang: string) {
     seattle: {
       main: [
         { emoji: "☁️", name: "Amazon", nameEn: "Amazon — Largest Seattle Employer",
-          desc: ko ? "✅ 시애틀 최대 고용주. SLU 본사. SDE·PM·데이터사이언티스트. AWS 글로벌 본부. 한인 직원 수천 명. 연봉 $120K-$350K+ | 🔗 amazon.jobs"
-                   : "✅ Seattle's largest employer. SLU HQ. SDE, PM, data scientist, AWS HQ. Thousands of Korean employees. Salary $120K-$350K+ | 🔗 amazon.jobs", tags: ["빅테크","SDE","H-1B"] },
+          desc: ko ? "시애틀 최대 고용주. SLU 본사. SDE·PM·데이터사이언티스트. AWS 글로벌 본부. 한인 직원 수천 명. 연봉 $120K-$350K+ | 🔗 amazon.jobs"
+                   : "Seattle's largest employer. SLU HQ. SDE, PM, data scientist, AWS HQ. Thousands of Korean employees. Salary $120K-$350K+ | 🔗 amazon.jobs", tags: ["빅테크","SDE","H-1B"] },
         { emoji: "🖥️", name: "Microsoft", nameEn: "Microsoft — Redmond HQ",
-          desc: ko ? "✅ 레드몬드 본사. Azure·Office·Copilot. 한인 엔지니어 많음. H-1B 스폰서 적극. 연봉 $130K-$380K+ | 🔗 careers.microsoft.com"
-                   : "✅ Redmond HQ. Azure, Office, Copilot. Large Korean engineer community. Active H-1B sponsor. $130K-$380K+ | 🔗 careers.microsoft.com", tags: ["빅테크","레드몬드","비자지원"] },
+          desc: ko ? "레드몬드 본사. Azure·Office·Copilot. 한인 엔지니어 많음. H-1B 스폰서 적극. 연봉 $130K-$380K+ | 🔗 careers.microsoft.com"
+                   : "Redmond HQ. Azure, Office, Copilot. Large Korean engineer community. Active H-1B sponsor. $130K-$380K+ | 🔗 careers.microsoft.com", tags: ["빅테크","레드몬드","비자지원"] },
         { emoji: "✈️", name: "Boeing", nameEn: "Boeing — Aerospace",
           desc: ko ? "에버렛·렌톤. 에어로스페이스 엔지니어링. 기계·항공·전기 엔지니어 수요. 보안 허가 필요 | 🔗 boeing.com/careers"
                    : "Everett & Renton. Aerospace engineering. Mechanical, aero & electrical engineers. Security clearance needed | 🔗 boeing.com/careers", tags: ["항공","엔지니어링","에버렛"] },
@@ -24767,8 +24868,8 @@ function getCityJobData(slug: string, lang: string) {
     atlanta: {
       main: [
         { emoji: "✈️", name: "Delta Air Lines", nameEn: "Delta Air Lines — World HQ",
-          desc: ko ? "✅ 애틀랜타 최대 고용주. 항공·물류·IT. 한인 직원 상당수. 하츠필드잭슨 공항 연계. 연봉 $60K-$200K | 🔗 delta.com/careers"
-                   : "✅ Atlanta's largest employer. Aviation, logistics, IT. Korean employees present. ATL airport-connected. $60K-$200K | 🔗 delta.com/careers", tags: ["델타","항공","물류"] },
+          desc: ko ? "애틀랜타 최대 고용주. 항공·물류·IT. 한인 직원 상당수. 하츠필드잭슨 공항 연계. 연봉 $60K-$200K | 🔗 delta.com/careers"
+                   : "Atlanta's largest employer. Aviation, logistics, IT. Korean employees present. ATL airport-connected. $60K-$200K | 🔗 delta.com/careers", tags: ["델타","항공","물류"] },
         { emoji: "🏥", name: ko ? "에모리 & 피드몬트 의료" : "Emory & Piedmont Healthcare",
           desc: ko ? "에모리대 의료센터·피드몬트 헬스. 한국어 가능 의료인 수요. 간호사·의사·연구직. 연봉 $65K-$280K | 🔗 emoryhealthcare.org/careers"
                    : "Emory University Medical Center & Piedmont Health. Korean-speaking medical professionals needed. $65K-$280K | 🔗 emoryhealthcare.org/careers", tags: ["에모리","의료","간호사"] },
@@ -24829,8 +24930,8 @@ function getCityJobData(slug: string, lang: string) {
     nashville: {
       main: [
         { emoji: "🏥", name: ko ? "HCA Healthcare — 세계 최대 병원 그룹" : "HCA Healthcare — World's Largest",
-          desc: ko ? "✅ 내쉬빌 본사. 세계 최대 사립병원 그룹. 간호사·의사·행정직. 한인 의료인 취업 기회. 연봉 $60K-$250K | 🔗 hcahealthcare.com/careers"
-                   : "✅ Nashville HQ. World's largest for-profit hospital. Nurses, doctors, admin. Korean healthcare professionals welcome. $60K-$250K | 🔗 hcahealthcare.com/careers", tags: ["HCA","의료","간호사"] },
+          desc: ko ? "내쉬빌 본사. 세계 최대 사립병원 그룹. 간호사·의사·행정직. 한인 의료인 취업 기회. 연봉 $60K-$250K | 🔗 hcahealthcare.com/careers"
+                   : "Nashville HQ. World's largest for-profit hospital. Nurses, doctors, admin. Korean healthcare professionals welcome. $60K-$250K | 🔗 hcahealthcare.com/careers", tags: ["HCA","의료","간호사"] },
         { emoji: "☁️", name: ko ? "Oracle Health·IT 클러스터" : "Oracle Health & IT Cluster",
           desc: ko ? "Oracle Health(구 Cerner) 내쉬빌 오피스. Amazon·Asurion·Community Health Systems IT. 테크 취업 급성장 중. 연봉 $80K-$220K"
                    : "Oracle Health (formerly Cerner) Nashville office. Amazon, Asurion, Community Health Systems IT. Tech hiring rapidly growing. $80K-$220K", tags: ["Oracle","IT","테크"] },
@@ -24891,8 +24992,8 @@ function getCityJobData(slug: string, lang: string) {
     vancouver: {
       main: [
         { emoji: "💻", name: ko ? "아마존·마이크로소프트 밴쿠버" : "Amazon & Microsoft Vancouver",
-          desc: ko ? "✅ 아마존 밴쿠버 오피스(게임·AWS). 마이크로소프트 밴쿠버. 구글·Electronic Arts·D-Wave. 한인 SDE 취업 활발. 연봉 CAD $100K-$320K"
-                   : "✅ Amazon Vancouver (Gaming/AWS). Microsoft Vancouver. Google, Electronic Arts, D-Wave. Active Korean SDE hiring. CAD $100K-$320K", tags: ["아마존","Microsoft","EA"] },
+          desc: ko ? "아마존 밴쿠버 오피스(게임·AWS). 마이크로소프트 밴쿠버. 구글·Electronic Arts·D-Wave. 한인 SDE 취업 활발. 연봉 CAD $100K-$320K"
+                   : "Amazon Vancouver (Gaming/AWS). Microsoft Vancouver. Google, Electronic Arts, D-Wave. Active Korean SDE hiring. CAD $100K-$320K", tags: ["아마존","Microsoft","EA"] },
         { emoji: "🎨", name: ko ? "VFX·게임·애니메이션 산업" : "VFX, Gaming & Animation",
           desc: ko ? "Industrial Light & Magic·Weta Digital·EA·Relic Entertainment 밴쿠버. 한인 아티스트·프로그래머 취업. 마블·DC 영화 VFX. 연봉 CAD $60K-$180K"
                    : "ILM, Weta Digital, EA, Relic Entertainment Vancouver. Korean artists/programmers hiring. Marvel/DC VFX films. CAD $60K-$180K", tags: ["VFX","게임","ILM"] },
@@ -25212,13 +25313,13 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
   const defaultJobs = [
     { emoji: "☁️", name: "Amazon", nameEn: "Amazon — Largest Seattle Employer",
       desc: lang === "ko"
-        ? "✅ 시애틀 최대 고용주. South Lake Union 본사. SDE·PM·데이터사이언티스트·운영직. AWS 글로벌 본부. 한인 직원 수천 명. L3-L7 레벨. 연봉 $120K-$350K+ | 🔗 amazon.jobs"
-        : "✅ Seattle's largest employer. SLU HQ. SDE, PM, data scientist, operations. AWS global HQ. Thousands of Korean employees. L3-L7 levels. Salary $120K-$350K+ | 🔗 amazon.jobs",
+        ? "시애틀 최대 고용주. South Lake Union 본사. SDE·PM·데이터사이언티스트·운영직. AWS 글로벌 본부. 한인 직원 수천 명. L3-L7 레벨. 연봉 $120K-$350K+ | 🔗 amazon.jobs"
+        : "Seattle's largest employer. SLU HQ. SDE, PM, data scientist, operations. AWS global HQ. Thousands of Korean employees. L3-L7 levels. Salary $120K-$350K+ | 🔗 amazon.jobs",
       tags: ["빅테크", "SDE", "H-1B"] },
     { emoji: "🖥️", name: "Microsoft", nameEn: "Microsoft — Redmond HQ",
       desc: lang === "ko"
-        ? "✅ 레드몬드 본사. Azure·Office·Xbox·Copilot. 한인 엔지니어 매우 많음. H-1B 스폰서 적극적. 연봉 $130K-$380K+ | 🔗 careers.microsoft.com"
-        : "✅ Redmond HQ. Azure, Office, Xbox, Copilot. Large Korean engineer community. Active H-1B sponsor. Salary $130K-$380K+ | 🔗 careers.microsoft.com",
+        ? "레드몬드 본사. Azure·Office·Xbox·Copilot. 한인 엔지니어 매우 많음. H-1B 스폰서 적극적. 연봉 $130K-$380K+ | 🔗 careers.microsoft.com"
+        : "Redmond HQ. Azure, Office, Xbox, Copilot. Large Korean engineer community. Active H-1B sponsor. Salary $130K-$380K+ | 🔗 careers.microsoft.com",
       tags: ["빅테크", "레드몬드", "비자지원"] },
     { emoji: "🔍", name: "Google Seattle", nameEn: "Google — Kirkland & Seattle",
       desc: lang === "ko"
@@ -25290,7 +25391,7 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
             {city.slug === "seattle" && (<>
             <a href="https://open.kakao.com/o/search/%EC%8B%9C%EC%95%A0%ED%8B%80%ED%95%9C%EC%9D%B8" target="_blank" rel="noopener noreferrer"
               style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(251,191,36,0.2)" }}>
-              <span style={{ fontSize: 16 }}>💬</span>
+              <MessageCircle size={14} strokeWidth={2} />
               <div style={{ flex: 1 }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>
                   {lang === "ko" ? "카카오오픈채팅 '시애틀한인'" : "KakaoTalk '시애틀한인'"}
@@ -25301,7 +25402,7 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
             </a>
             <a href="https://worksourcewa.com/" target="_blank" rel="noopener noreferrer"
               style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(251,191,36,0.2)" }}>
-              <span style={{ fontSize: 16 }}>🏢</span>
+              <EmojiIcon emoji={"🏢"} size={14} />
               <div style={{ flex: 1 }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>WorkSource WA</div>
                 <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? "무료 이력서·면접 코칭" : "Free resume & interview coaching"}</div>
@@ -25312,7 +25413,7 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
             {/* 전 도시 공통: LinkedIn + Indeed */}
             <a href={`https://www.linkedin.com/jobs/search/?keywords=Korean&location=${encodeURIComponent(city.nameEn)}`} target="_blank" rel="noopener noreferrer"
               style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(251,191,36,0.2)" }}>
-              <span style={{ fontSize: 16 }}>💼</span>
+              <Briefcase size={14} strokeWidth={2} />
               <div style={{ flex: 1 }}>
                 <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>LinkedIn Jobs — {city.nameEn}</div>
                 <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{lang === "ko" ? `${city.nameKo} 한인 취업 공고` : `${city.nameEn} Korean job listings`}</div>
@@ -25339,146 +25440,146 @@ function getCityDistrictData(slug: string, lang: string) {
   const DATA: Record<string, any[]> = {
     dallas: [
       { emoji: "⭐", name: "Plano ISD", nameEn: "Plano ISD — TX Top",
-        desc: ko ? "✅ 텍사스 상위 1% 학군 (Niche A+). 한인 학생 비율 높음. 졸업률 97%. AP·IB 과정 풍부. 달라스 북부 최고 학군.\n📍 플레이노·앨런·프리스코 인근 | 🔗 pisd.edu"
-                 : "✅ TX Top 1% (Niche A+). High Korean student ratio. 97% grad rate. Rich AP/IB programs. Best district north of Dallas.\n📍 Plano, Allen, Frisco area | 🔗 pisd.edu", tags: ["플레이노","A+","텍사스"] },
+        desc: ko ? "텍사스 상위 1% 학군 (Niche A+). 한인 학생 비율 높음. 졸업률 97%. AP·IB 과정 풍부. 달라스 북부 최고 학군.\n📍 플레이노·앨런·프리스코 인근 | 🔗 pisd.edu"
+                 : "TX Top 1% (Niche A+). High Korean student ratio. 97% grad rate. Rich AP/IB programs. Best district north of Dallas.\n📍 Plano, Allen, Frisco area | 🔗 pisd.edu", tags: ["플레이노","A+","텍사스"] },
       { emoji: "⭐", name: "Frisco ISD", nameEn: "Frisco ISD — Fastest Growing",
-        desc: ko ? "✅ 텍사스 최고 성장 학군 (Niche A+). 신설 학교 다수. STEM 특화. 한인 가족 최다 유입 지역. 달라스 북부.\n📍 프리스코·맥키니 | 🔗 friscoisd.org"
-                 : "✅ TX's fastest-growing top district (Niche A+). Many new schools. STEM focus. Highest Korean family influx. North Dallas.\n📍 Frisco, McKinney | 🔗 friscoisd.org", tags: ["프리스코","성장","STEM"] },
+        desc: ko ? "텍사스 최고 성장 학군 (Niche A+). 신설 학교 다수. STEM 특화. 한인 가족 최다 유입 지역. 달라스 북부.\n📍 프리스코·맥키니 | 🔗 friscoisd.org"
+                 : "TX's fastest-growing top district (Niche A+). Many new schools. STEM focus. Highest Korean family influx. North Dallas.\n📍 Frisco, McKinney | 🔗 friscoisd.org", tags: ["프리스코","성장","STEM"] },
       { emoji: "⭐", name: "Lewisville ISD / Carrollton-Farmers Branch ISD", nameEn: "CFBISD — Koreatown District",
-        desc: ko ? "✅ 캐롤튼 코리아타운 관할 학군. 한인 학생 비율 최고. Korean Immersion 프로그램 운영. Niche A-.\n📍 캐롤튼·파머스브랜치 | 🔗 cfbisd.edu"
-                 : "✅ Covers Carrollton Koreatown. Highest Korean student ratio. Korean Immersion program available. Niche A-.\n📍 Carrollton, Farmers Branch | 🔗 cfbisd.edu", tags: ["캐롤튼","코리아타운","한국어"] },
+        desc: ko ? "캐롤튼 코리아타운 관할 학군. 한인 학생 비율 최고. Korean Immersion 프로그램 운영. Niche A-.\n📍 캐롤튼·파머스브랜치 | 🔗 cfbisd.edu"
+                 : "Covers Carrollton Koreatown. Highest Korean student ratio. Korean Immersion program available. Niche A-.\n📍 Carrollton, Farmers Branch | 🔗 cfbisd.edu", tags: ["캐롤튼","코리아타운","한국어"] },
       { emoji: "🏫", name: "Richardson ISD", nameEn: "Richardson ISD — 다양성",
         desc: ko ? "Niche A. 달라스 동북부. 다문화 환경. J.J. Pearce HS 명문. 한인 가족 증가 추세. 주거비 대비 학군 가성비 좋음.\n📍 리차드슨·갈랜드 | 🔗 risd.org"
                  : "Niche A. NE Dallas. Diverse community. J.J. Pearce HS prestigious. Growing Korean families. Good value vs rent.\n📍 Richardson, Garland | 🔗 risd.org", tags: ["리차드슨","다양성","가성비"] },
     ],
     la: [
       { emoji: "⭐", name: "Cerritos / ABC USD", nameEn: "ABC Unified — Cerritos",
-        desc: ko ? "✅ 한인 최다 거주 LA 남부 학군 (Niche A+). Cerritos HS·Whitney HS 전국 명문. SAT 평균 1350+. 한인 학생 30%+.\n📍 세리토스·아르테시아·레이크우드 | 🔗 abcusd.us"
-                 : "✅ Top LA south district with highest Korean population (Niche A+). Cerritos & Whitney HS nationally ranked. SAT avg 1350+. 30%+ Korean students.\n📍 Cerritos, Artesia, Lakewood | 🔗 abcusd.us", tags: ["세리토스","한인밀집","A+"] },
+        desc: ko ? "한인 최다 거주 LA 남부 학군 (Niche A+). Cerritos HS·Whitney HS 전국 명문. SAT 평균 1350+. 한인 학생 30%+.\n📍 세리토스·아르테시아·레이크우드 | 🔗 abcusd.us"
+                 : "Top LA south district with highest Korean population (Niche A+). Cerritos & Whitney HS nationally ranked. SAT avg 1350+. 30%+ Korean students.\n📍 Cerritos, Artesia, Lakewood | 🔗 abcusd.us", tags: ["세리토스","한인밀집","A+"] },
       { emoji: "⭐", name: "Torrance USD", nameEn: "Torrance USD — 남가주 명문",
-        desc: ko ? "✅ Niche A+. 토랜스·파로스버디스. West HS·South HS·North HS. 한인 가족 많음. LA 해변 인근 학군.\n📍 토랜스·레돈도비치 | 🔗 torrance.k12.ca.us"
-                 : "✅ Niche A+. Torrance, Palos Verdes area. West/South/North HS. Many Korean families. Near LA beaches.\n📍 Torrance, Redondo Beach | 🔗 torrance.k12.ca.us", tags: ["토랜스","해변","한인"] },
+        desc: ko ? "Niche A+. 토랜스·파로스버디스. West HS·South HS·North HS. 한인 가족 많음. LA 해변 인근 학군.\n📍 토랜스·레돈도비치 | 🔗 torrance.k12.ca.us"
+                 : "Niche A+. Torrance, Palos Verdes area. West/South/North HS. Many Korean families. Near LA beaches.\n📍 Torrance, Redondo Beach | 🔗 torrance.k12.ca.us", tags: ["토랜스","해변","한인"] },
       { emoji: "⭐", name: "Diamond Bar / Walnut Valley USD", nameEn: "Walnut Valley USD",
-        desc: ko ? "✅ 다이아몬드바 소재. Diamond Bar HS (전국 상위 3%). 한인·중국계 밀집. Niche A+. UC 진학률 매우 높음.\n📍 다이아몬드바·월넛 | 🔗 wvusd.k12.ca.us"
-                 : "✅ Diamond Bar. Diamond Bar HS (top 3% nationally). Dense Korean & Chinese population. Niche A+. Very high UC admission rate.\n📍 Diamond Bar, Walnut | 🔗 wvusd.k12.ca.us", tags: ["다이아몬드바","UC진학","A+"] },
+        desc: ko ? "다이아몬드바 소재. Diamond Bar HS (전국 상위 3%). 한인·중국계 밀집. Niche A+. UC 진학률 매우 높음.\n📍 다이아몬드바·월넛 | 🔗 wvusd.k12.ca.us"
+                 : "Diamond Bar. Diamond Bar HS (top 3% nationally). Dense Korean & Chinese population. Niche A+. Very high UC admission rate.\n📍 Diamond Bar, Walnut | 🔗 wvusd.k12.ca.us", tags: ["다이아몬드바","UC진학","A+"] },
     ],
     newyork: [
       { emoji: "⭐", name: "Fort Lee School District (NJ)", nameEn: "Fort Lee — #1 Korean NJ",
-        desc: ko ? "✅ NJ 포트리. 한인 학생 최고 비율. 포트리 HS 전국 상위 1%. Niche A+. 직접 학교 등록 가능.\n📍 포트리·NJ | 🔗 fortlee.k12.nj.us"
-                 : "✅ Fort Lee NJ. Highest Korean student ratio in NJ. Fort Lee HS top 1% nationally. Niche A+. Direct enrollment available.\n📍 Fort Lee, NJ | 🔗 fortlee.k12.nj.us", tags: ["포트리","NJ","한인밀집"] },
+        desc: ko ? "NJ 포트리. 한인 학생 최고 비율. 포트리 HS 전국 상위 1%. Niche A+. 직접 학교 등록 가능.\n📍 포트리·NJ | 🔗 fortlee.k12.nj.us"
+                 : "Fort Lee NJ. Highest Korean student ratio in NJ. Fort Lee HS top 1% nationally. Niche A+. Direct enrollment available.\n📍 Fort Lee, NJ | 🔗 fortlee.k12.nj.us", tags: ["포트리","NJ","한인밀집"] },
       { emoji: "⭐", name: "Palisades Park School District (NJ)", nameEn: "Palisades Park — Korean Community",
-        desc: ko ? "✅ NJ 팰리세이즈파크. 한인 인구 75%+. 소규모 학군 (학생 수 적어 밀착 교육). 커뮤니티 매우 강함.\n📍 팰리세이즈파크·NJ | 🔗 ppsd.org"
-                 : "✅ Palisades Park NJ. 75%+ Korean population. Small district = personalized education. Very strong community.\n📍 Palisades Park, NJ | 🔗 ppsd.org", tags: ["팰리세이즈파크","한인75%","NJ"] },
+        desc: ko ? "NJ 팰리세이즈파크. 한인 인구 75%+. 소규모 학군 (학생 수 적어 밀착 교육). 커뮤니티 매우 강함.\n📍 팰리세이즈파크·NJ | 🔗 ppsd.org"
+                 : "Palisades Park NJ. 75%+ Korean population. Small district = personalized education. Very strong community.\n📍 Palisades Park, NJ | 🔗 ppsd.org", tags: ["팰리세이즈파크","한인75%","NJ"] },
       { emoji: "🏫", name: "Special High Schools — NYC (스타이브센트 등)", nameEn: "NYC Specialized HS",
         desc: ko ? "스타이브센트 HS·브롱스과학 HS·브루클린테크 HS. 입학시험(SHSAT) 필수. 한인 학생 강세. 무료 입학·최상위 대학 진학률.\n📍 뉴욕시 | 🔗 schools.nyc.gov/enrollment/high-school"
                  : "Stuyvesant, Bronx Science, Brooklyn Tech. SHSAT exam required. Korean students excel. Free + top college placement rates.\n📍 New York City | 🔗 schools.nyc.gov/enrollment/high-school", tags: ["스타이브센트","SHSAT","공립명문"] },
     ],
     houston: [
       { emoji: "⭐", name: "Fort Bend ISD", nameEn: "Fort Bend ISD — Sugar Land",
-        desc: ko ? "✅ Sugar Land 관할. 텍사스 최다양성 학군 (Niche A+). 한인 학생 비율 높음. 졸업률 97%. 아시안 학생 35%+.\n📍 슈거랜드·미주리시티·포트벤드카운티 | 🔗 fortbendisd.com"
-                 : "✅ Covers Sugar Land. TX's most diverse top district (Niche A+). High Korean student ratio. 97% grad rate. 35%+ Asian students.\n📍 Sugar Land, Missouri City | 🔗 fortbendisd.com", tags: ["슈거랜드","다양성","A+"] },
+        desc: ko ? "Sugar Land 관할. 텍사스 최다양성 학군 (Niche A+). 한인 학생 비율 높음. 졸업률 97%. 아시안 학생 35%+.\n📍 슈거랜드·미주리시티·포트벤드카운티 | 🔗 fortbendisd.com"
+                 : "Covers Sugar Land. TX's most diverse top district (Niche A+). High Korean student ratio. 97% grad rate. 35%+ Asian students.\n📍 Sugar Land, Missouri City | 🔗 fortbendisd.com", tags: ["슈거랜드","다양성","A+"] },
       { emoji: "⭐", name: "Katy ISD", nameEn: "Katy ISD — 서부 휴스턴",
-        desc: ko ? "✅ 휴스턴 서부. Niche A+. 졸업률 97.5%. Seven Lakes HS·Cinco Ranch HS 명문. 한인 가족 유입 증가.\n📍 케이티·에너지코리도 서부 | 🔗 katyisd.org"
-                 : "✅ West Houston. Niche A+. 97.5% grad rate. Seven Lakes & Cinco Ranch HS. Growing Korean family influx.\n📍 Katy, west Energy Corridor | 🔗 katyisd.org", tags: ["케이티","서부휴스턴","A+"] },
+        desc: ko ? "휴스턴 서부. Niche A+. 졸업률 97.5%. Seven Lakes HS·Cinco Ranch HS 명문. 한인 가족 유입 증가.\n📍 케이티·에너지코리도 서부 | 🔗 katyisd.org"
+                 : "West Houston. Niche A+. 97.5% grad rate. Seven Lakes & Cinco Ranch HS. Growing Korean family influx.\n📍 Katy, west Energy Corridor | 🔗 katyisd.org", tags: ["케이티","서부휴스턴","A+"] },
     ],
     sf: [
       { emoji: "⭐", name: "Cupertino Union / Fremont Union HSD", nameEn: "Fremont Union — Cupertino",
-        desc: ko ? "✅ 쿠퍼티노. Apple 본사 학군. Lynbrook HS·Monta Vista HS 전국 상위 1%. 한인·중국계 밀집. Niche A+.\n📍 쿠퍼티노·새너제이 서부 | 🔗 fuhsd.org"
-                 : "✅ Cupertino. Apple HQ school district. Lynbrook & Monta Vista HS top 1% nationally. Korean & Chinese dense. Niche A+.\n📍 Cupertino, west San Jose | 🔗 fuhsd.org", tags: ["쿠퍼티노","Apple","A+"] },
+        desc: ko ? "쿠퍼티노. Apple 본사 학군. Lynbrook HS·Monta Vista HS 전국 상위 1%. 한인·중국계 밀집. Niche A+.\n📍 쿠퍼티노·새너제이 서부 | 🔗 fuhsd.org"
+                 : "Cupertino. Apple HQ school district. Lynbrook & Monta Vista HS top 1% nationally. Korean & Chinese dense. Niche A+.\n📍 Cupertino, west San Jose | 🔗 fuhsd.org", tags: ["쿠퍼티노","Apple","A+"] },
       { emoji: "⭐", name: "Palo Alto USD", nameEn: "Palo Alto USD — Stanford Neighbor",
-        desc: ko ? "✅ 스탠포드 인근. Palo Alto HS·Gunn HS 전국 명문. Niche A+. 주거비 극히 높음 → 접근 어려움.\n📍 팔로알토·알로스알토스 | 🔗 pausd.org"
-                 : "✅ Near Stanford. Palo Alto & Gunn HS nationally elite. Niche A+. Extremely high housing costs → difficult access.\n📍 Palo Alto, Los Altos | 🔗 pausd.org", tags: ["팔로알토","스탠포드","A+"] },
+        desc: ko ? "스탠포드 인근. Palo Alto HS·Gunn HS 전국 명문. Niche A+. 주거비 극히 높음 → 접근 어려움.\n📍 팔로알토·알로스알토스 | 🔗 pausd.org"
+                 : "Near Stanford. Palo Alto & Gunn HS nationally elite. Niche A+. Extremely high housing costs → difficult access.\n📍 Palo Alto, Los Altos | 🔗 pausd.org", tags: ["팔로알토","스탠포드","A+"] },
     ],
     toronto: [
       { emoji: "⭐", name: "York Region District School Board", nameEn: "York Region DSB — Markham",
-        desc: ko ? "✅ 마크햄·리치몬드힐 관할. 캐나다 최고 수준 학군 중 하나. 한인·중국계 밀집. Ontario A+ 수준. 졸업률 95%+.\n📍 마크햄·리치몬드힐·손힐 | 🔗 yrdsb.ca"
-                 : "✅ Covers Markham, Richmond Hill. One of Canada's top districts. Dense Korean & Chinese community. Ontario A+ level.\n📍 Markham, Richmond Hill, Thornhill | 🔗 yrdsb.ca", tags: ["마크햄","한인밀집","캐나다"] },
+        desc: ko ? "마크햄·리치몬드힐 관할. 캐나다 최고 수준 학군 중 하나. 한인·중국계 밀집. Ontario A+ 수준. 졸업률 95%+.\n📍 마크햄·리치몬드힐·손힐 | 🔗 yrdsb.ca"
+                 : "Covers Markham, Richmond Hill. One of Canada's top districts. Dense Korean & Chinese community. Ontario A+ level.\n📍 Markham, Richmond Hill, Thornhill | 🔗 yrdsb.ca", tags: ["마크햄","한인밀집","캐나다"] },
       { emoji: "⭐", name: "Toronto Catholic/Public DSB — North York", nameEn: "TDSB North York — Korean Hub",
-        desc: ko ? "✅ 노스욕(North York) 관할. 한인 교회·상권 밀집 지역. 한국어 Heritage Language 프로그램 운영.\n📍 노스욕·실버링 | 🔗 tdsb.on.ca"
-                 : "✅ North York — Korean church & business hub. Korean Heritage Language program available.\n📍 North York, Silverring | 🔗 tdsb.on.ca", tags: ["노스욕","한국어Heritage","토론토"] },
+        desc: ko ? "노스욕(North York) 관할. 한인 교회·상권 밀집 지역. 한국어 Heritage Language 프로그램 운영.\n📍 노스욕·실버링 | 🔗 tdsb.on.ca"
+                 : "North York — Korean church & business hub. Korean Heritage Language program available.\n📍 North York, Silverring | 🔗 tdsb.on.ca", tags: ["노스욕","한국어Heritage","토론토"] },
     ],
     vancouver: [
       { emoji: "⭐", name: "Coquitlam School District 43", nameEn: "SD43 Coquitlam — Korean Hub",
-        desc: ko ? "✅ 코퀴틀람 관할. 한인 밀집 최고 지역. 학교 수준 우수. BC 주 상위 학군. 한인 학부모 네트워크 강함.\n📍 코퀴틀람·포트무디·포트코퀴틀람 | 🔗 sd43.bc.ca"
-                 : "✅ Coquitlam — highest Korean density. Excellent schools. Top BC district. Strong Korean parent network.\n📍 Coquitlam, Port Moody, Port Coquitlam | 🔗 sd43.bc.ca", tags: ["코퀴틀람","한인밀집","BC"] },
+        desc: ko ? "코퀴틀람 관할. 한인 밀집 최고 지역. 학교 수준 우수. BC 주 상위 학군. 한인 학부모 네트워크 강함.\n📍 코퀴틀람·포트무디·포트코퀴틀람 | 🔗 sd43.bc.ca"
+                 : "Coquitlam — highest Korean density. Excellent schools. Top BC district. Strong Korean parent network.\n📍 Coquitlam, Port Moody, Port Coquitlam | 🔗 sd43.bc.ca", tags: ["코퀴틀람","한인밀집","BC"] },
       { emoji: "⭐", name: "Burnaby School District 41", nameEn: "SD41 Burnaby — UBC Neighbor",
-        desc: ko ? "✅ 버나비 관할. UBC 인근. Burnaby North HS·Burnaby Mountain HS. 한인·중국계 혼합. 아시안 친화적 환경.\n📍 버나비·밴쿠버 동부 | 🔗 burnabyschools.ca"
-                 : "✅ Burnaby near UBC. Burnaby North & Mountain HS. Korean & Chinese mixed. Asian-friendly environment.\n📍 Burnaby, east Vancouver | 🔗 burnabyschools.ca", tags: ["버나비","UBC","아시안"] },
+        desc: ko ? "버나비 관할. UBC 인근. Burnaby North HS·Burnaby Mountain HS. 한인·중국계 혼합. 아시안 친화적 환경.\n📍 버나비·밴쿠버 동부 | 🔗 burnabyschools.ca"
+                 : "Burnaby near UBC. Burnaby North & Mountain HS. Korean & Chinese mixed. Asian-friendly environment.\n📍 Burnaby, east Vancouver | 🔗 burnabyschools.ca", tags: ["버나비","UBC","아시안"] },
     ],
     // ── 프린스조지 학군 (SD57 + UNBC + CNC) ──
     princgeorge: [
       { emoji: "⭐", name: "School District 57 (SD57) — 프린스조지 공립학교", nameEn: "SD57 — Prince George Public Schools",
-        desc: ko ? "✅ BC주 공립 K-12 무료 교육. 약 22,000명 학생. French Immersion (불어 이머전) 프로그램 운영. 국제학생은 SD57 International Education 별도 신청.\n📍 2100 Ferry Ave, Prince George, BC | ☎ (250) 561-6800 | 🔗 sd57.bc.ca"
-                 : "✅ Free K-12 public education. ~22,000 students. French Immersion available. International students contact SD57 International Education.\n📍 2100 Ferry Ave, Prince George, BC | ☎ (250) 561-6800 | 🔗 sd57.bc.ca",
+        desc: ko ? "BC주 공립 K-12 무료 교육. 약 22,000명 학생. French Immersion (불어 이머전) 프로그램 운영. 국제학생은 SD57 International Education 별도 신청.\n📍 2100 Ferry Ave, Prince George, BC | ☎ (250) 561-6800 | 🔗 sd57.bc.ca"
+                 : "Free K-12 public education. ~22,000 students. French Immersion available. International students contact SD57 International Education.\n📍 2100 Ferry Ave, Prince George, BC | ☎ (250) 561-6800 | 🔗 sd57.bc.ca",
         tags: ko ? ["SD57","공립","FrenchImmersion","프린스조지"] : ["SD57","Public","FrenchImmersion","PrinceGeorge"] },
       { emoji: "⭐", name: "French Immersion — Duchess Park Secondary", nameEn: "Duchess Park Secondary — French Immersion",
-        desc: ko ? "✅ SD57 불어 이머전 고등학교. College Heights Elementary (초등 French Immersion 거점) → 덕체스파크로 진학. 이중언어 교육으로 취업·대학 유리.\n📍 Prince George, BC | 🔗 sd57.bc.ca"
-                 : "✅ SD57 French Immersion secondary school. Feeds from College Heights Elementary. Bilingual education benefits career & university.\n📍 Prince George, BC | 🔗 sd57.bc.ca",
+        desc: ko ? "SD57 불어 이머전 고등학교. College Heights Elementary (초등 French Immersion 거점) → 덕체스파크로 진학. 이중언어 교육으로 취업·대학 유리.\n📍 Prince George, BC | 🔗 sd57.bc.ca"
+                 : "SD57 French Immersion secondary school. Feeds from College Heights Elementary. Bilingual education benefits career & university.\n📍 Prince George, BC | 🔗 sd57.bc.ca",
         tags: ko ? ["French","이머전","고등학교"] : ["French","Immersion","Secondary"] },
       { emoji: "🎓", name: "UNBC — 북BC대학교 (종합대학)", nameEn: "University of Northern British Columbia (UNBC)",
-        desc: ko ? "✅ 프린스조지 종합대학. 학부·대학원. 비즈니스·간호·컴퓨터과학·환경학. 국제학생 건강보험 포함. U-PASS 버스 무제한. 졸업 후 PGWP → CEC → 영주권 경로.\n📍 3333 University Way, Prince George, BC | ☎ (250) 960-5555 | 🔗 unbc.ca"
-                 : "✅ Comprehensive university. Business, Nursing, CS, Environmental Studies. Int'l health insurance included. U-PASS unlimited bus. Graduate → PGWP → CEC → PR pathway.\n📍 3333 University Way | ☎ (250) 960-5555 | 🔗 unbc.ca",
+        desc: ko ? "프린스조지 종합대학. 학부·대학원. 비즈니스·간호·컴퓨터과학·환경학. 국제학생 건강보험 포함. U-PASS 버스 무제한. 졸업 후 PGWP → CEC → 영주권 경로.\n📍 3333 University Way, Prince George, BC | ☎ (250) 960-5555 | 🔗 unbc.ca"
+                 : "Comprehensive university. Business, Nursing, CS, Environmental Studies. Int'l health insurance included. U-PASS unlimited bus. Graduate → PGWP → CEC → PR pathway.\n📍 3333 University Way | ☎ (250) 960-5555 | 🔗 unbc.ca",
         tags: ko ? ["UNBC","대학교","영주권경로","PGWP"] : ["UNBC","University","PRPathway","PGWP"] },
       { emoji: "🎓", name: "CNC — 뉴칼레도니아 컬리지 (직업·기술)", nameEn: "College of New Caledonia (CNC)",
-        desc: ko ? "✅ 직업·기술·디플로마 전문 컬리지. UNBC보다 학비 저렴. 간호조무사·용접·전기·요리·비즈니스. CNC → UNBC 편입 경로. ESL 과정 제공.\n📍 3330 22nd Ave, Prince George, BC | ☎ (250) 562-2131 | 🔗 cnc.bc.ca"
-                 : "✅ Vocational & diploma college. Lower tuition than UNBC. PN, Welding, Electrical, Culinary, Business. CNC → UNBC transfer pathway. ESL available.\n📍 3330 22nd Ave | ☎ (250) 562-2131 | 🔗 cnc.bc.ca",
+        desc: ko ? "직업·기술·디플로마 전문 컬리지. UNBC보다 학비 저렴. 간호조무사·용접·전기·요리·비즈니스. CNC → UNBC 편입 경로. ESL 과정 제공.\n📍 3330 22nd Ave, Prince George, BC | ☎ (250) 562-2131 | 🔗 cnc.bc.ca"
+                 : "Vocational & diploma college. Lower tuition than UNBC. PN, Welding, Electrical, Culinary, Business. CNC → UNBC transfer pathway. ESL available.\n📍 3330 22nd Ave | ☎ (250) 562-2131 | 🔗 cnc.bc.ca",
         tags: ko ? ["CNC","컬리지","직업훈련","편입"] : ["CNC","College","Vocational","Transfer"] },
       { emoji: "📚", name: "LINC / IMSS 무료 영어 수업", nameEn: "LINC — Free English Classes (IMSS)",
-        desc: ko ? "✅ 이민자 무료 영어 교육 (LINC). IMSS 통해 신청. 성인 ELL·생활영어·회화 중심. 학교 재학생은 SD57 ELL 프로그램 무료 지원.\n📍 1270 2nd Ave (IMSS) | ☎ (250) 562-2900 | 🔗 imss.ca"
-                 : "✅ Free English classes for newcomers (LINC) via IMSS. Adult ELL, conversational English. K-12 students get free ELL support in all SD57 schools.\n📍 1270 2nd Ave (IMSS) | ☎ (250) 562-2900 | 🔗 imss.ca",
+        desc: ko ? "이민자 무료 영어 교육 (LINC). IMSS 통해 신청. 성인 ELL·생활영어·회화 중심. 학교 재학생은 SD57 ELL 프로그램 무료 지원.\n📍 1270 2nd Ave (IMSS) | ☎ (250) 562-2900 | 🔗 imss.ca"
+                 : "Free English classes for newcomers (LINC) via IMSS. Adult ELL, conversational English. K-12 students get free ELL support in all SD57 schools.\n📍 1270 2nd Ave (IMSS) | ☎ (250) 562-2900 | 🔗 imss.ca",
         tags: ko ? ["LINC","영어수업","무료","이민자"] : ["LINC","ESL","Free","Newcomers"] },
     ],
     // ── 추가 82개 도시 학군 ──────────────────────────────────────
     atlanta: [
       { emoji: "⭐", name: "Gwinnett County Public Schools", nameEn: "GCPS — Duluth/Suwanee",
-        desc: ko ? "✅ 귀넷카운티. GA 최대 학군·한인 밀집. Niche A. Duluth HS·Peachtree Ridge HS. 한인 학생 비율 높음.\n📍 둘루스·스와니·로렌스빌 | 🔗 gcpsk12.org"
-                 : "✅ Gwinnett County. GA's largest. Niche A. Duluth HS, Peachtree Ridge HS. High Korean student ratio.\n📍 Duluth, Suwanee, Lawrenceville | 🔗 gcpsk12.org", tags: ["귀넷","둘루스","한인밀집"] },
+        desc: ko ? "귀넷카운티. GA 최대 학군·한인 밀집. Niche A. Duluth HS·Peachtree Ridge HS. 한인 학생 비율 높음.\n📍 둘루스·스와니·로렌스빌 | 🔗 gcpsk12.org"
+                 : "Gwinnett County. GA's largest. Niche A. Duluth HS, Peachtree Ridge HS. High Korean student ratio.\n📍 Duluth, Suwanee, Lawrenceville | 🔗 gcpsk12.org", tags: ["귀넷","둘루스","한인밀집"] },
       { emoji: "⭐", name: "Forsyth County Schools", nameEn: "Forsyth County — GA Top",
-        desc: ko ? "✅ GA 최상위 학군 (Niche A+). 졸업률 97%. Lambert HS·South Forsyth HS.\n📍 커밍·볼그라운드 | 🔗 forsyth.k12.ga.us"
-                 : "✅ GA's top district (Niche A+). 97% grad rate. Lambert HS, South Forsyth HS.\n📍 Cumming, Ball Ground | 🔗 forsyth.k12.ga.us", tags: ["포사이스","A+","GA"] },
+        desc: ko ? "GA 최상위 학군 (Niche A+). 졸업률 97%. Lambert HS·South Forsyth HS.\n📍 커밍·볼그라운드 | 🔗 forsyth.k12.ga.us"
+                 : "GA's top district (Niche A+). 97% grad rate. Lambert HS, South Forsyth HS.\n📍 Cumming, Ball Ground | 🔗 forsyth.k12.ga.us", tags: ["포사이스","A+","GA"] },
       { emoji: "🏫", name: "Fulton County — Johns Creek", nameEn: "Fulton — North Atlanta",
         desc: ko ? "존스크릭·알파레타. Northview HS·Johns Creek HS 명문. 부유한 북부 애틀랜타.\n📍 존스크릭·알파레타 | 🔗 fultonschools.org"
                  : "Johns Creek, Alpharetta. Northview HS, Johns Creek HS prestigious. Affluent north Atlanta.\n📍 Johns Creek, Alpharetta | 🔗 fultonschools.org", tags: ["존스크릭","알파레타","풀턴"] },
     ],
     nashville: [
       { emoji: "⭐", name: "Williamson County Schools", nameEn: "Williamson County — TN #1",
-        desc: ko ? "✅ TN 최상위 학군 (Niche A+). 졸업률 96%. Franklin·Brentwood. Brentwood HS·Franklin HS 전국 상위권.\n📍 프랭클린·브렌트우드·쿨스프링스 | 🔗 wcs.edu"
-                 : "✅ TN's top district (Niche A+). 96% grad rate. Brentwood HS, Franklin HS nationally ranked.\n📍 Franklin, Brentwood, Cool Springs | 🔗 wcs.edu", tags: ["윌리엄슨","TN1위","A+"] },
+        desc: ko ? "TN 최상위 학군 (Niche A+). 졸업률 96%. Franklin·Brentwood. Brentwood HS·Franklin HS 전국 상위권.\n📍 프랭클린·브렌트우드·쿨스프링스 | 🔗 wcs.edu"
+                 : "TN's top district (Niche A+). 96% grad rate. Brentwood HS, Franklin HS nationally ranked.\n📍 Franklin, Brentwood, Cool Springs | 🔗 wcs.edu", tags: ["윌리엄슨","TN1위","A+"] },
       { emoji: "🏫", name: "Rutherford County Schools", nameEn: "Rutherford — Murfreesboro",
         desc: ko ? "머프리즈버로·스미르나. 내쉬빌 외곽 성장 학군. Niche B+. 렌트 저렴. MTSU 인근.\n📍 머프리즈버로·라 베르그네 | 🔗 rcschools.net"
                  : "Murfreesboro, Smyrna. Growing Nashville suburb. Niche B+. Affordable rent. Near MTSU.\n📍 Murfreesboro, La Vergne | 🔗 rcschools.net", tags: ["러더포드","머프리즈버로","저렴"] },
     ],
     boston: [
       { emoji: "⭐", name: "Newton Public Schools", nameEn: "Newton — MA #1",
-        desc: ko ? "✅ MA 최상위 학군 (Niche A+). Newton North HS·South HS 전국 Top 50. 한인 가족 유입. IB·AP 풍부.\n📍 뉴턴 전역 | 🔗 newtonma.gov/school"
-                 : "✅ MA's top district (Niche A+). Newton North & South HS top 50 nationally. Korean family influx. Rich IB/AP.\n📍 Newton (citywide) | 🔗 newtonma.gov/school", tags: ["뉴턴","MA1위","A+"] },
+        desc: ko ? "MA 최상위 학군 (Niche A+). Newton North HS·South HS 전국 Top 50. 한인 가족 유입. IB·AP 풍부.\n📍 뉴턴 전역 | 🔗 newtonma.gov/school"
+                 : "MA's top district (Niche A+). Newton North & South HS top 50 nationally. Korean family influx. Rich IB/AP.\n📍 Newton (citywide) | 🔗 newtonma.gov/school", tags: ["뉴턴","MA1위","A+"] },
       { emoji: "⭐", name: "Lexington Public Schools", nameEn: "Lexington — MA Top 3",
-        desc: ko ? "✅ Niche A+. 렉싱턴 HS 전국 상위 1%. 아시안 학생 30%+. MIT·하버드 진학률 높음.\n📍 렉싱턴 전역 | 🔗 lexingtonma.org/schools"
-                 : "✅ Niche A+. Lexington HS top 1% nationally. 30%+ Asian students. High MIT/Harvard placement.\n📍 Lexington | 🔗 lexingtonma.org/schools", tags: ["렉싱턴","MIT","아시안30%"] },
+        desc: ko ? "Niche A+. 렉싱턴 HS 전국 상위 1%. 아시안 학생 30%+. MIT·하버드 진학률 높음.\n📍 렉싱턴 전역 | 🔗 lexingtonma.org/schools"
+                 : "Niche A+. Lexington HS top 1% nationally. 30%+ Asian students. High MIT/Harvard placement.\n📍 Lexington | 🔗 lexingtonma.org/schools", tags: ["렉싱턴","MIT","아시안30%"] },
       { emoji: "🏫", name: "Quincy Public Schools", nameEn: "Quincy — Affordable Boston",
         desc: ko ? "퀸시. 보스턴 남쪽 20분. 한인·아시안 커뮤니티. 렌트 저렴. 지하철(레드라인) 통근. Niche B+.\n📍 퀸시 전역 | 🔗 quincypublicschools.com"
                  : "Quincy. 20min south of Boston. Korean/Asian community. Affordable rent. Red Line subway. Niche B+.\n📍 Quincy | 🔗 quincypublicschools.com", tags: ["퀸시","레드라인","저렴"] },
     ],
     philadelphia: [
       { emoji: "⭐", name: "Lower Merion School District", nameEn: "Lower Merion — PA #1",
-        desc: ko ? "✅ PA 최상위 학군 (Niche A+). 아이비리그 진학률 최상. 한인 전문직 가족 선호.\n📍 아르드모어·발라신우드·하버포드 | 🔗 lmsd.org"
-                 : "✅ PA's top district (Niche A+). Top Ivy League placement. Korean professional families prefer.\n📍 Ardmore, Bala Cynwyd, Haverford | 🔗 lmsd.org", tags: ["Lower Merion","PA1위","아이비리그"] },
+        desc: ko ? "PA 최상위 학군 (Niche A+). 아이비리그 진학률 최상. 한인 전문직 가족 선호.\n📍 아르드모어·발라신우드·하버포드 | 🔗 lmsd.org"
+                 : "PA's top district (Niche A+). Top Ivy League placement. Korean professional families prefer.\n📍 Ardmore, Bala Cynwyd, Haverford | 🔗 lmsd.org", tags: ["Lower Merion","PA1위","아이비리그"] },
       { emoji: "⭐", name: "Cherry Hill School District (NJ)", nameEn: "Cherry Hill — Affordable Top",
-        desc: ko ? "✅ NJ 체리힐. Niche A. 한인 커뮤니티 강함. Cherry Hill East·West HS. PA보다 렌트 저렴. PATCO 필라 직통.\n📍 체리힐·NJ | 🔗 chclc.org"
-                 : "✅ Cherry Hill NJ. Niche A. Strong Korean community. Cherry Hill East/West HS. Cheaper than PA. PATCO direct to Philly.\n📍 Cherry Hill, NJ | 🔗 chclc.org", tags: ["체리힐","NJ","PATCO"] },
+        desc: ko ? "NJ 체리힐. Niche A. 한인 커뮤니티 강함. Cherry Hill East·West HS. PA보다 렌트 저렴. PATCO 필라 직통.\n📍 체리힐·NJ | 🔗 chclc.org"
+                 : "Cherry Hill NJ. Niche A. Strong Korean community. Cherry Hill East/West HS. Cheaper than PA. PATCO direct to Philly.\n📍 Cherry Hill, NJ | 🔗 chclc.org", tags: ["체리힐","NJ","PATCO"] },
     ],
     kansascity: [
       { emoji: "⭐", name: "Shawnee Mission USD (KS)", nameEn: "Shawnee Mission — KS Top",
-        desc: ko ? "✅ KS 최상위 학군 (Niche A). 오버랜드파크·리우드. Shawnee Mission East HS. 한인 가족 밀집 인근.\n📍 오버랜드파크·리우드·미션힐스 | 🔗 smsd.org"
-                 : "✅ KS top district (Niche A). Overland Park & Leawood. Shawnee Mission East HS. Near Korean families.\n📍 Overland Park, Leawood | 🔗 smsd.org", tags: ["Shawnee Mission","오버랜드파크","KS"] },
+        desc: ko ? "KS 최상위 학군 (Niche A). 오버랜드파크·리우드. Shawnee Mission East HS. 한인 가족 밀집 인근.\n📍 오버랜드파크·리우드·미션힐스 | 🔗 smsd.org"
+                 : "KS top district (Niche A). Overland Park & Leawood. Shawnee Mission East HS. Near Korean families.\n📍 Overland Park, Leawood | 🔗 smsd.org", tags: ["Shawnee Mission","오버랜드파크","KS"] },
       { emoji: "⭐", name: "Blue Valley USD (KS)", nameEn: "Blue Valley — KS #1",
-        desc: ko ? "✅ KS 1위 학군 (Niche A+). 졸업률 98%. Blue Valley HS·Northwest HS. 오버랜드파크 남쪽.\n📍 오버랜드파크 남부·스틸웰 | 🔗 bluevalleyk12.org"
-                 : "✅ KS #1 district (Niche A+). 98% grad rate. Blue Valley HS, Northwest HS. South Overland Park.\n📍 South Overland Park, Stilwell | 🔗 bluevalleyk12.org", tags: ["Blue Valley","KS1위","A+"] },
+        desc: ko ? "KS 1위 학군 (Niche A+). 졸업률 98%. Blue Valley HS·Northwest HS. 오버랜드파크 남쪽.\n📍 오버랜드파크 남부·스틸웰 | 🔗 bluevalleyk12.org"
+                 : "KS #1 district (Niche A+). 98% grad rate. Blue Valley HS, Northwest HS. South Overland Park.\n📍 South Overland Park, Stilwell | 🔗 bluevalleyk12.org", tags: ["Blue Valley","KS1위","A+"] },
     ],
     miami: [
       { emoji: "⭐", name: "Coral Gables — Miami-Dade", nameEn: "Coral Gables — Top Miami",
-        desc: ko ? "✅ 마이애미데이드 최상위. Coral Gables Senior HS (Niche A+). 한인·라틴 혼합 커뮤니티.\n📍 코랄게이블스 | 🔗 dadeschools.net"
-                 : "✅ Miami-Dade top area. Coral Gables Senior HS (Niche A+). Korean-Latin mixed community.\n📍 Coral Gables | 🔗 dadeschools.net", tags: ["Coral Gables","A+","마이애미U"] },
+        desc: ko ? "마이애미데이드 최상위. Coral Gables Senior HS (Niche A+). 한인·라틴 혼합 커뮤니티.\n📍 코랄게이블스 | 🔗 dadeschools.net"
+                 : "Miami-Dade top area. Coral Gables Senior HS (Niche A+). Korean-Latin mixed community.\n📍 Coral Gables | 🔗 dadeschools.net", tags: ["Coral Gables","A+","마이애미U"] },
       { emoji: "🏫", name: "Doral Area — Korean Hub", nameEn: "Doral — Korean Community",
         desc: ko ? "한인 밀집 도랄. 이중언어(한국어·스페인어) 환경. 마이애미 서쪽 교외. 렌트 합리적.\n📍 도랄·웨스트 마이애미 | 🔗 dadeschools.net"
                  : "Korean hub in Doral. Bilingual (Korean/Spanish) environment. Western Miami suburb. Reasonable rent.\n📍 Doral, West Miami | 🔗 dadeschools.net", tags: ["도랄","이중언어","스페인어"] },
@@ -25489,19 +25590,19 @@ function getCityDistrictData(slug: string, lang: string) {
     // ── 멕시코 82개 도시 — 멕시코 교육 시스템 안내 ──────────────
     mexicocity: [
       { emoji: "⭐", name: ko ? "코리안 스쿨 멕시코 (한국학교)" : "Korean School of Mexico",
-        desc: ko ? "✅ 공식 확인 | 재멕시코 한국 교육원 산하 한국학교. 주재원 자녀·한인 2세 교육.\n📍 멕시코시티 폴랑코 인근\n✨ 한국어·한국 교육과정 + 현지 스페인어 교육 병행\n🔗 overseas.mofa.go.kr/mx-ko (대사관 → 교육정보)"
-                 : "✅ Verified | Korean school under Korean Education Center Mexico. For expat children & 2nd gen Koreans.\n📍 Near Polanco, Mexico City\n✨ Korean curriculum + local Spanish education\n🔗 overseas.mofa.go.kr/mx-ko", tags: ["한국학교","폴랑코","주재원자녀"] },
+        desc: ko ? "공식 확인 | 재멕시코 한국 교육원 산하 한국학교. 주재원 자녀·한인 2세 교육.\n📍 멕시코시티 폴랑코 인근\n✨ 한국어·한국 교육과정 + 현지 스페인어 교육 병행\n🔗 overseas.mofa.go.kr/mx-ko (대사관 → 교육정보)"
+                 : "Verified | Korean school under Korean Education Center Mexico. For expat children & 2nd gen Koreans.\n📍 Near Polanco, Mexico City\n✨ Korean curriculum + local Spanish education\n🔗 overseas.mofa.go.kr/mx-ko", tags: ["한국학교","폴랑코","주재원자녀"] },
       { emoji: "⭐", name: ko ? "The American School Foundation (ASF)" : "American School Foundation — Mexico City",
-        desc: ko ? "✅ 1888년 설립. 외교관·주재원 자녀 선호 1순위. IB·AP 과정 운영. 영어·스페인어 이중언어.\n📍 Bondojito 215, Condesa, CDMX\n💡 비용: 연 USD $15,000-25,000 (주재원 법인 지원 多)\n🔗 asf.edu.mx"
-                 : "✅ Est. 1888. #1 choice for diplomat/expat families. IB & AP programs. English-Spanish bilingual.\n📍 Bondojito 215, Condesa, CDMX\n💡 Tuition: USD $15,000-25,000/yr (often covered by employers)\n🔗 asf.edu.mx", tags: ["ASF","IB","영어교육"] },
+        desc: ko ? "1888년 설립. 외교관·주재원 자녀 선호 1순위. IB·AP 과정 운영. 영어·스페인어 이중언어.\n📍 Bondojito 215, Condesa, CDMX\n💡 비용: 연 USD $15,000-25,000 (주재원 법인 지원 多)\n🔗 asf.edu.mx"
+                 : "Est. 1888. #1 choice for diplomat/expat families. IB & AP programs. English-Spanish bilingual.\n📍 Bondojito 215, Condesa, CDMX\n💡 Tuition: USD $15,000-25,000/yr (often covered by employers)\n🔗 asf.edu.mx", tags: ["ASF","IB","영어교육"] },
       { emoji: "🏫", name: ko ? "멕시코 공립 교육 시스템 (SEP)" : "Mexico Public Schools (SEP System)",
         desc: ko ? "SEP(연방교육부) 관할 공립학교. 한인 장기 거주자·로컬 이민자에게 무상 제공.\n⚠️ 수업 100% 스페인어 — 스페인어 없으면 매우 어려움\n💡 초반 1-3개월: 개인 스페인어 튜터 병행 권장\n🔗 sep.gob.mx"
                  : "SEP (Federal Education Ministry) public schools. Free for long-term Korean residents.\n⚠️ All classes in Spanish — very difficult without Spanish\n💡 First 1-3 months: private Spanish tutor recommended alongside\n🔗 sep.gob.mx", tags: ["SEP","공립","스페인어"] },
     ],
     guadalajara: [
       { emoji: "⭐", name: ko ? "American School Foundation of Guadalajara" : "American School — Guadalajara (ASFG)",
-        desc: ko ? "✅ 공식 사이트 확인 | 과달라하라 외국인 자녀 1순위 국제학교. IB·AP 과정. 영어·스페인어 이중언어.\n📍 Colomos 2100, Providencia, Guadalajara\n💡 비용: 연 USD $12,000-20,000\n🔗 asfg.edu.mx"
-                 : "✅ Verified | #1 international school for expat children in Guadalajara. IB & AP programs. English-Spanish bilingual.\n📍 Colomos 2100, Providencia, Guadalajara\n💡 Tuition: USD $12,000-20,000/yr\n🔗 asfg.edu.mx", tags: ["ASFG","IB","국제학교"] },
+        desc: ko ? "공식 사이트 확인 | 과달라하라 외국인 자녀 1순위 국제학교. IB·AP 과정. 영어·스페인어 이중언어.\n📍 Colomos 2100, Providencia, Guadalajara\n💡 비용: 연 USD $12,000-20,000\n🔗 asfg.edu.mx"
+                 : "Verified | #1 international school for expat children in Guadalajara. IB & AP programs. English-Spanish bilingual.\n📍 Colomos 2100, Providencia, Guadalajara\n💡 Tuition: USD $12,000-20,000/yr\n🔗 asfg.edu.mx", tags: ["ASFG","IB","국제학교"] },
       { emoji: "⭐", name: ko ? "한국학교·한글학교 (과달라하라)" : "Korean Language School — Guadalajara",
         desc: ko ? "재멕시코 한국 교육원 연계 한글학교. 주말 한국어 수업 (토요일).\n📍 과달라하라 한인회 연락 → 위치 확인\n✨ 주재원 자녀 한국어 유지·한국 교육과정 보완\n🔗 멕시코시티 대사관: overseas.mofa.go.kr/mx-ko"
                  : "Korean Language School linked with Korean Education Center Mexico. Weekend Korean classes (Saturdays).\n📍 Contact Guadalajara Korean Association for location\n✨ Maintains Korean language for expat children\n🔗 Korean Embassy Mexico: overseas.mofa.go.kr/mx-ko", tags: ["한글학교","한국어","주재원자녀"] },
@@ -25511,14 +25612,14 @@ function getCityDistrictData(slug: string, lang: string) {
     ],
     monterrey: [
       { emoji: "⭐", name: ko ? "The American School of Monterrey (ASM)" : "American School of Monterrey (ASM)",
-        desc: ko ? "✅ 공식 사이트 확인 | 몬테레이 외국인 자녀 1순위 국제학교. IB·AP. 한인 주재원 자녀 다수.\n📍 Alfonso Reyes 4111, Monterrey NL\n💡 비용: 연 USD $12,000-22,000 (현대·기아 등 법인 지원)\n🔗 asm.edu.mx"
-                 : "✅ Verified | #1 international school for expat children in Monterrey. IB & AP. Many Korean expat children.\n📍 Alfonso Reyes 4111, Monterrey NL\n💡 Tuition: USD $12,000-22,000/yr (Hyundai, Kia etc. often cover)\n🔗 asm.edu.mx", tags: ["ASM","IB","국제학교"] },
+        desc: ko ? "공식 사이트 확인 | 몬테레이 외국인 자녀 1순위 국제학교. IB·AP. 한인 주재원 자녀 다수.\n📍 Alfonso Reyes 4111, Monterrey NL\n💡 비용: 연 USD $12,000-22,000 (현대·기아 등 법인 지원)\n🔗 asm.edu.mx"
+                 : "Verified | #1 international school for expat children in Monterrey. IB & AP. Many Korean expat children.\n📍 Alfonso Reyes 4111, Monterrey NL\n💡 Tuition: USD $12,000-22,000/yr (Hyundai, Kia etc. often cover)\n🔗 asm.edu.mx", tags: ["ASM","IB","국제학교"] },
       { emoji: "⭐", name: ko ? "한국학교·한글학교 (몬테레이)" : "Korean Language School — Monterrey",
         desc: ko ? "재멕시코 한국 교육원 연계 한글학교. 주말 한국어 수업.\n📍 몬테레이 한인회 연락 → 위치 확인\n✨ 현대·기아·POSCO 주재원 자녀 한국어 유지\n🔗 멕시코시티 대사관: overseas.mofa.go.kr/mx-ko"
                  : "Korean Language School linked with Korean Education Center Mexico. Weekend Korean classes.\n📍 Contact Monterrey Korean Association for location\n✨ Korean language maintenance for Hyundai/Kia/POSCO expat children\n🔗 Korean Embassy Mexico: overseas.mofa.go.kr/mx-ko", tags: ["한글학교","한국어","주재원자녀"] },
       { emoji: "🏫", name: ko ? "ITESM (테크 드 몬테레이) — 멕시코 최상위 명문대" : "Tec de Monterrey — Mexico's Top Private University",
-        desc: ko ? "✅ 멕시코 사립 1위 (ITESM). 몬테레이 본교. 공학·경영 세계적 수준. 영어 트랙 과정.\n📍 Av. Eugenio Garza Sada 2501, Monterrey\n💡 학비: 연 USD $8,000-15,000 (멕시코 사립 기준 비쌈)\n🔗 tec.mx"
-                 : "✅ Mexico's #1 private university (ITESM). Monterrey main campus. World-class engineering & business. English-track programs available.\n📍 Av. Eugenio Garza Sada 2501, Monterrey\n💡 Tuition: USD $8,000-15,000/yr\n🔗 tec.mx", tags: ["Tec de Monterrey","명문대","공학"] },
+        desc: ko ? "멕시코 사립 1위 (ITESM). 몬테레이 본교. 공학·경영 세계적 수준. 영어 트랙 과정.\n📍 Av. Eugenio Garza Sada 2501, Monterrey\n💡 학비: 연 USD $8,000-15,000 (멕시코 사립 기준 비쌈)\n🔗 tec.mx"
+                 : "Mexico's #1 private university (ITESM). Monterrey main campus. World-class engineering & business. English-track programs available.\n📍 Av. Eugenio Garza Sada 2501, Monterrey\n💡 Tuition: USD $8,000-15,000/yr\n🔗 tec.mx", tags: ["Tec de Monterrey","명문대","공학"] },
     ],
   };
   return DATA[slug] ?? [
@@ -25538,8 +25639,8 @@ function getCityCC(slug: string, lang: string) {
   const D: Record<string, Item[]> = {
     memphis: [
       { emoji: "🏛️", name: "Southwest Tennessee Community College", nameEn: "Southwest TN CC — 멤피스 (유일한 공립 2년제)",
-        desc: ko ? "✅ 멤피스 유일의 공립 커뮤니티 칼리지. 간호·물류·IT 강세(멤피스는 FedEx 물류 중심지). University of Memphis 편입 협약.\n📍 5983 Macon Cove, Memphis TN | 🔗 southwest.tn.edu"
-                 : "✅ Memphis's public community college. Nursing, logistics & IT (Memphis is a FedEx logistics hub). Transfer agreement with U of Memphis.\n📍 5983 Macon Cove, Memphis TN | 🔗 southwest.tn.edu",
+        desc: ko ? "멤피스 유일의 공립 커뮤니티 칼리지. 간호·물류·IT 강세(멤피스는 FedEx 물류 중심지). University of Memphis 편입 협약.\n📍 5983 Macon Cove, Memphis TN | 🔗 southwest.tn.edu"
+                 : "Memphis's public community college. Nursing, logistics & IT (Memphis is a FedEx logistics hub). Transfer agreement with U of Memphis.\n📍 5983 Macon Cove, Memphis TN | 🔗 southwest.tn.edu",
         tags: ["멤피스","편입","물류·간호"] },
       { emoji: "🏛️", name: "Tennessee College of Applied Technology — Memphis", nameEn: "TCAT Memphis — 기술·자격증 과정",
         desc: ko ? "용접·자동차·전기·간호조무 등 실무 기술 자격증 중심. 단기 과정으로 빠른 취업 가능. 학비 저렴.\n🔗 tcatmemphis.edu"
@@ -25548,8 +25649,8 @@ function getCityCC(slug: string, lang: string) {
     ],
     huntsville: [
       { emoji: "🏛️", name: "Calhoun Community College", nameEn: "Calhoun CC — 헌츠빌·디케이터 (앨라배마 최대 2년제)",
-        desc: ko ? "✅ 앨라배마 최대 커뮤니티 칼리지. 헌츠빌 캠퍼스(2006년 개교) 있음. UAH·Athens State 편입 최적. 항공우주 관련 기술 과정.\n📍 Huntsville & Decatur AL | 🔗 calhoun.edu"
-                 : "✅ Alabama's largest community college. Huntsville campus opened 2006. Best transfer path to UAH and Athens State.\n📍 Huntsville & Decatur AL | 🔗 calhoun.edu",
+        desc: ko ? "앨라배마 최대 커뮤니티 칼리지. 헌츠빌 캠퍼스(2006년 개교) 있음. UAH·Athens State 편입 최적. 항공우주 관련 기술 과정.\n📍 Huntsville & Decatur AL | 🔗 calhoun.edu"
+                 : "Alabama's largest community college. Huntsville campus opened 2006. Best transfer path to UAH and Athens State.\n📍 Huntsville & Decatur AL | 🔗 calhoun.edu",
         tags: ["헌츠빌","편입","최대규모"] },
       { emoji: "🏛️", name: "Drake State Community & Technical College", nameEn: "Drake State — 헌츠빌 (기술 특화)",
         desc: ko ? "헌츠빌 소재 공립 2년제. 용접·기계·전자·간호 등 기술 과정 중심. 방위산업·제조업 취업 연계.\n📍 3421 Meridian St N, Huntsville AL | 🔗 drakestate.edu"
@@ -25558,54 +25659,54 @@ function getCityCC(slug: string, lang: string) {
     ],
     seattle: [
       { emoji: "🏛️", name: "Edmonds College", nameEn: "Edmonds College — 린우드 (한인 추천 #1)",
-        desc: ko ? "✅ 린우드 소재. 4년제 편입 최적. UW·WSU 편입률 높음. ESL 풍부. 학비 ~$4,500/학기.\n📍 20000 68th Ave W, Lynnwood | 🔗 edcc.edu"
-                 : "✅ Lynnwood — Korean community hub. Best CC for UW transfer. Rich ESL programs. Tuition ~$4,500/semester.\n📍 20000 68th Ave W, Lynnwood | 🔗 edcc.edu",
+        desc: ko ? "린우드 소재. 4년제 편입 최적. UW·WSU 편입률 높음. ESL 풍부. 학비 ~$4,500/학기.\n📍 20000 68th Ave W, Lynnwood | 🔗 edcc.edu"
+                 : "Lynnwood — Korean community hub. Best CC for UW transfer. Rich ESL programs. Tuition ~$4,500/semester.\n📍 20000 68th Ave W, Lynnwood | 🔗 edcc.edu",
         tags: ["린우드","편입","한인#1"] },
       { emoji: "🏛️", name: "Bellevue College", nameEn: "Bellevue College — 벨뷰",
-        desc: ko ? "✅ WA 최대 CC. 4년제 학사 직접 수여 가능. IT·회계·간호 특화. 아시안 35%+.\n📍 3000 Landerholm Cir SE, Bellevue | 🔗 bellevuecollege.edu"
-                 : "✅ WA's largest CC. Can award bachelor's directly. IT, accounting, nursing. 35%+ Asian students.\n📍 3000 Landerholm Cir SE, Bellevue | 🔗 bellevuecollege.edu",
+        desc: ko ? "WA 최대 CC. 4년제 학사 직접 수여 가능. IT·회계·간호 특화. 아시안 35%+.\n📍 3000 Landerholm Cir SE, Bellevue | 🔗 bellevuecollege.edu"
+                 : "WA's largest CC. Can award bachelor's directly. IT, accounting, nursing. 35%+ Asian students.\n📍 3000 Landerholm Cir SE, Bellevue | 🔗 bellevuecollege.edu",
         tags: ["벨뷰","4년제학위","최대규모"] },
       { emoji: "🏛️", name: "Cascadia College", nameEn: "Cascadia — 보텔 (UW Bothell 인접)",
-        desc: ko ? "✅ UW Bothell 편입 보장 프로그램. 이공계·비즈니스. 학비 ~$4,000/학기.\n📍 18345 Campus Way NE, Bothell | 🔗 cascadia.edu"
-                 : "✅ Guaranteed UW Bothell transfer pathway. STEM & business. ~$4,000/semester.\n📍 18345 Campus Way NE, Bothell | 🔗 cascadia.edu",
+        desc: ko ? "UW Bothell 편입 보장 프로그램. 이공계·비즈니스. 학비 ~$4,000/학기.\n📍 18345 Campus Way NE, Bothell | 🔗 cascadia.edu"
+                 : "Guaranteed UW Bothell transfer pathway. STEM & business. ~$4,000/semester.\n📍 18345 Campus Way NE, Bothell | 🔗 cascadia.edu",
         tags: ["보텔","UW편입보장","이공계"] },
     ],
     dallas: [
       { emoji: "🏛️", name: "Collin College (CC of Collin County)", nameEn: "Collin College — 프리스코·앨런",
-        desc: ko ? "✅ 달라스 북부 한인 밀집 지역 소재. 4년제 편입 최적. 학비 ~$3,200/학기 (TX 주민). 한인 학생 다수. STEM·비즈니스 강점.\n📍 프리스코·매키니·앨런 캠퍼스 | 🔗 collin.edu"
-                 : "✅ In Korean-dense north Dallas area. Best for 4-year transfer. Tuition ~$3,200/semester (TX resident). Many Korean students. Strong STEM & business.\n📍 Frisco, McKinney, Allen campuses | 🔗 collin.edu",
+        desc: ko ? "달라스 북부 한인 밀집 지역 소재. 4년제 편입 최적. 학비 ~$3,200/학기 (TX 주민). 한인 학생 다수. STEM·비즈니스 강점.\n📍 프리스코·매키니·앨런 캠퍼스 | 🔗 collin.edu"
+                 : "In Korean-dense north Dallas area. Best for 4-year transfer. Tuition ~$3,200/semester (TX resident). Many Korean students. Strong STEM & business.\n📍 Frisco, McKinney, Allen campuses | 🔗 collin.edu",
         tags: ["프리스코","앨런","편입"] },
       { emoji: "🏛️", name: "Brookhaven College (DCCCD)", nameEn: "Brookhaven College — 캐롤튼·파머스브랜치",
-        desc: ko ? "✅ 캐롤튼 한인타운 인근 CC. 달라스 카운티 커뮤니티 칼리지. ESL 프로그램 우수. 학비 ~$2,800/학기.\n📍 3939 Valley View Ln, Farmers Branch TX | 🔗 brookhavencollege.edu"
-                 : "✅ Near Carrollton Koreatown. Dallas County Community College. Strong ESL program. Tuition ~$2,800/semester.\n📍 3939 Valley View Ln, Farmers Branch TX | 🔗 brookhavencollege.edu",
+        desc: ko ? "캐롤튼 한인타운 인근 CC. 달라스 카운티 커뮤니티 칼리지. ESL 프로그램 우수. 학비 ~$2,800/학기.\n📍 3939 Valley View Ln, Farmers Branch TX | 🔗 brookhavencollege.edu"
+                 : "Near Carrollton Koreatown. Dallas County Community College. Strong ESL program. Tuition ~$2,800/semester.\n📍 3939 Valley View Ln, Farmers Branch TX | 🔗 brookhavencollege.edu",
         tags: ["캐롤튼","ESL","달라스"] },
       { emoji: "💡", name: ko ? "텍사스 이중학점제 (Dual Credit)" : "Texas Dual Credit Program",
-        desc: ko ? "✅ 텍사스 공립 고교생 CC 수업 무료 이중 학점 취득 가능 (WA Running Start 유사).\n• 고교 11-12학년 대상 · 완전 무료\n• Collin College, Brookhaven 참여\n🔗 tea.texas.gov/dual-credit"
-                 : "✅ TX public HS students can take CC courses for free (similar to WA Running Start).\n• For grades 11-12 · Completely free\n• Collin College, Brookhaven participating\n🔗 tea.texas.gov/dual-credit",
+        desc: ko ? "텍사스 공립 고교생 CC 수업 무료 이중 학점 취득 가능 (WA Running Start 유사).\n• 고교 11-12학년 대상 · 완전 무료\n• Collin College, Brookhaven 참여\n🔗 tea.texas.gov/dual-credit"
+                 : "TX public HS students can take CC courses for free (similar to WA Running Start).\n• For grades 11-12 · Completely free\n• Collin College, Brookhaven participating\n🔗 tea.texas.gov/dual-credit",
         tags: ["이중학점","무료","11-12학년"] },
     ],
     sf: [
       { emoji: "🏛️", name: "De Anza College", nameEn: "De Anza College — 쿠퍼티노 (한인 추천 #1)",
-        desc: ko ? "✅ 쿠퍼티노 소재. 베이에리어 최고 CC. UC 편입률 전국 1위. 한인·중국계 밀집. 학비 ~$46/학점 (CA 주민). CS·엔지니어링 편입 강점.\n📍 21250 Stevens Creek Blvd, Cupertino | 🔗 deanza.edu"
-                 : "✅ Cupertino. Bay Area's top CC. #1 UC transfer rate nationally. Dense Korean & Chinese community. ~$46/unit (CA resident). Strong CS & engineering transfer.\n📍 21250 Stevens Creek Blvd, Cupertino | 🔗 deanza.edu",
+        desc: ko ? "쿠퍼티노 소재. 베이에리어 최고 CC. UC 편입률 전국 1위. 한인·중국계 밀집. 학비 ~$46/학점 (CA 주민). CS·엔지니어링 편입 강점.\n📍 21250 Stevens Creek Blvd, Cupertino | 🔗 deanza.edu"
+                 : "Cupertino. Bay Area's top CC. #1 UC transfer rate nationally. Dense Korean & Chinese community. ~$46/unit (CA resident). Strong CS & engineering transfer.\n📍 21250 Stevens Creek Blvd, Cupertino | 🔗 deanza.edu",
         tags: ["쿠퍼티노","UC편입#1","CS"] },
       { emoji: "🏛️", name: "Foothill College", nameEn: "Foothill College — 로스알토스힐스",
-        desc: ko ? "✅ De Anza 자매 학교. 의료·치과·의료기기 특화. UC·스탠포드 편입 경로. 학비 ~$46/학점.\n📍 12345 El Monte Rd, Los Altos Hills | 🔗 foothill.edu"
-                 : "✅ De Anza sister school. Specialized medical, dental & medical device programs. UC/Stanford transfer pathway. ~$46/unit.\n📍 12345 El Monte Rd, Los Altos Hills | 🔗 foothill.edu",
+        desc: ko ? "De Anza 자매 학교. 의료·치과·의료기기 특화. UC·스탠포드 편입 경로. 학비 ~$46/학점.\n📍 12345 El Monte Rd, Los Altos Hills | 🔗 foothill.edu"
+                 : "De Anza sister school. Specialized medical, dental & medical device programs. UC/Stanford transfer pathway. ~$46/unit.\n📍 12345 El Monte Rd, Los Altos Hills | 🔗 foothill.edu",
         tags: ["로스알토스","의료","스탠포드편입"] },
       { emoji: "💡", name: ko ? "CA IGETC — UC 편입 보장 과정" : "CA IGETC — Guaranteed UC Transfer",
-        desc: ko ? "✅ IGETC(Intersegmental General Education Transfer Curriculum) 이수 시 UC 편입 보장.\n• De Anza·Foothill 모두 IGETC 과목 제공\n• GPA 3.0+ 유지 + 전공 과목 완료 시 UC 보장\n🔗 assist.org (편입 과목 확인)"
-                 : "✅ Complete IGETC for guaranteed UC transfer.\n• De Anza & Foothill both offer IGETC courses\n• Maintain GPA 3.0+ + complete major prereqs for UC guarantee\n🔗 assist.org (check transfer courses)",
+        desc: ko ? "IGETC(Intersegmental General Education Transfer Curriculum) 이수 시 UC 편입 보장.\n• De Anza·Foothill 모두 IGETC 과목 제공\n• GPA 3.0+ 유지 + 전공 과목 완료 시 UC 보장\n🔗 assist.org (편입 과목 확인)"
+                 : "Complete IGETC for guaranteed UC transfer.\n• De Anza & Foothill both offer IGETC courses\n• Maintain GPA 3.0+ + complete major prereqs for UC guarantee\n🔗 assist.org (check transfer courses)",
         tags: ["IGETC","UC편입보장","GPA3.0"] },
     ],
     la: [
       { emoji: "🏛️", name: "Santa Monica College (SMC)", nameEn: "Santa Monica College — UCLA 편입 #1",
-        desc: ko ? "✅ UCLA 편입생 가장 많이 배출하는 CC. 학비 ~$46/학점 (CA 주민). 미디어·영화·비즈니스 강점. 코리아타운 30분. 한인 학생 다수.\n📍 1900 Pico Blvd, Santa Monica | 🔗 smc.edu"
-                 : "✅ #1 source of UCLA transfer students. ~$46/unit (CA resident). Strong media, film & business. 30 min from Koreatown. Many Korean students.\n📍 1900 Pico Blvd, Santa Monica | 🔗 smc.edu",
+        desc: ko ? "UCLA 편입생 가장 많이 배출하는 CC. 학비 ~$46/학점 (CA 주민). 미디어·영화·비즈니스 강점. 코리아타운 30분. 한인 학생 다수.\n📍 1900 Pico Blvd, Santa Monica | 🔗 smc.edu"
+                 : "#1 source of UCLA transfer students. ~$46/unit (CA resident). Strong media, film & business. 30 min from Koreatown. Many Korean students.\n📍 1900 Pico Blvd, Santa Monica | 🔗 smc.edu",
         tags: ["UCLA편입","미디어","코리아타운"] },
       { emoji: "🏛️", name: "LA City College / East LA College", nameEn: "LACCD — 코리아타운·동LA",
-        desc: ko ? "✅ LA 시립 CC. 코리아타운 인근. 학비 ~$46/학점 (CA 주민). ESL·직업훈련 프로그램 풍부. 한인·히스패닉 밀집.\n📍 855 N Vermont Ave, Los Angeles | 🔗 lacitycollege.edu"
-                 : "✅ LA City College, near Koreatown. ~$46/unit (CA resident). Rich ESL & vocational programs. Dense Korean & Hispanic enrollment.\n📍 855 N Vermont Ave, Los Angeles | 🔗 lacitycollege.edu",
+        desc: ko ? "LA 시립 CC. 코리아타운 인근. 학비 ~$46/학점 (CA 주민). ESL·직업훈련 프로그램 풍부. 한인·히스패닉 밀집.\n📍 855 N Vermont Ave, Los Angeles | 🔗 lacitycollege.edu"
+                 : "LA City College, near Koreatown. ~$46/unit (CA resident). Rich ESL & vocational programs. Dense Korean & Hispanic enrollment.\n📍 855 N Vermont Ave, Los Angeles | 🔗 lacitycollege.edu",
         tags: ["코리아타운","ESL","LACCD"] },
       { emoji: "💡", name: ko ? "CA ADT — UC 편입 보장" : "CA ADT — Associate Degree for Transfer",
         desc: ko ? "CA ADT 취득 시 CSU 편입 보장. IGETC 이수 시 UC 편입 경쟁력 높음.\n• SMC, LACC 모두 ADT 제공\n🔗 assist.org"
@@ -25614,12 +25715,12 @@ function getCityCC(slug: string, lang: string) {
     ],
     newyork: [
       { emoji: "🏛️", name: "Queensborough CC (CUNY)", nameEn: "Queensborough CC — 플러싱 인근",
-        desc: ko ? "✅ 플러싱 한인 지역 가까운 CUNY 소속 CC. 학비 ~$4,800/년 (NY 시민). 4년제 CUNY 편입 보장. 한인·아시안 학생 다수.\n📍 222-05 56th Ave, Bayside NY | 🔗 qcc.cuny.edu"
-                 : "✅ CUNY CC near Flushing Korean area. ~$4,800/yr (NY resident). Guaranteed transfer to 4-year CUNY schools. Many Korean & Asian students.\n📍 222-05 56th Ave, Bayside NY | 🔗 qcc.cuny.edu",
+        desc: ko ? "플러싱 한인 지역 가까운 CUNY 소속 CC. 학비 ~$4,800/년 (NY 시민). 4년제 CUNY 편입 보장. 한인·아시안 학생 다수.\n📍 222-05 56th Ave, Bayside NY | 🔗 qcc.cuny.edu"
+                 : "CUNY CC near Flushing Korean area. ~$4,800/yr (NY resident). Guaranteed transfer to 4-year CUNY schools. Many Korean & Asian students.\n📍 222-05 56th Ave, Bayside NY | 🔗 qcc.cuny.edu",
         tags: ["플러싱","CUNY","편입"] },
       { emoji: "🏛️", name: "Bergen Community College (NJ)", nameEn: "Bergen CC — 포트리·팰리세이즈파크 인근",
-        desc: ko ? "✅ NJ 포트리·팰리세이즈파크 한인 최다 밀집 지역 CC. 학비 ~$5,600/년 (NJ 주민). 4년제 Rutgers·Montclair 편입 경로.\n📍 400 Paramus Rd, Paramus NJ | 🔗 bergen.edu"
-                 : "✅ CC in NJ's Korean-dense Fort Lee & Palisades Park area. ~$5,600/yr (NJ resident). Transfer to Rutgers, Montclair, etc.\n📍 400 Paramus Rd, Paramus NJ | 🔗 bergen.edu",
+        desc: ko ? "NJ 포트리·팰리세이즈파크 한인 최다 밀집 지역 CC. 학비 ~$5,600/년 (NJ 주민). 4년제 Rutgers·Montclair 편입 경로.\n📍 400 Paramus Rd, Paramus NJ | 🔗 bergen.edu"
+                 : "CC in NJ's Korean-dense Fort Lee & Palisades Park area. ~$5,600/yr (NJ resident). Transfer to Rutgers, Montclair, etc.\n📍 400 Paramus Rd, Paramus NJ | 🔗 bergen.edu",
         tags: ["포트리","팰리세이즈","CUNY편입"] },
       { emoji: "🏛️", name: "Borough of Manhattan CC (BMCC)", nameEn: "BMCC — 맨해튼 다운타운",
         desc: ko ? "CUNY 소속. 맨해튼 소재. 비즈니스·회계·IT 특화. 학비 ~$4,800/년 (NY 시민). 4년제 CUNY 편입 가능.\n📍 199 Chambers St, New York | 🔗 bmcc.cuny.edu"
@@ -25628,18 +25729,18 @@ function getCityCC(slug: string, lang: string) {
     ],
     houston: [
       { emoji: "🏛️", name: "Houston Community College (HCC)", nameEn: "HCC — 휴스턴 한인 커뮤니티 인근",
-        desc: ko ? "✅ 휴스턴 최대 CC. 슈거랜드·케이티 캠퍼스 있음. 학비 ~$2,000/학기 (TX 주민). ESL·간호·기술직 강점. 한인 학생 다수.\n📍 슈거랜드·케이티 캠퍼스 | 🔗 hccs.edu"
-                 : "✅ Houston's largest CC. Sugar Land & Katy campuses. ~$2,000/semester (TX resident). Strong ESL, nursing & tech programs. Many Korean students.\n📍 Sugar Land & Katy campuses | 🔗 hccs.edu",
+        desc: ko ? "휴스턴 최대 CC. 슈거랜드·케이티 캠퍼스 있음. 학비 ~$2,000/학기 (TX 주민). ESL·간호·기술직 강점. 한인 학생 다수.\n📍 슈거랜드·케이티 캠퍼스 | 🔗 hccs.edu"
+                 : "Houston's largest CC. Sugar Land & Katy campuses. ~$2,000/semester (TX resident). Strong ESL, nursing & tech programs. Many Korean students.\n📍 Sugar Land & Katy campuses | 🔗 hccs.edu",
         tags: ["슈거랜드","케이티","ESL"] },
       { emoji: "🏛️", name: "Lone Star College", nameEn: "Lone Star College — 북부 휴스턴",
-        desc: ko ? "✅ 휴스턴 북부 최대 CC 시스템. 케이티·우드랜즈 캠퍼스. 학비 ~$2,200/학기. 4년제 UH·TAMU 편입 경로. STEM 특화.\n📍 케이티·우드랜즈 캠퍼스 | 🔗 lonestar.edu"
-                 : "✅ Largest CC system in north Houston. Katy & Woodlands campuses. ~$2,200/semester. UH & TAMU transfer pathway. STEM focus.\n📍 Katy, Woodlands campuses | 🔗 lonestar.edu",
+        desc: ko ? "휴스턴 북부 최대 CC 시스템. 케이티·우드랜즈 캠퍼스. 학비 ~$2,200/학기. 4년제 UH·TAMU 편입 경로. STEM 특화.\n📍 케이티·우드랜즈 캠퍼스 | 🔗 lonestar.edu"
+                 : "Largest CC system in north Houston. Katy & Woodlands campuses. ~$2,200/semester. UH & TAMU transfer pathway. STEM focus.\n📍 Katy, Woodlands campuses | 🔗 lonestar.edu",
         tags: ["케이티","TAMU편입","STEM"] },
     ],
     boston: [
       { emoji: "🏛️", name: "Bunker Hill CC", nameEn: "Bunker Hill CC — 보스턴 (UMass 편입)",
-        desc: ko ? "✅ 보스턴 최대 CC. UMass Boston 편입 보장 과정 있음. ESL 프로그램 강함. 학비 ~$5,000/년 (MA 주민).\n📍 250 New Rutherford Ave, Boston | 🔗 bhcc.edu"
-                 : "✅ Boston's largest CC. UMass Boston guaranteed transfer program. Strong ESL. ~$5,000/yr (MA resident).\n📍 250 New Rutherford Ave, Boston | 🔗 bhcc.edu",
+        desc: ko ? "보스턴 최대 CC. UMass Boston 편입 보장 과정 있음. ESL 프로그램 강함. 학비 ~$5,000/년 (MA 주민).\n📍 250 New Rutherford Ave, Boston | 🔗 bhcc.edu"
+                 : "Boston's largest CC. UMass Boston guaranteed transfer program. Strong ESL. ~$5,000/yr (MA resident).\n📍 250 New Rutherford Ave, Boston | 🔗 bhcc.edu",
         tags: ["보스턴","UMass편입","ESL"] },
       { emoji: "🏛️", name: "Middlesex CC", nameEn: "Middlesex CC — 케임브리지·하버드 인근",
         desc: ko ? "케임브리지·로웰 소재. 하버드·MIT 인근. 학비 ~$5,200/년. UMass·Northeastern 편입 경로.\n📍 591 Springs Rd, Bedford MA | 🔗 middlesex.mass.edu"
@@ -25648,48 +25749,48 @@ function getCityCC(slug: string, lang: string) {
     ],
     nashville: [
       { emoji: "🏛️", name: "Nashville State CC", nameEn: "Nashville State CC — 내쉬빌 중심",
-        desc: ko ? "✅ 내쉬빌 소재. MTSU·Vanderbilt 편입 경로. 학비 ~$2,100/학기 (TN 주민). ESL·기술직 특화.\n📍 120 White Bridge Pike, Nashville TN | 🔗 nscc.edu"
-                 : "✅ Nashville campus. MTSU & Vanderbilt transfer pathway. ~$2,100/semester (TN resident). ESL & tech programs.\n📍 120 White Bridge Pike, Nashville TN | 🔗 nscc.edu",
+        desc: ko ? "내쉬빌 소재. MTSU·Vanderbilt 편입 경로. 학비 ~$2,100/학기 (TN 주민). ESL·기술직 특화.\n📍 120 White Bridge Pike, Nashville TN | 🔗 nscc.edu"
+                 : "Nashville campus. MTSU & Vanderbilt transfer pathway. ~$2,100/semester (TN resident). ESL & tech programs.\n📍 120 White Bridge Pike, Nashville TN | 🔗 nscc.edu",
         tags: ["내쉬빌","MTSU편입","ESL"] },
       { emoji: "🏛️", name: "Volunteer State CC (VSCC)", nameEn: "Volunteer State CC — 매디슨 인근",
-        desc: ko ? "✅ 매디슨 근처 소재. 내쉬빌 한인 밀집 지역과 가까움. 학비 ~$2,000/학기. 간호·의료 보조 특화.\n📍 1480 Nashville Pike, Gallatin TN | 🔗 volstate.edu"
-                 : "✅ Near Madison (Nashville Korean hub). ~$2,000/semester. Nursing & medical assistant programs strong.\n📍 1480 Nashville Pike, Gallatin TN | 🔗 volstate.edu",
+        desc: ko ? "매디슨 근처 소재. 내쉬빌 한인 밀집 지역과 가까움. 학비 ~$2,000/학기. 간호·의료 보조 특화.\n📍 1480 Nashville Pike, Gallatin TN | 🔗 volstate.edu"
+                 : "Near Madison (Nashville Korean hub). ~$2,000/semester. Nursing & medical assistant programs strong.\n📍 1480 Nashville Pike, Gallatin TN | 🔗 volstate.edu",
         tags: ["매디슨","간호","의료보조"] },
     ],
     toronto: [
       { emoji: "🏛️", name: "Seneca College", nameEn: "Seneca College — 노스욕 (한인 추천 #1)",
-        desc: ko ? "✅ 노스욕 핀치 소재. 한인타운 바로 옆. 비즈니스·IT·미디어 특화. 학비 CA$4,000-5,500/학기. 국제학생 장학금 있음.\n📍 1750 Finch Ave E, North York | 🔗 senecacollege.ca"
-                 : "✅ North York Finch — right next to Korean hub. Business, IT & media programs. CA$4,000-5,500/semester. International scholarships available.\n📍 1750 Finch Ave E, North York | 🔗 senecacollege.ca",
+        desc: ko ? "노스욕 핀치 소재. 한인타운 바로 옆. 비즈니스·IT·미디어 특화. 학비 CA$4,000-5,500/학기. 국제학생 장학금 있음.\n📍 1750 Finch Ave E, North York | 🔗 senecacollege.ca"
+                 : "North York Finch — right next to Korean hub. Business, IT & media programs. CA$4,000-5,500/semester. International scholarships available.\n📍 1750 Finch Ave E, North York | 🔗 senecacollege.ca",
         tags: ["노스욕","핀치","한인#1"] },
       { emoji: "🏛️", name: "Centennial College / Humber College", nameEn: "Centennial & Humber — 편입 경로",
-        desc: ko ? "✅ Centennial: 스카버러 소재. IT·간호·비즈니스. Humber: 에토비코 소재. 항공·미디어·디자인.\n학비 CA$4,000-5,000/학기. Ryerson(TMU)·York 편입 경로.\n🔗 centennialcollege.ca | humber.ca"
-                 : "✅ Centennial: Scarborough, IT/nursing/business. Humber: Etobicoke, aviation/media/design.\nCA$4,000-5,000/semester. Transfer to TMU/York.\n🔗 centennialcollege.ca | humber.ca",
+        desc: ko ? "Centennial: 스카버러 소재. IT·간호·비즈니스. Humber: 에토비코 소재. 항공·미디어·디자인.\n학비 CA$4,000-5,000/학기. Ryerson(TMU)·York 편입 경로.\n🔗 centennialcollege.ca | humber.ca"
+                 : "Centennial: Scarborough, IT/nursing/business. Humber: Etobicoke, aviation/media/design.\nCA$4,000-5,000/semester. Transfer to TMU/York.\n🔗 centennialcollege.ca | humber.ca",
         tags: ["스카버러","에토비코","편입"] },
     ],
     vancouver: [
       { emoji: "🏛️", name: "Douglas College", nameEn: "Douglas College — 코퀴틀람 (한인 추천 #1)",
-        desc: ko ? "✅ 코퀴틀람 소재. 한인 밀집 지역 바로 옆. SFU·UBC 편입 경로. 학비 CA$6,000-8,000/학기 (국제). 의료·비즈니스·심리 강점.\n📍 700 Royal Ave, New Westminster BC | 🔗 douglascollege.ca"
-                 : "✅ New Westminster, near Coquitlam Korean hub. SFU & UBC transfer pathway. CA$6,000-8,000/semester (international). Strong nursing, business & psychology.\n📍 700 Royal Ave, New Westminster BC | 🔗 douglascollege.ca",
+        desc: ko ? "코퀴틀람 소재. 한인 밀집 지역 바로 옆. SFU·UBC 편입 경로. 학비 CA$6,000-8,000/학기 (국제). 의료·비즈니스·심리 강점.\n📍 700 Royal Ave, New Westminster BC | 🔗 douglascollege.ca"
+                 : "New Westminster, near Coquitlam Korean hub. SFU & UBC transfer pathway. CA$6,000-8,000/semester (international). Strong nursing, business & psychology.\n📍 700 Royal Ave, New Westminster BC | 🔗 douglascollege.ca",
         tags: ["코퀴틀람","SFU·UBC편입","한인#1"] },
       { emoji: "🏛️", name: "Langara College", nameEn: "Langara College — 밴쿠버 시내 (UBC 편입)",
-        desc: ko ? "✅ 밴쿠버 시내 소재. UBC 편입 명문 루트. 학비 CA$7,000/학기 (국제). 비즈니스·언론·심리 강점.\n📍 100 W 49th Ave, Vancouver BC | 🔗 langara.ca"
-                 : "✅ Vancouver proper. Prestigious UBC transfer pathway. CA$7,000/semester (international). Business, journalism & psychology.\n📍 100 W 49th Ave, Vancouver BC | 🔗 langara.ca",
+        desc: ko ? "밴쿠버 시내 소재. UBC 편입 명문 루트. 학비 CA$7,000/학기 (국제). 비즈니스·언론·심리 강점.\n📍 100 W 49th Ave, Vancouver BC | 🔗 langara.ca"
+                 : "Vancouver proper. Prestigious UBC transfer pathway. CA$7,000/semester (international). Business, journalism & psychology.\n📍 100 W 49th Ave, Vancouver BC | 🔗 langara.ca",
         tags: ["밴쿠버","UBC편입","비즈니스"] },
     ],
     atlanta: [
       { emoji: "🏛️", name: "Gwinnett Tech", nameEn: "Gwinnett Technical College — 둘루스 (한인 추천)",
-        desc: ko ? "✅ 둘루스·로렌스빌 소재. 한인 밀집 귀넷카운티 CC. 학비 ~$2,000/학기 (GA 주민). IT·의료보조·비즈니스 특화. 한인 학생 다수.\n📍 5150 Sugarloaf Pkwy, Lawrenceville GA | 🔗 gwinnetttech.edu"
-                 : "✅ Duluth/Lawrenceville — heart of Gwinnett Korean community. ~$2,000/semester (GA resident). IT, medical assistant & business. Many Korean students.\n📍 5150 Sugarloaf Pkwy, Lawrenceville GA | 🔗 gwinnetttech.edu",
+        desc: ko ? "둘루스·로렌스빌 소재. 한인 밀집 귀넷카운티 CC. 학비 ~$2,000/학기 (GA 주민). IT·의료보조·비즈니스 특화. 한인 학생 다수.\n📍 5150 Sugarloaf Pkwy, Lawrenceville GA | 🔗 gwinnetttech.edu"
+                 : "Duluth/Lawrenceville — heart of Gwinnett Korean community. ~$2,000/semester (GA resident). IT, medical assistant & business. Many Korean students.\n📍 5150 Sugarloaf Pkwy, Lawrenceville GA | 🔗 gwinnetttech.edu",
         tags: ["둘루스","귀넷","한인#1"] },
       { emoji: "🏛️", name: "Georgia Perimeter College → GA State", nameEn: "Georgia State Perimeter College",
-        desc: ko ? "✅ GA State University 계열 CC. 5개 캠퍼스. 학비 ~$2,200/학기. GA State 편입 보장 과정. 스와니·둘루스 캠퍼스 한인 다수.\n📍 둘루스·에드워즈빌 등 | 🔗 gpc.edu"
-                 : "✅ GA State University's 2-year college. 5 campuses. ~$2,200/semester. Guaranteed GA State transfer. Many Koreans at Suwanee/Duluth campuses.\n📍 Duluth, Dunwoody + others | 🔗 gpc.edu",
+        desc: ko ? "GA State University 계열 CC. 5개 캠퍼스. 학비 ~$2,200/학기. GA State 편입 보장 과정. 스와니·둘루스 캠퍼스 한인 다수.\n📍 둘루스·에드워즈빌 등 | 🔗 gpc.edu"
+                 : "GA State University's 2-year college. 5 campuses. ~$2,200/semester. Guaranteed GA State transfer. Many Koreans at Suwanee/Duluth campuses.\n📍 Duluth, Dunwoody + others | 🔗 gpc.edu",
         tags: ["GA State편입","스와니","둘루스"] },
     ],
     philadelphia: [
       { emoji: "🏛️", name: "Community College of Philadelphia (CCP)", nameEn: "Community College of Philadelphia",
-        desc: ko ? "✅ 필라 최대 CC. 어퍼다비·체리힐 한인 통학 가능. 학비 ~$4,400/년 (PA 주민). Temple·Drexel 편입 경로. ESL 우수.\n📍 1700 Spring Garden St, Philadelphia PA | 🔗 ccp.edu"
-                 : "✅ Philadelphia's largest CC. Commutable from Upper Darby & Cherry Hill. ~$4,400/yr (PA resident). Temple & Drexel transfer pathway. Strong ESL.\n📍 1700 Spring Garden St, Philadelphia PA | 🔗 ccp.edu",
+        desc: ko ? "필라 최대 CC. 어퍼다비·체리힐 한인 통학 가능. 학비 ~$4,400/년 (PA 주민). Temple·Drexel 편입 경로. ESL 우수.\n📍 1700 Spring Garden St, Philadelphia PA | 🔗 ccp.edu"
+                 : "Philadelphia's largest CC. Commutable from Upper Darby & Cherry Hill. ~$4,400/yr (PA resident). Temple & Drexel transfer pathway. Strong ESL.\n📍 1700 Spring Garden St, Philadelphia PA | 🔗 ccp.edu",
         tags: ["필라","Temple편입","ESL"] },
       { emoji: "🏛️", name: "Camden County College (NJ)", nameEn: "Camden County College — 체리힐 (NJ)",
         desc: ko ? "체리힐 인근 NJ CC. 학비 ~$4,200/년 (NJ 주민). Rutgers 편입 경로. 한인 체리힐 커뮤니티 통학 가능.\n📍 200 College Dr, Blackwood NJ | 🔗 camdencc.edu"
@@ -25698,8 +25799,8 @@ function getCityCC(slug: string, lang: string) {
     ],
     kansascity: [
       { emoji: "🏛️", name: "Johnson County CC (JCCC)", nameEn: "Johnson County CC — 오버랜드파크 (한인 추천)",
-        desc: ko ? "✅ 오버랜드파크 소재. 한인 H-Mart 인근. KS 최고 CC. 학비 ~$3,500/년 (KS 주민). KU·KSU 편입 경로. ESL 우수.\n📍 12345 College Blvd, Overland Park KS | 🔗 jccc.edu"
-                 : "✅ Overland Park — near Korean H-Mart. KS's best CC. ~$3,500/yr (KS resident). KU & KSU transfer pathway. Strong ESL.\n📍 12345 College Blvd, Overland Park KS | 🔗 jccc.edu",
+        desc: ko ? "오버랜드파크 소재. 한인 H-Mart 인근. KS 최고 CC. 학비 ~$3,500/년 (KS 주민). KU·KSU 편입 경로. ESL 우수.\n📍 12345 College Blvd, Overland Park KS | 🔗 jccc.edu"
+                 : "Overland Park — near Korean H-Mart. KS's best CC. ~$3,500/yr (KS resident). KU & KSU transfer pathway. Strong ESL.\n📍 12345 College Blvd, Overland Park KS | 🔗 jccc.edu",
         tags: ["오버랜드파크","KU편입","한인#1"] },
       { emoji: "🏛️", name: "Metropolitan CC (MCC)", nameEn: "Metropolitan CC — 캔자스시티 MO",
         desc: ko ? "MO 캔자스시티 소재. UMKC 편입 경로. 학비 ~$3,000/년 (MO 주민). 비즈니스·IT·건강과학 특화.\n📍 3200 Broadway, Kansas City MO | 🔗 mcckc.edu"
@@ -25708,8 +25809,8 @@ function getCityCC(slug: string, lang: string) {
     ],
     miami: [
       { emoji: "🏛️", name: "Miami Dade College (MDC)", nameEn: "Miami Dade College — 미국 최대 CC",
-        desc: ko ? "✅ 미국 최대 CC 중 하나. 도랄·코랄게이블스 캠퍼스. 학비 ~$3,000/년 (FL 주민). FIU·UM 편입 경로. 한국어·ESL 강함. 스페인어 병행.\n📍 도랄 캠퍼스 포함 8개 캠퍼스 | 🔗 mdc.edu"
-                 : "✅ One of the US's largest CCs. Doral & Coral Gables campuses. ~$3,000/yr (FL resident). FIU & UM transfer pathway. Korean, ESL & Spanish programs.\n📍 8 campuses incl. Doral | 🔗 mdc.edu",
+        desc: ko ? "미국 최대 CC 중 하나. 도랄·코랄게이블스 캠퍼스. 학비 ~$3,000/년 (FL 주민). FIU·UM 편입 경로. 한국어·ESL 강함. 스페인어 병행.\n📍 도랄 캠퍼스 포함 8개 캠퍼스 | 🔗 mdc.edu"
+                 : "One of the US's largest CCs. Doral & Coral Gables campuses. ~$3,000/yr (FL resident). FIU & UM transfer pathway. Korean, ESL & Spanish programs.\n📍 8 campuses incl. Doral | 🔗 mdc.edu",
         tags: ["도랄","FIU편입","스페인어"] },
       { emoji: "🏛️", name: "Broward College", nameEn: "Broward College — 포트로더데일",
         desc: ko ? "마이애미 북쪽. FL 주민 학비 ~$3,000/년. NSU·FAU 편입 경로. 한인 커뮤니티 성장 중.\n📍 포트로더데일·펨브로크파인스 | 🔗 broward.edu"
@@ -25718,8 +25819,8 @@ function getCityCC(slug: string, lang: string) {
     ],
     mexicocity: [
       { emoji: "🏛️", name: ko ? "UNAM (멕시코 국립 자치대학) — 전문학교·어학원" : "UNAM — Language Courses & Professional Programs",
-        desc: ko ? "✅ 멕시코 최대 국립대학. 스페인어 집중 과정 외국인 대상 운영 (CEPE).\n학비: 매우 저렴 (연 USD $1,000 미만)\n📍 Ciudad Universitaria, CDMX | 🔗 unam.mx/cepe"
-                 : "✅ Mexico's largest national university. Spanish intensive courses for foreigners (CEPE).\nVery affordable tuition (under USD $1,000/yr)\n📍 Ciudad Universitaria, CDMX | 🔗 unam.mx/cepe",
+        desc: ko ? "멕시코 최대 국립대학. 스페인어 집중 과정 외국인 대상 운영 (CEPE).\n학비: 매우 저렴 (연 USD $1,000 미만)\n📍 Ciudad Universitaria, CDMX | 🔗 unam.mx/cepe"
+                 : "Mexico's largest national university. Spanish intensive courses for foreigners (CEPE).\nVery affordable tuition (under USD $1,000/yr)\n📍 Ciudad Universitaria, CDMX | 🔗 unam.mx/cepe",
         tags: ["UNAM","스페인어","저렴"] },
       { emoji: "🏛️", name: ko ? "한국문화원 멕시코 — 한국어 강좌" : "Korean Cultural Center Mexico — Korean Language",
         desc: ko ? "주멕시코 한국문화원 한국어 강좌. 현지인 대상. 한인 교류 기회.\n📍 폴랑코 인근 | 🔗 mexico.korean-culture.org"
@@ -25738,8 +25839,8 @@ function getCityCC(slug: string, lang: string) {
     ],
     monterrey: [
       { emoji: "🏛️", name: ko ? "Tec de Monterrey (ITESM) — 멕시코 1위 사립대" : "Tec de Monterrey — Mexico's Top Private University",
-        desc: ko ? "✅ 멕시코 사립 1위. 공학·경영·기술 세계적 수준. 영어 트랙 과정. 주재원 자녀 한인 학생 다수.\n학비: USD $8,000-15,000/년\n📍 Av. Eugenio Garza Sada 2501, Monterrey | 🔗 tec.mx"
-                 : "✅ Mexico's #1 private university. World-class engineering, business & tech. English-track programs. Many Korean expat children enrolled.\nTuition: USD $8,000-15,000/yr\n📍 Av. Eugenio Garza Sada 2501, Monterrey | 🔗 tec.mx",
+        desc: ko ? "멕시코 사립 1위. 공학·경영·기술 세계적 수준. 영어 트랙 과정. 주재원 자녀 한인 학생 다수.\n학비: USD $8,000-15,000/년\n📍 Av. Eugenio Garza Sada 2501, Monterrey | 🔗 tec.mx"
+                 : "Mexico's #1 private university. World-class engineering, business & tech. English-track programs. Many Korean expat children enrolled.\nTuition: USD $8,000-15,000/yr\n📍 Av. Eugenio Garza Sada 2501, Monterrey | 🔗 tec.mx",
         tags: ["Tec","멕시코1위","영어트랙"] },
       { emoji: "💡", name: ko ? "UDEM / UANL — 몬테레이 대학교 외국어 과정" : "UDEM & UANL — Monterrey University Language Programs",
         desc: ko ? "UDEM (사립)·UANL (공립, 누에보레온주립대) 스페인어·외국어 과정.\n외국인 등록 가능. 학비 저렴.\n🔗 udem.edu.mx | uanl.mx"
@@ -25761,8 +25862,8 @@ function getCityKoreanSchool(slug: string, lang: string) {
   const D: Record<string, Item[]> = {
     seattle: [
       { emoji: "🇰🇷", name: ko ? "시애틀한국학교" : "Seattle Korean School",
-        desc: ko ? "✅ WA주 최대 한국학교. 매주 토요일 오전. 유치~성인반 TOPIK 준비반 운영.\n🔗 seattlekoreanschool.org"
-                 : "✅ WA's largest Korean school. Every Saturday morning. Pre-K to adult, TOPIK prep.\n🔗 seattlekoreanschool.org",
+        desc: ko ? "WA주 최대 한국학교. 매주 토요일 오전. 유치~성인반 TOPIK 준비반 운영.\n🔗 seattlekoreanschool.org"
+                 : "WA's largest Korean school. Every Saturday morning. Pre-K to adult, TOPIK prep.\n🔗 seattlekoreanschool.org",
         tags: ["한국학교","토요한글","TOPIK"] },
       { emoji: "📖", name: ko ? "교회 부설 한국학교" : "Church-Based Korean Schools",
         desc: ko ? "많은 한인 교회가 자체 한국학교 운영. GMC Hebron Platform·벨뷰·린우드 지역 교회 토요 한국학교.\n🔗 ijiguchon.org"
@@ -25775,8 +25876,8 @@ function getCityKoreanSchool(slug: string, lang: string) {
     ],
     dallas: [
       { emoji: "🇰🇷", name: ko ? "달라스 한국학교" : "Dallas Korean School",
-        desc: ko ? "✅ 매주 토요일 오전. 캐롤튼·플레이노 캠퍼스. 유치~고등반 TOPIK 준비반.\n카카오채팅 '달라스한국학교' 또는 달라스한인회 문의."
-                 : "✅ Every Saturday morning. Carrollton & Plano campuses. Pre-K to HS, TOPIK prep.\nContact via Dallas Korean Association.",
+        desc: ko ? "매주 토요일 오전. 캐롤튼·플레이노 캠퍼스. 유치~고등반 TOPIK 준비반.\n카카오채팅 '달라스한국학교' 또는 달라스한인회 문의."
+                 : "Every Saturday morning. Carrollton & Plano campuses. Pre-K to HS, TOPIK prep.\nContact via Dallas Korean Association.",
         tags: ["달라스","토요한글","TOPIK"] },
       { emoji: "📖", name: ko ? "교회 부설 한국학교 (달라스)" : "Church Korean Schools — Dallas",
         desc: ko ? "캐롤튼·프리스코·플레이노 지역 한인 교회에서 한국어 교육 운영. 한국제일침례교회·달라스새생명교회 등."
@@ -25789,8 +25890,8 @@ function getCityKoreanSchool(slug: string, lang: string) {
     ],
     sf: [
       { emoji: "🇰🇷", name: ko ? "베이에리어 한국학교" : "Bay Area Korean School",
-        desc: ko ? "✅ 산호세·프리몬트·쿠퍼티노 지역 한국학교 여러 곳 운영. 매주 토요일. TOPIK 준비반.\n베이에리어한인회 문의."
-                 : "✅ Multiple Korean schools in San Jose, Fremont & Cupertino. Every Saturday. TOPIK prep.\nContact Bay Area Korean Association.",
+        desc: ko ? "산호세·프리몬트·쿠퍼티노 지역 한국학교 여러 곳 운영. 매주 토요일. TOPIK 준비반.\n베이에리어한인회 문의."
+                 : "Multiple Korean schools in San Jose, Fremont & Cupertino. Every Saturday. TOPIK prep.\nContact Bay Area Korean Association.",
         tags: ["산호세","프리몬트","TOPIK"] },
       { emoji: "📊", name: ko ? "NAKS 서부 (Korean Schools of America)" : "NAKS West — Korean Schools Association",
         desc: ko ? "CA·NV·AZ 한국학교 협의회. 전체 학교 목록·대회 정보.\n🔗 naks.net"
@@ -25799,8 +25900,8 @@ function getCityKoreanSchool(slug: string, lang: string) {
     ],
     la: [
       { emoji: "🇰🇷", name: ko ? "남가주 한국학교협의회" : "Korean Schools Association — Southern CA",
-        desc: ko ? "✅ 코리아타운·세리토스·토랜스 지역 한국학교 네트워크. 매주 토요일. TOPIK 준비반.\n🔗 naks.net (남가주 지부)"
-                 : "✅ Korean school network in Koreatown, Cerritos & Torrance. Every Saturday. TOPIK prep.\n🔗 naks.net (Southern CA chapter)",
+        desc: ko ? "코리아타운·세리토스·토랜스 지역 한국학교 네트워크. 매주 토요일. TOPIK 준비반.\n🔗 naks.net (남가주 지부)"
+                 : "Korean school network in Koreatown, Cerritos & Torrance. Every Saturday. TOPIK prep.\n🔗 naks.net (Southern CA chapter)",
         tags: ["코리아타운","세리토스","TOPIK"] },
       { emoji: "📖", name: ko ? "교회 부설 한국학교 (LA)" : "Church Korean Schools — LA",
         desc: ko ? "나성영락교회·LA새누리교회 등 코리아타운·세리토스 한인 교회 한국학교.\nK-pop·태권도·가야금 문화 교육 병행."
@@ -25809,68 +25910,68 @@ function getCityKoreanSchool(slug: string, lang: string) {
     ],
     newyork: [
       { emoji: "🇰🇷", name: ko ? "뉴욕·뉴저지 한국학교" : "New York & New Jersey Korean Schools",
-        desc: ko ? "✅ 플러싱·포트리·팰리세이즈파크 지역 한국학교 여러 곳. 매주 토요일.\n뉴욕한인회 또는 NAKS 동부 지부 문의.\n🔗 naks.net"
-                 : "✅ Multiple Korean schools in Flushing, Fort Lee & Palisades Park. Every Saturday.\nContact NANY or NAKS Eastern chapter.\n🔗 naks.net",
+        desc: ko ? "플러싱·포트리·팰리세이즈파크 지역 한국학교 여러 곳. 매주 토요일.\n뉴욕한인회 또는 NAKS 동부 지부 문의.\n🔗 naks.net"
+                 : "Multiple Korean schools in Flushing, Fort Lee & Palisades Park. Every Saturday.\nContact NANY or NAKS Eastern chapter.\n🔗 naks.net",
         tags: ["플러싱","포트리","TOPIK"] },
     ],
     houston: [
       { emoji: "🇰🇷", name: ko ? "휴스턴 한국학교" : "Houston Korean School",
-        desc: ko ? "✅ 슈거랜드·케이티 지역 한국학교. 매주 토요일. TOPIK 준비반.\n휴스턴한인회 문의 또는 한인 교회 탐색."
-                 : "✅ Korean schools in Sugar Land & Katy. Every Saturday. TOPIK prep.\nContact Houston Korean Association or local Korean churches.",
+        desc: ko ? "슈거랜드·케이티 지역 한국학교. 매주 토요일. TOPIK 준비반.\n휴스턴한인회 문의 또는 한인 교회 탐색."
+                 : "Korean schools in Sugar Land & Katy. Every Saturday. TOPIK prep.\nContact Houston Korean Association or local Korean churches.",
         tags: ["슈거랜드","케이티","TOPIK"] },
     ],
     boston: [
       { emoji: "🇰🇷", name: ko ? "보스턴 한국학교" : "Boston Korean School",
-        desc: ko ? "✅ 올스턴·퀸시 지역 한국학교. 매주 토요일. 하버드·MIT 유학생 자녀 다수.\n보스턴한인회 또는 한인 교회 문의."
-                 : "✅ Korean schools in Allston & Quincy. Every Saturday. Many Harvard/MIT student families.\nContact Boston Korean Association or local churches.",
+        desc: ko ? "올스턴·퀸시 지역 한국학교. 매주 토요일. 하버드·MIT 유학생 자녀 다수.\n보스턴한인회 또는 한인 교회 문의."
+                 : "Korean schools in Allston & Quincy. Every Saturday. Many Harvard/MIT student families.\nContact Boston Korean Association or local churches.",
         tags: ["보스턴","올스턴","TOPIK"] },
     ],
     nashville: [
       { emoji: "🇰🇷", name: ko ? "내쉬빌 한국학교" : "Nashville Korean School",
-        desc: ko ? "✅ 매디슨·쿨스프링스 지역 한국학교. 매주 토요일. 내쉬빌한인회 문의."
-                 : "✅ Korean schools in Madison & Cool Springs. Every Saturday. Contact Nashville Korean Association.",
+        desc: ko ? "매디슨·쿨스프링스 지역 한국학교. 매주 토요일. 내쉬빌한인회 문의."
+                 : "Korean schools in Madison & Cool Springs. Every Saturday. Contact Nashville Korean Association.",
         tags: ["내쉬빌","매디슨","토요한글"] },
     ],
     toronto: [
       { emoji: "🇰🇷", name: ko ? "토론토 한국학교 협의회" : "Korean Schools of Toronto",
-        desc: ko ? "✅ 노스욕·스카버러·미시사가 한국학교 여러 곳. 매주 토요일. TOPIK 준비반.\n🔗 토론토한인회 문의"
-                 : "✅ Multiple schools in North York, Scarborough & Mississauga. Every Saturday. TOPIK prep.\nContact Toronto Korean Association.",
+        desc: ko ? "노스욕·스카버러·미시사가 한국학교 여러 곳. 매주 토요일. TOPIK 준비반.\n🔗 토론토한인회 문의"
+                 : "Multiple schools in North York, Scarborough & Mississauga. Every Saturday. TOPIK prep.\nContact Toronto Korean Association.",
         tags: ["노스욕","스카버러","TOPIK"] },
     ],
     vancouver: [
       { emoji: "🇰🇷", name: ko ? "밴쿠버 한국학교" : "Vancouver Korean School",
-        desc: ko ? "✅ 코퀴틀람·버나비·노스밴쿠버 한국학교 여러 곳. 매주 토요일. TOPIK 준비반.\n🔗 밴쿠버한인회 문의"
-                 : "✅ Multiple schools in Coquitlam, Burnaby & North Vancouver. Every Saturday. TOPIK prep.\nContact Vancouver Korean Association.",
+        desc: ko ? "코퀴틀람·버나비·노스밴쿠버 한국학교 여러 곳. 매주 토요일. TOPIK 준비반.\n🔗 밴쿠버한인회 문의"
+                 : "Multiple schools in Coquitlam, Burnaby & North Vancouver. Every Saturday. TOPIK prep.\nContact Vancouver Korean Association.",
         tags: ["코퀴틀람","버나비","TOPIK"] },
     ],
     atlanta: [
       { emoji: "🇰🇷", name: ko ? "애틀랜타 한국학교 협의회" : "Korean Schools of Atlanta",
-        desc: ko ? "✅ 둘루스·스와니·존스크릭 지역 한국학교 여러 곳. 매주 토요일. TOPIK 준비반.\n애틀랜타한인회 문의."
-                 : "✅ Multiple schools in Duluth, Suwanee & Johns Creek. Every Saturday. TOPIK prep.\nContact Atlanta Korean Association.",
+        desc: ko ? "둘루스·스와니·존스크릭 지역 한국학교 여러 곳. 매주 토요일. TOPIK 준비반.\n애틀랜타한인회 문의."
+                 : "Multiple schools in Duluth, Suwanee & Johns Creek. Every Saturday. TOPIK prep.\nContact Atlanta Korean Association.",
         tags: ["둘루스","스와니","TOPIK"] },
     ],
     philadelphia: [
       { emoji: "🇰🇷", name: ko ? "필라델피아 한국학교" : "Philadelphia Korean School",
-        desc: ko ? "✅ 어퍼다비·체리힐 지역 한국학교. 매주 토요일.\n필라한인회 문의."
-                 : "✅ Korean schools in Upper Darby & Cherry Hill. Every Saturday.\nContact Philadelphia Korean Association.",
+        desc: ko ? "어퍼다비·체리힐 지역 한국학교. 매주 토요일.\n필라한인회 문의."
+                 : "Korean schools in Upper Darby & Cherry Hill. Every Saturday.\nContact Philadelphia Korean Association.",
         tags: ["어퍼다비","체리힐","토요한글"] },
     ],
     kansascity: [
       { emoji: "🇰🇷", name: ko ? "캔자스시티 한국학교" : "Kansas City Korean School",
-        desc: ko ? "✅ 오버랜드파크 한국학교. 매주 토요일. KC한인회 문의."
-                 : "✅ Korean school in Overland Park. Every Saturday. Contact KC Korean Association.",
+        desc: ko ? "오버랜드파크 한국학교. 매주 토요일. KC한인회 문의."
+                 : "Korean school in Overland Park. Every Saturday. Contact KC Korean Association.",
         tags: ["오버랜드파크","KC","토요한글"] },
     ],
     miami: [
       { emoji: "🇰🇷", name: ko ? "마이애미 한국학교" : "Miami Korean School",
-        desc: ko ? "✅ 도랄·코랄게이블스 지역 한국학교. 매주 토요일. 스페인어권 환경 속 한국어 교육.\n마이애미한인회 문의."
-                 : "✅ Korean schools in Doral & Coral Gables. Every Saturday. Korean education in Hispanic environment.\nContact Miami Korean Association.",
+        desc: ko ? "도랄·코랄게이블스 지역 한국학교. 매주 토요일. 스페인어권 환경 속 한국어 교육.\n마이애미한인회 문의."
+                 : "Korean schools in Doral & Coral Gables. Every Saturday. Korean education in Hispanic environment.\nContact Miami Korean Association.",
         tags: ["도랄","한국학교","스페인어"] },
     ],
     mexicocity: [
       { emoji: "🇰🇷", name: ko ? "멕시코시티 한국학교 (재멕동포용)" : "Korean School of Mexico City",
-        desc: ko ? "✅ 재멕시코 한국 교육원 산하 한국학교. 주재원 자녀·한인 2세 교육. 폴랑코 인근.\n📞 대사관 교육원: 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko"
-                 : "✅ Korean school under Korean Education Center Mexico. For expat children & 2nd-gen Koreans. Near Polanco.\n📞 Embassy Education Center: 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko",
+        desc: ko ? "재멕시코 한국 교육원 산하 한국학교. 주재원 자녀·한인 2세 교육. 폴랑코 인근.\n📞 대사관 교육원: 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko"
+                 : "Korean school under Korean Education Center Mexico. For expat children & 2nd-gen Koreans. Near Polanco.\n📞 Embassy Education Center: 55-5202-9866 | 🔗 overseas.mofa.go.kr/mx-ko",
         tags: ["한국학교","주재원자녀","폴랑코"] },
     ],
     guadalajara: [
@@ -25920,8 +26021,8 @@ function getCityShoppingMarkets(slug: string, lang: string) {
 
   if (isMexico) return [
     { emoji: "🏪", name: ko ? "삼 (Sam's Club) / 코스트코" : "Sam's Club / Costco Mexico",
-      desc: ko ? "✅ 멕시코 코스트코·샘스클럽. 수입 식품·한국 라면·김치 구매 가능.\n📍 멕시코시티·과달라하라·몬테레이 각 지점\n연 멤버십 MXN $600-800"
-               : "✅ Costco & Sam's Club in Mexico. Import foods, Korean ramen & kimchi available.\n📍 Locations in CDMX, Guadalajara & Monterrey\nAnnual membership MXN $600-800",
+      desc: ko ? "멕시코 코스트코·샘스클럽. 수입 식품·한국 라면·김치 구매 가능.\n📍 멕시코시티·과달라하라·몬테레이 각 지점\n연 멤버십 MXN $600-800"
+               : "Costco & Sam's Club in Mexico. Import foods, Korean ramen & kimchi available.\n📍 Locations in CDMX, Guadalajara & Monterrey\nAnnual membership MXN $600-800",
       tags: ["코스트코","수입식품","멕시코"] },
     { emoji: "🥬", name: ko ? "H-Mart / KA Mart (한국 마트)" : "H-Mart / KA Mart — Korean Grocery",
       desc: ko ? "멕시코시티·폴랑코 지역 한인 식품점. 한국 식재료·라면·김치·냉동식품.\n소규모 한인 마트 — 폴랑코 한인타운 주변 탐색."
@@ -25939,16 +26040,16 @@ function getCityShoppingMarkets(slug: string, lang: string) {
 
   if (isCanada) return [
     { emoji: "🏪", name: ko ? "코스트코 (Costco Canada)" : "Costco Canada",
-      desc: ko ? `✅ 연 멤버십 CA$65 → 평균 CA$400+ 절약\n${costcoAddr[slug] ?? ""}\n한인 추천: 연어·쌀·Kirkland 제품 대용량`
-               : `✅ Annual membership CA$65 → saves avg CA$400+/yr\n${costcoAddr[slug] ?? ""}\nKorean favorites: salmon, rice, Kirkland bulk items`,
+      desc: ko ? `연 멤버십 CA$65 → 평균 CA$400+ 절약\n${costcoAddr[slug] ?? ""}\n한인 추천: 연어·쌀·Kirkland 제품 대용량`
+               : `Annual membership CA$65 → saves avg CA$400+/yr\n${costcoAddr[slug] ?? ""}\nKorean favorites: salmon, rice, Kirkland bulk items`,
       tags: ["코스트코","캐나다","창고형"] },
     { emoji: "🥬", name: ko ? "T&T 슈퍼마켓 (아시안 마트)" : "T&T Supermarket — Pan-Asian",
       desc: ko ? slug === "toronto"
-          ? "✅ 검증됨 | 캐나다 최대 아시안 마트. 노스욕·스카버러·미시사가 지점. 한국 식재료·김치·라면 구비.\n📍 노스욕: 4390 Steeles Ave E | 🔗 tntsupermarket.com"
-          : "✅ 검증됨 | 캐나다 최대 아시안 마트. 버나비·코퀴틀람 지점. 한국 식재료·김치·라면 구비.\n📍 버나비: 4800 Kingsway | 🔗 tntsupermarket.com"
+          ? "검증됨 | 캐나다 최대 아시안 마트. 노스욕·스카버러·미시사가 지점. 한국 식재료·김치·라면 구비.\n📍 노스욕: 4390 Steeles Ave E | 🔗 tntsupermarket.com"
+          : "검증됨 | 캐나다 최대 아시안 마트. 버나비·코퀴틀람 지점. 한국 식재료·김치·라면 구비.\n📍 버나비: 4800 Kingsway | 🔗 tntsupermarket.com"
                : slug === "toronto"
-          ? "✅ Verified | Canada's largest Asian supermarket. North York, Scarborough & Mississauga locations. Korean ingredients, kimchi & ramen.\n📍 North York: 4390 Steeles Ave E | 🔗 tntsupermarket.com"
-          : "✅ Verified | Canada's largest Asian supermarket. Burnaby & Coquitlam locations. Korean ingredients, kimchi & ramen.\n📍 Burnaby: 4800 Kingsway | 🔗 tntsupermarket.com",
+          ? "Verified | Canada's largest Asian supermarket. North York, Scarborough & Mississauga locations. Korean ingredients, kimchi & ramen.\n📍 North York: 4390 Steeles Ave E | 🔗 tntsupermarket.com"
+          : "Verified | Canada's largest Asian supermarket. Burnaby & Coquitlam locations. Korean ingredients, kimchi & ramen.\n📍 Burnaby: 4800 Kingsway | 🔗 tntsupermarket.com",
       tags: ["T&T","아시안마트","한국식재료"] },
     { emoji: "🛒", name: ko ? "No Frills / FreshCo — 알뜰 마트" : "No Frills / FreshCo — Budget Grocery",
       desc: ko ? "캐나다 최저가 식료품 체인. 소박하지만 가격 최강.\n• No Frills: Loblaw 계열 알뜰 브랜드\n• FreshCo: Sobeys 계열 알뜰 브랜드"
@@ -25963,14 +26064,14 @@ function getCityShoppingMarkets(slug: string, lang: string) {
   // US cities
   const costco: Item = {
     emoji: "🏪", name: ko ? "코스트코 (Costco)" : "Costco — Best Value Warehouse",
-    desc: ko ? `✅ 연 멤버십 $65 → 평균 $300+ 절약\n${costcoAddr[slug] ?? "📍 가까운 지점: google.com/maps/search/costco"}\n한인 추천: 쌀 대용량, Kirkland 연어, 갈비`
-             : `✅ Annual membership $65 → saves avg $300+/yr\n${costcoAddr[slug] ?? "📍 Nearest: google.com/maps/search/costco"}\nKorean favorites: bulk rice, Kirkland salmon, short ribs`,
+    desc: ko ? `연 멤버십 $65 → 평균 $300+ 절약\n${costcoAddr[slug] ?? "📍 가까운 지점: google.com/maps/search/costco"}\n한인 추천: 쌀 대용량, Kirkland 연어, 갈비`
+             : `Annual membership $65 → saves avg $300+/yr\n${costcoAddr[slug] ?? "📍 Nearest: google.com/maps/search/costco"}\nKorean favorites: bulk rice, Kirkland salmon, short ribs`,
     tags: ["코스트코","창고형","저렴"],
   };
   const hMart: Item = {
     emoji: "🥬", name: ko ? "H-Mart (한인 마트)" : "H-Mart — Korean Supermarket",
-    desc: ko ? `✅ 한인 마트 1위. 한국 식재료·김치·라면·냉동식품 총망라.\n📍 가까운 H-Mart: google.com/maps/search/h-mart+${slug.replace("newyork","new+york").replace("kansascity","kansas+city")}`
-             : `✅ #1 Korean supermarket. Korean ingredients, kimchi, ramen, frozen foods.\n📍 Nearest H-Mart: google.com/maps/search/h-mart+${slug.replace("newyork","new+york").replace("kansascity","kansas+city")}`,
+    desc: ko ? `한인 마트 1위. 한국 식재료·김치·라면·냉동식품 총망라.\n📍 가까운 H-Mart: google.com/maps/search/h-mart+${slug.replace("newyork","new+york").replace("kansascity","kansas+city")}`
+             : `#1 Korean supermarket. Korean ingredients, kimchi, ramen, frozen foods.\n📍 Nearest H-Mart: google.com/maps/search/h-mart+${slug.replace("newyork","new+york").replace("kansascity","kansas+city")}`,
     tags: ["H-Mart","한국식재료","한인마트"],
   };
   const tj: Item = {
@@ -25991,16 +26092,16 @@ function getCityShoppingMarkets(slug: string, lang: string) {
     costco,
     hMart,
     { emoji: "🏬", name: "WinCo Foods", nameEn: "WinCo Foods — Lowest Prices",
-      desc: ko ? "✅ 식료품 최저가. 직원 소유 = 좋은 서비스.\n📍 린우드: 19500 Hwy 99 | 렌튼 | 에버렛\n⚠️ 신용카드 불가 (직불카드·현금만)"
-               : "✅ Consistently LOWEST grocery prices. Employee-owned.\n📍 Lynnwood: 19500 Hwy 99 | Renton | Everett\n⚠️ No credit cards (debit/cash only)",
+      desc: ko ? "식료품 최저가. 직원 소유 = 좋은 서비스.\n📍 린우드: 19500 Hwy 99 | 렌튼 | 에버렛\n⚠️ 신용카드 불가 (직불카드·현금만)"
+               : "Consistently LOWEST grocery prices. Employee-owned.\n📍 Lynnwood: 19500 Hwy 99 | Renton | Everett\n⚠️ No credit cards (debit/cash only)",
       tags: ["WinCo","최저가","벌크"] },
     { emoji: "🥬", name: "99 Ranch Market", nameEn: "99 Ranch — Pan-Asian",
-      desc: ko ? "✅ 중국·범아시안 슈퍼마켓. H-Mart보다 채소·해산물 20-40% 저렴.\n📍 벨뷰: 14700 NE 20th St | 에드먼즈: 23830 Hwy 99"
-               : "✅ Chinese/Pan-Asian supermarket. Fresh produce & seafood 20-40% cheaper than H-Mart.\n📍 Bellevue: 14700 NE 20th St | Edmonds: 23830 Hwy 99",
+      desc: ko ? "중국·범아시안 슈퍼마켓. H-Mart보다 채소·해산물 20-40% 저렴.\n📍 벨뷰: 14700 NE 20th St | 에드먼즈: 23830 Hwy 99"
+               : "Chinese/Pan-Asian supermarket. Fresh produce & seafood 20-40% cheaper than H-Mart.\n📍 Bellevue: 14700 NE 20th St | Edmonds: 23830 Hwy 99",
       tags: ["99랜치","아시안마트","저렴"] },
     { emoji: "🐟", name: "우와지마야 (Uwajimaya)", nameEn: "Uwajimaya — Japanese/Asian",
-      desc: ko ? "✅ 일본·아시안 마트. 최고의 해산물 선택.\n📍 벨뷰: 699 120th Ave NE | 시애틀: 600 5th Ave S"
-               : "✅ Japanese/Asian supermarket — best seafood selection.\n📍 Bellevue: 699 120th Ave NE | Seattle: 600 5th Ave S",
+      desc: ko ? "일본·아시안 마트. 최고의 해산물 선택.\n📍 벨뷰: 699 120th Ave NE | 시애틀: 600 5th Ave S"
+               : "Japanese/Asian supermarket — best seafood selection.\n📍 Bellevue: 699 120th Ave NE | Seattle: 600 5th Ave S",
       tags: ["우와지마야","일본마트","해산물"] },
     tj, goodwill,
   ];
@@ -26011,15 +26112,15 @@ function getCityShoppingMarkets(slug: string, lang: string) {
     hMart,
     { emoji: "🥬", name: "99 Ranch Market", nameEn: "99 Ranch — Pan-Asian",
       desc: ko ? slug === "sf"
-          ? "✅ 아시안 마트. 신선 해산물·두부·채소 저렴.\n📍 프리몬트: 46822 Warm Springs Blvd | 밀피타스: 222 Barber Ln"
-          : "✅ LA 최대 아시안 마트 체인. 코리아타운 인근 지점 다수.\n📍 로울랜드하이츠: 1820 Nogales St | 에디슨: 18414 Colima Rd"
+          ? "아시안 마트. 신선 해산물·두부·채소 저렴.\n📍 프리몬트: 46822 Warm Springs Blvd | 밀피타스: 222 Barber Ln"
+          : "LA 최대 아시안 마트 체인. 코리아타운 인근 지점 다수.\n📍 로울랜드하이츠: 1820 Nogales St | 에디슨: 18414 Colima Rd"
                : slug === "sf"
-          ? "✅ Asian supermarket. Fresh seafood, tofu & produce at lower prices.\n📍 Fremont: 46822 Warm Springs Blvd | Milpitas: 222 Barber Ln"
-          : "✅ LA's largest Asian supermarket chain. Multiple locations near Koreatown.\n📍 Rowland Heights: 1820 Nogales St | Edison: 18414 Colima Rd",
+          ? "Asian supermarket. Fresh seafood, tofu & produce at lower prices.\n📍 Fremont: 46822 Warm Springs Blvd | Milpitas: 222 Barber Ln"
+          : "LA's largest Asian supermarket chain. Multiple locations near Koreatown.\n📍 Rowland Heights: 1820 Nogales St | Edison: 18414 Colima Rd",
       tags: ["99랜치","아시안마트","저렴"] },
     { emoji: "🛒", name: "Grocery Outlet", nameEn: "Grocery Outlet — 30-70% Off",
-      desc: ko ? "✅ 정가 대비 30-70% 할인. 매주 다른 재고 (보물찾기 스타일).\n식품·음료·유제품 마크다운 탁월."
-               : "✅ 30-70% off regular prices. 'Treasure hunt' style — stock changes weekly.\nBest for snacks, beverages & dairy markdowns.",
+      desc: ko ? "정가 대비 30-70% 할인. 매주 다른 재고 (보물찾기 스타일).\n식품·음료·유제품 마크다운 탁월."
+               : "30-70% off regular prices. 'Treasure hunt' style — stock changes weekly.\nBest for snacks, beverages & dairy markdowns.",
       tags: ["할인마트","식품","절약"] },
     tj, goodwill,
   ];
@@ -26109,12 +26210,12 @@ function getCityUniversities(slug: string, lang: string) {
   const D: Record<string, Item[]> = {
     kansascity: [
       { emoji: "🎓", name: "University of Missouri–Kansas City (UMKC)", nameEn: "UMKC — KC 시내 주립 연구대학",
-        desc: ko ? "✅ 캔자스시티 시내 소재, KC 광역 최대 대학. 의대(6년 BA/MD)·치대·약대·법대·음악원(Conservatory) 강점. 국제학생 ESL(Applied Language Institute) 운영.\n📍 5100 Rockhill Rd, Kansas City MO | 🔗 umkc.edu"
-                 : "✅ In Kansas City — largest university in the metro. Strong medicine (6-yr BA/MD), dentistry, pharmacy, law & Conservatory. ESL via Applied Language Institute.\n📍 5100 Rockhill Rd, Kansas City MO | 🔗 umkc.edu",
+        desc: ko ? "캔자스시티 시내 소재, KC 광역 최대 대학. 의대(6년 BA/MD)·치대·약대·법대·음악원(Conservatory) 강점. 국제학생 ESL(Applied Language Institute) 운영.\n📍 5100 Rockhill Rd, Kansas City MO | 🔗 umkc.edu"
+                 : "In Kansas City — largest university in the metro. Strong medicine (6-yr BA/MD), dentistry, pharmacy, law & Conservatory. ESL via Applied Language Institute.\n📍 5100 Rockhill Rd, Kansas City MO | 🔗 umkc.edu",
         tags: ["UMKC","주립","의대·치대"] },
       { emoji: "🎓", name: "University of Kansas (KU)", nameEn: "KU — 로렌스 (캔자스 플래그십)",
-        desc: ko ? "✅ 로렌스 소재 (KC 서쪽 약 45분). 캔자스주 대표 공립 연구대학(R1). 경영·공학·저널리즘 강점. 의대(KU Medical Center)는 캔자스시티 소재.\n📍 1450 Jayhawk Blvd, Lawrence KS | 🔗 ku.edu"
-                 : "✅ Lawrence (~45 min west of KC). Kansas flagship public research (R1). Strong business, engineering & journalism. KU Medical Center is in KC.\n📍 1450 Jayhawk Blvd, Lawrence KS | 🔗 ku.edu",
+        desc: ko ? "로렌스 소재 (KC 서쪽 약 45분). 캔자스주 대표 공립 연구대학(R1). 경영·공학·저널리즘 강점. 의대(KU Medical Center)는 캔자스시티 소재.\n📍 1450 Jayhawk Blvd, Lawrence KS | 🔗 ku.edu"
+                 : "Lawrence (~45 min west of KC). Kansas flagship public research (R1). Strong business, engineering & journalism. KU Medical Center is in KC.\n📍 1450 Jayhawk Blvd, Lawrence KS | 🔗 ku.edu",
         tags: ["KU","플래그십","공학·경영"] },
       { emoji: "🎓", name: "Kansas State University (K-State)", nameEn: "K-State — 맨해튼 (공학·농학)",
         desc: ko ? "맨해튼(KS) 소재 랜드그랜트 대학. 공학·건축·농학·수의학 강점. 학비 상대적으로 저렴.\n📍 Manhattan KS | 🔗 k-state.edu"
@@ -26129,8 +26230,8 @@ function getCityUniversities(slug: string, lang: string) {
                  : "Private university in Parkville, MO. Rich online & evening programs (working adults & military). Business, aviation & education.\n📍 8700 NW River Park Dr, Parkville MO | 🔗 park.edu",
         tags: ["Park","온라인","직장인"] },
       { emoji: "🎓", name: "Midwestern Baptist Theological Seminary (미드웨스턴 침례신학교)", nameEn: "MBTS — 신학교 (Spurgeon College)",
-        desc: ko ? "✅ 캔자스시티 소재 남침례회(SBC) 신학교. 학부 Spurgeon College 운영. 목회학(M.Div)·신학 석·박사. 온라인 과정 풍부.\n📍 5001 N Oak Trafficway, Kansas City MO | 🔗 mbts.edu"
-                 : "✅ Southern Baptist (SBC) seminary in KC. Houses Spurgeon College (undergrad). M.Div, ThM & PhD. Rich online programs.\n📍 5001 N Oak Trafficway, Kansas City MO | 🔗 mbts.edu",
+        desc: ko ? "캔자스시티 소재 남침례회(SBC) 신학교. 학부 Spurgeon College 운영. 목회학(M.Div)·신학 석·박사. 온라인 과정 풍부.\n📍 5001 N Oak Trafficway, Kansas City MO | 🔗 mbts.edu"
+                 : "Southern Baptist (SBC) seminary in KC. Houses Spurgeon College (undergrad). M.Div, ThM & PhD. Rich online programs.\n📍 5001 N Oak Trafficway, Kansas City MO | 🔗 mbts.edu",
         tags: ["신학교","침례교","MBTS"] },
       { emoji: "🎓", name: "Nazarene Theological Seminary (나사렛 신학교)", nameEn: "NTS — 신학교",
         desc: ko ? "캔자스시티 소재 나사렛교회 공식 신학교. 목회학 석사(M.Div)·상담·선교. 인근 MidAmerica Nazarene University(올레이스 KS)는 4년제 학부.\n📍 1700 E Meyer Blvd, Kansas City MO | 🔗 nts.edu"
@@ -26139,8 +26240,8 @@ function getCityUniversities(slug: string, lang: string) {
     ],
     atlanta: [
       { emoji: "🎓", name: "Georgia Institute of Technology (조지아텍)", nameEn: "Georgia Tech — 공대 세계 최정상",
-        desc: ko ? "✅ 애틀랜타 미드타운. 공학·컴퓨터과학 세계 최정상 공립. 한인 유학생·재학생 많음. 주립 학비 ~$12,000/년.\n📍 North Ave NW, Atlanta GA | 🔗 gatech.edu"
-                 : "✅ Midtown Atlanta. World-top public in engineering & CS. Large Korean student community. In-state ~$12,000/yr.\n📍 North Ave NW, Atlanta GA | 🔗 gatech.edu",
+        desc: ko ? "애틀랜타 미드타운. 공학·컴퓨터과학 세계 최정상 공립. 한인 유학생·재학생 많음. 주립 학비 ~$12,000/년.\n📍 North Ave NW, Atlanta GA | 🔗 gatech.edu"
+                 : "Midtown Atlanta. World-top public in engineering & CS. Large Korean student community. In-state ~$12,000/yr.\n📍 North Ave NW, Atlanta GA | 🔗 gatech.edu",
         tags: ["조지아텍","공대","CS"] },
       { emoji: "🎓", name: "Emory University (에모리)", nameEn: "Emory — 사립 명문 (의대·경영)",
         desc: ko ? "애틀랜타 사립 명문. 의대·경영·법대 강점. QS 세계권. 한인 유학생 다수. 학비 ~$60,000/년.\n📍 201 Dowman Dr, Atlanta GA | 🔗 emory.edu"
@@ -26161,8 +26262,8 @@ function getCityUniversities(slug: string, lang: string) {
     ],
     dallas: [
       { emoji: "🎓", name: "UT Dallas (UTD)", nameEn: "University of Texas at Dallas — 리처드슨",
-        desc: ko ? "✅ 리처드슨 소재(캐롤튼 코리아타운 인근). 컴퓨터과학·공학·경영 강점. 한인 유학생 매우 많음. 주립 학비 저렴.\n📍 800 W Campbell Rd, Richardson TX | 🔗 utdallas.edu"
-                 : "✅ Richardson (near Carrollton Koreatown). Strong CS, engineering & business. Very large Korean student body. Affordable in-state.\n📍 800 W Campbell Rd, Richardson TX | 🔗 utdallas.edu",
+        desc: ko ? "리처드슨 소재(캐롤튼 코리아타운 인근). 컴퓨터과학·공학·경영 강점. 한인 유학생 매우 많음. 주립 학비 저렴.\n📍 800 W Campbell Rd, Richardson TX | 🔗 utdallas.edu"
+                 : "Richardson (near Carrollton Koreatown). Strong CS, engineering & business. Very large Korean student body. Affordable in-state.\n📍 800 W Campbell Rd, Richardson TX | 🔗 utdallas.edu",
         tags: ["UTD","리처드슨","CS"] },
       { emoji: "🎓", name: "Southern Methodist University (SMU)", nameEn: "SMU — 사립 명문 (경영·법)",
         desc: ko ? "댈러스 유니버시티파크 소재 사립 명문. 경영(Cox)·법대·예술. 학비 높음(~$60,000/년).\n📍 6425 Boaz Ln, Dallas TX | 🔗 smu.edu"
@@ -26173,18 +26274,18 @@ function getCityUniversities(slug: string, lang: string) {
                  : "Public univ in Denton. World-renowned music (jazz). Affordable. Many Korean students.\n📍 1155 Union Cir, Denton TX | 🔗 unt.edu",
         tags: ["UNT","덴튼","음악"] },
       { emoji: "🎓", name: "Dallas Theological Seminary (DTS, 달라스 신학교)", nameEn: "DTS — 신학교 (복음주의)",
-        desc: ko ? "✅ 댈러스 소재 대표 복음주의 신학교. 세대주의 신학. 한인 유학생·목회자 대거. 목회학(Th.M)·성경·상담.\n📍 3909 Swiss Ave, Dallas TX | 🔗 dts.edu"
-                 : "✅ Leading evangelical seminary in Dallas. Dispensational theology. Very large Korean pastor/student community. Th.M, Bible & counseling.\n📍 3909 Swiss Ave, Dallas TX | 🔗 dts.edu",
+        desc: ko ? "댈러스 소재 대표 복음주의 신학교. 세대주의 신학. 한인 유학생·목회자 대거. 목회학(Th.M)·성경·상담.\n📍 3909 Swiss Ave, Dallas TX | 🔗 dts.edu"
+                 : "Leading evangelical seminary in Dallas. Dispensational theology. Very large Korean pastor/student community. Th.M, Bible & counseling.\n📍 3909 Swiss Ave, Dallas TX | 🔗 dts.edu",
         tags: ["신학교","DTS","복음주의"] },
       { emoji: "🎓", name: "Southwestern Baptist Theological Seminary (SWBTS, 남침례신학교)", nameEn: "SWBTS — 신학교 (남침례회 6대, 대학원)",
-        desc: ko ? "✅ 포트워스 소재 남침례회(SBC) 6대 신학교. 목회·성경·교회음악. 한인 목회자 다수. 학부 Texas Baptist College 병설.\n📍 2001 W Seminary Dr, Fort Worth TX | 🔗 swbts.edu"
-                 : "✅ Fort Worth. One of SBC's 6 seminaries. Ministry, Bible & church music. Many Korean pastors. Undergrad Texas Baptist College.\n📍 2001 W Seminary Dr, Fort Worth TX | 🔗 swbts.edu",
+        desc: ko ? "포트워스 소재 남침례회(SBC) 6대 신학교. 목회·성경·교회음악. 한인 목회자 다수. 학부 Texas Baptist College 병설.\n📍 2001 W Seminary Dr, Fort Worth TX | 🔗 swbts.edu"
+                 : "Fort Worth. One of SBC's 6 seminaries. Ministry, Bible & church music. Many Korean pastors. Undergrad Texas Baptist College.\n📍 2001 W Seminary Dr, Fort Worth TX | 🔗 swbts.edu",
         tags: ["신학교","SWBTS","남침례회"] },
     ],
     la: [
       { emoji: "🎓", name: "UCLA", nameEn: "University of California, Los Angeles — 공립 최상위",
-        desc: ko ? "✅ 웨스트우드 소재 UC 최상위 공립. 전 분야 세계권. 한인 재학생 매우 많음. 주립 학비 ~$14,000/년.\n📍 Los Angeles CA | 🔗 ucla.edu"
-                 : "✅ UC top public in Westwood. World-class across fields. Very large Korean student body. In-state ~$14,000/yr.\n📍 Los Angeles CA | 🔗 ucla.edu",
+        desc: ko ? "웨스트우드 소재 UC 최상위 공립. 전 분야 세계권. 한인 재학생 매우 많음. 주립 학비 ~$14,000/년.\n📍 Los Angeles CA | 🔗 ucla.edu"
+                 : "UC top public in Westwood. World-class across fields. Very large Korean student body. In-state ~$14,000/yr.\n📍 Los Angeles CA | 🔗 ucla.edu",
         tags: ["UCLA","공립","최상위"] },
       { emoji: "🎓", name: "USC (남가주대)", nameEn: "University of Southern California — 사립 명문",
         desc: ko ? "코리아타운 인근 사립 명문. 영화·경영·공학. 한인 유학생 최다급. 학비 높음(~$68,000/년).\n📍 Los Angeles CA | 🔗 usc.edu"
@@ -26195,8 +26296,8 @@ function getCityUniversities(slug: string, lang: string) {
                  : "Cal State system publics. Affordable (~$7,000/yr), practical majors, working-adult friendly. Near Korean areas.\n🔗 calstatela.edu | fullerton.edu",
         tags: ["CSU","저렴","실용"] },
       { emoji: "🎓", name: "Fuller Theological Seminary (풀러 신학교)", nameEn: "Fuller — 신학교 (복음주의 최대)",
-        desc: ko ? "✅ 패서디나 소재 세계 최대급 초교파 복음주의 신학교. 한인 유학생 최다. 목회학·선교·상담(심리).\n📍 135 N Oakland Ave, Pasadena CA | 🔗 fuller.edu"
-                 : "✅ Pasadena. One of the largest multidenominational evangelical seminaries. Largest Korean student body. M.Div, missions & psychology.\n📍 135 N Oakland Ave, Pasadena CA | 🔗 fuller.edu",
+        desc: ko ? "패서디나 소재 세계 최대급 초교파 복음주의 신학교. 한인 유학생 최다. 목회학·선교·상담(심리).\n📍 135 N Oakland Ave, Pasadena CA | 🔗 fuller.edu"
+                 : "Pasadena. One of the largest multidenominational evangelical seminaries. Largest Korean student body. M.Div, missions & psychology.\n📍 135 N Oakland Ave, Pasadena CA | 🔗 fuller.edu",
         tags: ["신학교","풀러","복음주의"] },
       { emoji: "🎓", name: "Gateway Seminary (게이트웨이 신학교)", nameEn: "Gateway — 신학교 (남침례회 6대, 대학원)",
         desc: ko ? "온타리오(LA 동쪽 이너 엠파이어) 소재 남침례회(SBC) 6대 신학교. (구 Golden Gate) 목회·상담. 한인 목회자 접근성.\n📍 3210 E Guasti Rd, Ontario CA | 🔗 gs.edu"
@@ -26205,8 +26306,8 @@ function getCityUniversities(slug: string, lang: string) {
     ],
     boston: [
       { emoji: "🎓", name: "Harvard University (하버드)", nameEn: "Harvard — 케임브리지 (세계 최정상)",
-        desc: ko ? "✅ 케임브리지 소재 세계 최정상 사립. 전 분야. 한인 유학생 활발.\n📍 Cambridge MA | 🔗 harvard.edu"
-                 : "✅ World-top private in Cambridge. All fields. Active Korean student community.\n📍 Cambridge MA | 🔗 harvard.edu",
+        desc: ko ? "케임브리지 소재 세계 최정상 사립. 전 분야. 한인 유학생 활발.\n📍 Cambridge MA | 🔗 harvard.edu"
+                 : "World-top private in Cambridge. All fields. Active Korean student community.\n📍 Cambridge MA | 🔗 harvard.edu",
         tags: ["하버드","사립","최정상"] },
       { emoji: "🎓", name: "MIT (매사추세츠공대)", nameEn: "MIT — 케임브리지 (공학·과학)",
         desc: ko ? "케임브리지 소재. 공학·과학·경영 세계 최정상. 한인 유학생·연구원 다수.\n📍 Cambridge MA | 🔗 mit.edu"
@@ -26217,22 +26318,22 @@ function getCityUniversities(slug: string, lang: string) {
                  : "Large private research univ in Boston. Business, communication & medicine. Very large Korean student body.\n📍 Boston MA | 🔗 bu.edu",
         tags: ["BU","사립","종합"] },
       { emoji: "🎓", name: "Gordon-Conwell Theological Seminary (고든콘웰)", nameEn: "GCTS — 신학교 (한인 프로그램)",
-        desc: ko ? "✅ 사우스해밀턴(보스턴 북부) 소재 대표 복음주의 신학교. 한인학생회(KSA)·한국어 목회 프로그램(GCI Korea) 운영.\n📍 130 Essex St, South Hamilton MA | 🔗 gordonconwell.edu"
-                 : "✅ Leading evangelical seminary in South Hamilton (N of Boston). Korean Student Association & Korean ministry programs (GCI Korea).\n📍 130 Essex St, South Hamilton MA | 🔗 gordonconwell.edu",
+        desc: ko ? "사우스해밀턴(보스턴 북부) 소재 대표 복음주의 신학교. 한인학생회(KSA)·한국어 목회 프로그램(GCI Korea) 운영.\n📍 130 Essex St, South Hamilton MA | 🔗 gordonconwell.edu"
+                 : "Leading evangelical seminary in South Hamilton (N of Boston). Korean Student Association & Korean ministry programs (GCI Korea).\n📍 130 Essex St, South Hamilton MA | 🔗 gordonconwell.edu",
         tags: ["신학교","고든콘웰","한인"] },
     ],
     newyork: [
       { emoji: "🎓", name: "Columbia University (컬럼비아)", nameEn: "Columbia — 아이비 세계 최정상",
-        desc: ko ? "✅ 맨해튼 모닝사이드 소재 아이비 세계 최정상. 전 분야. 한인 유학생 활발.\n📍 New York NY | 🔗 columbia.edu"
-                 : "✅ Ivy League, world-top, Morningside Manhattan. All fields. Active Korean student community.\n📍 New York NY | 🔗 columbia.edu",
+        desc: ko ? "맨해튼 모닝사이드 소재 아이비 세계 최정상. 전 분야. 한인 유학생 활발.\n📍 New York NY | 🔗 columbia.edu"
+                 : "Ivy League, world-top, Morningside Manhattan. All fields. Active Korean student community.\n📍 New York NY | 🔗 columbia.edu",
         tags: ["컬럼비아","아이비","최정상"] },
       { emoji: "🎓", name: "New York University (NYU)", nameEn: "NYU — 맨해튼 대형 사립",
         desc: ko ? "맨해튼 대형 사립. 경영(Stern)·예술(Tisch)·법. 한인 유학생 최다급. 학비 높음.\n📍 New York NY | 🔗 nyu.edu"
                  : "Large private in Manhattan. Stern business, Tisch arts & law. Among the largest Korean student bodies. High tuition.\n📍 New York NY | 🔗 nyu.edu",
         tags: ["NYU","맨해튼","경영·예술"] },
       { emoji: "🎓", name: "Stony Brook University (SUNY)", nameEn: "Stony Brook — 롱아일랜드 공립 연구",
-        desc: ko ? "✅ 롱아일랜드 소재 SUNY 최상위 공립 연구대. 이공계 강점. 학비 저렴. 한인 학생 매우 많음.\n📍 Stony Brook NY | 🔗 stonybrook.edu"
-                 : "✅ Top SUNY public research univ on Long Island. Strong STEM. Affordable. Very large Korean student body.\n📍 Stony Brook NY | 🔗 stonybrook.edu",
+        desc: ko ? "롱아일랜드 소재 SUNY 최상위 공립 연구대. 이공계 강점. 학비 저렴. 한인 학생 매우 많음.\n📍 Stony Brook NY | 🔗 stonybrook.edu"
+                 : "Top SUNY public research univ on Long Island. Strong STEM. Affordable. Very large Korean student body.\n📍 Stony Brook NY | 🔗 stonybrook.edu",
         tags: ["스토니브룩","SUNY","이공계"] },
       { emoji: "🎓", name: "CUNY (Baruch·Hunter·Queens)", nameEn: "CUNY — 저렴 공립 계열",
         desc: ko ? "뉴욕시립대 계열. 저렴 공립(경영 Baruch·인문 Hunter·퀸즈칼리지). 실용·직장인 친화.\n🔗 cuny.edu"
@@ -26245,8 +26346,8 @@ function getCityUniversities(slug: string, lang: string) {
     ],
     sf: [
       { emoji: "🎓", name: "UC Berkeley (버클리)", nameEn: "UC Berkeley — 공립 최상위",
-        desc: ko ? "✅ UC 최상위 공립. 전 분야 세계권. 한인 재학생 많음. 주립 학비 ~$14,000/년.\n📍 Berkeley CA | 🔗 berkeley.edu"
-                 : "✅ Top UC public. World-class across fields. Large Korean student body. In-state ~$14,000/yr.\n📍 Berkeley CA | 🔗 berkeley.edu",
+        desc: ko ? "UC 최상위 공립. 전 분야 세계권. 한인 재학생 많음. 주립 학비 ~$14,000/년.\n📍 Berkeley CA | 🔗 berkeley.edu"
+                 : "Top UC public. World-class across fields. Large Korean student body. In-state ~$14,000/yr.\n📍 Berkeley CA | 🔗 berkeley.edu",
         tags: ["버클리","공립","최상위"] },
       { emoji: "🎓", name: "Stanford University (스탠퍼드)", nameEn: "Stanford — 사립 최정상",
         desc: ko ? "팔로알토 소재 사립 최정상. 공학·경영·CS. 실리콘밸리 중심. 한인 유학생·연구원 다수.\n📍 Stanford CA | 🔗 stanford.edu"
@@ -26257,8 +26358,8 @@ function getCityUniversities(slug: string, lang: string) {
                  : "Affordable Bay Area publics. SJSU (Silicon Valley jobs) & SFSU (in-city). Practical majors.\n🔗 sjsu.edu | sfsu.edu",
         tags: ["SJSU","SFSU","저렴"] },
       { emoji: "🎓", name: "Graduate Theological Union (GTU 신학교)", nameEn: "GTU — 신학교 컨소시엄 (대학원)",
-        desc: ko ? "✅ 버클리 소재 8개 신학교 컨소시엄(대학원). 신학 석·박사. UC버클리 인접.\n📍 2400 Ridge Rd, Berkeley CA | 🔗 gtu.edu"
-                 : "✅ Berkeley consortium of 8 seminaries (graduate). Theology MA & PhD. Adjacent to UC Berkeley.\n📍 2400 Ridge Rd, Berkeley CA | 🔗 gtu.edu",
+        desc: ko ? "버클리 소재 8개 신학교 컨소시엄(대학원). 신학 석·박사. UC버클리 인접.\n📍 2400 Ridge Rd, Berkeley CA | 🔗 gtu.edu"
+                 : "Berkeley consortium of 8 seminaries (graduate). Theology MA & PhD. Adjacent to UC Berkeley.\n📍 2400 Ridge Rd, Berkeley CA | 🔗 gtu.edu",
         tags: ["신학교","GTU","버클리"] },
       { emoji: "🎓", name: "Western Seminary San Jose (웨스턴 신학교)", nameEn: "Western — 신학교 (복음주의, 대학원)",
         desc: ko ? "산호세 소재 복음주의 신학교(대학원). 목회·상담(MFT). 베이 한인 목회자 접근성.\n🔗 westernseminary.edu"
@@ -26267,8 +26368,8 @@ function getCityUniversities(slug: string, lang: string) {
     ],
     houston: [
       { emoji: "🎓", name: "Rice University (라이스)", nameEn: "Rice — 사립 최정상",
-        desc: ko ? "✅ 휴스턴 소재 사립 최정상. STEM·경영·건축. 소규모 정예. 한인 유학생 활발.\n📍 Houston TX | 🔗 rice.edu"
-                 : "✅ Private top in Houston. STEM, business & architecture. Small & selective. Active Korean students.\n📍 Houston TX | 🔗 rice.edu",
+        desc: ko ? "휴스턴 소재 사립 최정상. STEM·경영·건축. 소규모 정예. 한인 유학생 활발.\n📍 Houston TX | 🔗 rice.edu"
+                 : "Private top in Houston. STEM, business & architecture. Small & selective. Active Korean students.\n📍 Houston TX | 🔗 rice.edu",
         tags: ["라이스","사립","STEM"] },
       { emoji: "🎓", name: "University of Houston (UH)", nameEn: "UH — 대형 공립 종합",
         desc: ko ? "휴스턴 대형 공립 종합대. 공학·경영·에너지. 학비 저렴. 한인 학생 많음.\n📍 Houston TX | 🔗 uh.edu"
@@ -26297,28 +26398,28 @@ function getCityUniversities(slug: string, lang: string) {
                  : "Catholic private univ in Louisville. Nursing, PT & health. Small & focused.\n🔗 bellarmine.edu",
         tags: ["벨라민","사립","보건"] },
       { emoji: "🎓", name: "Southern Baptist Theological Seminary (SBTS, 남침례신학교)", nameEn: "SBTS — 신학교 (남침례회 6대·최대, 대학원)",
-        desc: ko ? "✅ 루이빌 소재 남침례회(SBC) 최고(母)신학교. 6대 중 최대. 한인 목회자·유학생 대거. 학부 Boyce College 병설.\n📍 2825 Lexington Rd, Louisville KY | 🔗 sbts.edu"
-                 : "✅ SBC's flagship/oldest seminary in Louisville. Largest of the 6. Very large Korean pastor/student community. Undergrad Boyce College.\n📍 2825 Lexington Rd, Louisville KY | 🔗 sbts.edu",
+        desc: ko ? "루이빌 소재 남침례회(SBC) 최고(母)신학교. 6대 중 최대. 한인 목회자·유학생 대거. 학부 Boyce College 병설.\n📍 2825 Lexington Rd, Louisville KY | 🔗 sbts.edu"
+                 : "SBC's flagship/oldest seminary in Louisville. Largest of the 6. Very large Korean pastor/student community. Undergrad Boyce College.\n📍 2825 Lexington Rd, Louisville KY | 🔗 sbts.edu",
         tags: ["신학교","SBTS","남침례회"] },
     ],
     raleigh: [
       { emoji: "🎓", name: "North Carolina State University (NC State)", nameEn: "NC State — 롤리 공립 (공학·농학)",
-        desc: ko ? "✅ 롤리 소재 공립 연구대(R1). 공학·농학·디자인. 리서치 트라이앵글 중심. 학비 저렴. 한인 학생 많음.\n📍 Raleigh NC | 🔗 ncsu.edu"
-                 : "✅ Public research (R1) in Raleigh. Engineering, agriculture & design. Research Triangle hub. Affordable. Many Korean students.\n📍 Raleigh NC | 🔗 ncsu.edu",
+        desc: ko ? "롤리 소재 공립 연구대(R1). 공학·농학·디자인. 리서치 트라이앵글 중심. 학비 저렴. 한인 학생 많음.\n📍 Raleigh NC | 🔗 ncsu.edu"
+                 : "Public research (R1) in Raleigh. Engineering, agriculture & design. Research Triangle hub. Affordable. Many Korean students.\n📍 Raleigh NC | 🔗 ncsu.edu",
         tags: ["NCState","공립","공학"] },
       { emoji: "🎓", name: "UNC-Chapel Hill / Duke (인근)", nameEn: "UNC & Duke — 리서치 트라이앵글",
         desc: ko ? "롤리 인근(30~40분) 명문. UNC 채플힐(공립 최상위)·듀크(사립 최정상, 더럼). 의대·경영·법.\n🔗 unc.edu | duke.edu"
                  : "Elite universities ~30-40 min from Raleigh. UNC Chapel Hill (top public) & Duke (top private, Durham). Medicine, business & law.\n🔗 unc.edu | duke.edu",
         tags: ["UNC","듀크","트라이앵글"] },
       { emoji: "🎓", name: "Southeastern Baptist Theological Seminary (SEBTS, 남침례신학교)", nameEn: "SEBTS — 신학교 (남침례회 6대, 대학원)",
-        desc: ko ? "✅ 웨이크포레스트(롤리 북쪽 ~25분) 소재 남침례회(SBC) 6대 신학교. 목회·선교. 학부 The College at Southeastern 병설.\n📍 120 S Wingate St, Wake Forest NC | 🔗 sebts.edu"
-                 : "✅ SBC's 6 seminaries — in Wake Forest (~25 min N of Raleigh). Ministry & missions. Undergrad The College at Southeastern.\n📍 120 S Wingate St, Wake Forest NC | 🔗 sebts.edu",
+        desc: ko ? "웨이크포레스트(롤리 북쪽 ~25분) 소재 남침례회(SBC) 6대 신학교. 목회·선교. 학부 The College at Southeastern 병설.\n📍 120 S Wingate St, Wake Forest NC | 🔗 sebts.edu"
+                 : "SBC's 6 seminaries — in Wake Forest (~25 min N of Raleigh). Ministry & missions. Undergrad The College at Southeastern.\n📍 120 S Wingate St, Wake Forest NC | 🔗 sebts.edu",
         tags: ["신학교","SEBTS","남침례회"] },
     ],
     virginia: [
       { emoji: "🎓", name: "George Mason University (GMU)", nameEn: "George Mason — 페어팩스 (북버지니아·한인)",
-        desc: ko ? "✅ 페어팩스 소재 공립 종합대(북버지니아 한인 밀집 애넌데일 인근). 경영·정책·CS. 학비 저렴. 한인 학생 많음.\n📍 Fairfax VA | 🔗 gmu.edu"
-                 : "✅ Public univ in Fairfax (near Annandale Korean hub, N. Virginia). Business, policy & CS. Affordable. Many Korean students.\n📍 Fairfax VA | 🔗 gmu.edu",
+        desc: ko ? "페어팩스 소재 공립 종합대(북버지니아 한인 밀집 애넌데일 인근). 경영·정책·CS. 학비 저렴. 한인 학생 많음.\n📍 Fairfax VA | 🔗 gmu.edu"
+                 : "Public univ in Fairfax (near Annandale Korean hub, N. Virginia). Business, policy & CS. Affordable. Many Korean students.\n📍 Fairfax VA | 🔗 gmu.edu",
         tags: ["GMU","페어팩스","공립"] },
       { emoji: "🎓", name: "University of Virginia (UVA)", nameEn: "UVA — 샬러츠빌 (공립 명문)",
         desc: ko ? "샬러츠빌 소재 공립 명문(제퍼슨 설립). 경영·법·의대. 공립 아이비급.\n📍 Charlottesville VA | 🔗 virginia.edu"
@@ -26329,26 +26430,26 @@ function getCityUniversities(slug: string, lang: string) {
                  : "Public univ in Blacksburg, strong engineering. Architecture & IT. Affordable.\n🔗 vt.edu",
         tags: ["버지니아텍","공학","블랙스버그"] },
       { emoji: "🎓", name: "Liberty University School of Divinity (리버티 신학교)", nameEn: "Liberty — 신학교 (복음주의, 온라인 최대)",
-        desc: ko ? "✅ 린치버그 소재 미국 최대 복음주의 대학 내 신학교(Rawlings School of Divinity). 온라인 신학 교육 최대 — 전국 한인 목회자 다수 이수. 학부·M.Div·박사.\n📍 Lynchburg VA | 🔗 liberty.edu"
-                 : "✅ Divinity school (Rawlings) at the largest evangelical university, Lynchburg. Largest online theology programs — many Korean pastors nationwide. Undergrad, MDiv & doctoral.\n📍 Lynchburg VA | 🔗 liberty.edu",
+        desc: ko ? "린치버그 소재 미국 최대 복음주의 대학 내 신학교(Rawlings School of Divinity). 온라인 신학 교육 최대 — 전국 한인 목회자 다수 이수. 학부·M.Div·박사.\n📍 Lynchburg VA | 🔗 liberty.edu"
+                 : "Divinity school (Rawlings) at the largest evangelical university, Lynchburg. Largest online theology programs — many Korean pastors nationwide. Undergrad, MDiv & doctoral.\n📍 Lynchburg VA | 🔗 liberty.edu",
         tags: ["신학교","리버티","온라인"] },
     ],
     memphis: [
       { emoji: "🎓", name: "University of Memphis (멤피스 대학교)", nameEn: "U of M — 주립 종합 (R1 연구중심)",
-        desc: ko ? "✅ 멤피스 유일의 주립 종합대. 공학·경영·음대·교육. 주내 학비 저렴, 한국 유학생 많음.\n📍 Memphis TN | 🔗 memphis.edu"
-                 : "✅ Memphis's public research university (R1). Engineering, business, music & education. Affordable in-state.\n📍 Memphis TN | 🔗 memphis.edu",
+        desc: ko ? "멤피스 유일의 주립 종합대. 공학·경영·음대·교육. 주내 학비 저렴, 한국 유학생 많음.\n📍 Memphis TN | 🔗 memphis.edu"
+                 : "Memphis's public research university (R1). Engineering, business, music & education. Affordable in-state.\n📍 Memphis TN | 🔗 memphis.edu",
         tags: ["멤피스대","주립","연구중심"] },
       { emoji: "🎓", name: "Rhodes College (로즈 칼리지)", nameEn: "Rhodes — 사립 리버럴아츠 명문",
-        desc: ko ? "✅ 전미 상위 리버럴아츠 칼리지. 소규모 정예. 장로교 배경. 의대·법대 진학률 높음.\n📍 2000 N Parkway, Memphis TN | 🔗 rhodes.edu"
-                 : "✅ Top national liberal arts college. Small and selective. Presbyterian heritage. Strong pre-med & pre-law.\n📍 2000 N Parkway, Memphis TN | 🔗 rhodes.edu",
+        desc: ko ? "전미 상위 리버럴아츠 칼리지. 소규모 정예. 장로교 배경. 의대·법대 진학률 높음.\n📍 2000 N Parkway, Memphis TN | 🔗 rhodes.edu"
+                 : "Top national liberal arts college. Small and selective. Presbyterian heritage. Strong pre-med & pre-law.\n📍 2000 N Parkway, Memphis TN | 🔗 rhodes.edu",
         tags: ["로즈","리버럴아츠","사립"] },
       { emoji: "🎓", name: "Christian Brothers University (CBU)", nameEn: "CBU — 가톨릭계 사립",
         desc: ko ? "멤피스 가톨릭(라살회) 사립대. 공학·간호·경영. 소규모 학급, 실무 중심.\n🔗 cbu.edu"
                  : "Catholic (Lasallian) private univ in Memphis. Engineering, nursing & business. Small classes.\n🔗 cbu.edu",
         tags: ["CBU","가톨릭","사립"] },
       { emoji: "🎓", name: "Mid-America Baptist Theological Seminary (미드아메리카 침례신학교)", nameEn: "MABTS — 신학교 (남침례회 협력)",
-        desc: ko ? "✅ 남침례회(SBC) 협력 신학교. 목회·선교·성경. 학부 과정 병설. 2024년 알링턴(대멤피스)으로 이전.\n📍 Arlington TN (대멤피스) | 🔗 mabts.edu"
-                 : "✅ SBC-affiliated seminary. Ministry, missions & biblical studies. Undergrad programs included. Relocated to Arlington (greater Memphis).\n📍 Arlington TN | 🔗 mabts.edu",
+        desc: ko ? "남침례회(SBC) 협력 신학교. 목회·선교·성경. 학부 과정 병설. 2024년 알링턴(대멤피스)으로 이전.\n📍 Arlington TN (대멤피스) | 🔗 mabts.edu"
+                 : "SBC-affiliated seminary. Ministry, missions & biblical studies. Undergrad programs included. Relocated to Arlington (greater Memphis).\n📍 Arlington TN | 🔗 mabts.edu",
         tags: ["신학교","남침례회","MABTS"] },
       { emoji: "🎓", name: "Memphis Theological Seminary (멤피스 신학교)", nameEn: "MTS — 신학교 (컴벌랜드 장로교)",
         desc: ko ? "멤피스 소재 컴벌랜드 장로교 신학교. 목회학석사(M.Div)·목회상담. 도심 사역 중심.\n📍 168 E Parkway S, Memphis TN | 🔗 memphisseminary.edu"
@@ -26357,8 +26458,8 @@ function getCityUniversities(slug: string, lang: string) {
     ],
     huntsville: [
       { emoji: "🎓", name: "University of Alabama in Huntsville (UAH)", nameEn: "UAH — 주립 (항공우주·공학 강세)",
-        desc: ko ? "✅ 헌츠빌 주립 연구중심대. NASA·방위산업과 직결된 항공우주·전기공학이 최강. 취업 연계 우수.\n📍 301 Sparkman Dr, Huntsville AL | 🔗 uah.edu"
-                 : "✅ Public research university in Huntsville. Aerospace & electrical engineering tied to NASA and defense industry.\n📍 301 Sparkman Dr, Huntsville AL | 🔗 uah.edu",
+        desc: ko ? "헌츠빌 주립 연구중심대. NASA·방위산업과 직결된 항공우주·전기공학이 최강. 취업 연계 우수.\n📍 301 Sparkman Dr, Huntsville AL | 🔗 uah.edu"
+                 : "Public research university in Huntsville. Aerospace & electrical engineering tied to NASA and defense industry.\n📍 301 Sparkman Dr, Huntsville AL | 🔗 uah.edu",
         tags: ["UAH","주립","항공우주"] },
       { emoji: "🎓", name: "Alabama A&M University (앨라배마 A&M)", nameEn: "AAMU — 주립 (HBCU·농업·STEM)",
         desc: ko ? "헌츠빌 노멀 소재 주립 HBCU. 농업·공학·교육. 학비 저렴, 캠퍼스 규모 큼.\n📍 Normal AL (헌츠빌) | 🔗 aamu.edu"
@@ -26379,8 +26480,8 @@ function getCityUniversities(slug: string, lang: string) {
     ],
     neworleans: [
       { emoji: "🎓", name: "Tulane University (튤레인)", nameEn: "Tulane — 사립 명문 (의대·공중보건)",
-        desc: ko ? "✅ 뉴올리언스 소재 사립 명문. 의대·공중보건·법. 남부 명문. 학비 높음.\n📍 New Orleans LA | 🔗 tulane.edu"
-                 : "✅ Private elite in New Orleans. Medicine, public health & law. Southern powerhouse.\n📍 New Orleans LA | 🔗 tulane.edu",
+        desc: ko ? "뉴올리언스 소재 사립 명문. 의대·공중보건·법. 남부 명문. 학비 높음.\n📍 New Orleans LA | 🔗 tulane.edu"
+                 : "Private elite in New Orleans. Medicine, public health & law. Southern powerhouse.\n📍 New Orleans LA | 🔗 tulane.edu",
         tags: ["튤레인","사립","의대"] },
       { emoji: "🎓", name: "University of New Orleans (UNO)", nameEn: "UNO — 공립 (저렴·실용)",
         desc: ko ? "뉴올리언스 공립 종합대. 공학·경영·호텔경영. 학비 저렴.\n🔗 uno.edu"
@@ -26391,8 +26492,8 @@ function getCityUniversities(slug: string, lang: string) {
                  : "Jesuit Catholic private univ in New Orleans. Law, business & music. Small.\n🔗 loyno.edu",
         tags: ["로욜라","예수회","사립"] },
       { emoji: "🎓", name: "New Orleans Baptist Theological Seminary (NOBTS, 남침례신학교)", nameEn: "NOBTS — 신학교 (남침례회 6대, 대학원)",
-        desc: ko ? "✅ 뉴올리언스 소재 남침례회(SBC) 6대 신학교. 목회·선교·상담. 학부 Leavell College 병설.\n📍 3939 Gentilly Blvd, New Orleans LA | 🔗 nobts.edu"
-                 : "✅ New Orleans. One of SBC's 6 seminaries. Ministry, missions & counseling. Undergrad Leavell College.\n📍 3939 Gentilly Blvd, New Orleans LA | 🔗 nobts.edu",
+        desc: ko ? "뉴올리언스 소재 남침례회(SBC) 6대 신학교. 목회·선교·상담. 학부 Leavell College 병설.\n📍 3939 Gentilly Blvd, New Orleans LA | 🔗 nobts.edu"
+                 : "New Orleans. One of SBC's 6 seminaries. Ministry, missions & counseling. Undergrad Leavell College.\n📍 3939 Gentilly Blvd, New Orleans LA | 🔗 nobts.edu",
         tags: ["신학교","NOBTS","남침례회"] },
     ],
   };
@@ -26421,23 +26522,23 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
   const districts = isSeattle ? [
     { emoji: "⭐", name: "Bellevue School District", nameEn: "Bellevue SD — WA #1",
       desc: lang === "ko"
-        ? "✅ 워싱턴주 1위 학군 (Niche A+). 졸업률 92.5%. Newport HS·Interlake HS·Bellevue HS. AP·IB 과정 풍부. 한인 학생 비율 높음.\n📍 벨뷰·메디나·클라이드힐 포함 | 🔗 bsd405.org"
-        : "✅ WA State #1 district (Niche A+). Grad rate 92.5%. Newport, Interlake & Bellevue HS. Rich AP/IB programs. High Korean student ratio.\n📍 Covers Bellevue, Medina & Clyde Hill | 🔗 bsd405.org",
+        ? "워싱턴주 1위 학군 (Niche A+). 졸업률 92.5%. Newport HS·Interlake HS·Bellevue HS. AP·IB 과정 풍부. 한인 학생 비율 높음.\n📍 벨뷰·메디나·클라이드힐 포함 | 🔗 bsd405.org"
+        : "WA State #1 district (Niche A+). Grad rate 92.5%. Newport, Interlake & Bellevue HS. Rich AP/IB programs. High Korean student ratio.\n📍 Covers Bellevue, Medina & Clyde Hill | 🔗 bsd405.org",
       tags: ["벨뷰", "A+", "WA #1"] },
     { emoji: "⭐", name: "Mercer Island SD", nameEn: "Mercer Island SD — WA #2",
       desc: lang === "ko"
-        ? "✅ 워싱턴주 2위 학군 (Niche A+). 졸업률 97.2%. Mercer Island HS (전국 상위 1%). 고소득 전문직 가정 밀집. 렌트 비쌈.\n📍 메르서아일랜드 단일 학군 | 🔗 mercerislandschools.org"
-        : "✅ WA #2 district (Niche A+). Grad rate 97.2%. Mercer Island HS (top 1% nationally). High-income professional community.\n📍 Mercer Island only | 🔗 mercerislandschools.org",
+        ? "워싱턴주 2위 학군 (Niche A+). 졸업률 97.2%. Mercer Island HS (전국 상위 1%). 고소득 전문직 가정 밀집. 렌트 비쌈.\n📍 메르서아일랜드 단일 학군 | 🔗 mercerislandschools.org"
+        : "WA #2 district (Niche A+). Grad rate 97.2%. Mercer Island HS (top 1% nationally). High-income professional community.\n📍 Mercer Island only | 🔗 mercerislandschools.org",
       tags: ["메르서아일랜드", "A+", "WA #2"] },
     { emoji: "⭐", name: "Lake Washington SD", nameEn: "Lake Washington SD — Redmond·Kirkland",
       desc: lang === "ko"
-        ? "✅ 워싱턴주 상위 1% (Niche A+). 졸업률 95%. Redmond HS·Eastlake HS·Juanita HS. MS·Google 본사 인근 STEM 최강.\n📍 레드몬드·커클랜드·켄모어 | 🔗 lwsd.org"
-        : "✅ Top 1% in WA (Niche A+). Grad rate 95%. Redmond, Eastlake & Juanita HS. Near Microsoft & Google HQ — exceptional STEM.\n📍 Redmond, Kirkland, Kenmore | 🔗 lwsd.org",
+        ? "워싱턴주 상위 1% (Niche A+). 졸업률 95%. Redmond HS·Eastlake HS·Juanita HS. MS·Google 본사 인근 STEM 최강.\n📍 레드몬드·커클랜드·켄모어 | 🔗 lwsd.org"
+        : "Top 1% in WA (Niche A+). Grad rate 95%. Redmond, Eastlake & Juanita HS. Near Microsoft & Google HQ — exceptional STEM.\n📍 Redmond, Kirkland, Kenmore | 🔗 lwsd.org",
       tags: ["레드몬드", "커클랜드", "STEM"] },
     { emoji: "⭐", name: "Northshore SD", nameEn: "Northshore SD — Bothell·Woodinville",
       desc: lang === "ko"
-        ? "✅ 워싱턴주 상위 5% (Niche A). 졸업률 96%. Inglemoor HS·Bothell HS·Woodinville HS. 한인 가족 최다 거주 학군. 린우드와 인접.\n📍 보텔·우딘빌·켄모어 | 🔗 nsd.org"
-        : "✅ Top 5% in WA (Niche A). Grad rate 96%. Inglemoor, Bothell & Woodinville HS. Highest Korean family concentration. Near Lynnwood.\n📍 Bothell, Woodinville, Kenmore | 🔗 nsd.org",
+        ? "워싱턴주 상위 5% (Niche A). 졸업률 96%. Inglemoor HS·Bothell HS·Woodinville HS. 한인 가족 최다 거주 학군. 린우드와 인접.\n📍 보텔·우딘빌·켄모어 | 🔗 nsd.org"
+        : "Top 5% in WA (Niche A). Grad rate 96%. Inglemoor, Bothell & Woodinville HS. Highest Korean family concentration. Near Lynnwood.\n📍 Bothell, Woodinville, Kenmore | 🔗 nsd.org",
       tags: ["보텔", "우딘빌", "한인밀집"] },
     { emoji: "🏫", name: "Edmonds SD", nameEn: "Edmonds SD — Lynnwood·Mountlake Terrace",
       desc: lang === "ko"
@@ -26455,13 +26556,13 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
   const communityColleges = [
     { emoji: "🏛️", name: "Edmonds College", nameEn: "Edmonds College — 린우드 (한인 추천 #1)",
       desc: lang === "ko"
-        ? "✅ 린우드 소재. 한인 밀집 지역 내 CC. 4년제 편입 준비 최적. UW·WSU·Western 편입률 높음. ESL·IELTS·英語 프로그램 풍부. 학비 약 $4,500/학기 (주민). Running Start 파트너 학교.\n📍 20000 68th Ave W, Lynnwood | 🔗 edcc.edu"
-        : "✅ In Lynnwood — heart of Korean community. Best CC for 4-year transfer (UW, WSU, Western). Rich ESL & IELTS programs. Tuition ~$4,500/semester (resident). Running Start partner.\n📍 20000 68th Ave W, Lynnwood | 🔗 edcc.edu",
+        ? "린우드 소재. 한인 밀집 지역 내 CC. 4년제 편입 준비 최적. UW·WSU·Western 편입률 높음. ESL·IELTS·英語 프로그램 풍부. 학비 약 $4,500/학기 (주민). Running Start 파트너 학교.\n📍 20000 68th Ave W, Lynnwood | 🔗 edcc.edu"
+        : "In Lynnwood — heart of Korean community. Best CC for 4-year transfer (UW, WSU, Western). Rich ESL & IELTS programs. Tuition ~$4,500/semester (resident). Running Start partner.\n📍 20000 68th Ave W, Lynnwood | 🔗 edcc.edu",
       tags: ["린우드", "편입", "한인 #1"] },
     { emoji: "🏛️", name: "Bellevue College", nameEn: "Bellevue College — 벨뷰 (기술·편입)",
       desc: lang === "ko"
-        ? "✅ 워싱턴주 최대 CC. 학생 수 약 33,000명. 4년제 학사 학위 직접 수여 (별도 편입 불필요). IT·회계·간호·그래픽디자인 특화. 아시안 학생 비율 높음 (~35%). UW 편입 경쟁 치열.\n📍 3000 Landerholm Circle SE, Bellevue | 🔗 bellevuecollege.edu"
-        : "✅ WA's largest CC (~33,000 students). Offers 4-year bachelor's degrees directly. Specialized IT, accounting, nursing & graphic design. ~35% Asian students. Competitive UW transfer.\n📍 3000 Landerholm Circle SE, Bellevue | 🔗 bellevuecollege.edu",
+        ? "워싱턴주 최대 CC. 학생 수 약 33,000명. 4년제 학사 학위 직접 수여 (별도 편입 불필요). IT·회계·간호·그래픽디자인 특화. 아시안 학생 비율 높음 (~35%). UW 편입 경쟁 치열.\n📍 3000 Landerholm Circle SE, Bellevue | 🔗 bellevuecollege.edu"
+        : "WA's largest CC (~33,000 students). Offers 4-year bachelor's degrees directly. Specialized IT, accounting, nursing & graphic design. ~35% Asian students. Competitive UW transfer.\n📍 3000 Landerholm Circle SE, Bellevue | 🔗 bellevuecollege.edu",
       tags: ["벨뷰", "최대규모", "4년제학위"] },
     { emoji: "🏛️", name: "Seattle Central College", nameEn: "Seattle Central — 캐피톨힐 (예술·국제)",
       desc: lang === "ko"
@@ -26470,8 +26571,8 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       tags: ["캐피톨힐", "예술", "국제학생"] },
     { emoji: "🏛️", name: "Cascadia College", nameEn: "Cascadia College — 보텔 (UW 코이그레이트)",
       desc: lang === "ko"
-        ? "✅ 보텔 소재. UW Bothell 캠퍼스와 부지 공유. UW Bothell 편입 보장 프로그램 (Running Start·DTA). 이공계·비즈니스 편입 경쟁률 낮음. 학비 약 $4,000/학기 (주민).\n📍 18345 Campus Way NE, Bothell | 🔗 cascadia.edu"
-        : "✅ Shares campus with UW Bothell. Guaranteed transfer pathway to UW Bothell (DTA). Lower competition for STEM & business transfer. Tuition ~$4,000/semester (resident).\n📍 18345 Campus Way NE, Bothell | 🔗 cascadia.edu",
+        ? "보텔 소재. UW Bothell 캠퍼스와 부지 공유. UW Bothell 편입 보장 프로그램 (Running Start·DTA). 이공계·비즈니스 편입 경쟁률 낮음. 학비 약 $4,000/학기 (주민).\n📍 18345 Campus Way NE, Bothell | 🔗 cascadia.edu"
+        : "Shares campus with UW Bothell. Guaranteed transfer pathway to UW Bothell (DTA). Lower competition for STEM & business transfer. Tuition ~$4,000/semester (resident).\n📍 18345 Campus Way NE, Bothell | 🔗 cascadia.edu",
       tags: ["보텔", "UW편입보장", "이공계"] },
     { emoji: "🏛️", name: "Shoreline Community College", nameEn: "Shoreline CC — 쇼어라인 (의료·기술)",
       desc: lang === "ko"
@@ -26489,18 +26590,18 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
   const universities = [
     { emoji: "🎓", name: "University of Washington (UW)", nameEn: "UW Seattle — Public Ivy · 세계 Top 30",
       desc: lang === "ko"
-        ? "✅ 시애틀 소재. QS 세계 순위 59위 (2025). 워싱턴주 최고 명문. CS·의대·공대·경영·간호 세계적 수준.\n• 재학생: 약 53,000명 | 한인 학생 약 2,000+명\n• 주립 학비: ~$12,000/년 (in-state) | 국제: ~$40,000/년\n• 합격률: 48% (전체) / CS 전공 경쟁률 매우 높음\n• 한인 학생회(Korean Student Association) 활발 | 🔗 uw.edu"
-        : "✅ Seattle. QS World Rank #59 (2025). WA's flagship university. World-class CS, medicine, engineering, business & nursing.\n• ~53,000 students | ~2,000+ Korean students\n• In-state tuition: ~$12,000/yr | International: ~$40,000/yr\n• Acceptance rate: 48% | CS is highly competitive\n• Active Korean Student Association | 🔗 uw.edu",
+        ? "시애틀 소재. QS 세계 순위 59위 (2025). 워싱턴주 최고 명문. CS·의대·공대·경영·간호 세계적 수준.\n• 재학생: 약 53,000명 | 한인 학생 약 2,000+명\n• 주립 학비: ~$12,000/년 (in-state) | 국제: ~$40,000/년\n• 합격률: 48% (전체) / CS 전공 경쟁률 매우 높음\n• 한인 학생회(Korean Student Association) 활발 | 🔗 uw.edu"
+        : "Seattle. QS World Rank #59 (2025). WA's flagship university. World-class CS, medicine, engineering, business & nursing.\n• ~53,000 students | ~2,000+ Korean students\n• In-state tuition: ~$12,000/yr | International: ~$40,000/yr\n• Acceptance rate: 48% | CS is highly competitive\n• Active Korean Student Association | 🔗 uw.edu",
       tags: ["UW", "세계Top60", "CS·의대"] },
     { emoji: "🎓", name: "UW Bothell", nameEn: "UW Bothell — 보텔 캠퍼스 (STEM·비즈니스)",
       desc: lang === "ko"
-        ? "✅ 보텔 소재. UW 3개 캠퍼스 중 하나. Cascadia College와 캠퍼스 공유. CS·엔지니어링·비즈니스 강점. UW Seattle보다 합격률 높음 (60%+). 한인 학생 다수. 주립 학비 ~$11,000/년.\n📍 18115 Campus Way NE, Bothell | 🔗 uwb.edu"
-        : "✅ Bothell. One of 3 UW campuses. Shares campus with Cascadia College. Strong CS, engineering & business. Higher acceptance rate than UW Seattle (60%+). Many Korean students.\n📍 18115 Campus Way NE, Bothell | 🔗 uwb.edu",
+        ? "보텔 소재. UW 3개 캠퍼스 중 하나. Cascadia College와 캠퍼스 공유. CS·엔지니어링·비즈니스 강점. UW Seattle보다 합격률 높음 (60%+). 한인 학생 다수. 주립 학비 ~$11,000/년.\n📍 18115 Campus Way NE, Bothell | 🔗 uwb.edu"
+        : "Bothell. One of 3 UW campuses. Shares campus with Cascadia College. Strong CS, engineering & business. Higher acceptance rate than UW Seattle (60%+). Many Korean students.\n📍 18115 Campus Way NE, Bothell | 🔗 uwb.edu",
       tags: ["UW보텔", "보텔", "높은합격률"] },
     { emoji: "🎓", name: "Seattle University (시애틀U)", nameEn: "Seattle University — 예수회 명문",
       desc: lang === "ko"
-        ? "✅ 시애틀 다운타운 소재. 예수회(Jesuit) 대학. 법대·비즈니스·간호·심리 강점. 한인 유학생 커뮤니티 활발. 국제학생 장학금(최대 $20,000/년) 있음. 학비 ~$52,000/년 (전액 장학금 가능).\n📍 901 12th Ave, Seattle | 🔗 seattleu.edu"
-        : "✅ Downtown Seattle. Jesuit university. Strong law, business, nursing & psychology. Active Korean student community. International scholarships up to $20,000/yr. Tuition ~$52,000/yr.\n📍 901 12th Ave, Seattle | 🔗 seattleu.edu",
+        ? "시애틀 다운타운 소재. 예수회(Jesuit) 대학. 법대·비즈니스·간호·심리 강점. 한인 유학생 커뮤니티 활발. 국제학생 장학금(최대 $20,000/년) 있음. 학비 ~$52,000/년 (전액 장학금 가능).\n📍 901 12th Ave, Seattle | 🔗 seattleu.edu"
+        : "Downtown Seattle. Jesuit university. Strong law, business, nursing & psychology. Active Korean student community. International scholarships up to $20,000/yr. Tuition ~$52,000/yr.\n📍 901 12th Ave, Seattle | 🔗 seattleu.edu",
       tags: ["시애틀대", "예수회", "국제장학금"] },
     { emoji: "🎓", name: "Western Washington University (WWU)", nameEn: "WWU — 벨링햄 (가성비 명문)",
       desc: lang === "ko"
@@ -26518,8 +26619,8 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
   const admissions = [
     { emoji: "🏃", name: "Running Start 프로그램", nameEn: "Running Start — 고교생 무료 CC 수강",
       desc: lang === "ko"
-        ? "✅ 워싱턴주 공립 고교생 대상 무료 대학 수업 프로그램 (11-12학년). 커뮤니티 칼리지 학점을 고교·대학 이중 학점으로 인정. 완전 무료 (교재비만 자부담). 매년 약 24,000명 이용.\n\n💡 한인 가족에게 특히 유리:\n• 고교 재학 중 최대 2년치 대학 학점 취득 가능\n• Edmonds College·Bellevue College·Cascadia 참여\n• 지원: 재학 고교 카운슬러 통해 신청 | 🔗 sbctc.edu/running-start"
-        : "✅ Free college courses for WA public high school students (grades 11-12). Earn college AND high school credit simultaneously — completely free (only pay for books).\n\n💡 Especially valuable for Korean families:\n• Earn up to 2 years of college credit in high school\n• Participating schools: Edmonds, Bellevue, Cascadia colleges\n• Apply through your high school counselor | 🔗 sbctc.edu/running-start",
+        ? "워싱턴주 공립 고교생 대상 무료 대학 수업 프로그램 (11-12학년). 커뮤니티 칼리지 학점을 고교·대학 이중 학점으로 인정. 완전 무료 (교재비만 자부담). 매년 약 24,000명 이용.\n\n💡 한인 가족에게 특히 유리:\n• 고교 재학 중 최대 2년치 대학 학점 취득 가능\n• Edmonds College·Bellevue College·Cascadia 참여\n• 지원: 재학 고교 카운슬러 통해 신청 | 🔗 sbctc.edu/running-start"
+        : "Free college courses for WA public high school students (grades 11-12). Earn college AND high school credit simultaneously — completely free (only pay for books).\n\n💡 Especially valuable for Korean families:\n• Earn up to 2 years of college credit in high school\n• Participating schools: Edmonds, Bellevue, Cascadia colleges\n• Apply through your high school counselor | 🔗 sbctc.edu/running-start",
       tags: ["무료", "이중학점", "11-12학년"] },
     { emoji: "📝", name: "SAT·ACT 준비 센터 (광역 시애틀)", nameEn: "SAT/ACT Prep — Greater Seattle",
       desc: lang === "ko"
@@ -26552,8 +26653,8 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       tags: ["학원", "SAT·AP", "린우드·벨뷰"] },
     { emoji: "🌍", name: "국제학생 ESL·어학원", nameEn: "ESL & English Language Schools",
       desc: lang === "ko"
-        ? "✅ 추천 ESL 프로그램:\n• Edmonds College ESL/IEP — 린우드 소재, 한인 커뮤니티 인근, 저렴 | 🔗 edcc.edu\n• Seattle Central College IEP — 시내 소재, 국제 분위기\n• ELS Language Centers Seattle — 집중 영어 과정 (사설)\n• Kaplan International — IELTS·TOEFL 집중반\n• 무료: Public Library ESL — 킹카운티 도서관 무료 영어 수업"
-        : "✅ Recommended ESL programs:\n• Edmonds College ESL/IEP — Lynnwood, near Korean community, affordable | 🔗 edcc.edu\n• Seattle Central College IEP — downtown, international environment\n• ELS Language Centers Seattle — intensive private courses\n• Kaplan International — IELTS/TOEFL intensive\n• FREE: Public Library ESL — King County Library free English classes",
+        ? "추천 ESL 프로그램:\n• Edmonds College ESL/IEP — 린우드 소재, 한인 커뮤니티 인근, 저렴 | 🔗 edcc.edu\n• Seattle Central College IEP — 시내 소재, 국제 분위기\n• ELS Language Centers Seattle — 집중 영어 과정 (사설)\n• Kaplan International — IELTS·TOEFL 집중반\n• 무료: Public Library ESL — 킹카운티 도서관 무료 영어 수업"
+        : "Recommended ESL programs:\n• Edmonds College ESL/IEP — Lynnwood, near Korean community, affordable | 🔗 edcc.edu\n• Seattle Central College IEP — downtown, international environment\n• ELS Language Centers Seattle — intensive private courses\n• Kaplan International — IELTS/TOEFL intensive\n• FREE: Public Library ESL — King County Library free English classes",
       tags: ["ESL", "어학", "무료강좌"] },
     { emoji: "👶", name: "유아·초등 교육 (프리스쿨·K-12)", nameEn: "Early Childhood & K-12 Resources",
       desc: lang === "ko"
@@ -26562,8 +26663,8 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       tags: ["프리스쿨", "무료K-12", "이중언어"] },
     { emoji: "💼", name: "성인 교육·직업 훈련", nameEn: "Adult Education & Vocational Training",
       desc: lang === "ko"
-        ? "✅ 성인 한인 이민자를 위한 교육 자원:\n• WorkSource WA — 무료 직업 훈련·이력서 코칭·취업 연결 🔗 worksourcewa.com\n• Goodwill Job Training — 무료 직업 기술 훈련 (컴퓨터·소매·의료) 🔗 goodwillwa.org\n• Edmonds College 평생교육 — 저렴한 성인 직업 과정\n• ACRS (Asian Counseling & Referral Service) — 한국어 지원 취업 서비스 🔗 acrs.org\n• KCSC (한인생활상담소) — 한국어 취업 상담·이력서 도움 🔗 kcsc-seattle.org"
-        : "✅ Educational resources for adult Korean immigrants:\n• WorkSource WA — free job training, resume coaching & job placement 🔗 worksourcewa.com\n• Goodwill Job Training — free vocational skills (computer, retail, medical) 🔗 goodwillwa.org\n• Edmonds College Continuing Education — affordable adult vocational courses\n• ACRS — employment services with Korean language support 🔗 acrs.org\n• KCSC (Korean Community Service Center) — Korean-language job counseling 🔗 kcsc-seattle.org",
+        ? "성인 한인 이민자를 위한 교육 자원:\n• WorkSource WA — 무료 직업 훈련·이력서 코칭·취업 연결 🔗 worksourcewa.com\n• Goodwill Job Training — 무료 직업 기술 훈련 (컴퓨터·소매·의료) 🔗 goodwillwa.org\n• Edmonds College 평생교육 — 저렴한 성인 직업 과정\n• ACRS (Asian Counseling & Referral Service) — 한국어 지원 취업 서비스 🔗 acrs.org\n• KCSC (한인생활상담소) — 한국어 취업 상담·이력서 도움 🔗 kcsc-seattle.org"
+        : "Educational resources for adult Korean immigrants:\n• WorkSource WA — free job training, resume coaching & job placement 🔗 worksourcewa.com\n• Goodwill Job Training — free vocational skills (computer, retail, medical) 🔗 goodwillwa.org\n• Edmonds College Continuing Education — affordable adult vocational courses\n• ACRS — employment services with Korean language support 🔗 acrs.org\n• KCSC (Korean Community Service Center) — Korean-language job counseling 🔗 kcsc-seattle.org",
       tags: ["성인교육", "직업훈련", "무료"] },
   ];
 
@@ -26571,8 +26672,8 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
   const koreanSchools = [
     { emoji: "🇰🇷", name: lang === "ko" ? "시애틀한국학교 (Seattle Korean School)" : "Seattle Korean School",
       desc: lang === "ko"
-        ? "✅ WA주 최대 한국학교. 한인 2세·1.5세 한국어 교육.\n📅 매주 토요일 오전\n과정: 유치부·초등부·중등부·고등부·성인반\nTOPIK(한국어능력시험) 준비 반 운영\n🔗 seattlekoreanschool.org"
-        : "✅ Largest Korean school in WA. Education for 2nd/1.5-gen Koreans.\n📅 Every Saturday morning\nPrograms: preschool, elementary, middle, high school, adult\nTOPIK (Korean Proficiency Test) prep available\n🔗 seattlekoreanschool.org",
+        ? "WA주 최대 한국학교. 한인 2세·1.5세 한국어 교육.\n📅 매주 토요일 오전\n과정: 유치부·초등부·중등부·고등부·성인반\nTOPIK(한국어능력시험) 준비 반 운영\n🔗 seattlekoreanschool.org"
+        : "Largest Korean school in WA. Education for 2nd/1.5-gen Koreans.\n📅 Every Saturday morning\nPrograms: preschool, elementary, middle, high school, adult\nTOPIK (Korean Proficiency Test) prep available\n🔗 seattlekoreanschool.org",
       tags: lang === "ko" ? ["한국학교", "토요한글", "TOPIK"] : ["Korean School", "Saturday", "TOPIK"] },
     { emoji: "📖", name: lang === "ko" ? "교회 부설 한국학교 (주요 교회)" : "Church-Based Korean Schools",
       desc: lang === "ko"
@@ -26591,8 +26692,8 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       tags: lang === "ko" ? ["태권도", "한국무용", "K-pop"] : ["Taekwondo", "Korean Dance", "K-pop"] },
     { emoji: "🎓", name: lang === "ko" ? "AP 한국어 — 대입 활용법" : "AP Korean — College Application Value",
       desc: lang === "ko"
-        ? "✅ 한국어 AP 시험은 대입에서 큰 강점!\n• SAT Subject Test 대체 가능\n• 대학 학점 인정 (4-8학점 절약, 약 $2,000-4,000 상당)\n• Native Speaker 전형 별도 — 한국어 원어민에게 유리\n• TOPIK 점수도 일부 대학에서 어학 능력 증빙으로 인정\n\n시험 등록: collegeboard.org | 매년 5월 시험"
-        : "✅ AP Korean is a major advantage for college apps!\n• Can substitute for SAT Subject Test\n• College credit recognition (4-8 credits, worth $2,000-4,000)\n• Native Speaker track available — advantage for heritage speakers\n• TOPIK scores accepted by some universities as language proficiency\n\nRegister: collegeboard.org | Exam in May each year",
+        ? "한국어 AP 시험은 대입에서 큰 강점!\n• SAT Subject Test 대체 가능\n• 대학 학점 인정 (4-8학점 절약, 약 $2,000-4,000 상당)\n• Native Speaker 전형 별도 — 한국어 원어민에게 유리\n• TOPIK 점수도 일부 대학에서 어학 능력 증빙으로 인정\n\n시험 등록: collegeboard.org | 매년 5월 시험"
+        : "AP Korean is a major advantage for college apps!\n• Can substitute for SAT Subject Test\n• College credit recognition (4-8 credits, worth $2,000-4,000)\n• Native Speaker track available — advantage for heritage speakers\n• TOPIK scores accepted by some universities as language proficiency\n\nRegister: collegeboard.org | Exam in May each year",
       tags: lang === "ko" ? ["AP한국어", "대입", "학점인정"] : ["AP Korean", "College", "Credit"] },
   ];
 
@@ -26677,8 +26778,8 @@ function getCityCostData(slug: string, lang: string) {
       taxLiving: [
         { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
           desc: ko
-            ? "✅ 워싱턴주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 시애틀 10.4%\n식료품·처방약: 세금 면제\n시애틀 최저시급: $20.76/시 (2026년)\n재산세: 주택 소유 시 연 $5,000-15,000"
-            : "✅ WA State has NO income tax! (major benefit)\nSales Tax: 10.4% in Seattle\nGroceries & prescription drugs: tax-exempt\nSeattle minimum wage: $20.76/hr (2026)\nProperty tax: ~$5,000-15,000/yr if you own",
+            ? "워싱턴주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 시애틀 10.4%\n식료품·처방약: 세금 면제\n시애틀 최저시급: $20.76/시 (2026년)\n재산세: 주택 소유 시 연 $5,000-15,000"
+            : "WA State has NO income tax! (major benefit)\nSales Tax: 10.4% in Seattle\nGroceries & prescription drugs: tax-exempt\nSeattle minimum wage: $20.76/hr (2026)\nProperty tax: ~$5,000-15,000/yr if you own",
           tags: ["세금", "소득세없음", "최저시급"] },
         { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
           desc: ko
@@ -26710,8 +26811,8 @@ function getCityCostData(slug: string, lang: string) {
       taxLiving: [
         { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
           desc: ko
-            ? "✅ 텍사스주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 달라스 8.25%\n식료품·처방약: 세금 면제\n텍사스 최저시급: $7.25/시 (연방 기준)\n재산세: 집값 대비 높음 (약 1.8-2.5%/년)"
-            : "✅ Texas has NO state income tax! (major benefit)\nSales Tax: 8.25% in Dallas\nGroceries & prescription drugs: tax-exempt\nTexas minimum wage: $7.25/hr (federal rate)\nProperty tax: relatively high (~1.8-2.5%/yr)",
+            ? "텍사스주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 달라스 8.25%\n식료품·처방약: 세금 면제\n텍사스 최저시급: $7.25/시 (연방 기준)\n재산세: 집값 대비 높음 (약 1.8-2.5%/년)"
+            : "Texas has NO state income tax! (major benefit)\nSales Tax: 8.25% in Dallas\nGroceries & prescription drugs: tax-exempt\nTexas minimum wage: $7.25/hr (federal rate)\nProperty tax: relatively high (~1.8-2.5%/yr)",
           tags: ["세금", "소득세없음", "텍사스"] },
         { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
           desc: ko
@@ -26809,8 +26910,8 @@ function getCityCostData(slug: string, lang: string) {
       taxLiving: [
         { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
           desc: ko
-            ? "✅ 텍사스주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 휴스턴 8.25%\n식료품·처방약: 세금 면제\n텍사스 최저시급: $7.25/시 (연방 기준)\n재산세: 집값 대비 높음 (약 2.0-2.5%/년)\n\n💡 에너지 도시 — 석유·가스 업계 급여 매우 높음"
-            : "✅ Texas has NO state income tax! (major benefit)\nSales Tax: 8.25% in Houston\nGroceries & prescription drugs: tax-exempt\nTexas minimum wage: $7.25/hr (federal rate)\nProperty tax: relatively high (~2.0-2.5%/yr)\n\n💡 Energy city — oil & gas industry salaries very high",
+            ? "텍사스주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 휴스턴 8.25%\n식료품·처방약: 세금 면제\n텍사스 최저시급: $7.25/시 (연방 기준)\n재산세: 집값 대비 높음 (약 2.0-2.5%/년)\n\n💡 에너지 도시 — 석유·가스 업계 급여 매우 높음"
+            : "Texas has NO state income tax! (major benefit)\nSales Tax: 8.25% in Houston\nGroceries & prescription drugs: tax-exempt\nTexas minimum wage: $7.25/hr (federal rate)\nProperty tax: relatively high (~2.0-2.5%/yr)\n\n💡 Energy city — oil & gas industry salaries very high",
           tags: ["소득세없음", "텍사스", "세금"] },
         { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
           desc: ko
@@ -26974,8 +27075,8 @@ function getCityCostData(slug: string, lang: string) {
       taxLiving: [
         { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
           desc: ko
-            ? "✅ 테네시주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 내쉬빌 9.25% (TN 7% + 지방 2.25%)\n⚠️ 식료품 판매세: 4% (다른 주보다 높음)\nTN 최저시급: $7.25/시 (연방 기준)\n\n💡 텍사스와 마찬가지로 소득세 0% — 미국에서 가장 세금 낮은 주 중 하나"
-            : "✅ Tennessee has NO state income tax!\nSales Tax: Nashville 9.25% (TN 7% + local 2.25%)\n⚠️ Grocery sales tax: 4% (higher than most states)\nTN minimum wage: $7.25/hr (federal rate)\n\n💡 Like Texas — 0% income tax makes TN one of the lowest-tax states in US",
+            ? "테네시주 소득세 없음! (큰 장점)\n판매세(Sales Tax): 내쉬빌 9.25% (TN 7% + 지방 2.25%)\n⚠️ 식료품 판매세: 4% (다른 주보다 높음)\nTN 최저시급: $7.25/시 (연방 기준)\n\n💡 텍사스와 마찬가지로 소득세 0% — 미국에서 가장 세금 낮은 주 중 하나"
+            : "Tennessee has NO state income tax!\nSales Tax: Nashville 9.25% (TN 7% + local 2.25%)\n⚠️ Grocery sales tax: 4% (higher than most states)\nTN minimum wage: $7.25/hr (federal rate)\n\n💡 Like Texas — 0% income tax makes TN one of the lowest-tax states in US",
           tags: ["소득세없음", "테네시", "세금"] },
         { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
           desc: ko
@@ -27040,8 +27141,8 @@ function getCityCostData(slug: string, lang: string) {
       taxLiving: [
         { emoji: "💵", name: "세금 정보", nameEn: "Tax Information",
           desc: ko
-            ? "✅ 플로리다주 소득세 없음!\n판매세: 마이애미데이드카운티 7.0%\n식료품·처방약: 세금 면제\nFL 최저시급: $12.00/시 (2024)\n\n💡 텍사스·테네시와 함께 무소득세 주 (세금 부담 낮음)\n⚠️ 허리케인 보험·홍수 보험 비용 높음"
-            : "✅ Florida has NO state income tax!\nSales Tax: Miami-Dade County 7.0%\nGroceries & prescription drugs: tax-exempt\nFL minimum wage: $12.00/hr (2024)\n\n💡 Zero income tax alongside Texas & Tennessee\n⚠️ Hurricane and flood insurance costs are high",
+            ? "플로리다주 소득세 없음!\n판매세: 마이애미데이드카운티 7.0%\n식료품·처방약: 세금 면제\nFL 최저시급: $12.00/시 (2024)\n\n💡 텍사스·테네시와 함께 무소득세 주 (세금 부담 낮음)\n⚠️ 허리케인 보험·홍수 보험 비용 높음"
+            : "Florida has NO state income tax!\nSales Tax: Miami-Dade County 7.0%\nGroceries & prescription drugs: tax-exempt\nFL minimum wage: $12.00/hr (2024)\n\n💡 Zero income tax alongside Texas & Tennessee\n⚠️ Hurricane and flood insurance costs are high",
           tags: ["소득세없음", "플로리다", "세금"] },
         { emoji: "🛒", name: "생활비 평균", nameEn: "Average Monthly Expenses",
           desc: ko
@@ -27233,8 +27334,8 @@ function getCityCostData(slug: string, lang: string) {
     rentHousing: [
       { emoji: "🏠", name: ko ? "NanuriHome — 한인 부동산 플랫폼" : "NanuriHome — Korean Real Estate Platform",
         desc: ko
-          ? "🏠 한인 이민자를 위한 부동산 정보 플랫폼\n\n✅ 한인 부동산 에이전트 연결 (한국어 상담)\n✅ 도시별 렌트비·학군·생활환경 정보\n✅ 크레딧 없이 집 구하는 방법\n✅ 렌트 계약 주의사항\n\n🔗 nanurihome.com"
-          : "🏠 Real estate platform for Korean immigrants\n\n✅ Connect with Korean-speaking agents\n✅ City rent, schools & living info\n✅ How to rent without credit history\n✅ Lease contract tips\n\n🔗 nanurihome.com",
+          ? "🏠 한인 이민자를 위한 부동산 정보 플랫폼\n\n한인 부동산 에이전트 연결 (한국어 상담)\n도시별 렌트비·학군·생활환경 정보\n크레딧 없이 집 구하는 방법\n렌트 계약 주의사항\n\n🔗 nanurihome.com"
+          : "🏠 Real estate platform for Korean immigrants\n\nConnect with Korean-speaking agents\nCity rent, schools & living info\nHow to rent without credit history\nLease contract tips\n\n🔗 nanurihome.com",
         tags: ko ? ["부동산", "에이전트", "한국어상담"] : ["Real Estate", "Agent", "Korean"] },
       { emoji: "🏡", name: ko ? "렌트 시세 — 정보 업데이트 중" : "Rent Prices — Info Being Updated",
         desc: ko
@@ -27277,8 +27378,8 @@ function getCityCostData(slug: string, lang: string) {
     rentHousing: [
       { emoji: "🏠", name: ko ? "NanuriHome — 한인 부동산 플랫폼" : "NanuriHome — Korean Real Estate Platform",
         desc: ko
-          ? "🏠 한인 이민자를 위한 부동산 정보 플랫폼\n\n✅ 한인 부동산 에이전트 연결 (한국어 상담)\n✅ 도시별 렌트비·학군·생활환경 정보\n✅ 렌트 계약 주의사항\n\n🔗 nanurihome.com"
-          : "🏠 Real estate platform for Korean immigrants\n\n✅ Connect with Korean-speaking agents\n✅ City rent, schools & living info\n✅ Lease contract tips\n\n🔗 nanurihome.com",
+          ? "🏠 한인 이민자를 위한 부동산 정보 플랫폼\n\n한인 부동산 에이전트 연결 (한국어 상담)\n도시별 렌트비·학군·생활환경 정보\n렌트 계약 주의사항\n\n🔗 nanurihome.com"
+          : "🏠 Real estate platform for Korean immigrants\n\nConnect with Korean-speaking agents\nCity rent, schools & living info\nLease contract tips\n\n🔗 nanurihome.com",
         tags: ko ? ["부동산", "에이전트", "한국어상담"] : ["Real Estate", "Agent", "Korean"] },
       { emoji: "🏡", name: ko ? "현지 부동산 포털 (현지 통화)" : "Local Real Estate Portals",
         desc: ko
@@ -27340,38 +27441,38 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
   const smartShoppingMarkets = city.slug === "seattle" ? [
     { emoji: "🏪", name: "코스트코 (Costco)", nameEn: "Costco — Best Value Warehouse",
       desc: lang === "ko"
-        ? "✅ 검증됨 | 연 멤버십 $65 → 평균 $300+ 절약\n📍 린우드: 4401 Auto Mall Dr | 📍 쇼어라인: 14905 1st Ave NE\n• 코스트코 주유소: 지역 최저가 (갤런당 10-20센트 저렴)\n• 한인 추천: 커클랜드 연어, 갈비, 대용량 쌀\n🔗 costco.com"
-        : "✅ Verified | Annual membership $65 → saves avg $300+/yr\n📍 Lynnwood: 4401 Auto Mall Dr | 📍 Shoreline: 14905 1st Ave NE\n• Costco Gas: area's cheapest gas (10-20 cents/gal cheaper)\n• Korean favorites: Kirkland salmon, short ribs, rice in bulk\n🔗 costco.com",
+        ? "검증됨 | 연 멤버십 $65 → 평균 $300+ 절약\n📍 린우드: 4401 Auto Mall Dr | 📍 쇼어라인: 14905 1st Ave NE\n• 코스트코 주유소: 지역 최저가 (갤런당 10-20센트 저렴)\n• 한인 추천: 커클랜드 연어, 갈비, 대용량 쌀\n🔗 costco.com"
+        : "Verified | Annual membership $65 → saves avg $300+/yr\n📍 Lynnwood: 4401 Auto Mall Dr | 📍 Shoreline: 14905 1st Ave NE\n• Costco Gas: area's cheapest gas (10-20 cents/gal cheaper)\n• Korean favorites: Kirkland salmon, short ribs, rice in bulk\n🔗 costco.com",
       tags: ["코스트코", "창고형", "저렴"] },
     { emoji: "🛒", name: "Grocery Outlet", nameEn: "Grocery Outlet — 30-70% Off",
       desc: lang === "ko"
-        ? "✅ 검증됨 | 정가 대비 30-70% 할인\n• '보물찾기' 스타일 — 매주 다른 재고\n• 추천: 과자·음료·유제품·육류 마크다운\n• 시애틀 지역 여러 지점 운영\n🔗 groceryoutlet.com"
-        : "✅ Verified | 30-70% off regular grocery prices\n• 'Treasure hunt' style — stock changes weekly\n• Best for: snacks, beverages, dairy, meat markdowns\n• Multiple Seattle area locations\n🔗 groceryoutlet.com",
+        ? "검증됨 | 정가 대비 30-70% 할인\n• '보물찾기' 스타일 — 매주 다른 재고\n• 추천: 과자·음료·유제품·육류 마크다운\n• 시애틀 지역 여러 지점 운영\n🔗 groceryoutlet.com"
+        : "Verified | 30-70% off regular grocery prices\n• 'Treasure hunt' style — stock changes weekly\n• Best for: snacks, beverages, dairy, meat markdowns\n• Multiple Seattle area locations\n🔗 groceryoutlet.com",
       tags: ["할인마트", "식품", "절약"] },
     { emoji: "🏬", name: "WinCo Foods", nameEn: "WinCo Foods — Lowest Prices",
       desc: lang === "ko"
-        ? "✅ 검증됨 | 식료품 최저가 보장 (직원 소유 = 좋은 서비스)\n📍 린우드: 19500 Hwy 99 | 렌튼 | 에버렛\n• 벌크 빈 코너: 필요한 만큼만 구매 가능\n• ⚠️ 신용카드 불가 (직불카드·현금만)\n🔗 wincofoods.com"
-        : "✅ Verified | Consistently LOWEST prices for staples\n📍 Lynnwood: 19500 Hwy 99 | Renton | Everett\n• Employee-owned = better service\n• Bulk bins: buy exact amounts needed\n• ⚠️ No credit cards (debit/cash only)\n🔗 wincofoods.com",
+        ? "검증됨 | 식료품 최저가 보장 (직원 소유 = 좋은 서비스)\n📍 린우드: 19500 Hwy 99 | 렌튼 | 에버렛\n• 벌크 빈 코너: 필요한 만큼만 구매 가능\n• ⚠️ 신용카드 불가 (직불카드·현금만)\n🔗 wincofoods.com"
+        : "Verified | Consistently LOWEST prices for staples\n📍 Lynnwood: 19500 Hwy 99 | Renton | Everett\n• Employee-owned = better service\n• Bulk bins: buy exact amounts needed\n• ⚠️ No credit cards (debit/cash only)\n🔗 wincofoods.com",
       tags: ["WinCo", "최저가", "벌크"] },
     { emoji: "🥬", name: "99 Ranch Market (99랜치)", nameEn: "99 Ranch Market — Pan-Asian",
       desc: lang === "ko"
-        ? "✅ 검증됨 | 중국·범아시안 슈퍼마켓\n📍 벨뷰: 14700 NE 20th St | 📍 에드먼즈: 23830 Hwy 99\n• 신선 해산물·두부·채소 H-Mart 대비 20-40% 저렴\n• 추천: 야채·허브·국수·냉동 만두\n🔗 99ranch.com"
-        : "✅ Verified | Chinese/Pan-Asian supermarket\n📍 Bellevue: 14700 NE 20th St | 📍 Edmonds: 23830 Hwy 99\n• Fresh seafood, tofu, produce 20-40% cheaper than H-Mart\n• Great for: vegetables, herbs, noodles, frozen dumplings\n🔗 99ranch.com",
+        ? "검증됨 | 중국·범아시안 슈퍼마켓\n📍 벨뷰: 14700 NE 20th St | 📍 에드먼즈: 23830 Hwy 99\n• 신선 해산물·두부·채소 H-Mart 대비 20-40% 저렴\n• 추천: 야채·허브·국수·냉동 만두\n🔗 99ranch.com"
+        : "Verified | Chinese/Pan-Asian supermarket\n📍 Bellevue: 14700 NE 20th St | 📍 Edmonds: 23830 Hwy 99\n• Fresh seafood, tofu, produce 20-40% cheaper than H-Mart\n• Great for: vegetables, herbs, noodles, frozen dumplings\n🔗 99ranch.com",
       tags: ["99랜치", "아시안마트", "저렴"] },
     { emoji: "🐟", name: "우와지마야 (Uwajimaya)", nameEn: "Uwajimaya — Japanese/Asian",
       desc: lang === "ko"
-        ? "✅ 검증됨 | 일본·아시안 슈퍼마켓 — 최고의 해산물 선택\n📍 벨뷰: 699 120th Ave NE | 📍 시애틀: 600 5th Ave S\n• 즉석 델리·일본 스낵·정통 재료\n• 일본 요리 재료·조미료 최다 구비\n🔗 uwajimaya.com"
-        : "✅ Verified | Japanese/Asian supermarket — best seafood selection\n📍 Bellevue: 699 120th Ave NE | 📍 Seattle: 600 5th Ave S\n• Hot deli, Japanese snacks, authentic ingredients\n• Best selection of Japanese cooking ingredients\n🔗 uwajimaya.com",
+        ? "검증됨 | 일본·아시안 슈퍼마켓 — 최고의 해산물 선택\n📍 벨뷰: 699 120th Ave NE | 📍 시애틀: 600 5th Ave S\n• 즉석 델리·일본 스낵·정통 재료\n• 일본 요리 재료·조미료 최다 구비\n🔗 uwajimaya.com"
+        : "Verified | Japanese/Asian supermarket — best seafood selection\n📍 Bellevue: 699 120th Ave NE | 📍 Seattle: 600 5th Ave S\n• Hot deli, Japanese snacks, authentic ingredients\n• Best selection of Japanese cooking ingredients\n🔗 uwajimaya.com",
       tags: ["우와지마야", "일본마트", "해산물"] },
     { emoji: "🌿", name: "Trader Joe's", nameEn: "Trader Joe's — Quality at Low Price",
       desc: lang === "ko"
-        ? "✅ 검증됨 | 고품질 자체 브랜드 제품 저렴하게\n• 유명 제품: $3 와인, 저렴한 견과류·말린과일, 냉동밀\n• 유기농·건강식품 저렴 | 시애틀 여러 지점\n• 한인에게 덜 알려진 알뜰 마트\n🔗 traderjoes.com"
-        : "✅ Verified | Quality private-label products at lower prices\n• Famous for: $3 wine, cheap nuts/dried fruit, frozen meals\n• Organic & health foods at low prices | Multiple Seattle locations\n• Great value overlooked by many Koreans\n🔗 traderjoes.com",
+        ? "검증됨 | 고품질 자체 브랜드 제품 저렴하게\n• 유명 제품: $3 와인, 저렴한 견과류·말린과일, 냉동밀\n• 유기농·건강식품 저렴 | 시애틀 여러 지점\n• 한인에게 덜 알려진 알뜰 마트\n🔗 traderjoes.com"
+        : "Verified | Quality private-label products at lower prices\n• Famous for: $3 wine, cheap nuts/dried fruit, frozen meals\n• Organic & health foods at low prices | Multiple Seattle locations\n• Great value overlooked by many Koreans\n🔗 traderjoes.com",
       tags: ["TJ", "유기농", "가성비"] },
     { emoji: "♻️", name: "Goodwill / 중고마켓", nameEn: "Goodwill & Second-Hand",
       desc: lang === "ko"
-        ? "✅ 검증됨 | 중고의류 $3-15, 가구·가전\n• 벨뷰/커클랜드 굿윌: 명품 아이템 자주 등장\n• Facebook Marketplace & Buy Nothing 그룹: 무료 아이템 다수\n• 린우드·벨뷰·시애틀 여러 지점\n🔗 goodwillwa.org"
-        : "✅ Verified | Clothing $3-15, furniture, electronics\n• Bellevue/Kirkland locations often have designer items\n• Facebook Marketplace & Buy Nothing groups: many free items\n• Lynnwood, Bellevue, Seattle locations\n🔗 goodwillwa.org",
+        ? "검증됨 | 중고의류 $3-15, 가구·가전\n• 벨뷰/커클랜드 굿윌: 명품 아이템 자주 등장\n• Facebook Marketplace & Buy Nothing 그룹: 무료 아이템 다수\n• 린우드·벨뷰·시애틀 여러 지점\n🔗 goodwillwa.org"
+        : "Verified | Clothing $3-15, furniture, electronics\n• Bellevue/Kirkland locations often have designer items\n• Facebook Marketplace & Buy Nothing groups: many free items\n• Lynnwood, Bellevue, Seattle locations\n🔗 goodwillwa.org",
       tags: ["중고", "굿윌", "무료"] },
   ] : cityShoppingData;
 
@@ -27491,7 +27592,7 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                 ].map((link, i) => (
                   <a key={i} href={link.href} target="_blank" rel="noopener noreferrer"
                     style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(52,211,153,0.15)" }}>
-                    <span style={{ fontSize: 16 }}>{link.emoji}</span>
+                    <EmojiIcon emoji={link.emoji} size={14} />
                     <div style={{ flex: 1 }}>
                       <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>{link.label}</div>
                       <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{link.sub}</div>
@@ -27525,7 +27626,7 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                 ].map((link, i) => (
                   <a key={i} href={link.href} target="_blank" rel="noopener noreferrer"
                     style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(52,211,153,0.15)" }}>
-                    <span style={{ fontSize: 16 }}>{link.emoji}</span>
+                    <EmojiIcon emoji={link.emoji} size={14} />
                     <div style={{ flex: 1 }}>
                       <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 12, color: "#ECFDF5" }}>{link.label}</div>
                       <div style={{ fontSize: 10, color: "rgba(236,253,245,0.5)", marginTop: 1 }}>{link.sub}</div>
@@ -27556,20 +27657,20 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, lineHeight: 1.7, color: "rgba(236,253,245,0.7)" }}>
                 {lang === "ko"
                   ? isSeattle
-                    ? "✅ WA주는 소득세 없음! 하지만 연방 세금(IRS)은 신고 필수. 한인 이민자들이 모르는 세금 혜택과 무료 신고 방법을 알려드립니다."
+                    ? "WA주는 소득세 없음! 하지만 연방 세금(IRS)은 신고 필수. 한인 이민자들이 모르는 세금 혜택과 무료 신고 방법을 알려드립니다."
                     : city.slug === "dallas" || city.slug === "houston" || city.slug === "nashville" || city.slug === "miami"
-                      ? `✅ ${city.nameKo}이 속한 주는 소득세 없음! 하지만 연방 세금(IRS)은 신고 필수. 한인 이민자들이 모르는 세금 혜택과 무료 신고 방법을 알려드립니다.`
+                      ? `${city.nameKo}이 속한 주는 소득세 없음! 하지만 연방 세금(IRS)은 신고 필수. 한인 이민자들이 모르는 세금 혜택과 무료 신고 방법을 알려드립니다.`
                       : `연방 세금(IRS)은 모든 미국 거주자 신고 필수입니다. ${city.nameKo}의 주 소득세와 연방세를 함께 신고해야 합니다. 한인 이민자 전용 세금 혜택을 꼭 확인하세요.`
                   : isSeattle
-                    ? "✅ WA has no state income tax! But federal taxes (IRS) are required. Here's what Korean immigrants often don't know about tax benefits and free filing options."
+                    ? "WA has no state income tax! But federal taxes (IRS) are required. Here's what Korean immigrants often don't know about tax benefits and free filing options."
                     : city.slug === "dallas" || city.slug === "houston" || city.slug === "nashville" || city.slug === "miami"
-                      ? `✅ ${city.nameEn}'s state has no income tax! But federal taxes (IRS) are required. Here's what Korean immigrants often don't know about tax benefits and free filing options.`
+                      ? `${city.nameEn}'s state has no income tax! But federal taxes (IRS) are required. Here's what Korean immigrants often don't know about tax benefits and free filing options.`
                       : `Federal taxes (IRS) are required for all US residents. In ${city.nameEn}, you'll file both state and federal taxes. Make sure to claim all Korean immigrant tax benefits below.`}
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {[
-                { emoji: "🆓", name: lang === "ko" ? "VITA 무료 세금신고 ✅ 검증됨" : "VITA Free Tax Filing ✅ Verified",
+                { emoji: "🆓", name: lang === "ko" ? "VITA 무료 세금신고 검증됨" : "VITA Free Tax Filing Verified",
                   desc: lang === "ko"
                     ? `소득 $67,000 이하 무료 세금 신고! IRS 공인 자원봉사자 지원.\n📅 매년 1월 말 ~ 4월 15일\n🔗 vitataxhelp.org 또는 IRS.gov/VITA\n\n${city.nameKo} 지역 VITA 위치:\n• 가까운 공공도서관 지점 확인\n• 현지 한인 커뮤니티 센터 확인\n📞 211 전화 → 가까운 VITA 위치 안내`
                     : `FREE tax prep for income under $67,000! IRS-certified volunteers.\n📅 Late January – April 15 each year\n🔗 vitataxhelp.org or IRS.gov/VITA\n\nVITA locations in ${city.nameEn}:\n• Check local public library branches\n• Check Korean community centers nearby\n📞 Call 211 → nearest VITA location`,
@@ -27586,8 +27687,8 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                   tags: lang === "ko" ? ["FBAR", "FATCA", "해외계좌"] : ["FBAR", "FATCA", "Foreign Assets"] },
                 { emoji: "💰", name: lang === "ko" ? "이민자 세금 혜택 — 모르면 손해" : "Tax Credits for Immigrants — Don't Miss Out",
                   desc: lang === "ko"
-                    ? "✅ 많은 한인 이민자가 놓치는 세금 환급:\n\n• Earned Income Tax Credit (EITC): 저소득 근로자 최대 $7,430 환급\n• Child Tax Credit: 자녀 1인당 최대 $2,000\n• Child & Dependent Care Credit: 보육비 최대 35% 환급\n• American Opportunity Credit: 대학 학비 최대 $2,500 환급\n• Education credits: 등록금 세금 공제\n\n💡 VITA에서 무료로 이 모든 혜택 신청 가능!"
-                    : "✅ Tax refunds many Korean immigrants miss:\n\n• Earned Income Tax Credit (EITC): up to $7,430 refund for low-income workers\n• Child Tax Credit: up to $2,000 per child\n• Child & Dependent Care Credit: up to 35% of childcare costs\n• American Opportunity Credit: up to $2,500 for college tuition\n• Education credits: tuition deductions\n\n💡 All of these can be claimed FREE at VITA!",
+                    ? "많은 한인 이민자가 놓치는 세금 환급:\n\n• Earned Income Tax Credit (EITC): 저소득 근로자 최대 $7,430 환급\n• Child Tax Credit: 자녀 1인당 최대 $2,000\n• Child & Dependent Care Credit: 보육비 최대 35% 환급\n• American Opportunity Credit: 대학 학비 최대 $2,500 환급\n• Education credits: 등록금 세금 공제\n\n💡 VITA에서 무료로 이 모든 혜택 신청 가능!"
+                    : "Tax refunds many Korean immigrants miss:\n\n• Earned Income Tax Credit (EITC): up to $7,430 refund for low-income workers\n• Child Tax Credit: up to $2,000 per child\n• Child & Dependent Care Credit: up to 35% of childcare costs\n• American Opportunity Credit: up to $2,500 for college tuition\n• Education credits: tuition deductions\n\n💡 All of these can be claimed FREE at VITA!",
                   tags: lang === "ko" ? ["세금혜택", "환급", "EITC"] : ["Tax Credits", "Refund", "EITC"] },
                 { emoji: "👨‍💼", name: lang === "ko" ? `${city.nameKo} 한인 CPA·세무사 찾기` : `Korean CPAs & Tax Accountants in ${city.nameEn}`,
                   desc: lang === "ko"
@@ -27596,13 +27697,13 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                   tags: lang === "ko" ? ["한인CPA", "세무사", "전문가"] : ["Korean CPA", "Tax Pro", "Accountant"] },
                 { emoji: "📅", name: lang === "ko" ? "세금 신고 캘린더" : "Tax Filing Calendar",
                   desc: lang === "ko"
-                    ? `✅ 연간 세금 일정:\n\n• 1월 초: W-2·1099 양식 수령 시작\n• 1월 말~4월: VITA 무료 세금신고 운영\n• 4월 15일: 연방 세금신고 마감\n• 4월 15일: FBAR 마감 (FincEN 114)\n• 4월 15일 연장 신청 가능: Form 4868 (10월 15일까지 연장)\n\n• 분기별 예납세 (자영업): 4/15, 6/15, 9/15, 1/15\n\n${(isSeattle || city.slug === "dallas" || city.slug === "houston" || city.slug === "nashville" || city.slug === "miami") ? "💡 이 주는 소득세 없으므로 주세 신고 불필요!" : `💡 ${city.nameKo} 주 소득세 신고도 4월 15일 마감!`}`
-                    : `✅ Annual tax calendar:\n\n• Early January: W-2 & 1099 forms arrive\n• Late Jan–April: VITA free tax filing open\n• April 15: Federal tax filing deadline\n• April 15: FBAR deadline (FinCEN 114)\n• Extension available: Form 4868 (extends to Oct 15)\n\n• Quarterly estimated taxes (self-employed): 4/15, 6/15, 9/15, 1/15\n\n${(isSeattle || city.slug === "dallas" || city.slug === "houston" || city.slug === "nashville" || city.slug === "miami") ? "💡 No state income tax return needed in this state!" : `💡 ${city.nameEn} state income tax also due April 15!`}`,
+                    ? `연간 세금 일정:\n\n• 1월 초: W-2·1099 양식 수령 시작\n• 1월 말~4월: VITA 무료 세금신고 운영\n• 4월 15일: 연방 세금신고 마감\n• 4월 15일: FBAR 마감 (FincEN 114)\n• 4월 15일 연장 신청 가능: Form 4868 (10월 15일까지 연장)\n\n• 분기별 예납세 (자영업): 4/15, 6/15, 9/15, 1/15\n\n${(isSeattle || city.slug === "dallas" || city.slug === "houston" || city.slug === "nashville" || city.slug === "miami") ? "💡 이 주는 소득세 없으므로 주세 신고 불필요!" : `💡 ${city.nameKo} 주 소득세 신고도 4월 15일 마감!`}`
+                    : `Annual tax calendar:\n\n• Early January: W-2 & 1099 forms arrive\n• Late Jan–April: VITA free tax filing open\n• April 15: Federal tax filing deadline\n• April 15: FBAR deadline (FinCEN 114)\n• Extension available: Form 4868 (extends to Oct 15)\n\n• Quarterly estimated taxes (self-employed): 4/15, 6/15, 9/15, 1/15\n\n${(isSeattle || city.slug === "dallas" || city.slug === "houston" || city.slug === "nashville" || city.slug === "miami") ? "💡 No state income tax return needed in this state!" : `💡 ${city.nameEn} state income tax also due April 15!`}`,
                   tags: lang === "ko" ? ["세금일정", "4월15일", "연장신청"] : ["Tax Calendar", "April 15", "Extension"] },
               ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             </div>
             <div style={{ background: "rgba(249,115,22,0.07)", border: "1px solid rgba(249,115,22,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 12 }}>
-              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#FB923C", marginBottom: 4 }}>💡 {lang === "ko" ? "세금신고 핵심 원칙" : "Key Tax Filing Principles"}</div>
+              <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 11, color: "#FB923C", marginBottom: 4 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? "세금신고 핵심 원칙" : "Key Tax Filing Principles"}</div>
               <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 11, lineHeight: 1.8, color: "rgba(236,253,245,0.6)" }}>
                 {lang === "ko"
                   ? "1. 소득이 있으면 신고 — 금액 작아도 의무\n2. VITA 무료 신고 먼저 확인 ($67K 이하)\n3. 해외 계좌 $10K+ → FBAR 별도 신고 필수\n4. 연장 신청은 납부 연장 아님 — 세금은 4/15까지 납부\n5. 복잡한 상황 → 반드시 한인 CPA 상담"
@@ -28298,14 +28399,14 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
 
   const WarnBox = ({ text }: { text: string }) => (
     <div style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.35)", borderRadius: 10, padding: "10px 12px", marginTop: 8, display: "flex", gap: 8, alignItems: "flex-start" }}>
-      <span style={{ fontSize: 16, flexShrink: 0 }}>⚠️</span>
+      <span style={{ flexShrink: 0 }}><EmojiIcon emoji={"⚠"} size={14} /></span>
       <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.85)", lineHeight: 1.6 }}>{text}</div>
     </div>
   );
 
   const TipBox = ({ text }: { text: string }) => (
     <div style={{ background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.25)", borderRadius: 10, padding: "10px 12px", marginTop: 8, display: "flex", gap: 8, alignItems: "flex-start" }}>
-      <span style={{ fontSize: 16, flexShrink: 0 }}>💡</span>
+      <span style={{ flexShrink: 0 }}><Lightbulb size={14} strokeWidth={2} /></span>
       <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.85)", lineHeight: 1.6 }}>{text}</div>
     </div>
   );
@@ -28412,7 +28513,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
   const renderPhase1 = () => (
     <div>
       <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>✈️ {ko ? "비행기 안에서" : "On the Plane"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"✈"} size={13} /> {ko ? "비행기 안에서" : "On the Plane"}</div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
           {ko ? "착석 후 확인할 것들. 기내에서 미리 준비하면 공항에서 30분이 아낍니다." : "Things to check after boarding. Preparing in-flight saves 30 minutes at the airport."}
         </div>
@@ -28451,7 +28552,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
   const renderPhase2 = () => isKR ? (
     <div>
       <div style={{ background: "rgba(239,68,68,0.1)", borderRadius: 14, padding: "14px 16px", marginBottom: 14, border: "1px solid rgba(239,68,68,0.3)" }}>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: "#EF4444", marginBottom: 4 }}>🔄 {ko ? "경유 / 국내선 연결 — 인천 도착 후" : "Transit / Domestic Connection — After ICN Arrival"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: "#EF4444", marginBottom: 4 }}><EmojiIcon emoji={"🔄"} size={13} /> {ko ? "경유 / 국내선 연결 — 인천 도착 후" : "Transit / Domestic Connection — After ICN Arrival"}</div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.7)", lineHeight: 1.6 }}>
           {ko ? "인천국제공항이 한국의 관문. 부산·대구·광주 등 지방 도시는 국내선 연결이 필요합니다." : "ICN is Korea's main gateway. For Busan, Daegu, Gwangju etc., you may need a domestic connection."}
         </div>
@@ -28476,7 +28577,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
   ) : (
     <div>
       <div style={{ background: "rgba(239,68,68,0.1)", borderRadius: 14, padding: "14px 16px", marginBottom: 14, border: "1px solid rgba(239,68,68,0.3)" }}>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: "#EF4444", marginBottom: 4 }}>🔄 {ko ? "경유 — 이게 가장 당황스럽습니다" : "Transit — This Is the Most Confusing Part"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: "#EF4444", marginBottom: 4 }}><EmojiIcon emoji={"🔄"} size={13} /> {ko ? "경유 — 이게 가장 당황스럽습니다" : "Transit — This Is the Most Confusing Part"}</div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.7)", lineHeight: 1.6 }}>
           {ko ? "미국에서 경유하면 경유 공항이 첫 입국지입니다. 입국 심사 + 짐 재수속을 경유지에서 해야 합니다." : "When transiting through the US, your transit airport is your point of entry. You clear immigration AND re-check luggage there."}
         </div>
@@ -28506,7 +28607,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
   const renderPhase3 = () => isKR ? (
     <div>
       <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🛂 {ko ? "한국 입국 심사 — 단계별 안내" : "Korean Immigration — Step by Step"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"🛂"} size={13} /> {ko ? "한국 입국 심사 — 단계별 안내" : "Korean Immigration — Step by Step"}</div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
           {ko ? "인천·김해·제주 공항 기준. 미리 알면 긴장되지 않습니다." : "Based on ICN, PUS, CJU airports. Knowing what to expect makes it easy."}
         </div>
@@ -28538,7 +28639,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
   ) : (
     <div>
       <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🛂 {ko ? "입국 심사 — Q&A 시뮬레이션" : "Immigration — Q&A Simulation"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"🛂"} size={13} /> {ko ? "입국 심사 — Q&A 시뮬레이션" : "Immigration — Q&A Simulation"}</div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
           {ko ? "미리 연습하면 떨리지 않습니다. 심사관은 대부분 짧고 간단한 대답을 원합니다." : "Practice ahead and you won't be nervous. Officers usually want short, simple answers."}
         </div>
@@ -28571,7 +28672,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
   const renderPhase4 = () => isKR ? (
     <div>
       <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🧳 {ko ? "짐 찾기 + 한국 세관" : "Baggage Claim + Korean Customs"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"🧳"} size={13} /> {ko ? "짐 찾기 + 한국 세관" : "Baggage Claim + Korean Customs"}</div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
           {ko ? "입국 심사 통과 후 수하물 수취대(Baggage Claim)로 이동합니다." : "After clearing immigration, head to Baggage Claim."}
         </div>
@@ -28598,7 +28699,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
   ) : (
     <div>
       <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🧳 {ko ? "짐 찾기 + 세관" : "Baggage Claim + Customs"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"🧳"} size={13} /> {ko ? "짐 찾기 + 세관" : "Baggage Claim + Customs"}</div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
           {ko ? "입국 심사 통과 후 수하물 수취대(Baggage Claim)로 이동합니다." : "After clearing immigration, head to Baggage Claim."}
         </div>
@@ -28627,7 +28728,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
   const renderPhase5 = () => isKR ? (
     <div>
       <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🚪 {ko ? "공항 출구 — 드디어 한국 땅!" : "Airport Exit — You Made It to Korea!"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"🚪"} size={13} /> {ko ? "공항 출구 — 드디어 한국 땅!" : "Airport Exit — You Made It to Korea!"}</div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
           {ko ? "세관 통과 후 공항 밖으로 나옵니다. 한국에서의 새 삶이 시작됩니다." : "After customs, you exit the airport. Your new life in Korea begins here."}
         </div>
@@ -28653,7 +28754,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
   ) : (
     <div>
       <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
-        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}>🚪 {ko ? "공항 출구 — 드디어 미국 땅!" : "Airport Exit — You Made It to the USA!"}</div>
+        <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 14, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"🚪"} size={13} /> {ko ? "공항 출구 — 드디어 미국 땅!" : "Airport Exit — You Made It to the USA!"}</div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.6)", lineHeight: 1.6 }}>
           {ko ? "세관 통과 후 공항 밖으로 나옵니다. 여기서부터가 진짜 시작입니다." : "After customs, you exit the airport. This is where your new journey really begins."}
         </div>
@@ -28912,7 +29013,7 @@ function SupportScreen({ onHome }: { onHome?: () => void }) {
                 boxShadow: "0 1px 4px rgba(16,185,129,0.08)" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    {org.emoji && <span style={{ fontSize: 20 }}>{org.emoji}</span>}
+                    {org.emoji && <EmojiIcon emoji={org.emoji} size={18} />}
                     <div>
                       <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 15, color: "#1E293B" }}>
                         {ko ? org.name : (org.name_en || org.name)}
@@ -29086,7 +29187,7 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
           </div>
         ) : filtered.length === 0 ? (
           <div style={{ textAlign: "center", padding: "40px 0" }}>
-            <div style={{ fontSize: 32, marginBottom: 12 }}>🔍</div>
+            <div style={{ marginBottom: 12 }}><Search size={28} strokeWidth={2} /></div>
             <div style={{ color: "#64748B", fontSize: 14, lineHeight: 1.8 }}>
               {ko ? `${city.nameKo}에 등재된 업소가 없습니다.\n업소 등재를 신청해 보세요!`
                    : `No listings yet for ${city.nameEn}.\nBe the first to register!`}
@@ -29204,7 +29305,7 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
         {/* 등재 CTA */}
         <div style={{ marginTop: 24, background: "linear-gradient(135deg,#EEF2FF,#F0FDF4)",
           border: "1px solid #C7D2FE", borderRadius: 16, padding: "20px 18px", textAlign: "center" }}>
-          <div style={{ fontSize: 20, marginBottom: 8 }}>🏪</div>
+          <div style={{ marginBottom: 8 }}><Store size={17} strokeWidth={2} /></div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14,
             color: "#3730A3", marginBottom: 6 }}>
             {ko ? "업소가 없나요?" : "Not listed yet?"}
@@ -29232,7 +29333,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
     <div style={{ paddingBottom: 96, background: "#F2F2F7", minHeight: "100vh" }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <div style={{ padding: "28px 20px 0", textAlign: "center" }}>
-        <div style={{ fontSize: 52, marginBottom: 12 }}>🛒</div>
+        <div style={{ marginBottom: 12 }}><ShoppingCart size={45} strokeWidth={2} /></div>
         <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 22, color: "#1B2A4A", marginBottom: 6 }}>
           {ko ? "헤브론 스토어" : "Hebron Store"}
         </div>
@@ -29556,7 +29657,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
             </button>
             <button onClick={handleClose}
               style={{ border:"none", background:"rgba(255,255,255,0.1)", borderRadius:"50%",
-                width:32, height:32, fontSize:16, cursor:"pointer", color:"#ECFDF5" }}>✕</button>
+                width:32, height:32, fontSize:16, cursor:"pointer", color:"#ECFDF5" }}><EmojiIcon emoji={"✕"} size={18} /></button>
           </div>
         </div>
 
@@ -29713,7 +29814,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
           {/* ── 안내 ── */}
           <div style={{ marginTop:12, padding:"10px 12px", background:"rgba(255,255,255,0.04)",
             borderRadius:10, display:"flex", gap:8, alignItems:"flex-start" }}>
-            <span style={{ fontSize:13, flexShrink:0, marginTop:1 }}>🎧</span>
+            <span style={{ flexShrink:0, marginTop:1 }}><EmojiIcon emoji={"🎧"} size={11} /></span>
             <div style={{ fontFamily:"Manrope,sans-serif", fontSize:10, color:"rgba(236,253,245,0.45)", lineHeight:1.6 }}>
               {ko
                 ? "이어폰 연결 시 번역 음성이 자동으로 이어폰으로 재생됩니다. '자동 ON' 상태에서 번역 완료 즉시 음성이 출력됩니다."
@@ -29756,7 +29857,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
             color:"rgba(236,253,245,0.7)",
             transition:"background 0.15s",
           }}>
-          <span style={{ fontSize:16 }}>🏠</span>
+          <Home size={14} strokeWidth={2} />
           {ko ? "닫고 홈으로" : "Close & Go Home"}
         </button>
 
@@ -29797,7 +29898,7 @@ function NeedsBoardCard({ citySlug, lang }: { citySlug: string; lang: string }) 
 
   if (sent) return (
     <div style={{ background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", padding: "20px 16px", marginBottom: 12, textAlign: "center" }}>
-      <div style={{ fontSize: 28, marginBottom: 8 }}>✅</div>
+      <div style={{ marginBottom: 8 }}><CircleCheck size={24} strokeWidth={2} /></div>
       <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 14, color: "#1B2A4A", marginBottom: 4 }}>
         {ko ? "필요가 전달되었습니다" : "Your need has been sent"}
       </div>
@@ -29920,7 +30021,7 @@ function ServiceInterestCard({ icon, color, category, nameKo, nameEn, descKo, de
 
       {sent ? (
         <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid rgba(0,0,0,0.06)", textAlign: "center" }}>
-          <div style={{ fontSize: 22, marginBottom: 4 }}>✅</div>
+          <div style={{ marginBottom: 4 }}><CircleCheck size={19} strokeWidth={2} /></div>
           <div style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 13, color: "#1B2A4A" }}>
             {ko ? "관심 등록 완료! 준비되면 연락드립니다" : "Registered! We'll reach out when ready"}
           </div>
@@ -30258,7 +30359,7 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
           <button onClick={onClose} style={{ border:"none",
             background:"rgba(120,120,128,0.12)", borderRadius:"50%",
             width:30, height:30, fontSize:14, cursor:"pointer", color:"#8E8E93",
-            display:"flex", alignItems:"center", justifyContent:"center" }}>✕</button>
+            display:"flex", alignItems:"center", justifyContent:"center" }}><EmojiIcon emoji={"✕"} size={18} /></button>
         </div>
 
         {/* ── 공유 미리보기 카드 ── */}
@@ -30269,7 +30370,7 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
             {bodyText}
           </div>
           <div style={{ marginTop: 8, paddingTop: 8, borderTop: "1px solid #E2E8F0", display: "flex", alignItems: "center", gap: 6 }}>
-            <div style={{ width: 20, height: 20, borderRadius: 5, background: "#1B2A4A", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11 }}>🧭</div>
+            <div style={{ width: 20, height: 20, borderRadius: 5, background: "#1B2A4A", display: "flex", alignItems: "center", justifyContent: "center" }}><EmojiIcon emoji={"🧭"} size={10} /></div>
             <div style={{ fontSize: 11, fontWeight: 700, color: "#1B2A4A" }}>HebronGuide</div>
             <div style={{ fontSize: 11, color: "#94A3B8" }}>hebronguide.com/seattle</div>
           </div>
@@ -30323,7 +30424,7 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
         {/* ── 폰 기본 공유 큰 버튼 (카카오·문자·이메일 등 전부) ── */}
         <div style={{ padding: "8px 16px 6px" }}>
           <button onClick={nativeShare} style={{ width: "100%", border: "none", borderRadius: 14, background: "linear-gradient(135deg,#F2994A,#F59E0B)", padding: "13px 16px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-            <span style={{ fontSize: 18 }}>📤</span>
+            <EmojiIcon emoji={"📤"} size={16} />
             <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff" }}>
               {lang === "ko" ? "폰 공유 시트 열기 (카카오·문자·이메일…)" : "Open share sheet (KakaoTalk, SMS, Mail…)"}
             </span>
@@ -30526,9 +30627,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
               textDecoration: "none",
             }}>
             {/* 아이콘 */}
-            <div style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(201,162,39,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 18 }}>
-              🤝
-            </div>
+            <div style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(201, 162, 39, 0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Handshake size={15} strokeWidth={2} /></div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 11.5, fontWeight: 800, color: "#92400E", letterSpacing: "0.1px", marginBottom: 2, fontFamily: "Manrope, sans-serif" }}>
                 {lang === "ko" ? "파트너 신청 (비즈니스·교회·광고)" : "Partner Application (Business·Church·Ad)"}
@@ -30705,7 +30804,7 @@ function AppInstallBanner() {
         display: "flex", alignItems: "center", gap: 10,
         padding: "8px 14px", zIndex: 200,
       }}>
-        <span style={{ fontSize: 20 }}>📲</span>
+        <EmojiIcon emoji={"📲"} size={18} />
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 12, fontWeight: 700, color: "#F2994A", fontFamily: "Manrope,sans-serif" }}>
             {ko ? "앱으로 설치하면 더 편합니다!" : "Install as an app for quick access!"}
@@ -30739,7 +30838,7 @@ function AppInstallBanner() {
             border: "1px solid rgba(242,153,74,0.3)",
           }}>
             <div style={{ textAlign: "center", marginBottom: 20 }}>
-              <div style={{ fontSize: 28 }}>📲</div>
+              <EmojiIcon emoji={"📲"} size={25} />
               <div style={{ fontSize: 17, fontWeight: 800, color: "#fff", fontFamily: "Manrope,sans-serif", marginTop: 6 }}>
                 {ko ? "HebronGuide 앱 설치" : "Install HebronGuide App"}
               </div>
@@ -30750,7 +30849,7 @@ function AppInstallBanner() {
 
             {/* iPhone/iPad */}
             <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#F2994A", marginBottom: 8, fontFamily: "Manrope,sans-serif" }}>🍎 iPhone / iPad</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#F2994A", marginBottom: 8, fontFamily: "Manrope,sans-serif" }}><EmojiIcon emoji={"🍎"} size={13} /> iPhone / iPad</div>
               <div style={{ fontSize: 12, color: "rgba(255,255,255,0.8)", lineHeight: 1.8, fontFamily: "Manrope,sans-serif" }}>
                 1. Safari로 hebronguide.com 접속<br/>
                 2. 하단 <strong style={{color:"#F2994A"}}>공유 버튼(□↑)</strong> 탭<br/>
@@ -30760,7 +30859,7 @@ function AppInstallBanner() {
 
             {/* Android */}
             <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#F2994A", marginBottom: 8, fontFamily: "Manrope,sans-serif" }}>🤖 Android</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#F2994A", marginBottom: 8, fontFamily: "Manrope,sans-serif" }}><EmojiIcon emoji={"🤖"} size={13} /> Android</div>
               <div style={{ fontSize: 12, color: "rgba(255,255,255,0.8)", lineHeight: 1.8, fontFamily: "Manrope,sans-serif" }}>
                 1. Chrome으로 hebronguide.com 접속<br/>
                 2. 우측 상단 <strong style={{color:"#F2994A"}}>메뉴(⋮)</strong> 탭<br/>
@@ -30770,7 +30869,7 @@ function AppInstallBanner() {
 
             {/* PC */}
             <div style={{ background: "rgba(255,255,255,0.06)", borderRadius: 14, padding: "14px 16px", marginBottom: 20 }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#F2994A", marginBottom: 8, fontFamily: "Manrope,sans-serif" }}>💻 컴퓨터 (Chrome / Edge)</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#F2994A", marginBottom: 8, fontFamily: "Manrope,sans-serif" }}><EmojiIcon emoji={"💻"} size={13} /> 컴퓨터 (Chrome / Edge)</div>
               <div style={{ fontSize: 12, color: "rgba(255,255,255,0.8)", lineHeight: 1.8, fontFamily: "Manrope,sans-serif" }}>
                 1. 주소창 오른쪽 <strong style={{color:"#F2994A"}}>⊕ 설치 아이콘</strong> 클릭<br/>
                 2. <strong style={{color:"#F2994A"}}>"설치"</strong> 클릭 → 바탕화면에 앱 생성
@@ -31374,9 +31473,7 @@ export function HebronGuide() {
                   <button onClick={() => setSearchQuery("")}
                     style={{ border:"none", background:"rgba(120,120,128,0.18)", borderRadius:"50%",
                       width:22, height:22, fontSize:12, cursor:"pointer", color:"#8E8E93",
-                      display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-                    ✕
-                  </button>
+                      display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><EmojiIcon emoji={"✕"} size={18} /></button>
                 ) : (
                   <button onClick={handleSearchToggle}
                     style={{ border:"none", background:"none", fontSize:15, cursor:"pointer",
@@ -31437,7 +31534,7 @@ export function HebronGuide() {
                         </div>
                         <div style={{ fontSize: 11, color: "#64748B", marginTop: 2 }}>
                           {isLive
-                            ? (lang === "ko" ? "✅ 라이브 — 지금 바로 볼 수 있어요" : "✅ Live — available now")
+                            ? (lang === "ko" ? "라이브 — 지금 바로 볼 수 있어요" : "Live — available now")
                             : (lang === "ko" ? "🔜 준비 중 — 곧 오픈합니다" : "🔜 Coming soon")}
                         </div>
                       </div>
@@ -31522,7 +31619,7 @@ export function HebronGuide() {
                                   padding: "5px 10px", background: "#FFF7ED",
                                   border: "1px solid #FED7AA", borderRadius: 8,
                                   textDecoration: "none", fontSize: 11,
-                                  color: "#C2410C", fontWeight: 700 }}>✉️ 이메일</a>
+                                  color: "#C2410C", fontWeight: 700 }}><EmojiIcon emoji={"✉"} size={13} /> 이메일</a>
                             )}
                           </div>
                         </div>
@@ -31582,7 +31679,7 @@ export function HebronGuide() {
                       padding:"7px", borderRadius:8, textDecoration:"none",
                       background:"rgba(0,0,0,0.03)", border:"1px solid rgba(0,0,0,0.08)",
                     }}>
-                      <span style={{ fontSize:12 }}>🔍</span>
+                      <Search size={10} strokeWidth={2} />
                       <span style={{ fontFamily:"-apple-system,sans-serif", fontWeight:500,
                         fontSize:11, color:"#8E8E93" }}>Google</span>
                     </a>
@@ -31591,7 +31688,7 @@ export function HebronGuide() {
                       padding:"7px", borderRadius:8, textDecoration:"none",
                       background:"rgba(0,0,0,0.03)", border:"1px solid rgba(0,0,0,0.08)",
                     }}>
-                      <span style={{ fontSize:12 }}>✦</span>
+                      <Sparkles size={10} strokeWidth={2} />
                       <span style={{ fontFamily:"-apple-system,sans-serif", fontWeight:500,
                         fontSize:11, color:"#8E8E93" }}>AI Search</span>
                     </a>
