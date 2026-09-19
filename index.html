@@ -101,32 +101,65 @@
   body.hg-menu-open{overflow:hidden;}
 
   /* ━━━ HERO ━━━ */
-  /* 히어로 — 새벽빛(환대의 아침). 어두운 밤에서 밝은 아침으로 */
+  /* 밤에서 새벽으로. 글이 "첫날 밤" 이니 화면도 밤에서 시작한다.
+     위는 깊은 밤, 아래로 내려오며 새벽빛. 따뜻한 것은 문에서 나오는 빛 하나뿐.
+     (예전에는 처음부터 아침이라 글과 그림이 어긋나 있었다.) */
   .hero{position:relative;text-align:center;padding:80px 24px 66px;overflow:hidden;
-    background:linear-gradient(168deg,#fdf3dc 0%,#fbe3ad 34%,#f7cf86 66%,#f2b866 100%);
-    color:#3a2708;}
-  .hero .nav-logo{color:#241704;}
-  .hero .hero-headline{color:#241704;}
-  .hero .hero-headline .accent{color:#9a6b12;}
-  .hero .hero-pre{color:rgba(58,39,8,.62);}
-  .hero .hero-sub-big{color:rgba(58,39,8,.9);}
-  /* 서명 — 목사님 요청으로 파란색. 밝은 호박색 배경 위라 진한 파랑이라야 읽힌다 */
-  .hero .hero-sub-big strong.hg-sign{color:#1565D8 !important;}
-  .hero .hero-sub-big strong{color:#241704 !important;}
-  .hero .hero-eyebrow{background:rgba(255,255,255,.6);border-color:rgba(154,107,18,.35);color:#8a5f10;}
-  .hero .hero-intro{color:rgba(58,39,8,.75);}
-  .hero .hero-intro b{color:#241704;}
-  .hero .hero-intro b.free{color:#fff;}
-  .hero .hero-intro b.free.noad{color:#0f7a5a;border-color:#0f7a5a;}
-  .hero .hero-trust em{color:#8a5f10;}
-  .hero .btn-outline{border-color:rgba(58,39,8,.28);color:#3a2708;background:rgba(255,255,255,.42);}
-  .hero .btn-outline:hover{background:#fff;border-color:#9a6b12;color:#241704;}
-  .hero .hero-stats{background:rgba(122,79,10,.16);border-color:rgba(122,79,10,.2);}
-  .hero .hero-stats .stat{background:rgba(255,255,255,.62);border-color:rgba(122,79,10,.14);}
-  .hero .hero-stats .stat-n{color:#9a6b12;}
-  .hero .hero-stats .stat-l{color:rgba(58,39,8,.66);}
-  .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(201,162,39,.12) 0%,transparent 65%);pointer-events:none;z-index:0;}
-  .hero::after{content:'';position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(110,231,183,.07) 0%,transparent 60%);pointer-events:none;z-index:0;}
+    background:
+      radial-gradient(760px 420px at 50% 62%, rgba(245,199,110,.22) 0%, rgba(245,199,110,0) 66%),
+      linear-gradient(176deg,
+        #070a12 0%, #0b1018 18%, #131b2c 38%, #22263f 56%,
+        #3d3149 70%, #6b4740 82%, #a9673a 92%, #d89a4e 100%);
+    color:rgba(236,240,250,.9);}
+
+  /* 별 — 위쪽에만, 아주 옅게 */
+  .hero::before{content:'';position:absolute;inset:0 0 45% 0;pointer-events:none;opacity:.5;
+    background-image:
+      radial-gradient(1.4px 1.4px at 12% 18%, rgba(255,255,255,.85) 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 27% 9%,  rgba(255,255,255,.6) 50%, transparent 51%),
+      radial-gradient(1.6px 1.6px at 41% 24%, rgba(255,255,255,.75) 50%, transparent 51%),
+      radial-gradient(1.1px 1.1px at 58% 12%, rgba(255,255,255,.55) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 73% 21%, rgba(255,255,255,.8) 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 88% 14%, rgba(255,255,255,.6) 50%, transparent 51%),
+      radial-gradient(1.3px 1.3px at 34% 33%, rgba(255,255,255,.5) 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 66% 31%, rgba(255,255,255,.45) 50%, transparent 51%);}
+  /* 지평선 근처 새벽 기운 */
+  .hero::after{content:'';position:absolute;left:50%;bottom:-140px;transform:translateX(-50%);
+    width:1100px;height:420px;pointer-events:none;
+    background:radial-gradient(closest-side, rgba(245,199,110,.34) 0%, rgba(245,199,110,0) 72%);}
+
+  .hero .nav-logo{color:#fff;}
+  .hero .hero-headline{color:#F7FAFF;}
+  .hero .hero-headline .accent{color:#F5C76E;}
+  .hero .hero-pre{color:rgba(226,232,245,.66);}
+  .hero .hero-sub-big{color:rgba(236,240,250,.92);}
+  /* 서명 — 문에서 나오는 빛과 같은 금색. 파란색은 이 배경에서 필요가 없어졌다 */
+  .hero .hero-sub-big strong.hg-sign{color:#FFE9BC !important;
+    text-shadow:0 2px 18px rgba(0,0,0,.45), 0 0 30px rgba(245,199,110,.35);}
+  .hero .hero-sub-big strong{color:#F7FAFF !important;}
+  .hero .hero-eyebrow{background:rgba(255,255,255,.08);border-color:rgba(245,199,110,.34);color:#F5C76E;}
+  .hero .hero-trust em{color:#F5C76E;}
+  .hero .btn-outline{border-color:rgba(255,255,255,.26);color:#ECFDF5;background:rgba(255,255,255,.06);}
+  .hero .btn-outline:hover{background:rgba(255,255,255,.12);border-color:#F5C76E;color:#fff;}
+  .hero .hero-stats{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);}
+  .hero .hero-stats .stat{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08);}
+  .hero .hero-stats .stat-n{color:#F5C76E;}
+  .hero .hero-stats .stat-l{color:rgba(236,240,250,.66);}
+  /* 밝은 테마용 어두운 글자가 밤에 묻히던 자리들 */
+  .hero .hero-door-hint{color:rgba(236,240,250,.62) !important;}
+
+  /* 그림 — 밤에 맞춰 선 색을 바꾼다. 갈색 선은 어둠에 묻힌다 */
+  .hero-door [stroke="#241704"]{stroke:#F5C76E;}
+  .hero-door [fill="#241704"]{fill:#F5C76E;}
+  .hero-door [stroke="#0f7a5a"]{stroke:#6EE7B7;}
+  .hero-door [fill="#0f7a5a"]{fill:#6EE7B7;}
+  .hero-door [stroke="#7a4f0a"]{stroke:rgba(245,199,110,.5);}
+  .hero-door [stroke="#a86c0c"]{stroke:#E8A33D;}
+  .hero-door [stroke="#5ba3cf"]{stroke:#7FC8F0;}
+  .hero-door [fill="#ffffff"]{fill:rgba(255,255,255,.14);}
+  .hero-door .heb-beam{opacity:.85;}
+  .hero-door:hover .heb-beam{opacity:1;}
+
   .hero>*{position:relative;z-index:1;}
 
   .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border-radius:99px;padding:6px 18px;margin-bottom:28px;}
@@ -176,9 +209,9 @@
   @keyframes hebTwinkle{0%,100%{opacity:.82;transform:scale(1);}50%{opacity:1;transform:scale(1.14);}}
   @media(max-width:480px){.hero-illustration{max-width:320px;margin-bottom:20px;}}
 
-  .hero-pre{font-size:clamp(1rem,1.9vw,1.3rem);color:rgba(236,253,245,.6);font-style:italic;font-weight:300;margin-bottom:20px;line-height:1.6;max-width:600px;margin-left:auto;margin-right:auto;}
+  .hero-pre{word-break:keep-all;text-wrap:balance;font-size:clamp(1rem,1.9vw,1.3rem);color:rgba(236,253,245,.6);font-style:italic;font-weight:300;margin-bottom:20px;line-height:1.6;max-width:600px;margin-left:auto;margin-right:auto;}
 
-  .hero-headline{font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;color:#ffffff;line-height:1.15;margin-bottom:8px;letter-spacing:-.02em;}
+  .hero-headline{word-break:keep-all;text-wrap:balance;font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;color:#ffffff;line-height:1.15;margin-bottom:8px;letter-spacing:-.02em;}
   .hero-headline .accent{color:var(--gold);}
   .hero-headline .accent2{color:var(--mint);}
 
@@ -248,7 +281,7 @@
   .hero .hj-quick{color:rgba(58,39,8,.6);}
   .hero .hj-quick a{color:#3a2708;border-color:rgba(122,79,10,.32);background:rgba(255,255,255,.55);font-weight:600;}
   .hero .hj-quick a:hover{background:#fff;border-color:#9a6b12;color:#7a4f0a;}
-  .hero .hj-verb{color:#7a4f0a;}
+  .hero .hj-verb{color:#F5C76E;}
 
   .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:22px;}
   .hero-trust{font-size:.82rem;line-height:1.85;color:rgba(236,253,245,.6);margin:0 auto 44px;max-width:560px;letter-spacing:.01em;}
@@ -604,13 +637,13 @@
   </button>
 
   <p class="hero-pre">
-    <span class="ko">공항을 나서면 아는 얼굴 하나 없습니다.<br>새로운 도시의 첫날 밤은 고독합니다. 누구도 혼자는 안 됩니다.</span>
-    <span class="en">You walk out of the airport. Not one familiar face.<br>A first night in a new city is lonely. No one should be left alone.</span>
+    <span class="ko">공항을 나서면 아는 얼굴 하나 없습니다.</span>
+    <span class="en">You walk out of the airport. Not one familiar face.</span>
   </p>
 
   <h1 class="hero-headline">
-    <span class="ko">여기,<br><span class="accent">당신을 기다리는 이가 있습니다.</span></span>
-    <span class="en">Right here,<br><span class="accent">someone is waiting for you.</span></span>
+    <span class="ko">새 도시는 고독하다?<br><span class="accent">여기 글로벌 환대 플랫폼이 있습니다</span></span>
+    <span class="en">Is a new city lonely?<br><span class="accent">A global hospitality platform is right here</span></span>
   </h1>
 
   <p class="hero-sub-big">
