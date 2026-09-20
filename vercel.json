@@ -17,6 +17,7 @@
     { "source": "/sf/index.html",      "destination": "/sf/",      "permanent": true },
     { "source": "/home",               "destination": "/",         "permanent": true },
     { "source": "/guide",              "destination": "/",         "permanent": true },
+    { "source": "/admin-churches.html",   "destination": "/admin.html", "permanent": true },
     { "source": "/church-partner.html",   "destination": "/ad-request.html", "permanent": true },
     { "source": "/church-guide.html",      "destination": "/ad-request.html", "permanent": true },
     { "source": "/church-submit.html",     "destination": "/ad-request.html", "permanent": true },

@@ -881,6 +881,8 @@
           <option value="rejected">REJECTED</option>
         </select>
         <span class="count-badge" id="count-badge"></span>
+        <button class="filter-select" onclick="exportCSV()" title="화면에 보이는 것을 그대로 내려받습니다"
+                style="cursor:pointer;white-space:nowrap;">CSV 내보내기</button>
       </div>
     </div>
 
@@ -1212,7 +1214,8 @@
           .sort((a,b) => new Date(b.created_at||0) - new Date(a.created_at||0))
         renderCommunity(allData)
       } else if (tab === 'churches') {
-        const { data: churchData } = await sbMain.from('churches').select('*').order('created_at', { ascending: false }).limit(200)
+        // 655곳이 있는데 200 으로 잘려 있었다 (2026-09-20). 넉넉히 올린다.
+        const { data: churchData } = await sbMain.from('churches').select('*').order('created_at', { ascending: false }).limit(2000)
         const appData = await adminList('community_items', {
           eqCol: 'category', eqVal: 'church', neqCol: 'status', neqVal: 'migrated',
           order: 'created_at', limit: 100,
@@ -2010,6 +2013,47 @@
       toast(`완료 — 발송 ${ok}건 성공 / ${fail}건 실패`)
       loadTabData('churches')
     } catch(e) { toast('재발송 실패: ' + e.message) }
+  }
+
+  // ── CSV 내보내기 ───────────────────────────────────────
+  // 접은 admin-churches.html 이 갖고 있던 기능. 서버가 필요 없다 — 화면 안에서 끝난다.
+  // 지금 화면에 걸린 검색·도시·상태 필터를 그대로 따른다.
+  function exportCSV() {
+    // 이 화면의 필터는 그려진 줄을 숨기는 방식이라 거른 배열이 따로 없다.
+    // 같은 기준(줄 전체 글자 검색)을 자료에 그대로 적용한다.
+    const q      = (document.getElementById('search')?.value || '').toLowerCase()
+    const city   = (document.getElementById('city-filter')?.value || '').toLowerCase()
+    const status = (document.getElementById('status-filter')?.value || '').toLowerCase()
+    const match = (r) => {
+      const text = JSON.stringify(r).toLowerCase()
+      return (!city || text.includes(city)) && (!status || text.includes(status)) && (!q || text.includes(q))
+    }
+    const rows = (Array.isArray(allData) ? allData : []).filter(match)
+    if (!rows.length) { toast('내보낼 자료가 없습니다'); return }
+
+    // 모든 행에 나오는 열을 모은다 (행마다 열이 달라도 빠지지 않게)
+    const cols = []
+    for (const r of rows) for (const k of Object.keys(r)) if (!cols.includes(k)) cols.push(k)
+
+    const cell = (v) => {
+      if (v == null) return ''
+      const t = typeof v === 'object' ? JSON.stringify(v) : String(v)
+      return /[",\n\r]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t
+    }
+    const csv = [cols.join(',')]
+      .concat(rows.map(r => cols.map(c => cell(r[c])).join(',')))
+      .join('\r\n')
+
+    // 엑셀이 한글을 깨뜨리지 않도록 BOM 을 붙인다
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' })
+    const d = new Date()
+    const stamp = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0')
+    const a = document.createElement('a')
+    a.href = URL.createObjectURL(blob)
+    a.download = `hebronguide-${currentTab || 'data'}-${stamp}.csv`
+    document.body.appendChild(a); a.click()
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove() }, 1000)
+    toast(`${rows.length}개 내보냈습니다`)
   }
 
   // 교회 신청 → churches 테이블 자동 파싱·저장

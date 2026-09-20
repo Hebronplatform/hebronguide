@@ -228,7 +228,7 @@ cp hebronguide/public/qr-preview.html               public/qr-preview.html      
 # 파트너 교회 관리 시스템 (루트 정적 파일 직접 복사)
 cp growth-plan.html      public/growth-plan.html      2>/dev/null || true
 cp church-invite.html    public/church-invite.html    2>/dev/null || true
-cp admin-churches.html   public/admin-churches.html   2>/dev/null || true
+# admin-churches.html — 2026-09-20 접음. admin.html 교회 탭이 정본
 cp youtube-plan.html     public/youtube-plan.html     2>/dev/null || true
 cp youtube-schedule.html public/youtube-schedule.html 2>/dev/null || true
 cp ops.html              public/ops.html              2>/dev/null || true
