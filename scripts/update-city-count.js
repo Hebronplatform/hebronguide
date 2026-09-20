@@ -24,7 +24,15 @@ const ROOT = path.resolve(__dirname, '..');
 // ── 1. 실제 도시 수 계산 (SSOT) ───────────────────────────────
 const tsxPath = path.join(ROOT, 'hebronguide/src/app/components/HebronGuide.tsx');
 const tsxSrc = fs.readFileSync(tsxPath, 'utf8');
-const COUNT = [...tsxSrc.matchAll(/status:\s*["']live["']/g)].length;
+// 2026-09-19 사고: 글자 세기(/status:"live"/)는 '주석'까지 한 도시로 세었다.
+// (HebronGuide.tsx 1023줄 주석에 그 글자가 들어 있어 온 사이트가 82개라고 말했다.)
+// 이제 url 이 함께 있는 '도시 덩어리'만 세고, 슬러그 집합이라 중복도 안 센다.
+const CITY_SLUGS = new Set();
+for (const m of tsxSrc.matchAll(/\{[^{}]*status:\s*["']live["'][^{}]*\}/g)) {
+  const u = m[0].match(/url:\s*["']\/([a-z0-9-]+)\/["']/);
+  if (u) CITY_SLUGS.add(u[1]);
+}
+const COUNT = CITY_SLUGS.size;
 console.log(`✅ HEBRON_CITIES live 도시 수: ${COUNT}개`);
 
 // ── 2. 총계 도시 수 문구 통일 함수 ────────────────────────────
@@ -95,6 +103,15 @@ syncFile(path.join(ROOT, 'index.html'), 'index.html');
 const pubDir = path.join(ROOT, 'hebronguide/public');
 for (const f of fs.readdirSync(pubDir)) {
   if (f.endsWith('.html')) syncFile(path.join(pubDir, f), `public/${f}`);
+}
+
+// ── 5-a. 루트 정적 페이지 (*.html) ──────────────────────────
+// 2026-09-19 사고: ops.html 상황판이 「활성 도시 71+」에 멈춰 있었다.
+// 이 스크립트가 hebronguide/public 만 쓸어서 루트 페이지는 아무도 안 고쳤다.
+// build.sh 가 루트에서 복사해 배포하는 페이지들이므로 여기도 같이 맞춘다.
+for (const f of fs.readdirSync(ROOT)) {
+  if (!f.endsWith('.html') || f === 'index.html') continue;   // index.html 은 4번에서 처리
+  syncFile(path.join(ROOT, f), f);
 }
 
 // ── 5-b. llms.txt (AI가 우리를 소개받는 문서) ────────────────

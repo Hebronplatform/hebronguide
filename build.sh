@@ -248,6 +248,8 @@ cp sql-guide.html             public/sql-guide.html             2>/dev/null || t
 cp hero-theme-preview.html    public/hero-theme-preview.html    2>/dev/null || true
 cp presentation-hospitality.html public/presentation-hospitality.html 2>/dev/null || true
 cp hebron-story.html          public/hebron-story.html          2>/dev/null || true
+# 헤브론 뮤직 신청곡 — ops.html 이 거는 페이지
+cp music-requests.html       public/music-requests.html       2>/dev/null || true
 cp hebronguide/dist/posters.html                   public/posters.html                   2>/dev/null || true
 # 목사님 전용 운영 문서 (앱 미연결 — URL 직접 공유)
 cp hebronguide/dist/church-guide.html              public/church-guide.html              2>/dev/null || true

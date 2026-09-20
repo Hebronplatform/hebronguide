@@ -91,6 +91,18 @@ function checkShadows(vercel) {
   return checked;
 }
 
+/** build.sh 가 루트에서 public/ 으로 복사하는 파일 이름 집합 */
+function buildShCopies() {
+  const set = new Set();
+  const p = path.join(ROOT, 'build.sh');
+  if (!exists(p)) return set;
+  for (const m of fs.readFileSync(p, 'utf8').matchAll(/^\s*cp\s+(?:\S*\/)?(\S+)\s+public\/(\S+)/gm)) {
+    set.add(m[2]);
+  }
+  return set;
+}
+const buildCopies = buildShCopies();
+
 // ── 2) DEADLINK: HTML 내부 링크가 실존하는가 ──────────────────────────────────
 function collectHtml(dir) {
   if (!exists(dir)) return [];
@@ -98,7 +110,10 @@ function collectHtml(dir) {
 }
 
 function checkDeadLinks(vercel, cities) {
-  const files = collectHtml(PUBLIC_SRC);
+  // 루트 페이지(ops.html 등)도 함께 본다 — 2026-09-19 사고:
+  // ops.html 이 거는 /music-requests.html 이 라이브에서 404 였는데,
+  // 이 검사가 hebronguide/public 만 봐서 아무도 못 잡았다.
+  const files = [...collectHtml(PUBLIC_SRC), ...collectHtml(ROOT)];
   const rewrites = (vercel.rewrites || []).map((r) => r.source);
   const redirectSrcs = new Set((vercel.redirects || []).map((r) => r.source));
   let linkCount = 0;
@@ -109,7 +124,8 @@ function checkDeadLinks(vercel, cities) {
     // 내부 절대경로 링크만 검사 (외부 http(s)·mailto·tel·앵커 제외)
     const hrefs = [...html.matchAll(/href="(\/[^"#?]*)"/g)].map((m) => m[1]);
     for (const href of new Set(hrefs)) {
-      if (href.includes('${')) continue;                           // JS 템플릿 문자열(`/${city}/`)은 링크가 아님
+      if (href.includes('${')) continue;
+      if (href.includes("'+") || href.includes('" + ')) continue;   // 자바스크립트로 이어붙인 경로('/'+c.slug+'/')도 링크가 아니다                           // JS 템플릿 문자열(`/${city}/`)은 링크가 아님
       linkCount++;
       if (href === '/') continue;                                  // 랜딩
       if (redirectSrcs.has(href)) continue;                        // 의도된 리다이렉트 경로
@@ -122,7 +138,16 @@ function checkDeadLinks(vercel, cities) {
       if (cityPage && cities.has(cityPage[1]) && exists(path.join(PUBLIC_SRC, cityPage[2]))) continue;
       const f = srcToFile(href);
       if (f && exists(f)) continue;                                // 실제 파일 존재
-      if (exists(path.join(ROOT, href.slice(1)))) continue;        // 저장소 루트 자산(예: /roadmap.json)
+      if (exists(path.join(ROOT, href.slice(1)))) {
+        // 루트에 파일이 있어도 build.sh 가 복사하지 않으면 라이브는 404 다.
+        const leaf = href.slice(1);
+        if (leaf.endsWith('.html') && !buildCopies.has(leaf)) {
+          add('ERROR', 'NOTDEPLOYED',
+            `${base} → 배포되지 않는 페이지로 링크: ${href}`,
+            `${leaf} 파일은 저장소 루트에 있지만 build.sh의 복사 목록에 없어 라이브에서 404가 납니다. build.sh에 "cp ${leaf} public/${leaf}" 를 추가하세요.`);
+        }
+        continue;
+      }
       add('ERROR', 'DEADLINK',
         `${base} → 없는 곳으로 링크: ${href}`,
         `hebronguide/public${href} 파일이 없고, 도시 라우트/리라이트에도 해당하지 않습니다. 오타이거나 삭제된 페이지입니다.`);

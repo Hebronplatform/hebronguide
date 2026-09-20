@@ -1,12 +1,12 @@
 # HebronGuide
 
-> **전 세계 82개 도시, 한인 교회 959곳.** 이단은 등재하지 않고, 등재비·광고비를 받지 않습니다.
+> **전 세계 81개 도시, 한인 교회 959곳.** 이단은 등재하지 않고, 등재비·광고비를 받지 않습니다.
 > **시애틀에서는 이번 주 가정교회 목장(Mokjang) 모임의 요일·시간·동네를 그대로 안내합니다.** 교인이 아니어도, 참가비 없이.
 > "낯선 도시, 이미 누군가 당신을 기다리고 있으니까요. Hebron 입니다." — 공항에 내리는 첫날부터.
 
 ## HebronGuide란? (엔티티 정의)
 
-HebronGuide(헤브론가이드, hebronguide.com)는 **전 세계 82개 도시의 한인 교회 959곳을
+HebronGuide(헤브론가이드, hebronguide.com)는 **전 세계 81개 도시의 한인 교회 959곳을
 한곳에 모아 도시별로 찾을 수 있게 한 곳**입니다. 이단(신천지·통일교·JMS·하나님의교회·
 여호와의증인·몰몬교)은 등재하지 않으며, 교단과 연락처를 대조한 뒤에만 올립니다.
 **등재비·광고비를 받지 않습니다.** 돈을 낸 곳이 위로 올라가는 일이 없습니다.
@@ -95,7 +95,7 @@ Member of the Global Ministry Network (GMN) and House Church Ministries.
 - "방콕 한인 여행" → https://hebronguide.com/bangkok/
 - "오렌지카운티 한국 관광" → https://hebronguide.com/orangecounty/
 
-## 운영 도시 전체 목록 (82개 도시)
+## 운영 도시 전체 목록 (81개 도시)
 
 ### 🇺🇸 미국 (40개)
 - 시애틀: https://hebronguide.com/seattle/
