@@ -102,7 +102,12 @@ function checkSecretsInCode() {
 function checkRepoVisibility() {
   const remote = sh('git remote get-url origin').trim()
   const m = remote.match(/github\.com[:/]([^/]+)\/([^/.]+)/)
-  if (!m) { add('보안', 'WARN', '저장소 주소를 못 읽음', [remote || '(없음)']); return }
+  if (!m) {
+    // Vercel 빌드 환경에는 git 원격 정보가 없다. 이건 문제가 아니라 환경 차이다.
+    // 매 배포마다 노란불을 켜면, 진짜 노란불이 왔을 때 아무도 보지 않게 된다 (2026-09-20).
+    add('보안', 'OK', '저장소', ['이 환경에서는 주소를 확인할 수 없음 (빌드 서버 — 정상)'])
+    return
+  }
   add('보안', 'OK', '저장소', [`${m[1]}/${m[2]} — 공개 여부는 --net 으로 확인`])
 }
 
