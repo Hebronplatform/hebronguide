@@ -11,8 +11,9 @@ const CORS = {
   'Content-Type': 'application/json',
 }
 
-// 관리자 비밀번호 해시 (admin@Hebron2026!)
-const ADMIN_HASH = '614fea13745bbaa53de1c1c36b216c3cd5009df185b9f642089eb7ea76a69b90'
+// 관리자 비밀번호의 SHA-256 지문.
+// 평문을 여기 적지 않는다 — 이 저장소는 공개라 그대로 읽힌다.
+const ADMIN_HASH = 'c0832739b0def5f86bf059aab9d58cea77ae10391ba45124d5bc4640cd94d119'
 
 // Supabase 프로젝트: 단일 프로젝트 (vextxqzggznulwpganwt)
 const SB_URLS = {

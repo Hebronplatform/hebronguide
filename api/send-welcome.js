@@ -19,8 +19,8 @@ const SUPABASE_URL = "https://vextxqzggznulwpganwt.supabase.co";
 const ADMIN_EMAIL  = "hebronplatform@gmail.com";
 const FROM_EMAIL   = "Hebronplatform@gmail.com";
 
-// admin@Hebron2026! (admin-action.js와 동일 해시)
-const ADMIN_HASH = "614fea13745bbaa53de1c1c36b216c3cd5009df185b9f642089eb7ea76a69b90";
+// admin-action.js 와 같은 지문. 평문은 적지 않는다.
+const ADMIN_HASH = "c0832739b0def5f86bf059aab9d58cea77ae10391ba45124d5bc4640cd94d119";
 
 // ── 도시 슬러그 정규화 (submit-church.js와 동일 기준 — DC/VA/MD 분리) ──
 function normalizeCitySlug(input) {

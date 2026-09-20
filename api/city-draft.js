@@ -13,7 +13,7 @@
 import crypto from 'node:crypto'
 
 const SUPABASE_URL = 'https://vextxqzggznulwpganwt.supabase.co'
-const ADMIN_HASH = '614fea13745bbaa53de1c1c36b216c3cd5009df185b9f642089eb7ea76a69b90'
+const ADMIN_HASH = 'c0832739b0def5f86bf059aab9d58cea77ae10391ba45124d5bc4640cd94d119'
 const ALLOWED_MODELS = ['claude-haiku-4-5', 'claude-sonnet-5']
 
 function slugify(nameEn) { return String(nameEn || '').toLowerCase().replace(/[^a-z0-9]/g, '') }
