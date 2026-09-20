@@ -21,7 +21,6 @@
     { "source": "/church-guide.html",      "destination": "/ad-request.html", "permanent": true },
     { "source": "/church-submit.html",     "destination": "/ad-request.html", "permanent": true },
     { "source": "/partner-church.html",    "destination": "/ad-request.html", "permanent": true },
-    { "source": "/church-join.html",       "destination": "/ad-request.html", "permanent": true },
     { "source": "/church-bulletin.html",   "destination": "/ad-request.html", "permanent": true },
     { "source": "/church-notice.html",     "destination": "/ad-request.html", "permanent": true },
     { "source": "/founding-partner.html",  "destination": "/ad-request.html", "permanent": true },

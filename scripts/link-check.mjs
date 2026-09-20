@@ -46,7 +46,6 @@ const INTENTIONAL_SHADOWS = {
   '/church-guide.html':      '구버전 — /ad-request.html로 일원화',
   '/church-submit.html':     '구버전 — /ad-request.html로 일원화',
   '/partner-church.html':    '구버전 — /ad-request.html로 일원화',
-  '/church-join.html':       '구버전 — /ad-request.html로 일원화',
   '/founding-partner.html':  '구버전 — /ad-request.html로 일원화',
   '/church-bulletin.html':   '구버전(주보용) — /ad-request.html로 일원화',
   '/church-notice.html':     '구버전(게시판용) — /ad-request.html로 일원화',
