@@ -1,0 +1,35 @@
+{
+  "ranAt": "2026-09-20T08:34:38.893Z",
+  "mode": "fast",
+  "groups": [
+    {
+      "name": "보안",
+      "ok": 3,
+      "warn": 0,
+      "critical": 1
+    },
+    {
+      "name": "배포",
+      "ok": 2,
+      "warn": 0,
+      "critical": 1
+    },
+    {
+      "name": "사실",
+      "ok": 2,
+      "warn": 0,
+      "critical": 0
+    },
+    {
+      "name": "법·문서",
+      "ok": 0,
+      "warn": 1,
+      "critical": 0
+    }
+  ],
+  "totals": {
+    "ok": 7,
+    "warn": 1,
+    "critical": 2
+  }
+}

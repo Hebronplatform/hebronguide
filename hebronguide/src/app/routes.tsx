@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router";
 import { I18nProvider } from "./components/I18nContext";
 import { ContentProvider } from "./components/ContentContext";
 import { HebronGuide } from "./components/HebronGuide";
-import { AdminPage } from "./components/AdminPage";
 import { Roadmap } from "./components/Roadmap";
 
 function MainApp() {
@@ -34,7 +33,10 @@ function detectBasename(): string {
 
 export const router = createBrowserRouter([
   { path: "/", Component: MainApp },
-  { path: "/admin", Component: AdminPage },
+  // /admin 은 2026-09-20 내렸다. 화면은 열렸지만 부르던 서버 기능
+  // (make-server-21f2cd69)이 배포된 적이 없어 아무것도 되지 않았다.
+  // 관리자 화면의 정본은 /admin.html 이다.
+  { path: "/admin", Component: () => { window.location.replace("/admin.html"); return null } },
   { path: "/roadmap", Component: Roadmap },
   { path: "*", Component: MainApp },
 ], { basename: detectBasename() });

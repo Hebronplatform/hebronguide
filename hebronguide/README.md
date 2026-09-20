@@ -86,7 +86,7 @@ pnpm preview
   /app
     /components
       HebronGuide.tsx      # Main app component
-      AdminPage.tsx        # Admin panel
+      (AdminPage.tsx — 2026-09-20 내림. 관리자 화면은 /admin.html)
       Roadmap.tsx          # Development roadmap
       I18nContext.tsx      # i18n provider
       ContentContext.tsx   # Supabase content provider

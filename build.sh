@@ -13,6 +13,11 @@ echo "=== HebronGuide Deploy Start ==="
 echo "--- 도시 수 자동 동기화 ---"
 node scripts/update-city-count.js || echo "  ⚠️ city-count 동기화 건너뜀 (빌드 계속)"
 
+# 자가 점검 — 배포마다 같은 자리를 본다 (2026-09-20)
+#   결과 요약은 public/audit.json 으로 나가 상황판이 읽는다.
+#   치명을 찾아도 배포를 막지는 않는다 — 막으면 고치는 배포조차 못 하게 된다.
+node scripts/self-audit.mjs || echo "  ⚠️ 자가 점검에서 치명 발견 — 상황판에 표시됨 (빌드 계속)"
+
 # 0. React 앱 빌드 (Vercel에서만 실행 — $VERCEL=1 자동 설정됨)
 # 이유: 로컬에서 빌드 후 커밋하면 JS 해시가 배포마다 바뀌어
 #       Vercel CDN 전파 중 일부 노드가 이전 파일을 서비스 → 검정 화면 발생
@@ -223,6 +228,8 @@ cp hebronguide/public/planting-seed-2026-poster.jpg  public/planting-seed-2026-p
 # 환대 게시판 — 행사 목록(events.json)과 게시판 페이지. 루트 복사가 없으면 404 가 난다
 cp hebronguide/public/hospitality-board.html        public/hospitality-board.html          2>/dev/null || true
 cp hebronguide/public/events.json                   public/events.json                     2>/dev/null || true
+# 자가 점검 요약 — 상황판이 읽는다 (공개돼도 안전한 숫자만 들어 있다)
+cp hebronguide/public/audit.json                    public/audit.json                      2>/dev/null || true
 cp hebronguide/public/partner-benefits.html         public/partner-benefits.html           2>/dev/null || true
 cp hebronguide/public/qr-preview.html               public/qr-preview.html                 2>/dev/null || true
 # 파트너 교회 관리 시스템 (루트 정적 파일 직접 복사)
