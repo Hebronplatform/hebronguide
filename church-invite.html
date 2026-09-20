@@ -242,9 +242,18 @@ async function adminToken() {
   if (_tok) return _tok;
   var pw = prompt('관리자 비밀번호');
   if (!pw) return null;
-  var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
-  _tok = Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
-  return _tok;
+  // 비밀번호를 서버가 확인하고 시간 제한 출입증을 내준다.
+  // 이 창이 열려 있는 동안만 기억하고, 어디에도 저장하지 않는다.
+  try {
+    var r = await fetch('/api/admin-action', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ action: 'login', password: pw })
+    });
+    var d = await r.json();
+    if (r.ok && d.token) { _tok = d.token; return _tok; }
+  } catch (e) { /* 아래에서 실패로 처리 */ }
+  alert('비밀번호가 맞지 않습니다.');
+  return null;
 }
 
 // QR 코드 생성

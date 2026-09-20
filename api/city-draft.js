@@ -345,6 +345,49 @@ ${cityName} 도시의 한인 이민자 정보를 정확하게 유지하는 것�
 
 // ── 핸들러 ──────────────────────────────────────────────────────────
 
+/* ── 관리자 출입증 ─────────────────────────────────────────────
+   지문(PW_HASH)은 화면 소스에 들어 있어 출입증이 될 수 없다 (2026-09-20).
+   화면이 비밀번호를 보내면 서버가 확인하고, 서버만 아는 비밀로 서명한
+   시간 제한 출입증을 내준다. 발급은 admin-action.js 의 action:'login'.
+   ※ 같은 코드가 네 함수에 복사돼 있다 — 공통 파일을 두면 13번째 함수로
+      세어져 배포가 조용히 실패할 위험이 있다 (2026-07 사고 2건).
+   ─────────────────────────────────────────────────────────── */
+const TOKEN_TTL_MS = 12 * 60 * 60 * 1000   // 12시간
+
+const _hex = (buf) => Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('')
+
+async function _signingKey() {
+  // 서버에만 있는 값에서 서명 키를 만든다. 원래 용도와 섞이지 않게 앞에 표식을 붙인다.
+  const base = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY || ''
+  if (!base) throw new Error('서명 키 없음: Vercel 환경변수 SUPABASE_SERVICE_KEY_MAIN 확인')
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('hebron-admin-session|' + base))
+  return crypto.subtle.importKey('raw', digest, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign'])
+}
+
+async function issueAdminToken() {
+  const exp = Date.now() + TOKEN_TTL_MS
+  const sig = _hex(await crypto.subtle.sign('HMAC', await _signingKey(), new TextEncoder().encode(String(exp))))
+  return { token: `${exp}.${sig}`, expiresAt: exp }
+}
+
+async function validAdminToken(t) {
+  try {
+    if (typeof t !== 'string' || !t.includes('.')) return false
+    const [expStr, sig] = t.split('.')
+    const exp = Number(expStr)
+    if (!exp || exp < Date.now()) return false
+    const want = _hex(await crypto.subtle.sign('HMAC', await _signingKey(), new TextEncoder().encode(expStr)))
+    if (!sig || sig.length !== want.length) return false
+    let diff = 0
+    for (let i = 0; i < want.length; i++) diff |= sig.charCodeAt(i) ^ want.charCodeAt(i)
+    return diff === 0
+  } catch { return false }
+}
+
+async function sha256Hex(s) {
+  return _hex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(String(s))))
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
@@ -354,7 +397,7 @@ export default async function handler(req, res) {
 
   const { token, action } = req.body || {}
   const hash = crypto.createHash('sha256').update(String(token || '')).digest('hex')
-  if (hash !== ADMIN_HASH) return res.status(401).json({ error: 'unauthorized' })
+  if (!(await validAdminToken(token))) return res.status(401).json({ error: 'unauthorized' })
 
   const key = process.env.SUPABASE_SERVICE_KEY_MAIN || process.env.SUPABASE_SERVICE_KEY
   if (!key) return res.status(500).json({ error: 'SUPABASE_SERVICE_KEY not set (Vercel env)' })

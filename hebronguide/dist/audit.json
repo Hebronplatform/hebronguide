@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-09-20T09:49:59.740Z",
+  "ranAt": "2026-09-20T09:51:33.751Z",
   "mode": "fast",
   "groups": [
     {
@@ -22,21 +22,15 @@
     },
     {
       "name": "법·문서",
-      "ok": 0,
-      "warn": 1,
+      "ok": 1,
+      "warn": 0,
       "critical": 0
     }
   ],
   "totals": {
-    "ok": 9,
-    "warn": 1,
+    "ok": 10,
+    "warn": 0,
     "critical": 0
   },
-  "attention": [
-    {
-      "group": "법·문서",
-      "level": "WARN",
-      "name": "기한이 붙은 문서가 없음"
-    }
-  ]
+  "attention": []
 }

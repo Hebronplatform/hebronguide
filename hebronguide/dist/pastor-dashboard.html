@@ -495,7 +495,7 @@
 <script>
 const SB_URL  = 'https://vextxqzggznulwpganwt.supabase.co'
 const SB_ANON = 'sb_publishable_j1cYftObx8VDVkEQAvluXg_rn20pnfX'
-const ADMIN_HASH = 'c0832739b0def5f86bf059aab9d58cea77ae10391ba45124d5bc4640cd94d119'
+// ADMIN_HASH 는 2026-09-20 화면에서 뺐다 — 서버만 갖고 있다
 
 let sb = null, sess = null, isPw = false, myChurch = null
 
@@ -561,9 +561,18 @@ async function pastorLogin() {
 async function adminLogin() {
   const pw = document.getElementById('admin-pw').value
   if (!pw) { msg('msg-admin', '비밀번호를 입력해주세요.', 'err'); return }
-  const hash = await sha256(pw)
-  if (hash !== ADMIN_HASH) { msg('msg-admin', '비밀번호가 올바르지 않습니다.', 'err'); return }
-  localStorage.setItem('hg_admin', '1')
+  // 2026-09-20: 지문을 화면에 두지 않는다. 서버가 확인하고 출입증을 내준다.
+  let issued = null
+  try {
+    const r = await fetch('/api/admin-action', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'login', password: pw }),
+    })
+    const d = await r.json().catch(() => ({}))
+    if (r.ok && d.token) issued = d
+  } catch (_) { /* 아래에서 실패로 처리 */ }
+  if (!issued) { msg('msg-admin', '비밀번호가 올바르지 않습니다.', 'err'); return }
+  localStorage.setItem('hg_admin', JSON.stringify({ expiry: issued.expiresAt, token: issued.token }))
   showAdmin()
 }
 
@@ -808,7 +817,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (typeof window.supabase !== 'undefined') {
     sb = window.supabase.createClient(SB_URL, SB_ANON)
 
-    if (localStorage.getItem('hg_admin') === '1') { showAdmin(); return }
+    if ((function(){ try { const a = JSON.parse(localStorage.getItem('hg_admin') || '{}'); return !!(a.token && a.expiry > Date.now()) } catch { return false } })()) { showAdmin(); return }
 
     const { data: { session: s } } = await sb.auth.getSession()
     if (s) { sess = s; showPastor(s.user); return }
