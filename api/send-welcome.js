@@ -374,17 +374,18 @@ async function issueAdminToken() {
 }
 
 async function validAdminToken(t) {
-  try {
-    if (typeof t !== 'string' || !t.includes('.')) return false
-    const [expStr, sig] = t.split('.')
-    const exp = Number(expStr)
-    if (!exp || exp < Date.now()) return false
-    const want = _hex(await crypto.subtle.sign('HMAC', await _signingKey(), new TextEncoder().encode(expStr)))
-    if (!sig || sig.length !== want.length) return false
-    let diff = 0
-    for (let i = 0; i < want.length; i++) diff |= sig.charCodeAt(i) ^ want.charCodeAt(i)
-    return diff === 0
-  } catch { return false }
+  // 출입증이 틀린 것과 '서버가 고장난 것'을 섞지 않는다.
+  // 서명 키가 없거나 crypto 를 못 쓰면 여기서 던져서 500 으로 나가게 한다.
+  // 그걸 401 로 삼키면, 관리자가 못 들어오는 이유를 영영 모른다 (2026-09-20).
+  if (typeof t !== 'string' || !t.includes('.')) return false
+  const [expStr, sig] = t.split('.')
+  const exp = Number(expStr)
+  if (!exp || exp < Date.now()) return false
+  const want = _hex(await crypto.subtle.sign('HMAC', await _signingKey(), new TextEncoder().encode(expStr)))
+  if (!sig || sig.length !== want.length) return false
+  let diff = 0
+  for (let i = 0; i < want.length; i++) diff |= sig.charCodeAt(i) ^ want.charCodeAt(i)
+  return diff === 0
 }
 
 async function sha256Hex(s) {
@@ -401,7 +402,11 @@ export default async function handler(req, res) {
   const { action, token, id, email, pastor, churchName, city, serviceTimes, phone, approved } = req.body || {};
 
   // ── 관리자 인증 ──
-  if (!(await validAdminToken(token))) {
+  //  서버 설정 문제(서명 키 없음)를 401 로 삼키면 못 들어오는 이유를 알 수 없다.
+  let _authed = false
+  try { _authed = await validAdminToken(token) }
+  catch (e) { return res.status(500).json({ error: "서버 설정 문제: " + e.message }) }
+  if (!_authed) {
     return res.status(401).json({ error: "인증 실패: 관리자 토큰 불일치" });
   }
 
