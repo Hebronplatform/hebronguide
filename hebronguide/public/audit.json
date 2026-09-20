@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-09-20T08:55:51.140Z",
+  "ranAt": "2026-09-20T09:10:19.348Z",
   "mode": "fast",
   "groups": [
     {
@@ -31,5 +31,17 @@
     "ok": 8,
     "warn": 1,
     "critical": 1
-  }
+  },
+  "attention": [
+    {
+      "group": "배포",
+      "level": "CRITICAL",
+      "name": "화면이 없는 서버 기능을 부름"
+    },
+    {
+      "group": "법·문서",
+      "level": "WARN",
+      "name": "기한이 붙은 문서가 없음"
+    }
+  ]
 }

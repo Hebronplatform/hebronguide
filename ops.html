@@ -96,6 +96,25 @@
   .bi-r{background:rgba(248,113,113,.1);}
   .bi-y{background:rgba(254,229,0,.1);}
   .bi-wh{background:rgba(255,255,255,.06);}
+  /* 자가 점검 카드 — 상황판에서 제일 먼저 보는 자리 */
+  .au{display:flex;flex-direction:column;gap:5px;background:var(--surface);
+      border:1px solid var(--border);border-radius:13px;padding:15px 17px;}
+  .au-n{font-size:1.5rem;font-weight:900;line-height:1.1;}
+  .au-l{font-size:.72rem;font-weight:800;letter-spacing:.06em;color:var(--muted2);}
+  .au-ok{border-color:rgba(110,231,183,.3);}   .au-ok .au-n{color:var(--mint);}
+  .au-wa{border-color:rgba(255,159,10,.35);}   .au-wa .au-n{color:var(--warm);}
+  .au-cr{border-color:rgba(248,113,113,.45);background:rgba(248,113,113,.06);}
+  .au-cr .au-n{color:var(--red);}
+  .au-list{grid-column:1/-1;display:flex;flex-direction:column;gap:7px;}
+  .au-item{display:flex;align-items:center;gap:10px;background:var(--surface);
+           border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:.82rem;}
+  .au-item.cr{border-color:rgba(248,113,113,.4);}
+  .au-tag{flex:none;font-size:.64rem;font-weight:900;letter-spacing:.06em;
+          padding:2px 8px;border-radius:99px;}
+  .au-tag.cr{background:rgba(248,113,113,.16);color:var(--red);}
+  .au-tag.wa{background:rgba(255,159,10,.16);color:var(--warm);}
+  .au-grp{flex:none;color:var(--muted2);font-size:.72rem;min-width:52px;}
+  .au-when{grid-column:1/-1;font-size:.72rem;color:var(--muted2);}
   .bcard-title{font-size:.88rem;font-weight:800;color:#fff;line-height:1.25;}
   .bcard-desc{font-size:.74rem;color:var(--muted);line-height:1.55;}
   .bcard-tag{margin-top:4px;font-size:.62rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;}
@@ -194,49 +213,61 @@
   </div>
 
   <div class="sb-sec">
-    <div class="sb-sec-lbl">운영 현황</div>
-    <a href="#kpi"      class="sb-a on" onclick="act(this)">
+    <div class="sb-sec-lbl">① 괜찮은가</div>
+    <a href="#health" class="sb-a on" onclick="act(this)">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      자가 점검
+    </a>
+    <a href="#kpi" class="sb-a" onclick="act(this)">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
       핵심 지표
-    </a>
-    <a href="#cities"   class="sb-a" onclick="act(this)">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
-      도시 Hero 상황
-    </a>
-    <a href="#crm"      class="sb-a" onclick="act(this)">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 21V11l8-6 8 6v10"/></svg>
-      파트너 교회
-    </a>
-    <a href="#board"    class="sb-a" onclick="act(this)">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
-      환대 게시판
-    </a>
-    <a href="#phase"    class="sb-a" onclick="act(this)">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      성장 로드맵
     </a>
   </div>
 
   <div class="sb-sec">
-    <div class="sb-sec-lbl">환대 방송</div>
-    <a href="#youtube"  class="sb-a" onclick="act(this)">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-      유튜브 스케줄
+    <div class="sb-sec-lbl">② 나를 기다리는 것</div>
+    <a href="#cities" class="sb-a" onclick="act(this)">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+      검수 · 승인
     </a>
-    <a href="#docs"     class="sb-a" onclick="act(this)">
+  </div>
+
+  <div class="sb-sec">
+    <div class="sb-sec-lbl">③ 사람</div>
+    <a href="#crm" class="sb-a" onclick="act(this)">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 21V11l8-6 8 6v10"/></svg>
+      파트너 교회
+    </a>
+    <a href="#board" class="sb-a" onclick="act(this)">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+      환대 게시판
+    </a>
+  </div>
+
+  <div class="sb-sec">
+    <div class="sb-sec-lbl">④ 알리기</div>
+    <a href="#phase" class="sb-a" onclick="act(this)">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      성장 로드맵
+    </a>
+    <a href="#youtube" class="sb-a" onclick="act(this)">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      환대 방송
+    </a>
+    <a href="#docs" class="sb-a" onclick="act(this)">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       전략 문서
     </a>
   </div>
 
   <div class="sb-sec">
-    <div class="sb-sec-lbl">관리 도구</div>
-    <a href="#admin"    class="sb-a" onclick="act(this)">
+    <div class="sb-sec-lbl">⑤ 도구</div>
+    <a href="#admin" class="sb-a" onclick="act(this)">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-      관리·운영 툴
+      관리 · 운영 툴
     </a>
     <a href="#channels" class="sb-a" onclick="act(this)">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
       외부 채널
     </a>
   </div>
@@ -263,9 +294,20 @@
     </div>
   </div>
 
+  <!-- ① 자가 점검 — 매번 여기부터 -->
+  <div class="section" id="health" style="padding-top:22px;">
+    <div class="section-hd"><span class="section-lbl">① 자가 점검</span></div>
+    <div id="auditBox" class="card-grid" style="gap:10px;grid-template-columns:repeat(3,1fr);">
+      <div class="bcard" style="grid-column:1/-1;">
+        <div class="bcard-title">점검 결과를 읽는 중…</div>
+        <div class="bcard-desc">배포할 때마다 기계가 같은 자리를 봅니다.</div>
+      </div>
+    </div>
+  </div>
+
   <!-- ① 핵심 지표 -->
   <div class="section" id="kpi" style="padding-top:22px;">
-    <div class="section-hd"><span class="section-lbl">핵심 지표</span></div>
+    <div class="section-hd"><span class="section-lbl">① 핵심 지표</span></div>
     <div class="kpi-row">
       <div class="kpi k-g">
         <div class="kpi-lbl">파트너 교회</div>
@@ -297,7 +339,7 @@
 
   <!-- ② 도시 Hero 상황 — 핵심 섹션 -->
   <div class="section" id="cities" style="padding-top:28px;">
-    <div class="section-hd"><span class="section-lbl">도시 Hero 상황</span></div>
+    <div class="section-hd"><span class="section-lbl">② 나를 기다리는 것</span></div>
     <div class="card-grid g2" style="gap:12px;">
       <a href="/hero-preview.html" target="_blank" class="hero-preview-card">
         <div class="hpc-icon">
@@ -436,9 +478,37 @@
     </div>
   </div>
 
+  <!-- ④ 파트너 교회 CRM -->
+  <div class="section" id="crm" style="padding-top:28px;">
+    <div class="section-hd"><span class="section-lbl">③ 사람 — 교회</span></div>
+    <div class="card-grid g3">
+      <a href="/admin.html" class="bcard">
+        <div class="bcard-icon bi-g"><svg width="18" height="18" fill="none" stroke="#C9A227" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 21V11l8-6 8 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/></svg></div>
+        <div class="bcard-title">파트너 교회 CRM</div>
+        <div class="bcard-desc">교회 655곳 · 추가·수정·삭제 · CSV 내보내기 · 관리자 화면 교회 탭</div>
+        <div class="bcard-tag bt-g">관리 시작 →</div>
+        <span class="bcard-arr">→</span>
+      </a>
+      <a href="/church-invite.html" class="bcard">
+        <div class="bcard-icon bi-m"><svg width="18" height="18" fill="none" stroke="#6EE7B7" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="bcard-title">교회 초대장 발송</div>
+        <div class="bcard-desc">QR 카드 A5 인쇄 · 초대 이메일 자동 발송 · 카카오 채널 구독 유도</div>
+        <div class="bcard-tag bt-m">초대장 보내기 →</div>
+        <span class="bcard-arr">→</span>
+      </a>
+      <a href="/admin.html" class="bcard">
+        <div class="bcard-icon bi-w"><svg width="18" height="18" fill="none" stroke="#FF9F0A" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
+        <div class="bcard-title">교회 추가</div>
+        <div class="bcard-desc">관리자 화면 교회 탭에서 직접 추가합니다.</div>
+        <div class="bcard-tag" style="color:var(--warm);">목록 열기 →</div>
+        <span class="bcard-arr">→</span>
+      </a>
+    </div>
+  </div>
+
   <!-- ③ 환대 게시판 · 행사 -->
   <div class="section" id="board" style="padding-top:28px;">
-    <div class="section-hd"><span class="section-lbl">환대 게시판 · 행사</span></div>
+    <div class="section-hd"><span class="section-lbl">③ 사람 — 환대 게시판</span></div>
     <div class="card-grid g3">
       <a href="/hospitality-board.html" target="_blank" class="bcard" style="border-color:rgba(201,162,39,.35);background:linear-gradient(135deg,rgba(201,162,39,.07),transparent);">
         <div class="bcard-icon bi-g"><svg width="18" height="18" fill="none" stroke="#C9A227" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
@@ -471,37 +541,9 @@
     </div>
   </div>
 
-  <!-- ④ 파트너 교회 CRM -->
-  <div class="section" id="crm" style="padding-top:28px;">
-    <div class="section-hd"><span class="section-lbl">파트너 교회 CRM</span></div>
-    <div class="card-grid g3">
-      <a href="/admin.html" class="bcard">
-        <div class="bcard-icon bi-g"><svg width="18" height="18" fill="none" stroke="#C9A227" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 21V11l8-6 8 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/></svg></div>
-        <div class="bcard-title">파트너 교회 CRM</div>
-        <div class="bcard-desc">교회 655곳 · 추가·수정·삭제 · CSV 내보내기 · 관리자 화면 교회 탭</div>
-        <div class="bcard-tag bt-g">관리 시작 →</div>
-        <span class="bcard-arr">→</span>
-      </a>
-      <a href="/church-invite.html" class="bcard">
-        <div class="bcard-icon bi-m"><svg width="18" height="18" fill="none" stroke="#6EE7B7" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-        <div class="bcard-title">교회 초대장 발송</div>
-        <div class="bcard-desc">QR 카드 A5 인쇄 · 초대 이메일 자동 발송 · 카카오 채널 구독 유도</div>
-        <div class="bcard-tag bt-m">초대장 보내기 →</div>
-        <span class="bcard-arr">→</span>
-      </a>
-      <a href="/admin.html" class="bcard">
-        <div class="bcard-icon bi-w"><svg width="18" height="18" fill="none" stroke="#FF9F0A" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
-        <div class="bcard-title">교회 추가</div>
-        <div class="bcard-desc">관리자 화면 교회 탭에서 직접 추가합니다.</div>
-        <div class="bcard-tag" style="color:var(--warm);">목록 열기 →</div>
-        <span class="bcard-arr">→</span>
-      </a>
-    </div>
-  </div>
-
   <!-- ④ 성장 로드맵 -->
   <div class="section" id="phase" style="padding-top:28px;">
-    <div class="section-hd"><span class="section-lbl">성장 로드맵 현황</span></div>
+    <div class="section-hd"><span class="section-lbl">④ 알리기 — 성장 로드맵</span></div>
     <div style="display:flex;flex-direction:column;gap:9px;">
       <a href="/growth-plan.html" class="phase-row">
         <div class="ph-num pn1">1</div>
@@ -532,7 +574,7 @@
 
   <!-- ⑤ 환대 방송 유튜브 -->
   <div class="section" id="youtube" style="padding-top:28px;">
-    <div class="section-hd"><span class="section-lbl">환대 방송 — 폴킴의 환대</span></div>
+    <div class="section-hd"><span class="section-lbl">④ 알리기 — 환대 방송</span></div>
     <div class="card-grid g2" style="margin-bottom:12px;">
       <a href="/youtube-plan.html" class="bcard">
         <div class="bcard-icon bi-r"><svg width="18" height="18" fill="none" stroke="#f87171" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
@@ -582,7 +624,7 @@
 
   <!-- ⑥ 전략 문서 -->
   <div class="section" id="docs" style="padding-top:28px;">
-    <div class="section-hd"><span class="section-lbl">전략 문서</span></div>
+    <div class="section-hd"><span class="section-lbl">④ 알리기 — 전략 문서</span></div>
     <div class="card-grid g3">
       <a href="/growth-plan.html" class="bcard">
         <div class="bcard-icon bi-g"><svg width="18" height="18" fill="none" stroke="#C9A227" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
@@ -614,7 +656,7 @@
 
   <!-- ⑦ 파트너 관리 · 운영 툴 -->
   <div class="section" id="admin" style="padding-top:28px;">
-    <div class="section-hd"><span class="section-lbl">파트너 관리 · 운영 툴</span></div>
+    <div class="section-hd"><span class="section-lbl">⑤ 도구 — 관리·운영</span></div>
 
     <!-- 메인 CTA — 파트너 신청 관리 (admin.html) -->
     <a href="/admin.html" style="display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:12px;transition:.15s;text-decoration:none;color:inherit;" onmouseover="this.style.borderColor='rgba(248,113,113,.45)';this.style.background='var(--surface2)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--surface)'">
@@ -719,7 +761,7 @@
 
   <!-- ⑧ 외부 채널 -->
   <div class="section" id="channels" style="padding-top:28px;">
-    <div class="section-hd"><span class="section-lbl">외부 채널 · 플랫폼</span></div>
+    <div class="section-hd"><span class="section-lbl">⑤ 도구 — 외부 채널</span></div>
     <div class="card-grid g4">
       <a href="https://hebronguide.com" target="_blank" class="mcard">
         <div class="mcard-icon" style="background:rgba(201,162,39,.12);"><svg width="14" height="14" fill="none" stroke="#C9A227" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/></svg></div>
@@ -827,6 +869,49 @@ fetch(`${SUPA_URL}/rest/v1/community_items?status=eq.pending&select=id`, {
     if (badge) { badge.textContent = n + '건 대기'; badge.style.display = 'inline-flex'; }
   }
 }).catch(()=>{});
+
+// ── 자가 점검 결과 ──────────────────────────────────────
+// audit.json 은 배포할 때마다 scripts/self-audit.mjs 가 새로 쓴다.
+// 여기에는 '무엇을 봐야 하는지' 이름만 들어 있다 — 상세는 터미널에만 둔다.
+fetch('audit.json?v=' + Date.now())
+  .then(r => r.ok ? r.json() : Promise.reject(r.status))
+  .catch(() => fetch('/audit.json?v=' + Date.now()).then(r => r.json()))
+  .then(d => {
+    const box = document.getElementById('auditBox');
+    if (!box) return;
+    const t = d.totals || { ok: 0, warn: 0, critical: 0 };
+    const when = d.ranAt ? new Date(d.ranAt) : null;
+    const ago = when ? Math.max(0, Math.round((Date.now() - when) / 60000)) : null;
+    const agoTxt = ago == null ? '' :
+      (ago < 60 ? ago + '분 전' : (ago < 1440 ? Math.round(ago / 60) + '시간 전' : Math.round(ago / 1440) + '일 전'));
+
+    const tiles = [
+      ['au-cr', t.critical, '치명'],
+      ['au-wa', t.warn,     '주의'],
+      ['au-ok', t.ok,       '정상'],
+    ].map(([c, n, l]) => `<div class="au ${n ? c : ''}"><div class="au-n">${n}</div><div class="au-l">${l}</div></div>`).join('');
+
+    const items = (d.attention || []).map(a => {
+      const cr = a.level === 'CRITICAL';
+      return `<div class="au-item ${cr ? 'cr' : ''}">
+        <span class="au-tag ${cr ? 'cr' : 'wa'}">${cr ? '치명' : '주의'}</span>
+        <span class="au-grp">${a.group}</span>
+        <span>${a.name}</span></div>`;
+    }).join('');
+
+    box.innerHTML = tiles
+      + (items ? `<div class="au-list">${items}</div>` : '')
+      + `<div class="au-when">마지막 점검 ${agoTxt}${d.mode ? ' · ' + d.mode + ' 모드' : ''}`
+      + (t.critical || t.warn ? ' · 자세한 내용은 <code>node scripts/self-audit.mjs</code>' : ' · 모두 정상입니다')
+      + `</div>`;
+  })
+  .catch(() => {
+    const box = document.getElementById('auditBox');
+    if (box) box.innerHTML = '<div class="bcard" style="grid-column:1/-1;">'
+      + '<div class="bcard-title">점검 결과를 읽지 못했습니다</div>'
+      + '<div class="bcard-desc">audit.json 이 배포되지 않았을 수 있습니다. '
+      + 'build.sh 의 복사 목록을 확인하십시오.</div></div>';
+  });
 
 // 교회 수 — 협력교회(hebron_partner)와 등재 교회를 따로 센다.
 // 옛 /api/church-crm 은 2026-07-24 삭제된 함수라 404 였고, 실패값 []의 length 가 0 이라

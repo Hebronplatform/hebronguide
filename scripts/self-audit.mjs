@@ -333,6 +333,9 @@ const summary = {
     }
   }),
   totals: { ok: results.length - crit.length - warn.length, warn: warn.length, critical: crit.length },
+  // 무엇을 봐야 하는지 '이름'만 담는다. 무엇이 왜 실패했는지는 터미널에만 둔다.
+  // (개수만 있으면 'Vercel 에서만 주의 1건' 같은 때 무엇인지 알 길이 없다 — 2026-09-20)
+  attention: [...crit, ...warn].map(r => ({ group: r.group, level: r.level, name: r.name })),
 }
 try {
   fs.writeFileSync(path.join(ROOT, 'hebronguide/public/audit.json'), JSON.stringify(summary, null, 2) + '\n', 'utf8')
