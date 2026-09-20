@@ -1,18 +1,18 @@
 {
-  "ranAt": "2026-09-20T08:34:38.893Z",
+  "ranAt": "2026-09-20T09:49:59.740Z",
   "mode": "fast",
   "groups": [
     {
       "name": "보안",
-      "ok": 3,
+      "ok": 4,
       "warn": 0,
-      "critical": 1
+      "critical": 0
     },
     {
       "name": "배포",
-      "ok": 2,
+      "ok": 3,
       "warn": 0,
-      "critical": 1
+      "critical": 0
     },
     {
       "name": "사실",
@@ -28,8 +28,15 @@
     }
   ],
   "totals": {
-    "ok": 7,
+    "ok": 9,
     "warn": 1,
-    "critical": 2
-  }
+    "critical": 0
+  },
+  "attention": [
+    {
+      "group": "법·문서",
+      "level": "WARN",
+      "name": "기한이 붙은 문서가 없음"
+    }
+  ]
 }

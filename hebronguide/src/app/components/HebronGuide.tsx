@@ -13145,10 +13145,23 @@ function FloatingMusicPlayer() {
     if (!reqForm.url.trim()) return;
     setReqStatus("loading");
     try {
-      const res = await fetch("/api/submit-music-request", {
+      // /api/submit-music-request 는 2026-07-09 지워진 함수였다.
+      // 살아 있는 /api/submit-form 이 같은 일을 한다 (community_items 저장 + 관리자 메일).
+      // 함수를 새로 만들지 않고 보내는 모양만 맞춘다 (Vercel 12개 한도).
+      const res = await fetch("/api/submit-form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(reqForm),
+        body: JSON.stringify({
+          type: "music",
+          subject: `[음악 신청] ${reqForm.name?.trim() || "익명"}`,
+          body: [
+            `링크: ${reqForm.url}`,
+            `듣고 싶은 때: ${reqForm.timePref || "언제나"}`,
+            reqForm.message?.trim() ? `하고 싶은 말: ${reqForm.message.trim()}` : "",
+          ].filter(Boolean).join("\n"),
+          name: reqForm.name?.trim() || "",
+          website: reqForm.url,
+        }),
       });
       if (res.ok) { setReqStatus("success"); setReqForm({ url: "", name: "", timePref: "언제나", message: "" }); }
       else setReqStatus("error");

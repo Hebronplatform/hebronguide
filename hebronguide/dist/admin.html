@@ -2182,10 +2182,10 @@
       // 협력교회에 확인 이메일 자동 발송
       if (email && email !== '없음') {
         try {
-          const emailRes = await fetch('/api/notify-partner', {
+          const emailRes = await fetch('/api/send-welcome', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: adminToken, type: 'church', church: churchData }),
+            body: JSON.stringify({ action: 'notify', token: adminToken, type: 'church', church: churchData }),
           })
           const emailData = await emailRes.json()
           if (emailData.ok && !emailData.skipped) {
@@ -2255,10 +2255,10 @@
       // 확인 이메일 발송 (사업체 담당자)
       if (email) {
         try {
-          await fetch('/api/notify-partner', {
+          await fetch('/api/send-welcome', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: adminToken, type: 'business',
+            body: JSON.stringify({ action: 'notify', token: adminToken, type: 'business',
               business: { name, type, contact, city: cityRaw, phone, email, website, city_slug: citySlug,
                 pastor_email: pastorEmail } }),
           })
@@ -2269,10 +2269,10 @@
       // 추천 목사님 알림 이메일
       if (pastorEmail) {
         try {
-          await fetch('/api/notify-partner', {
+          await fetch('/api/send-welcome', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: adminToken, type: 'pastor_referral',
+            body: JSON.stringify({ action: 'notify', token: adminToken, type: 'pastor_referral',
               business: { name, type, city: cityRaw, phone, email: pastorEmail, website, city_slug: citySlug,
                 biz_name: name, biz_email: email } }),
           })
@@ -2307,10 +2307,10 @@
       // 확인 이메일 발송
       if (email) {
         try {
-          await fetch('/api/notify-partner', {
+          await fetch('/api/send-welcome', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: adminToken, type: 'promo',
+            body: JSON.stringify({ action: 'notify', token: adminToken, type: 'promo',
               promo: { title, contact, phone, email, promoType, period, link, content } }),
           })
           toast(`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> ${title} → ${email} 확인 이메일 발송!`)
@@ -2569,10 +2569,10 @@
     status.textContent = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg> ${cityName} 주간 리뷰 중...`
     status.style.color = 'var(--gold)'
     try {
-      const res = await fetch('/api/city-reviewer', {
+      const res = await fetch('/api/city-draft', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ citySlug, cityName, token: adminToken }),
+        body: JSON.stringify({ action: 'review', citySlug, cityName, token: adminToken }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error)
@@ -2614,10 +2614,10 @@
     status.style.color = 'var(--mint)'
 
     try {
-      const res = await fetch('/api/content-curator', {
+      const res = await fetch('/api/city-planner', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ city: cityName, citySlug, section, token: adminToken }),
+        body: JSON.stringify({ action: 'curate', city: cityName, citySlug, section, token: adminToken }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || '요청 실패')

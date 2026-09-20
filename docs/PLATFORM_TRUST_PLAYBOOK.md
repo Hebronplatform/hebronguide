@@ -1,5 +1,7 @@
 # 낯선 사람을 집에 들이는 법 — 에어비앤비·카우치서핑에서 배운다
 
+<!-- 점검주기: 180 · 최종점검: 2026-09-20 · 플랫폼 정책이 바뀜다 -->
+
 **정립: 2026-08-11**
 
 > Yelp · 당근 · TripAdvisor는 [`MARKETING_STRATEGY.md`](MARKETING_STRATEGY.md)와

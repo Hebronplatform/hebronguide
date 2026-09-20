@@ -233,6 +233,20 @@
 </div>
 
 <script>
+/* ── 관리자 확인 ──────────────────────────────────────────
+   이 페이지는 목사님 이름으로 메일을 보낸다. 아무나 눌러서는 안 된다.
+   비밀번호는 저장하지 않는다 — 지문만 만들어 서버에 보내고, 서버가 맞춰 본다.
+   맞으면 이 창이 열려 있는 동안만 기억한다. */
+var _tok = null;
+async function adminToken() {
+  if (_tok) return _tok;
+  var pw = prompt('관리자 비밀번호');
+  if (!pw) return null;
+  var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
+  _tok = Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+  return _tok;
+}
+
 // QR 코드 생성
 new QRCode(document.getElementById('qrcode'), {
   text: 'https://pf.kakao.com/_dxdxlbX',
@@ -299,10 +313,15 @@ async function sendInvite(){
   btn.textContent = '발송 중...';
 
   try {
-    var res = await fetch('/api/send-church-invite', {
+    // 옛 /api/send-church-invite 는 2026-07-24 지워진 함수였다.
+    // 메일 담당 함수 안으로 옮겨 심었다 (action:'invite').
+    // 옛 함수에는 인증이 없어 누구나 목사님 이름으로 메일을 보낼 수 있었다.
+    var tok = await adminToken();
+    if (!tok) { btn.disabled = false; btn.textContent = '초대 이메일 발송'; return; }
+    var res = await fetch('/api/send-welcome', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({churchName: church, pastorName: pastor, email: email, city: city, memo: memo})
+      body: JSON.stringify({action:'invite', token: tok, churchName: church, pastorName: pastor, email: email, city: city, memo: memo})
     });
     var data = await res.json();
     var el = document.getElementById('sendResult');

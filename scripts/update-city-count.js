@@ -124,6 +124,10 @@ syncFile(path.join(ROOT, 'llms.txt'), 'llms.txt');
 syncFile(tsxPath, 'HebronGuide.tsx');
 
 // ── 7. api/city-planner.js (AI 시스템 프롬프트) ──────────────
+// 초대 편지 본문에 '71개+ 도시' 가 박혀 있었다 (2026-09-20 발견, 실제 81).
+// 메일은 화면보다 오래 남으므로 여기도 같이 맞춘다.
+syncFile(path.join(ROOT, 'api/send-welcome.js'), 'api/send-welcome.js')
+
 const cpPath = path.join(ROOT, 'api/city-planner.js');
 if (fs.existsSync(cpPath)) {
   let cp = fs.readFileSync(cpPath, 'utf8');
