@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <script>
 /* 언어 결정 — 고른 것 > 윈도우·브라우저 언어 > 영어. 우선 두 언어만. */
@@ -32,11 +32,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <meta name="apple-mobile-web-app-title" content="HebronGuide"/>
-  <title>HebronGuide — 반갑게 맞아 주는 이가 있습니다</title>
-  <meta name="description" content="불안한 마음으로 새 도시에 도착한 첫날, 반갑게 맞아 주는 이가 있습니다. 전 세계 81개+ 도시 — 글로벌 환대 플랫폼 HebronGuide."/>
+  <title>HebronGuide — Someone is there to welcome you</title>
+  <meta name="description" content="The first day in a new city, with an anxious heart — someone is there to welcome you. 81+ cities worldwide. 불안한 마음으로 새 도시에 도착한 첫날, 반갑게 맞아 주는 이가 있습니다."/>
   <meta name="theme-color" content="#0d1117"/>
-  <meta property="og:title" content="HebronGuide — 반갑게 맞아 주는 이가 있습니다"/>
-  <meta property="og:description" content="불안한 마음으로 새 도시에 도착한 첫날, 반갑게 맞아 주는 이가 있습니다. 전 세계 81개+ 도시 — 글로벌 환대 플랫폼 HebronGuide."/>
+  <meta property="og:title" content="HebronGuide — Someone is there to welcome you"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:locale:alternate" content="ko_KR"/>
+  <meta property="og:description" content="The first day in a new city, with an anxious heart — someone is there to welcome you. 81+ cities worldwide. 불안한 마음으로 새 도시에 도착한 첫날, 반갑게 맞아 주는 이가 있습니다."/>
   <meta property="og:url" content="https://hebronguide.com/"/>
   <meta property="og:image" content="https://hebronguide.com/icon-512.png"/>
   <link rel="canonical" href="https://hebronguide.com/"/>
@@ -457,9 +459,17 @@
 
   html[lang="ko"] .en{display:none!important;}
   html[lang="en"] .ko{display:none!important;}
-  .lang-btn{background:transparent;border:1px solid var(--border2);color:var(--muted);font-size:.75rem;font-weight:700;border-radius:20px;padding:5px 14px;cursor:pointer;transition:all .2s;font-family:'Noto Sans KR',sans-serif;letter-spacing:.04em;white-space:nowrap;}
-  .lang-btn{display:inline-flex;align-items:center;gap:6px;}
-  .lang-btn:hover{border-color:var(--gold);color:var(--gold);}
+  /* 언어 단추 — 지구본 하나. 글자는 넣지 않는다.
+     폰·브라우저 언어를 보고 이미 자동으로 정해 주므로(이 파일 맨 위 스크립트),
+     이 단추는 '그 판단을 되돌리는 장치'다. 자주 쓸 것이 아니니 자리를 적게 쓴다.
+     세줄 메뉴와 같은 크기·모양으로 맞춰 한 쌍처럼 보이게 한다. */
+  .lang-btn{width:40px;height:40px;padding:0;font-size:19px;
+    background:var(--surface);border:1px solid var(--border2);color:var(--muted);
+    border-radius:11px;cursor:pointer;transition:border-color .2s,color .2s,background .2s;
+    display:inline-flex;align-items:center;justify-content:center;}
+  .lang-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--surface2);}
+  /* 글자는 눈에서만 지운다 — 화면낭독기에는 남는다 */
+  #lang-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 
   /* ━━━ THREE PATHS ━━━ */
   .paths-section{padding:80px 24px;max-width:1000px;margin:0 auto;}
@@ -765,7 +775,7 @@
       </div>
       <div class="partner-type"><span class="ko">업체 등록</span><span class="en">Business</span></div>
       <h3><span class="ko">손님을<br>맞으실래요?</span><span class="en">Will you welcome<br>the guest?</span></h3>
-      <p><span class="ko">밥집도 병원도 처음입니다. 누가 알려 주기 전까지는.</span><span class="en">Restaurant, clinic, academy, law office — be the first stop for new Korean arrivals.</span></p>
+      <p><span class="ko">밥집도 병원도 처음입니다. 누가 알려 주기 전까지는.</span><span class="en">The food, the clinic, all of it new. Until someone points the way.</span></p>
       <div class="partner-cta-label"><span class="ko">업체 등록하기 →</span><span class="en">Register Business →</span></div>
     </a>
 
@@ -1024,7 +1034,7 @@ function toggleFaq(btn){
 <div class="cities-section" id="cities">
   <div class="sec-label">서비스 도시 · Cities</div>
   <h2 class="sec-title"><span class="ko">전 세계 <span><span class="hg-city-count">81</span>개+ 도시</span></span><span class="en"><span><span class="hg-city-count">81</span>+ Cities</span> Worldwide</span></h2>
-  <p class="sec-desc" style="margin-bottom:32px;"><span class="ko">대한민국에서 출발해 세계로 — 한인이 사는 모든 곳, 돌아오는 모든 곳</span><span class="en">From Korea to the world — every city Koreans go to, and every city they come home to</span></p>
+  <p class="sec-desc" style="margin-bottom:32px;"><span class="en">Wherever someone arrives in a new city, someone is there to meet them.</span><span class="ko">새 도시에 도착하는 사람이 있는 곳이면, 맞이하는 사람도 있습니다.</span></p>
 
   <div class="hg-map-wrap">
     <div class="hg-map-stats">
