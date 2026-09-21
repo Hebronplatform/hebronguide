@@ -29,7 +29,10 @@
       "poster": "/planting-seed-2026-poster.jpg",
       "until": "2026-11-26",
       "sponsored": true,
-      "cities": "all"
+      "cities": "all",
+      "registerUrl": "https://docs.google.com/forms/d/e/1FAIpQLScmfxG1j86cHboPA6mjVuJ4E_8hLuRz0Ux2E2IDhhotdProOA/viewform",
+      "themeKo": "환대",
+      "themeEn": "Hospitality"
     }
   ]
 }

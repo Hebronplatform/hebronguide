@@ -412,6 +412,25 @@
   #hgShareToast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
   /* ── 한/영 전환 ── */
+  /* ━━━ 행사 알림 띠 ━━━
+     events.json 에 아직 안 끝난 행사가 있을 때만 뜬다. 없으면 자리도 차지하지 않는다.
+     얇게 — 첫 화면의 주인은 「글로벌 환대 플랫폼」이지 광고가 아니다. */
+  .hg-band{display:none;}
+  .hg-band.on{display:block;}
+  .hg-band a{display:flex;align-items:center;justify-content:center;gap:10px;
+    flex-wrap:wrap;min-height:44px;padding:9px 16px;text-decoration:none;
+    background:linear-gradient(90deg,rgba(201,162,39,.16),rgba(245,199,110,.1) 50%,rgba(201,162,39,.16));
+    border-bottom:1px solid rgba(245,199,110,.28);
+    font-size:.82rem;line-height:1.5;color:#F5E7C6;word-break:keep-all;text-align:center;}
+  .hg-band a:hover{background:linear-gradient(90deg,rgba(201,162,39,.24),rgba(245,199,110,.16) 50%,rgba(201,162,39,.24));}
+  .hg-band .b-tag{flex:none;font-size:.66rem;font-weight:800;letter-spacing:.08em;
+    padding:2px 9px;border-radius:99px;background:rgba(245,199,110,.18);
+    color:#F5C76E;border:1px solid rgba(245,199,110,.35);}
+  .hg-band .b-t{font-weight:700;}
+  .hg-band .b-when{color:rgba(245,231,198,.7);}
+  .hg-band .b-go{flex:none;font-weight:800;color:#F5C76E;}
+  @media(max-width:560px){ .hg-band .b-when{display:none;} }
+
   html[lang="ko"] .en{display:none!important;}
   html[lang="en"] .ko{display:none!important;}
   .lang-btn{background:transparent;border:1px solid var(--border2);color:var(--muted);font-size:.75rem;font-weight:700;border-radius:20px;padding:5px 14px;cursor:pointer;transition:all .2s;font-family:'Noto Sans KR',sans-serif;letter-spacing:.04em;white-space:nowrap;}
@@ -485,6 +504,9 @@
 <body>
 
 <!-- 루트(/) 는 항상 랜딩 페이지 표시 — 자동 리디렉트 없음 -->
+
+<!-- 행사 알림 띠 — events.json 이 채운다. 행사가 없으면 뜨지 않는다 -->
+<div class="hg-band" id="hgBand"></div>
 
 <!-- NAV -->
 <nav>
@@ -1456,5 +1478,43 @@ if(inp){
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 
+<script>
+/* 행사 알림 띠 — 환대 게시판과 같은 events.json 을 읽는다.
+   한 곳만 고치면 게시판·앱 홈·이 띠가 함께 바뀐다. */
+(function () {
+  var box = document.getElementById('hgBand');
+  if (!box) return;
+  var ko = (document.documentElement.lang || 'ko').indexOf('ko') === 0;
+
+  function pick(list) {
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    return list
+      .filter(function (e) { return !e.until || new Date(e.until + 'T00:00:00') >= today; })
+      .sort(function (a, b) { return (a.until || '') < (b.until || '') ? -1 : 1; })[0];
+  }
+
+  fetch('events.json', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r : Promise.reject(r.status); })
+    .catch(function () { return fetch('/events.json', { cache: 'no-store' }); })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var e = pick((d && d.events) || []);
+      if (!e) return;                       // 행사가 없으면 조용히 아무것도 안 한다
+      var title = ko ? e.titleKo : (e.titleEn || e.titleKo);
+      var when  = ko ? (e.whenKo || '') : (e.whenEn || '');
+      var tag   = e.registerUrl ? (ko ? '신청 접수 중' : 'Open') : (ko ? '알림' : 'Notice');
+      var go    = ko ? '보기 \u2192' : 'View \u2192';
+      box.innerHTML =
+        '<a href="' + (e.page || '/hospitality-board.html') + '">' +
+          '<span class="b-tag">' + tag + '</span>' +
+          '<span class="b-t">' + title + '</span>' +
+          '<span class="b-when">' + when + '</span>' +
+          '<span class="b-go">' + go + '</span>' +
+        '</a>';
+      box.classList.add('on');
+    })
+    .catch(function () { /* 못 읽으면 띠는 그냥 안 뜬다 — 첫 화면은 멀쩡하다 */ });
+})();
+</script>
 </body>
 </html>

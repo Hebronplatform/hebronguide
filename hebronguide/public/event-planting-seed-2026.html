@@ -129,6 +129,7 @@ h2.sec{font-size:1.28rem;font-weight:800;line-height:1.5;margin-bottom:12px;}
 .btn-go{background:linear-gradient(135deg,var(--amber) 0%,var(--ember) 100%);color:#17120a;
   box-shadow:0 8px 24px rgba(232,163,61,.24);}
 .btn-go:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(232,163,61,.34);}
+.cta-sub{margin-top:12px;font-size:.78rem;color:var(--muted2,rgba(255,255,255,.45));}
 .btn-wait{background:var(--surface2);border:1px solid var(--border2);color:var(--muted);cursor:default;}
 
 /* ── PLUG ─────────────────────────────────────────── */
@@ -258,6 +259,7 @@ footer{border-top:1px solid var(--border);padding:26px 20px 40px;text-align:cent
       <div class="info-item"><div class="info-k">주최</div><div class="info-v">라이트하우스무브먼트</div></div>
       <div class="info-item"><div class="info-k">후원</div><div class="info-v">규장 · 갓피플</div></div>
       <div class="info-item"><div class="info-k">참가비</div><div class="info-v">20만 원<small>입금 계좌는 포스터를 확인해 주세요</small></div></div>
+      <div class="info-item"><div class="info-k">신청</div><div class="info-v"><a href="https://docs.google.com/forms/d/e/1FAIpQLScmfxG1j86cHboPA6mjVuJ4E_8hLuRz0Ux2E2IDhhotdProOA/viewform" target="_blank" rel="noopener" style="color:var(--amber2);font-weight:800;">구글 폼으로 신청</a><small>주최 측이 직접 받습니다</small></div></div>
       <div class="info-item"><div class="info-k">진행 · 기도회</div><div class="info-v">안창국 목사 · 김희중 목사<small>기도회 인도 — 김선교 선교사</small></div></div>
     </div>
   </section>
@@ -265,9 +267,10 @@ footer{border-top:1px solid var(--border);padding:26px 20px 40px;text-align:cent
   <!-- 신청 -->
   <section>
     <div class="cta">
-      <b>교회개척을 준비하고 계신다면</b>
+      <b>사흘 동안 「환대」 한 가지를 봅니다</b>
       <p>건물보다, 강점보다 먼저 —<br>한 사람을 그리스도인으로 세우는 삶을 준비하는 자리입니다.</p>
-      <a class="btn btn-wait" id="reg" href="#" aria-disabled="true">신청 링크 준비 중</a>
+      <a class="btn btn-go" id="reg" href="https://docs.google.com/forms/d/e/1FAIpQLScmfxG1j86cHboPA6mjVuJ4E_8hLuRz0Ux2E2IDhhotdProOA/viewform" target="_blank" rel="noopener">신청하기</a>
+      <p class="cta-sub">구글 폼으로 연결됩니다 · 주최 측이 직접 받습니다</p>
     </div>
   </section>
 
@@ -295,22 +298,12 @@ footer{border-top:1px solid var(--border);padding:26px 20px 40px;text-align:cent
     신청 계좌와 문의 연락처는 주최 측 공지를 한번 더 확인해 주세요.<br>
     <b style="color:var(--amber2);">HebronGuide는 이 행사를 후원합니다.</b>
   </p>
-  <p class="foot-c">&copy; 2026 Hebron Platform LLC · <a href="/">hebronguide.com</a> · 1 Cor. 10:31</p>
+  <p class="foot-c">&copy; 2026 Hebron Platform LLC · <a href="/">hebronguide.com</a></p>
 </footer>
 
 <script>
-// 신청 링크가 확정되면 이 한 줄만 바꾸면 됩니다.
-var REGISTER_URL = "";
-(function () {
-  if (!REGISTER_URL) return;
-  var a = document.getElementById("reg");
-  a.href = REGISTER_URL;
-  a.target = "_blank";
-  a.rel = "noopener";
-  a.className = "btn btn-go";
-  a.removeAttribute("aria-disabled");
-  a.textContent = "신청하기";
-})();
+// 신청 링크는 2026-09-21 확정되어 버튼에 직접 들어갔다 (구글 폼).
+// 링크가 바뀌면 위 <a id="reg"> 의 href 를 고치면 된다.
 </script>
 </body>
 </html>

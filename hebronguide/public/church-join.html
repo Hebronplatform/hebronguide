@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>교회 등록 — HebronGuide</title>
-<meta name="description" content="HebronGuide 협력교회 등록. 30초면 완료됩니다.">
-<meta property="og:title" content=" HebronGuide 교회 등록 (30초 완료)">
+<meta name="description" content="HebronGuide 협력교회 등록. 교회명 · 목사님 성함 · 도시 — 세 가지만 묻습니다.">
+<meta property="og:title" content="HebronGuide 교회 등록">
 <meta property="og:description" content="전 세계 81개 도시 한인 이주자에게 첫 번째로 연결되는 교회가 되세요.">
 <meta property="og:image" content="https://hebronguide.com/icon-512.png">
 <meta property="og:url" content="https://hebronguide.com/church-join.html">
@@ -27,14 +27,14 @@ body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;colo
 .hero p{color:#8b949e;font-size:.85rem;line-height:1.6}
 
 /* 진행 단계 */
-.steps{display:flex;justify-content:center;gap:0;margin:20px auto;max-width:300px}
+.steps{display:flex;justify-content:center;gap:0;margin:20px auto;max-width:360px}
 .step{flex:1;text-align:center;position:relative}
 .step-dot{width:28px;height:28px;border-radius:50%;background:#161b22;border:2px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 4px;font-size:.75rem;font-weight:700;color:#8b949e;transition:.3s}
 .step-dot.active{background:#C9A227;border-color:#C9A227;color:#000}
 .step-dot.done{background:#6EE7B7;border-color:#6EE7B7;color:#000}
 .step-line{position:absolute;top:14px;left:50%;right:-50%;height:2px;background:rgba(255,255,255,.08);z-index:0}
 .step:last-child .step-line{display:none}
-.step-label{font-size:.68rem;color:#8b949e}
+.step-label{font-size:.68rem;color:#8b949e;word-break:keep-all;white-space:nowrap}
 .step-label.active{color:#C9A227;font-weight:700}
 
 /* 폼 */
@@ -96,7 +96,7 @@ select option,select optgroup{background:#0d1117;color:#e6edf3}
 
 <!-- 히어로 -->
 <div class="hero">
-  <div class="hero-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 2v5"/><path d="M9.5 4.5h5"/><path d="M6 22V11l6-4 6 4v11"/><path d="M10 22v-5h4v5"/></svg> 30초 교회 등록</div>
+  <div class="hero-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 2v5"/><path d="M9.5 4.5h5"/><path d="M6 22V11l6-4 6 4v11"/><path d="M10 22v-5h4v5"/></svg> 교회명 · 목사님 성함 · 도시</div>
   <h1>협력교회로 등록하세요</h1>
   <p>전 세계 한인 이주자가 새 도시에서<br>가장 먼저 만나는 교회가 됩니다.</p>
 </div>
@@ -143,39 +143,88 @@ select option,select optgroup{background:#0d1117;color:#e6edf3}
         <label>도시 <span class="req">*</span></label>
         <select id="cityName">
           <option value="">도시 선택</option>
-          <optgroup label=" 미국">
-            <option>시애틀 Seattle, WA</option>
-            <option>로스앤젤레스 LA, CA</option>
-            <option>뉴욕 New York, NY</option>
-            <option>달라스 Dallas, TX</option>
-            <option>SF 베이에어리어 Bay Area, CA</option>
-            <option>휴스턴 Houston, TX</option>
-            <option>애틀랜타 Atlanta, GA</option>
-            <option>시카고 Chicago, IL</option>
-            <option>워싱턴DC Washington DC</option>
-            <option>보스턴 Boston, MA</option>
-            <option>마이애미 Miami, FL</option>
-            <option>내쉬빌 Nashville, TN</option>
-            <option>호놀룰루 Honolulu, HI</option>
-            <option>기타 미국</option>
-          </optgroup>
-          <optgroup label=" 캐나다">
-            <option>토론토 Toronto, ON</option>
-            <option>밴쿠버 Vancouver, BC</option>
-            <option>캘거리 Calgary, AB</option>
-            <option>기타 캐나다</option>
-          </optgroup>
-          <optgroup label=" 한국">
-            <option>서울</option><option>부산</option>
-            <option>인천</option><option>기타 한국</option>
-          </optgroup>
-          <optgroup label=" 기타">
-            <option>시드니 Sydney</option>
-            <option>런던 London</option>
-            <option>도쿄 Tokyo</option>
-            <option>싱가포르 Singapore</option>
-            <option>기타 도시</option>
-          </optgroup>
+          <option value="la">LA Los Angeles</option>
+          <option value="guadalajara">과달라하라 Guadalajara</option>
+          <option value="gwangju">광주 Gwangju</option>
+          <option value="nashville">내쉬빌 Nashville</option>
+          <option value="neworleans">뉴올리언스 New Orleans</option>
+          <option value="newyork">뉴욕 New York</option>
+          <option value="newjersey">뉴저지 New Jersey</option>
+          <option value="dallas">달라스 Dallas</option>
+          <option value="daegu">대구 Daegu</option>
+          <option value="daejeon">대전 Daejeon</option>
+          <option value="denver">덴버 Denver</option>
+          <option value="tokyo">도쿄 Tokyo</option>
+          <option value="dubai">두바이 Dubai</option>
+          <option value="london">런던 London</option>
+          <option value="raleigh">롤리 Raleigh</option>
+          <option value="louisville">루이빌 Louisville</option>
+          <option value="leesville">리스빌 Leesville</option>
+          <option value="miami">마이애미 Miami</option>
+          <option value="maryland">메릴랜드 Maryland</option>
+          <option value="mexicocity">멕시코시티 Mexico City</option>
+          <option value="melbourne">멜버른 Melbourne</option>
+          <option value="memphis">멤피스 Memphis</option>
+          <option value="monterrey">몬테레이 Monterrey</option>
+          <option value="minneapolis">미니애폴리스 Minneapolis</option>
+          <option value="bangkok">방콕 Bangkok</option>
+          <option value="vancouver">밴쿠버 Vancouver</option>
+          <option value="virginia">버지니아 Virginia</option>
+          <option value="berlin">베를린 Berlin</option>
+          <option value="bogota">보고타 Bogota</option>
+          <option value="boston">보스턴 Boston</option>
+          <option value="busan">부산 Busan</option>
+          <option value="bundang">분당·수지 Bundang</option>
+          <option value="brisbane">브리즈번 Brisbane</option>
+          <option value="saopaulo">상파울루 São Paulo</option>
+          <option value="sandiego">샌디에고 San Diego</option>
+          <option value="sf">샌프란시스코 San Francisco</option>
+          <option value="charlotte">샬럿 Charlotte</option>
+          <option value="seoul">서울 Seoul</option>
+          <option value="sydney">시드니 Sydney</option>
+          <option value="seattle">시애틀 Seattle</option>
+          <option value="chicago">시카고 Chicago</option>
+          <option value="singapore">싱가포르 Singapore</option>
+          <option value="ansan">안산 Ansan</option>
+          <option value="atlanta">애틀랜타 Atlanta</option>
+          <option value="anchorage">앵커리지 Anchorage</option>
+          <option value="edmonton">에드먼턴 Edmonton</option>
+          <option value="orangecounty">오렌지카운티 Orange County</option>
+          <option value="osaka">오사카 Osaka</option>
+          <option value="austin">오스틴 Austin</option>
+          <option value="auckland">오클랜드 Auckland</option>
+          <option value="ottawa">오타와 Ottawa</option>
+          <option value="orlando">올랜도 Orlando</option>
+          <option value="dc">워싱턴 DC Washington DC</option>
+          <option value="waynesville">웨인즈빌 Waynesville</option>
+          <option value="winnipeg">위니펙 Winnipeg</option>
+          <option value="inlandempire">인랜드 엠파이어 Inland Empire</option>
+          <option value="incheon">인천 Incheon</option>
+          <option value="jeju">제주 Jeju</option>
+          <option value="changwon">창원 Changwon</option>
+          <option value="cheonan">천안·아산 Cheonan</option>
+          <option value="kansascity">캔자스시티 Kansas City</option>
+          <option value="calgary">캘거리 Calgary</option>
+          <option value="columbus">콜럼버스 Columbus</option>
+          <option value="killeen">킬린 Killeen</option>
+          <option value="tampa">탬파 Tampa</option>
+          <option value="toronto">토론토 Toronto</option>
+          <option value="tucson">투손 Tucson</option>
+          <option value="paris">파리 Paris</option>
+          <option value="perth">퍼스 Perth</option>
+          <option value="fairfield">페어필드 Fairfield</option>
+          <option value="fayetteville">페이엣빌 Fayetteville</option>
+          <option value="portland">포틀랜드 Portland</option>
+          <option value="frankfurt">프랑크푸르트 Frankfurt</option>
+          <option value="princgeorge">프린스조지 Prince George</option>
+          <option value="phoenix">피닉스 Phoenix</option>
+          <option value="philadelphia">필라델피아 Philadelphia</option>
+          <option value="huntsville">헌츠빌 Huntsville</option>
+          <option value="honolulu">호놀룰루 Honolulu</option>
+          <option value="hochiminh">호치민 Ho Chi Minh City</option>
+          <option value="federalway">훼더럴웨이 Federal Way</option>
+          <option value="houston">휴스턴 Houston</option>
+          <option value="other">그 밖의 도시 — 적어 주시면 검토합니다</option>
         </select>
         <div class="error-msg">도시를 선택해 주세요</div>
       </div>
