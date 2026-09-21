@@ -12,6 +12,11 @@ WORDS = {
     2: ['교회', '목사', '선교', '나그네', '환대', '공동체', '제단', '연합'],
 }
 
+# 우리끼리만 쓰는 말 — 교회 말은 아니지만 처음 온 사람에게는 똑같은 벽이다.
+# 지어낸 말은 뜻을 아는 사람과 모르는 사람을 나눈다. 첫 화면에서는 풀어 쓴다.
+OURS = ['환대 서클', '헤브론 패스', '환대 준비도', '4기둥', '네 기둥',
+        '헤브론 파트너', '환대 파트너', '센터처치', '거점', '생태계', '플랫폼']
+
 PAGES = [
     ('랜딩 첫 화면',      'index.html'),
     ('환대 게시판',        'hebronguide/public/hospitality-board.html'),
@@ -46,4 +51,6 @@ for label, p in PAGES:
     print('── %s' % label)
     print('   [교회 안에서만] %s' % (', '.join(hits3) if hits3 else '없음'))
     print('   [종교로 읽힘]   %s' % (', '.join(hits2) if hits2 else '없음'))
+    ours = ['%s×%d' % (w, t.count(w)) for w in OURS if t.count(w)]
+    print('   [우리끼리만]    %s' % (', '.join(ours) if ours else '없음'))
     print()
