@@ -229,6 +229,8 @@ cp hebronguide/public/planting-seed-2026-poster.jpg  public/planting-seed-2026-p
 cp hebronguide/public/hospitality-board.html        public/hospitality-board.html          2>/dev/null || true
 # 식탁을 여는 가정 — 3종 등록의 세 번째 (2026-09-21)
 cp hebronguide/public/home-table.html               public/home-table.html                 2>/dev/null || true
+# 문을 하나 열어 두시겠어요 — 교회·업체·가정 셋을 하나로 (2026-09-21)
+cp hebronguide/public/open.html                     public/open.html                       2>/dev/null || true
 cp hebronguide/public/events.json                   public/events.json                     2>/dev/null || true
 # 자가 점검 요약 — 상황판이 읽는다 (공개돼도 안전한 숫자만 들어 있다)
 cp hebronguide/public/audit.json                    public/audit.json                      2>/dev/null || true

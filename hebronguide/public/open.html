@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Open a door — HebronGuide</title>
+<meta name="description" content="Open one door for someone who just arrived. Directions, a seat, a meal. Only what you can. 문을 하나 열어 두시겠어요? 할 수 있는 만큼만."/>
+<meta property="og:title" content="Open a door — HebronGuide"/>
+<meta property="og:description" content="Open one door for someone who just arrived. Only what you can."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:locale:alternate" content="ko_KR"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200;300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  :root{--bg:#0d1117;--bg2:#161b26;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.18);
+        --gold:#C9A227;--gold2:#F5C76E;--mint:#6EE7B7;--text:#ECFDF5;
+        --muted:rgba(236,253,245,.62);--muted2:rgba(236,253,245,.4);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);
+       line-height:1.8;padding-bottom:80px;word-break:keep-all;}
+  .wrap{max-width:620px;margin:0 auto;padding:0 20px;}
+
+  .top{border-bottom:1px solid var(--line);}
+  .top a{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;
+         font-size:.88rem;padding:15px 20px;min-height:44px;}
+  .top a:hover{color:var(--gold2);}
+
+  header{padding:46px 0 26px;text-align:center;}
+  h1{font-size:clamp(1.5rem,5vw,2rem);font-weight:500;line-height:1.4;text-wrap:balance;}
+  .sub{color:var(--muted);font-weight:300;margin-top:14px;font-size:.97rem;line-height:1.9;}
+  .steps{display:flex;gap:7px;justify-content:center;margin:24px 0 4px;}
+  .dot{width:26px;height:3px;border-radius:2px;background:var(--line2);}
+  .dot.on{background:var(--gold);}
+
+  .card{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:26px 22px;margin:18px 0;}
+  .q{font-size:1.1rem;font-weight:500;margin-bottom:5px;}
+  .qs{color:var(--muted2);font-size:.85rem;font-weight:300;margin-bottom:18px;}
+
+  .opt{display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;
+       background:transparent;border:1px solid var(--line);border-radius:14px;
+       padding:15px 16px;margin-bottom:10px;cursor:pointer;color:var(--text);
+       font-family:inherit;transition:border-color .18s,background .18s;}
+  .opt:hover{border-color:var(--line2);background:rgba(255,255,255,.025);}
+  .opt.on{border-color:var(--gold);background:rgba(201,162,39,.07);}
+  .opt:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  .box{flex:none;width:21px;height:21px;border:1.5px solid var(--line2);border-radius:6px;margin-top:4px;
+       display:flex;align-items:center;justify-content:center;}
+  .opt.on .box{border-color:var(--gold);background:var(--gold);}
+  .box svg{width:13px;height:13px;opacity:0;}
+  .opt.on .box svg{opacity:1;}
+  .ot{font-size:1rem;font-weight:500;line-height:1.5;}
+  .od{color:var(--muted);font-size:.85rem;font-weight:300;line-height:1.65;margin-top:2px;}
+  .tag{display:inline-block;font-size:.72rem;color:var(--gold2);border:1px solid rgba(245,199,110,.35);
+       border-radius:99px;padding:1px 9px;margin-left:7px;vertical-align:middle;}
+
+  label{display:block;font-size:.88rem;color:var(--muted);margin:17px 0 7px;font-weight:300;}
+  input{width:100%;background:#0b0f16;border:1px solid var(--line);border-radius:12px;
+        padding:13px 15px;color:var(--text);font-family:inherit;font-size:1rem;}
+  input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent;}
+
+  .go{width:100%;background:var(--gold);color:#0d1117;border:0;border-radius:99px;
+      padding:15px;font-family:inherit;font-size:1.02rem;font-weight:700;cursor:pointer;margin-top:24px;min-height:48px;}
+  .go:disabled{background:var(--line2);color:var(--muted2);cursor:not-allowed;}
+  .back{background:transparent;border:0;color:var(--muted2);font-family:inherit;font-size:.88rem;
+        cursor:pointer;margin-top:14px;text-decoration:underline;min-height:44px;}
+
+  .after{border-top:1px dashed var(--line);margin-top:22px;padding-top:18px;
+         color:var(--muted);font-size:.86rem;font-weight:300;line-height:1.9;}
+  .after b{color:var(--mint);font-weight:500;}
+  .err{color:#FCA5A5;font-size:.88rem;margin-top:12px;line-height:1.7;}
+
+  .done{text-align:center;padding:26px 0;}
+  .mark{width:56px;height:56px;border-radius:50%;background:rgba(110,231,183,.12);
+        border:1px solid rgba(110,231,183,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+  .hide{display:none;}
+  .foot{color:var(--muted2);font-size:.8rem;text-align:center;margin-top:26px;line-height:1.9;font-weight:300;}
+  .foot a{color:var(--muted);}
+</style>
+</head>
+<body>
+
+<div class="top"><a href="/">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  HebronGuide</a></div>
+
+<div class="wrap">
+
+  <header>
+    <h1 id="hd">문을 하나 열어 두시겠어요?</h1>
+    <p class="sub" id="hs">막 도착한 사람에게는 아는 사람 하나가 전부입니다.<br>할 수 있는 만큼만 열어 두시면 됩니다.</p>
+    <div class="steps"><span class="dot on" id="d1"></span><span class="dot" id="d2"></span></div>
+  </header>
+
+  <!-- 1 : 신분이 아니라 행위를 묻는다 -->
+  <section class="card" id="s1">
+    <div class="q">무엇을 열어 두실 수 있나요?</div>
+    <div class="qs">여러 개 고르셔도 됩니다. 나중에 바꾸셔도 됩니다.</div>
+
+    <button class="opt" data-k="ask" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">길을 알려 주기</span><span class="od">물어보면 아는 만큼 답해 드립니다.</span></span>
+    </button>
+
+    <button class="opt" data-k="gather" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">모이는 자리</span><span class="od">예배 · 모임 · 행사에 오셔도 된다고 알립니다.</span></span>
+    </button>
+
+    <button class="opt" data-k="work" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">하는 일<span class="tag">한 번 확인</span></span><span class="od">가게나 서비스를 찾는 분이 알 수 있게 합니다.</span></span>
+    </button>
+
+    <button class="opt" data-k="meal" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">밥 한 끼<span class="tag">통화 한 번</span></span><span class="od">차려 주지 않으셔도 됩니다. 같이 만들면 그 사이에 말이 오갑니다.</span></span>
+    </button>
+
+    <button class="opt" data-k="stay" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">잠자리<span class="tag">신원 확인</span></span><span class="od">며칠 머무실 수 있습니다. 확인 절차가 따로 있습니다.</span></span>
+    </button>
+
+    <div class="after" id="af">고르시면 다음에 무엇이 있는지 여기에 알려 드립니다.</div>
+    <button class="go" id="n1" type="button" disabled>다음</button>
+  </section>
+
+  <!-- 2 : 세 칸 + 아는 분(선택) -->
+  <section class="card hide" id="s2">
+    <div class="q">어떻게 연락드릴까요?</div>
+    <div class="qs">이것만 받습니다. 그 밖에는 묻지 않습니다.</div>
+
+    <label for="f1">이름 또는 부르시는 이름</label>
+    <input id="f1" autocomplete="name" placeholder="김헤브론 · 헤브론교회 · 헤브론식당"/>
+
+    <label for="f2">도시</label>
+    <input id="f2" placeholder="시애틀"/>
+
+    <label for="f3">연락처</label>
+    <input id="f3" placeholder="전화번호 또는 이메일"/>
+
+    <label for="f4">이 도시에 아는 분이 계신가요? <span style="color:var(--muted2)">— 없으셔도 됩니다</span></label>
+    <input id="f4" placeholder="예: 시애틀 헤브론교회 김 목사님"/>
+
+    <div class="after">
+      <b>묻지 않는 것</b> — 나이 · 성별 · 종교 · 인종 · 국적 · 체류 신분 · 소득<br>
+      <b>공개되지 않는 것</b> — 집 주소와 연락처. 이어질 때만 서로에게 보입니다<br>
+      <b>첫 만남은 카페나 식당</b> 같은 열린 곳에서 합니다<br>
+      언제든 <b>내려 달라</b> 하시면 바로 내립니다
+    </div>
+
+    <button class="go" id="n2" type="button">열어 두기</button>
+    <div class="err hide" id="er"></div>
+    <button class="back" id="bk" type="button">앞으로</button>
+  </section>
+
+  <!-- 끝 -->
+  <section class="card hide" id="s3">
+    <div class="done">
+      <div class="mark"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#6EE7B7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></div>
+      <div class="q" style="margin-bottom:8px;">문이 하나 열렸습니다</div>
+      <p class="sub" id="dn" style="margin-top:0;"></p>
+    </div>
+  </section>
+
+  <p class="foot">
+    묻는 것은 「누구십니까」가 아니라 「무엇을 열어 두시겠습니까」입니다.<br>
+    <a href="/faq.html">자주 묻는 질문</a>
+  </p>
+
+</div>
+
+<script>
+// 여는 문의 무게가 확인의 깊이를 정한다. 신분으로 나누지 않는다.
+var NEXT = {
+  ask:    { w:0, label:'길을 알려 주기', t:'바로 열립니다. 확인 절차 없습니다.' },
+  gather: { w:0, label:'모이는 자리',   t:'바로 열립니다. 모이는 시간만 나중에 알려 주시면 됩니다.' },
+  work:   { w:1, label:'하는 일',       t:'문 여는 곳이 실제로 있는지 한 번 확인합니다.' },
+  meal:   { w:2, label:'밥 한 끼',      t:'통화를 한 번 합니다. 집 주소는 공개되지 않습니다.' },
+  stay:   { w:3, label:'잠자리',        t:'신원과 배경을 확인합니다. 가장 조심해야 하는 문이라 시간이 걸립니다.' }
+};
+var picked = {};
+function chosen(){
+  return Object.keys(picked).filter(function(x){return picked[x];})
+    .sort(function(a,c){ return NEXT[c].w - NEXT[a].w; });
+}
+document.querySelectorAll('.opt').forEach(function(b){
+  b.addEventListener('click', function(){
+    var k = b.dataset.k;
+    picked[k] = !picked[k];
+    b.classList.toggle('on', picked[k]);
+    b.setAttribute('aria-pressed', picked[k] ? 'true' : 'false');
+    var ks = chosen();
+    document.getElementById('n1').disabled = ks.length === 0;
+    var af = document.getElementById('af');
+    af.innerHTML = ks.length
+      ? '<b>다음에 있는 것</b> — ' + NEXT[ks[0]].t
+      : '고르시면 다음에 무엇이 있는지 여기에 알려 드립니다.';
+  });
+});
+function show(n){
+  ['s1','s2','s3'].forEach(function(id,i){ document.getElementById(id).classList.toggle('hide', i!==n); });
+  document.getElementById('d1').classList.toggle('on', n<=1);
+  document.getElementById('d2').classList.toggle('on', n>=1);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.getElementById('n1').onclick = function(){
+  show(1);
+  document.getElementById('hd').textContent = '거의 다 되었습니다';
+  document.getElementById('hs').innerHTML = '연락드릴 방법만 알려 주세요.';
+};
+document.getElementById('bk').onclick = function(){
+  show(0);
+  document.getElementById('hd').textContent = '문을 하나 열어 두시겠어요?';
+  document.getElementById('hs').innerHTML = '막 도착한 사람에게는 아는 사람 하나가 전부입니다.<br>할 수 있는 만큼만 열어 두시면 됩니다.';
+};
+
+document.getElementById('n2').onclick = async function(){
+  var btn = this, er = document.getElementById('er');
+  var name = document.getElementById('f1').value.trim();
+  var city = document.getElementById('f2').value.trim();
+  var cont = document.getElementById('f3').value.trim();
+  var vouch= document.getElementById('f4').value.trim();
+  er.classList.add('hide');
+  if(!name || !city || !cont){
+    er.textContent = '이름 · 도시 · 연락처 세 가지만 채워 주시면 됩니다.';
+    er.classList.remove('hide'); return;
+  }
+  var ks = chosen();
+  var offers = ks.map(function(k){ return NEXT[k].label; }).join(' · ');
+  btn.disabled = true; btn.textContent = '보내는 중…';
+  // 연락처가 이메일인지 전화인지 모르므로 둘 다 자리를 만들어 보낸다
+  var isMail = cont.indexOf('@') > -1;
+  try{
+    var r = await fetch('/api/submit-form', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        type: 'open',
+        name: name,
+        city: city,
+        email: isMail ? cont : '',
+        phone: isMail ? '' : cont,
+        subject: '[문을 엽니다] ' + name + ' · ' + city,
+        body: [
+          '여는 문: ' + (offers || '(안 고름)'),
+          '도시: ' + city,
+          '연락처: ' + cont,
+          '아는 분: ' + (vouch || '(없음)'),
+          '',
+          '※ 확인 깊이: ' + (ks.length ? NEXT[ks[0]].t : '-')
+        ].join('\n')
+      })
+    });
+    var j = await r.json().catch(function(){ return {}; });
+    if(!r.ok) throw new Error(j.error || ('보내지 못했습니다 (' + r.status + ')'));
+    document.getElementById('dn').innerHTML =
+      (ks.length ? NEXT[ks[0]].t : '') + '<br>곧 연락드리겠습니다.';
+    show(2);
+    document.getElementById('hd').textContent = '고맙습니다';
+    document.getElementById('hs').innerHTML = '';
+  }catch(e){
+    // 조용히 실패하지 않는다 — 안 보내졌는데 보냈다고 하면 안 된다
+    er.textContent = (e.message || '보내지 못했습니다') +
+      ' · Hebronplatform@gmail.com 으로 보내 주셔도 됩니다.';
+    er.classList.remove('hide');
+    btn.disabled = false; btn.textContent = '열어 두기';
+  }
+};
+</script>
+</body>
+</html>
