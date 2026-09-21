@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>식탁을 여는 가정 — HebronGuide</title>
+<meta name="description" content="낯선 도시에 막 도착한 사람과 밥 한 끼를 나눕니다. 무료입니다. 이름 · 도시 · 연락처 세 가지만 받습니다."/>
+<meta property="og:title" content="식탁을 여는 가정 — HebronGuide"/>
+<meta property="og:description" content="낯선 도시에 막 도착한 사람과 밥 한 끼를 나눕니다. 무료입니다."/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0d1117;--bg2:#161b26;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.18);
+        --gold:#C9A227;--gold2:#F5C76E;--mint:#6EE7B7;--text:#ECFDF5;
+        --muted:rgba(236,253,245,.62);--muted2:rgba(236,253,245,.4);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);
+       line-height:1.8;padding-bottom:70px;word-break:keep-all;}
+  .wrap{max-width:620px;margin:0 auto;padding:0 20px;}
+
+  .top{display:flex;align-items:center;justify-content:space-between;
+       padding:16px 20px;border-bottom:1px solid var(--line);}
+  .brand{font-family:'Cinzel',serif;font-weight:700;font-size:1rem;color:#fff;text-decoration:none;}
+  .brand em{font-style:italic;font-weight:400;color:var(--gold);}
+  .back{font-size:.82rem;color:var(--muted);text-decoration:none;}
+
+  .hero{padding:40px 20px 30px;text-align:center;
+        background:radial-gradient(620px 300px at 50% 0%, rgba(201,162,39,.11) 0%, rgba(201,162,39,0) 70%);}
+  .badge{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.05em;
+         padding:4px 12px;border-radius:99px;background:rgba(245,199,110,.13);
+         color:var(--gold2);border:1px solid rgba(245,199,110,.3);margin-bottom:16px;}
+  h1{font-size:clamp(1.5rem,5vw,2rem);font-weight:500;line-height:1.4;letter-spacing:-.005em;}
+  .lead{margin-top:14px;color:var(--muted);font-size:.95rem;line-height:1.85;}
+
+  .card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;
+        padding:24px 22px;margin-top:22px;}
+  .card-t{font-size:.95rem;font-weight:700;color:var(--gold2);margin-bottom:16px;}
+
+  label{display:block;font-size:.84rem;font-weight:500;color:var(--muted);margin:16px 0 7px;}
+  label:first-of-type{margin-top:0;}
+  .req{color:var(--gold2);}
+  .opt{color:var(--muted2);font-weight:400;font-size:.78rem;}
+  input,select,textarea{width:100%;background:#0d1117;border:1px solid var(--line);
+       border-radius:10px;color:var(--text);font-family:inherit;font-size:.95rem;
+       padding:13px 15px;min-height:48px;}
+  textarea{min-height:92px;resize:vertical;line-height:1.7;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);}
+  .hint{font-size:.76rem;color:var(--muted2);margin-top:6px;line-height:1.6;}
+  .row{display:flex;gap:12px;}
+  .row>div{flex:1;min-width:0;}
+
+  .promise{border-left:3px solid var(--mint);background:rgba(110,231,183,.06);
+           border-radius:0 12px 12px 0;padding:16px 18px;margin-top:22px;}
+  .promise b{color:var(--mint);}
+  .promise ul{margin:10px 0 0 17px;font-size:.86rem;color:var(--muted);}
+  .promise li{margin-bottom:7px;}
+  .promise li:last-child{margin-bottom:0;}
+
+  button.go{width:100%;min-height:52px;margin-top:22px;background:var(--gold);color:#0d1117;
+            border:none;border-radius:12px;font-family:inherit;font-weight:700;
+            font-size:1rem;cursor:pointer;}
+  button.go:hover{background:var(--gold2);}
+  button.go:disabled{background:rgba(255,255,255,.1);color:var(--muted2);cursor:default;}
+
+  .done{display:none;text-align:center;padding:34px 20px;}
+  .done.on{display:block;}
+  .done h2{font-size:1.2rem;font-weight:700;color:var(--mint);margin-bottom:12px;}
+  .done p{color:var(--muted);font-size:.92rem;}
+  .msg{margin-top:14px;font-size:.86rem;color:#f87171;min-height:1.3em;}
+
+  footer{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);
+         text-align:center;font-size:.78rem;color:var(--muted2);line-height:1.8;}
+  footer a{color:var(--muted);}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <a class="brand" href="/">Hebron<em>Guide</em></a>
+  <a class="back" href="/">&larr; 홈으로</a>
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="badge">이름 · 도시 · 연락처</div>
+    <h1>우리 집 식탁을 엽니다</h1>
+    <p class="lead">
+      낯선 도시에 막 도착한 사람과 밥 한 끼를 나눕니다.<br>
+      거창하지 않아도 됩니다. 평소 드시는 그대로면 됩니다.
+    </p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="promise">
+    <b>먼저 분명히 해 둡니다</b>
+    <ul>
+      <li><b>돈을 주고받지 않습니다.</b> 밥값도, 소개비도 없습니다.</li>
+      <li><b>잠자리는 아직 받지 않습니다.</b> 식탁 한 끼부터 시작합니다.</li>
+      <li><b>집 주소는 공개하지 않습니다.</b> 두 분이 서로 확인한 뒤에만 알려 드립니다.</li>
+      <li>언제든 그만두실 수 있습니다. 이유를 말씀하지 않으셔도 됩니다.</li>
+    </ul>
+  </div>
+
+  <form id="f" class="card" onsubmit="return send(event)">
+    <div class="card-t">세 가지만 여쭙겠습니다</div>
+
+    <div class="row">
+      <div>
+        <label>부르실 이름 <span class="req">*</span></label>
+        <input id="name" placeholder="김헤브론" autocomplete="name" required>
+      </div>
+      <div>
+        <label>도시 <span class="req">*</span></label>
+        <select id="city" required>
+          <option value="">도시 선택</option>
+          <option value="la">LA Los Angeles</option>
+          <option value="guadalajara">과달라하라 Guadalajara</option>
+          <option value="gwangju">광주 Gwangju</option>
+          <option value="nashville">내쉬빌 Nashville</option>
+          <option value="neworleans">뉴올리언스 New Orleans</option>
+          <option value="newyork">뉴욕 New York</option>
+          <option value="newjersey">뉴저지 New Jersey</option>
+          <option value="dallas">달라스 Dallas</option>
+          <option value="daegu">대구 Daegu</option>
+          <option value="daejeon">대전 Daejeon</option>
+          <option value="denver">덴버 Denver</option>
+          <option value="tokyo">도쿄 Tokyo</option>
+          <option value="dubai">두바이 Dubai</option>
+          <option value="london">런던 London</option>
+          <option value="raleigh">롤리 Raleigh</option>
+          <option value="louisville">루이빌 Louisville</option>
+          <option value="leesville">리스빌 Leesville</option>
+          <option value="miami">마이애미 Miami</option>
+          <option value="maryland">메릴랜드 Maryland</option>
+          <option value="mexicocity">멕시코시티 Mexico City</option>
+          <option value="melbourne">멜버른 Melbourne</option>
+          <option value="memphis">멤피스 Memphis</option>
+          <option value="monterrey">몬테레이 Monterrey</option>
+          <option value="minneapolis">미니애폴리스 Minneapolis</option>
+          <option value="bangkok">방콕 Bangkok</option>
+          <option value="vancouver">밴쿠버 Vancouver</option>
+          <option value="virginia">버지니아 Virginia</option>
+          <option value="berlin">베를린 Berlin</option>
+          <option value="bogota">보고타 Bogota</option>
+          <option value="boston">보스턴 Boston</option>
+          <option value="busan">부산 Busan</option>
+          <option value="bundang">분당·수지 Bundang</option>
+          <option value="brisbane">브리즈번 Brisbane</option>
+          <option value="saopaulo">상파울루 São Paulo</option>
+          <option value="sandiego">샌디에고 San Diego</option>
+          <option value="sf">샌프란시스코 San Francisco</option>
+          <option value="charlotte">샬럿 Charlotte</option>
+          <option value="seoul">서울 Seoul</option>
+          <option value="sydney">시드니 Sydney</option>
+          <option value="seattle">시애틀 Seattle</option>
+          <option value="chicago">시카고 Chicago</option>
+          <option value="singapore">싱가포르 Singapore</option>
+          <option value="ansan">안산 Ansan</option>
+          <option value="atlanta">애틀랜타 Atlanta</option>
+          <option value="anchorage">앵커리지 Anchorage</option>
+          <option value="edmonton">에드먼턴 Edmonton</option>
+          <option value="orangecounty">오렌지카운티 Orange County</option>
+          <option value="osaka">오사카 Osaka</option>
+          <option value="austin">오스틴 Austin</option>
+          <option value="auckland">오클랜드 Auckland</option>
+          <option value="ottawa">오타와 Ottawa</option>
+          <option value="orlando">올랜도 Orlando</option>
+          <option value="dc">워싱턴 DC Washington DC</option>
+          <option value="waynesville">웨인즈빌 Waynesville</option>
+          <option value="winnipeg">위니펙 Winnipeg</option>
+          <option value="inlandempire">인랜드 엠파이어 Inland Empire</option>
+          <option value="incheon">인천 Incheon</option>
+          <option value="jeju">제주 Jeju</option>
+          <option value="changwon">창원 Changwon</option>
+          <option value="cheonan">천안·아산 Cheonan</option>
+          <option value="kansascity">캔자스시티 Kansas City</option>
+          <option value="calgary">캘거리 Calgary</option>
+          <option value="columbus">콜럼버스 Columbus</option>
+          <option value="killeen">킬린 Killeen</option>
+          <option value="tampa">탬파 Tampa</option>
+          <option value="toronto">토론토 Toronto</option>
+          <option value="tucson">투손 Tucson</option>
+          <option value="paris">파리 Paris</option>
+          <option value="perth">퍼스 Perth</option>
+          <option value="fairfield">페어필드 Fairfield</option>
+          <option value="fayetteville">페이엣빌 Fayetteville</option>
+          <option value="portland">포틀랜드 Portland</option>
+          <option value="frankfurt">프랑크푸르트 Frankfurt</option>
+          <option value="princgeorge">프린스조지 Prince George</option>
+          <option value="phoenix">피닉스 Phoenix</option>
+          <option value="philadelphia">필라델피아 Philadelphia</option>
+          <option value="huntsville">헌츠빌 Huntsville</option>
+          <option value="honolulu">호놀룰루 Honolulu</option>
+          <option value="hochiminh">호치민 Ho Chi Minh City</option>
+          <option value="federalway">훼더럴웨이 Federal Way</option>
+          <option value="houston">휴스턴 Houston</option>
+          <option value="other">그 밖의 도시</option>
+        </select>
+      </div>
+    </div>
+
+    <label>연락처 <span class="req">*</span></label>
+    <input id="contact" placeholder="전화번호 또는 이메일" required>
+    <div class="hint">연락처는 저희만 봅니다. 화면 어디에도 올리지 않습니다.</div>
+
+    <label>어떤 음식을 나누시겠어요? <span class="opt">(선택)</span></label>
+    <input id="food" placeholder="김치찌개 · 잡채 · 그날 있는 것">
+
+    <label>한 번에 몇 분까지 괜찮으세요? <span class="opt">(선택)</span></label>
+    <input id="seats" placeholder="두세 명">
+
+    <label>하고 싶은 말 <span class="opt">(선택)</span></label>
+    <textarea id="note" placeholder="아이가 있어도 괜찮습니다 / 주말 저녁이 편합니다"></textarea>
+
+    <button class="go" id="btn" type="submit">식탁 열기</button>
+    <div class="msg" id="msg"></div>
+  </form>
+
+  <div class="done" id="done">
+    <h2>받았습니다</h2>
+    <p>
+      확인한 뒤에 연락드리겠습니다.<br>
+      서두르지 않겠습니다 — 서로 편한 때에 맞추겠습니다.
+    </p>
+  </div>
+
+  <footer>
+    소개한 뒤의 일은 두 분 사이의 일입니다. HebronGuide는 중간에서 잇기만 합니다.<br>
+    <a href="/">hebronguide.com</a> &nbsp;·&nbsp; &copy; 2026 Hebron Platform LLC
+  </footer>
+
+</div>
+
+<script>
+function send(e){
+  e.preventDefault();
+  var btn = document.getElementById('btn');
+  var msg = document.getElementById('msg');
+  var v = function(id){ return (document.getElementById(id).value || '').trim(); };
+
+  var name = v('name'), city = v('city'), contact = v('contact');
+  if(!name || !city || !contact){ msg.textContent = '이름 · 도시 · 연락처를 채워 주세요.'; return false; }
+
+  btn.disabled = true; btn.textContent = '보내는 중…'; msg.textContent = '';
+
+  // 살아 있는 /api/submit-form 을 쓴다 — 새 서버 기능을 만들지 않는다 (12개 한도)
+  fetch('/api/submit-form', {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({
+      type: 'home-table',
+      subject: '[식탁을 여는 가정] ' + name + ' · ' + city,
+      body: [
+        '부르실 이름: ' + name,
+        '도시: ' + city,
+        '연락처: ' + contact,
+        v('food')  ? '나눌 음식: ' + v('food')  : '',
+        v('seats') ? '한 번에: '   + v('seats') : '',
+        v('note')  ? '하고 싶은 말: ' + v('note') : '',
+        '',
+        '※ 1단계(무료 식탁)입니다. 돈을 주고받지 않습니다.'
+      ].filter(Boolean).join('\n'),
+      name: name,
+      city: city
+    })
+  })
+  .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ return {ok:r.ok, d:d}; }); })
+  .then(function(r){
+    if(!r.ok || r.d.status === 'rejected'){ throw new Error(r.d.message || r.d.error || '보내지 못했습니다'); }
+    document.getElementById('f').style.display = 'none';
+    document.getElementById('done').classList.add('on');
+    window.scrollTo({top:0, behavior:'smooth'});
+  })
+  .catch(function(err){
+    btn.disabled = false; btn.textContent = '식탁 열기';
+    msg.innerHTML = err.message + ' — 잘 안 되면 <a href="mailto:hebronplatform@gmail.com" style="color:var(--gold2)">hebronplatform@gmail.com</a> 으로 보내 주세요.';
+  });
+  return false;
+}
+</script>
+</body>
+</html>

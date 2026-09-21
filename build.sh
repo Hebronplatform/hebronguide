@@ -227,6 +227,8 @@ cp hebronguide/public/planting-seed-poster.html      public/planting-seed-poster
 cp hebronguide/public/planting-seed-2026-poster.jpg  public/planting-seed-2026-poster.jpg   2>/dev/null || true
 # 환대 게시판 — 행사 목록(events.json)과 게시판 페이지. 루트 복사가 없으면 404 가 난다
 cp hebronguide/public/hospitality-board.html        public/hospitality-board.html          2>/dev/null || true
+# 식탁을 여는 가정 — 3종 등록의 세 번째 (2026-09-21)
+cp hebronguide/public/home-table.html               public/home-table.html                 2>/dev/null || true
 cp hebronguide/public/events.json                   public/events.json                     2>/dev/null || true
 # 자가 점검 요약 — 상황판이 읽는다 (공개돼도 안전한 숫자만 들어 있다)
 cp hebronguide/public/audit.json                    public/audit.json                      2>/dev/null || true

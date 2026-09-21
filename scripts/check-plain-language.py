@@ -37,6 +37,10 @@ for label, p in PAGES:
     for lvl, ws in WORDS.items():
         for w in ws:
             n = t.count(w)
+            # '말씀하다·말씀드리다' 는 존댓말이지 종교어가 아니다 (2026-09-21)
+            if w == '말씀':
+                n = len(re.findall(r'말씀(?!하|드리|주|해|해서|이야)', t))
+            # '섬김' 도 '섬기다' 일반 용법이 있으나, 첫 화면에서는 종교어로 읽히므로 그대로 센다
             if n:
                 (hits3 if lvl == 3 else hits2).append('%s×%d' % (w, n))
     print('── %s' % label)

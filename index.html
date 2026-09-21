@@ -727,8 +727,8 @@
 <div class="partner-section" id="partner">
   <div class="sec-label"><span class="ko">등록하기 · Register</span><span class="en">Register</span></div>
   <h2 class="sec-title">
-    <span class="ko">교회 등록 · 업체 등록<br><span style="color:var(--mint);">모두 무료입니다</span></span>
-    <span class="en">Register a church or a business<br><span style="color:var(--mint);">Always free</span></span>
+    <span class="ko">교회 · 업체 · 가정<br><span style="color:var(--mint);">모두 무료입니다</span></span>
+    <span class="en">A church, a business, or your table<br><span style="color:var(--mint);">Always free</span></span>
   </h2>
   <p class="sec-desc">
     <span class="ko">지금 등록하세요.</span>
@@ -755,6 +755,19 @@
       <h3><span class="ko">손님을<br>맞으실래요?</span><span class="en">Will you welcome<br>the guest?</span></h3>
       <p><span class="ko">식당, 병원, 학원, 법무사. 막 도착한 이웃이 가장 먼저 찾는 곳이 됩니다.</span><span class="en">Restaurant, clinic, academy, law office — be the first stop for new Korean arrivals.</span></p>
       <div class="partner-cta-label"><span class="ko">업체 등록하기 →</span><span class="en">Register Business →</span></div>
+    </a>
+
+    <a href="/home-table.html" class="partner-card partner-home">
+      <div class="partner-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32" aria-hidden="true">
+          <path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/>
+          <path d="M8 13h8"/><path d="M8 17h5"/>
+        </svg>
+      </div>
+      <div class="partner-type"><span class="ko">가정 등록</span><span class="en">Home</span></div>
+      <h3><span class="ko">밥 한 끼<br>나누실래요?</span><span class="en">Will you share<br>one meal?</span></h3>
+      <p><span class="ko">막 도착한 사람과 한 끼를 나눕니다. 거창하지 않아도 됩니다. 돈은 주고받지 않습니다.</span><span class="en">Share one meal with someone who just arrived. Nothing fancy. No money changes hands.</span></p>
+      <div class="partner-cta-label"><span class="ko">식탁 열기 →</span><span class="en">Open Your Table →</span></div>
     </a>
 
   </div>
@@ -839,13 +852,18 @@
 .partner-church{border-color:rgba(110,231,183,.25);}
 .partner-church:hover{border-color:rgba(110,231,183,.5);}
 .partner-biz{border-color:rgba(201,162,39,.25);}
+/* 가정 — 세 번째 문 (2026-09-21). 따뜻한 호박빛으로 교회(민트)·업체(금)와 구분 */
+.partner-home{border-color:rgba(255,159,10,.25);}
+.partner-home:hover{border-color:rgba(255,159,10,.5);}
 .partner-biz:hover{border-color:rgba(201,162,39,.5);}
 .partner-icon-wrap{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
 .partner-church .partner-icon-wrap{background:rgba(110,231,183,.12);color:var(--mint,#6EE7B7);}
 .partner-biz .partner-icon-wrap{background:rgba(201,162,39,.12);color:var(--gold,#C9A227);}
+.partner-home .partner-icon-wrap{background:rgba(255,159,10,.12);color:var(--warm,#FF9F0A);}
 .partner-type{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
 .partner-church .partner-type{color:var(--mint,#6EE7B7);}
 .partner-biz .partner-type{color:var(--gold,#C9A227);}
+.partner-home .partner-type{color:var(--warm,#FF9F0A);}
 .partner-card h3{font-size:1.2rem;font-weight:800;color:#fff;line-height:1.4;margin:0 0 12px;}
 .partner-card p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.7;margin:0 0 20px;}
 .partner-cta-label{font-size:.88rem;font-weight:700;color:#fff;}
