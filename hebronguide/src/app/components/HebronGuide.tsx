@@ -112,7 +112,7 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1694138104709-61504d9b3a1d?w=1200&q=95", pos: "center 50%", alt: "Fremont neighborhood couple sidewalk Seattle settle home" },
   ],
 
-  // 🌲 훼더럴웨이 — 지역 사진은 실제 페더럴웨이만(거짓 표상 금지, Wikimedia 검증), 인물은 공동체·환대 대표 이미지(타 도시와 동일 방식)
+  // 🌲 페더럴웨이 — 지역 사진은 실제 페더럴웨이만(거짓 표상 금지, Wikimedia 검증), 인물은 공동체·환대 대표 이미지(타 도시와 동일 방식)
   // Story: 드론 항공(Dumas Bay) → 지역 상징 Mount Rainier → 도시 City Hall → 한우리정원 2컷(입구 사인 → 팔각정, FWKAA 조성 "하나됨") → Dash Point 해변 → 공동체 환대(사람들)
   federalway: [
     { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Over_Dumas_Bay_%28Unsplash%29.jpg/1280px-Over_Dumas_Bay_%28Unsplash%29.jpg", pos: "center 50%", alt: "Aerial drone view over Dumas Bay Federal Way Puget Sound coastline" },
@@ -1066,12 +1066,12 @@ const CITY_CONFIGS: Record<CitySlug, CityConfig> = {
     taglineEs: "Conoce tu ciudad. Encuentra tu gente.",
   },
   federalway: {
-    // FWKAA(훼더럴웨이 한인회) 파트너 도시 — 시애틀 남부 King County. 한인회 네트워크 플래그십.
+    // FWKAA(페더럴웨이 한인회) 파트너 도시 — 시애틀 남부 King County. 한인회 네트워크 플래그십.
     // 히어로: CITY_HERO_SLIDES.federalway 사용 (실제 Dash Point·Mount Rainier 사진, 슬라이드가 영상보다 우선).
-    slug: "federalway", nameKo: "훼더럴웨이", nameEn: "Federal Way", color: "#14B8A6",
+    slug: "federalway", nameKo: "페더럴웨이", nameEn: "Federal Way", color: "#14B8A6",
     heroVideo: "",
     population: "한인 밀집", state: "Washington",
-    taglineKo: "훼더럴웨이에서 함께 정착하다", taglineEn: "Settle together in Federal Way.",
+    taglineKo: "페더럴웨이에서 함께 정착하다", taglineEn: "Settle together in Federal Way.",
     taglineEs: "Establécete junto a otros en Federal Way.",
   },
   dallas: {
@@ -1370,7 +1370,7 @@ function useCityConfig(): CityConfig {
 // 카카오 오픈채팅(도시별 한인 커뮤니티) 검색 링크·라벨 — 도시명 기준으로 자동 생성
 function kakaoOpenChat(slug: string) {
   const nameKo = CITY_CONFIGS[slug as CitySlug]?.nameKo ?? "";
-  // "훼더럴웨이"처럼 중점(·)이 든 이름은 검색어에서 제거 (예: "천안·아산" → "천안")
+  // "페더럴웨이"처럼 중점(·)이 든 이름은 검색어에서 제거 (예: "천안·아산" → "천안")
   const base = nameKo.split("·")[0];
   const term = `${base}한인`;
   return {
@@ -12439,7 +12439,7 @@ function Top3NeighborhoodsSection() {
 ───────────────────────────────────────── */
 const HEBRON_CITIES = [
   { emoji: "🌲", nameKo: "시애틀",       nameEn: "Seattle",       flag: "🇺🇸", url: "/seattle/",     status: "live", color: "#0EA5E9" },
-  { emoji: "🌊", nameKo: "훼더럴웨이",   nameEn: "Federal Way",   flag: "🇺🇸", url: "/federalway/",  status: "live", color: "#14B8A6" },
+  { emoji: "🌊", nameKo: "페더럴웨이",   nameEn: "Federal Way",   flag: "🇺🇸", url: "/federalway/",  status: "live", color: "#14B8A6" },
   { emoji: "🤠", nameKo: "달라스",       nameEn: "Dallas",        flag: "🇺🇸", url: "/dallas/",      status: "live", color: "#F59E0B" },
   { emoji: "🌉", nameKo: "샌프란시스코", nameEn: "San Francisco", flag: "🇺🇸", url: "/sf/",          status: "live", color: "#8B5CF6" },
   { emoji: "🗽", nameKo: "뉴욕",         nameEn: "New York",      flag: "🇺🇸", url: "/newyork/",     status: "live", color: "#EF4444" },
@@ -13520,7 +13520,7 @@ type PartnerAssociation = {
 const PARTNER_ASSOCIATIONS: Partial<Record<CitySlug, PartnerAssociation>> = {
   /* HIDE-FWKAA 2026-07-15 — 페더럴웨이 한인회 공식 파트너 배너 임시 내림 (복구: 이 블록 주석 해제)
   federalway: {
-    nameKo: "훼더럴웨이 한인회",
+    nameKo: "페더럴웨이 한인회",
     nameEn: "Federal Way Korean American Association",
     address: "33301 1st Way S #C115, Federal Way, WA 98003",
     phone: "(253) 326-5499",
@@ -13728,8 +13728,16 @@ function BoardBanner() {
       .then(d => {
         if (!alive) return;
         const today = new Date(); today.setHours(0, 0, 0, 0);
+        // 지금 보고 있는 도시 (주소 첫 칸: /seattle/ → seattle)
+        const here = (location.pathname.split("/").filter(Boolean)[0] || "").toLowerCase()
+        const inCity = (e: any) => {
+          const c = e && e.cities
+          if (!c || c === "all" || !c.length) return true      // 안 적으면 전 도시
+          return c.map((x: string) => String(x).toLowerCase()).includes(here)
+        }
         const live = (d.events || [])
           .filter((e: any) => !e.until || new Date(e.until + "T00:00:00") >= today)
+          .filter(inCity)
           .sort((a: any, b: any) => ((a.until || "") < (b.until || "") ? -1 : 1));
         if (live.length) { setEv(live[0]); setMore(live.length - 1); }
       })
@@ -22342,7 +22350,7 @@ const TOP5_FOOD_WINNIPEG: Top5Item[] = [
 ];
 
 // 도시 slug → 검증된 맛집 TOP5 목록 반환 (맛집 탭 카드용)
-// 훼더럴웨이 한인 맛집 — Pacific Hwy S(99번 도로) 한인 상권 중심.
+// 페더럴웨이 한인 맛집 — Pacific Hwy S(99번 도로) 한인 상권 중심.
 // 이가네·쏘문난집은 검증된 데이터(코드 기존). H마트·서울순두부·아지트는 웹 출처(주소·전화 확인).
 const TOP5_FOOD_FEDERALWAY: Top5Item[] = [
   { rank: 1, emoji: "🍜", nameKo: "이가네 전통 설렁탕", nameEn: "Yi's Traditional Korean Beef Soup",
@@ -22355,10 +22363,10 @@ const TOP5_FOOD_FEDERALWAY: Top5Item[] = [
     phone: "(253) 815-8888", hours: "월화·목-일 11am-10pm (수 휴무)", rating: 4.3, ratingCount: "667+",
     why: "페더럴웨이 한인 커뮤니티 1위 BBQ, 수제 반찬 10종+, 갈비·불고기 조합 추천",
     tip: "수요일 휴무", website: "yelp.com/biz/so-moon-nan-jib-federal-way" },
-  { rank: 3, emoji: "🛒", nameKo: "H마트 훼더럴웨이", nameEn: "H Mart Federal Way",
+  { rank: 3, emoji: "🛒", nameKo: "H마트 페더럴웨이", nameEn: "H Mart Federal Way",
     address: "31217 Pacific Hwy S, Federal Way WA 98003",
     phone: "(253) 528-0500", hours: "매일 8am-9:30pm",
-    why: "훼더럴웨이 한인 상권 앵커. 한국 식품·정육·수산·베이커리·푸드코트. 주차 100대+",
+    why: "페더럴웨이 한인 상권 앵커. 한국 식품·정육·수산·베이커리·푸드코트. 주차 100대+",
     tip: "1층 푸드코트에서 분식·순대 식사 가능", website: "hmartus.com/federalway" },
   { rank: 4, emoji: "🍲", nameKo: "서울순두부", nameEn: "Seoul Tofu House",
     address: "31406 Pacific Hwy S, Federal Way WA 98003",
@@ -22393,7 +22401,7 @@ const TOP5_FOOD_FEDERALWAY: Top5Item[] = [
     tip: "", website: "cockatooschicken.com" },
 ];
 
-// 훼더럴웨이 탐방·가보고 싶은 곳 (실제 명소 — 웹 조사 검증)
+// 페더럴웨이 탐방·가보고 싶은 곳 (실제 명소 — 웹 조사 검증)
 const TOP5_EXPLORE_FEDERALWAY: Top5Item[] = [
   { rank: 1, emoji: "🌲", nameKo: "대시 포인트 주립공원", nameEn: "Dash Point State Park",
     address: "5700 SW Dash Point Rd, Federal Way WA 98023", hours: "매일 8am-일몰",
@@ -22411,7 +22419,7 @@ const TOP5_EXPLORE_FEDERALWAY: Top5Item[] = [
     address: "36201 Enchanted Pkwy S, Federal Way WA 98003",
     why: "70에이커 규모. 43개 놀이기구 + 워터파크(파도풀·워터슬라이드). 여름 가족 나들이 명소",
     tip: "여름 시즌 운영. 시즌권 있음", website: "wildwaves.com" },
-  { rank: 5, emoji: "🎭", nameKo: "훼더럴웨이 공연예술센터 (PAEC)", nameEn: "Federal Way Performing Arts & Event Center",
+  { rank: 5, emoji: "🎭", nameKo: "페더럴웨이 공연예술센터 (PAEC)", nameEn: "Federal Way Performing Arts & Event Center",
     address: "31510 Pete von Reichbauer Way S, Federal Way WA 98003",
     why: "45,000sqft 지역 대표 공연장. Mt. Rainier 뷰. 공연·한인 커뮤니티 행사 개최지",
     tip: "공연 일정 홈페이지 확인", website: "fwpaec.org" },
@@ -23009,7 +23017,7 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
     { emoji: "🔑", name: "한인 부동산", nameEn: "Korean Real Estate", desc: lang === "ko" ? "WowSeattle 검증 | 백수경 ☎ (206) 334-5454 | 박나리 ☎ (425) 246-1453 | 🔗 wowseattle.com" : "WowSeattle verified | Baik Sukyung ☎ (206) 334-5454 | Park Nari ☎ (425) 246-1453 | 🔗 wowseattle.com", tags: ["부동산", "렌탈", "검증됨"] },
   ];
 
-  // ─── 훼더럴웨이 한인 서비스 업소 (의료·회계 — 천진 한의원은 검증됨, 나머지는 웹 출처)
+  // ─── 페더럴웨이 한인 서비스 업소 (의료·회계 — 천진 한의원은 검증됨, 나머지는 웹 출처)
   const federalwayBusinesses = [
     { emoji: "🏥", name: "천진 한의원", nameEn: "Chunjin Oriental Medicine", desc: lang === "ko" ? "검증됨 | 침술·한약. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058" : "Verified | Acupuncture & herbal medicine. 31830 Pacific Hwy S #B, Federal Way | ☎ (253) 874-0058", tags: ["한의원", "페더럴웨이", "검증됨"] },
     { emoji: "🏥", name: "동도 한의원", nameEn: "Dong Do Acupuncture Clinic", desc: lang === "ko" ? "침구·한방. 33720 9th Ave S, Federal Way WA 98003" : "Acupuncture & herbal medicine. 33720 9th Ave S, Federal Way WA 98003", tags: ["한의원", "침술", "페더럴웨이"] },
@@ -23026,9 +23034,9 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
     { emoji: "🧴", name: "한국 식재료 전문점", nameEn: "Korean Specialty Grocery", desc: lang === "ko" ? "H-Mart 외 소규모 한국 반찬·김치·떡 전문점. 린우드·페더럴웨이" : "Small-batch kimchi, banchan & tteok specialty shops beyond H-Mart", tags: ["반찬", "김치", "전문점"] },
   ];
 
-  // ─── 훼더럴웨이 마켓 (한인 우선 + 리뷰 좋은 아시안·미국 마켓)
+  // ─── 페더럴웨이 마켓 (한인 우선 + 리뷰 좋은 아시안·미국 마켓)
   const federalwayShopping = [
-    { emoji: "🛒", name: "H마트 훼더럴웨이", nameEn: "H Mart Federal Way", desc: lang === "ko" ? "한인 마켓 1순위. 한국 식품·정육·수산·베이커리·푸드코트. 📍 31217 Pacific Hwy S | ☎ (253) 528-0500 | 매일 8am-9:30pm" : "#1 Korean market. Produce, meat, seafood, bakery, food court. 📍 31217 Pacific Hwy S | ☎ (253) 528-0500 | Daily 8am-9:30pm", tags: ["한인마트", "한국식품", "우선"] },
+    { emoji: "🛒", name: "H마트 페더럴웨이", nameEn: "H Mart Federal Way", desc: lang === "ko" ? "한인 마켓 1순위. 한국 식품·정육·수산·베이커리·푸드코트. 📍 31217 Pacific Hwy S | ☎ (253) 528-0500 | 매일 8am-9:30pm" : "#1 Korean market. Produce, meat, seafood, bakery, food court. 📍 31217 Pacific Hwy S | ☎ (253) 528-0500 | Daily 8am-9:30pm", tags: ["한인마트", "한국식품", "우선"] },
     { emoji: "🏮", name: "아시안 패밀리 마켓", nameEn: "Asian Family Market", desc: lang === "ko" ? "한국·중국·베트남·필리핀 식품 종합 아시안 마켓. 리뷰 양호" : "Pan-Asian grocery — Korean, Chinese, Vietnamese, Filipino. Well-reviewed", tags: ["아시안마트", "타민족"] },
     { emoji: "🥩", name: "홍콩 마켓", nameEn: "Hong Kong Market", desc: lang === "ko" ? "저렴한 정육·아시안 식품. 육류 가격 좋음" : "Affordable meat & Asian groceries. Great meat prices", tags: ["아시안마트", "정육"] },
     { emoji: "🛍️", name: "윈코 푸드", nameEn: "WinCo Foods", desc: lang === "ko" ? "저가·대용량 미국 마켓. 벌크 코너. 리뷰 좋음" : "Low-price bulk American grocery. Well-reviewed", tags: ["미국마트", "저가", "벌크"] },
@@ -31016,21 +31024,25 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
             </svg>
           </button>
         )}
-        <div className="flex items-center" style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 10, padding: 2, gap: 2 }}>
-          {(["en", "ko"] as const).map((l) => (
-            <button key={l} onClick={() => setLang(l)}
-              className="flex items-center justify-center border-0 cursor-pointer"
-              style={{ height: 24, paddingLeft: 8, paddingRight: 8, borderRadius: 7,
-                background: lang === l ? "rgba(242,153,74,0.12)" : "transparent",
-                border: `1px solid ${lang === l ? "rgba(242,153,74,0.4)" : "transparent"}`,
-                transition: "all 0.2s ease" }}
-            >
-              <span style={{ fontFamily: "Manrope,sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: "0.5px", color: lang === l ? "#F2994A" : "#94A3B8" }}>
-                {l.toUpperCase()}
-              </span>
-            </button>
-          ))}
-        </div>
+        {/* 언어 — 지구본 + 글자 한 덩어리. 누르면 바뀐다. (NanuriWeb 과 같은 모양) */}
+        <button
+          onClick={() => setLang(lang === "ko" ? "en" : "ko")}
+          style={{ display: "inline-flex", alignItems: "center", gap: 6, whiteSpace: "nowrap",
+            height: 32, padding: "0 11px", borderRadius: 9,
+            background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)",
+            color: "#64748B", fontFamily: "'Noto Sans KR',sans-serif", fontSize: 12,
+            fontWeight: 700, letterSpacing: "0.2px",
+            cursor: "pointer", transition: "all 0.15s", flexShrink: 0 }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(242,153,74,0.12)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(242,153,74,0.4)"; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.04)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.08)"; }}
+          aria-label={lang === "ko" ? "Switch to English" : "한국어로 바꾸기"}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: .75, flex: "none" }} aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>
+          </svg>
+          <span>{lang === "ko" ? "English" : "한국어"}</span>
+        </button>
       </div>
     </header>
 

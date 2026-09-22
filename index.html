@@ -461,15 +461,15 @@
   html[lang="en"] .ko{display:none!important;}
   /* 언어 단추 — 지구본 하나. 글자는 넣지 않는다.
      폰·브라우저 언어를 보고 이미 자동으로 정해 주므로(이 파일 맨 위 스크립트),
-     이 단추는 '그 판단을 되돌리는 장치'다. 자주 쓸 것이 아니니 자리를 적게 쓴다.
-     세줄 메뉴와 같은 크기·모양으로 맞춰 한 쌍처럼 보이게 한다. */
-  .lang-btn{width:40px;height:40px;padding:0;font-size:19px;
-    background:var(--surface);border:1px solid var(--border2);color:var(--muted);
-    border-radius:11px;cursor:pointer;transition:border-color .2s,color .2s,background .2s;
-    display:inline-flex;align-items:center;justify-content:center;}
-  .lang-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--surface2);}
-  /* 글자는 눈에서만 지운다 — 화면낭독기에는 남는다 */
-  #lang-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+     이 단추는 '그 판단을 되돌리는 장치'다.
+     지구본과 글자가 한 덩어리 — NanuriWeb 과 같은 모양으로 맞춘다. */
+  .lang-btn{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+    background:transparent;border:1px solid var(--border2);color:var(--muted);
+    font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2px;
+    padding:6px 11px;border-radius:8px;cursor:pointer;transition:all .18s;}
+  .lang-btn:hover{border-color:var(--gold);color:var(--gold2);background:rgba(201,162,39,.08);}
+  .lang-btn svg{width:14px;height:14px;opacity:.75;flex:none;}
+  @media(max-width:430px){ .lang-btn{font-size:11px;padding:5px 9px;gap:5px;} }
 
   /* ━━━ THREE PATHS ━━━ */
   .paths-section{padding:80px 24px;max-width:1000px;margin:0 auto;}
@@ -564,7 +564,7 @@
   </a>
   <div class="nav-actions">
     <button class="lang-btn" onclick="toggleLang()" id="lang-btn"
-            aria-label="언어 바꾸기 · Change language" title="언어 바꾸기 · Change language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;flex:none"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span id="lang-label">English</span></button>
+            aria-label="언어 바꾸기 · Change language" title="언어 바꾸기 · Change language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span id="lang-label">English</span></button>
     <a href="#cities" class="nav-cta" onclick="return focusCitySearch()"><span class="ko">내 도시 찾기<i class="cta-arw">&#8201;&rarr;</i></span><span class="en">Find My City<i class="cta-arw">&#8201;&rarr;</i></span></a>
     <button class="hg-burger" id="hgBurger" onclick="openMenu()" aria-label="메뉴 열기 · Menu" aria-expanded="false" aria-controls="hgDrawer">
       <span></span><span></span><span></span>

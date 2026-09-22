@@ -88,7 +88,7 @@ description: "HebronGuide에 새 도시를 추가할 때 사용한다. 도시명
 ```json
 {
   "slug": "federalway",
-  "name_ko": "훼더럴웨이",
+  "name_ko": "페더럴웨이",
   "name_en": "Federal Way",
   "country_code": "US",
   "region": "USA",
@@ -96,8 +96,8 @@ description: "HebronGuide에 새 도시를 추가할 때 사용한다. 도시명
   "languages": ["ko", "en"],
   "status": "draft",
   "hero": {
-    "title_ko": "훼더럴웨이 정착 가이드",
-    "subtitle_ko": "훼더럴웨이에서 함께 정착하다"
+    "title_ko": "페더럴웨이 정착 가이드",
+    "subtitle_ko": "페더럴웨이에서 함께 정착하다"
   },
   "groups": [
     {

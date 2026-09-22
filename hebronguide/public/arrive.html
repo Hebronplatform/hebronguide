@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Just arrived? — HebronGuide</title>
+<meta name="description" content="You don't have to know anyone. We'll connect you with one person. 아는 사람이 하나도 없어도 됩니다. 한 사람만 이어 드리겠습니다."/>
+<meta property="og:title" content="Just arrived? — HebronGuide"/>
+<meta property="og:description" content="You don't have to know anyone. We'll connect you with one person."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:locale:alternate" content="ko_KR"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200;300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  :root{--bg:#0d1117;--bg2:#161b26;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.18);
+        --gold:#C9A227;--gold2:#F5C76E;--mint:#6EE7B7;--text:#ECFDF5;
+        --muted:rgba(236,253,245,.62);--muted2:rgba(236,253,245,.4);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);
+       line-height:1.8;padding-bottom:80px;word-break:keep-all;}
+  .wrap{max-width:620px;margin:0 auto;padding:0 20px;}
+
+  .top{border-bottom:1px solid var(--line);}
+  .top a{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;
+         font-size:.88rem;padding:15px 20px;min-height:44px;}
+  .top a:hover{color:var(--gold2);}
+
+  header{padding:46px 0 24px;text-align:center;}
+  h1{font-size:clamp(1.5rem,5vw,2rem);font-weight:500;line-height:1.4;text-wrap:balance;}
+  .sub{color:var(--muted);font-weight:300;margin-top:14px;font-size:.97rem;line-height:1.9;}
+  .steps{display:flex;gap:7px;justify-content:center;margin:24px 0 4px;}
+  .dot{width:26px;height:3px;border-radius:2px;background:var(--line2);}
+  .dot.on{background:var(--gold);}
+
+  .card{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:26px 22px;margin:18px 0;}
+  .q{font-size:1.1rem;font-weight:500;margin-bottom:4px;}
+  .qs{color:var(--muted2);font-size:.85rem;font-weight:300;margin-bottom:16px;}
+
+  label{display:block;font-size:.88rem;color:var(--muted);margin:18px 0 7px;font-weight:300;}
+  input{width:100%;background:#0b0f16;border:1px solid var(--line);border-radius:12px;
+        padding:13px 15px;color:var(--text);font-family:inherit;font-size:1rem;}
+  input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent;}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{background:transparent;border:1px solid var(--line);border-radius:99px;padding:9px 15px;
+        color:var(--text);font-family:inherit;font-size:.92rem;cursor:pointer;min-height:44px;
+        transition:border-color .18s,background .18s;}
+  .chip:hover{border-color:var(--line2);}
+  .chip.on{border-color:var(--gold);background:rgba(201,162,39,.1);color:var(--gold2);}
+  .chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+  .go{width:100%;background:var(--gold);color:#0d1117;border:0;border-radius:99px;
+      padding:15px;font-family:inherit;font-size:1.02rem;font-weight:700;cursor:pointer;margin-top:24px;min-height:48px;}
+  .go:disabled{background:var(--line2);color:var(--muted2);cursor:not-allowed;}
+  .back{background:transparent;border:0;color:var(--muted2);font-family:inherit;font-size:.88rem;
+        cursor:pointer;margin-top:14px;text-decoration:underline;min-height:44px;}
+
+  .promise{border-top:1px dashed var(--line);margin-top:22px;padding-top:18px;
+           color:var(--muted);font-size:.86rem;font-weight:300;line-height:1.95;}
+  .promise b{color:var(--mint);font-weight:500;}
+  .soft{color:var(--muted2);font-size:.82rem;font-weight:300;margin-top:6px;line-height:1.7;}
+  .err{color:#FCA5A5;font-size:.88rem;margin-top:12px;line-height:1.7;}
+
+  .done{text-align:center;padding:24px 0;}
+  .mark{width:56px;height:56px;border-radius:50%;background:rgba(110,231,183,.12);
+        border:1px solid rgba(110,231,183,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+  .hide{display:none;}
+  .foot{color:var(--muted2);font-size:.8rem;text-align:center;margin-top:24px;line-height:1.9;font-weight:300;}
+</style>
+</head>
+<body>
+
+<div class="top"><a href="/">
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  HebronGuide</a></div>
+
+<div class="wrap">
+
+  <header>
+    <h1 id="hd">방금 도착하셨나요?</h1>
+    <p class="sub" id="hs">아는 사람이 하나도 없어도 됩니다.<br>한 사람만 이어 드리겠습니다.</p>
+    <div class="steps"><span class="dot on" id="d1"></span><span class="dot" id="d2"></span></div>
+  </header>
+
+  <!-- 1 : 어디 · 언제 · 무엇 -->
+  <section class="card" id="s1">
+    <div class="q">어느 도시인가요?</div>
+    <div class="qs">가실 예정이어도 됩니다.</div>
+    <input id="city" placeholder="시애틀"/>
+
+    <label>언제 오셨어요?</label>
+    <div class="chips" id="when">
+      <button class="chip" type="button">오늘</button>
+      <button class="chip" type="button">이번 주</button>
+      <button class="chip" type="button">이번 달</button>
+      <button class="chip" type="button">곧 갑니다</button>
+      <button class="chip" type="button">여기 삽니다</button>
+    </div>
+
+    <label>무엇이 제일 막막하세요?</label>
+    <div class="chips" id="need">
+      <button class="chip" type="button">길 · 교통</button>
+      <button class="chip" type="button">장 보는 곳</button>
+      <button class="chip" type="button">병원</button>
+      <button class="chip" type="button">아이 학교</button>
+      <button class="chip" type="button">일자리</button>
+      <button class="chip" type="button">집 구하기</button>
+      <button class="chip" type="button">모이는 자리</button>
+      <button class="chip" type="button">공항 마중</button>
+      <button class="chip" type="button">강아지 맡기기</button>
+      <button class="chip" type="button">그냥 사람</button>
+    </div>
+    <p class="soft">여러 개 고르셔도 되고, 하나도 안 고르셔도 됩니다.</p>
+
+    <button class="go" id="n1" type="button" disabled>다음</button>
+  </section>
+
+  <!-- 2 : 연락처 + 아는 분(선택) -->
+  <section class="card hide" id="s2">
+    <div class="q">어떻게 연락드릴까요?</div>
+    <div class="qs">이것 하나만 받습니다.</div>
+
+    <label for="c1">연락처</label>
+    <input id="c1" placeholder="전화번호 또는 이메일"/>
+
+    <label for="c2">이 도시에 아는 분이 계신가요? <span style="color:var(--muted2)">— 없으셔도 됩니다</span></label>
+    <input id="c2" placeholder="예: 시애틀 헤브론교회 김 목사님"/>
+    <p class="soft">아는 분이 계시면 더 빨리, 더 가까이 이어집니다.
+      한 분 이름이 서류 열 장보다 낫습니다. 없으셔도 커피 한 잔은 이어집니다.</p>
+
+    <div class="promise">
+      <b>48시간 안에</b> 김성수 목사가 직접 연락드립니다.<br>
+      <b>신분증을 묻지 않습니다.</b> 나이 · 종교 · 국적 · 체류 신분도 묻지 않습니다.<br>
+      <b>첫 만남은 카페나 식당</b> 같은 열린 곳에서 합니다.<br>
+      <b>한 분씩 이어 드립니다.</b> 여러 명을 놓고 고르지 않으셔도 됩니다.<br>
+      <b>연락처는 이어질 때만</b> 그분께 보입니다. 화면에 뜨지 않습니다.
+    </div>
+
+    <button class="go" id="n2" type="button">이어 주세요</button>
+    <div class="err hide" id="er"></div>
+    <button class="back" id="bk" type="button">앞으로</button>
+  </section>
+
+  <!-- 끝 -->
+  <section class="card hide" id="s3">
+    <div class="done">
+      <div class="mark"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#6EE7B7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></div>
+      <div class="q" style="margin-bottom:8px;">전해 드렸습니다</div>
+      <p class="sub" id="dn" style="margin-top:0;"></p>
+    </div>
+    <div class="promise" style="border-top:0;padding-top:0;">
+      만나신 뒤에 한 줄만 여쭙겠습니다 — <b>"만나셨어요?"</b><br>
+      그리고 언젠가 자리가 잡히시면, 그때 한 번 더 여쭙겠습니다.<br>
+      <b>"이제 문 하나 열어 보시겠어요?"</b>
+    </div>
+  </section>
+
+  <p class="foot">
+    이 도시에 이미 사시는데 손이 필요하세요? 여기서 같이 받습니다.<br>
+    고르는 것이 아니라 응답입니다. 먼저 손든 분과 이어집니다.
+  </p>
+
+</div>
+
+<script>
+// 지금 실제로 이어 드릴 수 있는 도시. 여기 없으면 약속을 다르게 한다.
+// 지키지 못할 약속은 쓰지 않는다 — 답할 사람이 생기는 대로 늘린다.
+var READY = ['시애틀','seattle','시에틀','씨애틀'];
+
+function chips(id, single){
+  var box = document.getElementById(id);
+  box.querySelectorAll('.chip').forEach(function(b){
+    b.addEventListener('click', function(){
+      if(single) box.querySelectorAll('.chip').forEach(function(x){ if(x!==b) x.classList.remove('on'); });
+      b.classList.toggle('on');
+      b.setAttribute('aria-pressed', b.classList.contains('on') ? 'true' : 'false');
+      check();
+    });
+  });
+}
+chips('when', true); chips('need', false);
+
+// 도시와 '언제'만 있으면 넘어간다.
+// 무엇이 막막한지는 안 골라도 된다 — 막 도착한 사람은 그것도 모르는 게 정상이다.
+function check(){
+  var ok = document.getElementById('city').value.trim().length > 0
+        && document.querySelectorAll('#when .chip.on').length > 0;
+  document.getElementById('n1').disabled = !ok;
+}
+document.getElementById('city').addEventListener('input', check);
+
+function show(n){
+  ['s1','s2','s3'].forEach(function(id,i){ document.getElementById(id).classList.toggle('hide', i!==n); });
+  document.getElementById('d1').classList.toggle('on', n<=1);
+  document.getElementById('d2').classList.toggle('on', n>=1);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.getElementById('n1').onclick = function(){
+  show(1);
+  document.getElementById('hd').textContent = '거의 다 되었습니다';
+  document.getElementById('hs').innerHTML = '하나만 더 여쭙겠습니다.';
+};
+document.getElementById('bk').onclick = function(){
+  show(0);
+  document.getElementById('hd').textContent = '방금 도착하셨나요?';
+  document.getElementById('hs').innerHTML = '아는 사람이 하나도 없어도 됩니다.<br>한 사람만 이어 드리겠습니다.';
+};
+
+document.getElementById('n2').onclick = async function(){
+  var btn = this, er = document.getElementById('er');
+  var city  = document.getElementById('city').value.trim();
+  var cont  = document.getElementById('c1').value.trim();
+  var vouch = document.getElementById('c2').value.trim();
+  var when  = (document.querySelector('#when .chip.on')||{}).textContent || '';
+  var needs = [].map.call(document.querySelectorAll('#need .chip.on'), function(c){ return c.textContent; }).join(' · ');
+  er.classList.add('hide');
+  if(!cont){ er.textContent = '연락처 하나만 적어 주시면 됩니다.'; er.classList.remove('hide'); return; }
+
+  btn.disabled = true; btn.textContent = '보내는 중…';
+  var isMail = cont.indexOf('@') > -1;
+  try{
+    var r = await fetch('/api/submit-form', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        type: 'arrive',
+        name: '(도착) ' + city,
+        city: city,
+        email: isMail ? cont : '',
+        phone: isMail ? '' : cont,
+        subject: '[도착] ' + city + ' · ' + when,
+        body: [
+          '도시: ' + city,
+          '언제: ' + when,
+          '막막한 것: ' + (needs || '(안 고름)'),
+          '연락처: ' + cont,
+          '아는 분: ' + (vouch || '(없음)'),
+          '',
+          '※ 48시간 안에 연락드리기로 되어 있습니다.'
+        ].join('\n')
+      })
+    });
+    var j = await r.json().catch(function(){ return {}; });
+    if(!r.ok) throw new Error(j.error || ('보내지 못했습니다 (' + r.status + ')'));
+
+    var ready = READY.indexOf(city.toLowerCase()) > -1 || READY.indexOf(city) > -1;
+    document.getElementById('dn').innerHTML = ready
+      ? ('48시간 안에 연락드리겠습니다.<br>' +
+         (vouch ? '아는 분이 계시니 더 빨리 이어집니다.' : '가장 먼저 손드는 분과 이어 드리겠습니다.'))
+      : (city + '에는 아직 문을 열어 두신 분이 적습니다.<br>' +
+         '그래도 찾아보고 48시간 안에 알려 드리겠습니다.');
+    show(2);
+    document.getElementById('hd').textContent = '고맙습니다';
+    document.getElementById('hs').innerHTML = '';
+  }catch(e){
+    // 안 보내졌는데 보냈다고 하지 않는다
+    er.textContent = (e.message || '보내지 못했습니다') +
+      ' · Hebronplatform@gmail.com 으로 보내 주셔도 됩니다.';
+    er.classList.remove('hide');
+    btn.disabled = false; btn.textContent = '이어 주세요';
+  }
+};
+</script>
+</body>
+</html>

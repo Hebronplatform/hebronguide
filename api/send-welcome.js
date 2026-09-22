@@ -516,7 +516,7 @@ export default async function handler(req, res) {
       '· 교회 무료 등재 (hebronguide.com 도시 페이지)',
       '· HebronGuide 카카오 채널 소개',
       '· 새 이민자 정착 연결 서비스',
-      '· 매월 파트너 목사님 Zoom 교류 모임',
+      '· 파트너 목사님 Zoom 교류 모임 (상·하반기 두 차례)',
       '',
       '─── 함께하시려면 ────────────────────',
       '아래 링크에서 교회 등재 신청 (무료, 3분):',
@@ -578,7 +578,7 @@ export default async function handler(req, res) {
               <span style="color:#C9A227;font-weight:900;margin-right:8px;">·</span>새 이민자 정착 연결 서비스
             </td></tr>
             <tr><td style="padding:4px 0;font-size:.84rem;color:#333;">
-              <span style="color:#C9A227;font-weight:900;margin-right:8px;">·</span>매월 파트너 목사님 Zoom 교류 모임
+              <span style="color:#C9A227;font-weight:900;margin-right:8px;">·</span>파트너 목사님 Zoom 교류 모임 (상·하반기 두 차례)
             </td></tr>
           </table>
         </td></tr>

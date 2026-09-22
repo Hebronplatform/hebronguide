@@ -51,7 +51,7 @@ cp present.html  public/present.html    2>/dev/null || true   # 발표 슬라이
 # 3. 도시별 메타데이터 정의 (한국어명·영어명·주/지역)
 declare -A CITY_KO=(
   # 기존 17개 도시
-  ["seattle"]="시애틀"       ["federalway"]="훼더럴웨이"  ["dallas"]="달라스"        ["sf"]="샌프란시스코"
+  ["seattle"]="시애틀"       ["federalway"]="페더럴웨이"  ["dallas"]="달라스"        ["sf"]="샌프란시스코"
   ["newyork"]="뉴욕"         ["newjersey"]="뉴저지"     ["nashville"]="내쉬빌"     ["boston"]="보스턴"
   ["la"]="로스앤젤레스"       ["toronto"]="토론토"       ["vancouver"]="밴쿠버"
   ["houston"]="휴스턴"       ["atlanta"]="애틀랜타"     ["kansascity"]="캔자스시티"
@@ -231,6 +231,8 @@ cp hebronguide/public/hospitality-board.html        public/hospitality-board.htm
 cp hebronguide/public/home-table.html               public/home-table.html                 2>/dev/null || true
 # 문을 하나 열어 두시겠어요 — 교회·업체·가정 셋을 하나로 (2026-09-21)
 cp hebronguide/public/open.html                     public/open.html                       2>/dev/null || true
+# 방금 도착하셨나요 — 네 원칙의 「인식」 (2026-09-21)
+cp hebronguide/public/arrive.html                   public/arrive.html                     2>/dev/null || true
 cp hebronguide/public/events.json                   public/events.json                     2>/dev/null || true
 # 자가 점검 요약 — 상황판이 읽는다 (공개돼도 안전한 숫자만 들어 있다)
 cp hebronguide/public/audit.json                    public/audit.json                      2>/dev/null || true

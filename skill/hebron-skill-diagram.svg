@@ -77,7 +77,7 @@
 
 <!-- row 1 -->
 <rect x="48" y="578" width="310" height="86" fill="#FAFBFB" stroke="#E2E6E5"/>
-<text x="66" y="608" font-size="15" font-weight="600" fill="#101418">“훼더럴웨이도 만들어 주세요”</text>
+<text x="66" y="608" font-size="15" font-weight="600" fill="#101418">“페더럴웨이도 만들어 주세요”</text>
 <text x="66" y="631" font-size="12.5" fill="#8A9391">도시 추가 요청 —</text>
 <text x="66" y="650" font-size="12.5" fill="#8A9391">지금은 손으로 복제 (메타태그 오류 발생)</text>
 

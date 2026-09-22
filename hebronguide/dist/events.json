@@ -6,7 +6,11 @@
     "",
     "등록하는 것: 주최가 확인되고 · 날짜·장소·참가비가 다 적혀 있고 · 신청하는 길이 열려 있는 행사.",
     "하나라도 비면 등록하지 않습니다. 신청하는 방법이 없으면 등록하지 않습니다.",
-    "무료로 등재합니다. 환대 정신을 세상에 흘러 보내기 위해서입니다."
+    "무료로 등재합니다. 환대 정신을 세상에 흘러 보내기 위해서입니다.",
+    "",
+    "cities: 그 도시 화면에서만 띄웁니다. \"all\" 이거나 없으면 모든 도시.",
+    "한국에서 열리는 행사를 달라스·토론토에 띄우면 갈 수 없는 안내라 소음이 됩니다.",
+    "게시판(hospitality-board)에는 도시와 상관없이 전부 보입니다."
   ],
   "events": [
     {
@@ -29,7 +33,7 @@
       "poster": "/planting-seed-2026-poster.jpg",
       "until": "2026-11-26",
       "sponsored": true,
-      "cities": "all",
+      "cities": ["seoul", "busan", "incheon", "daegu"],
       "registerUrl": "https://docs.google.com/forms/d/e/1FAIpQLScmfxG1j86cHboPA6mjVuJ4E_8hLuRz0Ux2E2IDhhotdProOA/viewform",
       "themeKo": "환대",
       "themeEn": "Hospitality"
