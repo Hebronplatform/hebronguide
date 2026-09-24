@@ -942,8 +942,6 @@ details.fold .about-story-wrap{padding-top:0 !important;}
   </div>
 </aside>
 
-<div class="hg-fly-mark" id="hgFlyMark" aria-hidden="true">Hebron<em>Guide</em></div>
-
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO ━━━ -->
 <div class="hero">
 
@@ -1216,18 +1214,7 @@ html[lang="en"] .hg-lb .en{display:inline;}
   87.5% {transform:translate(-40px,-21px) scale(0.961);}
   100%  {transform:translate(-0px,-30px) scale(0.945);}}
 
-/* 이름 — 두 빛이 만날 때 떠올랐다가, 위로 올라가 로고 옆에 붙는다 */
-.hg-fly-mark{position:fixed;left:50%;top:38svh;z-index:260;
-  transform:translate(-50%,-50%) scale(1.9);opacity:0;pointer-events:none;
-  font-family:'Cinzel',Georgia,serif;font-weight:700;letter-spacing:.03em;
-  font-size:1.5rem;color:#FFF6E4;text-shadow:0 0 28px rgba(245,199,110,.55);
-  white-space:nowrap;filter:blur(7px);}
-.hg-fly-mark em{font-style:italic;color:var(--gold2);}
-.hg-fly-mark.show{opacity:1;transform:translate(-50%,-50%) scale(1);filter:blur(0);
-  transition:opacity 1.6s ease-out,transform 2s cubic-bezier(.16,.84,.24,1),filter 1.5s ease-out;}
-.hg-fly-mark.dock{transition:transform 1.9s cubic-bezier(.5,.02,.18,1),opacity .6s ease 1.3s;}
-nav .nav-logo-text{opacity:0;transition:opacity .45s ease;}
-nav .nav-logo-text.landed{opacity:1;}
+/* 이름은 처음부터 로고 옆 제자리에 있다 (2026-09-24) */
 @media(prefers-reduced-motion:reduce){
   .hg-sheen,.hero-art{animation:none;}
   .hg-city{opacity:1;}
@@ -1235,8 +1222,7 @@ nav .nav-logo-text.landed{opacity:1;}
   .hg-core{opacity:.95;transform:none;}
   .hg-ring,.hg-bloom{opacity:0;}
   .hg-lb{opacity:1;}
-  .hg-fly-mark{display:none;}
-  nav .nav-logo-text{opacity:1;}}
+}
 
 /* 「더보기」 안으로 옮겨 온 것들 — 도시 목록 · 문장 · 공유 · 저작권 (2026-09-24) */
 .hg-drawer-more{margin:4px 0 2px;}
@@ -2012,31 +1998,6 @@ if(inp){
   img.src = '/earth-tex.webp';
 })();
 
-/* 이름 — 두 빛이 만날 때 떠올랐다가, 위로 올라가 로고 옆에 가서 붙는다. 한 번만. */
-(function hgNameFlight(){
-  var mark = document.getElementById('hgFlyMark');
-  var seat = document.querySelector('nav .nav-logo-text');
-  if (!mark || !seat) return;
-  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    seat.classList.add('landed'); mark.remove(); return;
-  }
-  var word = seat.querySelector('.nav-logo-word') || seat;
-
-  setTimeout(function(){ mark.classList.add('show'); }, 2200);   // 둘이 만나는 그때
-
-  setTimeout(function(){
-    var from = mark.getBoundingClientRect(), to = word.getBoundingClientRect();
-    if (!to.width) { seat.classList.add('landed'); mark.remove(); return; }
-    var s  = to.width / from.width;
-    var dx = (to.left + to.width/2)  - (from.left + from.width/2);
-    var dy = (to.top  + to.height/2) - (from.top  + from.height/2);
-    mark.classList.add('dock');
-    mark.style.transform = 'translate(-50%,-50%) translate(' + dx + 'px,' + dy + 'px) scale(' + s + ')';
-    mark.style.opacity = '0';
-    setTimeout(function(){ seat.classList.add('landed'); }, 1600);
-    setTimeout(function(){ mark.remove(); }, 2600);
-  }, 6400);
-})();
 </script>
 
 <script>
