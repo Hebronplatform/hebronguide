@@ -1923,7 +1923,7 @@ if(inp){
   var N = innerWidth < 600 ? 520 : 720;
   cv.width = cv.height = N;
   var ctx = cv.getContext('2d');
-  var LAT0 = 22 * Math.PI / 180, LON0 = -100, SPIN = 2600, DEG = 0.0135;  // 약 27초에 한 바퀴
+  var LAT0 = 22 * Math.PI / 180, LON0 = -100, SPIN = 2600, DEG = 0.018;   // 약 20초에 한 바퀴
 
   var img = new Image();
   img.onerror = function(){ if (/webp$/.test(img.src)) img.src = '/earth-tex.jpg'; };
@@ -2052,11 +2052,15 @@ if(inp){
     return { x: C + nx * R, y: C - ny * R, z: nz };
   }
 
-  var gi = 0, next = 0;
+  /* 도는 순서 — 서쪽에서 동쪽으로 */
+  var TURN = [0, 1, 3, 4, 2, 5];
+  var gi = 0, ci = 0, next = 0, start = 0;
   window.hgPaint = function(spin, now){
     for (var k = 0; k < CITY.length; k++) {
       var p = parts[k], q = place(CITY[k].lat, CITY[k].lon, spin);
 
+      p.z = q.z;                               // 뒤로 넘어가도 값은 갱신해야 한다.
+                                               // 안 그러면 숨은 동안 옛 값으로 차례가 소모된다.
       if (q.z <= 0.06) {                       // 지구 뒤로 넘어갔다
         if (p.on) { p.g.classList.remove('on'); p.on = false; }
         p.g.style.visibility = 'hidden';
@@ -2080,7 +2084,7 @@ if(inp){
       p.text.setAttribute('y', (ly + 19).toFixed(0));
       p.text.setAttribute('text-anchor', right ? 'start' : 'end');
 
-      p.x = x; p.y = y; p.z = q.z;
+      p.x = x; p.y = y;
 
       p.g.style.opacity = Math.min(1, (q.z - 0.06) / 0.3).toFixed(2);
     }
@@ -2093,19 +2097,17 @@ if(inp){
       if (now > pp.until) { pp.on = false; pp.g.classList.remove('on'); }
     }
 
-    /* 정면으로 돌아 나온 도시에, 멀리서 빛 하나가 내려앉는다 */
-    if (now > next) {
-      var best = null;
-      for (var n2 = 0; n2 < parts.length; n2++) {
-        var c = parts[n2];
-        if (c.on || c.z < 0.55) continue;
-        if (!best || c.z > best.z) best = c;
-      }
-      if (best) {
-        best.gate = GATES[(gi++) % GATES.length];
-        arcTo(best);
-        best.on = true; best.until = now + 4200; next = now + 4500;
-        best.g.classList.remove('on'); void best.g.offsetWidth; best.g.classList.add('on');
+    /* 차례가 된 도시가 정면으로 나오면, 멀리서 빛 하나가 내려앉는다.
+       가장 잘 보이는 곳을 고르면 기울기상 유리한 도시만 계속 이긴다.  */
+    /* 처음 몇 초는 지구가 자리를 잡는 중이다 — 그때 켜면 아무도 못 본다 */
+    if (!start) start = now;
+    if (now - start > 3000 && now > next) {
+      var c = parts[TURN[ci % TURN.length]];
+      if (!c.on && c.z >= 0.35) {
+        c.gate = GATES[(gi++) % GATES.length];
+        arcTo(c);
+        c.on = true; c.until = now + 4200; next = now + 4400; ci++;
+        c.g.classList.remove('on'); void c.g.offsetWidth; c.g.classList.add('on');
       }
     }
   }
