@@ -624,7 +624,7 @@ details.fold .about-story-wrap{padding-top:0 !important;}
    푸터 링크는 아래로 흘러가서 아무도 안 누른다.
    폰에서만 — 데스크톱은 위 내비로 충분하다. */
 .hg-tabs{display:none;}
-@media(max-width:640px){
+@media(min-width:0px){
   .hg-tabs{display:grid;grid-template-columns:repeat(4,1fr);
     position:fixed;left:0;right:0;bottom:0;z-index:300;
     background:rgba(10,14,20,.96);backdrop-filter:blur(16px);
@@ -1045,7 +1045,7 @@ details.fold .about-story-wrap{padding-top:0 !important;}
     <div class="hj-box">
       <svg class="hj-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
       <input id="heroCity" type="text" autocomplete="off" aria-label="도시 이름을 입력하세요"
-             placeholder="어느 도시로 가시나요?"/>
+             placeholder="어느 도시로?"/>
       <button type="button" id="heroMic" class="hj-mic hide" aria-label="말로 도시 찾기">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/>
@@ -1061,10 +1061,6 @@ details.fold .about-story-wrap{padding-top:0 !important;}
 
 
 
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-n"><span class="hg-city-count">81</span><sup style="font-size:.9rem;">+</sup></div><div class="stat-l"><span class="ko">서비스 도시</span><span class="en">Cities</span></div></div>
-    <div class="stat"><div class="stat-n"><span class="hg-church-count">655</span></div><div class="stat-l"><span class="ko">등록 교회</span><span class="en">Churches</span></div></div>
-  </div>
 </div>
 
 <style>
@@ -1252,7 +1248,7 @@ nav .nav-logo-text.landed{opacity:1;}
 .hg-drawer-more .footer-copy{font-size:.72rem;opacity:.5;line-height:1.7;}
 
 /* 앱 화면 다듬기 — 같은 말을 두 번 놓지 않는다 (2026-09-24) */
-@media(max-width:640px){
+@media(min-width:0px){
   /* 바로 아래에 검색창이 있다. 위 단추는 같은 말이다. */
   nav .nav-cta{display:none !important;}
   .hero .hero-jump{margin-top:2px;}
@@ -1260,7 +1256,7 @@ nav .nav-logo-text.landed{opacity:1;}
 }
 
 /* 이름은 그림 안에서 떠오른다 — 위에 또 쓰지 않는다 (2026-09-24) */
-@media(max-width:640px){
+@media(min-width:0px){
   nav .nav-logo-mark{width:34px;height:34px;}
   /* 도시 여섯 — 세 칸씩 두 줄로 가지런히 */
   .hero .hj-quick{display:grid !important;grid-template-columns:repeat(3,1fr);gap:8px;
@@ -1269,7 +1265,7 @@ nav .nav-logo-text.landed{opacity:1;}
 }
 
 /* 검색 칸을 줄인다 — 앱의 검색은 작고 단단하다 (2026-09-24) */
-@media(max-width:640px){
+@media(min-width:0px){
   .hero .hero-jump{max-width:330px;margin-left:auto;margin-right:auto;}
   .hero .hj-box{padding:7px 8px 7px 14px !important;gap:8px;border-radius:999px;}
   .hero .hj-box input{font-size:.92rem;padding:0;}
@@ -1291,16 +1287,16 @@ nav .nav-logo-text.landed{opacity:1;}
    radial-gradient(460px 340px at 50% 34%, rgba(245,199,110,.11) 0%, rgba(245,199,110,0) 72%),
    linear-gradient(180deg, #060B14 0%, #091020 52%, #0B1324 100%) !important;}
 
-@media(max-width:640px){
+@media(min-width:0px){
   /* 위 내비는 로고와 메뉴만, 배경 없이 */
   nav{background:transparent !important;border-bottom:0 !important;
       -webkit-backdrop-filter:none !important;backdrop-filter:none !important;}
   nav .nav-cta{display:none !important;}   /* 바로 아래가 검색창이다 — 같은 말 */
 
   /* 한 화면에 꽉 */
-  .hero{position:relative;overflow:hidden;min-height:100svh;
+  .hero{position:relative;overflow:hidden;min-height:calc(100svh - 56px);
     display:flex;flex-direction:column;justify-content:center;
-    padding:8px 20px 116px !important;}
+    padding:8px 20px 112px !important;}
   .hero-art{width:min(92vw,46svh);margin:0 auto 26px;}
 
   /* 탭 넷 — 앱은 아래다. 띠가 아니라 떠 있는 캡슐. */
@@ -1342,6 +1338,46 @@ nav .nav-logo-text.landed{opacity:1;}
 .hg-drawer-more .footer-share-icons svg{width:15px;height:15px;}
 .hg-drawer-legal{font-size:.68rem !important;opacity:.6;}
 .hg-drawer-foot{font-size:.66rem !important;opacity:.45;}
+
+/* 검색 칸 — 흰 막대가 지구보다 눈에 띄면 안 된다 (2026-09-24) */
+@media(min-width:0px){
+  .hero .hero-jump{max-width:268px !important;margin-left:auto;margin-right:auto;}
+  .hero .hj-box{
+    padding:5px 5px 5px 13px !important;gap:7px;border-radius:999px;
+    background:rgba(255,255,255,.1) !important;
+    border:1px solid rgba(255,255,255,.2) !important;
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    box-shadow:none !important;}
+  .hero .hj-box:focus-within{border-color:rgba(245,199,110,.55) !important;
+    background:rgba(255,255,255,.14) !important;}
+  .hero .hj-box input{font-size:.86rem !important;color:#F2F6FF !important;padding:6px 0 !important;}
+  .hero .hj-box input::placeholder{color:rgba(236,245,255,.55) !important;}
+  .hero .hj-ico{width:15px;height:15px;color:rgba(236,245,255,.6);}
+  .hero .hj-mic{width:28px;height:28px;}
+  .hero .hj-mic svg{width:13px;height:13px;}
+  /* 도시 단추도 한 호흡 작게 */
+  .hero .hj-quick{max-width:288px !important;gap:6px !important;}
+  .hero .hj-quick a{font-size:.78rem !important;padding:7px 4px !important;min-height:36px !important;}
+}
+
+/* 큰 화면에서는 같은 구성을 한 호흡 크게 — 폰·아이패드·웹이 같은 앱이다 (2026-09-24) */
+@media(min-width:1025px){
+  .hero{padding:12px 24px 100px !important;}
+  .hero-art{width:min(38vw,46svh) !important;margin-bottom:22px !important;}
+  .hero .hero-jump{max-width:380px !important;}
+  .hero .hj-box{padding:7px 7px 7px 17px !important;gap:9px;}
+  .hero .hj-box input{font-size:.96rem !important;padding:8px 0 !important;}
+  .hero .hj-ico{width:17px;height:17px;}
+  .hero .hj-mic{width:34px;height:34px;}
+  .hero .hj-mic svg{width:15px;height:15px;}
+  .hero .hj-quick{max-width:420px !important;gap:9px !important;}
+  .hero .hj-quick a{font-size:.9rem !important;padding:10px 6px !important;min-height:42px !important;}
+  .hg-tabs{bottom:calc(20px + env(safe-area-inset-bottom)) !important;padding:7px 10px !important;}
+  .hg-tabs a,.hg-tabs button{min-width:88px;padding:10px 14px !important;}
+  .hg-tabs a .ko,.hg-tabs a .en,
+  .hg-tabs button .ko,.hg-tabs button .en{font-size:.78rem;}
+  .hg-tabs a svg,.hg-tabs button svg{width:20px;height:20px;}
+}
 </style>
 <script>
 function toggleAboutStory(btn){
@@ -1520,7 +1556,10 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu(
     // 다시 왔을 때 바로 갈 수 있게 기억해 둔다 (그 사람 브라우저에만)
     try{
       var slug = (href || '').replace(/^\/|\/$/g, '');
-      var name = label || (document.querySelector('.hj-quick a[href="' + href + '"] .ko') || {}).textContent || slug;
+      var pill = document.querySelector('.hj-quick a[href="' + href + '"]')
+              || document.querySelector('#cityRegions .city-pill[href="' + href + '"]');
+      var fromPill = pill ? (((pill.querySelector('.ko') || {}).textContent) || pill.textContent) : '';
+      var name = (label || fromPill || slug).trim();
       if(slug) localStorage.setItem('hg_last_city', JSON.stringify({ href: href, name: name }));
     }catch(e){}
     flash.classList.add('on');
@@ -1844,8 +1883,20 @@ if(inp){
   var last;
   try { last = JSON.parse(localStorage.getItem('hg_last_city') || 'null'); } catch(e){}
   if(!last || !last.href) return;
+  /* 예전에 슬러그(seattle)로 저장된 값이 있다 — 읽을 때 제 이름으로 고친다 */
   var ko = document.documentElement.lang !== 'en';
-  txt.textContent = ko ? (last.name + ' 이어 보기') : ('Continue to ' + last.name);
+  var name = (last.name || '').trim();
+  var slug = last.href.replace(/^\/|\/$/g, '');
+  if (!name || name.toLowerCase() === slug.toLowerCase()) {
+    var pill = document.querySelector('.hj-quick a[href="' + last.href + '"]')
+            || document.querySelector('#cityRegions .city-pill[href="' + last.href + '"]');
+    if (pill) {
+      var span = pill.querySelector(ko ? '.ko' : '.en');
+      name = ((span && span.textContent) || pill.textContent || name).trim();
+    }
+  }
+  if (!name) return;
+  txt.textContent = ko ? (name + ' 이어 보기') : ('Continue to ' + name);
   bar.setAttribute('href', last.href);
   bar.classList.remove('hide');
 })();
