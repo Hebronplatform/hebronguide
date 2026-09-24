@@ -129,4 +129,4 @@ User-agent: DuckDuckBot
 Allow: /
 
 # ── Sitemap ─────────────────────────────────────
-Sitemap: https://hebronguide.com/sitemap.xml
+Sitemap: https://www.hebronguide.com/sitemap.xml
