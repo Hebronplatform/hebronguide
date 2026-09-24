@@ -1224,8 +1224,8 @@ html[lang="en"] .hg-lb .en{display:inline;}
   white-space:nowrap;filter:blur(7px);}
 .hg-fly-mark em{font-style:italic;color:var(--gold2);}
 .hg-fly-mark.show{opacity:1;transform:translate(-50%,-50%) scale(1);filter:blur(0);
-  transition:opacity .7s ease,transform .9s cubic-bezier(.2,.8,.25,1),filter .7s ease;}
-.hg-fly-mark.dock{transition:transform 1s cubic-bezier(.62,.02,.2,1),opacity .35s ease .75s;}
+  transition:opacity 1.6s ease-out,transform 2s cubic-bezier(.16,.84,.24,1),filter 1.5s ease-out;}
+.hg-fly-mark.dock{transition:transform 1.9s cubic-bezier(.5,.02,.18,1),opacity .6s ease 1.3s;}
 nav .nav-logo-text{opacity:0;transition:opacity .45s ease;}
 nav .nav-logo-text.landed{opacity:1;}
 @media(prefers-reduced-motion:reduce){
@@ -1399,8 +1399,8 @@ nav .nav-logo-text.landed{opacity:1;}
   .nav-app a:focus-visible{outline:2px solid var(--gold2);outline-offset:2px;}
   .hg-tabs{display:none !important;}          /* 아래 캡슐은 폰·패드에서만 */
   body{padding-bottom:0 !important;}
-  .hero{padding:12px 24px 44px !important;}
-  .hero-art{width:min(40vw,52svh) !important;margin-bottom:26px !important;}
+  .hero{padding:10px 24px 30px !important;}
+  .hero-art{width:min(52vw,62svh) !important;margin-bottom:18px !important;}
 }
 </style>
 <script>
@@ -2022,7 +2022,7 @@ if(inp){
   }
   var word = seat.querySelector('.nav-logo-word') || seat;
 
-  setTimeout(function(){ mark.classList.add('show'); }, 2500);   // 둘이 만나는 그때
+  setTimeout(function(){ mark.classList.add('show'); }, 2200);   // 둘이 만나는 그때
 
   setTimeout(function(){
     var from = mark.getBoundingClientRect(), to = word.getBoundingClientRect();
@@ -2033,9 +2033,9 @@ if(inp){
     mark.classList.add('dock');
     mark.style.transform = 'translate(-50%,-50%) translate(' + dx + 'px,' + dy + 'px) scale(' + s + ')';
     mark.style.opacity = '0';
-    setTimeout(function(){ seat.classList.add('landed'); }, 820);
-    setTimeout(function(){ mark.remove(); }, 1500);
-  }, 4600);
+    setTimeout(function(){ seat.classList.add('landed'); }, 1600);
+    setTimeout(function(){ mark.remove(); }, 2600);
+  }, 6400);
 })();
 </script>
 
