@@ -990,43 +990,43 @@ details.fold .about-story-wrap{padding-top:0 !important;}
       <!-- 여섯 도시 — 아래 단추와 같은 여섯. 실제 위·경도. 자리는 JS가 매 프레임 옮긴다 -->
       <g class="hg-city" data-i="0">
         <path class="hg-arc" pathLength="100"/>
-        <circle class="hg-bloom" r="130" fill="url(#hgBloom)"/>
-        <circle class="hg-ring"  r="15"/>
+        <circle class="hg-bloom" r="150" fill="url(#hgBloom)"/>
+        <circle class="hg-ring"  r="17"/>
         <circle class="hg-core"  r="13"/>
         <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">시애틀</tspan><tspan class="en">Seattle</tspan></text></g>
       </g>
       <g class="hg-city" data-i="1">
         <path class="hg-arc" pathLength="100"/>
-        <circle class="hg-bloom" r="130" fill="url(#hgBloom)"/>
-        <circle class="hg-ring"  r="15"/>
+        <circle class="hg-bloom" r="150" fill="url(#hgBloom)"/>
+        <circle class="hg-ring"  r="17"/>
         <circle class="hg-core"  r="13"/>
         <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">LA</tspan><tspan class="en">Los Angeles</tspan></text></g>
       </g>
       <g class="hg-city" data-i="2">
         <path class="hg-arc" pathLength="100"/>
-        <circle class="hg-bloom" r="130" fill="url(#hgBloom)"/>
-        <circle class="hg-ring"  r="15"/>
+        <circle class="hg-bloom" r="150" fill="url(#hgBloom)"/>
+        <circle class="hg-ring"  r="17"/>
         <circle class="hg-core"  r="13"/>
         <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">뉴욕</tspan><tspan class="en">New York</tspan></text></g>
       </g>
       <g class="hg-city" data-i="3">
         <path class="hg-arc" pathLength="100"/>
-        <circle class="hg-bloom" r="130" fill="url(#hgBloom)"/>
-        <circle class="hg-ring"  r="15"/>
+        <circle class="hg-bloom" r="150" fill="url(#hgBloom)"/>
+        <circle class="hg-ring"  r="17"/>
         <circle class="hg-core"  r="13"/>
         <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">달라스</tspan><tspan class="en">Dallas</tspan></text></g>
       </g>
       <g class="hg-city" data-i="4">
         <path class="hg-arc" pathLength="100"/>
-        <circle class="hg-bloom" r="130" fill="url(#hgBloom)"/>
-        <circle class="hg-ring"  r="15"/>
+        <circle class="hg-bloom" r="150" fill="url(#hgBloom)"/>
+        <circle class="hg-ring"  r="17"/>
         <circle class="hg-core"  r="13"/>
         <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">토론토</tspan><tspan class="en">Toronto</tspan></text></g>
       </g>
       <g class="hg-city" data-i="5">
         <path class="hg-arc" pathLength="100"/>
-        <circle class="hg-bloom" r="130" fill="url(#hgBloom)"/>
-        <circle class="hg-ring"  r="15"/>
+        <circle class="hg-bloom" r="150" fill="url(#hgBloom)"/>
+        <circle class="hg-ring"  r="17"/>
         <circle class="hg-core"  r="13"/>
         <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">서울</tspan><tspan class="en">Seoul</tspan></text></g>
       </g>
@@ -1150,13 +1150,14 @@ details.fold .about-story-wrap{padding-top:0 !important;}
    빛은 바깥이 아니라 다른 도시에서 온다. (2026-09-24)                      */
 .hg-city{opacity:1;}
 
-.hg-arc{fill:none;stroke:#F2D08A;stroke-width:7;stroke-linecap:round;
-  stroke-dasharray:20 100;stroke-dashoffset:20;stroke-opacity:0;}
+.hg-arc{fill:none;stroke:#FFD98A;stroke-width:9;stroke-linecap:round;
+  stroke-dasharray:34 100;stroke-dashoffset:34;stroke-opacity:0;
+  filter:drop-shadow(0 0 7px rgba(255,214,120,.65));}
 .hg-city.on .hg-arc{animation:hgArc 4.2s cubic-bezier(.34,.04,.36,1) 1 both;}
 @keyframes hgArc{
-  0%   {stroke-dashoffset:20;  stroke-opacity:0;}
-  7%   {stroke-opacity:.92;}
-  44%  {stroke-dashoffset:-100;stroke-opacity:.92;}
+  0%   {stroke-dashoffset:34;  stroke-opacity:0;}
+  7%   {stroke-opacity:1;}
+  44%  {stroke-dashoffset:-100;stroke-opacity:1;}
   54%  {stroke-dashoffset:-100;stroke-opacity:0;}
   100% {stroke-dashoffset:-100;stroke-opacity:0;}}
 
@@ -1385,8 +1386,8 @@ html[lang="en"] .hg-lb .en{display:inline;}
   .nav-app a:focus-visible{outline:2px solid var(--gold2);outline-offset:2px;}
   .hg-tabs{display:none !important;}          /* 아래 캡슐은 폰·패드에서만 */
   body{padding-bottom:0 !important;}
-  .hero{padding:10px 24px 30px !important;}
-  .hero-art{width:min(52vw,62svh) !important;margin-bottom:18px !important;}
+  .hero{padding:6px 24px 26px !important;}
+  .hero-art{width:min(58vw,64svh) !important;margin-bottom:12px !important;}
 }
 </style>
 <script>
@@ -1982,7 +1983,7 @@ if(inp){
       if (!live) return;
       var e = now - t0, q, spin;
       if (e < SPIN) { q = 1 - e / SPIN; spin = LON0 + 900 * q * q * q; }
-      else          { spin = LON0 - (e - SPIN) * DEG; }
+      else          { spin = LON0 - (e - SPIN) * DEG; }   // 땅이 오른쪽으로 흐른다 (실제 지구와 같은 방향)
       draw(spin);
       if (window.hgPaint) hgPaint(spin, now);   // 도시도 같은 자전각으로
       requestAnimationFrame(tick);
