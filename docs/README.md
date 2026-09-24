@@ -23,6 +23,7 @@
 | [`MISSIONAL_THEOLOGY.md`](MISSIONAL_THEOLOGY.md) | 4가지 선교 통합 + 송영(Doxology) |
 | [`CORE_VALUES.md`](CORE_VALUES.md) | 정보 섬김 3축 (미국자원·한인커뮤니티·타민족) |
 | [`OPERATING_PRINCIPLES.md`](OPERATING_PRINCIPLES.md) | Chick-fil-A 7원칙 |
+| [`TRUST_CHAIN.md`](TRUST_CHAIN.md) | **신뢰의 사슬** — 추천으로 이어지는 환대 (신원은 헤브론에게 · 표 세 개 · 무게별 검증 · 아무도 없는 사람의 문) |
 | [`EXECUTION_GUIDELINES.md`](EXECUTION_GUIDELINES.md) | 9질문 + 8영역 + KPI |
 | [`DOC_HYGIENE.md`](DOC_HYGIENE.md) | 문서 위생 자동 정리 원칙 |
 
