@@ -987,49 +987,21 @@ details.fold .about-story-wrap{padding-top:0 !important;}
       </g>
       <circle class="hg-rim" cx="482" cy="482" r="480"/>
 
-      <!-- 여섯 도시 — 아래 단추와 같은 여섯. 실제 위·경도. 자리는 JS가 매 프레임 옮긴다 -->
-      <g class="hg-city" data-i="0">
+      <!-- 81개 도시 — 점은 JS 가 채운다. 빛이 내려앉는 자리는 하나뿐이고,
+           그 하나가 도시를 옮겨 다닌다. 81벌을 만들면 화면이 못 견딘다. -->
+      <g class="hg-dots" fill="#FFE3A3"></g>
+
+      <g class="hg-spot">
         <path class="hg-arc" pathLength="100"/>
         <circle class="hg-bloom" r="150" fill="url(#hgBloom)"/>
         <circle class="hg-ring"  r="17"/>
         <circle class="hg-core"  r="13"/>
-        <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">시애틀</tspan><tspan class="en">Seattle</tspan></text></g>
+        <g class="hg-lb"><path class="hg-lead"/>
+          <text><tspan class="ko"></tspan><tspan class="en"></tspan></text></g>
       </g>
-      <g class="hg-city" data-i="1">
-        <path class="hg-arc" pathLength="100"/>
-        <circle class="hg-bloom" r="150" fill="url(#hgBloom)"/>
-        <circle class="hg-ring"  r="17"/>
-        <circle class="hg-core"  r="13"/>
-        <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">LA</tspan><tspan class="en">Los Angeles</tspan></text></g>
-      </g>
-      <g class="hg-city" data-i="2">
-        <path class="hg-arc" pathLength="100"/>
-        <circle class="hg-bloom" r="150" fill="url(#hgBloom)"/>
-        <circle class="hg-ring"  r="17"/>
-        <circle class="hg-core"  r="13"/>
-        <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">뉴욕</tspan><tspan class="en">New York</tspan></text></g>
-      </g>
-      <g class="hg-city" data-i="3">
-        <path class="hg-arc" pathLength="100"/>
-        <circle class="hg-bloom" r="150" fill="url(#hgBloom)"/>
-        <circle class="hg-ring"  r="17"/>
-        <circle class="hg-core"  r="13"/>
-        <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">달라스</tspan><tspan class="en">Dallas</tspan></text></g>
-      </g>
-      <g class="hg-city" data-i="4">
-        <path class="hg-arc" pathLength="100"/>
-        <circle class="hg-bloom" r="150" fill="url(#hgBloom)"/>
-        <circle class="hg-ring"  r="17"/>
-        <circle class="hg-core"  r="13"/>
-        <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">토론토</tspan><tspan class="en">Toronto</tspan></text></g>
-      </g>
-      <g class="hg-city" data-i="5">
-        <path class="hg-arc" pathLength="100"/>
-        <circle class="hg-bloom" r="150" fill="url(#hgBloom)"/>
-        <circle class="hg-ring"  r="17"/>
-        <circle class="hg-core"  r="13"/>
-        <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">서울</tspan><tspan class="en">Seoul</tspan></text></g>
-      </g>
+
+      <!-- 손으로 돌릴 때, 한가운데 온 도시의 이름 -->
+      <g class="hg-near"><path class="hg-lead"/><text></text></g>
     </svg>
   </div>
 
@@ -1153,7 +1125,7 @@ details.fold .about-story-wrap{padding-top:0 !important;}
 .hg-arc{fill:none;stroke:#FFD98A;stroke-width:9;stroke-linecap:round;
   stroke-dasharray:34 100;stroke-dashoffset:34;stroke-opacity:0;
   filter:drop-shadow(0 0 7px rgba(255,214,120,.65));}
-.hg-city.on .hg-arc{animation:hgArc 4.2s cubic-bezier(.34,.04,.36,1) 1 both;}
+.hg-city-unused .hg-arc{animation:hgArc 4.2s cubic-bezier(.34,.04,.36,1) 1 both;}
 @keyframes hgArc{
   0%   {stroke-dashoffset:34;  stroke-opacity:0;}
   7%   {stroke-opacity:1;}
@@ -1164,7 +1136,7 @@ details.fold .about-story-wrap{padding-top:0 !important;}
 /* 심지 — 그 도시에 이미 있는 사람. 늘 작게 켜져 있다. */
 .hg-core{fill:#FFE3A3;stroke:#fff;stroke-width:3;opacity:.4;
   transform-box:fill-box;transform-origin:center;transition:opacity .4s ease;}
-.hg-city.on .hg-core{animation:hgCore 4.2s ease-out 1 both;}
+.hg-city-unused .hg-core{animation:hgCore 4.2s ease-out 1 both;}
 @keyframes hgCore{
   0%  {transform:scale(.55);opacity:.4;}
   34% {transform:scale(.8); opacity:.6;}
@@ -1175,7 +1147,7 @@ details.fold .about-story-wrap{padding-top:0 !important;}
 /* 만나는 순간 퍼지는 물결 */
 .hg-ring{fill:none;stroke:#7FE3D6;stroke-width:4.5;opacity:0;
   transform-box:fill-box;transform-origin:center;}
-.hg-city.on .hg-ring{animation:hgRing 4.2s ease-out 1 both;}
+.hg-city-unused .hg-ring{animation:hgRing 4.2s ease-out 1 both;}
 @keyframes hgRing{
   0%,44%{transform:scale(1);opacity:0;}
   49%   {opacity:.85;}
@@ -1183,7 +1155,7 @@ details.fold .about-story-wrap{padding-top:0 !important;}
   100%  {transform:scale(6);opacity:0;}}
 
 .hg-bloom{transform-box:fill-box;transform-origin:center;opacity:0;}
-.hg-city.on .hg-bloom{animation:hgBloomIn 4.2s cubic-bezier(.25,.9,.3,1) 1 both;}
+.hg-city-unused .hg-bloom{animation:hgBloomIn 4.2s cubic-bezier(.25,.9,.3,1) 1 both;}
 @keyframes hgBloomIn{
   0%,42%{opacity:0;transform:scale(.1);}
   54%   {opacity:1;transform:scale(.55);}
@@ -1192,7 +1164,7 @@ details.fold .about-story-wrap{padding-top:0 !important;}
 
 /* 도시 이름 */
 .hg-lb{opacity:0;}
-.hg-city.on .hg-lb{animation:hgLb 4.2s ease-out 1 both;}
+.hg-city-unused .hg-lb{animation:hgLb 4.2s ease-out 1 both;}
 @keyframes hgLb{0%,44%{opacity:0;}52%,88%{opacity:1;}100%{opacity:0;}}
 .hg-lb text{font-family:'Cinzel',Georgia,serif;font-size:56px;font-weight:700;
   fill:#FFE9B8;paint-order:stroke;stroke:rgba(4,14,32,.8);stroke-width:9px;}
@@ -1389,6 +1361,30 @@ html[lang="en"] .hg-lb .en{display:inline;}
   .hero{padding:6px 24px 26px !important;}
   .hero-art{width:min(58vw,64svh) !important;margin-bottom:12px !important;}
 }
+
+/* 81개 도시 점 · 손으로 돌리기 (2026-09-24) */
+.hero-art{cursor:grab;}
+.hero-art.hg-holding{cursor:grabbing;}
+.hero-art .hg-dots circle{transition:opacity .3s ease;}
+
+/* 한가운데 온 도시 이름 — 손으로 돌릴 때만 */
+.hg-near{opacity:0;transition:opacity .25s ease;pointer-events:none;}
+.hg-near.on{opacity:1;}
+.hg-near text{font-family:'Cinzel',Georgia,serif;font-size:50px;font-weight:700;
+  fill:#FFE9B8;paint-order:stroke;stroke:rgba(4,14,32,.82);stroke-width:9px;}
+.hg-near .hg-lead{stroke:#FFE9B8;stroke-width:3;stroke-dasharray:4 6;stroke-opacity:.6;fill:none;}
+
+/* 빛이 내려앉는 자리 — 하나뿐이다 */
+.hg-spot{opacity:0;}
+.hg-spot.on{animation:hgCityOn 4.2s linear 1 both;}
+.hg-spot.on .hg-arc{animation:hgArc 4.2s cubic-bezier(.34,.04,.36,1) 1 both;}
+.hg-spot.on .hg-core{animation:hgCore 4.2s ease-out 1 both;}
+.hg-spot.on .hg-ring{animation:hgRing 4.2s ease-out 1 both;}
+.hg-spot.on .hg-bloom{animation:hgBloomIn 4.2s cubic-bezier(.25,.9,.3,1) 1 both;}
+.hg-spot.on .hg-lb{animation:hgLb 4.2s ease-out 1 both;}
+@media(prefers-reduced-motion:reduce){
+  .hg-spot,.hg-spot *{animation:none !important;}
+  .hg-spot{opacity:0;}}
 </style>
 <script>
 function toggleAboutStory(btn){
@@ -1978,14 +1974,48 @@ if(inp){
     draw(LON0);
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+    /* 손으로 밀어 돌리기 — 민 만큼 더 돌아가 있고, 놓으면 굴러가다 멎는다 */
+    var hand = 0, glide = 0, holding = false, lastX = 0, moved = 0, letGo = 0;
+    var art = cv.parentNode;
+    function dxToDeg(dx){ return dx * (300 / (art.clientWidth || 360)); }
+    art.style.touchAction = 'pan-y';
+    art.addEventListener('pointerdown', function(ev){
+      holding = true; moved = 0; glide = 0; lastX = ev.clientX;
+      art.setPointerCapture && art.setPointerCapture(ev.pointerId);
+      art.classList.add('hg-holding');
+    });
+    art.addEventListener('pointermove', function(ev){
+      if (!holding) return;
+      var dx = ev.clientX - lastX; lastX = ev.clientX;
+      moved += Math.abs(dx);
+      var d = dxToDeg(dx);
+      hand -= d; glide = -d;                 // 오른쪽으로 밀면 땅도 오른쪽으로
+      if (moved > 6) ev.preventDefault();
+    });
+    function release(){
+      if (!holding) return;
+      holding = false; letGo = performance.now();
+      art.classList.remove('hg-holding');
+    }
+    art.addEventListener('pointerup', release);
+    art.addEventListener('pointercancel', release);
+    art.addEventListener('pointerleave', release);
+
     var t0 = performance.now(), live = true;
     function tick(now){
       if (!live) return;
       var e = now - t0, q, spin;
       if (e < SPIN) { q = 1 - e / SPIN; spin = LON0 + 900 * q * q * q; }
-      else          { spin = LON0 - (e - SPIN) * DEG; }   // 땅이 오른쪽으로 흐른다 (실제 지구와 같은 방향)
+      else          { spin = LON0 + (e - SPIN) * DEG; }   // 땅이 오른쪽으로 흐른다 (실제 지구와 같은 방향)
+
+      if (!holding && glide) {                // 놓은 뒤 조금 더 굴러간다
+        hand += glide; glide *= 0.94;
+        if (Math.abs(glide) < 0.02) glide = 0;
+      }
+      spin += hand;
+
       draw(spin);
-      if (window.hgPaint) hgPaint(spin, now);   // 도시도 같은 자전각으로
+      if (window.hgPaint) hgPaint(spin, now, holding || (now - letGo < 900));
       requestAnimationFrame(tick);
     }
     if (window.IntersectionObserver) {
@@ -2002,23 +2032,33 @@ if(inp){
 </script>
 
 <script>
-/* 시애틀 · LA · 서울 — 지구가 돌아도 제자리에 (2026-09-24) */
+/* 81개 도시 — 지구가 돌아도 제 땅 위에. 손으로 밀면 따라 돈다. (2026-09-24) */
 (function hgCities(){
   var ov = document.querySelector('.hero-art .hg-ov');
-  if (!ov) return;
-  var groups = [].slice.call(ov.querySelectorAll('.hg-city'));
+  var dots = ov && ov.querySelector('.hg-dots');
+  if (!ov || !dots) return;
 
   var C = 482, R = 480, LAT0 = 22 * Math.PI / 180;
   var cl = Math.cos(LAT0), sl = Math.sin(LAT0), RAD = Math.PI / 180;
+  var NS = 'http://www.w3.org/2000/svg';
 
-  var CITY = [
-    { lat:  47.61, lon: -122.33 },   // 시애틀
-    { lat:  34.05, lon: -118.24 },   // LA
-    { lat:  40.71, lon:  -74.01 },   // 뉴욕
-    { lat:  32.78, lon:  -96.80 },   // 달라스
-    { lat:  43.65, lon:  -79.38 },   // 토론토
-    { lat:  37.57, lon:  126.98 },   // 서울
-  ];
+  /* [슬러그, 위도, 경도, 한글, 영문] — build.sh 의 CITY_GEO 와 같은 값 */
+  var CITY = [["seattle", 47.61, -122.33, "시애틀", "Seattle"], ["federalway", 47.32, -122.31, "페더럴웨이", "Federal Way"], ["dallas", 32.78, -96.8, "달라스", "Dallas"], ["sf", 37.77, -122.42, "샌프란시스코", "San Francisco"], ["newyork", 40.71, -74.01, "뉴욕", "New York"], ["newjersey", 40.85, -73.99, "뉴저지", "New Jersey"], ["nashville", 36.16, -86.78, "내쉬빌", "Nashville"], ["boston", 42.36, -71.06, "보스턴", "Boston"], ["la", 34.05, -118.24, "로스앤젤레스", "Los Angeles"], ["houston", 29.76, -95.37, "휴스턴", "Houston"], ["atlanta", 33.75, -84.39, "애틀랜타", "Atlanta"], ["kansascity", 39.1, -94.58, "캔자스시티", "Kansas City"], ["philadelphia", 39.95, -75.17, "필라델피아", "Philadelphia"], ["miami", 25.76, -80.19, "마이애미", "Miami"], ["orangecounty", 33.87, -117.99, "오렌지카운티", "Orange County"], ["chicago", 41.88, -87.63, "시카고", "Chicago"], ["dc", 38.91, -77.04, "워싱턴 DC", "Washington DC"], ["sandiego", 32.72, -117.16, "샌디에고", "San Diego"], ["honolulu", 21.31, -157.86, "호놀룰루", "Honolulu"], ["portland", 45.52, -122.68, "포틀랜드", "Portland"], ["denver", 39.74, -104.99, "덴버", "Denver"], ["phoenix", 33.45, -112.07, "피닉스", "Phoenix"], ["charlotte", 35.23, -80.84, "샬럿", "Charlotte"], ["raleigh", 35.78, -78.64, "롤리", "Raleigh"], ["columbus", 39.96, -83.0, "콜럼버스", "Columbus"], ["minneapolis", 44.98, -93.27, "미니애폴리스", "Minneapolis"], ["tucson", 32.22, -110.97, "투손", "Tucson"], ["fayetteville", 35.05, -78.88, "페이엣빌", "Fayetteville"], ["killeen", 31.12, -97.73, "킬린", "Killeen"], ["fairfield", 38.25, -122.04, "페어필드", "Fairfield"], ["waynesville", 37.83, -92.2, "웨인즈빌", "Waynesville"], ["leesville", 31.14, -93.26, "리스빌", "Leesville"], ["louisville", 38.25, -85.76, "루이빌", "Louisville"], ["anchorage", 61.22, -149.9, "앵커리지", "Anchorage"], ["inlandempire", 34.06, -117.29, "인랜드 엠파이어", "Inland Empire"], ["austin", 30.27, -97.74, "오스틴", "Austin"], ["tampa", 27.95, -82.46, "탬파", "Tampa"], ["orlando", 28.54, -81.38, "올랜도", "Orlando"], ["maryland", 39.27, -76.8, "메릴랜드", "Maryland"], ["virginia", 38.83, -77.2, "버지니아", "Virginia"], ["neworleans", 29.95, -90.07, "뉴올리언스", "New Orleans"], ["huntsville", 34.73, -86.59, "헌츠빌", "Huntsville"], ["memphis", 35.15, -90.05, "멤피스", "Memphis"], ["toronto", 43.65, -79.38, "토론토", "Toronto"], ["vancouver", 49.28, -123.12, "밴쿠버", "Vancouver"], ["calgary", 51.04, -114.07, "캘거리", "Calgary"], ["edmonton", 53.55, -113.49, "에드먼턴", "Edmonton"], ["ottawa", 45.42, -75.7, "오타와", "Ottawa"], ["winnipeg", 49.9, -97.14, "위니펙", "Winnipeg"], ["princgeorge", 53.92, -122.75, "프린스조지", "Prince George"], ["mexicocity", 19.43, -99.13, "멕시코시티", "Mexico City"], ["guadalajara", 20.66, -103.35, "과달라하라", "Guadalajara"], ["monterrey", 25.69, -100.32, "몬테레이", "Monterrey"], ["saopaulo", -23.55, -46.63, "상파울루", "Sao Paulo"], ["bogota", 4.71, -74.07, "보고타", "Bogota"], ["london", 51.51, -0.13, "런던", "London"], ["paris", 48.86, 2.35, "파리", "Paris"], ["berlin", 52.52, 13.4, "베를린", "Berlin"], ["frankfurt", 50.11, 8.68, "프랑크푸르트", "Frankfurt"], ["sydney", -33.87, 151.21, "시드니", "Sydney"], ["melbourne", -37.81, 144.96, "멜버른", "Melbourne"], ["brisbane", -27.47, 153.03, "브리즈번", "Brisbane"], ["perth", -31.95, 115.86, "퍼스", "Perth"], ["auckland", -36.85, 174.76, "오클랜드", "Auckland"], ["singapore", 1.35, 103.82, "싱가포르", "Singapore"], ["bangkok", 13.76, 100.5, "방콕", "Bangkok"], ["hochiminh", 10.82, 106.63, "호치민", "Ho Chi Minh City"], ["dubai", 25.2, 55.27, "두바이", "Dubai"], ["tokyo", 35.68, 139.65, "도쿄", "Tokyo"], ["osaka", 34.69, 135.5, "오사카", "Osaka"], ["seoul", 37.57, 126.98, "서울", "Seoul"], ["busan", 35.18, 129.08, "부산", "Busan"], ["ansan", 37.32, 126.83, "안산", "안산"], ["incheon", 37.46, 126.71, "인천", "인천"], ["jeju", 33.5, 126.53, "제주", "제주"], ["daegu", 35.87, 128.6, "대구", "대구"], ["gwangju", 35.16, 126.85, "광주", "광주"], ["daejeon", 36.35, 127.38, "대전", "대전"], ["changwon", 35.23, 128.68, "창원", "창원"], ["cheonan", 36.82, 127.11, "천안·아산", "천안·아산"], ["bundang", 37.36, 127.11, "분당·수지", "분당·수지"]];
+  var TURN = ["seattle", "la", "dallas", "toronto", "newyork", "london", "paris", "dubai", "seoul", "tokyo", "sydney", "vancouver", "chicago", "atlanta", "singapore"];
+
+  /* 빛이 내려앉는 자리 — 하나뿐이고 도시를 옮겨 다닌다 */
+  var spot  = ov.querySelector('.hg-spot');
+  var arc   = spot.querySelector('.hg-arc');
+  var bloom = spot.querySelector('.hg-bloom');
+  var ring  = spot.querySelector('.hg-ring');
+  var core  = spot.querySelector('.hg-core');
+  var lead  = spot.querySelector('.hg-lead');
+  var txt   = spot.querySelector('text');
+  var tKo   = txt.querySelector('.ko'), tEn = txt.querySelector('.en');
+
+  var near     = ov.querySelector('.hg-near');
+  var nearLead = near.querySelector('.hg-lead');
+  var nearTxt  = near.querySelector('text');
 
   /* 빛이 들어오는 자리 — 한쪽에서만 오지 않는다 */
   var GATES = [
@@ -2026,102 +2066,98 @@ if(inp){
     [ 320, -250], [ 720, -230], [1140,  920], [-180,  900]
   ];
 
-  if (groups.length < CITY.length) return;
-
-  var parts = groups.map(function(g){
-    return {
-      g: g,
-      arc:   g.querySelector('.hg-arc'),
-      gate:  GATES[0],
-      bloom: g.querySelector('.hg-bloom'),
-      ring:  g.querySelector('.hg-ring'),
-      core:  g.querySelector('.hg-core'),
-      lb:    g.querySelector('.hg-lb'),
-      lead:  g.querySelector('.hg-lead'),
-      text:  g.querySelector('text'),
-      on:    false,
-      until: 0
-    };
+  var pts = CITY.map(function(c){
+    var el = document.createElementNS(NS, 'circle');
+    el.setAttribute('r', '4.5');
+    el.setAttribute('opacity', '0');
+    dots.appendChild(el);
+    return { lat: c[1], lon: c[2], ko: c[3], en: c[4], el: el, x: 0, y: 0, z: -1 };
   });
+  var byslug = {};
+  CITY.forEach(function(c, k){ byslug[c[0]] = k; });
 
-  /* 위·경도 + 현재 자전각 → 화면 자리. nz>0 이면 앞면. */
+  /* 위·경도 + 자전각 → 화면 자리. z>0 이면 앞면. */
   function place(lat, lon, spin){
-    var la = lat * RAD, lo = (lon - spin) * RAD;
-    var ca = Math.cos(la);
+    var la = lat * RAD, lo = (lon - spin) * RAD, ca = Math.cos(la);
     var nx = ca * Math.sin(lo), A = ca * Math.cos(lo), B = Math.sin(la);
     var ny = B * cl - A * sl, nz = B * sl + A * cl;
     return { x: C + nx * R, y: C - ny * R, z: nz };
   }
 
-  /* 도는 순서 — 서쪽에서 동쪽으로 */
-  var TURN = [0, 1, 3, 4, 2, 5];
-  var gi = 0, ci = 0, next = 0, start = 0;
-  window.hgPaint = function(spin, now){
-    for (var k = 0; k < CITY.length; k++) {
-      var p = parts[k], q = place(CITY[k].lat, CITY[k].lon, spin);
-
-      p.z = q.z;                               // 뒤로 넘어가도 값은 갱신해야 한다.
-                                               // 안 그러면 숨은 동안 옛 값으로 차례가 소모된다.
-      if (q.z <= 0.06) {                       // 지구 뒤로 넘어갔다
-        if (p.on) { p.g.classList.remove('on'); p.on = false; }
-        p.g.style.visibility = 'hidden';
-        continue;
-      }
-      p.g.style.visibility = '';
-
-      var x = q.x, y = q.y;
-      p.bloom.setAttribute('cx', x); p.bloom.setAttribute('cy', y);
-      p.ring .setAttribute('cx', x); p.ring .setAttribute('cy', y);
-      p.core .setAttribute('cx', x); p.core .setAttribute('cy', y);
-
-      /* 이름표는 바깥쪽으로 뺀다 */
-      var right = x < C;                 // 가운데를 향해 눕혀야 화면 밖으로 안 나간다
-      if (x < 240) right = true; else if (x > 724) right = false;
-      var lx = x + (right ? 118 : -118), ly = y - 88;
-      if (ly < 70) ly = y + 96;
-      p.lead.setAttribute('d', 'M ' + x.toFixed(0) + ' ' + y.toFixed(0) +
-                               ' L ' + lx.toFixed(0) + ' ' + ly.toFixed(0));
-      p.text.setAttribute('x', (lx + (right ? 18 : -18)).toFixed(0));
-      p.text.setAttribute('y', (ly + 19).toFixed(0));
-      p.text.setAttribute('text-anchor', right ? 'start' : 'end');
-
-      p.x = x; p.y = y;
-
-      p.g.style.opacity = Math.min(1, (q.z - 0.06) / 0.3).toFixed(2);
-    }
-
-    /* 오고 있는 빛은 도시를 따라간다 (지구가 도니까) */
-    for (var m = 0; m < parts.length; m++) {
-      var pp = parts[m];
-      if (!pp.on) continue;
-      arcTo(pp);
-      if (now > pp.until) { pp.on = false; pp.g.classList.remove('on'); }
-    }
-
-    /* 차례가 된 도시가 정면으로 나오면, 멀리서 빛 하나가 내려앉는다.
-       가장 잘 보이는 곳을 고르면 기울기상 유리한 도시만 계속 이긴다.  */
-    /* 처음 몇 초는 지구가 자리를 잡는 중이다 — 그때 켜면 아무도 못 본다 */
-    if (!start) start = now;
-    if (now - start > 3000 && now > next) {
-      var c = parts[TURN[ci % TURN.length]];
-      if (!c.on && c.z >= 0.35) {
-        c.gate = GATES[(gi++) % GATES.length];
-        arcTo(c);
-        c.on = true; c.until = now + 4200; next = now + 4400; ci++;
-        c.g.classList.remove('on'); void c.g.offsetWidth; c.g.classList.add('on');
-      }
-    }
+  /* 이름표 — 화면 밖으로 나가지 않게 안쪽으로 눕힌다 */
+  function label(leadEl, textEl, p){
+    var right = p.x < C;
+    if (p.x < 240) right = true; else if (p.x > 724) right = false;
+    var lx = p.x + (right ? 118 : -118), ly = p.y - 88;
+    if (ly < 70) ly = p.y + 96;
+    leadEl.setAttribute('d', 'M ' + p.x.toFixed(0) + ' ' + p.y.toFixed(0) +
+                             ' L ' + lx.toFixed(0) + ' ' + ly.toFixed(0));
+    textEl.setAttribute('x', (lx + (right ? 18 : -18)).toFixed(0));
+    textEl.setAttribute('y', (ly + 19).toFixed(0));
+    textEl.setAttribute('text-anchor', right ? 'start' : 'end');
   }
 
-  /* 멀리서 도시까지 — 곧게 오지 않고 한 번 휘어 든다 */
-  function arcTo(B){
-    var gx = B.gate[0], gy = B.gate[1];
-    var mx = (gx + B.x) / 2 + (B.y - gy) * 0.32;
-    var my = (gy + B.y) / 2 - (B.x - gx) * 0.32;
-    B.arc.setAttribute('d', 'M ' + gx + ' ' + gy +
+  function arcTo(p, gate){
+    var mx = (gate[0] + p.x) / 2 + (p.y - gate[1]) * 0.32;
+    var my = (gate[1] + p.y) / 2 - (p.x - gate[0]) * 0.32;
+    arc.setAttribute('d', 'M ' + gate[0] + ' ' + gate[1] +
       ' Q ' + mx.toFixed(0) + ' ' + my.toFixed(0) +
-      ' ' + B.x.toFixed(0) + ' ' + B.y.toFixed(0));
+      ' ' + p.x.toFixed(0) + ' ' + p.y.toFixed(0));
   }
+
+  var gi = 0, ci = 0, next = 0, start = 0;
+  var cur = -1, until = 0, gate = GATES[0];
+
+  window.hgPaint = function(spin, now, dragging){
+    /* 81개 점 */
+    for (var k = 0; k < pts.length; k++) {
+      var p = pts[k], q = place(p.lat, p.lon, spin);
+      p.x = q.x; p.y = q.y; p.z = q.z;
+      if (q.z <= 0.06) { p.el.setAttribute('opacity', '0'); continue; }
+      p.el.setAttribute('cx', q.x.toFixed(1));
+      p.el.setAttribute('cy', q.y.toFixed(1));
+      p.el.setAttribute('opacity', (0.22 + 0.55 * Math.min(1, (q.z - 0.06) / 0.5)).toFixed(2));
+    }
+
+    /* 손으로 돌리는 중 — 한가운데 온 도시의 이름을 보여 준다 */
+    if (dragging) {
+      var best = null;
+      for (var n = 0; n < pts.length; n++) if (!best || pts[n].z > best.z) best = pts[n];
+      if (best && best.z > 0.86) {
+        nearTxt.textContent = (document.documentElement.lang === 'en') ? best.en : best.ko;
+        label(nearLead, nearTxt, best);          // 점에서 뻗어 바깥에 선다 — 땅을 가리지 않게
+        near.classList.add('on');
+      } else near.classList.remove('on');
+      spot.classList.remove('on');
+      return;
+    }
+    near.classList.remove('on');
+
+    /* 오고 있는 빛은 도시를 따라간다 */
+    if (cur >= 0) {
+      var t = pts[cur];
+      bloom.setAttribute('cx', t.x); bloom.setAttribute('cy', t.y);
+      ring .setAttribute('cx', t.x); ring .setAttribute('cy', t.y);
+      core .setAttribute('cx', t.x); core .setAttribute('cy', t.y);
+      label(lead, txt, t);
+      arcTo(t, gate);
+      if (now > until) { cur = -1; spot.classList.remove('on'); }
+    }
+
+    /* 처음 몇 초는 지구가 자리를 잡는 중이다 */
+    if (!start) start = now;
+    if (cur < 0 && now - start > 3000 && now > next) {
+      var idx = byslug[TURN[ci % TURN.length]];
+      if (idx != null && pts[idx].z >= 0.35) {
+        var c = pts[idx];
+        gate = GATES[(gi++) % GATES.length];
+        cur = idx; until = now + 4200; next = now + 4400; ci++;
+        tKo.textContent = c.ko; tEn.textContent = c.en;
+        label(lead, txt, c); arcTo(c, gate);
+        spot.classList.remove('on'); void spot.offsetWidth; spot.classList.add('on');
+      }
+    }
+  };
 })();
 </script>
 </body>
