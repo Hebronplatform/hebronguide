@@ -339,10 +339,8 @@ async function sendMessage() {
     const res = await fetch('/api/ask', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userMessage: q,
-        systemPrompt: `당신은 HebronGuide 도움말 AI입니다. 전 세계 한인 이주자·이민자를 위한 정착 정보를 제공합니다. 비자·건강보험·은행·교회·식당·생활 정보를 친절하고 정확하게 답변하세요. 불확실한 정보는 "직접 확인을 권장합니다"라고 안내하세요. 언어: ${lang === 'ko' ? '한국어로 답변' : 'Answer in English'}. 최대 3문장으로 간결하게.`
-      })
+      // 시킬 말은 서버(api/ask.js)에만 있다 — 여기서 보내면 누구나 바꿔 보낼 수 있다
+      body: JSON.stringify({ userMessage: q, lang, city: citySlug })
     })
     const data = await res.json()
     typing.remove()
