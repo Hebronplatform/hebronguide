@@ -49,8 +49,8 @@
   .opt.on .box{border-color:var(--gold);background:var(--gold);}
   .box svg{width:13px;height:13px;opacity:0;}
   .opt.on .box svg{opacity:1;}
-  .ot{font-size:1rem;font-weight:500;line-height:1.5;}
-  .od{color:var(--muted);font-size:.85rem;font-weight:300;line-height:1.65;margin-top:2px;}
+  .ot{display:block;font-size:1rem;font-weight:500;line-height:1.5;}
+  .od{display:block;color:var(--muted);font-size:.85rem;font-weight:300;line-height:1.65;margin-top:2px;}
   .tag{display:inline-block;font-size:.72rem;color:var(--gold2);border:1px solid rgba(245,199,110,.35);
        border-radius:99px;padding:1px 9px;margin-left:7px;vertical-align:middle;}
 
@@ -99,39 +99,71 @@
 
     <button class="opt" data-k="ask" type="button">
       <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
-      <span><span class="ot">길을 알려 주기</span><span class="od">물어보면 아는 만큼 답해 드립니다.</span></span>
+      <span><span class="ot">길 알려 주기</span><span class="od">어디로 가는지, 뭘 타는지</span></span>
+    </button>
+    <button class="opt" data-k="phone" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">전화 대신 걸어 주기</span><span class="od">영어로 하는 전화 한 통이 제일 무섭습니다</span></span>
     </button>
     <button class="opt" data-k="shop" type="button">
       <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
-      <span><span class="ot">같이 장 보러 가기</span><span class="od">처음 가는 마트는 혼자 가면 한참 걸립니다.</span></span>
+      <span><span class="ot">같이 장 보러 가기</span><span class="od">처음 가는 마트는 혼자 가면 한참 걸립니다</span></span>
     </button>
-    <button class="opt" data-k="meet" type="button">
+    <button class="opt" data-k="paper" type="button">
       <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
-      <span><span class="ot">공항에서 만나 주기</span><span class="od">태워 드리지 않아도 됩니다. 나와 주시는 것만으로 충분합니다.</span></span>
+      <span><span class="ot">서류 같이 봐주기</span><span class="od">은행·면허·관공서</span></span>
+    </button>
+    <button class="opt" data-k="health" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">병원 알아봐 주기</span><span class="od">어디로 가는지, 보험은 어떻게 되는지</span></span>
+    </button>
+    <button class="opt" data-k="school" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">학교 알아봐 주기</span><span class="od">등록하는 법, 어느 학교인지</span></span>
+    </button>
+    <button class="opt" data-k="home" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">집 구하는 것 돕기</span><span class="od">동네가 어떤지는 살아 본 사람만 압니다</span></span>
     </button>
     <button class="opt" data-k="gather" type="button">
       <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
-      <span><span class="ot">모이는 자리</span><span class="od">예배 · 모임 · 행사에 오셔도 된다고 알립니다.</span></span>
+      <span><span class="ot">모이는 자리</span><span class="od">예배 · 모임 · 행사에 오셔도 된다고</span></span>
+    </button>
+    <button class="opt" data-k="meet" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">공항에서 만나 주기</span><span class="od">태워 주지 않으셔도 됩니다. 나와 주시는 것만으로</span></span>
+    </button>
+    <button class="opt" data-k="coffee" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">차 한잔 · 말동무</span><span class="od">아무 일도 아닌 것이 제일 그립습니다</span></span>
     </button>
     <button class="opt" data-k="work" type="button">
       <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
-      <span><span class="ot">하는 일<span class="tag">한 번 확인</span></span><span class="od">가게나 서비스를 찾는 분이 알 수 있게 합니다.</span></span>
-    </button>
-    <button class="opt" data-k="ride" type="button">
-      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
-      <span><span class="ot">차로 태워 주기<span class="tag">면허 · 보험</span></span><span class="od">차 안은 문이 닫힙니다. 그래서 한 가지만 더 확인합니다.</span></span>
+      <span><span class="ot">일자리 이야기<span class="tag">한 번 확인</span></span><span class="od">하는 일, 구하는 법. 보장은 아닙니다</span></span>
     </button>
     <button class="opt" data-k="meal" type="button">
       <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
-      <span><span class="ot">밥 한 끼<span class="tag">통화 한 번</span></span><span class="od">차려 주지 않으셔도 됩니다. 같이 만들면 그 사이에 말이 오갑니다.</span></span>
+      <span><span class="ot">한 끼 집밥<span class="tag">통화 한 번</span></span><span class="od">차려 주지 않으셔도 됩니다. 같이 만들면 말이 오갑니다</span></span>
+    </button>
+    <button class="opt" data-k="airport" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">공항 라이드<span class="tag">면허 · 보험</span></span><span class="od">차로 모셔다 드리기</span></span>
+    </button>
+    <button class="opt" data-k="ride" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">차로 태워 주기<span class="tag">면허 · 보험</span></span><span class="od">병원 · 이사 같은 일. 차 안은 문이 닫힙니다</span></span>
     </button>
     <button class="opt" data-k="pet" type="button">
       <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
-      <span><span class="ot">강아지 · 고양이 봐주기<span class="tag">통화 한 번</span></span><span class="od">며칠 맡아 주십니다. 사례는 두 분이 정하시면 됩니다.</span></span>
+      <span><span class="ot">강아지 · 고양이 봐주기<span class="tag">통화 한 번</span></span><span class="od">며칠 맡아 주십니다</span></span>
+    </button>
+    <button class="opt" data-k="child" type="button">
+      <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
+      <span><span class="ot">아이 보기<span class="tag">신원 확인</span></span><span class="od">첫 회는 부모가 함께 있는 자리에서만</span></span>
     </button>
     <button class="opt" data-k="stay" type="button">
       <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#0d1117" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></span>
-      <span><span class="ot">잠자리<span class="tag">신원 확인</span></span><span class="od">며칠 머무실 수 있습니다. 확인 절차가 따로 있습니다.</span></span>
+      <span><span class="ot">잠자리<span class="tag">신원 확인</span></span><span class="od">며칠 머무실 수 있습니다. 가장 조심하는 문입니다</span></span>
     </button>
     <label for="etc" style="margin-top:20px;">그 밖에 열어 두실 수 있는 것이 있으면 적어 주세요</label>
     <input id="etc" placeholder="예: 통역 · 서류 도와주기 · 이사 짐 옮기기"/>
@@ -188,15 +220,23 @@
 <script>
 // 여는 문의 무게가 확인의 깊이를 정한다. 신분으로 나누지 않는다.
 var NEXT = {
-  ask:    { w:0, label:'길을 알려 주기',   t:'바로 열립니다. 확인 절차 없습니다.' },
+  ask:    { w:0, label:'길 알려 주기', t:'바로 열립니다. 확인 절차 없습니다.' },
+  phone:  { w:0, label:'전화 대신 걸어 주기', t:'바로 열립니다. 확인 절차 없습니다.' },
   shop:   { w:0, label:'같이 장 보러 가기', t:'바로 열립니다. 확인 절차 없습니다.' },
-  meet:   { w:0, label:'공항에서 만나 주기', t:'바로 열립니다. 공항은 열린 곳이니까요.' },
-  gather: { w:0, label:'모이는 자리',       t:'바로 열립니다. 모이는 시간만 나중에 알려 주시면 됩니다.' },
-  work:   { w:1, label:'하는 일',           t:'문 여는 곳이 실제로 있는지 한 번 확인합니다.' },
-  ride:   { w:2, label:'차로 태워 주기',    t:'통화를 한 번 하고, 운전면허와 보험만 확인합니다.' },
-  meal:   { w:2, label:'밥 한 끼',          t:'통화를 한 번 합니다. 집 주소는 공개되지 않습니다.' },
-  pet:    { w:2, label:'강아지·고양이',     t:'통화를 한 번 합니다. 사례는 두 분이 정하시면 됩니다.' },
-  stay:   { w:3, label:'잠자리',            t:'신원과 배경을 확인합니다. 가장 조심해야 하는 문이라 시간이 걸립니다.' }
+  paper:  { w:0, label:'서류 같이 봐주기', t:'바로 열립니다. 확인 절차 없습니다.' },
+  health: { w:0, label:'병원 알아봐 주기', t:'바로 열립니다. 확인 절차 없습니다.' },
+  school: { w:0, label:'학교 알아봐 주기', t:'바로 열립니다. 확인 절차 없습니다.' },
+  home:   { w:0, label:'집 구하는 것 돕기', t:'바로 열립니다. 확인 절차 없습니다.' },
+  gather: { w:0, label:'모이는 자리', t:'바로 열립니다. 확인 절차 없습니다.' },
+  meet:   { w:0, label:'공항에서 만나 주기', t:'바로 열립니다. 확인 절차 없습니다.' },
+  coffee: { w:0, label:'차 한잔 · 말동무', t:'바로 열립니다. 확인 절차 없습니다.' },
+  work:   { w:1, label:'일자리 이야기', t:'문 여는 곳이 실제로 있는지 한 번 확인합니다.' },
+  meal:   { w:2, label:'한 끼 집밥', t:'통화를 한 번 하고, 필요하면 면허와 보험을 확인합니다.' },
+  airport:{ w:2, label:'공항 라이드', t:'통화를 한 번 하고, 필요하면 면허와 보험을 확인합니다.' },
+  ride:   { w:2, label:'차로 태워 주기', t:'통화를 한 번 하고, 필요하면 면허와 보험을 확인합니다.' },
+  pet:    { w:2, label:'강아지 · 고양이 봐주기', t:'통화를 한 번 하고, 필요하면 면허와 보험을 확인합니다.' },
+  child:  { w:3, label:'아이 보기', t:'신원과 배경을 확인합니다. 가장 조심해야 하는 문이라 시간이 걸립니다.' },
+  stay:   { w:3, label:'잠자리', t:'신원과 배경을 확인합니다. 가장 조심해야 하는 문이라 시간이 걸립니다.' }
 };
 var picked = {};
 function chosen(){

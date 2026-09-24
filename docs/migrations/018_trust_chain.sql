@@ -107,9 +107,28 @@ CREATE TABLE IF NOT EXISTS public.hg_connection (
   introduced_by  uuid REFERENCES public.hg_person(id) ON DELETE SET NULL,
 
   -- 무게 0~3. TRUST_CHAIN.md 의 검증 단계와 짝이다.
+  -- 무엇을 주는가. docs/TRUST_CHAIN.md 의 목록과 같아야 한다.
+  -- 도착자의 「필요」와 환대자의 「도움」이 같은 코드를 쓴다 — 그래야 이어진다.
+  --   ask      0  길 알려 주기
+  --   phone    0  전화 대신 걸어 주기
+  --   shop     0  같이 장 보러 가기
+  --   paper    0  서류 같이 봐주기
+  --   health   0  병원 알아봐 주기
+  --   school   0  학교 알아봐 주기
+  --   home     0  집 구하는 것 돕기
+  --   gather   0  모이는 자리
+  --   meet     0  공항에서 만나 주기
+  --   coffee   0  차 한잔 · 말동무
+  --   work     1  일자리 이야기
+  --   meal     2  한 끼 집밥
+  --   airport  2  공항 라이드
+  --   ride     2  차로 태워 주기
+  --   pet      2  강아지 · 고양이 봐주기
+  --   child    3  아이 보기
+  --   stay     3  잠자리
+  --   other    1  그 밖에
   kind           text NOT NULL
-                 CHECK (kind IN ('ask', 'shop', 'meet', 'gather', 'work',
-                                 'ride', 'meal', 'pet', 'stay', 'other')),
+                 CHECK (kind IN ('ask', 'phone', 'shop', 'paper', 'health', 'school', 'home', 'gather', 'meet', 'coffee', 'work', 'meal', 'airport', 'ride', 'pet', 'child', 'stay', 'other')),
 
   -- offered 권함 · agreed 둘 다 좋다 함 · met 만남 · done 끝 · stopped 멈춤
   state          text NOT NULL DEFAULT 'offered'
