@@ -1,553 +1,195 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>자주 묻는 질문 — HebronGuide FAQ</title>
-  <meta name="description" content="HebronGuide 자주 묻는 질문 — 이민자·방문자, 협력 교회, 사업체">
-  <link rel="icon" href="/icon-192.png">
-  <style>
-    :root {
-      --bg:#0d1117; --card:#161b22; --border:rgba(255,255,255,.1);
-      --gold:#C9A227; --mint:#6EE7B7; --purple:#a78bfa; --text:#e6edf3; --muted:#8b949e;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:-apple-system,'Noto Sans KR',sans-serif;min-height:100vh}
-    html[lang="en"] .ko{display:none!important}
-    html[lang="ko"] .en{display:none!important}
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>자주 묻는 질문 — HebronGuide</title>
+<meta name="description" content="HebronGuide 자주 묻는 질문 — 돈이 드는지, 내 도시가 없을 때, 정보가 틀렸을 때, 가게·교회 등록, 앱 설치, 만드는 사람."/>
+<meta property="og:title" content="자주 묻는 질문 — HebronGuide"/>
+<meta property="og:description" content="일곱 가지만 답합니다."/>
+<meta property="og:locale" content="ko_KR"/>
+<meta property="og:locale:alternate" content="en_US"/>
+<link rel="icon" href="/icon-192.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  :root{--bg:#0d1117;--bg2:#161b26;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.18);
+        --gold:#C9A227;--gold2:#F5C76E;--mint:#6EE7B7;--text:#ECFDF5;
+        --muted:rgba(236,253,245,.62);--muted2:rgba(236,253,245,.4);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);
+       line-height:1.85;padding-bottom:64px;word-break:keep-all;}
+  html[lang="en"] .ko{display:none!important;}
+  html[lang="ko"] .en{display:none!important;}
+  .wrap{max-width:620px;margin:0 auto;padding:0 20px;}
 
-    /* ── 상단 바 ── */
-    .lang-bar{background:rgba(255,255,255,.04);border-bottom:1px solid var(--border);padding:8px 20px;display:flex;align-items:center;justify-content:space-between}
-    .lang-bar a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:.2s}
-    .lang-bar a:hover{color:var(--mint)}
-    .lang-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:6px;cursor:pointer;font-size:.8rem;transition:.2s}
-    .lang-btn.active,.lang-btn:hover{border-color:var(--mint);color:var(--mint)}
+  .top{border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;}
+  .top a{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;
+         font-size:.88rem;padding:15px 20px;min-height:44px;}
+  .top a:hover{color:var(--gold2);}
+  .lang{background:none;border:1px solid var(--line);color:var(--muted);margin-right:20px;
+        padding:7px 14px;border-radius:99px;cursor:pointer;font-family:inherit;font-size:.8rem;min-height:36px;}
+  .lang:hover{border-color:var(--gold2);color:var(--gold2);}
 
-    /* ── 헤더 ── */
-    .hero{text-align:center;padding:48px 20px 36px;background:linear-gradient(180deg,rgba(201,162,39,.06) 0%,transparent 100%);border-bottom:1px solid var(--border)}
-    .hero-logo{font-size:2.4rem;margin-bottom:8px}
-    .hero-title{font-size:1.6rem;font-weight:800;margin-bottom:8px;letter-spacing:-.02em}
-    .hero-sub{color:var(--muted);font-size:.95rem;line-height:1.7;max-width:520px;margin:0 auto}
+  header{padding:46px 0 10px;text-align:center;}
+  h1{font-size:clamp(1.45rem,5vw,1.95rem);font-weight:500;}
+  .sub{color:var(--muted2);font-size:.9rem;font-weight:300;margin-top:10px;}
 
-    /* ── 검색 ── */
-    .search-wrap{max-width:680px;margin:28px auto 0;padding:0 20px}
-    .search-box{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;transition:.2s}
-    .search-box:focus-within{border-color:var(--mint)}
-    .search-box svg{color:var(--muted);flex-shrink:0}
-    .search-box input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:.95rem}
-    .search-box input::placeholder{color:var(--muted)}
+  .q{border-bottom:1px solid var(--line);padding:26px 0;}
+  .q:last-of-type{border-bottom:0;}
+  .q h2{font-size:1.05rem;font-weight:500;margin-bottom:8px;line-height:1.5;}
+  .q p{color:var(--muted);font-weight:300;font-size:.96rem;}
+  .q p + p{margin-top:8px;}
+  .q b{color:var(--text);font-weight:500;}
+  .q a{color:var(--gold2);text-decoration:none;border-bottom:1px solid rgba(245,199,110,.35);
+       padding-bottom:1px;}
+  .q a:hover{border-bottom-color:var(--gold2);}
+  .q small{display:block;color:var(--muted2);font-size:.85rem;font-weight:300;margin-top:8px;}
 
-    /* ── 메인 ── */
-    .main{max-width:680px;margin:0 auto;padding:32px 20px 64px}
+  .go{display:inline-flex;align-items:center;gap:7px;margin-top:14px;
+      background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);color:var(--gold2);
+      padding:11px 20px;border-radius:99px;text-decoration:none;font-size:.9rem;font-weight:500;
+      min-height:44px;border-bottom:1px solid rgba(201,162,39,.3);}
+  .go:hover{background:rgba(201,162,39,.2);border-color:var(--gold2);}
 
-    /* ── 섹션 헤더 ── */
-    .section{margin-bottom:36px}
-    .section-header{display:flex;align-items:center;gap:10px;padding:14px 18px;border-radius:10px;margin-bottom:16px;font-weight:700;font-size:1rem}
-    .section-header.gold{background:rgba(201,162,39,.10);border:1px solid rgba(201,162,39,.25);color:var(--gold)}
-    .section-header.mint{background:rgba(110,231,183,.10);border:1px solid rgba(110,231,183,.25);color:var(--mint)}
-    .section-header.purple{background:rgba(167,139,250,.10);border:1px solid rgba(167,139,250,.25);color:var(--purple)}
-    .section-count{margin-left:auto;font-size:.78rem;font-weight:500;opacity:.75}
-    .quick-btn{padding:8px 16px;border-radius:20px;text-decoration:none;font-size:.85rem;font-weight:600;transition:.2s;white-space:nowrap}
-    .quick-btn:hover{opacity:.8;transform:translateY(-1px)}
-
-    /* ── FAQ 아이템 ── */
-    .faq-item{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;cursor:pointer;transition:.2s}
-    .faq-item:hover{border-color:rgba(255,255,255,.2)}
-    .faq-item.hidden{display:none}
-    .faq-q{padding:15px 18px;font-size:.9rem;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:12px;line-height:1.5;transition:.2s}
-    .faq-q-text{flex:1}
-    .faq-arrow{color:var(--muted);font-size:.7rem;flex-shrink:0;transition:transform .25s ease}
-    .faq-a{padding:0 18px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:.875rem;line-height:1.85;color:rgba(255,255,255,.72)}
-    .faq-item.open .faq-a{max-height:400px;padding:0 18px 16px}
-    .faq-item.open .faq-arrow{transform:rotate(180deg)}
-    .faq-item.open .faq-q{color:var(--mint)}
-    .faq-item.open{border-color:rgba(110,231,183,.25)}
-    .faq-a a{color:var(--mint);text-decoration:none}
-    .faq-a a:hover{text-decoration:underline}
-
-    /* ── 빈 결과 ── */
-    .no-results{text-align:center;padding:48px 20px;color:var(--muted);display:none}
-    .no-results.show{display:block}
-    .no-results-icon{font-size:2.5rem;margin-bottom:12px}
-
-    /* ── 푸터 CTA ── */
-    .footer-cta{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 24px;text-align:center;margin-top:40px}
-    .footer-cta-title{font-size:1.05rem;font-weight:700;margin-bottom:8px}
-    .footer-cta-sub{color:var(--muted);font-size:.88rem;margin-bottom:18px;line-height:1.7}
-    .footer-cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-    .btn-gold{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold),#e8b53a);color:#000;font-weight:700;border:none;padding:10px 20px;border-radius:8px;font-size:.9rem;cursor:pointer;text-decoration:none;transition:.2s}
-    .btn-gold:hover{opacity:.9}
-    .btn-outline{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);color:var(--text);padding:10px 20px;border-radius:8px;font-size:.9rem;cursor:pointer;text-decoration:none;transition:.2s}
-    .btn-outline:hover{border-color:var(--mint);color:var(--mint)}
-
-    @media(max-width:480px){
-      .hero-title{font-size:1.3rem}
-      .faq-q{padding:14px 14px}
-      .faq-a{padding:0 14px}
-      .faq-item.open .faq-a{padding:0 14px 14px}
-      .main{padding:24px 14px 56px}
-      .footer-cta-btns{flex-direction:column;align-items:center}
-    }
-  </style>
+  .foot{color:var(--muted2);font-size:.85rem;text-align:center;margin-top:36px;
+        padding-top:22px;border-top:1px solid var(--line);font-weight:300;line-height:1.9;}
+  .foot a{color:var(--muted);}
+</style>
 </head>
 <body>
 
-<div class="lang-bar">
-  <a href="/">← <span class="ko">HebronGuide 홈</span><span class="en">HebronGuide Home</span></a>
-  <div style="display:flex;gap:6px">
-    <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
-    <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
-  </div>
+<div class="top">
+  <a href="/">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    HebronGuide</a>
+  <button class="lang" type="button" onclick="setLang(document.documentElement.lang==='en'?'ko':'en')">
+    <span class="ko">English</span><span class="en">한국어</span></button>
 </div>
 
-<!-- 히어로 -->
-<div class="hero">
-  <div class="hero-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 5h16v11H9l-4 4V5z"/></svg></div>
-  <h1 class="hero-title"><span class="ko">자주 묻는 질문 (FAQ)</span><span class="en">Frequently Asked Questions</span></h1>
-  <p class="hero-sub">
-    <span class="ko">HebronGuide는 <b>이민자·방문자·시민 모두</b>를 위한 서비스입니다.<br>교회만을 위한 것이 아닙니다.</span>
-    <span class="en">HebronGuide is for <b>everyone</b> — immigrants, visitors, citizens, pastors, and businesses alike.</span>
+<div class="wrap">
+
+  <header>
+    <h1><span class="ko">자주 묻는 질문</span><span class="en">Questions people actually ask</span></h1>
+    <p class="sub"><span class="ko">일곱 가지만 답합니다.</span><span class="en">Seven answers.</span></p>
+  </header>
+
+  <section class="q">
+    <h2><span class="ko">돈이 드나요?</span><span class="en">Does it cost anything?</span></h2>
+    <p>
+      <span class="ko"><b>들지 않습니다.</b> 도시 안내를 보는 것도, 교회와 업소를 찾는 것도, 사람을 이어 드리는 것도 돈을 받지 않습니다.</span>
+      <span class="en"><b>No.</b> Reading the city guides, finding churches and businesses, and being connected with someone are all free.</span>
+    </p>
+    <p>
+      <span class="ko">광고를 신청하신 곳만 「광고」라고 따로 적어 둡니다. <b>목록의 순서는 돈이 정하지 않습니다.</b></span>
+      <span class="en">Paid listings are labeled as ads. <b>Money does not decide the order.</b></span>
+    </p>
+  </section>
+
+  <section class="q">
+    <h2><span class="ko">제가 사는 도시가 없어요.</span><span class="en">My city isn't here.</span></h2>
+    <p>
+      <span class="ko">신청해 주시면 만듭니다. 그 도시에 사는 분이 알려 주시는 것이 제일 정확합니다.</span>
+      <span class="en">Ask and we'll build it. Nothing beats information from someone who actually lives there.</span>
+    </p>
+    <a class="go" href="/city-request.html">
+      <span class="ko">도시 추가 신청</span><span class="en">Request a city</span> →</a>
+  </section>
+
+  <section class="q">
+    <h2><span class="ko">정보가 틀렸어요.</span><span class="en">Something here is wrong.</span></h2>
+    <p>
+      <span class="ko">알려 주시면 고칩니다. 문 닫은 곳, 바뀐 전화번호, 잘못된 주소 — 무엇이든 좋습니다.</span>
+      <span class="en">Tell us and we'll fix it — a closed business, a changed number, a wrong address, anything.</span>
+    </p>
+    <p>
+      <span class="ko"><b>내려 달라고 하시면 바로 내립니다.</b> 이유를 묻지 않습니다.</span>
+      <span class="en"><b>Ask us to remove your listing and we will,</b> no questions asked.</span>
+    </p>
+    <a class="go" href="mailto:Hebronplatform@gmail.com?subject=%EC%A0%95%EB%B3%B4%20%EC%88%98%EC%A0%95%20%EC%9A%94%EC%B2%AD">
+      <span class="ko">알려 주기</span><span class="en">Let us know</span> →</a>
+  </section>
+
+  <section class="q">
+    <h2><span class="ko">우리 가게나 교회를 올리고 싶어요.</span><span class="en">I'd like to list my business or church.</span></h2>
+    <p>
+      <span class="ko"><b>등재는 무료입니다.</b> 이름과 도시, 연락처만 주시면 확인한 뒤 올립니다.</span>
+      <span class="en"><b>Listing is free.</b> Send a name, a city and a way to reach you; we verify, then publish.</span>
+    </p>
+    <a class="go" href="/ad-request.html">
+      <span class="ko">등록 신청</span><span class="en">Submit a listing</span> →</a>
+  </section>
+
+  <section class="q">
+    <h2><span class="ko">앱으로 깔 수 있나요?</span><span class="en">Can I install it as an app?</span></h2>
+    <p>
+      <span class="ko">받으실 곳이 따로 없습니다. 브라우저에서 바로 설치합니다.</span>
+      <span class="en">There's nothing to download. Install it straight from the browser.</span>
+    </p>
+    <p>
+      <span class="ko"><b>아이폰</b> — 사파리 아래 공유 단추 → 「홈 화면에 추가」<br>
+      <b>안드로이드</b> — 크롬 오른쪽 위 점 세 개 → 「앱 설치」</span>
+      <span class="en"><b>iPhone</b> — Share button in Safari → "Add to Home Screen"<br>
+      <b>Android</b> — Chrome menu → "Install app"</span>
+    </p>
+    <small><span class="ko">인터넷이 끊겨도 한 번 본 화면은 다시 열립니다.</span>
+      <span class="en">Pages you've opened once still work offline.</span></small>
+  </section>
+
+  <section class="q">
+    <h2><span class="ko">누가 만드나요?</span><span class="en">Who is behind this?</span></h2>
+    <p>
+      <span class="ko">시애틀의 <b>Hebron Platform LLC</b>가 만들고 운영합니다. 김성수가 맡고 있습니다.</span>
+      <span class="en">Built and run by <b>Hebron Platform LLC</b> in Seattle. Sung Soo Kim is responsible for it.</span>
+    </p>
+    <p>
+      <span class="ko">낯선 도시에 도착한 사람이 물어볼 데가 없어서 시작했습니다. 그 한 가지만 합니다.</span>
+      <span class="en">It began because people arriving in an unfamiliar city had no one to ask. That's the one thing we do.</span>
+    </p>
+    <a class="go" href="/about.html"><span class="ko">더 읽기</span><span class="en">Read more</span> →</a>
+  </section>
+
+  <section class="q">
+    <h2><span class="ko">잘 안 돼요. 어디로 말하나요?</span><span class="en">Something's broken. Where do I say so?</span></h2>
+    <p>
+      <span class="ko">화면이 깨지거나 단추가 안 눌리면 메일로 알려 주세요. 어느 화면이었는지만 적어 주시면 충분합니다.</span>
+      <span class="en">If a page looks broken or a button won't work, email us. Just tell us which screen.</span>
+    </p>
+    <p><span class="ko">보통 이틀 안에 답을 드립니다.</span><span class="en">We usually reply within two days.</span></p>
+    <a class="go" href="mailto:Hebronplatform@gmail.com?subject=HebronGuide%20%EB%AC%B8%EC%A0%9C">
+      Hebronplatform@gmail.com →</a>
+  </section>
+
+  <p class="foot">
+    <span class="ko">여기 없는 것이 궁금하시면 그냥 물어보세요.</span>
+    <span class="en">If it isn't here, just ask.</span><br>
+    <a href="/hospitality-board.html"><span class="ko">게시판</span><span class="en">Board</span></a>
+    &nbsp;·&nbsp;
+    <a href="/privacy.html"><span class="ko">개인정보</span><span class="en">Privacy</span></a>
+    &nbsp;·&nbsp;
+    <a href="/terms.html"><span class="ko">이용약관</span><span class="en">Terms</span></a>
   </p>
 
-  <!-- 대상별 빠른 이동 -->
-  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px">
-    <a href="#visitor" class="quick-btn" style="background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);color:var(--gold)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 14l16-7-5 12-3-4-4 3z"/></svg> <span class="ko">이민자·방문자</span><span class="en">Immigrants</span></a>
-    <a href="#pastor" class="quick-btn" style="background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);color:var(--mint)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 2v5"/><path d="M9.5 4.5h5"/><path d="M6 22V11l6-4 6 4v11"/><path d="M10 22v-5h4v5"/></svg> <span class="ko">교회</span><span class="en">Churches</span></a>
-    <a href="#business" class="quick-btn" style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);color:var(--purple)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 9.5 5 4.5h14l1 5"/><path d="M4 9.5a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5.5 12v8h13v-8"/></svg> <span class="ko">사업체·광고</span><span class="en">Business</span></a>
-    <a href="#general" class="quick-btn" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--text)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M8 14a5 5 0 1 1 8 0c-1 1-1.5 2-1.5 3h-5c0-1-.5-2-1.5-3z"/></svg> <span class="ko">일반</span><span class="en">General</span></a>
-  </div>
 </div>
-
-<!-- 검색 -->
-<div class="search-wrap">
-  <div class="search-box">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-    </svg>
-    <input type="text" id="search-input" placeholder="질문 검색... / Search questions..." oninput="filterFaq(this.value)">
-  </div>
-</div>
-
-<!-- 메인 -->
-<main class="main">
-
-  <!-- 섹션 1 — 이민자·방문자 -->
-  <div class="section" data-section="visitor" id="visitor">
-    <div class="section-header gold">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 14l16-7-5 12-3-4-4 3z"/></svg> <span class="ko">이민자·방문자</span><span class="en">Immigrants &amp; Visitors</span>
-      <span class="section-count ko">5개 질문</span><span class="section-count en">5 Questions</span>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="HebronGuide 무료 광고 없이 한인 커뮤니티 섬기기" data-en="HebronGuide free no ads Korean community">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">HebronGuide는 무료인가요?</span><span class="en">Is HebronGuide free?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">네, 완전 무료입니다. 광고 없이 한인 커뮤니티를 섬기기 위해 만들어졌습니다.</span>
-        <span class="en">Yes, completely free. HebronGuide was built to serve the Korean community without ads.</span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="앱 설치 iPhone Safari 홈 화면 Android Chrome PC" data-en="install app iPhone Safari Android Chrome home screen">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">어떻게 앱으로 설치하나요?</span><span class="en">How do I install it as an app?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">
-          <b>iPhone:</b> Safari에서 공유버튼 → 홈 화면에 추가<br>
-          <b>Android:</b> Chrome에서 메뉴 → 홈 화면에 추가<br>
-          <b>PC:</b> Chrome 주소창 오른쪽 + 아이콘 클릭
-        </span>
-        <span class="en">
-          <b>iPhone:</b> Safari → Share button → Add to Home Screen<br>
-          <b>Android:</b> Chrome → Menu → Add to Home Screen<br>
-          <b>PC:</b> Click the + icon on the right side of Chrome's address bar
-        </span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="도시 목록 없음 확장 추가 요청" data-en="city not listed expansion request add city">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">내 도시가 목록에 없어요.</span><span class="en">My city isn't on the list.</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">현재 81개 도시를 서비스하고 있으며 계속 확장 중입니다. 원하는 도시를 <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>으로 알려주시면 우선 추가 검토하겠습니다.</span>
-        <span class="en">We currently serves 81 cities and are continuously expanding. Let us know your city at <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a> and we'll prioritize adding it.</span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="교회 정보 틀림 수정 요청 오류" data-en="church info wrong incorrect update fix error">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">교회 정보가 틀렸어요.</span><span class="en">The church info is incorrect.</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko"><a href="/ad-request.html">hebronguide.com/ad-request.html</a>에서 수정 요청하시거나 <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>으로 알려주세요.</span>
-        <span class="en">Submit a correction at <a href="/ad-request.html">hebronguide.com/ad-request.html</a> or email us at <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>.</span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="영어 언어 전환 EN 버튼" data-en="English language switch button toggle">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">영어로도 볼 수 있나요?</span><span class="en">Can I view the site in English?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">네, 상단 EN 버튼을 클릭하면 영어로 전환됩니다.</span>
-        <span class="en">Yes, click the EN button at the top of the page to switch to English.</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 섹션 2 — 협력 교회 -->
-  <div class="section" data-section="pastor" id="pastor">
-    <div class="section-header mint">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 2v5"/><path d="M9.5 4.5h5"/><path d="M6 22V11l6-4 6 4v11"/><path d="M10 22v-5h4v5"/></svg> <span class="ko">협력 교회</span><span class="en">Partner Churches</span>
-      <span class="section-count ko">5개 질문</span><span class="section-count en">5 Questions</span>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="협력교회 혜택 표시 배지 대시보드 인사이트 사역 교인 사업체" data-en="registered church benefits badge dashboard insights ministry member business">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">협력교회가 되면 어떤 혜택이 있나요?</span><span class="en">What are the benefits of becoming a registered church?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">
-          ① 새 이민자가 교회를 검색할 때 우선 표시<br>
-          ② 협력 인증 배지<br>
-          ③ 사역 인사이트 대시보드<br>
-          ④ 성도 선교 훈련 자료 공유<br>
-          ⑤ 교인 사업체 무료 등록
-        </span>
-        <span class="en">
-          ① Priority listing when new immigrants search for a church<br>
-          ② Verified partner badge<br>
-          ③ Ministry insights dashboard<br>
-          ④ Shared discipleship training resources<br>
-          ⑤ Free registration for congregation members' businesses
-        </span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="협력 신청 방법 교회 선택 승인 이메일" data-en="partner application how apply church select approval email">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">협력 신청은 어떻게 하나요?</span><span class="en">How do I apply to become a partner?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko"><a href="/ad-request.html">hebronguide.com/ad-request.html</a>에서 '교회' 선택 후 신청하시면 됩니다. 검토 후 24시간 내 승인 이메일을 드립니다.</span>
-        <span class="en">Go to <a href="/ad-request.html">hebronguide.com/ad-request.html</a>, select 'Church', and submit your application. You'll receive an approval email within 24 hours.</span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="대시보드 비밀번호 잊어버림 매직 링크 이메일 로그인" data-en="dashboard password forgot magic link email login">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">대시보드 비밀번호를 잊어버렸어요.</span><span class="en">I forgot my dashboard password.</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko"><a href="/pastor-dashboard.html">pastor-dashboard.html</a>에서 이메일 입력 후 '로그인 링크 받기'를 클릭하세요. 비밀번호 없이 로그인 후 새 비밀번호를 설정할 수 있습니다.</span>
-        <span class="en">Go to <a href="/pastor-dashboard.html">pastor-dashboard.html</a>, enter your email, and click 'Send Magic Link'. You can log in without a password and set a new one after logging in.</span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="교회 정보 직접 수정 대시보드 로그인 전화 웹사이트" data-en="church info edit directly dashboard login phone website">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">교회 정보를 직접 수정할 수 있나요?</span><span class="en">Can I edit my church info myself?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">네, <a href="/pastor-dashboard.html">pastor-dashboard.html</a>에 로그인하신 후 '직접 수정하기' 버튼으로 교회명·전화·웹사이트 등을 바로 수정하실 수 있습니다.</span>
-        <span class="en">Yes! After logging in at <a href="/pastor-dashboard.html">pastor-dashboard.html</a>, click the 'Edit My Info' button to directly update your church name, phone, website, and more.</span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="카카오톡 채널 구독 헤브론가이드 링크" data-en="KakaoTalk channel subscribe HebronGuide link">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">카카오톡 채널은 어디서 구독하나요?</span><span class="en">Where can I subscribe to the KakaoTalk channel?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko"><a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener">pf.kakao.com/_dxdxlbX</a> 링크를 클릭하거나 카카오톡에서 '헤브론가이드'를 검색하세요.</span>
-        <span class="en">Click <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener">pf.kakao.com/_dxdxlbX</a> or search 'HebronGuide' (헤브론가이드) in KakaoTalk.</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 섹션 3 — 사업체·광고 -->
-  <div class="section" data-section="business" id="business">
-    <div class="section-header purple">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 9.5 5 4.5h14l1 5"/><path d="M4 9.5a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5.5 12v8h13v-8"/></svg> <span class="ko">한인 사업체 · 광고</span><span class="en">Korean Businesses &amp; Advertising</span>
-      <span class="section-count ko">8개 질문</span><span class="section-count en">8 Questions</span>
-    </div>
-
-    <!-- 안내 배너 -->
-    <div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);border-radius:10px;padding:14px 16px;margin-bottom:16px;font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.8)">
-      <span class="ko"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 9.5 5 4.5h14l1 5"/><path d="M4 9.5a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5.5 12v8h13v-8"/></svg> <b>한인 사업체라면 누구나 무료로 등록 가능합니다.</b><br>보험·법률·부동산·식당·카페·미용·이사·회계·의료·학원·무역 등 업종 불문.<br>교회 성도이신 경우 특별 인증 혜택이 있습니다.</span>
-      <span class="en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 9.5 5 4.5h14l1 5"/><path d="M4 9.5a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5.5 12v8h13v-8"/></svg> <b>Any Korean business can register for free.</b><br>Insurance, legal, real estate, restaurant, cafe, beauty, moving, accounting, medical, tutoring, trading, and more.<br>Church congregation members receive special verification benefits.</span>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="사업체 등록 무료 비용 요금" data-en="business registration free cost fee price">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">사업체 등록은 무료인가요?</span><span class="en">Is business registration free?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko"><b>네, 완전 무료입니다.</b> 기본 등록 비용이 없습니다. 협력교회 담임목사님의 이메일을 함께 기입하시면 별표(<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3.5l2.6 5.3 5.9.8-4.3 4.1 1 5.8L12 16.8 6.8 19.5l1-5.8L3.5 9.6l5.9-.8z"/></svg>) 인증을 무료로 받습니다.</span>
-        <span class="en"><b>Yes, completely free.</b> No registration cost. Include your registered church pastor's email to receive a free star () verification badge.</span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="사업체 등록 방법 신청 절차 어떻게" data-en="business registration how apply process steps submit">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">사업체 등록은 어떻게 하나요?</span><span class="en">How do I register my business?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">
-          <b>3단계로 완료:</b><br>
-          1⃣ <a href="/ad-request.html">hebronguide.com/ad-request.html</a> 접속<br>
-          2⃣ '사업체' 탭 선택 → 업체명·업종·연락처·도시 입력<br>
-          3⃣ '신청하기' 클릭 → 24시간 내 등록 완료 이메일 수신
-        </span>
-        <span class="en">
-          <b>3 easy steps:</b><br>
-          1⃣ Go to <a href="/ad-request.html">hebronguide.com/ad-request.html</a><br>
-          2⃣ Select 'Business' tab → Enter name, type, contact, city<br>
-          3⃣ Click 'Submit' → Receive confirmation email within 24 hours
-        </span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="어떤 업종 등록 가능 종류 업체" data-en="what types businesses can register kinds industry">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">어떤 업종이 등록 가능한가요?</span><span class="en">What types of businesses can register?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">
-          한인이 운영하는 사업체라면 업종 불문 등록 가능합니다:<br>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 8v8"/><path d="M8 12h8"/></svg> 의료·치과·한의원 | <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 4v16"/><path d="M6 20h12"/><path d="M4 8l4-2 4 2"/><path d="M12 8l4-2 4 2"/><path d="M4 8l-1 4a3 3 0 0 0 6 0z"/><path d="M20 8l-1 4a3 3 0 0 0 6 0z" transform="translate(-4)"/></svg> 법률·이민법 | <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-6h4v6"/></svg> 부동산·이사<br>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 10.5h16"/><path d="M5 10.5a7 7 0 0 0 14 0"/><path d="M12 4v3"/><path d="M9 5v2"/><path d="M15 5v2"/></svg> 식당·카페 | <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg> 미용·네일 | <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v4c0 1 2.2 2 5 2s5-1 5-2v-4"/></svg> 학원·과외<br>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 4v16h16"/><path d="M8 16v-4"/><path d="M12 16V8"/><path d="M16 16v-6"/></svg> 회계·세무 | <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 13l1.5-5h13L20 13"/><path d="M3 13h18v4H3z"/><circle cx="7" cy="17" r="1.3"/><circle cx="17" cy="17" r="1.3"/></svg> 자동차·렌탈 | <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 8l8-4 8 4-8 4z"/><path d="M4 8v8l8 4 8-4V8"/><path d="M12 12v8"/></svg> 무역·수입<br>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/><path d="M3 4h2l2.2 11h10L20 7H6"/></svg> 마켓·편의점 | 기타 모든 한인 업종
-        </span>
-        <span class="en">
-          Any Korean-owned business is welcome:<br>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 8v8"/><path d="M8 12h8"/></svg> Medical/Dental/Oriental Medicine | <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 4v16"/><path d="M6 20h12"/><path d="M4 8l4-2 4 2"/><path d="M12 8l4-2 4 2"/><path d="M4 8l-1 4a3 3 0 0 0 6 0z"/><path d="M20 8l-1 4a3 3 0 0 0 6 0z" transform="translate(-4)"/></svg> Legal/Immigration<br>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-6h4v6"/></svg> Real Estate/Moving | <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 10.5h16"/><path d="M5 10.5a7 7 0 0 0 14 0"/><path d="M12 4v3"/><path d="M9 5v2"/><path d="M15 5v2"/></svg> Restaurant/Cafe | <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg> Beauty/Nail<br>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v4c0 1 2.2 2 5 2s5-1 5-2v-4"/></svg> Tutoring/Academy | <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 4v16h16"/><path d="M8 16v-4"/><path d="M12 16V8"/><path d="M16 16v-6"/></svg> Accounting/Tax | <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 13l1.5-5h13L20 13"/><path d="M3 13h18v4H3z"/><circle cx="7" cy="17" r="1.3"/><circle cx="17" cy="17" r="1.3"/></svg> Auto/Rental<br>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M4 8l8-4 8 4-8 4z"/><path d="M4 8v8l8 4 8-4V8"/><path d="M12 12v8"/></svg> Trade/Import | <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/><path d="M3 4h2l2.2 11h10L20 7H6"/></svg> Market/Store | And more
-        </span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="별표 인증 혜택 협력교회 어떻게" data-en="star verification badge benefit registered church how get">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3.5l2.6 5.3 5.9.8-4.3 4.1 1 5.8L12 16.8 6.8 19.5l1-5.8L3.5 9.6l5.9-.8z"/></svg> 별표 인증은 어떻게 받나요?</span><span class="en">How do I get the <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3.5l2.6 5.3 5.9.8-4.3 4.1 1 5.8L12 16.8 6.8 19.5l1-5.8L3.5 9.6l5.9-.8z"/></svg> verification badge?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">
-          <b>두 가지 방법:</b><br>
-          1. 신청서에 <b>협력교회 담임목사님 이메일</b>을 함께 기입<br>
-          2. 협력교회 성도임을 확인 후 자동 부여<br><br>
-          별표 인증 업체는 검색 결과에서 상위 노출됩니다.
-        </span>
-        <span class="en">
-          <b>Two ways:</b><br>
-          1. Include your <b>registered church pastor's email</b> in the registration form<br>
-          2. Automatically granted after confirming church membership<br><br>
-          Verified businesses appear higher in search results.
-        </span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="광고 홍보 어떻게 노출 검색 도시" data-en="advertising promotion how exposure visibility search city">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">광고·홍보는 어떻게 되나요?</span><span class="en">How does advertising work?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">
-          등록된 업체는 <b>해당 도시 페이지 '한인 업소' 탭</b>에 자동 노출됩니다.<br>
-          이민자·방문자가 그 도시를 검색할 때 자연스럽게 노출됩니다.<br><br>
-          <b>노출 방식:</b><br>
-          • 도시별 업소 목록에 표시<br>
-          • 앱 내 검색에서 검색 가능<br>
-          • 협력교회 성도들의 추천 연결
-        </span>
-        <span class="en">
-          Registered businesses are automatically shown in the <b>'Korean Business' tab</b> of their city page.<br>
-          Immigrants and visitors searching that city will naturally discover your business.<br><br>
-          <b>How you get exposure:</b><br>
-          • Listed in city business directory<br>
-          • Searchable within the app<br>
-          • Recommended through registered church members
-        </span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="등록 후 언제 노출 시간 얼마나" data-en="after registration when appear how long time visible">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">등록 후 언제부터 보이나요?</span><span class="en">When will my listing appear after registering?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">신청 후 <b>24시간 이내</b>에 검토 후 등록됩니다. 승인 완료 시 이메일로 안내드립니다.</span>
-        <span class="en">Your listing will be reviewed and activated <b>within 24 hours</b> of submission. We'll notify you by email when approved.</span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="등록 정보 수정 변경 업데이트" data-en="update edit change listing information modify">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">등록한 정보를 수정하고 싶어요.</span><span class="en">I want to update my listing.</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">
-          <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>으로 수정할 내용을 보내주시면 <b>24시간 내</b> 처리해드립니다.<br>
-          이메일 제목: [업체 수정 요청] 업체명
-        </span>
-        <span class="en">
-          Email <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a> with your changes and we'll update it <b>within 24 hours</b>.<br>
-          Subject line: [Business Update Request] Business Name
-        </span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="교회 성도 아닌 경우 비성도 등록 가능" data-en="non-church member not congregation can register">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">교회 성도가 아니어도 등록 가능한가요?</span><span class="en">Can I register even if I'm not a church member?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko"><b>네, 물론 가능합니다.</b> 한인이 운영하는 사업체라면 누구나 등록 가능합니다. 다만, 협력교회 성도이신 경우 별표(<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3.5l2.6 5.3 5.9.8-4.3 4.1 1 5.8L12 16.8 6.8 19.5l1-5.8L3.5 9.6l5.9-.8z"/></svg>) 인증 혜택을 추가로 받으실 수 있습니다.</span>
-        <span class="en"><b>Yes, absolutely.</b> Any Korean-owned business can register regardless of church membership. However, congregation members of registered churches receive an additional star (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3.5l2.6 5.3 5.9.8-4.3 4.1 1 5.8L12 16.8 6.8 19.5l1-5.8L3.5 9.6l5.9-.8z"/></svg>) verification badge.</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 섹션 4 — 일반 -->
-  <div class="section" data-section="general" id="general">
-    <div class="section-header" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:var(--text)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M8 14a5 5 0 1 1 8 0c-1 1-1.5 2-1.5 3h-5c0-1-.5-2-1.5-3z"/></svg> <span class="ko">일반 문의</span><span class="en">General</span>
-      <span class="section-count ko">3개 질문</span><span class="section-count en">3 Questions</span>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="HebronGuide 만든 곳 운영 헤브론 플랫폼" data-en="who made HebronGuide operated HebronGuide">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">HebronGuide는 누가 운영하나요?</span><span class="en">Who operates HebronGuide?</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">시애틀지구촌교회 김성수 목사가 25년 이민 목회 경험을 바탕으로 만들고 운영합니다. 모든 서비스는 한인 디아스포라 공동체를 섬기기 위해 무료로 제공됩니다.</span>
-        <span class="en">HebronGuide was created by Pastor Sung Soo Kim of GMC Seattle, based on 25 years of immigrant ministry experience, and he continues to run it. All services are provided free to serve the Korean diaspora community.</span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="후원 기부 도움 지원 방법" data-en="support donate contribution help how">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">HebronGuide를 후원하고 싶어요.</span><span class="en">I want to support HebronGuide.</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko">감사합니다! 협력교회 등록, 사업체 등록, 주변에 홍보하는 것이 가장 큰 후원입니다. 재정 후원 문의는 <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>으로 연락해 주세요.</span>
-        <span class="en">Thank you! The best support is registering as a registered church, registering your business, and spreading the word. For financial support inquiries, email <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>.</span>
-      </div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFaq(this)" data-ko="오류 버그 문제 신고 앱 작동 안함" data-en="error bug problem report app not working issue">
-      <div class="faq-q">
-        <span class="faq-q-text"><span class="ko">앱에서 오류·문제가 생겼어요.</span><span class="en">I found an error or problem in the app.</span></span>
-        <span class="faq-arrow">▼</span>
-      </div>
-      <div class="faq-a">
-        <span class="ko"><a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a>으로 ① 어떤 페이지 ② 어떤 문제 ③ 사용 기기(iPhone/Android/PC)를 알려주시면 빠르게 수정하겠습니다.</span>
-        <span class="en">Email <a href="mailto:Hebronplatform@gmail.com">Hebronplatform@gmail.com</a> with: ① Which page ② What problem ③ Your device (iPhone/Android/PC). We'll fix it quickly.</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 빈 검색 결과 -->
-  <div class="no-results" id="no-results">
-    <div class="no-results-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
-    <p><span class="ko">검색 결과가 없습니다. 다른 키워드로 검색하거나 아래 이메일로 문의해주세요.</span><span class="en">No results found. Try different keywords or contact us below.</span></p>
-    <p style="margin-top:10px"><a href="mailto:Hebronplatform@gmail.com" style="color:var(--mint)">Hebronplatform@gmail.com</a></p>
-  </div>
-
-  <!-- 푸터 CTA -->
-  <div class="footer-cta">
-    <div class="footer-cta-title"><span class="ko">아직 답을 못 찾으셨나요?</span><span class="en">Didn't find your answer?</span></div>
-    <p class="footer-cta-sub">
-      <span class="ko">협력 신청·등록·수정 등 모든 문의는 이메일로 연락주세요. 24시간 내 답변드립니다.</span>
-      <span class="en">For all inquiries about partner applications, registrations, or updates, reach us by email. We reply within 24 hours.</span>
-    </p>
-    <div class="footer-cta-btns">
-      <a href="mailto:Hebronplatform@gmail.com" class="btn-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> <span class="ko">이메일 문의</span><span class="en">Email Us</span></a>
-      <a href="/ad-request.html" class="btn-outline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="6" y="5" width="12" height="16" rx="2"/><path d="M9.5 5V4a2.5 2.5 0 0 1 5 0v1"/><path d="M9 4.5h6"/></svg> <span class="ko">협력·사업체 신청</span><span class="en">Apply as Partner / Business</span></a>
-      <a href="/pastor-dashboard.html" class="btn-outline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 2v5"/><path d="M9.5 4.5h5"/><path d="M6 22V11l6-4 6 4v11"/><path d="M10 22v-5h4v5"/></svg> <span class="ko">협력 로그인</span><span class="en">Partner Login</span></a>
-    </div>
-  </div>
-
-</main>
 
 <script>
-// ── 언어 ──────────────────────────────────────────────
-function setLang(l) {
-  document.documentElement.lang = l
-  localStorage.setItem('hg_lang', l)
-  document.getElementById('btn-ko').classList.toggle('active', l === 'ko')
-  document.getElementById('btn-en').classList.toggle('active', l === 'en')
+/* 언어 — 랜딩과 같은 열쇠를 쓴다 */
+function setLang(l){
+  document.documentElement.lang = l;
+  try { localStorage.setItem('hg_lang', l); } catch(e){}
 }
-
-// ── FAQ 아코디언 ──────────────────────────────────────
-function toggleFaq(el) {
-  const isOpen = el.classList.contains('open')
-  // 같은 섹션 내 다른 아이템 닫기 (선택적 — 주석 처리 시 여러 개 동시 열림)
-  // el.closest('.section').querySelectorAll('.faq-item.open').forEach(i => { if(i !== el) i.classList.remove('open') })
-  el.classList.toggle('open', !isOpen)
-}
-
-// ── 검색 필터 ─────────────────────────────────────────
-function filterFaq(query) {
-  const q = query.trim().toLowerCase()
-  const lang = document.documentElement.lang || 'ko'
-  const items = document.querySelectorAll('.faq-item')
-  let visibleCount = 0
-
-  items.forEach(item => {
-    if (!q) {
-      item.classList.remove('hidden')
-      visibleCount++
-      return
-    }
-    const searchText = (item.getAttribute('data-' + lang) || '').toLowerCase()
-    const qText = item.querySelector('.faq-q-text')?.textContent?.toLowerCase() || ''
-    const aText = item.querySelector('.faq-a')?.textContent?.toLowerCase() || ''
-    const matches = searchText.includes(q) || qText.includes(q) || aText.includes(q)
-    item.classList.toggle('hidden', !matches)
-    if (matches) visibleCount++
-  })
-
-  // 섹션 헤더 표시/숨김
-  document.querySelectorAll('.section').forEach(section => {
-    const visible = section.querySelectorAll('.faq-item:not(.hidden)').length
-    section.style.display = visible === 0 && q ? 'none' : ''
-  })
-
-  // 검색 결과 없음 메시지
-  const noResults = document.getElementById('no-results')
-  noResults.classList.toggle('show', visibleCount === 0 && q.length > 0)
-}
-
-// ── 초기화 ────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  setLang(localStorage.getItem('hg_lang') || 'ko')
-})
+/* 랜딩과 같은 규칙 — 고른 것 > 브라우저 언어 > 영어 */
+(function(){
+  var lang = null;
+  try { var s = localStorage.getItem('hg_lang'); if (s === 'ko' || s === 'en') lang = s; } catch(e){}
+  if (!lang) {
+    var p = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+    lang = 'en';
+    for (var i = 0; i < p.length; i++) { if (String(p[i] || '').toLowerCase().indexOf('ko') === 0) { lang = 'ko'; break; } }
+  }
+  document.documentElement.lang = lang;
+})();
 </script>
 </body>
 </html>
