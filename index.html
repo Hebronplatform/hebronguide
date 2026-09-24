@@ -2019,8 +2019,11 @@ if(inp){
     { lat:  37.57, lon:  126.98 },   // 서울
   ];
 
-  /* 한 바퀴: 서울 → 시애틀 → 달라스 → 토론토 → 뉴욕 → LA → 서울 */
-  var ROUTE = [[5,0],[0,3],[3,4],[4,2],[2,1],[1,5]];
+  /* 빛이 들어오는 자리 — 한쪽에서만 오지 않는다 */
+  var GATES = [
+    [-210,  140], [1174,  170], [ 1200, 540], [-230,  520],
+    [ 320, -250], [ 720, -230], [1140,  920], [-180,  900]
+  ];
 
   if (groups.length < CITY.length) return;
 
@@ -2028,6 +2031,7 @@ if(inp){
     return {
       g: g,
       arc:   g.querySelector('.hg-arc'),
+      gate:  GATES[0],
       bloom: g.querySelector('.hg-bloom'),
       ring:  g.querySelector('.hg-ring'),
       core:  g.querySelector('.hg-core'),
@@ -2048,7 +2052,7 @@ if(inp){
     return { x: C + nx * R, y: C - ny * R, z: nz };
   }
 
-  var ri = 0, next = 0;
+  var gi = 0, next = 0;
   window.hgPaint = function(spin, now){
     for (var k = 0; k < CITY.length; k++) {
       var p = parts[k], q = place(CITY[k].lat, CITY[k].lon, spin);
@@ -2081,31 +2085,38 @@ if(inp){
       p.g.style.opacity = Math.min(1, (q.z - 0.06) / 0.3).toFixed(2);
     }
 
-    /* 길 — 떠나는 도시에서 닿는 도시로 */
-    var r = ROUTE[ri % ROUTE.length], A = parts[r[0]], B = parts[r[1]];
-    if (B.on) {
-      arcTo(A, B);
-    } else if (now > next && B.z > 0.55 && A.z > 0.12) {
-      arcTo(A, B);
-      B.on = true; B.until = now + 4200; next = now + 4900; ri++;
-      B.g.classList.remove('on'); void B.g.offsetWidth; B.g.classList.add('on');
-    }
+    /* 오고 있는 빛은 도시를 따라간다 (지구가 도니까) */
     for (var m = 0; m < parts.length; m++) {
       var pp = parts[m];
-      if (pp.on && now > pp.until) { pp.on = false; pp.g.classList.remove('on'); }
+      if (!pp.on) continue;
+      arcTo(pp);
+      if (now > pp.until) { pp.on = false; pp.g.classList.remove('on'); }
+    }
+
+    /* 정면으로 돌아 나온 도시에, 멀리서 빛 하나가 내려앉는다 */
+    if (now > next) {
+      var best = null;
+      for (var n2 = 0; n2 < parts.length; n2++) {
+        var c = parts[n2];
+        if (c.on || c.z < 0.55) continue;
+        if (!best || c.z > best.z) best = c;
+      }
+      if (best) {
+        best.gate = GATES[(gi++) % GATES.length];
+        arcTo(best);
+        best.on = true; best.until = now + 4200; next = now + 4500;
+        best.g.classList.remove('on'); void best.g.offsetWidth; best.g.classList.add('on');
+      }
     }
   }
 
-  /* 두 도시를 잇는 호 — 지구 바깥으로 살짝 부풀린다 */
-  function arcTo(A, B){
-    var mx = (A.x + B.x) / 2, my = (A.y + B.y) / 2;
-    var dx = B.x - A.x, dy = B.y - A.y;
-    var dist = Math.sqrt(dx*dx + dy*dy) || 1;
-    var ox = mx - C, oy = my - C, on = Math.sqrt(ox*ox + oy*oy);
-    if (on < 1) { ox = -dy; oy = dx; on = dist; }
-    var bulge = 0.42 * dist;
-    B.arc.setAttribute('d', 'M ' + A.x.toFixed(0) + ' ' + A.y.toFixed(0) +
-      ' Q ' + (mx + ox/on*bulge).toFixed(0) + ' ' + (my + oy/on*bulge).toFixed(0) +
+  /* 멀리서 도시까지 — 곧게 오지 않고 한 번 휘어 든다 */
+  function arcTo(B){
+    var gx = B.gate[0], gy = B.gate[1];
+    var mx = (gx + B.x) / 2 + (B.y - gy) * 0.32;
+    var my = (gy + B.y) / 2 - (B.x - gx) * 0.32;
+    B.arc.setAttribute('d', 'M ' + gx + ' ' + gy +
+      ' Q ' + mx.toFixed(0) + ' ' + my.toFixed(0) +
       ' ' + B.x.toFixed(0) + ' ' + B.y.toFixed(0));
   }
 })();
