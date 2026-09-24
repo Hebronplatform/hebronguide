@@ -724,6 +724,11 @@ details.fold .about-story-wrap{padding-top:0 !important;}
       <span class="nav-logo-tag">Know your city · Find your people</span>
     </span>
   </a>
+  <nav class="nav-app" aria-label="바로 가기">
+    <a href="#cities" onclick="return focusCitySearch()"><span class="ko">도시</span><span class="en">City</span></a>
+    <a href="/arrive.html"><span class="ko">도착</span><span class="en">Arrived</span></a>
+    <a href="/open.html"><span class="ko">도움</span><span class="en">Help</span></a>
+  </nav>
   <div class="nav-actions">
     <button class="lang-btn" onclick="toggleLang()" id="lang-btn"
             aria-label="언어 바꾸기 · Change language" title="언어 바꾸기 · Change language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span id="lang-label">English</span></button>
@@ -1378,6 +1383,25 @@ nav .nav-logo-text.landed{opacity:1;}
   .hg-tabs button .ko,.hg-tabs button .en{font-size:.78rem;}
   .hg-tabs a svg,.hg-tabs button svg{width:20px;height:20px;}
 }
+
+/* 웹은 웹답게 — 아래 떠 있는 캡슐은 앱 관습이다.
+   큰 화면에서는 넷을 위 줄로 올리고 아래를 비운다. (2026-09-24)      */
+.nav-app{display:none;}
+@media(min-width:1025px){
+  .nav-app{display:flex !important;align-items:center;gap:4px;
+    position:static;height:auto;background:none;border:0;padding:0;
+    margin-left:26px;margin-right:auto;}
+  .nav-app a{display:inline-flex;align-items:center;min-height:40px;
+    padding:8px 15px;border-radius:999px;text-decoration:none;
+    color:var(--muted);font-size:.9rem;font-weight:500;letter-spacing:-.01em;
+    transition:color .18s ease,background .18s ease;}
+  .nav-app a:hover{color:var(--text);background:rgba(255,255,255,.07);}
+  .nav-app a:focus-visible{outline:2px solid var(--gold2);outline-offset:2px;}
+  .hg-tabs{display:none !important;}          /* 아래 캡슐은 폰·패드에서만 */
+  body{padding-bottom:0 !important;}
+  .hero{padding:12px 24px 44px !important;}
+  .hero-art{width:min(40vw,52svh) !important;margin-bottom:26px !important;}
+}
 </style>
 <script>
 function toggleAboutStory(btn){
@@ -1883,6 +1907,8 @@ if(inp){
   var last;
   try { last = JSON.parse(localStorage.getItem('hg_last_city') || 'null'); } catch(e){}
   if(!last || !last.href) return;
+  /* 아래 여섯 단추에 이미 있는 도시면 띄우지 않는다 — 같은 말을 두 번 놓지 않는다 */
+  if (document.querySelector('.hj-quick a[href="' + last.href + '"]')) return;
   /* 예전에 슬러그(seattle)로 저장된 값이 있다 — 읽을 때 제 이름으로 고친다 */
   var ko = document.documentElement.lang !== 'en';
   var name = (last.name || '').trim();
