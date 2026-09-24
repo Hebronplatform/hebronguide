@@ -115,6 +115,9 @@
   .hg-drawer-links a.primary{background:var(--gold);color:#0d1117;font-weight:800;margin-bottom:8px;}
   .hg-drawer-links a.primary:hover{background:var(--gold2);color:#0d1117;}
   .hg-drawer-links a.primary svg{opacity:1;}
+    <a href="/help.html" onclick="closeMenu()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span class="ko">도움말</span><span class="en">Help</span></a>
   .hg-drawer-sep{height:1px;background:var(--border);margin:12px 4px;}
   .hg-drawer-foot{margin-top:auto;padding-top:18px;color:var(--muted2);font-size:.72rem;line-height:1.6;}
   body.hg-menu-open{overflow:hidden;}
@@ -639,6 +642,13 @@ details.fold .about-story-wrap{padding-top:0 !important;}
   /* 서랍이 열리면 탭바는 뒤로 */
   body.hg-menu-open .hg-tabs{display:none;}
 }
+
+/* 서랍 맨 아래 법적 줄 — 닿을 수 있되 매일 누르는 것은 아니다 */
+.hg-drawer-legal{display:flex;align-items:center;gap:8px;justify-content:center;
+  margin-top:14px;padding-top:12px;border-top:1px solid var(--border);
+  color:var(--muted2);font-size:.75rem;}
+.hg-drawer-legal a{color:var(--muted2);text-decoration:none;padding:6px 4px;}
+.hg-drawer-legal a:hover{color:var(--gold2);}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css"/>
@@ -740,6 +750,10 @@ details.fold .about-story-wrap{padding-top:0 !important;}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M16 9a4 4 0 0 1 0 6"/></svg>
       <span class="ko">광고 신청</span><span class="en">Advertise</span></a>
   </nav>
+  <div class="hg-drawer-legal">
+    <a href="/privacy.html"><span class="ko">개인정보</span><span class="en">Privacy</span></a><span>·</span>
+    <a href="/terms.html"><span class="ko">이용약관</span><span class="en">Terms</span></a>
+  </div>
   <div class="hg-drawer-foot">
     <span class="ko">어디에 도착하든, 첫 밤이 혼자가 아니도록.</span>
     <span class="en">Wherever you land, so the first night isn't spent alone.</span>
@@ -1340,13 +1354,6 @@ function toggleFaq(btn){
       <button type="button" data-share="copy" aria-label="링크 복사" title="링크 복사"><svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1ZM8 13h8v-2H8v2Zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5Z"/></svg></button>
       <button type="button" data-share="native" aria-label="더 많은 앱으로 공유 (인스타그램 등)" title="더 보기 (인스타그램 등)" style="display:none;"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92Z"/></svg></button>
     </div>
-  </div>
-  <div class="footer-links">
-    <a href="/about.html"><span class="ko">회사소개</span><span class="en">About</span></a>
-    <a href="/help.html"><span class="ko">도움말</span><span class="en">Help</span></a>
-    <a href="/ad-request.html"><span class="ko">협력 신청</span><span class="en">Partner</span></a>
-    <a href="/privacy.html"><span class="ko">개인정보처리방침</span><span class="en">Privacy</span></a>
-    <a href="/terms.html"><span class="ko">이용약관</span><span class="en">Terms</span></a>
   </div>
   <div style="margin-bottom:10px;">
     <a href="mailto:Hebronplatform@gmail.com" style="color:rgba(201,162,39,0.7);font-size:.8rem;font-family:'Noto Sans KR',sans-serif;text-decoration:none;">
