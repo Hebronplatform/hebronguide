@@ -123,7 +123,7 @@
   /* 밤에서 새벽으로. 글이 "첫날 밤" 이니 화면도 밤에서 시작한다.
      위는 깊은 밤, 아래로 내려오며 새벽빛. 따뜻한 것은 문에서 나오는 빛 하나뿐.
      (예전에는 처음부터 아침이라 글과 그림이 어긋나 있었다.) */
-  .hero{position:relative;text-align:center;padding:80px 24px 66px;overflow:hidden;
+  .hero{position:relative;text-align:center;padding:96px 24px 66px;overflow:hidden;
     background:
       radial-gradient(760px 420px at 50% 62%, rgba(245,199,110,.22) 0%, rgba(245,199,110,0) 66%),
       linear-gradient(176deg,
@@ -463,13 +463,16 @@
      폰·브라우저 언어를 보고 이미 자동으로 정해 주므로(이 파일 맨 위 스크립트),
      이 단추는 '그 판단을 되돌리는 장치'다.
      지구본과 글자가 한 덩어리 — NanuriWeb 과 같은 모양으로 맞춘다. */
-  .lang-btn{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  /* 언어 — 지구본 하나. 글자 없이도 무슨 단추인지 안다.
+     라벨은 화면낭독기에만 남긴다. */
+  .lang-btn{display:inline-flex;align-items:center;justify-content:center;
+    width:34px;height:34px;padding:0;
     background:transparent;border:1px solid var(--border2);color:var(--muted);
-    font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2px;
-    padding:6px 11px;border-radius:8px;cursor:pointer;transition:all .18s;}
+    border-radius:50%;cursor:pointer;transition:all .18s;}
+  .lang-btn svg{width:16px;height:16px;flex:none;opacity:.8;}
   .lang-btn:hover{border-color:var(--gold);color:var(--gold2);background:rgba(201,162,39,.08);}
-  .lang-btn svg{width:14px;height:14px;opacity:.75;flex:none;}
-  @media(max-width:430px){ .lang-btn{font-size:11px;padding:5px 9px;gap:5px;} }
+  #lang-label{position:absolute;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);white-space:nowrap;}
 
   /* ━━━ THREE PATHS ━━━ */
   .paths-section{padding:80px 24px;max-width:1000px;margin:0 auto;}
@@ -498,7 +501,105 @@
   .for-newcomer .path-cta{background:rgba(201,162,39,.15);color:var(--gold);}
   .for-pastor .path-cta{background:rgba(110,231,183,.12);color:var(--mint);}
   .for-neighbor .path-cta{background:rgba(129,140,248,.12);color:#818CF8;}
-  </style>
+  
+/* ━━━ 첫 화면 다이어트 (2026-09-23) ━━━━━━━━━━━━━━━━━━━━━
+   히어로가 폰 한 화면을 넘어서 「세 개의 문」이 안 보였다.
+   글과 그림은 그대로 두고 여백만 깎는다. */
+@media(max-width:640px){
+  .hero{padding:44px 20px 26px !important;}
+  .hero-door{max-width:210px !important;margin-left:auto;margin-right:auto;}
+  .hero-pre{margin-bottom:10px !important;}
+  .hero-sub-big{margin:10px 0 16px !important;}
+  .hero-jump{margin-bottom:14px !important;}
+  .hero-cta{margin-bottom:12px !important;gap:9px !important;}
+  .hero-trust{margin-bottom:16px !important;}
+  .hero-stats{display:none !important;}   /* 숫자 자랑은 하지 않기로 했다 */
+  .partner-section{padding-top:30px !important;}
+  .sec-title{margin-bottom:10px !important;}
+  .sec-desc{margin-bottom:18px !important;}
+  .partner-grid{margin:22px 0 20px !important;gap:12px !important;}
+  .partner-card{padding:20px 18px !important;}
+  .partner-card h3{margin-bottom:8px !important;}
+  .partner-card p{margin-bottom:12px !important;}
+  .partner-icon-wrap{margin-bottom:10px !important;}
+}
+
+/* ━━━ 접는 칸 (2026-09-23) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   첫 화면은 한 장으로. 긴 것은 접어 둔다.
+   지우지 않는 이유 — 도시 81개 링크는 검색에 잡히는 자산이다. */
+details.fold{max-width:960px;margin:0 auto;border-top:1px solid var(--border);}
+details.fold > summary{list-style:none;cursor:pointer;padding:18px 24px;min-height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  color:var(--muted);font-size:.95rem;font-weight:500;}
+details.fold > summary::-webkit-details-marker{display:none;}
+details.fold > summary::after{content:'+';font-size:1.25rem;color:var(--muted2);font-weight:300;}
+details.fold[open] > summary::after{content:'2';}
+details.fold > summary:hover{color:var(--gold2);}
+details.fold[open] > summary{color:var(--gold2);}
+/* 접힌 안쪽은 위 여백을 줄인다 */
+details.fold .cities-section,
+details.fold .faq-section,
+details.fold .about-story-wrap{padding-top:0 !important;}
+
+/* ━━━ 폰에서 세 개의 문은 한 줄씩 (2026-09-23) ━━━━━━━━━━
+   카드 세 장이 세로로 서면 첫 화면에 못 들어온다.
+   아이콘 + 제목 + 화살표만 남기고, 설명은 접는다. */
+@media(max-width:640px){
+  .partner-grid.three-doors{gap:9px !important;margin:16px 0 14px !important;}
+  .three-doors .partner-card{
+    display:grid !important;grid-template-columns:34px 1fr auto;align-items:center;
+    gap:12px !important;padding:14px 16px !important;border-radius:14px !important;}
+  .three-doors .partner-icon-wrap{margin:0 !important;width:34px;height:34px;}
+  .three-doors .partner-icon-wrap svg{width:24px;height:24px;}
+  .three-doors .partner-type{display:none !important;}
+  .three-doors .partner-card p{display:none !important;}
+  .three-doors .partner-card h3{
+    margin:0 !important;font-size:1rem !important;line-height:1.35 !important;}
+  .three-doors .partner-card h3 br{display:none;}      /* 한 줄로 */
+  .three-doors .partner-cta-label{margin:0 !important;font-size:.8rem !important;white-space:nowrap;}
+}
+
+/* 세 개의 문 머리글도 줄인다 — 22px 때문에 첫 화면을 못 넘기면 아깝다 */
+@media(max-width:640px){
+  .partner-section .sec-label{display:none !important;}
+  .partner-section .sec-title{font-size:1.35rem !important;margin-bottom:6px !important;}
+  .partner-section .sec-desc{font-size:.86rem !important;margin-bottom:12px !important;}
+  .partner-section{padding-top:18px !important;}
+}
+
+/* ━━━ 말로 찾기 (2026-09-23) ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   되는 기기에서만 보인다. 안 되는 폰에서 눌러도 반응 없으면 없느니만 못하다. */
+.hj-mic{flex:none;width:36px;height:36px;border-radius:50%;cursor:pointer;
+  background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.35);color:var(--gold2);
+  display:inline-flex;align-items:center;justify-content:center;transition:all .18s;}
+.hj-mic svg{width:18px;height:18px;}
+.hj-mic:hover{background:rgba(201,162,39,.22);border-color:var(--gold);}
+.hj-mic.hide{display:none;}
+.hj-mic.on{background:var(--gold);color:#0d1117;border-color:var(--gold);
+  animation:micPulse 1.1s ease-in-out infinite;}
+@keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,.55);}50%{box-shadow:0 0 0 9px rgba(201,162,39,0);}}
+@media(prefers-reduced-motion:reduce){ .hj-mic.on{animation:none;} }
+/* 검색 구역을 줄인다 */
+@media(max-width:640px){
+  .hj-box{padding:11px 12px !important;gap:8px !important;}
+  .hero-jump{margin-bottom:10px !important;}
+  .hj-quick{gap:6px !important;margin-top:8px !important;}
+}
+
+/* ━━━ 문 그림 — 작게 (2026-09-23) ━━━━━━━━━━━━━━━━━━━━━━
+   빼 봤더니 눈이 허전했다. 그래서 되살리되 크기를 절반으로 줄인다.
+   작아지면 손그림 티가 덜 나고, 「문」이라는 이야기는 남는다.
+   나중에 제대로 된 그림이 생기면 이 안만 바꾸면 된다. */
+.hero-door{max-width:260px;margin:0 auto 6px;display:block;background:none;border:0;
+  padding:0;cursor:pointer;width:100%;}
+.hero-door svg{width:100%;height:auto;display:block;}
+.hero-door-hint{display:block;font-size:.78rem;margin-top:2px;}
+@media(max-width:640px){
+  .hero-door{max-width:190px;margin-bottom:2px;}
+  .hero-door-hint{font-size:.72rem;}
+  .hero{padding:26px 20px 26px !important;}
+}
+</style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css"/>
   <style>
@@ -617,6 +718,7 @@
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO ━━━ -->
 <div class="hero">
 
+
   <!-- 헤브론 환대의 문 — 클릭하면 도시로 들어가는 입구 (나니아의 옷장처럼) -->
   <button type="button" class="hero-door" id="heroDoor" aria-label="도시 검색 열기">
   <svg viewBox="0 0 460 250" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -714,18 +816,18 @@
 
   <!-- 바로 이동하는 도시 검색 — 첫 화면에서 앱까지 한 번에 -->
   <div class="hero-jump">
-    <div class="hj-verb">
-      <span class="ko">출발 전에 '헤브로닝' 하세요~</span>
-      <span class="en">Hebron it before you go.</span>
-    </div>
     <div class="hj-box">
       <svg class="hj-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
       <input id="heroCity" type="text" autocomplete="off" aria-label="도시 이름을 입력하세요"
-             placeholder="어느 도시로 가시나요?  시애틀, 뉴욕, Toronto…"/>
+             placeholder="어느 도시로 가시나요?"/>
+      <button type="button" id="heroMic" class="hj-mic hide" aria-label="말로 도시 찾기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/>
+        </svg>
+      </button>
     </div>
     <div id="heroCityList" class="hj-list" role="listbox" aria-label="검색된 도시"></div>
     <div class="hj-quick">
-      <span class="ko">자주 찾는 곳</span><span class="en">Popular</span>
       <a href="/seattle/">시애틀</a><a href="/la/">LA</a><a href="/newyork/">뉴욕</a>
       <a href="/dallas/">달라스</a><a href="/toronto/">토론토</a><a href="/seoul/">서울</a>
     </div>
@@ -747,45 +849,47 @@
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PARTNERS ━━━ -->
 <div class="partner-section" id="partner">
-  <div class="sec-label"><span class="ko">등록하기 · Register</span><span class="en">Register</span></div>
+  <div class="sec-label"><span class="ko">세 개의 문 · Three Doors</span><span class="en">Three Doors</span></div>
   <h2 class="sec-title">
-    <span class="ko">교회 · 업체 · 가정<br><span style="color:var(--mint);">모두 무료입니다</span></span>
-    <span class="en">A church, a business, or your table<br><span style="color:var(--mint);">Always free</span></span>
+    <span class="ko"><span style="color:var(--mint);">어느 쪽</span>이세요?</span>
+    <span class="en"><span style="color:var(--mint);">Which one</span> are you?</span>
   </h2>
   <p class="sec-desc">
-    <span class="ko">준비된 만큼만 열어 두시면 됩니다.</span>
-    <span class="en">Open only as much as you are ready to.</span>
+    <span class="ko">오늘 받은 사람이 내일 돕는 사람이 됩니다.</span>
+    <span class="en">Helped today, helping tomorrow.</span>
   </p>
 
-  <div class="partner-grid">
+  <div class="partner-grid three-doors">
 
-    <a href="/ad-request.html#church" class="partner-card partner-church">
+    <a href="/arrive.html" class="partner-card partner-card door-first">
       <div class="partner-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M4 21V11l8-6 8 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/><path d="M2 21h20"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32" aria-hidden="true"><path d="M3 21h18"/><path d="M6 21V9l6-5 6 5v12"/><path d="M10 21v-6h4v6"/></svg>
       </div>
-      <div class="partner-type"><span class="ko">교회 등록</span><span class="en">Church</span></div>
-      <h3><span class="ko">문을<br>열어 두실래요?</span><span class="en">Will you keep<br>the door open?</span></h3>
-      <p><span class="ko">아직 아는 사람이 없을 때, 제일 먼저 두드릴 문.</span><span class="en">The first door someone knocks on, before they know anyone.</span></p>
-      <div class="partner-cta-label"><span class="ko">교회 등록하기 →</span><span class="en">Register Church →</span></div>
+      <div class="partner-type"><span class="ko">도착</span><span class="en">Arrived</span></div>
+      <h3><span class="ko">막<br>도착했습니다</span><span class="en">I just<br>arrived</span></h3>
+      <p><span class="ko">아는 사람이 없어도 됩니다. 한 사람 이어 드립니다.</span><span class="en">No one to call? We connect you with one person.</span></p>
+      <div class="partner-cta-label"><span class="ko">이어 주세요 →</span><span class="en">Connect me →</span></div>
+    </a>
+    <a href="/open.html" class="partner-card partner-card partner-church">
+      <div class="partner-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32" aria-hidden="true"><path d="M13 4H6a1 1 0 0 0-1 1v15a1 1 0 0 0 1 1h7"/><path d="M13 3.5 19 6v12l-6 2.5z"/><path d="M15.6 12h.01"/></svg>
+      </div>
+      <div class="partner-type"><span class="ko">도움</span><span class="en">Help</span></div>
+      <h3><span class="ko">돕고<br>싶습니다</span><span class="en">I want<br>to help</span></h3>
+      <p><span class="ko">길 안내도, 밥 한 끼도 좋습니다. 하나면 됩니다.</span><span class="en">Directions, a meal. One thing is enough.</span></p>
+      <div class="partner-cta-label"><span class="ko">돕기 →</span><span class="en">Help →</span></div>
+    </a>
+    <a href="/open.html#vouch" class="partner-card partner-card partner-home">
+      <div class="partner-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32" aria-hidden="true"><path d="M9 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path d="M21 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path d="M9 12h6"/></svg>
+      </div>
+      <div class="partner-type"><span class="ko">추천</span><span class="en">Vouch</span></div>
+      <h3><span class="ko">아는 사람이<br>있습니다</span><span class="en">I know<br>someone</span></h3>
+      <p><span class="ko">이름 하나면 됩니다. 책임지시라는 뜻이 아닙니다.</span><span class="en">Just a name. Not a guarantee.</span></p>
+      <div class="partner-cta-label"><span class="ko">추천하기 →</span><span class="en">Vouch →</span></div>
     </a>
 
-    <a href="/ad-request.html#business" class="partner-card partner-biz">
-      <div class="partner-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
-      </div>
-      <div class="partner-type"><span class="ko">업체 등록</span><span class="en">Business</span></div>
-      <h3><span class="ko">손님을<br>맞으실래요?</span><span class="en">Will you welcome<br>the guest?</span></h3>
-      <p><span class="ko">밥집도 병원도 처음입니다. 누가 알려 주기 전까지는.</span><span class="en">The food, the clinic, all of it new. Until someone points the way.</span></p>
-      <div class="partner-cta-label"><span class="ko">업체 등록하기 →</span><span class="en">Register Business →</span></div>
-    </a>
-
-    <a href="/home-table.html" class="partner-card partner-home">
-      <div class="partner-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32" aria-hidden="true">
-          <path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/>
-          <path d="M8 13h8"/><path d="M8 17h5"/>
-        </svg>
-      </div>
+  </div>
       <div class="partner-type"><span class="ko">가정 등록</span><span class="en">Home</span></div>
       <h3><span class="ko">밥 한 끼<br>나누실래요?</span><span class="en">Will you share<br>one meal?</span></h3>
       <p><span class="ko">막 도착한 사람과 한 끼를 나눕니다. 거창하지 않아도 됩니다. 돈은 주고받지 않습니다.</span><span class="en">Share one meal with someone who just arrived. Nothing fancy. No money changes hands.</span></p>
@@ -800,6 +904,8 @@
   </p>
 
   <!-- 헤브론 이야기 — 관심 있는 분만 펼쳐 읽기 -->
+<details class="fold">
+  <summary><span class="ko">헤브론 이야기</span><span class="en">The Hebron story</span></summary>
   <div class="about-story-wrap">
     <button class="about-story-toggle" onclick="toggleAboutStory(this)" aria-expanded="false">
       <span class="ko">헤브론 이야기</span>
@@ -863,10 +969,21 @@
 
     </div><!-- /about-story-body -->
   </div>
+</details>
 </div>
 
 <style>
 .partner-section{max-width:900px;margin:0 auto;padding:64px 24px;}
+
+/* ━━━ 세 개의 문 (2026-09-23) ━━━━━━━━━━━━━━━━━━━━━━━━━
+   도착한 사람이 제일 먼저 보이게 첫 문만 금색으로 둔다.
+   카카오는 목록을 만들고 우리는 연결을 만든다 — 그 연결이 여기서 시작한다. */
+@media(min-width:900px){ .partner-grid.three-doors{grid-template-columns:repeat(3,1fr);} }
+.partner-card.door-first{border-color:rgba(201,162,39,.45);
+  background:linear-gradient(180deg,rgba(201,162,39,.09),rgba(201,162,39,.02));}
+.partner-card.door-first:hover{border-color:var(--gold);}
+.partner-card.door-first .partner-icon-wrap{color:var(--gold2);}
+.partner-card.door-first .partner-cta-label{color:var(--gold2);}
 .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:40px 0 28px;}
 @media(max-width:640px){.partner-grid{grid-template-columns:1fr;}}
 .partner-card{display:block;text-decoration:none;border-radius:20px;padding:32px 28px;transition:transform .18s,box-shadow .18s;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);}
@@ -916,6 +1033,8 @@
 <div class="divider"></div>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FAQ ━━━ -->
+<details class="fold">
+  <summary><span class="ko">자주 묻는 질문</span><span class="en">Frequently asked</span></summary>
 <div class="faq-section" id="faq">
   <div class="sec-label">FAQ</div>
   <h2 class="sec-title">
@@ -957,6 +1076,7 @@
     </div>
   </div>
 </div>
+</details>
 
 <style>
 .faq-section{max-width:720px;margin:0 auto;padding:64px 24px;}
@@ -1031,6 +1151,8 @@ function toggleFaq(btn){
 <div class="divider"></div>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CITIES ━━━ -->
+<details class="fold">
+  <summary><span class="ko">전 세계 81개+ 도시 보기</span><span class="en">Browse 81+ cities</span></summary>
 <div class="cities-section" id="cities">
   <div class="sec-label">서비스 도시 · Cities</div>
   <h2 class="sec-title"><span class="ko">전 세계 <span><span class="hg-city-count">81</span>개+ 도시</span></span><span class="en"><span><span class="hg-city-count">81</span>+ Cities</span> Worldwide</span></h2>
@@ -1164,6 +1286,7 @@ function toggleFaq(btn){
     <a href="/seattle/" class="btn-hero"><span class="ko">지금 내 도시 찾기 →</span><span class="en">Find My City →</span></a>
   </div>
 </div>
+</details>
 
 <div class="divider"></div>
 
@@ -1356,14 +1479,6 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu(
     try{ T.paint(svg, T.pick(new Date().getMonth()+1)); }catch(e){}
   })();
 
-  var door=document.getElementById('heroDoor');
-  if(door) door.addEventListener('click',function(){
-    door.classList.add('is-open');            // 문이 활짝 열린다
-    var still=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-    setTimeout(function(){
-      box.focus(); box.scrollIntoView({behavior:'smooth',block:'center'});
-    }, still?0:440);                          // 열리는 걸 보고 나서 검색으로
-  });
 
   /* 도시 선택 → 문이 열리며 들어가는 전환 (나니아의 문처럼) */
   var flash=document.createElement('div'); flash.id='doorFlash'; document.body.appendChild(flash);
@@ -1571,6 +1686,54 @@ if(inp){
       box.classList.add('on');
     })
     .catch(function () { /* 못 읽으면 띠는 그냥 안 뜬다 — 첫 화면은 멀쩡하다 */ });
+})();
+</script>
+<script>
+/* 말로 도시 찾기 — 브라우저가 지원할 때만 단추를 보여 준다.
+   짐 들고 선 사람에게 「시애틀」은 치는 것보다 말하는 게 빠르다. */
+(function(){
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var mic = document.getElementById('heroMic');
+  var box = document.getElementById('heroCity');
+  if (!SR || !mic || !box) return;            // 안 되면 단추는 숨은 채로 둔다
+  mic.classList.remove('hide');
+
+  var rec = new SR();
+  rec.lang = (document.documentElement.lang === 'en') ? 'en-US' : 'ko-KR';
+  rec.interimResults = false;
+  rec.maxAlternatives = 1;
+  var listening = false;
+
+  mic.addEventListener('click', function(){
+    if (listening) { try{ rec.stop(); }catch(e){} return; }
+    rec.lang = (document.documentElement.lang === 'en') ? 'en-US' : 'ko-KR';
+    try { rec.start(); } catch(e) { return; }
+  });
+  rec.onstart  = function(){ listening = true;  mic.classList.add('on'); };
+  rec.onend    = function(){ listening = false; mic.classList.remove('on'); };
+  rec.onerror  = function(){ listening = false; mic.classList.remove('on'); };
+  rec.onresult = function(e){
+    var said = (e.results[0][0].transcript || '').trim().replace(/[.,!?]$/, '');
+    if (!said) return;
+    box.value = said;
+    box.dispatchEvent(new Event('input', { bubbles: true }));   // 목록이 뜨게
+    box.focus();
+  };
+})();
+</script>
+<script>
+/* 문을 누르면 검색창으로 — 문을 열려면 도시 이름을 말해야 한다 */
+(function(){
+  var door = document.getElementById('heroDoor');
+  var box  = document.getElementById('heroCity');
+  if (!door || !box) return;
+  door.addEventListener('click', function(){
+    door.classList.add('is-open');
+    var still = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    setTimeout(function(){
+      box.focus(); box.scrollIntoView({ behavior:'smooth', block:'center' });
+    }, still ? 0 : 440);
+  });
 })();
 </script>
 </body>

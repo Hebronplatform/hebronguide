@@ -31027,11 +31027,10 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
         {/* 언어 — 지구본 + 글자 한 덩어리. 누르면 바뀐다. (NanuriWeb 과 같은 모양) */}
         <button
           onClick={() => setLang(lang === "ko" ? "en" : "ko")}
-          style={{ display: "inline-flex", alignItems: "center", gap: 6, whiteSpace: "nowrap",
-            height: 32, padding: "0 11px", borderRadius: 9,
+          style={{ display: "inline-flex", alignItems: "center", justifyContent: "center",
+            width: 32, height: 32, padding: 0, borderRadius: "50%",
             background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)",
-            color: "#64748B", fontFamily: "'Noto Sans KR',sans-serif", fontSize: 12,
-            fontWeight: 700, letterSpacing: "0.2px",
+            color: "#64748B",
             cursor: "pointer", transition: "all 0.15s", flexShrink: 0 }}
           onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(242,153,74,0.12)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(242,153,74,0.4)"; }}
           onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.04)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.08)"; }}
@@ -31041,7 +31040,6 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
             <circle cx="12" cy="12" r="9"/>
             <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>
           </svg>
-          <span>{lang === "ko" ? "English" : "한국어"}</span>
         </button>
       </div>
     </header>

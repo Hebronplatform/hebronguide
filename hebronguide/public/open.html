@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Open a door — HebronGuide</title>
+<title>I want to help — HebronGuide</title>
 <meta name="description" content="Open one door for someone who just arrived. Directions, a seat, a meal. Only what you can. 문을 하나 열어 두시겠어요? 할 수 있는 만큼만."/>
-<meta property="og:title" content="Open a door — HebronGuide"/>
+<meta property="og:title" content="I want to help — HebronGuide"/>
 <meta property="og:description" content="Open one door for someone who just arrived. Only what you can."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:locale:alternate" content="ko_KR"/>
@@ -87,14 +87,14 @@
 <div class="wrap">
 
   <header>
-    <h1 id="hd">문을 하나 열어 두시겠어요?</h1>
+    <h1 id="hd">무엇을 도와주실 수 있나요?</h1>
     <p class="sub" id="hs">막 도착한 사람에게는 아는 사람 하나가 전부입니다.<br>할 수 있는 만큼만 열어 두시면 됩니다.</p>
     <div class="steps"><span class="dot on" id="d1"></span><span class="dot" id="d2"></span></div>
   </header>
 
   <!-- 1 : 신분이 아니라 행위를 묻는다 -->
   <section class="card" id="s1">
-    <div class="q">무엇을 열어 두실 수 있나요?</div>
+    <div class="q">무엇을 해 주실 수 있나요?</div>
     <div class="qs">여러 개 고르셔도 됩니다. 나중에 바꾸셔도 됩니다.</div>
 
     <button class="opt" data-k="ask" type="button">
@@ -164,7 +164,7 @@
       언제든 <b>내려 달라</b> 하시면 바로 내립니다
     </div>
 
-    <button class="go" id="n2" type="button">열어 두기</button>
+    <button class="go" id="n2" type="button">보내기</button>
     <div class="err hide" id="er"></div>
     <button class="back" id="bk" type="button">앞으로</button>
   </section>
@@ -173,13 +173,13 @@
   <section class="card hide" id="s3">
     <div class="done">
       <div class="mark"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#6EE7B7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></div>
-      <div class="q" style="margin-bottom:8px;">문이 하나 열렸습니다</div>
+      <div class="q" style="margin-bottom:8px;">고맙습니다</div>
       <p class="sub" id="dn" style="margin-top:0;"></p>
     </div>
   </section>
 
   <p class="foot">
-    묻는 것은 「누구십니까」가 아니라 「무엇을 열어 두시겠습니까」입니다.<br>
+    묻는 것은 「누구십니까」가 아니라 「무엇을 해 주실 수 있나요」입니다.<br>
     <a href="/faq.html">자주 묻는 질문</a>
   </p>
 
@@ -230,7 +230,7 @@ document.getElementById('n1').onclick = function(){
 };
 document.getElementById('bk').onclick = function(){
   show(0);
-  document.getElementById('hd').textContent = '문을 하나 열어 두시겠어요?';
+  document.getElementById('hd').textContent = '무엇을 도와주실 수 있나요?';
   document.getElementById('hs').innerHTML = '막 도착한 사람에게는 아는 사람 하나가 전부입니다.<br>할 수 있는 만큼만 열어 두시면 됩니다.';
 };
 
@@ -284,7 +284,7 @@ document.getElementById('n2').onclick = async function(){
     er.textContent = (e.message || '보내지 못했습니다') +
       ' · Hebronplatform@gmail.com 으로 보내 주셔도 됩니다.';
     er.classList.remove('hide');
-    btn.disabled = false; btn.textContent = '열어 두기';
+    btn.disabled = false; btn.textContent = '보내기';
   }
 };
 </script>
