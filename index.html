@@ -649,6 +649,18 @@ details.fold .about-story-wrap{padding-top:0 !important;}
   color:var(--muted2);font-size:.75rem;}
 .hg-drawer-legal a{color:var(--muted2);text-decoration:none;padding:6px 4px;}
 .hg-drawer-legal a:hover{color:var(--gold2);}
+
+/* ━━━ 이어 보기 (2026-09-24) ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   표지는 처음 온 사람에게 필요하고, 다시 온 사람에게는 방해다.
+   한 번 도시를 고른 사람에게만 맨 위에 한 줄. 누르면 바로 그 도시로. */
+.hero-resume{display:inline-flex;align-items:center;gap:8px;
+  margin:0 auto 18px;padding:9px 16px;border-radius:99px;
+  background:rgba(201,162,39,.14);border:1px solid rgba(201,162,39,.4);
+  color:var(--gold2);text-decoration:none;font-size:.88rem;font-weight:600;
+  white-space:nowrap;transition:all .18s;}
+.hero-resume:hover{background:rgba(201,162,39,.24);border-color:var(--gold);}
+.hero-resume svg{width:15px;height:15px;flex:none;}
+.hero-resume.hide{display:none;}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css"/>
@@ -842,6 +854,11 @@ details.fold .about-story-wrap{padding-top:0 !important;}
   <span class="hero-door-hint"><span class="ko">문을 클릭하세요</span><span class="en">Click the door</span></span>
   </button>
 
+  <a class="hero-resume hide" id="heroResume" href="#">
+    <span id="heroResumeText"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+
   <p class="hero-pre">
     <span class="ko">불안한 마음으로 새 도시에 도착한 첫날,</span>
     <span class="en">The first day in a new city, with an anxious heart.</span>
@@ -894,15 +911,6 @@ details.fold .about-story-wrap{padding-top:0 !important;}
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PARTNERS ━━━ -->
 <div class="partner-section" id="partner">
-  <div class="sec-label"><span class="ko">세 개의 문 · Three Doors</span><span class="en">Three Doors</span></div>
-  <h2 class="sec-title">
-    <span class="ko"><span style="color:var(--mint);">어느 쪽</span>이세요?</span>
-    <span class="en"><span style="color:var(--mint);">Which one</span> are you?</span>
-  </h2>
-  <p class="sec-desc">
-    <span class="ko">오늘 받은 사람이 내일 돕는 사람이 됩니다.</span>
-    <span class="en">Helped today, helping tomorrow.</span>
-  </p>
 
   <div class="partner-grid three-doors">
 
@@ -936,10 +944,6 @@ details.fold .about-story-wrap{padding-top:0 !important;}
 
   </div>
 
-  <p class="partner-dna-line">
-    <span class="ko">정보는 검색하면 나옵니다. 사람은 나오지 않습니다.</span>
-    <span class="en">One shared foundation — <strong style="color:#fff;">Hospitality</strong>. Connecting people, not just information.</span>
-  </p>
 
   <!-- 헤브론 이야기 — 관심 있는 분만 펼쳐 읽기 -->
 <details class="fold">
@@ -1513,7 +1517,13 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu(
 
   /* 도시 선택 → 문이 열리며 들어가는 전환 (나니아의 문처럼) */
   var flash=document.createElement('div'); flash.id='doorFlash'; document.body.appendChild(flash);
-  function enterCity(href){
+  function enterCity(href, label){
+    // 다시 왔을 때 바로 갈 수 있게 기억해 둔다 (그 사람 브라우저에만)
+    try{
+      var slug = (href || '').replace(/^\/|\/$/g, '');
+      var name = label || (document.querySelector('.hj-quick a[href="' + href + '"] .ko') || {}).textContent || slug;
+      if(slug) localStorage.setItem('hg_last_city', JSON.stringify({ href: href, name: name }));
+    }catch(e){}
     flash.classList.add('on');
     setTimeout(function(){ location.href=href; }, 420);
   }
@@ -1800,5 +1810,20 @@ if(inp){
     <span class="ko">더보기</span><span class="en">More</span>
   </button>
 </nav>
+<script>
+/* 이어 보기 — 전에 고른 도시가 있으면 맨 위에 한 줄 */
+(function(){
+  var bar = document.getElementById('heroResume');
+  var txt = document.getElementById('heroResumeText');
+  if(!bar || !txt) return;
+  var last;
+  try { last = JSON.parse(localStorage.getItem('hg_last_city') || 'null'); } catch(e){}
+  if(!last || !last.href) return;
+  var ko = document.documentElement.lang !== 'en';
+  txt.textContent = ko ? (last.name + ' 이어 보기') : ('Continue to ' + last.name);
+  bar.setAttribute('href', last.href);
+  bar.classList.remove('hide');
+})();
+</script>
 </body>
 </html>
