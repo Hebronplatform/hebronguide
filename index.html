@@ -1201,13 +1201,19 @@ details.fold .about-story-wrap{padding-top:0 !important;}
 html[lang="en"] .hg-lb .ko{display:none;}
 html[lang="en"] .hg-lb .en{display:inline;}
 
-/* 공전 — 한자리에서만 돌지 않는다 */
-.hero-art{animation:hgOrbit 34s ease-in-out infinite;}
+/* 공전 — 한자리에서 돌기만 하지 않는다. 타원 궤도를 실제로 돈다.
+   멀어질 때 작아지고 가까워질 때 커진다. 46초에 한 바퀴. (2026-09-24) */
+.hero-art{animation:hgOrbit 46s linear infinite;}
 @keyframes hgOrbit{
-  0%,100%{transform:translate(0,0)        scale(1);}
-  25%    {transform:translate(-9px,-7px)  scale(1.012);}
-  50%    {transform:translate(0,-11px)    scale(1.02);}
-  75%    {transform:translate(9px,-6px)   scale(1.012);}}
+  0%    {transform:translate(0px,-30px) scale(0.945);}
+  12.5% {transform:translate(40px,-21px) scale(0.961);}
+  25%   {transform:translate(56px,-0px) scale(1.000);}
+  37.5% {transform:translate(40px,21px) scale(1.039);}
+  50%   {transform:translate(0px,30px) scale(1.055);}
+  62.5% {transform:translate(-40px,21px) scale(1.039);}
+  75%   {transform:translate(-56px,0px) scale(1.000);}
+  87.5% {transform:translate(-40px,-21px) scale(0.961);}
+  100%  {transform:translate(-0px,-30px) scale(0.945);}}
 
 /* 이름 — 두 빛이 만날 때 떠올랐다가, 위로 올라가 로고 옆에 붙는다 */
 .hg-fly-mark{position:fixed;left:50%;top:38svh;z-index:260;
@@ -1759,11 +1765,52 @@ if(inp){
   rec.onstart  = function(){ listening = true;  mic.classList.add('on'); };
   rec.onend    = function(){ listening = false; mic.classList.remove('on'); };
   rec.onerror  = function(){ listening = false; mic.classList.remove('on'); };
+
+  /* 말끝에 붙는 말은 떼고 듣는다 — 「시애틀로」 「엘에이 가요」 */
+  var ALIAS = { '엘에이':'la', '엘 에이':'la', '엘리에이':'la',
+                '씨애틀':'시애틀', '시에틀':'시애틀', '씨에틀':'시애틀',
+                '댈러스':'달라스', '달라쓰':'달라스',
+                '뉴육':'뉴욕', '뉴 욕':'뉴욕', '뉴옥':'뉴욕',
+                '벤쿠버':'밴쿠버', '토론도':'토론토', '써울':'서울' };
+  function norm(t){
+    t = (t || '').toLowerCase().trim()
+         .replace(/[.,!?~]+$/, '')
+         .replace(/(으로|로|에서|에게|까지|한테)?\s*(가|갈|갑|찾|검색|보여|알려)\S*$/, '')
+         .replace(/\s+/g, '');
+    return ALIAS[t] || t;
+  }
+
+  /* 딱 한 곳이면 바로 들어간다 */
+  function jump(said){
+    var pills = [].slice.call(document.querySelectorAll('#cityRegions .city-pill'));
+    if (!pills.length) return false;
+    var q = norm(said);
+    if (q.length < 2 && q !== 'la') return false;
+
+    var hit = [];
+    pills.forEach(function(a){
+      var ko = ((a.querySelector('.ko') || {}).textContent || '').replace(/\s+/g, '');
+      var en = ((a.querySelector('.en') || {}).textContent || '').toLowerCase().replace(/\s+/g, '');
+      var slug = (a.getAttribute('href') || '').replace(/\//g, '');
+      if (ko === q || en === q || slug === q) hit.unshift({ a: a, ko: ko, exact: true });
+      else if (ko.indexOf(q) > -1 || en.indexOf(q) > -1) hit.push({ a: a, ko: ko, exact: false });
+    });
+    if (!hit.length) return false;
+    if (!hit[0].exact && hit.length > 1) return false;   // 헷갈리면 고르시게 둔다
+
+    var href = hit[0].a.getAttribute('href');
+    box.value = hit[0].ko;
+    if (window.__enterCity) window.__enterCity(href, hit[0].ko);
+    else location.href = href;
+    return true;
+  }
+
   rec.onresult = function(e){
     var said = (e.results[0][0].transcript || '').trim().replace(/[.,!?]$/, '');
     if (!said) return;
+    if (jump(said)) return;                                    // 바로 들어갔다
     box.value = said;
-    box.dispatchEvent(new Event('input', { bubbles: true }));   // 목록이 뜨게
+    box.dispatchEvent(new Event('input', { bubbles: true }));   // 아니면 목록이 뜨게
     box.focus();
   };
 })();

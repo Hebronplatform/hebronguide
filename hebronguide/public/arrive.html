@@ -110,7 +110,10 @@
       <button class="chip" type="button">공항 마중</button>
       <button class="chip" type="button">강아지 맡기기</button>
       <button class="chip" type="button">그냥 사람</button>
+      <button class="chip" type="button" id="needEtc">기타</button>
     </div>
+    <input id="needEtcText" class="hide" style="margin-top:10px"
+           placeholder="어떤 것이 막막하신지 한 줄로 적어 주세요"/>
     <p class="soft">여러 개 고르셔도 되고, 하나도 안 고르셔도 됩니다.</p>
 
     <button class="go" id="n1" type="button" disabled>다음</button>
@@ -185,6 +188,17 @@ function chips(id, single){
 }
 chips('when', true); chips('need', false);
 
+/* 「기타」를 고르면 한 줄 적는 칸이 열린다 */
+(function(){
+  var etc = document.getElementById('needEtc'), box = document.getElementById('needEtcText');
+  if(!etc || !box) return;
+  etc.addEventListener('click', function(){
+    var on = etc.classList.contains('on');
+    box.classList.toggle('hide', !on);
+    if(on) box.focus(); else box.value = '';
+  });
+})();
+
 // 도시와 '언제'만 있으면 넘어간다.
 // 무엇이 막막한지는 안 골라도 된다 — 막 도착한 사람은 그것도 모르는 게 정상이다.
 function check(){
@@ -219,6 +233,8 @@ document.getElementById('n2').onclick = async function(){
   var vouch = document.getElementById('c2').value.trim();
   var when  = (document.querySelector('#when .chip.on')||{}).textContent || '';
   var needs = [].map.call(document.querySelectorAll('#need .chip.on'), function(c){ return c.textContent; }).join(' · ');
+  var etcText = (document.getElementById('needEtcText') || {}).value || '';
+  if (etcText.trim()) needs = needs + ' — ' + etcText.trim();
   er.classList.add('hide');
   if(!nick || !cont){
     er.textContent = '부르실 이름과 연락처, 둘만 적어 주시면 됩니다.';
