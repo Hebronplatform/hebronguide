@@ -637,7 +637,6 @@ details.fold .about-story-wrap{padding-top:0 !important;}
     font-size:.68rem;font-weight:500;letter-spacing:-.01em;transition:color .18s;}
   .hg-tabs svg{width:21px;height:21px;}
   .hg-tabs a:active,.hg-tabs button:active{color:var(--gold2);}
-  .hg-tabs a:nth-child(2){color:var(--gold2);}   /* 도착 — 우리가 제일 보여 주고 싶은 문 */
   body{padding-bottom:64px;}
   /* 서랍이 열리면 탭바는 뒤로 */
   body.hg-menu-open .hg-tabs{display:none;}
@@ -762,437 +761,8 @@ details.fold .about-story-wrap{padding-top:0 !important;}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M16 9a4 4 0 0 1 0 6"/></svg>
       <span class="ko">광고 신청</span><span class="en">Advertise</span></a>
   </nav>
-  <div class="hg-drawer-legal">
-    <a href="/privacy.html"><span class="ko">개인정보</span><span class="en">Privacy</span></a><span>·</span>
-    <a href="/terms.html"><span class="ko">이용약관</span><span class="en">Terms</span></a>
-  </div>
-  <div class="hg-drawer-foot">
-    <span class="ko">어디에 도착하든, 첫 밤이 혼자가 아니도록.</span>
-    <span class="en">Wherever you land, so the first night isn't spent alone.</span>
-  </div>
-</aside>
 
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO ━━━ -->
-<div class="hero">
-
-
-  <!-- 헤브론 환대의 문 — 클릭하면 도시로 들어가는 입구 (나니아의 옷장처럼) -->
-  <button type="button" class="hero-door" id="heroDoor" aria-label="도시 검색 열기">
-  <svg viewBox="0 0 460 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <clipPath id="hebDoorway">
-        <path d="M202 216 V120 Q202 94 230 94 Q258 94 258 120 V216 Z"/>
-      </clipPath>
-      <linearGradient id="hebSky" x1="230" y1="94" x2="230" y2="216" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#7ec8ef"/>
-        <stop offset=".52" stop-color="#c2e7fa"/>
-        <stop offset="1" stop-color="#f6fcff"/>
-      </linearGradient>
-      <linearGradient id="hebBeam" x1="230" y1="86" x2="230" y2="216" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#fffdf5" stop-opacity=".97"/>
-        <stop offset=".55" stop-color="#ffe9b8" stop-opacity=".55"/>
-        <stop offset="1" stop-color="#ffd98a" stop-opacity="0"/>
-      </linearGradient>
-    </defs>
-    <!-- 인도하는 별 -->
-    <path class="heb-star" d="M230 22 l4.5 13 13 4.5 -13 4.5 -4.5 13 -4.5 -13 -13 -4.5 13 -4.5z" fill="#c07f0a"/>
-    <!-- 땅 선 -->
-    <path d="M44 216 H416" stroke="#8a5f10" stroke-opacity=".35" stroke-width="1.6" stroke-linecap="round"/>
-    <!-- 시애틀 — 레이니어 산, 스카이라인, 스페이스 니들, 상록수 -->
-    <g class="heb-city">
-      <path d="M278 216 L308 166 L338 216" stroke="#3f86b5" stroke-opacity=".42" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>
-      <path d="M297 185 L302 179 L307 184 L312 178 L319 185" stroke="#3f86b5" stroke-opacity=".62" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-      <path d="M338 216 V174 H350 V216" stroke="#0f7a5a" stroke-opacity=".75" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <path d="M354 216 V158 H364 V216" stroke="#0f7a5a" stroke-opacity=".75" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <path d="M368 216 V182 H378 V216" stroke="#0f7a5a" stroke-opacity=".75" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <path d="M342 186 h4 M342 197 h4 M357 170 h3 M357 182 h3 M357 194 h3 M371 194 h4 M371 204 h4" stroke="#0f7a5a" stroke-opacity=".58" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M398 216 V172" stroke="#0f7a5a" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/>
-      <path d="M391 216 Q398 192 405 216" stroke="#0f7a5a" stroke-opacity=".5" stroke-width="1.5"/>
-      <ellipse cx="398" cy="169" rx="11" ry="3.8" stroke="#0f7a5a" stroke-opacity=".85" stroke-width="2"/>
-      <path d="M398 164 V150" stroke="#0f7a5a" stroke-opacity=".85" stroke-width="1.6" stroke-linecap="round"/>
-    </g>
-    <!-- 문 너머 — 푸른 하늘과 구름 -->
-    <g class="heb-sky" clip-path="url(#hebDoorway)">
-      <rect x="196" y="86" width="68" height="134" fill="url(#hebSky)"/>
-      <circle cx="212" cy="115" r="8.5" fill="#ffffff" fill-opacity=".9"/>
-      <path d="M238 130 q3.5 -5.5 9 -2 q4.5 -5 8.5 1.5 q4 1 2 4.5 h-21 q-2.5 -2.5 1.5 -4z" fill="#ffffff" fill-opacity=".92"/>
-      <path d="M203 159 q3 -5 8 -1.5 q4 -4.5 7.5 1.5 q3.5 1 1.5 4 h-18.5 q-2.5 -2 1.5 -4z" fill="#ffffff" fill-opacity=".76"/>
-      <path d="M196 198 H264" stroke="#5ba3cf" stroke-opacity=".38" stroke-width="1.4"/>
-    </g>
-    <!-- 문에서 쏟아지는 빛 -->
-    <path class="heb-beam" d="M208 88 L252 88 L296 216 L96 216 Z" fill="url(#hebBeam)"/>
-    <!-- 환대의 아치 문 -->
-    <path d="M190 216 V118 Q190 80 230 80 Q270 80 270 118 V216" stroke="#7a4f0a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M202 216 V120 Q202 94 230 94 Q258 94 258 120 V216" stroke="#7a4f0a" stroke-opacity=".45" stroke-width="1.6"/>
-    <!-- 활짝 열리는 문짝 -->
-    <g class="heb-leaf">
-      <path d="M202 216 L166 202 V96 L202 106" stroke="#a86c0c" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
-      <path d="M184 110 V198" stroke="#a86c0c" stroke-opacity=".5" stroke-width="1.4"/>
-    </g>
-    <!-- 맞이하는 사람 — 팔 벌려 손 흔들며 웃는 얼굴 -->
-    <g class="heb-welcome">
-      <circle cx="234" cy="132" r="8.5" stroke="#241704" stroke-width="2.2" fill="#ffffff" fill-opacity=".5"/>
-      <circle cx="231" cy="130.4" r="1.05" fill="#241704"/>
-      <circle cx="237" cy="130.4" r="1.05" fill="#241704"/>
-      <path d="M230.6 134.6 Q234 138.4 237.4 134.6" stroke="#241704" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M234 141 V180 M234 180 L225 205 M234 180 L243 205 M234 152 L220 166" stroke="#241704" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path class="heb-wave" d="M234 152 L250 139" stroke="#241704" stroke-width="2.2" stroke-linecap="round"/>
-    </g>
-    <!-- 도착하는 나그네 — 여행 가방, 웃는 얼굴 -->
-    <g class="heb-traveler">
-      <circle cx="118" cy="150" r="7.5" stroke="#0f7a5a" stroke-width="2.2" fill="#ffffff" fill-opacity=".45"/>
-      <circle cx="115.6" cy="148.7" r=".95" fill="#0f7a5a"/>
-      <circle cx="120.6" cy="148.7" r=".95" fill="#0f7a5a"/>
-      <path d="M115.3 152.4 Q118 155.6 120.9 152.4" stroke="#0f7a5a" stroke-width="1.4" stroke-linecap="round"/>
-      <path d="M118 158 V187 M118 168 L108 158 M118 168 L129 174 M118 187 L110 209 M118 187 L126 209" stroke="#0f7a5a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <rect x="129" y="174" width="13" height="13" rx="2" stroke="#0f7a5a" stroke-width="1.9"/>
-      <path d="M133 174 v-3 h5 v3" stroke="#0f7a5a" stroke-width="1.6" stroke-linecap="round"/>
-    </g>
-    <!-- 나그네 → 문으로 이어지는 길 -->
-    <path d="M118 216 C152 210 170 212 190 216" stroke="#7a4f0a" stroke-opacity=".5" stroke-width="1.6" stroke-dasharray="1.5 8" stroke-linecap="round"/>
-  </svg>
-  <span class="hero-door-hint"><span class="ko">문을 클릭하세요</span><span class="en">Click the door</span></span>
-  </button>
-
-  <a class="hero-resume hide" id="heroResume" href="#">
-    <span id="heroResumeText"></span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-  </a>
-
-  <p class="hero-pre">
-    <span class="ko">불안한 마음으로 새 도시에 도착한 첫날,</span>
-    <span class="en">The first day in a new city, with an anxious heart.</span>
-  </p>
-
-  <h1 class="hero-headline">
-    <span class="ko"><span class="accent">반갑게 맞아 주는 이가 있습니다.</span></span>
-    <span class="en"><span class="accent">Someone is there to welcome you.</span></span>
-  </h1>
-
-  <p class="hero-sub-big">
-    <span class="hero-brand">
-      <span class="hero-brand-word">Hebron<em>Guide</em></span>
-    </span>
-  </p>
-
-
-  <!-- 바로 이동하는 도시 검색 — 첫 화면에서 앱까지 한 번에 -->
-  <div class="hero-jump">
-    <div class="hj-box">
-      <svg class="hj-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input id="heroCity" type="text" autocomplete="off" aria-label="도시 이름을 입력하세요"
-             placeholder="어느 도시로 가시나요?"/>
-      <button type="button" id="heroMic" class="hj-mic hide" aria-label="말로 도시 찾기">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/>
-        </svg>
-      </button>
-    </div>
-    <div id="heroCityList" class="hj-list" role="listbox" aria-label="검색된 도시"></div>
-    <div class="hj-quick">
-      <a href="/seattle/">시애틀</a><a href="/la/">LA</a><a href="/newyork/">뉴욕</a>
-      <a href="/dallas/">달라스</a><a href="/toronto/">토론토</a><a href="/seoul/">서울</a>
-    </div>
-  </div>
-
-  <div class="hero-cta" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-    <a href="#cities" class="btn-outline"><span class="ko">전체 도시 보기</span><span class="en">All Cities</span></a>
-    <a href="/story-submit.html" class="btn-outline"><span class="ko">환대 이야기 나누기</span><span class="en">Share a Story of Welcome</span></a>
-  </div>
-
-
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-n"><span class="hg-city-count">81</span><sup style="font-size:.9rem;">+</sup></div><div class="stat-l"><span class="ko">서비스 도시</span><span class="en">Cities</span></div></div>
-    <div class="stat"><div class="stat-n"><span class="hg-church-count">655</span></div><div class="stat-l"><span class="ko">등록 교회</span><span class="en">Churches</span></div></div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PARTNERS ━━━ -->
-<div class="partner-section" id="partner">
-
-  <div class="partner-grid three-doors">
-
-    <a href="/arrive.html" class="partner-card partner-card door-first">
-      <div class="partner-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32" aria-hidden="true"><path d="M3 21h18"/><path d="M6 21V9l6-5 6 5v12"/><path d="M10 21v-6h4v6"/></svg>
-      </div>
-      <div class="partner-type"><span class="ko">도착</span><span class="en">Arrived</span></div>
-      <h3><span class="ko">막<br>도착했습니다</span><span class="en">I just<br>arrived</span></h3>
-      <p><span class="ko">아는 사람이 없어도 됩니다. 한 사람 이어 드립니다.</span><span class="en">No one to call? We connect you with one person.</span></p>
-      <div class="partner-cta-label"><span class="ko">이어 주세요 →</span><span class="en">Connect me →</span></div>
-    </a>
-    <a href="/open.html" class="partner-card partner-card partner-church">
-      <div class="partner-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32" aria-hidden="true"><path d="M13 4H6a1 1 0 0 0-1 1v15a1 1 0 0 0 1 1h7"/><path d="M13 3.5 19 6v12l-6 2.5z"/><path d="M15.6 12h.01"/></svg>
-      </div>
-      <div class="partner-type"><span class="ko">도움</span><span class="en">Help</span></div>
-      <h3><span class="ko">돕고<br>싶습니다</span><span class="en">I want<br>to help</span></h3>
-      <p><span class="ko">길 안내도, 밥 한 끼도 좋습니다. 하나면 됩니다.</span><span class="en">Directions, a meal. One thing is enough.</span></p>
-      <div class="partner-cta-label"><span class="ko">돕기 →</span><span class="en">Help →</span></div>
-    </a>
-    <a href="/open.html#vouch" class="partner-card partner-card partner-home">
-      <div class="partner-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32" aria-hidden="true"><path d="M9 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path d="M21 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path d="M9 12h6"/></svg>
-      </div>
-      <div class="partner-type"><span class="ko">추천</span><span class="en">Vouch</span></div>
-      <h3><span class="ko">아는 사람이<br>있습니다</span><span class="en">I know<br>someone</span></h3>
-      <p><span class="ko">이름 하나면 됩니다. 책임지시라는 뜻이 아닙니다.</span><span class="en">Just a name. Not a guarantee.</span></p>
-      <div class="partner-cta-label"><span class="ko">추천하기 →</span><span class="en">Vouch →</span></div>
-    </a>
-
-  </div>
-
-
-  <!-- 헤브론 이야기 — 관심 있는 분만 펼쳐 읽기 -->
-<details class="fold">
-  <summary><span class="ko">헤브론 이야기</span><span class="en">The Hebron story</span></summary>
-  <div class="about-story-wrap">
-    <button class="about-story-toggle" onclick="toggleAboutStory(this)" aria-expanded="false">
-      <span class="ko">헤브론 이야기</span>
-      <span class="en">Our Story</span>
-      <svg class="about-story-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-    <div class="about-story-body about-story-closed">
-
-      <div class="about-story-block">
-        <div class="about-story-label"><span class="ko">사명</span><span class="en">Mission</span></div>
-        <h3 class="about-story-h">
-          <span class="ko">낯선 도시, 이미 누군가 기다리고 있습니다</span>
-          <span class="en">In every new city, someone is already waiting for you</span>
-        </h3>
-        <p>
-          <span class="ko">공항 문이 열립니다. 아는 얼굴은 없습니다.<br>그런데 이 도시에도, 같은 문을 먼저 지나온 사람들이 있습니다.</span>
-          <span class="en">You walk out of the airport into a city where you know no one. But people who've walked that road before you are already prepared. HebronGuide makes that connection.</span>
-        </p>
-      </div>
-
-      <div class="about-story-block">
-        <div class="about-story-label"><span class="ko">이름의 뜻</span><span class="en">The Name</span></div>
-        <h3 class="about-story-h">
-          <span class="ko">헤브론(Hebron), 연합과 교제와 동반</span>
-          <span class="en">Hebron: union, fellowship, companion</span>
-        </h3>
-        <p>
-          <span class="ko">헤브론은 히브리어로 "연합, 교제, 동반자"를 뜻합니다 (חֶבְרוֹן). 낯선 땅에 먼저 와 살던 사람들이 뒤에 온 사람을 맞이하던 자리의 이름입니다. 우리는 새 도시에 도착한 누구나 그런 사람을 만나도록 돕습니다.</span>
-          <span class="en">Hebron (חֶבְרוֹן) means "union, fellowship, companion" in Hebrew — the name of a place where those who arrived first welcomed those who came after. We help anyone arriving in a new city find someone like that.</span>
-        </p>
-        <div class="about-story-verse">
-          <p class="ko">"낯선 사람이었던 나를, 당신이 맞아 주었습니다."</p>
-          <p class="en">"I was a stranger, and you welcomed me."</p>
-        </div>
-      </div>
-
-      <div class="about-story-block">
-        <div class="about-story-label"><span class="ko">비전</span><span class="en">Vision</span></div>
-        <h3 class="about-story-h">
-          <span class="ko">물어볼 사람이 생깁니다</span>
-          <span class="en">A guide you can trust</span>
-        </h3>
-        <p>
-          <span class="ko">낯선 도시에 도착한 한 사람의 밤에서 시작했습니다. HebronGuide는 <strong style="color:#fff;font-weight:700;">사람과 새 도시</strong>를, <strong style="color:#fff;font-weight:700;">사람과 교회</strong>를, <strong style="color:#fff;font-weight:700;">사람과 사업체</strong>를, 그리고 <strong style="color:#fff;font-weight:700;">사람과 사람</strong>을 잇습니다. 어디에 도착하든, 첫 밤이 혼자가 아니도록.</span>
-          <span class="en">It began with one person's night in an unfamiliar city. HebronGuide connects <strong style="color:#fff;font-weight:700;">people to a new city</strong>, <strong style="color:#fff;font-weight:700;">people to churches</strong>, <strong style="color:#fff;font-weight:700;">people to local businesses</strong>, and <strong style="color:#fff;font-weight:700;">people to people</strong> — so that wherever you arrive, your first night is never alone.</span>
-        </p>
-        <div class="about-story-stats">
-          <div><span class="about-stat-n"><span class="hg-city-count">81</span>+</span><span class="about-stat-l"><span class="ko">함께하는 도시</span><span class="en">Cities</span></span></div>
-          <div><span class="about-stat-n">4</span><span class="about-stat-l"><span class="ko">잇는 관계</span><span class="en">Connections</span></span></div>
-          <div><span class="about-stat-n">∞</span><span class="about-stat-l"><span class="ko">환대의 마음</span><span class="en">Heart of welcome</span></span></div>
-        </div>
-      </div>
-
-      <div class="about-story-block">
-        <div class="about-story-label"><span class="ko">운영사</span><span class="en">Operator</span></div>
-        <p style="font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.9;">
-          <span class="ko">HebronGuide는 HebronGuide가 운영합니다. 문의: <a href="mailto:Hebronplatform@gmail.com" style="color:var(--gold);text-decoration:none;">Hebronplatform@gmail.com</a></span>
-          <span class="en">HebronGuide is operated by HebronGuide. Contact: <a href="mailto:Hebronplatform@gmail.com" style="color:var(--gold);text-decoration:none;">Hebronplatform@gmail.com</a></span>
-        </p>
-      </div>
-
-    </div><!-- /about-story-body -->
-  </div>
-</details>
-</div>
-
-<style>
-.partner-section{max-width:900px;margin:0 auto;padding:64px 24px;}
-
-/* ━━━ 세 개의 문 (2026-09-23) ━━━━━━━━━━━━━━━━━━━━━━━━━
-   도착한 사람이 제일 먼저 보이게 첫 문만 금색으로 둔다.
-   카카오는 목록을 만들고 우리는 연결을 만든다 — 그 연결이 여기서 시작한다. */
-@media(min-width:900px){ .partner-grid.three-doors{grid-template-columns:repeat(3,1fr);} }
-.partner-card.door-first{border-color:rgba(201,162,39,.45);
-  background:linear-gradient(180deg,rgba(201,162,39,.09),rgba(201,162,39,.02));}
-.partner-card.door-first:hover{border-color:var(--gold);}
-.partner-card.door-first .partner-icon-wrap{color:var(--gold2);}
-.partner-card.door-first .partner-cta-label{color:var(--gold2);}
-.partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:40px 0 28px;}
-@media(max-width:640px){.partner-grid{grid-template-columns:1fr;}}
-.partner-card{display:block;text-decoration:none;border-radius:20px;padding:32px 28px;transition:transform .18s,box-shadow .18s;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);}
-.partner-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.4);}
-.partner-church{border-color:rgba(110,231,183,.25);}
-.partner-church:hover{border-color:rgba(110,231,183,.5);}
-.partner-biz{border-color:rgba(201,162,39,.25);}
-/* 가정 — 세 번째 문 (2026-09-21). 따뜻한 호박빛으로 교회(민트)·업체(금)와 구분 */
-.partner-home{border-color:rgba(255,159,10,.25);}
-.partner-home:hover{border-color:rgba(255,159,10,.5);}
-.partner-biz:hover{border-color:rgba(201,162,39,.5);}
-.partner-icon-wrap{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
-.partner-church .partner-icon-wrap{background:rgba(110,231,183,.12);color:var(--mint,#6EE7B7);}
-.partner-biz .partner-icon-wrap{background:rgba(201,162,39,.12);color:var(--gold,#C9A227);}
-.partner-home .partner-icon-wrap{background:rgba(255,159,10,.12);color:var(--warm,#FF9F0A);}
-.partner-type{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
-.partner-church .partner-type{color:var(--mint,#6EE7B7);}
-.partner-biz .partner-type{color:var(--gold,#C9A227);}
-.partner-home .partner-type{color:var(--warm,#FF9F0A);}
-.partner-card h3{font-size:1.2rem;font-weight:800;color:#fff;line-height:1.4;margin:0 0 12px;}
-.partner-card p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.7;margin:0 0 20px;}
-.partner-cta-label{font-size:.88rem;font-weight:700;color:#fff;}
-.partner-dna-line{text-align:center;font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.8;margin-top:0;}
-
-/* 헤브론 이야기 접기/펼치기 */
-.about-story-wrap{margin-top:32px;border-top:1px solid rgba(255,255,255,.08);padding-top:24px;}
-.about-story-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:14px;color:rgba(255,255,255,.6);cursor:pointer;padding:16px 22px;font-size:.88rem;font-weight:600;text-align:left;font-family:'Noto Sans KR',sans-serif;transition:background .2s,border-color .2s;}
-.about-story-toggle:hover{background:rgba(255,255,255,.06);border-color:rgba(201,162,39,.3);color:rgba(255,255,255,.85);}
-.about-story-toggle[aria-expanded="true"]{border-color:rgba(201,162,39,.35);color:#fff;}
-.about-story-arrow{flex-shrink:0;transition:transform .25s;color:rgba(255,255,255,.3);}
-.about-story-toggle[aria-expanded="true"] .about-story-arrow{transform:rotate(180deg);color:var(--gold,#C9A227);}
-.about-story-body{padding:28px 4px 8px;display:flex;flex-direction:column;gap:28px;}
-.about-story-body.about-story-closed{display:none;}
-.about-story-block{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:24px 22px;}
-.about-story-label{font-size:.65rem;font-weight:800;color:var(--gold,#C9A227);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;}
-.about-story-h{font-size:1.05rem;font-weight:800;color:#fff;margin:0 0 12px;line-height:1.4;}
-.about-story-block p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.85;margin:0;}
-.about-story-verse{margin-top:18px;padding:14px 18px;background:rgba(201,162,39,.06);border-left:3px solid var(--gold,#C9A227);border-radius:0 10px 10px 0;}
-.about-story-verse p{font-size:.92rem;color:rgba(255,255,255,.8);font-style:italic;margin:0 0 4px;}
-.about-story-verse cite{font-style:normal;font-size:.76rem;color:var(--gold,#C9A227);font-weight:700;}
-.about-story-stats{display:flex;gap:24px;margin-top:18px;flex-wrap:wrap;}
-.about-story-stats>div{display:flex;flex-direction:column;gap:4px;}
-.about-stat-n{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:900;color:var(--gold,#C9A227);line-height:1;}
-.about-stat-l{font-size:.7rem;color:rgba(255,255,255,.45);}
-</style>
-
-<div class="divider"></div>
-
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FAQ ━━━ -->
-<details class="fold">
-  <summary><span class="ko">자주 묻는 질문</span><span class="en">Frequently asked</span></summary>
-<div class="faq-section" id="faq">
-  <div class="sec-label">FAQ</div>
-  <h2 class="sec-title">
-    <span class="ko">자주 묻는 질문</span>
-    <span class="en">Frequently Asked Questions</span>
-  </h2>
-
-  <div class="faq-list">
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        <span><span class="ko">HebronGuide는 누구를 위한 서비스인가요?</span><span class="en">Who is HebronGuide for?</span></span>
-        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="faq-a">
-        <span class="ko">HebronGuide는 낯선 도시에 도착한 모든 이를 위한 글로벌 환대 플랫폼입니다. 식당·병원·법무사·교회 — 이 도시에서 필요한 모든 것을 찾을 수 있습니다. 환대는 당신에게 열려 있습니다.</span>
-        <span class="en">HebronGuide is the global hospitality platform for anyone who has just arrived in an unfamiliar city. Restaurants, clinics, legal services, churches — find everything you need here. Hospitality is open to you.</span>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        <span><span class="ko">교회·사업체 등록은 유료인가요?</span><span class="en">Is registration free for churches and businesses?</span></span>
-        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="faq-a">
-        <span class="ko">교회는 완전 무료입니다. 사업체는 기본 등재 무료, 프리미엄 노출은 선택 사항입니다.</span>
-        <span class="en">Church listing is completely free. Business basic listing is free; premium placement is optional.</span>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        <span><span class="ko">내가 사는 도시가 없으면 어떻게 하나요?</span><span class="en">What if my city isn't listed?</span></span>
-        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="faq-a">
-        <span class="ko">신청해 주시면 만들어 드립니다. 지금 <span class="hg-city-count">81</span>개 도시와 함께합니다.</span>
-        <span class="en">Request it and we'll build it. Walking with <span class="hg-city-count">81</span> cities today.</span>
-        <br><a href="/city-request.html" style="color:var(--gold,#C9A227);font-size:.85rem;text-decoration:none;display:inline-block;margin-top:8px;"><span class="ko">도시 추가 신청 →</span><span class="en">Request a city →</span></a>
-      </div>
-    </div>
-  </div>
-</div>
-</details>
-
-<style>
-.faq-section{max-width:720px;margin:0 auto;padding:64px 24px;}
-.faq-list{margin-top:36px;display:flex;flex-direction:column;gap:12px;}
-.faq-item{border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;}
-.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.04);border:none;color:#fff;cursor:pointer;padding:18px 22px;font-size:.95rem;font-weight:600;text-align:left;line-height:1.4;}
-.faq-q:hover{background:rgba(255,255,255,.07);}
-.faq-arrow{flex-shrink:0;transition:transform .2s;color:rgba(255,255,255,.4);}
-.faq-item.open .faq-arrow{transform:rotate(180deg);}
-.faq-a{display:none;padding:0 22px 18px;font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.8;}
-.faq-item.open .faq-a{display:block;}
-</style>
-<script>
-function toggleAboutStory(btn){
-  var body=btn.nextElementSibling;
-  var open=btn.getAttribute('aria-expanded')==='true';
-  btn.setAttribute('aria-expanded',open?'false':'true');
-  body.classList.toggle('about-story-closed',open);
-}
-function toggleFaq(btn){
-  var item=btn.closest('.faq-item');
-  var isOpen=item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open');});
-  if(!isOpen)item.classList.add('open');
-}
-</script>
-
-<div class="divider"></div>
-
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ RETREAT BANNER (7/18) ━━━ -->
-<div id="retreat-event-banner" style="padding:0 20px 12px;max-width:960px;margin:0 auto;">
-  <a href="https://ijiguchon.github.io/ShepherdsUnitedRetreat/" target="_blank" rel="noopener" style="display:block;text-decoration:none;">
-    <div style="background:linear-gradient(135deg,#16213E 0%,#2a1a2e 55%,#16213E 100%);
-      border:1px solid rgba(201,168,76,0.3);border-radius:18px;overflow:hidden;
-      box-shadow:0 4px 24px rgba(0,0,0,0.4);position:relative;">
-      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#8B0000,#C9A84C,#8B0000);"></div>
-      <div style="padding:18px 20px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-        <div style="flex-shrink:0;background:rgba(201,168,76,0.16);border:1px solid rgba(201,168,76,0.4);border-radius:10px;padding:8px 13px;text-align:center;min-width:54px;">
-          <div style="font-family:'Cinzel',serif;font-weight:900;font-size:1.25rem;color:#E8D48B;line-height:1;">JUL</div>
-          <div style="font-family:'Cinzel',serif;font-weight:900;font-size:1.5rem;color:#E8D48B;line-height:1.1;">18</div>
-        </div>
-        <div style="flex:1;min-width:180px;">
-          <div style="font-size:.65rem;font-weight:800;letter-spacing:.12em;color:rgba(232,212,139,0.75);text-transform:uppercase;margin-bottom:3px;">
-            시애틀지구촌교회 · 서북미 목자연합수련회
-          </div>
-          <div style="font-family:'Cinzel',serif;font-size:1.05rem;font-weight:900;color:#fff;line-height:1.25;margin-bottom:4px;">
-            리셋을 통한 회복 · Reset for Restoration
-          </div>
-          <div style="font-size:.78rem;color:rgba(255,255,255,0.65);">
-            7월 18일(토) 9AM–5PM · Lynnwood, WA — 서북미 가정교회 목자·목녀를 초청합니다
-          </div>
-        </div>
-        <div style="flex-shrink:0;background:rgba(201,168,76,0.9);color:#1A1A2E;font-size:.75rem;font-weight:800;
-          padding:9px 16px;border-radius:50px;white-space:nowrap;border:1px solid rgba(255,255,255,0.2);">
-          자세히 보기
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:-1px;margin-left:4px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-    </div>
-  </a>
-</div>
-<script>
-(function(){
-  var exp = new Date('2026-07-19T00:00:00-07:00');
-  if(Date.now() >= exp.getTime()){
-    var b = document.getElementById('retreat-event-banner');
-    if(b) b.style.display = 'none';
-  }
-})();
-</script>
-
-<div class="divider"></div>
-
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CITIES ━━━ -->
+  <div class="hg-drawer-more">
 <details class="fold">
   <summary><span class="ko">전 세계 81개+ 도시 보기</span><span class="en">Browse 81+ cities</span></summary>
 <div class="cities-section" id="cities">
@@ -1329,9 +899,6 @@ function toggleFaq(btn){
   </div>
 </div>
 </details>
-
-<div class="divider"></div>
-
 <footer>
   <!-- 바닥글 로고는 2026-09-21 뺐다 — 내비 로고가 화면에 붙어 있고(sticky),
        히어로 서명에도 로고가 있다. 한 화면에 세 번은 많다.
@@ -1359,6 +926,432 @@ function toggleFaq(btn){
   </div>
   <div class="footer-copy">© 2026 HebronGuide · Hebron Platform LLC · 무단 전재·복제 금지</div>
 </footer>
+  </div>
+  <div class="hg-drawer-legal">
+    <a href="/privacy.html"><span class="ko">개인정보</span><span class="en">Privacy</span></a><span>·</span>
+    <a href="/terms.html"><span class="ko">이용약관</span><span class="en">Terms</span></a>
+  </div>
+  <div class="hg-drawer-foot">
+    <span class="ko">어디에 도착하든, 첫 밤이 혼자가 아니도록.</span>
+    <span class="en">Wherever you land, so the first night isn't spent alone.</span>
+  </div>
+</aside>
+
+<div class="hg-fly-mark" id="hgFlyMark" aria-hidden="true">Hebron<em>Guide</em></div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO ━━━ -->
+<div class="hero">
+
+
+  <!-- 지구를 돌아 내려앉는 비행기, 걸어 나오는 사람,
+       그리고 이미 와서 기다리고 있던 사람. 둘이 만난다. (창 13:18) -->
+  <div class="hero-art">
+    <canvas class="hg-cv" aria-hidden="true"></canvas>
+    <svg class="hg-ov" viewBox="0 0 964 964" aria-hidden="true" focusable="false">
+      <defs>
+        <clipPath id="hgClip"><circle cx="482" cy="482" r="480"/></clipPath>
+        <linearGradient id="hgSheenG" x1="0" x2="1">
+          <stop offset="0"  stop-color="#fff"     stop-opacity="0"/>
+          <stop offset=".5" stop-color="#cfefff"  stop-opacity=".16"/>
+          <stop offset="1"  stop-color="#fff"     stop-opacity="0"/>
+        </linearGradient>
+        <radialGradient id="hgGlow">
+          <stop offset="86%"  stop-color="#8fdcf0" stop-opacity="0"/>
+          <stop offset="92%"  stop-color="#8fdcf0" stop-opacity=".3"/>
+          <stop offset="100%" stop-color="#8fdcf0" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="hgBloom">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity=".95"/>
+          <stop offset="18%"  stop-color="#FFE7B4" stop-opacity=".7"/>
+          <stop offset="50%"  stop-color="#F5C76E" stop-opacity=".2"/>
+          <stop offset="100%" stop-color="#F5C76E" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="hgSpark">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="1"/>
+          <stop offset="26%"  stop-color="#FFE0A0" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#F5C76E" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="hgWaitG">
+          <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="1"/>
+          <stop offset="28%"  stop-color="#FFF4DC" stop-opacity=".85"/>
+          <stop offset="100%" stop-color="#FFE7B4" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <circle cx="482" cy="482" r="542" fill="url(#hgGlow)"/>
+      <g clip-path="url(#hgClip)">
+        <rect class="hg-sheen" x="-964" y="0" width="964" height="964" fill="url(#hgSheenG)"/>
+      </g>
+      <circle class="hg-rim" cx="482" cy="482" r="480"/>
+
+      <!-- 여섯 도시 — 아래 단추와 같은 여섯. 실제 위·경도. 자리는 JS가 매 프레임 옮긴다 -->
+      <g class="hg-city" data-i="0">
+        <path class="hg-arc" pathLength="100"/>
+        <circle class="hg-bloom" r="130" fill="url(#hgBloom)"/>
+        <circle class="hg-ring"  r="15"/>
+        <circle class="hg-core"  r="13"/>
+        <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">시애틀</tspan><tspan class="en">Seattle</tspan></text></g>
+      </g>
+      <g class="hg-city" data-i="1">
+        <path class="hg-arc" pathLength="100"/>
+        <circle class="hg-bloom" r="130" fill="url(#hgBloom)"/>
+        <circle class="hg-ring"  r="15"/>
+        <circle class="hg-core"  r="13"/>
+        <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">LA</tspan><tspan class="en">Los Angeles</tspan></text></g>
+      </g>
+      <g class="hg-city" data-i="2">
+        <path class="hg-arc" pathLength="100"/>
+        <circle class="hg-bloom" r="130" fill="url(#hgBloom)"/>
+        <circle class="hg-ring"  r="15"/>
+        <circle class="hg-core"  r="13"/>
+        <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">뉴욕</tspan><tspan class="en">New York</tspan></text></g>
+      </g>
+      <g class="hg-city" data-i="3">
+        <path class="hg-arc" pathLength="100"/>
+        <circle class="hg-bloom" r="130" fill="url(#hgBloom)"/>
+        <circle class="hg-ring"  r="15"/>
+        <circle class="hg-core"  r="13"/>
+        <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">달라스</tspan><tspan class="en">Dallas</tspan></text></g>
+      </g>
+      <g class="hg-city" data-i="4">
+        <path class="hg-arc" pathLength="100"/>
+        <circle class="hg-bloom" r="130" fill="url(#hgBloom)"/>
+        <circle class="hg-ring"  r="15"/>
+        <circle class="hg-core"  r="13"/>
+        <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">토론토</tspan><tspan class="en">Toronto</tspan></text></g>
+      </g>
+      <g class="hg-city" data-i="5">
+        <path class="hg-arc" pathLength="100"/>
+        <circle class="hg-bloom" r="130" fill="url(#hgBloom)"/>
+        <circle class="hg-ring"  r="15"/>
+        <circle class="hg-core"  r="13"/>
+        <g class="hg-lb"><path class="hg-lead"/><text><tspan class="ko">서울</tspan><tspan class="en">Seoul</tspan></text></g>
+      </g>
+    </svg>
+  </div>
+
+  <a class="hero-resume hide" id="heroResume" href="#">
+    <span id="heroResumeText"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+
+
+  <h1 class="hero-quiet">HebronGuide — 글로벌 환대 플랫폼</h1>
+
+
+
+  <!-- 바로 이동하는 도시 검색 — 첫 화면에서 앱까지 한 번에 -->
+  <div class="hero-jump">
+    <div class="hj-box">
+      <svg class="hj-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="heroCity" type="text" autocomplete="off" aria-label="도시 이름을 입력하세요"
+             placeholder="어느 도시로 가시나요?"/>
+      <button type="button" id="heroMic" class="hj-mic hide" aria-label="말로 도시 찾기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/>
+        </svg>
+      </button>
+    </div>
+    <div id="heroCityList" class="hj-list" role="listbox" aria-label="검색된 도시"></div>
+    <div class="hj-quick">
+      <a href="/seattle/">시애틀</a><a href="/la/">LA</a><a href="/newyork/">뉴욕</a>
+      <a href="/dallas/">달라스</a><a href="/toronto/">토론토</a><a href="/seoul/">서울</a>
+    </div>
+  </div>
+
+
+
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n"><span class="hg-city-count">81</span><sup style="font-size:.9rem;">+</sup></div><div class="stat-l"><span class="ko">서비스 도시</span><span class="en">Cities</span></div></div>
+    <div class="stat"><div class="stat-n"><span class="hg-church-count">655</span></div><div class="stat-l"><span class="ko">등록 교회</span><span class="en">Churches</span></div></div>
+  </div>
+</div>
+
+<style>
+.partner-section{max-width:900px;margin:0 auto;padding:64px 24px;}
+
+/* ━━━ 세 개의 문 (2026-09-23) ━━━━━━━━━━━━━━━━━━━━━━━━━
+   도착한 사람이 제일 먼저 보이게 첫 문만 금색으로 둔다.
+   카카오는 목록을 만들고 우리는 연결을 만든다 — 그 연결이 여기서 시작한다. */
+@media(min-width:900px){ .partner-grid.three-doors{grid-template-columns:repeat(3,1fr);} }
+.partner-card.door-first{border-color:rgba(201,162,39,.45);
+  background:linear-gradient(180deg,rgba(201,162,39,.09),rgba(201,162,39,.02));}
+.partner-card.door-first:hover{border-color:var(--gold);}
+.partner-card.door-first .partner-icon-wrap{color:var(--gold2);}
+.partner-card.door-first .partner-cta-label{color:var(--gold2);}
+.partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:40px 0 28px;}
+@media(max-width:640px){.partner-grid{grid-template-columns:1fr;}}
+.partner-card{display:block;text-decoration:none;border-radius:20px;padding:32px 28px;transition:transform .18s,box-shadow .18s;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);}
+.partner-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.4);}
+.partner-church{border-color:rgba(110,231,183,.25);}
+.partner-church:hover{border-color:rgba(110,231,183,.5);}
+.partner-biz{border-color:rgba(201,162,39,.25);}
+/* 가정 — 세 번째 문 (2026-09-21). 따뜻한 호박빛으로 교회(민트)·업체(금)와 구분 */
+.partner-home{border-color:rgba(255,159,10,.25);}
+.partner-home:hover{border-color:rgba(255,159,10,.5);}
+.partner-biz:hover{border-color:rgba(201,162,39,.5);}
+.partner-icon-wrap{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+.partner-church .partner-icon-wrap{background:rgba(110,231,183,.12);color:var(--mint,#6EE7B7);}
+.partner-biz .partner-icon-wrap{background:rgba(201,162,39,.12);color:var(--gold,#C9A227);}
+.partner-home .partner-icon-wrap{background:rgba(255,159,10,.12);color:var(--warm,#FF9F0A);}
+.partner-type{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
+.partner-church .partner-type{color:var(--mint,#6EE7B7);}
+.partner-biz .partner-type{color:var(--gold,#C9A227);}
+.partner-home .partner-type{color:var(--warm,#FF9F0A);}
+.partner-card h3{font-size:1.2rem;font-weight:800;color:#fff;line-height:1.4;margin:0 0 12px;}
+.partner-card p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.7;margin:0 0 20px;}
+.partner-cta-label{font-size:.88rem;font-weight:700;color:#fff;}
+.partner-dna-line{text-align:center;font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.8;margin-top:0;}
+
+/* 헤브론 이야기 접기/펼치기 */
+.about-story-wrap{margin-top:32px;border-top:1px solid rgba(255,255,255,.08);padding-top:24px;}
+.about-story-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:14px;color:rgba(255,255,255,.6);cursor:pointer;padding:16px 22px;font-size:.88rem;font-weight:600;text-align:left;font-family:'Noto Sans KR',sans-serif;transition:background .2s,border-color .2s;}
+.about-story-toggle:hover{background:rgba(255,255,255,.06);border-color:rgba(201,162,39,.3);color:rgba(255,255,255,.85);}
+.about-story-toggle[aria-expanded="true"]{border-color:rgba(201,162,39,.35);color:#fff;}
+.about-story-arrow{flex-shrink:0;transition:transform .25s;color:rgba(255,255,255,.3);}
+.about-story-toggle[aria-expanded="true"] .about-story-arrow{transform:rotate(180deg);color:var(--gold,#C9A227);}
+.about-story-body{padding:28px 4px 8px;display:flex;flex-direction:column;gap:28px;}
+.about-story-body.about-story-closed{display:none;}
+.about-story-block{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:24px 22px;}
+.about-story-label{font-size:.65rem;font-weight:800;color:var(--gold,#C9A227);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;}
+.about-story-h{font-size:1.05rem;font-weight:800;color:#fff;margin:0 0 12px;line-height:1.4;}
+.about-story-block p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.85;margin:0;}
+.about-story-verse{margin-top:18px;padding:14px 18px;background:rgba(201,162,39,.06);border-left:3px solid var(--gold,#C9A227);border-radius:0 10px 10px 0;}
+.about-story-verse p{font-size:.92rem;color:rgba(255,255,255,.8);font-style:italic;margin:0 0 4px;}
+.about-story-verse cite{font-style:normal;font-size:.76rem;color:var(--gold,#C9A227);font-weight:700;}
+.about-story-stats{display:flex;gap:24px;margin-top:18px;flex-wrap:wrap;}
+.about-story-stats>div{display:flex;flex-direction:column;gap:4px;}
+.about-stat-n{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:900;color:var(--gold,#C9A227);line-height:1;}
+.about-stat-l{font-size:.7rem;color:rgba(255,255,255,.45);}
+</style>
+
+<style>
+.faq-section{max-width:720px;margin:0 auto;padding:64px 24px;}
+.faq-list{margin-top:36px;display:flex;flex-direction:column;gap:12px;}
+.faq-item{border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.04);border:none;color:#fff;cursor:pointer;padding:18px 22px;font-size:.95rem;font-weight:600;text-align:left;line-height:1.4;}
+.faq-q:hover{background:rgba(255,255,255,.07);}
+.faq-arrow{flex-shrink:0;transition:transform .2s;color:rgba(255,255,255,.4);}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-a{display:none;padding:0 22px 18px;font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.8;}
+.faq-item.open .faq-a{display:block;}
+
+/* ───────── 지구본 — 지구촌교회(ijiguchon.org) 히어로에서 가져옴 ─────────
+   실제 지구 텍스처를 구면에 입히고 빛을 계산해 캔버스에 그린다.
+   그 위에 HebronGuide 이야기를 얹는다 — 기다리는 빛, 오는 빛, 만나는 순간.  */
+.hero-art{position:relative;width:min(88vw,44svh);aspect-ratio:1;
+  margin:0 auto 22px;max-width:none;padding:0;}
+.hero-art .hg-cv,.hero-art .hg-ov{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.hero-art .hg-ov{overflow:visible;}
+.hg-rim{fill:none;stroke:#cdeeff;stroke-opacity:.45;stroke-width:3;}
+.hg-sheen{animation:hgSheen 14s ease-in-out infinite;}
+@keyframes hgSheen{0%,100%{transform:translateX(0);}50%{transform:translateX(1928px);}}
+
+/* 여섯 도시 — 앞면에 있으면 작게 켜져 있고, 차례가 오면 거기서 만난다.
+   빛은 바깥이 아니라 다른 도시에서 온다. (2026-09-24)                      */
+.hg-city{opacity:1;}
+
+.hg-arc{fill:none;stroke:#F2D08A;stroke-width:7;stroke-linecap:round;
+  stroke-dasharray:20 100;stroke-dashoffset:20;stroke-opacity:0;}
+.hg-city.on .hg-arc{animation:hgArc 4.2s cubic-bezier(.34,.04,.36,1) 1 both;}
+@keyframes hgArc{
+  0%   {stroke-dashoffset:20;  stroke-opacity:0;}
+  7%   {stroke-opacity:.92;}
+  44%  {stroke-dashoffset:-100;stroke-opacity:.92;}
+  54%  {stroke-dashoffset:-100;stroke-opacity:0;}
+  100% {stroke-dashoffset:-100;stroke-opacity:0;}}
+
+/* 심지 — 그 도시에 이미 있는 사람. 늘 작게 켜져 있다. */
+.hg-core{fill:#FFE3A3;stroke:#fff;stroke-width:3;opacity:.4;
+  transform-box:fill-box;transform-origin:center;transition:opacity .4s ease;}
+.hg-city.on .hg-core{animation:hgCore 4.2s ease-out 1 both;}
+@keyframes hgCore{
+  0%  {transform:scale(.55);opacity:.4;}
+  34% {transform:scale(.8); opacity:.6;}
+  46% {transform:scale(1.8);opacity:1;}
+  60% {transform:scale(1);  opacity:.95;}
+  100%{transform:scale(1);  opacity:.4;}}
+
+/* 만나는 순간 퍼지는 물결 */
+.hg-ring{fill:none;stroke:#7FE3D6;stroke-width:4.5;opacity:0;
+  transform-box:fill-box;transform-origin:center;}
+.hg-city.on .hg-ring{animation:hgRing 4.2s ease-out 1 both;}
+@keyframes hgRing{
+  0%,44%{transform:scale(1);opacity:0;}
+  49%   {opacity:.85;}
+  76%   {transform:scale(6);opacity:0;}
+  100%  {transform:scale(6);opacity:0;}}
+
+.hg-bloom{transform-box:fill-box;transform-origin:center;opacity:0;}
+.hg-city.on .hg-bloom{animation:hgBloomIn 4.2s cubic-bezier(.25,.9,.3,1) 1 both;}
+@keyframes hgBloomIn{
+  0%,42%{opacity:0;transform:scale(.1);}
+  54%   {opacity:1;transform:scale(.55);}
+  72%   {opacity:.6;transform:scale(.8);}
+  92%,100%{opacity:0;transform:scale(.9);}}
+
+/* 도시 이름 */
+.hg-lb{opacity:0;}
+.hg-city.on .hg-lb{animation:hgLb 4.2s ease-out 1 both;}
+@keyframes hgLb{0%,44%{opacity:0;}52%,88%{opacity:1;}100%{opacity:0;}}
+.hg-lb text{font-family:'Cinzel',Georgia,serif;font-size:56px;font-weight:700;
+  fill:#FFE9B8;paint-order:stroke;stroke:rgba(4,14,32,.8);stroke-width:9px;}
+.hg-lead{fill:none;stroke:#FFE9B8;stroke-width:3;stroke-dasharray:4 6;stroke-opacity:.7;}
+.hg-lb .en{display:none;}
+html[lang="en"] .hg-lb .ko{display:none;}
+html[lang="en"] .hg-lb .en{display:inline;}
+
+/* 공전 — 한자리에서만 돌지 않는다 */
+.hero-art{animation:hgOrbit 34s ease-in-out infinite;}
+@keyframes hgOrbit{
+  0%,100%{transform:translate(0,0)        scale(1);}
+  25%    {transform:translate(-9px,-7px)  scale(1.012);}
+  50%    {transform:translate(0,-11px)    scale(1.02);}
+  75%    {transform:translate(9px,-6px)   scale(1.012);}}
+
+/* 이름 — 두 빛이 만날 때 떠올랐다가, 위로 올라가 로고 옆에 붙는다 */
+.hg-fly-mark{position:fixed;left:50%;top:38svh;z-index:260;
+  transform:translate(-50%,-50%) scale(1.9);opacity:0;pointer-events:none;
+  font-family:'Cinzel',Georgia,serif;font-weight:700;letter-spacing:.03em;
+  font-size:1.5rem;color:#FFF6E4;text-shadow:0 0 28px rgba(245,199,110,.55);
+  white-space:nowrap;filter:blur(7px);}
+.hg-fly-mark em{font-style:italic;color:var(--gold2);}
+.hg-fly-mark.show{opacity:1;transform:translate(-50%,-50%) scale(1);filter:blur(0);
+  transition:opacity .7s ease,transform .9s cubic-bezier(.2,.8,.25,1),filter .7s ease;}
+.hg-fly-mark.dock{transition:transform 1s cubic-bezier(.62,.02,.2,1),opacity .35s ease .75s;}
+nav .nav-logo-text{opacity:0;transition:opacity .45s ease;}
+nav .nav-logo-text.landed{opacity:1;}
+@media(prefers-reduced-motion:reduce){
+  .hg-sheen,.hero-art{animation:none;}
+  .hg-city{opacity:1;}
+  .hg-arc{stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:.5;}
+  .hg-core{opacity:.95;transform:none;}
+  .hg-ring,.hg-bloom{opacity:0;}
+  .hg-lb{opacity:1;}
+  .hg-fly-mark{display:none;}
+  nav .nav-logo-text{opacity:1;}}
+
+/* 「더보기」 안으로 옮겨 온 것들 — 도시 목록 · 문장 · 공유 · 저작권 (2026-09-24) */
+.hg-drawer-more{margin:4px 0 2px;}
+.hg-drawer-more .cities-section,
+.hg-drawer-more footer{max-width:100%;margin:0;padding:14px 0 6px;text-align:center;}
+.hg-drawer-more .sec-label,
+.hg-drawer-more .sec-title,
+.hg-drawer-more .sec-desc,
+.hg-drawer-more .hg-map-wrap,
+.hg-drawer-more .btn-hero{display:none !important;}
+.hg-drawer-more details.fold > summary{padding:15px 4px;font-size:.92rem;}
+.hg-drawer-more .footer-soul{font-size:.8rem;line-height:1.8;opacity:.62;margin-bottom:14px;}
+.hg-drawer-more .footer-share-icons{gap:8px;}
+.hg-drawer-more .footer-copy{font-size:.72rem;opacity:.5;line-height:1.7;}
+
+/* 앱 화면 다듬기 — 같은 말을 두 번 놓지 않는다 (2026-09-24) */
+@media(max-width:640px){
+  /* 바로 아래에 검색창이 있다. 위 단추는 같은 말이다. */
+  nav .nav-cta{display:none !important;}
+  .hero .hero-jump{margin-top:2px;}
+  .hero .hj-quick{margin-top:12px;}
+}
+
+/* 이름은 그림 안에서 떠오른다 — 위에 또 쓰지 않는다 (2026-09-24) */
+@media(max-width:640px){
+  nav .nav-logo-mark{width:34px;height:34px;}
+  /* 도시 여섯 — 세 칸씩 두 줄로 가지런히 */
+  .hero .hj-quick{display:grid !important;grid-template-columns:repeat(3,1fr);gap:8px;
+    max-width:320px;margin-left:auto;margin-right:auto;}
+  .hero .hj-quick a{width:auto;text-align:center;}
+}
+
+/* 검색 칸을 줄인다 — 앱의 검색은 작고 단단하다 (2026-09-24) */
+@media(max-width:640px){
+  .hero .hero-jump{max-width:330px;margin-left:auto;margin-right:auto;}
+  .hero .hj-box{padding:7px 8px 7px 14px !important;gap:8px;border-radius:999px;}
+  .hero .hj-box input{font-size:.92rem;padding:0;}
+  .hero .hj-ico{width:17px;height:17px;}
+  .hero .hj-mic{width:32px;height:32px;}
+  .hero .hj-mic svg{width:15px;height:15px;}
+  .hero .hj-quick a{font-size:.82rem;padding:9px 6px;min-height:40px;
+    display:flex;align-items:center;justify-content:center;}
+}
+
+/* ───────── 앱 껍데기 (2026-09-24) — 이 블록이 마지막이라 항상 이긴다 ───────── */
+
+/* 글은 지우되 검색과 낭독기에는 남긴다 */
+.hero-quiet{position:absolute !important;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+
+/* 배경 — 두 색만 */
+.hero{background:
+   radial-gradient(460px 340px at 50% 34%, rgba(245,199,110,.11) 0%, rgba(245,199,110,0) 72%),
+   linear-gradient(180deg, #060B14 0%, #091020 52%, #0B1324 100%) !important;}
+
+@media(max-width:640px){
+  /* 위 내비는 로고와 메뉴만, 배경 없이 */
+  nav{background:transparent !important;border-bottom:0 !important;
+      -webkit-backdrop-filter:none !important;backdrop-filter:none !important;}
+  nav .nav-cta{display:none !important;}   /* 바로 아래가 검색창이다 — 같은 말 */
+
+  /* 한 화면에 꽉 */
+  .hero{position:relative;overflow:hidden;min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:8px 20px 116px !important;}
+  .hero-art{width:min(92vw,46svh);margin:0 auto 26px;}
+
+  /* 탭 넷 — 앱은 아래다. 띠가 아니라 떠 있는 캡슐. */
+  .hg-tabs{display:flex !important;gap:2px;position:fixed !important;
+    top:auto !important;bottom:calc(14px + env(safe-area-inset-bottom)) !important;
+    left:50% !important;right:auto !important;transform:translateX(-50%);
+    width:auto !important;max-width:calc(100% - 28px);
+    padding:6px 8px !important;border-radius:999px !important;
+    background:rgba(13,21,36,.8) !important;border:1px solid rgba(245,199,110,.18) !important;
+    box-shadow:0 14px 38px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.04) inset !important;
+    -webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+    animation:hgFloat 7s ease-in-out infinite;}
+  .hg-tabs a,.hg-tabs button{flex:1 1 auto;min-width:66px;gap:3px !important;
+    padding:8px 10px !important;border-radius:999px !important;border:0 !important;}
+  .hg-tabs a .ko,.hg-tabs a .en,
+  .hg-tabs button .ko,.hg-tabs button .en{font-size:.7rem;}
+  .hg-tabs a svg,.hg-tabs button svg{width:18px;height:18px;}
+  body{padding-bottom:0 !important;}
+}
+@keyframes hgFloat{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,-5px);}}
+@media(prefers-reduced-motion:reduce){.hg-tabs{animation:none;}}
+
+/* 「더보기」가 길어졌다 — 붙어 있던 링크 줄을 풀어 준다 (2026-09-24) */
+/* 드로어 메뉴도 <nav> 라서 맨 위 nav{height:56px;position:sticky} 규칙을 같이 맞았다.
+   그래서 링크가 겹쳐 보였다. 여기서 풀어 준다. */
+.hg-drawer-links{position:static !important;height:auto !important;
+  padding:0 !important;background:none !important;border:0 !important;
+  -webkit-backdrop-filter:none !important;backdrop-filter:none !important;
+  display:flex !important;flex-direction:column;align-items:stretch;justify-content:flex-start;}
+.hg-drawer-more{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);}
+.hg-drawer-more details.fold{border:0;}
+.hg-drawer-more footer{padding-top:4px !important;}
+
+/* 드로어 아래쪽 안내 글은 작게 — 읽을 사람만 읽으면 되는 줄들 (2026-09-24) */
+.hg-drawer-more .footer-soul{font-size:.72rem !important;line-height:1.75;opacity:.5;}
+.hg-drawer-more a[href^="mailto:"]{font-size:.72rem !important;opacity:.75;}
+.hg-drawer-more .footer-copy{font-size:.65rem !important;opacity:.42;line-height:1.7;}
+.hg-drawer-more .footer-share-icons button{width:32px;height:32px;}
+.hg-drawer-more .footer-share-icons svg{width:15px;height:15px;}
+.hg-drawer-legal{font-size:.68rem !important;opacity:.6;}
+.hg-drawer-foot{font-size:.66rem !important;opacity:.45;}
+</style>
+<script>
+function toggleAboutStory(btn){
+  var body=btn.nextElementSibling;
+  var open=btn.getAttribute('aria-expanded')==='true';
+  btn.setAttribute('aria-expanded',open?'false':'true');
+  body.classList.toggle('about-story-closed',open);
+}
+function toggleFaq(btn){
+  var item=btn.closest('.faq-item');
+  var isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open');});
+  if(!isOpen)item.classList.add('open');
+}
+</script>
+
 <script>
 (function(){
   var SITE = 'https://hebronguide.com/';
@@ -1775,21 +1768,6 @@ if(inp){
   };
 })();
 </script>
-<script>
-/* 문을 누르면 검색창으로 — 문을 열려면 도시 이름을 말해야 한다 */
-(function(){
-  var door = document.getElementById('heroDoor');
-  var box  = document.getElementById('heroCity');
-  if (!door || !box) return;
-  door.addEventListener('click', function(){
-    door.classList.add('is-open');
-    var still = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-    setTimeout(function(){
-      box.focus(); box.scrollIntoView({ behavior:'smooth', block:'center' });
-    }, still ? 0 : 440);
-  });
-})();
-</script>
 
 <!-- 하단 탭바 — 폰에서만. 엄지가 닿는 자리에 자주 쓰는 넷 (2026-09-24) -->
 <nav class="hg-tabs" id="hgTabs" aria-label="바로 가기">
@@ -1798,7 +1776,7 @@ if(inp){
     <span class="ko">도시</span><span class="en">City</span>
   </a>
   <a href="/arrive.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M6 21V9l6-5 6 5v12"/><path d="M10 21v-6h4v6"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>
     <span class="ko">도착</span><span class="en">Arrived</span>
   </a>
   <a href="/open.html">
@@ -1823,6 +1801,228 @@ if(inp){
   txt.textContent = ko ? (last.name + ' 이어 보기') : ('Continue to ' + last.name);
   bar.setAttribute('href', last.href);
   bar.classList.remove('hide');
+})();
+</script>
+
+
+<script>
+/* 지구본 — 지구촌교회 히어로에서 옮겨 옴 (원본 NanuriWeb 제작, 2026-09-24) */
+(function hgEarth(){
+  var cv = document.querySelector('.hero-art .hg-cv');
+  if (!cv || !cv.getContext) return;
+  var N = innerWidth < 600 ? 520 : 720;
+  cv.width = cv.height = N;
+  var ctx = cv.getContext('2d');
+  var LAT0 = 22 * Math.PI / 180, LON0 = -100, SPIN = 2600, DEG = 0.0135;  // 약 27초에 한 바퀴
+
+  var img = new Image();
+  img.onerror = function(){ if (/webp$/.test(img.src)) img.src = '/earth-tex.jpg'; };
+  img.onload = function(){
+    var tw = img.width, th = img.height / 2;
+    var tc = document.createElement('canvas'); tc.width = tw; tc.height = th * 2;
+    var tx = tc.getContext('2d'); tx.drawImage(img, 0, 0);
+    var T = tx.getImageData(0, 0, tw, th * 2).data;
+
+    var out = ctx.createImageData(N, N), O = out.data;
+    var R = N / 2 * 0.9959, c0 = N / 2, cl = Math.cos(LAT0), sl = Math.sin(LAT0);
+    var cap = Math.ceil(N * N * 0.8), cnt = 0;
+    var pix = new Int32Array(cap), row = new Int32Array(cap);
+    var lonU = new Float32Array(cap), wd = new Float32Array(cap);
+    var sh = new Float32Array(cap), at = new Float32Array(cap);
+    var Lx = -0.72, Ly = 0.32, Lz = 0.62;
+    var ln = Math.sqrt(Lx*Lx + Ly*Ly + Lz*Lz); Lx /= ln; Ly /= ln; Lz /= ln;
+
+    for (var y = 0; y < N; y++) for (var x = 0; x < N; x++) {
+      var dx = (x - c0) / R, dy = (y - c0) / R, d2 = dx*dx + dy*dy;
+      if (d2 > 1 || cnt >= cap) continue;
+      var nz = Math.sqrt(1 - d2), nx = dx, ny = -dy;
+      var lat = Math.asin(ny*cl + nz*sl);
+      var lon = Math.atan2(nx, nz*cl - ny*sl);
+      var v = Math.min(th - 1, Math.max(0, ((Math.PI/2 - lat) / Math.PI * th) | 0));
+      var dd = nx*Lx + ny*Ly + nz*Lz;
+      var w = Math.min(1, Math.max(0, (dd + 0.08) / 0.34)); w = w*w*(3 - 2*w);
+      pix[cnt] = (y*N + x) * 4; row[cnt] = v * tw; lonU[cnt] = lon / (2*Math.PI) * tw;
+      wd[cnt] = w; sh[cnt] = 0.5 + 0.42*Math.max(0, dd); at[cnt] = Math.pow(1 - nz, 2.4);
+      cnt++;
+    }
+
+    var last = null;
+    function draw(lon0){
+      lon0 = Math.round(lon0 * 2) / 2;          // 0.5도 단위 — 필요 없는 다시 칠하기를 막는다
+      if (lon0 === last) return; last = lon0;
+      var off = ((lon0 + 180) / 360 * tw) % tw; if (off < 0) off += tw;
+      var nt = th * tw * 4;
+      for (var i = 0; i < cnt; i++) {
+        var u = (lonU[i] + off) | 0; u %= tw; if (u < 0) u += tw;
+        var ti = (row[i] + u) * 4, ni = ti + nt;
+        var w = wd[i], k = sh[i]*w, m = 1 - w, a = at[i], o = pix[i];
+        O[o]   = T[ti]   * k + T[ni]   * m +  70 * a;
+        O[o+1] = T[ti+1] * k + T[ni+1] * m + 150 * a;
+        O[o+2] = T[ti+2] * k + T[ni+2] * m + 255 * a;
+        O[o+3] = 255;
+      }
+      ctx.putImageData(out, 0, 0);
+    }
+
+    draw(LON0);
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var t0 = performance.now(), live = true;
+    function tick(now){
+      if (!live) return;
+      var e = now - t0, q, spin;
+      if (e < SPIN) { q = 1 - e / SPIN; spin = LON0 + 900 * q * q * q; }
+      else          { spin = LON0 - (e - SPIN) * DEG; }
+      draw(spin);
+      if (window.hgPaint) hgPaint(spin, now);   // 도시도 같은 자전각으로
+      requestAnimationFrame(tick);
+    }
+    if (window.IntersectionObserver) {
+      new IntersectionObserver(function(es){
+        var on = es[0].isIntersecting;
+        if (on && !live) { live = true; requestAnimationFrame(tick); } else { live = on; }
+      }).observe(cv);
+    }
+    requestAnimationFrame(tick);
+  };
+  img.src = '/earth-tex.webp';
+})();
+
+/* 이름 — 두 빛이 만날 때 떠올랐다가, 위로 올라가 로고 옆에 가서 붙는다. 한 번만. */
+(function hgNameFlight(){
+  var mark = document.getElementById('hgFlyMark');
+  var seat = document.querySelector('nav .nav-logo-text');
+  if (!mark || !seat) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    seat.classList.add('landed'); mark.remove(); return;
+  }
+  var word = seat.querySelector('.nav-logo-word') || seat;
+
+  setTimeout(function(){ mark.classList.add('show'); }, 2500);   // 둘이 만나는 그때
+
+  setTimeout(function(){
+    var from = mark.getBoundingClientRect(), to = word.getBoundingClientRect();
+    if (!to.width) { seat.classList.add('landed'); mark.remove(); return; }
+    var s  = to.width / from.width;
+    var dx = (to.left + to.width/2)  - (from.left + from.width/2);
+    var dy = (to.top  + to.height/2) - (from.top  + from.height/2);
+    mark.classList.add('dock');
+    mark.style.transform = 'translate(-50%,-50%) translate(' + dx + 'px,' + dy + 'px) scale(' + s + ')';
+    mark.style.opacity = '0';
+    setTimeout(function(){ seat.classList.add('landed'); }, 820);
+    setTimeout(function(){ mark.remove(); }, 1500);
+  }, 4600);
+})();
+</script>
+
+<script>
+/* 시애틀 · LA · 서울 — 지구가 돌아도 제자리에 (2026-09-24) */
+(function hgCities(){
+  var ov = document.querySelector('.hero-art .hg-ov');
+  if (!ov) return;
+  var groups = [].slice.call(ov.querySelectorAll('.hg-city'));
+
+  var C = 482, R = 480, LAT0 = 22 * Math.PI / 180;
+  var cl = Math.cos(LAT0), sl = Math.sin(LAT0), RAD = Math.PI / 180;
+
+  var CITY = [
+    { lat:  47.61, lon: -122.33 },   // 시애틀
+    { lat:  34.05, lon: -118.24 },   // LA
+    { lat:  40.71, lon:  -74.01 },   // 뉴욕
+    { lat:  32.78, lon:  -96.80 },   // 달라스
+    { lat:  43.65, lon:  -79.38 },   // 토론토
+    { lat:  37.57, lon:  126.98 },   // 서울
+  ];
+
+  /* 한 바퀴: 서울 → 시애틀 → 달라스 → 토론토 → 뉴욕 → LA → 서울 */
+  var ROUTE = [[5,0],[0,3],[3,4],[4,2],[2,1],[1,5]];
+
+  if (groups.length < CITY.length) return;
+
+  var parts = groups.map(function(g){
+    return {
+      g: g,
+      arc:   g.querySelector('.hg-arc'),
+      bloom: g.querySelector('.hg-bloom'),
+      ring:  g.querySelector('.hg-ring'),
+      core:  g.querySelector('.hg-core'),
+      lb:    g.querySelector('.hg-lb'),
+      lead:  g.querySelector('.hg-lead'),
+      text:  g.querySelector('text'),
+      on:    false,
+      until: 0
+    };
+  });
+
+  /* 위·경도 + 현재 자전각 → 화면 자리. nz>0 이면 앞면. */
+  function place(lat, lon, spin){
+    var la = lat * RAD, lo = (lon - spin) * RAD;
+    var ca = Math.cos(la);
+    var nx = ca * Math.sin(lo), A = ca * Math.cos(lo), B = Math.sin(la);
+    var ny = B * cl - A * sl, nz = B * sl + A * cl;
+    return { x: C + nx * R, y: C - ny * R, z: nz };
+  }
+
+  var ri = 0, next = 0;
+  window.hgPaint = function(spin, now){
+    for (var k = 0; k < CITY.length; k++) {
+      var p = parts[k], q = place(CITY[k].lat, CITY[k].lon, spin);
+
+      if (q.z <= 0.06) {                       // 지구 뒤로 넘어갔다
+        if (p.on) { p.g.classList.remove('on'); p.on = false; }
+        p.g.style.visibility = 'hidden';
+        continue;
+      }
+      p.g.style.visibility = '';
+
+      var x = q.x, y = q.y;
+      p.bloom.setAttribute('cx', x); p.bloom.setAttribute('cy', y);
+      p.ring .setAttribute('cx', x); p.ring .setAttribute('cy', y);
+      p.core .setAttribute('cx', x); p.core .setAttribute('cy', y);
+
+      /* 이름표는 바깥쪽으로 뺀다 */
+      var right = x < C;                 // 가운데를 향해 눕혀야 화면 밖으로 안 나간다
+      if (x < 240) right = true; else if (x > 724) right = false;
+      var lx = x + (right ? 118 : -118), ly = y - 88;
+      if (ly < 70) ly = y + 96;
+      p.lead.setAttribute('d', 'M ' + x.toFixed(0) + ' ' + y.toFixed(0) +
+                               ' L ' + lx.toFixed(0) + ' ' + ly.toFixed(0));
+      p.text.setAttribute('x', (lx + (right ? 18 : -18)).toFixed(0));
+      p.text.setAttribute('y', (ly + 19).toFixed(0));
+      p.text.setAttribute('text-anchor', right ? 'start' : 'end');
+
+      p.x = x; p.y = y; p.z = q.z;
+
+      p.g.style.opacity = Math.min(1, (q.z - 0.06) / 0.3).toFixed(2);
+    }
+
+    /* 길 — 떠나는 도시에서 닿는 도시로 */
+    var r = ROUTE[ri % ROUTE.length], A = parts[r[0]], B = parts[r[1]];
+    if (B.on) {
+      arcTo(A, B);
+    } else if (now > next && B.z > 0.55 && A.z > 0.12) {
+      arcTo(A, B);
+      B.on = true; B.until = now + 4200; next = now + 4900; ri++;
+      B.g.classList.remove('on'); void B.g.offsetWidth; B.g.classList.add('on');
+    }
+    for (var m = 0; m < parts.length; m++) {
+      var pp = parts[m];
+      if (pp.on && now > pp.until) { pp.on = false; pp.g.classList.remove('on'); }
+    }
+  }
+
+  /* 두 도시를 잇는 호 — 지구 바깥으로 살짝 부풀린다 */
+  function arcTo(A, B){
+    var mx = (A.x + B.x) / 2, my = (A.y + B.y) / 2;
+    var dx = B.x - A.x, dy = B.y - A.y;
+    var dist = Math.sqrt(dx*dx + dy*dy) || 1;
+    var ox = mx - C, oy = my - C, on = Math.sqrt(ox*ox + oy*oy);
+    if (on < 1) { ox = -dy; oy = dx; on = dist; }
+    var bulge = 0.42 * dist;
+    B.arc.setAttribute('d', 'M ' + A.x.toFixed(0) + ' ' + A.y.toFixed(0) +
+      ' Q ' + (mx + ox/on*bulge).toFixed(0) + ' ' + (my + oy/on*bulge).toFixed(0) +
+      ' ' + B.x.toFixed(0) + ' ' + B.y.toFixed(0));
+  }
 })();
 </script>
 </body>

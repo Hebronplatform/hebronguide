@@ -47,6 +47,7 @@ cp manifest.json public/manifest.json
 cp roadmap.json  public/roadmap.json  2>/dev/null || true
 cp hebronguide/dist/hebronguide-logo.svg public/hebronguide-logo.svg
 cp present.html  public/present.html    2>/dev/null || true   # 발표 슬라이드 뷰어(자체완결형, 루트 1회 복사)
+cp earth-tex.webp public/earth-tex.webp             # 히어로 지구본 텍스처 (낮면+밤면 한 장)
 
 # 3. 도시별 메타데이터 정의 (한국어명·영어명·주/지역)
 declare -A CITY_KO=(
