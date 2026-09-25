@@ -816,6 +816,7 @@ import {
   Globe,
   RefreshCw,
   MessageCircle,
+  ChevronRight,
   MapPin,
   Utensils,
   LifeBuoy,
@@ -8514,6 +8515,18 @@ function ComingSoonCard({ lang, accentColor }: { lang: string; accentColor?: str
 }
 
 function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: string; accentColor: string }) {
+  const cityCfg = useCityConfig();
+  // 주소가 없다고 지도를 못 여는 건 아니다 — 이름과 도시면 구글이 찾아 준다
+  const placeOf = (it: Top5Item) =>
+    it.address || `${lang === "ko" ? it.nameKo : it.nameEn} ${cityCfg.nameEn}`;
+  // 하루 동선 — 목록 순서대로 이어 붙인다 (구글은 9곳까지 받는다)
+  const routeUrl = (() => {
+    const stops = items.slice(0, 9).map(placeOf).map(encodeURIComponent);
+    if (stops.length < 2) return "";
+    const dest = stops[stops.length - 1];
+    const way = stops.slice(0, -1).join("%7C");
+    return `https://www.google.com/maps/dir/?api=1&destination=${dest}&waypoints=${way}`;
+  })();
   if (!items || items.length === 0) return <ComingSoonCard lang={lang} accentColor={accentColor} />;
   return (
     <div style={{ marginBottom: 24 }}>
@@ -8522,6 +8535,18 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
         <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 15, color: "#ECFDF5" }}>
           {lang === "ko" ? "TOP 10 베스트 — 검증된 추천" : "TOP 10 Best — Verified Picks"}
         </span>
+        {routeUrl && (
+          <a href={routeUrl} target="_blank" rel="noopener noreferrer"
+            style={{ marginLeft: "auto", display: "inline-flex", alignItems: "center", gap: 4,
+              textDecoration: "none", background: `${accentColor}1F`,
+              border: `1px solid ${accentColor}44`, borderRadius: 20, padding: "5px 11px", minHeight: 32 }}>
+            <MapPin size={12} strokeWidth={2.2} color={accentColor} />
+            <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 11,
+              fontWeight: 700, color: accentColor }}>
+              {lang === "ko" ? "지도에서 코스 보기" : "See the route"}
+            </span>
+          </a>
+        )}
       </div>
       <div
         style={{ display: "flex", gap: 10, overflowX: "auto", paddingLeft: 16, paddingRight: 16, scrollbarWidth: "none" }}
@@ -8570,8 +8595,8 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
             {/* 링크 버튼 행 */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginTop: 6 }}>
               {/* Google Maps */}
-              {item.address && (
-                <a href={`https://maps.google.com/?q=${encodeURIComponent(item.address)}`}
+              {(
+                <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(placeOf(item))}`}
                   target="_blank" rel="noopener noreferrer"
                   style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
                     background: `${accentColor}18`, border: `1px solid ${accentColor}33`, borderRadius: 20, padding: "3px 8px" }}>
@@ -9466,6 +9491,73 @@ const QUICK_MENU = [
   { icon: "receipt",       labelKo: "세금신고",  labelEn: "Taxes",    color: "#F97316", tab: 8,  subTab: 4 },
   { icon: "shopping-bag",  labelKo: "헤브론 스토어", labelEn: "Store", color: "#F2994A", tab: 10, subTab: 0 },
 ];
+
+/* ─────────────────────────────────────────
+   COMPONENT: NextStep — 화면 끝에서 다음 걸음으로
+   여정을 끊지 않는다. 보고 나면 되돌아 나오지 않아도 된다.
+───────────────────────────────────────── */
+function NextStep({ at, lang, onNavigate, onHome }: {
+  at: number; lang: string;
+  onNavigate: (tab: number, subTab?: number) => void;
+  onHome: () => void;
+}) {
+  const ko = lang === "ko";
+  const next = at >= 0 && at + 1 < QUICK_MENU.length ? QUICK_MENU[at + 1] : null;
+  const NextIcon = next ? QM_ICON_MAP[next.icon] : null;
+  const help = QUICK_MENU[7];                       // 도움 — 언제든 닿아야 한다
+  const HelpIcon = QM_ICON_MAP[help.icon];
+  const showHelp = at !== 7;
+
+  const row = (item: typeof QUICK_MENU[0], Icon: any, headKo: string, headEn: string,
+               onClick: () => void, strong: boolean) => (
+    <button onClick={onClick} style={{
+      width: "100%", display: "flex", alignItems: "center", gap: 12,
+      background: strong ? `${item.color}1A` : "rgba(255,255,255,0.04)",
+      border: `1px solid ${strong ? item.color + "4D" : "rgba(255,255,255,0.09)"}`,
+      borderRadius: 16, padding: "14px 16px", minHeight: 64, cursor: "pointer",
+      textAlign: "left", WebkitTapHighlightColor: "transparent",
+    }}>
+      <div style={{
+        width: 40, height: 40, borderRadius: 12, background: item.color, flexShrink: 0,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        boxShadow: `0 4px 12px ${item.color}55`,
+      }}>
+        {Icon && <Icon size={20} color="#fff" strokeWidth={1.9} />}
+      </div>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 11,
+          color: "rgba(236,253,245,0.45)", marginBottom: 2 }}>
+          {ko ? headKo : headEn}
+        </div>
+        <div style={{ fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 15,
+          color: "#ECFDF5", letterSpacing: "-0.2px" }}>
+          {ko ? item.labelKo : item.labelEn}
+        </div>
+      </div>
+      <ChevronRight size={18} color={strong ? item.color : "rgba(236,253,245,0.35)"} strokeWidth={2.2} />
+    </button>
+  );
+
+  return (
+    <div style={{ padding: "22px 16px 8px", display: "flex", flexDirection: "column", gap: 10 }}>
+      <div style={{ height: 1, background: "rgba(255,255,255,0.07)", marginBottom: 8 }} />
+      {next
+        ? row(next, NextIcon, "이 다음에는", "Up next", () => onNavigate(next.tab, next.subTab), true)
+        : (
+          <button onClick={onHome} style={{
+            width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+            background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
+            borderRadius: 16, padding: "16px", minHeight: 56, cursor: "pointer",
+            fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 14, color: "#ECFDF5",
+          }}>
+            {ko ? "처음으로 돌아가기" : "Back to start"}
+          </button>
+        )}
+      {showHelp && row(help, HelpIcon, "언제든", "Anytime",
+        () => onNavigate(help.tab, help.subTab), false)}
+    </div>
+  );
+}
 
 /* ─────────────────────────────────────────
    홈 화면 서비스 광고 섹션
@@ -31207,6 +31299,15 @@ export function HebronGuide() {
   const [costNavKey, setCostNavKey] = useState(0); // 탭 이동 시 CostScreen 강제 리마운트용
   // QuickMenu → 도움 탭 진입 여부 추적 (true = 서브탭바 숨김)
   const [helpFromQuickMenu, setHelpFromQuickMenu] = useState(false);
+  // 여정에서 지금 어디쯤인지 (QUICK_MENU 자리). -1 이면 여정 밖.
+  const [journeyAt, setJourneyAt] = useState(-1);
+
+  const markJourney = (tab: number, subTab?: number) => {
+    let i = -1;
+    if (subTab !== undefined) i = QUICK_MENU.findIndex(q => q.tab === tab && q.subTab === subTab);
+    if (i < 0) i = QUICK_MENU.findIndex(q => q.tab === tab);
+    setJourneyAt(i);
+  };
 
   const handleNavigate = (tab: number, subTab?: number) => {
     const maxTab = 13; // +한인 업소(12)·지원기관(13) 사이드바 접근 활성화 // 홈·정착·교회·맛집·탐방·도움·취업·교육·생활비·사람연결·스토어·공항도착
@@ -31222,6 +31323,7 @@ export function HebronGuide() {
         setCostNavKey(k => k + 1); // 같은 subTab 재진입도 즉시 반영
       }
       setActiveNav(tab);
+      markJourney(tab, subTab);
     }
   };
 
@@ -31748,6 +31850,11 @@ export function HebronGuide() {
 
         <main className="flex-1 overflow-y-auto" style={{ paddingBottom: 72, paddingTop: showBanner ? 72 : 0 }}>
           {screens[Math.min(activeNav, screens.length - 1)]}
+          {/* 여정을 끊지 않는다 — 보고 나면 되돌아 나오지 않아도 된다 */}
+          {activeNav !== 0 && (
+            <NextStep at={journeyAt} lang={lang}
+              onNavigate={handleNavigate} onHome={() => setActiveNav(0)} />
+          )}
         </main>
 
         {/* 오프라인 배너 */}
@@ -31772,6 +31879,7 @@ export function HebronGuide() {
             // 탭바 직접 클릭 = 의도적 탐색 → 도움 탭은 전체 서브탭 노출
             if (i === 5) setHelpFromQuickMenu(false);
             setActiveNav(i);
+            markJourney(i, subTab);
           }}
           onSearchToggle={handleSearchToggle}
           onShareToggle={() => setShowChat(prev => !prev)}

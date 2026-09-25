@@ -79,7 +79,6 @@
   }
   @media(max-width:640px){
     .nav-links{display:none;}
-    .nav-actions .lang-btn{display:none;}  /* 서랍 안에 그대로 있다 */
     .nav-cta .cta-arw{display:none;}    /* 폰에서는 화살표가 소음이다 */
     .nav-actions{gap:9px;}
     .nav-cta{font-weight:700;font-size:.82rem;letter-spacing:-.012em;
@@ -913,7 +912,7 @@ details.fold .about-story-wrap{padding-top:0 !important;}
        로고가 위에 서면 아래 문장이 회사 표어처럼 읽힌다. 이름은 저작권 줄에 남는다. -->
   <div class="footer-share">
     <div class="footer-soul">
-      <span class="ko">"이 세상 어느 누구도, 소외되고 외롭고 고독함을 느끼지 않아야 합니다.<br>어떤 도시에서도. 어느 누구도."</span>
+      <span class="ko">"이 세상 어느 누구도, 소외되고 외롭고 고독함을 느끼지 않아야 합니다.<br>어느 도시에서도. 어느 누구도."</span>
       <span class="en">"No one in this world should ever feel isolated, lonely, or forgotten.<br>In any city. For anyone."</span>
     </div>
     <div class="footer-share-icons">
@@ -958,7 +957,7 @@ details.fold .about-story-wrap{padding-top:0 !important;}
       <span class="cl l1"><span class="ko">이 세상 어느 누구도,</span><span class="en">No one in this world</span></span>
       <span class="cl l2"><span class="ko">소외되고 외롭고 고독함을</span><span class="en">should ever feel isolated,</span></span>
       <span class="cl l3"><span class="ko">느끼지 않아야 합니다.</span><span class="en">lonely, or forgotten.</span></span>
-      <span class="cl l4 hit"><span class="ko">어떤 도시에서도. 어느 누구도.</span><span class="en">In any city. For anyone.</span></span>
+      <span class="cl l4 hit"><span class="ko">어느 도시에서도. 어느 누구도.</span><span class="en">In any city. For anyone.</span></span>
     </div>
     <svg class="hg-ov" viewBox="0 0 964 964" aria-hidden="true" focusable="false">
       <defs>
@@ -1021,7 +1020,7 @@ details.fold .about-story-wrap{padding-top:0 !important;}
   </a>
 
 
-  <h1 class="hero-quiet">HebronGuide — 이 세상 어느 누구도, 소외되고 외롭고 고독함을 느끼지 않아야 합니다. 어떤 도시에서도. 어느 누구도.</h1>
+  <h1 class="hero-quiet">HebronGuide — 이 세상 어느 누구도, 소외되고 외롭고 고독함을 느끼지 않아야 합니다. 어느 도시에서도. 어느 누구도.</h1>
 
 
 
@@ -1417,16 +1416,16 @@ html[lang="en"] .hg-lb .en{display:inline;}
   letter-spacing:-.02em;color:#FFFDF6;word-break:keep-all;
   text-shadow:0 2px 16px rgba(0,0,0,.95),0 0 30px rgba(0,0,0,.85),0 0 52px rgba(160,210,255,.28);
   will-change:transform,opacity;
-  animation:hgLine 18s linear infinite;}
+  animation:hgLine 29s linear infinite;}
 .hero-creed .l1{animation-delay:0s;}
-.hero-creed .l2{animation-delay:3s;}
-.hero-creed .l3{animation-delay:6s;}
+.hero-creed .l2{animation-delay:4.5s;}
+.hero-creed .l3{animation-delay:9s;}
 
 /* 마지막 한 줄 — 금색으로, 더 크게, 그리고 머문다. 생각할 시간이다. */
 .hero-creed .hit{font-size:clamp(.94rem,3.4vw,1.2rem);font-weight:600;
   color:var(--gold2);letter-spacing:-.015em;
   text-shadow:0 2px 22px rgba(0,0,0,.92),0 0 40px rgba(245,199,110,.5);
-  animation:hgLineHit 18s linear 9s infinite;}
+  animation:hgLineHit 29s linear 13.5s infinite;}
 
 /* 저 멀리 한 점에서 — 다가와 읽히고 — 지구를 벗어나 뒤로 지나간다 */
 @keyframes hgLine{
@@ -1447,18 +1446,18 @@ html[lang="en"] .hg-lb .en{display:inline;}
 /* 마지막 줄 — 같은 길로 오되, 읽히는 자리에서 아주 천천히만 커진다 */
 @keyframes hgLineHit{
   0%   {opacity:0;  transform:translate(-50%,-50%) scale(.03); filter:blur(0);}
-  1.2% {opacity:.4; transform:translate(-50%,-50%) scale(.05); filter:blur(0);}
-  3.2% {opacity:.7; transform:translate(-50%,-50%) scale(.11); filter:blur(0);}
-  5.5% {opacity:.9; transform:translate(-50%,-50%) scale(.23); filter:blur(0);}
-  8%   {opacity:1;  transform:translate(-50%,-50%) scale(.45); filter:blur(0);}
-  10.5%{opacity:1;  transform:translate(-50%,-50%) scale(.78); filter:blur(0);}
-  13%  {opacity:1;  transform:translate(-50%,-50%) scale(1.06);filter:blur(0);}
-  30%  {opacity:1;  transform:translate(-50%,-50%) scale(1.2); filter:blur(0);}
-  34%  {opacity:1;  transform:translate(-50%,-50%) scale(1.6); filter:blur(0);}
-  38%  {opacity:1;  transform:translate(-50%,-50%) scale(2.4); filter:blur(0);}
-  42%  {opacity:.7; transform:translate(-50%,-50%) scale(3.6); filter:blur(1px);}
-  46%  {opacity:.3; transform:translate(-50%,-50%) scale(5.5); filter:blur(3px);}
-  50%  {opacity:0;  transform:translate(-50%,-50%) scale(8.5); filter:blur(8px);}
+  0.9% {opacity:.4; transform:translate(-50%,-50%) scale(.05); filter:blur(0);}
+  2.3% {opacity:.7; transform:translate(-50%,-50%) scale(.11); filter:blur(0);}
+  4% {opacity:.9; transform:translate(-50%,-50%) scale(.23); filter:blur(0);}
+  5.8%   {opacity:1;  transform:translate(-50%,-50%) scale(.45); filter:blur(0);}
+  7.7%{opacity:1;  transform:translate(-50%,-50%) scale(.78); filter:blur(0);}
+  9.5%  {opacity:1;  transform:translate(-50%,-50%) scale(1.06);filter:blur(0);}
+  21.9%  {opacity:1;  transform:translate(-50%,-50%) scale(1.2); filter:blur(0);}
+  24.8%  {opacity:1;  transform:translate(-50%,-50%) scale(1.6); filter:blur(0);}
+  27.7%  {opacity:1;  transform:translate(-50%,-50%) scale(2.4); filter:blur(0);}
+  30.7%  {opacity:.7; transform:translate(-50%,-50%) scale(3.6); filter:blur(1px);}
+  33.6%  {opacity:.3; transform:translate(-50%,-50%) scale(5.5); filter:blur(3px);}
+  36.5%  {opacity:0;  transform:translate(-50%,-50%) scale(8.5); filter:blur(8px);}
   100% {opacity:0;  transform:translate(-50%,-50%) scale(.03); filter:blur(0);}}
 
 @media(prefers-reduced-motion:reduce){
@@ -1516,6 +1515,16 @@ html[lang="en"] .hg-lb .en{display:inline;}
   50%    {transform:translateY(-3px);}}
 @media(prefers-reduced-motion:reduce){
   .hero-go,.hero-more{animation:none;}}
+
+/* 언어 토글은 밖에 있어야 한다 — 서랍을 열어야 바꿀 수 있으면 아무도 안 바꾼다 (2026-09-25) */
+@media(max-width:640px){
+  nav .nav-actions .lang-btn{display:inline-flex !important;
+    width:36px;height:36px;border-radius:50%;padding:0;
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);}
+  nav .nav-actions .lang-btn svg{width:17px;height:17px;opacity:.9;}
+  nav .nav-actions .lang-btn #lang-label{position:absolute;width:1px;height:1px;
+    overflow:hidden;clip:rect(0 0 0 0);}
+}
 </style>
 <script>
 function toggleAboutStory(btn){
