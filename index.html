@@ -1428,33 +1428,38 @@ html[lang="en"] .hg-lb .en{display:inline;}
   text-shadow:0 2px 22px rgba(0,0,0,.92),0 0 40px rgba(245,199,110,.5);
   animation:hgLineHit 18s linear 9s infinite;}
 
-/* 멀리서 다가와 — 읽히고 — 지구를 벗어나 뒤로 지나간다. 한 호흡으로. */
+/* 저 멀리 한 점에서 — 다가와 읽히고 — 지구를 벗어나 뒤로 지나간다 */
 @keyframes hgLine{
-  0%   {opacity:0;  transform:translate(-50%,-50%) scale(.22); filter:blur(6px);}
-  2%   {opacity:.5; transform:translate(-50%,-50%) scale(.38); filter:blur(2px);}
-  4.5% {opacity:1;  transform:translate(-50%,-50%) scale(.62); filter:blur(0);}
-  7.5% {opacity:1;  transform:translate(-50%,-50%) scale(.95); filter:blur(0);}
-  10.5%{opacity:1;  transform:translate(-50%,-50%) scale(1.4); filter:blur(0);}
-  13.5%{opacity:1;  transform:translate(-50%,-50%) scale(2.1); filter:blur(0);}
-  16.5%{opacity:.8; transform:translate(-50%,-50%) scale(3.2); filter:blur(1px);}
-  19.5%{opacity:.35;transform:translate(-50%,-50%) scale(4.9); filter:blur(3px);}
-  23%  {opacity:0;  transform:translate(-50%,-50%) scale(7.6); filter:blur(7px);}
-  100% {opacity:0;  transform:translate(-50%,-50%) scale(.22); filter:blur(6px);}}
+  0%   {opacity:0;  transform:translate(-50%,-50%) scale(.03); filter:blur(0);}
+  1.2% {opacity:.4; transform:translate(-50%,-50%) scale(.05); filter:blur(0);}
+  3.2% {opacity:.7; transform:translate(-50%,-50%) scale(.11); filter:blur(0);}
+  5.5% {opacity:.9; transform:translate(-50%,-50%) scale(.22); filter:blur(0);}
+  8%   {opacity:1;  transform:translate(-50%,-50%) scale(.42); filter:blur(0);}
+  10.5%{opacity:1;  transform:translate(-50%,-50%) scale(.72); filter:blur(0);}
+  13%  {opacity:1;  transform:translate(-50%,-50%) scale(1.15);filter:blur(0);}
+  15.5%{opacity:1;  transform:translate(-50%,-50%) scale(1.8); filter:blur(0);}
+  18%  {opacity:1;  transform:translate(-50%,-50%) scale(2.8); filter:blur(0);}
+  20.5%{opacity:.7; transform:translate(-50%,-50%) scale(4.3); filter:blur(1px);}
+  23%  {opacity:.3; transform:translate(-50%,-50%) scale(6.7); filter:blur(3px);}
+  26%  {opacity:0;  transform:translate(-50%,-50%) scale(10);  filter:blur(8px);}
+  100% {opacity:0;  transform:translate(-50%,-50%) scale(.03); filter:blur(0);}}
 
-/* 마지막 줄 — 읽히는 자리에서 아주 천천히만 커진다. 멈추지 않고 머문다. */
+/* 마지막 줄 — 같은 길로 오되, 읽히는 자리에서 아주 천천히만 커진다 */
 @keyframes hgLineHit{
-  0%   {opacity:0;  transform:translate(-50%,-50%) scale(.22); filter:blur(7px);}
-  2%   {opacity:.5; transform:translate(-50%,-50%) scale(.38); filter:blur(2px);}
-  4.5% {opacity:1;  transform:translate(-50%,-50%) scale(.64); filter:blur(0);}
-  7.5% {opacity:1;  transform:translate(-50%,-50%) scale(.94); filter:blur(0);}
-  10%  {opacity:1;  transform:translate(-50%,-50%) scale(1.06);filter:blur(0);}
-  28%  {opacity:1;  transform:translate(-50%,-50%) scale(1.2); filter:blur(0);}
-  32%  {opacity:1;  transform:translate(-50%,-50%) scale(1.55);filter:blur(0);}
-  36%  {opacity:1;  transform:translate(-50%,-50%) scale(2.3); filter:blur(0);}
-  40%  {opacity:.8; transform:translate(-50%,-50%) scale(3.4); filter:blur(1px);}
-  44%  {opacity:.35;transform:translate(-50%,-50%) scale(5.2); filter:blur(3px);}
-  49%  {opacity:0;  transform:translate(-50%,-50%) scale(8);   filter:blur(8px);}
-  100% {opacity:0;  transform:translate(-50%,-50%) scale(.22); filter:blur(7px);}}
+  0%   {opacity:0;  transform:translate(-50%,-50%) scale(.03); filter:blur(0);}
+  1.2% {opacity:.4; transform:translate(-50%,-50%) scale(.05); filter:blur(0);}
+  3.2% {opacity:.7; transform:translate(-50%,-50%) scale(.11); filter:blur(0);}
+  5.5% {opacity:.9; transform:translate(-50%,-50%) scale(.23); filter:blur(0);}
+  8%   {opacity:1;  transform:translate(-50%,-50%) scale(.45); filter:blur(0);}
+  10.5%{opacity:1;  transform:translate(-50%,-50%) scale(.78); filter:blur(0);}
+  13%  {opacity:1;  transform:translate(-50%,-50%) scale(1.06);filter:blur(0);}
+  30%  {opacity:1;  transform:translate(-50%,-50%) scale(1.2); filter:blur(0);}
+  34%  {opacity:1;  transform:translate(-50%,-50%) scale(1.6); filter:blur(0);}
+  38%  {opacity:1;  transform:translate(-50%,-50%) scale(2.4); filter:blur(0);}
+  42%  {opacity:.7; transform:translate(-50%,-50%) scale(3.6); filter:blur(1px);}
+  46%  {opacity:.3; transform:translate(-50%,-50%) scale(5.5); filter:blur(3px);}
+  50%  {opacity:0;  transform:translate(-50%,-50%) scale(8.5); filter:blur(8px);}
+  100% {opacity:0;  transform:translate(-50%,-50%) scale(.03); filter:blur(0);}}
 
 @media(prefers-reduced-motion:reduce){
   .hero-creed{height:auto;}
