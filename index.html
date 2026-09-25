@@ -1386,7 +1386,7 @@ html[lang="en"] .hg-lb .en{display:inline;}
 /* 81개 도시 점 · 손으로 돌리기 (2026-09-24) */
 .hero-art{cursor:grab;}
 .hero-art.hg-holding{cursor:grabbing;}
-.hero-art .hg-dots circle{transition:opacity .3s ease;}
+.hero-art .hg-dots circle{transition:opacity .12s linear, r .12s linear;}
 
 /* 한가운데 온 도시 이름 — 손으로 돌릴 때만 */
 .hg-near{opacity:0;transition:opacity .25s ease;pointer-events:none;}
@@ -2212,7 +2212,8 @@ if(inp){
     el.setAttribute('r', '4.5');
     el.setAttribute('opacity', '0');
     dots.appendChild(el);
-    return { lat: c[1], lon: c[2], ko: c[3], en: c[4], el: el, x: 0, y: 0, z: -1 };
+    return { lat: c[1], lon: c[2], ko: c[3], en: c[4], el: el,
+             x: 0, y: 0, z: -1, lit: 0, ph: Math.random() * 6.28 };
   });
   var byslug = {};
   CITY.forEach(function(c, k){ byslug[c[0]] = k; });
@@ -2250,14 +2251,34 @@ if(inp){
   var cur = -1, until = 0, gate = GATES[0];
 
   window.hgPaint = function(spin, now, dragging){
-    /* 81개 점 */
+    /* 81개 점 — 돌아 나오는 순간 한 번 켜지고, 늘 조금씩 숨 쉰다 */
     for (var k = 0; k < pts.length; k++) {
       var p = pts[k], q = place(p.lat, p.lon, spin);
+      var was = p.z;
       p.x = q.x; p.y = q.y; p.z = q.z;
+
+      /* 돌아 나올 때 한 번, 넘어갈 때 한 번 — 맞이하고 보낸다 */
+      if (was !== undefined && was < 0.14 && q.z >= 0.14) p.lit = now;   // 나온다
+      if (was !== undefined && was > 0.2  && q.z <= 0.2)  p.lit = now;   // 넘어간다
+
       if (q.z <= 0.06) { p.el.setAttribute('opacity', '0'); continue; }
       p.el.setAttribute('cx', q.x.toFixed(1));
       p.el.setAttribute('cy', q.y.toFixed(1));
-      p.el.setAttribute('opacity', (0.22 + 0.55 * Math.min(1, (q.z - 0.06) / 0.5)).toFixed(2));
+
+      var base = 0.2 + 0.5 * Math.min(1, (q.z - 0.06) / 0.5);
+      var r = 4.5;
+
+      /* 켜진 지 얼마 안 됐으면 더 밝고 크다 (1.4초 동안 사그라든다) */
+      if (p.lit) {
+        var e = (now - p.lit) / 1400;
+        if (e < 1) { var k2 = (1 - e) * (1 - e); base += 0.75 * k2; r += 4.2 * k2; }
+        else p.lit = 0;
+      }
+      /* 그리고 늘 조금씩 숨 쉰다 — 점마다 박자가 다르다 */
+      base *= 0.86 + 0.14 * Math.sin(now * 0.0016 + p.ph);
+
+      p.el.setAttribute('r', r.toFixed(1));
+      p.el.setAttribute('opacity', Math.max(0, Math.min(1, base)).toFixed(2));
     }
 
     /* 손으로 돌리는 중 — 한가운데 온 도시의 이름을 보여 준다 */
