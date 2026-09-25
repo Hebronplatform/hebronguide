@@ -1031,6 +1031,12 @@ details.fold .about-story-wrap{padding-top:0 !important;}
     <span id="hgGoText"><span class="ko">내 도시로 바로 가기</span><span class="en">Go to my city</span></span>
   </a>
 
+  <button class="hero-more" id="hgMore" type="button">
+    <span class="ko">다른 도시 찾기</span><span class="en">Find another city</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+
+  <div class="hero-find" id="hgFind" hidden>
   <div class="hero-jump">
     <div class="hj-box">
       <svg class="hj-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
@@ -1047,6 +1053,7 @@ details.fold .about-story-wrap{padding-top:0 !important;}
       <a href="/seattle/">시애틀</a><a href="/la/">LA</a><a href="/newyork/">뉴욕</a>
       <a href="/dallas/">달라스</a><a href="/toronto/">토론토</a><a href="/seoul/">서울</a>
     </div>
+  </div>
   </div>
 
 
@@ -1275,8 +1282,8 @@ html[lang="en"] .hg-lb .en{display:inline;}
   /* 한 화면에 꽉 */
   .hero{position:relative;overflow:hidden;min-height:calc(100svh - 56px);
     display:flex;flex-direction:column;justify-content:center;
-    padding:8px 20px 112px !important;}
-  .hero-art{width:min(92vw,46svh);margin:0 auto 26px;}
+    padding:8px 20px 62px !important;}
+  .hero-art{width:min(96vw,50svh);margin:0 auto 44px;}
 
   /* 탭 넷 — 앱은 아래다. 띠가 아니라 떠 있는 캡슐. */
   .hg-tabs{display:flex !important;gap:2px;position:fixed !important;
@@ -1373,8 +1380,8 @@ html[lang="en"] .hg-lb .en{display:inline;}
   .nav-app a:focus-visible{outline:2px solid var(--gold2);outline-offset:2px;}
   .hg-tabs{display:none !important;}          /* 아래 캡슐은 폰·패드에서만 */
   body{padding-bottom:0 !important;}
-  .hero{padding:6px 24px 26px !important;}
-  .hero-art{width:min(58vw,64svh) !important;margin-bottom:12px !important;}
+  .hero{padding:6px 24px 18px !important;}
+  .hero-art{width:min(58vw,64svh) !important;margin-bottom:34px !important;}
 }
 
 /* 81개 도시 점 · 손으로 돌리기 (2026-09-24) */
@@ -1451,6 +1458,29 @@ html[lang="en"] .hg-lb .en{display:inline;}
 .hero-go svg{width:18px;height:18px;flex:none;}
 .hero-go.busy{opacity:.75;pointer-events:none;}
 @media(prefers-reduced-motion:reduce){.hero-creed{animation:none;opacity:1;}}
+
+/* 할 일은 하나다 — 그 하나만 크게. 다른 도시는 한 번 더 누른 사람에게만 (2026-09-25) */
+.hero-more{display:inline-flex;align-items:center;gap:5px;margin:0 auto 4px;
+  background:none;border:0;cursor:pointer;font-family:inherit;
+  color:var(--muted);font-size:.84rem;font-weight:400;padding:10px 14px;min-height:44px;
+  transition:color .2s ease;}
+.hero-more:hover{color:var(--gold2);}
+.hero-more svg{width:14px;height:14px;transition:transform .25s ease;}
+.hero-more.open svg{transform:rotate(180deg);}
+.hero-more:focus-visible{outline:2px solid var(--gold2);outline-offset:2px;border-radius:99px;}
+.hero-find[hidden]{display:none;}
+.hero-find{animation:hgFindIn .3s ease-out;}
+@keyframes hgFindIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+
+/* 도시 이름 — 테두리를 걷어내고 글자만 (2026-09-25) */
+.hero .hj-quick{display:flex !important;flex-wrap:wrap;justify-content:center;
+  gap:2px 4px !important;max-width:320px !important;margin:10px auto 0 !important;}
+.hero .hj-quick a{background:none !important;border:0 !important;
+  padding:9px 11px !important;min-height:40px !important;border-radius:8px;
+  color:rgba(236,245,255,.78) !important;font-size:.85rem !important;font-weight:400 !important;
+  display:inline-flex;align-items:center;transition:color .18s ease,background .18s ease;}
+.hero .hj-quick a:hover,.hero .hj-quick a:focus-visible{
+  color:var(--gold2) !important;background:rgba(245,199,110,.1) !important;}
 </style>
 <script>
 function toggleAboutStory(btn){
@@ -2275,6 +2305,20 @@ if(inp){
     }, function(){
       clearTimeout(t); finish(byTz());
     }, { timeout: 4500, maximumAge: 600000, enableHighAccuracy: false });
+  });
+})();
+</script>
+
+<script>
+/* 다른 도시 찾기 — 누른 사람에게만 열린다 */
+(function(){
+  var b = document.getElementById('hgMore'), f = document.getElementById('hgFind');
+  if (!b || !f) return;
+  b.addEventListener('click', function(){
+    var open = !f.hidden;
+    f.hidden = open;
+    b.classList.toggle('open', !open);
+    if (!open) { var i = document.getElementById('heroCity'); if (i) i.focus(); }
   });
 })();
 </script>
