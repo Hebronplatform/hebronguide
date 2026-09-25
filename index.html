@@ -765,6 +765,9 @@ details.fold .about-story-wrap{padding-top:0 !important;}
     <a href="/ad-request.html#ad" onclick="closeMenu()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M16 9a4 4 0 0 1 0 6"/></svg>
       <span class="ko">광고 신청</span><span class="en">Advertise</span></a>
+    <a href="https://nanuriweb.com" target="_blank" rel="noopener" onclick="closeMenu()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="15" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+      <span class="ko">홈페이지 제작 · 나누리웹</span><span class="en">Websites · NanuriWeb</span></a>
   </nav>
 
   <div class="hg-drawer-more">
@@ -950,6 +953,13 @@ details.fold .about-story-wrap{padding-top:0 !important;}
        그리고 이미 와서 기다리고 있던 사람. 둘이 만난다. (창 13:18) -->
   <div class="hero-art">
     <canvas class="hg-cv" aria-hidden="true"></canvas>
+    <!-- 이 한 문장이 우리가 하는 일의 전부다 -->
+    <div class="hero-creed" aria-hidden="true">
+      <span class="cl l1"><span class="ko">이 세상 어느 누구도,</span><span class="en">No one in this world</span></span>
+      <span class="cl l2"><span class="ko">소외되고 외롭고 고독함을</span><span class="en">should ever feel isolated,</span></span>
+      <span class="cl l3"><span class="ko">느끼지 않아야 합니다.</span><span class="en">lonely, or forgotten.</span></span>
+      <span class="cl l4 hit"><span class="ko">어떤 도시에서도. 어느 누구도.</span><span class="en">In any city. For anyone.</span></span>
+    </div>
     <svg class="hg-ov" viewBox="0 0 964 964" aria-hidden="true" focusable="false">
       <defs>
         <clipPath id="hgClip"><circle cx="482" cy="482" r="480"/></clipPath>
@@ -1011,11 +1021,16 @@ details.fold .about-story-wrap{padding-top:0 !important;}
   </a>
 
 
-  <h1 class="hero-quiet">HebronGuide — 글로벌 환대 플랫폼</h1>
+  <h1 class="hero-quiet">HebronGuide — 이 세상 어느 누구도, 소외되고 외롭고 고독함을 느끼지 않아야 합니다. 어떤 도시에서도. 어느 누구도.</h1>
 
 
 
   <!-- 바로 이동하는 도시 검색 — 첫 화면에서 앱까지 한 번에 -->
+  <a class="hero-go" id="hgGo" href="#cities">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <span id="hgGoText"><span class="ko">내 도시로 바로 가기</span><span class="en">Go to my city</span></span>
+  </a>
+
   <div class="hero-jump">
     <div class="hj-box">
       <svg class="hj-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
@@ -1385,6 +1400,57 @@ html[lang="en"] .hg-lb .en{display:inline;}
 @media(prefers-reduced-motion:reduce){
   .hg-spot,.hg-spot *{animation:none !important;}
   .hg-spot{opacity:0;}}
+
+/* 지구 한가운데 — 한 줄씩 떠올라 다가왔다 사라진다 (2026-09-25) */
+.hero-creed{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  z-index:2;width:82%;max-width:330px;height:5.2em;pointer-events:none;}
+.hero-creed .cl{position:absolute;left:50%;top:50%;width:100%;
+  transform:translate(-50%,-50%) scale(.55);opacity:0;text-align:center;
+  font-size:clamp(.82rem,2.9vw,1.02rem);font-weight:300;line-height:1.7;
+  letter-spacing:-.01em;color:rgba(255,248,232,.94);word-break:keep-all;
+  text-shadow:0 2px 20px rgba(0,0,0,.9),0 0 46px rgba(0,0,0,.7);
+  animation:hgLine 15s cubic-bezier(.22,.7,.28,1) infinite;}
+.hero-creed .l1{animation-delay:0s;}
+.hero-creed .l2{animation-delay:2.7s;}
+.hero-creed .l3{animation-delay:5.4s;}
+
+/* 마지막 한 줄 — 금색으로, 더 크게, 더 오래 */
+.hero-creed .hit{font-size:clamp(.94rem,3.4vw,1.2rem);font-weight:600;
+  color:var(--gold2);letter-spacing:-.015em;
+  text-shadow:0 2px 22px rgba(0,0,0,.92),0 0 34px rgba(245,199,110,.45);
+  animation:hgLineHit 15s cubic-bezier(.22,.7,.28,1) 8.1s infinite;}
+
+@keyframes hgLine{
+  0%   {opacity:0;transform:translate(-50%,-50%) scale(.5);  filter:blur(7px);}
+  4%   {opacity:1;transform:translate(-50%,-50%) scale(1);   filter:blur(0);}
+  12%  {opacity:1;transform:translate(-50%,-50%) scale(1.08);filter:blur(0);}
+  18%  {opacity:0;transform:translate(-50%,-50%) scale(1.42);filter:blur(4px);}
+  100% {opacity:0;transform:translate(-50%,-50%) scale(.5);  filter:blur(7px);}}
+
+@keyframes hgLineHit{
+  0%   {opacity:0;transform:translate(-50%,-50%) scale(.46); filter:blur(8px);}
+  5%   {opacity:1;transform:translate(-50%,-50%) scale(1.02);filter:blur(0);}
+  22%  {opacity:1;transform:translate(-50%,-50%) scale(1.1); filter:blur(0);}
+  32%  {opacity:0;transform:translate(-50%,-50%) scale(1.55);filter:blur(5px);}
+  100% {opacity:0;transform:translate(-50%,-50%) scale(.46); filter:blur(8px);}}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-creed{height:auto;}
+  .hero-creed .cl{position:static;transform:none;opacity:1;animation:none;
+    filter:none;display:block;margin:2px 0;}}
+
+/* 내 도시로 바로 가기 */
+.hero-go{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  margin:0 auto 14px;padding:13px 24px;border-radius:99px;text-decoration:none;
+  background:linear-gradient(135deg,#C9A227,#F5C76E);color:#0B1220;
+  font-size:.95rem;font-weight:700;letter-spacing:-.01em;min-height:48px;
+  box-shadow:0 10px 30px rgba(201,162,39,.3);
+  transition:transform .2s ease,box-shadow .2s ease;}
+.hero-go:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(201,162,39,.42);}
+.hero-go:active{transform:translateY(0);}
+.hero-go svg{width:18px;height:18px;flex:none;}
+.hero-go.busy{opacity:.75;pointer-events:none;}
+@media(prefers-reduced-motion:reduce){.hero-creed{animation:none;opacity:1;}}
 </style>
 <script>
 function toggleAboutStory(btn){
@@ -2044,6 +2110,7 @@ if(inp){
 
   /* [슬러그, 위도, 경도, 한글, 영문] — build.sh 의 CITY_GEO 와 같은 값 */
   var CITY = [["seattle", 47.61, -122.33, "시애틀", "Seattle"], ["federalway", 47.32, -122.31, "페더럴웨이", "Federal Way"], ["dallas", 32.78, -96.8, "달라스", "Dallas"], ["sf", 37.77, -122.42, "샌프란시스코", "San Francisco"], ["newyork", 40.71, -74.01, "뉴욕", "New York"], ["newjersey", 40.85, -73.99, "뉴저지", "New Jersey"], ["nashville", 36.16, -86.78, "내쉬빌", "Nashville"], ["boston", 42.36, -71.06, "보스턴", "Boston"], ["la", 34.05, -118.24, "로스앤젤레스", "Los Angeles"], ["houston", 29.76, -95.37, "휴스턴", "Houston"], ["atlanta", 33.75, -84.39, "애틀랜타", "Atlanta"], ["kansascity", 39.1, -94.58, "캔자스시티", "Kansas City"], ["philadelphia", 39.95, -75.17, "필라델피아", "Philadelphia"], ["miami", 25.76, -80.19, "마이애미", "Miami"], ["orangecounty", 33.87, -117.99, "오렌지카운티", "Orange County"], ["chicago", 41.88, -87.63, "시카고", "Chicago"], ["dc", 38.91, -77.04, "워싱턴 DC", "Washington DC"], ["sandiego", 32.72, -117.16, "샌디에고", "San Diego"], ["honolulu", 21.31, -157.86, "호놀룰루", "Honolulu"], ["portland", 45.52, -122.68, "포틀랜드", "Portland"], ["denver", 39.74, -104.99, "덴버", "Denver"], ["phoenix", 33.45, -112.07, "피닉스", "Phoenix"], ["charlotte", 35.23, -80.84, "샬럿", "Charlotte"], ["raleigh", 35.78, -78.64, "롤리", "Raleigh"], ["columbus", 39.96, -83.0, "콜럼버스", "Columbus"], ["minneapolis", 44.98, -93.27, "미니애폴리스", "Minneapolis"], ["tucson", 32.22, -110.97, "투손", "Tucson"], ["fayetteville", 35.05, -78.88, "페이엣빌", "Fayetteville"], ["killeen", 31.12, -97.73, "킬린", "Killeen"], ["fairfield", 38.25, -122.04, "페어필드", "Fairfield"], ["waynesville", 37.83, -92.2, "웨인즈빌", "Waynesville"], ["leesville", 31.14, -93.26, "리스빌", "Leesville"], ["louisville", 38.25, -85.76, "루이빌", "Louisville"], ["anchorage", 61.22, -149.9, "앵커리지", "Anchorage"], ["inlandempire", 34.06, -117.29, "인랜드 엠파이어", "Inland Empire"], ["austin", 30.27, -97.74, "오스틴", "Austin"], ["tampa", 27.95, -82.46, "탬파", "Tampa"], ["orlando", 28.54, -81.38, "올랜도", "Orlando"], ["maryland", 39.27, -76.8, "메릴랜드", "Maryland"], ["virginia", 38.83, -77.2, "버지니아", "Virginia"], ["neworleans", 29.95, -90.07, "뉴올리언스", "New Orleans"], ["huntsville", 34.73, -86.59, "헌츠빌", "Huntsville"], ["memphis", 35.15, -90.05, "멤피스", "Memphis"], ["toronto", 43.65, -79.38, "토론토", "Toronto"], ["vancouver", 49.28, -123.12, "밴쿠버", "Vancouver"], ["calgary", 51.04, -114.07, "캘거리", "Calgary"], ["edmonton", 53.55, -113.49, "에드먼턴", "Edmonton"], ["ottawa", 45.42, -75.7, "오타와", "Ottawa"], ["winnipeg", 49.9, -97.14, "위니펙", "Winnipeg"], ["princgeorge", 53.92, -122.75, "프린스조지", "Prince George"], ["mexicocity", 19.43, -99.13, "멕시코시티", "Mexico City"], ["guadalajara", 20.66, -103.35, "과달라하라", "Guadalajara"], ["monterrey", 25.69, -100.32, "몬테레이", "Monterrey"], ["saopaulo", -23.55, -46.63, "상파울루", "Sao Paulo"], ["bogota", 4.71, -74.07, "보고타", "Bogota"], ["london", 51.51, -0.13, "런던", "London"], ["paris", 48.86, 2.35, "파리", "Paris"], ["berlin", 52.52, 13.4, "베를린", "Berlin"], ["frankfurt", 50.11, 8.68, "프랑크푸르트", "Frankfurt"], ["sydney", -33.87, 151.21, "시드니", "Sydney"], ["melbourne", -37.81, 144.96, "멜버른", "Melbourne"], ["brisbane", -27.47, 153.03, "브리즈번", "Brisbane"], ["perth", -31.95, 115.86, "퍼스", "Perth"], ["auckland", -36.85, 174.76, "오클랜드", "Auckland"], ["singapore", 1.35, 103.82, "싱가포르", "Singapore"], ["bangkok", 13.76, 100.5, "방콕", "Bangkok"], ["hochiminh", 10.82, 106.63, "호치민", "Ho Chi Minh City"], ["dubai", 25.2, 55.27, "두바이", "Dubai"], ["tokyo", 35.68, 139.65, "도쿄", "Tokyo"], ["osaka", 34.69, 135.5, "오사카", "Osaka"], ["seoul", 37.57, 126.98, "서울", "Seoul"], ["busan", 35.18, 129.08, "부산", "Busan"], ["ansan", 37.32, 126.83, "안산", "안산"], ["incheon", 37.46, 126.71, "인천", "인천"], ["jeju", 33.5, 126.53, "제주", "제주"], ["daegu", 35.87, 128.6, "대구", "대구"], ["gwangju", 35.16, 126.85, "광주", "광주"], ["daejeon", 36.35, 127.38, "대전", "대전"], ["changwon", 35.23, 128.68, "창원", "창원"], ["cheonan", 36.82, 127.11, "천안·아산", "천안·아산"], ["bundang", 37.36, 127.11, "분당·수지", "분당·수지"]];
+  window.hgCityList = CITY;
   var TURN = ["seattle", "la", "dallas", "toronto", "newyork", "london", "paris", "dubai", "seoul", "tokyo", "sydney", "vancouver", "chicago", "atlanta", "singapore"];
 
   /* 빛이 내려앉는 자리 — 하나뿐이고 도시를 옮겨 다닌다 */
@@ -2158,6 +2225,57 @@ if(inp){
       }
     }
   };
+})();
+</script>
+
+<script>
+/* 내 도시로 바로 가기 — 있는 자리를 찾아 가장 가까운 헤브론 도시로 (2026-09-25)
+   허락하면 위치로, 아니면 시간대로. 둘 다 안 되면 도시 목록을 연다. */
+(function hgGoMyCity(){
+  var btn = document.getElementById('hgGo'), txt = document.getElementById('hgGoText');
+  if (!btn || !txt) return;
+  var TZ = {"Asia/Seoul": "seoul", "Asia/Tokyo": "tokyo", "Asia/Osaka": "osaka", "Asia/Singapore": "singapore", "Asia/Bangkok": "bangkok", "Asia/Ho_Chi_Minh": "hochiminh", "Asia/Dubai": "dubai", "America/Los_Angeles": "la", "America/Vancouver": "vancouver", "America/Denver": "denver", "America/Phoenix": "phoenix", "America/Chicago": "chicago", "America/New_York": "newyork", "America/Toronto": "toronto", "America/Anchorage": "anchorage", "Pacific/Honolulu": "honolulu", "America/Sao_Paulo": "saopaulo", "America/Bogota": "bogota", "America/Mexico_City": "mexicocity", "Europe/London": "london", "Europe/Paris": "paris", "Europe/Berlin": "berlin", "Europe/Frankfurt": "frankfurt", "Australia/Sydney": "sydney", "Australia/Melbourne": "melbourne", "Australia/Brisbane": "brisbane", "Pacific/Auckland": "auckland"};
+
+  function go(slug, label){
+    if (!slug) { location.hash = '#cities'; return; }
+    var href = '/' + slug + '/';
+    if (label) txt.textContent = label + (document.documentElement.lang === 'en' ? '' : '(으)로 갑니다');
+    if (window.__enterCity) window.__enterCity(href, label); else location.href = href;
+  }
+  function byTz(){
+    try { return TZ[Intl.DateTimeFormat().resolvedOptions().timeZone] || ''; } catch(e) { return ''; }
+  }
+  function nearest(lat, lon){
+    var list = window.hgCityList || [], best = null, bd = 1e9;
+    for (var i = 0; i < list.length; i++) {
+      var c = list[i], dy = (c[1] - lat) * 111;
+      var dx = (c[2] - lon) * 111 * Math.cos(lat * Math.PI / 180);
+      var d = dx*dx + dy*dy;
+      if (d < bd) { bd = d; best = c; }
+    }
+    return best;
+  }
+
+  btn.addEventListener('click', function(ev){
+    ev.preventDefault();
+    btn.classList.add('busy');
+    var done = false;
+    function finish(slug, label){
+      if (done) return; done = true;
+      btn.classList.remove('busy');
+      go(slug, label);
+    }
+    // 허락을 기다리되 오래 붙잡지 않는다
+    var t = setTimeout(function(){ finish(byTz()); }, 5000);
+    if (!navigator.geolocation) { clearTimeout(t); finish(byTz()); return; }
+    navigator.geolocation.getCurrentPosition(function(p){
+      clearTimeout(t);
+      var c = nearest(p.coords.latitude, p.coords.longitude);
+      finish(c && c[0], c && (document.documentElement.lang === 'en' ? c[4] : c[3]));
+    }, function(){
+      clearTimeout(t); finish(byTz());
+    }, { timeout: 4500, maximumAge: 600000, enableHighAccuracy: false });
+  });
 })();
 </script>
 </body>
