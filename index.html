@@ -954,10 +954,10 @@ details.fold .about-story-wrap{padding-top:0 !important;}
     <canvas class="hg-cv" aria-hidden="true"></canvas>
     <!-- 이 한 문장이 우리가 하는 일의 전부다 -->
     <div class="hero-creed" aria-hidden="true">
-      <span class="cl k-line" style="animation-delay:0s"><span class="ko">이 세상 어느 누구도,</span><span class="en">No one in this world</span></span>
-      <span class="cl k-line" style="animation-delay:4s"><span class="ko">소외되고 외롭고 고독함을</span><span class="en">should ever feel isolated,</span></span>
-      <span class="cl k-line" style="animation-delay:8s"><span class="ko">느끼지 않아야 합니다.</span><span class="en">lonely, or forgotten.</span></span>
-      <span class="cl k-last gold thud" style="animation-delay:12s"><span class="ko">어느 도시도. 어느 누구도.</span><span class="en">In any city. For anyone.</span></span>
+      <span class="cl k-first" style="animation-delay:0s"><span class="ko">이 세상 어느 누구도,</span><span class="en">No one in this world</span></span>
+      <span class="cl k-line" style="animation-delay:6s"><span class="ko">소외되고 외롭고 고독함을</span><span class="en">should ever feel isolated,</span></span>
+      <span class="cl k-line" style="animation-delay:10s"><span class="ko">느끼지 않아야 합니다.</span><span class="en">lonely, or forgotten.</span></span>
+      <span class="cl k-last gold thud" style="animation-delay:14s"><span class="ko">어느 도시도. 어느 누구도.</span><span class="en">In any city. For anyone.</span></span>
     </div>
     <svg class="hg-ov" viewBox="0 0 964 964" aria-hidden="true" focusable="false">
       <defs>
@@ -1419,45 +1419,62 @@ html[lang="en"] .hg-lb .en{display:inline;}
   font-size:clamp(2.85rem,10.2vw,3.6rem);font-weight:600;
   text-shadow:0 1px 10px rgba(0,0,0,.92),0 0 24px rgba(0,0,0,.8);
   will-change:transform,opacity;
-  animation-duration:22s;animation-timing-function:linear;animation-iteration-count:infinite;}
+  animation-duration:24s;animation-timing-function:linear;animation-iteration-count:infinite;}
 
 /* 마지막 둘 — 금색 */
 .hero-creed .gold{color:#FFD98A;font-weight:800;letter-spacing:-.035em;
   font-size:clamp(3.6rem,13.8vw,4.65rem);
   text-shadow:0 1px 10px rgba(0,0,0,.95),0 0 22px rgba(0,0,0,.85),0 0 40px rgba(245,199,110,.5);}
 
+.hero-creed .k-first{animation-name:hgFirst;}
 .hero-creed .k-line{animation-name:hgLine;}
 .hero-creed .k-word{animation-name:hgWord;}
 .hero-creed .k-hold{animation-name:hgHold;}
 .hero-creed .k-last{animation-name:hgLast;}
 
+/* 첫 줄 — 도착한 자리에서 2초 머문다. 무엇에 대한 이야기인지 알려 주는 말이다. */
+@keyframes hgFirst{
+  0%    {opacity:0;  transform:translate(-50%,-50%) scale(.01);}
+  1.2%  {opacity:.4; transform:translate(-50%,-50%) scale(.02);}
+  3%    {opacity:.7; transform:translate(-50%,-50%) scale(.043);}
+  5.1%  {opacity:.9; transform:translate(-50%,-50%) scale(.09);}
+  7.2%  {opacity:1;  transform:translate(-50%,-50%) scale(.167);}
+  9.3%  {opacity:1;  transform:translate(-50%,-50%) scale(.283);}
+  11.4% {opacity:1;  transform:translate(-50%,-50%) scale(.433);}
+  19.8% {opacity:1;  transform:translate(-50%,-50%) scale(.475);}
+  21.8% {opacity:1;  transform:translate(-50%,-50%) scale(.667);}
+  23.8% {opacity:1;  transform:translate(-50%,-50%) scale(1.03);}
+  25.3% {opacity:.55;transform:translate(-50%,-50%) scale(1.6);}
+  26.7% {opacity:0;  transform:translate(-50%,-50%) scale(2.67);}
+  100%  {opacity:0;  transform:translate(-50%,-50%) scale(.01);}}
+
 /* 긴 말 — 저 멀리 한 점에서 천천히 다가와 화면을 뚫고 지나간다 */
 @keyframes hgLine{
   0%    {opacity:0;  transform:translate(-50%,-50%) scale(0.01);}
-  1.27%    {opacity:.4; transform:translate(-50%,-50%) scale(0.02);}
-  3.29%  {opacity:.7; transform:translate(-50%,-50%) scale(0.0433);}
-  5.57%  {opacity:.9; transform:translate(-50%,-50%) scale(0.09);}
-  7.85%  {opacity:1;  transform:translate(-50%,-50%) scale(0.1667);}
-  10.13%    {opacity:1;  transform:translate(-50%,-50%) scale(0.2833);}
-  12.41%  {opacity:1;  transform:translate(-50%,-50%) scale(0.4333);}
-  14.43% {opacity:1;  transform:translate(-50%,-50%) scale(0.6667);}
-  16.46%   {opacity:1;  transform:translate(-50%,-50%) scale(1.0333);}
-  17.98% {opacity:.55;transform:translate(-50%,-50%) scale(1.6);}
-  20% {opacity:0;  transform:translate(-50%,-50%) scale(2.6667);  }
-  126.6%  {opacity:0;  transform:translate(-50%,-50%) scale(0.01);}}
+  1.16%    {opacity:.4; transform:translate(-50%,-50%) scale(0.02);}
+  3.02%  {opacity:.7; transform:translate(-50%,-50%) scale(0.0433);}
+  5.11%  {opacity:.9; transform:translate(-50%,-50%) scale(0.09);}
+  7.2%  {opacity:1;  transform:translate(-50%,-50%) scale(0.1667);}
+  9.29%    {opacity:1;  transform:translate(-50%,-50%) scale(0.2833);}
+  11.38%  {opacity:1;  transform:translate(-50%,-50%) scale(0.4333);}
+  13.23% {opacity:1;  transform:translate(-50%,-50%) scale(0.6667);}
+  15.09%   {opacity:1;  transform:translate(-50%,-50%) scale(1.0333);}
+  16.49% {opacity:.55;transform:translate(-50%,-50%) scale(1.6);}
+  18.34% {opacity:0;  transform:translate(-50%,-50%) scale(2.6667);  }
+  116.09%  {opacity:0;  transform:translate(-50%,-50%) scale(0.01);}}
 
 /* 짧은 말 — 같은 길을 빠르게. 치고 빠진다. */
 @keyframes hgWord{
   0%    {opacity:0;  transform:translate(-50%,-50%) scale(0.0133);}
-  0.8%  {opacity:.5; transform:translate(-50%,-50%) scale(0.03);}
-  1.8%  {opacity:.9; transform:translate(-50%,-50%) scale(0.0933);}
-  3%    {opacity:1;  transform:translate(-50%,-50%) scale(0.25);}
-  4.2%  {opacity:1;  transform:translate(-50%,-50%) scale(0.4333);}
-  5.6%  {opacity:1;  transform:translate(-50%,-50%) scale(0.7);}
-  7%    {opacity:1;  transform:translate(-50%,-50%) scale(1.1333);}
-  8.4%  {opacity:.6; transform:translate(-50%,-50%) scale(1.8);}
-  10%   {opacity:0;  transform:translate(-50%,-50%) scale(3);  }
-  100%  {opacity:0;  transform:translate(-50%,-50%) scale(0.0133);}}
+  0.73%  {opacity:.5; transform:translate(-50%,-50%) scale(0.03);}
+  1.65%  {opacity:.9; transform:translate(-50%,-50%) scale(0.0933);}
+  2.75%    {opacity:1;  transform:translate(-50%,-50%) scale(0.25);}
+  3.85%  {opacity:1;  transform:translate(-50%,-50%) scale(0.4333);}
+  5.14%  {opacity:1;  transform:translate(-50%,-50%) scale(0.7);}
+  6.42%    {opacity:1;  transform:translate(-50%,-50%) scale(1.1333);}
+  7.7%  {opacity:.6; transform:translate(-50%,-50%) scale(1.8);}
+  9.17%   {opacity:0;  transform:translate(-50%,-50%) scale(3);  }
+  91.7%  {opacity:0;  transform:translate(-50%,-50%) scale(0.0133);}}
 
 /* 「어느 도시도」 — 잠깐 머문다 */
 @keyframes hgHold{
@@ -1476,17 +1493,17 @@ html[lang="en"] .hg-lb .en{display:inline;}
 /* 「어느 누구도.」 — 가장 오래 머문다. 생각할 시간이다. */
 @keyframes hgLast{
   0%    {opacity:0;  transform:translate(-50%,-50%) scale(0.01);}
-  1%    {opacity:.4; transform:translate(-50%,-50%) scale(0.02);}
-  2.6%  {opacity:.7; transform:translate(-50%,-50%) scale(0.0467);}
-  4.4%  {opacity:.9; transform:translate(-50%,-50%) scale(0.1067);}
-  6%    {opacity:1;  transform:translate(-50%,-50%) scale(0.22);}
-  7.8%  {opacity:1;  transform:translate(-50%,-50%) scale(0.35);}
-  16%   {opacity:1;  transform:translate(-50%,-50%) scale(0.3933);}
-  18%   {opacity:1;  transform:translate(-50%,-50%) scale(0.5667);}
-  19.6% {opacity:1;  transform:translate(-50%,-50%) scale(0.9333);}
-  21%   {opacity:.55;transform:translate(-50%,-50%) scale(1.5333);}
-  22.5% {opacity:0;  transform:translate(-50%,-50%) scale(2.6667);  }
-  100%  {opacity:0;  transform:translate(-50%,-50%) scale(0.01);}}
+  0.92%    {opacity:.4; transform:translate(-50%,-50%) scale(0.02);}
+  2.38%  {opacity:.7; transform:translate(-50%,-50%) scale(0.0467);}
+  4.03%  {opacity:.9; transform:translate(-50%,-50%) scale(0.1067);}
+  5.5%    {opacity:1;  transform:translate(-50%,-50%) scale(0.22);}
+  7.15%  {opacity:1;  transform:translate(-50%,-50%) scale(0.35);}
+  14.67%   {opacity:1;  transform:translate(-50%,-50%) scale(0.3933);}
+  16.51%   {opacity:1;  transform:translate(-50%,-50%) scale(0.5667);}
+  17.97% {opacity:1;  transform:translate(-50%,-50%) scale(0.9333);}
+  19.26%   {opacity:.55;transform:translate(-50%,-50%) scale(1.5333);}
+  20.63% {opacity:0;  transform:translate(-50%,-50%) scale(2.6667);  }
+  91.7%  {opacity:0;  transform:translate(-50%,-50%) scale(0.01);}}
 
 @media(prefers-reduced-motion:reduce){
   .hero-creed{height:auto;}
@@ -1559,7 +1576,7 @@ html[lang="en"] .hg-lb .en{display:inline;}
 .hero-creed .thud .ko,
 .hero-creed .thud .en{
   display:inline-block;
-  animation-name:hgThud;animation-duration:22s;
+  animation-name:hgThud;animation-duration:24s;
   animation-timing-function:linear;animation-iteration-count:infinite;
   animation-delay:inherit;}
 @keyframes hgThud{
