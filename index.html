@@ -1416,30 +1416,35 @@ html[lang="en"] .hg-lb .en{display:inline;}
   font-size:clamp(.82rem,2.9vw,1.02rem);font-weight:300;line-height:1.7;
   letter-spacing:-.01em;color:rgba(255,248,232,.94);word-break:keep-all;
   text-shadow:0 2px 20px rgba(0,0,0,.9),0 0 46px rgba(0,0,0,.7);
-  animation:hgLine 15s cubic-bezier(.22,.7,.28,1) infinite;}
+  animation:hgLine 18s cubic-bezier(.2,.62,.3,1) infinite;}
 .hero-creed .l1{animation-delay:0s;}
-.hero-creed .l2{animation-delay:2.7s;}
-.hero-creed .l3{animation-delay:5.4s;}
+.hero-creed .l2{animation-delay:3s;}
+.hero-creed .l3{animation-delay:6s;}
 
-/* 마지막 한 줄 — 금색으로, 더 크게, 더 오래 */
+/* 마지막 한 줄 — 금색으로, 더 크게, 그리고 머문다. 생각할 시간이다. */
 .hero-creed .hit{font-size:clamp(.94rem,3.4vw,1.2rem);font-weight:600;
   color:var(--gold2);letter-spacing:-.015em;
-  text-shadow:0 2px 22px rgba(0,0,0,.92),0 0 34px rgba(245,199,110,.45);
-  animation:hgLineHit 15s cubic-bezier(.22,.7,.28,1) 8.1s infinite;}
+  text-shadow:0 2px 22px rgba(0,0,0,.92),0 0 40px rgba(245,199,110,.5);
+  animation:hgLineHit 18s cubic-bezier(.2,.62,.3,1) 9s infinite;}
 
+/* 작게 떠올라 — 커지며 다가오다 — 크게 스러진다 */
 @keyframes hgLine{
-  0%   {opacity:0;transform:translate(-50%,-50%) scale(.5);  filter:blur(7px);}
-  4%   {opacity:1;transform:translate(-50%,-50%) scale(1);   filter:blur(0);}
-  12%  {opacity:1;transform:translate(-50%,-50%) scale(1.08);filter:blur(0);}
-  18%  {opacity:0;transform:translate(-50%,-50%) scale(1.42);filter:blur(4px);}
-  100% {opacity:0;transform:translate(-50%,-50%) scale(.5);  filter:blur(7px);}}
+  0%   {opacity:0; transform:translate(-50%,-50%) scale(.34); filter:blur(9px);}
+  3%   {opacity:1; transform:translate(-50%,-50%) scale(.82); filter:blur(0);}
+  9%   {opacity:1; transform:translate(-50%,-50%) scale(1.26);filter:blur(0);}
+  15%  {opacity:.4;transform:translate(-50%,-50%) scale(1.78);filter:blur(2px);}
+  19%  {opacity:0; transform:translate(-50%,-50%) scale(2.15);filter:blur(6px);}
+  100% {opacity:0; transform:translate(-50%,-50%) scale(.34); filter:blur(9px);}}
 
+/* 마지막 줄은 도착한 자리에서 네 박자쯤 머문다 */
 @keyframes hgLineHit{
-  0%   {opacity:0;transform:translate(-50%,-50%) scale(.46); filter:blur(8px);}
-  5%   {opacity:1;transform:translate(-50%,-50%) scale(1.02);filter:blur(0);}
-  22%  {opacity:1;transform:translate(-50%,-50%) scale(1.1); filter:blur(0);}
-  32%  {opacity:0;transform:translate(-50%,-50%) scale(1.55);filter:blur(5px);}
-  100% {opacity:0;transform:translate(-50%,-50%) scale(.46); filter:blur(8px);}}
+  0%   {opacity:0; transform:translate(-50%,-50%) scale(.34); filter:blur(10px);}
+  3%   {opacity:1; transform:translate(-50%,-50%) scale(.88); filter:blur(0);}
+  8%   {opacity:1; transform:translate(-50%,-50%) scale(1.08);filter:blur(0);}
+  30%  {opacity:1; transform:translate(-50%,-50%) scale(1.14);filter:blur(0);}
+  38%  {opacity:.45;transform:translate(-50%,-50%) scale(1.75);filter:blur(2px);}
+  45%  {opacity:0; transform:translate(-50%,-50%) scale(2.3); filter:blur(7px);}
+  100% {opacity:0; transform:translate(-50%,-50%) scale(.34); filter:blur(10px);}}
 
 @media(prefers-reduced-motion:reduce){
   .hero-creed{height:auto;}
