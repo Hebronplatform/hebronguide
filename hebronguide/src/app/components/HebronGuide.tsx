@@ -9219,7 +9219,7 @@ function WorldCupBanner() {
   );
 }
 
-function CompactHeroNew() {
+function CompactHeroNew({ onSearch }: { onSearch?: () => void }) {
   const { lang } = useI18n();
   const city = useCityConfig();
   // liveCamUrl removed — LIVE CAM 버튼 제거됨
@@ -9384,8 +9384,8 @@ function CompactHeroNew() {
         }} />
       ))}
 
-      {/* ── 도시명 + 태그라인 */}
-      <div style={{ position: "absolute", bottom: 18, left: 18, right: 72, zIndex: 3 }}>
+      {/* ── 도시명 + 태그라인 (검색창 위로 올림) */}
+      <div style={{ position: "absolute", bottom: 70, left: 18, right: 72, zIndex: 3 }}>
         <div style={{
           display: "inline-flex", alignItems: "center", gap: 5,
           background: "rgba(0,0,0,0.28)", backdropFilter: "blur(10px) saturate(1.4)",
@@ -9449,6 +9449,22 @@ function CompactHeroNew() {
             }} />
           ))}
         </div>
+      )}
+
+      {/* ── 히어로 내 검색창 (크게) — 한 입구 */}
+      {onSearch && (
+        <button onClick={onSearch} aria-label={lang === "ko" ? "검색" : "Search"} style={{
+          position: "absolute", bottom: 12, left: 14, right: 14, zIndex: 6,
+          display: "flex", alignItems: "center", gap: 11,
+          background: "rgba(255,255,255,0.97)", border: "1px solid rgba(255,255,255,0.7)",
+          borderRadius: 15, padding: "15px 16px", cursor: "pointer",
+          boxShadow: "0 10px 26px rgba(0,0,0,0.3)", WebkitTapHighlightColor: "transparent",
+        }}>
+          <Search size={20} strokeWidth={2.2} color="#6b7280" />
+          <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 15, fontWeight: 600, color: "#6b7280" }}>
+            {lang === "ko" ? "교회 · 병원 · 은행 · 집 찾기" : "Search church, clinic, bank, home…"}
+          </span>
+        </button>
       )}
 
       {/* LIVE CAM 제거됨 */}
@@ -13970,22 +13986,7 @@ function HomeScreen({ onNavigate, onSearch }: { onNavigate?: (tab: number, subTa
   const [moreOpen, setMoreOpen] = useState(false);   // 홈 단순화 2단계: 보조 섹션은 기본 접힘
   return (
     <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
-      <CompactHeroNew />
-      {/* 홈 단순화 3단계: 검색 진입(한 입구) — 기존 검색 토글 연결 */}
-      {onSearch && (
-        <button onClick={onSearch} aria-label={ko ? "검색" : "Search"} style={{
-          width: "calc(100% - 32px)", margin: "12px 16px 0",
-          display: "flex", alignItems: "center", gap: 10, background: "#fff",
-          border: "1px solid rgba(0,0,0,0.08)", borderRadius: 14, padding: "14px 16px",
-          boxShadow: "0 4px 16px rgba(20,33,58,0.08)", cursor: "pointer",
-          WebkitTapHighlightColor: "transparent",
-        }}>
-          <Search size={18} strokeWidth={2} color="#8E8E93" />
-          <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 14, color: "#8E8E93", fontWeight: 500 }}>
-            {ko ? "교회 · 병원 · 은행 · 집 찾기" : "Search church, clinic, bank, home…"}
-          </span>
-        </button>
-      )}
+      <CompactHeroNew onSearch={onSearch} />
       <HebronFlywheelBar lang={lang} />
       <QuickMenuSection onNavigate={onNavigate} />
 
