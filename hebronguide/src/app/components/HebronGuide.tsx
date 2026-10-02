@@ -9399,12 +9399,12 @@ function CompactHeroNew({ onSearch }: { onSearch?: () => void }) {
           </span>
         </div>
         <div style={{
-          fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 27, color: "#fff",
-          letterSpacing: "-0.6px", textShadow: "0 2px 20px rgba(0,0,0,0.65)", lineHeight: 1.15,
+          fontFamily: "Manrope,sans-serif", fontWeight: 900, fontSize: 21, color: "#fff",
+          letterSpacing: "-0.5px", textShadow: "0 2px 20px rgba(0,0,0,0.65)", lineHeight: 1.15,
         }}>
           <span style={{ color: city.color }}>{lang === "ko" ? city.nameKo : city.nameEn}</span>
           {" "}
-          <span style={{ fontWeight: 400, fontSize: 20, opacity: 0.9 }}>
+          <span style={{ fontWeight: 400, fontSize: 15, opacity: 0.9 }}>
             {lang === "ko" ? "정착 가이드" : lang === "es" ? "Guía de Asentamiento" : "Settlement Guide"}
           </span>
         </div>
