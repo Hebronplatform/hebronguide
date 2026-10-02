@@ -9224,7 +9224,7 @@ function CompactHeroNew() {
   const city = useCityConfig();
   // liveCamUrl removed — LIVE CAM 버튼 제거됨
 
-  const slides = CITY_HERO_SLIDES[city.slug] ?? null;
+  const slides = (CITY_HERO_SLIDES[city.slug] ?? null)?.slice(0, 1) ?? null;   // 홈 단순화 3단계: 슬라이드 1장(자동 회전·닷 제거)
 
   // 오전(0-11) → 0번부터, 오후(12-23) → 절반부터 시작
   const initIdx = 0; // 항상 첫 슬라이드(낮 사진)부터 시작
@@ -13919,8 +13919,8 @@ function HebronFlywheelBar({ lang }: { lang: string }) {
         className="[&::-webkit-scrollbar]:hidden">
         {stats.map((s, i) => (
           <div key={i} style={{
-            flexShrink: 0, display: "flex", alignItems: "center", gap: 6,
-            padding: "10px 16px",
+            flexShrink: 0, display: "flex", alignItems: "center", gap: 5,
+            padding: "6px 14px",
             borderRight: i < stats.length - 1 ? "1px solid rgba(0,0,0,0.06)" : "none",
           }}>
             {(() => {
@@ -13964,13 +13964,28 @@ function FoundingPartnerBanner({ lang, onNavigate }: { lang: string; onNavigate?
   );
 }
 
-function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
+function HomeScreen({ onNavigate, onSearch }: { onNavigate?: (tab: number, subTab?: number) => void; onSearch?: () => void }) {
   const { lang } = useI18n();
   const ko = lang === "ko";
   const [moreOpen, setMoreOpen] = useState(false);   // 홈 단순화 2단계: 보조 섹션은 기본 접힘
   return (
     <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
       <CompactHeroNew />
+      {/* 홈 단순화 3단계: 검색 진입(한 입구) — 기존 검색 토글 연결 */}
+      {onSearch && (
+        <button onClick={onSearch} aria-label={ko ? "검색" : "Search"} style={{
+          width: "calc(100% - 32px)", margin: "12px 16px 0",
+          display: "flex", alignItems: "center", gap: 10, background: "#fff",
+          border: "1px solid rgba(0,0,0,0.08)", borderRadius: 14, padding: "14px 16px",
+          boxShadow: "0 4px 16px rgba(20,33,58,0.08)", cursor: "pointer",
+          WebkitTapHighlightColor: "transparent",
+        }}>
+          <Search size={18} strokeWidth={2} color="#8E8E93" />
+          <span style={{ fontFamily: "'Noto Sans KR',sans-serif", fontSize: 14, color: "#8E8E93", fontWeight: 500 }}>
+            {ko ? "교회 · 병원 · 은행 · 집 찾기" : "Search church, clinic, bank, home…"}
+          </span>
+        </button>
+      )}
       <HebronFlywheelBar lang={lang} />
       <QuickMenuSection onNavigate={onNavigate} />
 
@@ -31555,7 +31570,7 @@ export function HebronGuide() {
 
   // 12개 탭 스크린 (홈·정착·교회·맛집·탐방·도움·취업·교육·생활비·사람연결·스토어·한인업소)
   const screens = [
-    <HomeScreen onNavigate={handleNavigate} />,                                        // 0
+    <HomeScreen onNavigate={handleNavigate} onSearch={handleSearchToggle} />,           // 0
     <SettleScreen onHome={() => setActiveNav(0)} initialSub={settleInitialSub} />,     // 1
     <ChurchScreen onHome={() => setActiveNav(0)} />,                                   // 2
     <DiningScreen onHome={() => setActiveNav(0)} />,                                   // 3
