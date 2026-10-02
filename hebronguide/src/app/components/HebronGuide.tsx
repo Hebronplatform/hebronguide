@@ -9737,6 +9737,7 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
     return safeStorage.get("wc2026_collapsed") === "1";
   });
   const isWCCity = isWorldCupActive(city.slug);
+  const [showAll, setShowAll] = useState(false);   // 홈: 핵심만 → '더보기'로 전체 펼침 (단순화 1단계)
 
   const collapseWC = () => {
     setWcCollapsed(true);
@@ -9756,6 +9757,9 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
     { icon: "book-open",     labelKo: "심화 · 성장",         labelEn: "Growth & More" },
   ];
 
+  // 홈 핵심 — 도착 직후 가장 많이 찾는 5개. 기존 탭에 그대로 연결(새 라우트 없음): 공항·도착·정착·주택·병원·교회
+  const CORE_IDX = [0, 2, 3, 4, 8];
+
   const renderQMItem = (item: typeof QUICK_MENU[0], i: number) => {
     const IconComp = QM_ICON_MAP[item.icon];
     return (
@@ -9771,13 +9775,13 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
       onMouseLeave={e => { const el = e.currentTarget.querySelector('.qm-icon') as HTMLElement; if (el) { el.style.transform = "scale(1)"; el.style.opacity = "1"; } }}>
         <div className="qm-icon" style={{
           width: 62, height: 62, borderRadius: 16,
-          background: item.color,
-          boxShadow: `0 5px 16px ${item.color}66, 0 1px 4px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.28)`,
+          background: "#F6EED5",
+          boxShadow: "0 2px 10px rgba(20,33,58,0.08), inset 0 1px 0 rgba(255,255,255,0.5)",
           display: "flex", alignItems: "center", justifyContent: "center",
           transition: "transform 0.15s cubic-bezier(0.34,1.56,0.64,1), opacity 0.12s ease",
           flexShrink: 0,
         }}>
-          {IconComp && <IconComp size={29} color="#fff" strokeWidth={1.7} />}
+          {IconComp && <IconComp size={28} color="#B8901C" strokeWidth={1.8} />}
         </div>
         <span style={{
           fontFamily: "-apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif",
@@ -9860,30 +9864,65 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
         )
       )}
 
-      {/* ── 4단계 여정 순서 Quick Menu */}
-      {[0, 1, 2, 3].map(phase => (
-        <div key={phase} style={{ marginBottom: phase < 3 ? 18 : 0 }}>
-          {/* 단계 레이블 */}
-          <div style={{
-            display: "flex", alignItems: "center", gap: 5,
-            fontFamily: "-apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif",
-            fontWeight: 600, fontSize: 11, color: "#8E8E93",
-            letterSpacing: "0.2px", marginBottom: 12, paddingLeft: 2,
+      {/* ── 홈: 핵심 5개 + 더보기 (단순화 1단계). '더보기'를 누르면 전체 단계별 메뉴가 펼쳐짐 */}
+      {!showAll ? (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", columnGap: 10, rowGap: 18 }}>
+          {CORE_IDX.map(idx => renderQMItem(QUICK_MENU[idx], idx))}
+          {/* 더보기 — 중립 색(의미 없는 색은 쓰지 않음) */}
+          <button onClick={() => setShowAll(true)} style={{
+            background: "none", border: "none", cursor: "pointer",
+            display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+            padding: 0, WebkitTapHighlightColor: "transparent",
           }}>
-            {(() => {
-              const PhaseIcon = QM_ICON_MAP[PHASES[phase].icon];
-              return PhaseIcon
-                ? <PhaseIcon size={13} color="#8E8E93" strokeWidth={2} />
-                : null;
-            })()}
-            <span>{ko ? PHASES[phase].labelKo : PHASES[phase].labelEn}</span>
-          </div>
-          {/* 4열 아이콘 그리드 */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", columnGap: 8 }}>
-            {QUICK_MENU.slice(phase * 4, phase * 4 + 4).map((item, i) => renderQMItem(item, i))}
-          </div>
+            <div style={{
+              width: 62, height: 62, borderRadius: 16, background: "#EEF1F6",
+              boxShadow: "0 2px 10px rgba(20,33,58,0.06), inset 0 1px 0 rgba(255,255,255,0.5)",
+              display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+            }}>
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#1A2740" aria-hidden="true">
+                <circle cx="5" cy="12" r="1.9" /><circle cx="12" cy="12" r="1.9" /><circle cx="19" cy="12" r="1.9" />
+              </svg>
+            </div>
+            <span style={{
+              fontFamily: "-apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif",
+              fontWeight: 500, fontSize: 11, color: "#1C1C1E",
+              letterSpacing: "-0.15px", textAlign: "center", lineHeight: 1.25, width: "100%",
+            }}>{ko ? "더보기" : "More"}</span>
+          </button>
         </div>
-      ))}
+      ) : (
+        <>
+          {[0, 1, 2, 3].map(phase => (
+            <div key={phase} style={{ marginBottom: 18 }}>
+              {/* 단계 레이블 */}
+              <div style={{
+                display: "flex", alignItems: "center", gap: 5,
+                fontFamily: "-apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif",
+                fontWeight: 600, fontSize: 11, color: "#8E8E93",
+                letterSpacing: "0.2px", marginBottom: 12, paddingLeft: 2,
+              }}>
+                {(() => {
+                  const PhaseIcon = QM_ICON_MAP[PHASES[phase].icon];
+                  return PhaseIcon
+                    ? <PhaseIcon size={13} color="#8E8E93" strokeWidth={2} />
+                    : null;
+                })()}
+                <span>{ko ? PHASES[phase].labelKo : PHASES[phase].labelEn}</span>
+              </div>
+              {/* 4열 아이콘 그리드 */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", columnGap: 8, rowGap: 14 }}>
+                {QUICK_MENU.slice(phase * 4, phase * 4 + 4).map((item, i) => renderQMItem(item, phase * 4 + i))}
+              </div>
+            </div>
+          ))}
+          <button onClick={() => setShowAll(false)} style={{
+            width: "100%", background: "none", border: "1px solid rgba(20,33,58,0.12)",
+            borderRadius: 12, padding: "10px", marginTop: 4, cursor: "pointer",
+            fontFamily: "-apple-system, 'Noto Sans KR', sans-serif", fontWeight: 600,
+            fontSize: 12.5, color: "#5B6573", WebkitTapHighlightColor: "transparent",
+          }}>{ko ? "접기 ▲" : "Show less ▲"}</button>
+        </>
+      )}
     </div>
   );
 }
@@ -10635,7 +10674,7 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
     try { return JSON.parse(localStorage.getItem(`hg_arrival_checklist_${city.slug}`) || "{}"); } catch { return {}; }
   });
   const [collapsed, setCollapsed] = useState(() => {
-    return safeStorage.get("hg_checklist_collapsed") === "1";
+    return safeStorage.get("hg_checklist_collapsed") !== "0";  // 홈 단순화: 기본 접힘(이어서 한 줄), 사용자가 펼치면 유지
   });
 
   const toggle = (id: string) => {
@@ -10654,7 +10693,7 @@ function ArrivalChecklistSection({ lang }: { lang: string }) {
   };
   const expand = () => {
     setCollapsed(false);
-    safeStorage.remove("hg_checklist_collapsed");
+    safeStorage.set("hg_checklist_collapsed", "0");
   };
 
   if (collapsed) return (
@@ -13928,6 +13967,7 @@ function FoundingPartnerBanner({ lang, onNavigate }: { lang: string; onNavigate?
 function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number) => void }) {
   const { lang } = useI18n();
   const ko = lang === "ko";
+  const [moreOpen, setMoreOpen] = useState(false);   // 홈 단순화 2단계: 보조 섹션은 기본 접힘
   return (
     <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
       <CompactHeroNew />
@@ -13937,6 +13977,19 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
       {/* ── Day 1 도착 체크리스트 ── */}
       <ArrivalChecklistSection lang={lang} />
 
+      {/* ── 홈 더 둘러보기: 보조 섹션은 기본 접힘 (단순화 2단계). 탭하면 그대로 모두 나옴 — 기능 유지 ── */}
+      {!moreOpen && (
+        <button onClick={() => setMoreOpen(true)} style={{
+          width: "calc(100% - 32px)", margin: "18px 16px 4px", background: "#fff",
+          border: "1px solid rgba(20,33,58,0.1)", borderRadius: 14, padding: "15px 16px",
+          cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
+          fontFamily: "'Noto Sans KR',sans-serif", fontWeight: 700, fontSize: 13.5, color: "#5B6573",
+          WebkitTapHighlightColor: "transparent",
+        }}>
+          {ko ? "홈 더 둘러보기 — 정착 필수 · 다른 도시 · 이야기 ▾" : "Explore more — essentials · cities · stories ▾"}
+        </button>
+      )}
+      {!moreOpen ? null : (<>
       {/* ── 바이럴 공유 — "도움이 됐다면 다음 분께도" ── */}
       <GrowthShareSection lang={lang} />
 
@@ -13980,6 +14033,7 @@ function HomeScreen({ onNavigate }: { onNavigate?: (tab: number, subTab?: number
           </div>
         </div>
       </div>
+      </>)}
     </div>
   );
 }
