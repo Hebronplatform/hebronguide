@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="환대의 목소리들 — 북미 한인 목회자·학자·현장 간증을 통해 환대의 신학과 삶을 듣는 자리. 오일권 목사 1호." />
+  <meta property="og:title" content="환대의 목소리들 · Voices on Hospitality | HebronGuide" />
+  <meta property="og:description" content="환대 공동체의 다양한 목소리를 쌓아 가는 자리." />
+  <meta property="og:url" content="https://hebronguide.com/voices.html" />
+  <meta name="theme-color" content="#0d1117" />
+  <title>환대의 목소리들 · Voices on Hospitality | HebronGuide</title>
+  <style>
+    /* ─────────────────────────────────────────
+       HebronGuide — voices.html
+       about.html 과 동일한 디자인 토큰 공유
+       Created: 2026-10-12
+    ───────────────────────────────────────── */
+    :root {
+      --bg:         #0d1117;
+      --bg2:        #161b22;
+      --bg3:        #1c2330;
+      --border:     rgba(255,255,255,0.08);
+      --accent:     #c8a96e;
+      --accent2:    #e8c97e;
+      --blue:       #4a9eda;
+      --text:       #e6edf3;
+      --muted:      #8b949e;
+      --max-w:      720px;
+      --r:          10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans KR', -apple-system, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.85;
+      font-size: 16px;
+    }
+    a { color: inherit; text-decoration: none; }
+    a.inline-link { color: var(--accent); border-bottom: 1px dashed rgba(200,169,110,0.4); }
+
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,17,23,0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px; height: 52px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; letter-spacing: -0.02em; }
+    .nav-logo img { width: 30px; height: 30px; border-radius: 7px; flex-shrink: 0; }
+    .nav-logo em { font-style: normal; color: inherit; }
+    .nav-back { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+
+    .lang-bar { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 8px 20px; display: flex; justify-content: flex-end; gap: 8px; }
+    .lang-btn { padding: 4px 14px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 12px; cursor: pointer; transition: all 0.18s; font-family: inherit; }
+    .lang-btn.active { background: var(--accent); color: #0d1117; border-color: var(--accent); font-weight: 600; }
+
+    .hero { padding: 72px 20px 48px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(200,169,110,0.12) 0%, transparent 65%), var(--bg); }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: block; }
+    .hero h1 { font-size: clamp(1.9rem, 5vw, 2.6rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .hero h1 .line2 { color: var(--accent2); }
+    .hero-sub { color: #c9d1d9; font-size: 1rem; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    .intro { max-width: var(--max-w); margin: 36px auto 24px; padding: 0 20px; }
+    .intro p { color: rgba(230,237,243,0.85); font-size: 0.97rem; }
+
+    .divider-hz { max-width: var(--max-w); margin: 32px auto; padding: 0 20px; }
+    .divider-hz::before { content: ""; display: block; height: 1px; background: var(--border); }
+
+    .voice { max-width: var(--max-w); margin: 0 auto 72px; padding: 0 20px; }
+    .voice-header { margin-bottom: 36px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .voice-number { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 10px; display: block; }
+    .voice-title { font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 14px; color: var(--text); }
+    .voice-author { color: var(--muted); font-size: 0.92rem; }
+    .voice-author strong { color: var(--text); font-weight: 600; }
+
+    .voice h3 { font-size: 1.15rem; font-weight: 700; color: var(--accent2); margin: 36px 0 10px; letter-spacing: -0.01em; }
+    .voice h3 .num { color: var(--accent); font-weight: 500; margin-right: 8px; }
+    .voice .sub { font-size: 0.95rem; color: var(--muted); margin-bottom: 18px; font-style: italic; }
+    .voice p { color: rgba(230,237,243,0.88); margin-bottom: 14px; font-size: 0.97rem; }
+    .voice blockquote { border-left: 2px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: rgba(200,169,110,0.06); border-radius: 0 var(--r) var(--r) 0; font-style: italic; color: var(--muted); font-size: 0.96rem; line-height: 1.75; }
+
+    .closing-line { max-width: var(--max-w); margin: 56px auto 0; padding: 32px 24px; text-align: center; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); }
+    .closing-line p { font-size: 1.05rem; font-weight: 600; color: var(--accent2); line-height: 1.6; margin: 0; }
+
+    .next-voices { max-width: var(--max-w); margin: 48px auto 0; padding: 24px 22px; background: rgba(200,169,110,0.04); border: 1px dashed rgba(200,169,110,0.3); border-radius: var(--r); text-align: center; }
+    .next-voices p { color: var(--muted); font-size: 0.92rem; margin: 0; }
+    .next-voices a { color: var(--accent); border-bottom: 1px dashed rgba(200,169,110,0.4); }
+
+    footer { max-width: var(--max-w); margin: 72px auto 0; padding: 32px 20px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 0.85rem; }
+    footer a { color: var(--accent); }
+
+    /* 언어 전환 */
+    [data-ko], [data-en] { display: block; }
+    html[lang="en"] [data-ko] { display: none; }
+    html[lang="ko"] [data-en] { display: none; }
+  </style>
+</head>
+<body>
+
+  <nav class="top-nav">
+    <a href="/" class="nav-logo">
+      <img src="/hebronguide-logo.svg" alt="HebronGuide" onerror="this.style.display='none'" />
+      <span>Hebron<em>Guide</em></span>
+    </a>
+    <a href="/about.html" class="nav-back">
+      <span data-ko>← 회사소개로</span>
+      <span data-en>← Back to About</span>
+    </a>
+  </nav>
+
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('ko')" id="lang-ko">한국어</button>
+    <button class="lang-btn" onclick="setLang('en')" id="lang-en">English</button>
+  </div>
+
+  <section class="hero">
+    <span class="hero-eyebrow">Voices on Hospitality</span>
+    <h1>
+      <span data-ko>환대의 목소리들</span>
+      <span data-en>Voices on Hospitality</span>
+      <br>
+      <span class="line2" data-ko>— 환대를 사는 사람들의 말과 삶</span>
+      <span class="line2" data-en>— Words and lives of those who practice hospitality</span>
+    </h1>
+    <p class="hero-sub">
+      <span data-ko>목회자·학자·현장의 간증이 쌓이는 자리. 환대는 혼자의 신학이 아니라 공동체의 삶입니다.</span>
+      <span data-en>A space where testimonies from pastors, scholars, and the field gather. Hospitality is not a solitary theology but a shared life.</span>
+    </p>
+  </section>
+
+  <div class="intro">
+    <p data-ko>HebronGuide 는 "환대" 를 한 사람의 신념이 아니라 <strong>공동체가 함께 사는 삶</strong>으로 봅니다. 그래서 여러 자리에서 환대를 사신 분들의 글을 모아 둡니다. 1호는 캐나다 EFCC CPD 에서 사역하시는 오일권 목사님의 "환대 컨퍼런스 참석 후기" 입니다.</p>
+    <p data-en>HebronGuide sees "hospitality" not as one person's conviction but as <strong>a life lived together in community</strong>. So we gather here the writings of those who have practiced hospitality in various places. The first voice is Rev. Il-Kwon Oh of EFCC CPD in Canada, with his "Reflections on the Hospitality Conference."</p>
+  </div>
+
+  <div class="divider-hz"></div>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       1호 · 오일권 목사 — 환대 컨퍼런스 참석 후기
+       (저자 공개 허락 받음)
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <article class="voice">
+    <header class="voice-header">
+      <span class="voice-number">Voice 01</span>
+      <h2 class="voice-title">
+        <span data-ko>환대 컨퍼런스 참석 후기</span>
+        <span data-en>Reflections on the Hospitality Conference</span>
+      </h2>
+      <p class="voice-author">
+        <strong data-ko>오일권 목사</strong>
+        <strong data-en>Rev. Il-Kwon Oh</strong>
+        <span data-ko> · 캐나다 EFCC CPD · 기자 · 참석자 · 나그네의 세 시각</span>
+        <span data-en> · EFCC CPD, Canada · From three perspectives: journalist, attendee, stranger</span>
+      </p>
+    </header>
+
+    <!-- ── 1. 기자의 시각 ── -->
+    <h3><span class="num">1.</span><span data-ko>기자의 시각</span><span data-en>The Journalist's View</span></h3>
+    <p class="sub" data-ko>"낯선 이를 보는 눈이 열릴 때: 컨퍼런스가 던진 환대의 질문"</p>
+    <p class="sub" data-en>"When Eyes Open to the Stranger: The Question This Conference Posed"</p>
+
+    <p data-ko>이번 컨퍼런스의 중심에는 하나의 질문이 있었다. 우리 곁의 낯선 이는 누구이며, 교회는 그를 어떻게 대하는가. 강단에서는 로마서 13장을 본문으로 이웃에게는 울타리가 없다는 메시지가 전해졌다. 이웃 사랑은 담장 너머로 서로를 참아 주는 관용이 아니라, 낯선 사람을 내 식탁과 삶 안으로 들이는 일이라는 것이다. 설교자는 코로나 막바지에 얼굴도 모르는 가정을 6주간 집에 들인 경험을 나누었고, 그들이 지금은 그를 "삼촌" 이라 부른다고 전했다.</p>
+
+    <p data-ko>한편 아침마다 열린 모닝 프레이어 미팅에서는 같은 주제가 성경 본문으로 풀렸다. 필록세니아(낯선 이를 사랑함)의 뜻, 아브라함과 사렙다 과부의 환대, 선한 사마리아인이 그 자리의 중심이었다. 모임을 인도한 Daniel Oh 목사는 환대를 감정이 아니라 하나님의 성품에서 나오는 행동으로 설명했다.</p>
+
+    <p data-ko>그는 자신의 이야기도 나누었다. EFCC CPD 에서 개척을 시작하며 처음 참석한 컨퍼런스에서 모든 것이 낯설어 적응하지 못하고 도중에 집으로 돌아왔던 일이다. 그러나 피어 미팅과 코칭, 그리고 덴 목사님과 스티븐 목사님의 적극적인 인도를 통해 조금씩 이 공동체에 적응했고, 스스로 환대를 받아들이면서 무엇을 어떻게 해야 할지 몰랐던 낯선 사람이 이 몸 안에서 자라 가는 사람으로 변했다고 했다.</p>
+
+    <p data-ko>이야기는 현재의 사역으로 이어졌다. 우크라이나 남매가 처음 교회를 찾았을 때 영어 예배가 없어 캐나다 교회 예배로 안내했고, 다음 주 영어 예배가 있음을 알리자 그 주부터 참석하기 시작했다. 금요일 저녁 식사 모임을 Daniel 목사 가정에서 시작하며 이들도 초대했고, 삶을 나누는 식탁을 거듭하면서 언어와 문화, 태어난 나라가 달라 느끼던 어색함이 차츰 사라졌다. 지금은 이들이 먼저 모임에 사람을 초대하고, 오지 않은 이들을 챙기는 모습으로 달라졌다.</p>
+
+    <p data-en>At the heart of this conference was a single question: Who is the stranger beside us, and how does the church receive them? From the pulpit, Romans 13 was preached — that love for one's neighbor knows no fence. Loving a neighbor is not tolerance across a boundary but welcoming the stranger into one's table and life. The preacher shared his experience of taking in a family he had never met for six weeks during the late pandemic — a family that now calls him "uncle."</p>
+
+    <p data-en>In morning prayer meetings, the same theme was unfolded through Scripture: the meaning of philoxenia (love for the stranger), Abraham's hospitality, the widow of Zarephath, the Good Samaritan. Rev. Daniel Oh explained hospitality not as feeling but as action flowing from the character of God.</p>
+
+    <p data-en>He shared his own story. When he first planted at EFCC CPD and attended a conference, everything felt strange — he returned home midway, unable to adjust. But through peer meetings, coaching, and the active welcome of Rev. Den and Rev. Steven, he gradually settled into this community. As he received hospitality himself, the stranger who did not know what to do became someone growing within this body.</p>
+
+    <p data-en>The story continued into his current ministry. When a Ukrainian brother and sister first came, there was no English service, so he directed them to a Canadian church. When he told them English service would start the following week, they began attending. He started a Friday dinner gathering at Rev. Daniel's home and invited them too. Through repeated meals of shared life, the awkwardness of language, culture, and birthplace faded. Now they are the ones inviting new people and reaching out to those who did not come.</p>
+
+    <!-- ── 2. 참석자의 시각 ── -->
+    <h3><span class="num">2.</span><span data-ko>참석자의 시각</span><span data-en>The Attendee's View</span></h3>
+    <p class="sub" data-ko>"나는 이번에 무엇에 찔렸는가"</p>
+    <p class="sub" data-en>"What pierced me this time"</p>
+
+    <p data-ko>이번 컨퍼런스에서 가장 오래 남은 말은 "환대는 불편하다" 는 것이었다. 편한 사람과 나누는 건 친교이고, 낯선 이를 맞아야 비로소 환대가 된다. 내 교회에도 예배 후 말없이 먼저 나가는 사람, 한 번 오고 안 보이는 사람이 있다는 것을 떠올렸다. 눈이 나빠서가 아니라 볼 마음이 없어서 지나쳤던 것은 아닌지 돌아보게 되었다.</p>
+
+    <p data-ko>처음 이 모임에 왔을 때 낯설어 도중에 집으로 돌아갔던 내가, 이제는 모닝 미팅을 인도하는 자리에 서 있다. 그 사이에 나를 먼저 찾아와 준 사람들의 환대가 있었다. 그래서 이번 말씀은 남에게 전하는 말씀이기 전에 내가 받은 은혜를 돌아보게 하는 말씀이었다.</p>
+
+    <p data-ko>모닝 미팅을 인도하며 정리한 흐름도 내게 먼저 하는 말씀이었다. 알아보고(눅 10), 불편함을 감수하고(빌 2), 은혜받은 자로서 빚진 마음과 간절함을 품고(롬 1:14-15), 사랑이신 하나님께서 그 사랑으로 움직이게 하시며(마 22, 요일 4), 자비로 이웃이 되는 것(눅 10:25-37), 그리고 그 모든 것이 율법의 완성(롬 13:8-10)이라는 흐름이다. 다른 강의에서 들은 "그래도 하겠다(I'll do it anyway)" 라는 고백은, 피곤하고 기분이 안 따라 줄 때에도 사랑하는 길을 가리켜 주었다.</p>
+
+    <blockquote data-ko>결단: 이번 주 처음 보는 분께 먼저 이름을 묻는다. 예배 후 3분은 평소 말 안 해 본 분께 쓴다. 여기서 한 걸음 더 나아가, 보다 적극적으로 다가가 이름을 묻고, 연락처를 받고, 모임에 초대하는 모습을 가져야겠다.</blockquote>
+
+    <p data-en>The words that stayed longest with me from this conference were: "Hospitality is uncomfortable." Sharing with the comfortable is fellowship; receiving the stranger is hospitality. I thought of people in my own church who leave silently after service, or come once and don't return. I had to ask whether I passed them by — not because my eyes are weak, but because I had no heart to see.</p>
+
+    <p data-en>I, who once returned home midway because this gathering felt strange, now stand leading the morning meeting. In between were people who first came to find me. So this word was not something to pass on to others but a word that made me look back at the grace I had received.</p>
+
+    <p data-en>The flow I prepared while leading the morning meeting was also a word to myself first. Recognize (Luke 10), bear the discomfort (Phil 2), hold the sense of debt and longing as one who has received grace (Rom 1:14-15), let God who is love move us with that love (Matt 22, 1 John 4), become a neighbor through mercy (Luke 10:25-37) — and all of this is the fulfillment of the law (Rom 13:8-10). The confession I heard in another talk — "I'll do it anyway" — pointed to the path of love even when tired and unwilling.</p>
+
+    <blockquote data-en>Resolution: This week, I will ask a stranger their name first. For three minutes after service, I will go to someone I have not spoken with. One step further — approach more actively, ask their name, get their contact, invite them to a gathering.</blockquote>
+
+    <!-- ── 3. 나그네의 시각 ── -->
+    <h3><span class="num">3.</span><span data-ko>나그네의 시각</span><span data-en>The Stranger's View</span></h3>
+    <p class="sub" data-ko>"문 앞에 서 있던 사람의 이야기"</p>
+    <p class="sub" data-en>"The story of one who stood at the door"</p>
+
+    <p data-ko>나그네로 사는 것은 낯선 언어와 낯선 얼굴 사이에서, 내가 이 자리에 속해도 되는지 묻는 일이다. 이민자는 두 번 나그네다. 고국에서 떠났고, 새 땅에서는 아직 속하지 못했다. 그래서 환대는 내게 거창한 행사가 아니라 누군가 내 이름을 물어 준 순간이다.</p>
+
+    <p data-ko>나도 그런 나그네였다. 개척을 시작하고 처음 참석한 컨퍼런스에서 무엇을 어떻게 해야 할지 몰라 중간에 집으로 돌아왔다. 그런 나를 피어 미팅과 코칭, 그리고 먼저 다가와 준 목사님들이 조금씩 이 몸 안으로 이끌어 주었다. 환대를 받아들이기로 했을 때, 외래인이던 내가 이 안에서 자라기 시작했다.</p>
+
+    <p data-ko>이번 모임에서 가장 와닿았던 것은, 환대를 하는 사람들도 한때 나그네였다는 말씀이었다. "너희도 애굽 땅에서 나그네였다" 는 기억 때문에 우리는 낯선 이를 다르게 본다. 예수님도 우리가 아직 하나님께 낯선 이였을 때 먼저 다가오셨다.</p>
+
+    <p data-ko>우리 교회를 찾은 우크라이나 남매도 낯선 나라의 낯선 교회 문 앞에 선 나그네였다. 영어 예배가 없던 첫날, 그들은 다른 교회 예배로 안내받았고, 이어 금요일 저녁 식탁에 초대되었다. 식탁을 거듭하며 언어와 문화의 어색함이 사라졌고, 이제는 이들이 새로 오는 사람을 초대하고 안 온 사람을 챙긴다. 환대가 한 사람의 자리를 "손님" 에서 "식구" 로 바꾼다는 것을 보았다.</p>
+
+    <p data-en>To live as a stranger is to ask, between unfamiliar words and faces, whether I may belong here. An immigrant is a stranger twice — having left the homeland, not yet belonging in the new land. So hospitality is not a grand event to me — it is the moment someone asked my name.</p>
+
+    <p data-en>I too was such a stranger. When I first attended a conference after planting a church, I returned home midway, not knowing what to do. Peer meetings, coaching, and pastors who came to me first gradually drew me into this body. When I decided to receive hospitality, the outsider began to grow within.</p>
+
+    <p data-en>What struck me most in this meeting was the word that those who show hospitality were also strangers once. Because of the memory — "you were strangers in Egypt" — we see the stranger differently. Jesus too came to us first, while we were still strangers to God.</p>
+
+    <p data-en>The Ukrainian brother and sister who came to our church were also strangers standing at the door of a strange church in a strange country. On the first day, with no English service, they were directed elsewhere; later they were invited to the Friday evening table. Through repeated meals, the awkwardness of language and culture faded. Now they invite the new and reach out to the absent. I saw hospitality turn one's place from "guest" to "family."</p>
+
+    <!-- 마무리 한 줄 -->
+    <div class="closing-line">
+      <p data-ko>환대는 문을 여는 것이 아니라 눈을 여는 것에서 시작된다.</p>
+      <p data-en>Hospitality begins not by opening a door, but by opening our eyes.</p>
+    </div>
+  </article>
+
+  <!-- 다음 목소리들 안내 -->
+  <div class="next-voices">
+    <p data-ko>앞으로 더 많은 목소리들이 쌓입니다. 이곳에 함께 담길 글이 있으시면 <a href="mailto:pastor@ijiguchon.org">pastor@ijiguchon.org</a> 로 알려 주세요.</p>
+    <p data-en>More voices will be added here. If you have writing to share in this space, please reach <a href="mailto:pastor@ijiguchon.org">pastor@ijiguchon.org</a>.</p>
+  </div>
+
+  <footer>
+    <p data-ko>HebronGuide · 환대의 플랫폼 · <a href="/about.html">회사소개</a> · <a href="/">홈으로</a></p>
+    <p data-en>HebronGuide · A Platform of Hospitality · <a href="/about.html">About</a> · <a href="/">Home</a></p>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById('lang-ko').classList.toggle('active', lang === 'ko');
+      document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+      try { localStorage.setItem('hg-lang', lang); } catch (e) {}
+    }
+    try {
+      const saved = localStorage.getItem('hg-lang');
+      if (saved === 'en' || saved === 'ko') setLang(saved);
+    } catch (e) {}
+  </script>
+
+</body>
+</html>
