@@ -13607,7 +13607,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
               {ko ? "헤브론 뮤직" : "Hebron Music"}
             </div>
             <div style={{ fontSize: 10.5, color: "rgba(236,253,245,0.5)", fontFamily: "Manrope,sans-serif", marginTop: 2 }}>
-              {ko ? "YouTube · Healing · Jazz · 두 사역자의 음악" : "YouTube · Healing · Jazz · Music by two ministers"}
+              {ko ? "YouTube · Healing · Jazz" : "YouTube · Healing · Jazz"}
             </div>
           </div>
           <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,68,68,0.8)", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
