@@ -13198,10 +13198,11 @@ type MusicGenre = { id: string; labelKo: string; labelEn: string; items: GenreIt
 // 순서: Healing 을 앞에 (잔잔한 연주곡으로 첫 환대).
 // 기본재생은 id "bloom"(Healing) — FloatingMusicPlayer의 useState.
 const MUSIC_GENRES: MusicGenre[] = [
-  // Healing — 어쿠스틱·앰비언트 연주곡 (Bloom Again Music 채널 · 오일권 목사님)
+  // Healing — 어쿠스틱·앰비언트 연주곡 (AI 음악)
+  // 첫 항목이 기본 재생 — 지금은 Autumn Quiet Hours (최신 발매 2026-10).
   { id: "bloom", labelKo: "Healing", labelEn: "Healing", items: [
-    { type: "playlist", id: "PLHl4MfXsebn14zs3Rj-8W23TS9WO8-Pgb", sub: "Bloom Again Music" },
-    { type: "video",    id: "gNejf_F1hpw", sub: "Autumn Quiet Hours — Bloom Again Music" },
+    { type: "video",    id: "gNejf_F1hpw", sub: "Autumn Quiet Hours" },
+    { type: "playlist", id: "PLHl4MfXsebn14zs3Rj-8W23TS9WO8-Pgb", sub: "Bloom Again Music (전곡)" },
     { type: "video",    id: "kMPNHuehfCs", sub: "Overflow — Summer Healing" },
   ] },
   // Jazz — 사모님 Joy Kim(The Mason Nook) 작품
@@ -13607,7 +13608,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
               {ko ? "헤브론 뮤직" : "Hebron Music"}
             </div>
             <div style={{ fontSize: 10.5, color: "rgba(236,253,245,0.5)", fontFamily: "Manrope,sans-serif", marginTop: 2 }}>
-              {ko ? "YouTube · Healing · Jazz" : "YouTube · Healing · Jazz"}
+              {ko ? "Healing · Jazz" : "Healing · Jazz"}
             </div>
           </div>
           <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,68,68,0.8)", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
