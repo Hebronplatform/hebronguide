@@ -13188,46 +13188,25 @@ function AmericasAdSection({ lang }: { lang: string }) {
    ─ 예약 추가: YT_SCHEDULE 배열에 항목 추가
 ───────────────────────────────────────── */
 
-// ── 🎵 헤브론 뮤직 — 언제 들어도 좋은 5장르 ──────────────
-// CCM · 연주 찬양 · Jazz(Joy Kim) · Bloom Again · Lo-Fi + 어린이 + 신청곡.
-// 시간대 자동 선곡을 폐지하고, 사용자가 원하는 장르를 직접 고르게 한다.
+// ── 🎵 헤브론 뮤직 — 두 사역자의 음악 ──────────────
+// Jazz (Joy Kim 사모님 · The Mason Nook) + Healing (오일권 목사님 · Bloom Again Music)
+// 두 채널만 유지하여 "가족·사역의 음악" 두 축으로 단순화 (2026-10-12).
 type GenreItem = { type: "playlist"|"video"; id: string; sub: string };
 type MusicGenre = { id: string; labelKo: string; labelEn: string; items: GenreItem[] };
 
-// 언제 들어도 좋은 5장르 — 각 장르에 검증된 실제 유튜브 플레이리스트/영상만 사용
-// 순서: 연주·배경(Piano·Healing·Lo-Fi·Jazz) → 보컬(CCM) → 기능(Kids·Requests).
-// 첫 방문자에게 잔잔한 연주곡을 먼저 흐르게 해 부담 없는 환대 — 기본재생 = Piano.
-// 언제 들어도 좋은 5장르 — 각 장르에 검증된 실제 유튜브 플레이리스트/영상만 사용
-// 순서: Healing·Jazz 를 앞에 (2026-08-08 폴 김 목사).
-//       기본재생은 순서와 무관하게 id "worship"(Piano)로 고정 — FloatingMusicPlayer의 useState.
+// 두 채널 — Healing(Bloom Again · 오일권 목사) · Jazz(Joy Kim 사모님)
+// 순서: Healing 을 앞에 (잔잔한 연주곡으로 첫 환대).
+// 기본재생은 id "bloom"(Healing) — FloatingMusicPlayer의 useState.
 const MUSIC_GENRES: MusicGenre[] = [
-  // ② Healing — 어쿠스틱·앰비언트 연주곡 (Bloom Again Music 채널)
+  // Healing — 어쿠스틱·앰비언트 연주곡 (Bloom Again Music 채널 · 오일권 목사님)
   { id: "bloom", labelKo: "Healing", labelEn: "Healing", items: [
     { type: "playlist", id: "PLHl4MfXsebn14zs3Rj-8W23TS9WO8-Pgb", sub: "Bloom Again Music" },
+    { type: "video",    id: "gNejf_F1hpw", sub: "Autumn Quiet Hours — Bloom Again Music" },
     { type: "video",    id: "kMPNHuehfCs", sub: "Overflow — Summer Healing" },
   ] },
-  // ③ Jazz — 사모님 Joy Kim(The Mason Nook) 작품. 연주 그룹의 마지막.
+  // Jazz — 사모님 Joy Kim(The Mason Nook) 작품
   { id: "jazz", labelKo: "Jazz", labelEn: "Jazz", items: [
     { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook — Cozy Jazz (Joy Kim)" },
-  ] },
-  // ④ 연주 찬양(Piano) — 피아노·묵상 워십. 기본재생.
-  { id: "worship", labelKo: "Piano", labelEn: "Piano", items: [
-    { type: "playlist", id: "PLpNBopEHnm3DZj97bgFCVWwtRQu3KKvFG", sub: "Alone With God — 피아노 워십" },
-    { type: "playlist", id: "PLHl4MfXsebn3aemtju1bX7ezzNttAS9ig", sub: "Piano Worship (찬양)" },
-    { type: "video",    id: "R-WGkU31ifQ", sub: "" },
-  ] },
-  // ⑤ Lo-Fi — 공부·기도·묵상용 크리스천 로파이
-  { id: "lofi", labelKo: "Lo-Fi", labelEn: "Lo-Fi", items: [
-    { type: "playlist", id: "PLyqZUennuDvBqYBSu8UD5LAucMql_uXJh", sub: "Christian Lo-Fi — 잔잔한 배경음악" },
-  ] },
-  // ⑤ CCM — 유일한 보컬. 교리적으로 견고하고 교단 초월로 존중받는 현대 워십/찬송만 선별
-  //    (CityAlight·Getty). 특정 교회 브랜드(Hillsong·Bethel·Elevation) 논란 회피 — 곡은 정통, 신뢰가 해자.
-  { id: "ccm", labelKo: "CCM", labelEn: "CCM", items: [
-    { type: "video", id: "16KYvfIc2bE", sub: "In Christ Alone — Keith & Kristyn Getty" },
-    { type: "video", id: "hwc2d1Xt8gM", sub: "Yet Not I But Through Christ — CityAlight" },
-    { type: "video", id: "hlEumrEMFQ4", sub: "Christ Our Hope in Life and Death — Getty · CityAlight" },
-    { type: "video", id: "nmBcTrDu4O4", sub: "There is One Gospel — CityAlight" },
-    { type: "video", id: "4Zj4oo2w_lo", sub: "Christus Victor (Amen) — Keith & Kristyn Getty" },
   ] },
 ];
 
@@ -13248,7 +13227,7 @@ function FloatingMusicPlayer() {
   const [active, setActive]           = useState(false);
   const [mini, setMini]               = useState(false);
   const [sizeIdx, setSizeIdx]         = useState(1);
-  const [mode, setMode]               = useState<string>("worship"); // 기본재생 Piano. 장르 id | "children" | "request"
+  const [mode, setMode]               = useState<string>("bloom"); // 기본재생 Healing(Bloom Again). 장르 id | "children" | "request"
   const [subIdx, setSubIdx]           = useState(0);
   const [musicLang, setMusicLang]     = useState<"ko"|"en">("ko");
   const [communityQueue, setCommunityQueue] = useState<MusicReqItem[]>([]);
@@ -13414,22 +13393,13 @@ function FloatingMusicPlayer() {
             display: "flex", alignItems: "flex-end", gap: 2, padding: "6px 8px 0",
             overflowX: "auto", scrollbarWidth: "none" as const,
           }}>
-            {/* 5장르(CCM·연주찬양·Jazz·Bloom Again·Lo-Fi) + 어린이 + 신청곡 */}
+            {/* 두 채널 — Healing(Bloom Again · 오일권 목사) · Jazz(Joy Kim 사모님) */}
             {MUSIC_GENRES.map(g => (
               <button key={g.id} onClick={() => { setMode(g.id); setSubIdx(0); }}
                 style={tabBtnStyle(mode === g.id)}>
                 {musicLang === "ko" ? g.labelKo : g.labelEn}
               </button>
             ))}
-            <button onClick={() => { setMode("children"); setSubIdx(0); }}
-              style={tabBtnStyle(mode === "children")}>
-              Kids
-            </button>
-            <button onClick={() => { setMode("request"); setSubIdx(0); }}
-              style={tabBtnStyle(mode === "request")}>
-              Requests
-              {communityQueue.length > 0 ? ` ${communityQueue.length}` : ""}
-            </button>
             <button onClick={() => setMusicLang(l => l === "ko" ? "en" : "ko")}
               style={{ marginLeft: "auto", flexShrink: 0, display: "flex", alignItems: "center", gap: 1, background: "none", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 6, padding: "2px 6px", cursor: "pointer", marginBottom: 4, fontFamily: "Manrope,sans-serif" }}>
               <span style={{ fontSize: 9, fontWeight: musicLang === "ko" ? 800 : 500, color: musicLang === "ko" ? "rgba(110,231,183,0.9)" : "rgba(255,255,255,0.3)" }}>한</span>
@@ -13452,9 +13422,7 @@ function FloatingMusicPlayer() {
           <span style={{ fontSize: 13, flexShrink: 0 }}>▶</span>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "Manrope,sans-serif", whiteSpace: "nowrap" as const, overflow: "hidden", textOverflow: "ellipsis" }}>
-              {mode === "request" ? "Requests"
-                : mode === "children" ? "Kids"
-                : (() => { const g = MUSIC_GENRES.find(x => x.id === mode); return g ? g.labelEn : "Piano"; })()}
+              {(() => { const g = MUSIC_GENRES.find(x => x.id === mode); return g ? g.labelEn : "Healing"; })()}
               {curItem?.sub ? ` — ${curItem.sub}` : ""}
             </div>
             <div style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", fontFamily: "Manrope,sans-serif" }}>
@@ -13639,7 +13607,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
               {ko ? "헤브론 뮤직" : "Hebron Music"}
             </div>
             <div style={{ fontSize: 10.5, color: "rgba(236,253,245,0.5)", fontFamily: "Manrope,sans-serif", marginTop: 2 }}>
-              {ko ? "YouTube · CCM · 찬양 · Jazz · Lo-Fi" : "YouTube · CCM · Worship · Jazz · Lo-Fi"}
+              {ko ? "YouTube · Healing · Jazz · 두 사역자의 음악" : "YouTube · Healing · Jazz · Music by two ministers"}
             </div>
           </div>
           <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,68,68,0.8)", fontFamily: "Manrope,sans-serif", flexShrink: 0 }}>
