@@ -13205,9 +13205,11 @@ const MUSIC_GENRES: MusicGenre[] = [
     { type: "playlist", id: "PLHl4MfXsebn14zs3Rj-8W23TS9WO8-Pgb", sub: "Bloom Again Music (전곡)" },
     { type: "video",    id: "kMPNHuehfCs", sub: "Overflow — Summer Healing" },
   ] },
-  // Jazz — 사모님 Joy Kim(The Mason Nook) 작품
+  // Jazz — The Mason Nook (AI 음악)
+  // 첫 항목이 기본 재생.
   { id: "jazz", labelKo: "Jazz", labelEn: "Jazz", items: [
-    { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook — Cozy Jazz (Joy Kim)" },
+    { type: "video",    id: "yCJwrVoxFLI", sub: "Cozy Jazz" },
+    { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook (전곡)" },
   ] },
 ];
 
