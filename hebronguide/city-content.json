@@ -71,5 +71,164 @@
     ],
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세(1K 9~12만 엔/월 등)·교회 리스트(동경한인교회 등)는 2026-10 기준 추정. 공식 사이트 재확인 후 게시 권장."
+  },
+
+  "la": {
+    "nameKo": "로스앤젤레스",
+    "nameEn": "Los Angeles",
+    "country": "US",
+    "regionEn": "California",
+    "regionKo": "캘리포니아",
+    "lat": 34.0522,
+    "lng": -118.2437,
+    "keywords": "LA 한인, 로스앤젤레스 한인, LA 코리아타운, LA 정착 가이드, LA 한인교회, LA 한인 마트, 세리토스 한인, 풀러턴 한인, LA Korean, Koreatown Los Angeles, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["Los Angeles", "Koreatown", "Cerritos", "Fullerton"],
+    "localBusinessName": "HebronGuide Los Angeles Korean Community",
+    "localBusinessDesc": "로스앤젤레스 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "로스앤젤레스 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Los Angeles — LA 한인 정착 가이드",
+    "touristCenterDesc": "LA 한인 이민자·유학생·주재원·이주자를 위한 완전 정착 가이드. 코리아타운·세리토스·풀러턴 거주지·한식당·한인교회·DMV·취업·생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "LA 한인마트 어디가 좋아요?",
+        "a": "코리아타운 중심으로 H Mart·Galleria Market·Zion Market이 가장 큽니다. 세리토스·풀러턴에도 H Mart 지점이 있어 OC 거주자도 가깝습니다. 대용량 생필품은 코스트코, 아시안 식재료는 99 Ranch Market도 함께 이용하세요."
+      },
+      {
+        "q": "LA 한인 밀집 지역은 어디인가요?",
+        "a": "원형은 Koreatown(Wilshire Blvd 중심)입니다. 가족 단위는 Cerritos·Fullerton(오렌지카운티), 글렌데일·롤랜드하이츠(동쪽 교외)를 많이 선택합니다. 학군은 세리토스·풀러턴·어바인이 선호됩니다."
+      },
+      {
+        "q": "LA 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "LA는 미국 전역에서 렌트·물가가 가장 높은 지역 중 하나입니다. 1BR 렌트 $2,000~2,800/월 × 보증금 1~2개월 + 차량 구매 $8,000~15,000(중고 기준) + 생활비 $2,500~3,500/월. 초기 자금 $20,000~30,000 권장. 대중교통이 약해 차량이 사실상 필수입니다."
+      },
+      {
+        "q": "LA에서 한국 면허로 운전할 수 있나요?",
+        "a": "방문자는 한국 면허로 임시 운전 가능하지만, 캘리포니아 거주자는 10일 안에 캘리포니아 면허로 전환해야 합니다. 한-캘리포니아 상호 인정 협정이 없어 **필기+도로시험을 다시** 봐야 합니다. 캘리포니아 DMV는 한국어 필기시험을 지원합니다."
+      },
+      {
+        "q": "LA 한인교회 추천해주세요",
+        "a": "코리아타운·세리토스·풀러턴·롤랜드하이츠에 수백 개 한인교회가 있습니다. 교단(장로·침례·감리·순복음)과 세대(1세·1.5세·2세) 구성이 다양하니, 거주지·언어·가족 상황에 맞는 교회를 Hebron 플랫폼을 통해 안내받으세요."
+      },
+      {
+        "q": "LA 1베드룸 렌트비는 얼마인가요?",
+        "a": "2026년 기준: 코리아타운 1BR $2,000~2,800/월, 세리토스 $2,200~2,900/월, 풀러턴 $1,800~2,500/월, 다운타운 $2,500~3,500/월. 어바인·베벌리힐스는 $3,000+ 이상. 보증금은 보통 월세 1~2개월 수준입니다."
+      },
+      {
+        "q": "LA에서 SSN(사회보장번호)은 어디서 신청하나요?",
+        "a": "주요 SSA 오피스: Federal Building(11000 Wilshire Blvd, Westwood), 다운타운(888 S Figueroa) 등 다수. 취업 비자 소지자는 입국 10일 후부터 신청 가능. 반드시 전화 예약(800-772-1213) 후 방문하세요. 한국어 통역 서비스 요청 가능합니다."
+      },
+      {
+        "q": "LA에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) 엔터테인먼트·미디어 (K-콘텐츠·CJ·SM 미국 지사) 2) 무역·물류 (LA/롱비치 항) 3) IT·스타트업 (실리콘비치) 4) 의료·바이오 (한인 병원·클리닉 밀집) 5) 한인 비즈니스 (코리아타운·세리토스). WorkSource California에서 무료 이력서·면접 코칭 제공."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "렌트 시세·교회 리스트·DMV 운영 정책은 2026-10 기준 추정. 코리아타운 1BR $2,000~2,800 등 숫자는 공식 사이트(Zillow·DMV)에서 재확인 권장."
+  },
+
+  "toronto": {
+    "nameKo": "토론토",
+    "nameEn": "Toronto",
+    "country": "CA",
+    "regionEn": "Ontario",
+    "regionKo": "온타리오",
+    "lat": 43.6532,
+    "lng": -79.3832,
+    "keywords": "토론토 한인, 토론토 정착 가이드, 토론토 한인교회, 토론토 한인 마트, 노스욕 한인, 미시사가 한인, 손힐 한인, Toronto Korean, North York Korean, Mississauga Korean, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["Toronto", "North York", "Mississauga", "Thornhill"],
+    "localBusinessName": "HebronGuide Toronto Korean Community",
+    "localBusinessDesc": "토론토 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "토론토 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Toronto — 토론토 한인 정착 가이드",
+    "touristCenterDesc": "토론토 한인 이민자·유학생·주재원·이주자를 위한 완전 정착 가이드. 노스욕·미시사가·손힐 거주지·한식당·한인교회·SIN·OHIP·운전면허·취업·생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "토론토 한인마트 어디가 좋아요?",
+        "a": "North York(Yonge-Finch 일대)에 H Mart·Galleria Supermarket·PAT Central Market이 밀집해 있습니다. Mississauga(미시사가)·Thornhill(손힐)에도 H Mart·Galleria 지점이 있어 서부·북부 거주자도 가깝습니다. 저렴한 생필품은 No Frills·FreshCo, 대용량은 코스트코 활용."
+      },
+      {
+        "q": "토론토 한인 밀집 지역은 어디인가요?",
+        "a": "전통 거점은 North York의 Yonge-Finch·Yonge-Steeles 축입니다. 가족 단위는 Mississauga(미시사가), 최근 성장 거점은 Thornhill(손힐)·Richmond Hill. Scarborough(스카버러)도 상대적으로 저렴해 유학생·신규 정착자가 많습니다."
+      },
+      {
+        "q": "토론토 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "온타리오는 임대법상 보증금을 'last month rent' 1개월만 받습니다(저렴한 편). 1BR 렌트 CAD $2,200~2,800/월 × 2개월(선불+마지막달) + 가구·생활용품 CAD $2,000~3,000 + 생활비 CAD $2,000~2,500/월. 초기 자금 CAD $15,000~20,000 권장."
+      },
+      {
+        "q": "토론토에서 한국 면허로 운전할 수 있나요?",
+        "a": "네, 한-캐나다 상호 면허 교환이 가능합니다. **한국 면허 2년 이상 소지자**는 바로 Ontario G 라이센스로 교환됩니다(필기·도로 시험 면제). 소지 기간이 짧으면 G1(필기) → G2(도로) → G 단계로 재취득. ServiceOntario 또는 DriveTest 센터에서 신청."
+      },
+      {
+        "q": "토론토 한인교회 추천해주세요",
+        "a": "North York·Mississauga·Thornhill 중심으로 한인교회가 밀집해 있습니다. 교단(장로·침례·감리·순복음)과 세대 구성이 다양해, 거주지·언어·가족 상황에 맞는 교회를 Hebron 플랫폼을 통해 안내받으시길 권합니다."
+      },
+      {
+        "q": "토론토 1베드룸 렌트비는 얼마인가요?",
+        "a": "2026년 기준: 다운타운 1BR CAD $2,500~3,200/월, North York(Yonge-Finch) CAD $2,200~2,800/월, Mississauga CAD $2,000~2,500/월, Thornhill CAD $2,100~2,600/월, Scarborough CAD $1,800~2,300/월. 보증금은 last month rent 1개월(법정 상한)."
+      },
+      {
+        "q": "토론토에서 SIN·OHIP은 어떻게 신청하나요?",
+        "a": "SIN(사회보험번호)은 Service Canada 오피스에서 **당일 발급** 가능(워크퍼밋·영주권 소지자). OHIP(온타리오 의료보험)은 거주 시작 뒤 **3개월 대기** 후 신청 가능하므로, 그 사이는 민간 의료보험 가입을 권장합니다. 운전면허도 서비스온타리오에서 함께 처리."
+      },
+      {
+        "q": "토론토에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) 금융·IT (베이스트리트 금융가·토론토 테크 허브) 2) 교육·학술 (U of T·요크대 중심) 3) 의료·연구 (SickKids·토론토 종합병원) 4) 제조·물류 (미시사가 공단) 5) 한인 비즈니스 (North York·Mississauga). Job Bank·Indeed 활용."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "렌트 시세(CAD $2,200~2,800 등)·교회 리스트·면허 교환 정책은 2026-10 기준 추정. ServiceOntario·OHIP 정책은 수시 변경되므로 공식 사이트 재확인 권장."
+  },
+
+  "atlanta": {
+    "nameKo": "애틀랜타",
+    "nameEn": "Atlanta",
+    "country": "US",
+    "regionEn": "Georgia",
+    "regionKo": "조지아",
+    "lat": 33.749,
+    "lng": -84.388,
+    "keywords": "애틀랜타 한인, 애틀랜타 정착 가이드, 애틀랜타 한인교회, 애틀랜타 한인 마트, 듀루스 한인, 존스크릭 한인, 수와니 한인, Atlanta Korean, Duluth Korean, Johns Creek Korean, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["Atlanta", "Duluth", "Johns Creek", "Suwanee"],
+    "localBusinessName": "HebronGuide Atlanta Korean Community",
+    "localBusinessDesc": "애틀랜타 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "애틀랜타 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Atlanta — 애틀랜타 한인 정착 가이드",
+    "touristCenterDesc": "애틀랜타 한인 이민자·유학생·주재원·이주자를 위한 완전 정착 가이드. 듀루스·존스크릭·수와니 거주지·한식당·한인교회·DDS 운전면허·취업·생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "애틀랜타 한인마트 어디가 좋아요?",
+        "a": "최대 한인마트는 Duluth(듀루스)의 Super H Mart입니다. Johns Creek·Suwanee에도 H Mart 지점이 있어 북쪽 교외 거주자도 가깝습니다. 아시안 식재료가 더 다양한 Assi Plaza, Buford Highway 일대 다민족 마켓도 활용하세요."
+      },
+      {
+        "q": "애틀랜타 한인 밀집 지역은 어디인가요?",
+        "a": "한인 메카는 Duluth(듀루스)와 Johns Creek(존스크릭)입니다. 가족·학군 중시는 존스크릭·Suwanee(수와니), 상대적으로 저렴한 Lawrenceville(로렌스빌)도 성장 중. 애틀랜타 시내 거주보다 북쪽 교외(Gwinnett·Forsyth 카운티)가 한인 생활권입니다."
+      },
+      {
+        "q": "애틀랜타 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "애틀랜타는 북미 대도시 중 생활비가 저렴한 편입니다. 1BR 렌트 $1,400~1,900/월 × 보증금 1~2개월 + 차량 구매 $5,000~12,000 + 생활비 $1,800~2,500/월. 초기 자금 $12,000~18,000 권장. 대중교통(MARTA)이 제한적이라 차량 필수."
+      },
+      {
+        "q": "애틀랜타에서 한국 면허로 운전할 수 있나요?",
+        "a": "조지아 DDS(Department of Driver Services)에서 **한국어 필기시험**을 지원합니다. 거주 시작 뒤 30일 안에 조지아 면허로 교환하는 것이 권장됩니다. 한-조지아 상호 인정 협정은 없어 필기·시력·도로 시험을 봐야 합니다. 듀루스·게인스빌·크로스로드에 DDS 지점."
+      },
+      {
+        "q": "애틀랜타 한인교회 추천해주세요",
+        "a": "Duluth·Johns Creek·Suwanee 일대에 수백 개 한인교회가 있어 'Bible Belt 교회 밀도'로 유명합니다. 교단(장로·침례·감리·순복음)과 세대 구성이 다양하니, 거주지·언어·가족 상황에 맞는 교회를 Hebron 플랫폼을 통해 안내받으시길 권합니다."
+      },
+      {
+        "q": "애틀랜타 1베드룸 렌트비는 얼마인가요?",
+        "a": "2026년 기준: Duluth 1BR $1,400~1,800/월, Johns Creek $1,600~2,100/월, Suwanee $1,500~1,900/월, 애틀랜타 다운타운 $1,700~2,300/월, Lawrenceville $1,300~1,700/월(가장 저렴). 보증금은 보통 월세 1개월."
+      },
+      {
+        "q": "애틀랜타에서 SSN(사회보장번호)은 어디서 신청하나요?",
+        "a": "주요 SSA 오피스: Chamblee(2470 Chamblee Tucker Rd, 한인 많은 북측 오피스), Downtown Atlanta(401 W Peachtree) 등. 취업 비자 소지자는 입국 10일 후 신청 가능. 전화 예약(800-772-1213) 필수. 한국어 통역 서비스 요청 가능."
+      },
+      {
+        "q": "애틀랜타에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) 자동차·제조 (현대·기아 조지아 공장·협력사 — Georgia Metaplant 포함) 2) 물류·공급망 (UPS 본사·Hartsfield-Jackson 공항) 3) IT·바이오 (조지아텍 중심) 4) 금융·보험 (코카콜라·홈디포·델타 등 대기업 본사) 5) 한인 비즈니스 (듀루스·존스크릭). Georgia Department of Labor 활용."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "렌트 시세·DDS 운영 정책·현대차 조지아 공장 채용 상황은 2026-10 기준. 공식 사이트(Zillow·조지아 DDS·현대차 Metaplant) 재확인 권장."
   }
 }
