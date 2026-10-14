@@ -426,5 +426,13 @@ echo "  OK: city-count.js → ${CITY_N} 도시 (SSOT=status:live${SSOT_N:+ $SSOT
 echo "--- Injecting SEO JSON-LD structured data ---"
 node seo-inject.js
 
+# 9-b. 도시별 콘텐츠 치환 (FAQ · meta keywords · areaServed · LocalBusiness)
+# 효과: hebronguide/index.html은 시애틀 전용 FAQ/keywords를 하드코딩하고 있어,
+#       for 루프가 복사만 하면 모든 도시 index.html이 시애틀 FAQ를 그대로 갖게 된다.
+#       city-content.json에 데이터가 있는 도시만 블록 단위로 치환해 섞임을 끊는다.
+# 안전장치: 데이터 없는 도시는 그대로 둠(파일럿 안전). public/seattle/는 영구 제외(원본).
+echo "--- Injecting city-specific content (FAQ · keywords · areaServed) ---"
+node city-content-inject.js
+
 echo "=== Deploy Complete — cities auto-synced to cities.json ==="
 ls public/

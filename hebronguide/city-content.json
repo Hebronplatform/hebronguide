@@ -1,0 +1,75 @@
+{
+  "_doc": "HebronGuide 도시별 콘텐츠 데이터 (meta keywords · JSON-LD FAQ·areaServed·LocalBusiness). city-content-inject.js가 빌드 후 public/{slug}/index.html을 치환한다. 데이터가 없는 도시는 건드리지 않는다. /seattle/는 영구 제외(원본).",
+  "_schema": {
+    "nameKo": "한글 도시명 (브레드크럼 등에 사용)",
+    "nameEn": "영어 도시명 (JSON-LD City.name)",
+    "country": "ISO 2자리 국가 코드 (JP, US 등)",
+    "regionEn": "주/현/현 등 상위 지역 영문명 (Tokyo, Washington 등)",
+    "regionKo": "상위 지역 한글명",
+    "lat": "LocalBusiness GeoCoordinates 위도",
+    "lng": "LocalBusiness GeoCoordinates 경도",
+    "keywords": "meta keywords 콘텐츠 (쉼표 구분)",
+    "areaServed": "Organization·TouristInformationCenter areaServed 배열 (영문 도시명 리스트)",
+    "localBusinessName": "LocalBusiness name 필드",
+    "localBusinessDesc": "LocalBusiness description 필드",
+    "cityDescKo": "City JSON-LD description",
+    "touristCenterName": "TouristInformationCenter name",
+    "touristCenterDesc": "TouristInformationCenter description",
+    "faqs": "FAQPage mainEntity (q/a 배열)",
+    "verifiedAt": "데이터 재검증 날짜 (YYYY-MM-DD)",
+    "verifyNote": "변동 가능성 있는 항목 메모"
+  },
+
+  "tokyo": {
+    "nameKo": "도쿄",
+    "nameEn": "Tokyo",
+    "country": "JP",
+    "regionEn": "Tokyo",
+    "regionKo": "도쿄도",
+    "lat": 35.6762,
+    "lng": 139.6503,
+    "keywords": "도쿄 한인, 도쿄 정착 가이드, 도쿄 유학, 도쿄 신오쿠보, 도쿄 코리아타운, 도쿄 한인교회, 도쿄 한인 마트, 도쿄 한인 커뮤니티, Tokyo Korean, Shin-Okubo Korean, Shinjuku Korean, 재일 한인, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["Tokyo", "Shinjuku", "Shin-Okubo"],
+    "localBusinessName": "HebronGuide Tokyo Korean Community",
+    "localBusinessDesc": "도쿄 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "도쿄 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Tokyo — 도쿄 한인 정착 가이드",
+    "touristCenterDesc": "도쿄 한인 이민자·유학생·주재원·이주자를 위한 완전 정착 가이드. 거주지·한식당·한인교회·재류카드·운전면허 전환·취업·생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "도쿄 한인마트 어디가 좋아요?",
+        "a": "신오쿠보 코리아타운(오쿠보도오리·쇼쿠안도오리 일대)에 한국 식료품점이 밀집해 있습니다. 서울시장·남대문시장·한국광장 장터 등에서 김치·고춧가루·라면 등 한국 식재료를 구할 수 있어요. 저렴한 생필품은 돈키호테·업무슈퍼, 대용량은 코스트코를 이용하세요."
+      },
+      {
+        "q": "도쿄 한인 밀집 지역은 어디인가요?",
+        "a": "신오쿠보(코리아타운)가 중심입니다. 오쿠보·히가시신주쿠 일대에 한식당·한인교회·한국 식료품점이 모여 있어요. 치바·사이타마 외곽은 렌트비가 저렴해 가족 단위 정착지로 많이 선택합니다."
+      },
+      {
+        "q": "도쿄 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "일본 임대 관행상 초기 목돈이 큽니다. 월세의 4~6개월분(보증금 시키킨 1~2개월 + 사례금 레이킨 1개월 + 중개수수료 1개월 + 첫 달 월세)이 한 번에 나가요. 1K(원룸) 기준 초기 자금 100~150만 엔을 권장합니다."
+      },
+      {
+        "q": "도쿄에서 한국 면허로 운전할 수 있나요?",
+        "a": "네, '외국면허 전환(外免切替)'이 가능합니다. 한국은 시험 면제 대상국이라 학과·기능 시험 없이 서류 심사와 시력 검사로 일본 면허를 받을 수 있어요. 도쿄는 사메즈(鮫洲)·후추(府中) 운전면허시험장에서 신청하며, 한국 면허증·여권·주민표와 JAF 번역문이 필요합니다."
+      },
+      {
+        "q": "도쿄 한인교회 추천해주세요",
+        "a": "신오쿠보·신주쿠 일대에 한인교회가 밀집해 있습니다. 동경한인교회를 비롯해 유학생·주재원·새 이민자를 위한 한국어 예배와 정착 지원 모임이 활발해요. Hebron 플랫폼을 통해 가까운 한인 공동체와 연결해 드립니다."
+      },
+      {
+        "q": "도쿄 원룸(1K) 렌트비는 얼마인가요?",
+        "a": "2026년 기준, 신주쿠·신오쿠보 인근 1K 9~12만 엔/월, 외곽(사이타마·지바·가나가와) 6~8만 엔/월입니다. 시키킨·레이킨 각 1개월이 일반적이라 초기 목돈이 필요해요. UR도시기구 임대주택은 레이킨·중개수수료가 없어 초기 비용을 아낄 수 있습니다."
+      },
+      {
+        "q": "도쿄에서 재류카드·주민등록은 어떻게 하나요?",
+        "a": "중장기 체류자는 입국 시 나리타·하네다 공항에서 재류카드를 발급받습니다. 입국 후 14일 이내에 거주지 구청(区役所)에 전입신고를 해야 하고, 마이넘버 카드도 함께 신청할 수 있어요."
+      },
+      {
+        "q": "도쿄에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) IT·엔지니어: 기술·인문지식·국제업무 비자 채용 활발 2) 요식·서비스: 신오쿠보 코리아타운 한식당·카페 3) 통번역·무역: 한일 비즈니스 수요 꾸준 4) 간호·개호: 특정기능 비자. Hello Work 신주쿠 외국인고용서비스센터에서 무료 취업 상담을 받을 수 있습니다."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "렌트 시세(1K 9~12만 엔/월 등)·교회 리스트(동경한인교회 등)는 2026-10 기준 추정. 공식 사이트 재확인 후 게시 권장."
+  }
+}
