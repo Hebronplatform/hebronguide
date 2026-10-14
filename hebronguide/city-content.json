@@ -760,5 +760,270 @@
     ],
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·테마파크 채용·플로리다 DHSMV 정책은 2026-10 기준. Zillow·FL DHSMV·Disney Careers 재확인 권장."
+  },
+
+  "portland": {
+    "nameKo": "포틀랜드",
+    "nameEn": "Portland",
+    "country": "US",
+    "regionEn": "Oregon",
+    "regionKo": "오리건",
+    "lat": 45.5152,
+    "lng": -122.6784,
+    "keywords": "포틀랜드 한인, 비버튼 한인, 포틀랜드 정착 가이드, 포틀랜드 한인교회, Hillsboro 한인, Portland Korean, Beaverton Korean, Nike, Intel, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["Portland", "Beaverton", "Tigard", "Hillsboro"],
+    "localBusinessName": "HebronGuide Portland Korean Community",
+    "localBusinessDesc": "포틀랜드 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "포틀랜드(오리건) 한인 이민자·유학생·주재원·엔지니어를 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Portland — 포틀랜드 한인 정착 가이드",
+    "touristCenterDesc": "포틀랜드(비버튼·힐스보로·레이크오스위고) 한인 이민자·엔지니어·주재원을 위한 완전 정착 가이드. 거주지·한식당·한인교회·OR DMV·Nike/Intel 취업·생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "포틀랜드 한인마트 어디가 좋아요?",
+        "a": "포틀랜드 최대 한인마트는 **H Mart Beaverton**(3500 SW Cedar Hills Blvd)입니다. 비버튼이 한인 상권 중심이라 식당·업소도 함께 밀집해 있습니다. **Fubonn Supermarket**(아시안 종합)이 포틀랜드 시내에 있어 보완용으로 좋고, Uwajimaya(일본 포함)도 활용 가능. 큰 장은 보통 비버튼에서 봅니다."
+      },
+      {
+        "q": "포틀랜드 한인 밀집 지역은 어디인가요?",
+        "a": "**Beaverton(비버튼)**이 전통 한인 거점입니다(Nike 본사 근접). **Tigard(타이가드)**·**Lake Oswego(레이크오스위고)**는 가족·학군 선호, **Hillsboro(힐스보로)**는 Intel 캠퍼스 근접지라 반도체·엔지니어가 많습니다. 포틀랜드 다운타운보다 **서쪽 교외(Washington County)**가 한인 생활권입니다."
+      },
+      {
+        "q": "포틀랜드 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "포틀랜드는 서부 대도시 중 상대적으로 저렴한 편입니다. 1BR 렌트 Beaverton $1,400~1,800/월 × 보증금 1~1.5개월 + 차량 구매 $7,000~13,000 + 생활비 $2,000~2,500/월. 초기 자금 $13,000~18,000 권장. **오리건 주 소득세 9.9%**로 미국 최상위권이지만, **판매세(sales tax) 0%**로 상쇄되는 면이 있습니다."
+      },
+      {
+        "q": "포틀랜드에서 한국 면허로 운전할 수 있나요?",
+        "a": "방문자는 한국 면허로 임시 운전 가능하나, 오리건 거주자는 **1년 안에** 오리건 면허로 전환해야 합니다. 한-오리건 상호 인정 협정이 없어 필기+도로시험을 봐야 합니다. 오리건 DMV는 한국어 필기시험을 지원합니다. 비버튼·힐스보로·포틀랜드 중앙에 DMV 지점이 있습니다."
+      },
+      {
+        "q": "포틀랜드 한인교회 추천해주세요",
+        "a": "비버튼·타이가드·힐스보로 중심으로 한인교회가 있고, 포틀랜드 시내에도 유학생 교회가 있습니다. 교단(장로·침례·감리·순복음) 다양하며 Nike·Intel 종사자 중심의 전문직 공동체도 있습니다. 거주지·언어·가족 상황에 맞는 교회를 Hebron 플랫폼을 통해 안내받으시길 권합니다."
+      },
+      {
+        "q": "포틀랜드 1베드룸 렌트비는 얼마인가요?",
+        "a": "2026년 기준: Beaverton 1BR $1,400~1,800/월, Tigard $1,300~1,700/월, Lake Oswego $1,600~2,100/월(학군 프리미엄), Hillsboro $1,400~1,900/월(Intel 근접), 포틀랜드 다운타운(Pearl District) $1,700~2,300/월. 보증금은 보통 월세 1개월. 비 많은 겨울·건조한 여름을 대비."
+      },
+      {
+        "q": "포틀랜드에서 SSN(사회보장번호)은 어디서 신청하나요?",
+        "a": "주요 SSA 오피스: Portland Downtown(1538 SW Yamhill St), Hillsboro, Oregon City, Beaverton 인근. 취업 비자 소지자는 입국 10일 후부터 신청 가능. 전화 예약(800-772-1213) 필수. 한국어 통역 서비스 요청 가능합니다."
+      },
+      {
+        "q": "포틀랜드에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) 스포츠·브랜드 (Nike 본사·Columbia Sportswear·adidas 미국 — 비버튼) 2) 반도체 (Intel D1X 공장·D1C·Fab20 — 힐스보로가 미국 최대 Intel 캠퍼스) 3) 산업·항공 (Precision Castparts·Boeing 공급망) 4) 소프트웨어 (Intel 소프트웨어 그룹·게임 스튜디오) 5) 한인 비즈니스 (비버튼). Oregon Employment Department 활용."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "렌트 시세·Nike/Intel 채용·오리건 주 세율은 2026-10 기준. Zillow·Oregon DMV·Nike/Intel Careers 재확인 권장."
+  },
+
+  "honolulu": {
+    "nameKo": "호놀룰루",
+    "nameEn": "Honolulu",
+    "country": "US",
+    "regionEn": "Hawaii",
+    "regionKo": "하와이",
+    "lat": 21.3069,
+    "lng": -157.8583,
+    "keywords": "호놀룰루 한인, 하와이 한인, 호놀룰루 정착 가이드, 하와이 한인교회, Pearl City 한인, Mililani 한인, Honolulu Korean, Hawaii Korean, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["Honolulu", "Pearl City", "Mililani", "Kapolei"],
+    "localBusinessName": "HebronGuide Honolulu Korean Community",
+    "localBusinessDesc": "호놀룰루·하와이 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "호놀룰루(하와이 오아후섬) 한인 이민자·유학생·관광 종사자·이주자를 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Honolulu — 호놀룰루 한인 정착 가이드",
+    "touristCenterDesc": "호놀룰루(Pearl City·Mililani·Kapolei) 한인 이민자·관광 종사자·군인 가족을 위한 완전 정착 가이드. 거주지·한식당·한인교회·HI DMV·관광/군/농수산 취업·섬 생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "호놀룰루 한인마트 어디가 좋아요?",
+        "a": "호놀룰루 한인마트로는 **Palama Supermarket**·**QF Market**·**H Mart Honolulu**가 대표적입니다. **Marukai**(일본 포함)·**Don Quijote**(돈키호테)도 함께 활용. 섬이라 물류 비용으로 식료품이 본토보다 비쌉니다. 코스트코 Iwilei 지점에서 대량 구매로 비용을 줄이는 분이 많습니다."
+      },
+      {
+        "q": "호놀룰루 한인 밀집 지역은 어디인가요?",
+        "a": "**Honolulu(호놀룰루)** 시내가 중심이고, **Pearl City(펄시티)**·**Mililani(밀릴라니)**·**Aiea(아이에아)**·**Kapolei(카폴레이)**가 교외 거주 지역입니다. Waikiki는 관광·호텔 종사자, Pearl Harbor 근처는 군인 가족이 많습니다. 다른 섬(마우이·빅아일랜드·카우아이)에도 소규모 한인 공동체가 있습니다."
+      },
+      {
+        "q": "호놀룰루 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "하와이는 미국에서 **생활비가 가장 높은** 지역 중 하나입니다(섬 물류 비용). 1BR 렌트 Honolulu $2,000~2,700/월 × 보증금 1~2개월 + 차량(섬 이동 필수) + 생활비 $2,500~3,500/월(식료품·전기세 높음). 초기 자금 $20,000~28,000 권장. **전기세 특히 비쌈**(월 $200~400) — 에어컨 사용 제한 가정 많음."
+      },
+      {
+        "q": "호놀룰루에서 한국 면허로 운전할 수 있나요?",
+        "a": "방문자는 한국 면허로 임시 운전 가능하나, 하와이 거주자는 하와이 면허로 전환해야 합니다. 한-하와이 상호 인정 협정이 없어 필기+도로시험을 봐야 합니다. 하와이 DMV는 한국어 필기시험을 지원합니다. Honolulu·Pearl City·Kapolei에 지점이 있습니다. 섬 특성상 **대중교통(TheBus) 활용도 가능**합니다."
+      },
+      {
+        "q": "호놀룰루 한인교회 추천해주세요",
+        "a": "호놀룰루·펄시티·밀릴라니·카폴레이에 한인교회가 있고, 하와이대(UH)·BYU-Hawaii 근처에 유학생 교회도 있습니다. 교단(장로·침례·감리·순복음) 다양. 군인 가족 중심 교회(Pearl Harbor·Hickam AFB 근처)도 있습니다. 거주지·언어·가족 상황에 맞는 교회를 Hebron 플랫폼을 통해 안내받으시길 권합니다."
+      },
+      {
+        "q": "호놀룰루 1베드룸 렌트비는 얼마인가요?",
+        "a": "2026년 기준: Honolulu Downtown·Ala Moana 1BR $2,000~2,700/월, Waikiki $2,200~3,000/월(관광지 프리미엄), Pearl City $1,700~2,200/월, Mililani $1,800~2,300/월, Kapolei $1,700~2,200/월(비교적 저렴), 교외 Hawaii Kai $2,000~2,500/월. 보증금 월세 1~2개월. **전기세 포함 여부 반드시 확인**."
+      },
+      {
+        "q": "호놀룰루에서 SSN(사회보장번호)은 어디서 신청하나요?",
+        "a": "주요 SSA 오피스: Honolulu(300 Ala Moana Blvd, Prince Jonah Kuhio Federal Bldg), Kapolei. 취업 비자 소지자는 입국 10일 후부터 신청 가능. 전화 예약(800-772-1213) 필수. 한국어 통역 서비스 요청 가능. 군인 가족·공무원 가족은 기지 내 지원 창구도 활용 가능합니다."
+      },
+      {
+        "q": "호놀룰루에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) 관광·호텔 (Waikiki·전 세계 관광객 대상 — 한국어·일본어·중국어 가능자 수요) 2) 군·국방 (진주만 해군기지·히캄 공군기지·태평양 사령부 — 민간 지원 직군 포함) 3) 농수산·식품 (파인애플·커피·수산물) 4) 교육 (하와이대·BYU-Hawaii·사립 학교) 5) 의료·건강 (은퇴 인구 많음). Hawaii State Workforce Development 활용."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "하와이 섬 물류 비용·전기세·군 기지 채용 상황은 2026-10 기준. Zillow·Hawaii DMV·Hawaiian Electric 재확인 권장."
+  },
+
+  "vancouver": {
+    "nameKo": "밴쿠버",
+    "nameEn": "Vancouver",
+    "country": "CA",
+    "regionEn": "British Columbia",
+    "regionKo": "브리티시 컬럼비아",
+    "lat": 49.2827,
+    "lng": -123.1207,
+    "keywords": "밴쿠버 한인, 코퀴틀람 한인, 버나비 한인, 밴쿠버 정착 가이드, 밴쿠버 한인교회, Vancouver Korean, Coquitlam Korean, Burnaby Korean, Richmond Korean, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["Vancouver", "Coquitlam", "Burnaby", "Richmond"],
+    "localBusinessName": "HebronGuide Vancouver Korean Community",
+    "localBusinessDesc": "밴쿠버 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "밴쿠버(브리티시 컬럼비아) 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Vancouver — 밴쿠버 한인 정착 가이드",
+    "touristCenterDesc": "밴쿠버(코퀴틀람·버나비·리치몬드) 한인 이민자·유학생·주재원을 위한 완전 정착 가이드. 거주지·한식당·한인교회·BC ICBC·SIN·MSP·취업·생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "밴쿠버 한인마트 어디가 좋아요?",
+        "a": "밴쿠버 최대 한인마트는 **H Mart Coquitlam**(2501 Lougheed Hwy)과 **Hannam Supermarket(한남마트)** 체인입니다. **T&T Supermarket**(아시안 종합·롭러웨이 산하)이 전역에 지점이 많아 보완용으로 좋습니다. Richmond(리치몬드)의 아시안 상권도 함께 활용하세요."
+      },
+      {
+        "q": "밴쿠버 한인 밀집 지역은 어디인가요?",
+        "a": "**Coquitlam(코퀴틀람, Lougheed Hwy·North Rd 축)**이 캐나다 서부 최대 한인 거점입니다. **Burnaby(버나비)**·**Richmond(리치몬드)**·**North Vancouver(노스밴쿠버)**·**Surrey(서리)**가 각각 한인 생활권. 가족·학군은 코퀴틀람·웨스트밴쿠버·버나비 선호. 유학생은 UBC·SFU 근접지(버나비·리치몬드)에 많습니다."
+      },
+      {
+        "q": "밴쿠버 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "밴쿠버는 캐나다에서 토론토와 함께 가장 비싼 지역입니다. 1BR 렌트 Coquitlam CAD $1,800~2,300/월, 다운타운 CAD $2,500~3,200/월 × 보증금 **last month rent 1개월(법정 상한)** + 가구·생활용품 CAD $2,000~3,000 + 생활비 CAD $2,000~2,500/월. 초기 자금 CAD $15,000~20,000 권장."
+      },
+      {
+        "q": "밴쿠버에서 한국 면허로 운전할 수 있나요?",
+        "a": "네, 한-캐나다 상호 면허 교환이 가능합니다. **한국 면허 2년 이상 소지자**는 BC Class 5 면허로 바로 교환됩니다(필기·도로 시험 면제). ICBC(Insurance Corporation of BC)에서 신청. 소지 기간이 짧으면 L(필기) → N(도로) → Class 5 단계로 재취득."
+      },
+      {
+        "q": "밴쿠버 한인교회 추천해주세요",
+        "a": "코퀴틀람·버나비·리치몬드·노스밴쿠버에 한인교회가 밀집해 있습니다. 교단(장로·침례·감리·순복음)과 세대 구성이 다양하며 UBC·SFU 유학생 중심 공동체도 활발. 거주지·언어·가족 상황에 맞는 교회를 Hebron 플랫폼을 통해 안내받으시길 권합니다."
+      },
+      {
+        "q": "밴쿠버 1베드룸 렌트비는 얼마인가요?",
+        "a": "2026년 기준: Coquitlam 1BR CAD $1,800~2,300/월, Burnaby CAD $1,900~2,400/월, Richmond CAD $1,900~2,400/월, 다운타운(Yaletown·Coal Harbour) CAD $2,500~3,200/월, Surrey CAD $1,600~2,000/월(비교적 저렴), North Vancouver CAD $2,000~2,600/월. 보증금 last month rent 1개월(법정)."
+      },
+      {
+        "q": "밴쿠버에서 SIN·MSP는 어떻게 신청하나요?",
+        "a": "SIN(사회보험번호)은 Service Canada 오피스에서 **당일 발급** 가능(워크퍼밋·영주권 소지자). **MSP(BC Medical Services Plan, 의료보험)**은 거주 시작 뒤 **3개월 대기** 후 신청 가능하므로, 그 사이는 민간 의료보험 가입 필수. 운전면허도 ICBC에서 함께 처리 가능합니다."
+      },
+      {
+        "q": "밴쿠버에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) 영화·게임·VFX ('Hollywood North' — EA Vancouver·Microsoft Studios·Amazon Studios·소니 영화·게임 스튜디오 집중) 2) 자원·에너지 (목재·광업·LNG) 3) 관광·호텔 (휘슬러·관광 산업) 4) 교육·학술 (UBC·SFU — 유학생 커뮤니티) 5) 한인 비즈니스 (코퀴틀람). Job Bank·BC WorkBC 활용."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "렌트 시세·ICBC 면허 교환 조건·MSP 3개월 대기·영화 산업 채용은 2026-10 기준. ICBC·HealthLink BC 공식 사이트 재확인 권장."
+  },
+
+  "london": {
+    "nameKo": "런던",
+    "nameEn": "London",
+    "country": "GB",
+    "regionEn": "Greater London",
+    "regionKo": "그레이터 런던",
+    "lat": 51.5074,
+    "lng": -0.1278,
+    "keywords": "런던 한인, 뉴몰든 한인, 런던 정착 가이드, 런던 한인교회, 영국 한인, New Malden Korean, London Korean, UK Korean, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["London", "New Malden", "Kingston", "Wimbledon"],
+    "localBusinessName": "HebronGuide London Korean Community",
+    "localBusinessDesc": "런던 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "런던(영국) 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide London — 런던 한인 정착 가이드",
+    "touristCenterDesc": "런던(뉴몰든·킹스턴·윔블던) 한인 이민자·유학생·주재원을 위한 완전 정착 가이드. 거주지·한식당·한인교회·DVLA·NIN·NHS·금융/K-콘텐츠 취업·생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "런던 한인마트 어디가 좋아요?",
+        "a": "런던 한인 상권은 **New Malden(뉴몰든)**에 집중되어 있어 '유럽 최대 코리아타운'으로 꼽힙니다. **Centre Point**·**Korea Foods**·**Oriental Mart**·**H Mart**(가장 큼)가 뉴몰든에 밀집. 한식당·업소도 함께 있어 쇼핑과 식사를 한 번에 할 수 있습니다. 센트럴 런던에는 소규모 아시안 매장만 있어 큰 장은 뉴몰든에서 봅니다."
+      },
+      {
+        "q": "런던 한인 밀집 지역은 어디인가요?",
+        "a": "**New Malden(뉴몰든, 런던 남서부, Kingston upon Thames borough)**이 영국 한인 사회의 중심입니다. 1950년대부터 형성된 유럽 최대 한인 커뮤니티로, 상주·거주·주재원·북한 이탈 주민 등 다양한 한인이 모여 있습니다. 인근 **Kingston(킹스턴)**·**Wimbledon(윔블던)**·**Surbiton(서비튼)**도 생활권."
+      },
+      {
+        "q": "런던 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "런던은 유럽에서 가장 비싼 도시 중 하나입니다. 1BR 렌트 New Malden £1,400~1,800/월, Central London £2,000~2,800/월 × 보증금 **5주치 월세**(2019년 법 개정 상한) + 가구·생활용품 £1,500~2,500 + 생활비 £1,500~2,000/월. 초기 자금 **£12,000~18,000**(약 $15,000~22,000) 권장. 지하철(Tube) 발달로 **차 없이 생활 가능**."
+      },
+      {
+        "q": "런던에서 한국 면허로 운전할 수 있나요?",
+        "a": "방문자는 한국 면허로 **1년간** 임시 운전 가능하나, 영국 거주자는 **1년 안에** 영국 면허(DVLA)로 전환해야 합니다. 한-영국 상호 인정 협정이 없어 **이론 시험 + 실기 시험을 다시** 봐야 합니다. DVLA는 한국어 지원이 제한적이라 영어 또는 통역 활용. **지하철·버스로 생활 가능**해 면허 없이도 되는 분이 많습니다."
+      },
+      {
+        "q": "런던 한인교회 추천해주세요",
+        "a": "뉴몰든·킹스턴·윔블던을 중심으로 한인교회가 밀집해 있습니다. 재영한인교회·런던한인교회·뉴몰든한인교회 등 유서 깊은 교회부터 유학생 중심 소규모 공동체까지 다양. 교단(장로·침례·감리·순복음) 다양. 거주지·언어·가족 상황에 맞는 교회를 Hebron 플랫폼을 통해 안내받으시길 권합니다."
+      },
+      {
+        "q": "런던 1베드룸 렌트비는 얼마인가요?",
+        "a": "2026년 기준: New Malden 1BR £1,400~1,800/월, Kingston £1,500~2,000/월, Wimbledon £1,600~2,100/월, Central London(Zone 1) £2,000~2,800/월, Zone 2 교외 £1,500~2,000/월. 보증금은 **5주치 월세**(법정 상한). Council Tax(£100~200/월) 별도 납부. Zone 1-6 교통 비용(£150~250/월) 추가."
+      },
+      {
+        "q": "런던에서 NIN·NHS는 어떻게 등록하나요?",
+        "a": "**NIN(National Insurance Number, 사회보장번호)**은 영국 입국 후 **GOV.UK**에서 온라인 신청(일부 비자는 BRP·eVisa에 포함되어 자동 발급). **NHS(국민보건서비스)**는 거주 주소 등록 후 가까운 GP(General Practitioner, 가정의)에 등록. 등록 즉시 무료 의료 이용 가능(비자 발급 시 **IHS 건강세** 선납). Student·Skilled Worker 비자 소지자 모두 이용 가능."
+      },
+      {
+        "q": "런던에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) 금융·회계 (The City of London — 삼성·현대·KB·우리 등 미국·한국 금융사 유럽 본부) 2) K-콘텐츠·엔터 (BBC·Netflix 유럽 본부·CJ ENM·HYBE·SM 유럽 지사 — 성장 중) 3) 교육·학술 (Imperial·UCL·LSE·KCL — 유학·연구) 4) 요식·관광 (한식 열풍 — 뉴몰든 외 센트럴에도 한식당 급증) 5) 한인 비즈니스 (뉴몰든). Skilled Worker 비자 수요 꾸준."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "렌트 시세·DVLA 면허 전환·IHS 건강세·K-콘텐츠 유럽 지사 채용은 2026-10 기준. GOV.UK·NHS·DVLA 공식 사이트 재확인 권장."
+  },
+
+  "sydney": {
+    "nameKo": "시드니",
+    "nameEn": "Sydney",
+    "country": "AU",
+    "regionEn": "New South Wales",
+    "regionKo": "뉴사우스웨일스",
+    "lat": -33.8688,
+    "lng": 151.2093,
+    "keywords": "시드니 한인, 스트라스필드 한인, 시드니 정착 가이드, 호주 한인, 시드니 한인교회, Sydney Korean, Strathfield Korean, Eastwood Korean, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["Sydney", "Strathfield", "Eastwood", "Chatswood"],
+    "localBusinessName": "HebronGuide Sydney Korean Community",
+    "localBusinessDesc": "시드니 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "시드니(호주 NSW) 한인 이민자·유학생·주재원·워킹홀리데이·이주자를 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Sydney — 시드니 한인 정착 가이드",
+    "touristCenterDesc": "시드니(스트라스필드·이스트우드·채츠우드) 한인 이민자·유학생·워킹홀리데이·주재원을 위한 완전 정착 가이드. 거주지·한식당·한인교회·NSW RMS·TFN·Medicare·취업·생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "시드니 한인마트 어디가 좋아요?",
+        "a": "시드니 한인 상권은 **Strathfield(스트라스필드)**에 집중되어 있습니다. **H Mart Strathfield**(The Boulevarde)·**Super Korea**·**Korea Grocery**가 중심이고 한식당·업소도 밀집. **Eastwood(이스트우드)**에도 한인 식품점이 있고, **Chatswood(채츠우드)**는 아시안 종합 상권으로 활용 가능합니다."
+      },
+      {
+        "q": "시드니 한인 밀집 지역은 어디인가요?",
+        "a": "**Strathfield(스트라스필드)**가 호주 최대 한인 거점입니다. **Eastwood(이스트우드)**·**Chatswood(채츠우드, 북쪽)**·**Lidcombe(리드콤)**·**Burwood(버우드)**가 각각 생활권. 유학생은 UNSW·시드니대 근접지(Kingsford·Kensington·Camperdown)에도 많습니다. 가족·학군은 Hornsby·Epping·Carlingford 선호."
+      },
+      {
+        "q": "시드니 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "시드니는 호주에서 가장 비싼 도시입니다. 1BR 렌트 Strathfield **AUD $500~650/주**(호주는 월이 아닌 **주 단위** 표기), 시드니 CBD AUD $700~900/주 × **보증금 4주치**(bond) + 가구·생활용품 AUD $2,000~3,000 + 생활비 AUD $1,500~2,000/주. 초기 자금 **AUD $15,000~22,000** 권장."
+      },
+      {
+        "q": "시드니에서 한국 면허로 운전할 수 있나요?",
+        "a": "방문자(관광·단기)는 한국 면허로 운전 가능(국제운전면허증 또는 영문 공증 번역 필요). **임시 거주 비자(스튜던트·워킹홀리데이)**는 비자 유효기간 동안 한국 면허로 운전 가능하나, **영주권자·시민권자는 3개월 안에** NSW 면허로 전환해야 합니다. 한-NSW 간 **상호 인정 교환 가능**(한국 면허 소지 요건 충족 시, 조건 확인 권장)."
+      },
+      {
+        "q": "시드니 한인교회 추천해주세요",
+        "a": "스트라스필드·이스트우드·채츠우드를 중심으로 한인교회가 밀집해 있고, UNSW·시드니대·UTS 유학생 교회도 활발합니다. 교단(장로·침례·감리·순복음) 다양하며 호주 현지 교회와 공동 사역하는 한인교회도 있습니다. 거주지·언어·가족 상황에 맞는 교회를 Hebron 플랫폼을 통해 안내받으시길 권합니다."
+      },
+      {
+        "q": "시드니 1베드룸 렌트비는 얼마인가요?",
+        "a": "2026년 기준(주 단위): Strathfield 1BR AUD $500~650/주, Eastwood AUD $480~620/주, Chatswood AUD $550~700/주, 시드니 CBD AUD $700~900/주, Hornsby·Epping AUD $450~580/주. 보증금은 **bond 4주치**(NSW Rental Bond Board에 예치). Water·Electricity 별도. 자동이체 설정(direct debit) 많이 사용."
+      },
+      {
+        "q": "시드니에서 TFN·Medicare는 어떻게 신청하나요?",
+        "a": "**TFN(Tax File Number, 세금번호)**은 입국 후 **ATO 온라인**에서 즉시 신청 가능(스튜던트·워킹홀리데이 포함). **Medicare(의료보험)**는 **영주권자·시민권자·일부 상호 협정 국가(한국 포함되지 않음)** 대상이라, 한국 국적 임시 비자 소지자는 **OSHC(해외학생 건강보험)·OVHC(해외방문자 건강보험)** 가입 필수. 스튜던트 비자는 OSHC가 비자 조건."
+      },
+      {
+        "q": "시드니에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) 교육·학술 (UNSW·시드니대·UTS·맥쿼리대 — 세계 상위 대학, 유학생 서비스·연구) 2) 광업·에너지·자원 (호주 광업 본사·LNG — 포스코·현대중공업 호주 지사) 3) 요식·한식·관광 (K-푸드 열풍 — 스트라스필드 외 CBD에도 한식 급증) 4) IT·핀테크 (시드니 CBD 테크 허브 — Atlassian·Canva 본사) 5) 한인 비즈니스 (스트라스필드). SEEK·Indeed 활용."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "렌트 시세(주 단위)·NSW 면허 교환 조건·Medicare 상호 협정 제외는 2026-10 기준. NSW RMS·ATO·Medicare 공식 사이트 재확인 권장."
   }
 }
