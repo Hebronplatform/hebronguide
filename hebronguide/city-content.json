@@ -67,10 +67,34 @@
       {
         "q": "도쿄에서 한인이 취업하기 좋은 분야는?",
         "a": "1) IT·엔지니어: 기술·인문지식·국제업무 비자 채용 활발 2) 요식·서비스: 신오쿠보 코리아타운 한식당·카페 3) 통번역·무역: 한일 비즈니스 수요 꾸준 4) 간호·개호: 특정기능 비자. Hello Work 신주쿠 외국인고용서비스센터에서 무료 취업 상담을 받을 수 있습니다."
+      },
+      {
+        "q": "도쿄에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "일본은 세계 최고 수준의 치안입니다. **매우 안전**: 신주쿠·시부야·치요다 등 중심부·주택가 거의 모든 지역. **야간 주의**: 가부키초(新宿歌舞伎町) 유흥가, 롯폰기 일부 — 호객·사기 주의. 소매치기는 관광지(아사쿠사·신주쿠역)에서 가끔. 긴급 **110**(경찰)·**119**(소방·구급)."
+      },
+      {
+        "q": "도쿄에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주지 **구청(区役所) 교육위원회**에서 전입 신고와 함께 등록. 재류카드·여권·주민표·예방접종 기록 지참. 일본어 못하는 아이는 **일본어 지도 교실(日本語指導学級)** 또는 **국제학교**(비싸지만 한국어·영어 가능), **동경한국학교**(코리아타운 근처)도 선택지. 구청 교육위원회에 한국어 통역 요청 가능."
+      },
+      {
+        "q": "도쿄에서 가까운 한국 영사관과 긴급 연락처는?",
+        "a": "**주일본 대한민국 대사관** (東京都港区南麻布 1-2-5). 민원 +81-3-3452-7611, 영사콜 24시간 +81-3-3455-2601. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 일본 긴급 **110**(경찰)·**119**(소방·구급). 여권 분실·사건 사고 등 즉시 영사 지원 요청 가능."
+      },
+      {
+        "q": "도쿄 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**사계절 뚜렷** — 봄(3~5월) 15~20도 벚꽃, 여름(6~8월) 30~35도 **매우 덥고 습함**(열사병 주의), 가을(9~11월) 20도대 쾌적, 겨울(12~2월) 5~10도·눈 적음. **장마(6월 중~7월 중)** 비 매우 많음·우산 필수. **지진**(비상용품 — 물·손전등·헬멧) 대비 중요. **태풍**(8~10월) 교통 마비 가능."
+      },
+      {
+        "q": "도쿄에서 한국어 가능한 의사·병원은?",
+        "a": "일본은 외국어 지원이 제한적입니다. **保険証(보험증) 필수** — 국민건강보험 또는 사회보험. **신오쿠보·오쿠보** 지역에 한국어 가능 가정의·치과 소수(한인 커뮤니티 추천). **AMDA 국제의료정보센터** 03-6233-9266(한국어 통역). 외국인 환자 수용 병원 리스트는 도쿄도 공식 사이트에서 확인 가능. 응급 **119**."
+      },
+      {
+        "q": "도쿄에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **docomo·au·Softbank** 또는 저가 **Rakuten Mobile**(월 1,000~3,000엔)·**mineo·UQ mobile·Y!mobile**. 재류카드와 **일본 계좌·신용카드** 필요(단기는 선불 또는 **eSIM** — povo·Rakuten). **인터넷**: NTT 플렛츠·au 히카리·NURO (월 3,000~6,000엔). 설치 2~4주 걸릴 수 있어 입주 전 예약 권장."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세(1K 9~12만 엔/월 등)·교회 리스트(동경한인교회 등)는 2026-10 기준 추정. 공식 사이트 재확인 후 게시 권장."
+    "verifyNote": "렌트 시세·교회 리스트·영사관 연락처·통신사 플랜·학교 등록 절차는 2026-10 기준. 영사관(overseas.mofa.go.kr)·구청·AMDA 공식 사이트 재확인 권장."
   },
 
   "la": {
@@ -120,10 +144,34 @@
       {
         "q": "LA에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 엔터테인먼트·미디어 (K-콘텐츠·CJ·SM 미국 지사) 2) 무역·물류 (LA/롱비치 항) 3) IT·스타트업 (실리콘비치) 4) 의료·바이오 (한인 병원·클리닉 밀집) 5) 한인 비즈니스 (코리아타운·세리토스). WorkSource California에서 무료 이력서·면접 코칭 제공."
+      },
+      {
+        "q": "LA에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**안전 지역**: 어바인·세리토스·풀러턴·토랜스·베벌리힐스·산타모니카·롤랜드하이츠·웨스트우드 — 가족 선호. **주의 지역**: 다운타운 LA 일부(스키드로우)·일부 South LA·늦은 밤 공원·지하철역 주변. 공공 범죄지도 crimemapping.com, LAPD 비긴급 311로 지역 확인 가능. 응급 **911**."
+      },
+      {
+        "q": "LA에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주 증명(렌트 계약서·공과금 영수증 2종)·예방접종 기록·여권·이전 학교 성적표를 준비해 **학군(LAUSD·세리토스 ABC Unified·풀러턴 FJUHSD 등) enrollment 사이트**에서 신청합니다. 영어 미숙 아이는 **ESL(ELD)** 프로그램 자동 배정, 한인 학부모 네트워크(KPAC 등)가 적응 지원. 입학 시기와 상관없이 수시 등록 가능."
+      },
+      {
+        "q": "LA에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주로스앤젤레스 대한민국 총영사관** (3243 Wilshire Blvd, LA, CA 90010 — 코리아타운 중심). 민원 +1-213-385-9300, 야간·긴급 영사콜 +1-213-700-1147. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404(해외 안전·사건 사고). 미국 응급 **911**. 여권 분실·범죄 피해 등 영사 지원 요청 가능."
+      },
+      {
+        "q": "LA 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**지중해성 기후** — 여름(6~10월) 건조·강렬한 햇빛 25~35도, 겨울(11~3월) 온화 10~20도. 비는 1~3월에만 조금. **준비**: 선크림(연중)·선글라스·에어컨 있는 집·건조 피부용 보습제. **산불 시즌(8~11월)** AQI(공기질) 체크 앱 필수(PurpleAir·AirNow). 지진 대비 비상용품 권장(물·손전등)."
+      },
+      {
+        "q": "LA에서 한국어 가능한 의사·병원은?",
+        "a": "코리아타운에 한국어 가능 **가정의·치과·안과·소아과·내과**가 집중되어 있어 영어 미숙자도 쉽게 접근 가능. **CHA Hollywood Presbyterian Medical Center**(한인 의료진 다수)·**Kaiser Permanente**(한국어 선택 가능 지점). 세리토스·풀러턴에도 한인 의료 네트워크 활발. 응급은 가장 가까운 **ER**로 가고 통역 서비스 요청하세요."
+      },
+      {
+        "q": "LA에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Verizon·AT&T·T-Mobile** 또는 저가 **Mint Mobile·Visible·Metro by T-Mobile·US Mobile**. SSN 없어도 선불(prepaid)로 즉시 개통 가능(월 $15~40). 한국 번호 유지는 KT·SKT 로밍 또는 Jcom USA. **인터넷**: Spectrum·AT&T Fiber·Frontier 중 거주지에서 가능한 것 선택(월 $40~80). 설치 2~7일."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·교회 리스트·DMV 운영 정책은 2026-10 기준 추정. 코리아타운 1BR $2,000~2,800 등 숫자는 공식 사이트(Zillow·DMV)에서 재확인 권장."
+    "verifyNote": "렌트 시세·학군·영사관 연락처·통신사 플랜은 2026-10 기준. 코리아타운 1BR $2,000~2,800·영사관 전화는 공식 사이트(Zillow·overseas.mofa.go.kr·DMV) 재확인 권장. 치안 안내는 공개 데이터 수준으로, 특정 지역을 '위험'으로 단정하기보다 범죄지도·현지 커뮤니티 확인 권장."
   },
 
   "toronto": {
@@ -173,10 +221,34 @@
       {
         "q": "토론토에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 금융·IT (베이스트리트 금융가·토론토 테크 허브) 2) 교육·학술 (U of T·요크대 중심) 3) 의료·연구 (SickKids·토론토 종합병원) 4) 제조·물류 (미시사가 공단) 5) 한인 비즈니스 (North York·Mississauga). Job Bank·Indeed 활용."
+      },
+      {
+        "q": "토론토에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: North York(Yonge-Finch)·Mississauga·Thornhill·Richmond Hill·Oakville·Markham — 가족·학군 선호. **야간 주의**: Jane-Finch·Rexdale 일부·다운타운 Dundas Square 심야. 캐나다 전반 안전하지만 **차량 절도·소매치기** 주의. 비긴급 **311**(토론토 서비스)·응급 **911**."
+      },
+      {
+        "q": "토론토에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주지 **학군(TDSB·York Region·Peel·Durham DSB)** 사이트에서 **School Finder**로 배정 학교 확인 후 등록. 거주 증명·여권·예방접종(ImmunizeOntario)·이전 학교 성적표 제출. 영어 미숙 아이는 **ESL/ELD** 자동 배정. 한인 학부모회·방과후 한국어 학교(North York 중심) 활발. 학기 중 수시 전입 가능."
+      },
+      {
+        "q": "토론토에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주토론토 대한민국 총영사관** (555 Avenue Rd, Toronto). 민원 +1-416-920-3809, 영사콜 24시간 +1-647-224-1178. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 캐나다 응급 **911**. 여권 분실·사건 사고 등 영사 지원 요청 가능."
+      },
+      {
+        "q": "토론토 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**혹독한 겨울** — 11~3월 영하 10~20도, 눈 매우 많음(한 번에 20~40cm). 겨울 **방한복(파카·장갑·방수부츠)·스노우타이어** 필수. 봄(4~5월) 비, 여름(6~8월) 25~30도 쾌적, 가을(9~10월) 단풍 아름다움. **블랙아이스·눈폭풍** 운전 주의."
+      },
+      {
+        "q": "토론토에서 한국어 가능한 의사·병원은?",
+        "a": "**OHIP 3개월 대기** 중에는 민간 의료보험 필수. North York Yonge-Finch 축에 한국어 가능 **가정의(Family Doctor)·치과·소아과** 다수. **Walk-in Clinic**(예약 없이 즉시 진료)도 활용 가능. 응급 **911** 또는 가까운 ER(North York General·Sunnybrook). 전화 상담 **Telehealth Ontario 811**(24시간)."
+      },
+      {
+        "q": "토론토에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Rogers·Bell·Telus** 또는 저가 **Public Mobile·Fido·Freedom Mobile·Koodo·Lucky Mobile** (월 CAD $20~40). SIN 또는 캐나다 신용 없이 **선불(prepaid) 즉시 개통** 가능. **인터넷**: Rogers·Bell·Tekksavvy·Oxio (월 CAD $50~90). 아파트에 따라 선택지 다름 — 입주 전 확인."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세(CAD $2,200~2,800 등)·교회 리스트·면허 교환 정책은 2026-10 기준 추정. ServiceOntario·OHIP 정책은 수시 변경되므로 공식 사이트 재확인 권장."
+    "verifyNote": "렌트 시세·면허 교환 정책·영사관 연락처·OHIP·통신사 플랜은 2026-10 기준. ServiceOntario·OHIP·overseas.mofa.go.kr 공식 사이트 재확인 권장."
   },
 
   "atlanta": {
@@ -226,10 +298,34 @@
       {
         "q": "애틀랜타에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 자동차·제조 (현대·기아 조지아 공장·협력사 — Georgia Metaplant 포함) 2) 물류·공급망 (UPS 본사·Hartsfield-Jackson 공항) 3) IT·바이오 (조지아텍 중심) 4) 금융·보험 (코카콜라·홈디포·델타 등 대기업 본사) 5) 한인 비즈니스 (듀루스·존스크릭). Georgia Department of Labor 활용."
+      },
+      {
+        "q": "애틀랜타에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Johns Creek·Suwanee·Alpharetta·Milton·Duluth 북쪽 교외 — 미국 최고 안전 도시 지표. **주의**: 다운타운 ATL 일부·West End·South ATL 야간. **차량 절도·주차장 소매치기** 가끔. 비긴급 **311**·응급 **911**. 공공 범죄지도 crimemapping.com 활용."
+      },
+      {
+        "q": "애틀랜타에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주 학군이 결정 — **Fulton County·Gwinnett County·Forsyth County** 학군이 전국 상위. 거주 증명(렌트·공과금)·여권·예방접종(DeKalb Public Health)·이전 성적표 지참해 **각 학군 Enrollment Center**에서 등록. 영어 미숙 아이는 **ESOL** 자동 배정. Duluth·Johns Creek 한인 학부모회 활발. 수시 전입 가능."
+      },
+      {
+        "q": "애틀랜타에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주애틀랜타 대한민국 총영사관** (229 Peachtree St NE, Atlanta). 민원 +1-404-522-1611, 영사콜 24시간 +1-404-668-6243. 관할 지역: 조지아·앨라배마·테네시·남북 캐롤라이나. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 미국 응급 **911**."
+      },
+      {
+        "q": "애틀랜타 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**아열대 — 더운 여름·온화한 겨울**. 여름(5~9월) 30~35도·습도 높음·오후 소나기 매일. 겨울(12~2월) 5~15도, 눈 가끔(1~2회/년) — 눈 올 때 **도시 마비**. **봄(3~5월) 토네이도 시즌** — Weather Alert 앱 필수. 가을 쾌적 10~20도."
+      },
+      {
+        "q": "애틀랜타에서 한국어 가능한 의사·병원은?",
+        "a": "**Duluth·Johns Creek** 지역에 한국어 가능 **가정의·치과·소아과·안과·내과·산부인과** 활발 — 미 남부 최대 한인 의료 네트워크. **Northside Hospital Gwinnett**·**Emory Johns Creek Hospital** 등에 한국어 통역 서비스. Hebron 플랫폼 통해 지역 의사 추천 받으시길 권합니다. 응급 **911**."
+      },
+      {
+        "q": "애틀랜타에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Verizon·AT&T·T-Mobile** 또는 저가 **Mint Mobile·Metro by T-Mobile·Cricket Wireless·US Mobile** (월 $15~40). SSN 없어도 선불로 즉시 개통 가능. **인터넷**: **AT&T Fiber·Xfinity·Google Fiber**(Duluth 일부) (월 $40~80). 설치 2~7일."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·DDS 운영 정책·현대차 조지아 공장 채용 상황은 2026-10 기준. 공식 사이트(Zillow·조지아 DDS·현대차 Metaplant) 재확인 권장."
+    "verifyNote": "렌트 시세·학군·영사관 연락처·현대차 Metaplant 채용은 2026-10 기준. Zillow·학군 사이트·overseas.mofa.go.kr·DDS 공식 사이트 재확인 권장."
   },
 
   "newyork": {
@@ -279,10 +375,34 @@
       {
         "q": "뉴욕에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 금융·회계 (월가·미드타운 — 삼성·현대·KB·우리 미국 지사 포함) 2) 패션·뷰티·럭셔리 (CJ·아모레·LG생건 미국 지사) 3) 미디어·엔터·광고 (K-콘텐츠·CJ ENM) 4) 요식·호텔 (맨해튼·플러싱 외식업) 5) 의료·학술 (NYU·Columbia·Mount Sinai). 한인 로펌·회계사무소도 활발합니다."
+      },
+      {
+        "q": "뉴욕에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**비교적 안전**: 플러싱·베이사이드·롱아일랜드시티·업타운 어퍼이스트/웨스트·브루클린 Park Slope·DUMBO. **주의**: 심야 지하철(브롱스·일부 Queens·브루클린 외곽 역)·Times Square 소매치기·Midtown 사기. 뉴욕 범죄는 2020년 전후 상승하다 안정 중. 비긴급 **311**·응급 **911**. 지하철 심야 승강장은 **반드시 노란선 안쪽**에서."
+      },
+      {
+        "q": "뉴욕에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "**NYC Public Schools** 거주지 Zone 학교 자동 배정. **MySchools.nyc**에서 거주지로 배정 학교 확인·등록. 거주 증명·여권·예방접종(NYC Health)·이전 성적표. 영어 미숙 아이는 **ENL/ESL** 자동 배정. 뉴저지는 각 **district(학군) 사이트**(Palisades Park·Fort Lee·Tenafly 등). Gifted/Specialized 학교는 별도 시험."
+      },
+      {
+        "q": "뉴욕에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주뉴욕 대한민국 총영사관** (460 Park Ave 6/F, New York). 민원 +1-646-674-6000, 영사콜 24시간 +1-646-965-3639. 관할: NY·NJ·CT·PA(필라델피아)·DE. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 미국 응급 **911**. 여권 분실·범죄 피해 등 영사 지원 가능."
+      },
+      {
+        "q": "뉴욕 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**사계절 뚜렷** — 겨울(12~3월) 영하 5~10도·눈·블리자드 가끔, 봄(4~5월) 쾌적, 여름(6~9월) 30~35도 매우 덥고 습함·열사병 주의, 가을(10~11월) 단풍. **방한복·방수부츠·눈 삽** 겨울 필수. **허리케인(8~10월)** 지하철 침수 가능. 지하철은 역에 따라 **에어컨 유무** 다름."
+      },
+      {
+        "q": "뉴욕에서 한국어 가능한 의사·병원은?",
+        "a": "**플러싱(Queens)**에 한국어 가능 **가정의·치과·내과·산부인과** 집중 — 미국 동부 최대 한인 의료 네트워크. **NewYork-Presbyterian/Queens**·**Flushing Hospital** 등 한국어 통역 서비스. 맨해튼은 **NYU Langone·Mount Sinai** 통역 서비스 요청 가능. 민간 보험(Blue Cross·Aetna 등) 가입 권장. 응급 **911**."
+      },
+      {
+        "q": "뉴욕에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Verizon·AT&T·T-Mobile** (지하철 통화·5G 좋음). 저가 **Mint Mobile·Visible·Metro·US Mobile·Google Fi** (월 $15~40). SSN 없어도 선불 즉시 개통. **인터넷**: 맨해튼·브루클린 **Spectrum·Verizon Fios** (월 $50~100), 플러싱·Queens **Optimum·Verizon Fios**. 아파트 유형별 가능 선택지 다름 — 설치 1~2주."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세(맨해튼 $3,200~4,500 등)·broker fee 관행·DMV 정책은 2026-10 기준. StreetEasy·NYC DMV·NY SSA 공식 사이트 재확인 권장."
+    "verifyNote": "렌트 시세·broker fee·NYC DOE·영사관 연락처는 2026-10 기준. StreetEasy·MySchools.nyc·overseas.mofa.go.kr·NYC DMV 공식 사이트 재확인 권장."
   },
 
   "newjersey": {
@@ -332,10 +452,34 @@
       {
         "q": "뉴저지에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 뉴욕 통근 (금융·IT·미디어 — 삼성·현대·LG·KB 미국 지사 다수가 뉴저지 거주 선호) 2) 제약·바이오 (머크·사노피·BMS·존슨앤드존슨 — 뉴저지 제약 벨트) 3) 한인 비즈니스 (팰리세이즈파크·포트리) 4) 물류·무역 (뉴어크 항·JFK/뉴어크 공항) 5) 교육·연구 (럿거스대·프린스턴대). NJ Workforce Development 활용."
+      },
+      {
+        "q": "뉴저지에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Palisades Park·Fort Lee·Edgewater·Englewood Cliffs·Tenafly·Closter — 뉴저지 북부 Bergen County가 미국 상위 안전 지역. **주의**: Newark 중심부·Camden 등 저녁 조심. 뉴욕과 가깝지만 뉴저지는 전반 조용·안전. 비긴급 **(각 타운별 경찰)**·응급 **911**."
+      },
+      {
+        "q": "뉴저지에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주 **학군(district)** 사이트에서 등록 — **Palisades Park School District**·**Fort Lee**·**Tenafly**·**Englewood Cliffs** 등 Bergen County 학군이 뉴저지 상위. 거주 증명·여권·예방접종·이전 성적표 지참. 영어 미숙 아이는 **ESL/ELL** 자동 배정. 한인 학부모회 매우 활발 (팰리세이즈파크·포트리). 수시 전입 가능."
+      },
+      {
+        "q": "뉴저지에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주뉴욕 대한민국 총영사관** 관할 (뉴저지 전역). 460 Park Ave, New York. 민원 +1-646-674-6000, 영사콜 24시간 +1-646-965-3639. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 미국 응급 **911**. 여권 분실·사건 사고 등 영사 지원 가능."
+      },
+      {
+        "q": "뉴저지 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**뉴욕과 거의 동일한 사계절** — 겨울(12~3월) 영하 5~10도·눈 자주, 봄 쾌적, 여름(6~9월) 30~35도 덥고 습함, 가을 단풍. **방한복·스노우블로어(제설기)**·**눈 삽** 집마다 필요. **허리케인·열대폭풍**(8~10월) 호우로 주택 침수·전력 중단 가능 — 비상용품 준비."
+      },
+      {
+        "q": "뉴저지에서 한국어 가능한 의사·병원은?",
+        "a": "**Palisades Park·Fort Lee·Englewood Cliffs**에 한국어 가능 **가정의·치과·내과·산부인과·소아과** 매우 많음 — 뉴욕 플러싱과 함께 미 동부 최대 한인 의료 네트워크. **Englewood Health**·**Holy Name Medical Center**·**Hackensack Meridian Health** 등 종합병원에 한국어 통역 서비스. 응급 **911**."
+      },
+      {
+        "q": "뉴저지에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Verizon·AT&T·T-Mobile** (뉴저지 커버리지 좋음). 저가 **Mint Mobile·Visible·Metro·US Mobile** (월 $15~40). SSN 없어도 선불 즉시 개통. **인터넷**: **Verizon Fios·Optimum·Xfinity** (월 $50~100). 아파트에 따라 선택지 다름 — 입주 전 가능 서비스 확인."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·뉴저지 MVC 60일 교체 규정·제약사 채용 상황은 2026-10 기준. 공식 사이트(StreetEasy·NJ MVC) 재확인 권장."
+    "verifyNote": "렌트 시세·학군·영사관·제약사 채용은 2026-10 기준. StreetEasy·NJ MVC·overseas.mofa.go.kr 공식 사이트 재확인 권장."
   },
 
   "dallas": {
@@ -385,10 +529,34 @@
       {
         "q": "달라스에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 통신·IT (AT&T 본사·텍사스 인스트루먼츠·오라클 캠퍼스) 2) 금융·보험 (뱅크오브아메리카·찰스슈왑·골드만삭스 등 월가 대이주 이후 급성장) 3) 항공·물류 (아메리칸 에어라인 본사·DFW 공항) 4) 자동차·반도체 (삼성 반도체 테일러 공장과도 가까움) 5) 한인 비즈니스 (캐롤턴). Texas Workforce Commission 활용."
+      },
+      {
+        "q": "달라스에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Plano·Frisco·Allen·Carrollton·Prosper·McKinney — Collin County가 미국 상위 안전 지역. **주의**: 다운타운 Dallas 일부·South Dallas·Oak Cliff 야간. **차량 절도**(특히 트럭·SUV)·주차장 소매치기 가끔. 비긴급 **311**·응급 **911**. 공공 범죄지도 crimemapping.com 활용."
+      },
+      {
+        "q": "달라스에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주 학군이 결정 — **Plano ISD·Frisco ISD·Carrollton-Farmers Branch ISD·Allen ISD·McKinney ISD** 전국 상위. 거주 증명·여권·예방접종(Texas Immunization Registry)·이전 성적표 지참해 **각 학군 Enrollment Center**에서 등록. 영어 미숙 아이는 **ESL/Bilingual** 자동 배정. 캐롤턴·플레이노 한인 학부모회 활발."
+      },
+      {
+        "q": "달라스에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주달라스 대한민국 분관**(Branch Office — Dallas) 또는 **주휴스턴 총영사관** (1990 Post Oak Blvd, Houston). 민원 +1-713-961-0186, 영사콜 24시간 +1-832-540-5450. 관할: TX·OK·AR·LA·MS. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 미국 응급 **911**."
+      },
+      {
+        "q": "달라스 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**극단적 날씨** — 여름(5~9월) 35~40도·매우 뜨거움(에어컨 필수)·간혹 열사병 경보, 겨울(12~2월) 10~15도·때때로 영하·눈 가끔(도시 마비). **봄(3~5월) 토네이도 시즌** — Weather Alert 앱·대피 장소 숙지 필수. **우박**(golf-ball size) 자동차 피해 가끔."
+      },
+      {
+        "q": "달라스에서 한국어 가능한 의사·병원은?",
+        "a": "**캐롤턴·플레이노**에 한국어 가능 **가정의·치과·내과·소아과·안과·산부인과** 매우 많음 — 텍사스 최대 한인 의료 네트워크. **Baylor Scott & White Health**·**Medical City Dallas**·**Methodist Health System** 등에 한국어 통역 서비스. Hebron 플랫폼 통해 지역 의사 추천 가능. 응급 **911**."
+      },
+      {
+        "q": "달라스에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **AT&T**(본사 소재)·**Verizon·T-Mobile** 커버리지 좋음. 저가 **Cricket Wireless**(AT&T 소유)·**Metro·Mint·US Mobile** (월 $15~40). SSN 없이 선불 즉시 개통. **인터넷**: **AT&T Fiber·Xfinity·Spectrum·Frontier** (월 $50~90). 아파트별 선택지 다름 — 입주 전 확인."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·DPS 운영·텍사스 월가 이주 상황은 2026-10 기준. Zillow·텍사스 DPS·삼성 테일러 공장 채용 등 공식 사이트 재확인 권장."
+    "verifyNote": "렌트 시세·DPS·학군·영사관·삼성 테일러 공장 채용은 2026-10 기준. Zillow·텍사스 DPS·overseas.mofa.go.kr·학군 사이트 재확인 권장."
   },
 
   "houston": {
@@ -438,10 +606,34 @@
       {
         "q": "휴스턴에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 에너지·석유화학 (엑손모빌·셰브론·BP·쉘 등 글로벌 에너지 본사·연구소 — 휴스턴이 세계 에너지 수도) 2) 의료·바이오 (Texas Medical Center — 세계 최대 의료 복합단지, MD Anderson·메소디스트) 3) 항공·우주 (NASA 존슨스페이스센터·보잉) 4) 물류·무역 (휴스턴 항·에너지 수출) 5) 한인 비즈니스 (스프링브랜치). TX Workforce Commission 활용."
+      },
+      {
+        "q": "휴스턴에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Katy·Sugar Land·The Woodlands·Memorial·West University·Bellaire — 교외·학군 좋은 지역. **주의**: 다운타운 일부·Third Ward·Sunnyside 야간. 휴스턴은 넓어 **지역별 치안 편차 큼**. **차량 침입·소매치기** 주의. 비긴급 **713-884-3131**(HPD)·응급 **911**. 공공 범죄지도 crimemapping.com 활용."
+      },
+      {
+        "q": "휴스턴에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주 학군이 결정 — **Katy ISD·Fort Bend ISD·Spring Branch ISD·Houston ISD·Clear Creek ISD** 등. Katy·Fort Bend가 특히 학군 상위. 거주 증명·여권·예방접종·이전 성적표 지참해 각 학군 Enrollment Center에서 등록. 영어 미숙 아이는 **ESL/Bilingual** 자동 배정. 한인 학부모회 Katy·Sugar Land 중심 활발."
+      },
+      {
+        "q": "휴스턴에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주휴스턴 대한민국 총영사관** (1990 Post Oak Blvd Suite 1250, Houston). 민원 +1-713-961-0186, 영사콜 24시간 +1-832-540-5450. 관할: TX·OK·AR·LA·MS. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 미국 응급 **911**. 여권·사건 사고 즉시 영사 지원 가능."
+      },
+      {
+        "q": "휴스턴 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**아열대 — 매우 덥고 습한 여름·온화한 겨울**. 여름(5~10월) 32~38도·습도 90%+ — **에어컨 상주 필수**·열사병 주의, 겨울(12~2월) 10~15도·때때로 영하. **허리케인 시즌(6~11월)** 호우·침수 가능 — 침수 지도 확인, 비상용품(물·손전등·식량) 준비. 봄 토네이도 가끔."
+      },
+      {
+        "q": "휴스턴에서 한국어 가능한 의사·병원은?",
+        "a": "**Spring Branch** 지역에 한국어 가능 **가정의·치과·내과** 다수. **Texas Medical Center**(세계 최대 의료 단지)의 **Houston Methodist·Memorial Hermann·MD Anderson**에 한국어 통역 서비스 요청 가능. Spring Branch 한인 병원 네트워크가 1차 진료 담당, TMC가 특수·중증 진료 담당. 응급 **911**."
+      },
+      {
+        "q": "휴스턴에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Verizon·AT&T·T-Mobile** 모두 커버리지 좋음. 저가 **Mint·Visible·Metro·Cricket·US Mobile** (월 $15~40). SSN 없이 선불 즉시 개통. **인터넷**: **Xfinity·AT&T Fiber·Spectrum·Frontier** (월 $50~90). 아파트별 선택지 다름. 허리케인 대비 **인터넷 백업(모바일 핫스팟)** 권장."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·에너지·의료 채용 상황은 2026-10 기준. Zillow·텍사스 DPS·Texas Medical Center 공식 사이트 재확인 권장."
+    "verifyNote": "렌트 시세·에너지·의료 채용·영사관·학군은 2026-10 기준. Zillow·TX DPS·overseas.mofa.go.kr·Texas Medical Center 공식 사이트 재확인 권장."
   },
 
   "sf": {
@@ -491,10 +683,34 @@
       {
         "q": "SF·베이에어리어에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 빅테크 (Google·Apple·Meta·Nvidia·Netflix 본사·삼성 미주 R&D·네이버·카카오 미국 지사) 2) 반도체 (엔비디아·AMD·인텔·마벨 — AI 반도체 급성장) 3) 바이오테크 (Genentech·Gilead·BioMarin) 4) 금융·VC (실리콘밸리 벤처 생태계) 5) 스타트업(한인 창업·투자 네트워크). H-1B 비자 수요 가장 높은 지역이며, 한국 테크 기업의 미주 지사·R&D 센터도 집중."
+      },
+      {
+        "q": "SF·베이에어리어에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Cupertino·Palo Alto·Sunnyvale·Santa Clara·Fremont·Dublin·Pleasanton — 실리콘밸리 교외. **주의**: SF 안의 Tenderloin·South of Market(SOMA) 일부·Mission 심야·오클랜드 West 지역. **차량 침입 절도(car break-in)**가 SF·버클리에서 매우 흔함 — **차 안에 아무것도 두지 말 것**. 비긴급 **311**·응급 **911**."
+      },
+      {
+        "q": "SF·베이에어리어에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주 학군이 결정 — **Palo Alto Unified·Cupertino Union·Fremont Unified·Mountain View-Los Altos** 전국 최상위. 거주 증명·여권·예방접종(CAIR)·이전 성적표 지참해 등록. 영어 미숙 아이는 **ELD** 자동 배정. **학군이 집값과 직결** — 거주 전 Niche·GreatSchools 평점 확인 권장. 한인 학부모회(KPAC) 활발."
+      },
+      {
+        "q": "SF·베이에어리어에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주샌프란시스코 대한민국 총영사관** (3500 Clay St, San Francisco). 민원 +1-415-921-2251, 영사콜 24시간 +1-415-265-7788. 관할: 북캘리포니아·네바다·하와이. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 미국 응급 **911**."
+      },
+      {
+        "q": "SF·베이에어리어 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**지중해성·미세 기후** — 연중 10~22도 쾌적. 겨울 비(11~3월) 많음, 여름 건조. **SF 안개 'Karl the Fog'**로 여름 아침 서늘(14~18도)·오후 햇빛. **South Bay(산호세)는 더 더움**(여름 30도+). **지진 대비**(비상용품·보험) 중요. **산불 시즌(8~11월) AQI** 체크 — PurpleAir·AirNow 앱."
+      },
+      {
+        "q": "SF·베이에어리어에서 한국어 가능한 의사·병원은?",
+        "a": "**Santa Clara·San Jose·Sunnyvale** 지역에 한국어 가능 **가정의·치과·내과·소아과·안과** 다수. **Kaiser Permanente**(한국어 선택 가능 지점)·**El Camino Health**·**Stanford Health Care**·**Sutter Health** 통역 서비스. 테크 종사자는 회사 의료보험 좋아 선택지 많음. 응급 **911**."
+      },
+      {
+        "q": "SF·베이에어리어에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Verizon·AT&T·T-Mobile** (실리콘밸리라 5G 커버리지 최고). 저가 **Mint·Visible·Google Fi·US Mobile** (월 $15~40) — 테크 종사자 Mint 선호. SSN 없이 선불 즉시. **인터넷**: SF·South Bay **Comcast Xfinity·AT&T Fiber·Sonic·Google Fiber(일부 지역)** (월 $50~100). 테크 아파트는 **1Gbps+ fiber** 많음."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·테크 채용 상황·H-1B 수요는 2026-10 기준. 테크 산업 변동 폭이 커 공식 채용 사이트·Zillow·CA DMV 재확인 권장."
+    "verifyNote": "렌트 시세·테크 채용·H-1B·영사관·학군은 2026-10 기준. 테크 산업 변동 큼 — Zillow·GreatSchools·overseas.mofa.go.kr·CA DMV 재확인 권장."
   },
 
   "chicago": {
@@ -544,10 +760,34 @@
       {
         "q": "시카고에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 금융·거래 (CME·CBOE 등 세계적 선물·옵션 거래소 중심) 2) 제조·운송 (Boeing 본사·Deere·Caterpillar 공급망) 3) 의료·바이오 (Northwestern Medicine·UChicago Medicine·AbbVie) 4) IT·물류 (United Airlines·United·Boeing — 오헤어 공항 중심) 5) 한인 비즈니스 (글렌뷰·나일스). Illinois Department of Employment Security 활용."
+      },
+      {
+        "q": "시카고에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Glenview·Niles·Northbrook·Winnetka·Wilmette·Lincolnshire·Vernon Hills — North Shore 교외. **주의**: South Side·West Side 일부(Englewood·West Garfield Park)·다운타운 Loop 심야. 북쪽 교외는 미국 최상위 안전, **지역 편차가 극명**해 거주지 선택이 중요. 비긴급 **311**·응급 **911**."
+      },
+      {
+        "q": "시카고에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주 학군이 결정 — **Glenview District 34·Northbrook SD27·New Trier Township HSD**·**Deerfield SD109** 등 전국 최상위. 거주 증명·여권·예방접종(IDPH)·이전 성적표 지참해 각 학군에서 등록. 영어 미숙 아이는 **ESL/Bilingual** 자동 배정. **한인 학부모회**(글렌뷰·노스브룩) 활발. Chicago Public Schools(시내)는 Selective Enrollment·Magnet 시험."
+      },
+      {
+        "q": "시카고에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주시카고 대한민국 총영사관** (NBC Tower Suite 2700, 455 N Cityfront Plaza Dr, Chicago). 민원 +1-312-822-9485, 영사콜 24시간 +1-773-383-1559. 관할: IL·IA·IN·KS·KY·MI·MN·MO·NE·ND·OH·SD·WI(중서부 13개 주). 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 미국 응급 **911**."
+      },
+      {
+        "q": "시카고 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**혹독한 겨울·더운 여름** — 겨울(11~3월) 영하 10~20도·때때로 -30도 체감·눈 매우 많음·바람 매우 강함('Windy City'). **파카·스키 장갑·방수부츠·히트텍** 겨울 필수. 여름(6~8월) 30~35도·습도 높음·토네이도 가능. 봄·가을 짧고 쾌적. **블리자드·폴라르 보텍스** 대비 — 비상용품 집에 상비."
+      },
+      {
+        "q": "시카고에서 한국어 가능한 의사·병원은?",
+        "a": "**글렌뷰·나일스·노스브룩** 지역에 한국어 가능 **가정의·치과·내과·소아과·산부인과·안과** 다수. **NorthShore University HealthSystem**·**Advocate Lutheran General Hospital** 등 북쪽 교외 종합병원에 한국어 통역 서비스. **Chicago Lakeshore Hospital**·**Northwestern Medicine**(시내) 활용 가능. 응급 **911**."
+      },
+      {
+        "q": "시카고에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Verizon·AT&T·T-Mobile** 커버리지 좋음. 저가 **Mint·Visible·Metro·Cricket·US Mobile** (월 $15~40). SSN 없이 선불 즉시. **인터넷**: **Xfinity·AT&T Fiber·RCN·WOW!** (월 $40~90). 아파트별 선택지 다름 — 입주 전 가능 서비스 확인. 겨울 폭풍에 **정전·인터넷 중단** 가능 — 모바일 핫스팟 백업 권장."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·IL Secretary of State 운영 정책은 2026-10 기준. Zillow·Illinois DMV 공식 사이트 재확인 권장."
+    "verifyNote": "렌트 시세·IL DMV·영사관·학군·NorthShore 통역 서비스는 2026-10 기준. Zillow·overseas.mofa.go.kr·IL Secretary of State 공식 사이트 재확인 권장."
   },
 
   "dc": {
@@ -597,10 +837,34 @@
       {
         "q": "DC 메트로에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 연방 공무원·국회 보좌 (한국어·외교·안보 전문) 2) 국방·안보 컨설팅 (SAIC·Booz Allen Hamilton·CACI — 보안 clearance 필요) 3) 로비·법률 (K Street 로펌·외교 네트워크) 4) 국제기구 (세계은행·IMF·IDB) 5) IT 컨설팅·사이버보안 (연방 조달 중심). 한인 비즈니스는 애넌데일·엘리콧시티 중심. USAJOBS·CareerBuilder 활용."
+      },
+      {
+        "q": "DC 메트로에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Fairfax·Centreville·Vienna(버지니아)·Bethesda·Rockville·Potomac·Ellicott City(메릴랜드) — 미국 상위 안전·학군. **주의**: DC 안의 Southeast(Anacostia)·일부 Northeast 야간. 메트로(지하철)는 전반 안전하나 심야 Southeast 라인 주의. 비긴급 **311**·응급 **911**."
+      },
+      {
+        "q": "DC 메트로에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주 학군이 결정 — **Fairfax County Public Schools(버지니아)**·**Montgomery County(메릴랜드)**·**Howard County(엘리콧시티)** 미국 최상위. 거주 증명·여권·예방접종·이전 성적표 지참해 각 학군 Enrollment Center 또는 온라인 등록. 영어 미숙 아이는 **ESOL** 자동 배정. 한인 학부모회(KPAC) 활발. 교육 수준이 높아 **학교·학군이 집값 결정 요인**."
+      },
+      {
+        "q": "DC 메트로에서 가까운 한국 영사관과 긴급 연락처는?",
+        "a": "**주미국 대한민국 대사관 영사과** (2320 Massachusetts Ave NW, Washington DC). 민원 +1-202-939-5660, 영사콜 24시간 +1-202-491-6505. 관할: 워싱턴 DC·버지니아·메릴랜드. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 미국 응급 **911**. 여권 분실·사건 사고 영사 지원 가능."
+      },
+      {
+        "q": "DC 메트로 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**사계절 뚜렷·여름 매우 덥고 습함**. 여름(6~9월) 30~35도·습도 높음, 겨울(12~2월) 영하 5~10도·눈 가끔(1~5회/년 블리자드). 봄(3~5월) 벚꽃 아름답지만 꽃가루 많음. 가을(9~11월) 단풍 쾌적. **방한복·방수부츠·우산**(여름 뇌우) 필수. 허리케인 가끔."
+      },
+      {
+        "q": "DC 메트로에서 한국어 가능한 의사·병원은?",
+        "a": "**애넌데일(VA)**·**엘리콧시티·베데스다(MD)**에 한국어 가능 **가정의·치과·내과·소아과·산부인과** 다수 — 미 동부 최대 한인 의료 네트워크. **Inova Fairfax Hospital**·**MedStar Health**·**Johns Hopkins Howard County** 등 종합병원에 한국어 통역 서비스. Hebron 플랫폼 통해 지역 의사 추천 가능. 응급 **911**."
+      },
+      {
+        "q": "DC 메트로에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Verizon**(DC 커버리지 최고·연방 기관 선호)·**AT&T·T-Mobile**. 저가 **Mint·Visible·Metro·US Mobile** (월 $15~40). SSN 없이 선불 즉시. **보안 clearance 직군은 Verizon 선호**(정부 네트워크 호환성). **인터넷**: **Verizon Fios·Xfinity·RCN** (월 $50~90). 아파트별 선택지 다름."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·연방 채용·보안 clearance 절차는 2026-10 기준. 공식 사이트(VA DMV·MD MVA·USAJOBS) 재확인 권장."
+    "verifyNote": "렌트 시세·연방 채용·clearance·영사관·학군은 2026-10 기준. VA DMV·MD MVA·USAJOBS·overseas.mofa.go.kr 공식 사이트 재확인 권장."
   },
 
   "boston": {
@@ -650,10 +914,34 @@
       {
         "q": "보스턴에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 바이오·제약 (Biogen·Vertex·Moderna 본사·Takeda — 세계 최고 밀도의 바이오 벨트) 2) 교육·학술 (Harvard·MIT·BU·BC·Tufts — 세계 최고 대학 밀집) 3) 의료 (MGH·Brigham·Boston Children's — 미국 최상위 종합병원) 4) 금융 (Fidelity·State Street·John Hancock) 5) 로봇·AI 스타트업 (Boston Dynamics·MIT 스핀오프). 유학생 네트워크·학회가 커리어의 큰 자산."
+      },
+      {
+        "q": "보스턴에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Newton·Lexington·Winchester·Brookline·Cambridge(하버드·MIT 근처)·Burlington — 가족·학군 선호. **주의**: Roxbury·Mattapan·Dorchester 일부 야간. 보스턴 중심부는 전반 안전하나 **학기 중 심야 지하철(T) 범죄** 가끔. 비긴급 **311**·응급 **911**. 공공 범죄지도 crimemapping.com 활용."
+      },
+      {
+        "q": "보스턴에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주 학군이 결정 — **Lexington·Newton·Weston·Wellesley** 전국 최상위. **Boston Public Schools(BPS)**는 **추첨제(lottery)**로 학교 배정. 거주 증명·여권·예방접종(MIIS)·이전 성적표 지참. 영어 미숙 아이는 **SEI(Sheltered English Immersion)** 자동 배정. 매사추세츠는 **학군이 집값 결정** — 거주 전 Niche·학군 평점 확인 필수."
+      },
+      {
+        "q": "보스턴에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주보스턴 대한민국 총영사관** (One Gateway Center Suite 251, Newton MA). 민원 +1-617-641-2830, 영사콜 24시간 +1-857-290-4760. 관할: MA·CT·ME·NH·RI·VT(뉴잉글랜드). 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 미국 응급 **911**."
+      },
+      {
+        "q": "보스턴 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**혹한 겨울·쾌적한 여름** — 겨울(12~3월) 영하 10~15도·눈 매우 많음(한 번에 30cm+ 블리자드)·블랙아이스 주의, 여름(6~8월) 25~30도 쾌적, 봄·가을 짧음. **파카·방수부츠·눈 삽** 겨울 필수. **노스이스터(Nor'easter)** 폭풍 가끔 — 비상용품 상비. 유학생 많아 9월 초 이사 몰림."
+      },
+      {
+        "q": "보스턴에서 한국어 가능한 의사·병원은?",
+        "a": "**Cambridge Health Alliance**·**Mass General Hospital(MGH)**·**Brigham and Women's**·**Boston Medical Center** 등 종합병원에 한국어 통역 서비스 요청 가능. **학교(Harvard·MIT·BU) 보건소**는 유학생 보험으로 1차 진료 가능. 지역 **Walk-in Clinic**(CVS MinuteClinic·Carewell)도 활용. 응급 **911**."
+      },
+      {
+        "q": "보스턴에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Verizon·T-Mobile**(지하철·대학가 커버리지 좋음)·**AT&T**. 저가 **Mint·Visible·Metro·US Mobile** (월 $15~40). SSN 없이 선불 즉시. **인터넷**: **Xfinity·Verizon Fios·RCN·Starry Internet** (월 $50~100). 대학가 아파트는 1Gbps fiber 많음. **9월 이사철** 설치 지연 — 미리 예약."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·3개월치 보증금 관행·바이오 채용 상황은 2026-10 기준. StreetEasy·MA RMV·바이오테크 Careers 재확인 권장."
+    "verifyNote": "렌트 시세·3개월 보증금·바이오 채용·영사관·학군은 2026-10 기준. StreetEasy·MA RMV·overseas.mofa.go.kr·학군 사이트 재확인 권장."
   },
 
   "sandiego": {
@@ -703,10 +991,34 @@
       {
         "q": "샌디에고에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 바이오·제약 (Scripps·Salk·Illumina·Gilead — 세계적 바이오 허브) 2) 통신·반도체 (Qualcomm 본사 — 샌디에고 최대 고용주) 3) 국방·해군 (Naval Base San Diego·태평양 함대 — 미 최대 해군기지) 4) 생명공학·연구 (UCSD) 5) 관광·호텔(연중 좋은 날씨). H-1B 수요 꾸준한 지역."
+      },
+      {
+        "q": "샌디에고에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Mira Mesa·Rancho Bernardo·Carmel Mountain Ranch·Scripps Ranch·Poway·Carlsbad — 북쪽 교외·학군 선호. **주의**: 다운타운 Barrio Logan 야간·Chula Vista 일부. 샌디에고는 **미국 대도시 중 상대적으로 안전**. 멕시코 국경 지역(South Bay·San Ysidro)은 분위기 다름 — 밤 활동 주의. 비긴급 **619-531-2000**·응급 **911**."
+      },
+      {
+        "q": "샌디에고에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주 학군이 결정 — **Poway USD·San Dieguito Union·San Marcos·Carlsbad·Del Mar Union** 상위. 거주 증명·여권·예방접종(CAIR)·이전 성적표 지참해 각 학군 Enrollment Center에서 등록. 영어 미숙 아이는 **ELD** 자동 배정. 한인 학부모회(미라메사·랜초버나도) 활발. 수시 전입 가능."
+      },
+      {
+        "q": "샌디에고에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주로스앤젤레스 대한민국 총영사관** 관할 (3243 Wilshire Blvd, LA). 민원 +1-213-385-9300, 영사콜 24시간 +1-213-700-1147. 샌디에고는 LA에서 자동차로 2시간. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 미국 응급 **911**."
+      },
+      {
+        "q": "샌디에고 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**지중해성 — 미국 최고 쾌적**. 연중 15~25도 유지, 겨울 비(1~3월) 적게, 여름 건조·햇빛 강함. **선크림(연중)·선글라스** 필수. 겨울 코트는 가벼운 것으로 충분. **산불 시즌(10~1월) AQI** 체크 — PurpleAir·AirNow 앱. **지진 대비** 비상용품. 해풍으로 바다 근처 서늘(June Gloom)."
+      },
+      {
+        "q": "샌디에고에서 한국어 가능한 의사·병원은?",
+        "a": "**Mira Mesa(Convoy Street)** 지역에 한국어 가능 **가정의·치과·내과·안과·소아과** 다수. **Scripps Health**·**UC San Diego Health**·**Sharp HealthCare**·**Kaiser Permanente** 종합병원에 한국어 통역 서비스. 테크·바이오 종사자는 회사 의료보험으로 선택지 좋음. 응급 **911**."
+      },
+      {
+        "q": "샌디에고에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Verizon·AT&T·T-Mobile** 커버리지 좋음. 저가 **Mint·Visible·Metro·Cricket·US Mobile** (월 $15~40). SSN 없이 선불 즉시. **인터넷**: **Spectrum·AT&T Fiber·Cox** (월 $50~90). 아파트별 선택지 다름 — 입주 전 확인. 해군·국방 종사자는 **보안 clearance 호환성** 확인."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·Qualcomm 채용·바이오 생태계는 2026-10 기준. Zillow·CA DMV·Qualcomm Careers 재확인 권장."
+    "verifyNote": "렌트 시세·Qualcomm 채용·바이오·영사관·학군은 2026-10 기준. Zillow·CA DMV·overseas.mofa.go.kr·Qualcomm Careers 재확인 권장."
   },
 
   "orlando": {
@@ -756,10 +1068,34 @@
       {
         "q": "올랜도에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 관광·호텔·테마파크 (Walt Disney World·Universal Orlando·SeaWorld — 세계 최대 테마파크 집중지, 다국어 인력 수요 꾸준) 2) 항공·시뮬레이션·방위 (Lockheed Martin·Northrop Grumman·AdventHealth) 3) 의료·바이오 (AdventHealth·Orlando Health) 4) 교육 (University of Central Florida — 미국 최대 재학생 수) 5) 한인 비즈니스 (성장 중). Florida Department of Economic Opportunity 활용."
+      },
+      {
+        "q": "올랜도에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Lake Mary·Winter Park·Dr. Phillips·Oviedo·Windermere — 교외·학군 선호. **주의**: 다운타운 Orlando·Pine Hills·I-4 축 야간. 관광지(Disney·Universal 주변)는 **차량 침입 절도** 가끔 — 렌트카 안에 아무것도 두지 말 것. 비긴급 **(각 카운티 Sheriff)**·응급 **911**."
+      },
+      {
+        "q": "올랜도에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주 학군이 결정 — **Seminole County Public Schools(Lake Mary)**·**Orange County Public Schools**·**Lake County** 등. Seminole County가 플로리다 상위 학군. 거주 증명·여권·예방접종(Florida SHOTS)·이전 성적표 지참해 등록. 영어 미숙 아이는 **ELL** 자동 배정. 플로리다는 **학군이 집값 결정** — 거주 전 Niche 평점 확인."
+      },
+      {
+        "q": "올랜도에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주애틀랜타 대한민국 총영사관** 관할 (229 Peachtree St NE, Atlanta). 민원 +1-404-522-1611, 영사콜 24시간 +1-404-668-6243. 올랜도는 애틀랜타에서 자동차로 7시간(또는 항공 1시간). 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 미국 응급 **911**."
+      },
+      {
+        "q": "올랜도 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**아열대 — 매우 덥고 습한 여름·온화한 겨울**. 여름(5~10월) 30~35도·습도 매우 높음·**오후 매일 소나기**(1~2시간) 거의 매일, 겨울(12~2월) 15~25도 쾌적. **허리케인 시즌(6~11월)** — 비상용품(물·식량·손전등)·대피 계획 필수. 플로리다는 **허리케인 보험 별도 가입** 흔함. 선크림·우산·방수재킷 상시."
+      },
+      {
+        "q": "올랜도에서 한국어 가능한 의사·병원은?",
+        "a": "올랜도의 한인 의료 네트워크는 작은 편입니다. **AdventHealth**·**Orlando Health**·**Nemours Children's Hospital** 등 종합병원에 **한국어 통역 서비스** 요청 가능. Lake Mary 지역에 **한국어 가능 가정의·치과** 소수. 복잡한 진료는 애틀랜타 한인 의료 네트워크 활용하는 분도 있습니다. 응급 **911**."
+      },
+      {
+        "q": "올랜도에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Verizon·AT&T·T-Mobile** 커버리지 좋음. 저가 **Mint·Visible·Metro·Cricket·US Mobile** (월 $15~40). SSN 없이 선불 즉시. **인터넷**: **Xfinity·Spectrum·AT&T Fiber** (월 $50~90). 허리케인 대비 **모바일 핫스팟 백업** 권장 — 전력·인터넷 중단 가능."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·테마파크 채용·플로리다 DHSMV 정책은 2026-10 기준. Zillow·FL DHSMV·Disney Careers 재확인 권장."
+    "verifyNote": "렌트 시세·테마파크 채용·FL DHSMV·영사관·허리케인 보험은 2026-10 기준. Zillow·FL DHSMV·overseas.mofa.go.kr·Disney Careers 재확인 권장."
   },
 
   "portland": {
@@ -809,10 +1145,34 @@
       {
         "q": "포틀랜드에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 스포츠·브랜드 (Nike 본사·Columbia Sportswear·adidas 미국 — 비버튼) 2) 반도체 (Intel D1X 공장·D1C·Fab20 — 힐스보로가 미국 최대 Intel 캠퍼스) 3) 산업·항공 (Precision Castparts·Boeing 공급망) 4) 소프트웨어 (Intel 소프트웨어 그룹·게임 스튜디오) 5) 한인 비즈니스 (비버튼). Oregon Employment Department 활용."
+      },
+      {
+        "q": "포틀랜드에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Beaverton·Lake Oswego·West Linn·Tigard·Tualatin·Hillsboro·Bethany — 교외·학군 선호. **주의**: 다운타운 Old Town·Chinatown 야간·일부 Lents·Rockwood. **노숙자 밀집 지역**(다운타운 특정 구역) 저녁 조심. **차량 침입 절도** 포틀랜드 전역 매우 흔함 — 차 안 비울 것. 비긴급 **503-823-3333**·응급 **911**."
+      },
+      {
+        "q": "포틀랜드에서 아이 공립학교에 어떻게 등록하나요?",
+        "a": "거주 학군이 결정 — **Beaverton School District·Lake Oswego SD·West Linn-Wilsonville·Hillsboro** 상위. 거주 증명·여권·예방접종(ALERT IIS)·이전 성적표 지참해 각 학군 Enrollment Center에서 등록. 영어 미숙 아이는 **ELD** 자동 배정. 한인 학부모회(비버튼) 활발. 수시 전입 가능."
+      },
+      {
+        "q": "포틀랜드에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주시애틀 대한민국 총영사관** 관할 (115 E Pike St, Seattle). 민원 +1-206-441-1011, 영사콜 24시간 +1-206-947-8293. 관할: WA·OR·ID·AK·MT·WY. 포틀랜드는 시애틀에서 자동차로 3시간. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 미국 응급 **911**."
+      },
+      {
+        "q": "포틀랜드 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**비 많은 겨울·건조한 여름** — 10월~4월 **매일 흐리고 비**(가랑비 많음), 5~9월 건조·햇빛 좋음. 겨울 영상 유지(5~10도)·눈 가끔(1~2회/년). **방수 자켓·장화·우산** 겨울 필수. **계절성 우울증**(SAD) 흔함 — 광치료 램프·비타민 D 권장. 여름 산불 가끔 — AQI 체크."
+      },
+      {
+        "q": "포틀랜드에서 한국어 가능한 의사·병원은?",
+        "a": "비버튼·힐스보로 지역에 한국어 가능 **가정의·치과** 소수. **Legacy Health**·**Providence Health & Services**·**OHSU(Oregon Health & Science University)**·**Kaiser Permanente Northwest** 등 종합병원에 한국어 통역 서비스. Nike·Intel 종사자는 회사 의료보험 좋아 선택지 많음. 응급 **911**."
+      },
+      {
+        "q": "포틀랜드에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Verizon·T-Mobile**(커버리지 좋음)·**AT&T**. 저가 **Mint·Visible·Google Fi·US Mobile** (월 $15~40). SSN 없이 선불 즉시. **인터넷**: **Xfinity·CenturyLink Fiber·Ziply Fiber·Google Fiber(일부)** (월 $40~90). Intel 지역(힐스보로)은 **1Gbps+ fiber** 많음."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·Nike/Intel 채용·오리건 주 세율은 2026-10 기준. Zillow·Oregon DMV·Nike/Intel Careers 재확인 권장."
+    "verifyNote": "렌트 시세·Nike/Intel 채용·오리건 세율·영사관·학군은 2026-10 기준. Zillow·Oregon DMV·overseas.mofa.go.kr·Nike/Intel Careers 재확인 권장."
   },
 
   "honolulu": {
@@ -862,10 +1222,34 @@
       {
         "q": "호놀룰루에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 관광·호텔 (Waikiki·전 세계 관광객 대상 — 한국어·일본어·중국어 가능자 수요) 2) 군·국방 (진주만 해군기지·히캄 공군기지·태평양 사령부 — 민간 지원 직군 포함) 3) 농수산·식품 (파인애플·커피·수산물) 4) 교육 (하와이대·BYU-Hawaii·사립 학교) 5) 의료·건강 (은퇴 인구 많음). Hawaii State Workforce Development 활용."
+      },
+      {
+        "q": "호놀룰루에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Mililani·Kailua·Hawaii Kai·Kapolei·Pearl City — 하와이 전반이 미국 상위 안전. **주의**: 다운타운 Honolulu의 Chinatown 일부·일부 Waianae(서쪽) 야간. 섬 특성상 **노숙자 밀집 지역**(다운타운 공원) 저녁 조심. 비긴급 **808-529-3111**·응급 **911**. 자연재해(쓰나미·허리케인) 대비 알림(Hawaii Emergency Management Agency)."
+      },
+      {
+        "q": "호놀룰루에서 아이 공립학교에 어떻게 등록하나요? (영어 외 지원 언어는?)",
+        "a": "**Hawaii State Department of Education**가 전 섬 통합 운영. 거주 증명·여권·예방접종·이전 성적표 지참해 **거주지 학교(home school)**에서 등록. 영어 미숙 아이는 **ELL(English Language Learners)** 자동 배정. **하와이 특성상 일본어·중국어·필리피노·사모아어·마셜어 다국어 환경** — ELL이 매우 체계적. 사립(Punahou·Iolani 등)은 별도 입학 시험."
+      },
+      {
+        "q": "호놀룰루에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주호놀룰루 대한민국 총영사관** (2756 Pali Hwy, Honolulu). 민원 +1-808-595-6109, 영사콜 24시간 +1-808-265-9349. 관할: 하와이 전역·미국령 사모아·괌·북마리아나. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 미국 응급 **911**. 쓰나미·허리케인 경보 **Hawaii Emergency Alerts** 앱 설치 권장."
+      },
+      {
+        "q": "호놀룰루 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**열대 — 연중 25~30도 쾌적**. 11월~3월 **우기(wet season)** 비 잦지만 짧게. 5~10월 **건기** 햇빛 매우 강함·**UV 지수 최고**. **선크림(SPF 50+·반사·수영용)·래쉬가드·선글라스** 필수. **허리케인 시즌(6~11월)** 비상용품 준비. **쓰나미** 가능성 — 대피 경로 숙지. 겨울 코트 불필요."
+      },
+      {
+        "q": "호놀룰루에서 한국어 가능한 의사·병원은? (다국어 지원)",
+        "a": "**Queen's Medical Center**·**Straub Medical Center**·**Kaiser Permanente Hawaii** 등 종합병원에 통역 서비스 요청 가능. **하와이 특성상 일본어 통역이 가장 흔함**(일본계 많아), 한국어·중국어·필리피노도 지원. 호놀룰루 시내에 **한국어 가능 가정의·치과** 소수. 섬 간 이동 어려워 **원격진료(telehealth)** 활용 많음. 응급 **911**."
+      },
+      {
+        "q": "호놀룰루에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Verizon·AT&T·T-Mobile** 커버리지 좋음(섬 전역). 저가 **Mint·Visible·Metro·US Mobile** (월 $15~40). SSN 없이 선불 즉시. **인터넷**: **Spectrum·Hawaiian Telcom Fiber** (월 $50~100). 섬 특성상 **본토 대비 가격 높음**·설치 1~2주. 허리케인·태풍 대비 **모바일 핫스팟 백업** 필수."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "하와이 섬 물류 비용·전기세·군 기지 채용 상황은 2026-10 기준. Zillow·Hawaii DMV·Hawaiian Electric 재확인 권장."
+    "verifyNote": "하와이 섬 물류 비용·전기세·군 기지·영사관·다국어 ELL 지원은 2026-10 기준. Hawaii DOE·overseas.mofa.go.kr·Hawaii Emergency Management Agency 재확인 권장."
   },
 
   "vancouver": {
@@ -915,10 +1299,34 @@
       {
         "q": "밴쿠버에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 영화·게임·VFX ('Hollywood North' — EA Vancouver·Microsoft Studios·Amazon Studios·소니 영화·게임 스튜디오 집중) 2) 자원·에너지 (목재·광업·LNG) 3) 관광·호텔 (휘슬러·관광 산업) 4) 교육·학술 (UBC·SFU — 유학생 커뮤니티) 5) 한인 비즈니스 (코퀴틀람). Job Bank·BC WorkBC 활용."
+      },
+      {
+        "q": "밴쿠버에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Coquitlam·Burnaby·Richmond·North Vancouver·West Vancouver·Port Moody — 캐나다 전반 안전. **주의**: 다운타운 **Downtown Eastside(East Hastings 중심)** — 노숙·약물 밀집 지역, 낮에도 조심. **차량 침입 절도**(차 안 비울 것) 밴쿠버 전역. 비긴급 **604-717-3321**(VPD)·응급 **911**."
+      },
+      {
+        "q": "밴쿠버에서 아이 공립학교에 어떻게 등록하나요? (영어 외 지원 언어는?)",
+        "a": "거주 학군(**SD43 Coquitlam·SD41 Burnaby·SD38 Richmond·SD44 North Vancouver**)에서 등록. 거주 증명·여권·예방접종(ImmunizeBC)·이전 성적표 지참. 영어 미숙 아이는 **ESL** 자동 배정. **BC는 다문화 공공 서비스가 발달** — 학군 통역 서비스에 **한국어·중국어(만다린·광둥어)·펀자브어·타갈로그어** 지원 흔함. 학부모 상담 통역 요청 가능."
+      },
+      {
+        "q": "밴쿠버에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주밴쿠버 대한민국 총영사관** (1600-1055 West Hastings St, Vancouver). 민원 +1-604-681-9581, 영사콜 24시간 +1-604-306-1070. 관할: BC·Yukon·Alberta(캘거리/에드먼턴은 별도 분관 없음). 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 캐나다 응급 **911**. 영사관 민원은 **한국어·영어** 완전 지원."
+      },
+      {
+        "q": "밴쿠버 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**비 많은 겨울·건조한 여름** — 10월~4월 **매일 흐리고 비**(가랑비 많음·눈 적음), 5~9월 건조·햇빛 좋음. 겨울 영상 유지(2~8도)·눈 가끔. **방수 자켓·장화·우산** 겨울 필수. **계절성 우울증(SAD)** 흔함 — 광치료 램프·비타민 D. 산불 시즌(7~9월) AQI 체크."
+      },
+      {
+        "q": "밴쿠버에서 한국어 가능한 의사·병원은? (통역 서비스)",
+        "a": "**MSP 3개월 대기** 중에는 민간 보험 필수. 코퀴틀람·버나비·리치몬드에 **한국어 가능 가정의(Family Doctor)·치과·내과·소아과** 다수. **PHSA Provincial Language Service** 전화 통역 24시간 지원(**한국어 포함 180개 언어**). 종합병원(Vancouver General·Royal Columbian·BC Children's) 통역 요청 가능. 간호사 상담 **HealthLink BC 811**(다국어 지원). 응급 **911**."
+      },
+      {
+        "q": "밴쿠버에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Rogers·Bell·Telus** 또는 저가 **Public Mobile(Telus 소유)·Fido(Rogers)·Freedom Mobile·Koodo·Lucky Mobile** (월 CAD $25~45). SIN 또는 캐나다 신용 없이 **선불 즉시** 개통. **인터넷**: **Shaw(Rogers 통합)·Telus·Novus·Oxio** (월 CAD $50~100). 아파트별 선택지 다름 — 입주 전 확인."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·ICBC 면허 교환 조건·MSP 3개월 대기·영화 산업 채용은 2026-10 기준. ICBC·HealthLink BC 공식 사이트 재확인 권장."
+    "verifyNote": "렌트 시세·ICBC·MSP·PHSA 통역 서비스·영사관은 2026-10 기준. BC 공공 다국어 서비스 체계적 — HealthLink BC·overseas.mofa.go.kr 공식 사이트 재확인 권장."
   },
 
   "london": {
@@ -968,10 +1376,34 @@
       {
         "q": "런던에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 금융·회계 (The City of London — 삼성·현대·KB·우리 등 미국·한국 금융사 유럽 본부) 2) K-콘텐츠·엔터 (BBC·Netflix 유럽 본부·CJ ENM·HYBE·SM 유럽 지사 — 성장 중) 3) 교육·학술 (Imperial·UCL·LSE·KCL — 유학·연구) 4) 요식·관광 (한식 열풍 — 뉴몰든 외 센트럴에도 한식당 급증) 5) 한인 비즈니스 (뉴몰든). Skilled Worker 비자 수요 꾸준."
+      },
+      {
+        "q": "런던에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: New Malden·Kingston·Wimbledon·Richmond·Chiswick — 서남부 교외. **주의**: Central 심야 지하철역·Camden·Peckham·일부 Tottenham 야간. **휴대폰 날치기(moped mugging)**·소매치기(Oxford Street·Tube) 주의. **지역별 편차**가 큰 도시. 비긴급 **101**·응급 **999**(**911 아님** 주의)."
+      },
+      {
+        "q": "런던에서 아이 공립학교에 어떻게 등록하나요? (영어 외 지원 언어는?)",
+        "a": "거주 **boroughs(구)**에 따라 **catchment area**로 학교 배정 — Kingston·Richmond·Merton·Wandsworth가 Primary·Secondary 학군 상위. 거주 증명·여권·예방접종·이전 성적표 지참해 **각 council** 사이트에서 **School Admission** 신청. 영어 미숙 아이는 **EAL(English as Additional Language)** 지원. **런던은 세계 최다 언어 도시** — 공립학교 통역 요청 흔함(한국어·중국어·아랍어·폴란드어 등). 한국학교 토요반도 있음."
+      },
+      {
+        "q": "런던에서 가까운 한국 영사관과 긴급 연락처는?",
+        "a": "**주영국 대한민국 대사관 영사과** (60 Buckingham Gate, London). 민원 +44-20-7227-5500, 영사콜 24시간 +44-7730-536-253. 관할: 영국 전역·아일랜드. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. **영국 응급 999**(한국의 112·119)·**비긴급 101**. 영사관은 **한국어·영어** 완전 지원."
+      },
+      {
+        "q": "런던 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**온화한 사계절·흐린 날 많음** — 여름(6~8월) 20~25도·때때로 35도 열파·에어컨 없는 집 많아 더위에 취약. 겨울(12~2월) 5~10도·영하 가끔·눈 적음. **비는 연중 자주** — 가랑비 흔함, 우산 상비. **방수 자켓·레이어드 복장**(날씨 급변) 필수. **계절성 우울증** 흔함 — 광치료 램프·비타민 D 권장."
+      },
+      {
+        "q": "런던에서 한국어 가능한 의사·병원은? (NHS 통역 서비스)",
+        "a": "**NHS GP 등록 필수**(비자 발급 시 **IHS 건강세 선납**으로 이용 가능). 뉴몰든 지역에 한국어 가능 **GP·치과** 소수. **NHS는 'Language Line Solutions' 전화 통역 서비스를 모든 GP·병원에서 제공** — 한국어 포함 240개 언어, 환자가 접수 시 **'한국어 통역 요청(Korean interpreter needed)'** 하면 전화·현장 통역 가능. 응급 **999**(앰뷸런스)."
+      },
+      {
+        "q": "런던에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **EE·Vodafone·O2·Three** 또는 저가 **GiffGaff(O2 네트워크)·Lebara·Lyca Mobile·VOXI** (월 £10~25). **PAYG(선불) SIM 즉시 개통**(여권만 있으면), **Pay Monthly**는 UK 신용 필요. **인터넷**: **BT·Virgin Media·Sky·Hyperoptic·Community Fibre** (월 £25~50). 아파트별 선택지 다름."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세·DVLA 면허 전환·IHS 건강세·K-콘텐츠 유럽 지사 채용은 2026-10 기준. GOV.UK·NHS·DVLA 공식 사이트 재확인 권장."
+    "verifyNote": "렌트 시세·DVLA·IHS·NHS Language Line·영사관은 2026-10 기준. GOV.UK·NHS·overseas.mofa.go.kr·DVLA 공식 사이트 재확인 권장. 런던은 세계 최다 언어 도시로 공공 통역 체계적."
   },
 
   "sydney": {
@@ -1021,10 +1453,34 @@
       {
         "q": "시드니에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 교육·학술 (UNSW·시드니대·UTS·맥쿼리대 — 세계 상위 대학, 유학생 서비스·연구) 2) 광업·에너지·자원 (호주 광업 본사·LNG — 포스코·현대중공업 호주 지사) 3) 요식·한식·관광 (K-푸드 열풍 — 스트라스필드 외 CBD에도 한식 급증) 4) IT·핀테크 (시드니 CBD 테크 허브 — Atlassian·Canva 본사) 5) 한인 비즈니스 (스트라스필드). SEEK·Indeed 활용."
+      },
+      {
+        "q": "시드니에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "**매우 안전**: Strathfield·Eastwood·Chatswood·North Sydney·Lindfield·Lane Cove — 가족·학군 선호. **주의**: Kings Cross 야간·일부 Western Sydney(Blacktown·Mt Druitt) 밤 조심. **차량 침입 절도**·소매치기 주의. 비긴급 **131-444**(NSW Police)·응급 **000**(**911 아님** 주의)."
+      },
+      {
+        "q": "시드니에서 아이 공립학교에 어떻게 등록하나요? (영어 외 지원 언어는?)",
+        "a": "거주지 **catchment area**로 공립학교 자동 배정. **NSW Department of Education** 사이트에서 거주지 학교 확인. 거주 증명·여권·예방접종(AIR)·이전 성적표 지참. 영어 미숙 아이는 **EAL/D(English as an Additional Language or Dialect)** 자동 배정. **NSW 공립학교는 다국어 공공 서비스 발달** — **TIS National 전화 통역**(한국어 포함 160개 언어)으로 학부모 상담·면담 통역 요청 가능."
+      },
+      {
+        "q": "시드니에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주시드니 대한민국 총영사관** (Level 10, 44 Market St, Sydney). 민원 +61-2-9210-0200, 영사콜 24시간 +61-408-972-359. 관할: NSW·QLD·ACT·NT. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. **호주 응급 000**(한국 112·119). 영사관은 **한국어·영어** 완전 지원."
+      },
+      {
+        "q": "시드니 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**온대 — 남반구라 한국과 계절 반대**. 여름(12~2월) 25~30도·때때로 40도+ 열파·건조, 겨울(6~8월) 10~17도·비 많음. **UV 지수 매우 높음**(세계 최고 수준) — 선크림·모자·선글라스 필수. **봄·가을(9~11월, 3~5월)** 쾌적. **산불 시즌(10~3월)** AQI 체크·대피 계획. **열대 저기압**(동부 해안) 가끔."
+      },
+      {
+        "q": "시드니에서 한국어 가능한 의사·병원은? (TIS 통역 서비스)",
+        "a": "**Medicare 자격 없음**(한국 미협정) → **OSHC/OVHC/민간 보험** 필수. 스트라스필드·이스트우드·채츠우드에 **한국어 가능 GP·치과** 다수. **TIS National(Translating and Interpreting Service) 전화 통역 24시간**(한국어 포함 160개 언어) — 공공·민간 모두 요청 가능. 종합병원(RPA·St Vincent's·Westmead) 통역 요청. 응급 **000**."
+      },
+      {
+        "q": "시드니에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Telstra**(커버리지 최고)·**Optus·Vodafone** 또는 저가 **Boost Mobile(Telstra 네트워크)·Belong(Telstra)·Amaysim·ALDImobile** (월 AUD $20~45). **선불(prepaid)** 즉시 개통(여권만). **인터넷**: **NBN**(국가 광통신망, ISP 선택 — TPG·Aussie Broadband·Telstra·Optus) (월 AUD $70~100). 아파트별 NBN 유형 확인."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세(주 단위)·NSW 면허 교환 조건·Medicare 상호 협정 제외는 2026-10 기준. NSW RMS·ATO·Medicare 공식 사이트 재확인 권장."
+    "verifyNote": "렌트 시세(주 단위)·NSW 면허·Medicare 미협정·TIS National 통역·영사관은 2026-10 기준. TIS 24시간 전화 통역이 호주 공공 서비스 통역의 중심. NSW RMS·overseas.mofa.go.kr 공식 사이트 재확인 권장."
   },
 
   "osaka": {
@@ -1074,10 +1530,34 @@
       {
         "q": "오사카에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 제조업·전자 (파나소닉·샤프·다이킨·오므론 — 간사이 제조 벨트, 한국어 가능 엔지니어 수요) 2) 요식·관광 (쓰루하시 코리아타운 외 미나미·오사카 성 관광지 — 한국어 가능 인력) 3) 통번역·한일 비즈니스 (K-POP·관광·무역) 4) 간호·개호 (특정기능 비자) 5) 유통·물류 (유니클로·간사이 공항 중심). Hello Work 오사카 외국인고용서비스센터 활용."
+      },
+      {
+        "q": "오사카에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "일본은 세계 최고 수준의 치안이지만 오사카는 도쿄보다 소매치기·사기 상대적으로 많습니다. **매우 안전**: 쓰루하시·이쿠노·대부분 주택가·주요 지하철 라인. **야간 주의**: 미나미(난바)·신세카이·니시나리구 일부 — 유흥가·호객 조심. 소매치기는 신오사카역·관광지. 긴급 **110**(경찰)·**119**(소방·구급)."
+      },
+      {
+        "q": "오사카에서 아이 공립학교에 어떻게 등록하나요? (일본어 외 지원 언어는?)",
+        "a": "거주지 **구청(区役所) 교육위원회**에서 전입 신고와 함께 등록. 재류카드·여권·주민표·예방접종 기록 지참. **이쿠노구는 재일 한인 많아 한국어 서비스가 다른 구보다 익숙함**. 일본어 못하는 아이는 **일본어 지도 교실(日本語指導学級)** 또는 **국제학교**(비싸지만 한국어·영어)·**건국한국학교(大阪)** 선택지. **오사카부 외국어 정보 통역 서비스**(한국어·중국어·영어·베트남어·필리핀어 등 15개 언어) 활용 가능."
+      },
+      {
+        "q": "오사카에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주오사카 대한민국 총영사관** (大阪市中央区西心斎橋 2-3-4). 민원 +81-6-4256-1333, 영사콜 24시간 +81-90-3050-0746. 관할: 간사이(大阪·京都·兵庫·奈良·和歌山·滋賀) 2부 4현·시코쿠·주고쿠 일부. 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. 일본 긴급 **110**(경찰)·**119**(구급)."
+      },
+      {
+        "q": "오사카 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**사계절 뚜렷** — 봄(3~5월) 15~20도 벚꽃·꽃가루, 여름(6~8월) 30~37도 **매우 덥고 습함**(열사병 주의)·장마(6월 중~7월 중), 가을(9~11월) 20도대, 겨울(12~2월) 5~10도·눈 거의 없음. **지진** 대비 비상용품(물·손전등·헬멧). **태풍**(8~10월) 교통 마비 가능."
+      },
+      {
+        "q": "오사카에서 한국어 가능한 의사·병원은? (통역 서비스)",
+        "a": "일본은 외국어 지원이 제한적입니다. **보험증(국민건강보험·사회보험) 필수**. 쓰루하시·이쿠노에 한국어 가능 가정의·치과 소수(재일 한인 네트워크). **오사카부 다문화 공생 센터**·**AMDA 국제의료정보센터**(06-4395-0555)에서 **한국어 포함 다국어 전화 통역**·병원 통역 요청 가능. 종합병원(大阪大学病院·関西医科大学病院)은 번역 서비스 요청 가능. 응급 **119**."
+      },
+      {
+        "q": "오사카에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **docomo·au·Softbank** 또는 저가 **Rakuten Mobile**(월 1,000~3,000엔)·**mineo·UQ mobile·Y!mobile**. 재류카드와 **일본 계좌·신용카드** 필요. 단기는 **eSIM** 추천(povo·Rakuten — 여권만). **인터넷**: NTT 플렛츠(간사이)·eo 광(관서전력)·NURO 광 (월 3,000~6,000엔). 설치 2~4주."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세(1K ¥60,000~90,000 등)·외국면허 전환 서류·구청 서비스는 2026-10 기준. 공식 사이트(스모·오사카부 운전면허 센터·이쿠노구) 재확인 권장."
+    "verifyNote": "렌트 시세·외국면허 전환·오사카부 다문화 공생 센터·영사관·AMDA 통역은 2026-10 기준. 일본은 외국어 지원이 상대적으로 제한적이나 다문화 공생 센터·AMDA 통한 통역 지원 가능. overseas.mofa.go.kr·구청 공식 사이트 재확인 권장."
   },
 
   "saopaulo": {
@@ -1127,9 +1607,33 @@
       {
         "q": "상파울루에서 한인이 취업하기 좋은 분야는?",
         "a": "1) 섬유·의류 (봉헤찌로 — 한인 봉제·도매업 60년 역사, 신규 이민자도 쉽게 진입 가능) 2) 한식당·요식 (K-푸드 열풍 — 봉헤찌로 외 Jardins·Vila Madalena에도 한식당 확산) 3) 한-남미 무역·수출입 (삼성·LG·현대 미국 지사 포함 종사자 많음) 4) 자동차·전자 조립 (현대차 피라시카바 공장·삼성 캄피나스 공장) 5) 한인 비즈니스 (봉헤찌로). 한-브라질 포르투갈어 통번역 수요 꾸준."
+      },
+      {
+        "q": "상파울루에서 치안이 좋은 지역과 조심할 지역은?",
+        "a": "브라질은 치안 편차가 큰 나라입니다. **상대적으로 안전**: Jardins·Alphaville·Morumbi·Vila Nova Conceição — 고급 주거지, 사설 경비. **봉헤찌로** 낮 안전·밤 조심. **주의**: Centro(시내 중심)·일부 Luz·Brás 야간. **휴대폰·시계·장신구는 공공장소에서 꺼내지 말 것**(강도·소매치기 매우 흔함). **차량 신호 대기 시 창문 올리고** 다닐 것. 비긴급 **190**(Polícia Militar)·응급 **190/192(SAMU 구급)**."
+      },
+      {
+        "q": "상파울루에서 아이 공립학교에 어떻게 등록하나요? (포르투갈어 외 지원 언어는?)",
+        "a": "공립학교는 **100% 포르투갈어**로 수업 — 포르투갈어 못하는 아이는 적응 어려움. 한인 자녀 대부분은 **상파울루 한국학교(선교한국학교)** 또는 **국제학교**(Chapel·Graded·Avenues — 영어 중심) 선택. **공립 CEU 교육센터**가 거주지 할당. 포르투갈어 능력 심사 후 **PFOL(Portuguese for Foreign Speakers)** 지원 가능하나 체계 부족. 외국인 자녀 통역 서비스는 **영사관 또는 한인 커뮤니티** 통해 요청."
+      },
+      {
+        "q": "상파울루에서 가까운 한국 총영사관과 긴급 연락처는?",
+        "a": "**주상파울루 대한민국 총영사관** (Av. Paulista 37 Conj. 91). 민원 +55-11-3141-1278, 영사콜 24시간 +55-11-98306-7474. 관할: 상파울루주·남부 브라질·우루과이·파라과이·아르헨티나(일부). 한국 외교부 **영사콜센터 24시간** +82-2-3210-0404. **브라질 응급 190(경찰)·192(구급)·193(소방)**. 영사관은 **한국어·포르투갈어** 완전 지원 — 브라질 공공 서비스 중 **한국어 소통 가장 확실한 창구**."
+      },
+      {
+        "q": "상파울루 날씨는 어떤가요? 뭘 준비해야 하나요?",
+        "a": "**아열대 고지대 — 남반구 계절**. 여름(12~3월) 25~32도·오후 소나기 자주, 겨울(6~9월) 15~22도·건조·아침 10도 이하. **고도 760m라 더위 심하지 않음**(리우데자네이루보다 서늘). **UV 지수 높음** — 선크림 필요. **공기 오염**(차량 많음) 체크. 호우로 **거리 침수** 가끔. 꽃가루 봄 심함."
+      },
+      {
+        "q": "상파울루에서 한국어 가능한 의사·병원은? (통역 서비스)",
+        "a": "브라질 공공 통역 서비스는 **매우 제한적**. **SUS(공공 의료)**는 포르투갈어 중심. **민간 보험**(Amil·Bradesco Saúde·SulAmérica) 가입 권장. 봉헤찌로에 **한국어 가능 가정의·치과·내과** 소수 — 한인 커뮤니티 추천 필수. **종합병원**(Hospital Albert Einstein·Hospital Sírio-Libanês)에 영어 통역은 있으나 **한국어 통역은 사전 요청·유료**. 영사관 **의료기관 안내 서비스** 활용. 응급 **192(SAMU)**."
+      },
+      {
+        "q": "상파울루에서 휴대폰·인터넷은 어떻게 개통하나요?",
+        "a": "**휴대폰**: 메이저 **Vivo·Claro·TIM·Oi** 또는 저가 **Vivo Easy(선불)·Claro Flex·TIM Pré**. **CPF 필수** — 선불도 CPF 필요(일본·호주와 다름). 월 R$ 30~80. **인터넷**: **Vivo Fibra·Claro Net·NET(현재 Claro)·TIM Live** (월 R$ 100~250). 봉헤찌로·Jardins는 **광통신(fiber) 좋음**, 외곽은 선택지 적음. 설치 1~2주."
       }
     ],
     "verifiedAt": "2026-10-14",
-    "verifyNote": "렌트 시세(R$ 2,000~3,000 등)·환율·CPF/RNM 절차·현대차 피라시카바 공장 채용은 2026-10 기준. 환율 변동 큼. 공식 사이트(Receita Federal·DETRAN-SP·브라질 영사관) 재확인 권장."
+    "verifyNote": "렌트 시세·환율·CPF 요구·공공 통역 제한·영사관 서비스는 2026-10 기준. 환율 변동 큼·브라질 공공 통역 제한적이라 영사관·한인 커뮤니티 네트워크 적극 활용 권장. overseas.mofa.go.kr·Receita Federal·DETRAN-SP 공식 사이트 재확인 권장."
   }
 }
