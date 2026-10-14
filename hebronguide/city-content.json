@@ -495,5 +495,270 @@
     ],
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·테크 채용 상황·H-1B 수요는 2026-10 기준. 테크 산업 변동 폭이 커 공식 채용 사이트·Zillow·CA DMV 재확인 권장."
+  },
+
+  "chicago": {
+    "nameKo": "시카고",
+    "nameEn": "Chicago",
+    "country": "US",
+    "regionEn": "Illinois",
+    "regionKo": "일리노이",
+    "lat": 41.8781,
+    "lng": -87.6298,
+    "keywords": "시카고 한인, 글렌뷰 한인, 나일스 한인, 시카고 정착 가이드, 시카고 한인교회, 노스브룩 한인, Chicago Korean, Glenview Korean, Niles Korean, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["Chicago", "Glenview", "Niles", "Northbrook"],
+    "localBusinessName": "HebronGuide Chicago Korean Community",
+    "localBusinessDesc": "시카고 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "시카고(일리노이) 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Chicago — 시카고 한인 정착 가이드",
+    "touristCenterDesc": "시카고(글렌뷰·나일스·노스브룩) 한인 이민자·유학생·주재원을 위한 완전 정착 가이드. 거주지·한식당·한인교회·DMV·취업·생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "시카고 한인마트 어디가 좋아요?",
+        "a": "시카고 최대 한인마트는 **H Mart Niles**(801 Civic Center Dr)과 **Super H Mart Glenview**입니다. 글렌뷰·나일스 북쪽 교외에 한인 상권이 집중되어 있어 대부분 한인이 이곳에서 장을 봅니다. Hyundai Market·Chicago Food Market도 활용 가능. Devon Avenue(인디아타운) 쪽에 아시안 식재료 매장도 있습니다."
+      },
+      {
+        "q": "시카고 한인 밀집 지역은 어디인가요?",
+        "a": "시카고 다운타운보다 **북쪽 교외**가 한인 생활권입니다. **Glenview(글렌뷰)**·**Niles(나일스)**·**Northbrook(노스브룩)**·**Skokie(스코키)**·**Arlington Heights(알링턴하이츠)**가 중심이며, 가족 단위 거주 선호. 유학생은 다운타운·에반스턴(Northwestern)·시카고 하이드파크(U of Chicago) 쪽에 많습니다."
+      },
+      {
+        "q": "시카고 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "시카고는 미국 대도시 중 생활비가 중간 수준입니다. 1BR 렌트 글렌뷰 $1,500~2,000/월, 다운타운 $2,000~3,000/월 × 보증금 1~1.5개월 + 차량 구매 $7,000~14,000(교외 거주 시 필수) + 생활비 $2,000~2,800/월. 초기 자금 $15,000~22,000 권장. **겨울이 혹독**(11~3월)해 난방비·방한복 예산 추가."
+      },
+      {
+        "q": "시카고에서 한국 면허로 운전할 수 있나요?",
+        "a": "방문자는 한국 면허로 임시 운전 가능하나, 일리노이 거주자는 **90일 안에** 일리노이 면허로 전환해야 합니다. 한-일리노이 상호 인정 협정이 없어 필기+도로시험을 봐야 합니다. 일리노이 Secretary of State(DMV 역할)는 한국어 필기시험을 지원합니다. Niles·Deerfield·Chicago North에 DMV 지점이 있습니다."
+      },
+      {
+        "q": "시카고 한인교회 추천해주세요",
+        "a": "글렌뷰·나일스·노스브룩·스코키 중심으로 수백 개 한인교회가 있고, 다운타운·에반스턴에도 유학생 교회가 있습니다. 교단(장로·침례·감리·순복음)과 세대 구성이 다양하니, 거주지·언어·가족 상황에 맞는 교회를 Hebron 플랫폼을 통해 안내받으시길 권합니다."
+      },
+      {
+        "q": "시카고 1베드룸 렌트비는 얼마인가요?",
+        "a": "2026년 기준: Glenview 1BR $1,500~2,000/월, Niles $1,400~1,900/월, Northbrook $1,700~2,200/월, 다운타운(The Loop) $2,000~3,000/월, Lincoln Park $1,800~2,500/월, 에반스턴 $1,800~2,400/월. 보증금은 보통 월세 1개월. 난방비(겨울)·에어컨(여름) 각각 월 $100~200 추가 예산."
+      },
+      {
+        "q": "시카고에서 SSN(사회보장번호)은 어디서 신청하나요?",
+        "a": "주요 SSA 오피스: Chicago Downtown(600 W Madison St), Northside(5901 N Ridge Ave), Skokie(5050 Church St), Des Plaines. 취업 비자 소지자는 입국 10일 후부터 신청 가능. 전화 예약(800-772-1213) 필수. 한국어 통역 서비스 요청 가능합니다."
+      },
+      {
+        "q": "시카고에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) 금융·거래 (CME·CBOE 등 세계적 선물·옵션 거래소 중심) 2) 제조·운송 (Boeing 본사·Deere·Caterpillar 공급망) 3) 의료·바이오 (Northwestern Medicine·UChicago Medicine·AbbVie) 4) IT·물류 (United Airlines·United·Boeing — 오헤어 공항 중심) 5) 한인 비즈니스 (글렌뷰·나일스). Illinois Department of Employment Security 활용."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "렌트 시세·IL Secretary of State 운영 정책은 2026-10 기준. Zillow·Illinois DMV 공식 사이트 재확인 권장."
+  },
+
+  "dc": {
+    "nameKo": "워싱턴 DC",
+    "nameEn": "Washington DC",
+    "country": "US",
+    "regionEn": "DC Metro (VA/MD)",
+    "regionKo": "DC 메트로(버지니아·메릴랜드)",
+    "lat": 38.9072,
+    "lng": -77.0369,
+    "keywords": "DC 한인, 워싱턴 한인, 애넌데일 한인, DC 정착 가이드, Centreville 한인, Ellicott City 한인, Bethesda 한인, DC Korean, Annandale Korean, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["Washington DC", "Annandale", "Centreville", "Ellicott City"],
+    "localBusinessName": "HebronGuide Washington DC Korean Community",
+    "localBusinessDesc": "DC 메트로(VA·MD) 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "워싱턴 DC 메트로(북버지니아·메릴랜드 몽고메리/하워드카운티) 한인 이민자·유학생·주재원·공무원을 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Washington DC — DC 메트로 한인 정착 가이드",
+    "touristCenterDesc": "DC 메트로(애넌데일·센터빌·엘리콧시티·베데스다·록빌) 한인 이민자·공무원·주재원을 위한 완전 정착 가이드. 거주지·한식당·한인교회·주별 DMV·연방공직·IT 컨설팅·생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "DC 메트로 한인마트 어디가 좋아요?",
+        "a": "최대 한인마트는 북버지니아의 **H Mart Annandale**(7050 Columbia Pike)과 **Super H Mart Fairfax**입니다. 메릴랜드는 **Lotte Plaza Rockville·Ellicott City** 지점이 큽니다. 리틀 코리아 '애넌데일(Little Korea Annandale)'에 한인 식당·업소가 밀집해 있어 쇼핑과 식사를 한 번에 할 수 있습니다."
+      },
+      {
+        "q": "DC 메트로 한인 밀집 지역은 어디인가요?",
+        "a": "**DC 자체 거주보다 북버지니아(NoVA)와 메릴랜드(MoCo·HoCo)**가 한인 생활권입니다. **버지니아: Annandale(애넌데일)·Centreville(센터빌)·Fairfax(페어팩스)**가 중심. **메릴랜드: Ellicott City(엘리콧시티, HoCo)·Bethesda(베데스다)·Rockville(록빌)**이 중심. 애넌데일은 미 동부 최대 리틀 코리아로 꼽힙니다."
+      },
+      {
+        "q": "DC 메트로 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "DC 메트로는 미국 대도시 중 상위 생활비 지역입니다(연방 공무원·법률·IT 중심). 1BR 렌트 Annandale $1,700~2,200/월, Fairfax $1,900~2,400/월, Bethesda $2,200~2,800/월 × 보증금 1~2개월 + 차량(지역 간 이동 필수) + 생활비 $2,500~3,500/월. 초기 자금 $18,000~28,000 권장."
+      },
+      {
+        "q": "DC 메트로에서 한국 면허로 운전할 수 있나요?",
+        "a": "거주 주(州)에 따라 다릅니다. **버지니아(VA)·메릴랜드(MD)·워싱턴 DC** 모두 한국과 상호 인정 협정이 없어 재시험(필기+도로)을 봐야 합니다. 버지니아 DMV·메릴랜드 MVA·DC DMV 모두 한국어 필기시험을 지원합니다. 애넌데일 Fairfax DMV·엘리콧시티 MVA 지점 자주 이용됩니다."
+      },
+      {
+        "q": "DC 메트로 한인교회 추천해주세요",
+        "a": "애넌데일·센터빌·페어팩스(버지니아)와 엘리콧시티·베데스다·록빌(메릴랜드)에 수백 개 한인교회가 있어 미 동부 교회 밀도가 높은 지역입니다. 교단(장로·침례·감리·순복음) 및 세대 구성이 다양하니, 거주지·언어·가족 상황에 맞는 교회를 Hebron 플랫폼을 통해 안내받으시길 권합니다."
+      },
+      {
+        "q": "DC 메트로 1베드룸 렌트비는 얼마인가요?",
+        "a": "2026년 기준: Annandale 1BR $1,700~2,200/월, Fairfax $1,900~2,400/월, Centreville $1,500~2,000/월, Bethesda $2,200~2,800/월, Rockville $1,900~2,400/월, Ellicott City $1,700~2,200/월, DC 안(Dupont·Logan) $2,500~3,500/월. 보증금은 보통 월세 1~2개월."
+      },
+      {
+        "q": "DC 메트로에서 SSN(사회보장번호)은 어디서 신청하나요?",
+        "a": "주요 SSA 오피스: Fairfax(11212 Waples Mill Rd), Alexandria, Rockville, Baltimore 등 지역별 다수. 취업 비자 소지자는 입국 10일 후부터 신청 가능. 전화 예약(800-772-1213) 필수. 한국어 통역 서비스 요청 가능. 연방 공무원 지원 시 보안 심사(clearance)로 시간이 더 걸릴 수 있습니다."
+      },
+      {
+        "q": "DC 메트로에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) 연방 공무원·국회 보좌 (한국어·외교·안보 전문) 2) 국방·안보 컨설팅 (SAIC·Booz Allen Hamilton·CACI — 보안 clearance 필요) 3) 로비·법률 (K Street 로펌·외교 네트워크) 4) 국제기구 (세계은행·IMF·IDB) 5) IT 컨설팅·사이버보안 (연방 조달 중심). 한인 비즈니스는 애넌데일·엘리콧시티 중심. USAJOBS·CareerBuilder 활용."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "렌트 시세·연방 채용·보안 clearance 절차는 2026-10 기준. 공식 사이트(VA DMV·MD MVA·USAJOBS) 재확인 권장."
+  },
+
+  "boston": {
+    "nameKo": "보스턴",
+    "nameEn": "Boston",
+    "country": "US",
+    "regionEn": "Massachusetts",
+    "regionKo": "매사추세츠",
+    "lat": 42.3601,
+    "lng": -71.0589,
+    "keywords": "보스턴 한인, 캠브리지 한인, 보스턴 유학, 보스턴 정착 가이드, 보스턴 한인교회, 뉴튼 한인, 벌링턴 한인, Boston Korean, Cambridge Korean, Harvard, MIT, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["Boston", "Cambridge", "Newton", "Burlington"],
+    "localBusinessName": "HebronGuide Boston Korean Community",
+    "localBusinessDesc": "보스턴 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "보스턴 메트로(매사추세츠) 한인 이민자·유학생·연구원·주재원을 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Boston — 보스턴 한인 정착 가이드",
+    "touristCenterDesc": "보스턴(캠브리지·뉴튼·벌링턴·올스턴) 한인 유학생·연구원·주재원을 위한 완전 정착 가이드. 거주지·한식당·한인교회·MA RMV·바이오/학술 취업·생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "보스턴 한인마트 어디가 좋아요?",
+        "a": "보스턴 최대 한인마트는 **H Mart Burlington**(3 Old Concord Rd)으로 북쪽 교외에 있습니다. **H Mart Cambridge**(581 Massachusetts Ave)는 하버드·MIT 유학생에게 편리합니다. **Reliable Market Somerville**(한일 혼합)도 활용. Super 88 Market(차이나타운)은 아시안 식재료 보완용으로 좋습니다."
+      },
+      {
+        "q": "보스턴 한인 밀집 지역은 어디인가요?",
+        "a": "**유학생: Allston·Brighton**(BU 근접) · **Cambridge·Somerville**(하버드·MIT). **직장인·가족: Newton(뉴튼)·Brookline(브루클라인)·Burlington(벌링턴)·Lexington(렉싱턴)·Winchester(윈체스터)**. 학군은 뉴튼·렉싱턴·웨스턴이 최고로 꼽힙니다. 보스턴 다운타운(Back Bay·Beacon Hill)보다 교외 거주 많음."
+      },
+      {
+        "q": "보스턴 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "보스턴은 미국 상위 고가 지역입니다. 1BR 렌트 Boston $2,500~3,200/월, Cambridge $2,800~3,500/월(매우 비쌈) × 보증금 **first+last+security = 월세 3개월** + broker fee(월세 1개월) + 생활비 $2,500~3,000/월. 초기 자금 $20,000~30,000 권장. **9월 1일 집중 이사철**(렌트 재계약 시즌)이 유명합니다."
+      },
+      {
+        "q": "보스턴에서 한국 면허로 운전할 수 있나요?",
+        "a": "방문자는 한국 면허로 임시 운전 가능하나, 매사추세츠 거주자는 매사추세츠 면허로 전환해야 합니다. 한-매사추세츠 상호 인정 협정이 없어 필기+도로시험을 봐야 합니다. MA RMV(Registry of Motor Vehicles)는 한국어 필기시험을 지원합니다. 대학가는 **지하철(T)·버스로 생활 가능**해 면허 없이도 되는 분이 많습니다."
+      },
+      {
+        "q": "보스턴 한인교회 추천해주세요",
+        "a": "하버드·MIT·BU·BC·Northeastern·Tufts 등 **유학생 중심 한인교회**가 캠브리지·올스턴·브라이튼에 밀집해 있고, 교외(뉴튼·벌링턴·렉싱턴) 가족 중심 교회도 많습니다. 교단(장로·침례·감리·순복음) 및 영어 예배 유무가 다양. 거주지·언어·가족 상황에 맞는 교회를 Hebron 플랫폼을 통해 안내받으시길 권합니다."
+      },
+      {
+        "q": "보스턴 1베드룸 렌트비는 얼마인가요?",
+        "a": "2026년 기준: Boston (Back Bay·South End) 1BR $2,800~3,800/월, Cambridge (Harvard Square) $2,800~3,500/월, Allston·Brighton $1,900~2,500/월(유학생 선호), Somerville $2,300~2,900/월, Newton $2,500~3,200/월, Burlington $2,000~2,500/월. 보증금 **first+last+security(3개월)** + broker fee 1개월이 보스턴 특수 관행."
+      },
+      {
+        "q": "보스턴에서 SSN(사회보장번호)은 어디서 신청하나요?",
+        "a": "주요 SSA 오피스: Boston Downtown(10 Causeway St), Cambridge, Quincy, Lowell 등. 취업 비자 소지자·J1·F1 OPT는 입국 10일 후부터 신청 가능. 전화 예약(800-772-1213) 필수. 한국어 통역 서비스 요청 가능. **F1 OPT는 EAD 카드 수령 후** 신청해야 하므로 순서 주의."
+      },
+      {
+        "q": "보스턴에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) 바이오·제약 (Biogen·Vertex·Moderna 본사·Takeda — 세계 최고 밀도의 바이오 벨트) 2) 교육·학술 (Harvard·MIT·BU·BC·Tufts — 세계 최고 대학 밀집) 3) 의료 (MGH·Brigham·Boston Children's — 미국 최상위 종합병원) 4) 금융 (Fidelity·State Street·John Hancock) 5) 로봇·AI 스타트업 (Boston Dynamics·MIT 스핀오프). 유학생 네트워크·학회가 커리어의 큰 자산."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "렌트 시세·3개월치 보증금 관행·바이오 채용 상황은 2026-10 기준. StreetEasy·MA RMV·바이오테크 Careers 재확인 권장."
+  },
+
+  "sandiego": {
+    "nameKo": "샌디에고",
+    "nameEn": "San Diego",
+    "country": "US",
+    "regionEn": "California",
+    "regionKo": "캘리포니아",
+    "lat": 32.7157,
+    "lng": -117.1611,
+    "keywords": "샌디에고 한인, 미라메사 한인, Convoy Street 한인, 샌디에고 정착 가이드, San Diego Korean, Mira Mesa Korean, Rancho Bernardo Korean, Qualcomm, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["San Diego", "Mira Mesa", "Rancho Bernardo", "Carmel Mountain"],
+    "localBusinessName": "HebronGuide San Diego Korean Community",
+    "localBusinessDesc": "샌디에고 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "샌디에고(남가주) 한인 이민자·유학생·주재원·바이오/국방 종사자를 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide San Diego — 샌디에고 한인 정착 가이드",
+    "touristCenterDesc": "샌디에고(미라메사·랜초버나도·카멜마운틴) 한인 이민자·유학생·바이오/통신 종사자를 위한 완전 정착 가이드. 거주지·한식당·한인교회·CA DMV·취업·생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "샌디에고 한인마트 어디가 좋아요?",
+        "a": "샌디에고 최대 한인마트는 **H Mart San Diego**(4601 Convoy St, Mira Mesa)와 **Zion Market San Diego**(7655 Clairemont Mesa Blvd)입니다. **Convoy Street**(미라메사·커넥트)가 아시안·한인 상권 중심지로, 한식당·카페·업소가 밀집해 있어 'Convoy District'로 불립니다."
+      },
+      {
+        "q": "샌디에고 한인 밀집 지역은 어디인가요?",
+        "a": "**Mira Mesa(미라메사, Convoy Street 상권)**가 전통 한인 거점입니다. 가족·학군 중시는 **Rancho Bernardo(랜초버나도)**·**Carmel Mountain Ranch(카멜마운틴랜치)**·**Scripps Ranch**가 선호됩니다. 유학생·연구원은 **La Jolla(라호야, UCSD·Scripps·Salk)** 근접지에 많습니다. Carlsbad·Encinitas도 성장 중."
+      },
+      {
+        "q": "샌디에고 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "샌디에고는 캘리포니아 안에서 LA·SF보다 약간 저렴하지만 미국 평균보다 높습니다. 1BR 렌트 Mira Mesa $2,000~2,500/월 × 보증금 1~2개월 + 차량 구매 $8,000~15,000(필수) + 생활비 $2,300~3,000/월. 초기 자금 $18,000~25,000 권장. 날씨 좋고(연중 20도대) 야외 활동 비용은 낮습니다."
+      },
+      {
+        "q": "샌디에고에서 한국 면허로 운전할 수 있나요?",
+        "a": "방문자는 한국 면허로 임시 운전 가능하나, 캘리포니아 거주자는 **10일 안에** 캘리포니아 면허로 전환해야 합니다. 한-캘리포니아 상호 인정 협정이 없어 필기+도로시험을 봐야 합니다. 캘리포니아 DMV는 한국어 필기시험을 지원합니다. 미라메사·카멜마운틴·엘카혼에 DMV 지점이 있습니다."
+      },
+      {
+        "q": "샌디에고 한인교회 추천해주세요",
+        "a": "미라메사·랜초버나도·카멜마운틴·라호야 지역에 수십 개 한인교회가 있습니다. 교단(장로·침례·감리·순복음) 다양하며 UCSD·Scripps 유학생 중심 공동체도 활발. 거주지·언어·가족 상황에 맞는 교회를 Hebron 플랫폼을 통해 안내받으시길 권합니다."
+      },
+      {
+        "q": "샌디에고 1베드룸 렌트비는 얼마인가요?",
+        "a": "2026년 기준: Mira Mesa 1BR $2,000~2,500/월, Rancho Bernardo $2,100~2,600/월, Carmel Mountain Ranch $2,200~2,700/월, La Jolla $2,500~3,500/월(바닷가 프리미엄), 다운타운(Little Italy·East Village) $2,500~3,200/월, El Cajon·Chula Vista $1,700~2,200/월(상대적 저렴). 보증금은 월세 1~2개월."
+      },
+      {
+        "q": "샌디에고에서 SSN(사회보장번호)은 어디서 신청하나요?",
+        "a": "주요 SSA 오피스: San Diego Downtown(1333 Front St), Mira Mesa(9710 Scranton Rd), Chula Vista, El Cajon. 취업 비자 소지자는 입국 10일 후부터 신청 가능. 전화 예약(800-772-1213) 필수. 한국어 통역 서비스 요청 가능. 해군·국방 산업 종사자는 보안 심사와 병행될 수 있어 여유 시간 필요."
+      },
+      {
+        "q": "샌디에고에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) 바이오·제약 (Scripps·Salk·Illumina·Gilead — 세계적 바이오 허브) 2) 통신·반도체 (Qualcomm 본사 — 샌디에고 최대 고용주) 3) 국방·해군 (Naval Base San Diego·태평양 함대 — 미 최대 해군기지) 4) 생명공학·연구 (UCSD) 5) 관광·호텔(연중 좋은 날씨). H-1B 수요 꾸준한 지역."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "렌트 시세·Qualcomm 채용·바이오 생태계는 2026-10 기준. Zillow·CA DMV·Qualcomm Careers 재확인 권장."
+  },
+
+  "orlando": {
+    "nameKo": "올랜도",
+    "nameEn": "Orlando",
+    "country": "US",
+    "regionEn": "Florida",
+    "regionKo": "플로리다",
+    "lat": 28.5383,
+    "lng": -81.3792,
+    "keywords": "올랜도 한인, 올랜도 정착 가이드, 올랜도 한인교회, Lake Mary 한인, 플로리다 한인, Orlando Korean, Lake Mary Korean, 디즈니, 유니버설, Hebron Platform, HebronGuide, 헤브론가이드",
+    "areaServed": ["Orlando", "Lake Mary", "Winter Park", "Dr. Phillips"],
+    "localBusinessName": "HebronGuide Orlando Korean Community",
+    "localBusinessDesc": "올랜도 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
+    "cityDescKo": "올랜도(플로리다) 한인 이민자·유학생·관광·호텔 종사자·이주자를 위한 정착 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Orlando — 올랜도 한인 정착 가이드",
+    "touristCenterDesc": "올랜도(Lake Mary·Winter Park·Dr. Phillips) 한인 이민자·유학생·관광 종사자를 위한 완전 정착 가이드. 거주지·한식당·한인교회·FL DHSMV·관광/시뮬레이션 취업·생활비 정보 제공.",
+    "faqs": [
+      {
+        "q": "올랜도 한인마트 어디가 좋아요?",
+        "a": "올랜도의 한인 상권은 상대적으로 분산되어 있습니다. **Garden Supermarket**·**Han Yang Market** 같은 작은 한인 식품점과 **iFresh**·**Lotte Food Market** 같은 아시안 종합마켓을 함께 활용합니다. 더 큰 한인 쇼핑은 자동차로 1시간 거리의 탬파 또는 아틀란타(5~6시간)로 가는 분도 있습니다. 코스트코·퍼블릭스로 생필품 보완."
+      },
+      {
+        "q": "올랜도 한인 밀집 지역은 어디인가요?",
+        "a": "큰 코리아타운 없이 **Lake Mary(레이크 메리)**·**Winter Park(윈터파크)**·**Dr. Phillips(닥터 필립스)**·**Ocoee(오코이)**·**Oviedo(오비에도)** 등에 분산되어 있습니다. Lake Mary(세미놀카운티)는 학군 좋아 가족 선호, Dr. Phillips는 관광·호텔 종사자 많습니다. 올랜도 자체는 성장 중인 한인 커뮤니티로 아직 밀집도가 낮은 편입니다."
+      },
+      {
+        "q": "올랜도 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "올랜도는 미국 대도시 중 생활비·세금 부담이 낮은 편입니다(플로리다 주 소득세 0%). 1BR 렌트 $1,500~1,900/월 × 보증금 1~2개월 + 차량 구매 $6,000~12,000(필수) + 생활비 $1,800~2,500/월. 초기 자금 $12,000~18,000 권장. 여름(5~9월) 에어컨·허리케인 대비 비용 추가."
+      },
+      {
+        "q": "올랜도에서 한국 면허로 운전할 수 있나요?",
+        "a": "방문자는 한국 면허로 임시 운전 가능하나, 플로리다 거주자는 **30일 안에** 플로리다 면허로 전환해야 합니다. 한-플로리다 상호 인정 협정이 없어 필기+도로시험을 봐야 합니다. 플로리다 DHSMV는 한국어 필기시험을 지원합니다. 올랜도·Lake Mary·Winter Garden 등에 지점이 있습니다."
+      },
+      {
+        "q": "올랜도 한인교회 추천해주세요",
+        "a": "올랜도·Lake Mary·Winter Park 지역에 수십 개 한인교회가 있고, 디즈니·유니버설 근처 Dr. Phillips 쪽에도 커뮤니티가 성장 중입니다. 교단(장로·침례·감리·순복음) 다양하며 영어 예배 있는 교회도 있습니다. 거주지·언어·가족 상황에 맞는 교회를 Hebron 플랫폼을 통해 안내받으시길 권합니다."
+      },
+      {
+        "q": "올랜도 1베드룸 렌트비는 얼마인가요?",
+        "a": "2026년 기준: Orlando 1BR $1,500~1,900/월, Lake Mary $1,700~2,100/월, Winter Park $1,800~2,300/월, Dr. Phillips $1,700~2,200/월, Ocoee·Oviedo $1,400~1,800/월(상대적 저렴). 보증금은 보통 월세 1~2개월. 플로리다는 **집주인 보험(windstorm/hurricane)**이 포함되어 전체 비용은 다른 주보다 안정적."
+      },
+      {
+        "q": "올랜도에서 SSN(사회보장번호)은 어디서 신청하나요?",
+        "a": "주요 SSA 오피스: Orlando Downtown(5520 Gatlin Ave), Lake Mary(1035 Sunshadow Dr), Kissimmee, Winter Park. 취업 비자 소지자는 입국 10일 후부터 신청 가능. 전화 예약(800-772-1213) 필수. 한국어 통역 서비스 요청 가능합니다."
+      },
+      {
+        "q": "올랜도에서 한인이 취업하기 좋은 분야는?",
+        "a": "1) 관광·호텔·테마파크 (Walt Disney World·Universal Orlando·SeaWorld — 세계 최대 테마파크 집중지, 다국어 인력 수요 꾸준) 2) 항공·시뮬레이션·방위 (Lockheed Martin·Northrop Grumman·AdventHealth) 3) 의료·바이오 (AdventHealth·Orlando Health) 4) 교육 (University of Central Florida — 미국 최대 재학생 수) 5) 한인 비즈니스 (성장 중). Florida Department of Economic Opportunity 활용."
+      }
+    ],
+    "verifiedAt": "2026-10-14",
+    "verifyNote": "렌트 시세·테마파크 채용·플로리다 DHSMV 정책은 2026-10 기준. Zillow·FL DHSMV·Disney Careers 재확인 권장."
   }
 }
