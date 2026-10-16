@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"/>
+<title>환대의 지도 — HebronGuide</title>
+<meta name="description" content="내가 나그네 되었을 때 너희가 영접하였다. 전 세계 한인 디아스포라를 위한 환대의 지도 — 지구본으로 보는 HebronGuide 정착 네트워크."/>
+<meta name="keywords" content="HebronGuide, 환대 지도, 환대의 식탁, 글로벌 한인, 디아스포라, 한인 정착, Hebron Platform, 지구촌 환대"/>
+<meta property="og:title" content="환대의 지도 — HebronGuide"/>
+<meta property="og:description" content="내가 나그네 되었을 때 너희가 영접하였다 — 지구본으로 보는 Hebron 환대 네트워크"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://hebronguide.com/map.html"/>
+<link rel="icon" type="image/png" href="/icon-192.png"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet"/>
+
+<style>
+  :root{
+    --bg:#0d1117;--bg2:#161b26;--bg3:#1F2733;--line:rgba(255,255,255,.1);
+    --text:#ECFDF5;--muted:rgba(236,253,245,.62);--muted2:rgba(236,253,245,.4);
+    --accent:#C9A227;--accent2:#F5C76E;--mint:#6EE7B7;
+    --ember:#FFB300; /* 환대의 등불 */
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{font-family:'Pretendard Variable','Noto Sans KR',-apple-system,sans-serif;
+       background:var(--bg);color:var(--text);overflow:hidden;word-break:keep-all;}
+  .serif{font-family:'Noto Serif KR',serif;letter-spacing:-.3px;}
+
+  /* 상단 바 */
+  .top{position:fixed;top:0;left:0;right:0;z-index:10;pointer-events:none;
+       background:linear-gradient(to bottom, rgba(13,17,23,0.9) 55%, rgba(13,17,23,0));
+       padding:14px 20px 36px;}
+  .top .inner{display:flex;align-items:center;justify-content:space-between;gap:12px;
+              max-width:1240px;margin:0 auto;pointer-events:auto;}
+  .top a.home{display:inline-flex;align-items:center;gap:7px;color:var(--muted);
+              text-decoration:none;font-size:.86rem;padding:6px 10px;border-radius:8px;
+              transition:all .15s ease;}
+  .top a.home:hover{color:var(--accent2);background:rgba(255,255,255,0.04);}
+  .top h1{display:flex;align-items:center;gap:10px;font-size:.98rem;font-weight:500;letter-spacing:.3px;}
+  .top h1 .lamp{width:9px;height:9px;border-radius:50%;background:var(--accent);
+                box-shadow:0 0 12px var(--accent),0 0 24px rgba(201,162,39,.4);
+                animation:breathe 3s ease-in-out infinite;}
+  @keyframes breathe{0%,100%{opacity:1;}50%{opacity:.5;}}
+
+  /* 성구 띠 (상단, 지도 위 떠다님) */
+  .verse{position:fixed;top:62px;left:50%;transform:translateX(-50%);z-index:9;
+         text-align:center;max-width:90%;pointer-events:none;}
+  .verse p{font-family:'Noto Serif KR',serif;font-size:1rem;letter-spacing:-.3px;
+           color:var(--accent2);text-shadow:0 2px 10px rgba(0,0,0,.6);line-height:1.5;}
+  .verse cite{display:block;font-family:'Pretendard Variable','Noto Sans KR',sans-serif;
+              font-size:.78rem;color:var(--muted2);margin-top:4px;font-style:normal;}
+
+  /* 지도 */
+  #map{position:absolute;top:0;bottom:0;left:0;right:0;background:#000;}
+  .maplibregl-popup{filter:drop-shadow(0 10px 30px rgba(0,0,0,.6));}
+  .maplibregl-popup-content{background:var(--bg2);color:var(--text);
+    border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-family:inherit;
+    min-width:200px;}
+  .maplibregl-popup-tip{border-top-color:var(--bg2)!important;border-bottom-color:var(--bg2)!important;}
+  .maplibregl-popup-content b{display:block;font-size:1.08rem;font-weight:500;margin-bottom:2px;color:var(--text);}
+  .maplibregl-popup-content small{color:var(--muted);font-size:.78rem;display:block;margin-bottom:12px;}
+  .maplibregl-popup-content .open{display:inline-flex;align-items:center;gap:6px;
+    color:#0d1117;background:var(--accent);padding:7px 12px;border-radius:99px;
+    font-size:.84rem;font-weight:500;text-decoration:none;}
+  .maplibregl-popup-content .open:hover{background:var(--accent2);}
+  .maplibregl-popup-content .wait{display:inline-block;color:var(--muted);font-size:.82rem;
+    border:1px dashed var(--line);padding:6px 10px;border-radius:8px;}
+  .maplibregl-popup-close-button{color:var(--muted)!important;font-size:1.2rem!important;
+    padding:4px 8px!important;top:4px!important;right:4px!important;}
+  .maplibregl-ctrl-attrib{background:rgba(13,17,23,.6)!important;color:var(--muted2)!important;
+    font-size:.68rem!important;}
+  .maplibregl-ctrl-attrib a{color:var(--muted)!important;}
+  .maplibregl-ctrl-group{background:rgba(13,17,23,.8)!important;border:1px solid var(--line)!important;}
+  .maplibregl-ctrl-group button{color:var(--text)!important;}
+  .maplibregl-ctrl-group button:hover{background:rgba(255,255,255,.08)!important;}
+
+  /* 범례 */
+  .legend{position:fixed;bottom:20px;left:20px;z-index:10;
+          background:rgba(13,17,23,0.88);border:1px solid var(--line);
+          border-radius:14px;padding:14px 18px;backdrop-filter:blur(10px);
+          font-size:.84rem;max-width:300px;}
+  .legend b{display:block;color:var(--accent2);font-size:.86rem;font-weight:500;margin-bottom:9px;
+            letter-spacing:.3px;}
+  .legend .row{display:flex;align-items:center;gap:10px;margin:6px 0;color:var(--muted);line-height:1.5;}
+  .legend .pin{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+  .legend .pin.live{background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .legend .pin.pending{background:#4A5568;opacity:.55;}
+  .legend .note{color:var(--muted2);font-size:.74rem;margin-top:10px;line-height:1.6;
+                padding-top:8px;border-top:1px solid rgba(255,255,255,.06);}
+
+  /* 통계 */
+  .stats{position:fixed;top:66px;right:20px;z-index:10;
+         background:rgba(13,17,23,0.88);border:1px solid var(--line);
+         border-radius:14px;padding:14px 18px;backdrop-filter:blur(10px);
+         font-size:.85rem;color:var(--muted);min-width:220px;}
+  .stats b{color:var(--text);display:block;font-weight:500;font-size:.86rem;
+           margin-bottom:5px;letter-spacing:.3px;}
+  .stats .row2{display:flex;gap:14px;margin-top:2px;}
+  .stats .cell{flex:1;}
+  .stats .num{color:var(--accent2);font-weight:700;font-size:1.3rem;line-height:1;display:block;}
+  .stats .cell small{color:var(--muted2);font-size:.74rem;}
+
+  /* CTA */
+  .cta{position:fixed;bottom:20px;right:20px;z-index:10;
+       display:flex;flex-direction:column;gap:8px;align-items:flex-end;}
+  .cta a{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;
+         border-radius:99px;font-size:.88rem;font-weight:500;text-decoration:none;
+         transition:all .15s ease;white-space:nowrap;}
+  .cta a.primary{background:var(--accent);color:#0d1117;
+                 box-shadow:0 6px 20px rgba(201,162,39,.35);}
+  .cta a.primary:hover{background:var(--accent2);transform:translateY(-1px);}
+  .cta a.secondary{background:rgba(13,17,23,.88);color:var(--muted);border:1px solid var(--line);}
+  .cta a.secondary:hover{color:var(--accent2);}
+  .cta .motto{color:var(--muted2);font-size:.76rem;margin-right:4px;letter-spacing:.3px;
+              font-family:'Noto Serif KR',serif;}
+
+  /* 모바일 */
+  @media (max-width:720px){
+    .top h1{font-size:.9rem;}
+    .verse p{font-size:.86rem;}
+    .verse cite{font-size:.72rem;}
+    .legend{bottom:88px;left:10px;right:10px;max-width:none;font-size:.78rem;padding:11px 14px;}
+    .stats{top:52px;right:10px;left:10px;min-width:auto;padding:11px 14px;}
+    .stats .num{font-size:1.1rem;}
+    .cta{bottom:14px;right:14px;}
+    .cta .motto{display:none;}
+  }
+  @media (max-width:420px){
+    .verse{display:none;}
+  }
+
+  /* 로딩 */
+  .loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+           background:var(--bg);z-index:100;color:var(--muted);font-size:.92rem;
+           flex-direction:column;gap:14px;}
+  .loading .spinner{width:30px;height:30px;border:2px solid var(--line);
+                    border-top-color:var(--accent);border-radius:50%;
+                    animation:spin 1s linear infinite;}
+  .loading .verse-ko{font-family:'Noto Serif KR',serif;color:var(--accent2);
+                     text-align:center;max-width:280px;line-height:1.6;margin-top:6px;}
+  .loading .verse-ko small{display:block;color:var(--muted2);font-size:.74rem;
+                           font-family:'Pretendard Variable','Noto Sans KR',sans-serif;margin-top:4px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+
+<div class="loading" id="loading">
+  <div class="spinner"></div>
+  <div>환대의 식탁을 펼치는 중…</div>
+  <div class="verse-ko">
+    "내가 나그네 되었을 때에 너희가 영접하였고"
+    <small>마태복음 25:35</small>
+  </div>
+</div>
+
+<div class="top">
+  <div class="inner">
+    <a class="home" href="/">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      HebronGuide
+    </a>
+    <h1>
+      <span class="lamp"></span>
+      <span>환대의 지도</span>
+    </h1>
+    <span style="color:var(--muted2);font-size:.8rem;letter-spacing:.3px;">전 세계 한인 정착 네트워크</span>
+  </div>
+</div>
+
+<div class="verse">
+  <p class="serif">"내가 나그네 되었을 때에 너희가 영접하였다"</p>
+  <cite>마태복음 25:35 · 새번역</cite>
+</div>
+
+<div class="stats" id="stats">
+  <b>Hebron 환대 네트워크</b>
+  <div class="row2">
+    <div class="cell">
+      <span class="num" id="statLive">—</span>
+      <small>불이 켜진 도시<br>(FAQ 14문항 완비)</small>
+    </div>
+    <div class="cell">
+      <span class="num" id="statPending">—</span>
+      <small>식탁 준비 중<br>(등록 완료)</small>
+    </div>
+  </div>
+</div>
+
+<div id="map"></div>
+
+<div class="legend">
+  <b>지도 안내</b>
+  <div class="row"><span class="pin live"></span>불이 켜진 도시 — 눌러서 가이드 열기</div>
+  <div class="row"><span class="pin pending"></span>식탁이 준비 중인 도시</div>
+  <div class="note">지구본을 돌려 가까운 이웃을 찾으세요. 환대는 한 사람의 식탁에서 시작됩니다.</div>
+</div>
+
+<div class="cta">
+  <span class="motto">환대를 가볍게. 식탁 하나로.</span>
+  <a href="/" class="primary">모든 도시 보기 →</a>
+  <a href="/arrive.html" class="secondary">방금 도착하셨나요?</a>
+</div>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+// FAQ 라이브 도시 (city-content.json에 데이터 있는 도시 — 2026-10-15 기준)
+// 리스트가 바뀌면 핀 색상이 자동 반영됩니다.
+const LIVE_CITIES = new Set([
+  "seattle","tokyo","la","toronto","atlanta","newyork","newjersey","dallas","houston","sf",
+  "chicago","dc","boston","sandiego","orlando","portland","honolulu","vancouver",
+  "london","sydney","osaka","saopaulo"
+]);
+
+const map = new maplibregl.Map({
+  container: 'map',
+  style: 'https://tiles.openfreemap.org/styles/dark',
+  center: [20, 20],
+  zoom: 1.4,
+  minZoom: 1,
+  maxZoom: 10,
+  projection: {type: 'globe'},
+  attributionControl: {compact: true},
+});
+
+map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-right');
+
+map.on('style.load', () => {
+  try {
+    // 지구본 대기권(fog) — 환대의 식탁 등불이 아득히 보이는 느낌
+    map.setFog && map.setFog({
+      color:'rgb(13,17,23)',
+      'high-color':'rgb(30,40,70)',
+      'space-color':'rgb(0,0,0)',
+      'horizon-blend':0.08,
+      'star-intensity':0.4
+    });
+  } catch {}
+});
+
+async function loadCities() {
+  try {
+    const res = await fetch('/cities.json', {cache: 'no-store'});
+    const cities = await res.json();
+    renderCities(cities);
+  } catch (e) {
+    document.getElementById('loading').innerHTML =
+      '<div style="text-align:center;max-width:300px;line-height:1.6;">' +
+      '<p>식탁을 펼치지 못했습니다.</p>' +
+      '<p style="color:rgba(236,253,245,.5);font-size:.84rem;margin-top:12px;">' +
+      '잠시 뒤 다시 열어 주세요.</p>' +
+      '<a href="/" style="display:inline-block;margin-top:16px;color:#F5C76E;text-decoration:none;">홈으로 돌아가기 →</a>' +
+      '</div>';
+  }
+}
+
+function renderCities(cities) {
+  let live = 0, pending = 0;
+
+  cities.forEach(c => {
+    if (!c.lat || !c.lng) return;
+    const isLive = LIVE_CITIES.has(c.slug);
+    if (isLive) live++; else pending++;
+
+    const el = document.createElement('div');
+    if (isLive) {
+      // 불이 켜진 도시 — 금빛 등불 + 호흡 애니메이션
+      el.innerHTML = `
+        <div style="position:relative;width:16px;height:16px;">
+          <div style="position:absolute;inset:-6px;border-radius:50%;background:radial-gradient(circle, rgba(201,162,39,.45) 0%, transparent 60%);animation:lampBreathe 3.5s ease-in-out infinite;"></div>
+          <div style="position:absolute;inset:0;border-radius:50%;background:#F5C76E;box-shadow:0 0 10px #C9A227,0 0 20px rgba(201,162,39,.6);border:1px solid rgba(255,255,255,.5);"></div>
+        </div>`;
+      el.style.cursor = 'pointer';
+    } else {
+      // 식탁 준비 중 — 희미한 등
+      el.innerHTML = `
+        <div style="width:9px;height:9px;border-radius:50%;background:#4A5568;opacity:.55;cursor:pointer;border:1px solid rgba(255,255,255,.15);"></div>`;
+    }
+    el.style.cursor = 'pointer';
+
+    const popup = new maplibregl.Popup({offset: 16, closeButton: true, closeOnClick: true})
+      .setHTML(`
+        <b>${c.nameKo}</b>
+        <small>${c.nameEn || ''}${c.country ? ' · ' + c.country : ''}</small>
+        ${isLive
+          ? `<a class="open" href="/${c.slug}/">도시 가이드 열기 →</a>`
+          : `<span class="wait">식탁 준비 중</span>`}
+      `);
+
+    new maplibregl.Marker({element: el, anchor: 'center'})
+      .setLngLat([c.lng, c.lat])
+      .setPopup(popup)
+      .addTo(map);
+  });
+
+  document.getElementById('statLive').textContent = live;
+  document.getElementById('statPending').textContent = pending;
+  document.getElementById('loading').style.display = 'none';
+}
+
+// 등불 호흡 애니메이션 (JS에서 style 주입 — 각 마커 안 inline keyframes 호환)
+const kf = document.createElement('style');
+kf.textContent = '@keyframes lampBreathe{0%,100%{opacity:.9;transform:scale(1);}50%{opacity:1;transform:scale(1.25);}}';
+document.head.appendChild(kf);
+
+map.on('load', loadCities);
+
+// 지구본 자동 회전 (호감도 UP, 사용자 조작 시 멈춤)
+let spinning = true;
+['mousedown','touchstart','wheel'].forEach(ev =>
+  map.on(ev, () => spinning = false)
+);
+function spin() {
+  if (spinning && map.getZoom() < 3) {
+    const c = map.getCenter();
+    c.lng -= 0.12;
+    map.easeTo({center: c, duration: 100, easing: n => n});
+  }
+  requestAnimationFrame(spin);
+}
+setTimeout(() => requestAnimationFrame(spin), 1800);
+</script>
+
+</body>
+</html>
